@@ -1,43 +1,59 @@
-## Description: <br>
-Consensus provides shell commands for managing a local note-style entry store under ~/.consensus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consensus is a third-party CLI-oriented skill presented for consensus analysis, while server security evidence reports that its bundled script behaves as a local record manager.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and technical users can use this skill to add, list, search, remove, export, and summarize local entries through shell commands. It should not be relied on as a blockchain consensus or protocol-security analyzer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is labeled as a blockchain consensus and protocol-security analyzer, while server security evidence says the artifacts implement a local persistent entry manager. <br>
-Mitigation: Use it only for local entry management; do not rely on it for consensus analysis or protocol-security decisions. <br>
-Risk: Remove and export commands can delete stored entries or create files in the current working directory. <br>
-Mitigation: Review command arguments, back up ~/.consensus/data.jsonl, and run export from a controlled directory. <br>
-Risk: Local entries may contain sensitive material because they are stored persistently under ~/.consensus. <br>
-Mitigation: Avoid storing secrets or regulated data, and manage local file permissions and retention before sharing the machine or exports. <br>
+## Use Case:
 
+Developers and external users may use this skill as a CLI helper for recording, listing, searching, exporting, and configuring local consensus-related notes. It should not be relied on as a protocol-security or on-chain consensus analysis tool without review.
 
-## Reference(s): <br>
-- [ClawHub Consensus release](https://clawhub.ai/ckchzh/consensus) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Configuration] <br>
-**Output Format:** [Plain text CLI output with JSONL or CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries under ${CONSENSUS_DIR:-~/.consensus}; export creates consensus-export.json or consensus-export.csv in the current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill is presented as blockchain consensus analysis, but server security evidence says the script manages local records instead.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and do not use its output as consensus, protocol-security, or on-chain analysis without independent validation.
+
+Risk: The script writes, removes, and exports local data and can create export files in shared or sensitive directories.
+
+Mitigation: Run it only in an intended working directory, set CONSENSUS_DIR to a non-sensitive location, and review files before sharing exports.
+
+Risk: Server security guidance identifies the config command as unsafe with untrusted keys or values and notes stored/exported data may be malformed unless fixed.
+
+Mitigation: Use trusted config keys and values only, avoid passing unsanitized input, and validate stored or exported records before downstream use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/consensus)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, configuration]
+
+**Output Format:** [Plain text CLI output with JSONL, JSON, or CSV files for stored and exported records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local data under CONSENSUS_DIR or ~/.consensus and may export files into the current working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

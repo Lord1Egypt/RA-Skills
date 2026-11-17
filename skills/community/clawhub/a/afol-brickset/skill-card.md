@@ -1,47 +1,62 @@
-## Description: <br>
-Use the included Brickset CLI for LEGO set search, details, images, instructions, reviews, login, user hash, collection, wishlist, and notes with guarded account writes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the included Brickset CLI for LEGO set search/details, images, instructions, reviews, login/user hash, collection, wishlist, and notes with guarded account writes.
 
-## Publisher: <br>
-[musketyr](https://clawhub.ai/user/musketyr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[musketyr](https://clawhub.ai/user/musketyr)
 
-## Use Case: <br>
-External LEGO hobbyists, collectors, and agent builders use this skill to query Brickset for set metadata, images, instructions, and community reviews, and to manage Brickset collection, wishlist, rating, quantity, and note workflows when credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill can send Brickset credentials to a configurable server. <br>
-Mitigation: Keep BRICKSET_BASE_URL unset or limited to https://brickset.com/api/v3.asmx, and avoid --base-url unless the endpoint is fully trusted. <br>
-Risk: The skill uses Brickset API keys, user hashes, and optional username/password credentials. <br>
-Mitigation: Store credentials in environment variables or an approved secret store, prefer BRICKSET_USER_HASH over username/password, and never print, commit, or paste real secrets. <br>
-Risk: The skill can make live Brickset collection, wishlist, rating, quantity, or note changes. <br>
-Mitigation: Use --dry-run first and require explicit confirmation of the exact Brickset account change before running a mutating command with --yes. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Brickset-backed LEGO set details, images, instructions, and community reviews, and to manage Brickset collection, wishlist, ratings, quantities, and notes after explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/musketyr/afol-brickset) <br>
-- [Brickset OpenAPI reference](references/openapi/brickset.yaml) <br>
-- [Brickset public prompt guidance](references/prompts/brickset-tools.txt) <br>
-- [Brickset private prompt guidance](references/prompts/brickset-private-tools.txt) <br>
-- [Brickset API documentation](https://brickset.com/article/52664/api-version-3-documentation) <br>
-- [Brickset API key request](https://brickset.com/tools/webservices/requestkey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses from the Brickset CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Brickset API credentials for live calls and a Brickset user hash for private account reads or writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Brickset credentials could be sent to an unintended endpoint if the base URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the official Brickset API URL and avoid setting BRICKSET_BASE_URL or passing --base-url when real credentials are configured.
+
+Risk: Account-changing collection or wishlist commands can modify private Brickset data.
+
+Mitigation: Require explicit user confirmation for the exact account change and use dry-run output before running mutating commands with --yes.
+
+Risk: Brickset API keys, user hashes, usernames, passwords, collection contents, wishlist entries, and notes may be sensitive.
+
+Mitigation: Treat Brickset credentials and private account data as secrets, redact them from logs and summaries, and summarize only the information needed for the user's request.
+
+## Reference(s):
+
+- [Brickset OpenAPI reference](references/openapi/brickset.yaml)
+- [Brickset public prompt guidance](references/prompts/brickset-tools.txt)
+- [Brickset private prompt guidance](references/prompts/brickset-private-tools.txt)
+- [Brickset API production endpoint](https://brickset.com/api/v3.asmx)
+- [Brickset API key request](https://brickset.com/tools/webservices/requestkey)
+- [Brickset API v3 documentation](https://brickset.com/article/52664/api-version-3-documentation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise API-result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Brickset URLs, PDF instruction links, collection status summaries, and redacted dry-run request shapes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

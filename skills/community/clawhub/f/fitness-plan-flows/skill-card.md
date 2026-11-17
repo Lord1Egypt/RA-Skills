@@ -1,42 +1,56 @@
-## Description: <br>
-Design "training plan"-centric marketing flows for stores selling fitness accessories, including post-purchase plan delivery, repurchase advancement plans, acquisition challenges, and member-exclusive content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design training plan-centric marketing flows for stores selling fitness accessories, including post-purchase plan delivery, repurchase advancement plans, acquisition challenges, and member-exclusive content.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External ecommerce operators and lifecycle marketers use this skill to design actionable email and SMS flow specs for fitness accessory stores. It helps convert training plans into post-purchase onboarding, repurchase prompts, acquisition challenges, member content, win-back flows, and review or UGC requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated campaign copy could include unsupported health or therapeutic claims. <br>
-Mitigation: Review all copy before use and label plans as fitness guidance or exercise advice rather than medical or therapeutic guidance. <br>
-Risk: Email or SMS flows could mishandle consent, unsubscribe requirements, discounts, or platform policies. <br>
-Mitigation: Check generated flows against the policies of the selected email or SMS platform and applicable consent, unsubscribe, and promotion rules before launch. <br>
+## Use Case:
 
+Marketing operators and ecommerce teams use this skill to design actionable email and SMS lifecycle flows for fitness accessory stores, with training plans as the value anchor for acquisition, post-purchase retention, repurchase, loyalty, and win-back campaigns.
 
-## Reference(s): <br>
-- [Fitness Plan Flows on ClawHub](https://clawhub.ai/RIJOYAI/fitness-plan-flows) <br>
-- [Training Plan Copy Templates](references/copy_templates.md) <br>
-- [Training Plan Types and Rhythm Reference](references/plan_types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown flow specifications with triggers, timelines, message structure, KPIs, and implementation mapping] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise shell commands for generating a blank flow-spec template.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Generated email or SMS flows may be deployed without sufficient review for customer consent or promotion terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review flows before publishing them in marketing tools, and confirm opt-in status, incentive scope, and validity details for each campaign.
+
+Risk: Fitness-plan copy may imply medical, therapeutic, or guaranteed outcome claims if adapted carelessly.
+
+Mitigation: Label plans as fitness guidance or exercise advice, avoid medical or therapeutic promises, and add appropriate review for injury or health-condition messaging.
+
+## Reference(s):
+
+- [Plan Types and Rhythm Reference](artifact/references/plan_types.md)
+- [Training Plan Copy Templates](artifact/references/copy_templates.md)
+- [Fitness Plan Flows on ClawHub](https://clawhub.ai/rijoyai/skills/fitness-plan-flows)
+- [rijoyai Publisher Profile](https://clawhub.ai/user/rijoyai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown flow specifications with optional shell command for generating a blank flow spec template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include flow maps, per-flow triggers, exit rules, timelines, message structures, KPIs, implementation mapping, and plan content lists.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

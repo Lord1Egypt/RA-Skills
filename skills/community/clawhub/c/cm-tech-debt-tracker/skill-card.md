@@ -1,37 +1,53 @@
-## Description: <br>
-Identify, categorize, and prioritize technical debt across a codebase by analyzing TODOs, complexity hotspots, dependency age, test coverage gaps, and code duplication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify, categorize, and prioritize technical debt across a codebase, including TODOs, complexity hotspots, dependency age, test coverage gaps, and code duplication.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to scan codebases for technical debt, prioritize the highest-risk items, and produce actionable maintenance reports for planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/cm-tech-debt-tracker) <br>
+Developers and engineering teams use this skill to inspect a codebase for technical debt and create an actionable backlog of prioritized maintenance work.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with command examples and prioritized findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file paths, code comments, git-history details, and project structure from the analyzed repository.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may inspect source files, dependency manifests, and git history to build a technical-debt report.
+
+Mitigation: Run it only in repositories where the agent is permitted to read code and history, and review generated reports before sharing them outside the team.
+
+Risk: Prioritization guidance can be incomplete if the available repository signals do not reflect current business impact or operational risk.
+
+Mitigation: Validate high-priority recommendations with maintainers and product owners before turning them into sprint commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/cm-tech-debt-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with inline shell commands and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes debt categories, priority scoring, estimated effort, business impact, and sprint planning guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

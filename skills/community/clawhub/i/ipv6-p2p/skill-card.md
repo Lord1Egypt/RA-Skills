@@ -1,43 +1,56 @@
-## Description: <br>
-Send and receive encrypted peer-to-peer messages between OpenClaw agents over Yggdrasil IPv6, with peer discovery, messaging, and connectivity diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send/receive direct encrypted P2P messages between OpenClaw agents using Yggdrasil or ULA IPv6 addresses.
 
-## Publisher: <br>
-[Jing-yilin](https://clawhub.ai/user/Jing-yilin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jing-yilin](https://clawhub.ai/user/jing-yilin)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to discover reachable OpenClaw peers, exchange direct encrypted messages, share their own P2P address, and diagnose Yggdrasil connectivity issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Active P2P discovery can expose a reachable network identity to bootstrap nodes and discovered peers. <br>
-Mitigation: Install and run this skill only when P2P discovery is intentional, and keep controls available to disable discovery or restrict listeners when it is not needed. <br>
-Risk: Automatic peer announcements may be broader than users expect in private, corporate, or monitored environments. <br>
-Mitigation: Review the discovery behavior and configured bootstrap peers before deployment, and confirm that network visibility matches the environment's security policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jing-yilin/ipv6-p2p) <br>
-- [Peer Discovery](references/discovery.md) <br>
-- [IPv6 P2P Example Interaction Flows](references/flows.md) <br>
-- [DeClaw project homepage](https://github.com/ReScienceLab/declaw) <br>
-- [Bootstrap node list](https://resciencelab.github.io/DeClaw/bootstrap.json) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to discover peers, exchange encrypted direct messages between agents, inspect P2P status, and diagnose Yggdrasil connectivity issues.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Markdown or plain text with P2P tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Yggdrasil or ULA IPv6 addresses, peer aliases, ports, discovery status, inbox counts, and connectivity diagnostics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may participate in a Yggdrasil P2P network, announce itself to bootstrap and discovered peers, and receive inbound P2P messages.
+
+Mitigation: Install only in environments where P2P discovery and inbound messaging are acceptable, and restrict or disable discovery before use in sensitive environments.
+
+Risk: The release evidence notes installation of unpinned external code.
+
+Mitigation: Prefer a pinned, audited package version before installing or deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jing-yilin/skills/ipv6-p2p)
+- [Peer Discovery](artifact/references/discovery.md)
+- [IPv6 P2P Example Interaction Flows](artifact/references/flows.md)
+- [DeClaw project homepage](https://github.com/ReScienceLab/declaw)
+- [DeClaw bootstrap node list](https://resciencelab.github.io/DeClaw/bootstrap.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Plain text or Markdown responses with P2P tool-call guidance when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include peer addresses, delivery status, discovery results, and connectivity diagnostics.]
+
+## Skill Version(s):
+
+0.1.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

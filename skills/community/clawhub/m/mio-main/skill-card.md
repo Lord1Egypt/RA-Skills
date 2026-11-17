@@ -1,38 +1,57 @@
-## Description: <br>
-Provides real-time chat, intent recognition, task delegation to sub-agents, and proactive companionship through direct dialogue and agent coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time chat, intent recognition, task delegation to sub-agents, and proactive companionship through direct dialogue and agent coordination.
 
-## Publisher: <br>
-[libaiqwq](https://clawhub.ai/user/libaiqwq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[libaiqwq](https://clawhub.ai/user/libaiqwq)
 
-## Use Case: <br>
-Users who want a conversational companion agent use this skill to hold direct chats, recognize whether a message is casual conversation or a task request, and route task-like requests to specialized sub-agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chat content may be saved locally in plain JSON without clear user notice, retention controls, or deletion controls. <br>
-Mitigation: Avoid sensitive personal details and install only if local plain-text chat memory is acceptable until disclosure, retention, and deletion controls are added. <br>
+## Use Case:
 
+External users can use this skill as a Chinese-language conversational controller that chats directly, detects task intent, and routes task requests toward specialized sub-agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/libaiqwq/mio-main) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [Plain text messages returned in JSON-like agent response objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may be direct chat messages, task-dispatch acknowledgements, or proactive companion prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/config.json) <br>
+Risk: The skill uses proactive triggers and may initiate conversation without a direct user request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user permission before enabling proactive activation and make trigger timing visible to the user.
+
+Risk: The skill may save chat text locally, and retention controls are not clearly documented.
+
+Mitigation: Avoid sharing secrets or sensitive personal information until memory controls, retention, and deletion behavior are reviewed.
+
+Risk: Server security review classified the release as suspicious because quality and privacy expectations require additional review.
+
+Mitigation: Review the skill before installation and confirm user consent, storage behavior, and activation boundaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/libaiqwq/skills/mio-main)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Structured JavaScript objects with chat, task, or initiation messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save chat text locally when memory behavior is active; proactive messages depend on configured hours and probability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

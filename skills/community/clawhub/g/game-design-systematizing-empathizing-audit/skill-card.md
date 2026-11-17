@@ -1,43 +1,51 @@
-## Description: <br>
-Evaluate a game, feature, system, UX flow, progression loop, live-ops mechanic, monetization surface, or design concept on two axes: systematizing and empathizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates game designs, features, UX flows, progression loops, live-ops mechanics, monetization surfaces, or concepts on systematizing and empathizing axes to clarify player appeal, rejection patterns, and practical design consequences.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product teams, and agents use this skill to audit a game concept or feature for its balance of system depth and emotional player fit. It produces a practical positioning read covering likely audience appeal, rejection patterns, and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential or unreleased game design material into an agent to receive the audit. <br>
-Mitigation: Only provide design details the user is allowed to process with the agent, and remove sensitive business, player, or partner information when possible. <br>
-Risk: The skill produces qualitative design guidance that could be mistaken for a definitive player research finding. <br>
-Mitigation: Treat the output as a structured design read and validate important product decisions with playtests, telemetry, or stakeholder review. <br>
+## Use Case:
 
+Game designers, product teams, and external developers use this skill to audit a game concept or feature for its balance of structural mastery and emotional player fit. It helps them understand likely audience appeal, rejection patterns, onboarding and retention implications, and whether the positioning should be leaned into, counterweighted, or clarified.
 
-## Reference(s): <br>
-- [Axis Definitions](references/axis-definitions.md) <br>
-- [Persona Tendencies](references/persona-tendencies.md) <br>
-- [Quadrant Reads](references/quadrant-reads.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanestane/game-design-systematizing-empathizing-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured sections for design read, axis positions, persona appeal, rejection pattern, practical consequences, and recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can influence agent response style for game-design critique and may produce subjective positioning judgments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as design analysis guidance and review conclusions against observable player behavior, team goals, and product data before acting on them.
+
+## Reference(s):
+
+- [Axis Definitions](references/axis-definitions.md)
+- [Persona Tendencies](references/persona-tendencies.md)
+- [Quadrant Reads](references/quadrant-reads.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured design audit with design read, axis positions, persona appeal, rejection pattern, practical consequences, and recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

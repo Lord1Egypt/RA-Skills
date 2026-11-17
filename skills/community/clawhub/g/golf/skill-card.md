@@ -1,43 +1,56 @@
-## Description: <br>
-Track rounds, handicap, clubs, and courses with personalized improvement tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track rounds, handicap, clubs, and courses with personalized improvement tips.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to keep a local golf log, track rounds, handicap, clubs, and courses, and receive personalized practice recommendations based on their history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update files under ~/golf/, which can affect existing golf notes in that folder. <br>
-Mitigation: Review ~/golf/ before first use and keep backups of memory.md, rounds.md, courses.md, and archived season files if that folder already exists. <br>
-Risk: Golf rules and handicap guidance may not match a user's current league, course, or tournament requirements. <br>
-Mitigation: Confirm formal rulings and handicap calculations with the relevant golf association, course, or tournament authority before relying on them for official play. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/golf) <br>
-- [Skill homepage](https://clawic.com/skills/golf) <br>
-- [Clubs Guide](artifact/clubs.md) <br>
-- [Memory Setup](artifact/memory-template.md) <br>
-- [Rules Reference](artifact/rules.md) <br>
+## Use Case:
 
+Golfers use this skill to maintain local records for rounds, handicap inputs, courses, club distances, and practice priorities. Agents use the stored history to provide personalized golf tracking and improvement guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local Markdown file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local Markdown files under ~/golf/ for round history, course notes, club distances, and handicap summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent golf records are stored locally in ~/golf/ and may include personal performance history.
+
+Mitigation: Install only if comfortable with local recordkeeping, review entries before relying on handicap or practice advice, and back up important records before archiving or reorganizing seasons.
+
+Risk: Golf rule, handicap, or practice guidance may be incomplete or stale for a user's local context.
+
+Mitigation: Review recommendations against current official rules, course rating and slope data, and personal coaching judgment before applying them.
+
+## Reference(s):
+
+- [Memory Setup - Golf](memory-template.md)
+- [Clubs Guide - Golf](clubs.md)
+- [Rules Reference - Golf](rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/golf)
+- [Skill Homepage](https://clawic.com/skills/golf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local Markdown records in ~/golf/ when the user opts to track golf history.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

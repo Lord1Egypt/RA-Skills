@@ -1,45 +1,55 @@
-## Description: <br>
-Open Graph and social sharing image design with platform specs, text placement, branding, OG meta tags, Twitter cards, LinkedIn previews, and dynamic generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open Graph and social sharing image design guidance covering platform specs, text placement, branding, OG meta tags, Twitter cards, LinkedIn previews, and dynamic image generation.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to create and validate Open Graph and social sharing images for pages, posts, launches, and tutorials. It provides platform dimensions, layout guidance, HTML-to-image examples, metadata snippets, and testing references. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses the external inference.sh installer, login flow, and remote generation services. <br>
-Mitigation: Install only if inference.sh is trusted, prefer manual installation with SHA-256 verification, and use an account with appropriate spending limits. <br>
-Risk: Remote image generation may expose confidential draft titles, unreleased page content, or private brand assets. <br>
-Mitigation: Avoid submitting confidential content unless the provider's data handling is acceptable for the use case. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/okaris/og-image-design) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI installer](https://cli.inference.sh) <br>
-- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
-- [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) <br>
-- [LinkedIn Post Inspector](https://linkedin.com/post-inspector/) <br>
-- [OpenGraph.xyz](https://opengraph.xyz) <br>
+## Use Case:
 
+Developers, designers, and marketing teams use this skill to design and generate social sharing images, blog thumbnails, link previews, and social cards with platform-specific dimensions, safe zones, metadata, and CLI examples.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, HTML, and metadata examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes image size recommendations, layout constraints, sample HTML-to-image commands, OG meta tags, and testing tool references.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup path asks users to run mutable internet code directly in a shell and mentions unpinned optional related-skill installs.
+
+Mitigation: Review the installer before running it, prefer manual download with checksum or signature verification, and pin and review any optional related-skill installs.
+
+Risk: HTML, prompts, logos, or unreleased launch copy passed to inference.sh apps may be sent to an external service.
+
+Mitigation: Use approved non-sensitive inputs or confirm service and data-handling requirements before submitting confidential material.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/okaris/skills/og-image-design)
+- [Inference.sh](https://inference.sh)
+- [Inference.sh CLI Install](https://cli.inference.sh)
+- [Inference.sh CLI Checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, Open Graph meta tag, Twitter Card, and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTML-to-image inputs, image-generation prompts, social preview metadata snippets, and command examples.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

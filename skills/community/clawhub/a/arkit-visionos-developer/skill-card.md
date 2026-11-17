@@ -1,54 +1,67 @@
-## Description: <br>
-Build and debug ARKit features for visionOS, including ARKitSession setup, authorization, data providers (world tracking, plane detection, scene reconstruction, hand tracking), anchor processing, and RealityKit integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and debug ARKit features for visionOS, including ARKitSession setup, authorization, data providers, anchor processing, and RealityKit integration.
 
-## Publisher: <br>
-[tomkrikorian](https://clawhub.ai/user/tomkrikorian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomkrikorian](https://clawhub.ai/user/tomkrikorian)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement and debug ARKitSession-based visionOS features, choose appropriate ARKit data providers, handle authorization, process anchors, and bridge ARKit data into RealityKit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated app guidance may involve camera, hand-tracking, world-sensing, room, scene reconstruction, or shared spatial permissions. <br>
-Mitigation: Review requested permissions before shipping, provide clear user-facing permission text, and handle denied authorization cleanly. <br>
-Risk: Sensor data from ARKit providers can expose sensitive information if retained or transmitted unnecessarily. <br>
-Mitigation: Avoid retaining or transmitting sensor data unless it is necessary for the feature. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement or troubleshoot ARKit workflows on visionOS, including session setup, provider authorization, anchor updates, and RealityKit integration.
 
-## Reference(s): <br>
-- [ARKit visionOS Code Patterns](references/REFERENCE.md) <br>
-- [WorldTrackingProvider](references/world-tracking-provider.md) <br>
-- [HandTrackingProvider](references/hand-tracking-provider.md) <br>
-- [PlaneDetectionProvider](references/plane-detection-provider.md) <br>
-- [SceneReconstructionProvider](references/scene-reconstruction-provider.md) <br>
-- [ImageTrackingProvider](references/image-tracking-provider.md) <br>
-- [ObjectTrackingProvider](references/object-tracking-provider.md) <br>
-- [RoomTrackingProvider](references/room-tracking-provider.md) <br>
-- [AccessoryTrackingProvider](references/accessory-tracking-provider.md) <br>
-- [BarcodeDetectionProvider](references/barcode-detection-provider.md) <br>
-- [CameraFrameProvider](references/camera-frame-provider.md) <br>
-- [CameraRegionProvider](references/camera-region-provider.md) <br>
-- [EnvironmentLightEstimationProvider](references/environment-light-estimation-provider.md) <br>
-- [SharedCoordinateSpaceProvider](references/shared-coordinate-space-provider.md) <br>
-- [StereoPropertiesProvider](references/stereo-properties-provider.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Swift code examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Generated app code may access camera, hand, room, or spatial environment data in a visionOS app.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code, Info.plist usage descriptions, authorization handling, and user-facing permission prompts before deployment.
+
+Risk: Some ARKit providers require device support, specific presentation modes, entitlements, or enterprise licensing.
+
+Mitigation: Check provider support and required authorizations at runtime, and confirm entitlements or licensing before enabling provider-specific features.
+
+## Reference(s):
+
+- [ARKit visionOS Code Patterns](references/REFERENCE.md)
+- [WorldTrackingProvider](references/world-tracking-provider.md)
+- [HandTrackingProvider](references/hand-tracking-provider.md)
+- [PlaneDetectionProvider](references/plane-detection-provider.md)
+- [SceneReconstructionProvider](references/scene-reconstruction-provider.md)
+- [ImageTrackingProvider](references/image-tracking-provider.md)
+- [ObjectTrackingProvider](references/object-tracking-provider.md)
+- [RoomTrackingProvider](references/room-tracking-provider.md)
+- [AccessoryTrackingProvider](references/accessory-tracking-provider.md)
+- [BarcodeDetectionProvider](references/barcode-detection-provider.md)
+- [CameraFrameProvider](references/camera-frame-provider.md)
+- [CameraRegionProvider](references/camera-region-provider.md)
+- [EnvironmentLightEstimationProvider](references/environment-light-estimation-provider.md)
+- [SharedCoordinateSpaceProvider](references/shared-coordinate-space-provider.md)
+- [StereoPropertiesProvider](references/stereo-properties-provider.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown responses with Swift code snippets and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated app code may involve camera, hand, room, and spatial environment permissions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

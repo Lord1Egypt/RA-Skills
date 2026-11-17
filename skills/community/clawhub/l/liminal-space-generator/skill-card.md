@@ -1,42 +1,54 @@
-## Description: <br>
-Generate eerie liminal space images, dreamcore backgrounds, and backrooms-style scenes from text prompts via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate eerie liminal space images, dreamcore backgrounds, and backrooms-style scenes via the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External creators, writers, and developers use this skill to generate liminal space, dreamcore, backrooms-style, and atmospheric background images from text prompts, with optional size selection and reference-image style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image IDs, and the Neta API token are sent to the Neta/TalesOfAI service. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, avoid sensitive prompt content, and pass the token through shell environment expansion such as "$NETA_TOKEN". <br>
-Risk: A long-lived API token could be exposed if typed directly into shell history or shared logs. <br>
-Mitigation: Store the token in an environment variable or a local secret manager and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External creators, horror writers, social media accounts, and game or video creators use this skill to generate liminal-space, dreamcore, and backrooms-style images from text prompts. Developers can invoke it as a Node CLI with size and reference-image options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/liminal-space-generator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/omactiengartelle) <br>
-- [Neta API token page](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, text, guidance] <br>
-**Output Format:** [Command-line invocation that returns a direct image URL as text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Neta API token; supports size selection and optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: A live Neta API token passed on the command line may be exposed through shell history, shared logs, or process listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a safer token-handling workflow, avoid elevated privileges, and avoid pasting live tokens into shared commands or logs.
+
+Risk: Prompts and optional reference image UUIDs are sent to the Neta/Tales of AI image service.
+
+Mitigation: Do not submit sensitive prompts or reference identifiers unless sharing them with the external image service is acceptable.
+
+## Reference(s):
+
+- [Neta API token signup](https://www.neta.art/open/)
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/liminal-space-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text image URL with command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; supports portrait, landscape, square, and tall sizes plus an optional reference image UUID.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

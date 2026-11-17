@@ -1,40 +1,48 @@
-## Description: <br>
-Validate Rust Cargo.toml manifests for dependency issues, missing metadata, feature conflicts, workspace config, and crates.io publishing readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate Rust Cargo.toml manifests for dependency issues, missing metadata, feature conflicts, workspace config, and crates.io publishing readiness.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to validate Rust Cargo.toml manifests, audit dependency and feature configuration, and prepare crates for publishing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Crafted Cargo.toml values could affect terminal display in default text or summary output.
+
+Mitigation: Prefer JSON output for untrusted manifests or automated processing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to validate Rust Cargo.toml files, audit dependency and feature configuration, and check crates.io publishing readiness. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a bundled local Python validator against Cargo.toml files selected by the user. <br>
-Mitigation: Review the script before use in sensitive projects and run it only against manifests intended for local analysis. <br>
-Risk: Publisher provenance is limited because server-resolved GitHub import provenance is unavailable for this version. <br>
-Mitigation: Rely on the ClawHub publisher profile and release evidence, and perform additional publisher review before high-trust deployment. <br>
+**Output Format:** [Markdown guidance with shell commands and optional text, summary, or JSON validation output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Cargo Toml Validator on ClawHub](https://clawhub.ai/charlie-morrison/cargo-toml-validator) <br>
+**Other Properties Related to Output:** [Can emit CI-friendly exit codes and strict-mode validation results.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text, JSON, or compact summary output from the validator, plus human-facing validation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on a user-selected Cargo.toml file and can return errors, warnings, info findings, suggestions, and CI-friendly exit codes.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

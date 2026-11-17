@@ -1,41 +1,58 @@
-## Description: <br>
-One-shot reminders via natural language. Auto-detects channel and timezone. Say 'remind me...' in any language and get pinged when it's time. Works with every channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-shot reminders via natural language that auto-detect channel and timezone, then ping the user when the reminder is due.
 
-## Publisher: <br>
-[Ethan-Shen-Individual-Lab](https://clawhub.ai/user/Ethan-Shen-Individual-Lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethan-shen-individual-lab](https://clawhub.ai/user/ethan-shen-individual-lab)
 
-## Use Case: <br>
-External users and developers use this skill to ask an OpenClaw agent for one-time reminders in natural language, then list, cancel, or configure reminder delivery across chat channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder text, timing, channel, timezone, and optional delivery target may be stored locally or in OpenClaw cron until delivery or cancellation. <br>
-Mitigation: Avoid putting secrets in reminders and cancel reminders that should no longer be retained. <br>
-Risk: Misconfigured channel, timezone, or delivery target can send a reminder to the wrong place or at the wrong time. <br>
-Mitigation: Verify channel, target, and timezone settings in shared or multi-channel environments before relying on scheduled delivery. <br>
+## Use Case:
 
+Agents use this skill to create, list, cancel, and configure one-shot reminders for users across OpenClaw-supported chat channels. It is intended for users who want natural-language reminder scheduling with automatic channel and timezone handling.
 
-## Reference(s): <br>
-- [Ping Me ClawHub Listing](https://clawhub.ai/Ethan-Shen-Individual-Lab/ping-me) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash commands and concise natural-language confirmations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates, lists, cancels, and configures one-time OpenClaw reminders; reminder text, timing, channel, timezone, and optional delivery target may be stored locally or in OpenClaw cron until delivery or cancellation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact _meta.json) <br>
+Risk: The cancellation command can remove unrelated OpenClaw scheduled jobs if supplied an ID for another job.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: List reminders first, verify the target job is a ping-me reminder, and avoid cancelling arbitrary or ambiguous job IDs until cancellation scoping is fixed.
+
+Risk: The README includes an unpinned npx install command.
+
+Mitigation: Prefer the ClawHub install path or a pinned installer/version for controlled installs.
+
+Risk: Some announce channels require an explicit delivery target, and reminders may fail if that target is missing.
+
+Mitigation: Configure the default channel and delivery target during first-time setup for target-required channels such as QQ Bot.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ethan-shen-individual-lab/skills/ping-me)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise text confirmations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates, lists, cancels, and configures OpenClaw cron reminders; reminder jobs are intended to delete after firing.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

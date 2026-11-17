@@ -1,0 +1,5 @@
+# tujian-suanliang 依赖声明（识图能力由底座 cad-file-reader 提供，此处只列本技能直接使用）
+# 优先走底座 vendor；缺失时：python3 -m pip install -r requirements.txt
+openpyxl>=3.1
+ezdxf>=1.4.0
+numpy>=1.24

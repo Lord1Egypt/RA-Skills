@@ -42,7 +42,7 @@ description: 将任意代码库转换为精美的交互式课程。默认产品�
 
 根据用户选择的版本和英文关键词，确定课程的输出目录名：
 - **产品版**：`{英文关键词}-course-pm`（例如：`task-scheduler-course-pm`）
-- **开发版**：`{英文关键词}-course-pro`（例如：`task-scheduler-course-pro`）
+- **开发版**：`{英文关键词}-course-pro`（例如：`taREDACTED-SECRET`）
 
 **关于测验：**
 - 产品版 **不包含测验**

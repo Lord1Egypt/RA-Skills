@@ -24,6 +24,7 @@ Examples of clearer naming:
 - `sources/equipment-manuals`
 - `tools/ocr-tool`
 - `entertainment/audiobooks`
+- `apps/ExampleAppName`
 
 ## Structure principles
 

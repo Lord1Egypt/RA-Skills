@@ -1,44 +1,61 @@
-## Description: <br>
-Persistent local memory for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs, configures, upgrades, and troubleshoots the MemOS local memory plugin for OpenClaw agents.
 
-## Publisher: <br>
-[mathematics-yang](https://clawhub.ai/user/mathematics-yang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mathematics-yang](https://clawhub.ai/user/mathematics-yang)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to install, configure, upgrade, and troubleshoot the MemOS local memory plugin. It supports persistent local conversation memory, task summaries, skill evolution, and a local Memory Viewer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill authorizes broad local installation actions, including package installation, OpenClaw configuration changes, gateway restarts, and fallback remote-script execution. <br>
-Mitigation: Install only when those local changes are intended; review commands and configuration changes before running them, and prefer verified package-manager installation over pipe-to-shell fallbacks. <br>
-Risk: The skill configures persistent local conversation memory that can retain sensitive conversation content. <br>
-Mitigation: Review Memory Viewer contents and retention settings before using the plugin with sensitive conversations, and back up or delete the local database according to user policy. <br>
-Risk: External embedding providers can require API keys and may send text to third-party services when configured. <br>
-Mitigation: Prefer the local embedding option for offline use, and use environment-variable references rather than pasting API keys directly into configuration. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add persistent local memory, semantic retrieval, task summaries, and memory-management tools to an OpenClaw agent. It guides the agent through install, configuration, upgrade, verification, and basic troubleshooting while asking the user only for embedding-model details when needed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mathematics-yang/memos-oneclick-install) <br>
-- [MemOS documentation](https://memos-claw.openmem.net/docs/) <br>
-- [MemOS plugin npm package](https://www.npmjs.com/package/@memtensor/memos-local-openclaw-plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to modify local OpenClaw configuration, install packages, restart the gateway, and report verification results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill gives the agent broad authority to install npm packages, modify OpenClaw configuration, restart services, and repair installations automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill and package source before use, run it only in an environment where those changes are acceptable, and inspect configuration changes after installation.
+
+Risk: Fallback installer paths use remote shell scripts.
+
+Mitigation: Prefer the OpenClaw CLI or another pinned, verified package source; avoid pipe-to-shell installers unless the script source has been reviewed and trusted.
+
+Risk: The installed plugin stores conversation memory locally and may interact with external embedding APIs if configured.
+
+Mitigation: Use local embeddings for sensitive work, store API keys through environment-variable references when possible, and check telemetry, sharing, and memory-capture settings before enabling the plugin.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mathematics-yang/skills/memos-oneclick-install)
+- [MemOS for OpenClaw Homepage](https://memos-claw.openmem.net)
+- [MemOS for OpenClaw Documentation](https://memos-claw.openmem.net/docs/)
+- [MemOS for OpenClaw Troubleshooting](https://memos-claw.openmem.net/docs/troubleshooting.html)
+- [NPM Package](https://www.npmjs.com/package/@memtensor/memos-local-openclaw-plugin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing installation and troubleshooting steps; the installed plugin may persist local conversation memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-AI music generation assistant powered by MakebestMusic for creating AI-generated songs and audio tracks from text prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI music generation assistant powered by MakebestMusic for creating AI-generated music, songs, and audio tracks from user prompts.
 
-## Publisher: <br>
-[sthk-mbm](https://clawhub.ai/user/sthk-mbm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sthk-mbm](https://clawhub.ai/user/sthk-mbm)
 
-## Use Case: <br>
-External users, content creators, and musicians use this skill to generate vocal or instrumental music from text prompts and check task status until shared music links are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Song prompts, lyrics, personal data, proprietary creative material, and the MakeBestMusic API key may be sent to a third-party service. <br>
-Mitigation: Install only if the publisher is trusted, avoid confidential or proprietary prompt content, and protect the user-provided apiKey. <br>
-Risk: The MBM_API_BASE environment variable can redirect requests to a custom endpoint. <br>
-Mitigation: Set MBM_API_BASE only to endpoints the user controls or trusts. <br>
+## Use Case:
 
+External users and content creators use this skill to generate vocal or instrumental music from natural-language descriptions and to check the status of generated tracks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sthk-mbm/texttomusic) <br>
-- [MakeBestMusic](https://makebestmusic.com/?pid=PIDcLjhgCXUQ) <br>
-- [MakeBestMusic API endpoint](https://api.makebestmusic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided apiKey and returns task identifiers, status values, and shared music URLs when generation completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 1.2.0) <br>
+Risk: The skill requires a MakeBestMusic API key and sends prompts and generated music IDs to MakeBestMusic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated key with the minimum needed access, avoid submitting sensitive prompts, and rotate or revoke the key if exposure is suspected.
+
+Risk: The API host can be changed through MBM_API_BASE, which could redirect prompts, music IDs, and the API key if the environment is controlled by untrusted code.
+
+Mitigation: Run the skill only in trusted environments and keep MBM_API_BASE unset or fixed to the official HTTPS endpoint.
+
+Risk: Prompt and music ID arguments are passed through shell-oriented commands in the skill instructions.
+
+Mitigation: Prefer structured argument invocation and review generated commands before execution, especially when prompts include quotes or shell metacharacters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sthk-mbm/skills/texttomusic)
+- [MakeBestMusic](https://makebestmusic.com/?pid=PIDcLjhgCXUQ)
+- [MakeBestMusic API endpoint](https://api.makebestmusic.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON status responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an apiKey credential for MakeBestMusic and returns generation IDs, status values, and shared music URLs when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

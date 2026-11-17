@@ -1,40 +1,53 @@
-## Description: <br>
-Use when executing a written implementation plan in the current session with sequential task execution and review checkpoints when subagent-driven mode is not available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when executing a written implementation plan in the current session with sequential task execution and review checkpoints, especially when subagent-driven mode is not available.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to execute written implementation plans sequentially when subagent-driven execution is unavailable or unnecessary. It guides the agent through plan review, task execution, validation checkpoints, and completion handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-impact administrative actions can affect agents, tokens, permissions, content, mail, or skill deletion. <br>
-Mitigation: Install only for trusted ZenHeart L0/admin operators and confirm authorization rules, audit logging, recovery paths, and deployment runbooks before use. <br>
-Risk: Credential exposure could compromise ZENLINK_TOKEN. <br>
-Mitigation: Protect ZENLINK_TOKEN and restrict use to operators who understand the credential handling guidance. <br>
+## Use Case:
 
+Developers and coding agents use this skill to execute a written implementation plan step by step, review the plan before starting, run verification for each task, and pause for blockers or unclear instructions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/openclaw-executing-plans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with task lists and inline commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include code edits, verification results, and concise status updates when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can drive code changes from a written plan that may be incomplete, unclear, or unsafe for the current branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plan before implementation and pause for blockers, unclear instructions, verification failures, or main/master branch changes without explicit user approval.
+
+Risk: The artifact is a Chinese-language workflow skill, which can be misunderstood by agents or reviewers who cannot reliably read it.
+
+Mitigation: Install and use it only when the operator is comfortable with the language or can reliably translate the workflow guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/openclaw-executing-plans)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with task lists, review checkpoints, code edits, and verification commands as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain workflow guidance; the skill does not include executable code or hidden network, credential, persistence, or scanner behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

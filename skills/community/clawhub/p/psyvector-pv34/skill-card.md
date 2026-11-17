@@ -1,39 +1,50 @@
-## Description: <br>
-Rapid mediation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rapid mediation.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users and teams use this skill to get fast, lightweight compromise-oriented mediation suggestions for sudden disputes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fast mediation posture may understate risks in serious or high-stakes conflicts. <br>
-Mitigation: Use for lightweight mediation suggestions only; for safety, abuse, legal issues, threats, or high-stakes decisions, ask for risks, alternatives, and escalation guidance. <br>
+## Use Case:
 
+External users and agents use this skill to produce rapid mediation-style responses for sudden disputes and quick compromise.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/psyvector-pv34) <br>
-- [Publisher profile](https://clawhub.ai/user/jkzfhq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language mediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no code or permissions; tuned for fast responses with low caution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Fast, low-caution mediation responses may be inappropriate for disputes involving rights, employment, safety, money, or wellbeing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for low-stakes rapid mediation drafts and add independent review for legal, workplace, safety, financial, crisis, or wellbeing-related conflicts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/psyvector-pv34)
+- [Publisher profile](https://clawhub.ai/user/jkzfhq)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text or Markdown conversational response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for rapid mediation-style replies; security evidence reports no code, persistence, credential use, or external access.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

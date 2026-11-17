@@ -1,43 +1,53 @@
-## Description: <br>
-End-to-end Etsy private-label / handmade / digital-product seller coach for niche validation, listing SEO, ads strategy, account-quality diagnosis, profitability math, policy and IP issue resolution, and scale or exit planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Etsy Seller Coach helps sellers validate products, optimize Etsy listings and ads, diagnose account quality and profitability, resolve policy or IP issues, and plan scale or exit paths.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-External Etsy sellers and commerce advisors use this skill to diagnose shop performance, validate products, improve listings, evaluate advertising, protect account quality, and plan compliant scaling or exit options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide under-scoped advice about moving Etsy buyer email addresses into third-party marketing tools. <br>
-Mitigation: Require clear customer opt-in and confirm that any use is allowed by Etsy rules and applicable privacy or anti-spam laws before importing buyer emails into external marketing platforms. <br>
-Risk: Agent-assisted marketplace changes could affect listings, ads, refunds, or account settings. <br>
-Mitigation: Do not allow the agent to change listings, ads, refunds, or account settings without explicit user approval. <br>
-Risk: Sensitive shop data, credentials, or raw customer lists could be exposed during coaching. <br>
-Mitigation: Do not share credentials or raw customer lists with the agent; provide only the minimum shop metrics needed for diagnosis. <br>
+## Use Case:
 
+External Etsy sellers and advisors use this skill to run structured shop diagnostics and receive practical coaching on niche selection, listing SEO, Etsy ads, profitability, account health, policy issues, and growth or exit planning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/charlie-morrison/etsy-seller-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/charlie-morrison) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown diagnostic summaries, checklists, plans, and policy-aware coaching guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include profitability calculations, SEO recommendations, account-health diagnostics, advertising guidance, and refusal or redirection for prohibited tactics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Advice about buyer emails and customer lists could lead to mishandling customer personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm buyer consent, Etsy rules, applicable privacy law, retention and deletion requirements, unsubscribe handling, and secure-transfer controls before using or moving customer data.
+
+Risk: Seller decisions about ads, policy issues, suspensions, shop sales, and compliance may depend on changing Etsy rules or legal obligations.
+
+Mitigation: Validate recommendations against current Etsy policies and qualified legal, tax, or privacy advice before acting on high-impact business or compliance decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/etsy-seller-coach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis]
+
+**Output Format:** [Markdown diagnostic summaries, ranked recommendations, checklists, and 30-day action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; recommendations should be reviewed against current Etsy policy, privacy law, and seller-specific facts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

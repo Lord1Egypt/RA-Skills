@@ -1,44 +1,59 @@
-## Description: <br>
-Super Deep Coding is a multi-agent coding workflow that helps agents decompose complex software projects into modules, coordinate builder and reviewer agents, run reviews and end-to-end checks, and track progress with a local dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Deep Coding coordinates orchestrator, builder, and reviewer agents to decompose complex software projects, implement modules, review results, and run end-to-end checks.
 
-## Publisher: <br>
-[molexazwo](https://clawhub.ai/user/molexazwo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[molexazwo](https://clawhub.ai/user/molexazwo)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to manage large, multi-file software builds through orchestrated planning, builder implementation, reviewer validation, and final end-to-end testing. It is intended for complex project work rather than simple edits or single-file changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Builders and reviewers may execute generated or project code while completing requested work. <br>
-Mitigation: Use the skill only in workspaces where code execution is acceptable, and isolate untrusted projects in a container or virtual machine. <br>
-Risk: The local dashboard serves project files from the workspace and may expose sensitive local content to anyone with access to the localhost service. <br>
-Mitigation: Run the dashboard only on localhost, avoid using repositories that contain secrets, and narrow the served file allowlist before use with untrusted content. <br>
-Risk: Dashboard rendering is identified by security evidence as unsafe for untrusted agent or project content. <br>
-Mitigation: Sanitize rendered Markdown or disable rendering of untrusted content before using the dashboard in shared or sensitive workspaces. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate large, multi-file software builds through requirements capture, module decomposition, independent implementation, review, logging, and end-to-end validation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/molexazwo/skills/super-deep-coding) <br>
-- [Deep Coding Harness - Project Architecture](artifact/references/architecture.md) <br>
-- [Orchestrator Rules](artifact/references/orchestrator-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce project files, dashboard-compatible project state JSON, per-agent logs, and testing instructions when used by configured agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The local dashboard can expose project files and agent logs within the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace without secrets or unrelated source, keep the dashboard bound to localhost, and stop it when work is complete.
+
+Risk: Builder and reviewer workflows may execute generated or project code during implementation and end-to-end testing.
+
+Mitigation: Run the skill only where executing generated code is acceptable, and use containers or virtual machines for untrusted projects.
+
+Risk: Frontend or npx-based test dependencies may change between runs.
+
+Mitigation: Pin or vendor frontend and npx dependencies before using the workflow on sensitive or production-adjacent projects.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/molexazwo/skills/super-deep-coding)
+- [Deep Coding Harness Architecture](references/architecture.md)
+- [Orchestrator Rules](references/orchestrator-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON snippets, shell commands, generated project files, logs, and review records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project workspace files, project-state JSON, agent logs, and test artifacts when used by an enabled coding environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

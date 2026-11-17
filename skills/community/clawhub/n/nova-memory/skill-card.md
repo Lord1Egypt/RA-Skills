@@ -1,41 +1,54 @@
-## Description: <br>
-Nova Memory helps agents store, retrieve, tag, analyze, and reflect on local workspace memories with entity support and local semantic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nova Memory provides local workspace memory storage, semantic retrieval, entity management, tag search, graph summaries, automatic reflection, and local analysis without external API calls.
 
-## Publisher: <br>
-[catplus-eric](https://clawhub.ai/user/catplus-eric) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catplus-eric](https://clawhub.ai/user/catplus-eric)
 
-## Use Case: <br>
-Developers and workspace agents use this skill to persist selected local memories, retrieve them by semantic similarity or tag, manage entity facts, inspect a memory graph, and generate reflection or analytics summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected workspace information, tags, entities, and analytics data are persisted locally on disk. <br>
-Mitigation: Avoid storing secrets or regulated personal data, keep the storage directory access-controlled, and periodically review or delete stale memory files. <br>
-Risk: Broad trigger words or optional exports can cause more workspace context to be captured or copied into shared files than intended. <br>
-Mitigation: Use explicit memory commands, review generated reflections before sharing, and avoid exporting sensitive memory summaries to shared documents. <br>
+## Use Case:
 
+Developers and agent operators use Nova Memory to add persistent local workspace memory, search saved facts by semantic query or tag, manage entities, and produce reflection or statistics summaries.
 
-## Reference(s): <br>
-- [Nova Memory on ClawHub](https://clawhub.ai/catplus-eric/nova-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/catplus-eric) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with Python API examples, CLI commands, JSON-like memory and graph data, and local analytics reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may reference locally persisted memory records, tags, entities, graph relationships, and SQLite-backed analytics generated from the configured workspace storage directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill persistently stores arbitrary user, entity, and workspace data with weak scoping and privacy controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a confined storage path, avoid storing credentials or sensitive facts, apply owner-only file permissions, and define retention and deletion controls before relying on it.
+
+Risk: Memory recall, graph, reflection, and statistics outputs may reveal sensitive stored facts in terminal or markdown output.
+
+Mitigation: Review outputs before sharing them, sanitize terminal logs and exports, and avoid using shared storage for personal, customer, or secret data.
+
+## Reference(s):
+
+- [Nova Memory on ClawHub](https://clawhub.ai/catplus-eric/skills/nova-memory)
+- [CatPluZ Publisher Profile](https://clawhub.ai/user/catplus-eric)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime operations return text, JSON-compatible records, graph structures, and local analysis summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores memory records, entity data, tags, and local analysis state under the configured storage path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

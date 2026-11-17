@@ -9,6 +9,7 @@ Open Wallet Standard commands without exposing raw keys.
 import argparse
 import os
 import shutil
+import stat
 import subprocess
 import sys
 from typing import List
@@ -17,10 +18,45 @@ from typing import List
 OWS_PINNED_PACKAGE = "@open-wallet-standard/core@0.5.0"
 
 
+def resolve_ows_bin(explicit_bin: str) -> str:
+    """
+    OWS_BIN names a program we are about to execute, so it is checked rather than trusted:
+    absolute path, existing file, executable bit. A bare or relative name would resolve through
+    PATH or the current directory, which the caller's location can steer.
+
+    Deliberately duplicated from wallet_signing._resolve_ows_bin rather than imported — this
+    wrapper stays usable without eth_account/web3 installed, and importing that module would
+    pull them in at load time.
+    """
+    expanded = os.path.expanduser(explicit_bin)
+    if not os.path.isabs(expanded):
+        raise ValueError(
+            f"OWS_BIN must be an absolute path to the ows executable (got {explicit_bin!r}). "
+            "A bare or relative name would be resolved against PATH or the current directory."
+        )
+
+    resolved = os.path.realpath(expanded)
+    if not os.path.isfile(resolved):
+        raise ValueError(f"OWS_BIN points at {expanded!r}, which is not an existing file")
+    if not os.access(resolved, os.X_OK):
+        raise ValueError(f"OWS_BIN points at {resolved!r}, which is not executable")
+
+    for path, label in ((resolved, "file"), (os.path.dirname(resolved), "parent directory")):
+        try:
+            if os.stat(path).st_mode & stat.S_IWOTH:
+                raise ValueError(
+                    f"OWS_BIN refuses {resolved!r}: its {label} is world-writable, so another "
+                    "local user could swap the binary that signs your transactions."
+                )
+        except OSError:
+            raise ValueError(f"OWS_BIN could not stat {path!r}")
+    return resolved
+
+
 def build_ows_command(args: List[str]) -> List[str]:
     explicit_bin = os.getenv("OWS_BIN", "").strip()
     if explicit_bin:
-        return [explicit_bin, *args]
+        return [resolve_ows_bin(explicit_bin), *args]
 
     local_ows = shutil.which("ows")
     if local_ows:

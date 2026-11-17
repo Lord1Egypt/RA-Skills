@@ -1,42 +1,56 @@
-## Description: <br>
-Crypto Arbitrage CN monitors Binance, OKX, Gate.io, and Huobi prices for cryptocurrency arbitrage opportunities, calculates estimated profit, and can send optional Telegram alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors cryptocurrency prices across Binance, OKX, Gate.io, and Huobi to identify cross-exchange arbitrage opportunities and optionally send Telegram alerts.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers, analysts, and crypto traders use this skill to run one-time or continuous monitoring of public exchange prices and review estimated cross-exchange arbitrage opportunities before making manual trading decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Displayed arbitrage opportunities may disappear quickly or differ from executable prices because crypto markets are volatile. <br>
-Mitigation: Verify each opportunity directly on the exchanges before trading and treat the monitor output as informational only. <br>
-Risk: Continuous monitoring repeatedly calls exchange APIs and may send Telegram notifications when credentials are configured. <br>
-Mitigation: Use --once for single checks, start continuous mode only intentionally, and use a dedicated Telegram bot token for alerts. <br>
-Risk: Profit estimates can be affected by fees, withdrawal delays, transfer availability, and slippage. <br>
-Mitigation: Review fees, withdrawal status, deposit support, transfer time, and order size on the relevant exchanges before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Exchange API Reference](references/exchanges.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/guohongbin-git/crypto-arb-cn) <br>
+## Use Case:
 
+Developers and crypto operators use this skill to run or configure a local monitor that checks selected trading pairs across public exchange APIs, calculates fee-adjusted spreads, and reports potential arbitrage opportunities.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands plus terminal text and optional JSON opportunity output from the monitor.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-check and continuous monitoring modes; Telegram alerts are optional and require user-provided bot configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Continuous monitoring makes repeated outbound requests to public exchange APIs.
+
+Mitigation: Run it only in environments where those network calls are expected, and review the configured check interval before continuous use.
+
+Risk: Telegram alerts send arbitrage opportunity details through Telegram when a bot token and chat ID are configured.
+
+Mitigation: Enable Telegram only when that notification channel is acceptable, and do not provide exchange trading credentials because the skill does not need them.
+
+Risk: Displayed arbitrage opportunities can change quickly and may not include every operational cost such as withdrawal timing, slippage, or exchange maintenance.
+
+Mitigation: Treat results as monitoring signals, verify fees and transfer status before acting, and avoid relying on the output as financial advice.
+
+## Reference(s):
+
+- [Exchange API Reference](references/exchanges.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and console-style text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce repeated console updates in continuous mode and optional Telegram alert messages when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

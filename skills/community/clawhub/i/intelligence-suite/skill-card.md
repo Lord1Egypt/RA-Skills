@@ -1,48 +1,63 @@
-## Description: <br>
-Makima's All-Seeing Intelligence Suite. Combines real-time AI news tracking and global news monitoring for a comprehensive strategic briefing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Makima's All-Seeing Intelligence Suite combines real-time AI news tracking and global news monitoring for a comprehensive strategic briefing.
 
-## Publisher: <br>
-[xhrisfu](https://clawhub.ai/user/xhrisfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xhrisfu](https://clawhub.ai/user/xhrisfu)
 
-## Use Case: <br>
-External users and agents use this skill to collect recent AI and global-news signals, scrape short article snippets, and prepare source packs for briefing or synthesis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Normal output can include an unlabeled placeholder entertainment item. <br>
-Mitigation: Treat entertainment entries as unverified unless the source link and article content are independently confirmed. <br>
-Risk: Deep scraping can fetch article pages outside the declared source list. <br>
-Mitigation: Run in an environment with outbound network allowlists and review fetched URLs before using snippets in final briefings. <br>
-Risk: Scraped snippets may contain inaccurate, stale, or adversarial source text. <br>
-Mitigation: Require citation checks and human review before relying on generated briefings for factual or strategic decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to collect recent AI and global news signals from RSS feeds, news APIs, and selected article pages for briefing and synthesis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xhrisfu/intelligence-suite) <br>
-- [OpenAI blog RSS feed](https://openai.com/blog/rss.xml) <br>
-- [Microsoft AI blog feed](https://blogs.microsoft.com/ai/feed/) <br>
-- [Hacker News Firebase API](https://hacker-news.firebaseio.com/v0/topstories.json) <br>
-- [Reuters agency feed](https://www.reutersagency.com/feed/?best-regions=global&post_type=best) <br>
-- [SCMP RSS feed](https://www.scmp.com/rss/91/feed) <br>
-- [RTHK local news RSS feed](https://rthk9.rthk.hk/rthk/news/rss/e_expressnews_elocal.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Console text containing structured intelligence or news packs for agent synthesis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Snippets are truncated to about 1000-1500 characters per fetched page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: package.json and server release metadata) <br>
+Risk: Article links can lead requests outside the declared news-source network scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill with restricted network egress and allow only the intended source domains and reviewed article destinations.
+
+Risk: Scraped article text is untrusted source material that may be incomplete, misleading, or prompt-injection shaped.
+
+Mitigation: Treat collected snippets as evidence for summarization only, and avoid giving the consuming agent secrets or high-impact tools during synthesis.
+
+Risk: JavaScript dependencies are declared without a lockfile in the artifact evidence.
+
+Mitigation: Pin dependencies with a lockfile and review dependency updates before installing or running the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xhrisfu/skills/intelligence-suite)
+- [OpenAI Blog RSS](https://openai.com/blog/rss.xml)
+- [Microsoft AI Blog RSS](https://blogs.microsoft.com/ai/feed/)
+- [Reuters Agency Feed](https://www.reutersagency.com/feed/?best-regions=global&post_type=best)
+- [SCMP China/HK RSS](https://www.scmp.com/rss/91/feed)
+- [RTHK Local News RSS](https://rthk9.rthk.hk/rthk/news/rss/e_expressnews_elocal.xml)
+- [Hacker News Top Stories API](https://hacker-news.firebaseio.com/v0/topstories.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Console text structured as intelligence packs for agent synthesis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches recent feed items, scrapes article snippets, and truncates scraped content before handing it to the consuming agent.]
+
+## Skill Version(s):
+
+1.0.3 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

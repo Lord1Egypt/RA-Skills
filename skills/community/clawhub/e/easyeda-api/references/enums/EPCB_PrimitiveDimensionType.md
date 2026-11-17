@@ -1,11 +1,11 @@
 # EPCB\_PrimitiveDimensionType enum
 
-尺寸标注类型
+Dimension type
 
 ## Signature
 
 ```typescript
-declare enum EPCB_PrimitiveDimensionType 
+enum EPCB_PrimitiveDimensionType
 ```
 
 ## Enumeration Members
@@ -14,64 +14,46 @@ declare enum EPCB_PrimitiveDimensionType
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 ANGLE
 
-
 </td><td>
 
-`"Protractor Dimension"`
-
+`'Protractor Dimension'`
 
 </td><td>
-
-角度
-
 
 </td></tr>
 <tr><td>
 
 LENGTH
 
-
 </td><td>
 
-`"Length Dimension"`
-
+`'Length Dimension'`
 
 </td><td>
-
-长度
-
 
 </td></tr>
 <tr><td>
 
 RADIUS
 
-
 </td><td>
 
-`"Radius Dimension"`
-
+`'Radius Dimension'`
 
 </td><td>
-
-半径
-
 
 </td></tr>
 </tbody></table>

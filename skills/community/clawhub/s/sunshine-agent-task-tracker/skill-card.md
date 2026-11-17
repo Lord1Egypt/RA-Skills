@@ -1,39 +1,53 @@
-## Description: <br>
-Agent Task Tracker keeps a concise local task state file so an agent can resume requested work, running processes, progress, results, and next steps across session resets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactively maintains task state across starts, progress updates, completions, failures, and session resets.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and agent operators use this skill to have an assistant maintain a compact markdown state snapshot for active work, background processes, completion status, and recovery after resets or compaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records task details and command context across sessions, which can expose sensitive information if secrets or private data are written to the task state file. <br>
-Mitigation: Review memory/tasks.md periodically and avoid storing tokens, credentials, private user content, sensitive hostnames, or full commands containing secret arguments. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent maintain a concise task state snapshot, including active work, background sessions, recent completions, and next steps, so work can resume after resets or compaction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/sunshine-agent-task-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/Sunshine-del-ux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown task-state entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains memory/tasks.md as a concise state snapshot under 50 lines or 2KB, including active tasks, recent completions, background session details, notes, and results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Automatically persisted task details and operational metadata may include secrets, private URLs, internal hostnames, production commands, SSH/session details, customer data, or sensitive errors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact task state before and after use, avoid recording secrets or sensitive infrastructure identifiers, and clear the state file when persistence is not needed.
+
+Risk: Default tracking across every task and session reset can preserve more operational context than a user expects.
+
+Mitigation: Make persistence visible to users, keep the state file easy to inspect, prune it regularly, and use opt-in persistence where policy requires.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/sunshine-agent-task-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown task-state snapshot]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains memory/tasks.md under 50 lines / 2 KB with active, completed, failed, or paused task status.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

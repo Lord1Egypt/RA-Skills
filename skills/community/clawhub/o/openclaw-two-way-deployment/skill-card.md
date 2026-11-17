@@ -1,46 +1,66 @@
-## Description: <br>
-Deploy OpenClaw with a cloud gateway using Tailscale and SSH tunneling, including environment checks, firewall setup, service installation, and diagnostic commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy OpenClaw cloud gateway scenarios with Tailscale, SSH tunneling, environment checks, firewall setup, persistent services, and local control guidance.
 
-## Publisher: <br>
-[MarsHong-86](https://clawhub.ai/user/MarsHong-86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marshong-86](https://clawhub.ai/user/marshong-86)
 
-## Use Case: <br>
-Developers and operators use this skill to choose and run guided OpenClaw deployment plans for Linux cloud gateways and Windows local clients. It is intended for cloud gateway, remote node, and two-way sync setups that require Tailscale, firewall configuration, systemd services, and troubleshooting output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deployment scripts install persistent network services that run as root and expose gateway ports. <br>
-Mitigation: Use a dedicated host, review the scripts before execution, consider a non-root service account, and restrict firewall and cloud security-group access to Tailscale or known source IPs. <br>
-Risk: Remote gateway mode can use insecure private WebSocket settings and --allow-unconfigured. <br>
-Mitigation: Remove or justify those settings before production use and verify authentication, bind addresses, and network exposure. <br>
-Risk: Generated tokens and diagnostic output may expose access details or host information. <br>
-Mitigation: Protect and rotate generated tokens, and review diagnostic output before sharing it. <br>
-Risk: The documented installation flow includes curl-to-shell style dependency installation. <br>
-Mitigation: Prefer package-manager or pinned-source installation where possible, and inspect downloaded scripts before running them. <br>
+## Use Case:
 
+Developers and engineers use this skill to select and run OpenClaw deployment plans for cloud gateway, remote gateway, or dual cloud/local gateway setups. It helps prepare dependencies, network access, service startup, diagnostics, and follow-up configuration commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/MarsHong-86/openclaw-two-way-deployment) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Diagnostics] <br>
-**Output Format:** [Markdown with bash and PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment plans, generated service and OpenClaw configuration, tokens, firewall guidance, and diagnostic output for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release uses root/admin automation and creates persistent services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each startup task and systemd service before installation, prefer a dedicated non-root service account where supported, and document removal steps before production use.
+
+Risk: The scripts use curl-to-shell and unpinned package installation patterns.
+
+Mitigation: Replace remote installer pipes with verified package installs, pin npm and operating-system package versions, and validate checksums or trusted package sources.
+
+Risk: Gateway and sync ports are opened for network access.
+
+Mitigation: Restrict ports to Tailscale or other trusted sources in host firewalls and cloud security groups, and avoid exposing ports 18789 or 18790 publicly.
+
+Risk: Some gateway flows use insecure WebSocket URLs or allow-unconfigured startup behavior.
+
+Mitigation: Use secure transport where supported, remove allow-unconfigured flags unless explicitly needed, and verify authentication is enabled before accepting remote connections.
+
+Risk: Generated tokens and local gateway configuration can grant access to the deployment.
+
+Mitigation: Store tokens with restrictive permissions, avoid sharing diagnostic output that contains secrets, and rotate tokens after setup or troubleshooting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marshong-86/skills/openclaw-two-way-deployment)
+- [Tailscale Download](https://tailscale.com/download)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Bash and PowerShell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes privileged deployment steps, gateway configuration, firewall changes, service setup, and diagnostic commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-LanceDB long-term memory plugin with BM25 + vector hybrid search (RRF or linear reranking). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LanceDB long-term memory plugin with BM25 + vector hybrid search (RRF or linear reranking).
 
-## Publisher: <br>
-[joeykrug](https://clawhub.ai/user/joeykrug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeykrug](https://clawhub.ai/user/joeykrug)
 
-## Use Case: <br>
-Developers and OpenClaw users use this plugin to replace the built-in LanceDB memory provider with hybrid BM25 and vector recall while retaining memory_store, memory_recall, and memory_forget workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and saved memories may be embedded, stored locally, and later recalled into context. <br>
-Mitigation: Use a scoped embedding API key or trusted local-compatible provider, and avoid storing secrets or regulated data unless the embedding provider and retention policy are acceptable. <br>
-Risk: Automatic recall or capture can bring stale, sensitive, or unintended memories into agent context. <br>
-Mitigation: Review whether autoRecall and autoCapture should be enabled for the environment, and remove unwanted memories through the available forget workflow or retention controls. <br>
-Risk: The plugin replaces the built-in LanceDB memory provider at runtime. <br>
-Mitigation: Install it only when that override is intended; remove the plugin load path to revert to the bundled provider. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and configure a LanceDB-backed long-term memory plugin that combines semantic vector search with BM25 keyword search. It supports memory storage, recall, and forgetting, including optional auto-capture and auto-recall.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/joeykrug/memory-lancedb-hybrid) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON5 configuration examples; the installed plugin provides OpenClaw memory tools.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory storage and recall behavior when installed; recalled memories may be injected into agent context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: Prompts or remembered text may be sent to the configured embedding provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local embedding endpoint for sensitive work, or disable auto-recall and auto-capture when provider disclosure is not acceptable.
+
+Risk: Conversation details may be persisted as long-term memory.
+
+Mitigation: Review stored memories regularly, delete sensitive entries, and install only when long-term memory behavior matches the workspace privacy expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeykrug/skills/memory-lancedb-hybrid)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown installation guidance, configuration snippets, shell commands, and plain-text memory tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The plugin can persist remembered conversation details locally and can send prompts or remembered text to the configured embedding provider.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

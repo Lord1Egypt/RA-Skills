@@ -1,43 +1,58 @@
-## Description: <br>
-Structured memory system for AI agents with checkpoint and recovery workflows, typed Markdown storage, Obsidian-compatible templates, and local search support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured memory system for AI agents. Context death resilience (checkpoint/recover), structured storage, Obsidian-compatible markdown, and local semantic search.
 
-## Publisher: <br>
-[azrijamil](https://clawhub.ai/user/azrijamil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[azrijamil](https://clawhub.ai/user/azrijamil)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve working context across sessions by creating structured memory vault entries, checkpoints, handoffs, and searchable knowledge records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The memory vault may contain sensitive project context, personal details, or operational notes. <br>
-Mitigation: Use a workspace-specific vault for sensitive work, avoid storing secrets or regulated personal data, and keep vaults and .env files out of public repositories or broad sync folders. <br>
-Risk: Bulk migration commands can modify an existing Markdown knowledge base. <br>
-Mitigation: Run migrations with --dry-run first and use a verified backup before modifying an existing vault. <br>
-Risk: The CLI is installed from an npm package controlled by a third-party publisher. <br>
-Mitigation: Install only when the npm package publisher is trusted and review package provenance according to local supply-chain policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/azrijamil/fsxmemory) <br>
-- [npm package: @foresigxt/foresigxt-cli-memory](https://www.npmjs.com/package/@foresigxt/foresigxt-cli-memory) <br>
-- [qmd search dependency](https://github.com/tobi/qmd) <br>
+## Use Case:
 
+Developers and agent users use this skill to install and operate a structured local memory vault for decisions, lessons, procedures, projects, handoffs, and other continuity records. It supports session recovery, Markdown-based memory templates, search workflows, and migration from other Markdown vault formats.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and structured memory templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce or modify local Markdown vault files when the documented fsxmemory commands are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on unpinned global third-party installs that may change over time and will handle persistent private memory data.
+
+Mitigation: Review before installing, prefer pinned versions or a sandboxed local install, and verify the npm package and qmd source before use.
+
+Risk: Memory vaults can contain sensitive personal, project, or relationship data.
+
+Mitigation: Keep vaults scoped to non-sensitive data unless the installed tools are trusted, and confirm whether embedding or search workflows send vault content to external services.
+
+Risk: Migration and auto-linking workflows can modify existing Markdown vault files.
+
+Mitigation: Use dry-run and backup options before migration or auto-linking, and keep recoverable backups for rollback.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/azrijamil/skills/fsxmemory)
+- [npm package](https://www.npmjs.com/package/@foresigxt/foresigxt-cli-memory)
+- [qmd search dependency](https://github.com/tobi/qmd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured memory templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for local vault setup, memory capture, recovery, search, migration, and template-based Markdown records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

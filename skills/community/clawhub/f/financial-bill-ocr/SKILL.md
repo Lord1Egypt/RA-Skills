@@ -1,7 +1,7 @@
 ---
 name: financial_bill_ocr
-description: 支持金融单据识别,支持识别多种金融单据，包括银行承兑汇票、电子银行承兑汇票、商业承兑汇票、电子商业承兑汇票、银行支票、银行回单、进账单、电汇凭证、支款凭证、移动支付账单，结构化提取关键信息。
-version: 1.0.0
+description: 支持金融单据识别,支持识别多种金融单据，包括银行承兑汇票、电子银行承兑汇票、商业承兑汇票、电子商业承兑汇票、银行支票、银行回单、进账单、电汇凭证、支款凭证、移动支付账单、财政授权支付凭证、海关专用缴款书、海关进/出口货物报关单、国际汇票、商业发票、原产地证明、货物运输保险单、装箱单、提单，结构化提取关键信息。
+version: 1.0.2
 author: SCNet
 license: MIT
 tags:
@@ -24,11 +24,11 @@ output: 结构化的 JSON 数据，包含识别结果和置信度
 ---
 # Sugon-Scnet 金融单据识别 OCR 技能
 
-本技能封装了金融单据识别的 OCR 服务，通过单一接口即可调用金融单据识别能力，支持识别多种金融单据，包括银行承兑汇票、电子银行承兑汇票、商业承兑汇票、电子商业承兑汇票、银行支票、银行回单、进账单、电汇凭证、支款凭证、移动支付账单，结构化提取关键信息。
+本技能封装了金融单据识别的 OCR 服务，通过单一接口即可调用金融单据识别能力。识别过程中，**本地文件将被上传至第三方 OCR 服务 `https://api.scnet.cn/`** 进行处理，请确保图片中不包含高度敏感或受合规保护的信息，或确认当前环境允许外传。
 
 ## 功能特性
 
-- **金融单据识别**：支持识别多种金融单据信息，支持识别多种金融单据，包括银行承兑汇票、电子银行承兑汇票、商业承兑汇票、电子商业承兑汇票、银行支票、银行回单、进账单、电汇凭证、支款凭证、移动支付账单，结构化提取关键信息。
+- **金融单据识别**：支持识别多种金融单据信息，支持识别多种金融单据，包括银行承兑汇票、电子银行承兑汇票、商业承兑汇票、电子商业承兑汇票、银行支票、银行回单、进账单、电汇凭证、支款凭证、移动支付账单、财政授权支付凭证、海关专用缴款书、海关进/出口货物报关单、国际汇票、商业发票、原产地证明、货物运输保险单、装箱单、提单，结构化提取关键信息。
 
 
 
@@ -76,8 +76,8 @@ Token 过期后调用会返回 401 或 403 错误。更新方法：重新申请 
 
 | 参数名 | 类型 | 必填 | 描述 |
 |--------|------|------|------|
-| ocrType | string | 是 | 识别类型枚举。必须为以下之一：<br>• BANK_DRAFT（银行汇票）<br>• BANK_ACCEPTANCE_BILL（银行承兑汇票）<br>• ELECTRONIC_BANK_ACCEPTANCE_BILL（电子银行承兑汇票）<br>• COMMERCIAL_ACCEPTANCE_BILL（商业承兑汇票）<br>• ELECTRONIC_COMMERCIAL_ACCEPTANCE（电子商业承兑汇票）<br>• BANK_CHECK（银行支票）<br>• BANK_RECEIPT（银行回单）<br>• DEPOSIT_SLIP（进账单）<br>• TELEGRAPHIC_TRANSFER_VOUCHER（电汇凭证）<br>• WITHDRAWAL_VOUCHER（支款凭证）<br>• MOBILE_PAYMENT_BILL（移动支付账单）|
-| filePath | string | 是 | 待识别图片的本地绝对路径。支持 jpg、png、pdf 等常见格式。 |
+| ocrType | string | 是 | 识别类型枚举。必须为以下之一：<br>• BANK_DRAFT（银行汇票）<br>• BANK_ACCEPTANCE_BILL（银行承兑汇票）<br>• ELECTRONIC_BANK_ACCEPTANCE_BILL（电子银行承兑汇票）<br>• COMMERCIAL_ACCEPTANCE_BILL（商业承兑汇票）<br>• ELECTRONIC_COMMERCIAL_ACCEPTANCE（电子商业承兑汇票）<br>• BANK_CHECK（银行支票）<br>• BANK_RECEIPT（银行回单）<br>• DEPOSIT_SLIP（进账单）<br>• TELEGRAPHIC_TRANSFER_VOUCHER（电汇凭证）<br>• WITHDRAWAL_VOUCHER（支款凭证）<br>• MOBILE_PAYMENT_BILL（移动支付账单）<br>• FISCAL_AUTH_PAYMENT_VOUCHER（财政授权支付凭证）<br>• CUSTOMS_PAYMENT_RECEIPT（海关专用缴款书）<br>• CUSTOMS_DECLARATION（海关进/出口货物报关单）<br>• INTERNATIONAL_BILL（国际汇票）<br>• COMMERCIAL_INVOICE（商业发票）<br>• CERTIFICATE_OF_ORIGIN（原产地证明）<br>• CARGO_TRANSPORT_INSURANCE（货物运输保险单）<br>• PACKING_LIST（装箱单）<br>• BILL_OF_LADING（提单）|
+| filePath | string | 是 | 待识别图片的本地绝对路径。支持 jpg、png、pdf 等常见格式。**注意：文件内容会被上传到第三方 OCR 服务。** |
 
 ### 命令行调用示例
 

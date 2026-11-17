@@ -1,40 +1,52 @@
-## Description: <br>
-Guides structured help for Game Balance Notes using clear templates, checks, and safe defaults (category: Game Design). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Game Balance Notes using clear templates, checks, and safe defaults (category: Game Design).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[abdullah944](https://clawhub.ai/user/abdullah944)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Game designers, developers, and content teams use this skill to turn game balance goals and notes into concise plans, reusable checklists, next actions, and editable draft copy.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may paste private, sensitive, or personally identifying material while asking for game-design note help.
+
+Mitigation: The skill instructs users not to provide secrets and to keep PII minimal; review prompts and pasted notes before use.
+
+Risk: The PayPal donation link could be mistaken for an operational dependency or required workflow step.
+
+Mitigation: Treat the donation link as optional external support and not part of the skill's function or installation path.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Game designers and other external users use this skill to structure game balance notes into concise plans, reusable checklists, next actions, and editable draft copy without requiring private data. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact asks users to provide goals, constraints, and optional notes, which could accidentally include secrets or unnecessary personal data. <br>
-Mitigation: Follow the artifact safety rules: do not provide passwords, OTPs, private keys, wallets, seeds, session secrets, or unnecessary PII. <br>
-Risk: The server security guidance notes potential local auth, network, and moderator-command behavior for ClawHub tooling. <br>
-Mitigation: Install or use only for intended ClawHub development or moderation workflows, with the proper account and explicit targets. <br>
+**Output Format:** [Markdown with concise plans, numbered checklists, next-action lists, and optional draft copy blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/game-balance-notes-skill) <br>
+**Other Properties Related to Output:** [No executable output; users are instructed not to provide secrets and to keep pasted personal data minimal.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes concise plans, numbered checklists, next actions, and optional editable draft copy blocks.] <br>
+0.1.0 (source: frontmatter and ClawHub release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, metadata, server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

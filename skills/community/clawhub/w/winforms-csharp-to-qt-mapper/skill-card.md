@@ -1,54 +1,70 @@
-## Description: <br>
-Provides C# WinForms to Qt C++ migration guidance and helper tooling for architecture analysis, control mapping, event conversion, layout migration, performance optimization, and testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides C# WinForms to Qt C++ migration guidance and helper scripts for architecture analysis, control mapping, event conversion, layout migration, performance optimization, and testing.
 
-## Publisher: <br>
-[RSGT945](https://clawhub.ai/user/RSGT945) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rsgt945](https://clawhub.ai/user/rsgt945)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and execute migrations from C# WinForms applications to Qt C++, including architecture refactoring, UI/control mapping, event conversion, generated code scaffolding, and validation planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated migration analysis may be incomplete or overstated. <br>
-Mitigation: Treat results as best-effort guidance and manually review architecture findings, mappings, and generated code before relying on them. <br>
-Risk: Helper scripts may write files into user-specified output paths. <br>
-Mitigation: Run the skill in a sandbox or against a copy of the repository, and choose a new empty output directory for generated artifacts. <br>
-Risk: Dependencies and local code-processing behavior may be unsuitable for sensitive or proprietary repositories without review. <br>
-Mitigation: Audit or update dependencies and review the skill limitations before using it with sensitive code. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and execute WinForms-to-Qt migrations, including architecture review, UI/control mapping, event conversion, generated Qt/C++ scaffolding, and migration validation.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/RSGT945/winforms-csharp-to-qt-mapper) <br>
-- [Architecture analysis guide](references/architecture_analysis.md) <br>
-- [Interface layer guide](references/interface_layer.md) <br>
-- [Control mapping reference](references/control_mapping.md) <br>
-- [Event conversion guide](references/event_conversion.md) <br>
-- [Layout migration guide](references/layout_migration.md) <br>
-- [Performance optimization guide](references/performance_optimization.md) <br>
-- [Testing strategy guide](references/testing_strategy.md) <br>
-- [UI inventory checklist](references/ui_inventory_checklist.md) <br>
-- [Qt documentation](https://doc.qt.io/) <br>
-- [Qt widget classes](https://doc.qt.io/qt-5/widget-classes.html) <br>
-- [Qt signals and slots](https://doc.qt.io/qt-5/signalsandslots.html) <br>
-- [Qt layout management](https://doc.qt.io/qt-5/layout.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated code snippets, and JSON analysis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write analysis reports and generated Qt/C++ project files when helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated output can be unsafe when mapping data is unvalidated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill on disposable project copies, review mapping JSON before generation, choose an empty output directory, and inspect generated CMake, C++, and UI files before building or running them.
+
+Risk: Analysis reports may overstate incomplete or simulated results.
+
+Mitigation: Treat reports as advisory migration inputs and verify them against the source WinForms project and manual UI, test, and performance checks.
+
+Risk: The artifact is a migration aid rather than a finished automatic converter.
+
+Mitigation: Plan for human review of business logic, complex interactions, UI parity, and performance changes before release.
+
+## Reference(s):
+
+- [WinForms Architecture Analysis Guide](references/architecture_analysis.md)
+- [Control Mapping Reference](references/control_mapping.md)
+- [Event Conversion Guide](references/event_conversion.md)
+- [Layout Migration Guide](references/layout_migration.md)
+- [MainControlWrapper Interface Layer Guide](references/interface_layer.md)
+- [Qt Performance Optimization Guide](references/performance_optimization.md)
+- [Qt Testing Strategy Guide](references/testing_strategy.md)
+- [UI Inventory and Specification Checklist](references/ui_inventory_checklist.md)
+- [WinForms and Qt UI Differences](references/ui_differences.md)
+- [Collapsible UI Components Guide](references/collapsible_ui.md)
+- [Qt Documentation](https://doc.qt.io/)
+- [Qt Widget Classes](https://doc.qt.io/qt-5/widget-classes.html)
+- [Qt Signals and Slots](https://doc.qt.io/qt-5/signalsandslots.html)
+- [Qt Layout Management](https://doc.qt.io/qt-5/layout.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON analysis reports, and generated Qt/C++ project files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated code and analysis reports require review before build or execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

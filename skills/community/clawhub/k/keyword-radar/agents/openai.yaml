@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Keyword Radar"
+  short_description: "读取评论关键词与相关统计，提炼买家用语、痛点词和场景词"
+  default_prompt: "使用 $amazon-review-keyword-radar 查看美国站 B0XXXXXXXX 最近 30 天已采集评论的高频词、痛点词和场景词，附样本范围。"

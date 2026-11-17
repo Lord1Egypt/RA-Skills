@@ -1,42 +1,58 @@
-## Description: <br>
-Feedback Learning helps OpenClaw agents detect feedback, log events, identify recurring patterns, promote repeated corrections into persistent rules, and produce weekly learning reports without LLM or API dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero-LLM feedback learning system for OpenClaw agents that detects Russian, English, and emoji feedback signals, logs events, discovers recurring patterns, promotes repeated corrections into rules, and generates weekly reports.
 
-## Publisher: <br>
-[Surdeddd](https://clawhub.ai/user/Surdeddd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[surdeddd](https://clawhub.ai/user/surdeddd)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local feedback memory to OpenClaw agents, including manual or automatic event logging, pattern analysis, and weekly review reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Raw feedback and context can be written to persistent local event logs and reports. <br>
-Mitigation: Scope the learning directory per project or agent, avoid logging secrets or sensitive user text, and define expiry or deletion for old events. <br>
-Risk: Repeated feedback can become active rules that influence future agents. <br>
-Mitigation: Review genes.json before agents load it, and edit or remove promoted rules that are stale, unsafe, or unsupported. <br>
-Risk: AGENTS.md hooks and scheduled jobs can automate feedback collection, pattern analysis, and rule promotion. <br>
-Mitigation: Enable hooks and cron jobs only after confirming the workspace, paths, and human review process. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add local feedback detection, event logging, pattern analysis, rule promotion, and reporting to OpenClaw agent workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Surdeddd/feedback-learning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python commands, JSON examples, JSONL event records, JSON rule files, and Markdown reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local feedback logs, grouped pattern data, promoted rule files, and weekly reports under the configured learning directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Repeated feedback can be promoted into persistent active agent rules that influence future behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review before loading or activating promoted rules, and disable automatic activation unless the deployment explicitly approves it.
+
+Risk: Feedback logs and reports may retain sensitive user text or operational context.
+
+Mitigation: Avoid logging sensitive content, restrict access to the learning directory, and define retention and deletion rules before use.
+
+Risk: Scheduled analysis and boot-time loading can make stale or low-quality learned rules persist across agent sessions.
+
+Mitigation: Review genes.json and weekly reports regularly, expire outdated rules, and require approval before adding the learning directory to agent startup workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/surdeddd/skills/feedback-learning)
+- [Publisher profile](https://clawhub.ai/user/surdeddd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python script usage, JSON event records, JSON rule files, and Markdown weekly reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local files such as events.jsonl, patterns.json, genes.json, capsules.json, and reports/WEEKLY_REPORT_YYYY_WNN.md when installed and run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

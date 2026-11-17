@@ -1,51 +1,57 @@
-## Description: <br>
-README Craft helps agents create, audit, and rewrite project README files using a 22-item quality rubric and practical README patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+README Craft helps agents create, audit, and rewrite project README files using documented README quality patterns.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and maintainers use this skill to draft a new README, audit an existing README, or rewrite outdated README content for open-source or internal projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: README drafts or rewrites can introduce inaccurate, outdated, or misleading project guidance. <br>
-Mitigation: Use audit mode for read-only review when appropriate, and inspect generated diffs before accepting rewrite changes. <br>
-Risk: Shell, web fetch, or delegated-agent actions may be requested during README generation. <br>
-Mitigation: Approve only actions that are clearly tied to README creation, auditing, or rewriting. <br>
+## Use Case:
 
+Developers and maintainers use this skill to create README.md files for new projects, audit existing README quality with a 22-item score, or rewrite README content while preserving useful project facts.
 
-## Reference(s): <br>
-- [Quality Checklist](references/quality-checklist.md) <br>
-- [Anti-Patterns](references/anti-patterns.md) <br>
-- [Badge and Visuals](references/badge-and-visuals.md) <br>
-- [Community Standards](references/community-standards.md) <br>
-- [Real-World Patterns](references/real-world-patterns.md) <br>
-- [Oh My Claude Code README](https://github.com/Yeachan-Heo/oh-my-claudecode) <br>
-- [Everything Claude Code README](https://github.com/affaan-m/everything-claude-code) <br>
-- [Awesome README](https://github.com/matiassingers/awesome-readme) <br>
-- [Standard README](https://github.com/RichardLitt/standard-readme) <br>
-- [Art of README](https://github.com/hackergrrl/art-of-readme) <br>
-- [Make a README](https://makeareadme.com/) <br>
-- [How to Write a Great README](https://thoughtbot.com/blog/how-to-write-a-great-readme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, README files, README diffs, and inline code or shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Create and rewrite modes may write README.md after review; audit mode reports scores and recommendations without file changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated or rewritten README content may be inaccurate, stale, or inconsistent with the project if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run audit mode first when possible, review proposed diffs before writes, and keep version control active around README changes.
+
+Risk: The skill has broad shell, network, delegation, and file-editing authority relative to a README-writing task.
+
+Mitigation: Use it on trusted workspaces, or narrow execution to README-scoped file access and avoid unrestricted Bash, WebFetch, or Agent access when reviewing untrusted repositories.
+
+## Reference(s):
+
+- [Quality Checklist](references/quality-checklist.md)
+- [README Anti-Patterns](references/anti-patterns.md)
+- [Badge and Visuals Guide](references/badge-and-visuals.md)
+- [Community Standards](references/community-standards.md)
+- [Real-World README Patterns](references/real-world-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports and README.md file updates; may include code blocks, score tables, and diff-oriented rewrite guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Create and rewrite modes can write README.md and optional bilingual README files; audit mode returns a report without file changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

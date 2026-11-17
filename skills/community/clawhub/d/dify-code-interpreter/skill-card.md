@@ -1,42 +1,53 @@
-## Description: <br>
-Explains code snippets in multiple programming languages through a Dify chatflow and returns structured notes on syntax, logic, purpose, and implementation details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains code snippets in multiple programming languages, including syntax, logic, purpose, and implementation details, using a Dify chatflow.
 
-## Publisher: <br>
-[zhangwp1](https://clawhub.ai/user/zhangwp1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangwp1](https://clawhub.ai/user/zhangwp1)
 
-## Use Case: <br>
-Developers use this skill to submit code snippets and receive structured explanations while reviewing, learning, or documenting code across languages such as C, Vue, Python, and Java. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes a live-looking Dify API key as a documented default value. <br>
-Mitigation: Replace the key with a trusted credential before installation, and rotate or revoke the exposed key. <br>
-Risk: Submitted code may be sent to the configured Dify deployment. <br>
-Mitigation: Avoid submitting proprietary code or secrets unless the Dify deployment and its retention and access controls are trusted. <br>
-Risk: The release evidence says core code and configuration files were removed, so the artifact may be documentation-only. <br>
-Mitigation: Verify the required runtime files and Dify integration before relying on this release for agent execution. <br>
+## Use Case:
 
+Developers use this skill to submit code snippets and receive structured explanations of syntax, control flow, intended behavior, and implementation details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangwp1/dify-code-interpreter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown or text explanation of submitted code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a code snippet plus trusted Dify endpoint and API key configuration; output depends on the configured Dify chatflow and model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The release evidence reports a concrete API-key-like default value and marks the package suspicious.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, replace the default API key with a securely managed Dify key, rotate the exposed-looking key if it was ever real, and verify the Dify endpoint before sending sensitive code.
+
+Risk: Code snippets may be sent to a configured Dify chatflow for explanation.
+
+Mitigation: Confirm the endpoint and chatflow are trusted before submitting proprietary or sensitive source code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangwp1/skills/dify-code-interpreter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured natural-language explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a code snippet as input and depends on the configured Dify endpoint and chatflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

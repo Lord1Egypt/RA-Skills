@@ -1,48 +1,66 @@
-## Description: <br>
-指数投资分析助手。解读A股/港股/美股指数行情、财经新闻关联指数、结合巴菲特/达利欧/林奇等9位大师框架给出投资视角。stock index / ETF / A股 / 基金 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+指数通 (Index Expert) helps users analyze A-share, Hong Kong, and U.S. stock indexes and ETFs by linking market news, index catalogs, and nine investment-framework perspectives.
 
-## Publisher: <br>
-[pzc66momo](https://clawhub.ai/user/pzc66momo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pzc66momo](https://clawhub.ai/user/pzc66momo)
 
-## Use Case: <br>
-External users use this skill to analyze A-share, Hong Kong, and U.S. stock indices or ETFs, connect financial news to related index themes, and compare index ideas through multiple investing frameworks. It is intended for educational market analysis and should not be used as personalized investment advice or a trade decision system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist risk preference, investment horizon, focus areas, corrections, and feature requests in local files. <br>
-Mitigation: Review or clear the profile, memory, and learning files before reuse, and avoid sharing personal holdings, account details, or sensitive financial information. <br>
-Risk: The skill can update its own guidance from conversation history, which may preserve incorrect or unwanted behavior. <br>
-Mitigation: Review accumulated memory, routing, learning, error, and feature-request entries before deployment or continued use. <br>
-Risk: Financial analysis may be incomplete, stale, or unsuitable for a user's individual circumstances. <br>
-Mitigation: Treat outputs as educational market analysis, verify facts with authoritative sources, and require human judgment before any investment action. <br>
+## Use Case:
 
+External users and finance-focused agents use this skill to interpret index and ETF questions, connect finance news to relevant indexes, compare investment-framework viewpoints, and produce concise index-oriented analysis. It is intended for informational investment analysis and not for real-time quotes, individualized portfolio advice, or investment decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pzc66momo/indexpert) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Index catalog](references/index_catalog.json) <br>
-- [Trusted sources index](references/trusted_sources_index.json) <br>
-- [Trusted sources media](references/trusted_sources_media.json) <br>
-- [Expression style reference](references/expression/hulan.md) <br>
-- [Master investing frameworks](references/masters/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown analysis with index recommendations, caveats, and investment-risk disclaimers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are index-focused, may include links for cataloged indices, and do not execute trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill stores user investment-profile information across conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inform users before saving preferences, allow use without profiling, and provide a clear way to view and delete stored profile data.
+
+Risk: Conversation feedback can be promoted into future behavior rules.
+
+Mitigation: Require human review before turning free-form user feedback or reflection output into persistent rules.
+
+Risk: The skill can direct users to Tencent Licaitong finance links.
+
+Mitigation: Label these links as optional third-party destinations and do not imply NVIDIA or ClawHub endorsement.
+
+Risk: Finance guidance may be mistaken for individualized investment advice.
+
+Mitigation: Keep outputs informational, preserve investment-risk disclaimers, avoid predictions and personal portfolio recommendations, and encourage users to verify current market data from authoritative sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pzc66momo/skills/indexpert)
+- [Index catalog](artifact/references/index_catalog.json)
+- [Trusted index sources](artifact/references/trusted_sources_index.json)
+- [Trusted media sources](artifact/references/trusted_sources_media.json)
+- [Investment master frameworks](artifact/references/masters/)
+- [Tencent Licaitong index detail destination](https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000140)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown-style investment analysis with concise recommendations, caveats, and optional third-party index detail links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include index names and codes, risk notes, source-confidence labels, and non-advisory investment disclaimers.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

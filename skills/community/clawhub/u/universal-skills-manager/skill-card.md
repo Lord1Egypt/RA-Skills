@@ -1,42 +1,61 @@
-## Description: <br>
-The master coordinator for AI skills that discovers skills from SkillsMP, SkillHub, and ClawHub, then manages installation and synchronization across Claude Code, Gemini CLI, Google Anti-Gravity, OpenCode, and other AI tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The master coordinator for AI skills. Discovers skills from multiple sources (SkillsMP.com, SkillHub, and ClawHub), manages installation, and synchronization across Claude Code, Gemini CLI, Google Anti-Gravity, OpenCode, and other AI tools. Handles User-level (Global) and Project-level (Local) scopes.
 
-## Publisher: <br>
-[jacob-bd](https://clawhub.ai/user/jacob-bd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jacob-bd](https://clawhub.ai/user/jacob-bd)
 
-## Use Case: <br>
-Developers and agent operators use this skill to find, install, package, and synchronize agent skills across supported local and cloud AI tool environments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change skill directories loaded by multiple AI agents. <br>
-Mitigation: Prefer project-level installs, inspect proposed changes and downloaded skills before use, and keep the built-in security scan enabled. <br>
-Risk: Cloud ZIP packaging can include a SkillsMP API key that may be exposed if the archive is shared. <br>
-Mitigation: Avoid embedding API keys in shared archives, keep private ZIPs controlled, and rotate any key that may have been exposed. <br>
-Risk: Force installs, skipped scans, or unreviewed remote install scripts can bypass useful safety checks. <br>
-Mitigation: Review remote sources first and avoid --force or --skip-scan unless there is a specific, understood reason. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacob-bd/universal-skills-manager) <br>
-- [Project homepage](https://github.com/jacob-bd/universal-skills-manager) <br>
+## Use Case:
 
+Developers and AI tool users use this skill to find, install, package, and synchronize agent skills across local tools and supported cloud upload workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration details, and generated or modified skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or package skill files when the user authorizes installation, synchronization, or cloud upload workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release metadata and artifact SKILL.md version comment) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can install or synchronize files into AI skill folders, which can overwrite or introduce executable skill content.
+
+Mitigation: Use dry-run first, keep destinations inside one intended skill directory, and manually review target changes before deployment.
+
+Risk: The security evidence flags unsafe remote-shell, archive, destination, and force-bypass behaviors for manual review.
+
+Mitigation: Avoid the curl pipe-to-shell workaround, and do not use --force or --skip-scan unless the target skill has been manually reviewed.
+
+Risk: Cloud ZIP packaging can include an API key in config.json, which may expose credentials if the ZIP is shared or synced.
+
+Mitigation: Do not embed an API key in packages that may be shared, posted, committed, or synchronized outside the intended private environment.
+
+Risk: The skill requires network access to external skill catalogs and GitHub, so cloud or restricted environments may block core functionality.
+
+Mitigation: Use it in an environment with the required outbound access, or limit use to packaging other skills that do not require those network calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacob-bd/skills/universal-skills-manager)
+- [Project homepage](https://github.com/jacob-bd/universal-skills-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, JSON snippets, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce ZIP packaging guidance and local file operation instructions for skill installation or synchronization.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release metadata and artifact version comment, released 2026-03-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Fetch inverter summary data from the Solax Cloud API using the npm package solax-cloud-api when the user provides or has configured a Solax tokenId and inverter serial number. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch inverter summary data from the Solax Cloud API using the npm package solax-cloud-api when a Solax tokenId and inverter serial number are available.
 
-## Publisher: <br>
-[AllMightySauron](https://clawhub.ai/user/AllMightySauron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[allmightysauron](https://clawhub.ai/user/allmightysauron)
 
-## Use Case: <br>
-Developers and automation users use this skill to retrieve current Solax inverter summary data as JSON for dashboards, monitoring, or energy automation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Solax API token and inverter serial number to retrieve energy summary data. <br>
-Mitigation: Prefer environment variables over CLI arguments, do not hardcode credentials, and keep the token redacted from logs. <br>
-Risk: The inverter serial number and returned energy summary may be sensitive operational data. <br>
-Mitigation: Treat the serial number and JSON output as private and share them only with intended dashboards or automation systems. <br>
-Risk: The skill depends on the npm package solax-cloud-api. <br>
-Mitigation: Review or pin the dependency before use and install it only in the skill scripts directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SolaxSummary typing reference](references/solax-summary.d.ts) <br>
-- [ClawHub skill page](https://clawhub.ai/AllMightySauron/solax-cloud-api) <br>
+## Use Case:
 
+Developers and automation maintainers use this skill to fetch current Solax inverter summary data as JSON for dashboards, monitoring, or energy automation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON object printed to stdout, with setup and command guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Solax tokenId and inverter serial number; failures return structured error JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles a Solax tokenId and inverter serial number and sends them to the Solax Cloud API through the solax-cloud-api package.
+
+Mitigation: Treat the token as a secret, prefer environment variables or a secret manager, avoid hardcoding credentials, and run the script in a limited environment.
+
+Risk: The artifact does not include a package-lock.json, so npm install may resolve dependency changes over time.
+
+Mitigation: Review dependency changes and add or review a lockfile before production deployment.
+
+Risk: Solax summary fields can vary with the installed package version and API response.
+
+Mitigation: Validate downstream dashboards or automation against observed JSON output before relying on specific fields.
+
+## Reference(s):
+
+- [SolaxSummary typing reference](references/solax-summary.d.ts)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Solax tokenId and inverter serial number; successful runs print one JSON summary object, while failures return structured error JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

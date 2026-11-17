@@ -1,44 +1,63 @@
-## Description: <br>
-Kuaidi100 User is a shipping assistant that helps users place shipment orders after SSO login, query logistics, manage orders, compare carriers, parse addresses, and estimate package weight. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kuaidi100 User helps agents handle shipment creation, logistics tracking, order management, address parsing, package weight lookup, and carrier price comparison through the Kuaidi100 CLI.
 
-## Publisher: <br>
-[kuaidi100-api](https://clawhub.ai/user/kuaidi100-api) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kuaidi100-api](https://clawhub.ai/user/kuaidi100-api)
 
-## Use Case: <br>
-External users use this skill to coordinate kuaidi100 shipping workflows through a CLI, including authenticated shipment creation, logistics lookup, order management, carrier comparison, address parsing, and weight lookup. It guides the agent to require SSO login for shipment and order actions, use server-side address books for authenticated flows, and collect user confirmation before order creation or cancellation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles shipping addresses, order details, and SSO browser login flows. <br>
-Mitigation: Install only when the kuaidi100 CLI package is trusted, and confirm browser-opened login and order links match the expected kuaidi100 flow. <br>
-Risk: Shipment creation or cancellation can affect real orders. <br>
-Mitigation: Require user review and confirmation of order or cancellation details before running the corresponding CLI command. <br>
-Risk: Unauthenticated or stale sessions could expose incomplete or misleading address, order, or logistics state. <br>
-Mitigation: Check authentication status before protected workflows, reauthenticate on key-required errors, and avoid local cached address data for shipment flows. <br>
+## Use Case:
 
+External users and agents use this skill to manage Kuaidi100 shipping workflows, including authenticated shipment creation, logistics tracking, order cancellation, address parsing, weight lookup, and carrier comparison. The skill is intended for stepwise, user-confirmed shipping interactions where sensitive address and order data may be involved.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kuaidi100-api/kuaidi100-user) <br>
-- [Workflow reference](artifact/references/workflow.md) <br>
-- [Field reference](artifact/references/fields.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-aware CLI output handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires kuaidi100-cli or kd100 on PATH; authenticated shipping and order workflows require SSO login.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill relies on a globally installed, mutable CLI package that handles shipping PII and login state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted package source, prefer a pinned and reviewed CLI version, and review local login and data storage behavior before deployment.
+
+Risk: Unsafe command templates could expose user-supplied fields to shell interpolation issues.
+
+Mitigation: Execute CLI calls with argument arrays or equivalent safe command construction instead of interpolating untrusted values into shell strings.
+
+Risk: Order cancellation and shipment creation can affect real shipping transactions.
+
+Mitigation: Require explicit user confirmation before shipment creation or cancellation and show the final order details before executing the command.
+
+Risk: Unauthenticated local cached order data may expose or mix stale shipping information.
+
+Mitigation: Avoid unauthenticated access to local cached order data unless the deployment owner has reviewed what is stored locally and how it is protected.
+
+## Reference(s):
+
+- [Workflow](artifact/references/workflow.md)
+- [Field Reference](artifact/references/fields.md)
+- [ClawHub Skill Page](https://clawhub.ai/kuaidi100-api/skills/kuaidi100-user)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON-derived CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose global npm installation and authenticated Kuaidi100 CLI commands; shipment creation and cancellation require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

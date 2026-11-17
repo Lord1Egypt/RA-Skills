@@ -1,40 +1,52 @@
-## Description: <br>
-Professional first-draft generator for emails, reports, articles, proposals, memos, cover letters, blog posts, scripts, READMEs, pitch decks, social posts, and other documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional first-draft generator for emails, reports, articles, proposals, memos, cover letters, blog posts, scripts, READMEs, pitch decks, social posts, and other documents.
 
-## Publisher: <br>
-[tigertamvip](https://clawhub.ai/user/tigertamvip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tigertamvip](https://clawhub.ai/user/tigertamvip)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and developers use this skill to turn rough notes, topics, or brief prompts into complete first drafts for common business, technical, and personal document types.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The broad trigger may activate for ambiguous writing-related requests or where a more specialized skill would be more appropriate.
+
+Mitigation: Confirm that a general first-draft workflow fits the request before using or relying on the output.
+
+Risk: Generated drafts may be incomplete, inaccurate, or unsuitable for sensitive business, legal, medical, financial, or personal communications.
+
+Mitigation: Review and edit drafts for factual accuracy, audience fit, tone, and policy or professional requirements before sending or publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to turn rough notes, topics, or brief prompts into complete first drafts tailored to the requested document type, audience, tone, and length. It is useful when the user needs a draft they can immediately review, edit, or send. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has a broad trigger and may activate for many writing requests. <br>
-Mitigation: Use explicit prompts when a different skill or no drafting transformation is desired. <br>
-Risk: Drafted content may be unsuitable for sensitive business, legal, personal, or credential-related use without review. <br>
-Mitigation: Review and edit drafts before sending or publishing, especially when sensitive information or consequential decisions are involved. <br>
+**Output Format:** [Plain text or Markdown, with code blocks when the requested document type requires them]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub listing for Draft 1](https://clawhub.ai/tigertamvip/draft-1) <br>
+**Other Properties Related to Output:** [Includes a complete draft followed by three targeted refinement options.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Plain text or Markdown, with code blocks for formats such as READMEs and social posts when appropriate.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a complete draft plus three targeted refinement options.] <br>
+1.0.0 (source: server release metadata and artifact metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

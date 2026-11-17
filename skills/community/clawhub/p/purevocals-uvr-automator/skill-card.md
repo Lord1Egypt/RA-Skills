@@ -1,42 +1,61 @@
-## Description: <br>
-PureVocals UVR Automator helps an agent run local audio separation workflows that extract vocals from individual audio files or batches of files while preserving folder structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PureVocals-UVR-Automator helps an agent run local UVR/audio-separator workflows to extract vocal-only WAV stems from single audio files or folders while preserving folder structure.
 
-## Publisher: <br>
-[wangminrui2022](https://clawhub.ai/user/wangminrui2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangminrui2022](https://clawhub.ai/user/wangminrui2022)
 
-## Use Case: <br>
-External users and audio creators use this skill to prepare vocal-only tracks, acapella material, karaoke assets, and cleaned audio from supported audio files or directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports that the skill downloads large third-party ML/audio packages, modifies Python packaging tools, creates persistent local environments and caches, and auto-installs ffmpeg. <br>
-Mitigation: Run it in an isolated OpenClaw environment, container, or disposable account and review dependency sources before processing sensitive folders. <br>
-Risk: Automatic model, package, and ffmpeg downloads can introduce network, disk usage, and supply-chain exposure during first run. <br>
-Mitigation: Pre-stage reviewed dependencies and model files where possible, restrict network access when not needed, and monitor cache and output directories. <br>
+## Use Case:
 
+External users, creators, and audio engineers use this skill to remove accompaniment or background music from audio and batch-produce clean vocal tracks for covers, karaoke, music production, and audio cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangminrui2022/purevocals-uvr-automator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wangminrui2022) <br>
-- [UVR public model releases](https://github.com/TRvlvr/model_repo/releases/tag/all_public_uvr_models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [Shell commands and generated WAV audio files with brief status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local virtual environments, dependency caches, model caches, logs, and output folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: First run can download packages, FFmpeg, and model files and can change Python packaging tools in a persistent shared virtual environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run in an isolated environment where network package installation and dependency changes are acceptable.
+
+Risk: Executable dependencies and model assets are downloaded without tight pinning or verification.
+
+Mitigation: Review dependency sources, restrict network access as appropriate, and pre-stage trusted packages, FFmpeg, and model files when operating in controlled environments.
+
+Risk: The skill processes local audio files and writes generated audio, cached models, and logs to disk.
+
+Mitigation: Use non-sensitive test files first, choose an explicit output directory, and review generated files, model cache, and logs after execution.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/wangminrui2022/skills/purevocals-uvr-automator)
+- [TRvlvr public UVR model releases](https://github.com/TRvlvr/model_repo/releases/tag/all_public_uvr_models)
+- [Kim_Vocal_2 model file](https://github.com/TRvlvr/model_repo/releases/download/all_public_uvr_models/Kim_Vocal_2.onnx)
+- [UVR_MDXNET_KARA_2 model file](https://github.com/TRvlvr/model_repo/releases/download/all_public_uvr_models/UVR_MDXNET_KARA_2.onnx)
+- [6_HP-Karaoke-UVR model file](https://github.com/TRvlvr/model_repo/releases/download/all_public_uvr_models/6_HP-Karaoke-UVR.pth)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; generated audio output is WAV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates vocal-only WAV files in the requested output directory, can preserve directory structure for batches, and writes rolling local logs.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

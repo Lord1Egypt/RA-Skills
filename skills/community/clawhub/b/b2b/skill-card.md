@@ -1,43 +1,56 @@
-## Description: <br>
-Close enterprise deals with qualification frameworks, prospecting research, pipeline management, and outreach personalization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Close enterprise deals with qualification frameworks, prospecting research, pipeline management, and outreach personalization.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Founders, sales representatives, and sales managers use this skill to guide B2B prospecting, outreach, deal qualification, pipeline analysis, forecast reviews, and account strategy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach may contain fabricated personalization, misleading claims, or pressure tactics. <br>
-Mitigation: Review all generated outreach before sending and verify prospect-specific facts against reliable sources. <br>
-Risk: Sales outreach may conflict with email, privacy, solicitation, or opt-out requirements. <br>
-Mitigation: Follow applicable email, privacy, and solicitation laws, and honor opt-out requests immediately. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [B2B on ClawHub](https://clawhub.ai/ivangdavila/b2b) <br>
-- [Publisher profile: ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
-- [Qualification Frameworks - B2B](frameworks.md) <br>
-- [Outreach Best Practices - B2B](outreach.md) <br>
-- [Pipeline Management - B2B](pipeline.md) <br>
+## Use Case:
 
+Founders, sales representatives, and sales managers use this skill to research prospects, qualify enterprise opportunities, manage pipeline health, review forecasts, and personalize B2B outreach.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance and structured sales playbook text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code execution, credentials, persistence, or hidden behavior identified in the authoritative security summary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Outreach or prospect research may involve personal data, CRM records, or regulated contact practices.
+
+Mitigation: Apply the organization's privacy, CRM data handling, and cold outreach compliance rules before using the guidance with prospects.
+
+Risk: Sales strategy and forecast guidance can be inaccurate if prospect research or CRM stage data is incomplete.
+
+Mitigation: Review recommendations against current account evidence, stakeholder input, and documented next steps before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/b2b)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Qualification Frameworks - B2B](artifact/frameworks.md)
+- [Outreach Best Practices - B2B](artifact/outreach.md)
+- [Pipeline Management - B2B](artifact/pipeline.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and structured sales checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, install hooks, credential handling, or hidden behavior are present in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

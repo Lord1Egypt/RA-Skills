@@ -1,47 +1,62 @@
-## Description: <br>
-用 React 代码程序化生成视频的框架，支持 CSS/Canvas/SVG/WebGL，可部署到 Lambda/Cloud Run 大规模渲染，适合创意视频生成、数据可视化视频和个性化视频批量生产 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using Remotion to create React and TypeScript video projects, preview them locally, render MP4/WebM/GIF outputs, and configure Lambda or Cloud Run rendering.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and creators use this skill to get Remotion guidance for building React and TypeScript video projects, previewing and rendering local outputs, and preparing AWS Lambda or Google Cloud Run rendering workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested npm or npx commands may install or execute packages in the user's environment. <br>
-Mitigation: Review package installation commands before execution and run them only in the intended project directory. <br>
-Risk: Local render and cleanup commands may create, overwrite, or remove generated video files. <br>
-Mitigation: Confirm render targets and cleanup paths before allowing an agent to run file-changing commands. <br>
-Risk: AWS Lambda or Google Cloud Run deployment guidance can create cloud resources or costs in the wrong account or project. <br>
-Mitigation: Use least-privilege cloud credentials and confirm the target account, project, region, and resource names before deployment. <br>
+## Use Case:
 
+Developers and content automation teams use this skill to build data-driven or personalized videos with Remotion, including component authoring, local preview, media rendering, captions, and cloud rendering workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/cn-remotion) <br>
-- [Remotion homepage](https://remotion.dev) <br>
-- [Remotion documentation](https://remotion.dev/docs) <br>
-- [Remotion API reference](https://remotion.dev/api) <br>
-- [Remotion GitHub repository](https://github.com/remotion-dev/remotion) <br>
-- [Remotion Lambda permissions](https://remotion.dev/docs/lambda/permissions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose npm/npx commands, local render commands, and optional cloud deployment configuration for Remotion workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill includes unpinned npx and npm installation commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, pin package versions, use a lockfile, and isolate installs in a project workspace.
+
+Risk: The skill includes AWS Lambda and Cloud Run rendering workflows that can use credentials and create cloud cost exposure.
+
+Mitigation: Require explicit approval before cloud deployment, use least-privilege short-lived credentials, and verify cost limits and cleanup steps.
+
+Risk: Troubleshooting guidance includes destructive local cleanup and process termination commands.
+
+Mitigation: Confirm target paths and process IDs manually before running rm or kill commands.
+
+## Reference(s):
+
+- [Remotion homepage](https://remotion.dev)
+- [Remotion documentation](https://remotion.dev/docs)
+- [Remotion API reference](https://remotion.dev/api)
+- [Remotion GitHub repository](https://github.com/remotion-dev/remotion)
+- [Remotion Lambda guide](https://remotion.dev/docs/lambda)
+- [Remotion captions documentation](https://remotion.dev/docs/captions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose npm, npx, local rendering, and cloud rendering commands that require user review before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

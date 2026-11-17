@@ -1,52 +1,69 @@
-## Description: <br>
-中国古代经典知识库 - 提供四书五经、诸子百家、史书典籍、文学经典、明清小说的权威解答。使用场景：经典查询、名言出处、人物典故、历史背景、思想解析、名句赏析、书目推荐、阅读指导。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Classics中国古经典 is a Chinese classics reference skill for answering questions about the Four Books and Five Classics, Hundred Schools of Thought, historical records, literature, Ming-Qing novels, quotations, figures, historical context, interpretation, reading guidance, and recommended editions.
 
-## Publisher: <br>
-[mikewongonline](https://clawhub.ai/user/mikewongonline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikewongonline](https://clawhub.ai/user/mikewongonline)
 
-## Use Case: <br>
-External users, educators, learners, and agents use this skill to answer questions about Chinese classics, locate quotation sources, explain figures and allusions, compare editions, translate classical passages into modern Chinese, and build reading plans. It can also frame general workplace, education, personal-growth, and life-philosophy questions through a Chinese-classics lens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may answer general workplace, education, personal-growth, or life-philosophy questions through a Chinese-classics lens when a more direct source may be preferable. <br>
-Mitigation: Use the response as cultural or interpretive guidance and consult direct professional, institutional, or domain-specific sources when decisions depend on current policy or specialized expertise. <br>
-Risk: Classical quotations, citations, authorship, dates, and edition details may vary across sources. <br>
-Mitigation: Verify quotations, citations, and edition claims against primary texts or authoritative editions before academic, legal, publication, or high-stakes use. <br>
-Risk: Modern applications of ancient texts can become overextended or detached from historical context. <br>
-Mitigation: Ask the agent to identify the classical source, summarize the historical context, and distinguish textual evidence from contemporary interpretation. <br>
+## Use Case:
 
+Readers, educators, students, and agents use this skill to answer Chinese classical literature and history questions, trace quotations and allusions, compare editions, translate or explain classical passages, and build reading plans. Modern-life interpretations should be treated as cultural interpretation rather than professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikewongonline/china-classics) <br>
-- [中国古代经典详解](references/classics-full.md) <br>
-- [四书五经](references/classics-four-books.md) <br>
-- [诸子百家](references/classics-hundred-schools.md) <br>
-- [史书典籍](references/classics-historical.md) <br>
-- [文学经典](references/classics-literature.md) <br>
-- [名句分类速查](references/classics-quotes.md) <br>
-- [中国古代经典名句索引](references/quotes-index.md) <br>
-- [中国古代经典版本推荐](references/edition-guide.md) <br>
-- [白话翻译参考](references/modern-translation.md) <br>
-- [中国历史年表](references/history-timeline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses with citations, explanations, recommendations, translations, reading plans, and structured lists when useful.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no required binaries, code execution, credentials, hidden access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Classical texts may be interpreted as modern workplace, management, legal, medical, financial, or personal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat modern applications as cultural interpretation and require qualified professional review before relying on them for consequential decisions.
+
+Risk: Translations, quotation attributions, edition choices, and historical dates may vary across classical sources and scholarship.
+
+Mitigation: Prefer the skill's cited classical work, chapter, edition, and recommended reference materials, and verify against authoritative editions for academic or publication use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mikewongonline/skills/china-classics)
+- [中国古代经典详解](references/classics-full.md)
+- [四书五经](references/classics-four-books.md)
+- [诸子百家](references/classics-hundred-schools.md)
+- [史书典籍](references/classics-historical.md)
+- [文学经典](references/classics-literature.md)
+- [明清小说](references/classics-novels.md)
+- [哲学与宗教](references/classics-philosophy.md)
+- [蒙学经典](references/classics-primers.md)
+- [科技与杂学](references/classics-science.md)
+- [名句分类速查](references/classics-quotes.md)
+- [中国古代经典名句索引](references/quotes-index.md)
+- [中国古代经典版本推荐](references/edition-guide.md)
+- [白话翻译参考](references/modern-translation.md)
+- [中国历史年表](references/history-timeline.md)
+- [阅读推荐](references/classics-reading.md)
+- [特色功能模块](references/classics-features.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text answers with citations to classical works, explanations, translations, reading plans, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content-only skill; no code execution, persistence, credential use, or hidden data access reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

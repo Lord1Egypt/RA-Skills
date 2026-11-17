@@ -1,52 +1,65 @@
-## Description: <br>
-Universal File Ops helps agents perform standardized file CRUD, Python environment management, code quality checks, sandbox testing, and structured workflow reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal File Ops helps agents perform structured file operations, manage Python environments, run Python code-quality workflows, execute sandbox tests, and produce structured reports.
 
-## Publisher: <br>
-[ldxs001](https://clawhub.ai/user/ldxs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ldxs001](https://clawhub.ai/user/ldxs001)
 
-## Use Case: <br>
-External developers and agent users use this skill to make file operations, Python script generation, code review, test generation, sandbox test runs, and environment setup more repeatable. It is intended for agent workflows that need structured reports, backups, rollback IDs, and phased execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, overwrite, move, or delete user-specified files. <br>
-Mitigation: Use it in a constrained workspace, review target paths before execution, keep backups enabled, record rollback IDs, and avoid --no-backup unless the files are disposable. <br>
-Risk: The skill can create persistent backups, logs, and virtual environments. <br>
-Mitigation: Review storage locations and clean backup, log, and venv directories according to local retention requirements. <br>
-Risk: The skill can install Python packages from the network. <br>
-Mitigation: Install only trusted packages, prefer pinned dependencies where possible, and avoid package installation on untrusted projects. <br>
-Risk: The skill can execute tests and subprocess-backed workflows. <br>
-Mitigation: Run sandbox tests and orchestration only on code you trust, and keep execution inside a restricted workspace. <br>
+## Use Case:
 
+Developers and agent users use this skill to standardize local file CRUD, Python environment setup, package installation, code review, test generation, sandbox execution, and final reporting workflows.
 
-## Reference(s): <br>
-- [Skill Overview](SKILL.md) <br>
-- [User Guide](references/guide.md) <br>
-- [Permissions and Risk Notes](references/permissions.md) <br>
-- [Python Coding Standards](references/py_standards.md) <br>
-- [Report Templates](references/report_templates.md) <br>
-- [Error Codes](references/error_codes.md) <br>
-- [Changelog](references/changelog.md) <br>
-- [Python Downloads](https://www.python.org/downloads/) <br>
-- [Python Package Index](https://pypi.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and structured JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include file-operation results, rollback IDs, generated Python code or tests, review findings, sandbox-test summaries, and phased workflow reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server evidence, SKILL.md frontmatter, and changelog) <br>
+Risk: Broad local file mutation can overwrite, delete, move, or rename user files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a disposable or tightly scoped workspace, keep backups enabled, avoid no-backup operations on important data, and review requested paths before execution.
+
+Risk: Python execution and package installation can run untrusted code or install untrusted dependencies.
+
+Mitigation: Use sandbox testing only on trusted code, approve package installs only from trusted package names and sources, and avoid running the skill against untrusted repositories.
+
+Risk: The release security summary reports weak scoping and overstated safety controls.
+
+Mitigation: Treat safety controls as defense in depth, validate generated changes before keeping them, and prefer a restricted workspace with minimal privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/universal-file-ops)
+- [guide.md](references/guide.md)
+- [permissions.md](references/permissions.md)
+- [py_standards.md](references/py_standards.md)
+- [report_templates.md](references/report_templates.md)
+- [error_codes.md](references/error_codes.md)
+- [changelog.md](references/changelog.md)
+- [Python Downloads](https://www.python.org/downloads/)
+- [Python Package Index](https://pypi.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON command outputs and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, update, move, delete, back up, or roll back workspace files when the agent invokes bundled scripts.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence, frontmatter, changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

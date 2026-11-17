@@ -1,41 +1,53 @@
-## Description: <br>
-Provides simple greeting responses for testing and demonstrating a custom agent skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides simple greeting responses for testing and demonstrating a custom skill.
 
-## Publisher: <br>
-[dunzung](https://clawhub.ai/user/dunzung) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dunzung](https://clawhub.ai/user/dunzung)
 
-## Use Case: <br>
-Developers and agent users use this skill to trigger simple greeting replies and confirm that a custom skill loads and responds as expected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for generic greeting or skill-testing phrases. <br>
-Mitigation: Review trigger wording and expected responses before deployment so it only activates in intended greeting or test contexts. <br>
-Risk: Future updates could introduce network access, credential handling, install commands, or broader permissions. <br>
-Mitigation: Review release evidence and security scan results before installing updated versions. <br>
+## Use Case:
 
+Developers and skill authors use this skill to test custom skill activation and return a simple hello-world style greeting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dunzung/duanzj-hello-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/dunzung) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text or Markdown greeting response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May respond to broad greeting or skill-testing phrases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may activate on generic greeting requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for greeting, testing, or learning flows where simple hello-world responses are expected.
+
+Risk: The release is a basic demonstration skill rather than a production workflow.
+
+Mitigation: Review and scan the artifact before deployment, and keep usage limited to simple greeting behavior unless future evidence supports broader capabilities.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dunzung/skills/duanzj-hello-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Plain text greeting or minimal command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No evidence of network access, persistence, hidden access, or destructive behavior.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

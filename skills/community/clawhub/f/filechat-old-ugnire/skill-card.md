@@ -1,41 +1,62 @@
-## Description: <br>
-Searches, retrieves, and answers questions over documents in a designated Google Drive folder using semantic vector search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, retrieve, and chat with documents stored in a designated Google Drive folder using semantic retrieval, local indexing, Gemini embeddings, and OCR.
 
-## Publisher: <br>
-[eladrave](https://clawhub.ai/user/eladrave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eladrave](https://clawhub.ai/user/eladrave)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to sync a selected Google Drive folder, search indexed document chunks, answer questions with cited file names, and retrieve matching files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recursively copy private Google Drive files and persist searchable local indexes. <br>
-Mitigation: Use a dedicated low-risk Drive folder, avoid regulated or highly confidential documents, and confirm how to delete local indexes and downloaded files. <br>
-Risk: Document text, images, and search queries may be sent to Gemini for OCR or embeddings. <br>
-Mitigation: Restrict API keys, sync only documents approved for Gemini processing, and review consent and data-handling requirements before use. <br>
+## Use Case:
 
+External users and developers use this skill to sync a selected Google Drive folder into a local searchable index, answer questions over saved documents, retrieve matching files, and add new documents to the library.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eladrave/filechat-old-ugnire) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets and plain-text query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Query results include matching file names, Google Drive file IDs, similarity scores, and snippets when the local index exists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, package.json) <br>
+Risk: Drive document contents and user queries may be sent to Google Gemini for embeddings and image OCR.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only point the skill at Drive folders whose contents are acceptable for that data flow, and avoid highly sensitive folders unless the user accepts it.
+
+Risk: Indexed document text is stored locally in plaintext in vector_db.json with weak containment.
+
+Mitigation: Protect the workspace, .env file, and vector_db.json, and document how to delete or flush the local index.
+
+Risk: The skill broadly copies and indexes files from the configured Drive folder and subfolders.
+
+Mitigation: Use a scoped Drive folder, review sync behavior before installation, and prefer versions with explicit confirmation and scoped sync controls.
+
+Risk: The security verdict is suspicious because the skill handles sensitive files and uses command execution and unpinned dependency ranges.
+
+Mitigation: Review and scan the skill before deployment, pin dependencies, and prefer safer command execution patterns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eladrave/skills/filechat-old-ugnire)
+- [Publisher profile](https://clawhub.ai/user/eladrave)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, retrieved text snippets, file identifiers, and optional media attachment references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, gws, GEMINI_API_KEY, and FILECHAT_DRIVE_FOLDER_ID; sync creates a local vector_db.json index from Drive content.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

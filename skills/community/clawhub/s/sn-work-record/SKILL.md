@@ -1,188 +1,78 @@
 ---
 name: sn-work-record
-description: Use when handling 蜀宁 OA 工时：提交、修改、查询某天工时记录、获取项目列表，或排查验证码登录与 OA 查询认证问题。
+version: 1.15.1
+author: chengcheng
+license: MIT-0
+platforms: [linux, macos]
+description: "蜀宁 OA 工时与报销：填报/修改/查询工时，查看报销申请状态与审批进度；删除与恢复暂禁。"
 metadata:
-  {
-    "openclaw": {
-      "requires": { "bins": ["openssl"] },
-      "env": ["OA_ENC_KEY"]
-    },
-    "author": "chengcheng"
-  }
-}
+  openclaw:
+    requires:
+      bins: [openssl]
+    env: [OA_ENC_KEY]
+  author: chengcheng
 ---
 
-# 蜀宁 OA 工时管理
+# 蜀宁 OA 工时与报销
 
-## 快速开始
+用于工时查询、周度总结、查漏、授权填报/修改及报销审批进度；生产逻辑删除/恢复入口暂禁：服务端无可靠恢复契约，CLI 与 API 均在任何网络请求前拒绝，不提供绕过开关。
 
-> 推荐统一入口：`/root/.agents/skills/sn-work-record/sn-work-record`
->
-> 所有 Python 脚本现在都带运行时自检：即使误用系统 `python3` 启动，也会优先自动切换到依赖完整的解释器。也可通过环境变量 `SN_WORK_RECORD_PYTHON` 显式指定解释器路径。
+**破坏性测试门禁：** 即使用户授权“删除后补回”，也先验证服务端删除、恢复和审批关联的契约或隔离环境证据，再决定是否执行。完整 JSON 备份不等于可恢复机制，`isDeleted=0` 不能凭字段名推定有效。未证实可逆时保留原记录、说明缺口，不清除持久提交保护来补填；本地锁与写后核验不提供服务端事务或并发恢复保证。
 
-### 登录（自动执行）
+工具范围：通过执行工具运行本技能 Python 入口；网络仅用于用户指定的 OA origin；本地读取授权凭据、个人设置，写入私有认证缓存和持久保护/备份。子进程仅用于依赖探测、解释器切换和 OpenSSL 加解密。此声明不授予额外工具权限，也不代表宿主已执行权限隔离。删除与恢复即使显式授权也暂禁，不能清理 submission guard 以恢复或重新提交。运行时环境白名单仅约束派生子进程/替换解释器，不净化当前进程；本地锁非服务端 CAS，不承诺隔离或可逆。
+
+删除/恢复维护说明见 [保护删除与恢复](references/deletion-recovery.md)。以下路径均相对本技能安装目录；使用当前 agent 的执行工具（Hermes 为 `terminal`）运行。无需自行编写查询驱动或重新探测环境。
+
+## 必须保留的边界
+
+- **查询、润色、导出不授权写入 OA。** 不使用历史聊天补造实时记录；失败、空记录、草稿、已提交记录分开报告。
+- **不暴露凭据或内部 ID。** 复用已有加密凭据和 `OAAuth`，不打印账号、密码、token、密钥；默认隐藏项目/记录/流程 ID，仅用户明确要求或操作确需引用时展示。凭据持久保存、个人默认值修改需另行授权。
+- **写入前先确认事实与完整字段。** 项目、类型、阶段、工作类型须实时验证，时长无 8h 默认，不把某位用户的选择写成通用配置。首次项目由用户选择；只读发现失败不猜代码。
+- **提交、撤回重提与删除须区分授权。** 同日有记录不新增重复项；审批中撤回影响流程，须专门授权。未知写结果只读核实，不盲重发；不绕过持久写入保护。预览不是提交成功。
+- **只润色，不夸大。** 保留专名、数量、事实状态；研究不改写成上线、验收。节假日禁止新增填报，但历史查询不能跳过已有记录。
+
+## 常用只读入口
+
+从技能目录运行；各入口自动选择依赖完整的解释器。可用 `--credentials <受保护凭据文件>`、`--base-url <OA地址>` 覆盖现有入口默认值；不要读取秘密正文排错。
+
 ```bash
-/root/.agents/skills/sn-work-record/sn-work-record login [--credentials PATH] [--base-url http://X.X.X.X:PORT]
-```
-或：
-```bash
-python scripts/sn_oa_login.py [--credentials PATH] [--base-url http://X.X.X.X:PORT]
-```
-→ token 输出到 stdout（可 `| tee token.txt` 保存）
+# 单日工时
+python scripts/query_time_entry.py <YYYY-MM-DD> --json
 
-### 提交工时
-```bash
-/root/.agents/skills/sn-work-record/sn-work-record submit 2026-04-11 --job-desc "工时描述"
-```
-或：
-```bash
-python scripts/submit_time_entry.py 2026-04-11 --job-desc "工时描述"
-```
-→ 内部调用 `POST /sn/timeEntry/saveOrUpdate`
-> 默认优先使用凭据文件中的默认项目；支持 `--save-draft` 保存草稿，并会在直接提交时自动检查是否为工作日。
+# 多区间工时：一个调用，包含首尾，重叠日期只查询一次
+python scripts/query_time_ranges.py --range <开始日期> <结束日期> --range <开始日期> <结束日期> --json
 
-### 修改工时记录
-```bash
-/root/.agents/skills/sn-work-record/sn-work-record update <工时ID> --job-desc "新描述"
-```
-→ 内部调用 `PUT /sn/timeEntry/update`
+# 需要保存本地核查证据时，以上批量命令追加 --raw-output <新的私有JSON路径>
+# 这里只保存查询证据，不是账号密码；不要把源数据文件主动交付用户。
 
-### 查询工时列表
-```bash
-/root/.agents/skills/sn-work-record/sn-work-record query 2026-04-10
-```
-→ 内部调用 `POST /sn/timeEntry/findEveryDayList`
+# 报销及当前审批节点
+python scripts/query_fee_requests.py --with-progress
 
-### 获取工时详情
-```bash
-/root/.agents/skills/sn-work-record/sn-work-record details <工时ID>
-```
-→ 内部调用 `GET /sn/timeEntry/details/<工时ID>`
-
-> 注意：工时提交/查询/详情/修改接口统一通过完整认证会话发起，必须同时携带 `Authorization: Bearer {token}` 和 `Admin-OA-Token: {token}` 两个请求头。
-
-### 获取项目列表
-```bash
-python scripts/list_projects.py [--credentials PATH] [--base-url URL]
-```
-列出 OA 系统所有项目，供用户选择默认项目。
-
-## 当前脚本
-
-- `sn-work-record`：统一 launcher，封装常用子命令入口
-- `scripts/runtime_bootstrap.py`：运行时解释器自检/自动切换
-- `scripts/sn_oa_login.py`：登录并输出 token
-- `scripts/list_projects.py`：查询项目列表（支持 `--json`）
-- `scripts/submit_time_entry.py`：提交工时或保存草稿
-- `scripts/query_time_entry.py`：查询某天工时列表
-- `scripts/get_time_entry_details.py`：按工时 ID 查询详情
-- `scripts/update_time_entry.py`：按工时 ID 修改描述或逻辑删除
-- `scripts/oa_utils.py`：公共能力（登录、认证会话、状态映射、工时提交/查询/详情/修改）
-
-## 凭证文件格式
-
-存放在 `memory/sn-work-record-credentials.md`：
-
-```markdown
-# 蜀宁 OA 凭证
-
-- **账号**: <手机号>
-- **密码**: <密码>
-- **Base URL**: http://<IP>:<PORT>
-- **默认项目ID**: <your-project-id>（可选）
-- **默认项目名称**: <your-project-name>（可选）
+# 项目 / 指定工时详情
+python scripts/list_projects.py --json
+python scripts/get_time_entry_details.py <record-id>
 ```
 
-支持加密存储（`.md.enc`），使用 AES-256-CBC + openssl，密钥通过 `OA_ENC_KEY` 环境变量或 `~/.openclaw/workspace/.cache/oa_enc_key` 提供。
+### 多区间查询与总结的最短流程
 
-## fillDate 格式
+1. 明确用户给定的起止日期；相对日期以实际当前日期、时区解析。批量日期优先上面的现成入口，不逐天发起模型工具往返，不现场编写脚本。
+2. 检查退出状态、完整性及逐日失败项。汇总采用脚本计算的 ID 去重记录数、填报日数、十进制工时、状态分布；不能按天数乘固定时长，不能把草稿工时当已审批工时。部分失败只能给已核实部分，不宣称全部完成。
+3. 直接使用返回的完整逐日工作描述归并主题，按用户的区间分组。共用项目/审批情况集中写；只有全部记录一致且查询完整才能说“全部已审批”。不同但相似的系统名称不自行统一。
+4. 默认在聊天交付，不主动生成附件；用户要求文件再加载相应文档技能。只覆盖指定日期时，不宣称整月已填齐。
 
-提交工时时 `fillDate` 使用纯日期格式 `YYYY-MM-DD` 即可（如 `2026-04-10`），API 不要求 `(周X)` 后缀。
+简单查询/汇总读取本页即可；遇查漏补填、复杂口径或导出核验再读 [工时查询流程](references/query-workflow.md)。依赖错误或认证失败才读 [认证与运行环境](references/authentication-runtime.md)，避免每次加载维护细节。
 
-## 默认配置
+## 按任务加载，而非整套展开
 
-- **项目**：需通过 `list_projects.py` 脚本获取用户确认后设定，写入 `memory/sn-work-record-credentials.md`
-- **时长**：8h/天
-- **状态**：`10` = 草稿，`20` = 审批中，`30` = 已审批
+- **填报、修改、删除、中断续办**：必须先读 [写入工作流](references/write-workflow.md)。普通提交另读 [提交去重保护](references/submission-idempotency.md)；修改另读 [撤回重提](references/amendment-workflow.md)；首次设置读 [个人设置](references/personal-settings.md)。仅普通工作支持提交，休假及真实草稿写入保持现有限制。
+- **报销查询**：读 [报销查询与展示](references/reimbursement-query.md)。金额和状态加粗，节点/审批人分行，默认不展示公司；历史每笔两行并留空行。审批通过不等于到账。
+- **报销完成提醒**：另读 [监控实现](references/reimbursement-monitoring.md)，固定指定申请，不追踪“最新一笔”。
+- **凭据迁移/首次配置**：读 [认证与运行环境](references/authentication-runtime.md) 和 [Hermes凭据存储](references/hermes-credential-storage.md)。
+- **开发维护**：按需读 [脚本目录](references/script-catalog.md)、[接口](references/api.md)、[发布验证](references/release-verification.md)，不要作为常规查询前置步骤。
+- **发布与审核**：分开报告“已受理、已公开、安全审核结果”；精确版本可读取且 latest 指向目标版本才称最新版已发布。只引用目标版本的安全证据，不把技能级旧版 Clean 当作新版通过。整改须先说明精确改动、影响及回滚方案，未经确认不改业务实现；发布授权不等于真实 OA 写入测试授权。
 
-## 对话输出与隐私约定
+## 输出与验证
 
-- 默认回复中**不要主动暴露**项目 ID、工时记录 ID、项目配置值等内部标识。
-- 查询结果默认只返回：日期、项目名称、时长、描述、状态、填写时间、更新时间。
-- 只有在用户**明确要求查看 ID**，或执行修改/详情/删除等操作**确实必须引用 ID** 时，才展示对应 ID。
-- 编写示例、文档、响应模板时，优先使用占位符（如 `<your-project-id>`、`<record-id>`），不要写入真实配置。
+状态 `10`=草稿、`20`=审批中、`30`=已审批；未知状态不猜。称“填报日”不等于已核对出勤日历。查漏须核对适用工作日历，周末无记录不自动算漏填。
 
-## 自然语言示例
-
-| 用户说 | 执行动作 |
-|--------|---------|
-| "今天填了工时" | `python scripts/submit_time_entry.py <日期> --job-desc "..."` 提交 8h 工时（默认项目） |
-| "周一到周三做某个项目" | 批量提交多天 |
-| "把昨天工时改成xxx" | 查昨天 → `update_time_entry.py` 修改描述 |
-| "查一下今天的工时状态" | `python scripts/query_time_entry.py <日期>` 查询 |
-| "看看这条工时详情" | `python scripts/get_time_entry_details.py <工时ID>` |
-| "把这条工时删掉" | `python scripts/update_time_entry.py <工时ID> --delete` |
-
-## 节假日限制
-
-以下节假日期间**不予填写工时**（2026年官方安排）：
-
-| 节日 | 放假日期 |
-|------|---------|
-| 元旦 | 2026-01-01 ~ 2026-01-03 |
-| 春节 | 2026-02-15 ~ 2026-02-23 |
-| 清明节 | 2026-04-04 ~ 2026-04-06 |
-| 劳动节 | 2026-05-01 ~ 2026-05-05 |
-| 端午节 | 2026-06-19 ~ 2026-06-21 |
-| 中秋节 | 2026-09-25 ~ 2026-09-27 |
-| 国庆节 | 2026-10-01 ~ 2026-10-07 |
-
-如遇节假日区间，回复：「节假日期间无需填写工时~」并拒绝提交。
-
-## 提交成功输出模板
-
-```
-✅ {日期}({星期})工时提交成功！
-
-• 日期：{fillDate}
-• 项目：{projectName}
-• 时长：{manHour}h
-• 描述：{jobDesc}
-• 状态：审批中 🟢
-```
-
-修改描述成功时输出：
-
-```
-✅ {日期} 工时描述已更新！
-
-• 日期：{fillDate}
-• 新描述：{jobDesc}
-• 状态：审批中 🟢
-```
-
-## 环境要求
-
-- Python 3
-- ddddocr：`pip3 install ddddocr`
-- chinese_calendar：`pip3 install chinese_calendar`（用于精确判断中国工作日/节假日）
-- requests：`pip3 install requests`
-- 凭据文件：`memory/sn-work-record-credentials.md`（明文或 .enc 加密均可）
-
-> 说明：脚本会优先使用依赖完整的解释器。若环境特殊，可通过 `SN_WORK_RECORD_PYTHON=/path/to/python` 显式指定解释器路径。若需要单独准备虚拟环境，推荐名称优先使用 `sn_work_record_env`（也兼容 `oa_worktime_env`、`ddddocr_env`、`.venv`、`venv` 等常见命名）。
-
-## 首次使用
-
-1. 运行 `python scripts/sn_oa_login.py` 完成登录
-2. 运行 `python scripts/list_projects.py` 获取项目列表，选择默认项目
-3. 将项目信息写入凭据文件
-
-## 增强说明
-
-- 公共认证头逻辑已统一收口到 `oa_utils.py`，避免不同脚本各写一套导致认证不一致
-- 项目列表脚本新增 `--json`，方便调试或二次处理
-- 提交、查询、详情、修改四个工时脚本都走同一套登录与认证逻辑，减少后续维护成本
-- 所有入口脚本已接入 `runtime_bootstrap.py`：若当前解释器缺少依赖，会自动切换到可用解释器再执行
-- 解释器优先级支持环境变量 `SN_WORK_RECORD_PYTHON` 覆盖，也会自动探测常见虚拟环境名称
-- 新增 `sn-work-record` launcher，后续优先使用它作为统一入口
-- 目录说明已与实际文件对齐：提交/查询/详情/修改都已提供脚本，避免再次误判
+写操作仅以对应保护入口读回核验的结果报告成功；完整执行规则在写入工作流。查询输出保留日期、项目名称、时长、描述及状态等必要事实，隐藏内部标识。原始数据留在受权限保护的本地证据文件中，不整份塞进上下文；不要用省 token 为由省略事实、权限或完整性检查。

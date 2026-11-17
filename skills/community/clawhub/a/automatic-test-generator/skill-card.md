@@ -1,44 +1,53 @@
-## Description: <br>
-Automatically generate unit tests from functions with comprehensive coverage and edge cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generate unit tests from functions with comprehensive coverage and edge cases
 
-## Publisher: <br>
-[michaelatamuk](https://clawhub.ai/user/michaelatamuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelatamuk](https://clawhub.ai/user/michaelatamuk)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate unit test suites for existing functions, classes, and modules across common testing frameworks. It is most useful for improving coverage, creating edge-case tests, and building reviewable starting points for test files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill works by inspecting source code, which can expose unrelated private code or secrets if the agent is given broad access. <br>
-Mitigation: Point the agent at specific files or directories and avoid sharing secrets, credentials, or unrelated private configuration. <br>
-Risk: Generated tests can contain incorrect assertions, incomplete mocks, or assumptions that do not match the intended business behavior. <br>
-Mitigation: Review and edit generated tests before committing them, running them in CI, or using them against real services. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate and refine unit tests for existing functions, classes, and modules across common testing frameworks. It is intended to accelerate coverage work while keeping generated tests subject to human review.
 
-## Reference(s): <br>
-- [Automatic Test Generator on ClawHub](https://clawhub.ai/michaelatamuk/automatic-test-generator) <br>
-- [Jest Documentation](https://jestjs.io) <br>
-- [Vitest Documentation](https://vitest.dev) <br>
-- [Pytest Documentation](https://docs.pytest.org) <br>
-- [Testing Library Guiding Principles](https://testing-library.com/docs/guiding-principles/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with generated test code, framework-specific snippets, and optional shell or configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated tests are starting points and should be reviewed, customized, and run in the target project before relying on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated tests may assert behavior the implementation does not actually provide, such as resilience or fallback semantics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated tests against the source behavior, adjust incorrect assertions, and run the tests before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michaelatamuk/skills/automatic-test-generator)
+- [Jest documentation](https://jestjs.io)
+- [Vitest documentation](https://vitest.dev)
+- [Pytest documentation](https://docs.pytest.org)
+- [Testing Library guiding principles](https://testing-library.com/docs/guiding-principles/)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with code blocks and framework-specific test examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated tests should be reviewed, customized, and run before being relied on.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

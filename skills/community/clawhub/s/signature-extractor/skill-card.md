@@ -1,38 +1,49 @@
-## Description: <br>
-Extracts clean, transparent-background signature ink from photos, with options to remove red stamps, upscale resolution, and darken ink. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract clean, transparent-background signature ink from photos and scanned documents, including workflows to remove light backgrounds or red stamps, darken ink, and upscale the result.
 
-## Publisher: <br>
-[anhao6170](https://clawhub.ai/user/anhao6170) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anhao6170](https://clawhub.ai/user/anhao6170)
 
-## Use Case: <br>
-External users and agents use this skill when a user provides a handwritten signature image and asks to extract black ink, make the background transparent, remove red stamps, darken strokes, or upscale the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Signatures can be sensitive and may be misused if processed without authorization. <br>
-Mitigation: Process only signatures the user owns or is authorized to handle, keep processing local, and review the generated PNG before sharing it. <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to extract handwritten black or gray signature strokes from an image, produce a transparent PNG, optionally upscale the result, and report output dimensions and ink pixel count.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anhao6170/signature-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text] <br>
-**Output Format:** [RGBA PNG file plus concise Markdown status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output image is a transparent-background PNG; solid and hd modes upscale by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Processing very large untrusted images or extreme scale values may create dependency and input-size hygiene issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a virtual environment and avoid very large dimensions or extreme scale values.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anhao6170/skills/signature-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Markdown, Guidance]
+
+**Output Format:** [Markdown response with shell command usage and generated RGBA PNG file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script reports output dimensions and ink pixel count after processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

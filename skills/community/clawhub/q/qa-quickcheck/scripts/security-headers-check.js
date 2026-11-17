@@ -1,6 +1,6 @@
 /**
- * 通用 HTTP 安全头审计脚本（非破坏性）
- * 适用于 00-通用规范 §0.1.2 Standard 模式安全增强
+ * 通用 HTTP 配置检查脚本（只读检测）
+ * 用于检查目标服务的 HTTP 头部基础配置是否符合最佳实践
  *
  * 使用方式：
  *   node scripts/security-headers-check.js --url=http://localhost:3000
@@ -86,7 +86,7 @@ function checkSecurityHeaders(response) {
       header: "content-security-policy",
       check: (val) => val && val.length > 0,
       severity: "High",
-      message: "CSP 未设置，存在 XSS 攻击风险",
+      message: "CSP 未设置，存在内容注入风险",
       recommendation: "添加 Content-Security-Policy 头，限制脚本和样式来源",
     },
     {
@@ -94,7 +94,7 @@ function checkSecurityHeaders(response) {
       header: "strict-transport-security",
       check: (val) => val && val.includes("max-age"),
       severity: "High",
-      message: "HSTS 未设置，存在中间人攻击风险",
+      message: "HSTS 未设置，存在传输层协议降级风险",
       recommendation: "添加 Strict-Transport-Security: max-age=31536000; includeSubDomains",
     },
     {
@@ -110,7 +110,7 @@ function checkSecurityHeaders(response) {
       header: "x-frame-options",
       check: (val) => val && (val.toUpperCase() === "DENY" || val.toUpperCase() === "SAMEORIGIN"),
       severity: "Medium",
-      message: "X-Frame-Options 未设置，存在点击劫持风险",
+      message: "X-Frame-Options 未设置，存在页面嵌套风险",
       recommendation: "添加 X-Frame-Options: DENY 或 SAMEORIGIN",
     },
     {
@@ -154,7 +154,7 @@ function checkCORS(headers) {
   if (allowOrigin === "*") {
     issues.push({
       severity: "Medium",
-      message: "CORS Access-Control-Allow-Origin 设置为 *，允许任意来源访问",
+      message: "CORS Access-Control-Allow-Origin 设置为 *，未限制来源域名",
       recommendation: "将 * 替换为具体的允许域名列表",
     });
   }
@@ -173,7 +173,7 @@ function checkCookieSecurity(headers) {
   if (!cookieStr.toLowerCase().includes("httponly")) {
     issues.push({
       severity: "Medium",
-      message: "Cookie 未设置 HttpOnly 属性，可能被 XSS 脚本窃取",
+      message: "Cookie 未设置 HttpOnly 属性，建议增强会话保护",
       recommendation: "为所有认证/会话 Cookie 添加 HttpOnly 属性",
     });
   }
@@ -189,7 +189,7 @@ function checkCookieSecurity(headers) {
   if (!cookieStr.toLowerCase().includes("samesite")) {
     issues.push({
       severity: "Low",
-      message: "Cookie 未设置 SameSite 属性，存在 CSRF 风险",
+      message: "Cookie 未设置 SameSite 属性，存在跨站请求伪造风险",
       recommendation: "添加 SameSite=Lax 或 Strict",
     });
   }
@@ -202,7 +202,7 @@ function checkInfoLeak(body, status) {
   const leakPatterns = [
     { pattern: /(?:stack\s*trace|at\s+\S+\.\S+:\d+:\d+)/i, label: "堆栈跟踪信息" },
     { pattern: /(?:MySQL|PostgreSQL|MongoDB|Oracle|SQLite)\s*(?:Error|Exception)/i, label: "数据库错误信息" },
-    { pattern: /(?:password|secret|token|api[_-]?key)\s*[=:]\s*['"]?\w+['"]?/i, label: "敏感凭据" },
+    { pattern: /(?:password|secret|token|api[_-]?key)\s*[=:]\s*['"]?\w+['"]?/i, label: "疑似凭据信息" },
     { pattern: /\/home\/\S+|C:\\\S+|\\Users\\\S+/i, label: "服务器内部路径" },
     { pattern: /(?:SELECT|INSERT|UPDATE|DELETE)\s+.*\s+(?:FROM|INTO|SET)/i, label: "SQL 查询语句" },
   ];
@@ -255,7 +255,7 @@ function checkDebugEndpoints(response) {
 
 async function main() {
   console.log("=".repeat(60));
-  console.log("HTTP 安全头审计（非破坏性）");
+  console.log("HTTP 配置合规检查（只读检测）");
   console.log("=".repeat(60));
   console.log(`目标站点: ${parsedUrl.origin}`);
   console.log(`检查路径: ${config.paths.join(", ")}`);
@@ -324,18 +324,18 @@ async function main() {
     return true;
   });
 
-  console.log("\n安全检查结果");
+  console.log("\n配置检查结果");
   console.log("-".repeat(60));
 
   if (dedupedIssues.length === 0) {
-    console.log("未发现安全配置问题");
+    console.log("未发现配置问题");
   } else {
     const bySeverity = { High: [], Medium: [], Low: [] };
     dedupedIssues.forEach((issue) => {
       bySeverity[issue.severity].push(issue);
     });
 
-    console.log(`发现 ${dedupedIssues.length} 个安全问题：`);
+    console.log(`发现 ${dedupedIssues.length} 个配置项需要关注：`);
     console.log(`  High:   ${bySeverity.High.length} 个`);
     console.log(`  Medium: ${bySeverity.Medium.length} 个`);
     console.log(`  Low:    ${bySeverity.Low.length} 个`);
@@ -343,7 +343,6 @@ async function main() {
     for (const severity of ["High", "Medium", "Low"]) {
       const issues = bySeverity[severity];
       if (issues.length === 0) continue;
-
       console.log(`\n[${severity}] ${issues.length} 个问题`);
       issues.forEach((issue, i) => {
         console.log(`  ${i + 1}. [${issue.category || issue.header}] ${issue.message}`);
@@ -363,21 +362,21 @@ async function main() {
   const mediumCount = dedupedIssues.filter((i) => i.severity === "Medium").length;
 
   if (dedupedIssues.length === 0) {
-    console.log("通过：所有安全配置符合最佳实践");
+    console.log("通过：所有配置符合最佳实践");
     process.exit(0);
   } else if (highCount > 0) {
-    console.log(`阻塞：存在 ${highCount} 个高危安全配置问题，必须修复`);
+    console.log(`不通过：存在 ${highCount} 个高危配置项，建议修复`);
     process.exit(1);
   } else if (mediumCount > 0) {
-    console.log(`有条件通过：存在 ${mediumCount} 个中危安全配置问题，建议修复`);
+    console.log(`有条件通过：存在 ${mediumCount} 个中危配置项，建议修复`);
     process.exit(0);
   } else {
-    console.log("通过：仅存在低危安全配置问题，可后续优化");
+    console.log("通过：仅存在低危配置项，可后续优化");
     process.exit(0);
   }
 }
 
 main().catch((err) => {
-  console.error("测试执行异常:", err.message);
+  console.error("执行异常:", err.message);
   process.exit(1);
 });

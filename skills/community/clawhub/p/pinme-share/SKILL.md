@@ -16,7 +16,7 @@ description: >
 Upload any file or directory to [PinMe](https://pinme.eth.limo) (public IPFS) and get back a short
 `*.pinit.eth.limo` URL.
 
-- **Version**: 1.0.0
+- **Version**: 1.0.1
 - **License**: MIT
 - **Author**: Evan Song · [github.com/Songhonglei](https://github.com/Songhonglei)
 - **Repository**: https://github.com/Songhonglei/html-tool-suite
@@ -172,6 +172,7 @@ URL=$(python3 scripts/upload_to_pinme.py /tmp/foo.html | jq -r '.url')
 | `url_not_found` | Upload OK but no parseable URL | Inspect raw output (CLI format may have changed) |
 | `usage` | No operation specified | Show `--help` and ask the user what they want to do |
 | `invalid_appkey` | AppKey passed to `--set-appkey` looks malformed (length < 20) | Ask user to recheck and re-enter |
+| `conflicting_args` | Multiple mutually-exclusive operations passed at once (e.g. path + --list) | Call them separately, one operation per invocation |
 | `unknown` | Fallback | `error` field includes raw stderr |
 
 Exit codes: `0` success / `1` generic failure / `2` structured failure (read JSON `error_type`).
@@ -215,3 +216,17 @@ Default storage: `${XDG_DATA_HOME:-$HOME/.local/share}/pinme-share/appkey.json`.
 - [PinMe](https://pinme.eth.limo) for the IPFS pinning service and `pinme` CLI
 - Part of the [html-tool-suite](https://github.com/Songhonglei/html-tool-suite) — HTML generation,
   publishing, and sharing skills
+
+---
+
+## Changelog
+
+### v1.0.1
+- **Fix (silent-failure)**: passing multiple mutually-exclusive operations (e.g. `<path>` + `--list`)
+  now returns `conflicting_args` instead of silently running only the first matched branch and
+  dropping the rest.
+- **Fix (security)**: `--set-appkey` with a too-short key no longer echoes the key fragment
+  (`key[:20]`) into the error output; it now reports only the length.
+
+### v1.0.0
+- Initial open-source release (XDG-compliant storage, English docs, full-English CLI).

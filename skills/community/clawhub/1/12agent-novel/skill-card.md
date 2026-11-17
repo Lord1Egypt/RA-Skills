@@ -1,46 +1,64 @@
-## Description: <br>
-中文长篇小说多智能体创作体系（12Agent）。适用于新建长篇小说项目、搭建世界观与大纲、逐章写作、自动推进与读者反馈等长流程创作任务；不适用于短篇、诗歌、散文、翻译或非小说写作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+12Agent Novel coordinates a Chinese long-form novel writing workflow for project setup, worldbuilding, outlining, chapter drafting, automated continuation, reader feedback, and rewrite maintenance.
 
-## Publisher: <br>
-[228998098](https://clawhub.ai/user/228998098) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[228998098](https://clawhub.ai/user/228998098)
 
-## Use Case: <br>
-External users use this skill to create and continue Chinese long-form novel projects, including project initialization, worldbuilding, character design, outlining, chapter drafting, automatic progression, reader feedback, and rewrites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can create and modify many project files during initialization, drafting, review, summaries, and feedback. <br>
-Mitigation: Run it in the intended project workspace, review file changes before relying on them, and keep backups for important manuscripts. <br>
-Risk: The workflow may read local model configuration and use background sub-agent workflows for manuscript content. <br>
-Mitigation: Filter credentials before passing configuration into prompts, and avoid auto-advance or background workflows for sensitive manuscripts unless the configured model providers are acceptable. <br>
+## Use Case:
 
+External writers and OpenClaw-compatible agent users use this skill to create and continue Chinese long-form novel projects with structured multi-agent support. It is intended for novel workflows that need worldbuilding, character design, outline planning, chapter writing, continuity checks, reader simulation, rolling summaries, and rewrite maintenance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/228998098/12agent-novel) <br>
-- [VERSION-2.8.0.md](VERSION-2.8.0.md) <br>
-- [workflow-state-machine.md](references/workflow-state-machine.md) <br>
-- [resume-protocol.md](references/resume-protocol.md) <br>
-- [iron-rules.md](references/iron-rules.md) <br>
-- [context-feeding-strategy.md](references/context-feeding-strategy.md) <br>
-- [early-style-research-parallel.md](optimizations/early-style-research-parallel.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and project file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured novel-project artifacts and drafting/review guidance; sub-agent outputs are treated as candidates for coordinator review before files are updated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.8.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow can read OpenClaw configuration files that may contain API keys or provider secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Expose only non-sensitive model metadata or manually enter model IDs, and strip fields such as apiKey, token, secret, and password before sharing configuration with child-agent prompts.
+
+Risk: The workflow can start background child-agent sessions for style research and writing support using project details.
+
+Mitigation: Review the spawned prompts, limit shared project context to what the task needs, and use host-level timeout and cleanup controls for background sessions.
+
+Risk: Long-running novel generation can drift from the project outline, style anchor, or continuity state.
+
+Mitigation: Use the included workflow state, iron rules, rolling summaries, reviewer checks, and milestone audits before accepting generated chapters or rewrites.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/228998098/skills/12agent-novel)
+- [Skill definition](artifact/SKILL.md)
+- [Version 2.8.0 release notes](artifact/VERSION-2.8.0.md)
+- [Workflow state machine](artifact/references/workflow-state-machine.md)
+- [Resume protocol](artifact/references/resume-protocol.md)
+- [Context feeding strategy](artifact/references/context-feeding-strategy.md)
+- [Model configuration guidance](artifact/references/model-config.md)
+- [Early style research parallelization](artifact/optimizations/early-style-research-parallel.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, configuration notes, and generated project files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initialize local project templates and coordinate background child-agent work; sensitive configuration values should be filtered before being included in prompts.]
+
+## Skill Version(s):
+
+2.8.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

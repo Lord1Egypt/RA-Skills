@@ -1,41 +1,54 @@
-## Description: <br>
-Check domain availability via Vercel and buy/manage domains via Vercel CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check domain availability via Vercel and buy/manage domains via Vercel CLI.
 
-## Publisher: <br>
-[BrennerSpear](https://clawhub.ai/user/BrennerSpear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brennerspear](https://clawhub.ai/user/brennerspear)
 
-## Use Case: <br>
-Developers and operators use this skill to check Vercel domain availability, review pricing, and prepare Vercel CLI commands for domain management tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Direct token-backed domain purchase commands can spend money without a clear confirmation gate. <br>
-Mitigation: Require explicit approval for the exact domain and cost before purchase commands run, and prefer the interactive Vercel CLI purchase flow. <br>
-Risk: The skill relies on the user's authenticated Vercel CLI session for live domain operations. <br>
-Mitigation: Use an account or team context with appropriate permissions and review proposed domain-management commands before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Domain Check on ClawHub](https://clawhub.ai/BrennerSpear/domain-check) <br>
-- [Vercel Registrar price endpoint](https://api.vercel.com/v1/registrar/domains/example.com/price) <br>
-- [Vercel Registrar domains endpoint](https://api.vercel.com/v1/registrar/domains) <br>
+## Use Case:
 
+Developers, site owners, and agents use this skill to check Vercel domain availability, review registrar pricing, and prepare Vercel CLI or API commands for domain management.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Vercel CLI authentication for live domain operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned Vercel CLI commands may execute a different CLI version than the reviewer expects.
+
+Mitigation: Prefer a pinned or locally installed Vercel CLI before running domain commands.
+
+Risk: Domain purchase, transfer, move, removal, or project-assignment commands can affect real accounts and may create financial or operational impact.
+
+Mitigation: Use narrowly scoped credentials where possible and require explicit confirmation before any account-changing domain command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brennerspear/skills/domain-check)
+- [Vercel Registrar price endpoint](https://api.vercel.com/v1/registrar/domains/example.com/price)
+- [Vercel Registrar domains endpoint](https://api.vercel.com/v1/registrar/domains)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline bash commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include interactive CLI commands that require a PTY and explicit confirmation before account-changing actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

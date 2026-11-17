@@ -1,43 +1,50 @@
-## Description: <br>
-Call GET /api/amazon/get-best-sellers/v1 for Amazon Best Sellers through JustOneAPI with category. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/amazon/get-best-sellers/v1 for Amazon Best Sellers through JustOneAPI with category.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to query JustOneAPI for Amazon Best Sellers data by category, with optional country and page parameters. It supports product trend review, category research, market analysis, and sales-rank tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends category lookups to JustOneAPI and requires an API token. <br>
-Mitigation: Install only when JustOneAPI is trusted for the intended lookup data, keep JUST_ONE_API_TOKEN secret, and avoid sharing command output or URLs that may expose it. <br>
-Risk: Provider pricing, quotas, or rate limits may affect repeated endpoint use. <br>
-Mitigation: Review the provider's pricing and rate-limit terms before operational use. <br>
+## Use Case:
 
+Developers and external users use this skill to call JustOneAPI's Amazon Best Sellers endpoint for category-based product rankings, metadata, and pricing. It supports category research, market analysis, and sales-rank tracking through a focused API wrapper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-amazon-get-best-sellers) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_amazon_get_best_sellers&utm_content=project_link) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_amazon_get_best_sellers&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a category query value; country defaults to US and page defaults to 1.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill sends the JustOneAPI token as a query parameter and accepts it on the command line, which can expose it through logs, shell history, or process metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or disposable token where available, avoid shared shells and CI logs, and rotate the token if command-line or URL logging may have captured it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-amazon-get-best-sellers)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a JUST_ONE_API_TOKEN; required query scope is category, with optional country and page parameters.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

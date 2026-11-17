@@ -1,42 +1,56 @@
-## Description: <br>
-Track vehicle expenses (gas, maintenance, parts) in Google Sheets and save related photos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track vehicle expenses (gas, maintenance, parts) in Google Sheets and save related photos. Handles mileage, cost, category, and photo organization.
 
-## Publisher: <br>
-[huchengtw](https://clawhub.ai/user/huchengtw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huchengtw](https://clawhub.ai/user/huchengtw)
 
-## Use Case: <br>
-Vehicle owners and operators use this skill to record fuel, maintenance, repair, accessory, and purchase expenses, including mileage, costs, quantities, notes, and receipt photos. It supports Google Sheets for shared tracking and local Excel files for offline tracking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Google Sheets access may write to an unintended spreadsheet or broader account scope if credentials are over-permissioned. <br>
-Mitigation: Use a dedicated Google service account with access limited to the intended spreadsheet. <br>
-Risk: Vehicle or category names can affect local save paths for Excel and photo files. <br>
-Mitigation: Avoid vehicle and category names containing slashes, absolute paths, or '..' before running the skill. <br>
-Risk: Dry-run mode may still change configuration when default-saving options or new categories are used. <br>
-Mitigation: Do not treat dry-run as no-write until the config-save behavior is fixed; review configuration before and after previews. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vehicle Expense Tracker on ClawHub](https://clawhub.ai/huchengtw/vehicle-tracker) <br>
-- [Publisher profile: huchengtw](https://clawhub.ai/user/huchengtw) <br>
+## Use Case:
 
+External users and developers use this skill to record vehicle fuel, maintenance, parts, and purchase expenses in Google Sheets or local Excel files, with optional photo organization for receipts or service records.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; JSON preview output during dry run; spreadsheet rows, Excel files, and copied photo files during execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports English, Traditional Chinese, and Japanese locales; supports metric and imperial unit systems.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local file handling and photo or Excel path configuration can write files into unintended locations.
+
+Mitigation: Review configured photo and Excel directories before use and avoid pointing them at sensitive locations.
+
+Risk: Formula-like vehicle, category, or description values may be written into spreadsheet fields.
+
+Mitigation: Use trusted values for vehicle names, categories, and free-text fields, and review spreadsheet-bound data before execution.
+
+Risk: Dry-run behavior may still update configuration before the dry-run output is returned.
+
+Mitigation: Do not rely on dry-run as side-effect free until the config-write ordering is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huchengtw/skills/vehicle-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and Python command-line invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write expense rows to Google Sheets or local Excel files and copy related photos when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

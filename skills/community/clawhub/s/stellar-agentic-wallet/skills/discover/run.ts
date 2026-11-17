@@ -2,11 +2,11 @@
  * discover — query the MPP Router service catalog.
  *
  * Usage:
- *   npx tsx skills/discover/run.ts
- *   npx tsx skills/discover/run.ts --category search
- *   npx tsx skills/discover/run.ts --query "web search"
- *   npx tsx skills/discover/run.ts --query "scrape" --pick-one
- *   npx tsx skills/discover/run.ts --json
+ *   ./node_modules/.bin/tsx skills/discover/run.ts
+ *   ./node_modules/.bin/tsx skills/discover/run.ts --category search
+ *   ./node_modules/.bin/tsx skills/discover/run.ts --query "web search"
+ *   ./node_modules/.bin/tsx skills/discover/run.ts --query "scrape" --pick-one
+ *   ./node_modules/.bin/tsx skills/discover/run.ts --json
  *
  * Takes no authentication. All config is hardcoded in the library.
  */

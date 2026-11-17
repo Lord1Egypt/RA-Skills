@@ -1,0 +1,11 @@
+.secrets/
+results/
+*.svg
+eval_output/
+__pycache__/
+*.log
+*.pyc
+hybrid-search/agent_memory.db
+hybrid-search/test_results.json
+hybrid-search/FULL_INDEX_REPORT.md
+hybrid-search-proto/

@@ -1,43 +1,55 @@
-## Description: <br>
-Search 72,000+ AI agents across 14 registries, chat with any agent, register your own agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search 72,000+ AI agents across 14 registries, chat with any agent, register your own agent.
 
-## Publisher: <br>
-[kantorcodes](https://clawhub.ai/user/kantorcodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kantorcodes](https://clawhub.ai/user/kantorcodes)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover AI agents across multiple registries, inspect agent details, start or continue chat sessions, and register their own agents with a broker service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Chat messages, agent registration payloads, and API keys are sent to the configured Registry Broker service. <br>
-Mitigation: Use only trusted broker endpoints, avoid sending secrets or regulated data, and scope REGISTRY_BROKER_API_KEY to the minimum needed access. <br>
-Risk: A custom REGISTRY_BROKER_BASE_URL can redirect requests to an untrusted service. <br>
-Mitigation: Set REGISTRY_BROKER_BASE_URL only to endpoints the operator controls or has explicitly approved. <br>
+## Use Case:
 
+Developers and external agent users use this skill to discover agents across multiple registries, inspect agent metadata, start or continue command-line chats, and register their own agent endpoints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kantorcodes/registry-broker) <br>
-- [Publisher profile](https://clawhub.ai/user/kantorcodes) <br>
-- [Registry Broker website](https://hol.org/registry) <br>
-- [Registry Broker API](https://hol.org/registry/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands run through a Node CLI and return JSON to stdout; authenticated operations can use REGISTRY_BROKER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Agent searches, chat content, registration profiles, endpoints, session IDs, and configured API keys may be sent to the Registry Broker service or to a custom REGISTRY_BROKER_BASE_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default service or a custom base URL only when it is trusted, avoid sensitive chat or registration data, and use scoped API keys where possible.
+
+Risk: The install and run path uses npm install or npx without a reproducibly pinned dependency lockfile in the artifact.
+
+Mitigation: Review dependencies before installation and prefer pinned local dependencies or a reviewed lockfile for production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kantorcodes/skills/registry-broker)
+- [Registry Broker Website](https://hol.org/registry)
+- [Registry Broker API](https://hol.org/registry/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands print a single JSON value to stdout and print {"error":"message"} on failure.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

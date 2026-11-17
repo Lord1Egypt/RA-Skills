@@ -1,41 +1,56 @@
-## Description: <br>
-Operate SNU's Canvas LMS (etl.snu.ac.kr) through CLI commands to inspect configuration, list courses, assignments, files, and announcements, run bot or serve modes, and troubleshoot Canvas API issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LearningX CLI helps agents operate SNU's Canvas LMS through the lx-agent command-line bridge for configuration checks, course content, assignments, files, announcements, bot mode, serve mode, and troubleshooting.
 
-## Publisher: <br>
-[guzus](https://clawhub.ai/user/guzus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guzus](https://clawhub.ai/user/guzus)
 
-## Use Case: <br>
-Students, instructors, or operators with an existing lx-agent setup use this skill to run Canvas LMS tasks through the local CLI bridge while keeping authentication and URL handling out of chat. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates live LMS access and token handling to a local lx-agent repository that is not bundled in the reviewed package. <br>
-Mitigation: Install only after reviewing and trusting the local repository referenced by LX_AGENT_ROOT. <br>
-Risk: Canvas API tokens could be exposed if users paste credentials into chat or logs. <br>
-Mitigation: Keep tokens in local configuration or environment variables and never send token values through chat. <br>
-Risk: Bot and serve modes may start long-running processes. <br>
-Mitigation: Run those modes only when an operator intentionally wants a persistent service and can monitor startup errors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guzus/snu-canvas-cli) <br>
+## Use Case:
 
+Developers and operators use this skill to run lx-agent CLI workflows against SNU's Canvas LMS while keeping Canvas URL verification and token handling inside the configured CLI environment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise command-result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are routed through the bundled bridge script and should avoid exposing secret token values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs an unverified local Go CLI for LMS operations.
+
+Mitigation: Install only when the lx-agent repository path and revision are trusted, pinned, and reviewed.
+
+Risk: Canvas API tokens may be mishandled if users share or print credentials during troubleshooting.
+
+Mitigation: Keep tokens in server-side config.yaml or CANVAS_TOKEN, and do not request, print, log, or display token values.
+
+Risk: Bot and serve modes may have undocumented network behavior or credential handling.
+
+Mitigation: Avoid bot or serve modes until their network behavior and credential handling have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guzus/skills/snu-canvas-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise command-result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should avoid exposing Canvas token values and should keep LMS troubleshooting tied to the configured CLI and Canvas URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

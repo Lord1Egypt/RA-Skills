@@ -1,43 +1,60 @@
-## Description: <br>
-Weixin Task Workbench helps an agent manage multiple long-running tasks from one WeChat/OpenClaw conversation by routing each task to its own session and maintaining task state, summaries, closure, and archival status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weixin Task Workbench lets an OpenClaw agent manage multiple ongoing WeChat tasks through one chat window, routing each task to an isolated session while maintaining task status, summaries, and archive state.
 
-## Publisher: <br>
-[shawnhan98](https://clawhub.ai/user/shawnhan98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawnhan98](https://clawhub.ai/user/shawnhan98)
 
-## Use Case: <br>
-WeChat/OpenClaw users and operators use this skill to keep several parallel work items isolated while staying in a single chat. It supports task creation, listing, switching, continuation, summarization, closure, archival, and troubleshooting status views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task registry data can be silently mixed between WeChat/OpenClaw account folders. <br>
-Mitigation: Review before installing and change registry handling so one account cannot import, merge, or copy task records from another account without explicit user action. <br>
-Risk: Session keys and full registry paths may be exposed in normal status output. <br>
-Mitigation: Mask session keys and full registry paths by default, exposing them only when the user is intentionally troubleshooting. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to provide a single WeChat task workbench where users can create, switch, continue, summarize, close, and archive parallel tasks without mixing their contexts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shawnhan98/weixin-task-workbench) <br>
-- [Implementation notes](references/implementation.md) <br>
-- [Workbench protocol](references/protocol.md) <br>
-- [Test matrix](references/test-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style task responses with inline command and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and host session tools for spawning, sending to, and reading task sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Registry restoration may silently copy task data and session keys across WeChat account boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the publisher to remove or clearly disclose cross-account restoration behavior and constrain registry operations to the active account/contact path before installation.
+
+Risk: Task status diagnostics may expose session keys or raw registry paths.
+
+Mitigation: Redact or gate sessionKey and raw path diagnostics so they are only shown when needed for authorized troubleshooting.
+
+Risk: Session-tool access can affect task creation, routing, and history retrieval.
+
+Mitigation: Pair session-tool allowlisting with strict ownership checks and narrow filesystem scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shawnhan98/skills/weixin-task-workbench)
+- [Single-entry multi-task workbench protocol](references/protocol.md)
+- [Weixin task workbench implementation notes](references/implementation.md)
+- [Weixin Task Workbench test matrix](references/test-matrix.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown/text responses with inline shell commands and JSON task registry data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus session tools for task creation, routing, and history retrieval.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Explains how Openclaw should use Codex CLI as a non-interactive coding engine for installation, authentication, sandboxing, workspace setup, troubleshooting, and `codex exec` task runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain how Openclaw should use Codex CLI as a non-interactive coding engine.
 
-## Publisher: <br>
-[minchocoin](https://clawhub.ai/user/minchocoin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[minchocoin](https://clawhub.ai/user/minchocoin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to give concise, command-focused guidance for installing, authenticating, configuring, and running Codex CLI through Openclaw with non-interactive `codex exec` workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: API keys or login credentials could be exposed or mishandled when configuring Codex CLI authentication.
+
+Mitigation: Use dedicated workspaces, avoid sharing credentials in prompts or files, and handle `OPENAI_API_KEY` only through appropriate environment-variable workflows.
+
+Risk: Automation settings such as broad additional directories, `--full-auto`, or unsafe sandbox choices could modify unintended files or spend account quota.
+
+Mitigation: Prefer workspace-limited execution, narrow allowed directories, explicit approvals when unsure, and avoid bypassing approvals or sandboxing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and automation maintainers use this skill to answer practical questions about running Codex CLI through Openclaw. It focuses on safe non-interactive `codex exec` usage, authentication recovery, workspace scoping, approvals, sandboxing, and command examples. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad workspace permissions or additional writable directories can expose unrelated files to agent edits. <br>
-Mitigation: Use dedicated workspaces, keep sandboxing enabled where practical, and avoid broad `--add-dir` paths. <br>
-Risk: Non-interactive approvals and API-key authentication can grant more access than intended in shared or uncontrolled environments. <br>
-Mitigation: Use `Always allow`, `-a never`, and API-key login only in controlled environments where the granted access is understood. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minchocoin/codex-cli-exec) <br>
-- [Publisher profile](https://clawhub.ai/user/minchocoin) <br>
+**Other Properties Related to Output:** [Documentation-only guidance for Codex CLI and Openclaw usage.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; does not execute commands itself.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

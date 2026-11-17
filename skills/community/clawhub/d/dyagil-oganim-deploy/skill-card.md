@@ -1,43 +1,59 @@
-## Description: <br>
-Develop, deploy, and verify changes to a Vercel + Supabase project covering a marketing site, CRM, and customer portal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develop, deploy, and verify changes to a Vercel + Supabase project covering a marketing site, CRM, and customer portal.
 
-## Publisher: <br>
-[dyagil](https://clawhub.ai/user/dyagil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dyagil](https://clawhub.ai/user/dyagil)
 
-## Use Case: <br>
-Developers and engineers use this skill to ship code changes, run Supabase migrations, handle cache busting, and verify production behavior for an Oganim-style Vercel and Supabase application. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through live production deploys, database migrations, admin login, magic-link generation, and customer account changes. <br>
-Mitigation: Require explicit human approval before deploys, migrations, admin login, magic-link generation, or account changes; prefer staging and dedicated test users. <br>
-Risk: The skill depends on sensitive Vercel and Supabase credentials, including service-role keys and admin passwords. <br>
-Mitigation: Keep secrets out of logs and reports, avoid printing credential values, and use least-privilege or temporary credentials where possible. <br>
-Risk: Testing workflows may alter real customer authentication state or passwords. <br>
-Mitigation: Avoid changing real customer passwords; use dedicated test accounts and reset any temporary credentials immediately after verification. <br>
+## Use Case:
 
+Developers and project maintainers use this skill to ship code changes, apply Supabase migrations, cache-bust Vercel deployments, verify browser behavior with Playwright, and apply known fixes for CRM and portal issues.
 
-## Reference(s): <br>
-- [Migration Template](references/migration-template.sql) <br>
-- [Playwright Recipes for Oganim Verification](references/playwright-recipes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash, SQL, JavaScript, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose production deploy, database migration, and Playwright verification steps that require human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may guide an agent through production deployment, database, CRM, and Supabase admin workflows using broad credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated execution, restrict secret-file access, prefer staging data, pin dependencies, and require explicit approval before production changes.
+
+Risk: The Playwright recipes include production account-testing workflows, including temporary customer-password mutation.
+
+Mitigation: Remove the customer-password mutation recipe before use and avoid admin-surface probes unless necessary with sensitive values scrubbed from logs.
+
+Risk: Supabase migrations and RLS policy changes can weaken access controls if applied incorrectly.
+
+Mitigation: Review migrations before execution, include role resets, lock sensitive profile fields in UPDATE policies, and run a focused security audit after RLS or auth changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dyagil/skills/dyagil-oganim-deploy)
+- [Migration Template](artifact/references/migration-template.sql)
+- [Playwright Recipes for Oganim Verification](artifact/references/playwright-recipes.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash, JavaScript, SQL, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose deployment, migration, cache-busting, and verification steps that require human approval before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

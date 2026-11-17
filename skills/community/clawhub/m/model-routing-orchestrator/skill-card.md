@@ -1,39 +1,53 @@
-## Description: <br>
-Route each user request to the most cost-effective model or multi-model workflow based on task type, complexity, risk, latency, budget, tool needs, and verification requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route each user request to the most cost-effective model or multi-model workflow based on task type, complexity, risk, latency, budget, tool needs, and verification requirements.
 
-## Publisher: <br>
-[stephensu66](https://clawhub.ai/user/stephensu66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stephensu66](https://clawhub.ai/user/stephensu66)
 
-## Use Case: <br>
-Developers and operators use this skill to choose cost-effective model tiers, workflow shapes, and verification strategies for agent requests without overusing premium models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence which model or workflow handles future requests, so unsuitable routing could reduce answer quality or verification for sensitive tasks. <br>
-Mitigation: Use it where cost-aware routing is desired, preserve its high-risk and exactness verification rules, and review routing recommendations before relying on them for material decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose model tiers, workflow shapes, and verification strategies for production agent requests while balancing cost, speed, quality, exactness, and risk.
 
-## Reference(s): <br>
-- [Model Routing Orchestrator on ClawHub](https://clawhub.ai/stephensu66/model-routing-orchestrator) <br>
-- [stephensu66 ClawHub profile](https://clawhub.ai/user/stephensu66) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Structured Markdown routing decision with task profile, execution plan, model role assignment, cost rationale, escalation rule, and fallback rule.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, credential access, persistence, or hidden behavior was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.27 (source: frontmatter and server release evidence) <br>
+Risk: Model-routing guidance can recommend an unnecessarily expensive or underpowered workflow if request risk, exactness, tool availability, or modality needs are misread.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review routing recommendations against the skill's hard routing rules, especially for high-risk, exact, long-context, coding, or multimodal tasks.
+
+Risk: The skill influences downstream model-selection decisions but does not itself execute commands or access data.
+
+Mitigation: Treat its output as advisory and review recommendations before applying them in production orchestration or policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stephensu66/skills/model-routing-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown routing decision with task profile, execution plan, model role assignment, cost rationale, escalation rule, and fallback rule]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory routing recommendations only; it does not execute commands or access data.]
+
+## Skill Version(s):
+
+2026.3.27 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

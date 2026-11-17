@@ -1,41 +1,58 @@
-## Description: <br>
-Feishu Wiki Manager helps an agent browse, search, create, move, rename, and organize Feishu/Lark Wiki spaces and nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Wiki Manager helps agents browse, search, create, move, and rename nodes in Feishu or Lark knowledge spaces.
 
-## Publisher: <br>
-[young-joey](https://clawhub.ai/user/young-joey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[young-joey](https://clawhub.ai/user/young-joey)
 
-## Use Case: <br>
-Developers, knowledge managers, and workspace operators use this skill to have an agent navigate Feishu/Lark Wiki spaces, search knowledge base content, and plan or execute confirmed node creation, movement, renaming, and structure cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Wiki searches or edits may expose or alter more workspace content than intended. <br>
-Mitigation: Use an account with only the permissions needed, review search scope before broad searches, and confirm create, move, or rename plans before execution. <br>
-Risk: Batch node changes can trigger rate limits or make large structural changes difficult to review. <br>
-Mitigation: Keep batch operations small, execute them serially, and show a concise change summary after completion. <br>
+## Use Case:
 
+Knowledge-base maintainers, operators, and developers use this skill to navigate Feishu Wiki spaces, search wiki content, and organize node structures through confirmed create, move, and rename operations.
 
-## Reference(s): <br>
-- [Wiki structure templates](artifact/references/wiki-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/young-joey/feishu-wiki-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, API Calls] <br>
-**Output Format:** [Markdown text with structured action plans, summaries, and Feishu Wiki action calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Modification workflows should confirm create, move, and rename plans with the user before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Create, move, and rename actions can reorganize the wrong wiki space or node when targets are ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target space, node list, and proposed change summary with the user before approving structural edits.
+
+Risk: Batch operations can hit Feishu API rate limits or apply too many structural changes at once.
+
+Mitigation: Run batch operations serially, keep each batch to 10 nodes or fewer, and wait at least 1 second between API calls.
+
+Risk: The skill does not implement wiki content edits or permission changes despite broad wiki-management wording.
+
+Mitigation: Route content edits to the Feishu document workflow and permission changes to a permission-specific workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/young-joey/skills/feishu-wiki-manager)
+- [Feishu Wiki structure templates](references/wiki-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown-formatted text with structured lists and Feishu Wiki tool action requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before create, move, or rename operations; batch operations are serial and limited to 10 nodes per run.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

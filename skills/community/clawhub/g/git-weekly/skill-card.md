@@ -1,38 +1,49 @@
-## Description: <br>
-用于每周自动分析 Git 提交记录，生成包含技术挑战、性能优化及 AI 提效维度的深度复盘报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes the last seven days of Git commits and diffs to generate a weekly retrospective covering technical challenges, performance work, and AI productivity.
 
-## Publisher: <br>
-[Raccoon-Office](https://clawhub.ai/user/Raccoon-Office) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raccoon-office](https://clawhub.ai/user/raccoon-office)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review the current user's last seven days of Git commits and diffs, then produce a concise weekly technical retrospective focused on technical challenges, performance and stability work, AI-assisted productivity, and next-step recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read recent Git history and full patch diffs from the current repository when triggered. <br>
-Mitigation: Use explicit triggers such as "git-weekly" and review generated reports for sensitive code, credentials, or internal implementation details before sharing. <br>
+## Use Case:
 
+Developers and engineering leads use this skill to turn recent personal Git history into a weekly technical retrospective, with emphasis on complex frontend work, performance and stability changes, and AI-assisted productivity improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Raccoon-Office/git-weekly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, analysis, markdown, guidance] <br>
-**Output Format:** [Markdown weekly retrospective with referenced Git analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads recent Git history and patch diffs from the current repository when triggered.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically read full recent code patches from the current repository when triggered by broad summary phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this skill before installing it in private or sensitive repositories, invoke it explicitly as git-weekly, and consider requiring confirmation or using git log summaries before full patch analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raccoon-office/skills/git-weekly)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown retrospective with structured sections and supporting Git analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect recent Git commit patches for the configured Git author before summarizing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

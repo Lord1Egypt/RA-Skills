@@ -1,46 +1,60 @@
-## Description: <br>
-Homepage-first news collection from major international, Singaporean, and China-focused outlets for opening news homepages, extracting article text and metadata, translating into Chinese, deduplicating stories, and assembling Word-ready daily digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Homepage-first news collection from major international, Singaporean, and China-focused outlets. Use for: opening news homepages, clicking article links, extracting article text and metadata, translating into Chinese, deduplicating stories, and assembling Word-ready daily digests.
 
-## Publisher: <br>
-[alanwu2024](https://clawhub.ai/user/alanwu2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alanwu2024](https://clawhub.ai/user/alanwu2024)
 
-## Use Case: <br>
-Editors, analysts, and agent operators use this skill to collect public homepage news from selected international, Singaporean, and China-focused outlets, preserve source links and metadata, translate or summarize content in Chinese, and assemble daily news digests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill browses public news sites whose access, translation, and redistribution terms may vary by source. <br>
-Mitigation: Use the skill within each source's access and reuse terms, avoid paywalled or login-restricted content, and prefer summaries or internal-use documents unless redistribution rights are clear. <br>
-Risk: Generated Chinese summaries or translations may omit uncertainty or overstate facts from developing news stories. <br>
-Mitigation: Preserve source links, publication metadata, uncertainty language, and extraction notes so a reviewer can verify important claims against the original article. <br>
-Risk: Homepage extraction can encounter duplicate links, dynamic pages, videos, live blogs, or incomplete article bodies. <br>
-Mitigation: Filter for body-style articles, deduplicate by event and source, and mark restricted or failed extraction cases instead of filling missing content from inference. <br>
+## Use Case:
 
+External users and news workflow operators use this skill to collect daily articles from major news homepages, extract article metadata and body text, translate or summarize content in Chinese, deduplicate stories, and assemble Word-ready daily news digests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alanwu2024/news-homepage-fetcher) <br>
-- [Source catalog](artifact/references/source_catalog.md) <br>
-- [Machine-readable source manifest](artifact/references/source_manifest.yaml) <br>
-- [Translation and Word output specification](artifact/references/translation_docx_spec.md) <br>
-- [Daily news digest template](artifact/templates/daily_news_digest_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Word-ready Markdown or structured JSON-style article records with source metadata, Chinese titles, summaries, translated body text, keywords, and extraction notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include failure notes for paywalled, login-restricted, dynamically loaded, duplicate, or incomplete article pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Fetched news content can be incomplete, dynamically loaded, paywalled, or otherwise limited by publisher access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use HTTPS sources where possible, record paywalls or extraction failures, switch to accessible articles, and avoid filling gaps with unsourced content.
+
+Risk: News summaries or translations can introduce factual errors, overstate uncertainty, or lose attribution.
+
+Mitigation: Review fetched article content before relying on or publishing the digest, preserve source links and metadata, and retain uncertainty from the original article.
+
+Risk: Using full article text may raise publisher terms-of-use or copyright concerns.
+
+Mitigation: Confirm that collection, translation, and publication of article text comply with the selected publishers' terms before distributing the digest.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alanwu2024/skills/news-homepage-fetcher)
+- [News source catalog](references/source_catalog.md)
+- [Machine-readable source manifest](references/source_manifest.yaml)
+- [Translation and Word output specification](references/translation_docx_spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Word-ready Markdown, structured JSON, or DOCX-ready intermediate content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves source links, article metadata, Chinese summaries and translations, extraction notes, and failure or access-limit notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Delegates coding, code review, refactoring, and iterative file-exploration tasks to Qoder CLI using non-interactive Print mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegates coding tasks to Qoder CLI in non-interactive Print mode for feature development, code review, refactoring, and file-exploration workflows.
 
-## Publisher: <br>
-[lfeng](https://clawhub.ai/user/lfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lfeng](https://clawhub.ai/user/lfeng)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate larger coding tasks to Qoder CLI when work benefits from automated file exploration, implementation, refactoring, code review, subagents, worktrees, or MCP integrations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill normalizes permission-bypassing through Qoder CLI yolo mode. <br>
-Mitigation: Avoid yolo mode except in isolated, non-sensitive workspaces and prefer explicit Qoder CLI permission controls. <br>
-Risk: The skill relies on an authenticated third-party coding CLI that can operate on the user's codebase. <br>
-Mitigation: Install only when the qodercli binary and Qoder account context are trusted, and review proposed file or command changes before use. <br>
-Risk: MCP servers can extend Qoder CLI with additional external tools. <br>
-Mitigation: Review each MCP server before adding it and limit use to trusted servers required for the task. <br>
-Risk: Shared sessions may allow other participants to influence prompts run under the user's token. <br>
-Mitigation: Use caution in shared sessions and avoid running sensitive authenticated tasks from prompts supplied by untrusted participants. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lfeng/qoder-cli-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/lfeng) <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate coding tasks to Qoder CLI from automated or shared sessions while keeping Qoder in non-interactive Print mode.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the qodercli binary and uses Qoder CLI Print mode for non-interactive execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends bypassing permission checks with Qoder yolo mode.
+
+Mitigation: Use project-scoped Qoder permissions and avoid yolo mode unless a trusted reviewer has approved the task and workspace.
+
+Risk: The skill shows unpinned npx MCP server commands, which can install or execute changing external packages.
+
+Mitigation: Pin MCP package versions and review MCP server registrations before use.
+
+Risk: The skill describes broadly inherited Qoder access tokens and persistent Qoder state.
+
+Mitigation: Keep Qoder tokens out of globally inherited shell startup files and audit Qoder agents, memory files, settings, MCP registrations, and background jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lfeng/skills/qoder-cli-skill)
+- [Publisher profile](https://clawhub.ai/user/lfeng)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires qodercli to be installed; Qoder TUI mode is not supported in automated sessions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

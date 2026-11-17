@@ -1,42 +1,56 @@
-## Description: <br>
-Optimize natural testosterone with sleep, exercise, nutrition, and lifestyle tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize natural testosterone with sleep, exercise, nutrition, and lifestyle tracking.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to track lifestyle factors, symptoms, goals, and four-week progress patterns related to natural testosterone optimization. The skill supports personal logging and reflection, not medical diagnosis or treatment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect sensitive hormone, libido, body composition, and intimate health details in persistent logs. <br>
-Mitigation: Use minimal entries, avoid names or medical identifiers, and confirm where the agent stores and deletes conversations and generated logs before use. <br>
-Risk: The artifact claims complete local privacy, but the release evidence says that privacy claim is not fully scoped. <br>
-Mitigation: Treat privacy as dependent on the host agent and storage configuration, and do not enter sensitive details until those controls are understood. <br>
-Risk: Lifestyle and supplement guidance could be mistaken for medical advice. <br>
-Mitigation: Use the skill for tracking and reflection only, and seek qualified medical guidance for symptoms, hormone concerns, supplementation, or treatment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jhillin8/testosterone-optimization) <br>
-- [Publisher Profile](https://clawhub.ai/user/jhillin8) <br>
+## Use Case:
 
+External users use this skill to track sleep, training, nutrition, stress, body composition, and subjective symptoms for lifestyle-focused testosterone optimization. It supports logging, protocol checklists, goal setting, and four-week progress reviews; it is not a medical diagnosis or treatment tool.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with checklists, logs, summaries, goals, and progress review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prompt for sensitive health, hormone, libido, body composition, and lifestyle details; users should keep entries minimal.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive health and sexual-health symptoms.
+
+Mitigation: Keep logs local, avoid sharing identifiable health details, and review privacy expectations before use.
+
+Risk: The skill gives supplement and hormone-related guidance that may be inappropriate for some users.
+
+Mitigation: Treat outputs as lifestyle tracking support only and consult a qualified clinician before using supplement doses or relying on it for fatigue, libido, infertility, or suspected hormone disorders.
+
+Risk: Lifestyle correlations may be mistaken for medical conclusions.
+
+Mitigation: Use four-week reviews as informal pattern tracking, not diagnosis, treatment, or a substitute for lab testing and clinical evaluation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jhillin8/skills/testosterone-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and checklist-style text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may use local lifestyle and symptom logs supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Control vehicles via DroneMobile (Firstech/Compustar remote start systems) for remote start, stop, lock, unlock, trunk, battery, and vehicle status requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control DroneMobile-connected vehicles through remote start, engine stop, door lock and unlock, trunk release, battery checks, and vehicle status requests.
 
-## Publisher: <br>
-[BryanTegomoh](https://clawhub.ai/user/BryanTegomoh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bryantegomoh](https://clawhub.ai/user/bryantegomoh)
 
-## Use Case: <br>
-External users and developers use this skill to control and inspect DroneMobile-connected vehicles from an agent workflow after configuring DroneMobile credentials. It supports commands for remote start and stop, door lock and unlock, trunk opening, battery checks, and status retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real remote commands to a vehicle. <br>
-Mitigation: Install only when the operator accepts DroneMobile credential use and confirms the intended vehicle before issuing commands. <br>
-Risk: If DRONEMOBILE_DEVICE_KEY is missing or does not match, the script can fall back to the first vehicle on the account. <br>
-Mitigation: Configure a specific DRONEMOBILE_DEVICE_KEY for multi-vehicle accounts and consider changing the script to fail closed on missing or mismatched keys. <br>
+## Use Case:
 
+External users with DroneMobile-connected vehicles use this skill through an agent to request vehicle status and remote actions such as start, stop, lock, unlock, and trunk release.
 
-## Reference(s): <br>
-- [DroneMobile ClawHub listing](https://clawhub.ai/BryanTegomoh/dronemobile) <br>
-- [drone-mobile command success bug workaround](https://github.com/bjhiltbrand/drone_mobile_python/pull/18) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Configuration] <br>
-**Output Format:** [Plain text status lines and error messages from a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DRONEMOBILE_EMAIL and DRONEMOBILE_PASSWORD, with optional DRONEMOBILE_DEVICE_KEY for multi-vehicle accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can perform real-world vehicle actions with weak guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and require manual confirmation before start, stop, unlock, or trunk commands.
+
+Risk: Vehicle targeting may be ambiguous on multi-vehicle accounts.
+
+Mitigation: Set DRONEMOBILE_DEVICE_KEY for the exact vehicle before using action commands.
+
+Risk: Dependency behavior may vary if installed directly into a shared environment.
+
+Mitigation: Use a dedicated trusted environment, preferably a virtualenv with pinned dependencies.
+
+## Reference(s):
+
+- [DroneMobile Skill Page](https://clawhub.ai/bryantegomoh/skills/dronemobile)
+- [drone_mobile_python Pull Request 18](https://github.com/bjhiltbrand/drone_mobile_python/pull/18)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text status output and error messages from a Python CLI script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DRONEMOBILE_EMAIL and DRONEMOBILE_PASSWORD; DRONEMOBILE_DEVICE_KEY is optional for selecting a specific vehicle.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

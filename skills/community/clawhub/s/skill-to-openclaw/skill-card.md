@@ -1,41 +1,55 @@
-## Description: <br>
-Convert a foreign agent-skill directory, such as `.agents/skills` or Claude/Codex-style folders, into an OpenClaw-compatible reusable skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a foreign agent-skill directory into an OpenClaw skill.
 
-## Publisher: <br>
-[silronin](https://clawhub.ai/user/silronin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silronin](https://clawhub.ai/user/silronin)
 
-## Use Case: <br>
-Developers and engineers use this skill to vet and convert foreign agent skill folders into OpenClaw-compatible skills while preserving source capabilities according to the approved conversion scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan flags a risky default that may preserve harmful or secret-bearing content in converted skills. <br>
-Mitigation: Use the skill in a sandbox, prefer restricted or salvage-only conversion for untrusted bundles, and inspect converted files before enabling them. <br>
-Risk: Converted output from untrusted sources may still contain executable payloads or exfiltration logic. <br>
-Mitigation: Do not place converted output directly into an active skills directory until secrets, executable payloads, and exfiltration logic have been removed or quarantined. <br>
+## Use Case:
 
+Developers and engineers use this skill to vet and convert non-OpenClaw agent skill directories into OpenClaw-compatible skill folders while preserving source capabilities within the approved conversion scope.
 
-## Reference(s): <br>
-- [Internal Vetting Rules](references/internal-vetting-rules.md) <br>
-- [Mapping Rules](references/mapping-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with proposed file changes and conversion summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce OpenClaw skill files after user-approved conversion; vetting summary precedes conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Converted skills may preserve malicious payloads, exfiltration logic, or secrets from source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run conversions in an isolated workspace, review source material carefully, and require sanitization, secret redaction, and quarantine or removal of harmful content before using outputs from untrusted or high-risk sources.
+
+Risk: The conversion workflow may retain sensitive or high-impact capabilities if the user approves a broad conversion scope.
+
+Mitigation: Use the built-in vetting gate before conversion, classify flagged material, and proceed only with an explicit user-approved conversion scope.
+
+## Reference(s):
+
+- [Internal Vetting Rules](references/internal-vetting-rules.md)
+- [Mapping Rules](references/mapping-rules.md)
+- [ClawHub skill page](https://clawhub.ai/silronin/skills/skill-to-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with file edits, code snippets, shell commands, and conversion summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces vetted OpenClaw skill directory content and a human-facing conversion summary when conversion is approved.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

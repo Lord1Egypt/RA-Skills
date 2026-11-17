@@ -1,41 +1,53 @@
-## Description: <br>
-618年中大促冲刺GMV与用户增长；适用于平台与自营。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+618年中大促冲刺GMV与用户增长；适用于平台与自营。
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-External commerce, marketing, and operations teams use this skill to plan and execute festival sale campaigns focused on GMV growth, conversion, average order value, CPS commission, attribution, risk control, and post-campaign review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign guidance could lead to live changes in discounts, customer-facing pages, tracking, settlement, or order-tagging systems. <br>
-Mitigation: Require human approval before applying changes to live store, pricing, advertising, affiliate, settlement, or order-tagging systems. <br>
-Risk: Promotion stacking, SKU caps, inventory, attribution, or refund handling can create margin, fulfillment, or reporting issues if configured incorrectly. <br>
-Mitigation: Review promotion rules, exclusion lists, caps, attribution tags, audit logs, and post-campaign metrics before and during launch. <br>
+## Use Case:
 
+Marketing and ecommerce operators use this skill to plan and execute major festival sale campaigns that target GMV, conversion, average order value, affiliate attribution, and reusable reporting practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/festival-sale) <br>
-- [Publisher profile](https://clawhub.ai/user/clawkk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable campaign planning content; no automatic actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Promotion rules, pricing claims, platform restrictions, order tagging, and attribution settings can affect real campaign revenue and reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review these settings with appropriate business approval before operational use.
+
+Risk: The skill provides marketing operations guidance rather than executable safeguards.
+
+Mitigation: Review and scan the skill before deployment, and confirm platform compliance, pricing protections, inventory limits, and settlement rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/festival-sale)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, SOP steps, metrics, tracking events, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces non-executable campaign planning and operations guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Mac laptop clamshell mode assistant for checking compatibility and configuring closed-lid operation with Mac model and macOS version detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mac laptop clamshell mode assistant that supports running with the lid closed without an external display, keyboard, or mouse, auto-detects Mac model and macOS version, and provides configuration with rollback.
 
-## Publisher: <br>
-[keenlycat](https://clawhub.ai/user/keenlycat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[keenlycat](https://clawhub.ai/user/keenlycat)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External Mac users and developers use this skill to check compatibility, choose a clamshell or headless mode, and run or review shell commands that adjust macOS power settings for lid-closed background work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can ask users to run administrator-level commands that change system-wide Mac sleep behavior.
+
+Mitigation: Review commands before execution, keep the Mac connected to power for headless operation, and verify power settings before and after changes.
+
+Risk: Server security guidance says the rollback and safety claims are misleading because rollback is not a true backup restore and some documented safety options are not implemented.
+
+Mitigation: Treat rollback output as manual reset guidance rather than full restoration, and confirm the resulting pmset settings after using restore options.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and Mac users use this skill to check macOS and MacBook compatibility, inspect power settings, and get shell-command guidance for closed-lid background operation or restoring defaults. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead users to make persistent administrator-level Mac power-setting changes. <br>
-Mitigation: Review scripts and generated commands before running them, enter an administrator password only when intentionally changing system-wide power settings, and record current pmset -g settings first. <br>
-Risk: Rollback and dry-run safety may be overstated by the artifact. <br>
-Mitigation: Prefer the status check or temporary caffeinate mode first, and do not rely on documented --rollback or --dry-run options as implemented safety controls. <br>
+**Output Format:** [Markdown guidance with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/keenlycat/mac-clamshell-mode) <br>
-- [Artifact README](README.md) <br>
+**Other Properties Related to Output:** [Includes commands that may require administrator privileges when applied.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest administrator-level macOS power-setting commands; users should review and approve changes before execution.] <br>
+1.0.1 (source: server release metadata; package.json reports 1.0.0)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

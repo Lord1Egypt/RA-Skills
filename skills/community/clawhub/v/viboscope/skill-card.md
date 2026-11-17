@@ -1,46 +1,63 @@
-## Description: <br>
-Viboscope helps users find compatible people for cofounding, projects, groups, friendships, and other relationship contexts through psychological compatibility matching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Viboscope helps agents find compatible cofounders, project partners, groups, friends, or other contacts through psychological compatibility matching.
 
-## Publisher: <br>
-[ivankoriako](https://clawhub.ai/user/ivankoriako) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivankoriako](https://clawhub.ai/user/ivankoriako)
 
-## Use Case: <br>
-External users and agent operators use this skill to build a Viboscope profile, run questionnaires or profile-deepening flows, search for compatible people, manage messages, and maintain privacy settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can ask an agent to inspect local files, git config, prior chats, or profile data for psychological profiling before clear consent. <br>
-Mitigation: Require explicit user approval before context scans or reading personal/local data, and show the findings before using them in a profile. <br>
-Risk: The skill stores and uses sensitive psychological profile data for matching. <br>
-Mitigation: Review the exact profile text before upload, proceed only after explicit consent, and use privacy settings to limit public fields. <br>
-Risk: The skill relies on a local API key file for authenticated requests. <br>
-Mitigation: Keep data/.api_key private, set restrictive file permissions, avoid embedding the key in visible commands, and rotate it if exposed. <br>
-Risk: The generic trigger 'inbox' can invoke Viboscope when the user may mean another mailbox. <br>
-Mitigation: Confirm intent before handling ambiguous inbox or message requests as Viboscope actions. <br>
+## Use Case:
 
+External users and agents use this skill to build a psychological matching profile, search for compatible people, manage conversations, and update profile or subscription settings through Viboscope.
 
-## Reference(s): <br>
-- [Viboscope ClawHub listing](https://clawhub.ai/ivankoriako/viboscope) <br>
-- [Viboscope API base](https://viboscope.com/api/v1) <br>
-- [Viboscope skill download endpoint](https://viboscope.com/api/v1/skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown conversation output with inline shell commands, JSON API payloads, and saved local profile files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local data files for API keys, prompts, raw questionnaire answers, and profile data when the user consents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill handles sensitive psychological and relationship data and may upload profile details to Viboscope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before any profile upload, show the exact profile content that will be sent, and keep private psychological scores out of user-to-user messages.
+
+Risk: The skill may inspect workspace files and git information while building a profile.
+
+Mitigation: Ask before scanning local files, limit scans to relevant workspace content, and show findings for user approval before using them.
+
+Risk: API keys stored near project files can be exposed through logs, shell history, or version control.
+
+Mitigation: Store credentials outside version-controlled files where possible, use restrictive file permissions, avoid echoing keys, and redact headers or raw requests in errors.
+
+Risk: Remote update commands and account actions such as messaging, deletion, or profile uploads can have user-visible consequences.
+
+Mitigation: Independently verify remote update URLs and require manual approval before sending messages, deleting data, sharing contact details, or changing account state.
+
+## Reference(s):
+
+- [Viboscope ClawHub skill page](https://clawhub.ai/ivankoriako/skills/viboscope)
+- [Viboscope API base](https://viboscope.com/api/v1)
+- [Viboscope hosted skill artifact](https://viboscope.com/api/v1/skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON request examples, and configuration file updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local data files for API keys, profiles, prompts, and questionnaire responses when the host agent has filesystem access.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

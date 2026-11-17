@@ -1,43 +1,58 @@
-## Description: <br>
-Build and manage websites from Markdown. Create pages, generate content, configure settings, and deploy \u2014 all through MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and manage websites from Markdown. Create pages, generate content, configure settings, and deploy -- all through MCP tools.
 
-## Publisher: <br>
-[tyler-berggren](https://clawhub.ai/user/tyler-berggren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyler-berggren](https://clawhub.ai/user/tyler-berggren)
 
-## Use Case: <br>
-Developers, site owners, and agents use this skill to create, manage, validate, configure, build, and deploy Markdown-based websites through sitemd MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or run external tooling and perform lasting website actions such as deploy, activate, delete, update, and configuration changes. <br>
-Mitigation: Verify the installer and binary source before running them, and require manual approval for install, update, delete, deploy, activate, and configuration changes. <br>
-Risk: The skill uses magic links and SITEMD_TOKEN for authentication and long-lived automation credentials. <br>
-Mitigation: Treat magic links and SITEMD_TOKEN as secrets, share login URLs only with the site owner, and store tokens in a managed secret environment. <br>
-Risk: Generated site content or configuration changes could publish incorrect, unwanted, or misleading website updates. <br>
-Mitigation: Review generated content, settings, and deployment diffs before publishing or activating a site. <br>
+## Use Case:
 
+Developers and site maintainers use this skill to create, configure, validate, build, and deploy Markdown-based websites through an agent using sitemd MCP tools.
 
-## Reference(s): <br>
-- [sitemd homepage](https://sitemd.cc) <br>
-- [ClawHub skill page](https://clawhub.ai/tyler-berggren/sitemd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown content, YAML frontmatter, shell commands, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, update, validate, build, and deploy website project files through MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill may install and run a downloaded sitemd binary that is not independently reviewed in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only from a trusted distribution channel and verify the binary source and update path before installation.
+
+Risk: The skill can modify and deploy websites, including production-impacting changes.
+
+Mitigation: Confirm destructive, activation, deployment, and production changes before running them.
+
+Risk: Magic links, API keys, and SITEMD_TOKEN are sensitive credentials.
+
+Mitigation: Treat authentication links and tokens as secrets, limit credential scope where possible, and avoid broad account credentials unless necessary.
+
+## Reference(s):
+
+- [sitemd homepage](https://sitemd.cc)
+- [ClawHub skill page](https://clawhub.ai/tyler-berggren/skills/sitemd)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with tool names, file paths, shell commands, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to create or modify website content, settings, theme files, media, built output, deployment state, authentication state, and API keys.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,9 +2,22 @@
 
 Complete guide for installing and configuring Aliyun CLI.
 
-> **Aliyun CLI 3.3.1+**: Supports installing and using all published Alibaba Cloud product plugins. Make sure to upgrade to 3.3.1 or later for full plugin ecosystem coverage.
+> **Aliyun CLI 3.3.3+**: Supports installing and using all published Alibaba Cloud product plugins. Make sure to upgrade to 3.3.3 or later for full plugin ecosystem coverage.
 
 ## Installation
+
+> **Note on `sudo mv ... /usr/local/bin/`**: The binary-install steps below use
+> `sudo` only to place the `aliyun` executable into the system-wide `/usr/local/bin`
+> directory, which requires administrator privileges. This is the standard,
+> well-understood way to make a CLI available on `PATH` for all users. If you
+> prefer NOT to use elevated privileges, install into a user-local directory
+> instead and add it to your `PATH` — no `sudo` required:
+>
+> ```bash
+> mkdir -p "$HOME/.local/bin"
+> mv aliyun "$HOME/.local/bin/"
+> export PATH="$HOME/.local/bin:$PATH"   # add to ~/.bashrc or ~/.zshrc to persist
+> ```
 
 ### macOS
 
@@ -14,7 +27,7 @@ brew install aliyun-cli
 # Upgrade to latest
 brew upgrade aliyun-cli
 
-# Verify version (>= 3.3.1)
+# Verify version (>= 3.3.3)
 aliyun version
 ```
 
@@ -129,8 +142,8 @@ Most common mode for personal accounts and scripts.
 ```bash
 aliyun configure set \
   --mode AK \
-  --access-key-id LTAI5tXXXXXXXX \
-  --access-key-secret 8dXXXXXXXXXXXXXXXXXXXXXXXX \
+  --access-key-id <your-access-key-id> \
+  --access-key-secret <your-access-key-secret> \
   --region cn-hangzhou
 ```
 
@@ -143,8 +156,8 @@ Configuration is stored in `~/.aliyun/config.json`:
     {
       "name": "default",
       "mode": "AK",
-      "access_key_id": "LTAI5tXXXXXXXX",
-      "access_key_secret": "8dXXXXXXXXXXXXXXXXXXXXXXXX",
+      "access_key_id": "<your-access-key-id>",
+      "access_key_secret": "<your-access-key-secret>",
       "region_id": "cn-hangzhou",
       "output_format": "json",
       "language": "en"
@@ -160,8 +173,8 @@ For short-lived access (tokens expire in 1-12 hours).
 ```bash
 aliyun configure set \
   --mode StsToken \
-  --access-key-id LTAI5tXXXXXXXX \
-  --access-key-secret 8dXXXXXXXXXXXXXXXXXXXXXXXX \
+  --access-key-id <your-access-key-id> \
+  --access-key-secret <your-access-key-secret> \
   --sts-token v1.0:XXXXXXXXXXXXXXXX \
   --region cn-hangzhou
 ```
@@ -175,8 +188,8 @@ Assume a RAM role for elevated or cross-account access.
 ```bash
 aliyun configure set \
   --mode RamRoleArn \
-  --access-key-id LTAI5tXXXXXXXX \
-  --access-key-secret 8dXXXXXXXXXXXXXXXXXXXXXXXX \
+  --access-key-id <your-access-key-id> \
+  --access-key-secret <your-access-key-secret> \
   --ram-role-arn acs:ram::123456789012:role/AdminRole \
   --role-session-name my-session \
   --region cn-hangzhou
@@ -260,14 +273,14 @@ export ALIBABA_CLOUD_ECS_METADATA=role_name
 ```bash
 aliyun configure set --profile projectA \
   --mode AK \
-  --access-key-id LTAI5tAAAAAAAA \
-  --access-key-secret 8dAAAAAAAAAAAAAAAAAAAAAAAA \
+  --access-key-id <your-projectA-access-key-id> \
+  --access-key-secret <your-projectA-access-key-secret> \
   --region cn-hangzhou
 
 aliyun configure set --profile projectB \
   --mode AK \
-  --access-key-id LTAI5tBBBBBBBB \
-  --access-key-secret 8dBBBBBBBBBBBBBBBBBBBBBBBB \
+  --access-key-id <your-projectB-access-key-id> \
+  --access-key-secret <your-projectB-access-key-secret> \
   --region cn-shanghai
 ```
 
@@ -316,7 +329,7 @@ aliyun ecs describe-regions
       {
         "RegionId": "cn-hangzhou",
         "RegionEndpoint": "ecs.cn-hangzhou.aliyuncs.com",
-        "LocalName": "华东 1（杭州）"
+        "LocalName": "East China 1 (Hangzhou)"
       },
       ...
     ]
@@ -498,7 +511,7 @@ export ALIBABA_CLOUD_READ_TIMEOUT=30
 
 After installation and configuration:
 
-1. **Install plugins** for services you need (v3.3.1+ supports all published product plugins):
+1. **Install plugins** for services you need (v3.3.3+ supports all published product plugins):
    ```bash
    aliyun plugin install --names ecs vpc rds
 

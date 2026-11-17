@@ -1,48 +1,65 @@
-## Description: <br>
-Summarizes conversations into professional PowerPoint or WPS presentations, with local generation and optional Feishu upload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes conversation text into professional PowerPoint or WPS presentation files, with fully local processing and optional Feishu upload.
 
-## Publisher: <br>
-[wwumit](https://clawhub.ai/user/wwumit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwumit](https://clawhub.ai/user/wwumit)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn conversations, meetings, and discussion notes into .pptx presentations for reporting or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External Feishu sharing can upload conversation content when configured or enabled. <br>
-Mitigation: Use local-only mode first, keep Feishu disabled unless upload is intended, and verify the destination before sharing. <br>
-Risk: Credential-handling behavior may expose Feishu app secrets if they are stored in plaintext configuration. <br>
-Mitigation: Provide Feishu credentials only for trusted apps, prefer environment variables or a secret manager, and avoid storing secrets in plaintext config files. <br>
-Risk: Under-scoped messaging can make network and credential behavior less clear to users. <br>
-Mitigation: Review the code and security docs before installation, run the included verification scripts, and start with local-only operation. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn conversation notes, meetings, learning notes, and project updates into shareable presentation files. Users can keep processing local or intentionally enable Feishu upload for tenant sharing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wwumit/sum2slides-lite) <br>
-- [README](artifact/README.md) <br>
-- [User Guide](artifact/docs/USER_GUIDE.md) <br>
-- [Security Guide](artifact/docs/SECURITY_GUIDE.md) <br>
-- [Permissions](artifact/docs/PERMISSIONS.md) <br>
-- [Platform Compatibility](artifact/docs/PLATFORM_COMPATIBILITY.md) <br>
-- [Environment Variable Clarification](artifact/ENV_VAR_CLARIFICATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Configuration instructions, Guidance] <br>
-**Output Format:** [PPTX files with status text, local file paths, and optional Feishu share URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local .pptx generation is the default posture; Feishu upload requires user-provided credentials and network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release metadata and VERSION.txt) <br>
+Risk: Optional Feishu upload can send generated presentation data to a Feishu tenant when credentials and upload mode are enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local mode by leaving Feishu disabled and withholding FEISHU_APP_ID and FEISHU_APP_SECRET unless uploads are intentional.
+
+Risk: Network checks and upload paths may create network traffic.
+
+Mitigation: Do not run the permission checker when zero network traffic is required; validate the skill in an isolated environment first.
+
+Risk: WPS AppleScript automation needs review before use with untrusted conversation text.
+
+Mitigation: Avoid WPS AppleScript mode for untrusted input; prefer local PowerPoint or python-pptx generation.
+
+Risk: Saved Feishu credentials can persist in configuration files or shell startup files.
+
+Mitigation: Prefer temporary environment variables or a credential manager instead of saving secrets in config files or shell startup files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwumit/skills/sum2slides-lite)
+- [User guide](docs/USER_GUIDE.md)
+- [Security guide](docs/SECURITY_GUIDE.md)
+- [Operational risks](docs/OPERATIONAL_RISKS.md)
+- [Platform compatibility](docs/PLATFORM_COMPATIBILITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Configuration, Guidance]
+
+**Output Format:** [PowerPoint .pptx files with optional Feishu upload link and Markdown-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local mode avoids network use; Feishu upload mode requires user-provided credentials.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release metadata, SKILL.md, VERSION.txt)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

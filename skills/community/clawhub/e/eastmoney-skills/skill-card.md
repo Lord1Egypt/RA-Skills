@@ -1,43 +1,58 @@
-## Description: <br>
-东方财富妙想提供的金融技能集合，涵盖金融数据查询、资讯搜索、智能选股、自选股管理和模拟组合管理，所有技能均需通过MX_APIKEY进行认证。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eastmoney Miaoxiang financial skills support financial data lookup, financial information search, stock screening, watchlist management, and simulated portfolio management through MX_APIKEY-authenticated services.
 
-## Publisher: <br>
-[QQK000](https://clawhub.ai/user/QQK000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqk000](https://clawhub.ai/user/qqk000)
 
-## Use Case: <br>
-External users and developers use this skill collection to install and configure Eastmoney Miaoxiang finance skills for market data lookup, financial information search, stock screening, watchlist management, and simulated portfolio workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installation flow deletes and replaces local OpenClaw skill directories before installing the Eastmoney skills. <br>
-Mitigation: List or back up matching local skill directories before deletion and confirm the target path before running cleanup commands. <br>
-Risk: The reviewed artifact downloads remote ZIP packages that are not included in the artifact and are not integrity-verified there. <br>
-Mitigation: Inspect the remote ZIP contents first and verify they come from a trusted provider before installing. <br>
-Risk: The skill requires an MX_APIKEY for authenticated requests. <br>
-Mitigation: Use a dedicated API key when possible and avoid pasting it into logs, shared terminals, or persistent shell files unless explicitly intended. <br>
+## Use Case:
 
+Developers and external users use this skill collection to install Eastmoney Miaoxiang financial capabilities for market data retrieval, time-sensitive financial search, stock screening, watchlist operations, and simulated portfolio workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/QQK000/eastmoney-skills) <br>
-- [Eastmoney Miaoxiang skills page](https://dl.dfcfs.com/m/itc4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell command blocks and API-key setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MX_APIKEY and downloads remote ZIP packages during installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The install guide downloads remote ZIP packages without hashes or archive verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, and verify archive contents or hashes before unzipping and using the downloaded skills.
+
+Risk: The cleanup step uses a wildcard delete for local skill folders matching mx-skills*.
+
+Mitigation: Do not run the wildcard delete as written; inspect the target directory and remove only the intended old Eastmoney skill folders.
+
+Risk: The skill uses MX_APIKEY and includes watchlist and simulated portfolio operations that can alter user-managed records.
+
+Mitigation: Store the API key securely, avoid logging it, and review write-like watchlist or simulator actions before execution.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qqk000/skills/eastmoney-skills)
+- [Miaoxiang Skills API key page](https://dl.dfcfs.com/m/itc4)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and installation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MX_APIKEY for authenticated skill calls.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

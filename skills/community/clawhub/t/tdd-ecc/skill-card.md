@@ -1,44 +1,52 @@
-## Description: <br>
-Test-driven development with red-green-refactor loop and de-sloppify pattern. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test-driven development with red-green-refactor loop and de-sloppify pattern.
 
-## Publisher: <br>
-[huamu668](https://clawhub.ai/user/huamu668) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huamu668](https://clawhub.ai/user/huamu668)
 
-## Use Case: <br>
-Developers and coding agents use this skill to build features and fix bugs with a test-first workflow focused on public behavior, integration-style tests, incremental red-green cycles, and a cleanup pass that removes low-value test or code slop. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional examples include broad cleanup, verification, and commit workflows that could change a repository if followed without review. <br>
-Mitigation: Ask before broad code changes or commits, review the working tree after cleanup, and run the relevant build, lint, and test suite before accepting changes. <br>
-Risk: A cleanup pass can remove useful tests or validations if business-critical behavior is misclassified as low-value coverage. <br>
-Mitigation: Keep tests that cover business logic, integration behavior, real edge cases, and security validations; remove only redundant language, framework, or duplicate coverage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huamu668/tdd-ecc) <br>
-- [Good and Bad Tests](artifact/tests.md) <br>
-- [When to Mock](artifact/mocking.md) <br>
-- [Interface Design for Testability](artifact/interface-design.md) <br>
-- [Deep Modules](artifact/deep-modules.md) <br>
-- [Refactor Candidates](artifact/refactoring.md) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to plan and implement features or bug fixes with a test-first workflow. It emphasizes behavior-focused tests through public interfaces, incremental red-green-refactor cycles, and a cleanup pass for low-value tests or code.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces test plans, implementation guidance, refactoring guidance, and cleanup checklists through normal agent text output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may guide an agent to use an external CLI with broad working-tree scope, which could expose project code or changes outside the user's intended workflow.
+
+Mitigation: Review and explicitly approve any external CLI use, code sharing, or broad working-tree operation before execution.
+
+Risk: The skill includes commit-oriented workflow examples that could create repository history before changes are reviewed.
+
+Mitigation: Require repository-policy review before allowing automated commits, and inspect test, build, and diff output before committing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huamu668/skills/tdd-ecc)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with checklists, examples, and inline code or shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to propose tests, source changes, cleanup steps, verification commands, and commit commands.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

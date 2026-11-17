@@ -1,44 +1,57 @@
-## Description: <br>
-Ink helps agents build rich interactive command-line and terminal UI applications with React components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ink helps agents build rich interactive terminal UIs with React components.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to create React-based command-line and terminal UI applications with Ink components, hooks, layout guidance, and runnable examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is focused on Ink and React-based terminal UI guidance, so it may be broader than needed for plain shell scripts or simple colored console output. <br>
-Mitigation: Use it when an agent needs Ink, React, JSX, or richer interactive terminal UI patterns; prefer simpler CLI guidance for non-React scripts. <br>
-Risk: Interactive examples depend on a real terminal, raw stdin support, Node.js 22 or newer, and React 19.2 or newer. <br>
-Mitigation: Confirm the target runtime supports those requirements before using generated code in a project. <br>
+## Use Case:
 
+Developers and engineers use this skill to build React-based terminal UIs, including CLI apps, dashboards, prompts, menus, spinners, progress bars, and tables.
 
-## Reference(s): <br>
-- [Ink Skill Guide](artifact/SKILL.md) <br>
-- [Ink Component API Reference](artifact/references/components.md) <br>
-- [Ink Hook API Reference](artifact/references/hooks.md) <br>
-- [Ink Examples](artifact/references/examples.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/openlark/ink-tui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline TypeScript, TSX, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill guidance for Ink and React terminal UI development.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated example code may add npm dependencies or enable raw keyboard input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code and dependency changes before running terminal UI examples.
+
+Risk: Ink applications only work in real terminal environments and may depend on terminal capabilities.
+
+Mitigation: Test generated TUIs in the target terminal and account for raw stdin, viewport, color, and layout support.
+
+## Reference(s):
+
+- [Ink Component API Reference](references/components.md)
+- [Ink Hook API Reference](references/hooks.md)
+- [Ink Examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/ink-tui)
+- [OpenLark publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript, TSX, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated examples target terminal-only Ink apps and should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

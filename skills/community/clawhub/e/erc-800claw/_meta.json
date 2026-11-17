@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7axvk96pr75dba6h6hqj6xgx80d12z",
-  "slug": "erc-800claw",
-  "version": "0.1.1",
-  "publishedAt": 1770124256382
+  "name": "erc-800claw",
+  "version": "0.1.0",
+  "description": "The OpenClaw entry point for ERC-8004 agent identity and reputation. Register agents, query identities, give feedback.",
+  "author": "Primer Systems",
+  "homepage": "https://8004.org",
+  "repository": "https://github.com/primer-systems/ERC-8004",
+  "keywords": [
+    "erc-8004",
+    "identity",
+    "reputation",
+    "openclaw",
+    "agents",
+    "ethereum",
+    "on-chain"
+  ],
+  "license": "MIT"
 }

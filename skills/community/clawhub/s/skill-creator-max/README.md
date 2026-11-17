@@ -1,0 +1,86 @@
+# skill-creator-max
+
+> 一个 skill 装下整条造 skill 流水线 —— 薄指挥官逐角色派出**全新子代理**，只看回传的类型化工件、逐门把关、逐门路由；每条规则都引 `skill-philosophy` KB 锚点。
+
+[English](README.en.md) · **简体中文**
+
+**做什么** —— 把造 skill 的五个职能 —— composer（决策规格）/ guidance（结构契约）/ engineer（红绿构建）/ zipper（无损压缩）/ conductor（指挥）—— 收进**一个** skill。SKILL.md 本体是一个**薄指挥官**：它自己不做任何一项职能，只**为每个角色派出一个全新子代理、监视其回传的类型化工件、拿确定性门校验、再决定下一步路由**。指挥官的全部权力来自工件，从不来自读子代理的过程。**它就是本仓库现行的造 skill 流水线**：取代并已下线旧的四 skill 架构（skill-guidance / skill-engineer / skill-zipper / skill-conductor，已从仓库移除）。
+
+**架构** ——
+
+- **薄常驻体 + 五个按需 role-pack**：`roles/{composer,guidance,engineer,zipper,battery}.md` 只加载进被派出子代理的上下文，永不进指挥官本体（反臃肿）。
+- **五份工件 JSON schema**：SkillSpec / StructureContract / EvidenceDossier / CompressionReport / DecisionRecord —— 全部走六厂交集写法，可移植。
+- **确定性 L0 门脚本**（`scripts/validate_*`）：**只查结构** —— 过门永远不是「内容对了」的证据（schema-valid ≠ true）。实质由电池买单。
+- **O5 独立对抗电池**：`roles/battery.md` 自含（从 vince-attacker 五镜头蒸馏而来），无需外部 skill；高风险时改派**不同厂商的攻击者**换取模型级独立性。
+- **完全独立运行（standalone）**：`skill-philosophy` KB 只是设计期出处（design-time provenance），保存在**仓库外**——不随仓库分发、运行时也不读取。role-pack 已把 KB 规则操作化、锚点作为引用标签内联，跑整条流水线不需要任何 KB 在场。
+
+**好在哪（它关掉的六个坑）** ——
+
+1. **green-but-wrong 验证器** —— 门被刻意降级为 L0 纯结构；实质证据只能来自独立电池 + 二阶抽查。
+2. **渐近电池被错编成「N 轮干净」** —— 停止条件是预注册的 E9 预算/边际门，永远不是干净轮数。
+3. **单操作员自报 / 可伪造的门** —— 门控在带外（out-of-band），每个门裁决存成完整决策对象（Decision Record：证据·被拒选项·不确定性·裁决人）。
+4. **臃肿** —— 指挥官本体薄，重规则全在 role-pack 里按需进子代理上下文。
+5. **编排摩擦 + 同作者相关性** —— 一个 skill 免去跨 skill 交接；每角色**全新上下文派发**从构造上就把构建者和评判者去相关。
+6. **description / 可移植性** —— 六厂交集 schema + description 长度纪律 + 硬 anti-trigger。
+
+**v1.3.4（第 3 轮修复的发布记录，行为不变）** —— 第 3 轮由 owner 2026-09-25 裁决授权（"这七个你都继续去做把他们做完"）。结论：有效等级 `candidate`，可以按 `candidate` 发布（不是 `industrial`），流水线 `stopped_unmet`。
+- **第 3 轮审计**（instance 档）：2 个 P2、1 个 P3，没有 P0/P1。
+  - P2，未修：每一路攻击都没打中种子（整轮作废）时，battery 一条都不计数，按定义算 `clean`，门就放行 `industrial`。现在只靠指挥官的文字规则封顶。建议下一轮把「没有一路有效」定义成 `not_run`。
+  - P2，1.2.0 就有：`battery_verdict` 或 `re_audit_verdict` 写成枚举以外的值（比如 `Clean`、`None`、带注释的字符串），门会跳过上限检查，放行 `industrial`。安装版 1.2.0 行为相同，不是回归。
+- **回退检查**：两个 P2 都不是第 3 轮引入的，没有回退。撤掉第 3 轮只会让 FA-1 重新出现。
+- **发布检查通过**：
+  - FA-1 门：13 个用例上候选版都不输安装版，如实写 `candidate` 已不再被拒，也没有放进新的虚报。
+  - E11 案例 1、2 各重跑一次，只作方向参考：案例 2 里安装版把 owner 的记录改成了自己的格式，候选版在原处追加，而且没有出现内部编号。
+  - 五个自检全过，harness 52/52。
+- **已知问题**：门 PASS 不等于可以 `industrial`。整轮作废、档位不够或只做了冒烟测试时，指挥官要手动封顶到 `candidate`；两个结论字段必须按枚举原样写。
+
+**v1.3.3（1.3.x 第 3 轮修复，owner 2026-09-25 授权，只修卡住发布的两项）** ——
+- **FA-1 已修**：`validate_decision` 只查上限——`effective_verdict` 不得高于 `min(re_audit, battery)`，不再要求相等。原来的相等判定在 `clean` 可达之后，会把 instance 档、只做冒烟测试或整轮作废的 clean battery 逼成 `industrial`，并拒掉如实写的 `candidate`。低于上限的封顶（档位不够、只做冒烟、整轮作废）由指挥官判断并写明原因；门 PASS 本身从不等于可以 `industrial`。在全部 35 份真实 Decision Record 上新旧结论一致，0 新误报。
+- **E11 产出物未达标项已用 prose 修**：SKILL.md §7 新增"面向 owner 的写法"——已有的记录属于 owner，只在原处追加、保留原格式、原来没记的值保持未知，不得转换或替换；对 owner 用白话说规则，内部编号（K3、A51）只放在括号里。尚未重跑 E11 验证。
+- SKILL.md 3,186 tok（上限 3,200）；脚本 2,220 → 2,236 行。
+
+**v1.3.2（R20 升级波的发布记录，行为不变）** —— 结论：有效等级 `candidate`，流水线 `stopped_unmet`，修复预算已用完。
+- **两臂 E11（3 例，只作方向参考）**
+  - 保真度：带 skill 赢 2 例、平 1 例、输 0 例。
+  - 产出物：带 skill 只赢 1 例（预注册要求至少 2 例，未达标）。
+  - 成本：按工具调用次数算约 2.7 倍、0.9 倍、2.2 倍。
+  - 不建议退役。
+- **battery**：instance 档，种子 5/5 命中，确认 3 个 P2 和 15 个 P3，已在 1.3.1 修掉三个 P2。
+- **修复审计发现 1 个新 P2**：`clean` 能达到之后，`validate_decision` 只按 battery 结论封顶，不看独立档位，也不看是不是只做了冒烟测试或整轮作废。所以 instance 档加上 clean 会被这道门逼成 `industrial`。在修好之前，指挥官手动封顶到 `candidate`，并写明原因。
+- **独立性只到 instance 档**：本波按 owner 指令全部使用 Opus 5.5 high，偏离 2026-09-13 的模型策略（构建用 fable、评判用 opus），已如实登记为偏离。
+
+**v1.3.1（1.3.0 battery 第 1 轮修复，只修三处 P2）** —— SkillSpec 的留空字段只能由 unknowns/disputes 条目用显式 `field` 键认领（原来是在自由文本里做子串匹配，discovery plan 里提到 "trigger" 就算认领了）；`red_before_green` 写明是自报，"红早于绿、同一批用例翻转"由指挥官第 3 关读红日志、battery 抽查来查，门本身查不到；battery 的 `clean` 定义为"没有裁决后的 P1/P2"（P3 和 flag 只记录，不拦）。
+
+**v1.3.0 新增（对齐 philosophy KB v0.4.0 / R20，增量对齐）** ——
+
+- **`deterministic` 只给骨架检查**：判决信息在字符串里（存在性/计数/逐字/结构同构/哈希、字节或数值比较）才算；拿脚本退出码去近似语义判断（相似度、阈值、正则）的检查，要么走 `llm_judge` 全套校准，要么只报不拦，除非出示 A50 三件（可分性见证、全部真实语料误报实测、谱系）。这个标签是 engineer 的**提议**，由指挥官在第 3 关确认并记入 Decision Record。
+- **判断台账**：guidance 为被造 skill 的每个判断登记平面（D/L/H/D→L/L→D）、执行物和兜底；schema 里是可选字段，旧契约照样有效；指挥官在第 2 关抽查。
+- **停手签名（A51）+ 四分路由（H4）**：同一版本修复轮最多 2 轮（换作者、换会话、自己升版本都不清零）；P0/P1 落在上轮修复里、体量涨 >50%、同一阈值第三层例外、同一病根第二份实现，任一命中即停、上报 owner。路由按 escalate → re-plane → loopback → restart 取首个命中；re-plane 由 owner/关口裁决，不能拿来绕过轮次上限。这样铁律 3/4 离开 `skill-developer/` 目录也生效。
+- **battery 加 fix-audit**：上一轮有修复，下一轮就把五镜头对准修复 diff（蒸馏自 vince-attacker 0.7.0，attacker 在场时以它的文本为准）。
+- **E11 两臂仪器清单 + 三分支验收**；模型策略补上**显式 effort**（评审至少 high），并按 K1 改正层级标签（Opus 审 Fable 只算 L-i+，不算 L-m）；`model_baseline` 要写解析后的型号 ID + effort + harness 版本。
+- 其余：信任边界扩到转述的第三方文本、子代理输出、转述的授权、agent 自写的持久文本；记忆写入按写入者三分；zipper 删「默认会的」要有裸模型证据，A42(iv) 豁免区永不删；`(M3)` 改 `(K3)`。所有 L0 门脚本逻辑不变，没有新增机械门。
+
+**v1.2.0 新增（对齐 philosophy KB v0.3.0 / R17）** ——
+
+- **composer 多一步「规格能买到什么、买不到什么」（C10）**：核心条款要挂**对抗判例**（专门试图证伪它的输入）才算 load-bearing —— 每条主观 success 维度至少一条，每条不可接受失败要点名产生它的输入类；**拒收「让 agent 读 codebase 反写规格」**作为决策字段的作者（仓库级可执行规格生成最强只有 20.2%，它只能当 baseline/materials 的输入）；**遵从率天花板 ~89% 且跨版本非单调** —— 规格写得完整不换取验证预算削减。
+- **engineer 多三条验证器工程纪律（E12）+ 一个循环分支（A45）**：0% 全灭先怀疑靶子（先证明已知好输入判绿、退化输出判红，再动 skill）；judge **逐条判**，批量打分有实测准确率代价；rubric **条目互不重叠**是误报治理第一原则，一致率高不等于抗操纵。若被造的 skill 本身是 **>1 轮自治循环**，Evidence Dossier 要带 **loop-charter 附件**（可运行检查+开跑前红灯 / 裁决权与生成者分离 / 盘上状态过冷恢复 / 结构化停止条件含上限与双侧闸）。
+- **guidance 多三条按需分支（S12/S13/A48）**：**工具面** —— 接口是要标定的超参数（3–8pp、非单调），工具数 >30 评估按需装载、每工具 ≥3–4 句+输入示例、相关操作合并成带 `action` 的单工具；**行动面** —— 规则层与执行层分开声明（命令白名单只是规则层），确认门要少而真（弹窗批准率 ~93%，逐次确认是疲劳不是治理），被治理者不得给自己扩权；**记忆面** —— 写入准入三合取（Durable∧Actionable∧Explicit）、事实条目挂验证锚（采信前重跑）、遗忘义务（删除或墓碑）、外部内容只可存「引用+出处」不可存行为指令。
+- **指挥官只加了一段条件分支**：上述循环/工具/行动/记忆分支进入既有关口的检查清单 —— **关口顺序与 min() 裁决逻辑未动**，也没有把任何语义判断机械化。
+
+**触发纪律（重要）** —— 这个 skill **很贵**（大 token 开销）。它只在用户**明确要求编写/构建/创建一个 agent skill**时触发（"build me a skill"、"create a new skill"、"$skill-creator-max"）；对「总结/记录今天的记忆」、日记、泛泛的「创建/做个 X」有硬 anti-trigger。trigger holdout 评测 **0/12 误触发**。意图不明先问一句，不拿整条流水线去赌。
+
+**什么时候用** —— 「帮我造一个 skill」·「create a new skill for X」·「把这个重复流程打包成能自动触发的 skill」·「$skill-creator-max」。
+
+**不适用** —— 总结/写每日记忆、日记（硬 anti-trigger）；只做单一阶段（审计一个现有 skill、只压缩、只跑一轮攻击 → 各自的独立 skill）；任何不是「编写 agent skill」的泛创建请求。
+
+**全模型可用** —— role-pack 是纯 Markdown、可移植；所有工件 schema 走六厂交集 JSON；任何模型都能跑整条流水线。高风险验收时用不同厂商的攻击者，买到更强的电池独立性。
+
+**装什么** —— 1 个 `SKILL.md`（薄指挥官）+ 5 个 role-pack（`roles/`）+ 5 份工件 schema（`schemas/`）+ 7 个确定性门脚本（`scripts/`，各自带 `--selftest` 判别力证明）+ 1 份编排锚点（`references/orchestration-anchors.md`）。
+
+**安装** —— `cp -R skills/skill-creator-max ~/.claude/skills/skill-creator-max`（或经 `npx skills add VincentJiang06/skills`）。
+
+**实测记录（v1.0.0）** —— 这条流水线已在真实构建中跑通两次：(1) 从零端到端造出一个新 skill（`paper-writer`）；(2) 把 `humanizer-academic` 经流水线重建到 v4.0.0。两次都是**真·逐角色新鲜上下文独立**（每个角色一个单独派出的子代理，不是一个 agent 分饰全角色）——这补上了 0.1.0-draft 时期最大的覆盖缺口。独立电池也证明了自己的价值：它抓到了构建者自家全绿测试套件漏掉的真缺陷（paper-writer 的一处 P1 完整性缺口、humanizer 的血红蛋白事实编造）。
+
+**诚实的残留缺口** —— **跨厂商（模型级）电池仍未跑过**：迄今所有电池轮都是同族模型的实例级独立。这是剩下的唯一独立性缺口。自评 strong-candidate / 1.0，但带着这条注记。
+
+完整机制见 [SKILL.md](SKILL.md)。

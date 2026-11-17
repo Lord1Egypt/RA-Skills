@@ -899,6 +899,466 @@
 
 ## UNIFIED_IDENTIFICATION_OF_FINANC (财务票据统一识别)
 
+## TABLE_RECOGNITION (表格识别)
+- `tables`: 表格列表（List<Object>）
+  - `type`: 表格类型（wired_table 有线表格；wireless_table 无线表格）
+  - `bbox`: 表格坐标位置，[x1, y1, x2, y2]，分别为左上和右下坐标
+  - `html`: 表格识别内容，html格式
+
+## FOOD_BUSINESS_LICENSE (食品经营许可证)
+- `title`: 标题
+- `copyFlag`: 副本标识
+- `operatorName`: 经营者名称
+- `licenseNumber`: 许可证编号
+- `socialCreditCode`: 社会信用代码
+- `legalRepresentative`: 法定代表人
+- `address`: 住所
+- `businessPlace`: 经营场所
+- `businessType`: 主体业态
+- `businessItems`: 经营项目
+- `dailySupervisionAuthority`: 日常监督管理机构
+- `dailySupervisionStaff`: 日常监督管理人员
+- `complaintHotline`: 投诉举报电话
+- `issuingAuthority`: 发证机关
+- `signatory`: 签发人
+- `issueDate`: 发证日期
+- `expiryDate`: 有效期至
+
+## FOOD_PRODUCTION_LICENSE (食品生产许可证)
+- `title`: 标题
+- `copyFlag`: 副本标识
+- `producerName`: 生产者名称
+- `licenseNumber`: 许可证编号
+- `socialCreditCode`: 社会信用代码
+- `legalRepresentative`: 法定代表人
+- `address`: 住所
+- `productionAddress`: 生产地址
+- `foodCategory`: 食品类别
+- `dailySupervisionAuthority`: 日常监督管理机构
+- `dailySupervisionStaff`: 日常监督管理人员
+- `complaintHotline`: 投诉举报电话
+- `issuingAuthority`: 发证机关
+- `signatory`: 签发人
+- `issueDate`: 发证日期
+- `expiryDate`: 有效期至
+
+## HYGIENE_LICENSE (卫生许可证)
+- `title`: 标题
+- `licenseNumber`: 许可证编号
+- `operatorName`: 单位名称
+- `address`: 单位地址
+- `legalRepresentative`: 法定代表人
+- `placeCategory`: 场所类别
+- `permittedItems`: 许可项目
+- `issuingAuthority`: 发证机关
+- `issueDate`: 发证日期
+- `expiryDate`: 有效期
+
+## FINANCIAL_LICENSE (金融许可证)
+- `title`: 标题
+- `certificateNumber`: 证件编号
+- `institutionName`: 机构名称
+- `shortName`: 简称
+- `institutionEnName`: 英文名称
+- `businessScope`: 业务范围
+- `approvalDate`: 批准日期
+- `institutionAddress`: 机构住所
+- `institutionCode`: 机构编码
+- `issuingAuthority`: 发证机关
+- `issueDate`: 发证日期
+
+## FINANCIAL_INSTITUTION_CODE_CERT (金融机构代码证)
+- `title`: 标题
+- `certificateNumber`: 证件编号
+- `code`: 代码
+- `institutionName`: 机构名称
+- `address`: 地址
+- `legalRepresentative`: 法定代表人
+- `firstIssueDate`: 首次颁发日期
+- `issuingAuthority`: 颁发机关
+- `registrationNumber`: 登记号
+- `replacementDate`: 更换日期
+
+## PAYMENT_BUSINESS_LICENSE (支付业务许可证)
+- `title`: 标题
+- `copyFlag`: 副本标识
+- `licenseNumber`: 许可证编号
+- `companyName`: 公司名称
+- `legalRepresentative`: 法定代表人
+- `address`: 住所
+- `businessType`: 业务类型
+- `businessCoverage`: 业务覆盖范围
+- `issueDate`: 发证日期
+- `expiryDate`: 有效期至
+
+## ACCOUNT_OPENING_LICENSE (开户许可证)
+- `title`: 标题
+- `approvalNumber`: 核准号
+- `licenseNumber`: 编号
+- `companyName`: 公司名称
+- `legalRepresentative`: 法定代表人
+- `bankName`: 开户银行
+- `bankAccount`: 开户银行账号
+- `issueDate`: 发证日期
+
+## TRADEMARK_REGISTRATION_CERT (商标注册证)
+- `title`: 标题
+- `certificateNumber`: 证件编号
+- `trademarkName`: 商标名称
+- `serviceType`: 服务类别
+- `approvedServices`: 核定服务项目
+- `registrantName`: 注册人
+- `registrantAddress`: 注册地址
+- `registrationDate`: 注册日期
+- `expiryDate`: 有效期至
+
+## TAX_REGISTRATION_CERT (税务登记证)
+- `title`: 标题
+- `copyFlag`: 副本标识
+- `certificateNumber`: 证件编号
+- `taxpayerName`: 纳税人名称
+- `legalRepresentative`: 法定代表人
+- `address`: 地址
+- `registrationType`: 登记注册类型
+- `businessScope`: 经营范围
+- `approvingAuthority`: 批准设立机关
+- `withholdingObligation`: 扣缴义务
+- `issueDate`: 发证日期
+
+## ORGANIZATION_CODE_CERT (组织机构代码证)
+- `title`: 标题
+- `copyFlag`: 副本标识
+- `certificateNumber`: 证件编号
+- `code`: 代码
+- `organizationName`: 机构名称
+- `organizationType`: 机构类型
+- `legalRepresentative`: 法定代表人
+- `address`: 地址
+- `validityPeriod`: 有效期
+- `issuingAuthority`: 颁发单位
+- `registrationNumber`: 登记号
+
+## VAT_TOLL_INVOICE (增值税通行费发票)
+- `title`: 发票名称
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `printedCode`: 机打代码
+- `printedNo`: 机打号码
+- `checkCode`: 校验码
+- `machineCode`: 机器编号
+- `invoiceDate`: 开票日期
+- `passwordArea`: 密码区
+- `buyerName`: 购方名称
+- `buyerCode`: 购方纳税人识别号
+- `buyerAddressAndPhone`: 购方地址及电话
+- `buyerBankAndAccount`: 购方开户行及账号
+- `sellerName`: 销售方名称
+- `sellerCode`: 销售方纳税人识别号
+- `sellerAddressAndPhone`: 销售方地址及电话
+- `sellerBankAndAccount`: 销售方开户行及账号
+- `preTaxTotalAmount`: 税前合计金额
+- `totalTaxAmount`: 合计税额
+- `totalAmountUpper`: 价税合计(大写)
+- `totalAmountLower`: 价税合计(小写)
+- `invoiceForm`: 联次
+- `remarks`: 备注
+- `payee`: 收款人
+- `checker`: 复核
+- `drawer`: 开票人
+- `goodsDetails`: 发票商品明细（List<Object>）
+  - `goodsName`: 货物服务名称
+  - `plateNo`: 车牌号
+  - `vehicleType`: 类型
+  - `passageDateBegin`: 通行日期起
+  - `passageDateEnd`: 通行日期止
+  - `itemAmount`: 金额
+  - `taxRate`: 税率
+  - `taxAmount`: 税额
+
+## RIDE_HAILING_ITINERARY (网约车行程单)
+- `title`: 标题
+- `applyTime`: 申请时间
+- `tripTime`: 行程时间
+- `passengerPhone`: 行程人手机号
+- `totalAmountLower`: 合计金额(小写)
+- `pageNo`: 页码
+- `tripDetails`: 行程明细（List<Object>）
+  - `tripSerialNo`: 序号
+  - `tripServiceProvider`: 服务商
+  - `tripRideType`: 车型
+  - `tripPickupTime`: 上车时间
+  - `tripCity`: 城市
+  - `tripStartLocation`: 起点
+  - `tripEndLocation`: 终点
+  - `tripMileage`: 里程
+  - `tripAmt`: 金额
+  - `tripRemark`: 备注
+
+## UNIONPAY_POS_RECEIPT (银联POS签购单)
+- `billType`: 签单类型
+- `merchantName`: 商户名称
+- `merchantNo`: 商户编号
+- `issNo`: 发卡行
+- `transType`: 交易类型
+- `voucherNo`: 凭证号
+- `batchNo`: 批次号
+- `referNo`: 参考号
+- `dateTime`: 交易时间
+- `amount`: 交易金额
+
+## MEDICAL_INPATIENT_INVOICE (医疗住院发票)
+- `title`: 标题
+- `invoiceCode`: 票据代码
+- `invoiceNo`: 票据号码
+- `payerName`: 交款人
+- `payerAccount`: 交款人统一社会信用代码
+- `checkCode`: 校验码
+- `invoiceDate`: 开票日期
+- `totalAmountUpper`: 合计金额(大写)
+- `totalAmountLower`: 合计金额(小写)
+- `payeeName`: 收款单位
+- `checker`: 复核人
+- `payee`: 收款人
+- `businessSerialNo`: 业务流水号
+- `medicalRecordNo`: 病历号
+- `inpatientNo`: 住院号
+- `inpatientDept`: 住院科别
+- `admissionTime`: 住院时间
+- `medicalOrgType`: 医疗机构类型
+- `insuranceType`: 医保类型
+- `insuranceNo`: 医保编号
+- `gender`: 性别
+- `poolFundPay`: 医保统筹基金支付
+- `personalAccountPay`: 个人账户支付
+- `personalCashPay`: 个人现金支付
+- `personalSelfPay`: 个人自付
+- `personalSelfExpense`: 个人自费
+- `itemDetails`: 项目明细-多栏（List<Object>）
+  - `itemName`: 项目名称
+  - `itemAmt`: 金额
+
+## MEDICAL_EXPENSE_SETTLEMENT (医疗费用结算单)
+- `title`: 标题
+- `institutionCode`: 机构编码
+- `institutionName`: 机构名称
+- `hospitalLevel`: 医院等级
+- `patientName`: 姓名
+- `gender`: 性别
+- `idNumber`: 身份证号
+- `personnelCategory`: 人员类别
+- `socialSecurityCardNumber`: 社保卡号
+- `settlementTime`: 结算时间
+- `printTime`: 打印时间
+- `insuranceType`: 险种类型
+- `insuredRegion`: 参保地
+- `medicalRegion`: 就医地
+- `settlementId`: 结算ID
+- `admissionNumber`: 住院号
+- `admissionMethod`: 入院方式
+- `dischargeDepartment`: 出院科室
+- `primaryDiagnosis`: 主要诊断
+- `secondaryDiagnosis`: 次要诊断
+- `admissionDate`: 入院日期
+- `dischargeDate`: 出院日期
+- `hospitalizationDays`: 住院天数
+- `totalAmountUpper`: 合计金额(大写)
+- `totalAmountLower`: 合计金额(小写)
+- `medicalCoveredAmount`: 医保范围内金额
+- `personalSelfExpense`: 自费金额
+- `aboveLimitSelfPayAmount`: 超限价自费金额
+- `deductible`: 起付线
+- `totalFundPay`: 基金支付合计
+- `pooledFundPay`: 统筹基金支付
+- `largeMutualAidFundPay`: 大额互助资金支付
+- `retireeSupplFundPay`: 退休人员补充基金支付
+- `employerSupplFundPay`: 单位补充基金支付
+- `disabledVeteranSubsidyPay`: 残疾军人医疗补助支付
+- `criticalIllnessPay`: 大病保障支付
+- `medicalAssistancePay`: 医疗救助支付
+- `civilServantSubsidyPay`: 公务员补助支付
+- `otherFundPay`: 其他基金支付
+- `selfPayCategoryOne`: 自付一金额
+- `selfPayCategoryTwo`: 自付二金额
+- `personalCashPay`: 个人现金支付
+- `personalAccountPay`: 个人账户支付
+
+## FISCAL_AUTH_PAYMENT_VOUCHER (财政授权支付凭证)
+- `title`: 标题
+- `voucherNo`: 凭证号码
+- `payDate`: 付款日期
+- `payerName`: 付款人全称
+- `payerAccount`: 付款人账号
+- `payerBank`: 付款人开户银行
+- `payeeName`: 收款人全称
+- `payeeAccount`: 收款人账号
+- `payeeBank`: 收款人开户银行
+- `payAmountUpper`: 支付金额(大写)
+- `payAmountLower`: 支付金额(小写)
+- `agencyCode`: 单位编码
+- `settleMethod`: 结算方式
+- `budgetAgency`: 预算单位
+- `fundType`: 资金性质
+- `fundUsage`: 资金用途
+- `functionalType`: 功能分类
+- `economicType`: 经济分类
+
+## CUSTOMS_PAYMENT_RECEIPT (海关专用缴款书)
+- `title`: 标题
+- `revenueSystem`: 收入系统
+- `issueDate`: 填发日期
+- `customsReceiptNumber`: 缴款书号码
+- `revenueAuthority`: 收入机关
+- `budgetSubject`: 科目
+- `budgetLevel`: 预算级次
+- `receivingTreasury`: 收款国库
+- `payerName`: 缴款单位名称
+- `payerAccount`: 缴款单位账号
+- `payerBank`: 缴款单位开户银行
+- `totalAmountUpper`: 合计金额(大写)
+- `totalAmountLower`: 合计金额(小写)
+- `applicantCode`: 申请单位编号
+- `customsDeclarationNumber`: 报关单编号
+- `contractNumber`: 合同号
+- `conveyanceNumber`: 运输工具号
+- `paymentDeadline`: 缴款期限
+- `deliveryOrderNumber`: 提货单号
+- `nationalStandardCode`: 国标代码
+- `transactionSerialNumber`: 交易流水号
+- `goodsDetails`: 货物明细（List<Object>）
+  - `taxCode`: 税号
+  - `goodsName`: 货物名称
+  - `quantity`: 数量
+  - `unit`: 单位
+  - `customsValue`: 完税价格
+  - `taxRate`: 税率
+  - `taxAmount`: 税款金额
+
+## CUSTOMS_DECLARATION (海关进/出口货物报关单)
+- `title`: 标题
+- `preEntryNumber`: 预录入编号
+- `customsNumber`: 海关编号
+- `pageNumber`: 页码/页数
+- `consignor`: 境内发货人/境内收货人
+- `customsOffice`: 出境关别/进境关别
+- `exportDate`: 出口日期/进口日期
+- `declareDate`: 申报日期
+- `recordNumber`: 备案号
+- `consignee`: 境外收货人/境外发货人
+- `transportMode`: 运输方式
+- `transportation`: 运输工具名称及航次号
+- `blNumber`: 提运单号
+- `storageLocation`: 货物存放地点
+- `manufacturer`: 生产销售单位/消费使用单位
+- `supervisionMode`: 监管方式
+- `supervisionModeCode`: 监管方式代码
+- `exemptionNature`: 征免性质
+- `licenseNumber`: 许可证号
+- `departurePort`: 启运港
+- `contractNumber`: 合同协议号
+- `tradeCountry`: 贸易国
+- `destinationCountry`: 运抵国/启运国
+- `destinationPort`: 指运港/经停港
+- `exitPort`: 离境口岸/入境口岸
+- `packageType`: 包装种类
+- `packageQuantity`: 件数
+- `grossWeight`: 毛重
+- `netWeight`: 净重
+- `tradeTerms`: 成交方式
+- `freightCharges`: 运费
+- `insurancePremiums`: 保费
+- `miscellaneousCharges`: 杂费
+- `attachmentAndNumber`: 随附单证及编号
+- `remarks`: 标记唛码及备注
+- `goodsDetails`: 商品明细（List<Object>）
+  - `itemNumber`: 项号
+  - `commodityCode`: 商品编号
+  - `commodityName`: 商品名称及规格型号
+  - `quantityAndUnit1`: 数量及单位
+  - `quantityAndUnit2`: 数量及单位2
+  - `quantityAndUnit3`: 数量及单位3
+  - `unitPrice`: 单价
+  - `totalPrice`: 总价
+  - `currency`: 币制
+  - `originCountry`: 原产国
+  - `finalDestinationCountry`: 最终目的地
+  - `domesticSourceArea`: 境内货源地
+  - `taxExemptionIndicator`: 征免
+
+## INTERNATIONAL_BILL (国际汇票)
+- `draftNumber`: 汇票号码
+- `draftDate`: 出票日期
+- `amount`: 汇票金额
+- `amountInWords`: 汇票金额大写
+- `payeeName`: 收款人名称
+- `draweeName`: 付款行/受票人
+- `draftTenor`: 汇票期限
+- `lcNumber`: 信用证号码
+- `issueDate`: 信用证开证日期
+- `issueBank`: 信用证开证行
+- `drawer`: 出票人
+
+## COMMERCIAL_INVOICE (商业发票)
+- `invoiceNo`: 发票号码
+- `invoiceDate`: 发票日期
+- `totalAmount`: 发票金额
+- `issuerName`: 发票开具方名称
+- `issuerAddress`: 发票开具方地址
+- `lcNumber`: 信用证编号
+- `lcDate`: 信用证开证日期
+- `contractNumber`: 合同号
+- `priceTerm`: 成交方式
+
+## CERTIFICATE_OF_ORIGIN (原产地证明)
+- `exporter`: 出口商
+- `consignee`: 收货人
+- `transportAndRoute`: 运输方式及路线
+- `lcNumber`: 信用证编号
+- `issueDate`: 开具日期
+- `issuer`: 开具方名称
+
+## CARGO_TRANSPORT_INSURANCE (货物运输保险单)
+- `issueDate`: 签单日期
+- `lcNumber`: 信用证编号
+- `totalAmountLower`: 保险金额(小写)
+- `totalAmountUpper`: 保险金额(大写)
+- `insured`: 被保险人
+- `claimPayableAt`: 赔款偿付地点
+- `perConverance`: 装载运输工具
+- `sigOn`: 启运日期
+- `routeFrom`: 启运地
+- `routeTo`: 目的地
+
+## PACKING_LIST (装箱单)
+- `packingListNo`: 装箱单号
+- `invoiceNo`: 发票号
+- `issueDate`: 签单日期
+- `exporterName`: 出单方
+- `exporterAddress`: 出单方地址
+- `consigneeName`: 收货人
+- `consigneeAddress`: 收货人地址
+- `notifyParty`: 通知方
+- `loadingPort`: 起运港
+- `dischargePort`: 卸货港
+- `vesselNo`: 航次号
+- `containerNo`: 箱号
+- `totalNetWeight`: 总净重
+- `totalGrossWeight`: 总毛重
+- `totalMeasurement`: 总体积
+- `priceTerm`: 成交方式
+- `contractNumber`: 合同号
+- `lcNumber`: 信用证编号
+
+## BILL_OF_LADING (提单)
+- `blNumber`: 提单号
+- `issueDate`: 签单日期
+- `loadingPort`: 装运港
+- `dischargePort`: 卸货港
+- `exporterName`: 发货人
+- `consigneeName`: 收货人
+- `notifyParty`: 通知方
+- `vessel`: 航次号
+- `issuePlace`: 签发地点
+
 # 各识别类型的字段说明（stamps 内容）
 
 根据 ocrType 不同，返回的 `stamps` 对象包含以下字段：

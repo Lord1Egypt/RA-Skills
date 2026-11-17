@@ -1,41 +1,57 @@
-## Description: <br>
-Refines Chinese script dialogue with subtext, compression, character-voice, four-rule polish, and title-polish checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents through Chinese script dialogue audits, dialogue polishing, and short-title refinement to improve subtext, compression, character voice, and audience appeal.
 
-## Publisher: <br>
-[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal)
 
-## Use Case: <br>
-Writers and content developers use this skill after a draft is complete to make Chinese dialogue more dramatic, concise, character-specific, and suitable for the target audience while preserving script structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security guidance notes that installation confidence is limited by the available review context. <br>
-Mitigation: Before installing, confirm the displayed purpose and requested permissions match the intended use. <br>
-Risk: Dialogue polishing can drift from established character voice or IP-world language expectations. <br>
-Mitigation: Apply the skill's character voice fingerprint check against the relevant memory/ip-{IP名}.md context before accepting edits. <br>
+## Use Case:
 
+Writers, editors, and agent workflows use this skill after a draft script is complete to refine Chinese dialogue lines and generate stronger short titles while preserving structure and non-dialogue action lines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/editor-dialogue-craft) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/huangliujiao-tal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured Chinese prose with revised dialogue and title suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Works from draft script content and character voice context; avoids changing action lines and structural script elements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is specialized for Chinese script dialogue and short-title polishing, so its style rules may not fit non-Chinese projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Adapt or override the title-length and language-style rules before using it for other languages or formats.
+
+Risk: Dialogue rewriting can accidentally change protected structure, action lines, or non-dialogue material.
+
+Mitigation: Apply the skill only to intended dialogue lines and title fields, and preserve scene titles, character lists, prop lists, and action-description lines.
+
+Risk: Modernized language and title hooks may introduce slang or platform tone that conflicts with the target IP or audience.
+
+Mitigation: Review rewrites against the project voice reference and audience brief before accepting final dialogue or titles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/skills/editor-dialogue-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with checklists, rewrite rules, and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language dialogue and title-polish instructions; no code execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

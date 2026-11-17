@@ -1,0 +1,758 @@
+{
+  "version": "2.4.0",
+  "source_id": "cambridge",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:01:19.379Z",
+  "entry": {
+    "url": "https://www.cambridge.org/core",
+    "final_url": "https://www.cambridge.org/core",
+    "title": "Cambridge Core - Journals & Books Online | Cambridge University Press",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:01:19.379Z",
+    "identity": {
+      "declared_name": "Cambridge Core",
+      "hostname": "www.cambridge.org",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "Accessibility help",
+        "href": "https://www.cambridge.org/core/accessibility",
+        "target": ""
+      },
+      {
+        "text": "Contact & Help",
+        "href": "https://www.cambridge.org/core/help/FAQs",
+        "target": "_blank"
+      }
+    ],
+    "frames": [
+      {
+        "src": "",
+        "id": "SHR",
+        "name": "",
+        "title": "shr-utils"
+      },
+      {
+        "src": "",
+        "id": "",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "",
+        "id": "",
+        "name": "",
+        "title": "onetrust-text-resize"
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Discover Content",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Discover Content",
+        "exact": true
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Products and Services",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Products and Services",
+        "exact": true
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Browse",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Browse",
+        "exact": true
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Services",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Services",
+        "exact": true
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Open research",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Open research",
+        "exact": true
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Institution Login",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Institution Login",
+        "exact": true
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "Search all journal & book content",
+      "label": "",
+      "aria_label": "",
+      "placeholder": "Search all journal & book content\n                ",
+      "name": "q",
+      "id": "",
+      "css": "input[name=\"q\"]",
+      "role": "combobox",
+      "form_action": "https://www.cambridge.org/core/search",
+      "locator": {
+        "css": "input[name=\"q\"]"
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "Submit search",
+      "label": "",
+      "aria_label": "Submit search",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.cambridge.org/core/search",
+      "locator": {
+        "role": "textbox",
+        "name": "Submit search",
+        "exact": true
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Change your cookie settings",
+      "label": "",
+      "aria_label": "Change your cookie settings",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Change your cookie settings",
+        "exact": true
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "Location",
+      "label": "Location",
+      "aria_label": null,
+      "placeholder": "Choose your location",
+      "name": null,
+      "id": "footer-location-picker",
+      "css": "#footer-location-picker",
+      "role": "combobox",
+      "form_action": null,
+      "locator": {
+        "css": "#footer-location-picker"
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "open location list",
+      "label": "",
+      "aria_label": "open location list",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "open location list",
+        "exact": true
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "Submit to update location preference",
+      "label": "",
+      "aria_label": "Submit to update location preference",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Submit to update location preference",
+        "exact": true
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Cookie Settings, Opens the preference center dialog",
+      "label": "",
+      "aria_label": "Cookie Settings, Opens the preference center dialog",
+      "placeholder": null,
+      "name": null,
+      "id": "onetrust-pc-btn-handler",
+      "css": "#onetrust-pc-btn-handler",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#onetrust-pc-btn-handler"
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Reject all",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "onetrust-reject-all-handler",
+      "css": "#onetrust-reject-all-handler",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#onetrust-reject-all-handler"
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Accept all cookies",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "onetrust-accept-btn-handler",
+      "css": "#onetrust-accept-btn-handler",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#onetrust-accept-btn-handler"
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Close",
+      "label": "",
+      "aria_label": "Close",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Close",
+        "exact": true
+      },
+      "observed_url": "https://www.cambridge.org/core",
+      "observed_at": "2026-10-09T09:01:18.856Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "cambridge:pdf-inspection",
+      "source_id": "cambridge",
+      "task_kind": "pdf-inspection",
+      "status": "entry_observed",
+      "parameters": [
+        "document_title_or_identifier",
+        "edition_or_language",
+        "body_page_or_pdf_page",
+        "target_section"
+      ],
+      "instructions": [
+        "使用本题书名、标识符、语言和版次定位记录，确认正文页码与PDF物理页码的偏移后读取目标页；只在页面/全文确实可读时取证。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.cambridge.org/core",
+      "controls": [
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Discover Content",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Discover Content",
+            "exact": true
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Products and Services",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Products and Services",
+            "exact": true
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Browse",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Browse",
+            "exact": true
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Services",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Services",
+            "exact": true
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Open research",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Open research",
+            "exact": true
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Institution Login",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Institution Login",
+            "exact": true
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "Search all journal & book content",
+          "label": "",
+          "aria_label": "",
+          "placeholder": "Search all journal & book content\n                ",
+          "name": "q",
+          "id": "",
+          "css": "input[name=\"q\"]",
+          "role": "combobox",
+          "form_action": "https://www.cambridge.org/core/search",
+          "locator": {
+            "css": "input[name=\"q\"]"
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "text": "Submit search",
+          "label": "",
+          "aria_label": "Submit search",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.cambridge.org/core/search",
+          "locator": {
+            "role": "textbox",
+            "name": "Submit search",
+            "exact": true
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Change your cookie settings",
+          "label": "",
+          "aria_label": "Change your cookie settings",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Change your cookie settings",
+            "exact": true
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "Location",
+          "label": "Location",
+          "aria_label": null,
+          "placeholder": "Choose your location",
+          "name": null,
+          "id": "footer-location-picker",
+          "css": "#footer-location-picker",
+          "role": "combobox",
+          "form_action": null,
+          "locator": {
+            "css": "#footer-location-picker"
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "open location list",
+          "label": "",
+          "aria_label": "open location list",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "open location list",
+            "exact": true
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Submit to update location preference",
+          "label": "",
+          "aria_label": "Submit to update location preference",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Submit to update location preference",
+            "exact": true
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Cookie Settings, Opens the preference center dialog",
+          "label": "",
+          "aria_label": "Cookie Settings, Opens the preference center dialog",
+          "placeholder": null,
+          "name": null,
+          "id": "onetrust-pc-btn-handler",
+          "css": "#onetrust-pc-btn-handler",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#onetrust-pc-btn-handler"
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Reject all",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "onetrust-reject-all-handler",
+          "css": "#onetrust-reject-all-handler",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#onetrust-reject-all-handler"
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Accept all cookies",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "onetrust-accept-btn-handler",
+          "css": "#onetrust-accept-btn-handler",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#onetrust-accept-btn-handler"
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Close",
+          "label": "",
+          "aria_label": "Close",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Close",
+            "exact": true
+          },
+          "observed_url": "https://www.cambridge.org/core",
+          "observed_at": "2026-10-09T09:01:18.856Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "cambridge",
+    "quiz_entries": [
+      "quiz-entry-076"
+    ],
+    "example_ids": [
+      "2025-M19-Q1",
+      "2026-M19-Q1"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:01:19.379Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/cambridge-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/cambridge-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

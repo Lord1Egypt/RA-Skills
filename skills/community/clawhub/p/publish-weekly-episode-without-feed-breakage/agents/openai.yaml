@@ -1,0 +1,13 @@
+interface:
+  display_name: "Weekly episode feed gate"
+  short_description: "Check deployed podcast feed"
+policy:
+  products: ["CHAT", "CODEX"]
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "powmcp-podcast-feed-check"
+      description: "Podcast Feed Check (PowMCP)"
+      transport: "streamable_http"
+      url: "https://powmcp.com/podcast-feed-check/mcp"

@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Google Maps Research"
+  short_description: "Collect and analyze public Google Maps data"
+  default_prompt: "Use $socq-google-maps-research to collect and analyze this public Google Maps research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Google Maps data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=google-maps"

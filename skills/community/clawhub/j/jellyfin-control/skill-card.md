@@ -1,41 +1,59 @@
-## Description: <br>
-Control Jellyfin media server and TV. Search content, resume playback, manage sessions, control TV power and apps. Supports Home Assistant and direct WebOS backends. One command to turn on TV, launch Jellyfin, and play content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Jellyfin media playback and supported TVs so an agent can search content, resume playback, manage sessions, and launch Jellyfin through Home Assistant, WebOS, or Android TV backends.
 
-## Publisher: <br>
-[Titunito](https://clawhub.ai/user/Titunito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[titunito](https://clawhub.ai/user/titunito)
 
-## Use Case: <br>
-External users and developers use this skill to control Jellyfin playback, search media, resume content, manage playback sessions, and coordinate supported TV power or app-launch actions from an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The Android TV ADB backend can allow crafted app or device values to run shell commands on the host. <br>
-Mitigation: Avoid or patch the direct ADB backend, keep ADB enabled only on trusted networks, and do not pass arbitrary app IDs or device values into TV launch commands. <br>
-Risk: Jellyfin and Home Assistant credentials can grant media-server, smart-home, or admin capabilities. <br>
-Mitigation: Use least-privilege Jellyfin and Home Assistant credentials, avoid admin Jellyfin keys unless scan or history operations are required, and keep credentials in environment configuration. <br>
+## Use Case:
 
+Developers and home media server operators use this skill to let an agent control Jellyfin playback, pick up the next episode or resume a movie, send playback commands, and coordinate TV power or app launch across supported local backends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Titunito/jellyfin-control) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may depend on local Jellyfin, Home Assistant, WebOS, or Android TV connectivity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata, SKILL.md metadata, package.json, README changelog) <br>
+Risk: The Android TV ADB path can turn user-controlled device or app values into host shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review ADB_DEVICE and TV_JELLYFIN_APP before enabling direct ADB, restrict values to expected device addresses and app IDs, or change ADB execution to argument-based process calls before deployment.
+
+Risk: Examples show Jellyfin and Home Assistant endpoints using plaintext HTTP while API keys, passwords, tokens, and TV pairing keys are sensitive.
+
+Mitigation: Use HTTPS or a trusted encrypted tunnel, store secrets only in the skill environment configuration, and use dedicated least-privileged Jellyfin and Home Assistant credentials.
+
+Risk: ADB and WebOS pairing grant broad control over a TV on the local network.
+
+Mitigation: Enable these backends only on trusted networks, accept pairing prompts intentionally, and treat TV_CLIENT_KEY and ADB access as sensitive control credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/titunito/skills/jellyfin-control)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown and terminal text with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JF_URL and JF_API_KEY; optional TV and Home Assistant settings enable WebOS, Android TV, Wake-on-LAN, and Home Assistant control.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

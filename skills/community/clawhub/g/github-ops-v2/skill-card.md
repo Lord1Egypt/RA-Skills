@@ -1,41 +1,54 @@
-## Description: <br>
-Automates GitHub repository creation, code pushes, README updates, and release management for an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub operations skill for creating repositories, pushing code, and managing releases with no user intervention.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and agents use this skill to create repositories, push code, update README files, and create GitHub Releases using git, curl, and a GitHub token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform GitHub write actions with stored credentials, including repository creation, code pushes, releases, and deployment-triggering pushes, without clear review gates. <br>
-Mitigation: Use a narrowly scoped GitHub token and require explicit confirmation of the target repository, visibility, branch, files, and release metadata before any write action. <br>
-Risk: Pushing workspace content may expose secrets or private files. <br>
-Mitigation: Run it only in reviewed workspaces, scan staged changes, and exclude secret or private content before pushing. <br>
+## Use Case:
 
+Developers and automation agents use this skill to create GitHub repositories, push project code, update README content, and create GitHub releases using git, curl, and a configured GitHub token.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/github-ops-v2) <br>
-- [Declared Homepage](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and GitHub API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires git, curl, and GITHUB_TOKEN; operations may create repositories, push code, and create releases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Fully automatic credentialed GitHub publishing can create public repositories, push commits, create releases, or trigger deployments without adequate review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before repository creation, pushes, releases, or deployment-triggering operations.
+
+Risk: GitHub token handling can expose broad credentials or persist them in unsafe locations such as remote URLs.
+
+Mitigation: Use a least-privilege, revocable token in a controlled environment, avoid storing tokens in Git remote URLs, and run from a dedicated checkout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/github-ops-v2)
+- [Artifact homepage](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git, curl, and a configured GITHUB_TOKEN.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

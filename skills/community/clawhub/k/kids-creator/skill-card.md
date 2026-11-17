@@ -1,40 +1,57 @@
-## Description: <br>
-Kids Creator guides facilitators through a Telegram-based AI game creation workshop where children use prompts, choice cards, and voice input to create personal HTML games. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kids Creator guides facilitators through a Korean-language, Telegram-based AI workshop where children create personalized, playable HTML games with text, button, and voice inputs.
 
-## Publisher: <br>
-[ico1036](https://clawhub.ai/user/ico1036) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ico1036](https://clawhub.ai/user/ico1036)
 
-## Use Case: <br>
-External facilitators and educators use this skill to run a children’s AI game workshop, guiding participants through prompt discovery, world-building, iteration, and generation of a playable HTML game. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for workshops involving minors and may store or publish children’s generated content. <br>
-Mitigation: Require guardian and organization approval, keep game and gallery links private or expiring, avoid real names in public pages or paths, and define deletion procedures before use. <br>
-Risk: The workflow references voice input, STT processing, Cloudflare credentials, and shareable game or gallery URLs. <br>
-Mitigation: Use least-privilege credentials, disclose the STT provider and retention policy, minimize retained voice or transcript data, and review access controls before deployment. <br>
+## Use Case:
 
+External facilitators and workshop operators use this skill to run a child-focused AI game creation session, manage safe prompt flows, and produce each participant's playable game and sharing materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ico1036/kids-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with dialogue flows, state fields, HTML game requirements, and deployment steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workshop instructions, safe interaction rules, generated-game requirements, and deployment guidance for an agent operator.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill handles and publishes children's identifiable content with insufficient privacy controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require guardian or operator consent, minimize and pseudonymize stored data, define deletion and revocation rules, and protect gallery and game links before use with real children.
+
+Risk: Deployment behavior may expose generated child-specific games or prompts through public gallery links or broad repository updates.
+
+Mitigation: Avoid raw prompts in public displays, review allowlisted files before publishing, and replace broad Git staging with reviewed file selection.
+
+Risk: Operational dependencies and deployment commands can change the public site during a live workshop.
+
+Mitigation: Pin deployment dependencies, pre-test Cloudflare deployment, and keep the documented direct HTML file fallback available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ico1036/skills/kids-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline JSON, shell commands, and single-file HTML game requirements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Telegram interaction copy, workshop state structure, deployment steps, gallery and QR link guidance, and playable HTML game specifications.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

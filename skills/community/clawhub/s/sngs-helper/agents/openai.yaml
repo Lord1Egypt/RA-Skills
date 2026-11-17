@@ -1,0 +1,6 @@
+interface:
+  display_name: "sngs — Sparse N-gram Code Search"
+  short_description: "Search source code with the sngs sparse n-gram index — fast literal or regex searches, incremental Git updates, and machine-readable results"
+  default_prompt: "Use $sngs-helper to search this repository."
+policy:
+  allow_implicit_invocation: true

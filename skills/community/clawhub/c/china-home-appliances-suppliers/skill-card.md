@@ -1,38 +1,52 @@
-## Description: <br>
-Provides international buyers with reference guidance on China's home appliance manufacturing clusters, supply chain structure, regional specializations, industry trends, and sourcing considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides international buyers with China home-appliance manufacturing cluster, supply-chain, regional specialization, industry trend, and supplier-evaluation guidance.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External buyers, sourcing teams, and agents use this skill to understand China home appliance manufacturing regions, supply chain roles, subsector context, and supplier evaluation considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data, sourcing claims, supplier details, certifications, prices, and current business facts may be incomplete or outdated for purchasing decisions. <br>
-Mitigation: Treat the skill as reference material and independently verify suppliers, certifications, prices, and current business facts before purchasing. <br>
+## Use Case:
 
+External buyers, sourcing teams, and agents use this skill to understand China's home-appliance supply chain, compare regional manufacturing clusters, and gather supplier-evaluation guidance before procurement research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/china-home-appliances-suppliers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, code] <br>
-**Output Format:** [Markdown-style prose and Python dictionary responses from local helper functions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local reference data only; no sensitive access requested and no system changes performed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Sourcing, certification, supplier, and 2026 market claims may be incomplete or outdated for procurement decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a reference aid and independently verify suppliers, certifications, and market claims before making business decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/findhappy7/skills/china-home-appliances-suppliers)
+- [Publisher Profile](https://clawhub.ai/user/findhappy7)
+- [Skill Definition](artifact/SKILL.md)
+- [Bundled Data](artifact/data.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Natural-language answers and structured JSON-style data from bundled local references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external tool calls are required by the bundled implementation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

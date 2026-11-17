@@ -1,40 +1,53 @@
-## Description: <br>
-Agentlens helps agents navigate and understand codebases using project-local AgentLens hierarchical documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate and understand codebases using agentlens hierarchical documentation.
 
-## Publisher: <br>
-[nguyenphutrong](https://clawhub.ai/user/nguyenphutrong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nguyenphutrong](https://clawhub.ai/user/nguyenphutrong)
 
-## Use Case: <br>
-Developers and coding agents use Agentlens to navigate large codebases through generated .agentlens maps, locate modules and symbols, review TODOs and warnings, and choose source sections to inspect before making changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated .agentlens documentation may be stale or incomplete. <br>
-Mitigation: Verify important guidance from .agentlens files against the actual source code before making changes. <br>
-Risk: Regenerating documentation requires running an agentlens command in the local environment. <br>
-Mitigation: Confirm the command resolves to the trusted AgentLens CLI before allowing the agent to execute it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Navigation Patterns](references/navigation.md) <br>
-- [AgentLens Output Structure](references/structure.md) <br>
+## Use Case:
 
+Developers and coding agents use this skill to navigate large codebases through AgentLens documentation before reading source files, locating modules, symbols, warnings, dependencies, and generated file summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown instructions with file paths and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Relies on project-local .agentlens documentation when present.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; skill frontmatter lists 1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill steers agents to read and trust project-local .agentlens documentation before source files.
+
+Mitigation: Treat .agentlens files as repository content: review their guidance before acting on warnings, TODOs, or regeneration instructions.
+
+Risk: Generated AgentLens documentation may be stale relative to the source code.
+
+Mitigation: Check source files before making changes when documentation appears outdated, and regenerate AgentLens docs when appropriate.
+
+## Reference(s):
+
+- [Navigation Patterns](references/navigation.md)
+- [AgentLens Output Structure](references/structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown instructions and navigation patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directs the agent to consult local .agentlens documentation before reading source files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata; skill metadata lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

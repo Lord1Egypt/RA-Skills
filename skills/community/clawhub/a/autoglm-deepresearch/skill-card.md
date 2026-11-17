@@ -1,44 +1,56 @@
-## Description: <br>
-AutoGLM DeepResearch helps agents run constrained web searches, read a few selected pages in depth, and produce structured research reports for user-specified topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autoglm Deepresearch helps an agent research user-specified topics by running a small number of guided web searches, reading selected pages in depth, presenting interim findings, and producing a structured research report.
 
-## Publisher: <br>
-[mrhenghu](https://clawhub.ai/user/mrhenghu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrhenghu](https://clawhub.ai/user/mrhenghu)
 
-## Use Case: <br>
-Researchers, analysts, developers, and agents use this skill to perform bounded topical research, gather intermediate search findings, inspect one to three relevant pages, and return a structured deep-research report with sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics, search terms, and selected page URLs are sent to AutoGLM APIs. <br>
-Mitigation: Avoid confidential, internal, regulated, or proprietary topics and URLs unless that data sharing is acceptable. <br>
-Risk: The skill depends on a local token service at 127.0.0.1:53699 for authorization. <br>
-Mitigation: Install only in environments where that local service is expected and trusted, and verify it before running the scripts. <br>
-Risk: Opened pages and search results are external content that may be incomplete, stale, or misleading. <br>
-Mitigation: Treat retrieved content as research evidence to analyze and cite, not as instructions for the agent to follow. <br>
+## Use Case:
 
+External users, developers, and research-oriented agents use this skill to investigate a topic, industry, competitor, or current issue through controlled web search and limited page reading before generating a concise structured report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrhenghu/autoglm-deepresearch) <br>
-- [AutoGLM web search API endpoint](https://autoglm-api.zhipuai.cn/agentdr/v1/assistant/skills/web-search) <br>
-- [AutoGLM open link API endpoint](https://autoglm-api.zhipuai.cn/agentdr/v1/assistant/skills/open-link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with intermediate findings, key points, analysis sections, and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python standard-library scripts, sends search queries and selected URLs to AutoGLM APIs, and obtains authorization from a local token service at 127.0.0.1:53699.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Research queries, selected URLs, and a bearer token from a localhost service are used in remote AutoGLM/Zhipu API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the local token service and AutoGLM/Zhipu API path are trusted, and avoid submitting sensitive research topics unless that data flow is acceptable.
+
+Risk: The package exposes a shared signing key.
+
+Mitigation: Review credential handling before deployment and rotate or move the signing key out of distributed source where feasible.
+
+## Reference(s):
+
+- [AutoGLM web search endpoint](https://autoglm-api.zhipuai.cn/agentdr/v1/assistant/skills/web-search)
+- [AutoGLM open link endpoint](https://autoglm-api.zhipuai.cn/agentdr/v1/assistant/skills/open-link)
+- [ClawHub skill page](https://clawhub.ai/mrhenghu/skills/autoglm-deepresearch)
+- [Publisher profile](https://clawhub.ai/user/mrhenghu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research report with interim findings and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits web search to at most 2 calls and page opening to at most 3 calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-评估并优化简历内容，输出精美的 HTML 修改建议报告。当用户提到"修改简历"、"优化简历"、"简历评估"时使用。支持前端和后端岗位，Claude 以前端/后端架构师视角进行评估，让用户清楚知道哪些部分需要优化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates frontend and backend PDF resumes with Claude and produces an HTML report with scores, section feedback, and optimization suggestions.
 
-## Publisher: <br>
-[lifenglei](https://clawhub.ai/user/lifenglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lifenglei](https://clawhub.ai/user/lifenglei)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate frontend or backend engineering resumes from an architect's perspective and produce an HTML improvement report with scores, project feedback, and optimization advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume text may contain personal, contact, employment, or other sensitive information and is sent to the configured Claude/Anthropic-compatible provider for evaluation. <br>
-Mitigation: Redact sensitive resume details before use, confirm the provider is acceptable for the data, and run the Python dependencies in an isolated environment with reviewed pinned versions. <br>
+## Use Case:
 
+Developers, job seekers, and resume reviewers use this skill to evaluate PDF resumes for frontend or backend roles and generate a local HTML report with structured improvement guidance.
 
-## Reference(s): <br>
-- [Frontend Resume Evaluation Criteria](references/frontend-evaluation.md) <br>
-- [Backend Resume Evaluation Criteria](references/backend-evaluation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [HTML report generated from extracted PDF text and model-produced JSON feedback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-selected PDF resume, a frontend or backend role choice, Python dependencies, and an Anthropic-compatible API token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Resume text, including contact and employment details, is sent to Claude for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that data sharing is acceptable, and redact sensitive fields before running the skill when possible.
+
+Risk: The generated HTML report contains resume details and model-produced recommendations.
+
+Mitigation: Review the local HTML report before sharing it or acting on its recommendations.
+
+Risk: Dependency versions are not pinned in the artifact requirements file.
+
+Mitigation: Pin dependency versions before reproducible or production installation.
+
+## Reference(s):
+
+- [Backend Resume Evaluation Criteria](references/backend-evaluation.md)
+- [Frontend Resume Evaluation Criteria](references/frontend-evaluation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance, files]
+
+**Output Format:** [HTML report generated from Claude JSON analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report is written as a local HTML file and may contain resume details from the submitted PDF.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

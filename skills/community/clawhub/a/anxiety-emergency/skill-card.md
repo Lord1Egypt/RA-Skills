@@ -1,43 +1,60 @@
-## Description: <br>
-Immediate anxiety management techniques and crisis resources for panic attacks, severe anxiety, overwhelm, and immediate grounding needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides immediate anxiety management techniques, grounding exercises, safety screening, and crisis resources for severe anxiety or panic episodes.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and agents use this skill to provide immediate anxiety support, grounding exercises, safety screening, crisis resources, and follow-up guidance when someone is experiencing acute anxiety or panic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with local crisis-resource substitution required outside the United States. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags calendar and filesystem access that the skill text does not explain. <br>
-Mitigation: Install only where requested tool permissions can be reviewed, restricted, or accepted for the deployment. <br>
-Risk: Users in immediate danger or self-harm crisis may need urgent human support beyond agent guidance. <br>
-Mitigation: Follow the skill's safety check and route urgent self-harm risk or immediate danger to local emergency services or a crisis line before continuing. <br>
+## Use Case:
 
+External users and support agents use this skill to guide someone through acute anxiety or panic support, beginning with a safety check and then offering grounding, breathing, recovery, and professional-help options.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/howtousehumans/anxiety-emergency) <br>
-- [Brief structured respiration practices enhance mood and reduce physiological arousal](https://doi.org/10.1016/j.xcrm.2022.100895) <br>
-- [Effects of Cold Stimulation on Cardiac-Vagal Activation](https://doi.org/10.3389/fnins.2018.00765) <br>
-- [An examination of the anxiolytic effects of exercise for people with anxiety and stress-related disorders](https://doi.org/10.1136/bjsports-2016-096860) <br>
+### Deployment Geography for Use:
 
+Global, with crisis and therapy resources localized outside the United States.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational guidance with short checklists and crisis-resource instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires safety screening before anxiety-management steps; US crisis and therapy resources must be localized for non-US users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security scan reports calendar and filesystem tool requirements that are not needed for the stated anxiety-support purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested permissions before installation and avoid granting file or calendar access unless a specific user-approved feature justifies it.
+
+Risk: The security guidance flags an unpinned npx clawhub installer.
+
+Mitigation: Install only from a trusted source and pin or review the clawhub package version before deployment.
+
+Risk: US-specific crisis and therapy resources may be unsuitable for users in other regions.
+
+Mitigation: Confirm or infer the user's region and provide local crisis resources before continuing with anxiety-support steps.
+
+## Reference(s):
+
+- [ClawHub skill release: Anxiety Emergency](https://clawhub.ai/howtousehumans/skills/anxiety-emergency)
+- [Balban et al., Brief structured respiration practices enhance mood and reduce physiological arousal](https://doi.org/10.1016/j.xcrm.2022.100895)
+- [Jungmann et al., Effects of Cold Stimulation on Cardiac-Vagal Activation](https://doi.org/10.3389/fnins.2018.00765)
+- [Stubbs et al., anxiolytic effects of exercise for anxiety and stress-related disorders](https://doi.org/10.1136/bjsports-2016-096860)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with short instructions, checklists, and crisis-resource referrals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes safety-screening prompts and localized-resource guidance; does not produce files by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

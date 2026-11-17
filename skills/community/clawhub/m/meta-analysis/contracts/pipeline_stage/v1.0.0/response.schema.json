@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://medstatstar.skill/contracts/pipeline_stage/v1.0.0/response.schema.json",
+  "title": "Meta-Analysis Pipeline Stage Response",
+  "description": "per-stage pipeline 响应信封（Phase 0）。管线层核心字段 stage_result/next_human_action/tool_cards 为 optional（向后兼容）；计算层旧字段 status/stats/figures/warnings/notes/repro 原样保留（见 coze_contract.md §4）。",
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "回写请求同版本。major 不一致时本地 adapter 拒绝并降级。"
+    },
+    "schema": { "type": "string" },
+    "request_id": { "type": "string" },
+    "pipeline_id": { "type": "string" },
+    "stage": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "index": { "type": "integer", "minimum": 0 },
+        "status": {
+          "type": "string",
+          "enum": ["await_human", "completed", "failed", "need_tool", "need_data"]
+        }
+      }
+    },
+    "stage_result": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "format": {
+                "type": "string",
+                "enum": ["json", "md", "svg", "html", "docx", "xlsx"]
+              },
+              "data": { "type": ["object", "array", "string", "null"] },
+              "svg": { "type": "string" }
+            },
+            "required": ["type", "format"]
+          }
+        },
+        "data_for_next_stage": { "type": "object" }
+      }
+    },
+    "next_human_action": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["none", "confirm", "review", "provide_data", "approve", "edit"]
+        },
+        "prompt": { "type": "string" },
+        "required": { "type": "boolean", "default": false },
+        "gate": {
+          "type": "string",
+          "enum": [
+            "none",
+            "extraction_review",
+            "final_inclusion",
+            "manuscript_approval",
+            "reference_verification"
+          ]
+        },
+        "options": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["type"]
+    },
+    "tool_cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "card_ref": { "type": "string" },
+          "need_tool": { "type": "string" },
+          "params": { "type": "object" },
+          "draft_answer": { "type": "string" },
+          "run_id": { "type": "string" },
+          "sync": { "type": "string", "enum": ["blocking", "async"] },
+          "timeout_sec": { "type": "integer", "minimum": 1 }
+        },
+        "required": ["need_tool", "params"]
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ok", "warn", "error", "unknown_task"]
+    },
+    "task": { "type": "string" },
+    "stats": { "type": ["object", "null"] },
+    "figures": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "notes": { "type": "string" },
+    "repro": { "type": "object" },
+    "_request_id": { "type": "string" },
+    "_contract_drift": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "_needs_upgrade": { "type": "boolean" },
+    "attachments": {
+      "type": "array",
+      "description": "coze 端产出的可下载文件（如 Block C 生成的 docx 稿件、提取的 xlsx 表）。每项含预签名 GET url，本地 adapter 据 url 拉取落盘。大文件（>几 MB）一律走此通道，不内联进 stage_result.artifacts.data。optional —— 旧响应不带不影响解析。",
+      "items": { "$ref": "#/$defs/AttachmentRef" }
+    }
+  },
+  "required": [],
+  "$defs": {
+    "AttachmentRef": {
+      "type": "object",
+      "description": "S3 托管的文件引用。上传时由本地生成（key/sha256/filename/size_bytes/mime），coze 端据 key 取；下载时 coze 端生成并附 url（预签名 GET），本地据此拉取。",
+      "properties": {
+        "storage": { "type": "string", "enum": ["s3"], "description": "存储后端，当前仅 s3。" },
+        "key": { "type": "string", "description": "S3 对象 key（coze 端命名空间内，如 pipeline/<pid>/outputs/manuscript.docx）。" },
+        "url": { "type": "string", "description": "预签名 GET URL，本地据此下载（默认 TTL 见 coze 端配置，通常 3600s）。" },
+        "filename": { "type": "string", "description": "原始文件名（含扩展名），用于本地落盘命名。" },
+        "mime": { "type": "string", "description": "MIME 类型，如 application/vnd.openxmlformats-officedocument.wordprocessingml.document。" },
+        "size_bytes": { "type": "integer", "minimum": 0, "description": "字节大小。" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "文件 SHA-256 hex，用于下载完整性校验。" },
+        "purpose": {
+          "type": "string",
+          "description": "（可选）产出文件用途/角色标识，便于本地落盘时分类命名与展示。常见值见 request.schema.json 的 AttachmentRef.purpose。optional，不影响向后兼容。"
+        }
+      },
+      "required": ["storage", "key", "url", "filename", "mime", "size_bytes", "sha256"]
+    }
+  }
+}

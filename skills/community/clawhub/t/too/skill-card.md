@@ -1,39 +1,53 @@
-## Description: <br>
-A skill for managing todo lists, including creating, updating, deleting, and organizing tasks with priorities and deadlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill for managing todo lists, including creating, updating, deleting, and organizing tasks with priorities and deadlines.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to create, update, delete, list, prioritize, categorize, and track todo items with deadlines and status fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent using this skill may create, change, or delete todo items based on user prompts. <br>
-Mitigation: Use explicit wording for important task lists, confirm where tasks are stored, and verify whether deletions can be undone before relying on the workflow. <br>
+## Use Case:
 
+External users and agents use this skill to create, update, delete, list, and organize todo items with priorities, deadlines, categories, and status tracking.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wscats/too) <br>
-- [Publisher Profile](https://clawhub.ai/user/wscats) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or plain text task-management guidance with structured todo fields when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; task changes depend on the host agent's todo storage and confirmation behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Todo data storage, retention, and access controls are undefined if users pair the skill with files, tools, or external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define where todo data is stored, who can access it, and how updates are logged before using the skill with persistent tools.
+
+Risk: Ambiguous natural-language update or delete requests could target the wrong task.
+
+Mitigation: Ask for confirmation or use stable task identifiers before changing or removing existing todo items.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/too)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with task examples and a structured todo schema]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tool use, or persistent storage is defined by the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

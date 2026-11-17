@@ -1,38 +1,57 @@
-## Description: <br>
-Cn Color Tool is a Python standard-library color conversion utility for converting HEX, RGB, and HSL color values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Color Tool is a pure-Python command-line utility for converting colors between HEX, RGB, and HSL formats.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agents use this skill to convert color values between HEX, RGB, and HSL when preparing design, UI, or documentation outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evidence security guidance reports clean scanner telemetry, but notes that direct artifact review was not available during the security adjudication. <br>
-Mitigation: Inspect the released skill files before high-assurance installation, especially for credential, private-file, network-service, or persistent background behavior. <br>
+## Use Case:
 
+Developers and agents use this skill to convert color values between HEX, RGB, and HSL and to generate terminal-friendly color conversion output for design or implementation work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-color-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Plain text with optional inline shell commands or Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: ClawHub release metadata) <br>
+Risk: The documentation examples call cn_color_tool.py, while the artifact stores the executable script at scripts/color_tool.py.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Call the bundled scripts/color_tool.py path directly or create an explicit local alias before following the examples.
+
+Risk: The artifact documentation includes promotional external links unrelated to the color conversion function.
+
+Mitigation: Avoid opening promotional links unless the destination is trusted and needed for the deployment context.
+
+Risk: The user-facing documentation is primarily Chinese-language.
+
+Mitigation: Install only where Chinese-language documentation and command help are acceptable for operators.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-color-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Python standard library color conversion logic and emits terminal-readable color values.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

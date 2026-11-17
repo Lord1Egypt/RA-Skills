@@ -1,40 +1,54 @@
-## Description: <br>
-Automated test skill for verifying ClawHub skill creation, inspection, update, and deletion workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated integration-test skill for verifying creation, inspection, version updating, and deletion through the ClawHub REST API lifecycle.
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-ClawHub release testers and maintainers use this skill to exercise skill publish, inspect, update, and delete workflows for an ephemeral test release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes publish, update, and delete lifecycle operations that can affect real ClawHub accounts or releases if run with production credentials. <br>
-Mitigation: Use a disposable test account and test slug, avoid normal production credentials, and require confirmation before publish, update, or delete actions. <br>
-Risk: The skill is intended to be ephemeral and may remain listed if a test run fails to clean up. <br>
-Mitigation: Inspect the test release after runs and delete it before reuse when cleanup fails. <br>
+## Use Case:
 
+Developers and release automation maintainers use this skill to test the ClawHub skill lifecycle API against a named test slug, including publish, inspect, update, and cleanup operations.
 
-## Reference(s): <br>
-- [Published skill page](https://clawhub.ai/yinwuzhe/tosr-test-skill-1778050437) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code files; behavior is described in a single markdown skill file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and artifact SKILL.md) <br>
+Risk: Lifecycle API testing can create, update, inspect, and delete ClawHub skill records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with credentials and API environments limited to test resources and the named test slug.
+
+Risk: A failed cleanup can leave the ephemeral test skill visible on ClawHub.
+
+Mitigation: Inspect the named slug after test runs and delete leftover test releases before reuse.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yinwuzhe/skills/tosr-test-skill-1778050437)
+- [Publisher Profile](https://clawhub.ai/user/yinwuzhe)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with REST API endpoint references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

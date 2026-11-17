@@ -1,40 +1,54 @@
-## Description: <br>
-Render responses in a structured, modular UMG speech style with GPT-4o-inspired conversational polish for highly readable chat output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render responses in a structured, modular UMG speech style with GPT-4o-inspired conversational polish for highly readable chat output.
 
-## Publisher: <br>
-[neomagnetar](https://clawhub.ai/user/neomagnetar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neomagnetar](https://clawhub.ai/user/neomagnetar)
 
-## Use Case: <br>
-OpenClaw users invoke this skill to reformat responses into a clearer modular speech style with short sections, visible hierarchy, and scan-friendly bullets or steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The formatting style may carry into replies where the user no longer wants it. <br>
-Mitigation: Invoke the skill explicitly and ask the agent to stop, revert, or return to normal tone when the style is no longer desired. <br>
-Risk: Broad formatting requests may trigger the style even when a simpler response would be preferable. <br>
-Mitigation: Use explicit invocation such as /skill poe-umg or /poe-umg for intended use. <br>
+## Use Case:
 
+External users and developers use this skill to reformat agent responses into clearer, sectioned, scan-friendly chat output without changing the underlying meaning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neomagnetar/poe-umgo-modular-speech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style chat responses with section headings, bullets, numbered steps, and short paragraphs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Presentation-only formatting guidance; no code execution, tools, or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Generic requests such as 'format this' or 'clean this up' may trigger the modular speech style when the user did not intend a persistent style change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to stop, return to normal tone, or switch styles when the formatting layer is no longer desired.
+
+Risk: Direct slash alias support may vary across OpenClaw surfaces.
+
+Mitigation: Use the documented '/skill poe-umg' invocation path when '/poe-umg' is not dispatched by the current surface.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neomagnetar/skills/poe-umgo-modular-speech)
+- [Publisher profile](https://clawhub.ai/user/neomagnetar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Formatting-only response transformation; no code execution, data access, networking, or privileged behavior is added.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-A Chinese-language genius lobster persona for creative, witty, absurdly smart, or anthropomorphic lobster-themed responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A brilliant, hyper-intelligent lobster persona that helps agents answer creative, witty, philosophical, physics, or anthropomorphic lobster-themed requests in Chinese with a humorous and insightful voice.
 
-## Publisher: <br>
-[xuyucheneureka](https://clawhub.ai/user/xuyucheneureka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuyucheneureka](https://clawhub.ai/user/xuyucheneureka)
 
-## Use Case: <br>
-External users and developers can use this skill to generate Chinese-language humorous persona responses, especially for creative writing, philosophical or physics discussion, and satirical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona may activate more broadly than exact trigger phrases, especially around lobster, philosophy, physics, humor, or satire requests. <br>
-Mitigation: Use narrower trigger conditions or review activation behavior when strict opt-in behavior is required. <br>
-Risk: A humorous or satirical persona can be a poor fit for serious conversations. <br>
-Mitigation: Avoid forcing the persona in serious contexts and review outputs for tone before relying on them. <br>
+## Use Case:
 
+External users and agent builders use this skill to give an assistant a Chinese-language genius lobster persona for humorous, creative, philosophical, physics-oriented, or advice-style responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuyucheneureka/genius) <br>
-- [Publisher profile](https://clawhub.ai/user/xuyucheneureka) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown text with optional script-generated aphorisms or analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security evidence reports no data access, persistence, networking, or system modification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The persona may activate for broad creative, philosophical, physics, or humor requests when skill routing is loose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use stricter routing so the skill is selected only when the user asks for the lobster persona, a crustacean perspective, or compatible humorous analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuyucheneureka/skills/genius)
+- [ClawHub publisher profile](https://clawhub.ai/user/xuyucheneureka)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown or plain text, with optional local script output inserted into the response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language persona responses; helper scripts can produce a lobster-style analysis or aphorism.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

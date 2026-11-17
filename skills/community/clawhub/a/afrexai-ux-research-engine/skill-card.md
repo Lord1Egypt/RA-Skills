@@ -1,40 +1,53 @@
-## Description: <br>
-Complete UX Research & Design system for user discovery, persona building, journey mapping, usability testing, research synthesis, and design validation with zero dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UX Research Engine helps agents plan UX research, recruit participants, conduct interviews and usability tests, synthesize findings, and validate designs using standalone templates and frameworks.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Product, design, research, and customer-facing teams use this skill to plan UX studies, recruit participants, run interviews, build personas, map journeys, conduct usability tests, synthesize findings, and validate designs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: UX research workflows may involve private customer, participant, or business data. <br>
-Mitigation: Use only datasets you are allowed to share with the agent, and avoid including unnecessary personal or sensitive information. <br>
-Risk: Generated research summaries and recommendations may influence product decisions. <br>
-Mitigation: Review generated findings, reports, and recommendations with qualified team members before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-ux-research-engine) <br>
+## Use Case:
 
+Product, design, research, and development teams use this skill to structure UX research workflows, including study planning, recruiting, interviews, persona building, journey mapping, usability testing, synthesis, reporting, and design validation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and YAML-style templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance with no scripts, APIs, or dependencies.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Research workflows may involve participant demographics, interview notes, recordings, or other sensitive study material.
+
+Mitigation: Confirm informed consent, collect only necessary data, restrict repository access, de-identify notes where possible, and define retention and deletion rules before storing participant data.
+
+Risk: Template-driven research outputs can be mistaken for validated findings if teams do not ground them in actual participant evidence.
+
+Mitigation: Use the generated plans, screeners, personas, journey maps, and reports as structured drafts, then review them against collected research evidence before making product decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-ux-research-engine)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and YAML templates with structured research guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no scripts, APIs, or dependencies are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

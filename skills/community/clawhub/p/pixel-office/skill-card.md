@@ -1,40 +1,59 @@
-## Description: <br>
-Animated pixel-art office where agents appear as characters that walk, sit, and interact with furniture in real time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Animated pixel-art office where agents appear as characters that walk, sit, and interact with furniture in real time.
 
-## Publisher: <br>
-[xmanrui](https://clawhub.ai/user/xmanrui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xmanrui](https://clawhub.ai/user/xmanrui)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to launch a local web dashboard and pixel-office view for monitoring agents and sessions. The skill manages setup, updates, server startup, and returns local and LAN access URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install, update, and run a broader OpenClaw dashboard rather than only a pixel-office view. <br>
-Mitigation: Install it only when you intentionally want the full dashboard launcher, and review the linked project and npm dependencies before use. <br>
-Risk: The workflow can stop processes on port 3000, read local OpenClaw configuration, run a background server, and expose a LAN URL. <br>
-Mitigation: Run it in an environment where port 3000 is reserved for this dashboard, local OpenClaw configuration access is acceptable, and LAN exposure is expected. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to launch a local Pixel Office dashboard that visualizes agents and reads OpenClaw configuration, returning local and LAN access URLs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xmanrui/pixel-office) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration, Text] <br>
-**Output Format:** [Markdown with inline shell commands and access URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns both local and LAN URLs after starting a background development server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill downloads and runs mutable remote dashboard code, including dependency installation and development-server startup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher and downloaded source are trusted; prefer a pinned, reviewed source revision before dependency installation or execution.
+
+Risk: The skill may stop any process using port 3000 and remove its project directory during update fallback behavior.
+
+Mitigation: Confirm the port and project path before running update or restart steps, especially on shared development machines.
+
+Risk: The dashboard reads local OpenClaw configuration and advertises a LAN URL.
+
+Mitigation: Review local configuration access and LAN exposure before use, and restrict network access when the dashboard should remain local.
+
+## Reference(s):
+
+- [Pixel Office ClawHub Skill Page](https://clawhub.ai/xmanrui/skills/pixel-office)
+- [OpenClaw Dashboard Project](https://github.com/xmanrui/OpenClaw-bot-review)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and access URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local and LAN dashboard URLs after startup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -47,7 +47,9 @@ from cue_api import (  # noqa: E402
     chat_stream,
     get_template,
     load_config,
+    normalize_template_id,
     replay,
+    validate_template_id,
 )
 from validate_template import (  # noqa: E402
     FORBIDDEN_VERDICT_PHRASES,
@@ -63,6 +65,7 @@ from sse_report import (  # noqa: E402
     summarize_tool_input as _summarize_tool_input,
     preview_tool_result as _preview_tool_result,
 )
+from paths import cue_subdir  # noqa: E402 - sibling; default save path under <root>/runs
 
 
 # ---------------------------------------------------------------------------
@@ -363,20 +366,21 @@ def _render_run_md(
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("template_id")
+    p.add_argument("template_id", type=normalize_template_id,
+                   help="搭子模板 id (裸 <id> 自动补 template_ 前缀)")
     p.add_argument("entity", help="测试主体（如 万科 / 宁德时代）")
     p.add_argument(
         "--save",
         metavar="PATH",
         help=(
-            "保存 Markdown 运行记录的路径（默认 ./buddy-run-<ts>.md）。"
+            "保存 Markdown 运行记录的路径（默认 <root>/runs/buddy-run-<ts>.md）。"
             "失败时也保存，方便事后排查。"
         ),
     )
     p.add_argument(
         "--no-save",
         action="store_true",
-        help="不保存运行记录（默认会保存到 ./buddy-run-<ts>.md）",
+        help="不保存运行记录（默认会保存到 <root>/runs/buddy-run-<ts>.md）",
     )
     p.add_argument(
         "--yes",
@@ -391,6 +395,12 @@ def main(argv: list[str] | None = None) -> int:
         help="SSE 流总超时秒（默认 3600=60min，对齐服务端任务硬超时；单次深研通常 3-15min，超时后走 DB 回放兜底）",
     )
     args = p.parse_args(argv)
+    # type=normalize_template_id covers build_chat_payload, which puts the id
+    # straight into the chat payload bypassing the cue_api function layer.
+    _bad_id = validate_template_id(args.template_id)
+    if _bad_id:
+        print(f"[+test] ✗ {_bad_id}", flush=True)
+        return 2
 
     try:
         load_config()
@@ -541,7 +551,10 @@ def main(argv: list[str] | None = None) -> int:
     if not args.no_save:
         save_path = (
             args.save
-            or f"./buddy-run-{args.template_id[-8:]}-{time.strftime('%Y%m%d-%H%M%S')}.md"
+            or str(
+                cue_subdir("runs")
+                / f"buddy-run-{args.template_id[-8:]}-{time.strftime('%Y%m%d-%H%M%S')}.md"
+            )
         )
         Path(save_path).write_text(md, encoding="utf-8")
         print(f"[+test] saved run report → {save_path}")

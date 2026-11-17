@@ -1,41 +1,58 @@
-## Description: <br>
-Her-Agent Dashboard displays an AI companion's self-awareness, emotional state, knowledge graph, learning progress, and evolution status in a local web dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Her-Agent development dashboard that displays self-awareness, emotional state, knowledge graph, learning progress, and evolution status in a local web dashboard.
 
-## Publisher: <br>
-[wenqin1688](https://clawhub.ai/user/wenqin1688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenqin1688](https://clawhub.ai/user/wenqin1688)
 
-## Use Case: <br>
-External users and developers use this skill to view Her-Agent progress through a local web dashboard, including evolution level, emotional state, learning metrics, knowledge graph, and self-reflection history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The updater may read local OpenClaw diary and learning-note files to produce dashboard metrics. <br>
-Mitigation: Install only in workspaces where that local data access is expected, and review generated dashboard content before sharing it. <br>
-Risk: Opening the dashboard loads D3.js from a public CDN. <br>
-Mitigation: Use the dashboard only where external CDN loading is acceptable, or replace the CDN dependency with a reviewed local copy before use in restricted environments. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to view a local Her-Agent progress dashboard for learning notes, diary-derived reflections, knowledge-map status, emotional state, and evolution progress.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wenqin1688/her-agent-dashboard) <br>
-- [Publisher Profile](https://clawhub.ai/user/wenqin1688) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, files] <br>
-**Output Format:** [Markdown instructions with local HTML and Python dashboard files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The dashboard updater writes a local HTML file and the page loads D3.js from a public CDN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may mistake the dashboard for live agent telemetry even though the evidence describes it as mostly a static or local snapshot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the dashboard as a local status view and validate important status claims against the underlying OpenClaw workspace files.
+
+Risk: The updater reads local diary and learning-note markdown paths from the OpenClaw workspace.
+
+Mitigation: Review the local files read by the updater before use and avoid placing sensitive content in those paths unless it is intended for dashboard display.
+
+Risk: The dashboard loads D3 from an external CDN.
+
+Mitigation: Vendor or integrity-pin the D3 dependency before deployment in controlled or higher-trust environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wenqin1688/skills/her-agent-dashboard)
+- [Publisher profile](https://clawhub.ai/user/wenqin1688)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus local HTML dashboard files and Python-generated status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The dashboard is Chinese-language and local to the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

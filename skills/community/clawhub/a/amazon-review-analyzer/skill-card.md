@@ -1,44 +1,56 @@
-## Description: <br>
-输入ASIN，自动抓取数百条评论，AI逐条深度打标，生成痛点/卖点/Listing优化洞察报告。支持RapidAPI数据采集、OpenAI/DeepSeek兼容API、交互式HTML报告输出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入ASIN，自动抓取数百条评论，AI逐条深度打标，生成痛点/卖点/Listing优化洞察报告。支持RapidAPI数据采集、OpenAI/DeepSeek兼容API、交互式HTML报告输出。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External sellers, marketers, and product teams use this skill to analyze Amazon reviews from an ASIN and turn them into pain points, selling points, user profiles, and listing optimization recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review text, product metadata, and selected LLM API keys may be sent to configured external providers. <br>
-Mitigation: Use trusted API providers and api_base values, avoid confidential business notes in prompts, and use mock or local modes for testing when external sharing is not acceptable. <br>
-Risk: Fetched review text is inserted into an auto-opened HTML report without evident escaping. <br>
-Mitigation: Inspect generated reports before sharing or relying on them, and treat reports from live review data as untrusted local files. <br>
+## Use Case:
 
+Marketplace operators, product managers, and ecommerce analysts use this skill to collect Amazon review data by ASIN, tag reviews with an OpenAI-compatible model, and produce product pain-point, selling-point, user-profile, and listing-optimization insights.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/amazon-review-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/bettermen) <br>
-- [RapidAPI Amazon hub](https://rapidapi.com/hub/amazon) <br>
-- [OpenAI-compatible API endpoint](https://api.openai.com/v1) <br>
-- [DeepSeek API endpoint](https://api.deepseek.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an ASIN and LLM API key; can use RapidAPI for live review data or mock modes for testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: Review data and LLM API keys can be sent to the configured model provider or to a custom OpenAI-compatible API base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS API endpoints, avoid custom or misspelled API bases, and prefer provider-specific or throwaway keys with minimal permissions.
+
+Risk: Generated HTML reports are built from review and model-derived content and are automatically opened by the scripts.
+
+Mitigation: Treat generated reports as untrusted HTML until escaping and report-opening behavior are fixed; open them only in a controlled browser context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/amazon-review-analyzer)
+- [RapidAPI Amazon APIs Hub](https://rapidapi.com/hub/amazon)
+- [OpenAI-Compatible API Endpoint](https://api.openai.com/v1)
+- [DeepSeek API Endpoint](https://api.deepseek.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated interactive HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can use mock data for demos; production-style runs require an LLM API key and may use RapidAPI for review collection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

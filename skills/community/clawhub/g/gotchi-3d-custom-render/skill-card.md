@@ -1,47 +1,63 @@
-## Description: <br>
-Render custom Aavegotchi 3D images from arbitrary trait and wearable combinations for synthetic or hypothetical gotchi looks, outfit previews, headshots, and full-body images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render custom Aavegotchi 3D images from arbitrary trait and wearable combinations.
 
-## Publisher: <br>
-[aaigotchi](https://clawhub.ai/user/aaigotchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaigotchi](https://clawhub.ai/user/aaigotchi)
 
-## Use Case: <br>
-External users and developers use this skill to turn plain-language or structured Aavegotchi trait and wearable requests into custom 3D render artifacts for previews, portraits, and gallery generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Direct JSON render paths can overwrite or delete user-writable files outside the intended render folder. <br>
-Mitigation: Prefer the main wrapper that generates paths under Renders, avoid direct hosted or Unity render scripts on untrusted JSON, and keep output and manifest paths allowlisted to a dedicated render directory. <br>
-Risk: Local rendering depends on host tools and Unity availability, so missing prerequisites can cause failed or partial renders. <br>
-Mitigation: Confirm Node, jq, npm dependencies, and Unity 2022.3.11f1 are installed before using hosted background compositing or Unity fallback. <br>
+## Use Case:
 
+External users and developers use this skill to preview synthetic or hypothetical Aavegotchi appearances from traits, wearable IDs, wearable names, named presets, backgrounds, and render modes. It can produce full-body renders, headshots, and a manifest for outfit or portrait workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaigotchi/gotchi-3d-custom-render) <br>
-- [Publisher profile](https://clawhub.ai/user/aaigotchi) <br>
-- [Architecture](references/architecture.md) <br>
-- [Request Schema](references/request-schema.md) <br>
-- [Input Schema](references/input-schema.md) <br>
-- [Presets And Aliases](references/presets.md) <br>
-- [Oracle VM Setup](references/oracle-vm-setup.md) <br>
-- [Aavegotchi](https://www.aavegotchi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, JSON, Guidance] <br>
-**Output Format:** [PNG image files and JSON manifest, with concise Markdown or shell-command guidance from the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces full-body PNG, headshot PNG, and manifest JSON under the configured render output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server-resolved release evidence) <br>
+Risk: Direct render requests can delete or overwrite arbitrary writable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated, low-privilege workspace and prefer the main wrapper until output paths are generated internally or restricted to a dedicated render directory.
+
+Risk: Hosted or Unity runners may receive untrusted request JSON.
+
+Mitigation: Avoid passing untrusted request JSON directly to the runners; validate requests and use the wrapper path for normal operation.
+
+Risk: Unity SDK dependencies may change behavior if not fixed to a reviewed revision.
+
+Mitigation: Pin the Unity SDK dependency to a reviewed immutable revision before broader deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaigotchi/skills/gotchi-3d-custom-render)
+- [Aavegotchi](https://www.aavegotchi.com)
+- [Architecture](references/architecture.md)
+- [Input Schema](references/input-schema.md)
+- [Request Schema](references/request-schema.md)
+- [Presets And Aliases](references/presets.md)
+- [Oracle VM Setup](references/oracle-vm-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands and JSON file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces full-body PNG, headshot PNG, and manifest JSON render artifacts.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

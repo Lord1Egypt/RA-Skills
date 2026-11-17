@@ -1,40 +1,54 @@
-## Description: <br>
-Fix AI writing patterns that create repetitive and robotic content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fix AI writing patterns that create repetitive and robotic content.
 
-## Publisher: <br>
-[admirobot](https://clawhub.ai/user/admirobot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[admirobot](https://clawhub.ai/user/admirobot)
 
-## Use Case: <br>
-Employees, external users, and writing-focused agents use this skill to revise prose that sounds repetitive or robotic by applying checks for paragraph openers, rhythm, evidence, structure, transitions, tone, word economy, and nominalizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact metadata does not perfectly match the registry metadata, which could cause users to install a release other than the one they intended. <br>
-Mitigation: Confirm the publisher, package identity, and release version before installing or enabling the skill. <br>
-Risk: The skill's style preferences may conflict with a strict house style or domain-specific writing standard. <br>
-Mitigation: Apply the guidance only where it matches the organization's style requirements, and review final prose before publication. <br>
+## Use Case:
 
+External users, developers, and content creators use this skill to revise text that sounds repetitive, vague, overly mechanical, or inconsistent in voice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/admirobot/media-observer-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or tool access; outputs are style recommendations and rewritten prose when applied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can appear in many writing and editing tasks because its description is broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for prose-quality review and prefer a narrower version when a workflow needs tighter trigger boundaries.
+
+Risk: Style edits may remove useful nuance or change the author's intended voice.
+
+Mitigation: Review suggested edits against the target audience, evidence, and desired tone before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/admirobot/skills/media-observer-writer)
+- [ClawHub publisher profile](https://clawhub.ai/user/admirobot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise editing recommendations; no code, network access, persistence, or sensitive data handling is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

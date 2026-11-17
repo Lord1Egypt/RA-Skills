@@ -1,41 +1,52 @@
-## Description: <br>
-Comprehensive Blender automation via Python bpy API. Procedural modeling, material nodes, lighting, rendering, and asset generation. Includes verified gear/mechanical parts demo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Blender automation via the Python bpy API for procedural modeling, material nodes, lighting, rendering, asset generation, and gear or mechanical parts demos.
 
-## Publisher: <br>
-[emergencescience](https://clawhub.ai/user/emergencescience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[emergencescience](https://clawhub.ai/user/emergencescience)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and technical artists use this skill to generate Blender Python scripts for procedural 3D assets, materials, lighting, rendering, batch automation, and export workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Example and demo scripts can delete the current Blender scene and remove existing materials.
+
+Mitigation: Review scripts before execution and run demos only in a new or disposable Blender file, not an active project.
+
+Risk: Demo scripts save render and blend outputs to fixed temporary paths without confirmation.
+
+Mitigation: Change output paths to private or user-selected locations before rendering or saving.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, technical artists, and 3D automation engineers use this skill to create procedural Blender scenes, materials, lighting, renders, exports, and reusable bpy scripting patterns. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled demo and clear-scene snippet can delete objects and materials from the current Blender scene. <br>
-Mitigation: Run the demo in a new, saved, or disposable .blend file before applying patterns to valuable work. <br>
-Risk: Render and export commands can overwrite files if output paths are reused. <br>
-Mitigation: Choose explicit output filenames and review paths before running render or export scripts. <br>
+**Output Format:** [Markdown with inline Python and bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emergencescience/blender-bpy-enhanced) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/emergencescience) <br>
+**Other Properties Related to Output:** [Produces Blender bpy scripting guidance and runnable script patterns that should be reviewed before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs assume Blender is installed and available as a local binary.] <br>
+2.2.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-2.2.0 (source: evidence release and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

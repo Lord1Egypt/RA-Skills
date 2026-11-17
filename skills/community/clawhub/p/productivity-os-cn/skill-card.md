@@ -1,41 +1,58 @@
-## Description: <br>
-中文效率操作系统 — 集目标/项目/任务/习惯/复盘于一体，结合微信/钉钉/飞书生态，专为中国职场人设计，含变现路径指导。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文效率操作系统，帮助用户在本地 Markdown 文件中管理目标、项目、任务、习惯、复盘和变现路径。
 
-## Publisher: <br>
-[renzhe521](https://clawhub.ai/user/renzhe521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renzhe521](https://clawhub.ai/user/renzhe521)
 
-## Use Case: <br>
-Chinese-speaking employees, freelancers, students, and entrepreneurs use this skill to set up a local Markdown-based productivity system for goals, projects, tasks, habits, reviews, energy planning, and income tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Productivity and income-tracking notes may contain sensitive personal, client, platform, or financial details on disk. <br>
-Mitigation: Keep the productivity folder private, avoid storing secrets, and limit recorded income or client details to what is necessary. <br>
-Risk: The local Markdown system can accumulate outdated tasks, commitments, or monetization experiments if the user skips review routines. <br>
-Mitigation: Follow the weekly review and cleanup guidance before treating task lists or income plans as current. <br>
+## Use Case:
 
+Chinese-speaking professionals, entrepreneurs, freelancers, and students use this skill to set up and maintain a local productivity workspace for weekly planning, daily focus, habit tracking, reviews, and monetization experiments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renzhe521/productivity-os-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/renzhe521) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown templates and structured planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and maintains local productivity notes; no code execution or external data transfer was found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may create or update local notes containing personal goals, income details, client information, or preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed file edits before accepting them and avoid storing sensitive details that are not needed for productivity tracking.
+
+Risk: The productivity workflow depends on regular reviews and pruning; unchecked accumulation can reduce usefulness.
+
+Mitigation: Use the weekly review and task cleanup routines before expanding the workspace or adding new commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renzhe521/skills/productivity-os-cn)
+- [Publisher profile](https://clawhub.ai/user/renzhe521)
+- [Skill source](artifact/SKILL.md)
+- [Monetization direction worksheet](artifact/monetize/direction.md)
+- [Income tracker worksheet](artifact/monetize/income-tracker.md)
+- [Monetization action plan worksheet](artifact/monetize/action-plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions and local Markdown workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local productivity notes under a home-directory productivity folder; users should review edits before accepting personal, income, client, goal, or preference records.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

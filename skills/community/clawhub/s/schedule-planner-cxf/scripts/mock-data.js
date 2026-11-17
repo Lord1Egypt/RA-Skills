@@ -1,7 +1,7 @@
 /**
  * mock-data.js — Mock 数据模块
  *
- * 当无 API Key 或指定 --mock 参数时，提供预置的模拟数据，
+ * 仅指定 --mock 参数时，提供预置的模拟数据，
  * 使得本技能无需外部依赖即可运行和演示。
  *
  * 使用方法：
@@ -66,17 +66,10 @@ const MOCK_HOTELS = {
 
 /**
  * 检查是否应使用 Mock 模式
- * 条件：--mock 参数 或 缺少 TUNIU_API_KEY
+ * 条件：显式 --mock 参数
  */
 function shouldUseMock(args) {
-  if (args && args.includes('--mock')) {
-    return true;
-  }
-  const apiKey = process.env.TUNIU_API_KEY || process.env.AMAP_API_KEY;
-  if (!apiKey || apiKey === '' || apiKey.startsWith('your_')) {
-    return true;
-  }
-  return false;
+  return Array.isArray(args) && args.includes('--mock');
 }
 
 /**
@@ -112,11 +105,12 @@ function getMockTripData() {
     tripType: '出差',
     destination: '杭州',
     duration: '2026-06-15 至 2026-06-17（2晚3天）',
-    passenger: '张明（Mock）',
+    mock: true,
+    language: 'zh-CN',
     segments: [
-      { type: 'train', segmentNo: 'G7535', departure: '上海虹桥 08:00', arrival: '杭州东 09:00', date: '2026-06-15', price: 73, seat: '二等座', duration: '1小时', orderId: 'MOCK-TRAIN-001' },
-      { type: 'hotel', name: '万斯酒店（阿里巴巴西溪园区店）', address: '余杭塘路未来星宸6号楼', roomType: '高级大床房-含双早', checkIn: '2026-06-15 14:00后', checkOut: '2026-06-17 12:00前', nights: 2, price: 497, orderId: 'MOCK-HOTEL-001' },
-      { type: 'train', segmentNo: 'G7540', departure: '杭州东 18:00', arrival: '上海虹桥 19:00', date: '2026-06-17', price: 73, seat: '二等座', duration: '1小时', orderId: 'MOCK-TRAIN-002' },
+      { type: 'train', segmentNo: 'G7535', departure: '上海虹桥 08:00', arrival: '杭州东 09:00', date: '2026-06-15', price: 73, seat: '二等座', duration: '1小时' },
+      { type: 'hotel', name: '万斯酒店（阿里巴巴西溪园区店）', address: '余杭塘路未来星宸6号楼', roomType: '高级大床房-含双早', checkIn: '2026-06-15 14:00后', checkOut: '2026-06-17 12:00前', nights: 2, price: 497 },
+      { type: 'train', segmentNo: 'G7540', departure: '杭州东 18:00', arrival: '上海虹桥 19:00', date: '2026-06-17', price: 73, seat: '二等座', duration: '1小时' },
     ],
     dailyPlan: [
       { day: 'Day 1（06-15）', title: '上海 → 杭州，入住酒店', items: ['🚄 G7535 上海虹桥 08:00 → 杭州东 09:00', '🏨 入住万斯酒店（阿里巴巴店）', '💼 下午前往阿里巴巴西溪园区拜访客户'] },
@@ -125,7 +119,7 @@ function getMockTripData() {
     ],
     costs: { train1: 73, train2: 73, hotel: 994, total: 1140 },
     tips: ['请提前30分钟到达火车站', '杭州6月气温25-32℃，注意防晒', '酒店距阿里步行10分钟', '本行程为模拟演示数据'],
-    paymentUrl: 'https://m.tuniu.com/u/order?page=1&filter=0-0-1'
+    platformUrl: 'https://www.tuniu.com/'
   };
 }
 

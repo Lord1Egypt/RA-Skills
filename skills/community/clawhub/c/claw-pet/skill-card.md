@@ -1,44 +1,58 @@
-## Description: <br>
-Catch a pet or loot item by calling a configured remote pet backend API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Pet calls a configured remote pet backend API to trigger a catch action and formats pet, item, empty, or error responses.
 
-## Publisher: <br>
-[aileaile](https://clawhub.ai/user/aileaile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aileaile](https://clawhub.ai/user/aileaile)
 
-## Use Case: <br>
-External users and developers use Claw Pet to trigger an authenticated catch action against a pet backend they control and receive a concise pet, item, empty, or error result summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Catch, fishing, or luck prompts send an authenticated remote request to the configured backend. <br>
-Mitigation: Configure CATCH_API_URL only to a trusted HTTPS endpoint that you control and confirm that users expect the remote catch action before use. <br>
-Risk: The skill requires a bearer API key for the pet backend. <br>
-Mitigation: Use a dedicated low-scope API key, prefer environment variables for runtime configuration, and do not publish production secrets in _meta.json. <br>
-Risk: Backend responses can be malformed, non-JSON, or shaped differently from the documented contract. <br>
-Mitigation: Keep the backend aligned with references/api.md and treat error or malformed responses as user-visible failure categories rather than successful catches. <br>
+## Use Case:
 
+External users and developers use this skill to trigger a catch action against a pet backend they control and receive a concise result summary. It is useful for pet, loot, empty-result, and backend-error response flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aileaile/claw-pet) <br>
-- [Publisher profile](https://clawhub.ai/user/aileaile) <br>
-- [Catch Pet API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown summary of a remote catch result, including pet, item, empty, or error status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured backend URL and bearer API key before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: A configured backend URL can receive the API key, and HTTPS is not enforced by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only a backend you control, use an HTTPS URL, and keep the API key narrowly scoped to the catch action.
+
+Risk: Broad catch or fish phrasing may trigger an authenticated request unintentionally.
+
+Mitigation: Review ambiguous catch or fish requests before running the skill and confirm when the user intent is unclear.
+
+Risk: Production secrets could be placed in _meta.json.
+
+Mitigation: Prefer environment variables for secrets and keep _meta.json empty or development-only before sharing or publishing the skill.
+
+## Reference(s):
+
+- [Catch Pet API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/aileaile/skills/claw-pet)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration guidance]
+
+**Output Format:** [Plain text summaries and error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Formats pet, item, empty, and error responses without exposing secrets.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

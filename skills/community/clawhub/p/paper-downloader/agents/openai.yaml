@@ -1,0 +1,3 @@
+interface:
+  display_name: "Paper Downloader"
+  short_description: "Download public papers and files for another skill"

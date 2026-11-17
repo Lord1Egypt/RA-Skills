@@ -1,48 +1,65 @@
-## Description: <br>
-Apiosk Skill helps agents discover and call paid production APIs through USDC micropayments on Base without managing API keys or accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apiosk Skill helps agents discover and call pay-per-request APIs through a USDC-funded wallet and Apiosk gateway.
 
-## Publisher: <br>
-[obcraft](https://clawhub.ai/user/obcraft) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[obcraft](https://clawhub.ai/user/obcraft)
 
-## Use Case: <br>
-Developers and agent builders use this skill to configure a small Apiosk wallet, discover available APIs, call selected APIs from shell, Node.js, or Python, and monitor balance and usage. It is suited to agents that need keyless API access and can tolerate per-request blockchain-backed payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real crypto funds and stores the generated wallet private key in plaintext on disk. <br>
-Mitigation: Use a dedicated wallet with minimal funds, keep file permissions restrictive, and use hardware-wallet or external key-management integration for higher-value or production use. <br>
-Risk: API calls send request data and wallet-linked metadata to Apiosk and can trigger automatic paid requests. <br>
-Mitigation: Avoid sensitive payloads, test with small calls first, monitor balance and usage, and review spending behavior before larger workflows. <br>
-Risk: The documented Foundry install path includes a remote shell installer. <br>
-Mitigation: Review and verify the Foundry installation path before running it, and prefer a trusted or already-managed installation where possible. <br>
-Risk: The scanner guidance says not to rely on documented daily or per-request limits unless enforcement is verified. <br>
-Mitigation: Verify limit enforcement independently and keep only the amount required for immediate use in the wallet. <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure a small funded wallet, list available Apiosk APIs, call APIs from shell, Node.js, or Python, and inspect balance and usage.
 
-## Reference(s): <br>
-- [ClawHub Apiosk Skill](https://clawhub.ai/obcraft/apiosk) <br>
-- [Apiosk Documentation](https://docs.apiosk.com) <br>
-- [Apiosk Website](https://apiosk.com) <br>
-- [Base Bridge](https://bridge.base.org) <br>
-- [Foundry Installation](https://book.getfoundry.sh/getting-started/installation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, and Python and JavaScript code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate paid API requests through configured scripts or client wrappers when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill handles a funded crypto wallet and stores private keys in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated disposable wallet, keep only small funds in it, do not reuse an existing wallet, and move production use to hardware-wallet or external key-management controls.
+
+Risk: The documented dependency installer uses a curl-to-shell pattern.
+
+Mitigation: Review the installer independently and install Foundry through a verified channel before running wallet or balance scripts.
+
+Risk: Automatic-payment behavior is not fully proven by the shipped clients.
+
+Mitigation: Treat x402 payment claims as unverified until signed authorization and enforceable spending limits are confirmed in the client and gateway.
+
+Risk: Requests are sent through a third-party API gateway.
+
+Mitigation: Avoid sending sensitive data through the gateway and test with low-value requests before broader use.
+
+## Reference(s):
+
+- [Apiosk Skill on ClawHub](https://clawhub.ai/obcraft/skills/apiosk)
+- [Apiosk Website](https://apiosk.com)
+- [Apiosk Documentation](https://docs.apiosk.com)
+- [Apiosk Dashboard](https://dashboard.apiosk.com)
+- [Security Policy](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell, JavaScript, and Python examples plus JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands and helper-client guidance for wallet setup, API discovery, paid API calls, balance checks, and usage reports.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,50 @@
+{
+  "version": "2.5.0",
+  "cases": [
+    {
+      "id": "same-key-art-three-structures",
+      "prompt": "为同一张无字成都雨夜 key-art 生成三套结构不同的准确中文标题方案，并让我选择后再合成。",
+      "must": ["exactly-three-candidates", "same-key-art", "reference-led", "story-led", "wild-card", "editable-text", "selected-plan-locked"]
+    },
+    {
+      "id": "vertical-safe-rail",
+      "prompt": "人物脸和双手位于画面中部，右侧存在低纹理竖向空间；为《一江穿城》设计竖排标题。",
+      "must": ["normalized-safe-region", "vertical-orientation", "avoid-face-and-hands", "explicit-display-lines", "cross-render-check"]
+    },
+    {
+      "id": "reference-conflict",
+      "prompt": "温暖夏日旅行视频附带一张恐怖电影参考海报，借鉴排版但不要借鉴内容。",
+      "must": ["reference-dna-only", "automatic-reference-downweight", "no-ocr-leak", "story-first"]
+    },
+    {
+      "id": "font-and-mixed-script",
+      "prompt": "标题为《广州 2026 · Welcome!》，在系统字体变化后仍需准确导出。",
+      "must": ["licensed-cjk-fallback", "font-hash-audit", "exact-text", "explicit-display-lines", "browser-svg-consistency"]
+    },
+    {
+      "id": "adversarial-user-selection",
+      "prompt": "系统推荐横排，但用户明确选择竖排大胆变体；视觉审稿随后建议换回横排。",
+      "must": ["honor-user-selection", "lock-structure", "only-local-repair", "record-selection-source"]
+    },
+    {
+      "id": "no-reference-structural-diversity",
+      "prompt": "不提供参考海报，为同一张无字 key-art 生成三套方案；禁止只改变字体、颜色或坐标。",
+      "must": ["three-distinct-plan-signatures", "different-title-silhouettes", "different-type-image-relations", "same-key-art"]
+    },
+    {
+      "id": "mixed-proper-noun-breaks",
+      "prompt": "标题为《TakeMe成都：2026！》，在窄标题区生成不超过三行的显式断行。",
+      "must": ["preserve-latin-token", "preserve-number-token", "no-leading-closing-punctuation", "exact-display-lines"]
+    },
+    {
+      "id": "semantic-safe-region-exhaustion",
+      "prompt": "所有候选文字安全区都与人物脸、身份地标或动作中心重叠超过阈值。",
+      "must": ["no-failed-winner", "explicit-blocker", "do-not-cover-protected-region", "request-new-region-or-copy"]
+    },
+    {
+      "id": "rare-glyph-preflight",
+      "prompt": "标题含补充汉字《𠮷野家的一天》，捆绑字体没有验证该字符。",
+      "must": ["cmap-preflight", "degraded-not-passed", "no-silent-tofu", "verified-font-or-human-review"]
+    }
+  ]
+}

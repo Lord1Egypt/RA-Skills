@@ -1,47 +1,64 @@
-## Description: <br>
-AI Model Team - Multi-model prediction system (Kronos + Chronos-2 + TimesFM + VADER) for OKX crypto and US stocks. Features error handling, retry logic, HTTP caching, unit tests, and correct data source routing (OKX for crypto, Yahoo Finance for stocks). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Model Team is a multi-model prediction skill for OKX crypto markets and US stocks using Kronos, Chronos-2, TimesFM, and VADER-based sentiment signals.
 
-## Publisher: <br>
-[erongcao](https://clawhub.ai/user/erongcao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erongcao](https://clawhub.ai/user/erongcao)
 
-## Use Case: <br>
-External users and developers use this skill to generate multi-model trading prediction signals for OKX crypto instruments and US stocks. It supports command-line analysis, concise signal output, and JSON output for downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes external code imports, local package patching, and rollback-style helpers that can mutate the runtime environment. <br>
-Mitigation: Install in an isolated environment, review scripts before execution, and run post_install.py or rollback helpers only when those local changes are intended. <br>
-Risk: Environment-controlled paths and webhook settings can cause data to be read from or sent to untrusted locations. <br>
-Mitigation: Avoid untrusted values for AI_HEDGE_PATH, ALERT_WEBHOOK, and related path settings; keep secrets out of logs and configuration files. <br>
-Risk: run_team.py can write prediction notes into a local Obsidian vault instead of behaving as a read-only forecast. <br>
-Mitigation: Set the vault path deliberately, run the skill in a sandbox when evaluating it, and review generated notes before relying on them. <br>
-Risk: Trading predictions may be incorrect or misleading and are not investment advice. <br>
-Mitigation: Treat outputs as informational signals, require human review, and apply independent risk controls before any trading decision. <br>
+## Use Case:
 
+Developers and trading analysts use this skill to run multi-model market prediction for OKX crypto instruments and US equities, review fused signals, risk-gate status, and optional sentiment context before making their own trading decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erongcao/ai-model-team) <br>
-- [Kronos-Base Model Card](docs/KRONOS_MODEL_CARD.md) <br>
-- [TimesFM dependency source](https://github.com/google-research/timesfm.git@f085b90) <br>
-- [Chronos forecasting dependency source](https://github.com/amazon-science/chronos-forecasting.git@6d68ed7c4ed2805d122d77b4660765b4089de5ca) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, optional JSON, and Markdown notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external market and news APIs; run_team.py can write local notes when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.2 (source: server release evidence and README.md) <br>
+Risk: The security review reports risky runtime and install behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use an isolated virtual environment, and do not run post_install.py until the package-rewrite approach is removed or justified.
+
+Risk: Unreviewed symbol or timeframe inputs can produce misleading trading analysis.
+
+Mitigation: Restrict inputs to expected asset and timeframe formats and treat every output as analytical context, not investment advice.
+
+Risk: Model downloads can change behavior when Hugging Face revisions are not pinned to reviewed versions.
+
+Mitigation: Pin model identifiers to reviewed revisions before production use.
+
+Risk: Default note writing can target a personal Obsidian vault path.
+
+Mitigation: Explicitly control output paths with environment configuration or avoid run_team.py when file writes are not desired.
+
+## Reference(s):
+
+- [ClawHub AI Model Team Skill Page](https://clawhub.ai/erongcao/skills/ai-model-team)
+- [Kronos-Base Model Card](docs/KRONOS_MODEL_CARD.md)
+- [Google TimesFM source dependency](https://github.com/google-research/timesfm.git@f085b90)
+- [Amazon Chronos forecasting source dependency](https://github.com/amazon-science/chronos-forecasting.git@6d68ed7c4ed2805d122d77b4660765b4089de5ca)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal report, compact signal summary, or JSON prediction output with model signals and risk-gate fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include market signal, confidence, forecast movement, model votes, and risk-gate decision fields; run_team.py can append Markdown notes to a configured Obsidian vault path.]
+
+## Skill Version(s):
+
+2.9.2 (source: server release metadata and README; SKILL.md frontmatter reports 2.9.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Translate safety procedures, supplier documents, and Articulate Rise 360 eLearning content into 137+ languages using AI for supply chain, HSE, and L&D teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate safety procedures, supplier documents, and Articulate Rise 360 eLearning content into 137+ languages using AI for supply chain, HSE, and L&D teams.
 
-## Publisher: <br>
-[nikirun2017-phache](https://clawhub.ai/user/nikirun2017-phache) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nikirun2017-phache](https://clawhub.ai/user/nikirun2017-phache)
 
-## Use Case: <br>
-External users, supply chain teams, HSE professionals, and L&D teams use this skill to submit local compliance-critical files for translation, monitor translation jobs, and download translated outputs. It is aimed at supplier documents, Articulate Rise 360 XLIFF files, safety data sheets, JSAs, LOTO procedures, and other multilingual workforce materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents are uploaded to Summon Translator and the chosen AI provider. <br>
-Mitigation: Use the skill only for documents approved for that workflow, and avoid uploading secrets, regulated data, or confidential documents without organizational approval. <br>
-Risk: The skill uses a paid translation API and AI providers, which can create billing exposure. <br>
-Mitigation: Use a dedicated revocable API key and monitor billing for translation jobs. <br>
-Risk: Safety-critical, regulatory, or legally binding translations may be incorrect if used without review. <br>
-Mitigation: Have a qualified human reviewer validate final translations before operational, regulatory, or legal use. <br>
+## Use Case:
 
+Supply chain managers, HSE professionals, and L&D teams use this skill to submit local compliance or training files to Summon Translator, poll jobs, and download translated files while preserving supported document structures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nikirun2017-phache/summon-translator-skill) <br>
-- [Summon Translator homepage](https://summontranslator.com) <br>
-- [Summon Translator API docs](https://summontranslator.com/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash code blocks and downloaded translated files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUMMON_API_KEY and sends selected files to the Summon Translator API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Chosen documents are sent to Summon Translator's external translation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents approved for external processing and review organizational handling requirements before upload.
+
+Risk: A crafted local file path could cause unintended shell command execution in the sample upload command.
+
+Mitigation: Avoid untrusted file paths and prefer a fixed script or API client that passes file paths as arguments instead of substituting them into shell text.
+
+Risk: Safety-critical or legally binding translations may be inaccurate without domain review.
+
+Mitigation: Have a qualified human reviewer validate regulatory submissions and safety-critical translated content before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nikirun2017-phache/skills/summon-translator-skill)
+- [Summon Translator API Docs](https://summontranslator.com/llms.txt)
+- [Summon Translator Homepage](https://summontranslator.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SUMMON_API_KEY and produces commands for submitting, polling, and downloading translation jobs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

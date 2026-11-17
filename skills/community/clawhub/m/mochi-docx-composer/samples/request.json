@@ -1,0 +1,25 @@
+{
+  "action": "create",
+  "title": "项目简报 / Project Brief",
+  "sections": [
+    {
+      "heading": "进展 / Progress",
+      "paragraphs": [
+        "这是虚构示例。This is a fictional sample."
+      ],
+      "bullets": [
+        "Review the draft"
+      ],
+      "table": [
+        [
+          "Item",
+          "Status"
+        ],
+        [
+          "Demo",
+          "Ready"
+        ]
+      ]
+    }
+  ]
+}

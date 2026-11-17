@@ -19,6 +19,12 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).parent.parent.absolute()
 ENV_FILE = SKILL_ROOT / "config" / ".env"
 
+# 受支持的识别类型白名单：严格限定为社保卡/医保卡
+ALLOWED_OCR_TYPES = {"SOCIAL_SECURITY_CARD"}
+
+# 允许上传的文件扩展名白名单（社保卡图片）
+ALLOWED_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.bmp', '.tiff', '.tif', '.pdf'}
+
 # --- 新增：重试配置 ---
 MAX_RETRIES = 3            # 最大重试次数
 RETRY_BACKOFF_FACTOR = 2   # 退避因子，每次重试等待时间翻倍
@@ -75,8 +81,35 @@ def load_config():
         )
         sys.exit(error_msg)
 
-    config.setdefault('SCNET_API_BASE', 'https://api.scnet.cn/api/llm/v1')
+    # 显式固定默认 API 基础地址，避免环境变量被篡改为其他端点
+    config['SCNET_API_BASE'] = config.get('SCNET_API_BASE', 'https://api.scnet.cn/api/llm/v1')
     return config
+
+def validate_ocr_type(ocr_type):
+    """校验识别类型，仅允许受支持的白名单值"""
+    if ocr_type not in ALLOWED_OCR_TYPES:
+        sys.exit(
+            f"错误: 不支持的识别类型 '{ocr_type}'。"
+            f"本技能严格限定为社会保障卡识别，ocrType 必须为: {', '.join(sorted(ALLOWED_OCR_TYPES))}"
+        )
+
+def validate_file_path(file_path):
+    """校验文件路径：必须是存在的普通文件、可读、绝对路径，并在允许扩展名范围内"""
+    path = Path(file_path)
+    if not path.is_absolute():
+        sys.exit(f"错误: filePath 必须提供本地绝对路径 - {file_path}")
+    if not path.exists():
+        sys.exit(f"错误: 文件不存在 - {file_path}")
+    if not path.is_file():
+        sys.exit(f"错误: 路径不是文件 - {file_path}")
+    if not os.access(path, os.R_OK):
+        sys.exit(f"错误: 没有权限读取该文件 - {file_path}")
+
+    if path.suffix.lower() not in ALLOWED_EXTENSIONS:
+        sys.exit(
+            f"错误: 不支持的文件类型 '{path.suffix}'。"
+            f"本技能仅接受社保卡图片文件，支持的扩展名: {', '.join(sorted(ALLOWED_EXTENSIONS))}"
+        )
 
 def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
     """
@@ -86,10 +119,6 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
     api_base = config['SCNET_API_BASE']
     api_key = config['SCNET_API_KEY']
     url = f"{api_base}/ocr/recognize"
-
-    # 检查文件是否存在
-    if not os.path.isfile(file_path):
-        sys.exit(f"错误: 文件不存在 - {file_path}")
 
     # 自动检测 MIME 类型
     mime_type, _ = mimetypes.guess_type(file_path)
@@ -166,8 +195,6 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
         sys.exit(f"API 错误 {result.get('code')}: {result.get('msg')}")
 
     # 输出 data 部分（识别结果）
-    #print(json.dumps(result.get('data', []), ensure_ascii=False, indent=2))
-    # 获取 data 部分
     data = result.get('data', [])
 
     # 移除每个识别项中的 confidence 字段（优化点）
@@ -182,11 +209,15 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
 def main():
     if len(sys.argv) != 3:
         print("用法: python main.py <ocrType> <filePath>")
-        print("ocrType 可选值: SOCIAL_SECURITY_CARD")
+        print("ocrType 固定值: SOCIAL_SECURITY_CARD")
         sys.exit(1)
 
     ocr_type = sys.argv[1]
     file_path = sys.argv[2]
+
+    # 在调用任何外部服务之前，先在入口处强制校验参数
+    validate_ocr_type(ocr_type)
+    validate_file_path(file_path)
 
     config = load_config()
     # 调用带重试的识别函数

@@ -17,14 +17,15 @@ Anywhere a `SESSION_ID` is expected, you can use an alias instead. Aliases are r
 
 ```bash
 # After joining sessions, give them names
-nexus.sh alias 4670cde8a96a... mila
-nexus.sh alias 73178d08... sxsw
+nexus.sh alias 4670cde8a96a... chatbot
+nexus.sh alias 73178d08... research
 
 # Now use the name in any command
-nexus.sh send mila "Hey!"
-nexus.sh poll sxsw
-nexus.sh status mila
-nexus.sh renew sxsw --ttl 7200
+nexus.sh send chatbot "Hey!"
+nexus.sh poll research
+nexus.sh status chatbot
+nexus.sh renew research  # saved member key, current TTL
+# Creator only: nexus.sh renew research --ttl 7200
 ```
 
 ## Listing Sessions
@@ -33,16 +34,20 @@ nexus.sh renew sxsw --ttl 7200
 # Table format on TTY
 nexus.sh ls
 #  ALIAS     SESSION        AGENT-ID    STATUS
-#  mila      4670cde8...    jj          active
-#  sxsw      73178d08...    johnjohn    active
-#  —         a1b2c3d4...    jj          expired
+#  chatbot   4670cde8...    my-agent    active
+#  research  73178d08...    my-agent    unreachable
+#  —         a1b2c3d4...    my-agent    not_found
+# STATUS reflects the last server probe: active (HTTP 200), not_found (404),
+# unreachable (timeout/connection failed), error (other HTTP status).
+# Each session is probed against ITS OWN bound server, so a wrong ambient
+# $NEXUS_URL no longer poisons the listing.
 
-# Only active sessions
+# Only sessions that may be alive (active + unreachable; drops not_found/error)
 nexus.sh ls --active
 
-# JSON output (for piping)
+# JSON output (for piping) — each entry carries the `server` it was probed against
 nexus.sh ls --json
-# {"sessions":[{"sessionId":"...","alias":"mila","agentId":"jj","status":"active","cursor":"24"}, ...]}
+# {"sessions":[{"sessionId":"...","alias":"chatbot","agentId":"my-agent","status":"active","server":"https://messaging.md","cursor":"24"}, ...]}
 ```
 
 ## Polling All Sessions
@@ -60,8 +65,8 @@ Output groups messages by session:
 ```json
 {
   "sessions": [
-    {"sessionId": "4670...", "alias": "mila", "messages": [...], "members": null},
-    {"sessionId": "7317...", "alias": "sxsw", "messages": [], "members": null}
+    {"sessionId": "4670...", "alias": "chatbot", "messages": [...], "members": null},
+    {"sessionId": "7317...", "alias": "research", "messages": [], "members": null}
   ]
 }
 ```
@@ -70,10 +75,10 @@ Output groups messages by session:
 
 ```bash
 # Remove alias only (session stays active, accessible by full ID)
-nexus.sh unalias mila
+nexus.sh unalias chatbot
 
 # Leave session (auto-removes alias + cleans local data)
-nexus.sh leave mila
+nexus.sh leave chatbot
 ```
 
 `leave` always auto-removes the alias if one exists — no need to `unalias` separately.
@@ -84,8 +89,8 @@ Aliases are stored in `~/.config/messaging/aliases.json`:
 
 ```json
 {
-  "mila": "4670cde8a96a4d6eacca4185abb1e8aebdcb319f6eca5bb9",
-  "sxsw": "73178d0812fe42e994b94e2c2487fc7277e356d30e1f708f"
+  "chatbot": "4670cde8a96a4d6eacca4185abb1e8aebdcb319f6eca5bb9",
+  "research": "73178d0812fe42e994b94e2c2487fc7277e356d30e1f708f"
 }
 ```
 

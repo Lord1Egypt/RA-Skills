@@ -14,23 +14,45 @@ from typing import Any
 from .constants import AUTHOR_ROLE_PATTERNS, AUTHOR_SUFFIXES, MIN_PYTHON, PRICE_TOKEN_RE
 
 
+DEFAULT_HTTP_RESPONSE_LIMIT = 2 * 1024 * 1024
+_SENSITIVE_KEY_PARTS = (
+    "authorizationcode",
+    "codeverifier",
+    "cookie",
+    "customerinfo",
+    "deviceinfo",
+    "email",
+    "macdms",
+    "password",
+    "privatekey",
+    "refreshtoken",
+    "secret",
+)
+
+
 def ensure_python_version() -> None:
     if sys.version_info < MIN_PYTHON:
         required = ".".join(str(part) for part in MIN_PYTHON)
         raise RuntimeError(f"Python {required}+ is required for this skill.")
 
 
-def normalize_space(value: str) -> str:
-    return re.sub(r"\s+", " ", value or "").strip()
+def normalize_space(value: Any) -> str:
+    return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
 def redact_sensitive_text(value: Any) -> str:
     text = str(value)
     text = re.sub(
-        r"(?i)(access[_-]?token|refresh[_-]?token|code[_-]?verifier|authorization[_-]?code)([\"'\s:=]+)([^\"'\s,&}]+)",
+        r"(?i)(access[_-]?token|refresh[_-]?token|code[_-]?verifier|authorization[_-]?code|adp[_-]?token|private[_-]?key|password|secret)([\"'\s:=]+)([^\"'\s,&}]+)",
         r"\1\2[redacted]",
         text,
     )
+    text = re.sub(
+        r"(?i)(website[_-]?cookies?|store[_-]?authentication[_-]?cookie)([\"'\s:=]+)(\[[^\]]*\]|[^\s,}]+)",
+        r"\1\2[redacted]",
+        text,
+    )
+    text = re.sub(r"(?i)([A-Z0-9._%+-])[A-Z0-9._%+-]*(@[A-Z0-9.-]+\.[A-Z]{2,})", r"\1***\2", text)
     text = re.sub(r"(?i)(Bearer\s+)[A-Za-z0-9._~+/=-]+", r"\1[redacted]", text)
     text = re.sub(r"(?i)(openid\.oa2\.authorization_code=)[^&\s]+", r"\1[redacted]", text)
     return text
@@ -41,7 +63,9 @@ def redact_sensitive_payload(payload: Any) -> Any:
         redacted: dict[str, Any] = {}
         for key, value in payload.items():
             normalized_key_name = re.sub(r"[^a-z0-9]", "", str(key).casefold())
-            if normalized_key_name in {"accesstoken", "refreshtoken", "codeverifier", "authorizationcode"}:
+            if normalized_key_name == "accesstoken" or any(
+                marker in normalized_key_name for marker in _SENSITIVE_KEY_PARTS
+            ):
                 redacted[key] = "[redacted]"
             else:
                 redacted[key] = redact_sensitive_payload(value)
@@ -50,6 +74,18 @@ def redact_sensitive_payload(payload: Any) -> Any:
         return [redact_sensitive_payload(item) for item in payload]
     if isinstance(payload, str):
         return redact_sensitive_text(payload)
+    return payload
+
+
+def read_limited_bytes(response: Any, *, limit: int = DEFAULT_HTTP_RESPONSE_LIMIT) -> bytes:
+    if limit <= 0:
+        raise ValueError("HTTP response limit must be positive.")
+    try:
+        payload = response.read(limit + 1)
+    except TypeError:
+        payload = response.read()
+    if len(payload) > limit:
+        raise ValueError(f"HTTP response exceeded the {limit}-byte safety limit.")
     return payload
 
 
@@ -141,7 +177,7 @@ def parse_localized_price(raw: str | None) -> float | None:
         number = plain.group(1)
     else:
         number = match.group("prefix_amount") or match.group("suffix_amount") or ""
-    number = number.replace(" ", "")
+    number = number.replace(" ", "").rstrip(".,")
     if "," in number and "." in number:
         if number.rfind(",") > number.rfind("."):
             number = number.replace(".", "").replace(",", ".")

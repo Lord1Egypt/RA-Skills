@@ -1,38 +1,52 @@
-## Description: <br>
-Guides agents in creating X (Twitter) post copy, threads, and platform-aware content recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates publish-ready X (Twitter) post copy, threads, and platform-specific formatting guidance.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agent builders use this skill to draft X (Twitter) posts, threads, hashtags, and image specifications for social publishing workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may be selected for generic thread-writing requests because its trigger wording is broad.
+
+Mitigation: Confirm the user wants X/Twitter-specific copy or thread guidance before relying on this skill.
+
+Risk: Platform metrics and ranking guidance may not reflect current X behavior.
+
+Mitigation: Treat metric-based recommendations as guidance and review the final copy before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agent builders use this skill to draft publish-ready X posts, threads, hashtags, and image specifications. It helps adapt copy for X-specific formatting, length, and engagement considerations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social-media copy or platform-performance guidance may be inaccurate, outdated, or misaligned with the user's brand standards. <br>
-Mitigation: Review generated posts and optimization claims before publishing, especially where account goals, brand voice, or platform behavior matter. <br>
+**Output Format:** [Markdown with publish-ready copy, character counts, thread structure, hashtags, and image specifications when relevant.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/twitter-x-posts) <br>
+**Other Properties Related to Output:** [Outputs should be reviewed before publishing because platform metrics and ranking guidance may change.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with post copy, character counts, thread structure, hashtags, and image specifications when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only copywriting aid; it does not access accounts or publish posts by itself.] <br>
+1.1.1 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.1.1 (source: server evidence and skill frontmatter metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

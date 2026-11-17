@@ -1,45 +1,62 @@
-## Description: <br>
-Send local files to nearby Apple devices through AirDrop with macOS guardrails, staging checks, and automation-friendly workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send local files to nearby Apple devices through AirDrop with macOS guardrails, staging checks, and automation-friendly workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and automation agents use this skill on macOS to stage exact local files and open the native AirDrop chooser or a user-owned Shortcut for nearby Apple-device handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approved files may be sent to the wrong nearby recipient if the user selects the wrong device in the macOS AirDrop chooser. <br>
-Mitigation: Keep recipient selection interactive and ask the user to confirm the exact payload before launch, especially for private files. <br>
-Risk: Staged files in ~/airdrop/staging may retain sensitive content after sharing. <br>
-Mitigation: Use staging only for approved payloads and delete staging files after use when they contain sensitive material. <br>
-Risk: Folders, logs, or bundles can include hidden files, credentials, or unrelated workspace content. <br>
-Mitigation: Resolve exact file paths, prefer curated archives, and exclude credentials, hidden files, and unrelated state unless explicitly approved. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare exact local file payloads and launch a nearby-device AirDrop handoff on macOS. It is intended for user-confirmed file sharing, staged exports, and automation-friendly workflows where recipient selection remains visible in the native macOS interface.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/airdrop) <br>
-- [Skill homepage](https://clawic.com/skills/airdrop) <br>
-- [Workflow Recipes - AirDrop](workflow-recipes.md) <br>
-- [Troubleshooting - AirDrop](troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS with AirDrop enabled; recipient selection remains interactive in the native macOS UI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Shortcut mode can run any named local macOS Shortcut, so behavior may be broader than a direct AirDrop helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only shortcuts the user created or audited, and confirm the exact shortcut name and file inputs before running Shortcut mode.
+
+Risk: Sensitive or overly broad file payloads could be shared if the request is vague or a directory contains unrelated content.
+
+Mitigation: Resolve explicit local file paths, curate or archive only the approved subset, and keep sensitive-file confirmations enabled.
+
+Risk: The AirDrop chooser launching does not prove that a nearby device received the files.
+
+Mitigation: Report only that the handoff UI launched until the user confirms receipt on the destination device.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/airdrop)
+- [AirDrop Homepage](https://clawic.com/skills/airdrop)
+- [Setup Guide](artifact/setup.md)
+- [Workflow Recipes](artifact/workflow-recipes.md)
+- [Troubleshooting Guide](artifact/troubleshooting.md)
+- [Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, local file paths, and confirmation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS-only; direct mode launches the native AirDrop chooser, and optional Shortcut mode delegates behavior to a user-owned macOS Shortcut.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

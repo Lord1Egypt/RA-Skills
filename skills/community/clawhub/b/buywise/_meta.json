@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn79bebfnwg15sb0g7cj5z5nyd83gxh0",
   "slug": "buywise",
-  "version": "1.5.6",
-  "publishedAt": 1782970533361
+  "version": "1.5.7",
+  "runtime": {
+    "node": ">=18"
+  }
 }

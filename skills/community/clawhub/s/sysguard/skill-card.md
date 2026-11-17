@@ -1,46 +1,63 @@
-## Description: <br>
-SysGuard provides OpenClaw system monitoring, health checks, diagnostics, text trend charts, cache cleanup, notifications, and continuous gateway monitoring from shell-based commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SysGuard provides IM-friendly OpenClaw system monitoring, health checks, diagnostics, trend reports, alerts, and cache cleanup through Bash commands.
 
-## Publisher: <br>
-[steventsang18](https://clawhub.ai/user/steventsang18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steventsang18](https://clawhub.ai/user/steventsang18)
 
-## Use Case: <br>
-OpenClaw administrators and operators use this skill in trusted operations channels to inspect host and gateway health, generate diagnostic reports, view recent trends, clean caches, and receive alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Host diagnostics and cleanup commands can be triggered through chat-based use. <br>
-Mitigation: Install only where the OpenClaw bot is limited to trusted administrators or private operations channels. <br>
-Risk: The cleanup command can remove temporary files, package cache data, journal logs, and old history records. <br>
-Mitigation: Review or disable cleanup behavior before deployment and document what data retention policy it enforces. <br>
-Risk: Alert notifications may leave the host through Feishu or WeCom webhook URLs. <br>
-Mitigation: Store webhook URLs as secrets, restrict channel membership, and document the external notification destination. <br>
-Risk: Continuous monitoring can run as a long-lived process. <br>
-Mitigation: Document how to start, supervise, and stop the monitor process before enabling it. <br>
+## Use Case:
 
+OpenClaw administrators and operators use SysGuard to check host health, inspect Gateway status, generate diagnostics, view short text trend charts, receive configured webhook alerts, and clean selected caches from IM conversations.
 
-## Reference(s): <br>
-- [SysGuard ClawHub listing](https://clawhub.ai/steventsang18/sysguard) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [IM-friendly plain text and Markdown status panels, diagnostic reports, trend charts, alert messages, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute host diagnostics, cache cleanup, outbound webhook notifications, and continuous monitoring loops.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata) <br>
+Risk: Broadly available chat commands can trigger system cleanup or long-running monitoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only in an admin-controlled OpenClaw environment and restrict who can send SysGuard commands; disable or gate sgc and sgm unless needed.
+
+Risk: A temporary configuration fallback can expose or weaken control over SysGuard settings.
+
+Mitigation: Use a private configuration path with 0600 permissions instead of any /tmp fallback.
+
+Risk: Webhook alerts can send host status information outside the machine.
+
+Mitigation: Configure only trusted Feishu or WeCom webhooks and treat alert content as operational data.
+
+Risk: Cleanup commands may remove files or logs that operators still need.
+
+Mitigation: Run cleanup under a dedicated unprivileged account and review retention settings before enabling chat-triggered cleanup.
+
+## Reference(s):
+
+- [SysGuard ClawHub page](https://clawhub.ai/steventsang18/skills/sysguard)
+- [Steventsang18 ClawHub profile](https://clawhub.ai/user/steventsang18)
+- [SysGuard project homepage](https://github.com/Steventsang18/sysguard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [IM-friendly text and Markdown status panels, diagnostic reports, trend charts, alert messages, and inline shell command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON history and log files, and may send configured Feishu or WeCom webhook notifications.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

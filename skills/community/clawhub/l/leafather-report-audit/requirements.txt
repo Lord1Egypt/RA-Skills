@@ -1,0 +1,8 @@
+# 核心依赖（缺失则技能无法运行）
+#
+# duckdb 需要 1.1+：挂载数据源时用了 read_auto()（自动识别 parquet/csv/json），
+# 该函数 1.1 才有。本技能在 1.5.x 上验证。
+duckdb>=1.1.0
+
+# policy.yaml / metrics.yaml 的解析依赖
+pyyaml>=6.0

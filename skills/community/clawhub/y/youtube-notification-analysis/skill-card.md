@@ -1,42 +1,51 @@
-## Description: <br>
-Analyzes YouTube notification videos for finance and trading insights, using subtitles or local transcription when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze YouTube notifications for investment and trading insights by extracting financial video content, retrieving subtitles or transcriptions, summarizing recommendations, and optionally handing trade execution to a trading skill.
 
-## Publisher: <br>
-[esanle](https://clawhub.ai/user/esanle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[esanle](https://clawhub.ai/user/esanle)
 
-## Use Case: <br>
-External users and agents use this skill to inspect finance-related YouTube notifications, extract subtitles or transcripts, and summarize stock, crypto, macro, or market recommendations before any separate trade review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact workflow includes trade execution without a clear approval boundary. <br>
-Mitigation: Do not allow automatic trades; require a separate explicit confirmation naming the account, symbol, side, quantity, order type, and risk before any trading action. <br>
-Risk: YouTube-derived financial claims may be incomplete, misleading, or promotional. <br>
-Mitigation: Treat extracted claims as untrusted research input and verify them against independent sources before using them for investment decisions. <br>
-Risk: The workflow depends on local yt-dlp and whisper-cpp tools for media extraction and transcription. <br>
-Mitigation: Verify local installations and model files before use, and supervise any downloaded media or generated transcripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/esanle/youtube-notification-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/esanle) <br>
+## Use Case:
+
+External users and agents use this skill to review investment-related YouTube notifications, extract or transcribe video content, and summarize stock, crypto, macro finance, and market-trend recommendations. The workflow may connect those recommendations to a separate trading skill, so trade actions require independent review and approval.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Untrusted YouTube financial content may be converted into trading recommendations or trade execution steps without a clear approval checkpoint.
+
+Mitigation: Require explicit review and approval of the asset, side, quantity, account, price, and risk before every order, and keep trade execution disabled unless a separate trading workflow enforces those checks.
+
+Risk: The skill accesses YouTube notification context and analyzes financial videos.
+
+Mitigation: Install and run it only when that notification access and financial-content analysis are intended for the user or agent session.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command examples and analysis text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local transcript files and temporary logs produced during the workflow.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with shell command snippets and investment-analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save logs under /tmp/youtube_investment_*.log and may invoke browser actions, yt-dlp, whisper-cpp, and a separate trading skill when available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

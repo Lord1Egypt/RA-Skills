@@ -1,39 +1,53 @@
-## Description: <br>
-Manage Duplicati backups on the server using secure Bearer tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Duplicati backups on the server using secure Bearer tokens.
 
-## Publisher: <br>
-[robnew](https://clawhub.ai/user/robnew) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[robnew](https://clawhub.ai/user/robnew)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent monitor Duplicati server state, list backup jobs, start a selected backup, and retrieve recent failure logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authenticated access to a Duplicati server through a bearer token. <br>
-Mitigation: Protect the token, avoid committing configuration files containing it, prefer a shorter-lived or revocable token when supported, and restrict the Duplicati API to trusted networks. <br>
-Risk: The agent can start backup jobs, so a mistaken job name or ID could trigger the wrong backup. <br>
-Mitigation: List and match backup jobs before starting one, and confirm the resolved backup name or ID before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/robnew/duplicati-skill) <br>
+## Use Case:
 
+Developers, operators, and backup administrators use this skill to monitor Duplicati server status, list backup jobs, start selected jobs, and retrieve recent error logs through the Duplicati REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status or log summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DUPLICATI_URL and DUPLICATI_TOKEN; output may include backup job IDs, phase descriptions, destination free-space notes, and recent error-log summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A long-lived backup-administration token can expose backup control if it is stored insecurely or leaked.
+
+Mitigation: Store DUPLICATI_TOKEN in a protected secret source where possible, restrict file permissions, and rotate or revoke the token if exposed.
+
+Risk: Plain HTTP Duplicati URLs can expose administrative backup traffic or tokens on the network.
+
+Mitigation: Use the skill only with HTTPS, a trusted local tunnel, or another encrypted channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robnew/skills/duplicati-skill)
+- [Publisher profile](https://clawhub.ai/user/robnew)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Duplicati REST API endpoints, status explanations, job identifiers, storage free-space details, and recent log summaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

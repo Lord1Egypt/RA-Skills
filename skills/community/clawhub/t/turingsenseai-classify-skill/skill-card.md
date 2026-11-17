@@ -1,43 +1,58 @@
-## Description: <br>
-Classifies product images through the configured turing-shikuan-mcp service and returns product category, brand, series, and a short summary without making authenticity, quality, or value judgments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill uses the configured turing-shikuan-mcp to identify a product image's category, brand, series, and short summary, while excluding authenticity, genuineness, quality, and value judgments.
 
-## Publisher: <br>
-[turingsenseai](https://clawhub.ai/user/turingsenseai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[turingsenseai](https://clawhub.ai/user/turingsenseai)
 
-## Use Case: <br>
-External users and developers use this skill to identify product category, brand, series, and a brief description from an accessible image URL. It also guides first-time setup of the required MCP credentials and explicitly avoids product authentication, genuineness, quality, or value judgments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a remote Turing MCP service with user-provided API credentials. <br>
-Mitigation: Install only if the endpoint is trusted, use scoped or test credentials where possible, and review setup.sh before running it. <br>
-Risk: Image URLs are sent to the external classification service. <br>
-Mitigation: Only provide image URLs that are accessible and appropriate to share with the service. <br>
-Risk: Product classification results could be mistaken for authentication or quality assessment. <br>
-Mitigation: Keep outputs limited to category, brand, series, and summary, and state that results are not authenticity, genuineness, quality, or value conclusions. <br>
+## Use Case:
 
+Developers and external users use this skill to configure and invoke turing-shikuan-mcp for product-image classification from an accessible image URL. It returns category, brand, series, and a concise product summary in Chinese, and it explicitly avoids authentication or quality assessment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/turingsenseai/turingsenseai-classify-skill) <br>
-- [Turing Shikuan MCP endpoint](https://turing-mcp-server-test.turingsenseai.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Structured Markdown in Chinese, with setup shell commands or JSON configuration snippets when configuration is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured MCP endpoint, API credentials, and a valid accessible image URL; result fields are kind, brand, series, and summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup flow configures a third-party MCP endpoint and may install the mcporter npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trust in the Turing MCP endpoint and mcporter package before setup; use normal user privileges and pin mcporter if tighter supply-chain control is required.
+
+Risk: API credentials are required for MCP setup and could be exposed if written into repository files or committed.
+
+Mitigation: Provide credentials through environment variables or client configuration, and avoid committing real API keys or secrets.
+
+Risk: Product-image classification can be mistaken for authenticity, quality, or value assessment.
+
+Mitigation: Use the skill only for category, brand, series, and summary extraction, and keep the stated disclaimer that results are not authentication conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/turingsenseai/skills/turingsenseai-classify-skill)
+- [turing-shikuan-mcp endpoint](https://turing-mcp-server-test.turingsenseai.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured Chinese result fields and optional shell or JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a valid image URL and configured MCP credentials; missing or empty MCP-returned fields are labeled rather than inferred.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

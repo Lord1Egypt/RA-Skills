@@ -1,42 +1,59 @@
-## Description: <br>
-Converts DOCX, PPTX, XLS, and XLSX files to Markdown using MinerU Open API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to extract Markdown from Word documents, PowerPoint presentations, Excel spreadsheets, or document URLs for summarization, analysis, and downstream editing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents are uploaded to MinerU's cloud service for processing. <br>
-Mitigation: Avoid confidential, regulated, customer, or internal business documents unless policy allows third-party cloud processing. <br>
-Risk: Large or precision-sensitive documents may exceed the flash extraction limits. <br>
-Mitigation: Use the authenticated mineru-open-api extract workflow for larger files or precision extraction when that processing path is approved. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to extract content from Word, PowerPoint, and Excel files and return the content as Markdown for reading, summarization, or analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tanis90/document-to-markdown) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU CLI download](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the mineru-open-api CLI; flash extraction is limited to 10 MB or 20 pages per document, and embedded images may be replaced with placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Documents are uploaded to MinerU's cloud service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents appropriate for external cloud processing, and avoid confidential or regulated content unless the provider and data handling terms are approved.
+
+Risk: The required mineru-open-api CLI is installed from external package sources.
+
+Mitigation: Install from trusted sources, prefer pinned or reviewed versions, and verify the CLI before using it in sensitive environments.
+
+Risk: Larger-file extraction may require authentication with the provider.
+
+Mitigation: Avoid authenticated extraction unless the user trusts the provider and understands the account-level implications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanis90/skills/document-to-markdown)
+- [MinerU](https://mineru.net)
+- [MinerU CLI download](https://mineru.net/ecosystem?tab=cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands when CLI execution is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes DOCX, PPTX, XLS, and XLSX inputs through the MinerU Open API; flash extraction is documented for files up to 10MB or 20 pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

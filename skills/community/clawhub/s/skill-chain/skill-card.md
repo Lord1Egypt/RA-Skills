@@ -1,44 +1,59 @@
-## Description: <br>
-SkillChain provides supply chain intelligence and ecosystem analysis for locally installed OpenClaw skills, including dependencies, categories, health, overlap, security posture, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supply chain intelligence and ecosystem analysis for OpenClaw skills.
 
-## Publisher: <br>
-[hyx-cn](https://clawhub.ai/user/hyx-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyx-cn](https://clawhub.ai/user/hyx-cn)
 
-## Use Case: <br>
-Developers and skill maintainers use SkillChain to inventory local OpenClaw skills, map dependencies and tool usage, assess health and overlap, and generate ecosystem reports. Optional enrichment can add ClawHub popularity and moderation metadata when network access is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local scans can store skill metadata and local paths in the generated graph. <br>
-Mitigation: Run scans only against directories intended for inspection and remove the generated graph when it is no longer needed. <br>
-Risk: Optional online enrichment sends skill names to ClawHub to retrieve public popularity and moderation metadata. <br>
-Mitigation: Skip the enrich command when network disclosure of local skill names is not appropriate. <br>
-Risk: Broad scans of private folders can capture more local skill inventory information than intended. <br>
-Mitigation: Use explicit scan directories for targeted audits instead of broad private folders. <br>
+## Use Case:
 
+Developers and skill maintainers use SkillChain to inventory local OpenClaw skills, map tool, package, and skill relationships, check security posture and health, detect overlap, and generate ecosystem reports.
 
-## Reference(s): <br>
-- [SkillChain on ClawHub](https://clawhub.ai/hyx-cn/skill-chain) <br>
-- [SkillChain Ontology Model](references/model.md) <br>
-- [SkillChain Schema](schema/skillchain.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, terminal summaries, command examples, and append-only JSONL graph data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local skill graph metadata under memory/skillchain/graph.jsonl until removed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and _meta.json) <br>
+Risk: The skill inventories local skill directories and stores graph metadata about discovered skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans only against directories intended for analysis and review the generated graph before sharing it.
+
+Risk: Online enrichment can query installed skill slugs against clawhub.ai.
+
+Mitigation: Use enrichment deliberately and skip it when local skill inventory names should remain local.
+
+Risk: The package can automatically import and execute a sibling ontology Python module when present.
+
+Mitigation: Review the sibling ontology skill before use or run SkillChain in an isolated workspace without that sibling skill installed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hyx-cn/skills/skill-chain)
+- [SkillChain Ontology Model](references/model.md)
+- [SkillChain Schema](schema/skillchain.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts can produce text reports, Markdown reports, and local JSONL graph data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional online enrichment queries public ClawHub metadata when network access is available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

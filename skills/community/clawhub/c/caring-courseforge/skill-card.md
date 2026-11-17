@@ -1,46 +1,60 @@
-## Description: <br>
-Caring CourseForge helps agents create and manage online courses through the CourseForge API, including course structure, AI content generation, quizzes, accessibility validation, knowledge libraries, and SCORM/xAPI export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage online courses through the CourseForge API, including course structure, generated lesson content, quizzes, accessibility validation, knowledge libraries, and SCORM/xAPI export.
 
-## Publisher: <br>
-[michaeljmoody](https://clawhub.ai/user/michaeljmoody) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[michaeljmoody](https://clawhub.ai/user/michaeljmoody)
 
-## Use Case: <br>
-External developers and course builders use this skill to manage Caring CourseForge courses, modules, lessons, content blocks, knowledge libraries, AI-assisted content, and course exports from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform broad account-changing actions in CourseForge, including deletes, revocations, rollbacks, uploads, exports, storage cleanup, and auto-fix actions. <br>
-Mitigation: Use a least-privileged API key and require explicit user confirmation before destructive, administrative, export, upload, scraping, rollback, or auto-fix actions. <br>
-Risk: The COURSEFORGE_API_KEY grants access to the user's CourseForge account. <br>
-Mitigation: Store the key only in the gateway or shell environment, avoid plaintext workspace files, and rotate the key if exposure is suspected. <br>
-Risk: AI-generated or externally sourced course content may be inaccurate, inappropriate, or not ready for publication. <br>
-Mitigation: Review generated content, validate course quality and accessibility, and inspect exported packages before publishing or distributing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michaeljmoody/caring-courseforge) <br>
-- [Publisher profile](https://clawhub.ai/user/michaeljmoody) <br>
-- [CourseForge platform](https://caringcourseforge.com) <br>
-- [courseforge-mcp-client npm package](https://www.npmjs.com/package/courseforge-mcp-client) <br>
-- [Caring Consulting Co](https://caringcos.com) <br>
-- [CourseForge Tool Reference](references/tools.md) <br>
+## Use Case:
 
+Developers and course authors use this skill to operate CourseForge from an agent, creating and updating course content, generating instructional materials, managing knowledge assets, and exporting courses.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and clean JSON tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and COURSEFORGE_API_KEY; the wrapper strips the MCP envelope from tool responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make broad authenticated changes to course content, storage, and API keys.
+
+Mitigation: Use a narrowly scoped CourseForge API key where possible and require explicit human confirmation before deletes, rollbacks, exports, API-key changes, or bulk content changes.
+
+Risk: An untrusted CourseForge MCP client or publisher could expose course data or credentials.
+
+Mitigation: Install only when the CourseForge npm client and publisher are trusted, and review the package before deployment.
+
+Risk: A custom COURSEFORGE_API_URL could redirect credentialed requests to an unintended endpoint.
+
+Mitigation: Do not set COURSEFORGE_API_URL unless the endpoint is controlled and trusted.
+
+## Reference(s):
+
+- [CourseForge Tool Reference](references/tools.md)
+- [CourseForge Platform](https://caringcourseforge.com)
+- [courseforge-mcp-client npm package](https://www.npmjs.com/package/courseforge-mcp-client)
+- [Caring Consulting Co](https://caringcos.com)
+- [ClawHub Skill Page](https://clawhub.ai/michaeljmoody/skills/caring-courseforge)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON tool arguments; CourseForge tool calls return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and COURSEFORGE_API_KEY; COURSEFORGE_API_URL is optional and should only be set for a trusted endpoint.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

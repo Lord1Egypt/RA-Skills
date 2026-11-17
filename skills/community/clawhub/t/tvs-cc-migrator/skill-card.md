@@ -1,41 +1,53 @@
-## Description: <br>
-Backs up, packages, and helps restore Claude Code configuration from ~/.claude, including rules, skills, commands, agents, plugins, and settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tvs Cc Migrator helps back up and restore Claude Code configuration under ~/.claude, including instructions, rules, skills, commands, agents, plugins, and settings.
 
-## Publisher: <br>
-[inksnowhailong](https://clawhub.ai/user/inksnowhailong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inksnowhailong](https://clawhub.ai/user/inksnowhailong)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to scan local Claude Code configuration, create a portable backup, and restore selected configuration on another machine. The workflow is most relevant when changing computers, exporting settings, or recovering a Claude Code setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup archives may include sensitive Claude Code settings or local configuration. <br>
-Mitigation: Prefer clearing sensitive settings fields before backup, keep generated archives private, and review backup contents before sharing or restoring them. <br>
-Risk: Restore instructions may execute reinstall commands supplied by a backup manifest. <br>
-Mitigation: Only restore from trusted backups and review manifest-provided reinstall commands before approving execution. <br>
+## Use Case:
 
+Developers and Claude Code users use this skill to migrate local Claude Code configuration between machines. It guides users through scanning, confirming sensitive items, creating backups, and restoring configurations from a manifest.
 
-## Reference(s): <br>
-- [Restore Guide](artifact/RESTORE_GUIDE.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/inksnowhailong/tvs-cc-migrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON backup manifests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces backup archives and manifest-driven restore instructions for Claude Code configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Backups may contain sensitive Claude Code configuration or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the sensitive-field redaction option, review every backup item before packaging, and keep generated backups private.
+
+Risk: A tampered restore manifest could cause unwanted configuration overwrites or command execution.
+
+Mitigation: Restore only from backups you created or trust, and approve reinstall commands or overwrite restores only after checking the exact paths and commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/inksnowhailong/skills/tvs-cc-migrator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and generated backup artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scan reports, manifest-driven backup contents, and restore guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

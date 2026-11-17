@@ -1,43 +1,60 @@
-## Description: <br>
-Routes user tasks to the most relevant skills using a layered taxonomy, risk model, and minimum-necessary-loading strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route user tasks to the most relevant skills using a layered taxonomy, risk model, and minimum-necessary-loading strategy.
 
-## Publisher: <br>
-[wzk332266](https://clawhub.ai/user/wzk332266) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wzk332266](https://clawhub.ai/user/wzk332266)
 
-## Use Case: <br>
-Developers and agent operators use this skill to classify available skills, choose the most specific skill for a task, and avoid loading higher-risk or higher-context tools when a narrower option is enough. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad routing policy can over-select powerful or action-capable skills when the task is ambiguous. <br>
-Mitigation: Prefer the single most specific relevant skill, choose the lowest sufficient risk level, and ask one clarifying question when ambiguity affects safety. <br>
-Risk: Newly downloaded or overlapping skills may be treated as trusted before review. <br>
-Mitigation: Classify new skills before use, keep risky operations blocked by default, and prefer canonical skills over overlapping variants. <br>
+## Use Case:
 
+Agents and developers use this skill to choose the most relevant skill for a task, classify newly added skills, and reason about routing risk before loading action-capable skills.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/wzk332266/skill-taxonomy-router) <br>
-- [Change log](artifact/references/change-log.md) <br>
-- [Session layer](artifact/references/session-layer.md) <br>
-- [Skill classification schema](artifact/references/skill-classification-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with compact routing summaries and optional shell commands for local router maintenance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are policy and routing recommendations; the public artifact is policy-only and host-agnostic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server-resolved release metadata) <br>
+Risk: The skill can influence future skill selection and may steer agents toward action-capable skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review routing recommendations before use and prefer the lowest-risk skill that completes the task.
+
+Risk: The artifact documents maintenance commands for helper scripts that are not included in the release package.
+
+Mitigation: Do not run those commands unless trusted helper implementations are present and resolve from the skill package.
+
+Risk: Routing logs or local extensions could capture sensitive task details.
+
+Mitigation: Avoid recording secrets, customer data, or sensitive prompts in routing logs.
+
+## Reference(s):
+
+- [Skill Taxonomy Router on ClawHub](https://clawhub.ai/wzk332266/skills/skill-taxonomy-router)
+- [Change Log](references/change-log.md)
+- [Session Layer](references/session-layer.md)
+- [Skill Classification Schema](references/skill-classification-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with structured routing summaries and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces routing recommendations and risk classifications; it does not execute tools by itself.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

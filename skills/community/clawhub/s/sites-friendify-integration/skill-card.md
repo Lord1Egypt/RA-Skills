@@ -1,39 +1,56 @@
-## Description: <br>
-Manage sites.friendify.cloud deployment with auth flow, pending states, and owner-based dashboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage sites.friendify.cloud deployment with auth flow, pending states, and owner-based dashboards.
 
-## Publisher: <br>
-[mailo037](https://clawhub.ai/user/mailo037) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mailo037](https://clawhub.ai/user/mailo037)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and site operators use this skill to create and manage sites.friendify.cloud deployments through an authenticated agent workflow. It supports pending registration, owner-scoped dashboards, privacy changes, and deletion controls for verified site owners.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can create live Docker and Traefik-backed sites from a Telegram-triggered request.
+
+Mitigation: Require explicit user confirmation before deployment and install it only in environments where agent-driven site creation is intended.
+
+Risk: The skill includes actions that can change site privacy or delete owner-managed sites.
+
+Mitigation: Require explicit confirmation before privacy changes or deletion, and rely on the documented owner verification and OpenClaw gateway authentication.
+
+Risk: The workflow depends on real Docker, Traefik, Telegram, and OpenClaw gateway access.
+
+Mitigation: Review the skill before installation and restrict credentials and runtime access to the intended Friendify management environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to guide agents through creating and managing sites.friendify.cloud deployments that start pending, require registration-code verification, and expose owner-only dashboard controls. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to create or change public Docker and Traefik-backed sites while sending a Telegram owner identifier. <br>
-Mitigation: Use a limited OpenClaw gateway token and require the agent to show the Docker Compose and Traefik plan, target URL, owner mapping, API payload, and rollback or delete steps before making changes. <br>
+**Output Format:** [Markdown with inline commands, API request details, and configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mailo037/sites-friendify-integration) <br>
-- [Publisher profile](https://clawhub.ai/user/mailo037) <br>
+**Other Properties Related to Output:** [Requires OPENCLAW_GATEWAY_TOKEN for OpenClaw gateway-authenticated management actions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENCLAW_GATEWAY_TOKEN for management actions.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

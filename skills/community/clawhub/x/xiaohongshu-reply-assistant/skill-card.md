@@ -1,43 +1,57 @@
-## Description: <br>
-小红书智能回复助手 analyzes Xiaohongshu comments for sentiment and intent, then drafts personalized reply suggestions and batch-processing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书智能回复助手 analyzes Xiaohongshu comments for sentiment and intent, generates personalized reply suggestions, manages comment history and batch processing, and can optionally monitor notes through Xiaohongshu API access.
 
-## Publisher: <br>
-[xiaoliuzhuan](https://clawhub.ai/user/xiaoliuzhuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xiaoliuzhuan](https://clawhub.ai/user/xiaoliuzhuan)
 
-## Use Case: <br>
-Content creators, brand operators, MCN agencies, and developers use this skill to analyze Xiaohongshu comments, generate reply suggestions, manage comment history, and optionally monitor notes through Xiaohongshu API access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Account-connected monitoring can require Xiaohongshu session credentials or tokens. <br>
-Mitigation: Use offline drafting when possible, and do not provide web_session cookies or xsec_token values unless the implementation has been reviewed and its data handling is understood. <br>
-Risk: The release references install scripts and API integration files that are not present in the reviewed artifact. <br>
-Mitigation: Review any fetched or external scripts before execution, and avoid running install.sh or referenced integration code from another source without inspection. <br>
-Risk: Generated replies may be inaccurate, inappropriate, or noncompliant with platform rules. <br>
-Mitigation: Review reply suggestions manually before posting and follow Xiaohongshu platform rules, privacy expectations, and applicable laws. <br>
+## Use Case:
 
+Content creators, brand operations teams, MCN agencies, and developers use this skill to triage Xiaohongshu comments, draft response options, process comment batches, and review activity before posting replies.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/xiaoliuzhuan/xiaohongshu-reply-assistant) <br>
-- [xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus structured reply suggestions and reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sentiment labels, intent categories, reply templates, batch reports, and configuration notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may handle Xiaohongshu session or API credentials when API integration is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer offline analysis when possible, provide credentials only to trusted integration paths, and avoid sharing session cookies with unreviewed code.
+
+Risk: The documented dependency installation command is not pinned or hash verified.
+
+Mitigation: Install in an isolated environment and use pinned, hash-verified dependency files before production use.
+
+Risk: Generated replies may be inaccurate, inappropriate, or non-compliant with platform or legal requirements.
+
+Mitigation: Review suggested replies before posting and follow Xiaohongshu platform rules and applicable privacy obligations.
+
+## Reference(s):
+
+- [xiaohongshu-mcp API access reference](https://github.com/xpzouying/xiaohongshu-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples, JSON configuration snippets, and generated reply text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce multiple suggested replies per comment and local configuration or history file guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-Install, configure, authorize and run wakehook so the user's agent (OpenClaw or Hermes) runs their morning routine when they wake up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wakehook helps an agent install, configure, authorize, and run a self-hosted wake-trigger service that converts Google Health/Fitbit sleep data into a neutral user.awake webhook for OpenClaw or Hermes.
 
-## Publisher: <br>
-[robbeverhelst](https://clawhub.ai/user/robbeverhelst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[robbeverhelst](https://clawhub.ai/user/robbeverhelst)
 
-## Use Case: <br>
-Developers and automation users use Wakehook to connect Google Health or Fitbit sleep data to agent or webhook-based morning routines. The skill guides installation, OAuth setup, configuration, authorization, and operation for wake-triggered automations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The built-in /test/replay endpoint can trigger wake actions without authentication in common poll-mode setups if the service is reachable. <br>
-Mitigation: Bind or firewall port 8080, avoid exposing /test/replay publicly, and remove or block that endpoint in production where possible. <br>
-Risk: Wakehook uses sensitive Google OAuth credentials and stores authorization state. <br>
-Mitigation: Protect .env and wake.sqlite with restrictive permissions and encrypted backups, and revoke the Google OAuth grant if the host or database is exposed. <br>
-Risk: Configured subscribers receive wake events and may trigger downstream automations. <br>
-Mitigation: Only add subscriber URLs you trust and prefer signed or authenticated subscriber delivery. <br>
+## Use Case:
 
+Developers and advanced users use Wakehook to connect sleep-derived wake signals to an agent or automation endpoint so morning routines can run when the user actually wakes up.
 
-## Reference(s): <br>
-- [Wakehook homepage](https://github.com/robbeverhelst/wakehook) <br>
-- [Wakehook ClawHub listing](https://clawhub.ai/robbeverhelst/wakehook) <br>
-- [README](artifact/README.md) <br>
-- [Design](artifact/DESIGN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline JSON, YAML, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup steps for a Bun-based self-hosted wake-event service and related agent webhook configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Wakehook handles sensitive sleep data and stores long-lived Google OAuth refresh tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect or encrypt the SQLite database, keep OAuth credentials out of configuration files, and run the service only on trusted hosts.
+
+Risk: An unset webhook token can leave inbound webhook behavior or test replay paths exposed during deployment.
+
+Mitigation: Set strong webhook and admin tokens, disable or protect /test/replay, and bind the service to trusted interfaces.
+
+Risk: Subscriber fan-out can send wake events to external endpoints.
+
+Mitigation: Send events only to trusted HTTPS endpoints and use per-subscriber authentication or HMAC signatures.
+
+Risk: The webhook mode requires public HTTPS exposure and is less verified than poll mode in the artifact documentation.
+
+Mitigation: Prefer poll mode unless instant delivery is required, and test public webhook deployments before relying on them.
+
+## Reference(s):
+
+- [Wakehook ClawHub Skill Page](https://clawhub.ai/robbeverhelst/skills/wakehook)
+- [Wakehook Project Homepage](https://github.com/robbeverhelst/wakehook)
+- [Wakehook npm Package](https://www.npmjs.com/package/wakehook)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON, YAML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides setup choices for OpenClaw or Hermes, Google Health polling or webhook mode, OAuth authorization, and wake-event verification.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

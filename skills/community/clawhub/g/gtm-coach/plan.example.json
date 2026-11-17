@@ -1,0 +1,155 @@
+{
+  "version": 2,
+  "skill": {
+    "installed_version": "1.5.1",
+    "last_checked_at": null,
+    "last_update_notice_version": null,
+    "deferred_until": null
+  },
+  "current_week": "2026-W38",
+  "intake": "idea",
+  "product": {
+    "name": "",
+    "project_type": "MICRO_SAAS",
+    "one_liner": "",
+    "icp": "",
+    "url": null,
+    "repo_confirmed": false
+  },
+  "strategy": {
+    "confirmed": false,
+    "period": "validate",
+    "build": "in_progress",
+    "evidence": "none",
+    "primary_channel": "undecided",
+    "channels_this_quarter": [],
+    "launch_optional": {
+      "producthunt": false,
+      "show_hn": false
+    },
+    "share_loop": "none yet",
+    "paid_promotion": "blocked",
+    "seo_status": "not_applicable",
+    "note": ""
+  },
+  "modules": {
+    "stage": "stages/validate.md",
+    "project_type": "project-types/micro-saas.md",
+    "primary_channel": null,
+    "optional_campaign": null
+  },
+  "connection": {
+    "status": "unbound",
+    "offered_week": null,
+    "last_cta_id": null,
+    "project_id": null,
+    "project_name": null
+  },
+  "focus": "Confirm period, product readiness, and primary channel before pulling pains or leads",
+  "this_week": {
+    "theme": "",
+    "active_experiment": {
+      "action": "",
+      "channel": "undecided",
+      "hypothesis": "",
+      "baseline": "unknown",
+      "success_metric": "",
+      "target": "",
+      "artifact_url": null,
+      "review_on": null,
+      "result": "",
+      "decision": "pending"
+    },
+    "micro_tasks": []
+  },
+  "open_decisions": [],
+  "filters": {
+    "ignore_pain_tags": [],
+    "prefer_subreddits": [],
+    "skip_subreddits": []
+  },
+  "last_outcomes": {
+    "qualified_conversations": 0,
+    "activations": 0,
+    "payments": 0,
+    "replies_posted_7d": 0,
+    "pains_shipped": [],
+    "manual_note": ""
+  },
+  "partners": "waiting",
+  "constraint": "",
+  "milestones": [
+    {
+      "id": "picture_confirmed",
+      "label": "GTM picture confirmed",
+      "status": "todo",
+      "done_at": null,
+      "share_offered": false
+    },
+    {
+      "id": "channel_committed",
+      "label": "Primary channel chosen",
+      "status": "todo",
+      "done_at": null,
+      "share_offered": false
+    },
+    {
+      "id": "week_reviewed",
+      "label": "Weekly review closed",
+      "status": "todo",
+      "done_at": null,
+      "share_offered": false
+    },
+    {
+      "id": "evidence_upgraded",
+      "label": "Evidence ladder moved up",
+      "status": "todo",
+      "done_at": null,
+      "share_offered": false
+    },
+    {
+      "id": "replies_10",
+      "label": "10 community replies in 7 days",
+      "status": "todo",
+      "done_at": null,
+      "share_offered": false
+    }
+  ],
+  "scorecard": {
+    "version": 1,
+    "computed_at": null,
+    "label": "GTM forming",
+    "total": 0,
+    "weights": {
+      "picture_clarity": 20,
+      "evidence": 25,
+      "channel_commitment": 20,
+      "weekly_execution": 20,
+      "learning_loop": 15
+    },
+    "dimensions": {
+      "picture_clarity": 0,
+      "evidence": 0,
+      "channel_commitment": 0,
+      "weekly_execution": 0,
+      "learning_loop": 0
+    }
+  },
+  "share": {
+    "signature_enabled": false,
+    "signature": "Via gtm_coach by nichestarter.ai",
+    "evidence_watermark": "none",
+    "bip": {
+      "trigger": "dashboard",
+      "channel": "x",
+      "posts": []
+    },
+    "last_bip": {
+      "trigger": null,
+      "channel": null,
+      "drafted_at": null,
+      "posted": false,
+      "path": null
+    }
+  }
+}

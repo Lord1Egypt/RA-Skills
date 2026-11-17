@@ -1,40 +1,53 @@
-## Description: <br>
-Optimize OpenClaw token usage and cost by auditing context injection, trimming workspace files (AGENTS.md/SOUL.md/MEMORY.md and daily memory), enabling prompt caching, heartbeat, context pruning, compaction, memory search or qmd, subagents, model tiering, and cron frequency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize OpenClaw token usage and cost by auditing context injection, trimming workspace files (AGENTS.md/SOUL.md/MEMORY.md and daily memory), enabling prompt caching, heartbeat, context pruning, compaction, memory search or qmd, subagents, model tiering, and cron frequency.
 
-## Publisher: <br>
-[ccjingeth](https://clawhub.ai/user/ccjingeth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ccjingeth](https://clawhub.ai/user/ccjingeth)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw token usage, reduce avoidable context and model calls, and plan config changes for lower token spend while preserving answer quality. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggested config and memory changes could alter agent behavior or expose sensitive context if applied without review. <br>
-Mitigation: Back up openclaw.json and memory files, verify provider support, and restrict memory-search or qmd paths to non-sensitive content before applying changes. <br>
-Risk: Heartbeat and subagent settings may create ongoing or parallel model calls. <br>
-Mitigation: Enable heartbeat or subagents only when the user explicitly wants those calls, and use low-cost models and quiet windows where appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw token optimization reference](references/openclaw-token-optimization.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ccjingeth/openclaw-token-save) <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenClaw token costs, reduce injected context, tune caching and pruning behavior, and produce concrete OpenClaw configuration guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, code, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets and rollout guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include approximate token estimates, file size targets, and suggested OpenClaw config edits for human review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent memory writes and broad local memory indexing can retain sensitive data if enabled on inappropriate paths or workloads.
+
+Mitigation: Review suggested OpenClaw config changes before applying them, scope memoryFlush, memorySearch, and qmd indexing to understood paths, and avoid persisting secrets, credentials, private logs, or broad workspaces without a retention and deletion plan.
+
+Risk: Prompt caching and memory search settings may be unsupported by some providers, models, or OpenClaw versions.
+
+Mitigation: Confirm provider, model, and OpenClaw version support before applying config keys, and treat token counts or savings estimates as approximate unless measured directly.
+
+## Reference(s):
+
+- [OpenClaw token optimization reference](artifact/references/openclaw-token-optimization.md)
+- [OpenClaw Token Optimizer ClawHub page](https://clawhub.ai/ccjingeth/skills/openclaw-token-save)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, code, shell commands]
+
+**Output Format:** [Markdown with JSON snippets and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include audit summaries, estimated savings, config patches, file-trimming targets, and rollout plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Routes fake-completion diagnosis requests to VeriClaw 爪印 when users report an AI claiming work was done without actually doing it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes fake-completion diagnosis intents, including AI以为自己工作了 and related phrases, to VeriClaw 爪印.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-External users and developers use this discovery skill to route requests about AI fake-completion behavior toward VeriClaw for diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat routing to VeriClaw as approval of VeriClaw's separate privacy and security behavior. <br>
-Mitigation: Evaluate VeriClaw itself before relying on it, because this skill only routes relevant requests and does not describe VeriClaw's full behavior. <br>
+## Use Case:
 
+Developers and agent users use this discovery skill to recognize fake-completion topics and route them to VeriClaw 爪印 rather than treating it as a diagnostic workflow.
 
-## Reference(s): <br>
-- [VeriClaw ClawHub page](https://clawhub.ai/sheygoodbai/vericlaw) <br>
-- [AI以为自己工作了 ClawHub page](https://clawhub.ai/sheygoodbai/ai-thinks-it-worked) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, local data access, or API calls are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: Users may expect a diagnostic checklist or automated verification workflow, but server security evidence describes this as a lightweight discovery pointer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only to route fake-completion topics to VeriClaw; choose another workflow when actual diagnostics or automated verification are required.
+
+## Reference(s):
+
+- [VeriClaw 爪印](https://clawhub.ai/sheygoodbai/vericlaw)
+- [ClawHub skill page](https://clawhub.ai/sheygoodbai/skills/ai-thinks-it-worked)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Discovery pointer only; no code, shell commands, privileged access, persistence, or data access are indicated by server security evidence.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

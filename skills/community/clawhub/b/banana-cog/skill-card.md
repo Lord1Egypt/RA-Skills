@@ -1,39 +1,59 @@
-## Description: <br>
-Banana Cog helps agents create or edit coherent multi-image projects through CellCog and Nano Banana, including character-consistent scenes, product visuals, and styled image sets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI multi-image generation powered by CellCog via Nano Banana. 10-20 coherent images in one prompt, character consistency across scenes, production-grade composition. Nano Banana AI, Nano Banana Pro, Gemini image generation.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-Developers and creative teams use Banana Cog to ask an agent for image generation and image editing workflows, including character-consistent series, product shots, reference-image compositions, and larger visual projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference images, and generated outputs may be sent to CellCog's service and require a sensitive API key. <br>
-Mitigation: Use a revocable CELLCOG_API_KEY, send only content appropriate for CellCog processing, and pin the cellcog package version in controlled environments. <br>
+## Use Case:
 
+Agent users and developers use this skill to generate or edit images from prompts, including coordinated multi-image sequences with recurring characters, planned compositions, and optional reference images.
 
-## Reference(s): <br>
-- [CellCog homepage](https://cellcog.ai) <br>
-- [Banana Cog on ClawHub](https://clawhub.ai/nitishgargiitd/banana-cog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the CellCog SDK and requires python3 plus CELLCOG_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: Prompts and supplied reference images are processed by CellCog.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only material you are authorized to send.
+
+Risk: The skill requires an API key and image generation may incur costs.
+
+Mitigation: Protect the CELLCOG_API_KEY and monitor generation costs.
+
+Risk: Setup depends on the separate CellCog skill and its dependencies.
+
+Mitigation: Review the core CellCog skill and use reviewed dependency versions before setup.
+
+## Reference(s):
+
+- [CellCog](https://cellcog.ai)
+- [Nano Banana Image on ClawHub](https://clawhub.ai/cellcog/skills/nano-banana-image-cellcog)
+- [CellCog publisher profile](https://clawhub.ai/user/cellcog)
+
+## Skill Output:
+
+**Output Type(s):** [Images, Text]
+
+**Output Format:** [Generated image files with a textual completion message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce multiple images from one prompt; image generation and editing can use supplied reference images.]
+
+## Skill Version(s):
+
+1.0.15 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

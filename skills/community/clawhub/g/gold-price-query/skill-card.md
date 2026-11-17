@@ -1,44 +1,55 @@
-## Description: <br>
-Gold price query tool supporting CNY (RMB/gram) and USD (USD/oz) currency options for real-time spot gold price lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gold price query tool supporting CNY (RMB/gram) and USD (USD/oz) currency options for real-time spot gold price lookup.
 
-## Publisher: <br>
-[yanghaolie](https://clawhub.ai/user/yanghaolie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanghaolie](https://clawhub.ai/user/yanghaolie)
 
-## Use Case: <br>
-Developers and external users use this skill to query current spot gold prices in CNY or USD and receive formatted price, movement, volume, and update-time data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound network requests to jijinhao.com for gold pricing. <br>
-Mitigation: Install and run it only in environments where outbound access to that service is acceptable. <br>
-Risk: The runtime may not include the aiohttp Python dependency required by the script. <br>
-Mitigation: Provide aiohttp in the agent runtime before using the skill. <br>
-Risk: The upstream quote service may rate-limit frequent requests. <br>
-Mitigation: Use appropriate request intervals when invoking the script repeatedly. <br>
+## Use Case:
 
+Developers and agents use this skill to query current spot gold prices in either USD per ounce or CNY per gram and receive structured price, change, volume, and update-time data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yanghaolie/gold-price-query) <br>
-- [jijinhao.com real-time quote API](https://api.jijinhao.com/quoteCenter/realTime.htm) <br>
-- [cngold quote reference](https://quote.cngold.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [JSON returned by a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports USD output by default and CNY output when the currency parameter is set to CNY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill contacts jijinhao.com for each query and sends normal request metadata, including browser-like headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in environments where this outbound network request and metadata exposure are acceptable.
+
+Risk: The artifact does not declare network permissions explicitly and does not show a request timeout.
+
+Mitigation: Review network access before deployment and consider adding explicit permissions plus a request timeout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yanghaolie/skills/gold-price-query)
+- [jijinhao real-time quote API](https://api.jijinhao.com/quoteCenter/realTime.htm)
+- [cngold quote source page](https://quote.cngold.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code]
+
+**Output Format:** [JSON text returned by a Python command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports USD by default and CNY when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

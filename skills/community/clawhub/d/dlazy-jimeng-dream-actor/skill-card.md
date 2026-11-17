@@ -1,46 +1,55 @@
-## Description: <br>
-Convert static character images into vivid action videos with Jimeng Dream Actor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert static character images into vivid action videos with Jimeng Dream Actor.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users and developers use this skill to call dLazy's hosted Jimeng Dream Actor service from an agent workflow, sending prompts and image or video references to generate animated character media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and referenced media are sent to dLazy's hosted service. <br>
-Mitigation: Install only when this data sharing is acceptable for the user's workflow and avoid sending sensitive media or prompts without approval. <br>
-Risk: The skill requires sensitive credentials and can persist an API key in local CLI configuration. <br>
-Mitigation: Use DLAZY_API_KEY for less persistent credential storage when appropriate, and rotate or revoke the key from the dLazy dashboard if exposure is suspected. <br>
-Risk: Global installation of @dlazy/cli adds third-party executable code to the user's environment. <br>
-Mitigation: Review the @dlazy/cli package or source before global installation, or use npx for on-demand execution. <br>
+## Use Case:
 
+External users can turn a static character image into an action video by providing a prompt and image to Jimeng Dream Actor through dLazy. Developers can invoke the skill through the dLazy CLI and receive a generated media result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-jimeng-dream-actor) <br>
-- [Publisher profile](https://clawhub.ai/user/dlazyai) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration guidance] <br>
-**Output Format:** [CLI JSON responses with generated media URLs or async task status, plus concise setup and error-handling guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm or npx, @dlazy/cli, and a dLazy API key. Prompts and referenced media may be sent to dLazy API and media storage endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Prompts and local image or video files are sent to dLazy's hosted API and media storage for generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and media you are authorized to share, and avoid uploading sensitive content unless the service is approved for it.
+
+Risk: The CLI uses a dLazy API key saved in the local CLI configuration.
+
+Mitigation: Keep the key private and rotate or revoke it from the dLazy account dashboard if it is exposed.
+
+## Reference(s):
+
+- [dLazy service homepage](https://dlazy.com)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-jimeng-dream-actor)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Video files]
+
+**Output Format:** [JSON result envelope with generated media URLs; optionally a saved media file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return an asynchronous task identifier; generated media is hosted remotely or saved to a requested path.]
+
+## Skill Version(s):
+
+1.3.41 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,58 @@
-## Description: <br>
-Orchestrates specialized subagents that simulate a trading firm to analyze public securities and produce AI-generated trading research and recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates a multi-agent trading research workflow that analyzes stocks through fundamental, technical, sentiment, news, debate, trading, risk, and portfolio review roles.
 
-## Publisher: <br>
-[huahang](https://clawhub.ai/user/huahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huahang](https://clawhub.ai/user/huahang)
 
-## Use Case: <br>
-External users and developers use this skill to run a multi-agent market research workflow for specific tickers, combining fundamental, technical, sentiment, news, debate, risk, and portfolio perspectives. Outputs are research aids and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can launch many subagents and may incur substantial compute or token cost. <br>
-Mitigation: Run one ticker at a time, keep debate rounds low unless needed, and confirm expected cost before starting broad analyses. <br>
-Risk: The skill runs local Python market-data commands using user-provided ticker text. <br>
-Mitigation: Use simple ticker symbols, review commands before execution, and run the skill in a dedicated workspace. <br>
-Risk: The workflow writes multiple reports and data files into the workspace without clear overwrite safeguards. <br>
-Mitigation: Use a fresh project or output folder for each analysis and review generated files before relying on them. <br>
-Risk: The generated trading recommendation may be incorrect, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat outputs as research rather than financial advice and verify decisions against primary sources and qualified professional guidance. <br>
+## Use Case:
 
+Developers and external users use this skill to coordinate stock research, debate competing investment theses, and produce trading recommendations with risk and portfolio review. It is intended as AI-assisted market research, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huahang/trading-agents-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/huahang) <br>
-- [TradingAgents paper (arXiv 2412.20138)](https://arxiv.org/abs/2412.20138) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON data files, and conversational text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes multiple analysis files to the workspace, including a comprehensive report and debate record.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: User-provided tickers may be placed into shell commands and output filenames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a sandboxed workspace, use simple validated stock symbols, avoid untrusted ticker text, and prefer a version that validates tickers and confines output paths.
+
+Risk: The skill may produce incorrect or misleading trading recommendations.
+
+Mitigation: Treat outputs as research assistance only, require human review before decisions, cite primary sources, and keep the financial-advice disclaimer in user-facing reports.
+
+Risk: Market data, news, and sentiment inputs may be stale or incomplete.
+
+Mitigation: Verify source dates, current prices, and authoritative filings before relying on the analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huahang/skills/trading-agents-skill)
+- [TradingAgents framework paper (arXiv 2412.20138)](https://arxiv.org/abs/2412.20138)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON market data files, shell commands, and conversational summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces analyst reports, a debate record, a final recommendation summary, and a required financial-advice disclaimer.]
+
+## Skill Version(s):
+
+0.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

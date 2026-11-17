@@ -1,42 +1,61 @@
-## Description: <br>
-A股股票交易助手支持 A 股实时股价查询、批量查询、财经新闻、潜力股分析、行业资金流向、龙头股分析、消息面情感分析和激进型模拟交易。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股股票交易助手 helps agents query A-share prices and market news, analyze potential stocks, sector fund flows, leaders, and sentiment, and run an aggressive simulated trading workflow.
 
-## Publisher: <br>
-[Sunxianzheng](https://clawhub.ai/user/Sunxianzheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunxianzheng](https://clawhub.ai/user/sunxianzheng)
 
-## Use Case: <br>
-External users and developers use this skill to query A-share market data, review market and news signals, simulate aggressive trading scenarios, and draft buy/sell strategy guidance. Outputs are informational and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The alert feature can create recurring QQ bot alerts to a fixed recipient. <br>
-Mitigation: Verify and change the recipient before use, confirm the recurring OpenClaw cron job is intended, and know how to remove it. <br>
-Risk: Trading analysis and simulated performance may be misleading or stale, especially when live sources are unavailable or mock or fallback data is used. <br>
-Mitigation: Treat outputs as informational, verify market data independently, and do not use the skill as the sole basis for investment decisions. <br>
+## Use Case:
 
+External users and agents use this skill to collect A-share market data, summarize stock and sector signals, generate trading-oriented analysis, set price alerts, and maintain simulated trading reports.
 
-## Reference(s): <br>
-- [技术指标参考](references/indicators.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Sunxianzheng/stock-trader) <br>
-- [Sina Finance Stock News](https://finance.sina.com.cn/stock/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown-style guidance with terminal command examples and plain-text script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a local JSON simulated trading record and may create a recurring OpenClaw alert when set_alert.py is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The price alert feature creates recurring OpenClaw jobs that message a hard-coded QQ recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or replace the hard-coded recipient with the user's confirmed destination before enabling alerts.
+
+Risk: The simulation reset workflow writes to a fixed trading-state path and can overwrite existing state.
+
+Mitigation: Verify the state path and back up trading records before running the reset command.
+
+Risk: Stock analysis and simulated trading outputs may be mistaken for investment advice.
+
+Mitigation: Present outputs as informational analysis only and require human review before any financial decision.
+
+## Reference(s):
+
+- [Technical indicators reference](references/indicators.md)
+- [ClawHub skill page](https://clawhub.ai/sunxianzheng/skills/stock-trader)
+- [Tencent quote endpoint used by scripts](https://qt.gtimg.cn/q={stock_code})
+- [Sina Finance stock news source](https://finance.sina.com.cn/stock/)
+- [Eastmoney industry fund-flow source](https://资金流向.eastmoney.com/IndustryRank/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with inline shell commands and tabular analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON trading-state records and OpenClaw cron alert configuration.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Expert .NET Core specialist mastering .NET 10 with modern C# features. Specializes in cross-platform development, minimal APIs, cloud-native applications, and microservices with focus on building high-performance, scalable solutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert .NET Core specialist mastering .NET 10 with modern C# features. Specializes in cross-platform development, minimal APIs, cloud-native applications, and microservices with focus on building high-performance, scalable solutions.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, implement, review, and optimize .NET Core applications, including minimal APIs, microservices, cloud-native deployments, Entity Framework Core, testing, security, and performance work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release suspicious and says a review helper in the broader skill set grants broad full-access authority by default and may share code diffs with fallback AI tools. <br>
-Mitigation: Install only if the ClawHub maintainer workflow is trusted; for sensitive repositories, run review helpers with reduced authority such as --no-yolo, AUTOREVIEW_YOLO=0, and --fallback-reviewer none. <br>
-Risk: Moderation and proof-publishing commands can affect authenticated accounts or external targets if used incorrectly. <br>
-Mitigation: Use moderation and proof-publishing commands only with the intended authenticated account after checking the exact target and effect. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, implement, and review .NET Core applications, including minimal APIs, cloud-native services, microservices, Entity Framework Core data access, testing, performance optimization, and deployment guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, shell command, and configuration snippets when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce architecture recommendations, implementation steps, review findings, test guidance, and deployment guidance for .NET projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated .NET code, project structure changes, deployment changes, or security configuration may be incorrect or unsuitable for a real service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code and deployment changes before applying them to production or customer-facing environments.
+
+Risk: The skill can recommend performance, authentication, authorization, secrets, and cloud deployment patterns that affect service reliability or security.
+
+Mitigation: Validate recommendations against project requirements, test coverage, security review, and deployment controls before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-dotnet-core-expert)
+- [ClawHub publisher profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, command, and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent responses for .NET architecture, implementation, testing, performance, security, and deployment tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence, released 2026-05-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

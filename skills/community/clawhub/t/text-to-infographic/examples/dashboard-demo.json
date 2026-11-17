@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "meta": { "title": "账号健康度周报", "footer": "数据周期：最近 7 天" },
+  "layout": "dashboard",
+  "visual_system": { "palette": "terracotta" },
+  "blocks": [
+    { "id": "m1", "metric": "更新篇数", "value": 5, "unit": "篇", "time": "近 7 天", "title": "更新频率" },
+    { "id": "m2", "metric": "新增关注", "value": 320, "unit": "人", "time": "近 7 天", "title": "涨粉" },
+    { "id": "m3", "metric": "学习时长", "value": 105, "unit": "分钟", "time": "近 7 天", "title": "每天 15 分钟达成" },
+    { "id": "m4", "metric": "开源安装", "value": 1, "unit": "次", "time": "近 60 天", "title": "text-to-infographic" }
+  ]
+}

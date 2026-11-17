@@ -1,43 +1,57 @@
-## Description: <br>
-Manage social publishing, scheduled posts, and content workflows in Postiz via the Postiz API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage social publishing, scheduled posts, and content workflows in Postiz via the Postiz API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users, social media operators, and developers use this skill to inspect Postiz workspaces and posts, schedule new content, review publishing queues, and manage social publishing workflows through ClawLink-backed Postiz tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClawLink brokers access to the user's connected Postiz account and handles sensitive account credentials. <br>
-Mitigation: Install only if the user trusts ClawLink, and have the user review the account connection prompt before connecting Postiz. <br>
-Risk: Publishing, editing, scheduling, or deleting posts can affect live social accounts. <br>
-Mitigation: Preview and confirm the target resource, content, schedule, and intended effect before any write or destructive action. <br>
+## Use Case:
 
+External users and content teams use this skill to create, schedule, review, and manage social media posts and publishing queues in Postiz through connected ClawLink tools.
 
-## Reference(s): <br>
-- [Postiz](https://postiz.com/) <br>
-- [Postiz API Documentation](https://docs.postiz.com/) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [Postiz Social Publishing on ClawHub](https://clawhub.ai/hith3sh/postiz-social) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected Postiz account through ClawLink; write actions require explicit user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill asks users to install and enable a persistent third-party ClawLink plugin without a pinned version or integrity check.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin provenance before installing, prefer a pinned or verified release if available, and remove or disable the plugin when the Postiz integration is no longer needed.
+
+Risk: Connected Postiz actions may publish, edit, or delete social content.
+
+Mitigation: Preview write operations and confirm the target resource and intended effect with the user before executing create, update, or delete calls.
+
+## Reference(s):
+
+- [Postiz](https://postiz.com/)
+- [Postiz API Documentation](https://docs.postiz.com/)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=postiz-social)
+- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw)
+- [Postiz Social Publishing on ClawHub](https://clawhub.ai/hith3sh/skills/postiz-social)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live Postiz tool discovery through ClawLink before acting on specific capabilities.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

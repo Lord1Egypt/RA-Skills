@@ -1,42 +1,52 @@
-## Description: <br>
-Search YouTube videos, channels, and playlists through the AISA YouTube endpoint with one API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search YouTube videos, channels, and playlists through the AISA YouTube endpoint with one API key.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers and agents use this skill to search YouTube videos, channels, and playlists through AISA without managing Google API credentials. It supports query search, locale filters, pagination, and structured SERP-style results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: YouTube search queries and the AISA API key are sent to AISA's API. <br>
-Mitigation: Use a scoped or easily rotated AISA_API_KEY, avoid sensitive search terms, and review AISA's privacy and retention practices before use. <br>
-Risk: The skill depends on network access to api.aisa.one and a valid AISA_API_KEY. <br>
-Mitigation: Run it only in trusted environments, provide the credential through environment variables, and review generated curl commands before execution. <br>
+## Use Case:
 
+Developers and agents use this skill to search YouTube videos, channels, and playlists with query, locale, pagination, and filter parameters through the AISA YouTube API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/youtube-aisa) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
-- [AISA YouTube search endpoint](https://api.aisa.one/apis/v1/youtube/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl command examples and structured API response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, network access to api.aisa.one, and AISA_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and skill frontmatter) <br>
+Risk: YouTube search queries and the AISA_API_KEY are sent to api.aisa.one.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive search terms, use a revocable key where possible, and install only when this data flow is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/youtube-aisa)
+- [Publisher profile](https://clawhub.ai/user/bibaofeng)
+- [OpenClaw homepage](https://openclaw.ai)
+- [AISA YouTube search endpoint](https://api.aisa.one/apis/v1/youtube/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and structured API response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and AISA_API_KEY; API responses may include videos or grouped sections.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

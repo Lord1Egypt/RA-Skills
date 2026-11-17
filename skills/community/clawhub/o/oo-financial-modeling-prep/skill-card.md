@@ -1,44 +1,55 @@
-## Description: <br>
-Financial Modeling Prep helps agents search and retrieve market, company, financial statement, valuation, calendar, and news data through the OOMOL oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial Modeling Prep (financialmodelingprep.com). Use this skill for any Financial Modeling Prep request involving searching and reading data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to answer Financial Modeling Prep data requests by inspecting live connector schemas and running market, company, financial statement, valuation, calendar, and news actions through an authenticated OOMOL connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials for an OOMOL-connected Financial Modeling Prep account. <br>
-Mitigation: Use the authenticated connector flow and do not ask users for raw API keys or tokens. <br>
-Risk: Action inputs and outputs depend on live connector schemas and authenticated execution. <br>
-Mitigation: Inspect the action schema before building payloads and confirm exact payloads before any action marked write or destructive. <br>
-Risk: Security guidance treats associated maintainer, migration, review, and notification flows as privileged. <br>
-Mitigation: Verify targets, use dry-run output where available, and confirm before writes, emails, or review-tool submissions. <br>
+## Use Case:
 
+Developers and analysts use the skill to search and retrieve company, market, financial statement, and economic data from Financial Modeling Prep through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [Financial Modeling Prep homepage](https://financialmodelingprep.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-financial-modeling-prep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads or connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI and an authenticated Financial Modeling Prep connection; connector responses include data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md metadata) <br>
+Risk: Setup may run downloaded installer software whose contents were not inspected, and setup could affect other agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an inspected, version-pinned CLI installation; require approval before running fallback installers; check whether setup will install or update other skills.
+
+Risk: Financial Modeling Prep access is provided through an OOMOL-connected account.
+
+Mitigation: Confirm the intended account is connected and review the access being granted before using the connector.
+
+## Reference(s):
+
+- [Financial Modeling Prep Developer Documentation](https://site.financialmodelingprep.com/developer/docs)
+- [Financial Modeling Prep](https://financialmodelingprep.com)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON data, Shell commands]
+
+**Output Format:** [JSON connector responses and concise financial data summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

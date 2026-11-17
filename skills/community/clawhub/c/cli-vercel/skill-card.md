@@ -1,40 +1,53 @@
-## Description: <br>
-Deploy and manage Vercel projects via CLI - deploy, env, domains, logs, teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage Vercel projects via the Vercel CLI, including deployments, environment variables, domains, projects, logs, teams, and local development.
 
-## Publisher: <br>
-[Melvynx](https://clawhub.ai/user/Melvynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melvynx](https://clawhub.ai/user/melvynx)
 
-## Use Case: <br>
-Developers and engineers use this skill to ask an agent for Vercel CLI commands and guidance for deployments, environment variables, domains, projects, logs, teams, and local development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vercel CLI commands can affect live deployments, domains, projects, teams, and environment variables. <br>
-Mitigation: Before production deploys, rollbacks, removals, team switching, env pulls, or commands using --yes, verify the project, team scope, working directory, and exact target. <br>
-Risk: Vercel tokens and .env.local contents can expose secrets if shared in chat or logs. <br>
-Mitigation: Avoid exposing tokens or environment file contents, and prefer scoped tokens and redacted command output when an agent assists. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent propose Vercel CLI commands for deployment, project configuration, environment variables, domains, logs, teams, and local development.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Melvynx/cli-vercel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and command reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommends JSON output for programmatic CLI calls and may include commands that affect live Vercel resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide production deploys, promotions, rollbacks, project, domain, or environment variable removal, team switching, environment file pulls, and `--yes` operations that affect live Vercel projects or account state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before production or destructive actions, and prefer preview deployments unless production is explicitly requested.
+
+Risk: A global or unpinned Vercel CLI install can change behavior over time.
+
+Mitigation: Prefer a pinned or project-local Vercel CLI install when the project supports it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/melvynx/skills/cli-vercel)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Programmatic command guidance should prefer JSON output when supported.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

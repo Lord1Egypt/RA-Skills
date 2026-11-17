@@ -1,42 +1,61 @@
-## Description: <br>
-Microsoft 365 integration for Outlook, Calendar, Contacts, and OneDrive via Microsoft Graph API that supports reading and sending emails, managing calendar events, and accessing files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft 365 integration for Outlook, Calendar, Contacts, and OneDrive via Microsoft Graph API.
 
-## Publisher: <br>
-[Robert-Janssen](https://clawhub.ai/user/Robert-Janssen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[robert-janssen](https://clawhub.ai/user/robert-janssen)
 
-## Use Case: <br>
-Developers and end users use this skill to connect a local agent workflow to Microsoft 365 through Microsoft Graph for email, calendar, contacts, and OneDrive tasks after Microsoft device-code consent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and change mail, calendar, contacts, and OneDrive after Microsoft consent. <br>
-Mitigation: Use your own Azure app registration, review the Microsoft consent prompt, and install only for accounts where this access is acceptable. <br>
-Risk: Local credential files can expose Microsoft account access if they are synced, shared, or committed. <br>
-Mitigation: Protect ~/.openclaw/credentials, do not sync or commit token files, and revoke the app in Microsoft account settings when you stop using it. <br>
+## Use Case:
 
+Developers and agents use this skill to authenticate with Microsoft 365 through Microsoft device code flow and interact with Outlook mail, calendars, contacts, and OneDrive files through Microsoft Graph.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Robert-Janssen/microsoft365) <br>
-- [Azure Portal app registrations](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps) <br>
-- [Microsoft device login](https://microsoft.com/devicelogin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Terminal text from a Node.js CLI with Microsoft Graph side effects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive prompts can send email, create calendar events, create contacts, upload files, and store local Microsoft tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Broad Microsoft 365 permissions can allow sending mail and modifying calendars, contacts, and OneDrive files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege Microsoft app or account and review the requested grant before approving access.
+
+Risk: Reusable OAuth tokens and Microsoft 365 environment configuration are stored locally.
+
+Mitigation: Protect ~/.openclaw/credentials/ms365.tokens.<account>.json and ms365.env with owner-only permissions, and revoke the Microsoft app grant if token exposure is suspected.
+
+Risk: The security evidence notes inconsistent documentation about token storage.
+
+Mitigation: Confirm the actual credential paths before installation and avoid sharing local credential files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/robert-janssen/skills/microsoft365)
+- [Publisher Profile](https://clawhub.ai/user/robert-janssen)
+- [Azure App Registrations](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps)
+- [Microsoft Device Login](https://microsoft.com/devicelogin)
+- [Microsoft Graph API](https://graph.microsoft.com/v1.0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls]
+
+**Output Format:** [Interactive CLI text output with Microsoft Graph API responses and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and Microsoft client and tenant environment configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

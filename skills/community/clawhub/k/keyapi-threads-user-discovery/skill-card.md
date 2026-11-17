@@ -1,45 +1,59 @@
-## Description: <br>
-Discover and analyze Threads users and content by retrieving profiles, posts, reposts, replies, post details, comments, and keyword search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and analyze Threads users and content by retrieving user profiles, posts, reposts, replies, post details, comments, and keyword search results across top content, recent content, and user profiles.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to gather and summarize Threads profile, post, comment, and keyword-search data through KeyAPI MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A KeyAPI token is required and may be stored locally if entered through the helper prompt. <br>
-Mitigation: Set KEYAPI_TOKEN through a shell or secret manager and avoid committing or sharing local .env files. <br>
-Risk: Threads research results may be stored in .keyapi-cache or explicit output files. <br>
-Mitigation: Use --no-cache for sensitive research and delete cache or output files when they are no longer needed. <br>
-Risk: KEYAPI_SERVER_URL overrides or non-Threads platform arguments can route calls outside the documented Threads workflow. <br>
-Mitigation: Avoid KEYAPI_SERVER_URL overrides and use --platform threads with the documented tools unless reviewing another endpoint deliberately. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to collect and synthesize Threads profile, post, comment, and keyword-search data through KeyAPI for social content research and discovery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lycici/keyapi-threads-user-discovery) <br>
-- [Publisher profile](https://clawhub.ai/user/lycici) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI Threads MCP endpoint](https://mcp.keyapi.ai/threads/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call KeyAPI MCP tools, print JSON responses, and write cached response files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper uses KEYAPI_TOKEN to call KeyAPI services, and the security summary warns that token use may be broader or less protected than the skill description makes clear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a scoped KeyAPI token, and provide KEYAPI_TOKEN through a shell environment or secret manager rather than the interactive prompt.
+
+Risk: KEYAPI_SERVER_URL can redirect API calls and token-bearing requests to a different endpoint.
+
+Mitigation: Leave KEYAPI_SERVER_URL unset unless the destination is fully trusted.
+
+Risk: The helper can persist API responses and tokens in local .keyapi-cache or .env files.
+
+Mitigation: Clear .keyapi-cache and .env files when they are no longer needed, especially on shared systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lycici/skills/keyapi-threads-user-discovery)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI Threads MCP server](https://mcp.keyapi.ai/threads/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API response handling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include locally cached API responses and synthesized profile, post, comment, engagement, and search findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

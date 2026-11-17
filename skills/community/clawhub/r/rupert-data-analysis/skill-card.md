@@ -1,38 +1,54 @@
-## Description: <br>
-Analyze and transform data from multiple formats to generate insights, visualize trends, detect anomalies, and create comprehensive reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and transform data from multiple formats to generate insights, visualize trends, detect anomalies, and create reports.
 
-## Publisher: <br>
-[rupertnt034](https://clawhub.ai/user/rupertnt034) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rupertnt034](https://clawhub.ai/user/rupertnt034)
 
-## Use Case: <br>
-Developers and analysts use this skill to process CSV, JSON, Excel, Google Sheets, and SQL data, then produce summaries, chart suggestions, trend analysis, anomaly detection, recommendations, and report outlines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive datasets, spreadsheet links, or query results may be exposed to the agent during analysis. <br>
-Mitigation: Only provide data that is appropriate for the agent to process, and redact or aggregate sensitive fields before use. <br>
+## Use Case:
 
+External users and developers use this skill to analyze CSV, JSON, Excel, Google Sheets, and SQL-derived data, then produce summaries, chart recommendations, insights, and report outlines.
 
-## Reference(s): <br>
-- [Data Analysis ClawHub release](https://clawhub.ai/rupertnt034/rupert-data-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text analysis with summaries, recommendations, chart suggestions, and report outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides instruction-only analytical outputs and does not include code, install scripts, credentials, persistence, or hidden tool authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Sensitive, regulated, credential-bearing, or private data could be exposed when provided for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized datasets, minimize or redact sensitive fields first, and avoid providing secrets, credentials, private Google Sheets, or SQL connection details.
+
+Risk: Generated trends, correlations, anomaly findings, or recommendations may be incorrect or incomplete.
+
+Mitigation: Review analytical outputs against the source data and validate important conclusions before using them for decisions or reports.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rupertnt034/skills/rupert-data-analysis)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/rupertnt034)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text analysis, summaries, chart suggestions, recommendations, and report outlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or persistent behavior is included in the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

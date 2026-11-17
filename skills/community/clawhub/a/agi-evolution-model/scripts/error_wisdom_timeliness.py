@@ -10,6 +10,8 @@
 
 基于：error_wisdom_spec.md 规范
 """
+__version__ = "1.0.0"
+
 
 import os
 import json
@@ -20,6 +22,8 @@ from typing import Dict, List, Optional, Any, Tuple
 from dataclasses import dataclass, asdict
 from enum import Enum
 import logging
+from interfaces import TraceContext, create_trace_context
+from validation_framework import ValidationError, validate_params, validate_params
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -314,7 +318,7 @@ class TimelinessManager:
     def _initialize_entry(self, entry_id: str, base_confidence: float = 0.85):
         """初始化条目时效性数据"""
         now = datetime.now().isoformat()
-        
+
         self.timeliness_data["entries"][entry_id] = {
             "current_confidence": base_confidence,
             "status": TimelinessStatus.ACTIVE.value,
@@ -326,9 +330,12 @@ class TimelinessManager:
             "scene_changes_detected": 0,
             "decay_events": []
         }
-        
+
         self.timeliness_data["metadata"]["total_active"] = \
             self.timeliness_data["metadata"].get("total_active", 0) + 1
+
+        # 保存时效性数据
+        self._save_timeliness_data()
     
     # ==================== 综合计算 ====================
     

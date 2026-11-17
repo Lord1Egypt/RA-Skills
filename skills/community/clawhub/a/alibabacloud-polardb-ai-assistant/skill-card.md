@@ -1,51 +1,68 @@
-## Description: <br>
-Alibaba Cloud PolarDB Database AI Assistant for PolarDB MySQL/PostgreSQL cluster management, performance diagnostics, parameter tuning, slow SQL analysis, backup recovery, connection/session analysis, primary-standby switchover diagnostics, security configuration audit, and related O&M operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud PolarDB Database AI Assistant for PolarDB MySQL and PostgreSQL cluster management, instance inspection, performance diagnostics, parameter explanation and change assessment, SQL and log analysis, backup, security audit, HA/DR, event analysis, and other PolarDB operations.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Database operators, cloud administrators, and support engineers use this skill to run Alibaba Cloud PolarDB diagnostic workflows through the Aliyun CLI and DAS/YaoChi agent. It helps investigate performance, slow SQL, backup, storage, connection, failover, parameter, and security configuration questions for existing PolarDB clusters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an existing Alibaba Cloud CLI profile and may operate in contexts with sensitive cloud credentials. <br>
-Mitigation: Use OAuth, STS, or a least-privilege RAM profile; avoid root or broad production credentials; do not paste secrets into prompts or commands; and redact CLI configuration output before sharing. <br>
-Risk: Installation guidance includes remote installer URLs and local CLI/plugin updates. <br>
-Mitigation: Verify installer URLs and package sources before running setup commands, and install or update the Aliyun CLI and DAS plugin through trusted channels. <br>
-Risk: AI-mode and custom user-agent settings modify local Aliyun CLI behavior for skill execution. <br>
-Mitigation: Enable AI-mode only for the diagnostic workflow and confirm it is disabled after the workflow completes or exits. <br>
-Risk: Diagnostic guidance about parameters, failover, or performance can affect production database operations if applied without review. <br>
-Mitigation: Confirm all user-customizable parameters with the operator, validate recommendations in a test environment when possible, and follow normal change-control review for production changes. <br>
+## Use Case:
 
+Developers, database administrators, and operations engineers use this skill to ask PolarDB-specific operational questions and receive diagnostic guidance grounded in Alibaba Cloud DAS and YaoChi Agent responses. It is scoped to PolarDB MySQL and PostgreSQL inspection, troubleshooting, security review, backup checks, parameter analysis, version risk review, and related O&M workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-polardb-ai-assistant) <br>
-- [Aliyun CLI installation and configuration guide](references/cli-installation-guide.md) <br>
-- [RAM policies](references/ram-policies.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [Verification method](references/verification-method.md) <br>
-- [Acceptance criteria](references/acceptance-criteria.md) <br>
-- [Alibaba Cloud RAM permission guide](https://help.aliyun.com/document_detail/116146.html) <br>
-- [Alibaba Cloud CLI documentation](https://help.aliyun.com/zh/cli/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and streamed diagnostic text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include session IDs for multi-turn diagnostic conversations and stderr status output from the CLI wrapper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill sends database operations queries, session identifiers, and diagnostic context to Alibaba Cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets or raw customer data in prompts, and treat queries and session IDs as data disclosed to Alibaba Cloud.
+
+Risk: The skill depends on Aliyun CLI and DAS plugin installation or updates, including mutable plugin behavior.
+
+Mitigation: Review installers and plugin versions before use, avoid broad automatic plugin updates where possible, and verify the Aliyun CLI and DAS plugin source and version.
+
+Risk: Broad cloud permissions could expose more PolarDB and DAS data than needed.
+
+Mitigation: Use a test or least-privileged RAM identity, prefer temporary or OAuth credentials, and grant only the RAM actions required for the intended workflow.
+
+Risk: Operational recommendations for parameter changes, failover, recovery, or security settings can affect database availability or data integrity.
+
+Mitigation: Require explicit user confirmation, explain operational risk, and verify recovery point, consistency, and business impact before any change path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-polardb-ai-assistant)
+- [Aliyun CLI installation guide](references/cli-installation-guide.md)
+- [Related APIs](references/related-apis.md)
+- [RAM policies](references/ram-policies.md)
+- [Verification method](references/verification-method.md)
+- [Acceptance criteria](references/acceptance-criteria.md)
+- [Alibaba Cloud RAM authorization documentation](https://help.aliyun.com/document_detail/116146.html)
+- [Alibaba Cloud CLI documentation](https://help.aliyun.com/zh/cli/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and evidence-driven diagnostic text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include streamed response text, a session ID for multi-turn diagnostics, structured error details, and remediation guidance.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

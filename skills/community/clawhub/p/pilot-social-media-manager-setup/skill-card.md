@@ -1,42 +1,58 @@
-## Description: <br>
-Deploys a three-agent Pilot Protocol workflow for planning social media content, preparing platform-specific posts, and feeding performance insights back into future planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a three-agent social media management setup where planner, creator, and analyst agents coordinate content planning, post creation, and performance feedback.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to set up a Pilot Protocol social media management workflow across planner, creator, and analyst agents. It guides installation of role-specific skills, hostnames, setup manifests, handshakes, subscriptions, and example message flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup changes local Pilot state, hostnames, and trust relationships that persist after the session. <br>
-Mitigation: Install only on hosts intended for this workflow, use a trusted hostname prefix, and review ~/.pilot setup state and trust entries after configuration. <br>
-Risk: The workflow can support social media posting automation and may interact with external social media accounts through installed role skills. <br>
-Mitigation: Review the installed pilot-* skills and account permissions before granting posting, scheduling, analytics, or automation authority. <br>
+## Use Case:
 
+Developers and operators setting up Pilot Protocol or OpenClaw social media workflows use this skill to configure three cooperating agents for content planning, post creation, engagement tracking, and feedback loops.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub release page](https://clawhub.ai/teoslayer/pilot-social-media-manager-setup) <br>
-- [Publisher profile](https://clawhub.ai/user/teoslayer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific setup instructions and local Pilot manifest content for planner, creator, or analyst agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The setup changes Pilot agent configuration and writes a persistent manifest under ~/.pilot/setups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected role, hostname prefix, and generated manifest before applying changes in a production or brand-owned environment.
+
+Risk: The setup establishes persistent trust paths between peer agents through handshakes.
+
+Mitigation: Verify each peer agent out of band before handshakes and inspect the trust state after setup.
+
+Risk: The setup installs companion skills that may change over time.
+
+Mitigation: Pin and verify companion skill versions before installation.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-social-media-manager-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands and JSON manifest templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, clawhub, related Pilot Protocol skills, and a running daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

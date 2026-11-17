@@ -1,43 +1,58 @@
-## Description: <br>
-Scan Polymarket markets for a configurable thesis, compare your probability to the market price, and trade only when the edge clears a safety threshold. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan Polymarket markets for a configurable thesis, compare your probability to the market price, and trade only when the edge clears a safety threshold.
 
-## Publisher: <br>
-[fivegive249-ship-it](https://clawhub.ai/user/fivegive249-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fivegive249-ship-it](https://clawhub.ai/user/fivegive249-ship-it)
 
-## Use Case: <br>
-Developers and operators use this skill to scan Polymarket markets for a configured thesis, compare market prices with a supplied fair probability, and dry-run or execute trades when configured edge and safety checks pass. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real Polymarket trades on a 15-minute schedule using an API key and live-mode environment setting. <br>
-Mitigation: Keep RUN_LIVE unset unless real trades are intended, monitor scheduled runs, and review parameters before enabling live operation. <br>
-Risk: Trading losses or repeated unintended trades may not be reversible. <br>
-Mitigation: Use a limited-funded account or restricted key when available, and set conservative TRADE_AMOUNT_USD, MIN_EDGE, MIN_ENTRY_PRICE, and MAX_ENTRY_PRICE values. <br>
-Risk: The skill requires a sensitive AION_API_KEY for market reads and trade execution. <br>
-Mitigation: Store the key in environment configuration, avoid logging or committing it, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and external operators can use this skill as an automated Polymarket trading template that scans markets, compares current prices against a user-supplied fair probability, and reports or submits trades when the configured edge threshold is met.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fivegive249-ship-it/polymarket-thesis-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/fivegive249-ship-it) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal summary text with CLI and environment configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit live AION SDK trade requests when explicitly run with live trading enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill metadata) <br>
+Risk: Scheduled live mode can repeatedly place real-money trades without built-in exposure limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in dry-run until account-level spending limits, position checks, order deduplication, cooldowns, and pinned dependencies are added or enforced.
+
+Risk: A shared or inherited RUN_LIVE setting could enable live execution unexpectedly.
+
+Mitigation: Avoid setting RUN_LIVE in shared environments and require deliberate live execution controls for production use.
+
+Risk: The AION_API_KEY can authorize market reads and trade execution.
+
+Mitigation: Use a restricted API key scoped to the minimum permissions and environment needed for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fivegive249-ship-it/skills/polymarket-thesis-trader)
+- [Publisher profile](https://clawhub.ai/user/fivegive249-ship-it)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI summaries with configuration-driven execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AION_API_KEY; dry-run mode is the default unless live execution is explicitly enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

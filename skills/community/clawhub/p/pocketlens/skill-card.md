@@ -1,43 +1,59 @@
-## Description: <br>
-PocketLens helps agents extract expense data from receipts, card statements, and user messages, then record transactions and report spending through PocketLens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PocketLens helps an agent scan receipts and card statements, record transactions, and answer spending, category, and card-billing questions through PocketLens.
 
-## Publisher: <br>
-[edenjw](https://clawhub.ai/user/edenjw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edenjw](https://clawhub.ai/user/edenjw)
 
-## Use Case: <br>
-External PocketLens users use this skill to log financial transactions from receipt or card-statement images and natural-language entries. They can also query categories, monthly spending summaries, and card billing information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process sensitive financial images and payment metadata such as merchants, amounts, dates, and card names. <br>
-Mitigation: Install only when the user trusts PocketLens and the agent image-processing path with this data. <br>
-Risk: The skill can create external expense records before the user reviews extracted transactions. <br>
-Mitigation: Have the agent show extracted transactions for approval before creating records in PocketLens. <br>
-Risk: A broad or exposed API key can increase the impact of mistaken or unauthorized transaction creation. <br>
-Mitigation: Use the least-privilege PocketLens API key available and keep POCKET_LENS_API_URL pointed at a trusted endpoint. <br>
+## Use Case:
 
+External users who track personal expenses use this skill to extract transaction details from receipts, card statements, banking screenshots, or messages and sync them to PocketLens. It also supports connection checks, category lists, spending summaries, and card bill summaries.
 
-## Reference(s): <br>
-- [PocketLens](https://pocketlens.app) <br>
-- [PocketLens ClawHub listing](https://clawhub.ai/edenjw/pocketlens) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and JSON arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transaction tables, spending summaries, category lists, card bill summaries, and API error guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Receipt, card statement, and banking screenshots can contain sensitive personal financial details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data the user intends to process, and avoid sharing images that contain unrelated account or identity details.
+
+Risk: Extracted transaction details can be incorrect or incomplete before they are sent to PocketLens.
+
+Mitigation: Require the agent to preview merchant, amount, date, card, and category details and obtain user confirmation before creating transactions.
+
+Risk: A full-access API key or untrusted custom API URL can increase the impact of misuse or data exposure.
+
+Mitigation: Use the narrowest suitable API key, avoid full-access keys when possible, and set POCKET_LENS_API_URL only to an endpoint the user controls and trusts.
+
+## Reference(s):
+
+- [PocketLens](https://pocketlens.app)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub PocketLens Skill](https://clawhub.ai/edenjw/skills/pocketlens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with inline shell commands and JSON-backed service results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and POCKET_LENS_API_KEY; POCKET_LENS_API_URL is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

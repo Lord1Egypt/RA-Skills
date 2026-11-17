@@ -1,45 +1,60 @@
-## Description: <br>
-Korean real-time air quality (PM10, PM2.5, O3, NO2, CO, SO2) and 1-3 day forecasts via Korea Environment Corporation AirKorea OpenAPI, with subcommands for station readings, province readings, forecasts, station lookup, TM coordinate lookup, and nearby station lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Airkorea CLI helps agents use shell commands to query Korea Environment Corporation AirKorea OpenAPI services for real-time air-quality measurements, station lookup, TM coordinate lookup, nearby station lookup, and 1-3 day forecasts.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers, analysts, and automation agents use this skill to query Korean regulator-curated air-quality observations and forecasts for dashboards, alerts, school activity advisories, location-based AQI lookup, and research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a user-provided data.go.kr AirKorea API key to configured AirKorea endpoints. <br>
-Mitigation: Use the default AirKorea endpoints unless an override is explicitly trusted, and keep the API key in the AIRKOREA_SERVICE_KEY environment variable. <br>
-Risk: Some documented workflows can be adapted into shell command substitutions or eval-style patterns. <br>
-Mitigation: Prefer the read-based examples and review shell pipelines before executing them with live credentials. <br>
-Risk: AirKorea data is hourly, Korea-specific regulator data and is not personalized health advice. <br>
-Mitigation: Use the output for Korean AQI lookup and operational alerts, and pair consumer-facing health recommendations with appropriate public-health guidance. <br>
+## Use Case:
 
+Developers and agents use this skill to build Korea-focused air-quality dashboards, alerts, advisories, data pulls, and grounded responses using AirKorea public data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chloepark85/airkorea-cli) <br>
-- [data.go.kr OpenData portal](https://www.data.go.kr/) <br>
-- [AirKorea air-pollution information API](https://apis.data.go.kr/B552584/ArpltnInforInqireSvc) <br>
-- [AirKorea measuring-station information API](https://apis.data.go.kr/B552584/MsrstnInfoInqireSvc) <br>
+### Deployment Geography for Use:
 
+Global; data coverage is limited to Korea.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown guidance with bash commands; runtime scripts emit JSONL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and a user-provided AIRKOREA_SERVICE_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Endpoint override environment variables can redirect requests and expose AIRKOREA_SERVICE_KEY to an untrusted destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default apis.data.go.kr endpoints and set ARPLTN_BASE or MSRSTN_BASE only after verifying the destination is trusted.
+
+Risk: The nearby station help text includes an eval-based workflow for extracting TM coordinates.
+
+Mitigation: Extract TM coordinates with read and jq instead of copying an eval command.
+
+Risk: The skill depends on a private AirKorea service key.
+
+Mitigation: Keep AIRKOREA_SERVICE_KEY private and avoid logging commands or environments that reveal it.
+
+## Reference(s):
+
+- [Airkorea CLI ClawHub Skill Page](https://clawhub.ai/chloepark85/skills/airkorea-cli)
+- [Data.go.kr Open Data Portal](https://www.data.go.kr/)
+- [AirKorea Air Pollution Information Service](https://apis.data.go.kr/B552584/ArpltnInforInqireSvc)
+- [AirKorea Measuring Station Information Service](https://apis.data.go.kr/B552584/MsrstnInfoInqireSvc)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Code, JSONL data]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSONL-oriented examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and AIRKOREA_SERVICE_KEY for command execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

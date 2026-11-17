@@ -1,44 +1,62 @@
-## Description: <br>
-Design premium luxury travel experiences — first class flights, 5-star resorts, private tours, Michelin dining, and VIP access to exclusive venues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design premium luxury travel experiences — first class flights, 5-star resorts, private tours, Michelin dining, and VIP access to exclusive venues, with support for related travel booking and itinerary tasks powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel planners use this skill to assemble premium travel options with first-class flights, luxury hotels, attractions, and itinerary support from live flyai CLI results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run the global flyai CLI to retrieve travel data. <br>
-Mitigation: Install only after confirming the package source is trusted, and approve CLI execution before using it for real-time travel results. <br>
-Risk: Trip requests may be retained in a hidden local execution log when file writes are available. <br>
-Mitigation: Disable, review, or delete .flyai-execution-log.json if raw trip requests should not be stored locally. <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to plan premium trips with first-class or business-class flights, five-star hotels, top-rated points of interest, private tours, and booking links from flyai CLI results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/luxury-trip) <br>
-- [Templates — luxury-trip](references/templates.md) <br>
-- [Playbooks — luxury-trip](references/playbooks.md) <br>
-- [Fallbacks — Trip Planning Category](references/fallbacks.md) <br>
-- [Runbook — Execution Log Schema](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, concise recommendations, and retry commands when live data is unavailable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel results; should not answer travel availability or pricing from model knowledge alone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents to install an unpinned global flyai CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned CLI version in an isolated environment and require review before installation.
+
+Risk: The runbook can persist raw travel queries, which may include names, dates, budgets, passport details, or other private information.
+
+Mitigation: Disable local log persistence or redact sensitive travel details before writing execution logs.
+
+Risk: Results depend on a third-party travel CLI, external booking links, and commercial branding.
+
+Mitigation: Show only CLI-returned results with detailUrl booking links, disclose unavailable sections, and have users verify pricing and booking terms before purchase.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/luxury-trip)
+- [Publisher Profile](https://clawhub.ai/user/dingtom336-gif)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown comparison tables and retry guidance with inline shell commands and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results should come from flyai CLI output, include detailUrl booking links, preserve the user's language, and avoid raw JSON in the final response.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

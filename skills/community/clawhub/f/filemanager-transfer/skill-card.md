@@ -1,47 +1,66 @@
-## Description: <br>
-Provides FileManager-based file upload, password-protected sharing, and download workflows between an agent environment and a user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an agent workflow for transferring files through a FileManager service, including upload, password-protected sharing, and download by file ID.
 
-## Publisher: <br>
-[mrknow001](https://clawhub.ai/user/mrknow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrknow001](https://clawhub.ai/user/mrknow001)
 
-## Use Case: <br>
-Developers and agent operators use this skill to move files between a remote agent environment and a user by uploading files to a FileManager service, creating password-protected share links, or downloading files by FileManager file ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release packages a FileManager AppKey. <br>
-Mitigation: Replace and rotate the packaged AppKey before use, and avoid printing real AppKeys in chat, logs, or final responses. <br>
-Risk: The skill supports network-exposed file sharing. <br>
-Mitigation: Bind the service to localhost unless remote exposure is intentional, and use firewall rules, TLS, or a trusted tunnel for remote access. <br>
-Risk: Shared or downloaded files may be sensitive or untrusted. <br>
-Mitigation: Use password-protected, short-lived shares, avoid putting real share passwords in shell commands, and inspect downloaded files before trusting them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to move files between a remote agent environment and a user when normal chat or IM channels cannot transfer files. It guides setup of the FileManager service, then uses the included Python helper or documented API calls to upload, share, and download files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrknow001/filemanager-transfer) <br>
-- [FileManager releases](https://github.com/mrknow001/FileManager/releases) <br>
-- [API reference](references/api.md) <br>
-- [Install and start](references/install-and-start.md) <br>
-- [Transfer script](references/transfer-script.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output from the transfer script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include share URLs, share passwords, FileManager file IDs, and local save paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The artifact includes a real-looking FileManager bearer credential in scripts/.env.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace scripts/.env with a local least-privileged AppKey before installation, rotate the exposed key if it was ever valid, and avoid printing AppKeys in chat, logs, or final replies.
+
+Risk: File transfer over an HTTP or broadly bound endpoint can expose files or credentials when used outside a local environment.
+
+Mitigation: Use HTTPS for non-local endpoints, bind the service to localhost unless remote access is intentionally hardened, and prefer short-lived password-protected shares.
+
+Risk: The setup flow depends on downloading an external FileManager binary.
+
+Mitigation: Install only a pinned FileManager release after verifying its checksum or other trusted integrity signal.
+
+Risk: Downloads can write files to implicit or unsafe local paths.
+
+Mitigation: Choose explicit output paths in writable directories and confirm the FileManager file ID points to the intended file before downloading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrknow001/skills/filemanager-transfer)
+- [FileManager releases](https://github.com/mrknow001/FileManager/releases)
+- [Install and start guide](references/install-and-start.md)
+- [Transfer script guide](references/transfer-script.md)
+- [API reference](references/api.md)
+- [Troubleshooting guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON transfer results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include FileManager share URLs, share passwords, file IDs, expiration times, and local save paths; AppKeys should not be exposed.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

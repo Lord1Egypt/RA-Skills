@@ -1,40 +1,53 @@
-## Description: <br>
-Generates Chinese-language viral title candidates from reusable templates for social posts, short videos, and creator publishing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates ten Chinese-language viral-style title options from a user's topic, platform, audience, and selling points using reusable headline templates.
 
-## Publisher: <br>
-[13977660642](https://clawhub.ai/user/13977660642) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13977660642](https://clawhub.ai/user/13977660642)
 
-## Use Case: <br>
-Content creators, social media operators, and marketers use this skill to turn a topic, target platform, audience, and selling point into high-click title options. It is aimed at Chinese-language self-media, short-video, public-account, and Xiaohongshu-style publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to produce clickbait-style marketing titles, which can create exaggerated, inaccurate, or policy-sensitive claims. <br>
-Mitigation: Review generated titles for accuracy, taste, and platform policy compliance before publishing. <br>
-Risk: The skill references platform-derived title patterns but evidence does not show live trend-data access. <br>
-Mitigation: Treat outputs as template-based suggestions and validate relevance against current platform trends when freshness matters. <br>
+## Use Case:
 
+Content creators, social media operators, and marketing writers use this skill to turn a topic into Chinese headline options tailored to platforms such as Douyin, Toutiao, Baijiahao, and Xiaohongshu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/13977660642/baoman-biaoti) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with numbered title suggestions and template labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically generates 10 candidate titles per topic and may include title optimization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated titles may include exaggerated earnings, expert claims, or results-oriented language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated title for factual accuracy, substantiation, and platform policy fit before publication.
+
+Risk: Template-driven titles can over-optimize for clicks and become misleading for the underlying content.
+
+Mitigation: Require the final title to accurately reflect the content topic, audience, and evidence available in the source material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/13977660642/skills/baoman-biaoti)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with numbered Chinese title options and brief template labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ten candidate titles per topic and may include optimization tips, monetization suggestions, and platform-specific guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

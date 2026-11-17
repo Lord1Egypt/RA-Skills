@@ -1,47 +1,58 @@
-## Description: <br>
-Routes Korean startup and business registration questions across startup checklists, licensing, support programs, business registration, tax setup, entity choice, cost estimates, and beginner guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports Korean startup and business-registration guidance by routing questions across nine intents for startup checklists, business registration, permits, funding programs, tax setup, entity comparison, costs, and beginner guidance.
 
-## Publisher: <br>
-[sw326](https://clawhub.ai/user/sw326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sw326](https://clawhub.ai/user/sw326)
 
-## Use Case: <br>
-External users and agents use this skill to answer Korean startup and business setup questions with checklists, registration guidance, permit and reporting requirements, public support-program pointers, and entity comparison guidance. <br>
-
-### Deployment Geography for Use: <br>
-South Korea <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes command examples that may use user-supplied business numbers, industry names, or law names. <br>
-Mitigation: Pass those values through structured tool calls or escaped argument arrays, and review command construction before installation or execution. <br>
-Risk: Startup, licensing, tax, and government support guidance can become outdated or vary by jurisdiction and business details. <br>
-Mitigation: Use the skill's official-source posture and disclaimer, and confirm final requirements with the relevant agency or qualified professional. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill Definition](SKILL.md) <br>
-- [Startup and Business Playbook](playbook.md) <br>
-- [Intent Router](references/intent_router.md) <br>
-- [Output Templates](references/output_templates.md) <br>
-- [Source Tiers](references/source_tiers.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sw326/startup-guide) <br>
-- [K-Startup](https://www.k-startup.go.kr) <br>
-- [Bizinfo](https://www.bizinfo.go.kr) <br>
-- [SMES](https://www.smes.go.kr) <br>
+## Use Case:
 
+External users and agents supporting Korean founders use this skill to produce informational startup, registration, permit, funding, tax, entity-selection, and startup-cost guidance. The skill is intended for Korean business contexts and directs users to verify legal, tax, funding, and permit details with official agencies or qualified professionals.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown with checklists, tables, short reports, disclaimers, and occasional shell command examples for delegated lookups] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flash responses are always produced; deep-dive responses are used for selected intents or explicit requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Documented shell commands may pass user-provided industry names, law names, or business registration numbers without validation.
+
+Mitigation: Use typed tools or sanitized argument arrays instead of shell interpolation, and validate user-provided inputs before invoking supporting scripts.
+
+Risk: Legal, tax, funding, and permit guidance can become outdated or may not match a user's specific jurisdiction, business model, or filing status.
+
+Mitigation: Treat outputs as informational and require confirmation with official Korean agencies or qualified legal, tax, and business professionals before acting.
+
+## Reference(s):
+
+- [Intent Router](artifact/references/intent_router.md)
+- [Output Templates](artifact/references/output_templates.md)
+- [Source Tiers](artifact/references/source_tiers.md)
+- [K-Startup](https://www.k-startup.go.kr)
+- [Bizinfo](https://www.bizinfo.go.kr)
+- [SME Support Program Integrated Management System](https://www.smes.go.kr)
+- [Korean Law Information Center](https://www.law.go.kr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, short reports, delegation notices, and occasional shell command examples for agent-side data collection.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flash output is always produced and capped at 40 lines; deep-dive output is available on request or for selected intents; every response includes an informational legal and tax disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

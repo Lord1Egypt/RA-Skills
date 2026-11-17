@@ -1,45 +1,61 @@
-## Description: <br>
-Use for Hong Kong school admissions, school selection, secondary school, primary school, kindergarten, international school, and postsecondary advisory workflows with SchoolFit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for Hong Kong school admissions, school selection, secondary school, primary school, kindergarten, international school, and postsecondary advisory workflows with SchoolFit.
 
-## Publisher: <br>
-[djanngau](https://clawhub.ai/user/djanngau) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djanngau](https://clawhub.ai/user/djanngau)
 
-## Use Case: <br>
-External families and education advisors use this skill to search, compare, shortlist, and plan Hong Kong school admissions decisions using SchoolFit data. It supports advisory workflows for kindergartens, primary schools, secondary schools, international schools, and postsecondary options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Hong Kong <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live school-search queries send preference text to schoolfit.hk. <br>
-Mitigation: Disclose this before live queries and ask users to remove student names, HKID, phone numbers, addresses, report-card details, and private documents. <br>
-Risk: A SchoolFit sfhk_ access code could be exposed if copied into shared spaces, logs, or final answers. <br>
-Mitigation: Keep the code only in a trusted one-to-one chat or current helper invocation, pass it only via --skill-code or active context, and never echo the full code. <br>
-Risk: Vacancy and admissions results can become stale or be mistaken for guarantees. <br>
-Mitigation: Present these results as time-limited leads, include source and freshness context when returned, and tell families to verify current status with the school. <br>
+## Use Case:
 
+External users and agents use this skill to support Hong Kong school search, comparison, shortlisting, admissions, vacancy checks, application planning, and education-path advisory workflows. It turns family preferences into concise, evidence-grounded next steps while keeping official facts, non-official Band references, time-limited signals, and assumptions separate.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/djanngau/schoolfit) <br>
-- [SchoolFit Skill Repository](https://github.com/djanngau/schoolfit-skill) <br>
-- [SchoolFit](https://schoolfit.hk/) <br>
-- [SchoolFit Access Code](https://schoolfit.hk/skill-code) <br>
+### Deployment Geography for Use:
 
+Hong Kong
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and concise parent-facing text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live advisory commands call the SchoolFit API through the bundled helper; local parsing is available before live queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter and server release evidence) <br>
+Risk: School-search preferences and the SchoolFit session access code are sent to schoolfit.hk for live queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Warn users before live queries, ask them to remove identifying family details, and keep the access code only in the active trusted one-to-one chat or current helper invocation.
+
+Risk: The automatic privacy filter is incomplete and may not catch every identifying detail.
+
+Mitigation: Require users to omit student names, home addresses, report-card text, private documents, HKID numbers, phone numbers, and other identifying family details before using live API commands.
+
+Risk: Vacancy and admissions data are time-limited leads and may be stale or incomplete.
+
+Mitigation: Present vacancy and admissions information as leads, not guarantees, and direct families to verify the latest status with the school.
+
+## Reference(s):
+
+- [ClawHub SchoolFit Skill Page](https://clawhub.ai/djanngau/skills/schoolfit)
+- [Source Homepage](https://github.com/djanngau/schoolfit-skill)
+- [SchoolFit](https://schoolfit.hk/)
+- [SchoolFit Access Code](https://schoolfit.hk/skill-code)
+- [SchoolFit Applications](https://schoolfit.hk/applications)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON returned by helper commands, summarized as concise parent-facing guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live SchoolFit API queries require a SchoolFit access code; local parent-request parsing can run without contacting SchoolFit.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

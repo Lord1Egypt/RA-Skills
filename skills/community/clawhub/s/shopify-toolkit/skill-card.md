@@ -1,42 +1,54 @@
-## Description: <br>
-Shopify development reference for Liquid templates, Admin and Storefront APIs, theme architecture, OAuth, checkout extensibility, and CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shopify development reference covering Liquid templates, Admin and Storefront APIs, theme architecture, OAuth, checkout extensibility, and CLI commands.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Shopify reference helper for theme development, app security, API usage, performance work, migrations, troubleshooting, and CLI command lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference commands, OAuth scopes, migration steps, or API examples may not fit a specific Shopify store, app, or production environment. <br>
-Mitigation: Review the generated guidance against the target store permissions, environment, and production change process before applying it. <br>
-Risk: The skill provides static Shopify reference material that can become outdated as Shopify APIs, CLI behavior, or checkout requirements change. <br>
-Mitigation: Verify operational details against current Shopify documentation before using them for implementation or migration work. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local Shopify development reference for theme customization, Liquid templates, Admin and Storefront API work, OAuth setup, checkout extensibility, performance troubleshooting, and CLI command lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/shopify-toolkit) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings, examples, and command snippets.] <br>
-**Output Parameters:** [1D; a command name selects the Shopify reference topic.] <br>
-**Other Properties Related to Output:** [No API keys, account access, network calls, or local private data access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Shopify platform limits, pricing, or operational requirements may change after the static reference text was packaged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify Shopify-specific limits, pricing, and operational guidance against current official Shopify documentation before relying on them in production.
+
+Risk: Prompts may include real store secrets or access tokens even though the skill does not require credentials.
+
+Mitigation: Do not paste real Shopify store secrets or access tokens into prompts unless they are strictly required for the user's own task.
+
+## Reference(s):
+
+- [Shopify Toolkit on ClawHub](https://clawhub.ai/xueyetianya/skills/shopify-toolkit)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local heredoc output; no external API calls, credentials, network access, file mutation, or persistence indicated by security evidence.]
+
+## Skill Version(s):
+
+7.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

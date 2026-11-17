@@ -1,45 +1,60 @@
-## Description: <br>
-Generates polished Sora 2 text-to-video and image-to-video prompts through the NanoPhoto.AI Prompt Generator API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates polished Sora 2 video prompts from a topic or public image-guided scene idea through the NanoPhoto.AI Prompt Generator API.
 
-## Publisher: <br>
-[nanophotohq](https://clawhub.ai/user/nanophotohq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanophotohq](https://clawhub.ai/user/nanophotohq)
 
-## Use Case: <br>
-External users and developers use this skill to turn a topic or public image-guided scene idea into a production-ready Sora 2 prompt with configurable mode, technique, duration, and locale. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted topics and public image URLs are sent to NanoPhoto's API. <br>
-Mitigation: Use only topics and public image URLs you are authorized and comfortable sharing with NanoPhoto. <br>
-Risk: The NanoPhoto API key can be exposed if pasted into chat or command-line history. <br>
-Mitigation: Store NANOPHOTO_API_KEY in the platform's secure skill environment. <br>
-Risk: Prompt generation may consume NanoPhoto credits. <br>
-Mitigation: Confirm that the account has sufficient credits and that the generation request is intentional before running the skill. <br>
+## Use Case:
 
+External users and developers use this skill to turn short topic or scene ideas, with optional public image URLs, into production-ready text-to-video or image-to-video prompts for Sora 2 workflows.
 
-## Reference(s): <br>
-- [Sora 2 Prompt Generator API Reference](references/api.md) <br>
-- [NanoPhoto.AI Homepage](https://nanophoto.ai) <br>
-- [NanoPhoto API Key Settings](https://nanophoto.ai/settings/apikeys) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/nanophotohq/video-prompt-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text prompt output with Markdown usage guidance and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The API returns streaming text; the bundled script prints the final assembled prompt text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompt topics, selected options, and public image URLs are sent to NanoPhoto.AI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only content you are authorized to use, and avoid private or sensitive topics and image URLs.
+
+Risk: The skill requires a NanoPhoto API key.
+
+Mitigation: Store NANOPHOTO_API_KEY in the platform's secure environment-variable setting and do not paste the key into chat.
+
+Risk: Prompt generation can consume credits or hit service rate limits.
+
+Mitigation: Confirm generation intent before calling the API, then follow the documented retry or credit top-up guidance for rate-limit and insufficient-credit errors.
+
+## Reference(s):
+
+- [Sora 2 Prompt Generator API Reference](artifact/references/api.md)
+- [NanoPhoto.AI homepage](https://nanophoto.ai)
+- [NanoPhoto API key management](https://nanophoto.ai/settings/apikeys)
+- [ClawHub skill page](https://clawhub.ai/nanophotohq/skills/video-prompt-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text prompt, with Markdown guidance or shell commands when setup or troubleshooting is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script assembles the streaming API response into final prompt text; image-to-video mode requires one to three public image URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-Production Harness provides an adaptive engineering workflow for AI agents with task complexity grading, verification protocols, checkpointing, anti-rationalization guards, and multi-agent failure handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production Harness provides an adaptive engineering workflow for coding agents that combines task complexity grading, planning, verification, review, checkpointing, and multi-agent failure analysis.
 
-## Publisher: <br>
-[christianye](https://clawhub.ai/user/christianye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christianye](https://clawhub.ai/user/christianye)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to structure feature work, bug fixes, reviews, debugging, and multi-step development tasks with explicit planning, verification, and learning checkpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the workflow to influence many development requests. <br>
-Mitigation: Confirm the task scope, keep changes bounded to the request, and use the skill's verification checkpoints before relying on results. <br>
-Risk: Capability metadata includes crypto and purchase tags even though the artifact is Markdown-only. <br>
-Mitigation: Do not grant crypto, purchase, credential, or production access based on metadata tags unless a separate verified need exists. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to structure feature work, bug fixes, reviews, debugging, and shipping workflows with explicit quality gates. It is most relevant for multi-step software development tasks where planning, verification evidence, and controlled subagent coordination matter.
 
-## Reference(s): <br>
-- [Production Harness on ClawHub](https://clawhub.ai/christianye/production-harness) <br>
-- [Checkpoint Patterns for Agent Systems](references/checkpoint-patterns.md) <br>
-- [MAST Failure Taxonomy for Multi-Agent Systems](references/mast-failure-taxonomy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing workflow guidance; no runtime code or external tool calls are bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Session-history inspection can expose unrelated private conversation data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit inspection to the failed subagent's error metadata and avoid adding unrelated transcripts or sensitive content to the active task.
+
+## Reference(s):
+
+- [Production Harness on ClawHub](https://clawhub.ai/christianye/skills/production-harness)
+- [Checkpoint Patterns for Agent Systems](references/checkpoint-patterns.md)
+- [MAST Failure Taxonomy for Multi-Agent Systems](references/mast-failure-taxonomy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow guidance and verification expectations; no direct code execution is required by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

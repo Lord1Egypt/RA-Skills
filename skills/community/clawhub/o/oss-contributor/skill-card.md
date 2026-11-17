@@ -1,42 +1,59 @@
-## Description: <br>
-Discover and resolve open source GitHub issues across community repos during idle time, including issue triage, forking, fixes, and pull request creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and resolve open source GitHub issues across community repositories during idle time by finding suitable issues, forking repositories, implementing fixes, and opening pull requests on the user's behalf.
 
-## Publisher: <br>
-[kbo4sho](https://clawhub.ai/user/kbo4sho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kbo4sho](https://clawhub.ai/user/kbo4sho)
 
-## Use Case: <br>
-Developers and maintainers use this skill to find approachable open source issues, evaluate whether they are suitable for agent work, implement focused fixes, and open pull requests with required disclosure. It is suited for community contribution workflows that intentionally permit an agent to act on GitHub through a configured token. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make public GitHub changes through forks, commits, and pull requests. <br>
-Mitigation: Install only when this behavior is intended, start with --dry-run, avoid --auto or --yes until reviewed, and use repository allowlists. <br>
-Risk: The skill may run tests or commands in third-party repositories. <br>
-Mitigation: Run unknown repositories in a sandbox and review candidate issues before allowing changes. <br>
-Risk: The security evidence notes local token reading and token-prefix echo behavior. <br>
-Mitigation: Use a dedicated least-privileged GitHub token and remove the local token-read and token-prefix echo before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OSS Contributor ClawHub Page](https://clawhub.ai/kbo4sho/oss-contributor) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+## Use Case:
 
+Developers and maintainers use this skill to find approachable open source issues, prepare fixes, and submit pull requests with activity logging and optional notifications. It is intended for community contribution workflows where the user is comfortable granting GitHub access and reviewing automated actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status summaries, pull request text, code changes, shell commands, and JSON activity logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create forks, branches, commits, pull requests, and local activity or history files when run with write-enabled options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish code and pull requests under the user's GitHub identity.
+
+Mitigation: Use a narrowly scoped, revocable GitHub token and review the selected issues, code changes, and PR body before allowing submission.
+
+Risk: Automated modes can bypass interactive review.
+
+Mitigation: Avoid --auto, --yes, heartbeat, or cron use until the workflow and generated PR content have been reviewed.
+
+Risk: Credential handling is identified as unsafe in the security evidence, including token reads, token-prefix logging, and token-in-URL cloning.
+
+Mitigation: Fix credential handling before unattended use and avoid exposing token values in logs, command history, remotes, or cloned repository URLs.
+
+## Reference(s):
+
+- [OSS Contributor ClawHub page](https://clawhub.ai/kbo4sho/skills/oss-contributor)
+- [Publisher profile](https://clawhub.ai/user/kbo4sho)
+- [OpenClaw](https://openclaw.ai)
+- [GitHub REST API user endpoint](https://api.github.com/user)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status tables, summaries, PR links, shell command snippets, code changes, commits, and pull request body text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create forks, branches, commits, pull requests, local activity logs, and configured notifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

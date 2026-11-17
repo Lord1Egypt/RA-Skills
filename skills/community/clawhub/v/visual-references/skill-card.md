@@ -1,44 +1,58 @@
-## Description: <br>
-Search and download visual reference images from Pexels to inspire image or video generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and downloads visual reference images from Pexels to support style, mood, composition, and color-palette inspiration before generating visual assets.
 
-## Publisher: <br>
-[vdkroon](https://clawhub.ai/user/vdkroon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vdkroon](https://clawhub.ai/user/vdkroon)
 
-## Use Case: <br>
-Developers, designers, and creative agents use this skill to search Pexels for visual references, download candidate images, and use them as style, mood, composition, or palette inputs before generating image or video assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Pexels API key and makes network requests to Pexels. <br>
-Mitigation: Install only when the user is comfortable providing PEXELS_API_KEY and allowing Pexels image search and download requests. <br>
-Risk: The script removes ref_* files and refs_meta.json from the selected output directory before each search. <br>
-Mitigation: Use the default /tmp/visual-refs path or a dedicated empty folder for output. <br>
-Risk: Downloaded references can influence generated image or video assets. <br>
-Mitigation: Ask the agent to show references first when the user wants to choose which images influence generation. <br>
+## Use Case:
 
+Designers, developers, and creative agents use this skill when a visual brief is ambiguous or style-driven and Pexels reference images can inform image or video generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vdkroon/visual-references) <br>
-- [Pexels API documentation](https://pexels.com/api) <br>
-- [Pexels Search API endpoint](https://api.pexels.com/v1/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; downloaded JPG files and refs_meta.json metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PEXELS_API_KEY and writes references to /tmp/visual-refs by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release evidence) <br>
+Risk: The helper script deletes matching ref_* files and refs_meta.json in the selected output folder before downloading results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with a dedicated temporary output directory such as /tmp/visual-refs; do not point --output at a working project or home directory.
+
+Risk: The skill requires a PEXELS_API_KEY and calls the Pexels API.
+
+Mitigation: Use a dedicated Pexels API key and avoid exposing the key in prompts, logs, shared shell history, or committed configuration.
+
+Risk: The release metadata declares an unused unpinned requests dependency.
+
+Mitigation: Review dependency requirements before installation and remove or pin requests if it remains necessary.
+
+## Reference(s):
+
+- [Visual References ClawHub Release](https://clawhub.ai/vdkroon/skills/visual-references)
+- [Pexels API Documentation](https://pexels.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Text, Guidance]
+
+**Output Format:** [Downloaded JPG files, refs_meta.json, and stdout attribution text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PEXELS_API_KEY; default output directory is /tmp/visual-refs; supports count, orientation, and list-only options.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

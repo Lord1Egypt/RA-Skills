@@ -1,0 +1,41 @@
+{
+  "id": "college-female-18-24",
+  "label": "College Female 18-24",
+  "emoji": "👩‍🎓",
+  "demographics": {
+    "gender": "female",
+    "age_range": [18, 24],
+    "tier": "gen-z"
+  },
+  "active_hours": {
+    "description": "Mixed — lectures, study breaks, evening social",
+    "peak": [9, 12, 17, 23],
+    "off_peak_min": 4
+  },
+  "typing": {
+    "description": "Fast social + measured academic typing, moderate corrections",
+    "wpm": { "min": 85, "max": 120 },
+    "profile": "natural",
+    "think_prob": 0.008,
+    "think_ms": [300, 1000],
+    "backspace_freq": 0.03
+  },
+  "scroll": {
+    "passes": 3,
+    "description": "Moderate, reads before interacting",
+    "speed_px_per_ms": { "min": 25, "max": 60 },
+    "pause_between_passes_ms": { "min": 300, "max": 1200 },
+    "depth_per_pass": { "min": 0.3, "max": 0.7 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 500, "max": 2000 },
+    "pre_click_pause_ms": { "min": 150, "max": 500 },
+    "inter_action_pause_ms": { "min": 200, "max": 800 }
+  },
+  "mouse": {
+    "speed": 1.0,
+    "curvature": 0.2,
+    "jitter": 0.35,
+    "description": "Moderate, smooth"
+  }
+}

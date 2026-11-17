@@ -1,38 +1,56 @@
-## Description: <br>
-Installs a lightweight repository product-management workflow with roadmap status tracking, per-feature KANBAN boards, branch and PR conventions, bug intake, and an optional daily OpenClaw PM review cron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and enforce a lightweight product-management workflow inside a code repo: feature-as-kanban boards, ROADMAP status tracking, branch/PR conventions, and an optional daily OpenClaw cron PM review.
 
-## Publisher: <br>
-[Michailbul](https://clawhub.ai/user/Michailbul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[michailbul](https://clawhub.ai/user/michailbul)
 
-## Use Case: <br>
-Developers and agent teams use this skill to add a simple PM workflow to a new or existing code repository so feature work, bugs, branches, and PRs stay aligned. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Initialization writes PM documentation and may append workflow rules to AGENTS.md in the target repository. <br>
-Mitigation: Run the init script from a clean branch or clean git state and review the generated files and AGENTS.md changes before committing. <br>
-Risk: The optional daily cron can perform recurring automated PM reviews and may use local gh credentials or run repository checks. <br>
-Mitigation: Enable the cron only when recurring review is intended, and choose the agent, schedule, timezone, and repository path deliberately. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agent teams use this skill to add a lightweight PM workflow to new or existing repositories, including roadmap status, per-feature kanban boards, bug intake, branch and PR conventions, and optional daily review automation.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and generated repository documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update repository PM files and AGENTS.md, and may configure an optional recurring OpenClaw cron review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional cron helper creates persistent agent automation.
+
+Mitigation: Review the cron helper before use and choose the agent, timezone, schedule, and credentials intentionally.
+
+Risk: The daily review message includes a hardcoded unpinned npx type-check command for apps/telegram.
+
+Mitigation: Remove or replace the hardcoded check with a repository-appropriate, pinned validation command before enabling the cron helper.
+
+Risk: The initialization workflow changes repository PM documentation and AGENTS.md conventions.
+
+Mitigation: Run it only in repositories where the team wants this PM workflow, and review the generated docs and AGENTS.md changes before relying on them.
+
+## Reference(s):
+
+- [Repo Kanban PM on ClawHub](https://clawhub.ai/michailbul/skills/repo-kanban-pm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and repository documentation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update repo PM files and optionally configure a recurring OpenClaw cron review.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

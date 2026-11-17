@@ -1,45 +1,53 @@
-## Description: <br>
-Run Claude Code sessions in tmux for fire-and-forget execution with crash recovery, model routing, and structured task state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Claude Code sessions in tmux for fire-and-forget execution with crash recovery, model routing, and structured task state.
 
-## Publisher: <br>
-[mattmartinez](https://clawhub.ai/user/mattmartinez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mattmartinez](https://clawhub.ai/user/mattmartinez)
 
-## Use Case: <br>
-Developers and coding orchestrators use this skill to delegate long-running coding tasks to Claude Code in tmux while preserving task state and recovering from crashes or hangs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Claude Code runs unattended with permission prompts disabled and can read, write, and execute commands in the selected project. <br>
-Mitigation: Install only in trusted workspaces under a trusted orchestrator, and prefer a dedicated user, VM, or container for execution. <br>
-Risk: A compromised or unexpected claude or openclaw binary on PATH changes the behavior of delegated tasks and notifications. <br>
-Mitigation: Audit the claude and openclaw binaries on PATH before use. <br>
-Risk: Cleanup can affect tmux sessions using the claude- prefix. <br>
-Mitigation: Avoid unrelated tmux sessions with names that use the claude- prefix. <br>
-Risk: Captured task output and temp logs may contain secrets from agent activity. <br>
-Mitigation: Restrict log permissions and clean up temporary directories after reviewing results. <br>
+## Use Case:
 
+Developers and coding-agent operators use this skill to delegate long-running coding, debugging, refactoring, test, documentation, review, and analysis tasks to an unattended Claude Code session with monitoring and resume behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mattmartinez/resilient-claude-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/mattmartinez) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell command blocks and task-state file conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires tmux, claude, and openclaw binaries; task output may include manifests, logs, exit codes, and completion markers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.17 (source: server release metadata) <br>
+Risk: The skill runs unattended Claude Code sessions with permission checks disabled, giving the background agent broad authority in the mounted project environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable container, VM, or dedicated low-privilege account with only the intended project mounted.
+
+Risk: Background tmux/nohup activity and local logs may retain sensitive task output.
+
+Mitigation: Avoid hosts with exposed SSH keys, cloud credentials, browser profiles, production databases, unrelated repositories, or privileged local services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mattmartinez/skills/resilient-claude-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and task-state conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for tmux-managed Claude Code execution, monitor configuration, task manifests, logs, and cleanup.]
+
+## Skill Version(s):
+
+1.0.17 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Plate reviews outward-facing prose before publication to flag identity leaks, infrastructure leaks, authorship disclosures, and writing-convention issues for user-approved cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews outward-facing prose for privacy and infrastructure leaks, then applies writing conventions before publication.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-External users, developers, and maintainers use Plate as a final review pass before publishing a blog post, social post, README section, PR or issue body, commit message, or release note. It reports each finding with a proposed replacement and waits for user confirmation before applying changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may flag AI-use or authorship disclosure lines that a workplace, publisher, or project requires to remain visible. <br>
-Mitigation: Review every proposed deletion or rewrite before confirming changes. <br>
-Risk: Automated prose cleanup can alter a user's wording or remove intentional examples such as local endpoints or private-network placeholders. <br>
-Mitigation: Treat findings as recommendations, confirm ambiguous cases, and inspect the diff after approved edits. <br>
+## Use Case:
 
+Developers and other authors use this skill to review a single public-facing draft for identity or infrastructure leaks and writing-convention issues before publishing. It reports findings and proposed replacements for confirmation before edits are applied.
 
-## Reference(s): <br>
-- [Plate on ClawHub](https://clawhub.ai/solomonneas/plate) <br>
-- [content-guard](https://github.com/solomonneas/content-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown findings table with proposed replacements, confirmation prompts, optional shell commands, and a diff after approved edits.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Edits are proposed for review before application; ambiguous cases are flagged rather than silently changed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Proposed edits, especially attribution removals, could remove intended content or misrepresent the author's intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each finding and confirm changes before applying them.
+
+Risk: Sensitive draft content could be left in temporary files during review.
+
+Mitigation: Prefer inline scanning to avoid storing sensitive drafts in temporary files.
+
+Risk: Installing an optional scanning dependency introduces a separate dependency decision.
+
+Mitigation: Evaluate brigade-cli independently before installing it.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/solomonneas/skills/plate)
+- [Publisher profile](https://clawhub.ai/user/solomonneas)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown]
+
+**Output Format:** [Markdown findings table with locations and proposed replacements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requests confirmation before applying edits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

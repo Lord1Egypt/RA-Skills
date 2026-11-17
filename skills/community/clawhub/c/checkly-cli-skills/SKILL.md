@@ -1,6 +1,6 @@
 ---
 name: checkly-cli-skills
-description: Comprehensive Checkly CLI command reference and Monitoring as Code workflows. Use when user mentions Checkly CLI, monitoring as code, synthetic monitoring, API checks, browser checks, Playwright testing, check deployment, or npx checkly commands. Routes to specialized sub-skills for auth, config, checks, testing, deployment, imports, constructs, and advanced patterns. Triggers on checkly, monitoring as code, synthetic monitoring, checkly cli, npx checkly.
+description: Comprehensive Checkly CLI command reference and Monitoring as Code workflows. Use when user mentions Checkly CLI, monitoring as code, synthetic monitoring, API checks, browser checks, Playwright testing, gRPC/SSL/traceroute monitors, check deployment, account plans, entitlements, organization usage, credits, or npx checkly commands. Routes to specialized sub-skills for auth, config, checks, monitors, testing, deployment, imports, account plan and usage, constructs, and advanced patterns. Triggers on checkly, monitoring as code, synthetic monitoring, checkly cli, npx checkly.
 metadata:
   {
     "openclaw":
@@ -28,7 +28,7 @@ metadata:
           ],
         "notes":
           [
-            "Requires Checkly account and API key (signup at checklyhq.com/signup or via 'npx checkly login').",
+            "Requires Node.js 22.13.0 or later, plus a Checkly account and API key (signup at checklyhq.com/signup or via 'npx checkly login').",
             "Credentials can be set via environment variables (CHECKLY_API_KEY, CHECKLY_ACCOUNT_ID) or stored in ~/.config/@checkly/cli/config.json via 'npx checkly login'.",
             "Config stored in checkly.config.ts and auth credentials in system config.",
             "Browser checks optionally require playwright binary and @playwright/test dependency.",
@@ -41,6 +41,24 @@ metadata:
 
 Comprehensive Checkly CLI command reference and Monitoring as Code (MaC) workflows.
 
+The current Checkly CLI requires Node.js 22.13.0 or later. Verify `node --version` before install, init, test, or deploy workflows; upgrading only the project dependency does not bypass the CLI's host-runtime floor.
+
+## Choose CLI or MCP first
+
+This skill pack drives `npx checkly` in a shell. Use the CLI for authoring, testing, importing, and deploying Monitoring as Code. Checkly MCP covers only a subset of live-account work: check status/results, test sessions, root-cause analysis, triggering deployed checks, and incidents.
+
+Before the first command that talks to the Checkly API:
+
+1. With shell access, run `npx checkly whoami` once.
+   - If it succeeds, continue with the CLI, even when Checkly MCP tools are also connected.
+   - If authentication fails, do not work around it for authoring, testing, imports, or deploys; authenticate with `npx checkly login` or `CHECKLY_API_KEY` plus `CHECKLY_ACCOUNT_ID`.
+   - For supported live-account work only, an authenticated Checkly MCP connection may be used as a fallback. Call its `whoami` tool first and name the account being used.
+2. Without shell access, use connected Checkly MCP tools only for their supported live-account operations. The MCP server cannot replace the CLI for Monitoring as Code.
+
+Never mix CLI and MCP evidence without confirming that both sessions use the same account ID. A fallback write still requires the same explicit review/confirmation as the corresponding CLI action.
+
+Run `npx checkly skills` before choosing a live CLI action. It loads the current action list locally and does not require Checkly authentication.
+
 ## Quick start
 
 ```bash
@@ -52,6 +70,9 @@ npx checkly test
 
 # Deploy to Checkly cloud
 npx checkly deploy
+
+# Inspect Checkly's bundled CLI agent references when needed
+npx checkly skills
 ```
 
 ## What is Monitoring as Code?
@@ -73,6 +94,7 @@ This skill routes to specialized sub-skills by Checkly domain:
 - `checkly-auth` - Authentication setup and login
 - `checkly-config` - Configuration files (checkly.config.ts) and project structure
 - `checkly-members` - Account member and pending-invite listing, role updates, and removals
+- `checkly-usage` - Account plan/entitlements plus organization contract terms, credit usage, projections, and grouped usage series
 
 **Core Workflows:**
 - `checkly-test` - Local testing workflow with npx checkly test
@@ -81,7 +103,7 @@ This skill routes to specialized sub-skills by Checkly domain:
 
 **Check Types:**
 - `checkly-checks` - API checks, browser checks, multi-step checks
-- `checkly-monitors` - Heartbeat, TCP, DNS, URL monitors
+- `checkly-monitors` - Heartbeat, TCP, DNS, URL, gRPC, SSL, and traceroute monitors
 - `checkly-groups` - Check groups for organization and shared config
 
 **Advanced:**
@@ -91,8 +113,9 @@ This skill routes to specialized sub-skills by Checkly domain:
 
 **Operations:**
 - `checkly-members` - Audit and manage Checkly account access with `npx checkly members`
+- `checkly-usage` - Route account questions precisely: `npx checkly account plan` for plans, entitlements, feature limits, or private-location availability; `npx checkly account usage terms/summary/series` for organization contract credits and consumption
 - `checkly-test` - Also covers `npx checkly test-sessions` for recorded test-session drilldown and RCA context
-- `checkly-checks` - Inspect and delete deployed checks with `npx checkly checks`; use `checks delete --dry-run` before destructive deletes
+- `checkly-checks` - Inspect, run, and delete deployed checks with `npx checkly checks`; confirm live-run targets before `checks run`, and use `checks delete --dry-run` before destructive deletes
 - `checkly-assets` - List/download result assets such as logs, traces, videos, screenshots, pcap, reports, and files for failure investigation
 
 ## When to use Checkly CLI vs Web UI
@@ -187,16 +210,27 @@ npx checkly deploy
 ### Import existing checks
 
 ```bash
-# Import all checks from Checkly account
+# Preview generated code without creating a plan
+npx checkly import --preview
+
+# Create the plan and generated code
 npx checkly import plan
 
 # Review generated code
 git diff
 
-# Commit imported checks
-git add .
-git commit -m "Import existing monitoring checks"
+# Apply one reviewed plan, but keep it pending during PR review
+npx checkly import apply --plan-id <plan-id> --no-commit
+
+# After the generated code is merged into the deployment branch, preview commit
+npx checkly import commit --plan-id <plan-id> --dry-run
 ```
+
+Do not deploy generated import code before applying its plan: that can create duplicate resources. Keep the applied plan pending until the generated code is durable, then commit it through the confirmation protocol in `checkly-import`.
+
+### Agent-mode confirmation protocol
+
+Write commands such as `deploy`, `destroy`, `import commit`, and `import cancel` return exit code 2 with `status: "confirmation_required"` in agent mode. Present the returned `changes` to the user, then run the returned `confirmCommand` verbatim only after explicit approval. Do not append `--force` yourself, remove flags that appear in the returned command, or assume parser-default flags are user intent.
 
 ### Inspect deployed check failures
 
@@ -214,6 +248,8 @@ npx checkly checks get <check-id> --result <result-id>
 ```
 
 When investigating a deployed failure, look for `errorGroups`, `rootCause`, or `RCA` fields in the output. If Checkly already surfaced Rocky AI root-cause analysis, reuse that context before suggesting additional debugging steps.
+
+To trigger deployed checks rather than test local project definitions, route to `checkly-checks` for `npx checkly checks run`. This creates live check sessions using deployed locations and alerting rules, so confirm the intended check IDs or tags before running it; omitting selectors targets all deployed checks.
 
 For alerting questions, use read-only JSON/API evidence before table output:
 
@@ -245,7 +281,10 @@ What are you monitoring?
    ├─ Periodic heartbeat → Heartbeat Monitor
    ├─ TCP port → TCP Monitor
    ├─ DNS record → DNS Monitor
-   └─ Simple HTTP → URL Monitor
+   ├─ Simple HTTP → URL Monitor
+   ├─ gRPC method / health service → gRPC Monitor
+   ├─ Certificate / TLS posture → SSL Monitor
+   └─ Network path / packet loss → Traceroute Monitor
 ```
 
 **Quick reference:**
@@ -334,6 +373,19 @@ my-monitoring-project/
     └── checkly/               # CLI package with constructs
 ```
 
+## Checkly bundled agent references
+
+`npx checkly rules` is deprecated; use `npx checkly skills` instead when you need Checkly's bundled AI-agent documentation, actions, or reference snippets:
+
+```bash
+npx checkly skills
+npx checkly skills configure
+npx checkly skills configure api-checks
+npx checkly skills install
+```
+
+This repository is an external multi-skill package for agent clients. Do not rely on the deprecated `checkly rules` command when refreshing or installing these skills.
+
 ## Installation methods
 
 ### New project (recommended)
@@ -373,6 +425,7 @@ checkly test
 - See `checkly-auth` for authentication setup
 - See `checkly-config` for project configuration
 - See `checkly-test` for local testing workflow
+- See `checkly-usage` for account plans, entitlements, contract credits, and usage reporting
 
 **Creating checks:**
 - See `checkly-checks` for API and browser checks

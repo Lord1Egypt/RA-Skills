@@ -1,46 +1,64 @@
-## Description: <br>
-Generates and edits images and videos with Wan 2.6 models through Alibaba DashScope, including text-to-image, image editing, text-to-video, image-to-video, and reference-to-video workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images and videos with Alibaba Wan models through DashScope API commands.
 
-## Publisher: <br>
-[krisyejh](https://clawhub.ai/user/krisyejh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krisyejh](https://clawhub.ai/user/krisyejh)
 
-## Use Case: <br>
-Developers and creators use this skill to submit Wan media-generation jobs, edit images from prompts and source images, and retrieve asynchronous video results from DashScope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected image or media references are sent to Alibaba DashScope for remote processing. <br>
-Mitigation: Avoid submitting sensitive, private, regulated, or unauthorized media, and review data-handling requirements before use. <br>
-Risk: DashScope API usage can consume quota or incur billing. <br>
-Mitigation: Use a dedicated API key, monitor quota and billing, and limit access to the key. <br>
+## Use Case:
 
+Developers and creative automation users use this skill to call Wan image and video generation, image editing, image-to-video, and reference-to-video workflows from an agent-managed CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krisyejh/wan-image-video-generation-editting) <br>
-- [Bailian model marketplace](https://bailian.console.aliyun.com/cn-beijing?tab=model#/model-market) <br>
-- [Wan 2.6 text-to-image API reference](references/wan2.6-t2i-api-doc.md) <br>
-- [Wan 2.6 image editing API reference](references/wan2.6-image-api-doc.md) <br>
-- [Wan 2.6 text-to-video API reference](references/wan2.6-t2v-api-doc.md) <br>
-- [Wan 2.6 image-to-video API reference](references/wan2.6-i2v-api-doc.md) <br>
-- [Wan 2.6 reference-to-video API reference](references/wan2.6-r2v-api-doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Files, Guidance] <br>
-**Output Format:** [Command-line text with generated media URLs, task IDs, and full JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and DASHSCOPE_API_KEY; video generation uses asynchronous task submission and polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Prompts, referenced URLs, and explicitly provided local image files are sent to Alibaba DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media and prompts approved for upload to DashScope, and avoid private or confidential inputs unless policy permits that transfer.
+
+Risk: Image and video generation requests can incur usage costs, especially with larger sizes, longer durations, or repeated polling workflows.
+
+Mitigation: Review size, duration, and quantity options before execution, and use an approved DashScope API key with appropriate account controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krisyejh/skills/wan-image-video-generation-editting)
+- [Alibaba ModelStudio Model Market](https://bailian.console.aliyun.com/cn-beijing?tab=model#/model-market)
+- [Text-to-Image API Reference](https://help.aliyun.com/zh/model-studio/text-to-image-v2-api-reference)
+- [Image Editing API Reference](https://help.aliyun.com/zh/model-studio/wan-image-generation-api-reference)
+- [Text-to-Video API Reference](https://help.aliyun.com/zh/model-studio/text-to-video-api-reference)
+- [Image-to-Video API Reference](https://help.aliyun.com/zh/model-studio/image-to-video-api-reference)
+- [Reference-to-Video API Reference](https://help.aliyun.com/zh/model-studio/wan-video-to-video-api-reference)
+- [wan2.6-t2i-api-doc.md](references/wan2.6-t2i-api-doc.md)
+- [wan2.6-image-api-doc.md](references/wan2.6-image-api-doc.md)
+- [wan2.6-t2v-api-doc.md](references/wan2.6-t2v-api-doc.md)
+- [wan2.6-i2v-api-doc.md](references/wan2.6-i2v-api-doc.md)
+- [wan2.6-r2v-api-doc.md](references/wan2.6-r2v-api-doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline bash commands and CLI output containing task IDs, media URLs, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and DASHSCOPE_API_KEY; generated media and task results are returned by the DashScope Wan API.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

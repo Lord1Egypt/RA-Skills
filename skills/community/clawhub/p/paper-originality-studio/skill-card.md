@@ -1,47 +1,58 @@
-## Description: <br>
-This skill helps revise Chinese and mixed Chinese-English academic manuscripts by scanning originality risks, comparing drafts, restructuring paragraphs, reducing mechanical phrasing, repairing citation flow, unifying terminology, and generating auditable rewrite guidance without fabricating evidence or designing detector-specific evasion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents scan, compare, chunk, and rewrite Chinese or mixed Chinese-English academic manuscripts for originality, academic style, AI-tone reduction, citation cohesion, terminology consistency, and auditable human review without fabricating sources or targeting detector circumvention.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users, academic authors, editors, and agent operators use this skill to scan Chinese or mixed Chinese-English manuscripts, compare drafts, split long texts, generate rewrite prompts, and produce auditable academic editing guidance while preserving facts, citations, and evidence boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be misused to disguise plagiarism, evade academic review systems, or outsource prohibited academic work. <br>
-Mitigation: Use it only for legitimate revision, require audit notes, keep facts and evidence boundaries intact, and refuse detector-specific bypass, fabricated sources, fabricated data, and full ghostwriting requests. <br>
-Risk: Manuscripts may contain confidential, unpublished, or institutionally restricted material. <br>
-Mitigation: Process drafts locally when possible, avoid sending sensitive text to uncontrolled external services, and have the author, advisor, or collaborator review the final manuscript. <br>
-Risk: Rewriting can accidentally alter citations, terminology, formulas, legal definitions, standards, or factual claims. <br>
-Mitigation: Preserve citations, data, formulas, standards, and specialized terms by default, and manually verify references, figure labels, page numbers, and technical claims after editing. <br>
-Risk: The artifact includes a publishing and patent service contact that may be mistaken for an official support channel. <br>
-Mitigation: Show the contact only in relevant service-consultation contexts, do not present it as official support, and independently verify it before use. <br>
+## Use Case:
 
+External users and developers use this skill to improve academic drafts, literature reviews, proposals, abstracts, manuscript sections, and patent disclosure drafts through structured diagnosis, rewriting, comparison, and human-review guidance. It is intended for compliant expression improvement while preserving facts, data, citations, and evidence boundaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/paper-originality-studio) <br>
-- [Workflow guide](references/WORKFLOWS.md) <br>
-- [Rewrite pattern resource](resources/rewrite_patterns_zh.json) <br>
-- [Smoke test](tests/smoke-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown, JSON reports, text chunk files, and structured rewrite prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python tooling can scan manuscripts, compare original and revised drafts, split sections, and generate prompts; Python 3 or python is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can append third-party promotional contact information in relevant responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the promotional-contact resource before installation if unsolicited commercial contact text is not acceptable.
+
+Risk: Academic manuscripts may contain unpublished, confidential, or otherwise sensitive content.
+
+Mitigation: Run the local scripts only on manuscript files the user is comfortable processing locally, and avoid routing confidential drafts to uncontrolled external services.
+
+Risk: Academic rewriting workflows can be misused for fabrication, ghostwriting, or detector-specific circumvention.
+
+Mitigation: Keep the skill constrained to expression improvement, preserve facts and citations, reject detector-bypass requests, and require human review of final drafts.
+
+## Reference(s):
+
+- [Workflow Reference](references/WORKFLOWS.md)
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/paper-originality-studio)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports, JSON reports, rewritten text, section files, structured prompts, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Python scripts with user-provided paths; no third-party Python packages are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

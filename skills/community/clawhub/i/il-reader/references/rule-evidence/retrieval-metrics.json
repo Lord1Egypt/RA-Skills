@@ -1,0 +1,10 @@
+{
+  "url": "https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-unranked-retrieval-sets-1.html",
+  "title": "Evaluation of unranked retrieval sets",
+  "observed_at": "2026-10-09T12:10:40.059Z",
+  "method": "Playwright JavaScript library / visible Google Chrome",
+  "excerpts": [
+    "Precision () is the fraction of retrieved documents that are relevant",
+    "Recall () is the fraction of relevant documents that are retrieved"
+  ]
+}

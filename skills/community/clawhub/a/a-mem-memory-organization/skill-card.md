@@ -1,41 +1,50 @@
-## Description: <br>
-Organize project, agent, or user memory using an A-MEM-style workflow with structured notes, semantic tags, contextual summaries, explicit links, and lightweight memory evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes project, agent, or user memory using structured notes, semantic tags, contextual summaries, explicit links, and lightweight memory evolution.
 
-## Publisher: <br>
-[xiaocaijic](https://clawhub.ai/user/xiaocaijic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaocaijic](https://clawhub.ai/user/xiaocaijic)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create durable memory notes, retrieve relevant historical context, link related observations, and refine memory conservatively over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable memory can retain secrets, sensitive personal data, or outdated context if users save it without review. <br>
-Mitigation: Review notes before persistence, avoid storing secrets or sensitive personal data, and periodically prune memory files. <br>
-Risk: Overbroad tags, weak links, or unnecessary rewrites can pollute retrieval and make future memory less reliable. <br>
-Mitigation: Keep notes atomic, use precise keywords and stable tags, link only concrete relationships, and update older notes only when confidence is high. <br>
+## Use Case:
 
+Developers and agent builders use this skill to convert raw observations into durable memory notes, retrieve relevant historical context, and evolve memory conservatively across sessions.
 
-## Reference(s): <br>
-- [Memory Patterns](references/memory-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xiaocaijic/a-mem-memory-organization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON note structures with concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update durable memory files using explicit note fields and conservative links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Durable memory notes can persist user or project context, including secrets or sensitive personal information if saved without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory entries before persistence, avoid storing secrets or sensitive personal information, and prefer explicit save-to-memory prompts when persistence is intended.
+
+## Reference(s):
+
+- [Memory Patterns](artifact/references/memory-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/xiaocaijic/skills/a-mem-memory-organization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON schemas and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or update durable memory structures such as Markdown or JSON memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

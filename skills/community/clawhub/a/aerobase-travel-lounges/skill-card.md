@@ -1,43 +1,59 @@
-## Description: <br>
-Airport lounge access and recovery-support recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Airport lounge access and recovery-support recommendations
 
-## Publisher: <br>
-[kurosh87](https://clawhub.ai/user/kurosh87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kurosh87](https://clawhub.ai/user/kurosh87)
 
-## Use Case: <br>
-External travel agents and travel-planning assistants use this skill to find airport lounge options, compare amenities, and provide recovery-aware layover guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dedicated Aerobase API key and sends airport or lounge search details to Aerobase. <br>
-Mitigation: Keep the API key in the agent environment, redact keys from output, and avoid sharing unrelated itinerary, account, password, OTP, cookie, or third-party login details. <br>
-Risk: Frequent use may consume quota or incur billing on paid tiers. <br>
-Mitigation: Monitor quota or billing and handle rate limits by explaining the free-tier cap and upgrade options. <br>
+## Use Case:
 
+External users and travel agents use this skill to find airport lounge options, compare amenities, and plan recovery-aware layovers using Aerobase API data.
 
-## Reference(s): <br>
-- [Aerobase homepage](https://aerobase.app) <br>
-- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent) <br>
-- [ClawHub skill page](https://clawhub.ai/kurosh87/aerobase-travel-lounges) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kurosh87) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise recommendations with top lounge options first and one or two follow-up actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill sends airport lounge requests to Aerobase using a user-provided API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set AEROBASE_API_KEY only in the agent environment, use the documented Authorization bearer header, and redact raw keys in output.
+
+Risk: Users may provide passwords, OTPs, cookies, or third-party login details when asking for travel help.
+
+Mitigation: Do not collect or request passwords, OTPs, cookies, or third-party logins; route users to Aerobase setup or account pages when authentication is needed.
+
+Risk: Quota limits or API errors can prevent complete lounge results.
+
+Mitigation: Explain 401, 403, 429, timeout, and 5xx conditions clearly, retry once on transient failures, and return partial guidance with next steps when needed.
+
+## Reference(s):
+
+- [Aerobase homepage](https://aerobase.app)
+- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent)
+- [ClawHub skill page](https://clawhub.ai/kurosh87/skills/aerobase-travel-lounges)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown recommendations with concise airport lounge options, amenities, recovery guidance, and API error guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AEROBASE_API_KEY; free usage is capped at 5 requests/day.]
+
+## Skill Version(s):
+
+3.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

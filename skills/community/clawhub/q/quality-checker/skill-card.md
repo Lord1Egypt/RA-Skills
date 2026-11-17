@@ -1,41 +1,59 @@
-## Description: <br>
-Checks chapter drafts for word count, paragraph length, dialogue ratio, punctuation overuse, repeated words, and produces a scored quality report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quality Checker evaluates Markdown chapter drafts for word count, paragraph length, dialogue ratio, punctuation issues, repeated wording, and produces a scored quality report.
 
-## Publisher: <br>
-[yuzhihui886](https://clawhub.ai/user/yuzhihui886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzhihui886](https://clawhub.ai/user/yuzhihui886)
 
-## Use Case: <br>
-Developers, writers, and publishing teams use this skill to evaluate Markdown or text chapter drafts before publication, quantify quality signals, and generate improvement guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependencies are unpinned. <br>
-Mitigation: Install the skill in a virtual environment and pin rich and PyYAML before operational use. <br>
-Risk: The checker reads local chapter/config files and can write a report to a user-selected path. <br>
-Mitigation: Run it only on files you intend to inspect and choose the optional output path deliberately. <br>
-Risk: Quality scores are heuristic and may not match project-specific editorial standards. <br>
-Mitigation: Use the report as review guidance and adjust the configuration thresholds for the project. <br>
+## Use Case:
 
+Writers, editors, and publishing workflow developers use this skill to check chapter drafts before release and identify measurable writing-quality issues such as insufficient length, overly long paragraphs, abnormal dialogue ratio, punctuation overuse, and repeated words.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text plus optional Markdown report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local Markdown or text chapter files and can create parent directories for the optional report path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Unpinned Python dependencies may resolve to different package versions over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment and pin reviewed versions of rich and PyYAML before production use.
+
+Risk: The tool reads chapter and configuration paths and can write a report path supplied by the user.
+
+Mitigation: Run it only on intended local files and review input, config, and output paths before execution.
+
+Risk: The command-line interface and generated report text are Chinese-language only.
+
+Mitigation: Use it in workflows where Chinese output is expected, or add localization before relying on it with non-Chinese-speaking reviewers.
+
+## Reference(s):
+
+- [Quality Checker ClawHub page](https://clawhub.ai/yuzhihui886/skills/quality-checker)
+- [Quality Checker source skill definition](artifact/SKILL.md)
+- [Quality Checker default configuration](artifact/configs/quality_config.yml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Terminal report with optional Markdown report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include a 0-100 quality score, metrics, issue list, and repeated-word details when present.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

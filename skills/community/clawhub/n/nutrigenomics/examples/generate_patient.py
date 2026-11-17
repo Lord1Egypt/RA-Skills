@@ -52,7 +52,7 @@ RISK_ALLELE_FREQS = {
     "rs4588":     0.28,   # GC Thr436Lys
     "rs174546":   0.47,   # FADS1
     "rs1535":     0.38,   # FADS2
-    "rs953413":   0.44,   # ELOVL2
+    "rs953413":   0.44,   # ELOVL2 (A allele, EUR frequency)
     "rs429358":   0.15,   # APOE ε4 allele
     "rs7412":     0.08,   # APOE ε2 allele
     "rs7501331":  0.24,   # BCMO1
@@ -116,7 +116,7 @@ REF_ALLELES = {
     "rs4588":     "C",
     "rs174546":   "T",
     "rs1535":     "G",
-    "rs953413":   "A",
+    "rs953413":   "G",
     "rs429358":   "T",
     "rs7412":     "C",
     "rs7501331":  "C",
@@ -147,7 +147,7 @@ RISK_ALLELES = {
     "rs4588":     "A",
     "rs174546":   "C",
     "rs1535":     "A",
-    "rs953413":   "G",
+    "rs953413":   "A",
     "rs429358":   "C",
     "rs7412":     "T",
     "rs7501331":  "T",

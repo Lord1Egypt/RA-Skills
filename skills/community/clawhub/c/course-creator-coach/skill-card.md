@@ -1,40 +1,53 @@
-## Description: <br>
-Guides online-course creators through validation, curriculum design, production, pricing, launches, funnels, retention, refund diagnosis, and scaling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Course Creator Coach helps online-course creators validate topics, design curricula, plan production, price offers, build launch funnels, troubleshoot completion and refunds, and scale course businesses.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-External course creators and business coaches use this agent for structured diagnostic coaching on validating, building, pricing, launching, and improving online courses and funnels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat business coaching as automation for ad budgets, pricing, refund policies, platform migrations, or compliance-sensitive decisions. <br>
-Mitigation: Keep those choices under manual review and verify current FTC, platform, tax, and legal requirements before acting. <br>
-Risk: Course marketing advice can affect public income claims, guarantees, testimonials, and other regulated promotional content. <br>
-Mitigation: Use evidence-based offers, avoid deceptive claims, and review public marketing copy for compliance before publication. <br>
+## Use Case:
 
+External creators, consultants, and course-business operators use this skill to diagnose course-business stage and get practical guidance on validation, curriculum design, production workflow, pricing, launch strategy, evergreen funnels, completion, refunds, and scale.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/course-creator-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching responses with diagnostic questions, ranked recommendations, and week-by-week action plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only guidance; asks diagnostic questions before recommendations and does not execute code, shell commands, or account actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Legal, advertising, platform-pricing, and earnings-claim guidance may be outdated or jurisdiction-specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify recommendations against current platform terms, advertising rules, FTC endorsement guidance, and qualified legal or compliance advice before acting.
+
+Risk: Course-business recommendations may be unreliable when based on incomplete creator metrics or self-reported numbers.
+
+Mitigation: Use the skill's diagnostic questions to gather stage, audience, revenue, refund rate, completion rate, funnel, production, validation, budget, goals, and constraints before applying recommendations.
+
+## Reference(s):
+
+- [Course Creator Coach on ClawHub](https://clawhub.ai/charlie-morrison/skills/course-creator-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted coaching guidance, diagnostic summaries, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; advice should be checked against current legal, advertising, platform-pricing, and earnings-claim requirements before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

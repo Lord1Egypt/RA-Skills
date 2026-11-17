@@ -1,40 +1,53 @@
-## Description: <br>
-Guide presentations end-to-end: analyze audience, craft compelling narratives, design clear slides, coach delivery, and ensure effective follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through presentation planning, audience analysis, narrative structure, slide design, delivery coaching, deck review, and follow-up.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Presenters, founders, sales teams, executives, educators, and other business users use this skill to plan, write, review, and rehearse presentations across the full lifecycle from audience analysis through follow-up. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential business metrics, investor materials, or private recordings in prompts or drafts. <br>
-Mitigation: Share only content the user is comfortable giving to their agent, and avoid sensitive material unless the operating environment is approved for it. <br>
-Risk: Persuasive claims, statistics, or business recommendations may be inaccurate or unsupported. <br>
-Mitigation: Review claims, statistics, and recommendations before presenting, and add citations or source checks for audience-facing evidence. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Presentation Mastery on ClawHub](https://clawhub.ai/1kalin/afrexai-presentation-mastery) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Employees, founders, consultants, sales teams, and other presenters use this skill to plan, design, review, rehearse, and follow up on presentations. It helps agents produce audience briefs, narrative structures, slide outlines, review rubrics, coaching guidance, and follow-up checklists.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured checklists, deck outlines, rubrics, and coaching prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no executable code or credential requests are expected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad presentation-related requests may activate the skill when the user only wants general writing or editing help.
+
+Mitigation: Invoke it explicitly for presentation-specific coaching, deck planning, slide review, rehearsal, or follow-up tasks.
+
+Risk: Presentation recommendations can be persuasive but may still contain weak claims, uncited data, or audience assumptions.
+
+Mitigation: Review generated decks, claims, metrics, and speaker guidance against the presenter's source material and audience context before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-presentation-mastery)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with structured briefs, outlines, tables, rubrics, checklists, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or external dependency output is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

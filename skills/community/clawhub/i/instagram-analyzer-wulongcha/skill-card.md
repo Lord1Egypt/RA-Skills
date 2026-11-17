@@ -1,45 +1,62 @@
-## Description: <br>
-Analyze Instagram profiles and posts with engagement metrics, view counts, follower ratios, and Reels-focused analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Instagram profiles and posts with engagement metrics, view counts, follower ratios, and Reels-focused analytics with JSON and CSV export.
 
-## Publisher: <br>
-[wulooongcha](https://clawhub.ai/user/wulooongcha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wulooongcha](https://clawhub.ai/user/wulooongcha)
 
-## Use Case: <br>
-Developers, analysts, and social media operators use this skill to inspect Instagram profiles, posts, and Reels for engagement metrics, view-to-follower ratios, and exported analysis data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates Instagram scraping with stealth and human-like browser behavior. <br>
-Mitigation: Use it only for accounts or content you are authorized to analyze, and do not use it to evade service limits or access controls. <br>
-Risk: The artifact references Instagram credentials and includes empty username and password fields in configuration. <br>
-Mitigation: Store credentials outside shared files, restrict file permissions, and remove secrets before sharing logs, configs, or generated outputs. <br>
-Risk: The skill writes scraped profile, post, batch, and Reels-link data to local files. <br>
-Mitigation: Run in an isolated environment, limit collected data to the intended task, and delete generated data when it is no longer needed. <br>
-Risk: Dependencies and browser automation increase installation and runtime exposure. <br>
-Mitigation: Use pinned dependencies, install Chromium from trusted sources, and review the environment before running the analyzer. <br>
+## Use Case:
 
+Social media analysts, marketers, and developers use this skill to inspect public Instagram profile and post performance, especially Reels engagement, and export metrics for downstream review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wulooongcha/instagram-analyzer-wulongcha) <br>
-- [Publisher profile](https://clawhub.ai/user/wulooongcha) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, CSV, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command examples plus JSON and CSV analysis files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes profile, post, batch, and Reels-link outputs under the configured data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact _meta.json) <br>
+Risk: The skill drives a browser to user-supplied Instagram URLs or profiles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public Instagram URLs and profiles you trust, and run the skill in an isolated environment.
+
+Risk: The security review notes that output paths can be derived from unsanitized usernames.
+
+Mitigation: Restrict output to a dedicated directory and sanitize or validate usernames before relying on generated paths.
+
+Risk: The artifact includes empty Instagram credential fields and the security guidance warns against personal credential use.
+
+Mitigation: Avoid providing personal Instagram credentials unless credential handling has been reviewed and documented.
+
+Risk: Dependencies are specified as version ranges rather than pinned exact versions.
+
+Mitigation: Pin and review dependencies before deployment in controlled or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wulooongcha/skills/instagram-analyzer-wulongcha)
+- [Publisher profile](https://clawhub.ai/user/wulooongcha)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, CSV, shell commands, configuration]
+
+**Output Format:** [Command guidance plus JSON, CSV, and text file exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes profile and post analysis files, batch results, and Reels link lists under the configured data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

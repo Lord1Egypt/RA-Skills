@@ -1,45 +1,54 @@
-## Description: <br>
-Try different hairstyles and accessories on photos using AI via Media.io OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Try different hairstyles and accessories on photos using AI via Media.io OpenAPI.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-External users and agents use this skill to submit user-authorized portrait image URLs to Media.io, poll the asynchronous hairstyle-generation task, and return generated preview URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portrait image URLs are sent to Media.io for processing. <br>
-Mitigation: Use only user-provided or user-authorized images, and avoid private, sensitive, or unauthorized images. <br>
-Risk: Generated preview URLs may be shareable links. <br>
-Mitigation: Treat preview URLs as potentially accessible outside the chat or local environment. <br>
-Risk: The Media.io API key could be exposed through logs or responses. <br>
-Mitigation: Keep MEDIAIO_API_KEY out of chat logs, command output, and user-facing responses. <br>
+## Use Case:
 
+External users and agents use this skill to submit user-authorized portrait image URLs to Media.io's asynchronous hairstyle generation API, poll task status, and return generated preview URLs.
 
-## Reference(s): <br>
-- [Media.io platform](https://developer.media.io/) <br>
-- [Media.io API documentation](https://platform.media.io/docs/) <br>
-- [ClawHub skill page](https://clawhub.ai/wondershare-boop/mediaio-ai-hairstyle-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/wondershare-boop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns asynchronous task status and generated preview URLs when Media.io completes processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: User-authorized portrait image URLs are sent to Media.io for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive images unless Media.io retention and sharing terms are acceptable for the use case.
+
+Risk: The Media.io API key could be exposed in logs or shared transcripts.
+
+Mitigation: Keep MEDIAIO_API_KEY in environment configuration and avoid echoing raw credentials in responses, logs, or command examples.
+
+## Reference(s):
+
+- [Media.io API documentation](https://platform.media.io/docs/)
+- [Media.io developer platform](https://developer.media.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown]
+
+**Output Format:** [Markdown guidance with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEDIAIO_API_KEY and a user-authorized image URL; returns task status and generated preview URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

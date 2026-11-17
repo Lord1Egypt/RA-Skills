@@ -1,44 +1,59 @@
-## Description: <br>
-Text-to-speech conversion using OpenAI's TTS API for generating natural-sounding audio from text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-speech conversion using OpenAI's TTS API for generating high-quality, natural-sounding audio.
 
-## Publisher: <br>
-[merend](https://clawhub.ai/user/merend) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[merend](https://clawhub.ai/user/merend)
 
-## Use Case: <br>
-Developers and end users use this skill to convert provided text, files, or stdin into speech audio with selectable OpenAI voices, model quality, speed, and output format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for speech generation is sent to OpenAI. <br>
-Mitigation: Use the skill only for content your OpenAI account and data policies allow, and avoid secrets, regulated data, or confidential documents unless explicitly approved. <br>
-Risk: The skill uses an OpenAI API key and may incur usage charges. <br>
-Mitigation: Confirm API key scope, billing expectations, and request volume before batch or long-text generation. <br>
-Risk: Broad activation keywords could trigger text-to-speech behavior when audio output was not intended. <br>
-Mitigation: Invoke the skill only on explicit text-to-speech requests and review the text before conversion. <br>
+## Use Case:
 
+Developers and agents use this skill to convert text, files, or piped input into speech audio for accessibility, narration, podcast-style output, or multitasking workflows.
 
-## Reference(s): <br>
-- [OpenAI TTS Documentation](https://platform.openai.com/docs/guides/text-to-speech) <br>
-- [OpenAI API Reference - Create Speech](https://platform.openai.com/docs/api-reference/audio/createSpeech) <br>
-- [OpenAI Pricing](https://openai.com/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; generated audio files from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports mp3, opus, aac, and flac output; long text is split into 4096-character chunks when optional audio dependencies are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Text sent for conversion is processed by OpenAI's remote API and may include sensitive or regulated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill on secrets, credentials, regulated data, or confidential documents unless remote processing is approved.
+
+Risk: Broad activation wording could trigger remote text-to-speech conversion or audio file creation unexpectedly.
+
+Mitigation: Review prompts and requested outputs before execution, especially when user text may contain sensitive material.
+
+Risk: API usage may incur OpenAI costs and depends on local Python, package, and ffmpeg setup.
+
+Mitigation: Confirm API budget and run the skill in an isolated virtual environment with pinned dependency versions.
+
+## Reference(s):
+
+- [OpenAI Text-to-Speech Documentation](https://platform.openai.com/docs/guides/text-to-speech)
+- [OpenAI Create Speech API Reference](https://platform.openai.com/docs/api-reference/audio/createSpeech)
+- [OpenAI Pricing](https://openai.com/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; generated runtime artifacts are audio files such as mp3, opus, aac, or flac.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENAI_API_KEY; supports voice, model, output format, speed, file input, stdin, and long-text chunking.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

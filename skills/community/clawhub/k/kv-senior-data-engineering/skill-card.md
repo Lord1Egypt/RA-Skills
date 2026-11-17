@@ -1,44 +1,62 @@
-## Description: <br>
-Design and build scalable data pipelines, ETL/ELT systems, and data infrastructure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and build scalable data pipelines, ETL/ELT systems, and data infrastructure.
 
-## Publisher: <br>
-[felix-antonio-sl](https://clawhub.ai/user/felix-antonio-sl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felix-antonio-sl](https://clawhub.ai/user/felix-antonio-sl)
 
-## Use Case: <br>
-Developers and data engineers use this skill to design production data pipelines, model analytical data, define quality checks, optimize ETL/ELT performance, and create operational artifacts such as DAGs, dbt models, schema DDL, and quality rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated DAGs, SQL, shell commands, or quality reports could affect real data systems if copied into production without review. <br>
-Mitigation: Review generated artifacts before execution and test them in a controlled environment before applying them to production systems. <br>
-Risk: Credentials or sensitive production data could be exposed through generated code, documentation, profiling, or reports. <br>
-Mitigation: Keep credentials out of generated artifacts, use secret managers or platform integrations, and control report outputs when profiling sensitive data. <br>
+## Use Case:
 
+Developers and data engineers use this skill to design batch, streaming, and hybrid data pipelines; model warehouse data; add data quality controls; and troubleshoot pipeline or query performance.
 
-## Reference(s): <br>
-- [Data Modeling Patterns](references/data_modeling_patterns.md) <br>
-- [Data Pipeline Architecture](references/data_pipeline_architecture.md) <br>
-- [DataOps Best Practices](references/dataops_best_practices.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Workflows](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and generated data-engineering artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated artifacts should be reviewed before use against production data systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated workflow code or configuration may be unsafe or incorrect if deployed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated pipeline artifacts before deployment and add environment-specific tests, approvals, and rollback checks.
+
+Risk: Untrusted YAML or JSON inputs could drive unintended generated pipeline behavior.
+
+Mitigation: Use trusted configuration sources, validate inputs before generation, and avoid direct writes into production scheduler directories.
+
+Risk: Sample credentials or destructive operations can create production exposure when copied into real pipelines.
+
+Mitigation: Replace sample credentials with secret-managed values and require safeguards for truncate, backfill, rollback, and full-refresh operations.
+
+## Reference(s):
+
+- [Data Pipeline Architecture](references/data_pipeline_architecture.md)
+- [Data Modeling Patterns](references/data_modeling_patterns.md)
+- [DataOps Best Practices](references/dataops_best_practices.md)
+- [Senior Data Engineer Workflows](references/workflows.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/felix-antonio-sl/skills/kv-senior-data-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Usually emits one primary artifact per response, such as a DAG, dbt model, schema DDL, quality rules, or architecture recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

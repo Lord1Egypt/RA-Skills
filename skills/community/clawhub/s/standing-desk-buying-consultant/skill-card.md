@@ -1,40 +1,55 @@
-## Description: <br>
-Guides standing desk buyers through height range, weight capacity, frame stability, motor type, surface size, and use-case questions to determine the exact specs they need without sales bias. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides standing desk buyers through height range, weight capacity, frame stability, motor type, surface size, and use-case questions to identify the specs they need without sales bias.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill when buying or upgrading a standing desk and need a structured, brand-neutral consultation. It gathers height, equipment, workspace, usage, and regional context, then produces prioritized specifications and product-fit guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for personal context such as height, country, room dimensions, and equipment details. <br>
-Mitigation: Share only the details needed for the buying decision. <br>
-Risk: Standing desk prices, availability, certifications, and product specifications can change after the recommendation is generated. <br>
-Mitigation: Independently verify current product specifications, safety certifications, power compatibility, prices, and availability before purchase. <br>
+## Use Case:
 
+External users shopping for a standing desk use this skill to complete a structured consultation about height, equipment load, workspace, regional requirements, and buying priorities. The agent produces a brand-neutral spec recommendation and product suggestions only after the user's required desk specifications are established.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/arbazex/standing-desk-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown consultation with prioritized specification lists, a spec summary card, and product-fit guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided height, workspace, equipment, country, and usage context; no code execution or external APIs required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The consultation asks for personal sizing and workspace details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the details needed to calculate desk specifications, and avoid unnecessary private information.
+
+Risk: Suggested desks, prices, availability, specs, and safety certifications may change after the skill was released.
+
+Mitigation: Verify current product listings, manufacturer specifications, regional electrical compatibility, and safety certifications before purchasing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/standing-desk-buying-consultant)
+- [Artifact README](artifact/README.md)
+- [Declared artifact homepage](https://github.com/arbazex/personal-tech-buying-consultants/tree/master/standing-desk-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown consultation with structured spec lists, a summary table, and product suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external APIs, environment variables, or runtime dependencies; current product specs, availability, prices, and safety certifications should be verified before purchase.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

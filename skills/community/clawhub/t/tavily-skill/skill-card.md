@@ -1,41 +1,55 @@
-## Description: <br>
-Uses the Tavily API for real-time web search and content extraction when an agent needs current web information, with a Tavily API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Tavily API to provide real-time web search and content extraction for current-information requests.
 
-## Publisher: <br>
-[fangkelvin](https://clawhub.ai/user/fangkelvin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fangkelvin](https://clawhub.ai/user/fangkelvin)
 
-## Use Case: <br>
-Developers and agents use this skill to search the live web, research current topics, retrieve recent news, and request Tavily search results or extracted content through documented curl examples or the bundled shell script. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Tavily's service and may reveal sensitive research terms or private context. <br>
-Mitigation: Avoid secrets, private internal URLs, regulated data, confidential research terms, or other sensitive content in Tavily queries. <br>
-Risk: The Tavily API key is required for operation and could be exposed if hardcoded into files or shared examples. <br>
-Mitigation: Keep TAVILY_API_KEY in a scoped environment variable or protected runtime configuration, and do not commit it to skill files or logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tavily homepage](https://tavily.com) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
-- [ClawHub release page](https://clawhub.ai/fangkelvin/tavily-skill) <br>
+## Use Case:
 
+Developers and agents use this skill to route web research, recent-information, and news-search requests to Tavily. It is intended for workflows where an agent needs search results or extracted web content through a Tavily API key.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash and JSON examples; script output is JSON formatted with jq.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and TAVILY_API_KEY; supports query, search depth, max results, answer inclusion, and image inclusion options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries may disclose sensitive information to Tavily.
+
+Mitigation: Do not search for secrets, credentials, private customer data, or internal project details unless policy allows sharing them with Tavily.
+
+Risk: Troubleshooting may accidentally expose the Tavily API key.
+
+Mitigation: Use a presence check instead of printing the API key when diagnosing configuration issues.
+
+## Reference(s):
+
+- [Tavily](https://tavily.com)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+- [ClawHub skill page](https://clawhub.ai/fangkelvin/skills/tavily-skill)
+- [Publisher profile](https://clawhub.ai/user/fangkelvin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search requests require curl, jq, and a TAVILY_API_KEY; responses are returned from Tavily as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

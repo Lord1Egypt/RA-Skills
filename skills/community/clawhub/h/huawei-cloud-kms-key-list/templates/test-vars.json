@@ -1,0 +1,102 @@
+{
+  "skill_name": "huawei-cloud-kms-key-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "list keys (default compact output)",
+      "command": "python3 scripts/list_kms_keys.py --region=cn-north-4",
+      "expected": "compact 别名 | 密钥ID | 状态 list plus 共 N 个密钥 summary, rc=0",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "full table output",
+      "command": "python3 scripts/list_kms_keys.py --table --region=cn-north-4",
+      "expected": "8 columns: 密钥ID | 别名 | 状态 | 密钥用途 | 密钥类型 | 轮转周期 | 创建时间 | region",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "raw JSON output",
+      "command": "python3 scripts/list_kms_keys.py --json --region=cn-north-4",
+      "expected": "valid JSON with keys/key_details/total/truncated/next_marker",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "alias filter (exact)",
+      "command": "python3 scripts/list_kms_keys.py --alias=test --region=cn-north-4",
+      "expected": "only keys whose alias equals test",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "alias filter (fuzzy)",
+      "command": "python3 scripts/list_kms_keys.py --alias=prod --fuzzy --region=cn-north-4",
+      "expected": "keys whose alias contains prod",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-06",
+      "name": "state filter",
+      "command": "python3 scripts/list_kms_keys.py --state=enabled --region=cn-north-4",
+      "expected": "only enabled keys (state 2)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-07",
+      "name": "pagination with limit=1",
+      "command": "python3 scripts/list_kms_keys.py --limit=1 --region=cn-north-4",
+      "expected": "all pages fetched via next_marker, rc=0",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-08",
+      "name": "SDK fallback",
+      "command": "python3 scripts/list_kms_keys.py --backend=sdk --region=cn-north-4",
+      "expected": "same output shape through huaweicloudsdkkms",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-09",
+      "name": "write-intent guard: alias",
+      "command": "python3 scripts/list_kms_keys.py --alias=create-me",
+      "expected": "read-only guard error, rc=1, no cloud call",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-10",
+      "name": "write-intent guard: action",
+      "command": "python3 scripts/list_kms_keys.py --action=rotate",
+      "expected": "read-only guard error, rc=1, no cloud call",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-11",
+      "name": "limit out of range",
+      "command": "python3 scripts/list_kms_keys.py --limit=201",
+      "expected": "--limit must be 1~200, rc=1",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-12",
+      "name": "empty key list hint",
+      "command": "python3 scripts/list_kms_keys.py --region=cn-north-4",
+      "expected": "当前区域无 KMS 密钥（区域: cn-north-4）。 rc=0 when the account has no keys",
+      "type": "readonly",
+      "executor": "script"
+    }
+  ]
+}

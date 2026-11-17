@@ -1,51 +1,65 @@
-## Description: <br>
-Brightdata Research helps an agent batch-search candidates, verify public web evidence, deduplicate results, assign risk tiers, and organize findings into Feishu or Lark documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch-searches candidates, verifies public web evidence, deduplicates results, assigns risk tiers, and organizes findings into Feishu/Lark documents.
 
-## Publisher: <br>
-[16miku](https://clawhub.ai/user/16miku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[16miku](https://clawhub.ai/user/16miku)
 
-## Use Case: <br>
-Developers and research operators use this skill to run repeatable public-web candidate research pipelines, collect evidence, deduplicate against current or historical Feishu/Lark documents, and produce structured findings with risk tiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger global npm installs and add external skills during environment setup. <br>
-Mitigation: Require explicit user approval before global installs or external skill additions, and review the exact commands before execution. <br>
-Risk: The skill may read or write Feishu/Lark documents using the user's authorization. <br>
-Mitigation: Confirm the target document and operation type before writes, prefer append over replace, and use Markdown-only output when document mutation is not intended. <br>
-Risk: The skill can initialize or commit to a local git repository to enable subagent workflows. <br>
-Mitigation: Require approval before git init, git add, or git commit, and fall back to serial execution when repository changes are not acceptable. <br>
-Risk: Search summaries or scraped pages may be incomplete or misleading if treated as verified facts. <br>
-Mitigation: Keep source links with each candidate, prefer official pages for capability evidence, and label low-confidence findings clearly. <br>
+## Use Case:
 
+Developers and research operators use this skill to run repeatable batch web research, collect source links, deduplicate candidate lists, classify evidence quality, and prepare structured Feishu/Lark Markdown updates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/16miku/brightdata-research) <br>
-- [BrightData MCP setup](references/brightdata-mcp-setup.md) <br>
-- [Environment checklist](references/environment-checklist.md) <br>
-- [Feishu setup and write rules](references/feishu-setup.md) <br>
-- [Known failures and fallbacks](references/known-failures-and-fallbacks.md) <br>
-- [lark-cli install and auth](references/lark-cli-install-and-auth.md) <br>
-- [Smoke tests](references/smoke-tests.md) <br>
-- [Subagent and git prerequisites](references/subagent-git-prerequisites.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured research fields and inline shell commands when environment setup is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or append Feishu/Lark documents when the user provides authorization and a target document; otherwise returns Markdown in chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires broad persistent setup for BrightData access and Feishu/Lark document writing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing required accounts, tokens, and document scopes; prefer least-privilege Feishu/Lark permissions.
+
+Risk: Automated document updates can add incorrect, duplicate, or low-confidence research findings.
+
+Mitigation: Preview generated Markdown, keep append-only updates where possible, and retain source links and risk tiers for review.
+
+Risk: Global npm or npx installation steps can change the user's development environment.
+
+Mitigation: Prefer pinned package versions and run smoke tests before using the skill on sensitive workspaces.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/16miku/skills/brightdata-research)
+- [README](README.md)
+- [BrightData Search and Scrape Setup](references/brightdata-mcp-setup.md)
+- [Environment Checklist](references/environment-checklist.md)
+- [Feishu Setup and Write Rules](references/feishu-setup.md)
+- [lark-cli Installation and Authentication](references/lark-cli-install-and-auth.md)
+- [Known Failures and Fallbacks](references/known-failures-and-fallbacks.md)
+- [Subagent and Git Prerequisites](references/subagent-git-prerequisites.md)
+- [Smoke Tests](references/smoke-tests.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with source links, structured candidate fields, risk tiers, deduplication notes, and setup commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append prepared Markdown to Feishu/Lark documents when authorized; otherwise returns the report in conversation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

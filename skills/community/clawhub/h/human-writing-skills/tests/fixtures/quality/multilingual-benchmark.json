@@ -1,0 +1,23 @@
+[
+  {"id":"zh-paper","kind":"serious-detection","language":"zh","genre":"academic","review_status":"seed","text":"研究结果见文献[12]，样本量为300。","expected":true},
+  {"id":"en-paper","kind":"serious-detection","language":"en","genre":"academic","review_status":"seed","text":"The methodology and results are reported in [12].","expected":true},
+  {"id":"fr-paper","kind":"serious-detection","language":"fr","genre":"academic","review_status":"seed","text":"Cette étude présente les résultats [1].","expected":true},
+  {"id":"es-paper","kind":"serious-detection","language":"es","genre":"academic","review_status":"seed","text":"Esta investigación presenta los resultados [1].","expected":true},
+  {"id":"pt-paper","kind":"serious-detection","language":"pt","genre":"academic","review_status":"seed","text":"Esta pesquisa apresenta os resultados [1].","expected":true},
+  {"id":"ja-paper","kind":"serious-detection","language":"ja","genre":"academic","review_status":"seed","text":"本研究の結果を報告する。[1]","expected":true},
+  {"id":"ar-paper","kind":"serious-detection","language":"ar","genre":"academic","review_status":"seed","text":"تقدم هذه الدراسة نتائج البحث [1].","expected":true},
+  {"id":"fr-news","kind":"serious-detection","language":"fr","genre":"news","review_status":"seed","text":"Selon la mairie, le pont sera fermé. Le porte-parole a déclaré que la déviation durerait deux jours.","expected":true},
+  {"id":"pt-news","kind":"serious-detection","language":"pt","genre":"news","review_status":"seed","text":"Segundo a prefeitura, a ponte será fechada. O porta-voz afirmou que o desvio durará dois dias.","expected":true},
+  {"id":"zh-fiction","kind":"serious-detection","language":"zh","genre":"fiction","review_status":"seed","text":"她在故事里提到研究结果[1]，随后合上了书。","expected":false},
+  {"id":"en-fiction","kind":"serious-detection","language":"en","genre":"fiction","review_status":"seed","text":"She found the results [1] in a fictional archive and closed the book.","expected":false},
+  {"id":"fr-fiction","kind":"serious-detection","language":"fr","genre":"fiction","review_status":"seed","text":"Elle lut les résultats [1], puis ferma le livre.","expected":false},
+  {"id":"es-fiction","kind":"serious-detection","language":"es","genre":"fiction","review_status":"seed","text":"Leyó los resultados [1] y cerró el libro.","expected":false},
+  {"id":"pt-fiction","kind":"serious-detection","language":"pt","genre":"fiction","review_status":"seed","text":"Ela leu os resultados [1] e fechou o livro.","expected":false},
+  {"id":"ja-fiction","kind":"serious-detection","language":"ja","genre":"fiction","review_status":"seed","text":"彼女は結果[1]を読んで、本を閉じた。","expected":false},
+  {"id":"ar-fiction","kind":"serious-detection","language":"ar","genre":"fiction","review_status":"seed","text":"قرأت نتائج [1] ثم أغلقت الكتاب.","expected":false},
+  {"id":"unchanged","kind":"fidelity","language":"en","genre":"academic","review_status":"seed","source":"The treatment may reduce risk by 20% [1].","candidate":"The treatment may reduce risk by 20% [1].","expected":"pass-exact"},
+  {"id":"certainty-shift","kind":"fidelity","language":"en","genre":"academic","review_status":"seed","source":"The treatment may reduce risk by 20% [1].","candidate":"The treatment reduces risk by 20% [1].","expected":"needs-review"},
+  {"id":"actor-swap","kind":"fidelity","language":"zh","genre":"report","review_status":"seed","source":"A组的改善率为20%。B组无显著改善。","candidate":"B组的改善率为20%。A组无显著改善。","expected":"needs-review"},
+  {"id":"numeric-change","kind":"fidelity","language":"en","genre":"news","review_status":"seed","source":"The rate was 20% [1].","candidate":"The rate was 25% [1].","expected":"fail-literal"},
+  {"id":"attribution-loss","kind":"fidelity","language":"es","genre":"news","review_status":"seed","source":"Según la fuente, el total fue 20% [1].","candidate":"El total fue 20% [1].","expected":"needs-review"}
+]

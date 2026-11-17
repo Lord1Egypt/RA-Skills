@@ -1,0 +1,259 @@
+/**
+ * Star Pure 纯净风格 Markdown 预览样式
+ * 基于 YunYouJun/star-markdown-css pure 主题变体
+ * 简洁纯净的黑白风格
+ */
+
+:root {
+    --smc-font-sans: Raleway, -apple-system, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+    --smc-font-serif: 'Songti SC', 'Noto Serif SC', STZhongsong, STKaiti, KaiTi, Roboto, serif;
+    --smc-font-mono: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    --smc-line-height: 1.8;
+    --smc-c-text: #333333;
+    --smc-c-text-light: #666666;
+    --smc-c-text-lighter: #999999;
+    --smc-code-bg-color: #f5f5f5;
+    --smc-link-color: #0066cc;
+    --smc-header-bottom-color: #eeeeee;
+    --smc-border-color: #dddddd;
+    --smc-bg-color: #ffffff;
+    --smc-c-primary: #333333;
+    --smc-c-primary-light: #cccccc;
+}
+
+.markdown-body.star-pure {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    background: var(--smc-bg-color);
+    color: var(--smc-c-text);
+    font-family: var(--smc-font-sans);
+    font-size: 1rem;
+    line-height: var(--smc-line-height);
+    overflow-wrap: break-word;
+}
+
+.markdown-body.star-pure * {
+    box-sizing: border-box;
+}
+
+.markdown-body.star-pure a {
+    background-color: transparent;
+    color: var(--smc-link-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.markdown-body.star-pure a:hover {
+    border-bottom-color: var(--smc-link-color);
+}
+
+.markdown-body.star-pure hr {
+    background-color: var(--smc-border-color);
+    height: 0.05rem;
+    margin: 2rem 0;
+    border: none;
+}
+
+.markdown-body.star-pure blockquote {
+    margin: 1rem 0;
+    padding: 0 1rem;
+    border-left: 0.25em solid var(--smc-border-color);
+    color: var(--smc-c-text-light);
+    font-style: italic;
+}
+
+.markdown-body.star-pure code,
+.markdown-body.star-pure pre {
+    font-family: var(--smc-font-mono);
+}
+
+.markdown-body.star-pure h1 > code,
+.markdown-body.star-pure h2 > code,
+.markdown-body.star-pure h3 > code,
+.markdown-body.star-pure h4 > code {
+    font-size: 0.9em;
+}
+
+.markdown-body.star-pure code {
+    padding: 2px 6px;
+    font-size: 0.9em;
+    color: #333333;
+    background: var(--smc-code-bg-color);
+    border-radius: 3px;
+}
+
+.markdown-body.star-pure pre {
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow-wrap: normal;
+    /* padding: 1rem; */
+    overflow: auto;
+    background-color: var(--smc-code-bg-color);
+    border-radius: 4px;
+    border: 1px solid #e8e8e8;
+}
+
+.markdown-body.star-pure pre > code {
+    font-size: 0.9rem;
+    white-space: pre;
+}
+
+.markdown-body.star-pure pre code {
+    display: block;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-break: normal;
+    background-color: transparent;
+    border: 0;
+    color: #333333;
+}
+
+.markdown-body.star-pure img {
+    display: block;
+    margin: 1.5rem auto;
+    max-width: 92%;
+    max-height: 600px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.markdown-body.star-pure img:hover {
+    opacity: 0.9;
+}
+
+.markdown-body.star-pure figure {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.markdown-body.star-pure figcaption {
+    display: block;
+    margin-top: 5px;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}
+
+.markdown-body.star-pure figure a {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.markdown-body.star-pure figure a img {
+    margin: 16px auto;
+}
+
+
+
+.markdown-body.star-pure ol,
+.markdown-body.star-pure ul {
+    padding-left: 1.5em;
+}
+
+.markdown-body.star-pure li {
+    overflow-wrap: break-all;
+    margin-top: 0.5em;
+}
+
+.markdown-body.star-pure li > p {
+    margin-top: 16px;
+}
+
+.markdown-body.star-pure table {
+    width: 100%;
+    overflow: auto;
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.markdown-body.star-pure table td,
+.markdown-body.star-pure table th {
+    padding: 10px 16px;
+    border: 1px solid var(--smc-border-color);
+}
+
+.markdown-body.star-pure table thead th {
+    font-weight: 600;
+    background: var(--smc-code-bg-color);
+    color: #333333;
+}
+
+.markdown-body.star-pure table > tbody > tr:hover {
+    background-color: #fafafa;
+}
+
+.markdown-body.star-pure strong {
+    font-weight: 700;
+    color: #000000;
+}
+
+.markdown-body.star-pure em {
+    font-style: italic;
+}
+
+.markdown-body.star-pure p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.markdown-body.star-pure h1,
+.markdown-body.star-pure h2,
+.markdown-body.star-pure h3,
+.markdown-body.star-pure h4,
+.markdown-body.star-pure h5,
+.markdown-body.star-pure h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #111111;
+}
+
+.markdown-body.star-pure h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    border-bottom: 2px solid #333333;
+    padding-bottom: 0.5rem;
+}
+
+.markdown-body.star-pure h2 {
+    font-size: 2rem;
+    border-bottom: 1px solid var(--smc-border-color);
+    padding-bottom: 0.3rem;
+}
+
+.markdown-body.star-pure h3 {
+    font-size: 1.6rem;
+}
+
+.markdown-body.star-pure h4 {
+    font-size: 1.3rem;
+}
+
+.markdown-body.star-pure h5 {
+    font-size: 1.1rem;
+}
+
+.markdown-body.star-pure h6 {
+    font-size: 1rem;
+    color: var(--smc-c-text-light);
+}
+
+@media screen and (max-width: 768px) {
+    .markdown-body.star-pure h1 { font-size: 2rem; }
+    .markdown-body.star-pure h2 { font-size: 1.6rem; }
+    .markdown-body.star-pure h3 { font-size: 1.4rem; }
+}

@@ -111,7 +111,7 @@ def validate_json(data, required_fields=None):
     return True, "验证通过"
 
 # QVeris API 配置
-QVERIS_API_KEY = "sk-TR53nxR09FDDTyjRATrS0lHi5yT0E3SI3U2NU2JBHT0"
+QVERIS_API_KEY = "REDACTED-SECRET"
 QVERIS_TOOL = "/root/.openclaw/skills/qveris/scripts/qveris_tool.mjs"
 DISCOVERY_ID = "36630021-2cd8-49a0-a9dc-7de6f9ca1659"
 

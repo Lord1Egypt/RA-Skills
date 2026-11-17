@@ -1,41 +1,59 @@
-## Description: <br>
-Nex Changelog helps agents generate and manage changelogs, release notes, client emails, Telegram updates, and structured exports from manual entries or git commit history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional changelog and release notes generator for client-facing software releases and updates.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-Developers, agencies, and software teams use this skill to manage project changelogs, import git commits, create releases, and produce client-facing or public release communications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client-facing or public drafts may include internal notes, vulnerability details, or private project information if audience filtering misses sensitive content. <br>
-Mitigation: Review generated emails, public release notes, and Telegram drafts before sending or publishing them. <br>
-Risk: The tool reads git history from repositories the user specifies and stores changelog data locally under ~/.nex-changelog. <br>
-Mitigation: Run it only against intended repositories and protect or remove the local changelog database when it contains sensitive project or client data. <br>
+## Use Case:
 
+Developers, release managers, and agency teams use this skill to capture project changes, import conventional git commits, and produce audience-specific changelogs, client emails, Telegram-style updates, and release notes.
 
-## Reference(s): <br>
-- [Nex AI Homepage](https://nex-ai.be) <br>
-- [Keep a Changelog](https://keepachangelog.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text, Markdown, JSON, and generated email or chat-message drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local SQLite data and exported changelog files under ~/.nex-changelog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The installed nex-changelog wrapper can run a same-named script from the current directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the wrapper before installation, and run the command only from trusted directories until the wrapper executes only the intended installed script.
+
+Risk: Client-facing and public outputs can include internal changelog data.
+
+Mitigation: Review generated email, Telegram, public changelog, and release-note output before sharing externally, and verify audience filters for sensitive entries.
+
+Risk: Imported commit messages, internal notes, client emails, repository paths, and security-fix descriptions may contain sensitive information.
+
+Mitigation: Avoid adding secrets or confidential details, keep the local data directory access-restricted, and sanitize entries before export or external publication.
+
+## Reference(s):
+
+- [Nex AI homepage](https://nex-ai.be)
+- [Keep a Changelog](https://keepachangelog.com/)
+- [ClawHub skill page](https://clawhub.ai/nexaiguy/skills/nex-changelog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output, Markdown changelogs, client-facing message text, and JSON structured data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated release communication is based on locally stored project, release, entry, and git commit data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

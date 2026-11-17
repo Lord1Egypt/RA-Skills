@@ -1,0 +1,61 @@
+{
+  "name": "lygo-site-card",
+  "displayName": "LYGO Site Card",
+  "version": "1.0.0",
+  "description": "Turn a public HTTPS URL or local HTML file into a compact identity card: title, canonical, security headers, security.txt, SHA-256, yield ALIGNED/DRIFT/SHADOW. HTTPS GET only. No subprocess. No live Star Chart write.",
+  "slug": "lygo-site-card",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-site-card",
+  "clawhub": "https://clawhub.ai/deepseekoracle/lygo-site-card",
+  "signature": "Delta9Phi963-SITE-CARD-v1.0.0",
+  "tags": [
+    "latest",
+    "lygo",
+    "security",
+    "headers",
+    "csp",
+    "https",
+    "site-card",
+    "openclaw",
+    "public"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "card": "scripts/site_card.py card",
+    "headers": "scripts/site_card.py headers",
+    "compare": "scripts/site_card.py compare",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "🪪",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-site-card",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": {
+      "https_get": true,
+      "http_post": false
+    },
+    "filesystem": {
+      "write": "only --write with --i-consent",
+      "shell": false,
+      "subprocess": false
+    },
+    "publish": {
+      "git_push": false,
+      "huggingface": false,
+      "clawhub": false,
+      "social": false,
+      "live_star_chart": false
+    }
+  },
+  "security": {
+    "consent_required": true,
+    "no_auto_publish": true,
+    "no_subprocess": true,
+    "https_only_public": true,
+    "version": "1.0.0"
+  }
+}

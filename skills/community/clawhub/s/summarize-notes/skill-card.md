@@ -1,40 +1,53 @@
-## Description: <br>
-每日笔记深度解读。从笔记目录筛选当日笔记，分类、逐条提炼要点，最后做深度关联分析和洞察挖掘。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日笔记深度解读。从笔记目录筛选当日笔记，分类、逐条提炼要点，最后做深度关联分析和洞察挖掘。
 
-## Publisher: <br>
-[YoungAndSure](https://clawhub.ai/user/YoungAndSure) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youngandsure](https://clawhub.ai/user/youngandsure)
 
-## Use Case: <br>
-External users use this skill to summarize daily Markdown or text notes from a configured notes directory, categorize them, extract per-note summaries, and produce deeper cross-note and historical analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads today's notes and searches older notes in the configured folder, which can include sensitive personal or private material. <br>
-Mitigation: Set NOTES_DIR to a narrow notes-only directory, exclude sensitive journals or private archives, and confirm before historical analysis. <br>
-Risk: Full-text model analysis of current and historical notes may expose more content than needed for the requested summary. <br>
-Mitigation: Use snippets or truncated note text when possible, and ask for confirmation before sending full notes into analysis. <br>
+## Use Case:
 
+Users with a configured notes directory use this skill to find notes modified today, group them by topic, summarize each note, and produce a deeper report that connects current notes with relevant historical notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YoungAndSure/summarize-notes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tables, summaries, analysis sections, and inline shell commands for note discovery.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured NOTES_DIR or a user-provided notes directory; supports Markdown and text notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill searches across the configured notes directory, including older notes, and analyzes matched note contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set NOTES_DIR only to a folder whose notes are appropriate to expose for analysis, and narrow the folder before use when sensitive notes are present.
+
+Risk: Generated keywords may be inserted into a grep pattern without escaping.
+
+Mitigation: Review or escape generated keywords before running grep commands, especially when keywords contain shell or regular-expression metacharacters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youngandsure/skills/summarize-notes)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with tables, per-note summaries, deep analysis, and historical-note connections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured NOTES_DIR and may search Markdown or text notes recursively.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

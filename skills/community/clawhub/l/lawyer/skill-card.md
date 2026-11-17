@@ -1,40 +1,57 @@
-## Description: <br>
-Draft contracts, review legal documents, and navigate compliance with practical legal patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Works as counsel for contract review, legal-term negotiation, risk pricing, deadline tracking, commercial legal drafting, privacy, IP, employment, entity, compliance, dispute, and outside-counsel workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and professionals can use this skill to draft legal document language, review contract patterns, and identify legal or compliance issues that need attorney review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake generated legal information for legal advice tailored to their jurisdiction or facts. <br>
-Mitigation: Treat outputs as general information, verify current law for the relevant jurisdiction, and consult a licensed attorney for specific or high-stakes matters. <br>
-Risk: Contract or compliance guidance may be incomplete for specialized matters such as litigation, criminal, immigration, or regulated-industry issues. <br>
-Mitigation: Use the skill for initial drafting and review support only, and route specialized or high-stakes decisions to qualified professionals. <br>
+## Use Case:
 
+Individuals, operators, and business teams use this skill to review and redline agreements, price legal risk, compute deadlines, prepare legal-facing drafts and memos, and decide when a matter should be handed to licensed counsel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/lawyer) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text legal-information guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include contract clauses, document-review notes, compliance checklists, and attorney-consultation caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill automatically keeps and modifies sensitive legal, contact, project, and finance notes without per-action approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if local legal memory is acceptable; review the configured files regularly and require preview and confirmation before saving sensitive information.
+
+Risk: Stored output may be mistaken for privileged legal advice.
+
+Mitigation: Treat stored output as non-privileged business material and route red-flag matters or jurisdiction-specific decisions to licensed counsel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/lawyer)
+- [Clawic Lawyer skill page](https://clawic.com/skills/lawyer)
+- [Review workflow](artifact/review.md)
+- [Clause positions and fallback ladders](artifact/clauses.md)
+- [Memory and storage templates](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration, files]
+
+**Output Format:** [Markdown and plain text with structured tables, redline notes, draft clauses, memos, checklists, and local note updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update configured local notes under Clawic data paths when durable legal context, deadlines, matters, or accepted language should persist.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

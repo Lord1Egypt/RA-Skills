@@ -1,0 +1,8 @@
+{
+  "name": "openclaw-switch",
+  "version": "1.0.0",
+  "description": "Manage multi-provider model switching and fallback chains in OpenClaw",
+  "author": "Curry",
+  "tags": ["openclaw", "model", "switch", "fallback", "provider"],
+  "homepage": "https://github.com"
+}

@@ -1,42 +1,59 @@
-## Description: <br>
-Content Creator coordinates humanizer, de-ai-ify, copywriting, and tweet-writer workflows to produce persuasive, platform-ready social content while preserving factual integrity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta-skill for orchestrating humanizer, de-ai-ify, copywriting, and tweet-writer to produce high-quality, platform-ready content that sounds authentic and human while preserving factual integrity.
 
-## Publisher: <br>
-[h4gen](https://clawhub.ai/user/h4gen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[h4gen](https://clawhub.ai/user/h4gen)
 
-## Use Case: <br>
-External users and content teams use this skill to draft LinkedIn posts and X thread adaptations with clearer hooks, voice edits, persuasion structure, and factual-integrity checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup commands use npx and include an update-all step that can change installed skill behavior. <br>
-Mitigation: Review the install and update commands before running them, and confirm the resolved upstream skills match the intended versions. <br>
-Risk: Humanized social copy could mislead readers if it implies personal experience, evidence, or certainty the user did not provide. <br>
-Mitigation: Require explicit author context and proof points, preserve uncertainty, and avoid fabricated anecdotes, citations, or guaranteed outcome claims. <br>
-Risk: The skill depends on separate upstream writing skills, so missing or changed dependencies can alter output quality. <br>
-Mitigation: Verify that humanizer, de-ai-ify, copywriting, and tweet-writer are installed before use and recheck outputs against the stated quality gates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/h4gen/content-creator-skill) <br>
-- [Inspected Upstream Skills](references/inspected-skills.md) <br>
+## Use Case:
 
+External users and content teams use this skill to turn explicit topic, audience, goal, voice, and author-context inputs into platform-ready LinkedIn copy and an X thread adaptation. It is intended for persuasive social content that preserves factual integrity and avoids fabricated anecdotes, guaranteed virality claims, or manipulative tactics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections containing final social copy, edit summaries, persuasion-structure notes, a five-tweet X thread, and optional hook or CTA variants.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should avoid fabricated anecdotes, unsupported claims, guaranteed reach claims, and manipulative persuasion.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable install commands and a broad update command can change dependencies or unrelated installed skills over time.
+
+Mitigation: Pin ClawHub and required skill versions, avoid update --all, and install only reviewed versions in a least-privileged environment.
+
+Risk: The skill depends on four separate upstream writing skills, so output quality and behavior depend on the installed versions of those skills.
+
+Mitigation: Verify the installed humanizer, de-ai-ify, copywriting, and tweet-writer versions before use and review their behavior for the intended deployment.
+
+Risk: Generated persuasive content can include unsupported claims if the user does not provide sufficient factual context.
+
+Mitigation: Collect explicit author context and constraints before drafting, and review final copy for factual support, fabricated anecdotes, and overpromised outcomes.
+
+## Reference(s):
+
+- [Content Creator Skill Page](https://clawhub.ai/h4gen/skills/content-creator-skill)
+- [Publisher Profile](https://clawhub.ai/user/h4gen)
+- [ClawHub Homepage](https://clawhub.ai)
+- [Inspected Upstream Skills](references/inspected-skills.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown sections containing final LinkedIn copy, edit summary, persuasion structure, a five-tweet X thread, and optional hooks and closing questions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user inputs before drafting and depends on locally installed humanizer, de-ai-ify, copywriting, and tweet-writer skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,86 @@
+# 编程 Agent / IDE 适配器清单
+# type: cli       —— 统一通过 CLI 读取项目数据、打开工作区、下达任务指令
+# project_args    —— 读取项目数据的 CLI 参数，支持 {repo_path}/{workspace}/{prompt} 等占位
+# task_args       —— 下达开发任务的 CLI 参数，{prompt} 会作为单独参数传入
+# open_args       —— 打开/访问工作区的 CLI 参数
+# priority 数字越小优先级越高；adapter_selector 在 workspace 未指定 agent 或首选不可用时按此挑选
+
+adapters:
+  codex:
+    enabled: true
+    type: cli
+    command: ${CODEX_CMD}
+    priority: 1
+
+  claude_code:
+    enabled: true
+    type: cli
+    command: ${CLAUDE_CMD}
+    priority: 2
+
+  # Lingma IDE 已升级为 QoerCN，正式控制入口为 Qoer CLI
+  qoer:
+    enabled: true
+    type: cli
+    command: ${QOER_CMD}
+    priority: 3
+    project_args: ["project", "read", "--workspace", "{repo_path}"]
+    task_args: ["task", "run", "--workspace", "{repo_path}", "--prompt", "{prompt}"]
+    open_args: ["open", "--workspace", "{repo_path}"]
+
+  # 兼容旧配置中的 preferred_agent: lingma，实际仍走 Qoer CLI
+  lingma:
+    enabled: true
+    type: cli
+    command: ${QOER_CMD}
+    priority: 4
+    project_args: ["project", "read", "--workspace", "{repo_path}"]
+    task_args: ["task", "run", "--workspace", "{repo_path}", "--prompt", "{prompt}"]
+    open_args: ["open", "--workspace", "{repo_path}"]
+
+  trae:
+    enabled: true
+    type: cli
+    command: ${TRAE_CMD}
+    priority: 5
+    project_args: ["project", "read", "--workspace", "{repo_path}"]
+    task_args: ["task", "run", "--workspace", "{repo_path}", "--prompt", "{prompt}"]
+    open_args: ["open", "--workspace", "{repo_path}"]
+
+  vscode:
+    enabled: true
+    type: cli
+    command: ${VSCODE_CMD}
+    priority: 6
+    project_args: ["--status"]
+    task_args: ["--reuse-window", "{repo_path}", "--command", "workbench.action.chat.open", "{prompt}"]
+    open_args: ["--reuse-window", "{repo_path}"]
+
+  cursor:
+    enabled: true
+    type: cli
+    command: ${CURSOR_CMD}
+    priority: 7
+    project_args: ["project", "read", "--workspace", "{repo_path}"]
+    task_args: ["task", "run", "--workspace", "{repo_path}", "--prompt", "{prompt}"]
+    open_args: ["open", "--workspace", "{repo_path}"]
+
+  qoder:
+    enabled: true
+    type: cli
+    command: ${QODER_CMD}
+    priority: 8
+    project_args: ["project", "read", "--workspace", "{repo_path}"]
+    task_args: ["task", "run", "--workspace", "{repo_path}", "--prompt", "{prompt}"]
+    open_args: ["open", "--workspace", "{repo_path}"]
+
+  generic_cli:
+    enabled: false
+    type: cli
+    command: ""        # 自定义任意 CLI 编程 Agent 时填可执行文件名
+    priority: 99
+
+  generic:
+    enabled: true
+    type: workspace
+    priority: 100

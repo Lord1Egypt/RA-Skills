@@ -1,43 +1,62 @@
-## Description: <br>
-Create and manage non-custodial smart wallets on Base (EVM) and Solana with gasless transactions, spending limits, and passkey-based human control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage non-custodial smart wallets on Base and Solana with gasless transactions, spending limits, and passkey-based human control.
 
-## Publisher: <br>
-[0xArtex](https://clawhub.ai/user/0xArtex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xartex](https://clawhub.ai/user/0xartex)
 
-## Use Case: <br>
-Developers and agent builders use this skill to guide wallet setup and operation for Base and Solana agents, including key generation, wallet creation, spending limits, transactions, status checks, limit changes, token limits, and emergency pauses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give agents real authority to spend crypto assets. <br>
-Mitigation: Prefer managed wallets with human passkey approval, configure daily, per-transaction, and per-token limits before funding, and avoid unmanaged mode for real assets. <br>
-Risk: Private keys and machine-readable keygen output can be exposed through shared terminals, CI logs, chat, or automation logs. <br>
-Mitigation: Generate and store keys in secure storage or a secrets manager, avoid logging key material or --json output, and do not run key generation in shared or logged environments. <br>
-Risk: Transactions are irreversible and incorrect recipients or excessive limits can cause asset loss. <br>
-Mitigation: Verify recipient addresses, check remaining budget before large transactions, and use the pause workflow when activity looks suspicious. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create agent-controlled wallets, configure human-approved spending limits, run wallet CLI commands, and integrate Base or Solana transaction flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xArtex/agentwallet-cli) <br>
-- [Release artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with shell commands and TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional JSON command output examples for agent wallet workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned wallet CLI execution is used for private-key and financial operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the `@agntos/agentwallet` package source before installation and pin a specific trusted version.
+
+Risk: Private keys or signing data could be exposed in logged agent sessions, CI, chat, or source control.
+
+Mitigation: Avoid generating or displaying private keys in logged environments, keep keys in encrypted storage or a secrets manager, and do not log signing data.
+
+Risk: Funding the wrong wallet address or setup URL can cause irreversible loss or unsafe authorization.
+
+Mitigation: Verify wallet addresses and setup URLs before funding, and prefer managed wallets with passkey-based human oversight.
+
+Risk: Solana spending limits may be weak if valuation inputs can be supplied or understated by the agent.
+
+Mitigation: Treat Solana spending limits as uncertain unless the deployed program proves that valuations cannot be supplied or understated by the agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xartex/skills/agentwallet-cli)
+- [Publisher profile](https://clawhub.ai/user/0xartex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command, JSON, and TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet creation, transaction, limit-management, status, and emergency-pause guidance; CLI commands can emit JSON with --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

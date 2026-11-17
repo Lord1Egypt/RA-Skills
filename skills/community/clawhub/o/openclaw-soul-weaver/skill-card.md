@@ -1,46 +1,63 @@
-## Description: <br>
-No waiting! Create professional-grade OpenClaw configurations in 30 seconds through natural conversation. Instantly generate enthusiast-level base configs that intelligently combine emotional and professional needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Soul Weaver generates personalized OpenClaw agent configuration files from conversational inputs, celebrity or profession templates, and optional avatar settings.
 
-## Publisher: <br>
-[addogiavara-tech](https://clawhub.ai/user/addogiavara-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[addogiavara-tech](https://clawhub.ai/user/addogiavara-tech)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to generate personalized agent configuration packages from conversation inputs, celebrity templates, and profession templates. It produces draft identity, memory, tool, user, soul, and agent workflow files for review before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send profile details such as names, profession, use case, communication style, and avatar prompts to a remote service. <br>
-Mitigation: Provide only information suitable for the remote service and avoid sensitive personal, customer, or confidential data. <br>
-Risk: Generated MEMORY.md, TOOLS.md, and AGENTS.md can change agent behavior and tool access. <br>
-Mitigation: Review generated files before applying them, remove unnecessary high-privilege tools, and back up existing OpenClaw configuration files. <br>
-Risk: The avatar workflow may return a local file path even when no file was actually saved. <br>
-Mitigation: Verify that the returned avatar file exists before relying on it in a configuration package. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to create personalized agent configuration bundles for assistants with selected identities, memories, tools, and execution guidance.
 
-## Reference(s): <br>
-- [OpenClaw Soul Weaver on ClawHub](https://clawhub.ai/addogiavara-tech/openclaw-soul-weaver) <br>
-- [Template Reference](references/templates.md) <br>
-- [Tool Configuration Reference](references/tools.md) <br>
-- [Generation API Endpoint](https://sora2.wboke.com/api/v1/generate) <br>
-- [Online Creation Page](https://sora2.wboke.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown configuration files with a base64 ZIP package and optional avatar path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates SOUL.md, IDENTITY.md, MEMORY.md, USER.md, TOOLS.md, and AGENTS.md for review before applying.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, changelog, and server release metadata) <br>
+Risk: The skill sends provided name, profession, use case, style, persona, and avatar prompt data to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive profile details unless the external service is approved for the intended use.
+
+Risk: Generated SOUL.md, MEMORY.md, TOOLS.md, and AGENTS.md files can shape future agent behavior.
+
+Mitigation: Review every generated configuration file before applying it to an agent workspace.
+
+Risk: The evidence flags broad triggers and inconsistent file permissions.
+
+Mitigation: Use only the permissions needed for the intended workflow and review generated file paths before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/addogiavara-tech/skills/openclaw-soul-weaver)
+- [Publisher profile](https://clawhub.ai/user/addogiavara-tech)
+- [Template reference](references/templates.md)
+- [Tool configuration reference](references/tools.md)
+- [Online creation service](https://sora2.wboke.com/)
+- [Generation API endpoint](https://sora2.wboke.com/api/v1/generate)
+- [Image generation endpoint](https://sora2.wboke.com/api/generate-image)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, code, shell commands, guidance]
+
+**Output Format:** [Markdown configuration files and a ZIP package]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates SOUL.md, IDENTITY.md, MEMORY.md, USER.md, TOOLS.md, AGENTS.md, and optional avatar path metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, CHANGELOG, released 2026-03-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

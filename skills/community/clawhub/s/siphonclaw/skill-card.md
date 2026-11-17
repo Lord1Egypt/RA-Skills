@@ -1,48 +1,60 @@
-## Description: <br>
-Document intelligence pipeline with visual search, OCR, and field capture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document intelligence pipeline with visual search, OCR, and field capture
 
-## Publisher: <br>
-[curtisgc1](https://clawhub.ai/user/curtisgc1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[curtisgc1](https://clawhub.ai/user/curtisgc1)
 
-## Use Case: <br>
-External users, field teams, and developers use SiphonClaw to ingest document collections, search them with text and visual retrieval, identify equipment or parts from photos, and capture field notes as reusable knowledge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users are asked to run external code and dependencies that may not have been independently reviewed. <br>
-Mitigation: Review the repository and dependencies before running the skill, and start in a test environment. <br>
-Risk: Document ingestion may process sensitive files through persistent storage, cloud APIs, web fallback, Telegram, email, or SSE channels. <br>
-Mitigation: Ingest only deliberately selected non-sensitive documents at first, avoid broad home or shared-drive paths, and keep cloud, Brave Search, Telegram, email, and SSE access disabled until data handling and authentication controls are understood. <br>
-Risk: Personal or production API keys could expose broader accounts or higher privileges than the skill needs. <br>
-Mitigation: Use dedicated low-privilege API keys with budget limits and rotate them separately from production credentials. <br>
+## Use Case:
 
+External users, field service teams, researchers, mechanics, and developers use this skill to ingest document collections, search them with text and visual retrieval, identify parts from images, and capture field notes for future retrieval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/curtisgc1/siphonclaw) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io/) <br>
-- [Ollama](https://ollama.ai) <br>
-- [OpenRouter](https://openrouter.ai) <br>
-- [Brave Search API](https://brave.com/search/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with JSON tool results, cited text answers, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return confidence scores, citations, ingestion status, model availability, and cost-tracking details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Setup guidance includes an unverified remote installer command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before execution and prefer a pinned or package-manager-based Ollama installation path.
+
+Risk: The skill handles broad document and image collections that may include sensitive or regulated content.
+
+Mitigation: Classify documents before ingestion, limit indexed sources to approved collections, and confirm retention and access controls for the local knowledge base.
+
+Risk: Configured cloud, web-search, Telegram, or email integrations may receive queries, OCR text, document context, or images.
+
+Mitigation: Use local-only mode for confidential collections and enable external providers only after data-sharing and provider approvals are complete.
+
+## Reference(s):
+
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Ollama](https://ollama.ai)
+- [OpenRouter](https://openrouter.ai)
+- [Brave Search API](https://brave.com/search/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MCP tool guidance and structured examples for search, ingestion, field note capture, image identification, status checks, and client configuration.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

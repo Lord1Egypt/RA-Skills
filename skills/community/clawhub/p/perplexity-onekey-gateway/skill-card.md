@@ -1,43 +1,59 @@
-## Description: <br>
-Provides Perplexity web-grounded question answering, deep research, reasoning, and web search through OneKey Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides access to Perplexity web-grounded question answering, research, reasoning, and search tools through OneKey Gateway.
 
-## Publisher: <br>
-[AI-Hub-Admin](https://clawhub.ai/user/AI-Hub-Admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and agents use this skill to ask web-grounded questions, run deeper Perplexity research, perform step-by-step reasoning, and retrieve ranked web search results through OneKey Gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries and prompts are sent to OneKey Gateway and Perplexity, and the scripts may use a shared demo key when no user key is configured. <br>
-Mitigation: Set a private DEEPNLP_ONEKEY_ROUTER_ACCESS key, avoid submitting secrets or confidential data, and review third-party dependencies before sensitive use. <br>
+## Use Case:
 
+Developers and agents use this skill to call Perplexity-backed tools for cited answers, deeper web research, step-by-step analysis, and ranked web search results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AI-Hub-Admin/perplexity-onekey-gateway) <br>
-- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys) <br>
-- [OneKey MCP Router Documentation](https://www.deepnlp.org/doc/onekey_mcp_router) <br>
-- [OneKey Agent Router Documentation](https://deepnlp.org/doc/onekey_agent_router) <br>
-- [AI Agent Marketplace](https://www.deepnlp.org/store/ai-agent) <br>
-- [Skills Marketplace](https://www.deepnlp.org/store/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses and markdown-style text with citations, snippets, URLs, and dates depending on the selected tool.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports message payloads, query payloads, recency filters, domain filters, search context sizing, reasoning effort, and optional thinking-stripping parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The security summary reports unpinned executable package installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment, avoid global installation, and pin dependency versions before operational use.
+
+Risk: The security summary reports fallback to a shared gateway key when no user key is set.
+
+Mitigation: Set DEEPNLP_ONEKEY_ROUTER_ACCESS to a user-controlled key and avoid sending sensitive prompts or internal data through the demo fallback key.
+
+## Reference(s):
+
+- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys)
+- [OneKey MCP Router Doc](https://www.deepnlp.org/doc/onekey_mcp_router)
+- [OneKey Gateway Doc](https://deepnlp.org/doc/onekey_agent_router)
+- [AI Agent Marketplace](https://www.deepnlp.org/store/ai-agent)
+- [Skills Marketplace](https://www.deepnlp.org/store/skills)
+- [AI Agent A2Z Deployment](https://www.deepnlp.org/workspace/deploy)
+- [GitHub AI Agent Marketplace](https://github.com/aiagenta2z/ai-agent-marketplace)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON-formatted tool responses with citations or search result fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports recency filters, domain filters, search context sizing, reasoning effort, result limits, page token limits, and country selection depending on the selected tool.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

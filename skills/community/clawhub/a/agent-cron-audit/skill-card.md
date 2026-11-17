@@ -1,40 +1,58 @@
-## Description: <br>
-Agent Cron Audit provides a read-only health audit for recurring and scheduled AI agent jobs, finding silent failures, duplicate active jobs, retry loops, over-frequent schedules, stale automations, risky model usage, and context bloat with evidence-first manual verification before any change. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only health audit for recurring / scheduled AI agent jobs. Finds silent failures, duplicate active jobs, retry loops, over-frequent schedules, stale automations, risky model usage, and context bloat. Evidence first. Manual verification before any change.
 
-## Publisher: <br>
-[choosenobody](https://clawhub.ai/user/choosenobody) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[choosenobody](https://clawhub.ai/user/choosenobody)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect recurring or scheduled AI agent jobs for health risks before changing job schedules, prompts, models, or configuration. The audit is evidence-first and read-only, with manual verification before any action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit may inspect scheduled job definitions, run history, and outputs that contain sensitive operational details. <br>
-Mitigation: Keep inspection local and share only redacted evidence when asking for outside help. <br>
-Risk: Findings could be mistaken for instructions to change or disable jobs before they are verified. <br>
-Mitigation: Review findings manually before changing any job, and treat the skill output as evidence and guidance rather than an automatic fix. <br>
+## Use Case:
 
+Developers, operators, and agent maintainers use this skill to audit recurring or scheduled AI agent jobs for silent failures, duplicate active schedules, retry loops, over-frequent runs, stale automations, risky model usage, and context bloat. It produces evidence and manual verification steps without changing jobs.
 
-## Reference(s): <br>
-- [Agent Cron Audit on ClawHub](https://clawhub.ai/choosenobody/agent-cron-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown audit sections with redacted evidence and a manual verification prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only output; no auto-fix, telemetry, external LLM call, or network call behavior found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Audit evidence may include operational details from scheduled agent jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets, IDs, private paths, payloads, and production details before sharing findings outside the owning team.
+
+Risk: Global install commands and related skill suggestions could affect shared agent environments if run without review.
+
+Mitigation: Review the target environment and any related skills separately before installing or upgrading global skills.
+
+Risk: Findings about cron health can be mistaken for approval to edit, disable, delete, restart, or retune jobs.
+
+Mitigation: Treat the output as read-only evidence and perform manual verification before changing schedules, prompts, models, or job state.
+
+## Reference(s):
+
+- [Agent Cron Audit on ClawHub](https://clawhub.ai/choosenobody/skills/agent-cron-audit)
+- [choosenobody Publisher Profile](https://clawhub.ai/user/choosenobody)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline text and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evidence-first findings with confidence labels, redacted observations, manual verification prompts, and read-only next steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Read and analyze arXiv papers by fetching LaTeX source, listing sections, or extracting abstracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and analyze arXiv papers by fetching LaTeX source, listing sections, or extracting abstracts.
 
-## Publisher: <br>
-[willamhou](https://clawhub.ai/user/willamhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willamhou](https://clawhub.ai/user/willamhou)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to retrieve public arXiv paper source, inspect section structure, and extract abstracts for downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested arXiv IDs are sent to arxiv.org or export.arxiv.org. <br>
-Mitigation: Use the skill only for paper IDs appropriate for public arXiv lookup and make users aware that requests contact public arXiv endpoints. <br>
-Risk: Returned paper text is remote content and may contain misleading or adversarial instructions. <br>
-Mitigation: Treat fetched paper content as untrusted source material and keep agent decisions grounded in the user's request and reviewer judgment. <br>
-Risk: A later runtime implementation could diverge from the disclosed read-only host-limited behavior. <br>
-Mitigation: Before deployment, verify that the implementation remains read-only and only contacts the documented arXiv hosts. <br>
+## Use Case:
 
+Researchers, developers, and agents use this skill to retrieve public arXiv paper source, inspect paper structure, and extract abstracts for literature review or technical analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/willamhou/arxiv-source) <br>
-- [arXiv public endpoint](https://arxiv.org) <br>
-- [arXiv export endpoint](https://export.arxiv.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, structured data] <br>
-**Output Format:** [JSON objects containing paper text, section lists, abstracts, arXiv IDs, and cache status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include flattened LaTeX text; optional controls remove comments, remove appendices, or replace figures with file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server evidence release.version) <br>
+Risk: The skill makes read-only network requests to public arXiv endpoints for paper IDs supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for paper identifiers that are appropriate to disclose to public arXiv services.
+
+Risk: Large papers or unavailable source packages may be slow or fail to fetch.
+
+Mitigation: Start with abstract or section-list requests, then fetch full source only when needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/willamhou/skills/arxiv-source)
+- [Publisher Profile](https://clawhub.ai/user/willamhou)
+- [arXiv](https://arxiv.org)
+- [arXiv Export Endpoint](https://export.arxiv.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Text or JSON-like tool results containing paper content, section lists, abstracts, arXiv IDs, and cache status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return in-memory cached results for repeated requests during the same session.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

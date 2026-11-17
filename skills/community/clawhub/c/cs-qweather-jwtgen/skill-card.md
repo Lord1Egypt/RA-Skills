@@ -1,39 +1,56 @@
-## Description: <br>
-Generates and refreshes QWeather API JWT authentication tokens using a local Ed25519 private key and QWeather account identifiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+和风天气 JWT Token 生成工具。当需要生成、刷新和风天气 API 的 JWT 认证 Token 时使用此 skill。
 
-## Publisher: <br>
-[savior1987](https://clawhub.ai/user/savior1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[savior1987](https://clawhub.ai/user/savior1987)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw users use this skill to generate or refresh JWT authentication tokens for QWeather API workflows with an EdDSA private key.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads a QWeather private key and account identifiers from local files and environment variables.
+
+Mitigation: Keep ~/.myjwtkey/ed25519-private.pem and ~/.openclaw/.env private, user-owned, and free of unrelated secrets.
+
+Risk: The skill overwrites ~/.myjwtkey/last-token.dat when generating a token.
+
+Mitigation: Run it only in the intended user environment and confirm dependent QWeather workflows should consume the refreshed token.
+
+Risk: The skill writes masked operational logs under /tmp/cslog.
+
+Mitigation: Review local log access controls and avoid placing unmasked secrets in related environment files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to generate a QWeather JWT for API authentication and save it for related QWeather automation scripts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Private keys, QWeather identifiers, and generated JWTs are sensitive credentials that can grant API access if exposed. <br>
-Mitigation: Keep ~/.myjwtkey/ed25519-private.pem and ~/.myjwtkey/last-token.dat private, avoid sharing terminal output because it includes the full JWT, and use a trusted Python environment for PyJWT. <br>
+**Output Format:** [Markdown guidance with shell commands and generated JWT text output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/savior1987/cs-qweather-jwtgen) <br>
-- [Publisher profile](https://clawhub.ai/user/savior1987) <br>
+**Other Properties Related to Output:** [Writes the generated token to ~/.myjwtkey/last-token.dat and masked logs to /tmp/cslog.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Console text plus a local token file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints the JWT to stdout and writes it to ~/.myjwtkey/last-token.dat with restricted file permissions.] <br>
+1.4.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

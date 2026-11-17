@@ -1,44 +1,59 @@
-## Description: <br>
-Standardized data analysis workflow integrating data-analysis, statistical-analysis, scientific-visualization and other skills, providing a complete process from data import to result reporting across six stages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardized data analysis workflow that integrates data-analysis, statistical-analysis, scientific-visualization and other skills into a six-stage process from data import to result reporting.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-Developers, analysts, and researchers use this skill to run a structured local data-analysis workflow for experimental, survey, or exploratory datasets, including data checks, cleaning guidance, descriptive statistics, inferential analysis, visualization planning, and APA-style reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow reads user-provided local datasets and prints dataset structure and summary statistics to the console. <br>
-Mitigation: Run it only on datasets intended for local inspection, and avoid exposing console output that contains sensitive or private data. <br>
-Risk: The skill can trigger on broad data-analysis prompts and may produce analysis guidance that requires statistical judgment. <br>
-Mitigation: Review the selected tests, assumptions, visualizations, and APA-style summaries before relying on the results. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to structure dataset inspection, cleaning, exploratory statistics, inferential testing, visualization, and APA-style reporting workflows for experimental, survey, or exploratory data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/earthwalking/data-analysis-workflow) <br>
-- [APA Style](https://apastyle.apa.org/) <br>
-- [Effect Size](https://www.cohen.com/) <br>
-- [Statistical Power](https://www.gpower.com/) <br>
-- [Scientific Visualization](https://matplotlib.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and console text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include dataset dimensions, variable types, missing-value summaries, descriptive statistics, suggested analysis stages, visualization guidance, and APA-style report content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Documentation may overstate the amount of automated statistical analysis and report generation provided by the bundled script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as workflow guidance plus basic dataset inspection unless future releases add the documented end-to-end analysis features.
+
+Risk: The script reads user-specified local datasets and prints inspection details.
+
+Mitigation: Run it only on files intended for analysis and review outputs before sharing data-derived reports.
+
+Risk: The script output is primarily Chinese-language text.
+
+Mitigation: Confirm that the intended users can read the output or adapt the script/localized workflow before deployment.
+
+## Reference(s):
+
+- [APA Style](https://apastyle.apa.org/)
+- [G*Power](https://www.gpower.com/)
+- [Matplotlib](https://matplotlib.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and script-generated text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script reads CSV, XLSX, or SAV datasets and prints Chinese-language inspection output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

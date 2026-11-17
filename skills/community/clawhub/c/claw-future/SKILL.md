@@ -4,7 +4,7 @@ description: 期货交易助理。用于中国期货市场（CTP接口）的盯�
 metadata:
   openclaw:
     emoji: "📈"
-    homepage: https://github.com/your-org/claw-future
+    homepage: https://gitee.com/hongoutech/future-claw
     requires:
       bins:
         - python3
@@ -22,6 +22,8 @@ metadata:
    - 首次运行自动编译 CTP 接口层（需已安装编译工具：Windows → VS 2019+，macOS → Xcode CLT，Linux → `sudo apt install build-essential`）
    - 自动弹出账户配置向导，引导填写经纪商、账号、密码、前置地址
    - 完成后 daemon 上线，开始交易
+
+> 🎓 **上岗手册**：承接任何真实交易动作前，请先通读 `references/agent-training.md`——交易时段、下单动作分解、会话剧本、风控红线与上岗自检。本文件讲命令与格式，该手册讲"何时做、怎么做、何时不做"，两者互补。
 
 ---
 
@@ -54,11 +56,54 @@ metadata:
 python scripts/clawtrader.py <子命令> [参数]
 ```
 
+### 多账户实例
+
+服务器上运行多个账户时，先复制 `accounts.example.json` 为 `accounts.json`。每个账户是独立 daemon，必须在命令前指定全局账户参数：
+
+```bash
+python scripts/clawtrader.py --registry accounts.json accounts
+python scripts/clawtrader.py --registry accounts.json --account A start
+python scripts/clawtrader.py --registry accounts.json --account C position
+```
+
+`--account` 和 `--registry` 放在子命令之前。A、B、C、D、E 的配置、状态、幂等账本、日志和 CTP flow 均隔离；agent 通过账户别名自行调度，不得把一个账户的查询结果用于另一个账户。
+
+### MCP / Web
+
+agent 优先使用 `scripts/mcp_server.py` 提供的结构化工具。每个 MCP 工具都要求显式 `account_id`，下单采用 `prepare_order` → `place_order` 两步确认，所有写工具要求显式 `idempotency_key`。
+
+```bash
+python scripts/mcp_server.py --registry accounts.json --transport streamable-http --port 17880
+```
+
+人工操作可启动 Web 工作台：
+
+```bash
+python scripts/web_server.py --registry accounts.json --host 127.0.0.1 --port 17890
+```
+
+工作台支持账户切换、行情、下单、撤单、持仓、委托、成交查询和实时事件。远程监听时设置 `CLAW_WEB_TOKEN`；MCP 远程监听时设置 `CLAW_MCP_TOKEN`，服务端会校验 Bearer 令牌。
+
 ---
 
-## 三、自然语言 → 命令映射
+## 三、写操作幂等规则
 
-### 3.1 启动 / 停止 / 初始化
+所有会改变交易所状态、行情订阅状态、条件单/定时任务状态或 daemon 状态的操作，默认按幂等请求处理：
+
+- `order`、`cancel`、`cancel-all`、`subscribe`、`unsubscribe`、`alert`、`alert-order`、`remove-alert`、`schedule-order`、`schedule-login`、`remove-schedule` 和 `stop` 都支持 `--idempotency-key`。
+- 省略幂等键时，系统根据规范化后的完整请求自动生成稳定键；相同请求重试只返回第一次结果，不会再次调用 CTP 或创建重复任务。
+- 显式幂等键只能对应一份请求内容。复用同一键但修改参数会被拒绝。
+- 若上一次请求在进程异常退出前已开始但结果未知，重试会返回“状态未知”提示。请先查询委托、成交或账户状态，再决定是否使用新的幂等键。
+- 如果确实要再次执行完全相同的操作，必须明确提供新的幂等键，例如 `--idempotency-key order-20260902-02`。这对重复下单尤其重要。
+- 条件单和定时任务会持久化到对应账户实例目录的 `.clawtrader_runtime.json`；幂等请求日志持久化到对应账户实例目录的 `.clawtrader_idempotency.json`。这些文件不应共享或提交到公共仓库。
+
+`start` 在 daemon 已运行时直接返回现状，不重复启动；`setup` 默认在目标动态库已存在时跳过编译，只有明确传入 `setup --force` 才会重新编译；`config` 在配置内容未变化时不重复写入。账户配置使用原子替换，避免中断后留下半份凭证文件。
+
+---
+
+## 四、自然语言 → 命令映射
+
+### 4.1 启动 / 停止 / 初始化
 
 | 用户说 | 命令 |
 |--------|------|
@@ -74,11 +119,11 @@ python scripts/clawtrader.py <子命令> [参数]
 
 遇到"首次使用"、"怎么开始"、"怎么配置"等问题时，告知用户直接执行 `start`，其余步骤全自动。
 
-### 3.2 账户
+### 4.2 账户
 
 "登录账户 004117" → 账户信息保存在 config.json，daemon 启动即自动完成认证→登录→结算确认，直接 `start` 或回复"已在线"即可。如需修改账户，执行 `config` 命令重新配置。
 
-### 3.3 查询资金
+### 4.3 查询资金
 
 触发词：查资金 / 余额 / 可用资金 / 权益 / 保证金多少
 
@@ -88,7 +133,7 @@ python scripts/clawtrader.py account
 
 实时向 CTP 查询并等待回调返回，结果直接来自交易所。
 
-### 3.4 查询持仓
+### 4.4 查询持仓
 
 触发词：我有什么仓 / 查持仓 / 仓位 / 手上有什么
 
@@ -99,7 +144,7 @@ python scripts/clawtrader.py position --instrument IF2506   # 指定合约
 
 实时向 CTP 查询并等待回调返回，结果直接来自交易所。
 
-### 3.5 查询成交
+### 4.5 查询成交
 
 触发词：今天成交了什么 / 成交明细 / 查成交
 
@@ -109,7 +154,7 @@ python scripts/clawtrader.py trades
 
 实时向 CTP 查询当日成交记录，结果直接来自交易所。
 
-### 3.6 查询委托
+### 4.6 查询委托
 
 触发词：我的委托 / 挂单 / 未成交 / 查委托
 
@@ -119,7 +164,7 @@ python scripts/clawtrader.py orders
 
 实时向 CTP 查询委托记录，结果直接来自交易所。
 
-### 3.7 查询价格 / 行情
+### 4.7 查询价格 / 行情
 
 触发词：XX 现在多少钱 / 查一下 XX 价格 / XX 行情 / XX 报价
 
@@ -130,7 +175,7 @@ python scripts/clawtrader.py price IF2506,rb2510   # 多合约
 
 若合约未订阅，daemon 会先订阅；首次可能无缓存，提示用户稍等片刻后重试。
 
-### 3.8 订阅 / 退订行情
+### 4.8 订阅 / 退订行情
 
 触发词：订阅 XX / 盯着 XX / 监控 XX / 不用看 XX 了
 
@@ -139,7 +184,7 @@ python scripts/clawtrader.py subscribe IF2506,rb2510
 python scripts/clawtrader.py unsubscribe IF2506
 ```
 
-### 3.9 委托下单
+### 4.9 委托下单
 
 **下单前必须向用户确认**，格式如：
 > "确认：**买入** IF2506 **开仓** **2手** **限价 3850.00**，执行吗？"
@@ -180,7 +225,7 @@ python scripts/clawtrader.py order \
 **价格类型**：用户说"市价"→ `--price-type market --price 0`；说具体数字 → `--price-type limit --price <数字>`。
 股指期货（CFFEX）不支持真正市价单，改用"对价限价"（最新价+1跳）。
 
-### 3.10 撤单
+### 4.10 撤单
 
 触发词：撤单 / 取消委托 / 全撤 / 撤掉
 
@@ -193,7 +238,7 @@ python scripts/clawtrader.py cancel \
   --exchange <交易所> --instrument <合约> --order-sys-id <OrderSysID>
 ```
 
-### 3.11 价格告警（只提醒，不下单）
+### 4.11 价格告警（只提醒，不下单）
 
 触发词：XX 涨到 / 跌到 XXX 提醒我 / 设个提醒
 
@@ -205,7 +250,7 @@ python scripts/clawtrader.py alert \
 
 条件类型：`price_ge`（≥阈值）/ `price_le`（≤阈值）/ `pct_change_ge`（涨幅%≥）/ `pct_change_le`（跌幅%≤）
 
-### 3.12 预埋单 / 条件单（本地监控，条件满足后自动发单到 CTP）
+### 4.12 预埋单 / 条件单（本地监控，条件满足后自动发单到 CTP）
 
 **架构说明**：预埋单和条件单均保存在本地 daemon 内存中。daemon 实时接收行情 Tick，每次 Tick 到达时检查所有条件；一旦价格条件满足（如最新价 ≤ 阈值），daemon 立即向 CTP 发出委托，无需人工干预。设置后即使用户不在线，daemon 后台自动执行。
 
@@ -221,7 +266,7 @@ python scripts/clawtrader.py alert-order \
 
 **设条件单前必须确认。**
 
-### 3.13 定时委托
+### 4.13 定时委托
 
 触发词：X点X分帮我买 / 定时下单 / 定时委托 / 明天9点30分...
 
@@ -237,7 +282,7 @@ python scripts/clawtrader.py schedule-order \
 
 **设定时委托前必须确认。**
 
-### 3.14 定时登录
+### 4.14 定时登录
 
 触发词：每天 X 点 X 分 自动登录 / 定时连接
 
@@ -246,7 +291,7 @@ python scripts/clawtrader.py schedule-login \
   --time 08:55 --days weekday --label "早盘前自动登录"
 ```
 
-### 3.15 查看 / 删除定时任务
+### 4.15 查看 / 删除定时任务
 
 触发词：有哪些定时任务 / 看定时 / 取消定时 XX
 
@@ -255,14 +300,14 @@ python scripts/clawtrader.py list-schedules
 python scripts/clawtrader.py remove-schedule <schedule_id>
 ```
 
-### 3.16 查看 / 删除条件单
+### 4.16 查看 / 删除条件单
 
 ```bash
 python scripts/clawtrader.py list-alerts
 python scripts/clawtrader.py remove-alert <cond_id>
 ```
 
-### 3.17 收盘日报
+### 4.17 收盘日报
 
 触发词：今天怎么样 / 日报 / 汇报 / 今天盈亏 / 收盘了
 
@@ -272,7 +317,7 @@ python scripts/clawtrader.py remove-alert <cond_id>
 python scripts/clawtrader.py report
 ```
 
-### 3.18 拉取推送事件
+### 4.18 拉取推送事件
 
 ```bash
 python scripts/clawtrader.py poll
@@ -280,11 +325,11 @@ python scripts/clawtrader.py poll
 
 ---
 
-## 四、输出格式规范
+## 五、输出格式规范
 
 > **将 CLI 返回的 JSON 转换为以下格式，禁止展示原始 JSON。**
 
-### 4.1 账户资金
+### 5.1 账户资金
 
 ```
 💰 账户资金 · {account_id}
@@ -302,7 +347,7 @@ python scripts/clawtrader.py poll
 
 - 数字加千分符；盈亏正数前加 `+`
 
-### 4.2 持仓
+### 5.2 持仓
 
 ```
 📊 当前持仓（N 个合约）
@@ -316,7 +361,7 @@ python scripts/clawtrader.py poll
 - 方向：`PosiDirection='2'`→多，`'3'`→空
 - 若无持仓：显示"当前无持仓"
 
-### 4.3 委托列表
+### 5.3 委托列表
 
 ```
 📑 委托列表（N 条，活跃 M 条）
@@ -329,7 +374,7 @@ python scripts/clawtrader.py poll
 
 状态映射：`'0'`→全成 / `'1'`→部成在队 / `'2'`→部成已撤 / `'3'`→未成在队 / `'4'`→未成已撤 / `'5'`→已撤
 
-### 4.4 成交记录
+### 5.4 成交记录
 
 ```
 📋 今日成交（N 笔，合计 X 手）
@@ -341,7 +386,7 @@ python scripts/clawtrader.py poll
 
 - 若无成交：显示"今日暂无成交"
 
-### 4.5 行情 / 价格
+### 5.5 行情 / 价格
 
 ```
 📈 IF2506 · 中金所 · 2025-03-13  09:31:05
@@ -361,7 +406,7 @@ python scripts/clawtrader.py poll
 
 - 涨跌 = 最新价 − 昨收，百分比 = 涨跌 / 昨收 × 100
 
-### 4.6 定时任务列表
+### 5.6 定时任务列表
 
 ```
 ⏰ 定时任务（N 条）
@@ -374,7 +419,7 @@ python scripts/clawtrader.py poll
 
 - days 显示：`weekday`→工作日 / `daily`→每天 / `once`→仅一次
 
-### 4.7 条件单列表
+### 5.7 条件单列表
 
 ```
 🎯 条件单 / 价格预警（N 条）
@@ -387,7 +432,7 @@ python scripts/clawtrader.py poll
 
 条件类型显示：`price_ge`→价格≥ / `price_le`→价格≤ / `pct_change_ge`→涨幅≥ / `pct_change_le`→跌幅≤
 
-### 4.8 收盘日报
+### 5.8 收盘日报
 
 ```
 ══════════════════════════════════════
@@ -426,7 +471,7 @@ python scripts/clawtrader.py poll
 
 ---
 
-## 五、操作确认规则
+## 六、操作确认规则
 
 以下操作**必须等用户明确回复"确认"/"是"/"好"/"执行"后才可运行**：
 
@@ -442,7 +487,7 @@ python scripts/clawtrader.py poll
 
 ---
 
-## 六、推送事件汇报（poll 返回格式）
+## 七、推送事件汇报（poll 返回格式）
 
 | 事件类型 | 汇报方式 |
 |---------|---------|
@@ -453,12 +498,12 @@ python scripts/clawtrader.py poll
 | `schedule_order` | ⏰ **定时委托执行**：{label}，报单号 {order_ref} |
 | `schedule_login` | ⏰ **定时登录触发**：{label} |
 | `schedule_skipped` | ⚠️ 定时任务跳过：{label}（{reason}）|
-| `daily_report` | 自动展示完整日报（格式见 4.8）|
+| `daily_report` | 自动展示完整日报（格式见 5.8）|
 | `error` | ❌ **CTP 错误** {error_id}：{error_msg} |
 
 ---
 
-## 七、错误处理
+## 八、错误处理
 
 | 错误 | 处理方式 |
 |------|---------|
@@ -471,7 +516,7 @@ python scripts/clawtrader.py poll
 
 ---
 
-## 八、注意事项
+## 九、注意事项
 
 - 同账号仅允许一个 daemon 实例；重复 start 会被拒绝
 - close_today / close_yesterday 仅适用于 SHFE；其他交易所统一用 close
@@ -480,7 +525,7 @@ python scripts/clawtrader.py poll
 
 ---
 
-## 九、禁止行为（红线）
+## 十、禁止行为（红线）
 
 以下行为**绝对禁止**，违反即为严重错误：
 
@@ -492,3 +537,9 @@ python scripts/clawtrader.py poll
 | 根据持仓推算账户盈亏而不查账 | 必须执行 `account` 或 `account-refresh` |
 | poll 返回空但假设"暂时没有新成交" | 只能说"目前无待推送事件"，不做推断 |
 | 主动猜测"你可能是要平仓"、"合约应该是XXX" | 询问用户确认，不替用户决策 |
+
+---
+
+## 十一、交流与支持
+
+使用中遇到问题、想反馈缺陷或跟进后续版本，可在维护群留言：**798593041**（QQ，请先通读本手册再提问）。项目主页见 frontmatter 的 `homepage`。

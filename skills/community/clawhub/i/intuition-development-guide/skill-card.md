@@ -1,42 +1,59 @@
-## Description: <br>
-Teaches systematic approaches to developing and trusting intuitive judgment over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches systematic approaches to developing and trusting intuitive judgment over time.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users can use this skill for reflective personal development around intuitive judgment, somatic awareness, decision journaling, and distinguishing intuition from fear or bias. It is descriptive guidance only and should be used alongside analytical thinking and qualified professional advice where relevant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases about intuition or gut feelings may activate the skill more often than expected. <br>
-Mitigation: Review trigger keywords and activation behavior before deployment, especially in environments where casual decision-making language is common. <br>
-Risk: Users may over-apply reflective intuition guidance to health, mental health, legal, or other professional decisions. <br>
-Mitigation: Keep the descriptive-use disclaimer visible and route medical, psychological, legal, and other professional matters to qualified experts. <br>
+## Use Case:
 
+External users use this skill for structured self-reflection when making decisions where analysis alone feels incomplete. It provides intuition checks, decision journaling, somatic awareness exercises, and practical frameworks for distinguishing intuition from fear, bias, or wishful thinking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/intuition-development-guide) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes input analysis, recommendations, next steps, frameworks, and a descriptive-use disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may treat reflective coaching as professional medical, legal, financial, or mental health advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as self-reflection guidance and retain clear prompts to consult qualified professionals for professional or high-stakes concerns.
+
+Risk: Broad trigger phrases could activate the skill when reflective intuition coaching is not intended.
+
+Mitigation: Narrow trigger phrases where accidental activation matters.
+
+Risk: The artifact includes English metadata with some bilingual examples, which may create unclear response-language expectations.
+
+Mitigation: Clarify whether responses should remain English-only or match the user's language.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/intuition-development-guide)
+- [Artifact README](artifact/README.md)
+- [Acceptance Criteria](artifact/ACCEPTANCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance, Text]
+
+**Output Format:** [Structured JSON containing input analysis, recommendations, next steps, frameworks, and a disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Descriptive self-reflection output only; no external API use is evidenced.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-Access dynamic NanoGPT models in OpenClaw with API key authentication, usage tracking, balance checks, and support for multiple model families. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NanoGPT provider plugin for OpenClaw with dynamic model catalog, API-key authentication, and usage tracking.
 
-## Publisher: <br>
-[forceconstant](https://clawhub.ai/user/forceconstant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forceconstant](https://clawhub.ai/user/forceconstant)
 
-## Use Case: <br>
-Developers and OpenClaw users use this plugin to route agent model calls through NanoGPT, discover available models, onboard a NanoGPT API key, and monitor usage or account balance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Model calls use the user's NanoGPT API key and may consume NanoGPT credits. <br>
-Mitigation: Install only when NanoGPT access is intended, treat the API key like a password, and monitor usage and balance through the plugin or NanoGPT account tools. <br>
-Risk: The included final integration test deletes remote OpenClaw plugin and session data and passes the API key over an SSH command line. <br>
-Mitigation: Run final_integration_test.sh only in a disposable test environment and avoid exposing API keys through shell history or shared terminals. <br>
+## Use Case:
 
+Developers and OpenClaw users use this plugin to configure NanoGPT as an OpenClaw model provider, discover current NanoGPT models, authenticate with API keys, and view usage or balance information.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/forceconstant/nano-gpt-plugin) <br>
-- [NanoGPT API introduction](https://docs.nano-gpt.com/introduction) <br>
-- [NanoGPT authentication](https://docs.nano-gpt.com/authentication.md) <br>
-- [NanoGPT models API](https://docs.nano-gpt.com/api-reference/endpoint/models.md) <br>
-- [NanoGPT subscription usage API](https://docs.nano-gpt.com/api-reference/endpoint/subscription-usage.md) <br>
-- [NanoGPT balance API](https://docs.nano-gpt.com/api-reference/endpoint/check-balance.md) <br>
-- [NanoGPT OpenClaw integration](https://docs.nano-gpt.com/integrations/openclaw.md) <br>
-- [OpenClaw provider plugin SDK](https://github.com/openclaw/openclaw/blob/main/docs/plugins/sdk-provider-plugins.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [OpenAI-compatible chat completions returned through OpenClaw model responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the selected NanoGPT-hosted model and the user's NanoGPT account, credits, and API key configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence and package.json) <br>
+Risk: The bundled final integration test can delete remote OpenClaw session data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run final_integration_test.sh only on disposable hosts or accounts, and review the target paths before execution.
+
+Risk: API keys or session transcripts may be exposed through logs or collected test_results output.
+
+Mitigation: Treat NanoGPT API keys as secrets, rotate any key that appears in logs, and keep test_results out of commits and shared artifacts.
+
+Risk: The published package identity and dependency set should be verified before installation.
+
+Mitigation: Confirm the exact package name, publisher, version, and dependencies before installing the plugin in a real OpenClaw environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/forceconstant/skills/nano-gpt-plugin)
+- [NanoGPT API Introduction](https://docs.nano-gpt.com/introduction)
+- [NanoGPT Authentication](https://docs.nano-gpt.com/authentication.md)
+- [NanoGPT Models API](https://docs.nano-gpt.com/api-reference/endpoint/models.md)
+- [NanoGPT Subscription Usage API](https://docs.nano-gpt.com/api-reference/endpoint/subscription-usage.md)
+- [NanoGPT Check Balance API](https://docs.nano-gpt.com/api-reference/endpoint/check-balance.md)
+- [OpenClaw Provider Plugin SDK](https://github.com/openclaw/openclaw/blob/main/docs/plugins/sdk-provider-plugins.md)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, code, shell commands, guidance]
+
+**Output Format:** [TypeScript plugin package with Markdown documentation and JSON manifest]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a NanoGPT API key for authenticated catalog, usage, and balance calls.]
+
+## Skill Version(s):
+
+0.1.3 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

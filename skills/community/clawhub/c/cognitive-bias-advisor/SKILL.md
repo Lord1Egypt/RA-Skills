@@ -1,8 +1,8 @@
 ---
 name: cognitive-bias-advisor
-slug: cognitive-bias-advisor-pro
+slug: cognitive-bias-advisor
 displayName: 认知偏差顾问
-version: 2.8.0
+version: 2.11.0
 description: 认知偏差顾问。覆盖决策、学习、行动、沟通、影响、管理六大人生领域，基于查理·芒格"25类人类误判心理学"+经典认知偏差理论。六大领域并列，根据用户问题路由到对应领域文件执行诊断与策略输出。触发词：决策、学习、拖延、说服、谈判、影响别人、管理团队、带人等。
 ---
 
@@ -243,6 +243,20 @@ description: 认知偏差顾问。覆盖决策、学习、行动、沟通、影�
 | 7 | 纯文本框提问 | 用 ask_followup_question 选项卡 |
 | 8 | 中断后让用户重答 | 基于进度播报直接恢复 |
 | 9 | 反复发同一拉回话术 | 四阶渐进升级，第 4 次跳过 |
+
+---
+
+## 额外偏差参考
+
+领域快查集成，可按需加载：
+
+> - 喜欢热爱倾向：`references/bias-liking-tendency.md`
+> - 避免怀疑倾向：`references/bias-doubt-avoidance.md`
+> - 避免不一致性倾向：`references/bias-inconsistency-avoidance.md`
+> - 好奇心倾向：`references/bias-curiosity-tendency.md`
+> - 康德式公平倾向：`references/bias-kantian-fairness-tendency.md`
+> - 奖励与惩罚超级反应倾向：`references/q10-incentive-caused-bias.md`
+> - 艳羡与妒忌倾向：`references/bias-envy-jealousy-tendency.md`
 
 ---
 

@@ -1,42 +1,54 @@
-## Description: <br>
-AI Skill精选管家 helps users and agents compare a large AI Skill catalog and decide which skills are worth installing, with recommendations, reasons, alternatives, workflows, and quality signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SkillPick helps agents and users compare AI skills, find strong candidates, inspect alternatives, and decide which skill is worth installing.
 
-## Publisher: <br>
-[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to browse skill tracks, search by intent, compare alternatives, and choose workflow-specific AI Skill recommendations before installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged as suspicious because installation guidance routes skill installs through an unpinned external skillpick npm CLI. <br>
-Mitigation: Use the skill as a recommendation catalog only until the external CLI is reviewed, pinned, and explicitly approved for installation workflows. <br>
-Risk: The artifact instructs agents to replace normal ClawHub install commands with skillpick-mediated commands. <br>
-Mitigation: Require explicit user approval before substituting installation commands, and preserve normal ClawHub install paths unless the user chooses the alternate flow. <br>
+## Use Case:
 
+Developers, agents, and skill marketplace users use this skill to browse top skills, search by intent, compare alternatives, assemble workflow recommendations, and inspect quality scores before installation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/skillpick) <br>
-- [Publisher profile](https://clawhub.ai/user/huangjihua007-rgb) <br>
-- [SkillManager](https://skillmanager.top) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [CLI text and Markdown-style recommendations with optional shell install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are based on a bundled skills catalog and quality scoring data; installation guidance may invoke an external CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.9.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security scan reports suspicious behavior because the skill encourages installing unrelated skills through an unpinned third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation guidance before use and prefer official, direct, pinned, and verifiable installation channels.
+
+Risk: Local query logs may be written when a data directory is present.
+
+Mitigation: Use the skill only where local query logging is acceptable, or remove and monitor the data directory before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huangjihua007-rgb/skills/skillpick)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/huangjihua007-rgb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text CLI recommendations and browser-rendered recommendation views, sometimes including installation commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a bundled local skill catalog for recommendations.]
+
+## Skill Version(s):
+
+6.9.4 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

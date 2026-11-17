@@ -1,39 +1,57 @@
-## Description: <br>
-Query Grok AI via browser automation. Use when you need to ask Grok questions, get AI responses, or use Grok's DeepSearch/Think features. Copies response text instead of using screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Grok AI via browser automation. Use when you need to ask Grok questions, get AI responses, or use Grok's DeepSearch/Think features. Copies response text instead of using screenshots.
 
-## Publisher: <br>
-[EasonC13](https://clawhub.ai/user/EasonC13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[easonc13](https://clawhub.ai/user/easonc13)
 
-## Use Case: <br>
-Developers and agent users use this skill to operate a Chrome session against grok.com, submit prompts to Grok, optionally use DeepSearch or Think features, and copy response text from the browser. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to operate a real Chrome session for Grok through an external relay and raw browser JavaScript. <br>
-Mitigation: Use a dedicated Chrome profile with only the required Grok account, verify the Browser Relay extension and attach script before use, and confirm browser actions target grok.com. <br>
-Risk: Copied Grok responses and browser clipboard contents may expose sensitive information. <br>
-Mitigation: Avoid keeping secrets on the clipboard and review copied response text before reusing or sharing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Grok](https://grok.com) <br>
+## Use Case:
 
+Developers and agent users use this skill to query Grok through a Chrome browser session, submit prompts, enable DeepSearch or Think workflows, and copy completed responses from the page.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell and browser automation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Chrome profile, Browser Relay extension, and clipboard access to copy Grok responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives the agent control of a real Chrome Grok session.
+
+Mitigation: Use a dedicated browser profile with no unrelated tabs or sensitive accounts.
+
+Risk: Prompt text is inserted through JavaScript evaluate templates.
+
+Mitigation: Serialize untrusted prompt text safely before evaluation.
+
+Risk: Clipboard reads may expose content copied before the skill runs.
+
+Mitigation: Clear or inspect the clipboard before using the skill and treat copied output as sensitive.
+
+## Reference(s):
+
+- [Grok](https://grok.com)
+- [ClawHub skill page](https://clawhub.ai/easonc13/skills/grok-browser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with browser automation and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces copied Grok response text from an existing browser session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

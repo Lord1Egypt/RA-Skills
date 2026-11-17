@@ -23,7 +23,7 @@ $ magicbrowse doctor
 Healthy. Proceed.
 
 If `doctor` had failed, the orchestrator would ask the user for an
-API key (sign-up at `https://agents.mercuryo.io/signup`) and run
+API key (sign-up at `https://app.magiccard.ai/signup`) and run
 `magicbrowse init <apiKey>` once, then re-run `doctor`.
 
 ## Granule 1 — Search

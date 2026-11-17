@@ -1,44 +1,53 @@
-## Description: <br>
-Use when users ask about TanStack libraries, TanStack Start/Router/Query/Table/Form/Virtual/Store/DB/Pacer/Config/DevTools/CLI/Intent/Hotkeys/AI usage, package names, framework adapters, maturity status, documentation URLs, installation methods, core APIs, code examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides concise reference guidance for TanStack libraries, including package names, framework adapters, maturity status, installation methods, core APIs, and code examples.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and agents use this skill to answer TanStack library questions, compare maturity status, framework adapters, package names, and draft usage guidance with code and installation examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TanStack package maturity and APIs can change quickly, especially for RC, beta, and alpha libraries. <br>
-Mitigation: Verify fast-moving packages against current official TanStack documentation before adopting the guidance in a project. <br>
-Risk: Installation and CLI examples can modify project dependencies or developer tooling when run. <br>
-Mitigation: Treat commands as examples and run them only after confirming they fit the target project. <br>
+## Use Case:
 
+Developers use this skill to answer questions about TanStack library selection, package names, adapter support, maturity, installation, and common API usage for web applications.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/openlark/tanstack-libraries) <br>
-- [Data & State](references/data-state.md) <br>
-- [UI & UX](references/ui-ux.md) <br>
-- [Performance](references/performance.md) <br>
-- [Tooling](references/tooling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned npm and npx examples carry normal package supply-chain and reproducibility risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer project-local installs with a lockfile, pin package versions, and run scaffolding or diagnostics only in directories that do not contain sensitive credentials unless the package source is trusted.
+
+## Reference(s):
+
+- [TanStack Libraries skill page](https://clawhub.ai/openlark/skills/tanstack-libraries)
+- [Data & State](references/data-state.md)
+- [UI & UX](references/ui-ux.md)
+- [Performance](references/performance.md)
+- [Tooling](references/tooling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

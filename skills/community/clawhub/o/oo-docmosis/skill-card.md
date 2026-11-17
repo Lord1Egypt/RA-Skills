@@ -1,44 +1,55 @@
-## Description: <br>
-Docmosis helps an agent inspect Docmosis templates, check environment readiness and quota, and render documents through the OOMOL oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Docmosis (docmosis.com). Use this skill for ANY Docmosis request — searching and reading data. Whenever a task involves Docmosis, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers with an OOMOL-connected Docmosis account use this skill to list templates, inspect template metadata and structure, check processing environment status, and render Docmosis documents from JSON data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes the OOMOL oo CLI against a Docmosis account using server-side credentials. <br>
-Mitigation: Use the intended signed-in OOMOL account, inspect the live action schema, and confirm payloads before running commands that process account data. <br>
-Risk: Document rendering can process user-provided JSON and return delivery metadata or base64 output that may contain sensitive business content. <br>
-Mitigation: Confirm the selected template and input data before rendering, and handle generated output according to the user's data handling requirements. <br>
-Risk: The server security review marked the release suspicious and advises reviewing execution behavior before use. <br>
-Mitigation: Review the security guidance before installing or invoking the skill, and avoid broad external-change workflows unless the user explicitly intends them. <br>
+## Use Case:
 
+Developers use this skill with an OOMOL-connected Docmosis account to inspect environment and template information and render documents from JSON data.
 
-## Reference(s): <br>
-- [ClawHub Docmosis skill page](https://clawhub.ai/oomol/oo-docmosis) <br>
-- [Docmosis homepage](https://www.docmosis.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI, an OOMOL sign-in, and a connected Docmosis account; action schemas are checked before command payloads are built.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill depends on an online installer and connector implementation that were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a reviewed, version-pinned oo release and check its automatic agent-skill synchronization settings before enabling the skill.
+
+Risk: Document rendering can send submitted data through OOMOL to Docmosis and may affect delivery settings or quota.
+
+Mitigation: Require approval for each render after reviewing the template, submitted data, delivery settings, and quota impact.
+
+## Reference(s):
+
+- [Docmosis](https://www.docmosis.com)
+- [Docmosis Cloud API documentation](https://apidocs.docmosis.com/cloud/dws4/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Files, Configuration instructions]
+
+**Output Format:** [Markdown instructions with inline shell commands; JSON connector responses and optional rendered document files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Render results include delivery metadata and may include an explicit base64 result file.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

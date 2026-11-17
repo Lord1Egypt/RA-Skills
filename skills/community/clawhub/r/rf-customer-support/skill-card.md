@@ -1,40 +1,48 @@
-## Description: <br>
-提供射频领域客户项目技术支持的全流程指导。当用户询问射频项目发掘、器件选型、Design-In流程、客诉处理等问题时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供射频客户项目从机会识别、器件选型和Design-In到验证测试、客诉处理和项目管理的技术支持指导。
 
-## Publisher: <br>
-[mssnzxm](https://clawhub.ai/user/mssnzxm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mssnzxm](https://clawhub.ai/user/mssnzxm)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+RF field application engineers, sales engineers, and technical support teams use this skill to structure customer project discovery, opportunity evaluation, RF device selection, Design-In support, validation testing, complaint handling, and project follow-up.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Case-library and customer-support templates may capture customer-identifying details or sensitive project information.
+
+Mitigation: Mask sensitive project information where possible and store records under the organization's access-control, retention, and confidentiality rules.
+
+## Reference(s):
 
 
-## Use Case: <br>
-RF field application engineers and customer technical-support teams use this skill to structure customer opportunity discovery, RF component selection, Design-In support, validation testing, complaint handling, project tracking, and customer communication. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Customer names, roadmaps, complaint histories, test data, or design documents may be confidential. <br>
-Mitigation: Use organization-approved systems for sensitive project details and avoid placing confidential RF customer data into general-purpose agent memory or shared notes unless permitted. <br>
-Risk: RF project guidance, component selection advice, or complaint-handling recommendations may be incomplete without current customer requirements and internal technical review. <br>
-Mitigation: Treat generated guidance as a support workflow aid and validate decisions against customer specifications, product data, test results, and internal engineering review before acting. <br>
+**Output Format:** [Markdown guidance with checklists, process steps, evaluation criteria, and communication templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mssnzxm/rf-customer-support) <br>
+**Other Properties Related to Output:** [Chinese-language procedural guidance; no executable code.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, templates, process steps, and structured technical-support recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include RF project evaluation criteria, Design-In review checklists, RMA handling workflows, communication templates, and knowledge-management outlines.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

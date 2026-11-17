@@ -38,7 +38,7 @@ def main() -> int:
         "tools/build_kernel_eggs.py",
         "tools/verify_kernel_eggs.py",
         "tools/retrieve_kernel_egg.py",
-        "protocol0_nano_kernel/fixtures/p0_canonical.sha256",
+        "protocol0_byte_entropy_filter/fixtures/p0_canonical.sha256",
     ):
         if not (stack / rel).is_file():
             print(f"  [FAIL] missing {rel}")

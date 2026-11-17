@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Shopee Store — get_item_criteria (v2.shop_flash_sale.get_item_criteria)
+Shopee Store — get_item_criteria
+
 官方: https://open.shopee.com/documents/v2/v2.shop_flash_sale.get_item_criteria?module=123&type=1
+
+入参说明见 references/apis/get-item-criteria.md。
 """
 
 from __future__ import annotations

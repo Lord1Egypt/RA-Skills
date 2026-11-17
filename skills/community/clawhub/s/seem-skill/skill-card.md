@@ -1,42 +1,60 @@
-## Description: <br>
-SEEM is an episodic memory skill for storing and retrieving structured multi-turn conversation memories with fact graphs, PPR retrieval, hybrid dense and sparse retrieval, dynamic memory integration, and Lite/Pro/Max recall modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEEM stores and retrieves structured episodic memories for multi-turn conversations using fact graphs, PPR retrieval, hybrid dense and sparse retrieval, dynamic memory integration, and Lite, Pro, and Max recall modes.
 
-## Publisher: <br>
-[ryantoleco](https://clawhub.ai/user/ryantoleco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryantoleco](https://clawhub.ai/user/ryantoleco)
 
-## Use Case: <br>
-Developers and agent builders use SEEM to add persistent episodic memory, structured fact extraction, entity-centric retrieval, and configurable recall depth to multi-turn conversation agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores user-provided memories locally, which can retain sensitive conversation content after the original interaction. <br>
-Mitigation: Avoid storing secrets or regulated data unless local retention is acceptable, and clear the local data directory when retained memory is no longer needed. <br>
-Risk: The skill sends text to configured LLM and embedding providers. <br>
-Mitigation: Use dedicated API keys, set explicit LLM_BASE_URL and MM_ENCODER_BASE_URL values, and confirm the configured providers are acceptable for the data being processed. <br>
+## Use Case:
 
+Developers and agent builders use SEEM to preserve structured context across multi-turn conversations, retrieve relevant memories and facts, and control how much raw conversation context is returned to an agent.
 
-## Reference(s): <br>
-- [ClawHub SEEM Skill Page](https://clawhub.ai/ryantoleco/seem-skill) <br>
-- [Default LLM API Endpoint](https://api.deepseek.com) <br>
-- [Default Embedding API Endpoint](https://api.siliconflow.cn/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python objects, JSON-like recall results, CLI text, Markdown guidance, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recall output varies by Lite, Pro, or Max mode and may include memories, facts, raw chunks, and backfilled context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+Risk: Conversation content is stored on disk by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the data directory private, avoid storing secrets or regulated data, and disable persistence or cache behavior when persistent local storage is not acceptable.
+
+Risk: Persisted pickle files are auto-loaded and can execute code if tampered with.
+
+Mitigation: Do not import or share persisted .pkl files, restrict write access to the data directory, and prefer a trusted local provider or disabled persistence until pickle persistence is replaced or otherwise controlled.
+
+Risk: Conversation content is sent to configured LLM and embedding providers.
+
+Mitigation: Use trusted providers, review provider data-retention terms, and configure local or approved endpoints for sensitive workloads.
+
+## Reference(s):
+
+- [SEEM ClawHub release page](https://clawhub.ai/ryantoleco/skills/seem-skill)
+- [Publisher profile](https://clawhub.ai/user/ryantoleco)
+- [Configured LLM API endpoint](https://api.deepseek.com)
+- [Configured embedding API endpoint](https://api.siliconflow.cn/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, Python examples, shell commands, and structured memory result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recall output can include memory summaries, event structures, fact triples, raw chunks, backfilled context, scores, and multimodal references depending on the selected mode.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

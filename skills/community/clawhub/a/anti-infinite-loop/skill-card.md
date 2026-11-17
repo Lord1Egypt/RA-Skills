@@ -1,41 +1,53 @@
-## Description: <br>
-Anti-Infinite-Loop Guard helps agents detect repetitive execution cycles, enforce termination conditions, track progress, and reduce resource waste from infinite loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anti-Infinite-Loop Guard helps agents detect repeated actions, enforce iteration and time limits, track basic progress, and reduce resource waste from repetitive execution cycles.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add lightweight loop-guard checks for repeated actions, iteration limits, timeouts, and basic progress checks during agent execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unexpected stopping behavior can interrupt legitimate long-running tasks. <br>
-Mitigation: Review and tune max-iteration, timeout, repetition, and progress thresholds before using the guard in workflows where premature termination would be disruptive. <br>
-Risk: Published performance metrics and watchdog claims are not independently verified by the security evidence. <br>
-Mitigation: Treat the metrics as claims and validate behavior in the target agent environment before relying on them operationally. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add a simple local guard that detects repeated actions, iteration limits, timeouts, and missing progress during agent execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/anti-infinite-loop) <br>
-- [Publisher profile](https://clawhub.ai/user/kofna3369) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit loop-stop reasons such as MAX_ITERATIONS_REACHED, TIMEOUT_EXCEEDED, and REPEATED_ACTION_DETECTED.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The documentation may overstate how complete or dependable the loop protection is.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test the actual guard behavior before relying on it to stop runaway agent work.
+
+Risk: Broad or automatic invocation could interrupt normal agent tasks that legitimately repeat actions.
+
+Mitigation: Use clear trigger conditions and tune iteration, timeout, and repetition thresholds for the target workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/anti-infinite-loop)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands]
+
+**Output Format:** [Markdown with Python examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local loop-guard guidance and Python helper usage; no external service calls are required by the provided artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

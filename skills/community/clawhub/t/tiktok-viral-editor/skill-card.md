@@ -1,44 +1,63 @@
-## Description: <br>
-Scenario-focused Sparki skill for TikTok-native pacing and viral-style edits while using the official Sparki setup, API-key, and upload workflow guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scenario-focused Sparki skill for TikTok-native pacing and viral-style edits using Sparki setup, API-key, and upload workflow guidance.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External users and agents use this skill to turn source footage into faster, hook-driven short-form edits for TikTok-style pacing, captions, clips, reels, montages, and highlight videos. It guides setup, upload, and Sparki CLI commands for prompt-driven video editing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uploads user video files to Sparki's cloud editing service. <br>
-Mitigation: Upload only videos that are appropriate to send to Sparki and review the configured endpoint before use. <br>
-Risk: The workflow uses a Sparki API key that may be stored locally or read from the environment. <br>
-Mitigation: Prefer environment-based secrets on shared machines, protect persisted API keys, and rotate credentials if exposure is suspected. <br>
-Risk: Users may try to send videos directly through Telegram chat even though the skill does not support that path. <br>
-Mitigation: Use a local file path in the OpenClaw environment or the Telegram Mini App upload link from `sparki upload-tg`. <br>
+## Use Case:
 
+External creators, social teams, and developers use this skill to turn local short-form footage into hook-driven TikTok-style edits through Sparki prompts, upload guidance, and CLI commands.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fischerlam/tiktok-viral-editor) <br>
-- [Publisher Profile](https://clawhub.ai/user/fischerlam) <br>
-- [Sparki Homepage](https://sparki.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may reference local file paths, Sparki API key configuration, upload commands, task status, and downloaded video output locations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: frontmatter and server release evidence) <br>
+Risk: Selected local videos, prompts, asset IDs, and project metadata are sent to Sparki.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that transfer is acceptable for the content being edited, and avoid using sensitive media unless the service is approved for it.
+
+Risk: API keys may be stored in local configuration.
+
+Mitigation: Prefer `SPARKI_API_KEY` over saving an API key in the config file, and protect any local Sparki configuration files.
+
+Risk: A custom API base URL can direct uploads and prompts to another endpoint.
+
+Mitigation: Avoid `--base-url` unless the endpoint is fully trusted.
+
+Risk: Downloaded edit results are remote content from the service.
+
+Mitigation: Review downloaded results before reuse or distribution.
+
+## Reference(s):
+
+- [TikTok Viral Editor on ClawHub](https://clawhub.ai/fischerlam/skills/tiktok-viral-editor)
+- [Sparki](https://sparki.io)
+- [Sparki Telegram upload](https://t.me/Sparki_AI_bot/upload)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides Sparki CLI use for prompt-driven TikTok-style video editing and upload workflows.]
+
+## Skill Version(s):
+
+1.0.12 (source: SKILL.md frontmatter, _meta.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

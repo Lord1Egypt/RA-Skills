@@ -1,39 +1,57 @@
-## Description: <br>
-Personal execution engine for tasks, projects, reminders, commitments, follow-ups, and next actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal execution engine for tasks, projects, reminders, commitments, follow-ups, and next actions that captures natural language, structures action items, tracks momentum, and surfaces a human-friendly next step using local-only storage.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-External users and agents use Todo to capture tasks, commitments, reminders, projects, follow-ups, and next actions in local storage, then ask for a prioritized next step, daily sync, or weekly review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Todo items are persisted locally and may contain personal tasks, commitments, or notes. <br>
-Mitigation: Avoid storing secrets or highly sensitive personal details, and periodically review or clear ~/.openclaw/workspace/memory/todo when retained tasks are no longer needed. <br>
+## Use Case:
 
+External users and agent operators use this skill to capture tasks, commitments, reminders, and follow-ups, then choose a next action based on urgency, energy, time, and task freshness. It is suited for local personal productivity workflows where todo data should remain in the OpenClaw workspace memory directory.
 
-## Reference(s): <br>
-- [Todo philosophy](references/philosophy.md) <br>
-- [ClawHub Todo page](https://clawhub.ai/agenticio/todo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text and Markdown-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local task records, status summaries, prioritized recommendations, and review prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: release evidence and skill.json) <br>
+Risk: The skill stores task, archive, and stats data in local JSON files under the OpenClaw workspace memory directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for workflows where local todo storage is expected, and avoid entering sensitive task details unless the local workspace storage is appropriate for that data.
+
+Risk: The skill may activate on broad task-planning or reminder language.
+
+Mitigation: Review agent invocations when discussing planning, commitments, reminders, or follow-ups, and disable or remove the skill if it triggers outside the intended workflow.
+
+Risk: Local file updates can corrupt todo state if interrupted or if temporary-file handling fails.
+
+Mitigation: Keep backups of important todo data and prefer updates through the bundled scripts until the publisher hardens the file-write behavior.
+
+## Reference(s):
+
+- [Todo Philosophy](references/philosophy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style guidance with shell command examples and script-generated text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON todo, archive, and stats files under ~/.openclaw/workspace/memory/todo.]
+
+## Skill Version(s):
+
+3.0.1 (source: skill.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

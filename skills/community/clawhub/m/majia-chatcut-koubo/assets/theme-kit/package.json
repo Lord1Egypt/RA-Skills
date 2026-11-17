@@ -1,0 +1,11 @@
+{
+  "name": "portrait-talk-theme-kit",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check-contrast.mjs",
+    "serve": "python3 -m http.server 8000",
+    "render:backgrounds": "python3 scripts/render-backgrounds.py"
+  }
+}

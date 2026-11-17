@@ -1,0 +1,30 @@
+{
+  "slug": "long-to-cards",
+  "title": "Long To Cards",
+  "category": "content",
+  "summary": "Transform long-form material into standard card packages and hand publish-ready work to real image production.",
+  "keywords": [
+    "cards",
+    "carousel",
+    "long-form repurposing",
+    "social content",
+    "card copy",
+    "Xiaohongshu caption",
+    "tag freshness",
+    "publish-ready images",
+    "card handoff"
+  ],
+  "user_needs": [
+    "turn a long article into social cards",
+    "convert notes or transcripts into carousel copy",
+    "create card-by-card visual and copy guidance",
+    "preserve source claims while adapting for skimmable formats",
+    "generate platform captions and freshness-aware topic tags",
+    "hand publish-ready Xiaohongshu, WeChat, Zhihu Idea, or generic cards to image production"
+  ],
+  "source_dir": "skills/content/long-to-cards",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

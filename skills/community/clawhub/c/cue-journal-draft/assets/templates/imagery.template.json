@@ -1,0 +1,17 @@
+{
+  "_comment": "imagery.json —— 期刊视觉风格设定。这份文件必须由人确认后才能用于生成，脚本只做读取。",
+  "_fields": {
+    "style_anchor": "统一写在每条 prompt 里的风格锚，决定整套图的调性是否一致",
+    "medium": "媒介类型。企业期刊慎写 photorealistic——写实图最容易暴露 AI 痕迹（错字、结构错误）",
+    "palette": "受限色板，直接从 StyleSpec 的 palette 搬过来，保品牌一致性。**必须把纸白/浅底一并列进来**（如 #FFFFFF / #F5F4F1 / #D8D8D4）——adopt_images.py 的「主色距离」判据拿图内占比最大的颜色去比这份色板，而信息图的占比之王永远是纸面；漏掉纸白会让每一张图都误报『不像一套的』（2026-09-18 实测：六张图六张全警，图上用的明明就是主色）",
+    "avoid": "额外排除的内容（本行业/本企业的敏感题材）",
+    "reference_image": "图生图参考图路径。留空=每张都凭 prompt 独立出图，风格漂移风险高",
+    "logo_policy": "logo 处理策略：never_generate（默认）/ composite_after（生成后 composite）"
+  },
+
+  "style_anchor": "minimal editorial illustration, restrained geometric shapes, generous negative space, calm and professional tone",
+  "medium": "abstract vector illustration",
+  "palette": ["#A10F34", "#1A1A1A", "#F5F5F0"],
+  "avoid": ["courthouse", "gavel", "scales of justice cliche", "handshake stock photo", "city skyline silhouette"],
+  "logo_policy": "never_generate"
+}

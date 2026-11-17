@@ -1,43 +1,60 @@
-## Description: <br>
-Homework Grader helps teachers OCR math homework, compare student answers to a provided answer key, and generate Excel and PDF error-analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Homework Grader helps teachers OCR math answer keys and student homework, compare answers, summarize class error rates, and generate Excel statistics and PDF analysis reports.
 
-## Publisher: <br>
-[lhy123456lhy](https://clawhub.ai/user/lhy123456lhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lhy123456lhy](https://clawhub.ai/user/lhy123456lhy)
 
-## Use Case: <br>
-Teachers use this skill to grade batches of math homework from images, confirm OCR-recognized answers, identify common mistakes, and produce class-level reports for review or instruction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can contain sensitive student information. <br>
-Mitigation: Use student numbers or pseudonyms when possible, process only authorized homework data, and store or delete generated reports according to school or organization privacy rules. <br>
-Risk: OCR or answer parsing errors can lead to incorrect grading results. <br>
-Mitigation: Have the teacher review the recognized answer key and spot-check grading results before relying on the Excel or PDF reports. <br>
+## Use Case:
 
+External teachers use this skill to process math answer keys and batches of student homework images, confirm OCR results, grade against the answer key, and produce class-level error analysis reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lhy123456lhy/homework-grader) <br>
-- [Answer format reference](references/answer_format.md) <br>
-- [Output format reference](references/output_format.md) <br>
-- [Tesseract OCR Windows installer reference](https://github.com/UB-Mannheim/tesseract/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated JSON, Excel, and PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Python dependencies and Tesseract OCR; the default key-question error-rate threshold is 40%.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Student names, answers, homework photos, JSON files, Excel files, and PDFs may contain sensitive student data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated environment, restrict access to generated files, and delete student data according to school or organizational policy.
+
+Risk: Excel and PDF report generation can carry student-controlled names or answers into files that teachers may trust.
+
+Mitigation: Use trusted inputs only until report generation escapes HTML content and neutralizes spreadsheet formulas.
+
+Risk: Runtime dependencies and OCR tooling may vary across environments.
+
+Mitigation: Pin and verify Python dependencies and the Tesseract OCR installation before deploying the skill for routine classroom use.
+
+## Reference(s):
+
+- [Answer Format](references/answer_format.md)
+- [Output Format](references/output_format.md)
+- [Tesseract OCR Windows Installer](https://github.com/UB-Mannheim/tesseract/wiki)
+- [ClawHub Skill Page](https://clawhub.ai/lhy123456lhy/skills/homework-grader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Excel files, PDF files, Guidance]
+
+**Output Format:** [Markdown instructions, OCR text, JSON grading data, .xlsx statistics files, and PDF reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Python packages and Tesseract OCR for image recognition and report generation.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

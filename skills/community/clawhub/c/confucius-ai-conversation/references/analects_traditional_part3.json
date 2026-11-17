@@ -1,0 +1,430 @@
+{
+  "meta": {
+    "title": "孔子語錄三語資料庫（Part 3 仁德篇・擴充）",
+    "title_en": "Confucius Quotes Trilingual Database (Part 3: On Benevolence and Virtue)",
+    "version": "1.1",
+    "languages": [
+      "zh_tw",
+      "zh_cn",
+      "en"
+    ],
+    "built": "2026-08-09",
+    "source": "《論語》通行本",
+    "structure": "每則含原文/出處/對象/語境/譯文/詳解/現代應用，三語並列"
+  },
+  "category": {
+    "id": "benevolence",
+    "name": {
+      "zh_tw": "仁德",
+      "zh_cn": "仁德",
+      "en": "On Benevolence and Virtue"
+    }
+  },
+  "quotes": [
+    {
+      "id": "rd-001",
+      "original": "子貢問曰：「有一言而可以終身行之者乎？」子曰：「其恕乎！己所不欲，勿施於人。」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": "子貢（端木賜）",
+      "context": {
+        "zh_tw": "子貢問有沒有一個字可以終身奉行，孔子答以「恕」——這是孔子思想最凝練的表達。",
+        "zh_cn": "子贡问有没有一个字可以终身奉行，孔子答以「恕」——这是孔子思想最凝练的表达。",
+        "en": "Zigong asks for one word to practice for life; Confucius answers “shu” (reciprocity) — the most condensed expression of his thought."
+      },
+      "translation": {
+        "zh_tw": "子貢問：有沒有一個字可以終身奉行？孔子說：大概是「恕」吧！自己不想要的，不要施加在別人身上。",
+        "zh_cn": "子贡问：有没有一个字可以终身奉行？孔子说：大概是「恕」吧！自己不想要的，不要施加在别人身上。",
+        "en": "Zigong asked: “Is there one word to practice throughout one's life?” Confucius said: “It is shu — reciprocity. Do not impose on others what you yourself do not desire.”"
+      },
+      "explanation": {
+        "zh_tw": "「恕」是推己及人的消極面：以己度人，自己受不了的，別人也受不了。這不是消極的「不作為」，而是對他人感受的深刻體認——被聯合國《世界倫理宣言》列為全球金律。",
+        "zh_cn": "「恕」是推己及人的消极面：以己度人，自己受不了的，别人也受不了。这不是消极的「不作为」，而是对他人感受的深刻体认——被联合国《世界伦理宣言》列为全球金律。",
+        "en": "Shu is the negative side of extending oneself to others: measure others by yourself — what you cannot bear, they cannot bear either. Far from passive inaction, it is deep empathy, enshrined in the UN's Declaration toward a Global Ethic as the golden rule."
+      },
+      "application": {
+        "zh_tw": "發訊息、做決定、批評人之前，先問一句「換成是我，我受得了嗎？」——這一問能攔下大半的傷害。職場、家庭、網路，無處不適用。",
+        "zh_cn": "发消息、做决定、批评人之前，先问一句「换成是我，我受得了吗？」——这一问能拦下大半的伤害。职场、家庭、网络，无处不适用。",
+        "en": "Before sending a message, making a decision, or criticizing, ask: “Would I want this done to me?” That one question stops most harm — at work, at home, online."
+      }
+    },
+    {
+      "id": "rd-002",
+      "original": "子曰：「夫仁者，己欲立而立人，己欲達而達人。能近取譬，可謂仁之方也已。」",
+      "source": "論語·雍也第六",
+      "speaker": "孔子",
+      "audience": "子貢（端木賜）",
+      "context": {
+        "zh_tw": "子貢問「如有博施於民而能濟眾，何如？可謂仁乎」，孔子說那已超越仁而近於聖，並指出仁的實踐方法。",
+        "zh_cn": "子贡问「如有博施于民而能济众，何如？可谓仁乎」，孔子说那已超越仁而近于圣，并指出仁的实践方法。",
+        "en": "Zigong asks whether one who broadly benefits the people could be called benevolent. Confucius says that surpasses even benevolence, approaching sagehood — and points to the method of benevolence."
+      },
+      "translation": {
+        "zh_tw": "所謂仁者，就是自己想站穩，也幫別人站穩；自己想通達，也幫別人通達。能就近以自己打比方去體貼別人，可以說是實行仁的方法了。",
+        "zh_cn": "所谓仁者，就是自己想站稳，也帮别人站稳；自己想通达，也帮别人通达。能就近以自己打比方去体贴别人，可以说是实行仁的方法了。",
+        "en": "The benevolent man, wishing to stand, helps others stand; wishing to succeed, helps others succeed. To find the analogy in what is near at hand — that is the method of benevolence."
+      },
+      "explanation": {
+        "zh_tw": "這是「忠」的積極面，與「恕」相對：恕是「己所不欲勿施於人」，忠是「己所欲，施於人」——把自己的渴望推廣到成全別人。「能近取譬」是方法：從自己的心出發，體會別人的心。",
+        "zh_cn": "这是「忠」的积极面，与「恕」相对：恕是「己所不欲勿施于人」，忠是「己所欲，施于人」——把自己的渴望推广到成全别人。「能近取譬」是方法：从自己的心出发，体会别人的心。",
+        "en": "This is the positive side, zhong (conscientiousness), paired with shu: shu says do not impose what you dislike; zhong says extend what you desire to fulfill others. The method — take the analogy from what is near — starts from your own heart to feel another's."
+      },
+      "application": {
+        "zh_tw": "職場裡最實用的領導原則：你想被怎麼帶，就怎麼帶人；你想被怎麼對待，就先怎麼對待合作夥伴。成就別人的人，最終成就自己。",
+        "zh_cn": "职场里最实用的领导原则：你想被怎么带，就怎么带人；你想被怎么对待，就先怎么对待合作伙伴。成就别人的人，最终成就自己。",
+        "en": "The most practical leadership principle: lead others as you wish to be led; treat partners as you wish to be treated. Those who raise others ultimately rise themselves."
+      }
+    },
+    {
+      "id": "rd-003",
+      "original": "顏淵問仁。子曰：「克己復禮為仁。一日克己復禮，天下歸仁焉。為仁由己，而由人乎哉？」",
+      "source": "論語·顏淵第十二",
+      "speaker": "孔子",
+      "audience": "顏淵（顏回）",
+      "context": {
+        "zh_tw": "顏回問什麼是仁，孔子給出最完整的定義，並細說「非禮勿視聽言動」四目。",
+        "zh_cn": "颜回问什么是仁，孔子给出最完整的定义，并细说「非礼勿视听言动」四目。",
+        "en": "Yan Hui asks what benevolence is; Confucius gives his fullest definition, with the four precepts: see, hear, speak, and act nothing contrary to ritual."
+      },
+      "translation": {
+        "zh_tw": "顏淵問什麼是仁。孔子說：克制自己，使言行合乎禮，就是仁。一旦做到克己復禮，天下人心就都歸向仁了。實行仁靠的是自己，難道靠別人嗎？",
+        "zh_cn": "颜渊问什么是仁。孔子说：克制自己，使言行合乎礼，就是仁。一旦做到克己复礼，天下人心就都归向仁了。实行仁靠的是自己，难道靠别人吗？",
+        "en": "Yan Hui asked about benevolence. Confucius said: “To master the self and return to ritual is benevolence. If for one day you master the self and return to ritual, all under heaven will turn to benevolence. Does benevolence come from oneself, or from others?”"
+      },
+      "explanation": {
+        "zh_tw": "「克己」不是壓抑自己，是克服私欲的牽絆；「復禮」是讓言行回到合宜的軌道。「為仁由己」點明關鍵：道德的主權在每個人自己手上，不由環境、不由他人。",
+        "zh_cn": "「克己」不是压抑自己，是克服私欲的牵绊；「复礼」是让言行回到合宜的轨道。「为仁由己」点明关键：道德的主权在每个人自己手上，不由环境、不由他人。",
+        "en": "“Mastering the self” does not mean repression; it means overcoming the pull of selfish desire. “Returning to ritual” restores words and deeds to their fitting course. “From oneself” is the key: moral sovereignty lies in each person's own hands — not in circumstance, not in others."
+      },
+      "application": {
+        "zh_tw": "衝動想發火、想佔便宜、想走捷徑時，給自己一個緩衝——「這件事合乎禮嗎？合乎我對自己的要求嗎？」道德自律是最可靠的自我管理。",
+        "zh_cn": "冲动想发火、想占便宜、想走捷径时，给自己一个缓冲——「这件事合乎礼吗？合乎我对自己 的要求吗？」道德自律是最可靠的自我管理。",
+        "en": "When tempted to rage, take advantage, or cut corners, pause and ask: “Is this fitting? Is this who I hold myself to be?” Moral self-discipline is the most reliable self-management."
+      }
+    },
+    {
+      "id": "rd-004",
+      "original": "樊遲問仁。子曰：「愛人。」",
+      "source": "論語·顏淵第十二",
+      "speaker": "孔子",
+      "audience": "樊遲",
+      "context": {
+        "zh_tw": "樊遲問仁，孔子答以最簡潔的兩字——仁的本質就是愛人。",
+        "zh_cn": "樊迟问仁，孔子答以最简洁的两字——仁的本质就是爱人。",
+        "en": "Fan Chi asks about benevolence; Confucius answers in two words — the essence of benevolence is to love people."
+      },
+      "translation": {
+        "zh_tw": "樊遲問什麼是仁。孔子說：愛人。",
+        "zh_cn": "樊迟问什么是仁。孔子说：爱人。",
+        "en": "Fan Chi asked about benevolence. Confucius said: “Love others.”"
+      },
+      "explanation": {
+        "zh_tw": "「仁者愛人」是孔子對仁最簡明的定義。愛不是抽象的口號，是體現在待人接物裡的關切與尊重——把每個人當人看。",
+        "zh_cn": "「仁者爱人」是孔子对仁最简明的定义。爱不是抽象的口号，是体现在待人接物里的关切与尊重——把每个人当人看。",
+        "en": "“The benevolent love others” is Confucius's simplest definition. Love here is no abstract slogan; it is care and respect enacted in daily dealings — treating every person as a person."
+      },
+      "application": {
+        "zh_tw": "服務業、管理、家庭關係都適用：先問「我這樣做，對方感覺被尊重了嗎？」愛人的具體化，就是尊重每一個具體的人。",
+        "zh_cn": "服务业、管理、家庭关系都适用：先问「我这样做，对方感觉被尊重了吗？」爱人的具体化，就是尊重每一个具体的人。",
+        "en": "Applies to service, management, and family: ask “does this leave the other feeling respected?” Loving people concretely means respecting every particular person."
+      }
+    },
+    {
+      "id": "rd-005",
+      "original": "子曰：「君子喻於義，小人喻於利。」",
+      "source": "論語·里仁第四",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論君子小人的根本分野——所明瞭、所看重的東西不同。",
+        "zh_cn": "论君子小人的根本分野——所明瞭、所看重的东西不同。",
+        "en": "On the fundamental divide between the noble and the petty — what each understands and values differs."
+      },
+      "translation": {
+        "zh_tw": "君子通曉的是道義，小人通曉的是利益。",
+        "zh_cn": "君子通晓的是道义，小人通晓的是利益。",
+        "en": "The noble man understands what is right; the petty man understands what is profitable."
+      },
+      "explanation": {
+        "zh_tw": "「喻」是明白、懂得。不是君子不要利，而是君子遇事先問「該不該」，小人遇事先問「划不划算」。判斷的優先序，決定一個人的層次。",
+        "zh_cn": "「喻」是明白、懂得。不是君子不要利，而是君子遇事先问「该不该」，小人遇事先问「划不划算」。判断的优先序，决定一个人的层次。",
+        "en": "Yu means to understand clearly. The noble man is not against benefit; he asks first “is it right?”, while the petty man asks first “does it pay?” The order of your questions decides your level."
+      },
+      "application": {
+        "zh_tw": "做決策時意識到自己的提問順序：先問「該不該做」，再問「有沒有利」。短期吃虧但合乎道義的事，往往是長期最划算的投資。",
+        "zh_cn": "做决策时意识到自己的提问顺序：先问「该不该做」，再问「有没有利」。短期吃亏但合乎道义的事，往往是长期最划算的投资。",
+        "en": "Notice the order of your own questions: ask “is it right?” before “does it pay?” What costs you in the short run yet accords with duty is often the best long-term investment."
+      }
+    },
+    {
+      "id": "rd-006",
+      "original": "子曰：「飯疏食飲水，曲肱而枕之，樂亦在其中矣。不義而富且貴，於我如浮雲。」",
+      "source": "論語·述而第七",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "夫子自述其富貴觀：物質的清貧不改內心的快樂，不合道義的富貴視如浮雲。",
+        "zh_cn": "夫子自述其富贵观：物质的清贫不改内心的快乐，不合道义的富贵视如浮云。",
+        "en": "Confucius on wealth and honor: poverty does not dim inner joy, and riches gained against what is right are as floating clouds."
+      },
+      "translation": {
+        "zh_tw": "吃粗糧、喝冷水，彎著胳膊當枕頭，樂趣也在其中了。用不合道義的手段得來的富貴，對我來說就像天上的浮雲。",
+        "zh_cn": "吃粗粮、喝冷水，弯着胳膊当枕头，乐趣也在其中了。用不合道义的手段得来的富贵，对我来说就像天上的浮云。",
+        "en": "Eating coarse rice, drinking water, pillowing my arm — joy is in the midst of it. Wealth and honor gained by unrighteous means are to me as floating clouds."
+      },
+      "explanation": {
+        "zh_tw": "「樂亦在其中」——孔子的快樂不繫於物質條件，繫於內心的自足。「如浮雲」是清醒：浮雲聚散無常、虛而不實，不義之財終究留不住，也不值得留。",
+        "zh_cn": "「乐亦在其中」——孔子的快乐不系于物质条件，系于内心的自足。「如浮云」是清醒：浮云聚散无常、虚而不实，不义之财终究留不住，也不值得留。",
+        "en": "“Joy is in the midst of it” — his joy depends not on material conditions but on inner sufficiency. “Floating clouds” is clear-eyed: clouds gather and scatter, insubstantial; wealth unjustly gained cannot endure, nor is it worth keeping."
+      },
+      "application": {
+        "zh_tw": "面對誘惑（回扣、造假、踩線的捷徑）時，用這句驗心：這筆錢我拿得心安嗎？拿得不心安，再大也是浮雲。守住底線，才睡得著覺。",
+        "zh_cn": "面对诱惑（回扣、造假、踩线的捷径）时，用这句验心：这笔钱我拿得心安吗？拿得不心安，再大也是浮云。守住底线，才睡得着觉。",
+        "en": "Facing temptation — kickbacks, fraud, shortcuts across the line — test yourself: can I take this money with an easy conscience? If not, however large, it is but a cloud. Keep the line; sleep well."
+      }
+    },
+    {
+      "id": "rd-007",
+      "original": "子曰：「巧言令色，鮮矣仁！」",
+      "source": "論語·學而第一",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "孔子警惕花言巧語、偽裝和善的面孔——仁心不在嘴上功夫。",
+        "zh_cn": "孔子警惕花言巧语、伪装和善的面孔——仁心不在嘴上功夫。",
+        "en": "Confucius warns against glib speech and a studied look of goodwill — benevolence is not a matter of verbal skill."
+      },
+      "translation": {
+        "zh_tw": "花言巧語、裝出和善臉色的人，很少有仁德。",
+        "zh_cn": "花言巧语、装出和善脸色的人，很少有仁德。",
+        "en": "Clever words and a pleasing countenance — little benevolence there."
+      },
+      "explanation": {
+        "zh_tw": "「巧言」是話說得漂亮，「令色」是臉色裝得好看。孔子不是反對會說話，是反對用言語臉色掩蓋真實——真誠永遠比技巧重要。",
+        "zh_cn": "「巧言」是话说得漂亮，「令色」是脸色装得好看。孔子不是反对会说话，是反对用言语脸色掩盖真实——真诚永远比技巧重要。",
+        "en": "Qiaoyan is pretty speech; lingse is a manufactured look of kindness. Confucius does not oppose eloquence; he opposes using words and faces to mask the truth — sincerity always outranks technique."
+      },
+      "application": {
+        "zh_tw": "面試、談判、社交場合，警惕「太好聽的話」；同時提醒自己：與其練嘴皮子，不如做實事。日久見人心，裝出來的熱情撐不久。",
+        "zh_cn": "面试、谈判、社交场合，警惕「太好听的话」；同时提醒自己：与其练嘴皮子，不如做实事。日久见人心，装出来的热情撑不久。",
+        "en": "In interviews, negotiations, and social life, be wary of words too smooth; and remind yourself — better to do real work than to polish talk. Time reveals the heart; feigned warmth does not last."
+      }
+    },
+    {
+      "id": "rd-008",
+      "original": "有子曰：「禮之用，和為貴。」",
+      "source": "論語·學而第一",
+      "speaker": "有子（有若）",
+      "audience": null,
+      "context": {
+        "zh_tw": "有子傳孔子之學，點出禮的精神不在繁文縟節，而在和諧。",
+        "zh_cn": "有子传孔子之学，点出礼的精神不在繁文缛节，而在和谐。",
+        "en": "Youzi, transmitting the Master's teaching, notes that the spirit of ritual lies not in ceremony but in harmony."
+      },
+      "translation": {
+        "zh_tw": "禮的運用，以和諧為可貴。",
+        "zh_cn": "礼的运用，以和谐为可贵。",
+        "en": "In the practice of ritual, harmony is to be prized."
+      },
+      "explanation": {
+        "zh_tw": "禮不是把人綁死的繩子，是讓彼此各安其位、相處融洽的軌道。但有子緊接著提醒：「知和而和，不以禮節之，亦不可行也」——沒有原則的一味和氣，也不行。",
+        "zh_cn": "礼不是把人绑死的绳子，是让彼此各安其位、相处融洽的轨道。但有子紧接着提醒：「知和而和，不以礼节之，亦不可行也」——没有原则的一味和气，也不行。",
+        "en": "Ritual is not a rope to bind people but a track on which each finds his place and all get on harmoniously. Yet Youzi adds at once: “to be harmonious for harmony's sake, without ritual to regulate it, will not work” — harmony without principle fails too."
+      },
+      "application": {
+        "zh_tw": "團隊管理、家庭相處講「和」，但和要有原則：一味討好、和稀泥，反而壞事。先立規矩、再談和氣，秩序與溫度並存。",
+        "zh_cn": "团队管理、家庭相处讲「和」，但和要有原则：一味讨好、和稀泥，反而坏事。先立规矩、再谈和气，秩序与温度并存。",
+        "en": "In teams and families, prize harmony — but harmony with principle: mere pleasing and muddling through spoils things. Set the frame first, then be warm; order and warmth can coexist."
+      }
+    },
+    {
+      "id": "rd-009",
+      "original": "子曰：「人而不仁，如禮何？人而不仁，如樂何？」",
+      "source": "論語·八佾第三",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論仁與禮樂的關係——沒有仁心做底子，禮樂只是空殼。",
+        "zh_cn": "论仁与礼乐的关系——没有仁心做底子，礼乐只是空壳。",
+        "en": "On the relation of benevolence to ritual and music — without a benevolent heart beneath, they are empty shells."
+      },
+      "translation": {
+        "zh_tw": "一個人沒有仁心，禮對他還有什麼意義？一個人沒有仁心，樂對他還有什麼意義？",
+        "zh_cn": "一个人没有仁心，礼对他还有什么意义？一个人没有仁心，乐对他还有什么意义？",
+        "en": "If a man is without benevolence, what has he to do with ritual? If a man is without benevolence, what has he to do with music?"
+      },
+      "explanation": {
+        "zh_tw": "孔子提醒：形式（禮樂）是為了安放內容（仁心）。沒有仁心，再隆重的禮儀、再美妙的音樂都是表演。禮的根在內心，不在玉帛鍾鼓。",
+        "zh_cn": "孔子提醒：形式（礼乐）是为了安放内容（仁心）。没有仁心，再隆重的礼仪、再美妙的音乐都是表演。礼的根在内心，不在玉帛钟鼓。",
+        "en": "Confucius reminds us: forms exist to house content. Without benevolence, the grandest rite and the sweetest music are mere performance. Ritual is rooted in the heart, not in jade, silk, bells, and drums."
+      },
+      "application": {
+        "zh_tw": "儀式感、流程、KPI 都是形式，別讓它們取代真正的關心。公司做再多的團建，不如平時的一句真誠問候；家庭儀式再全，不如日常的陪伴。",
+        "zh_cn": "仪式感、流程、KPI 都是形式，别让它们取代真正的关心。公司做再多的团建，不如平时的一句真诚问候；家庭仪式再全，不如日常的陪伴。",
+        "en": "Ceremonies, processes, and KPIs are forms — do not let them replace real care. No amount of team building equals a sincere word on an ordinary day; no full calendar of family rituals equals daily presence."
+      }
+    },
+    {
+      "id": "rd-010",
+      "original": "子曰：「志士仁人，無求生以害仁，有殺身以成仁。」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論仁與生命的關係——極端情境下，仁者寧可捨生取義。",
+        "zh_cn": "论仁与生命的关系——极端情境下，仁者宁可舍生取义。",
+        "en": "On benevolence and life — in extremity, the benevolent will sacrifice life itself for what is right."
+      },
+      "translation": {
+        "zh_tw": "有志之士、有仁德的人，不會貪生怕死而損害仁德，只會犧牲生命來成全仁德。",
+        "zh_cn": "有志之士、有仁德的人，不会贪生怕死而损害仁德，只会牺牲生命来成全仁德。",
+        "en": "The man of purpose and the man of benevolence will not seek life at the cost of benevolence; they will sacrifice themselves to fulfill it."
+      },
+      "explanation": {
+        "zh_tw": "「殺身成仁」是仁的最高形態，也是孔子思想裡最重的一句話。它不是鼓吹輕生，而是說：當生命與道義不可兩全時，道義重於生命。平時愛惜生命，關鍵時刻不辱道義。",
+        "zh_cn": "「杀身成仁」是仁的最高形态，也是孔子思想里最重的一句话。它不是鼓吹轻生，而是说：当生命与道义不可两全时，道义重于生命。平时爱惜生命，关键时刻不辱道义。",
+        "en": "“Sacrificing oneself to fulfill benevolence” is benevolence at its height, and the weightiest line in Confucius's thought. It does not glorify death; it says: when life and duty cannot both stand, duty outweighs life. Cherish life daily; never disgrace duty at the crucial hour."
+      },
+      "application": {
+        "zh_tw": "極端情境不常見，但「底線問題」天天有：出賣同事換升遷、說謊保飯碗、沉默縱容不義。守住不該越的線，就是平常日子裡的殺身成仁。",
+        "zh_cn": "极端情境不常见，但「底线问题」天天有：出卖同事换升迁、说谎保饭碗、沉默纵容不义。守住不该越的线，就是平常日子里的杀身成仁。",
+        "en": "Extremes are rare, but line-crossing temptations are daily: betraying a colleague for promotion, lying to keep a job, silence that abets wrong. Holding the line you must not cross — that is “fulfilling benevolence” in ordinary life."
+      }
+    },
+    {
+      "id": "rd-011",
+      "original": "子曰：「里仁為美。擇不處仁，焉得知？」",
+      "source": "論語·里仁第四",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "里仁篇開章，論環境對修養的影響——居住要選有仁德的地方。",
+        "zh_cn": "里仁篇开章，论环境对修养的影响——居住要选有仁德的地方。",
+        "en": "The opening of Liren — on how environment shapes character: dwell where benevolence prevails."
+      },
+      "translation": {
+        "zh_tw": "居住的地方，有仁德風氣才好。選擇住處而不居於仁德之地，怎麼算得上明智呢？",
+        "zh_cn": "居住的地方，有仁德风气才好。选择住处而不居于仁德之地，怎么算得上明智呢？",
+        "en": "It is beautiful to dwell where benevolence prevails. To choose a dwelling without benevolence — how can that be called wise?"
+      },
+      "explanation": {
+        "zh_tw": "「里」是居住、鄰里。孔子重視環境的薰陶：人受習染影響極大，住處、圈子、環境選錯了，再好的天資也會被帶偏。",
+        "zh_cn": "「里」是居住、邻里。孔子重视环境的熏陶：人受习染影响极大，住处、圈子、环境选错了，再好的天资也会被带偏。",
+        "en": "“Li” means dwelling and neighborhood. Confucius took environment seriously: people are deeply shaped by what surrounds them; choose poorly — dwelling, circle, milieu — and fine nature is led astray."
+      },
+      "application": {
+        "zh_tw": "選擇城市、公司、朋友圈，都是「擇不處仁」。環境的影響比意志力大，把自己放進能成長的環境，是最划算的投資。",
+        "zh_cn": "选择城市、公司、朋友圈，都是「择不处仁」。环境的影响比意志力大，把自己放进能成长的环境，是最划算的投资。",
+        "en": "Choosing a city, a company, a circle of friends is “choosing a dwelling.” Environment outweighs willpower; placing yourself where you can grow is the best investment."
+      }
+    },
+    {
+      "id": "rd-012",
+      "original": "子曰：「不仁者不可以久處約，不可以長處樂。仁者安仁，知者利仁。」",
+      "source": "論語·里仁第四",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "里仁篇論仁者與不仁者在窮困與安樂中的不同表現。",
+        "zh_cn": "里仁篇论仁者与不仁者在穷困与安乐中的不同表现。",
+        "en": "From Liren — how the benevolent and the not-benevolent fare in poverty and plenty."
+      },
+      "translation": {
+        "zh_tw": "沒有仁德的人，不能長久處在窮困中，也不能長久處在安樂中。仁者安於仁，智者以仁為有利而行仁。",
+        "zh_cn": "没有仁德的人，不能长久处在穷困中，也不能长久处在安乐中。仁者安于仁，智者以仁为有利而行仁。",
+        "en": "The not-benevolent cannot long endure poverty, nor long abide in enjoyment. The benevolent rest in benevolence; the wise, seeing its benefit, practice it."
+      },
+      "explanation": {
+        "zh_tw": "窮困時，不仁者容易鋌而走險；安樂時，不仁者容易沉溺放縱——兩頭都守不住。仁者則不然：窮困不失其守，安樂不亂其心。",
+        "zh_cn": "穷困时，不仁者容易铤而走险；安乐时，不仁者容易沉溺放纵——两头都守不住。仁者则不然：穷困不失其守，安乐不乱其心。",
+        "en": "In poverty the not-benevolent take desperate risks; in plenty they sink into indulgence — they hold neither end. The benevolent differ: poverty does not shake their integrity, nor plenty their composure."
+      },
+      "application": {
+        "zh_tw": "檢驗一個人（或自己），不在順境，而在逆境與富貴兩個極端。窮時守得住，富時不變形，才算是真有底子。",
+        "zh_cn": "检验一个人（或自己），不在顺境，而在逆境与富贵两个极端。穷时守得住，富时不变形，才算是真有底子。",
+        "en": "Test character not in comfort but at the two extremes: poverty and prosperity. Holding firm in want and staying undefiled in plenty — that is real substance."
+      }
+    },
+    {
+      "id": "rd-013",
+      "original": "子曰：「君子成人之美，不成人之惡。小人反是。」",
+      "source": "論語·顏淵第十二",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "顏淵篇論君子小人在成全他人善惡上的分野。",
+        "zh_cn": "颜渊篇论君子小人在成全他人善恶上的分野。",
+        "en": "From Yanyuan — the line between noble man and petty man in helping or harming others' deeds."
+      },
+      "translation": {
+        "zh_tw": "君子成全別人的好事，不促成別人的壞事。小人正好相反。",
+        "zh_cn": "君子成全别人的好事，不促成别人的坏事。小人正好相反。",
+        "en": "The noble man helps others accomplish what is good and never abets what is bad. The petty man does the opposite."
+      },
+      "explanation": {
+        "zh_tw": "「成人之美」是見人向善便推一把；「不成人之惡」是見人將錯便拉一把，至少不火上澆油。小人的心態是見不得人好，樂見人壞。",
+        "zh_cn": "「成人之美」是见人向善便推一把；「不成人之恶」是见人将错便拉一把，至少不火上浇油。小人的心态是见不得人好，乐见人坏。",
+        "en": "To complete others' good is to give a push when they aim at virtue; to not abet their evil is to pull them back, or at least pour no oil on the fire. The petty man begrudges others' good and delights in their ruin."
+      },
+      "application": {
+        "zh_tw": "同事要升遷、朋友要創業，幫一把是成人之美；明知朋友要幹糊塗事還慫恿，就是成人之惡。問自己：我這雙手，是在推人上坡還是下坡？",
+        "zh_cn": "同事要升迁、朋友要创业，帮一把是成人之美；明知朋友要干糊涂事还怂恿，就是成人之恶。问自己：我这双手，是在推人上坡还是下坡？",
+        "en": "Help a colleague's promotion or a friend's venture — that completes good. Urging a friend into folly is abetting evil. Ask: are my hands pushing people uphill or downhill?"
+      }
+    },
+    {
+      "id": "rd-014",
+      "original": "子曰：「仁遠乎哉？我欲仁，斯仁至矣。」",
+      "source": "論語·述而第七",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "述而篇，孔子論仁並非遠不可及——想要，它就來了。",
+        "zh_cn": "述而篇，孔子论仁并非远不可及——想要，它就来了。",
+        "en": "From Shuer — benevolence is not far off: desire it, and it arrives."
+      },
+      "translation": {
+        "zh_tw": "仁離我們很遠嗎？我想要仁，仁就到了。",
+        "zh_cn": "仁离我们很远吗？我想要仁，仁就到了。",
+        "en": "Is benevolence far away? If I desire benevolence, benevolence is at hand."
+      },
+      "explanation": {
+        "zh_tw": "仁不是高不可攀的境界，而是當下的選擇——一念向善，即是仁的開端。孔子打破「仁是聖人專利」的錯覺，把行仁的門檻降到每個人的一念之間。",
+        "zh_cn": "仁不是高不可攀的境界，而是当下的选择——一念向善，即是仁的开端。孔子打破「仁是圣人专利」的错觉，把行仁的门槛降到每个人的一念之间。",
+        "en": "Benevolence is not an unattainable peak but a present choice — one good thought is its beginning. Confucius shatters the myth that benevolence belongs only to sages, lowering its threshold to a single intention in anyone."
+      },
+      "application": {
+        "zh_tw": "想做好事別等「等我準備好了」——讓座、道歉、幫一把，都是當下可做的仁。想做就做，仁不遠人。",
+        "zh_cn": "想做好事别等「等我准备好了」——让座、道歉、帮一把，都是当下可做的仁。想做就做，仁不远人。",
+        "en": "Do not wait to be “ready” for good deeds — yielding a seat, apologizing, lending a hand are all benevolence at hand. Benevolence is never far from people."
+      }
+    },
+    {
+      "id": "rd-015",
+      "original": "子曰：「君子義以為質，禮以行之，孫以出之，信以成之。君子哉！」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "衛靈公篇論君子行事的四要素：義為本、禮為行、謙為言、信為成。",
+        "zh_cn": "卫灵公篇论君子行事的四要素：义为本、礼为行、谦为言、信为成。",
+        "en": "From Wei Linggong — the four elements of the noble man's conduct: righteousness as substance, ritual as practice, modesty in speech, good faith in completion."
+      },
+      "translation": {
+        "zh_tw": "君子以義為根本，依禮來實行，用謙遜的言語表達，靠誠信來完成。這真是君子啊！",
+        "zh_cn": "君子以义为根本，依礼来实行，用谦逊的言语表达，靠诚信来完成。这真是君子啊！",
+        "en": "The noble man takes rightness as his substance, practices it through ritual, expresses it with modesty, and completes it in good faith — that indeed is a noble man!"
+      },
+      "explanation": {
+        "zh_tw": "四個步驟完整勾勒君子成事之道：內在立義（方向對），外在行禮（做法對），出口謙遜（態度對），最終守信（收尾對）。四者缺一，事雖成而不圓。",
+        "zh_cn": "四个步骤完整勾勒君子成事之道：内在立义（方向对），外在行礼（做法对），出口谦逊（态度对），最终守信（收尾对）。四者缺一，事虽成而不圆。",
+        "en": "Four steps map the noble man's way of getting things done: establish rightness within (right direction), practice through ritual (right method), speak with modesty (right bearing), complete in good faith (right finish). Missing one, the deed is done but not whole."
+      },
+      "application": {
+        "zh_tw": "做任何重要的事前後，用四問檢查：方向正不正？做法得體不得體？說話謙不謙？承諾做到沒有？",
+        "zh_cn": "做任何重要的事前后，用四问检查：方向正不正？做法得体不得体？说话谦不谦？承诺做到没有？",
+        "en": "Before and after any important task, run four checks: Is the direction right? Is the method proper? Is the speech modest? Is the promise kept?"
+      }
+    }
+  ]
+}

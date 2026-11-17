@@ -27,6 +27,8 @@ tags:
 - computer-vision
 - deploy
 ---
+
+> **Standalone install?** If this session was not initialized by the TAO skill bank plugin, run the `tao-setup` skill first (host preflight, credentials, cross-skill discovery).
 <!--
 Copyright (c) 2026, NVIDIA CORPORATION.  All rights reserved.
 

@@ -1,44 +1,55 @@
-## Description: <br>
-AI-powered HR knowledge management. Search employee handbooks, org charts, company policies, benefits documentation, and onboarding materials with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered HR knowledge management. Search employee handbooks, org charts, company policies, benefits documentation, and onboarding materials with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-HR, People Operations, managers, and employees use this skill to search organization-specific HR policies, benefits documents, org context, onboarding materials, and related workforce guidance. It helps answer policy questions, identify documentation gaps, and propose updates without extending policy language beyond source documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HR content can include restricted personnel, compensation, disciplinary, accommodation, or investigation information. <br>
-Mitigation: Respect identity context and classification boundaries, confirm legitimate need to know, and route sensitive individual matters to the appropriate HR contact. <br>
-Risk: Incorrect or outdated HR policy guidance can create employee harm or compliance risk. <br>
-Mitigation: Use current source documents, cite policy names and effective dates, surface exceptions, and report knowledge gaps instead of extrapolating from tangential documents. <br>
-Risk: The skill requires an UPLO endpoint and API key for MCP access. <br>
-Mitigation: Protect API credentials, review requested permissions before installation, and inspect the skill contents and configuration in accordance with the clean security guidance. <br>
+## Use Case:
 
+HR, people operations, managers, and employees use this skill to search organization-specific HR policies, benefits documentation, onboarding materials, org charts, and workforce guidance through UPLO.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-hr) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline tool calls, shell commands, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an UPLO instance URL and API key; HR responses should cite source policy documents, effective dates, and relevant exceptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: The skill can expose sensitive HR search and export capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege UPLO tokens restricted to the HR data and classification levels the user actually needs, and avoid broad exports unless explicitly authorized.
+
+Risk: The skill runs an unpinned npm MCP server automatically.
+
+Mitigation: Prefer a pinned, reviewed MCP server version or isolated runtime before using the skill with confidential HR data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roojenkins/skills/uplo-hr)
+- [UPLO](https://uplo.ai)
+- [UPLO schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query HR knowledge, directives, organizational context, knowledge owners, gaps, and proposed updates through the configured UPLO MCP server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

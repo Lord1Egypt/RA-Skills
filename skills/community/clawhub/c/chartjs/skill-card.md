@@ -1,41 +1,54 @@
-## Description: <br>
-Chart.js charting skill. Used to generate visual charts such as line charts, bar charts, pie charts, radar charts, scatter plots, etc. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chart.js charting skill. Used to generate visual charts such as line charts, bar charts, pie charts, radar charts, scatter plots, etc.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and agents use this skill to generate Chart.js visualizations from user-provided data, including chart setup, configuration, and output options for HTML, screenshots, or image files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chart code may load Chart.js through npm or a CDN that is not allowed in every project environment. <br>
-Mitigation: Confirm the target project's dependency policy before installing npm packages or using CDN-loaded Chart.js. <br>
-Risk: Generated HTML or JavaScript may be run with private or sensitive visualization data. <br>
-Mitigation: Review generated HTML and JavaScript before execution and avoid exposing sensitive data in shared browser, screenshot, or export workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to create Chart.js visualizations from provided data, including line, bar, pie, radar, scatter, bubble, doughnut, and polar area charts. It supports generating chart code, HTML rendering guidance, and screenshot or image export workflows.
 
-## Reference(s): <br>
-- [Chart.js API Reference](references/api.md) <br>
-- [Chart.js CDN package](https://cdn.jsdelivr.net/npm/chart.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline HTML, JavaScript, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose complete HTML for browser rendering or code suitable for screenshot/PDF/image export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Unpinned npm or CDN dependencies can change behavior over time or introduce supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned Chart.js package versions, lockfiles, and versioned CDN URLs with integrity hashes.
+
+Risk: Generated HTML, image, or PDF files may be written to an unexpected location.
+
+Mitigation: Confirm output paths before writing or exporting generated chart artifacts.
+
+## Reference(s):
+
+- [Chart.js API Reference](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/chartjs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline HTML, JavaScript, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce complete HTML files for browser rendering or guidance for screenshot, image, and PDF export.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

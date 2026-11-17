@@ -1,46 +1,63 @@
-## Description: <br>
-Simulates NIH study section peer review for grant proposals, generating structured critiques, 1-9 criterion scores, weakness analysis, revision recommendations, and NIH-style summary statements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulates NIH study section peer review for grant proposals, generating structured critiques, NIH-style 1-9 scores, weakness analysis, revision recommendations, and mock Summary Statements.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Grant writers, researchers, and proposal teams use this skill to run a local mock NIH-style review before submission. It helps identify proposal weaknesses, calibrate scores, and prioritize revisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential grant drafts may be processed through local input files and written to local output files. <br>
-Mitigation: Use deliberate input and output paths, keep sensitive drafts in controlled workspaces, and remove generated review files when they are no longer needed. <br>
-Risk: Generated critiques and scores are simulated and may be misleading if treated as authoritative NIH review outcomes. <br>
-Mitigation: Review generated critiques before relying on them and use the output as preparation for human expert review, not as a replacement. <br>
-Risk: PDF and DOCX extraction behavior is not implemented in the artifact script. <br>
-Mitigation: Prefer TXT or Markdown inputs unless PDF or DOCX extraction has been verified separately. <br>
+## Use Case:
 
+External grant writers, researchers, and research administrators use this skill to run local mock reviews of NIH-style grant drafts before submission and identify concrete revision priorities. It can review full proposals, selected sections, focused NIH criteria, score-only outputs, and before/after revisions.
 
-## Reference(s): <br>
-- [NIH Scoring Rubric Reference](artifact/references/nih_scoring_rubric.md) <br>
-- [Review Criteria Explained](artifact/references/review_criteria_explained.md) <br>
-- [Common Weaknesses Catalog](artifact/references/common_weaknesses_catalog.md) <br>
-- [Score Calibration Guide](artifact/references/score_calibration_guide.md) <br>
-- [Summary Statement Templates](artifact/references/summary_statement_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown-style summary statements and revision recommendations, or JSON score summaries when scores-only mode is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written to stdout or to a user-selected local output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Grant proposals and generated reviews may contain sensitive proposal-derived content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated local environment, save outputs only to intentional workspace paths, and treat generated review files as sensitive.
+
+Risk: The artifact advertises PDF and DOCX inputs, but extraction is not implemented in the local script.
+
+Mitigation: Use TXT or MD inputs for accurate review unless a separate, reviewed extraction step is added.
+
+Risk: Generated scores and critiques are simulated and may not match an actual NIH study section review.
+
+Mitigation: Use the output as preparatory feedback and supplement it with qualified human review before submission decisions.
+
+## Reference(s):
+
+- [NIH Scoring Rubric Reference](artifact/references/nih_scoring_rubric.md)
+- [Review Criteria Explained](artifact/references/review_criteria_explained.md)
+- [Common Weaknesses Catalog](artifact/references/common_weaknesses_catalog.md)
+- [Summary Statement Templates](artifact/references/summary_statement_templates.md)
+- [Score Calibration Guide](artifact/references/score_calibration_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/grant-mock-reviewer)
+- [Publisher Profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, JSON, guidance]
+
+**Output Format:** [Markdown Summary Statement and revision recommendations, or JSON scores when scores-only mode is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local file input with optional local file output; supports full review, focused criteria, score-only output, and proposal comparison mode.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

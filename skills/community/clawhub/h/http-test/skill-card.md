@@ -1,46 +1,61 @@
-## Description: <br>
-Build reusable HTTP API test artifacts from user-provided endpoints, authentication, request data, expected results, and validation rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build reusable HTTP API test artifacts from user-provided endpoints, authentication, request data, expected results, and validation rules.
 
-## Publisher: <br>
-[may4748854-rgb](https://clawhub.ai/user/may4748854-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[may4748854-rgb](https://clawhub.ai/user/may4748854-rgb)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to turn ad hoc HTTP/REST checks into reusable .http test cases and shell verification scripts that validate responses and produce readable PASS/FAIL reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate and run shell scripts that make HTTP requests to user-provided endpoints. <br>
-Mitigation: Inspect generated scripts before execution and run them only against intended test or authorized endpoints. <br>
-Risk: API tests may require cookies, bearer tokens, or other sensitive credentials. <br>
-Mitigation: Use test or least-privilege credentials, pass secrets through environment variables, and avoid committing real tokens or cookies. <br>
-Risk: Raw response saving can expose sensitive response data if paths are not controlled. <br>
-Mitigation: Keep expect.save paths inside a dedicated temporary output directory and review saved payloads before sharing artifacts. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert HTTP endpoint details, authentication needs, expected responses, and validation rules into reusable API test files and runnable verification scripts.
 
-## Reference(s): <br>
-- [Assertion Cheatsheet](references/assertion-cheatsheet.md) <br>
-- [Complex Scenarios](references/complex-scenarios.md) <br>
-- [Debugging Cookbook](references/debugging-cookbook.md) <br>
-- [HTTP Test Artifact Example](references/http_test_artifact_example.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/may4748854-rgb/http-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with generated .http test definitions and bash verification scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated artifacts may include environment-variable placeholders for credentials and optional raw response save paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Unsafe or imported .http definitions can cause the bundled runner to expose environment secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted, local API test definitions; run with a minimized environment; prefer non-production or short-lived credentials.
+
+Risk: Generated or imported tests may write responses to unintended writable paths.
+
+Mitigation: Constrain expect.save to a dedicated output directory or remove it when raw response capture is not required.
+
+Risk: Full browser cookies can grant broader access than the test requires.
+
+Mitigation: Avoid full browser cookies when possible and use scoped bearer tokens or short-lived credentials.
+
+## Reference(s):
+
+- [Assertion Cheatsheet](references/assertion-cheatsheet.md)
+- [Complex Scenarios](references/complex-scenarios.md)
+- [Debugging Cookbook](references/debugging-cookbook.md)
+- [HTTP Test Artifact Example](references/http_test_artifact_example.md)
+- [ClawHub Skill Page](https://clawhub.ai/may4748854-rgb/skills/http-test)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated .http test files, bash verification scripts, environment templates, and PASS/FAIL/SKIP reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated tests use placeholders for secrets and can read runtime credentials from environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

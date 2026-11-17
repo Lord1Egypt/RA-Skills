@@ -1,0 +1,106 @@
+{
+  "skill": "pmclite-schedule-explainer",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "标准解释：为什么排到这一天",
+      "category": "happy_path",
+      "input": {
+        "user_message": "这张单为什么排到 11 月 20 日才完工"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "query_work_orders",
+          "estimate_hours",
+          "preview_schedule"
+        ],
+        "output_contains": [
+          "产线",
+          "工时模型",
+          "顺延"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC002",
+      "name": "降级解释：工时为什么变长",
+      "category": "happy_path",
+      "input": {
+        "user_message": "WO-001 原来 3 天怎么变成 106 天了，是不是算错了"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "estimate_hours",
+          "query_master_data"
+        ],
+        "output_contains": [
+          "降级",
+          "batch",
+          "工位"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC003",
+      "name": "换线解释",
+      "category": "happy_path",
+      "input": {
+        "user_message": "这单上次在 SMT产线A，这次怎么跑到 B 线去了"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "query_work_orders",
+          "preview_schedule"
+        ],
+        "output_contains": [
+          "产线解析",
+          "优先级"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC004",
+      "name": "边界：要求真排产（不应触发本技能）",
+      "category": "boundary",
+      "input": {
+        "user_message": "帮我把这些单重新排一遍并落库"
+      },
+      "expected": {
+        "trigger_skill": false,
+        "calls_tool": [
+          "pmclite-scheduler"
+        ],
+        "output_contains": [
+          "分工"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC005",
+      "name": "降级：工具不可用",
+      "category": "fallback",
+      "input": {
+        "user_message": "解释一下这张单的排程"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "get_dashboard"
+        ],
+        "output_contains": [
+          "未安装",
+          "pmclite.com"
+        ],
+        "uses_fallback": true
+      }
+    }
+  ]
+}

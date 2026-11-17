@@ -1,0 +1,24 @@
+# ===== OS junk (系统垃圾文件) =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ===== Editor / IDE (编辑器配置) =====
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===== Local runtime & dev artifacts (本地运行/开发产物) =====
+SKILL.md.bak-*
+*.log
+*.tmp
+node_modules/
+
+# ===== NOTE / 注意 =====
+# Do NOT ignore assets/vendor-cache.md —
+# it ships with the repo as an EMPTY sample (see its "Packaging rule").
+# If it ever contains real run data locally, empty it before committing.
+#
+# 不要忽略 assets/vendor-cache.md——它以"空样例"状态随仓库发布。
+# 若本地运行后夹带了真实数据，提交前务必清空（见该文件内 Packaging rule）。

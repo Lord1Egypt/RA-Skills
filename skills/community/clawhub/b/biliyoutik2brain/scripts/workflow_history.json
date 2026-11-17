@@ -1,0 +1,292 @@
+{
+  "cloud_tasks": [
+    {
+      "duration_s": 0,
+      "model": "base",
+      "elapsed_s": 354.1,
+      "workload": 0.0,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 397,
+      "model": "base",
+      "elapsed_s": 119.3,
+      "workload": 6.6,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 35,
+      "model": "base",
+      "elapsed_s": 12.0,
+      "workload": 0.6,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 90757,
+      "model": "base",
+      "elapsed_s": 28.7,
+      "workload": 1512.6,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 7454,
+      "model": "base",
+      "elapsed_s": 66.7,
+      "workload": 124.2,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 2483,
+      "model": "base",
+      "elapsed_s": 576.1,
+      "workload": 41.4,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 2483,
+      "model": "base",
+      "elapsed_s": 23.3,
+      "workload": 41.4,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 1221,
+      "model": "base",
+      "elapsed_s": 78.0,
+      "workload": 20.4,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 2052,
+      "model": "base",
+      "elapsed_s": 96.7,
+      "workload": 34.2,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 1865,
+      "model": "base",
+      "elapsed_s": 98.0,
+      "workload": 31.1,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 2219,
+      "model": "base",
+      "elapsed_s": 92.3,
+      "workload": 37.0,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 2057,
+      "model": "base",
+      "elapsed_s": 82.0,
+      "workload": 34.3,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 2085,
+      "model": "base",
+      "elapsed_s": 89.8,
+      "workload": 34.8,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 914,
+      "model": "base",
+      "elapsed_s": 72.9,
+      "workload": 15.2,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 797,
+      "model": "base",
+      "elapsed_s": 81.4,
+      "workload": 13.3,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 983,
+      "model": "base",
+      "elapsed_s": 290.3,
+      "workload": 16.4,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 460,
+      "model": "base",
+      "elapsed_s": 159.5,
+      "workload": 7.7,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 674,
+      "model": "base",
+      "elapsed_s": 206.1,
+      "workload": 11.2,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 334,
+      "model": "base",
+      "elapsed_s": 165.1,
+      "workload": 5.6,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration_s": 519,
+      "model": "base",
+      "elapsed_s": 79.1,
+      "workload": 8.7,
+      "cpu_usage": 1.0
+    },
+    {
+      "duration": 0,
+      "model": "base",
+      "elapsed": 0.1,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 0,
+      "model": "base",
+      "elapsed": 0.1,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 0,
+      "model": "base",
+      "elapsed": 0.1,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 0,
+      "model": "base",
+      "elapsed": 0.0,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 0,
+      "model": "base",
+      "elapsed": 0.1,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 33,
+      "model": "base",
+      "elapsed": 7.1,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 41,
+      "model": "base",
+      "elapsed": 137.7,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 45,
+      "model": "base",
+      "elapsed": 137.2,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 9,
+      "model": "tiny",
+      "elapsed": 133.1,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 55,
+      "model": "base",
+      "elapsed": 139.3,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 33,
+      "model": "base",
+      "elapsed": 6.3,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 41,
+      "model": "base",
+      "elapsed": 6.6,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 45,
+      "model": "base",
+      "elapsed": 8.4,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 9,
+      "model": "tiny",
+      "elapsed": 5.1,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 55,
+      "model": "base",
+      "elapsed": 9.7,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 33,
+      "model": "base",
+      "elapsed": 6.3,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 33,
+      "model": "base",
+      "elapsed": 17.6,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 41,
+      "model": "base",
+      "elapsed": 16.0,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 45,
+      "model": "base",
+      "elapsed": 19.5,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 9,
+      "model": "tiny",
+      "elapsed": 4.4,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    },
+    {
+      "duration": 55,
+      "model": "base",
+      "elapsed": 20.4,
+      "cpu": 1.0,
+      "time": "/home/admin/.openclaw/skills/biliyoutik2brain/scripts/biliyoutik2brain/core/../../.."
+    }
+  ],
+  "estimated_capacity": 192.63157894736844
+}

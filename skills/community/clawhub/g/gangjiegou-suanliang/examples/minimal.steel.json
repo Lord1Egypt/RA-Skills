@@ -1,0 +1,41 @@
+{
+  "schema": "cad-steel-geometry/v1",
+  "sections": [
+    {
+      "type": "section",
+      "section_type": "tube",
+      "text": "Φ1200x50",
+      "status": "candidate",
+      "confidence": 0.9,
+      "x": 1000.0,
+      "y": 2000.0,
+      "evidence": [
+        {"text": "Φ1200x50", "layer": "S-SCOLS-LINE", "x": 1000.0, "y": 2000.0}
+      ]
+    }
+  ],
+  "members": [
+    {
+      "type": "member",
+      "code": "Z1",
+      "name": "圆管柱",
+      "category": "column",
+      "system": "steel",
+      "x": 1000.0,
+      "y": 2000.0,
+      "z": 0.0,
+      "rotation": 0.0,
+      "evidence": [
+        {"text": "Z1 Φ1200x50 L=4500", "layer": "S-SCOLS-LINE"}
+      ]
+    }
+  ],
+  "materials": [
+    {"grade": "Q355", "x": 1000.0, "y": 2000.0, "evidence": [{"text": "Q355"}]}
+  ],
+  "steel_geometry": [
+    {"layer": "S-SCOLS-LINE", "geometry": [1000, 2000, 1000, 6500]}
+  ],
+  "connections": [],
+  "finishes": []
+}

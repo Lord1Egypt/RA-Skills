@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "formal-government-bluewhite",
+  "display_name": "正式政企蓝白",
+  "description": "蓝白秩序、正式信息层级与结构化版面，适合政企汇报、申报与规划方案",
+  "preview": "preview.svg",
+  "files": {"tokens": "theme.css", "templates": "templates.html"},
+  "identity": {
+    "composition": "16:9 蓝白正式画布；固定上栏、稳定左对齐与表格/流程结构承接信息。",
+    "hierarchy": "标题清楚说明任务，正文交代边界，结构化模块负责责任、节点和依据。",
+    "image_treatment": "图片只作为事实材料或页面角色证据，使用规整裁切与蓝白边界，不做夸张叠加。",
+    "module_language": "蓝色上栏、细线分隔、编号、信息表格和责任矩阵。",
+    "chart_evidence": "优先使用规范表格、时间线、责任矩阵和带单位的直接数据。",
+    "motion": "使用克制的按项展开；先显示工作框架，再显示责任和时间节点。"
+  },
+  "tokens": {
+    "colors": {"canvas": "#f8fafc", "ink": "#102945", "signal": "#2a8acb", "risk": "#c65353", "paper": "#ffffff", "muted": "#60778d"},
+    "font_stacks": {"display": "Arial, PingFang SC, sans-serif", "body": "Arial, PingFang SC, sans-serif", "mono": "SFMono-Regular, Consolas, monospace"},
+    "type_scale": {"display": "clamp(58px, 6.2vw, 104px)", "heading": "clamp(40px, 4.2vw, 72px)", "body": "20px", "caption": "13px"},
+    "spacing": {"canvas_x": "68px", "canvas_y": "54px", "module": "24px", "gap": "18px"},
+    "borders": {"hairline": "1px solid #bbcad9", "module": "1px solid #d6e0e9", "radius": "2px", "shadow": "0 8px 18px rgba(24,60,101,.06)"}
+  },
+  "canvas": {"aspect_ratio": "16:9", "safe_area": "68px 68px 58px", "grid": "stable formal columns with fixed top bar", "density": "medium to high, one conclusion plus 2-4 structured modules"},
+  "layout_variants": [
+    {"id": "formal-cover", "use": "cover or official thesis"},
+    {"id": "three-pillars", "use": "overall framework"},
+    {"id": "responsibility-matrix", "use": "tasks, owners and evidence"},
+    {"id": "implementation-timeline", "use": "mechanism and sequence"},
+    {"id": "formal-closing", "use": "next steps and action"}
+  ],
+  "components": {
+    "chart": "Use labeled bars, timelines, matrices and tables with explicit units and scopes.",
+    "table": "Use stable column widths, strong header rows and enough leading for long Chinese labels.",
+    "evidence_card": "Bind evidence to its source, scope and responsibility in a quiet information panel.",
+    "image": "Keep real screenshots and seals within the content-safe area; never use them as a full-page background."
+  },
+  "motion": {"enter": "translate 6-12px with opacity over 300-420ms", "stagger": "one responsibility or timeline group per data-step", "disabled": ["bounce", "continuous glow", "parallax", "cross-page morph"]},
+  "forbidden": ["neon dashboard", "editorial collage", "rounded SaaS card wall", "unverified decorative imagery", "tiny table text", "color-only theme differentiation"],
+  "template_contract": {"placeholder_format": "{{UPPER_SNAKE_CASE}}", "minimum_slides": 5, "required_markers": ["data-layout", "fragment", "data-step"]}
+}

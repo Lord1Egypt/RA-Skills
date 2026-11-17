@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/delivery-completed-event-2.0.json",
+  "title": "Omni E-commerce Delivery Completed Audit Event",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "receipt_file", "receipt_sha256", "report_revision"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "delivery_completed_event"},
+    "contract_name": {"const": "omni-ecom.delivery-completed-event"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.delivery-completed-event@1.0"], "current_completion_authority": false}},
+    "receipt_file": {"type": "string", "minLength": 1},
+    "receipt_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "report_revision": {"type": "string", "pattern": "^R[1-9][0-9]*$"}
+  }
+}

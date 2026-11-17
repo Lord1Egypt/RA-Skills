@@ -1,45 +1,56 @@
-## Description: <br>
-自媒体矩阵管家虾 helps operators monitor multi-account social-media metrics, analyze engagement, detect account or content anomalies, and generate daily reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自媒体矩阵管家虾 helps agents monitor multi-account social-media operations, analyze engagement and account health, detect viral or declining accounts, and generate concise daily Markdown reports.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Social-media operations teams and content managers use this skill to summarize metrics across Douyin, Xiaohongshu, WeChat Channels, Bilibili, and Weibo accounts, flag unusual performance or account-health signals, and prepare markdown matrix reports or scheduling suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input files may contain account performance details, comments, or other operational data that should not be shared unnecessarily. <br>
-Mitigation: Use CSV input with only the fields needed for analysis, avoid credentials and unnecessary personal data, and review generated reports before sharing. <br>
-Risk: Reports can be shared to Feishu documents or group chats, which may expose account-health or sentiment findings to unintended recipients. <br>
-Mitigation: Explicitly confirm document and group-chat destinations before sending results outside the workspace. <br>
-Risk: Keyword-based sentiment and anomaly rules can misclassify nuanced comments or normal performance variation. <br>
-Mitigation: Treat alerts as review prompts and validate high-impact findings before making operational decisions. <br>
+## Use Case:
 
+External social-media operators and content teams use this skill to summarize multi-platform account metrics, detect anomalies such as viral spikes, traffic decline, account risk, or negative sentiment, and prepare daily reports or scheduling suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/social-matrix-manager-claw) <br>
-- [Platform metrics reference](references/platform-metrics.md) <br>
-- [Content taxonomy reference](references/content-taxonomy.md) <br>
-- [Sentiment keywords reference](references/sentiment-keywords.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, tabular summaries, alerts, and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local markdown report when the analysis script is run with an output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated reports may expose social-media account metrics, account IDs, operational notes, or account-risk details when shared externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Markdown reports before sending them to Feishu or group chats, and remove account IDs or sensitive risk notes that unintended recipients should not see.
+
+Risk: CSV data from collaborators or external sources may include sensitive or inaccurate operational data.
+
+Mitigation: Use the skill only with data sources you are comfortable processing, and verify report content before treating it as an operational decision record.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tujinsama/skills/social-matrix-manager-claw)
+- [平台数据指标手册](references/platform-metrics.md)
+- [内容分类与标签体系](references/content-taxonomy.md)
+- [舆情关键词库](references/sentiment-keywords.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports and concise guidance, with optional shell commands for CSV analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write a report file when the bundled analysis script is run with an output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

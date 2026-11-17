@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "kb": {"id": "demo-brand-kb", "name": "示例组织 A 品牌资料库"},
+  "as_of": "2026-10-20",
+  "sources": [
+    {"id": "release-v2", "title": "资料夹 A 第二版说明（演示）", "path": "materials/release-v2.md", "captured_at": "2026-10-20"}
+  ],
+  "records": [
+    {
+      "id": "fact-export-v2", "entity_id": "product-a", "category": "product", "key": "delivery_formats",
+      "value": "Markdown+JSON+CSV", "text": "第二版整理结果包含 Markdown 正文、JSON 索引以及 CSV 事实表。",
+      "status": "supported", "project_ids": ["content-demo"],
+      "sources": [{"source_id": "release-v2", "locator": "正文第2段", "quote": "第二版整理结果包含 Markdown 正文、JSON 索引以及 CSV 事实表。"}]
+    }
+  ]
+}

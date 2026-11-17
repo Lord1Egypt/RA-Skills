@@ -1,0 +1,14 @@
+MIT No Attribution
+
+Copyright (c) 2026 He Wei
+
+Permission is hereby granted free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+
+This license does not require you to include the copyright notice of the original software in your copies.
+
+---
+
+本仓库新增内容（findskills.py、scripts/security_scan.py 及全部 ++ 增强、文档）以 MIT-0 提供。
+派生自上游的部分仍受原 MIT 许可约束，其署名与许可全文见 NOTICE 文件。

@@ -1,38 +1,54 @@
-## Description: <br>
-Lark/Feishu channel output rules. Always active in Lark conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill applies Lark/Feishu channel output rules and is always active in Lark conversations.
 
-## Publisher: <br>
-[chenfa188](https://clawhub.ai/user/chenfa188) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenfa188](https://clawhub.ai/user/chenfa188)
 
-## Use Case: <br>
-Agents use this skill in Lark/Feishu conversations to keep responses brief, conversational, and compatible with Feishu Markdown conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Because the skill is always active, it may make replies shorter or more casual whenever it is applied. <br>
-Mitigation: Use it for Lark/Feishu conversations where concise coworker-style responses are desired, and disable or override it for contexts that require fuller formal explanations. <br>
+## Use Case:
 
+External users and developers use this skill to keep assistant responses in Lark/Feishu conversations concise, low ceremony, and compatible with Feishu Markdown constraints.
 
-## Reference(s): <br>
-- [Feishu Markdown Syntax Reference](references/markdown-syntax.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Lark/Feishu-compatible Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Always-active style and formatting guidance for Lark conversations] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Always-on formatting guidance can shape responses in Lark/Feishu conversations even when a user does not explicitly ask for formatting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for Feishu/Lark conversation contexts where concise style and channel-specific Markdown are desired.
+
+Risk: Feishu Markdown differs from standard Markdown, so unsupported syntax may render poorly in message cards.
+
+Mitigation: Use the bundled Feishu Markdown syntax reference when formatting channel output.
+
+## Reference(s):
+
+- [Feishu Markdown Syntax Reference](references/markdown-syntax.md)
+- [ClawHub Skill Page](https://clawhub.ai/chenfa188/skills/openclaw-feishu-channel-rules)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise prose and Lark/Feishu-compatible Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always active in Lark conversations; does not add code execution, credential access, persistence, or hidden behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

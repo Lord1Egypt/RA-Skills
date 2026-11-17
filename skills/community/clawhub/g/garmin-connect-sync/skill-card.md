@@ -1,44 +1,62 @@
-## Description: <br>
-Synchronizes Garmin Connect activity data from an international account to a China account using the open-source garminconnect library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+佳明国际账号数据同步到国内账号（基于 garminconnect 开源库）
 
-## Publisher: <br>
-[brucetangc](https://clawhub.ai/user/brucetangc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucetangc](https://clawhub.ai/user/brucetangc)
 
-## Use Case: <br>
-Developers and Garmin users use this skill to authenticate international and China Garmin Connect accounts, list recent activities, test account access, and sync selected FIT activity files from the international account to the China account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Garmin account credentials or tokens and can access personal fitness history. <br>
-Mitigation: Use dedicated environment variables, review account scope before first use, and avoid running the skill where other agents or users can read the process environment or token cache. <br>
-Risk: Cross-account sync downloads FIT files locally and uploads them to another Garmin account. <br>
-Mitigation: Require explicit confirmation before sync operations, check the configured source and destination accounts, and review where cached FIT files and token files are stored. <br>
-Risk: Cached FIT files, sync state, and OAuth tokens may remain on disk after use. <br>
-Mitigation: Set a controlled sync directory, periodically delete cached data that is no longer needed, and document how to remove stored tokens and FIT files. <br>
+## Use Case:
 
+Garmin Connect users use this skill to sync recent activity data from an international Garmin account into a China Garmin account by downloading FIT files and uploading them to Garmin Connect China.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucetangc/garmin-connect-sync) <br>
-- [Publisher profile](https://clawhub.ai/user/brucetangc) <br>
-- [python-garminconnect project](https://github.com/cyberjunky/python-garminconnect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status messages with fenced command output and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands include sync, status, list, and auth-test; sync supports day range and activity count parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Command execution can be influenced through unvalidated arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use execFileSync or spawnSync with validated numeric arguments before deployment.
+
+Risk: The skill handles sensitive Garmin credentials, tokens, and activity files.
+
+Mitigation: Document token and FIT-file storage locations, how to delete them, and review local storage permissions before use.
+
+Risk: Dependency behavior may change because garminconnect is not pinned in the release evidence.
+
+Mitigation: Pin and review the garminconnect dependency before installing in a production or commercial environment.
+
+Risk: Broad triggers and automatic sync behavior can cause unintended account data movement.
+
+Mitigation: Narrow triggers and require explicit confirmation before starting synchronization.
+
+## Reference(s):
+
+- [python-garminconnect](https://github.com/cyberjunky/python-garminconnect)
+- [ClawHub skill page](https://clawhub.ai/brucetangc/skills/garmin-connect-sync)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with command results, status summaries, configuration prompts, and error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs sync, status, list, and authentication-test flows using configured Garmin credentials.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

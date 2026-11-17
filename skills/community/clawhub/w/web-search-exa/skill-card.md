@@ -1,43 +1,61 @@
-## Description: <br>
-Neural web search, content extraction, company and people research, code search, and deep research via the Exa MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for using Exa's MCP server for neural web search, content extraction, company and people research, code context lookup, and deep research.
 
-## Publisher: <br>
-[theishangoswami](https://clawhub.ai/user/theishangoswami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theishangoswami](https://clawhub.ai/user/theishangoswami)
 
-## Use Case: <br>
-Developers and agents use this skill to configure and use Exa MCP tools for web search, content extraction, company and people research, code-context lookup, and multi-step research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches and research tasks may send sensitive queries, personal data, or confidential context to the Exa MCP server. <br>
-Mitigation: Avoid sending secrets or unnecessary personal data, and use people search and deep research only for authorized, appropriate research tasks. <br>
-Risk: An Exa API key in MCP configuration can expose paid access or account privileges if shared. <br>
-Mitigation: Treat Exa API keys as sensitive credentials and verify the Exa MCP URL before installation. <br>
+## Use Case:
 
+Developers and external users use this skill to configure and operate the Exa MCP server for web lookup, source extraction, research reports, company and people research, and code or documentation search from an agent.
 
-## Reference(s): <br>
-- [Exa MCP server](https://mcp.exa.ai/mcp) <br>
-- [Exa documentation](https://exa.ai/docs) <br>
-- [Exa API keys](https://dashboard.exa.ai/api-keys) <br>
-- [Exa MCP server GitHub repository](https://github.com/exa-labs/exa-mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and MCP tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and extraction outputs may include retrieved web content, summaries, structured fields, research reports, and citations depending on the selected Exa tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence) <br>
+Risk: API keys may be exposed if embedded directly in shared MCP URLs, configuration files, logs, or screenshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the unauthenticated MCP URL where possible, avoid storing API keys directly in shared URLs or configs, and rotate any key that has been exposed.
+
+Risk: People and profile search can raise privacy and platform-terms concerns.
+
+Mitigation: Use people/profile search only for legitimate, authorized public research with appropriate privacy and platform-term checks.
+
+Risk: The release security verdict is suspicious and requires review before installation.
+
+Mitigation: Review the skill and its MCP configuration before deployment, and apply the security guidance from the release evidence.
+
+## Reference(s):
+
+- [Exa Documentation](https://exa.ai/docs)
+- [Exa MCP Server](https://mcp.exa.ai/mcp)
+- [Exa MCP Server GitHub Repository](https://github.com/exa-labs/exa-mcp-server)
+- [Exa API Key Dashboard](https://dashboard.exa.ai/api-keys)
+- [ClawHub Skill Page](https://clawhub.ai/theishangoswami/skills/web-search-exa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP setup guidance, tool selection guidance, query patterns, and token-efficiency recommendations.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

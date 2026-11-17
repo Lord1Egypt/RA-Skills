@@ -1,43 +1,60 @@
-## Description: <br>
-Control JoyIn AI robots (W-1 Walle / M-1 Mini) for movement, follow behavior, media, live stream, TTS, agent configuration, and device status via OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control JoyIn AI robots (W-1 Walle / M-1 Mini) - movement, follow, photo, video, live stream, TTS, agent config, and device status via OpenAPI.
 
-## Publisher: <br>
-[yanfang724](https://clawhub.ai/user/yanfang724) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanfang724](https://clawhub.ai/user/yanfang724)
 
-## Use Case: <br>
-Developers and robot operators use this skill through OpenClaw to check device readiness and operate JoyIn W-1/M-1 robots. It supports movement, status checks, live video, TTS, WiFi setup, LLM registration, and agent binding tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad robot-control authority can cause physical movement or interrupt active robot modes. <br>
-Mitigation: Run preflight before robot commands, supervise physical movement, and avoid interrupting OTA, mapping, charging, patrol, guard, or follow modes unless intentionally stopping or changing state. <br>
-Risk: Camera/audio data, stream URLs, ASR output, JoyIn auth keys, WiFi passwords, and LLM API keys are sensitive. <br>
-Mitigation: Limit use to trusted operators, prefer environment-backed credentials, and avoid sharing command output that contains stream URLs, transcripts, or secrets. <br>
-Risk: WiFi, LLM registration, and agent-binding commands can make lasting robot or service configuration changes. <br>
-Mitigation: Use these commands only after confirming the target device, API endpoint, and requested change with the operator. <br>
+## Use Case:
 
+External developers and robot operators use this skill to configure and control JoyIn W-1 and M-1 robots through OpenAPI commands for movement, status checks, media access, speech, WiFi, LLM, and agent settings.
 
-## Reference(s): <br>
-- [JoyIn Robot Control on ClawHub](https://clawhub.ai/yanfang724/joyin-robot-control) <br>
-- [yanfang724 ClawHub Publisher Profile](https://clawhub.ai/user/yanfang724) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JOYIN_API_BASE, JOYIN_AUTH_KEY, and JOYIN_DEVICE_SN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can move a physical JoyIn robot and the CLI does not enforce preflight checks before every command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run preflight manually before movement, supervise the robot physically, and stop or refuse commands when the robot is offline, updating, in a conflicting mode, or critically low on battery.
+
+Risk: The skill can access camera streams and speech-recognition results.
+
+Mitigation: Use the media and ASR commands only with consent from people in the environment and on a trusted JoyIn API endpoint.
+
+Risk: The skill can change WiFi, LLM, and agent settings and may handle credentials.
+
+Mitigation: Use limited JoyIn and LLM credentials, prefer environment-backed secrets, and avoid passing real WiFi passwords or API keys directly on command lines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yanfang724/skills/joyin-robot-control)
+- [Publisher profile](https://clawhub.ai/user/yanfang724)
+- [OpenClaw configuration example](artifact/openclaw.config.example.json5)
+- [JoyIn OpenAPI base endpoint](https://api-open-test.joyin-ai.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill invokes a Python CLI that returns JSON from JoyIn APIs and may produce robot movement, media, speech, WiFi, LLM, or agent-configuration effects.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

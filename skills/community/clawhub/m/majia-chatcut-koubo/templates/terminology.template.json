@@ -1,0 +1,20 @@
+{
+  "$schema": "../schemas/terminology.schema.json",
+  "$comment": "自维护词表:正确写法 → ASR 常见误听列表。复制本文件为你的 terminology.json,替换成你的品牌/产品/行业词;每次剪辑发现新误听就回写这里——词表是唯一维护点。数字、金额、日期、否定词和专名的纠错必须有试听/画面/正式脚本/素材内重复证据(requiresAudioEvidence 标记高风险条目)。个人词表建议放本地个人层 ~/.config/majia-chatcut-koubo/,用 validator 的 --terms 指向它,不进公开仓。",
+  "version": "1.1.0",
+  "maintainer": "你的名字",
+  "entries": [
+    {"termId": "term-your-brand", "correct": "你的品牌名", "wrong": ["误听写法1", "误听写法2"], "matchMode": "substring", "requiresAudioEvidence": true, "risk": "proper-noun"},
+    {"termId": "term-your-product-cli", "correct": "你的产品名 CLI", "wrong": ["产品名CLI", "产品 名 CLI"], "matchMode": "substring", "requiresAudioEvidence": true, "risk": "proper-noun"},
+    {"termId": "term-llm", "correct": "LLM", "wrong": ["蓝M", "L L M"], "matchMode": "substring"},
+    {"termId": "term-etl", "correct": "ETL", "wrong": ["etl", "E T L"], "matchMode": "substring", "caseSensitive": true},
+    {"termId": "term-sql", "correct": "SQL", "wrong": ["sequel", "S Q L"], "matchMode": "substring"},
+    {"termId": "term-store-count-500", "correct": "500 家门店", "wrong": ["50 家门店"], "matchMode": "substring", "requiresAudioEvidence": true, "risk": "number"},
+    {"termId": "term-data-analyst", "correct": "数据分析师", "wrong": ["数据分析"], "matchMode": "substring"},
+    {"termId": "term-distillation", "correct": "蒸馏", "wrong": ["争流"], "matchMode": "substring"}
+  ],
+  "shortCardWhitelist": {
+    "$comment": "允许 450-800ms 短卡的英文品牌/缩写(必须是完整可读语义单元);中文与单字卡不允许例外。三条维护原则:①上下文优先于发音——口音误听按上下文改,不盲从 ASR;②疑似方向性错字(盈利/亏损)必须试听确认后改;③数字类误听最危险(500→50 数字吞位),重点核对。",
+    "approved": ["AI", "BI", "CLI", "ETL", "LLM", "SQL"]
+  }
+}

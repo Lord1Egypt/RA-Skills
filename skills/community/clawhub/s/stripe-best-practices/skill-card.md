@@ -1,45 +1,63 @@
-## Description: <br>
-Best practices for building Stripe payment integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Best practices for building Stripe payment integrations
 
-## Publisher: <br>
-[ifoster01](https://clawhub.ai/user/ifoster01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ifoster01](https://clawhub.ai/user/ifoster01)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance when choosing Stripe payment, subscription, billing, and Connect integration patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Stripe and PCI/payment requirements are business-critical and may change after this release. <br>
-Mitigation: Verify production implementation decisions against current official Stripe documentation and applicable compliance requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Stripe payment method integration options](https://docs.stripe.com/payments/payment-methods/integration-options) <br>
-- [Stripe Payments API tour](https://docs.stripe.com/payments-api/tour) <br>
-- [Stripe go-live checklist](https://docs.stripe.com/get-started/checklist/go-live) <br>
-- [Migrate from Charges API to PaymentIntents](https://docs.stripe.com/payments/payment-intents/migration/charges) <br>
-- [Migrate from Card Element to Payment Element](https://docs.stripe.com/payments/payment-element/migration) <br>
-- [Design a subscriptions integration](https://docs.stripe.com/billing/subscriptions/designing-integration) <br>
-- [Stripe Connect integration recommendations](https://docs.stripe.com/connect/integration-recommendations) <br>
-- [Stripe PAN data import](https://docs.stripe.com/get-started/data-migrations/pan-import) <br>
-- [ClawHub skill release](https://clawhub.ai/ifoster01/stripe-best-practices) <br>
+## Use Case:
 
+Developers and engineers use this skill for guidance on Stripe payment, subscription, billing, and Connect integration choices, including migrations away from legacy APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with implementation recommendations and documentation references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference skill; no code execution or credential access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Guidance could be applied as authorization to handle live payment data or make Stripe account changes.
+
+Mitigation: Treat the skill as general integration guidance and require appropriate operational approval before handling live payment data or changing account configuration.
+
+Risk: Stripe-specific recommendations may be over-applied to non-Stripe billing questions.
+
+Mitigation: Use a more narrowly scoped skill or explicit instructions when the task is not about Stripe billing or payments.
+
+Risk: Raw PAN handling carries PCI compliance obligations.
+
+Mitigation: Advise PCI compliance proof before recommending workflows that involve raw card-number handling or processor PAN migration.
+
+## Reference(s):
+
+- [Stripe payment method integration options](https://docs.stripe.com/payments/payment-methods/integration-options)
+- [Stripe Payments API tour](https://docs.stripe.com/payments-api/tour)
+- [Stripe go-live checklist](https://docs.stripe.com/get-started/checklist/go-live)
+- [Migrate from Charges API to PaymentIntents](https://docs.stripe.com/payments/payment-intents/migration/charges)
+- [Migrate from Card Element to Payment Element](https://docs.stripe.com/payments/payment-element/migration)
+- [Design a Billing subscriptions integration](https://docs.stripe.com/billing/subscriptions/designing-integration)
+- [Stripe Connect integration recommendations](https://docs.stripe.com/connect/integration-recommendations)
+- [PAN data migration](https://docs.stripe.com/get-started/data-migrations/pan-import)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown or plain-text recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Knowledge-only guidance; no executable code, persistence, or hidden data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

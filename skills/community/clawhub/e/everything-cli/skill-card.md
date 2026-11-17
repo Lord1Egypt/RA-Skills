@@ -1,43 +1,58 @@
-## Description: <br>
-Fast indexed local file and path search on Windows using voidtools Everything for file lookup, path lookup, recent-file discovery, match counts, and other indexed search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agents with fast indexed local file and path search on Windows using voidtools Everything for path lookup, recent-file discovery, match counts, and structured search results.
 
-## Publisher: <br>
-[williamQ96](https://clawhub.ai/user/williamQ96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamq96](https://clawhub.ai/user/williamq96)
 
-## Use Case: <br>
-Developers and agent operators use this skill on Windows to search local files through the Everything index instead of slower recursive filesystem scans. It is suited for scoped file lookup, path lookup, recent-file discovery, match counts, and advanced es.exe queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup can install tooling, start Everything, install shims, and make persistent user PATH changes. <br>
-Mitigation: Decide before first use whether setup actions are acceptable; avoid --install-shim when a persistent PATH shim is not desired. <br>
-Risk: Broad searches can enumerate local indexed file names and paths. <br>
-Mitigation: Prefer scoped searches with --path and avoid raw or --allow-empty unless broad enumeration is intended. <br>
-Risk: Results depend on the Windows Everything index and may miss files that are not indexed. <br>
-Mitigation: Use recursive filesystem scans when index coverage is unsuitable or non-indexed files are required. <br>
+## Use Case:
 
+Developers and agents use this skill on Windows to bootstrap and prefer an ev CLI for indexed local file lookup, recent-file discovery, counts, and direct es.exe passthrough when recursive scans are too slow or unsuitable.
 
-## Reference(s): <br>
-- [Everything CLI PowerShell wrapper](references/everything-cli.ps1.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/williamQ96/everything-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [JSON search results with command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and recent commands return query metadata, scope, sorting, path, count, offset, limit, and result entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can modify the user PATH and leave persistent ev/everything-cli command shims and cached runtime files on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the shim directory and cache location before installation, require explicit install consent, and document how to remove the shims and PATH entry.
+
+Risk: The skill downloads and runs es.exe without a pinned hash or signature check.
+
+Mitigation: Prefer a release that verifies the downloaded binary with a pinned hash or signature before execution, or preinstall a trusted es.exe in the expected vendor path.
+
+Risk: The skill can trigger broadly for local file searches and can start Everything automatically.
+
+Mitigation: Use it only in Windows environments where indexed local search is appropriate, scope queries with path or time filters when possible, and review broad searches before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/williamq96/skills/everything-cli)
+- [PowerShell runtime wrapper](artifact/references/everything-cli.ps1.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; command execution returns JSON, text, paths, or counts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search payloads can include query, count, offset, limit, scope, sort, descending, path, and results; raw passes arguments through to es.exe.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

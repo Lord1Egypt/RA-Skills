@@ -1,42 +1,57 @@
-## Description: <br>
-Fetches WeChat public account articles from user-provided mp.weixin.qq.com URLs and converts article metadata, body content, images, video links, and formatting into local Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches WeChat public account articles from mp.weixin.qq.com links and saves article metadata, body text, image links, and video links as Markdown.
 
-## Publisher: <br>
-[limingfa](https://clawhub.ai/user/limingfa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[limingfa](https://clawhub.ai/user/limingfa)
 
-## Use Case: <br>
-Developers and content operators use this skill to archive or convert WeChat public account articles into Markdown from user-supplied article URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests to fetch user-provided article pages. <br>
-Mitigation: Provide only article URLs you intend the tool to retrieve. <br>
-Risk: The skill writes Markdown files locally and could overwrite files with matching generated names in the selected output folder. <br>
-Mitigation: Use a dedicated output directory for fetched articles. <br>
-Risk: Frequent requests or unavailable articles can trigger WeChat access controls or parsing failures. <br>
-Mitigation: Control request frequency and verify that article links are accessible before relying on the output. <br>
+## Use Case:
 
+Developers, content operators, and archivists use this skill to convert WeChat public account articles into local Markdown files with source metadata and media references.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/limingfa/wechat-mp-reader-fzx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, JSON, Shell commands, Code] <br>
-**Output Format:** [Markdown files with optional JSON metadata and command-line or Python API output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes article Markdown to a local output directory; image download is documented as in development.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can fetch any user-supplied URL even though its documented scope is WeChat public account articles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted mp.weixin.qq.com article links and run the skill in an environment with constrained outbound network access.
+
+Risk: The skill writes generated Markdown files to a local output directory.
+
+Mitigation: Run it in a workspace where local file writes are expected and review the selected output directory before execution.
+
+Risk: The --images option is documented, but local image download should not be relied on for archival completeness.
+
+Mitigation: Treat generated image entries as remote links unless image preservation is verified separately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/limingfa/skills/wechat-mp-reader-fzx)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, text, shell commands, code]
+
+**Output Format:** [Markdown files with article metadata, optional JSON metadata, and command-line or Python API output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes Markdown files locally; image references remain remote WeChat CDN links unless separately handled.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

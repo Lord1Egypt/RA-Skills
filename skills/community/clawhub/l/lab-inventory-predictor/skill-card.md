@@ -1,41 +1,57 @@
-## Description: <br>
-Predict depletion time of critical lab reagents based on historical usage frequency, and automatically generate purchase alerts when stock falls below safety thresholds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict depletion time of critical lab reagents based on historical usage frequency, and automatically generate purchase alerts when stock falls below safety thresholds.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Lab staff, researchers, and operations teams use this skill to track reagent stock, estimate depletion dates from usage records, and generate purchase or safety-stock alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that the code does not enforce the workspace path limits promised by the documentation. <br>
-Mitigation: Use the default data path, avoid custom paths, and do not rely on documented workspace-only path protection until the publisher adds real path validation. <br>
-Risk: Sparse usage history can make depletion predictions unreliable. <br>
-Mitigation: Treat LOW_CONFIDENCE predictions as advisory and collect additional usage records before relying on purchase timing. <br>
+## Use Case:
 
+Lab operations staff and research teams use this skill to track reagent inventory, estimate depletion dates from usage history, and generate purchase or safety-stock alerts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/lab-inventory-predictor) <br>
-- [Publisher Profile](https://clawhub.ai/user/aipoch-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown responses with optional JSON or CSV inventory reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local lab inventory data and reports assumptions, limits, risks, and next checks when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Inventory data paths can be user-selected, and security evidence says the script may read or overwrite JSON files despite documented workspace-only restrictions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with trusted, explicit inventory paths until the script enforces an approved workspace before opening or saving data.
+
+Risk: Mutating actions can change inventory data, and reagent removal has no confirmation step.
+
+Mitigation: Require operator review or confirmation before destructive inventory updates, especially removal actions and writes to existing JSON files.
+
+Risk: The release includes an unnecessary dataclasses dependency for a Python 3.8+ standard-library feature.
+
+Mitigation: Remove the dependency or install only from trusted package indexes in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/lab-inventory-predictor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text summaries with optional JSON report output from the bundled Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include assumptions, limits, missing inputs, and LOW_CONFIDENCE notes when sparse usage history affects prediction reliability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

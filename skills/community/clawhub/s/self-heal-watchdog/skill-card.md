@@ -1,44 +1,54 @@
-## Description: <br>
-Automated self-healing system for the OpenClaw gateway that monitors the process, backs up and rolls back configuration, and switches to a fallback model after repeated health check failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates monitoring and recovery for an OpenClaw gateway through process restart, configuration backup and rollback, and model health failover.
 
-## Publisher: <br>
-[bptravel2017](https://clawhub.ai/user/bptravel2017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bptravel2017](https://clawhub.ai/user/bptravel2017)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate a local OpenClaw gateway watchdog that can restart the gateway, protect its configuration, and fail over to another configured model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent automation can restart OpenClaw and change the configured model without further confirmation. <br>
-Mitigation: Review the launchd setup, test with DRY_RUN=1, confirm backups exist, and keep the unload command available before unattended use. <br>
-Risk: The failover path includes unsafe shell evaluation and string interpolation around state and configuration values. <br>
-Mitigation: Patch or review the failover script before installation, especially in environments where state or configuration files may be modified by other users. <br>
-Risk: Incorrect health-check or failover settings can cause repeated restarts or unexpected model changes. <br>
-Mitigation: Verify the local gateway URL, failure threshold, fallback model list, and rollback behavior in dry-run mode before enabling scheduled execution. <br>
+## Use Case:
 
+Developers and operators use this skill to install and operate a watchdog for OpenClaw gateway uptime, configuration recovery, and model failover.
 
-## Reference(s): <br>
-- [Configuration reference](references/config.md) <br>
-- [ClawHub release page](https://clawhub.ai/bptravel2017/self-heal-watchdog) <br>
-- [Publisher profile](https://clawhub.ai/user/bptravel2017) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands, configuration details, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup, status, watchdog, health-check, and model-failover workflows for OpenClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The watchdog installs a recurring LaunchAgent that can modify OpenClaw configuration and restart the gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, test with dry-run in a controlled environment, and confirm backups and rollback behavior before enabling recurring execution.
+
+Risk: Security evidence reports confirmed code-injection risks related to eval/Python interpolation and PATH handling.
+
+Mitigation: Audit and fix interpolation and PATH handling before use outside a disposable or tightly controlled environment.
+
+## Reference(s):
+
+- [Self-Heal Watchdog configuration reference](artifact/references/config.md)
+- [ClawHub skill release page](https://clawhub.ai/bptravel2017/skills/self-heal-watchdog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to install launchd scheduling, create local watchdog state and logs, edit OpenClaw configuration, and restart the gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

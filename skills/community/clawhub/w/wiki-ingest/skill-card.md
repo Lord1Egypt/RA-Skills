@@ -1,40 +1,54 @@
-## Description: <br>
-Wiki Ingest helps an agent ingest a new source into a persistent markdown knowledge wiki by summarizing durable knowledge, updating relevant pages and links, and recording contradictions or open questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ingests new source material into a persistent Markdown knowledge wiki by summarizing sources, updating relevant pages, maintaining links and indexes, and recording contradictions or open questions.
 
-## Publisher: <br>
-[teki-ai](https://clawhub.ai/user/teki-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teki-ai](https://clawhub.ai/user/teki-ai)
 
-## Use Case: <br>
-Developers, researchers, writers, and teams maintaining Obsidian-friendly or git-backed markdown wikis use this skill to fold new articles, notes, reports, papers, transcripts, and meeting summaries into existing knowledge pages without creating unnecessary new pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may modify the wrong wiki files or introduce unwanted changes while updating markdown pages, index.md, or log.md. <br>
-Mitigation: Limit the agent to the intended wiki folder and review diffs for page edits, index.md, and log.md before committing or syncing changes. <br>
-Risk: Source ingestion can flatten uncertainty, contradictions, or speculative synthesis into the wiki. <br>
-Mitigation: Keep source claims, existing wiki claims, and current synthesis distinct, and record contradictions, ambiguity, and follow-up questions explicitly. <br>
+## Use Case:
 
+External users and developers maintaining Markdown, Obsidian-style, or git-backed knowledge wikis use this skill to ingest articles, notes, transcripts, reports, papers, or meeting summaries while preserving source summaries, cross-links, indexes, logs, and unresolved tensions.
 
-## Reference(s): <br>
-- [Ingest Patterns](references/ingest-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown wiki updates, source summaries, index entries, log entries, and concise notes on contradictions or open questions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update source pages, topic pages, internal links, index.md, and log.md within the intended wiki.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill intentionally makes persistent edits to Markdown or Obsidian-style wiki files, which can alter shared or git-backed knowledge bases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the target wiki before use and request a proposed change list or diff before applying updates to shared or git-backed notes.
+
+Risk: New source material can conflict with existing wiki content or include uncertain claims.
+
+Mitigation: Keep source claims, existing wiki beliefs, current synthesis, contradictions, and open questions visibly separated in the generated updates.
+
+## Reference(s):
+
+- [Ingest Patterns](references/ingest-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/teki-ai/skills/wiki-ingest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown page updates with concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source summaries, wiki page updates, index.md and log.md entries, internal links, and contradiction notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

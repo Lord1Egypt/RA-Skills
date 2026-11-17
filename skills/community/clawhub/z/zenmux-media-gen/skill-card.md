@@ -1,43 +1,55 @@
-## Description: <br>
-Generate images & videos with ZenMux. Support multiple image models (Gemini, Qwen, Hunyuan, etc.) and video models (Veo, Seedance) via one API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images & videos with ZenMux. Support multiple image models (Gemini, Qwen, Hunyuan, etc.) and video models (Veo, Seedance) via one API key.
 
-## Publisher: <br>
-[theopenbase](https://clawhub.ai/user/theopenbase) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theopenbase](https://clawhub.ai/user/theopenbase)
 
-## Use Case: <br>
-Developers and creative operators use this skill to generate images and video tasks through ZenMux's unified API, configure ZENMUX_API_KEY, and run the bundled CLI for image generation, video task creation, status polling, and media download. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a ZenMux API key and sends prompts or optional reference image URLs to ZenMux. <br>
-Mitigation: Use a dedicated key, monitor billing or quota, and avoid sensitive prompts or private signed URLs. <br>
-Risk: Generated images or videos can be written to local paths chosen by the user or agent. <br>
-Mitigation: Choose output paths deliberately and review generated or downloaded media before reuse. <br>
+## Use Case:
 
+External users, developers, and content teams use this skill to generate images and videos through ZenMux's unified API, including model selection, task creation, polling, and optional media download.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/theopenbase/zenmux-media-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/theopenbase) <br>
-- [ZenMux homepage](https://zenmux.ai) <br>
-- [ZenMux API base endpoint](https://api.zenmux.ai/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API calls, Configuration instructions, Files] <br>
-**Output Format:** [Markdown guidance with bash and Python command examples; generated media can be saved as image or video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, curl, and ZENMUX_API_KEY; image/video generation sends prompts and optional reference image URLs to ZenMux.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: Prompts, optional reference image URLs, and the ZenMux API key are sent to ZenMux APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when you trust ZenMux, store the API key in an environment variable, and run it from an environment with restricted network egress where practical.
+
+Risk: API-returned download URLs are trusted and remote media can be saved locally without size or content validation.
+
+Mitigation: Use limited disk space and review automatic downloads until URL allowlisting, streaming size limits, and content validation are added.
+
+## Reference(s):
+
+- [ZenMux Homepage](https://zenmux.ai)
+- [ZenMux API Base URL](https://api.zenmux.ai/v1)
+- [ClawHub Skill Page](https://clawhub.ai/theopenbase/skills/zenmux-media-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with bash examples, Python CLI commands, JSON API responses, and generated media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZENMUX_API_KEY and network access to ZenMux APIs; generated media may be saved to local output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

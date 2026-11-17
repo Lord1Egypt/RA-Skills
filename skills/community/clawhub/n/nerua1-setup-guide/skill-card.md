@@ -1,45 +1,64 @@
-## Description: <br>
-Battle-tested setup guide for a multi-agent AI system on Apple Silicon, covering install order, local and cloud model trade-offs, shared memory, inter-agent communication, backup practices, and operational pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Battle-tested setup guide for a multi-agent AI system on Apple Silicon, covering install order, RAM tradeoffs, shared memory, inter-agent communication, operational pitfalls, and WhatsApp monitoring.
 
-## Publisher: <br>
-[nerua1](https://clawhub.ai/user/nerua1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nerua1](https://clawhub.ai/user/nerua1)
 
-## Use Case: <br>
-Developers and engineers use this skill as an operational setup guide for building and maintaining a multi-agent AI workflow on Apple Silicon, including OpenClaw, Claude Code, local models, shared memory, and messaging integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide discusses disabling sandboxing for external-volume and symlink workflows, which can increase exposure if applied broadly. <br>
-Mitigation: Keep sandboxing enabled unless a specific external-volume problem requires an exception, and document any exception before using it. <br>
-Risk: Persistent multi-agent memory can unintentionally retain secrets or sensitive operational details. <br>
-Mitigation: Use a dedicated memory vault with no secrets and review what is stored before mining or sharing memory across agents. <br>
-Risk: WhatsApp mirroring can forward logs and prompts outside the local console. <br>
-Mitigation: Enable WhatsApp mirroring only for channels where prompts, logs, and notifications are safe to forward. <br>
-Risk: Related skills or commands referenced by the guide may change local configuration or credentials. <br>
-Mitigation: Review and scan related skills before installation, and inspect proposed commands before running them. <br>
+## Use Case:
 
+Developers and advanced agent operators use this skill to set up or onboard a multi-agent AI system on Apple Silicon, including Claude Code and OpenClaw installation order, memory sharing, local and cloud model placement, backup practices, and monitoring.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nerua1/nerua1-setup-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/nerua1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; commands should be reviewed before execution in the target environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The guide may influence agents to reduce sandbox isolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep explicit human approval around sandbox changes and review whether reduced isolation is acceptable for the target system.
+
+Risk: The guide includes external install guidance for pip, npx, and git-installed components.
+
+Mitigation: Pin package versions and verify package sources before installing or running components.
+
+Risk: Console or monitoring guidance may expose sensitive information through WhatsApp.
+
+Mitigation: Avoid forwarding sensitive console logs, tokens, credentials, personal data, or operational secrets to messaging channels.
+
+Risk: Guidance touches crons, ports, and configuration edits that can change system behavior.
+
+Mitigation: Require explicit user approval before changing schedules, opening ports, or editing persistent configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nerua1/skills/nerua1-setup-guide)
+- [Artifact README](artifact/README.md)
+- [Project story](artifact/STORY.md)
+- [Published locations](artifact/PUBLISHED.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell command blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

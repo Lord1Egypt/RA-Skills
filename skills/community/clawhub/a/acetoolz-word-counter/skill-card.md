@@ -1,42 +1,56 @@
-## Description: <br>
-Count words, characters, sentences, paragraphs, and reading time for any text using AceToolz. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Count words, characters, sentences, paragraphs, and reading time for any text using AceToolz.
 
-## Publisher: <br>
-[acetoolz](https://clawhub.ai/user/acetoolz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acetoolz](https://clawhub.ai/user/acetoolz)
 
-## Use Case: <br>
-External users and developers use this skill to send text to the AceToolz word-counter API and receive word, character, sentence, paragraph, and reading-time statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text analyzed by the skill may be sent to the external AceToolz API without clear disclosure of consent, privacy, or retention terms. <br>
-Mitigation: Avoid using the skill for secrets, private documents, regulated data, or proprietary material unless the publisher provides explicit upload disclosure, consent, and privacy or retention details. <br>
-Risk: The external API can be unreachable or rate limited, which may prevent the skill from returning counts. <br>
-Mitigation: Surface the failure to the user and suggest retrying later or using the AceToolz website directly. <br>
+## Use Case:
 
+External users and agents use this skill to send text to AceToolz for word, character, sentence, paragraph, and reading-time statistics, then present a concise Markdown summary.
 
-## Reference(s): <br>
-- [AceToolz Word Counter](https://www.acetoolz.com/text/tools/word-counter) <br>
-- [AceToolz Word Counter API](https://www.acetoolz.com/api/openclaw/word-counter) <br>
-- [ClawHub AceToolz Word Counter release page](https://clawhub.ai/acetoolz/acetoolz-word-counter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with optional shell commands and JSON API response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends submitted text to an external AceToolz API; artifact behavior documents a 100,000-character text limit and a 30-requests-per-minute rate limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Text submitted for counting is sent to an external AceToolz API without clear consent, privacy, or retention details in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for non-sensitive text unless the publisher provides explicit privacy and retention terms or a local-processing option.
+
+Risk: The external API may be rate-limited, reject long text, or be temporarily unreachable.
+
+Mitigation: Surface API errors to the user, ask them to retry after rate limits, and direct them to the AceToolz website when the API is unavailable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/acetoolz/skills/acetoolz-word-counter)
+- [AceToolz Publisher Profile](https://clawhub.ai/user/acetoolz)
+- [AceToolz Word Counter](https://www.acetoolz.com/text/tools/word-counter)
+- [AceToolz Word Counter API](https://www.acetoolz.com/api/openclaw/word-counter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown summary with optional PowerShell or curl command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns word, character, sentence, paragraph, and reading-time counts; API errors may include rate-limit, length, or availability messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

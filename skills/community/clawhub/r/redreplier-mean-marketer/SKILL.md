@@ -2,7 +2,29 @@
 name: redreplier-mean-marketer
 description: A background accountability loop that surfaces fresh, high-scoring RedReplier lead opportunities and — if you ignored the last one (didn't approve or reject it) — roasts you, hilariously and meanly, about your marketing until you act. All criteria and the roast itself are computed server-side by RedReplier; this skill just loops and relays. Use when the user wants automated lead nudges, a "marketing accountability" or "roast me into marketing" loop, or to be pinged about new high-relevance Reddit/HN/X/Bluesky leads above a configurable score. Requires a RedReplier account + API key.
 homepage: https://redreplier.com
-metadata: { 'openclaw': { 'emoji': '😡', 'primaryEnv': 'REDREPLIER_API_KEY', 'requires': { 'env': ['REDREPLIER_API_KEY'] } } }
+metadata:
+  openclaw:
+    emoji: 😡
+    primaryEnv: REDREPLIER_API_KEY
+    requires:
+      env:
+        - REDREPLIER_API_KEY
+      network:
+        - ai.redreplier.com
+permissions:
+  env_read:
+    - REDREPLIER_API_KEY
+  network_egress:
+    - host: ai.redreplier.com
+      paths: [/ai-app/api/v1/mean-marketer/*]
+      purpose: Read the next lead and the server-generated message. Sends no page content, only the bearer token.
+  filesystem_write:
+    - path: ~/.config/redreplier/config.json
+      mode: "0600"
+      purpose: Store the API token when you run `setup`.
+  filesystem_read:
+    - ~/.config/redreplier/config.json
+    - ./.redreplier/config.json
 ---
 
 # RedReplier Mean Marketer 😡
@@ -25,12 +47,40 @@ done. Otherwise:
 
 1. Sign up at https://redreplier.com/signup and add the site(s)/keywords to monitor.
 2. Settings → API Tokens → generate a dedicated token (starts with `redreplier_`).
-3. Provide it via `REDREPLIER_API_KEY`, or:
+3. Provide it via `REDREPLIER_API_KEY`, or store it once:
    ```bash
-   ./scripts/mean-marketer.js setup --key redreplier_xxxxx
+   ./scripts/mean-marketer.js setup          # prompts, input hidden
+   printf %s "$TOKEN" | ./scripts/mean-marketer.js setup   # or pipe it
    ```
+   Written to `~/.config/redreplier/config.json` with mode `600`.
+
+> Never pass the token as a command-line argument. Arguments land in shell history and are
+> visible to every process on the machine through `ps`. `setup` rejects a `--key` flag for
+> exactly that reason.
 
 Base URL `https://ai.redreplier.com/ai-app` · auth `Authorization: Bearer $REDREPLIER_API_KEY`.
+
+## Permissions and data flow
+
+What this skill touches, in full.
+
+| what | detail |
+|---|---|
+| Env read | `REDREPLIER_API_KEY`, and nothing else |
+| Network | `https://ai.redreplier.com/ai-app/api/v1/mean-marketer/*`, and nothing else |
+| Sent | Only the bearer token. No page content, no file contents, no local paths |
+| Files written | `~/.config/redreplier/config.json`, mode `600`, only when you run `setup` |
+| Files read | The same config file, plus `./.redreplier/config.json` if present |
+| Shell | None. No subprocesses, no `sudo`, zero dependencies |
+
+The token never appears in a command-line argument. `setup` reads it from a hidden prompt
+or from stdin, and refuses a `--key` flag outright. Keep it out of your crontab too: the
+cron examples below rely on the stored config file rather than an inline variable, so the
+secret stays in one `600` file instead of being copied into `crontab -l` output, process
+listings and backups.
+
+To rotate or revoke, delete `~/.config/redreplier/config.json` and generate a new token at
+https://redreplier.com/api-tokens.
 
 ## Configure the criteria (the user controls this)
 
@@ -61,7 +111,9 @@ setup step, not optional.
 
 **Cadence: every 5 minutes.** Reddit/X posts appear continuously, and a lead is only worth
 acting on while it's fresh, so poll often. Escalation is time-based on the server, so polling
-frequently does **not** make it meaner faster — a 5-minute cadence is safe.
+frequently does **not** make it meaner faster. A 5-minute cadence is safe.
+
+The API allows 600 requests per minute per token, which a 5-minute loop never approaches. If you share the token with other RedReplier automation and start seeing `429`, respect the `Retry-After` header rather than tightening the loop.
 
 ### The one command your scheduled job runs
 
@@ -92,8 +144,13 @@ and relays its stdout to the user.
 
 **Plain cron (any machine):** add to crontab —
 ```cron
-*/5 * * * * cd /path/to/redreplier-mean-marketer && REDREPLIER_API_KEY=redreplier_xxx node scripts/mean-marketer.js notify
+*/5 * * * * cd /path/to/redreplier-mean-marketer && node scripts/mean-marketer.js notify
 ```
+The token is deliberately absent from that line. The script reads it from
+`~/.config/redreplier/config.json`, so it never reaches your crontab, `ps` output, or the
+backups that copy both. If your scheduler insists on an env var, point it at a file it
+sources that you have chmodded `600`, rather than writing the value inline.
+
 Pipe stdout wherever you want it delivered (a notifier, a webhook to Slack, etc.).
 
 ### One-off manual check

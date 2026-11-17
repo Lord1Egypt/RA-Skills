@@ -1,45 +1,59 @@
-## Description: <br>
-Connect AI smart glasses to OpenClaw via Companion App with link-code pairing, chat API access, and SSE streaming for voice-controlled AI conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect AI smart glasses to OpenClaw via Companion App with linkCode pairing, a chat API, and SSE streaming for voice-controlled AI conversations.
 
-## Publisher: <br>
-[orideclaw](https://clawhub.ai/user/orideclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orideclaw](https://clawhub.ai/user/orideclaw)
 
-## Use Case: <br>
-Developers and smart-glasses integrators use this skill to connect Nimo AI Glasses companion workflows to an OpenClaw Gateway for paired chat requests and streaming AI responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer and pairing flow may expose an OpenClaw gateway and active pairing secret to the network with weak or default protection. <br>
-Mitigation: Review before installing, prefer localhost-only binding unless remote access is required, use a strong unique gateway token, and protect exposed gateways with firewall or reverse-proxy controls. <br>
-Risk: The active link code may be visible through unauthenticated health responses. <br>
-Mitigation: Remove the active link code from unauthenticated health responses or restrict access to the health route before using the plugin outside a trusted local environment. <br>
-Risk: Provider API keys may be configured by deployment scripts. <br>
-Mitigation: Confirm where provider API keys are stored and restrict access to OpenClaw configuration files before running deploy.sh. <br>
+## Use Case:
 
+Developers and OpenClaw gateway operators use this skill to connect Nimo AI smart glasses through a companion app, pair sessions, and route chat requests to an AI agent with JSON or streaming responses.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/orideclaw/nimo-glasses) <br>
-- [Publisher Profile](https://clawhub.ai/user/orideclaw) <br>
-- [README](artifact/README.md) <br>
-- [OpenClaw Plugin Manifest](artifact/openclaw.plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with JSON configuration examples, shell commands, TypeScript plugin code, and HTTP/SSE API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The plugin exposes JSON chat responses and token-by-token SSE events through OpenClaw Gateway routes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and package.json) <br>
+Risk: Pairing and deployment defaults may expose sensitive gateway access too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a strong unique gateway token and keep the gateway on localhost or behind TLS, VPN, or firewall rules before deployment.
+
+Risk: The health endpoint exposes the current linkCode during initial pairing.
+
+Mitigation: Remove linkCode from unauthenticated health output or restrict that endpoint before enabling the plugin on a reachable gateway.
+
+Risk: The deployment script includes broad cleanup behavior and unpinned OpenClaw installation or update commands.
+
+Mitigation: Review the script before running it, avoid the cleanup option unless intentional, and pin the OpenClaw package version used for deployment.
+
+## Reference(s):
+
+- [Nimo AI Glasses on ClawHub](https://clawhub.ai/orideclaw/skills/nimo-glasses)
+- [Artifact README](artifact/README.md)
+- [OpenClaw plugin manifest](artifact/openclaw.plugin.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON API responses and SSE text chunks, with Markdown installation and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are intended to be concise and are controlled by the plugin's maxResponseLength setting.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

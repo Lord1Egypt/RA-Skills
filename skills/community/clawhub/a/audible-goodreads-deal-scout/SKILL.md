@@ -55,6 +55,8 @@ The skill reads only the files and services needed for its configured workflow.
 
 The local auth file is sensitive. Do not paste its contents into chat, commit it, or publish it. The auth flow requests cookie-style Audible/Amazon credential types for compatibility because anonymous pages may hide member cash prices, but the skill persists only the bearer access/refresh token fields it uses for token refresh and Audible product-price lookup.
 
+The bundled runtime requires Python 3.11 or newer. Invoke the wrapper with `sh` so the skill remains usable when an installer does not preserve executable bits.
+
 For a fuller trust and data-access summary, see `TRUST.md` in the published bundle or repository.
 
 ## Optional Audible Authentication
@@ -133,6 +135,7 @@ Then write config through:
 - If the user does not request a custom path, use the default workspace-root storage path: `<workspace>/.audible-goodreads-deal-scout/`.
 - Do not invent legacy names like `.audible-goodreads-deal`.
 - Do not store mutable config, state, or artifacts inside `{baseDir}` or the installed skill folder. `openclaw skills install` and `openclaw skills update --force` replace the workspace skill directory.
+- Treat relative paths stored in config as relative to the config file's directory. CLI arguments are relative to the current shell directory.
 
 ```bash
 sh "{baseDir}/scripts/audible-goodreads-deal-scout.sh" setup \
@@ -145,11 +148,16 @@ sh "{baseDir}/scripts/audible-goodreads-deal-scout.sh" setup \
   [--delivery-channel "telegram"] \
   [--delivery-target "<target>"] \
   [--delivery-policy "positive_only"] \
-  [--daily-automation] \
+  [--daily-automation | --no-daily-automation] \
+  [--no-delivery] \
   [--register-cron]
 ```
 
 Use interactive `setup` only when the user explicitly wants prompt-by-prompt CLI onboarding. Otherwise prefer the non-interactive command with concrete flags.
+
+Before enabling daily automation, make sure the user's OpenClaw host can run the exact scheduled exec command unattended. Cron runs cannot wait for command approval. Registered jobs use an OpenClaw condition trigger; enable `cron.triggers.enabled` only on a trusted host where the user controls every cron-authoring agent and the local skill files. The job uses the marketplace's IANA timezone, lightweight bootstrap context, and low model thinking. This explicit level supports Codex models that reject `off`; rerun setup with cron registration to repair older jobs.
+
+To remove automation, rerun non-interactive setup with `--no-daily-automation --register-cron`; this disables the related job and clears its trigger and fallback route. Use `--no-delivery` to clear the configured channel and target while preserving unrelated config.
 
 ## Want-to-Read discount scan
 
@@ -275,12 +283,15 @@ The model writes the fit paragraph. Python does not call a provider API directly
 
 Use:
 - Goodreads public score
+- `artifacts.fitEvidencePath` as the primary candidate-specific taste evidence when present
 - `artifacts.fitContextPath`
 - `artifacts.reviewSourcePath` when present
 - `artifacts.notesPath` when present
 
 Rules:
 - Do not drop rated/reviewed CSV rows for prompt convenience.
+- Start with the bounded fit-evidence artifact and consult the complete fit context only when the selected evidence is insufficient or contradictory.
+- Do not infer why the user liked or disliked a title from a rating alone; use written reviews or notes for preference claims.
 - Summarize each written Goodreads review to 500 characters or fewer before using it as evidence.
 - If `personalData.privacyMode == "minimal"`, do not use personal CSV or notes content in the fit paragraph.
 - If no meaningful personal data exists, say so explicitly instead of inventing taste evidence.
@@ -296,7 +307,9 @@ Fallback lines:
 - `always_full`: deliver the full card for every final status
 - `summary_on_non_match`: deliver full `recommend`, but a short summary card for `suppress` or `error`
 
-For scheduled runs, prep with `--invocation-mode scheduled`. If prep returns `suppress_duplicate_scheduled_run`, stop quietly. After a surfaced scheduled result, mark the deal as emitted with:
+Registered scheduled runs invoke `scheduled-gate` from a deterministic condition trigger. Do not run `prepare` again when the trigger appends preprepared instructions. A `fire: false` result is complete and must stay silent. For `fire: true`, follow the appended artifact paths and commands exactly, write valid runtime JSON, and call `mark-emitted` only when `run-and-deliver` reports `delivered: true`.
+
+For a manually orchestrated scheduled run, prep with `--invocation-mode scheduled`. If prep returns `suppress_duplicate_scheduled_run`, stop quietly. After a delivered scheduled result, mark the deal as emitted with:
 
 ```bash
 sh "{baseDir}/scripts/audible-goodreads-deal-scout.sh" mark-emitted \

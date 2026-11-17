@@ -1,42 +1,57 @@
-## Description: <br>
-China Poster Studio helps an agent turn pasted Chinese text, short prompts, or optional URLs into social-media poster content and local PNG generation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+社交海报生成器。一键将文字/文章生成精美海报，支持朋友圈、小红书、抖音等平台。粘贴内容即可生成，无需设计技能。适合运营人员、自媒体、普通用户。
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users, operators, creators, and social-media publishers use this skill to convert articles, notes, recommendations, and short ideas into poster-ready layouts for WeChat Moments, Xiaohongshu, Douyin, and similar channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional URL fetching can expose private, intranet, authenticated, or token-bearing URLs. <br>
-Mitigation: Paste article text directly when privacy matters and avoid providing private or credential-bearing URLs. <br>
-Risk: Local poster generation depends on user-installed Pillow and fonts. <br>
-Mitigation: Install Pillow and fonts only from trusted sources and review any generated local-generation steps before execution. <br>
-Risk: Automatic title, key-point, and quote extraction can produce inaccurate or misleading poster text. <br>
-Mitigation: Review the generated poster copy before publishing or sharing. <br>
+## Use Case:
 
+External users, social media operators, creators, and general users use this skill to turn pasted Chinese text, article content, short prompts, or public article URLs into social poster content for WeChat Moments, Xiaohongshu, Douyin, and similar channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/china-poster-studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with optional Python/Pillow implementation guidance for PNG poster generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include generated poster copy, layout choices, source attribution text, platform dimensions, and local font or Pillow setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata, created 2026-04-29; artifact frontmatter reports 1.1.0) <br>
+Risk: Pasted text may be summarized or transformed into poster content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing private or sensitive material unless it is intended to appear in, or be summarized for, the generated poster.
+
+Risk: Optional URL mode asks the agent to fetch and process user-provided article URLs, which may fail or expose untrusted page content to the workflow.
+
+Mitigation: Use URL mode only with public pages the user trusts, and review extracted content before publishing the poster.
+
+Risk: Local poster generation depends on Pillow and Chinese font assets when the agent implements image output.
+
+Mitigation: Confirm required local dependencies and font files are available before expecting PNG output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/china-poster-studio)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown or text guidance with optional Python/Pillow implementation details and PNG poster output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports square, 3:4, and 9:16 poster layouts; local image generation may require Pillow and Chinese font assets.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

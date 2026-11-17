@@ -1,52 +1,70 @@
-## Description: <br>
-行程体检员——验证已有行程方案，输出体检报告：价格/路线/时间/遗漏/风险诊断+优化建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+行程体检员验证已有行程方案，并输出价格、路线、时间、遗漏事项、风险诊断和优化建议的体检报告，支持文字、截图和订单输入。
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to review an existing itinerary, compare prices and routes, identify schedule and booking risks, and produce a concise improvement report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install or update the global FlyAI CLI package before searching travel data. <br>
-Mitigation: Install only if the FlyAI CLI is trusted; prefer a pinned, local, non-sudo installation instead of a global latest-version install. <br>
-Risk: The artifact includes fallback guidance to disable TLS verification for SSL certificate problems. <br>
-Mitigation: Do not allow TLS verification to be disabled; resolve certificate or network configuration problems before running travel-search commands. <br>
-Risk: The skill can read or save travel preferences and may process sensitive itinerary, order, payment, or passport-related details. <br>
-Mitigation: Review or opt out of saved travel profiles and redact sensitive order, payment, passport, or identity data before sharing itinerary inputs. <br>
-Risk: Booking links are third-party Feizhu handoffs, so prices, availability, and purchase terms can change outside the skill. <br>
-Mitigation: Verify prices, availability, refund rules, and booking terms directly on the third-party purchase page before buying. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to review an existing itinerary, compare current flight and hotel data, identify route or timing problems, and produce a concise optimization report before travel.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hello-ahang/flyai-trip-checker) <br>
-- [Output template](reference/output-template.md) <br>
-- [Complete example](reference/example.md) <br>
-- [User profile storage](reference/user-profile-storage.md) <br>
-- [Scoring rules](reference/scoring-rules.md) <br>
-- [Flight search reference](reference/references/search-flight.md) <br>
-- [Hotel search reference](reference/references/search-hotel.md) <br>
-- [POI search reference](reference/references/search-poi.md) <br>
-- [Train search reference](reference/references/search-train.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown itinerary health-check report with diagnostic sections, recommendations, and booking links when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include FlyAI CLI commands, current travel-price comparisons, saved preference prompts, and third-party Feizhu booking handoff links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: The skill guidance includes disabling TLS certificate verification when searches fail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require secure connection checks by default and only use trusted network and certificate remediation steps before running travel searches.
+
+Risk: The skill asks agents to install the latest global FlyAI CLI package and includes sudo-oriented recovery guidance.
+
+Mitigation: Prefer pinned package versions, isolated environments, and explicit user approval before installing or upgrading command-line tools.
+
+Risk: The skill can read and update persistent personal travel profiles.
+
+Mitigation: Make profile access opt-in, disclose what is stored, and provide clear controls for editing or deleting saved preferences.
+
+Risk: The skill may surface third-party booking links in reports.
+
+Mitigation: Validate booking URLs, label third-party destinations clearly, and keep booking links optional in the final report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hello-ahang/skills/flyai-trip-checker)
+- [Output template](artifact/reference/output-template.md)
+- [Scoring rules](artifact/reference/scoring-rules.md)
+- [User profile storage](artifact/reference/user-profile-storage.md)
+- [Flight search reference](artifact/reference/references/search-flight.md)
+- [Hotel search reference](artifact/reference/references/search-hotel.md)
+- [POI search reference](artifact/reference/references/search-poi.md)
+- [AI search reference](artifact/reference/references/ai-search.md)
+- [Keyword search reference](artifact/reference/references/keyword-search.md)
+- [Train search reference](artifact/reference/references/search-train.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown travel audit report with inline FlyAI CLI commands and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include itinerary scores, price comparisons, route and schedule findings, risk notes, optimization suggestions, and third-party booking links.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

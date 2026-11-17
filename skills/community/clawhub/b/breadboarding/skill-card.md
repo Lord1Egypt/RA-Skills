@@ -1,40 +1,53 @@
-## Description: <br>
-Transform a workflow description into affordance tables showing UI and Code affordances with their wiring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Breadboarding transforms workflow descriptions into affordance tables that show UI and code affordances, their wiring, and optional Mermaid visualizations for mapping existing systems or designing new ones from shaped parts.
 
-## Publisher: <br>
-[morpheis](https://clawhub.ai/user/morpheis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morpheis](https://clawhub.ai/user/morpheis)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill to map how a workflow moves through UI and code affordances, or to design a new system from shaped parts. It produces tables that make places, controls, calls, data returns, and optional visualizations explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow descriptions, code, or architecture details shared for analysis may contain sensitive information. <br>
-Mitigation: Share only code, workflows, and architecture details you are comfortable having the agent analyze. <br>
-Risk: Generated affordance tables may be incomplete or misleading if they are not checked against the actual workflow or code. <br>
-Mitigation: Review the tables against the source workflow or implementation before using them for design or implementation decisions. <br>
+## Use Case:
 
+Developers, product engineers, and design reviewers use this skill to map existing workflows or design new systems by turning operator-centered flows, code paths, or shaped parts into Places, UI affordances, Code affordances, wires, returns, data stores, and optional Mermaid diagrams.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/morpheis/breadboarding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables with optional Mermaid diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Places, UI Affordances, Code Affordances, and Data Stores tables for the described workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill may lead an agent to inspect project code when mapping an existing workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit review to relevant project files and follow the workspace's normal access controls.
+
+Risk: Affordance tables can be misleading if the generated wiring is not checked against the actual code or intended design.
+
+Mitigation: Review the generated tables against source code or shaping requirements before using them for implementation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/morpheis/skills/breadboarding)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Guidance]
+
+**Output Format:** [Markdown tables with optional Mermaid code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Places, UI Affordances, Code Affordances, Data Stores, and optional slice summaries or diagrams.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

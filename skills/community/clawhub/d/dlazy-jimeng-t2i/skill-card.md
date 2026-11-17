@@ -1,45 +1,52 @@
-## Description: <br>
-Text-to-image generation with Jimeng, quickly converting text to high-quality images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-image generation with Jimeng, quickly converting text to high-quality images.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and creators use this skill to invoke the dLazy Jimeng text-to-image CLI from an agent, sending prompts and optional reference images to generate image URLs through dLazy's hosted service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key that may be stored locally or passed through the environment. <br>
-Mitigation: Use a scoped dLazy organization key, keep the local CLI config protected, and rotate or revoke the key from the dLazy dashboard when needed. <br>
-Risk: Prompts and referenced local images are sent to dLazy's hosted service for generation. <br>
-Mitigation: Avoid passing private files or sensitive prompt content unless the user intends to upload them to the hosted service. <br>
-Risk: The skill installs or runs the third-party @dlazy/cli package. <br>
-Mitigation: Review the package or source before installation and prefer the pinned version declared by the skill metadata. <br>
+## Use Case:
 
+Creators, designers, and developers can generate images with Jimeng from text prompts, optionally supplying reference images, through the dLazy CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-jimeng-t2i) <br>
-- [dLazy CLI homepage](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy service](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Images, Guidance] <br>
-**Output Format:** [JSON responses from the dLazy CLI with generated image URLs, plus concise command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm or npx and a dLazy API key; supports asynchronous generation with a generateId for polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The scan was partial and noted a mismatch between the image-generation purpose and reported login-only behavior, so some evidence is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that the pinned @dlazy/cli package and its authentication flow are expected, and confirm the skill performs the image-generation task before relying on it.
+
+## Reference(s):
+
+- [dLazy website](https://dlazy.com)
+- [dLazy CLI project page](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-jimeng-t2i)
+
+## Skill Output:
+
+**Output Type(s):** [Images, JSON]
+
+**Output Format:** [Generated image files or hosted image URLs with JSON result metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return asynchronously; optional reference images may be uploaded to dLazy media storage.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

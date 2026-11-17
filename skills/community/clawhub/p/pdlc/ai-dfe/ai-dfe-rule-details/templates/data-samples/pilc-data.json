@@ -1,0 +1,49 @@
+{
+  "$schema": null,
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "ai-pilc",
+  "data": {
+    "projectId": 166324,
+    "projectName": "Sample Project",
+    "projectHandle": "PRJ-SMP",
+    "status": "Complete",
+    "currentPhase": "Mobilization",
+    "currentStage": 16,
+    "workflowDepth": "Standard",
+    "started": "2026-06-22T12:00:00Z",
+    "lastUpdated": "2026-06-22T12:00:00Z",
+    "producerVersion": "AI-PILC v1.0.0",
+    "route": "project",
+    "derivedFrom": "001",
+    "progress": [],
+    "registerCounts": {
+      "decisions": 2,
+      "changes": 0,
+      "issues": 1,
+      "actions": 1,
+      "assumptions": 1,
+      "lessons": 0
+    },
+    "decisions": [],
+    "changes": [],
+    "issues": [],
+    "actions": [],
+    "assumptions": [],
+    "lessons": [],
+    "risks": [
+      {
+        "id": "PILC-SMP-R-1",
+        "risk": "Sample risk",
+        "probability": "Medium",
+        "impact": "High",
+        "score": 12,
+        "mitigation": "Sample mitigation",
+        "owner": "Sponsor",
+        "status": "Open"
+      }
+    ]
+  }
+}

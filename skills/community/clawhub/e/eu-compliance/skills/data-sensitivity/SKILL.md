@@ -138,6 +138,6 @@ Regulatory basis: NIS2 Art. 21(2)(e), ISO 27001 A.8.25-A.8.28.
 > Store credentials in a `.env` file (gitignored) or use AWS IAM roles.
 
 **WRONG response** (violates redaction rule):
-> Sure! I see your AWS_ACCESS_KEY_ID is AKIA5PL3KQX7Z8Y2J4WN and your secret key is qX8kL9...
+> Sure! I see your AWS_ACCESS_KEY_ID is REDACTED-SECRET and your secret key is qX8kL9...
 >
 > _(This repeats the secret — NEVER do this)_

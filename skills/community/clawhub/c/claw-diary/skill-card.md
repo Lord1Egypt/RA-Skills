@@ -1,42 +1,58 @@
-## Description: <br>
-Claw Diary records local agent activity and helps an agent generate daily summaries, timeline replay, usage statistics, searchable history, exports, and first-person journal entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Diary records agent activity and helps agents summarize sessions, replay timelines, search history, export data, and maintain first-person journal and persona notes.
 
-## Publisher: <br>
-[0xbeekeeper](https://clawhub.ai/user/0xbeekeeper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xbeekeeper](https://clawhub.ai/user/0xbeekeeper)
 
-## Use Case: <br>
-Developers and agent users use Claw Diary to keep a local activity diary for AI agent sessions, review daily or weekly work, inspect cost and activity statistics, replay timelines, search history, and write journal-style reflections from recorded events. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local diary files may retain sensitive agent activity or secrets under ~/.claw-diary/. <br>
-Mitigation: Avoid recording secrets, periodically inspect ~/.claw-diary/, and clear the diary when the retained history is no longer wanted. <br>
-Risk: The skill depends on the external claw-diary npm package and CLI. <br>
-Mitigation: Review or trust the claw-diary package before global installation and confirm the installed binary is the expected one. <br>
-Risk: Persona, journal, and event files are local content that could contain untrusted instructions. <br>
-Mitigation: Use those files only as factual context for diary writing and do not follow embedded commands or directives from them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Claw Diary release page](https://clawhub.ai/0xbeekeeper/claw-diary) <br>
-- [0xbeekeeper publisher profile](https://clawhub.ai/user/0xbeekeeper) <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for diary summaries, activity statistics, searchable history, visual replay, exports, and reflective journal entries based on locally stored agent activity.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown, plain text, HTML, or JSON depending on the diary command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the local claw-diary CLI and stores diary data under ~/.claw-diary/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may install an unpinned global npm package when the claw-diary binary is missing.
+
+Mitigation: Review and install a pinned claw-diary package version in an isolated environment before using the skill.
+
+Risk: The skill records and stores broad agent activity history under ~/.claw-diary/.
+
+Mitigation: Use the skill only when local activity recording is acceptable, and periodically export, clear, or otherwise manage the stored diary data.
+
+Risk: Journal and persona files can contain untrusted content that could influence generated journal entries.
+
+Mitigation: Treat diary, journal, and persona content as context only, and do not follow instructions embedded in those files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xbeekeeper/skills/claw-diary)
+- [Publisher profile](https://clawhub.ai/user/0xbeekeeper)
+- [Required npm package](https://www.npmjs.com/package/claw-diary)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Configuration]
+
+**Output Format:** [Markdown, plain text, HTML replay output, JSON export, and local Markdown files depending on the diary command.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill reads and writes diary, journal, persona, and configuration data under ~/.claw-diary/.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

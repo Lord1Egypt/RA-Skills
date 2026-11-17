@@ -12,27 +12,80 @@
         },
         "field": {
           "type": "object",
-          "description": "Single field configuration (only one field allowed per operation).",
+          "description": "Single field configuration (only one field allowed per operation).\n\n[method operation rules]\n  method=add    -> must also provide name, type, icon, and the setting object required by the field type; whether the field is required is controlled by setting.nullable: use nullable=false for required fields and nullable=true for optional fields\n  method=edit   -> must also provide updateFieldList; when changing required status, include the corresponding *.nullable path and pass the setting object\n  method=delete -> only id is required.\n\n[Important rule for editing existing fields]\nWhen method=edit, only the exact property paths listed in updateFieldList are updated. Passing a setting object by itself does not automatically update its nested properties.\nFor example, when editing a ListSelect field's options or single/multiple selection setting, updateFieldList must include exact paths such as listSelectSetting.optionList, listSelectSetting.multiple, and listSelectSetting.nullable.",
           "properties": {
             "method": {
               "type": "string",
-              "description": "Operation method. Only one of the following values can be used:\n  add    = add field (name, type, and icon must also be provided)\n  edit   = edit field (updateFieldList must also be provided to declare the property paths to be modified)\n  delete = delete field"
+              "description": "Operation method. Only one of the following values can be used:\n  add    = add field (name, type, icon, and the setting object required by the field type must also be provided; whether the field is required is controlled by setting.nullable: use nullable=false for required fields and nullable=true for optional fields)\n  edit   = edit field (updateFieldList must also be provided; when changing required status include the corresponding *.nullable path and pass the setting object)\n  delete = delete field"
             },
 			"updateFieldList": {
 			  "type": "array",
-			  "description": "List of field property paths explicitly to be modified in this editing operation. Supports field-level and object internal property-level updates. Only effective when method=edit, used to precisely declare the fields involved in this update to avoid incorrect updates caused by null or default fields.",
+				  "description": "List of field property paths explicitly to be modified in this editing operation. Supports field-level and object internal property-level updates. Only effective when method=edit, used to precisely declare the fields involved in this update to avoid incorrect updates caused by null or default fields.\n\nUse exact paths: when editing an existing ListSelect field, updating the option list must include listSelectSetting.optionList; changing whether multiple selection is allowed must include listSelectSetting.multiple; changing nullability must include listSelectSetting.nullable. Do not only write listSelectSetting.\n\n[Currently supported updateFieldList paths]\nBase fields: type, newId, name, group, displayWidth, remark, readonly, editableExpression, hidden, visibleExpression, requiredExpression, defaultValueExpression, enableChangeLog, defaultValueRuleList.\nListSelect: listSelectSetting.nullable, listSelectSetting.multiple, listSelectSetting.optionList.\nUser: userSetting.nullable, userSetting.multiple.\nDepartment: departmentSetting.nullable, departmentSetting.multiple.\nDate: dateSetting.nullable.\nInteger: integerSetting.nullable, integerSetting.enableRange, integerSetting.min, integerSetting.max.\nDouble: doubleSetting.nullable, doubleSetting.enableRange, doubleSetting.min, doubleSetting.max.\nSingleText: singleTextSetting.nullable, singleTextSetting.placeholder.\nID: iDSetting.expression, iDSetting.resetType, iDSetting.enableEdit.\nRelation: relationSetting.tableId, relationSetting.columnList, relationSetting.createAfterSetRecordValueList.\nLookupList: lookupListSetting.tableId, lookupListSetting.filter, lookupListSetting.columnList, lookupListSetting.createAfterSetRecordValueList.\nRelationRecord: relationRecordSetting.nullable, relationRecordSetting.tableId, relationRecordSetting.nameFieldId, relationRecordSetting.searchSetting.\nRelationRecordField: relationRecordFieldSetting.targetTableId, relationRecordFieldSetting.fieldId, relationRecordFieldSetting.targetFieldId.\nChildren: childrenSetting.nameFieldId.",
 			  "items": {
 			    "type": "string",
-				"pattern": "^[a-zA-Z][a-zA-Z0-9]*(\\.[a-zA-Z][a-zA-Z0-9]*)*$"
+				"pattern": "^[a-zA-Z][a-zA-Z0-9]*(\\.[a-zA-Z][a-zA-Z0-9]*)*$",
+				"enum": [
+				  "type",
+				  "newId",
+				  "name",
+				  "group",
+				  "displayWidth",
+				  "remark",
+				  "readonly",
+				  "editableExpression",
+				  "hidden",
+				  "visibleExpression",
+				  "requiredExpression",
+				  "defaultValueExpression",
+				  "enableChangeLog",
+				  "defaultValueRuleList",
+				  "listSelectSetting.nullable",
+				  "listSelectSetting.multiple",
+				  "listSelectSetting.optionList",
+				  "relationRecordSetting.nullable",
+				  "userSetting.nullable",
+				  "userSetting.multiple",
+				  "departmentSetting.nullable",
+				  "departmentSetting.multiple",
+				  "dateSetting.nullable",
+				  "integerSetting.nullable",
+				  "integerSetting.enableRange",
+				  "integerSetting.min",
+				  "integerSetting.max",
+				  "doubleSetting.nullable",
+				  "doubleSetting.enableRange",
+				  "doubleSetting.max",
+				  "doubleSetting.min",
+				  "singleTextSetting.nullable",
+				  "singleTextSetting.placeholder",
+				  "iDSetting.expression",
+				  "iDSetting.resetType",
+				  "iDSetting.enableEdit",
+				  "relationSetting.tableId",
+				  "relationSetting.columnList",
+				  "relationSetting.createAfterSetRecordValueList",
+				  "lookupListSetting.tableId",
+				  "lookupListSetting.filter",
+				  "lookupListSetting.columnList",
+				  "lookupListSetting.createAfterSetRecordValueList",
+				  "relationRecordSetting.tableId",
+				  "relationRecordSetting.nameFieldId",
+				  "relationRecordSetting.searchSetting",
+				  "relationRecordFieldSetting.targetTableId",
+				  "relationRecordFieldSetting.fieldId",
+				  "relationRecordFieldSetting.targetFieldId",
+				  "childrenSetting.nameFieldId"
+				]
 			  },
 			  "examples": [
 			    ["name", "remark"],
 			    ["readonly", "editableExpression"],
 			    ["childrenSetting.nullable"],
 				["integerSetting.min", "integerSetting.max"],
-			    ["defaultValueRuleList"]
-			  ]
-			},
+				    ["defaultValueRuleList"],
+				    ["listSelectSetting.multiple", "listSelectSetting.optionList"]
+				  ]
+				},
             "id": {
               "type": "string",
               "description": "Field ID (camelCase, must exist; new field ID when add)."
@@ -79,9 +132,9 @@
             },
 			"requiredExpression": {
 			  "type": "string",
-			  "description": "Field required condition expression. When the expression returns true, the field must be filled in the form. The expression runs in a unified context and can reference formRecord / user / expression functions.",
-			  "examples": [
-			    "${ record.type == 'purchase' }",
+				  "description": "Field required condition expression. When the expression returns true, the field must be filled in the form. The expression runs in a unified context and can reference formRecord / user / expression functions. For ordinary required/optional behavior, prefer the corresponding setting.nullable.",
+				  "examples": [
+				    "${ record.type == 'purchase' }",
 			    "${ Array.containsAny(user.roleList, ['admin']) }",
 			    "${ formRecord.startDate != null }"
 			  ]
@@ -117,13 +170,18 @@
             },
             "listSelectSetting": {
               "type": "object",
+              "description": "Used when type=ListSelect. optionList inside listSelectSetting is required for type=ListSelect and must not be omitted; multiple must be used for multi-select. Do not use unsupported parameter names such as options or type, otherwise the dropdown field may be created but its option list will be empty. For method=edit on an existing field, do not only pass listSelectSetting; also list the exact nested properties being changed in updateFieldList. When updating options, pass the complete replacement optionList and include listSelectSetting.optionList in updateFieldList.",
+              "additionalProperties": false,
               "properties": {
 				"nullable": {"type": "boolean","description": "Whether it can be empty. Default true"},
 				"multiple": {"type": "boolean","description": "Whether multiple selection is allowed. Default false"},
                 "optionList": {
                   "type": "array",
+                  "minItems": 1,
+                  "description": "Required option list for ListSelect. When type=ListSelect, optionList must be provided, must not be omitted, and must contain at least one option. The property name must be optionList, not options.",
                   "items": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                       "id": { "type": "string" },
                       "name": { "type": "string" },
@@ -134,7 +192,27 @@
                   }
                 }
               },
-              "required": ["nullable","multiple","optionList"]
+              "required": ["nullable","multiple","optionList"],
+              "examples": [
+                {
+                  "nullable": true,
+                  "multiple": true,
+                  "optionList": [
+                    {
+                      "id": "todo",
+                      "name": "To Do",
+                      "checked": false,
+                      "color": "#5B8FF9"
+                    },
+                    {
+                      "id": "done",
+                      "name": "Done",
+                      "checked": false,
+                      "color": "#57CA8C"
+                    }
+                  ]
+                }
+              ]
             },
 			"attachmentSetting": {
 				"type": "object",
@@ -166,7 +244,39 @@
               "type": "object",
 			  "description": "Association list (Relation), used to model many-to-many (M:N) relationships between two data tables. The system maintains the mapping between both parties through intermediate association relationships.\n\nApplicable scenarios:\n- A record can be associated with multiple target records\n- A target record can also be associated with multiple current records\n\nTypical examples:\n- Student ↔ Honor (a student can obtain multiple honors, an honor can belong to multiple students)\n- User ↔ Role (a user has multiple roles, a role has multiple users)\n\nInapplicable scenarios:\n- If the target record can only belong to one of the current records, please use LookupList.\n\nNote:\nThe Relation field itself does not represent foreign key ownership, but rather a peer-to-peer association relationship.",
               "properties": {
-                "tableId": { "type": "string" }
+                "tableId": { "type": "string" },
+                "columnList": {
+                  "type": "array",
+                  "description": "List of fields to display in the child table grid",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string", "description": "Field ID" },
+                      "name": { "type": "string", "description": "Column name" },
+                      "type": { "type": "string", "description": "Type: field or button, default field" },
+                      "width": { "type": "string", "description": "Column width, default 150" },
+                      "align": { "type": "string", "description": "Alignment: left, center, right, default left" },
+                      "fixed": { "type": "string", "description": "Fixed position: left, right, can be empty" },
+                      "edit": { "type": "boolean", "description": "Whether editable" },
+                      "editExpression": { "type": "string", "description": "Editable when expression condition is met" },
+                      "hideExpression": { "type": "string", "description": "Hidden when expression condition is met" },
+                      "summaryFunc": { "type": "string", "description": "Summary function: sum, avg, min, max, count, can be empty" }
+                    },
+                    "required": ["id","name","type","width","align","edit"]
+                  }
+                },
+                "createAfterSetRecordValueList": {
+                  "type": "array",
+                  "description": "Set child table record field values after main table record is created. Supported variables: main table record $record, e.g. ${record.id} for main table record ID.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fieldId": { "type": "string", "description": "Child table field ID" },
+                      "value": { "type": "string", "description": "Value expression, e.g. ${record.id}" }
+                    },
+                    "required": ["fieldId", "value"]
+                  }
+                }
               },
               "required": ["tableId"]
             },
@@ -191,19 +301,101 @@
 			},
             "relationRecordSetting": {
               "type": "object",
+              "description": "This setting object is required when type=RelationRecord.",
               "properties": {
 				"nullable": {"type": "boolean","description": "Whether it can be empty. Default true"},
                 "tableId": { "type": "string" },
-                "nameFieldId": { "type": "string" }
+                "nameFieldId": { "type": "string" },
+                "searchSetting": {
+                  "type": "object",
+                  "description": "Search page setting. All target-table field references must use field keys; the system converts them to real field IDs when saving. To edit this setting, include relationRecordSetting.searchSetting in updateFieldList.",
+                  "properties": {
+                    "searchTableIndex": {
+                      "type": "boolean",
+                      "description": "Whether to show row index."
+                    },
+                    "searchTableStripe": {
+                      "type": "boolean",
+                      "description": "Whether to show striped rows."
+                    },
+                    "searchTableHideHeader": {
+                      "type": "boolean",
+                      "description": "Whether to hide the table header. Default is true."
+                    },
+                    "searchTableBorderStyle": {
+                      "type": "string",
+                      "description": "Table border style: full or none."
+                    },
+                    "searchTableLineHeight": {
+                      "type": "string",
+                      "description": "Table row height: min, default, max, auto, or custom."
+                    },
+                    "searchChildrenFieldId": {
+                      "type": "string",
+                      "description": "Child-object field key. When set, search results are displayed as a tree table."
+                    },
+                    "searchColumnList": {
+                      "type": "array",
+                      "description": "Fields displayed in the search result table. id must use a target-table field key.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string" },
+                          "name": { "type": "string" },
+                          "icon": { "type": "string" },
+                          "type": { "type": "string", "default": "field" },
+                          "width": { "type": "string" },
+                          "align": { "type": "string" },
+                          "fixed": { "type": "string" }
+                        }
+                      }
+                    },
+                    "searchFilterConditionList": {
+                      "type": "array",
+                      "description": "Search condition fields. id must use a target-table field key.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string" },
+                          "name": { "type": "string" },
+                          "icon": { "type": "string" },
+                          "type": { "type": "string", "default": "field" },
+                          "displayWidth": { "type": "string" },
+                          "opt": { "type": "string" },
+                          "func": { "type": "string" },
+                          "disableChangeOpt": { "type": "boolean" },
+                          "disableChangeFunc": { "type": "boolean" },
+                          "defaultValueExpression": { "type": "string" }
+                        }
+                      }
+                    },
+                    "searchOrderByList": {
+                      "type": "array",
+                      "description": "Default sort settings. field must use a target-table field key.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "field": { "type": "string" },
+                          "type": { "type": "string", "description": "asc or desc" }
+                        }
+                      }
+                    },
+                    "searchListCount": {
+                      "type": "integer",
+                      "description": "Number of records displayed in the dropdown list. Default is 50."
+                    }
+                  }
+                }
               },
               "required": ["nullable", "tableId", "nameFieldId"]
             },
             "relationRecordFieldSetting": {
               "type": "object",
+              "description": "This setting object is required when type=RelationRecordField.",
               "properties": {
                 "fieldId": { "type": "string" },
                 "targetTableId": { "type": "string" },
-                "targetFieldId": { "type": "string" }
+                "targetFieldId": { "type": "string", "description": "Target field ID, must be a persisted/stored field. Cannot use RelationListField or LookupListField." }
               },
               "required": ["fieldId", "targetTableId", "targetFieldId"]
             },
@@ -232,7 +424,7 @@
                         "type": "object",
                         "properties": {
                           "fieldId": { "type": "string" ,"description": "Usually the foreign key field ID in the child table" },
-                          "opt": { "type": "string","description": "Comparison operator, optional values: eq, ne, gt, ge, lt, le, contains, notcontains, startswith, endswith, isnull, isnotnull, in, notin, between, notbetween, parenteq, parentrooteq, parentcontains, multipleandquery, multipleorquery, intree. Undefined operators must not be used."},
+                          "opt": { "type": "string","description": "Comparison operator, optional values: eq, ne, gt, ge, lt, le, contains, notcontains, startswith, endswith, isnull, isnotnull, in, notin, parenteq, parentrooteq, parentcontains, multipleandquery, multipleorquery, intree. Undefined operators must not be used."},
 						  "var": { "type": "boolean" ,"description": "Whether the comparison value is an expression, default true" },
                           "value": { "type": "string","description": "Comparison value, usually using ${record.id} to reference the current main table record"}
                         },
@@ -241,9 +433,41 @@
                     }
                   },
                   "required": ["conditionList"]
+                },
+                "columnList": {
+                  "type": "array",
+                  "description": "List of fields to display in the child table grid",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string", "description": "Field ID" },
+                      "name": { "type": "string", "description": "Column name" },
+                      "type": { "type": "string", "description": "Type: field or button, default field" },
+                      "width": { "type": "string", "description": "Column width, default 150" },
+                      "align": { "type": "string", "description": "Alignment: left, center, right, default left" },
+                      "fixed": { "type": "string", "description": "Fixed position: left, right, can be empty" },
+                      "edit": { "type": "boolean", "description": "Whether editable" },
+                      "editExpression": { "type": "string", "description": "Editable when expression condition is met" },
+                      "hideExpression": { "type": "string", "description": "Hidden when expression condition is met" },
+                      "summaryFunc": { "type": "string", "description": "Summary function: sum, avg, min, max, count, can be empty" }
+                    },
+                    "required": ["id","name","type","width","align","edit"]
+                  }
+                },
+                "createAfterSetRecordValueList": {
+                  "type": "array",
+                  "description": "Set child table record field values after main table record is created. Supported variables: main table record $record, e.g. ${record.id} for main table record ID.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fieldId": { "type": "string", "description": "Child table field ID" },
+                      "value": { "type": "string", "description": "Value expression, e.g. ${record.id}" }
+                    },
+                    "required": ["fieldId", "value"]
+                  }
                 }
               },
-              "required": ["tableId", "filter"]
+              "required": ["tableId"]
             },
 			"lookupRollupSetting": {
 				"type": "object",
@@ -279,6 +503,7 @@
             },
             "userSetting": {
               "type": "object",
+              "description": "This setting object is required when type=User.",
               "properties": {
                 "nullable": { "type": "boolean" },
                 "multiple": { "type": "boolean" }
@@ -287,6 +512,7 @@
             },
             "departmentSetting": {
               "type": "object",
+              "description": "This setting object is required when type=Department.",
               "properties": {
                 "nullable": { "type": "boolean" },
                 "multiple": { "type": "boolean" }
@@ -295,6 +521,7 @@
             },
             "dateSetting": {
               "type": "object",
+              "description": "This setting object is required when type=Date.",
               "properties": {
                 "nullable": { "type": "boolean" }
               },
@@ -302,6 +529,7 @@
             },
             "integerSetting": {
               "type": "object",
+              "description": "This setting object is required when type=Integer.",
               "properties": {
                 "nullable": { "type": "boolean" },
                 "enableRange": { "type": "boolean" },
@@ -312,6 +540,7 @@
             },
             "doubleSetting": {
               "type": "object",
+              "description": "This setting object is required when type=Double.",
               "properties": {
                 "nullable": { "type": "boolean" },
                 "enableRange": { "type": "boolean" },
@@ -322,6 +551,7 @@
             },
             "singleTextSetting": {
               "type": "object",
+              "description": "This setting object is required when type=SingleText.",
               "properties": {
                 "nullable": { "type": "boolean" },
                 "placeholder": { "type": "string" }
@@ -344,7 +574,36 @@
 				"required": ["expression"]
 			}
           },
-          "required": ["method", "id"]
+          "required": ["method", "id"],
+          "examples": [
+            {
+              "method": "edit",
+              "id": "status",
+              "type": "ListSelect",
+              "updateFieldList": [
+                "listSelectSetting.multiple",
+                "listSelectSetting.optionList"
+              ],
+              "listSelectSetting": {
+                "nullable": true,
+                "multiple": true,
+                "optionList": [
+                  {
+                    "id": "todo",
+                    "name": "To Do",
+                    "checked": false,
+                    "color": "#5B8FF9"
+                  },
+                  {
+                    "id": "done",
+                    "name": "Done",
+                    "checked": false,
+                    "color": "#57CA8C"
+                  }
+                ]
+              }
+            }
+          ]
         }
       },
       "required": ["tableId", "field"]

@@ -1,37 +1,53 @@
-## Description: <br>
-熵管理系统 helps an agent monitor and reduce conversational entropy by summarizing context, resetting task state, and refocusing attention during long or complex sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+熵管理系统用于管理和控制AI会话中的熵，包括上下文精简、状态重置、注意力聚焦和熵预警，适用于长时间会话、复杂任务和多步骤工作流。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers, operators, and other agent users can use this skill to keep long-running or complex AI sessions focused by detecting context growth, resetting unclear state, and producing concise entropy status reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Useful context can be lost if the agent prunes, summarizes, or replaces conversation history without clear user expectations. <br>
-Mitigation: Before long-running work, tell the agent whether it must ask before pruning, summarizing, or replacing conversation history. <br>
+## Use Case:
 
+Agents and their users use this skill to assess conversation drift, summarize overgrown context, reset task state, and focus the next action during long or complex sessions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown status reports, summaries, and task-focus guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, installs, credential access, or hidden data flows were found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Context pruning or state resets may remove useful details from a long conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preview summaries and state resets before relying on them, and confirm important decisions, constraints, and next actions are retained.
+
+Risk: Entropy levels and focus recommendations are heuristic and may misread the current task state.
+
+Mitigation: Treat the report as guidance and compare it with the user's current goal before narrowing or changing the conversation state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/entropy-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, summaries, state cards, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, file access, network calls, credential use, or persistent changes indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

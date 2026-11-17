@@ -1,0 +1,49 @@
+{
+  "schema": "cad-municipal-geometry/v1",
+  "source_file": "sample.dwg",
+  "coordinate_unit": "mm",
+  "summary": {},
+  "drawing_types": [],
+  "systems": [
+    {
+      "system": "rainwater",
+      "raw": "DIM_雨水",
+      "status": "candidate"
+    }
+  ],
+  "components": [],
+  "pipe_network": [],
+  "materials": [
+    {
+      "type": "material",
+      "category": "asphalt",
+      "value": "SBS 改性沥青上面层 4cm",
+      "raw": "SBS 改性沥青混凝土上面层厚4cm",
+      "layer": "TEXT",
+      "file": "sample.dwg",
+      "sheet": "PJ-01",
+      "x": 0,
+      "y": 0,
+      "confidence": 0.95,
+      "status": "candidate",
+      "evidence": []
+    }
+  ],
+  "references": [],
+  "labels": [],
+  "municipal_geometry": [],
+  "entities": [],
+  "connectivity": {
+    "summary": {
+      "open_endpoints": 2,
+      "junction_candidates": 3
+    }
+  },
+  "review": [
+    {
+      "type": "pipe_size",
+      "reason": "识别到市政管道但未提取到管径或断面尺寸"
+    }
+  ],
+  "boundary": "只输出识图候选"
+}

@@ -1,47 +1,60 @@
-## Description: <br>
-Provides general guidance for iOS app development, builds, signing, testing, TestFlight, App Store Connect publishing, privacy compliance, and subscriptions for China-region releases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language guidance for iOS app development, build signing, TestFlight and App Store Connect release preparation, privacy compliance, and subscription workflows for China-region App Store releases.
 
-## Publisher: <br>
-[kuangre123](https://clawhub.ai/user/kuangre123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kuangre123](https://clawhub.ai/user/kuangre123)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and troubleshoot iOS development and China-region App Store release workflows, including signing, TestFlight, App Store Connect metadata, in-app subscriptions, and privacy/security checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may disclose Apple IDs, signing certificates, private keys, API keys, or production account secrets while troubleshooting iOS signing and publishing issues. <br>
-Mitigation: Use placeholders for secrets and account identifiers; only provide real credentials through approved secure channels outside the agent conversation. <br>
-Risk: App Store and China-region compliance details may change or vary by app category. <br>
-Mitigation: Verify release, privacy, subscription, and category-specific requirements against current official Apple guidance and qualified legal or compliance review before submission. <br>
+## Use Case:
 
+Developers and release engineers use this skill to produce iOS development and App Store release checklists, signing and archive guidance, subscription setup notes, and privacy or compliance reminders for China-region app launches.
 
-## Reference(s): <br>
-- [iOS development reference](references/ios-development.md) <br>
-- [App Store release reference for China](references/app-store-release-cn.md) <br>
-- [IAP subscription reference](references/iap-subscription.md) <br>
-- [Privacy and security reference](references/privacy-security.md) <br>
-- [App Store Connect](https://appstoreconnect.apple.com) <br>
-- [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/) <br>
-- [Apple In-App Purchase](https://developer.apple.com/in-app-purchase/) <br>
-- [Apple Subscriptions](https://developer.apple.com/app-store/subscriptions/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include checklists, placeholders, and links to official Apple resources; does not require code execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Release or compliance guidance can become outdated as Apple policies and local legal requirements change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current Apple Developer, App Store Review Guidelines, and applicable local legal requirements before relying on the guidance for release decisions.
+
+Risk: App signing, account, and subscription setup guidance may require sensitive developer account details or credentials.
+
+Mitigation: Use placeholders for secrets and account-specific values, and do not expose real keys, certificates, passwords, or private user data in prompts or generated output.
+
+## Reference(s):
+
+- [iOS Development and Build Notes](references/ios-development.md)
+- [App Store Release Process for China](references/app-store-release-cn.md)
+- [IAP Subscription Configuration and Testing](references/iap-subscription.md)
+- [Privacy, Security, and Compliance Notes](references/privacy-security.md)
+- [App Store Connect](https://appstoreconnect.apple.com)
+- [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+- [In-App Purchase](https://developer.apple.com/in-app-purchase/)
+- [Apple Subscriptions](https://developer.apple.com/app-store/subscriptions/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with checklists, concise explanations, and occasional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses placeholders for accounts, keys, bundle identifiers, and project-specific values.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

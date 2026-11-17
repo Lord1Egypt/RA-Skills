@@ -1,41 +1,54 @@
-## Description: <br>
-A prompt protocol that guides an agent to decompose tasks into adaptive identity primitives and use tools only when necessary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identity Primitive Chain Prompt is a Chinese-language prompt protocol for structuring LLM or agent work into adaptive identity stacks, input-process-output primitives, and execution chains.
 
-## Publisher: <br>
-[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng)
 
-## Use Case: <br>
-Developers and agent users can use this skill as a prompt framework for structuring task decomposition, role selection, and tool-use restraint in text-based agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The prompt protocol gives broad commands to alter agent behavior and could conflict with higher-priority system or developer policies. <br>
-Mitigation: Review the protocol before installation and keep system and developer policies immutable in any agent that uses it. <br>
-Risk: The protocol can ask to expose internal processing or pass detailed traces to tools and plugins. <br>
-Mitigation: Use it only in low-sensitivity sessions unless revised to avoid chain-of-thought or hidden-prompt disclosure and to require explicit, minimized user approval before sharing trace-like details with tools. <br>
+## Use Case:
 
+External users and developers can use this prompt-only skill to guide LLM or agent responses through task decomposition, role framing, and structured output planning. It is most relevant when users intentionally want a Chinese-language metacognitive prompt framework for organizing reasoning and tool-use decisions.
 
-## Reference(s): <br>
-- [Identity Primitive Chain Prompt on ClawHub](https://clawhub.ai/wangjiaocheng/identity-primitive-chain-prompt) <br>
-- [身份基元链提示词 · 技术规范与执行协议](artifact/references/身份基元链提示词·技术规范与执行协议.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and natural-language prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools, credentials, or API calls are declared by the skill evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The prompt can ask the agent to alter its own operating rules or expose process details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before use and do not use it where hidden prompts, private inputs, credentials, or confidential intermediate work may be present.
+
+Risk: Requests to make tools or plugins view process data may expose sensitive internal context.
+
+Mitigation: Treat requests to expose internal steps or route process data to tools/plugins as sensitive actions requiring explicit review.
+
+## Reference(s):
+
+- [Identity Primitive Chain Prompt technical specification and execution protocol](references/身份基元链提示词·技术规范与执行协议.md)
+- [ClawHub skill page](https://clawhub.ai/wangjiaocheng/skills/identity-primitive-chain-prompt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses guided by the prompt protocol]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only skill; no tools, MCP servers, API keys, or credential environment variables were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

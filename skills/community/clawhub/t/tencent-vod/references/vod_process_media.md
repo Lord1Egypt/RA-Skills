@@ -8,8 +8,8 @@
 | `transcode --template same` | `transcode --quality same` | 极速高清转码用 `--quality` |
 | `scene-transcode --resolution 720` | `transcode --quality hd` | 极速高清（TESHD）用 `transcode --quality`；场景转码用 `scene-transcode --scene` |
 | `process --file-id <id> --animated-graphic-task-set ...` | `gif --file-id <id> --definition 10` | 转 GIF 用专用 `gif` 子命令，不存在 `process` 子命令 |
-| `tccli vod ProcessMedia --AiAnalysisTask ...` | `python scripts/vod_process_media.py ai-analysis --file-id <id> --definition <id>` | AI 内容分析必须用 `ai-analysis` 子命令，**禁止使用 tccli**；`--definition` 是必填参数 |
-| `tccli vod ProcessMedia --AiRecognitionTask ...` | `python scripts/vod_process_media.py ai-recognition --file-id <id> --definition <id>` | AI 内容识别必须用 `ai-recognition` 子命令，**禁止使用 tccli**；`--definition` 是必填参数 |
+| `tccli vod ProcessMedia --AiAnalysisTask ...` | `python3 scripts/vod_process_media.py ai-analysis --file-id <id> --definition <id>` | AI 内容分析必须用 `ai-analysis` 子命令，**禁止使用 tccli**；`--definition` 是必填参数 |
+| `tccli vod ProcessMedia --AiRecognitionTask ...` | `python3 scripts/vod_process_media.py ai-recognition --file-id <id> --definition <id>` | AI 内容识别必须用 `ai-recognition` 子命令，**禁止使用 tccli**；`--definition` 是必填参数 |
 | `adaptive-streaming --subtitle-ids "z8gnlH,abc123"` | `adaptive-streaming --subtitle-set "z8gnlH,abc123"` | **🚨 自适应码流绑定字幕用 `--subtitle-set`，不是 `--subtitle-ids`** |
 
 ---
@@ -361,19 +361,19 @@
 
 ```bash
 # 同源（默认，高画质低码率）
-python scripts/vod_process_media.py transcode --file-id <FileId>
+python3 scripts/vod_process_media.py transcode --file-id <FileId>
 
 # 高清 720P
-python scripts/vod_process_media.py transcode --file-id <FileId> --quality hd
+python3 scripts/vod_process_media.py transcode --file-id <FileId> --quality hd
 
 # 标清 540P（省成本）
-python scripts/vod_process_media.py transcode --file-id <FileId> --quality sd
+python3 scripts/vod_process_media.py transcode --file-id <FileId> --quality sd
 
 # 流畅 360P（省流量）
-python scripts/vod_process_media.py transcode --file-id <FileId> --quality flu
+python3 scripts/vod_process_media.py transcode --file-id <FileId> --quality flu
 
 # JSON 输出
-python scripts/vod_process_media.py transcode --file-id <FileId> --quality hd --json
+python3 scripts/vod_process_media.py transcode --file-id <FileId> --quality hd --json
 ```
 
 ---
@@ -386,17 +386,17 @@ python scripts/vod_process_media.py transcode --file-id <FileId> --quality hd --
 
 ```bash
 # 转封装为 MP4
-python scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format mp4
+python3 scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format mp4
 
 # 转封装为 HLS
-python scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format hls
+python3 scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format hls
 
 # 转封装为 HLS + 设置任务优先级 + 透传来源上下文
-python scripts/vod_process_media.py remux --file-id 5145403721233902989 \
+python3 scripts/vod_process_media.py remux --file-id 5145403721233902989 \
     --target-format hls --tasks-priority 5 --session-context "remux-ctx"
 
 # JSON 输出
-python scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format mp4 --json
+python3 scripts/vod_process_media.py remux --file-id 5145403721233902989 --target-format mp4 --json
 ```
 
 ---
@@ -405,19 +405,19 @@ python scripts/vod_process_media.py remux --file-id 5145403721233902989 --target
 
 ```bash
 # 通用场景 1080P（默认）
-python scripts/vod_process_media.py enhance --file-id 5145403721233902989
+python3 scripts/vod_process_media.py enhance --file-id 5145403721233902989
 
 # 真人/短剧场景 720P
-python scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 720
+python3 scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 720
 
 # 真人/短剧场景 4K
-python scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 4k
+python3 scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 4k
 
 # 漫剧场景 2K
-python scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene anime --resolution 2k
+python3 scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene anime --resolution 2k
 
 # 透传上下文 + 设置优先级
-python scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 4k \
+python3 scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scene live_action --resolution 4k \
     --session-context "enhance-ctx" --tasks-priority 3 --json
 ```
 
@@ -429,22 +429,22 @@ python scripts/vod_process_media.py enhance --file-id 5145403721233902989 --scen
 
 ```bash
 # 短剧 1080P 综合最佳（全部默认）
-python scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 --scene short_drama
+python3 scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 --scene short_drama
 
 # 电商 720P 码率优先
-python scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
+python3 scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
     --scene ecommerce --resolution 720 --priority bitrate
 
 # 信息流 480P 画质优先
-python scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
+python3 scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
     --scene feed --resolution 480 --priority quality
 
 # 指定子应用 + JSON 输出
-python scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
+python3 scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
     --scene short_drama --sub-app-id 251007502 --json
 
 # dry-run 预览请求
-python scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
+python3 scripts/vod_process_media.py scene-transcode --file-id 5285485487985271487 \
     --scene short_drama --resolution 1080 --priority best --dry-run
 ```
 
@@ -454,14 +454,14 @@ python scripts/vod_process_media.py scene-transcode --file-id 528548548798527148
 
 ```bash
 # 基础分析
-python scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10
+python3 scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10
 
 # 指定子应用 + JSON 输出
-python scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10 \
+python3 scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10 \
     --sub-app-id 251007502 --json
 
 # 仅提交不等待
-python scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10 --no-wait
+python3 scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --definition 10 --no-wait
 ```
 
 ---
@@ -470,10 +470,10 @@ python scripts/vod_process_media.py ai-analysis --file-id 5145403721233902989 --
 
 ```bash
 # 基础识别
-python scripts/vod_process_media.py ai-recognition --file-id 5145403721233902989 --definition 10
+python3 scripts/vod_process_media.py ai-recognition --file-id 5145403721233902989 --definition 10
 
 # 指定子应用 + JSON 输出
-python scripts/vod_process_media.py ai-recognition --file-id 5145403721233902989 --definition 10 \
+python3 scripts/vod_process_media.py ai-recognition --file-id 5145403721233902989 --definition 10 \
     --sub-app-id 251007502 --json
 ```
 
@@ -483,10 +483,10 @@ python scripts/vod_process_media.py ai-recognition --file-id 5145403721233902989
 
 ```bash
 # 基础截图
-python scripts/vod_process_media.py snapshot --file-id 5145403721233902989 --definition 10
+python3 scripts/vod_process_media.py snapshot --file-id 5145403721233902989 --definition 10
 
 # 多水印 + 指定截图时间点
-python scripts/vod_process_media.py snapshot --file-id 5145403721233902989 --definition 10 \
+python3 scripts/vod_process_media.py snapshot --file-id 5145403721233902989 --definition 10 \
     --ext-time-offset-set "5s,10s,15s" --watermark-set "10001,10002"
 ```
 

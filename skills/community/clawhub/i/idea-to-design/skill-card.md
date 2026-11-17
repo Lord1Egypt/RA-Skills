@@ -1,44 +1,58 @@
-## Description: <br>
-Guides agents through a design-before-implementation workflow that explores user intent, compares approaches, writes a reviewed spec, and then hands off to implementation planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through a design-first brainstorming workflow that turns an idea into an approved design spec before implementation planning.
 
-## Publisher: <br>
-[dizhu](https://clawhub.ai/user/dizhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dizhu](https://clawhub.ai/user/dizhu)
 
-## Use Case: <br>
-Developers and agent users use this skill before creative or implementation work to clarify intent, constraints, success criteria, design options, and an approved written spec. It is especially suited to projects where implementation should wait until a design has been reviewed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional browser companion can run a localhost server that stores mockups and records browser selections. <br>
-Mitigation: Keep the companion bound to localhost when possible, avoid binding to 0.0.0.0 on untrusted networks, and stop the server when the session is finished. <br>
-Risk: The workflow may create and commit design spec files and may persist companion artifacts in the project directory. <br>
-Mitigation: Review generated specs and git changes before relying on them, and add .superpowers/ to .gitignore when companion artifacts should not be committed. <br>
-Risk: Design proposals may be incomplete, ambiguous, or poorly matched to the user's actual goals. <br>
-Mitigation: Use the built-in clarification, user approval, and spec self-review steps before moving to implementation planning. <br>
+## Use Case:
 
+Developers and agents use this skill to clarify project intent, compare approaches, produce a design document, review it for planning readiness, and transition only after user approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dizhu/idea-to-design) <br>
-- [Visual Companion Guide](visual-companion.md) <br>
-- [Spec Document Reviewer Prompt Template](spec-document-reviewer-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files, Shell commands] <br>
-**Output Format:** [Markdown prose, design documents, and optional browser mockups with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and commit spec files under docs/superpowers/specs and optionally persist mockups under .superpowers/brainstorm.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The visual companion can expose session content if it is bound beyond localhost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use localhost when possible, avoid sensitive content when binding to 0.0.0.0, and stop the companion server when finished.
+
+Risk: The workflow directs repository commits for generated design specs.
+
+Mitigation: Require explicit user approval before any git commit and have the user review the written spec before implementation planning.
+
+Risk: Incomplete or incorrect assumptions can be carried into the generated design document.
+
+Mitigation: Ask clarifying questions, present trade-offs, obtain design approval section by section, and run the spec self-review before proceeding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dizhu/skills/idea-to-design)
+- [Publisher profile](https://clawhub.ai/user/dizhu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, design spec documents, inline shell commands, and optional local HTML companion screens.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect project context, write a design spec, start a local visual companion, capture browser choices, and commit the approved spec when explicitly allowed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

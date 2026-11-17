@@ -1,44 +1,60 @@
-## Description: <br>
-Process media files (video, audio, images) via a locked-down SSH container with ffmpeg, sox, and imagemagick. Use when the user wants to transcode video, process audio, manipulate images, or work with media files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes video, audio, and images through a configured SSH media-processing container using ffmpeg, sox, and ImageMagick.
 
-## Publisher: <br>
-[psyb0t](https://clawhub.ai/user/psyb0t) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[psyb0t](https://clawhub.ai/user/psyb0t)
 
-## Use Case: <br>
-Developers and engineers use this skill to process video, audio, and image files through a configured mediaproc SSH container, including transcoding, inspection, thumbnail creation, normalization, and file management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup instructions include running an unpinned remote installer as root. <br>
-Mitigation: Download and inspect the installer first, prefer a pinned release or commit, and verify integrity before running it with elevated privileges. <br>
-Risk: The skill sends media files and commands to a configured SSH host. <br>
-Mitigation: Install only when the docker-mediaproc project and configured host are trusted, use a dedicated SSH key, and avoid exposing the mediaproc port broadly. <br>
-Risk: Management commands can remove files or uninstall the mediaproc environment. <br>
-Mitigation: Back up important work before destructive file operations, recursive directory removal, or uninstall. <br>
+## Use Case:
 
+Developers and media creators use this skill to transfer files to a trusted media-processing instance, transcode and inspect video or audio, manipulate images, and retrieve results.
 
-## Reference(s): <br>
-- [mediaproc setup](references/setup.md) <br>
-- [docker-mediaproc](https://github.com/psyb0t/docker-mediaproc) <br>
-- [docker-lockbox](https://github.com/psyb0t/docker-lockbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are intended to run through scripts/mediaproc.sh against a configured mediaproc SSH host.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The configured host can see transferred media and commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an instance you control or trust, and prevent untrusted changes to MEDIAPROC_HOST and MEDIAPROC_PORT.
+
+Risk: Remote file and directory deletion is permanent.
+
+Mitigation: Require explicit confirmation of the exact path before remove-file, remove-dir, or remove-dir-recursive.
+
+Risk: The optional server installer runs with elevated privileges.
+
+Mitigation: Pin the installer to a release and review it before running it with sudo.
+
+## Reference(s):
+
+- [mediaproc on ClawHub](https://clawhub.ai/psyb0t/skills/mediaproc)
+- [mediaproc project homepage](https://github.com/psyb0t/docker-mediaproc)
+- [mediaproc setup](references/setup.md)
+- [lockbox container](https://github.com/psyb0t/docker-lockbox)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Files, Text]
+
+**Output Format:** [Markdown guidance and shell commands; processed media files or text and JSON metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SSH access to a trusted instance configured with MEDIAPROC_HOST and MEDIAPROC_PORT.]
+
+## Skill Version(s):
+
+2.0.13 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -582,7 +582,7 @@ Content-Type: application/json
 {
   "provider": "github",
   "name": "My GitHub Token",
-  "value": "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  "value": "REDACTED-SECRET"
 }
 ```
 

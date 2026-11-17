@@ -1,49 +1,61 @@
-## Description: <br>
-Microsoft OneDrive provides API and CLI guidance for accessing OneDrive through Maton-managed OAuth and Microsoft Graph to manage files, folders, drives, and sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage OneDrive files, folders, and sharing through a user-authorized Microsoft Graph connection.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and agent users use this skill to produce OneDrive API requests, Maton CLI commands, and code examples for listing, uploading, downloading, organizing, and sharing files in a connected OneDrive account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OneDrive write operations can create, upload, rename, move, copy, or delete files and folders. <br>
-Mitigation: Confirm the exact resource, destination, account or connection, and intended effect before any write operation. <br>
-Risk: Sharing operations can expose files to unintended recipients or anyone with a link. <br>
-Mitigation: Confirm recipients, permission level, and whether the link is organization-only or anonymous before creating or sending shares. <br>
-Risk: Multiple OneDrive connections can cause requests to target the wrong account. <br>
-Mitigation: Specify and verify the intended connection when more than one OneDrive connection exists. <br>
+## Use Case:
 
+People and teams use this skill to have an agent find, upload, download, organize, and share files in their authorized OneDrive account. It also documents optional scheduled or event-driven automation through Maton.
 
-## Reference(s): <br>
-- [ClawHub Microsoft OneDrive Skill](https://clawhub.ai/byungkyu/skills/one-drive) <br>
-- [OneDrive Developer Documentation](https://learn.microsoft.com/en-us/onedrive/developer/) <br>
-- [Microsoft Graph API Reference](https://learn.microsoft.com/en-us/graph/api/overview) <br>
-- [DriveItem Resource](https://learn.microsoft.com/en-us/graph/api/resources/driveitem) <br>
-- [Drive Resource](https://learn.microsoft.com/en-us/graph/api/resources/drive) <br>
-- [Sharing and Permissions](https://learn.microsoft.com/en-us/onedrive/developer/rest-api/concepts/sharing) <br>
-- [Large File Upload](https://learn.microsoft.com/en-us/graph/api/driveitem-createuploadsession) <br>
-- [Maton CLI Manual](https://cli.maton.ai/manual) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, API routes, JSON examples, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, a valid MATON_API_KEY, and an active OneDrive OAuth connection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release metadata) <br>
+Risk: A connected account may expose sensitive files or permit broader access than the task requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Authorize only the required account and scopes; prefer OAuth and read-only access when sufficient.
+
+Risk: Writes, deletions, or anonymous sharing links may change data or disclose files.
+
+Mitigation: Review the target and effect, then obtain explicit user confirmation before each write, deletion, or sharing action.
+
+Risk: Persistent triggers and destinations can forward data automatically after setup.
+
+Mitigation: Disclose the destination and payload, require separate approval, and avoid forwarding OneDrive-derived data in event payloads.
+
+## Reference(s):
+
+- [Microsoft OneDrive skill on ClawHub](https://clawhub.ai/byungkyu/skills/one-drive)
+- [Maton](https://maton.ai)
+- [Microsoft Graph API reference](https://learn.microsoft.com/en-us/graph/api/overview)
+- [OneDrive developer documentation](https://learn.microsoft.com/en-us/onedrive/developer/)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with CLI commands and occasional JSON or code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operations require an authorized OneDrive connection; write and sharing actions require user confirmation.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

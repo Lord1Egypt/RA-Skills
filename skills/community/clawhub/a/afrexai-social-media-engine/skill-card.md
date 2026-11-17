@@ -1,40 +1,53 @@
-## Description: <br>
-Complete social media strategy, content creation, scheduling, analytics, and growth system. Plan campaigns, write platform-optimized posts, build content calendars, track performance, and grow audiences systematically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete social media strategy, content creation, scheduling, analytics, and growth system for planning campaigns, writing platform-optimized posts, building content calendars, tracking performance, and growing audiences systematically.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-External users, marketers, founders, and content operators use this skill to plan social strategy, draft platform-specific posts, build content calendars, evaluate performance, and guide audience growth workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated posts, replies, direct messages, or crisis responses could affect brand reputation or account standing if published automatically. <br>
-Mitigation: Require human approval before connecting outputs to schedulers, social accounts, replies, direct messages, or crisis workflows. <br>
-Risk: Social platform specifications, policies, and best practices may change after the skill release. <br>
-Mitigation: Review platform requirements and policy-sensitive claims before publishing or scheduling content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-social-media-engine) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+External users, marketers, founders, and content teams use this skill to plan social media strategy, draft platform-specific posts, build content calendars, track performance, and manage audience growth workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured text blocks and YAML templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific post drafts, media briefs, hashtags, content calendars, scoring rubrics, and analytics templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated posts, DMs, moderation actions, or automation settings could affect public brand reputation or account behavior if used without review.
+
+Mitigation: Review all posts, DMs, moderation responses, and automation settings before publishing or connecting an external scheduler.
+
+Risk: Content strategy guidance may be misaligned with a brand's legal, policy, or communications requirements.
+
+Mitigation: Apply the brand voice guardrails and have qualified reviewers approve sensitive, promotional, crisis, or regulated content before use.
+
+## Reference(s):
+
+- [Social Media Content Engine on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-social-media-engine)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured content templates and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces platform-ready social media copy, media briefs, hashtag sets, posting-time guidance, repurposing suggestions, content calendars, brand voice templates, audience personas, and analytics templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

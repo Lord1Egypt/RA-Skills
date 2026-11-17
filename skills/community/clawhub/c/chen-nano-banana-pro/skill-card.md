@@ -1,40 +1,58 @@
-## Description: <br>
-Generate/edit images with Nano Banana Pro (Gemini 3 Pro Image). Supports text-to-image, edits, and 1K/2K/4K resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate/edit images with Nano Banana Pro (Gemini 3 Pro Image). Supports text-to-image, edits, and 1K/2K/4K resolution.
 
-## Publisher: <br>
-[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte)
 
-## Use Case: <br>
-Developers and agents use this skill to generate new images or edit existing images through a Gemini-compatible Nano Banana Pro image API, with selectable 1K, 2K, or 4K resolution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected input images, and API keys are sent to an external Gemini-compatible image provider. <br>
-Mitigation: Use this skill only with provider terms that allow the intended data, avoid confidential prompts or images unless approved, and store API keys in scoped environment or secret storage. <br>
-Risk: Generation or editing can fail when the API key is missing, unauthorized, or quota-limited. <br>
-Mitigation: Verify GEMINI_API_KEY or --api-key before use and handle provider permission, quota, or 403-style errors before relying on output. <br>
+## Use Case:
 
+Developers and creative users use this skill through an agent to generate or edit PNG images with Google Gemini 3 Pro Image, selecting 1K, 2K, or 4K output resolution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cs995279497-byte/chen-nano-banana-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated PNG image files saved to disk] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Gemini-compatible API key via --api-key or GEMINI_API_KEY; supports text-to-image, image editing, and 1K/2K/4K output resolution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and input images may be sent to Google's Gemini API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive prompts and images unless the user is comfortable sending that content to the third-party API.
+
+Risk: Gemini API keys can be exposed if pasted into chat or passed on the command line.
+
+Mitigation: Prefer GEMINI_API_KEY from a protected environment variable or secret manager, and rotate any key that was shared insecurely.
+
+Risk: The uv workflow installs dependencies without pinned versions.
+
+Mitigation: Review and pin dependencies before running the workflow in controlled or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cs995279497-byte/skills/chen-nano-banana-pro)
+- [Publisher profile](https://clawhub.ai/user/cs995279497-byte)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with bash commands and generated PNG file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates PNG image files at the requested filename or path.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

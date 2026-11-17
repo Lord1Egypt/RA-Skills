@@ -1,43 +1,54 @@
-## Description: <br>
-Transcribe YouTube videos by extracting captions first and falling back to local Whisper transcription when captions are unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes YouTube videos by extracting available captions first, then falling back to local Whisper transcription when captions are unavailable.
 
-## Publisher: <br>
-[iml885203](https://clawhub.ai/user/iml885203) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[iml885203](https://clawhub.ai/user/iml885203)
 
-## Use Case: <br>
-External users and developers use this skill when a YouTube link needs to be turned into transcript text for reading, summarization, note-taking, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: yt-dlp contacts YouTube for user-provided video links. <br>
-Mitigation: Use the skill only with links the user intends to process and understands will be fetched from YouTube. <br>
-Risk: When captions are unavailable, the skill temporarily downloads audio for local Whisper transcription. <br>
-Mitigation: Run Whisper fallback only in an environment appropriate for the video's content and dependencies, and rely on the temporary-file workflow to avoid persistent audio storage. <br>
-Risk: The --output option writes transcript content to a user-specified path. <br>
-Mitigation: Check the output path before saving transcripts. <br>
+## Use Case:
 
+Users and developers use this skill to convert YouTube videos into transcripts for summarization, analysis, note-taking, or subtitle extraction.
 
-## Reference(s): <br>
-- [YouTube Transcribe on ClawHub](https://clawhub.ai/iml885203/youtube-transcribe) <br>
-- [Publisher profile](https://clawhub.ai/user/iml885203) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcript by default, with optional JSON, SRT, VTT, or saved file output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses yt-dlp for captions and temporary audio retrieval; Whisper fallback can use MLX Whisper, faster-whisper, or OpenAI Whisper depending on local availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill runs local command-line tools and optional Whisper Python packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a dedicated virtual environment and prefer pinned package versions.
+
+Risk: Whisper fallback may temporarily download YouTube audio and use significant local compute.
+
+Mitigation: Use caption extraction when possible, confirm local storage and compute expectations before forcing Whisper, and remove generated transcript or audio artifacts when no longer needed.
+
+## Reference(s):
+
+- [YouTube Transcribe on ClawHub](https://clawhub.ai/iml885203/skills/youtube-transcribe)
+- [Publisher profile: iml885203](https://clawhub.ai/user/iml885203)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, JSON, SRT, or VTT transcript output with Markdown usage guidance and bash command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write transcript output to stdout or a user-specified file; caption extraction is attempted before local Whisper fallback.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

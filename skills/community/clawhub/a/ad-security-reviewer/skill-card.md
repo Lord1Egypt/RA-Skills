@@ -1,37 +1,48 @@
-## Description: <br>
-Active Directory security specialist analyzing identity configuration, privileged group design, delegation, authentication policies, legacy protocols, and attack-surface exposure across enterprise domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Active Directory identity configuration, privileged group design, delegation, authentication policies, legacy protocols, and attack-surface exposure across enterprise domains.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Security engineers, identity administrators, and IT operations teams use this skill to review Active Directory posture, prioritize domain hardening gaps, and plan remediation for privilege, authentication, GPO, and attack-surface risks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated PowerShell, GPO changes, or remediation plans may affect production domain security and availability if applied without review.
+
+Mitigation: Use the skill only for Active Directory security assessment and have qualified administrators review all generated administrative guidance before applying it in production.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Security administrators, identity engineers, and auditors use this skill to review Active Directory posture, identify privilege and authentication risks, and plan hardening work across enterprise domains. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated remediation plans, PowerShell, or GPO changes could affect production Active Directory if applied without review. <br>
-Mitigation: Treat generated commands and configuration changes as proposals; require AD administrator approval, test outside production where possible, and prepare rollback steps before applying changes. <br>
+**Output Format:** [Markdown with remediation plans, checklists, and optional PowerShell or GPO-oriented implementation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Generated administrative guidance should be reviewed before use in production Active Directory environments.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional PowerShell, GPO, validation, and rollback guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and should be reviewed before implementation.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

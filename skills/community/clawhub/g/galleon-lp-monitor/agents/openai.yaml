@@ -1,0 +1,6 @@
+interface:
+  display_name: "LP Monitor"
+  short_description: "Measure LP performance and action thresholds"
+  default_prompt: "Use $lp-monitor to inspect this live position, reconcile it against HOLD, and decide whether action is justified."
+policy:
+  allow_implicit_invocation: true

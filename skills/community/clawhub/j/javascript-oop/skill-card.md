@@ -1,44 +1,59 @@
-## Description: <br>
-Use this skill for JavaScript implementation, refactoring, debugging, or review when strong Java-style OOP conventions, ES2025+ standard features, targeted rule files, and explicit controller, service, repository, policy, use-case, and port boundaries are desired. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for JavaScript implementation, refactoring, debugging, or review when you need strong Java-style OOP conventions, ES2025+ standard features, targeted rule files, and explicit controller, service, repository, policy, use-case, and port boundaries.
 
-## Publisher: <br>
-[ju8z](https://clawhub.ai/user/ju8z) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ju8z](https://clawhub.ai/user/ju8z)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide JavaScript or Node/browser implementation, refactoring, debugging, and review toward explicit object-oriented boundaries and modern standardized ECMAScript features. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill applies strong Java-style OOP preferences that may conflict with existing JavaScript project conventions. <br>
-Mitigation: Apply repository conventions, formatter, linter, and project guidance first, and use the rule files as focused review checklists rather than hard requirements. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide JavaScript or Node/browser implementation, refactoring, debugging, and code review toward object-oriented structure, modern standardized ECMAScript features, and explicit application boundaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ju8z/javascript-oop) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Classes and Constructors rules](artifact/rules/classes-and-constructors.md) <br>
-- [SOLID and Structure rules](artifact/rules/solid-and-structure.md) <br>
-- [Modules rules](artifact/rules/modules.md) <br>
-- [UI Controllers rules](artifact/rules/ui-controllers.md) <br>
-- [Async rules](artifact/rules/async.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with JavaScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; produces coding guidance, review criteria, and example code rather than executing tools or accessing credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill applies opinionated Java-style object-oriented conventions that may conflict with an existing repository's local architecture or formatter rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow explicit user instructions, repository conventions, formatters, linters, and AGENTS.md before applying the generic rule files.
+
+Risk: Some ES2025+ helper recommendations depend on target runtime support.
+
+Mitigation: Use standardized Stage 4 ECMAScript features only when the target Node or browser runtime supports them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ju8z/skills/javascript-oop)
+- [JavaScript OOP Skill Definition](artifact/SKILL.md)
+- [SOLID and Structure Rules](artifact/rules/solid-and-structure.md)
+- [Classes and Constructors Rules](artifact/rules/classes-and-constructors.md)
+- [UI Controllers Rules](artifact/rules/ui-controllers.md)
+- [Async Rules](artifact/rules/async.md)
+- [Standard Library Rules](artifact/rules/standard-library.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript code examples and review checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; no executable, network, credential, or persistence behavior was reported by the security evidence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

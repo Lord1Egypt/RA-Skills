@@ -1,40 +1,58 @@
-## Description: <br>
-Anubis Pro generates a full career application package, including a tailored resume, three cover letter tones, interview Q&A preparation, follow-up emails, and an application tracker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anubis Pro generates a full career application package with a tailored resume, three cover letter tones, interview preparation, follow-up emails, and an application tracker.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Job seekers use this skill to turn a resume and job description into an application package for a specific role. It helps draft ATS-oriented resume content, cover letters in multiple tones, interview preparation, follow-up emails, and an application log. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive resume and job-description text may be printed to the console during use. <br>
-Mitigation: Run the skill in a private session, avoid confidential inputs unless acceptable for terminal or agent logs, and remove or disable the diagnostic print statements before use. <br>
-Risk: The install command uses pip with --break-system-packages. <br>
-Mitigation: Prefer installing dependencies in a virtual environment before running the skill. <br>
+## Use Case:
 
+Job seekers and career coaches use this skill to turn a job description and an existing resume into a complete application package, including resume, cover letters, interview preparation, follow-up emails, and a tracker entry.
 
-## Reference(s): <br>
-- [Anubis Pro ClawHub listing](https://clawhub.ai/occupythemilkyway/anubis-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, code, shell commands, configuration] <br>
-**Output Format:** [Markdown files with setup commands and Python execution snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JOB_DESCRIPTION, RESUME_PATH, and LICENSE_KEY; writes seven documents to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Resume and job-description contents may contain private information and are printed during execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a private, non-shared terminal and avoid retaining logs that contain resume or job-description text.
+
+Risk: The install step uses an unpinned package install into system Python.
+
+Mitigation: Install dependencies in a virtual environment and pin or review package versions before use.
+
+Risk: The local license check is a simple gate rather than strong entitlement protection.
+
+Mitigation: Treat the license key check as usability gating only and do not rely on it for sensitive authorization decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/skills/anubis-pro)
+- [ClawHub metadata homepage](https://clawhub.ai/occupythemilkyway/anubis-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance, Shell commands]
+
+**Output Format:** [Markdown files and inline shell/Python command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces seven dated application documents in the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

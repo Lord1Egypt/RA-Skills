@@ -1,41 +1,54 @@
-## Description: <br>
-Xiao Chuang You Season helps an agent answer questions about Chinese traditional festivals, solar terms, customs, simple rituals, gifts, meals, and greetings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance on traditional festivals, solar terms, seasonal rituals, gift etiquette, holiday meals, and modern ways to continue those customs.
 
-## Publisher: <br>
-[zcr3344](https://clawhub.ai/user/zcr3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcr3344](https://clawhub.ai/user/zcr3344)
 
-## Use Case: <br>
-External users and assistants use this skill to provide warm, practical guidance about Chinese festivals, the 24 solar terms, seasonal customs, simple rituals, etiquette, gifts, meals, and greetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad holiday and seasonal trigger terms may activate the skill during ordinary holiday conversation. <br>
-Mitigation: Use the skill when festival, solar-term, or traditional-custom guidance is desired, and ask a clarifying question when the user intent is not clearly about those topics. <br>
-Risk: Festival customs and etiquette can vary by region, family, and community. <br>
-Mitigation: Present guidance as practical cultural context, avoid claiming a single universal practice, and invite the user to adapt it to their own family customs. <br>
+## Use Case:
 
+Users asking about traditional Chinese holidays, solar terms, or seasonal etiquette can use this skill to receive a festival name, a historical custom, a practical modern observance, and a caring message.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zcr3344/xiao-chuang-you-season) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zcr3344) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are expected to include a festival name, one tradition, one modern continuation, a caring message, and an invitation for the user to share family customs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be routed to unrelated requests because its activation terms are broad and culturally specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation rules or add language fallback guidance so the skill responds only to relevant Chinese seasonal-customs topics.
+
+Risk: Users should expect responses focused on Chinese seasonal customs.
+
+Mitigation: Describe the expected Chinese-language seasonal-customs scope before deployment and route nonmatching requests to a more appropriate skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zcr3344/skills/xiao-chuang-you-season)
+- [Publisher profile](https://clawhub.ai/user/zcr3344)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are expected to include a festival name, one tradition, one modern continuation, and one caring message.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

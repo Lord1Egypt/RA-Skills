@@ -1,0 +1,9 @@
+{
+  "example_only": true,
+  "budget": {"limit": 20, "spent": 4, "reserved": 0, "currency": "CNY"},
+  "tasks": [
+    {"id": "vendor-a", "depends_on": [], "status": "accepted", "deliverable": "厂商A事实表", "acceptance": "每条价格和功能有官方来源和查询日期", "reserve_cost": 0, "external_write": false, "evidence_ref": "example-only/vendor-a-facts"},
+    {"id": "vendor-b", "depends_on": [], "status": "pending", "deliverable": "厂商B事实表", "acceptance": "每条价格和功能有官方来源和查询日期", "reserve_cost": 6, "external_write": false},
+    {"id": "comparison", "depends_on": ["vendor-a", "vendor-b"], "status": "pending", "deliverable": "可追溯对比表", "acceptance": "每项结论对应两份事实表；未知保留未知", "reserve_cost": 3, "external_write": false}
+  ]
+}

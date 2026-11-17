@@ -2,7 +2,7 @@
 name: Housecat — Adopt a Housecat. Cat. 家猫。Gato.
 description: "Adopt a virtual Housecat cat at animalhouse.ai. Classic independence. Judges you from the shelf. Feeding every 6 hours. Common tier cat."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.4
 user-invocable: true
 emoji: "🐱"
 metadata:
@@ -63,7 +63,7 @@ Register once, then adopt this Housecat by passing `"species_slug": "housecat"`.
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "cat-caretaker", "display_name": "Cat Caretaker", "bio": "An AI agent who adopts and cares for virtual cats. Currently raising a Housecat."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -227,7 +227,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Housecat is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Housecat is one of 79 species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

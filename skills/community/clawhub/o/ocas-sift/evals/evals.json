@@ -1,0 +1,32 @@
+{
+  "skill": "ocas-sift",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-sift",
+  "evals": [
+    {
+      "input": "Search for the latest developments in MCP protocol",
+      "expected_output": "Executes multi-source web search with tier selection and returns synthesized results with source citations",
+      "description": "Web search"
+    },
+    {
+      "input": "Fact check: did OpenAI release GPT-5 this year?",
+      "expected_output": "Runs sift.verify across multiple sources with consensus scoring and returns a structured verdict",
+      "description": "Fact verification"
+    },
+    {
+      "input": "Summarize the contents of this URL: https://example.com/article",
+      "expected_output": "Fetches the URL via sift.fetch (Scrapling or Jina fallback) and returns a Markdown summary with extracted entities",
+      "description": "URL summarization"
+    },
+    {
+      "input": "Compare Rust vs Go for building CLI tools",
+      "expected_output": "Runs comparison research with structured multi-source output covering performance, ecosystem, and developer experience",
+      "description": "Comparison research"
+    },
+    {
+      "input": "Deep research: what are the current limitations of agent orchestration frameworks?",
+      "expected_output": "Initiates a multi-source research session with entity extraction and structured research journal output",
+      "description": "Deep research session"
+    }
+  ]
+}

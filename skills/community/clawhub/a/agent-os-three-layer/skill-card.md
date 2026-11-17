@@ -1,43 +1,58 @@
-## Description: <br>
-Provides a reusable AI agent operating-system template that separates identity, operations, and knowledge files for modular agent design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a reusable AI agent OS template with separated identity, operations, and knowledge layers for modular intelligent system design.
 
-## Publisher: <br>
-[huamu668](https://clawhub.ai/user/huamu668) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huamu668](https://clawhub.ai/user/huamu668)
 
-## Use Case: <br>
-Developers and agent builders use this skill as a file-based template for defining an agent's identity, operating rules, long-term memory, shared context, and verification workflow. It is most useful when starting or standardizing an opinionated agent architecture. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad persona and role instructions may steer agent behavior beyond the user's intended workflow. <br>
-Mitigation: Review and narrow role, agent, and activation rules before deployment. <br>
-Risk: Persistent memory and shared-context files can accumulate sensitive or stale information. <br>
-Mitigation: Make memory writes explicit, avoid storing secrets or sensitive personal data, and periodically review memory contents. <br>
-Risk: Shell scripts are used for startup and architecture verification. <br>
-Mitigation: Review scripts before execution and run them only in an intended workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huamu668/agent-os-three-layer) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+## Use Case:
 
+Agent builders and developers use this template to structure an AI agent around identity, operating procedures, and accumulated knowledge. It provides Markdown-based role, memory, status, startup, and verification materials that an agent can follow or adapt.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with bash script entry points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes persistent memory and shared-context files that may be updated during agent use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.toml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to adopt active personas and operating roles.
+
+Mitigation: Install only where host, system, and tool authorization rules clearly override the template's role instructions.
+
+Risk: The skill encourages persistent memory and learning after conversations without clear retention limits.
+
+Mitigation: Use it only in environments where memory writes require explicit approval and sensitive content is excluded.
+
+Risk: The skill may shape communication style, task handling, and self-update behavior across sessions.
+
+Mitigation: Review the identity, operations, and knowledge files before use and adapt them to the intended governance policy.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/huamu668/skills/agent-os-three-layer)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files with bash command snippets and configuration metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The template organizes agent behavior into identity, operations, and knowledge files, with helper shell scripts for startup and structure verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

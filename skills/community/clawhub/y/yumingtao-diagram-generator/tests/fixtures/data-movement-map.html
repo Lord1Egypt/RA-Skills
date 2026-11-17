@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Movement and Pipeline Map</title>
+  <style>
+    :root { --page:#f5f3ee;--paper:#fffdfa;--canvas:#f8fafc;--ink:#172033;--muted:#647084;--line:#d8dee8;--actor:#0f766e;--entry:#2563eb;--compute:#15803d;--state:#7c3aed;--message:#c2410c;--control:#be123c;--telemetry:#a16207;--external:#475569;--font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--mono:"SFMono-Regular","JetBrains Mono",Consolas,monospace; }
+    *{box-sizing:border-box;} html,body{margin:0;min-height:100%;background:var(--page);color:var(--ink);font-family:var(--font);} body{padding:20px;}
+    .shell{max-width:1400px;margin:0 auto;border:1px solid #e2ded4;border-radius:10px;background:var(--paper);box-shadow:0 24px 80px rgba(69,54,36,0.12);overflow:hidden;}
+    .topbar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:start;padding:20px 22px;border-bottom:1px solid #ebe5d9;background:linear-gradient(180deg,#fffdfa,#f9f6ef);}
+    .kicker{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px;color:var(--muted);font-family:var(--mono);font-size:12px;}
+    .status-mark{width:9px;height:9px;border-radius:50%;background:var(--message);}
+    h1{margin:0;font-size:clamp(26px,3vw,42px);line-height:1.05;letter-spacing:-0.02em;}
+    .subtitle{max-width:900px;margin:10px 0 0;color:var(--muted);font-size:14px;line-height:1.55;}
+    .toolbar{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;}
+    .toolbar button{appearance:none;border:1px solid #d7dce5;border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;font:650 12px var(--font);padding:9px 11px;}
+    .toolbar button:hover{border-color:#aab4c4;background:#f8fafc;}
+    .body-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:760px;}
+    .map-wrap{padding:20px;border-right:1px solid #ebe5d9;background:linear-gradient(90deg,rgba(148,163,184,0.10) 1px,transparent 1px),linear-gradient(180deg,rgba(148,163,184,0.10) 1px,transparent 1px),var(--canvas);background-size:32px 32px;overflow-x:auto;}
+    svg{display:block;width:100%;min-width:0;height:auto;}
+    .notes{padding:18px;background:#fffdfa;} .notes h2{margin:0 0 12px;font-size:15px;}
+    .note-section{border-top:1px solid #ebe5d9;padding:16px 0;} .note-section:first-of-type{border-top:0;padding-top:0;}
+    .note-section h3{margin:0 0 8px;color:#334155;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;}
+    .note-section ul{display:grid;gap:8px;margin:0;padding:0;list-style:none;} .note-section li{color:var(--muted);font-size:13px;line-height:1.45;}
+    .footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:12px 22px;border-top:1px solid #ebe5d9;color:#7b8495;font-family:var(--mono);font-size:11px;background:#faf7f0;}
+    @media(max-width:980px){body{padding:10px;}.topbar{grid-template-columns:1fr;}.toolbar{justify-content:flex-start;}.body-grid{grid-template-columns:1fr;}svg{min-width:1080px;}.map-wrap{border-right:0;border-bottom:1px solid #ebe5d9;}}
+    @media print{body{padding:0;background:#fff;}.shell{border:0;box-shadow:none;}.toolbar{display:none;}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <div class="kicker"><span class="status-mark" aria-hidden="true"></span><span>Data Lens</span><span>/</span><span>Pipeline &amp; Movement</span></div>
+        <h1>Data Movement and Pipeline Map</h1>
+        <p class="subtitle">Writes and events stream into an event backbone, are processed in parallel, and materialize serving stores that power analytics and machine learning.</p>
+      </div>
+      <nav class="toolbar" aria-label="Export toolbar">
+        <button type="button" onclick="downloadSVG()">SVG</button>
+        <button type="button" onclick="downloadPNG()">PNG</button>
+        <button type="button" onclick="copyPNG()">Copy PNG</button>
+        <button type="button" onclick="window.print()">Print</button>
+      </nav>
+    </header>
+    <section class="body-grid">
+      <div class="map-wrap">
+        <svg id="system-map" viewBox="0 0 1400 900" role="img" aria-labelledby="map-title map-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="map-title">Data movement and pipeline map</title>
+          <desc id="map-desc">Events flow from producers through ingestion to an event stream, are processed, and materialize stores used by analytics and ML.</desc>
+          <defs>
+            <marker id="arrow-actor" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#0f766e"/></marker>
+            <marker id="arrow-entry" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#2563eb"/></marker>
+            <marker id="arrow-compute" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#15803d"/></marker>
+            <marker id="arrow-state" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#7c3aed"/></marker>
+            <marker id="arrow-message" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#c2410c"/></marker>
+            <marker id="arrow-telemetry" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#a16207"/></marker>
+          </defs>
+          <rect x="0" y="0" width="1400" height="900" rx="0" fill="#f8fafc"/>
+
+          <g id="regions" font-family="SFMono-Regular, JetBrains Mono, monospace">
+            <rect x="430" y="120" width="190" height="400" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+            <text x="452" y="148" fill="#9a3412" font-size="11" font-weight="700">Stream Processing</text>
+            <rect x="700" y="120" width="200" height="400" rx="8" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5"/>
+            <text x="722" y="148" fill="#5b21b6" font-size="11" font-weight="700">Serving Stores</text>
+          </g>
+
+          <g id="connectors" font-family="SFMono-Regular, JetBrains Mono, monospace" font-size="10" fill="#334155">
+            <path data-edge-id="web_to_api" d="M 190 180 H 220 V 250 H 250" stroke="#0f766e" stroke-width="2" fill="none" marker-end="url(#arrow-actor)"/>
+            <text x="215" y="130" text-anchor="middle">write</text>
+
+            <path data-edge-id="iot_to_api" d="M 190 320 H 220 V 250 H 250" stroke="#0f766e" stroke-width="2" fill="none" marker-end="url(#arrow-actor)"/>
+            <text x="215" y="380" text-anchor="middle">events</text>
+
+            <path data-edge-id="api_to_ingestion" d="M 390 250 H 410 V 200 H 450" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrow-entry)"/>
+            <text x="420" y="238" text-anchor="middle">ingest</text>
+
+            <path data-edge-id="ingestion_to_stream" d="M 525 240 V 290" stroke="#c2410c" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#arrow-message)"/>
+            <text x="539" y="268" text-anchor="start">produce</text>
+
+            <path data-edge-id="stream_to_processor" d="M 525 370 V 420" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrow-compute)"/>
+            <text x="539" y="398" text-anchor="start">consume</text>
+
+            <path data-edge-id="processor_to_warehouse" d="M 600 440 H 660 V 200 H 720" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="674" y="188" text-anchor="start">load</text>
+
+            <path data-edge-id="processor_to_search" d="M 600 460 H 680 V 330 H 720" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="694" y="318" text-anchor="start">index</text>
+
+            <path data-edge-id="processor_to_object" d="M 600 480 H 720" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="660" y="468" text-anchor="middle">objects</text>
+
+            <path data-edge-id="warehouse_to_analytics" d="M 880 200 H 960" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrow-compute)"/>
+            <text x="920" y="188" text-anchor="middle">query</text>
+
+            <path data-edge-id="search_to_analytics" d="M 880 330 H 920 V 200 H 960" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrow-compute)"/>
+            <text x="934" y="264" text-anchor="start">query</text>
+
+            <path data-edge-id="object_to_ml" d="M 880 460 H 920 V 330 H 960" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrow-compute)"/>
+            <text x="934" y="394" text-anchor="start">training</text>
+
+            <path data-edge-id="stream_to_observability" d="M 600 330 H 650 V 760" stroke="#a16207" stroke-width="2" stroke-dasharray="6 5" fill="none" marker-end="url(#arrow-telemetry)"/>
+            <text x="664" y="540" text-anchor="start">lag</text>
+
+            <path data-edge-id="processor_to_observability" d="M 525 500 V 760" stroke="#a16207" stroke-width="2" stroke-dasharray="6 5" fill="none" marker-end="url(#arrow-telemetry)"/>
+            <text x="539" y="630" text-anchor="start">metrics</text>
+          </g>
+
+          <g id="components" font-family="Inter, Arial, sans-serif">
+            <g data-node-id="web_producers">
+              <rect x="60" y="140" width="130" height="80" rx="8" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.6"/>
+              <text x="125" y="177" text-anchor="middle" fill="#134e4a" font-size="14" font-weight="750">Web Producers</text>
+              <text x="125" y="200" text-anchor="middle" fill="#475569" font-size="11">user writes</text>
+            </g>
+            <g data-node-id="iot_devices">
+              <rect x="60" y="280" width="130" height="80" rx="8" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.6"/>
+              <text x="125" y="317" text-anchor="middle" fill="#134e4a" font-size="14" font-weight="750">IoT Devices</text>
+              <text x="125" y="340" text-anchor="middle" fill="#475569" font-size="11">sensor events</text>
+            </g>
+            <g data-node-id="ingestion_api">
+              <rect x="250" y="200" width="140" height="100" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+              <text x="320" y="240" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="750">Ingestion API</text>
+              <text x="320" y="264" text-anchor="middle" fill="#475569" font-size="11">validate batch</text>
+              <text x="320" y="284" text-anchor="middle" fill="#475569" font-size="11">schema</text>
+            </g>
+            <g data-node-id="ingestion_service">
+              <rect x="450" y="160" width="150" height="80" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+              <text x="525" y="197" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="750">Ingestion Svc</text>
+              <text x="525" y="220" text-anchor="middle" fill="#475569" font-size="11">dedupe shard</text>
+            </g>
+            <g data-node-id="event_stream">
+              <rect x="450" y="290" width="150" height="80" rx="8" fill="#ffedd5" stroke="#c2410c" stroke-width="1.6"/>
+              <text x="525" y="327" text-anchor="middle" fill="#7c2d12" font-size="14" font-weight="750">Event Stream</text>
+              <text x="525" y="350" text-anchor="middle" fill="#475569" font-size="11">Kafka topic</text>
+            </g>
+            <g data-node-id="stream_processor">
+              <rect x="450" y="420" width="150" height="80" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="525" y="457" text-anchor="middle" fill="#14532d" font-size="14" font-weight="750">Stream Processor</text>
+              <text x="525" y="480" text-anchor="middle" fill="#475569" font-size="11">Flink jobs</text>
+            </g>
+            <g data-node-id="data_warehouse">
+              <rect x="720" y="160" width="160" height="80" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+              <text x="800" y="197" text-anchor="middle" fill="#4c1d95" font-size="14" font-weight="750">Data Warehouse</text>
+              <text x="800" y="220" text-anchor="middle" fill="#64748b" font-size="11">OLAP tables</text>
+            </g>
+            <g data-node-id="search_index">
+              <rect x="720" y="290" width="160" height="80" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+              <text x="800" y="327" text-anchor="middle" fill="#4c1d95" font-size="14" font-weight="750">Search Index</text>
+              <text x="800" y="350" text-anchor="middle" fill="#64748b" font-size="11">Elasticsearch</text>
+            </g>
+            <g data-node-id="object_store">
+              <rect x="720" y="420" width="160" height="80" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+              <text x="800" y="457" text-anchor="middle" fill="#4c1d95" font-size="14" font-weight="750">Object Store</text>
+              <text x="800" y="480" text-anchor="middle" fill="#64748b" font-size="11">parquet files</text>
+            </g>
+            <g data-node-id="analytics">
+              <rect x="960" y="160" width="140" height="80" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="1030" y="197" text-anchor="middle" fill="#14532d" font-size="14" font-weight="750">Analytics</text>
+              <text x="1030" y="220" text-anchor="middle" fill="#475569" font-size="11">BI dashboards</text>
+            </g>
+            <g data-node-id="ml_pipeline">
+              <rect x="960" y="290" width="140" height="80" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="1030" y="327" text-anchor="middle" fill="#14532d" font-size="14" font-weight="750">ML Pipeline</text>
+              <text x="1030" y="350" text-anchor="middle" fill="#475569" font-size="11">training jobs</text>
+            </g>
+            <g data-node-id="observability">
+              <rect x="250" y="760" width="850" height="70" rx="8" fill="#fef3c7" stroke="#a16207" stroke-width="1.5"/>
+              <text x="675" y="797" text-anchor="middle" fill="#713f12" font-size="15" font-weight="750">Pipeline Observability</text>
+              <text x="675" y="819" text-anchor="middle" fill="#64748b" font-size="11">lag throughput errors</text>
+            </g>
+          </g>
+
+          <g id="map-key" transform="translate(48 822)" font-family="SFMono-Regular, JetBrains Mono, monospace">
+            <text x="0" y="0" fill="#172033" font-size="11" font-weight="700">Map key</text>
+            <g transform="translate(0 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ccfbf1" stroke="#0f766e"/><text x="22" y="8" fill="#647084" font-size="9">Actor</text></g>
+            <g transform="translate(82 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#dbeafe" stroke="#2563eb"/><text x="22" y="8" fill="#647084" font-size="9">Entry</text></g>
+            <g transform="translate(169 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#dcfce7" stroke="#15803d"/><text x="22" y="8" fill="#647084" font-size="9">Compute</text></g>
+            <g transform="translate(267 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ede9fe" stroke="#7c3aed"/><text x="22" y="8" fill="#647084" font-size="9">State</text></g>
+            <g transform="translate(354 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ffedd5" stroke="#c2410c"/><text x="22" y="8" fill="#647084" font-size="9">Message</text></g>
+            <g transform="translate(452 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#fef3c7" stroke="#a16207"/><text x="22" y="8" fill="#647084" font-size="9">Telemetry</text></g>
+            <g transform="translate(550 18)"><path d="M 0 5 H 34" stroke="#475569" stroke-width="2" fill="none"/><text x="44" y="8" fill="#647084" font-size="9">Sync</text></g>
+            <g transform="translate(659 18)"><path d="M 0 5 H 34" stroke="#c2410c" stroke-width="2" stroke-dasharray="6 4" fill="none"/><text x="44" y="8" fill="#647084" font-size="9">Async / stream</text></g>
+          </g>
+        </svg>
+      </div>
+      <aside class="notes" aria-label="Diagram notes">
+        <h2>Reading Notes</h2>
+        <section class="note-section"><h3>System Shape</h3><ul>
+          <li>Producers on the left feed an ingestion API that validates and shards events into a stream.</li>
+          <li>Stream processors fan out writes into serving stores: warehouse, search index, and object storage.</li>
+          <li>Analytics and ML consume the serving stores; observability tracks pipeline lag and throughput.</li>
+        </ul></section>
+        <section class="note-section"><h3>Critical Flows</h3><ul>
+          <li>Web writes and IoT events → Ingestion API → Event Stream → Stream Processor.</li>
+          <li>Stream Processor materializes the warehouse, search index, and object store in parallel.</li>
+          <li>Analytics queries the warehouse and search index; ML trains from object-store datasets.</li>
+        </ul></section>
+        <section class="note-section"><h3>Operational Notes</h3><ul>
+          <li>Event-stream lag is the primary SLO; processors scale horizontally to keep up with ingestion.</li>
+          <li>Serving stores are rebuilt from the stream, so they are recoverable after a failure.</li>
+          <li>Backpressure propagates from stores back to ingestion when materialization falls behind.</li>
+        </ul></section>
+      </aside>
+    </section>
+    <footer class="footer">
+      <span>Diagram type: data movement map</span>
+      <span>Scope: end-to-end event pipeline and serving stores</span>
+    </footer>
+  </main>
+  <script type="application/json" id="diagram-ir">
+  {
+    "title": "Data Movement and Pipeline Map",
+    "lens": "data-movement",
+    "scope": "end-to-end event pipeline and serving stores",
+    "language": "en",
+    "mode": "create",
+    "canvas": { "complexity": "standard", "viewBox": "0 0 1400 900" },
+    "regions": [
+      { "id": "stream_processing", "label": "Stream Processing", "role": "processing", "bounds": { "x": 430, "y": 120, "width": 190, "height": 400 }, "contains": ["ingestion_service", "event_stream", "stream_processor"] },
+      { "id": "serving_stores", "label": "Serving Stores", "role": "state", "bounds": { "x": 700, "y": 120, "width": 200, "height": 400 }, "contains": ["data_warehouse", "search_index", "object_store"] }
+    ],
+    "nodes": [
+      { "id": "web_producers", "label": "Web Producers", "role": "actor", "responsibility": "user writes", "bounds": { "x": 60, "y": 140, "width": 130, "height": 80 } },
+      { "id": "iot_devices", "label": "IoT Devices", "role": "actor", "responsibility": "sensor events", "bounds": { "x": 60, "y": 280, "width": 130, "height": 80 } },
+      { "id": "ingestion_api", "label": "Ingestion API", "role": "entry", "responsibility": "validate, batch, schema", "bounds": { "x": 250, "y": 200, "width": 140, "height": 100 } },
+      { "id": "ingestion_service", "label": "Ingestion Svc", "role": "entry", "responsibility": "dedupe, shard", "bounds": { "x": 450, "y": 160, "width": 150, "height": 80 } },
+      { "id": "event_stream", "label": "Event Stream", "role": "message", "responsibility": "Kafka topic", "bounds": { "x": 450, "y": 290, "width": 150, "height": 80 } },
+      { "id": "stream_processor", "label": "Stream Processor", "role": "compute", "responsibility": "Flink jobs", "bounds": { "x": 450, "y": 420, "width": 150, "height": 80 } },
+      { "id": "data_warehouse", "label": "Data Warehouse", "role": "state", "responsibility": "OLAP tables", "bounds": { "x": 720, "y": 160, "width": 160, "height": 80 } },
+      { "id": "search_index", "label": "Search Index", "role": "state", "responsibility": "Elasticsearch", "bounds": { "x": 720, "y": 290, "width": 160, "height": 80 } },
+      { "id": "object_store", "label": "Object Store", "role": "state", "responsibility": "parquet files", "bounds": { "x": 720, "y": 420, "width": 160, "height": 80 } },
+      { "id": "analytics", "label": "Analytics", "role": "compute", "responsibility": "BI dashboards", "bounds": { "x": 960, "y": 160, "width": 140, "height": 80 } },
+      { "id": "ml_pipeline", "label": "ML Pipeline", "role": "compute", "responsibility": "training jobs", "bounds": { "x": 960, "y": 290, "width": 140, "height": 80 } },
+      { "id": "observability", "label": "Pipeline Observability", "role": "telemetry", "responsibility": "lag, throughput, errors", "bounds": { "x": 250, "y": 760, "width": 850, "height": 70 } }
+    ],
+    "edges": [
+      { "id": "web_to_api", "from": "web_producers", "to": "ingestion_api", "kind": "sync", "label": "write", "role": "actor", "route": "orthogonal", "labelAnchor": { "x": 215, "y": 130, "width": 40 } },
+      { "id": "iot_to_api", "from": "iot_devices", "to": "ingestion_api", "kind": "sync", "label": "events", "role": "actor", "route": "orthogonal", "labelAnchor": { "x": 215, "y": 380, "width": 50 } },
+      { "id": "api_to_ingestion", "from": "ingestion_api", "to": "ingestion_service", "kind": "sync", "label": "ingest", "role": "entry", "route": "orthogonal", "labelAnchor": { "x": 420, "y": 238, "width": 46 } },
+      { "id": "ingestion_to_stream", "from": "ingestion_service", "to": "event_stream", "kind": "async", "label": "produce", "role": "message", "route": "orthogonal", "labelAnchor": { "x": 539, "y": 268, "width": 62 } },
+      { "id": "stream_to_processor", "from": "event_stream", "to": "stream_processor", "kind": "sync", "label": "consume", "role": "compute", "route": "orthogonal", "labelAnchor": { "x": 539, "y": 398, "width": 66 } },
+      { "id": "processor_to_warehouse", "from": "stream_processor", "to": "data_warehouse", "kind": "sync", "label": "load", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 674, "y": 188, "width": 38 } },
+      { "id": "processor_to_search", "from": "stream_processor", "to": "search_index", "kind": "sync", "label": "index", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 694, "y": 318, "width": 46 } },
+      { "id": "processor_to_object", "from": "stream_processor", "to": "object_store", "kind": "sync", "label": "objects", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 660, "y": 468, "width": 62 } },
+      { "id": "warehouse_to_analytics", "from": "data_warehouse", "to": "analytics", "kind": "sync", "label": "query", "role": "compute", "route": "orthogonal", "labelAnchor": { "x": 920, "y": 188, "width": 46 } },
+      { "id": "search_to_analytics", "from": "search_index", "to": "analytics", "kind": "sync", "label": "query", "role": "compute", "route": "orthogonal", "labelAnchor": { "x": 934, "y": 264, "width": 46 } },
+      { "id": "object_to_ml", "from": "object_store", "to": "ml_pipeline", "kind": "sync", "label": "training", "role": "compute", "route": "orthogonal", "labelAnchor": { "x": 934, "y": 394, "width": 62 } },
+      { "id": "stream_to_observability", "from": "event_stream", "to": "observability", "kind": "telemetry", "label": "lag", "role": "telemetry", "route": "orthogonal", "labelAnchor": { "x": 664, "y": 540, "width": 26 } },
+      { "id": "processor_to_observability", "from": "stream_processor", "to": "observability", "kind": "telemetry", "label": "metrics", "role": "telemetry", "route": "orthogonal", "labelAnchor": { "x": 539, "y": 630, "width": 58 } }
+    ],
+    "notes": [
+      { "title": "System Shape", "bullets": ["Producers → ingestion → stream → processors → serving stores → analytics / ML."] },
+      { "title": "Critical Flows", "bullets": ["Stream processor materializes warehouse, search index, and object store in parallel."] },
+      { "title": "Operational Notes", "bullets": ["Event-stream lag is the primary SLO; stores are rebuildable from the stream."] }
+    ],
+    "assumptions": []
+  }
+  </script>
+  <script>
+    function serializeSVG(){const s=document.getElementById('system-map');const c=s.cloneNode(true);c.setAttribute('xmlns','http://www.w3.org/2000/svg');return '<?xml version="1.0" encoding="UTF-8"?>\n'+new XMLSerializer().serializeToString(c);}
+    function downloadBlob(n,b){const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+    function downloadSVG(){downloadBlob('data-movement-map.svg',new Blob([serializeSVG()],{type:'image/svg+xml;charset=utf-8'}));}
+    function renderCanvas(scale=2){return new Promise((resolve,reject)=>{const svg=document.getElementById('system-map');const box=svg.viewBox.baseVal;const c=document.createElement('canvas');c.width=Math.round((box.width||1400)*scale);c.height=Math.round((box.height||900)*scale);const ctx=c.getContext('2d');ctx.fillStyle='#f8fafc';ctx.fillRect(0,0,c.width,c.height);const img=new Image();img.onload=()=>{ctx.drawImage(img,0,0,c.width,c.height);resolve(c);};img.onerror=reject;img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(serializeSVG());});}
+    async function downloadPNG(){const c=await renderCanvas(2);c.toBlob(b=>{if(b)downloadBlob('data-movement-map.png',b);},'image/png');}
+    async function copyPNG(){try{const c=await renderCanvas(2);const b=await new Promise(r=>c.toBlob(r,'image/png'));if(!b)throw new Error('PNG export failed');await navigator.clipboard.write([new ClipboardItem({'image/png':b})]);}catch(e){console.error(e);window.alert('Copy PNG is not available in this browser context. Use PNG download instead.');}}
+  </script>
+</body>
+</html>

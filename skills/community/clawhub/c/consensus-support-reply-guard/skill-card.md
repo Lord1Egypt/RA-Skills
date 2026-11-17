@@ -1,43 +1,55 @@
-## Description: <br>
-Risk-aware support response governance for customer-facing automation that uses persona-weighted consensus, detects legal, sensitive-data, and confidentiality issues, applies hard-block policy checks, and writes auditable decision artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Risk-aware support response governance for customer-facing automation that detects legal, sensitive-data, and confidentiality issues, applies hard-block policy checks, and records auditable decision artifacts.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers and support automation teams use this skill to review human- or agent-authored customer support replies before sending, especially for billing, escalation, regulated, or enterprise support workflows. It returns allow, block, or rewrite decisions and records auditable decision artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: In external_agent mode, caller-supplied votes may drive decisions without local rechecking of risky draft text. <br>
-Mitigation: Require local hard-block checks on every draft and validate any external votes before using the decision in automated support workflows. <br>
-Risk: Decision artifacts may contain customer support content in the configured consensus state path. <br>
-Mitigation: Protect CONSENSUS_STATE_FILE or CONSENSUS_STATE_ROOT with appropriate filesystem permissions, retention controls, and review before production use. <br>
+## Use Case:
 
+Support teams and automation developers use this skill to review proposed customer support replies before sending, returning allow, block, or rewrite decisions with consensus-weighted reasoning and audit records.
 
-## Reference(s): <br>
-- [Consensus Guard Core npm package](https://www.npmjs.com/package/consensus-guard-core) <br>
-- [Consensus Guard Core repository](https://github.com/kaicianflone/consensus-guard-core) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw repository](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Guidance] <br>
-**Output Format:** [JSON decision response with optional rewrite patch and filesystem audit artifact JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node >=18, tsx, and a configured consensus state path through CONSENSUS_STATE_FILE or CONSENSUS_STATE_ROOT.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.15 (source: server release metadata and package.json) <br>
+Risk: Support draft text and audit records may be written to the configured local consensus state path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an approved state location, restrict file permissions, and confirm the path is acceptable for support content before production use.
+
+Risk: Dependency hygiene requires review before production deployment.
+
+Mitigation: Pin and review npm dependencies, and update scanner-flagged transitive packages before installing in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaicianflone/skills/consensus-support-reply-guard)
+- [consensus-guard-core npm package](https://www.npmjs.com/package/consensus-guard-core)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [json, text, guidance]
+
+**Output Format:** [JSON decision object with allow, block, or rewrite status and auditable decision metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write decision artifacts under the configured consensus state path.]
+
+## Skill Version(s):
+
+1.1.15 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -11,35 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Users invoke this skill to create bilingual educational reference frameworks for market instruments across stocks, futures, funds, forex, and crypto. The outputs are intended for learning and review, not investment advice, trading signals, or autonomous financial decisions. <br>
+External users use this skill to generate bilingual educational reference documents for requested market symbols across stocks, futures, funds, forex, and crypto. Developers or operators configure market data sources and API credentials when real market data is needed. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Under-disclosed memory backup, conversation archiving, cloud upload, and restore behavior may move or persist user data beyond the finance-document workflow. <br>
-Mitigation: Review before installing, avoid backup_cloud/all and restore modes unless explicitly needed, and restrict any cloud-drive credentials available to the skill. <br>
-Risk: Market-data integrations may send requested symbols to external data providers and may require sensitive API credentials. <br>
-Mitigation: Use dedicated least-privilege API keys, avoid wallet or trading credentials, and run the skill only for explicit user requests. <br>
-Risk: Educational finance framework outputs may be mistaken for investment advice or trading signals. <br>
-Mitigation: Keep outputs framed as educational references, require user review, and do not use generated plans for autonomous trading decisions. <br>
+Risk: A bundled memory bridge script can back up chat history, profile files, and generated documents, and can upload archives to cloud storage. <br>
+Mitigation: Review or remove scripts/memory_bridge_v2.py before installation; do not run backup_cloud or all modes unless cloud transfer is explicitly intended. <br>
+Risk: Market data integrations can expose requested symbols and may rely on sensitive API credentials. <br>
+Mitigation: Use scoped, rotatable API keys and confirm which external data sources are enabled before generating market-data-backed outputs. <br>
+Risk: Generated market frameworks may be mistaken for actionable financial advice. <br>
+Mitigation: Treat outputs as educational drafts, verify market data independently, and avoid using generated plans as trading instructions. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/xgs-520/ai-xifu-caopan) <br>
-- [README](artifact/README.md) <br>
-- [Data configuration guide](artifact/global_market/CONFIG_GUIDE.md) <br>
-- [Skill source documentation](artifact/SKILL.md) <br>
+- [Data Configuration Guide](global_market/CONFIG_GUIDE.md) <br>
+- [Skill README](README.md) <br>
+- [Skill Instructions](SKILL.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Bilingual Markdown-style guidance and locally generated Word .docx documents] <br>
+**Output Type(s):** [text, markdown, configuration, guidance] <br>
+**Output Format:** [Bilingual Word .docx documents with supporting Markdown templates and configuration guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs on explicit user requests, may use user-configured market data sources, and may save generated documents locally before sending them through the chat channel.] <br>
+**Other Properties Related to Output:** [Requires explicit user request; real market data may require user-configured APIs or external data sources.] <br>
 
 ## Skill Version(s): <br>
-5.4.1 (source: server release evidence) <br>
+5.4.0 (source: server release metadata and target metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

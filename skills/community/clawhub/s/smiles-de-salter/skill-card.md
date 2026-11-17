@@ -1,44 +1,57 @@
-## Description: <br>
-Batch process chemical SMILES strings to remove salt ion components and retain the active core compound. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SMILES De-salter batch-processes chemical SMILES strings to remove salt or counterion components and retain the active core.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, cheminformatics analysts, and data teams use this skill to clean batches of chemical SMILES strings by removing counterions or salt fragments before review or downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged script writes to the user-specified output path and can overwrite an existing file. <br>
-Mitigation: Choose an explicit workspace output path, check whether the target file already exists, and keep a backup when replacing prior results. <br>
-Risk: Dependency versions for pandas and RDKit affect reproducibility of parsing and output behavior. <br>
-Mitigation: Install in a virtual environment and pin or review pandas and RDKit versions before running production or regulated workflows. <br>
-Risk: The de-salting logic uses heuristics such as retaining the largest component, which may be wrong for co-crystals or multi-component compounds. <br>
-Mitigation: Sample and manually review representative outputs, especially for co-crystals, quaternary ammonium salts, and multi-component drug records. <br>
+## Use Case:
 
+Developers, data scientists, and cheminformatics teams use this skill to desalt CSV, TSV, SMI, or single SMILES inputs and produce reviewable desalted SMILES outputs with status information.
 
-## Reference(s): <br>
-- [SMILES De-salter release page](https://clawhub.ai/aipoch-ai/smiles-de-salter) <br>
-- [AIpoch publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
-- [Runtime Checklist](references/runtime_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and CSV, TSV, or text file outputs from the packaged script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script adds desalted_smiles and status columns for file processing, or prints the desalted SMILES and status for a single input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and script header) <br>
+Risk: Dependency hygiene requires review because the tool depends on pandas and RDKit without pinned versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a project workspace or virtual environment, pin and review pandas and RDKit versions, and run the documented py_compile smoke check before production use.
+
+Risk: The utility reads user-provided input files and writes output files in the local workspace.
+
+Mitigation: Use explicit input and output paths for SMILES de-salting tasks, verify paths before execution, and review generated files before sharing or downstream use.
+
+Risk: The de-salting heuristic keeps the largest component, which may require review for co-crystals or multi-component drugs.
+
+Mitigation: Sample and verify results for chemically sensitive datasets, especially when multiple active components may be present.
+
+## Reference(s):
+
+- [Runtime Checklist](references/runtime_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and CSV, TSV, SMI, or text outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces desalted_smiles and status fields for batch file processing; single-SMILES mode prints input, output, and status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and script metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

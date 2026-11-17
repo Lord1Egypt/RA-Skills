@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 """
-trip_detector.py — Proactive Trip Prep System
+trip_detector.py — Trip Prep Candidate Lister
 
-Detects upcoming family trips from the Google Calendar, builds a destination
-intelligence object (environment type + live weather forecast), runs the kids'
-profiles through the LLM to find relevant observations, and composes a
-WhatsApp-ready prep message.
+Lists upcoming non-recurring calendar events as candidates. The OpenClaw
+agent (per skill CLAUDE.md principle 2) decides which (if any) are real
+trips needing prep, fetches destination weather/env tags via tools.py
+get_trip_data, composes the prep note, and calls tools.py
+mark_trip_prep_sent to dedup.
 
 Usage (CLI / cron):
-    python -m features.trips.trip_detector --check     # check, surface if not yet sent
-    python -m features.trips.trip_detector --dry-run   # same but print instead of sending
+    python -m features.trips.trip_detector --check
+        List candidate events as JSON for the agent to judge.
     python -m features.trips.trip_detector --trip "Big Bear" --location "Big Bear Lake, CA"
-                                                       # manually trigger for a named trip
+        Manual single-trip data fetch (used by tools.py get_trip_data).
 """
 
 from __future__ import annotations
@@ -19,7 +20,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import re
 import sys
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -135,67 +135,61 @@ def get_kid_profile(child: str) -> str:
 
 # ─── Calendar helpers ─────────────────────────────────────────────────────────
 
-def find_upcoming_trips(calendar_service, days_ahead: int = 4) -> List[Dict]:
+def list_candidate_events(events: List[Dict]) -> List[Dict]:
     """
-    Fetch calendar events in the next `days_ahead` days and flag 'trip' events.
+    List upcoming non-recurring calendar events for the agent to judge.
 
-    An event is considered a trip if ANY of:
-    - Title contains a trip keyword
-    - Event has a non-empty location field
-    - Event spans multiple days (all-day multi-day)
+    Python no longer pre-filters by keyword or location — the trip-vs-not
+    decision belongs to the agent (see skill CLAUDE.md principle 2).
 
-    Returns list of dicts: {event_id, title, start_date, end_date, location}
+    Recurring events are skipped UNLESS their title contains a trip keyword
+    (covers cases like "Annual cabin trip" recurring yearly).
+
+    Each candidate ships with a sent_key and already_sent flag so the agent
+    can dedup against trip_prep_sent.json without a second tool call.
+
+    Takes already-fetched events rather than a calendar service (2026-09-07).
+    Fetching moved to the caller so this is a pure function over data: the
+    tests hand it dicts and mock nothing, and it cannot reach the network by
+    accident.
+
+    Returns list of dicts: {event_id, title, start_date, end_date, all_day,
+    multiday, location, sent_key, already_sent}.
     """
-    now     = datetime.now(timezone.utc)
-    horizon = now + timedelta(days=days_ahead)
+    sent = load_sent_log()
+    candidates: List[Dict] = []
 
-    results = calendar_service.events().list(
-        calendarId=_get_calendar_id(),
-        timeMin=now.isoformat(),
-        timeMax=horizon.isoformat(),
-        maxResults=50,
-        singleEvents=True,
-        orderBy="startTime",
-    ).execute()
+    for event in events:
+        title = event.get("summary", "").strip()
+        if not title:
+            continue
 
-    trips: List[Dict] = []
-    for event in results.get("items", []):
-        title    = event.get("summary", "")
+        is_recurring = bool(event.get("recurringEventId"))
+        title_lower  = title.lower()
+        if is_recurring and not any(kw in title_lower for kw in TRIP_KEYWORDS):
+            continue
+
         location = (event.get("location") or "").strip()
         start    = event.get("start", {})
         end      = event.get("end", {})
-
         start_date = start.get("date") or (start.get("dateTime") or "")[:10]
         end_date   = end.get("date")   or (end.get("dateTime")   or "")[:10]
+        all_day    = bool(start.get("date"))
 
-        # Determine if trip
-        title_lower = title.lower()
-        is_trip = False
+        sent_key = f"{event.get('id', '')}:{start_date}"
+        candidates.append({
+            "event_id":     event.get("id", ""),
+            "title":        title,
+            "start_date":   start_date,
+            "end_date":     end_date,
+            "all_day":      all_day,
+            "multiday":     all_day and start_date != end_date,
+            "location":     location,
+            "sent_key":     sent_key,
+            "already_sent": sent_key in sent,
+        })
 
-        # 1. keyword in title
-        if any(kw in title_lower for kw in TRIP_KEYWORDS):
-            is_trip = True
-
-        # 2. has a location
-        if location:
-            is_trip = True
-
-        # 3. multi-day all-day event WITH a location or trip keyword
-        #    (without this guard, "Pay HOA Fees" spanning 2 days triggers a false trip)
-        if start.get("date") and end.get("date") and start_date != end_date:
-            if location or any(kw in title_lower for kw in TRIP_KEYWORDS):
-                is_trip = True
-
-        if is_trip:
-            trips.append({
-                "event_id":   event.get("id", ""),
-                "title":      title,
-                "start_date": start_date,
-                "end_date":   end_date,
-                "location":   location,
-            })
-
-    return trips
+    return candidates
 
 
 def _get_calendar_id() -> str:
@@ -224,27 +218,14 @@ def infer_environment_tags(title: str, location: str) -> List[str]:
 
 
 def geocode_location(location: str) -> Optional[Tuple[float, float]]:
+    """Geocode a location string to (lat, lon).
+
+    Thin re-export of features.briefing.weather.geocode_location — this module
+    used to carry a byte-for-byte-equivalent second copy, neither of them
+    cached. One implementation, one cache.
     """
-    Geocode a location string to (lat, lon) using the free Open-Meteo geocoding API.
-    Returns None on failure.
-    """
-    if not location:
-        return None
-    try:
-        import urllib.parse, urllib.request  # noqa: PLC0415 (local import fine)
-        encoded = urllib.parse.quote(location)
-        url = (
-            f"https://geocoding-api.open-meteo.com/v1/search"
-            f"?name={encoded}&count=1&language=en&format=json"
-        )
-        with urllib.request.urlopen(url, timeout=8) as resp:
-            data = json.loads(resp.read().decode())
-        results = data.get("results", [])
-        if results:
-            return results[0]["latitude"], results[0]["longitude"]
-    except Exception as e:
-        print(f"[trip_detector] geocode failed for '{location}': {e}", file=sys.stderr)
-    return None
+    from features.briefing.weather import geocode_location as _geocode
+    return _geocode(location)
 
 
 def fetch_trip_weather(location: str, start_date: str, end_date: str) -> Optional[Dict]:
@@ -260,8 +241,7 @@ def fetch_trip_weather(location: str, start_date: str, end_date: str) -> Optiona
         lat, lon = coords
         # Determine forecast_days needed (at least 1, at most 7)
         try:
-            d0 = datetime.strptime(start_date, "%Y-%m-%d")
-            d1 = datetime.strptime(end_date,   "%Y-%m-%d")
+            d1 = datetime.strptime(end_date, "%Y-%m-%d")
             days_needed = max(1, (d1 - datetime.now()).days + 2)
             days_needed = min(days_needed, 7)
         except ValueError:
@@ -276,7 +256,7 @@ def fetch_trip_weather(location: str, start_date: str, end_date: str) -> Optiona
             f"precipitation_probability_max,relative_humidity_2m_max"
             f"&temperature_unit=fahrenheit"
             f"&wind_speed_unit=mph"
-            f"&timezone=America%2FLos_Angeles"
+            f"&timezone=auto"     # the destination's own local time
             f"&forecast_days={days_needed}"
         )
         try:
@@ -327,88 +307,32 @@ def fetch_trip_weather(location: str, start_date: str, end_date: str) -> Optiona
     return _fetch_local()
 
 
-def _fallback_trip_prep(trip: Dict, weather: Optional[Dict],
-                        env_tags: List[str], profiles: Dict) -> str:
-    """Simple non-LLM fallback message."""
-    title = trip.get("title", "Upcoming Trip")
-    start = trip.get("start_date", "")
-    try:
-        dt     = datetime.strptime(start, "%Y-%m-%d")
-        days   = (dt.date() - datetime.now().date()).days
-        label  = f"{dt.strftime('%a, %b %-d')} · {days} days away"
-    except ValueError:
-        label = start
-
-    lines = [f"🏔️ *Trip Prep — {title} ({label})*\n"]
-    if weather:
-        lines.append(
-            f"🌤️ *Weather there:* {weather['temp_low']}–{weather['temp_high']}°F, "
-            f"{weather['condition']} · Humidity {weather['humidity']}%\n"
-        )
-    # Look up kid emoji from config, fall back to generic child emoji
-    kid_emojis = {}
-    try:
-        from core.config_loader import config
-        for kid in config.kids:
-            kid_emojis[kid.name] = kid.emoji_char
-    except Exception:
-        pass
-    for child, data in profiles.items():
-        obs = data.get("observations", [])
-        emoji = kid_emojis.get(child, "\U0001F9D2")
-        if obs:
-            lines.append(f"{emoji} *{child}*")
-            for o in obs:
-                lines.append(f"• {o['text']}")
-            lines.append("")
-    return "\n".join(lines)
-
-
 # ─── Cron / CLI entrypoint ────────────────────────────────────────────────────
 
-def run_check(dry_run: bool = False) -> None:
+def run_check() -> None:
     """
-    Cron logic — native mode:
-    Outputs structured JSON for the agent to compose and send the prep message.
-    The agent then calls tools.py mark_trip_prep_sent to record the send.
+    List upcoming non-recurring events for the agent to judge.
+
+    The agent decides which (if any) qualify as real trips needing prep,
+    fetches weather/env tags via tools.py get_trip_data for the chosen one,
+    composes a prep note, and calls tools.py mark_trip_prep_sent to dedup.
     """
-    from core.keychain_secrets import load_google_secrets
-    load_google_secrets()
-    from features.calendar.calendar_manager import get_calendar_service
+    from core import gcal
 
-    service  = get_calendar_service()
-    trips    = find_upcoming_trips(service, days_ahead=4)
-    sent     = load_sent_log()
-    profiles = load_kid_profiles()
+    # The fetch lives here now; list_candidate_events is pure.
+    now     = datetime.now(timezone.utc)
+    horizon = now + timedelta(days=4)
+    events  = gcal.list_events(
+        _get_calendar_id(), now.isoformat(), horizon.isoformat()
+    )
+    candidates = list_candidate_events(events)
+    profiles   = load_kid_profiles()
 
-    if not trips:
-        print(json.dumps({"status": "no_trip"}))
-        return
-
-    for trip in trips:
-        sent_key = f"{trip['event_id']}:{trip['start_date']}"
-        if sent_key in sent:
-            continue
-
-        env_tags = infer_environment_tags(trip["title"], trip["location"])
-        weather  = fetch_trip_weather(
-            trip["location"] or trip["title"],
-            trip["start_date"],
-            trip["end_date"],
-        )
-
-        # Output structured data — the agent composes the message and sends it
-        print(json.dumps({
-            "status":   "trip_found",
-            "sent_key": sent_key,
-            "trip":     trip,
-            "env_tags": env_tags,
-            "weather":  weather,
-            "profiles": {k: v.get("observations", []) for k, v in profiles.items()},
-        }, default=str))
-        return   # one trip at a time
-
-    print(json.dumps({"status": "no_trip"}))
+    print(json.dumps({
+        "status":     "candidates",
+        "candidates": candidates,
+        "profiles":   {k: v.get("observations", []) for k, v in profiles.items()},
+    }, default=str))
 
 
 def mark_sent(sent_key: str, trip_title: str, start_date: str) -> None:
@@ -446,13 +370,11 @@ def run_manual(event_title: str, location: str) -> str:
 # ─── CLI ──────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Trip prep detector")
+    parser = argparse.ArgumentParser(description="Trip prep candidate lister")
     parser.add_argument("--check",    action="store_true",
-                        help="Check for upcoming trips and send prep (idempotent)")
-    parser.add_argument("--dry-run",  action="store_true",
-                        help="Like --check but prints instead of sending")
+                        help="List upcoming non-recurring events for the agent to judge")
     parser.add_argument("--trip",     type=str, default="",
-                        help="Manually named trip title")
+                        help="Manual trip title (for tools.py get_trip_data)")
     parser.add_argument("--location", type=str, default="",
                         help="Destination location string")
     args = parser.parse_args()
@@ -460,8 +382,8 @@ if __name__ == "__main__":
     # Top-level guard so cron always exits cleanly with a parseable status.
     import traceback as _tb
     try:
-        if args.check or args.dry_run:
-            run_check(dry_run=args.dry_run)
+        if args.check:
+            run_check()
         elif args.trip:
             msg = run_manual(args.trip, args.location)
             print(msg)

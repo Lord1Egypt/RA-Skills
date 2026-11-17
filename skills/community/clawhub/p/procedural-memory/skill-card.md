@@ -1,42 +1,53 @@
-## Description: <br>
-Procedural Memory helps an agent save successful recurring workflows as reusable skills and memory logs for future use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Procedural Memory helps an agent identify successful recurring workflows and save them as reusable skill files for future conversations.
 
-## Publisher: <br>
-[chenjin113](https://clawhub.ai/user/chenjin113) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjin113](https://clawhub.ai/user/chenjin113)
 
-## Use Case: <br>
-Developers and agent users use this skill to capture repeated successful workflows, turn them into reusable skill files, and maintain procedural memory across conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cross-session procedural memory can capture sensitive workflow details in local skill and log files. <br>
-Mitigation: Avoid using the skill around secrets, credentials, private business workflows, or regulated data, and review generated skills and logs before relying on them. <br>
-Risk: The skill includes broad memory, backup, cleanup, external research, and self-improvement maintenance behavior beyond a normal workflow-memory feature. <br>
-Mitigation: Disable or remove autonomous backup, cleanup, external research, and startup or self-improvement maintenance instructions unless they are explicitly needed. <br>
-Risk: Generated skills can influence future agent behavior. <br>
-Mitigation: Review and scan generated SKILL.md files before deployment or automatic reuse. <br>
+## Use Case:
 
+Developers and agent users use this skill to capture successful multi-step workflows as reusable skills, with optional review triggers after repeated success, complex task completion, or end-of-day reflection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenjin113/procedural-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown skill files, memory logs, shell commands, and user-facing guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist derived workflow summaries to local skill and memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: Conversation-derived workflows may be saved into persistent skill files or logs, including sensitive references from user conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval and preview before each new skill or log entry, avoid sensitive conversations while active, and define deletion and redaction rules for stored memories.
+
+Risk: The autonomous-operation SOP permits maintenance, backups, scanning, and local write activity after user inactivity.
+
+Mitigation: Remove or disable the autonomous-operation SOP before use unless autonomous maintenance is intended and bounded by local policy.
+
+## Reference(s):
+
+- [Autonomous Operation SOP](autonomous-operation-sop.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown skill files, markdown logs, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent skill and log files in user-scoped directories.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

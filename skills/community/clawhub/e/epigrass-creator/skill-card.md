@@ -1,42 +1,60 @@
-## Description: <br>
-Create Epigrass epidemiological metapopulation models through guided specification for SIR, SEIR, SEIS, SIS, SI, or custom models, including geographic networks and GeoPackage import. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Epigrass epidemiological metapopulation models through guided specification, including SIR-family model selection, geographic networks, and GeoPackage-backed spatial imports.
 
-## Publisher: <br>
-[fccoelho](https://clawhub.ai/user/fccoelho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fccoelho](https://clawhub.ai/user/fccoelho)
 
-## Use Case: <br>
-External developers, public health analysts, and researchers use the skill to specify Epigrass compartmental metapopulation models, import or enter geographic sites, configure parameters and connections, and generate runnable model files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The wizard reads geospatial files from paths supplied by the user. <br>
-Mitigation: Use only intended local GeoPackage, Shapefile, or GeoJSON inputs and avoid pointing the wizard at sensitive files. <br>
-Risk: Generated model files are written into a local output directory and may replace existing files with the same names. <br>
-Mitigation: Use a fresh output folder for each generated model and review the target path before writing files. <br>
+## Use Case:
 
+External developers, researchers, and public-health modelers use this skill to create Epigrass metapopulation model files through a guided wizard. It supports model selection, epidemiological parameters, geographic site definition, network generation, and geospatial imports for simulation setup.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fccoelho/epigrass-creator) <br>
-- [Epigrass Project Homepage](https://github.com/fccoelho/epigrass) <br>
-- [Epigrass Documentation](https://epigrass.readthedocs.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Interactive prompts and generated files, including model.epg, sites.csv, edges.csv, and model_spec.json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads geospatial files only when the user provides a path and writes model outputs to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter, changelog, release evidence) <br>
+Risk: Generated model parameters, network edges, or flow estimates may be inaccurate if user inputs or assumptions are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review model.epg, sites.csv, edges.csv, and model_spec.json with appropriate domain expertise before running or relying on simulation results.
+
+Risk: Untrusted GeoPackage, Shapefile, or GeoJSON inputs can influence generated model files.
+
+Mitigation: Install and run the skill in an isolated environment, use trusted or validated geospatial inputs, prefer pinned dependency versions, and inspect generated files before running epirunner.
+
+Risk: The wizard writes generated artifacts into a user-selected output directory.
+
+Mitigation: Use a dedicated empty output directory for each run to avoid overwriting or mixing simulation artifacts.
+
+## Reference(s):
+
+- [Epigrass Project](https://github.com/fccoelho/epigrass)
+- [Epigrass Documentation](https://epigrass.readthedocs.io/)
+- [GeoPackage Import Example](examples/geopackage_example.md)
+- [ClawHub Skill Page](https://clawhub.ai/fccoelho/skills/epigrass-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus generated Epigrass script, CSV files, and JSON model specification.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces model.epg, sites.csv, edges.csv, and model_spec.json in a user-selected output directory.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

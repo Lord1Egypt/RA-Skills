@@ -1,42 +1,57 @@
-## Description: <br>
-麦当劳助手 - 查询/领取优惠券、活动日历、餐品营养信息、门店查询 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+McDonald's helper for checking and claiming coupons, viewing campaign calendars, looking up nutrition information, and finding stores.
 
-## Publisher: <br>
-[pmwalkercao](https://clawhub.ai/user/pmwalkercao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pmwalkercao](https://clawhub.ai/user/pmwalkercao)
 
-## Use Case: <br>
-External users use this skill to ask an agent for McDonald's coupon, promotion, nutrition, meal-combination, and store-related information through a McDonald's MCP service. The skill can also help claim available coupons when the user has configured a McDonald's MCP token. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a McDonald's MCP token to access account-specific coupon data. <br>
-Mitigation: Keep MCD_TOKEN private and only configure it in trusted local or secret-managed environments. <br>
-Risk: Claiming coupons changes the user's McDonald's account state. <br>
-Mitigation: Require clear user confirmation before executing actions that claim all available coupons. <br>
-Risk: Changing MCD_MCP_URL can send requests and tokens to an untrusted service. <br>
-Mitigation: Leave MCD_MCP_URL pointed at the trusted McDonald's endpoint unless the user intentionally trusts another service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [My Mcdonald on ClawHub](https://clawhub.ai/pmwalkercao/mymcdonald) <br>
-- [McDonald's MCP service](https://mcp.mcd.cn) <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current McDonald's coupon, campaign, and nutrition details through the McDonald's MCP service. It can also help claim account coupons after user confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tables or lists for coupon and nutrition results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return text or structured JSON-RPC content from the configured McDonald's MCP endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends a McDonald's account bearer token to a remote MCP endpoint.
+
+Mitigation: Use only tokens the user is comfortable sending to https://mcp.mcd.cn, keep MCD_TOKEN out of shared logs, and avoid overriding MCD_MCP_URL unless the endpoint is trusted.
+
+Risk: The coupon claim action can modify the user's account by claiming coupons.
+
+Mitigation: Ask for explicit confirmation before running auto-bind-coupons or any one-click coupon claim action.
+
+Risk: The server security verdict is suspicious because the skill combines remote token use with account-changing behavior.
+
+Mitigation: Review the skill before installation and limit use to the documented coupon, campaign, nutrition, time, and store-query workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pmwalkercao/skills/mymcdonald)
+- [McDonald's MCP service](https://mcp.mcd.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON-RPC responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May present coupon and nutrition results as tables or lists.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

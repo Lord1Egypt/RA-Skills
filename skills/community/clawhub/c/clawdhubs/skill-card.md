@@ -1,49 +1,66 @@
-## Description: <br>
-Provides ClawdHub and SkillBoss API guidance for searching, installing, updating, and publishing agent skills, plus calling model APIs for chat, image, video, audio, search, document, email, and SMS workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the ClawdHub CLI to search, install, update, and publish agent skills, and to access AI models for image, video, speech, music, chat, web search, document processing, email, and SMS.
 
-## Publisher: <br>
-[AbelTennyson](https://clawhub.ai/user/AbelTennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover ClawdHub skills and invoke SkillBoss-hosted AI model, search, document, email, and SMS capabilities through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts, files, media, documents, audio, phone numbers, and verification codes to the SkillBoss/HeyBoss API provider. <br>
-Mitigation: Install and use it only when that provider is trusted, and avoid sensitive or regulated data unless the user explicitly approves the transfer. <br>
-Risk: Email and SMS/OTP examples can trigger user-impacting outbound messages. <br>
-Mitigation: Require explicit approval for each recipient and message before sending, and monitor API-key usage for unexpected sends or abuse. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover SkillBoss models, call supported model APIs, and perform ClawHub skill marketplace operations from an agent workflow. It is also used for model-backed content generation, search, document parsing, and communication workflows that require a SkillBoss API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AbelTennyson/clawdhubs) <br>
-- [Publisher profile](https://clawhub.ai/user/AbelTennyson) <br>
-- [SkillBoss API key site](https://www.skillboss.co) <br>
-- [HeyBoss API base URL](https://api.heybossai.com/v1) <br>
-- [Chat model reference](chat-models.md) <br>
-- [Image model reference](image-models.md) <br>
-- [Audio model reference](audio-models.md) <br>
-- [Search and scraping model reference](search-models.md) <br>
-- [Tool model reference](tools-models.md) <br>
-- [Video model reference](video-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with curl and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for authenticated API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends prompts, files, audio, document URLs, email content, recipient addresses, and phone numbers to SkillBoss/HeyBoss and downstream model or messaging providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with authorization, avoid confidential or regulated data unless approved, and confirm that the service and downstream providers are acceptable for the intended data.
+
+Risk: The skill documents email and SMS actions that can contact external recipients.
+
+Mitigation: Confirm recipients, consent, message content, and business purpose before invoking email or SMS endpoints.
+
+Risk: The security summary reports inconsistent identity and limited privacy or consent guardrails.
+
+Mitigation: Verify the publisher, service identity, API endpoints, and organizational policy fit before installation or production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/clawdhubs)
+- [SkillBoss API base URL](https://api.heybossai.com/v1)
+- [SkillBoss models endpoint](https://api.heybossai.com/v1/models)
+- [SkillBoss API key site](https://www.skillboss.co)
+- [Audio Models](audio-models.md)
+- [Chat Models](chat-models.md)
+- [Image Models](image-models.md)
+- [Search & Scraping Models](search-models.md)
+- [Tool Models](tools-models.md)
+- [Video Models](video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; API response shapes vary by selected model and endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

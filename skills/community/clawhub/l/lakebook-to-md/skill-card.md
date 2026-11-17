@@ -1,45 +1,58 @@
-## Description: <br>
-Converts Yuque .lakebook exports into organized Markdown and Excel output folders, including rich text, database tables, sheets, attachments, encrypted-content placeholders, and a conversion report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Yuque .lakebook exports into organized Markdown documents, Excel workbooks for laketable content, downloaded resources, and a conversion report.
 
-## Publisher: <br>
-[luhuiwang](https://clawhub.ai/user/luhuiwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luhuiwang](https://clawhub.ai/user/luhuiwang)
 
-## Use Case: <br>
-Developers and knowledge-management users can use this skill to convert Yuque lakebook exports into portable Markdown, Excel, downloaded asset folders, and a conversion report for review or migration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted .lakebook input can cause unsafe file writes. <br>
-Mitigation: Use only trusted .lakebook files and run conversion in a disposable working directory or sandbox. <br>
-Risk: The converter can make outbound requests to embedded image and attachment URLs. <br>
-Mitigation: Review the source export before conversion and disable or restrict downloads when network access is not expected. <br>
-Risk: The startup script can install Python dependencies automatically. <br>
-Mitigation: Install and review dependencies explicitly before running the skill instead of relying on automatic installation. <br>
-Risk: The converter uses a local ./temp directory during processing. <br>
-Mitigation: Run it in a clean directory where an existing ./temp path does not contain data that must be preserved. <br>
+## Use Case:
 
+Developers and knowledge-base operators use this skill to convert Yuque Lakebook exports into local Markdown folders, Excel files for database-table documents, downloaded attachments or images, and a summary report for manual follow-up.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/luhuiwang/lakebook-to-md) <br>
-- [Original YuqueExportToMarkdown project named by the skill docs](https://github.com/PZh101/YuqueExportToMarkdown) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files, Excel workbooks, downloaded asset folders, and a Markdown conversion report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform outbound downloads for embedded images and attachments when resource downloading is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, SKILL.md frontmatter, pyproject.toml) <br>
+Risk: Untrusted Lakebook archives and metadata may overwrite files or trigger unsafe parsing behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a disposable sandbox or isolated workspace, and process only Lakebook exports from trusted sources.
+
+Risk: Automatic image and attachment downloads may make unexpected network requests or fetch untrusted content.
+
+Mitigation: Disable downloads unless required, review downloaded files before opening them, and prefer URL allowlisting or a reviewed fork for sensitive use.
+
+Risk: The startup path may install Python dependencies into the active environment.
+
+Mitigation: Use a virtual environment or disposable Python environment before running the startup script.
+
+## Reference(s):
+
+- [Lakebook To Md ClawHub release](https://clawhub.ai/luhuiwang/skills/lakebook-to-md)
+- [YuqueExportToMarkdown upstream project](https://github.com/PZh101/YuqueExportToMarkdown)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with command examples; generated conversion output includes Markdown documents, Excel workbooks, downloaded resource files, and a Markdown conversion report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform network downloads for images or attachments and may install Python dependencies when invoked through the startup script.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, SKILL.md frontmatter, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

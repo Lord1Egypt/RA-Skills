@@ -1,43 +1,63 @@
-## Description: <br>
-Multi-worker orchestration for Claude Code with Notion visibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-worker orchestration for Claude Code with Notion visibility.
 
-## Publisher: <br>
-[theagentacademy](https://clawhub.ai/user/theagentacademy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theagentacademy](https://clawhub.ai/user/theagentacademy)
 
-## Use Case: <br>
-Developers use this skill to start and operate a local relay for spawning, messaging, suspending, resuming, and monitoring multiple Claude Code worker sessions with Notion-backed visibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local relay can control persistent Claude Code worker sessions through an HTTP API. <br>
-Mitigation: Keep the service bound to localhost, restrict machine access, and review worker actions before relying on results. <br>
-Risk: Operational data may be sent to Notion and optionally Telegram. <br>
-Mitigation: Protect the Notion token, disable Telegram unless needed, and avoid sending secrets through worker messages. <br>
-Risk: Persistent sessions can retain sensitive context across restarts. <br>
-Mitigation: Periodically inspect stored sessions and purge worker state when the retained context is no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage multiple Claude Code workers, route tasks between them, preserve worker sessions, and inspect orchestration status through a local HTTP API with Notion visibility.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/theagentacademy/agent-relay-orchestrator) <br>
-- [Agent Relay Orchestrator Homepage](https://github.com/TheAgentAcademy/agent-relay-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assumes a local relay service, Node.js, Claude Code, and Notion credentials are configured before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The orchestrator can control Claude sessions and persist worker context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated low-privilege environment and review what session data is stored before using it with sensitive work.
+
+Risk: The skill depends on mutable external code and package installation.
+
+Mitigation: Install only from a pinned, audited commit or release and review dependency changes before upgrades.
+
+Risk: External integrations may sync context or notifications to Notion or Telegram.
+
+Mitigation: Use least-privilege Notion credentials and avoid sending secrets or proprietary code unless the persistence and sync behavior is acceptable.
+
+Risk: The local HTTP API can spawn, route, suspend, and resume workers.
+
+Mitigation: Keep the API bound to localhost and add access controls before exposing it beyond the local machine.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theagentacademy/skills/agent-relay-orchestrator)
+- [Publisher profile](https://clawhub.ai/user/theagentacademy)
+- [Project homepage](https://github.com/TheAgentAcademy/agent-relay-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and curl code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands assume a local Agent Relay Orchestrator service, Claude Code CLI, Node.js, and configured Notion credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

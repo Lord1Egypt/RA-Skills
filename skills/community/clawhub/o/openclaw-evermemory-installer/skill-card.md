@@ -1,41 +1,54 @@
-## Description: <br>
-Use this skill when installing, upgrading, verifying, or publishing the EverMemory OpenClaw plugin and its companion skill, including local path install, npm install, ClawHub publish, and release-gate verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when installing, upgrading, verifying, or publishing the EverMemory OpenClaw plugin and its companion skill, including local path install, npm install, ClawHub publish, and release-gate verification.
 
-## Publisher: <br>
-[jiehao321](https://clawhub.ai/user/jiehao321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao321](https://clawhub.ai/user/jiehao321)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install, upgrade, verify, and publish the EverMemory plugin and companion skill while following release gates and account checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publish commands can change public ClawHub or npm releases when run with authenticated accounts. <br>
-Mitigation: Confirm the logged-in ClawHub and npm accounts, review the scripts, run release gates, and use npm dry-run before any real publish. <br>
-Risk: Binding the EverMemory memory slot or restarting the gateway changes the target OpenClaw runtime. <br>
-Mitigation: Confirm the target OpenClaw instance before binding or restarting, then run the verification script and inspect command output. <br>
+## Use Case:
 
+Developers and release operators use this skill to install, upgrade, verify, and publish the EverMemory OpenClaw plugin and companion ClawHub skill while following documented release gates.
 
-## Reference(s): <br>
-- [EverMemory Install/Publish Playbook](references/publish-and-install-playbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jiehao321/openclaw-evermemory-installer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes release-gate, account-login, install, publish, and verification steps for OpenClaw and npm workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Publish and verification scripts may under-enforce their documented public release safety checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before use, inspect package contents before npm publishing, and manually run the documented release and benchmark gates.
+
+Risk: Installation verification may not fully prove that memory slot binding and skill readiness checks passed.
+
+Mitigation: Do not rely on verify_install.sh alone; confirm gateway status, plugin details, slot binding, and skill readiness from command output.
+
+## Reference(s):
+
+- [EverMemory Install/Publish Playbook](references/publish-and-install-playbook.md)
+- [ClawHub Skill Page](https://clawhub.ai/jiehao321/skills/openclaw-evermemory-installer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose installation, verification, release-gate, ClawHub publish, and npm publish commands for human review before execution.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

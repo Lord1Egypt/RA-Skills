@@ -1,46 +1,61 @@
-## Description: <br>
-Guides an agent through purchasing virtual Visa or Mastercard debit cards with USDT on BSC via the x402 protocol, checking card status, and configuring an EVM wallet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through setting up an EVM wallet, creating a crypto-funded virtual Visa or Mastercard prepaid card through the x402 protocol, and checking card status.
 
-## Publisher: <br>
-[yuanyongm](https://clawhub.ai/user/yuanyongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyongm](https://clawhub.ai/user/yuanyongm)
 
-## Use Case: <br>
-External users and their agents use this skill to set up an EVM wallet, purchase a prepaid virtual Visa or Mastercard with USDT on BSC, and query order or card status through the AEON CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for and persists a full EVM wallet private key. <br>
-Mitigation: Use a new low-balance wallet, never a main wallet, avoid passing private keys in command-line arguments, and confirm local storage permissions before purchases. <br>
-Risk: The workflow relies on an external npm CLI that is not pinned and can auto-upgrade. <br>
-Mitigation: Review the npm package before installation, disable or avoid automatic upgrades, and require explicit approval before any upgrade or card-purchase command. <br>
-Risk: Card creation spends cryptocurrency on BSC and failed transfers to the wrong network can lose funds. <br>
-Mitigation: Confirm the card amount with the user, use CLI-reported limits and balance checks, and instruct users to send only BEP-20 USDT on BSC to the displayed wallet address. <br>
+## Use Case:
 
+External users and developers use this skill to configure a dedicated EVM wallet, purchase virtual Visa or Mastercard debit cards with USDT on BSC, and query card order status. The skill is intended for agent-assisted card purchase workflows that require explicit user confirmation before payment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyongm/x402-card) <br>
-- [Create virtual card workflow](references/create-card.md) <br>
-- [Check card status workflow](references/check-status.md) <br>
-- [Wallet setup](references/wallet-setup.md) <br>
-- [x402 protocol notes](references/x402-protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npx; uses EVM_PRIVATE_KEY for wallet configuration; CLI responses may include JSON order, payment, wallet, and card status data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact metadata reports 0.2.0) <br>
+Risk: Raw wallet private keys may be exposed through agent context, shell history, process listings, local configuration files, or package behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-balance wallet for card purchases and avoid entering keys from personal or high-value wallets.
+
+Risk: Mutable npx execution can run changed npm package code during financial operations.
+
+Mitigation: Independently verify the package and version before use, and avoid running unpinned npx commands with funds.
+
+Risk: Card creation spends USDT from the configured BSC wallet.
+
+Mitigation: Require explicit user confirmation of the amount before running the create command.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuanyongm/skills/x402-card)
+- [Create Virtual Card](references/create-card.md)
+- [Check Card Status](references/check-status.md)
+- [Wallet Setup](references/wallet-setup.md)
+- [x402 Protocol](references/x402-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npx, and an EVM_PRIVATE_KEY for wallet-backed card operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata version is 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,62 @@
-## Description: <br>
-交互式部署多 Agent 团队协作架构，支持自定义团队结构、预设模板和混合模式。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+交互式部署多 Agent 团队协作架构，支持自定义团队结构、预设模板和混合模式。
 
-## Publisher: <br>
-[MaybeMarvel](https://clawhub.ai/user/MaybeMarvel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maybemarvel](https://clawhub.ai/user/maybemarvel)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure multi-agent team structures with preset, custom, or mixed team layouts, then generate configuration they can review and merge into an OpenClaw deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deployment helper copies the main agent's authentication and model profile files into persistent team and member agent directories. <br>
-Mitigation: Run it only in a trusted OpenClaw environment, review the generated directories and copied profiles, and remove unused generated agents or copied profiles when finished. <br>
-Risk: Custom team and member names influence generated paths and agent identifiers. <br>
-Mitigation: Prefer interactive mode, use simple lowercase IDs without slashes or dot paths, and inspect generated paths and team names before merging configuration. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to create multi-agent team structures through interactive, preset, or mixed configuration flows. It helps generate OpenClaw agent directories, configuration snippets, and follow-up validation commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MaybeMarvel/multi-agent-teams) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, markdown, guidance] <br>
-**Output Format:** [Interactive shell prompts plus generated OpenClaw JSON configuration and agent template guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash and an existing OpenClaw environment; generated configuration should be reviewed before merging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and package.json) <br>
+Risk: Deployment may copy the main OpenClaw auth and model configuration into generated agent directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped credentials for child agents and review generated agent directories before enabling them.
+
+Risk: User-provided team and member identifiers may affect generated paths and configuration.
+
+Mitigation: Validate identifiers strictly and run the deployment in a non-production OpenClaw environment before merging generated configuration.
+
+Risk: Generated OpenClaw configuration may change agent routing and available tools.
+
+Mitigation: Review the generated openclaw.json snippet and verify it with the included validation script before restarting the gateway.
+
+Risk: The server security verdict is suspicious.
+
+Mitigation: Review or fix scripts/deploy.sh before installation, and do not run it as root or against production credentials until the review is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maybemarvel/skills/multi-agent-teams)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Bash commands and generated JSON configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Bash and OpenClaw; deployment scripts can create directories, copy local OpenClaw auth/model configuration files, and emit an openclaw.json snippet for review.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

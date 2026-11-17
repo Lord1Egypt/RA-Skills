@@ -30,15 +30,27 @@ Headline signals:
 
 ## The gate
 
-Seven conditions. All must be met before remote-control dogfood resumes. Each maps to one or more findings (see **Findings tracker**) and each has an explicit verification step (see **The gate, expanded with verification**).
+Seven numbered conditions. Condition 3 is split into 3a and 3b so the auth/perimeter train can land honestly without overclaiming confidentiality. The full original gate requires every condition (including 3b) to be met. Two interim gate states are also defined below.
+
+Each condition maps to one or more findings (see **Findings tracker**) and each has an explicit verification step (see **The gate, expanded with verification**).
 
 1. **Deployed provenance proven.** We have on-disk hashes for the live `server.mjs` and the live static phone-app bundle, plus the live nginx route mapping, the PM2 env, and the git commit those artifacts were built from. The deployed tree matches the reviewed source. The live remote-control URL serves the codex-remote-control app, not the homepage.
 2. **No long-lived bearer in browser WS.** Browser uses short-lived single-use WS tickets minted by `/ws-ticket` (or equivalent). The server's URL-token fallback path that accepts `?token=ck-...` on WS upgrade is removed in production, or guarded behind an explicit dev-only flag that is off by default.
-3. **No plaintext `session.*` over relay; relay routes ciphertext only.** Browser sends ciphertext envelopes (E2EE). The server-side WS handler for remote-control payloads forwards opaque envelopes; it does not parse or log inner content.
+3. **No plaintext `session.*` over relay; relay routes ciphertext only.** Split into two halves so the auth/perimeter train can land honestly. Both must be true for the original confidentiality gate to be fully green.
+   - **3a. Server-side: relay forwards opaque envelopes.** The WS upgrade handler at `server.mjs:upgrade` and the message forwarder for `/api/codex-relay/web/<tid>` and `/api/codex-relay/daemon` may parse the **outer envelope** for routing metadata only (e.g. `session` / `sessionId` / `threadId` for per-thread isolation; an allowlist of control/presence `type` values for agent-level fan-out). They MUST NOT parse, log, transform, or branch on the encrypted ciphertext or plaintext `session.*` content. They MUST NOT broadcast unknown or malformed frames to other web sockets; unrouteable frames are dropped with a redacted operator-only warning. Closed by **code audit + the per-thread isolation fix in PR #733**. Verified before each merge of the auth/perimeter train. Reopened if any handler is added later that peeks inside the encrypted payload or fans out unrouteable frames.
+   - **3b. Client-side: browser sends ciphertext envelopes.** The phone app derives a shared secret from the daemon's pubkey (already exposed via `/api/codex-relay/bootstrap/<tid>`), encrypts each `session.*` payload, and sends the ciphertext envelope; the daemon decrypts on receipt. Closed by **F-001b**, deferred until after the auth/perimeter train. Until F-001b lands, the relay is technically able to read plaintext frames, even though the server-side does not parse them today.
 4. **WebSocket Origin allowlist.** The WS upgrade handler validates `Origin` against an explicit env-driven allowlist before bearer/ticket check. Disallowed origins receive 403. (This blocks browser CSWSH only; it does not stop a stolen bearer used by a direct WS client. That path is closed by conditions 2 and 5.)
 5. **Bearer hygiene and pre-fix log audit.** All hardcoded default `ck-...` constants are removed from source, all known defaults are rotated in production, and a pre-fix log audit confirms no `ck-` or `?token=` value remains in nginx or PM2 logs (any value found in logs is rotated immediately).
 6. **Production data-store fails closed.** The silent Prisma -> JSON fallback path is removed or guarded behind an explicit dev-only flag. If Prisma is unavailable in production, the server refuses to mint or validate auth tokens.
 7. **Basic rate limits on auth-mint and validate flows.** `/ws-ticket`, `/bootstrap`, pairing status, pairing completion, OAuth endpoints, and passkey endpoints have at least basic rate limits before real dogfood.
+
+### Gate states
+
+| State | Conditions met | Decision |
+|-------|----------------|----------|
+| **Pre-hardening dogfood** | none required | Allowed for product-side sanity check (Remote Control validates as built). Diagnoses without hardening confounds. |
+| **Auth/perimeter dogfood** | 1, 2, 3a, 4, 5, 6, 7 | Allowed after the auth/perimeter train (PRs #727, #729, #731, #732, #733, #734) merges and deploys cleanly with all post-deploy smoke tests passing. The relay can technically still read plaintext `session.*` until 3b; documented in this state. |
+| **Full confidentiality dogfood** | 1, 2, 3a, 3b, 4, 5, 6, 7 | Final gate. Requires F-001b to also land. End state for production. |
 
 ## Threat model
 
@@ -109,7 +121,8 @@ The "Shape today" column gets concrete `file:line` evidence as Lane A executes. 
 |---|-----------|---------------------|----------|
 | 1 | Deployed provenance proven | `sha256sum` of live `/var/www/wip.computer/app/mcp-server/server.mjs` vs repo at known commit; `sha256sum` of every file under deployed `app/codex-remote-control/`; `pm2 env` captured + diffed against expected; `nginx -T` excerpt for the relevant `location` blocks captured; live URL fetch returns the codex-remote-control HTML (assert on a known string from the file) | F-009 |
 | 2 | No long-lived bearer in browser WS | DevTools network panel: WS open URL contains a ticket (or no token at all if subprotocol-borne), not `ck-`; nginx access log shows ticket-shaped values only for the WS path; `/ws-ticket` is the mint path; server-side: rejecting `?token=ck-...` returns 401 in production builds | F-001 |
-| 3 | No plaintext `session.*` over relay; relay routes ciphertext only | Server logs a non-sensitive marker on the E2EE decrypt path; marker hits on every payload; relay path code review confirms no `JSON.parse` of inner content; static-grep confirms no `session.` strings handled outside E2EE wrapper | F-001 |
+| 3a | Server-side: relay forwards opaque envelopes (outer-envelope routing only) | Code audit of `server.mjs` upgrade handler + WS forwarder for `/api/codex-relay/web/<tid>` and `/api/codex-relay/daemon`. Confirm: outer-envelope `session`/`sessionId`/`threadId` parsing is permitted for per-thread routing; outer-envelope `type` allowlist is permitted for control/presence fan-out; no `JSON.parse` or `console.log` of the encrypted ciphertext / plaintext `session.*` content; unknown or malformed frames are dropped (not broadcast) with a redacted operator-only warning. Reverify before each merge of the auth/perimeter train. Same-agent different-thread isolation is in the smoke test. | F-001 (per-thread isolation in PR #733) |
+| 3b | Client-side: browser sends ciphertext envelopes | DevTools shows outbound WS frames are opaque envelopes (binary or base64 ciphertext), not JSON `session.*`. Daemon reports successful decrypt for each frame. A non-sensitive server marker hits whenever an envelope passes through. | F-001b |
 | 4 | WS Origin allowlist | Test from disallowed origin: WS upgrade rejected with 403 before bearer/ticket check; test from allowed origin: success; allowlist is env-driven, not hardcoded; nginx pass-through of `Origin` header confirmed | F-003 |
 | 5 | Bearer hygiene + log audit | `grep -RIn 'ck-' src/hosted-mcp/` returns no default-key constants; previously-known defaults rejected by `/bootstrap` and WS upgrade; log audit confirms no `ck-` or `?token=` in `/var/log/nginx/{access,error}.log`, in `pm2 logs mcp-server`, in any rotated logs; any value found in logs is rotated immediately | F-002, F-007 |
 | 6 | Production data-store fails closed | Manually break Prisma connection in a staging instance; confirm `/bootstrap`, `/ws-ticket`, OAuth, passkey paths return 5xx and refuse to mint or validate; confirm no JSON write occurs; in `LDM_DEV_MODE=1` the JSON path is allowed and clearly logged; production builds reject the dev flag | F-005a |
@@ -344,7 +357,8 @@ Consumes Lane A and Lane B output. Steps:
 
 | ID | Title | Evidence | Gate | Status |
 |----|-------|----------|------|--------|
-| F-001 | Phone app does not use E2EE / short-lived tickets; server still accepts URL-token fallback | `repos/ldm-os/wip-ldm-os-private/src/hosted-mcp/app/codex-remote-control/index.html:139` opens WS with `?token=<ck>` and sends plaintext `session.*`. Server has E2EE/ticket support at `repos/ldm-os/wip-ldm-os-private/src/hosted-mcp/server.mjs:2283` but client does not consume it; server still accepts URL-token fallback at `repos/ldm-os/wip-ldm-os-private/src/hosted-mcp/server.mjs:2396` | 2, 3 | open |
+| F-001a | Ticket wiring: phone uses subprotocol-borne single-use ticket; server URL-token fallback gated to dev | `repos/ldm-os/wip-ldm-os-private/src/hosted-mcp/app/codex-remote-control/index.html:139` opens WS with `?token=<ck>`. Server has ticket support at `repos/ldm-os/wip-ldm-os-private/src/hosted-mcp/server.mjs:2283` but client does not consume it; server still accepts URL-token fallback at `repos/ldm-os/wip-ldm-os-private/src/hosted-mcp/server.mjs:2396`. (3a is closed by code audit; this finding closes 2.) | 2 | in-progress (PR #733) |
+| F-001b | Browser-side E2EE wiring for `session.*` payloads | The daemon publishes its E2EE pubkey via `/api/codex-relay/bootstrap/<tid>` and supports `e2ee-v1`, but the phone client does not derive a shared secret or encrypt outbound frames. The relay is technically able to read plaintext `session.*` even after F-001a lands. | 3b | open (deferred until after auth/perimeter train) |
 | F-002 | Hardcoded default `ck-...` bearer keys in source | `repos/ldm-os/wip-ldm-os-private/src/hosted-mcp/server.mjs:72` | 5 | open |
 | F-003 | WebSocket upgrade does not validate Origin (CSWSH risk; browser-only defense) | `repos/ldm-os/wip-ldm-os-private/src/hosted-mcp/server.mjs:2389` authenticates token/ticket but does not check `Origin`. Note: this is a browser-only defense; A4 (direct WS client with stolen ck) is not closed by this finding alone and requires F-001 + F-002 to also land | 4 | open |
 | F-005a | Production data-store does not fail closed; silent Prisma -> JSON fallback | `repos/ldm-os/wip-ldm-os-private/src/hosted-mcp/server.mjs:60` silently falls back to JSON read/write when Prisma is unavailable; production code path can mint and validate auth tokens without the canonical store being healthy | 6 | open |
@@ -377,12 +391,13 @@ Each fix lives on its own branch. Do not stage fixes on `cc-mini/vps-security-ha
 
 | Finding | Topic | Proposed branch | Status | PR |
 |---------|-------|-----------------|--------|----|
-| F-002 + F-005a | Remove default `ck` keys + production fail-closed (Prisma unavailable refuses auth) | `cc-mini/vps-fail-closed-defaults` | not started | |
-| F-007 | Pre-fix log audit + redaction policy (nginx `log_format`, PM2 redaction); post-rotation re-scan | `cc-mini/vps-log-audit-redaction` | not started | |
-| F-003 | WebSocket Origin allowlist (env-driven) | `cc-mini/ws-origin-allowlist` | not started | |
-| F-008 | Basic rate limits on auth-mint/validate flows | `cc-mini/auth-rate-limiting` | not started | |
-| F-001 | Phone app E2EE + short-lived ticket wiring; remove URL-token fallback in production | `cc-mini/remote-control-e2ee-ticket-wiring` | not started | |
-| F-009 | Deployed provenance: hash + git commit + PM2 env + nginx route capture, deploy script writes provenance file | `cc-mini/vps-deployed-provenance` | not started | |
+| F-002 + F-005a + passkey reload | Remove default `ck` keys + production fail-closed; preserve login contract on Postgres-only passkey reload | `cc-mini/vps-fail-closed-defaults` | in-review | #727 |
+| F-007 | Pre-fix log audit + redaction policy (nginx `log_format`, PM2 redaction); post-rotation re-scan | `cc-mini/vps-log-audit-redaction` | in-review | #729 |
+| F-003 | WebSocket Origin allowlist (env-driven) | `cc-mini/ws-origin-allowlist` | in-review | #731 |
+| F-008 | Basic rate limits on auth-mint/validate flows | `cc-mini/auth-rate-limiting` | in-review | #732 |
+| F-001a | Phone app subprotocol-borne ticket; URL-token fallback gated to dev | `cc-mini/remote-control-e2ee-ticket-wiring` | in-review | #733 |
+| F-001b | Browser-side E2EE wiring for `session.*` payloads | `cc-mini/remote-control-e2ee-payload` (TBD) | not started (deferred) | |
+| F-009 | Deployed provenance: hash + git commit + PM2 env + nginx route capture, deploy script writes provenance file | `cc-mini/vps-deployed-provenance` | in-review | #734 |
 | F-004 | API key + device token hashing migration (Postgres + Prisma migration) | `cc-mini/api-key-token-hashing` | not started | |
 | F-005b | JSON backup file hardening (eliminate or encrypt + perms + retention) | `cc-mini/json-backup-hardening` | not started | |
 | F-006 | CORS scoping | `cc-mini/cors-scoped-origin` | not started | |
@@ -393,23 +408,17 @@ Each fix lives on its own branch. Do not stage fixes on `cc-mini/vps-security-ha
 
 ### Sequencing
 
-The order matches the gate's intent: stop the bleeding first, then close the perimeter, then rewire the client, then prove deployment. Dogfood resumes only after the gate is fully green.
+The auth/perimeter train (F-002, F-005a, F-007, F-003, F-008, F-001a, F-009) closes gate conditions 1, 2, 3a, 4, 5, 6, 7. F-001b closes 3b separately and is deferred. Dogfood may resume on the auth-hardened substrate after the train; full confidentiality dogfood requires F-001b.
 
-1. **Stop the bleeding (gate 5 + 6).**
-   - F-007 first: log audit. Find any leaked `ck-...` and rotate before any further live testing.
-   - F-002: remove default `ck-...` constants from source; rotate production keys.
-   - F-005a: production fail-closed; silent JSON fallback removed or guarded behind dev-only flag.
-   - These three can land together on `cc-mini/vps-fail-closed-defaults` (F-002 + F-005a) and `cc-mini/vps-log-audit-redaction` (F-007).
-2. **Close the perimeter (gate 4 + 7).**
-   - F-003: WS Origin allowlist.
-   - F-008: rate limits on auth-mint/validate flows.
-3. **Rewire the client and the WS surface (gate 2 + 3).**
-   - F-001: phone app uses E2EE + short-lived tickets; server URL-token fallback removed in production.
-4. **Prove deployment (gate 1).**
-   - F-009: capture and verify hashes, git commit, PM2 env, nginx route. Deploy script writes a provenance file (or build artifact) so future deploys are auditable.
-5. **Resume dogfood under the new gate.** Each verification step in **The gate, expanded with verification** must produce concrete evidence captured in this doc before resume.
-6. **P1 work** (F-004, F-005b, F-006) against the now-stable surface.
-7. **P2 hygiene** in parallel as time allows.
+1. **Pre-hardening dogfood** (Remote Control sanity check, on the unhardened production). Quick baseline so post-hardening regressions are easy to diagnose.
+2. **Stop the bleeding (gate 5 + 6).** Land #727 (F-002 + F-005a + passkey reload) and #729 (F-007). Rotate the four formerly-hardcoded keys in Postgres before deploy.
+3. **Close the perimeter (gate 4 + 7).** Land #731 (F-003) and #732 (F-008). Set `LDM_HOSTED_MCP_WS_ORIGIN_ALLOWLIST` in PM2 env.
+4. **Rewire the client (gate 2 + 3a).** Land #733 (F-001a). 3a is verified by code audit before merge; no code change is required for it.
+5. **Prove deployment (gate 1).** Land #734 (F-009). New `deploy.sh` writes the provenance manifest at every deploy.
+6. **Auth/perimeter dogfood.** Re-run the same Remote Control test as step 1, on the hardened substrate. All smoke tests pass.
+7. **F-001b (deferred).** Phone app derives shared secret and encrypts `session.*` payloads. Closes gate 3b. After this, the full confidentiality gate is green.
+8. **P1 work** (F-004, F-005b, F-006) against the now-stable surface.
+9. **P2 hygiene** in parallel as time allows.
 
 ## Open questions
 
@@ -422,7 +431,8 @@ The order matches the gate's intent: stop the bleeding first, then close the per
 - **OQ-7.** What is the ticket transport in gate 2? Query string with single-use short-TTL value, `Sec-WebSocket-Protocol` subprotocol, or POST + cookie? Each has tradeoffs around logging and CSRF; pick before F-001 implementation.
 - **OQ-8.** Does any current OAuth or passkey path persist tokens in `localStorage` or `sessionStorage` in the demo or remote-control app? Lane C step 4 answers.
 - **OQ-9.** What is the env signal for "production" that F-005a's fail-closed and F-001's URL-token-fallback-removal should key off? Candidates: `NODE_ENV=production`, an LDM-specific flag like `LDM_HOSTED_MCP_MODE=production`, or absence of `LDM_DEV_MODE=1`. Pick before F-002 + F-005a implementation so the same flag is consistent.
-- **OQ-10.** What is the rate-limit transport for F-008? In-process LRU per IP, an `express-rate-limit` style middleware, or nginx-side `limit_req`? Pick before F-008 implementation; nginx-side is more durable across PM2 restarts but harder to scope per-route.
+- **OQ-10.** What is the rate-limit transport for F-008? In-process LRU per IP, an `express-rate-limit` style middleware, or nginx-side `limit_req`? Pick before F-008 implementation; nginx-side is more durable across PM2 restarts but harder to scope per-route. **Resolved:** in-process Map (PR #732).
+- **OQ-11.** WebAuthn RP origin and the `kaleidoscope.wip.computer` subdomain. The `LDM_HOSTED_MCP_WS_ORIGIN_ALLOWLIST` decision (set to `https://wip.computer,https://kaleidoscope.wip.computer`) closes the WS path from both origins, but `RP_ORIGIN` in `server.mjs` is `https://wip.computer` only. Direct passkey login at `https://kaleidoscope.wip.computer/login` would fail at WebAuthn verification, separately from the WS allowlist. For now, canonical login path is `https://wip.computer/login` (proxy serves both). Multi-origin WebAuthn (RP ID = `wip.computer`, multiple allowed origins) is a separate ticket if direct kaleidoscope login is wanted.
 
 ## References
 
@@ -455,3 +465,13 @@ The order matches the gate's intent: stop the bleeding first, then close the per
   - Promoted rate limits to **F-008** (P0, gate 7): basic rate limits on auth-mint/validate flows before real dogfood.
   - Resequenced **fix order** to: stop the bleeding (F-007, F-002, F-005a) -> close the perimeter (F-003, F-008) -> rewire the client (F-001) -> prove deployment (F-009) -> resume dogfood -> P1 -> P2.
   - Added **OQ-9** (env signal for production) and **OQ-10** (rate-limit transport).
+- **2026-04-29 PST (gate split for confidentiality).** Per Parker's correction: the original gate condition 3 conflated server-side ciphertext-only routing with browser-side E2EE; closing one without the other would falsely advertise full confidentiality.
+  - Split **gate condition 3** into **3a** (server-side: relay forwards opaque envelopes; closed by code audit, no code change) and **3b** (browser-side: E2EE for `session.*` payloads; closed by **F-001b**, deferred).
+  - Split **F-001** into **F-001a** (subprotocol-borne ticket, URL-token fallback gated to dev; PR #733; closes gate 2) and **F-001b** (browser E2EE wiring; not started, deferred until after the auth/perimeter train).
+  - Added **gate states** table: pre-hardening dogfood (no conditions required), auth/perimeter dogfood (1, 2, 3a, 4, 5, 6, 7), full confidentiality dogfood (1, 2, 3a, 3b, 4, 5, 6, 7).
+  - Resolved **OQ-7** (subprotocol over query string; PR #733), **OQ-9** (`LDM_HOSTED_MCP_DEV_MODE=1` opts in; PR #727), **OQ-10** (in-process Map; PR #732).
+  - Recorded the production env decisions: `LDM_HOSTED_MCP_WS_ORIGIN_ALLOWLIST=https://wip.computer,https://kaleidoscope.wip.computer`; `LDM_HOSTED_MCP_DEV_MODE` unset; `LDM_HOSTED_MCP_ALLOW_WS_URL_TOKEN` unset.
+  - Added **OQ-11** about WebAuthn RP origin and the kaleidoscope subdomain.
+  - Updated **Sequencing** to call out pre-hardening dogfood as step 1 and the auth/perimeter dogfood as step 6, with F-001b explicitly after the train at step 7.
+  - Updated **Remediation tracker** with PR numbers (#727, #729, #731, #732, #733, #734) and `in-review` status.
+  - Tightened gate **3a** with explicit outer-envelope routing permission: the relay MAY parse `session`/`sessionId`/`threadId` and an allowlist of control/presence `type` values for routing; it MUST NOT parse the encrypted ciphertext, broadcast unknown/malformed frames, or log payload bytes. Closed by code audit **plus** the per-thread isolation commit added to PR #733 (originally tracked as Remote Control's per-thread P0). Without this commit, the daemon -> web forwarder fanned out every same-agent frame to every same-agent web socket regardless of thread, which broke isolation for any user with two threads open simultaneously.

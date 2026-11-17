@@ -1,36 +1,51 @@
-## Description: <br>
-Understand and troubleshoot computer networks with TCP/IP, DNS, routing, and diagnostic tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Understand and troubleshoot computer networks with TCP/IP, DNS, routing, and diagnostic tools.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise networking reference for understanding TCP/IP, DNS, routing, ports, firewalls, VPNs, TLS, and common diagnostic tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Packet capture and local network diagnostic output can expose hostnames, IP addresses, services, and traffic details. <br>
-Mitigation: Review and redact diagnostic output before sharing it outside the intended troubleshooting context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and engineers use this skill as a concise reference for network fundamentals, DNS, routing, common ports, SSL/TLS, VPNs, load balancing, and troubleshooting workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Network diagnostic commands can expose sensitive traffic or system details when used on production or shared systems.
+
+Mitigation: Review each diagnostic command before execution and avoid privileged packet capture unless it is necessary and authorized.
+
+Risk: Reference guidance may be incomplete for a specific environment or network policy.
+
+Mitigation: Validate recommendations against local network architecture, firewall rules, and operational procedures before making changes.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational networking guidance; no files, code, or automated actions are produced by the skill itself.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown reference guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden execution behavior; diagnostic commands should be reviewed before use on sensitive systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

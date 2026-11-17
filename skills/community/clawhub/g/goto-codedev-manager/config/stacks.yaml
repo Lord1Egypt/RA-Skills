@@ -1,0 +1,37 @@
+# 后端技术栈 → 命令映射（与 adapters/ 的编程工具轴正交）
+# MVP 仅实现 dotnet/efcore；新增技术栈在此登记并在 stacks/<name>/ 实现适配器
+
+stacks:
+  dotnet:
+    name: .NET / EF Core
+    detect:
+      # 命中任一即判定为该栈
+      files: ["*.csproj", "*.sln"]
+    migration_tool: efcore
+    commands:
+      build: dotnet build
+      test: dotnet test
+      migration_add: dotnet ef migrations add {name}
+      migration_apply: dotnet ef database update
+    # EF Core C# 类型 → 统一 Schema 类型词（供 schema_contract 转换 cloudserver UnifiedSchema）
+    type_map:
+      long: bigint
+      int: int
+      short: smallint
+      byte: tinyint
+      string: string
+      decimal: decimal
+      double: float
+      float: float
+      bool: boolean
+      DateTime: datetime
+      DateTimeOffset: datetime
+      DateOnly: date
+      Guid: uuid
+      "byte[]": bytes
+
+  # 预留扩展位（二期实现 stacks/node、stacks/python ...）
+  # node:
+  #   migration_tool: prisma
+  # python:
+  #   migration_tool: alembic

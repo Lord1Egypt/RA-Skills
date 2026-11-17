@@ -1,41 +1,55 @@
-## Description: <br>
-Forces exhaustive problem-solving with corporate PUA rhetoric after repeated failures, stalls, passive behavior, or user frustration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompts an agent to continue systematic troubleshooting, verification, and end-to-end completion after repeated task failures or stalled progress.
 
-## Publisher: <br>
-[tanweai](https://clawhub.ai/user/tanweai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanweai](https://clawhub.ai/user/tanweai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to push an agent toward persistent investigation, tool-based verification, and end-to-end completion after repeated failed attempts or stalled work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make an agent more forceful and persistent across broad task types. <br>
-Mitigation: Use it only when that behavior is intentional, and keep sandboxing and approval controls enabled. <br>
-Risk: The skill encourages broad command use and operational actions without clear safety boundaries. <br>
-Mitigation: Avoid using it for production systems, deployments, sensitive data, financial or business actions, or tasks where explicit restraint and confirmation are required. <br>
+## Use Case:
 
+Developers and operators can use this skill as a coaching prompt when an agent has failed repeatedly or is looping, to push investigation, assumption checks, and verification before completion.
 
-## Reference(s): <br>
-- [OpenPUA homepage](https://openpua.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/tanweai/pua-en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with task-checklist prompts and command-verification expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prompt broader tool use, additional verification steps, and explicit evidence reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: ClawHub release evidence) <br>
+Risk: The security scan flags the skill as suspicious because its broad, coercive coaching posture may be unsuitable as a default behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for sessions where forceful persistence is desired, and avoid use with sensitive files, credentials, production systems, paid APIs, destructive commands, high-stakes advice, or workflows that require clarification first.
+
+Risk: The artifact instructs agents to act before asking and to escalate verification pressure, which can increase unnecessary tool use or overreach.
+
+Mitigation: Pair the skill with explicit session boundaries, permission checks, and human review for actions that affect external systems or user data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanweai/skills/pua-en)
+- [Skill homepage](https://openpua.ai)
+- [Publisher profile](https://clawhub.ai/user/tanweai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with checklists, tables, and suggested verification actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May steer the agent toward additional investigation, tool use, and evidence-based completion checks.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

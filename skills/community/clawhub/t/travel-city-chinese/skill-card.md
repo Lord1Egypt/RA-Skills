@@ -1,41 +1,53 @@
-## Description: <br>
-Given a city and optional timing, origin, detail level, and focus, this skill produces a practical Simplified Chinese travel briefing with reliable sources and default U.S. and Chinese passport entry guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces practical Simplified Chinese city travel briefings with sourced current travel information and default U.S. and Chinese passport entry guidance.
 
-## Publisher: <br>
-[jiahongc](https://clawhub.ai/user/jiahongc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiahongc](https://clawhub.ai/user/jiahongc)
 
-## Use Case: <br>
-Chinese-speaking travelers, travel planners, and agents use this skill to research city trips with current official sources, practical logistics, entry requirements, transportation, payment, safety, and itinerary guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visa rules, entry requirements, fares, safety advisories, and booking availability can change quickly. <br>
-Mitigation: Review current official visa, entry, fare, and safety sources before bookings or border-crossing decisions. <br>
-Risk: The skill uses live web browsing and asks clarifying questions to prepare travel briefings. <br>
-Mitigation: Grant web access only in environments where travel research is appropriate, and review the final briefing before relying on it for decisions. <br>
+## Use Case:
 
+Travelers and travel planners use this skill to generate Simplified Chinese city briefings for trip decisions, including entry requirements, timing, neighborhoods, attractions, food, payment, local transportation, safety, and practical apps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiahongc/travel-city-chinese) <br>
-- [Publisher profile](https://clawhub.ai/user/jiahongc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown travel briefing in Simplified Chinese with named source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include visa and entry guidance, transportation details, payment notes, safety guidance, itinerary suggestions, and a source list; no files are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Live travel details such as visa rules, entry requirements, prices, schedules, events, and booking availability can change quickly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify critical travel decisions against the official sources cited in the briefing before booking or traveling.
+
+Risk: The skill performs live web searches and fetches travel-related pages, so results depend on source availability and quality at the time of use.
+
+Mitigation: Prefer official government, transport, airport, attraction, health, and tourism sources, and treat conflicting non-official sources as lower confidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiahongc/skills/travel-city-chinese)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Simplified Chinese Markdown travel briefing with named source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current travel assumptions, live-search count, cited sources, and warnings for fast-changing details.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

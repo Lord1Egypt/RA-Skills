@@ -1,41 +1,60 @@
-## Description: <br>
-Automates unread Gmail organization by applying labels, removing irrelevant labels, and archiving messages based on patterns from archived emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically organizes unread Gmail messages by applying relevant labels, removing unnecessary labels, and archiving messages based on patterns from archived email.
 
-## Publisher: <br>
-[Coenenp](https://clawhub.ai/user/Coenenp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[coenenp](https://clawhub.ai/user/coenenp)
 
-## Use Case: <br>
-Developers and Gmail power users can use this skill to run a local Gmail automation script that classifies unread messages, adjusts labels, archives matching mail, and optionally emits notifications or calendar events. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change mailbox state by applying or removing labels and archiving Gmail messages. <br>
-Mitigation: Test on a limited set of messages first, confirm the gog OAuth scopes, and keep a rollback plan for archived or mislabeled messages. <br>
-Risk: If configured, the script can forward sensitive email details to Telegram and create calendar events without those behaviors being clearly disclosed in the skill instructions. <br>
-Mitigation: Disable or tightly restrict Telegram forwarding and calendar creation unless those data flows are explicitly intended and reviewed. <br>
-Risk: Calendar command construction may allow crafted email content to affect shell execution. <br>
-Mitigation: Fix the calendar command construction before use and avoid running the script on untrusted inbox content until that issue is resolved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Coenenp/gmail-label-manager) <br>
+## Use Case:
 
+People who automate Gmail triage use this skill to classify unread messages, update labels, and archive handled messages. The artifact also supports Telegram notifications and Google Calendar event creation for selected message categories.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions and bash script behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with gog, jq, curl, Gmail access, and optional Telegram credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive email details can be forwarded to Telegram or written to logs.
+
+Mitigation: Disable Telegram forwarding unless explicitly opted in, and redact email content from notifications and logs.
+
+Risk: The script can mutate Gmail labels and archive real mailbox messages.
+
+Mitigation: Test in a dry-run mode or limited mailbox before running against a real account.
+
+Risk: Email-derived calendar fields can reach shell evaluation during Calendar event creation.
+
+Mitigation: Remove eval, sanitize calendar fields, and gate Calendar writes behind explicit review or configuration.
+
+Risk: Calendar events may be created from under-documented automated classifications.
+
+Mitigation: Document Calendar write behavior and require explicit opt-in before enabling event creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coenenp/skills/gmail-label-manager)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, configuration]
+
+**Output Format:** [Shell execution with text logs and external Gmail, Telegram, and Calendar effects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes one unread email per run by default; may modify Gmail labels and archive state, send Telegram notifications, and create Google Calendar events.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

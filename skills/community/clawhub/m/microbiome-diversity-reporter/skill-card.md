@@ -1,41 +1,54 @@
-## Description: <br>
-Interpret Alpha and Beta diversity metrics from 16S rRNA sequencing results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interpret Alpha and Beta diversity metrics from 16S rRNA sequencing results.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External developers and researchers use this skill to analyze OTU/ASV tables and sample metadata, interpret Alpha and Beta diversity metrics, and produce reproducible microbiome diversity reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency and local execution risk from running the microbiome analysis script in the user's environment. <br>
-Mitigation: Install in an isolated Python environment and review or pin dependency versions before serious use. <br>
-Risk: Input or output path mistakes could read the wrong data or replace an important existing output file. <br>
-Mitigation: Confirm the OTU/ASV input, metadata file, output format, and output path before running; avoid pointing output at an important existing file unless replacement is intended. <br>
+## Use Case:
 
+External users, developers, and researchers use this skill to run a bounded workflow for interpreting alpha and beta diversity metrics from 16S rRNA OTU or ASV tables and optional sample metadata.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/microbiome-diversity-reporter) <br>
-- [Audit Reference](references/audit-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [HTML, JSON, or Markdown reports with optional plots and statistical summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write report files to the requested output path and may include visualizations such as PCoA plots, rarefaction curves, heatmaps, and diversity summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML can include unescaped sample names or other input-derived fields from OTU/ASV and metadata files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted inputs or sanitize and escape sample names before opening or sharing HTML reports.
+
+Risk: Dependency and file boundaries are under-scoped for a local analysis script.
+
+Mitigation: Install in an isolated Python environment, review or pin dependencies, and keep input and output paths inside the workspace.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/microbiome-diversity-reporter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, HTML, shell commands, guidance]
+
+**Output Format:** [Markdown, JSON, or HTML reports with command-line execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads TSV OTU/ASV tables and optional sample metadata; writes reports to stdout or a specified workspace file.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and script header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

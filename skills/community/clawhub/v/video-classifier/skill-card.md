@@ -1,38 +1,53 @@
-## Description: <br>
-Classify unstructured long videos by selecting matching records and applying user-specified tags through a browser automation workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classifies unstructured long videos by selecting matching records in a staff video backend and applying user-provided tags.
 
-## Publisher: <br>
-[wulooongcha](https://clawhub.ai/user/wulooongcha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wulooongcha](https://clawhub.ai/user/wulooongcha)
 
-## Use Case: <br>
-Content operations users use this skill to batch classify unstructured long videos with a specified tag and quantity. It is intended for controlled staff workflows where the target filters and batch size are reviewed before records are changed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk tagging can change many video records without an enforced preview or final confirmation. <br>
-Mitigation: Require a preview of the tag, filters, target environment, and number of videos, obtain explicit approval before the write action, keep batches small, and maintain an audit or rollback path. <br>
+## Use Case:
 
+Authorized staff operators or agents use this skill to classify unstructured long videos by filtering backend records and applying a requested tag to a requested number of videos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wulooongcha/video-classifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance] <br>
-**Output Format:** [Markdown instructions for browser automation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in browser session and user-provided tag and quantity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: Bulk browser automation can apply tags to more videos than requested or to the wrong records in a logged-in staff video backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preview affected records, enforce the requested count, log affected IDs, and require explicit confirmation before clicking the final confirm action.
+
+Risk: The workflow can change records in the target staff video backend.
+
+Mitigation: Run it only from an account authorized to modify that backend and verify the session before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wulooongcha/skills/video-classifier)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Browser actions]
+
+**Output Format:** [Step-by-step browser automation workflow with concise status updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated, authorized session before changing video tags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

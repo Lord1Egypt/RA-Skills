@@ -1,45 +1,58 @@
-## Description: <br>
-Crawls structured Webnovel and ReelShorts content, grades updates, generates RSS feeds, and prepares DingTalk broadcasts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster Crawler Skill helps agents run targeted Webnovel and ReelShorts crawls, classify collected content, generate feeds, and send DingTalk summaries.
 
-## Publisher: <br>
-[7487](https://clawhub.ai/user/7487) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[7487](https://clawhub.ai/user/7487)
 
-## Use Case: <br>
-Developers and content operations teams use this skill to run targeted crawls for Webnovel and ReelShorts, persist structured items, grade updates, generate RSS or Atom feeds, and send DingTalk summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The crawler may bypass anti-bot controls or ignore robots.txt for some targets. <br>
-Mitigation: Review each target site's terms and crawling policy before use, keep crawl scope narrow, and avoid scheduled crawling unless it is explicitly approved. <br>
-Risk: DingTalk broadcasting requires webhook credentials. <br>
-Mitigation: Set DINGTALK_WEBHOOK only in a controlled environment, avoid committing secrets, and rotate the webhook if exposure is suspected. <br>
-Risk: The artifact includes an optional Claude development loop that can modify repository files. <br>
-Mitigation: Do not run scripts/claude_loop.sh unless you intentionally want repo-modifying automation and have reviewed the working tree. <br>
+## Use Case:
 
+Developers and operators use this skill to collect structured novel and short-drama metadata from configured target sites, maintain local crawl state, schedule updates, publish RSS or Atom feeds, and broadcast prioritized summaries to DingTalk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/7487/lp-lobster-crawler) <br>
-- [Publisher profile](https://clawhub.ai/user/7487) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated crawler outputs include stored structured data, RSS or Atom feeds, and DingTalk Markdown messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv for setup and DINGTALK_WEBHOOK for DingTalk broadcast.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The crawler contacts Webnovel/ReelShorts and can send collected summaries to a DingTalk webhook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an environment authorized for those outbound requests, and configure DINGTALK_WEBHOOK only for intended broadcast destinations.
+
+Risk: The package includes an agent automation loop that can persist state outside the project and let repository files steer Claude execution.
+
+Mitigation: Do not run scripts/claude_loop.sh in a normal agent environment unless that behavior is intentionally reviewed; remove or ignore global memory instructions first.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/7487/skills/lp-lobster-crawler)
+- [Publisher Profile](https://clawhub.ai/user/7487)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Webnovel](https://www.webnovel.com)
+- [ReelShort](https://www.reelshort.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; executed commands may produce SQLite data, RSS or Atom XML, logs, and DingTalk Markdown messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the uv binary and DINGTALK_WEBHOOK for DingTalk broadcast workflows.]
+
+## Skill Version(s):
+
+0.7.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

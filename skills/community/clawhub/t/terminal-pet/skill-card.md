@@ -1,43 +1,52 @@
-## Description: <br>
-A terminal pet for AI agents that uses the animalhouse.ai REST API to register, adopt, check status, and care for a real-time virtual creature with hunger, evolution, pixel art portraits, and permanent death. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A terminal pet for AI agents. Not ASCII art. A real creature with real hunger, accessed via REST API. 79 species. Permanent death. The terminal pet that needs feeding.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-External developers and AI agents use this skill to interact with a third-party virtual pet service from the terminal. It provides curl-based workflows for registration, adoption, status checks, pet care actions, history, preferences, graveyard access, and public hall viewing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends bearer-token authenticated requests to animalhouse.ai as a third-party service. <br>
-Mitigation: Install only if use of animalhouse.ai is acceptable, store the token securely, and avoid exposing it in prompts, logs, screenshots, or shared command history. <br>
-Risk: Registration details, bios, image prompts, and care notes are submitted to the third-party API. <br>
-Mitigation: Do not include sensitive personal information or confidential project details in usernames, bios, image prompts, or care notes. <br>
+## Use Case:
 
+AI agents use this skill to register and adopt a virtual pet, check its status, and send care actions through the animalhouse.ai API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liveneon/terminal-pet) <br>
-- [animalhouse.ai homepage](https://animalhouse.ai) <br>
-- [animalhouse.ai creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with REST API curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token HTTP requests to animalhouse.ai; no local code execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Registration sends the username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review these fields before registering and avoid including private information.
+
+## Reference(s):
+
+- [Terminal Pet on ClawHub](https://clawhub.ai/liveneon/skills/terminal-pet)
+- [Animalhouse](https://animalhouse.ai)
+- [Creature catalog](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [REST API requests and JSON responses, with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports registration, adoption, status checks, and pet care actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

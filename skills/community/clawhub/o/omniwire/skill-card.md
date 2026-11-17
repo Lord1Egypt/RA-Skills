@@ -1,42 +1,59 @@
-## Description: <br>
-Infrastructure layer for AI agent swarms -- 88 MCP tools for mesh control, A2A protocol, OmniMesh VPN, CyberSync, web scraping, firewall management, browser automation, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OmniWire is an infrastructure skill for AI agent swarms with MCP tools for mesh control, remote execution, A2A coordination, VPN management, CyberSync, web scraping, firewall management, and browser automation.
 
-## Publisher: <br>
-[voidchecksum](https://clawhub.ai/user/voidchecksum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[voidchecksum](https://clawhub.ai/user/voidchecksum)
 
-## Use Case: <br>
-Developers and infrastructure operators use OmniWire to let agents administer SSH-connected mesh nodes, run commands, transfer files, manage services and containers, coordinate agents, sync knowledge, and control browser or network tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give agents broad authority over servers, credentials, browser sessions, synchronization, and persistent state. <br>
-Mitigation: Install it only where agent administration is intended, begin on non-production nodes, and require explicit approval for changes to files, services, users, firewall rules, containers, cookies, VPN state, browser sessions, or shared memory. <br>
-Risk: Remote administration through SSH and exposed REST, SSE, or WebSocket transports can expand operational exposure. <br>
-Mitigation: Use dedicated non-root SSH keys, restrict exposed REST/SSE/WebSocket ports, and pin and review the npm package before deployment. <br>
+## Use Case:
 
+Developers and infrastructure operators use OmniWire to let agents administer remote machines, coordinate work across a mesh, transfer files, manage services and containers, automate browsers, and synchronize agent configuration or knowledge stores.
 
-## Reference(s): <br>
-- [OmniWire on ClawHub](https://clawhub.ai/voidchecksum/omniwire) <br>
-- [VoidChecksum publisher profile](https://clawhub.ai/user/voidchecksum) <br>
-- [omniwire npm package](https://www.npmjs.com/package/omniwire) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and tool invocation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands or configuration that affect remote nodes, files, services, users, firewall rules, browser sessions, VPN state, and shared memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.0 (source: server-resolved release metadata and frontmatter) <br>
+Risk: The skill can enable broad unattended administration of remote machines and persistent services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intentional remote-infrastructure administration, tightly gate unattended execution, and scope approved nodes and actions before use.
+
+Risk: The skill handles credentials-adjacent data, including sync stores, cookies, TOTP data, and agent configuration paths.
+
+Mitigation: Avoid syncing secrets or sensitive agent data unless each path and destination is explicitly approved.
+
+Risk: The release installs an npm package that can administer servers over SSH.
+
+Mitigation: Pin and review the npm package before installing, avoid root SSH accounts, and use least-privilege keys.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/voidchecksum/skills/omniwire)
+- [ClawHub publisher profile](https://clawhub.ai/user/voidchecksum)
+- [NPM package](https://www.npmjs.com/package/omniwire)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or invoke remote-administration workflows that require user approval, least-privilege credentials, and explicit scoping.]
+
+## Skill Version(s):
+
+3.5.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

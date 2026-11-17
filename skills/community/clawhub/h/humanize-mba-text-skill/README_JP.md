@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/Python-3.7+-blue.svg" alt="Python 3.7+">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT">
   <img src="https://img.shields.io/badge/Claude-Skill-orange.svg" alt="Claude Skill">
-  <img src="https://img.shields.io/badge/Version-1.2-brightgreen.svg" alt="Version: 1.2">
+  <img src="https://img.shields.io/badge/Version-1.5-brightgreen.svg" alt="Version: 1.5">
   <img src="https://img.shields.io/badge/Kimi-CLI-blue.svg" alt="Kimi CLI">
   <a href="README.md"><img src="https://img.shields.io/badge/中文-🇨🇳-inactive.svg" alt="中文"></a>
   <a href="README_EN.md"><img src="https://img.shields.io/badge/English-🇺🇸-inactive.svg" alt="English"></a>
@@ -26,21 +26,25 @@
 
 本ツールは**中国のMBA卒業論文**専用に設計されたAI執筆痕跡検出・除去ツールです。MBA論文の学術規範と実践的な要求に基づき、多次元的な検出手法を用いてテキスト内のAI生成特徴を識別し、具体的な修正提案を提供することで、AI生成テキストを自然で人間らしい学術的執筆スタイルに書き換えることを支援します。
 
-### ✨ バージョン1.2の新機能
+### ✨ バージョン1.5の新機能（段落単位文長CV + レポート可読性向上）
 
-- 📚 **戦略文書の追加**：3つの最適化戦略ファイルを新規追加
-  - 次元1：AI検出率の低減戦略
-  - 次元2：重複率の低減戦略
-  - 次元3：学術的推敲の向上戦略
-- 🎓 **MBA規範の詳細化**：MBA論文の核心原則と章別執筆ガイドを拡充
-- 📝 **形式規範の改善**：中国語・英語混在、図表、引用などをカバーする形式標準文書を独立整理
-- 🎯 **実践重視の強化**：データ支援、理論適用、具体的な事例分析をさらに重視
+- 📐 **段落単位文長CV分析**：`AI_artifact_detection` の手法を参考に、段落内の文長変動係数（CV）を核心となるAIシグナルとして採用。中国語はCJK文字数、英語は単語数で計測
+- 📊 **中国語CVレポート**：Markdown検出レポートの末尾に5セクション構成のCVレポートを自動追加 — 全体統計 / CV分布 / Uniform段落詳細 / 章節サマリー / 文長分布
+- 🔁 **書き換え前後の比較**：新規 `scripts/detect_compare.py` CLIを追加。書き換え前後のテキストを入力し、中国語のBefore/After比較Markdownを出力
+- 🌐 **英語検出モード（オプション）**：`sentence_length.analyze(text, language="en")` で英語散文の文長CV検出をサポート
+- 🎯 **前後文脈付き内容抜粋**：詳細問題リストの内容抜粋に、該当箇所の前後約20文字を表示し、素早く位置を特定可能
+- 📝 **修正提案を全文表示**：修正提案を省略せず、すべてのガイダンスを全文で表示
+- 📋 **Uniform段落を完全テーブル表示**：CV < 0.30 の段落をすべてテーブルで列挙。20件までの制限を撤廃
+- ⏰ **実生成タイムスタンプ**：レポートフッターに実際の生成時刻（YYYY-MM-DD HH:MM:SS）を表示
+
+> 旧バージョン（1.4 / 1.3 / 1.2）の機能は [`FEATURE.md`](FEATURE.md) にアーカイブされています。
 
 ### 核心機能
 
-- ✅ **多次元的AI検出**：ルールマッチング、統計分析、言語特徴の3つの検出手法を統合
+- ✅ **多層AI検出**：正規表現ルール → 散文統計（5次元） → 意味連鎖（10次元）の3層構成
 - ✅ **章別特定ルール**：緒論、理論、分析、提言、結論の5つの章に対応した最適化戦略
 - ✅ **MBA論文規範**：中国の大学MBA論文の字数、構造、形式要件に準拠
+- ✅ **構造化書き換えプラン**：各issueに位置・骨格・推奨置換・目標文字数を付与
 - ✅ **自動修正**：中国語・英語混在のスペースなどの簡単な問題を自動処理
 - ✅ **インテリジェントフィードバック**：詳細な修正提案と前後比較例を生成
 - ✅ **Claude Skill統合**：Claude CodeのSkillとして直接使用可能
@@ -192,6 +196,119 @@ AI痕跡を除去：[テキストを貼り付け]
 - **接続詞密度**：論理接続詞の使用頻度を統計
 - **正式表現パターン**：過度に形式的な学術表現を識別
 - **文型の複雑さ**：複雑な文型の使用状況を分析
+
+### 4. 散文構造分析器（v1.3）
+
+各分析器が `AnalyzerIssue`（analyzer_id / severity / confidence / location / evidence / suggestion）と統計指標を発行：
+
+| 次元 | analyzer_id | トリガー |
+| --- | --- | --- |
+| 6 | `uniform_sentence_length` | 文長分散・CVが閾値超過（段落+全文） |
+| 9 | `uniform_paragraph_length` | 段落間CJK長CV < 0.25 |
+| 10 | `paragraph_edge_template_repeat` | 3+ 連続段落が同一頭末指紋を共有 |
+| 8a | `paragraph_structure_uniformity` | 3+ 連続段落が同一4要素構造指紋を共有 |
+| 8b | `chapter_template_repeat` | 単一章で3+節が同一章節テンプレートを再利用 |
+
+### 5. 意味連鎖分析器（v1.3）
+
+段落や章を横断するAIパターン：
+
+| 次元 | analyzer_id | トリガー |
+| --- | --- | --- |
+| 3 | `chain_three_part_rule` | 3+ 連続段落が「一是…二是…三是」または「まず…次に…最後に」を使用 |
+| 3 | `chain_author_listing` | 単一章で4+「作者(年) 指出/认为」を列挙 |
+| 3 | `chain_method_name` | 単一段落で2+ 方法/モデル/理論名を個別説明なしで積層 |
+| 3 | `chain_abstract_template` | 単一段落が3+ 要約テンプレート語句にヒット |
+| 3 | `chain_conclusion_echo` | 結論章冒頭と緒論冒頭の文字Jaccard ≥ 0.30 |
+| 4 | `chain_vague_problem_statement` | 2+ 曖昧問題表現で30字内に数値根拠なし |
+| 4 | `chain_unsupported_quantification` | 2+ 百分率/順位主張で80字内に「根据/来源/问卷/N=」不在 |
+| 4 | `chain_macro_narrative` | 1000字ウィンドウ内で3+ マクロ物語表現 |
+| 5 | `evidence_chain_completeness` | content+evidence横断：2+ 定量化/調査主張が方法根拠不在 |
+| 5 | `cross_section_problem_trace` | 第3章の問題 ↔ 第5章の対策キーワード重複率 < 30% |
+
+### 6. 構造化書き換えプラン（v1.3）
+
+`detect_ai_patterns.AIPatternDetector.generate_report()` と `multi_detector.FusionEngine.detect()` が `modify_plan` キーを公開：
+
+```json
+{
+  "analyzer_id": "chain_unsupported_quantification",
+  "severity": "high",
+  "location": "global",
+  "evidence": "百分率/順位主張が7件、そのうち5件が80字内に根拠不在",
+  "suggestion": "各定量主張に根拠を付与",
+  "rewrite_template": "サンプル・時間窓・統計スコープを各主張に付与する。",
+  "recommended_replacements": [
+    "「2023年12月顧客アンケート（N=120）によると…」",
+    "サンプル説明：「5段階リカート尺度」",
+    "検証不能時：「本指標は別途検証が必要」",
+  ],
+  "target_word_count_range": [60, 140],
+  "before_after_example": {
+    "before": "客户满意度提升20%。",
+    "after": "根据2023年12月客户问卷（N=120），客户满意度从3.8分升至4.5分。"
+  }
+}
+```
+
+### 7. 文単位の高リスク集約（v1.4）
+
+`report["high_risk_annotations"]` は新規追加の第三配列 — **一文一エントリ** — で、`matches[]`（数百件の正規表現ヒットだが各々は汎用 `suggestion` 文字列のみ）と `modify_plan[]`（4行の集約で具体行番号なし）の間の情報断層を埋める：
+
+```json
+{
+  "sentence_index": 17,
+  "char_offset_start": 1287,
+  "char_offset_end": 1335,
+  "sentence_text": "数字化转型赋能业务创新，形成从生产到服务的完整闭环。",
+  "line_number": 24,
+  "severity": "high",
+  "triggered_rules": [
+    {
+      "rule_id": "ai_buzzwords",
+      "pattern_name": "AI词汇/互联网黑话",
+      "pattern_type": "regex",
+      "evidence": "赋能",
+      "confidence": 1.0,
+      "severity": "high",
+      "phrase_replacements": [
+        "赋能 → 促进/支持",
+        "闭环 → 闭合回路/完整流程",
+        "抓手 → 切入点/措施"
+      ],
+      "before_after_example": {
+        "before": "数字化转型赋能业务创新，形成从生产到服务的完整闭环。",
+        "after": "数字化改造使生产到售后的流程数据打通，订单处理时长从5天缩短至2天。"
+      }
+    }
+  ],
+  "rewrite_template": "把互联网黑话替换为传统管理学术语。",
+  "recommended_replacements": [
+    "赋能 → 促进/支持",
+    "闭环 → 闭合回路/完整流程"
+  ]
+}
+```
+
+**フィールドリファレンス**：
+
+| フィールド | 意味 |
+| --- | --- |
+| `sentence_text` | 元の文そのまま |
+| `char_offset_start/end` | 元テキスト内の文字オフセット（終了記号を含む） |
+| `line_number` | 元テキストの1始まりの行番号 |
+| `severity` | この文で発火した全ルール中の最高重大度 |
+| `triggered_rules[].rule_id` | 例：`ai_buzzwords`、`empty_solution_verbs`、`chain_three_part_rule` |
+| `triggered_rules[].phrase_replacements` | TOML `phrase_replacements` から。コピー＆ペースト可能な語句置換 |
+| `triggered_rules[].before_after_example` | TOML `[[categories.examples]]` から。実リライトペア |
+| `rewrite_template` | `rewrite_planner._SKELETONS` から。この文の最高優先度ルールの骨格 |
+| `recommended_replacements` | 起動した全ルールの `phrase_replacements` の重複排除合併 |
+
+**保証**：
+
+- severity 高→低 → `char_offset_start` 昇順でソート — LLM humanizer agent に文単位で投入可能
+- 同じ文に複数ルール → 一つの annotation、`triggered_rules[]` に集約
+- 既存の `matches` / `modify_plan` / `summary` / `metrics` フィールドは**完全に不変**
 
 ---
 
@@ -406,11 +523,11 @@ humanize-mba-text-skill/
 ├── SKILL.md                          # Claude Skillメインファイル
 ├── README.md                         # 中国語版
 ├── README_EN.md                      # 英語版
+├── README_JP.md                      # 日本語版（このファイル）
 ├── README_KR.md                      # 韓国語版
-├── README_JP.md                      # 日本語版
 ├── LICENSE                           # MITライセンス
 │
-├── references/                       # 参考文書
+├── references/                       # 参考文書 + AI検出ルール
 │   ├── ai-writing-patterns.md        # AI執筆特徴詳細ガイド
 │   ├── chapter-1-introduction.md     # 第1章：緒論執筆ガイド
 │   ├── chapter-2-theory.md           # 第2章：理論基礎執筆ガイド
@@ -418,14 +535,39 @@ humanize-mba-text-skill/
 │   ├── chapter-4-solutions.md        # 第4章：対策提言執筆ガイド
 │   ├── chapter-5-conclusion.md       # 第5章：結論執筆ガイド
 │   ├── format-standards.md           # 形式規範
-│   ├── strategy_ai_reduction.md      # AI検出率低減戦略 ⭐新規
-│   ├── strategy_plagiarism.md        # 重複率低減戦略 ⭐新規
-│   └── strategy_polishing.md         # 学術的推敲向上戦略 ⭐新規
+│   ├── strategy_ai_reduction.md      # AI検出率低減戦略
+│   ├── strategy_plagiarism.md        # 重複率低減戦略
+│   ├── strategy_polishing.md         # 学術的推敲向上戦略
+│   ├── chinese-paper-humanization-rules.toml   # ルール単一入口（フォールバック）
+│   └── rules/                        # ⭐v1.3：漸進読み込み対応AIルール
+│       ├── index.toml                #   軽量マニフェスト
+│       ├── categories/
+│       │   ├── structure.toml        #   構造カテゴリ
+│       │   ├── rhythm_quality.toml  #   リズムカテゴリ
+│       │   ├── formatting.toml       #   形式カテゴリ
+│       │   ├── content.toml          #   内容（マクロ物語/曖昧問題/無出所数量化を含む）
+│       │   ├── evidence.toml         #   証拠（方法未記載/因果飛躍を含む）
+│       │   └── language.toml         #   言語カテゴリ
+│       ├── chapter-categories.toml  #   章節タイプ分類
+│       └── metrics.toml              #   共通度量語彙
 │
 └── scripts/                          # 検出スクリプト
-    ├── detect_ai_patterns.py         # 基礎ルール検出
-    ├── multi_detector.py             # 多次元融合検出器
-    └── feedback_generator.py         # フィードバック生成器
+    ├── rule_loader.py                # ⭐v1.3：TOMLルール漸進読み込みローダー
+    ├── detect_ai_patterns.py         # AIPatternDetectorエントリ（modify_plan付き）
+    ├── multi_detector.py             # FusionEngineエントリ
+    ├── feedback_generator.py         # フィードバック生成器
+    └── analyzers/                    # ⭐v1.3：分析器パッケージ
+        ├── __init__.py               #   run_prose_analyzers / run_semantic_chain_analyzers / build_modify_plan を公開
+        ├── _types.py                 #   AnalyzerIssue / AnalyzerReport データ契約
+        ├── _segments.py              #   共通セグメンテーションヘルパー
+        ├── _regex_categories.py      #   hitレベルラッパー（連鎖層用）
+        ├── sentence_length.py        #   次元 6
+        ├── paragraph_length.py       #   次元 9
+        ├── paragraph_edges.py        #   次元 10
+        ├── paragraph_structure.py    #   次元 8a
+        ├── chapter_template.py       #   次元 8b
+        ├── semantic_chain.py         #   次元 3/4/5：10連鎖分析器
+        └── rewrite_planner.py        #   AnalyzerIssue → 構造化ModifyEntry
 ```
 
 ---
@@ -490,6 +632,35 @@ IssueとPull Requestの提出を歓迎します！
 
 ## 📝 更新履歴
 
+### v1.4.0 (2026-07-05)
+
+- 🧭 **`high_risk_annotations[]` 文単位集約**：`detect_ai_patterns.generate_report` のJSON出力に新規トップレベルキー。正規表現ヒットと構造/連鎖issueを文単位でマージ。各行は文レベルの文字オフセット・元文・起動した全ルール・ルール毎のフレーズ置換・実リライトペアを保持
+- 🔁 **TOML `phrase_replacements` フィールド**：4つの高頻度ルールに語句レベルの置換マッピングを付与（`ai_buzzwords` / `empty_solution_verbs` / `vague_attribution` / `unsupported_quantification`）。v2 LLMフォールバック用フックも予約済み
+- 📐 **`ModifyEntry.before_after_example`**：`modify_plan` 全行への additive フィールド — Noneまたは`{before, after}` — `[[categories.examples]]` をソースとする
+- 🆕 **`scripts/analyzers/high_risk_annotator.py`**：新規モジュール。文セグメンテーション（文字オフセット付き）+ 二系統バケッティング（正規表現は行番号 / issue は location + evidence 部分文字列）+ 重大度ソート。`detect_ai_patterns.py` とは lazy import で疎結合
+- ✅ **後方互換**：既存 `matches` / `modify_plan` / `summary` / `metrics` のフィールド順・型は不変。`target_word_count_range` は2要素 list を維持。117テスト全パス
+
+### v1.3.0 (2026-07-05)
+
+#### 本体リリース — `feat: rule-driven AI-trace detection with prose + semantic-chain analyzers`
+
+- 🔬 **ルール外部化**：全AI検出ルールを外部TOMLへ移管し、7カテゴリに分割。`scripts/rule_loader.py`が漸進読み込みを提供
+- 📊 **散文構造分析器**：5つの統計/指紋分析器を追加（次元 6 / 8a / 8b / 9 / 10）
+- 🔗 **意味連鎖分析器**：10の段落/章節横断連鎖分析器を追加（次元 3 / 4 / 5）
+- 📋 **構造化書き換えプラン**：`detect_ai_patterns.generate_report` が `modify_plan` キーを返すように
+- 🎯 **統一ルールソース**：`AIPatternDetector` / `StatisticalDetector` / `FeedbackGenerator` が同じTOMLルール文書を共有
+- 🛠 **新規 `scripts/analyzers/` パッケージ**：散文+連鎖分析器の統合ディレクトリ
+
+#### v1.3.0 増分
+
+- 📐 **SKILL.md Harris式分割**：576 → 197 行（-66%）；識別・書き換え戦略 / 3D最適化+評価 / 改写チェックリスト / 章節別ルールを `references/strategy_optimization.toml` / `mba_rewrite_checklist.toml` / `chapter_rewrite_rules.toml` にデータ化；SKILL.md は案内役のみ
+- 🔁 **[humanizer-academic-zh](https://github.com/cangtianhuang/humanizer-academic-zh) との相互参照**：検出（当プロジェクト）↔ 書き換え（相手プロジェクト）が補完関係；パターン 21-25 を漸進ロード manifest 経由で `references/rules/categories/*.toml` に統合
+- 📊 **ルールデータ拡張**：
+  - `filler_phrases`（パターン 21 フィラー）：5 → 8 個 regex
+  - `chatbot_conversation_residue`（パターン 23 チャット口調）：4 → 7 個 regex
+  - 新規 `sycophantic_praise`（パターン 25 お世辞）：9 個 regex + 3 個 before/after 例、severity=medium / weight=0.5
+- 🌐 **多言語 README 同期**：v1.3.0 内容を中 / 英 / 日 / 韓 4 言語 README に同期；謝辞と関連プロジェクト節はどちらも `humanizer-academic-zh` に相互リンク
+
 ### v1.2.0 (2026-03-11)
 
 - 📚 **戦略文書の追加**：3つの最適化戦略ファイルを新規追加
@@ -544,6 +715,7 @@ IssueとPull Requestの提出を歓迎します！
 - Kimi CLIが提供するAgent並列実行ツールに感謝
 - フィードバックと提案を提供してくださったすべてのユーザーに感謝
 - **特別に[Haimbeau1o/thesis-optimizer](https://github.com/Haimbeau1o/thesis-optimizer)プロジェクトに感謝**。本プロジェクトの三次元協同最適化戦略（AI検出率低減、重複率低減、学術的推敲向上）は、同プロジェクトの優れた設計を参考にしています
+- **書き換え戦略参考：[cangtianhuang/humanizer-academic-zh](https://github.com/cangtianhuang/humanizer-academic-zh)**。本プロジェクトは「検出+定量位置特定」の経路を取り、当該プロジェクトは「書き換え+推敲」の経路を取る。同プロジェクトの25類セマンティックパターン（表現/言語/スタイル/フィラー/コミュニケーション残滓の5大類に分類）のうち「パターン21-25」を本プロジェクトSKILL.mdの補足参考節で相互参照
 
 ---
 
@@ -557,6 +729,7 @@ IssueとPull Requestの提出を歓迎します！
 ## 🔗 関連プロジェクト
 
 - [thesis-optimizer](https://github.com/Haimbeau1o/thesis-optimizer) - 学術論文インテリジェント最適化システム（コンピュータ深層学習方向）
+- [cangtianhuang/humanizer-academic-zh](https://github.com/cangtianhuang/humanizer-academic-zh) - Humanizer 中文学術版：本プロジェクトの「検出＋定量位置特定」経路を補完する「書き換え＋推敲」Skill。25類セマンティックパターンは表現/言語/スタイル/フィラー/コミュニケーション残滓の5大類に分類。本プロジェクトv1.3.0でパターン21〜25を漸進ロードTOML（`references/rules/categories/*.toml`）に統合（`filler_phrases`強化、`chatbot_conversation_residue`強化、`sycophantic_praise`新規追加など）。
 
 ---
 

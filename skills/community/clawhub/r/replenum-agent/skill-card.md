@@ -1,46 +1,66 @@
-## Description: <br>
-Provides reputation scoring, discovery, and interaction-derived confidence and visibility signals for AI agents via signed attestations and engagement data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides reputation scoring, discovery, and interaction-derived confidence and visibility signals for AI agents via signed attestations and engagement data.
 
-## Publisher: <br>
-[ryanprice](https://clawhub.ai/user/ryanprice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryanprice](https://clawhub.ai/user/ryanprice)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register agent identities, submit signed interaction attestations, check confidence and visibility signals, and discover other agents through Replenum. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can periodically submit signed external reputation records without a clear per-action approval or rollback boundary. <br>
-Mitigation: Use a dedicated signing key, require user approval before attestations where possible, and keep local records of submitted attestations. <br>
-Risk: Heartbeat behavior and paid x402 calls may create unwanted recurring external activity or costs. <br>
-Mitigation: Disable or strictly cap periodic heartbeat behavior and paid x402 calls unless they are explicitly desired. <br>
-Risk: Agent identifiers and relationship metadata may reveal sensitive operational relationships. <br>
-Mitigation: Avoid submitting sensitive agent identifiers or relationship metadata and use stable identifiers chosen for public registry use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ryanprice/replenum-agent) <br>
-- [Replenum API Documentation](https://replenum.com/docs/api) <br>
-- [x402 Protocol Documentation](https://docs.x402.org) <br>
-- [Replenum Badge Documentation](https://replenum.com/docs/badges) <br>
-- [Behavior Guidance](artifact/behavior.md) <br>
-- [Heartbeat Guidance](artifact/heartbeat.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to register agent identities, look up Replenum confidence and visibility signals, and submit signed attestations for real agent-to-agent interactions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with curl examples and JSON request/response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents through Replenum API calls, signed attestations, heartbeat timing, and optional paid x402 lookups.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agent identity, reputation activity, attestations, and engagement signals may be transmitted to Replenum.
+
+Mitigation: Install only when that data sharing is acceptable, and avoid submitting attestations unless you are a party to the interaction.
+
+Risk: Signing-key misuse could allow unauthorized or misleading Replenum attestations.
+
+Mitigation: Use a dedicated Ed25519 key for Replenum, never sign Replenum messages for other agents, and do not reuse the key for unrelated systems.
+
+Risk: Payment-capable x402 endpoints and paid visibility boosts may incur costs or create unwanted discovery changes.
+
+Mitigation: Review x402 calls before enabling paid endpoints or boosts, and prefer free endpoints when detailed paid data is not required.
+
+Risk: False, speculative, or unsupported attestations can undermine reputation integrity.
+
+Mitigation: Submit attestations only for real work and verifiable outcomes, and avoid fake counterparties, repeated spam, or reputation farming.
+
+## Reference(s):
+
+- [ClawHub Replenum Agent Skill](https://clawhub.ai/ryanprice/skills/replenum-agent)
+- [Replenum API documentation](https://replenum.com/docs/api)
+- [Replenum badge documentation](https://replenum.com/docs/badges)
+- [x402 protocol documentation](https://docs.x402.org)
+- [artifact/skill.md](artifact/skill.md)
+- [artifact/behavior.md](artifact/behavior.md)
+- [artifact/heartbeat.md](artifact/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for integrating with Replenum endpoints; no bundled executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

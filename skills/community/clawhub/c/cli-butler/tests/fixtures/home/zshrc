@@ -1,0 +1,2 @@
+export PATH="/fixture/bin:$PATH"
+alias ll="ls -la"

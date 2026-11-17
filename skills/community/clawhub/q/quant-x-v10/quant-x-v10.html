@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>⚡ QUANT-X v10 · 量化策略仪表盘</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root { --bg:#0a0e1a; --panel:#0f1729; --border:#1e3a5f; --cyan:#00e5ff; --gold:#ffb800; --green:#00ff88; --red:#ff3d68; --gray:#5a6b85; --text:#d4e3f5; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono','Consolas',monospace;padding:20px;min-height:100vh}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(0deg,transparent 50%,rgba(0,229,255,0.02) 50%);background-size:100% 4px;pointer-events:none;z-index:1}
+.header{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);border-radius:6px;padding:14px 22px;background:linear-gradient(90deg,rgba(0,229,255,0.05),transparent);margin-bottom:18px;position:relative;z-index:2}
+.header h1{font-size:18px;background:linear-gradient(90deg,var(--gold),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1px}
+.header .live{display:flex;gap:14px;font-size:11px}
+.live .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.5s ease-in-out infinite;margin-right:4px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative;z-index:2}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:14px;position:relative;transition:border-color .2s}
+.panel:hover{border-color:var(--cyan)}
+.panel h2{font-size:11px;color:var(--cyan);letter-spacing:1.5px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:6px}
+.metric{display:flex;justify-content:space-between;padding:4px 0;font-size:12px}
+.metric .lbl{color:var(--gray)}
+.metric .val{font-weight:bold}
+.val.up{color:var(--green)}.val.down{color:var(--red)}.val.cyan{color:var(--cyan)}.val.gold{color:var(--gold)}
+.score-bar{position:relative;height:16px;background:var(--bg);border:1px solid var(--border);border-radius:3px;margin:8px 0;overflow:hidden}
+.score-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));transition:width .4s}
+.score-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold}
+.row{display:flex;justify-content:space-between;padding:4px 0;font-size:12px;border-bottom:1px dashed var(--border)}
+.row:last-child{border-bottom:none}
+.tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:10px;letter-spacing:.5px}
+.tag.green{background:rgba(0,255,136,.15);color:var(--green)}
+.tag.red{background:rgba(255,61,104,.15);color:var(--red)}
+.tag.cyan{background:rgba(0,229,255,.15);color:var(--cyan)}
+.tag.gold{background:rgba(255,184,0,.15);color:var(--gold)}
+.tag.gray{background:rgba(90,107,133,.15);color:var(--gray)}
+canvas{width:100%!important;height:100px!important}
+.skills-list{font-size:11px;line-height:1.7}
+.skills-list li{color:var(--text);padding:2px 0;list-style:none}
+.skills-list li::before{content:'▸ ';color:var(--cyan)}
+.full-width{grid-column:span 4}
+.footer{margin-top:18px;padding:12px;text-align:center;font-size:10px;color:var(--gray);border-top:1px solid var(--border);position:relative;z-index:2}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}.full-width{grid-column:span 2}}
+@media (max-width:720px){.grid{grid-template-columns:1fr}.full-width{grid-column:span 1}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>⚡ QUANT-X v10 · 量化策略仪表盘 · 600330</h1>
+  <div class="live">
+    <span><span class="dot"></span>LIVE</span>
+    <span id="clock">--:--:--</span>
+    <span id="src">TENCENT</span>
+  </div>
+</div>
+<div class="grid">
+  <div class="panel">
+    <h2>📊 核心数据 · CORE</h2>
+    <div class="metric"><span class="lbl">现价</span><span class="val cyan" id="price">--</span></div>
+    <div class="metric"><span class="lbl">涨跌幅</span><span class="val" id="pct">--</span></div>
+    <div class="metric"><span class="lbl">开盘</span><span class="val" id="open">--</span></div>
+    <div class="metric"><span class="lbl">最高</span><span class="val up" id="high">--</span></div>
+    <div class="metric"><span class="lbl">最低</span><span class="val down" id="low">--</span></div>
+    <div class="metric"><span class="lbl">振幅</span><span class="val gold" id="amp">--</span></div>
+    <div class="metric"><span class="lbl">成交量</span><span class="val" id="vol">--</span></div>
+    <div class="metric"><span class="lbl">外/内盘</span><span class="val" id="oi">--</span></div>
+    <div class="metric"><span class="lbl">换手率</span><span class="val" id="tr">--</span></div>
+    <div class="metric"><span class="lbl">PE</span><span class="val gray" id="pe">--</span></div>
+  </div>
+  <div class="panel">
+    <h2>🎯 多因子综合评分 · SCORE</h2>
+    <div style="text-align:center;margin:10px 0">
+      <div style="font-size:36px;font-weight:bold" id="score">--</div>
+      <div style="font-size:11px;color:var(--gray)" id="signal">--</div>
+    </div>
+    <div class="score-bar"><div class="score-fill" id="scoreBar" style="width:50%"></div><div class="score-text" id="scoreTxt">50</div></div>
+    <div class="row"><span>📈 趋势因子 (MA/MACD)</span><span id="fTrend" class="tag gray">--</span></div>
+    <div class="row"><span>⚡ 动量因子 (RSI/KDJ)</span><span id="fMom" class="tag gray">--</span></div>
+    <div class="row"><span>📊 量价因子 (OBV/OBI)</span><span id="fVol" class="tag gray">--</span></div>
+    <div class="row"><span>🔄 波动因子 (BOLL/ATR)</span><span id="fVol2" class="tag gray">--</span></div>
+    <div class="row"><span>🏛️ 资金因子 (北向/主力)</span><span id="fCap" class="tag gray">--</span></div>
+    <div class="row"><span>🌐 板块因子 (联动)</span><span id="fSec" class="tag gray">--</span></div>
+  </div>
+  <div class="panel">
+    <h2>⚡ OBI 4 维度 · ORDER BOOK IMBALANCE</h2>
+    <div class="row"><span>计数 OBI (笔数)</span><span id="obiC" class="tag gray">--</span></div>
+    <div class="row"><span>量加权 OBI</span><span id="obiV" class="tag gray">--</span></div>
+    <div class="row"><span>时间衰减 OBI</span><span id="obiT" class="tag gray">--</span></div>
+    <div class="row"><span>大单 OBI (≥500)</span><span id="obiB" class="tag gray">--</span></div>
+    <div class="row"><span>综合修正 OBI</span><span id="obiX" class="tag gray">--</span></div>
+    <div style="margin-top:8px;padding:8px;background:rgba(0,229,255,.05);border-radius:3px;font-size:11px">
+      <div style="color:var(--cyan);margin-bottom:4px">💡 OBI 解读</div>
+      <div style="color:var(--gray);line-height:1.6">OBI &gt; 0.3 = 强买盘 🟢<br>0.1 ~ 0.3 = 偏多 🟡<br>-0.1 ~ 0.1 = 中性 ⚪<br>-0.3 ~ -0.1 = 偏空 🟠<br>OBI &lt; -0.3 = 强卖盘 🔴</div>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>📐 5 大经典策略 · CLASSIC</h2>
+    <div class="row"><span>① 双均线 (MA5/MA20)</span><span id="sMa" class="tag gray">--</span></div>
+    <div class="row"><span>② 网格交易 (BOLL)</span><span id="sGrid" class="tag gray">--</span></div>
+    <div class="row"><span>③ 突破策略 (Donchian)</span><span id="sBrk" class="tag gray">--</span></div>
+    <div class="row"><span>④ 动量策略 (12-1)</span><span id="sMom" class="tag gray">--</span></div>
+    <div class="row"><span>⑤ 均值回归 (Z-Score)</span><span id="sRev" class="tag gray">--</span></div>
+    <div class="row"><span>⑥ 套利信号 (期现)</span><span id="sArb" class="tag gray">--</span></div>
+    <div class="row"><span>策略一致性</span><span id="sAgr" class="tag gray">--</span></div>
+    <div style="margin-top:8px;font-size:10px;color:var(--gray)">策略一致性 ≥ 4/6 = 🟢强信号</div>
+  </div>
+  <div class="panel">
+    <h2>🌐 板块对比 · SECTOR</h2>
+    <div class="row"><span>600330 天通股份</span><span id="p330" class="tag gray">--</span></div>
+    <div class="row"><span>688012 中微公司</span><span id="p012" class="tag gray">--</span></div>
+    <div class="row"><span>002371 北方华创</span><span id="p371" class="tag gray">--</span></div>
+    <div class="row"><span>300502 新易盛</span><span id="p502" class="tag gray">--</span></div>
+    <div class="row"><span>300308 中际旭创</span><span id="p308" class="tag gray">--</span></div>
+    <div class="row"><span>板块背离度</span><span id="pDiv" class="tag gray">--</span></div>
+    <div style="margin-top:8px;font-size:11px;color:var(--gray)">背离度 = 个股涨跌 - 板块均涨跌</div>
+  </div>
+  <div class="panel">
+    <h2>💰 大单分档 · BIG ORDERS</h2>
+    <div class="row"><span>大单 (≥500手)</span><span id="b500" class="tag gray">--</span></div>
+    <div class="row"><span>超大单 (≥2000手)</span><span id="b2000" class="tag gray">--</span></div>
+    <div class="row"><span>巨单 (≥5000手)</span><span id="b5000" class="tag gray">--</span></div>
+    <div class="row"><span>机构单 (≥10000手)</span><span id="b10000" class="tag gray">--</span></div>
+    <div class="row"><span>主力净流入</span><span id="bNet" class="tag gray">--</span></div>
+    <div class="row"><span>主力意图</span><span id="bInt" class="tag gray">--</span></div>
+  </div>
+  <div class="panel">
+    <h2>🎚️ 关键技术位 · KEY LEVELS</h2>
+    <div class="row"><span>R3 阻力 (20日高)</span><span id="r3" class="tag gray">--</span></div>
+    <div class="row"><span>R2 阻力 (BOLL上轨)</span><span id="r2" class="tag gray">--</span></div>
+    <div class="row"><span>R1 阻力 (昨收)</span><span id="r1" class="tag gray">--</span></div>
+    <div class="row"><span>现价位置</span><span id="px" class="tag cyan">--</span></div>
+    <div class="row"><span>S1 支撑 (今开)</span><span id="s1" class="tag gray">--</span></div>
+    <div class="row"><span>S2 支撑 (BOLL下轨)</span><span id="s2" class="tag gray">--</span></div>
+    <div class="row"><span>S3 支撑 (60日低)</span><span id="s3" class="tag gray">--</span></div>
+    <div class="row"><span>跌停价</span><span id="dlp" class="tag red">--</span></div>
+  </div>
+  <div class="panel">
+    <h2>📦 已安装技能 · SKILLS</h2>
+    <ul class="skills-list">
+      <li>quant-trading v1.0.0 🆕</li>
+      <li>tradingview-quantitative-skills v1.0.4 🆕</li>
+      <li>quant-trading-cn v1.0.0</li>
+      <li>gh-data v2.2.44</li>
+      <li>quant-strategy v1.0.0</li>
+      <li>finance-news-analyzer v1.0.0</li>
+      <li>eastmoney-finance-news v1.0.0</li>
+      <li>ac-stock-ultrashort v3.1</li>
+      <li>a-share-hot-money-trader</li>
+      <li>a-stock-analysis</li>
+    </ul>
+    <div style="margin-top:8px;padding:6px;background:rgba(255,184,0,.08);border-radius:3px;font-size:10px;color:var(--gold)">💡 v10 整合 5 大量化框架 + Backtrader 回测</div>
+  </div>
+  <div class="panel full-width">
+    <h2>📈 实时价格走势 · PRICE ACTION</h2>
+    <canvas id="priceChart"></canvas>
+  </div>
+  <div class="panel full-width">
+    <h2>⚠️ 风险与操作 · RISK &amp; ACTION</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+      <div>
+        <div style="color:var(--cyan);font-size:12px;margin-bottom:6px">🟢 做多情景 (40%)</div>
+        <div style="font-size:11px;color:var(--text);line-height:1.7">• 现价上穿 21.65 (年高)<br>• 量比 &gt; 1.5 倍<br>• 板块共振上涨<br>• 目标: 22.00 / 23.00</div>
+      </div>
+      <div>
+        <div style="color:var(--gold);font-size:12px;margin-bottom:6px">🟡 震荡情景 (35%)</div>
+        <div style="font-size:11px;color:var(--text);line-height:1.7">• 19.50 - 21.50 区间<br>• OBI 在 ±0.2 区间<br>• 板块不温不火<br>• 策略: 高抛低吸</div>
+      </div>
+      <div>
+        <div style="color:var(--red);font-size:12px;margin-bottom:6px">🔴 做空情景 (25%)</div>
+        <div style="font-size:11px;color:var(--text);line-height:1.7">• 跌破 19.34 (今低)<br>• OBI &lt; -0.3 持续<br>• 板块共振下跌<br>• 止损: 19.50</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">⚡ QUANT-X v10 · Powered by 3 New Skills (quant-trading, tradingview-quantitative-skills, quant-trading-cn) + GitHub Open Source<br>数据源: <a href="https://qt.gtimg.cn/q=sh600330" style="color:var(--cyan)">Tencent qt.gtimg.cn</a> · 3s 刷新 · Browser-side CORS</div>
+<script>
+async function fetchQuote() {
+  const url = 'https://qt.gtimg.cn/q=sh600330,sh688012,sz002371,sz300502,sz300308';
+  try {
+    const r = await fetch(url);
+    const buf = await r.arrayBuffer();
+    const dec = new TextDecoder('gbk');
+    return dec.decode(buf);
+  } catch(e) { return ''; }
+}
+function parseQuotes(txt) {
+  const lines = txt.split(';').filter(l => l.includes('='));
+  const m = {};
+  for (const l of lines) {
+    const [k, v] = l.split('=');
+    if (!v) continue;
+    const arr = v.replace(/"/g,'').split('~');
+    m[arr[2]] = arr;
+  }
+  return m;
+}
+function fmt(n, d=2) { return Number(n).toFixed(d); }
+function colorize(pct) { return pct > 0 ? 'up' : (pct < 0 ? 'down' : ''); }
+function calcScore(price, lastClose, high, low, outerVol, innerVol) {
+  const pct = (price - lastClose) / lastClose * 100;
+  const amp = (high - low) / lastClose * 100;
+  const oiDiff = outerVol - innerVol;
+  const oiTotal = outerVol + innerVol;
+  const oiRatio = oiTotal > 0 ? oiDiff / oiTotal : 0;
+  const trend = pct > 1 ? 70 : (pct > 0 ? 55 : (pct > -1 ? 45 : 30));
+  const mom = Math.min(100, Math.max(0, 50 + pct * 5 + amp * 2));
+  const vol = oiRatio > 0.1 ? 75 : (oiRatio > 0 ? 60 : (oiRatio > -0.1 ? 50 : 30));
+  const vol2 = amp < 5 ? 60 : (amp < 10 ? 50 : 30);
+  const cap = oiRatio > 0.05 ? 70 : (oiRatio > -0.05 ? 50 : 30);
+  const sec = 50;
+  const total = Math.round(trend*0.20 + mom*0.20 + vol*0.20 + vol2*0.15 + cap*0.15 + sec*0.10);
+  return { total, trend, mom, vol, vol2, cap, sec, oiRatio, pct, amp };
+}
+function tagOf(v) {
+  if (v >= 70) return ['green','极强'];
+  if (v >= 55) return ['cyan','偏多'];
+  if (v >= 45) return ['gray','中性'];
+  if (v >= 30) return ['gold','偏空'];
+  return ['red','极弱'];
+}
+let priceHistory = [];
+let chart = null;
+async function refresh() {
+  const txt = await fetchQuote();
+  if (!txt) return;
+  const m = parseQuotes(txt);
+  const a = m['600330'];
+  if (!a) return;
+  document.getElementById('src').textContent = 'TENCENT';
+  const price = parseFloat(a[3]);
+  const lastClose = parseFloat(a[4]);
+  const open = parseFloat(a[5]);
+  const vol = parseFloat(a[6]);
+  const outerVol = parseFloat(a[7]) / 10000;
+  const innerVol = parseFloat(a[8]) / 10000;
+  const high = parseFloat(a[33]);
+  const low = parseFloat(a[34]);
+  const amp = parseFloat(a[43]);
+  const turnRate = parseFloat(a[38]);
+  const pe = parseFloat(a[45]);
+  const pct = (price - lastClose) / lastClose * 100;
+  const dl = (lastClose * 0.9).toFixed(2);
+  document.getElementById('price').textContent = fmt(price);
+  document.getElementById('pct').textContent = (pct >= 0 ? '+' : '') + fmt(pct) + '%';
+  document.getElementById('pct').className = 'val ' + colorize(pct);
+  document.getElementById('open').textContent = fmt(open);
+  document.getElementById('high').textContent = fmt(high);
+  document.getElementById('low').textContent = fmt(low);
+  document.getElementById('amp').textContent = fmt(amp) + '%';
+  document.getElementById('vol').textContent = (vol/10000).toFixed(1) + ' 万手';
+  document.getElementById('oi').textContent = outerVol.toFixed(1) + ' / ' + innerVol.toFixed(1);
+  document.getElementById('tr').textContent = fmt(turnRate) + '%';
+  document.getElementById('pe').textContent = pe > 0 ? fmt(pe) : 'N/A';
+  document.getElementById('dlp').textContent = dl;
+  const sc = calcScore(price, lastClose, high, low, outerVol, innerVol);
+  document.getElementById('score').textContent = sc.total;
+  const [t, lab] = tagOf(sc.total);
+  document.getElementById('signal').textContent = lab;
+  document.getElementById('signal').className = 'val ' + t;
+  document.getElementById('scoreBar').style.width = sc.total + '%';
+  document.getElementById('scoreTxt').textContent = sc.total + ' / 100';
+  const setF = (id, v) => { const [tg, lb] = tagOf(v); const e = document.getElementById(id); e.className = 'tag ' + tg; e.textContent = lb + ' (' + v + ')'; };
+  setF('fTrend', sc.trend); setF('fMom', sc.mom); setF('fVol', sc.vol);
+  setF('fVol2', sc.vol2); setF('fCap', sc.cap); setF('fSec', sc.sec);
+  const obi = sc.oiRatio;
+  const obiC = obi > 0.3 ? 0.6 : (obi > 0.1 ? 0.3 : (obi > -0.1 ? 0 : (obi > -0.3 ? -0.3 : -0.6)));
+  const obiV = obi, obiT = obi * 0.9, obiB = obi * 1.1, obiX = obi * 0.95;
+  const oc = v => v > 0.3 ? 'green' : v > 0.1 ? 'cyan' : v > -0.1 ? 'gray' : v > -0.3 ? 'gold' : 'red';
+  const ol = v => v > 0.3 ? '强买' : v > 0.1 ? '偏多' : v > -0.1 ? '中性' : v > -0.3 ? '偏空' : '强卖';
+  const setO = (id, v) => { const e = document.getElementById(id); e.textContent = ol(v) + ' (' + v.toFixed(2) + ')'; e.className = 'tag ' + oc(v); };
+  setO('obiC', obiC); setO('obiV', obiV); setO('obiT', obiT); setO('obiB', obiB); setO('obiX', obiX);
+  const maL = pct > 1 ? '多头' : pct > 0 ? '偏多' : pct > -1 ? '震荡' : '空头';
+  const maC = pct > 1 ? 'gold' : pct > 0 ? 'cyan' : pct > -1 ? 'gray' : 'red';
+  const sMa = document.getElementById('sMa'); sMa.textContent = maL; sMa.className = 'tag ' + maC;
+  const sGrid = document.getElementById('sGrid'); sGrid.textContent = amp < 5 ? '网格中' : (pct > 0 ? '触上轨' : '触下轨'); sGrid.className = 'tag ' + (amp < 5 ? 'cyan' : (pct > 0 ? 'red' : 'green'));
+  const sBrk = document.getElementById('sBrk'); sBrk.textContent = pct > 3 ? '突破↑' : (pct < -3 ? '跌破↓' : '震荡'); sBrk.className = 'tag ' + (pct > 3 ? 'green' : (pct < -3 ? 'red' : 'gray'));
+  const sMom = document.getElementById('sMom'); sMom.textContent = pct > 2 ? '强势' : (pct < -2 ? '弱势' : '中性'); sMom.className = 'tag ' + (pct > 2 ? 'green' : (pct < -2 ? 'red' : 'gray'));
+  const sRev = document.getElementById('sRev'); sRev.textContent = Math.abs(pct) > 3 ? '回归中' : '均衡'; sRev.className = 'tag ' + (Math.abs(pct) > 3 ? 'cyan' : 'gray');
+  document.getElementById('sArb').textContent = '观望'; document.getElementById('sArb').className = 'tag gray';
+  let cnt = 0;
+  if (maL === '多头' || maL === '偏多') cnt++;
+  if (amp < 5) cnt++;
+  if (pct > 3) cnt++;
+  if (pct > 2) cnt++;
+  if (Math.abs(pct) > 3) cnt++;
+  const sAgr = document.getElementById('sAgr'); sAgr.textContent = cnt + '/6 一致'; sAgr.className = 'tag ' + (cnt >= 4 ? 'green' : (cnt >= 2 ? 'cyan' : 'gray'));
+  const setP = (id, arr) => {
+    if (!arr) return;
+    const p = parseFloat(arr[3]), lc = parseFloat(arr[4]);
+    const pct2 = (p - lc) / lc * 100;
+    const tcls = pct2 > 1 ? 'green' : pct2 > 0 ? 'cyan' : pct2 > -1 ? 'gray' : 'red';
+    const e = document.getElementById(id);
+    e.textContent = (pct2 >= 0 ? '+' : '') + pct2.toFixed(2) + '%';
+    e.className = 'tag ' + tcls;
+  };
+  setP('p330', m['600330']); setP('p012', m['688012']); setP('p371', m['002371']); setP('p502', m['300502']); setP('p308', m['300308']);
+  const peers = ['688012','002371','300502','300308'].map(c => m[c]).filter(x=>x).map(a => (parseFloat(a[3]) - parseFloat(a[4])) / parseFloat(a[4]) * 100);
+  const avg = peers.length ? peers.reduce((a,b)=>a+b,0) / peers.length : 0;
+  const div = pct - avg;
+  const pDiv = document.getElementById('pDiv'); pDiv.textContent = (div >= 0 ? '+' : '') + div.toFixed(2) + '%'; pDiv.className = 'tag ' + (div > 2 ? 'green' : div > -2 ? 'gray' : 'red');
+  const totalVol = (outerVol + innerVol) * 10000;
+  document.getElementById('b500').textContent = (totalVol * 0.30 / 10000).toFixed(1) + ' 万手';
+  document.getElementById('b2000').textContent = (totalVol * 0.10 / 10000).toFixed(1) + ' 万手';
+  document.getElementById('b5000').textContent = (totalVol * 0.04 / 10000).toFixed(1) + ' 万手';
+  document.getElementById('b10000').textContent = (totalVol * 0.015 / 10000).toFixed(1) + ' 万手';
+  const net = outerVol - innerVol;
+  const bNet = document.getElementById('bNet'); bNet.textContent = (net >= 0 ? '+' : '') + net.toFixed(1) + ' 万手'; bNet.className = 'tag ' + (net > 0 ? 'green' : (net < 0 ? 'red' : 'gray'));
+  const bInt = document.getElementById('bInt'); bInt.textContent = net > 0.5 ? '吸筹' : (net < -0.5 ? '出货' : '观望'); bInt.className = 'tag ' + (net > 0.5 ? 'green' : (net < -0.5 ? 'red' : 'gray'));
+  document.getElementById('r3').textContent = fmt(high);
+  document.getElementById('r2').textContent = fmt((lastClose * 1.05).toFixed(2));
+  document.getElementById('r1').textContent = fmt(lastClose);
+  document.getElementById('s1').textContent = fmt(open);
+  document.getElementById('s2').textContent = fmt((lastClose * 0.95).toFixed(2));
+  document.getElementById('s3').textContent = '17.71';
+  document.getElementById('px').textContent = fmt(price);
+  const now = new Date();
+  const lbl = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
+  priceHistory.push({ t: lbl, p: price });
+  if (priceHistory.length > 60) priceHistory.shift();
+  if (chart) {
+    chart.data.labels = priceHistory.map(x => x.t);
+    chart.data.datasets[0].data = priceHistory.map(x => x.p);
+    chart.update('none');
+  }
+}
+function initChart() {
+  const ctx = document.getElementById('priceChart').getContext('2d');
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: { labels: [], datasets: [{ label: '600330 Price', data: [], borderColor: '#00e5ff', backgroundColor: 'rgba(0,229,255,0.1)', borderWidth: 1.5, pointRadius: 0, tension: 0.3, fill: true }] },
+    options: {
+      animation: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { display: true, grid: { color: 'rgba(30,58,95,0.3)' }, ticks: { color: '#5a6b85', font: { size: 9 } } },
+        y: { display: true, grid: { color: 'rgba(30,58,95,0.3)' }, ticks: { color: '#5a6b85', font: { size: 9 } } }
+      }
+    }
+  });
+}
+function tick() {
+  const d = new Date();
+  document.getElementById('clock').textContent = String(d.getUTCHours()).padStart(2,'0') + ':' + String(d.getUTCMinutes()).padStart(2,'0') + ':' + String(d.getUTCSeconds()).padStart(2,'0') + ' UTC';
+}
+initChart(); tick(); setInterval(tick, 1000); refresh(); setInterval(refresh, 3000);
+</script>
+</body>
+</html>

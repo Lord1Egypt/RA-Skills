@@ -1,40 +1,53 @@
-## Description: <br>
-Converts HAR files, Claude Code JSONL logs, and Copilot CLI JSONL logs into structured ATIF v1.6 trajectory JSON using the atifact CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts HAR files, Claude Code JSONL logs, and Copilot CLI JSONL logs into ATIF v1.6 trajectory JSON using the atifact CLI.
 
-## Publisher: <br>
-[waldekmastykarz](https://clawhub.ai/user/waldekmastykarz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waldekmastykarz](https://clawhub.ai/user/waldekmastykarz)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert recorded agent sessions from HAR or JSONL logs into ATIF trajectory JSON for review, analysis, or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HAR, JSONL, generated trajectory JSON, and stdout pipelines may contain sensitive session data. <br>
-Mitigation: Redact secrets before sharing and store or delete generated outputs according to privacy requirements. <br>
-Risk: The workflow depends on the external atifact npm package. <br>
-Mitigation: Install and run the CLI only when the package is trusted for the intended environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert agent session recordings into structured ATIF trajectory JSON. It helps them run the atifact CLI, choose the right input format, write trajectory files, and report generated output paths and key metrics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/waldekmastykarz/atifact) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands that produce ATIF trajectory JSON files or JSON on stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output may include main and subagent trajectory files derived from the selected output prefix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: server release evidence) <br>
+Risk: Session logs and generated trajectory JSON may preserve prompts, responses, tool outputs, headers, metadata, or other confidential content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process HAR and session logs in a controlled directory, then review and redact generated trajectory JSON before sharing it.
+
+Risk: The workflow depends on an externally installed npm CLI.
+
+Mitigation: Install atifact only from a trusted npm package source, and pin or review the package version before use.
+
+## Reference(s):
+
+- [ClawHub atifact skill page](https://clawhub.ai/waldekmastykarz/skills/atifact)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with inline bash commands and ATIF trajectory JSON file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated trajectories may include main and subagent JSON files, or a combined JSON array on stdout when requested.]
+
+## Skill Version(s):
+
+0.7.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

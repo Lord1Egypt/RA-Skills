@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7171ttdjz3bx5dnjcz3x3mj18394ej",
-  "slug": "baostock-tt-skills",
-  "version": "1.0.1",
-  "publishedAt": 1773987725261
+  "name": "baostock_tt_skills",
+  "description": "BaoStock 金融数据API和 myTT公式函数 技能 - A股历史K线、财务数据、宏观经济数据获取",
+  "metadata": {
+    "version": "1.0.0",
+    "author": "JacksonLiang",
+    "tags": ["金融", "A股", "K线", "财报", "量化"],
+    "requires": {
+      "bins": ["python3", "pip"]
+    }
+  }
 }

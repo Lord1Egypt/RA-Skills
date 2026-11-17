@@ -1,43 +1,58 @@
-## Description: <br>
-Provides payment tools for creating payment requests, checking payment status, and initiating refunds through a configured payment API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides payment-related agent tools to create payment requests, query payment status, and initiate refunds through a CLI-backed payment API integration.
 
-## Publisher: <br>
-[neverSatRabbit](https://clawhub.ai/user/neverSatRabbit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neversatrabbit](https://clawhub.ai/user/neversatrabbit)
 
-## Use Case: <br>
-Developers and external commerce workflows can invoke the CLI-backed tools to create customer payment authorization requests, check transaction status, and initiate refunds against a configured payment provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create payment requests and initiate refunds with live credentials without a clearly enforced confirmation boundary. <br>
-Mitigation: Use test or least-privilege credentials first, and require an external approval and audit process before allowing create_payment or refund_payment against production accounts. <br>
-Risk: Payment operations depend on the configured payment endpoint and publisher-controlled integration. <br>
-Mitigation: Install only if the publisher and configured endpoint are trusted, verify the payment API URL and TLS settings, and scope credentials to the intended environment. <br>
-Risk: Diagnostics, logs, or terminal output may expose operational details when shared. <br>
-Mitigation: Avoid running diagnostics in shared terminals or logs, and review generated log output before sharing it outside the operating team. <br>
+## Use Case:
 
+Developers and agents use this skill to initiate payment requests, check transaction status, and request refunds against a configured payment API. It is intended for workflows where payment credentials, API endpoints, and refund authority can be controlled by the deploying organization.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/neverSatRabbit/payment-skill-demo) <br>
-- [Publisher profile](https://clawhub.ai/user/neverSatRabbit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires payment API credentials in environment variables and returns success, status, transaction, payment, refund, verification URL, or error fields depending on the command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v1.0.3 (source: server release metadata; artifact frontmatter states 1.0.3) <br>
+Risk: The security review reports that refunds can be initiated without enforcing the approval promised by the skill metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an external refund approval process and restrict refund-capable API credentials until the skill enforces approval in code.
+
+Risk: Payment API credentials and endpoint configuration are security-sensitive.
+
+Mitigation: Use least-privilege API keys, keep PAYMENT_API_URL fixed to a trusted HTTPS payment host, and rotate credentials that may have appeared in setup or diagnostic output.
+
+Risk: Diagnostics or logs may expose sensitive payment configuration in shared environments.
+
+Mitigation: Avoid running diagnostics where logs are shared and review log handling before deployment.
+
+## Reference(s):
+
+- [Payment Skill Demo on ClawHub](https://clawhub.ai/neversatrabbit/skills/payment-skill-demo)
+- [neversatrabbit publisher profile](https://clawhub.ai/user/neversatrabbit)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results from CLI tool execution with setup and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PAYMENT_API_KEY and PAYMENT_API_SECRET; may use optional encryption and logging environment variables.]
+
+## Skill Version(s):
+
+v1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

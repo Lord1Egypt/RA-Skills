@@ -1,37 +1,55 @@
-## Description: <br>
-Analyzes Chinese resume text with local rule-based checks to score completeness, surface matched keywords, and suggest improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Chinese resume content and returns structured scoring, keyword coverage, format checks, and improvement suggestions.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Job seekers, career coaches, and recruiting support teams can use this skill to review Chinese resume text, check whether common sections and skills are present, and draft targeted improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-resume-analyzer) <br>
+External users and agents use this skill to review Chinese resumes for completeness, keyword coverage, formatting, and actionable improvements before job applications.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language resume analysis report with scores, keyword matches, section checks, and improvement suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local rule-based Python helper. Security evidence reports no hidden data collection, persistence, destructive behavior, privileged access, or network transmission by the included script.] <br>
+Global
 
-## Skill Version(s): <br>
-1.2.6 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Resume text can contain personal data, and the skill workflow may accept pasted text, file paths, or URLs.
+
+Mitigation: Prefer pasted resume text and only provide file paths or URLs when you intentionally want the agent to read or fetch that document.
+
+Risk: Optional remote resume retrieval may require installing an unpinned dependency.
+
+Mitigation: Avoid optional dependencies unless remote retrieval is required, and review the dependency before installing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-resume-analyzer)
+- [AISoBrand](https://aisobrand.com)
+- [AISoBrand free diagnosis](https://aisobrand.com/free-diagnosis.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown text with structured resume score, matched sections, summary, and improvement suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese-language scoring labels and resume improvement recommendations.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

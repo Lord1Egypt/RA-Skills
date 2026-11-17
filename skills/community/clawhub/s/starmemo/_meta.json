@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn7dz83ktjx3hf97xa9jaffmg982jnft",
-  "slug": "starmemo",
+  "name": "starmemo",
+  "display_name": "智能记忆优化",
   "version": "2.0.0",
-  "publishedAt": 1773123282618
+  "description": "OpenClaw 智能记忆技能，支持国内全LLM，自动分层存储对话，极致压缩Token",
+  "author": "your-name",
+  "license": "MIT",
+  "homepage": "https://github.com/your-id/starmemo-openclaw-skill",
+  "permissions": [
+    "read_file",
+    "write_file"
+  ],
+  "hooks": [
+    "on_user_input"
+  ],
+  "requirements": [
+    "requests>=2.31.0"
+  ],
+  "tags": [
+    "记忆",
+    "LLM",
+    "国内模型",
+    "Token优化"
+  ]
 }

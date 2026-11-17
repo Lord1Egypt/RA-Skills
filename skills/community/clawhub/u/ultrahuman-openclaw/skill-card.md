@@ -1,41 +1,58 @@
-## Description: <br>
-Fetch and summarize Ultrahuman Ring/CGM metrics inside OpenClaw using the Ultrahuman MCP server (via mcporter). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and summarize Ultrahuman Ring/CGM metrics inside OpenClaw using the Ultrahuman MCP server via mcporter.
 
-## Publisher: <br>
-[devpranoy](https://clawhub.ai/user/devpranoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[devpranoy](https://clawhub.ai/user/devpranoy)
 
-## Use Case: <br>
-OpenClaw users with Ultrahuman credentials use this skill to retrieve daily or weekly Ultrahuman Ring and CGM metrics and turn them into concise health summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local MCP setup handles an Ultrahuman auth token and sensitive health metrics. <br>
-Mitigation: Use a trusted local environment, keep tokens out of shared files and logs, and rotate the token if it may have been exposed. <br>
-Risk: The skill depends on an external Ultrahuman MCP server repository that must be trusted by the user. <br>
-Mitigation: Review or pin the external Ultrahuman-MCP repository before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/devpranoy/ultrahuman-openclaw) <br>
-- [Ultrahuman Developer Portal](https://vision.ultrahuman.com/developer) <br>
-- [Ultrahuman MCP Server Repository](https://github.com/Monasterolo21/Ultrahuman-MCP) <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Ultrahuman Ring or CGM metrics through an MCP server and produce short daily or weekly health summaries. It is useful for reporting sleep, steps, recovery, movement, active minutes, VO2 max, HRV, and resting heart rate.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text summaries with Markdown setup guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries focus on sleep, activity, recovery, VO2 max, HRV, and resting heart rate when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles Ultrahuman credentials and sensitive health summaries.
+
+Mitigation: Treat the Ultrahuman token and generated summaries as sensitive personal data, and avoid running the skill in environments containing unrelated secrets.
+
+Risk: The skill relies on a third-party Ultrahuman MCP server whose version is not pinned in the artifact.
+
+Mitigation: Use a pinned and reviewed Ultrahuman MCP server version before installing or running the skill.
+
+Risk: Credential lookup may fall back to local OpenClaw configuration if environment variables are absent.
+
+Mitigation: Prefer explicit environment variables for Ultrahuman credentials and review local configuration before execution.
+
+## Reference(s):
+
+- [Ultrahuman Developer Portal](https://vision.ultrahuman.com/developer)
+- [Ultrahuman MCP repository](https://github.com/Monasterolo21/Ultrahuman-MCP)
+- [ClawHub skill page](https://clawhub.ai/devpranoy/skills/ultrahuman-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and JSON snippets, plus plain-text health summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily summaries are concise by default and may include sensitive personal health metrics.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

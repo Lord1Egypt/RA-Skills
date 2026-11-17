@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Release Pipeline Implementation Map</title>
+  <style>
+    :root {
+      --page: #f5f3ee;
+      --paper: #fffdfa;
+      --canvas: #f8fafc;
+      --ink: #172033;
+      --muted: #647084;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--page);
+      color: var(--ink);
+      font-family: var(--font);
+    }
+
+    body {
+      padding: 20px;
+    }
+
+    .shell {
+      max-width: 1480px;
+      margin: 0 auto;
+      border: 1px solid #e2ded4;
+      border-radius: 10px;
+      background: var(--paper);
+      box-shadow: 0 24px 80px rgba(69, 54, 36, 0.12);
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: start;
+      padding: 20px 22px;
+      border-bottom: 1px solid #ebe5d9;
+      background: linear-gradient(180deg, #fffdfa, #f9f6ef);
+    }
+
+    .kicker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .status-mark {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #0f766e;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 3vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      max-width: 900px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .toolbar button {
+      appearance: none;
+      border: 1px solid #d7dce5;
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--ink);
+      cursor: pointer;
+      font: 650 12px var(--font);
+      padding: 9px 11px;
+    }
+
+    .toolbar button:hover {
+      border-color: #aab4c4;
+      background: #f8fafc;
+    }
+
+    .body-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      min-height: 760px;
+    }
+
+    .map-wrap {
+      padding: 20px;
+      border-right: 1px solid #ebe5d9;
+      background:
+        linear-gradient(90deg, rgba(148, 163, 184, 0.10) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(148, 163, 184, 0.10) 1px, transparent 1px),
+        var(--canvas);
+      background-size: 32px 32px;
+      overflow-x: auto;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      height: auto;
+    }
+
+    .notes {
+      padding: 18px;
+      background: #fffdfa;
+    }
+
+    .notes h2 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+
+    .note-section {
+      border-top: 1px solid #ebe5d9;
+      padding: 16px 0;
+    }
+
+    .note-section:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .note-section h3 {
+      margin: 0 0 8px;
+      color: #334155;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .note-section ul {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .note-section li {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 22px;
+      border-top: 1px solid #ebe5d9;
+      color: #7b8495;
+      font-family: var(--mono);
+      font-size: 11px;
+      background: #faf7f0;
+    }
+
+    @media (max-width: 980px) {
+      body {
+        padding: 10px;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar {
+        justify-content: flex-start;
+      }
+
+      .body-grid {
+        grid-template-columns: 1fr;
+      }
+
+      svg {
+        min-width: 1080px;
+      }
+
+      .map-wrap {
+        border-right: 0;
+        border-bottom: 1px solid #ebe5d9;
+      }
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: #ffffff;
+      }
+
+      .shell {
+        border: 0;
+        box-shadow: none;
+      }
+
+      .toolbar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <div class="kicker">
+          <span class="status-mark" aria-hidden="true"></span>
+          <span>Implementation Lens</span>
+          <span>/</span>
+          <span>Repository-Driven Delivery</span>
+        </div>
+        <h1>Release Pipeline Implementation Map</h1>
+        <p class="subtitle">Code-derived stages and script execution chains from monorepo checkout to staging and production rollout.</p>
+      </div>
+      <nav class="toolbar" aria-label="Export toolbar">
+        <button type="button" onclick="downloadSVG()">SVG</button>
+        <button type="button" onclick="downloadPNG()">PNG</button>
+        <button type="button" onclick="copyPNG()">Copy PNG</button>
+        <button type="button" onclick="window.print()">Print</button>
+      </nav>
+    </header>
+
+    <section class="body-grid">
+      <div class="map-wrap">
+        <svg id="system-map" viewBox="0 0 1500 900" role="img" aria-labelledby="map-title map-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="map-title">Release pipeline implementation map</title>
+          <desc id="map-desc">An implementation map showing a monorepo feeding lint, test, and build stages, an artifact store, a deploy script, and staging and production environments.</desc>
+          <defs>
+            <marker id="arrow-actor" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M 1 1 L 9 5 L 1 9 z" fill="#0f766e"/>
+            </marker>
+            <marker id="arrow-compute" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M 1 1 L 9 5 L 1 9 z" fill="#15803d"/>
+            </marker>
+            <marker id="arrow-state" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M 1 1 L 9 5 L 1 9 z" fill="#7c3aed"/>
+            </marker>
+            <marker id="arrow-external" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M 1 1 L 9 5 L 1 9 z" fill="#475569"/>
+            </marker>
+          </defs>
+
+          <rect x="0" y="0" width="1500" height="900" rx="0" fill="#f8fafc"/>
+
+          <g id="regions" font-family="SFMono-Regular, JetBrains Mono, monospace">
+            <rect x="60" y="310" width="220" height="190" rx="8" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.4"/>
+            <text x="80" y="338" fill="#065f46" font-size="12" font-weight="700">Repository</text>
+
+            <rect x="370" y="130" width="500" height="420" rx="8" fill="#eef6ff" stroke="#93c5fd" stroke-width="1.5"/>
+            <text x="392" y="158" fill="#1d4ed8" font-size="12" font-weight="700">CI Pipeline</text>
+
+            <rect x="920" y="270" width="530" height="380" rx="8" fill="#f5f0ff" stroke="#c4b5fd" stroke-width="1.4"/>
+            <text x="942" y="298" fill="#6d28d9" font-size="11" font-weight="700">Delivery</text>
+          </g>
+
+          <g id="connectors" font-family="SFMono-Regular, JetBrains Mono, monospace" font-size="10" fill="#334155">
+            <path data-edge-id="repo_to_linter" d="M 260 380 H 320 V 220 H 400" stroke="#0f766e" stroke-width="2" fill="none" marker-end="url(#arrow-actor)"/>
+            <text x="360" y="208" text-anchor="middle">checkout</text>
+
+            <path data-edge-id="repo_to_tests" d="M 260 430 H 320 V 460 H 400" stroke="#0f766e" stroke-width="2" fill="none" marker-end="url(#arrow-actor)"/>
+            <text x="360" y="448" text-anchor="middle">run</text>
+
+            <path data-edge-id="repo_to_build" d="M 260 390 H 680" stroke="#0f766e" stroke-width="2" fill="none" marker-end="url(#arrow-actor)"/>
+            <text x="470" y="378" text-anchor="middle">compile</text>
+
+            <path data-edge-id="build_to_registry" d="M 840 350 H 950" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="895" y="338" text-anchor="middle">publish</text>
+
+            <path data-edge-id="registry_to_deploy" d="M 1025 385 V 480" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="1048" y="435" text-anchor="middle">pull</text>
+
+            <path data-edge-id="deploy_to_staging" d="M 1100 505 H 1250" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow-external)"/>
+            <text x="1175" y="493" text-anchor="middle">rollout</text>
+
+            <path data-edge-id="deploy_to_prod" d="M 1025 550 V 600 H 1250" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow-external)"/>
+            <text x="1130" y="588" text-anchor="middle">promote</text>
+          </g>
+
+          <g id="components" font-family="Inter, Arial, sans-serif">
+            <g data-node-id="source_repo">
+              <rect x="80" y="350" width="180" height="110" rx="8" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.6"/>
+              <text x="170" y="392" text-anchor="middle" fill="#134e4a" font-size="15" font-weight="750">Monorepo</text>
+              <text x="170" y="416" text-anchor="middle" fill="#475569" font-size="11">src/ tests/ configs/</text>
+            </g>
+
+            <g data-node-id="linter">
+              <rect x="400" y="180" width="150" height="80" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="475" y="214" text-anchor="middle" fill="#14532d" font-size="14" font-weight="750">Lint Stage</text>
+              <text x="475" y="238" text-anchor="middle" fill="#475569" font-size="11">eslint + stylelint</text>
+            </g>
+
+            <g data-node-id="unit_tests">
+              <rect x="400" y="420" width="150" height="80" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="475" y="454" text-anchor="middle" fill="#14532d" font-size="14" font-weight="750">Unit Tests</text>
+              <text x="475" y="478" text-anchor="middle" fill="#475569" font-size="11">vitest suites</text>
+            </g>
+
+            <g data-node-id="build_script">
+              <rect x="680" y="300" width="160" height="100" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="760" y="340" text-anchor="middle" fill="#14532d" font-size="15" font-weight="750">Build Script</text>
+              <text x="760" y="364" text-anchor="middle" fill="#475569" font-size="11">scripts/build.sh</text>
+            </g>
+
+            <g data-node-id="artifact_registry">
+              <rect x="950" y="315" width="150" height="70" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+              <text x="1025" y="347" text-anchor="middle" fill="#4c1d95" font-size="13" font-weight="750">Artifact Store</text>
+              <text x="1025" y="368" text-anchor="middle" fill="#64748b" font-size="10">dist/app-*.tar.gz</text>
+            </g>
+
+            <g data-node-id="deploy_script">
+              <rect x="950" y="480" width="150" height="70" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/>
+              <text x="1025" y="512" text-anchor="middle" fill="#14532d" font-size="13" font-weight="750">Deploy Script</text>
+              <text x="1025" y="533" text-anchor="middle" fill="#64748b" font-size="10">scripts/deploy.sh</text>
+            </g>
+
+            <g data-node-id="staging_env">
+              <rect x="1250" y="430" width="130" height="80" rx="8" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+              <text x="1315" y="464" text-anchor="middle" fill="#334155" font-size="14" font-weight="750">Staging</text>
+              <text x="1315" y="486" text-anchor="middle" fill="#64748b" font-size="10">k8s namespace</text>
+            </g>
+
+            <g data-node-id="prod_env">
+              <rect x="1250" y="540" width="130" height="80" rx="8" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+              <text x="1315" y="574" text-anchor="middle" fill="#334155" font-size="14" font-weight="750">Production</text>
+              <text x="1315" y="596" text-anchor="middle" fill="#64748b" font-size="10">k8s namespace</text>
+            </g>
+          </g>
+
+          <g id="map-key" transform="translate(48 842)" font-family="SFMono-Regular, JetBrains Mono, monospace">
+            <text x="0" y="0" fill="#172033" font-size="11" font-weight="700">Map key</text>
+            <g transform="translate(0 18)">
+              <rect x="0" y="0" width="16" height="9" rx="2" fill="#ccfbf1" stroke="#0f766e"/>
+              <text x="22" y="8" fill="#647084" font-size="9">Trigger source</text>
+            </g>
+            <g transform="translate(120 18)">
+              <rect x="0" y="0" width="16" height="9" rx="2" fill="#dcfce7" stroke="#15803d"/>
+              <text x="22" y="8" fill="#647084" font-size="9">Execution stage</text>
+            </g>
+            <g transform="translate(250 18)">
+              <rect x="0" y="0" width="16" height="9" rx="2" fill="#ede9fe" stroke="#7c3aed"/>
+              <text x="22" y="8" fill="#647084" font-size="9">Generated artifact</text>
+            </g>
+            <g transform="translate(396 18)">
+              <rect x="0" y="0" width="16" height="9" rx="2" fill="#f1f5f9" stroke="#475569"/>
+              <text x="22" y="8" fill="#647084" font-size="9">Environment</text>
+            </g>
+            <g transform="translate(505 18)">
+              <path d="M 0 5 H 34" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow-external)"/>
+              <text x="44" y="8" fill="#647084" font-size="9">Sync</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <aside class="notes" aria-label="Diagram notes">
+        <h2>Reading Notes</h2>
+        <section class="note-section">
+          <h3>System Shape</h3>
+          <ul>
+            <li>The monorepo is the single trigger source: checkout, test runs, and compilation all read directly from it.</li>
+            <li>Lint, unit tests, and the build script form the CI pipeline; delivery handles artifacts and rollouts.</li>
+          </ul>
+        </section>
+        <section class="note-section">
+          <h3>Critical Flows</h3>
+          <ul>
+            <li>The build script publishes a versioned tarball to the artifact store; the deploy script pulls that exact artifact.</li>
+            <li>Staging is rolled out first; the same artifact is promoted to production only after staging verification.</li>
+          </ul>
+        </section>
+        <section class="note-section">
+          <h3>Operational Notes</h3>
+          <ul>
+            <li>Every stage is a repo script, so the map stays code-derived and reproducible on any runner.</li>
+            <li>Rollback re-runs the deploy script against the previous artifact version (assumption).</li>
+          </ul>
+        </section>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <span>Diagram type: implementation map</span>
+      <span>Scope: repository-driven release pipeline</span>
+    </footer>
+  </main>
+
+  <!--
+    Diagram IR slot — machine-readable planning model embedded in the artifact.
+    The JSON below matches the sample SVG above one-to-one (same region, node,
+    and edge ids, plus optional edge labelAnchor geometry), so the fixture
+    demonstrates the exact IR ↔ SVG contract the checker enforces. Do NOT
+    remove or rename this element; check-diagram.mjs and the revise workflow
+    depend on id="diagram-ir".
+  -->
+  <script type="application/json" id="diagram-ir">
+  {
+    "title": "Release Pipeline Implementation Map",
+    "lens": "implementation",
+    "scope": "repository-driven release delivery stages",
+    "language": "en",
+    "mode": "create",
+    "canvas": { "complexity": "standard", "viewBox": "0 0 1500 900" },
+    "regions": [
+      { "id": "repository", "label": "Repository", "role": "source", "bounds": { "x": 60, "y": 310, "width": 220, "height": 190 }, "contains": ["source_repo"] },
+      { "id": "ci_pipeline", "label": "CI Pipeline", "role": "execution", "bounds": { "x": 370, "y": 130, "width": 500, "height": 420 }, "contains": ["linter", "unit_tests", "build_script"] },
+      { "id": "delivery", "label": "Delivery", "role": "artifact", "bounds": { "x": 920, "y": 270, "width": 530, "height": 380 }, "contains": ["artifact_registry", "deploy_script", "staging_env", "prod_env"] }
+    ],
+    "nodes": [
+      { "id": "source_repo", "label": "Monorepo", "role": "actor", "responsibility": "src, tests, configs — single trigger source", "bounds": { "x": 80, "y": 350, "width": 180, "height": 110 } },
+      { "id": "linter", "label": "Lint Stage", "role": "compute", "responsibility": "eslint + stylelint static checks", "bounds": { "x": 400, "y": 180, "width": 150, "height": 80 } },
+      { "id": "unit_tests", "label": "Unit Tests", "role": "compute", "responsibility": "vitest suites", "bounds": { "x": 400, "y": 420, "width": 150, "height": 80 } },
+      { "id": "build_script", "label": "Build Script", "role": "compute", "responsibility": "scripts/build.sh — compile and package", "bounds": { "x": 680, "y": 300, "width": 160, "height": 100 } },
+      { "id": "artifact_registry", "label": "Artifact Store", "role": "state", "responsibility": "dist/app-*.tar.gz versioned artifacts", "bounds": { "x": 950, "y": 315, "width": 150, "height": 70 } },
+      { "id": "deploy_script", "label": "Deploy Script", "role": "compute", "responsibility": "scripts/deploy.sh — pull and roll out", "bounds": { "x": 950, "y": 480, "width": 150, "height": 70 } },
+      { "id": "staging_env", "label": "Staging", "role": "external", "responsibility": "staging k8s namespace", "bounds": { "x": 1250, "y": 430, "width": 130, "height": 80 } },
+      { "id": "prod_env", "label": "Production", "role": "external", "responsibility": "production k8s namespace", "bounds": { "x": 1250, "y": 540, "width": 130, "height": 80 } }
+    ],
+    "edges": [
+      { "id": "repo_to_linter", "from": "source_repo", "to": "linter", "kind": "sync", "label": "checkout", "role": "actor", "route": "orthogonal", "labelAnchor": { "x": 360, "y": 208, "width": 70 } },
+      { "id": "repo_to_tests", "from": "source_repo", "to": "unit_tests", "kind": "sync", "label": "run", "role": "actor", "route": "orthogonal", "labelAnchor": { "x": 360, "y": 448, "width": 40 } },
+      { "id": "repo_to_build", "from": "source_repo", "to": "build_script", "kind": "sync", "label": "compile", "role": "actor", "route": "orthogonal", "labelAnchor": { "x": 470, "y": 378, "width": 64 } },
+      { "id": "build_to_registry", "from": "build_script", "to": "artifact_registry", "kind": "sync", "label": "publish", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 895, "y": 338, "width": 64 } },
+      { "id": "registry_to_deploy", "from": "artifact_registry", "to": "deploy_script", "kind": "sync", "label": "pull", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 1048, "y": 435, "width": 40 } },
+      { "id": "deploy_to_staging", "from": "deploy_script", "to": "staging_env", "kind": "sync", "label": "rollout", "role": "external", "route": "orthogonal", "labelAnchor": { "x": 1175, "y": 493, "width": 58 } },
+      { "id": "deploy_to_prod", "from": "deploy_script", "to": "prod_env", "kind": "sync", "label": "promote", "role": "external", "route": "orthogonal", "labelAnchor": { "x": 1130, "y": 588, "width": 64 } }
+    ],
+    "notes": [
+      { "title": "System Shape", "bullets": [
+        "The monorepo is the single trigger source: checkout, test runs, and compilation all read directly from it.",
+        "Lint, unit tests, and the build script form the CI pipeline; delivery handles artifacts and rollouts."
+      ] },
+      { "title": "Critical Flows", "bullets": [
+        "The build script publishes a versioned tarball to the artifact store; the deploy script pulls that exact artifact.",
+        "Staging is rolled out first; the same artifact is promoted to production only after staging verification."
+      ] },
+      { "title": "Operational Notes", "bullets": [
+        "Every stage is a repo script, so the map stays code-derived and reproducible on any runner.",
+        "Rollback re-runs the deploy script against the previous artifact version (assumption)."
+      ] }
+    ],
+    "assumptions": [
+      "Rollback re-runs the deploy script against the previous artifact version.",
+      "Staging and production run on the same Kubernetes cluster in separate namespaces."
+    ]
+  }
+  </script>
+
+  <script>
+    function serializeSVG() {
+      const svg = document.getElementById('system-map');
+      const clone = svg.cloneNode(true);
+      clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      return '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
+    }
+
+    function downloadBlob(filename, blob) {
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = filename;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function downloadSVG() {
+      downloadBlob('implementation-map.svg', new Blob([serializeSVG()], { type: 'image/svg+xml;charset=utf-8' }));
+    }
+
+    function renderCanvas(scale = 2) {
+      return new Promise((resolve, reject) => {
+        const svg = document.getElementById('system-map');
+        const box = svg.viewBox.baseVal;
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round((box.width || 1500) * scale);
+        canvas.height = Math.round((box.height || 900) * scale);
+        const context = canvas.getContext('2d');
+        context.fillStyle = '#f8fafc';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        const image = new Image();
+        image.onload = () => {
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          resolve(canvas);
+        };
+        image.onerror = reject;
+        image.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(serializeSVG());
+      });
+    }
+
+    async function downloadPNG() {
+      const canvas = await renderCanvas(2);
+      canvas.toBlob((blob) => {
+        if (blob) downloadBlob('implementation-map.png', blob);
+      }, 'image/png');
+    }
+
+    async function copyPNG() {
+      try {
+        const canvas = await renderCanvas(2);
+        const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+        if (!blob) throw new Error('PNG export failed');
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+      } catch (error) {
+        console.error(error);
+        window.alert('Copy PNG is not available in this browser context. Use PNG download instead.');
+      }
+    }
+  </script>
+</body>
+</html>

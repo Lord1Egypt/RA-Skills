@@ -1,42 +1,57 @@
-## Description: <br>
-基于已有日报自动汇总生成周报和月报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds weekly and monthly Markdown work summaries from existing daily report files.
 
-## Publisher: <br>
-[bounding-elk](https://clawhub.ai/user/bounding-elk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bounding-elk](https://clawhub.ai/user/bounding-elk)
 
-## Use Case: <br>
-Employees and team leads use this skill to turn existing daily Markdown work reports into weekly or monthly summaries. It aggregates completed work, progress, blockers, next plans, and source periods without inventing missing work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated summaries may be incomplete if expected daily report files are missing. <br>
-Mitigation: Review generated summaries before sharing them and preserve the skill's required missing-data notice when daily records are incomplete. <br>
-Risk: Optional scheduled report generation can create reports automatically at configured times. <br>
-Mitigation: Enable the Cron examples only when scheduled automatic report creation is intended. <br>
-Risk: The skill reads from and writes to fixed report paths. <br>
-Mitigation: Install only when /data/reports/daily/ is the intended source for daily reports and the weekly and monthly output folders are appropriate. <br>
+## Use Case:
 
+Employees and teams use this skill to turn existing daily Markdown reports into weekly or monthly work summaries with completed work, priorities, risks, plans, data source dates, and a short user-facing summary.
 
-## Reference(s): <br>
-- [Report Summary Builder on ClawHub](https://clawhub.ai/bounding-elk/report-summary-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report files plus a concise user-facing summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads daily reports from /data/reports/daily/ and saves weekly or monthly reports to fixed report folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Weekly or monthly summary files may overwrite existing reports in the configured output directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the /data/reports paths and overwrite expectations before scheduled or repeated use.
+
+Risk: Summaries can be incomplete when daily report files are missing for part of the reporting period.
+
+Mitigation: Keep the required missing-report notice in the generated summary and review the source date range before sharing.
+
+Risk: A summary may mislead readers if it adds conclusions not supported by the daily reports.
+
+Mitigation: Review generated reports against the source daily Markdown files and keep the skill's no-fabrication rule in force.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bounding-elk/skills/report-summary-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Text]
+
+**Output Format:** [Markdown report file plus a brief user-facing text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads daily Markdown reports from /data/reports/daily/ and writes weekly or monthly summaries to the configured report directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

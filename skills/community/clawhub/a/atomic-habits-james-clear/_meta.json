@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "atomic-habits-james-clear",
+  "name": "atomic-habits",
+  "title": "Atomic Habits",
+  "author": "James Clear",
   "version": "1.0.0",
-  "publishedAt": 1780922938036
+  "license": "MIT",
+  "tags": ["habits", "self-improvement", "behavior-change", "productivity", "atomic-habits"],
+  "description": "James Clear's Atomic Habits — an executable toolkit for building good habits, breaking bad ones, and mastering the tiny behaviors that lead to remarkable results.",
+  "homepage": "https://github.com/jaysonmeng/book-skills/tree/main/skills/atomic-habits",
+  "clawhub": {
+    "slug": "atomic-habits",
+    "owner": "jaysonmeng"
+  }
 }

@@ -1,39 +1,53 @@
-## Description: <br>
-Converts textbooks or PDFs into personalized, multimodal interactive learning materials including handwritten notes, quiz webpages, slides, audio courses, and mind maps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts textbooks or PDFs into personalized, multimodal interactive learning materials including handwritten notes, quiz webpages, slides, audio courses, and mind maps.
 
-## Publisher: <br>
-[ericn26-star](https://clawhub.ai/user/ericn26-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericn26-star](https://clawhub.ai/user/ericn26-star)
 
-## Use Case: <br>
-Learners, educators, and content authors use this skill to turn textbooks, PDFs, or topic descriptions into grade-adapted study materials such as notes, quizzes, slides, mind maps, and audio lessons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional web research can introduce inaccurate, outdated, or weakly sourced material into generated lessons, quizzes, or slides. <br>
-Mitigation: Specify when the skill should use only supplied materials, and review any researched sources before relying on generated courseware. <br>
-Risk: Generated educational assets may misrepresent source material or target the wrong difficulty level if parsing or grade adaptation is imperfect. <br>
-Mitigation: Review final notes, quizzes, slides, mind maps, and audio lessons against the original source materials before using them with learners. <br>
+## Use Case:
 
+External learners, educators, and developers can use this skill to convert PDFs, textbooks, or topic descriptions into grade-adapted study materials such as notes, quizzes, slides, mind maps, and audio lessons.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Code] <br>
-**Output Format:** [Final asset file paths for PDFs, PPTX, HTML, PNG, Mermaid text, and MP3 outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses deliver_assets XML-style path listings and does not preview generated media inline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-11.0.0 (source: server release evidence) <br>
+Risk: Uploaded documents may contain private or sensitive material that the skill will parse and transform into study assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents intended for learning-material generation, and avoid unrelated private documents.
+
+Risk: Topic-only requests may use searched educational material before downstream study assets are generated.
+
+Mitigation: Review and confirm compiled source material before proceeding with generated notes, quizzes, slides, mind maps, or audio.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericn26-star/skills/eric-knowledge-digest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, files, guidance]
+
+**Output Format:** [Markdown deliver_assets block containing local file paths for PDFs, PPTX, HTML, PNG, MP3, and optional Mermaid text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final assets are returned as file paths only; previews, autoplay, and intermediate files are avoided.]
+
+## Skill Version(s):
+
+11.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

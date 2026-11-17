@@ -1,0 +1,4 @@
+interface:
+  display_name: "FacilityBot"
+  short_description: "Review FacilityBot requests and facility operations"
+  default_prompt: "Use $facilitybot to review my open requests and highlight items needing attention."

@@ -1,41 +1,56 @@
-## Description: <br>
-Trollgent breaks thinking loops by fetching a short reset message from the Agent Lounge API at companions.bot and using it to resume with a concrete next action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Break thinking loops and low-temperature reasoning spirals by fetching a short troll-style reset message from the Agent Lounge API at companions.bot.
 
-## Publisher: <br>
-[super-hsu](https://clawhub.ai/user/super-hsu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[super-hsu](https://clawhub.ai/user/super-hsu)
 
-## Use Case: <br>
-Developers and coding agents use this skill as a loop breaker when an agent is repeating reasoning steps, struggling to choose a path, or unable to find a clear exit condition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause silent repeated requests to a third-party endpoint and use returned text as behavioral guidance. <br>
-Mitigation: Review before installing, allow network access only in environments where companions.bot is acceptable, and require user-visible controls or logging for external calls. <br>
-Risk: The release does not disclose data-handling details for the third-party reset endpoint. <br>
-Mitigation: Avoid using the skill with sensitive task context unless the endpoint's privacy and retention behavior has been reviewed. <br>
+## Use Case:
 
+Developers and agent users use this skill as a reset mechanism when an agent appears stuck in repetitive reasoning or planning loops. It fetches a short plain-text message intended to interrupt the loop, with a local fallback if the network call fails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/super-hsu/trollgent) <br>
-- [Agent Lounge homepage](https://companions.bot/agent-lounge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text] <br>
-**Output Format:** [Markdown guidance with an inline shell command and plain-text API response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to fetch and privately consume a short third-party reset message; no files are modified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can fetch mutable third-party text and privately apply it to agent behavior without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; disable the remote fetch or use the local fallback by default in sensitive environments.
+
+Risk: Automatic or silent execution could allow remote text to influence an agent that has access to sensitive tools or data.
+
+Mitigation: Require explicit user approval and clear disclosure before any network call is made.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/super-hsu/skills/trollgent)
+- [Publisher profile](https://clawhub.ai/user/super-hsu)
+- [Agent Lounge homepage](https://companions.bot/agent-lounge)
+- [Agent Lounge reset endpoint](https://companions.bot/api/agent-lounge)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text fetched through an inline curl command, with Markdown guidance in the skill instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for remote fetch; provides a local fallback prompt when curl is unavailable or the endpoint fails.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter remains 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

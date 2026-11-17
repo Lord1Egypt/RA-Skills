@@ -1,46 +1,57 @@
-## Description: <br>
-Self Learning Skill analyzes agent conversations to extract durable memory, corrections, errors, and feature requests, then updates workspace memory and learning files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self Learning Skill helps an agent analyze recent conversation history, extract durable memory and correction signals, and update persistent memory, configuration, and learning-log files.
 
-## Publisher: <br>
-[Acczdy](https://clawhub.ai/user/Acczdy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[acczdy](https://clawhub.ai/user/acczdy)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain agent memory, capture user corrections and errors, and keep workspace guidance files current through reviewable updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can analyze conversation history and persist information into agent memory files. <br>
-Mitigation: Use it only in workspaces where conversation history and memory files are safe to analyze and persist, and avoid storing secrets or personal data in agent memory. <br>
-Risk: Automated memory updates can change persistent guidance or learning records in ways that affect future agent behavior. <br>
-Mitigation: Run with --dry-run first, inspect the proposed diffs manually, and prefer an explicit --workspace path. <br>
-Risk: The server security review flags weak review controls around broad file and conversation access. <br>
-Mitigation: Review carefully before installing and keep confirmation controls enabled for destructive changes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep agent memory, identity, tool notes, workflow guidance, and learning records current after conversations, corrections, errors, and feature requests.
 
-## Reference(s): <br>
-- [Self Learning Skill on ClawHub](https://clawhub.ai/Acczdy/self-learning) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [OpenClaw Hook Configuration](artifact/hooks/openclaw/HOOK.md) <br>
-- [Default Configuration](artifact/config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, YAML configuration, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update persistent memory and learning files in the selected workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Recent conversations and memory files may contain sensitive data that should not become persistent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets in conversations or memory files, restrict the configured workspace, and review proposed updates before accepting them.
+
+Risk: AI-generated analysis can introduce incorrect, unwanted, or misleading changes into persistent agent behavior files.
+
+Mitigation: Run dry-run first, review generated diffs manually, and keep backup and validation controls enabled.
+
+Risk: Broad file-writing behavior can affect more files than intended if workspace scope or filenames are not tightly controlled.
+
+Mitigation: Prefer a patched version that enforces filename allowlists, path containment, schema validation, redaction, delete limits, and real rollback.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/acczdy/skills/self-learning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, YAML configuration, shell commands, and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write persistent memory and learning-log files in the configured workspace.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

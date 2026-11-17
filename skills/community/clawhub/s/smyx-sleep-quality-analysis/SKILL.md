@@ -1,7 +1,7 @@
 ---
 name: "sleep-quality-analysis"
 description: "Identifies sleep stages including falling asleep, light sleep, deep sleep, and REM; monitors body movement, nighttime awakenings, and sleep apnea, suitable for sleep monitoring scenarios. | 睡眠质量分析技能，识别入睡、浅睡、深睡、快速眼动阶段，监测体动、夜间觉醒、睡眠呼吸暂停，适用于睡眠监测场景"
-version: "1.0.4"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

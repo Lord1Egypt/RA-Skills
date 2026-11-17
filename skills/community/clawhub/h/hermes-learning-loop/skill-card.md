@@ -1,44 +1,56 @@
-## Description: <br>
-Self-improving learning loop inspired by Hermes Agent. Automatically extracts successful workflows, creates skills, and persists knowledge across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-improving learning loop inspired by Hermes Agent that automatically extracts successful workflows, creates skills, and persists knowledge across sessions.
 
-## Publisher: <br>
-[mystour](https://clawhub.ai/user/mystour) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mystour](https://clawhub.ai/user/mystour)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add periodic self-reflection to OpenClaw workflows, extract reusable skills from successful sessions, and curate persistent local memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent memories and new agent skills from session activity. <br>
-Mitigation: Keep LEARNING_AUTO_CREATE=false and review generated memory entries and SKILL.md files before reuse. <br>
-Risk: Persisted memories may capture secrets or confidential project details from sessions. <br>
-Mitigation: Avoid running it on sessions containing sensitive information and periodically inspect or delete the .openclaw memory and skills it creates. <br>
+## Use Case:
 
+Developers and agent operators use this skill to periodically review completed work, extract reusable workflows into agent skills, and keep curated memory across OpenClaw sessions.
 
-## Reference(s): <br>
-- [Hermes Agent](https://github.com/NousResearch/hermes-agent) <br>
-- [Hermes Docs](https://hermes-agent.nousresearch.com/) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
-- [SQLite FTS5 Documentation](https://www.sqlite.org/fts5.html) <br>
-- [ClawHub Release Page](https://clawhub.ai/mystour/hermes-learning-loop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and generated SKILL.md content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local .openclaw memory, state, and skill files when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill creates persistent agent memories and skills from session content with weak review and sanitization controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep automatic creation disabled, run the workflow manually, and review generated SKILL.md and memory files before reuse.
+
+Risk: Session JSON or extracted workflow content may be untrusted or inappropriate for long-term agent memory.
+
+Mitigation: Avoid untrusted session JSON and point memory and skills directories at isolated locations that can be inspected and deleted.
+
+## Reference(s):
+
+- [Hermes Agent](https://github.com/NousResearch/hermes-agent)
+- [Hermes Docs](https://hermes-agent.nousresearch.com/)
+- [agentskills.io specification](https://agentskills.io/specification)
+- [SQLite FTS5 Docs](https://www.sqlite.org/fts5.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, generated SKILL.md content, CLI status text, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write persistent memory and skill files under configured OpenClaw directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

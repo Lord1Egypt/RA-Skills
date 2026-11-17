@@ -1,43 +1,70 @@
-## Description: <br>
-Pub Gemini helps agents use the SkillBoss API to call chat, image, video, audio, search, document, email, SMS, and smart-routing model endpoints from shell commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pub Gemini helps agents call SkillBoss/HeyBossAI models for Q&A, summarization, content generation, media generation, transcription, web search, document parsing, email, and SMS tasks.
 
-## Publisher: <br>
-[MartinPollitt](https://clawhub.ai/user/MartinPollitt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[martinpollitt](https://clawhub.ai/user/martinpollitt)
 
-## Use Case: <br>
-Developers and agents use this skill to discover SkillBoss models and make authenticated API calls for text generation, media generation, transcription, search, document processing, messaging, and smart model routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route agent requests to many third-party AI and utility providers, including paid generation endpoints. <br>
-Mitigation: Use a dedicated low-limit SKILLBOSS_API_KEY and require review before paid, batch, or high-volume calls. <br>
-Risk: The skill includes email, SMS, document processing, scraping, and search capabilities that may expose sensitive data or contact users. <br>
-Mitigation: Avoid confidential documents, internal URLs, OTP codes, and personal contact data unless approved, and require explicit consent before email or SMS actions. <br>
+## Use Case:
 
+Developers and agents use this skill to route prompts and task inputs through SkillBoss/HeyBossAI models for text, image, video, audio, search, document, email, and SMS workflows. It is suited to workflows where the user has approved use of the SkillBoss API key and any downstream provider processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MartinPollitt/geminis) <br>
-- [Publisher profile](https://clawhub.ai/user/MartinPollitt) <br>
-- [SkillBoss website](https://www.skillboss.co) <br>
-- [SkillBoss API base URL](https://api.heybossai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and API request patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and may return generated text, media URLs, parsed documents, search results, email or SMS operation results, and model metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Task content, documents, media, and prompts may be sent to SkillBoss/HeyBossAI and downstream model or tool providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user approval before sending sensitive data, documents, media, or secrets, and disclose that third-party processing may occur.
+
+Risk: Email, SMS, and OTP actions can contact external recipients or phone numbers.
+
+Mitigation: Ask the user to confirm recipients, phone numbers, message bodies, and OTP intent before making API calls that send or verify communications.
+
+Risk: API responses may return download URLs for generated media or parsed documents.
+
+Mitigation: Validate returned URLs and expected content types before fetching or saving files.
+
+Risk: Search, scraping, and document parsing tasks may process private URLs or restricted documents.
+
+Mitigation: Confirm authorization to access the target URL or document and avoid submitting confidential material unless explicitly approved.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/martinpollitt/skills/geminis)
+- [SkillBoss website](https://www.skillboss.co)
+- [SkillBoss API base](https://api.heybossai.com/v1)
+- [SkillBoss models endpoint](https://api.heybossai.com/v1/models)
+- [Chat models](artifact/chat-models.md)
+- [Image models](artifact/image-models.md)
+- [Video models](artifact/video-models.md)
+- [Audio models](artifact/audio-models.md)
+- [Search and scraping models](artifact/search-models.md)
+- [Tool models](artifact/tools-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API payloads; API responses may include text, JSON, URLs, media files, or generated documents.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends task content to SkillBoss/HeyBossAI and potentially downstream providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

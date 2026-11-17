@@ -1,44 +1,60 @@
-## Description: <br>
-Helps agents manage Alibaba Cloud PAI AIWorkspace resources through official OpenAPI and SDK workflows, including inventory, create or update actions, status checks, permissions, configuration troubleshooting, and lifecycle automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing Alibaba Cloud PAI AIWorkspace (AIWorkSpace) via OpenAPI/SDK, including the user is operating AIWorkspace resources such as workspace/project inventory, create/update actions, status queries, permission or configuration troubleshooting, or automation around PAI workspace lifecycle.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud PAI AIWorkspace resources, discover API metadata, run list or describe workflows, and prepare create, update, modify, or permission-related operations with reproducible output evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide create, update, modify, set, and permission-related cloud operations that may change Alibaba Cloud resources. <br>
-Mitigation: Use least-privilege credentials and confirm the account, region, resource identifiers, API name, and parameters before any mutating operation. <br>
-Risk: Saved API responses and command outputs may contain operational details that should not be shared broadly. <br>
-Mitigation: Review files written under output/aliyun-pai-workspace/ before sharing or publishing them. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Alibaba Cloud PAI AIWorkspace resources through OpenAPI or SDK workflows, including inventory, create/update actions, status checks, permission troubleshooting, and automation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cinience/aliyun-pai-workspace) <br>
-- [OpenAPI product page](https://api.aliyun.com/product/AIWorkSpace) <br>
-- [AIWorkspace API metadata](https://api.aliyun.com/meta/v1/products/AIWorkSpace/versions/2021-02-04/api-docs.json) <br>
-- [AIWorkspace single API definition metadata](https://api.aliyun.com/meta/v1/products/AIWorkSpace/versions/2021-02-04/apis/{ApiName}/api.json) <br>
-- [Artifact sources](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, API calls, markdown, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python script usage, API response summaries, JSON metadata files, and Markdown evidence files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated API inventory, command outputs, and response summaries under output/aliyun-pai-workspace/ when artifacts are saved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Cloud mutating operations can create, update, modify, or set PAI AIWorkspace resources incorrectly if the region, resource identifiers, or desired action are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm region, resource identifiers, and desired action before mutating operations, and use describe or list APIs to verify results.
+
+Risk: Alibaba Cloud credentials can grant access to live cloud resources.
+
+Mitigation: Use least-privilege Alibaba Cloud credentials and review proposed create, update, modify, or set operations before execution.
+
+Risk: Saved API responses and generated artifacts may contain operational details.
+
+Mitigation: Keep generated outputs under output/aliyun-pai-workspace/ as documented and review artifacts before sharing them.
+
+## Reference(s):
+
+- [Skill sources](references/sources.md)
+- [Alibaba Cloud AIWorkSpace OpenAPI product page](https://api.aliyun.com/product/AIWorkSpace)
+- [AIWorkSpace 2021-02-04 API metadata](https://api.aliyun.com/meta/v1/products/AIWorkSpace/versions/2021-02-04/api-docs.json)
+- [AIWorkSpace single API metadata template](https://api.aliyun.com/meta/v1/products/AIWorkSpace/versions/2021-02-04/apis/{ApiName}/api.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown with inline bash code blocks, API call guidance, and generated artifact file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outputs and API response summaries should be saved under output/aliyun-pai-workspace/.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

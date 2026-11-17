@@ -1,44 +1,58 @@
-## Description: <br>
-Run commands and transfer files between an OpenClaw gateway and a paired local node via node protocol or SSH fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run commands and transfer files between an OpenClaw Gateway (VPS) and a paired local node, using the node protocol when connected and least-privilege SSH when not.
 
-## Publisher: <br>
-[jkfaris94](https://clawhub.ai/user/jkfaris94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkfaris94](https://clawhub.ai/user/jkfaris94)
 
-## Use Case: <br>
-Developers and operators use this skill to run commands, transfer files, check node status, and recover from disconnects for an already paired OpenClaw node. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Commands and file transfers can affect a paired remote node or move unintended files. <br>
-Mitigation: Confirm the node target or SSH alias before use, review commands and paths carefully, and use least-privilege SSH accounts. <br>
-Risk: Long-running nohup or tmux sessions can continue after the initiating agent session ends. <br>
-Mitigation: Use explicit process names, log paths, and follow-up status checks so work can be monitored and stopped when needed. <br>
-Risk: SSH fallback depends on network reachability and correct local SSH configuration. <br>
-Mitigation: Check node status first, verify SSH reachability with a harmless command, and recover the paired node service only through the remote machine's normal service manager. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose between OpenClaw node protocol and least-privilege SSH for command execution, file transfer, status checks, and recovery on an already paired local node.
 
-## Reference(s): <br>
-- [Remote Node SSH homepage](https://github.com/kanso-agent/remote-node-ssh) <br>
-- [Hybrid Gateway setup skill](https://clawhub.ai/skills/hybrid-gateway) <br>
-- [ClawHub release page](https://clawhub.ai/jkfaris94/remote-node-ssh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline tool and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill guides remote command execution and file transfer to a paired node.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intentional paired-node administration, keep command allowlists narrow, and review commands before execution.
+
+Risk: SSH fallback can expand access if configured with root, shared keys, disabled host-key checks, or broad network exposure.
+
+Mitigation: Use a dedicated non-root account, key-only login, verified host keys, IdentitiesOnly, and a private route such as Tailscale, LAN, or VPN.
+
+Risk: File synchronization can overwrite or remove remote data if applied without inspection.
+
+Mitigation: Preview rsync transfers before applying them and avoid delete-style operations unless explicitly reviewed.
+
+## Reference(s):
+
+- [Remote Node SSH homepage](https://github.com/jkfaris94/remote-node-ssh)
+- [Hybrid Gateway setup dependency](https://github.com/jkfaris94/hybrid-gateway)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for an agent; it does not itself execute commands or transfer files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

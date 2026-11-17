@@ -1,41 +1,54 @@
-## Description: <br>
-Accesses the Douyin homepage through browser automation, enters keywords in the search bar, and collects relevant keyword suggestions from the automated prompt box. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accesses Douyin with browser automation, enters a keyword, and collects related search suggestions from the autocomplete prompt box.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External creators, SEO researchers, and content workflow operators use this skill to collect Douyin search suggestion keywords for topic planning, trend research, competitive keyword research, and short-video content planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may operate in an authenticated Douyin browser session if login is required. <br>
-Mitigation: Avoid logging into a personal account when possible; use a separate browser profile or low-risk account for collection tasks. <br>
-Risk: Live Douyin browser automation can be affected by login prompts, page layout changes, or anti-crawler controls. <br>
-Mitigation: Use page snapshots before each action, keep delays between interactions, and stop or rescope the task if the site blocks or challenges the session. <br>
+## Use Case:
 
+Developers, marketers, and content teams use this skill to collect Douyin search suggestions for SEO, topic planning, content ideation, trend analysis, and competitive keyword research.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/openlark/douyin-keyword-collector) <br>
-- [Douyin homepage](https://www.douyin.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown keyword lists with inline browser automation commands and numbered Douyin search suggestion results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require closing a login prompt, waiting for live page suggestions to load, or using a separate browser profile when authentication is needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Browser automation may expose account-personalized Douyin page content if the user logs in while collecting suggestions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill logged out when possible; if login is required, use a separate low-privilege account.
+
+Risk: Douyin login prompts or anti-crawler controls may block or alter suggestion collection.
+
+Mitigation: Close login prompts when possible, add short waits between actions, and stop automation if Douyin requires manual login or additional verification.
+
+## Reference(s):
+
+- [Douyin homepage](https://www.douyin.com)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/douyin-keyword-collector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text keyword list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Collected suggestions are organized under the entered keyword.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

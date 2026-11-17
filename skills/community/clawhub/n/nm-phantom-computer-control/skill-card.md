@@ -1,43 +1,58 @@
-## Description: <br>
-Automates desktop GUI workflows via computer use API with screenshot capture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates desktop GUI workflows through the computer use API with screenshots
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to automate visual desktop workflows, test web applications through GUI interaction, fill forms, navigate menus, and verify actions from screenshots when CLI or API paths are not sufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose desktop contents through screenshots and control the keyboard and mouse. <br>
-Mitigation: Install only when intentional, run it in an isolated VM, container, or display session, and close private applications before use. <br>
-Risk: Automated GUI actions can affect sensitive accounts or produce real-world consequences. <br>
-Mitigation: Avoid banking or other sensitive services and require human confirmation before consequential actions. <br>
-Risk: Long-running agent loops can continue taking actions or incur API cost. <br>
-Mitigation: Use iteration caps and monitor runs during desktop automation. <br>
+## Use Case:
 
+Developers can use this skill to automate GUI workflows, test applications visually, and interact with desktop software when a CLI or API is not suitable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-phantom-computer-control) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/phantom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include safety guidance for sandboxing, iteration limits, and human confirmation before consequential GUI actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: Screenshots can expose private information visible in open applications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Close sensitive applications and keep credentials out of task prompts before starting.
+
+Risk: GUI actions can change application state or cause real-world side effects.
+
+Mitigation: Run in a sandbox and require human approval for actions with real-world consequences.
+
+Risk: Security scan coverage is partial because several local references did not resolve.
+
+Mitigation: Review the referenced material and dependencies before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-phantom-computer-control)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/phantom)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

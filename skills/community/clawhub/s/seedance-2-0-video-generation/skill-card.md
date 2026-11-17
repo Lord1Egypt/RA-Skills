@@ -1,45 +1,59 @@
-## Description: <br>
-Generates AI videos with ByteDance Seedance 2.0 from text or images, including long videos by sequencing shorter segments and reusing each segment's final frame for continuity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos with ByteDance Seedance 2.0 from text prompts, image inputs, first and last frames, or chained long-video segments that preserve continuity through the previous segment's last frame.
 
-## Publisher: <br>
-[liusaikang](https://clawhub.ai/user/liusaikang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liusaikang](https://clawhub.ai/user/liusaikang)
 
-## Use Case: <br>
-External users, developers, and creative operators use this skill to create Seedance 2.0 video-generation tasks, monitor completion, download outputs, and build longer videos from sequential segments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and image inputs are sent to Volcengine/ByteDance services. <br>
-Mitigation: Use only prompts and images that are approved for external processing, and prefer a scoped Ark API key where possible. <br>
-Risk: Downloaded outputs may be written to user-selected paths. <br>
-Mitigation: Choose a non-sensitive output directory and review generated files before sharing or reusing them. <br>
-Risk: The reviewed artifact includes an automatic file-opening step on macOS that can invoke the shell with a user-controlled download path. <br>
-Mitigation: Avoid unusual download paths on macOS until the automatic open behavior is removed or replaced with a non-shell implementation. <br>
-Risk: Antivirus confirmation was pending in the security evidence. <br>
-Mitigation: Review and scan the skill before installation or deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to create, monitor, download, and manage Seedance 2.0 video-generation tasks. It is especially suited for workflows that split videos longer than 15 seconds into sequential segments and reuse each completed segment's last frame as the next segment's first frame.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/liusaikang/seedance-2-0-video-generation) <br>
-- [Volcengine Ark API endpoint](https://ark.cn-beijing.volces.com/api/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python CLI and curl command examples; generated artifacts may include MP4 video files, PNG last-frame images, and sequence_manifest.json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ARK_API_KEY for Volcengine Ark API access and supports asynchronous task polling, downloads, and serialized long-video generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, image URLs, and selected local images may be sent to Volcengine/ByteDance infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with inputs that are acceptable to share with that third-party service, and avoid confidential or sensitive content unless approved.
+
+Risk: The helper can auto-open downloaded files on macOS through an unsafe shell call.
+
+Mitigation: Avoid the download auto-open behavior on macOS until the helper uses a non-shell opener or removes automatic opening.
+
+Risk: Task deletion or cancellation depends on a provided task ID.
+
+Mitigation: Confirm task IDs before using delete operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liusaikang/skills/seedance-2-0-video-generation)
+- [Publisher profile](https://clawhub.ai/user/liusaikang)
+- [Volcengine Ark API endpoint](https://ark.cn-beijing.volces.com/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local MP4 videos, PNG last-frame images, and sequence_manifest.json files when the helper is executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, released 2026-04-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

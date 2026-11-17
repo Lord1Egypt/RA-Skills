@@ -1,46 +1,61 @@
-## Description: <br>
-Helps users with prior illnesses or abnormal health indicators compare health-insurance eligibility, underwriting rules, and product options for ZhongMinBao and other insurers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language insurance guidance for users with prior illnesses or abnormal health indicators by structuring health questions, querying ZhongMinBao product rules, and comparing relevant insurance options with compliance disclaimers.
 
-## Publisher: <br>
-[hellonorth](https://clawhub.ai/user/hellonorth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hellonorth](https://clawhub.ai/user/hellonorth)
 
-## Use Case: <br>
-External users and insurance advisors use this skill to structure health-insurance questions, compare underwriting outcomes, and prepare compliant guidance for users with existing conditions or abnormal health indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive health-insurance details may be sent to ZhongAn iHealth or search providers without clear user notice or consent. <br>
-Mitigation: Use only non-identifying health details, obtain consent before external lookup, and redact personal identifiers from all queries. <br>
-Risk: The artifact includes an embedded API key for the product knowledge service. <br>
-Mitigation: Replace the embedded key with a managed credential, rotate the exposed key, and limit access to the minimum required scope. <br>
-Risk: Insurance guidance may be mistaken for a final underwriting, medical, or claims decision. <br>
-Mitigation: Keep disclaimers visible, cite official product terms, and direct users to the insurer or qualified professionals for final decisions. <br>
+## Use Case:
 
+External users and insurance-support agents use this skill to evaluate insurance options for people with pre-existing conditions, health abnormalities, or non-standard underwriting questions. It helps collect minimal health context, query ZhongMinBao product information, compare other insurer products, and produce cautious Chinese guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hellonorth/za-healthguide) <br>
-- [Compliance Rules](references/compliance-rules.md) <br>
-- [ZhongMinBao Product Reference](references/zhongminbao-products.md) <br>
-- [Other Insurer Product Reference](references/other-products.md) <br>
-- [ZhongAn iHealth Product Page](https://ihealth.zhongan.com/wxmp/pages/index) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with product comparisons, underwriting caveats, compliance disclaimers, and optional shell commands for product knowledge queries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on external ZhongAn iHealth and search-provider queries; users should avoid personal identifiers and confirm final terms with the insurer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Users may share sensitive health history, and normalized health questions can be sent to ZhongAn's API or third-party search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit consent before external queries, minimize health details, avoid identifiers, and disclose when information leaves the local context.
+
+Risk: A reusable API key is present in source code.
+
+Mitigation: Rotate the key, move it to a secret store, and restrict access before broad deployment.
+
+Risk: Insurance guidance can be incorrect or outdated if product rules, prices, or underwriting criteria change.
+
+Mitigation: Use current authoritative insurer sources, keep compliance disclaimers, and defer final eligibility and claims decisions to the insurer's underwriting or claims process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hellonorth/skills/za-healthguide)
+- [Compliance rules](references/compliance-rules.md)
+- [ZhongMinBao product reference](references/zhongminbao-products.md)
+- [Other insurer product reference](references/other-products.md)
+- [ZhongAn insurance product portal](https://ihealth.zhongan.com/wxmp/pages/index)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese-language Markdown with structured product comparisons, underwriting caveats, and compliance disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include insurer URLs and cautious next steps; should avoid requesting identifiers or detailed medical records.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

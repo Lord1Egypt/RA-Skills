@@ -1,47 +1,70 @@
-## Description: <br>
-Manage Volcengine AI Native BaaS for Supabase (AIDAP) database workspaces as a deployment database provider for setup, branch management, connection details, SQL, migrations, Edge Functions, Storage, and TypeScript type generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Volcengine's AI-native BaaS platform, Supabase edition/AIDAP, by helping agents inspect, create, configure, and troubleshoot workspaces, branches, computes, SQL, Auth, Realtime, Edge Functions, Storage, Pages, API keys, and connection details through byted-supabase-cli.
 
-## Publisher: <br>
-[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team)
 
-## Use Case: <br>
-Developers and deployment engineers use this skill to provision and operate Volcengine AIDAP Supabase or PostgreSQL workspaces, retrieve deployment connection settings, and apply database, storage, and Edge Function workflows. It is intended for real cloud and database resources, so users should start in non-production workspaces and confirm destructive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through high-privilege Volcengine Supabase and PostgreSQL operations, including database changes and resource deletion. <br>
-Mitigation: Use non-production workspaces first, require explicit user confirmation before migrations or deletes, and set READ_ONLY=true for inspection-only data-plane work. <br>
-Risk: Service-role keys and database URLs provide broad access if exposed in logs, frontend code, or final responses. <br>
-Mitigation: Store credentials in local files with restrictive permissions, avoid printing secrets, and summarize only resource IDs, host details, verification results, and credential file paths. <br>
-Risk: One command labeled as a read path can still alter the target database according to the security review. <br>
-Mitigation: Treat all database-interacting commands as potentially state-changing, review the exact command and target workspace before execution, and prefer READ_ONLY=true unless a write is intended. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Volcengine Supabase/AIDAP backend resources and database workflows from an agent session. It supports operational inspection, provisioning, schema changes, security checks, app integration, and deployment support for Volcengine-backed applications.
 
-## Reference(s): <br>
-- [CLI action map and bootstrap notes](references/tool-reference.md) <br>
-- [Application integration patterns](references/app-integration-guide.md) <br>
-- [Schema and RLS guidance](references/schema-rls-guide.md) <br>
-- [SQL playbook](references/sql-playbook.md) <br>
-- [Edge Function development](references/edge-function-dev-guide.md) <br>
-- [Deployment database-provider wiring](references/deploy-provider.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline shell, SQL, JSON, Python, and TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local environment files and generated TypeScript types when users ask for those workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: High-privilege dataplane code can send service-role credentials to arbitrary or plaintext endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted environments, verify endpoints before use, require HTTPS, avoid unverified SUPABASE_URL values, and prefer the official CLI login or profile flow.
+
+Risk: Workspace stop and delete operations can cause service outage or irreversible resource loss.
+
+Mitigation: Require explicit user confirmation, restate the operational impact, and verify the target workspace or branch identifier before executing destructive commands.
+
+Risk: External packages or demo archives may introduce supply-chain exposure.
+
+Mitigation: Pin or review external packages and inspect demo archives before running or deploying them.
+
+## Reference(s):
+
+- [Volcengine Homepage](https://www.volcengine.com/)
+- [Volcengine AIDAP Feature Changelog](https://www.volcengine.com/docs/87275/2105759?lang=zh)
+- [Volcengine AIDAP API List](https://www.volcengine.com/docs/87275/2105871?lang=zh)
+- [Volcengine Database Documentation](https://www.volcengine.com/docs/87275/2385100?lang=zh)
+- [Volcengine Authentication Documentation](https://www.volcengine.com/docs/87275/2277072?lang=zh)
+- [Volcengine Realtime Documentation](https://www.volcengine.com/docs/87275/2277058?lang=zh)
+- [Volcengine Edge Function Documentation](https://www.volcengine.com/docs/87275/2288709?lang=zh)
+- [Volcengine Storage Documentation](https://www.volcengine.com/docs/87275/2277057?lang=zh)
+- [Command Reference](references/tool-reference.md)
+- [Security Guide](references/security-guide.md)
+- [RLS Guide](references/rls-guide.md)
+- [Workflows](references/workflows.md)
+- [Application Integration Guide](references/app-integration-guide.md)
+- [IAM Permission Guide](references/iam-permission-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, SQL, configuration snippets, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute or propose byted-supabase-cli commands and may write supporting files when an agent has the required tool permissions.]
+
+## Skill Version(s):
+
+2.3.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Humanizer Pro rewrites text to reduce common AI-generated writing patterns while preserving meaning and tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes signs of AI-generated writing from text and rewrites it to sound more natural while preserving meaning and tone.
 
-## Publisher: <br>
-[dannybrcbrown](https://clawhub.ai/user/dannybrcbrown) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dannybrcbrown](https://clawhub.ai/user/dannybrcbrown)
 
-## Use Case: <br>
-External users and editors use this skill to revise text they are allowed to edit so it reads more naturally and less like generic AI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to change authorship signals, which can create policy or disclosure issues for academic submissions, official statements, reviews, or identity-sensitive writing. <br>
-Mitigation: Use it only on text you are allowed to edit, review the result before saving, and follow applicable school, employer, publisher, or platform disclosure rules. <br>
-Risk: Rewriting may unintentionally change meaning, emphasis, or voice. <br>
-Mitigation: Compare the rewritten text with the source and revise any changes that alter the intended message. <br>
+## Use Case:
 
+External users, employees, and writers use this skill to identify AI-writing patterns in supplied text and rewrite the content in a more natural human voice. It is intended for editing or review workflows where meaning, tone, and attribution should be checked before accepting changes.
 
-## Reference(s): <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with rewritten text and an optional summary of changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; review the rewritten text before saving, submitting, or publishing it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may rewrite documents in ways that alter tone, factual precision, or attribution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed or written changes before accepting them, especially for factual, legal, academic, or attributed content.
+
+Risk: Using the skill on sensitive drafts may expose content to an editing workflow that changes wording or intent.
+
+Mitigation: Use it only on content you are comfortable having revised, and keep a copy of the original text for comparison.
+
+## Reference(s):
+
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup)
+- [Humanizer Pro on ClawHub](https://clawhub.ai/dannybrcbrown/skills/humanizer-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Rewritten text with an optional brief summary of changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May revise supplied documents when invoked on files; review tone, factual precision, and attribution before accepting changes.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Reviews Chinese advertising copy, marketing material, and product descriptions for potential compliance issues under Chinese advertising law and related rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CN Advertising Compliance reviews Chinese ad copy, marketing materials, and product descriptions against China's Advertising Law and related rules, including prohibited terms, restricted categories, advertising format requirements, and platform-specific concerns.
 
-## Publisher: <br>
-[kuanghs](https://clawhub.ai/user/kuanghs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kuanghs](https://clawhub.ai/user/kuanghs)
 
-## Use Case: <br>
-Marketing, ecommerce, legal, and compliance teams use this skill to screen advertising claims, category-specific restrictions, endorsement issues, and platform-facing product descriptions before publication. It produces a structured review with findings, risk levels, and suggested revisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides compliance assistance and may not reflect the latest Chinese laws, platform policies, or facts for a specific advertisement. <br>
-Mitigation: Verify high-stakes advertising decisions against current regulations, applicable platform rules, and qualified professional advice before relying on the output. <br>
+## Use Case:
 
+Marketing, ecommerce, livestream, and compliance teams use this skill to screen Chinese advertising content before publication. It helps identify prohibited wording, category-specific advertising restrictions, disclosure gaps, and practical revision steps.
 
-## Reference(s): <br>
-- [Prohibited Words Catalog](references/prohibited-words-catalog.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown compliance review] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include issue categories, risk levels, overall publishability conclusions, and prioritized revision suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: The skill may miss legal changes or produce compliance guidance that is incomplete for high-risk campaigns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a screening aid, verify current Chinese advertising laws and platform rules, and consult qualified counsel before publishing high-risk or regulated-category campaigns.
+
+Risk: Optional related skills may introduce additional behavior beyond this artifact.
+
+Mitigation: Review and scan related skills separately before installation or use.
+
+## Reference(s):
+
+- [Prohibited Words Catalog](references/prohibited-words-catalog.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Structured Markdown compliance review]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes prohibited-term findings, category checks, advertising format checks, platform considerations, an overall publication recommendation, and prioritized revision suggestions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

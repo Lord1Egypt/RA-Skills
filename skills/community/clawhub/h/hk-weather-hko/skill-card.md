@@ -1,49 +1,64 @@
-## Description: <br>
-Queries Hong Kong Observatory open data APIs for current Hong Kong weather, regional conditions, forecasts, rainfall, and active weather warnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and bundled Python scripts for querying Hong Kong Observatory open data for current Hong Kong weather, regional observations, forecasts, rainfall, and active weather warnings.
 
-## Publisher: <br>
-[leoch95](https://clawhub.ai/user/leoch95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leoch95](https://clawhub.ai/user/leoch95)
 
-## Use Case: <br>
-External users and agents use this skill to answer Hong Kong weather questions, including current conditions, regional temperatures, forecasts, rainfall, and active warnings. Developers can also use the included Python scripts to retrieve and format HKO API data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs included Python weather scripts that contact the Hong Kong Observatory public API, and the artifact includes optional cron examples for recurring checks. <br>
-Mitigation: Install only when API access is intended, review commands before execution, and enable recurring background checks only when explicitly needed. <br>
-Risk: Weather data, forecasts, and warnings can change quickly and may be incomplete, delayed, or parsed differently if the HKO API schema changes. <br>
-Mitigation: Treat responses as general weather information, cite the Hong Kong Observatory as the data source, and rely on official HKO publications for current warnings and safety-critical decisions. <br>
-Risk: HKO data usage terms and attribution requirements may apply, especially for display, redistribution, or commercial use. <br>
-Mitigation: Keep required HKO attribution and review the applicable HKO or Hong Kong SAR Government data terms before redistribution or commercial use. <br>
+## Use Case:
 
+External users and developers use this skill to answer Hong Kong weather questions by retrieving HKO current conditions, regional station data, forecasts, rainfall, and active warnings. It is for general weather reference, not safety-critical aviation, marine, emergency, or redistribution decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leoch95/hk-weather-hko) <br>
-- [HKO Open Data API documentation](https://data.weather.gov.hk/weatherAPI/doc/HKO_Open_Data_API_Documentation.pdf) <br>
-- [HKO Open Data introduction](https://www.hko.gov.hk/tc/abouthko/opendata_intro.htm) <br>
-- [data.gov.hk HKO datasets](https://data.gov.hk/tc-datasets/provider/hk-hko) <br>
-- [API reference](references/api-docs.md) <br>
-- [Script usage guide](references/scripts.md) <br>
-- [Regional station guide](references/regions.md) <br>
-- [Weather warnings guide](references/warnings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell commands and JSON output from the included Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should retain HKO attribution where required; raw API JSON is available through script flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Live weather data can be unavailable, delayed, or superseded by official HKO publications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as general reference and check HKO official sources for current warning status.
+
+Risk: HKO data terms may apply to display, redistribution, or commercial use of API output.
+
+Mitigation: Review the HKO terms before redistribution or commercial use and include attribution to the Hong Kong Observatory.
+
+Risk: Weather output may be misused for safety-critical aviation, marine, emergency, or operational decisions.
+
+Mitigation: Route safety-critical requests to official or professional sources and do not rely solely on this skill.
+
+## Reference(s):
+
+- [HKO Open Data API Documentation](https://data.weather.gov.hk/weatherAPI/doc/HKO_Open_Data_API_Documentation.pdf)
+- [HKO Open Data Introduction](https://www.hko.gov.hk/tc/abouthko/opendata_intro.htm)
+- [data.gov.hk HKO Datasets](https://data.gov.hk/tc-datasets/provider/hk-hko)
+- [API Reference Documentation](references/api-docs.md)
+- [Script Usage Reference](references/scripts.md)
+- [Regions Reference](references/regions.md)
+- [Weather Warning Reference](references/warnings.md)
+- [Terms and Attribution Reference](references/terms-and-attribution.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown weather summaries, with optional JSON from the bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Traditional Chinese output; live HKO API responses may change.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

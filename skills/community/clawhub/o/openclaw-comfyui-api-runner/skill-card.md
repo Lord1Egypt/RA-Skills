@@ -1,44 +1,59 @@
-## Description: <br>
-Safe ComfyUI image generation. Use saved or ad-hoc server profiles, paste/upload raw workflow JSON, submit, poll, and serve downloaded outputs locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe ComfyUI image generation. Use saved or ad-hoc server profiles, paste/upload raw workflow JSON, submit, poll, and serve downloaded outputs locally.
 
-## Publisher: <br>
-[genortg](https://clawhub.ai/user/genortg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[genortg](https://clawhub.ai/user/genortg)
 
-## Use Case: <br>
-Developers and image-generation agents use this skill to connect to a trusted ComfyUI server, submit raw or bundled workflow JSON, poll generation jobs, and collect generated image file paths and view URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved ComfyUI profiles can store reusable API keys or Basic Auth credentials in plaintext. <br>
-Mitigation: Prefer environment variables for credentials and avoid saving profiles that contain secrets on shared or unmanaged machines. <br>
-Risk: The generated-file viewer can expose local generated media through an unauthenticated network-accessible HTTP server. <br>
-Mitigation: Run the viewer only on trusted networks, firewall the port, or modify it to bind to localhost before use. <br>
-Risk: Prompts, workflows, and generated outputs are sent to the configured ComfyUI server. <br>
-Mitigation: Use only trusted ComfyUI servers and avoid sending sensitive prompts or workflow data. <br>
+## Use Case:
 
+Developers and agents use this skill to run ComfyUI image-generation workflows from saved or ad-hoc server profiles, submit workflow JSON, poll jobs, and retrieve generated output paths and view URLs.
 
-## Reference(s): <br>
-- [ComfyUI Safe Connector - Configuration](references/CONFIG.md) <br>
-- [ComfyUI Safe Connector - Endpoints](references/ENDPOINTS.md) <br>
-- [ClawHub release page](https://clawhub.ai/genortg/openclaw-comfyui-api-runner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, JSON, Files] <br>
-**Output Format:** [JSON status objects with generated image file paths and view URLs, plus local files under generated/] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses COMFYUI_API_KEY and optional Basic Auth credentials; workflow inputs are parsed as JSON and submitted to a configured ComfyUI server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Saved server profiles can contain API keys, usernames, or passwords.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment-only credentials, avoid saving API keys or passwords in profiles, and delete saved profiles that are no longer needed.
+
+Risk: Generated media can be served by a temporary local viewer without authentication.
+
+Mitigation: Do not run the generated-media viewer on an untrusted network unless it is changed to bind only to localhost and require authentication.
+
+Risk: ComfyUI requests may send prompts and credentials to a configured server.
+
+Mitigation: Use only trusted ComfyUI servers and prefer HTTPS for any non-local server.
+
+## Reference(s):
+
+- [ComfyUI Safe Connector Configuration](artifact/references/CONFIG.md)
+- [ComfyUI Safe Connector Endpoints](artifact/references/ENDPOINTS.md)
+- [ClawHub skill page](https://clawhub.ai/genortg/skills/openclaw-comfyui-api-runner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [JSON responses with local file paths, view URLs, and command-oriented guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads generated media under generated/ and can expose temporary local browser view URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

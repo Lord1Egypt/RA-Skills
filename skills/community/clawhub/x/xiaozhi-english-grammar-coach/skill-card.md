@@ -1,42 +1,52 @@
-## Description: <br>
-A Chinese-language English grammar coaching skill that uses Socratic questioning to help learners identify grammar errors, build a grammar-error profile, practice relative clauses, and review progress with consent-gated tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过苏格拉底式追问帮助初中和高中学生自行发现英语语法错误，并在获得同意后记录语法弱项。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students and language-learning agents use this skill to examine English grammar mistakes through guided questions instead of direct correction. It supports recurring weakness tracking, relative-clause drills, grammar-pattern practice, and monthly progress summaries when the user consents to ongoing tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ongoing grammar-weakness tracking can maintain a learning profile beyond a single session. <br>
-Mitigation: Enable tracking, reminders, and cross-skill coordination only after explicit user consent, and keep the tracked profile limited to grammar-learning progress. <br>
-Risk: The coaching style may ask follow-up questions instead of immediately correcting all grammar mistakes. <br>
-Mitigation: Use the skill when guided discovery is appropriate, and switch to direct explanation when the learner needs immediate correction or a final answer. <br>
+## Use Case:
 
+面向初高中英语学习者，用于检查句子语法、练习语法规则和按需回顾常见弱项。长期记录只在获得相应同意后进行。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-english-grammar-coach) <br>
-- [English error dimension table](references/english-error-dimension-table.md) <br>
-- [Grammar patterns](references/grammar-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown coaching prompts, grammar analysis summaries, practice exercises, and progress reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose consent-gated tracking of recurring grammar weaknesses and learning reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter lists 1.0.2) <br>
+Risk: The skill also diagnoses and tracks English reading-question weaknesses, which may extend beyond the expected grammar-coaching scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make this broader scope clear to learners and only persist learner-profile updates when the required consent is enabled.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/qizhitang/skills/xiaozhi-english-grammar-coach)
+- [Grammar patterns](artifact/references/grammar-patterns.md)
+- [English error dimension table](artifact/references/english-error-dimension-table.md)
+- [High-school English grammar](artifact/references/english-hs-grammar.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Guidance]
+
+**Output Format:** [Conversational Chinese and English text, grammar explanations, and practice prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Profile-based progress tracking requires consent; cross-session summaries depend on available platform capabilities.]
+
+## Skill Version(s):
+
+2.12.7 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

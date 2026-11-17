@@ -1,41 +1,50 @@
-## Description: <br>
-Agente Portugues provides Portuguese language, Brazilian literature, text interpretation, and FUVEST writing tutoring for a computer science entrance-exam study workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agente especialista em Lingua Portuguesa, Literatura Brasileira e Redacao para FUVEST - Ciencia da Computacao (IME-USP), covering contextual grammar, text interpretation, required literature, Brazilian literary movements, and essay or narrative writing practice.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
 
-## Use Case: <br>
-External learners and tutoring agents use this skill to guide Portuguese grammar, reading interpretation, Brazilian literature review, and FUVEST writing practice. It is tailored to Antonio's entrance-exam preparation workflow and can coordinate with related study-planning and review agents when present. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may route general Portuguese, grammar, literature, or writing prompts to this skill when a narrower tutor was intended. <br>
-Mitigation: Use explicit agent routing or disable this skill for tasks that require a different tutor or a narrower scope. <br>
-Risk: Exam tutoring guidance may be incomplete or outdated for a specific FUVEST cycle. <br>
-Mitigation: Review generated study guidance against current exam materials before relying on it for preparation decisions. <br>
+## Use Case:
 
+Students and tutoring agents use this skill for FUVEST Portuguese preparation, especially grammar, reading comprehension, Brazilian literature, and structured writing practice. It is tailored to Antonio's Computer Science entrance-exam study workflow and coordinates with related study-planning agents when available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntonioVFranco/agente-portugues) <br>
-- [Publisher profile](https://clawhub.ai/user/AntonioVFranco) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown conversational tutoring guidance with examples, study modules, and flashcard-style prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces natural-language tutoring content; no tool calls, credentials, or file outputs are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate broadly for Portuguese, grammar, literature, and writing-study requests, including Antonio-specific tutoring contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower activation wording or install it only where FUVEST-focused Portuguese tutoring is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antoniovfranco/skills/agente-portugues)
+- [Publisher profile](https://clawhub.ai/user/antoniovfranco)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown and conversational tutoring guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, network access, credential handling, persistence, or destructive behavior are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Processes PDF and Word documents with local tools for conversion, page extraction, OCR-assisted analysis, and batch workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document Processor helps agents work with PDF and Word files, including format conversion, page extraction, OCR, watermark handling, merging, splitting, and batch operations.
 
-## Publisher: <br>
-[youmu88](https://clawhub.ai/user/youmu88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[youmu88](https://clawhub.ai/user/youmu88)
 
-## Use Case: <br>
-Developers, operators, and document-processing users use this skill to choose and run local scripts for PDF and Word conversion, PDF page extraction, OCR page analysis, and batch file operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency installation can modify the Python environment or require elevated package-management permissions. <br>
-Mitigation: Install dependencies in a virtual environment and avoid administrator or root execution. <br>
-Risk: Document conversion and extraction can process unintended files or overwrite existing outputs. <br>
-Mitigation: Process only explicitly selected files and folders, and use new output filenames for each operation. <br>
-Risk: OCR processing can leave temporary files containing sensitive document content. <br>
-Mitigation: Delete OCR temporary directories after processing sensitive documents. <br>
+## Use Case:
 
+Developers, employees, and external users can use this skill to have an agent prepare document-processing commands and operate local PDF and Word workflows such as conversion, page extraction, OCR-assisted page mapping, and batch processing.
 
-## Reference(s): <br>
-- [Document Processor ClawHub page](https://clawhub.ai/youmu88/document-processor) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with command-line examples; local outputs may include PDF, DOCX, extracted text, images, and OCR temporary files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local Python document-processing scripts and may create or overwrite user-selected output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README changelog, released 2026-03-01) <br>
+Risk: The dependency installer can install or upgrade Python packages from PyPI in the active environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, review requested packages before installation, and avoid running the installer as administrator or root.
+
+Risk: OCR processing may retain temporary files under /tmp/pdf_ocr_* that can contain document-derived content.
+
+Mitigation: Avoid OCR on confidential documents unless temporary artifacts are manually removed after processing.
+
+Risk: Document operations read from and write to local paths selected by the user.
+
+Mitigation: Keep backups of original files and use explicit output paths to avoid overwriting or misplacing processed documents.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/youmu88/skills/document-processor)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated local document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on local Python dependencies and user-selected input and output file paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact README changelog, released 2026-03-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

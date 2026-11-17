@@ -1,48 +1,63 @@
-## Description: <br>
-A unified meta-skill that orchestrates the transition from traditional management roles to an AI-augmented organizational operating system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A unified meta-skill that orchestrates the transition from traditional management roles to an AI-augmented organizational operating system.
 
-## Publisher: <br>
-[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei)
 
-## Use Case: <br>
-Leaders, operators, and developers use this skill to plan AI-augmented organizational workflows, redistribute routing, sense-making, and accountability responsibilities, and create governance records for human-reviewed agent decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used with sensitive organizational telemetry, employee metrics, persistent memory, and autonomous execution. <br>
-Mitigation: Define local policy controls before deployment, including allowed automation scope, required human approvals, permitted metrics, storage location, access controls, and deletion rules. <br>
-Risk: AI-generated routing or management recommendations may exceed the agent's ability to judge organizational context, politics, or ethical considerations. <br>
-Mitigation: Use the skill's confidence-based routing, DRI review, deliberation records, and post-mortem checks for decisions that affect people, strategy, or accountability. <br>
-Risk: Organizational health monitoring can create surveillance concerns if implemented with inappropriate metrics. <br>
-Mitigation: Limit monitoring to objective, agreed-upon indicators and avoid keystroke logging, private-message sentiment analysis, and productivity proxies that create surveillance anxiety. <br>
+## Use Case:
 
+Developers, operators, and organizational designers use this skill to plan AI-augmented management systems, redistribute routing, sense-making, and accountability work, and create governance records for high-impact agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielfoojunwei/agentic-middle-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/danielfoojunwei) <br>
-- [Governance Guardrails](references/governance_guardrails.md) <br>
-- [Trinity Mapping](references/trinity_mapping.md) <br>
-- [Culture Maintenance](references/culture_maintenance.md) <br>
-- [Deliberation Record Template](templates/deliberation_record.md) <br>
-- [AI Synthesis Report Template](templates/ai_synthesis_report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance, structured templates, and Python-oriented orchestration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes governance thresholds, human-review routing guidance, deliberation record structure, synthesis report structure, and organizational health monitoring recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can be applied to high-impact AI workflows where incorrect guidance could affect people, finances, public communications, or operational decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval for destructive, financial, personnel, public-facing, or externally consequential actions before deployment.
+
+Risk: Confidence-based auto-execution is described without enough hard limits for all operating contexts.
+
+Mitigation: Restrict auto-execution to low-risk, reversible tasks and route all moderate or consequential decisions to a named human reviewer.
+
+Risk: Persistent organizational memory can expose sensitive data if storage, retention, and audit boundaries are not defined.
+
+Mitigation: Define approved memory stores, data boundaries, retention periods, redaction rules, and audit procedures before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielfoojunwei/skills/agentic-middle-manager)
+- [Trinity Mapping](references/trinity_mapping.md)
+- [Governance Guardrails](references/governance_guardrails.md)
+- [Culture Maintenance](references/culture_maintenance.md)
+- [AI Synthesis Report Template](templates/ai_synthesis_report.md)
+- [Deliberation Record Template](templates/deliberation_record.md)
+- [JSON Schema 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON schemas, templates, Python snippets, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces governance frameworks, decision records, synthesis report templates, and health-report recommendations for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

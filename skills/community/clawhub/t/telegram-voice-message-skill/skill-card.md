@@ -1,48 +1,61 @@
-## Description: <br>
-Guides an AI assistant through generating, converting, validating, and sending Telegram voice messages in OGG/Opus format while avoiding common Telegram Bot API and TTS URL pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to convert TTS audio into Telegram-compatible OGG/Opus voice messages and send them with the correct voice-message parameters.
 
-## Publisher: <br>
-[shynloc](https://clawhub.ai/user/shynloc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shynloc](https://clawhub.ai/user/shynloc)
 
-## Use Case: <br>
-Developers and AI automation builders use this skill to prepare TTS audio, convert it to Telegram-compatible OGG/Opus, and send it as a voice message instead of a generic audio file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runnable examples and scripts include command-execution and automation patterns that require review before use. <br>
-Mitigation: Review and harden the scripts, run them with least privilege, and start with test-only Telegram and TTS credentials. <br>
-Risk: Telegram bot tokens and TTS API keys can be exposed through plaintext configuration, shell history, or debug output. <br>
-Mitigation: Store credentials in environment variables or a secret manager, avoid committing filled configuration files, and keep debug logging disabled around secrets. <br>
-Risk: Voice text and temporary audio files may contain sensitive content. <br>
-Mitigation: Avoid sensitive text, restrict access to temporary files, clean generated audio promptly, and validate retention settings before deployment. <br>
-Risk: Forwarding or exposing Telegram automation without authentication can leak messages or allow unauthorized sends. <br>
-Mitigation: Require webhook authentication before exposing any server and disable cross-channel forwarding of original content unless it is explicitly reviewed. <br>
+## Use Case:
 
+Developers and AI assistants use this skill to generate, convert, validate, and send Telegram voice messages from TTS output while avoiding common format, parameter, and URL-expiration errors.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/shynloc/telegram-voice-message-skill) <br>
-- [Telegram voice guide](artifact/docs/telegram-voice-guide.md) <br>
-- [Format requirements](artifact/docs/format-requirements.md) <br>
-- [API integration guide](artifact/docs/api-integration.md) <br>
-- [Best practices](artifact/docs/best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Bash scripts and JSON/Python configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Telegram bot credentials, a TTS provider key, curl, ffmpeg, and careful handling of generated audio and temporary files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Runnable scripts and examples could allow command execution or unauthenticated message sending.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden scripts before use, remove unsafe webhook, remote config, eval, shell=True, and named-pipe patterns, and test in a restricted environment.
+
+Risk: Telegram and TTS credentials can be exposed or reused across media-processing subprocesses.
+
+Mitigation: Use scoped tokens, keep Telegram and TTS credentials separate, store secrets outside source files, and avoid passing secrets to untrusted subprocesses.
+
+Risk: Public listeners can be abused if exposed without controls.
+
+Mitigation: Do not expose listeners publicly unless authentication, authorization, input validation, and rate limits are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shynloc/skills/telegram-voice-message-skill)
+- [Publisher profile](https://clawhub.ai/user/shynloc)
+- [Telegram voice guide](docs/telegram-voice-guide.md)
+- [Format requirements](docs/format-requirements.md)
+- [API integration guide](docs/api-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Bash, JSON, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Telegram and TTS credentials plus local media-processing tools such as ffmpeg and curl.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release version and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

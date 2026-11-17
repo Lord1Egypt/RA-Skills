@@ -27,14 +27,13 @@ Discover candidate events from user-provided or public sources.
 ```md
 ## Event Title
 
-- Date/time:
-- Venue/location:
-- Source:
-- Price/ticket info:
-- Short description:
-- Why it may be relevant:
-- Missing details:
-- Confidence:
+- Date/time: [The date and time of the event.]
+- Venue/location: [The location of the event.]
+- Source: [The exact clickable link where the event is found.]
+- Price/ticket info: [How much it costs and whether it must be booked in advance.]
+- Short description: [A one sentence description of the event.]
+- Why it fits: [How it matches the user taste-profile and query.]
+- Caveats: [Potential complications such as event fully booked, conflict with taste-profile, long term commitment, missing details, etc]
 ```
 
 ## Output

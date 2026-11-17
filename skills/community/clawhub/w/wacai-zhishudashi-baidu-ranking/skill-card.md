@@ -1,42 +1,55 @@
-## Description: <br>
-Searches Baidu for the keyword "指数大师," extracts the main result titles in order, formats them as a numbered list, and sends the list to a WeCom robot webhook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects Baidu search result titles for the keyword "指数大师", orders the main titles as a numbered list, and can send the result to a WeCom robot webhook.
 
-## Publisher: <br>
-[shidengyun](https://clawhub.ai/user/shidengyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shidengyun](https://clawhub.ai/user/shidengyun)
 
-## Use Case: <br>
-External users, operators, and developers can use this skill to capture a daily Baidu search-results snapshot for the keyword "指数大师" and push the ordered title list to a WeCom channel for ranking observation or reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends scraped titles, or any text passed to the helper script, to an embedded WeCom webhook. <br>
-Mitigation: Review the destination before use, prefer overriding the webhook with a user-controlled secret, and use dry-run or preview behavior before sending. <br>
-Risk: The artifact includes a hard-coded WeCom webhook secret. <br>
-Mitigation: Rotate the exposed key and require webhook configuration through an environment variable or secret store before operational use. <br>
+## Use Case:
 
+External users and developers use this skill to take a daily or scheduled snapshot of Baidu ranking titles for the keyword "指数大师" and report the ordered title list. It is intended for keyword ranking observation, brand-term monitoring, and search-result status updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shidengyun/wacai-zhishudashi-baidu-ranking) <br>
-- [Publisher profile](https://clawhub.ai/user/shidengyun) <br>
-- [Baidu search entry point](https://www.baidu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown summary and numbered plain-text title list, with optional shell command execution for WeCom delivery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends extracted titles to WeCom unless dry-run or reporting-only behavior is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill embeds a live WeCom webhook credential and sends messages to that fixed external destination by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke or rotate the exposed webhook key, require users to provide their own webhook URL, and ask for confirmation before sending any message.
+
+Risk: Collected Baidu title lists may be disclosed to an external WeCom robot when the push workflow is used.
+
+Mitigation: Use dry-run or local review first, override the destination with a user-controlled webhook only when sharing is intended, and avoid sending sensitive search snapshots.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shidengyun/skills/wacai-zhishudashi-baidu-ranking)
+- [Publisher profile](https://clawhub.ai/user/shidengyun)
+- [Baidu search homepage](https://www.baidu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with numbered title lists and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send the title list to a WeCom webhook unless configured for dry-run or an explicit webhook override.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,48 @@
-## Description: <br>
-Check current session's context window usage, including model name, estimated token usage, and context window utilization percentage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks the current session's context window usage, including model name, estimated token usage, utilization percentage, cache data, and status guidance.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[goog](https://clawhub.ai/user/goog)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to check how much of the current session context window is in use and decide whether monitoring or compaction guidance is needed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may suggest using a separate compaction helper when context usage is high.
+
+Mitigation: Review that separate skill independently before following its guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents use this skill when users ask how much context remains, how full the context window is, or whether compaction should be considered. It summarizes session context usage and gives threshold-based guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The summary may reveal session metrics such as model name, token usage, and cache information if shared outside the conversation. <br>
-Mitigation: Share context summaries only with intended recipients and avoid copying session metrics into public logs or reports unless needed. <br>
-Risk: The skill depends on current session status data being available; without it, context usage could be incomplete. <br>
-Mitigation: State when session status data is unavailable instead of estimating or inventing usage values. <br>
+**Output Format:** [Markdown summary]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include model name, token usage, cache hit rate, utilization percentage, and context status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes model name, used and total context tokens, cache information, and a status label when available.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

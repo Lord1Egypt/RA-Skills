@@ -1,43 +1,56 @@
-## Description: <br>
-健康助手 - 运动计划、饮食建议、睡眠优化。触发词：运动计划、饮食建议、改善睡眠 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Popeye Health is a Chinese-language wellness assistant for exercise planning, nutrition suggestions, and sleep improvement.
 
-## Publisher: <br>
-[jiangtaoid](https://clawhub.ai/user/jiangtaoid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangtaoid](https://clawhub.ai/user/jiangtaoid)
 
-## Use Case: <br>
-External users use this skill to get general wellness guidance for exercise planning, nutrition suggestions, and sleep improvement. The guidance is intended for everyday planning and should not replace medical, dietetic, or certified training advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general exercise, nutrition, or sleep guidance as medical or professional advice. <br>
-Mitigation: Keep recommendations general and advise users with injuries, chronic illness, pregnancy, significant pain, severe sleep problems, or other medical concerns to consult a doctor, dietitian, or certified trainer before following guidance. <br>
-Risk: Users may share more personal health information than needed. <br>
-Mitigation: Ask only for the minimum relevant context needed to tailor general wellness suggestions. <br>
+## Use Case:
 
+External users use this agent skill to receive general wellness guidance for workout routines, everyday meal planning, and sleep habit adjustments. The skill is intended for non-clinical guidance and should not replace qualified medical or nutrition advice.
 
-## Reference(s): <br>
-- [Popeye Health release page](https://clawhub.ai/jiangtaoid/popeye-health) <br>
-- [Exercise planning module](artifact/modules/fitness.md) <br>
-- [Nutrition suggestions module](artifact/modules/nutrition.md) <br>
-- [Sleep optimization module](artifact/modules/sleep.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown wellness guidance with structured plans, suggestions, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [General wellness advice only; no code execution, tool use, or data access is described in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: Users may mistake exercise, diet, or sleep suggestions for clinical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as general wellness guidance and direct users with injuries, chronic conditions, pregnancy, medication interactions, eating-disorder history, severe insomnia, or other medical concerns to qualified clinicians or dietitians.
+
+Risk: The skill may prompt users to share health-related personal context.
+
+Mitigation: Ask only for the context needed to tailor general guidance and avoid collecting unnecessary sensitive details.
+
+## Reference(s):
+
+- [Popeye Health ClawHub Skill Page](https://clawhub.ai/jiangtaoid/skills/popeye-health)
+- [Fitness Module](artifact/modules/fitness.md)
+- [Nutrition Module](artifact/modules/nutrition.md)
+- [Sleep Module](artifact/modules/sleep.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown with structured recommendations and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language wellness guidance triggered by exercise, diet, or sleep requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,51 @@
-## Description: <br>
-Generates a single runnable vertical HTML slide deck from a user's script in a minimalist, Steve Jobs-inspired technology presentation style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms a user's Chinese talk script into a minimalist, Steve Jobs-style vertical HTML presentation with a refined manuscript, slide outline, and runnable HTML output.
 
-## Publisher: <br>
-[zhj7860](https://clawhub.ai/user/zhj7860) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhj7860](https://clawhub.ai/user/zhj7860)
 
-## Use Case: <br>
-External users and developers use this skill to transform presentation scripts into polished 9:16 HTML slide decks with a concise script, slide structure, and complete runnable HTML output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML presentations may load TailwindCSS and fonts from public third-party CDNs. <br>
-Mitigation: Use local or pinned assets for sensitive, offline, or high-assurance presentations before opening or sharing the generated HTML. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Design Specification](references/design-spec.md) <br>
-- [Slide Types](references/slide-types.md) <br>
-- [HTML Template](assets/template.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhj7860/ppt) <br>
+## Use Case:
 
+External users and presentation creators use this skill to turn a prepared talk script into a concise vertical slide deck with a technology-focused minimalist visual style. It is best suited for Chinese-first HTML presentation generation where the final artifact can be opened directly in a browser.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code] <br>
-**Output Format:** [Markdown followed by complete HTML code in a single response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML uses a 9:16 slide layout with keyboard and touch navigation, progress indicators, animations, and third-party CDN assets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated HTML presentations may contact third-party CDNs for CSS, fonts, or framework assets when opened.
+
+Mitigation: Review generated HTML before distribution, and inline CSS or replace CDN resources with local assets for sensitive, offline, or restricted presentations.
+
+## Reference(s):
+
+- [Design specification](references/design-spec.md)
+- [Slide types](references/slide-types.md)
+- [HTML presentation template](assets/template.html)
+- [ClawHub skill page](https://clawhub.ai/zhj7860/skills/ppt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code]
+
+**Output Format:** [Markdown narrative with a slide outline and complete HTML code block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs a single browser-runnable HTML presentation; when slide count is unspecified, the skill defaults to 8-20 vertical slides.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

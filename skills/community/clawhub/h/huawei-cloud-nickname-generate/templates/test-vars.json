@@ -1,0 +1,56 @@
+{
+  "skill_name": "huawei-cloud-nickname-generate",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/generate_nickname.py --help",
+      "expected": "argparse help printed, exit 0; contains --count/--seed/--style/--length/--format",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "Default single nickname with a fixed seed",
+      "command": "python3 scripts/generate_nickname.py --seed 20240501",
+      "expected": "Markdown with one nickname; exit 0",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "Batch of five de-duplicated nicknames as JSON",
+      "command": "python3 scripts/generate_nickname.py --seed 42 --count 5 --format json",
+      "expected": "JSON with nicknames array of length 5, all names distinct, seed=42",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "Style and length filters",
+      "command": "python3 scripts/generate_nickname.py --seed 9 --count 3 --style 文艺 --length long --format json",
+      "expected": "JSON with style=文艺, length=long; every nickname 7-10 chars and every part carries 文艺; fallbacks empty",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "Reproducible output for the same seed",
+      "command": "python3 scripts/generate_nickname.py --seed 555 --count 3 --format json",
+      "expected": "Identical JSON object for repeated runs with the same seed",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-06",
+      "name": "Count upper bound enforced",
+      "command": "python3 scripts/generate_nickname.py --count 21",
+      "expected": "exit 2 and an error stating --count must be <= 20",
+      "type": "negative",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": [],
+  "notes": "Pure local Python 3 skill: no Huawei Cloud credentials, CLI, SDK, or network access. All cases are read-only and only read the built-in morpheme pool. When the smoke harness cannot execute interpreter commands, the structural self-check plus the unit tests under tests/ cover the behaviour."
+}

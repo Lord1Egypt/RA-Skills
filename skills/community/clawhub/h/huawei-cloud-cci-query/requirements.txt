@@ -1,0 +1,7 @@
+# huawei-cloud-cci-query 依赖声明
+#
+# 本 Skill 的核心执行依赖为 KooCLI (hcloud)，需在运行环境独立安装。
+# Python 标准库即可运行 scripts/cci_query.py，无额外第三方依赖。
+#
+# KooCLI 安装参考: references/cli-installation-guide.md
+# Python 版本要求: >= 3.8

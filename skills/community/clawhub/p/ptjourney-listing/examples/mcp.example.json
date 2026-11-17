@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ptjourney-listing": {
+      "command": "node",
+      "args": [
+        "REPLACE_WITH_OFFICIAL_RUNTIME_DIRECTORY/scripts/ptjourney-mcp.js"
+      ]
+    }
+  }
+}

@@ -1,12 +1,12 @@
-# Nuxt 项目规范
+# Nuxt project specifications
 
-Frontend Craft skill for Nuxt 项目规范.
+Design Nuxt routes, SSR/SSG behavior, data fetching, middleware, and project structure.
 
 ## Skill
 
 - ID: `fec-nuxt-project-standard`
 - Category: `project-standard`
-- Version: `2.4.0`
+- Version: `2.9.0`
 - Source: `skills/fec-nuxt-project-standard/SKILL.md`
 
 ## Description
@@ -19,9 +19,9 @@ Install or import this package with any skill runtime that understands the stand
 
 ## Optional Related Packages
 
-- `@frontend-craft/fec-vue3-project-standard`
-- `@frontend-craft/fec-route-protection`
-- `@frontend-craft/fec-data-fetching`
+- `@bovinphang/fec-vue3-project-standard`
+- `@bovinphang/fec-route-protection`
+- `@bovinphang/fec-data-fetching`
 
 ## License
 

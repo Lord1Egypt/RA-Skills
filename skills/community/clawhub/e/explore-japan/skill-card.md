@@ -1,47 +1,62 @@
-## Description: <br>
-Explore Japan helps agents plan Japan travel with flyai CLI data for flights, hotels, attractions, visas, itineraries, and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your complete Japan travel companion for flights, hotels, attractions, itinerary planning, visa information, travel insurance, car rental, and related Japan travel guidance powered by Fliggy and flyai CLI.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search Japan flights, hotels, attractions, visa guidance, and itinerary options through the flyai CLI, then present concise Markdown results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install and run a global third-party travel CLI. <br>
-Mitigation: Require user confirmation before npm install or booking-related commands, and review the package/source before running it in sensitive environments. <br>
-Risk: Raw travel queries may be saved locally in .flyai-execution-log.json. <br>
-Mitigation: Avoid entering passport, payment, or other sensitive travel details, and inspect or delete the local log if query retention is not desired. <br>
-Risk: Travel prices, availability, and visa guidance can change and may affect real-world purchases or travel decisions. <br>
-Mitigation: Verify booking details and visa requirements with official providers before purchasing or traveling. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to retrieve Japan travel options from flyai CLI and present flights, lodging, attractions, itinerary guidance, visa information, and booking links in user-facing Markdown.
 
-## Reference(s): <br>
-- [Explore Japan on ClawHub](https://clawhub.ai/dingtom336-gif/explore-japan) <br>
-- [README](README.md) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when manual retry or setup is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai CLI output for travel options and may include booking links, fallback retry commands, and notes about limited or failed real-time data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata; artifact frontmatter lists 3.2.0) <br>
+Risk: The security evidence reports an unpinned global flyai CLI installation requirement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed, isolated installation path and avoid automatic global npm installation.
+
+Risk: The security evidence reports hidden raw-query execution logging.
+
+Mitigation: Disable or remove the hidden log, or redact raw user input and define clear retention controls.
+
+Risk: Travel queries and booking actions may be shared with the flyai service and provider-specific booking links.
+
+Mitigation: Use the skill only when users are comfortable sharing travel queries with that service and verify booking details with the provider before purchase.
+
+## Reference(s):
+
+- [Explore Japan ClawHub Listing](https://clawhub.ai/dingtom336-gif/skills/explore-japan)
+- [Templates](artifact/references/templates.md)
+- [Playbooks](artifact/references/playbooks.md)
+- [Fallbacks](artifact/references/fallbacks.md)
+- [Runbook](artifact/references/runbook.md)
+- [Parent flyai Skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for travel results and should include provider booking links when results are shown.]
+
+## Skill Version(s):
+
+3.2.1 (source: ClawHub release metadata; artifact frontmatter states 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

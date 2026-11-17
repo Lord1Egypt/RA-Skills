@@ -1,41 +1,55 @@
-## Description: <br>
-Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection.
 
-## Publisher: <br>
-[roseknife520](https://clawhub.ai/user/roseknife520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roseknife520](https://clawhub.ai/user/roseknife520)
 
-## Use Case: <br>
-Developers and engineers use this skill to drive deterministic browser automation from an agent, including navigation, ref-based interactions, data extraction, session isolation, and browser state management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser-session features can expose login data, cookies, local storage, or saved authentication state if used carelessly. <br>
-Mitigation: Use isolated or in-memory sessions, avoid personal browser profiles unless explicitly needed, do not print raw cookies or storage values, and treat saved auth-state files like passwords. <br>
-Risk: Automation against untrusted pages can act on misleading page content or unstable UI state. <br>
-Mitigation: Use JSON snapshots, wait for page stability, verify refs before interaction, and review high-impact actions before execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to drive headless browser workflows, inspect accessibility snapshots, interact with elements by stable refs, and manage isolated browser sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roseknife520/agent-browser-clawdbot-rose) <br>
-- [agent-browser homepage](https://github.com/vercel-labs/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs guide an agent to run the external agent-browser CLI and parse JSON snapshots, refs, and state responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Saved browser sessions, cookies, storage values, and auth-state files can expose account access if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat saved state as secrets, keep it out of source control, use test or least-privilege accounts where possible, and delete stale session files.
+
+Risk: Global CLI installation and browser dependency installation can change the host environment.
+
+Mitigation: Install only from a trusted registry or source, pin the package version where practical, and avoid elevated privileges unless required.
+
+## Reference(s):
+
+- [Agent Browser GitHub Repository](https://github.com/vercel-labs/agent-browser)
+- [Skill Page](https://clawhub.ai/roseknife520/skills/agent-browser-clawdbot-rose)
+- [Publisher Profile](https://clawhub.ai/user/roseknife520)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference browser session state, cookies, storage values, screenshots, PDFs, and saved auth-state files produced by the underlying CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

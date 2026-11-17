@@ -1,41 +1,56 @@
-## Description: <br>
-Extract and analyze text, tables, images, and metadata from Korean HWP and HWPX documents, supporting both legacy and modern formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and analyzes text, tables, images, and metadata from Korean HWP and HWPX documents.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and agents use this skill to read, extract, summarize, compare, and draft content for Korean Hangul Word Processor documents, including government forms and HWP/HWPX templates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Malformed or untrusted HWP/HWPX files can stress document parsers. <br>
-Mitigation: Handle untrusted documents in an isolated workspace and keep parsing dependencies up to date. <br>
-Risk: Adapted command snippets can target the wrong file if paths are copied without care. <br>
-Mitigation: Use safely quoted file paths and verify the target document before running extraction commands. <br>
-Risk: Text extraction may omit formatting, table structure, or full preview content. <br>
-Mitigation: Review the original document when layout, tables, or complete content affect the decision. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/hwp-reader) <br>
+## Use Case:
 
+Developers and agents use this skill to read and analyze Korean Hangul Word Processor files, including government forms, templates, and document revisions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets plus extracted document text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Legacy HWP extraction depends on pyhwp; HWPX extraction uses ZIP and XML parsing from the Python standard library.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dependency behavior or version drift in pyhwp can affect legacy HWP extraction.
+
+Mitigation: Use a virtual environment and pin or review pyhwp before installing it.
+
+Risk: Very large or untrusted HWPX files can consume excessive memory, CPU, or output budget during ZIP and XML parsing.
+
+Mitigation: Run extraction with memory, CPU, and output limits before using the resulting text in downstream workflows.
+
+Risk: Text-mode extraction can omit or simplify document structure, formatting, encrypted content, and some table details.
+
+Mitigation: Treat extracted text as a working representation and manually review source documents when formatting, tables, or protected sections matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/hwp-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with extracted document text, analysis, and inline Python or shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact author line)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

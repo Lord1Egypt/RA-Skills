@@ -1,42 +1,50 @@
-## Description: <br>
-虾小宝AI Agent技能商店 - 中国AI Agent Skills地图。用于搜索、安装和管理AI Agent技能插件。当用户需要查找国内的AI Agent技能、插件市场、或者访问 ai.skillatlas.cn 时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+虾小宝AI Agent技能商店 - 中国AI Agent Skills地图。用于搜索、安装和管理AI Agent技能插件。当用户需要查找国内的AI Agent技能、插件市场、或者访问 ai.skillatlas.cn 时使用此技能。
 
-## Publisher: <br>
-[same1317](https://clawhub.ai/user/same1317) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[same1317](https://clawhub.ai/user/same1317)
 
-## Use Case: <br>
-External users and developers use this skill to find and browse Chinese AI Agent skills, plugins, and Skill Atlas content at ai.skillatlas.cn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace results or separate skills found through Skill Atlas may have their own publisher, permission, and artifact risks. <br>
-Mitigation: Review the publisher, permissions, artifacts, and scan results of any separate skill before installing or using it. <br>
-Risk: Website lookup results can become stale or differ from release-time evidence. <br>
-Mitigation: Fetch current Skill Atlas website content before acting on skill discovery or installation guidance. <br>
+## Use Case:
 
+External users and developers use this skill to find, browse, install, and manage AI Agent skills through the Skill Atlas service, especially for China-focused skill discovery.
 
-## Reference(s): <br>
-- [Skill Atlas Website](https://ai.skillatlas.cn) <br>
-- [ClawHub Skill Page](https://clawhub.ai/same1317/skill-atlas) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/same1317) <br>
+### Deployment Geography for Use:
 
+Global; content and service focus on users looking for China-focused AI Agent skills.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls] <br>
-**Output Format:** [Markdown with website and web_fetch guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs the agent to fetch Skill Atlas website content and, when useful, try website search or API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may rely on content fetched from an external website, so returned listings or installation guidance can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review fetched results and scan any selected skill before installing or using it.
+
+## Reference(s):
+
+- [Skill Atlas website](https://ai.skillatlas.cn)
+- [ClawHub skill release page](https://clawhub.ai/same1317/skills/skill-atlas)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls]
+
+**Output Format:** [Markdown guidance with URLs and optional web fetch/API call suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to fetch content from ai.skillatlas.cn.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

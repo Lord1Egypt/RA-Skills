@@ -120,9 +120,9 @@ Minimum RAM permissions required for PAI-EAS service deployment.
 |--------|-------------|----------|
 | `nlb:ListLoadBalancers` | List load balancers | NLB network config |
 
-## Extended Operations Permissions (Optional)
+## Extended Read Permissions (Optional)
 
-For more complete PAI-EAS operations (update, delete services, etc.), add these permissions:
+This skill only deploys and inspects services; it never updates, deletes, scales, or suspends them. If you want richer read-only diagnostics alongside deployment, you may add these additional read permissions:
 
 ```json
 {
@@ -131,12 +131,7 @@ For more complete PAI-EAS operations (update, delete services, etc.), add these 
     {
       "Effect": "Allow",
       "Action": [
-        "eas:UpdateService",
-        "eas:DeleteService",
-        "eas:ScaleService",
-        "eas:DescribeServiceLog",
-        "eas:ResumeService",
-        "eas:SuspendService"
+        "eas:DescribeServiceLog"
       ],
       "Resource": "*"
     },

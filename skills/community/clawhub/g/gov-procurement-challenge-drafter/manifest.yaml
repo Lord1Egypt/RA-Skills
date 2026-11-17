@@ -1,0 +1,46 @@
+# ── OpenClaw 兼容 manifest.yaml ── 多平台发布配置 ──
+
+name: gov-procurement-challenge-drafter
+version: 1.0.1
+description: 政采质疑函与投诉书智能起草助手。基于现行政府采购法律法规，生成格式规范、论证严密、引用精准的质疑函或投诉书，并提供法定要素检查、时效速查与不予受理风险预警。
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+
+# ── 标签（ClawHub 发现 + 分类检索）──
+tags:
+  - 政府采购
+  - 质疑函
+  - 投诉书
+  - 94号令
+  - 供应商维权
+  - 法律文书
+
+# ── 触发词（多平台 skill 匹配 / 意图路由）──
+triggers:
+  - pattern: "起草政府采购质疑函|生成政府采购质疑函|起草政府采购投诉书|生成政府采购投诉书|检查质疑函|检查投诉书|质疑函模板|投诉书模板|政府采购质疑投诉文书"
+
+# ── 运行时元数据（OpenClaw 标准 metadata.openclaw）──
+metadata:
+  openclaw:
+    emoji: "✍️"
+    homepage: https://github.com/chesaram/my-skill-hub
+    feedback:
+      channel: GitHub Issues
+      account: https://github.com/chesaram/my-skill-hub/issues
+      note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue。"
+
+# ── 多平台发布配置 ──
+platforms:
+  clawhub:
+    main: SKILL.md
+    displayName: Gov Procurement Challenge Drafter
+    slug: gov-procurement-challenge-drafter
+  skillhub:
+    main: SKILL.md
+    displayName: 政采质疑函与投诉书智能起草助手
+  cocoloop:
+    main: SKILL.md
+    displayName: 政采质疑函与投诉书智能起草助手
+  coze:
+    main: SKILL.md
+    displayName: 政采质疑函与投诉书智能起草助手

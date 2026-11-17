@@ -1,41 +1,59 @@
-## Description: <br>
-Render X (Twitter) posts, long articles, and mobile reading pages into mobile-style long screenshots and optional single-page PDFs using Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Renders X (Twitter) posts, long articles, and mobile reading pages into mobile-style long screenshots and optional single-page PDFs using Playwright.
 
-## Publisher: <br>
-[spyfree](https://clawhub.ai/user/spyfree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spyfree](https://clawhub.ai/user/spyfree)
 
-## Use Case: <br>
-External users, developers, and content archivists use this skill to generate phone-like dark-mode PNG captures and optional single-page PDFs for X posts, long articles, or mobile reading pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted output file paths may cause local code execution through the renderer's Python path handling. <br>
-Mitigation: Use only simple, trusted output filenames inside a dedicated folder, and do not allow untrusted text to choose --out-png or --out-pdf values. <br>
-Risk: X overlays or DOM changes may leave visual artifacts in very long captures. <br>
-Mitigation: Re-run with longer waits or a larger top replacement height, and update overlay patterns or use segmented capture when X changes its page structure. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to archive X posts or long-form mobile reading pages as phone-like dark-mode screenshots and optional single-page PDFs.
 
-## Reference(s): <br>
-- [x-mobile-longshot notes](references/notes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/spyfree/x-mobile-longshot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated PNG files and optional single-page PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Playwright mobile emulation with dark mode and configurable device, wait time, and top-region replacement settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Unsafe output filename handling may execute local code when command arguments are controlled by untrusted users or prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid user-supplied output filenames, run the skill in an isolated workspace, and prefer a version that passes paths to Python as data rather than generated code.
+
+Risk: Browser automation can be pointed at non-X URLs or internal network destinations.
+
+Mitigation: Allow only vetted X URLs, block internal network destinations, and use limited network access for execution.
+
+Risk: X overlay and page structure changes can leave sticky bars or modal prompts in screenshots.
+
+Mitigation: Increase wait time or top replacement height, update overlay text patterns, or move to segmented capture and stitching when full-page capture is not clean enough.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spyfree/skills/x-mobile-longshot)
+- [v1 design notes, limits, and iteration guidance](references/notes.md)
+- [Main renderer script](scripts/render_x_longshot.js)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands that produce PNG screenshots and optional PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Playwright mobile emulation with dark mode and tunable wait and top-replacement options.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,57 @@
-## Description: <br>
-Add HTTP OTA (Over-The-Air) firmware update capability to Unihiker K10 Arduino projects, including AP/STA projects and ESP-NOW projects that need a safe OTA maintenance mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add HTTP OTA (Over-The-Air) firmware update capability to Unihiker K10 Arduino projects, including AP/STA projects and ESP-NOW projects that need a safe OTA maintenance mode.
 
-## Publisher: <br>
-[rockets-cn](https://clawhub.ai/user/rockets-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rockets-cn](https://clawhub.ai/user/rockets-cn)
 
-## Use Case: <br>
-Developers and engineers use this skill to add scriptable HTTP firmware updates to Unihiker K10 Arduino projects without relying on USB or ArduinoOTA. It is especially relevant for AP/STA deployments and ESP-NOW projects that need an explicit OTA maintenance mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copyable examples expose firmware reflashing over plain HTTP with weak default Wi-Fi credentials and no access control. <br>
-Mitigation: Use a unique per-device password or token, require an explicit short-lived maintenance mode such as a button press, and avoid exposing the OTA endpoint on untrusted networks. <br>
-Risk: Firmware uploads may be accepted without integrity validation. <br>
-Mitigation: Validate firmware signatures or hashes before applying OTA updates. <br>
-Risk: ESP-NOW or time-critical control behavior can conflict with Wi-Fi networking and flash writes during OTA. <br>
-Mitigation: Enter a dedicated OTA maintenance mode, align Wi-Fi and ESP-NOW channels when needed, and pause ESP-NOW sends and control loops while upload is active. <br>
-Risk: An incorrect partition table can overwrite K10 AI model regions or fail because no OTA partition is available. <br>
-Mitigation: Use OTA app partitions that end before the documented model, voice_data, and fr regions, and perform the first partition-table change by USB. <br>
+## Use Case:
 
+Developers and engineers use this skill to add and maintain HTTP OTA firmware updates for Unihiker K10 Arduino projects, including AP/STA setups and ESP-NOW projects that need a temporary OTA maintenance mode.
 
-## Reference(s): <br>
-- [K10 HTTP OTA Implementation Guide](references/ota-implementation.md) <br>
-- [ClawHub skill page](https://clawhub.ai/rockets-cn/skills/unihiker-k10-ota) <br>
-- [Publisher profile](https://clawhub.ai/user/rockets-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline C++, CSV, bash, PowerShell, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces firmware integration guidance, partition table configuration, OTA endpoint code, and upload commands for Unihiker K10 Arduino projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The OTA pattern can expose an unauthenticated HTTP firmware update endpoint to anyone with network access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add per-device authentication, keep OTA mode temporary and locally triggered, and use signed firmware or an equivalent integrity check before using it on a real network.
+
+Risk: Shared default access point credentials can make OTA maintenance mode easier to reach than intended.
+
+Mitigation: Avoid shared default AP passwords and provision unique device credentials.
+
+Risk: Changing the K10 partition table can erase local data or damage built-in AI model regions if offsets are wrong.
+
+Mitigation: Review the partition table before the first USB flash and keep OTA application partitions from overlapping the model, voice_data, and fr regions.
+
+## Reference(s):
+
+- [K10 HTTP OTA Implementation Guide](references/ota-implementation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code, command examples, and helper upload scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Python and PowerShell helper upload scripts.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

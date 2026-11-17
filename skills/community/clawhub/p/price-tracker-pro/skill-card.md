@@ -1,39 +1,49 @@
-## Description: <br>
-Price Tracker Pro helps users monitor product prices, set target-price alerts, review price history, and identify better buying times across supported shopping platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Price Tracker Pro helps agents monitor product prices, set target-price alerts, and summarize price history for supported shopping platforms.
 
-## Publisher: <br>
-[awdasfdada](https://clawhub.ai/user/awdasfdada) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awdasfdada](https://clawhub.ai/user/awdasfdada)
 
-## Use Case: <br>
-Shoppers and shopping assistants use this skill to monitor Taobao/Tmall, JD.com, and Pinduoduo product links, set target prices, receive price-drop reminders, and review price history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product links and target prices can reveal shopping interests or intent. <br>
-Mitigation: Install only if comfortable sharing those details with the agent workflow used for monitoring. <br>
-Risk: The skill depends on stored monitors, periodic checks, and deletion behavior that are not fully specified in the artifact. <br>
-Mitigation: Before relying on it, confirm how monitors are stored, how often checks run, and how tracked items are deleted. <br>
+## Use Case:
 
+External users use this skill to monitor product links, set desired prices, receive price-drop reminders, review price history, and manage tracked items for supported e-commerce platforms.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product links, target prices, monitor status, price-history summaries, and price-drop reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Using this skill may involve storing product links, target prices, monitoring schedules, and notification preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only add links users are comfortable having monitored, and stop monitoring items that are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/awdasfdada/skills/price-tracker-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses containing product links, target prices, monitoring status, alerts, and price history summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tracked product names or identifiers, target prices, check cadence, and reminder status.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

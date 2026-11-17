@@ -1,42 +1,59 @@
-## Description: <br>
-Research, plan, revise, and deliver car-sleep travel guides as HTML/PDF with verified overnight parking, charging, toilet access, next-morning route anchors, and formal copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research, plan, revise, and deliver car-sleep travel guides as HTML/PDF with verified overnight parking, charging, toilet access, next-morning route anchors, and formal copy.
 
-## Publisher: <br>
-[allensu0314](https://clawhub.ai/user/allensu0314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allensu0314](https://clawhub.ai/user/allensu0314)
 
-## Use Case: <br>
-External travelers and trip-planning agents use this skill to research car-sleep trips and create polished HTML/PDF guides. It focuses on verified overnight parking, charging, toilet access, route timing, screenshots, and fallback planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel, parking, charging, toilet, and overnight permission information can be stale or incomplete. <br>
-Mitigation: Verify hard data against current map, official, or structured sources before presenting guide recommendations, and label unconfirmed overnight permission as a candidate rather than allowed. <br>
-Risk: Guide revisions can overwrite earlier HTML/PDF outputs or make filenames ambiguous. <br>
-Mitigation: Confirm desired filenames and output locations when revising guides, and use scenario-specific filenames for each variant. <br>
+## Use Case:
 
+External users and agents use this skill to produce car-sleep travel guides that prioritize verified overnight anchors, charging, toilets, route timing, screenshots, and fallback logic. It is intended for trips where lodging is removed or the traveler plans to sleep in a vehicle.
 
-## Reference(s): <br>
-- [Source Selection for Car-Sleep Guides](references/source-selection.md) <br>
-- [QA Checklist for Car-Sleep Guides](references/qa-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/allensu0314/trip-guide-pdf-car-sleep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with HTML/PDF guide files and supporting screenshots] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local screenshots plus HTML/PDF guide files; confirm filenames and destinations when revising guides so prior versions are not accidentally replaced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Parking, charging, toilet, and route details may be outdated or wrong when used for real travel decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify schedule-critical claims with current maps, official scenic pages, structured listings, and visible parking or access evidence before relying on them.
+
+Risk: A 24-hour parking or charging location may be mistaken for explicit permission to sleep in a vehicle overnight.
+
+Mitigation: Label unverified locations as candidate night anchors and distinguish hard permission evidence from soft car-sleep or camping signals.
+
+Risk: Changing a sleep point can invalidate downstream route timing and scenic order.
+
+Mitigation: Recompute dependent legs, charger or toilet coverage, morning departure logic, and fallback points after every night-anchor change.
+
+## Reference(s):
+
+- [Source Selection for Car-Sleep Guides](artifact/references/source-selection.md)
+- [QA Checklist for Car-Sleep Guides](artifact/references/qa-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/allensu0314/skills/trip-guide-pdf-car-sleep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance, files]
+
+**Output Format:** [Formal travel guide prose, usually drafted as HTML with optional PDF export and supporting screenshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emphasizes verified hard data, labeled soft signals, candidate overnight anchors, and fallback points.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

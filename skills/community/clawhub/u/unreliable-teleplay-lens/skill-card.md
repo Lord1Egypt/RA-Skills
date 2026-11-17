@@ -1,40 +1,54 @@
-## Description: <br>
-Narrative analysis framework for understanding canon conflicts and contradictory retellings by treating each work as a perspective-shaped account rather than a definitive record. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Narrative analysis framework for understanding how multiple works within a shared property or historical tradition can coexist without strict canonical reconciliation.
 
-## Publisher: <br>
-[inertia186](https://clawhub.ai/user/inertia186) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inertia186](https://clawhub.ai/user/inertia186)
 
-## Use Case: <br>
-External users and analysts use this skill to compare conflicting franchise, mythic, historical, or cultural retellings without forcing a single canon answer. It helps identify shared event anchors, narrative lenses, and interpretive differences across versions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may apply the Unreliable Teleplay Lens to broad story-reconciliation questions when the user wants a factual continuity answer. <br>
-Mitigation: Ask for a factual continuity or canon-first answer when that is the desired analysis style. <br>
-Risk: The framework can produce speculative synthesis when comparing contradictory accounts. <br>
-Mitigation: Separate shared event anchors from interpretation and avoid treating the synthesized account as definitive fact. <br>
+## Use Case:
 
+External users and developers use this skill to analyze contradictions across franchise entries, historical retellings, myths, legends, reboots, and tonal shifts without forcing a single canonical hierarchy. It guides agents to identify event anchors, narrative lenses, and interpretive variance before synthesizing how conflicting accounts can coexist.
 
-## Reference(s): <br>
-- [UTL Framework - Full Reference](references/framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown narrative analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only interpretive guidance; no code execution, external calls, or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may steer broad canon or contradiction questions toward an unreliable teleplay interpretation when the user wants strict continuity analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for strict continuity analysis or request comparison against canon-based interpretations when that is the desired frame.
+
+Risk: The framework is less suitable for hard continuity systems, purely technical narratives, or deliberate disinformation cases.
+
+Mitigation: Use UTL only when interpretive variance is appropriate, and switch to evidence-first continuity or fact-checking methods for precision or deception-focused tasks.
+
+## Reference(s):
+
+- [UTL Framework - Full Reference](references/framework.md)
+- [ClawHub skill page](https://clawhub.ai/inertia186/skills/unreliable-teleplay-lens)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text narrative analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, code execution, or file writes are required by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

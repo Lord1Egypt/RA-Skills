@@ -174,7 +174,7 @@ echo "Alert if hourly_cost > 2 * average_hourly_cost"
 ### Slack/Discord Alerts
 ```bash
 # Send daily cost summary to Slack
-curl -X POST https://hooks.slack.com/services/YOUR/WEBHOOK/URL \
+curl -X POST REDACTED-SECRET \
   -d '{"text": "Daily OpenClaw cost: $5.00 (Budget: $10.00)"}'
 ```
 

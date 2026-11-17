@@ -1,53 +1,70 @@
-## Description: <br>
-Anamnesis Hub helps OpenClaw agents set up persistent four-tier memory with local semantic retrieval, Markdown working memory, long-term archives, structured facts, optional cloud sync, and automated extraction pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anamnesis Hub helps OpenClaw agents set up and operate a four-tier persistent memory system with local retrieval, working-memory files, long-term archives, optional MemOS Cloud sync, and automated extraction pipelines.
 
-## Publisher: <br>
-[victorqr](https://clawhub.ai/user/victorqr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[victorqr](https://clawhub.ai/user/victorqr)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure persistent agent memory, local and optional cloud recall, automated extraction, synchronization, and maintenance scripts across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad persistent memory can capture conversations and retain sensitive context long term. <br>
-Mitigation: Use only when persistent OpenClaw memory is intended; avoid secrets and regulated data, and disable conversation access unless needed. <br>
-Risk: Cloud sync and external memory services can send local memory content outside the local environment. <br>
-Mitigation: Review cloud sync destinations before enabling them and store MEMOS_API_KEY or other tokens carefully. <br>
-Risk: Setup and pipeline scripts can edit OpenClaw configuration and schedule recurring jobs. <br>
-Mitigation: Run dry-run modes first, inspect proposed openclaw.json and cron changes, and enable only the jobs required for the deployment. <br>
-Risk: Cleanup, reset, or uninstall flows can affect memory and session files. <br>
-Mitigation: Back up memory and session files before cleanup, reset, or uninstall commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure persistent memory for OpenClaw agents, including local semantic retrieval, daily memory files, long-term memory indexes, optional cloud synchronization, and scheduled extraction pipelines.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/victorqr/anamnesis-hub) <br>
-- [Documentation index](references/INDEX.md) <br>
-- [Architecture](references/architecture.md) <br>
-- [Setup guide](references/setup-guide.md) <br>
-- [Memory directory](references/memory-directory.md) <br>
-- [Sync API](references/sync-api.md) <br>
-- [Scripts reference](references/scripts-reference.md) <br>
-- [Pipeline stages](references/pipeline-stages.md) <br>
-- [Candidates review](references/candidates-review.md) <br>
-- [Upgrade and reset](references/upgrade-reset.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands that may install plugins, edit OpenClaw configuration, schedule cron jobs, and operate on memory/session files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v1.13.2 (source: server release metadata; frontmatter 1.13.2) <br>
+Risk: Conversation-derived data may be sent to MemOS services when optional cloud synchronization or recall is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the privacy tradeoffs before enabling MemOS Cloud, avoid sensitive workspaces unless approved, and skip cloud setup when local-only memory is required.
+
+Risk: Setup and maintenance scripts can install remote components, change OpenClaw configuration, schedule jobs, persist memories, and alter workspace files.
+
+Mitigation: Review scripts and configuration diffs before execution, use dry-run or manual setup where available, and back up OpenClaw workspace files before installation or reset operations.
+
+Risk: Automatically extracted memories can be stale, incorrect, or overbroad if accepted without review.
+
+Mitigation: Manually review generated memories, candidate queues, and long-term indexes before relying on them for agent context.
+
+Risk: Cleanup and reset workflows can remove or archive session, memory, and configuration files.
+
+Mitigation: Keep cleanup disabled until exact target files are reviewed, and create backups before running reset, migration, or uninstall steps.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/victorqr/skills/anamnesis-hub)
+- [Documentation Index](references/INDEX.md)
+- [Architecture](references/architecture.md)
+- [Setup Guide](references/setup-guide.md)
+- [Memory Directory](references/memory-directory.md)
+- [Pipeline Stages](references/pipeline-stages.md)
+- [Scripts Reference](references/scripts-reference.md)
+- [MemOS Cloud Sync API](references/sync-api.md)
+- [Candidates Review](references/candidates-review.md)
+- [Upgrade and Reset](references/upgrade-reset.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and references to bundled scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide setup steps that create or update OpenClaw memory files, SQLite databases, cron jobs, local configuration, and optional MemOS Cloud synchronization.]
+
+## Skill Version(s):
+
+v1.13.2 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

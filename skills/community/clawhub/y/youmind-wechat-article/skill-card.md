@@ -1,49 +1,67 @@
-## Description: <br>
-Writes, formats, previews, and sends WeChat Official Account article drafts through a YouMind-backed article workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write and publish WeChat Official Account articles end-to-end with AI, or take an existing draft straight into the skill's built-in formatting and draft-box publishing flow.
 
-## Publisher: <br>
-[mindy-youmind](https://clawhub.ai/user/mindy-youmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindy-youmind](https://clawhub.ai/user/mindy-youmind)
 
-## Use Case: <br>
-External creators, operators, and marketing teams use this skill to turn a topic or finished Markdown draft into a WeChat-ready article, including formatting, previewing, cover/image handling, and draft-box publishing. It is also used to review article performance and adapt future content based on YouMind knowledge-base material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write to a connected WeChat draft box and perform broad YouMind account actions. <br>
-Mitigation: Review the target account, generated article, cover/image choices, and result links before relying on or further publishing any draft. <br>
-Risk: The skill requires a YouMind API key and may upload article content, prompts, images, metadata, or knowledge-base material to YouMind/WeChat services. <br>
-Mitigation: Use an approved account and avoid confidential drafts or regulated content unless that remote processing is explicitly permitted. <br>
-Risk: Optional scheduled automation or companion tooling can increase the chance of unintended publishing workflow changes. <br>
-Mitigation: Enable automation only after validating configuration, account binding, and expected draft behavior in a manual run. <br>
+## Use Case:
 
+External users and developers use this skill to create, adapt, format, preview, and send WeChat Official Account articles to a draft box through the YouMind workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindy-youmind/youmind-wechat-article) <br>
-- [YouMind API keys](https://youmind.com/settings/api-keys?utm_source=youmind-wechat-article) <br>
-- [YouMind connector settings](https://youmind.com/settings/connector?utm_source=youmind-wechat-article) <br>
-- [Setup guide](references/setup.md) <br>
-- [Runtime rules](references/runtime-rules.md) <br>
-- [YouMind integration guide](references/youmind-integration.md) <br>
-- [CLI reference](references/cli-reference.md) <br>
-- [WeChat constraints](references/wechat-constraints.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown articles, command snippets, configuration guidance, and result links for preview or WeChat draft review.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, Python 3, a YouMind API key, and a YouMind-connected WeChat Official Account for publishing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can automatically create drafts in the linked WeChat Official Account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content and account targeting before running publish actions, and validate the WeChat connection before first use.
+
+Risk: Markdown image references can lead to local image files being uploaded during publishing.
+
+Mitigation: Use trusted Markdown sources and inspect or sanitize local image paths before publishing.
+
+Risk: Changing the YouMind base URL could route publishing and upload traffic away from the official service.
+
+Mitigation: Keep the base URL set to the official HTTPS YouMind endpoint unless a trusted deployment is explicitly approved.
+
+Risk: Optional external design-skill installation expands the trust boundary.
+
+Mitigation: Install optional companion skills only after separately reviewing and trusting their source.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mindy-youmind/skills/youmind-wechat-article)
+- [YouMind OpenAPI Document](references/openapi-document.md)
+- [CLI Reference](references/cli-reference.md)
+- [Pipeline](references/pipeline.md)
+- [Runtime Rules](references/runtime-rules.md)
+- [WeChat Constraints](references/wechat-constraints.md)
+- [Publishing Guidelines](shared/PUBLISHING.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, generated article files, HTML previews, and result links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local article drafts, HTML previews, generated image assets, and WeChat draft-box entries when configured.]
+
+## Skill Version(s):
+
+2.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

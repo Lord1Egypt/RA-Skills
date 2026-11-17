@@ -1,47 +1,54 @@
-## Description: <br>
-Automates OK.com marketplace workflows for searching listings, browsing categories, viewing listing details, managing favorites, managing posted ads, and switching locales across supported countries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OK Core Skill enables agents to automate OK.com classifieds workflows, including searching and browsing listings, viewing listing details, managing favorites and posted ads, checking login state, and switching locales across supported countries.
 
-## Publisher: <br>
-[winterw](https://clawhub.ai/user/winterw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[winterw](https://clawhub.ai/user/winterw)
 
-## Use Case: <br>
-External users and agents use this skill to search OK.com classifieds, compare listings, fetch listing details, switch country or city context, and manage account favorites or posted ads when authenticated. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Singapore, USA, Canada, Japan, UAE, Australia, UK, Hong Kong, Malaysia, and New Zealand. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can exercise broad control over OK.com browser sessions, including authenticated account actions. <br>
-Mitigation: Install only when that control is acceptable, use an isolated browser profile or dedicated session, and review account-changing actions before execution. <br>
-Risk: Credential and login flows may expose sensitive account access through browser automation or command-line password entry. <br>
-Mitigation: Prefer manual OAuth login, avoid passing passwords on the command line, and do not use unrelated normal browser profiles or unrelated CDP sessions. <br>
-Risk: The extension and persistent profile behavior can retain access beyond a single command run. <br>
-Mitigation: Review and limit extension permissions and persistent profile usage before using the skill with important listings or sensitive messages. <br>
+## Use Case:
 
+External users and their agents use this skill to search OK.com classifieds, inspect listing details, manage saved favorites and posted ads, and navigate OK.com country and city locales through a CLI-driven browser automation workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/winterw/ok-core-skills) <br>
-- [Primary skill instructions](SKILL.md) <br>
-- [Search workflow](skills/ok-search/SKILL.md) <br>
-- [Authentication workflow](skills/ok-auth/SKILL.md) <br>
-- [Account management workflow](skills/ok-account/SKILL.md) <br>
-- [Runtime requirements](pyproject.toml) <br>
+### Deployment Geography for Use:
 
+Singapore, USA, Canada, Japan, UAE, Australia, UK, Hong Kong, Malaysia, and New Zealand
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI subcommands return JSON; browser automation may require python3, uv, Playwright, or the OK Bridge extension.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.5 (source: server release evidence; artifact frontmatter reports 1.0.0 and pyproject.toml reports 0.1.0) <br>
+Risk: The skill exposes sensitive browser and account control for OK.com automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a separate browser profile, and close the bridge and debug-enabled Chrome after use.
+
+Risk: Login, favorites, and posted-ad workflows can affect a live OK.com account.
+
+Mitigation: Prefer manual browser or OAuth login over giving the agent a password, and confirm the exact favorite or post before modifying or deleting it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/winterw/skills/ok-core-skills)
+- [Publisher profile](https://clawhub.ai/user/winterw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI commands return structured JSON for listings, locales, authentication state, favorites, and posted-ad operations.]
+
+## Skill Version(s):
+
+0.0.5 (source: ClawHub release evidence; artifact frontmatter says 1.0.0 and pyproject.toml says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

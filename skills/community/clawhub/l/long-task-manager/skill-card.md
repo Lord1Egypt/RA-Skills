@@ -1,42 +1,59 @@
-## Description: <br>
-Long Task Manager helps OpenClaw agents manage long-running work with local task submission, file-backed status tracking, progress updates, cancellation markers, and result retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long Task Manager helps agents submit, track, cancel, and resume long-running tasks with persistent status and progress reporting.
 
-## Publisher: <br>
-[DevinYxl](https://clawhub.ai/user/DevinYxl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devinyxl](https://clawhub.ai/user/devinyxl)
 
-## Use Case: <br>
-Developers and agent builders use this skill to coordinate long-running OpenClaw agent tasks, monitor progress, cancel work, and retrieve persisted results across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task configs, progress details, and result summaries are persisted as local JSON files and can contain sensitive data if callers include it. <br>
-Mitigation: Use a private task directory and avoid storing secrets or sensitive personal data in task configs, progress details, or result summaries. <br>
-Risk: Task and agent identifiers are used in local task records and paths. <br>
-Mitigation: Use trusted task and agent identifiers and keep task directory permissions restricted to the intended local user or service. <br>
+## Use Case:
 
+Developers and agent builders use this skill to keep lengthy code generation, data processing, document generation, or computation tasks observable and cancellable while they run asynchronously.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DevinYxl/long-task-manager) <br>
-- [Skill documentation](SKILL.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, JSON files] <br>
-**Output Format:** [Markdown documentation with Python code snippets, shell commands, YAML configuration, and local JSON task records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a configurable local task directory for task configs, status, cancellation markers, and result files; no network output is described in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact documentation and package metadata show 1.0.0/v1.0) <br>
+Risk: Task file handling can escape the intended storage folder when untrusted callers provide task IDs or agent IDs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted callers, or add strict identifier validation and path containment before use.
+
+Risk: Stored task records may contain sensitive prompts, paths, outputs, or results.
+
+Mitigation: Keep task_dir inside an approved workspace and avoid storing sensitive prompts or results in the task store.
+
+Risk: Cleanup operations delete stored task directories.
+
+Mitigation: Review the configured task_dir and retention period before running cleanup.
+
+## Reference(s):
+
+- [ClawHub Long Task Manager release](https://clawhub.ai/devinyxl/skills/long-task-manager)
+- [Skill documentation](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and JSON-like task status and result objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns task IDs and task state dictionaries; task state is stored under the configured task_dir.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

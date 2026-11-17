@@ -1,47 +1,61 @@
-## Description: <br>
-Generate Morph-animated PPTs with officecli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates PowerPoint .pptx decks with smooth cross-slide Morph transitions by guiding agents through shape-name pairing, scene actors, ghosting, OfficeCLI commands, and visual style selection.
 
-## Publisher: <br>
-[iceyliu](https://clawhub.ai/user/iceyliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iceyliu](https://clawhub.ai/user/iceyliu)
 
-## Use Case: <br>
-Developers and presentation authors use this skill to plan, script, validate, and deliver PowerPoint decks with smooth Morph animations. It guides creation of a reusable build script, a brief, and a finished PPTX. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent to download and run remote officecli installer or upgrade scripts. <br>
-Mitigation: Require the user to install or update officecli from a trusted, pinned source and verify it before allowing the agent to use it. <br>
-Risk: Generated build scripts can create or overwrite PowerPoint files in the workspace. <br>
-Mitigation: Warn users before generation, use explicit output filenames, and treat build scripts as overwriting their generated PPTX outputs. <br>
-Risk: PowerPoint Morph output can contain visual defects such as unghosted content, missing transitions, or unreadable text. <br>
-Mitigation: Run the bundled verification helpers and final officecli validation commands before delivery. <br>
+## Use Case:
 
+Developers and presentation-building agents use this skill when a user specifically requests a PowerPoint deck with continuous cross-slide motion or Morph transitions. It is not intended for generic slide decks that do not need cross-slide animation.
 
-## Reference(s): <br>
-- [Decision Rules](reference/decision-rules.md) <br>
-- [OfficeCLI PPT Command Reference](reference/officecli-pptx-min.md) <br>
-- [PPTX Design](reference/pptx-design.md) <br>
-- [Quality Gates](reference/quality-gates.md) <br>
-- [Style Index](reference/styles/INDEX.md) <br>
-- [OfficeCLI Agent Guide](https://github.com/iOfficeAI/OfficeCli/wiki/agent-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python or shell command examples and generated presentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected deliverables are a PPTX deck, a re-runnable build script, and brief.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Setup instructions include remote pipe-to-shell installers for OfficeCLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install OfficeCLI through a verified release path yourself; do not let an agent run pipe-to-shell setup commands unattended.
+
+Risk: The Bash verifier can turn crafted PPTX content into code execution when checking untrusted decks.
+
+Mitigation: Prefer the Python helper for verification and avoid using morph-helpers.sh on untrusted PPTX files.
+
+Risk: Cleanup or demo build scripts may modify decks.
+
+Mitigation: Back up decks before running cleanup or demo build scripts and review generated commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iceyliu/skills/officecli-morph-ppt)
+- [OfficeCLI releases](https://github.com/iOfficeAI/OfficeCLI/releases)
+- [Decision rules](artifact/reference/decision-rules.md)
+- [PPTX design guidance](artifact/reference/pptx-design.md)
+- [Style library index](artifact/reference/styles/INDEX.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with OfficeCLI shell commands and helper script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single .pptx deck when executed by an agent with OfficeCLI available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

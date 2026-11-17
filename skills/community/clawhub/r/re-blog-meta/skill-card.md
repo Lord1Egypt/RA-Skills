@@ -1,44 +1,56 @@
-## Description: <br>
-Generate SEO-optimized title, SEO title, SEO description, SEO slug, and social tips for a blog post, using researched SEO best practices and current trends, and save the result as JSON in ~/blog-meta. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate SEO-optimized title, SEO title, SEO description, SEO slug, and social tips for a blog post, using current research and saving the result as JSON.
 
-## Publisher: <br>
-[dishant0406](https://clawhub.ai/user/dishant0406) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dishant0406](https://clawhub.ai/user/dishant0406)
 
-## Use Case: <br>
-Writers, marketers, and developers use this skill to generate search-focused metadata for a single local blog post. It reads the post from ~/blogs, researches public search and social signals, then writes a metadata JSON file for publication workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blog content or related search terms may be exposed to third-party public websites during SEO research. <br>
-Mitigation: Use the skill on non-sensitive drafts or approve the research terms first; avoid unpublished material that should not leave the local environment. <br>
-Risk: The skill writes a metadata JSON file under ~/blog-meta and could replace an existing file for the same slug. <br>
-Mitigation: Ask the agent to confirm before overwriting an existing JSON file and review the saved metadata before publishing. <br>
-Risk: Generated SEO metadata can be inaccurate, stale, or poorly matched to the post if research signals are misunderstood. <br>
-Mitigation: Review the cited research sources and validate the title, description, slug, and social tips against the source blog before use. <br>
+## Use Case:
 
+Writers, editors, and developers use this skill to generate researched SEO metadata for a single blog post stored under ~/blogs and save validated metadata under ~/blog-meta.
 
-## Reference(s): <br>
-- [Meta Research](references/meta-research.md) <br>
-- [Meta Output](references/meta-output.md) <br>
-- [Human Voice](references/human-voice.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Guidance] <br>
-**Output Format:** [JSON file plus plain-text completion report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates ~/blog-meta/<seo_slug>.json and reports the source blog path, generated fields, research sources, and browser cleanup status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence) <br>
+Risk: The skill reads blog drafts from ~/blogs and uses public research sites to shape metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected blog file and researched sources before using the generated metadata for publication.
+
+Risk: The skill saves generated metadata under ~/blog-meta and may overwrite an existing JSON file with the same SEO slug.
+
+Mitigation: Check the target output path before accepting or rerunning the generated save operation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dishant0406/skills/re-blog-meta)
+- [Meta Research](references/meta-research.md)
+- [Meta Output](references/meta-output.md)
+- [Human Voice](references/human-voice.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON file plus a text completion report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes one metadata file to ~/blog-meta/<seo_slug>.json and reports the blog path, saved path, generated fields, research sources, and browser tab closure.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

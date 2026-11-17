@@ -1,48 +1,62 @@
-## Description: <br>
-Build automated pipelines with reusable components, data flow between nodes, and state management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build automated pipelines with reusable components, data flow between nodes, and state management.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and automation-oriented users use this skill to design, create, test, update, and maintain workspace workflow pipelines with reusable components, shell runners, configuration files, state, logs, and data handoff between nodes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Webhook examples could be adapted into a remotely triggerable local workflow runner without complete validation. <br>
-Mitigation: Add strict workflow-name allowlisting, resolved-path checks, signature and timestamp verification, and explicit user approval before any selected workflow is executed. <br>
-Risk: Generated run.sh files and automation snippets may perform network calls, write state, update schedules, or remove files when copied into a workspace. <br>
-Mitigation: Review generated scripts before execution, run dry-run mode first, use least-privilege credentials, and replace broad cron, removal, or deletion examples with scoped reversible procedures. <br>
-Risk: Workflow state, logs, and intermediate data can become stale, corrupted, or expose sensitive operational details. <br>
-Mitigation: Define retention and recovery procedures, keep secrets in the configured credential store rather than logs or data files, and validate state before reruns or recovery. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Directory Structure](artifact/structure.md) <br>
-- [Data Flow Between Nodes](artifact/data-flow.md) <br>
-- [State Management](artifact/state.md) <br>
-- [Error Handling](artifact/errors.md) <br>
-- [Components](artifact/components.md) <br>
-- [Workflow Lifecycle](artifact/lifecycle.md) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to design, document, test, and maintain reusable workflow pipelines with components, triggers, state, logs, and error handling.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands, YAML examples, JSON examples, and workflow file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq, yq, curl, uuidgen, and flock on Linux or macOS; examples may create workflow files, state, data, and logs in the workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Webhook, file-watcher, or cron triggers could cause workflows to run from untrusted events or paths.
+
+Mitigation: Review workflows before installation, require webhook signature verification and workflow allowlists, and avoid watching untrusted directories.
+
+Risk: Generated workflows may store or use API credentials and service tokens.
+
+Mitigation: Use platform secret storage, keep secrets out of workflow files and logs, and restrict credentials to the minimum required scope.
+
+Risk: Cleanup and state-recovery commands can remove local workflow state or intermediate data.
+
+Mitigation: Review cleanup paths before execution, keep recovery steps scoped to the intended workflow directory, and test with dry-run mode where available.
+
+## Reference(s):
+
+- [ClawHub Workflow skill page](https://clawhub.ai/ivangdavila/skills/workflow)
+- [Directory Structure](artifact/structure.md)
+- [Components](artifact/components.md)
+- [Data Flow Between Nodes](artifact/data-flow.md)
+- [State Management](artifact/state.md)
+- [Error Handling](artifact/errors.md)
+- [Workflow Lifecycle](artifact/lifecycle.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell, YAML, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce workflow files, component templates, run scripts, state conventions, and operational guidance for jq, yq, curl, uuidgen, and flock on Linux or macOS.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

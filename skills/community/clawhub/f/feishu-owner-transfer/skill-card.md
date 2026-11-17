@@ -1,38 +1,54 @@
-## Description: <br>
-Transfers ownership of Feishu documents, spreadsheets, bitables, mind maps, and files created by an AI robot to a specified user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transfers ownership of Feishu Drive documents, spreadsheets, bitables, mind maps, and files created by an AI bot to a specified user.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to move Feishu document ownership from AI-created accounts or bot-owned files to a target human user by token or in bulk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk transfer mode can reassign control of many Feishu documents without an interactive confirmation step. <br>
-Mitigation: Run the listing dry-run first, verify the target open_id and file scope, and prefer a single-token transfer or explicit owner filter before using --all. <br>
+## Use Case:
 
+Workspace administrators and operations users use this skill to transfer Feishu document ownership from AI-created or bot-owned files to a verified human user, either one file at a time or in a reviewed batch.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/feishu-owner-transfer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command examples and Python script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke lark-cli to list files, inspect Feishu file metadata, and transfer ownership for a single token or root-folder batch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bulk transfer mode can change ownership for many Feishu files under the authenticated lark-cli account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, prefer explicit per-file tokens or an exact verified --ai-owner filter, and avoid --all unless every listed file has been checked.
+
+Risk: An incorrect target user ID or member type can transfer ownership to the wrong account.
+
+Mitigation: Verify the target open_id or selected member type before execution and review the file list before running any non-dry-run transfer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freedompixels/skills/feishu-owner-transfer)
+- [Publisher Profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, API Calls]
+
+**Output Format:** [Markdown with inline shell commands and Python script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated lark-cli access and a valid target user ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

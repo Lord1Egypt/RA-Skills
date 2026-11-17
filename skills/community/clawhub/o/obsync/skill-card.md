@@ -1,42 +1,53 @@
-## Description: <br>
-Obsidian Sync CLI for syncing vaults on headless Linux servers with full end-to-end encryption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obsidian Sync CLI for syncing vaults on headless Linux servers with full end-to-end encryption.
 
-## Publisher: <br>
-[bpauli](https://clawhub.ai/user/bpauli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bpauli](https://clawhub.ai/user/bpauli)
 
-## Use Case: <br>
-Developers and operators use this skill as a command reference for configuring and running obsync to synchronize Obsidian vaults on headless Linux systems. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes commands that handle Obsidian account credentials and end-to-end encryption passwords. <br>
-Mitigation: Avoid storing real passwords in shared shell history or reusable environment files; use the configured keyring behavior deliberately. <br>
-Risk: Pull, push, watch, and service commands can change local or remote vault contents. <br>
-Mitigation: Verify the vault name and local path, and make a backup before the first sync or before enabling background synchronization. <br>
-Risk: The workflow depends on an upstream third-party CLI running on the user's machine. <br>
-Mitigation: Install only when the upstream obsync CLI and the execution environment are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Obsync ClawHub page](https://clawhub.ai/bpauli/obsync) <br>
-- [obsync upstream repository](https://github.com/bpauli/obsync) <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent provide guidance and commands for configuring obsync to sync Obsidian vaults on headless Linux servers. It is intended for users with an Obsidian Sync subscription who need headless or always-on vault synchronization.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown command reference with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional JSON-output and verbose-logging flags for the upstream CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Password handling could expose Obsidian account credentials or end-to-end encryption passwords through shell commands, shell history, exported environment variables, startup files, or systemd units.
+
+Mitigation: Prefer interactive prompts, a protected keyring, or a dedicated secret manager; avoid embedding real passwords in commands or exported variables.
+
+Risk: The skill installs and uses a mutable third-party CLI that can access Obsidian account data, vault contents, and sync encryption secrets.
+
+Mitigation: Install only if the upstream obsync project is trusted, review or pin a known release before always-on sync, and limit account and system access where practical.
+
+## Reference(s):
+
+- [ClawHub Obsync Skill](https://clawhub.ai/bpauli/skills/obsync)
+- [obsync upstream project](https://github.com/bpauli/obsync)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands or settings involving Obsidian credentials and encryption passwords; review before execution.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

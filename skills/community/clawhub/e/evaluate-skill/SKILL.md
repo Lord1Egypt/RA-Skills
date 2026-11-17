@@ -16,18 +16,15 @@ The `caliper` CLI must be on `PATH`. This skill can be copied into an agent with
 pipx install caliper-eval
 ```
 
-Backends for the skill-under-test (`skill.backend`) and the judge (`judge.backend`) are chosen independently — from `claude-code`, `codex`, `pi`. Every backend is a CLI agent that uses its own subscription/auth; there is no direct-API backend (for API billing, configure a CLI with an API key). Full per-backend detail and every command: [REFERENCE.md](REFERENCE.md).
+The engine (backend + model) is not part of the spec — it is chosen at run time with `--model` (skill) and `--judge-model` (judge), independently, from `claude-code`, `codex`, `pi`, defaulting to `claude-code`. Every backend is a CLI agent that uses its own subscription/auth; there is no direct-API backend (for API billing, configure a CLI with an API key). Full per-backend detail and every command: [REFERENCE.md](REFERENCE.md).
 
 ## Spec shape
 
-An `.eval.yaml` names the skill, the judge, and a list of tasks. Keep `skill.path` relative to the spec file (usually `./SKILL.md`):
+An `.eval.yaml` names the skill and a list of tasks. Keep `skill.path` relative to the spec file (usually `./SKILL.md`):
 
 ```yaml
 skill:
   path: ./SKILL.md      # relative to the spec file
-  backend: codex        # claude-code | codex | pi
-judge:
-  backend: codex        # independent of skill.backend
 tasks:
   - name: What success looks like
     prompt: <prompt sent to the skill under test>
@@ -36,7 +33,7 @@ tasks:
       assert ...
 ```
 
-Add `model:` under `skill`/`judge` only when the user asks for a specific model. The full format (setup/cleanup, external assert scripts, sandbox) is in [REFERENCE.md](REFERENCE.md).
+The spec has no `backend`/`model` or `judge:` block; pick the engine when you run, e.g. `caliper run <spec> --model codex --judge-model codex`. The full format (setup/cleanup, external assert scripts, sandbox) is in [REFERENCE.md](REFERENCE.md).
 
 ## Bundled references
 
@@ -52,9 +49,15 @@ If the skill has a `SKILL.md` but no `.eval.yaml`, suggest the `grill-skill` wor
 2. Decide whether the suite is a capability eval or a regression eval.
 3. Cover normal, edge, and adversarial cases when the behavior matters.
 4. Grade artifacts (files, git state, command output, exact values) whenever you can; judge the transcript only when the behavior itself is the point. The full artifact-vs-transcript rules, the task-quality checklist, common eval patterns, and how to write `expect:` rubrics live in [REFERENCE.md](REFERENCE.md) — read and apply them when designing tasks.
-5. Run with `--baseline` to confirm the skill beats the raw agent. Debug the spec at `--k 1`, then measure reliability at `--k 3` or higher.
+5. Run once with `--ablate <skill-name>` and `caliper compare` the two runs, to confirm the skill beats the raw agent. Debug the spec at `--k 1`, then measure reliability at `--k 3` or higher.
 
-**Done when:** tasks have observable success criteria, at least one deterministic `assert:`, a positive baseline delta, the spec passes `caliper validate`, and the user has been prompted to commit the spec.
+**Done when:** tasks have observable success criteria, at least one deterministic `assert:`, a positive delta against the ablated run, the spec passes `caliper validate`, and the user has been prompted to commit the spec.
+
+## Whose setup is measured
+
+Runs load the user's own customizations by default (user skills, plugins, rules, settings and connectors; see REFERENCE.md for backend exceptions), which answers "does my skill work in *my* agent?". **Isolate** (`--no-user-customizations`, or `user_customizations: false` in the spec) when comparing backends or models, when the number leaves this machine (shared, published, compared with someone else's run), or when measuring the bare agent: each setup is different, so otherwise part of the delta is the setups. `--ablate` of the user's own skill needs no isolation, since both runs load the same setup.
+
+**Always tell the user which mode ran** and what it loaded, from the report header's `user customizations:` line (absent means isolated), and relay any fix `caliper compare` suggests about it.
 
 ## Committing
 

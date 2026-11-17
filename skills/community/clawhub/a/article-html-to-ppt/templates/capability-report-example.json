@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-16T12:00:00+08:00",
+  "environment": {
+    "os": "Darwin",
+    "os_version": "25.0.0",
+    "architecture": "arm64",
+    "python": "3.12.4",
+    "node": "v22.10.0",
+    "java": null,
+    "working_directory": "article-html-to-ppt",
+    "containerized": false
+  },
+  "builders": {
+    "pptxgenjs": {
+      "available": true,
+      "version": "4.0.1",
+      "command": "node",
+      "features": {
+        "native_text": true,
+        "native_table": true,
+        "native_chart": true,
+        "native_connector": true,
+        "svg_embed": true,
+        "speaker_notes": true,
+        "theme": "partial",
+        "slide_master": "partial",
+        "readback": false
+      },
+      "components": {"judgment_title": "full", "bar_chart": "full", "process_flow": "partial"},
+      "warnings": [],
+      "errors": []
+    },
+    "python_pptx": {
+      "available": true,
+      "version": "1.0.2",
+      "command": "python",
+      "features": {
+        "native_text": true,
+        "native_table": true,
+        "native_chart": false,
+        "native_connector": "partial",
+        "svg_embed": false,
+        "speaker_notes": false,
+        "theme": "partial",
+        "slide_master": "partial",
+        "readback": true
+      },
+      "components": {"judgment_title": "full", "native_table": "full", "bar_chart": "partial"},
+      "warnings": [],
+      "errors": []
+    },
+    "html_svg": {
+      "available": true,
+      "version": "python-stdlib-svg",
+      "command": "python",
+      "features": {
+        "native_text": false,
+        "native_table": false,
+        "native_chart": false,
+        "native_connector": false,
+        "svg_embed": true,
+        "speaker_notes": false,
+        "theme": false,
+        "slide_master": false,
+        "readback": false
+      },
+      "components": {"conceptual_scene": "visual_only"},
+      "warnings": ["html_svg is visual-only; it cannot satisfy native-required objects."],
+      "errors": []
+    }
+  },
+  "renderers": {
+    "microsoft_powerpoint": {"available": true, "version": "16.99", "command": "Microsoft PowerPoint.app", "supports_pdf": true, "supports_png": true, "supports_readback": true},
+    "libreoffice": {"available": false, "version": null, "command": null, "supports_pdf": false, "supports_png": false, "supports_readback": false}
+  },
+  "formats": {
+    "html_render": true,
+    "html_to_svg": true,
+    "svg_render": true,
+    "svg_embed": true,
+    "pdf_to_png": true,
+    "pptx_read": true,
+    "pptx_write": true,
+    "pptx_render": true,
+    "image_generation": false
+  },
+  "fonts": {
+    "installed": ["Aptos", "Noto Sans CJK SC"],
+    "required_missing": ["Source Han Serif SC"],
+    "fallback_map": {"Source Han Serif SC": "Noto Sans CJK SC"}
+  },
+  "features": {"available_builder_count": 3, "available_renderer_count": 1, "native_builder_available": true},
+  "warnings": [],
+  "errors": []
+}

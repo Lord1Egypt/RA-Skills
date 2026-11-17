@@ -1,0 +1,8 @@
+{
+  "fixture_notice": "Synthetic HTML using documented collector selectors. No Amazon offer or price was observed live.",
+  "url": "https://www.amazon.com/dp/FIXTURE001",
+  "expected_id": "FIXTURE001",
+  "platform": "amazon",
+  "variant": "Blue",
+  "html": "<!doctype html><html><body><span id='productTitle'>Synthetic parser fixture, Blue</span><input id='ASIN' value='FIXTURE001'><div id='corePriceDisplay_desktop_feature_div'><span class='a-price'><span class='a-offscreen'>$19.99</span></span></div><div id='availability'>Synthetic fixture: In Stock</div><div id='variation_color_name'><span class='selection'>Blue</span></div></body></html>"
+}

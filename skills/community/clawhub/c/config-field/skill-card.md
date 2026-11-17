@@ -1,41 +1,54 @@
-## Description: <br>
-Validate OpenClaw configuration fields against the official Zod schema when reading or writing openclaw.json, including agents, channels, tools, logging, and session settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate OpenClaw configuration fields against the official Zod schema for agents, channels, tools, logging, and session configuration when reading or writing openclaw.json.
 
-## Publisher: <br>
-[RedContritio](https://clawhub.ai/user/RedContritio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[redcontritio](https://clawhub.ai/user/redcontritio)
 
-## Use Case: <br>
-Developers and engineers use this skill to validate OpenClaw configuration field paths, inspect field details, and review openclaw.json files before editing, migration, or debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may rely on README placeholder GitHub URLs rather than the verified ClawHub release source. <br>
-Mitigation: Install from the verified ClawHub release page or publisher profile, and do not treat placeholder GitHub URLs as provenance. <br>
-Risk: The validation scripts may read OpenClaw configuration files, create or update a local schema cache, and check the local OpenClaw version. <br>
-Mitigation: Use the skill only on OpenClaw configuration files you intend to validate, and review local cache changes when validating after OpenClaw upgrades. <br>
+## Use Case:
 
+Developers and engineers use this skill when reading, writing, debugging, or migrating OpenClaw configuration files to check whether field paths exist, inspect field details, and validate openclaw.json files.
 
-## Reference(s): <br>
-- [OpenClaw Configuration Schema Fields](references/schema-fields.md) <br>
-- [ClawHub skill release page](https://clawhub.ai/RedContritio/config-field) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and plain-text validation output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May report field existence, type information, optionality, invalid-field suggestions, and whole-file validation summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can create false confidence by accepting some unknown OpenClaw configuration fields as valid while presenting itself as schema validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as field lookup assistance, and verify high-impact sandbox, filesystem, execution, token, and channel settings against the authoritative OpenClaw schema before approval.
+
+Risk: Schema or documentation mismatches can make validation results stale or incomplete.
+
+Mitigation: Confirm the current OpenClaw version and schema status before relying on the skill output for configuration changes.
+
+## Reference(s):
+
+- [OpenClaw Configuration Schema Fields](references/schema-fields.md)
+- [ClawHub Skill Page](https://clawhub.ai/redcontritio/skills/config-field)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and validation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include field existence results, type details, suggestions for invalid paths, and configuration validation summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

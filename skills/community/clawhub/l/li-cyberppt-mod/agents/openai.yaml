@@ -1,0 +1,64 @@
+interface:
+  display_name: "CyberPPT"
+  short_description: "生成基于证据、可编辑的咨询风格 PPT"
+  default_prompt: "使用 $cyber-ppt，把我的源文档转成高密度、可编辑的咨询风格 PPT。"
+  skill_type: "presentation_generation"
+  version: "1.0.0"
+  
+compatibility:
+  platforms:
+    - openai
+    - codex
+  min_version: "1.0.0"
+  
+configuration:
+  trigger_patterns:
+    - "做PPT"
+    - "生成演示文稿"
+    - "制作幻灯片"
+    - "CyberPPT"
+    - "咨询风格PPT"
+    - "create PPT"
+    - "generate presentation"
+    
+  file_types:
+    - ".docx"
+    - ".pdf"
+    - ".txt"
+    - ".xlsx"
+    
+  output_format: ".pptx"
+  
+  workflow:
+    stages:
+      - name: "analysis"
+        description: "资料分析与证据链构建"
+        required: true
+      - name: "blueprint"
+        description: "风格选择与蓝图生成"
+        required: true
+      - name: "reconstruction"
+        description: "PPT还原与质量保证"
+        required: true
+        
+  quality_gates:
+    - reference_gate
+    - evidence_gate
+    - storyline_gate
+    - density_gate
+    - style_gate
+    - blueprint_gate
+    - asset_admission_gate
+    - editable_layer_gate
+    - visual_semantics_gate
+    - curve_trace_gate
+    - spatial_registration_gate
+    - container_overflow_gate
+    - typography_gate
+    - render_qa_gate
+    - strict_qa_gate
+    
+  platform_specific:
+    code_interpreter_enabled: true
+    dalle_integration: true
+    file_upload_limit_mb: 512

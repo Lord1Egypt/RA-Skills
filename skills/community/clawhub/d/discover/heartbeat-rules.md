@@ -6,12 +6,12 @@ Use heartbeat to revisit approved discovery topics without turning the system in
 
 Keep the workspace `HEARTBEAT.md` snippet minimal.
 Treat this file as the stable contract for recurring discovery behavior.
-Store mutable state only in `~/discover/heartbeat-state.md`.
+Store mutable state only in `~/Clawic/data/discover/heartbeat-state.md`.
 
 ## Start of Every Heartbeat
 
-1. Ensure `~/discover/heartbeat-state.md` exists.
-2. Read `~/discover/watchlist.md` and keep only topics marked `Heartbeat: active`.
+1. Ensure `~/Clawic/data/discover/heartbeat-state.md` exists.
+2. Read `~/Clawic/data/discover/watchlist.md` and keep only topics marked `Heartbeat: active`.
 3. Read the last lens used and the last material discovery marker.
 4. Skip any topic that no longer has a clear reason or novelty bar.
 
@@ -31,7 +31,7 @@ Store mutable state only in `~/discover/heartbeat-state.md`.
 
 ## If the Finding Is New
 
-- Append one dated entry to `~/discover/findings/{topic}.md`
+- Append one dated entry to `~/Clawic/data/discover/findings/{topic}.md`
 - State what changed, why it matters now, and one next move
 - Update `last_material_discovery_at` and `last_angle_used`
 

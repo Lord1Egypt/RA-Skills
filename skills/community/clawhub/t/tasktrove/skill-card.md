@@ -1,41 +1,54 @@
-## Description: <br>
-Tasktrove helps agents manage todos through a Tasktrove API, including listing, creating, completing, updating, and searching tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage todos via Tasktrove API. Use for listing, creating, completing, or updating tasks. Triggers on task/todo requests like "what's on my todo list", "add a task", "mark X done", "what's due today".
 
-## Publisher: <br>
-[willwebberley](https://clawhub.ai/user/willwebberley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[willwebberley](https://clawhub.ai/user/willwebberley)
 
-## Use Case: <br>
-Developers and users of a self-hosted Tasktrove instance use this skill to inspect, create, search, and update task lists through API-backed commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to a user-selected Tasktrove host and may send an API token. <br>
-Mitigation: Set TASKTROVE_HOST only to a trusted server, prefer HTTPS or a trusted local network, and protect TASKTROVE_TOKEN. <br>
-Risk: State-changing actions can complete, update, create, or delete tasks. <br>
-Mitigation: Require explicit confirmation before completing, updating, creating, or deleting tasks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Tasktrove Skill](https://clawhub.ai/willwebberley/tasktrove) <br>
-- [Tasktrove](https://tasktrove.io) <br>
-- [Tasktrove GitHub Repository](https://github.com/dohsimpson/tasktrove) <br>
+## Use Case:
 
+External users and developers use this skill to manage tasks in a self-hosted Tasktrove instance, including listing, creating, completing, searching, and updating todos through the Tasktrove API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TASKTROVE_HOST and optional TASKTROVE_TOKEN to connect to a selected Tasktrove instance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use TASKTROVE_TOKEN with a TASKTROVE_HOST configured over plain HTTP, which may expose the token on an untrusted network.
+
+Mitigation: Use HTTPS-only TASKTROVE_HOST values for remote instances and avoid sending tokens over plain HTTP.
+
+Risk: The artifact documents task deletion through the Tasktrove API, which can remove user task data.
+
+Mitigation: Require explicit user confirmation before any delete request.
+
+## Reference(s):
+
+- [Tasktrove](https://tasktrove.io)
+- [Tasktrove GitHub repository](https://github.com/dohsimpson/tasktrove)
+- [Tasktrove ClawHub skill page](https://clawhub.ai/willwebberley/skills/tasktrove)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, curl, and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce API request examples and task-management command guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "kind": "parameterized-local-layout-candidate",
+  "exam": "260919-at32f415-learning-board",
+  "module": "ldo",
+  "status": "live-verified",
+  "verificationScope": "U2/C3-C6 第二轮相对布局；不包含整板布局完成态",
+  "purpose": "LDO 第二轮局部布局候选；已在 ceshi 写入、保存、typed reload 并按真实 bbox/pad 回读。迁移时仍须重新计算，不能复制绝对坐标",
+  "source": [
+    "考试说明.pdf p4、p7-p8",
+    "原理图.pdf p1",
+    "物料清单.xlsx BOM!3:29",
+    "source-connectivity.json",
+    "/tmp/260919-ldo-components-after-route-reload.json"
+  ],
+  "sourceSnapshot": {
+    "path": "/tmp/260919-ldo-components-after-route-reload.json",
+    "sha256": "3c9021200e3701e640a8e07d88aa2aed30cf1d1a615137f511d00c0e5d81420a",
+    "evidenceBoundary": "该快照只证明器件、bbox 与 pads；局部铜证据单独见 ldo-route-live.json"
+  },
+  "coordinateSemantic": "rendered-bbox-center",
+  "units": "mil",
+  "fixedCore": {
+    "ref": "U2",
+    "xMil": 1950,
+    "yMil": 400,
+    "rotationDeg": 180
+  },
+  "placements": [
+    {
+      "ref": "C3",
+      "role": "input-bulk",
+      "relativeToU2Mil": [-295, -50.6],
+      "xMil": 1655,
+      "yMil": 349.4,
+      "rotationDeg": 90,
+      "actualPads": {"1:+5V": [1655, 310], "2:GND": [1655, 388.8]}
+    },
+    {
+      "ref": "C4",
+      "role": "input-high-frequency",
+      "relativeToU2Mil": [-206, -62.4],
+      "xMil": 1744,
+      "yMil": 337.6,
+      "rotationDeg": 90,
+      "actualPads": {"1:+5V": [1744, 310], "2:GND": [1744, 365.2]}
+    },
+    {
+      "ref": "C5",
+      "role": "output-bulk",
+      "relativeToU2Mil": [100, 227],
+      "xMil": 2050,
+      "yMil": 627,
+      "rotationDeg": 90,
+      "actualPads": {"1:+3V3": [2050, 587.6], "2:GND": [2050, 666.4]}
+    },
+    {
+      "ref": "C6",
+      "role": "output-high-frequency",
+      "relativeToU2Mil": [-50, 215.2],
+      "xMil": 1900,
+      "yMil": 615.2,
+      "rotationDeg": 90,
+      "actualPads": {"1:+3V3": [1900, 587.6], "2:GND": [1900, 642.8]}
+    }
+  ],
+  "routeIntent": {
+    "inputPower": "source -> C3.1 -> C4.1 -> U2.3",
+    "outputPower": "U2.2/U2.4 continuous copper -> C5.1 -> C6.1 -> load",
+    "inputGround": "C3.2 -> C4.2 -> top-layer return corridor -> U2.1",
+    "outputGround": "C5.2 -> C6.2 -> top-layer return corridor -> U2.1",
+    "preferredLayer": "TOP",
+    "preferredViaCount": 0,
+    "powerWidthMil": 20,
+    "minimumAllowedPowerWidthMil": 8,
+    "turns": "straight or 45-degree; derive endpoints from fresh pad boundaries"
+  },
+  "liveChecks": {
+    "overlapCount": 0,
+    "outsideOutlineCount": 0,
+    "tightSpacingCountAt6Mil": 0,
+    "allTop": true,
+    "nearbyRefsToRecheckLive": ["U4", "C10", "R7", "SW1", "X1", "C21"],
+    "approximateBBoxClearanceMil": {
+      "C3-U4": 12.0,
+      "C4-U2": 12.8,
+      "C5-U2": 12.7,
+      "C5-C6": 78.5,
+      "C5-R7": 53.9
+    }
+  },
+  "execution": [
+    "已重新读取 U2/C3-C6 及邻近器件的 primitiveId、bbox、pads 和现有铜",
+    "已将 C3-C6 分别旋转到 90°，再读取 bbox/pads 并按 bbox center 移动",
+    "已运行 layout-lint，69 件均在 TOP，0 overlap、0 outside、0 tight-spacing",
+    "已保存、typed reload 并再次回读；局部铜另见 ldo-route-live.json"
+  ],
+  "independentVerification": {
+    "status": "completed-with-findings",
+    "method": "独立 subagent 只读原题、BOM、source 数据和历史 PCB 器件快照；未操作 EDA，未接收执行者通过结论",
+    "conclusion": "独立核查提出的第二轮候选已现场采用；保存重开后的真实 pads/bbox 与候选一致，局部铜路径另见 ldo-route-live.json"
+  },
+  "notClaimed": [
+    "该组坐标只对当前 Demo 和当前封装有效，迁移时必须重算",
+    "输入源和输出负载的整板主干尚未规划完成",
+    "整板布局、布线、铺铜和最终 DRC 尚未完成"
+  ]
+}

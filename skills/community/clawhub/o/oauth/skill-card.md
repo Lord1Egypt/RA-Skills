@@ -1,37 +1,49 @@
-## Description: <br>
-Implement OAuth 2.0 and OpenID Connect flows securely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement OAuth 2.0 and OpenID Connect flows securely.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a security checklist when designing, reviewing, or implementing OAuth 2.0 and OpenID Connect flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: OAuth implementations based on this guidance can still mishandle redirect URI validation, PKCE or state checks, token storage, scope minimization, client secrets, or refresh-token lifecycle. <br>
-Mitigation: Review any generated OAuth code for those controls before use, and treat this skill as implementation advice rather than a complete security assessment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/oauth) <br>
+## Use Case:
 
+Developers and engineers use this skill as concise implementation guidance for choosing OAuth 2.0 and OpenID Connect flows, applying PKCE, validating state and redirect URIs, handling tokens, and avoiding common authentication mistakes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no code execution, credential collection, persistence, or account access behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: OAuth/OIDC details can vary by identity provider and may change with current standards.
+
+Mitigation: Verify implementation details against the specific provider documentation and current OAuth/OIDC standards before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/oauth)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; guidance should be checked against the target identity provider and current OAuth/OIDC standards before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

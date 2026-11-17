@@ -1,39 +1,52 @@
-## Description: <br>
-Check if phone numbers exist in the local Baileys session cache. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check if phone numbers exist in the local Baileys session cache.
 
-## Publisher: <br>
-[MarcosRippel](https://clawhub.ai/user/MarcosRippel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[marcosrippel](https://clawhub.ai/user/marcosrippel)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and operators working with OpenClaw WhatsApp/Baileys sessions use this skill to check one or more phone numbers against the local cache and optionally list cached WhatsApp identifiers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads local OpenClaw WhatsApp/Baileys cache data and may print full phone numbers and JIDs.
+
+Mitigation: Run it only in sessions where exposing cached contact identifiers is acceptable, and avoid the list command unless you intend to disclose those identifiers.
+
+Risk: A number not found in the cache is not proof that the number lacks WhatsApp.
+
+Mitigation: Treat unknown results as cache misses and avoid using them as definitive account-existence decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to check whether phone numbers are present in the connected account's local WhatsApp/Baileys session cache, either one at a time, in batches, or by listing cached numbers. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A number reported as unknown may still have WhatsApp because the skill checks only the local session cache. <br>
-Mitigation: Treat unknown results as cache misses rather than authoritative WhatsApp availability decisions. <br>
-Risk: The list command can print cached phone numbers and JIDs into the agent conversation or logs. <br>
-Mitigation: Run the list command only when disclosure of cached WhatsApp identifiers is intended. <br>
+**Output Format:** [JSON responses and concise Markdown guidance with shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Reads the local OpenClaw WhatsApp/Baileys cache and reports cached phone numbers, JIDs, and known/unknown status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON] <br>
-**Output Format:** [JSON emitted by a Node.js command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are based only on the local Baileys session cache and may include cached phone numbers and JIDs.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

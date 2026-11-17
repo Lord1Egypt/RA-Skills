@@ -1,42 +1,53 @@
-## Description: <br>
-System health monitoring tool that checks CPU, memory, disk, and network usage and alerts when anomalies are detected. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sys Health Pro is a local system health monitor for checking CPU, memory, disk, and network usage and reporting anomalies.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
 
-## Use Case: <br>
-Developers, operators, and personal-computer users use this skill to inspect local system resource health, generate on-demand reports, and run foreground monitoring for CPU, memory, disk, and network usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect and display local system resource metrics and process names. <br>
-Mitigation: Install and run it only on machines where that local operational information is acceptable to expose, and avoid sharing generated reports from sensitive hosts. <br>
-Risk: The artifact depends on an unpinned psutil package. <br>
-Mitigation: Review or pin the dependency before deployment in managed or sensitive environments. <br>
-Risk: Watch mode performs continuous foreground monitoring. <br>
-Mitigation: Use watch mode only when continuous monitoring is intentional, and stop it when the monitoring task is complete. <br>
+## Use Case:
 
+Developers, operators, and technical users can use this skill to run local status checks, generate system health reports, and monitor host resource thresholds on servers, studio machines, or personal computers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SxLiuYu/sys-health-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke a local Python script that displays host resource metrics and process names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Reports include host resource details and top process names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use in environments where local system and process information is appropriate to display or share.
+
+Risk: The psutil dependency is not pinned in the artifact metadata.
+
+Mitigation: Pin and review the psutil package version before sensitive or production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sxliuyu/skills/sys-health-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local system status, report, and watch-mode guidance based on host resource metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

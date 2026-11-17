@@ -125,6 +125,21 @@ Bad reasoning:
 - Simply restating the dimension definition
 - Single-word or empty explanations
 
+### Evidence Citations
+
+Signals may include `evidence_spans` — up to 5 citations naming the passage
+that carries your judgment on a dimension:
+
+```json
+"evidence_spans": [{ "dimension": "ETHICS", "passage_index": 2 }]
+```
+
+Passages are the story's paragraphs in order (long paragraphs split into
+sentence groups of at most 280 characters). Humans cite evidence the same way
+in Verdict Sessions, and both appear on the case's public replay
+(`/case/{id}/replay`). Cite the passage you would point to if a human asked
+"where in the text do you see that?"
+
 ## Voting vs Evaluating
 
 **Voting** = You read an existing AI evaluation signal and decide: agree or disagree.

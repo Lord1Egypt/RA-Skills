@@ -1,40 +1,56 @@
-## Description: <br>
-Knowledge Bridge ingests insights from a local insight engine into a SQLite and LlamaIndex knowledge base, then supports categorization, deduplication, search, statistics, backfill, and explanation commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Bridge ingests, categorizes, deduplicates, summarizes, searches, explains, and backfills insight records into a local knowledge base.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and knowledge-work agents use this skill to keep a local knowledge base synchronized with insight-engine outputs and to query, summarize, or explain stored knowledge entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ingest and backfill can import and retain local insight-engine records in the configured knowledge base. <br>
-Mitigation: Confirm the local module and SQLite database path belong to the intended workspace, and run ingest or backfill only for data you are comfortable storing. <br>
-Risk: Historical backfill can import more records than a single latest-cycle ingest. <br>
-Mitigation: Inspect stored entries after backfill and maintain a deletion or cleanup process for records that should not remain in the knowledge base. <br>
+## Use Case:
 
+Developers and knowledge-base maintainers use this skill to move insight-engine records into a local SQLite and LlamaIndex knowledge base, then inspect stored knowledge through ingestion, search, statistics, backfill, and explanation commands.
 
-## Reference(s): <br>
-- [Knowledge Bridge on ClawHub](https://clawhub.ai/534422530/knowledge-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [JSON-compatible dictionaries and plain text messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports ingest, search, stats, backfill, and explain command modes; backfill may process historical records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill imports local Python code from a db directory outside the artifact, so the executed backend may not match the reviewed release files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the local backend module is trusted and verify the imported knowledge_bridge.py before running the skill.
+
+Risk: Ingest and backfill actions can bulk-write records into a persistent SQLite knowledge database.
+
+Mitigation: Back up the knowledge database, confirm the referenced db directory is controlled, and run ingest or backfill only when permanent additions are intended.
+
+## Reference(s):
+
+- [Bilibili: Diffusion Schrodinger Bridge explainer](https://www.bilibili.com/video/BV1dsYieMEvj)
+- [Bilibili: Knowledge-Driven Perception webinar](https://www.bilibili.com/video/BV12z4y1a775)
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/knowledge-bridge)
+- [Publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [JSON-compatible results with concise status, count, search result, statistics, or explanation fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands include ingest, stats, backfill, search <query>, and explain <term>.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

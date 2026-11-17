@@ -1,40 +1,59 @@
-## Description: <br>
-Verify claims, numbers, and facts in markdown drafts against source data before publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify claims, numbers, and facts in markdown drafts against local source data before publication.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers, content authors, and documentation reviewers use this skill to check markdown drafts against local project evidence before publication. It highlights confirmed, unverifiable, and contradicted claims and suggests corrections for contradicted claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads named project files, memory markdown logs, git history, score JSON files, and a local status service. <br>
-Mitigation: Install it only in workspaces where those local reads are acceptable for the review task. <br>
-Risk: Using --output with an existing path can overwrite a previous report. <br>
-Mitigation: Use a fresh report filename for each run. <br>
+## Use Case:
 
+Developers, editors, and documentation authors use this skill to check markdown drafts for verifiable numeric claims, dates, model references, scores, and percentages before publication. It produces a report that highlights confirmed, unverifiable, and contradicted claims with suggested corrections when contradictions are found.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/fact-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown verification report with claim status lines and summary counts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also write the same report to a user-specified markdown file via --output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can read broad workspace evidence, including memory logs that may contain private or unrelated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and run it only in workspaces where those local evidence sources are appropriate for the draft being checked.
+
+Risk: The skill automatically queries a localhost status API when available.
+
+Mitigation: Use it when the local service is expected, and treat unavailable API data as a normal condition that shifts verification to local files.
+
+Risk: Fact-check results can be incomplete when source files, score data, logs, or the local API are missing or stale.
+
+Mitigation: Review unverifiable and contradicted claims manually before publishing, and confirm corrections against the underlying source data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nissan/skills/fact-checker)
+- [Publisher Profile](https://clawhub.ai/user/nissan)
+- [Control Plane status API](http://localhost:8765/status)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown verification report with per-claim statuses and a summary of confirmed, unverifiable, and contradicted claims.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print the report to stdout or write it to a markdown file when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

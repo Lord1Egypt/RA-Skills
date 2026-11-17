@@ -1,44 +1,59 @@
-## Description: <br>
-Installs and enables the Honcho OpenClaw plugin, runs interactive setup for API key configuration and optional legacy memory migration, and restarts the gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and configures the Honcho OpenClaw plugin for long-term agent memory, including optional migration of existing workspace memory files to Honcho and gateway restart guidance.
 
-## Publisher: <br>
-[ajspig](https://clawhub.ai/user/ajspig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajspig](https://clawhub.ai/user/ajspig)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install Honcho-backed long-term memory, configure the Honcho endpoint, and migrate existing workspace memory files when they explicitly choose to do so. It is intended for workspaces where ongoing conversation memory and transmission to Honcho or a configured self-hosted endpoint are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can upload listed memory and configuration files to Honcho or a configured endpoint. <br>
-Mitigation: Install only where that data transfer is acceptable, review the displayed file list and destination, and proceed only after explicit confirmation. <br>
-Risk: After setup, the plugin can persistently observe conversations and transmit data across sessions. <br>
-Mitigation: Disable the plugin with `openclaw plugins disable openclaw-honcho` when ongoing memory is no longer wanted. <br>
-Risk: The Honcho API key is stored in OpenClaw configuration. <br>
-Mitigation: Protect access to `~/.openclaw/openclaw.json` and rotate the Honcho API key if exposure is suspected. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add Honcho-backed long-term memory and migrate existing memory files with explicit confirmation before upload.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/ajspig/honcho-setup) <br>
-- [Honcho Homepage](https://honcho.dev) <br>
-- [Honcho App](https://app.honcho.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OpenClaw plugin installation, enablement, setup, restart, status, and disable commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Workspace memory files and future workspace conversations may be sent to Honcho or a configured endpoint while the plugin is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the destination, use a trusted HTTPS endpoint, avoid entering secrets in monitored conversations, and disable the plugin when ongoing memory capture is not desired.
+
+Risk: The Honcho API key is stored in ~/.openclaw/openclaw.json.
+
+Mitigation: Protect local OpenClaw configuration, avoid sharing it, and rotate or revoke the API key if the file may have been exposed.
+
+Risk: Migration can upload existing memory and workspace context files to an external service.
+
+Mitigation: Review the setup prompt's file list and destination before confirming; skip migration if the workspace contains sensitive content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ajspig/skills/honcho-setup)
+- [Publisher profile](https://clawhub.ai/user/ajspig)
+- [Honcho homepage](https://honcho.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides installation, setup, status checks, and disabling ongoing Honcho observation.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

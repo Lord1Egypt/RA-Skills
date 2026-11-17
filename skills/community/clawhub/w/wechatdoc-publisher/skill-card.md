@@ -1,45 +1,61 @@
-## Description: <br>
-Automates preparing a Markdown article for a WeChat Official Account draft by getting an access token, handling the cover image, uploading permanent media, building draft JSON, and submitting the draft. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent turn Markdown articles and cover images into WeChat Official Account draft submissions, including credential setup guidance, access token retrieval, image upload, Markdown-to-HTML conversion, and draft creation.
 
-## Publisher: <br>
-[liboss504](https://clawhub.ai/user/liboss504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liboss504](https://clawhub.ai/user/liboss504)
 
-## Use Case: <br>
-Content creators and operators with a supported WeChat Official Account use this skill to convert a Markdown article and cover image into a WeChat draft for review before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global where WeChat Official Account APIs are available. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires WeChat AppID/AppSecret credentials that can control the configured account. <br>
-Mitigation: Keep wechat_credentials.json private and out of source control, use least-privilege operational access where possible, and rotate the AppSecret if exposure is suspected. <br>
-Risk: Running the publish flow uploads persistent media and creates a draft in the configured WeChat account. <br>
-Mitigation: Review the article, cover image, target account, and generated draft before publishing or sharing it. <br>
-Risk: WeChat API calls depend on the account IP whitelist. <br>
-Mitigation: Verify the correct outbound IP for the execution environment before adding it to the WeChat whitelist and keep the whitelist limited to trusted hosts. <br>
+## Use Case:
 
+Content creators, operators, and developers use this skill to prepare and submit Markdown-based articles as WeChat Official Account drafts. It is suited for workflows that need cover-image handling, WeChat API calls, draft JSON construction, and publication checks before final review in the WeChat backend.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liboss504/wechatdoc-publisher) <br>
-- [微信公众号 API 参考](references/api_ref.md) <br>
-- [微信公众号凭证配置指南](references/credentials_guide.md) <br>
-- [WeChat Official Accounts platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Markdown article path, cover image path, and local WeChat AppID/AppSecret credentials; scripts may create persistent media and a draft in the configured account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version record) <br>
+Risk: The skill instructs users to add a fixed IP address, 112.8.202.216, to the WeChat API allowlist without server-resolved evidence explaining why that address is required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only allowlist the actual egress IP of the environment running the scripts unless the publisher provides a verifiable reason to use the fixed address.
+
+Risk: The scripts read AppID and AppSecret from a local wechat_credentials.json file, which can expose account credentials if stored in repositories or shared workspaces.
+
+Mitigation: Keep the credential file out of version control and shared directories, restrict file permissions, rotate exposed secrets, and use dedicated low-privilege operating credentials where possible.
+
+Risk: Running publish.py can upload cover media and submit a draft to the configured WeChat Official Account.
+
+Mitigation: Review the Markdown content, cover image, account credentials, and generated draft details before executing the publish script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liboss504/skills/wechatdoc-publisher)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com)
+- [WeChat API base](https://api.weixin.qq.com)
+- [WeChat API reference](artifact/references/api_ref.md)
+- [Credential configuration guide](artifact/references/credentials_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and generated WeChat draft/API outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local draft JSON, compressed image files, uploaded media identifiers, and WeChat draft submissions when the scripts are run with valid credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version record)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

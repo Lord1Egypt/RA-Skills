@@ -1,43 +1,58 @@
-## Description: <br>
-Email Pro Optimized helps agents manage QQ, Gmail, and Outlook mailboxes through IMAP/SMTP and OAuth 2.0 commands for checking, searching, fetching, analyzing, and sending email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-performance email management skill for QQ Mail, Gmail, and Outlook with IMAP reading, SMTP sending, OAuth 2.0, and concurrent processing.
 
-## Publisher: <br>
-[q012315](https://clawhub.ai/user/q012315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[q012315](https://clawhub.ai/user/q012315)
 
-## Use Case: <br>
-Developers and agent users use this skill to automate mailbox workflows across configured QQ, Gmail, and Outlook accounts, including inbox checks, message search, message retrieval, basic analysis, and outbound email. It is suited to scripted email operations where local credentials and OAuth consent are managed by the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled repository-publishing and workspace-sync scripts may perform actions outside normal email management. <br>
-Mitigation: Remove or ignore scripts/auto-push.py and scripts/sync-updates.py before installation or execution unless they have been reviewed and are explicitly needed. <br>
-Risk: Bundled Outlook OAuth credentials may grant unintended trust to a preconfigured application. <br>
-Mitigation: Replace the bundled Outlook OAuth client details with user-owned, rotated credentials and confirm OAuth consent scopes before authorizing an account. <br>
-Risk: Local mailbox configuration and OAuth token files can expose mailbox access. <br>
-Mitigation: Treat ~/.openclaw/credentials/email-accounts.json and ~/.openclaw/credentials/oauth_tokens.json as secrets, restrict file permissions, and avoid printing account or token details in shared logs. <br>
+## Use Case:
 
+External users and developers use this skill to list configured email accounts, read, search, fetch, analyze, and send email across QQ Mail, Gmail, and Outlook from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/q012315/q012315-email-pro-optimized) <br>
-- [Publisher profile](https://clawhub.ai/user/q012315) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; command outputs are text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires locally configured mailbox credentials and OAuth tokens for live email operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release metadata) <br>
+Risk: The release is flagged suspicious because it includes insecure OAuth handling and unrelated repository/workspace automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before installation, avoid the bundled auto-push and sync maintenance scripts, and run only the email commands required for the workflow.
+
+Risk: OAuth and mailbox credentials may be stored under ~/.openclaw/credentials, including refresh tokens.
+
+Mitigation: Use your own OAuth application credentials, keep credential files access-limited, and revoke the exposed Azure secret if it belongs to you.
+
+Risk: Email commands can read mailbox contents and send messages or attachments through configured accounts.
+
+Mitigation: Run with least-privilege mail accounts, inspect recipient and attachment parameters before sending, and monitor provider account activity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/q012315/skills/q012315-email-pro-optimized)
+- [Publisher profile](https://clawhub.ai/user/q012315)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, JSON]
+
+**Output Format:** [JSON and terminal text, with Markdown guidance and shell command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Email operations depend on local account credentials, OAuth tokens, mailbox permissions, and provider connectivity.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release evidence; artifact package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

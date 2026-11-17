@@ -1,39 +1,58 @@
-## Description: <br>
-Soul Keeper monitors long-lived workspace memory and agent behavior files for update triggers, then proposes focused edits for user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soul Keeper monitors when long-lived workspace files may need maintenance and prompts the agent to propose focused updates based on workspace-file guidance.
 
-## Publisher: <br>
-[mfang0126](https://clawhub.ai/user/mfang0126) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mfang0126](https://clawhub.ai/user/mfang0126)
 
-## Use Case: <br>
-Agent users and developers use this skill to identify when workspace files such as SOUL.md, USER.md, AGENTS.md, MEMORY.md, WORKING.md, and TOOLS.md should be updated, and to receive one-file-at-a-time proposed changes for confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect persistent workspace memory and agent behavior files, so incorrect proposals may influence future work. <br>
-Mitigation: Review every proposed edit before approval and keep the one-file-at-a-time confirmation workflow. <br>
-Risk: The skill may record declined update suggestions for later reference. <br>
-Mitigation: Change or disable that behavior if refused suggestions should not be retained. <br>
+## Use Case:
 
+Developers and agent users use Soul Keeper to help an agent notice when persistent workspace-memory or configuration files such as SOUL.md, USER.md, AGENTS.md, MEMORY.md, and WORKING.md may be stale. The skill supports review-driven proposals for one workspace file at a time before applying updates.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown recommendations with proposed file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before applying edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may write a memory record even after the user refuses an update.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, require refusal to mean no write of any kind, including memory records.
+
+Risk: Broad activation triggers may cause the skill to inspect or propose changes unexpectedly.
+
+Mitigation: Narrow activation to explicit workspace-memory or workspace-file maintenance requests.
+
+Risk: Proposed changes to long-lived workspace files can make future agent behavior follow stale or incorrect assumptions.
+
+Mitigation: Review each proposed change against the current workspace state before applying it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mfang0126/skills/soul-keeper)
+- [Publisher profile](https://clawhub.ai/user/mfang0126)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with proposed workspace-file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts for confirmation and is intended to suggest one workspace-file update at a time.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

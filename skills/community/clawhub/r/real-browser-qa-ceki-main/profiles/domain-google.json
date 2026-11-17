@@ -1,0 +1,88 @@
+{
+  "id": "domain-google",
+  "label": "Google — Search & Services Browser",
+  "emoji": "🔍",
+  "domain": "google.com, accounts.google.com, mail.google.com, business.google.com, ads.google.com",
+  "description": "Extracted from: real-browser-ceki google-scraper, ceki-marketing session analysis (21 mentions), ceki-comms LinkedIn-phone-gate workaround research. Covers google.com search, Gmail, Google Ads, Google Business Profile, Google login flow, and Google account creation. Anti-bot protection very aggressive (bot-detect.google.com, reCAPTCHA v2/v3). Account creation: phone-free is IP-dependent lottery — sometimes works on clean residential, never on datacenter. IMPORTANT: Google account was theorized as LinkedIn bypass, but Google itself has the same phone-gate problem.",
+  "source_patterns": [
+    "Search: type query (slow, natural pauses) → wait for instant results/suggestions → press Enter → wait 2-4s for SERP → scroll results (short passes, 1-3)",
+    "Login flow (email → password → 2FA): type email → wait 2-4s → click Next → wait 1-2s → type password → click Next → if 2FA: wait 3-8s for prompt → handle",
+    "Gmail: click email row → wait 1-2s for content load → read → back to inbox → scroll list (gradual)",
+    "Google Ads: navigate to campaigns → wait 3-6s for dashboard load → scroll tables → click campaign → wait 2-4s for detail view",
+    "Business Profile: navigate to profile → wait 3-5s for dashboard → scroll insights → click edit → wait 2-3s for editor"
+  ],
+  "active_hours": {
+    "description": "Steady use all day — search is constant, Gmail/Ads/Business have work-hour peaks",
+    "peak": [8, 10, 11, 14, 15, 16, 20, 21],
+    "off_peak_min": 2
+  },
+  "typing": {
+    "wpm": { "min": 60, "max": 100 },
+    "profile": "natural",
+    "think_prob": 0.04,
+    "think_ms": [500, 2500],
+    "backspace_freq": 0.04,
+    "search_query_wpm": { "min": 70, "max": 110 }
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Search result scanning (short passes, 1-3 per SERP) and Gmail inbox scrolling (gradual list traversal). Source: google-scraper / gmail-scraper patterns",
+    "speed_px_per_ms": { "min": 15, "max": 45 },
+    "pause_between_passes_ms": { "min": 1000, "max": 3500 },
+    "depth_per_pass": { "min": 0.25, "max": 0.5 },
+    "infinite_scroll_detection": "div#rso bottom boundary, document.body.scrollHeight for Gmail"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2000, "max": 4000 },
+    "pre_click_pause_ms": { "min": 300, "max": 800 },
+    "inter_action_pause_ms": { "min": 500, "max": 1200 },
+    "post_expand_pause_ms": { "min": 1000, "max": 3000 }
+  },
+  "mouse": {
+    "speed": 0.9,
+    "curvature": 0.2,
+    "jitter": 0.3,
+    "description": "Moderate — deliberate targeting of search results and UI elements"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "search_input": "input[name='q'], textarea[name='q'], input.gLFyf",
+      "search_button": "input[value='Google Search'], button[aria-label='Google Search']",
+      "result_container": "div.g, div[data-hveid]",
+      "result_title": "a h3, div.yuRUbf a h3",
+      "toolbar": "#gb, div[role='navigation']",
+      "login_email": "input[type='email'], input[name='identifier']",
+      "login_password": "input[type='password'], input[name='password']",
+      "login_next": "button:has(span:contains('Next')), div#identifierNext button, div#passwordNext button",
+      "gmail_inbox_row": "tr.zA, div[role='main'] tr",
+      "gmail_sidebar": "div[role='navigation'] nav"
+    },
+    "requires_login": {
+      "search": false,
+      "gmail": true,
+      "ads": true,
+      "business_profile": true
+    },
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 400, "max": 1000 },
+      "post_step_pause_ms": { "min": 1500, "max": 3000 },
+      "post_login_wait_ms": { "min": 3000, "max": 6000 },
+      "post_2fa_wait_ms": { "min": 4000, "max": 8000 }
+    },
+    "account_creation": {
+      "phone_free_success_rate": "Low — depends on IP cleanliness. Clean residential sometimes works without phone, datacenter always blocked.",
+      "recommended_approach": "1) Use clean residential IP (rented real browser from ceki marketplace) → 2) Try name/email/password only → 3) If phone required — accept and provide phone, do NOT loop/retry (triggers harder blocks)",
+      "steps": [
+        "1. Navigate to accounts.google.com/SignUp",
+        "2. Fill first/last name via CDP Runtime.evaluate",
+        "3. Fill email/phone fields as they appear",
+        "4. reCAPTCHA appears — delegate to provider via chat",
+        "5. Accept ToS — wait for redirect",
+        "6. IMAP check for verification email if phone not required"
+      ],
+      "strategic_note": "A Google account was theorized as LinkedIn OAuth bypass, but Google itself has the same phone-gate problem. Creating a Google account without phone is IP-dependent lottery — don't rely on it for LinkedIn strategy."
+    },
+    "sequence_hint": "Search: navigate google.com → type query (slow, think pauses) → wait SERP → scroll (1-3 passes) → click → read → back. Login: email → Next → 2-4s wait → password → Next → 2FA if prompted. Account creation: accounts.google.com/SignUp → fill via CDP → captcha delegation → IMAP check. NOTE: phone-free creation is IP-dependent lottery."
+  }
+}

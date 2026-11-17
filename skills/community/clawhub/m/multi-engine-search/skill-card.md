@@ -1,44 +1,55 @@
-## Description: <br>
-Unified multi-engine web search for web lookup and research across Tavily, Google, Bing, Baidu, and DuckDuckGo, with optional result aggregation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified multi-engine web search for finding information, looking up sources, and performing research across Tavily, Google, Bing, Baidu, and DuckDuckGo.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run quick lookups or broader research queries through Tavily or browser-based search engines. It is especially useful when comparing coverage across providers or searching Chinese-language content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may be sent to Tavily or browser-based providers outside the user's environment. <br>
-Mitigation: Avoid searching secrets or sensitive personal or business data, choose the search provider deliberately, and use a scoped Tavily API key. <br>
-Risk: The skill can run a sibling Tavily helper outside the reviewed package when that helper is present. <br>
-Mitigation: Review the sibling Tavily helper before installing or using the skill, and deploy only reviewed helper code in trusted environments. <br>
-Risk: Browser-based search depends on the installed agent-browser tool and live search pages. <br>
-Mitigation: Enable browser-based engines only when the installed browser tool is trusted and users are comfortable sending queries to the selected provider. <br>
+## Use Case:
 
+Developers and agents use this skill to run quick lookups and broader research across API-based and browser-based search engines, including Chinese-language and aggregated searches.
 
-## Reference(s): <br>
-- [Search Engine Reference](references/engines.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/shenmeng/multi-engine-search) <br>
-- [Tavily](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON or Markdown search results, with an optional Tavily answer summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default result limit is 5; aggregated search combines Tavily, Google, and Baidu results and deduplicates by URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries may be sent to external providers, including Tavily and browser-based search engines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive or confidential queries unless the selected provider is approved for that data.
+
+Risk: The skill may execute a neighboring Tavily helper package when that package is present.
+
+Mitigation: Review or remove the automatic sibling-package Tavily execution path before using the skill in sensitive environments.
+
+## Reference(s):
+
+- [Search Engine Reference](references/engines.md)
+- [Tavily](https://tavily.com)
+- [ClawHub Skill Page](https://clawhub.ai/shenmeng/skills/multi-engine-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON search results or Markdown result lists with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include titles, URLs, snippets, provider errors, source engine names, and Tavily answer summaries when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Remotely manage Docker Compose instances via SSH, including service lifecycle commands, logs, image updates, and container exec operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remotely manage Docker Compose instances via SSH. Execute docker compose commands, view logs, update images, and exec into containers on remote servers. Use when deploying, monitoring, or debugging containerized applications.
 
-## Publisher: <br>
-[elric2011](https://clawhub.ai/user/elric2011) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[elric2011](https://clawhub.ai/user/elric2011)
 
-## Use Case: <br>
-Developers and operators use this skill to administer Docker Compose applications on remote servers over SSH during deployment, monitoring, updates, and debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad remote service-control and command-execution power over SSH. <br>
-Mitigation: Use a dedicated non-root deployment user, restrict SSH keys to approved hosts and directories, review deploy-apps.json before use, and require explicit human confirmation for down, restart, update, exec, and custom commands. <br>
-Risk: Logs, exec commands, or remote configuration files may expose secrets from Docker environments. <br>
-Mitigation: Avoid printing .env files, credentials, or sensitive environment variables, and review command output before storing or sharing it. <br>
+## Use Case:
 
+Developers and engineers use this skill to administer trusted remote Docker Compose deployments over SSH, including service lifecycle operations, logs, image updates, and container exec commands.
 
-## Reference(s): <br>
-- [Docker Remote Reference](references/README.md) <br>
-- [Command Examples](examples/docker-remote.json) <br>
-- [Deployment Configuration Example](examples/deploy-apps.json) <br>
-- [ClawHub skill page](https://clawhub.ai/elric2011/docker-remote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown and command-style text with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured success or failure status, logs, and error context from remote Docker Compose operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can stop, restart, update, or execute commands inside services on remote Docker hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human confirmation before stop, down, update, or exec operations on production services.
+
+Risk: Broad SSH or Docker socket permissions can allow high-impact changes outside the intended application.
+
+Mitigation: Use a dedicated least-privilege deployment user, avoid root where possible, and audit Docker socket access.
+
+Risk: Host aliases and custom update commands in deploy-apps.json can route actions to unintended systems or run unexpected commands.
+
+Mitigation: Review deploy-apps.json host mappings, SSH credentials, paths, and update commands before installing or invoking the skill.
+
+## Reference(s):
+
+- [Docker Remote Reference](references/README.md)
+- [Command Examples](examples/docker-remote.json)
+- [Deployment Configuration Example](examples/deploy-apps.json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured success or failure status, relevant logs, and error context from remote Docker Compose operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

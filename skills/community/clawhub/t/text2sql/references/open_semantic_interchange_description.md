@@ -47,15 +47,19 @@ This specification is organized hierarchically to mirror the YAML file structure
 
 ### 3.3 `semantic_model`
 
-**Data Type**: Array of objects
+**Data Type**: Object
 
-**Description**: Contains one or more theme definitions. Each theme represents a logical grouping of related datasets.
+**Description**: The semantic model definition. In the current generator implementation, this file contains exactly one semantic model object.
 
 **Required Sub-fields**:
 - `name`
 - `description`
 - `ai_context`
 - `datasets`
+- `relationships`
+- `metrics`
+- `terms`
+- `rules`
 
 ---
 
@@ -118,6 +122,53 @@ This specification is organized hierarchically to mirror the YAML file structure
 
 ---
 
+### 4.5 `relationships`
+
+**Data Type**: Array of objects
+
+**Description**: Relationship definitions derived from foreign keys (table-to-table joins).
+
+**Default Value**: `[]`
+
+**Required Sub-fields** (for each relationship):
+- `name`
+- `from_table`
+- `to_table`
+- `from_columns`
+- `to_columns`
+
+---
+
+### 4.6 `metrics`
+
+**Data Type**: Array of objects
+
+**Description**: Reserved for metric definitions (not populated by the current generator, but present in the output schema).
+
+**Default Value**: `[]`
+
+---
+
+### 4.7 `terms`
+
+**Data Type**: Array of objects
+
+**Description**: Reserved for terminology definitions (not populated by the current generator, but present in the output schema).
+
+**Default Value**: `[]`
+
+---
+
+### 4.8 `rules`
+
+**Data Type**: Array of objects
+
+**Description**: Reserved for rule definitions (not populated by the current generator, but present in the output schema).
+
+**Default Value**: `[]`
+
+---
+
 ## 5. Dataset Object
 
 ### 5.1 `name`
@@ -177,6 +228,39 @@ This specification is organized hierarchically to mirror the YAML file structure
 
 ---
 
+#### 5.4.2 `weight`
+
+**Data Type**: Integer
+
+**Description**: Dataset weight for ranking/recall bias during matching. Higher value means the dataset is more likely to be selected.
+
+**Default Value**: `3`
+
+---
+
+#### 5.4.3 `synonyms`
+
+**Data Type**: Array of strings
+
+**Description**: Alternative dataset names used for matching.
+
+**Default Value**: `[]`
+
+---
+
+#### 5.4.4 `default_datetime_field`
+
+**Data Type**: String
+
+**Description**: The default time field name for the dataset, selected by the generator by scoring date/time columns. This replaces the need for a field-level `is_default` flag in the current YAML output.
+
+**Default Value**: `` (empty string)
+
+**Constraints**:
+- If provided, it should match one of the dataset `fields[*].name`
+
+---
+
 ### 5.5 `fields`
 
 **Data Type**: Array of objects
@@ -210,9 +294,12 @@ This specification is organized hierarchically to mirror the YAML file structure
 
 | Value | Description | Usage |
 |-------|-------------|-------|
-| `text` | Text/string data | Names, codes, descriptions |
-| `number` | Numeric data | Counts, measurements, amounts |
-| `date` | Date/time data | Timestamps, dates |
+| `TEXT` | Text/string data | Names, codes, descriptions |
+| `NUMBER` | Numeric data | Counts, measurements, amounts |
+| `DATE` | Date data | Date-only values |
+| `TIME` | Time/date-time data | Timestamps, datetime |
+| `ID` | Identifier | UUID/GUID-like identifiers |
+| `OTHER` | Other types | Fallback when type is not recognized |
 
 **Constraints**: 
 - Must be one of the allowed values
@@ -239,12 +326,11 @@ This specification is organized hierarchically to mirror the YAML file structure
 
 **Description**: Field-level AI context configuration containing metadata for AI processing.
 
-**Required Sub-fields**:
+**Common Sub-fields**:
 - `ai_name`
 - `property`
-- `ai_type`
-- `value_list`
-- `is_default`
+- `ai_type` (optional)
+- `value_list` (optional, for enum)
 
 #### 6.4.1 `ai_name`
 
@@ -269,7 +355,7 @@ This specification is organized hierarchically to mirror the YAML file structure
 | Value | Description | Usage Scenario |
 |-------|-------------|----------------|
 | `normal` | Normal field | Standard data fields |
-| `date` | Date field | Time-related fields used for filtering/grouping |
+| `dimension` | Dimension field | Used for grouping/filtering, e.g. date/time dimensions or enum dimensions |
 | `detail_only` | Detail query only | Fields displayed only in detail queries, not used in aggregations |
 
 **Default Value**: `normal`
@@ -289,8 +375,8 @@ This specification is organized hierarchically to mirror the YAML file structure
 
 | Value | Description | Usage Scenario |
 |-------|-------------|----------------|
-| `date` | Date type | Fields requiring date-specific processing |
-| `enum` | Enumeration type | Fields with fixed allowable values |
+| `date` | Date type | Reserved for date-specific processing (not always emitted by the current generator) |
+| `enum` | Enumeration type | Fields with fixed allowable values (emitted when enum is detected) |
 
 **Default Value**: `` (empty string)
 
@@ -302,37 +388,86 @@ This specification is organized hierarchically to mirror the YAML file structure
 
 #### 6.4.4 `value_list`
 
-**Data Type**: Array of strings
+**Data Type**: Array of scalars (strings and/or numbers)
 
 **Description**: List of allowable values for enumeration-type fields.
 
 **Usage**: 
 - Required when `ai_type` is `enum`
-- Must be empty array `[]` for non-enumeration fields
+- Should be omitted or empty for non-enumeration fields
 
 **Constraints**: 
 - Must be an array (can be empty)
-- Each element must be a string
-- For enumeration fields, must contain all valid values
+- For enumeration fields, must contain all valid values (as extracted from samples / metadata)
 
 ---
 
-#### 6.4.5 `is_default`
+## 7. Relationship Object
 
-**Data Type**: Boolean
+Relationship entries live under `semantic_model.relationships`.
 
-**Description**: Indicates whether this field serves as the default time dimension for the dataset.
+### 7.1 `name`
 
-**Allowed Values**:
+**Data Type**: String
 
-| Value | Description |
-|-------|-------------|
-| `true` | Serves as the primary time dimension for default time range filtering |
-| `false` | Not used as default time dimension |
+**Description**: Human-readable relationship name. The generator uses the form `<from_table> to <to_table>`.
 
-**Default Value**: `false`
+---
 
-**Constraints**: 
-- Must be a boolean value
-- Each dataset should have exactly one field with `is_default: true` (typically a date field)
+### 7.2 `from_table`
 
+**Data Type**: String
+
+**Description**: Source table for the relationship.
+
+---
+
+### 7.3 `to_table`
+
+**Data Type**: String
+
+**Description**: Target table for the relationship.
+
+---
+
+### 7.4 `from_columns`
+
+**Data Type**: Array of strings
+
+**Description**: Column list on `from_table` participating in the join.
+
+---
+
+### 7.5 `to_columns`
+
+**Data Type**: Array of strings
+
+**Description**: Column list on `to_table` participating in the join. It should align positionally with `from_columns`.
+
+---
+
+## 8. Numeric Format (`num_format`) Object
+
+`num_format` is an optional object on a field, emitted when the generator detects unit/level/decimal hints.
+
+### 8.1 `unit`
+
+**Data Type**: String
+
+**Description**: Display unit hint (e.g. 元, 万, %, etc.).
+
+---
+
+### 8.2 `num_level`
+
+**Data Type**: String
+
+**Description**: Numeric magnitude/level hint (e.g. 千/万/亿) used for formatting.
+
+---
+
+### 8.3 `num_decimal`
+
+**Data Type**: String or Integer
+
+**Description**: Decimal precision hint for formatting.

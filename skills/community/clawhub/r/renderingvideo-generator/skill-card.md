@@ -1,44 +1,64 @@
-## Description: <br>
-RenderingVideo preview assistant that helps agents draft or edit RenderingVideo schema JSON, validate it through the public preview flow without an API key, and return the preview URL and temporary identifier. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RenderingVideo preview assistant that uses the public preview flow at POST /api/preview without an API key.
 
-## Publisher: <br>
-[gljhint](https://clawhub.ai/user/gljhint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gljhint](https://clawhub.ai/user/gljhint)
 
-## Use Case: <br>
-Developers and agents use this skill to create or edit RenderingVideo JSON schemas, submit them to the public preview endpoint, and report temporary preview links and validation feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RenderingVideo schema JSON is uploaded to video.renderingvideo.com and may result in a temporary shareable preview link. <br>
-Mitigation: Use only content intended for external processing; avoid secrets, tokens, customer data, private media, proprietary scripts, and internal URLs. <br>
+## Use Case:
 
+Developers and agents use this skill to draft or edit RenderingVideo schema JSON, validate it through the public preview endpoint, and return a temporary preview URL and identifier.
 
-## Reference(s): <br>
-- [RenderingVideo API and Usage](https://renderingvideo.com/docs/api-and-usage.md) <br>
-- [RenderingVideo JSON Spec](https://renderingvideo.com/docs/json-spec.md) <br>
-- [RenderingVideo Clips](https://renderingvideo.com/docs/clips.md) <br>
-- [RenderingVideo Elements](https://renderingvideo.com/docs/elements.md) <br>
-- [RenderingVideo Base Clip](https://renderingvideo.com/docs/elements/base-clip.md) <br>
-- [RenderingVideo Animation and Timing](https://renderingvideo.com/docs/animation-and-timing.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/gljhint/renderingvideo-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with JSON schema content, shell commands, preview URLs, temporary identifiers, and validation details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns tempId, viewerUrl, url, and expiresIn when present; generated preview links are temporary and expire after 7 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: RenderingVideo schema JSON is sent to a public preview service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only schemas that are acceptable to send externally; avoid secrets, private internal URLs, proprietary unreleased content, and personal data unless that exposure is acceptable.
+
+Risk: Preview links are temporary and shareable.
+
+Mitigation: Treat returned preview links as externally shareable and regenerate previews when links expire or become invalid.
+
+Risk: Schema or API validation failures can prevent preview generation.
+
+Mitigation: Validate JSON locally, follow RenderingVideo documentation for supported fields, and preserve API error details for troubleshooting.
+
+## Reference(s):
+
+- [RenderingVideo API and usage documentation](https://renderingvideo.com/docs/api-and-usage.md)
+- [RenderingVideo JSON specification](https://renderingvideo.com/docs/json-spec.md)
+- [RenderingVideo clips documentation](https://renderingvideo.com/docs/clips.md)
+- [RenderingVideo elements documentation](https://renderingvideo.com/docs/elements.md)
+- [RenderingVideo base clip documentation](https://renderingvideo.com/docs/elements/base-clip.md)
+- [RenderingVideo animation and timing documentation](https://renderingvideo.com/docs/animation-and-timing.md)
+- [RenderingVideo public preview endpoint](https://video.renderingvideo.com/api/preview)
+- [ClawHub skill page](https://clawhub.ai/gljhint/skills/renderingvideo-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON schema edits, shell command results, preview URLs, and temporary preview identifiers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preview links are temporary and shareable; the selected RenderingVideo schema JSON is sent to a public preview service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

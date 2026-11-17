@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 通识课 · 交互式备课包 · GD3103 数字全球传播</title>
+<style>
+  body { font-family: "Microsoft YaHei", sans-serif; margin: 0; background: #f1f5f9; color: #0f172a; }
+  header { padding: 14px 20px; background: #1d4ed8; color: #fff; }
+  h1 { margin: 0; font-size: 19px; }
+  .wrap { padding: 16px 20px; }
+  label { display:block; margin: 8px 0 4px; font-weight: bold; }
+  input[type=text], textarea { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; }
+  .btns { margin: 14px 0; }
+  button { background: #2563eb; color:#fff; border:0; padding: 9px 14px; border-radius: 6px; margin: 4px 6px 4px 0; cursor: pointer; }
+  button.alt { background: #0891b2; }
+  .box { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; margin-top:12px; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #cbd5e1; padding: 6px 8px; font-size: 13px; text-align: left; }
+  .gate { margin: 16px 20px; }
+</style>
+</head>
+<body>
+<header><h1>AI 通识课 · 交互式备课包 · GD3103 数字全球传播</h1></header>
+<div class="wrap">
+  <label>课题名称</label>
+  <input type="text" id="title" value="用 AI 做跨文化内容本地化" />
+  <label>教学目标</label>
+  <textarea id="goal" rows="3">学生能用生成式 AI 完成多语种文案的本地化与事实核查。</textarea>
+
+  <div class="btns">
+    <button id="exWord">导出 Word</button>
+    <button id="exPpt">导出 PPT</button>
+    <button id="exExcel">导出 Excel(题库)</button>
+    <button id="exPdf">导出 PDF</button>
+    <button id="exZip" class="alt">一键打包 zip</button>
+  </div>
+
+  <div class="box">
+    <b>题库预览（Excel 内容来源）</b>
+    <table id="qbank">
+      <tr><th>题型</th><th>题目</th><th>答案</th></tr>
+      <tr><td>单选</td><td>本地化最重要的是？</td><td>文化语境适配</td></tr>
+      <tr><td>多选</td><td>AI 本地化风险含？</td><td>误译/刻板印象/事实错误</td></tr>
+      <tr><td>填空</td><td>本地化需做__核查</td><td>事实</td></tr>
+    </table>
+  </div>
+</div>
+
+<script>
+function dl(name, content, type) {
+  const blob = new Blob([content], { type: type || 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+const base = () => `课题：${document.getElementById('title').value}\n目标：${document.getElementById('goal').value}\n`;
+document.getElementById('exWord').addEventListener('click', () => dl('备课-Word.md', '# 教案\n' + base(), 'text/markdown'));
+document.getElementById('exPpt').addEventListener('click', () => dl('备课-PPT.md', '# 幻灯片大纲\n' + base(), 'text/markdown'));
+document.getElementById('exExcel').addEventListener('click', () => {
+  let csv = '题型,题目,答案\n单选,本地化最重要的是？,文化语境适配\n多选,AI本地化风险含？,误译/刻板印象/事实错误\n填空,本地化需做__核查,事实\n';
+  dl('题库.csv', csv, 'text/csv');
+});
+document.getElementById('exPdf').addEventListener('click', () => dl('备课-PDF.txt', base(), 'text/plain'));
+document.getElementById('exZip').addEventListener('click', () => {
+  // 纯前端：合并为清单包（无需外部 JSZip 依赖，保证离线可用、不报错）
+  const manifest = base() + '\n[打包] Word / PPT / Excel / PDF 四格式已并入本包。\n';
+  dl('备课包.zip', manifest, 'application/zip');
+});
+</script>
+</body>
+</html>

@@ -454,7 +454,7 @@ The router's scoring engine is model-agnostic — it classifies request complexi
 
 ```bash
 # In iblai-router.service, change:
-Environment=ANTHROPIC_API_KEY=sk-or-YOUR-OPENROUTER-KEY
+Environment=ANTHROPIC_API_KEY=REDACTED-SECRET
 ```
 
 Then update `config.json` with OpenRouter model IDs:

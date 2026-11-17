@@ -1,48 +1,63 @@
-## Description: <br>
-Five-lens ethical compass for sovereign AI agents - evaluate actions across trust, ownership, defense, and sovereignty before proceeding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Five-lens ethical compass for sovereign AI agents - evaluate actions across trust, ownership, defense, and sovereignty before proceeding.
 
-## Publisher: <br>
-[vveerrgg](https://clawhub.ai/user/vveerrgg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vveerrgg](https://clawhub.ai/user/vveerrgg)
 
-## Use Case: <br>
-Agents and their operators use this skill to check significant actions through five alignment lenses before proceeding, escalating to a human when risk, uncertainty, or trust concerns are high. It supports setup, day-to-day action checks, outcome tracking, and optional local decision memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and imports an external Python package before use. <br>
-Mitigation: Verify the social-alignment package and test it in an isolated environment before relying on it. <br>
-Risk: Optional persistent decision memory may reveal patterns about operator decisions. <br>
-Mitigation: Enable persistence only in a controlled local file path and apply appropriate file permissions. <br>
-Risk: Alignment checks depend on accurate context about confidence, reversibility, money, secrets, and trust boundaries. <br>
-Mitigation: Provide honest action context and escalate when the result indicates YIELD or STOP. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add an ethical decision gate before sensitive actions such as payments, publishing, disclosures, command execution, and configuration changes. It helps agents decide when to proceed, defer, or escalate to a human.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vveerrgg/social-alignment) <br>
-- [GitHub Homepage](https://github.com/HumanjavaEnterprises/nostralignment.app.OC-python.src) <br>
-- [PyPI Package](https://pypi.org/project/social-alignment/) <br>
-- [NSE Platform](https://nse.dev) <br>
-- [NostrKey](https://clawhub.ai/vveerrgg/nostrkey) <br>
-- [sense-memory](https://clawhub.ai/vveerrgg/sense-memory) <br>
-- [NSE Orchestrator](https://clawhub.ai/vveerrgg/nse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce human escalation messages, action-check rationale, and local decision-memory setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks an agent to adopt broad ongoing decision-gating behavior backed by an unpinned external package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the social-alignment package before enabling the skill, and decide in advance whether STOP and YIELD results are advisory or binding.
+
+Risk: Decision memory may reveal patterns about the user's behavior if persistence is enabled.
+
+Mitigation: Keep persistence off unless needed, restrict storage permissions, and treat stored alignment records as sensitive.
+
+Risk: Sensitive actions could be delayed, blocked, or incorrectly allowed if the operator has not defined escalation policy.
+
+Mitigation: Require clear user confirmation for payments, publishing, disclosures, command execution, and configuration changes.
+
+## Reference(s):
+
+- [Social Alignment ClawHub page](https://clawhub.ai/vveerrgg/skills/social-alignment)
+- [Project homepage](https://github.com/HumanjavaEnterprises/nostralignment.app.OC-python.src)
+- [PyPI package](https://pypi.org/project/social-alignment/)
+- [NSE platform](https://nse.dev)
+- [NostrKey companion skill](https://clawhub.ai/vveerrgg/nostrkey)
+- [sense-memory companion skill](https://clawhub.ai/vveerrgg/sense-memory)
+- [NSE Orchestrator companion skill](https://clawhub.ai/vveerrgg/nse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce proceed, defer, escalate, YIELD, or STOP recommendations for agent actions.]
+
+## Skill Version(s):
+
+0.1.5 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

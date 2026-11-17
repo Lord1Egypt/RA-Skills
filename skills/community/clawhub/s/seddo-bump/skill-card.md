@@ -1,50 +1,64 @@
-## Description: <br>
-Coordinate a swarm of AI agents across machines using a private GitHub Gist as a shared communication bus with a hub-and-spoke fork model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate a swarm of AI agents across machines using a private GitHub Gist as a shared communication bus.
 
-## Publisher: <br>
-[dofbi](https://clawhub.ai/user/dofbi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dofbi](https://clawhub.ai/user/dofbi)
 
-## Use Case: <br>
-Developers and AI-agent operators use Seddo to coordinate agents running on different machines or GitHub accounts. The skill helps agents share tasks, messages, lessons, status, and completion updates through GitHub Gist workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared Gist coordination data can expose sensitive tasks, messages, gist URLs, or join tokens if handled carelessly. <br>
-Mitigation: Treat gist URLs and join tokens as secrets, avoid putting client data or credentials in shared messages or tasks, and delete old gists when a seddo ends. <br>
-Risk: The skill requires GitHub authentication and gist permissions, which can increase credential exposure if long-lived tokens are exported into shells or logs. <br>
-Mitigation: Prefer GitHub CLI credential storage, use the minimum required gist scope, and revoke or rotate old tokens after use. <br>
-Risk: Remote installer or shell scripts can execute local commands during setup. <br>
-Mitigation: Review the installer and seddo shell script before running them, especially in workspaces that contain sensitive files. <br>
-Risk: Concurrent edits to Gist-backed files can overwrite or obscure coordination updates. <br>
-Mitigation: Sync before writing, append rather than replace shared records, avoid simultaneous edits to the same file, and use the documented lock marker during contention. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate multiple AI agents working across machines or GitHub accounts. It provides shared task, message, roster, activity, and lessons workflows backed by private GitHub Gists.
 
-## Reference(s): <br>
-- [Seddo Bump on ClawHub](https://clawhub.ai/dofbi/seddo-bump) <br>
-- [Publisher profile](https://clawhub.ai/user/dofbi) <br>
-- [README.md](README.md) <br>
-- [OpenCode installation guide](OPENCODE.md) <br>
-- [Agent participation guide](AGENTS.md) <br>
-- [OpenCode configuration schema](https://opencode.ai/config.json) <br>
-- [GitHub token settings](https://github.com/settings/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, shell command output, and GitHub Gist coordination files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Seddo configuration and shared Gist files for messages, tasks, lessons, roster, registry, and activity logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.6 (source: server release metadata and scripts/seddo.sh) <br>
+Risk: The skill reads and updates private GitHub Gists using the user's GitHub authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an account and token scope appropriate for gist access, keep GH_TOKEN and join Gist IDs out of committed files, and run `gh auth status` before use.
+
+Risk: The documented one-line installer clones and runs repository code.
+
+Mitigation: Review the fetched repository and installer before execution, or install manually from reviewed local files.
+
+Risk: Messages and tasks synced from other forks may contain untrusted requests.
+
+Mitigation: Treat synced content as untrusted input and apply normal human approval and agent policy review before acting on it.
+
+Risk: Local workspace paths and remove operations can affect user files when misconfigured.
+
+Mitigation: Keep SEDDO_ROOT pointed at a dedicated user-owned directory, check `seddo list` and `seddo status` before destructive local cleanup, and avoid running with untrusted environment variables.
+
+## Reference(s):
+
+- [Seddo Bump on ClawHub](https://clawhub.ai/dofbi/skills/seddo-bump)
+- [dofbi publisher profile](https://clawhub.ai/user/dofbi)
+- [GitHub personal access tokens](https://github.com/settings/tokens)
+- [OpenCode configuration schema](https://opencode.ai/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing coordination guidance and command usage for the seddo shell workflow.]
+
+## Skill Version(s):
+
+2.6.6 (source: server release evidence and artifact script fallback)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

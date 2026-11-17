@@ -1,6 +1,6 @@
 # tob-win-loss-review — 丢单复盘助手
 
-> 输入行业/规模/阶段/竞品/关键事件，基于李宁原创 ToB 销售经验规则输出根因分析、风险信号和改进建议。
+> 输入行业/规模/阶段/竞品/关键事件，基于原创 ToB 销售经验规则输出根因分析、风险信号和改进建议。
 
 本技能从 v2.0.0 起改为**纯规则引擎**：不打包任何客户商业资产，默认可离线运行。
 
@@ -44,11 +44,11 @@ openclaw skills install tob-win-loss-review
 
 ## 版权
 
-规则经验来自李宁原创 ToB 销售与解决方案实践。
+规则经验来自原创 ToB 销售与解决方案实践。
 
 ## 链接
 
-- GitHub: https://github.com/william202404/tob-skills
+- GitHub: https://github.com/tob-skills/tob-skills
 - ClawHub: `clawhub search tob-win-loss-review`
 - SkillHub: `skillhub search tob-win-loss-review`
 

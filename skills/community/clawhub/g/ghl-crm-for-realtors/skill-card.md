@@ -1,47 +1,66 @@
-## Description: <br>
-Use this skill for GoHighLevel CRM work for realtors: contact lookup and updates, opportunity and pipeline actions, conversation messaging, calendar slots, and workflow enrollment using GoHighLevel API v2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for GoHighLevel CRM work for realtors: contact lookup and updates, opportunity/pipeline actions, conversation messaging, calendar slots, and workflow enrollment using GoHighLevel API v2.
 
-## Publisher: <br>
-[danielfoch](https://clawhub.ai/user/danielfoch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danielfoch](https://clawhub.ai/user/danielfoch)
 
-## Use Case: <br>
-External realtor teams and their agents use this skill to connect an assistant to GoHighLevel for lead intake, contact management, pipeline tracking, follow-up messaging, calendar availability, and workflow enrollment. It is intended for live CRM assistance when the user has valid GoHighLevel credentials and clear authorization for the account. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a GoHighLevel private integration token to access live CRM data and perform account actions. <br>
-Mitigation: Use a least-privilege sub-account token, keep the token out of chat output, and rotate or revoke it if exposure is suspected. <br>
-Risk: Write operations can send messages, change contacts, create appointments, enroll workflows, delete records, or otherwise make real business changes. <br>
-Mitigation: Require explicit user confirmation before any live POST, PUT, or DELETE action and review the target record IDs before execution. <br>
-Risk: CRM records may contain personal, lead, or customer communication data. <br>
-Mitigation: Limit queries to the needed contacts or opportunities and avoid exposing unnecessary CRM response data in assistant output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/danielfoch/ghl-crm-for-realtors) <br>
-- [Contacts API Reference](references/contacts.md) <br>
-- [Opportunities & Pipelines API Reference](references/opportunities.md) <br>
-- [Conversations & Messaging API Reference](references/conversations.md) <br>
-- [Calendars & Appointments API Reference](references/calendars.md) <br>
-- [Troubleshooting Reference](references/troubleshooting.md) <br>
-- [GoHighLevel API base](https://services.leadconnectorhq.com) <br>
+## Use Case:
 
+External real estate teams and their agents use this skill to manage GoHighLevel CRM workflows for lead intake, contact updates, pipeline follow-up, appointment context, messaging, and workflow enrollment.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce live GoHighLevel API requests when credentials are configured and the user confirms write actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill connects to a live CRM with a long-lived GoHighLevel private integration token.
+
+Mitigation: Use a narrowly scoped token, keep credentials out of chat and logs, and rotate the token on a regular schedule.
+
+Risk: Broad list commands can expose customer records, conversations, invoices, transactions, or other CRM data in terminal or agent logs.
+
+Mitigation: Prefer targeted read commands and run broad list commands only when the user explicitly asks for that scope of data.
+
+Risk: Write actions can delete contacts, send messages, change workflows, create appointments, create invoices, or publish social posts.
+
+Mitigation: Require explicit user confirmation before destructive, external-facing, billing-related, or workflow-changing actions.
+
+Risk: Troubleshooting steps may display environment variables or API responses containing sensitive data.
+
+Mitigation: Mask secrets before sharing output and avoid commands that print raw tokens.
+
+## Reference(s):
+
+- [Contacts API Reference](references/contacts.md)
+- [Opportunities & Pipelines API Reference](references/opportunities.md)
+- [Conversations & Messaging API Reference](references/conversations.md)
+- [Calendars & Appointments API Reference](references/calendars.md)
+- [Troubleshooting Reference](references/troubleshooting.md)
+- [GoHighLevel API Docs](https://marketplace.gohighlevel.com/docs/)
+- [GoHighLevel OpenAPI Specs](https://github.com/GoHighLevel/highlevel-api-docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return CRM records, API response JSON, setup guidance, or command suggestions depending on the requested workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-02-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-Manage QuickBooks accounts, customers, invoices, payments, bills, expenses, and financial workflows via the QuickBooks Online API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage QuickBooks accounts, customers, invoices, payments, bills, expenses, and financial workflows via the QuickBooks Online API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to read and manage QuickBooks Online accounting records, including customers, invoices, payments, bills, vendors, reports, and company settings through ClawLink-hosted OAuth tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate financial write operations, including invoices, payments, bills, expenses, and destructive actions. <br>
-Mitigation: Use read and preview steps before writes, confirm the target resource and intended effect with the user, and execute only after explicit approval. <br>
-Risk: OAuth access can expose QuickBooks company data available to the connected account. <br>
-Mitigation: Install only when QuickBooks access through ClawLink is intended, review OAuth permissions during connection, and verify that the active integration is the expected QuickBooks company. <br>
-Risk: Incorrect amounts, accounts, dates, recipients, or stale SyncToken values can cause inaccurate or rejected financial records. <br>
-Mitigation: Check amounts, accounts, dates, recipients, and business impact before approval, and re-read records before updates that require the current SyncToken. <br>
+## Use Case:
 
+External users, finance teams, and developers use this skill to read QuickBooks company data, manage customers, invoices, vendors, bills, payments, accounts, and run financial reports through a connected QuickBooks Online account.
 
-## Reference(s): <br>
-- [ClawHub QuickBooks Skill Page](https://clawhub.ai/hith3sh/quickbooks-finance) <br>
-- [QuickBooks Online API](https://developer.intuit.com/) <br>
-- [QuickBooks API Reference](https://developer.intuit.com/docs/api/accounting) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=quickbooks-finance) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes confirmation-first workflows for QuickBooks write operations and ClawLink OAuth setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill depends on a persistent third-party ClawLink plugin with broad access to connected QuickBooks financial data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and plugin are trusted, verify the plugin source and version where possible, and use the least-privileged QuickBooks account available.
+
+Risk: Write operations can create, update, delete, void, reverse, or process financial records and payments.
+
+Mitigation: Require previews and explicit user confirmation before writes, and verify amounts, accounts, dates, target records, and OAuth permissions before execution.
+
+Risk: A connected QuickBooks OAuth session can continue to authorize access after setup.
+
+Mitigation: Review granted OAuth scopes and know how to revoke the QuickBooks connection and disable the plugin when it is no longer needed.
+
+## Reference(s):
+
+- [QuickBooks Online API](https://developer.intuit.com/)
+- [QuickBooks API Reference](https://developer.intuit.com/docs/api/accounting)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/quickbooks-finance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-like tool call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include financial record summaries, report outputs, previews of write operations, and error-handling guidance.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

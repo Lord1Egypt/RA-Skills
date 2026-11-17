@@ -1,39 +1,50 @@
-## Description: <br>
-国内天气查询技能 - 基于uapis.cn免费API。支持全国3000+城市，无需注册和API密钥。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+国内天气查询技能 - 基于uapis.cn免费API。支持全国3000+城市，无需注册和API密钥。
 
-## Publisher: <br>
-[zhouwenbin2000](https://clawhub.ai/user/zhouwenbin2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouwenbin2000](https://clawhub.ai/user/zhouwenbin2000)
 
-## Use Case: <br>
-External users and agents use this skill to query real-time weather for cities and districts in China through the uapis.cn weather API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: City or district names are sent to uapis.cn for weather lookup. <br>
-Mitigation: Avoid querying locations considered sensitive, and disclose this external API use to users when relevant. <br>
+## Use Case:
 
+External users and agents use this skill to answer weather questions for Chinese cities and districts. It queries uapis.cn and returns current weather details such as city, conditions, temperature, wind, humidity, and report time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouwenbin2000/weather-support) <br>
-- [uapis.cn weather API example](https://uapis.cn/api/v1/misc/weather?city=北京) <br>
+### Deployment Geography for Use:
 
+Global, with practical coverage for cities and districts in China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls] <br>
-**Output Format:** [Plain text or Markdown with weather fields returned from JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; sends the requested city or district name to uapis.cn; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: City names entered for weather lookup are sent to the external uapis.cn API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive location queries when that disclosure is not acceptable.
+
+## Reference(s):
+
+- [uapis.cn weather API example](https://uapis.cn/api/v1/misc/weather?city=北京)
+- [ClawHub skill page](https://clawhub.ai/zhouwenbin2000/skills/weather-support)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with weather fields; may include curl commands when showing API usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and sends city names to the public uapis.cn weather API; no API key is required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Get current weather and forecasts from MeteoSwiss (official Swiss weather service). Use when querying Swiss weather data, local measurements from Swiss weather stations, or Swiss-specific forecasts. Provides real-time measurements (temperature, humidity, wind, precipitation, pressure) from 100+ Swiss stations and multi-day forecasts by postal code. Ideal for Swiss locations - more accurate than generic weather services for Switzerland. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather measurements from 100+ Swiss MeteoSwiss stations and multi-day Swiss weather forecasts by postal code.
 
-## Publisher: <br>
-[xenofex7](https://clawhub.ai/user/xenofex7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xenofex7](https://clawhub.ai/user/xenofex7)
 
-## Use Case: <br>
-External users and developers use this skill to query current Swiss weather station measurements and Swiss postal-code forecasts from MeteoSwiss, including JSON output for programmatic workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Forecast requests share the queried Swiss postal code with MeteoSwiss. <br>
-Mitigation: Avoid submitting sensitive location queries when that disclosure is not acceptable, or use current station measurements instead. <br>
-Risk: The optional Python scripts depend on the requests package in the user's Python environment. <br>
-Mitigation: Install dependencies only from trusted package indexes and run the scripts in a trusted or isolated Python environment. <br>
-Risk: The MeteoSwiss forecast endpoint may change or become unstable. <br>
-Mitigation: Fall back to the documented current-weather CSV endpoint or check the MeteoSwiss documentation when forecast calls fail. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MeteoSwiss API Reference](references/api_info.md) <br>
-- [Official MeteoSwiss](https://www.meteoschweiz.admin.ch) <br>
-- [Swiss Open Government Data Platform](https://data.geo.admin.ch) <br>
-- [Current Weather Measurements CSV](https://data.geo.admin.ch/ch.meteoschweiz.messwerte-aktuell/VQHA80.csv) <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve Swiss current weather measurements by station and multi-day forecasts by postal code from MeteoSwiss/public Swiss weather endpoints.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and optional JSON weather data from scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports station-code lookups, station listing, all-station output, postal-code forecasts, and JSON output flags.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global for users querying Swiss weather data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes outbound requests to MeteoSwiss/public Swiss weather endpoints when weather data is requested.
+
+Mitigation: Use the skill where outbound access to those public endpoints is expected and acceptable.
+
+Risk: The Python scripts depend on the third-party `requests` package.
+
+Mitigation: Install in an isolated Python environment and pin `requests` before use.
+
+Risk: The MeteoSwiss forecast endpoint may be unstable or change.
+
+Mitigation: Fall back to the current weather CSV endpoint or updated MeteoSwiss documentation when forecast requests fail.
+
+## Reference(s):
+
+- [MeteoSwiss API Reference](references/api_info.md)
+- [Official MeteoSwiss](https://www.meteoschweiz.admin.ch)
+- [Swiss Open Data Platform](https://data.geo.admin.ch)
+- [MeteoSwiss Current Weather CSV](https://data.geo.admin.ch/ch.meteoschweiz.messwerte-aktuell/VQHA80.csv)
+- [MeteoSwiss Forecast API](https://app-prod-ws.meteoswiss-app.ch/v1/plzDetail?plz={postal_code})
+- [Swiss-Weather on ClawHub](https://clawhub.ai/xenofex7/skills/swissweather)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, JSON, Text, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts return formatted text tables or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is required; weather data freshness and availability depend on MeteoSwiss/public Swiss weather endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

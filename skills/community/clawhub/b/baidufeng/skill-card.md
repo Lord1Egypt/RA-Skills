@@ -1,42 +1,60 @@
-## Description: <br>
-Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the web using Baidu AI Search Engine (BDSE) for live information, documentation, or research topics.
 
-## Publisher: <br>
-[feng-aragron](https://clawhub.ai/user/feng-aragron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feng-aragron](https://clawhub.ai/user/feng-aragron)
 
-## Use Case: <br>
-Developers and agents use this skill to run live Baidu AI Search queries for current information, documentation, and research topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Baidu's AI Search API. <br>
-Mitigation: Install only when that data flow is acceptable, and avoid sending sensitive search terms. <br>
-Risk: The skill requires a BAIDU_API_KEY and setup guidance allows storing it in the OpenClaw configuration file. <br>
-Mitigation: Keep the key secret, prefer environment or managed secret storage when available, and protect ~/.openclaw/openclaw.json if the key is stored there. <br>
+## Use Case:
 
+External users and developers use this skill to send Baidu AI Search queries from an agent workflow and retrieve current web search results, with optional result count and freshness filters.
 
-## Reference(s): <br>
-- [Baidu API Key Setup Guide](references/apikey-fetch.md) <br>
-- [Baidu AI Search API Key Console](https://console.bce.baidu.com/ai-search/qianfan/ais/console/apiKey) <br>
-- [Baidu AI Search Web Search Endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON search results with Markdown setup and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIDU_API_KEY and supports query, count, and freshness request parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries are sent to Baidu AI Search and may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries that are appropriate to send to Baidu and avoid confidential or regulated data unless approved for that environment.
+
+Risk: The skill stores BAIDU_API_KEY in a persistent OpenClaw configuration file.
+
+Mitigation: Protect ~/.openclaw/openclaw.json as a sensitive credentials file, restrict access, and avoid syncing or sharing files that include it.
+
+Risk: The search script prints the parsed request body, which can expose query text in logs.
+
+Mitigation: Remove or disable the request-body print before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/feng-aragron/skills/baidufeng)
+- [Baidu API Key Setup Guide](references/apikey-fetch.md)
+- [Baidu AI Search API key console](https://console.bce.baidu.com/ai-search/qianfan/ais/console/apiKey)
+- [Baidu AI Search web search endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON search results printed to standard output, with Markdown setup guidance in documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY; accepts query, count, and freshness parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

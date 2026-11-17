@@ -2,166 +2,186 @@
 /**
  * 钉钉文档企业 API 工具
  *
- * 支持操作：读取文档概览、查询块结构、插入块、覆写内容、删除块、追加段落文本
- *
- * 环境变量：
- *   DINGTALK_CLIENTID - 企业内部应用 ClientId
- *   DINGTALK_CLIENTSECRET - 企业内部应用 ClientSecret
- *   DINGTALK_OPERATOR_ID - 操作人 unionId（可选，不设置则自动获取）
+ * 只操作已有文档：读取内容、覆写内容，以及插入、修改、删除内容块。
+ * 本脚本不实现文档、知识库、文件夹或副本的创建接口。
  */
 
 const API_BASE = 'https://api.dingtalk.com';
 const TIMEOUT_MS = 30000;
-
-// ============ 配置 ============
-
-const APP_KEY = process.env.DINGTALK_CLIENTID;
-const APP_SECRET = process.env.DINGTALK_CLIENTSECRET;
-const OPERATOR_ID = process.env.DINGTALK_OPERATOR_ID;
-
-// 用户缓存（避免重复查询）
+const USER_CACHE_TTL_MS = 5 * 60 * 1000;
 const userCache = new Map();
-const CACHE_TTL = 5 * 60 * 1000; // 5 分钟
 
-// ============ 工具函数 ============
-
-/**
- * 获取 Access Token
- */
-async function getAccessToken() {
-  if (!APP_KEY || !APP_SECRET) {
+function getCredentials() {
+  const appKey = process.env.DINGTALK_CLIENTID;
+  const appSecret = process.env.DINGTALK_CLIENTSECRET;
+  if (!appKey || !appSecret) {
     throw new Error('缺少配置：请设置 DINGTALK_CLIENTID 和 DINGTALK_CLIENTSECRET');
   }
+  return { appKey, appSecret };
+}
 
+function maskValue(value, keep = 4) {
+  const text = String(value || '');
+  if (!text) return '';
+  if (text.length <= keep) return '*'.repeat(text.length);
+  return `${'*'.repeat(text.length - keep)}${text.slice(-keep)}`;
+}
+
+function debug(message) {
+  if (process.env.DINGTALK_DEBUG === 'true') console.error(`[调试] ${message}`);
+}
+
+async function readJsonResponse(response) {
+  const text = await response.text();
+  if (!text) return {};
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    throw new Error(`解析 API 响应失败：${error.message}`);
+  }
+}
+
+async function getAccessToken() {
+  const { appKey, appSecret } = getCredentials();
   const response = await fetch(`${API_BASE}/v1.0/oauth2/accessToken`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ appKey: APP_KEY, appSecret: APP_SECRET })
+    body: JSON.stringify({ appKey, appSecret })
   });
-
-  if (!response.ok) throw new Error(`获取 Token 失败：HTTP ${response.status}`);
-
-  const data = await response.json();
-  if (data.code && data.code !== 0) throw new Error(`获取 Token 失败：${data.message}`);
-
+  const data = await readJsonResponse(response);
+  if (!response.ok || (data.code && data.code !== 0)) {
+    throw new Error(`获取 Token 失败：${data.message || data.code || `HTTP ${response.status}`}`);
+  }
+  if (!data.accessToken) throw new Error('获取 Token 失败：响应中缺少 accessToken');
   return data.accessToken;
 }
 
-/**
- * 通过 userId 获取 unionId（operatorId）
- */
 async function getUnionId(userId, token) {
-  // 检查缓存
   const cached = userCache.get(userId);
-  if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-    return cached.unionId;
+  if (cached && Date.now() - cached.timestamp < USER_CACHE_TTL_MS) return cached.unionId;
+
+  const url = `https://oapi.dingtalk.com/user/get?access_token=${encodeURIComponent(token)}&userid=${encodeURIComponent(userId)}`;
+  const response = await fetch(url, { method: 'GET' });
+  const data = await readJsonResponse(response);
+  if (!response.ok || data.errcode !== 0) {
+    throw new Error(`获取用户信息失败：${data.errmsg || `HTTP ${response.status}`}`);
   }
+  if (!data.unionid) throw new Error('获取用户信息失败：响应中缺少 unionid');
 
-  // 使用旧版 API（新版 topapi/v2 不存在）
-  const response = await fetch(`https://oapi.dingtalk.com/user/get?access_token=${token}&userid=${userId}`, {
-    method: 'GET'
-  });
-
-  if (!response.ok) throw new Error(`获取用户信息失败：HTTP ${response.status}`);
-
-  const data = await response.json();
-  if (data.errcode !== 0) throw new Error(`获取用户信息失败：${data.errmsg}`);
-
-  const unionId = data.unionid;
-  userCache.set(userId, { unionId, timestamp: Date.now() });
-
-  return unionId;
+  userCache.set(userId, { unionId: data.unionid, timestamp: Date.now() });
+  return data.unionid;
 }
 
 /**
- * 获取当前用户的 operatorId
- *
- * 优先级：
- * 1. 环境变量 DINGTALK_OPERATOR_ID
- * 2. 从 OpenClaw 环境变量获取 sender_id，然后查询 unionId
+ * 线上优先使用当前消息发送者。DINGTALK_OPERATOR_ID 仅作为没有 sender_id 时的本地调试回退。
  */
-async function getCurrentOperatorId() {
-  // 优先级 1：环境变量
-  if (OPERATOR_ID) {
-    console.log(`[用户识别] 使用环境变量：${OPERATOR_ID}`);
-    return OPERATOR_ID;
-  }
-
-  // 优先级 2：从 OpenClaw 环境变量获取 sender_id
+async function getCurrentOperatorId(token = null) {
   const senderId = process.env.OPENCLAW_SENDER_ID || process.env.DINGTALK_SENDER_ID;
   if (senderId) {
-    const token = await getAccessToken();
-    const unionId = await getUnionId(senderId, token);
-    console.log(`[用户识别] 从 sender_id 获取：${unionId}`);
+    const accessToken = token || await getAccessToken();
+    const unionId = await getUnionId(senderId, accessToken);
+    debug(`已从当前 sender_id 解析 operatorId（sender=${maskValue(senderId)}, operator=${maskValue(unionId)}）`);
     return unionId;
   }
 
-  throw new Error('缺少 operatorId：请配置 DINGTALK_OPERATOR_ID 环境变量，或确保钉钉连接器传递了 sender_id');
+  const localOperatorId = process.env.DINGTALK_OPERATOR_ID;
+  if (localOperatorId) {
+    debug(`未收到 sender_id，使用本地调试 operatorId（operator=${maskValue(localOperatorId)}）`);
+    return localOperatorId;
+  }
+
+  throw new Error('缺少当前用户身份：请确认连接器传入 OPENCLAW_SENDER_ID；本地调试可设置 DINGTALK_OPERATOR_ID');
 }
 
-/**
- * 调用企业 API
- */
-async function callAPI(endpoint, method = 'GET', body = null, operatorId, token) {
-  if (!operatorId) operatorId = await getCurrentOperatorId();
-  if (!token) token = await getAccessToken();
-
+async function callAPI(endpoint, method = 'GET', body = null, operatorId = null, token = null) {
+  const accessToken = token || await getAccessToken();
+  const currentOperatorId = operatorId || await getCurrentOperatorId(accessToken);
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
-
   const separator = endpoint.includes('?') ? '&' : '?';
-  const url = `${endpoint}${separator}operatorId=${encodeURIComponent(operatorId)}`;
-
+  const url = `${API_BASE}${endpoint}${separator}operatorId=${encodeURIComponent(currentOperatorId)}`;
   const options = {
     method,
     headers: {
-      'x-acs-dingtalk-access-token': token,
+      'x-acs-dingtalk-access-token': accessToken,
       'Content-Type': 'application/json'
     },
     signal: controller.signal
   };
-
-  if (body) options.body = JSON.stringify(body);
+  if (body !== null) options.body = JSON.stringify(body);
 
   try {
-    const response = await fetch(`${API_BASE}${url}`, options);
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(`API 调用失败：HTTP ${response.status} - ${errorData.message || errorData.code || response.statusText}`);
+    const response = await fetch(url, options);
+    const result = await readJsonResponse(response);
+    const hasErrorCode = result.code !== undefined
+      && result.code !== null
+      && result.code !== 0
+      && result.code !== '0';
+    if (!response.ok || result.success === false || hasErrorCode) {
+      const error = new Error(`API 调用失败：${result.message || result.code || `HTTP ${response.status}`}`);
+      error.code = result.code;
+      error.requestId = result.requestId;
+      throw error;
     }
-
-    const result = await response.json();
-    if (result.code && result.code !== 0) throw new Error(result.message || JSON.stringify(result));
-
     return result;
   } catch (error) {
-    clearTimeout(timeoutId);
+    if (error.name === 'AbortError') throw new Error(`API 调用超时（${TIMEOUT_MS}ms）`);
     throw error;
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 
-/**
- * 从 URL 提取文档 ID
- */
 function extractDocId(input) {
   if (!input) return null;
-  if (!input.includes('http') && !input.includes('/')) return input;
-
-  const patterns = [
-    /\/i\/nodes\/([a-zA-Z0-9]+)/,
-    /\/nodes\/([a-zA-Z0-9]+)/,
-    /docKey=([a-zA-Z0-9]+)/,
-    /dentryKey=([a-zA-Z0-9]+)/,
-  ];
-
-  for (const pattern of patterns) {
-    const match = input.match(pattern);
-    if (match && match[1]) return match[1];
+  const value = String(input).trim();
+  if (/^https?:\/\//i.test(value)) {
+    let parsedUrl;
+    try {
+      parsedUrl = new URL(value);
+    } catch {
+      throw new Error('无法识别钉钉文档链接或 docKey');
+    }
+    if (parsedUrl.hostname.toLowerCase() !== 'alidocs.dingtalk.com') {
+      throw new Error('只允许 alidocs.dingtalk.com 钉钉文档链接');
+    }
+  } else if (value.includes('/') && !/^alidocs\.dingtalk\.com\//i.test(value)) {
+    throw new Error('无法识别钉钉文档链接或 docKey');
   }
+  const patterns = [
+    /\/i\/nodes\/([a-zA-Z0-9_-]+)/,
+    /\/nodes\/([a-zA-Z0-9_-]+)/,
+    /[?&]docKey=([a-zA-Z0-9_-]+)/,
+    /[?&]dentryKey=([a-zA-Z0-9_-]+)/
+  ];
+  for (const pattern of patterns) {
+    const match = value.match(pattern);
+    if (match) return match[1];
+  }
+  if (/^[a-zA-Z0-9_-]+$/.test(value)) return value;
+  throw new Error('无法识别钉钉文档链接或 docKey');
+}
 
-  return input;
+function validateBlockId(input) {
+  const blockId = String(input || '').trim();
+  if (!/^[a-zA-Z0-9_-]+$/.test(blockId)) throw new Error('无效的 blockId');
+  return blockId;
+}
+
+function encodePathId(input) {
+  return encodeURIComponent(extractDocId(input));
+}
+
+function extractBlocks(result) {
+  const candidates = [
+    result?.blocks,
+    result?.data,
+    result?.result?.data,
+    result?.result?.blocks,
+    result?.data?.blocks,
+    result?.data?.result?.data
+  ];
+  return candidates.find(Array.isArray) || [];
 }
 
 function truncateText(text, maxLength = 80) {
@@ -170,195 +190,227 @@ function truncateText(text, maxLength = 80) {
 }
 
 function blockPreview(block) {
-  if (block?.paragraph?.text) return truncateText(block.paragraph.text, 80);
+  if (block?.paragraph?.text) return truncateText(block.paragraph.text);
   if (Array.isArray(block?.paragraph?.contents)) {
     const text = block.paragraph.contents.map(item => item?.text || '').join('').trim();
-    if (text) return truncateText(text, 80);
+    if (text) return truncateText(text);
   }
-  if (block?.heading?.text) return truncateText(block.heading.text, 80);
+  if (block?.heading?.text) return truncateText(block.heading.text);
+  if (block?.text) return truncateText(block.text);
   return '';
 }
 
-// ============ API 封装 ============
-
-async function queryBlocks(dentryUuid, operatorId, token) {
-  console.log(`[查询块元素] ${dentryUuid}`);
-  return callAPI(`/v1.0/doc/suites/documents/${dentryUuid}/blocks`, 'GET', null, operatorId, token);
+async function queryBlocks(docKeyOrUrl, operatorId, token) {
+  return callAPI(`/v1.0/doc/suites/documents/${encodePathId(docKeyOrUrl)}/blocks`, 'GET', null, operatorId, token);
 }
 
-async function insertBlock(dentryUuid, element, position, operatorId, token) {
-  console.log(`[插入块元素] ${dentryUuid}`);
-  const body = { element };
-  if (position) body.position = position;
-  return callAPI(`/v1.0/doc/suites/documents/${dentryUuid}/blocks`, 'POST', body, operatorId, token);
+async function insertBlock(docKeyOrUrl, text, position, operatorId, token) {
+  const parsedPosition = Number(position);
+  if (!Number.isInteger(parsedPosition) || parsedPosition < 0) throw new Error('position 必须是大于或等于 0 的整数');
+  const element = { blockType: 'paragraph', paragraph: { text } };
+  return callAPI(
+    `/v1.0/doc/suites/documents/${encodePathId(docKeyOrUrl)}/blocks`,
+    'POST',
+    { element, position: parsedPosition },
+    operatorId,
+    token
+  );
 }
 
-async function modifyBlock(dentryUuid, blockId, element, operatorId, token) {
-  console.log(`[更新块元素] ${dentryUuid}/${blockId}`);
-  return callAPI(`/v1.0/doc/suites/documents/${dentryUuid}/blocks/${blockId}`, 'PUT', { element }, operatorId, token);
+async function modifyBlock(docKeyOrUrl, blockId, text, operatorId, token) {
+  const element = { blockType: 'paragraph', paragraph: { text } };
+  return callAPI(
+    `/v1.0/doc/suites/documents/${encodePathId(docKeyOrUrl)}/blocks/${encodeURIComponent(validateBlockId(blockId))}`,
+    'PUT',
+    { element },
+    operatorId,
+    token
+  );
 }
 
-async function deleteBlock(dentryUuid, blockId, operatorId, token) {
-  console.log(`[删除块元素] ${dentryUuid}/${blockId}`);
-  return callAPI(`/v1.0/doc/suites/documents/${dentryUuid}/blocks/${blockId}`, 'DELETE', null, operatorId, token);
+async function deleteBlock(docKeyOrUrl, blockId, operatorId, token) {
+  return callAPI(
+    `/v1.0/doc/suites/documents/${encodePathId(docKeyOrUrl)}/blocks/${encodeURIComponent(validateBlockId(blockId))}`,
+    'DELETE',
+    null,
+    operatorId,
+    token
+  );
 }
 
-async function appendText(dentryUuid, blockId, text, operatorId, token) {
-  console.log(`[追加文本] ${dentryUuid}/${blockId}`);
-  return callAPI(`/v1.0/doc/suites/documents/${dentryUuid}/paragraphs/${blockId}/text`, 'POST', { text }, operatorId, token);
+async function overwriteContent(docKeyOrUrl, markdown, operatorId, token) {
+  return callAPI(
+    `/v1.0/doc/suites/documents/${encodePathId(docKeyOrUrl)}/overwriteContent`,
+    'POST',
+    { dataType: 'markdown', content: markdown },
+    operatorId,
+    token
+  );
 }
 
-async function overwriteContent(docKey, markdown, operatorId, token) {
-  console.log(`[覆写文档] ${docKey}`);
-  return callAPI(`/v1.0/doc/suites/documents/${docKey}/overwriteContent`, 'POST', { dataType: 'markdown', content: markdown }, operatorId, token);
+function requireArgs(args, count, usage) {
+  if (args.length < count) throw new Error(`参数不足。用法：${usage}`);
 }
-
-// ============ 命令处理 ============
 
 async function cmdRead(args) {
+  requireArgs(args, 1, 'read <docKey|url>');
   const docKey = extractDocId(args[0]);
-  if (!docKey) { console.error('错误：请提供文档 ID 或链接'); process.exit(1); }
-
-  const operatorId = await getCurrentOperatorId();
   const token = await getAccessToken();
+  const operatorId = await getCurrentOperatorId(token);
   const result = await queryBlocks(docKey, operatorId, token);
+  const blocks = extractBlocks(result);
 
   console.log('\n=== 文档概览 ===\n');
-  if (result.blocks && result.blocks.length > 0) {
-    result.blocks.forEach((block, index) => {
-      console.log(`${index + 1}. [${block.blockType}] ${block.blockId}`);
-      const preview = blockPreview(block);
-      if (preview) console.log(`   预览：${preview}`);
-    });
-    console.log('\n提示：如果要做总结、定位 blockId 或查看完整结构，请使用 blocks 命令。');
-  } else {
-    console.log('(空文档)');
+  if (!blocks.length) {
+    console.log('(未返回内容块；如文档并非空文档，请使用 blocks 查看原始响应)');
+    return result;
   }
+  blocks.forEach((block, index) => {
+    const blockType = block.blockType || block.type || 'unknown';
+    const blockId = block.blockId || block.id || '(无 ID)';
+    console.log(`${index + 1}. [${blockType}] ${blockId}`);
+    const preview = blockPreview(block);
+    if (preview) console.log(`   预览：${preview}`);
+  });
+  return result;
 }
 
 async function cmdBlocks(args) {
-  const dentryUuid = extractDocId(args[0]);
-  if (!dentryUuid) { console.error('错误：请提供文档 ID 或链接'); process.exit(1); }
-
-  const operatorId = await getCurrentOperatorId();
+  requireArgs(args, 1, 'blocks <docKey|url>');
+  const docKey = extractDocId(args[0]);
   const token = await getAccessToken();
-  const result = await queryBlocks(dentryUuid, operatorId, token);
-
-  console.log('\n=== 块元素详情 ===\n');
+  const operatorId = await getCurrentOperatorId(token);
+  const result = await queryBlocks(docKey, operatorId, token);
   console.log(JSON.stringify(result, null, 2));
+  return result;
 }
 
 async function cmdInsert(args) {
-  const dentryUuid = extractDocId(args[0]);
-  const position = args[1];
-  const content = args.slice(2).join(' ');
-  if (!dentryUuid || !content) { console.error('错误：请提供文档 ID、位置和內容'); process.exit(1); }
-
-  const operatorId = await getCurrentOperatorId();
+  requireArgs(args, 3, 'insert <docKey|url> <position> <text>');
+  const docKey = extractDocId(args[0]);
+  const position = Number(args[1]);
+  if (!Number.isInteger(position) || position < 0) throw new Error('position 必须是大于或等于 0 的整数');
+  const text = args.slice(2).join(' ');
+  if (!text) throw new Error('插入文本不能为空');
   const token = await getAccessToken();
-  const result = await insertBlock(dentryUuid, { blockType: 'paragraph', paragraph: { text: content } }, position, operatorId, token);
-  console.log('✅ 插入成功');
+  const operatorId = await getCurrentOperatorId(token);
+  const result = await insertBlock(docKey, text, position, operatorId, token);
+  console.log('✅ 内容块插入成功');
   console.log(JSON.stringify(result, null, 2));
+  return result;
+}
+
+async function cmdModify(args) {
+  requireArgs(args, 3, 'modify <docKey|url> <blockId> <text>');
+  const docKey = extractDocId(args[0]);
+  const blockId = validateBlockId(args[1]);
+  const text = args.slice(2).join(' ');
+  if (!text) throw new Error('修改文本不能为空；删除内容块请使用 delete');
+  const token = await getAccessToken();
+  const operatorId = await getCurrentOperatorId(token);
+  const result = await modifyBlock(docKey, blockId, text, operatorId, token);
+  console.log('✅ 内容块修改成功');
+  console.log(JSON.stringify(result, null, 2));
+  return result;
 }
 
 async function cmdDelete(args) {
-  const dentryUuid = extractDocId(args[0]);
-  const blockId = args[1];
-  if (!dentryUuid || !blockId) { console.error('错误：请提供文档 ID 和块 ID'); process.exit(1); }
-
-  const operatorId = await getCurrentOperatorId();
+  requireArgs(args, 2, 'delete <docKey|url> <blockId>');
+  const docKey = extractDocId(args[0]);
+  const blockId = validateBlockId(args[1]);
   const token = await getAccessToken();
-  const result = await deleteBlock(dentryUuid, blockId, operatorId, token);
-  console.log('✅ 删除成功');
+  const operatorId = await getCurrentOperatorId(token);
+  const result = await deleteBlock(docKey, blockId, operatorId, token);
+  console.log('✅ 内容块删除成功');
   console.log(JSON.stringify(result, null, 2));
-}
-
-async function cmdAppendText(args) {
-  const dentryUuid = extractDocId(args[0]);
-  const blockId = args[1];
-  const text = args.slice(2).join(' ');
-  if (!dentryUuid || !blockId || !text) { console.error('错误：请提供文档 ID、块 ID 和文本'); process.exit(1); }
-
-  const operatorId = await getCurrentOperatorId();
-  const token = await getAccessToken();
-  const result = await appendText(dentryUuid, blockId, text, operatorId, token);
-  console.log('✅ 追加成功');
-  console.log(JSON.stringify(result, null, 2));
+  return result;
 }
 
 async function cmdUpdate(args) {
+  requireArgs(args, 2, 'update <docKey|url> <markdown>');
   const docKey = extractDocId(args[0]);
   const markdown = args.slice(1).join(' ');
-  if (!docKey || !markdown) { console.error('错误：请提供文档 ID 和内容'); process.exit(1); }
-
-  const operatorId = await getCurrentOperatorId();
+  if (!markdown) throw new Error('覆写内容不能为空');
   const token = await getAccessToken();
+  const operatorId = await getCurrentOperatorId(token);
   const result = await overwriteContent(docKey, markdown, operatorId, token);
-  console.log('✅ 更新成功');
+  console.log('✅ 文档内容覆写成功');
   console.log(JSON.stringify(result, null, 2));
+  return result;
 }
 
-// ============ 主函数 ============
+const COMMAND_HANDLERS = Object.freeze({
+  read: cmdRead,
+  blocks: cmdBlocks,
+  insert: cmdInsert,
+  modify: cmdModify,
+  delete: cmdDelete,
+  update: cmdUpdate
+});
 
-async function main() {
-  const args = process.argv.slice(2);
-
-  if (!args.length || args.includes('--help')) {
-    console.log(`
+function printHelp() {
+  console.log(`
 钉钉文档企业 API 工具
+
+只操作已有文档，不提供任何文档创建能力。
 
 用法:
   node doc-enterprise.js <command> [args]
 
 命令:
-  read <docKey|url>           读取文档概览（块列表 + 预览）
-  blocks <docKey|url>         查询完整块结构（适合总结和定位 blockId）
-  insert <docKey|url> <pos> <content>  插入块元素
-  delete <docKey|url> <blockId>       删除块元素
-  append-text <docKey|url> <blockId> <text>  追加文本到段落
-  update <docKey|url> <markdown>      覆写整篇文档内容
+  read <docKey|url>                         读取文档概览
+  blocks <docKey|url>                       查询完整块结构
+  update <docKey|url> <markdown>            覆写已有文档内容
+  insert <docKey|url> <position> <text>      插入段落块（position 支持 0）
+  modify <docKey|url> <blockId> <text>       修改段落块
+  delete <docKey|url> <blockId>              删除内容块
 
-说明:
-  当前脚本未实现 create。
-  如需总结文档或查找 blockId，请优先使用 blocks。
-
-示例:
-  node doc-enterprise.js read https://alidocs.dingtalk.com/i/nodes/xxx
-  node doc-enterprise.js update xxx "# 标题\\n\\n内容"
+明确不支持:
+  创建文档、创建空白文档、创建知识库、创建文件夹、复制文档。
 
 环境变量:
   DINGTALK_CLIENTID          企业内部应用 ClientId
   DINGTALK_CLIENTSECRET      企业内部应用 ClientSecret
-  DINGTALK_OPERATOR_ID       默认操作人 unionId（可选）
-  OPENCLAW_SENDER_ID         钉钉连接器传递的 sender_id（自动注入）
+  OPENCLAW_SENDER_ID         当前钉钉消息发送者 sender_id（线上优先）
+  DINGTALK_SENDER_ID         sender_id 兼容变量
+  DINGTALK_OPERATOR_ID       本地调试回退（线上不要配置）
+  DINGTALK_DEBUG=true        输出脱敏调试信息
 `);
-    process.exit(0);
-  }
-
-  const command = args[0];
-  const commandArgs = args.slice(1);
-
-  try {
-    switch (command) {
-      case 'read': await cmdRead(commandArgs); break;
-      case 'blocks': await cmdBlocks(commandArgs); break;
-      case 'insert': await cmdInsert(commandArgs); break;
-      case 'delete': await cmdDelete(commandArgs); break;
-      case 'append-text': await cmdAppendText(commandArgs); break;
-      case 'update': await cmdUpdate(commandArgs); break;
-      default: console.error(`未知命令：${command}`); process.exit(1);
-    }
-  } catch (error) {
-    console.error('\n错误:', error.message);
-    if (error.message.includes('operatorId')) {
-      console.error('\n💡 提示：配置 DINGTALK_OPERATOR_ID 或确保钉钉连接器传递了 sender_id');
-    } else if (error.message.includes('CLIENTID')) {
-      console.error('\n💡 提示：配置 DINGTALK_CLIENTID 和 DINGTALK_CLIENTSECRET');
-    } else if (error.message.includes('403')) {
-      console.error('\n💡 提示：检查应用权限（Storage.File.Read/Write）');
-    }
-    process.exit(1);
-  }
 }
 
-main();
+async function runCommand(command, args = []) {
+  const handler = COMMAND_HANDLERS[command];
+  if (!handler) throw new Error(`未知或不允许的命令：${command}`);
+  return handler(args);
+}
+
+async function main(argv = process.argv.slice(2)) {
+  if (!argv.length || argv.includes('--help')) {
+    printHelp();
+    return;
+  }
+  await runCommand(argv[0], argv.slice(1));
+}
+
+module.exports = {
+  COMMAND_HANDLERS,
+  deleteBlock,
+  extractBlocks,
+  extractDocId,
+  getCurrentOperatorId,
+  insertBlock,
+  main,
+  modifyBlock,
+  overwriteContent,
+  queryBlocks,
+  runCommand
+};
+
+if (require.main === module) {
+  main().catch(error => {
+    console.error(`\n错误：${error.message}`);
+    if (error.code) console.error(`错误码：${error.code}`);
+    if (error.requestId) console.error(`请求 ID：${error.requestId}`);
+    process.exitCode = 1;
+  });
+}

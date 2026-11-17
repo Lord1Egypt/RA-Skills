@@ -1,44 +1,55 @@
-## Description: <br>
-Generate hyper-personalized cold email sequences using AI. Turn lead data into high-converting outreach campaigns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate hyper-personalized cold email sequences using AI. Turn lead data into high-converting outreach campaigns.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Sales and go-to-market teams use this skill to generate personalized cold email sequences from lead data. Developers can also use the included API request and parsing examples to integrate SkillBoss cold-email generation into outreach workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lead data is sent to SkillBoss for processing. <br>
-Mitigation: Use only when authorized to share the lead data, minimize unnecessary personal data, and review applicable privacy and compliance requirements before deployment. <br>
-Risk: The skill requires a sensitive SkillBoss API key. <br>
-Mitigation: Store SKILLBOSS_API_KEY in a secure environment or secret store and avoid committing it to code, prompts, logs, or shared files. <br>
-Risk: Generated outreach may include inaccurate claims or messaging that is unsuitable for a recipient or campaign. <br>
-Mitigation: Review generated sequences before sending and align them with approved campaign language, consent requirements, and organizational outreach policies. <br>
+## Use Case:
 
+External users, sales teams, and developers use this skill to generate personalized cold email sequences from lead records and campaign options through the SkillBoss API Hub.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/modestyrichards/modesty-cold-email) <br>
-- [SkillBoss API Hub endpoint](https://api.skillbossai.com/v1/pilot) <br>
-- [SkillBoss API key settings](https://app.skillbossai.com/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples, plus Python code snippets; generated outreach content is returned as JSON strings from the API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends lead data to the SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Lead records, contact data, LinkedIn URLs, company context, signatures, and campaign details are sent to SkillBoss for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use consented or approved lead data and avoid sending unnecessary sensitive fields.
+
+Risk: Generated cold emails may contain inaccurate personalization, unsuitable claims, or campaign language that should not be sent automatically.
+
+Mitigation: Review generated email sequences before campaign use and confirm claims, personalization, CTAs, and compliance requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-cold-email)
+- [SkillBoss API Hub endpoint](https://api.skillbossai.com/v1/pilot)
+- [SkillBoss API key settings](https://app.skillbossai.com/settings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses describe SkillBoss API requests and JSON parsing for single-lead and batch cold email generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

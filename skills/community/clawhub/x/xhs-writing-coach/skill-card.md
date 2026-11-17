@@ -1,43 +1,54 @@
-## Description: <br>
-Coach and generate Xiaohongshu (小红书/RedNote/XHS) note writing for titles, body copy, tags, comment prompts, cover text, engagement optimization, and AI-content labeling reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coaches and generates Xiaohongshu, RedNote, and XHS note writing with title, body, tag, CTA, cover-text, engagement, and compliance guidance.
 
-## Publisher: <br>
-[herve-clawd](https://clawhub.ai/user/herve-clawd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[herve-clawd](https://clawhub.ai/user/herve-clawd)
 
-## Use Case: <br>
-Creators, marketers, and writing assistants use this skill to turn raw ideas into publish-ready Xiaohongshu/RedNote post drafts with title options, structured body copy, tags, CTAs, cover text, and review notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AI-content labeling guidance is internally inconsistent between the artifact and security review. <br>
-Mitigation: Check the target platform and publication context before posting, and override any stale instruction that conflicts with required AI-content labeling. <br>
-Risk: Hot-topic grounding can expose private draft details if external search queries include sensitive user context. <br>
-Mitigation: Keep private details out of search queries and use generalized topic searches when gathering references. <br>
-Risk: The skill relies on living reference notes that can change the writing strategy over time. <br>
-Mitigation: Review and approve updates to reference notes before relying on them for recurring publication workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/herve-clawd/xhs-writing-coach) <br>
-- [Source notes](references/source-notes.md) <br>
-- [Strategy notes](references/strategy-notes.md) <br>
+## Use Case:
 
+External creators, marketers, and content operators use this skill to turn raw ideas into publish-ready Xiaohongshu notes with structured titles, body copy, tags, calls to action, and cover text.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON object containing title, content, tags, cta, cover_text, and notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are constrained for XHS-style drafting: title length guidance, 300-600 character body guidance, 5-8 tags, structured CTA, and review notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to maintain shared long-term strategy memory, which could change future behavior without clear user approval or isolation.
+
+Mitigation: Keep living strategy notes read-only by default, or require explicit approval before saving lessons, histories, or user-specific preferences.
+
+Risk: Generated platform copy may need AI-content labeling when the publishing platform or user workflow requires it.
+
+Mitigation: Review the final note before publication and add required AI-content disclosures or platform-specific compliance labels when applicable.
+
+## Reference(s):
+
+- [XHS Writing Coach Skill Page](https://clawhub.ai/herve-clawd/skills/xhs-writing-coach)
+- [Source notes](artifact/references/source-notes.md)
+- [Strategy notes](artifact/references/strategy-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Structured JSON containing title, content, tags, CTA, cover text, and notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese-language social copy, alternate title ideas, archetype notes, angle notes, and compliance reminders.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,62 @@
-## Description: <br>
-Squarespace Commerce API integration with managed OAuth for managing products, inventory, orders, customer profiles, and transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Squarespace Commerce products, inventory, orders, customer profiles, and transactions through a user-authorized Maton connection.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Store operators and developers use this skill to let an agent manage Squarespace commerce workflows through Maton's managed OAuth proxy. It supports product, inventory, order, customer profile, and transaction operations for connected Squarespace stores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read sensitive store, customer, address, order, and transaction data. <br>
-Mitigation: Limit requests to data needed for the task and avoid asking the agent to fetch or display unnecessary customer, address, order, or transaction details. <br>
-Risk: The skill can change live commerce content, inventory, orders, and related store records. <br>
-Mitigation: Approve write operations only after checking the exact product, order, inventory, customer, or transaction target and intended effect. <br>
-Risk: MATON_API_KEY and OAuth-backed Maton connections provide access to connected Squarespace stores. <br>
-Mitigation: Protect MATON_API_KEY, install only if Maton is trusted to proxy OAuth-backed Squarespace access, and specify the intended connection when more than one store is connected. <br>
+## Use Case:
 
+Store operators and developers use this skill to inspect and manage Squarespace commerce data, with approval for changes and optional automations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/byungkyu/squarespace) <br>
-- [Maton](https://maton.ai) <br>
-- [Squarespace Commerce APIs Overview](https://developers.squarespace.com/commerce-apis/overview) <br>
-- [Squarespace Inventory API](https://developers.squarespace.com/commerce-apis/inventory-overview) <br>
-- [Squarespace Orders API](https://developers.squarespace.com/commerce-apis/orders-overview) <br>
-- [Squarespace Products API](https://developers.squarespace.com/commerce-apis/products-overview) <br>
-- [Squarespace Profiles API](https://developers.squarespace.com/commerce-apis/profiles-overview) <br>
-- [Squarespace Transactions API](https://developers.squarespace.com/commerce-apis/transactions-overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline Python, JavaScript, curl, and HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and a connected Squarespace OAuth account through Maton.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0) <br>
+Risk: Access to live commerce records can expose customer personal data and transaction details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Squarespace scopes and show only the data needed for the request.
+
+Risk: Writes or deletions can change store data or remove records.
+
+Mitigation: Confirm each write or deletion with the user before execution.
+
+Risk: Persistent automations or broad trigger destinations can send data beyond the intended workflow.
+
+Mitigation: Obtain approval for each automation and destination, restrict destinations, and revoke unused Maton connections or automations.
+
+## Reference(s):
+
+- [Squarespace skill on ClawHub](https://clawhub.ai/byungkyu/skills/squarespace)
+- [Squarespace Commerce APIs](https://developers.squarespace.com/commerce-apis/overview)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [Maton homepage](https://maton.ai)
+- [API gateway skill for other apps](https://clawhub.ai/byungkyu/api-gateway)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with CLI commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live commerce data; limit displayed customer and transaction details to what the task needs.]
+
+## Skill Version(s):
+
+1.2.8 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

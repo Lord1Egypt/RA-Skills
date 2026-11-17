@@ -1,46 +1,63 @@
-## Description: <br>
-小红书热门笔记搜索工具，支持关键词搜索、数据评分排序、趋势推荐和本地 HTML 报告生成，帮助创作者、品牌方和 MCN 机构发现热门内容趋势。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Xiaohongshu for popular posts by keyword, ranks results by relevance, popularity, and recency, and can generate reports, scheduled subscriptions, and an Alipay recharge flow when API credits run low.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Creators, brand teams, MCNs, and content operations teams use this skill to search Xiaohongshu trending notes by keyword and time window, compare engagement and scoring signals, generate local HTML reports, and optionally set recurring trend subscriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Redfox API key. <br>
-Mitigation: Store REDFOX_API_KEY only in approved environment configuration, confirm the key scope and revocation path, and avoid hard-coding or exposing it in prompts, logs, or output files. <br>
-Risk: Search terms and date filters are sent to redfox.hk. <br>
-Mitigation: Avoid confidential or sensitive search terms unless sharing them with the Redfox service is approved for the user's environment. <br>
-Risk: The skill can create local HTML report files in the working directory. <br>
-Mitigation: Review output paths and handle generated reports as local artifacts that may contain external links and trend data. <br>
-Risk: Calendar subscriptions can create recurring reminder behavior. <br>
-Mitigation: Use subscriptions only when the user explicitly wants recurring trend updates, and review how to disable or remove the subscription. <br>
+## Use Case:
 
+External creators, brands, and talent agencies use the skill to discover trending Xiaohongshu posts, research content opportunities, and plan recurring trend updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/xiaohongshu-search-redfox) <br>
-- [Redfox Hub API keys](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [Xiaohongshu hot article format](references/xhs_hot_article_format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, HTML files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with ranked note tables, JSON from the Python script, and keyword-named local HTML report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; search terms and date filters are sent to redfox.hk, and HTML reports may be written in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The low-credit flow can initiate payment setup and recharge, which may incur charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installing payment tools or starting a recharge; verify the merchant and exact amount.
+
+Risk: Generated HTML reports may contain untrusted scripts.
+
+Mitigation: Seek fixes for HTML escaping and review generated reports before sharing or opening them.
+
+Risk: Search terms are sent to Redfox.
+
+Mitigation: Do not submit confidential queries.
+
+Risk: Calendar subscriptions can send recurring updates.
+
+Mitigation: Enable recurring subscriptions only when wanted.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/redfox-data/skills/xiaohongshu-search-redfox)
+- [Xiaohongshu hot-article data format](references/xhs_hot_article_format.md)
+- [Alipay recharge flow](references/alipay-recharge.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, HTML files, Guidance]
+
+**Output Format:** [Text or JSON results, with an optional generated HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results can include ranking scores and related search suggestions; recurring calendar updates are optional.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

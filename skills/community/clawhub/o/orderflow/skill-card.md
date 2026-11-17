@@ -1,43 +1,58 @@
-## Description: <br>
-Automate order routing, fulfillment, and inventory management across channels for real-time order processing, multi-warehouse routing, and complex e-commerce fulfillment workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate order routing, fulfillment, and inventory management across channels.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-Developers and operations teams use this skill to design and operate e-commerce order workflows across storefronts, warehouses, carriers, spreadsheets, and team alerts. It helps plan routing rules, inventory sync, exception handling, shipping-label workflows, and reporting for fulfillment operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live fulfillment workflows can alter orders, inventory, shipping labels, and customer notifications. <br>
-Mitigation: Test with sandbox stores and test orders first, and require human approval before live order changes, shipping labels, customer messages, batch jobs, or recurring workflows. <br>
-Risk: The skill depends on external services and credentials for commerce, warehouse, Slack, Sheets, and webhook integrations. <br>
-Mitigation: Use least-privilege credentials, avoid secrets in shell commands, restrict webhook and spreadsheet destinations, and pin and verify any external CLI before use. <br>
-Risk: Order and fulfillment data may include customer information and operationally sensitive inventory data. <br>
-Mitigation: Minimize, redact, or isolate customer data in prompts, logs, notifications, spreadsheets, and test fixtures. <br>
+## Use Case:
 
+E-commerce operators, fulfillment teams, and developers use this skill to design order-routing, inventory-sync, notification, and exception-handling workflows across stores, warehouses, carriers, Slack, and Google Sheets.
 
-## Reference(s): <br>
-- [Orderflow on ClawHub](https://clawhub.ai/ncreighton/orderflow) <br>
-- [ncreighton publisher profile](https://clawhub.ai/user/ncreighton) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON snippets and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow plans, configuration examples, integration commands, and operational guidance for order management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill asks users to install an unpinned global orderflow-cli package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the package source and version before installation, and install or test it in a sandboxed environment first.
+
+Risk: The skill connects commerce, warehouse, carrier, sheet, and notification credentials to automations that can trigger live fulfillment actions.
+
+Mitigation: Use least-privilege service accounts, test with non-production integrations, and require human review before activating live workflows.
+
+Risk: Setup examples include secrets passed through command-line authentication flows.
+
+Mitigation: Rotate any secrets entered during setup and prefer secure environment or secret-management workflows for production use.
+
+## Reference(s):
+
+- [Orderflow ClawHub skill page](https://clawhub.ai/ncreighton/skills/orderflow)
+- [ncreighton publisher profile](https://clawhub.ai/user/ncreighton)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow designs, configuration examples, setup commands, routing decisions, inventory reports, and alert content for review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

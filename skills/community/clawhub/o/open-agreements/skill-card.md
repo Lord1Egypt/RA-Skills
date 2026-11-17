@@ -1,49 +1,69 @@
-## Description: <br>
-Fill standard legal agreement templates such as NDAs, cloud service agreements, and SAFEs, produce signable DOCX files, and optionally send agreements for electronic signature via DocuSign. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fill standard legal agreement templates such as NDAs, cloud service agreements, and SAFEs, then produce signable DOCX files with optional DocuSign electronic-signature sending.
 
-## Publisher: <br>
-[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to collect agreement fields, fill standard legal templates, generate DOCX agreements, and optionally send reviewed documents for signature. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agreement templates, field values, signer details, and authorization data may contain confidential or legally sensitive information. <br>
-Mitigation: Prefer the local CLI path for offline filling, and use the hosted MCP or DocuSign signing flow only when the user accepts sending that data to those services. <br>
-Risk: Generated agreements may have legal significance or may include compliance representations that require real-world confirmation. <br>
-Mitigation: Require user review before signing, ask for explicit confirmation before setting compliance representation fields to true, and consider attorney review for important agreements. <br>
-Risk: DocuSign signing requires OAuth authorization and may transmit filled agreement contents and signer contact information. <br>
-Mitigation: Use the Open Agreements OAuth flow only when a tool reports missing authorization, avoid requesting raw DocuSign credentials, and confirm the user wants to send the document for signature. <br>
-Risk: Installing or running the CLI can fetch package code from npm. <br>
-Mitigation: Use the pinned `open-agreements@0.7.4` package path described by the artifact and avoid unpinned `@latest` installs. <br>
+## Use Case:
 
+External users, developers, and business teams use this skill to draft or fill standard legal agreement templates, generate reviewable DOCX files, and optionally send completed agreements for electronic signature.
 
-## Reference(s): <br>
-- [Open Agreements repository](https://github.com/open-agreements/open-agreements) <br>
-- [Open Agreements npm package](https://www.npmjs.com/package/open-agreements) <br>
-- [Open Agreements Remote MCP](https://openagreements.org/api/mcp) <br>
-- [Open Agreements setup page](https://usejunior.com/developer-tools/open-agreements) <br>
-- [ClawHub skill page](https://clawhub.ai/stevenobiajulu/open-agreements) <br>
-- [Template filling execution workflow](artifact/template-filling-execution.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell command snippets and file paths or download links for generated DOCX agreements.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a hosted MCP service, local CLI, or preview-only path; local CLI filling can avoid third-party data transfer except DocuSign signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release metadata and target metadata) <br>
+Risk: Agreement templates, signer details, and field values may contain confidential or regulated legal and business information, and the remote MCP path sends those values to openagreements.org.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the local CLI path for sensitive documents and use the hosted remote MCP only when the user accepts transmitting agreement data to the service.
+
+Risk: The artifact documents a legacy hosted DocuSign connection URL that places an API key in the URL.
+
+Mitigation: Avoid the legacy API-key URL flow and use the OAuth-based hosted authorization or local MCP signing-provider flow described by the skill.
+
+Risk: Filled agreements may be sent to DocuSign for signature and can create real signing workflows.
+
+Mitigation: Require user review and confirmation before sending any completed agreement for electronic signature.
+
+Risk: The generated agreement may include legal terms, statutory-compliance representations, or template clauses that the agent cannot independently verify.
+
+Mitigation: Ask the human to confirm required factual representations, leave unconfirmed statutory fields false, and remind users to review the document with qualified counsel when appropriate.
+
+Risk: Installing or running the CLI through npm or npx can fetch executable package code.
+
+Mitigation: Use pinned versions, avoid elevated privileges for npm commands, and review the package source before installing in sensitive environments.
+
+## Reference(s):
+
+- [Open Agreements GitHub Repository](https://github.com/open-agreements/open-agreements)
+- [Open Agreements Remote MCP](https://openagreements.org/api/mcp)
+- [open-agreements npm Package](https://www.npmjs.com/package/open-agreements)
+- [Open Agreements Product Page](https://usejunior.com/developer-tools/open-agreements)
+- [ClawHub Skill Page](https://clawhub.ai/stevenobiajulu/skills/open-agreements)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with MCP tool calls, JSON values, shell commands, and DOCX or download-link outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create signable DOCX files or hosted download URLs; local CLI flows should use per-run temporary JSON files for confidential field values.]
+
+## Skill Version(s):
+
+0.2.4 (source: evidence.json release.version and metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

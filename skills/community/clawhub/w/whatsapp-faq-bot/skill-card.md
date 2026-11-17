@@ -1,43 +1,58 @@
-## Description: <br>
-Build and query a searchable FAQ knowledge base from markdown files for WhatsApp business FAQ workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and query a searchable FAQ knowledge base from markdown files for WhatsApp business bot workflows.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-Developers and business operators use this skill to maintain a local FAQ knowledge base, search it for likely answers, and support WhatsApp assistant workflows with reusable responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Imported FAQ content may be inaccurate, outdated, or inappropriate if the markdown source is untrusted. <br>
-Mitigation: Import only trusted FAQ sources and review entries before using the answers in customer-facing workflows. <br>
-Risk: FAQ content is stored locally and exports can write files to requested paths. <br>
-Mitigation: Use FAQ_BOT_DIR to store data in a dedicated folder and restrict where export outputs are written. <br>
-Risk: Letting untrusted chat messages trigger import, export, remove, or file-path commands could alter data or access unintended local files. <br>
-Mitigation: Keep file-management commands behind an operator-controlled workflow and use chat automation only for vetted search queries. <br>
+## Use Case:
 
+External business teams and developers use this skill to build a local FAQ knowledge base, search customer questions, and return likely answers for WhatsApp assistant workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mariusfit/whatsapp-faq-bot) <br>
-- [Publisher Profile](https://clawhub.ai/user/mariusfit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text CLI output, JSON search results and statistics, and Markdown or JSON FAQ exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores FAQ content locally under ~/.faq-bot by default; FAQ_BOT_DIR can point storage to a dedicated folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: Imported FAQ content is stored locally on disk by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set FAQ_BOT_DIR to an approved storage location and avoid importing confidential content unless local storage is acceptable.
+
+Risk: Removing an FAQ entry deletes it immediately.
+
+Mitigation: Export or back up the knowledge base before removing entries that may need to be restored.
+
+Risk: Export can overwrite the selected output file.
+
+Mitigation: Choose a new output path or verify the target file before running export with an output argument.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariusfit/skills/whatsapp-faq-bot)
+- [Publisher profile](https://clawhub.ai/user/mariusfit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search commands return JSON matches with confidence scores; export can produce Markdown or JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: _meta.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

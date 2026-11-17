@@ -1,45 +1,60 @@
-## Description: <br>
-Extracts text and structured fields from images of personal documents, cards, and certificates using the Scnet OCR API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured OCR data from user-provided images or PDFs of personal identity, banking, travel, education, marriage, real estate, and vehicle documents by uploading the selected file to Scnet's OCR API after user consent.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-External users and developers use this skill to send a local image or document file to Scnet OCR and receive structured OCR fields for supported personal cards, identity documents, bank cards, certificates, and related records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process passports, IDs, bank cards, birth certificates, and similar sensitive records through an external OCR service. <br>
-Mitigation: Use only when authorized to send the document image to Scnet, confirm user consent before each upload, and avoid broad automatic use for generic OCR. <br>
-Risk: OCR output may contain sensitive personal and financial data. <br>
-Mitigation: Limit downstream sharing, storage, and logging of returned JSON to what the use case requires. <br>
-Risk: The skill requires a Scnet API key. <br>
-Mitigation: Store SCNET_API_KEY outside chat and source control, rotate expired keys, and restrict access to the local configuration file. <br>
+## Use Case:
 
+External users and developers use this skill to recognize text and structured fields from specific user-provided document images or PDFs through Scnet OCR. It is intended for cases where the user explicitly requests OCR and agrees that the selected file may be uploaded to a third-party service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scnet-sugon/personal-card-ocr) <br>
-- [Scnet website](https://www.scnet.cn) <br>
-- [Sugon-Scnet OCR API docs](references/api-docs.md) <br>
-- [OCR fields summary](assets/templates/fields-summary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands] <br>
-**Output Format:** [JSON returned on stdout with structured OCR fields; errors are human-readable text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY and uploads the provided file to the external Scnet OCR service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and frontmatter) <br>
+Risk: Selected files may contain sensitive personal information and are uploaded to Scnet for OCR processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit user consent, upload only the minimum necessary document, and do not process other people's documents without permission.
+
+Risk: The executable can use an arbitrary configured API endpoint through SCNET_API_BASE.
+
+Mitigation: Before use, verify local configuration points to https://api.scnet.cn/api/llm/v1 and keep endpoint configuration under local administrative control.
+
+Risk: SCNET_API_KEY is required and could be exposed if handled insecurely.
+
+Mitigation: Treat the API key as a secret and store it only in a local environment variable or restricted config/.env file.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/scnet-sugon/skills/personal-card-ocr)
+- [Scnet OCR API documentation](references/api-docs.md)
+- [OCR field summary](assets/templates/fields-summary.md)
+- [Scnet OCR API endpoint](https://api.scnet.cn/api/llm/v1)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON OCR results with text error messages and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCNET_API_KEY and a user-specified local file path; OCR result fields vary by ocrType.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

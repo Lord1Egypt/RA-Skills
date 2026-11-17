@@ -1,43 +1,58 @@
-## Description: <br>
-Submit Dataify YouTube Transcript by Video ID Builder tasks for the YouTube subtitle file collection tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect subtitles, captions, or transcript text for a known YouTube video ID.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to submit Dataify Builder jobs that collect YouTube subtitles or transcripts by video ID, then receive the created task ID, status, and dashboard link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit Dataify transcript collection tasks and may be invoked implicitly. <br>
-Mitigation: Ask the user to confirm parameters before submitting a Builder task, especially when using a saved DATAIFY_API_TOKEN. <br>
-Risk: Submitted YouTube video IDs and requested transcript settings are sent to Dataify. <br>
-Mitigation: Avoid submitting private or sensitive URLs or identifiers unless Dataify handling is acceptable to the user. <br>
-Risk: A Dataify API TOKEN is required for task submission. <br>
-Mitigation: Do not persist or use a token silently; use the saved DATAIFY_API_TOKEN only when appropriate and ask before saving a newly provided token. <br>
+## Use Case:
 
+External users and developers use this skill to submit Dataify YouTube transcript collection tasks for known video IDs and retrieve the resulting transcript data.
 
-## Reference(s): <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify Login](https://dashboard.dataify.com/login?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and JSON task summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns or explains task_id, status, submitted parameters, Dataify dashboard URL, and API TOKEN setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The security evidence flags unsafe token-handling instructions in the Chinese localization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure DATAIFY_API_TOKEN through a local environment variable and do not paste API tokens into chat.
+
+Risk: The security evidence flags loading of an unverified external Python module before execution.
+
+Mitigation: Run the bundled script only when the external dataify-task-operations runtime is trusted and installed from a reviewed source.
+
+Risk: The skill can submit paid or account-bound Dataify Builder tasks.
+
+Mitigation: Use it only for explicit Dataify transcript requests and review the target video IDs before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-youtube-transcript-by-id)
+- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON task/result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a known YouTube video ID and a locally configured DATAIFY_API_TOKEN; the final collected result is returned by default unless no-wait behavior is requested.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

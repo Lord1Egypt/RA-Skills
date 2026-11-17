@@ -1,36 +1,47 @@
-## Description: <br>
-Estate is a sovereign asset and title-management prompt for coordinating physical property, digital legacies, and high-value estates across jurisdictional boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estate is a framework for managing physical property, digital legacies, and high-value estate ownership across jurisdictions.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-External users and developers can use Estate as a conceptual prompt for organizing asset ownership, title clarity, digital inheritance, and real-world asset workflows. Legal or financial actions should remain subject to explicit approval and qualified review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Estate uses legal and financial domain language that could be mistaken for authority to make, file, transfer, or execute decisions. <br>
-Mitigation: Require explicit user approval and qualified legal or financial review before acting on any estate, title, inheritance, or asset-transfer output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users can use this skill to frame estate, title, legacy, and real-world asset management discussions for an agent. It should be treated as high-level planning guidance, not as authority to perform legal, financial, inheritance, title, or account changes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Estate-management guidance could be mistaken for authorization to make legal, financial, inheritance, title, or account changes.
+
+Mitigation: Require separate reviewed tooling, clear user confirmation, and qualified legal or financial oversight before any real-world change is executed.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable prompt guidance; no credential use, install behavior, hidden code, or data access was found in security evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Guidance, Markdown]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown prose and bullet points]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or hidden behavior was found in the markdown-only artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Guides agents in installing and using the Surge download manager for fast multi-connection downloads, queue management, terminal UI use, and server-mode workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blazing fast TUI download manager with multi-connection, queue management, server mode, multiple mirrors, and a terminal interface.
 
-## Publisher: <br>
-[KeXu9](https://clawhub.ai/user/KeXu9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kexu9](https://clawhub.ai/user/kexu9)
 
-## Use Case: <br>
-Developers and external users use this skill to choose and run Surge commands for single downloads, batch downloads, queue management, and headless server-mode download workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Downloads from untrusted URLs can introduce unsafe or unwanted files. <br>
-Mitigation: Use trusted URLs, verify the source before downloading, and review downloaded files before opening or executing them. <br>
-Risk: Batch downloads and multi-connection transfers can consume significant disk space or network capacity. <br>
-Mitigation: Choose output folders deliberately, monitor available disk space, and limit or pause queue items when resources are constrained. <br>
-Risk: Server mode and API tokens can expose download controls if used on untrusted networks or shared insecurely. <br>
-Mitigation: Keep API tokens private, expose remote hosts only on trusted networks, and stop server mode when downloads are complete. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Surge project homepage](https://github.com/surge-downloader/Surge) <br>
-- [ClawHub skill page](https://clawhub.ai/KeXu9/surge) <br>
+## Use Case:
 
+Developers and external users use this skill to install and operate Surge for fast single-file, batch, TUI, or headless download workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include installation checks, command selections, troubleshooting steps, and server or token handling reminders.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Downloads can write files to user-selected output paths.
+
+Mitigation: Use trusted URLs and choose writable, expected output directories before starting downloads.
+
+Risk: Server or remote-token mode can leave a download service running.
+
+Mitigation: Start server mode only when intended, protect remote tokens, and stop the service when it is no longer needed.
+
+Risk: The skill depends on an external Surge binary and distribution channels.
+
+Mitigation: Install Surge only from trusted channels and prefer pinned releases or verified binaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kexu9/skills/surge)
+- [Surge project homepage](https://github.com/surge-downloader/Surge)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and concise command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include download URLs, output directories, queue operations, and optional server or remote-token mode.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

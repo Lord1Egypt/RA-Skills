@@ -1,41 +1,54 @@
-## Description: <br>
-Creates magazine-style infographic images for recent AI news, AI products, and OpenClaw-related topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates infographic images for AI news, recent AI products, OpenClaw-related updates, and social media news cards.
 
-## Publisher: <br>
-[LeahLiang](https://clawhub.ai/user/LeahLiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leahliang](https://clawhub.ai/user/leahliang)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to search recent AI news or product updates and turn selected items into shareable news-style infographic cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated infographic images may be uploaded externally for sharing. <br>
-Mitigation: Avoid including confidential prompts, proprietary details, or internal context in images that should not become externally accessible. <br>
-Risk: AI-news claims or generated infographic text may be inaccurate, outdated, or missing context. <br>
-Mitigation: Review facts and sources before posting or distributing generated images. <br>
+## Use Case:
 
+Content creators, marketers, and AI news curators use this skill to find recent AI topics and turn them into professional, shareable infographic images.
 
-## Reference(s): <br>
-- [Prompt Guide](references/prompt-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/LeahLiang/ai-news-infographics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Image files, Text, Guidance] <br>
-**Output Format:** [Generated infographic image files with optional shareable links and concise supporting text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Images are intended for public AI-news sharing and may be saved to the workspace or uploaded for distribution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated infographics can include current news claims or visual summaries that may be inaccurate or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source facts, dates, and generated text before publishing or sharing the image.
+
+Risk: Prompts or generated images intended for sharing may expose private, confidential, or unreleased information.
+
+Mitigation: Use only public information in prompts and inspect outputs before local saving or CDN upload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leahliang/skills/ai-news-infographics)
+- [AI Infographics prompt guide](references/prompt-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with image-generation prompts and saved image outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated infographic images may be saved locally and uploaded to a CDN for sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

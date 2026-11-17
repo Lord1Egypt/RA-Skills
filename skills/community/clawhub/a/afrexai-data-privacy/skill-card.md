@@ -1,41 +1,57 @@
-## Description: <br>
-Create and audit comprehensive data privacy programs covering GDPR, CCPA/CPRA, LGPD, POPIA, and PIPL, from data mapping to breach response and consent management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and audit comprehensive data privacy programs covering GDPR, CCPA/CPRA, LGPD, POPIA, and PIPL, from data mapping to breach response and consent management.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Privacy, legal, security, operations, and product teams use this skill to assess privacy-program maturity, map processing activities, manage DSAR and breach workflows, evaluate vendors, and maintain privacy-by-design practices across jurisdictions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Privacy and breach workflows can involve sensitive personal data, credentials, or confidential incident details. <br>
-Mitigation: Avoid pasting unnecessary personal data, credentials, or confidential incident details into agent prompts. <br>
-Risk: Generated DSAR responses, breach notifications, and regulatory decisions may be incomplete or unsuitable for a jurisdiction. <br>
-Mitigation: Have qualified privacy counsel or an authorized human review DSAR responses, breach notifications, and regulatory decisions before acting. <br>
-Risk: The artifact frames the skill as privacy-program methodology and frameworks, not legal advice. <br>
-Mitigation: Use the skill as privacy-program guidance and consult qualified privacy counsel for jurisdiction-specific legal decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-data-privacy) <br>
+## Use Case:
 
+Privacy, legal, compliance, security, and product teams use this skill to assess privacy maturity, build program artifacts, map processing activities, manage DSARs, plan breach response, review vendors, and apply privacy-by-design practices across multiple jurisdictions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with checklists, YAML templates, scorecards, and response templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no code execution, credentials, persistence, or hidden data access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat privacy-program guidance or breach-response templates as legal advice.
+
+Mitigation: Treat outputs as checklist and drafting support, and have qualified privacy counsel review jurisdiction-specific decisions and notifications.
+
+Risk: Users may paste unnecessary personal data, incident evidence, credentials, or full datasets into the agent while using privacy workflows.
+
+Mitigation: Share only the minimum information needed, redact sensitive details where possible, and avoid entering credentials or raw datasets.
+
+Risk: Regulatory applicability and notification timelines can depend on current law, facts, and jurisdiction.
+
+Mitigation: Verify obligations against current authoritative sources and counsel before relying on timelines, notices, or regulatory conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-data-privacy)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, YAML templates, response templates, scoring rubrics, and playbooks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces privacy-program guidance and drafting support; it does not execute code, persist data, or replace legal review.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

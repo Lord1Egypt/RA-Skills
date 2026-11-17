@@ -1,44 +1,59 @@
-## Description: <br>
-AI 副业顾问自动扫描接单平台，分析项目可行性，并为想在线接单赚钱的人推荐适合的机会。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 副业顾问 scans freelance platforms, analyzes project feasibility, and recommends suitable online earning opportunities for users based on their skills and goals.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External freelancers and side-hustle builders use this skill to scan freelance platforms, compare project fit, estimate effort and revenue, and draft proposal guidance before applying. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may query freelance platforms and use profile details or API keys while looking for opportunities. <br>
-Mitigation: Keep credentials scoped, avoid storing sensitive personal or financial information in the local profile, and review platform requests before use. <br>
-Risk: Project listings, budgets, competition, and deadlines can change quickly, so generated recommendations may become stale or incomplete. <br>
-Mitigation: Confirm important project details on the original platform before sending proposals or committing to work. <br>
-Risk: Generated proposal text and pricing advice may be inaccurate or unsuitable for a specific client relationship. <br>
-Mitigation: Review and edit proposals, bids, and delivery estimates before submitting them. <br>
+## Use Case:
 
+External users use this skill to scan freelance and content platforms, evaluate project fit, estimate effort and competition, and draft proposal guidance before applying.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-side-hustle-agent) <br>
-- [Upwork job search](https://www.upwork.com/search/jobs/?q=python) <br>
-- [Juejin short message recommendation API](https://api.juejin.cn/recommend_api/v1/short_msg/recommend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with opportunity cards, analysis reports, proposal guidance, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference a local HUSTLE.md profile and live platform data; project listings change over time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill makes web requests to freelance and content platforms, where availability, terms, and results can change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target platform, request URL, and applicable platform rules before using generated scan commands or acting on returned opportunities.
+
+Risk: Recommendations may use skill, interest, income, and availability details stored in HUSTLE.md.
+
+Mitigation: Keep sensitive personal data out of HUSTLE.md and review profile details before sharing generated proposals or reports.
+
+Risk: Generated feasibility scores, pricing suggestions, and proposals may be incomplete or misleading.
+
+Mitigation: Manually review project details, pricing, deadlines, and proposal text before contacting a client or submitting work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-side-hustle-agent)
+- [Upwork job search](https://www.upwork.com/search/jobs/?q=python)
+- [Juejin short message recommendation API](https://api.juejin.cn/recommend_api/v1/short_msg/recommend)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with opportunity cards, analysis reports, proposal guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local HUSTLE.md profile details and live platform results when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

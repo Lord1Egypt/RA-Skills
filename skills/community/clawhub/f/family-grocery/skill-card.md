@@ -1,46 +1,61 @@
-## Description: <br>
-Shared family grocery list — multiple members add, remove, and view items organized by store, with admin-managed access and optional web verification for store addresses and item availability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared family grocery list for multiple members to add, remove, and view items organized by store, with admin-managed access and optional web checks for store addresses and item availability.
 
-## Publisher: <br>
-[adeydas](https://clawhub.ai/user/adeydas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adeydas](https://clawhub.ai/user/adeydas)
 
-## Use Case: <br>
-Family members use this skill to maintain a shared grocery list, organize items by store, manage household access, and review change history. An admin configures the shared local data path, users, primary store, fallback order, and category-to-store mappings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Household grocery data is stored in a shared local folder. <br>
-Mitigation: Use a dedicated shared folder with appropriate operating-system permissions and avoid sensitive directory paths. <br>
-Risk: Access control depends on stored agent name and path values, so a user who can set those values may impersonate a family member. <br>
-Mitigation: Have the intended admin perform setup first, register only trusted users, and keep shared-path access limited to the household members who should use the list. <br>
-Risk: Web search may not confirm store addresses, hours, or item availability. <br>
-Mitigation: Treat web results as optional confirmation, ask the user to verify uncertain store details, and proceed without blocking list actions when search is unavailable. <br>
+## Use Case:
 
+External family members use this skill to maintain a shared grocery list, organize items by store, manage family access, and view change history without using it for purchases or meal planning.
 
-## Reference(s): <br>
-- [Family Grocery ClawHub release](https://clawhub.ai/adeydas/family-grocery) <br>
-- [Data file templates](memory-template.md) <br>
-- [List operations](lists.md) <br>
-- [Store management](stores.md) <br>
-- [User management](user-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with occasional shell commands and local file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces grocery-list updates, store and user management guidance, local shared-folder file changes, and concise confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Setup can write grocery data files to a user-chosen local path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated, non-sensitive shared folder and review the chosen path before setup.
+
+Risk: Shared-file access controls are weak, so family members with filesystem access may be able to read or modify membership, list, and history files directly.
+
+Mitigation: Do not rely on this skill for strong access control; manage filesystem permissions and review membership and history files regularly.
+
+Risk: User-provided paths containing shell metacharacters can create unsafe setup behavior.
+
+Mitigation: Avoid paths with shell metacharacters and review setup commands before execution.
+
+## Reference(s):
+
+- [Family Grocery List on ClawHub](https://clawhub.ai/adeydas/skills/family-grocery)
+- [List Operations](artifact/lists.md)
+- [Store Management](artifact/stores.md)
+- [User Management](artifact/user-management.md)
+- [Data File Templates](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with occasional shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include grocery list entries, store and user management guidance, setup commands, and local shared-file updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, _meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

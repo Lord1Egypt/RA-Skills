@@ -1,46 +1,60 @@
-## Description: <br>
-Obsidian personal knowledge management workflow based on the PARA method and an automation toolchain for vault organization, Git sync, daily timeline notes, hand-drawn diagrams, and note collection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obsidian personal knowledge management workflow based on the PARA method and automation tooling for organizing vault structure, Git sync, daily timeline notes, hand-drawn diagrams, and collected notes.
 
-## Publisher: <br>
-[ajawpwinner-del](https://clawhub.ai/user/ajawpwinner-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajawpwinner-del](https://clawhub.ai/user/ajawpwinner-del)
 
-## Use Case: <br>
-External users and developers use this Chinese-language Obsidian workflow to organize note vaults with PARA, create daily notes and reusable templates, manage naming conventions, and sync notes with Git. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Git sync examples and scripts can upload an entire Obsidian vault, including private notes or attachments. <br>
-Mitigation: Review changes with git status before syncing, use a private repository, and add .gitignore rules for sensitive notes and attachments. <br>
-Risk: The mobile Git clone example embeds an access token in a repository URL. <br>
-Mitigation: Use least-privilege tokens, avoid sharing command history or screenshots that expose tokens, and rotate tokens if they are disclosed. <br>
-Risk: Unattended cron-based sync can publish unreviewed vault changes. <br>
-Mitigation: Prefer manual sync unless automatic full-vault uploads are intended and the vault contents have been reviewed. <br>
+## Use Case:
 
+External users and developers use this skill to structure and maintain an Obsidian vault with PARA folders, reusable note templates, daily logs, and Git-based synchronization. It is most useful for personal knowledge management workflows that need repeatable organization, review, and backup practices.
 
-## Reference(s): <br>
-- [PARA Method Details](references/para-method.md) <br>
-- [Toolchain Configuration](references/toolchain.md) <br>
-- [Template Library](references/templates.md) <br>
-- [Forte Labs PARA Method](https://fortelabs.com/blog/para-method/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ajawpwinner-del/awesome-obsidian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and template snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Chinese-language Obsidian vault structure guidance, note templates, Git sync steps, mobile setup notes, and optional shell scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: Git synchronization guidance can upload all unignored vault contents, including private notes or local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with an intended private vault, maintain a strict .gitignore, and inspect git status and staged diffs before pushing.
+
+Risk: Embedding access tokens in clone URLs can expose credentials in shell history, configuration, or logs.
+
+Mitigation: Avoid token-bearing clone URLs and prefer SSH authentication or a credential manager.
+
+Risk: Unattended cron synchronization can push unintended changes without review.
+
+Mitigation: Enable automated sync only after confirming that unattended uploads of all unignored vault contents are acceptable.
+
+## Reference(s):
+
+- [PARA Method Reference](references/para-method.md)
+- [Toolchain Configuration](references/toolchain.md)
+- [Template Library](references/templates.md)
+- [Fortelabs PARA Method](https://fortelabs.com/blog/para-method/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and note templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file organization guidance, Obsidian template content, Git commands, and synchronization recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

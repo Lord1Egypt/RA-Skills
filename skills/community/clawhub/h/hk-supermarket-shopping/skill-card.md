@@ -1,41 +1,53 @@
-## Description: <br>
-Real-time price comparison for Hong Kong supermarkets using the Consumer Council's daily pricewatch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time price comparison for Hong Kong supermarkets using the Consumer Council's daily pricewatch.
 
-## Publisher: <br>
-[stevenho1394](https://clawhub.ai/user/stevenho1394) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenho1394](https://clawhub.ai/user/stevenho1394)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to compare Hong Kong supermarket prices for an English or Chinese product query and return the cheapest matching item with a fixed-budget quantity estimate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Hong Kong <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the artifact files were not available for a full artifact-level inspection in the supplied scan context. <br>
-Mitigation: Review the packaged SKILL.md and support files before installing or publishing the skill. <br>
-Risk: The skill downloads supermarket price data from an external public CSV source and may be unable to answer if that source is unavailable or stale. <br>
-Mitigation: Confirm the data source is reachable and review output freshness before relying on price comparisons. <br>
+## Use Case:
 
+External users ask for Hong Kong supermarket products in English or Chinese and receive the cheapest matching store, current price, and estimated quantity purchasable with HK$100.
 
-## Reference(s): <br>
-- [Consumer Council Price Watch CSV](https://online-price-watch.consumer.org.hk/opw/opendata/pricewatch_en.csv) <br>
-- [ClawHub skill page](https://clawhub.ai/stevenho1394/hk-supermarket-shopping) <br>
+### Deployment Geography for Use:
 
+Hong Kong
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single product-query response; may answer in English or Traditional Chinese based on the query language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: frontmatter, package.json, clawhub.json, server release evidence) <br>
+Risk: The skill contacts the Consumer Council pricewatch site and stores a short-lived CSV cache inside the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that outbound access to the public pricewatch URL and local cache storage are acceptable for the deployment environment.
+
+Risk: A packaging inconsistency in openclaw.plugin.json may affect compatibility.
+
+Mitigation: Review package metadata before marketplace publication or automated installation.
+
+## Reference(s):
+
+- [Consumer Council Pricewatch CSV](https://online-price-watch.consumer.org.hk/opw/opendata/pricewatch_en.csv)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text, single-line answer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in English or Traditional Chinese based on the query language and includes supermarket, product, price, and HK$100 budget quantity when data is available.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release metadata, artifact frontmatter, package.json, clawhub.json, README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

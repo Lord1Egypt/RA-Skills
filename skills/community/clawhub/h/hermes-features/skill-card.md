@@ -1,45 +1,53 @@
-## Description: <br>
-Hermes-style self-improvement and memory management for OpenClaw agents, including a learning loop, skill system, and persistent memory with overflow archive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes-style self-improvement and memory management for OpenClaw agents, including a learning loop, skill system, persistent memory, and overflow archive.
 
-## Publisher: <br>
-[protechsysipem-lang](https://clawhub.ai/user/protechsysipem-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[protechsysipem-lang](https://clawhub.ai/user/protechsysipem-lang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add Hermes-style recurring self-review, skill proposal, and bounded persistent memory workflows to OpenClaw agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews prior sessions and writes persistent memory/profile files, which can retain sensitive or unnecessary user data. <br>
-Mitigation: Exclude sensitive sessions and secrets, require explicit approval for memory writes, and define retention and deletion rules before use. <br>
-Risk: Skill-changing behavior can introduce inaccurate or unsafe workflows into an agent's available skills. <br>
-Mitigation: Require human approval before applying generated or updated skills, scan proposed changes, and keep rollback history. <br>
-Risk: Cron and heartbeat automation can run recurring reviews without clear user intent. <br>
-Mitigation: Make scheduled jobs auditable and disableable, and document when automated reviews run. <br>
+## Use Case:
 
+Developers and operators use this skill to add recurring session review, memory maintenance, and skill proposal workflows to OpenClaw agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/protechsysipem-lang/hermes-features) <br>
-- [Publisher profile](https://clawhub.ai/user/protechsysipem-lang) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Aquila Hermes features reference](artifact/aquila-hermes-features.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers session review, memory/profile file writes, overflow archives, and skill proposal workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recurring self-review jobs can read past sessions and retain profile or project details indefinitely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only with explicit approval for memory changes and defined retention and deletion rules for USER.md, MEMORY.md, and overflow archives.
+
+Risk: Automatic skill or memory updates can introduce unreviewed behavior into the agent workspace.
+
+Mitigation: Require human approval for every skill and memory change, remove the 24-hour auto-apply path, and keep cron or heartbeat review disabled until controls are in place.
+
+## Reference(s):
+
+- [Aquila Hermes Features Reference](artifact/aquila-hermes-features.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with tool, schedule, and file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose recurring jobs, memory writes, and skill changes that require human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Produce a practical 3-day northern lights planning and live-update workflow for Tim in Dereham, Norfolk, with alert-day escalation, North Norfolk coast comparison, and conservative go or no-go decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aurora Norfolk produces a practical 3-day northern lights planning and live-update workflow for Tim in Dereham, Norfolk, including North Norfolk coast comparisons and conservative go or no-go decisions.
 
-## Publisher: <br>
-[timcoy47](https://clawhub.ai/user/timcoy47) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timcoy47](https://clawhub.ai/user/timcoy47)
 
-## Use Case: <br>
-External users use this skill to maintain a practical Norfolk aurora watch for Dereham and the North Norfolk coast, including 3-night outlooks, alert-day briefs, change alerts, and live-night updates. It supports conservative travel decisions by blending space-weather signals with local sky conditions, darkness, moonlight, and horizon advantage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring checks and local state could create unnecessary noise or retain more history than needed. <br>
-Mitigation: Keep scheduled checks limited to the intended Norfolk aurora watch and store only the small state record described by the skill in a known limited location. <br>
-Risk: Broad tool access could fetch or write outside the intended forecast workflow. <br>
-Mitigation: Limit the agent to public forecast sources and its own state file, using browser automation only if normal web or HTTP access cannot retrieve the needed data. <br>
-Risk: Aurora forecasts can be stale, conflicting, or too uncertain for confident travel advice. <br>
-Mitigation: Follow the skill's confidence rules, reduce confidence when key feeds are stale or disagree, and prefer watch or stand_down for weak or marginal signals. <br>
+## Use Case:
 
+External users and personal automation agents use this skill to maintain a Norfolk aurora watch, compare Dereham with the North Norfolk coast, and decide whether to stand down, watch, go local, or go coast.
 
-## Reference(s): <br>
-- [Source checklist](references/source-checklist.md) <br>
-- [Message rules](references/message-rules.md) <br>
-- [OpenClaw setup notes](references/openclaw-setup.md) <br>
-- [ClawHub release page](https://clawhub.ai/timcoy47/aurora-norfolk) <br>
+### Deployment Geography for Use:
 
+Norfolk, United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown tables and concise text briefs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Europe/London local time, practical percentages, confidence labels, and one conservative action per update.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Recurring checks or scheduler entries could produce stale or poorly timed alerts if configured casually.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure cron or scheduler entries deliberately, keep the workflow on Europe/London time, and adjust timezone behavior only when adapting the skill outside the UK.
+
+Risk: A persistent state file could retain more context than needed for alert suppression.
+
+Mitigation: Limit stored state to the listed aurora fields such as prior outlook, action, viewing window, chance values, notification status, and timestamps.
+
+Risk: Stale, unavailable, or conflicting aurora and weather feeds can make travel guidance overconfident.
+
+Mitigation: State unavailable or stale feeds, reduce confidence when authoritative sources disagree, and prefer watch or stand_down unless conditions clearly justify action.
+
+## Reference(s):
+
+- [Message rules](references/message-rules.md)
+- [OpenClaw setup notes](references/openclaw-setup.md)
+- [Source checklist](references/source-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown tables and concise text alerts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Europe/London local time and percentages for Dereham and the North Norfolk coast.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

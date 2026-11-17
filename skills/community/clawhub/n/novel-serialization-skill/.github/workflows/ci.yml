@@ -1,0 +1,149 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: pytest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dev dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+      - name: Run test suite
+        run: python -m pytest
+
+  hygiene:
+    name: File hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Scan (CRLF / mojibake / junk / line budget)
+        run: |
+          python scripts/scan_hygiene.py --root . \
+            --max-lines 500 \
+            --allow "README FOR AI.md,CHANGELOG.md,LICENSE,LICENSES/CC-BY-NC-SA-4.0.txt" \
+            --fail-on crlf,junk,mojibake \
+            --out hygiene-report.md
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hygiene-report
+          path: hygiene-report.md
+
+  references:
+    name: Reference integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check references (informational)
+        run: |
+          python scripts/check_refs.py --root . --out refs-report.md
+      - name: Release files must not reference non-release or missing files
+        run: |
+          python scripts/check_refs.py --root . --fail-on NONRELEASE,MISSING
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: refs-report
+          path: refs-report.md
+
+  scripts:
+    name: Script smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Byte-compile
+        run: python -m compileall -q scripts
+      - name: CLI smoke test
+        run: |
+          set -e
+          # _sync_draft.py is a top-level script (no argparse), so it is covered
+          # by compileall rather than the --help smoke test.
+          for s in humanizer_check.py _list_hits.py _promote_draft.py \
+                   review_all.py review_scale.py review_continuity.py \
+                   review_rationality.py review_punctuation.py \
+                   check_refs.py scan_hygiene.py init_subproject.py; do
+            python "scripts/$s" --help >/dev/null || { echo "FAILED: $s"; exit 1; }
+            echo "ok: $s"
+          done
+      - name: Scaffold round-trip
+        run: |
+          python scripts/init_subproject.py --name "CI Smoke" --root /tmp/ci-smoke
+          python scripts/scan_hygiene.py --root /tmp/ci-smoke --fail-on crlf,junk,mojibake
+
+  metadata:
+    name: Metadata & community files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate YAML
+        run: |
+          python - <<'PY'
+          import pathlib, sys
+          try:
+              import yaml
+          except ImportError:
+              print("PyYAML not installed; skipping")
+              sys.exit(0)
+          bad = []
+          for p in sorted(pathlib.Path('.github').rglob('*.yml')):
+              try:
+                  yaml.safe_load(p.read_text(encoding='utf-8'))
+              except Exception as exc:
+                  bad.append(f"{p}: {exc}")
+          for p in [pathlib.Path('.markdownlint.json'), pathlib.Path('.pre-commit-config.yaml')]:
+              if p.exists():
+                  try:
+                      yaml.safe_load(p.read_text(encoding='utf-8'))
+                  except Exception as exc:
+                      bad.append(f"{p}: {exc}")
+          if bad:
+              print("\n".join(bad)); sys.exit(1)
+          print("YAML ok")
+          PY
+      - name: Required community files present
+        run: |
+          set -e
+          for f in README.md SKILL.md LICENSE LICENSES/CC-BY-NC-SA-4.0.txt \
+                   CONTRIBUTING.md CODE_OF_CONDUCT.md SECURITY.md SUPPORT.md \
+                   GOVERNANCE.md CHANGELOG.md SUBPROJECTS.md CITATION.cff \
+                   security.txt pyproject.toml requirements-dev.txt Makefile \
+                   .refsignore \
+                   docs/README.md docs/adr/README.md tests/conftest.py \
+                   .github/CODEOWNERS .github/PULL_REQUEST_TEMPLATE.md \
+                   .github/ISSUE_TEMPLATE/config.yml; do
+            test -f "$f" || { echo "MISSING: $f"; exit 1; }
+          done
+          echo "community files ok"

@@ -1,42 +1,56 @@
-## Description: <br>
-Tencent Weixin Channels publishing skill that uses browser automation to help publish video posts with uploads, titles, descriptions, topic tags, location, visibility, and originality declaration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+腾讯视频号发布。使用浏览器自动化技术，通过微信视频号助手发布视频作品。支持视频上传、标题、描述、话题标签、地理位置和原创声明。
 
-## Publisher: <br>
-[Johnnyxu820](https://clawhub.ai/user/Johnnyxu820) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johnnyxu820](https://clawhub.ai/user/johnnyxu820)
 
-## Use Case: <br>
-External users and content operators use this skill to guide an agent through publishing prepared MP4 videos to a logged-in Weixin Channels account. It covers upload requirements, title and description entry, topic tags, optional location, visibility, originality declaration, and post-publish verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may publish real content to a Weixin Channels account. <br>
-Mitigation: Before the final publish action, verify the logged-in account, video file, title, description, tags, location, visibility setting, and publish readiness. <br>
-Risk: An incorrect originality declaration could misrepresent content ownership. <br>
-Mitigation: Confirm that the video is original and that any originality declaration is true before selecting or confirming that option. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Weixin Channels Assistant](https://channels.weixin.qq.com) <br>
-- [Weixin Channels Create Post](https://channels.weixin.qq.com/platform/post/create) <br>
-- [Weixin Channels Content Management](https://channels.weixin.qq.com/platform/post/list) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Johnnyxu820/weixin-video-publish) <br>
+## Use Case:
 
+External users use this skill to guide an agent through publishing a prepared MP4 video to Weixin Channels with title, description, topic tags, location, visibility, and originality declaration settings.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with browser navigation steps and example command text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no API key or MCP tool references detected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may publish to the wrong Weixin Channels account or with incorrect video metadata if the browser session or fields are not reviewed.
+
+Mitigation: Before clicking publish, verify the logged-in account, video path, title, description, originality declaration, location, and visibility setting.
+
+Risk: The publishing flow requires a logged-in Weixin account and user-selected local media, which can expose private content if the wrong file or visibility is chosen.
+
+Mitigation: Use only intended video files and confirm whether the post is public or friends-only before final submission.
+
+## Reference(s):
+
+- [Weixin Channels Assistant](https://channels.weixin.qq.com)
+- [Weixin Channels Create Post](https://channels.weixin.qq.com/platform/post/create)
+- [Weixin Channels Content Management](https://channels.weixin.qq.com/platform/post/list)
+- [ClawHub Skill Page](https://clawhub.ai/johnnyxu820/skills/weixin-video-publish)
+- [Publisher Profile](https://clawhub.ai/user/johnnyxu820)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown instructions with structured publishing steps and example user prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-selected video file, OpenClaw browser access, and an authenticated Weixin Channels account.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/_meta.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

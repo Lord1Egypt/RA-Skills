@@ -1,0 +1,4 @@
+interface:
+  display_name: "BytePlus MediaKit Video Highlights"
+  short_description: "Create and query AI video highlight edits"
+  default_prompt: "Use $byteplus-mediakit-video-highlights to create a video highlight edit from my media URLs."

@@ -1,43 +1,53 @@
-## Description: <br>
-Provides command-line guidance for using a local Planning Center Services CLI to manage service plans, teams, songs, media, people, and related church planning data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for using a local PCO CLI to access and manage Planning Center Services data such as plans, teams, songs, media, and scheduled people.
 
-## Publisher: <br>
-[rubyrunsstuff](https://clawhub.ai/user/rubyrunsstuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rubyrunsstuff](https://clawhub.ai/user/rubyrunsstuff)
 
-## Use Case: <br>
-Church operations staff, developers, and automation agents use this skill to run Planning Center Services CLI commands for inspecting and managing service plans, scheduled people, songs, media, teams, and related resources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an external local pco.ts CLI that was not included for review in the artifact. <br>
-Mitigation: Install and use this skill only after reviewing and trusting the local pco.ts CLI it invokes. <br>
-Risk: Raw POST, PATCH, and DELETE commands can modify or delete live Planning Center Services data. <br>
-Mitigation: Use least-privilege Planning Center credentials and require explicit human confirmation before running mutating raw API commands. <br>
-Risk: Planning Center credentials grant access to church planning data. <br>
-Mitigation: Store credentials only in approved local configuration or secret storage, avoid exposing them in chats or logs, and revoke or rotate credentials when no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PCO CLI - Planning Center Services on ClawHub](https://clawhub.ai/rubyrunsstuff/pco) <br>
-- [Publisher profile](https://clawhub.ai/user/rubyrunsstuff) <br>
-- [Planning Center Services API documentation](https://developer.planning.center/docs/#/apps/services) <br>
+## Use Case:
 
+Agents assisting church operations staff can use this skill to plan services, inspect Planning Center Services records, and prepare CLI commands for common workflows. It is intended for authenticated Planning Center Services usage, including read workflows and carefully reviewed API changes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown command reference with inline shell command examples and notes about JSON, table, and quiet CLI output modes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local access to the external pco.ts CLI and Planning Center credentials stored outside the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on a local TypeScript CLI file whose source is not included in the artifact.
+
+Mitigation: Review the external CLI source before use and pin it to a trusted commit or release.
+
+Risk: Authenticated raw API commands can create, update, or delete Planning Center data.
+
+Mitigation: Use least-privilege Planning Center credentials, verify endpoints and request data, and do not allow untrusted input to choose mutation or deletion commands.
+
+## Reference(s):
+
+- [Planning Center Services API documentation](https://developer.planning.center/docs/#/apps/services)
+- [ClawHub skill page](https://clawhub.ai/rubyrunsstuff/skills/pco)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Planning Center Services CLI commands and workflow guidance; command execution should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

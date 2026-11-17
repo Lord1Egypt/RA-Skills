@@ -1,38 +1,53 @@
-## Description: <br>
-Creates a researched specification and phased, file-level implementation plan for a feature, bug fix, refactor, or chore. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore codebase and create spec + phased implementation plan with file-level task breakdown.
 
-## Publisher: <br>
-[fortunto2](https://clawhub.ai/user/fortunto2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fortunto2](https://clawhub.ai/user/fortunto2)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to research an existing codebase, identify affected files, and create spec.md and plan.md artifacts before implementation begins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may search past chats, other projects, and external sources before the user has clearly approved that scope. <br>
-Mitigation: Restrict use to local workspace reads for private or sensitive projects, disable session, project, web, and external documentation tools when broader search is not intended, and review generated plan files before implementation. <br>
+## Use Case:
 
+Developers and engineers use this skill to research a codebase and produce a concrete specification plus phased implementation plan for a feature, bug fix, refactor, or chore.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fortunto2/solo-plan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files with task checklists, file paths, and inline shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces spec.md and plan.md in a docs/plan track directory and summarizes the created track for user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release metadata and skill metadata) <br>
+Risk: The skill can search prior agent sessions and other projects when those MCP tools are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in environments where those tools are disabled or explicitly scoped unless cross-project and session search is intended.
+
+Risk: Generated planning files may contain information derived from outside the current repository.
+
+Mitigation: Review generated docs/plan files before committing or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fortunto2/skills/solo-plan)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance, Shell commands]
+
+**Output Format:** [Markdown files containing a specification, phased implementation plan, task checklist, and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes plan artifacts under docs/plan when executed in a project or documentation workspace.]
+
+## Skill Version(s):
+
+2.2.1 (source: evidence release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

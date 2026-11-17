@@ -1,0 +1,13 @@
+interface:
+  display_name: "木非舟 DRG/DIP 目录报告"
+  short_description: "把单份 DRG/DIP 原始目录生成可检索治理报告"
+  default_prompt: "使用 $mfz-catalogue-report 将我提供的目录文件整理成可复核的交互报告。"
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mfz-catalogue-report"
+      description: "免费的 MedGroup DRG/DIP 目录报告 MCP"
+      transport: "streamable_http"
+      url: "https://medgroup.medchat.fun/catalogue-report/mcp"
+policy:
+  allow_implicit_invocation: true

@@ -1,43 +1,61 @@
-## Description: <br>
-PPT AFP automates presentation creation from a user-provided topic or content by guiding style selection, outline generation, prompt creation, AI image generation, PPTX packaging, and optional Feishu delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ppt Afp guides an agent through a workflow that collects presentation requirements, confirms a visual style, generates an outline and image prompts, creates slide images, packages a PPTX file, and sends it through Feishu.
 
-## Publisher: <br>
-[yipng05-max](https://clawhub.ai/user/yipng05-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yipng05-max](https://clawhub.ai/user/yipng05-max)
 
-## Use Case: <br>
-Employees, external users, and presentation creators use this skill to turn topics, outlines, or source documents into slide decks with selected visual styles, generated slide prompts, AI-produced slide images, and a packaged PPTX file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation content may be processed by external image-generation services and can be sent through Feishu. <br>
-Mitigation: Use only content approved for those services, make Feishu delivery explicit opt-in, and confirm the recipient before upload or sending. <br>
-Risk: The artifact uses TLS-disabling environment settings for networked commands. <br>
-Mitigation: Remove the TLS-disabling environment variable and use validated HTTPS endpoints before running generation or packaging commands. <br>
-Risk: The workflow relies on local helper scripts from other skills. <br>
-Mitigation: Verify the referenced helper scripts and their dependencies before running the workflow in a production or sensitive environment. <br>
+## Use Case:
 
+Employees, external creators, and presentation authors use this skill to turn a topic or source content into a styled slide deck with generated visuals and a PPTX deliverable. The workflow is oriented around human confirmation of presentation parameters, style choice, outline review, prompt generation, image generation, packaging, and optional Feishu delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yipng05-max/ppt-afp) <br>
-- [Feishu style gallery document](https://sgl0nnj5ev.feishu.cn/docx/YV09dH7KHoKUGgxZKGVcm4MHnkf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON batch configuration, generated prompt files, slide images, and PPTX output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use external image-generation services and optional Feishu file delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated presentation files may be sent to a fixed Feishu recipient by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make Feishu delivery opt-in for each run and require explicit recipient confirmation before sending any file.
+
+Risk: The documented network commands disable TLS certificate verification.
+
+Mitigation: Restore TLS verification and require trusted endpoint configuration before allowing network execution.
+
+Risk: Runtime tools are launched through package execution commands without pinning or preinstallation from trusted sources.
+
+Mitigation: Pin tool versions or preinstall reviewed tools from trusted sources before running the workflow.
+
+Risk: Confidential presentation content could be exposed through image-generation services or Feishu delivery.
+
+Mitigation: Do not use confidential content until external-service use and delivery destinations are approved for the data involved.
+
+## Reference(s):
+
+- [Feishu style gallery preview](https://sgl0nnj5ev.feishu.cn/docx/YV09dH7KHoKUGgxZKGVcm4MHnkf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown workflow guidance with JSON snippets, shell commands, generated image files, and PPTX file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates intermediate outline, prompt, batch JSON, image, and PPTX artifacts; Feishu sending is part of the documented workflow.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

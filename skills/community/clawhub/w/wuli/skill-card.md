@@ -1,44 +1,61 @@
-## Description: <br>
-Wuli Skill helps agents generate and edit AI images and videos through the Wuli.art open platform API using text prompts and optional reference media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wuli Skill generates AI images and videos through the Wuli.art open platform API, including text-to-image, image editing, text-to-video, image-to-video, first-last-frame video, auto-video, uploads, and no-watermark downloads.
 
-## Publisher: <br>
-[sir1st-inc](https://clawhub.ai/user/sir1st-inc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sir1st-inc](https://clawhub.ai/user/sir1st-inc)
 
-## Use Case: <br>
-Developers and creative operators use this skill to generate images, edit reference images, create videos from text, and animate or transform supplied media through Wuli.art models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected images or videos may be sent to Wuli.art and its upload storage for processing. <br>
-Mitigation: Use only media appropriate for that service; do not submit private, regulated, or confidential content. <br>
-Risk: Remote media URLs may be fetched and re-uploaded, which can expose internal or private URLs. <br>
-Mitigation: Use public, intended-for-sharing URLs only, and avoid internal network or access-controlled media links. <br>
-Risk: Downloaded outputs are opened automatically by the local OS viewer. <br>
-Mitigation: Run the skill only in environments where opening generated media is acceptable, or review this behavior before deployment. <br>
+## Use Case:
 
+External users, developers, and creative teams use this skill to generate or edit images and videos from prompts and reference media through Wuli.art. It supports batch image generation, first-frame animation, first-last-frame video, and auto-video workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sir1st-inc/skills/wuli) <br>
-- [Wuli.art](https://wuli.art) <br>
-- [Wuli Open Platform API documentation](artifact/references/【呜哩Wuli】开放平台 API 文档.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and WULI_API_TOKEN; selected media may be uploaded to Wuli.art storage and downloaded results may open in the local OS viewer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill sends prompts, API credentials, and optional reference media to Wuli.art and returned OSS upload URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive prompts and media, prefer trusted source URLs, and run in a network-restricted environment when possible.
+
+Risk: The optional WULI_EXTRA_COOKIE environment variable can add a Cookie header to API requests.
+
+Mitigation: Leave WULI_EXTRA_COOKIE unset unless it is explicitly needed, and clear the variable after use.
+
+Risk: Generated files may be saved into the current directory and opened automatically with the operating system viewer.
+
+Mitigation: Run the skill from a controlled working directory and review downloaded files before sharing or reusing them.
+
+## Reference(s):
+
+- [Wuli Open Platform API Documentation](references/%E3%80%90%E5%91%9C%E5%93%A9Wuli%E3%80%91%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%20API%20%E6%96%87%E6%A1%A3.md)
+- [Wuli.art](https://wuli.art)
+- [Wuli Open Platform API](https://platform.wuli.art)
+- [Wuli Skill on ClawHub](https://clawhub.ai/sir1st-inc/skills/wuli)
+- [ClawHub publisher profile](https://clawhub.ai/user/sir1st-inc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated image or video files may be downloaded by the script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WULI_API_TOKEN. The script can upload local or remote reference media, submit and poll Wuli.art generation jobs, download generated media, and open downloaded files locally.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata, SKILL.md frontmatter, manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

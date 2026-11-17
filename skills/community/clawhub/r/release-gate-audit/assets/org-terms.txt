@@ -1,0 +1,64 @@
+# org-terms.txt — 雇主/组织内部词表配置模板
+#
+# 用法：
+#   python3 scripts/release_gate.py <repo> --org-config assets/org-terms.txt
+#   或用环境变量（逗号分隔，两者会合并）：
+#   ORG_PATTERNS="term1,term2" python3 scripts/release_gate.py <repo>
+#
+# 基本语法：每行一个词，# 开头为注释，空行忽略。默认忽略大小写、按字面匹配。
+#
+# 可选前缀（不写就是「内部标识 + 字面匹配」，向后兼容）：
+#   cred:  或 credential:   归类为凭证 → 处置动作变成「吊销并轮换」而非「泛化」
+#   regex:                  该条按正则处理，用于匹配自研凭证的格式
+#   cred+regex:             两者组合
+#
+# 示例：
+#   corp.example.com              内部域名（默认：内部标识，处置=泛化）
+#   cred:MYCO-             自研 token 前缀（处置=吊销）
+#   cred+regex:MYCO-[A-Za-z0-9]{16}   自研 token 完整格式
+#
+# 含冒号的字面内容不会被误判为前缀（如 https://x.com、host:8080 正常按字面处理）。
+#
+# ⚠️ 为什么内部词表要放在这里、而不是写进脚本？
+#   因为一旦把雇主特定词硬编码进代码，这个工具本身就带着内部信息，
+#   无法作为开源产物发布。审查工具必须自己先过审。
+#   → 本文件应加入 .gitignore，不要连同真实词表一起提交/公开。
+#
+# ⚠️ 同时注意：本文件自身就是一份「内部标识清单」，属于敏感文件。
+#   建议只在本地保存，或用团队内部的密钥管理方案分发。
+
+# ─── 1. 内网域名与主机后缀 ───────────────────────────────
+# 填你们的内网域名。示例（请替换为真实值后本地保存，勿提交）：
+# corp.example.com
+# internal.example.net
+
+# ─── 2. 内部平台 / 系统名称 ──────────────────────────────
+# 内部 wiki、工单系统、CI 平台、模型网关、发布系统等的产品名
+# InternalWiki
+# InternalTicketSystem
+# InternalModelGateway
+
+# ─── 3. 内部 API 网关 / 服务地址片段 ────────────────────
+# api/gateway/inner
+# /internal/v1/
+
+# ─── 4. 组织架构标识 ────────────────────────────────────
+# 部门名、事业群缩写、团队代号
+# SomeBusinessGroup
+# SomeDeptCode
+
+# ─── 5. 项目 / 产品代号 ─────────────────────────────────
+# 尚未对外公布的项目代号最容易在提交信息与注释里泄露
+# ProjectCodename
+
+# ─── 6. 内部人员标识 ────────────────────────────────────
+# 内部账号体系的用户名格式、员工编号前缀等
+# ldap-username-prefix
+
+# ─── 7. 自研凭证格式（用 cred: 让处置动作变成「吊销」）──
+# 内部签发的 token / AK 往往有固定前缀，字面匹配即可覆盖大多数情况
+# cred:MYCO-
+# cred:svc_tok_
+# 需要精确格式时用正则：
+# cred+regex:MYCO-[A-Za-z0-9]{16}
+# cred+regex:INT-[0-9a-f]{32}

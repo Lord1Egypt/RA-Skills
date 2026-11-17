@@ -1,41 +1,51 @@
-## Description: <br>
-Build and validate GraphQL queries, mutations, and schemas for work with GraphQL APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and validate GraphQL queries, mutations, and schemas for GraphQL API work.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and API practitioners use this skill to draft GraphQL queries and mutations, validate or format GraphQL files, extract schema snippets, and optionally introspect trusted GraphQL endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Endpoint introspection makes an outbound network request and can expose schema details from the target service. <br>
-Mitigation: Use introspection only with trusted endpoints and avoid private or sensitive internal URLs unless the access is deliberate. <br>
-Risk: File-based validation, formatting, and schema extraction read local files provided to the skill. <br>
-Mitigation: Pass only GraphQL files that are appropriate for the agent to read. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft GraphQL queries and mutations, validate or format GraphQL files, inspect schemas, and run basic introspection against trusted endpoints.
 
-## Reference(s): <br>
-- [Graphql Builder on ClawHub](https://clawhub.ai/ckchzh/graphql-builder) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local GraphQL files and may make outbound POST requests for endpoint introspection when given a URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: evidence release and artifact frontmatter) <br>
+Risk: The shell helper can pass crafted curl arguments during introspection, which could read or write local files or contact untrusted destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, use only trusted simple file paths and trusted HTTPS GraphQL endpoints, avoid untrusted command arguments, and update the script to quote variables, pass -- before curl URLs, and validate destinations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/graphql-builder)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and GraphQL snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local GraphQL files and may call trusted HTTPS GraphQL endpoints when introspection is requested.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Victorian English"
+  short_description: "Rewrite plain text as ornate Victorian English prose"
+  default_prompt: "Use $victorian-english to translate \"I can't make it tonight.\""

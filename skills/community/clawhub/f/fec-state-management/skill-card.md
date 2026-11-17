@@ -1,43 +1,55 @@
-## Description: <br>
-Use when choosing, implementing, reviewing, or refactoring frontend state ownership across React, Vue, Next.js, Nuxt, URL state, server state, form state, browser persistence, or global stores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps frontend developers assign ownership to UI, form, server, URL, and persistent state, choose appropriate React or Vue stores, and plan safe state migrations.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineers use this skill to decide where frontend state should live, select an appropriate store or framework pattern, and plan safe state-management refactors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect state ownership can duplicate server data, overuse global stores, or cause derived state to drift from its source. <br>
-Mitigation: Use the skill's ownership checklist before implementation and verify loading, error, empty, refresh, fallback, route, and permission-change behavior. <br>
-Risk: Browser persistence patterns can accidentally retain sensitive data or stale client state. <br>
-Mitigation: Persist only explicit non-sensitive fields with schema versions, expiration rules, migration handling, and sensitive-data exclusions. <br>
-Risk: Server-rendered applications can leak user-specific state if singleton stores are shared across requests. <br>
-Mitigation: Create request-scoped stores for user data and avoid reading browser-only APIs during server rendering. <br>
+## Use Case:
 
+Frontend developers use this skill to review state ownership, choose local or shared state patterns in React and Vue, and refactor stores without losing important behavior.
 
-## Reference(s): <br>
-- [State Management Patterns](references/state-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bovinphang/fec-state-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with frontend code examples and review steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include state ownership inventories, tool-selection rationale, store/API boundaries, and verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: README.md, metadata.json, package.json) <br>
+Risk: Broad activation wording may overlap with more specialized frontend skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review skill routing and use dedicated data-fetching, form, or browser-storage guidance for those details.
+
+Risk: Incorrect persistence or shared server-side store patterns can expose sensitive user state.
+
+Mitigation: Exclude sensitive fields from persistence, define a field whitelist and migration policy, and isolate stores by request during server rendering.
+
+## Reference(s):
+
+- [State patterns reference](references/state-patterns.md)
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-state-management)
+- [Project homepage (package metadata)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with state ownership lists, code examples, and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes store and API boundaries and migration rationale.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

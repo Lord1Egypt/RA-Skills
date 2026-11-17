@@ -1,48 +1,64 @@
-## Description: <br>
-Analyzes explicitly supplied relationship chat records by cleaning noisy exports, segmenting episodes, and producing evidence-grounded communication, conflict, repair, safety, and blind-spot analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes explicitly supplied relationship chat histories by cleaning noisy exports, segmenting episodes, and producing evidence-grounded findings about communication patterns, conflict cycles, repair attempts, boundaries, safety concerns, effort balance, and blind spots.
 
-## Publisher: <br>
-[yujun-bo2](https://clawhub.ai/user/yujun-bo2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yujun-bo2](https://clawhub.ai/user/yujun-bo2)
 
-## Use Case: <br>
-External users and agents use this skill to analyze long romantic or relationship chat histories that the user intentionally provides, with emphasis on recurring communication patterns, conflict cycles, repair attempts, boundaries, effort balance, and unsupported conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Relationship chats can contain intimate content, identifiers, third-party details, abuse disclosures, or other sensitive information. <br>
-Mitigation: Process only chats the user explicitly provides or identifies, minimize retained content, redact unnecessary identifiers, and avoid storing raw full chat logs. <br>
-Risk: Generated reports or manifests written to local storage may persist in backups, sync tools, search indexes, or later processes. <br>
-Mitigation: Tell the user the planned output paths and write files only after consent or an explicit file-output request. <br>
-Risk: Relationship analysis can overstate motives, diagnoses, or conclusions not supported by the messages. <br>
-Mitigation: Ground major claims in dated examples or short quotes, separate observation from interpretation, state uncertainty, and avoid clinical or legal conclusions. <br>
+## Use Case:
 
+External users and agents use this skill to analyze explicitly supplied romantic or relationship chat logs, especially long or noisy exports, for recurring communication patterns, conflict and repair cycles, effort balance, boundaries, and safety concerns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yujun-bo2/relationship-chat-analysis-skill) <br>
-- [README](README.md) <br>
-- [Detailed orchestration guide](references/instructions.md) <br>
-- [Chat cleaning and normalization prompt](references/cleaning-prompt.md) <br>
-- [Episode-level extraction prompt](references/extraction-prompt.md) <br>
-- [Cross-episode synthesis prompt](references/synthesis-prompt.md) <br>
-- [Blind spot and safety review prompt](references/blindspot-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown relationship analysis report with optional redacted JSON corpus manifest] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should use short evidence quotes, redact unnecessary identifiers, avoid raw full chat logs, and separate observations from interpretations and uncertainty.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill processes intimate relationship chat records that may contain identifiers, sexual content, abuse disclosures, or third-party details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Analyze only records the user explicitly provides or identifies, redact unnecessary identifiers, and avoid storing raw full chat logs.
+
+Risk: Generated reports and manifests may persist in local backups, sync services, search indexes, or later processes.
+
+Mitigation: Disclose planned output paths and write files only with user consent unless file output was explicitly requested.
+
+Risk: Relationship analysis can overstate motives, diagnoses, or safety conclusions from incomplete chat evidence.
+
+Mitigation: Separate observations from interpretations and uncertainty, avoid diagnosis or mind-reading, and flag safety concerns only from observable evidence.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yujun-bo2/skills/relationship-chat-analysis-skill)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Detailed Implementation Guide](artifact/references/instructions.md)
+- [Chat Cleaning And Normalization Prompt](artifact/references/cleaning-prompt.md)
+- [Episode-Level Relationship Extraction Prompt](artifact/references/extraction-prompt.md)
+- [Cross-Episode Relationship Synthesis Prompt](artifact/references/synthesis-prompt.md)
+- [Relationship Blind Spot And Safety Review Prompt](artifact/references/blindspot-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown analysis report with optional redacted JSON corpus manifest]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses short supporting excerpts and avoids storing raw full chat logs by default.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

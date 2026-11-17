@@ -1,42 +1,54 @@
-## Description: <br>
-Evaluate external skills before installation and decide whether to install, reject, or absorb only the useful ideas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate external skills before installation and decide whether to install, reject, or absorb only the useful ideas.
 
-## Publisher: <br>
-[G-Hanasq](https://clawhub.ai/user/G-Hanasq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[g-hanasq](https://clawhub.ai/user/g-hanasq)
 
-## Use Case: <br>
-Developers and agents use this skill to perform read-only intake reviews of external ClawHub or GitHub skills before installation. It helps classify a candidate skill, identify static and dynamic validation needs, and recommend installation, rejection, postponement, or absorbing useful ideas only. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage agents to carry ideas from untrusted external skills into persistent workflow or memory files. <br>
-Mitigation: Use it for read-only review by default, require explicit user approval before any persistent file updates, and inspect the exact proposed changes before writing them. <br>
-Risk: A candidate skill may require runtime validation beyond static file review before it is safe or useful. <br>
-Mitigation: Treat static review and dynamic validation as separate steps, and only call a skill fully ready after the required environment level has been tested. <br>
+## Use Case:
 
+Developers and agent operators use this skill to review external ClawHub or GitHub skills before installation, classify their risk and fit, and choose whether to install, reject, postpone, or absorb ideas only.
 
-## Reference(s): <br>
-- [Skill Intake Checklist](references/checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/G-Hanasq/skill-shell) <br>
-- [Publisher Profile](https://clawhub.ai/user/G-Hanasq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown report with recommendation labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces skill review conclusions, risk notes, fit assessment, and installation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Risk: The skill may guide an agent to promote ideas from an untrusted skill into persistent workflow or memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval, exact diffs, clear destination paths, and rewritten notes before any absorb-ideas action.
+
+Risk: The skill provides workflow guidance rather than executable validation, so installation readiness can remain uncertain after static review alone.
+
+Mitigation: Treat static review as preliminary and require main-agent dynamic validation before calling an external skill fully usable.
+
+## Reference(s):
+
+- [Skill Intake Checklist](references/checklist.md)
+- [ClawHub Skill Shell listing](https://clawhub.ai/g-hanasq/skills/skill-shell)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review report with recommendation labels and risk classification]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision-oriented output; may identify static review findings, required dynamic validation, environment sensitivity, risks, and fit with the current workflow.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

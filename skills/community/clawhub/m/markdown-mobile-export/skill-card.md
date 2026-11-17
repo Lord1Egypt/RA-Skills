@@ -1,45 +1,54 @@
-## Description: <br>
-Use when a task needs a local Markdown file path or pasted Markdown text converted into a faithful mobile-friendly PNG/JPG long image for phone-readable articles, guides, notes, or reports, with HTML kept beside the image for inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a task needs a local Markdown file path or pasted Markdown text converted into a faithful mobile-friendly PNG/JPG long image for phone-readable articles, guides, notes, or reports, with HTML kept beside the image for inspection.
 
-## Publisher: <br>
-[LINSUISHENG034](https://clawhub.ai/user/LINSUISHENG034) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linsuisheng034](https://clawhub.ai/user/linsuisheng034)
 
-## Use Case: <br>
-Developers, writers, and operators use this skill to convert local or pasted Markdown into phone-readable PNG or JPG long images while retaining an HTML sidecar for inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install Python packages and Playwright Chromium during normal use. <br>
-Mitigation: Run it in an isolated virtual environment or container, or preinstall reviewed dependencies before use. <br>
-Risk: Markdown text, generated HTML sidecars, and .source.md files may remain on disk. <br>
-Mitigation: Avoid sensitive Markdown unless the output directory is controlled, and delete retained source and HTML files after export when needed. <br>
-Risk: Remote images in Markdown may fail to load because of broken URLs, network restrictions, or host rate limiting. <br>
-Mitigation: Inspect the generated HTML and image output before distribution, and verify external image sources when completeness matters. <br>
+## Use Case:
 
+Developers and content authors use this skill to convert local Markdown files or pasted Markdown into phone-readable long-form PNG/JPG images while retaining an HTML sidecar for inspection.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/LINSUISHENG034/markdown-mobile-export) <br>
-- [Publisher Profile](https://clawhub.ai/user/LINSUISHENG034) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Markdown, Code, Configuration] <br>
-**Output Format:** [JSON status output plus generated PNG/JPG image and HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a normalized Markdown source file for pasted text, an HTML sidecar, and a full-page mobile long-image capture.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and skill metadata) <br>
+Risk: The skill may modify the Python environment by installing required packages or browser components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment and preinstall expected dependencies where possible.
+
+Risk: Untrusted Markdown can include raw HTML or remote content that is rendered in Chromium.
+
+Mitigation: Avoid untrusted Markdown or disable raw HTML and remote network requests before processing.
+
+## Reference(s):
+
+- [Workflow](references/workflow.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; script output is JSON with generated Markdown, HTML, and image file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces PNG or JPG long images and retains an HTML sidecar on disk.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

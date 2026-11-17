@@ -1,46 +1,65 @@
-## Description: <br>
-Essentialist is an autonomous outbound revenue skill for prospect discovery, email sequencing, reply handling, lead qualification, and meeting booking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Essentialist is an API-first outbound revenue skill for agents that deploys sales campaigns, sources prospects, handles email sequencing and replies, qualifies leads, and books meetings.
 
-## Publisher: <br>
-[keddleman](https://clawhub.ai/user/keddleman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keddleman](https://clawhub.ai/user/keddleman)
 
-## Use Case: <br>
-Agents and sales operators use this skill to configure and run outbound sales campaigns, source or import prospects, monitor engagement, and advance qualified leads toward meetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill pushes agents toward account setup and outbound campaign actions without clear user approval boundaries. <br>
-Mitigation: Require explicit approval before registration, contact uploads, campaign activation, bulk sends, autonomous replies, or meeting booking. <br>
-Risk: Outbound sales automation can create privacy, anti-spam, and deliverability exposure. <br>
-Mitigation: Verify the target audience, outreach basis, suppression handling, and compliance requirements before sending campaigns. <br>
-Risk: The skill can involve paid upgrades or third-party sending-domain credentials. <br>
-Mitigation: Require explicit confirmation before purchases, upgrades, or Mailgun credential submission, and verify the service URL and publisher first. <br>
+## Use Case:
 
+Developers and revenue operators use this skill to connect an agent to the Essentialist platform for outbound sales workflows, including registration, campaign setup, contact-list import, monitoring, and lead reporting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/keddleman/essentialist) <br>
-- [Essentialist Agent Entry Point](https://agents.essentialist.io) <br>
-- [Essentialist Website](https://essentialist.io) <br>
-- [Essentialist API Reference](references/api-reference.md) <br>
-- [Cold Email Best Practices](references/email-best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ESSENTIALIST_API_URL, ESSENTIALIST_API_KEY, curl, and jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.1.0 (source: release evidence) <br>
+Risk: The skill may steer an agent toward registration, contact uploads, campaign activation, or bulk email sends without clear user consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before registration, contact import, campaign activation, and bulk send operations.
+
+Risk: The skill routes outbound-sales activity and contact data through an external service.
+
+Mitigation: Install only when external Essentialist platform operation is intended, and pin ESSENTIALIST_API_URL to a verified Essentialist-owned HTTPS hostname.
+
+Risk: Mailgun credentials and upgrade or payment flows may be handled during setup.
+
+Mitigation: Require explicit confirmation before Mailgun credential submission and before presenting or using upgrade/payment links.
+
+Risk: The documented registration flow can return existing credentials for an already registered email address.
+
+Mitigation: Confirm that the existing-credentials registration behavior has been fixed before deployment.
+
+## Reference(s):
+
+- [Essentialist API Reference](references/api-reference.md)
+- [Cold Email Best Practices](references/email-best-practices.md)
+- [Essentialist Agent Entry Point](https://agents.essentialist.io)
+- [Essentialist Website](https://essentialist.io)
+- [ClawHub Skill Page](https://clawhub.ai/keddleman/skills/essentialist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, ESSENTIALIST_API_URL, and ESSENTIALIST_API_KEY for authenticated platform operations.]
+
+## Skill Version(s):
+
+5.1.0 (source: server release evidence; artifact frontmatter and clawhub.json show 4.8.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

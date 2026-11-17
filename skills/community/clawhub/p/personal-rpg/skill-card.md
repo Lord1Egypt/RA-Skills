@@ -1,41 +1,53 @@
-## Description: <br>
-个人RPG系统 - 将日常变成游戏，完成任务获得经验值，升级解锁新能力 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+个人RPG系统将日常任务转化为 RPG 任务，帮助用户通过完成任务获得经验值、提升等级并解锁能力。
 
-## Publisher: <br>
-[yansocool](https://clawhub.ai/user/yansocool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yansocool](https://clawhub.ai/user/yansocool)
 
-## Use Case: <br>
-External users use this skill to turn personal tasks into an RPG-style progress system with tasks, experience points, levels, attributes, achievements, and statistics. It is suited for local personal productivity tracking where the user is comfortable storing task and progress records on disk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task descriptions, completion history, achievements, stats, and character progress are stored as local JSON files. <br>
-Mitigation: Avoid entering sensitive personal details unless local retention is acceptable, and delete the local personal-rpg data directory to reset or remove records. <br>
-Risk: The skill modifies local progress files as part of normal task tracking behavior. <br>
-Mitigation: Review the local workspace path and keep backups if the task history or character progress should be preserved. <br>
+## Use Case:
 
+External users use this skill as a Chinese-language personal task tracker that frames daily work as RPG-style quests with XP, levels, attributes, achievements, and progress summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yansocool/personal-rpg) <br>
-- [Project homepage](https://github.com/openclaw/personal-rpg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON files, guidance] <br>
-**Output Format:** [Plain text status messages and local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists character, task, achievement, and statistics data under the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores personal task and progress data locally under the OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local storage of this data is acceptable, and avoid recording sensitive personal information.
+
+Risk: Complete and delete commands change task state and may remove tasks from the active task list.
+
+Mitigation: Review task IDs before running data-changing commands and keep backups of local JSON state when recovery matters.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/openclaw/personal-rpg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands]
+
+**Output Format:** [CLI text output with local JSON state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists character, task, achievement, statistics, and configuration data under the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

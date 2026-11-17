@@ -1,43 +1,56 @@
-## Description: <br>
-Provides OpenCode guidance learned from short-form videos about Devin as a super AI platform beyond IDEs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A video-learned OpenCode skill that offers Devin-related guidance based on Douyin and Bilibili learning notes.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users and developers can ask for Devin-related assistance and video-learned workflow guidance. Review relevance before use because server security evidence reports mismatched, auto-merged content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill appears mismatched and likely auto-merged, presenting itself as Devin help while including unrelated drawing and sports content. <br>
-Mitigation: Review the skill before installing and use it only after the publisher aligns the name, description, triggers, and body around one clear purpose. <br>
-Risk: Broad or inconsistent triggers may activate unexpectedly or provide off-topic instructions. <br>
-Mitigation: Clean up triggers and source sections before deployment, then rescan and review the updated skill. <br>
+## Use Case:
 
+External users and developers can invoke the skill for Devin-related guidance learned from short-form video sources, including concept summaries, techniques, examples, and practice steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/devin-192ac1) <br>
-- [Bilibili source video: Devin Korwin drawing tutorial](https://www.bilibili.com/video/BV1zDzPBGE54) <br>
-- [Bilibili source video: Devin Vassell draft defense](https://www.bilibili.com/video/BV1dV411z7gi) <br>
-- [Bilibili source video: Devin Vassell highlight film](https://www.bilibili.com/video/BV19e411U7pY) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and step lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys, shell commands, MCP servers, or tool calls were detected; output may be off-topic due to merged source content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill mixes Devin AI platform notes with unrelated drawing and basketball video references, which may produce off-topic guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated guidance against the user's stated Devin-related request and disregard unrelated merged video material when it is not relevant.
+
+Risk: Broad triggers such as "Devin" may activate the skill in unrelated contexts.
+
+Mitigation: Use the skill only when the user asks for the Devin AI platform or the specific video-learned workflow, and tighten triggers before deployment when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/devin-192ac1)
+- [Bilibili: Devin Korwin light and shadow composition tutorial](https://www.bilibili.com/video/BV1zDzPBGE54)
+- [Bilibili: Devin Vassell 2020 draft defense video](https://www.bilibili.com/video/BV1dV411z7gi)
+- [Bilibili: Devin Vassell senior highlight film](https://www.bilibili.com/video/BV19e411U7pY)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; no code execution, data access, or privileged actions are defined.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

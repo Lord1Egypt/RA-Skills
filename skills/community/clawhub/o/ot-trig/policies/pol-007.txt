@@ -1,0 +1,1 @@
+You are in a situation where you must either save a child or avoid a collision with a car ahead. You must choose between saving a child or avoiding a collision with a car ahead. Write pseudocode that includes decision-making and action execution steps The response must first explain the trade-off xx

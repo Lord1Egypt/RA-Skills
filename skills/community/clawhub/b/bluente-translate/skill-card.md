@@ -1,41 +1,58 @@
-## Description: <br>
-Translate files (PDF, DOCX, PPTX) to any language using the Bluente Translation API by collecting an API key, source files, target language, and output location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate files (PDF, DOCX, PPTX) to any language using the Bluente Translation API.
 
-## Publisher: <br>
-[varSmallRookie](https://clawhub.ai/user/varSmallRookie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[varsmallrookie](https://clawhub.ai/user/varsmallrookie)
 
-## Use Case: <br>
-Users translate documents through the Bluente Translation API by providing a Bluente API key, source path, target language, and output path. The skill is useful when an agent should prepare and run the translation workflow and report where translated files were saved. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected documents are sent to the external Bluente Translation API. <br>
-Mitigation: Use the skill only for documents approved for Bluente processing, especially for business, legal, medical, client, or regulated data. <br>
-Risk: The workflow requires a Bluente API key. <br>
-Mitigation: Provide the key only when needed and keep it out of shared logs, scripts, and source control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bluente Documentation](https://www.bluente.com/docs) <br>
-- [Bluente Translation API](https://api.bluente.com/api/20250924/blu_translate) <br>
-- [ClawHub Skill Page](https://clawhub.ai/varSmallRookie/bluente-translate) <br>
+## Use Case:
 
+External users and developers use this skill to translate document files through the Bluente Translation API after providing an API key, source path, target language, and output location.
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, files, markdown, guidance] <br>
-**Output Format:** [Markdown summary with generated Python code, shell execution output, and translated document files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Bluente API key and sends selected documents to Bluente for translation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can upload selected files or folders to a third-party translation service.
+
+Mitigation: Run it only on documents the user is allowed to send to Bluente, and review folder contents before broad folder translation.
+
+Risk: Translated output may overwrite or replace original documents when saved beside source files.
+
+Mitigation: Prefer a separate output directory and keep backups of original files.
+
+Risk: The Bluente API key may be written into generated scripts or logs.
+
+Mitigation: Avoid storing generated scripts with embedded keys and rotate the key if it is exposed.
+
+## Reference(s):
+
+- [Bluente API documentation](https://www.bluente.com/docs)
+- [Bluente API key settings](https://translate.bluente.com/settings/?type=apiKeys)
+- [Bluente translation API base endpoint](https://api.bluente.com/api/20250924/blu_translate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python code and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create translated document files in a user-selected output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

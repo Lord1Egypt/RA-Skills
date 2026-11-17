@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/coverage-guard-2.0.json",
+  "title": "Omni E-commerce Report Coverage Guard Receipt",
+  "type": "object",
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "run_id", "client_scope", "team_version", "generated_at", "status", "inventory_sha256_ref", "chapter_plan_sha256_ref", "stats", "checks", "blocking_failures"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "coverage_guard_receipt"},
+    "contract_name": {"const": "omni-ecom.coverage-guard"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.coverage-guard@1.0"], "current_analysis_authority": false}},
+    "run_id": {"type": "string", "minLength": 3},
+    "client_scope": {"type": "string", "minLength": 1},
+    "team_version": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "minLength": 8},
+    "status": {"enum": ["coverage_blocked", "coverage_passed", "coverage_passed_with_gaps"]},
+    "inventory_sha256_ref": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "chapter_plan_sha256_ref": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "stats": {"type": "object"},
+    "checks": {"type": "array"},
+    "blocking_failures": {"type": "array"}
+  }
+}

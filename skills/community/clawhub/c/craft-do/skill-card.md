@@ -1,43 +1,58 @@
-## Description: <br>
-Integrates with Craft.do to automate tasks, manage documents and folders, edit markdown content, and migrate selected Obsidian vault notes through the Craft REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate with Craft.do to automate tasks, create and manage documents and folders, edit markdown content, and migrate Obsidian vaults using the Craft REST API.
 
-## Publisher: <br>
-[atomtanstudio](https://clawhub.ai/user/atomtanstudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atomtanstudio](https://clawhub.ai/user/atomtanstudio)
 
-## Use Case: <br>
-Developers and automation users use this skill to operate Craft.do through its REST API, automate task and document workflows, and migrate selected Obsidian vault notes into Craft. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The cleanup script can erase broad Craft workspace content by deleting user-created folders and moving documents to trash. <br>
-Mitigation: Back up Craft first, test in a non-critical workspace, and run cleanup only when the operator explicitly intends to remove workspace content. <br>
-Risk: The skill requires a Craft API key and can upload selected vault note content to Craft. <br>
-Mitigation: Store the API key securely, scope usage to intended vaults and workspaces, and review notes before migration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/atomtanstudio/craft-do) <br>
-- [Craft API Documentation](https://craft.do/api) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Guide](artifact/SKILL.md) <br>
-- [Craft API helper script](artifact/craft-api.sh) <br>
+## Use Case:
 
+Developers and operators use this skill to automate Craft.do documents, folders, tasks, and markdown content. It also supports one-time migration of Obsidian vaults into Craft.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and shell script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Craft API credentials in environment variables and may create, update, move, or delete Craft workspace content through API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a powerful Craft API token for bulk uploads and destructive changes.
+
+Mitigation: Use a narrowly scoped, revocable Craft API key, back up or export important Craft and Obsidian data before running scripts, and avoid unattended migration or cleanup runs.
+
+Risk: The scripts trust the configured CRAFT_ENDPOINT.
+
+Mitigation: Verify CRAFT_ENDPOINT is the official HTTPS Craft endpoint before every run.
+
+Risk: The cleanup script can move documents to trash and delete user-created folders.
+
+Mitigation: Run cleanup only after reviewing the target Craft space and confirming the interactive prompt intentionally.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/atomtanstudio/skills/craft-do)
+- [Craft API Documentation](https://craft.do/api)
+- [Craft Blog - Collections](https://www.craft.do/blog/introducing-collections)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Bash scripts, curl examples, and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Craft API key, a Craft endpoint, curl, jq, and an Obsidian vault path when running migration scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, created 2026-01-31T18:55:20Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

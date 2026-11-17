@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "PDF.co"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["pdf_co"]
   icon: "https://static.oomol.com/logo/third-party/pdf_co.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `compress_pdf` — Compress a PDF URL and return the generated compressed PDF file URL.
+- `compress_pdf` — Compress a PDF URL and return the generated compressed PDF file URL. [write]
 - `get_account_balance` — Get the current PDF.co account credit balance for the API key.
 - `get_pdf_info` — Read metadata, page information, and security details from a PDF URL.
 - `html_to_pdf` — Convert raw HTML into a PDF document and return the generated file URL.
@@ -75,11 +75,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — PDF.co is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=pdf_co
+  https://console.oomol.com/connections/pdf_co
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - PDF.co homepage: https://pdf.co
+- API documentation: https://docs.pdf.co/api-reference/index

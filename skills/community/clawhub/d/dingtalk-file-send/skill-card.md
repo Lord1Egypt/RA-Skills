@@ -1,43 +1,56 @@
-## Description: <br>
-Upload and send files to DingTalk users. Auto-detects account from current session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload and send files to DingTalk users. Auto-detects account from current session. Use when: user asks to send/forward a file/document/PDF/image via DingTalk.
 
-## Publisher: <br>
-[kenriou](https://clawhub.ai/user/kenriou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenriou](https://clawhub.ai/user/kenriou)
 
-## Use Case: <br>
-Employees and developers use this skill to upload a local file to DingTalk and send it to a specified DingTalk user through a configured account binding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A selected local file could be sent to the wrong DingTalk recipient or from the wrong configured account. <br>
-Mitigation: Before each use, confirm the exact file path, DingTalk account binding, and recipient user ID. <br>
-Risk: Confidential documents could be uploaded to DingTalk if the requested file is sensitive. <br>
-Mitigation: Review the file path and document sensitivity before allowing the upload and send workflow to proceed. <br>
-Risk: The workflow depends on local DingTalk credentials and OpenClaw binding data. <br>
-Mitigation: Install and use only when the local OpenClaw DingTalk configuration is expected, current, and authorized for the target recipient. <br>
+## Use Case:
 
+Employees and agents use this skill to upload local files to DingTalk and send them to specified DingTalk users through a configured OpenClaw DingTalk account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenriou/dingtalk-file-send) <br>
-- [Publisher profile](https://clawhub.ai/user/kenriou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces DingTalk API command guidance for file upload, message send, and delivery-status checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server-resolved release evidence) <br>
+Risk: The skill can automatically use local OpenClaw DingTalk credentials and upload selected local files to DingTalk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation that shows the file path, recipient user ID, and resolved DingTalk account before upload or send.
+
+Risk: Fallback account selection can send through an unintended DingTalk account when no binding is found.
+
+Mitigation: Remove fallback account selection behavior or require the account binding to resolve before continuing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenriou/skills/dingtalk-file-send)
+- [DingTalk access token API](https://api.dingtalk.com/v1.0/oauth2/accessToken)
+- [DingTalk media upload API](https://oapi.dingtalk.com/media/upload)
+- [DingTalk robot message API](https://api.dingtalk.com/v1.0/robot/oToMessages/batchSend)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command examples for selecting a DingTalk account, uploading a file, sending the message, and checking delivery status.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

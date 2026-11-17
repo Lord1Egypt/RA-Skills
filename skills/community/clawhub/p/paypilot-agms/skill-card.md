@@ -1,49 +1,62 @@
-## Description: <br>
-PayPilot by AGMS helps agents process payments, send invoices, issue refunds, manage subscriptions, review sales, and work with fraud controls through a secure payment gateway proxy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process payments, send invoices, issue refunds, manage subscriptions, and detect fraud via a secure payment gateway proxy.
 
-## Publisher: <br>
-[agmsyumet](https://clawhub.ai/user/agmsyumet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agmsyumet](https://clawhub.ai/user/agmsyumet)
 
-## Use Case: <br>
-Merchants and their agents use this skill to create invoices or payment links, process vaulted-card charges, issue refunds and voids, manage subscriptions, review transaction summaries, and configure fraud rules while avoiding raw card handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make real financial changes with a saved token, including charges, refunds, voids, subscription changes, gateway configuration, and fraud-rule changes. <br>
-Mitigation: Require explicit final user approval before each high-impact payment, subscription, gateway, or fraud-rule action, and prefer invoice links over direct vaulted-card charges when practical. <br>
-Risk: Payment tokens, gateway keys, merchant data, or customer payment data could be mishandled if the agent or user bypasses the documented security practices. <br>
-Mitigation: Keep tokens and gateway keys in protected config files, rotate saved tokens when needed, never collect raw card numbers or sensitive merchant PII in chat, and use hosted payment forms or vault tokens. <br>
-Risk: The server security verdict is suspicious because the payment workflow depends on a third-party PayPilot/AGMS service for payment operations and merchant data. <br>
-Mitigation: Install only if PayPilot/AGMS is trusted for payment operations, and independently verify its compliance, support practices, and account controls before using it with a real merchant account. <br>
+## Use Case:
 
+External merchants and payment operators use this skill to set up PayPilot access, send payment links, process vaulted-card charges, issue refunds or voids, manage subscriptions, review sales activity, and configure fraud rules.
 
-## Reference(s): <br>
-- [PayPilot Homepage](https://agms.com/paypilot/) <br>
-- [ClawHub Listing](https://clawhub.ai/agmsyumet/paypilot-agms) <br>
-- [Gateway API Reference](references/gateway-api.md) <br>
-- [Payment Flows](references/payment-flows.md) <br>
-- [PCI Compliance & Data Security](references/pci-compliance.md) <br>
-- [PayPilot OpenAPI Spec](https://paypilot.agms.com/openapi.json) <br>
-- [PayPilot AI Plugin Manifest](https://paypilot.agms.com/.well-known/ai-plugin.json) <br>
-- [PayPilot LLM Resource Index](https://paypilot.agms.com/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; uses a local PayPilot config file and the PayPilot HTTPS API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.5 (source: server release metadata) <br>
+Risk: The skill can guide an agent through live payment, refund, void, subscription, and fraud-rule changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit manual confirmation before every money-moving or account-changing action.
+
+Risk: Payment credentials, gateway keys, bearer tokens, card data, and merchant passwords could be exposed through chat or local files.
+
+Mitigation: Do not paste secrets or card data into chat; prefer browser or secret-manager setup, least-privilege short-lived tokens, hosted payment pages, and vaulted card tokens.
+
+Risk: The server security verdict is suspicious because the skill asks agents to handle payment workflows without strong confirmation and scoping controls.
+
+Mitigation: Install only if the PayPilot/AGMS service is trusted and confirm local operating controls before enabling production use.
+
+## Reference(s):
+
+- [PayPilot Homepage](https://agms.com/paypilot/)
+- [Gateway API Reference](references/gateway-api.md)
+- [Payment Flows](references/payment-flows.md)
+- [PCI Compliance & Data Security](references/pci-compliance.md)
+- [PayPilot OpenAPI Specification](https://paypilot.agms.com/openapi.json)
+- [PayPilot LLM Resource Index](https://paypilot.agms.com/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; produces payment workflow guidance and API command examples for user-approved actions.]
+
+## Skill Version(s):
+
+1.3.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Suggest triage levels (Emergency, Urgent, Outpatient) based on red flag symptoms using a rule-based engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Suggests triage levels (Emergency, Urgent, Outpatient) from symptom descriptions using rule-based red flag matching for AI-assisted decision support, not professional diagnosis.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers can use this skill to triage natural-language symptom descriptions into Emergency, Urgent, or Outpatient levels and produce structured rationale, red flags, recommendations, and safety disclaimers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical triage output may be wrong, incomplete, or overconfident because it is a lightweight rule-based aid. <br>
-Mitigation: Preserve the warning on every response, avoid presenting results as diagnosis or treatment, and route urgent or unclear symptoms to professional medical care. <br>
-Risk: Emergency-service instructions may be region-specific if the response tells users to call 911. <br>
-Mitigation: Tell users to contact their local emergency number unless the deployment context confirms 911 is appropriate. <br>
-Risk: The skill can be misused for diagnosis, prescriptions, lab interpretation, or general medical advice outside its stated scope. <br>
-Mitigation: Limit use to symptom-triage descriptions and refuse out-of-scope medical requests using the documented scope message. <br>
+## Use Case:
 
+External users and developers use this skill to produce a structured triage suggestion from a natural language symptom description. It identifies matched red flags, rationale, recommended next steps, and safety disclaimers without providing diagnosis or treatment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/symptom-checker-triage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown triage report or JSON object with triage level, confidence, red flags, rationale, recommendation, department, and warning.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rule-based local output; every result should preserve the medical disclaimer and direct urgent or unclear cases to professional care.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can under-triage serious symptoms and should not be treated as a dependable medical triage system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a rough demonstration unless red-flag matching, low-confidence fallback behavior, and disclaimer display are reviewed and fixed for the intended workflow.
+
+Risk: Case-insensitive matching and the claimed Chinese-language support may be incomplete, which can miss relevant red flags.
+
+Mitigation: Validate multilingual and mixed-case symptom examples against expected triage outcomes before any real medical use.
+
+Risk: Unnecessary requirements entries can create avoidable install confusion, and future unpinned dependencies could add supply-chain risk.
+
+Mitigation: Remove unnecessary standard-library requirements and pin any future third-party dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/symptom-checker-triage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown triage report or JSON object with CLI usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes triage level, confidence, red flags, rationale, recommendation, department, and medical disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

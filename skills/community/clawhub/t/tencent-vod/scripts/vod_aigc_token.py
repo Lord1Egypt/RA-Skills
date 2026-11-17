@@ -13,11 +13,11 @@ Token 没有过期时间，创建后需等约 1 分钟同步到网关。
   usage    查询 AIGC 用量统计（Video/Image/Text）
 
 用法示例：
-  python scripts/vod_aigc_token.py create
-  python scripts/vod_aigc_token.py list
-  python scripts/vod_aigc_token.py delete --api-token <api_token>
-  python scripts/vod_aigc_token.py usage --type Text --start 2026-03-01 --end 2026-03-19
-  python scripts/vod_aigc_token.py usage --type Video --start 2026-03-01 --end 2026-03-19
+  python3 scripts/vod_aigc_token.py create
+  python3 scripts/vod_aigc_token.py list
+  python3 scripts/vod_aigc_token.py delete --api-token <api_token>
+  python3 scripts/vod_aigc_token.py usage --type Text --start 2026-03-01 --end 2026-03-19
+  python3 scripts/vod_aigc_token.py usage --type Video --start 2026-03-01 --end 2026-03-19
 """
 
 import argparse
@@ -45,13 +45,23 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("❌ 缺少依赖，请先安装：pip install tencentcloud-sdk-python", file=sys.stderr)
+    print("❌ 缺少依赖，请先安装：python3 -m pip install tencentcloud-sdk-python", file=sys.stderr)
     sys.exit(1)
 
-DEFAULT_REGION = "ap-guangzhou"
+FALLBACK_REGION = "ap-guangzhou"
 
 
-def get_client(region: str = DEFAULT_REGION):
+def default_region() -> str:
+    """获取默认地域。
+
+    必须在调用时（而非 import 时）读取环境变量：.env 的加载发生在
+    main() / get_credential() 内，若在模块级求值会早于 .env 加载，
+    导致用户在 .env 中配置的 TENCENTCLOUD_REGION 被忽略。
+    """
+    return os.getenv("TENCENTCLOUD_REGION", FALLBACK_REGION)
+
+
+def get_client(region: str = None):
     """创建 VOD 客户端。若环境变量缺失则尝试从 dotenv 文件自动加载。"""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
@@ -62,16 +72,23 @@ def get_client(region: str = DEFAULT_REGION):
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("❌ 未配置腾讯云密钥，请设置环境变量：", file=sys.stderr)
-                print("   TENCENTCLOUD_SECRET_ID", file=sys.stderr)
-                print("   TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # 检查所有必需变量（SECRET_ID/KEY/SUB_APP_ID）
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("❌ 未配置腾讯云密钥，请设置环境变量：", file=sys.stderr)
+        print("   TENCENTCLOUD_SECRET_ID", file=sys.stderr)
+        print("   TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
     cred = credential.Credential(secret_id, secret_key)
+    # region 兜底必须放在 dotenv 加载之后：此时 .env 中的
+    # TENCENTCLOUD_REGION 才已进入 os.environ
+    if region is None:
+        region = default_region()
     return vod_client.VodClient(cred, region)
 
 
@@ -343,8 +360,8 @@ def build_parser():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
-    parser.add_argument("--region", default=DEFAULT_REGION,
-                        help=f"地域（默认 {DEFAULT_REGION}）")
+    parser.add_argument("--region", default=default_region(),
+                        help=f"地域（默认 {default_region()}）")
     parser.add_argument("--sub-app-id", type=int,
                         default=int(os.environ.get("TENCENTCLOUD_VOD_SUB_APP_ID", 0)) or None,
                         help="VOD 子应用 ID（2023年12月后开通的用户必须填写，也可通过环境变量 TENCENTCLOUD_VOD_SUB_APP_ID 设置）")
@@ -401,6 +418,13 @@ def build_parser():
 
 # NOCA:CCN(complex function with multiple execution paths, splitting would reduce readability)
 def main():
+    # 先加载 .env，确保 build_parser() 中 argparse `default=os.environ.get(...)` 求值前环境变量已就绪
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = build_parser()
     args = parser.parse_args()
 

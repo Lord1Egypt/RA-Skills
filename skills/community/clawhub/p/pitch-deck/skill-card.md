@@ -1,42 +1,54 @@
-## Description: <br>
-Creates pitch deck outlines, storytelling structure, investor Q&A preparation, demo day materials, and feedback improvements for fundraising presentations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pitch Deck helps agents create pitch deck outlines, slide structures, fundraising storylines, investor Q&A preparation, demo day materials, and feedback improvements.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Founders, startup teams, and fundraising advisors use this skill to draft pitch deck structure, market and financial talking points, investor Q&A preparation, and demo day materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The utility may store user-entered data and command history in local files. <br>
-Mitigation: Do not enter API keys, passwords, tokens, private identifiers, or sensitive notes unless local storage is acceptable; inspect file permissions and remove local history or data files when no longer needed. <br>
-Risk: Generated fundraising, market-size, and financial guidance may be incomplete or based on user-provided assumptions. <br>
-Mitigation: Review all pitch deck content, calculations, and investor materials with qualified business, finance, and legal reviewers before relying on them. <br>
+## Use Case:
 
+Developers, founders, and fundraising teams use this skill to draft investor-facing pitch deck structures, market-sizing sections, financial projections, competitor analysis, and preparation material for investor conversations or demo days.
 
-## Reference(s): <br>
-- [Pitch Deck on ClawHub](https://clawhub.ai/ckchzh/pitch-deck) <br>
-- [Pitch Deck 12-slide Tips](artifact/tips.md) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text guidance with shell command examples and console-style tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write user-entered data and command history to local files when utility commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.6 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Confidential fundraising or business inputs may be stored locally in plaintext history or data files by the generic helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, access-controlled data directory, avoid entering confidential material unless local retention is acceptable, and review or remove generated local data files after use.
+
+Risk: The helper's removal behavior may give users the impression that stored entries were deleted when they were not fully removed.
+
+Mitigation: Manually inspect the configured data directory and delete retained data or history files when removal of sensitive entries is required.
+
+## Reference(s):
+
+- [Pitch Deck tips](artifact/tips.md)
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/pitch-deck)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with command-oriented pitch deck guidance and tabular calculations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include slide outlines, market-sizing calculations, unit economics, financial projections, competitive analysis prompts, and investor preparation guidance.]
+
+## Skill Version(s):
+
+2.3.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

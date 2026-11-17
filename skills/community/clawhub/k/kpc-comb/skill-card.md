@@ -1,38 +1,52 @@
-## Description: <br>
-Visualize Key Purchase Criteria importance and performance. Use for competitive positioning and product strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize Key Purchase Criteria importance and performance. Use for competitive positioning and product strategy.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Product strategists, product marketers, and competitive analysts use this skill to compare key purchase criteria by importance and performance, identify competitive gaps, and draft action plans.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broad business-analysis wording outside a specific key-purchase-criteria task.
+
+Mitigation: Invoke it when the user specifically wants KPC analysis, competitive positioning, or purchase-criteria visualization.
+
+Risk: Strategic recommendations may be incomplete if purchase criteria are not validated against customers or segments.
+
+Mitigation: Review outputs with current customer research and segment-specific evidence before using them for product or positioning decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Product, strategy, and competitive-positioning teams use this skill to compare key purchase criteria by importance and performance, identify gaps, and outline action priorities. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated strategy recommendations may reflect incorrect business assumptions or unvalidated market data. <br>
-Mitigation: Verify business assumptions, market data, and customer research before relying on recommendations for product or competitive decisions. <br>
+**Output Format:** [Markdown analysis with tables and text visualizations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuszz/kpc-comb) <br>
+**Other Properties Related to Output:** [Produces criteria analysis, comb visualization, strategic implications, and action plan guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with tables and text-based visualizations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces criteria analysis, comb visualization, strategic implications, and action plan recommendations.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

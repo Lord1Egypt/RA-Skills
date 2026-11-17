@@ -1,46 +1,60 @@
-## Description: <br>
-Provides documentation and patch files for Clawdbot/Moltbot to make TTS auto-replies work for inbound Discord voice memos when block streaming is enabled. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides documentation and patch files for Clawdbot/Moltbot so TTS auto-replies can run for inbound Discord voice memos when block streaming would otherwise suppress the final payload.
 
-## Publisher: <br>
-[koto9x](https://clawhub.ai/user/koto9x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[koto9x](https://clawhub.ai/user/koto9x)
 
-## Use Case: <br>
-Developers and bot operators use this skill when Clawdbot or Moltbot text-to-speech works for text messages but does not trigger for inbound voice memos. It provides patch files, manual installation steps, testing guidance, and rollback instructions for the TTS auto-reply path. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The patch overwrites core Clawdbot distribution files, which can break bot behavior or be lost on upgrades. <br>
-Mitigation: Review the patch against the exact Clawdbot version, back up original files, test in a non-production bot first, and keep the documented rollback path ready. <br>
-Risk: Verbose TTS debug logging can expose message text and fragments of credential state in logs. <br>
-Mitigation: Remove or gate all TTS debug console logs before use with real users and restrict log access during testing. <br>
-Risk: Remote TTS providers may receive sensitive conversation text. <br>
-Mitigation: Use remote TTS only when sending the generated text to the configured provider is acceptable for the conversation context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/koto9x/discord-voice-memo-upgrade) <br>
-- [README.md](artifact/README.md) <br>
-- [PATCH.md](artifact/PATCH.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
-- [Publisher profile](https://clawhub.ai/user/koto9x) <br>
+## Use Case:
 
+Developers and bot operators maintaining Clawdbot or Moltbot use this skill to review and apply a core patch that restores TTS audio replies for inbound Discord voice memos.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation with JavaScript patch files, JSON configuration snippets, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes manual patch and rollback steps; patch files overwrite Clawdbot core distribution files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, CHANGELOG, plugin metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release overwrites Clawdbot runtime files and may not match the installed Clawdbot version.
+
+Mitigation: Review the replacement files against the local Clawdbot version, apply the patch first in a non-production environment, and keep backups for rollback.
+
+Risk: Verbose TTS debug logging may expose message text, media context, provider state, or API key status in logs.
+
+Mitigation: Remove or gate the TTS debug console logs before real use and restrict access to retained logs.
+
+Risk: Remote TTS providers receive the text being converted to speech.
+
+Mitigation: Use only trusted and secured TTS providers or endpoints, and confirm their data handling is acceptable for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/koto9x/skills/discord-voice-memo-upgrade)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+- [Patch details](artifact/PATCH.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and JavaScript patch files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides replacement runtime files and manual application and reversion guidance; it does not execute the patch itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

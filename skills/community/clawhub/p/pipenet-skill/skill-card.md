@@ -1,41 +1,59 @@
-## Description: <br>
-Analyzes and processes TOML pipe-network descriptions, including conversion to files, network loading and solving, reliability analysis, and structure/status visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pipenet-skill helps agents design, solve, analyze, and visualize TOML-described fluid pipeline networks.
 
-## Publisher: <br>
-[spiderdking](https://clawhub.ai/user/spiderdking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spiderdking](https://clawhub.ai/user/spiderdking)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate TOML configurations for fluid pipe networks, load and solve those networks, analyze operating conditions, and produce visualizations for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User- or model-controlled network and scenario names can influence local TOML and HTML output paths. <br>
-Mitigation: Use trusted TOML inputs, avoid names containing path separators or '..', review generated paths before opening files, and run the skill in a sandbox until path validation and overwrite controls are added. <br>
-Risk: Generated network analyses and visualizations may be incorrect if the TOML model or scenario definitions are invalid or untrusted. <br>
-Mitigation: Review TOML configurations and solver logs before relying on results for engineering decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to create pipeline-network TOML configurations, run hydraulic solving and reliability analysis, and generate visualizations of network structure and operating state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spiderdking/pipenet-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/spiderdking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance, files] <br>
-**Output Format:** [Structured tool responses, TOML configuration files, execution logs, and generated HTML visualizations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes TOML and HTML files locally based on network and scenario names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: The skill handles user-controlled TOML file paths and generated output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain file access to trusted working directories, reject arbitrary host paths, and prevent overwrites or path traversal before installation or use.
+
+Risk: Generated HTML visualizations may include user-controlled network or scenario names.
+
+Mitigation: Sanitize names used in HTML output and open generated visualization files in an isolated browser context until output validation and escaping are reviewed.
+
+Risk: Untrusted TOML inputs can influence network topology, scenarios, and file generation behavior.
+
+Mitigation: Use trusted TOML inputs only, validate network and scenario names, and review generated files before relying on the analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spiderdking/skills/pipenet-skill)
+- [skill.md](artifact/skill.md)
+- [skill.yaml](artifact/skill.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, code, files, guidance]
+
+**Output Format:** [Tool responses containing Python dictionaries, generated TOML configuration, analysis logs, and HTML visualization file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local TOML and HTML outputs when invoked with valid network inputs and paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.yaml, src/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

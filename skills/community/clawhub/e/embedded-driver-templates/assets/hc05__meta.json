@@ -1,0 +1,8 @@
+{
+  "name": "hc05",
+  "desc": "HC-05 蓝牙串口模块 AT 命令助手（响应分类/命令生成纯函数，含 38400 AT 模式知识）",
+  "version": "1.0.0",
+  "verified": "C 逻辑测试 15 项断言全通过（9 款合计 107 项 0 失败，gcc 16.2.0 -Wall -Wextra -O1 逐款零警告，2026-10-27 实跑）；未做上板实测",
+  "usage": "复制 hc05.h/hc05.c/hc05_port.h 进工程，port 里改 UART 句柄；用 hc05_send_cmd_line(\"AT\\r\\n\") 握手，hc05_classify 分流响应",
+  "common_pitfalls": "AT 模式 38400/透传 9600 两个波特率搞混→AT 没反应；透传模式发 AT 永远没响应（不是坏了）；HC-05 与 HC-06 是两套命令集；TX/RX 不交叉直接无通信"
+}

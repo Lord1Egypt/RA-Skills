@@ -1,43 +1,55 @@
-## Description: <br>
-Expert in prompt engineering, custom instructions, and prompt optimization for AI agents, including structured prompts, few-shot examples, XML patterns, role prompts, system prompts, anti-patterns, evaluation, multimodal inputs, and tool-use prompting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt Expert provides prompt engineering, custom instruction, and prompt optimization guidance for AI agents, including structured prompts, chain-of-thought, few-shot, XML, role patterns, evaluation, multimodal prompting, and tool-use prompting.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers, prompt authors, and agent builders use this skill to design, review, debug, and refine prompts, custom instructions, and agent skill documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or revised prompts can encode incorrect assumptions, brittle constraints, or misleading guidance. <br>
-Mitigation: Review prompt changes before production use and validate them with representative tasks, edge cases, and regression tests. <br>
-Risk: Prompt examples can expose secrets or sensitive private data if users paste real credentials, records, or proprietary context. <br>
-Mitigation: Use sanitized examples and avoid including secrets or sensitive private data in prompts or evaluation fixtures. <br>
-Risk: Prompt-engineering guidance may be applied to high-stakes workflows without domain-specific review. <br>
-Mitigation: Require human judgment and domain review before relying on prompts for high-stakes decisions. <br>
+## Use Case:
 
+Developers, prompt designers, and agent builders use this skill to design, review, debug, and refine prompts, system prompts, custom instructions, and skill documentation. It supports reusable prompt templates, evaluation frameworks, anti-pattern fixes, and reliability improvements.
 
-## Reference(s): <br>
-- [Prompt Expert Reference Guide](docs/GUIDE.md) <br>
-- [Prompt Expert Examples](examples/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with prompt, YAML, XML, and evaluation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tool or API execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and server release metadata) <br>
+Risk: Prompt recommendations may still be inaccurate or unsuitable for a specific task, especially in high-stakes use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate revised prompts against real task examples, success criteria, regression cases, and human review before relying on them.
+
+Risk: Some reference labels include bilingual text, which may not fit English-only documentation workflows.
+
+Mitigation: Review the bundled reference labels and adjust documentation language before deployment when English-only presentation is required.
+
+## Reference(s):
+
+- [Prompt Expert page on ClawHub](https://clawhub.ai/mike47512/skills/prompt-expert)
+- [Prompt Expert Reference Guide](docs/GUIDE.md)
+- [Prompt Expert Examples](examples/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with prompt examples, templates, checklists, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static guidance only; no live APIs, execution, persistence, credential handling, or hidden authority indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>北京积分落户模拟器（2026年版本）</title>
+<style>
+  :root { --primary:#2563eb; --primary-dark:#1e40af; --border:#e5e7eb; --muted:#64748b; --bg:#f4f6fb; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:0; background:var(--bg); color:#1f2937; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; }
+  .app { max-width:900px; margin:0 auto; padding:24px 16px 48px; }
+  .app-header { padding:20px 24px; color:#fff; background:linear-gradient(120deg,var(--primary),var(--primary-dark)); border-radius:14px; }
+  .app-header h1 { margin:0 0 5px; font-size:23px; }
+  .app-header p { margin:0; font-size:13px; color:#dbeafe; }
+  .version-badge { display:inline-block; margin-left:10px; padding:4px 12px; color:#1e40af; background:#fde047; border-radius:999px; font-size:13px; font-weight:700; vertical-align:middle; }
+  .wizard { margin-top:16px; padding:18px; background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:0 10px 30px rgba(30,64,175,.07); }
+  .steps { display:grid; grid-template-columns:repeat(11,1fr); gap:5px; margin-bottom:18px; }
+  .steps a { padding:7px 3px; color:var(--muted); font-size:11px; line-height:1.35; text-align:center; text-decoration:none; background:#f8fafc; border:1px solid var(--border); border-radius:8px; }
+  .steps a:hover { border-color:#93c5fd; }
+  .steps a.active { color:#fff; background:var(--primary); border-color:var(--primary); font-weight:600; }
+  .steps a.done { color:var(--primary); border-color:#93c5fd; }
+  .steps a.disabled { opacity:.45; cursor:default; }
+  .step-pane { display:none; }
+  .step-pane.show { display:block; }
+  .tit01 { margin:0 0 10px; padding:10px 14px; color:#fff; font-size:16px; background:var(--primary-dark); border-radius:8px; }
+  .tit02 { display:inline-block; margin:18px 0 6px; padding:6px 14px; color:#fff; font-size:14px; background:#f97316; border-radius:6px; }
+  .box { margin-top:10px; padding:14px; background:#fff; border:1px solid var(--border); border-radius:10px; }
+  .form-group { margin-bottom:4px; }
+  .media { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:9px 0; }
+  .media-left, .media-body { padding:2px 0; }
+  .media-body { flex:1; min-width:180px; }
+  .pt5 { padding-top:5px; }
+  .pt15 { padding-top:12px; }
+  .pull-left { margin-right:6px; }
+  .clearfix::after { content:""; display:block; clear:both; }
+  input[type=text], input[type=number], input[type=month], input[type=date], select { padding:9px 10px; color:#1f2937; font-size:14px; border:1px solid #cbd5e1; border-radius:8px; }
+  input[type=text]:focus, input[type=number]:focus, input[type=month]:focus, input[type=date]:focus, select:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(37,99,235,.15); }
+  .form-control { width:100%; max-width:280px; }
+  .radio, .opt { display:block; margin:7px 0; }
+  .radio label, .opt { display:block; padding:9px 11px; border:1px solid var(--border); border-radius:8px; cursor:pointer; }
+  .radio label:hover, .opt:hover { border-color:#93c5fd; background:#f8fafc; }
+  .radio input, .opt input, .media input[type=checkbox], .media input[type=radio] { margin-right:7px; }
+  .qual-item { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:9px 0; }
+  .qual-label { flex:1; min-width:240px; font-weight:500; }
+  .qual-yn { display:inline-flex; gap:8px; }
+  .qual-yn label { display:inline-flex; align-items:center; padding:8px 22px; border:1px solid var(--border); border-radius:8px; cursor:pointer; background:#fff; }
+  .qual-yn label:hover { border-color:#93c5fd; background:#f8fafc; }
+  .qual-yn input:checked + span { color:var(--primary-dark); font-weight:600; }
+  .qual-yn label:has(input:checked) { border-color:var(--primary); background:#eff6ff; }
+  .quick-yes { margin:2px 0 10px; }
+  .innovate, .taxes, .area { display:none; }
+  .info { margin-top:10px; padding:9px 11px; color:#475569; font-size:13px; background:#f8fafc; border-left:4px solid #93c5fd; border-radius:6px; }
+  .info p { margin:3px 0; }
+  .guide { margin-top:12px; padding:10px 12px; color:#1e3a8a; font-size:13px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; }
+  .guide b { color:var(--primary-dark); }
+  .guide a { display:inline-block; margin:3px 12px 0 0; color:var(--primary); font-weight:600; }
+  .disclaimer-warning { margin:0 0 12px; padding:14px 18px; color:#b91c1c; background:#fef2f2; border:2px solid #dc2626; border-radius:10px; text-align:center; font-size:18px; font-weight:700; line-height:1.5; }
+  .disclaimer-warning small { display:block; margin-top:5px; font-size:13px; font-weight:500; color:#7f1d1d; }
+  .explain { margin:16px 0 0; padding:10px 12px; color:#9a3412; font-size:13px; background:#fff7ed; border:1px solid #fdba74; border-radius:8px; }
+  .actionBar { margin-top:18px; text-align:center; }
+  .btn { display:inline-block; margin:0 5px; padding:10px 24px; color:#fff; font-size:14px; font-weight:600; text-align:center; text-decoration:none; background:var(--primary); border:0; border-radius:8px; cursor:pointer; }
+  .btn:hover { background:var(--primary-dark); }
+  .btn.secondary { color:var(--primary); background:#fff; border:1px solid #93c5fd; }
+  .btn.secondary:hover { background:#eff6ff; }
+  .anniu { border-radius:8px; }
+  .jifen { margin:14px 0; font-size:22px; text-align:center; }
+  .jifen b { color:#dc2626; font-size:30px; }
+  .blue_table { width:100%; border-collapse:collapse; margin-top:8px; font-size:14px; }
+  .blue_table th { padding:10px; color:#fff; text-align:left; background:var(--primary-dark); }
+  .blue_table td { padding:10px; border-bottom:1px solid var(--border); }
+  .blue_table td:nth-child(1), .blue_table td:nth-child(3) { text-align:center; }
+  .minus { color:#dc2626; }
+  .err-tip { display:none; margin:9px 0 0; padding:7px 10px; color:#92400e; font-size:12px; background:#fef3c7; border:1px solid #fbbf24; border-radius:6px; }
+  .seg-row { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:8px 0; }
+  .seg-row select { padding:7px 9px; }
+  .ym-pair { position:relative; display:inline-block; }
+  .ym-trigger { display:inline-flex; align-items:center; gap:12px; min-width:280px; padding:9px 12px; font-size:14px; color:#1f2937; background:#fff; border:1px solid #cbd5e1; border-radius:8px; cursor:pointer; box-shadow:inset 0 1px 2px rgba(15,23,42,.04); }
+  .ym-trigger:hover { border-color:#93c5fd; background:#f8fafc; }
+  .ym-trigger .ym-label { flex:1; }
+  .ym-trigger .ym-placeholder { color:#94a3b8; }
+  .ym-trigger .ym-caret { color:#94a3b8; font-size:12px; }
+  .ym-pop { display:none; position:absolute; top:calc(100% + 6px); left:0; z-index:30; padding:0; background:#fff; border:1px solid #e2e8f0; border-radius:10px; box-shadow:0 12px 28px rgba(30,64,175,.18); }
+  .ym-pair.open .ym-pop { display:block; }
+  .ym-cal { display:flex; }
+  .ym-pane { width:280px; padding:12px 14px 14px; }
+  .ym-pane + .ym-pane { border-left:1px solid #eef2f7; }
+  .ym-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+  .ym-head .ym-month-title { font-size:15px; font-weight:600; color:#1f2937; }
+  .ym-head .ym-month-title.clickable { cursor:pointer; }
+  .ym-head .ym-month-title.clickable:hover { color:var(--primary); }
+  .ym-nav { display:flex; gap:4px; }
+  .ym-nav button { width:30px; height:30px; font-size:14px; color:#64748b; background:transparent; border:0; border-radius:6px; cursor:pointer; }
+  .ym-nav button:hover { background:#f1f5f9; color:#1e3a8a; }
+  .ym-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+  .ym-cell { padding:8px 0; font-size:13px; color:#334155; text-align:center; background:#fff; border:1px solid #e2e8f0; border-radius:6px; cursor:pointer; }
+  .ym-cell:hover { border-color:#93c5fd; color:#1e40af; background:#eff6ff; }
+  .ym-cell.disabled { color:#cbd5e1; cursor:not-allowed; background:#f8fafc; }
+  .ym-cell.selected { color:#fff; background:var(--primary); border-color:var(--primary); font-weight:600; }
+  .ym-cell.in-range { color:#1e40af; background:#dbeafe; border-color:#bfdbfe; }
+  .ym-year-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+  .ym-year-cell { padding:10px 0; font-size:14px; color:#334155; text-align:center; background:#fff; border:1px solid #e2e8f0; border-radius:6px; cursor:pointer; }
+  .ym-year-cell:hover { border-color:#93c5fd; color:#1e40af; background:#eff6ff; }
+  .ym-year-cell.selected { color:#fff; background:var(--primary); border-color:var(--primary); font-weight:600; }
+  .seg-add { margin:9px 0 0; }
+  .summary { margin:10px 0 0; padding:9px 11px; color:#1e3a8a; font-size:13px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; }
+  .plan-panel { margin:14px 0 0; padding:12px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; }
+  .plan-mode { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+  .plan-mode label { display:inline-flex; align-items:center; gap:6px; padding:8px 14px; border:1px solid #cbd5e1; border-radius:8px; cursor:pointer; background:#fff; }
+  .plan-mode label:has(input:checked) { border-color:var(--primary); background:#eff6ff; color:var(--primary-dark); font-weight:600; }
+  .plan-cell { display:flex; flex-wrap:wrap; gap:4px; align-items:center; justify-content:center; }
+  .plan-cell select { width:auto; min-width:88px; padding:4px 6px; font-size:12px; }
+  .plan-cell .plan-clear { margin-left:2px; padding:2px 6px; font-size:11px; }
+  .plan-grid { display:grid; grid-template-columns:repeat(3,minmax(88px,1fr)); gap:4px; align-items:end; text-align:left; }
+  .plan-grid label { display:block; margin-bottom:2px; font-size:11px; color:#64748b; font-weight:600; }
+  .plan-grid select { width:100%; min-width:88px; }
+  .plan-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .btn-mini { padding:6px 12px; font-size:12px; }
+  .cache-note { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px; margin:0 0 14px; padding:9px 12px; color:#475569; font-size:13px; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:8px; }
+  .cache-note a { display:inline-block; }
+  .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .desktop-only { }
+  .mobile-only { display:none; }
+  .result-card { display:grid; grid-template-columns:34px 1fr auto; align-items:center; gap:10px; padding:12px 14px; background:#fff; border:1px solid var(--border); border-radius:10px; margin-top:8px; }
+  .result-index { display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; color:#fff; font-size:13px; font-weight:700; background:var(--primary); border-radius:50%; }
+  .result-label { font-size:14px; line-height:1.45; }
+  .result-score { min-width:68px; font-size:15px; font-weight:700; color:var(--primary-dark); text-align:right; }
+  .result-score.minus { color:#dc2626; }
+  .projection-card { padding:14px; margin-top:10px; background:#fff; border:1px solid #cbd5e1; border-radius:12px; }
+  .projection-card.win { border-color:#86efac; background:#f0fdf4; }
+  .projection-head { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+  .projection-year { font-size:18px; font-weight:800; color:#1e3a8a; }
+  .projection-age { color:#64748b; font-size:13px; }
+  .projection-status { margin-left:auto; padding:3px 9px; color:#92400e; font-size:12px; font-weight:700; background:#fff7ed; border:1px solid #fdba74; border-radius:999px; }
+  .projection-status.win { color:#166534; background:#dcfce7; border-color:#86efac; }
+  .projection-metrics { display:grid; grid-template-columns:repeat(2,1fr); gap:6px 10px; margin:11px 0; }
+  .projection-metric { padding:8px 10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; }
+  .projection-metric span { display:block; color:#64748b; font-size:11px; }
+  .projection-metric b { display:block; margin-top:2px; color:#1f2937; font-size:16px; }
+  .projection-metric .minus { color:#dc2626; }
+  .projection-metric small { display:block; color:#94a3b8; font-size:10px; }
+  .projection-change { margin-top:4px; padding:9px 11px; color:#475569; font-size:12px; line-height:1.55; background:#f1f5f9; border-left:4px solid #93c5fd; border-radius:6px; }
+  .projection-plan { margin-top:10px; padding:10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; }
+  .projection-plan-title { margin-bottom:7px; color:#334155; font-size:12px; font-weight:700; }
+  .projection-plan .plan-cell { justify-content:stretch; min-width:0; }
+  @media (max-width:720px) {
+    .steps { grid-template-columns:repeat(6,1fr); }
+    .media { display:block; }
+    .media-body { margin-top:6px; }
+    .plan-cell { min-width:0; }
+    .plan-grid { grid-template-columns:1fr; }
+    .desktop-only { display:none !important; }
+    .mobile-only { display:block !important; }
+    .app-header { padding:18px 16px; }
+    .app-header h1 { font-size:20px; line-height:1.4; }
+    .version-badge { margin:8px 0 0; }
+    .wizard { padding:12px; }
+    .box { padding:12px; }
+    .result-card { margin-top:7px; }
+    .projection-card { padding:12px; }
+    .projection-metrics { grid-template-columns:repeat(2,1fr); }
+    .plan-grid select { width:100%; min-height:40px; padding:8px; font-size:14px; }
+    .plan-cell .plan-clear { padding:8px 12px; font-size:13px; }
+    .btn { padding:12px 20px; }
+    .btn-mini { padding:8px 12px; }
+  }
+</style>
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>北京积分落户模拟器<span class="version-badge">2026年版本</span></h1>
+      <p>本地个人模拟版 · 只保留填写、校验与计分等主要交互 · 不代表官方页面<br>依据2026年政策口径；后续政策、计算方式及上岸分数线可能变化，结果仅供参考。</p>
+    </header>
+    <div class="wizard">
+      <div class="cache-note">
+        <span>填写内容会自动保存在本机浏览器，刷新页面后会恢复上次填写；点“清空填写记录”可删除缓存。</span>
+        <a class="btn btn-mini secondary" href="javascript:void(0)" onclick="clearSavedForm();return false;">清空填写记录</a>
+      </div>
+      <nav class="steps" id="steps" aria-label="填写步骤">
+        <a href="#step-1" rel="1" class="step active">资格</a>
+        <a href="#step-2" rel="2" class="step">就业</a>
+        <a href="#step-3" rel="3" class="step">住所</a>
+        <a href="#step-4" rel="4" class="step">学历</a>
+        <a href="#step-5" rel="5" class="step">职住</a>
+        <a href="#step-6" rel="6" class="step">创新</a>
+        <a href="#step-7" rel="7" class="step">纳税</a>
+        <a href="#step-8" rel="8" class="step">年龄</a>
+        <a href="#step-9" rel="9" class="step">荣誉</a>
+        <a href="#step-10" rel="10" class="step">守法</a>
+        <a href="#step-11" rel="11" class="step">结果</a>
+      </nav>
+
+      <form id="wizardForm" style="padding:20px 0px 0px 0px;clear:both;">
+        <div id="step-1" class="step-pane show">
+          <div class="form-group">
+            <h4 class="tit01">资格条件</h4>
+            <div class="box">
+              <div class="qual-item"><div class="qual-label">持有本市居住证</div><div class="qual-yn"><label><input name="isHoldTheCityResidencePermit" required value="1" type="radio"><span>是</span></label><label><input name="isHoldTheCityResidencePermit" required value="0" type="radio"><span>否</span></label></div></div>
+              <div class="qual-item"><div class="qual-label">不超过法定退休年龄</div><div class="qual-yn"><label><input name="isOverRetireAge" required value="1" type="radio"><span>是</span></label><label><input name="isOverRetireAge" required value="0" type="radio"><span>否</span></label></div></div>
+              <div class="qual-item"><div class="qual-label">在京连续缴纳社会保险7年及以上</div><div class="qual-yn"><label><input name="isMoreSevenYear" required value="1" type="radio"><span>是</span></label><label><input name="isMoreSevenYear" required value="0" type="radio"><span>否</span></label></div></div>
+              <div class="qual-item"><div class="qual-label">无刑事犯罪记录</div><div class="qual-yn"><label><input name="isNoCriminalRecord" required value="1" type="radio"><span>是</span></label><label><input name="isNoCriminalRecord" required value="0" type="radio"><span>否</span></label></div></div>
+              <div class="quick-yes" style="text-align:right;margin-top:12px;"><a class="btn btn-mini" href="javascript:void(0)" onclick="selectAllQualYes();return false;">✓ 上面四项我都符合，一键全部选“是”</a></div>
+              <div class="err-tip" id="err1">对不起，您不符合北京市积分落户办理条件！</div>
+              <div class="guide">
+                <b>怎么填：</b>四项都选“是”才能继续；有一项不确定，先别猜，回到对应渠道核实。“连续7年”允许补缴累计不超过5个月且无断缴，仍视为连续缴纳。<br>
+                <b>去哪查：</b>📱 手机应用商店搜索“北京人社”APP，进入【社会保险权益查询服务】→【权益记录】查社保年限；电子居住证用“北京通”APP，在【靓证】中添加居住证（卡）后查看。<a href="https://fuwu.rsj.beijing.gov.cn/bjdkhy/ggfw/" target="_blank" rel="noopener">官网备用（北京人社公共服务）</a><a href="https://www.bjmtg.gov.cn/bjmtg/wxts/202407/1fb1ac9b17a343a6a41c385952c27e50.shtml" target="_blank" rel="noopener">“连续7年”口径参考</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="step-2" class="step-pane">
+          <div class="form-group">
+            <h4 class="tit01">合法稳定就业</h4>
+            <div class="box">
+              <div class="info">
+                <p>填写实际缴费的起止年月，系统按“截至申报年份上一年12月31日”自动计算累计月数；补缴月数不计。可添加多段连续缴费记录，断缴期间不填。<b>开始年月选择器默认打开 2011-01</b>，不会自动预填你的实际缴费月份。</p>
+              </div>
+              <div id="socialSegs"></div>
+              <p><a class="btn btn-mini secondary" href="javascript:void(0)" onclick="addSocialSeg();return false;">＋ 添加社保缴费段</a></p>
+              <div class="summary" id="socialSummary">累计缴费：<b>0</b> 个月</div>
+              <input type="hidden" id="continuousPaySocialInsuranceMonth" name="continuousPaySocialInsuranceMonth" value="">
+              <h3 class="tit02">说明</h3>
+              <div class="info"><p>可填写到当前已发生的月份（如2026年9月）；积分只统计到“申报年份上一年12月31日”（当前即2025年12月底），超出部分会显示“已扣减”且不计入本次积分。补缴月数不计。</p></div>
+              <div class="guide">
+                <b>怎么填：</b>打开社保权益记录，把每段“实际缴费”的起止年月填进来，系统自动帮你数到“申报年份上一年12月31日”；补缴月数不要写成缴费段。<br>
+                <b>去哪查：</b>📱 手机应用商店搜索“北京人社”APP，进入【社会保险权益查询服务】→【权益记录】，选参保年限最长险种看累计月数。<a href="https://fuwu.rsj.beijing.gov.cn/bjdkhy/ggfw/" target="_blank" rel="noopener">官网备用（北京人社公共服务）</a><a href="https://www.bjmtg.gov.cn/bjmtg/wxts/202407/1fb1ac9b17a343a6a41c385952c27e50.shtml" target="_blank" rel="noopener">“连续7年”口径参考</a>
+              </div>
+              <div class="err-tip" id="err2">请填写0至600之间的整数</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="step-3" class="step-pane">
+          <div class="form-group">
+            <h4 class="tit01">合法稳定住所</h4>
+            <div class="box">
+              <div class="info">
+                <p>填写每段居住的起止年月和类型（自有产权 / 合法租赁 / 单位宿舍），系统按“截至申报年份上一年12月31日”自动折算月数；可添加多段，同一时间只按一种住所计分。2020年8月以前的宿舍/租赁可不填，系统按你的就业月数自动补算。<b>开始年月选择器默认打开 2011-01</b>，不会自动预填你的实际居住月份。</p>
+              </div>
+              <div id="resSegs"></div>
+              <p><a class="btn btn-mini secondary" href="javascript:void(0)" onclick="addResSeg();return false;">＋ 添加居住段</a></p>
+              <div class="summary" id="resSummary">自有 <b>0</b> 个月 · 备案租赁 <b>0</b> 个月 · 单位宿舍 <b>0</b> 个月</div>
+              <input type="hidden" name="residence" value="1" checked>
+              <input type="hidden" name="ownRightsYearsOfResidence" id="ownRightsYearsOfResidence" value="">
+              <input type="hidden" name="legitimateYearsOfResidence" id="legitimateYearsOfResidence" value="">
+              <input type="hidden" name="unitDormitoryYearsOfResidence" id="unitDormitoryYearsOfResidence" value="">
+              <input type="hidden" id="currentHousingType" name="currentHousingType" value="rent">
+              <h3 class="tit02">说明</h3>
+              <div class="info">
+                <p>可填写到当前已发生的月份（如2026年9月）；积分只统计到“申报年份上一年12月31日”（当前即2025年12月底），超出部分会显示“已扣减”且不计入本次积分；同一时间只按一种住所计分。</p>
+                <p>自有住所优先计分；2020年8月以前的宿舍、租赁时间可以不填，系统按就业月数与自有住所月数的差值补算。</p>
+              </div>
+              <div class="guide">
+                <b>怎么填：</b>按时间先后，把你住过的每一段填写“起止年月 + 类型”；同一时间只保留一种（自有优先），系统自动折算月数。如果记不清每段起止，可就近填“整年月”近似。<br>
+                <b>去哪查：</b>📱 自有住所：手机应用商店搜索“北京不动产”APP（或“京通”小程序→不动产登记）查询；租房/宿舍按你实际备案和居住月份填写即可。<a href="https://ghzrzyw.beijing.gov.cn/" target="_blank" rel="noopener">官网备用（规自委）</a><a href="https://rsj.beijing.gov.cn/ywsite/jflh/wxts/hfwdjs/202007/t20200716_1950522.html" target="_blank" rel="noopener">2020年7/8月分界说明</a>
+              </div>
+              <div class="err-tip" id="err3">请至少选择一项，并填写对应月数</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="step-4" class="step-pane">
+          <div class="form-group">
+            <h4 class="tit01">教育背景</h4>
+            <div class="box">
+              <div class="radio"><label><input type="radio" name="degree" value="0" required>不满足或不以教育背景指标积分</label></div>
+              <div class="radio"><label><input type="radio" name="degree" value="10.5">大学专科(含高职)</label></div>
+              <div class="radio"><label><input type="radio" name="degree" value="10.5">只取得大学本科学历</label></div>
+              <div class="radio"><label><input type="radio" name="degree" value="10.5">只取得学士学位</label></div>
+              <div class="radio"><label><input type="radio" name="degree" value="15">大学本科学历并取得学士学位</label></div>
+              <div class="radio"><label><input type="radio" name="degree" value="15">只取得硕士研究生学历</label></div>
+              <div class="radio"><label><input type="radio" name="degree" value="15">只取得硕士学位</label></div>
+              <div class="radio"><label><input type="radio" name="degree" value="26">硕士研究生学历并取得硕士学位</label></div>
+              <div class="radio"><label><input type="radio" name="degree" value="26">只取得博士研究生学历</label></div>
+              <div class="radio"><label><input type="radio" name="degree" value="26">只取得博士学位</label></div>
+              <div class="radio"><label><input type="radio" name="degree" value="37">博士研究生学历并取得博士学位</label></div>
+              <div class="media pt15">
+                <div class="media-left pull-left pt5" style="font-weight:600;">扣除期间（起止年月）</div>
+                <div class="media-body pull-left" id="degreeDeductSeg" style="display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;"></div>
+                <div class="summary" id="degreeDeductSummary" style="width:100%;margin-top:6px;">请选择“取得学历期间同时缴社保并居住”的起止年月</div>
+                <input type="hidden" name="degreePaySocialInsuranceMonth" id="degreePaySocialInsuranceMonth" value="">
+                <div class="clearfix"></div>
+              </div>
+              <h3 class="tit02">说明</h3>
+              <div class="info">
+                <p>只按一项学历学位计分；取得学历期间的社保和居住积分不与学历积分重复计算，请填写“同时缴社保并居住”的起止年月，系统自动算扣除月数。</p>
+              </div>
+              <div class="guide">
+                <b>怎么填：</b>只选最高的一项；截止期间填“取得学历期间，你同时缴社保并连续居住”的起止年月，不是把全部学制年数照抄；系统按区间自动算扣除月数。若不确定，可以暂不选（按 0 处理），再按实际记录修正。<br>
+                <b>去哪查：</b>📱 国内学历学位：手机应用商店搜索“学信网”APP，查学籍/学历/学位及在线验证报告；国（境）外学历：应用商店搜索“留学e网通”APP，办理/查询学历学位认证。<a href="https://www.chsi.com.cn/" target="_blank" rel="noopener">官网备用（学信网）</a><a href="https://www.cscse.edu.cn/" target="_blank" rel="noopener">官网备用（留学服务中心）</a>
+              </div>
+              <div class="err-tip" id="err4">请选择学历；扣除期间若填写，须起止完整且开始不晚于结束</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="step-5" class="step-pane">
+          <div class="form-group">
+            <h4 class="tit01">职住区域</h4>
+            <div class="box">
+              <input type="hidden" name="occupationAreaTypes" value="0">
+              <div class="media pt15"><input id="areaTypeRadio" type="radio" name="areaTypes" value="0" required onclick="hideAreaSelect(this.value)"><label for="areaTypeRadio" style="font-weight:normal;">不满足或不以职住区域指标积分</label></div>
+              <div class="media pt15">
+                <div class="media-left pull-left pt5"><input id="areaType1" type="radio" name="areaTypes" value="1" onclick="showAreaSelect(this)"><label for="areaType1" style="font-weight:normal;">在城六区之外其他行政区自有住所居住且工作</label></div>
+                <div class="media-body pull-left"><div id="area1" class="area" style="display:none;">起始年月 <span id="areaStart1"></span></div></div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="media pt15">
+                <div class="media-left pull-left pt5"><input id="areaType2" type="radio" name="areaTypes" value="2" onclick="showAreaSelect(this)"><label for="areaType2" style="font-weight:normal;">在城六区之外其他行政区自有住所居住</label></div>
+                <div class="media-body pull-left"><div id="area2" class="area" style="display:none;">起始年月 <span id="areaStart2"></span></div></div>
+                <div class="clearfix"></div>
+              </div>
+              <h3 class="tit02">说明</h3>
+              <div class="info"><p>自2018年起，满足条件的居住、就业时间每满12个月按1年计，最高加12分；申报前一年12月应在城六区外的自有住所居住。</p></div>
+              <div class="guide">
+                <b>怎么填：</b>城六区指东城、西城、朝阳、海淀、丰台、石景山；其他区算“城六区之外”。三选一：不满足、城六区外居住且工作、城六区外仅居住；选择后填开始年月，系统按到上一年12月31日累计、每满12个月按1年计，不足12个月不计，最高12分。<br>
+                <b>提醒：</b>本模拟器不能自动判断你的实际工作地；请按社保单位/工作合同所在地如实填写。
+              </div>
+              <div class="err-tip" id="err5">请选择职住区域；若选居住/工作项，请填写开始年月</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="step-6" class="step-pane">
+          <div class="form-group">
+            <h4 class="tit01">创新创业</h4>
+            <div class="box">
+              <div class="radio"><label><input type="radio" name="innovativeEntrepreneurialTypes" value="0" required onclick="setInnovateNone()">不满足或不以创新创业指标积分</label></div>
+              <div class="radio"><label><input type="radio" name="innovativeEntrepreneurialTypes" data-code="1" onclick="showInnovateSelect(this)">在科技、文化领域获得国家级或本市市级奖项<select id="innovate1" class="innovate innovate1" onchange="setInnovateValue(this)"><option value="12">积12分</option><option value="11">积11分</option><option value="10">积10分</option><option value="9">积9分</option><option value="8">积8分</option><option value="6">积6分</option><option value="5">积5分</option><option value="4">积4分</option><option value="2">积2分</option></select></label></div>
+              <div class="radio"><label><input type="radio" name="innovativeEntrepreneurialTypes" data-code="2" onclick="showInnovateSelect(this)">在创新创业大赛获得国家级或本市市级奖项<select id="innovate2" class="innovate innovate2" onchange="setInnovateValue(this)"><option value="12">积12分</option><option value="10">积10分</option><option value="9">积9分</option><option value="8">积8分</option><option value="6">积6分</option><option value="4">积4分</option><option value="3">积3分</option><option value="2">积2分</option><option value="1">积1分</option></select></label></div>
+              <div class="radio"><label><input type="radio" name="innovativeEntrepreneurialTypes" data-code="3" onclick="showInnovateSelect(this)">在国家高新技术企业或科技型中小企业持股且申请人在该企业连续工作满一个自然年度，且当年持股比例不低于10%<br><span class="innovate innovate3">申请人所在企业近3年累计获得</span><select id="innovate3" class="innovate innovate3" onchange="setInnovateValue(this)"><option value="6">4000万元（含）以上</option><option value="4">2000万元（含）～ 4000万元</option><option value="2">500万元（含）～ 2000万元</option></select><span class="innovate innovate3">股权类现金融资</span></label></div>
+              <div class="guide">
+                <b>怎么填：</b>只能选一项，选后在下拉里选对应档次；三项都不满足就选“不满足”。不要凭“可能满足”猜测，拿不准按不满足计算，后续再核实。<br>
+                <b>提醒：</b>奖项、高新技术企业认定和持股比例需要证明材料，以官方审核结果为准。
+              </div>
+              <div class="err-tip" id="err6">请选择创新创业选项</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="step-7" class="step-pane">
+          <div class="form-group">
+            <h4 class="tit01">纳税</h4>
+            <div class="box">
+              <div class="radio"><label><input type="radio" name="nearlyThreeConsecutiveTax" required value="0" onclick="setTaxNone()">不满足或不以纳税指标积分</label></div>
+              <div class="radio"><label><input type="radio" name="nearlyThreeConsecutiveTax" data-code="1" onclick="showTaxesSelect(this)">近3年个人所得税纳税额在10万元及以上，从<span id="taxStart1" class="taxes taxes1"></span>开始</label></div>
+              <div class="media pt15">
+                <div class="media-body pull-left pt5">自积分落户申报工作启动前连续5个自然年度内，涉税违法行为记录次数</div>
+                <div class="media-body pull-left"><select name="taxRelatedIllegalRecords" required><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></div>
+                <div class="clearfix mb15"></div>
+              </div>
+              <div class="guide">
+                <b>怎么填：</b>“近3年个人所得税纳税额在10万元及以上”选择开始年月，系统按申报前连续3个自然年度自动换算（每满1年加2分、最高6分）；例如从2024年1月开始且每年达标，到2025年满2年计4分。“涉税违法记录次数”按真实记录填，每1条扣12分。<br>
+                <b>去哪查：</b>📱 手机应用商店搜索“个人所得税”APP（国家税务总局），首页点【收入纳税明细】或【纳税记录开具】。<a href="https://etax.chinatax.gov.cn/" target="_blank" rel="noopener">官网备用（自然人电子税务局）</a><a href="https://12366.chinatax.gov.cn/" target="_blank" rel="noopener">12366纳税服务</a><br>
+                <b>提醒：</b>本页不会登录或读取你的个税数据；涉税违法记录以税务部门记录和申报审核为准，本模拟器不提供查询。
+              </div>
+              <div class="err-tip" id="err7">请选择纳税选项；若选“满足”，请填写开始年月</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="step-8" class="step-pane">
+          <div class="form-group">
+            <h4 class="tit01">年龄</h4>
+            <div class="box">
+              <div class="media pt15">
+                <div class="media-left pull-left pt5" style="font-weight:600;">出生年月</div>
+              <div class="media-body pull-left" id="birthYM"></div>
+              </div>
+              <div class="qual-item"><div class="qual-label">性别</div><div class="qual-yn"><label><input type="radio" name="retireType" value="male" required><span>男</span></label><label><input type="radio" name="retireType" value="femaleWorker" required><span>女</span></label></div></div>
+              <div class="info"><p>退休年龄按简化口径计算：默认按职工类型，男 60 周岁（不含）以下、女工人 50 周岁（不含）以下；如遇国家退休政策调整，按新政策执行。本模拟器只用于预判退休年龄前的分数。</p></div>
+              <div class="err-tip" id="errRetireType" style="display:none;">请选择性别，以便判断退休年龄</div>
+              <div class="summary" id="ageSummary">请先填写出生年月，系统按“申报年份上一年1月1日”计算档位</div>
+              <input type="radio" name="ageType" id="ageTypeValue" value="" checked style="display:none;">
+              <h3 class="tit02">说明</h3>
+              <div class="info"><p>年龄按截至申报年份上年1月1日的周岁计算。</p></div>
+              <div class="guide">
+                <b>怎么填：</b>填出生年月并选择性别即可；系统按“申报年份上一年1月1日”自动算周岁并选档，不是按填写当天年龄。例如2026年申报，看2025年1月1日你满多少周岁。<br>
+                <b>提醒：</b>年龄只按身份证记录计算，差一岁档位和分数都会变化；本页默认按职工口径判断法定退休年龄上限。
+              </div>
+              <div class="err-tip" id="err8">请选择年龄</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="step-9" class="step-pane">
+          <div class="form-group">
+            <h4 class="tit01">荣誉表彰</h4>
+            <div class="box">
+              <div class="radio"><label><input type="radio" name="honorCommendation" value="0" required>不满足或不以荣誉表彰指标积分</label></div>
+              <div class="radio"><label><input type="radio" name="honorCommendation" value="20">省部级以上劳动模范</label></div>
+              <div class="radio"><label><input type="radio" name="honorCommendation" value="20">全国道德模范或首都道德模范</label></div>
+              <div class="radio"><label><input type="radio" name="honorCommendation" value="20">全国见义勇为英雄模范或首都见义勇为好市民</label></div>
+              <div class="guide">
+                <b>怎么填：</b>三类荣誉任选一类即可，选一项加20分；同时符合多项也只加一次。没有对应荣誉选“不满足”。<br>
+                <b>提醒：</b>需以正式表彰文件/证书为准，本页不提供查询，也不替你判断是否属于新增名录。
+              </div>
+              <div class="err-tip" id="err9">请选择荣誉表彰</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="step-10" class="step-pane">
+          <div class="form-group">
+            <h4 class="tit01">守法记录</h4>
+            <div class="box">
+              <div class="media pt15">
+                <div class="media-body pull-left pt5">行政拘留处罚次数</div>
+                <div class="media-body pull-left"><select name="numberOfPenalties" required><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></div>
+                <div class="clearfix mb15"></div>
+              </div>
+              <h3 class="tit02">说明</h3>
+              <div class="info"><p>填写申报前连续5个自然年度内，在本市被处以行政拘留的次数。</p></div>
+              <div class="guide">
+                <b>怎么填：</b>只填申报前连续5个自然年度内、在本市被处以行政拘留的次数；每1条扣30分。<br>
+                <b>提醒：</b>本页不查询公安或法院记录；请按你掌握的事实填写，最终以申报审核记录为准。没有记录就选0。
+              </div>
+              <div class="err-tip" id="err10">请填写行政拘留次数</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="step-11" class="step-pane">
+          <div class="form-group" id="resultHtml"></div>
+          <div class="guide">
+            <b>结果怎么看：</b>这是按你刚才填写的数据做的本地算法模拟。若某项填错，点“上一步”回到对应步骤修改；最终积分以官方申报系统审核为准。
+          </div>
+        </div>
+        <p class="explain">本页为本地算法模拟，结果仅供个人参考，实际结果以官方审核为准。</p>
+        <div class="actionBar submit" id="actionBar"></div>
+      </form>
+    </div>
+  </main>
+  <script>
+  "use strict";
+  /* 本地计分，不调用官网接口；规则基准：项目/1.复刻官网-官方表单与接口.md，2026-09-04 以官网当前行为为准 */
+  var STEP_COUNT = 11;
+  var cur = 0;
+  var visited = [true, false, false, false, false, false, false, false, false, false, false];
+  var DEDUCT_YEARS = {"0": 0, "10.5": 3, "15": 4, "26": 3, "37": 3};
+
+  function $(sel){ return document.querySelector(sel); }
+  function $$(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+  function valInt(sel){ var el = $(sel); if(!el) return NaN; var v = String(el.value || "").trim(); return v === "" ? NaN : Number(v); }
+  function checkedVal(name){ var el = document.querySelector('input[name="' + name + '"]:checked'); return el ? Number(el.value) : NaN; }
+  function hideErr(id){ var el = $(id); if(el) el.style.display = "none"; }
+  function showErr(id){ var el = $(id); if(el) el.style.display = "block"; }
+
+  function getRetireType(){
+    var el = document.querySelector('input[name="retireType"]:checked');
+    return el ? el.value : "";
+  }
+  function getRetireLimit(){
+    var t = getRetireType();
+    if (t === "male") return 60;
+    if (t === "femaleWorker") return 50;
+    return 50; // 未选择时沿用原50岁兜底，年龄页校验会阻止进入下一步
+  }
+  function getRetireDesc(){
+    var t = getRetireType();
+    if (t === "male") return "男60周岁（不含）以下";
+    if (t === "femaleWorker") return "女工人50周岁（不含）以下（默认职工口径）";
+    return "50周岁";
+  }
+
+  function selectAllQualYes(){
+    ["isHoldTheCityResidencePermit","isOverRetireAge","isMoreSevenYear","isNoCriminalRecord"].forEach(function(n){
+      var el = document.querySelector('input[name="' + n + '"][value="1"]');
+      if (el) el.checked = true;
+    });
+    hideErr("#err1");
+    saveForm();
+  }
+
+  function showResdienceInput(value){
+    var box = $("#residence" + value);
+    var input = box.querySelector("input");
+    if ($('input[name="residence"][value="' + value + '"]').checked) {
+      box.style.display = "block";
+    } else {
+      input.value = "";
+      box.style.display = "none";
+    }
+  }
+
+  function calcAreaYears(startV){
+    var s = parseMonth(startV); if (s === null) return 0;
+    var cutoff = monthIndex(getApplyYear() - 1, 12);
+    return Math.floor(Math.max(0, cutoff - s + 1) / 12);
+  }
+  function calcTaxYears(startV){
+    var p = String(startV || "").split("-");
+    var sy = Number(p[0]), cutoff = getApplyYear() - 1;
+    if (!Number.isInteger(sy) || sy > cutoff) return 0;
+    return Math.max(0, Math.min(3, cutoff - sy + 1)); // 纳税按自然年度，不按滚动12个月
+  }
+  function calcTaxScore(startV){ return calcTaxYears(startV) * 2; }
+  function ymValueFrom(container){ return container ? ymGetValue(container, "") : ""; }
+  function showAreaSelect(obj){
+    if (!obj.checked) return;
+    var value = obj.value;
+    $$(".area").forEach(function(e){ e.style.display = "none"; });
+    $("#area" + value).style.display = "block";
+    calScore();
+    saveForm();
+  }
+  function hideAreaSelect(value){
+    $$(".area").forEach(function(e){ e.style.display = "none"; });
+    $$('input[name="areaTypes"]').forEach(function(e){ e.checked = false; });
+    $("#areaTypeRadio").checked = true;
+    var p1 = $("#areaStart1 .ym-pair"); if (p1) p1.ymSet("");
+    var p2 = $("#areaStart2 .ym-pair"); if (p2) p2.ymSet("");
+    $('input[name="occupationAreaTypes"]').value = "0";
+    saveForm();
+  }
+  function calScore(){
+    var sel = document.querySelector('input[name="areaTypes"]:checked');
+    var value = 0;
+    if (sel && sel.value === "1") value = calcAreaYears(ymValueFrom($("#areaStart1"))) * 3;
+    else if (sel && sel.value === "2") value = calcAreaYears(ymValueFrom($("#areaStart2"))) * 2;
+    if (value > 12) value = 12;
+    $('input[name="occupationAreaTypes"]').value = value;
+    saveForm();
+  }
+
+  function showInnovateSelect(obj){
+    var value = obj.getAttribute("data-code");
+    if (obj.checked) {
+      $$(".innovate").forEach(function(e){ e.style.display = "none"; });
+      $$(".innovate" + value).forEach(function(e){ e.style.display = "inline-block"; });
+      obj.value = $("#innovate" + value).value;
+    } else {
+      $$(".innovate" + value).forEach(function(e){ e.style.display = "none"; });
+    }
+    saveForm();
+  }
+  function setInnovateNone(){
+    $('input[name="innovativeEntrepreneurialTypes"][value="0"]').checked = true;
+    $$(".innovate").forEach(function(e){ e.style.display = "none"; });
+    saveForm();
+  }
+  function setInnovateValue(sel){
+    var code = sel.id.replace("innovate", "");
+    var radio = document.querySelector('input[name="innovativeEntrepreneurialTypes"][data-code="' + code + '"]');
+    if (radio) radio.value = sel.value;
+    saveForm();
+  }
+
+  /* ===== 简化输入：多段自动换算（2026-09-05 任务3）===== */
+  function getApplyYear(){
+    return new Date().getFullYear();
+  }
+  function getCutoffMonth(){
+    var y = getApplyYear() - 1;
+    return { y: y, m: 12 };
+  }
+  function monthIndex(y, m){ return y * 12 + (m - 1); }
+  function fmtMonth(idx){ var y = Math.floor(idx / 12); var m = (idx % 12) + 1; return y + "-" + (m < 10 ? "0" : "") + m; }
+  function parseMonth(v){
+    if (!v) return null;
+    var p = String(v).split("-");
+    if (p.length !== 2) return null;
+    var y = Number(p[0]), m = Number(p[1]);
+    if (!Number.isInteger(y) || !Number.isInteger(m) || m < 1 || m > 12) return null;
+    return monthIndex(y, m);
+  }
+  function calcMonthSpan(startIdx, endIdx){ return endIdx - startIdx + 1; }
+
+  /* 年月选择器（参考 Ant Design / Element Plus DatePicker）：单格子 + 弹出日历面板；range=起止范围，single=单值 */
+  function ymSelect(className, onchange, startYear, endYear, single, defaultViewYear){
+    var wrap = document.createElement("span");
+    wrap.className = "ym-pair";
+    var singleMode = !!single;
+    var value = singleMode ? "" : { s: "", e: "" };      // single: "YYYY-MM"; range: {s,e}
+    var picking = "s";                  // 当前选择阶段
+    var viewStart = singleMode ? (defaultViewYear || endYear) : startYear; // 单值模式默认显示 defaultViewYear（出生年月=1989），范围模式从最早年份开始
+    var yearView = false;               // true=年份矩阵视图
+
+    function isDisabled(y, m){
+      var now = new Date();
+      var nowY = now.getFullYear(), nowM = now.getMonth() + 1;
+      if (y > nowY) return true;
+      if (y === nowY && m > nowM) return true;
+      return false;
+    }
+    function ymText(idx){ return fmtMonth(idx); }
+    function buildYearGrid(){
+      var pane = document.createElement("div");
+      pane.className = "ym-pane";
+      var head = document.createElement("div");
+      head.className = "ym-head";
+      var title = document.createElement("div");
+      title.className = "ym-month-title";
+      title.textContent = Math.floor(viewStart / 10) * 10 + " - " + (Math.floor(viewStart / 10) * 10 + 9) + "年";
+      var nav = document.createElement("div");
+      nav.className = "ym-nav";
+      var prevBtn = document.createElement("button");
+      prevBtn.type = "button"; prevBtn.textContent = "‹";
+      prevBtn.addEventListener("click", function(ev){ ev.stopPropagation(); viewStart -= 10; renderPanels(); });
+      var nextBtn = document.createElement("button");
+      nextBtn.type = "button"; nextBtn.textContent = "›";
+      nextBtn.addEventListener("click", function(ev){ ev.stopPropagation(); viewStart += 10; renderPanels(); });
+      nav.appendChild(prevBtn); nav.appendChild(nextBtn);
+      head.appendChild(title); head.appendChild(nav);
+      pane.appendChild(head);
+      var grid = document.createElement("div");
+      grid.className = "ym-year-grid";
+      var base = Math.floor(viewStart / 10) * 10;
+      for (var y = base; y < base + 10; y++) {
+        (function(yearVal){
+          var cell = document.createElement("div");
+          cell.className = "ym-year-cell";
+          cell.textContent = yearVal;
+          var nowY = new Date().getFullYear();
+          if (yearVal > nowY) cell.style.opacity = ".4";
+          if (singleMode && value && Number(value.split("-")[0]) === yearVal) cell.classList.add("selected");
+          if (!singleMode && ((value.s && Number(value.s.split("-")[0]) === yearVal) || (value.e && Number(value.e.split("-")[0]) === yearVal))) cell.classList.add("selected");
+          cell.addEventListener("click", function(ev){
+            ev.stopPropagation();
+            viewStart = yearVal;
+            yearView = false;
+            renderPanels();
+          });
+          grid.appendChild(cell);
+        })(y);
+      }
+      pane.appendChild(grid);
+      return pane;
+    }
+    function buildPane(year, isLeft){
+      var pane = document.createElement("div");
+      pane.className = "ym-pane";
+      var head = document.createElement("div");
+      head.className = "ym-head";
+      var title = document.createElement("div");
+      title.className = "ym-month-title";
+      title.textContent = year + "年";
+      title.classList.add("clickable");
+      title.title = "点击选择年份";
+      title.addEventListener("click", function(ev){ ev.stopPropagation(); yearView = true; renderPanels(); });
+      var nav = document.createElement("div");
+      nav.className = "ym-nav";
+      var prevBtn = document.createElement("button");
+      prevBtn.type = "button"; prevBtn.textContent = "‹";
+      prevBtn.addEventListener("click", function(ev){ ev.stopPropagation(); viewStart--; renderPanels(); });
+      var nextBtn = document.createElement("button");
+      nextBtn.type = "button"; nextBtn.textContent = "›";
+      nextBtn.addEventListener("click", function(ev){ ev.stopPropagation(); viewStart++; renderPanels(); });
+      nav.appendChild(prevBtn); nav.appendChild(nextBtn);
+      head.appendChild(title); head.appendChild(nav);
+      pane.appendChild(head);
+      var grid = document.createElement("div");
+      grid.className = "ym-grid";
+      for (var m = 1; m <= 12; m++) {
+        var cell = document.createElement("div");
+        cell.className = "ym-cell";
+        cell.textContent = m + "月";
+        var idx = monthIndex(year, m);
+        var disabled = isDisabled(year, m);
+        if (disabled) cell.classList.add("disabled");
+        var v = ymText(idx);
+        if (singleMode ? v === value : (v === value.s || v === value.e)) cell.classList.add("selected");
+        if (!singleMode && value.s && value.e && idx > monthIndex(parseMonth(value.s)) && idx < monthIndex(parseMonth(value.e))) cell.classList.add("in-range");
+        (function(cellEl, yearVal, monthVal, disabledVal){
+          if (!disabledVal) {
+          cellEl.addEventListener("click", function(ev){
+            ev.stopPropagation();
+            var chosen = ymText(monthIndex(yearVal, monthVal));
+            if (singleMode) {
+              value = chosen;
+              wrap.classList.remove("open");
+            } else {
+              if (picking === "s") {
+                value.s = chosen; value.e = ""; picking = "e";
+                var pms2 = parseMonth(chosen);
+                viewStart = (pms2 === null) ? new Date().getFullYear() : Math.floor(pms2 / 12);
+              } else {
+                if (monthIndex(parseMonth(chosen)) < monthIndex(parseMonth(value.s))) {
+                  var tmp = value.s; value.s = chosen; value.e = tmp;
+                } else {
+                  value.e = chosen;
+                }
+                picking = "s";
+                wrap.classList.remove("open");
+              }
+            }
+            renderPanels(); updateDisplay(); if (onchange) onchange(); if (typeof saveForm === "function") saveForm();
+          });
+          }
+        })(cell, year, m, disabled);
+        grid.appendChild(cell);
+      }
+      pane.appendChild(grid);
+      return pane;
+    }
+    function renderPanels(){
+      var cal = wrap.querySelector(".ym-cal");
+      if (!cal) return;
+      cal.innerHTML = "";
+      if (yearView) {
+        cal.appendChild(buildYearGrid());
+      } else {
+        cal.appendChild(buildPane(viewStart, true));
+        if (!singleMode) cal.appendChild(buildPane(viewStart + 1, false));
+      }
+    }
+    function updateDisplay(){
+      var label = wrap.querySelector(".ym-label");
+      if (singleMode) { label.textContent = value || "选择年月"; label.classList.toggle("ym-placeholder", !value); }
+      else if (value.s && value.e) { label.textContent = value.s + "  →  " + value.e; label.classList.remove("ym-placeholder"); }
+      else if (value.s) { label.textContent = value.s + "  →  请选择结束"; label.classList.remove("ym-placeholder"); }
+      else { label.textContent = "选择起止年月"; label.classList.add("ym-placeholder"); }
+    }
+    function ymRead(){ return singleMode ? value : (value.s && value.e ? value.s + "|" + value.e : ""); }
+
+    var trigger = document.createElement("button");
+    trigger.type = "button";
+    trigger.className = "ym-trigger";
+    trigger.innerHTML = '<span class="ym-label ym-placeholder">' + (singleMode ? "选择年月" : "选择起止年月") + '</span><span class="ym-caret">▾</span>';
+    var pop = document.createElement("div");
+    pop.className = "ym-pop";
+    var cal = document.createElement("div");
+    cal.className = "ym-cal";
+    pop.appendChild(cal);
+    wrap.appendChild(trigger); wrap.appendChild(pop);
+
+    trigger.addEventListener("click", function(ev){ ev.stopPropagation(); wrap.classList.toggle("open"); if (wrap.classList.contains("open")) renderPanels(); });
+    pop.addEventListener("click", function(ev){ ev.stopPropagation(); });
+    document.addEventListener("click", function(ev){ if (!wrap.contains(ev.target)) wrap.classList.remove("open"); setTimeout(function(){ if (!document.contains(ev.target)) wrap.classList.remove("open"); }, 0); });
+
+    wrap.ymRead = ymRead;
+    wrap.ymSet = function(v){
+      if (singleMode) {
+        value = v || "";
+        if (value) {
+          var pm = parseMonth(value);
+          viewStart = (pm === null) ? new Date().getFullYear() : Math.floor(pm / 12);
+        }
+      } else {
+        if (!v) { value = { s: "", e: "" }; }
+        else {
+          var p = String(v).split("|");
+          value = { s: p[0] || "", e: p[1] || "" };
+          if (value.s) {
+            var pms = parseMonth(value.s);
+            viewStart = (pms === null) ? startYear : Math.floor(pms / 12);
+          }
+        }
+        picking = "s";
+      }
+      updateDisplay();
+    };
+    updateDisplay();
+    return wrap;
+  }
+  function ymGetValue(el, cls){
+    if (!el) return "";
+    var target = el.ymRead ? el : el.querySelector ? el.querySelector(".ym-pair") : null;
+    return target && target.ymRead ? target.ymRead() : "";
+  }
+  function ymSetValue(el, cls, value){
+    if (el.ymSet) el.ymSet(value);
+  }
+  function ymYears(){
+    var endY = getApplyYear(); // 可填到当前年，但公式按上一年12-31截止
+    return { start: endY - 50, end: endY };
+  }
+
+  function addSocialSeg(start, end){
+    var box = $("#socialSegs");
+    var row = document.createElement("div");
+    row.className = "seg-row";
+    var yr = ymYears();
+    var startWrap = ymSelect("seg-social-start", recalcSocial, yr.start, yr.end, true, 2011); // 合法稳定就业默认开始2011-01
+    var endWrap = ymSelect("seg-social-end", recalcSocial, yr.start, yr.end, true);
+    var del = document.createElement("a");
+    del.className = "btn btn-mini secondary";
+    del.href = "javascript:void(0)";
+    del.textContent = "删除";
+    del.onclick = function(){ row.parentNode.removeChild(row); recalcSocial(); saveForm(); };
+    row.appendChild(startWrap);
+    var to = document.createElement("span"); to.style.color = "#64748b"; to.textContent = "至"; row.appendChild(to);
+    row.appendChild(endWrap); row.appendChild(del);
+    if (start) ymSetValue(startWrap, "seg-social-start", start);
+    if (end) ymSetValue(endWrap, "seg-social-end", end);
+    box.appendChild(row);
+    recalcSocial();
+  }
+  function recalcSocial(){
+    var cutoff = getCutoffMonth();
+    var cutoffIdx = monthIndex(cutoff.y, cutoff.m);
+    var total = 0, any = false, err = "", deducted = 0, deductedSegs = [], cutLabel = cutoff.y + "年12月31日", incomplete = false;
+    var hidden = $("#continuousPaySocialInsuranceMonth");
+    var sum = $("#socialSummary");
+    $$("#socialSegs .seg-row").forEach(function(row){
+      var pairs = row.querySelectorAll(".ym-pair");
+      var s = parseMonth(ymGetValue(pairs[0], "seg-social-start"));
+      var e = parseMonth(ymGetValue(pairs[1], "seg-social-end"));
+      if (s === null && e === null) return;
+      if (s === null || e === null) {
+        incomplete = true;
+        if (hidden) hidden.value = "";
+        if (sum) sum.innerHTML = s !== null ? "已选开始 <b>" + fmtMonth(s) + "</b>，请选择结束年月" : "请选择开始年月";
+        return;
+      }
+      if (s > e) { err = "开始年月不能晚于结束年月"; return; }
+      any = true;
+      var realEnd = Math.min(e, cutoffIdx);
+      if (realEnd < s) {
+        deducted += calcMonthSpan(s, e);
+        deductedSegs.push(fmtMonth(s) + "~" + fmtMonth(e));
+        return; // 整段都在截止日后，计为扣减
+      }
+      total += calcMonthSpan(s, realEnd);
+      if (e > cutoffIdx) {
+        deducted += (e - cutoffIdx);
+        deductedSegs.push(fmtMonth(cutoffIdx + 1) + "~" + fmtMonth(e));
+      }
+    });
+    if (incomplete) return;
+    if (hidden) hidden.value = any && !err ? String(total) : "";
+    if (sum) {
+      if (err) {
+        sum.innerHTML = '<span style="color:#b91c1c;">' + err + '</span>';
+      } else {
+        var note = deducted > 0 ? '（已扣减截止日后的 ' + deducted + ' 个月：' + deductedSegs.join("、") + '，不计入本次积分）' : '';
+        sum.innerHTML = "累计缴费：<b>" + total + "</b> 个月 <span style='color:#64748b;font-size:12px;'>按 " + cutLabel + " 截止" + note + "</span>";
+      }
+    }
+  }
+
+  function addResSeg(start, end, type){
+    var box = $("#resSegs");
+    var row = document.createElement("div");
+    row.className = "seg-row";
+    var yr = ymYears();
+    var startWrap = ymSelect("seg-res-start", recalcRes, yr.start, yr.end, true, 2011);
+    var endWrap = ymSelect("seg-res-end", recalcRes, yr.start, yr.end, true);
+    var tSel = document.createElement("select");
+    tSel.className = "seg-res-type";
+    tSel.appendChild(new Option("自有产权", "1"));
+    tSel.appendChild(new Option("合法租赁", "2"));
+    tSel.appendChild(new Option("单位宿舍", "3"));
+    tSel.addEventListener("change", recalcRes);
+    var del = document.createElement("a");
+    del.className = "btn btn-mini secondary";
+    del.href = "javascript:void(0)";
+    del.textContent = "删除";
+    del.onclick = function(){ row.parentNode.removeChild(row); recalcRes(); saveForm(); };
+    row.appendChild(startWrap);
+    var to = document.createElement("span"); to.style.color = "#64748b"; to.textContent = "至"; row.appendChild(to);
+    row.appendChild(endWrap); row.appendChild(tSel);
+    row.appendChild(del);
+    if (start) ymSetValue(startWrap, "seg-res-start", start);
+    if (end) ymSetValue(endWrap, "seg-res-end", end);
+    if (type) tSel.value = type;
+    box.appendChild(row);
+    recalcRes();
+  }
+  function recalcRes(){
+    var cutoff = getCutoffMonth();
+    var cutoffIdx = monthIndex(cutoff.y, cutoff.m);
+    var own = 0, lease = 0, dorm = 0, err = "", deducted = 0, deductedSegs = [], incomplete = false;
+    var seen = {};
+    var hOwn = $("#ownRightsYearsOfResidence"), hLease = $("#legitimateYearsOfResidence"), hDorm = $("#unitDormitoryYearsOfResidence");
+    var hCurrent = $("#currentHousingType");
+    var latestEnd = null, latestType = "rent";
+    var sum = $("#resSummary");
+    $$("#resSegs .seg-row").forEach(function(row){
+      var pairs = row.querySelectorAll(".ym-pair");
+      var s = parseMonth(ymGetValue(pairs[0], "seg-res-start"));
+      var e = parseMonth(ymGetValue(pairs[1], "seg-res-end"));
+      var t = row.querySelector(".seg-res-type").value;
+      if (s === null && e === null) return;
+      if (s === null || e === null) {
+        incomplete = true;
+        if (hOwn) hOwn.value = ""; if (hLease) hLease.value = ""; if (hDorm) hDorm.value = "";
+        if (sum) sum.innerHTML = s !== null ? "已选开始 <b>" + fmtMonth(s) + "</b>，请选择结束年月" : "请选择开始年月";
+        return;
+      }
+      if (s > e) { err = "开始年月不能晚于结束年月"; return; }
+      var realEnd = Math.min(e, cutoffIdx);
+      if (realEnd < s) {
+        deducted += calcMonthSpan(s, e);
+        deductedSegs.push(fmtMonth(s) + "~" + fmtMonth(e));
+        return;
+      }
+      for (var i = s; i <= realEnd; i++) {
+        if (seen[i]) { err = "时间段有重叠（同一月份只能一种住所）"; return; }
+        seen[i] = true;
+        if (t === "1") own++; else if (t === "2") lease++; else dorm++;
+      }
+      if (realEnd > latestEnd) { latestEnd = realEnd; latestType = t; }
+      if (e > cutoffIdx) {
+        deducted += (e - cutoffIdx);
+        deductedSegs.push(fmtMonth(cutoffIdx + 1) + "~" + fmtMonth(e));
+      }
+    });
+    if (incomplete) return;
+    if (hOwn) hOwn.value = err ? "" : String(own);
+    if (hLease) hLease.value = err ? "" : String(lease);
+    if (hDorm) hDorm.value = err ? "" : String(dorm);
+    if (hCurrent) hCurrent.value = err ? "rent" : latestType;
+    if (sum) {
+      if (err) {
+        sum.innerHTML = '<span style="color:#b91c1c;">' + err + '</span>';
+      } else {
+        var note = deducted > 0 ? '<span style="color:#64748b;font-size:12px;">（已扣减截止日后的 ' + deducted + ' 个月：' + deductedSegs.join("、") + '）</span>' : '';
+        sum.innerHTML = "自有 <b>" + own + "</b> 个月 · 备案租赁 <b>" + lease + "</b> 个月 · 单位宿舍 <b>" + dorm + "</b> 个月 " + note;
+      }
+    }
+  }
+
+  function ageToScore(age){
+    if (age <= 45) return 20;
+    if (age <= 46) return 16;
+    if (age <= 47) return 12;
+    if (age <= 48) return 8;
+    if (age <= 49) return 4;
+    return 0;
+  }
+  function recalcDeduct(){
+    var box = $("#degreeDeductSeg");
+    if (!box) return;
+    var pairs = box.querySelectorAll(".ym-pair");
+    if (pairs.length < 2) return;
+    var s = parseMonth(pairs[0].ymRead());
+    var e = parseMonth(pairs[1].ymRead());
+    var hidden = $("#degreePaySocialInsuranceMonth");
+    var sum = $("#degreeDeductSummary");
+    if (s === null && e === null) {
+      if (hidden) hidden.value = "";
+      if (sum) sum.innerHTML = "请选择“取得学历期间同时缴社保并居住”的起止年月";
+      return;
+    }
+    if (s === null || e === null) {
+      if (hidden) hidden.value = "";
+      if (sum) sum.innerHTML = '<span style="color:#b91c1c;">请把起止年月都选完整</span>';
+      return;
+    }
+    if (s > e) {
+      if (hidden) hidden.value = "";
+      if (sum) sum.innerHTML = '<span style="color:#b91c1c;">开始年月不能晚于结束年月</span>';
+      return;
+    }
+    var months = e - s + 1;
+    if (hidden) hidden.value = String(months);
+    if (sum) sum.innerHTML = "扣除月数：<b>" + months + "</b> 个月（取得学历期间同时缴社保并居住）";
+  }
+  function recalcAge(){
+    var birthBox = $("#birthYM");
+    var b = birthBox ? ymGetValue(birthBox, "seg-birth") : "";
+    var y = getApplyYear();
+    var sum = $("#ageSummary"), hidden = $("#ageTypeValue");
+    if (!b) {
+      if (sum) sum.innerHTML = "请先填写出生年月，系统按“申报年份上一年1月1日”计算档位";
+      if (hidden) hidden.value = "";
+      return;
+    }
+    var p = b.split("-"); var by = Number(p[0]), bm = Number(p[1]);
+    var refY = y - 1; // 申报年份上一年
+    var age = refY - by;
+    // 1月1日看是否已满周岁：生日月份>1则还没到当年生日
+    if (bm > 1) age -= 1;
+    var score = ageToScore(age);
+    var label = age <= 45 ? "不超过45周岁" : age <= 46 ? "45周岁以上不超过46周岁" : age <= 47 ? "46周岁以上不超过47周岁" : age <= 48 ? "47周岁以上不超过48周岁" : age <= 49 ? "48周岁以上不超过49周岁" : "49周岁以上";
+    if (hidden) { hidden.value = String(score); hidden.checked = true; }
+    if (sum) sum.innerHTML = "截至" + refY + "年1月1日：<b>" + age + "</b> 周岁 → " + label + "（" + score + "分）";
+  }
+
+  function showTaxesSelect(obj){
+    if (obj.checked) {
+      $(".taxes").style.display = "none";
+      $(".taxes1").style.display = "inline-block";
+      setTaxValue($("#taxStart1"));
+    } else {
+      $(".taxes1").style.display = "none";
+    }
+    saveForm();
+  }
+  function setTaxNone(){
+    $('input[name="nearlyThreeConsecutiveTax"][value="0"]').checked = true;
+    $(".taxes").style.display = "none";
+    saveForm();
+  }
+  function setTaxValue(sel){
+    var pair = sel && sel.ymRead ? sel : (sel ? sel.querySelector(".ym-pair") : null);
+    var val = pair ? pair.ymRead() : "";
+    var radio = document.querySelector('input[name="nearlyThreeConsecutiveTax"][data-code="1"]');
+    if (radio) radio.value = String(calcTaxScore(val));
+    saveForm();
+  }
+
+  function validateStep(i){
+    var valid = true;
+    var names = ["isHoldTheCityResidencePermit", "isOverRetireAge", "isMoreSevenYear", "isNoCriminalRecord"];
+    if (i === 0) {
+      var qualOk = true;
+      names.forEach(function(name){
+        var checked = document.querySelector('input[name="' + name + '"]:checked');
+        if (!checked || checked.value !== "1") qualOk = false;
+      });
+      if (!qualOk) showErr("#err1"); else hideErr("#err1");
+      valid = qualOk;
+      return valid;
+    }
+    if (i === 1) {
+      var m = valInt("#continuousPaySocialInsuranceMonth");
+      var hasSeg = $$("#socialSegs .seg-row").some(function(row){ var p=row.querySelectorAll(".ym-pair"); return !!ymGetValue(p[0],"seg-social-start") || !!ymGetValue(p[1],"seg-social-end"); });
+      valid = hasSeg && Number.isInteger(m) && m >= 0 && m <= 600;
+      if (!valid) showErr("#err2"); else hideErr("#err2");
+      return valid;
+    }
+    if (i === 2) {
+      var anySeg = $$("#resSegs .seg-row").some(function(row){ var p=row.querySelectorAll(".ym-pair"); return !!ymGetValue(p[0],"seg-res-start") || !!ymGetValue(p[1],"seg-res-end"); });
+      var ownV = Number.isFinite(valInt("#ownRightsYearsOfResidence")) ? valInt("#ownRightsYearsOfResidence") : 0;
+      var leaseV = Number.isFinite(valInt("#legitimateYearsOfResidence")) ? valInt("#legitimateYearsOfResidence") : 0;
+      var dormV = Number.isFinite(valInt("#unitDormitoryYearsOfResidence")) ? valInt("#unitDormitoryYearsOfResidence") : 0;
+      var overflow = ownV > 600 || leaseV > 600 || dormV > 600;
+      valid = !overflow && (anySeg ? (ownV + leaseV + dormV > 0) : true);
+      if (!valid) showErr("#err3"); else hideErr("#err3");
+      return valid;
+    }
+    if (i === 3) {
+      var degree = document.querySelector('input[name="degree"]:checked');
+      var box = $("#degreeDeductSeg");
+      var pairs = box ? box.querySelectorAll(".ym-pair") : [];
+      var sv = pairs[0] ? pairs[0].ymRead() : "", ev_ = pairs[1] ? pairs[1].ymRead() : "";
+      var deductRaw = valInt("#degreePaySocialInsuranceMonth");
+      var bothEmpty = !sv && !ev_;
+      var bothFull = !!(sv && ev_ && !(parseMonth(sv) > parseMonth(ev_)) && Number.isInteger(deductRaw) && deductRaw >= 0 && deductRaw <= 120);
+      valid = degree && (bothEmpty || bothFull);
+      if (!valid) showErr("#err4"); else hideErr("#err4");
+      return valid;
+    }
+    if (i === 4) {
+      var areaSel = document.querySelector('input[name="areaTypes"]:checked');
+      valid = !!areaSel;
+      if (areaSel && areaSel.value !== "0") {
+        valid = valid && !!ymValueFrom($("#areaStart" + areaSel.value));
+      }
+      if (!valid) showErr("#err5"); else hideErr("#err5");
+      return valid;
+    }
+    if (i === 5) {
+      valid = !!document.querySelector('input[name="innovativeEntrepreneurialTypes"]:checked');
+      if (!valid) showErr("#err6"); else hideErr("#err6");
+      return valid;
+    }
+    if (i === 6) {
+      var taxSel = document.querySelector('input[name="nearlyThreeConsecutiveTax"]:checked');
+      valid = !!taxSel;
+      if (taxSel && taxSel.value !== "0") {
+        valid = valid && !!ymValueFrom($("#taxStart1"));
+      }
+      if (!valid) showErr("#err7"); else hideErr("#err7");
+      return valid;
+    }
+    if (i === 7) {
+      var birthBox = $("#birthYM");
+      var bm = birthBox ? ymGetValue(birthBox, "seg-birth") : "";
+      var ageVal = Number($("#ageTypeValue").value);
+      var retireEl = document.querySelector('input[name="retireType"]:checked');
+      if (!retireEl) showErr("#errRetireType"); else hideErr("#errRetireType");
+      var ageOk = !!bm && Number.isInteger(ageVal) && [20,16,12,8,4,0].indexOf(ageVal) >= 0;
+      if (!ageOk) showErr("#err8"); else hideErr("#err8");
+      valid = ageOk && !!retireEl;
+      return valid;
+    }
+    if (i === 8) {
+      valid = !!document.querySelector('input[name="honorCommendation"]:checked');
+      if (!valid) showErr("#err9"); else hideErr("#err9");
+      return valid;
+    }
+    if (i === 9) {
+      var pen = Number($('select[name="numberOfPenalties"]').value || 0);
+      valid = Number.isInteger(pen) && pen >= 0 && pen <= 10;
+      if (!valid) showErr("#err10"); else hideErr("#err10");
+      return valid;
+    }
+    return true;
+  }
+
+  function updateStepper(){
+    $$('#steps a').forEach(function(a, idx){
+      a.classList.remove("active", "done", "disabled");
+      if (idx === cur) a.classList.add("active");
+      else if (visited[idx]) a.classList.add("done");
+      else a.classList.add("disabled");
+    });
+  }
+  function renderAction(){
+    var bar = $("#actionBar");
+    if (cur === 0) {
+      bar.innerHTML = '<a class="btn anniu" href="#" onclick="nextStep();return false;">下一步</a>';
+    } else if (cur === 10) {
+      bar.innerHTML = '<a class="btn anniu" href="#" onclick="restart();return false;">重新计算</a>';
+    } else {
+      bar.innerHTML = '<a class="btn anniu" href="#" onclick="prevStep();return false;">上一步</a><a class="btn anniu" href="#" onclick="nextStep();return false;">下一步</a>';
+    }
+  }
+  function showStep(i){
+    $$(".step-pane").forEach(function(p){ p.classList.remove("show"); });
+    $("#step-" + (i + 1)).classList.add("show");
+    cur = i;
+    updateStepper();
+    renderAction();
+    window.scrollTo(0, 0);
+  }
+  function gotoStep(i){
+    if (i === cur) return;
+    if (!visited[i]) return;
+    showStep(i);
+  }
+  function prevStep(){ if (cur > 0) showStep(cur - 1); }
+  function nextStep(){
+    if (cur >= 10) return;
+    if (!validateStep(cur)) return;
+    visited[cur + 1] = true;
+    if (cur + 1 === 10) renderResult();
+    showStep(cur + 1);
+  }
+  function restart(){ location.reload(); }
+
+  function fmt(n){ return Number(n).toFixed(2); }
+  function row(idx, label, score){ return '<tr><td align="center">' + idx + '</td><td height="40">' + label + '</td><td align="center">' + fmt(score) + '</td></tr>'; }
+  function resultCardHtml(idx, label, score){
+    return '<div class="result-card"><span class="result-index">' + idx + '</span><div class="result-label">' + label + '</div><div class="result-score' + (score < 0 ? " minus" : "") + '">' + fmt(score) + '分</div></div>';
+  }
+  function projectionCardHtml(year, age, total, line, lineKind, diff, win, changeValue, changeText, planHtml){
+    return '<div class="projection-card' + (win ? " win" : "") + '">' +
+      '<div class="projection-head"><span class="projection-year">' + year + '</span><span class="projection-age">' + age + '岁</span><span class="projection-status' + (win ? " win" : "") + '">' + (win ? "✅ 达线" : "未达线") + '</span></div>' +
+      '<div class="projection-metrics">' +
+        '<div class="projection-metric"><span>我的分</span><b>' + fmt(total) + '</b></div>' +
+        '<div class="projection-metric"><span>参考线</span><b>' + fmt(line) + '</b><small>' + lineKind + '</small></div>' +
+        '<div class="projection-metric"><span>差值</span><b class="' + (diff >= 0 ? "" : "minus") + '">' + (diff >= 0 ? "+" : "") + fmt(diff) + '</b></div>' +
+        '<div class="projection-metric"><span>本期变化</span><b>' + changeValue + '</b></div>' +
+      '</div>' +
+      '<div class="projection-change">' + changeText + '</div>' +
+      (planHtml ? '<div class="projection-plan"><div class="projection-plan-title">规划调整</div>' + planHtml + '</div>' : '') +
+    '</div>';
+  }
+  /* 未来分数线：2026 为实际值；2027-2032 为参考值（武毅表格）；2033+ 按平均涨幅推测外推 */
+  var CUTOFF_LINES = {2026:119.92, 2027:122.42, 2028:124.92, 2029:127.42, 2030:129.92, 2031:132.42, 2032:134.92};
+  function lineType(year){
+    if (year === 2026) return "实际值";
+    if (year <= 2032) return "参考值";
+    return "推测外推";
+  }
+  function getCutoffLine(year){
+    if (CUTOFF_LINES[year] !== undefined) return CUTOFF_LINES[year];
+    var years = Object.keys(CUTOFF_LINES).map(Number).sort(function(a,b){ return a-b; });
+    var lastY = years[years.length - 1], firstY = years[0];
+    var avgRise = (CUTOFF_LINES[lastY] - CUTOFF_LINES[firstY]) / (lastY - firstY);
+    return Number((CUTOFF_LINES[lastY] + (year - lastY) * avgRise).toFixed(2));
+  }
+  function pushPartChange(list, cur, last, positive, negative){
+    var d = cur - last;
+    if (Math.abs(d) > 0.005) {
+      list.push((d > 0 ? positive : negative).replace("{d}", fmt(Math.abs(d))));
+      return d;
+    }
+    return 0;
+  }
+  function renderProjection(){
+    var emp = Number.isFinite(valInt("#continuousPaySocialInsuranceMonth")) ? valInt("#continuousPaySocialInsuranceMonth") : 0;
+    var ownRaw = Number.isFinite(valInt('input[name="ownRightsYearsOfResidence"]')) ? valInt('input[name="ownRightsYearsOfResidence"]') : 0;
+    var degree = checkedVal("degree") || 0;
+    var rawDed = Number.isFinite(valInt('input[name="degreePaySocialInsuranceMonth"]')) ? valInt('input[name="degreePaySocialInsuranceMonth"]') : 0;
+    var maxDed = (DEDUCT_YEARS[String(degree)] || 0) * 12;
+    var ded = Math.min(rawDed, maxDed);
+    var dedScore = ded * (3 / 12 + 0.5 / 12);
+    var areaScore = Number($('input[name="occupationAreaTypes"]').value || 0);
+    var areaSel = document.querySelector('input[name="areaTypes"]:checked');
+    var areaStep = areaSel && areaSel.value === "1" ? 3 : areaSel && areaSel.value === "2" ? 2 : 0;
+    var innovScore = checkedVal("innovativeEntrepreneurialTypes") || 0;
+    var taxScore = checkedVal("nearlyThreeConsecutiveTax") || 0;
+    var taxYears = taxScore / 2;
+    var taxBad = Number($('select[name="taxRelatedIllegalRecords"]').value || 0);
+    var honorScore = checkedVal("honorCommendation") || 0;
+    var penalty = Number($('select[name="numberOfPenalties"]').value || 0);
+    var birthBox = $("#birthYM");
+    var birthV = birthBox ? ymGetValue(birthBox, "seg-birth") : "";
+    var bp = birthV ? String(birthV).split("-") : ["", ""];
+    var birthYear = bp[0] ? Number(bp[0]) : null;
+    var birthMonth = bp[1] ? Number(bp[1]) : 1;
+    var nowYear = getApplyYear();
+    var retireAge = getRetireLimit();
+    var retireDesc = getRetireDesc();
+    var currentHousing = getCurrentHousing(), currentWork = getCurrentWork(), currentTax = taxScore > 0 ? "yes" : "no";
+    var effPlan = { housing: currentHousing, work: currentWork, tax: currentTax };
+    var rentStartYear = null, areaStartYear = null, taxStartYear = null;
+    lastProjectionData = [];
+    var rowsHtml = "", mobileCards = "", firstWin = null, reached = false, prev = null;
+    for (var year = nowYear; birthYear !== null; year++) {
+      var refY = year - 1;
+      var age = refY - birthYear - (birthMonth > 1 ? 1 : 0);
+      if (age > retireAge) break;
+      var i = year - nowYear;
+      var planRow = planState.rows[String(year)] || null;
+      if (planRow) {
+        if (planRow.housing && planRow.housing !== "follow") effPlan.housing = planRow.housing === "current" ? currentHousing : planRow.housing;
+        if (planRow.work && planRow.work !== "follow") effPlan.work = planRow.work === "current" ? currentWork : planRow.work;
+        if (planRow.tax && planRow.tax !== "follow") effPlan.tax = planRow.tax === "current" ? currentTax : planRow.tax;
+      }
+      var planHousing = effPlan.housing, planWork = effPlan.work, planTax = effPlan.tax;
+      var planHousingExplicit = !!planRow && planRow.housing && planRow.housing !== "follow" && planRow.housing !== "current";
+      var empF = Math.min(emp + 12 * i, 600);
+      var ownF;
+      if (planHousing === "rent" && planHousingExplicit) {
+        ownF = Math.min(empF, ownRaw + 12 * Math.max(0, year - nowYear - 1));
+      }
+      else if ((planHousing === "cityOwn" || planHousing === "suburbOwn") && planHousingExplicit) ownF = Math.min(empF, ownRaw + 12 * i);
+      else if (getCurrentHousingType() === "1") ownF = Math.min(ownRaw + 12 * i, 600);
+      else ownF = Math.min(empF, ownRaw);
+      var ownUsed = Math.min(ownF, empF);
+      var autoUsed = Math.max(0, empF - ownUsed);
+      var empScore = empF / 12 * 3;
+      var houseScore = ownUsed / 12 * 1 + autoUsed / 12 * 0.5;
+      var ageScore = ageToScore(age);
+      var taxScoreF, areaScoreF;
+      if (planTax === "yes") { if (taxStartYear === null) taxStartYear = year; taxScoreF = Math.min(3, year - taxStartYear + 1) * 2; }
+      else if (planTax === "no") { taxScoreF = 0; taxStartYear = null; }
+      else taxScoreF = taxScore > 0 ? Math.min(3, taxYears + i) * 2 : 0;
+      if (planHousing === "current" && getCurrentHousingType() !== "1") {
+        areaScoreF = 0;
+      } else if (planHousing !== "current" || planWork !== "current") {
+        var effHousing = planHousing === "current" ? currentHousing : planHousing;
+        var effWork = planWork === "current" ? currentWork : planWork;
+        if (effHousing === "suburbOwn" && (effWork === "suburb" || effWork === "city")) {
+          if (areaStartYear === null) areaStartYear = year;
+          var areaStepPlan = effWork === "suburb" ? 3 : 2;
+          areaScoreF = Math.min(12, areaScore + areaStepPlan * (year - areaStartYear + 1));
+        } else { areaScoreF = 0; areaStartYear = null; }
+      } else {
+        areaScoreF = Math.min(areaScore + areaStep * i, 12);
+      }
+      var taxBadF = Math.ceil(taxBad * Math.max(0, 5 - i) / 5);
+      var penaltyF = Math.ceil(penalty * Math.max(0, 5 - i) / 5);
+      var parts = {
+        emp: empScore, house: houseScore, degree: Math.max(0, degree - dedScore),
+        area: areaScoreF, innov: innovScore, tax: taxScoreF, age: ageScore,
+        honor: honorScore, taxBad: -taxBadF * 12, penalty: -penaltyF * 30
+      };
+      var total = parts.emp + parts.house + parts.degree + parts.area + parts.innov + parts.tax + parts.age + parts.honor + parts.taxBad + parts.penalty;
+      var deltaParts = [], delta = 0;
+      if (prev) {
+        delta += pushPartChange(deltaParts, parts.emp, prev.emp, "社保 +{d}", "社保 −{d}");
+        delta += pushPartChange(deltaParts, parts.house, prev.house, "住所 +{d}", "住所 −{d}");
+        delta += pushPartChange(deltaParts, parts.area, prev.area, "职住 +{d}", "职住 −{d}");
+        delta += pushPartChange(deltaParts, parts.tax, prev.tax, "纳税 +{d}", "纳税 −{d}");
+        delta += pushPartChange(deltaParts, parts.age, prev.age, "年龄 +{d}", "年龄 −{d}");
+        var prevTaxBadF = Math.abs(prev.taxBad / 12), prevPenaltyF = Math.abs(prev.penalty / 30);
+        if (taxBadF < prevTaxBadF) { deltaParts.push("涉税违法记录退出 +" + fmt((prevTaxBadF - taxBadF) * 12)); delta += (prevTaxBadF - taxBadF) * 12; }
+        if (taxBadF > prevTaxBadF) { deltaParts.push("涉税违法记录增加 −" + fmt((taxBadF - prevTaxBadF) * 12)); delta -= (taxBadF - prevTaxBadF) * 12; }
+        if (penaltyF < prevPenaltyF) { deltaParts.push("行政拘留记录退出 +" + fmt((prevPenaltyF - penaltyF) * 30)); delta += (prevPenaltyF - penaltyF) * 30; }
+        if (penaltyF > prevPenaltyF) { deltaParts.push("行政拘留记录增加 −" + fmt((penaltyF - prevPenaltyF) * 30)); delta -= (penaltyF - prevPenaltyF) * 30; }
+      }
+      if (planRow) {
+        var rowPlanDesc = planRowDescription(year);
+        if (rowPlanDesc) deltaParts.push("规划：" + rowPlanDesc);
+      }
+      var changeText = prev ? (deltaParts.length ? deltaParts.join("；") : "本期无变化") : "基准年（本期无上年对比）";
+      var changeValue = prev ? ((delta > 0 ? "+" : "") + fmt(delta)) : "—";
+      var line = getCutoffLine(year);
+      var diff = total - line;
+      var win = diff >= 0;
+      lastProjectionData.push({ year: year, total: total, line: line, diff: diff, win: win });
+      if (win && !reached) { firstWin = year; reached = true; }
+      var cls = win ? ' style="background:#dcfce7;font-weight:600;"' : '';
+      var planCell = "";
+      var planMobile = year > nowYear ? planControlsHtml(year) : "";
+      planCell = year > nowYear ? planCellHtml(year) : '<td align="center">—</td>';
+      rowsHtml += '<tr' + cls + '><td align="center">' + year + '</td><td align="center">' + age + '</td><td align="center">' + fmt(total) + '</td><td align="center">' + fmt(line) + '<br><span style="font-size:11px;color:#64748b;">' + lineType(year) + '</span></td><td align="center">' + (diff >= 0 ? "+" : "") + fmt(diff) + '</td><td align="center">' + (win ? "✅ 达线" : "未达线") + '</td><td align="center">' + changeValue + '</td><td style="font-size:12px;color:#475569;">' + changeText + '</td>' + planCell + '</tr>';
+      mobileCards += projectionCardHtml(year, age, total, line, lineType(year), diff, win, changeValue, changeText, planMobile);
+      prev = parts;
+    }
+    var planHeader = '<th width="20%" bgcolor="#0867b7">规划（住房 / 社保所在地 / 纳税）</th>';
+    var tableHtml = '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="blue_table"><tr><th width="8%" bgcolor="#0867b7">申报年份</th><th width="7%" bgcolor="#0867b7">年龄</th><th width="10%" bgcolor="#0867b7">我的分数</th><th width="10%" bgcolor="#0867b7">分数线</th><th width="8%" bgcolor="#0867b7">差值</th><th width="8%" bgcolor="#0867b7">是否达线</th><th width="10%" bgcolor="#0867b7">本期变化</th><th width="19%" bgcolor="#0867b7">变化说明</th>' + planHeader + '</tr>' + rowsHtml + '</table>';
+    var mobileList = '<div class="mobile-only mobile-projection-list" role="region" aria-label="未来平推结果（移动端视图）">' + mobileCards + '</div>';
+    var dataViews = '<div class="table-scroll desktop-only">' + tableHtml + '</div>' + mobileList;
+    var head = '<h4 class="tit01">未来平推（至法定退休年龄）</h4><div class="box"><div class="info"><p>按“当前状态不变”推算：社保/自有住所每年 +12 个月，年龄逐年递增；学历、创新、荣誉按当前不变；纳税指标若当前已满足，按每满 1 年加 2 分、最高 6 分逐年增长；职住区域若当前已满足，按每年 2 分（仅郊区居住）或 3 分（郊区居住且工作）逐年增长、最高 12 分；涉税违法和行政拘留按“近 5 年窗口、未来无新增”逐年退出（页面未记录每条发生年份，按记录在近 5 年均匀分布估算）；上述未选择则按 0 不变。<b>表格/卡片“规划”区域可直接修改住房、社保所在地和纳税。</b><b>当前退休口径</b>：' + retireDesc + '；如遇国家退休政策调整，按新政策执行。表中列到该口径下的年龄上限，末行仅作参考。<b>分数线性质</b>：2026 = 实际值；2027-2032 = 参考值；2033 以后 = 推测外推（非官方预测，仅供参考）。表格/卡片“本期变化/变化说明”展示与上一年对比，便于理解每年涨跌原因。</p></div>' + dataViews + '</div>';
+    var summaryMode = Object.keys(planState.rows).length > 0 ? "按当前规划" : "按当前状态";
+    var summary = reached ? '<div class="summary" style="margin-top:10px;">预计 <b>' + firstWin + '</b> 年可申请落户（' + summaryMode + '；当年分数 ≥ 分数线）。</div>' : '<div class="summary" style="margin-top:10px;">' + summaryMode + '，在退休年龄前未达分数线（' + retireDesc + '）；可在后续规划中调整。</div>';
+    var warning = '<div class="disclaimer-warning">⚠️ 本页面为模拟计算，仅供参考，不负任何结果责任。<small>实际积分、落户资格与政策请以官方审核为准；如需正式规划，请咨询专业人士或官方机构。</small></div>';
+    return '<div id="projectionBox">' + warning + head + summary + '</div>';
+  }
+  function refreshProjection(){
+    var box = $("#projectionBox");
+    if (!box) return;
+    var tmp = document.createElement("div");
+    tmp.innerHTML = renderProjection();
+    box.parentNode.replaceChild(tmp.firstChild, box);
+  }
+  function planOptionHtml(selected, value, label){
+    return '<option value="' + value + '"' + (selected === value ? " selected" : "") + '>' + label + '</option>';
+  }
+  function planControlsHtml(year){
+    var r = planState.rows[year] || {};
+    var curVal = year === getApplyYear() + 1 ? "current" : "follow";
+    var h = r.housing || curVal, w = r.work || curVal, t = r.tax || curVal;
+    var modified = !!(r.housing || r.work || r.tax);
+    var hOptions = planOptionHtml(h, "current", "按现状") + planOptionHtml(h, "follow", "跟随上一行") + planOptionHtml(h, "rent", "租房") + planOptionHtml(h, "cityOwn", "市区购房") + planOptionHtml(h, "suburbOwn", "郊区购房");
+    var wOptions = planOptionHtml(w, "current", "按现状") + planOptionHtml(w, "follow", "跟随上一行") + planOptionHtml(w, "city", "市区") + planOptionHtml(w, "suburb", "郊区");
+    var tOptions = planOptionHtml(t, "current", "按现状") + planOptionHtml(t, "follow", "跟随上一行") + planOptionHtml(t, "no", "不满足") + planOptionHtml(t, "yes", "满足");
+    return '<div class="plan-cell"><div class="plan-grid">' +
+      '<div><label>住房</label><select onchange="updatePlanRow(' + year + ', \'housing\', this.value)">' + hOptions + '</select></div>' +
+      '<div><label>社保所在地</label><select onchange="updatePlanRow(' + year + ', \'work\', this.value)">' + wOptions + '</select></div>' +
+      '<div><label>纳税</label><select onchange="updatePlanRow(' + year + ', \'tax\', this.value)">' + tOptions + '</select></div>' +
+      '</div>' +
+      (modified ? '<button type="button" class="btn btn-mini secondary plan-clear" onclick="clearPlanRow(' + year + ')">× 恢复</button>' : '') +
+      '</div>';
+  }
+  function planCellHtml(year){
+    return '<td align="center">' + planControlsHtml(year) + '</td>';
+  }
+  function renderPlanPanel(){
+    var panel = $("#planPanel");
+    if (!panel) return;
+    var tip = '<div class="info">直接在推演表“规划”列修改各年份的住房 / 社保所在地 / 纳税；后续年份默认跟随上一行。修改后表格即时重算。</div>';
+    var nowY = getApplyYear();
+    var selectedTarget = $("#targetYear") ? $("#targetYear").value : "auto";
+    var targetOptions = '<option value="auto">自动找最早</option>';
+    for (var y = nowY + 1; y <= nowY + 50; y++) targetOptions += '<option value="' + y + '"' + (String(selectedTarget) === String(y) ? " selected" : "") + '>' + y + '年</option>';
+    if (selectedTarget === "auto") targetOptions = targetOptions.replace('<option value="auto">自动找最早</option>', '<option value="auto" selected>自动找最早</option>');
+    var advice = '<div class="plan-actions"><label>目标上岸年</label><select id="targetYear">' + targetOptions + '</select><button type="button" class="btn btn-mini" id="suggestPlanBtn">帮我补分</button></div><div id="planAdviceText" class="info"></div>';
+    panel.innerHTML = '<div class="plan-panel">' + tip + advice + '<div class="plan-actions"><button type="button" class="btn btn-mini secondary" id="planResetBtn">恢复默认规划</button></div></div>';
+    var resetBtn = $("#planResetBtn");
+    if (resetBtn) resetBtn.addEventListener("click", resetPlan);
+    var suggestBtn = $("#suggestPlanBtn");
+    if (suggestBtn) suggestBtn.addEventListener("click", applySuggestedPlan);
+    var targetSel = $("#targetYear");
+    if (targetSel) targetSel.addEventListener("change", renderPlanAdvice);
+    renderPlanAdvice();
+  }
+  function updatePlanRow(year, field, value){
+    if (!year) return;
+    if (!planState.rows[year]) planState.rows[year] = {};
+    planState.rows[year][field] = value;
+    renderPlanPanel(); refreshProjection(); saveForm();
+  }
+  function clearPlanRow(year){
+    if (planState.rows[year]) delete planState.rows[year];
+    renderPlanPanel(); refreshProjection(); saveForm();
+  }
+  function getProjectionData(rows){
+    var oldRows = planState.rows;
+    planState.rows = rows || {};
+    renderProjection();
+    var data = lastProjectionData.slice();
+    planState.rows = oldRows;
+    return data;
+  }
+  function buildTimedRecommendationRows(targetYear){
+    var rows = JSON.parse(JSON.stringify(planState.rows));
+    var nowY = getApplyYear();
+    var taxStart = Math.max(nowY + 1, targetYear - 2);
+    var areaStart = Math.max(nowY + 1, targetYear - 5); // 郊区自有房+市区社保：2分/年，12分=6年
+    for (var y = taxStart; y <= targetYear; y++) {
+      var key = String(y);
+      if (!rows[key]) rows[key] = {};
+      if (!rows[key].tax) rows[key].tax = "yes";
+    }
+    for (var y2 = areaStart; y2 <= targetYear; y2++) {
+      var key2 = String(y2);
+      if (!rows[key2]) rows[key2] = {};
+      if (!rows[key2].housing) rows[key2].housing = "suburbOwn";
+      if (!rows[key2].work) rows[key2].work = "city"; // 推荐默认社保所在地保持市区
+    }
+    return rows;
+  }
+  function findFirstFeasibleTarget(){
+    var nowY = getApplyYear();
+    for (var t = nowY + 1; t <= nowY + 50; t++) {
+      var rows = buildTimedRecommendationRows(t);
+      var data = getProjectionData(rows);
+      var row = data.find(function(r){ return r.year === t; });
+      if (row && row.win) return { year: t, rows: rows, data: data };
+    }
+    return null;
+  }
+  function renderPlanAdvice(){
+    var box = $("#planAdviceText");
+    if (!box) return;
+    var nowY = getApplyYear();
+    var target = $("#targetYear") ? $("#targetYear").value : "auto";
+    var currentData = getProjectionData(planState.rows);
+    var currentFirst = currentData.find(function(r){ return r.win; }) || null;
+    var text = "";
+    if (target !== "auto") {
+      var t = Number(target);
+      var cur = currentData.find(function(r){ return r.year === t; });
+      var recData = getProjectionData(buildTimedRecommendationRows(t));
+      var rec = recData.find(function(r){ return r.year === t; });
+      if (cur && cur.win) text = Object.keys(planState.rows).length > 0 ? "应用推荐规划后，<b>" + t + "</b> 年可申请落户。" : "当前状态到 <b>" + t + "</b> 年已可申请落户，无需调整。";
+      else if (rec && rec.win) text = "推荐调整后，<b>" + t + "</b> 年可申请落户（按最晚开始原则：纳税补最近3年，郊区自有房+市区社保补最近6年）。";
+      else {
+        var later = findFirstFeasibleTarget();
+        var gap = rec ? fmt(rec.line - rec.total) : "";
+        text = "即使采用推荐调整，<b>" + t + "</b> 年仍差 <b>" + gap + "</b> 分" + (later ? "；更接近且可行的目标年为 <b>" + later.year + "</b> 年。" : "。");
+      }
+    } else {
+      if (currentFirst) text = Object.keys(planState.rows).length > 0 ? "应用推荐规划后预计 <b>" + currentFirst.year + "</b> 年可申请落户。" : "当前状态预计 <b>" + currentFirst.year + "</b> 年可申请落户；点击「帮我补分」可尝试更早。";
+      else {
+        var feasible = findFirstFeasibleTarget();
+        text = feasible ? "自动倒推：最接近且可行的目标年为 <b>" + feasible.year + "</b> 年；点击「帮我补分」应用最晚开始方案。" : "当前和推荐方案在退休年龄前都未达线。";
+      }
+    }
+    box.innerHTML = text;
+  }
+  function applySuggestedPlan(){
+    var target = $("#targetYear") ? $("#targetYear").value : "auto";
+    var recRows = null;
+    if (target === "auto") {
+      var feasible = findFirstFeasibleTarget();
+      if (!feasible) { renderPlanPanel(); refreshProjection(); saveForm(); return; }
+      recRows = feasible.rows;
+    } else {
+      recRows = buildTimedRecommendationRows(Number(target));
+    }
+    planState.rows = recRows;
+    renderPlanPanel(); refreshProjection(); saveForm();
+  }
+  function resetPlan(){
+    resetPlanState();
+    renderPlanPanel(); refreshProjection(); saveForm();
+  }
+  function renderResult(){
+    var emp = Number.isFinite(valInt("#continuousPaySocialInsuranceMonth")) ? valInt("#continuousPaySocialInsuranceMonth") : 0;
+    var ownRaw = Number.isFinite(valInt('input[name="ownRightsYearsOfResidence"]')) ? valInt('input[name="ownRightsYearsOfResidence"]') : 0;
+    var ownUsed = Math.min(ownRaw, emp);
+    var autoUsed = Math.max(0, emp - ownUsed);
+    var empScore = emp / 12 * 3;
+    var houseScore = ownUsed / 12 * 1 + autoUsed / 12 * 0.5;
+    var degree = checkedVal("degree");
+    var degreeScore = degree || 0;
+    var rawDed = Number.isFinite(valInt('input[name="degreePaySocialInsuranceMonth"]')) ? valInt('input[name="degreePaySocialInsuranceMonth"]') : 0;
+    var maxDed = (DEDUCT_YEARS[String(degree)] || 0) * 12;
+    var ded = Math.min(rawDed, maxDed);
+    var dedScore = ded * (3 / 12 + 0.5 / 12);
+    var areaScore = Number($('input[name="occupationAreaTypes"]').value || 0);
+    var innovScore = checkedVal("innovativeEntrepreneurialTypes") || 0;
+    var taxScore = checkedVal("nearlyThreeConsecutiveTax") || 0;
+    var taxBad = Number($('select[name="taxRelatedIllegalRecords"]').value || 0);
+    var ageScore = checkedVal("ageType") || 0;
+    var honorScore = checkedVal("honorCommendation") || 0;
+    var penalty = Number($('select[name="numberOfPenalties"]').value || 0);
+    var total = empScore + houseScore + Math.max(0, degreeScore - dedScore) + areaScore + innovScore + taxScore - taxBad * 12 + ageScore + honorScore - penalty * 30;
+    var rows = row(1, "合法稳定就业指标积分", empScore) +
+      row(2, "合法稳定住所指标积分", houseScore) +
+      row(3, "教育背景指标积分", degreeScore) +
+      '<tr><td align="center"></td><td height="40">扣除取得学历（学位）期间累计的居住及就业分值</td><td align="center" class="minus">-' + fmt(dedScore) + '</td></tr>' +
+      row(4, "职住区域指标积分", areaScore) +
+      row(5, "创新创业指标积分", innovScore) +
+      row(6, "纳税指标积分", taxScore - taxBad * 12) +
+      row(7, "年龄指标积分", ageScore) +
+      row(8, "荣誉表彰指标积分", honorScore) +
+      row(9, "守法记录指标积分", -penalty * 30);
+    var mobileRows = resultCardHtml(1, "合法稳定就业指标积分", empScore) +
+      resultCardHtml(2, "合法稳定住所指标积分", houseScore) +
+      resultCardHtml(3, "教育背景指标积分", degreeScore) +
+      resultCardHtml("3a", "扣除取得学历（学位）期间累计的居住及就业分值", -dedScore) +
+      resultCardHtml(4, "职住区域指标积分", areaScore) +
+      resultCardHtml(5, "创新创业指标积分", innovScore) +
+      resultCardHtml(6, "纳税指标积分", taxScore - taxBad * 12) +
+      resultCardHtml(7, "年龄指标积分", ageScore) +
+      resultCardHtml(8, "荣誉表彰指标积分", honorScore) +
+      resultCardHtml(9, "守法记录指标积分", -penalty * 30);
+    var tableHtml = '<div class="table-scroll desktop-only"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="blue_table"><tr><th width="15%" bgcolor="#0867b7" scope="col" style="text-align:center;">序号</th><th width="60%" height="40" bgcolor="#0867b7" scope="col">积分项目明细</th><th width="15%" bgcolor="#0867b7" scope="col" style="text-align:center;">分值</th></tr>' + rows + '</table></div>';
+    var mobileHtml = '<div class="mobile-only mobile-result-list" role="region" aria-label="积分明细（移动端视图）">' + mobileRows + '</div>';
+    $("#resultHtml").innerHTML = '<h4 class="tit01">模拟积分结果</h4><div class="box"><h3 class="jifen">总分合计：<b>' + fmt(total) + '</b>分</h3>' + tableHtml + mobileHtml + '</div><div id="planPanel"></div>' + renderProjection();
+    renderPlanPanel();
+  }
+
+  /* ===== 本地填写缓存（localStorage） ===== */
+  var FORM_CACHE_KEY = "beijing-jifen-wizard-form-v4";
+  var restoringForm = false;
+  var planState = { mode: "current", rows: {} };
+  var lastProjectionData = [];
+  function resetPlanState(){ planState = { mode: "current", rows: {} }; }
+  function getCurrentWork(){
+    var sel = document.querySelector('input[name="areaTypes"]:checked');
+    return sel && sel.value === "1" ? "suburb" : "city";
+  }
+  function getCurrentHousingType(){
+    var el = $("#currentHousingType");
+    return el && el.value ? el.value : "rent";
+  }
+  function getCurrentHousing(){
+    var type = getCurrentHousingType();
+    if (type === "2" || type === "3") return "rent";
+    var sel = document.querySelector('input[name="areaTypes"]:checked');
+    return sel && (sel.value === "1" || sel.value === "2") ? "suburbOwn" : "cityOwn";
+  }
+  function planOption(selected, value, label){
+    return '<option value="' + value + '"' + (selected === value ? " selected" : "") + '>' + label + '</option>';
+  }
+  function planRowDescription(year){
+    var r = planState.rows[year];
+    if (!r) return "";
+    var parts = [];
+    if (r.housing && r.housing !== "follow" && r.housing !== "current")
+      parts.push(r.housing === "rent" ? "租房" : r.housing === "cityOwn" ? "市区购房" : "郊区购房");
+    if (r.work && r.work !== "follow" && r.work !== "current")
+      parts.push(r.work === "suburb" ? "郊区工作" : "市区工作");
+    if (r.tax && r.tax !== "follow" && r.tax !== "current")
+      parts.push(r.tax === "yes" ? "每年≥10万" : "不满足10万");
+    return parts.join("、");
+  }
+  function ymReadSafe(el){ return el && el.ymRead ? el.ymRead() : ""; }
+  function collectRadioState(){
+    var groups = {};
+    $$('input[type="radio"]').forEach(function(el){
+      if (!el.name || !el.checked) return;
+      var all = document.querySelectorAll('input[type="radio"][name="' + el.name + '"]');
+      groups[el.name] = { value: el.value, idx: Array.prototype.indexOf.call(all, el), code: el.getAttribute("data-code") || "" };
+    });
+    return groups;
+  }
+  function collectFormState(){
+    var data = { version: 4, form: {}, extras: {}, socialRows: [], resRows: [], birth: "", degreeDeduct: "" };
+    data.plan = JSON.parse(JSON.stringify(planState));
+    data.radios = collectRadioState();
+    try {
+      var form = document.querySelector("#wizardForm");
+      new FormData(form).forEach(function(v, k){ data.form[k] = String(v); });
+    } catch (e) {}
+    ["#areaStart1", "#areaStart2", "#taxStart1"].forEach(function(sel){
+      var el = $(sel); if (el) data.extras[sel] = ymValueFrom(el);
+    });
+    ["#innovate1", "#innovate2", "#innovate3"].forEach(function(sel){
+      var el = $(sel); if (el) data.extras[sel] = el.value;
+    });
+    $$("#socialSegs .seg-row").forEach(function(row){
+      var p = row.querySelectorAll(".ym-pair");
+      data.socialRows.push({ start: ymReadSafe(p[0]), end: ymReadSafe(p[1]) });
+    });
+    $$("#resSegs .seg-row").forEach(function(row){
+      var p = row.querySelectorAll(".ym-pair");
+      var t = row.querySelector(".seg-res-type");
+      data.resRows.push({ start: ymReadSafe(p[0]), end: ymReadSafe(p[1]), type: t ? t.value : "1" });
+    });
+    var birth = $("#birthYM .ym-pair");
+    data.birth = ymReadSafe(birth);
+    var dd = $("#degreeDeductSeg"), dp = dd ? dd.querySelectorAll(".ym-pair") : [];
+    if (dp.length >= 2) data.degreeDeduct = ymReadSafe(dp[0]) + "|" + ymReadSafe(dp[1]);
+    return data;
+  }
+  function saveForm(){
+    if (restoringForm) return;
+    try { localStorage.setItem(FORM_CACHE_KEY, JSON.stringify(collectFormState())); } catch (e) {}
+  }
+  function clearSavedForm(){
+    try { localStorage.removeItem(FORM_CACHE_KEY); } catch (e) {}
+    try { localStorage.removeItem("beijing-jifen-wizard-form-v1"); } catch (e) {}
+    try { localStorage.removeItem("beijing-jifen-wizard-form-v2"); } catch (e) {}
+    try { localStorage.removeItem("beijing-jifen-wizard-form-v3"); } catch (e) {}
+    location.reload();
+  }
+  function setNamedField(el, name, val){
+    if (!el || !el.name) return;
+    var v = String(val);
+    if (el.type === "radio") el.checked = el.value === v;
+    else if (el.type === "checkbox") el.checked = v === "on";
+    else el.value = v;
+  }
+  function restoreForm(){
+    var raw = null;
+    try { raw = localStorage.getItem(FORM_CACHE_KEY); } catch (e) {}
+    if (!raw) return;
+    var saved = null;
+    try { saved = JSON.parse(raw); } catch (e) { return; }
+    if (!saved || saved.version !== 4) return;
+    planState = saved.plan && saved.plan.mode ? { mode: saved.plan.mode, rows: saved.plan.rows || {} } : { mode: "current", rows: {} };
+    restoringForm = true;
+    try {
+      var sBox = $("#socialSegs"); if (sBox) sBox.innerHTML = "";
+      (saved.socialRows || []).forEach(function(r){ addSocialSeg(r.start || "", r.end || ""); });
+      var rBox = $("#resSegs"); if (rBox) rBox.innerHTML = "";
+      (saved.resRows || []).forEach(function(r){ addResSeg(r.start || "", r.end || "", r.type || "1"); });
+      var form = $("#wizardForm");
+      if (form) form.querySelectorAll("input,select,textarea").forEach(function(el){
+        if (el.type === "radio" || el.type === "checkbox") el.checked = false;
+      });
+      Object.keys(saved.form || {}).forEach(function(name){
+        var val = String(saved.form[name]);
+        if (form) form.querySelectorAll("input,select,textarea").forEach(function(el){ if (el.name === name) setNamedField(el, name, val); });
+      });
+      Object.keys(saved.radios || {}).forEach(function(name){
+        var info = saved.radios[name];
+        var all = form ? form.querySelectorAll('input[type="radio"][name="' + name + '"]') : [];
+        var target = null;
+        if (info.code) target = Array.prototype.slice.call(all).find(function(el){ return el.getAttribute("data-code") === String(info.code); });
+        if (!target && typeof info.idx === "number") target = all[info.idx];
+        if (target) {
+          target.checked = true;
+          if (info.code) target.value = String(info.value);
+        }
+      });
+      Object.keys(saved.extras || {}).forEach(function(sel){
+        var el = $(sel);
+        if (!el) return;
+        var p = el.querySelector(".ym-pair");
+        if (p && saved.extras[sel]) p.ymSet(String(saved.extras[sel]));
+        else if (el.tagName === "SELECT") el.value = String(saved.extras[sel]);
+      });
+      var birth = $("#birthYM .ym-pair");
+      if (birth && saved.birth) birth.ymSet(saved.birth);
+      var dd = $("#degreeDeductSeg"), dp = dd ? dd.querySelectorAll(".ym-pair") : [];
+      if (dp.length >= 2 && saved.degreeDeduct) {
+        var parts = String(saved.degreeDeduct).split("|");
+        if (parts[0]) dp[0].ymSet(parts[0]);
+        if (parts[1]) dp[1].ymSet(parts[1]);
+      }
+      if ($("#areaTypeRadio") || $("#areaType1") || $("#areaType2")) calScore();
+      setTaxValue($("#taxStart1"));
+      recalcSocial(); recalcRes(); recalcAge(); recalcDeduct(); updateStepper(); renderAction();
+    } finally { restoringForm = false; }
+  }
+
+  $$("#steps a").forEach(function(a){
+    a.addEventListener("click", function(e){ e.preventDefault(); gotoStep(Number(a.getAttribute("rel")) - 1); });
+  });
+  if ($("#wizardForm")) {
+    $("#wizardForm").addEventListener("change", saveForm);
+    $("#wizardForm").addEventListener("input", saveForm);
+  }
+  /* 任务3：简化输入初始化 */
+  if ($("#birthYM")) {
+    var birthBox = $("#birthYM");
+    var birthSel = ymSelect("seg-birth", recalcAge, new Date().getFullYear() - 70, new Date().getFullYear(), true, 1989);
+    birthBox.appendChild(birthSel);
+  }
+  if ($("#degreeDeductSeg")) {
+    var ddBox = $("#degreeDeductSeg");
+    var ddStart = ymSelect("seg-deduct-start", recalcDeduct, new Date().getFullYear() - 50, new Date().getFullYear(), true);
+    var ddEnd = ymSelect("seg-deduct-end", recalcDeduct, new Date().getFullYear() - 50, new Date().getFullYear(), true);
+    ddBox.appendChild(ddStart);
+    var ddTo = document.createElement("span"); ddTo.style.color = "#64748b"; ddTo.textContent = "至"; ddBox.appendChild(ddTo);
+    ddBox.appendChild(ddEnd);
+  }
+  addSocialSeg(); // 默认一行，用户点添加继续
+  addResSeg();    // 默认一行
+  var cutoffYear = getApplyYear() - 1;
+  var areaStart1 = ymSelect("seg-area-start1", function(){ calScore(); }, 2018, cutoffYear, true, 2018);
+  var areaStart2 = ymSelect("seg-area-start2", function(){ calScore(); }, 2018, cutoffYear, true, 2018);
+  var taxStart = ymSelect("seg-tax-start", function(){ setTaxValue($("#taxStart1")); }, cutoffYear - 2, cutoffYear, true, cutoffYear);
+  if ($("#areaStart1")) $("#areaStart1").appendChild(areaStart1);
+  if ($("#areaStart2")) $("#areaStart2").appendChild(areaStart2);
+  if ($("#taxStart1")) $("#taxStart1").appendChild(taxStart);
+  restoreForm();
+  recalcSocial(); recalcRes(); recalcAge(); recalcDeduct();
+  updateStepper();
+  renderAction();
+  </script>
+</body>
+</html>

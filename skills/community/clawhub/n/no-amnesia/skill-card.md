@@ -1,38 +1,53 @@
-## Description: <br>
-Prevent memory loss in OpenClaw by adding a practical continuity and recovery layer that preserves active work across restarts, compaction, and crashes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prevent memory loss in OpenClaw by adding a practical continuity and recovery layer that preserves active work across restarts, compaction, and crashes.
 
-## Publisher: <br>
-[smarthomesus](https://clawhub.ai/user/smarthomesus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smarthomesus](https://clawhub.ai/user/smarthomesus)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to preserve active work context, define recovery checkpoints, and reduce continuity loss after restarts, compaction, or crashes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [No Amnesia on ClawHub](https://clawhub.ai/smarthomesus/no-amnesia) <br>
-- [OpenClaw Central](https://openclawcentral.ai) <br>
+OpenClaw users and operators use No Amnesia to preserve active work context and recover more consistently after restarts, compaction, or crashes.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no executable code; security evidence recommends backing up memory or recovery files and testing with a small workflow before relying on it.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Installing memory or recovery components could overwrite or disrupt existing OpenClaw state.
+
+Mitigation: Review the package before making changes and back up existing OpenClaw memory and recovery files before installation.
+
+Risk: A recovery setup may not preserve the intended task context in a specific workspace.
+
+Mitigation: Run a controlled recovery test on a small task before relying on the workflow for active work.
+
+## Reference(s):
+
+- [No Amnesia on ClawHub](https://clawhub.ai/smarthomesus/skills/no-amnesia)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration]
+
+**Output Format:** [Markdown guidance and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only artifact; no executable code or automatic file changes were found in the inspected release.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

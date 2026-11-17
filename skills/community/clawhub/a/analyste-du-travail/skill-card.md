@@ -1,47 +1,60 @@
-## Description: <br>
-Guides workplace transformation teams through banking process diagnostics, work analysis, improvement planning, and executive-ready reporting for Credit Agricole contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert en pilotage de projets de transformation, diagnostic de services et optimisation des processus bancaires au Credit Agricole.
 
-## Publisher: <br>
-[thibautnext](https://clawhub.ai/user/thibautnext) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thibautnext](https://clawhub.ai/user/thibautnext)
 
-## Use Case: <br>
-Transformation, operations, and service-improvement teams use this skill to plan and document workplace diagnostics, interviews, observations, process analysis, prioritized action plans, and project status updates in a banking setting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workplace diagnostics may involve employee information, internal banking processes, or sensitive operational data. <br>
-Mitigation: Use only for authorized transformation work; define participants, data handling, access, retention, and deletion before use, and anonymize quotes or aggregate workload data wherever possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thibautnext/analyste-du-travail) <br>
-- [Publisher profile](https://clawhub.ai/user/thibautnext) <br>
-- [Template: Note de Cadrage de Mission](references/note-cadrage.md) <br>
-- [Template: Rapport de Diagnostic](references/rapport-diagnostic.md) <br>
-- [Template: Plan d'Actions / Feuille de Route](references/plan-actions.md) <br>
-- [Template: Flash Projet](references/flash-projet.md) <br>
-- [Guide: Analyse du Travail](references/guide-analyse-travail.md) <br>
-- [Grilles d'Entretien](references/grilles-entretien.md) <br>
-- [Grille d'Observation Terrain](references/grilles-observation.md) <br>
-- [Template: Matrice Impact / Effort](references/template-impact-effort.md) <br>
-- [Template: Matrice RACI](references/template-raci.md) <br>
+## Use Case:
 
+Employees and transformation teams use this skill to structure workplace diagnostics, process analysis, action plans, and project updates for banking service improvement work.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis, Configuration] <br>
-**Output Format:** [Markdown guidance and document templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured diagnostic, planning, interview, observation, prioritization, and status-reporting materials for agent use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Interview and observation notes may contain sensitive workplace or employee information.
+
+Mitigation: Define notice and consent, minimize identifiable details, pseudonymize where possible, and store outputs only in approved systems with clear access and retention rules.
+
+Risk: Workplace recommendations may be misleading if based on incomplete observations or unvalidated assumptions.
+
+Mitigation: Validate findings with stakeholders and source data before using outputs for organizational decisions.
+
+## Reference(s):
+
+- [Template : Note de Cadrage de Mission](references/note-cadrage.md)
+- [Template : Rapport de Diagnostic](references/rapport-diagnostic.md)
+- [Template : Plan d'Actions / Feuille de Route](references/plan-actions.md)
+- [Template : Flash Projet](references/flash-projet.md)
+- [Template : Matrice RACI](references/template-raci.md)
+- [Template : Matrice Impact / Effort](references/template-impact-effort.md)
+- [Grilles d'Entretien](references/grilles-entretien.md)
+- [Grille d'Observation Terrain](references/grilles-observation.md)
+- [Guide : Analyse du Travail](references/guide-analyse-travail.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown reports, tables, templates, and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [French-language workplace diagnostic outputs; no executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,51 @@
-## Description: <br>
-Organize and switch between named skill groups to keep agent context focused, list available groups, and manage skill assignments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize, activate, and switch between named OpenClaw skill groups to keep agent context focused.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
 
-## Use Case: <br>
-Developers and agent users use this skill to activate named skill groups, list available groups, and keep the context window focused during different project phases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The active skill group persists across sessions and may cause the agent to use an unexpected skill set. <br>
-Mitigation: Review the predefined groups before activation and check ~/.openclaw/active_skill_group if the agent appears to be using an unexpected skill set. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep OpenClaw sessions focused by listing, activating, and maintaining named skill groups for different project phases.
 
-## Reference(s): <br>
-- [Skill group definitions](references/SKILL_GROUPS.md) <br>
-- [ClawHub release page](https://clawhub.ai/di5cip1e/modular-skill-groups) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist the selected group in ~/.openclaw/active_skill_group.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Changing the active skill group can affect which skills load in later OpenClaw sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Switch groups only on explicit user request and verify ~/.openclaw/active_skill_group when the active skill set matters.
+
+## Reference(s):
+
+- [SKILL_GROUPS.md](references/SKILL_GROUPS.md)
+- [ClawHub Skill Page](https://clawhub.ai/di5cip1e/skills/modular-skill-groups)
+- [Publisher Profile](https://clawhub.ai/user/di5cip1e)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update the active OpenClaw skill group setting when the user explicitly requests a group switch.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

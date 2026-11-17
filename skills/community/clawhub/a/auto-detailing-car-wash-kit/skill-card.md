@@ -1,46 +1,54 @@
-## Description: <br>
-Generates EPA- and FTC-aware marketing content for auto detailing shops, including seasonal campaigns, service pages, reviews, ads, and fleet outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates compliance-aware marketing content for auto detailing, mobile car wash, and ceramic coating businesses, including seasonal campaigns, service pages, review templates, ads, local SEO, and fleet outreach.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Auto detailing shop owners, mobile detailers, car wash operators, fleet contractors, and automotive marketing agencies use this skill to produce compliant marketing campaigns, service pages, review responses, digital ads, local SEO materials, and fleet outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include claims about ratings, certifications, warranties, environmental practices, pricing, or service capabilities that are inaccurate for a specific business. <br>
-Mitigation: Verify all generated claims against business records, product documentation, warranties, environmental substantiation, current pricing, and local advertising rules before use. <br>
-Risk: Generated outreach or review-management content may be misused with unauthorized contact information or incomplete marketing disclosures. <br>
-Mitigation: Use only business contact information the user is authorized to include, and confirm required unsubscribe language, physical address details, and review incentive disclosures before sending. <br>
+## Use Case:
 
+Auto detailing shop owners, mobile detailers, car wash operators, dealer prep contractors, and automotive marketing agencies use this skill to draft customer-facing marketing and outreach materials with claim checks for advertising, environmental, endorsement, and commercial-email risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitflopez/auto-detailing-car-wash-kit) <br>
-- [README](artifact/README.md) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Seasonal campaigns prompt](artifact/prompts/prompt1.md) <br>
-- [Service pages and JSON-LD prompt](artifact/prompts/prompt2.md) <br>
-- [Review management prompt](artifact/prompts/prompt3.md) <br>
-- [Digital ads and local SEO prompt](artifact/prompts/prompt4.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with ad copy, checklists, outreach templates, and JSON-LD code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content should be reviewed against business facts, product documentation, ratings, warranties, environmental claims, pricing, contact authorization, and local advertising rules before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated marketing copy may contain unsupported legal, regulatory, certification, rating, price, or performance claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and substantiate each claim against current business records, product documentation, certifications, ratings, pricing, and applicable regulations before publishing.
+
+Risk: Mobile-water, fleet-savings, endorsement, or outreach language may be unsuitable if the business lacks documented support for the exact claim.
+
+Mitigation: Use those sections only when the business can document the claim and have a human compliance reviewer approve customer-facing copy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/auto-detailing-car-wash-kit)
+- [Publisher profile](https://clawhub.ai/user/gitflopez)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured copy blocks, checklists, templates, and JSON-LD code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are draft marketing materials that require human review before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

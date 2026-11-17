@@ -1,44 +1,55 @@
-## Description: <br>
-AI-powered UV disinfection safety monitor for pets that analyzes camera inputs for pet presence and UV lamp activity, then returns a safety-risk report with alerts, shutoff recommendations, and report history support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submits camera media for a structured pet-safety report about UV disinfection zones; the supplied implementation does not demonstrate the advertised pet detection or UV lamp shutdown.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External users, developers, and facility operators use this skill to analyze smart-home or facility video for pet entry into UV disinfection zones and receive structured safety alerts, device-action recommendations, and cloud report links. It is intended for safety monitoring support, not medical advice or a guaranteed physical UV-lamp shutoff system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Home, pet, or room videos may be processed by an external cloud service. <br>
-Mitigation: Install and use only when users consent to external cloud processing of household video content. <br>
-Risk: The skill may silently create or reuse an account identity and query account-linked report history. <br>
-Mitigation: Confirm the publisher provides clear controls for consent, token deletion, and report data removal before deployment. <br>
-Risk: The UV safety-monitor claims are broader than the code support and should not be treated as a complete real-time safety system. <br>
-Mitigation: Use the output as safety-monitoring support only, and require independently verified physical UV-lamp controls for any automatic shutoff workflow. <br>
+## Use Case:
 
+Pet owners and pet-care facility operators can submit indoor camera media for a structured report about possible pet exposure to UV disinfection. Treat results as advisory and confirm the pet's location and lamp state independently.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-uv-safety-monitor-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [API documentation](references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown safety reports with optional JSON details and report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May upload user-provided video or image inputs to an external cloud service and query account-linked report history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.4) <br>
+Risk: The supplied implementation does not demonstrate the advertised pet detection or UV lamp shutdown, so its report cannot be relied on to prevent UV exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify pet presence and lamp state independently, and switch off UV-C power directly when needed.
+
+Risk: Account and credential handling and possible video uploads raise privacy concerns without a clear privacy notice.
+
+Mitigation: Avoid submitting sensitive footage and review the service's privacy and credential-handling terms before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-uv-safety-monitor-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API reference](artifact/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured analysis report, in JSON or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Detail can be basic, standard, or JSON; reports may include recommendations and a report link.]
+
+## Skill Version(s):
+
+1.0.15 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

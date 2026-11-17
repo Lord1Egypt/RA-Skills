@@ -1,43 +1,57 @@
-## Description: <br>
-Automates an academic presentation workflow by turning a paper PDF or pasted text into a Chinese translation, structured summary, slide deck, speech notes, and WeChat-delivered files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Presentation automates turning a paper PDF or pasted text into Chinese translation notes, a structured summary, a slide deck, and speech notes, then sends the generated files to WeChat.
 
-## Publisher: <br>
-[j-feng12](https://clawhub.ai/user/j-feng12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j-feng12](https://clawhub.ai/user/j-feng12)
 
-## Use Case: <br>
-Students, researchers, and academic presenters use this skill to convert a paper into editable translation and summary documents, a 10-15 slide presentation, and matching speaking notes. It is intended for normal document-preparation workflows where the user is comfortable sending paper-derived content to the selected PPT provider and through WeChat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paper content and generated materials may be sent to external PPT services and WeChat. <br>
-Mitigation: Use skip-PPT or local-only handling for confidential, unpublished, or restricted documents, and verify provider, recipient, and API-key settings before sending. <br>
-Risk: The privacy claim in the artifact conflicts with behavior that can transmit paper-derived files outside the local environment. <br>
-Mitigation: Review the workflow and obtain explicit user consent before uploading paper-derived content or automatically sending generated files. <br>
+## Use Case:
 
+Researchers, students, and academic presenters use this skill to convert papers into presentation-ready materials: translated Word notes, structured summaries, 10-15 slide presentation drafts, and speaker notes. It is most appropriate for papers the user is comfortable processing through the selected presentation provider and WeChat delivery workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j-feng12/academic-presentation) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Anygen](https://www.anygen.io) <br>
-- [Gamma](https://gamma.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Word documents, PowerPoint files, Markdown speech notes, status text, and provider command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files are written under /tmp/academic-ppt/ and may be sent through WeChat after completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact files report 2.0.0) <br>
+Risk: The skill may send research materials to external presentation providers and to WeChat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with papers approved for those services, or choose the skip/local-only path and confirm that no messaging occurs.
+
+Risk: The artifact claims privacy protections that conflict with the external upload and WeChat delivery behavior summarized by the security evidence.
+
+Mitigation: Review provider data handling and avoid confidential, embargoed, unpublished, or restricted papers unless external delivery is explicitly disabled or corrected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/j-feng12/skills/academic-presentation)
+- [Publisher Profile](https://clawhub.ai/user/j-feng12)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [Anygen](https://www.anygen.io)
+- [Gamma](https://gamma.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with file outputs including DOCX, PPTX, and Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated artifacts under /tmp/academic-ppt/ and may send them through the configured WeChat channel.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact files list 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Guide first-time and repeat AC buyers through sizing, type selection, efficiency ratings, refrigerant choice, and spec prioritisation to choose the right air conditioner for their room, budget, and climate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide first-time and repeat AC buyers through sizing, type selection, efficiency ratings, refrigerant choice, and spec prioritisation to choose the right air conditioner for their room, budget, and climate.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users and developers use this skill to guide residential or small-office air conditioner selection. It collects room, climate, installation, and budget details, then produces capacity, AC type, efficiency, refrigerant, and purchasing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides general shopping guidance rather than professional HVAC design. <br>
-Mitigation: Ask the agent to show its sizing calculation and verify the final capacity against local installer guidance, manufacturer specifications, and current energy-label rules before purchase. <br>
-Risk: Evidence security guidance notes a sizing-quality issue in the artifact. <br>
-Mitigation: Review capacity examples carefully and avoid relying on a single example when making a purchase decision. <br>
-Risk: The release evidence includes unsupported capability tags unrelated to a prompt-only AC buying guide. <br>
-Mitigation: Treat the skill as advisory only; it should not be granted purchasing authority or sensitive access based on those tags. <br>
+## Use Case:
 
+External users and developers use this skill to guide residential and small-office air-conditioner buyers through room sizing, AC type selection, efficiency labels, refrigerant choice, and budget tradeoffs. It produces brand-neutral purchase guidance after collecting room, climate, installation, usage, and budget details.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arbazex/ac-buying-consultant) <br>
-- [Publisher Profile](https://clawhub.ai/user/arbazex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational guidance with capacity calculations and prioritized buying recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API calls, tools, external services, or environment variables are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Air-conditioner efficiency standards, refrigerant rules, prices, and model availability vary by region and year.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check current local regulations, efficiency labels, utility rebates, and manufacturer specifications before relying on recommendations for a purchase.
+
+Risk: Sizing and cost guidance can be wrong if user-provided room, climate, insulation, or usage inputs are incomplete or inaccurate.
+
+Mitigation: Collect the required room, climate, occupancy, installation, and budget details before presenting capacity or purchase recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arbazex/skills/ac-buying-consultant)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Analysis]
+
+**Output Format:** [Conversational Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Brand-neutral by default; model-tier suggestions are only provided when requested and tied to the user's country.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

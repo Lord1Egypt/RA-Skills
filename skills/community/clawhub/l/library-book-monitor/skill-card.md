@@ -1,46 +1,64 @@
-## Description: <br>
-Monitor library book availability and get notified when books become available for borrowing. Supports Shenzhen Library and extensible for other libraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor library book availability and get notified when books become available for borrowing. Supports Shenzhen Library and extensible for other libraries.
 
-## Publisher: <br>
-[yszheda](https://clawhub.ai/user/yszheda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yszheda](https://clawhub.ai/user/yszheda)
 
-## Use Case: <br>
-External users and developers use this skill to track books at Shenzhen Library, check whether copies are available for borrowing, and receive notifications when monitored books become available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores monitored book data on disk. <br>
-Mitigation: Use a private working directory and restrictive permissions for local data and configuration files. <br>
-Risk: The skill contacts Shenzhen Library for availability checks. <br>
-Mitigation: Run scheduled monitoring only when ongoing checks are needed and use reasonable check intervals. <br>
-Risk: Email notifications can require SMTP credentials in config.yaml. <br>
-Mitigation: Use an app-specific email password and restrict permissions on config.yaml. <br>
+## Use Case:
 
+External users and developers use this skill to track books at Shenzhen Library, check availability, maintain a monitored book list, and receive notifications when monitored books become available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yszheda/library-book-monitor) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Shenzhen Library OPAC](https://www.szlib.org.cn/opac/) <br>
-- [Shenzhen Library API service](https://www.szlib.org.cn/api/opacservice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local JSON configuration/data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local book list, read config.yaml, contact Shenzhen Library, and send console or SMTP notifications when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; artifact frontmatter and package metadata list 1.0.0) <br>
+Risk: The skill can run local shell commands and change the monitored book list.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution and use state-changing actions only with clear book IDs and explicit intent.
+
+Risk: SMTP notification setup may place email credentials in config.yaml.
+
+Mitigation: Use an app-specific SMTP password or environment-based secret and avoid storing a real account password directly in the configuration file.
+
+Risk: Scheduled monitoring can run continuously and make repeated network requests to Shenzhen Library.
+
+Mitigation: Set reasonable check intervals, stop the monitor when it is no longer needed, and follow the target library's acceptable-use expectations.
+
+Risk: Installer and Python dependencies are not tightly pinned.
+
+Mitigation: Pin installer and Python dependency versions before production use and review updates before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yszheda/skills/library-book-monitor)
+- [Shenzhen Library](https://www.szlib.org.cn/)
+- [Shenzhen Library OPAC](https://www.szlib.org.cn/opac/)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration guidance, local JSON state]
+
+**Output Format:** [Markdown and terminal text with command examples, configuration snippets, and local JSON book records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run continuously for scheduled monitoring and can send console or SMTP email notifications.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

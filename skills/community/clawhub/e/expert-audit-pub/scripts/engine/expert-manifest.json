@@ -1,0 +1,142 @@
+{
+ "category": "audit",
+ "zh": "审计与内控合规专家",
+ "free_uses": 5,
+ "subscription_cny_per_month": 9.9,
+ "per_call_cny": 0.3,
+ "founder_price_lock": 9.9,
+ "subs": [
+  {
+   "id": "audit-adjustment-check",
+   "name": "审计调整分录核对",
+   "layer": "local",
+   "entry": "audit-adjustment-check-full.js",
+   "kw": [
+    "免费",
+    "审计调整分录核对",
+    "审计调整分录核对表",
+    "对账",
+    "核对"
+   ],
+   "cols": [
+    "借方金额",
+    "借贷差额",
+    "科目净影响",
+    "科目名称",
+    "科目类别",
+    "科目编码",
+    "调整事项编号",
+    "调整事项说明",
+    "调整依据",
+    "贷方金额"
+   ]
+  },
+  {
+   "id": "audit-adjustment-pack",
+   "name": "审计与账务调整技能包",
+   "layer": "local",
+   "entry": "audit-adjustment-pack-full.js",
+   "kw": [
+    "减值",
+    "审计与账务调整技能包",
+    "审计调整",
+    "折旧摊销",
+    "核对",
+    "试算平衡",
+    "调整分录",
+    "账务调整"
+   ],
+   "cols": []
+  },
+  {
+   "id": "industry-vertical-pack",
+   "name": "行业专项技能包",
+   "layer": "local",
+   "entry": "industry-vertical-pack-full.js",
+   "kw": [
+    "免费",
+    "医院",
+    "学校",
+    "机构核对",
+    "物业",
+    "物流",
+    "行业专项技能包",
+    "餐饮"
+   ],
+   "cols": []
+  },
+  {
+   "id": "procurement-payable-pack",
+   "name": "采购与付款技能包",
+   "layer": "local",
+   "entry": "procurement-payable-pack-full.js",
+   "kw": [
+    "三单匹配",
+    "合同一致性",
+    "应付对账",
+    "投标保证金",
+    "暂估入账",
+    "核对",
+    "采购与付款技能包",
+    "采购返利"
+   ],
+   "cols": []
+  },
+  {
+   "id": "rd-auxiliary-ledger-check",
+   "name": "研发费用辅助账与高新指标核对",
+   "layer": "local",
+   "entry": "rd-auxiliary-ledger-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "核对",
+    "研发费用辅助账",
+    "研发费用辅助账与高新指标核对"
+   ],
+   "cols": [
+    "其中：人员人工",
+    "其他费用",
+    "其他费用占比上限",
+    "备注",
+    "折旧摊销",
+    "是否用于高新指标",
+    "本年归集金额",
+    "直接投入",
+    "研发项目",
+    "设计试验费",
+    "费用类别"
+   ]
+  },
+  {
+   "id": "related-party-transaction-check",
+   "name": "关联方交易与同期资料一致性核对",
+   "layer": "local",
+   "entry": "related-party-transaction-check-full.js",
+   "kw": [
+    "免费",
+    "关联交易台账",
+    "关联方交易与同期资料一致性核对",
+    "对账",
+    "核对"
+   ],
+   "cols": [
+    "交易类型",
+    "关联关系",
+    "关联方名称",
+    "占营业收入比例",
+    "台账金额",
+    "同期资料",
+    "定价方法",
+    "报告表填报金额",
+    "期末往来余额",
+    "本期交易金额"
+   ]
+  }
+ ],
+ "coverage": {
+  "local": 6,
+  "total": 6,
+  "note": "本公开包内可本地运行 6 个子技能；本类共 6 个，其余 0 个只在订阅版里提供"
+ }
+}

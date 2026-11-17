@@ -1,42 +1,60 @@
-## Description: <br>
-Generates Xiaohongshu/RedNote title drafts that use emotional hooks, platform-style formulas, compliance filtering, and brief cover image advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maximize CTR (Click-Through Rate) by leveraging emotional hooks and platform algorithms.
 
-## Publisher: <br>
-[qinthqod](https://clawhub.ai/user/qinthqod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinthqod](https://clawhub.ai/user/qinthqod)
 
-## Use Case: <br>
-External creators and social media marketers use this skill to turn a topic or rough idea into five Xiaohongshu-style title options with strategy tags and cover image advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated titles can overstate results or imply unverifiable claims, especially for beauty, fitness, money, or urgency topics. <br>
-Mitigation: Review titles before publishing and remove exaggerated, medical, financial, or unsupported claims. <br>
-Risk: The skill intentionally produces a Xiaohongshu/RedNote-specific promotional style that may be unsuitable for other channels. <br>
-Mitigation: Use it only when that platform-specific tone is desired and adapt outputs for other audiences. <br>
+## Use Case:
 
+Content creators, marketers, and social media operators use this skill to turn a raw topic or text into Xiaohongshu (RedNote) title options optimized for high click-through appeal. It categorizes the topic, applies platform-style title formulas, and returns five concise title candidates with brief cover image guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qinthqod/fox-xiaohongshu-title) <br>
-- [Few-Shot Examples Library](examples.md) <br>
-- [Strategic Assets](references.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown list of five title options with strategy tags and brief cover image advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Titles are filtered for length, banned words, and visual hooks based on the artifact validator.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and _meta.json) <br>
+Risk: The skill is intentionally optimized for emotional, click-oriented marketing copy, which can produce titles that overstate benefits or feel too promotional.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated titles for brand fit, factual support, and advertising compliance before publication.
+
+Risk: The skill may activate too broadly if generic topics are routed to it.
+
+Mitigation: Use it when the user explicitly wants Xiaohongshu or RedNote title optimization, or when the target channel is clearly social commerce content.
+
+Risk: Generated titles may contain prohibited absolute, medical, or superstition-related claims.
+
+Mitigation: Apply the included blacklist guidance and validator behavior before using a title externally.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qinthqod/skills/fox-xiaohongshu-title)
+- [Strategic Assets](artifact/references.md)
+- [Few-Shot Examples Library](artifact/examples.md)
+- [Title Validator](artifact/validator.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown list of five title options with strategy tags plus brief cover image advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Titles are expected to be concise, visually hooked, and filtered against banned terms.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

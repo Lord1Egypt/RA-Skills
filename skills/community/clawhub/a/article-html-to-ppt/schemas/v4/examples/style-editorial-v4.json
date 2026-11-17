@@ -1,0 +1,90 @@
+{
+  "schema_version": "4.0.0",
+  "pack": {
+    "pack_id": "editorial-knowledge",
+    "version": "4.0.0",
+    "display_name": "Editorial Knowledge",
+    "description": "Warm paper tones with serif editorial voice; migrated from the v3 editorial-knowledge style contract.",
+    "publisher": "MeowClaw PPT Smith",
+    "license": { "type": "open", "spdx": "Apache-2.0" },
+    "engine_compat": ">=4.0 <5",
+    "compatibility_aliases": ["editorial-knowledge"]
+  },
+  "tokens": {
+    "colors": {
+      "primary": "#2B2621",
+      "accent": "#C65D3B",
+      "background": "#FBF8F1",
+      "surface_1": "#F2EADF",
+      "surface_2": "#E9DFD0",
+      "text_primary": "#4A423A",
+      "text_secondary": "#857C70",
+      "border": "#E4DDCF",
+      "positive": "#4E7358",
+      "warning": "#A66A2C",
+      "negative": "#9C4A48",
+      "data_series": ["#2B2621", "#C65D3B", "#4E7358", "#A66A2C"],
+      "allowed_opacity": [0.08, 0.12, 0.18, 0.45, 1]
+    },
+    "typography": {
+      "font_primary": ["Aptos", "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", "sans-serif"],
+      "font_editorial": ["Source Han Serif SC", "Noto Serif CJK SC", "SimSun", "serif"],
+      "font_mono": ["JetBrains Mono", "Consolas", "monospace"],
+      "title_sizes_pt": { "cover": 34, "section": 28, "slide": 22 },
+      "body_sizes_pt": { "large": 16, "normal": 13, "small": 10, "footnote": 8.5 },
+      "metric_sizes_pt": { "hero": 30, "normal": 22 },
+      "line_height": { "title": 1.1, "body": 1.35, "caption": 1.25 },
+      "weights": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700 },
+      "letter_spacing_pt": { "title": 0, "uppercase_label": 0.8 }
+    },
+    "shape": {
+      "card_radius_pt": 8,
+      "small_radius_pt": 4,
+      "pill_radius_pt": 999,
+      "border_width_pt": 0.8,
+      "emphasis_border_width_pt": 1.5,
+      "divider_width_pt": 0.6,
+      "connector_width_pt": 1.2
+    },
+    "shadow": {
+      "levels": [
+        { "blur_pt": 6, "offset_pt": 2, "opacity": 0.12 }
+      ]
+    },
+    "chart": {
+      "palette_mode": "categorical",
+      "gridline_width_pt": 0.5,
+      "label_size_pt": 9
+    },
+    "image": { "treatment": "frame", "overlay_opacity": 0.15 },
+    "icon": { "style": "line", "stroke_width_pt": 1.2 }
+  },
+  "skins": {
+    "card": {
+      "variant": "tinted",
+      "fill": "surface_1",
+      "text_color": "text_primary",
+      "border_color": "border",
+      "accent_edge": "left"
+    },
+    "kpi": {
+      "variant": "plain",
+      "value_color": "primary",
+      "label_case": "uppercase",
+      "delta_coloring": "semantic"
+    },
+    "table": {
+      "header_style": "underlined",
+      "header_fill": "surface_2",
+      "zebra": false,
+      "rule_weight": "hairline"
+    },
+    "divider": { "style": "accent_bar" },
+    "footer": { "show_source": true, "show_page_number": true, "text_color": "text_secondary" }
+  },
+  "layout_knobs": {
+    "density": "airy",
+    "margin_scale": 1.1,
+    "alignment": "left"
+  }
+}

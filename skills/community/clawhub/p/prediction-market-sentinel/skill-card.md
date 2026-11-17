@@ -1,41 +1,58 @@
-## Description: <br>
-Monitor Polymarket prediction market wallets and detect new trades in real-time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Polymarket prediction market wallets and detect new trades in real time for wallet tracking, new-position detection, and prediction-market activity monitoring.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-Developers and analysts use this skill to monitor Polymarket wallets for new orders, changed positions, and larger trades through the CLOB API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The monitoring script currently uses a hardcoded public wallet address rather than the wallet address shown in the usage command. <br>
-Mitigation: Review scripts/monitor.sh before execution and update or confirm the wallet address to match the intended monitoring target. <br>
-Risk: The shell helper makes external CLOB API requests and writes local log and state files. <br>
-Mitigation: Run it only in an appropriate workspace, review the log paths, and ensure curl and jq behavior is acceptable for the environment. <br>
+## Use Case:
 
+External users and developers use this skill to monitor Polymarket wallet activity and receive guidance for detecting new or changed orders. Review is needed before relying on it for arbitrary wallet monitoring because the security evidence says the included script tracks a fixed wallet.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dagangtj/prediction-market-sentinel) <br>
-- [Polymarket CLOB orders endpoint](https://clob.polymarket.com/orders?maker=$WALLET_ADDRESS&limit=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Text] <br>
-**Output Format:** [Markdown with inline bash commands and shell log output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and jq, writes local log and state files, and reports newly observed order identifiers and details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence says the monitor ignores the requested wallet address and tracks a hardcoded Polymarket wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Correct and review wallet-parameter handling before using the skill for arbitrary wallet monitoring.
+
+Risk: The monitor writes local log and state files under the user's workspace.
+
+Mitigation: Document and approve the required file permissions, and inspect the configured paths before execution.
+
+Risk: The monitor sends requests to Polymarket's CLOB API.
+
+Mitigation: Approve network egress to the Polymarket endpoint and review what wallet data is sent before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dagangtj/skills/prediction-market-sentinel)
+- [Polymarket CLOB orders endpoint](https://clob.polymarket.com/orders?maker=$WALLET_ADDRESS&limit=1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash commands and plain-text monitoring notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local log and state files used by the bundled monitor script.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

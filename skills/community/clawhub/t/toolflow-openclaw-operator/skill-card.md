@@ -1,47 +1,60 @@
-## Description: <br>
-Enables agents to run durable ToolFlow workflows in OpenClaw with explicit step graphs, approvals, recovery, and progress visibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables running jobs as durable, stepwise ToolFlow workflows with approvals, recovery, and progress tracking via OpenClaw integration.
 
-## Publisher: <br>
-[mcg-tries-to-code](https://clawhub.ai/user/mcg-tries-to-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcg-tries-to-code](https://clawhub.ai/user/mcg-tries-to-code)
 
-## Use Case: <br>
-Developers and engineers use this skill when agent work should be expressed as a bounded, recoverable ToolFlow workflow instead of an improvised single-turn task. It is suited to multi-step diagnostics, approval-bound automation, long-running builds, and other jobs that need durable state and observable progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled workflow runner can inspect local files and persist workflow outputs. <br>
-Mitigation: Install only when local workflow execution is intended, and inspect workflows with dry-run behavior before submission. <br>
-Risk: Optional elevated execution can run commands or modify files when configured. <br>
-Mitigation: Keep elevated mode disabled unless needed, and tightly limit the allowed command list before enabling it. <br>
-Risk: Command-based progress updates may execute configured commands during long-running work. <br>
-Mitigation: Keep command-based progress updates disabled unless required, and review the configured command before use. <br>
-Risk: Untrusted workflows may request unsafe local actions. <br>
-Mitigation: Do not run workflows from untrusted sources; keep workflows small, explicit, and reviewable. <br>
+## Use Case:
 
+Developers and operators use this skill to run multi-step OpenClaw work as durable ToolFlow workflows with explicit approval boundaries, recovery, and progress visibility. It also installs and verifies the bundled local ToolFlow plugin/runtime payload.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mcg-tries-to-code/toolflow-openclaw-operator) <br>
-- [Canonical ToolFlow Runtime Repository](https://github.com/mcg-tries-to-code/ToolFlow) <br>
-- [Artifact README](artifact/README.md) <br>
-- [OpenClaw Bundle README](artifact/toolflow-bundle/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and workflow configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to create, dry-run, submit, inspect, approve, and recover bounded ToolFlow workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The bundled plugin can read arbitrary local files through workflow read actions and persist workflow outputs in a local ledger.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted workspaces, review workflow files before submitting them, and configure the ledger/plugin storage location to a workspace you trust.
+
+Risk: Elevated workflow actions can run local commands when elevated mode is enabled.
+
+Mitigation: Keep elevated mode disabled unless needed, require exact approval for elevated steps, and restrict elevated commands with the configured allowlist.
+
+Risk: Command-based progress updates can execute a configured local command.
+
+Mitigation: Use the default stderr progress sink unless command progress reporting is explicitly required and the configured command has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcg-tries-to-code/skills/toolflow-openclaw-operator)
+- [Canonical ToolFlow repository](https://github.com/mcg-tries-to-code/ToolFlow)
+- [Artifact README](artifact/README.md)
+- [ToolFlow bundle README](artifact/toolflow-bundle/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON workflow/configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow framing, installation and verification commands, approval-aware operating guidance, and ToolFlow run-state inspection guidance.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

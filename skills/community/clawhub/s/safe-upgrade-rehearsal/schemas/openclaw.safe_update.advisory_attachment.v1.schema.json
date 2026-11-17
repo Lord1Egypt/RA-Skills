@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.advisory_attachment.v1.schema.json",
+  "title": "OpenClaw Safe Update Non-Authoritative Advisory Attachment",
+  "type": "object",
+  "required": [
+    "schema",
+    "effect",
+    "runtime_effect",
+    "external_effect",
+    "external_write_effect",
+    "production_apply_allowed",
+    "operator_approval",
+    "authoritative",
+    "status",
+    "input_digest",
+    "result_digest",
+    "worker",
+    "result_status",
+    "counts",
+    "errors",
+    "canonical_status_effect"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.safe_update.advisory_attachment.v1"
+    },
+    "effect": {
+      "const": "public_safe_openclaw_advisory_boundary"
+    },
+    "runtime_effect": {
+      "const": "none"
+    },
+    "external_effect": {
+      "const": "none"
+    },
+    "external_write_effect": {
+      "const": "none"
+    },
+    "production_apply_allowed": {
+      "const": false
+    },
+    "operator_approval": {
+      "const": false
+    },
+    "authoritative": {
+      "const": false
+    },
+    "status": {
+      "enum": [
+        "accepted",
+        "rejected"
+      ]
+    },
+    "input_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "result_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "worker": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "model_family",
+            "role"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "model_family": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "role": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "result_status": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "completed",
+        "incomplete",
+        "failed",
+        null
+      ]
+    },
+    "counts": {
+      "type": "object",
+      "required": [
+        "hypotheses",
+        "suggested_checks",
+        "residual_risks",
+        "review_requests"
+      ],
+      "properties": {
+        "hypotheses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "suggested_checks": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "residual_risks": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "review_requests": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "canonical_status_effect": {
+      "const": "none"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,47 +1,74 @@
-## Description: <br>
-Executes mobile automation tasks on Volcengine Cloud Phone using natural language commands, returning run IDs and progress in JSONL format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mobile Use Agent starts and monitors natural-language mobile automation runs on Volcengine Cloud Phone using Doubao vision-based understanding.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and operators use this skill to start, monitor, retrieve results from, and cancel Volcengine Mobile Use Agent runs on Cloud Phone instances for mobile UI automation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control live Volcengine Cloud Phone sessions. <br>
-Mitigation: Install it only when mobile automation on those resources is intended, and require human confirmation before purchases, messages, logins, account changes, or sensitive form submissions. <br>
-Risk: The skill requires sensitive cloud or proxy credentials. <br>
-Mitigation: Use least-privilege scoped credentials through environment variables, a trusted proxy, or a secrets manager, and avoid passing secrets on the command line. <br>
-Risk: Screen recording can capture sensitive information. <br>
-Mitigation: Enable screen recording only after confirming the object storage bucket, access controls, and retention policy are acceptable. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to launch, poll, retrieve results from, and cancel Volcengine Cloud Phone Mobile Use Agent runs for mobile app navigation, UI interaction, form filling, and screen-understanding workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/byted-ai-mobileuse-agent) <br>
-- [Mobile Use Agent execution setup guide](references/MUA_Agent_Instructions.md) <br>
-- [Mobile Use Agent overview](references/mobile_use.md) <br>
-- [Volcengine Mobile Use Agent console](https://console.volcengine.com/ACEP/Business/6) <br>
-- [Volcengine publish app instructions](https://www.volcengine.com/docs/6394/1223958?lang=zh) <br>
-- [Volcengine screen recording documentation](https://www.volcengine.com/docs/6394/1997312?lang=zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSONL command output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime scripts emit JSON objects for started, progress, result, and error events.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Credentialed mobile automation can act broadly within a cloud-phone environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege, rotated Volcengine or Ark Skill API credentials and restrict product and pod IDs to the intended task environment.
+
+Risk: ARK_SKILL_API_BASE and VOLC_HOST can redirect requests to alternate provider endpoints.
+
+Mitigation: Leave endpoint override variables unset unless the proxy or host is explicitly trusted and documented for the deployment.
+
+Risk: Prompts, progress events, and raw service responses may expose sensitive task or account data.
+
+Mitigation: Do not place long-lived secrets in prompts or logs, and review retention and redaction for JSONL output before production use.
+
+Risk: Screen recording can capture app content and requires configured object storage.
+
+Mitigation: Enable screen recording only when necessary, configure trusted TOS storage, and limit access to recorded artifacts.
+
+Risk: Unpinned runtime dependencies can change behavior between installs.
+
+Mitigation: Pin and review dependency versions for production deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-ai-mobileuse-agent)
+- [Publisher profile](https://clawhub.ai/user/volcengine-skills)
+- [SKILL.md](artifact/SKILL.md)
+- [Mobile Use reference](artifact/references/mobile_use.md)
+- [MUA Agent Instructions](artifact/references/MUA_Agent_Instructions.md)
+- [Python requirements](artifact/references/requirements.txt)
+- [Mobile Use Agent console](https://console.volcengine.com/ACEP/Business/6)
+- [Volcengine API access keys](https://console.volcengine.com/iam/keymanage)
+- [Volcengine app publishing instructions](https://www.volcengine.com/docs/6394/1223958?lang=zh)
+- [Volcengine screen recording reference](https://www.volcengine.com/docs/6394/1997312?lang=zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSONL progress and result events, JSON helper output, and Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Streams started, progress, result, and error events; helper commands may include raw service responses.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

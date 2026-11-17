@@ -1,49 +1,64 @@
-## Description: <br>
-Agent Harness is a workflow framework that helps an agent choose a planning, research, analysis, context-compression, or multi-agent coordination path before executing a task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Harness provides a unified thinking framework and workflow skill for research, analysis, planning, task decomposition, multi-agent coordination, context compression, and quality checks.
 
-## Publisher: <br>
-[neltharion11](https://clawhub.ai/user/neltharion11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neltharion11](https://clawhub.ai/user/neltharion11)
 
-## Use Case: <br>
-Developers and agent users use this skill to structure multi-step work such as research reports, competitive analysis, task decomposition, context compression, and sub-agent coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate broadly for common planning, research, review, and analysis prompts. <br>
-Mitigation: Use it only when the user intentionally wants this workflow framework, and confirm task fit before applying its multi-step process. <br>
-Risk: The skill can spawn sub-agents for decomposed work. <br>
-Mitigation: Require explicit confirmation before starting sub-agents, especially for sensitive tasks or work involving private data. <br>
-Risk: The skill can save full sub-agent outputs under subagent_reports without clear retention guidance. <br>
-Mitigation: Tell the user before saving reports, disclose the file path, and review or delete created files when they are no longer needed. <br>
+## Use Case:
 
+Developers and agent users use Agent Harness to select and execute structured workflows for research, analysis, planning, subagent coordination, context compression, and quality review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/neltharion11/agent-harness) <br>
-- [Decision Tree](references/01-DECISION.md) <br>
-- [Execution Framework](references/02-PIPELINE.md) <br>
-- [Research Workflow](references/03-WORKFLOWS/research.md) <br>
-- [Subagent Workflow](references/03-WORKFLOWS/subagent.md) <br>
-- [Analysis Workflow](references/03-WORKFLOWS/analysis.md) <br>
-- [Context Workflow](references/03-WORKFLOWS/context.md) <br>
-- [Quality Checklist](references/05-QUALITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, structured reports, task plans, and file-path notices for saved sub-agent outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to spawn sub-agents and save full sub-agent reports under subagent_reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+Risk: Broad trigger words may activate the skill on ordinary planning, research, or analysis prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger scope before installation and enable the skill only where a general planning and research orchestration framework is intended.
+
+Risk: The skill may spawn subagents and save full outputs to disk, which can expose confidential work if used without controls.
+
+Mitigation: Avoid confidential work unless subagent execution and report file writes are disabled or tightly controlled.
+
+Risk: Generated reports may include an unsolicited attribution footer.
+
+Mitigation: Review generated reports before publication and remove or approve attribution footers according to organizational policy.
+
+## Reference(s):
+
+- [Agent Harness Skill Page](https://clawhub.ai/neltharion11/skills/agent-harness)
+- [Decision Tree](references/01-DECISION.md)
+- [Pipeline](references/02-PIPELINE.md)
+- [Research Workflow](references/03-WORKFLOWS/research.md)
+- [Subagent Workflow](references/03-WORKFLOWS/subagent.md)
+- [Context Workflow](references/03-WORKFLOWS/context.md)
+- [Analysis Workflow](references/03-WORKFLOWS/analysis.md)
+- [Quality Check](references/05-QUALITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and structured text with optional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose workflow steps, reports, subagent coordination plans, and file-writing guidance depending on the selected workflow.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

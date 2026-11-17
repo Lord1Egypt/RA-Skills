@@ -12,7 +12,7 @@ from _output import print_output, print_error
 
 from capabilities.seller_customer_detail.service import get_top_old_customers
 
-COMMAND_NAME = "seller_customer_detail"
+COMMAND_NAME = "alibaba.1688.seller.customer.detail"
 COMMAND_DESC = "获取头部老客户明细（高价值客户稳定性分析）"
 
 def main():
@@ -36,6 +36,8 @@ def main():
                         help="排序方向: desc(降序,默认) / asc(升序)")
     parser.add_argument("--page", "-p", type=int, default=1, help="页码,默认1")
     parser.add_argument("--page_size", "-s", type=int, default=50, help="每页数量,默认50")
+    parser.add_argument("--NEWTON_SHOP_LOGIN_ID", default=None,
+                        help="店铺登录ID，指定查询的店铺")
     args = parser.parse_args()
 
     try:
@@ -46,6 +48,7 @@ def main():
             order=args.order,
             page=args.page,
             page_size=args.page_size,
+            login_id=args.NEWTON_SHOP_LOGIN_ID,
         )
         print_output(True, "头部老客户查询成功", {
             "data": result,

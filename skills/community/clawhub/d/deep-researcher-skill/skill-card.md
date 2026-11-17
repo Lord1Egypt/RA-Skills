@@ -1,45 +1,60 @@
-## Description: <br>
-Conducts structured, multi-source research across web, academic, video, forum, and optional API sources, then synthesizes cited findings into briefs, deep dives, comparisons, temporal updates, and decision matrices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates web, academic, video, and forum sources into structured research briefs, deep dives, comparisons, and temporal updates with source-quality and confidence checks.
 
-## Publisher: <br>
-[geoffguides](https://clawhub.ai/user/geoffguides) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geoffguides](https://clawhub.ai/user/geoffguides)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to plan and execute comprehensive investigations, evaluate source quality, calibrate confidence, and produce actionable research outputs with citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to attempt paywall bypass by default, which may conflict with content access terms or organizational policy. <br>
-Mitigation: Use only open, licensed, subscribed, or otherwise authorized sources, and require operators to skip or mark restricted sources as unverified when access is not permitted. <br>
-Risk: Research workflows may involve optional API keys or external services. <br>
-Mitigation: Provide credentials through the host platform's secret-management mechanism rather than plain chat or committed configuration files. <br>
-Risk: Synthesized research can overstate confidence if sources are stale, low quality, or contradictory. <br>
-Mitigation: Preserve source citations, confidence calibration, source-quality labels, and knowledge-gap notes in final outputs. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to direct an agent through multi-source research, source evaluation, bias checks, and structured reporting for decisions or content planning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/geoffguides/deep-researcher-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/geoffguides) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown research reports, tables, source lists, confidence notes, and optional JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are expected to include citations, confidence calibration, source-quality notes, and follow-up recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The security review flags paywall-bypass instructions and routing URLs through third-party services without adequate safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on publicly accessible material, do not use it to bypass paywalls or restricted access controls, and supervise research behavior closely.
+
+Risk: Research tasks may involve private, signed, internal, or token-bearing URLs.
+
+Mitigation: Do not provide sensitive URLs or credentials; keep optional API keys outside the repository or in a secret manager.
+
+Risk: Multi-source synthesis can produce incorrect or misleading conclusions when source quality is weak or contradictory.
+
+Mitigation: Require citations, confidence labels, and review of source quality before using outputs for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/geoffguides/skills/deep-researcher-skill)
+- [Publisher profile](https://clawhub.ai/user/geoffguides)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research reports with citations, confidence ratings, comparison tables, and optional configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source lists, confidence scores, source-quality tables, decision matrices, and suggested follow-up questions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

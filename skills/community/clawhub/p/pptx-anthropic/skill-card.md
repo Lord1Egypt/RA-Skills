@@ -1,43 +1,55 @@
-## Description: <br>
-Helps agents read, create, edit, validate, and render PowerPoint presentations using PPTX XML workflows, PptxGenJS, and local Office tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents read, create, edit, validate, and visually review PowerPoint .pptx presentations using presentation-focused workflows and Office helper scripts.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[pupuking723](https://clawhub.ai/user/pupuking723)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill when an agent must inspect or produce .pptx decks, adapt templates, generate slides from scratch, and run QA on presentation output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary Anthropic terms
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local Office tooling and modify unpacked document directories. <br>
-Mitigation: Run it in a sandbox or disposable workspace and review generated or modified files before using them. <br>
-Risk: Untrusted Office files may expose ZIP, XML, and document-processing attack surface. <br>
-Mitigation: Avoid processing untrusted Office files unless the environment is isolated and the parser risk is acceptable. <br>
-Risk: The evidence reports under-disclosed Office-document capabilities and a native LibreOffice preload workaround. <br>
-Mitigation: Review or remove the DOCX/XLSX and preload-shim paths if only PPTX support is needed. <br>
+## Use Case:
 
+Developers and agents use this skill when a task involves PowerPoint presentations, including extracting content, adapting templates, creating decks from scratch, modifying slide XML, and checking output quality.
 
-## Reference(s): <br>
-- [Editing Presentations](artifact/editing.md) <br>
-- [PptxGenJS Tutorial](artifact/pptxgenjs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets and generated or edited PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify unpacked Office document directories and create thumbnails, PDFs, or slide images for QA.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Rendering or conversion may invoke LibreOffice with a native LD_PRELOAD shim.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in an isolated, unprivileged environment, especially when handling untrusted presentations.
+
+Risk: Broad Office-document helpers can modify files beyond a narrow presentation-only workflow.
+
+Mitigation: Work on copies of presentations and avoid bundled DOCX/XLSX helpers unless that broader Office-document behavior is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pupuking723/skills/pptx-anthropic)
+- [Editing Presentations](artifact/editing.md)
+- [PptxGenJS Tutorial](artifact/pptxgenjs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify .pptx files through external Office tooling when the agent follows the skill workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

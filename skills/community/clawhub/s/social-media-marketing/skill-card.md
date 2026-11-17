@@ -1,38 +1,53 @@
-## Description: <br>
-Builds a practical social media marketing strategy for solopreneurs, covering platform selection, content planning, growth tactics, engagement, lead capture, and analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and execute a social media marketing strategy for a solopreneur business.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-External solopreneurs and small-business operators use this skill to focus their social media effort, choose platforms, plan posts, grow engagement, and turn social activity into leads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated social media plans or post drafts may be inaccurate, off-brand, or unsuitable for a platform's rules. <br>
-Mitigation: Review and edit generated social posts, tactics, and claims before publishing. <br>
-Risk: Using this guidance with a separate automation workflow could expose social account credentials or publish content unintentionally. <br>
-Mitigation: Only provide credentials or enable automatic posting in a separate workflow when that behavior is explicitly intended and controlled. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External solopreneurs and small business operators use this skill to choose social platforms, plan content, grow engagement, and convert social attention into leads.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and example social post structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only output with no code execution, credential access, persistence, or automatic posting behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Lead-generation suggestions could be applied without platform-specific compliance checks or user consent.
+
+Mitigation: Follow each platform's rules and applicable privacy or consent requirements before collecting emails or contacting prospects.
+
+Risk: Marketing recommendations may be too general for a specific audience, industry, or platform policy environment.
+
+Mitigation: Treat the skill as general marketing advice and review the proposed strategy before publishing or launching outreach.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jk-0001/skills/social-media-marketing)
+- [ClawHub publisher profile](https://clawhub.ai/user/jk-0001)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with platform selection tables, content frameworks, posting tactics, and analytics recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; advice should be adapted to platform rules and applicable privacy or consent requirements.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

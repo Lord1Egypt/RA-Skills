@@ -1,43 +1,54 @@
-## Description: <br>
-Explains university STEM problems and worked solutions with structured, student-first breakdowns, dependency chains, and plain-text formula derivations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain university problems and worked solutions with structured, student-first breakdowns.
 
-## Publisher: <br>
-[eloklam](https://clawhub.ai/user/eloklam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eloklam](https://clawhub.ai/user/eloklam)
 
-## Use Case: <br>
-Students and external learners use this skill to understand exam questions, practice problems, and worked solutions by working backwards from the goal, identifying missing steps, and showing the reasoning behind formulas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad problem-help phrases even when the user did not intend to invoke a tutoring workflow. <br>
-Mitigation: Confirm the request is a STEM study-help task before relying on the structured explanation. <br>
-Risk: Shared PDFs or images may contain personal or sensitive school information. <br>
-Mitigation: Redact names, IDs, grades, and other sensitive details before sharing source material. <br>
-Risk: Final answers may be unreliable when the source document, image, or scan quality is uncertain. <br>
-Mitigation: Double-check calculations and reasoning against the original course material or answer key. <br>
+## Use Case:
 
+Students and tutors use this skill to break down undergraduate STEM exam questions, problem sets, worked solutions, PDFs, images, or text into goal-first reasoning, dependency chains, formula derivations, calculations, and summary tables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eloklam/university-solution-explainer) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured plain-text math, dependency chains, calculations, and summary tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses plain-text math instead of LaTeX and may ask follow-up questions when more detail is needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The README install command is not pinned to a specific release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned or otherwise trusted installation path when available.
+
+Risk: Broad tutoring triggers may interfere with more specialized academic or STEM skills.
+
+Mitigation: Avoid enabling the skill globally when specialized problem-solving skills should take precedence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eloklam/skills/university-solution-explainer)
+- [Publisher profile](https://clawhub.ai/user/eloklam)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured explanations, plain-text math, dependency chains, calculations, and summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No LaTeX syntax; uses readable plain-text math and may ask follow-up questions when more depth is needed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

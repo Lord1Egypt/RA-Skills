@@ -1,45 +1,51 @@
-## Description: <br>
-Recommends safe, free, open-source remote desktop alternatives to ToDesk, including RustDesk, UltraVNC, TigerVNC, and self-hosted options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends open-source remote desktop alternatives to ToDesk, including RustDesk, SPyRFC, UltraVNC, and TigerVNC, with privacy-oriented setup guidance.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers, IT users, and privacy-focused remote desktop users use this skill to compare open-source ToDesk alternatives and select a safer remote control setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Readers may misunderstand the Chinese-language instructions or security advice. <br>
-Mitigation: Use the skill only when the instructions can be understood directly or translated reliably before acting. <br>
-Risk: External downloads and the Docker example may pull changing upstream artifacts. <br>
-Mitigation: Verify upstream projects before installation and prefer pinned versions over the Docker :latest tag. <br>
-Risk: Remote desktop tools can expose systems if authentication or network access is weak. <br>
-Mitigation: Use strong authentication, keep tools updated, restrict network access with firewall rules, and prefer VPN or private networking where appropriate. <br>
+## Use Case:
 
+External users, developers, and IT practitioners use this skill to compare open-source remote-control tools and select privacy-oriented options for personal or self-hosted remote desktop access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/todesk-alternatives) <br>
-- [RustDesk downloads](https://rustdesk.com/download) <br>
-- [UltraVNC downloads](https://www.uvnc.com/downloads/ultravnc.html) <br>
-- [TigerVNC](https://tigervnc.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guide with comparison tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language guidance; includes external download links and a Docker example.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The RustDesk server example uses an unpinned Docker image with host networking, which can increase exposure if copied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the deployment command before use, prefer a pinned image digest, publish only required TCP/UDP ports, apply firewall restrictions, and avoid host networking unless the reduced isolation is understood and accepted.
+
+## Reference(s):
+
+- [RustDesk Downloads](https://rustdesk.com/download)
+- [UltraVNC Downloads](https://www.uvnc.com/downloads/ultravnc.html)
+- [TigerVNC](https://tigervnc.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with comparison tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language recommendations for remote desktop alternatives, including a RustDesk self-hosting command.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

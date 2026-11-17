@@ -1,38 +1,52 @@
-## Description: <br>
-Interact with GitHub using the `gh` CLI for issues, pull requests, CI runs, and advanced API queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.
 
-## Publisher: <br>
-[aceundefeated](https://clawhub.ai/user/aceundefeated) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aceundefeated](https://clawhub.ai/user/aceundefeated)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to have an agent prepare GitHub CLI commands for reviewing pull requests, checking CI runs, listing issues, and querying GitHub API data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may guide an agent to use the local GitHub CLI authentication context, where token permissions can allow repository reads or writes.
+
+Mitigation: Review high-impact `gh api` and mutation commands before execution, and use a GitHub token scoped only to the repositories and actions needed.
+
+Risk: Commands that inspect CI runs or logs can expose repository or workflow output to the agent.
+
+Mitigation: Review log-viewing commands before execution in repositories whose CI logs may contain sensitive data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to ask an agent for GitHub CLI commands and guidance for inspecting issues, pull requests, workflow runs, and GitHub API responses. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides an agent to use the local GitHub CLI, which may act with the currently authenticated account and token scopes. <br>
-Mitigation: Check `gh auth status`, confirm the intended repository, and review `gh api` commands before using them for changes. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aceundefeated/aj-github) <br>
+**Other Properties Related to Output:** [May include GitHub CLI commands that read repository data or perform repository actions depending on the requested task and local GitHub token permissions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

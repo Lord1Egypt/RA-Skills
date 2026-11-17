@@ -1,43 +1,58 @@
-## Description: <br>
-Guides an agent through public competitor research to produce a structured Chinese report covering positioning, features, pricing, user sentiment, SWOT strategy, and an action roadmap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助用户基于公开信息拆解竞品定位、功能差异、定价策略和用户口碑，并输出结构化竞品分析报告、定位图谱、SWOT交叉策略和行动路线图。
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Product, marketing, and strategy teams use this skill to compare competitors and identify opportunities for differentiation using public information. It is suited for market research, product comparison, pricing analysis, SWOT analysis, and ongoing competitor monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad market-research triggers may activate the skill for adjacent business-analysis requests. <br>
-Mitigation: Confirm that the user wants a competitor-analysis workflow before producing the full report. <br>
-Risk: The workflow can incorporate confidential internal strategy if the user includes it in the prompt. <br>
-Mitigation: Use public competitor information by default and avoid supplying confidential strategy unless it is intentionally part of the analysis. <br>
-Risk: Competitor pricing, product features, and user sentiment can become stale. <br>
-Mitigation: Verify current public sources, cite them in the report, and include a data cutoff date. <br>
+## Use Case:
 
+External users and business, product, and strategy teams use this skill to perform public-source competitor analysis across positioning, features, pricing, user sentiment, SWOT strategy, and roadmap recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/qqyougitcom/qqyougit-competitor-analysis) <br>
-- [competitor-analysis detailed reference](artifact/references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Chinese Markdown competitor-analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes competitor scope, comparison tables, positioning map, SWOT cross-strategy matrix, opportunity analysis, roadmap, monitoring metrics, source notes, and data cutoff date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter reports 1.4.0) <br>
+Risk: Competitor data can become stale or incomplete, especially pricing, product features, market share, and user sentiment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public web research for current data, cite sources, include a data cutoff date, and label unsupported findings as unverified.
+
+Risk: Users may include confidential strategy, customer data, or non-public business information in the analysis prompt.
+
+Mitigation: Avoid sharing confidential or non-public business information unless it is intended to be used in the generated analysis.
+
+Risk: Competitive recommendations may be misleading if based on too few competitors or narrow feedback channels.
+
+Mitigation: Cover direct, indirect, and potential competitors when possible, and use multiple public feedback channels before drawing strategy conclusions.
+
+## Reference(s):
+
+- [competitor-analysis detailed reference](artifact/references/details.md)
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/qqyougit-competitor-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown structured as a competitor analysis report with tables, matrices, SWOT strategy, positioning map, and roadmap sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese output by default; analysis should cite public sources and include a data cutoff date.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

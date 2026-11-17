@@ -1,46 +1,60 @@
-## Description: <br>
-Generate vertical healing-style cute pet shorts with WeryAI, using text-to-video or a single pet image to create soft, warm, slow-paced videos for short-form feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate vertical healing-style cute pet shorts with WeryAI from text prompts or one pet image, using soft motion, warm light, slow pacing, and optional ambience for short-video feeds.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Creators and agent users use this skill to prepare and submit cozy pet video generation requests to WeryAI. It helps expand short pet briefs into production prompts, choose supported model parameters, and return generated video URLs or actionable error details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WERYAI_API_KEY and can spend paid WeryAI credits during generation. <br>
-Mitigation: Use a trusted installation, keep the API key out of the package, confirm parameters before running, and use dry-run/status commands when appropriate. <br>
-Risk: Supplying a local image path can upload that image to WeryAI before video generation. <br>
-Mitigation: Prefer public HTTPS image URLs; use local paths only after explicit consent and after confirming the image is intended for upload. <br>
-Risk: Unsupported model parameters or content-safety filtering can cause generation failures. <br>
-Mitigation: Follow the bundled WeryAI model constraints for duration, aspect ratio, resolution, audio, and negative prompts, and revise inputs when the API returns an error code. <br>
+## Use Case:
 
+External creators and developers use this skill to plan and run WeryAI text-to-video or image-to-video pet shorts with confirmed model parameters, prompt expansion, and returned video URLs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zoucdr/cute-pet-healing-video) <br>
-- [Publisher Profile](https://clawhub.ai/user/zoucdr) <br>
-- [WeryAI Video API Reference](artifact/resources/WERYAI_VIDEO_API.md) <br>
-- [WeryAI Video Tasks API](https://api.weryai.com) <br>
-- [WeryAI Models and Upload API](https://api-growth-agent.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON command payloads and returned video URLs or error details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, network access, and WeryAI credits for non-dry-run generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Prompts, selected images, and WERYAI_API_KEY are sent to WeryAI during normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher is trusted, keep WERYAI_API_KEY out of the package and source control, and use an isolated or short-lived runtime for higher assurance.
+
+Risk: The bundled CLI can upload any readable local file supplied through image fields.
+
+Mitigation: Prefer public HTTPS image URLs. Use local paths or file:// URLs only after reviewing the script and confirming the exact file should be uploaded.
+
+Risk: Successful wait runs consume paid WeryAI credits.
+
+Mitigation: Confirm model, duration, resolution, audio, prompt, and image inputs before generation; use dry-run for request inspection when appropriate.
+
+## Reference(s):
+
+- [Cute Pet Healing Video on ClawHub](https://clawhub.ai/zoucdr/skills/cute-pet-healing-video)
+- [WeryAI Video CLI and JSON](resources/WERYAI_VIDEO_API.md)
+- [WeryAI video API host](https://api.weryai.com)
+- [WeryAI models and upload API host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON request payloads, and returned video URLs or error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, network access, and WeryAI credits for successful generation runs.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence; artifact frontmatter and _meta.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

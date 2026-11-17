@@ -1,10 +1,8 @@
 """HaluCatch 文件扫描器：扫描 Skill 目录、提取文件内容和版本号。"""
 
-import os
-import sys
-import re
 import json
-from .config import MESSAGES
+import os
+import re
 
 
 def _is_test_file(fname, rel_path):
@@ -55,6 +53,24 @@ def scan_folder(path, msg):
         print(msg['path_not_exist'].format(path=path))
         return None
 
+    # 读 HaluCatch 自身运行配置（.halucatch_config.yaml，位于包内）
+    skills_is_external = None
+    lang = 'auto'
+    cfg_path = os.path.join(os.path.dirname(__file__), '.halucatch_config.yaml')
+    if os.path.exists(cfg_path):
+        try:
+            with open(cfg_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    m = re.match(r'^skills_is_external:\s*(true|false|null)', line)
+                    if m:
+                        v = m.group(1)
+                        skills_is_external = True if v == 'true' else (False if v == 'false' else None)
+                    m2 = re.match(r'^lang:\s*(\S+)', line)
+                    if m2:
+                        lang = m2.group(1)
+        except Exception:
+            pass
+
     files = []
     skill_md_content = None
     py_contents = []
@@ -62,9 +78,10 @@ def scan_folder(path, msg):
     py_paths = []
 
     skip_dirs = {'.git', '__pycache__', '.pytest_cache', 'node_modules', '.venv', 'venv', 'avatars'}
+    if skills_is_external is True:
+        skip_dirs.add('skills')
 
     for root, dirs, filenames in os.walk(path):
-        # 递归扫描子目录（过滤 .git / __pycache__ 等排除目录）
         dirs[:] = [d for d in dirs if d not in skip_dirs]
         for fname in filenames:
             fpath = os.path.join(root, fname)
@@ -75,10 +92,10 @@ def scan_folder(path, msg):
             files.append({'name': fname, 'ext': ext, 'size': size, 'path': fpath, 'rel_path': fpath_rel, 'is_test': is_test})
 
     # 尺寸保护：跳过超大文件避免 OOM
-    SZ_LIMIT = 10 * 1024 * 1024  # 10MB
+    sz_limit = 10 * 1024 * 1024  # 10MB
     oversized = []
     for f in files:
-        if f['size'] > SZ_LIMIT:
+        if f['size'] > sz_limit:
             oversized.append(f['name'])
     if oversized:
         print(msg['file_too_large'].format(files="', '".join(oversized)))
@@ -201,6 +218,8 @@ def scan_folder(path, msg):
         'max_py_lines': max_py_lines,
         'has_data': has_data,
         'version': version,
+        'skills_is_external': skills_is_external,
+        'lang': lang,
     }
 
 

@@ -1,0 +1,64 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "ortho-deal-match",
+  "version": "1.1.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-09-04T01:42:33.296366+00:00",
+  "timestamp_local": "2026-09-04T09:42:33.296397",
+  "package_fingerprint_sha256": "67e98fb5720e391f559553bf3b82924fc8d5fdc7a1372942e90ad2d0a415eaaf",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "0aa1796281d60ab02e8e621f0d737ff03ff31d9becf6eccd149d0de5924d7253"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "fb3856b887b778a4d380c8d7a3fdc8b229be7c38656edd2883a1ae61e86d2ecb"
+    },
+    {
+      "path": "TRAC-E自查报告.md",
+      "sha256": "f7248255e7b6e9be72d4f2c5892ccea39c2f3e620b8c13d665008c764b1f0279"
+    },
+    {
+      "path": "references/WORKFLOW.md",
+      "sha256": "cb4c747c3446cf9e277447cbbee5f6d901d3432c05c22a5ac2b7bf9b59388695"
+    },
+    {
+      "path": "scripts/core.py",
+      "sha256": "611ac7430b7ce4ce54312366ec9bd5674b9d53109380d31ff3dad594c745c27a"
+    },
+    {
+      "path": "scripts/demo.py",
+      "sha256": "624d918b693fce6493975d65d121e60c3ab1679a8caf998caefab95fad24abcf"
+    },
+    {
+      "path": "scripts/import_expo.py",
+      "sha256": "fddda7d401427c23e59e4197eccd04fa712e4eb17b8d00948e4317178a17556e"
+    },
+    {
+      "path": "scripts/init_db.py",
+      "sha256": "0a47cfe39f4d2a457b8acf56501c01a853e385ac7fe215658474d973149d9c50"
+    },
+    {
+      "path": "scripts/intro.py",
+      "sha256": "0cf61d8f66042459fdce14f9035a4e171a429aa2f5fa6d8219ae407eea676292"
+    },
+    {
+      "path": "scripts/match.py",
+      "sha256": "4f282fe8d5d5f1feabf3ffab0c3133d9f7b44366a72457d9affa68fd6c302f3d"
+    },
+    {
+      "path": "scripts/publish.py",
+      "sha256": "1865bb35fae6dc5da6657f6b3302fd67983b8e94299aba74bff0c97913e13c73"
+    },
+    {
+      "path": "scripts/taxonomy.py",
+      "sha256": "d69341d178705b93936cc925e3e5c73c5c34cc45716a0df2c18bf13ccc7391f6"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "4b484c1b6caae5b4e7b09b8ead30e5b74370c127d3548239ec64e6984daf36a0"
+    }
+  ]
+}

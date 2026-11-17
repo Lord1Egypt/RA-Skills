@@ -1,40 +1,51 @@
-## Description: <br>
-Aegis Shield screens untrusted text for prompt-injection and data-exfiltration risks before summarization, replies, or memory writes, and provides a safe memory append workflow that scans, lints, and accepts or quarantines content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt-injection and data-exfiltration screening for untrusted text before summarizing, replying, or writing to memory.
 
-## Publisher: <br>
-[Deegerwalker](https://clawhub.ai/user/Deegerwalker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deegerwalker](https://clawhub.ai/user/deegerwalker)
 
-## Use Case: <br>
-Developers and agent operators use this skill to screen untrusted web, email, social, or similar text for prompt-injection, data-exfiltration, and tool-abuse patterns before using it in summaries, replies, or memory. The bundled workflow can append sanitized, sourced memory entries or quarantine flagged text for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security review notes that raw flagged text can be persisted in quarantine memory files. <br>
-Mitigation: Do not feed secrets or sensitive content through the workflow unless quarantine storage and cleanup processes are acceptable. <br>
-Risk: The bundled script depends on an unbundled local scanner module at a hard-coded path. <br>
-Mitigation: Install and review the expected local scanner before relying on the safe memory append workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Deegerwalker/aegis-shield) <br>
-- [Publisher profile](https://clawhub.ai/user/Deegerwalker) <br>
+## Use Case:
+
+Developers and agent operators use this skill to screen untrusted web, email, or social content for prompt-injection, data-exfiltration, and tool-abuse patterns before an agent summarizes, replies, or writes to memory.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Lightly sanitized untrusted text may still be written into persistent agent memory.
+
+Mitigation: Require explicit user approval for memory writes and quarantine medium-or-higher severity content or text with lint findings.
+
+Risk: The safe memory append script depends on an unpinned local aegis-shield module outside the released package.
+
+Mitigation: Use only in environments where the external library path is trusted, locked down, and verified before installation.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, json, markdown] <br>
-**Output Format:** [Markdown instructions with shell command examples; the bundled script emits JSON status and can append Markdown memory or quarantine entries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepted content is written as sourced memory entries; flagged content may be quarantined with scan and lint details for review.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, shell commands, JSON, markdown]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown instructions with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled safe memory append workflow may write sourced memory entries or quarantine records when run in a configured OpenClaw environment.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

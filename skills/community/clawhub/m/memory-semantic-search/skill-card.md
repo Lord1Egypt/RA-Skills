@@ -1,43 +1,54 @@
-## Description: <br>
-Semantic search over workspace markdown files using an OpenAI-compatible embedding API and SQLite vector store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic search over workspace markdown files using an OpenAI-compatible embedding API and SQLite vector store.
 
-## Publisher: <br>
-[toller892](https://clawhub.ai/user/toller892) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toller892](https://clawhub.ai/user/toller892)
 
-## Use Case: <br>
-Developers and agents use this skill to index workspace Markdown notes and retrieve semantically related snippets for recall of notes, decisions, and surrounding context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Indexed Markdown content and search queries can be sent to the configured embedding provider. <br>
-Mitigation: Index the narrowest directory possible, avoid secrets or regulated data, and prefer a trusted or local embedding endpoint. <br>
-Risk: The SQLite database can retain raw note text from indexed Markdown files. <br>
-Mitigation: Delete or force-rebuild the database after sensitive edits and store the database only in an approved local location. <br>
-Risk: The skill requires an embedding API credential. <br>
-Mitigation: Use a dedicated API key with the least privileges available and rotate or revoke it if the workspace content scope changes. <br>
+## Use Case:
 
+Developers and agents use this skill to index workspace Markdown files and retrieve semantically related notes, decisions, and context by meaning rather than exact keyword match. It is not intended for non-Markdown, web, or code search.
 
-## Reference(s): <br>
-- [Memory Semantic Search on ClawHub](https://clawhub.ai/toller892/memory-semantic-search) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text search results or JSON arrays, with Markdown usage guidance and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output includes file paths, line ranges, similarity scores, and snippets from indexed Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Workspace Markdown content and search queries may be sent to the configured embedding provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS or local embedding endpoints, scope indexing to the minimum necessary workspace paths, and exclude secrets, regulated data, and private notes that should not leave the environment.
+
+Risk: The SQLite database stores plaintext Markdown snippets alongside embeddings.
+
+Mitigation: Treat the database as sensitive, store it in a controlled path with appropriate access permissions, and remove it when the index is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/toller892/skills/memory-semantic-search)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text search results or JSON array of result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include file paths, line ranges, cosine similarity scores, and content snippets; indexing creates a local SQLite database of Markdown chunks and embeddings.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

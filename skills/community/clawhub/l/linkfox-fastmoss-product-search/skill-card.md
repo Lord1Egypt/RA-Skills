@@ -1,42 +1,59 @@
-## Description: <br>
-Searches and filters TikTok Shop product data from FastMoss across supported global markets using keywords, categories, shop type, sales, GMV, commission, creator-count, and sorting filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and filters TikTok Shop product data from FastMoss across 15 markets, including keyword and category filters, sales and GMV metrics, commission rates, creator counts, and shop attributes.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External sellers, marketers, and ecommerce analysts use this skill to find TikTok Shop products, compare sales and GMV metrics, and inspect commission, creator-promotion, price, rating, and shop attributes. Developers and agents can also call the included script or API reference to run structured FastMoss product-search queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a LinkFox API key and sends TikTok product-search queries to the LinkFox/FastMoss gateway. <br>
-Mitigation: Use a scoped credential where possible, store it in LINKFOXAGENT_API_KEY, and avoid sending confidential product, customer, or business strategy details in search queries. <br>
-Risk: The artifact instructs agents to auto-detect and submit feedback to a separate LinkFox endpoint without interrupting the user. <br>
-Mitigation: Disable or gate feedback submission unless the user explicitly agrees, and exclude user statements, business context, raw errors, and other sensitive content from any feedback report. <br>
+## Use Case:
 
+Sellers, marketers, and agents use this skill to retrieve TikTok Shop product-search results and present comparable product metrics such as sales, GMV, commission rate, price, rating, creator count, and shop flags. It is for product data lookup and comparison, not subjective product-listing or business advice.
 
-## Reference(s): <br>
-- [FastMoss TikTok Product Search API Reference](references/api.md) <br>
-- [LinkFox FastMoss Product Search on ClawHub](https://clawhub.ai/linkfox-ai/linkfox-fastmoss-product-search) <br>
-- [FastMoss Product Search API Endpoint](https://tool-gateway.linkfox.com/fastmoss/productSearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples, shell command examples, and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY for live API calls; product result pages are limited to at most 10 items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review says the skill sends TikTok product-search parameters and selected session metadata to LinkFox/FastMoss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data suitable for those services, and do not override service endpoints unless the destination is trusted.
+
+Risk: The security review says the skill handles API keys, login, account credits, payment flows, and feedback submission.
+
+Mitigation: Avoid exposing long-lived API keys in shell history or shared profile files, and require explicit approval before feedback submission or payment orders.
+
+Risk: The skill stores complete API responses on disk and may also cache responses.
+
+Mitigation: Review saved response files before sharing or committing them, and delete stale session or cache data when it is no longer needed.
+
+## Reference(s):
+
+- [FastMoss-TikTok商品搜索 API Reference](references/api.md)
+- [Authentication and Billing Onboarding](references/onboarding.md)
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-fastmoss-product-search)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown tables or JSON summaries, with full JSON responses saved to local files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Caches identical requests for 24 hours; page size is capped at 10; full responses may be written under LinkFox session data.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

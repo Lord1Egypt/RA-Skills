@@ -1,46 +1,61 @@
-## Description: <br>
-Orchestrate Claude Code sessions via Aegis HTTP/MCP bridge for coding tasks, issue implementation, PR review, CI fixes, batch tasks, and multi-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aegis Bridge helps agents orchestrate local Claude Code sessions through an Aegis HTTP/MCP bridge.
 
-## Publisher: <br>
-[onestepat4time](https://clawhub.ai/user/onestepat4time) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onestepat4time](https://clawhub.ai/user/onestepat4time)
 
-## Use Case: <br>
-Developers and engineers use this skill to spawn, monitor, communicate with, and clean up local Claude Code sessions through an Aegis server. It supports supervised coding automation workflows such as implementing issues, reviewing pull requests, fixing CI, and coordinating parallel agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive local Claude Code sessions that may request bash execution or other high-impact permissions. <br>
-Mitigation: Review permission and bash prompts manually, reject unsafe actions, and restrict workDir values to trusted repositories. <br>
-Risk: The heartbeat and workflow examples normalize auto-approving agent actions. <br>
-Mitigation: Avoid auto-approval loops unless running in a tightly sandboxed environment with an explicit allowlist. <br>
-Risk: The skill depends on a local Aegis server controlling sessions in the user's environment. <br>
-Mitigation: Install only when local Aegis orchestration is intended, prefer project-scoped MCP setup, and verify the server with the provided health check before use. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to create, supervise, inspect, and clean up Claude Code sessions for implementation, review, CI repair, and parallel coding workflows.
 
-## Reference(s): <br>
-- [Aegis Bridge ClawHub listing](https://clawhub.ai/onestepat4time/aegis-bridge) <br>
-- [API Quick Reference](references/api-quick-ref.md) <br>
-- [Agent Template](references/agent-template.md) <br>
-- [Heartbeat Template](references/heartbeat-template.md) <br>
-- [Workflow Examples](references/workflow-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown guidance with inline bash commands, JSON request examples, and MCP tool references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Aegis service and Claude Code CLI; examples may create, approve, interrupt, or terminate local agent sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Unattended approval of coding-agent permissions can allow unwanted tool use or shell actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use manual review, explicit allowlists, audit logging, and isolated environments before enabling auto-approval workflows.
+
+Risk: The MCP setup can install a persistent unpinned aegis-bridge command through npx.
+
+Mitigation: Prefer project-scoped MCP configuration and pin or locally verify the aegis-bridge executable before use.
+
+Risk: Prompts, transcripts, raw terminal output, and approval requests may contain sensitive project information.
+
+Mitigation: Treat session data as sensitive and restrict access to workspaces, logs, and transcript outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onestepat4time/skills/aegis-bridge)
+- [Aegis API Quick Reference](references/api-quick-ref.md)
+- [Agent Template](references/agent-template.md)
+- [Heartbeat Template](references/heartbeat-template.md)
+- [Workflow Examples](references/workflow-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, HTTP examples, MCP tool names, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Aegis server on localhost:9100, Node.js 20+, Claude Code CLI, and jq for helper scripts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

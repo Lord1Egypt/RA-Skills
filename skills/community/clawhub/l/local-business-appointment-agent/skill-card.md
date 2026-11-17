@@ -1,42 +1,57 @@
-## Description: <br>
-AI agent for local businesses to handle appointment scheduling, reminders, cancellations, and service inquiries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent for local businesses to automate appointment scheduling, reminders, cancellations, and calendar integration.
 
-## Publisher: <br>
-[dotdance](https://clawhub.ai/user/dotdance) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dotdance](https://clawhub.ai/user/dotdance)
 
-## Use Case: <br>
-Local business operators and developers can use this skill to set up a conversational appointment assistant for booking, cancellations, rescheduling, business hours, and service listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect customer names, phone numbers, and appointment details without a documented privacy notice. <br>
-Mitigation: Publish a clear privacy notice before real customer use, including data use, retention, deletion, consent for reminders, and any SMS/email provider sharing. <br>
-Risk: Appointment details may be lost because the sample implementation stores bookings only in memory. <br>
-Mitigation: Use durable storage and operational backups before relying on the skill for live scheduling. <br>
-Risk: Calendar and reminder integrations require access to external services and customer communications. <br>
-Mitigation: Review calendar permissions and reminder consent flows before connecting production calendars or SMS/email providers. <br>
+## Use Case:
 
+Local business operators can use this agent as a chat-based appointment scheduling demo for booking, cancellation, rescheduling, and showing hours or services. It is suitable for evaluating an appointment workflow before adding production consent, storage, calendar, and messaging controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dotdance/local-business-appointment-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown-style setup guidance with shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js. The sample command-line implementation stores appointment details in memory, so users should add durable storage and privacy controls before handling real customers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/package.json) <br>
+Risk: The demo collects scheduling details such as names and phone numbers without built-in consent, privacy notices, retention controls, or secure storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add explicit consent, privacy notices, secure storage, and deletion or retention controls before using it for real customer bookings.
+
+Risk: Calendar or messaging integrations could request broader access than needed if added for production use.
+
+Mitigation: Use least-privilege calendar and messaging scopes and review those scopes before deployment.
+
+Risk: Appointments are stored only in memory in the demo, so booking data is not durable across restarts.
+
+Mitigation: Use durable, access-controlled storage before relying on the agent for actual appointments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dotdance/skills/local-business-appointment-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and console interaction text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included Node.js demo stores appointments in memory and does not configure external calendar, messaging, or credentialed services by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-Decomposes complex user requests into executable subtasks, identifies required capabilities, searches for existing skills at skills.sh, and creates new skills when no solution exists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decomposes complex user requests into executable subtasks, identifies required capabilities, searches for existing skills at skills.sh, and creates new skills when no solution exists.
 
-## Publisher: <br>
-[jpzhengcn](https://clawhub.ai/user/jpzhengcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpzhengcn](https://clawhub.ai/user/jpzhengcn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to break complex workflow requests into manageable subtasks, map each subtask to required capabilities, search for matching skills, and draft an execution plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend installing, creating, or using third-party skills that may change an agent setup. <br>
-Mitigation: Review each recommended or generated skill, prefer trusted publishers, and approve changes to the agent setup deliberately before installation or use. <br>
-Risk: Task decomposition or capability mapping may produce incomplete or unsuitable execution plans for a user's actual workflow. <br>
-Mitigation: Review the proposed subtasks, dependencies, required capabilities, and verification steps before running commands or creating new skills. <br>
+## Use Case:
 
+Developers and agent operators use this skill to break complex, multi-step requests into subtasks, map those subtasks to capability types, search for existing skills, and draft plans for creating missing skills.
 
-## Reference(s): <br>
-- [Capability Types Reference](references/capability_types.md) <br>
-- [skills.sh](https://skills.sh/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jpzhengcn/openclaw-super-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with structured reports, YAML-style plans, tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend existing skills, propose new skill files, and outline verification steps for each subtask.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill recommends installing third-party skills globally with unpinned, auto-confirmed commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review discovered or generated skills before activation, avoid the documented -g -y pattern, prefer pinned tool and skill versions, and use a local or sandboxed installation scope where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpzhengcn/skills/openclaw-super-skills)
+- [Universal Capability Types Reference](references/capability_types.md)
+- [skills.sh](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured task lists, YAML examples, tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include skill search recommendations, generated skill templates, execution plans, and verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

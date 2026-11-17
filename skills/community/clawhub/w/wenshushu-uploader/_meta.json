@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn70y4dj8bf8j7xc8c80sqrnn1831b0h",
-  "slug": "wenshushu-uploader",
-  "version": "0.1.1",
-  "publishedAt": 1773648029624
+  "name": "文叔叔文件上传",
+  "version": "1.0.0",
+  "description": "文叔叔文件上传技能，自动上传文件到文叔叔并生成分享链接和取件码",
+  "ownerId": "gcdd1993",
+  "slug": "wenshushu-file-uploader"
 }

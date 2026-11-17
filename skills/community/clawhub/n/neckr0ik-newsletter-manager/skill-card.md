@@ -1,42 +1,57 @@
-## Description: <br>
-Manage newsletters with AI-generated content, including creation, scheduling, sending, subscriber management, analytics, and integrations for platforms such as Substack, Beehiiv, ConvertKit, and Mailchimp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage newsletter drafts with AI-generated content, local subscriber imports, scheduling state, simulated sending, and basic analytics for newsletter workflows.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-External developers, operators, and newsletter teams can use this skill to generate newsletter drafts, manage subscriber workflows, schedule delivery, and review campaign analytics across supported email platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles subscriber data and email-service credentials without enough disclosure, safeguards, or user control. <br>
-Mitigation: Review carefully before installing, use test credentials, and avoid production subscriber lists until local storage and platform behavior are understood. <br>
-Risk: Generated newsletter content and curated links may be inaccurate, misleading, or unsuitable for broadcast. <br>
-Mitigation: Review generated content and links manually before scheduling or sending any newsletter. <br>
-Risk: A real broadcast could be sent unintentionally through a configured email platform. <br>
-Mitigation: Require an explicit test send before any real broadcast and verify target platform, segment, and recipient settings. <br>
+## Use Case:
 
+External creators, newsletter operators, and developers use this skill to draft newsletter content, manage local subscriber records, schedule drafts, and inspect basic analytics during newsletter workflow automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Neckr0ik/neckr0ik-newsletter-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, Python examples, generated newsletter text, and JSON/CSV-oriented workflow outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local draft, subscriber, analytics, and configuration files under the newsletter manager data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, claw.json, server release metadata) <br>
+Risk: The skill presents newsletter delivery, scheduling, web curation, and analytics as operational capabilities even though the release evidence says these outputs should be treated as simulated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for local drafting and workflow experiments only until real provider integrations, explicit approval safeguards, and verified analytics are implemented.
+
+Risk: The skill can store API keys and subscriber records locally while the authoritative security guidance flags weak safeguards for credentials and subscriber data.
+
+Mitigation: Do not enter live API keys or import real subscriber lists unless storage, redaction, and permission controls are reviewed and fixed.
+
+Risk: AI-generated newsletter content and curated links may be inaccurate, incomplete, or unsuitable for the intended audience.
+
+Mitigation: Review generated content, links, and analytics claims before sending or publishing any newsletter material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-newsletter-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python examples; generated newsletter drafts are Markdown-like text and local operational records are JSON or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores drafts, subscriber records, analytics, and configuration locally; provider sending and analytics should be treated as simulated until real integrations are verified.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, claw.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

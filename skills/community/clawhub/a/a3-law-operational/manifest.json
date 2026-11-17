@@ -1,0 +1,32 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "未命名包",
+  "version": "0.0.0",
+  "author": "注册老炮 (SynomosAI)",
+  "year": "2026",
+  "timestamp_utc": "2026-09-07T06:54:12.655126+00:00",
+  "timestamp_local": "2026-09-07T14:54:12.655138",
+  "package_fingerprint_sha256": "7df1f7eb9e47e273810a2c7aaa2af24be39f8d9263b33cb0cda49b2174b06208",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "311bfa21d1af08112892be3063d58b64a02a05cf91f1be6bed9b35a13270a951"
+    },
+    {
+      "path": "icon.jpg",
+      "sha256": "7fbeb22530567beae4966778529ed8058d7c8e2c77420991180d55ed977abb9e"
+    },
+    {
+      "path": "icon.png",
+      "sha256": "0203250e0f7c1911d523e40219b49a610d30fee589e15e419547dd50cfb81191"
+    },
+    {
+      "path": "lgd-avatar.png",
+      "sha256": "023c8b312bcd90e9b1a77871e0c45ad9edde099f113499e42a78e5004cae1549"
+    },
+    {
+      "path": "lgd-shield-color.svg",
+      "sha256": "e57b596e9ff4081864a113ae06b80fab36aa8214565ce0f8cb55929c2f404441"
+    }
+  ]
+}

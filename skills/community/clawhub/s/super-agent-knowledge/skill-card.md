@@ -1,40 +1,53 @@
-## Description: <br>
-Super Agent Knowledge helps agents capture, organize, search, and maintain local Markdown knowledge entries from URLs, extracts, social posts, and research outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Agent Knowledge helps agents capture, organize, search, validate, and maintain reusable knowledge from URLs, media extracts, social posts, papers, and research notes as structured markdown.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Agents and developers use this skill to maintain a persistent local knowledge store for useful source material and research notes, then search, validate, clean up, and reindex that store when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local storage can retain secrets, private customer data, copyrighted material, or proprietary content if users add it. <br>
-Mitigation: Store only material you are authorized to retain, and avoid adding secrets, private customer data, or restricted content. <br>
-Risk: Cleanup automation such as `know tidy --fix` or cron-based maintenance can modify local knowledge files without close review. <br>
-Mitigation: Run `know tidy` in audit mode first and review the results before using `--fix` or unattended automation. <br>
+## Use Case:
 
+Agents and developers use this skill to preserve useful source material and research outputs in a searchable local knowledge base. It is suited for workflows that need quick capture, tag-based retrieval, validation, cleanup, and QMD indexing of markdown knowledge entries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-agent-knowledge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes a local Markdown knowledge store with YAML frontmatter and command-driven indexing, search, validation, and cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version and artifact _meta.json) <br>
+Risk: The release asks users to install and run an unpinned separate knowledge package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the actual knowledge package and scripts/know implementation before installing or using it in automated workflows.
+
+Risk: Recurring tidy or auto-fix runs can change files in the configured knowledge directory.
+
+Mitigation: Keep KNOWLEDGE_DIR scoped to a dedicated knowledge folder, run maintenance in audit or dry-run mode first if available, and avoid scheduled auto-fix until provenance and backup behavior are clear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-agent-knowledge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and YAML frontmatter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local markdown knowledge entries and an auto-maintained index when used with the referenced command-line tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

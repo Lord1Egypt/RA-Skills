@@ -1,42 +1,53 @@
-## Description: <br>
-Search Google Flights for prices, availability, deals, flexible dates, filtered options, connection quality, and price-tracking alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google Flights for prices, availability, deals, flexible travel dates, filtered itineraries, connection quality, and price tracking alerts.
 
-## Publisher: <br>
-[kris-hansen](https://clawhub.ai/user/kris-hansen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kris-hansen](https://clawhub.ai/user/kris-hansen)
 
-## Use Case: <br>
-External users and agents use this skill to search and compare flight options, evaluate flexible travel dates and filters, and monitor route prices against alert thresholds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flight searches are handled through the fast-flights/Google Flights path. <br>
-Mitigation: Install only if that routing is acceptable for the user's flight-search workflow. <br>
-Risk: Price tracking and route watching save route, date, and price history locally under ~/clawd/memory. <br>
-Mitigation: Remove tracked routes and delete the local memory files when alerts or history are no longer needed. <br>
-Risk: The cron example can enable recurring background price checks. <br>
-Mitigation: Enable scheduled checks only when recurring monitoring is desired, and review or remove the cron entry when it is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to search, compare, filter, and monitor flight prices for one-way, round-trip, flexible-date, and regular-route travel planning.
 
-## Reference(s): <br>
-- [ClawHub Google Flights skill page](https://clawhub.ai/kris-hansen/google-flights) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON flight search and tracking results, with shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store local route, tracking, and price-history files under ~/clawd/memory when tracking features are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The setup installs the unpinned third-party fast-flights dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dependency source before installing and pin a known acceptable version for controlled environments.
+
+Risk: Price tracking stores routes, travel dates, alert thresholds, and price history locally.
+
+Mitigation: Use tracking only when local travel-history storage is acceptable, and delete the tracking files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Google Flights skill page](https://clawhub.ai/kris-hansen/skills/google-flights)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style command output, optional JSON search output, and local JSON or JSONL tracking files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write tracked flights, watched routes, and price history under ~/clawd/memory when tracking features are used.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

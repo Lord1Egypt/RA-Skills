@@ -1,40 +1,55 @@
-## Description: <br>
-Analyze Google Maps review data from CSV exports for sentiment, trends, competitor comparisons, and reputation insights without a Google Maps API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Google Maps review data from CSV exports for sentiment analysis, trend detection, competitor review comparison, and reputation insights with no API key needed.
 
-## Publisher: <br>
-[gmapsscraper](https://clawhub.ai/user/gmapsscraper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmapsscraper](https://clawhub.ai/user/gmapsscraper)
 
-## Use Case: <br>
-External users and business analysts use this skill to turn Google Maps review CSV exports into market benchmarks, competitor comparisons, sentiment themes, and reputation improvement actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CSV inputs may contain sensitive business or customer review data. <br>
-Mitigation: Review and redact sensitive fields before sharing CSV content with an agent or external service. <br>
-Risk: Users without an existing CSV are directed to a third-party Google Maps export service. <br>
-Mitigation: Review the third-party service's terms, privacy practices, and data handling before using it for business review exports. <br>
+## Use Case:
 
+External users and developers use this skill to analyze local Google Maps CSV exports for review benchmarks, competitor reputation patterns, sentiment themes, and practical recommendations.
 
-## Reference(s): <br>
-- [gmapsscraper.io](https://gmapsscraper.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Structured Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market benchmarks, rating and review-volume tiers, competitor opportunities, sentiment themes, and action items derived from user-provided CSV data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may steer users without an existing CSV toward a specific commercial data provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat gmapsscraper.io as an optional provider suggestion and accept suitable CSV exports from other lawful sources.
+
+Risk: Review analysis can be misleading when CSV data is incomplete, outdated, or missing individual review text.
+
+Mitigation: Check the available columns and data freshness before relying on benchmarks, sentiment themes, or competitor recommendations.
+
+## Reference(s):
+
+- [gmapsscraper.io](https://gmapsscraper.io)
+- [gmapsscraper.io pricing](https://gmapsscraper.io/#pricing)
+- [ClawHub skill page](https://clawhub.ai/gmapsscraper/skills/google-maps-reviews-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local CSV review data; no API key is required by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

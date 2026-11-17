@@ -1,0 +1,27 @@
+name: bid-blind-bid-format-scanner
+slug: bid-blind-bid-format-scanner
+display_name: 暗标格式"防盲"合规扫描仪
+emoji: "🛡️"
+version: 1.0.0
+version_stage: GA
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+agent_created: true
+description: '服务于投标人：封标前对"暗标"部分（技术标/施工组织设计/技术方案）执行盲审格式化条款的机械合规扫描。确定性脚本提取 Word/PDF 页边距、字体、字号、行距、对齐、缩进、页码页眉页脚与文档元数据，逐条比对招标文件"暗标编制要求"，输出"要求 vs 现状"差异清单、风险等级（废标级/扣分零分级）与一键修订指令；同时扫描全文与文档属性是否残留投标人身份信息（名称/Logo/人员/业绩/暗示措辞）。仅做机械格式检查，不评价内容优劣。'
+tags:
+  - "服务于投标人"
+  - "暗标盲评"
+  - "封标前体检"
+  - "格式合规"
+  - "防泄身份"
+  - "招投标"
+changelog:
+  - "1.0.0 正式发布：①scripts/scan_docx.py 确定性提取版面/页边距/字体字号/字形/行距/对齐/缩进/页码页眉页脚 + 文档元数据 + 全文身份扫描；②scripts/scan_pdf.py 最佳努力（页数/页面尺寸/元数据/全文身份，字体页边距标注不可靠）；③references/blind_bid_specs.md 提炼南阳/河北/贵州/内蒙古/济宁等多地真实暗标规范为通用标尺+差异对照+后果矩阵；④references/identity_patterns.md 暗示措辞启发式词典与安全改写；⑤四大能力（格式硬检/身份显形/篇幅裁剪/一键差异报告）；⑥护栏铁律（仅机械检查、不留存文件、以招标条款为准、风险分级）；⑦署名与公众号反馈脚注。"
+feedback:
+  channel: wechat
+  account: 一线评标专家
+  note: "使用问题、误报反馈、实务建议，欢迎关注公众号「一线评标专家」留言交流"
+feedback_schema:
+  - 误报类型
+  - 正确格式条款
+  - 附件

@@ -1,7 +1,7 @@
 interface:
-  display_name: "OpenCode Session Toolkit"
-  short_description: "Query and export local OpenCode sessions safely."
-  default_prompt: "Use $opencode-session-toolkit to list, inspect, and export local OpenCode sessions safely."
+  display_name: "OpenCode 会话工具箱"
+  short_description: "安全查询、搜索、诊断并导出本地 OpenCode 会话记录。"
+  default_prompt: "使用 $opencode-session-toolkit 安全检查或导出本地 OpenCode 会话。"
 
 policy:
   allow_implicit_invocation: true

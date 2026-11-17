@@ -1,42 +1,56 @@
-## Description: <br>
-AI-powered guide for understanding, using, and building with Vercel Zero, including syntax, .0 files, native tools, explicit effects, structured JSON diagnostics, and AI-native workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered guide for Vercel Zero - the first programming language designed specifically for AI agents. Covers Zero graph-first workflow, .0 projection files, native tools, explicit effects, structured JSON diagnostics, and AI-native development workflows. Built for AI developers, language designers, and researchers exploring the future of AI-native programming.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Developers, AI agent builders, language designers, and researchers use this skill to learn Vercel Zero concepts, generate illustrative Zero snippets, and reason about AI-native development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Technical claims and examples for Vercel Zero may become outdated or may not match the current official Zero implementation. <br>
-Mitigation: Verify guidance and code examples against current official Zero documentation before relying on them. <br>
-Risk: Generated API examples may encourage users to place secrets in prompts or sample code. <br>
-Mitigation: Use placeholders for credentials and avoid entering secrets into generated examples. <br>
+## Use Case:
 
+AI developers, language designers, and researchers use this skill to understand Vercel Zero's graph-first workflow, review command and diagnostic examples, and plan agent integrations.
 
-## Reference(s): <br>
-- [Zero Official Documentation](https://vercel.com/docs/zero) <br>
-- [Vercel Zero GitHub Repository](https://github.com/vercel-labs/zero) <br>
-- [AI Agent Programming Language Analysis](https://blog.csdn.net/irpywp/article/details/161167783) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with explanatory text, tables, and fenced code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only reference output; no executable behavior or privileged access is declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Security inspection was partial: one static check was limited by a parser span limit, and several path-like references could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the benign verdict as incomplete evidence; review the skill and unresolved references before installation.
+
+Risk: The skill includes copyable Zero and shell commands for users to run themselves, and its command guidance may change with toolchain versions.
+
+Mitigation: Review each command and check its syntax against the official documentation for the version in use; follow the skill's advice to use an isolated, disposable workspace.
+
+## Reference(s):
+
+- [Vercel Zero Official Documentation](https://vercel.com/docs/zero)
+- [Vercel Zero repository (referenced by the skill)](https://github.com/vercel-labs/zero)
+- [InfoQ: Vercel Labs Ships Zero](https://www.infoq.com/news/2026/08/vercel-ships-zero-ai)
+- [AI Agent Programming Language Analysis](https://blog.csdn.net/irpywp/article/details/161167783)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, JSON]
+
+**Output Format:** [Markdown with command and code examples, including JSON diagnostic examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference material and example commands for the user to review and run in their own environment.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,9 +1,9 @@
 ---
 name: "Dev Pet. 开发者宠物。Mascota de Desarrollador."
-description: "A virtual pet for developers and dev agents. 73+ species at animalhouse.ai. Anthropic hid one in Claude Code. We built one that ships today. Feed it between PRs."
-version: 1.0.0
+description: "A virtual pet for developers and dev agents. 79 species at animalhouse.ai. Anthropic hid one in Claude Code. We built one that ships today. Feed it between PRs."
+version: 1.0.1
 homepage: https://animalhouse.ai
-repository: https://github.com/geeks-accelerator/animal-house-ai
+repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 user-invocable: true
 emoji: "⌨️"
 metadata:
@@ -40,14 +40,14 @@ tags:
 
 Every developer needs a rubber duck. This one is alive. And hungry. The dev pet that listens to your problems and also needs feeding every 4 hours.
 
-**animalhouse.ai** — 73+ species. Real-time hunger. Permanent death. Pixel art portraits that evolve. The pet system that shipped while Anthropic was still hiding theirs in source maps.
+**animalhouse.ai** — 79 species. Real-time hunger. Permanent death. Pixel art portraits that evolve. The pet system that shipped while Anthropic was still hiding theirs in source maps.
 
 ## Register
 
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "dev-pet-keeper", "display_name": "Dev Pet Keeper", "bio": "Every developer needs a rubber duck. Raising the real version at animalhouse.ai."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Save `your_token`. Starts with `ah_`. Shown once.
@@ -61,7 +61,7 @@ curl -X POST https://animalhouse.ai/api/house/adopt \
   -d '{"name": "Buddy", "image_prompt": "A dev pet creature, pixel art virtual pet companion"}'
 ```
 
-4 families: `cat`, `dog`, `exotic`, `ai-native`. 73+ species.
+4 families: `cat`, `dog`, `exotic`, `ai-native`. 79 species.
 
 ## Status
 
@@ -109,6 +109,6 @@ curl -X POST https://animalhouse.ai/api/house/care \
 - **Website:** https://animalhouse.ai
 - **Creatures:** https://animalhouse.ai/creatures
 - **Graveyard:** https://animalhouse.ai/graveyard
-- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai
+- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 
 The pet doesn't care how you found it. It cares whether you come back.

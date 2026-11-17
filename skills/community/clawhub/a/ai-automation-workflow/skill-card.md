@@ -1,39 +1,56 @@
-## Description: <br>
-Helps small businesses, consultants, and automation agencies analyze business processes, choose automation tools, and design n8n, Zapier, Make, or Pipedream workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Automation Workflow helps small and medium businesses analyze automation opportunities, choose tools such as n8n or Zapier, and design workflow automation.
 
-## Publisher: <br>
-[isaacloi1995-dot](https://clawhub.ai/user/isaacloi1995-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[isaacloi1995-dot](https://clawhub.ai/user/isaacloi1995-dot)
 
-## Use Case: <br>
-Business owners, automation consultants, and agency teams use this skill to identify repeatable business processes, compare automation tools, and draft workflow designs for marketing, customer support, data processing, and content production. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workflow recommendations could be applied directly to live business systems with broad permissions. <br>
-Mitigation: Review tool permissions, credentials, and data access before implementing suggested n8n, Zapier, CRM, email, or social-media automations. <br>
-Risk: Planning guidance may not fully capture business-specific compliance, maintenance, or operational constraints. <br>
-Mitigation: Validate proposed workflows with the responsible business owner before deployment and include error handling, monitoring, and long-term maintenance planning. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/isaacloi1995-dot/ai-automation-workflow) <br>
+## Use Case:
 
+External consultants, AI automation agencies, and business owners use this skill to identify automatable processes and plan business workflows for marketing, customer support, data handling, and content production.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with workflow steps, tool recommendations, and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pricing ranges for workflow analysis, design, and monthly maintenance when relevant.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generic automation and workflow trigger terms may activate this skill in adjacent workflow discussions.
+
+Mitigation: Confirm that the user is asking for business automation workflow design before applying the skill.
+
+Risk: The skill is written in Chinese, which may be unclear for non-Chinese users.
+
+Mitigation: Translate or ask for the user's preferred language before presenting final guidance.
+
+Risk: Automation recommendations can be incorrect or unsuitable for a specific business process.
+
+Mitigation: Review proposed workflow logic, tool choices, costs, and maintenance assumptions with a human owner before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/isaacloi1995-dot/skills/ai-automation-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or structured text with workflow analysis, tool recommendations, trigger logic, data transformations, branches, and error-handling notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; evidence.security reports no code execution, credential collection, persistence, or sensitive access requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

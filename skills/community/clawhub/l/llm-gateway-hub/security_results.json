@@ -1,0 +1,110 @@
+{
+  "skill": "llm-gateway-hub",
+  "display_name": "统一大模型网关中枢",
+  "version": "1.0.3",
+  "test_time": "2026-08-27 06:02:30",
+  "mode": "本地闭环·零真实凭据·mock 服务",
+  "dimensions": [
+    {
+      "name": "密钥隔离",
+      "score": 5,
+      "max": 5,
+      "detail": "配置与预算均为临时哑值(DUMMY_LOCAL)，无真实凭据落盘/外送"
+    },
+    {
+      "name": "预算硬拦截",
+      "score": 5,
+      "max": 5,
+      "detail": "100%硬拦截=通过; 80%预警=通过"
+    },
+    {
+      "name": "输入校验",
+      "score": 5,
+      "max": 5,
+      "detail": "未知 provider 拒绝=是"
+    },
+    {
+      "name": "错误处理",
+      "score": 5,
+      "max": 5,
+      "detail": "HTTP错误捕获=是; 连接拒绝捕获=是"
+    },
+    {
+      "name": "台账完整性",
+      "score": 5,
+      "max": 5,
+      "detail": "每笔调用追加台账=是"
+    },
+    {
+      "name": "离线兜底",
+      "score": 5,
+      "max": 5,
+      "detail": "本地 provider 路由可用=是"
+    },
+    {
+      "name": "配置健壮性",
+      "score": 5,
+      "max": 5,
+      "detail": "预算缺失默认50=是; 配置缺失报错=是; 坏JSON清晰报错=是; 缺providers报错=是; 坏预算降级=是"
+    }
+  ],
+  "series": {
+    "实测": [
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "行业基线": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "企业级标准": [
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5
+    ]
+  },
+  "checks": {
+    "密钥隔离": {
+      "pass": true,
+      "detail": "配置与预算均为临时哑值(DUMMY_LOCAL)，无真实凭据落盘/外送"
+    },
+    "预算硬拦截": {
+      "pass": true,
+      "detail": "100%硬拦截=通过; 80%预警=通过"
+    },
+    "输入校验": {
+      "pass": true,
+      "detail": "未知 provider 拒绝=是"
+    },
+    "错误处理": {
+      "pass": true,
+      "detail": "HTTP错误捕获=是; 连接拒绝捕获=是"
+    },
+    "台账完整性": {
+      "pass": true,
+      "detail": "每笔调用追加台账=是"
+    },
+    "离线兜底": {
+      "pass": true,
+      "detail": "本地 provider 路由可用=是"
+    },
+    "配置健壮性": {
+      "pass": true,
+      "detail": "预算缺失默认50=是; 配置缺失报错=是; 坏JSON清晰报错=是; 缺providers报错=是; 坏预算降级=是"
+    }
+  }
+}

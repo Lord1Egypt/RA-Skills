@@ -1,43 +1,61 @@
-## Description: <br>
-Send images via Feishu (Lark) messaging platform using the underlying API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send local images to Feishu (Lark) users or group chats through the Feishu messaging API.
 
-## Publisher: <br>
-[leo-jiqimao](https://clawhub.ai/user/leo-jiqimao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leo-jiqimao](https://clawhub.ai/user/leo-jiqimao)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to send a local image file to a Feishu user or group chat, including images produced by another agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends local image files to Feishu users or group chats, which can disclose generated, private, or sensitive images if the path or recipient is wrong. <br>
-Mitigation: Confirm the exact image path and recipient or chat ID before sending, especially for sensitive or batch image workflows. <br>
-Risk: The skill reads Feishu app credentials from the OpenClaw configuration. <br>
-Mitigation: Keep the OpenClaw configuration private and use a least-privilege Feishu app with only the permissions needed to send images. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to send generated or local image files to Feishu users and group chats from an agent workflow.
 
-## Reference(s): <br>
-- [Feishu Open Platform Documentation](https://open.feishu.cn/document/home/index) <br>
-- [Feishu Send Message API](https://open.feishu.cn/document/server-docs/im-v1/message/create) <br>
-- [Feishu Upload Image API](https://open.feishu.cn/document/server-docs/im-v1/image/create) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leo-jiqimao/leo-feishu-send-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends a selected local image through Feishu after reading Feishu app credentials from the user's OpenClaw configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: An agent could upload an unintended local image file if it is given broad readable filesystem access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict allowed image paths to a workspace or approved directory and require explicit confirmation before upload.
+
+Risk: Images could be sent through the wrong Feishu account or to the wrong user or group chat.
+
+Mitigation: Validate account IDs and recipient IDs, display the destination before sending, and require confirmation for sensitive workflows.
+
+Risk: Unsupported, oversized, or mislabeled files may be uploaded because the artifact only checks that the path exists.
+
+Mitigation: Add MIME type, extension, and size checks before calling the Feishu upload API.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [Feishu Open Platform Documentation](https://open.feishu.cn/document/home/index)
+- [Feishu Send Message API](https://open.feishu.cn/document/server-docs/im-v1/message/create)
+- [Feishu Upload Image API](https://open.feishu.cn/document/server-docs/im-v1/image/create)
+- [ClawHub Skill Page](https://clawhub.ai/leo-jiqimao/skills/leo-feishu-send-image)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends selected local image files through configured Feishu credentials and returns command-line status messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

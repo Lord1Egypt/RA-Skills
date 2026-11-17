@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊竞品评论分析 · 对手短板拆解"
+  short_description: "竞品评论横向对比，定位对手短板与切入点"
+  default_prompt: "使用 $amazon-competitor-review 对比两个 Amazon ASIN 的评论，找出竞品短板与机会。"

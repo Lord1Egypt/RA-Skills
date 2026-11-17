@@ -1,40 +1,54 @@
-## Description: <br>
-InspirAI Evo detects workflow problem signals such as repeated trial and error, interrupted flows, and git churn, then generates analysis reports and guides improvement handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+技能自我进化 - 检测流程问题信号（重复试错、流程中断、代码翻动），生成分析报告，引导改进。
 
-## Publisher: <br>
-[alexxxiong](https://clawhub.ai/user/alexxxiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexxxiong](https://clawhub.ai/user/alexxxiong)
 
-## Use Case: <br>
-Developers and engineers use this skill to review agent workflow signals, produce concise evolution reports, and queue follow-up improvements without blocking the current task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local reports and state files may contain sensitive project context if shared or committed. <br>
-Mitigation: Review docs/evo-reports, .evo-state.json, and ~/.claude/evo-stats before sharing or committing, and delete stored state when it is no longer needed. <br>
-Risk: Optional automatic monitoring can persist signal history across future sessions. <br>
-Mitigation: Add the CLAUDE.md monitoring block only when persistent tracking is desired, and periodically review or remove generated history. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to detect repeated workflow problems such as retry loops, interrupted work, and git churn, then generate concise improvement reports and pending follow-up items.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alexxxiong/inspirai-evo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local project reports, project state, and optional cross-project statistics when the workflow is followed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may persist workflow context, project names, timestamps, patterns, and pending improvement details in project-local files and under the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before sharing or committing them, keep sensitive reports out of version control unless intended, and remove local or global stats when retention is not desired.
+
+Risk: The --continue flow can turn pending improvement items into proposed file changes.
+
+Mitigation: Use --continue only after reviewing the pending items and confirm each proposed change before applying it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexxxiong/skills/inspirai-evo)
+- [Publisher profile](https://clawhub.ai/user/alexxxiong)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with shell command snippets and JSON state updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create project-local reports and state files plus cross-project local statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

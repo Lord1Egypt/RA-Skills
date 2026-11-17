@@ -1,39 +1,57 @@
-## Description: <br>
-Execute git operations on behalf of Workers who don't have git credentials when a Worker sends a git-request message to clone, push, pull, commit, rebase, or perform another git operation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute git operations on behalf of Workers who don't have git credentials when a Worker sends a git-request message to clone, push, pull, commit, rebase, or perform other git operations.
 
-## Publisher: <br>
-[MontyCN](https://clawhub.ai/user/MontyCN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[montycn](https://clawhub.ai/user/montycn)
 
-## Use Case: <br>
-Developers and engineering teams use this skill when Workers lack git credentials and need a Manager to run delegated git operations in a shared workspace. It supports cloning, branching, committing, pushing, pulling, rebasing, and related git workflows with status reporting back to the requesting Worker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Worker messages can trigger broad authenticated git actions using the Manager's host git credentials. <br>
-Mitigation: Install only where Workers are fully trusted, authenticate the request origin, restrict allowed repositories and git commands, and use least-privilege repo-scoped credentials. <br>
-Risk: Pushes, rebases, resets, or other history-changing git operations can alter remote repositories or shared workspaces. <br>
-Mitigation: Review pushes and history-changing operations before execution, require explicit approval for destructive commands, and keep workspace synchronization markers in place to avoid concurrent edits. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to let a credentialed manager agent execute requested Git workflows for worker agents that cannot access repository credentials. It supports delegated clone, branch, commit, pull, push, merge, rebase, tag, stash, and related repository operations in shared workspaces.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown status messages with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports success or failure, summarizes completed git operations, and may include follow-up sync or remediation instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Untrusted or mistaken git-request messages can trigger authenticated Git operations under the manager's credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Authenticate Worker requests and only enable the skill in tightly controlled environments.
+
+Risk: Delegated commands can push commits, rewrite history, or affect private repositories.
+
+Mitigation: Allowlist repositories and remotes, and require explicit approval for destructive Git actions such as force pushes, resets, and rebases.
+
+Risk: Worker-provided workspace paths can lead to cross-task workspace changes.
+
+Mitigation: Derive workspace paths server-side and reject paths outside the expected task workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/montycn/skills/git-delegation-management)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown messages with inline shell commands and command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns success or failure summaries for delegated Git operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

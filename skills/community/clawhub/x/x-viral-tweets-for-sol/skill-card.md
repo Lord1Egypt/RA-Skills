@@ -1,46 +1,65 @@
-## Description: <br>
-Full-time Solana CT (Crypto Twitter / X) growth operator, meme strategist, and narrative analyst. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft and analyze Solana-focused X content, including viral posts, threads, meme concepts, narrative tracking, engagement audits, and growth strategy.
 
-## Publisher: <br>
-[gwapupward-hub](https://clawhub.ai/user/gwapupward-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gwapupward-hub](https://clawhub.ai/user/gwapupward-hub)
 
-## Use Case: <br>
-External users and social media operators use this skill to create and evaluate Solana-focused X content, including viral posts, reply prompts, threads, meme concepts, daily content packs, narrative tracking, growth strategy, and engagement audits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Solana/X posts may include token commentary, reply bait, hot takes, or references to named people that could be misleading, promotional, or reputationally sensitive if published without review. <br>
-Mitigation: Review generated content before publishing, verify time-sensitive claims, and avoid treating commentary as financial advice. <br>
-Risk: Capability tags mention wallet, purchase, credential, and crypto contexts, but the artifact does not itself justify wallet, purchase, credential, or auto-posting access. <br>
-Mitigation: Do not grant wallet, purchase, credential, or auto-posting access unless a separate trusted workflow explicitly requires it and the user intends that behavior. <br>
+## Use Case:
 
+External users and developers use this skill to plan, draft, and evaluate Solana-focused X content, including posts, replies, threads, meme concepts, content calendars, engagement audits, and narrative briefs.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/gwapupward-hub/x-viral-tweets-for-sol) <br>
-- [Tweet Analysis](references/tweet-analysis.md) <br>
-- [Viral Hooks](references/viral-hooks.md) <br>
-- [Meme Engine](references/meme-engine.md) <br>
-- [Narrative Tracker](references/narrative-tracker.md) <br>
-- [Growth Playbook](references/growth-playbook.md) <br>
-- [CT Culture](references/ct-culture.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and plain text suitable for review and copy-paste use] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tweet variants, thread drafts, meme concepts, scoring rubrics, content calendars, narrative summaries, and strategy recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated posts may include token, market, or people-related claims that are time-sensitive or incorrect if not checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify those claims before posting, especially when the output references current Solana ecosystem activity.
+
+Risk: Broad routing may apply a persuasive CT-native style to generic social-growth prompts.
+
+Mitigation: Confirm the intended audience, account posture, and tone before publishing drafts.
+
+Risk: Connected X/Twitter or on-chain tools could expand the skill from drafting guidance into account or data access workflows.
+
+Mitigation: Grant only the external tool permissions needed for the specific task.
+
+## Reference(s):
+
+- [CT Culture Reference](references/ct-culture.md)
+- [Growth Playbook Reference](references/growth-playbook.md)
+- [Meme Engine Reference](references/meme-engine.md)
+- [Narrative Tracker Reference](references/narrative-tracker.md)
+- [Tweet Analysis Reference](references/tweet-analysis.md)
+- [Viral Hooks Reference](references/viral-hooks.md)
+- [Daily Content Pack Template](assets/daily-content-pack-template.md)
+- [Thread Templates](assets/thread-templates.md)
+- [Tweet Templates](assets/tweet-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with tweet drafts, thread outlines, meme concepts, narrative briefs, audits, and strategy notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use fresh web research for time-sensitive Solana ecosystem claims; does not produce raster images by default]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

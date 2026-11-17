@@ -1,48 +1,56 @@
-## Description: <br>
-Mail custom folded greeting cards to any US address using AgentPMT-hosted actions that preview, proof, send, and track card orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents preview and mail personalized folded greeting cards to US addresses through AgentPMT.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External teams and agents use this skill to create, preview, proof, mail, and track custom folded greeting cards for outreach, appreciation, invitations, and personal messages to US recipients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recipient addresses and card contents are shared with AgentPMT and downstream print/mail providers. <br>
-Mitigation: Before sending, confirm the exact recipient, address, card content, cost, and permission to share the address and content with the service providers. <br>
-Risk: The send action mails a physical card and consumes credits. <br>
-Mitigation: Use render_preview or create_proof first and require explicit user approval before calling send. <br>
-Risk: International mailing is not supported. <br>
-Mitigation: Verify the recipient address is in the United States and includes the required name or organization, street, city, state, and postal code fields. <br>
-Risk: Preview document and image URLs are temporary. <br>
-Mitigation: Review and approve previews within the stated 7-day window, or regenerate the preview before sending. <br>
+## Use Case:
 
+Individuals and organizations use this skill to preview and send personalized greeting cards, invitations, and appreciation mail to recipients in the United States.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/send-a-custom-greeting-card) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/send-a-greeting-card) <br>
-- [Generated action schema](artifact/schema.md) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, API Calls, Guidance] <br>
-**Output Format:** [Markdown instructions with JSON action payloads and signed URL outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return order IDs, document PDFs, preview image URLs, tracking data, and order status; preview URLs expire after 7 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Sending a physical card spends credits and initiates real-world mail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show the preview and require explicit user approval before sending or spending credits.
+
+Risk: Recipient addresses and card content are shared with AgentPMT and its print and mail providers.
+
+Mitigation: Confirm the user is permitted to share the address and content before submitting them.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/agentpmt/skills/send-a-custom-greeting-card)
+- [AgentPMT greeting card product](https://www.agentpmt.com/marketplace/send-a-greeting-card)
+- [Greeting card action schema](artifact/schema.md)
+- [AgentPMT account setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON tool-call examples]
+
+**Output Format:** [Markdown with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides preview, proof, send, order-status, and tracking requests; preview responses can include temporary PDF and image links.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

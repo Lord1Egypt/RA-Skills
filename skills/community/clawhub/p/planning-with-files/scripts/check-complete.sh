@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Check if all phases in task_plan.md are complete
 # Default invocation: advisory echo, always exits 0 (Stop hook status report).
+# With --validate: read-only creation check; exits 1 for an untrackable plan.
 # With --gate: deliberate completion gate, opt-in per plan via <plan-dir>/.mode.
 # Used by Stop hook to report task completion status.
 #
@@ -21,8 +22,9 @@
 #     4. the block counter (<plan-dir>/.stop_blocks) is below cap (PWF_GATE_CAP, default 20)
 #     5. the ledger advanced since the last block (stall → allow stop)
 #   When all hold, it emits a single-line block-decision JSON on stdout and
-#   exits 0. Otherwise it falls back to advisory output and exits 0.
-#   Without --gate, or in non-gated mode, behavior is byte-equivalent to v2.43.
+#   exits 0. Otherwise it reports incomplete plans and exits 0; completed
+#   plans stay silent in --gate mode, including legacy plans without .mode.
+#   Without --gate, the explicit advisory report is unchanged.
 #
 # Stdin handling: the Claude Code Stop hook pipes a JSON payload on stdin. To
 # avoid hanging when nothing is piped, stdin is read ONLY when fd 0 is not a
@@ -31,10 +33,12 @@
 # as stop_hook_active=false.
 
 GATE=0
+VALIDATE=0
 PLAN_FILE=""
 for _arg in "$@"; do
     case "$_arg" in
         --gate) GATE=1 ;;
+        --validate) VALIDATE=1 ;;
         *)
             if [ -z "$PLAN_FILE" ]; then
                 PLAN_FILE="$_arg"
@@ -42,6 +46,9 @@ for _arg in "$@"; do
             ;;
     esac
 done
+
+# Hook opt-out does not turn an explicitly requested format check into success.
+[ "${PLANNING_DISABLED:-}" = "1" ] && [ "$VALIDATE" -eq 0 ] && exit 0
 
 PLAN_DIR=""
 if [ -n "${PLAN_FILE}" ]; then
@@ -52,10 +59,22 @@ else
     RESOLVED_DIR=""
     if [ -f "${RESOLVER}" ]; then
         RESOLVED_DIR="$(sh "${RESOLVER}" 2>/dev/null)"
+        if [ -z "$RESOLVED_DIR" ] && [ "$(sh "${RESOLVER}" --check-ambiguity 2>/dev/null)" = "PWF_PLAN_AMBIGUOUS_V1" ]; then
+            [ "$VALIDATE" -eq 1 ] && { echo "[planning-with-files] Plan format invalid: select one plan before validation." >&2; exit 1; }
+            exit 0
+        fi
     fi
     if [ -n "${RESOLVED_DIR}" ] && [ -f "${RESOLVED_DIR}/task_plan.md" ]; then
         PLAN_FILE="${RESOLVED_DIR}/task_plan.md"
         PLAN_DIR="${RESOLVED_DIR}"
+    elif [ -n "${PLAN_ID:-}" ] || [ -n "${PWF_PLAN_ROOT:-}" ]; then
+        # Explicit selectors are bindings, not hints (issue #237). The shared
+        # resolver rejected one, so the legacy cwd fallback below must not run:
+        # answering a mistyped pin with the ROOT plan's completion state is the
+        # same wrong-plan harm the binding removes, and here it would decide
+        # whether an autonomous run is allowed to stop.
+        echo "[planning-with-files] An explicit PLAN_ID or PWF_PLAN_ROOT did not resolve to a plan; no completion state was read and no other plan was substituted."
+        exit "$VALIDATE"
     else
         PLAN_FILE="task_plan.md"
         PLAN_DIR="."
@@ -63,8 +82,48 @@ else
 fi
 
 if [ ! -f "$PLAN_FILE" ]; then
+    [ "$VALIDATE" -eq 1 ] && { echo "[planning-with-files] Plan format invalid: task_plan.md was not found." >&2; exit 1; }
+    # Automatic gate checks have nothing to report without a plan (header:
+    # "plans stay silent in --gate mode"); the explicit report keeps its notice.
+    [ "$GATE" -eq 1 ] && exit 0
     echo "[planning-with-files] No task_plan.md found — no active planning session."
     exit 0
+fi
+
+# Creation validation is deliberately separate from advisory/gated completion.
+# Keep one native status per phase, including the existing inline form. This
+# never repairs or writes the plan, changes attestation, or weakens Stop guards.
+if [ "$VALIDATE" -eq 1 ]; then
+    awk '
+        function finish_phase() {
+            if (in_phase && statuses != 1) invalid = 1
+        }
+        /^### Phase([ \t]|$)/ {
+            finish_phase()
+            phases++
+            in_phase = 1
+            statuses = 0
+        }
+        !/^### Phase([ \t]|$)/ && /^#[ \t]|^##[ \t]|^###[ \t]/ {
+            finish_phase()
+            in_phase = 0
+        }
+        in_phase {
+            line = $0
+            statuses += gsub(/\*\*Status:\*\*[ \t]+(pending|in_progress|complete)([^[:alnum:]_]|$)/, "&", line)
+            line = $0
+            statuses += gsub(/\[(pending|in_progress|complete)\]/, "&", line)
+        }
+        END {
+            finish_phase()
+            if (!phases || invalid) {
+                print "[planning-with-files] Plan format invalid: use ### Phase headings with exactly one native status per phase."
+                exit 1
+            }
+            printf "[planning-with-files] Plan format valid (%d phases).\n", phases
+        }
+    ' "$PLAN_FILE"
+    exit "$?"
 fi
 
 # Count total phases
@@ -97,9 +156,18 @@ if [ "$PENDING_INLINE" -gt "$PENDING_PRIMARY" ]; then PENDING="$PENDING_INLINE";
 : "${IN_PROGRESS:=0}"
 : "${PENDING:=0}"
 
-# advisory_report: the v2.43 status echo. Always exit 0 after calling.
+# issue #191: no "### Phase" headings -> not a phase-structured plan. Report
+# nothing rather than a false "0/0 phases complete" status. With TOTAL=0 the
+# gate can never legitimately block (IN_PROGRESS is also 0), so exit is safe.
+if [ "$TOTAL" -eq 0 ]; then
+    exit 0
+fi
+
+# Explicit status reports retain completion text. Automatic gate checks have
+# nothing to report on success; keep evaluating all gate guards before here.
 advisory_report() {
     if [ "$COMPLETE" -eq "$TOTAL" ] && [ "$TOTAL" -gt 0 ]; then
+        [ "$GATE" -eq 1 ] && return 0
         echo "[planning-with-files] ALL PHASES COMPLETE ($COMPLETE/$TOTAL). If the user has additional work, add new phases to task_plan.md before starting."
     else
         echo "[planning-with-files] Task in progress ($COMPLETE/$TOTAL phases complete). Update progress.md before stopping."
@@ -120,10 +188,30 @@ fi
 
 # ---- Gate path (--gate). Resolves to advisory unless every guard says block. ----
 
-# Guard 1: gated mode. The .mode file must contain "gate". Absent or other
+# Guard 1: gated mode. A .mode file must contain "gate". Absent or other
 # content means advisory mode (legacy behavior preserved).
+#
+# The project's root .mode is a FLOOR, not a default that slug scope replaces
+# (issue #238). Reading only <plan-dir>/.mode let a slug plan with no .mode
+# drop a project-committed gate, the same way it dropped the attestation
+# requirement in inject-plan.sh. "gate" from EITHER file arms the gate; a slug
+# may raise strictness, never lower it. In root scope PLAN_DIR already IS the
+# project root, so the second source stays empty and behavior is unchanged.
 MODE_FILE="${PLAN_DIR}/.mode"
-if [ ! -f "${MODE_FILE}" ] || ! grep -q "gate" "${MODE_FILE}" 2>/dev/null; then
+ROOT_MODE_FILE=""
+_root_for_mode="${PWF_PLAN_ROOT:-.}"
+if [ "${PLAN_DIR}" != "${_root_for_mode}" ] && [ "${PLAN_DIR}" != "." ]; then
+    ROOT_MODE_FILE="${_root_for_mode}/.mode"
+fi
+GATED=0
+if [ -f "${MODE_FILE}" ] && grep -q "gate" "${MODE_FILE}" 2>/dev/null; then
+    GATED=1
+fi
+if [ "${GATED}" -eq 0 ] && [ -n "${ROOT_MODE_FILE}" ] && [ -f "${ROOT_MODE_FILE}" ] \
+    && grep -q "gate" "${ROOT_MODE_FILE}" 2>/dev/null; then
+    GATED=1
+fi
+if [ "${GATED}" -eq 0 ]; then
     advisory_report
     exit 0
 fi

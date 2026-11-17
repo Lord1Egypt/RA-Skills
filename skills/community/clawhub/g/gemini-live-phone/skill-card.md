@@ -1,40 +1,62 @@
-## Description: <br>
-Bridge Twilio phone calls to Google Gemini Live API for real-time AI voice conversations. No STT/TTS middleware required. Includes VAD and echo suppression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridge Twilio phone calls to Google Gemini Live API for real-time AI voice conversations.
 
-## Publisher: <br>
-[QuantDeveloperUSA](https://clawhub.ai/user/QuantDeveloperUSA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quantdeveloperusa](https://clawhub.ai/user/quantdeveloperusa)
 
-## Use Case: <br>
-Developers and operators use this skill to run a FastAPI bridge that connects Twilio phone calls to Google's Gemini Live API for real-time voice conversations, including inbound and outbound call handling, VAD, and echo suppression. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes public call-control features that can place and record phone calls using the operator's Twilio account. <br>
-Mitigation: Add authentication to call-control and status endpoints, validate Twilio webhook signatures, restrict destination numbers, and enforce rate limits and quotas before exposing the service. <br>
-Risk: Operating the bridge as a public telephony service can create consent and disclosure obligations for AI voice processing and any recording. <br>
-Mitigation: Set PUBLIC_URL, TWILIO_ACCOUNT_SID, and TWILIO_FROM to controlled values, then implement clear consent and disclosure practices appropriate for the deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to run a phone bridge that connects Twilio voice calls to Gemini Live for real-time AI audio conversations, including inbound and outbound call flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QuantDeveloperUSA/gemini-live-phone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GOOGLE_API_KEY and TWILIO_AUTH_TOKEN, plus python3 and uvicorn to run the bridge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The bridge exposes internet-facing phone-call and live-audio paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only behind strong authentication, Twilio signature validation, trusted-host enforcement, and rate limits.
+
+Risk: Outbound calling can contact unintended destinations if it is not scoped.
+
+Mitigation: Use destination and caller-ID allowlists and explicitly configure PUBLIC_URL, TWILIO_ACCOUNT_SID, and TWILIO_FROM before deployment.
+
+Risk: Live audio and optional recording can create privacy and consent obligations.
+
+Mitigation: Define clear consent, retention, and privacy handling before enabling production traffic or recordings.
+
+Risk: Unpinned dependencies can change behavior after deployment.
+
+Mitigation: Pin Python dependencies and review updates before redeploying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quantdeveloperusa/skills/gemini-live-phone)
+- [Publisher profile](https://clawhub.ai/user/quantdeveloperusa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, endpoint examples, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime use depends on Google Gemini API credentials, Twilio credentials, and an internet-accessible webhook/WebSocket endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

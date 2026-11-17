@@ -1,0 +1,11 @@
+{
+  "widths_mm": {
+    "single": 80,
+    "double": 170
+  },
+  "font_size": 9,
+  "min_text_size": 6,
+  "font_family": "Arial",
+  "dpi": 300,
+  "cjk_default": true
+}

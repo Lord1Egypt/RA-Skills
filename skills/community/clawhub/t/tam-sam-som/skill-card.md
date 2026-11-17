@@ -1,43 +1,60 @@
-## Description: <br>
-Produce a rigorous, sourced TAM/SAM/SOM market sizing for any product or business. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produce a rigorous, sourced TAM/SAM/SOM market sizing for any product or business.
 
-## Publisher: <br>
-[owenrao](https://clawhub.ai/user/owenrao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[owenrao](https://clawhub.ai/user/owenrao)
 
-## Use Case: <br>
-External users, founders, operators, and analysts use this skill to produce defensible TAM, SAM, and SOM estimates with bottom-up and top-down methods, sourced assumptions, sensitivity checks, and reconciliation notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-sizing outputs can be misleading when source quality, assumptions, pricing anchors, or market boundaries are weak. <br>
-Mitigation: Review cited sources, calculation steps, filter logic, and sensitivity assumptions before using the output in business or investor materials. <br>
-Risk: Broad activation wording may invoke the full TAM/SAM/SOM workflow when a shorter market-opportunity answer was intended. <br>
-Mitigation: Confirm whether the user wants a full sourced market-sizing analysis before applying the complete workflow. <br>
+## Use Case:
 
+Business analysts, founders, and go-to-market teams use this skill to produce sourced TAM, SAM, and SOM estimates for products and businesses across SaaS, consumer, physical-goods, marketplace, and regional market contexts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/owenrao/tam-sam-som) <br>
-- [B2B SaaS worked example](examples/b2b-saas.md) <br>
-- [B2B physical product worked example](examples/b2b-physical.md) <br>
-- [B2C consumer brand worked example](examples/b2c-consumer-brand.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown with tables, calculations, source notes, ranges, and summary comparisons] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires review of source quality, assumptions, and market-scope fit before relying on the estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market-sizing outputs depend on web research and estimate-heavy calculations that can be wrong, stale, or mismatched to the product geography.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cited sources, date sensitivity, geography filters, pricing anchors, and calculation assumptions before using the output for fundraising, budgeting, or strategic decisions.
+
+Risk: The skill requires the agent to select a closest example template, which may bias assumptions if the selected category does not fit the product.
+
+Mitigation: Confirm the business model classification and example-file choice before accepting the TAM, SAM, and SOM methodology.
+
+Risk: Sensitivity assumptions such as penetration rates, willingness to pay, ACV, and product-fit filters can materially shift results.
+
+Mitigation: Validate high-impact assumptions with primary research, comparable company evidence, or updated market data before treating the ranges as decision-grade.
+
+## Reference(s):
+
+- [B2B SaaS / AI Tool Example](artifact/examples/b2b-saas.md)
+- [B2B Physical Product Example](artifact/examples/b2b-physical.md)
+- [B2C Consumer Brand Example](artifact/examples/b2c-consumer-brand.md)
+- [ClawHub Skill Page](https://clawhub.ai/owenrao/skills/tam-sam-som)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown market-sizing analysis with tables, explicit calculations, cited assumptions, and summary comparison]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bottom-up and top-down TAM/SAM/SOM calculations, ranges, filter logic, source lists, sensitivity assumptions, and method reconciliation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

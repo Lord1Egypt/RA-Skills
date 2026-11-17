@@ -1,41 +1,53 @@
-## Description: <br>
-Receive a prior session handoff and continue execution safely by validating repo state, resuming from next steps, and refreshing the handoff artifact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Receive a prior session handoff and continue execution safely by validating repo state, resuming from next steps, and refreshing the handoff artifact.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Developers and agents use this skill to resume work from an existing handoff, validate repository state before making changes, and keep the active handoff, CURRENT pointer, and INDEX.md status current. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Handoff files may be stale, conflicting, or untrusted and could steer the agent toward the wrong work. <br>
-Mitigation: Review CURRENT and INDEX.md first, compare the handoff to repository state, and ask a focused clarification question when the active stream or index is inconsistent. <br>
-Risk: The skill intentionally updates local handoff state, including CURRENT, INDEX.md, and status fields. <br>
-Mitigation: Review handoff file changes before committing or sharing them, especially in shared or untrusted repositories. <br>
+## Use Case:
 
+Developers and agents use this skill to take over work from a prior session handoff, verify repository state against the handoff, continue the listed next step, and refresh the handoff artifact before yielding.
 
-## Reference(s): <br>
-- [Handoff Receiver on ClawHub](https://clawhub.ai/clarezoe/sg-handoff-receiver) <br>
-- [Resolved orphan handoffs note](RESOLVED/ISSUE-orphan-handoffs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown status text with inline bash code blocks and local handoff file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Updates are scoped to handoff state such as CURRENT, INDEX.md, and handoff status fields when the agent follows the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata; artifact metadata reports 1.3.0) <br>
+Risk: A malicious or stale handoff may direct the agent to run inappropriate validation commands or continue the wrong work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this only in repositories where the handoff files are trusted, review unusual commands or instructions, and reconcile branch, status, diff, and recent log before edits.
+
+Risk: Parallel, orphan, or drifted handoffs can cause the agent to continue the wrong stream or expand scope.
+
+Mitigation: Use CURRENT and INDEX.md to classify active, paused, orphan, done, or superseded streams, and ask a focused question when conflicts or index drift appear.
+
+## Reference(s):
+
+- [Handoff Receiver on ClawHub](https://clawhub.ai/clarezoe/skills/sg-handoff-receiver)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown response with structured status sections and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update handoff files and index pointers as part of the agent workflow.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata; artifact frontmatter reports 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

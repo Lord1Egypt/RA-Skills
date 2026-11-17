@@ -1,45 +1,66 @@
-## Description: <br>
-Guides agents in calling Tencent Cloud LKE's HTTP SSE chat API, including sending messages and parsing streaming reply, token_stat, reference, error, and thought events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in calling Tencent Cloud LKE's HTTP SSE chat API, including sending messages, handling streaming responses, and parsing reply, token_stat, reference, error, and thought events.
 
-## Publisher: <br>
-[lijiayi980130](https://clawhub.ai/user/lijiayi980130) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijiayi980130](https://clawhub.ai/user/lijiayi980130)
 
-## Use Case: <br>
-Developers and agent builders use this skill to integrate an agent with Tencent Cloud LKE chat over HTTP SSE, configure request fields, and handle streaming response events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, visitor IDs, custom variables, labels, file URLs, and thought or raw output may contain sensitive data that is sent to or received from Tencent Cloud. <br>
-Mitigation: Use the skill only for approved Tencent Cloud LKE workflows, minimize sensitive inputs, and avoid regulated personal data unless the deployment has explicit approval. <br>
-Risk: Passing the AppKey directly on the command line can expose the key through shell history, process listings, or logs. <br>
-Mitigation: Use a dedicated AppKey, prefer environment variables or a secret manager, restrict access, and rotate the key if exposure is suspected. <br>
-Risk: Raw SSE output, references, and thought/debugging events can disclose service responses or internal reasoning-like content to logs or downstream users. <br>
-Mitigation: Filter or redact raw output before logging or display, and review thought/debugging content before sharing it outside the intended workflow. <br>
+## Use Case:
 
+Developers and agent builders use this skill to integrate agents with Tencent Cloud LKE conversations over HTTP SSE and understand request parameters, streaming event parsing, model selection, and error handling.
 
-## Reference(s): <br>
-- [HTTP SSE API Reference](artifact/references/api_reference.md) <br>
-- [Example SSE Chat Client](artifact/scripts/sse_chat.py) <br>
-- [Tencent Cloud LKE SSE Endpoint](https://wss.lke.cloud.tencent.com/v1/qbot/chat/sse) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lijiayi980130/tencent-lke-chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples, shell commands, and Python code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request fields, SSE event parsing guidance, model options, error-code explanations, and client execution examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, AppKeys, file URLs, document content, and other request values may leave the local environment for Tencent Cloud processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for Tencent Cloud LKE workflows approved by the organization, and avoid regulated personal data, internal document URLs, confidential prompts, and secrets unless policy permits that processing.
+
+Risk: The example client may print session IDs, visitor IDs, selected system role text, custom variables, file counts, and reference URLs to stdout.
+
+Mitigation: Avoid passing sensitive values through fields that may be logged, or redact and suppress logs before production use.
+
+Risk: The dependency guidance does not pin Python package versions.
+
+Mitigation: Pin and review dependency versions before production use.
+
+Risk: The example script's optional JSON argument handling may exit early when optional JSON arguments are omitted.
+
+Mitigation: Test the script with representative arguments and adjust optional argument handling before relying on it in automation.
+
+## Reference(s):
+
+- [HTTP SSE API Reference](references/api_reference.md)
+- [Example SSE Chat Script](scripts/sse_chat.py)
+- [Runtime Requirements](references/requirements.txt)
+- [Tencent Cloud LKE SSE Endpoint](https://wss.lke.cloud.tencent.com/v1/qbot/chat/sse)
+- [ClawHub Skill Page](https://clawhub.ai/lijiayi980130/skills/tencent-lke-chat)
+- [Publisher Profile](https://clawhub.ai/user/lijiayi980130)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation with JSON examples, cURL commands, and Python example code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request fields, SSE event descriptions, model names, error codes, and optional Python command-line usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

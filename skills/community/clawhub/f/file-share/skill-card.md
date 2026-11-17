@@ -1,42 +1,53 @@
-## Description: <br>
-Transfers files from the OpenClaw workspace to external file-sharing services using curl uploads, with support for transfer.whalebone.io. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transfer files from an OpenClaw workspace to external file-sharing services using curl upload, with support for transfer.whalebone.io.
 
-## Publisher: <br>
-[jakah2551](https://clawhub.ai/user/jakah2551) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jakah2551](https://clawhub.ai/user/jakah2551)
 
-## Use Case: <br>
-Developers and agents use this skill to upload selected workspace files, such as logs, reports, or generated media, to a shareable external URL. It is intended for deliberate file transfer workflows where the operator has reviewed the file contents before upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload sensitive workspace files to a third-party transfer service and return a shareable download URL. <br>
-Mitigation: Review file contents before upload, avoid secrets, credentials, private logs, memory files, and regulated data unless encrypted, and use a controlled transfer channel when stronger handling is required. <br>
-Risk: Server security evidence reports weak path containment and no clear confirmation step. <br>
-Mitigation: Confirm the exact file path and intended recipient before execution, and restrict uploads to files deliberately selected from the workspace. <br>
+## Use Case:
 
+Developers and operators use this skill to upload workspace files such as logs, reports, media, or generated artifacts to an external sharing service and return a download URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jakah2551/file-share) <br>
-- [Publisher profile](https://clawhub.ai/user/jakah2551) <br>
-- [Transfer service reference](references/transfer_service.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown with shell command examples and returned download URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute curl to upload a selected workspace file and return a shareable URL from the transfer service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Files uploaded through the skill may become accessible through an external share URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for files intentionally meant for external sharing, and avoid sensitive or regulated data unless it is encrypted first.
+
+Risk: The workspace-only validation is not reliable as a security boundary.
+
+Mitigation: Review the file path before upload and do not rely on the validation logic to protect files outside the intended workspace.
+
+## Reference(s):
+
+- [Transfer Service Reference](artifact/references/transfer_service.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and returned URL text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads a selected workspace file to an external service and returns the service-provided download URL.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

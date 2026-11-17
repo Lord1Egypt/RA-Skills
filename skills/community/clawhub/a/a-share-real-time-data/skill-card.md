@@ -1,40 +1,57 @@
-## Description: <br>
-Fetches China A-share market data, including K-line bars, real-time quotes, and tick-by-tick transactions, through the mootdx/TDX protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch China A-share stock market bars, real-time quotes, and tick-by-tick transactions via the mootdx TDX protocol.
 
-## Publisher: <br>
-[wangdinglu](https://clawhub.ai/user/wangdinglu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangdinglu](https://clawhub.ai/user/wangdinglu)
 
-## Use Case: <br>
-Developers and agents use this skill to integrate China A-share market data into analysis, data retrieval, and trading-data workflows. It is most useful when code needs examples or setup guidance for mootdx, TDX quote APIs, intraday bars, batch quotes, or transaction history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The mootdx/tdxpy trading-hour bypass can produce empty, stale, or unexpected data outside normal market conditions. <br>
-Mitigation: Validate returned timestamps and trading calendars before using results in financial automation. <br>
-Risk: The skill depends on runtime installation of mootdx and its transitive dependencies. <br>
-Mitigation: Use an isolated Python environment and pin or review dependency versions before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [API Reference](api-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangdinglu/a-share-real-time-data) <br>
+## Use Case:
 
+Developers and market-data engineers use this skill to integrate mootdx-based China A-share market data retrieval into agent workflows, including candlestick bars, real-time quotes, batch quote retrieval, and tick transaction lookups.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and bash code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API usage examples, setup commands, stock-code formatting guidance, trading-calendar caveats, and risk notes for real-time or historical market data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup helper installs Python packages from the configured pip index.
+
+Mitigation: Install only in a virtual environment or another isolated Python environment, and pin mootdx and dependencies before use.
+
+Risk: Verification and demo flows can make live TDX network requests.
+
+Mitigation: Use the --check mode when only local dependency verification is needed, and run live connectivity tests only from approved environments.
+
+Risk: The documented trading-hour bypass changes tdxpy's time-frame check to avoid empty transaction results on non-Beijing-time servers.
+
+Mitigation: Apply the patch only for this market-data workflow and review returned data against the expected Beijing trading calendar.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangdinglu/skills/a-share-real-time-data)
+- [api-reference.md](api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and bash code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include guidance for live TDX network calls, dependency installation, Beijing-time trading-hour handling, and SH/SZ stock-code conversion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

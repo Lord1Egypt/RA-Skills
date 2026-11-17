@@ -1,47 +1,60 @@
-## Description: <br>
-Advanced AI voice assistant for phone calls. Capable of persuasion, sales, restaurant bookings, reminders, and notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced AI voice assistant for phone calls. Capable of persuasion, sales, restaurant bookings, reminders, and notifications.
 
-## Publisher: <br>
-[cmorillas99-cyber](https://clawhub.ai/user/cmorillas99-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[cmorillas99-cyber](https://clawhub.ai/user/cmorillas99-cyber)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users and developers can use this skill to initiate authorized Vapi-powered phone calls for voice interaction tasks such as bookings, reminders, notifications, and sales workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can place autonomous phone calls that may be inappropriate or unlawful without authorization, notice, or consent.
+
+Mitigation: Use only for lawful, authorized calls where recipients have appropriate notice or consent, and review call missions before execution.
+
+Risk: The skill exposes a local webhook publicly to receive real-time call updates.
+
+Mitigation: Use a secured HTTPS tunnel only when needed, restrict access where possible, and avoid reusing or sharing webhook URLs unnecessarily.
+
+Risk: Call transcripts and summaries may contain sensitive personal or business information.
+
+Mitigation: Treat saved transcripts as sensitive data, restrict log access, and delete, redact, or retain them according to applicable policy.
+
+Risk: Vapi calls may incur service charges and related data processing.
+
+Mitigation: Confirm Vapi billing, phone number, assistant configuration, and expected call duration before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to initiate Vapi-powered phone calls for defined missions such as sales outreach, bookings, reminders, and notifications. Operators should confirm the recipient, purpose, consent, and applicable calling rules before use. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real autonomous phone calls through the operator's Vapi account. <br>
-Mitigation: Confirm each recipient, purpose, consent, and legal basis before execution, and restrict access to trusted operators. <br>
-Risk: The webhook must be exposed to the internet while a call is active. <br>
-Mitigation: Expose the webhook only through a controlled HTTPS tunnel or deployment, monitor access, and close the tunnel after use. <br>
-Risk: Calls may create Vapi usage costs. <br>
-Mitigation: Set account-level budgets or monitoring and review call cost fields in returned results. <br>
-Risk: Call transcripts and summaries may be written to local logs. <br>
-Mitigation: Protect the log directory, limit retention, and delete transcripts when they are no longer needed. <br>
-Risk: The release security verdict is suspicious because consent, safety, and transcript-retention risks are under-disclosed. <br>
-Mitigation: Review the security guidance before deployment and add operating procedures for consent, AI disclosure, recording, and transcript handling. <br>
+**Output Format:** [JSON call results with transcript, summary, cost, duration, status, and optional log file path.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/cmorillas99-cyber/vapi-calls) <br>
-- [Publisher profile](https://clawhub.ai/user/cmorillas99-cyber) <br>
+**Other Properties Related to Output:** [Requires Vapi credentials, a configured assistant and phone number, and a reachable HTTPS webhook endpoint.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Files, Guidance] <br>
-**Output Format:** [JSON call result with status, transcript, summary, cost, duration, and local log file path when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can place real outbound phone calls through a configured Vapi account and writes local call result logs.] <br>
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

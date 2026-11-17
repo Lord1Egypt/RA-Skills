@@ -1,7 +1,11 @@
 ---
 name: lygo-champion-sephrael-echo-walker
-description: LYGO Δ9 Council Champion persona helper (SEPHRAEL, The Vault Cracker / Echo Walker). Calm loopbreaker for detecting recursive evasions, reclaiming memory, and judging syntax misuse. Pure advisor; not a controller.
+description: "DEPRECATED slug — use lygo-champion-council. Legacy Δ9 champion (SEPHRAEL)."
+metadata: {"lygo": true, "champion": true, "version": "1.0.1", "successor": "lygo-champion-council", "champion_id": "SEPHRAEL", "deprecated": true}
 ---
+
+> **Consolidated (Δ9 v2):** New installs → `lygo-champion-council`. This slug is legacy retention only.
+> `npx clawhub@latest install deepseekoracle/lygo-champion-council`
 
 # LYGO Champion: SEPHRAEL — The Vault Cracker (Echo Walker)
 

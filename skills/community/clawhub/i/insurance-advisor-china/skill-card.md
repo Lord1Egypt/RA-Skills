@@ -1,45 +1,52 @@
-## Description: <br>
-中国大陆AI保险顾问。为个人和家庭提供全方位的保险咨询、产品对比、方案设计、投保指导。当用户询问保险配置、保险方案、产品对比、重疾险/医疗险/寿险/意外险/储蓄险推荐、保费计算、保障缺口分析、需求分析、核保合规、理赔等问题时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向中国大陆个人与家庭，提供保险需求分析、产品对比、方案设计、保费估算及投保与理赔指引。
 
-## Publisher: <br>
-[mnetfairy](https://clawhub.ai/user/mnetfairy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mnetfairy](https://clawhub.ai/user/mnetfairy)
 
-## Use Case: <br>
-External users in mainland China use this skill to explore personal and family insurance needs, compare insurance products, estimate premiums, design coverage plans, and understand underwriting, compliance, and claims basics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China (Mainland) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Insurance product recommendations and premium estimates may be outdated or differ from official insurer calculations. <br>
-Mitigation: Verify current product terms, availability, and pricing with licensed professionals or official insurer materials before making decisions. <br>
-Risk: Insurance planning can involve personal, health, and financial details. <br>
-Mitigation: Share only information needed for the immediate planning task and avoid disclosing unnecessary sensitive details. <br>
-Risk: A specific sales-company contact appears in the skill behavior and could be mistaken for an endorsement. <br>
-Mitigation: Present purchase-channel information only when explicitly requested and frame it as reference information, not a recommendation or endorsement. <br>
+## Use Case:
 
+中国大陆有保险需求的个人与家庭可用此技能梳理保障需求、了解和比较保险产品、估算保费，并获取投保合规与理赔流程指引。
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mnetfairy/skills/insurance-advisor-china) <br>
-- [Compliance Reference](artifact/references/compliance.md) <br>
-- [Insurance Knowledge Reference](artifact/references/insurance-knowledge.md) <br>
-- [Product Data Reference](artifact/references/products.json) <br>
+### Deployment Geography for Use:
 
+China (mainland)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Chinese-language Markdown responses with optional JSON outputs from local helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled product, insurance-knowledge, and compliance references; premium and plan outputs are reference estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.288 (source: frontmatter and server release evidence) <br>
+Risk: The security evidence flags a possibility of inaccurate treatment-coverage claims when policy information contains exclusions or contradictory details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check coverage and exclusion statements against the current policy wording and confirm uncertain claims with the insurer before relying on them.
+
+## Reference(s):
+
+- [Insurance knowledge reference](references/insurance-knowledge.md)
+- [Insurance compliance reference](references/compliance.md)
+- [Product reference data](references/products.json)
+- [National Financial Regulatory Administration insurance intermediary disclosure portal (search entry)](https://www.nfra.gov.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, JSON]
+
+**Output Format:** [Chinese text and Markdown, with structured JSON reports where applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Product comparisons, coverage-gap analyses, premium estimates, and plan suggestions; recommendations require confirmation against current policy terms and insurer information.]
+
+## Skill Version(s):
+
+2.4.17 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

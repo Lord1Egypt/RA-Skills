@@ -1,45 +1,63 @@
-## Description: <br>
-Automate cloud infrastructure provisioning and management via IaC tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate cloud infrastructure provisioning and management via IaC tooling.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to plan and manage AWS, Google Cloud Platform, and Azure infrastructure with Terraform, Ansible, CloudFormation, and related cloud CLIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud apply or destroy operations can change or remove production infrastructure. <br>
-Mitigation: Review the plan first, call out resources marked for destruction or replacement, and require explicit confirmation naming the target environment before destructive commands. <br>
-Risk: An agent could access or modify cloud resources outside the intended account, project, or subscription. <br>
-Mitigation: Limit actions to explicitly named cloud scopes and verify the account, project, subscription, profile, and credentials before running commands. <br>
-Risk: Terraform state, cloud CLI output, and resource metadata can contain secrets or sensitive infrastructure details. <br>
-Mitigation: Do not pipe raw state or cloud resource output to external endpoints; use local analysis, sanitized summaries, or approved secure transfer paths when needed. <br>
-Risk: The referenced local ./cloud.sh helper was not included in the reviewed artifact. <br>
-Mitigation: Inspect the local script before execution and confirm that its behavior matches the intended account, environment, and operation. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to provision, manage, and review multi-cloud infrastructure with Terraform, Ansible, CloudFormation, and cloud provider CLIs. It is intended for real cloud infrastructure work where plans, target scope, and destructive operations need careful confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/snazar-faberlens/cloud-infra-automation-hardened) <br>
-- [Faberlens cloud infrastructure automation safety evaluation](https://faberlens.ai/explore/cloud-infra-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code] <br>
-**Output Format:** [Markdown with inline shell commands and infrastructure-as-code guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cloud command plans, IaC configuration guidance, deployment pipeline steps, and safety checks before apply or destroy operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Infrastructure changes can destroy or replace cloud resources if a plan is skipped or destructive changes are buried in output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a plan or dry run before apply, explicitly summarize resources to be destroyed or replaced, and wait for user confirmation before proceeding.
+
+Risk: The agent could affect the wrong cloud account, project, subscription, or environment.
+
+Mitigation: Verify the exact account, project, subscription, credentials, and environment name before cross-account or high-impact cloud actions.
+
+Risk: Terraform state, cloud CLI output, and resource metadata can contain secrets or sensitive infrastructure details.
+
+Mitigation: Do not send raw state or cloud metadata to external endpoints; share only sanitized summaries when explicitly requested.
+
+Risk: Vague or stale approval can be mistaken for consent to run destructive commands.
+
+Mitigation: Require fresh explicit confirmation naming the target environment before destroy, force-apply, delete-stack, or similar destructive operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/cloud-infra-automation-hardened)
+- [Safety evaluation](artifact/SAFETY.md)
+- [Faberlens cloud infrastructure guardrails](https://faberlens.ai/explore/cloud-infra-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include IaC plans, command recommendations, cloud scope checks, and confirmation prompts before high-impact actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

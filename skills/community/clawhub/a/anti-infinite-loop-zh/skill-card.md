@@ -1,38 +1,54 @@
-## Description: <br>
-反无限循环守护 helps agents detect repeated actions, enforce stop conditions, track progress, and limit runtime to avoid resource-wasting execution loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+反无限循环守护 helps agents detect repeated actions, enforce stop conditions, track progress, and limit runtime to reduce unproductive execution loops.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers and agent operators use this skill as a lightweight guardrail to stop repetitive actions, cap execution steps and time, and require observable progress during agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/anti-infinite-loop-zh) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kofna3369) <br>
+Developers and agent builders use this skill as a Chinese-language helper for adding simple loop limits, repeated-action checks, progress checks, and runtime limits to agent workflows.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python examples and command-line usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tune retry, step, progress, and time thresholds for workflows that legitimately require repeated actions or long runtimes; performance metrics in the artifact are not independently verified.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Loop-guard checks may be treated as a complete enforcement system even though the security guidance describes the claims as lightweight.
+
+Mitigation: Review generated limits and progress checks before deployment, and pair them with runtime monitoring or platform controls for high-impact workflows.
+
+Risk: Repeated-action or progress heuristics may stop useful work too early or allow unproductive work to continue.
+
+Mitigation: Tune max iterations, timeout, and progress thresholds for the target workflow and validate behavior with representative tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/anti-infinite-loop-zh)
+- [Publisher profile](https://clawhub.ai/user/kofna3369)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance with simple watchdog status metrics and configurable iteration, progress, and time limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,58 @@
-## Description: <br>
-Generates a daily fund-market report with ranked 30-day fund performance, ETF attention proxies, industry fund-flow rankings, and stock attention rankings from Tiantian Fund and Eastmoney data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily fund performance reports with NAV changes, market commentary, and portfolio updates.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-External users and finance analysts use this skill to generate a Chinese-language daily screening report for fund rankings, fund-flow proxies, industry flows, and likely fund-related stock activity. The report is intended for market monitoring and triage, not as verified investment, subscription, redemption, or holdings-change data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a hard-coded JQData login in the finance-reporting script. <br>
-Mitigation: Remove the embedded credential, rotate it before use, and require users to provide their own credential through a secure local configuration or environment variable. <br>
-Risk: The release evidence says the report can present proxy metrics as fund-flow or holding-change analysis. <br>
-Mitigation: Label the generated rankings as heuristic market screening and verify any investment, fund-flow, subscription, redemption, or holding-change conclusion against authoritative data before acting. <br>
-Risk: The skill contacts external market-data services and may depend on services that are delayed, blocked, or unavailable. <br>
-Mitigation: Run it in an environment where external data access is expected, review dependency and network access, and treat missing or stale sections as incomplete rather than definitive. <br>
+## Use Case:
 
+External users and investment-reporting agents use this skill to generate daily Chinese fund market summaries covering NAV growth, ETF attention, industry fund flow, and high-attention A-share stocks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/paudyyin/fund-daily-report) <br>
-- [Publisher profile](https://clawhub.ai/user/paudyyin) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Tiantian Fund data source](https://fund.eastmoney.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text report with ranked sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language report; market data can be delayed, approximate, or unavailable when upstream services or networks block access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The artifact embeds a third-party data-service login that may be used automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate the exposed credentials, and require users to provide credentials through environment variables or a secret manager.
+
+Risk: Some report sections use proxy or attention metrics rather than verified fund-flow or holdings data.
+
+Mitigation: Clearly label estimated sections in generated reports and require review before using the output for investment decisions.
+
+Risk: Unpinned dependencies can change data access behavior or report calculations over time.
+
+Mitigation: Pin dependency versions and review changes before deployment.
+
+## Reference(s):
+
+- [README](README.md)
+- [ClawHub Skill Page](https://clawhub.ai/paudyyin/skills/fund-daily-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text fund report with tabular sections and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report sections may include estimated fund-flow, holdings, and attention metrics derived from public market data APIs.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

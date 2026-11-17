@@ -1,42 +1,56 @@
-## Description: <br>
-KingdeeDataExporter guides users through configuring Kingdee K3Cloud credentials and running Python scripts that export configured business documents and reports to multi-sheet Excel files with optional organization and document filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+【已迁移】小河狸工作室出品的金蝶云星空数据导出。本条目仅用于保留标识与来源指引，不包含实现代码；完整版本请从官方渠道获取。
 
-## Publisher: <br>
-[yk-niu](https://clawhub.ai/user/yk-niu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yk-niu](https://clawhub.ai/user/yk-niu)
 
-## Use Case: <br>
-Finance, operations, and data teams use this skill to set up and run authorized Kingdee K3Cloud exports for reporting, reconciliation, and spreadsheet analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exports sensitive Kingdee K3Cloud business data. <br>
-Mitigation: Use it only with authorization, keep exported Excel files private, and limit scope with --org and --only when possible. <br>
-Risk: Kingdee credentials can be exposed if config.py is shared or committed. <br>
-Mitigation: Prefer environment variables for credentials and keep local config.py files out of public repositories. <br>
-Risk: Optional WeChat webhook delivery can send export information outside the local environment. <br>
-Mitigation: Leave WECHAT_WEBHOOK empty or run with --no-wechat unless the destination is approved by the organization. <br>
+## Use Case:
 
+Developers and business operators use this ClawHub entry as a migration notice and source guide for the Kingdee Cloud Galaxy data exporter, rather than as runnable export code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yk-niu/kingdee-data-exporter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included Python scripts can produce local Excel workbooks when run with authorized Kingdee access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Users may expect this ClawHub entry to perform Kingdee data export.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat this release as a placeholder and obtain the full exporter only from the linked official channels.
+
+Risk: The official exporter may have code, permissions, and license terms that differ from this ClawHub placeholder.
+
+Mitigation: Review the official SkillHub or GitHub version, including its code and non-ClawHub license terms, before deployment or commercial use.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/yk-niu/skills/kingdee-data-exporter)
+- [Official SkillHub version](https://skillhub.cn/skills/user_13589fd3/kingdee-data-exporter)
+- [Official GitHub repository](https://github.com/LittleBeaverStudio/KingdeeDataExporter)
+- [LittleBeaverStudio official site and commercial authorization](https://littlebeaver.top)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [This ClawHub release provides migration guidance only and does not include runnable implementation files.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

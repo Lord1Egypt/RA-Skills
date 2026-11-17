@@ -1,42 +1,60 @@
-## Description: <br>
-Autopilot coordinates complex coding work through a bounded Plan -> Build -> Verify loop that plans with Claude, builds with OMX, and verifies results before deciding whether to continue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autopilot 自动循环编排引擎 coordinates a Plan, Build, and Verify loop for complex coding tasks, using a planner, builder, and orchestrator to iterate toward completion for up to five rounds.
 
-## Publisher: <br>
-[qiuscut](https://clawhub.ai/user/qiuscut) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiuscut](https://clawhub.ai/user/qiuscut)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to drive multi-step refactors, automated repair loops, and changes that need repeated test or acceptance verification. It is intended for complex tasks where a single planning or coding pass is likely to miss issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run a multi-round coding agent that modifies repositories and executes commands with broad permissions. <br>
-Mitigation: Use it on a clean branch or disposable checkout, review generated plans and diffs before relying on them, and remove sandbox or permission bypasses for routine use. <br>
-Risk: Task context, logs, diffs, and artifacts may include private code or secrets and may be sent to external model providers. <br>
-Mitigation: Protect the Anthropic API key, avoid running on sensitive repositories unless approved, and periodically delete task artifacts that contain private material. <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate complex coding work that benefits from explicit planning, automated implementation, and repeated verification. It is aimed at multi-step refactors, automatic repair loops, and changes spanning multiple modules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiuscut/autopilot-pbv) <br>
-- [Plan format reference](artifact/references/plan-format.md) <br>
-- [Verification guide](artifact/references/verify-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown plans and verification reports, task JSON, shell command snippets, and code changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires claude, omx, python3, and ANTHROPIC_API_KEY; execution is bounded to a maximum of five Plan -> Build -> Verify rounds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and server release) <br>
+Risk: The skill can automatically run file-changing agents with approval and sandbox protections disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable or tightly sandboxed workspace and require explicit human review before any build step that can change files.
+
+Risk: The skill requires an Anthropic API key and stores task artifacts under ~/.openclaw.
+
+Mitigation: Use a scoped API key, avoid sensitive home-directory access, and delete task artifacts when they are no longer needed.
+
+Risk: Generated plans or automated fixes may be incorrect even when the loop reports progress.
+
+Mitigation: Review generated plans before Build and inspect diffs, logs, and verification reports after each run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiuscut/skills/autopilot-pbv)
+- [Publisher profile](https://clawhub.ai/user/qiuscut)
+- [Plan format reference](references/plan-format.md)
+- [Verify guide](references/verify-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions and reports with inline shell commands and task files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces plan, build result, verification report, task status, and next-step guidance for a single requested coding task.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

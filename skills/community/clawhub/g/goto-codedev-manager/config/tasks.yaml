@@ -1,0 +1,52 @@
+# 端内工作流编排
+# 每个任务是一串 action 步骤，OpenClaw 可直接引用任务名触发完整流程
+
+tasks:
+  # ===== 开发并识别数据库变更（不落库，落库交给 orchestrator/cloudserver）=====
+  develop_feature:
+    name: 开发功能并识别数据库变更
+    description: 经所选编程 Agent 完成开发 → 分析 Git Diff → 识别实体 → 生成 Schema Contract → 跑测试 → 出报告
+    requires_confirmation: true
+    steps:
+      - action: read_project_context
+      - action: assign_coding_task
+        params:
+          prompt: "{{ task_prompt }}"
+      - action: analyze_git_diff
+      - action: detect_database_changes
+      - action: generate_schema_contract
+        params:
+          feature: "{{ feature }}"
+      - action: run_tests
+      - action: generate_report
+        params:
+          type: dev_sync_report
+
+  # ===== 仅生成数据库变更交接单（已写好代码时）=====
+  sync_schema_contract:
+    name: 生成数据库变更交接单
+    description: 基于当前 Git Diff 识别实体变化，生成 .db-contract/ 交接单供 orchestrator 消费
+    steps:
+      - action: analyze_git_diff
+      - action: detect_database_changes
+      - action: generate_schema_contract
+        params:
+          feature: "{{ feature }}"
+      - action: generate_report
+        params:
+          type: schema_contract_report
+
+  # ===== 生成 EF Core Migration 并在测试库验证 =====
+  generate_and_verify_migration:
+    name: 生成 Migration 并在测试库验证
+    description: dotnet ef migrations add → 测试库 update → 跑测试
+    requires_confirmation: true
+    steps:
+      - action: generate_migration
+        params:
+          name: "{{ migration_name }}"
+      - action: apply_migration_local
+      - action: run_tests
+      - action: generate_report
+        params:
+          type: test_report

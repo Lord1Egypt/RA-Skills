@@ -1,44 +1,61 @@
-## Description: <br>
-Track K-Pop idol updates including comebacks, albums, concerts, solo activities, merchandise, official YouTube content, and Chinese member Weibo activity using official, media, and Taiwan fan sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks K-Pop idol updates for comebacks, albums, concerts, solo activities, merchandise, official YouTube content, and Chinese member Weibo posts using official, media, and Taiwan fan sources.
 
-## Publisher: <br>
-[ryemco](https://clawhub.ai/user/ryemco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryemco](https://clawhub.ai/user/ryemco)
 
-## Use Case: <br>
-External users use this skill to monitor followed K-Pop artists and groups for comeback schedules, album and merchandise information, concerts, events, official videos, and member solo activity. The skill summarizes findings in Traditional Chinese with source links and can optionally help maintain a local tracked-artist configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may browse public social, fan, media, and store sources and keep followed-artist configuration plus reported links in the workspace. <br>
-Mitigation: Install only if that local state and browsing behavior are acceptable, and review the configured artist sources before use. <br>
-Risk: Ticket, merchandise, signed-album, and price information can change or be inaccurate across fan and marketplace sources. <br>
-Mitigation: Verify purchase, ticketing, and price details on official stores or event sites before acting. <br>
-Risk: Optional automatic checks can continue producing twice-daily reports after setup. <br>
-Mitigation: Enable scheduled checks only on explicit request, review the cron jobs, and remove them when reports are no longer wanted. <br>
+## Use Case:
 
+External users and agents use this skill to monitor followed K-Pop artists and summarize recent idol schedules, release news, shopping links, official videos, concerts, and solo activity in Traditional Chinese.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ryemco/kpop-tracker) <br>
-- [Config Examples](references/config_examples.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries in Traditional Chinese, with source links, tables, local JSON configuration examples, and optional shell commands for scheduled checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses browser access for public K-pop, social, fan, and store sources; keeps followed artists and reported links in local workspace files when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v2.1.0 (source: server release metadata, SKILL.md metadata.openclaw.version, and CHANGELOG released 2026-04-13) <br>
+Risk: The skill stores followed artists and reported URLs in local workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the tracking files in an appropriate workspace, avoid adding sensitive private data, and review or delete the local history when it is no longer needed.
+
+Risk: The skill uses a browser profile to check social, media, and shopping sites.
+
+Mitigation: Review source links before acting on results, and avoid relying on unverified fan or shopping pages for purchases or schedule commitments.
+
+Risk: Automatic twice-daily checks can be created through cron when requested.
+
+Mitigation: Enable scheduled checks only after explicit user consent and remove the cron jobs when ongoing monitoring is no longer wanted.
+
+## Reference(s):
+
+- [Kpop Tracker on ClawHub](https://clawhub.ai/ryemco/skills/kpop-tracker)
+- [ryemco ClawHub profile](https://clawhub.ai/user/ryemco)
+- [Config Examples](references/config_examples.md)
+- [Starship Entertainment](https://www.starshipent.com)
+- [Starship Shop](https://shop.starship-ent.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Traditional Chinese Markdown reports with source links, tables, JSON configuration examples, and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs six fixed update categories per tracked group and keeps local check history to reduce duplicate alerts.]
+
+## Skill Version(s):
+
+v2.1.0 (source: server release evidence, SKILL.md metadata, CHANGELOG released 2026-04-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

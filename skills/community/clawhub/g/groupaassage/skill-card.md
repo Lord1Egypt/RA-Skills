@@ -1,37 +1,49 @@
-## Description: <br>
-Generates daily-report HTML template guidance for dark theme defaults, light and dark theme switching, three-column masonry layout, and balanced content splitting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese daily-report HTML template specification with dark-theme defaults, a three-column masonry layout, light/dark theme switching, and content-splitting guidance.
 
-## Publisher: <br>
-[JFZeroZHUO](https://clawhub.ai/user/JFZeroZHUO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jfzerozhuo](https://clawhub.ai/user/jfzerozhuo)
 
-## Use Case: <br>
-Developers and AI assistants use this skill to generate consistent daily-report HTML pages with prescribed theme behavior, typography, layout structure, and content-splitting rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated pages embedded in untrusted iframes or published broadly may accept unrestricted theme-sync messages or unexpected theme values. <br>
-Mitigation: Add origin checks for theme-sync messages and restrict accepted theme values to dark or light before applying them. <br>
+## Use Case:
 
+Developers and content teams use this skill to generate consistent Chinese daily-report HTML with theme support, masonry section layout, and practical rules for splitting long report sections.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated pages should preserve the prescribed theme key, CSS variables, flat section structure, and masonry layout rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Generated reports may include theme-sync postMessage code that accepts messages from embedded or cross-origin pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: When embedding reports with untrusted pages or serving across origins, check message origin and source and allow only light or dark theme values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jfzerozhuo/skills/groupaassage)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with HTML, CSS, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces template requirements for generated daily-report HTML, including theme variables, layout rules, and content-splitting thresholds.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

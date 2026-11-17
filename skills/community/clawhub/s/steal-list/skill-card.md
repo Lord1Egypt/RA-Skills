@@ -1,42 +1,58 @@
-## Description: <br>
-Pre-development reference research that produces a Steal List of concrete UI/UX and code patterns extracted from real products and codebases before implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Steal List helps agents perform pre-development UI/UX and code reference research and produce a structured Markdown Steal List of concrete product and implementation patterns.
 
-## Publisher: <br>
-[hybirdss](https://clawhub.ai/user/hybirdss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hybirdss](https://clawhub.ai/user/hybirdss)
 
-## Use Case: <br>
-Developers and engineers use this skill before building non-trivial products or features to research prior art, compare UI and code references, and produce a local .scout Markdown report with recommended patterns and risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect repository context and conduct web or GitHub research while preparing reference notes. <br>
-Mitigation: Use it only in repositories where that inspection and research are acceptable, and avoid exposing confidential project details or secrets during scouting. <br>
-Risk: The skill writes local .scout Markdown reports into the workspace. <br>
-Mitigation: Review generated .scout files before committing or sharing them, especially in confidential projects. <br>
+## Use Case:
 
+Developers and engineers use this skill before building non-trivial products or features to research comparable products, open-source implementations, and implementation trade-offs. The skill guides the agent to produce a Steal List with patterns to adopt, patterns to avoid, and concrete recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hybirdss/steal-list) <br>
-- [Publisher profile](https://clawhub.ai/user/hybirdss) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown report written under .scout/ with Steal List entries, Kill List entries, comparisons, recommendations, and open questions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include links, screenshot references, repository comparisons, implementation hints, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: The skill can read limited project context, perform external web and GitHub research, run shell commands, and write reports under .scout/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested scouting scope before use and inspect generated reports before applying recommendations to a project.
+
+Risk: Dynamic GitHub search command templates can become unsafe if untrusted project or user text is treated as shell source.
+
+Mitigation: Treat project and user text as inert search arguments, quote command inputs, and review generated shell commands before execution.
+
+Risk: Reference research can produce incorrect, outdated, or poorly matched recommendations.
+
+Mitigation: Use the Steal List as guidance, verify cited products and repositories, and validate any adopted pattern against the target product requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hybirdss/skills/steal-list)
+- [Publisher profile](https://clawhub.ai/user/hybirdss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Structured Markdown reference document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes research reports under .scout/ and may include product references, repository comparisons, implementation notes, and risk callouts.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

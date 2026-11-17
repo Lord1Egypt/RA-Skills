@@ -1,45 +1,58 @@
-## Description: <br>
-Use this skill whenever the user wants to do anything with PDF files, including reading or extracting text and tables, merging, splitting, rotating, watermarking, creating, filling forms, encrypting or decrypting, extracting images, and OCR on scanned PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance, code examples, shell commands, and helper scripts for reading, creating, modifying, filling, encrypting, decrypting, and OCR-processing PDF files.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[pupuking723](https://clawhub.ai/user/pupuking723)
 
-## Use Case: <br>
-Developers, analysts, and other agent users use this skill to work with local PDF files, including extraction, transformation, generation, form filling, OCR, and security-related PDF operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary Anthropic Terms
 
-## Known Risks and Mitigations: <br>
-Risk: PDF workflows may read sensitive local documents or produce derived files containing sensitive content. <br>
-Mitigation: Confirm which PDFs are being read, use new output filenames, and store generated files only in approved locations. <br>
-Risk: Repair, form filling, annotation, merge, split, encryption, and decryption workflows can alter document contents or access controls. <br>
-Mitigation: Keep backups before repair or transformation steps, review filled or modified PDFs before use, and only decrypt or remove passwords from documents the user is authorized to access. <br>
-Risk: OCR and visual form-filling workflows can misread scanned content or place annotations inaccurately. <br>
-Mitigation: Use the provided structure extraction, bounding-box validation, validation images, and final visual review steps before relying on the output. <br>
+## Use Case:
 
+Developers and agents use this skill to choose Python libraries, JavaScript libraries, command-line tools, and local helper scripts for common PDF operations including text extraction, table extraction, document assembly, form filling, OCR, encryption, and image extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pupuking723/pdf-anthropic) <br>
-- [PDF Processing Guide](artifact/SKILL.md) <br>
-- [PDF form filling guide](artifact/forms.md) <br>
-- [PDF Processing Advanced Reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown with Python, JavaScript, shell command examples, and JSON file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify local PDF, PNG, JSON, text, spreadsheet, and image-derived files depending on the selected workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: PDF edits, repair operations, and generated outputs can overwrite or alter important documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run workflows on copies of important PDFs and keep backups before repair, form-filling, encryption, or conversion tasks.
+
+Risk: Password removal and decrypted PDF outputs can expose sensitive document contents.
+
+Mitigation: Create decrypted copies only when needed, store them carefully, and delete temporary outputs when the task is complete.
+
+Risk: OCR workflows can require additional local dependencies that are not pinned by the skill artifact.
+
+Mitigation: Use a virtual environment with pinned dependencies before installing OCR-related packages.
+
+## Reference(s):
+
+- [PDF Form Filling Workflow](artifact/forms.md)
+- [PDF Processing Advanced Reference](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, and JSON file schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local PDF, image, text, JSON, or spreadsheet files when used with user-provided documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

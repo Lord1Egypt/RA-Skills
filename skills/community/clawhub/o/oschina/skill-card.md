@@ -1,42 +1,57 @@
-## Description: <br>
-Provides keyword search, project summaries, and technical article key-point extraction for public OSChina projects and articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent browse and summarize public OSChina project pages and technical articles for lightweight information gathering.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and technical readers use this skill to summarize public OSChina project pages and technical articles, extracting metadata, technology stacks, trends, and concise takeaways. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill on private or account-only content could expose information the user did not intend to process. <br>
-Mitigation: Keep usage limited to public OSChina pages unless the user intentionally provides non-public content. <br>
-Risk: High-volume collection or API reverse engineering could violate platform expectations. <br>
-Mitigation: Use the skill for manual, lightweight page processing; avoid bulk scraping, API reverse engineering, and excessive request rates. <br>
+## Use Case:
 
+Developers, engineers, and technical analysts use this skill to gather concise summaries of public OSChina open source project pages, search results, and technical articles. It supports individual page review, project metadata extraction, article key-point summaries, and tag-based trend summaries while avoiding bulk collection or access-control bypass.
 
-## Reference(s): <br>
-- [OSChina homepage](https://www.oschina.net/) <br>
-- [OSChina open source projects](https://www.oschina.net/project) <br>
-- [OSChina search](https://www.oschina.net/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and structured bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are based on public OSChina pages and user-provided page context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may be misused to request bulk collection, access-control bypass, or automated handling of human checks on OSChina.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep requests specific to public pages, control request frequency, require manual handling where human checks appear, and refuse bypass or bulk collection requests.
+
+Risk: Summaries of public project or article pages may omit context or reflect stale page content.
+
+Mitigation: Include source links in outputs and review extracted facts against the current public page before relying on them.
+
+## Reference(s):
+
+- [OSChina Home](https://www.oschina.net/)
+- [OSChina Projects](https://www.oschina.net/project)
+- [OSChina Search](https://www.oschina.net/search)
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/oschina)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or concise text summaries with extracted metadata fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include project names, languages, stars when shown, licenses, maintenance status, article titles, authors, publish times, tags, engagement counts, links, and trend distributions.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-LYGO FractalWeaver analyzes self-similar or fractal images and maps their visual structure into evolving audio textures, stereo WAV output, and structured FractalWeave profile data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LYGO FractalWeaver analyzes fractal or self-similar images and generates evolving audio textures plus structured profiles using LYGO RESONANCE-style mappings.
 
-## Publisher: <br>
-[deepseekoracle](https://clawhub.ai/user/deepseekoracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External creators, developers, and agent operators use this skill to turn fractal or other self-similar images into evolving audio textures and profile JSON for creative workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes local audio and profile outputs, which can overwrite files if output paths are reused. <br>
-Mitigation: Run it in a clean working folder and review output paths before execution. <br>
-Risk: When a compatible local 3-Brain component is present, the skill may automatically add summaries to local memory. <br>
-Mitigation: Use a clean folder, review local components, and do not place untrusted lyra_brain.py files beside the skill. <br>
-Risk: Publisher token and publish commands appear in the artifact documentation but are not required for normal use. <br>
-Mitigation: Ignore publishing and token-loading commands unless you maintain this ClawHub package. <br>
+## Use Case:
 
+External creators and developers use this skill to turn generated or user-provided fractal imagery into reproducible WAV soundscapes and JSON profiles for creative audio workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/deepseekoracle/lygo-fractalweaver) <br>
-- [LYGO RESONANCE companion site](https://deepseekoracle.github.io/Excavationpro/LYGORESONANCE.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated runs can produce WAV audio and JSON profile files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local execution may write WAV, JSON profile, generated fractal images, and optional memory nodes when compatible local components are present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and fractalweaver.py __version__) <br>
+Risk: The skill may load local companion code from the working directory and may write derived file information into persistent 3-Brain memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a clean working directory, avoid placing untrusted companion modules beside it, and review or disable memory-growth behavior before use.
+
+Risk: Dependency behavior can vary across Python environments.
+
+Mitigation: Pin dependencies when reproducing or publishing outputs.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/deepseekoracle/skills/lygo-fractalweaver)
+- [LYGO RESONANCE Companion Site](https://deepseekoracle.github.io/Excavationpro/LYGORESONANCE.html)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with bash examples; generated artifacts are WAV audio files and JSON profiles.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports batch processing and seed-controlled reproducibility.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

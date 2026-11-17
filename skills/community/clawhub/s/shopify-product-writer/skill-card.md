@@ -1,43 +1,54 @@
-## Description: <br>
-Generates SEO-optimised Shopify product titles, descriptions, and meta fields from a simple product brief, ready to paste directly into a store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates SEO-optimized Shopify product titles, descriptions, feature bullets, meta fields, and tags from a product brief.
 
-## Publisher: <br>
-[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk)
 
-## Use Case: <br>
-External ecommerce operators, Shopify store owners, dropshippers, and virtual assistants use this skill to turn product briefs or supplier descriptions into paste-ready Shopify product listings with SEO titles, descriptions, meta fields, bullets, and tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated product facts, claims, SEO wording, or assumptions may be inaccurate or unsuitable for the merchant's product. <br>
-Mitigation: Review the generated listing against the actual product details before publishing. <br>
-Risk: The skill may convert non-English briefs into English by default, which may not match the intended storefront language. <br>
-Mitigation: Check the generated language and request a localized rewrite when the store requires another language. <br>
+## Use Case:
 
+External Shopify store owners, dropshippers, ecommerce assistants, and merchants use this skill to turn product briefs or supplier text into paste-ready Shopify listing copy.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tetsuakira-vk/shopify-product-writer) <br>
-- [Publisher Profile](https://clawhub.ai/user/tetsuakira-vk) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown-style text with labelled Shopify listing sections, character counts, word counts, bullets, and comma-separated tags.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SEO product title, 200-350 word product description, five feature bullets, meta title, meta description, and 10-15 Shopify tags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated listings may include inaccurate assumptions, supplier-derived claims, or language that is unsuitable for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all specifications, assumptions, legal claims, and supplier-derived text before publishing generated listings.
+
+Risk: Installation through an untrusted or unpinned path can expose users to unexpected package changes.
+
+Mitigation: Use a pinned or otherwise trusted ClawHub installer path before installing the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/skills/shopify-product-writer)
+- [Publisher profile](https://clawhub.ai/user/tetsuakira-vk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured listing sections with character counts, word counts, bullet points, and comma-separated tags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces five Shopify listing sections: product title, product description, feature bullet points, meta title and description, and Shopify tags.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

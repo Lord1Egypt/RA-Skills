@@ -1,45 +1,63 @@
-## Description: <br>
-Design, implement, and debug memory systems for persistent autonomous AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, implement, and debug memory systems for persistent autonomous AI agents.
 
-## Publisher: <br>
-[timesandplaces](https://clawhub.ai/user/timesandplaces) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timesandplaces](https://clawhub.ai/user/timesandplaces)
 
-## Use Case: <br>
-Developers and agent builders use this skill to design durable memory systems for autonomous agents, including flat-file memory, semantic retrieval, and temporal knowledge graph patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable memory files can accumulate secrets, sensitive personal data, or stale operational state. <br>
-Mitigation: Review memory files periodically, avoid storing secrets or sensitive personal data, and verify current runtime facts before consequential actions. <br>
-Risk: Optional Graphiti or Neo4j setup introduces persistent services and package installation into the user's environment. <br>
-Mitigation: Run optional persistent-service setup only in environments where those services and package installs are acceptable. <br>
-Risk: OpenClaw gateway tokens may be exposed if copied into durable memory or shared configuration. <br>
-Mitigation: Protect gateway tokens and avoid writing credentials into long-lived memory files. <br>
+## Use Case:
 
+Developers and agent builders use this skill to design durable memory files, choose among continuous memory, semantic RAG, and temporal knowledge graph patterns, and diagnose continuity or staleness failures in persistent agents.
 
-## Reference(s): <br>
-- [Morrow Agent Memory on ClawHub](https://clawhub.ai/timesandplaces/morrow-agent-memory) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [Memory Architecture Reference](references/memory-architecture.md) <br>
-- [Temporal Memory Discipline](references/temporal-discipline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline code and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include memory file structures, temporal annotation conventions, and optional setup guidance for persistent services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Copy-paste temporal knowledge graph setup can expose a persistent Neo4j database too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind services to localhost or a private network and restrict access to trusted hosts before deployment.
+
+Risk: Example install and container commands can drift or introduce unexpected dependencies when versions are not pinned.
+
+Mitigation: Pin package versions and container image digests, then review dependency changes before use.
+
+Risk: Sample credentials are unsafe for a persistent memory database.
+
+Mitigation: Generate a unique secret outside shell history and store it in a managed secret mechanism.
+
+Risk: Persistent memory systems may retain sensitive or inappropriate agent state.
+
+Mitigation: Define allowed memory contents, audit stored memory regularly, and avoid retaining secrets or unnecessary personal data.
+
+## Reference(s):
+
+- [Memory Architecture Reference](references/memory-architecture.md)
+- [Temporal Memory Discipline](references/temporal-discipline.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes architecture comparisons, memory file conventions, temporal annotation practices, and setup cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Vietnamese-language guide for using the kb-vn skill set to plan, write, translate, and troubleshoot visual novel writing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Vietnamese fiction writers and translators through model choice, lorebook, outline, drafting, and translation workflows for the kb-vn skill set.
 
-## Publisher: <br>
-[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev)
 
-## Use Case: <br>
-External writers and translators use this guide to structure Vietnamese visual novel writing pipelines, select supporting models and tools, prepare lorebooks and outlines, and troubleshoot common drafting or translation issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide normalizes bypassing content filters and recommends less-filtered providers for NSFW output. <br>
-Mitigation: Review use against the rules of the models, services, platforms, and organization policies involved before installing or following the guidance. <br>
-Risk: The artifact includes shell command examples for external translation workflows. <br>
-Mitigation: Treat commands as examples and review any referenced local scripts or input files before running them. <br>
+## Use Case:
 
+External writers and translators use this guide to plan Vietnamese fiction workflows, coordinate related kb-vn skills, choose models, manage context, and structure drafting or translation steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/vn-guide) <br>
-- [The Seven Levels of Worldbuilding](https://youtu.be/vFMnz75y5y4?si=IILXLHOO6HEDnaax) <br>
-- [Hermes Desktop](https://hermes-agent.nousresearch.com/desktop) <br>
-- [DeepSeek API keys](https://platform.deepseek.com/api_keys) <br>
-- [Zwork](https://zwork.z.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guide with tables, checklists, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable skill artifact; any commands shown are user-facing examples for external writing and translation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill encourages bypassing content-safety filters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for policy-compliant writing and translation workflows, and do not use its advice to evade model or platform safeguards.
+
+Risk: The skill gives under-specified guidance for paid API keys and cloud uploads.
+
+Mitigation: Review provider billing, credential handling, and data-use terms before entering API keys or uploading private manuscripts, lorebooks, chats, or related project files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/skills/vn-guide)
+- [Publisher profile](https://clawhub.ai/user/kaibazax-dev)
+- [Hermes Desktop](https://hermes-agent.nousresearch.com/desktop)
+- [DeepSeek API keys](https://platform.deepseek.com/api_keys)
+- [Z.ai Zwork](https://zwork.z.ai/)
+- [The Seven Levels of Worldbuilding](https://youtu.be/vFMnz75y5y4?si=IILXLHOO6HEDnaax)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with tables, checklists, links, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prose workflow advice rather than executable automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

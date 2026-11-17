@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life-money-skill.local/assets/schemas/career_analysis.schema.json",
+  "title": "Career Analysis — 七轮分析结果",
+  "description": "「人生搞钱」Skill 的唯一分析契约（Contract 2），渲染脚本的输入。七个分析维度对应源方法论（原作者 X @Raul_IA_Prod）的 7 个提示词，不可增删改名；各维度的数量目标与质量标准见 references/analysis-specs.md。信息不足时宁缺毋滥，禁止为凑数编造。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "meta", "summary", "hidden_skills", "income_opportunities", "monetization_paths", "leverage", "higher_pay_roles", "ai_services", "plan_90d"],
+  "properties": {
+    "schema_version": { "const": "0.3" },
+    "meta": {
+      "type": "object",
+      "required": ["generated_at"],
+      "properties": {
+        "generated_at": { "type": "string", "format": "date-time" },
+        "profile_schema_version": { "type": "string" },
+        "calibration": {
+          "type": "object",
+          "description": "市场数据校准（可选步骤）：检索到的薪资 / 市场参考",
+          "properties": {
+            "used": { "type": "boolean" },
+            "sources": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": { "type": "string" },
+                  "url": { "type": "string" },
+                  "note": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["highlights"],
+      "properties": {
+        "highlights": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 6,
+          "items": { "type": "string" },
+          "description": "关键发现摘要（3-6 条），报告首页展示"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "分析中的推断性假设：信息不足处显式声明，不得静默脑补"
+        }
+      }
+    },
+    "hidden_skills": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 10,
+      "description": "维度 1「发现我的隐藏技能」。目标 10 条；不足时宁缺毋滥",
+      "items": {
+        "type": "object",
+        "required": ["name", "why_valuable", "who_pays", "ai_monetization"],
+        "properties": {
+          "name": { "type": "string", "description": "技能名（具体，不要泛词如「沟通能力」）" },
+          "why_valuable": { "type": "string", "description": "为什么它有价值" },
+          "who_pays": { "type": "string", "description": "谁会为它付费" },
+          "ai_monetization": { "type": "string", "description": "AI 如何帮助将其货币化" },
+          "evidence": { "type": "string", "description": "profile 中支持该技能的出处（哪段经历 / 成果）" }
+        }
+      }
+    },
+    "income_opportunities": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 10,
+      "description": "维度 2「寻找收入机会」。目标 10 条；收入潜力对齐门禁 2 确认目标（income_target），金额口径对齐用户所在市场",
+      "items": {
+        "type": "object",
+        "required": ["title", "description", "startup_cost", "time_investment", "difficulty", "income_potential"],
+        "properties": {
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "startup_cost": { "type": "string", "description": "启动成本（金额区间或等级）" },
+          "time_investment": { "type": "string", "description": "时间投入" },
+          "difficulty": { "enum": ["低", "中", "高"] },
+          "income_potential": { "type": "string", "description": "收入潜力（对齐用户收入目标口径）" },
+          "potential_level": { "type": "integer", "minimum": 1, "maximum": 5, "description": "收入潜力量级 1-5（报告矩阵图用；相对用户目标评估）" },
+          "first_step": { "type": "string", "description": "第一步行动（可执行的具体动作）" }
+        }
+      }
+    },
+    "monetization_paths": {
+      "type": "array",
+      "minItems": 3,
+      "description": "维度 3「变现我的经验」（企业战略家视角）：服务 / 咨询产品 / 数字产品 / 自由职业机会",
+      "items": {
+        "type": "object",
+        "required": ["type", "name", "description"],
+        "properties": {
+          "type": { "enum": ["服务", "咨询产品", "数字产品", "自由职业"] },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "target_customer": { "type": "string", "description": "目标客户" },
+          "pricing_hint": { "type": "string", "description": "定价参考（如有）" }
+        }
+      }
+    },
+    "leverage": {
+      "type": "object",
+      "required": ["focuses"],
+      "description": "维度 4「找到我最大的杠杆机会」：若尽快增收，先聚焦什么、为什么",
+      "properties": {
+        "focuses": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "required": ["rank", "focus", "rationale"],
+            "properties": {
+              "rank": { "type": "integer", "minimum": 1, "description": "优先级排序，1 为最优先" },
+              "focus": { "type": "string", "description": "聚焦点" },
+              "rationale": { "type": "string", "description": "为什么先做这个" }
+            }
+          }
+        }
+      }
+    },
+    "higher_pay_roles": {
+      "type": "array",
+      "minItems": 3,
+      "description": "维度 5「向我展示什么薪水更高」",
+      "items": {
+        "type": "object",
+        "required": ["role_or_industry", "why_higher_pay", "qualification"],
+        "properties": {
+          "role_or_industry": { "type": "string", "description": "角色 / 行业 / 机会" },
+          "why_higher_pay": { "type": "string", "description": "为什么薪水显著更高" },
+          "qualification": { "type": "string", "description": "是什么让用户有资格胜任" },
+          "pay_gap": { "type": "string", "description": "薪资差距描述（如有校准数据，标注口径）" },
+          "pay_monthly_low": { "type": "number", "description": "该方向月薪参考下限（用户币种；报告薪酬图用，无依据则省略）" },
+          "pay_monthly_high": { "type": "number", "description": "该方向月薪参考上限" }
+        }
+      }
+    },
+    "ai_services": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "description": "维度 6「创建一个由 AI 驱动的副收入来源」。目标 5 条；启动投入不得超过门禁 3 确认的每周可投入时间",
+      "items": {
+        "type": "object",
+        "required": ["name", "description", "weekly_hours"],
+        "properties": {
+          "name": { "type": "string", "description": "AI 辅助的服务名" },
+          "description": { "type": "string" },
+          "weekly_hours": { "type": "number", "description": "每周启动所需时间（小时），须 ≤ 门禁 3 确认的 launch_hours_per_week" },
+          "price_hint": { "type": "string", "description": "定价参考（如有）" }
+        }
+      }
+    },
+    "plan_90d": {
+      "type": "object",
+      "required": ["goal_statement", "phases"],
+      "description": "维度 7「构建我的 90 天计划」",
+      "properties": {
+        "goal_statement": { "type": "string", "description": "90 天目标陈述（对齐用户 goals.primary）" },
+        "phases": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "required": ["name", "focus", "actions", "milestone"],
+            "properties": {
+              "name": { "type": "string", "description": "如「第 1-30 天」" },
+              "focus": { "type": "string", "description": "本阶段聚焦" },
+              "actions": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+              "milestone": { "type": "string", "description": "本阶段验收里程碑（可检验）" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

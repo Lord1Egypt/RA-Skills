@@ -1,43 +1,53 @@
-## Description: <br>
-Organizes and summarizes public YY Live pages, including live categories, activity pages, streamer rules, and help documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yy helps agents organize and summarize public YY Live pages, including live categories, activities, streamer rules, and help information.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and developers use this skill to collect and summarize public YY Live activity, category, streamer-rule, safety, and help information without accessing private account or backend data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A bundled review helper was reported as broader than needed because it can launch nested Codex with full filesystem access and approval bypass. <br>
-Mitigation: Review before installing; if used, run the helper with sandbox-preserving settings such as --no-yolo unless elevated local access is intentional. <br>
-Risk: YY Live activities, rules, and help pages may change frequently. <br>
-Mitigation: Include retrieval dates and source links in summaries, and avoid treating prior summaries as current policy. <br>
-Risk: The skill could be misused to request view boosting, gift manipulation, account control, or risk-avoidance guidance. <br>
-Mitigation: Keep responses limited to public information organization and refuse requests for manipulation, account takeover, private data, or platform rule evasion. <br>
+## Use Case:
 
+External users and developers use this skill to collect, summarize, and structure public YY Live information such as activity pages, streamer support rules, safety notices, and help center entries.
 
-## Reference(s): <br>
-- [YY Live homepage](https://www.yy.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/yy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, tables, and checklists with source links when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should timestamp public YY Live information because platform activities and rules can change frequently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill could be misused to request account backends, private user data, automation abuse, cheating, or attempts to bypass YY Live platform rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict use to public YY Live pages and refuse requests involving private data, account control, traffic boosting, gift manipulation, cheating, or platform-rule bypass guidance.
+
+Risk: YY Live activities, rules, and help pages can change frequently, which may make summaries stale or misleading.
+
+Mitigation: Include source links and retrieval time in summaries, and re-check public pages before relying on activity dates, participation conditions, penalties, or rights information.
+
+## Reference(s):
+
+- [YY Live Homepage](https://www.yy.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, tables, and checklists with source and time annotations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public YY Live pages only; excludes private data, account control, traffic boosting, gift manipulation, cheating, and platform-rule bypass guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

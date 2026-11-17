@@ -1,40 +1,63 @@
-## Description: <br>
-Evaluate-before-execute guardrail for OpenClaw agents that returns ALLOW, BLOCK, or ADVISE decisions before high-stakes tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate-before-Execute guardrail for OpenClaw agents that issues GO / NO-GO decisions before high-stakes tool calls.
 
-## Publisher: <br>
-[sanjeet-toosi](https://clawhub.ai/user/sanjeet-toosi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanjeet-toosi](https://clawhub.ai/user/sanjeet-toosi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to evaluate proposed web search, booking, payment, and shell-command actions before execution. It helps agents enforce configured safety and preference policies by returning a structured decision and suggested alternative. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluation inputs may include secrets, payment details, private travel data, or sensitive shell commands that are sent to configured LLM providers or logs. <br>
-Mitigation: Redact sensitive payloads before evaluation, use only approved provider endpoints, and prefer a trusted local endpoint for sensitive deployments. <br>
-Risk: The artifact contains conflicting packaged skill identities and install paths, including agent-sentinel at the package root and agent-eval-engine under skills/vigilance. <br>
-Mitigation: Review the installed files before use and ask the publisher to reconcile the package identity, documented invocation path, and release metadata. <br>
+## Use Case:
 
+Developers and agent operators use this skill to evaluate planned web searches, shell commands, bookings, payments, and other high-stakes actions before execution. It returns ALLOW, ADVISE, or BLOCK decisions with a severity, reason, and suggested alternative.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sanjeet-toosi/vigilance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON decision output with Markdown handling guidance and shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns decision, severity, reason, and alternatives fields; may rely on configured LLM provider keys for judge-based checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Broad pre-execution gatekeeping can block or pause web search, shell command, booking, and payment workflows beyond the user's intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where this level of gatekeeping is desired, review the configured trigger set, and require human confirmation for ADVISE decisions.
+
+Risk: Exact action data may include sensitive prompts, commands, URLs, payment context, or travel details.
+
+Mitigation: Avoid sending secrets or payment details through the evaluator and configure provider keys and endpoints deliberately before use.
+
+Risk: Dependency and provider behavior can change over time.
+
+Mitigation: Pin Python dependencies and prefer a validated local endpoint when using a local judge provider.
+
+Risk: Diagnostic stderr output may expose sensitive evaluation details in logs.
+
+Mitigation: Disable or restrict raw stderr logging in environments that handle sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sanjeet-toosi/skills/vigilance)
+- [Publisher profile](https://clawhub.ai/user/sanjeet-toosi)
+- [Sentinel configuration reference](artifact/SENTINEL_CONFIG.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Structured JSON decision object with human-facing reason and alternatives fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The documented response includes decision, severity, reason, and alternatives.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

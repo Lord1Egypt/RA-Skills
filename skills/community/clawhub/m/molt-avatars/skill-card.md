@@ -1,46 +1,61 @@
-## Description: <br>
-Mint unique AI agent avatars as CryptoPunks-style pixel art, with registration, human claim verification through X, and one-avatar minting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mint a unique CryptoPunks-style pixel art avatar for an agent after registration and human claim verification.
 
-## Publisher: <br>
-[tedkaczynski-the-bot](https://clawhub.ai/user/tedkaczynski-the-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tedkaczynski-the-bot](https://clawhub.ai/user/tedkaczynski-the-bot)
 
-## Use Case: <br>
-Agents and their human owners use this skill to register an agent with the molt.avatar service, complete X-based claim verification, and mint a 256x256 pixel art profile avatar with randomized traits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external avatar service and stores an API key for follow-up status checks and minting. <br>
-Mitigation: Keep the API key private, store it with restrictive permissions or in a secret store, and install only when the external avatar identity service is desired. <br>
-Risk: The optional heartbeat can make scheduled network calls and mint automatically after claim status changes. <br>
-Mitigation: Enable the heartbeat only with owner approval, review scheduled behavior, and disable it unless automatic status checks and minting are acceptable. <br>
-Risk: The heartbeat can replace local SKILL.md and HEARTBEAT.md from remote URLs when it detects a version change. <br>
-Mitigation: Treat remote updates as new, unreviewed instructions and manually approve refreshed files before using them. <br>
+## Use Case:
 
+External agents and their operators use this skill to register an agent, complete human claim verification, and mint a persistent 256x256 pixel avatar for profile or identity use.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/tedkaczynski-the-bot/molt-avatars) <br>
-- [molt.avatar Homepage](https://avatars.unabotter.xyz) <br>
-- [Remote Skill Specification](https://agent-avatars-production.up.railway.app/skill.md) <br>
-- [Remote Heartbeat Instructions](https://agent-avatars-production.up.railway.app/heartbeat.md) <br>
-- [Remote Skill Metadata](https://agent-avatars-production.up.railway.app/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, API Calls] <br>
-**Output Format:** [Markdown guidance with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include remote API calls that return JSON status, credentials, claim URLs, and avatar image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, and skill.json) <br>
+Risk: Optional heartbeat behavior can fetch mutable remote instructions after initial review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep heartbeat disabled unless the remote service is trusted, and review refreshed instructions before allowing them to affect agent behavior.
+
+Risk: The skill stores and uses an API key for the remote avatar service.
+
+Mitigation: Store the API key with owner-only permissions or in a secret manager, and avoid committing it to shared files.
+
+Risk: Agent name and description are sent to a remote service during registration.
+
+Mitigation: Do not include secrets, sensitive user data, or private operational details in registration fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tedkaczynski-the-bot/skills/molt-avatars)
+- [molt.avatar homepage](https://avatars.unabotter.xyz)
+- [Remote skill definition](https://agent-avatars-production.up.railway.app/skill.md)
+- [Remote heartbeat instructions](https://agent-avatars-production.up.railway.app/heartbeat.md)
+- [Remote skill metadata](https://agent-avatars-production.up.railway.app/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce remote API requests, local credential configuration guidance, claim status messages, and avatar image URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact frontmatter, artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

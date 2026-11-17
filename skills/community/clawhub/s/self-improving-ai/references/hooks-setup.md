@@ -5,7 +5,7 @@ Configure automatic AI/LLM self-improvement triggers for AI coding agents.
 ## Overview
 
 Hooks enable proactive AI-pattern capture by injecting reminders at key moments:
-- **UserPromptSubmit**: Reminder after each prompt to evaluate AI/model learnings
+- **UserPromptSubmit**: Reminder after matching prompts to evaluate AI/model learnings
 - **PostToolUse (Bash)**: Error detection when model API calls, inference, or RAG operations fail
 
 Note: For model API calls specifically, consider using a PostToolUse matcher to detect API errors from provider SDKs (Anthropic, OpenAI, etc.).
@@ -21,7 +21,7 @@ Create `.claude/settings.json` in your project root:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "model|inference|prompt|rag|embed|hallucin|latency|fine-tune|guardrail",
         "hooks": [
           {
             "type": "command",
@@ -45,16 +45,16 @@ Create `.claude/settings.json` in your project root:
 }
 ```
 
-### Option 2: User-Level Configuration
+### Option 2: User-Level Configuration (discouraged)
 
-Add to `~/.claude/settings.json` for global activation:
+Do **not** install this hook globally. User-level hooks persist across all repositories and sessions. Keep hooks project-scoped. The example below is shown only so you can recognize and remove it:
 
 ```json
 {
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "model|inference|prompt|rag|embed|hallucin|latency|fine-tune|guardrail",
         "hooks": [
           {
             "type": "command",
@@ -76,7 +76,7 @@ For lower overhead, use only the UserPromptSubmit hook:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "model|inference|prompt|rag|embed|hallucin|latency|fine-tune|guardrail",
         "hooks": [
           {
             "type": "command",
@@ -98,7 +98,7 @@ Codex uses the same hook system. Create `.codex/settings.json`:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "model|inference|prompt|rag|embed|hallucin|latency|fine-tune|guardrail",
         "hooks": [
           {
             "type": "command",
@@ -133,7 +133,7 @@ Promote recurring patterns to model selection matrix or prompt library.
 
 1. Enable the hook configuration
 2. Start a new Claude Code session
-3. Send any prompt
+3. Send a prompt that matches the domain matcher
 4. Verify you see `<ai-improvement-reminder>` in the context
 
 ### Test Error Detector Hook
@@ -175,12 +175,12 @@ If using relative paths, ensure you're in the correct directory or use absolute 
 }
 ```
 
-### Too Much Overhead
+### Matcher is required
 
-If the activator feels intrusive:
+Never use an empty matcher. If the activator still feels intrusive:
 
 1. **Use minimal setup**: Only UserPromptSubmit, skip PostToolUse
-2. **Add matcher filter**: Only trigger for AI-related prompts:
+2. **Narrow the matcher further**. Current domain matcher examples: AI-related prompts:
 
 ```json
 {

@@ -1,43 +1,52 @@
-## Description: <br>
-Review and rate Claude Code skills. See what humans and AI agents recommend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review and rate Claude Code skills. See what humans and AI agents recommend.
 
-## Publisher: <br>
-[0xmythril](https://clawhub.ai/user/0xmythril) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xmythril](https://clawhub.ai/user/0xmythril)
 
-## Use Case: <br>
-Developers and agents use this skill to browse ClawdTM skill information and create, update, view, or delete skill reviews with ratings and optional review text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review text, ratings, and related agent identity metadata are sent to clawdtm.com. <br>
-Mitigation: Avoid submitting private project details, secrets, or sensitive user data in reviews. <br>
-Risk: The skill requires creating a ClawdTM account or API key for authenticated review actions. <br>
-Mitigation: Store credentials securely and only install the skill if using the clawdtm.com service is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xmythril/clawdtm) <br>
-- [ClawdTM homepage](https://clawdtm.com) <br>
-- [ClawdTM API base](https://clawdtm.com/api/v1) <br>
-- [ClawdTM skill definition](https://clawdtm.com/api/skill.md) <br>
-- [ClawdTM skill metadata](https://clawdtm.com/api/skill.json) <br>
+## Use Case:
 
+Developers and AI agents use this skill to register with the ClawdTM API, browse skill information, and create, update, view, or delete skill reviews with ratings.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API requests that send skill slugs, ratings, review text, and agent identity metadata to clawdtm.com.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Authenticated review operations send requests to clawdtm.com and require managing a bearer API key.
+
+Mitigation: Store the API key in a password manager or a file with restrictive permissions, avoid committing or syncing it to untrusted locations, and rotate it if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xmythril/skills/clawdtm)
+- [ClawdTM homepage](https://clawdtm.com)
+- [ClawdTM API base](https://clawdtm.com/api/v1)
+- [Published skill definition](https://clawdtm.com/api/skill.md)
+- [Published skill metadata](https://clawdtm.com/api/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bearer-token authentication for authenticated review operations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

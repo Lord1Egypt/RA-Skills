@@ -1,40 +1,54 @@
-## Description: <br>
-Adds Cloudflare Zero Trust Access authentication in front of a VPS-hosted OpenClaw agent domain, including browser login, MFA policies, service tokens for native or API clients, and troubleshooting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds Cloudflare Zero Trust Access authentication in front of a VPS-hosted OpenClaw agent, including identity-provider setup, MFA policy guidance, service-token access for clients, multi-agent patterns, and troubleshooting.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and operators use this skill to place Cloudflare Access in front of OpenClaw agents hosted on a VPS, define identity policies, configure service-token access for non-browser clients, and troubleshoot deployment issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Security-sensitive rollback, localhost bypass, or exposure guidance could weaken the deployment if left in place after troubleshooting. <br>
-Mitigation: Treat bypass and rollback steps as temporary, keep the OpenClaw service bound to loopback unless intentionally exposed, and restore Cloudflare Access controls after diagnosis. <br>
-Risk: Service tokens can function like long-lived credentials if shared, committed, or not rotated. <br>
-Mitigation: Use scoped tokens per client or device, prefer expiring and rotated tokens, store secrets outside source control, and revoke lost or unused tokens. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Service Tokens - Programmatic Access Through Cloudflare Access](references/service-tokens.md) <br>
-- [Cloudflare Access Troubleshooting](references/troubleshooting.md) <br>
+## Use Case:
 
+Developers and operators use this skill to place Cloudflare Access in front of a VPS-hosted OpenClaw deployment, configure login and MFA policies, enable service-token access for programmatic clients, and troubleshoot access failures.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with tables, checklists, configuration examples, and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Service tokens act like long-lived credentials and can expose programmatic access if copied, committed, or left unrotated.
+
+Mitigation: Use service tokens only for clients that need programmatic access, store secrets outside git, create per-client tokens, and rotate or revoke them promptly.
+
+Risk: Rollback or bypass steps can remove the Cloudflare Access gate and leave only the OpenClaw authentication layers.
+
+Mitigation: Review bypass changes before applying them and confirm the remaining OpenClaw token and pairing controls are appropriate for the deployment.
+
+## Reference(s):
+
+- [Service Tokens](references/service-tokens.md)
+- [Cloudflare Access Troubleshooting](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/maverick-software/skills/cloudflare-access-vps)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline shell, JSON, JavaScript, and HTTP header examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no hidden code or destructive behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

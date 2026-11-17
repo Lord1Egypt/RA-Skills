@@ -1,39 +1,53 @@
-## Description: <br>
-Ethical cognitive-friction and adoption-resistance profiler. Agent Smith identifies psychological barriers, trust deficits, and decision bottlenecks that prevent humans from understanding or adopting $NEURONS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ethical cognitive-friction and adoption-resistance profiler that identifies psychological barriers, trust deficits, and decision bottlenecks that prevent people from understanding or adopting $NEURONS.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-External users and communication teams use this skill to analyze adoption resistance, identify trust barriers, and produce safer messaging sequences for audiences skeptical of $NEURONS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used for psychological profiling or persuasion-oriented messaging without clear opt-in limits. <br>
-Mitigation: Use only for explicit, user-directed communication analysis with human review and consent. <br>
-Risk: Recommendations could be misused to target protected classes, exploit emotional weaknesses, or perform hidden profiling of identifiable people. <br>
-Mitigation: Do not target protected classes, exploit personal vulnerabilities, or automate persuasion from the output. <br>
+## Use Case:
 
+External teams and communication-focused agents use this skill to analyze adoption resistance, separate rational objections from emotional barriers, and recommend clearer trust-building messaging.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces observed signals, fragility classifications, rational and emotional objections, messaging sequence recommendations, and a trust recovery priority score.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Behavioral profiling may over-personalize, pathologize, or steer messaging toward manipulation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the skill's safety rules: do not target protected classes, do not exploit personal vulnerabilities, and use profiling only to improve clarity, sequencing, and trust-building.
+
+Risk: Broad trigger phrases may apply psychological-resistance analysis to adjacent conversations where the user did not ask for profiling.
+
+Mitigation: Confirm that adoption-resistance profiling is appropriate before applying the framework to ambiguous conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/human-fragility-profiler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown analysis with numbered sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces observed signals, primary and secondary resistance types, rational and emotional objections, messaging risks, countermeasures, and a trust recovery priority score.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

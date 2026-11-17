@@ -1,44 +1,57 @@
-## Description: <br>
-Lobster Doctor helps OpenClaw users inspect workspace health, clean local files, slim skill descriptions, archive memory files, and audit cron jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster Doctor helps OpenClaw users diagnose workspace health, preview cleanup actions, slim skill descriptions, archive memory, inspect session health, and audit cron jobs.
 
-## Publisher: <br>
-[masongmx](https://clawhub.ai/user/masongmx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[masongmx](https://clawhub.ai/user/masongmx)
 
-## Use Case: <br>
-Developers and OpenClaw workspace operators use this skill to generate local health reports, identify cleanup opportunities, reduce skill description overhead, archive stale memory files, and review scheduled tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect sensitive local OpenClaw history, configuration, installed skills, memory files, cron jobs, and workspace contents. <br>
-Mitigation: Run it only in workspaces where local inspection is acceptable, review reports before sharing them, and avoid exposing generated diagnostics outside the trusted environment. <br>
-Risk: Cleanup, skill-slim apply, and memory archive modes can make broad persistent changes to files and installed skill descriptions. <br>
-Mitigation: Start with report or dry-run modes, review exact targets, keep backups, and use apply or cleanup modes only after confirming the proposed changes. <br>
-Risk: The authoritative security verdict is suspicious because the tool has broad local visibility and limited confirmation controls. <br>
-Mitigation: Treat installation as a local maintenance decision, restrict use to trusted operators, and prefer manual review for destructive or persistent actions. <br>
+## Use Case:
 
+Developers and OpenClaw workspace users use this skill to review workspace health, identify stale or duplicate files and skills, preview cleanup actions, archive old memory entries, and reduce skill description token overhead.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/masongmx/lobster-doctor-skill-slim) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text reports with command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run previews, workspace statistics, cleanup plans, token estimates, and backup or restart guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: Workspace cleanup and skill slimming commands can move files or rewrite installed skill metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with read-only report or dry-run modes, inspect previews and backups, and run cleanup or apply modes only with explicit intent.
+
+Risk: Generated reports can include session identifiers, agent names, skill inventory, cron details, and messaging-channel targets.
+
+Mitigation: Treat reports as sensitive local workspace data and avoid sharing them outside trusted review channels.
+
+Risk: The security review marks the release suspicious because broad maintenance commands have weaker controls than the documentation promises.
+
+Mitigation: Review the skill before installing and keep initial use limited to read-only or report modes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/masongmx/skills/lobster-doctor-skill-slim)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text reports with optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local reports or backups when the user runs cleanup, archive, or weekly-report workflows.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,530 @@
+{
+  "plan_status": "researched",
+  "generated_at": "2026-07-30T10:00:00+08:00",
+  "intake_context": {
+    "method": "html_form",
+    "intake_file": "/tmp/travel-buddy-fixture/plans/intake-20260101-fixture.json",
+    "source_note": null,
+    "declined_verbatim": null,
+    "declined_at": null
+  },
+  "trip": {
+    "title": "Renderer quality-gate fixture",
+    "language": "en",
+    "currency": "CNY",
+    "origin": "Chengdu",
+    "destination": "Chengdu",
+    "destination_type": "region",
+    "start_date": "2026-09-28",
+    "end_date": "2026-09-28",
+    "traveler_count": 2,
+    "pace": "balanced",
+    "budget_basis": "per person, including transport and lodging",
+    "arrival_transport_mode": "road",
+    "destination_coords": {
+      "lat": 30.5723,
+      "lon": 104.0665
+    },
+    "traveler_preferences": {
+      "ranked_must_haves": [
+        "street food"
+      ],
+      "natural_subtypes": [],
+      "human_cultural_subtypes": [
+        "neighbourhood walking"
+      ],
+      "pace": "moderate",
+      "avoid_list": [
+        "red-eye arrivals"
+      ],
+      "avoid_list_handling": [
+        {
+          "item": "red-eye arrivals",
+          "how_avoided": "The only legs are daytime buses; no flight is booked."
+        }
+      ],
+      "unmet_preferences": []
+    }
+  },
+  "regional_service_context": {
+    "destination_service_market": "mainland_china",
+    "selection_basis": "Amap is the locally accessible route provider and the traveller selected public transit.",
+    "google_services_access": "unavailable",
+    "primary_map_provider": "Amap",
+    "primary_map_exception_reason": null,
+    "alternative_map_providers": [],
+    "local_transport_sources": [
+      "https://www.cdmetro.chengdu.gov.cn"
+    ],
+    "booking_platform_selection_note": "Fixture-only hotel comparison link with date and guest fields.",
+    "booking_access_checks": [
+      {
+        "category": "accommodation",
+        "access_status": "unknown",
+        "provider_or_channel": "Hotel direct and public comparison search",
+        "requirements_note": "Browse access checked; room inventory and payment are rechecked by the traveller.",
+        "source_url": "https://www.booking.com",
+        "checked_at": "2026-07-30T10:00:00+08:00"
+      },
+      {
+        "category": "rail_or_ground",
+        "access_status": "unknown",
+        "provider_or_channel": "Chengdu Metro and Amap",
+        "requirements_note": "Live route, service hours, and fare require a same-day check.",
+        "source_url": "https://www.cdmetro.chengdu.gov.cn",
+        "checked_at": "2026-07-30T10:00:00+08:00"
+      }
+    ]
+  },
+  "budget": {
+    "calculation_basis": "per_person",
+    "estimated_per_person_low": 600,
+    "estimated_per_person_high": 900,
+    "included_categories": [
+      "accommodation",
+      "food",
+      "local_transport"
+    ],
+    "unverified_categories": [
+      "insurance",
+      "shopping_and_misc"
+    ],
+    "breakdown": [
+      {
+        "category": "accommodation",
+        "description": "Shared room cost",
+        "per_person_low": 350,
+        "per_person_high": 460,
+        "currency": "CNY",
+        "price_status": "estimate",
+        "checked_at": "2026-07-30T10:00:00+08:00",
+        "note": "Two travellers sharing one room."
+      },
+      {
+        "category": "food",
+        "description": "Meals including researched dining stops",
+        "per_person_low": 180,
+        "per_person_high": 280,
+        "currency": "CNY",
+        "price_status": "estimate",
+        "checked_at": "2026-07-30T10:00:00+08:00",
+        "note": "Includes the daily meal recommendations."
+      },
+      {
+        "category": "local_transport",
+        "description": "Metro and contingency rides",
+        "per_person_low": 70,
+        "per_person_high": 160,
+        "currency": "CNY",
+        "price_status": "estimate",
+        "checked_at": "2026-07-30T10:00:00+08:00",
+        "note": "Uses the stated public-transit route and fallback."
+      }
+    ]
+  },
+  "transport_preference": {
+    "mode": "public-transit",
+    "self_drive_selected": false,
+    "public_transit_selected": true
+  },
+  "booking_options": {
+    "flights": [],
+    "accommodations": [
+      {
+        "id": "stay-a",
+        "stay_group_id": "central-chengdu",
+        "stay_location": "Central Chengdu",
+        "neighborhood": "Luomashi",
+        "address_or_location_reference": "Near Luomashi Metro Station",
+        "property_name": "Fixture Hotel A",
+        "provider": "Marriott",
+        "comparison_platform": "Booking.com",
+        "comparison_checked_at": "2026-07-30T10:00:00+08:00",
+        "direct_review_url": "https://www.marriott.com/hotels/fixture-hotel-a",
+        "source_type": "fixture browse source",
+        "checked_at": "2026-07-30T10:00:00+08:00",
+        "review_url": "https://www.marriott.com",
+        "check_in": "2026-09-28",
+        "check_out": "2026-09-29",
+        "guest_count": 2,
+        "room_count": 1,
+        "comparison_searches": [
+          {
+            "platform": "Booking.com",
+            "search_url": "https://www.booking.com/searchresults.html?ss=Fixture+Hotel+A&checkin=2026-09-28&checkout=2026-09-29&group_adults=2&no_rooms=1",
+            "checked_at": "2026-07-30T10:00:00+08:00",
+            "prefilled_fields": [
+              "destination",
+              "check_in",
+              "check_out",
+              "guests",
+              "rooms"
+            ]
+          }
+        ],
+        "room_basis": "One double room, breakfast included",
+        "nightly_cost_low": 700,
+        "nightly_cost_high": 850,
+        "price_basis": "per_room_per_night",
+        "price_status": "estimate",
+        "trip_cost_low": 700,
+        "trip_cost_high": 850,
+        "currency": "CNY",
+        "price_checked_at": "2026-07-30T10:00:00+08:00",
+        "availability_status": "unknown",
+        "taxes_and_fees_status": "Recheck on the rate page",
+        "cancellation_terms": "Recheck before selecting a rate",
+        "accessibility_or_location_note": "Lift and step-free access require confirmation.",
+        "arrival_access_note": "About 55–75 minutes from TFU by researched public-transit route.",
+        "key_area_access_note": "Walkable to Luomashi Metro for central-city routes.",
+        "selection_rationale": "Central, low-transfer base for the planned areas.",
+        "single_option_reason": null,
+        "direct_provider": "Marriott",
+        "guest_rating_status": "verified",
+        "guest_rating_value": 8.6,
+        "guest_rating_scale": 10,
+        "guest_rating_count": 740,
+        "guest_rating_source": "Trip.com",
+        "guest_rating_url": "https://www.trip.com/hotels/chengdu-hotel-detail-0/fixture-hotel-a/",
+        "guest_rating_checked_at": "2026-07-30",
+        "guest_rating_absence_reason": null,
+        "availability_unknown_reason": "Fixture data: these dates were never queried on the selling platform, which is why availability stays unknown."
+      },
+      {
+        "id": "stay-b",
+        "stay_group_id": "central-chengdu",
+        "stay_location": "Central Chengdu",
+        "neighborhood": "Wenshu Monastery",
+        "address_or_location_reference": "Near Wenshu Monastery Metro Station",
+        "property_name": "Fixture Hotel B",
+        "provider": "Hyatt",
+        "comparison_platform": "Booking.com",
+        "comparison_checked_at": "2026-07-30T10:00:00+08:00",
+        "direct_review_url": "https://www.hyatt.com/hotels/fixture-hotel-b",
+        "source_type": "fixture browse source",
+        "checked_at": "2026-07-30T10:00:00+08:00",
+        "review_url": "https://www.hyatt.com",
+        "check_in": "2026-09-28",
+        "check_out": "2026-09-29",
+        "guest_count": 2,
+        "room_count": 1,
+        "comparison_searches": [
+          {
+            "platform": "Booking.com",
+            "search_url": "https://www.booking.com/searchresults.html?ss=Fixture+Hotel+B&checkin=2026-09-28&checkout=2026-09-29&group_adults=2&no_rooms=1",
+            "checked_at": "2026-07-30T10:00:00+08:00",
+            "prefilled_fields": [
+              "destination",
+              "check_in",
+              "check_out",
+              "guests",
+              "rooms"
+            ]
+          }
+        ],
+        "room_basis": "One double room, breakfast included",
+        "nightly_cost_low": 760,
+        "nightly_cost_high": 920,
+        "price_basis": "per_room_per_night",
+        "price_status": "estimate",
+        "trip_cost_low": 760,
+        "trip_cost_high": 920,
+        "currency": "CNY",
+        "price_checked_at": "2026-07-30T10:00:00+08:00",
+        "availability_status": "unknown",
+        "taxes_and_fees_status": "Recheck on the rate page",
+        "cancellation_terms": "Recheck before selecting a rate",
+        "accessibility_or_location_note": "Lift and step-free access require confirmation.",
+        "arrival_access_note": "About 55–75 minutes from TFU by researched public-transit route.",
+        "key_area_access_note": "Walkable to Wenshu Monastery Metro for central-city routes.",
+        "selection_rationale": "Alternative base with a different evening neighborhood.",
+        "single_option_reason": null,
+        "direct_provider": "Hyatt",
+        "guest_rating_status": "verified",
+        "guest_rating_value": 8.6,
+        "guest_rating_scale": 10,
+        "guest_rating_count": 740,
+        "guest_rating_source": "Trip.com",
+        "guest_rating_url": "https://www.trip.com/hotels/chengdu-hotel-detail-0/fixture-hotel-b/",
+        "guest_rating_checked_at": "2026-07-30",
+        "guest_rating_absence_reason": null,
+        "availability_unknown_reason": "Fixture data: these dates were never queried on the selling platform, which is why availability stays unknown."
+      }
+    ],
+    "attraction_tickets": [],
+    "rental_cars": []
+  },
+  "transport_overview": {
+    "map_link_kind": "directions",
+    "overall_map_scope": "primary_leg",
+    "overall_route_map_url": "https://uri.amap.com/navigation?from=104.0665,30.5723,Hotel&to=104.0817,30.6570,Park&mode=bus&policy=0",
+    "overall_map_checked_at": "2026-07-30T10:00:00+08:00",
+    "overall_map_provider": "Amap",
+    "overall_alternative_map_links": [],
+    "overall_duration_minutes": 80,
+    "overall_distance_km": 11,
+    "cost_low": 6,
+    "cost_high": 12,
+    "notes": [
+      "Fixture route only; live departure conditions require a recheck."
+    ]
+  },
+  "days": [
+    {
+      "number": 1,
+      "date": "2026-09-28",
+      "day_type": "full",
+      "title": "Fixture day",
+      "focus": "Validate concrete routes and dining rendering.",
+      "base_location": "Central Chengdu",
+      "accommodation_option_id": "stay-a",
+      "activities": [
+        {
+          "time": "09:00",
+          "name": "Fixture activity A",
+          "detail": "First researched stop.",
+          "ticket_option_id": null,
+          "meal_or_rest_buffer": "Short rest before lunch."
+        },
+        {
+          "time": "15:00",
+          "name": "Fixture activity B",
+          "detail": "Second researched stop.",
+          "ticket_option_id": null,
+          "meal_or_rest_buffer": "Return before dinner."
+        }
+      ],
+      "dining": [
+        {
+          "meal": "lunch",
+          "time_window": "12:00–13:00",
+          "venue_name": "Fixture Lunch",
+          "cuisine_or_style": "Sichuan lunch",
+          "neighborhood": "Central Chengdu",
+          "why_this_stop": "Placed between the two activity areas.",
+          "price_per_person_low": 45,
+          "price_per_person_high": 70,
+          "currency": "CNY",
+          "reservation_or_queue_note": "Arrive before noon or use the backup.",
+          "venue_url": "https://ditu.amap.com/place/B001C7WA5B",
+          "map_provider": "Amap",
+          "checked_at": "2026-07-30T10:00:00+08:00",
+          "reservation_provider": null,
+          "reservation_url": null,
+          "backup_venue_name": "Fixture Lunch Backup",
+          "backup_note": "Use if the first venue has a long queue.",
+          "route_anchor": "Fixture activity A",
+          "venue_hours": "Mon-Sun 11:00-22:00",
+          "hours_status": "verified",
+          "rating_status": "verified",
+          "rating_value": 4.4,
+          "rating_scale": 5,
+          "rating_count": 812,
+          "rating_source": "Amap",
+          "rating_url": "https://ditu.amap.com/place/B0FFFFFFFF",
+          "rating_checked_at": "2026-07-30",
+          "rating_absence_reason": null
+        },
+        {
+          "meal": "dinner",
+          "time_window": "18:30–20:00",
+          "venue_name": "Fixture Dinner",
+          "cuisine_or_style": "Sichuan dinner",
+          "neighborhood": "Central Chengdu",
+          "why_this_stop": "Near the hotel after the final segment.",
+          "price_per_person_low": 75,
+          "price_per_person_high": 110,
+          "currency": "CNY",
+          "reservation_or_queue_note": "Reserve if the provider exposes a public browse path.",
+          "venue_url": "https://ditu.amap.com/place/B001C7Y7I2",
+          "map_provider": "Amap",
+          "checked_at": "2026-07-30T10:00:00+08:00",
+          "reservation_provider": null,
+          "reservation_url": null,
+          "backup_venue_name": "Fixture Dinner Backup",
+          "backup_note": "Use if no table is available.",
+          "route_anchor": "Fixture activity B",
+          "hours_status": "verified",
+          "rating_status": "verified",
+          "rating_value": 4.4,
+          "rating_scale": 5,
+          "rating_count": 812,
+          "rating_source": "Amap",
+          "rating_url": "https://ditu.amap.com/place/B0FFFFFFFF",
+          "rating_checked_at": "2026-07-30",
+          "rating_absence_reason": null,
+          "venue_hours": "Mon-Sun 11:00-22:00"
+        }
+      ],
+      "route": {
+        "start": "Fixture Hotel A",
+        "stops_in_order": [
+          "Fixture Hotel A",
+          "Fixture activity A",
+          "Fixture activity B",
+          "Fixture Hotel A"
+        ],
+        "end": "Fixture Hotel A",
+        "mode": "metro",
+        "route_logic": "Cluster the central stops and return before dinner to limit transfers.",
+        "fallback_plan": "Use a licensed ride-hail only if the metro service is disrupted or mobility changes.",
+        "duration_minutes": 73,
+        "distance_km": 23.1,
+        "transfer_count": 2,
+        "walking_burden": "Derived from segments: 20 minutes of walking across the day (0 km on foot). Flat throughout, with seating at each stop.",
+        "cost_low": 8,
+        "cost_high": 12,
+        "currency": "CNY",
+        "fare_basis_or_fuel_toll_parking_note": "Metro fare range checked against the operator and route provider.",
+        "service_or_driving_caveat": "Recheck service hours on the travel date.",
+        "verified_map_url": "https://uri.amap.com/navigation?from=104.0665,30.5723,Hotel&to=104.0817,30.6570,Park&mode=bus&policy=0",
+        "map_checked_at": "2026-07-30T10:00:00+08:00",
+        "map_provider": "Amap",
+        "map_link_kind": "directions",
+        "route_map_scope": "primary_leg",
+        "alternative_map_links": [],
+        "segments": [
+          {
+            "from": "Fixture Hotel A",
+            "to": "Fixture activity A",
+            "mode": "metro",
+            "service_or_line": "Metro Line fixture",
+            "duration_minutes": 25,
+            "distance_km": 4,
+            "walking_minutes": 6,
+            "transfer_count": 0,
+            "cost_low": 3,
+            "cost_high": 4,
+            "currency": "CNY",
+            "journey_instruction": "Enter at the named station and take the marked inbound platform.",
+            "arrival_instruction": "Leave from the closest signed exit and walk to the venue.",
+            "fare_basis": "Operator fare estimate for this stop count.",
+            "fallback_note": "Use a licensed ride-hail if the line is suspended.",
+            "verified_map_url": "https://uri.amap.com/navigation?from=104.0665,30.5723,Hotel&to=104.0700,30.6000,StopA&mode=bus&policy=0",
+            "map_checked_at": "2026-07-30T10:00:00+08:00",
+            "map_provider": "Amap",
+            "map_link_kind": "directions",
+            "alternative_map_links": []
+          },
+          {
+            "from": "Fixture activity A",
+            "to": "Fixture activity B",
+            "mode": "metro",
+            "service_or_line": "Metro Line fixture",
+            "duration_minutes": 18,
+            "distance_km": 7.7,
+            "walking_minutes": 6,
+            "transfer_count": 0,
+            "cost_low": 2,
+            "cost_high": 3,
+            "currency": "CNY",
+            "journey_instruction": "Stay on the signed city-bound platform.",
+            "arrival_instruction": "Follow the nearest exit signs for the second activity.",
+            "fare_basis": "Operator fare estimate for this stop count.",
+            "fallback_note": "Walk only if weather and mobility allow; otherwise use a licensed ride-hail.",
+            "verified_map_url": "https://uri.amap.com/navigation?from=104.0700,30.6000,StopA&to=104.0817,30.6570,StopB&mode=bus&policy=0",
+            "map_checked_at": "2026-07-30T10:00:00+08:00",
+            "map_provider": "Amap",
+            "map_link_kind": "directions",
+            "alternative_map_links": []
+          },
+          {
+            "from": "Fixture activity B",
+            "to": "Fixture Hotel A",
+            "mode": "metro",
+            "service_or_line": "Metro Line fixture",
+            "duration_minutes": 30,
+            "distance_km": 11.4,
+            "walking_minutes": 8,
+            "transfer_count": 1,
+            "cost_low": 3,
+            "cost_high": 5,
+            "currency": "CNY",
+            "journey_instruction": "Transfer once at the signed interchange.",
+            "arrival_instruction": "Exit at the hotel-side station and walk to reception.",
+            "fare_basis": "Operator fare estimate for this stop count.",
+            "fallback_note": "Use a licensed ride-hail if the line is suspended.",
+            "verified_map_url": "https://uri.amap.com/navigation?from=104.0817,30.6570,StopB&to=104.0665,30.5723,Hotel&mode=bus&policy=0",
+            "map_checked_at": "2026-07-30T10:00:00+08:00",
+            "map_provider": "Amap",
+            "map_link_kind": "directions",
+            "alternative_map_links": []
+          }
+        ],
+        "schematic_svg": null
+      },
+      "contingency": "Shorten the second activity and keep the dinner reservation flexible if weather or crowds change."
+    }
+  ],
+  "destination_experience_anchors": [
+    {
+      "name": "Central-city rhythm",
+      "category": "urban culture",
+      "neighborhood_or_area": "Central Chengdu",
+      "planned_day": 1,
+      "why_it_matters": "Ensures the itinerary contains a locally rooted city experience, not only a single attraction.",
+      "source_url": "https://www.chengdu.gov.cn",
+      "checked_at": "2026-07-30T10:00:00+08:00",
+      "satisfies_preference": "street food"
+    }
+  ],
+  "sources": [
+    {
+      "name": "Amap URI documentation",
+      "url": "https://lbs.amap.com/api/uri-api/guide/travel/route",
+      "source_type": "official mapping documentation",
+      "accessed_at": "2026-07-30T10:00:00+08:00",
+      "claim_or_decision_supported": "Directions-link format",
+      "confidence": "high"
+    }
+  ],
+  "assumptions": [
+    "Fixture content is only for automated renderer verification.",
+    "Prices assume two travellers sharing one room."
+  ],
+  "recheck_before_purchase": [
+    "Recheck price, availability, entry requirements, and operating conditions before purchase."
+  ],
+  "arrival_essentials": {
+    "payment": {
+      "status": "unverified",
+      "summary": "Mobile wallets dominate here; carry a little cash and expect some counters to refuse foreign cards. Not checked against a source in this fixture.",
+      "cards_accepted": null,
+      "cash_customary": null,
+      "atm_or_fx_note": null,
+      "not_applicable_reason": null,
+      "source_url": null,
+      "checked_at": null
+    },
+    "connectivity": {
+      "status": "unverified",
+      "summary": "Check roaming with your operator, or buy a local data plan on arrival. Not checked against a source in this fixture.",
+      "sim_or_esim": null,
+      "roaming_note": null,
+      "plug_types": null,
+      "voltage": null,
+      "not_applicable_reason": null,
+      "source_url": null,
+      "checked_at": null
+    },
+    "emergency": {
+      "status": "unverified",
+      "summary": "Look up the local emergency number before you travel. Not checked against a source in this fixture.",
+      "local_emergency_number": null,
+      "consulate_or_embassy": null,
+      "consulate_contact": null,
+      "not_applicable_reason": null,
+      "source_url": null,
+      "checked_at": null
+    },
+    "health_and_insurance": {
+      "status": "not_applicable",
+      "summary": null,
+      "cover_stated_by_traveller": null,
+      "destination_requirement": null,
+      "not_applicable_reason": "A domestic day trip that starts and ends in the traveller's own city: no border is crossed and their ordinary cover applies.",
+      "source_url": null,
+      "checked_at": null
+    }
+  }
+}

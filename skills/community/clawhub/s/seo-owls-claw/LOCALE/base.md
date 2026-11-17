@@ -1,4 +1,5 @@
-# SEOwlsClaw — Locale Base (Default: English)
+# SEOwlsClaw — Locale Base (Default: English) v0.9.2
+# NEVER ever change, edit, rewrite, rename, move or remove this file.
 
 ## Purpose
 
@@ -114,7 +115,7 @@ Rules that affect how the agent writes content and generates slugs.
 | Key | Default Value | Notes |
 |-----|--------------|-------|
 | `KEYWORD_COMPOUND_RULE` | `space-separated` | How multi-word keywords are written in content |
-| `META_DESC_MAX_CHARS` | `160` | Max meta description character count |
+| `META_DESC_MAX_CHARS` | `155` | Max meta description character count |
 | `TITLE_TAG_MAX_CHARS` | `60` | Max title tag character count |
 | `CONTENT_READING_DIRECTION` | `left-to-right` | Used for editorial layout hints |
 
@@ -186,5 +187,6 @@ available for variable substitution in Step 7.
 
 ---
 
-*Last updated: 2026-04-04 (v0.6)*  
+*Last updated: 24-08-2026 (v0.9.2)*
+*Adds: fixed stale META_DESC_MAX_CHARS (160 → 155, matches SEO_RULES/universal.md)*
 *Maintainer: Chris — SEOwlsClaw locale base, all supported languages*

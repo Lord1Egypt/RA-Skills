@@ -1,38 +1,50 @@
-## Description: <br>
-React component building and composition best practices for creating, reviewing, and refactoring React components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+React component building and composition best practices. Use when creating, reviewing, or refactoring React components. Covers component structure, props patterns, composition techniques, and reusability guidelines.
 
-## Publisher: <br>
-[EaveLuo](https://clawhub.ai/user/EaveLuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eaveluo](https://clawhub.ai/user/eaveluo)
 
-## Use Case: <br>
-Developers and engineers use this skill when creating new React components, reviewing component APIs, refactoring for reuse, or applying composition patterns such as compound components, render props, and hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated React code or recommendations may not match a project's architecture, conventions, accessibility requirements, or state management constraints. <br>
-Mitigation: Review generated components and guidance against project standards before adopting them. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, review, and refactor reusable React components with clearer structure, simpler props, and composition-oriented APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EaveLuo/building-components) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Markdown] <br>
-**Output Format:** [Markdown with React and TypeScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no code execution, credentials, persistence, or hidden system access reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Generated or recommended React component code may not fit a project's architecture, conventions, or correctness requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code for project fit and correctness before adoption.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/eaveluo/skills/building-components)
+- [Publisher Profile](https://clawhub.ai/user/eaveluo)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with React and TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; produces component design recommendations for agent responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

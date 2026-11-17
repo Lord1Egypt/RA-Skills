@@ -1,40 +1,58 @@
-## Description: <br>
-Research a topic via web search, auto-match a relevant GIF, and log results as a Bear note using a configurable template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research a topic via web search, auto-match a relevant GIF, and log results as a Bear note using a configurable template.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Researchers, knowledge workers, and developers use this skill to gather quick web research, pair it with a topic-relevant GIF, and save a structured Markdown-style note in Bear. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics and generated content may be sent to configured search and GIF tools and then saved locally in Bear. <br>
-Mitigation: Use the skill only with topics appropriate for those tools, and review generated notes before storing or sharing them. <br>
-Risk: Template values from user input and web results are inserted into a shell-driven template step, which can mishandle untrusted text. <br>
-Mitigation: Review or patch the script before using sensitive topics; prefer escaping template values or using a safer templating method. <br>
+## Use Case:
 
+Developers and researchers use this skill to gather web research on a topic, add a matching GIF for context, and create a structured Bear note from a configurable template.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/research-logger-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands] <br>
-**Output Format:** [Markdown-style Bear note content with source links, GIF metadata, and shell status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bear on macOS, grizzly, web search access, gifgrep, jq, and a workspace template at notes/research_template.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: User or web-derived text may be handled unsafely and lead to unintended local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid untrusted input until template rendering uses a data-safe method and tag arguments are passed safely.
+
+Risk: Confidential research topics may be exposed through search, GIF lookup, or note-creation dependencies.
+
+Mitigation: Do not use the skill with confidential research topics unless the data path and dependencies have been reviewed.
+
+Risk: The grizzly dependency may change behavior if installed without version pinning.
+
+Mitigation: Pin grizzly to a reviewed version before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/research-logger-tool)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown note content and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a Bear note from search snippets, source links, tags, and GIF metadata when dependencies are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

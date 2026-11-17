@@ -1,0 +1,28 @@
+{
+  "slug": "cards-to-images",
+  "title": "Cards To Images",
+  "category": "content",
+  "summary": "Render approved card packages through deterministic or recoverable generative backends into inspected platform images and a delivery manifest.",
+  "keywords": [
+    "card rendering",
+    "social images",
+    "Xiaohongshu cards",
+    "WeChat inline cards",
+    "Zhihu Idea images",
+    "visual QA",
+    "generation backend",
+    "ChatGPT handoff"
+  ],
+  "user_needs": [
+    "turn approved card copy into real PNG or JPG files",
+    "render Xiaohongshu, WeChat, or Zhihu Idea card images",
+    "inspect every card image before upload",
+    "recover external image generation into the local card pipeline",
+    "produce a cards manifest for local delivery or optional public URLs"
+  ],
+  "source_dir": "skills/content/cards-to-images",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

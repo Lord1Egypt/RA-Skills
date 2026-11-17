@@ -1,43 +1,54 @@
-## Description: <br>
-Generates professional voiceover narration for videos with audio-video sync using text-to-speech tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates synchronized voiceover narration for a video by analyzing scenes, creating or refining timed narration, synthesizing audio with Azure TTS, and merging it into an output video.
 
-## Publisher: <br>
-[feiskyer](https://clawhub.ai/user/feiskyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feiskyer](https://clawhub.ai/user/feiskyer)
 
-## Use Case: <br>
-Developers, creators, and technical content teams use this skill to analyze a video, write or refine timed narration, synthesize voice audio, and merge it into a synchronized narrated video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local API key handling for text-to-speech services can expose credentials if values are printed, committed, or shared. <br>
-Mitigation: Store credentials in the configured local environment file, check only for their presence, and never display secret values. <br>
-Risk: Broad activation wording may trigger the skill for requests involving music, sound effects, or unrelated audio editing. <br>
-Mitigation: Clarify ambiguous audio requests before generating narration or modifying a video. <br>
-Risk: Text submitted for speech synthesis may be sent to an external text-to-speech provider. <br>
-Mitigation: Avoid submitting sensitive text unless the user accepts the provider data-handling implications. <br>
+## Use Case:
 
+Developers, content creators, and agents use this skill to add professional voiceover narration to screen recordings, demos, tutorials, presentations, or other video files while keeping audio aligned with visual scene timing.
 
-## Reference(s): <br>
-- [Azure TTS Voice Reference](references/voices.md) <br>
-- [ClawHub skill page](https://clawhub.ai/feiskyer/narrate-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with Python configuration and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a configured narration script, generated audio segments, and a narrated video file when executed by the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Private video frames may remain in predictable shared temporary paths during scene extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a unique private temporary directory for frame extraction and remove extracted frames after verification.
+
+Risk: Narration text is sent to Azure TTS and may incur cloud usage costs.
+
+Mitigation: Confirm the user expects Azure Speech processing before generation and keep Azure credentials private.
+
+## Reference(s):
+
+- [Azure TTS Voice Reference](artifact/references/voices.md)
+- [Narration Script Template](artifact/scripts/narration_script_template.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python configuration and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a timed narration segment list and a configured local Python script that can generate Azure TTS audio segments and assemble a narrated video file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

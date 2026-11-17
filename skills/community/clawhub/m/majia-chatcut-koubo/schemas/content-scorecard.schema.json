@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/content-scorecard.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "scorecardId",
+    "projectId",
+    "transcriptId",
+    "transcriptRevision",
+    "editPlanId",
+    "method",
+    "signals",
+    "narrativeCandidates",
+    "decisionQueue",
+    "predictionPolicy"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/content-scorecard.schema.json"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "scorecardId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "transcriptId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "transcriptRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/sha256"
+    },
+    "editPlanId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "method": {
+      "const": "deterministic-structural-v1"
+    },
+    "signals": {
+      "type": "array",
+      "minItems": 7,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "signalId",
+          "kind",
+          "value",
+          "unit",
+          "basisRefs"
+        ],
+        "properties": {
+          "signalId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "kind": {
+            "enum": [
+              "total-words",
+              "kept-words",
+              "opening-words",
+              "opening-density",
+              "low-confidence-words",
+              "risk-flagged-words",
+              "evidence-coverage",
+              "removed-segments",
+              "reordered-segments"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "minimum": 0
+          },
+          "unit": {
+            "enum": [
+              "count",
+              "ratio",
+              "words-per-second"
+            ]
+          },
+          "basisRefs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            }
+          }
+        }
+      }
+    },
+    "narrativeCandidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "candidateId",
+          "role",
+          "sourceSegmentId",
+          "sourceWordIds",
+          "currentOrder",
+          "suggestedOrder",
+          "rationaleCodes",
+          "inventedContent",
+          "approval"
+        ],
+        "properties": {
+          "candidateId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "role": {
+            "enum": [
+              "hook",
+              "problem",
+              "contrast-or-example",
+              "method",
+              "result",
+              "soft-cta"
+            ]
+          },
+          "sourceSegmentId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "sourceWordIds": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            }
+          },
+          "currentOrder": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "suggestedOrder": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "rationaleCodes": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "POSITIONAL_CANDIDATE_ONLY",
+                "SOURCE_CONTENT_REUSED",
+                "HUMAN_SEMANTIC_REVIEW_REQUIRED"
+              ]
+            }
+          },
+          "inventedContent": {
+            "const": false
+          },
+          "approval": {
+            "$ref": "creator-os-common.schema.json#/$defs/approval"
+          }
+        }
+      }
+    },
+    "decisionQueue": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "decisionId",
+          "kind",
+          "subjectRef",
+          "reasonCodes",
+          "evidenceRefs",
+          "approval"
+        ],
+        "properties": {
+          "decisionId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "kind": {
+            "enum": [
+              "narrative-role",
+              "low-confidence",
+              "content-risk",
+              "destructive-edit"
+            ]
+          },
+          "subjectRef": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "reasonCodes": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)+$"
+            }
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            }
+          },
+          "approval": {
+            "$ref": "creator-os-common.schema.json#/$defs/approval"
+          }
+        }
+      }
+    },
+    "predictionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "viralityProbability",
+        "generatedText"
+      ],
+      "properties": {
+        "viralityProbability": {
+          "const": "not-produced"
+        },
+        "generatedText": {
+          "const": false
+        }
+      }
+    }
+  }
+}

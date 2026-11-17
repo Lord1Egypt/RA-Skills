@@ -1,40 +1,54 @@
-## Description: <br>
-Analyze smart contracts, token mechanics, permissions, fee flows, upgradeability, market risks, and likely attack surfaces for onchain projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes smart contracts, token mechanics, permissions, fee flows, upgradeability, market risks, and likely attack surfaces for onchain projects such as ERC-20s, launchpads, vaults, staking systems, LP fee routing, ownership controls, proxy setups, and suspicious token behavior.
 
-## Publisher: <br>
-[0xRowan](https://clawhub.ai/user/0xRowan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xrowan](https://clawhub.ai/user/0xrowan)
 
-## Use Case: <br>
-Developers, auditors, and protocol reviewers use this skill to structure onchain contract and token reviews around permissions, upgradeability, token mechanics, fee flows, market-facing risks, and attack surfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's analysis can be outdated or incomplete when live contract state, deployment addresses, source code, ABI, or chain data are missing or stale. <br>
-Mitigation: Verify conclusions against current contract source, deployment addresses, ABI, and live chain state before relying on them. <br>
-Risk: Readers could treat security-oriented token or contract analysis as financial advice. <br>
-Mitigation: Use the output as security analysis only, and make financial or deployment decisions through separate review processes. <br>
+## Use Case:
 
+Developers, auditors, and security reviewers use this skill to structure practical reviews of onchain contracts, tokens, launch modules, vaults, staking systems, routers, proxies, and related protocol components. It helps them identify controls, value flows, privileged actions, upgrade risks, token behavior, and open questions before relying on a project.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xRowan/onchain-contract-token-a) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with findings, trust model, token or fee flow, and open questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; conclusions may depend on current contract source, deployment addresses, ABI, and live chain state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Live onchain checks may reveal contracts or investigation targets to public explorers or chain providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved providers and avoid submitting confidential, embargoed, or personally sensitive investigation targets unless policy allows it.
+
+Risk: Analysis can be incomplete when source code, ABI, deployment data, or current chain state is missing.
+
+Mitigation: Confirm conclusions against verified source, deployment information, and current chain or explorer data before relying on the findings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xrowan/skills/onchain-contract-token-a)
+- [Publisher Profile](https://clawhub.ai/user/0xrowan)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown report with summary, findings, trust model, token and fee flow, and open questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include severity-ordered findings, contract or function references, conditionality notes, and requests for missing source, ABI, deployment, or live chain data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

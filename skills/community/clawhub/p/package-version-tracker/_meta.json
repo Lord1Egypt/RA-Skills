@@ -1,6 +1,34 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
-  "slug": "package-version-tracker",
-  "version": "1.0.1",
-  "publishedAt": 1773660418399
+  "name": "package-version-tracker",
+  "version": "1.0.0",
+  "description": "快速查询 npm/pypi 包版本信息，追踪最新版本和历史版本",
+  "entry": "scripts/package_version_tracker.py",
+  "commands": [
+    {
+      "name": "npm",
+      "usage": "/version npm <package_name>",
+      "description": "查询 npm 包版本信息"
+    },
+    {
+      "name": "pypi",
+      "usage": "/version pypi <package_name>",
+      "description": "查询 PyPI 包版本信息"
+    },
+    {
+      "name": "compare",
+      "usage": "/version compare <v1> <v2>",
+      "description": "比较两个版本号大小"
+    }
+  ],
+  "triggers": [
+    "查一下 npm 包版本",
+    "pypi 版本",
+    "package version",
+    "包版本查询",
+    "npm latest",
+    "pip show"
+  ],
+  "permissions": ["network"],
+  "author": "OpenClaw",
+  "tags": ["npm", "pypi", "version", "package", "developer-tools"]
 }

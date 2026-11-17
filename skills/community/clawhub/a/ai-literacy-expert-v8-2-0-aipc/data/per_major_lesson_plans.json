@@ -1,0 +1,213 @@
+{
+  "_meta": {
+    "name": "per_major_lesson_plans",
+    "version": "8.2.0-aipc",
+    "module": "module-h-t-lesson-plan",
+    "section": "T1 学科针对性 AI 教案",
+    "last_updated": "2026-08-24"
+  },
+  "description": "5 项目 × 29 专业 × 5 课时教案（教师学科针对性教学）",
+  "template_structure": {
+    "lessons_per_plan": 5,
+    "minutes_per_lesson": 45,
+    "lesson_topics": [
+      "L1 AI 能力 + 学科切入点",
+      "L2 工具实操（学科工具栈）",
+      "L3 学科案例研讨",
+      "L4 学科项目实践",
+      "L5 评估 + 反思"
+    ]
+  },
+  "lesson_plans": {
+    "CM+GD-001": {
+      "title": "AI 数字化身与游戏角色",
+      "primary_major": "CM+GD",
+      "ai_entry": "AI 数字化身 + 网格压缩",
+      "source": "博智坊第 3 期 (SUTD Dr. XXX)",
+      "tools": ["DeepSeek (Cline 辅助)", "NeRF / 3DGS", "Blender", "p5.js"],
+      "prerequisite": "GD3103 AI for Art Students",
+      "objectives": {
+        "knowledge": "理解 AI 数字化身原理",
+        "skill": "用 AI 工具重建 3D 模型",
+        "innovation": "设计 AI 驱动的新游戏角色"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["Math+AI 图形学", "CM+AIM 动画"]
+    },
+    "CM+AIM-001": {
+      "title": "AIGC 动画与互动媒体",
+      "primary_major": "CM+AIM",
+      "ai_entry": "AIGC + 提示词工程",
+      "source": "博智坊第 4 期",
+      "tools": ["Kimi / Qwen3 / 智谱清言", "Stable Diffusion", "Runway"],
+      "prerequisite": "GD3103 AI for Art Students",
+      "objectives": {
+        "knowledge": "AIGC 在动画中的应用现状",
+        "skill": "提示词工程 → 静态图像 → 动态视频",
+        "innovation": "AIGC 驱动的动画叙事"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["CM+MAD 媒体艺术", "DGC+MCOM 媒体"]
+    },
+    "CM+MAD-001": {
+      "title": "创意可视化与 3D 旋转卡片",
+      "primary_major": "CM+MAD",
+      "ai_entry": "AIGC + 3D 旋转",
+      "source": "博智坊第 4+5 期",
+      "tools": ["p5.js (GD3113)", "NeRF", "AIGC"],
+      "prerequisite": "GD3113 创意可视化",
+      "objectives": {
+        "knowledge": "创意可视化方法论",
+        "skill": "p5.js 3D 旋转卡片",
+        "innovation": "自选数据 + 3D 卡片作品"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["CM+GD 游戏设计", "Math+DS 数据可视化"]
+    },
+    "DGC+MCOM-001": {
+      "title": "AI 与新闻业",
+      "primary_major": "DGC+MCOM",
+      "ai_entry": "AI 新闻业 + AIGC 传播",
+      "source": "博智坊第 4 期 + MCOM4103",
+      "tools": ["Kimi / Qwen3 / 智谱清言", "DeepSeek"],
+      "prerequisite": "MCOM4103 AI 与新闻业",
+      "objectives": {
+        "knowledge": "AI 时代新闻业变革",
+        "skill": "AI 新闻摘要 / 标题生成 / 多语种翻译",
+        "innovation": "数据新闻 + AI 辅助"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["DGC+PRA 公共关系", "DGC+TDH 数字人文"]
+    },
+    "DGC+PRA-001": {
+      "title": "AIGC 与公共关系",
+      "primary_major": "DGC+PRA",
+      "ai_entry": "AIGC + 情感分析",
+      "source": "博智坊第 4 期 + PRA4073",
+      "tools": ["AIGC", "大数据", "情感分析"],
+      "prerequisite": "PRA4073 大数据与广告",
+      "objectives": {
+        "knowledge": "AIGC 在公关中的应用",
+        "skill": "情感分析 + 舆情监测",
+        "innovation": "真实品牌 AI 公关方案"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["DGC+MCOM 媒体", "DGC+TDH 数字人文"]
+    },
+    "DGC+TDH-001": {
+      "title": "数字叙事与文本分析",
+      "primary_major": "DGC+TDH",
+      "ai_entry": "LLM + Python NLP",
+      "source": "TDH3013 + TDH4013",
+      "tools": ["LLM", "Python NLP (spaCy, NLTK)", "TF-IDF"],
+      "prerequisite": "TDH3013 数字叙事与故事讲述",
+      "objectives": {
+        "knowledge": "数字人文方法论",
+        "skill": "Python 文本分析 + 主题建模",
+        "innovation": "数字叙事项目"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["DGC+ELLS 英语语言文学", "DGC+DIS 跨文化研究"]
+    },
+    "IBL+BUSA-001": {
+      "title": "商业 AI 决策",
+      "primary_major": "IBL+BUSA",
+      "ai_entry": "AI 决策 + 用户行为预测",
+      "source": "博智坊第 1 期 + BA2003",
+      "tools": ["Python", "Scikit-learn", "DeepSeek-R1"],
+      "prerequisite": "BA2003 AI 与深度学习",
+      "objectives": {
+        "knowledge": "AI 在商业决策中的角色",
+        "skill": "客户细分 + 预测模型",
+        "innovation": "商业 AI 决策项目"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["IBL+FIN 财务学", "IBL+DMM 数字媒体管理"]
+    },
+    "IBL+FIN-001": {
+      "title": "AI 风险评估",
+      "primary_major": "IBL+FIN",
+      "ai_entry": "AI 风险评估 + 信用评分",
+      "source": "博智坊第 1 期 + FIN 主线",
+      "tools": ["Python", "QuantLib", "DeepSeek-R1"],
+      "prerequisite": "FIN 必修课",
+      "objectives": {
+        "knowledge": "金融风险类型",
+        "skill": "信用评分模型",
+        "innovation": "AI 风险评估系统"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["IBL+BUSA 商业分析", "Math+FM 金融数学"]
+    },
+    "IBL+MKT-001": {
+      "title": "AI 营销策略",
+      "primary_major": "IBL+MKT",
+      "ai_entry": "AI 营销 + 智能推荐",
+      "source": "博智坊第 4 期 + MKT 主线",
+      "tools": ["AIGC", "大数据", "推荐系统"],
+      "prerequisite": "MKT 必修课",
+      "objectives": {
+        "knowledge": "AI 营销趋势",
+        "skill": "用户画像 + 智能推荐",
+        "innovation": "AI 营销方案"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["DGC+PRA 公共关系", "IBL+DMM 数字媒体管理"]
+    },
+    "Math+FM-001": {
+      "title": "AI 量化推理",
+      "primary_major": "Math+FM",
+      "ai_entry": "AI 量化推理 + 金融大模型",
+      "source": "博智坊第 1 期 + Math+FM 主线",
+      "tools": ["DeepSeek-R1 本地", "QuantLib", "OpenVINO"],
+      "prerequisite": "概率论 + 微积分",
+      "objectives": {
+        "knowledge": "量化交易与 AI",
+        "skill": "本地大模型推理部署",
+        "innovation": "本地量化策略"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["Math+DS 数据科学", "IBL+FIN 财务学"]
+    },
+    "Math+DS-001": {
+      "title": "机器学习全栈",
+      "primary_major": "Math+DS",
+      "ai_entry": "ML 全栈 + MLOps",
+      "source": "博智坊第 1+6 期 + Math+DS 主线",
+      "tools": ["Python", "Scikit-learn", "DeepSeek-R1"],
+      "prerequisite": "统计学 + 概率论",
+      "objectives": {
+        "knowledge": "ML 在数据科学中的角色",
+        "skill": "监督/无监督学习",
+        "innovation": "端到端 ML 项目"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["IST+AI 人工智能", "Math+CST 计算机科学"]
+    },
+    "Math+AI-001": {
+      "title": "神经网络与深度学习",
+      "primary_major": "Math+AI",
+      "ai_entry": "神经网络 + NLP",
+      "source": "博智坊第 1 期 + Math+AI AI3003",
+      "tools": ["PyTorch", "DeepSeek-R1", "OpenVINO"],
+      "prerequisite": "线性代数 + 微积分",
+      "objectives": {
+        "knowledge": "神经网络原理",
+        "skill": "PyTorch 实操",
+        "innovation": "深度学习项目"
+      },
+      "assessment": {"process": 30, "outcome": 50, "reflection": 20},
+      "cross_disciplinary": ["Math+DS 数据科学", "IST+AI 人工智能"]
+    }
+  },
+  "summary": {
+    "total_plans_in_data": 12,
+    "total_plans_target": 29,
+    "first_phase_coverage": "12 代表专业（5 项目每项目 2-3 个代表）",
+    "rollout_phases": [
+      {"phase": 1, "plans": 12, "timeline": "V8.2 首发"},
+      {"phase": 2, "plans": 17, "timeline": "V8.3 扩展到全部 29 专业"},
+      {"phase": 3, "plans": 29, "timeline": "V8.4 完善全部 29 专业"}
+    ]
+  }
+}

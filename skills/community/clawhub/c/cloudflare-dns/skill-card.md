@@ -1,40 +1,59 @@
-## Description: <br>
-Manage Cloudflare DNS records through the Cloudflare API, including listing, creating, updating, deleting, and DDNS updates for common record types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Cloudflare DNS records via API. Use when user asks to list, create, update, or delete DNS records, set up DDNS, manage domains on Cloudflare, or check DNS propagation. Supports A, AAAA, CNAME, TXT, MX, and other record types.
 
-## Publisher: <br>
-[pushp1997](https://clawhub.ai/user/pushp1997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pushp1997](https://clawhub.ai/user/pushp1997)
 
-## Use Case: <br>
-Developers, site operators, and agents use this skill to inspect and manage Cloudflare DNS records, automate DDNS updates, and prepare DNS maintenance commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cloudflare API tokens can grant sensitive DNS permissions if exposed or over-scoped. <br>
-Mitigation: Use a least-privilege Cloudflare token, avoid logging or sharing it, and keep credentials in the environment or another secure secret store. <br>
-Risk: Incorrect DNS create, update, delete, or DDNS operations can disrupt websites, email, or services. <br>
-Mitigation: List and verify target records before changes, review proposed commands before execution, and confirm record IDs before deletion or update. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cloudflare DNS skill page](https://clawhub.ai/pushp1997/cloudflare-dns) <br>
-- [Cloudflare API v4 endpoint](https://api.cloudflare.com/client/v4) <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and modify Cloudflare DNS records, including zone lookup, record creation, updates, deletion, and DDNS updates through the bundled shell script.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; script execution can return JSON or tabular text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CF_API_TOKEN and may use CF_ZONE_ID; commands can change DNS records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create, update, delete, and DDNS-update live Cloudflare DNS records when given an API token.
+
+Mitigation: Use a Cloudflare token restricted to the needed zone and DNS permissions, and require the agent to show the current record plus the exact planned change before any create, update, delete, or DDNS action.
+
+Risk: Cloudflare API tokens could be exposed if copied into prompts, logs, files, or command history.
+
+Mitigation: Store the token in a protected environment variable or secret manager, keep it out of logs and files, and rotate it if exposure is suspected.
+
+Risk: DDNS behavior can create or update an A record based on the public IP returned by external lookup services.
+
+Mitigation: Confirm the target record name and resolved public IP before applying DDNS changes, especially for production hostnames.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pushp1997/skills/cloudflare-dns)
+- [Cloudflare API endpoint](https://api.cloudflare.com/client/v4)
+- [ipify public IP service](https://api.ipify.org)
+- [ifconfig.me public IP service](https://ifconfig.me)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Cloudflare API credentials from environment variables or command flags; the bundled script emits JSON for record operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

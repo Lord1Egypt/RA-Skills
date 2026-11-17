@@ -1,0 +1,89 @@
+{
+  "keys": [
+    {
+      "kid": "sar-prod-ed25519-01",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "n0OM0xBI3wCfJW4_PwUY8zy4yFEArOJQGnqS9CnEfX8",
+      "created": "2026-02-14T04:13:26.619025Z"
+    },
+    {
+      "kid": "sar-prod-ed25519-02",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "2a_BEldn8DHwfU-Gi3QmYbIZ6TB0mBn6HrXTA6BHAgI",
+      "created": "2026-03-20T20:00:00Z",
+      "note": "No operational use found (exhaustive search: 0 of 553 attest-service ledger records reference this kid, confirmed 2026-07-12). Public key identical to sar-prod-ed25519-03 (32-byte raw Ed25519 key sha256=80c0ed9685d03ff27b01446ed5c1c0702e0c60151e1f7ffeb3d15fa53de51baf); sar-prod-ed25519-03 is the evidenced operational identity associated with these public-key bytes (221 attest-service ledger receipts + 17 morpheus corpus receipts, 2026-04-10 through 2026-07-05). Retained for historical registry transparency; not deleted, not reclassified. This entry's 'created' timestamp is contradicted by two independent on-disk snapshots from 2026-03-20 (20:07/20:36 UTC) containing only sar-prod-ed25519-01, so its provenance is unverified, not confirmed. No conclusion is made about the unknown original author or intent -- no proven alias, independent signing key, compromise, or operational-signer claim is made. classification=documented_non_operational_duplicate (internal validator classification only; not a public lifecycle status; no status field is added). equality_evidence=reports/audits/sar-prod-ed25519-02-03-public-key-equality-20260712.json;sha256=c9437f4a18d16cef9362165c56539caeefdb8992df8c033d4116ead4b6513b84. lineage_evidence=reports/audits/sar-prod-ed25519-02-03-generation-lineage-20260712.md;sha256=32b9765d13bc41379706b5629e318b2c518f7d9f9a153600ebf9e2caff349ca1. d4_clarification=state/DECISIONS.md#d4-clarification-shared-public-key-identity-governance-2026-07-12. keith_approval_reference=<pending -- see production correction packet>."
+    },
+    {
+      "kid": "sar-prod-ed25519-03",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "2a_BEldn8DHwfU-Gi3QmYbIZ6TB0mBn6HrXTA6BHAgI",
+      "created": "2026-04-10T18:41:58Z",
+      "status": "retired",
+      "note": "Real historical settlement-witness SAR production signer, 2026-04-10 through 2026-07-05 (221 attest-service ledger receipts + 17 morpheus corpus receipts). Superseded by sar-prod-ed25519-05. identity_custody_contradiction_check=resolved_by_documented_non_operational_duplicate_classification (duplicate_kids_addressed=[sar-prod-ed25519-02]; see reports/registry/transitions/sar-prod-ed25519-02-non-operational-duplicate-annotation-20260712.json). historical_verification_evidence=settlement-witness tests/test_sar_prod_03_historical_verification.py;successor_kid=sar-prod-ed25519-05;successor_active_evidence=reports/registry/transitions/sar-prod-ed25519-05-reserved-to-active-20260712.json;fail_closed_signer_selection_deployment_evidence=reports/external-actions/settlement-witness-fail-closed-signer-selection-deployment-20260712.md (settlement-witness commit bb74b7c, deployed live 2026-07-12T15:41:58Z, implicit -03 fallback removed);keith_approval_reference=this session's chat instruction, 2026-07-12 (transition-specific retirement authorization for sar-prod-ed25519-03 only)."
+    },
+    {
+      "kid": "defaultverifier-recording-ed25519-1",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "alg": "Ed25519",
+      "public_key_hex": "5675f7c40c934edc66e34d9205be8d82c022378f3cf955d0058ed2f9e5c79720",
+      "use": "sar402_recording_attribution",
+      "purpose": "Attributes DefaultVerifier recording act only; not delivery, payment, access, release, settlement, or finality.",
+      "status": "retired",
+      "not_before": "2026-06-24T22:08:00Z",
+      "note": "Reserved for future/non-live use; no active private signer located as of 2026-07-05. Retired 2026-07-18 (status: retired) under D7/D4, retry 1, sudo-scoped write mechanism. retirement_evidence=reports/registry/transitions/defaultverifier-recording-ed25519-1-reserved-to-retired-20260718.json"
+    },
+    {
+      "kid": "defaultverifier-recording-ed25519-2",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "alg": "Ed25519",
+      "public_key_hex": "e8608e251cce27bfe497da27e97a08d3e1efca4bd4809fb6364fb2af9a34f29e",
+      "use": "sar402_recording_attribution",
+      "purpose": "Attributes DefaultVerifier recording act only; not delivery, payment, access, release, settlement, or finality.",
+      "status": "active",
+      "not_before": "2026-07-08T23:01:15Z",
+      "note": "Fresh Path B recording key generated 2026-07-08 under Option B sealed/encrypted key-file custody; reserved only pending runtime configuration, signed-wrapper proof, and separate activation approval. Activated 2026-07-11 (status: active). activation_evidence=reports/registry/transitions/defaultverifier-recording-ed25519-2-reserved-to-active-20260711.json;sha256=0572c5d47fbc186e75c40035ea85b4dacdeadff543da9211ab173f0ea6cbba24"
+    },
+    {
+      "kid": "defaultverifier-evaluator-ed25519-1",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "alg": "Ed25519",
+      "public_key_hex": "ad88901c016e2f196ffc6d150227588288f70fe897f54938ef0eeaa567563ee0",
+      "use": "continuity_evaluation_receipt_signing",
+      "purpose": "Signs ds.continuity_evaluation.v0.1 receipts only; not release, execution, payment, settlement, or finality.",
+      "status": "reserved",
+      "not_before": "2026-06-27T00:00:00Z",
+      "note": "Reserved for future/non-live use; no active private signer located as of 2026-07-05."
+    },
+    {
+      "kid": "sar-prod-ed25519-04",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "alg": "Ed25519",
+      "public_key_hex": "8e15a4fa17aeb91436401e060ba714d6924904bde14c2036641e2793268eb786",
+      "use": "sar_settlement_witness_signing",
+      "purpose": "Signs settlement-witness SAR receipts only; not delivery, payment, access, release, or finality.",
+      "status": "reserved",
+      "not_before": "2026-07-09T00:00:00Z",
+      "note": "Reserved replacement for sar-prod-ed25519-03 following the 2026-06-27 env-var collision drift and 2026-07-09 exposure incident. Generation/custody (G2) complete per commit 6966374. Not active until proof-of-signing (G8) and separate activation approval (G9) complete. sar-prod-ed25519-03 remains unretired pending separate approval (G12)."
+    },
+    {
+      "kid": "sar-prod-ed25519-05",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "alg": "Ed25519",
+      "public_key_hex": "eef4c4b446c615da04c607e35a94008874512554282072c06385d7bf2d713067",
+      "use": "sar_settlement_witness_signing",
+      "purpose": "Signs settlement-witness SAR receipts only; not delivery, payment, access, release, or finality.",
+      "status": "active",
+      "not_before": "2026-07-09T00:00:00Z",
+      "note": "Loader-compatible (PKCS8 PEM via SAR_ED25519_PRIVATE_KEY_FILE) replacement for the unusable sar-prod-ed25519-04 custody artifact. Generation/custody complete per commit d9f580a with real-loader round-trip verification. Activated 2026-07-12T03:38:49Z (status: active). activation_evidence=reports/registry/transitions/sar-prod-ed25519-05-reserved-to-active-20260712.json;pre_registry_sha256=ed6127c9b96fbb5735591bde8099d1306c2fc5c09a184218981f9fbe5880c55b (this field names the pre-transition registry-file digest only, not the activation-artifact's own digest -- see the cited artifact for its independent hash). sar-prod-ed25519-04 remains reserved/unusable; sar-prod-ed25519-03 remains unretired pending separate approval.",
+      "x": "7vTEtEbGFdoExgfjWpQAiHRRJVQoIHLAY4XXvy1xMGc"
+    }
+  ]
+}

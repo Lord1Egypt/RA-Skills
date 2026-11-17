@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "L2S"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["l2s"]
   icon: "https://static.oomol.com/logo/third-party/l2s.png"
 ---
@@ -38,7 +38,7 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `get_url_details` — Get the stored details for one shortened URL in L2S.
-- `shorten_url` — Create a shortened URL in L2S with optional custom key, UTM tags, and title.
+- `shorten_url` — Create a shortened URL in L2S with optional custom key, UTM tags, and title. [write]
 - `update_url_details` — Update the stored details for one shortened URL in L2S. [write]
 
 ## Safety
@@ -70,11 +70,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — L2S is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=l2s
+  https://console.oomol.com/connections/l2s
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - L2S homepage: https://www.l2s.is
+- API documentation: https://docs.l2s.is/api-8021271

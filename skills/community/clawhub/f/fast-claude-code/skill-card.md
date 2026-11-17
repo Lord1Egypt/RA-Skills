@@ -1,43 +1,62 @@
-## Description: <br>
-Runs Claude Code tasks in background tmux sessions and sends completion callbacks for single, interactive, or team workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast Claude Code runs Claude Code tasks in background tmux sessions with Single, Interactive, and Team modes, then notifies the user through a completion callback.
 
-## Publisher: <br>
-[deadlining](https://clawhub.ai/user/deadlining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deadlining](https://clawhub.ai/user/deadlining)
 
-## Use Case: <br>
-Developers and engineers use this skill to run Claude Code tasks asynchronously, coordinate multi-agent team work, and receive completion notifications without polling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run Claude Code unattended with broad project authority. <br>
-Mitigation: Use --permission-mode plan unless the project is trusted and version-controlled. <br>
-Risk: Team runs edit project Claude settings and install completion hooks. <br>
-Mitigation: Inspect .claude/settings.json and .claude/hooks before and after team runs. <br>
-Risk: Webhook or ntfy callbacks can transmit task content, source code, logs, or secrets. <br>
-Mitigation: Avoid external callback destinations for sensitive prompts or outputs unless the destination is trusted. <br>
+## Use Case:
 
+Developers and engineers use this skill to launch Claude Code work in the background, keep long-running or multi-agent sessions alive, and receive completion notifications without polling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deadlining/fast-claude-code) <br>
-- [DeadLining publisher profile](https://clawhub.ai/user/deadlining) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and shell command output with callback summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs through bash, Claude Code, tmux, and OpenClaw; jq is optional for general use and required for team hook management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: release evidence) <br>
+Risk: Auto mode runs Claude Code with broad unattended authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use plan mode by default and enable auto mode only in trusted, version-controlled projects after reviewing the task and scripts.
+
+Risk: Callbacks can forward task text and output through OpenClaw, webhook, or ntfy destinations.
+
+Mitigation: Use callback destinations you control and avoid sending sensitive work through webhook or ntfy callbacks.
+
+Risk: Team mode writes a Claude Stop hook and updates project Claude settings.
+
+Mitigation: Review existing .claude hooks and settings before use, and run in a project where hook changes can be inspected or reverted.
+
+Risk: Task content, session state, and debug details may be written under /tmp during execution.
+
+Mitigation: Avoid sensitive prompts and clean temporary session or debug files after runs where confidentiality matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deadlining/skills/fast-claude-code)
+- [ClawHub publisher profile](https://clawhub.ai/user/deadlining)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and terminal text with shell command examples, callback summaries, and optional generated code, reports, or configuration changes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs Claude Code through tmux; Team mode can create Markdown reports and update Claude project hook configuration.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

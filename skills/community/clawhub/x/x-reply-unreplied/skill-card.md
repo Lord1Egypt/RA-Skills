@@ -1,43 +1,60 @@
-## Description: <br>
-Check X notifications, mentions, or reply threads and answer posts that still need a response from the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check X notifications, mentions, or reply threads and answer posts that still need a response from the user.
 
-## Publisher: <br>
-[dishant0406](https://clawhub.ai/user/dishant0406) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dishant0406](https://clawhub.ai/user/dishant0406)
 
-## Use Case: <br>
-External users with an X account use this skill to review notifications, mentions, or reply threads and post concise, first-person replies where the account has not already responded. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can like posts and publish replies from the user's X account. <br>
-Mitigation: Review or require approval for each proposed reply before posting, and confirm the final report lists every reply and skip decision. <br>
-Risk: The reply style guidance may encourage first-person feelings or experience claims that are not grounded in facts the user supplied. <br>
-Mitigation: Keep replies thread-specific and avoid claims about personal experience, emotion, or prior use unless the user provided that context. <br>
+## Use Case:
 
+External users use this skill to review X notifications, mentions, or requested reply threads and respond to suitable unreplied posts in a concise first-person style.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dishant0406/x-reply-unreplied) <br>
-- [Human Voice](references/human-voice.md) <br>
-- [Inbox Workflow](references/inbox-workflow.md) <br>
-- [Reply Rules](references/reply-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Short plain-text replies plus a Markdown completion report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default cap of up to 5 suitable reply opportunities per run; replies are 1 or 2 short sentences unless the user asks for longer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence) <br>
+Risk: The skill can like and publish replies from the user's logged-in X account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrow scope and count limit, and ask to review drafts before posting when automatic posting is not desired.
+
+Risk: Replies could be inaccurate when the right answer requires facts that cannot be verified quickly.
+
+Mitigation: Skip those threads or verify the needed facts before drafting a reply.
+
+Risk: High-volume or enforcement-avoidant use could conflict with platform expectations.
+
+Mitigation: Use the skill only for manual reply handling, keep the default cap of up to 5 suitable opportunities, and do not use it for mass replies or enforcement evasion.
+
+## Reference(s):
+
+- [X Reply Unreplied on ClawHub](https://clawhub.ai/dishant0406/skills/x-reply-unreplied)
+- [Human Voice](artifact/references/human-voice.md)
+- [Inbox Workflow](artifact/references/inbox-workflow.md)
+- [Reply Rules](artifact/references/reply-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown completion report with posted reply text and skipped-item reasons]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May operate a browser session to like posts and publish short replies from the user's logged-in X account.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

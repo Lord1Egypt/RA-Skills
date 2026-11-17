@@ -1,42 +1,54 @@
-## Description: <br>
-Generates professional property listings and rental yield, ROI, cash flow, and stamp duty analysis for UK property investments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional property listings and calculate rental yields, ROI projections, cash flow analysis, and stamp duty for UK property investments.
 
-## Publisher: <br>
-[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star)
 
-## Use Case: <br>
-External landlords, property investors, and estate or letting agents use this skill to draft portal-ready UK property listings and produce rental-yield, stamp-duty, cash-flow, tax-impact, and ROI analysis from property details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Property, mortgage, SDLT, and tax calculations may be wrong if inputs are incomplete or UK rules and market assumptions have changed. <br>
-Mitigation: Treat outputs as estimates, show assumptions, and verify current rules and figures with authoritative sources or a qualified professional before relying on them. <br>
-Risk: Users may provide sensitive financial details such as property prices, rental income, tax band, mortgage assumptions, and investment plans. <br>
-Mitigation: Provide only the details needed for the calculation and handle any financial information according to the user's privacy and retention requirements. <br>
+## Use Case:
 
+External landlords, letting agents, estate agents, and property investors use this skill to draft UK property listings and estimate buy-to-let yield, cash flow, SDLT, Section 24 tax impact, and longer-term ROI from user-provided property details.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Skill Instructions](SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jamespatrickthom2003-star/property-rental-yield) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown reports with tables, bullet lists, and calculation breakdowns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes stated assumptions and a financial-advice disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, released 2026-04-08) <br>
+Risk: Property investment, SDLT, and tax outputs are estimates and may be wrong or become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current SDLT and tax rules with official sources or a qualified adviser before relying on the output for investment decisions.
+
+Risk: Users may include unnecessary personal or sensitive property-owner information in prompts.
+
+Mitigation: Provide only the property details needed for the calculation or listing draft.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/skills/property-rental-yield)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, tables, calculations, and property listing copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should state assumptions, show calculation steps, and include the skill's financial-advice disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

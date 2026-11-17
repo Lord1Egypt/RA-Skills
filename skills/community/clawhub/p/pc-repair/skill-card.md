@@ -1,46 +1,61 @@
-## Description: <br>
-电脑维修智能助手通过交互式问诊诊断台式机和笔记本电脑故障，并生成维修方案、成本估算、配件建议和可视化维修报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+电脑维修智能助手通过交互式问诊诊断常见电脑故障，比较自救、DIY 和专业维修方案，并生成维修建议、成本估算、配件建议和可视化报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and support agents use this skill to triage PC hardware, operating-system, network, performance, upgrade, and repair questions. It helps compare emergency self-help, DIY repair, and professional service options with compatibility checks, cost estimates, and safety reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repair commands, disk checks, data recovery, OS reinstall steps, or storage cloning can cause data loss or worsen problems on failing media. <br>
-Mitigation: Back up important data first, confirm each command's effect, stop risky disk operations when storage may be failing, and use professional data recovery when the data is valuable. <br>
-Risk: Hardware disassembly, cleaning, or component replacement can damage parts, create static-discharge risk, or affect warranty coverage. <br>
-Mitigation: Power down and unplug equipment, use anti-static precautions, document serial numbers and warranty status, and choose official or professional service when uncertain. <br>
-Risk: Repair prices, parts availability, and compatibility recommendations may vary by market and date. <br>
-Mitigation: Verify current part specifications, warranty terms, and local prices before buying components or approving a repair quote. <br>
+## Use Case:
 
+External users and support agents use this skill to triage desktop or laptop faults, compare repair options, estimate costs, check upgrade compatibility, and decide when professional repair is appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/pc-repair) <br>
-- [常见电脑故障诊断流程图](references/common_faults.md) <br>
-- [硬件兼容性检查表](references/parts_compatibility.md) <br>
-- [2024年电脑维修价格参考表](references/repair_costs.md) <br>
-- [维修工具和软件使用指南](references/tool_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with diagnostic tables, shell command snippets, and optional HTML report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hardware compatibility checks, repair cost estimates, shopping keywords, risk notices, and printable report sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Repair guidance may include disk, partition, driver, system repair, or reboot operations that can change system state or cause data loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up important data first, explain the expected impact, and ask for explicit confirmation before admin-level, rebooting, disk, partition, or recovery commands.
+
+Risk: Recommended third-party utilities may be downloaded from unsafe or spoofed sources.
+
+Mitigation: Use official vendor sources, verify checksums or signatures when available, and avoid broadly trusting tools flagged by antivirus.
+
+Risk: Hardware handling can damage components, void warranties, or create electrical and static-discharge hazards.
+
+Mitigation: Power down and unplug devices, use static precautions, check warranty status, and recommend professional repair for uncertain or high-risk procedures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/pc-repair)
+- [Common fault diagnostic flows](references/common_faults.md)
+- [Parts compatibility checklist](references/parts_compatibility.md)
+- [Repair cost reference](references/repair_costs.md)
+- [Repair tool guide](references/tool_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown repair guidance with tables, command snippets, and optional HTML report code.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic questions, cost estimates, compatibility checklists, purchasing guidance, tool recommendations, and safety warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

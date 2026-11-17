@@ -1,45 +1,60 @@
-## Description: <br>
-Structured multi-agent collaboration for backend + frontend builds. Use when an orchestrator needs to coordinate a backend engineer and frontend engineer on the same feature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured multi-agent collaboration for backend + frontend builds. Use when an orchestrator needs to coordinate a backend engineer and frontend engineer on the same feature.
 
-## Publisher: <br>
-[nightknight64](https://clawhub.ai/user/nightknight64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nightknight64](https://clawhub.ai/user/nightknight64)
 
-## Use Case: <br>
-Developers and technical leads use this skill to coordinate backend and frontend agents on full-stack features through a shared contract, separate work areas, progress logs, recovery steps, and integration verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow includes deployment activation steps such as copying files, changing symlinks or server configuration, and restarting services. <br>
-Mitigation: Treat deployment steps as manual guidance: review diffs, run tests, confirm paths and target environment, and require explicit approval before copy, symlink, configuration, or restart actions. <br>
-Risk: Shared specs and logs could expose credentials or production secrets if agents or users paste them into collaboration files. <br>
-Mitigation: Do not place real credentials or secrets in shared specs or logs; reference environment variables or approved secret stores instead. <br>
-Risk: Incremental builds can break a live deployment if the active target is switched to a directory that only contains changed files. <br>
-Mitigation: Confirm whether the build is full or incremental, integrate changed files into the live tree before switching targets, verify key endpoints, and keep the previous deployment available for rollback. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate backend and frontend agents around a shared contract, separate work areas, integration logs, verification steps, and deployment handoff guidance for full-stack feature work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nightknight64/agent-collaboration-protocol) <br>
-- [Spec Template](references/spec-template.md) <br>
-- [Integration Log](references/integration-log.md) <br>
-- [Handoff Message Format](references/handoff-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a shared collaboration workspace and template files when the optional initialization script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.3 (source: server release evidence) <br>
+Risk: Deployment guidance may affect live services through copy, symlink, configuration, or restart actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval, confirm the target environment, and prepare backups and rollback steps before executing deployment-related actions.
+
+Risk: Symlink-based deployment can point a service at an incomplete incremental build.
+
+Mitigation: Confirm whether a build is full or incremental, integrate changed files into the live tree when needed, and verify the deployment target before restart.
+
+Risk: Backend and frontend agents may diverge from the shared API contract.
+
+Mitigation: Use the SPEC.md contract as the source of truth and verify endpoint paths, request and response shapes, errors, auth flow, and UI states before release.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/nightknight64/skills/agent-collaboration-protocol)
+- [Spec template](references/spec-template.md)
+- [Integration log format](references/integration-log.md)
+- [Handoff message format](references/handoff-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces contract templates, handoff instructions, verification checklists, deployment guidance, and a setup script pattern for coordinated agent work.]
+
+## Skill Version(s):
+
+1.5.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

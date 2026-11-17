@@ -1,47 +1,60 @@
-## Description: <br>
-Enhance video resolution using Alibaba Cloud Super Resolution API. Use when the user wants to: (1) upscale low-res videos to higher resolution, (2) improve video quality before publishing, or (3) convert 480p videos to 1080p. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhance video resolution using Alibaba Cloud Super Resolution API for upscaling low-resolution videos and improving quality before publishing.
 
-## Publisher: <br>
-[BlackEight4752](https://clawhub.ai/user/BlackEight4752) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blackeight4752](https://clawhub.ai/user/blackeight4752)
 
-## Use Case: <br>
-Developers and media operators use this skill to upscale low-resolution videos through Alibaba Cloud's Super Resolution API and manage video submission, status checks, and downloads from a CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected videos are sent to Alibaba Cloud for processing. <br>
-Mitigation: Use the skill only for videos authorized for third-party cloud processing, and avoid sensitive media unless policy allows it. <br>
-Risk: The skill uses Alibaba Cloud access keys to call the video enhancement API. <br>
-Mitigation: Use least-privilege credentials, keep keys in environment variables or a secret manager, and rotate them according to organizational policy. <br>
-Risk: Dependency versions are not fully pinned in requirements.txt. <br>
-Mitigation: Pin and review dependency versions in controlled environments before deployment. <br>
-Risk: Direct uploads are limited to 2GB and output URLs expire after 24 hours. <br>
-Mitigation: Use OSS URLs for larger files and download completed outputs promptly. <br>
+## Use Case:
 
+Developers and media engineers use this skill to submit supported video files to Alibaba Cloud for 2x super-resolution processing, monitor jobs, and download enhanced output videos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BlackEight4752/alibaba-super-resolution) <br>
-- [Alibaba Cloud Super Resolution API documentation](https://help.aliyun.com/zh/viapi/developer-reference/api-w2n4j6) <br>
-- [Alibaba Cloud AccessKey documentation](https://help.aliyun.com/zh/viapi/getting-started/create-the-accesskey) <br>
-- [Alibaba Cloud SDK documentation](https://help.aliyun.com/document_detail/378659.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, files] <br>
-**Output Format:** [CLI output, JSON status objects, and processed video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Alibaba Cloud credentials for real API calls; demo mode copies the input video when credentials are absent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: Normal use sends input videos to Alibaba Cloud for processing, which may expose private, regulated, or customer-owned media to a third-party cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data handling requirements before use and avoid submitting sensitive videos unless Alibaba Cloud processing is approved for the relevant workflow.
+
+Risk: The skill requires Alibaba Cloud credentials for production use.
+
+Mitigation: Use least-privilege RAM credentials and prefer environment variables or a managed credential provider over passing secrets on the command line.
+
+Risk: Python dependencies are specified with lower bounds, so deployments may resolve newer package versions over time.
+
+Mitigation: Pin and review dependency versions before deployment in controlled or production environments.
+
+## Reference(s):
+
+- [Alibaba Cloud Super Resolution API Documentation](https://help.aliyun.com/zh/viapi/developer-reference/api-w2n4j6)
+- [Alibaba Cloud SDK Documentation](https://help.aliyun.com/document_detail/378659.html)
+- [Create an Alibaba Cloud AccessKey](https://help.aliyun.com/zh/viapi/getting-started/create-the-accesskey?spm=a2c4g.11186623.0.0.317c257fqUr1bO)
+- [ClawHub Skill Page](https://clawhub.ai/blackeight4752/skills/alibaba-super-resolution)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and CLI-generated status text or video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local enhanced video outputs when jobs complete; no fixed token cap.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

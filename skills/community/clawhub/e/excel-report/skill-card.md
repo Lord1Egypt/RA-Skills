@@ -1,43 +1,62 @@
-## Description: <br>
-Generates styled Excel workbooks from CSV, JSON, or Excel data using bundled industry report templates, KPI formulas, and charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates styled, multi-sheet Excel reports from XLSX, CSV, or JSON data using industry templates, formulas, charts, KPI dashboards, and column mapping.
 
-## Publisher: <br>
-[sqlskills](https://clawhub.ai/user/sqlskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moniq888](https://clawhub.ai/user/moniq888)
 
-## Use Case: <br>
-Business analysts, operations teams, and developers use this skill to turn tabular business data into multi-sheet Excel reports for retail, manufacturing, finance, internet, medical, and general KPI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Template formula handling can execute unsafe expressions. <br>
-Mitigation: Use only trusted bundled templates and avoid third-party or edited templates until formula evaluation is replaced with a safe parser. <br>
-Risk: Automatic file opening can launch generated output on the host. <br>
-Mitigation: Run the skill in a controlled environment and review output paths before enabling automatic opening. <br>
-Risk: Reports may process sensitive business, financial, or medical data. <br>
-Mitigation: Use approved data-handling controls and avoid unnecessary sensitive data in input files. <br>
+## Use Case:
 
+Developers, analysts, and operations teams can use this skill to generate professional Excel reporting workbooks for manufacturing, retail, finance, internet, medical, and general KPI workflows. It is suited to converting trusted business data into styled dashboards, detail sheets, formulas, and charts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sqlskills/excel-report) <br>
-- [Artifact usage guide](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with command examples; generated Excel workbooks as .xlsx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports bundled JSON templates, workbook styling, KPI formulas, charts, batch generation, and optional email delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Template or report paths can trigger unsafe code or spreadsheet formula execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch formula handling before installation, use only trusted templates and trusted source data, and apply spreadsheet formula protections before opening generated workbooks.
+
+Risk: Generated reports may be automatically opened after creation.
+
+Mitigation: Disable or patch auto-open behavior before processing untrusted data or producing workbooks in sensitive environments.
+
+Risk: Attacker-influenced output paths may affect where generated files are written.
+
+Mitigation: Constrain output directories and avoid user-controlled output paths unless they are validated by the calling workflow.
+
+Risk: The documentation mentions email flags and SMTP credentials, but server security guidance says the inspected CLI does not implement documented email sending.
+
+Mitigation: Do not provide SMTP credentials to this skill unless email behavior is reviewed, implemented, and tested in the release being used.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/moniq888/skills/excel-report)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Excel workbooks (.xlsx) with Markdown and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workbooks may contain spreadsheet formulas, charts, styled sheets, and template-driven filenames.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

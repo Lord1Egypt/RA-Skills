@@ -1,40 +1,55 @@
-## Description: <br>
-Generates conventional commit messages from staged changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates conventional commit messages from staged changes.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers use this skill to inspect staged Git changes, classify the change type, and draft a human-readable conventional commit message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read staged diffs that include private code or sensitive changes. <br>
-Mitigation: Run it only in repositories where the agent is allowed to inspect staged changes, and review the generated message before use. <br>
-Risk: The workflow may create or overwrite ./commit_msg.txt. <br>
-Mitigation: Check the file after generation and use a more specific invocation if the agent environment supports constraining file writes. <br>
+## Use Case:
 
+Developers use this skill to draft a conventional commit message from staged Git changes. They review the proposed subject, body, and any applicable footer before using it.
 
-## Reference(s): <br>
-- [Sanctum plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline shell commands and a conventional commit message draft.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write the drafted message to ./commit_msg.txt for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The security scan had partial coverage because referenced material was missing from the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced material that is needed for your setup before installing, and assess the skill's trigger behavior in your environment.
+
+Risk: The commit trigger may overlap with other commit-related workflows.
+
+Mitigation: Check that the trigger matches when you want this skill to run before enabling it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-commit-messages)
+- [Project homepage listed in Clawdis metadata](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [Publisher profile](https://clawhub.ai/user/athola)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plain-text conventional commit message with a subject, optional body, and optional footer, written to commit_msg.txt.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The message is a proposal for review; the skill does not create the commit.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

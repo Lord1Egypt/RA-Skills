@@ -1,42 +1,54 @@
-## Description: <br>
-Access Monarch Money financial data: accounts, transactions, budgets, and cashflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Monarch Money financial data for accounts, transactions, budgets, cashflow, and linked-account refreshes.
 
-## Publisher: <br>
-[silentknight87](https://clawhub.ai/user/silentknight87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silentknight87](https://clawhub.ai/user/silentknight87)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Monarch Money accounts, transactions, budgets, and cashflow, or to request a refresh of linked financial accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses sensitive financial account data and stores a reusable Monarch Money session locally. <br>
-Mitigation: Install only on a trusted machine, protect ~/.monarchmoney/mm_session.pickle, avoid syncing it to untrusted storage, and delete it when no longer needed. <br>
-Risk: The refresh command can request synchronization for all linked financial institutions. <br>
-Mitigation: Run refresh only when the user intentionally wants linked accounts synced. <br>
-Risk: Authentication depends on the third-party monarchmoney Python package. <br>
-Mitigation: Review the monarchmoney package before entering Monarch credentials. <br>
+## Use Case:
 
+External users and agents use this skill to query a user's Monarch Money account for balances, transactions, budgets, monthly cashflow, and account refresh status through local CLI wrapper scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/silentknight87/monarch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [JSON from CLI commands, with Markdown setup and usage instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the monarchmoney Python package, and a local Monarch Money session saved at ~/.monarchmoney/mm_session.pickle.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles highly sensitive financial credentials and long-lived Monarch Money sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on a trusted personal machine, avoid shared or recorded terminals, and delete ~/.monarchmoney/mm_session.pickle when local access should no longer be retained.
+
+Risk: Server security guidance flags weak local safeguards around password prompting and session-file permissions.
+
+Mitigation: Review before installing and consider fixing the password prompt and session-file permissions before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/silentknight87/skills/monarch)
+- [Publisher profile](https://clawhub.ai/user/silentknight87)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON data]
+
+**Output Format:** [JSON from CLI commands with Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires prior interactive authentication and a local Monarch Money session file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

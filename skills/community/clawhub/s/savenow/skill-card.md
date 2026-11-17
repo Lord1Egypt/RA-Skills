@@ -1,43 +1,58 @@
-## Description: <br>
-Save durable notes from the current OpenClaw + Telegram conversation into today's memory/YYYY-MM-DD.md, with a semantic-dedupe preview/apply flow and inline Apply/Cancel buttons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save durable notes from the current OpenClaw + Telegram conversation into today's memory/YYYY-MM-DD.md, with a semantic-dedupe preview/apply flow and inline Apply/Cancel buttons.
 
-## Publisher: <br>
-[chelebii](https://clawhub.ai/user/chelebii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chelebii](https://clawhub.ai/user/chelebii)
 
-## Use Case: <br>
-OpenClaw and Telegram users use this skill to preserve durable decisions, fixes, conventions, and system notes from an active chat into a daily workspace memory file after preview or auto-save. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads recent OpenClaw Telegram chat history and can save selected notes into a local daily memory file. <br>
-Mitigation: Install it only in workspaces where that access is acceptable, and use the default preview flow to review proposed notes before writing. <br>
-Risk: Notes may contain sensitive or inaccurate information if the source conversation includes it. <br>
-Mitigation: Apply only reviewed previews for sensitive conversations; reserve /savenow auto for trusted conversations. <br>
-Risk: Auto mode writes directly without the Apply/Cancel confirmation step. <br>
-Mitigation: Prefer /savenow preview for normal use and limit /savenow auto to cases where the conversation and extracted notes are already trusted. <br>
+## Use Case:
 
+OpenClaw users on Telegram use this skill to extract durable decisions, fixes, preferences, and workflow rules from the current conversation and save them to a daily memory file after review.
 
-## Reference(s): <br>
-- [savenow on ClawHub](https://clawhub.ai/chelebii/savenow) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown chat previews, JSON script summaries, and daily memory Markdown updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default /savenow previews without writing; apply and auto modes can write selected notes to memory/YYYY-MM-DD.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: SKILL.md frontmatter, package.json, release evidence) <br>
+Risk: Local command execution can be risky when session identifiers, paths, or command arguments are not strictly controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, allow only trusted users to invoke explicit session keys, and require shell-free Node invocation with validated session and thread identifiers.
+
+Risk: The auto mode can write persistent memory entries without the normal preview and confirmation step.
+
+Mitigation: Prefer plain /savenow with Apply/Cancel for sensitive conversations and reserve /savenow auto for low-risk sessions.
+
+Risk: A pending preview can become stale or differ from what the user intended to save.
+
+Mitigation: Bind Apply to the reviewed entries snapshot or a verified digest, and reject expired or cross-topic pending previews.
+
+## Reference(s):
+
+- [savenow on ClawHub](https://clawhub.ai/chelebii/skills/savenow)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown preview text, JSON script output, and memory/YYYY-MM-DD.md updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preview mode writes pending JSON only after candidate extraction; apply and auto modes can write persistent memory entries.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter, package.json, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

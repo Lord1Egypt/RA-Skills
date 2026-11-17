@@ -1,39 +1,49 @@
-## Description: <br>
-A Chinese-language entertainment roleplay skill that makes an agent respond like a low-performing elementary school student with limited school knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+模拟一个只掌握小学知识的小学生人格技能
 
-## Publisher: <br>
-[imwatching](https://clawhub.ai/user/imwatching) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwatching](https://clawhub.ai/user/imwatching)
 
-## Use Case: <br>
-External users can use this skill for entertainment roleplay where deliberately simple, uncertain, and childlike Chinese responses are desired. It is not intended for reliable math, factual answers, professional analysis, or advanced explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally produces inaccurate, childlike, or incomplete responses. <br>
-Mitigation: Use it only for entertainment roleplay and disable it for reliable math, factual answers, professional analysis, or advanced explanations. <br>
-Risk: The bundled calculator helper uses eval after a narrow input validation step. <br>
-Mitigation: Keep calculator input restricted to simple numeric arithmetic expressions, or replace eval with explicit arithmetic handling before broader deployment. <br>
+## Use Case:
 
+External users and developers can use this skill to make an agent respond in Chinese as a low-performing elementary student persona with simple language, mistakes, and limited knowledge. It is suited for roleplay or personality behavior in general assistant interactions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Natural-language conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses intentionally remain simple, childlike, and unreliable for difficult or out-of-scope questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1-alpha.3 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The bundled calculator helper uses eval() after narrow input validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the helper limited to simple arithmetic expressions and consider replacing eval() with explicit arithmetic parsing before broader deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imwatching/skills/elementary-student)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, code]
+
+**Output Format:** [Natural-language agent responses, with a small Python helper for simple arithmetic]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese roleplay persona; no server-resolved GitHub provenance is available for this release.]
+
+## Skill Version(s):
+
+0.0.1-alpha.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

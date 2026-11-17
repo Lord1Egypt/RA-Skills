@@ -1,0 +1,100 @@
+{
+  "skill": "pmclite-kit-readiness",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "标准齐套：明天能不能开工",
+      "category": "happy_path",
+      "input": {
+        "user_message": "明天这条线的单齐套了吗，能不能开工"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "check_readiness"
+        ],
+        "output_contains": [
+          "缺口",
+          "阻断"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC002",
+      "name": "明细缺口：缺什么料缺多少",
+      "category": "happy_path",
+      "input": {
+        "user_message": "WO-001 缺什么料，缺多少，采购要买多少"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "check_readiness",
+          "query_master_data"
+        ],
+        "output_contains": [
+          "需求量",
+          "库存",
+          "缺口"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC003",
+      "name": "工序级：卡在哪道工序",
+      "category": "happy_path",
+      "input": {
+        "user_message": "这张单是前道缺料还是后道缺料"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "check_readiness"
+        ],
+        "output_contains": [
+          "工序"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC004",
+      "name": "边界：新增物料与BOM（不应触发）",
+      "category": "boundary",
+      "input": {
+        "user_message": "帮我新建一个产品并维护 BOM"
+      },
+      "expected": {
+        "trigger_skill": false,
+        "calls_tool": [
+          "基础资料"
+        ],
+        "output_contains": [
+          "不在范围"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC005",
+      "name": "降级：check_readiness 不可用",
+      "category": "fallback",
+      "input": {
+        "user_message": "查一下这批单的齐套情况"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "query_work_orders"
+        ],
+        "output_contains": [
+          "来源降级"
+        ],
+        "uses_fallback": true
+      }
+    }
+  ]
+}

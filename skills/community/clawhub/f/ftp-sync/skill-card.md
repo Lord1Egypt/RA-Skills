@@ -1,43 +1,57 @@
-## Description: <br>
-Ftp Sync documents and wraps a Python command-line helper for FTP/SFTP-style local and remote file synchronization, incremental backup, sync reporting, and difference checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FTP/SFTP sync tool for synchronizing files between local and remote servers, with documented support for incremental backup, sync reports, and key authentication.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
 
-## Use Case: <br>
-Developers and server administrators can use this skill for guidance and command examples around local-to-remote or remote-to-local file synchronization workflows for website maintenance and server management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper describes backup, deployment, and remote synchronization workflows, but the implementation does not complete real FTP/SFTP transfer behavior. <br>
-Mitigation: Review and test the implementation in a non-production environment before relying on it for backup, deployment, or synchronization tasks. <br>
-Risk: Example commands include password and privileged-account patterns that can expose credentials or increase impact if misused. <br>
-Mitigation: Use key-based or prompted authentication, least-privilege server accounts, and avoid placing real passwords directly in command-line arguments. <br>
-Risk: Server-sync commands can affect the wrong remote path or overwrite expected content if targets are not checked first. <br>
-Mitigation: Run dry-run or diff checks first and verify host, account, and target paths before production use. <br>
+## Use Case:
 
+Developers and server administrators use this skill to generate or run commands for comparing local and remote directories and planning FTP/SFTP upload or download workflows for website maintenance and server management.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/SxLiuYu/ftp-sync) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/SxLiuYu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks and terminal-style text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run, upload, download, or diff command examples for a Python helper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The script is mostly placeholder behavior while the documentation presents it as an FTP/SFTP sync and backup tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as nonfunctional until documentation and implementation are aligned and remote sync behavior has been tested.
+
+Risk: The documented commands pass server passwords on the command line.
+
+Mitigation: Avoid pasting real server passwords into commands; use safer authentication and secret handling before deployment.
+
+Risk: Users may rely on the skill for backups or deployments despite the security verdict warning.
+
+Mitigation: Review before installation and do not rely on it for backups or deployments in its current form.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sxliuyu/skills/ftp-sync)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and Python code guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command-line options for host, user, password, remote path, sync mode, and dry-run behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "channel": "monitor-center",
+  "workflow": "monitor",
+  "focus": "all",
+  "outputTemplate": "monitor_overview",
+  "requiredCapabilities": [
+    "monitor"
+  ],
+  "allowedCommands": [
+    "setup",
+    "configure",
+    "check",
+    "version",
+    "monitor"
+  ]
+}

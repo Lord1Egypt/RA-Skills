@@ -1,42 +1,54 @@
-## Description: <br>
-Guides PMs through a structured PRD review workflow that coordinates backend, client, QA, and design review rounds until the PRD is ready for coding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PMs use this skill to run a structured PRD review workflow after PRD v1.0, coordinating backend, frontend, QA, and design reviews through gated iterations until a coding-ready v3.x draft is reached.
 
-## Publisher: <br>
-[mistyhuqwq-art](https://clawhub.ai/user/mistyhuqwq-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mistyhuqwq-art](https://clawhub.ai/user/mistyhuqwq-art)
 
-## Use Case: <br>
-Product managers and product teams use this skill to organize PRD reviews, classify feedback, drive business-owner clarification, and converge a PRD from an initial draft to a coding-ready final version. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic requests such as organizing a review may trigger a heavier multi-phase workflow than intended. <br>
-Mitigation: Ask the agent to keep the review lightweight when a shorter review is desired. <br>
-Risk: Clarification items could be resolved by assumption instead of by the responsible business owner. <br>
-Mitigation: Route every must-clarify item to the business owner and record the decision source before updating the PRD. <br>
-Risk: Review feedback can become stale or incomplete if one discipline is reviewed in isolation. <br>
-Mitigation: Run backend, client, QA, and design reviews in parallel and require explicit closure for every feedback item. <br>
+## Use Case:
 
+Product managers and product teams use this skill to organize parallel PRD review across technical, QA, and design perspectives, classify feedback, route must-clarify items to business owners, and converge on a final PRD suitable for acceptance and coding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mistyhuqwq-art/workflow-dlc-pm-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, review prompts, feedback templates, and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured review phases, gates, feedback categories, clarification lists, and review logs; it is non-executable guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger phrases may invoke the workflow outside an explicit PRD-review context or lead to product documents and logs being changed prematurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill only for explicit PRD-review work and confirm before updating PRDs, review logs, or decision records.
+
+Risk: Unresolved must-clarify items can be incorrectly treated as assumptions in the final PRD.
+
+Mitigation: Require a business-owner decision for each must-clarify item before writing the decision back into the PRD.
+
+## Reference(s):
+
+- [PRD template](../../templates/prd-template.md)
+- [PM lessons](../../lessons/by-role/pm.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, JSON]
+
+**Output Format:** [Markdown guidance with checklist, review-message, feedback-list, and JSON log templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow; security evidence found no code, install scripts, credential handling, network access, or persistence behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

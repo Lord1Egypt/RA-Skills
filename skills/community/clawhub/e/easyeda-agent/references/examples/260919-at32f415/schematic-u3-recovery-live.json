@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "example": "260919-at32f415-u3-recovery-after-rebind-timeout",
+  "project": "ceshi",
+  "schematicDocumentUuid": "f4351c9ef51e8321",
+  "capturedAt": "2026-09-20T15:52:39.901118Z",
+  "status": "live-verified",
+  "reason": "schematic.rebind.footprint timed out after deleting U3; original device was re-placed parametrically, then saved, doc reloaded, and schematic.read checked",
+  "before": {
+    "partCount": 69,
+    "primitiveId": "435bbcae8d9f238d",
+    "uniqueId": "gge60",
+    "designator": "U3",
+    "supplierId": "C2890616",
+    "x": 1350,
+    "y": 1020,
+    "footprint": {
+      "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "name": "OLED-SMD_ST7735S",
+      "uuid": "55e868d08ac92308"
+    },
+    "pins": [
+      {
+        "name": "NC",
+        "net": null,
+        "number": "1"
+      },
+      {
+        "name": "NC",
+        "net": null,
+        "number": "2"
+      },
+      {
+        "name": "SDA",
+        "net": "PB5",
+        "number": "3"
+      },
+      {
+        "name": "SCL",
+        "net": "PB3",
+        "number": "4"
+      },
+      {
+        "name": "RS",
+        "net": "PB4",
+        "number": "5"
+      },
+      {
+        "name": "RESET",
+        "net": "PB6",
+        "number": "6"
+      },
+      {
+        "name": "CS",
+        "net": "PB7",
+        "number": "7"
+      },
+      {
+        "name": "GND",
+        "net": "GND",
+        "number": "8"
+      },
+      {
+        "name": "NC",
+        "net": null,
+        "number": "9"
+      },
+      {
+        "name": "VDD",
+        "net": "+3V3",
+        "number": "10"
+      },
+      {
+        "name": "LEDK",
+        "net": "LCD_LEDK",
+        "number": "11"
+      },
+      {
+        "name": "LEDA",
+        "net": "+3V3",
+        "number": "12"
+      },
+      {
+        "name": "GND",
+        "net": "GND",
+        "number": "13"
+      }
+    ]
+  },
+  "after": {
+    "partCount": 69,
+    "primitiveId": "0893cc822008148a",
+    "uniqueId": "gge70",
+    "designator": "U3",
+    "supplierId": "C2890616",
+    "x": 1350,
+    "y": 1020,
+    "footprint": {
+      "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "name": "OLED-SMD_ST7735S",
+      "uuid": "55e868d08ac92308"
+    },
+    "pins": [
+      {
+        "name": "NC",
+        "net": null,
+        "number": "1"
+      },
+      {
+        "name": "NC",
+        "net": null,
+        "number": "2"
+      },
+      {
+        "name": "SDA",
+        "net": "PB5",
+        "number": "3"
+      },
+      {
+        "name": "SCL",
+        "net": "PB3",
+        "number": "4"
+      },
+      {
+        "name": "RS",
+        "net": "PB4",
+        "number": "5"
+      },
+      {
+        "name": "RESET",
+        "net": "PB6",
+        "number": "6"
+      },
+      {
+        "name": "CS",
+        "net": "PB7",
+        "number": "7"
+      },
+      {
+        "name": "GND",
+        "net": "GND",
+        "number": "8"
+      },
+      {
+        "name": "NC",
+        "net": null,
+        "number": "9"
+      },
+      {
+        "name": "VDD",
+        "net": "+3V3",
+        "number": "10"
+      },
+      {
+        "name": "LEDK",
+        "net": "LCD_LEDK",
+        "number": "11"
+      },
+      {
+        "name": "LEDA",
+        "net": "+3V3",
+        "number": "12"
+      },
+      {
+        "name": "GND",
+        "net": "GND",
+        "number": "13"
+      }
+    ]
+  },
+  "checks": {
+    "partCountRestoredTo69": true,
+    "identityPositionFootprintAndPinsMatch": true,
+    "primitiveIdChanged": true,
+    "uniqueIdChanged": true,
+    "saved": true,
+    "documentReloaded": true,
+    "pcbImportChangesRun": false
+  },
+  "restrictionAtCapture": "Do not run PCB import-changes from this schematic state until typed component identity preservation/reconciliation is implemented and verified; the saved PCB layout remains authoritative for this Layout iteration.",
+  "subsequentIdentityReconciliation": {
+    "status": "live-verified",
+    "data": "u3-identity-reconcile-live.json",
+    "schematicUniqueId": "gge60",
+    "pcbUniqueId": "gge60",
+    "identityRestrictionCleared": true,
+    "pcbImportChangesRun": false
+  }
+}

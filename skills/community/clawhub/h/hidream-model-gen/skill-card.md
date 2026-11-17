@@ -1,46 +1,63 @@
-## Description: <br>
-Generate images and videos using Vivago AI (智小象) platform. Supports text-to-image, image-to-image, image-to-video, and keyframe-to-video generation. Use when the user wants to create AI-generated images or videos, transform existing images, or perform image style transfer through the Vivago AI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos using Vivago AI (智小象) platform, including text-to-image, image-to-image, image-to-video, and keyframe-to-video generation through the Vivago AI API.
 
-## Publisher: <br>
-[zhy2015](https://clawhub.ai/user/zhy2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhy2015](https://clawhub.ai/user/zhy2015)
 
-## Use Case: <br>
-Developers and agent operators use this skill to call Vivago AI for image and video generation, image transformation, and image-to-video workflows from prompts or source images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected prompts and images are sent to Vivago for generation workflows. <br>
-Mitigation: Use the skill only when sharing that content with Vivago is acceptable, and avoid sensitive personal photos unless there is explicit consent and a clear reason. <br>
-Risk: The Vivago API token is a credential for the generation service. <br>
-Mitigation: Store the token in the HIDREAM_AUTHORIZATION environment variable and avoid passing or logging it in command-line arguments. <br>
-Risk: The bundled template catalog includes sensitive person-image templates without enough warnings or guardrails. <br>
-Mitigation: Review the template catalog before installation and remove, gate, or require manual approval for templates involving adult content, deceased people, endorsements, or protected-attribute defaults. <br>
+## Use Case:
 
+Developers and agents use this skill to generate or transform images and videos with Vivago AI from prompts, source images, keyframes, or predefined video templates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhy2015/hidream-model-gen) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhy2015) <br>
-- [Vivago AI](https://vivago.ai/) <br>
-- [Vivago token endpoint](https://vivago.ai/prod-api/user/token) <br>
-- [Vivago API base endpoint](https://vivago.ai/api/gw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration, Files, Images, Videos, JSON] <br>
-**Output Format:** [Command-line or Python API execution that produces JSON result files plus generated image or video URLs/assets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Vivago API token in HIDREAM_AUTHORIZATION; generated resources are written under the configured output path, commonly assets/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Prompts, images, and generation metadata are sent to Vivago using the user's account token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content approved for Vivago processing and avoid submitting sensitive or restricted data.
+
+Risk: Vivago token handling is under-scoped in the security evidence.
+
+Mitigation: Provide the token through HIDREAM_AUTHORIZATION, avoid exposing it in command history or logs, and rotate the token if it may have been disclosed.
+
+Risk: Template data may include adult audio or video behavior that is not clearly disclosed.
+
+Mitigation: Review and remove adult templates before use in general-audience or policy-restricted environments.
+
+Risk: Untrusted custom ports configuration can change API endpoints or generation behavior.
+
+Mitigation: Use only trusted configuration files and review endpoint changes before running generation commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhy2015/skills/hidream-model-gen)
+- [Vivago AI](https://vivago.ai/)
+- [Vivago Token Endpoint](https://vivago.ai/prod-api/user/token)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, JSON, Files]
+
+**Output Format:** [Markdown guidance with Python and shell examples; CLI tools write JSON result files and media URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image and video assets are created through Vivago API calls and may be written to local output paths.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

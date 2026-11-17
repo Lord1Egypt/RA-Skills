@@ -1,40 +1,59 @@
-## Description: <br>
-Use this skill whenever the user wants to do anything on the Yubit exchange: check prices, query wallet, spot, TradFi, earn, and perpetual futures balances, transfer funds, inspect positions and records, place or cancel perpetual futures orders, manage leverage or mode, set take-profit or stop-loss, or troubleshoot exchange requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill whenever the user wants to do anything on the Yubit exchange: check prices, query wallet/spot/TradFi/earn/perp balances, transfer funds, inspect positions/orders/history/wallet flow records, place or cancel perp orders, manage leverage or mode, set take-profit / stop-loss, or troubleshoot exchange requests.
 
-## Publisher: <br>
-[yubit-exchange](https://clawhub.ai/user/yubit-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yubit-exchange](https://clawhub.ai/user/yubit-exchange)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate a Yubit exchange account through the Yubit MCP tools. It supports market data, wallet and account review, perpetual futures trading workflows, transfer workflows, and diagnostics when exchange requests fail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place trades, change leverage, close positions, modify take-profit or stop-loss settings, perform batch actions, and transfer funds without an independently enforced confirmation step for every write action. <br>
-Mitigation: Install only when the agent is intended to operate a live Yubit account; verify the @yubit/exchange-skill package and MCP server source, use the lowest-permission credentials available, and require explicit confirmation for every market order, leverage or mode change, position close, TP/SL change, batch action, and wallet transfer. <br>
+## Use Case:
 
+External users and developers use this skill to operate the Yubit exchange through an agent, including market-data lookup, balance review, diagnostics, wallet transfers, and perpetual futures order management.
 
-## Reference(s): <br>
-- [Yubit Exchange Skill on ClawHub](https://clawhub.ai/yubit-exchange/yubit) <br>
-- [yubit-exchange Publisher Profile](https://clawhub.ai/user/yubit-exchange) <br>
-- [@yubit/exchange-skill npm package](npm:@yubit/exchange-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, tool calls] <br>
-**Output Format:** [Markdown guidance with Yubit MCP tool names and parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses trace IDs for diagnostics and requires read-back verification before confirming write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and skill metadata) <br>
+Risk: The skill can submit real trades, leverage or mode changes, position closes, TP/SL updates, and wallet transfers when authenticated write tools are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual confirmation for every write action and verify resulting state before treating an operation as successful.
+
+Risk: Exchange-account credentials may grant broad access if configured with unnecessary permissions.
+
+Mitigation: Use restricted API credentials and avoid withdrawal-like permissions unless they are explicitly required.
+
+Risk: The release installs an unpinned npm runtime package.
+
+Mitigation: Install only after reviewing and trusting the Yubit npm package for this release.
+
+## Reference(s):
+
+- [Yubit Exchange Skill on ClawHub](https://clawhub.ai/yubit-exchange/skills/yubit)
+- [Yubit Exchange Skill npm package](https://www.npmjs.com/package/@yubit/exchange-skill)
+- [Publisher profile: yubit-exchange](https://clawhub.ai/user/yubit-exchange)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, shell commands, configuration]
+
+**Output Format:** [Markdown with tool-call guidance and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce exchange actions through MCP tools when the current session exposes authenticated write capabilities.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

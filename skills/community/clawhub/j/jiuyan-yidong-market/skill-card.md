@@ -1,44 +1,60 @@
-## Description: <br>
-自动抓取韭研公社异动数据，分析市场环境、机会、风险及热门板块，生成结构化简报并推送 QQ 纯文本及 IMA 笔记。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically browses Jiuyan Gongshe market movement data and produces structured Chinese market briefs covering market environment, opportunities, risks, hot sectors, and leading stocks.
 
-## Publisher: <br>
-[ajian11](https://clawhub.ai/user/ajian11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajian11](https://clawhub.ai/user/ajian11)
 
-## Use Case: <br>
-Developers and market-analysis users use this skill to collect daily market-movement data from 韭研公社 and produce a Chinese market brief covering conditions, opportunities, risks, hot sectors, and leading stocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Embedded IMA and QQ credential or destination values may route generated reports to fixed external accounts. <br>
-Mitigation: Replace all embedded credential and destination values with user-controlled secrets before installation, and treat the exposed API key as compromised. <br>
-Risk: Scheduled or automatic delivery can save or send reports externally without a fresh user confirmation. <br>
-Mitigation: Disable automatic send or scheduled behavior until the skill requires explicit confirmation for each external save or message. <br>
-Risk: Generated market briefs may be mistaken for investment advice. <br>
-Mitigation: Keep the disclaimer in generated output and require users to independently verify market data and decisions. <br>
+## Use Case:
 
+Developers and market-analysis users use this skill to collect Jiuyan Gongshe market movement page content and generate Chinese daily briefs for review, archiving, and external delivery. The brief highlights market conditions, opportunity themes, risks, hot sectors, and leading stocks, and it includes a disclaimer that the content is not investment advice.
 
-## Reference(s): <br>
-- [韭研公社异动页面](https://www.jiuyangongshe.com/action) <br>
-- [ClawHub skill page](https://clawhub.ai/ajian11/jiuyan-yidong-market) <br>
-- [Market brief template](artifact/templates/market-brief-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report for IMA notes and plain-text QQ message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language market brief with market environment, opportunities, risk prompts, hot sectors, leading stocks, summary, and disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The release evidence reports hardcoded external publishing credentials and a fixed QQ recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace or remove bundled credentials and recipient values before use, and confirm any external delivery destination explicitly.
+
+Risk: The skill includes scheduled delivery instructions for daily execution.
+
+Mitigation: Review the schedule, timeout, and delivery configuration before enabling automation.
+
+Risk: The skill browses an external market data page and generates market commentary.
+
+Mitigation: Use it only for the intended Jiuyan market brief workflow and retain the included disclaimer that outputs are not investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ajian11/skills/jiuyan-yidong-market)
+- [Publisher profile](https://clawhub.ai/user/ajian11)
+- [Jiuyan Gongshe market movement page](https://www.jiuyangongshe.com/action)
+- [Market brief template](artifact/templates/market-brief-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown brief for IMA notes and Chinese plain text for QQ delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces separate channel-specific formats and includes a finance disclaimer.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

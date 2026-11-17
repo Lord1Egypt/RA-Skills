@@ -231,7 +231,7 @@ function buildChecks(opts: {
       id: "trustline",
       status: "fail",
       summary: "USDC Classic trustline not set",
-      next: `Run: npx tsx skills/check-balance/add-trustline.ts --network ${opts.network}  (costs 0.5 XLM reserve + a few stroops for the tx fee)`,
+      next: `Run: ./node_modules/.bin/tsx skills/check-balance/add-trustline.ts --network ${opts.network}  (costs 0.5 XLM reserve + a few stroops for the tx fee)`,
     });
   } else {
     checks.push({
@@ -246,7 +246,7 @@ function buildChecks(opts: {
     const lines = [
       "You can get USDC by:",
       "  (a) receiving a transfer to this address from another wallet or exchange, OR",
-      `  (b) swapping XLM → USDC on the Stellar DEX: npx tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc <amount> --network ${opts.network}`,
+      `  (b) swapping XLM → USDC on the Stellar DEX: ./node_modules/.bin/tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc <amount> --network ${opts.network}`,
     ].join("\n       ");
     checks.push({
       id: "usdc",

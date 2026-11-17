@@ -1,47 +1,68 @@
-## Description: <br>
-LangGraph task router for OpenClaw that decomposes complex work into dependency-aware subtasks, routes each branch to PRO or FLASH models, retries or escalates failures, and records token usage for auditable runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LangGraph task router for OpenClaw that decomposes complex work into dependency-aware subtasks, routes each branch to PRO or FLASH models, retries or escalates failures, and records token usage for auditable runs.
 
-## Publisher: <br>
-[fanyadan](https://clawhub.ai/user/fanyadan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanyadan](https://clawhub.ai/user/fanyadan)
 
-## Use Case: <br>
-Developers and engineers use Super Router to decompose complex OpenClaw tasks, route subtasks across configured model roles, manage dependency-aware execution, and preserve audit and token-usage records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The router can pass task text and derived context to configured model providers and optional telemetry. <br>
-Mitigation: Review provider and LangSmith settings before use; keep prompt and output previews disabled unless needed for a trusted workflow. <br>
-Risk: The router can run provider CLIs with broad local environment access and Gemini CLI auto-approval behavior. <br>
-Mitigation: Use trusted provider CLIs, review or disable Gemini auto-approval before sensitive use, and avoid remote Ollama endpoints unless they are trusted. <br>
-Risk: Saved prompts, logs, ledgers, and generated artifacts may contain sensitive task data. <br>
-Mitigation: Store run artifacts in protected locations, review them before sharing, and remove sensitive logs when they are no longer needed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to break complex requests into dependency-aware subtasks, route each branch to an appropriate model role, and produce auditable execution reports with retry, escalation, and token-usage details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanyadan/skills/super-router) <br>
-- [LangGraph documentation](https://langchain-ai.github.io/langgraph/) <br>
-- [Ollama documentation](https://ollama.com/docs) <br>
-- [Background Router Artifact Launches](references/background-artifact-launches.md) <br>
-- [Recovering Gemini CLI Token Usage](references/gemini-cli-token-recovery.md) <br>
-- [Source-to-HTML Background Router Wrapper](references/source-html-background-wrapper.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, CLI output, optional JSONL usage ledgers, and generated local artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include provider trace metadata, token usage summaries, run logs, and generated files when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: The router may send task text and project context to configured model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated environment with minimal secrets, prefer local-only Ollama for sensitive work, and keep LangSmith prompt and output tracing off unless the data is appropriate for external tracing.
+
+Risk: The skill uses broad local execution and environment-based provider configuration.
+
+Mitigation: Review local execution behavior before installation and avoid placing unrelated credentials in ~/.openclaw/.env.
+
+Risk: Untrusted task text may be unsafe until shell-invocation examples and Gemini auto-approval behavior are hardened.
+
+Mitigation: Do not route untrusted task text through the skill until those behaviors have been reviewed and hardened.
+
+## Reference(s):
+
+- [Super Router on ClawHub](https://clawhub.ai/fanyadan/skills/super-router)
+- [Publisher profile](https://clawhub.ai/user/fanyadan)
+- [LangGraph documentation](https://langchain-ai.github.io/langgraph/)
+- [Ollama documentation](https://ollama.com/docs)
+- [Gemini CLI headless JSON output](https://google-gemini.github.io/gemini-cli/docs/cli/headless.html)
+- [Linux mm Source-to-HTML Hierarchy Example](references/linux-mm-source-html-example.md)
+- [Recovering Gemini CLI token usage when super-router ledger is unavailable](references/gemini-cli-token-recovery.md)
+- [Gemini CLI ripgrep Detection Fix](references/gemini-cli-ripgrep-path-fix.md)
+- [Gemini Temperature Gap in generate_text()](references/gemini-temperature-gap.md)
+- [Long-Running Quantitative Tasks with Super-Router](references/long-running-quantitative-tasks.md)
+- [Background Router Artifact Launches](references/background-artifact-launches.md)
+- [Source-to-HTML Background Router Wrapper](references/source-html-background-wrapper.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or text reports with JSON-serializable router state and inline shell/configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include planned subtasks, model route decisions, execution results, fallback status, audit history, final reports, and token-usage summaries.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

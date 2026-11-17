@@ -1,7 +1,7 @@
 ---
 name: "visual-qa-analysis"
 description: "Conducts open-ended Q&A on image content based on computer vision and large language models, supporting any questions to receive natural language responses. | 大模型视觉问答（VQA）技能，基于计算机视觉和大语言模型对图片内容进行开放式问答，支持任意提问得到自然语言回答"
-version: "1.0.6"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

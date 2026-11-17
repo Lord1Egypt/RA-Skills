@@ -1,46 +1,59 @@
-## Description: <br>
-Bilingual global undergraduate pathway advisor for international high schools, bilingual schools and pathway programmes, providing source-aware guidance across UK, US, Australia, New Zealand, Hong Kong, Macau, Singapore, Malaysia, Thailand, Korea, Japan and related destinations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bilingual global undergraduate pathway advisor for international high schools, bilingual schools and pathway programmes. Provides source-aware, non-agent-like guidance across UK, US, Australia, New Zealand, Hong Kong, Macau, Singapore, Malaysia, Thailand, Korea, Japan and related destinations.
 
-## Publisher: <br>
-[maxliu1979](https://clawhub.ai/user/maxliu1979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxliu1979](https://clawhub.ai/user/maxliu1979)
 
-## Use Case: <br>
-Students, families, teachers, counsellors and school leaders use this skill to compare undergraduate pathway options, assess readiness, identify application risks, and create staged action plans for international school and bilingual pathway contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Student profile details, grades, budget sensitivity, destination preferences, and related education context may be sensitive. <br>
-Mitigation: Share only the information needed for the advising task and avoid unnecessary personal identifiers. <br>
-Risk: Admissions, visa, qualification, and private education rules can change after the skill's data update date. <br>
-Mitigation: Verify changing requirements against official university, government, application platform, qualification board, or exam board sources before relying on advice. <br>
-Risk: The skill may include maintainer contact details or related ClawHub skill links in school-level collaboration contexts. <br>
-Mitigation: Review outputs for appropriate contact disclosure and avoid treating advisory answers as guaranteed admission, agency, or promotional claims. <br>
+## Use Case:
 
+Students, families, teachers, counsellors and school leaders use this skill to compare undergraduate destinations, assess student readiness, identify application risks, and build staged pathway plans for international high school contexts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maxliu1979/goglobal-adcotemax) <br>
-- [Publisher profile](https://clawhub.ai/user/maxliu1979) <br>
-- [Publisher homepage](https://clawhub.ai/maxliu1979) <br>
-- [Official Source Register](sources/official-source-register.md) <br>
-- [Student Pathway Report Template](templates/student-pathway-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, text] <br>
-**Output Format:** [Bilingual Markdown and plain text advisory responses, with optional CLI command output and structured pathway report sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use student profile details, destination preferences, grades, budget sensitivity, and official-source checks to tailor pathway advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The skill can disclose the maintainer's phone number and WeChat in school-level implementation, adaptation, collaboration, or contact scenarios.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review contact-sharing behavior before deployment and disclose or suppress maintainer contact details according to the deploying organization's privacy and communications policy.
+
+Risk: Undergraduate admission requirements, visa rules, deadlines, and programme availability can change after the skill's embedded source data date.
+
+Mitigation: Verify current requirements against official university, government, application-platform, qualification-board, or exam-board sources before acting on admissions guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maxliu1979/skills/goglobal-adcotemax)
+- [Publisher profile](https://clawhub.ai/user/maxliu1979)
+- [Maintainer homepage](https://clawhub.ai/maxliu1979)
+- [Official source register](sources/official-source-register.md)
+- [Student pathway report template](templates/student-pathway-report.md)
+- [Singapore Training Partners Gateway](https://www.tpgateway.gov.sg)
+- [China Ministry of Education study abroad supervision portal](http://jsj.moe.gov.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Bilingual Markdown advisory responses and optional local CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide a structured student pathway report with student snapshot, destination recommendations, academic and English gaps, school support plan, and 30/60/90-day next actions.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

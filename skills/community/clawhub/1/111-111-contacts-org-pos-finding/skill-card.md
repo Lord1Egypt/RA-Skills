@@ -1,41 +1,51 @@
-## Description: <br>
-通过111通讯录按机构路径和职位名称查询人员信息，并在用户确认输入后返回匹配人员的联系字段。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过111通讯录按机构路径和职位名称查询人员信息，需先确认提供机构和职位名称后执行。
 
-## Publisher: <br>
-[blockcloud](https://clawhub.ai/user/blockcloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blockcloud](https://clawhub.ai/user/blockcloud)
 
-## Use Case: <br>
-Authorized employees or agents use this skill to query the 111 OA address book by organization path and position title after confirming the requested inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can return employee contact details from an internal address book. <br>
-Mitigation: Install and use it only when authorized to access the 111 OA directory, keep results within approved internal channels, and review returned fields before sharing. <br>
-Risk: Broad or imprecise organization and position inputs can return irrelevant or unintended people records. <br>
-Mitigation: Use precise organization paths and position names, and confirm the requested inputs before querying. <br>
+## Use Case:
 
+Authorized internal users use this skill to look up personnel in the 111 address book by organization path and job title after confirming the query details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blockcloud/111-111-contacts-org-pos-finding) <br>
-- [111 OA address book login](https://oa.paas.111china.com/address-book/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with comma-separated result rows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rows may include organization, position, employee number, 111ID, name, desk phone, and mobile phone when authorized results are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose sensitive employee directory details such as names, employee IDs, desk phones, and mobile numbers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for authorized lookups in the referenced OA address book and share returned contact details only within the approved business context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockcloud/skills/111-111-contacts-org-pos-finding)
+- [Publisher profile](https://clawhub.ai/user/blockcloud)
+- [111 address book login](https://oa.paas.111china.com/address-book/login)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Delimited text lines, or a concise no-result explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each matching row may include organization, position, employee ID, 111ID, name, desk phone, and mobile phone.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

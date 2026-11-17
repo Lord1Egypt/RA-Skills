@@ -1,47 +1,64 @@
-## Description: <br>
-Find and analyze arbitrage opportunities across prediction markets like Polymarket and Kalshi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and analyze arbitrage opportunities across prediction markets like Polymarket and Kalshi.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to find matching Polymarket and Kalshi markets, compare prices, and check liquidity before evaluating prediction-market spread opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AIsa API keys may incur query costs or expose access if reused broadly. <br>
-Mitigation: Use a scoped or throwaway AIsa API key where possible, monitor usage costs and remaining credits, and rotate the key if it is exposed. <br>
-Risk: Wallet lookup features can involve sensitive user context if private credentials are supplied. <br>
-Mitigation: Provide only public wallet addresses for wallet lookups and never provide private keys, seed phrases, or exchange credentials. <br>
-Risk: Example cURL commands contain placeholders that can fail or execute unintended requests if left unresolved. <br>
-Mitigation: Before executing cURL commands, replace every placeholder such as token_id, market_ticker, sport, and date with a concrete value. <br>
-Risk: Reported spreads may be misleading if liquidity, fees, or slippage are not reviewed. <br>
-Mitigation: Use the orderbook endpoints and review market depth before treating a spread as actionable. <br>
+## Use Case:
 
+Agents and developers use this skill to find matching prediction markets, compare Polymarket and Kalshi prices, and evaluate whether observed spreads have enough orderbook depth to be actionable.
 
-## Reference(s): <br>
-- [AIsa API Reference](https://docs.aisa.one/reference/) <br>
-- [AIsa](https://aisa.one) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aisadocs/polymarket-arb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with cURL examples and Python CLI/API code; scripts can return JSON responses from the AIsa API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and uses read-only prediction-market API calls; artifact metadata lists curl and python3 as runtime dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: API-key exposure could matter in environments where redirects or shared execution logs are not controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped, low-credit AIsa API key and wrap or harden HTTP clients so Authorization headers are not forwarded after cross-origin redirects.
+
+Risk: Wallet, position, and P&L lookups can reveal sensitive wallet activity beyond the core arbitrage workflow.
+
+Mitigation: Query only wallets the operator is authorized to analyze, minimize retained output, and avoid sharing results outside the approved workflow.
+
+Risk: Example cURL commands contain brace placeholders that can be interpreted by curl if executed literally.
+
+Mitigation: Check that every placeholder such as {token_id}, {market_ticker}, {sport}, and {date} is replaced with a concrete value before command execution.
+
+Risk: Displayed spreads may be misleading if liquidity, fees, slippage, or market-resolution terms are not checked before trading.
+
+Mitigation: Verify orderbook depth and market terms on each platform before treating any spread as actionable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aisadocs/skills/polymarket-arb)
+- [AIsa API Reference](https://docs.aisa.one/reference/)
+- [AIsa](https://aisa.one)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY; the bundled CLIs call read-oriented market, orderbook, wallet, and P&L endpoints and can emit JSON.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

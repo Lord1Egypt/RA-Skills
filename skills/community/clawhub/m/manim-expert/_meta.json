@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn744gn54xm1rk827gbyk6wgan82mh36",
-  "slug": "manim-expert",
-  "version": "1.0.2",
-  "publishedAt": 1773998415746
-}
+    "name": "manim-animation-expert",
+    "version": "1.0.0",
+    "description": "将简单的Manim动画描述转化为详细的LaTeX提示词并生成可运行的Manim社区版代码",
+    "author": "mila",
+    "license": "MIT",
+    "category": "software",
+    "tags": ["manim", "latex", "animation", "mathematics", "education"],
+    "triggers": ["manim动画", "latex公式", "数学动画", "教育演示"],
+    "prerequisites": ["python", "manim", "latex"],
+    "min_openclaw_version": "1.0.0",
+    "compatibility": ["claude", "gpt", "deepseek"],
+    "repository": "https://github.com/yourusername/manim-animation-expert"
+  }

@@ -1,44 +1,57 @@
-## Description: <br>
-Unified interface for all providers and all modalities: use the `genai-calling` skill to operate the published `genai-calling` CLI/SDK across text/image/audio/video/embedding workflows, with support for authenticated local MCP workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified interface for all providers and all modalities: use the `genai-calling` skill to operate the published `genai-calling` CLI/SDK across text/image/audio/video/embedding workflows, with support for authenticated local MCP workflows.
 
-## Publisher: <br>
-[Gravtice-Agent](https://clawhub.ai/user/Gravtice-Agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gravtice-agent](https://clawhub.ai/user/gravtice-agent)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure and call the `genai-calling` CLI, Python SDK, and local MCP server for multimodal generation workflows across supported providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provider credentials are required for normal API calls and may be stored in project-local or user-wide environment files. <br>
-Mitigation: Use only the provider keys needed for the task, keep `.env` files private, and do not commit credentials. <br>
-Risk: Local MCP workflows can expose provider-backed generation tools if run without appropriate authentication. <br>
-Mitigation: Set `GENAI_CALLING_MCP_BEARER_TOKEN` or token rules before exposing the MCP server. <br>
-Risk: Private or loopback URL downloads are blocked by default but can be enabled by configuration. <br>
-Mitigation: Leave private URL protection enabled unless the operator has reviewed and accepted the local network access risk. <br>
-Risk: The security evidence reports no unsafe behavior, but advises checking install prompts and displayed files before installation. <br>
-Mitigation: Review install prompts for unexpected package installs, credential requests, persistent background behavior, or access to private local data. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure provider credentials and call the `genai-calling` CLI, SDK, or MCP server for text, image, audio, video, and embedding workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Gravtice-Agent/genai-calling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes provider environment variable guidance, CLI examples, SDK snippets, MCP server commands, and troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill instructs users to run the published `genai-calling` package while using provider credentials and MCP workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin `genai-calling` to a reviewed version, avoid routine `--upgrade` usage, and run it with only the provider keys and files needed for the current task.
+
+Risk: Shared environment files can expose broad provider credentials if reused across projects.
+
+Mitigation: Keep shared env files narrow, protect API keys, and prefer task-scoped credentials or project-local overrides where practical.
+
+Risk: MCP server exposure without authentication can allow unauthorized model and provider access.
+
+Mitigation: Set MCP bearer-token authentication before exposing the server beyond local testing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gravtice-agent/skills/genai-calling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers provider API keys, environment files, model selection, CLI usage, SDK snippets, and local MCP server operation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-This skill helps agents assess enterprise technology dependencies, domestic substitution readiness, export-control exposure, and outage resilience for a named company. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses a technology company's core supply-chain dependencies, domestic substitution maturity, disruption exposure, and survival options under export-control or supply-interruption scenarios.
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-Compliance, strategy, and supply-chain teams use this skill to evaluate whether a technology company depends on controlled or foreign suppliers, how mature substitute options are, and how resilient the company may be under disruption scenarios. The skill is intended to support lawful supply-chain security, export-control compliance, and resilience assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to discuss routes around export controls, licensing workarounds, and design changes intended to avoid controlled technology. <br>
-Mitigation: Before installation, remove or rewrite workaround guidance and constrain use to lawful supply-chain security, export-control compliance, and resilience assessment. <br>
-Risk: The skill can produce strategic judgments from incomplete public information. <br>
-Mitigation: Require cited public sources, distinguish facts from scenario assumptions, and label confidence where evidence is incomplete. <br>
+## Use Case:
 
+Business, strategy, compliance, and engineering teams use this skill to build public-source assessments of technology dependency, substitution readiness, sanction exposure, and supply-disruption resilience for a named company.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviddatamining/technology-strategic-resilience-assessor) <br>
-- [Publisher profile](https://clawhub.ai/user/daviddatamining) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables, risk scores, scenario analysis, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a target company; optional industry, focus components, time range, and scenario depth can narrow the assessment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The skill may produce advice that appears to route around export controls or sanctions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to lawful public-source risk assessment and replace any routing, transshipment, concealment, or control-bypass suggestions with legal review, licensing, authorized procurement, and compliance screening.
+
+Risk: Company dependency and supply-chain details may be confidential or sensitive.
+
+Mitigation: Avoid submitting confidential company or supply-chain information unless external search and tool use are approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/technology-strategic-resilience-assessor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with tables, risk ratings, scenario analysis, and strategic recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public-source evidence and requires clear separation between factual findings and scenario-based inference.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

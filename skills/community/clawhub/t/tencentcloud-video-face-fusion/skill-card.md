@@ -1,46 +1,64 @@
-## Description: <br>
-This skill submits and monitors Tencent Cloud video face fusion jobs that merge user face images into template videos for creative marketing, entertainment, and social sharing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Tencent Cloud Video Creation APIs to submit and query video face-fusion jobs that merge provided face images into template videos.
 
-## Publisher: <br>
-[Neck-cn](https://clawhub.ai/user/Neck-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neck-cn](https://clawhub.ai/user/neck-cn)
 
-## Use Case: <br>
-Developers and agents use this skill to submit, poll, and query Tencent Cloud video face fusion jobs when a user provides a template video, template face image, and replacement face image. It is intended for workflows that generate face-fused video outputs through Tencent Cloud rather than synthesizing results locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected face images and video material to Tencent Cloud for processing. <br>
-Mitigation: Use it only with consent for the people whose faces are processed and only when the account owner accepts Tencent Cloud processing of that media. <br>
-Risk: The scripts use Tencent Cloud credentials and may submit jobs automatically once invoked. <br>
-Mitigation: Use least-privileged Tencent Cloud credentials, keep them out of source files and long-lived shell profiles where possible, and run the skill in an isolated Python environment. <br>
-Risk: Generated or modified face-fusion videos can be misused or mistaken for authentic media. <br>
-Mitigation: Keep the AI synthesis label enabled unless there is a reviewed reason to disable it, and review outputs before sharing. <br>
+## Use Case:
 
+Developers and agent users use this skill to automate Tencent Cloud video face-fusion workflows, including task submission, polling, and result lookup for template videos and user-provided face images.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Neck-cn/tencentcloud-video-face-fusion) <br>
-- [Submit Video Face Fusion API reference](references/submit_video_face_fusion_api.md) <br>
-- [Describe Video Face Fusion API reference](references/describe_video_face_fusion_api.md) <br>
-- [Tencent Cloud Video Creation console](https://console.cloud.tencent.com/vclm) <br>
-- [Tencent Cloud API key management](https://console.cloud.tencent.com/cam/capi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status or result responses from the bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return a Tencent Cloud job ID, request ID, task status, error details, or a result video URL when processing completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can send face images and video material to Tencent Cloud under the user's credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit consent for all faces and videos, and confirm the Tencent Cloud account and service terms before execution.
+
+Risk: Local paths supplied as face images may be read and uploaded as base64 media.
+
+Mitigation: Avoid untrusted local paths and run the skill in a restricted environment with access only to intended media files.
+
+Risk: The scripts can auto-install an unpinned Tencent SDK package at runtime.
+
+Mitigation: Preinstall a pinned `tencentcloud-sdk-python` version in the execution environment before using the skill.
+
+Risk: Generated videos can omit the AI-generated label when configured to do so.
+
+Mitigation: Keep the AI-generated label enabled unless there is a legitimate reason to disable it.
+
+## Reference(s):
+
+- [Submit Video Face Fusion Job API](references/submit_video_face_fusion_api.md)
+- [Describe Video Face Fusion Job API](references/describe_video_face_fusion_api.md)
+- [Tencent Cloud Video Creation Console](https://console.cloud.tencent.com/vclm)
+- [Tencent Cloud API Key Management](https://console.cloud.tencent.com/cam/capi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Tencent Cloud job IDs, task status, error details, and result video URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

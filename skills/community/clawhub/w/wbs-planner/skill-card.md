@@ -1,43 +1,54 @@
-## Description: <br>
-WBS Planner helps agents organize project work into a Roadmap, Epic, and Task hierarchy with templates and task granularity standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work Breakdown Structure for multi-agent project management. Organize work as Roadmap -> Epic -> Task hierarchy with templates and granularity standards.
 
-## Publisher: <br>
-[ycz87](https://clawhub.ai/user/ycz87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ycz87](https://clawhub.ai/user/ycz87)
 
-## Use Case: <br>
-Product managers, developers, and agent teams use this skill to plan project work, create roadmap, epic, and task files, and review task granularity before dispatching work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated roadmap, epic, or task text can misstate scope or acceptance criteria. <br>
-Mitigation: Review planning files and acceptance criteria before assigning work to agents or developers. <br>
-Risk: The Dev workflow can lead an agent to edit project files or run local build, test, and coding commands. <br>
-Mitigation: Install only in trusted projects and review file changes and commands according to local policy. <br>
-Risk: Task text from untrusted sources can carry misleading planning guidance into downstream work. <br>
-Mitigation: Validate or rewrite externally supplied task descriptions before dispatching them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Task Breakdown Guide](references/breakdown-guide.md) <br>
-- [PM Workflow](references/pm-workflow.md) <br>
-- [Dev Workflow](references/dev-workflow.md) <br>
+## Use Case:
 
+Developers, project managers, and agent teams use this skill to break project work into roadmap, epic, and task documents with clear ownership, acceptance criteria, and manageable task size.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance, Shell commands] <br>
-**Output Format:** [Markdown planning documents and concise workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update roadmap, epic, and task Markdown files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Planning actions may overwrite, clear, or update task and roadmap documents in ways that do not match the team's current process.
+
+Mitigation: Review proposed changes to TASK.md, roadmap files, and epic task lists before applying them.
+
+Risk: Workflow notifications to other agent sessions could trigger work before a task is ready.
+
+Mitigation: Confirm acceptance criteria, task scope, and assignment state before sending session notifications.
+
+## Reference(s):
+
+- [Task Breakdown Guide](references/breakdown-guide.md)
+- [PM Workflow](references/pm-workflow.md)
+- [Dev Workflow](references/dev-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance, Configuration]
+
+**Output Format:** [Markdown planning documents and concise workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces roadmap, epic, and task structures using bundled Markdown templates.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

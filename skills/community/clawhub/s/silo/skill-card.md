@@ -1,39 +1,58 @@
-## Description: <br>
-Grain silo reference for storage types, aeration, moisture management, fumigation, and safe handling of bulk grain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grain silo reference covering storage types, aeration, moisture management, fumigation, and safe handling of bulk grain for storage design, post-harvest quality management, and silo safety.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-External users and agricultural operations teams use this skill as a static reference for selecting grain storage approaches, managing moisture and aeration, checking storage capacity, and reviewing silo safety topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fumigation output discusses hazardous and regulated phosphine treatment and could be mistaken for standalone operational instructions. <br>
-Mitigation: Treat fumigation content as educational reference only; qualified or licensed professionals should follow product labels, SDS documents, and local law. <br>
+## Use Case:
 
+External developers, agricultural operators, and grain-storage teams use this skill as a quick reference for silo selection, grain-condition management, storage-capacity calculations, pest control, fumigation concepts, and safety considerations before professional validation.
 
-## Reference(s): <br>
-- [Silo ClawHub page](https://clawhub.ai/bytesagain1/silo) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and plain-text reference output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; the shell script prints topic-specific grain storage guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Fumigation guidance discusses toxic restricted-use pesticide practices that can create serious health and legal risks if treated as operational instruction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the fumigation content only as reference material; require certified applicators, local regulatory review, current product labels, gas detection, and site-specific procedures before any pesticide use.
+
+Risk: Confined-space entry, grain engulfment, dust explosion, and structural-load topics are safety-critical and may not reflect site-specific hazards.
+
+Mitigation: Require trained personnel, permits, lockout/tagout, atmospheric testing, rescue planning, and professional engineering or safety review for real silo entry or structural decisions.
+
+Risk: Storage, moisture, aeration, quality, and capacity values may vary by crop, equipment, region, and current standards.
+
+Mitigation: Validate calculations and thresholds against local extension guidance, manufacturer specifications, applicable standards, and qualified agricultural professionals.
+
+## Reference(s):
+
+- [Silo on ClawHub](https://clawhub.ai/bytesagain1/skills/silo)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text reference output with Markdown shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static command-selected reference output; no external APIs or credential variables detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

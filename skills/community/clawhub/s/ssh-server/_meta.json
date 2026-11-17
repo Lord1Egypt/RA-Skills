@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn70tke2dx388zfv4grzk6v60d83531t",
+  "owner": "local",
   "slug": "ssh-server",
-  "version": "1.0.0",
-  "publishedAt": 1773888494264
+  "displayName": "SSH Server",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1768882342488,
+    "description": "SSH远程连接和操作服务器，支持密码/密钥认证"
+  }
 }

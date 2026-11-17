@@ -1,40 +1,54 @@
-## Description: <br>
-Monitors social platforms for EU compliance, VAT, product selection, and logistics questions, then generates promotional expert replies that can direct readers to ClawHub skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动监测社交平台中与欧盟合规、VAT、选品和物流相关的问题，生成专业回复并引导读者访问相关 ClawHub Skill 链接。
 
-## Publisher: <br>
-[luongkim20222022-crypto](https://clawhub.ai/user/luongkim20222022-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luongkim20222022-crypto](https://clawhub.ai/user/luongkim20222022-crypto)
 
-## Use Case: <br>
-Marketing operators and business owners use this skill to monitor cross-border ecommerce conversations and prepare timely replies that promote related ClawHub expertise. The skill is intended for automated outreach workflows across social and forum channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; the documented use case focuses on EU and German cross-border ecommerce topics. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may monitor social platforms and automatically post or message people without clear approval controls. <br>
-Mitigation: Require manual approval for posts and private messages before publication, and define how automation can be stopped. <br>
-Risk: Automated outreach may rely on platform credentials, high message volume, recipient targeting, and retained interaction logs. <br>
-Mitigation: Use least-privilege platform credentials, set rate and recipient limits, avoid personal-account bots where prohibited, and document what data is logged and how long it is kept. <br>
+## Use Case:
 
+Marketing and growth operators use this skill to monitor social platforms for cross-border ecommerce questions, draft professional replies, and produce lightweight engagement reports. It is intended for automated promotion workflows and should be constrained before public posting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luongkim20222022-crypto/auto-marketer-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text replies, action summaries, and periodic outreach reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform, intent category, reply content, referral text, and reporting metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automated promotional replies can create spam, account, and reputation risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval before posting or sending private messages, and enforce platform-specific rate limits.
+
+Risk: Monitoring social content and storing reply metadata can introduce privacy risk.
+
+Mitigation: Use minimum-scope credentials, keep audit logs, and define retention limits for monitored content and reply metadata.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luongkim20222022-crypto/skills/auto-marketer-skill)
+- [Publisher profile](https://clawhub.ai/user/luongkim20222022-crypto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, API Calls]
+
+**Output Format:** [Markdown or plain-text social replies, routing decisions, and weekly report summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform names, question summaries, reply drafts, promotional links, and engagement metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Query and maintain Alex's local friends database stored in a private SQLite file under the OpenClaw workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and maintain Alex's local friends database stored in a private SQLite file under the OpenClaw workspace.
 
-## Publisher: <br>
-[alexuser](https://clawhub.ai/user/alexuser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexuser](https://clawhub.ai/user/alexuser)
 
-## Use Case: <br>
-OpenClaw users use this skill to look up and maintain private friend and contact records, including contact methods, relationship notes, interaction cadence, and local activity suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive personal contact, relationship, and calendar-derived data. <br>
-Mitigation: Install only when a persistent local friends/contact CRM is desired, keep the database and backups private, and return only the fields needed for the current task. <br>
-Risk: Migration with --replace-with-stub intentionally replaces the prior friends.md source with a stub after import. <br>
-Mitigation: Run that migration option only after confirming the replacement is intended and preserving the generated backup. <br>
-Risk: Calendar sync can import personal interaction history from the configured calendar account and date range. <br>
-Mitigation: Check the calendar account, calendar ID, and sync date range before running sync-calendar. <br>
+## Use Case:
 
+External users and personal-agent operators use this skill to query and maintain a private local contacts and friendship CRM, including contact methods, relationship notes, interaction history, cadence tracking, and activity suggestions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with shell command snippets and local command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local SQLite database and returns only task-relevant contact fields unless the user asks for broader output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill maintains a persistent private friends CRM containing sensitive contact details, notes, interaction history, and cadence data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that persistent local CRM behavior is intended, keep the database in the helper-created private state directory, and return only task-relevant fields.
+
+Risk: Calendar sync processes attendee emails, event titles, descriptions, locations, account configuration, and history through the gog executable on PATH.
+
+Mitigation: Use sync-calendar only after confirming the gog executable and account configuration are trusted, and review the requested calendar scan window before running it.
+
+Risk: Migration with --replace-with-stub rewrites the source friends.md file after importing contacts.
+
+Mitigation: Use --replace-with-stub only after confirming the generated backup and accepting SQLite as the source of truth.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexuser/skills/friends-db)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be limited to fields needed for the user task and should not dump the full contact database unless explicitly requested.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

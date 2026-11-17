@@ -1,46 +1,55 @@
-## Description: <br>
-Manage Plane.so projects and work items using the `plane` CLI. List projects, create/update/search issues, manage cycles and modules, add comments, and assign members. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Plane.so projects and work items using the `plane` CLI. List projects, create/update/search issues, manage cycles and modules, add comments, and assign members.
 
-## Publisher: <br>
-[honluk](https://clawhub.ai/user/honluk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[honluk](https://clawhub.ai/user/honluk)
 
-## Use Case: <br>
-Developers, engineers, and project teams use this skill to manage Plane.so workspace data from an agent through the `plane` CLI, including projects, work items, cycles, modules, comments, and assignments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses PLANE_API_KEY to access a live Plane workspace. <br>
-Mitigation: Store PLANE_API_KEY as a secret and verify PLANE_WORKSPACE and PLANE_BASE_URL before use. <br>
-Risk: Create, update, assign, comment, and delete commands can change live workspace data. <br>
-Mitigation: Require explicit confirmation before running commands that modify or delete Plane resources. <br>
-Risk: Installation depends on a downloaded GitHub release executable. <br>
-Mitigation: Install only when the GitHub release source is trusted and the intended `plane` binary is being used. <br>
+## Use Case:
 
+Developers and project teams use this skill to operate Plane.so workspaces from an agent through the `plane` CLI, including project lookup, issue creation and updates, assignment, comments, cycles, modules, states, and labels.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/honluk/my-plane) <br>
-- [Publisher Profile](https://clawhub.ai/user/honluk) <br>
-- [Plane](https://plane.so) <br>
-- [My Plane GitHub Project](https://github.com/HonLuk/my-plane) <br>
-- [Plane CLI Release Download](https://github.com/HonLuk/my-plane/releases/latest/download/plane) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI output options.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the `plane` binary plus PLANE_API_KEY and PLANE_WORKSPACE environment variables; Plane CLI commands can return formatted tables or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill asks users to install an unverified remote executable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream CLI before installation and prefer a pinned release with checksum or signature verification.
+
+Risk: The documented commands can change workspace data, including issue deletion and other broad mutations.
+
+Mitigation: Use a least-privilege Plane token and require explicit confirmation before destructive or broad mutation commands in a production workspace.
+
+## Reference(s):
+
+- [Plane.so](https://plane.so)
+- [My Plane GitHub Repository](https://github.com/HonLuk/my-plane)
+- [plane CLI Release Download](https://github.com/HonLuk/my-plane/releases/latest/download/plane)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to run Plane CLI commands that return formatted tables or JSON when `-f json` is used.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

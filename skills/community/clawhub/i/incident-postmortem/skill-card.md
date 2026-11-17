@@ -1,40 +1,57 @@
-## Description: <br>
-Use when a DevOps or SRE team needs to write a blameless postmortem after a production incident. Guides timeline reconstruction, root cause analysis, and produces a complete postmortem document with prioritized action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a DevOps or SRE team needs to write a blameless postmortem after a production incident. Guides timeline reconstruction, root cause analysis, and produces a complete postmortem document with prioritized action items.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Developers, SREs, and incident response teams use this skill to facilitate a blameless post-incident review and produce a shareable postmortem with timeline, impact, root cause, and action items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incident details may include credentials, customer PII, tokens, raw IP addresses, or confidential operational data. <br>
-Mitigation: Prompt users to redact sensitive data before sharing logs or timelines, and omit secrets or customer identifiers from the generated postmortem. <br>
-Risk: Regulatory, security, or legal implications may be mischaracterized if the postmortem is treated as authoritative advice. <br>
-Mitigation: Flag potential obligations without making definitive legal claims, and recommend security or legal review for P0, security, compliance, or externally shared incidents. <br>
+## Use Case:
 
+DevOps, SRE, and incident response teams use this skill to facilitate a structured, blameless retrospective after a resolved production incident and draft a shareable postmortem with timeline, impact, root cause, and action items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/incident-postmortem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational guidance and Markdown postmortem document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a draft postmortem with impact metrics, timeline, root cause, contributing factors, and prioritized action items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: Incident timelines and draft postmortems may contain credentials, customer PII, tokens, raw sensitive logs, or other confidential operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive data before providing incident details and remove any sensitive material from the generated draft before circulation.
+
+Risk: Security, P0, regulatory, or legal-impact incidents may require review beyond the generated postmortem draft.
+
+Mitigation: Review the final document with the appropriate security, legal, compliance, or internal incident team before sharing.
+
+Risk: A generated root-cause analysis or action plan can be incomplete if the timeline, RCA focus areas, owners, or due dates are missing.
+
+Mitigation: Treat the output as a draft and confirm the timeline, root cause, measurable action items, owners, and due dates with the incident team.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/incident-postmortem)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Conversational guidance and Markdown postmortem document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a draft for human review; does not publish, send, or share the postmortem on behalf of the user.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

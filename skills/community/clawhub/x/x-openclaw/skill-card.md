@@ -1,42 +1,55 @@
-## Description: <br>
-Extract posts from X (Twitter) timeline or profile pages with engagement metrics, media URLs, and download local copies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract posts from X (Twitter) timeline or profile pages with engagement metrics, media URLs, and download local copies.
 
-## Publisher: <br>
-[zyliu0](https://clawhub.ai/user/zyliu0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zyliu0](https://clawhub.ai/user/zyliu0)
 
-## Use Case: <br>
-Developers and analysts use this skill to scrape and archive visible X timeline, profile, or search-result posts with metadata, engagement metrics, and local media references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves scraped X post content and media locally, which can retain private or sensitive timeline material if the user selects those sources. <br>
-Mitigation: Use only on pages the user intends to archive, avoid private or sensitive timelines, and review or delete generated ../../intel/x reports and media when they are no longer needed. <br>
-Risk: Generated reports may reflect only the posts loaded at scrape time because X timelines are dynamic. <br>
-Mitigation: Treat reports as point-in-time archives and verify important findings against the source page before acting on them. <br>
+## Use Case:
 
+Developers and analysts use xclaw to extract recent X timeline, profile, or search-result posts into local Markdown reports with engagement metrics, post URLs, and media references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zyliu0/x-openclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/zyliu0) <br>
-- [X home timeline](https://x.com/home) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with local media files and inline shell/browser commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports under ../../intel/x and media under ../../intel/x/media when used as directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may collect content from a logged-in X session and save post text, metrics, URLs, and downloaded media locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for content you are allowed to collect and archive, and review the saved ../../intel/x files before sharing or retaining them.
+
+Risk: Local media downloads can store third-party content and increase local storage or privacy exposure.
+
+Mitigation: Limit collection scope, remove unneeded media folders, and avoid archiving sensitive or unauthorized content.
+
+## Reference(s):
+
+- [xclaw Skill Page](https://clawhub.ai/zyliu0/skills/x-openclaw)
+- [Publisher Profile](https://clawhub.ai/user/zyliu0)
+- [X Home Timeline](https://x.com/home)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Analysis]
+
+**Output Format:** [Markdown report with local media file references and inline shell/browser commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves reports under ../../intel/x and media under ../../intel/x/media/{YYYYMMDD}-{HHMMSS}.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

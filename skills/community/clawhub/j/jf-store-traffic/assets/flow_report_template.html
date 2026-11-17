@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>门店客流分析报告</title>
+<script>
+window.__REPORT__ = null;
+</script>
+<style>
+  :root {
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --border: #e5e9f0;
+    --text: #1f2937;
+    --text-sub: #6b7280;
+    --primary: #2563eb;
+    --green: #059669;
+    --amber: #d97706;
+    --violet: #7c3aed;
+    --red: #dc2626;
+    --cyan: #0891b2;
+    --radius: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--text); padding: 24px 16px 48px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+
+  header { margin-bottom: 20px; }
+  header h1 { font-size: 24px; font-weight: 700; }
+  header .meta { margin-top: 8px; color: var(--text-sub); font-size: 13px; line-height: 1.8; }
+  header .meta span { margin-right: 18px; }
+
+  .banner {
+    display: none; background: #fef3c7; color: #92400e; border: 1px solid #fde68a;
+    padding: 10px 14px; border-radius: var(--radius); margin-bottom: 16px; font-size: 13px;
+  }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 20px; }
+  .kpi {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 14px 16px;
+  }
+  .kpi .label { font-size: 12px; color: var(--text-sub); margin-bottom: 6px; }
+  .kpi .value { font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .kpi .value small { font-size: 13px; font-weight: 400; color: var(--text-sub); }
+  .kpi.k-total  .value { color: var(--primary); }
+  .kpi.k-in     .value { color: var(--green); }
+  .kpi.k-out    .value { color: var(--amber); }
+  .kpi.k-pass   .value { color: var(--violet); }
+  .kpi.k-rate   .value { color: var(--red); }
+  .kpi.k-ded    .value { color: var(--cyan); }
+
+  .tabs { display: flex; gap: 4px; border-bottom: 2px solid var(--border); margin-bottom: 16px; }
+  .tab {
+    padding: 9px 18px; font-size: 14px; cursor: pointer; color: var(--text-sub);
+    border: none; background: none; border-bottom: 2px solid transparent; margin-bottom: -2px;
+  }
+  .tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px; margin-bottom: 16px;
+  }
+  .card h3 { font-size: 15px; margin-bottom: 14px; }
+  .card .hint { font-size: 12px; color: var(--text-sub); margin-top: 10px; }
+  .chart-box { position: relative; height: 320px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .chart-fallback { color: var(--text-sub); font-size: 13px; padding: 24px 0; text-align: center; }
+
+  table.detail { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.detail th, table.detail td {
+    text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--border);
+  }
+  table.detail th { color: var(--text-sub); font-weight: 500; background: #f9fafb; }
+  table.detail td.num { font-variant-numeric: tabular-nums; text-align: right; }
+
+  footer { margin-top: 24px; color: var(--text-sub); font-size: 12px; text-align: center; }
+
+  @media (max-width: 860px) {
+    .kpi-row { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 id="report-title">门店客流分析报告</h1>
+    <div class="meta" id="report-meta"></div>
+  </header>
+
+  <div class="banner" id="empty-banner">所选时间范围内没有客流数据。请确认设备已开启客流算法（openStatus=1）且运行时段覆盖查询范围。</div>
+  <div class="banner" id="chart-err" style="background:#fee2e2;color:#991b1b;border-color:#fecaca;">图表库加载失败（可能无网络），KPI 与明细表不受影响。</div>
+
+  <div class="kpi-row" id="kpi-row"></div>
+
+  <nav class="tabs">
+    <button class="tab active" data-panel="overview">总览</button>
+    <button class="tab" data-panel="trends">趋势</button>
+    <button class="tab" data-panel="profile">客群画像</button>
+    <button class="tab" data-panel="batches">进店批次</button>
+  </nav>
+
+  <section class="panel active" id="panel-overview">
+    <div class="card">
+      <h3>客流构成对比（原始 vs 去重过滤后）</h3>
+      <div class="chart-box"><canvas id="chart-overview"></canvas></div>
+      <div class="hint">去重过滤后 = 人体特征比对去重并叠加外卖员/快递员过滤后的数据；同比、环比、进店率、批次基于未去重数据统计。</div>
+    </div>
+    <div class="card">
+      <h3>全部指标明细</h3>
+      <table class="detail" id="detail-table"></table>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-trends">
+    <div class="card">
+      <h3>每日客流趋势</h3>
+      <div class="chart-box"><canvas id="chart-trends"></canvas></div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-profile">
+    <div class="grid-2">
+      <div class="card">
+        <h3>年龄段分布（去重进店顾客）</h3>
+        <div class="chart-box"><canvas id="chart-age"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>性别分布（去重进店顾客）</h3>
+        <div class="chart-box"><canvas id="chart-gender"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-batches">
+    <div class="card">
+      <h3>进店批次构成</h3>
+      <div class="chart-box"><canvas id="chart-batches"></canvas></div>
+      <div class="hint">同一时间段（默认 3 秒，可配置 2~10 秒）内进店的顾客计为同一批次。</div>
+    </div>
+  </section>
+
+  <footer>数据来源：杰峰开放平台 /gwp/v3/rtc/store/flowStatistics · 由 jf-store-traffic 技能生成</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"
+        onerror="var s=document.createElement('script');s.src='https://unpkg.com/chart.js@4.4.3/dist/chart.umd.min.js';document.head.appendChild(s);"></script>
+<script>
+(function () {
+  "use strict";
+  var R = window.__REPORT__;
+  if (!R || !R.overview) {
+    document.getElementById("report-title").textContent = "报告数据缺失";
+    return;
+  }
+  var O = R.overview, M = R.meta || {}, D = R.daily || [];
+
+  function n(v) { var x = Number(v); return isFinite(x) ? x : 0; }
+  function fmt(v) { return n(v).toLocaleString("zh-CN"); }
+
+  // ---- Header ----
+  document.getElementById("report-title").textContent =
+    (M.title || "门店") + " · 客流分析报告";
+  var scopeBits = [];
+  if (M.storeId) scopeBits.push("门店ID " + M.storeId);
+  else scopeBits.push("全部门店");
+  if (M.deviceSn) scopeBits.push("设备 " + M.deviceSn);
+  document.getElementById("report-meta").innerHTML =
+    "<span>统计范围：" + (M.rangeStart || "") + " ~ " + (M.rangeEnd || "") + "</span>" +
+    "<span>" + scopeBits.join("，") + "</span>" +
+    "<span>生成时间：" + (M.generatedAt || "") + "</span>";
+
+  if (n(O.sumFlowCount) === 0) {
+    document.getElementById("empty-banner").style.display = "block";
+  }
+
+  // ---- KPI cards ----
+  var kpis = [
+    ["k-total", "总客流", fmt(O.sumFlowCount), ""],
+    ["k-in", "进店客流", fmt(O.sumInboundCount), ""],
+    ["k-out", "出店客流", fmt(O.sumOutboundCount), ""],
+    ["k-pass", "过店客流", fmt(O.sumPassCount), ""],
+    ["k-rate", "进店率", n(O.inboundRate).toFixed(1), " %"],
+    ["k-ded", "去重顾客数", fmt(O.sumRemoveDuplicateInboundCount), ""]
+  ];
+  var kpiHtml = "";
+  kpis.forEach(function (k) {
+    kpiHtml += '<div class="kpi ' + k[0] + '"><div class="label">' + k[1] +
+      '</div><div class="value">' + k[2] +
+      (k[3] ? "<small>" + k[3] + "</small>" : "") + "</div></div>";
+  });
+  document.getElementById("kpi-row").innerHTML = kpiHtml;
+
+  // ---- Detail table ----
+  var FIELDS = [
+    ["sumFlowCount", "总客流"],
+    ["sumInboundCount", "进店客流"],
+    ["sumOutboundCount", "出店客流"],
+    ["sumPassCount", "过店客流"],
+    ["inboundRate", "进店率(%)"],
+    ["sumDedInboundCount", "进店去重数"],
+    ["sumDedOutboundCount", "出店去重数"],
+    ["sumDedPassCount", "过店去重数"],
+    ["sumRemoveDuplicateFlowCount", "去重总客流"],
+    ["sumRemoveDuplicateInboundCount", "去重进店客流（过滤后顾客数）"],
+    ["sumRemoveDuplicateOutboundCount", "去重出店客流"],
+    ["sumRemoveDuplicatePassCount", "去重过店客流"],
+    ["sumSingleBatchCount", "单人进店批次"],
+    ["sumDoubleBatchCount", "双人进店批次"],
+    ["sumThreeBatchCount", "三人进店批次"],
+    ["sumManyBatchCount", "多人进店批次"],
+    ["sumChildrenCount", "孩童数"],
+    ["sumYoungCount", "青年数"],
+    ["sumMiddleCount", "中年数"],
+    ["sumOldCount", "老年数"],
+    ["sumAgeUnknownCount", "年龄未知数"],
+    ["sumManCount", "男性数"],
+    ["sumWomanCount", "女性数"],
+    ["sumGenderUnknownCount", "性别未知数"]
+  ];
+  var rows = "<tr><th>指标</th><th style='text-align:right'>数值</th></tr>";
+  FIELDS.forEach(function (f) {
+    var val = O[f[0]];
+    rows += "<tr><td>" + f[1] + "</td><td class='num'>" +
+      (val === undefined || val === null ? "-" : fmt(val)) + "</td></tr>";
+  });
+  document.getElementById("detail-table").innerHTML = rows;
+
+  // ---- Chart.js deferred init per tab ----
+  var palette = {
+    total: "#2563eb", inbound: "#059669", outbound: "#d97706",
+    pass: "#7c3aed", rate: "#dc2626", ded: "#0891b2", gray: "#9ca3af",
+    female: "#ec4899"
+  };
+  var built = {};
+  function applyChartDefaults() {
+    Chart.defaults.font.family =
+      '"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif';
+  }
+  var builders = {
+    overview: function () {
+      new Chart(document.getElementById("chart-overview"), {
+        type: "bar",
+        data: {
+          labels: ["进店", "出店", "过店"],
+          datasets: [
+            { label: "原始统计", data: [n(O.sumInboundCount), n(O.sumOutboundCount), n(O.sumPassCount)],
+              backgroundColor: [palette.inbound, palette.outbound, palette.pass] },
+            { label: "去重过滤后", data: [n(O.sumRemoveDuplicateInboundCount), n(O.sumRemoveDuplicateOutboundCount), n(O.sumRemoveDuplicatePassCount)],
+              backgroundColor: ["#a7f3d0", "#fde68a", "#ddd6fe"] }
+          ]
+        },
+        options: { responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { position: "top" } },
+          scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+      });
+    },
+    trends: function () {
+      var labels = D.map(function (d) { return d.date.slice(5); });
+      new Chart(document.getElementById("chart-trends"), {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [
+            { label: "总客流", data: D.map(function (d) { return n(d.sumFlowCount); }),
+              borderColor: palette.total, backgroundColor: palette.total, tension: 0.3 },
+            { label: "进店", data: D.map(function (d) { return n(d.sumInboundCount); }),
+              borderColor: palette.inbound, backgroundColor: palette.inbound, tension: 0.3 },
+            { label: "过店", data: D.map(function (d) { return n(d.sumPassCount); }),
+              borderColor: palette.pass, backgroundColor: palette.pass, tension: 0.3 },
+            { label: "进店率(%)", data: D.map(function (d) { return n(d.inboundRate); }),
+              borderColor: palette.rate, backgroundColor: palette.rate,
+              borderDash: [5, 4], yAxisID: "y1", tension: 0.3, pointStyle: "rectRot" }
+          ]
+        },
+        options: { responsive: true, maintainAspectRatio: false, interaction: { mode: "index", intersect: false },
+          plugins: { legend: { position: "top" } },
+          scales: {
+            y: { beginAtZero: true, ticks: { precision: 0 }, title: { display: true, text: "人次" } },
+            y1: { position: "right", beginAtZero: true, suggestedMax: 100, grid: { drawOnChartArea: false },
+                  title: { display: true, text: "进店率 %" } }
+          } }
+      });
+    },
+    profile: function () {
+      new Chart(document.getElementById("chart-age"), {
+        type: "bar",
+        data: {
+          labels: ["孩童", "青年", "中年", "老年", "未知"],
+          datasets: [{ data: [n(O.sumChildrenCount), n(O.sumYoungCount), n(O.sumMiddleCount), n(O.sumOldCount), n(O.sumAgeUnknownCount)],
+            backgroundColor: [palette.total, palette.inbound, palette.outbound, palette.pass, palette.gray] }]
+        },
+        options: { indexAxis: "y", responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { x: { beginAtZero: true, ticks: { precision: 0 } } } }
+      });
+      new Chart(document.getElementById("chart-gender"), {
+        type: "doughnut",
+        data: {
+          labels: ["男", "女", "未知"],
+          datasets: [{ data: [n(O.sumManCount), n(O.sumWomanCount), n(O.sumGenderUnknownCount)],
+            backgroundColor: [palette.total, palette.female, palette.gray] }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, cutout: "55%",
+          plugins: { legend: { position: "bottom" } } }
+      });
+    },
+    batches: function () {
+      new Chart(document.getElementById("chart-batches"), {
+        type: "doughnut",
+        data: {
+          labels: ["单人进店", "双人进店", "三人进店", "多人进店"],
+          datasets: [{ data: [n(O.sumSingleBatchCount), n(O.sumDoubleBatchCount), n(O.sumThreeBatchCount), n(O.sumManyBatchCount)],
+            backgroundColor: [palette.total, palette.inbound, palette.outbound, palette.pass] }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, cutout: "55%",
+          plugins: { legend: { position: "right" } } }
+      });
+    }
+  };
+
+  function chartFail(panelId) {
+    var box = document.getElementById("panel-" + panelId)
+      .querySelector(".chart-box");
+    if (box) box.innerHTML = "<div class='chart-fallback'>图表库未加载，无法绘制图表。</div>";
+  }
+  function build(panelId) {
+    if (built[panelId]) return;
+    built[panelId] = true;
+    if (typeof Chart === "undefined") { chartFail(panelId); return; }
+    try { applyChartDefaults(); builders[panelId](); } catch (e) { chartFail(panelId); }
+  }
+
+  var tabs = document.querySelectorAll(".tab");
+  tabs.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      tabs.forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      document.querySelectorAll(".panel").forEach(function (p) {
+        p.classList.remove("active");
+      });
+      var id = btn.getAttribute("data-panel");
+      document.getElementById("panel-" + id).classList.add("active");
+      build(id);
+    });
+  });
+
+  // Wait for Chart.js (CDN may be slow), then build the default tab
+  var waited = 0;
+  var timer = setInterval(function () {
+    waited += 200;
+    if (typeof Chart !== "undefined") { clearInterval(timer); build("overview"); }
+    else if (waited >= 10000) {
+      clearInterval(timer);
+      document.getElementById("chart-err").style.display = "block";
+      chartFail("overview");
+    }
+  }, 200);
+})();
+</script>
+</body>
+</html>

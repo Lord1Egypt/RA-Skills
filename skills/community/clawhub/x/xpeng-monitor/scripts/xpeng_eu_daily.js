@@ -4,12 +4,16 @@
  *
  * 用法：
  *   node xpeng_eu_daily.js [year]                  # 输出 JSON（daily + monthly_full + monthly_partial）
- *   node xpeng_eu_daily.js [year] --report         # 输出 markdown 报告（①②③ 表格，④ 综合分析留给 LLM）
+ *   node xpeng_eu_daily.js [year] --report         # 输出 markdown 报告（①②③ 表格 + ④ 工作日对比，⑤ 综合分析留给 LLM）
  *   node xpeng_eu_daily.js [year] --email <email> --password <password>
  *
  *   year 可选，默认当前年份。
- *   --report 输出 3 个 markdown 表格（月度环比 / 全月总销量 / 车型明细），
- *   供 LLM 直接展示并附加 ④ 综合分析。
+ *   --report 输出 4 个 markdown 模块：① 月度环比 / ② 全月总销量 / ③ 车型明细
+ *   表格 + ④ 工作日销量对比（当前月 vs 上个月，1 日 ~ T-2，逐工作日对比表 +
+ *   日均汇总表），供 LLM 直接展示并附加 ⑤ 综合分析。
+ *   ④ 的口径：T 为脚本运行日（自然日），T-1 / T-2 为前 1/2 天。因月末最近两天
+ *   数据可能尚未上报完整，仅取 1 日 ~ T-2 范围；对比的是「第 1 ~ n 个工作日」
+ *   的序列（跳过周六日，与日历日期无关，保证两月可比）。
  *   如果数据页返回 302（未登录 / bot 拦截 / 会话失效，重定向目标可能为
  *   /bots、/login、/onlyNamed 等），脚本向 stdout 输出 LOGIN_REQUIRED
  *   （退出码 2），agent 见此应询问账密。
@@ -153,21 +157,33 @@ function parseHtml(html) {
   while ((m = trRegex.exec(tableHtml)) !== null) trs.push(m[1]);
   if (trs.length === 0) return null;
 
+  // 表头车型：2026-08 改版后表头为 <th scope="col"><a>车型</a></th>（链接正常闭合），
+  // 旧版为 <a>车型</td>（无 </a> 闭合），两种都接受；首个无链接的 "Period" 列天然不会被捕获
   const models = [];
-  const aRegex = /<a[^>]*>([^<]+)<\/td>/g;
+  const aRegex = /<a[^>]*>([^<]+)<\/(?:a|td)>/g;
   while ((m = aRegex.exec(trs[0])) !== null) models.push(m[1].trim());
 
   const rows = [];
-  const tdRegex = /<td[^>]*>([^<]*)<\/td>/g;
   for (let i = 1; i < trs.length; i++) {
-    const cells = [];
-    while ((m = tdRegex.exec(trs[i])) !== null) cells.push(m[1].trim());
-    if (cells.length >= 2 && /^\d{4}-\d{2}-\d{2}$/.test(cells[0])) {
-      const date = cells[0];
-      const values = cells.slice(1).map((v) => parseInt(v, 10) || 0);
-      const total = values.reduce((a, b) => a + b, 0);
-      rows.push({ date, values, total });
+    const tr = trs[i];
+    // 新版结构：日期在 <th scope="row">，数值在各 <td>
+    const thMatch = tr.match(/<th[^>]*>([^<]*)<\/th>/i);
+    let date = thMatch ? thMatch[1].trim() : '';
+    let cells = [];
+    const tdRegex = /<td[^>]*>([^<]*)<\/td>/g;
+    while ((m = tdRegex.exec(tr)) !== null) cells.push(m[1].trim());
+    // 旧版结构兜底：日期不在 th 时，检查第一个 td 是否为日期
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      if (cells.length >= 2 && /^\d{4}-\d{2}-\d{2}$/.test(cells[0])) {
+        date = cells[0];
+        cells = cells.slice(1);
+      } else {
+        continue;
+      }
     }
+    const values = cells.map((v) => parseInt(v, 10) || 0);
+    const total = values.reduce((a, b) => a + b, 0);
+    rows.push({ date, values, total });
   }
   return { models, rows };
 }
@@ -259,9 +275,104 @@ function parseArgs() {
 
 // ---- 报告格式化 ----
 
-/** 将预汇总数据格式化为 markdown 报告（①②③ 表格，④ 综合分析留给 LLM 生成） */
+/** 计算日期 d（YYYY-MM-DD）是周几：0=日 1=一 ... 6=六 */
+function dayOfWeek(dateStr) {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+}
+
+/** 日期加 n 天，返回 YYYY-MM-DD */
+function addDays(dateStr, n) {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const t = new Date(Date.UTC(y, m - 1, d + n));
+  return t.toISOString().substring(0, 10);
+}
+
+/**
+ * 工作日对比（④ 模块）：当前月 vs 上个月，范围 1 日 ~ T-2。
+ * T 为运行日；T-1/T-2 数据可能未上报完整，故截到 T-2。
+ * 两个月的第 i 个工作日互相对齐（跳过周六日），保证可比。
+ */
+function formatWorkdayCompare(daily, meta) {
+  // 1. 确定 T-2 上限（基于最新数据日期与运行日中更保守者：若数据尚未更新到 T-2，用最新日期）
+  const now = new Date();
+  const todayStr = now.toISOString().substring(0, 10);
+  let cutoff = addDays(todayStr, -2);
+  if (meta.latest_date < cutoff) cutoff = meta.latest_date; // 数据滞后时以数据为准
+
+  const latestMonth = meta.latest_date.substring(0, 7);
+  const prevMonthEntry = meta.months[meta.months.length - 2]; // 上个自然月（months 正序）
+  if (!prevMonthEntry) return '';
+
+  // 2. 提取两月「1 日 ~ cutoff」内的工作日（周一~周五）序列。
+  //    注意：daily 中无数据的日期不出现。周末已被排除，但工作日缺行
+  //    （节假日/未上报）会让"第 i 个工作日"错位——以日历为准补零，
+  //    保证两月的工作日索引可比。
+  const fillWorkdays = (month) => {
+    const map = new Map();
+    for (const r of daily) {
+      if (!r.date.startsWith(month)) continue;
+      if (r.date > cutoff) break;
+      if (dayOfWeek(r.date) === 0 || dayOfWeek(r.date) === 6) continue;
+      map.set(r.date, r.total);
+    }
+    const out = [];
+    let d = month + '-01';
+    const [ey, em] = month.split('-').map(Number);
+    const lastDay = new Date(Date.UTC(ey, em, 0)).getUTCDate();
+    for (let i = 1; i <= lastDay; i++, d = addDays(d, 1)) {
+      if (d > cutoff) break;
+      const dow = dayOfWeek(d);
+      if (dow === 0 || dow === 6) continue;
+      out.push({ date: d, total: map.has(d) ? map.get(d) : 0 });
+    }
+    return out;
+  };
+
+  const curF = fillWorkdays(latestMonth);
+  const prevF = fillWorkdays(prevMonthEntry);
+  const n = curF.length;
+  if (n === 0) return '';
+
+  // 3. 逐工作日对比表（当前月第 i 个工作日 vs 上月第 i 个工作日）
+  const rows4 = [
+    '| 工作日 | ' + latestMonth + ' 日期 | ' + latestMonth + ' 销量 | ' + prevMonthEntry + ' 日期 | ' + prevMonthEntry + ' 销量 | 差异 |',
+    '|------|------|------|------|------|------|',
+  ];
+  for (let i = 0; i < n; i++) {
+    const c = curF[i];
+    const p = prevF[i] || { date: '-', total: null };
+    const d = p.total === null ? '—' : (c.total - p.total >= 0 ? '+' : '') + (c.total - p.total);
+    rows4.push('| ' + (i + 1) + ' | ' + c.date + ' | ' + c.total + ' | ' + p.date + ' | ' + (p.total === null ? '-' : p.total) + ' | ' + d + ' |');
+  }
+
+  // 4. 日均汇总对比表
+  const curSum = curF.reduce((s, r) => s + r.total, 0);
+  const curAvg = curSum / n;
+  const prevSum = prevF.slice(0, n).reduce((s, r) => s + r.total, 0); // 只取前 n 个工作日对齐
+  const prevAvg = n > 0 ? prevSum / n : 0;
+  const diff = curAvg - prevAvg;
+  const pct = prevAvg > 0 ? ((diff / prevAvg) * 100).toFixed(1) : 'N/A';
+
+  const blocks = [];
+  blocks.push(
+    '## ④ 工作日销量对比（1 日 ~ ' + cutoff + '，当前月 ' + latestMonth + ' vs 上月 ' + prevMonthEntry + '）\n\n' +
+    '仅统计工作日（周一~周五），两月按「第 n 个工作日」对齐；截止 T-2 是因为最近两天数据可能尚未上报完整。\n\n' +
+    rows4.join('\n')
+  );
+  blocks.push(
+    '| 对比项 | ' + latestMonth + '（当前月） | ' + prevMonthEntry + '（上月） | 差异 |\n' +
+    '|------|------|------|------|\n' +
+    '| 对比工作日数 | ' + n + ' | ' + n + '（同范围对齐） | — |\n' +
+    '| 工作日销量合计 | ' + curSum + ' | ' + prevSum + ' | ' + (curSum - prevSum >= 0 ? '+' : '') + (curSum - prevSum) + ' |\n' +
+    '| 工作日日均销量 | ' + curAvg.toFixed(1) + ' | ' + prevAvg.toFixed(1) + ' | ' + (diff >= 0 ? '+' : '') + diff.toFixed(1) + '（' + (pct === 'N/A' ? 'N/A' : (diff >= 0 ? '+' : '') + pct + '%') + '） |'
+  );
+  return blocks.join('\n\n');
+}
+
+/** 将预汇总数据格式化为 markdown 报告（①②③④ 模块，⑤ 综合分析留给 LLM 生成） */
 function formatReport(data) {
-  const { meta, monthly_full, monthly_partial } = data;
+  const { meta, daily, monthly_full, monthly_partial } = data;
   const ld = meta.latest_day;
   const models = meta.models;
   const last3p = monthly_partial.slice(-3);
@@ -277,18 +388,46 @@ function formatReport(data) {
     return (pct >= 0 ? '+' : '') + pct.toFixed(1) + '%';
   };
 
+  // 统计某月（1~ld 日范围内）有数据的工作日天数（daily 中出现的周一~周五日期数）
+  const workdaysWithData = (month) => {
+    let count = 0;
+    for (const r of daily) {
+      if (!r.date.startsWith(month)) continue;
+      if (parseInt(r.date.substring(8, 10), 10) > ld) continue;
+      const dow = dayOfWeek(r.date);
+      if (dow !== 0 && dow !== 6) count++;
+    }
+    return count;
+  };
+
+  // 当前日期（自然日）：用于「x 日销量」列的日历日对齐
+  const todayDay = parseInt(new Date().toISOString().substring(8, 10), 10);
+
+  // 各月「当前日期」销量：按日历日取数（今天是 17 日就取每月 17 日）。
+  // 当月当前日超出历史月天数时（如 31 日 vs 30 天的月份），历史月回退取该月最后一天
+  // （30 日）；该日在 daily 中无数据（周末/节假日/未上报）时显示 0。
+  const sameDaySales = (month) => {
+    const [ey, em] = month.split('-').map(Number);
+    const lastDay = new Date(Date.UTC(ey, em, 0)).getUTCDate();
+    const day = Math.min(todayDay, lastDay); // 历史月天数不足时取月末最后一天
+    const date = month + '-' + pad2(day);
+    const row = daily.find((r) => r.date === date);
+    return { date, value: row ? row.total : 0 };
+  };
+
   const blocks = [];
 
   // ① 月度环比对比
   const rows1 = [
-    '| 月份 | 销量（1–' + ld + ' 日累计） | 环比变化量 | 环比百分比 |',
-    '|------|-------------------|-----------|-----------|',
+    '| 月份 | 销量（1–' + ld + ' 日累计） | 环比变化量 | 环比百分比 | 有数据工作日天数 | ' + todayDay + ' 日销量 |',
+    '|------|-------------------|-----------|-----------|-----------|-----------|',
   ];
   let prev = prevBase;
   for (const m of last3p) {
     const diff = prev !== null ? fmtDiff(m.total - prev) : '—';
     const pct = prev !== null ? fmtPct(m.total - prev, prev) : '—';
-    rows1.push('| ' + m.month + ' | ' + m.total + ' | ' + diff + ' | ' + pct + ' |');
+    const sd = sameDaySales(m.month);
+    rows1.push('| ' + m.month + ' | ' + m.total + ' | ' + diff + ' | ' + pct + ' | ' + workdaysWithData(m.month) + ' | ' + sd.value + '（' + sd.date + '） |');
     prev = m.total;
   }
   blocks.push('## ① 最近 3 个月月度环比对比（1-' + ld + ' 日累计）\n\n' + rows1.join('\n'));
@@ -314,6 +453,10 @@ function formatReport(data) {
   }
   rows3.push('| **合计** | **' + last3p.map((m) => m.total).join('** | **') + '** |');
   blocks.push('## ③ 最近 3 个月各车型销量明细（1-' + ld + ' 日累计）\n\n' + rows3.join('\n'));
+
+  // ④ 工作日销量对比（当前月 vs 上个月，1 日 ~ T-2）
+  const workdayBlock = formatWorkdayCompare(data.daily, data.meta);
+  if (workdayBlock) blocks.push(workdayBlock);
 
   return blocks.join('\n\n');
 }

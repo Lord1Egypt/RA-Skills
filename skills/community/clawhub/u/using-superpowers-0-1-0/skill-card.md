@@ -1,38 +1,52 @@
-## Description: <br>
-Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Establishes a workflow for checking and invoking applicable agent skills before responding or taking action.
 
-## Publisher: <br>
-[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to make agents check for applicable skills at the start of conversations and before task actions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad mandatory skill-invocation rules can reduce agent discretion and cause unrelated secondary skills to influence normal work.
+
+Mitigation: Install only where skill-first routing is desired, keep higher-priority policies authoritative, and review proposed secondary skill use before acting.
+
+Risk: The skill attempts to impose process rules across nearly any action.
+
+Mitigation: Scope deployment to agents or workspaces that explicitly require this behavior and remove it if it conflicts with local operating policy.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agent users and developers use this skill to require a skill-discovery step before responses or actions, so relevant skill instructions are considered early in a conversation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly changes agent behavior by pushing skill checks before nearly any action, which may make responses less direct or less responsive to ordinary clarification and prioritization. <br>
-Mitigation: Install only when that global process rule is intended, and review the skill's behavior expectations with users or operators before enabling it. <br>
+**Output Format:** [Markdown instructions for agent behavior]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lean-zhouchao/using-superpowers-0-1-0) <br>
+**Other Properties Related to Output:** [No code execution, API calls, or generated files are produced by the skill itself.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance for agent behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; broad process guidance for when agents should check and invoke skills.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact metadata: 0.1.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

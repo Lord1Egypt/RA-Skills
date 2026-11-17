@@ -1,41 +1,58 @@
-## Description: <br>
-A management skill for solo Traditional Chinese Medicine practitioners that handles patient records, medical charts, herbal inventory, appointments, and clinic financial bookkeeping in local Excel files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TCM Clinic helps solo Traditional Chinese Medicine practitioners manage patient records, medical charts, herbal inventory, appointments, and financial bookkeeping in local Excel files.
 
-## Publisher: <br>
-[slamw](https://clawhub.ai/user/slamw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slamw](https://clawhub.ai/user/slamw)
 
-## Use Case: <br>
-Solo TCM practitioners and clinic operators use this skill to create and search patient files, record consultations and prescriptions, manage herbal inventory, schedule appointments, and summarize clinic finances. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive patient, medical, appointment, and financial records in plaintext Excel files. <br>
-Mitigation: Use only on a trusted, access-controlled device with encryption, secure backups, retention rules, and any required healthcare compliance review. <br>
-Risk: Patient details can be printed in terminal output, logs, or shared agent transcripts. <br>
-Mitigation: Avoid running the skill in shared terminals or logging environments when using real patient data. <br>
+## Use Case:
 
+External solo Traditional Chinese Medicine practitioners use this skill to manage daily clinic records, appointment queues, herbal inventory, and fee summaries through agent-guided CLI operations.
 
-## Reference(s): <br>
-- [Data schema reference](references/data-schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/slamw/tcm-clinic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and summaries with optional shell commands that call a local Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update local Excel workbooks under clinic_data/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill stores sensitive patient, medical, and payment records in ordinary local Excel files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private, access-controlled, backed-up location and avoid shared or synced folders.
+
+Risk: Terminal output can expose patient, medical, inventory, appointment, or financial details.
+
+Mitigation: Treat terminal output as sensitive and restrict access to logs, transcripts, and shared screens.
+
+Risk: Production PHI use requires controls beyond the artifact's local file workflow.
+
+Mitigation: Add appropriate privacy, security, retention, and compliance controls before using it for production PHI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/slamw/skills/tcm-clinic)
+- [Data schema reference](references/data-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files]
+
+**Output Format:** [Markdown summaries with shell command execution and local Excel workbook files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local .xlsx files under clinic_data/; command output may include patient, medical, inventory, appointment, and financial records.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

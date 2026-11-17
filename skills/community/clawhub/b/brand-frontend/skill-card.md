@@ -1,45 +1,66 @@
-## Description: <br>
-Brand Frontend interviews developers about brand identity, then uses Google Stitch to generate, refine, and package a polished standalone landing page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brand Frontend guides an agent through a brand discovery interview, Google Stitch-based landing page generation, iterative design review, and delivery of deployment-ready HTML assets.
 
-## Publisher: <br>
-[davidbergman121](https://clawhub.ai/user/davidbergman121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidbergman121](https://clawhub.ai/user/davidbergman121)
 
-## Use Case: <br>
-Developers and external builders use this skill to turn a product, side project, or service into a brand-informed landing page through a short interview, Stitch generation, review, and delivery workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may install or update the Stitch SDK and use a sensitive Stitch API key before the user has clearly approved the setup. <br>
-Mitigation: Require explicit approval before installing software, prefer a project-local pinned SDK install, and have the user set STITCH_API_KEY in their environment instead of pasting it into chat. <br>
-Risk: Generated local state, copied user assets, and deployment bundles may contain sensitive project details or files that should not be shared unchanged. <br>
-Mitigation: Review .stitch/metadata.json, .stitch/user-assets, generated HTML, and the final zip contents before sharing or deploying. <br>
+## Use Case:
 
+Developers and makers use this skill when they need a standalone landing or marketing page but have not yet defined brand identity, visual direction, or launch-ready page assets. The skill helps an agent interview the user, translate brand choices into a design system, generate and refine pages with Google Stitch, and package final HTML for deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidbergman121/brand-frontend) <br>
-- [Google Stitch SDK documentation](https://google-stitch.com/docs/sdk/ai-sdk) <br>
-- [Google Stitch DESIGN.md documentation](https://google-stitch.com/docs/design-md/overview) <br>
-- [Brand Discovery Interview Framework](references/interview-framework.md) <br>
-- [Stitch Architecture Reference](references/stitch-architecture.md) <br>
-- [State Management, Pitfalls & Templates](references/state-and-pitfalls.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational guidance with generated HTML files, Markdown documentation, JSON metadata, shell commands, and a deployment bundle.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Stitch API key and may create local .stitch state, design files, user asset copies, and a final zip bundle.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may install a changing external Google Stitch SDK, including global installation by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a project-local pinned SDK install and confirm package-manager commands before installation.
+
+Risk: The skill may open generated HTML previews automatically.
+
+Mitigation: Ask whether the user wants browser previews or file paths before opening generated files.
+
+Risk: The workflow depends on STITCH_API_KEY for Google Stitch access.
+
+Mitigation: Use a scoped key, keep it in the local environment, and never echo or transcribe it.
+
+Risk: User-provided screenshots or logos may be saved into the delivered bundle.
+
+Mitigation: Avoid sensitive assets and confirm which saved assets should be included before delivery.
+
+## Reference(s):
+
+- [Brand Frontend ClawHub skill page](https://clawhub.ai/davidbergman121/skills/brand-frontend)
+- [Interview Framework](artifact/references/interview-framework.md)
+- [Stitch Architecture Reference](artifact/references/stitch-architecture.md)
+- [State Management, Pitfalls & Templates](artifact/references/state-and-pitfalls.md)
+- [Google Stitch SDK documentation](https://google-stitch.com/docs/sdk/ai-sdk)
+- [Google Stitch DESIGN.md documentation](https://google-stitch.com/docs/design-md/overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational guidance with Markdown and code snippets, plus generated local HTML bundle files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local .stitch state, design documentation, optional user asset copies, and a deployment bundle when the workflow completes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

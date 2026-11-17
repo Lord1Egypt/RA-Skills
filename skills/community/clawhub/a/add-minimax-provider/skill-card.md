@@ -1,43 +1,60 @@
-## Description: <br>
-为 OpenClaw 配置 MiniMax 作为模型源，覆盖 API Key 直连和 OAuth 门户两种接入方式，并提供 provider 注册、模型定义、别名、fallback 链接入和验证流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw administrators through configuring MiniMax model providers, model definitions, aliases, fallback behavior, and validation for API-key or OAuth access.
 
-## Publisher: <br>
-[jooey](https://clawhub.ai/user/jooey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jooey](https://clawhub.ai/user/jooey)
 
-## Use Case: <br>
-Developers and OpenClaw administrators use this skill to add MiniMax models as OpenClaw providers, test API availability, configure aliases and fallback behavior, and validate the gateway after configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Configuration changes may expose or misuse MiniMax API keys if pasted into chats, logs, or shared files. <br>
-Mitigation: Review the proposed ~/.openclaw/openclaw.json changes before installing, keep a backup, use a dedicated MiniMax API key where possible, and avoid sharing keys in chats or logs. <br>
-Risk: Prompts routed through MiniMax may be subject to MiniMax billing, quota, and privacy terms. <br>
-Mitigation: Confirm MiniMax billing and privacy terms are acceptable before routing prompts through this provider. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to add MiniMax as a model source, choose between API-key and OAuth access, and validate the resulting provider configuration before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jooey/add-minimax-provider) <br>
-- [MiniMax platform](https://platform.minimaxi.com) <br>
-- [MiniMax chat completions API endpoint](https://api.minimaxi.com/v1/chat/completions) <br>
-- [MiniMax provider source repository](https://github.com/jooey/openclaw-skill-add-minimax-provider) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, Code] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OpenClaw provider snippets, API test commands, alias and fallback examples, and validation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Mutable main-branch download instructions can install code that differs from the validated release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from the trusted ClawHub release when possible, or pin and verify the downloaded archive before use.
+
+Risk: The skill guides live edits to ~/.openclaw/openclaw.json, which can break OpenClaw if incorrect fields or values are added.
+
+Mitigation: Back up the OpenClaw configuration first, run JSON validation and openclaw doctor, and restart only after validation passes.
+
+Risk: API keys, OAuth setup, and recurring quota-check commands may trigger billed or account-affecting API calls.
+
+Mitigation: Confirm credentials and billing posture before testing, and treat any cron-based quota check as a deliberate live request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jooey/skills/add-minimax-provider)
+- [MiniMax platform](https://platform.minimaxi.com)
+- [MiniMax OpenAI-compatible chat completions endpoint](https://api.minimaxi.com/v1/chat/completions)
+- [MiniMax Anthropic-compatible API base](https://api.minimaxi.com/anthropic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live API test commands, OpenClaw configuration edits, fallback recommendations, and troubleshooting steps.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

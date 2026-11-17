@@ -1,14 +1,14 @@
-# TypeScript 类型安全
+#TypeScript type safety
 
 ## Purpose
 
-为前端和 TypeScript 工程建立可演进的类型契约，减少 `any`、断言和运行时形状漂移。
+Establish evolvable type contracts for front-end and TypeScript projects, reducing `any`, assertions, and runtime shape drift.
 
 ## Procedure
 
-### 1. 先确定类型边界
+### 1. First determine the type boundary
 
-把类型分为外部输入、领域模型、UI view model、组件 props、工具函数 API。不要让后端 DTO、表单模型和 UI 展示模型互相冒充。
+Divide types into external input, domain model, UI view model, component props, and tool function API. Don't let backend DTOs, form models, and UI presentation models pretend to be each other.
 
 ```ts
 interface UserDto {
@@ -32,9 +32,9 @@ export function mapUserDto(dto: UserDto): UserViewModel {
 }
 ```
 
-### 2. 用 `unknown` 和收窄处理不可信数据
+### 2. Use `unknown` and narrowing to handle untrusted data
 
-外部输入先校验再使用。不要用 `as` 让编译器闭嘴。
+External input must be verified before use. Don't use `as` to shut up the compiler.
 
 ```ts
 interface ApiErrorBody {
@@ -55,9 +55,9 @@ export function getApiErrorMessage(value: unknown): string {
 }
 ```
 
-### 3. 用判别联合表达状态机
+### 3. Express state machine using discriminant union
 
-异步状态、权限分支、支付状态等有限状态，用判别字段让新增分支在编译期暴露。
+Limited states such as asynchronous status, permission branches, payment status, etc. use discriminant fields to expose new branches during compilation.
 
 ```ts
 type Loadable<T> =
@@ -86,9 +86,9 @@ export function renderUserState(user: Loadable<{ name: string }>): string {
 }
 ```
 
-### 4. 让泛型服务调用方，而不是炫技
+### 4. Let generics serve callers, not show off their skills
 
-泛型应减少重复并保持调用方推断清晰。复杂类型超过阅读成本时，优先拆具名类型。
+Generics should reduce duplication and keep caller inference clear. When the complex type exceeds the reading cost, the named type will be demolished first.
 
 ```ts
 interface SelectOption<TValue extends string | number> {
@@ -119,9 +119,9 @@ export function Select<TValue extends string | number>({
 }
 ```
 
-### 5. 用类型测试保护公共类型
+### 5. Protect public types with type testing
 
-公共工具类型、组件库类型和 SDK 类型，应有轻量类型测试或编译期断言。
+Public tool types, component library types, and SDK types should have lightweight type tests or compile-time assertions.
 
 ```ts
 type Equal<TLeft, TRight> =
@@ -137,12 +137,12 @@ type _UserStatusTest = Expect<Equal<UserStatus, "active" | "disabled">>;
 
 ## Constraints
 
-- 避免 `any`、无守卫的非空断言和不相关类型之间的强制 `as`。
-- 不把大型匿名类型堆在函数参数或 JSX props 上；提取具名类型表达业务含义。
-- 不为简单业务过度设计递归条件类型；类型复杂度应服务可维护性。
-- 公共 API 的输入输出必须显式标注，局部变量可依赖推断。
-- 类型建模不能替代运行时校验；外部数据仍需 schema 或 type guard。
+- Avoid `any`, unguarded non-null assertions and coercion `as` between unrelated types.
+- Don’t pile large anonymous types on function parameters or JSX props; extract named types to express business meaning.
+- Do not over-design recursive conditional types for simple business; type complexity should serve maintainability.
+- The input and output of the public API must be explicitly annotated, and local variables can be relied upon for inference.
+- Type modeling does not replace runtime validation; external data still requires schema or type guard.
 
 ## Expected Output
 
-产出清晰的类型边界、可收窄的数据模型、必要的类型测试和验证命令。评审时应列出类型风险、运行时影响、推荐建模方式和是否需要专项修复。
+Produce clear type boundaries, narrowable data models, and necessary type testing and verification commands. The review should list type risks, runtime impacts, recommended modeling methods, and whether special fixes are needed.

@@ -1,46 +1,61 @@
-## Description: <br>
-Advanced Qdrant vector database operations for AI agents, including semantic search, contextual document ingestion with chunking, collection management, snapshots, and migration tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced Qdrant vector database operations for AI agents, including semantic search, document ingestion with chunking, collection management, snapshots, and migrations.
 
-## Publisher: <br>
-[yoder-bawt](https://clawhub.ai/user/yoder-bawt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yoder-bawt](https://clawhub.ai/user/yoder-bawt)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate Qdrant-backed vector search workflows for document ingestion, semantic search, collection maintenance, backups, and migrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Documents, search queries, and database operations may expose sensitive data. <br>
-Mitigation: Use isolated Qdrant collections and non-sensitive test data; avoid sensitive search queries and use a limited OpenAI API key. <br>
-Risk: Crafted files or metadata may cause unintended local code execution because scripts pass input into shell and Python contexts. <br>
-Mitigation: Do not ingest untrusted files or metadata unless the scripts have been reviewed and fixed to safely pass JSON and Python inputs. <br>
-Risk: Delete, restore, and migration commands can alter or overwrite collection data. <br>
-Mitigation: Make backups and review the target collection before running delete, restore, or migration commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate Qdrant-backed vector search workflows for AI agents, including document ingestion, semantic search, collection administration, snapshots, restores, and migrations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yoder-bawt/qdrant-advanced) <br>
-- [Publisher homepage](https://github.com/yoder-bawt) <br>
-- [Qdrant documentation](https://qdrant.tech/documentation/) <br>
-- [Qdrant search concepts](https://qdrant.tech/documentation/concepts/search/) <br>
-- [OpenAI embeddings guide](https://platform.openai.com/docs/guides/embeddings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, python3, bash, Qdrant connection settings, and an OpenAI API key for embedding operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, artifact/skill.json, server release metadata) <br>
+Risk: Crafted inputs or database records could trigger local code execution through unsafe script interpolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and patch the scripts before installation, and do not run them against untrusted inputs or records until the interpolation issues are fixed.
+
+Risk: Document text and search queries can be sent to OpenAI for embedding generation.
+
+Mitigation: Use only approved data, avoid sensitive documents and queries until external data transmission is explicitly authorized, and confirm the OpenAI API key is managed through approved secret handling.
+
+Risk: Qdrant operations may run over unauthenticated HTTP and include destructive delete, restore, and migration commands.
+
+Mitigation: Require HTTPS and authentication for Qdrant access, restrict execution to trusted environments, and verify backups before delete, restore, or migration operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yoder-bawt/skills/qdrant-advanced)
+- [Publisher profile](https://clawhub.ai/user/yoder-bawt)
+- [Qdrant documentation](https://qdrant.tech/documentation/)
+- [Qdrant search concepts](https://qdrant.tech/documentation/concepts/search/)
+- [OpenAI embeddings guide](https://platform.openai.com/docs/guides/embeddings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that call Qdrant and OpenAI APIs; script outputs can include formatted JSON search, collection, snapshot, and migration results.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, artifact/skill.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

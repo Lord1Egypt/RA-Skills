@@ -1,43 +1,61 @@
-## Description: <br>
-腾讯地图Web服务API集成，用于地点搜索、路线规划、逆地理编码等功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Tencent Map Web Service API access for place search, geocoding, reverse geocoding, and nearby POI lookup.
 
-## Publisher: <br>
-[coreyleung-art](https://clawhub.ai/user/coreyleung-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[coreyleung-art](https://clawhub.ai/user/coreyleung-art)
 
-## Use Case: <br>
-Developers and agents use this skill to call Tencent Maps Web Service APIs for place search, geocoding, reverse geocoding, and nearby POI lookup. It returns structured JSON for downstream processing or agent responses. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Map searches, addresses, and coordinates are sent to Tencent Maps under the user's API key. <br>
-Mitigation: Avoid submitting highly sensitive personal or confidential locations, and confirm Tencent Maps terms are acceptable for the intended use. <br>
-Risk: The Tencent Maps API key can consume quota or expose account access if reused broadly. <br>
-Mitigation: Use a restricted API key where possible, keep it in the TENCENT_MAP_KEY environment variable, and monitor quota usage. <br>
-Risk: The route command is documented, but server security guidance says to treat it as unavailable until implemented. <br>
-Mitigation: Use the implemented search, geocode, reverse_geocode, and around commands, and verify route behavior before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coreyleung-art/qqmap) <br>
-- [Tencent Location Service console](https://lbs.qq.com/dev/console/application/) <br>
-- [Tencent Maps Web API endpoint](https://apis.map.qq.com/ws) <br>
+## Use Case:
 
+Developers and external users can use this skill to ask an agent to run Tencent Map lookups for locations, addresses, coordinates, and nearby points of interest through the Tencent Map Web Service API.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [JSON responses from shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, python3, network access, and the TENCENT_MAP_KEY environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Tencent Maps API keys may incur quota or billing exposure if overused or broadly scoped.
+
+Mitigation: Use a restricted Tencent Maps API key with quotas and billing alerts before installing or running the skill.
+
+Risk: Map queries can contain sensitive home, work, customer, or travel locations and are sent to Tencent.
+
+Mitigation: Avoid submitting sensitive locations unless appropriate, and provide clear privacy notice to users before use.
+
+Risk: Unencoded or weakly validated parameters can cause malformed requests or unexpected API behavior.
+
+Mitigation: URL-encode query parameters and validate coordinates, radius, page index, and page size before execution.
+
+Risk: The documentation advertises route planning, but the script does not implement a route action.
+
+Mitigation: Use the implemented search, geocode, reverse_geocode, and around actions until the publisher implements or removes the advertised route feature.
+
+## Reference(s):
+
+- [Tencent Location Service Console](https://lbs.qq.com/dev/console/application/)
+- [Tencent Map Web Service API Endpoint](https://apis.map.qq.com/ws)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON]
+
+**Output Format:** [JSON returned by shell commands, with setup and usage guidance in Markdown documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, python3, network access, and a TENCENT_MAP_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Deploy to Vercel for site editing, production deployment, aliasing, and live verification tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents deploy and update Vercel-hosted sites, including file edits, production deployment, aliasing, and post-deploy verification.
 
-## Publisher: <br>
-[ranlywood](https://clawhub.ai/user/ranlywood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ranlywood](https://clawhub.ai/user/ranlywood)
 
-## Use Case: <br>
-Developers and site maintainers use this skill to edit HTML, deploy projects to Vercel, assign aliases, and verify the live site. It also guides Vercel authentication and project configuration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide production deploys, alias changes, and project creation that may publish unintended content. <br>
-Mitigation: Require explicit confirmation before production deploys, aliases, or new project creation, and verify the deployed URL before treating the task as complete. <br>
-Risk: Broad Vercel tokens or stored credentials can expose account-level deployment authority. <br>
-Mitigation: Prefer normal Vercel CLI authentication or scoped session tokens, and do not write tokens to shell profiles or repository files. <br>
-Risk: Commands that change SSO, password protection, or trusted IP settings can weaken site access controls. <br>
-Mitigation: Confirm the exact security-setting change with the user and limit it to the intended Vercel project. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Vercel deployment workflows for web projects, including authentication checks, production deploys, alias handling, and verification of live changes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command blocks, file-editing instructions, and a final public URL after successful deployment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Vercel CLI authentication or a session-scoped Vercel token; production actions should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: server release evidence) <br>
+Risk: The skill can guide broad production deployment actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit user request, confirm the target project, and review the planned Vercel command before deployment.
+
+Risk: The skill includes guidance for removing Vercel access protections.
+
+Mitigation: Do not remove SSO, password protection, or trusted IP controls unless the user explicitly asks for that exact change and understands protected content may become public.
+
+Risk: Token handling during headless Vercel authentication can expose credentials if handled carelessly.
+
+Mitigation: Use Vercel's normal login flow or a dedicated secrets manager where possible, and keep tokens in session environment variables rather than writing them to files or chat logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ranlywood/skills/vercel-deploy-pro)
+- [Publisher profile](https://clawhub.ai/user/ranlywood)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include deployment URLs, Vercel CLI commands, API calls, and verification commands.]
+
+## Skill Version(s):
+
+1.4.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Analyze market sentiment from news articles, social media posts, and financial headlines. Extract bullish/bearish signals, keyword trends, and sentiment scores for Chinese and English markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze market sentiment from news articles, social media posts, and financial headlines. Extract bullish/bearish signals, keyword trends, and sentiment scores for Chinese and English markets.
 
-## Publisher: <br>
-[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888)
 
-## Use Case: <br>
-External users and developers use this skill to summarize market mood from financial headlines, public posts, and news snippets before trading research or portfolio monitoring. It provides keyword-based bullish, bearish, neutral, and trend summaries for Chinese and English market text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces rough keyword-based sentiment summaries that can be mistaken for investment advice. <br>
-Mitigation: Present results as informational analysis only and require users to validate conclusions with independent financial research. <br>
-Risk: Public market pages fetched with curl may be unavailable, incomplete, or structurally different from the examples. <br>
-Mitigation: Check fetched content before relying on summaries and treat missing or malformed source data as inconclusive. <br>
-Risk: Keyword dictionaries can miss context, sarcasm, new slang, and domain-specific meaning. <br>
-Mitigation: Review matched keywords and update dictionaries for the target market, language, and time period. <br>
+## Use Case:
 
+Developers, analysts, and trading-tool operators use this skill to summarize market sentiment from financial headlines, public social posts, and news snippets. It supports pre-market checks, position monitoring, earnings-season review, sector comparison, and keyword trend tracking.
 
-## Reference(s): <br>
-- [Sentiment Analyzer on ClawHub](https://clawhub.ai/zhaocaixia888/zcx-sentiment-analyzer) <br>
-- [Publisher profile: zhaocaixia888](https://clawhub.ai/user/zhaocaixia888) <br>
-- [Sina Finance](https://finance.sina.com.cn/) <br>
-- [East Money](https://quote.eastmoney.com/) <br>
-- [Weibo hot search API](https://weibo.com/ajax/side/hotSearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks, sentiment scores, keyword lists, and short market sentiment reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keyword-based analysis only; outputs are informational and not financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Sentiment scores could be mistaken for trading advice or used as the sole basis for market decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scores as informational only, combine them with independent analysis, and avoid using this skill alone for trading decisions.
+
+Risk: Public data-source scraping may conflict with site terms or rely on unstable and noisy source data.
+
+Mitigation: Verify each source's terms and reliability before scraping or operational use.
+
+Risk: Keyword-based sentiment can miss context, sarcasm, new slang, and domain changes.
+
+Mitigation: Maintain the keyword dictionaries regularly and consider validated financial NLP models for production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaocaixia888/skills/zcx-sentiment-analyzer)
+- [Sina Finance](https://finance.sina.com.cn/)
+- [East Money](https://quote.eastmoney.com/)
+- [Weibo hot search endpoint](https://weibo.com/ajax/side/hotSearch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with sentiment summaries, JSON-like analysis objects, Python snippets, and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Keyword-based informational sentiment analysis; not trading advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

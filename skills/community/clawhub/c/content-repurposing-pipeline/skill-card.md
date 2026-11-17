@@ -1,41 +1,53 @@
-## Description: <br>
-Turns long-form source content into a multi-format content kit for channels such as newsletters, social posts, short-form video scripts, podcast notes, quote cards, FAQs, and internal linking suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns long-form source content into a multi-format content repurposing kit for channels such as newsletters, social posts, short-form video scripts, podcast notes, quote cards, FAQ sections, and internal links.
 
-## Publisher: <br>
-[noahcraft-open](https://clawhub.ai/user/noahcraft-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noahcraft-open](https://clawhub.ai/user/noahcraft-open)
 
-## Use Case: <br>
-Content marketers, founders, and editorial teams use this skill to repurpose a blog post, transcript, video, or notes into publish-ready drafts across common marketing channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided content may include secrets, regulated personal data, confidential documents, embargoed material, or copyrighted material the user is not authorized to reuse. <br>
-Mitigation: Review and remove sensitive or unauthorized material before submitting source content to the skill. <br>
-Risk: Generated marketing drafts may need editorial, brand, legal, or factual review before publication. <br>
-Mitigation: Review generated drafts for accuracy, permissions, tone, and channel fit before publishing. <br>
+## Use Case:
 
+Marketers, content teams, and creators use this skill to convert a blog post, transcript, video, URL, file, or notes into channel-specific marketing assets and publishing-ready drafts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/noahcraft-open/content-repurposing-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/noahcraft-open) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown content kit with structured sections for each requested channel] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are derived from user-provided source material, target audience, and brand voice preferences.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may process user-provided URLs, files, notes, transcripts, or other source material that could contain confidential content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only source material appropriate for the agent session and avoid providing confidential content unless the session is authorized for it.
+
+Risk: Generated marketing drafts may need brand, factual, legal, or editorial review before publication.
+
+Mitigation: Review generated outputs before publishing and confirm that claims, quotes, statistics, and calls to action are accurate for the intended channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noahcraft-open/skills/content-repurposing-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown content kit with structured sections and channel-specific drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided source content, target formats, brand voice, and target audience.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

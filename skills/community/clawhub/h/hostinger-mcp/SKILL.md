@@ -1,6 +1,6 @@
 ---
 name: hostinger-mcp
-version: 1.0.0
+version: 1.2.1
 license: MIT
 description: |
   Operational guide for managing Hostinger infrastructure — VPS, websites/hosting, domains, DNS, email marketing (Reach), and billing — via the official Hostinger MCP server (npm hostinger-api-mcp), across one or several Hostinger accounts.
@@ -47,7 +47,7 @@ Managing Hostinger infrastructure — VPS, hosting, domains, DNS, Reach, billing
 
 2. **Write operations require explicit confirmation.** Before any write tool, present: the **account**, the tool name, the **target resource (ID + name)**, the parameters, and the expected impact. Wait for an explicit "yes". One confirmation ≠ blanket consent for further operations, and a confirmation on one account never carries to another.
 
-3. **Money-spending operations require cost-confirmation.** `domains_purchaseNewDomainV1`, `VPS_purchaseNewVirtualMachineV1`, subscription create/cancel, and `billing_setDefaultPaymentMethodV1` spend **real money**. Confirm the **cost AND the account** before executing.
+3. **Money-spending operations require cost-confirmation.** `domains_purchaseNewDomainV1`, `VPS_purchaseNewVirtualMachineV1`, enabling billing auto-renewal, and `billing_setDefaultPaymentMethodV1` spend **real money** (now or on the next renewal). Confirm the **cost AND the account** before executing.
 
 4. **Destructive operations double-confirm (W!).** Any `*delete*` tool, `VPS_recreateVirtualMachineV1` (reinstalls the OS, **wipes all data**), and `DNS_resetDNSRecordsV1` on production require confirmation of **both** the operation and the **specific target**.
 
@@ -115,6 +115,8 @@ Name each connection `hostinger-<account>` — or, when loading per-category bin
 - **OAuth 2.0 PKCE (interactive alternative).** Available on **stdio transport only**, via `hostinger-api-mcp --login`.
 
 The token has **full account access** — every action the account can perform in hPanel. There is **no granular / per-tool permission at the MCP layer**: any connected client can call any tool. Treat it like a password and **never print it** in responses. If the user asks to see it, refer them to hPanel.
+
+**Never put a token's value on a command line** when helping a user set this up. It lands in their shell history, is visible in `ps` to every other user on the machine while the command runs, and `claude mcp add` then stores the resolved value in `~/.claude.json` in plaintext. Pass a quoted placeholder instead — `-e 'HOSTINGER_API_TOKEN=${HOSTINGER_API_TOKEN:-}'` — and keep the value in the environment Claude Code starts with; Claude Code expands it at launch. See "Handling the token safely" in `references/installation.md`, which also covers the OAuth credential file and what to do if a token may have been exposed (revoke and regenerate in hPanel — nothing narrower exists).
 
 For the full connection and multi-account setup, see `references/installation.md`.
 

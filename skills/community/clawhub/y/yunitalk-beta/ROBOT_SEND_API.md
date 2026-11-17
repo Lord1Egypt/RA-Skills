@@ -6,22 +6,18 @@
 
 ## 推荐调用方式
 
-优先使用本 Skill 内置脚本 `shell/robot_send.sh`。脚本会自动生成 `msg_id`、`noncestr`、`timestamp` 和 HMAC-SHA256 `sign`，避免业务侧重复实现签名逻辑。
+按运行形态选择，两者都会自动生成 `msg_id`、`noncestr`、`timestamp` 和 HMAC-SHA256 `sign`，避免业务侧重复实现签名逻辑：
 
-### 发送文本
+**方式一（推荐）：`bin/bot-cli`**。如果 Skill 目录下存在 `bin/bot-cli` 与 `bin/*.dat`（talk-robots 仓库 / skills.git 分发形态），优先使用它（基于 Talk Robots Go SDK `sdk.RobotClient`）：
 
 ```bash
-./shell/robot_send.sh text \
+./bin/bot-cli text \
   --base-url "$TALK_ROBOT_ENDPOINT" \
   --robot-id "$TALK_ROBOT_ID" \
   --robot-key "$TALK_ROBOT_KEY" \
   --content "你好，任务已经处理完成。"
-```
 
-### 发送文件
-
-```bash
-./shell/robot_send.sh file \
+./bin/bot-cli file \
   --base-url "$TALK_ROBOT_ENDPOINT" \
   --robot-id "$TALK_ROBOT_ID" \
   --robot-key "$TALK_ROBOT_KEY" \
@@ -29,17 +25,39 @@
   --file "./report.pdf"
 ```
 
-### 发送前预检
+`bin/bot-cli` 常用参数：
 
-使用 `--dry-run` 可以查看签名 URL 和请求体，不会实际发送消息。
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `--base-url` | 是 | Talk Robots `/v1/robot/send` 地址，即 `TALK_ROBOT_ENDPOINT` |
+| `--robot-id` | 是 | 机器人 ID |
+| `--robot-key` | 是 | 机器人 Key，用于签名 |
+| `--cvs-id` | 否 | 可选目标会话 ID，应保持大小写原样；不传时默认投递到机器人与创建者的点对点会话 |
+| `--content` | 文本必填，文件可选 | 文本消息内容，或文件说明文本 |
+| `--file` | 文件必填 | 待上传文件路径 |
+| `--refer-msg-id` | 否 | 引用的消息 ID |
+| `--at` | 否 | 文本消息的 `at_uid_list`，多个 UID 用英文逗号分隔 |
+| `--mentioned` | 否 | 文本消息的 `mentioned_list`，多个 UID 用英文逗号分隔 |
+| `--timeout` | 否 | 请求超时，默认 `30s` |
+| `--dry-run` | 否 | 只打印请求信息，不实际发送 |
+
+`msg_id`、`noncestr`、`timestamp` 由 SDK 自动生成，不需要手动指定。
+
+**方式二：`shell/robot_send.sh`**。clawhub 发布包因大小限制不包含 `bin/`；没有 `bin/bot-cli` 时使用内置 shell 脚本（依赖 `curl`、`openssl` 和 `python3`）：
 
 ```bash
 ./shell/robot_send.sh text \
   --base-url "$TALK_ROBOT_ENDPOINT" \
   --robot-id "$TALK_ROBOT_ID" \
   --robot-key "$TALK_ROBOT_KEY" \
-  --content "测试消息" \
-  --dry-run
+  --content "你好，任务已经处理完成。"
+
+./shell/robot_send.sh file \
+  --base-url "$TALK_ROBOT_ENDPOINT" \
+  --robot-id "$TALK_ROBOT_ID" \
+  --robot-key "$TALK_ROBOT_KEY" \
+  --content "请查看附件" \
+  --file "./report.pdf"
 ```
 
 脚本常用参数：
@@ -60,9 +78,18 @@
 | `--mentioned` | 否 | 文本消息的 `mentioned_list`，多个 UID 用英文逗号分隔 |
 | `--dry-run` | 否 | 只打印请求信息，不实际发送 |
 
+### 发送前预检
+
+两种方式都支持 `--dry-run`，只打印请求信息，不实际发送消息：
+
+```bash
+./bin/bot-cli text --content "测试消息" --dry-run
+./shell/robot_send.sh text --content "测试消息" --dry-run
+```
+
 ## 直接使用 curl
 
-不使用 `shell/robot_send.sh` 时，可以直接用 `curl` 调用 `/robot/send`。完整的签名生成、文本消息和文件消息示例见：
+不使用 `bin/bot-cli` 或 `shell/robot_send.sh` 时，可以直接用 `curl` 调用 `/robot/send`。完整的签名生成、文本消息和文件消息示例见：
 
 - [ROBOT_SEND_CURL_API.md](./ROBOT_SEND_CURL_API.md) - 机器人消息 curl 调用示例
 
@@ -117,7 +144,7 @@ signing_text="msg_id=${msg_id}&noncestr=${noncestr}&robot_id=${robot_id}&timesta
 sign="$(printf '%s' "$signing_text" | openssl dgst -sha256 -hmac "$robot_key" | awk '{print $2}')"
 ```
 
-实际实现时，`signing_text` 里的 value 需要先 URL encode。推荐直接使用 `shell/robot_send.sh`。
+实际实现时，`signing_text` 里的 value 需要先 URL encode。推荐直接使用 `bin/bot-cli` 或 `shell/robot_send.sh`。
 
 ## 发送文本消息
 

@@ -1,45 +1,60 @@
-## Description: <br>
-Use this skill when an agent needs to register an OpenClaw identity with Crustacean Email Gateway, recover or reuse a bearer token, inspect mailbox state, manage inbox or outbox messages, configure forwarding, or send outbound email through the API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent register and use a Crustacean Email Gateway mailbox for an OpenClaw identity, including token recovery, inbox and outbox access, message status updates, forwarding configuration, and outbound email.
 
-## Publisher: <br>
-[nycomar](https://clawhub.ai/user/nycomar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nycomar](https://clawhub.ai/user/nycomar)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create and operate a Crustacean Email Gateway mailbox for an OpenClaw instance, including registration, token recovery, inbox and outbox review, forwarding configuration, and outbound email sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves and reuses a mailbox bearer token for authenticated email-gateway operations. <br>
-Mitigation: Protect the configured token file like a password and install the skill only where the agent is expected to manage this mailbox. <br>
-Risk: Outbound sending and forwarding can disclose email content or route future inbound mail to an external address. <br>
-Mitigation: Review recipients and forwarding destinations before execution, especially because forwarding can persist without a destination verification flow. <br>
-Risk: Mailbox registration, token recovery, and sending are subject to service rate limits and queued delivery behavior. <br>
-Mitigation: Surface API error codes, messages, and retry-after values to the user, and check outbox status for queued messages. <br>
+## Use Case:
 
+Developers and agents use this skill to create and manage a Crustacean Email Gateway mailbox tied to an OpenClaw identity. It supports registration, bearer-token recovery, mailbox lookup, inbox and outbox review, status changes, forwarding, and outbound sending through the gateway API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nycomar/create-email-address) <br>
-- [Crustacean Email Gateway API Reference](references/api.md) <br>
-- [Usage Examples](references/examples.md) <br>
-- [Crustacean Email Gateway API base](https://api.crustacean.email/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal output, with optional JSON responses from the included scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local mailbox bearer token file and may perform authenticated email-gateway API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles mailbox bearer tokens and OpenClaw identity material for registration, recovery, reading, sending, status changes, and forwarding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the Crustacean Email Gateway service is trusted, protect the local token file with restrictive permissions, and avoid sharing JSON output from registration or recovery.
+
+Risk: A custom API base could route identity and mailbox operations to an unintended service.
+
+Mitigation: Use the default API base or a custom API base only when it is controlled and intentionally configured.
+
+Risk: Mailbox forwarding can send inbound mail to an external destination without a verification flow.
+
+Mitigation: Review forwarding changes before applying them, confirm the destination address manually, and disable forwarding when it is no longer needed.
+
+## Reference(s):
+
+- [Crustacean Email Gateway API Reference](artifact/references/api.md)
+- [Usage Examples](artifact/references/examples.md)
+- [Crustacean Email Gateway API](https://api.crustacean.email/api/v1)
+- [Create And Use New Agent Email Address on ClawHub](https://clawhub.ai/nycomar/skills/create-email-address)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or write local mailbox token metadata and call the Crustacean Email Gateway API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 ---
 name: fs-worldcup-knockout
-description: Trade World Cup 2026 knockout-stage player fantasy-score markets on propSPACE (functionspace.dev). Each market is a scalar distribution over a player's aggregate fantasy points for a match. Builds a multimodal density belief from FunctionSpace expected points plus optional sentiment enrichment and trades when it diverges from consensus. Use when a user wants to trade FS WC knockout competition markets with an evidence-backed distribution strategy.
+description: Trade World Cup 2026 knockout-stage player fantasy-score markets on propSPACE (propspace.fun; signup at app.propspace.fun). Each market is a scalar distribution over a player's aggregate fantasy points for a match. Builds a multimodal density belief from FunctionSpace expected points plus optional sentiment enrichment and trades when it diverges from consensus. Use when a user wants to trade FS WC knockout competition markets with an evidence-backed distribution strategy.
 category: world-cup
 tags:
   - world-cup
@@ -11,7 +11,7 @@ tags:
   - wc2026
 metadata:
   author: FunctionSpace (@functionspace)
-  version: "0.1.4"
+  version: "0.1.5"
   displayName: WC Knockout — FunctionSpace
   difficulty: intermediate
   primaryEnv: FS_USERNAME
@@ -45,11 +45,12 @@ metadata:
 # WC Knockout — FunctionSpace
 
 > **By FunctionSpace** — built with Simmer's agent trading infrastructure.
-> Play at [propSPACE](https://functionspace.dev). **Play-money only. Real USDC prizes administered by FunctionSpace.**
+> Play at [propSPACE](https://propspace.fun) — signup at [app.propspace.fun](https://app.propspace.fun). **Play-money only. Real USDC prizes administered by FunctionSpace.**
 
 Trade World Cup 2026 knockout-stage player fantasy-score markets.
-Your $1,000 play-money competes for a real prize pool (≥$5,000 USDC) matched by FunctionSpace.
-Round of 32 kicks off **June 28, 2026**.
+Each knockout round is a clean slate with a fresh $1,000 propSPACE play-money bankroll.
+The live campaign prize pool is $6,500 total: $1,000 for each knockout round from R32 through Semis, plus a $2,500 grand prize across all rounds.
+The skill auto-detects the current open round by default rather than targeting a stale R32 kickoff date.
 
 > 🧪 **Dry-run by default.** Pass `--live` to place propSPACE play-money positions. This is a mutating competition-engine action, but it is not Simmer `$SIM`, Polymarket, Kalshi, or real-money trading.
 
@@ -106,7 +107,7 @@ Best pick = highest `|our_belief_mean - consensus_mean|` within the position slo
 2. **Enrich sentiment** (optional but improves pick quality)
    ```bash
    export BRAVE_API_KEY=your_key
-   python3 scripts/enrich_from_web.py --round "round of 32"
+   python3 scripts/enrich_from_web.py --round "current open round"
    ```
 
 3. **Dry run** — see which 3 players the skill would pick
@@ -167,5 +168,5 @@ The current production path uses each market's FunctionSpace `metadata.expectedP
    metadata (checked as `position`, `positionType`, `player_position` in that order).
    Correct it in `_market_position()` if needed.
 4. **Access code** — if signup requires a partner code, set `FS_ACCESS_CODE`.
-5. **Market range** — `lower_bound` / `upper_bound` for a typical player score.
-   Confirms the Gaussian fits the market range at runtime via `--inspect <id>`.
+5. **Market range / density review** — `lower_bound`, `upper_bound`, `num_buckets`, and the multimodal density recipe should be reviewed against the current round's market ranges with `--inspect <id>`.
+6. **Competition backend / rules confirmation** — confirm with FunctionSpace that `https://fs-engine-api-mech-v0-4.onrender.com` is the same backend used to settle the live `propspace.fun` competition, that API trades count toward the $6,500 campaign, and that agent/bot trading is allowed under the competition rules.

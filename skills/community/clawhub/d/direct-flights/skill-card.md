@@ -1,38 +1,50 @@
-## Description: <br>
-Advertises support for finding non-stop direct flights without layovers or connections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search for non-stop, direct flights only, with no layovers or connections.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travelers and travel-planning agents would use this skill to focus flight-search guidance on direct, non-stop itineraries. The published artifact files are empty, so this release should be treated as a placeholder until corrected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect flight-search behavior that is not present in the published empty artifact files. <br>
-Mitigation: Confirm the publisher has released non-empty skill documentation before relying on this skill for travel planning. <br>
+## Use Case:
 
+Travel planning agents and assistants use this skill to focus flight-search responses on direct, non-stop routes and avoid layover or connection options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/direct-flights) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files are present; the current artifact files are empty, so effective output may be absent until the release is corrected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata) <br>
+Risk: The package is empty and does not provide visible functionality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the publisher intended to publish an empty skill before installing it for practical use.
+
+## Reference(s):
+
+- [Direct Flights on ClawHub](https://clawhub.ai/dingtom336-gif/skills/direct-flights)
+- [dingtom336-gif ClawHub profile](https://clawhub.ai/user/dingtom336-gif)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Text or Markdown guidance for flight-search requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No visible executable behavior is present in the submitted artifact.]
+
+## Skill Version(s):
+
+3.2.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

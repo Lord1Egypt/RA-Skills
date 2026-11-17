@@ -1,44 +1,59 @@
-## Description: <br>
-Sora 2 Official video generation on PoYo / poyo.ai via https://api.poyo.ai/api/generate/submit for text-to-video, optional single-image guided video, supported durations, aspect ratios, polling, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare, submit, and follow up on Sora 2 Official video-generation jobs on PoYo using text-to-video or single-image guided video payloads.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare and submit PoYo Sora 2 Official text-to-video or image-guided video jobs, then explain task polling or webhook follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: POYO_API_KEY could be exposed if placed in browser code, logs, screenshots, public repositories, or chat output. <br>
-Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager and avoid echoing it in commands or responses. <br>
-Risk: Submitted prompts, image URLs, and callback URLs may contain confidential or private information. <br>
-Mitigation: Review payload JSON before submission and only send confidential prompts, private image URLs, or sensitive callback URLs when the user trusts PoYo and the callback receiver. <br>
-Risk: The helper can submit a live network request to PoYo and create an asynchronous video-generation task. <br>
-Mitigation: Make live API calls only after explicit user approval in a trusted server-side shell, then record the returned task_id for polling or webhook follow-up. <br>
+## Use Case:
 
+Developers and external users use this skill to create PoYo Sora 2 Official request payloads, submit reviewed video-generation tasks, and understand polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Sora 2 Official API docs](https://docs.poyo.ai/api-manual/video-series/sora-2-official) <br>
-- [PoYo Sora 2 Official model page](https://poyo.ai/models/sora-2-official) <br>
-- [Local API reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON payload examples and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a selected model id, text-to-video or image-guided mode, payload summary, duration, aspect ratio, reference image status, task_id after submission, and next polling or webhook step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: PoYo API keys could be exposed through browser code, public repositories, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager and avoid echoing credentials.
+
+Risk: Prompts, private image URLs, or callback URLs may disclose sensitive information to PoYo or a receiving webhook.
+
+Mitigation: Submit only reviewed payloads and avoid confidential prompts, private image URLs, or sensitive callback URLs unless the user trusts PoYo and the callback receiver.
+
+Risk: Live submissions can spend quota or send unintended video-generation requests.
+
+Mitigation: Make live API calls only when the user explicitly asks and a safe server-side POYO_API_KEY environment is available.
+
+## Reference(s):
+
+- [PoYo Sora 2 Official API Reference](references/api.md)
+- [PoYo Sora 2 Official model page](https://poyo.ai/models/sora-2-official)
+- [PoYo Sora 2 Official API docs](https://docs.poyo.ai/api-manual/video-series/sora-2-official)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON payloads and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PoYo model id, request type, duration, aspect ratio, reference-image status, returned task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

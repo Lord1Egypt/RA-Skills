@@ -1,0 +1,25 @@
+{
+  "name": "zwjh-skill",
+  "displayName": "长期记忆 / 知识图谱 会思考的进化 AI",
+  "version": "2.6.0",
+  "min_engine": "1.0.0",
+  "requires_api_key": false,
+  "updated_at": "2026-09-19",
+  "changelog": [
+    "新增：MCP 工具扩建至 7 个（graph_query / timeline / forget / export_stream）",
+    "新增：记忆访问权限分级（HMAC-SHA256 manifest + 命名空间隔离，未声明默认 public 只读）",
+    "新增：多进程并发写入门禁（SQLite 事务 + version 字段乐观锁 + WRITE_CONFLICT 错误码）",
+    "新增：forget / export-stream / graph-query / access-key 四个 CLI 子命令",
+    "新增：graph.py BFS 最短路径查询（find_shortest_path）",
+    "新增：memory_access.py 权限模块（manifest 创建/校验/缓存）",
+    "新增：memories 表 version 字段（乐观锁）+ namespace 字段（命名空间隔离）",
+    "新增：memories_archive 表（forget 软删除后恢复）",
+    "新增：mcp_version 协商（initialize 附赠协议版本）",
+    "优化：deposit 支持 namespace 参数（MCP/CLI 统一）",
+    "优化：add_memory 支持 namespace 参数，返回完整错误信息",
+    "新增：store.update_memory_with_lock（带乐观锁的原子更新）",
+    "新增：store.restore_from_archive / list_archive / archive_count",
+    "更新：SKILL.md 新增模块 21/22/23 文档",
+    "更新：SKILL.md 更新日志增加 v2.6.0 行"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Install Calibrate"
+  short_description: "Install and verify Calibrate in a web app"
+  default_prompt: "Use $install-calibrate to install Calibrate for this application's onboarding flow and verify the integration."

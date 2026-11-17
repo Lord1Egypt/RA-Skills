@@ -1,6 +1,30 @@
 {
-  "ownerId": "kn7fhy9pnxvmbxxmyxgya2nxss832yy9",
-  "slug": "sudocode-nano-banana2",
+  "name": "sudocode-nano-banana2",
   "version": "1.0.1",
-  "publishedAt": 1773759450444
+  "description": "Generate or edit images with Sudocode's nano-banana2 remote image service.",
+  "entry": "SKILL.md",
+  "env": {
+    "required": [
+      "SUDOCODE_IMAGE_API_KEY"
+    ],
+    "optional": [
+      "SUDOCODE_BASE_URL"
+    ]
+  },
+  "credentials": {
+    "primary": "SUDOCODE_IMAGE_API_KEY"
+  },
+  "network": {
+    "required": true,
+    "hosts": [
+      "sudocode.run",
+      "sudocode.us"
+    ]
+  },
+  "files": [
+    "SKILL.md",
+    "_meta.json",
+    "scripts/init_env.py",
+    "scripts/sudocode_nano_banana2.py"
+  ]
 }

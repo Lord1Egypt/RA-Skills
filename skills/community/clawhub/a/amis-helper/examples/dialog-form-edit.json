@@ -1,0 +1,41 @@
+{
+  "type": "button",
+  "label": "Edit Remark",
+  "level": "info",
+  "icon": "fa fa-edit",
+  "actionType": "dialog",
+  "dialog": {
+    "title": "Edit - ${code}",
+    "actions": [
+      { "type": "button", "label": "Cancel", "actionType": "close" },
+      {
+        "type": "button",
+        "label": "Save",
+        "level": "primary",
+        "actionType": "submit",
+        "close": false
+      }
+    ],
+    "body": {
+      "type": "form",
+      "onEvent": {
+        "submitSucc": {
+          "actions": [
+            { "actionType": "reload", "componentId": "mainCrud" },
+            { "actionType": "closeDialog" }
+          ]
+        }
+      },
+      "api": {
+        "method": "post",
+        "url": "/XXX/XXXX/edit"
+      },
+      "body": [
+        { "type": "static", "name": "code", "label": "Code", "value": "${code}" },
+        { "type": "static", "name": "name", "label": "Name", "value": "${name}" },
+        { "type": "textarea", "name": "remark", "label": "Remark", "maxLength": 200 },
+        { "type": "hidden", "name": "id" }
+      ]
+    }
+  }
+}

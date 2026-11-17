@@ -104,8 +104,7 @@ public class SignatureUtil {
     }
     
     private static PrivateKey getPrivateKey(String privateKey) throws Exception {
-        String pem = privateKey.replace("-----BEGIN PRIVATE KEY-----", "")
-                               .replace("-----END PRIVATE KEY-----", "")
+        String pem = privateKey.replace("REDACTED-SECRET", "")
                                .replaceAll("\\s", "");
         KeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(pem));
         return KeyFactory.getInstance("RSA").generatePrivate(keySpec);
@@ -387,8 +386,7 @@ public class AlipayPlusClient {
     }
     
     private static PrivateKey getPrivateKey(String privateKey) throws Exception {
-        String pem = privateKey.replace("-----BEGIN PRIVATE KEY-----", "")
-                               .replace("-----END PRIVATE KEY-----", "")
+        String pem = privateKey.replace("REDACTED-SECRET", "")
                                .replaceAll("\\s", "");
         KeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(pem));
         return KeyFactory.getInstance("RSA").generatePrivate(keySpec);

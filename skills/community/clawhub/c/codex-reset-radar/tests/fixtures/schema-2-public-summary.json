@@ -1,0 +1,23 @@
+{
+  "schema_version": "2.0",
+  "service": "codex-reset-radar",
+  "type": "public_summary",
+  "monitored_at": "2026-11-05T10:10:58.739373+00:00",
+  "window_open": false,
+  "status": "official_confirmed",
+  "window": {
+    "open": false,
+    "status": "completed",
+    "opened_at": null,
+    "closed_at": null
+  },
+  "completion_observation": {
+    "event_id": "codex-speed-window-2026-10-28-codex"
+  },
+  "prediction": {
+    "level": "low",
+    "probability_24h": 0.05,
+    "probability_48h": 0.08,
+    "updated_at": "2026-10-24T01:50:00+08:00"
+  }
+}

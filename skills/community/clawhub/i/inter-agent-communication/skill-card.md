@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents establish, reuse, and message through labeled subagent sessions for cross-agent collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through creating, reusing, and protecting labeled subagent sessions for agent-to-agent communication.
 
-## Publisher: <br>
-[panmenglin](https://clawhub.ai/user/panmenglin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panmenglin](https://clawhub.ai/user/panmenglin)
 
-## Use Case: <br>
-Developers and agent operators use this skill when agents need a persistent communication channel for task coordination. It guides agents to find or create labeled subagent sessions, send messages, and avoid using human-agent conversation sessions for agent-to-agent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and preserve long-lived subagent communication sessions through shell-based session management without explicit expiry or cleanup limits. <br>
-Mitigation: Require confirmation before spawning or protecting sessions, and document a process to list and clean up protected sessions. <br>
-Risk: Messages may include private context intended for a specific agent session. <br>
-Mitigation: Verify the target agent and session key before sending private or sensitive context, and restrict acceptable session labels or keys. <br>
+## Use Case:
 
+Developers and agent operators use this skill to establish persistent, reusable communication channels between agents while avoiding reuse of human-agent sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/panmenglin/inter-agent-communication) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes session lookup, session creation, message sending, and session protection workflow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill creates and reuses long-lived subagent communication sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when persistent agent-to-agent channels are intended, and require explicit approval before making sessions long-lived.
+
+Risk: The session protection flow includes a local command path that can be unsafe with untrusted session keys.
+
+Mitigation: Validate session keys, avoid passing untrusted values to shell commands, and prefer a scoped non-shell API with a clear undo path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/panmenglin/skills/inter-agent-communication)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands]
+
+**Output Format:** [Markdown with JavaScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes session label and sessionKey handling guidance for OpenClaw subagent sessions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

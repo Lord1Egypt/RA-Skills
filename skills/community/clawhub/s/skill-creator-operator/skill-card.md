@@ -1,43 +1,54 @@
-## Description: <br>
-Create OpenClaw skills with a first-use setup wizard pattern, minimal context footprint, and reusable scaffolding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Premium Skill Creator by Kevin Jeppesen (The Operator Vault). Create better OpenClaw skills with a premium first-use setup wizard pattern, minimal context bloat, and reusable scaffolding.
 
-## Publisher: <br>
-[Kevjade](https://clawhub.ai/user/Kevjade) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kevjade](https://clawhub.ai/user/kevjade)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create or upgrade OpenClaw skills with a short setup wizard, workspace configuration, concise SKILL.md files, references, and optional helper scripts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated skill files or configuration may accidentally include personal paths, tokens, or private information before publication. <br>
-Mitigation: Review generated files before publishing and avoid putting secrets in generated configuration. <br>
-Risk: The scaffolder creates local files in the selected output directory. <br>
-Mitigation: Run it from the workspace where new skill folders should be created and confirm the output path before publishing or reusing the generated files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill Creator Operator](references/OVERVIEW.md) <br>
-- [Skill Creator principles](references/PRINCIPLES.md) <br>
-- [Links](references/LINKS.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Kevjade/skill-creator-operator) <br>
-- [The Operator Vault](https://theoperatorvault.io) <br>
+## Use Case:
 
+Developers and skill authors use this skill to create or upgrade OpenClaw skills with a first-use setup wizard, persistent workspace configuration, concise SKILL.md content, and optional scaffolding scripts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with generated files and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local skill folders, references, scripts, and workspace configuration files when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scaffolding helper writes files to a chosen output directory and can replace existing generated skill content.
+
+Mitigation: Use a dedicated output directory, avoid shared or attacker-controlled folders, and check whether the target skill directory already exists before running the bundled script.
+
+## Reference(s):
+
+- [Links](references/LINKS.md)
+- [Skill Creator Operator Overview](references/OVERVIEW.md)
+- [Skill Creator Principles](references/PRINCIPLES.md)
+- [Skill Creator Operator on ClawHub](https://clawhub.ai/kevjade/skills/skill-creator-operator)
+- [Kevin Jeppesen on YouTube](https://www.youtube.com/@kevin-jeppesen)
+- [Operator Vault](https://theoperatorvault.io)
+- [Operator Vault Skool](https://skool.com/operator-vault)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create SKILL.md, references, scripts, and workspace configuration files for a new skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

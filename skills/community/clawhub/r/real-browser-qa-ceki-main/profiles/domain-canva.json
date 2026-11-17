@@ -1,0 +1,69 @@
+{
+  "id": "domain-canva",
+  "label": "Canva — Design Editor",
+  "emoji": "🎨",
+  "domain": "canva.com",
+  "description": "Canva — online graphic design platform. Drag-and-drop editor, template library, brand kits. React SPA. Login required. Used for creating social media graphics, presentations, documents.",
+  "source_patterns": [
+    "Login (email/Google/SSO) → Dashboard with templates and recent designs",
+    "Create design from template: pick category → browse → click template → wait 2-4s editor load",
+    "Editor workspace: canvas area with drag handles, left panel (elements/text/uploads), top toolbar",
+    "Text tool: click text → type label (short) → font/style/color adjustments → click away",
+    "Element drag: grab from panel → drag to canvas → snap positioning — slower precise mouse",
+    "Upload: click Uploads → file picker → wait upload → drag to canvas",
+    "Export/Download: click Share → Download → pick format (PNG/PDF/...) → wait render → save",
+    "Brand Kit: navigate to Brand → set colors/fonts/logos → apply to designs",
+    "Team collaboration: invite members → shared folders → comment on designs"
+  ],
+  "active_hours": {
+    "description": "Business hours, creative work; also evening for social media content",
+    "peak": [10, 12, 14, 17, 20, 22],
+    "off_peak_min": 3
+  },
+  "typing": {
+    "wpm": { "min": 40, "max": 70 },
+    "profile": "careful",
+    "think_prob": 0.03,
+    "think_ms": [500, 2000],
+    "backspace_freq": 0.04,
+    "label_typing_wpm": { "min": 35, "max": 55 }
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Template browsing — visual scanning, moderate passes. React virtual list rendering",
+    "speed_px_per_ms": { "min": 20, "max": 50 },
+    "pause_between_passes_ms": { "min": 1500, "max": 4000 },
+    "depth_per_pass": { "min": 0.4, "max": 0.7 },
+    "infinite_scroll_detection": "div[data-testid='template-grid'] > * visibility change",
+    "scroll_method": "gradual (not jump-to-bottom)"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 3000, "max": 6000 },
+    "pre_click_pause_ms": { "min": 500, "max": 1200 },
+    "inter_action_pause_ms": { "min": 600, "max": 1500 },
+    "post_editor_load_pause_ms": { "min": 2000, "max": 4500 }
+  },
+  "mouse": {
+    "speed": 0.7,
+    "curvature": 0.3,
+    "jitter": 0.35,
+    "description": "Designer speed — moderate-slow, precise targeting for drag-and-drop and canvas manipulation"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "editor_canvas": "[data-testid='canvas']",
+      "elements_panel": "[data-testid='side-panel-elements']",
+      "text_tool": "[data-testid='text-tool-button']",
+      "upload_button": "[data-testid='uploads-tab']",
+      "export_download": "[data-testid='download-button']",
+      "template_grid_item": "[data-testid='template-card']"
+    },
+    "requires_login": true,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 300, "max": 900 },
+      "post_login_wait_ms": { "min": 4000, "max": 7000 }
+    },
+    "sequence_hint": "login → browse templates (3-4 passes) → select template → wait editor load → canvas: drag elements, add text → edit styling → export/download"
+  }
+}

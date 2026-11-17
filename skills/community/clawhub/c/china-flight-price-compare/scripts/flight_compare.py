@@ -7,13 +7,13 @@
   4. 排序模式：默认/cheapest/earliest
   5. 代表航班选最低价平台（不再佣金优先）
 """
+import os
 import argparse, json, re, urllib.request, urllib.error, concurrent.futures
 from datetime import datetime
 
 PROXY_URL = "https://1439498936-htmug3p43j.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
-
-PNAME = {"fliggy":"飞猪","tuniu":"途牛","meituan":"美团","rg":"RG","tongcheng":"同程"}
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
+PNAME = {"tuniu":"途牛","meituan":"美团","rg":"RG","tongcheng":"同程"}
 
 AIRLINE_MAP = {
     "CA":"国航","MU":"东航","CZ":"南航","HU":"海航","9C":"春秋","HO":"吉祥",
@@ -185,54 +185,6 @@ def _get_data(proxy_resp):
 
 
 # ===== 各源解析 =====
-
-def _parse_fliggy(proxy_resp, from_city, to_city, date):
-    if proxy_resp.get("error"):
-        return []
-    data = _get_data(proxy_resp)
-    if not data or not isinstance(data, dict):
-        return []
-    if "error" in data:
-        return []
-    d2 = data.get("data") or data
-    if not isinstance(d2, dict):
-        return []
-    il = d2.get("itemList", []) or []
-    flights = []
-    for item in il[:30]:
-        for j in item.get("journeys", []):
-            if "中转" in str(j.get("journeyType", "")):
-                continue
-            segs = j.get("segments", [])
-            if not segs:
-                continue
-            seg = segs[0]
-            fn = seg.get("marketingTransportNo", "")
-            if not fn:
-                continue
-            tp = item.get("ticketPrice", 0)
-            price = 0
-            if isinstance(tp, dict):
-                price = tp.get("adultPrice", 0) or tp.get("price", 0)
-            elif isinstance(tp, (str, int, float)):
-                try:
-                    price = float(tp)
-                except Exception:
-                    price = 0
-            url = item.get("jumpUrl", "")
-            if fn and price > 0:
-                flights.append({
-                    "flight_no": fn.upper().replace(" ", ""),
-                    "airline": _clean_airline(_airline_name(fn)),
-                    "dep_time": _fmt_time(seg.get("depDateTime", "")),
-                    "arr_time": _fmt_time(seg.get("arrDateTime", "")),
-                    "dep_port": seg.get("depStationShortName", ""),
-                    "arr_port": seg.get("arrStationShortName", ""),
-                    "cabin": seg.get("seatClassName", "经济舱"),
-                    "duration": _fmt_duration(j.get("totalDuration", "") or seg.get("duration", "")),
-                    "price": price, "source": "fliggy", "url": url
-                })
-    return flights[:20]
 
 
 def _parse_tuniu(proxy_resp, from_city, to_city, date):
@@ -652,7 +604,6 @@ def compare_flights(from_city, to_city, date, time_pref=None, sort_mode=None):
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as ex:
         futs = {
-            ex.submit(fetch_source, "fliggy", _parse_fliggy, common_params): "fliggy",
             ex.submit(fetch_source, "tuniu", _parse_tuniu, common_params): "tuniu",
             ex.submit(fetch_source, "tongcheng", _parse_tongcheng, common_params): "tongcheng",
             ex.submit(fetch_source, "meituan", _parse_meituan, common_params): "meituan",
@@ -692,13 +643,13 @@ def compare_flights(from_city, to_city, date, time_pref=None, sort_mode=None):
 
 def main():
     parser = argparse.ArgumentParser(description="机票比价 - 多平台直飞航班实时对比 v3.2")
-    parser.add_argument("--from_city", required=True, help="出发城市，如上海、北京")
-    parser.add_argument("--to_city", required=True, help="到达城市，如三亚、广州")
+    parser.add_argument("--fromCity", required=True, help="出发城市，如上海、北京")
+    parser.add_argument("--toCity", required=True, help="到达城市，如三亚、广州")
     parser.add_argument("--date", required=True, help="出发日期，格式YYYY-MM-DD")
-    parser.add_argument("--time_pref", default=None, help="时段偏好（可选），如'上午'、'下午'、'早班机'、'红眼'")
-    parser.add_argument("--sort_mode", default=None, help="排序模式（可选），'cheapest'按最低价、'earliest'按起飞时间")
+    parser.add_argument("--timePref", default=None, help="时段偏好（可选），如'上午'、'下午'、'早班机'、'红眼'")
+    parser.add_argument("--sortMode", default=None, help="排序模式（可选），'cheapest'按最低价、'earliest'按起飞时间")
     args = parser.parse_args()
-    result = compare_flights(args.from_city, args.to_city, args.date, args.time_pref, args.sort_mode)
+    result = compare_flights(args.fromCity, args.toCity, args.date, args.timePref, args.sortMode)
     print(result)
 
 

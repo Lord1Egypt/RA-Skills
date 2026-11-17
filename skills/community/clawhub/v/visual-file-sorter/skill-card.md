@@ -1,37 +1,57 @@
-## Description: <br>
-Automatically reviews files in a Downloads or Desktop folder with vision, renames them from visible content, and archives them into category folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual File Sorter traverses a Downloads or Desktop folder, uses vision to inspect file contents, renames files, and archives them into sorted directories.
 
-## Publisher: <br>
-[AnotherJ1](https://clawhub.ai/user/AnotherJ1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anotherj1](https://clawhub.ai/user/anotherj1)
 
-## Use Case: <br>
-Individual users use this skill to organize local Downloads or Desktop files by visually inspecting file contents, generating descriptive filenames, and moving files into category folders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can open, inspect, rename, and move many local files without enough user control. <br>
-Mitigation: Review before installing, run only on a small chosen folder, remove executables and sensitive documents first, and require a dry-run table of proposed filenames and destinations before allowing rename or move operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AnotherJ1/visual-file-sorter) <br>
+## Use Case:
 
+External users and local desktop users use this skill to organize cluttered Downloads or Desktop folders by visually identifying files, assigning descriptive names, and moving them into category directories.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with proposed filenames, destinations, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open local files for visual inspection and rename or move files when the user allows execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may automatically open, visually inspect, rename, and move broad sets of files from Desktop or Downloads.
+
+Mitigation: Run it only on a small backed-up folder and require a preview plus confirmation before opening, renaming, or moving each file.
+
+Risk: Default-app opening can be unsafe for untrusted downloads or active file types.
+
+Mitigation: Avoid untrusted downloads and skip active file types unless the workflow has been changed to use safer previews.
+
+Risk: Limited user control can lead to incorrect renames or misplaced files.
+
+Mitigation: Review proposed filenames and destination folders before applying any file operations.
+
+## Reference(s):
+
+- [Visual File Sorter ClawHub release](https://clawhub.ai/anotherj1/skills/visual-file-sorter)
+- [Publisher profile: anotherj1](https://clawhub.ai/user/anotherj1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown or text with shell commands and file-operation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute local file renaming and moving workflows; no deletion is described by the artifact.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

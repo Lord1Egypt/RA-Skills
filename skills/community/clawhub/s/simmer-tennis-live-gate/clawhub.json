@@ -1,0 +1,32 @@
+{
+  "emoji": "🎾",
+  "primaryEnv": "LIVETENNIS_API_KEY",
+  "requires": {
+    "env": [
+      "SIMMER_API_KEY",
+      "LIVETENNIS_API_KEY"
+    ],
+    "pip": [
+      "simmer-sdk"
+    ]
+  },
+  "envVars": [
+    {
+      "name": "LIVETENNIS_API_KEY",
+      "required": true,
+      "description": "Live Tennis API key. The FREE tier is enough for this gate — get one at https://livetennisapi.com/subscribe/free"
+    },
+    {
+      "name": "SIMMER_API_KEY",
+      "required": false,
+      "description": "Simmer SDK key. Only needed for --live-data, which lists real Polymarket tennis markets to gate. The gate itself does not trade."
+    },
+    {
+      "name": "LIVETENNIS_BASE_URL",
+      "required": false,
+      "description": "Override the Live Tennis API base URL (default https://api.livetennisapi.com/api/public/v1)."
+    }
+  ],
+  "cron": null,
+  "autostart": false
+}

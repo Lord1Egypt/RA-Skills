@@ -1,42 +1,56 @@
-## Description: <br>
-Decentralized compute and data marketplace for AI agents with spot pricing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decentralized compute and data marketplace for AI agents with spot pricing.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Developers and autonomous-agent builders use this skill to connect agents to a decentralized marketplace for compute, data processing, and ML inference with spot-priced provider matching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tasks and datasets may be processed by external compute providers. <br>
-Mitigation: Avoid submitting secrets, regulated data, or confidential datasets unless provider trust, retention, isolation, and compliance claims have been independently reviewed. <br>
-Risk: Spot-priced compute can create variable billing exposure. <br>
-Mitigation: Use a limited-scope API key, set spending limits where available, pin package versions, and review package and repository identity before installation. <br>
+## Use Case:
 
+Developers and external agent builders use this skill to discover, configure, and route compute or data-processing work through a decentralized marketplace with spot pricing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhenStaff/decentralized-agent-cloud) <br>
-- [Project homepage](https://github.com/openclaw/openclaw-decentralized-agent-cloud) <br>
-- [npm package](https://www.npmjs.com/package/openclaw-decentralized-agent-cloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include setup steps, API usage examples, provider registration examples, and security guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill asks users to install an unpinned npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned package version or lockfile and review the package before installation.
+
+Risk: Prompts, scripts, and datasets may be routed through a decentralized provider marketplace with unclear privacy and trust boundaries.
+
+Mitigation: Run in a least-privileged environment and avoid submitting secrets, private datasets, regulated data, or sensitive prompts until the provider's data handling, retention, and compliance protections are verified.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/zhenstaff/skills/decentralized-agent-cloud)
+- [Project homepage](https://github.com/openclaw/openclaw-decentralized-agent-cloud)
+- [Project documentation](https://github.com/openclaw/openclaw-decentralized-agent-cloud#readme)
+- [npm package](https://www.npmjs.com/package/openclaw-decentralized-agent-cloud)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation guidance, SDK usage examples, marketplace concepts, and provider-registration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; SKILL.md frontmatter states 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

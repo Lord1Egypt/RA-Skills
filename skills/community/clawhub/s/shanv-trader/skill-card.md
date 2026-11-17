@@ -1,42 +1,61 @@
-## Description: <br>
-Provides AI-assisted semi-automatic stock trading with signal scanning, trade confirmation, risk control, execution, and position monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI-assisted semi-automatic stock trading with signal scanning, trade confirmation, risk control, execution, and position monitoring.
 
-## Publisher: <br>
-[clementgu](https://clawhub.ai/user/clementgu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementgu](https://clawhub.ai/user/clementgu)
 
-## Use Case: <br>
-Traders and trading-agent operators use this skill to scan stock signals, prepare trade suggestion cards, execute confirmed buy or sell actions, and monitor portfolio risk alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect brokerage or trading workflows if execution scripts are connected to a live account. <br>
-Mitigation: Review the skill before use and require a separate human confirmation process before running execute_trade.py against a live account. <br>
-Risk: The security evidence identifies weak safety controls and an unsafe shell command path in stock-price handling. <br>
-Mitigation: Fix the shell=True stock-price call and strengthen risk controls before trusting the skill with real portfolio data. <br>
-Risk: Local trade logs and portfolio records may contain sensitive financial data. <br>
-Mitigation: Review local log handling and protect generated trade, suggestion, and portfolio files according to the user's data-security requirements. <br>
+## Use Case:
 
+Developers and trading-workflow operators use the skill to scan stock signals, generate human-reviewable trade suggestions, execute selected trades, and monitor positions with alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clementgu/skills/shanv-trader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal text with generated JSON log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces trade suggestion cards, position-monitoring summaries, confirmation prompts, and local trade or suggestion records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Executable trading paths can bypass the confirmation and risk-control behavior described in the skill documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation and enforce risk checks inside the executor before any brokerage or trading-platform action.
+
+Risk: Simulated trade execution can be logged as successful, which may mislead users about real order status.
+
+Mitigation: Clearly separate simulation from live execution and only mark trades successful after verified broker confirmation.
+
+Risk: Trading commands accept stock codes and quantities that require stronger validation before live use.
+
+Mitigation: Validate symbols, quantities, price modes, and account limits before executing or recording any transaction.
+
+Risk: Shell command interpolation appears in position-monitoring behavior.
+
+Mitigation: Remove shell=True interpolation and call subprocesses with argument lists or a vetted command wrapper.
+
+## Reference(s):
+
+- [Shanv Trader on ClawHub](https://clawhub.ai/clementgu/skills/shanv-trader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style trade suggestion cards, console text, JSON logs, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save pending trade suggestions and trade logs as JSON files when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

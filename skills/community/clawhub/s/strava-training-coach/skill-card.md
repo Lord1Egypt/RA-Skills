@@ -1,46 +1,63 @@
-## Description: <br>
-AI running coach that monitors Strava training load for dangerous mileage spikes, intensity imbalances, and recovery gaps, then sends Discord or Slack alerts before potential injuries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI running coach that monitors Strava training load, detects mileage spikes, intensity imbalances, and recovery gaps, and sends evidence-based alerts to Discord or Slack.
 
-## Publisher: <br>
-[hhq0421](https://clawhub.ai/user/hhq0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hhq0421](https://clawhub.ai/user/hhq0421)
 
-## Use Case: <br>
-Runners and coaches use this skill to check Strava activity history for training-load spikes, intensity imbalance, recovery gaps, and weekly trend summaries. It also helps set up recurring checks that send concise alerts to Discord or Slack. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Strava read/activity access and stores access tokens locally. <br>
-Mitigation: Grant only the needed Strava scope, keep the local config directory private, and revoke or delete tokens when you stop using the skill. <br>
-Risk: Training summaries and alerts may be sent to a Discord or Slack channel through a webhook. <br>
-Mitigation: Use a private channel, keep webhook URLs secret, and rotate or revoke webhooks if they are exposed. <br>
-Risk: Optional Oura integration can include sleep and readiness signals in coaching alerts. <br>
-Mitigation: Enable Oura only when you intend to share those signals with the skill and your selected notification channel. <br>
-Risk: Automated scheduled checks can continue sending alerts after the user no longer wants monitoring. <br>
-Mitigation: Disable any cron or scheduler entry when monitoring is no longer needed. <br>
-Risk: Training recommendations may not account for personal medical history, acute injury, or clinical advice. <br>
-Mitigation: Treat alerts as informational coaching prompts and defer to qualified medical or coaching guidance for pain, illness, or injury decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Evidence-Based Training Principles for Injury-Free Running](references/training-principles.md) <br>
-- [Strava API Reference](https://developers.strava.com/docs/reference/) <br>
+## Use Case:
 
+External runners and training-focused developers use this skill to connect Strava activity data, run daily training-load checks, and generate weekly reports with alerts for workload spikes, intensity balance, and recovery gaps.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, plus text alerts and summary reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Strava credentials and a Discord or Slack webhook; Oura sleep/readiness signals are optional.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles Strava OAuth tokens and fitness activity data, with server evidence noting credential-scope and OAuth hardening weaknesses.
+
+Mitigation: Review token-file handling, OAuth state handling, and local storage permissions before installing; grant only the required Strava read scopes.
+
+Risk: The skill can send derived training and possible health-related alerts to Discord or Slack webhooks.
+
+Mitigation: Use private notification channels, protect webhook URLs as secrets, and avoid sending reports to shared workspaces unless recipients are intended.
+
+Risk: Training-load, injury-risk, recovery, and readiness recommendations are coaching information rather than medical advice.
+
+Mitigation: Treat alerts as general guidance and consult qualified medical or coaching professionals for pain, injury, or health decisions.
+
+Risk: Optional Oura integration can add sleep and readiness data to the skill's analysis.
+
+Mitigation: Enable Oura access only when needed and review local CLI token access before use.
+
+## Reference(s):
+
+- [Strava API Reference](https://developers.strava.com/docs/reference/)
+- [Evidence-Based Training Principles](artifact/references/training-principles.md)
+- [ClawHub Skill Page](https://clawhub.ai/hhq0421/skills/strava-training-coach)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/hhq0421)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, notification text, and report summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send derived training and health-adjacent alerts to Discord or Slack.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

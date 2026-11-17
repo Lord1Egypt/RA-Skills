@@ -1,47 +1,66 @@
-## Description: <br>
-Persistent cross-session memory for OpenClaw via agentmemory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent cross-session memory for OpenClaw agents through an agentmemory MCP server.
 
-## Publisher: <br>
-[lufei4](https://clawhub.ai/user/lufei4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lufei4](https://clawhub.ai/user/lufei4)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install, configure, verify, troubleshoot, and remove an agentmemory MCP setup for OpenClaw. It helps agents recall project context, decisions, workflows, and prior sessions through local memory tools and optional embedding-backed search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports cross-session memory and includes plugin behavior that can recall and capture session context. <br>
-Mitigation: Enable it only when persistent memory is intended, review captured content, and confirm how to disable capture and delete stored entries. <br>
-Risk: Optional vector search may send text to an external embedding provider when API keys and provider settings are configured. <br>
-Mitigation: Use the default BM25-only mode for local-only search, or review the selected provider, endpoint, data handling terms, and redaction process before enabling embeddings. <br>
-Risk: Stored memories can contain secrets, customer data, regulated information, or private conversations if users or agents save them. <br>
-Mitigation: Do not save sensitive material without review and redaction, and establish deletion and audit practices before production use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install, configure, verify, troubleshoot, upgrade, or remove agentmemory-backed long-term memory. Agents can use the guidance to enable recall, saving, migration from MEMORY.md, and hybrid memory search workflows.
 
-## Reference(s): <br>
-- [agentmemory-mcp ClawHub Page](https://clawhub.ai/lufei4/agentmemory-mcp) <br>
-- [agentmemory MCP Tools Reference](references/mcp-tools.md) <br>
-- [agentmemory and MEMORY.md Coordination Guide](references/coordination.md) <br>
-- [OpenClaw Plugin Manifest](references/openclaw-plugin/openclaw.plugin.json) <br>
-- [OpenClaw Plugin Implementation](references/openclaw-plugin/plugin.mjs) <br>
-- [Verification Script](scripts/verify.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and plugin code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that start local services, configure OpenClaw MCP, inspect health endpoints, manage systemd user services, and configure optional embedding providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Persistent background execution and automatic conversation capture can store sensitive or unintended session content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the service local, review captured memories regularly, and disable or restrict automatic capture when handling sensitive work.
+
+Risk: Docker-level access increases the impact of a compromised or misconfigured memory service.
+
+Mitigation: Avoid Docker socket access unless the service is fully trusted, and use pinned package and image versions for installation.
+
+Risk: Recalled or imported memories may contain stale, incorrect, or instruction-like content.
+
+Mitigation: Treat recalled memories as untrusted reference material, review MEMORY.md before import, and verify memory-derived claims before acting on them.
+
+Risk: Network-facing memory endpoints could expose stored context if bound beyond localhost.
+
+Mitigation: Keep the memory server bound to localhost and avoid exposing ports 3111 or 3113 to untrusted networks.
+
+## Reference(s):
+
+- [agentmemory MCP Tools Reference](references/mcp-tools.md)
+- [agentmemory and MEMORY.md Coordination Guide](references/coordination.md)
+- [OpenClaw Plugin Manifest](references/openclaw-plugin/openclaw.plugin.json)
+- [OpenClaw Plugin Package Metadata](references/openclaw-plugin/package.json)
+- [OpenClaw Plugin Source](references/openclaw-plugin/plugin.mjs)
+- [ClawHub skill page](https://clawhub.ai/lufei4/skills/agentmemory-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell, JSON, and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation, configuration, verification, troubleshooting, migration, and removal guidance for an OpenClaw memory integration.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

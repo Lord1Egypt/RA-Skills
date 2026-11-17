@@ -1,42 +1,60 @@
-## Description: <br>
-Platonic Brainstorming provides optional design exploration for Platonic Coding Phases 1 and 2 by exploring user intent, requirements, alternatives, and design before RFC formalization or implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optional design exploration for Platonic Coding Phases 1 and 2. Explores user intent, requirements, alternatives, and design before RFC formalization or implementation.
 
-## Publisher: <br>
-[caesar0301](https://clawhub.ai/user/caesar0301) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caesar0301](https://clawhub.ai/user/caesar0301)
 
-## Use Case: <br>
-Developers and product builders use this skill to turn an idea into an approved design draft before RFC formalization or implementation planning, including clarifying questions, alternative approaches, trade-off review, and optional visual exploration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional visual companion may run a local browser server that could expose brainstorming screens if bound to a public interface. <br>
-Mitigation: Keep the visual server on localhost when possible and avoid binding it to public interfaces. <br>
-Risk: The skill can write design drafts and visual session files that may accidentally include sensitive project details. <br>
-Mitigation: Review generated files before sharing, add .superpowers/ to .gitignore for persistent visual sessions, and avoid placing secrets or sensitive private data in mockups. <br>
-Risk: Brainstorming output can influence later implementation planning with incorrect assumptions or misleading guidance. <br>
-Mitigation: Require explicit user approval of the design draft before advancing to downstream Platonic Coding stages. <br>
+## Use Case:
 
+Developers and engineers use this skill to structure early design conversations, clarify requirements, compare approaches, and prepare approved design drafts before RFC formalization or implementation in the Platonic Coding workflow.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/caesar0301/platonic-brainstorming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Conversational guidance and Markdown design drafts, with optional shell commands and HTML visual companion screens.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write design drafts under docs/drafts/ and optional visual session files under .superpowers/brainstorm/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata and skill metadata) <br>
+Risk: The optional visual companion can run an unauthenticated local web server and may expose or log brainstorming session content if bound beyond loopback or used on shared networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the visual companion only on loopback/local URLs, avoid binding to 0.0.0.0 on shared or remote networks unless protected by an authenticated tunnel, and treat visible option text as potentially recorded in session state.
+
+Risk: Brainstorming artifacts and companion state may contain sensitive product designs or requirements.
+
+Mitigation: Review generated design drafts before reuse, clean up .superpowers/brainstorm data when it contains sensitive material, and avoid committing companion state unless intentionally retained.
+
+Risk: Stopping visual companion sessions against untrusted or manually edited session directories can operate on unintended local paths.
+
+Mitigation: Run stop-server.sh only against trusted session directories created by this skill's startup flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caesar0301/skills/platonic-brainstorming)
+- [README](artifact/README.md)
+- [Visual Companion Guide](artifact/visual-companion.md)
+- [Upstream Superpowers brainstorming skill](https://github.com/obra/superpowers/tree/main/skills/brainstorming)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Conversational guidance and Markdown design drafts, with optional local browser companion setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create design drafts under docs/drafts and optional visual companion session files when the user approves that workflow.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

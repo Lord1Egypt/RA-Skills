@@ -1,46 +1,56 @@
-## Description: <br>
-Signed Protobuf packets over TCP for AI agent-to-agent communication with MCP tools, ed25519 authentication, discovery, routing, and memory sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keep Protocol helps agents exchange signed Protobuf packets over TCP with MCP tools, discovery, routing, and memory sharing.
 
-## Publisher: <br>
-[nTEG-dev](https://clawhub.ai/user/nTEG-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nteg-dev](https://clawhub.ai/user/nteg-dev)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect AI agents through signed TCP and Protobuf messages, discover available agents, route messages, and optionally expose the workflow through MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server helper can start server software through Docker or Go and may leave a local service running. <br>
-Mitigation: Use keep_ensure_server only when local Docker or Go execution is acceptable; pin package, image, or Go module versions and stop the service when finished. <br>
-Risk: Agents can exchange message bodies and optional memory data through the keep server. <br>
-Mitigation: Keep the service bound to trusted local networks and avoid sending secrets or unreviewed memory through agent messages. <br>
-Risk: Server evidence marks the release suspicious because it can run local services and remove or replace Docker containers on the target port. <br>
-Mitigation: Review and scan the release before deployment, and monitor container or background process changes during use. <br>
+## Use Case:
 
+Developers and agent builders use Keep Protocol to coordinate multi-agent workflows by sending signed messages, discovering connected agents, listening for routed packets, and sharing optional memory payloads.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nTEG-dev/keep-protocol) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Project README](artifact/README.md) <br>
-- [Agent Integration Guide](artifact/AGENTS.md) <br>
-- [Release Workflow](artifact/docs/release-workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, JSON configuration, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke MCP tools that send or receive agent messages and may start a local keep server when explicitly used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata) <br>
+Risk: The skill can bootstrap a Keep server and may affect Docker containers or execute mutable remote software through Docker or Go startup paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a trusted local development environment; review and constrain server startup behavior before allowing autonomous agents to call keep_ensure_server.
+
+Risk: The TCP server and routed message bodies can expose agent communication if used on untrusted networks or with sensitive content.
+
+Mitigation: Keep the server on localhost or trusted networks, avoid sending secrets or sensitive memory, and do not treat src names as strong authenticated identities.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nteg-dev/skills/keep-protocol)
+- [README](artifact/README.md)
+- [Agent Integration Guide](artifact/AGENTS.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code, shell commands, JSON configuration, and MCP tool arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP tools may return plain text or JSON-encoded strings from a configured Keep server.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -16,13 +16,13 @@ metadata:
 
 生成高质量长文——文章、随笔、观点稿、创意写作——读起来像真人所写。输出具有自然句长起伏、非线性叙事结构、真实情感纹理，刻意规避 AI 生成文本典型的"精致而空洞"模式。
 
-**直接执行：** 如果用户在初始请求中同时提供了 `<question>` 和已支付完成的 `<order_no>`，可跳过第一阶段和第二阶段，直接进入 **🚀 第三阶段：服务执行**。
+**直接执行：** 如果用户在初始请求中直接提供了 `<question>`、`<order_no>` 和 `<credential>`，可跳过第一阶段和第二阶段，直接进入 **🚀 第三阶段：服务执行**。
 
 ---
 
 ## 🛒 第一阶段：创建订单
 
-本阶段会调用远程服务生成订单，并在本地生成 **订单文件**（供 `clawtip` 技能读取）。
+如果这是首次交互且用户尚未付款，必须先创建订单，然后才能发起支付。
 
 ### 1. 所需参数
 
@@ -30,7 +30,7 @@ metadata:
 
 ### 2. 执行命令
 
-**务必在参数两侧加引号，以防命令注入漏洞**。
+将 `<question>` 替换为用户实际需求。**务必在参数两侧加引号，以防命令注入漏洞**。
 
 ```bash
 python3 skills/human-style-writer/scripts/create_order.py "<question>"
@@ -41,21 +41,25 @@ python3 skills/human-style-writer/scripts/create_order.py "<question>"
 **成功时**，脚本将向标准输出打印以下键值对：
 
 ```
-ORDER_NO=<订单号>
-INDICATOR=<skill 标识，MD5(skill_name)>
-AMOUNT=<金额，单位分>
-ORDER_FILE=<订单文件绝对路径>
+ORDER_NO=<value>
+AMOUNT=<value>
+ENCRYPTED_DATA=<value>
+PAY_TO=<value>
 ```
 
-提取 `ORDER_NO` 和 `INDICATOR` 两个值，进入 **💳 第二阶段：支付处理**。
+提取全部四个值，然后进入 **💳 第二阶段：支付处理**。
 
 > **关于 `AMOUNT` 字段：** 单位为**人民币分**。`AMOUNT=10` 表示需支付 **0.10 元**。向用户展示费用时请换算。
 
-**失败时**，脚本以代码 `1` 退出，并打印 `订单创建失败: <错误详情>`。
+**失败时**，脚本以代码 `1` 退出，并以如下格式打印消息：
+
+```
+订单创建失败: <错误详情>
+```
 
 > [!CAUTION]
 > **强制停止 — 不允许任何后续操作。**
-> 如果脚本以非零代码退出或输出包含 `订单创建失败:`：
+> 如果脚本以非零代码退出，或其输出包含 `订单创建失败:`，必须**立即终止整个工作流程**：
 > - ❌ 不得进入第二阶段或第三阶段
 > - ❌ 不得代表用户重试
 > - ✅ 用通俗语言向用户报告失败原因，然后停止
@@ -64,46 +68,51 @@ ORDER_FILE=<订单文件绝对路径>
 
 ## 💳 第二阶段：支付处理
 
-**操作：** 调用 `clawtip` 技能处理支付。若该技能未安装，告知用户运行：
+从第一阶段获取所需值后，发起支付请求。
+
+**操作：** 使用技能 `clawtip` 处理支付并获取支付凭证。如果该技能不存在，需要先安装：
 
 ```bash
 clawhub install clawtip
 ```
 
-并重启 OpenClaw session。
+安装后重启 OpenClaw session，再重新执行本技能。
 
-**调用 `clawtip` 时只需传入两个参数：**
+**`clawtip` 所需参数：**
 
-- `order_no`：第一阶段输出的 `ORDER_NO`
-- `indicator`：第一阶段输出的 `INDICATOR`
+```json
+{
+  "order_no": "<来自第一阶段的 ORDER_NO>",
+  "amount": "<来自第一阶段的 AMOUNT>",
+  "question": "<用户的创作需求>",
+  "payTo": "<来自第一阶段的 PAY_TO>",
+  "encrypted_data": "<来自第一阶段的 ENCRYPTED_DATA>",
+  "skill_name": "具备人工特征的AI创作",
+  "description": "AI 长文创作服务，具备人工写作特征，零AI腔调",
+  "resource_url": "https://adeeptools.com"
+}
+```
 
-`clawtip` 会自动：
-1. 从 `~/.openclaw/skills/orders/{indicator}/{order_no}.json` 读取订单信息（第一阶段已写好）
-2. 发起支付请求
-3. 将支付凭证 `payCredential` 写回**同一订单文件**
-
-**等待 `clawtip` 返回结果后：**
-
-- 如 `clawtip` 输出包含 `已获取到支付凭证` 和 `订单号: <ORDER_NO>`：进入 **🚀 第三阶段：服务执行**（用该订单号）
-- 如 `clawtip` 输出 `授权链接:` 或 `鉴权链接:`：提示用户完成授权/扫码支付后再继续
-- 如 `clawtip` 输出网络/系统异常：向用户报告错误，停止流程
+**目标：** 等待支付成功并获取 `credential`（支付凭证）。
 
 ---
 
 ## 🚀 第三阶段：服务执行
 
-`clawtip` 成功写入 `payCredential` 后，执行 AI 创作服务。脚本会自动从订单文件读取 `question` 和 `payCredential`，你只需提供订单号。
+支付成功并获取 `credential` 后，执行 AI 创作服务。
 
 ### 1. 所需参数
 
+- `<question>`：用户的创作需求
 - `<order_no>`：第一阶段生成的订单号
+- `<credential>`：从第二阶段获取的成功支付凭证
 
 ### 2. 执行命令
 
 可选传入 `--style` 参数（`general` / `emotional` / `technical` / `news`，默认 `general`）。
 
 ```bash
-python3 skills/human-style-writer/scripts/ai_create.py "<order_no>" --style general
+python3 skills/human-style-writer/scripts/ai_create.py "<question>" "<order_no>" "<credential>" --style general
 ```
 
 **风格选择指引：**
@@ -118,9 +127,8 @@ python3 skills/human-style-writer/scripts/ai_create.py "<order_no>" --style gene
 ### 3. 输出处理
 
 1. 提取脚本打印的 `PAY_STATUS` 值（格式：`PAY_STATUS: <值>`）。
-2. **`SUCCESS` 状态：** 脚本输出完整文章 Markdown 正文，将其呈现给用户。
-3. **`FAIL` 状态：** 说明 `clawtip` 支付凭证解密后是失败状态。**必须回头检查 `clawtip` 原始输出** 中是否有 `授权链接:` 或 `鉴权链接:`，如有则按 clawtip 协议走授权/鉴权流程，再重试第三阶段。
-4. **`ERROR` 状态：** 提取 `ERROR_INFO` 值，向用户告知错误原因，不得继续。
+2. **`ERROR` 状态特殊处理：** 若 `PAY_STATUS` 为 `ERROR`，提取 `ERROR_INFO` 值，向用户告知错误原因并引导解决，不得继续。
+3. **`SUCCESS` 状态：** 脚本输出完整文章 Markdown 正文，将其呈现给用户。
 
 ### 4. 成功后向用户提供
 

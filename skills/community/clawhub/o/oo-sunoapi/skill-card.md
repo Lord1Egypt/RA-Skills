@@ -1,44 +1,59 @@
-## Description: <br>
-SunoAPI lets an agent operate the SunoAPI connector through OOMOL's oo CLI for reading account data and submitting music, lyrics, MIDI, cover, video, and audio transformation tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use SunoAPI through an OOMOL-connected account to manage music data and submit audio generation and processing tasks.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators with an OOMOL-connected SunoAPI account use this skill to inspect live action schemas, submit SunoAPI generation or transformation jobs, and retrieve task details or account credit status without handling raw API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit credit-consuming SunoAPI generation, upload, conversion, extension, and transformation actions. <br>
-Mitigation: Inspect the live schema, confirm the exact payload and likely credit use with the user before running write actions, and stop when account credits are insufficient. <br>
-Risk: The skill depends on the local oo CLI installation and the OOMOL-connected SunoAPI credential flow. <br>
-Mitigation: Install only from the documented OOMOL CLI installer, review the install command before running it, and use OOMOL server-side credentials instead of exposing raw SunoAPI tokens. <br>
+## Use Case:
 
+External users and developers can use the skill to read and manage SunoAPI data, generate or process audio, and retrieve task results through their OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-sunoapi) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [SunoAPI Homepage](https://sunoapi.org) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples; connector actions return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI, an OOMOL account, a connected SunoAPI API key, and user confirmation for write or destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: Audio generation and processing may incur charges, and vocal separation or style boosting may run without a clear confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested task and payload before generation or processing, and review style boosting before using it.
+
+Risk: Setup may affect other installed skills, while the remote installers and hosted connector code have not been verified.
+
+Mitigation: Preinstall a reviewed CLI release and decide whether to allow automatic skill synchronization.
+
+Risk: OOMOL mediates account access and submitted content.
+
+Mitigation: Use the connector only when its account and content handling is acceptable for the material being submitted.
+
+## Reference(s):
+
+- [SunoAPI](https://sunoapi.org)
+- [SunoAPI documentation](https://docs.sunoapi.org/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API results, Shell commands]
+
+**Output Format:** [JSON payloads, command examples, task identifiers, and returned result details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audio generation and processing run through SunoAPI; the skill returns task identifiers or result details.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release version and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

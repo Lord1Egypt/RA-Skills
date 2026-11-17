@@ -1,48 +1,64 @@
-## Description: <br>
-中国酒店比价 - 专门针对美团、去哪儿、携程、飞猪、途牛等中国本土平台的酒店搜索、价格比较、套餐分析和个性化推荐。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Hotel Comparison helps agents compare hotels across major Chinese travel platforms, analyze total costs and packages, and provide personalized booking recommendations.
 
-## Publisher: <br>
-[FENGJIANLI0721](https://clawhub.ai/user/FENGJIANLI0721) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengjianli0721](https://clawhub.ai/user/fengjianli0721)
 
-## Use Case: <br>
-External users use this skill to compare China hotel options across Meituan, Qunar, Ctrip, Fliggy, and Tuniu, including price checks, package value analysis, and personalized recommendations. It is intended for travelers planning hotels in China, including family, business, independent, and vacation travel. <br>
-
-### Deployment Geography for Use: <br>
-China <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may remember sensitive travel behavior across sessions. <br>
-Mitigation: Keep history learning off unless needed, and require clear controls for opt-in, review, deletion, and disabling remembered history before using it with real bookings. <br>
-Risk: Family sharing can expose preferences, search history, or travel plans to other users. <br>
-Mitigation: Keep family sharing off unless clearly needed, review sharing scope before use, and require user controls for review, deletion, and sharing changes. <br>
-Risk: Travel searches can involve payment details, contacts, health needs, or private travel plans. <br>
-Mitigation: Avoid entering payment details, contact information, health needs, or private travel plans into the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FENGJIANLI0721/china-hotel-comparison) <br>
-- [README](artifact/README.md) <br>
-- [Search strategy guide](artifact/search-strategy.md) <br>
-- [Price calculation guide](artifact/price-calculation.md) <br>
-- [Package value analysis](artifact/package-value-analysis.md) <br>
-- [Multi-user management and family sharing](artifact/multi-user-management.md) <br>
-- [User history learning](artifact/user-history-learning.md) <br>
-- [Shanghai Disney Resort tickets](https://www.shanghaidisneyresort.com/tickets/) <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search for hotels in China, compare options across Meituan, Qunar, Ctrip, Fliggy, and Tuniu, and produce booking recommendations with price, package, location, cancellation, and suitability analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendations, comparison tables, analysis templates, and optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill normally returns at least five hotel options with prices, platform comparison, total cost, pros and cons, suitability notes, and booking guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and artifact _meta.json) <br>
+China
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent personalization and family sharing could expose travel searches, decision history, inferred preferences, or shared household data.
+
+Mitigation: Require explicit opt-in, collect only necessary data, keep personal and household data separated, and provide review, export, and deletion controls before deployment.
+
+Risk: Embedded raw web-fetch text could cause an unsolicited web request.
+
+Mitigation: Remove raw web-fetch lines from the artifact or require explicit user confirmation before any live web access.
+
+Risk: Hotel prices, package values, cancellation terms, and availability may be stale or inaccurate.
+
+Mitigation: Verify live prices and policies against the booking platform or official provider at recommendation time and show the source and timestamp for critical values.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fengjianli0721/skills/china-hotel-comparison)
+- [README](artifact/README.md)
+- [Search Strategy](artifact/search-strategy.md)
+- [Price Calculation](artifact/price-calculation.md)
+- [Package Value Analysis](artifact/package-value-analysis.md)
+- [Multi-User Management](artifact/multi-user-management.md)
+- [User Profiles](artifact/user-profiles.md)
+- [Personalized Recommendation](artifact/personalized-recommendation.md)
+- [Shanghai Disney Resort Tickets](https://www.shanghaidisneyresort.com/tickets/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown recommendations with comparison tables and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hotel recommendations are expected to include at least five options with price comparisons, cost breakdowns, pros and cons, audience fit, and booking guidance.]
+
+## Skill Version(s):
+
+1.4.0 (source: evidence release.version, artifact _meta.json, and SKILL.md body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

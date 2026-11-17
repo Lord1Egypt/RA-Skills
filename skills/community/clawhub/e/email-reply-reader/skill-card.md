@@ -1,39 +1,54 @@
-## Description: <br>
-Read and parse job application email replies from companies, using gog Gmail to fetch and classify recruiter responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads and parses job application email replies from Gmail, then classifies recruiter responses and follow-up needs for the user.
 
-## Publisher: <br>
-[xiaoxty](https://clawhub.ai/user/xiaoxty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxty](https://clawhub.ai/user/xiaoxty)
 
-## Use Case: <br>
-External users and job seekers use this skill to search recent Gmail messages for job-application replies, classify recruiter responses, summarize priority actions, and draft appropriate follow-up replies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can search a Gmail account for recent job-related messages and may expose privacy-sensitive email metadata or content. <br>
-Mitigation: Confirm the Gmail account before use, keep queries and date ranges narrow, avoid reading full email bodies unless needed, and revoke or limit gog Gmail access after use. <br>
+## Use Case:
 
+Job seekers use this skill to search recent Gmail messages for job application replies, classify recruiter responses, summarize priority actions, and draft follow-up or reply text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoxty/email-reply-reader) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoxty) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Gmail search commands, categorized summaries, priority actions, and reply templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gog authenticated with Gmail and may inspect privacy-sensitive email metadata or content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill searches private Gmail inbox and sent messages through an authenticated gog account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Gmail account and search scope before use, especially on shared or work machines.
+
+Risk: The generated summaries and reply drafts may include sensitive recruiter, employer, or application details.
+
+Mitigation: Review summaries and drafts before sharing or sending, and avoid exposing unnecessary personal or employer information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoxty/skills/email-reply-reader)
+- [Publisher profile](https://clawhub.ai/user/xiaoxty)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and reply templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses authenticated gog Gmail access to search recent inbox and sent messages.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

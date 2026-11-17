@@ -1,41 +1,50 @@
-## Description: <br>
-Merges ephemeral report and analysis artifacts into permanent documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merges ephemeral report and analysis artifacts into permanent documentation
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to identify valuable content in temporary reports or analysis files, plan where it should live, and merge it into permanent project documentation after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reorganize repository documentation and may modify or delete documents during normal use. <br>
-Mitigation: Require a dry run, inspect the exact destination files, keep originals in version control or an archive, and approve deletion separately from merge or update steps. <br>
-Risk: Recovery may be incomplete if source report files are deleted after consolidation. <br>
-Mitigation: Keep source files in version control or an archive until the consolidated documentation has been reviewed and accepted. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to identify valuable content in ephemeral Markdown reports, plan where it belongs, and merge it into permanent documentation after approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-doc-consolidation) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown plans and summaries with proposed or applied documentation file changes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update documentation files and may delete source report files after approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release metadata) <br>
+Risk: Rollback may undo changes from earlier consolidations; the partial scan also left some local references unresolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review rollback behavior before installing, especially where earlier documentation matters, and inspect the proposed plan before approving execution.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-sanctum-doc-consolidation)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown consolidation plans, documentation files, and execution summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update documentation and remove source report files after the user approves the consolidation plan.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

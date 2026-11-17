@@ -1,40 +1,54 @@
-## Description: <br>
-Use when an agent needs Dreamina（即梦） image or video generation through the Dreamina CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent use the Dreamina（即梦） CLI for image and video generation workflows.
 
-## Publisher: <br>
-[l1angjy](https://clawhub.ai/user/l1angjy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l1angjy](https://clawhub.ai/user/l1angjy)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect Dreamina CLI help, submit image or video generation tasks, check account credits, and query async results. It is intended for workflows where the user can review commands before credit-spending or account-affecting actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or running the Dreamina CLI requires trusting the Dreamina/Jianying source and may use a logged-in account. <br>
-Mitigation: Install only from the documented source, reuse existing login state unless the user requests an account action, and show the exact command before execution. <br>
-Risk: Submitting generation jobs can consume account credits and may expose prior task history during result checks. <br>
-Mitigation: Confirm any credit-spending action with the user, separate help-only inspection from real submissions, and query only task IDs or history the user approves. <br>
+## Use Case:
 
+External developers and agents use this skill to inspect Dreamina CLI help, manage login or credit checks, submit image and video generation tasks, and query asynchronous results.
 
-## Reference(s): <br>
-- [Dreamina CLI installer](https://jimeng.jianying.com/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and CLI result guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Dreamina submit_id values, generation status checks, and follow-up query commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.4.10-1 (source: server release evidence) <br>
+Risk: The skill's install path asks the user or agent to run an unverified remote shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the Dreamina CLI distribution endpoint is trusted; prefer downloading and inspecting the installer first, use a pinned or signed release if available, and avoid elevated shells.
+
+Risk: Generation commands may consume Dreamina account credits.
+
+Mitigation: Review commands before submitting generation jobs and warn the user before running paid actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/l1angjy/skills/seedance-cli)
+- [Dreamina CLI installation endpoint](https://jimeng.jianying.com/cli)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include warnings before commands that can consume Dreamina account credits.]
+
+## Skill Version(s):
+
+2026.4.10-1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

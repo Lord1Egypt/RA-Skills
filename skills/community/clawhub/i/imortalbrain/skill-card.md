@@ -1,45 +1,63 @@
-## Description: <br>
-Immortal Brain is an autonomous OpenClaw agent for task workflow management, local memory organization, heartbeat monitoring, and continuous learning through task connections and user profiling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Immortal Brain is a proactive OpenClaw agent for autonomous task intake, research, planning, execution tracking, persistent memory, and progress reporting.
 
-## Publisher: <br>
-[ovidiuproca](https://clawhub.ai/user/ovidiuproca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ovidiuproca](https://clawhub.ai/user/ovidiuproca)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run an autonomous local task-management loop that ingests tasks, researches and plans work, reports progress, and maintains memory, identity, and user-profile files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent can continue after user silence through a documented auto-approval timeout. <br>
-Mitigation: Review and edit HEARTBEAT.md before enabling the skill, and disable silence-based auto-approval when explicit consent is required. <br>
-Risk: The agent maintains broad local memory, profile, identity, and tool-context files that may contain sensitive information. <br>
-Mitigation: Avoid storing secrets in TOOLS.md or memory files the skill scans, and review local files before enabling recurring heartbeat processing. <br>
-Risk: Core memory optimization and identity update commands can modify persistent local memory and identity files. <br>
-Mitigation: Back up MEMORY.md and IDENTITY.md before using optimization or identity update commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ovidiuproca/imortalbrain) <br>
-- [README](artifact/README.md) <br>
-- [Conceptual guide](artifact/references/conceptual_guide.md) <br>
-- [Heartbeat information](artifact/references/heartbeat_info.md) <br>
-- [Setup guide](artifact/references/setup_guide.md) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to manage active tasks through an autonomous workflow that researches related work, creates plans, tracks progress, and maintains memory/profile files. It is intended for users who deliberately want a persistent background task and memory manager.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command responses, Markdown reports, shell commands, and local Markdown/JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operates on local OpenClaw workspace files such as memory, Creier, identity, and core memory documents.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-5.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run as a persistent autonomous background task and continue after user silence.
+
+Mitigation: Enable it only when persistent automation is intended, and disable or narrow auto-approval before use.
+
+Risk: The skill stores task, memory, profile, and backup data that may contain sensitive user or workspace context.
+
+Mitigation: Review and purge memory, profile, and backup files regularly, and avoid adding secrets or sensitive personal data.
+
+Risk: Optional Telegram notifications may send workspace-derived content outside the local environment.
+
+Mitigation: Keep Telegram disabled for sensitive work or restrict notifications to status-only summaries.
+
+Risk: Optional scheduler setup can make the agent continue running beyond the current session.
+
+Mitigation: Avoid the Windows Task Scheduler option unless explicit removal and monitoring steps are in place.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ovidiuproca/skills/imortalbrain)
+- [Conceptual Guide](artifact/references/conceptual_guide.md)
+- [Heartbeat Info](artifact/references/heartbeat_info.md)
+- [Setup Guide](artifact/references/setup_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON status/progress output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update local task, memory, profile, backup, progress, and heartbeat state files.]
+
+## Skill Version(s):
+
+5.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

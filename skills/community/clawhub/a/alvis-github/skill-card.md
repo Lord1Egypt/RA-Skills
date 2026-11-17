@@ -1,41 +1,57 @@
-## Description: <br>
-Use the GitHub CLI (gh) to perform core GitHub operations: auth status, repo create/clone/fork, issues, pull requests, releases, and basic repo management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the GitHub CLI (gh) to perform core GitHub operations: auth status, repo create/clone/fork, issues, pull requests, releases, and basic repo management.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and engineers use this skill to have an agent prepare GitHub CLI workflows for authentication checks, repository management, issues, pull requests, and releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real GitHub changes using the active account, including public content, merges, releases, deletes, or force-pushes. <br>
-Mitigation: Confirm the active GitHub account, target repository, branch, issue or PR number before use, and require explicit approval for public-content, merge, release, delete, and force-push actions. <br>
-Risk: The artifact links to an external setup guide that is separate from official GitHub CLI documentation. <br>
-Mitigation: Use official GitHub CLI setup guidance unless the operator intentionally chooses the external SkillBoss service. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent for GitHub CLI commands and guidance for authenticated repository, issue, pull request, and release workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alvis-github) <br>
-- [External setup guide linked by artifact](https://SkillBoss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can use the active GitHub account and should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Authenticated GitHub CLI actions can mutate repositories, issues, pull requests, or releases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target owner, repository, branch, pull request, issue, or release before allowing create, comment, merge, publish, delete, or force-push operations.
+
+Risk: The linked setup guide is third-party documentation that may change after release.
+
+Mitigation: Review commands from the setup guide before running them and do not treat the linked page as authoritative security guidance.
+
+Risk: Repository creation or destructive actions may expose private work or change shared project state.
+
+Mitigation: Use private repository creation by default when intended and require explicit confirmation for destructive actions.
+
+## Reference(s):
+
+- [Complete setup guide](https://SkillBoss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces GitHub CLI command examples and operational guidance; commands may require authenticated gh access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

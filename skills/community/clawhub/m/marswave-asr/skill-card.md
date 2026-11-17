@@ -1,43 +1,54 @@
-## Description: <br>
-Transcribe audio files to text using local speech recognition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes audio files to text using local speech recognition and supports optional transcript polishing and Markdown export.
 
-## Publisher: <br>
-[0xFANGO](https://clawhub.ai/user/0xFANGO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xfango](https://clawhub.ai/user/0xfango)
 
-## Use Case: <br>
-Developers and external users use this skill to transcribe provided audio files locally, optionally polish the transcript for readability, and export the result as Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the @marswave/coli CLI and may download local speech models on first use. <br>
-Mitigation: Install only if the publisher and CLI are trusted, and confirm the first-run model download is acceptable. <br>
-Risk: Optional AI polishing can change punctuation, remove filler words, and improve readability rather than preserve a verbatim transcript. <br>
-Mitigation: Use the no-polish option when a raw transcript is required, and request the original transcript when needed. <br>
-Risk: Optional Markdown export writes a local transcript file that may contain sensitive audio content. <br>
-Mitigation: Approve export only when a local transcript file is desired and handle the resulting file according to the audio's sensitivity. <br>
+## Use Case:
 
+External users and developers use this skill to transcribe local audio files, optionally improve transcript readability, and save transcript metadata in Markdown.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xFANGO/marswave-asr) <br>
-- [Publisher Profile](https://clawhub.ai/user/0xFANGO) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Conversation text with optional Markdown transcript export and JSON-parsed CLI metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include detected language, emotion, audio event, duration, and an optional polished transcript.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill depends on the external `@marswave/coli` CLI and may download speech models on first use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source, preinstall and verify the CLI and models in controlled environments, and avoid unnecessary privileges for install commands.
+
+Risk: Sensitive audio may be transcribed or saved to a Markdown file in the current working directory.
+
+Mitigation: Use the skill in a trusted local environment and review the transcript filename and destination before saving Markdown output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xfango/skills/marswave-asr)
+- [Publisher profile](https://clawhub.ai/user/0xfango)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Conversation text, Markdown transcript files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May polish raw transcripts for readability and may export a Markdown file with source, date, model, duration, and language metadata.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

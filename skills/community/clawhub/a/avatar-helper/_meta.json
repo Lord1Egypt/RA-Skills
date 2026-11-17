@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7ctn51g7anq93bwgz7gfckxs80c6ze",
+  "name": "Avatar Helper",
   "slug": "avatar-helper",
-  "version": "1.0.1",
-  "publishedAt": 1773224789928
+  "version": "1.0.0",
+  "description": "帮龙虾挑选头像 - 主动推荐+自主决定 - 配合 wallpaper.dfyx.click 使用",
+  "author": "小溪",
+  "tags": ["头像", "avatar", "壁纸", "下载", "主动性"],
+  "trigger": ["帮我挑头像", "下载头像", "换个头像", "选头像"]
 }

@@ -1,41 +1,59 @@
-## Description: <br>
-Smart Money tracks Ethereum mainnet whale, fund, market-maker, custom-wallet, and liquidity-pool activity and surfaces on-chain trading signals through Antalpha MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Money helps agents track Ethereum smart-money wallets, including whale, fund, market-maker, custom wallet, and liquidity-pool activity, through Antalpha MCP tools.
 
-## Publisher: <br>
-[deanpeng-dotcom](https://clawhub.ai/user/deanpeng-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deanpeng-dotcom](https://clawhub.ai/user/deanpeng-dotcom)
 
-## Use Case: <br>
-External users and agent operators use this skill to monitor smart-money wallet activity, review whale trading and LP signals, and set up custom wallet alerts. It is intended for on-chain signal tracking and alerting, not custody or transaction execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide agents to create recurring OpenClaw Cron monitoring jobs after custom wallet subscriptions are added. <br>
-Mitigation: Require explicit user confirmation before creating any Cron job, review the exact schedule and message, and tell the user how to remove the Cron job and related local state files. <br>
-Risk: The skill registers an agent and stores a local API key and monitoring state for later MCP calls. <br>
-Mitigation: Store credentials securely, avoid exposing them in prompts or logs, and delete local state files when monitoring is no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to query on-chain wallet signals, inspect watched Ethereum addresses, manage a small custom watchlist, and set up recurring checks for new high-priority activity.
 
-## Reference(s): <br>
-- [ClawHub Smart Money release page](https://clawhub.ai/deanpeng-dotcom/smart-money) <br>
-- [Antalpha MCP endpoint](https://mcp-skills.ai.antalpha.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with MCP tool arguments, signal summaries, optional shell commands, and local configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recurring OpenClaw Cron setup guidance and local state-file guidance for custom wallet monitoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill stores an agent API key locally for later MCP calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the credential in a restricted local path, avoid exposing it in logs or prompts, and remove it when the skill is no longer used.
+
+Risk: Monitored wallet addresses are sent to Antalpha's MCP service.
+
+Mitigation: Only add addresses the user is comfortable sharing with the service, and remove watched addresses when monitoring is no longer needed.
+
+Risk: The skill directs agents to create recurring Cron checks about every 15 minutes after adding a custom address.
+
+Mitigation: Create recurring checks only when the user explicitly wants ongoing monitoring, and verify how to inspect, disable, and remove the Cron job before enabling it.
+
+## Reference(s):
+
+- [Smart Money ClawHub listing](https://clawhub.ai/deanpeng-dotcom/skills/smart-money)
+- [Antalpha MCP endpoint](https://mcp-skills.ai.antalpha.com/mcp)
+- [Publisher profile](https://clawhub.ai/user/deanpeng-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text summaries with MCP tool-call arguments, JSON configuration examples, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet signal levels, token or pool activity summaries, transaction references, local agent credential storage guidance, and recurring Cron monitoring commands.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-Captures snapshots from one or more Ezviz camera devices, manages access tokens, and can optionally download captured images locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ezviz Open Picture helps agents capture current images from one or more Ezviz devices, manage access tokens, and optionally download captured images locally.
 
-## Publisher: <br>
-[Ezviz-Open](https://clawhub.ai/user/Ezviz-Open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezviz-open](https://clawhub.ai/user/ezviz-open)
 
-## Use Case: <br>
-Developers and operators use this skill to capture current images from authorized Ezviz cameras for monitoring archives, incident records, periodic inspections, and remote status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation includes realistic-looking EZVIZ credentials and unsafe secret examples. <br>
-Mitigation: Review or replace those examples before use and rotate any values that were ever real. <br>
-Risk: Camera capture can expose private images or unauthorized devices. <br>
-Mitigation: Run the skill only for cameras the operator is authorized to access, using dedicated minimal-permission EZVIZ credentials. <br>
-Risk: Access tokens are cached in a system temp directory by default. <br>
-Mitigation: Disable caching on shared machines with EZVIZ_TOKEN_CACHE=0 and clear the cache after sensitive use. <br>
-Risk: Credentials may be read from OpenClaw config files when environment variables are absent. <br>
-Mitigation: Prefer environment variables and review ~/.openclaw config files for dedicated Ezviz-only credentials. <br>
+## Use Case:
 
+Developers and operators use this skill to collect live camera snapshots for monitoring archives, inspection reports, incident records, smart-home checks, or scheduled capture workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ezviz-Open/ezviz-open-picture) <br>
-- [Ezviz Open Platform](https://open.ys7.com/) <br>
-- [Ezviz access token API](https://openai.ys7.com/help/81) <br>
-- [Ezviz device capture API](https://openai.ys7.com/help/687) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Console text with a JSON capture summary; optional downloaded JPEG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Capture entries include device, channel, pic_url or local_path, and error details when a request fails; returned image URLs are documented as expiring after 2 hours.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill handles Ezviz camera credentials, access tokens, and signed camera-image URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Ezviz app, rotate any exposed credentials, and avoid sending output that contains full pic_url values to shared logs.
+
+Risk: Token caching can persist access tokens in a system temporary directory.
+
+Mitigation: Disable token caching with EZVIZ_TOKEN_CACHE=0 in shared or high-security environments and clear the cache after use.
+
+Risk: The skill may read Ezviz credentials from OpenClaw config files when environment variables are not set.
+
+Mitigation: Set EZVIZ_APP_KEY and EZVIZ_APP_SECRET through environment variables and keep OpenClaw config files limited to dedicated Ezviz credentials.
+
+Risk: Camera capture can involve privacy-sensitive images and local legal obligations.
+
+Mitigation: Run the skill only for authorized devices and workflows that comply with applicable privacy and monitoring requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ezviz-open/skills/ezviz-open-picture)
+- [Ezviz Open Platform](https://open.ys7.com/)
+- [Ezviz access token API](https://openai.ys7.com/help/81)
+- [Ezviz device capture API](https://openai.ys7.com/help/687)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Console text with a JSON result object and optional local image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Capture results include device, channel, pic_url or error details, and expire_hours when successful.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

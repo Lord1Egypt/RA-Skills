@@ -1,41 +1,55 @@
-## Description: <br>
-MinerU Agent Free parses PDFs, Office documents, spreadsheets, presentations, and images into Markdown through MinerU's lightweight remote parsing API without token authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the MinerU Agent lightweight API to convert PDFs, Word documents, PowerPoint files, Excel files, and images into Markdown without requiring an API token.
 
-## Publisher: <br>
-[haxck](https://clawhub.ai/user/haxck) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haxck](https://clawhub.ai/user/haxck)
 
-## Use Case: <br>
-Developers and agents use this skill to convert user-selected document files or public file URLs into Markdown for document parsing, OCR, table extraction, and downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents or provided URLs are sent to MinerU's remote parsing service. <br>
-Mitigation: Use only documents and URLs approved for that service; avoid confidential, regulated, or proprietary content unless policy allows it. <br>
-Risk: Returned Markdown may contain untrusted document content. <br>
-Mitigation: Treat parsed Markdown as data for review or extraction, not as instructions for the agent to execute. <br>
+## Use Case:
 
+Developers and agents use this skill to parse user-provided documents or document URLs into Markdown for downstream extraction, OCR, table analysis, and summarization workflows.
 
-## Reference(s): <br>
-- [MinerU Agent API documentation](https://mineru.net/apiManage/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/haxck/mineru-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Files] <br>
-**Output Format:** [Markdown returned to stdout or written to an output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports URL or local file input, optional language selection, PDF page ranges, and timeout control.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Documents and URLs are sent to MinerU and its upload storage for parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents and links that are appropriate to share with that service, and avoid confidential, regulated, internal, secret-bearing, or pre-signed URLs unless an explicit review permits it.
+
+Risk: The workflow trusts service-provided upload and Markdown download URLs.
+
+Mitigation: Add user confirmation, URL allowlisting, destination validation, and request timeouts before routine or automated use.
+
+## Reference(s):
+
+- [MinerU Agent API documentation](https://mineru.net/apiManage/docs)
+- [MinerU Agent API endpoint](https://mineru.net/api/v1/agent)
+- [ClawHub skill page](https://clawhub.ai/haxck/skills/mineru-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown text written to stdout or an output file, with status messages on stderr.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports URL or local-file input, language selection, optional PDF page ranges, and a polling timeout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

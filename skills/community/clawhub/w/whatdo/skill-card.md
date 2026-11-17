@@ -1,39 +1,60 @@
-## Description: <br>
-What Should We Do? helps an agent suggest personalized activities, entertainment, and group plans using context such as weather, local options, preferences, history, calendars, and group profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+What Should We Do? helps an agent suggest personalized activities using weather, showtimes, streaming preferences, game libraries, group profiles, routines, favorites, business hours, ratings, calendar events, invitations, reminders, and RSVP tracking.
 
-## Publisher: <br>
-[ScotTFO](https://clawhub.ai/user/ScotTFO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[scottfo](https://clawhub.ai/user/scottfo)
 
-## Use Case: <br>
-External users use this skill to get activity ideas, date-night plans, stay-home entertainment, and group-planning suggestions that account for personal preferences and current context. It can also help turn accepted plans into calendar events, reminders, invitations, and RSVP tracking when the user approves those actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can remember personal preferences, activity history, group profiles, and contact details. <br>
-Mitigation: Review stored data in data/whatdo/preferences.json and data/whatdo/history.json periodically, delete stale or sensitive entries, and only store contact details that are needed for planning. <br>
-Risk: Calendar, reminder, and messaging actions may affect schedules or send information to other people. <br>
-Mitigation: Before acting, require the agent to show the exact calendar event, recipients, invite or reminder text, and any data it will store or send. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ScotTFO/whatdo) <br>
+## Use Case:
 
+External users use this skill to get activity, entertainment, dining, game night, date night, and group planning suggestions. It can personalize suggestions from stored preferences and history, then help schedule accepted plans, send invites, and track RSVP status.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with optional shell command snippets and JSON preference or history examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update data/whatdo/preferences.json and data/whatdo/history.json when the agent has file access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores activity preferences, routines, group membership, and contact details in the workspace.
+
+Mitigation: Use it only where that local storage is acceptable, avoid storing third-party contact details without consent, and review stored preference and history files periodically.
+
+Risk: Calendar, Places, Telegram, and cron actions may expose location, schedule, contact, or message details.
+
+Mitigation: Confirm the exact data, recipients, message text, events, and reminders before allowing those actions.
+
+Risk: Broad natural-language triggers can move from suggestion into scheduling, reminders, or outbound invites.
+
+Mitigation: Require an explicit confirmation step before creating calendar events, adding cron jobs, sending invitations, or updating RSVP records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scottfo/skills/whatdo)
+- [Skill homepage](https://github.com/ScotTFO/whatdo-skill)
+- [Google Calendar events endpoint](https://www.googleapis.com/calendar/v3/calendars/primary/events)
+- [Google Places Text Search endpoint](https://places.googleapis.com/v1/places:searchText)
+- [Google Places Nearby Search endpoint](https://places.googleapis.com/v1/places:searchNearby)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and conversational text with optional JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live-context checks, saved preference updates, calendar or reminder commands, invite messages, and RSVP summaries.]
+
+## Skill Version(s):
+
+2.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Requires an agent to explain proposed changes, risks, and impact, then obtain explicit user authorization before modifying files, running state-changing commands, changing configuration, or making external calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authorization First guides agents to explain intended file, system, configuration, or external operations and wait for explicit user authorization before taking action.
 
-## Publisher: <br>
-[pikaqiuyaya](https://clawhub.ai/user/pikaqiuyaya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pikaqiuyaya](https://clawhub.ai/user/pikaqiuyaya)
 
-## Use Case: <br>
-Developers and agent operators use this skill to make an assistant pause before impactful operations, present the intended action and risks, and wait for explicit approval. It is most useful where an agent may edit files, run commands, update configuration, or call external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users who cannot read the Chinese instructions may misunderstand when authorization is required. <br>
-Mitigation: Install only after reading the instructions directly or translating them accurately. <br>
-Risk: The skill encourages asking before impactful operations, but an approved command or file change could still be harmful if the user does not review it. <br>
-Mitigation: Review proposed commands, file paths, diffs, external calls, and stated risks before approving execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make assistants request explicit approval before file changes, state-changing commands, configuration edits, or external service calls. It provides reusable templates for stating intent, showing planned changes, describing impact and risk, waiting for confirmation, and reporting errors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pikaqiuyaya/authorization-first) <br>
-- [Publisher profile](https://clawhub.ai/user/pikaqiuyaya) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with command, diff, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides authorization request templates, approval levels, error-handling guidance, and a pre-execution checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Non-Chinese users may misunderstand the operational templates because the artifact text is written in Chinese.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and localize the templates before deployment in non-Chinese operating environments.
+
+Risk: Approval-first behavior can slow urgent changes if teams have not defined what the agent may do without asking.
+
+Mitigation: Document local approval boundaries, including read-only actions and emergency procedures, before relying on the skill in operational workflows.
+
+## Reference(s):
+
+- [Authorization First on ClawHub](https://clawhub.ai/pikaqiuyaya/skills/authorization-first)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with approval templates and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language operational templates; no executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

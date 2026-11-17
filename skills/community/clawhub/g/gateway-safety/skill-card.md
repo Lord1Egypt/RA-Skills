@@ -1,40 +1,53 @@
-## Description: <br>
-Safely update OpenClaw gateway configuration (openclaw.json) with automatic validation, backup, and 30-second health-check rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely update OpenClaw gateway configuration (openclaw.json) with automatic validation, backup, and 30-second health-check rollback.
 
-## Publisher: <br>
-[allthebadthings](https://clawhub.ai/user/allthebadthings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[allthebadthings](https://clawhub.ai/user/allthebadthings)
 
-## Use Case: <br>
-Developers and agents use this skill when changing OpenClaw gateway settings, ports, provider credentials, or network bindings while preserving a rollback path if the gateway fails health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A proposed OpenClaw gateway configuration could break access or expose provider settings if applied without review. <br>
-Mitigation: Review the proposed openclaw.json before running the update script and use the skill only when an agent is expected to modify gateway settings. <br>
-Risk: Backups and known-good configuration copies may retain old provider credentials locally. <br>
-Mitigation: Keep ~/.openclaw permissions restrictive and handle backup files as sensitive local configuration. <br>
+## Use Case:
 
+Developers and operators use this skill to modify OpenClaw gateway settings, ports, provider credentials, and network bindings with validation, backup, health checking, and rollback.
 
-## Reference(s): <br>
-- [Gateway Safety on ClawHub](https://clawhub.ai/allthebadthings/gateway-safety) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces commands and safety steps for updating local OpenClaw gateway configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill controls sensitive OpenClaw gateway configuration and could disrupt access if applied incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed configuration change before execution and confirm rollback state is recoverable.
+
+Risk: Security evidence reports material safety and command-injection weaknesses in the safety script.
+
+Mitigation: Harden the script by validating numeric inputs, checking each copy and restart result, enforcing GATEWAY_LOCKOUT, and documenting who can clear lockout state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allthebadthings/skills/gateway-safety)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human review before applying sensitive gateway configuration changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

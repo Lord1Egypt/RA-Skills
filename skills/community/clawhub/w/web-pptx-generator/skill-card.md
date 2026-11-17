@@ -1,48 +1,64 @@
-## Description: <br>
-Web PPTX Generator helps agents create polished, mobile-friendly single-file HTML presentations using predefined themes, layout recipes, and local Node.js scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Slides helps agents create polished, mobile-friendly single-file HTML presentation decks from user outlines, structured content, or scene presets.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers, creators, and business users use this skill to turn outlines, long-form notes, or structured content into polished HTML slide decks for pitches, reports, product launches, and technical presentations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or previewed HTML can execute locally in a browser context. <br>
-Mitigation: Keep generated files in a project folder and preview only trusted or skill-generated HTML. <br>
-Risk: Preview rendering can depend on the local Chrome binary selected by the environment. <br>
-Mitigation: Verify any CHROME_BIN override before rendering previews. <br>
-Risk: The optional global preview renderer adds an extra local dependency. <br>
-Mitigation: Install the optional global preview package only when preview image generation is needed. <br>
+## Use Case:
 
+Developers and external users use this skill to transform outlines, Markdown, or structured JSON into polished HTML slides for pitches, reports, launches, and presentations without API keys.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tobewin/web-pptx-generator) <br>
-- [Runtime](artifact/references/runtime.md) <br>
-- [Assembly Workflow](artifact/references/assembly-workflow.md) <br>
-- [Content Schema](artifact/references/content-schema.md) <br>
-- [Theme Catalog](artifact/references/theme-catalog.md) <br>
-- [Layout System](artifact/references/layout-system.md) <br>
-- [Quality Bar](artifact/references/quality-bar.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, structured JSON content, shell commands, and single-file HTML presentation code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are designed for local Node.js workflows and may include optional preview-rendering commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.5 (source: frontmatter and server release metadata) <br>
+Risk: Optional preview rendering can execute against generated HTML content in a local browser context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render previews only from trusted generated HTML, preferably in an isolated environment without private files or outbound network access.
+
+Risk: Optional global npm installation can introduce supply-chain exposure if the package is not pinned and trusted.
+
+Mitigation: Avoid global installation unless the preview renderer package and version are explicitly reviewed and trusted.
+
+Risk: The security verdict is suspicious despite no specific risk findings being listed.
+
+Mitigation: Review the skill before installation and scan the release artifact before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/web-pptx-generator)
+- [Publisher Profile](https://clawhub.ai/user/tobewin)
+- [Runtime](references/runtime.md)
+- [Assembly Workflow](references/assembly-workflow.md)
+- [Content Schema](references/content-schema.md)
+- [Layout System](references/layout-system.md)
+- [Theme Catalog](references/theme-catalog.md)
+- [Quality Bar](references/quality-bar.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML/CSS/JavaScript code and optional JSON deck content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js for bundled scripts; optional preview rendering depends on a manually installed preview renderer.]
+
+## Skill Version(s):
+
+2.0.5 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

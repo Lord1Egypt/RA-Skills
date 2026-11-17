@@ -1,39 +1,50 @@
-## Description: <br>
-Provides a data catalog for data asset registration and metadata management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+数据目录，数据资产 + 元数据管理。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Data teams use this skill to catalog data assets, collect metadata, search assets, manage data dictionaries, and apply classification tags for governance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes installation and execution commands that may request local command execution. <br>
-Mitigation: Review commands before running them and grant only the file, credential, and command permissions needed for the expected data catalog task. <br>
+## Use Case:
 
+Data governance and data management teams use this skill to set up a data catalog for registering data assets, collecting metadata, searching data, managing dictionaries, and applying classification tags.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-data-catalog) <br>
-- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external binaries or credential environment variables are declared in the artifact metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The install steps run unpinned code from an external GitHub repository that was not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the repository before installing, run it in an isolated environment without sensitive credentials, and avoid private business data until the source and dependencies are audited or distributed with verifiable hashes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-data-catalog)
+- [Referenced installation repository](https://github.com/openclaw-skills/ai-intelligent-data-catalog)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct installation and setup of an external FastAPI data catalog application.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

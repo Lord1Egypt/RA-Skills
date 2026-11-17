@@ -1,47 +1,67 @@
-## Description: <br>
-Weekly meal prep system for one person on a tight budget, used to eat well on $40-60/week, reduce food waste, stop relying on takeout, and batch cook for the week in 2-3 hours. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weekly meal prep system for one person on a tight budget. Use when someone wants to eat well on $40-60/week, reduce food waste, stop relying on takeout, or batch cook for the week in 2-3 hours.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to create a low-budget weekly meal-prep plan, shopping list, batch-cooking workflow, daily assembly plan, and storage guidance tailored to their budget, dietary restrictions, kitchen equipment, and food-waste concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store sensitive food budget, health, religious dietary, meal preference, pantry, weekly plan, and reminder details in agent state. <br>
-Mitigation: Share only the detail needed for useful meal planning, avoid unnecessary sensitive disclosures, and review or clear stored state when it is no longer needed. <br>
-Risk: Batch-cooking guidance can create food-safety risk if cooling, storage, or reheating steps are skipped or applied incorrectly. <br>
-Mitigation: Keep food-safety guidance in meal-prep responses, including cooling cooked food promptly, using shallow containers, following fridge and freezer time limits, and reheating food thoroughly. <br>
-Risk: Meal plans can be unsuitable if dietary restrictions, allergies, equipment limits, or very low budgets are not accounted for. <br>
-Mitigation: Ask for restrictions, equipment, available storage, and budget before producing a plan; adapt substitutions and refer users to food assistance resources when budget constraints indicate food insecurity. <br>
+## Use Case:
 
+External users use this skill to build a weekly meal-prep plan for one person on a tight food budget, including a shopping list, batch-cooking workflow, daily assembly formula, storage guidance, and substitutions for dietary restrictions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/howtousehumans/budget-meal-prep) <br>
-- [USDA SNAP-Ed Connection](https://snaped.fns.usda.gov) <br>
-- [FoodSafety.gov](https://www.foodsafety.gov) <br>
-- [USDA MyPlate](https://www.myplate.gov) <br>
-- [NRDC food waste resources](https://www.nrdc.org) <br>
-- [Feeding America food bank locator](https://findafoodbank.feedingamerica.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, meal-prep templates, shopping lists, and state fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain user budget, dietary restrictions, equipment, meal preferences, pantry status, weekly plans, reminder state, and food-insecurity flags in agent state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install command uses unpinned npx package resolution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package source and pin or otherwise control the installed release before using it in a sensitive environment.
+
+Risk: The skill may store personal meal-planning details such as budget, dietary restrictions, pantry state, weekly history, and reminders.
+
+Mitigation: Collect only the details needed for planning, avoid unnecessary sensitive health information, and clear stored state when it is no longer needed.
+
+Risk: Batch-cooking advice can create food-safety risk if cooling, storage, or reheating guidance is skipped.
+
+Mitigation: Keep food-safety guidance in batch-cooking and storage responses, especially cooling, refrigerator life, freezing, and reheating checks.
+
+Risk: Meal plans may conflict with allergies, dietary restrictions, equipment limits, or severe food insecurity if the initial assessment is incomplete.
+
+Mitigation: Ask about restrictions, equipment, storage space, budget, and food-assistance needs before generating a weekly plan.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/budget-meal-prep)
+- [USDA SNAP-Ed Connection](https://snaped.fns.usda.gov)
+- [FoodSafety.gov](https://www.foodsafety.gov)
+- [USDA MyPlate](https://www.myplate.gov)
+- [NRDC food waste resources](https://www.nrdc.org)
+- [Bureau of Labor Statistics Consumer Expenditure Surveys](https://www.bls.gov/cex/)
+- [Feeding America food bank locator](https://findafoodbank.feedingamerica.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with questions, checklists, shopping lists, meal plans, storage guidance, and state or reminder snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist meal-prep preferences, budget, dietary restrictions, pantry status, weekly history, and reminder state when supported by the host agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

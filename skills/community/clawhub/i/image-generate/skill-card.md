@@ -1,42 +1,57 @@
-## Description: <br>
-Generates images from a clear text prompt using the included image_generate.py script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images from text prompts using the included Ark/VolcEngine image generation script.
 
-## Publisher: <br>
-[zhangsiyuan123123](https://clawhub.ai/user/zhangsiyuan123123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[zhangsiyuan123123](https://clawhub.ai/user/zhangsiyuan123123)
 
-## Use Case: <br>
-Developers and agents use this skill to turn text prompts into generated images through the bundled Volcengine Ark image-generation script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to an external image-generation provider. <br>
-Mitigation: Avoid entering secrets, confidential data, or sensitive personal data in prompts. <br>
-Risk: Generated images are saved to the configured local download directory. <br>
-Mitigation: Set IMAGE_DOWNLOAD_DIR only to a directory where generated image files should be written. <br>
-Risk: The script requires an external provider credential. <br>
-Mitigation: Use a scoped Ark or Volcengine API key and provide it through the documented environment variables. <br>
+## Use Case:
 
+Developers and external users can use this skill to generate images from clear text prompts and save the generated outputs locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangsiyuan123123/image-generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text status messages and generated PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses prompt text plus API key and download-directory environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Prompts and generation requests are sent to an Ark/VolcEngine image-generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive prompts unless the service and account are approved for that data.
+
+Risk: The script uses image-generation credentials from environment variables.
+
+Mitigation: Use scoped API keys and rotate or revoke credentials according to local policy.
+
+Risk: Generated images are downloaded to the current directory or IMAGE_DOWNLOAD_DIR.
+
+Mitigation: Set IMAGE_DOWNLOAD_DIR to a private, trusted directory rather than a shared or attacker-writable path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhangsiyuan123123/skills/image-generate)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Configuration]
+
+**Output Format:** [Local image files with terminal status or error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Ark/VolcEngine credentials; model and download directory can be set with environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

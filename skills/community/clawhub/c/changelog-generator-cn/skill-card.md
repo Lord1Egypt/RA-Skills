@@ -1,42 +1,54 @@
-## Description: <br>
-Generates user-friendly changelogs and release notes from local git commit history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates changelogs by analyzing git commit history, categorizing changes, and turning technical commits into user-friendly release notes.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers and release managers use this skill to turn technical git commits into polished changelogs, release notes, app store descriptions, update announcements, and internal release summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated changelogs may expose private commit messages or details from style files if published without review. <br>
-Mitigation: Run the skill in the intended repository and branch, then review the generated changelog before publishing. <br>
-Risk: An incorrect date range or version range can omit relevant commits or include unintended changes. <br>
-Mitigation: Specify the release range explicitly and compare the generated summary against the relevant commits. <br>
+## Use Case:
 
+Developers, release managers, and product teams use this skill to produce customer-facing changelogs, release notes, app store update text, and internal release summaries from git history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/changelog-generator-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/guohongbin-git) <br>
-- [Metadata homepage](https://clawhub.com/skills/changelog-generator-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown changelog or release notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated from the selected local git history and any supplied changelog style guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Private repository commit history or optional style-guide content may contain internal names, issue IDs, or security-sensitive details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated release notes before publishing and avoid including confidential commit details in prompts or output.
+
+Risk: Generated changelogs can misstate user impact when commit messages are ambiguous or overly technical.
+
+Mitigation: Have a maintainer review categories, wording, and omissions against the actual release before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guohongbin-git/skills/changelog-generator-cn)
+- [Packaged Skill Homepage](https://clawhub.com/skills/changelog-generator-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown changelog or release notes with categorized entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May incorporate date ranges, target versions, and project-specific changelog style guidance supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

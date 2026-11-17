@@ -1,39 +1,58 @@
-## Description: <br>
-Query Data912 public market data endpoints for Argentina and USA instruments, including MEP/CCL quotes, market panels, OHLC history, option chains, and volatility metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Data912 market data endpoints for Argentina and USA instruments, including MEP/CCL quotes, market panels, historical OHLC series, option chains, and volatility metrics.
 
-## Publisher: <br>
-[ferminrp](https://clawhub.ai/user/ferminrp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ferminrp](https://clawhub.ai/user/ferminrp)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve public Data912 market snapshots, historical OHLC data, option chains, and volatility metrics for Argentina and USA instruments. It is intended for educational, non-real-time market summaries, not financial recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The referenced OpenAPI spec includes an unrelated contact endpoint that can send email and message text to the external service. <br>
-Mitigation: Keep use limited to the documented market-data GET endpoints and do not send private messages or personal contact details through this skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Data912 OpenAPI spec](references/openapi-spec.json) <br>
-- [Data912 API](https://data912.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ferminrp/data912) <br>
+## Use Case:
 
+External users and developers use this skill to retrieve and summarize public Data912 market data snapshots, historical OHLC series, option chains, and volatility metrics. The skill is intended for educational, non-real-time market data interpretation and not financial recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with optional inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Data912 endpoints without an API key; outputs should note that the data is educational and non-real-time.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and user changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled OpenAPI reference includes an unrelated /contact operation outside the market-data behavior.
+
+Mitigation: Do not invoke /contact for this skill; remove or isolate that operation from the reference spec before treating the release as low risk.
+
+Risk: Shell-based query examples can be unsafe or unreliable when ticker input is not strictly validated.
+
+Mitigation: Validate ticker symbols against the intended endpoint's accepted symbols and prefer non-shell HTTP usage or safely quoted, fixed URL construction.
+
+Risk: Market data may be mistaken for real-time trading information.
+
+Mitigation: State that Data912 data is educational and non-real-time, and avoid financial recommendations.
+
+## Reference(s):
+
+- [OpenAPI Specification](references/openapi-spec.json)
+- [Data912 API](https://data912.com)
+- [ClawHub Skill Page](https://clawhub.ai/ferminrp/skills/data912)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with optional inline shell commands and JSON excerpts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes educational/non-real-time data caveats and avoids trading advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

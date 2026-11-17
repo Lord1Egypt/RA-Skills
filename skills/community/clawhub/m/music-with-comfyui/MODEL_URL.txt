@@ -1,0 +1,59 @@
+# music-with-comfyui — AceStep Audio 1.5 model download sources
+#
+# This file lists the model weights required by the music-with-comfyui skill.
+# Everything here is SFW.
+#
+# Common prefix: https://huggingface.co/
+# File path = "{prefix}/{repo}/{path}"
+#
+# Format legend:
+#   ✓  = file/weight verified to exist
+#   ★  = repo may require login (HTTP 401 without an authenticated HF account);
+#        download on a machine where you are logged in.
+#
+# -----------------------------------------------------------------
+# FILENAME CAVEAT (read before deploying)
+# -----------------------------------------------------------------
+# The SFW weights below usually have DIFFERENT filenames than what the bundled
+# workflow's loader nodes expect. The script does NOT rename model files for
+# you. If you deploy the SFW weights you must make the workflow match the
+# on-disk filenames, EITHER by:
+#   (a) renaming the downloaded files to match the workflow node names, OR
+#   (b) editing the node's unet_name / clip_name* to the actual filenames.
+#
+# In workflows/acestep_audio_api.json, the loader nodes are:
+#   [104] UNETLoader        -> unet_name      = acestep_v1.5_xl_turbo_bf16.safetensors
+#   [105] DualCLIPLoader    -> clip_name1      = qwen_0.6b_ace15.safetensors
+#                             clip_name2      = qwen_4b_ace15.safetensors
+#   [106] VAELoader         -> vae_name       = ace_1.5_vae.safetensors
+#
+# Leave the workflow's loader fields pointing at the filenames that actually
+# exist on disk after you place the weights.
+# -----------------------------------------------------------------
+
+# -----------------------------------------------------------------
+[1] AceStep 1.5  --  text + lyrics → audio (default model)
+# Expected locations (as specified by workflows/acestep_audio_api.json):
+#     diffusion model -> models/diffusion_models/
+#         acestep_v1.5_xl_turbo_bf16.safetensors
+#     CLIP (dual, "ace" type) -> models/clip/
+#         qwen_0.6b_ace15.safetensors
+#         qwen_4b_ace15.safetensors
+#     VAE -> models/vae/
+#         ace_1.5_vae.safetensors
+#
+# (a) Official — AceStep (HF) ✓  (the exact file/folder layout is on the
+#     AceStep repo; keep the filenames the workflow node expect)
+#     https://huggingface.co/AceStep/AceStep1.5
+#         acestep_v1.5_xl_turbo_bf16.safetensors   (diffusion model)
+#         qwen_0.6b_ace15.safetensors               (small CLIP / ace)
+#         qwen_4b_ace15.safetensors                 (large CLIP / ace)
+#         ace_1.5_vae.safetensors                   (audio VAE)
+#
+# (b) Community mirror (if the official is gated) ✓
+#     https://huggingface.co/Rashak-AI/AceStep1.5 (files may be renamed)
+#     If renamed, update the workflow's loader fields to match on-disk names.
+#
+# Loading note: the workflow loads via UNETLoader (weight_dtype: default) and
+# DualCLIPLoader (type: "ace"). Match the workflow node field values to the
+# exact filenames/folders on disk.

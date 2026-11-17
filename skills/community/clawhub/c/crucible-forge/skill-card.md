@@ -1,47 +1,65 @@
-## Description: <br>
-Systematic workspace reorganization for AI agent users. Scans workspace, builds safety-first reorganization plan, executes with zero data loss, and verifies everything works afterward. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crucible Forge helps AI agent users scan local workspaces, generate human-reviewable reorganization plans, and run pre/post audits for file integrity.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and AI agent operators use this skill to scan, plan, and audit file-based workspace reorganizations before moving files. It is intended for cleanup, recovery, migration, onboarding, and pre-deployment workspace integrity checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill loads user-provided Python configuration files, which can execute code with the user's privileges. <br>
-Mitigation: Use only reviewed configuration files from trusted sources and run the skill in a limited, backed-up workspace. <br>
-Risk: Configured process checks can run local commands and inspect process output. <br>
-Mitigation: Review or hardcode process-check commands before use, and disable process checks where they are not needed. <br>
-Risk: Generated reports and manifests may expose workspace structure, secret locations, and process details. <br>
-Mitigation: Keep generated outputs out of shared repositories and review them before sharing. <br>
-Risk: Workspace reorganization plans can still lead to broken references or data loss if executed without review. <br>
-Mitigation: Maintain an independent backup, review the generated plan manually, run the pre-move audit, and verify with the post-move audit after execution. <br>
+## Use Case:
 
+Developers and AI agent operators use this skill to assess file-based workspaces, plan safer reorganizations, and audit whether protected files, references, backups, and file counts remain intact. It is most relevant for workspace cleanup, migration preparation, team standardization, and post-incident review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TheShadowRose/crucible-forge) <br>
-- [Publisher Profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
-- [LIMITATIONS.md](artifact/LIMITATIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON reports, Audit manifests] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local filesystem analysis; generated reports may include workspace paths, file structure, secret-location warnings, process details, and rollback guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact SKILL.md frontmatter says 1.0.2) <br>
+Risk: Executable Python configuration files can run arbitrary code when loaded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only configuration files you authored or fully reviewed, and do not run the tools with elevated privileges.
+
+Risk: Broad local workspace analysis and process checks can inspect sensitive files, paths, and commands.
+
+Mitigation: Run the skill only in trusted workspaces you own, configure protected files and directories, and review generated reports before sharing them.
+
+Risk: Generated plans and audits are advisory and may overstate safety or miss data-loss scenarios.
+
+Mitigation: Verify independent backups before moving files, manually review every plan, execute changes deliberately, and run pre/post audits during quiet periods.
+
+Risk: Symlinks, binary references, concurrent writes, very long paths, and naming conflicts can produce incomplete or misleading results.
+
+Mitigation: Check known edge cases from the limitations document, resolve conflicts manually, and verify important references and symlinks after any reorganization.
+
+## Reference(s):
+
+- [Crucible Forge on ClawHub](https://clawhub.ai/theshadowrose/skills/crucible-forge)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+- [README](artifact/README.md)
+- [Limitations](artifact/LIMITATIONS.md)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, Python configuration, JSON scan reports, JSON reorganization plans, audit reports, and rollback shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operates on local workspace files and produces advisory plans and audit findings for human review.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter states 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

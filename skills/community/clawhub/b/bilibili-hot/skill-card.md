@@ -1,41 +1,50 @@
-## Description: <br>
-Automatically fetches Bilibili overall ranking video data with detailed video statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically fetches Bilibili sitewide ranking video data with detailed video statistics.
 
-## Publisher: <br>
-[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve the current Bilibili overall Top 50 ranking, inspect video statistics, and save the results as structured JSON and readable text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes live network requests to the Bilibili ranking API, so output can change over time or fail if the API is unavailable. <br>
-Mitigation: Treat results as current API output, handle request failures, and rerun the skill when fresh ranking data is needed. <br>
-Risk: The skill writes JSON and text files into the workspace scripts directory. <br>
-Mitigation: Run it in an intended workspace and review generated files before using them downstream. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve the current Bilibili sitewide Top 50 ranking and save public video statistics for review or downstream analysis.
 
-## Reference(s): <br>
-- [Bilibili Ranking API](https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all) <br>
-- [ClawHub skill page](https://clawhub.ai/yangjinghua0127/bilibili-hot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, Text, JSON] <br>
-**Output Format:** [Console text plus saved JSON and plain-text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and writes bilibili-hot.json and bilibili-hot.txt under the workspace scripts directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill contacts Bilibili's public API when invoked and can create or overwrite workspace/scripts/bilibili-hot.json and workspace/scripts/bilibili-hot.txt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when external API access and these workspace file outputs are acceptable; review generated ranking files before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangjinghua0127/skills/bilibili-hot)
+- [Bilibili ranking API](https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands]
+
+**Output Format:** [Console text plus saved JSON and plain-text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches up to 50 sitewide ranking entries and writes bilibili-hot.json and bilibili-hot.txt under workspace/scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

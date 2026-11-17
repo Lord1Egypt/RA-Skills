@@ -1,44 +1,63 @@
-## Description: <br>
-Use Soulseek to search, download, and share files, and chat in rooms or privately through GUI or CLI tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through using Soulseek GUI and CLI options to search, download, share files, and chat over the peer-to-peer Soulseek network.
 
-## Publisher: <br>
-[svidovich](https://clawhub.ai/user/svidovich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[svidovich](https://clawhub.ai/user/svidovich)
 
-## Use Case: <br>
-Agents and users can use this skill to set up Soulseek, search and download files, share selected directories, and communicate with other users through chat rooms or private messages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Peer-to-peer sharing and downloads involve untrusted peers, chat messages, and files. <br>
-Mitigation: Treat peers, messages, and downloaded files as untrusted, and review or scan files before opening or relying on them. <br>
-Risk: Soulseek account credentials can be exposed if reusable passwords are stored in shell history or shared environments. <br>
-Mitigation: Use a dedicated Soulseek account and password, and avoid putting reusable credentials in shell history. <br>
-Risk: Sharing the wrong directory can expose personal or sensitive data. <br>
-Mitigation: Share only an empty or dedicated non-sensitive folder, and review sharing settings before connecting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/svidovich/use-soulseek) <br>
-- [Soulseek downloads](https://www.slsknet.org/news/node/1) <br>
-- [soulseek-cli](https://github.com/aeyoll/soulseek-cli) <br>
-- [aioslsk](https://github.com/JurgenR/aioslsk) <br>
+## Use Case:
 
+External users and agents use this skill to set up Soulseek access, search or download files, share selected directories, and communicate through public rooms or private chats.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and external reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; users choose platform-specific GUI, CLI, or library-based workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Peer-to-peer downloads can expose users or agents to untrusted files.
+
+Mitigation: Do not open or execute downloaded files unless they have been independently verified.
+
+Risk: Sharing broad directories can disclose personal, owner, or partner data.
+
+Mitigation: Share only narrow, dedicated directories and review contents before enabling uploads.
+
+Risk: Soulseek account credentials may be handled through plaintext environment variables or command history.
+
+Mitigation: Use a dedicated Soulseek account and password, and avoid storing credentials in persistent logs or shared shells.
+
+Risk: Global CLI installation can affect the host environment.
+
+Mitigation: Prefer an isolated or pinned CLI installation instead of a global npm install where practical.
+
+## Reference(s):
+
+- [SoulseekQt Downloads](https://www.slsknet.org/news/node/1)
+- [soulseek-cli](https://github.com/aeyoll/soulseek-cli)
+- [aioslsk](https://github.com/JurgenR/aioslsk)
+- [ClawHub Skill Page](https://clawhub.ai/svidovich/skills/use-soulseek)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes peer-to-peer usage guidance for Soulseek GUI, soulseek-cli, and optional custom Python clients.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

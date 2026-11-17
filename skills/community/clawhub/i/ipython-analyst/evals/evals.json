@@ -1,0 +1,60 @@
+{
+  "skill_name": "ipython-analyst",
+  "evals": [
+    {
+      "id": 1,
+      "name": "debug-crashing-script",
+      "prompt": "I have this Python script at /home/z/my-project/upload/buggy_script.py that processes JSON records. When I run it on the sample data at /home/z/my-project/upload/sample_records.json, it throws a KeyError. Can you help me debug it? I want to know exactly which line is failing, why, and how to fix it.",
+      "expected_output": "A diagnostic report identifying the failing line (the `record['discount']` access in calculate_totals), the cause (some records don't have a 'discount' key — Gizmo and Thingamajig in the sample data), and a recommended fix (use `record.get('discount', 0)` instead of `record['discount']`). The skill should use structured debugging helpers (post-mortem, summarize_exception, or similar) rather than just eyeballing the code.",
+      "files": ["evals/files/buggy_script.py", "evals/files/sample_records.json"],
+      "expectations": [
+        "Identifies the exact failing line as `record['discount']` access in calculate_totals",
+        "Explains that some records in the JSON are missing the 'discount' key",
+        "Recommends using `record.get('discount', 0)` (or equivalent) as the fix",
+        "Saves a debug report or fixed script to /home/z/my-project/download/"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "regex-catastrophic-backtracking",
+      "prompt": "I have this regex pattern: ^(a+)+$ — it works fine on most inputs but completely hangs when I test it against a string like 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab' (lots of a's followed by a b). Can you help me understand why it hangs and what I can do about it?",
+      "expected_output": "Diagnostic report showing: (1) the regex has nested quantifiers (a+)+ which causes catastrophic backtracking, (2) stress test results demonstrating the timeout on adversarial inputs, (3) recommendation to use possessive quantifiers (a++) or atomic groups, or to rewrite as ^a+$ since the nesting is redundant.",
+      "files": [],
+      "expectations": [
+        "Identifies the nested quantifier (a+)+ as the source of catastrophic backtracking",
+        "Runs a stress test that demonstrates timeouts on adversarial inputs",
+        "Recommends a specific fix (possessive quantifier, atomic group, or pattern rewrite)",
+        "Saves a diagnostic report to /home/z/my-project/download/"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "analyze-sales-csv-chart",
+      "prompt": "I have a CSV of sales data at /home/z/my-project/upload/sales.csv with columns product, region, quantity, unit_price, revenue, date. I want a bar chart showing the top 5 products by total revenue, sorted descending. Save the chart as a PNG.",
+      "expected_output": "A PNG chart in /home/z/my-project/download/ showing top 5 products by total revenue as a bar chart, sorted descending. Chart should have proper title, axis labels, and use constrained_layout (NOT tight_layout). Should aggregate revenue by product across all rows for each product, then take top 5.",
+      "files": ["evals/files/sales.csv"],
+      "expectations": [
+        "Loads the CSV and aggregates revenue by product across all rows",
+        "Selects the top 5 products by total revenue",
+        "Saves a PNG chart to /home/z/my-project/download/",
+        "Chart has title, axis labels, and is sorted descending by revenue",
+        "Uses constrained_layout=True (not tight_layout)"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "analyze-code-complexity",
+      "prompt": "I have a Python file at /home/z/my-project/upload/sample_code.py. Can you analyze it and tell me which functions are too complex? I want a report of each function's cyclomatic complexity and any code smells.",
+      "expected_output": "A report listing each function with its cyclomatic complexity, nesting depth, and parameter count. Should flag: complex_function (complexity 7 from if/elif/else chain — the v6 bug would undercount this), deep_nesting_function (nesting depth 5), many_params (8 parameters). Should also pick up the re.compile call in parse_with_regex and identify DataProcessor class.",
+      "files": ["evals/files/sample_code.py"],
+      "expectations": [
+        "Reports cyclomatic complexity for each function in the file",
+        "Identifies complex_function as having high complexity (>=6 — counts elif branches)",
+        "Identifies deep_nesting_function as having deep nesting (>=4)",
+        "Identifies many_params as having too many parameters (>=6)",
+        "Detects the re.compile pattern in parse_with_regex",
+        "Saves a complexity report to /home/z/my-project/download/"
+      ]
+    }
+  ]
+}

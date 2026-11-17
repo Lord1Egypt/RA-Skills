@@ -1,7 +1,7 @@
 
 ---
 name: dota2-coach
-version: 1.1.7
+version: 1.1.10
 description: 这是一个先锋分段萌新纯AI自制的抛砖引玉的Dota2攻略小技能，希望能帮助每个萌新下分，Make CNDOTA Great Again。PS：作为毒瘤冰女玩家，我夹带了冰女私货攻略。触发词：dota、dota2、dota攻略、dota出装、出装建议、dota打法、dota技巧。版权所有——六分仪，可以转载迭代，请标注初代原作者。
 metadata: { "openclaw": { "emoji": "⚔️" } }
 ---

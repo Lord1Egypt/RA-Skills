@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open Connect Global Browser"
+  short_description: "Use shared browser controls and verification safely"
+  default_prompt: "Use $open-connect-global-browser to run my authorized browser task with the shared verification workflow."

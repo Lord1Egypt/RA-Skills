@@ -1,43 +1,60 @@
-## Description: <br>
-Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to process PDF documents, extract text and tables, generate or transform PDFs, and fill either fillable or image-based PDF forms with validation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: Decrypted PDFs, generated JSON, PNG, and PDF outputs may contain sensitive document data. <br>
-Mitigation: Work on copies in a controlled folder, delete intermediates when finished, and only decrypt PDFs when authorized. <br>
-Risk: Incorrect form-field values or bounding boxes can produce inaccurate completed PDFs. <br>
-Mitigation: Use the included field validation and bounding-box checks, inspect validation images, and review the final PDF before use. <br>
+## Use Case:
 
+Developers and document-automation users use this skill to analyze, transform, generate, split, merge, OCR, and fill PDF documents with Python libraries, command-line tools, and local helper scripts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wu-uk/latex-formula-extraction-pdf) <br>
-- [PDF form workflow](artifact/forms.md) <br>
-- [PDF processing advanced reference](artifact/reference.md) <br>
-- [Adobe PDF 32000-1:2008 standard](https://opensource.adobe.com/dc-acrobat-sdk-docs/standards/pdfstandards/pdf/PDF32000_2008.pdf#page=448) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, JSON, PDF files, PNG images] <br>
-**Output Format:** [Markdown guidance with inline code blocks; helper scripts emit JSON, PNG, and PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local PDF processing; generated intermediates can include extracted form fields, validation images, and modified PDFs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: PDFs may contain sensitive document content, and the skill can create local intermediate PNG, JSON, text, and PDF files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private working directory for sensitive documents and delete intermediate files when the task is complete.
+
+Risk: Examples include decrypting password-protected PDFs.
+
+Mitigation: Only decrypt PDFs when authorized and handle passwords according to the user's security policy.
+
+Risk: Repair or in-place modification commands can change or overwrite source documents.
+
+Mitigation: Work from backups or copies before running repair, replacement, or form-filling commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/latex-formula-extraction-pdf)
+- [PDF forms guide](artifact/forms.md)
+- [PDF processing advanced reference](artifact/reference.md)
+- [PDF 32000-1:2008 field state reference](https://opensource.adobe.com/dc-acrobat-sdk-docs/standards/pdfstandards/pdf/PDF32000_2008.pdf#page=448)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets plus local JSON, PNG, text, and PDF file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local helper scripts may create intermediate images, JSON field maps, extracted text, and modified PDF files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

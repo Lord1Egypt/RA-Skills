@@ -94,7 +94,7 @@ fi
 
 # Test 9: AWS key detection
 echo -n "Test 9: AWS key detection... "
-if echo "AWS_KEY=AKIAIOSFODNN7EXAMPLE" | "$ARC_SHIELD" --report 2>&1 | grep -i "critical" > /dev/null; then
+if echo "AWS_KEY=REDACTED-SECRET" | "$ARC_SHIELD" --report 2>&1 | grep -i "critical" > /dev/null; then
     echo -e "${GREEN}PASS${NC}"
 else
     echo -e "${RED}FAIL${NC}"

@@ -1,38 +1,52 @@
-## Description: <br>
-Accessibility testing agent for WCAG compliance, inclusive design, screen reader compatibility, keyboard navigation, assistive technology integration, and barrier-free digital experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert accessibility tester specializing in WCAG compliance, inclusive design, and universal access. Masters screen reader compatibility, keyboard navigation, and assistive technology integration with focus on creating barrier-free digital experiences.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, designers, QA teams, and compliance reviewers use this skill to assess and remediate digital accessibility issues across UI structure, keyboard navigation, screen reader behavior, forms, mobile experiences, and WCAG-oriented documentation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Accessibility remediation may change application code or user-facing behavior.
+
+Mitigation: Review proposed changes and run focused regression tests before accepting them.
+
+Risk: Claims of full WCAG compliance can be overstated if they rely only on automated checks or incomplete assistive technology testing.
+
+Mitigation: Validate important flows with automated scans, keyboard-only use, manual review, and relevant screen readers before relying on compliance claims.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, designers, and QA teams use this skill to assess application accessibility, document WCAG gaps, and guide remediation for inclusive user interfaces. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may inspect project paths and propose or apply accessibility remediation in the selected workspace. <br>
-Mitigation: Limit the workspace paths and accessibility tools available to the agent, and require approval before code changes are applied. <br>
+**Output Format:** [Markdown guidance with possible code, shell command, and configuration suggestions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-accessibility-tester) <br>
+**Other Properties Related to Output:** [May include accessibility findings, remediation steps, test plans, compliance notes, and implementation guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with accessibility findings, checklists, remediation guidance, and optional code or shell snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include WCAG assessment notes, screen reader and keyboard testing guidance, compliance documentation, and remediation plans.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

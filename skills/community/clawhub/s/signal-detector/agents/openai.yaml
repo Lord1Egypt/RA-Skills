@@ -1,0 +1,3 @@
+interface:
+  display_name: "Signal Detector"
+  short_description: "Capture authorized original thinking and notable entity facts from an explicitly scoped conversation into a designated knowledge destination."

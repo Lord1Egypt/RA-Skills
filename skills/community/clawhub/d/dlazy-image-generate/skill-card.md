@@ -1,47 +1,56 @@
-## Description: <br>
-Image generation skill that automatically selects the best dLazy CLI image model based on the prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and transforms images by selecting a suitable dLazy CLI model for the prompt.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users and developers use this skill to generate, edit, replicate, segment, vectorize, or upscale images through the dLazy hosted API from natural-language prompts and optional media references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and can store or use credentials locally. <br>
-Mitigation: Use explicit invocation, keep keys scoped to the needed organization, and rotate or revoke keys when access is no longer required. <br>
-Risk: Prompts and referenced local media files are sent to dLazy cloud endpoints for inference and storage. <br>
-Mitigation: Avoid sending sensitive prompts or files, and confirm uploads before using local media references. <br>
-Risk: The install path uses a latest-version third-party CLI package. <br>
-Mitigation: Review the dLazy CLI source or package before installation and prefer npx for on-demand execution when a persistent global binary is unnecessary. <br>
-Risk: Image generation may consume paid credits or fail when the account balance is insufficient. <br>
-Mitigation: Confirm generation intent before running commands and check account credits when the CLI reports insufficient balance. <br>
+## Use Case:
 
+Developers and agents use this skill to generate or edit images from prompts and reference media, choosing among the listed dLazy image models and related image tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dlazyai/dlazy-image-generate) <br>
-- [dLazy Homepage](https://dlazy.com) <br>
-- [dLazy CLI Source](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm Package](https://www.npmjs.com/package/@dlazy/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with dlazy CLI commands and JSON output URLs from the CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require a dLazy API key, npm or npx, network access to api.dlazy.com and files.dlazy.com, and user credits for generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The security review notes a mismatch between the image-generation description and additional video and speech workflows, and reports incomplete scan coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill instructions and CLI behavior, including any video or speech commands, before installation or use.
+
+Risk: Using the hosted service requires a dLazy API key, and the skill describes sending prompts and supplied media to dLazy services.
+
+Mitigation: Review the CLI installation and API-key requirements and ensure prompts and media are appropriate to send to the hosted service.
+
+## Reference(s):
+
+- [dLazy website](https://dlazy.com)
+- [CLI repository listed in skill metadata](https://github.com/dlazy-ai/cli)
+- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-image-generate)
+
+## Skill Output:
+
+**Output Type(s):** [Images, SVG graphics, Image URLs, JSON]
+
+**Output Format:** [Generated image or SVG assets returned as hosted URLs in a JSON response envelope]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The selected model determines image format, resolution, and whether reference media is used.]
+
+## Skill Version(s):
+
+1.3.42 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,64 @@
-## Description: <br>
-AI dating assistant. Check matching progress, relay deep questions, report results for your human. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI dating assistant. Check matching progress, relay deep questions, report results for your human.
 
-## Publisher: <br>
-[thesamething](https://clawhub.ai/user/thesamething) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thesamething](https://clawhub.ai/user/thesamething)
 
-## Use Case: <br>
-People using AILove and their agents use this skill to check matchmaking progress, relay pending deep questions, submit the human's own answers, and summarize match updates from the AILove API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a revocable AILove Agent Key and may store it locally. <br>
-Mitigation: Prefer a platform secret store or OS keychain; if using ~/.openclaw/.env, restrict file permissions and never send the key outside https://heerweiyi.cc/api/v1/agent/*. <br>
-Risk: Scheduled jobs can send private dating updates to external or group channels. <br>
-Mitigation: Enable cron delivery only to a private destination controlled by the user, and avoid shared channels unless the user accepts that exposure. <br>
-Risk: The security verdict is suspicious because the skill combines sensitive local credentials with recurring delivery of dating updates. <br>
-Mitigation: Install only after reviewing the security summary and confirming the user is comfortable with the credential and delivery model. <br>
+## Use Case:
 
+External AILove users use this skill to let an agent check matching progress, relay pending deep questions, submit the human's verbatim answers, and summarize limited match results or profile guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thesamething/dazi) <br>
-- [Publisher profile](https://clawhub.ai/user/thesamething) <br>
-- [AILove homepage](https://heerweiyi.cc) <br>
-- [AILove skill source](https://heerweiyi.cc/skill.md) <br>
-- [AILove API base](https://heerweiyi.cc/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with API request examples and OpenClaw cron commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce scheduled update summaries, question relays, and configuration snippets for storing an AILove Agent Key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill asks users to persist an AILove agent key, which could expose account access if stored or shared insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped secret store or environment variable, avoid plaintext credential files when possible, never commit secrets, and send the key only to the documented AILove API domain.
+
+Risk: Recurring cron jobs can send sensitive dating updates to external channels.
+
+Mitigation: Enable scheduled jobs only when recurring updates are intended, verify the delivery target is private and correct, and disable jobs when they are no longer needed.
+
+Risk: Updating the local skill from a mutable URL can replace reviewed instructions with changed content.
+
+Mitigation: Prefer pinned or reviewed skill updates and re-run review before overwriting local instructions.
+
+Risk: The skill handles personal dating context and pending questions.
+
+Mitigation: Limit summaries to the documented fields, avoid exposing profile details or contact information, and submit only the human's verbatim answers.
+
+## Reference(s):
+
+- [AILove homepage](https://heerweiyi.cc)
+- [AILove agent API base](https://heerweiyi.cc/api/v1)
+- [AILove skill source](https://heerweiyi.cc/skill.md)
+- [ClawHub skill page](https://clawhub.ai/thesamething/skills/dazi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown with inline shell commands, curl examples, OpenClaw cron commands, and API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist an AILove agent key in environment or local credential files and may configure recurring morning and evening check-ins.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

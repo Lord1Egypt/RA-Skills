@@ -1,42 +1,57 @@
-## Description: <br>
-Printing Press CLI for Olx. OLX.pl job-listings reverse-engineered API (public, no auth) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pp Olx helps agents use the olx-pp-cli Printing Press CLI to query OLX.pl public job-listing API endpoints without authentication.
 
-## Publisher: <br>
-[czarek-commits](https://clawhub.ai/user/czarek-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[czarek-commits](https://clawhub.ai/user/czarek-commits)
 
-## Use Case: <br>
-Developers and agent users use this skill to install and invoke olx-pp-cli for public OLX.pl job-listing data without authentication. It supports command discovery, agent-mode JSON output, setup checks, and optional MCP registration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external olx-pp-cli installer and binary. <br>
-Mitigation: Install only when you trust the installer, verify olx-pp-cli --version, and run olx-pp-cli doctor before using live commands. <br>
-Risk: Webhook delivery can send command output to a configured URL. <br>
-Mitigation: Use webhook delivery only with URLs you chose and trust; otherwise keep output on stdout or a local file. <br>
-Risk: Feedback entries and named profiles can retain local notes or repeated flag values. <br>
-Mitigation: Review local feedback and saved profiles if you do not want agent notes or profile values retained. <br>
+## Use Case:
 
+Developers and agents use this skill to install or operate olx-pp-cli for OLX.pl public job-listing queries, inspect available commands, and retrieve structured results through agent-mode JSON output.
 
-## Reference(s): <br>
-- [Pp Olx on ClawHub](https://clawhub.ai/czarek-commits/pp-olx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the olx-pp-cli binary; no authentication is required. Agent mode uses compact JSON output and non-interactive flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill asks agents to install and run mutable third-party code through the Printing Press installer and olx-pp-cli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted sources, pin and verify the installer or CLI version before use, and run olx-pp-cli --version before invoking commands.
+
+Risk: The output delivery option can write command results to local files or send them to arbitrary webhook endpoints.
+
+Mitigation: Review file output paths before allowing writes and use webhook delivery only for intended, trusted endpoints.
+
+Risk: The skill relies on a reverse-engineered public OLX.pl API that may change, fail, or rate limit requests.
+
+Mitigation: Use doctor, help, or dry-run checks before automation, handle non-zero exit codes, and retry rate-limited requests only after waiting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/czarek-commits/skills/pp-olx)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI executions return JSON in agent mode.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports stdout, file, and webhook delivery sinks when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

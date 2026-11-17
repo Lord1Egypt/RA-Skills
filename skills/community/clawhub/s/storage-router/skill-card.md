@@ -1,40 +1,53 @@
-## Description: <br>
-Decides where to save information across monday.com, local files, and MEMORY.md before any content is written. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes saved information to monday.com, local files, or MEMORY.md based on content type and persistence needs.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Agents use this skill before saving research, documents, operational state, credentials, or memory so content is routed to monday.com, GitHub/private memory, or local files according to the owner's storage rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes content to external and persistent destinations, including monday.com and GitHub/private memory. <br>
-Mitigation: Confirm the destination and get explicit approval before saving sensitive or business-critical content externally. <br>
-Risk: The skill may load local .context values for monday.com workspace, folder, board, and document IDs. <br>
-Mitigation: Use .context only when the file is trusted, and verify monday.com IDs against the Structure Index before saving new content. <br>
+## Use Case:
 
+External users and agents use this skill to decide where research, documents, operational state, credentials, and long-term memory should be saved. It is intended to reduce local clutter while keeping owner-facing content accessible in monday.com.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/storage-router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with routing tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes saved content to monday.com, GitHub/private memory, or local files; does not itself execute storage operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill describes loading local context by sourcing a .context file, which the security evidence flags as unsafe local configuration loading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace shell sourcing with a safe configuration parser before use, and review any local context values before they influence storage actions.
+
+Risk: The skill can influence whether content is sent to monday.com, stored in GitHub-backed memory, or kept in local files.
+
+Mitigation: Require explicit confirmation before persisting or sending content outside the current workspace, especially for credentials, configuration, private conversation context, and owner-facing documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/storage-router)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with tables, rules, and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs routing decisions for where an agent should save or persist information.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

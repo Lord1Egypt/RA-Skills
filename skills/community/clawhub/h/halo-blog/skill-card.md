@@ -1,50 +1,63 @@
-## Description: <br>
-Use when managing a Halo blog instance via CLI, including authentication, posts, pages, themes, plugins, attachments, backups, comments, moments, notifications, or public site search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing a Halo blog instance via CLI, including authentication, posts, pages, themes, plugins, attachments, backups, comments, moments, notifications, or public site search.
 
-## Publisher: <br>
-[alex-shen1121](https://clawhub.ai/user/alex-shen1121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex-shen1121](https://clawhub.ai/user/alex-shen1121)
 
-## Use Case: <br>
-Developers and site operators use this skill to administer Halo blog instances from an agent-assisted CLI workflow, including publishing content, managing profiles, moderating comments, operating themes and plugins, handling attachments and backups, and searching public site content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer a Halo site using OAuth or other sensitive credentials. <br>
-Mitigation: Use least-privilege, revocable tokens and avoid sharing real credentials in terminals, logs, or transcripts. <br>
-Risk: Publishing, force-importing, deleting, installing, uninstalling, and bulk-upgrading can significantly change live site content or behavior. <br>
-Mitigation: Require explicit user approval before high-impact operations and confirm the active Halo profile before changes. <br>
-Risk: Markdown-to-HTML publishing may introduce unintended formatting or content changes. <br>
-Mitigation: Review Markdown and rendered HTML before publishing or importing content. <br>
+## Use Case:
 
+Developers, content operators, and blog maintainers use this skill to operate Halo blog instances from an agent, including profile authentication, content publishing, theme and plugin operations, attachments and backups, comment moderation, notifications, and public search.
 
-## Reference(s): <br>
-- [Halo website](https://www.halo.run) <br>
-- [ClawHub release page](https://clawhub.ai/alex-shen1121/halo-blog) <br>
-- [Publisher profile](https://clawhub.ai/user/alex-shen1121) <br>
-- [Authentication and profile management](references/auth.md) <br>
-- [Content management](references/content.md) <br>
-- [Publishing rules](references/publishing.md) <br>
-- [Operations](references/operations.md) <br>
-- [Moderation](references/moderation.md) <br>
-- [Search](references/search.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and script snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run Halo CLI operations that publish, modify, delete, install, uninstall, back up, or search site resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Publishing untrusted Markdown can expose the user to unexpected local code execution through the Markdown-to-HTML helper workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted Markdown sources, pin npm dependencies, and avoid the publishing helper for untrusted Markdown.
+
+Risk: Forced imports, deletes, uninstalls, bulk upgrades, and plugin changes can alter live blog content or configuration.
+
+Mitigation: Verify the active Halo profile before using `--force` or `--all --yes`, review commands before execution, and keep backups before content or plugin changes.
+
+Risk: Tokens or passwords passed through shared command lines can expose credentials.
+
+Mitigation: Avoid sharing commands that contain real tokens or passwords, and use Halo profile and keyring storage for credentials.
+
+## Reference(s):
+
+- [Halo Official Site](https://www.halo.run)
+- [Authentication and Profile Management](artifact/references/auth.md)
+- [Content Management](artifact/references/content.md)
+- [Moderation and Notifications](artifact/references/moderation.md)
+- [Operations](artifact/references/operations.md)
+- [Publishing Format Rules](artifact/references/publishing.md)
+- [Public Search](artifact/references/search.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Halo CLI commands, JSON-oriented workflows, Markdown publishing guidance, and local script usage guidance.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

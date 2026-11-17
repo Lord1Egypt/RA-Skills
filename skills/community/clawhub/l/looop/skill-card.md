@@ -1,42 +1,63 @@
-## Description: <br>
-Claude Automated Development Toolkit - Decompose requirements documents, single files, or inline text into detailed task lists and automatically execute in loops until project completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claude Automated Development Toolkit decomposes requirements from documents, files, or inline text into task lists and can execute those tasks through Claude CLI until project completion.
 
-## Publisher: <br>
-[caesargattuso](https://clawhub.ai/user/caesargattuso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caesargattuso](https://clawhub.ai/user/caesargattuso)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn requirements documents, a single requirements file, or inline requirements into a task list and then run those tasks through Claude CLI against a source directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates Claude CLI with permission checks disabled and limited approval checkpoints. <br>
-Mitigation: Install only for trusted repositories and requirements, and run on a disposable branch or copy before using results in production work. <br>
-Risk: The skill can automatically edit files and commit changes, with optional remote push behavior. <br>
-Mitigation: Use --max-tasks to limit each run, avoid --push until after manual review, and inspect diffs before relying on or sharing the result. <br>
-Risk: Task logs may contain complete Claude CLI output, debug information, and project context from the run. <br>
-Mitigation: Review .looop logs before sharing them and avoid running the skill on secrets or proprietary content unless that exposure is acceptable. <br>
+## Use Case:
 
+Developers and engineering teams use looop to turn requirements into a tracked implementation plan and optionally have Claude CLI execute the tasks inside a source directory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caesargattuso/looop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions, JSON task files, progress text, log files, git commits, and console output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores task state and logs under <src_dir>/.looop/ and can optionally push committed changes when --push is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server evidence) <br>
+Risk: The skill automates Claude CLI to modify code and commit changes with broad authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted, disposable or well-backed-up repositories and inspect every diff before sharing or pushing.
+
+Risk: Optional git push can publish unintended automated changes.
+
+Mitigation: Avoid --push unless the repository and remote are intentionally prepared for automated updates.
+
+Risk: .looop logs may contain sensitive Claude output.
+
+Mitigation: Ignore, clean, or review .looop logs before committing or sharing project contents.
+
+Risk: Unbounded task execution can make many changes before human review.
+
+Mitigation: Review tasks.json before execution and set --max-tasks for staged runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caesargattuso/skills/looop)
+- [Publisher profile](https://clawhub.ai/user/caesargattuso)
+- [Claude Code](https://claude.ai/code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Console text, JSON task files, logs, Markdown-style progress summaries, code changes, and git commits.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes task state, progress, and logs under <src_dir>/.looop; can optionally commit and push changes.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

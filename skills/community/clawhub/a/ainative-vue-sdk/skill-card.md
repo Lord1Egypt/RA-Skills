@@ -1,41 +1,52 @@
-## Description: <br>
-Use @ainative/vue-sdk to add AI chat and credit-balance functionality to Vue 3 and Nuxt applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use @ainative/vue-sdk to add AI chat to Vue 3 apps with composables for chat, credits, and AINative configuration.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[urbantech](https://clawhub.ai/user/urbantech)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers building Vue 3 or Nuxt applications use this skill to install @ainative/vue-sdk, configure AINative access, and implement chat, credit balance, and message display flows with Composition API composables.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The guide shows an AINative API key in public frontend configuration, which could risk account or credit abuse.
+
+Mitigation: Use a backend proxy or short-lived restricted client tokens unless AINative explicitly documents that the key is safe to publish in browsers.
+
+Risk: Chat messages are sent to the hosted AINative API.
+
+Mitigation: Add clear user notice for chat data sent to the hosted API before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers use this skill to install @ainative/vue-sdk, configure AINative access, and implement Vue 3 or Nuxt chat interfaces with useChat, useCredits, and provideAINative. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Frontend code can expose AINative credentials or send sensitive user content to a third-party AI API. <br>
-Mitigation: Use only browser-safe, restricted AINative keys, verify the provider's privacy and retention terms, and avoid sending secrets, regulated data, or sensitive user content unless approved. <br>
-Risk: Installing an unreviewed npm package version can introduce supply-chain risk. <br>
-Mitigation: Verify the npm package owner and pin a reviewed @ainative/vue-sdk version before production use. <br>
+**Output Format:** [Markdown with inline bash, TypeScript, and Vue code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/urbantech/ainative-vue-sdk) <br>
-- [AINative API endpoint](https://api.ainative.studio) <br>
+**Other Properties Related to Output:** [Guidance centers on Vue 3 and Nuxt integration examples for the @ainative/vue-sdk package.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, Vue, Nuxt, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes frontend configuration guidance for AINative API keys and Vue composables.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

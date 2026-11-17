@@ -1,43 +1,57 @@
-## Description: <br>
-Save and search personal notes, decisions, and insights with semantic search via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save and search personal notes, decisions, and insights with semantic search via MCP.
 
-## Publisher: <br>
-[YIING99](https://clawhub.ai/user/YIING99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yiing99](https://clawhub.ai/user/yiing99)
 
-## Use Case: <br>
-External users and developers use KnowMine to let an AI agent persist personal notes, decisions, memories, and knowledge entries, then retrieve related information later with semantic search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation content, notes, memories, preferences, and knowledge queries may be sent to KnowMine for persistent remote storage and semantic search. <br>
-Mitigation: Install only after reviewing the service's privacy, retention, deletion, and embedding-provider practices, and avoid storing secrets, credentials, regulated data, or sensitive work material. <br>
-Risk: An agent could save conversation content without the user intending to persist it. <br>
-Mitigation: Require explicit confirmation before allowing the agent to save conversation content through KnowMine. <br>
+## Use Case:
 
+External users and AI-agent developers use KnowMine to give an agent a remote personal knowledge base for saving, updating, retrieving, and analyzing notes, decisions, memories, and insights across conversations.
 
-## Reference(s): <br>
-- [KnowMine ClawHub release](https://clawhub.ai/YIING99/knowmine) <br>
-- [KnowMine website](https://knowmine.ai) <br>
-- [KnowMine MCP settings](https://knowmine.ai/settings/mcp) <br>
-- [KnowMine MCP server endpoint](https://knowmine.ai/api/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline tool names, URLs, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a KnowMine MCP API key and network access to knowmine.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Selected notes, memories, and profile-like summaries are sent to KnowMine for remote storage and semantic search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content appropriate for a cloud personal-knowledge service, and avoid saving secrets, credentials, regulated data, or highly sensitive personal information.
+
+Risk: Installing with an unpinned @latest installer can pull a newer release than the one reviewed here.
+
+Mitigation: Prefer a pinned installer version when available and review release evidence before deployment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/yiing99/skills/knowmine)
+- [KnowMine website](https://knowmine.ai)
+- [KnowMine MCP settings](https://knowmine.ai/settings/mcp)
+- [KnowMine MCP endpoint](https://knowmine.ai/api/mcp)
+- [KnowMine MCP health check](https://knowmine.ai/api/mcp/health)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [MCP tool responses containing saved knowledge, search results, memories, profile summaries, and insight summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a KnowMine API key and sends selected knowledge content to the KnowMine remote service.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

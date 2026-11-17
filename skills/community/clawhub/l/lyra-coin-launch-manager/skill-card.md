@@ -1,44 +1,63 @@
-## Description: <br>
-Coin launch memory and verification workflow for Clawnch (4claw/Moltx/Moltbook) that helps agents record canonical receipts, update local launch state, and save monitoring links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawnch coin-launch receipts + local verify: pull launches from clawn.ch, write receipt JSON/MD, optional Blockscout/Dexscreener checks, local bookmark ref files.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users, developers, and launch operators use this skill to manage Clawnch token launches by requiring canonical Clawnch receipts, normalizing launch records, verifying indexing signals, and bookmarking monitoring links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+LYGO Sovereign License v2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill assists public token-launch operations and could trigger or support an unintended launch if used without a final approval gate. <br>
-Mitigation: Require explicit final approval before any !clawnch post, and inspect the target wallet, symbol, metadata, and trigger surface before posting. <br>
-Risk: Monitoring and bookmark workflows can persist local state or bookmarks beyond the immediate launch task. <br>
-Mitigation: Enable cron and bookmark steps only deliberately, scope output paths before execution, and review generated receipt, verification, and bookmark files. <br>
+## Use Case:
 
+Developers and crypto operators use this skill to retrieve Clawnch token-launch receipts, normalize local receipt records, verify public indexing data, and prepare local monitoring references without wallet signing or repository publishing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/DeepSeekOracle/lyra-coin-launch-manager) <br>
-- [Cron Template - STARCORE family monitor](references/cron_template_starcore_family.md) <br>
-- [Clawnch Launches API](https://clawn.ch/api/launches) <br>
-- [Clanker](https://clanker.world/) <br>
-- [Base Blockscout](https://base.blockscout.com/) <br>
-- [Dexscreener Search API](https://api.dexscreener.com/latest/dex/search/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON receipt files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local receipt summaries, verification reports, bookmark entries, and monitoring logs when the bundled scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Some scripts may write outside advertised local folders when given crafted symbols or paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a dedicated workspace, use trusted symbol and receipt inputs, and add or verify path validation before arbitrary inputs are accepted.
+
+Risk: Installing with an unpinned ClawHub CLI can introduce supply-chain drift.
+
+Mitigation: Pin or verify the ClawHub CLI version before installing or running this release.
+
+Risk: Wallet private keys or GitHub credentials could be exposed if a user supplies them unnecessarily.
+
+Mitigation: Do not paste wallet private keys, mnemonics, GitHub tokens, or repository credentials into this skill; the reviewed package does not require them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deepseekoracle/skills/lyra-coin-launch-manager)
+- [Publisher profile](https://clawhub.ai/user/deepseekoracle)
+- [Project homepage](https://github.com/DeepSeekOracle/lyra-crypto-operator)
+- [Security guidance](references/SECURITY.md)
+- [SkillSpector audit response](references/SKILLSPECTOR_AUDIT.md)
+- [Crypto lattice separation policy](CRYPTO_LATTICE_SEPARATION.md)
+- [STARCORE family cron template](references/cron_template_starcore_family.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; scripts produce local JSON and Markdown receipt, verification, and bookmark files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for human review before relying on launch or indexer status.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, claw.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Pure intelligence gathering for TikTok and Instagram that helps an agent discover trending hooks, analyze competitor strategy, or look up creator profile data without generating content or posting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gathers raw TikTok and Instagram content intelligence through ScrapeCreators so agents can discover trending hooks, analyze competitor strategies, and look up creator profile metrics without generating or posting content.
 
-## Publisher: <br>
-[iammiracle](https://clawhub.ai/user/iammiracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iammiracle](https://clawhub.ai/user/iammiracle)
 
-## Use Case: <br>
-External creators, marketers, and developer-operated agents use this skill to research TikTok and Instagram trends, competitor hooks, and creator profile metrics before planning content strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ScrapeCreators API key and sends researched keywords, hashtags, and creator handles to ScrapeCreators. <br>
-Mitigation: Use a limited or quota-bound API key where possible, keep the key in the environment instead of command-line arguments, and avoid sending sensitive private research terms. <br>
-Risk: The metadata recommends installing uv with a curl-to-shell command. <br>
-Mitigation: Review the installer before execution or install uv through a trusted package manager approved for the deployment environment. <br>
+## Use Case:
 
+Developers and external users can use this skill to let an agent collect social media research on TikTok and Instagram, including keyword or hashtag discovery, competitor hook analysis, and creator profile metrics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iammiracle/cocreator-content-research) <br>
-- [Publisher profile](https://clawhub.ai/user/iammiracle) <br>
-- [uv installer referenced by skill metadata](https://astral.sh/uv/install.sh) <br>
-- [ScrapeCreators TikTok profile endpoint](https://api.scrapecreators.com/v1/tiktok/profile) <br>
-- [ScrapeCreators Instagram profile endpoint](https://api.scrapecreators.com/v1/instagram/profile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and SCRAPE_CREATORS_API_KEY; scripts send researched keywords, hashtags, and creator handles to ScrapeCreators.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The automatic uv installation path runs a remote shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install uv separately through a trusted, pinned, or verified method before enabling the skill.
+
+Risk: Search terms, creator handles, and the ScrapeCreators API key are sent to ScrapeCreators.
+
+Mitigation: Use the skill only when sharing those inputs with ScrapeCreators is acceptable, and provide the API key through a controlled environment variable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iammiracle/skills/cocreator-content-research)
+- [Publisher profile](https://clawhub.ai/user/iammiracle)
+- [uv installer referenced by metadata](https://astral.sh/uv/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and SCRAPE_CREATORS_API_KEY; helper scripts call ScrapeCreators APIs and return social media research data.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, released 2026-03-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Caches user-specified context fragments in a local file so agents can reuse them across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Caches user-specified context fragments in a file to avoid redundant processing and enable reuse across sessions.
 
-## Publisher: <br>
-[shaoxiang616](https://clawhub.ai/user/shaoxiang616) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shaoxiang616](https://clawhub.ai/user/shaoxiang616)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to save explicitly selected context fragments and reuse them across later sessions to reduce repeated setup.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill stores and reloads conversation context in a persistent plaintext file without sufficient scoping, review, or retention controls.
+
+Mitigation: Use only explicit fragment selection, avoid storing secrets or client data, review cached content before reuse, and avoid startup auto-loading unless cached content is treated as untrusted reference text.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to save recurring context fragments and preload them in later sessions, reducing repeated setup or prompting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Saved fragments may be loaded into future sessions and could persist sensitive or untrusted content. <br>
-Mitigation: Do not cache secrets, credentials, or untrusted instructions unless persistent reuse is intentional. <br>
-Risk: The clear-cache command removes the local cache directory. <br>
-Mitigation: Run the clear-cache command only when intentionally deleting saved context fragments. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaoxiang616/context-memoize-cache) <br>
+**Other Properties Related to Output:** [Produces agent guidance for saving, listing, clearing, and optionally preloading cached context fragments.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist user-provided fragments in a local cache file for later sessions.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Provides a microservices starter reference covering API gateway routing, service templates, service mesh readiness, distributed tracing, and container orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and deploy microservices architecture with an API gateway, service templates, service mesh support, distributed tracing, and container orchestration.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and platform engineers use this skill as a starter reference for building microservice architectures with an API gateway, service templates, service mesh integrations, tracing, and container orchestration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The quick start references local scripts that are not included in the artifact. <br>
-Mitigation: Obtain and review the referenced scripts separately before allowing an agent or user to run them. <br>
-Risk: The quick start includes an unscoped production Kubernetes deployment and monitoring installation. <br>
-Mitigation: Verify the Kubernetes context and namespace, start with staging or dry-run workflows, and require explicit human approval before production deployment or monitoring installation. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to plan and scaffold microservices systems with gateway, service template, Kubernetes, monitoring, and tracing components.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference guidance only; the artifact does not include the local scripts shown in the quick start.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, _meta.json) <br>
+Risk: Example commands may deploy to Kubernetes or install monitoring components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local scripts before execution and require explicit confirmation before deployment or monitoring installation commands are run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/microservices-starter)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example commands for service creation, gateway setup, Kubernetes deployment, and monitoring installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

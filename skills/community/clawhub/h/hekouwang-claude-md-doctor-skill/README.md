@@ -11,8 +11,15 @@
 > **会勇禾口王的AI笔记** 出品 · `@huiyonghkw`
 > _不聊 AI 会不会取代你，只聊先用 AI 的人怎么取代你。_
 
-CLAUDE.md 体检器 —— 检查任意项目的 `CLAUDE.md` 是否符合"把它当**运行时配置**、
-不是项目说明书"的最佳实践，给出评分卡 + 修复建议。
+CLAUDE.md / AGENTS.md 体检器 —— 检查任意项目的运行时配置是否符合"**路由器、不是图书馆**"，
+给出评分卡 + 修复建议。
+
+## 30 秒验收
+
+```bash
+python3 check.py .                    # 体检当前项目（零依赖）
+bash scripts/run-all-doctors.sh .     # 三件套：md + skill + env
+```
 
 <p align="center">
   <img src="examples/demo.gif" width="720" alt="hekouwang-claude-md-doctor-skill 体检演示">
@@ -84,6 +91,22 @@ docker run --rm -v "$PWD:/work" claude-md-doctor /work --json
 ```
 本仓库自身的 CI 见 [`.github/workflows/ci.yml`](.github/workflows/ci.yml)（语法 + good/bad 夹具 + JSON 合法性）。
 
+## 这不是内置的 `/doctor` 命令
+
+Claude Code 自带一个 `/doctor` 命令，名字也带 "doctor"，但**体检对象和本工具完全不同**——
+一个查整套工具的运行环境，一个只查一份文档写得好不好。别搞混。
+
+| 维度 | 内置 `/doctor` | 本工具（claude-md-doctor） |
+|------|---------------|----------------------------|
+| **体检对象** | 整个 Claude Code **运行环境 / 安装** | 单个项目的 **`CLAUDE.md` 文件本身** |
+| **关注点** | 安装健康、未用扩展、上下文膨胀、慢 Hook、版本、权限模式 | `CLAUDE.md` 是否当运行时配置写、篇幅、该不该懒加载、10 项评分 |
+| **改哪里** | `~/.claude/` 全局配置层 | 项目里的 `CLAUDE.md` 内容 |
+| **作用范围** | 全局 · 跨所有项目 | 就这一个项目的文档 |
+
+**唯一交集**：`/doctor` 会去重本地 vs 入库 `CLAUDE.md`、把该懒加载的内容迁走，但它只从
+「上下文成本」看、**不评文档质量**。**怎么用**：先 `/doctor` 发现「CLAUDE.md 太大」，
+再用本工具深度评分 + 出 Top 3 + 代重构——`/doctor` 负责发现文档偏大，本工具负责回答「具体哪几条该删、怎么改」。
+
 ## 免费 / 付费（Freemium）
 
 - **免费（开源内核）**：命令行体检器 `check.py` —— 文本 / JSON 报告、评分、退出码。
@@ -93,7 +116,12 @@ docker run --rm -v "$PWD:/work" claude-md-doctor /work --json
   即私有 Skill `hekouwang-content-factory`，**GitHub 上为 PRIVATE 仓库，非授权无法 clone / 获取**），
   **不随本仓库分发**。需要出图版报告，请联系 **@huiyonghkw** 获取。
 
-> 一句话：**跑检查免费，出「好看的报告图」找我。**
+> 一句话：**跑检查免费，出「好看的报告图」找我。**  
+> 联系：**GitHub / ClawHub [@huiyonghkw](https://github.com/huiyonghkw)** · 可视化报告卡私信获取
+
+## 体检器三件套
+
+与 [`skill-doctor`](https://github.com/huiyonghkw/hekouwang-claude-skill-doctor-skill)、[`env-doctor`](https://github.com/huiyonghkw/hekouwang-env-doctor-skill) 组成 **hekouwang-doctor-suite**。一键：`bash scripts/run-all-doctors.sh <项目根>`（见 `references/doctor-suite.md`）。
 
 ## 设计
 

@@ -1,45 +1,57 @@
-## Description: <br>
-OpenClaw skill for the agent-browser CLI (Rust-based with Node.js fallback) enabling AI-friendly web automation with snapshots, refs, and structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for the agent-browser CLI (Rust-based with Node.js fallback) enabling AI-friendly web automation with snapshots, refs, and structured commands.
 
-## Publisher: <br>
-[mmyg11](https://clawhub.ai/user/mmyg11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mmyg11](https://clawhub.ai/user/mmyg11)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan deterministic browser automation with the agent-browser CLI, including snapshot-first navigation, ref-based actions, JSON output, and operational guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can access authenticated sessions, credentials, cookies, storage, local files, network controls, proxies, CDP, downloads, or arbitrary JavaScript when sensitive controls are enabled. <br>
-Mitigation: Use a dedicated environment, allowlist target domains, keep sessions ephemeral, protect saved state, avoid eval/file access/proxy/CDP/cookie or storage mutation unless explicitly approved, and redact tokens in logs and outputs. <br>
-Risk: The server security summary notes a minor identity/version mismatch. <br>
-Mitigation: Verify the ClawHub skill identity, publisher handle, agent-browser package owner, and intended package version before relying on the skill. <br>
+## Use Case:
 
+Developers and agent operators use this skill to plan deterministic browser automation with the agent-browser CLI, including snapshot-driven navigation, structured command output, and operational guardrails.
 
-## Reference(s): <br>
-- [Agent Browser Core Temp on ClawHub](https://clawhub.ai/mmyg11/agent-browser-core-temp) <br>
-- [Agent Browser Overview](references/agent-browser-overview.md) <br>
-- [Agent Browser Command Map](references/agent-browser-command-map.md) <br>
-- [Safety and Risk Controls](references/agent-browser-safety.md) <br>
-- [Agent Browser Workflows](references/agent-browser-workflows.md) <br>
-- [Troubleshooting](references/agent-browser-troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance emphasizes JSON-mode automation, safe defaults, allowlisted domains, and explicit approval for sensitive browser controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional unpinned Playwright installation can introduce supply-chain drift.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the agent-browser version and prefer lockfile-controlled or pinned Playwright installation.
+
+Risk: Browser automation can expose secrets or local resources when credential, cookie, storage, proxy, file-access, eval, or custom-runtime features are enabled.
+
+Mitigation: Run browser tooling in a dedicated low-privilege environment and require explicit approval before using those capabilities.
+
+## Reference(s):
+
+- [Agent Browser Overview](references/agent-browser-overview.md)
+- [Agent Browser Command Map](references/agent-browser-command-map.md)
+- [Safety and Risk Controls](references/agent-browser-safety.md)
+- [Agent Browser Workflows](references/agent-browser-workflows.md)
+- [Troubleshooting](references/agent-browser-troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline CLI commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-mode command recommendations for machine parsing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

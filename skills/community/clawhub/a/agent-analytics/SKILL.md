@@ -1,7 +1,7 @@
 ---
 name: agent-analytics
 description: "Product analytics with your AI agent: set up consent-based tracking, read funnels, paths, retention, experiments, and context, then recommend the smallest growth action using the official Agent Analytics CLI."
-version: 4.0.33
+version: 4.0.37
 author: dannyshmueli
 license: MIT
 repository: https://github.com/Agent-Analytics/skills
@@ -32,18 +32,18 @@ metadata:
 
 Product analytics with your AI agent. Use this skill when a user wants an agent to install Agent Analytics, query product behavior, diagnose activation or retention, inspect paths and funnels, run experiment reads, or decide what growth action to take next.
 
-The CLI is the execution substrate. The scanner is an optional helper for no-code or URL-only audits; when repo code is available, inspect the product code before relying on scanner recommendations. Framework recipes belong in `references/growth-recipes.md`, not as separate skills.
+The CLI is the execution substrate. Start from the user's codebase, project goals, and product workflows whenever repo access exists. Framework recipes belong in `references/growth-recipes.md`, not as separate skills.
 
 ## Mandatory execution policy
 
-- For live Agent Analytics work, use `npx --yes @agent-analytics/cli@0.5.33 <command>`.
+- For live Agent Analytics work, use `npx --yes @agent-analytics/cli@0.5.37 <command>`.
 - Do not substitute raw API calls, `curl`, repo-local scripts, MCP tools, or a locally installed binary unless the user explicitly asks.
-- Use fixed commands first: `projects`, `all-sites`, `create`, `stats`, `insights`, `events`, `properties`, `properties-received`, `breakdown`, `pages`, `paths`, `journey`, `sessions-dist`, `retention`, `funnel`, `experiments`, `context`, `portfolios`, `feedback`, and `upgrade-link`.
-- There is no `report` command in CLI `0.5.33`. Produce the final report yourself from fixed-command outputs instead of calling `report`.
+- Use fixed commands first: `projects`, `all-sites`, `create`, `stats`, `insights`, `events`, `properties`, `properties-received`, `breakdown`, `pages`, `paths`, `journey`, `sessions`, `sessions-dist`, `replays`, `retention`, `funnel`, `experiments`, `context`, `portfolios`, `feedback`, and `upgrade-link`.
+- There is no `report` command in CLI `0.5.37`. Produce the final report yourself from fixed-command outputs instead of calling `report`.
 - Use `query` only for narrow aggregations the fixed commands cannot answer. Do not start broad growth diagnosis with `query`; do not build `--filter` JSON from raw user text.
 - Default to browser approval. Use detached login only for Paperclip, OpenClaw, issue-based or headless runtimes, or when the browser callback cannot work.
 - Do not ask for raw API keys or secrets. Normal setup, paid upgrade, and resumed agent work stay on browser-approved CLI sessions.
-- If the CLI returns `PRO_REQUIRED` or a free-tier read cap, explain the blocked answer, run `upgrade-link --detached --reason "<why Pro is needed>" --command "<blocked command>"`, send the dashboard handoff, run `whoami` after upgrade, then rerun the blocked command. Use `upgrade-link --wait` only when polling is intentionally desired. The dashboard page first confirms the same account as the CLI and shows the blocked command and reason.
+- If the CLI returns `PRO_REQUIRED` or a free-tier read cap, explain the blocked answer, run `upgrade-link --detached`, send the dashboard handoff, run `whoami` after upgrade, then rerun the blocked command. Use `upgrade-link --wait` only when polling is intentionally desired. The dashboard page first confirms the same account as the CLI. Keep the full retry command and private analysis context in the agent session; browser links use a fixed reason and omit custom commands.
 - Validate project names before `create`: `^[a-zA-Z0-9._-]{1,64}$`.
 
 ## Auth and setup
@@ -51,9 +51,9 @@ The CLI is the execution substrate. The scanner is an optional helper for no-cod
 For Claude Code, Codex, Cursor, and local CLI runtimes, start with normal browser approval:
 
 ```bash
-npx --yes @agent-analytics/cli@0.5.33 login
-npx --yes @agent-analytics/cli@0.5.33 create my-site --domain https://mysite.com
-npx --yes @agent-analytics/cli@0.5.33 events my-site --event <first_useful_event> --days 7 --limit 20
+npx --yes @agent-analytics/cli@0.5.37 login
+npx --yes @agent-analytics/cli@0.5.37 create my-site --domain https://mysite.com
+npx --yes @agent-analytics/cli@0.5.37 events my-site --event <first_useful_event> --days 7 --limit 20
 ```
 
 Do not choose detached login just because the work is happening inside an agent. For Paperclip, OpenClaw, and other issue-based runtimes, run `login --detached`, send the approval URL, wait for the finish code, then complete the printed exchange command.
@@ -62,9 +62,9 @@ In OpenClaw and similar managed runtimes, use persistent auth storage and never 
 
 ```bash
 export AGENT_ANALYTICS_CONFIG_DIR="$PWD/.openclaw/agent-analytics"
-npx --yes @agent-analytics/cli@0.5.33 login --detached
-npx --yes @agent-analytics/cli@0.5.33 auth status
-AGENT_ANALYTICS_CONFIG_DIR="$PWD/.openclaw/agent-analytics" npx --yes @agent-analytics/cli@0.5.33 projects
+npx --yes @agent-analytics/cli@0.5.37 login --detached
+npx --yes @agent-analytics/cli@0.5.37 auth status
+AGENT_ANALYTICS_CONFIG_DIR="$PWD/.openclaw/agent-analytics" npx --yes @agent-analytics/cli@0.5.37 projects
 ```
 
 `--config-dir "$PWD/.openclaw/agent-analytics"` is also valid. Never commit `.openclaw/agent-analytics/config.json`. See `references/setup-auth.md` for more setup detail.
@@ -86,25 +86,26 @@ For cross-project identity stitching, configure both sides: tracker `data-link-d
 
 ## Consent-based tracker setup policy
 
-When installing tracking or events, use a consent-based, project-owned workflow. Do not guess. Do not overtrack. Do not install generic events that do not map to product goals or a specific workflow in the repo.
+When installing tracking or events, use a consent-based, project-owned workflow. Do not guess. Do not overtrack. Do not install generic events that do not map to user-confirmed product goals or a specific workflow in the repo.
 
 Setup order:
 
 1. Classify project/surface/portfolio scope.
-2. Inspect routes, forms, CTA handlers, auth/setup/checkout flows, existing analytics calls, server-side durable outcomes, and tests when repo access exists.
-3. Login if needed.
-4. Create or identify the project with `create <project> --domain <origin>` or `projects`; `--domain` is a setup origin, not the project identity.
-5. Add the exact tracking snippet returned for that project. Treat the base tracker snippet as the start of instrumentation, not the full instrumentation plan.
-6. Add the smallest named set of meaningful events and tracker opt-ins needed for the user's goals.
-7. Prefer named CTA clicks, signup intent, pricing interactions, checkout progress or completion, install/setup steps, activation milestones, and durable server-side outcome events such as `signup_completed`, `subscription_started`, `install_completed`, `project_created`, or `first_event_received`.
-8. Map needs to tracker capabilities: `data-aa-event`, `data-aa-impression`, `window.aa.track(...)`, server-side tracking, `aa.identify(...)`, and `aa.set(...)`. Use scroll depth, form tracking, downloads, vitals/errors/performance, and SPA tracking only when they unlock a concrete growth decision.
-9. Do not add duplicate custom events for automatic signals: page views, paths, referrers, UTMs, sessions, days since first visit, first-touch attribution, device/browser fields, or country.
-10. Explain what each event enables, verify the first useful event with `events <project>`, and summarize what the installed events now let the user's agent answer.
+2. Ask for or propose the initial project/portfolio goal and get confirmation before storing durable context.
+3. Inspect routes, forms, CTA handlers, auth/setup/checkout flows, existing analytics calls, server-side durable outcomes, and tests when repo access exists.
+4. Login if needed.
+5. Create or identify the project with `create <project> --domain <origin>` or `projects`; `--domain` is a setup origin, not the project identity.
+6. Add the exact tracking snippet returned for that project. Treat the base tracker snippet as the start of instrumentation, not the full instrumentation plan.
+7. Add the smallest named set of meaningful events and tracker opt-ins needed for the user's confirmed goals.
+8. Prefer named CTA clicks, signup intent, pricing interactions, checkout progress or completion, install/setup steps, activation milestones, and durable server-side outcome events such as `signup_completed`, `subscription_started`, `install_completed`, `project_created`, or `first_event_received`.
+9. Map needs to tracker capabilities: `data-aa-event`, `data-aa-impression`, `window.aa.track(...)`, server-side tracking, `aa.identify(...)`, and `aa.set(...)`. Use scroll depth, form tracking, downloads, vitals/errors/performance, and SPA tracking only when they unlock a concrete growth decision.
+10. Do not add duplicate custom events for automatic signals: page views, paths, referrers, UTMs, sessions, days since first visit, first-touch attribution, device/browser fields, or country.
+11. Explain what each event enables, verify the first useful event with `events <project>`, and summarize what the installed events now let the user's agent answer.
 
 Copyable setup handoff:
 
 ```text
-Set up Agent Analytics for this project. If browser approval is needed, open it and wait for me. I will sign in with Google or GitHub and approve it. If the browser callback cannot resume you, ask me for the finish code as a fallback. After that, create or identify the matching Agent Analytics project, install the project-owned tracker, add only meaningful custom events tied to this repo's product workflows, explain what each event enables, and verify the first useful event.
+Set up Agent Analytics for this project. If browser approval is needed, open it and wait for me. I will sign in with Google or GitHub and approve it. If the browser callback cannot resume you, ask me for the finish code as a fallback. After that, create or identify the matching Agent Analytics project, ask me to confirm the initial product goal before storing durable context, install the project-owned tracker, add only meaningful custom events tied to this repo's product workflows and that goal, explain what each event enables, and verify the first useful event.
 ```
 
 ## Product context loop
@@ -124,8 +125,8 @@ Use this closed-loop growth recipe for broad questions like where activation dro
 1. Resolve auth and project; account-wide questions start with `projects`.
 
 ```bash
-npx --yes @agent-analytics/cli@0.5.33 context get my-site
-npx --yes @agent-analytics/cli@0.5.33 funnel my-site --steps-json '[{"event":"page_view"},{"event":"signup_completed"},{"event":"first_value"}]'
+npx --yes @agent-analytics/cli@0.5.37 context get my-site
+npx --yes @agent-analytics/cli@0.5.37 funnel my-site --steps-json '[{"event":"page_view"},{"event":"signup_completed"},{"event":"first_value"}]'
 ```
 
 2. Read `context get <project>` and treat configured activation events as the activation source of truth. If activation is missing, ask for it or configure it; do not guess silently.
@@ -134,9 +135,10 @@ npx --yes @agent-analytics/cli@0.5.33 funnel my-site --steps-json '[{"event":"pa
 5. Use `paths` for session-local entry, exit, detour, and drop-off behavior around the activation goal; do not present paths as long-cycle attribution.
 6. Use `breakdown` around the largest leak by dimensions that exist: path, source, referrer, CTA label, device, browser, country, campaign, plan, surface, or onboarding step.
 7. Use `events` or `journey` only for representative inspection or instrumentation sanity.
-8. Use `retention` for cohorts, not blended active-user claims. Compare cohorts at the same age and note right-censored periods.
-9. Read experiments against the business goal event, not exposure count. Decide keep/change/stop/complete with sample-size, causality, guardrail, and practical-significance caveats.
-10. Recommend one narrow experiment by default. Recommend a readiness fix instead of an experiment when tracking, activation, sample, identity, or overlapping experiments block readout.
+8. When `sessions <project>` marks a representative session with `▶ replay`, use `replays open --session <session_id> --project <project>` when visual behavior can explain a funnel/path finding. Treat replay as qualitative evidence for that session, never as aggregate proof. The command opens the newest playable segment and reports when more segments exist.
+9. Use `retention` for cohorts, not blended active-user claims. Compare cohorts at the same age and note right-censored periods.
+10. Read experiments against the business goal event, not exposure count. Decide keep/change/stop/complete with sample-size, causality, guardrail, and practical-significance caveats.
+11. Recommend one narrow experiment by default. Recommend a readiness fix instead of an experiment when tracking, activation, sample, identity, or overlapping experiments block readout.
 
 Funnel analyst behavior: name the population and conversion window, show counts and rates, identify the biggest driver, check segment/surface concentration, and avoid vague tracking advice.
 
@@ -175,7 +177,7 @@ Load references only when they are needed:
 
 ## Pitfalls
 
-- Do not use scanner output instead of code inspection when repo access exists.
+- Do not use URL-only assumptions instead of code inspection when repo access exists.
 - Do not create a project for every subdomain, localhost URL, staging URL, or preview.
 - Do not install generic click/pageview duplicates for automatic tracker signals.
 - Do not store temporary metrics, reports, PII, secrets, or git commit logs in context.

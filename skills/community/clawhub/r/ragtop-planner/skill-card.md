@@ -1,45 +1,59 @@
-## Description: <br>
-面向外部 OpenClaw 的达人推广方案制定 Skill。基于 RAGTOP 三个工具接口（list_kb/list_doc/retrieval）执行四阶段工作流：规则提炼、案例总结、达人筛选、方案生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向外部 OpenClaw 的达人推广方案制定 Skill。基于 RAGTOP 三个工具接口（list_kb/list_doc/retrieval）执行四阶段工作流：规则提炼、案例总结、达人筛选、方案生成。
 
-## Publisher: <br>
-[qbs784](https://clawhub.ai/user/qbs784) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qbs784](https://clawhub.ai/user/qbs784)
 
-## Use Case: <br>
-External OpenClaw users use this skill to orchestrate RAGTOP knowledge-base retrieval and generate influencer marketing plans with rules, case summaries, candidate selection, budget checks, and source-traceable conclusions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a trusted RAGTOP service endpoint. <br>
-Mitigation: Confirm RAGTOP_API_URL points to an approved RAGTOP service, preferably HTTPS unless it is strictly on a trusted internal network. <br>
-Risk: A broad or long-lived API token could expose knowledge-base access. <br>
-Mitigation: Use a least-privilege, revocable RAGTOP_API_TOKEN and rotate it according to local credential policy. <br>
-Risk: Sensitive business requirements or proprietary knowledge-base content may be sent to the configured service. <br>
-Mitigation: Avoid sending sensitive content unless the configured RAGTOP service is approved to handle it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qbs784/ragtop-planner) <br>
-- [Publisher profile](https://clawhub.ai/user/qbs784) <br>
-- [FH Agentic Workflow](references/workflow.md) <br>
-- [FH Prompts for External Skill](references/prompts.md) <br>
-- [FH Skill Error Handling](references/error_handling.md) <br>
+## Use Case:
 
+External OpenClaw users use this skill to produce influencer marketing plans from RAGTOP knowledge bases for rules, cases, and pricing. It guides agents through knowledge-base discovery, retrieval, candidate influencer selection, budget compliance checks, and final plan generation with source traceability.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and generated HTML tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RAGTOP_API_TOKEN and optionally RAGTOP_API_URL; final plans should include budget compliance checks and traceable source references.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default RAGTOP endpoint uses plaintext HTTP while requests include an API token and business knowledge-base data.
+
+Mitigation: Use only a trusted, approved RAGTOP endpoint, override the default with HTTPS, and use a scoped, rotatable token.
+
+Risk: Retrieved knowledge-base text can influence generated marketing plans and may lead to incorrect, unsupported, or misleading recommendations.
+
+Mitigation: Review generated plans against trusted source records and require traceability for key claims, influencer details, pricing, and budget calculations.
+
+Risk: Invalid tokens, unauthorized knowledge bases, or missing required knowledge bases can stop or misdirect the workflow.
+
+Mitigation: Validate `RAGTOP_API_TOKEN`, resolve the required `方案`, `案例`, and `价格` knowledge bases with `list_kb`, and stop with a clear remediation message when access or required data is missing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qbs784/skills/ragtop-planner)
+- [FH Agentic Workflow](references/workflow.md)
+- [FH Prompts for External Skill](references/prompts.md)
+- [FH Skill Error Handling](references/error_handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional HTML table output and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final plans should include budget compliance checks and cite retrieved source records where available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

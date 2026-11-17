@@ -1,40 +1,57 @@
-## Description: <br>
-Provides a Chinese-first Charlie Munger-style latticework decision framework for investment analysis, business decisions, risk review, career choices, and cognitive bias checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Charlie Munger’s multidisciplinary mental models to help structure decisions and identify cognitive biases in investing, business, and risk management.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Investors, founders, operators, and knowledge workers use this skill to examine important choices through Munger-style mental models, inverse thinking, decision checklists, and cognitive bias reviews. It is best suited for structured reflection and educational decision support, not as a substitute for professional financial, legal, or career advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial, business, and career guidance may be incomplete, outdated, or unsuitable for a specific high-stakes decision. <br>
-Mitigation: Use the output as educational decision support, verify current facts independently, and consult qualified professionals before acting. <br>
-Risk: Munger-style framing and mental-model checklists can make subjective recommendations sound more certain than the evidence supports. <br>
-Mitigation: Ask for assumptions, counterarguments, and source checks before relying on the analysis, especially for investment or business commitments. <br>
+## Use Case:
 
+Individuals and teams can use this Chinese-first thought partner to structure investment, business, career, and personal decisions, examine assumptions, and surface possible biases. Its checklists and prompts support reflection; they are not professional advice or verified conclusions.
 
-## Reference(s): <br>
-- [Munger Think Partner ClawHub page](https://clawhub.ai/gechengling/skills/munger-think-partner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with decision checklists, structured reasoning sections, tables, and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include educational investment, business, risk, and career guidance framed through mental models and bias checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: artifact SKILL.md and server release evidence) <br>
+Risk: The skill may respond primarily in Chinese.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify a preferred response language when needed.
+
+Risk: The broad personal-reflection trigger may activate for loosely related questions.
+
+Mitigation: State the specific decision or reflection question and relevant context.
+
+Risk: Investment and other high-stakes topics can be mistaken for professional advice.
+
+Mitigation: Use the output as a thinking aid, verify underlying facts, and have qualified professionals make high-stakes determinations.
+
+## Reference(s):
+
+- [Munger Think Partner on ClawHub](https://clawhub.ai/gechengling/skills/munger-think-partner)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Text, Markdown]
+
+**Output Format:** [Chinese-first Markdown with decision frameworks, checklists, and reflection prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Language may be primarily Chinese; responses are reference material for user review.]
+
+## Skill Version(s):
+
+2.1.4 (source: server-resolved release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

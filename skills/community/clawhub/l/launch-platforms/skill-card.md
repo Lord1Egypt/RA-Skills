@@ -1,39 +1,55 @@
-## Description: <br>
-Recommends launch platforms, directories, subreddits, and lifetime deal sites based on product type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends launch platforms, directories, subreddits, and lifetime deal sites based on product type.
 
-## Publisher: <br>
-[C0ldSmi1e](https://clawhub.ai/user/C0ldSmi1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c0ldsmi1e](https://clawhub.ai/user/c0ldsmi1e)
 
-## Use Case: <br>
-Founders and startup operators use this skill to choose launch channels for a product based on product type, launch stage, prior launch history, and openness to lifetime deals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Extended list of launch sites](https://docs.google.com/spreadsheets/d/1WAgFtaZno651_6Tw0nmmiYIAsJ3Bm89IRRRQ5helzLY/edit?gid=0#gid=0) <br>
-- [AI startup directories](https://github.com/best-of-ai/ai-directories) <br>
-- [Tips for writing a great launch post](https://www.markepear.dev/blog/dev-tool-hacker-news-launch) <br>
+Founders and startup operators use this skill to answer discovery questions and receive a tailored launch plan for promoting a startup across launch platforms, directories, subreddits, and lifetime deal channels.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown response with discovery questions, platform recommendations, directory suggestions, subreddit targets, optional lifetime deal sites, and a prioritized checklist.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Starts by asking five discovery questions and waits for answers before producing a tailored launch plan.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Recommended subreddit or launch-platform rules may be stale or may not permit a planned post.
+
+Mitigation: Review each community or platform's current posting rules, flair requirements, and self-promotion policies before publishing.
+
+Risk: The launch plan may be less useful when the founder provides incomplete product, audience, or launch-stage details.
+
+Mitigation: Confirm the product category, target audience, launch stage, previous launch results, and lifetime deal preference before acting on recommendations.
+
+## Reference(s):
+
+- [Extended list of launch sites](https://docs.google.com/spreadsheets/d/1WAgFtaZno651_6Tw0nmmiYIAsJ3Bm89IRRRQ5helzLY/edit?gid=0#gid=0)
+- [AI startup directories](https://github.com/best-of-ai/ai-directories)
+- [Tips for writing a great launch post](https://www.markepear.dev/blog/dev-tool-hacker-news-launch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown launch plan with recommended channels, explanations, curated links, and a prioritized checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses product description, product type, launch stage, prior launch history, and lifetime deal preference to tailor recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

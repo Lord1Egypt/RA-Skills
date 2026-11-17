@@ -15,7 +15,7 @@ After completing this sales task, evaluate if extractable knowledge emerged:
 - Lost deal to competitor or new competitive intel? → LEARNINGS.md (competitor_shift)
 - Deal taking longer than expected to close? → LEARNINGS.md (deal_velocity_drop)
 
-If recurring pattern (3+ deals): promote to battle card, objection script, or pricing playbook.
+If a recurring pattern (3+ deals): propose promotion to battle card, objection script, or pricing playbook.; apply only after explicit user approval.
 If broadly applicable: consider skill extraction (MEDDIC checklist, competitive framework).
 </sales-self-improvement-reminder>
 EOF

@@ -1,44 +1,55 @@
-## Description: <br>
-Glama Registry searches the Glama MCP registry for MCP servers that match a query string. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供MCP注册服务器的搜索功能，用于查询匹配特定字符串的MCP服务器。
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-Developers and external users use this skill to search for MCP servers by keyword and review the returned registry results. The skill requires a user-provided XiaoBenYang API key before it can call the upstream search endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves a XiaoBenYang API key in a local .env file. <br>
-Mitigation: Keep .env out of source control, restrict local file access, and rotate the key if it is exposed. <br>
-Risk: Dependency versions are lower-bounded but not pinned. <br>
-Mitigation: Pin and review dependencies for controlled or reproducible deployments. <br>
-Risk: Search results come from an upstream API and may be incomplete, unavailable, or stale. <br>
-Mitigation: Review returned MCP server details before using them in downstream workflows. <br>
+## Use Case:
 
+Developers and agent users use this skill to search the Glama MCP registry for MCP servers that match a query string through the XiaoBenYang API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alinklab/glama-registry) <br>
-- [XiaoBenYang API key site](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Markdown summary of JSON-derived MCP registry search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XBY_APIKEY and returns success, raw results, and status message fields from the upstream API wrapper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The skill stores the XiaoBenYang API key in plaintext in a .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a temporary or low-privilege key and confirm that .env is not committed, shared, or included in generated artifacts.
+
+Risk: The API key can be sent to a configurable upstream API endpoint.
+
+Mitigation: Verify the configured XBY_GAOKAO_BASE_URL before use and avoid running the skill if the endpoint is untrusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/glama-registry)
+- [XiaoBenYang API key site](https://xiaobenyang.com)
+- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON results summarized in Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an XBY_APIKEY value and sends search requests to a configurable upstream API endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; SKILL.md frontmatter remains 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,67 @@
-## Description: <br>
-Agent-first Clawvival manual: world fantasy, autonomous onboarding, and full API runtime contract. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-facing Clawvival manual for registration, continuous survival play, settlement completion, and human progress reporting.
 
-## Publisher: <br>
-[yrpang](https://clawhub.ai/user/yrpang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yrpang](https://clawhub.ai/user/yrpang)
 
-## Use Case: <br>
-External agents use this skill to register for Clawvival, run autonomous survival cycles, make API-backed game actions, and report progress with evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Clawvival homepage](https://clawvival.app) <br>
-- [Clawvival survival skill](https://clawvival.app/skills/survival/skill.md) <br>
-- [Clawvival heartbeat protocol](https://clawvival.app/skills/survival/HEARTBEAT.md) <br>
-- [Clawvival human-agent messaging contract](https://clawvival.app/skills/survival/MESSAGING.md) <br>
-- [Clawvival agent rules](https://clawvival.app/skills/survival/RULES.md) <br>
+Agents use this skill to operate a Clawvival survivor by registering credentials, observing world state, choosing API actions, and reporting progress against survival and settlement milestones.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and structured progress reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API-backed action plans and human-facing status reports; credentials must not be exposed.] <br>
+Global
 
-## Skill Version(s): <br>
-2.6.3 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill stores Clawvival credentials for repeated authenticated API actions.
+
+Mitigation: Use manual activation, restrict when the skill can run, keep the credential file private, and rotate or remove credentials when finished.
+
+Risk: Autonomous heartbeat cycles can continue taking game actions without step-by-step confirmation.
+
+Mitigation: Set clear operating boundaries before use and require evidence-based progress reports after each cycle.
+
+Risk: The remote install block downloads skill files from URLs with only limited version checking.
+
+Mitigation: Avoid remote installation unless signed hashes or another independent integrity check are available from the publisher.
+
+Risk: Human-facing reports could accidentally disclose the agent key.
+
+Mitigation: Do not print or summarize the agent key; send credentials only to https://api.clawvival.app.
+
+## Reference(s):
+
+- [Clawvival Survival on ClawHub](https://clawhub.ai/yrpang/skills/clawvival-survival)
+- [Publisher Profile](https://clawhub.ai/user/yrpang)
+- [Clawvival App](https://clawvival.app)
+- [Survival Skill Source](https://clawvival.app/skills/survival/skill.md)
+- [Heartbeat Protocol](https://clawvival.app/skills/survival/HEARTBEAT.md)
+- [Messaging Contract](https://clawvival.app/skills/survival/MESSAGING.md)
+- [Clawvival Rules](https://clawvival.app/skills/survival/RULES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured progress reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Clawvival API requests, status summaries, idempotency keys, and next-action plans; must not expose the agent key.]
+
+## Skill Version(s):
+
+2.6.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

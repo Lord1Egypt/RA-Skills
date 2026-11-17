@@ -1,45 +1,59 @@
-## Description: <br>
-Finds, prioritizes, and clusters SEO and GEO keywords using volume, difficulty, intent, and provided or connected market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers, scores, and clusters keywords for SEO and GEO planning, prioritizing search volume, difficulty, intent, and topic clusters from provided or connected data.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-External marketers, SEO practitioners, and content strategists use this skill to create keyword research briefs for new pages, topics, campaigns, and competitor gaps. It supports keyword discovery, intent classification, scoring, GEO checks, topic clustering, and content calendar planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connected SEO or Search Console integrations may expose account, site, or market data beyond the intended scope. <br>
-Mitigation: Verify account and site scopes before using connected tools. <br>
-Risk: Saved keyword priorities, competitor facts, or content plans may contain confidential strategy. <br>
-Mitigation: Review sensitivity before saving results to memory or shared research files. <br>
+## Use Case:
 
+Marketing and SEO practitioners use this skill to build prioritized keyword briefs for new pages, campaigns, and content clusters using measured, user-provided, or explicitly labeled estimated metrics.
 
-## Reference(s): <br>
-- [Project homepage from ClawHub metadata](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Instructions Detail](references/instructions-detail.md) <br>
-- [Keyword Intent Taxonomy](references/keyword-intent-taxonomy.md) <br>
-- [Topic Cluster Templates](references/topic-cluster-templates.md) <br>
-- [Keyword Prioritization Framework](references/keyword-prioritization-framework.md) <br>
-- [Example Report](references/example-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown keyword research brief with tables, prioritized recommendations, topic clusters, content calendar, and handoff summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally save a reusable research summary when the user approves.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: server release metadata and skill frontmatter) <br>
+Risk: User-derived keyword or topic text could be inserted into documented shell command examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution and pass user inputs as quoted arguments rather than executable shell fragments.
+
+Risk: Business, market, Search Console, or competitor information could be saved to persistent memory.
+
+Mitigation: Confirm what information will be stored before allowing memory writes, and omit sensitive or unnecessary data from saved research summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaron-he-zhu/skills/keyword-research)
+- [Project homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [Instructions Detail](references/instructions-detail.md)
+- [Keyword Intent Taxonomy](references/keyword-intent-taxonomy.md)
+- [Keyword Prioritization Framework](references/keyword-prioritization-framework.md)
+- [Topic Cluster Templates](references/topic-cluster-templates.md)
+- [Example Report](references/example-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown keyword brief with tables, prioritized opportunity lists, topic clusters, content calendar recommendations, and handoff summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Metrics must be labeled Measured, User-provided, Estimated, or N/A; persistent memory writes require user confirmation.]
+
+## Skill Version(s):
+
+19.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

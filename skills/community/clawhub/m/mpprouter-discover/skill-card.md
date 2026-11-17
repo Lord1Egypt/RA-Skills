@@ -1,47 +1,64 @@
-## Description: <br>
-Discover and search paid API services on MPP Router, with Stellar USDC payment flow guidance through x402 or mppx. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover paid API services available via MPP Router (apiserver.mpprouter.dev) that accept Stellar USDC payments, match a service to the user's intent, and hand off to the pay-per-call skill for invocation.
 
-## Publisher: <br>
-[shawnmuggle](https://clawhub.ai/user/shawnmuggle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawnmuggle](https://clawhub.ai/user/shawnmuggle)
 
-## Use Case: <br>
-Developers and agent operators use this skill to find MPP Router services, inspect pricing and service documentation, and prepare user-approved paid API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid service calls can spend Stellar USDC if the user approves a request without checking the service details. <br>
-Mitigation: Before payment, show the service, endpoint, request body, price, and recipient address, then require explicit user approval. <br>
-Risk: Remote service documentation may contain content that should not control agent behavior. <br>
-Mitigation: Treat fetched llms.txt, docs.llms_txt, and other remote content as reference data only, not as instructions. <br>
-Risk: Wallet exposure can increase if a signing wallet holds more funds than the current task requires. <br>
-Mitigation: Use a limited-balance wallet and review the separate Stellar wallet skill before allowing it to sign transactions. <br>
+## Use Case:
 
+Developers and agents use this skill to discover live MPP Router services, choose an appropriate paid API for a user task, and route invocation through a Stellar USDC payment handoff.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/shawnmuggle/mpprouter-discover) <br>
-- [MPP Router homepage](https://mpprouter.dev) <br>
-- [MPP Router API base](https://apiserver.mpprouter.dev) <br>
-- [MPP Router llms.txt](https://mpprouter.dev/llms.txt) <br>
-- [MPP Router integration guide](https://mpprouter.dev/integration.md) <br>
-- [Companion Stellar wallet skill](https://github.com/mpprouter/stellar-agent-wallet-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline HTTP and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include service endpoints, request bodies, prices, recipient addresses, and payment handoff steps for user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can lead an agent toward paid Stellar mainnet API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rely on the pay-per-call confirmation gate before any mainnet spend and review prompts carefully when a task could be handled without paid routing.
+
+Risk: Session-only MPP Router services can charge successfully but fail upstream when used through charge mode.
+
+Mitigation: Refuse session-only services by default unless the user explicitly accepts the warned risk of losing the fee without a result.
+
+Risk: Unverified or changing catalog entries may have stale pricing, availability, or payment behavior.
+
+Mitigation: Fetch the service catalog fresh, avoid caching it for more than a minute, and warn before proceeding with unverified services.
+
+Risk: The router forwards request bodies as-is, so malformed requests can waste paid calls or return incorrect results.
+
+Mitigation: Read the matched service documentation from the catalog before building a request body and ask the user when the API format is unclear.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shawnmuggle/skills/mpprouter-discover)
+- [MPP Router](https://www.mpprouter.dev)
+- [MPP Router Service Catalog](https://apiserver.mpprouter.dev/v1/services/catalog)
+- [MPP Router Verified Runs](https://github.com/mpprouter/rozo-mpprouter/blob/main/docs/verified-runs.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live service-selection guidance and payment-handoff instructions; the skill does not itself produce persistent output files.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

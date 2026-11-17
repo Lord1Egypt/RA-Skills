@@ -1,43 +1,54 @@
-## Description: <br>
-Use this skill when the user wants to report task results to Feishu/Lark after completion, with a preflight check that the reporting channel is available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Preflight-checks a Feishu/Lark work-group reporting channel and sends concise task completion reports.
 
-## Publisher: <br>
-[xukp20](https://clawhub.ai/user/xukp20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xukp20](https://clawhub.ai/user/xukp20)
 
-## Use Case: <br>
-Developers and operators use this skill to confirm a Feishu/Lark reporting channel, then send compact task completion or progress reports to that channel after work is finished. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A task report could be sent to the wrong Feishu/Lark group. <br>
-Mitigation: Verify the exact group identity in the current session, send a test message, and confirm the destination before reporting. <br>
-Risk: Task summaries may include sensitive, confidential, or customer data. <br>
-Mitigation: Keep reports compact and exclude secrets, credentials, customer data, and confidential artifacts unless the confirmed group is appropriate. <br>
-Risk: Creating a default work group could establish an unintended reporting destination. <br>
-Mitigation: Ask for user identity details and explicit creation approval, then confirm the new group with a test message before use. <br>
+## Use Case:
 
+Developers and Codex users use this skill to verify or create a Feishu/Lark reporting channel and send compact completion or progress reports after tasks finish.
 
-## Reference(s): <br>
-- [API Playbook (Lark MCP, Reporting Only)](references/api-playbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xukp20/lark-work-report-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Concise text or Markdown reports sent through Feishu/Lark MCP calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a confirmed chat_id and may split long reports into sequential messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can list chats and send visible test or report messages in a Feishu/Lark workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that workspace interaction is intended, confirm the target group before use, and keep test and report content appropriate for group members.
+
+Risk: Creating a work group or resolving user identity may require email, mobile, or other identity details.
+
+Mitigation: Provide identity details only when needed for group creation or lookup, and verify sender and group identity before sending reports.
+
+## Reference(s):
+
+- [API Playbook](references/api-playbook.md)
+- [ClawHub Skill Page](https://clawhub.ai/xukp20/skills/lark-work-report-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, API Calls, Configuration]
+
+**Output Format:** [Concise text reports with Lark MCP API call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send visible test and report messages to a confirmed Feishu/Lark group.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

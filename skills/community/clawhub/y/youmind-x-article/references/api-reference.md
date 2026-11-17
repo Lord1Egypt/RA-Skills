@@ -9,7 +9,7 @@ All X publishing flows through YouMind's OpenAPI proxy. The caller only sends a 
 All requests require:
 
 ```text
-x-api-key: sk-ym-xxxxxxxxxxxxxxxxxxxx
+x-api-key: REDACTED-SECRET
 Content-Type: application/json
 x-use-camel-case: true
 ```

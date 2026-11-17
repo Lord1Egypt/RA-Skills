@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>怎样开会 · how-to-run-meetings — 技能总览</title>
+<style>
+  :root{
+    --bg:#f7f4ee; --ink:#221e18; --muted:#6e675c; --hair:#d9d2c4; --hair2:#e6e0d4;
+    --accent:#96422e; --accent-ink:#7c3625; --block:#efe9dd;
+    --serif:Georgia,"Times New Roman","Songti SC",SimSun,serif;
+    --mono:Consolas,"Courier New",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.65}
+  .wrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:56px;max-width:1160px;margin:0 auto;padding:64px 40px 96px}
+  nav{position:sticky;top:48px;align-self:start;font-size:13px}
+  nav .t{font-size:12px;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}
+  nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 0;border-left:1px solid var(--hair);padding-left:12px}
+  nav a:hover{color:var(--accent-ink);border-left-color:var(--accent)}
+  main{min-width:0}
+  .kicker{font-size:12px;letter-spacing:.22em;color:var(--accent-ink);margin-bottom:18px}
+  h1{font-size:42px;font-weight:600;letter-spacing:-.01em;line-height:1.15}
+  h1 .en{display:block;font-size:17px;color:var(--muted);font-weight:400;letter-spacing:.06em;margin-top:10px;font-style:italic}
+  .lede{margin-top:26px;font-size:17.5px;max-width:66ch}
+  .lede em{font-style:normal;color:var(--accent-ink)}
+  .stats{margin-top:34px;padding:16px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);display:flex;flex-wrap:wrap;gap:0}
+  .stats div{padding:2px 26px 2px 0;margin-right:26px;border-right:1px solid var(--hair2)}
+  .stats div:last-child{border-right:0}
+  .stats b{display:block;font-size:21px;font-weight:600}
+  .stats span{font-size:12.5px;color:var(--muted)}
+  h2{font-size:25px;font-weight:600;margin:72px 0 8px;padding-top:10px}
+  h2 + .sub{color:var(--muted);font-size:14.5px;margin-bottom:22px}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;margin:18px 0 8px}
+  th{font-size:12.5px;letter-spacing:.1em;color:var(--muted);text-align:left;font-weight:400;padding:8px 14px 8px 0;border-bottom:1px solid var(--ink)}
+  td{padding:10px 14px 10px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:first-child{white-space:nowrap;color:var(--accent-ink)}
+  .flow{list-style:none;counter-reset:step;margin:22px 0 8px;max-width:74ch}
+  .flow li{counter-increment:step;position:relative;padding:0 0 22px 46px}
+  .flow li::before{content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border:1px solid var(--accent);border-radius:50%;color:var(--accent-ink);font-size:13px;display:flex;align-items:center;justify-content:center;background:var(--bg)}
+  .flow li::after{content:"";position:absolute;left:14px;top:30px;bottom:2px;width:1px;background:var(--hair)}
+  .flow li:last-child::after{display:none}
+  .flow b{display:block;font-size:15.5px}
+  .flow span{color:var(--muted);font-size:14px}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:18px}
+  .duo ul{list-style:none}
+  .duo li{padding:9px 0;border-bottom:1px solid var(--hair2);font-size:14.5px}
+  .duo li:last-child{border-bottom:0}
+  .duo .n{color:var(--muted);margin-right:8px;font-variant-numeric:tabular-nums}
+  pre{background:var(--block);border:1px solid var(--hair);padding:20px 24px;font-family:var(--mono);font-size:13px;line-height:1.75;overflow-x:auto;margin:18px 0}
+  pre b{color:var(--accent-ink);font-weight:600}
+  .cases{margin-top:16px}
+  .cases dt{font-weight:600;font-size:15px;margin-top:20px}
+  .cases dt i{font-style:normal;color:var(--accent-ink);font-size:13px;margin-left:10px;font-weight:400}
+  .cases dd{color:var(--muted);font-size:14.5px;max-width:72ch;margin-top:4px}
+  .colophon{margin-top:88px;padding-top:18px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--muted);line-height:2}
+  .colophon a{color:var(--accent-ink)}
+  @media (max-width:900px){.wrap{grid-template-columns:1fr;padding:40px 22px 72px}nav{position:static;display:none}.duo{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="t">目 录</div>
+    <a href="#s1">这个技能是什么</a>
+    <a href="#s2">全书骨架 · 十五讲</a>
+    <a href="#s3">方法论总工作流</a>
+    <a href="#s4">七类会议场景</a>
+    <a href="#s5">十大反面模式</a>
+    <a href="#s6">经典案例一览</a>
+    <a href="#s7">目录结构与用法</a>
+  </nav>
+  <main>
+    <div class="kicker">AGENT SKILL OVERVIEW · 机关工作实务丛书之一</div>
+    <h1>怎样开会<span class="en">how-to-run-meetings — 源自《怎样开会》（任仲然 著）</span></h1>
+    <p class="lede">不是书的摘要，而是一套<em>可执行的会议方法论工具箱</em>：从"要不要开这个会"到"会议精神落地"，十五讲提炼为命名框架、判断规则、操作步骤与反面警示——给 AI 装上"会议操作系统"，也给你自己一部按讲次、按主题可检索的办会手册。</p>
+    <div class="stats">
+      <div><b>196</b><span>页扫描版 PDF</span></div>
+      <div><b>15</b><span>讲 · 逐章拆解</span></div>
+      <div><b>94,384</b><span>字 OCR 全文</span></div>
+      <div><b>19</b><span>个技能文件</span></div>
+      <div><b>0</b><span>段抄录原文</span></div>
+    </div>
+
+    <h2 id="s1">这个技能是什么</h2>
+    <p class="sub">双用途设计 · 提炼原则：提取结构，不抄原文</p>
+    <p><b>给 AI 用</b>——筹备会议、主持会议、写讲话稿、做会议总结、组织座谈调研、抓会议精神落实等任务，按书中方法论行事：先判必要性，再精筹备，主持有章法，讲话有金标准，落实有抓手。</p>
+    <p><b>给自己用</b>——SKILL.md 是总纲，十五个章节文件按需加载；glossary 查术语、patterns 查做法、cheatsheet 查判断规则。</p>
+    <p>生成流水线：扫描版 PDF（无文字层）→ AutoClaw OCR 逐页识别 196 页 → 结构分析定位十五讲 → 逐章提炼 → 安全扫描 → 开源发布。框架命名保留作者原话，如"虎头、熊腰、豹尾""两个变成""真—落—实三字经"。</p>
+
+    <h2 id="s2">全书骨架 · 十五讲</h2>
+    <p class="sub">从"为什么开会"到"会议精神的落实"，一条完整闭环</p>
+    <table>
+      <tr><th>讲次</th><th>主题</th><th>核心方法（保留作者原话命名）</th></tr>
+      <tr><td>第一讲</td><td>为什么开会</td><td>制度安排四性 · 必要性判断 · 四重方法论价值</td></tr>
+      <tr><td>第二讲</td><td>会议的筹备</td><td>议程是"筐" · 时机三分类 · 规模就低不就高</td></tr>
+      <tr><td>第三讲</td><td>如何主持会议</td><td>虎头熊腰豹尾 · 整治乱虚扯 · 总结"两个变成"</td></tr>
+      <tr><td>第四讲</td><td>讲话稿的写法</td><td>三个吃透 · 粗纲细纲 · "三用"写作法</td></tr>
+      <tr><td>第五讲</td><td>如何做会议讲话</td><td>讲话三忌 · 金标准 · 多用提纲、站着讲</td></tr>
+      <tr><td>第六讲</td><td>可借鉴不可盲从</td><td>罗伯特规则三组借鉴 · 最简单的会议规矩</td></tr>
+      <tr><td>第七讲</td><td>决策会</td><td>议题四种可能 · 一个制度和三个规矩 · 头脑风暴</td></tr>
+      <tr><td>第八讲</td><td>总结部署会</td><td>总结五方面 · "四个什么"部署法 · "三个性"检验</td></tr>
+      <tr><td>第九讲</td><td>解决问题的会</td><td>问题导向 · "剥竹笋" · 解决问题三步走</td></tr>
+      <tr><td>第十讲</td><td>学习会</td><td>领学法＋两个点评 · 中心发言制 · 务虚与务实对接</td></tr>
+      <tr><td>第十一讲</td><td>座谈会</td><td>毛泽东"三个怎样" · 示弱求真话 · 比对和研判</td></tr>
+      <tr><td>第十二讲</td><td>现场会</td><td>点线面融合 · 擂台赛式 · 下车看现场上车谈体会</td></tr>
+      <tr><td>第十三讲</td><td>视频会和手机会</td><td>纵向延伸默认视频 · 视频调度会 · 应急手机会</td></tr>
+      <tr><td>第十四讲</td><td>会议的宣传</td><td>画龙点睛 · 热身—高潮—纵深 · 防三误区</td></tr>
+      <tr><td>第十五讲</td><td>会议精神的落实</td><td>两个90% · "真—落—实"三字经 · 事化和项目化</td></tr>
+    </table>
+
+    <h2 id="s3">方法论总工作流</h2>
+    <p class="sub">七个环节，任一环节的详细打法都在对应章节文件里</p>
+    <ol class="flow">
+      <li><b>判必要性</b><span>一个人干不了、需许多人共同做的事才开会；电话通知能办成的坚决不开（ch01）</span></li>
+      <li><b>精筹备</b><span>主题先行、议程是筐、时机开在关节点、规模就低不就高（ch02）</span></li>
+      <li><b>会主持</b><span>虎头熊腰豹尾；整治乱虚扯；民主集中三步骤；总结两个变成（ch03）</span></li>
+      <li><b>会讲话</b><span>三个吃透写稿；三忌自查、金标准验收；多用提纲、站着讲（ch04–05）</span></li>
+      <li><b>按场景开</b><span>决策、总结部署、解决问题、学习、座谈、现场、视频/手机——七类各有打法（ch06–13）</span></li>
+      <li><b>做宣传</b><span>画龙点睛；会前热身、会中高潮、会后纵深（ch14）</span></li>
+      <li><b>抓落实</b><span>两个90%精力；事项+项目化；量化与刚性时限（ch15）</span></li>
+    </ol>
+
+    <h2 id="s4">七类会议场景</h2>
+    <p class="sub">何时开哪种会 · 一句话要诀 · 核心方法</p>
+    <table>
+      <tr><th>场景</th><th>一句话要诀</th><th>核心方法</th></tr>
+      <tr><td>决策会</td><td>议题基本成熟上会，讨论充分、慎之又慎</td><td>议题四种可能；一个制度三个规矩；头脑风暴</td></tr>
+      <tr><td>总结部署会</td><td>总结为部署服务，同一口径基调</td><td>总结五方面；"四个什么"；"三个性"验收</td></tr>
+      <tr><td>解决问题的会</td><td>因问题存在而必要，因解决而有意义</td><td>问题导向；"剥竹笋"；定性→症结→要害</td></tr>
+      <tr><td>学习会</td><td>用制度把学习压力传导到每个人</td><td>领学＋点评；中心发言轮流坐庄；务虚对接务实</td></tr>
+      <tr><td>座谈会</td><td>决策的前置工序，关键是让人说真话</td><td>三个怎样；示弱求真话；三类人都请</td></tr>
+      <tr><td>现场会</td><td>生命力在真实可信、可学可复制</td><td>点线面融合；擂台赛式；以面验点防盆景</td></tr>
+      <tr><td>视频会·手机会</td><td>让会议跟着工作走</td><td>纵向默认视频；调度会互动点名；应急手机会</td></tr>
+    </table>
+
+    <h2 id="s5">十大反面模式</h2>
+    <p class="sub">作者反复警示的错误做法——每条都在章节文件里附了"为什么错"</p>
+    <div class="duo">
+      <ul>
+        <li><span class="n">01</span>为开会而开会——没搞清目的的形式聚会</li>
+        <li><span class="n">02</span>主题模糊、议题部门化——夹带私货上会</li>
+        <li><span class="n">03</span>规模盲目求大、规格盲目求高</li>
+        <li><span class="n">04</span>议而不决、虚置的民主——程序齐全不落地</li>
+        <li><span class="n">05</span>念稿"念话"、官腔空洞——把听众念打瞌睡</li>
+      </ul>
+      <ul>
+        <li><span class="n">06</span>突然袭击式决策——临时动议、头脑发热</li>
+        <li><span class="n">07</span>"两层皮"——总结归总结、部署归部署</li>
+        <li><span class="n">08</span>垒盆景的秀场现场会——包装出来的典型</li>
+        <li><span class="n">09</span>和尚念经式学习——照本宣科算学完</li>
+        <li><span class="n">10</span>一开了之——只占10%精力的环节吃掉全部注意力</li>
+      </ul>
+    </div>
+
+    <h2 id="s6">经典案例一览</h2>
+    <p class="sub">全部在章节文件中压缩重述为"背景→做法→结果→可复用的点"</p>
+    <dl class="cases">
+      <dt>全委会主题三度深化<i>ch02</i></dt>
+      <dd>老石筹备地方党委全委会，主题从"解决选人用人"调整为"选好配强领导班子"，最终定为"修复政治生态"——报告、讲话、决定都有了聚焦点和落脚点。主题要反复叩问是否抓住根本症结。</dd>
+      <dt>5000 字提纲打赢一万字讲稿<i>ch04</i></dt>
+      <dd>省农村工作会议部门备了一万字常规稿打不中靶心，老石重写 5000 字提纲突出 7 个重点，少书面语多基层话。讲话长短不重要，讲到关键处才重要。</dd>
+      <dt>为"三农"游说<i>ch05</i></dt>
+      <dd>省农发行工作会议上开场声明"不是来拜年"，替农民、农业、农村说话，条条落到信贷着力点上，讲完深深鞠躬——当年涉农贷款大幅增加。</dd>
+      <dt>黄河瀑布特大凌汛会<i>ch07</i></dt>
+      <dd>深夜到场先组织撤离群众，随即一小时短平快头脑风暴，放弃爆破方案、按自然规律封闭景区、上游水库调控水量——紧急决策也要先集成干部与专家两类信息。</dd>
+      <dt>机上座谈会<i>ch11</i></dt>
+      <dd>百余人考察团返程包机上开座谈：两个议题、每人限五六分钟、超时广播自动中断——不到四十分钟七人发言，小结三分钟。碎片时间也能开出高质量座谈。</dd>
+      <dt>火场手机会<i>ch13</i></dt>
+      <dd>全省六起火情两起未控，老石站在火场开手机会：查明原因、工作队下沉、严禁野外用火、抓住凌晨时机扑救，并连线另一火场现场汇报——部署与核实压进同一通电话。</dd>
+    </dl>
+
+    <h2 id="s7">目录结构与用法</h2>
+    <p class="sub">仓库即技能目录，双击 SKILL.md 从总纲进入</p>
+<pre>
+how-to-run-meetings/
+├── <b>SKILL.md</b>        # 核心框架 + 讲次索引 + 主题索引（入口）
+├── <b>chapters/</b>       # 十五讲逐章拆解（ch01–ch15，按需加载）
+├── <b>glossary.md</b>     # 术语表
+├── <b>patterns.md</b>     # 方法与模式全集
+├── <b>cheatsheet.md</b>   # 决策速查表（最实用的一层）
+├── overview.html    # 本页
+└── README.md
+</pre>
+    <p>对 Agent 说"用怎样开会筹备一场工作部署会"加载总纲；问具体主题（"主持座谈会有什么技巧"）自动定位章节；问 ch03 加载第三讲。姊妹篇：<a href="https://github.com/yxdwind/how-to-research" style="color:var(--accent-ink)">how-to-research（怎样调研）</a>。</p>
+
+    <div class="colophon">
+      源书：《怎样开会》，任仲然著，党建读物出版社（"机关工作实务丛书"第一本）· 本书版权归原作者及出版社所有，本仓库仅含方法论提炼与转述<br>
+      生成：OpenClaw book-to-skill 流水线 · 196 页 OCR（AutoClaw OCR）· 2026-09-15 · 仓库：<a href="https://github.com/yxdwind/how-to-run-meetings">github.com/yxdwind/how-to-run-meetings</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

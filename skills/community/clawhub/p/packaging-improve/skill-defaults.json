@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "packaging-improve",
+  "workflow": "product",
+  "focus": "packaging",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

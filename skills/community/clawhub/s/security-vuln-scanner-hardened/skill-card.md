@@ -1,44 +1,58 @@
-## Description: <br>
-Scan source code for security vulnerabilities and suggest fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan source code for security vulnerabilities and suggest fixes.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and engineers use this skill to review source code for common security vulnerabilities, receive severity-oriented findings, and get focused remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scan reports can expose secrets, vulnerable file paths, line numbers, or exploit-relevant code details. <br>
-Mitigation: Treat scan inputs and outputs as sensitive, redact actual secret values, and keep findings within the conversation or approved internal workflows. <br>
-Risk: Bundling unrelated refactors with a vulnerability fix can introduce regressions in untested code paths. <br>
-Mitigation: Apply focused security fixes only and handle broader cleanup as separate follow-up work. <br>
-Risk: Broad trigger wording could activate the skill when a narrower security review was not intended. <br>
-Mitigation: Invoke the skill with explicit scope such as 'scan this code for vulnerabilities' and confirm large or ambiguous scan requests before proceeding. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan source code for common vulnerability patterns, receive severity-oriented findings, and get focused remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/security-vuln-scanner-hardened) <br>
-- [Publisher Profile](https://clawhub.ai/user/snazar-faberlens) <br>
-- [Faberlens Safety Evaluation](https://faberlens.ai/explore/security-vuln-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON-style vulnerability summaries and code examples when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should redact actual secrets, keep security fixes narrowly scoped, and avoid sending scan results or findings to external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Pattern-based scanning can miss vulnerabilities or report false positives if treated as a complete audit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as lightweight triage and review findings with normal security testing, code review, and dependency scanning before deployment.
+
+Risk: Scan reports can expose passwords, API keys, tokens, connection string credentials, or sensitive vulnerability details.
+
+Mitigation: Redact actual secret values in all outputs and keep source code, findings, and scan summaries within the current authorized review channel.
+
+Risk: Bundling unrelated cleanup with vulnerability fixes can introduce regressions in untested code paths.
+
+Mitigation: Keep remediation scoped to the vulnerable code and track refactoring or cleanup as separate follow-up work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/security-vuln-scanner-hardened)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/security-vuln-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with structured vulnerability findings, severity labels, security scores, and focused remediation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan output should redact actual secret values, avoid external transmission of findings, and keep fixes scoped to vulnerable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

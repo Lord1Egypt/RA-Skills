@@ -1,43 +1,60 @@
-## Description: <br>
-Manage Monday.com workspaces, boards, items, teams, and documents. Create projects, manage tasks and columns, handle team permissions, automate workflows with webhooks, and track portfolio-level analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Monday.com workspaces, boards, items, teams, and documents. Create projects, manage tasks and columns, handle team permissions, automate workflows with webhooks, and track portfolio-level analytics.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Employees, operators, and project teams use this skill to manage Monday.com workspaces, boards, items, teams, documents, webhooks, automations, dashboards, and portfolio analytics from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth-backed access to a connected Monday.com workspace through ClawLink. <br>
-Mitigation: Install only when ClawLink is trusted for the workspace, review OAuth permissions, and use the least-privileged Monday account practical. <br>
-Risk: The skill can perform powerful create, update, archive, delete, webhook, user, and admin actions. <br>
-Mitigation: Confirm the target resource and intended effect before execution, and use preview or read operations first when they reduce ambiguity. <br>
+## Use Case:
 
+External users and workspace administrators use this skill to inspect and manage Monday.com boards, workspaces, items, teams, documents, automations, webhooks, and portfolio data through an agent connected to their Monday.com account.
 
-## Reference(s): <br>
-- [Monday.com API Documentation](https://developer.monday.com/api-reference/) <br>
-- [Monday.com GraphQL API](https://api.monday.com/v2) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Monday.com tool-call names, JSON parameter examples, setup steps, and confirmation guidance for write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill asks users to install and globally enable an unpinned third-party plugin that handles OAuth-backed Monday.com business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin and publisher before installation, and only enable it in environments where that publisher and integration are trusted.
+
+Risk: The connected integration can perform write and delete operations against Monday.com workspaces, boards, items, users, teams, webhooks, and related objects.
+
+Mitigation: Use a least-privilege Monday.com account where possible and confirm every write or delete preview, including the target resource and intended effect, before execution.
+
+Risk: Enabling the plugin persists in OpenClaw configuration until it is removed.
+
+Mitigation: Periodically review enabled OpenClaw tools and remove the plugin when Monday.com access is no longer needed.
+
+## Reference(s):
+
+- [Monday.com API Documentation](https://developer.monday.com/api-reference/)
+- [Monday.com GraphQL API](https://api.monday.com/v2)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline bash commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce read results, write previews, and confirmed Monday.com actions through the connected ClawLink integration.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

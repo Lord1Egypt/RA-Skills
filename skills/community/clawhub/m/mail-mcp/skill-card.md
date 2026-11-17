@@ -1,43 +1,59 @@
-## Description: <br>
-Mail MCP helps agents install and use a mail MCP server to send, search, read, and manage email messages and folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mail MCP helps agents install and use a mail MCP service to send, search, read, and manage emails and mail folders, including attachments.
 
-## Publisher: <br>
-[AdJIa](https://clawhub.ai/user/AdJIa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adjia](https://clawhub.ai/user/adjia)
 
-## Use Case: <br>
-Developers and email automation users use this skill to configure an MCP-accessible mailbox and perform common email workflows such as sending messages, searching mail, handling attachments, and managing folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant an agent broad mailbox control, including sending, forwarding, deleting, moving, and changing folders. <br>
-Mitigation: Use an app-specific or limited mailbox credential and require manual confirmation before any send, forward, delete, move, or folder-changing operation. <br>
-Risk: The install path pulls unpinned remote code for the mail MCP server. <br>
-Mitigation: Review or pin the upstream mail-mcp-server code before installation, and install it in an isolated environment. <br>
-Risk: Mailbox credentials are supplied through environment or local configuration. <br>
-Mitigation: Protect the MCP configuration file, avoid using a primary account password when provider-specific app credentials are available, and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure a mail MCP server and perform email workflows such as sending messages, searching mail, reading messages, and managing folders.
 
-## Reference(s): <br>
-- [Mail MCP server project](https://github.com/AdJIa/mail-mcp-server) <br>
-- [Gmail App Passwords](https://support.google.com/accounts/answer/185833) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell, JSON, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes mailbox configuration guidance, MCP tool examples, and structured error-response examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill installs mutable remote code and the installer uses --break-system-packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted, pinned version of the mail MCP server, prefer an isolated virtual environment, and avoid --break-system-packages.
+
+Risk: The skill handles mailbox credentials that may be stored in plaintext configuration.
+
+Mitigation: Use an app password or a secret manager instead of a primary mailbox password, and limit the mailbox account's privileges where possible.
+
+Risk: The skill can send email and perform destructive or state-changing mailbox actions such as delete, move, and folder management.
+
+Mitigation: Require explicit user confirmation before send, delete, move, or folder-management actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adjia/skills/mail-mcp)
+- [mail-mcp-server project](https://github.com/AdJIa/mail-mcp-server)
+- [Gmail App Password help](https://support.google.com/accounts/answer/185833)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands, JSON configuration examples, and MCP call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include mailbox connection settings, MCP tool arguments, folder names, search filters, recipient lists, and attachment metadata.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

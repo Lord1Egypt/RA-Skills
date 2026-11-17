@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const { emitError } = require('./shareone_client');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -89,6 +90,7 @@ async function uploadMultipartFallback(filePath, filename, contentType, options)
         method: 'POST',
         apiKey: options.apiKey,
         headers: {
+            ...(options.idempotencyKey ? {'Idempotency-Key': options.idempotencyKey} : {}),
             'Content-Type': `multipart/form-data; boundary=${boundary}`,
             'Content-Length': body.length
         }
@@ -103,25 +105,28 @@ function shouldFallbackToMultipart(error) {
 
 async function uploadFile(filePath, options) {
     if (!fs.existsSync(filePath)) {
-        console.error(`Error: File not found: ${filePath}`);
-        process.exit(1);
+        emitError('FILE_NOT_FOUND', filePath);
     }
 
     const credentialMode = await detectCredentialMode();
 
     if (credentialMode.mode === CREDENTIAL_MODE_SUDOWORK_PROXY && options.apiKey) {
-        console.error("ERROR:SUDOWORK_MANAGED_KEY");
-        console.error("Sudowork 模式下不要传 --api-key；请通过本 skill 的 save_api_key.js 或 create_guest_key.js 设置 ShareOne API Key。");
-        process.exit(1);
+        emitError("ERROR:SUDOWORK_MANAGED_KEY", ["Sudowork 模式下不要传 --api-key；请通过本 skill 的 save_api_key.js 或 create_guest_key.js 设置 ShareOne API Key。"].join('\n'));
     }
 
     if (credentialMode.mode !== CREDENTIAL_MODE_SUDOWORK_PROXY && !resolveDirectApiKey(options.apiKey)) {
-        console.error("ERROR:KEY_NOT_FOUND");
-        process.exit(1);
+        emitError("ERROR:KEY_NOT_FOUND");
     }
 
     const filename = options.filename || path.basename(filePath);
     const contentType = options.contentType || getMimeType(filePath);
+
+    // A keyed publish uses one durable creation request across whole-script retries.
+    if (options.idempotencyKey) {
+        const result = await uploadMultipartFallback(filePath, filename, contentType, options);
+        console.log(JSON.stringify(result));
+        return result.share_url;
+    }
 
     try {
         const credential = await requestShareOneJson('/api/v1/files/credential', {
@@ -176,32 +181,55 @@ const options = {
     slug: null,
 };
 
+function usage() {
+    console.error("Usage: node shareone_upload.js <file_path> [--api-key <api_key>] [--base-url <base_url>] [--filename <name>] [--content-type <mime>] [--password <password>] [--watermark <watermark>] [--slug <slug>] [--idempotency-key <key>]");
+}
+
+function nextValue(index, flag) {
+    const value = args[index + 1];
+    if (value === undefined || value.startsWith('--')) {
+        emitError(`ERROR:MISSING_VALUE:${flag}`);
+    }
+    return value;
+}
+
 for (let i = 0; i < args.length; i++) {
     if (args[i] === '--api-key') {
-        options.apiKey = args[++i];
+        options.apiKey = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--base-url') {
-        process.env.SHAREONE_BASE_URL = args[++i];
+        process.env.SHAREONE_BASE_URL = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--filename') {
-        options.filename = args[++i];
+        options.filename = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--content-type') {
-        options.contentType = args[++i];
+        options.contentType = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--password') {
-        options.password = args[++i];
+        options.password = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--watermark') {
-        options.watermark = args[++i];
+        options.watermark = nextValue(i, args[i]);
+        i += 1;
+    } else if (args[i] === '--idempotency-key') {
+        options.idempotencyKey = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--slug') {
-        options.slug = args[++i];
-    } else if (!args[i].startsWith('--')) {
+        options.slug = nextValue(i, args[i]);
+        i += 1;
+    } else if (!args[i].startsWith('--') && !filePath) {
         filePath = args[i];
+    } else {
+        emitError(`ERROR:UNKNOWN_ARGUMENT:${args[i]}`);
     }
 }
 
 if (!filePath) {
-    console.error("Usage: node shareone_upload.js <file_path> [--api-key <api_key>] [--base-url <base_url>] [--filename <name>] [--content-type <mime>] [--password <password>] [--watermark <watermark>] [--slug <slug>]");
-    process.exit(1);
+    usage();
+    emitError('BAD_ARGS', 'Required arguments are missing.');
 }
 
 uploadFile(filePath, options).catch((error) => {
-    printShareOneScriptError(error);
-    process.exit(1);
+    process.exit(printShareOneScriptError(error));
 });

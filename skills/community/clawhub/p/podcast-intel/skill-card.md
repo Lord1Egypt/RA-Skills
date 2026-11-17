@@ -1,42 +1,60 @@
-## Description: <br>
-Transcribes, segments, summarizes, and scores podcast episodes from RSS feeds to generate ranked recommendations and maintain a local consumption diary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Podcast Intel transcribes, segments, summarizes, scores, and recommends podcast episodes from RSS feeds while maintaining a local consumption diary.
 
-## Publisher: <br>
-[nexSpaceiosdev](https://clawhub.ai/user/nexSpaceiosdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexspaceiosdev](https://clawhub.ai/user/nexspaceiosdev)
 
-## Use Case: <br>
-Podcast listeners, researchers, and agents use this skill to turn configured podcast feeds or specific episode URLs into briefings, summaries, relevance scores, and listening recommendations. It can also display a local diary of prior podcast briefings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Podcast audio and transcript text can be sent to OpenAI-compatible services unless local transcription mode is used. <br>
-Mitigation: Use trusted feeds, review OPENAI_BASE_URL before use, and enable local mode when external processing is not appropriate. <br>
-Risk: Transcripts, cached analyses, and listening-history summaries are stored locally and may contain sensitive interests or consumption history. <br>
-Mitigation: Use --dry-run when diary writes are not desired and clear the podcast-intel cache or diary when stored history is sensitive. <br>
+## Use Case:
 
+Podcast listeners, researchers, and developers use this skill to turn subscribed feeds or episode URLs into ranked listening recommendations, concise summaries, and a local record of consumed topics.
 
-## Reference(s): <br>
-- [Podcast Intel ClawHub release](https://clawhub.ai/nexSpaceiosdev/podcast-intel) <br>
-- [OpenAI Whisper API](https://platform.openai.com/docs/guides/speech-to-text) <br>
-- [RSS 2.0 Specification](https://www.rssboard.org/rss-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance, files] <br>
-**Output Format:** [Markdown, JSON, or TTS-ready text; diary entries are stored as JSONL and markdown notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are ranked by worth-your-time scoring and may update local cache, diary, and memory files unless dry-run or cache-only modes are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Podcast audio, transcript excerpts, and derived summaries may be sent to external AI providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted podcast feeds and episode URLs, avoid processing sensitive audio, and review provider settings before enabling API-based transcription or analysis.
+
+Risk: A custom OPENAI_BASE_URL can redirect audio, transcript, and summary data to an endpoint outside the expected provider.
+
+Mitigation: Leave OPENAI_BASE_URL unset unless the endpoint is controlled and trusted.
+
+Risk: Untrusted and model-derived podcast content can be stored in local diary, cache, and memory files.
+
+Mitigation: Use dry_run while evaluating behavior, review generated diary and memory entries before relying on them, and clear local cache or diary files when content should not persist.
+
+## Reference(s):
+
+- [Podcast Intel ClawHub Release](https://clawhub.ai/nexspaceiosdev/skills/podcast-intel)
+- [OpenClaw Skills Documentation](https://openclaw.ai/docs/skills)
+- [OpenAI Whisper API](https://platform.openai.com/docs/guides/speech-to-text)
+- [Podcast Standards (RSS 2.0)](https://www.rssboard.org/rss-spec)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, or TTS-ready text; diary entries are JSONL and memory notes are Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local transcript, segmentation, analysis, cache, diary, and memory files; dry_run avoids diary writes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

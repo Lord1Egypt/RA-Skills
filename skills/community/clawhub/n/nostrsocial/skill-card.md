@@ -1,43 +1,56 @@
-## Description: <br>
-Social awareness for AI entities -- contacts, trust tiers, and identity verification over Nostr. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social awareness for AI entities: contacts, trust tiers, and identity verification over Nostr.
 
-## Publisher: <br>
-[vveerrgg](https://clawhub.ai/user/vveerrgg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vveerrgg](https://clawhub.ai/user/vveerrgg)
 
-## Use Case: <br>
-External developers and operators use this skill to give agents Nostr-based contact awareness, trust tiers, identity verification workflows, and social-graph maintenance guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup guidance may expose the root device secret if it is printed, pasted, or logged. <br>
-Mitigation: Store the device secret in a secure secret manager or encrypted backup, and avoid printing, pasting, or logging it. <br>
-Risk: The skill manages identity-linked relationship data and uses Nostr private key or passphrase material. <br>
-Mitigation: Protect Nostr private keys and passphrases, review the external Python package before providing credentials, and only install in environments where this data handling is acceptable. <br>
+## Use Case:
 
+Developers and operators use NostrSocial to give agents a persistent Nostr-backed social graph for contact tiers, identity verification, conversation context, and relationship maintenance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vveerrgg/nostrsocial) <br>
-- [NostrSocial homepage](https://github.com/HumanjavaEnterprises/nostrsocial.app.OC-python.src) <br>
-- [NostrSocial on PyPI](https://pypi.org/project/nostrsocial/) <br>
-- [NostrKey prerequisite](https://clawhub.ai/vveerrgg/nostrkey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup guidance for sensitive Nostr keys, passphrases, contact data, and relationship-state persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: frontmatter and server release evidence) <br>
+Risk: The first-run example exports and prints the root device secret used for proxy npub derivation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not print or log exported secrets; store the device secret only in a secure secret manager, encrypted backup, or equivalent protected storage.
+
+Risk: Use with real Nostr identities or contacts may expose sensitive identity, relationship, or relay data if configured casually.
+
+Mitigation: Review the skill before installation, use pinned and reviewed package versions, and keep NOSTR_NSEC and NOSTRKEY_PASSPHRASE out of logs and source files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vveerrgg/skills/nostrsocial)
+- [Source homepage](https://github.com/HumanjavaEnterprises/nostrsocial.app.OC-python.src)
+- [PyPI package](https://pypi.org/project/nostrsocial/)
+- [NostrKey prerequisite](https://clawhub.ai/vveerrgg/nostrkey)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Python package setup, optional environment variables, contact-management examples, identity-verification examples, and trust-tier behavior guidance.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter, artifact metadata, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Automates Electron desktop apps such as VS Code, Slack, Discord, Figma, Notion, and Spotify through agent-browser over Chrome DevTools Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Electron desktop apps (VS Code, Slack, Discord, Figma, Notion, Spotify, etc.) using agent-browser via Chrome DevTools Protocol.
 
-## Publisher: <br>
-[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect an agent to local Electron applications, inspect UI state, interact with windows or webviews, fill forms, extract visible data, and capture screenshots for automation or testing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote debugging can give the agent broad control over local Electron apps and access to visible app data. <br>
-Mitigation: Enable CDP only for the specific app and task the user approves, then close the debug-enabled app session when the task is complete. <br>
-Risk: Screenshots and data extraction can expose sensitive content from chats, developer tools, workspaces, password managers, or production accounts. <br>
-Mitigation: Avoid sensitive apps or accounts unless the user explicitly approves the exact app and action, and review screenshot or extraction steps before running them. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect an agent to running Electron desktop applications, inspect app state, interact with UI elements, take screenshots, extract data, and automate testing or operational workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daxiangnaoyang/daxiang-electron) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to produce screenshots, JSON snapshots, or extracted text when agent-browser commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can let an agent inspect and control authenticated Electron desktop apps through debugging ports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted machines, prefer isolated test profiles, and avoid highly sensitive apps.
+
+Risk: Open debugging ports can expose desktop app control if they are reachable beyond the intended local session.
+
+Mitigation: Verify debugging ports are local-only and close the apps or ports after use.
+
+Risk: Runtime npx resolution can execute an unreviewed or changed agent-browser package.
+
+Mitigation: Prefer a pinned or reviewed agent-browser installation before running automation commands.
+
+## Reference(s):
+
+- [Daxiang Electron on ClawHub](https://clawhub.ai/daxiangnaoyang/skills/daxiang-electron)
+- [daxiangnaoyang Publisher Profile](https://clawhub.ai/user/daxiangnaoyang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to launch Electron apps with remote debugging enabled and control authenticated desktop app sessions through local CDP ports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

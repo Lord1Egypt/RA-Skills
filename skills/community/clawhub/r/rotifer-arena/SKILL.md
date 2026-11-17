@@ -1,11 +1,12 @@
 ---
 name: rotifer-arena
 description: >-
-  One-click Gene comparison and evaluation for Rotifer Protocol. Import from ClawHub Skills,
-  local files, or build from scratch — automatically compile, match opponents, run Arena
-  battles, and generate structured Markdown reports.
-  Use when the user mentions "compare", "evaluate", "challenge", "compete", "Arena",
-  "benchmark", "which is better", "Gene comparison", "Skill comparison", "scenario", "reference case".
+  Benchmark Rotifer Genes against each other in the Arena — import from ClawHub / local /
+  scratch, compile, match opponents, run Arena evaluation, and produce a Markdown report with
+  F(g) fitness and V(g) security grades.
+  Invoke explicitly to compare or benchmark Rotifer Genes.
+  Do NOT use for general benchmarking, load testing, or comparing anything that is not a
+  Rotifer Gene or Agent.
 ---
 
 # Rotifer Arena — Gene Comparison & Evaluation
@@ -14,11 +15,23 @@ description: >-
 
 ## Prerequisites
 
-This Skill requires the Rotifer CLI:
+This Skill requires the Rotifer CLI. Check for an installed one first; this
+downloads nothing:
 
 ```bash
-npx @rotifer/playground --version
+rotifer --version
 ```
+
+If `rotifer` is not found, propose an install and wait for the user's approval
+before running it. Each option downloads `@rotifer/playground@0.38.0` from npm:
+`npm i -g @rotifer/playground@0.38.0` puts the `rotifer` binary in npm's global
+prefix, `npm install --save-dev --save-exact @rotifer/playground@0.38.0` keeps it
+in the project (run it as `npm exec -- rotifer`), and
+`npx --yes @rotifer/playground@0.38.0 <command>` runs it from npm's cache without
+installing it. `--yes` only skips npx's own "Ok to proceed?" prompt, which npx
+also skips by itself when its input is not a terminal, as in most assistant
+shells. It is not the approval: the user's approval is the reply to your
+proposal, and it comes before the command runs.
 
 Or use the MCP Server for IDE integration:
 
@@ -27,11 +40,17 @@ Or use the MCP Server for IDE integration:
   "mcpServers": {
     "rotifer": {
       "command": "npx",
-      "args": ["@rotifer/mcp-server"]
+      "args": ["@rotifer/mcp-server@0.20.2"]
     }
   }
 }
 ```
+
+Your MCP host runs this `npx` command when it starts the server, and nothing asks
+first: npx does not prompt when its input is not a terminal, so the first start
+downloads `@rotifer/mcp-server@0.20.2` from npm and runs it. To review it before it ever
+runs, install that version with `npm i -g @rotifer/mcp-server@0.20.2` and use
+`rotifer-mcp-server` as the command, with no `args`.
 
 ---
 
@@ -82,10 +101,42 @@ Output guidance based on fidelity result:
 ### Phase 4: Arena Submit & Compare
 
 ```bash
+rotifer vg <path-to-gene-a>
+rotifer vg <path-to-gene-b>
 rotifer arena submit <gene-a>
 rotifer arena submit <gene-b>
 rotifer arena list --domain <domain>
 ```
+
+`rotifer vg` is where the report's **V(g)** column comes from — it scans a Gene's
+code and returns a grade of A–D, or `?` when there is no `src/` to read (a
+pure-prompt Skill earns `?`, which is not a failing grade and should be
+reported as "no code to scan"). Without this step there is no V(g) to put in
+the table, and a guessed one is worse than an absent one.
+
+To watch the ranking settle after both submissions rather than re-running
+`arena list`:
+
+```bash
+rotifer arena watch <domain>          # live; Ctrl+C to stop
+rotifer arena watch all --interval 10000
+```
+
+It marks each change as new / improved / dropped / eliminated, which is what
+the report's "← new entry" markers are describing.
+
+**If both Genes are already published to Cloud**, two further commands add
+adoption data the Arena does not measure:
+
+```bash
+rotifer compare <gene-a> <gene-b>     # 2–5 published Genes, by reputation and downloads
+rotifer stats <gene-ref>              # download history: 7d / 30d / 90d / all time
+```
+
+Keep the two kinds of comparison apart in the report. `rotifer compare` ranks
+by **reputation and downloads** — how much the ecosystem uses something. The
+Arena run measures **F(g)** — how well it performs. A Gene can lead on one and
+trail on the other, and saying which is which is the point of the report.
 
 Collect evaluation results for both Genes.
 
@@ -95,11 +146,16 @@ Collect evaluation results for both Genes.
 Append at the end: `> Reply "save" to write the report to arena-reports/`.
 When the user replies "save", write to `<project>/arena-reports/<date>-<gene-a>-vs-<gene-b>.md`.
 
+Say what "save" does when you offer it — it creates a file in their project,
+under `arena-reports/`, creating that directory if it is missing. The report is
+shown in full in the conversation first, so saving is a choice rather than the
+only way to read it. Never write it without being asked.
+
 **Report format requirements**:
 
 1. **Title = conclusion**: Use scenario name + both Gene names, not a generic title
 2. **Conclusion first**: Immediately below the title, a `>` blockquote with one-sentence summary of winner and key data
-3. **Concise comparison table**: Only decision-relevant metrics (rank, F(g), V(g), Fidelity, success rate, latency, source), bold the winner
+3. **Concise comparison table**: Only decision-relevant metrics (rank, F(g), V(g), Fidelity, success rate, latency, source), bold the winner. Every number in it must come from a command actually run — F(g) from `arena list`, V(g) from `rotifer vg`, downloads from `rotifer stats`. Leave a cell empty and say why rather than estimating it
 4. **Ranking visualization**: Fixed-width ASCII table showing the full domain ranking, mark new entries with `←`
 5. **Reproduction commands in a standalone bash block**: Pure commands (no comments/output) for easy copy-paste
 6. **No internal references**: No ADR numbers, plan section numbers, or internal version notes
@@ -162,19 +218,41 @@ Skill execution:
 
 ---
 
-## Prerequisites
+## Checklist Before Running
 
 - Project has a `rotifer.json` (if not, guide `rotifer init`)
-- CLI is built (`npm run build` in rotifer-playground)
+- CLI is installed (`rotifer --version`); if not, propose one of the installs under
+  Prerequisites and wait for the user's approval
+- `rotifer doctor` passes — compiling to Native WASM needs esbuild and javy, and
+  without them `rotifer compile` fails in a way that reads like a code error
 - ClawHub imports require network connectivity
+
+---
+
+## What this Skill does on your machine
+
+It has no code of its own — it tells your assistant which `rotifer` commands to
+run. That is why its manifest declares process execution, filesystem read/write
+and outbound network access: every one of those is the CLI acting, not this
+Skill.
+
+| | |
+|---|---|
+| **Runs** | The `rotifer` CLI, pinned to `@rotifer/playground@0.38.0`. If it is not installed, it is downloaded from npm only after you approve the install (see Prerequisites). |
+| **Reads** | Genes and Agent definitions in the current project workspace. |
+| **Writes** | Only what the commands below write — Genes into the project's `genes/`, Agent definitions into `.rotifer/agents/`. Outside the project: the CLI's own state in your home directory (`~/.rotifer/`, `~/.config/rotifer/`); when `rotifer compile` runs, the javy toolchain it calls writes its own caches in your user cache folder; and npm's cache or global prefix when the CLI is installed. |
+| **Sends** | Cloud registry and Arena queries, to the public Rotifer API. Your code is not uploaded unless you run `rotifer publish` yourself. |
+
+Commands that install, publish or overwrite are proposed for your approval
+first, never run silently.
 
 ## Related Skills
 
 | Skill | Relationship |
 |-------|-------------|
-| `gene-dev` | Route here when users need to create a Gene from scratch |
-| `gene-migration` | Route here when the report recommends a fidelity upgrade |
-| `gene-audit` | Suggest running when the report shows low security scores |
+| `rotifer-gene` (dev module) | Route here when users need to create a Gene from scratch |
+| `rotifer-gene` (migration module) | Route here when the report recommends a fidelity upgrade |
+| `rotifer-gene` (audit module) | Suggest running when the report shows low security scores |
 
 ## Constraints
 

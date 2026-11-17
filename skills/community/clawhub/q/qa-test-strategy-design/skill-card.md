@@ -1,40 +1,55 @@
-## Description: <br>
-Helps teams design layered QA test strategies for new projects, iterations, refactors, or urgent fixes by defining risk areas, test scope, methods, resource allocation, and entry and exit criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs risk-based test strategies for new projects and iterations, defining test scope, layered coverage, resources, and project-specific entry and exit criteria.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, test leads, and delivery teams use this skill to turn project context, risk assessment, and requirement analysis into a practical test strategy. It produces guidance for what to test, what not to test, why those choices are appropriate, and how to allocate testing effort. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad testing or planning requests and produce guidance when the user's intent is ambiguous. <br>
-Mitigation: Confirm the request is for QA test strategy design before relying on the output. <br>
-Risk: The skill is written for Chinese-language QA workflows and may be less clear in a non-Chinese team. <br>
-Mitigation: Review or translate the generated strategy with the target team before using it for delivery planning. <br>
+## Use Case:
 
+QA teams and developers use this skill to plan testing for a new project or iteration, prioritizing assessed risks, defining what will and will not be tested, and setting justified release criteria.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-test-strategy-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown test strategy document with risk matrix, scoped test layers, resource plan, and entry and exit criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language QA strategy guidance; review output when activation is ambiguous or when working in a non-Chinese team.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: Installing the broader workflow may bring in additional, unreviewed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review its source and use a pinned, trusted package version before installing.
+
+Risk: Strategy examples could be mistaken for approval to change release or CI/CD settings.
+
+Mitigation: Treat the document as planning guidance and require authorized review before applying operational changes.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-test-strategy-design)
+- [Six Elements of Test Strategy](references/six-elements.md)
+- [Test Strategy Document Template](assets/strategy-doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown test strategy document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes risk and requirement IDs, explicit exclusions, layered testing, resource allocation, and justified entry and exit criteria; does not produce test case tables.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -7,14 +7,22 @@
 # timestamps, so the injected block is KV-cache stable by construction
 # (architecture C3 injection rule).
 #
-# Plan-dir resolution (via resolve-plan-dir.sh):
-#   1. $PLAN_ID env var -> ./.planning/$PLAN_ID/
-#   2. ./.planning/.active_plan
-#   3. Newest ./.planning/<dir>/ by mtime
+# Plan-dir resolution:
+#   0. Explicit plan-dir argument (issue #212, see below)
+#   1. $PLAN_ID env var -> ./.planning/$PLAN_ID/   (via resolve-plan-dir.sh)
+#   2. ./.planning/.active_plan                    (via resolve-plan-dir.sh)
+#   3. Newest ./.planning/<dir>/ by mtime          (via resolve-plan-dir.sh)
 #   4. Legacy: project root
 #
 # Usage:
-#   sh scripts/ledger-summary.sh
+#   sh scripts/ledger-summary.sh [plan-dir]
+#
+# The optional argument is the caller's already-resolved plan directory and
+# wins over self-resolution: inject-plan.sh passes the dir it resolved,
+# because a cwd-based re-resolution here would pair a PWF_PLAN_ROOT-pinned
+# plan's body with the PARENT project's phase counts and agent events — a
+# false termination signal for an autonomous loop. No argument keeps the
+# self-resolution above unchanged.
 #
 # Output block (stable shape):
 #   === RUN LEDGER ===
@@ -24,26 +32,56 @@
 #   agent <name>: <last event type>
 #   ...
 #   ==================
+#
+# When no plan directory is determinable at all (argument names a missing dir,
+# or no argument AND resolve-plan-dir.sh is not next to this script), the block
+# is replaced by a clearly marked unavailable state instead of a confident
+# "phases: 0/0 complete" — see emit_unavailable below.
 
 set -u
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 RESOLVER="${SCRIPT_DIR}/resolve-plan-dir.sh"
+ARG_DIR="${1:-}"
 
-resolve_plan_dir() {
-    plan_dir=""
-    if [ -f "${RESOLVER}" ]; then
-        plan_dir="$(sh "${RESOLVER}" 2>/dev/null)"
-    fi
-    if [ -n "${plan_dir}" ] && [ -d "${plan_dir}" ]; then
-        printf "%s\n" "${plan_dir}"
-        return 0
-    fi
-    printf "%s\n" "."
-    return 0
+# Loud degradation: when the counts below are NOT computable — the caller
+# named a plan dir that is gone, or no dir was passed and the resolver is
+# missing next to this script — emit a clearly marked unavailable block
+# instead of a confident "phases: 0/0 complete" + "in_progress: none", which
+# an autonomous loop would read as its termination signal. Fixed strings
+# only, so the block stays byte-stable (no timestamps, no free text from
+# disk). Exit 0: this feeds hook output and must never error the agent loop.
+emit_unavailable() {
+    printf '=== RUN LEDGER ===\n'
+    printf 'ledger: unavailable (%s)\n' "$1"
+    printf '==================\n'
+    exit 0
 }
 
-PLAN_DIR="$(resolve_plan_dir)"
+PLAN_DIR=""
+if [ -n "${ARG_DIR}" ]; then
+    # The caller already resolved the plan dir; never second-guess it with a
+    # cwd-based re-resolution (that is exactly the parent/child mismatch this
+    # argument exists to prevent). If the named dir is gone, say so.
+    [ -d "${ARG_DIR}" ] || emit_unavailable "plan dir argument does not exist"
+    PLAN_DIR="${ARG_DIR}"
+elif [ -f "${RESOLVER}" ]; then
+    PLAN_DIR="$(sh "${RESOLVER}" 2>/dev/null)"
+    if [ -z "${PLAN_DIR}" ] || [ ! -d "${PLAN_DIR}" ]; then
+        # Explicit selectors are bindings, not hints (issue #237). A rejected
+        # PLAN_ID or PWF_PLAN_ROOT must not fall back to the cwd: this summary
+        # is injected into autonomous turns, so reporting the ROOT plan's
+        # phase counts under a mistyped pin feeds the loop another plan's
+        # termination signal. Degrade loudly, the same way a missing resolver
+        # already does.
+        if [ -n "${PLAN_ID:-}" ] || [ -n "${PWF_PLAN_ROOT:-}" ]; then
+            emit_unavailable "explicit PLAN_ID or PWF_PLAN_ROOT did not resolve"
+        fi
+        PLAN_DIR="."
+    fi
+else
+    emit_unavailable "resolve-plan-dir.sh missing and no plan dir argument"
+fi
 
 if [ "${PLAN_DIR}" = "." ]; then
     PLAN_FILE="./task_plan.md"

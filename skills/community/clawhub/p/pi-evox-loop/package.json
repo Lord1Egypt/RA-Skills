@@ -1,0 +1,35 @@
+{
+  "name": "pi-evox-lab",
+  "version": "0.42.0",
+  "private": true,
+  "description": "Experience-inheritance runtime for coding agents: recall validated fixes, deposit new ones, with a built-in zero-dependency engine (evolver optional) and a controlled experiment harness.",
+  "type": "module",
+  "scripts": {
+    "trap:gbk": "python traps/make_encoding_trap.py",
+    "trap:json": "python traps/make_json_trap.py",
+    "trap:type": "python traps/make_type_trap.py",
+    "trap:crlf": "python traps/make_crlf_trap.py",
+    "trap:readonly": "python traps/make_readonly_trap.py",
+    "trap:nfd": "python traps/make_nfd_trap.py"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "optionalDependencies": {
+    "@earendil-works/pi-coding-agent": "0.74.2",
+    "@evomap/evolver": "2.0.30"
+  },
+  "keywords": [
+    "experience-inheritance",
+    "lessons",
+    "recall",
+    "agent-memory",
+    "prompt-injection-guard",
+    "gene-pool",
+    "skill",
+    "pi-evox",
+    "evolver",
+    "provenance"
+  ]
+}

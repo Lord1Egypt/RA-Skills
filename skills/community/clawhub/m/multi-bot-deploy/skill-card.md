@@ -1,45 +1,59 @@
-## Description: <br>
-OpenClaw 多 Bot 多 Agent 一键搭建技能。根据用户提供的 Bot 名称、职能、模型和飞书凭证，自动完成 Agent 创建、账号配置、路由绑定和验证测试全流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys multiple OpenClaw Feishu bot agents by turning user-provided bot names, roles, model choices, and Feishu credentials into agent creation, account configuration, route binding, gateway restart, and validation steps.
 
-## Publisher: <br>
-[Bacon-123](https://clawhub.ai/user/Bacon-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bacon-123](https://clawhub.ai/user/bacon-123)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create and link multiple Feishu bots by generating OpenClaw agent, channel, credential, binding, gateway restart, and verification steps from user-provided bot details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store Feishu app secrets in OpenClaw configuration. <br>
-Mitigation: Use least-privilege Feishu credentials, avoid sharing production appSecret values in general chat, and confirm how stored secrets can be removed. <br>
-Risk: The skill can change live OpenClaw agent, channel, route binding, and gateway configuration. <br>
-Mitigation: Request a dry run, review the exact planned commands and configuration changes, and approve them before execution. <br>
-Risk: Gateway restart and routing changes can affect active bot traffic. <br>
-Mitigation: Run during an appropriate maintenance window and verify agent lists, bindings, and bot responses after changes. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to set up and connect multiple Feishu bot agents with consistent naming, account configuration, route binding, and validation output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Bacon-123/multi-bot-deploy) <br>
-- [OpenClaw Agents documentation](https://docs.openclaw.ai/cli/agents) <br>
-- [OpenClaw Channels documentation](https://docs.openclaw.ai/cli/channels) <br>
-- [Feishu Open Platform documentation](https://open.feishu.cn/document) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and configuration summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include validation results and next-step guidance for testing the created Feishu bot.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill handles Feishu app credentials and writes them into OpenClaw channel configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled admin environment, avoid pasting secrets into normal chat where possible, and rotate any credentials that may have been exposed.
+
+Risk: The skill changes live OpenClaw agents, route bindings, and gateway state.
+
+Mitigation: Validate bot IDs, roles, model choices, and bindings before execution, keep a configuration backup, and review the resulting agent list and bindings after restart.
+
+Risk: OpenClaw configuration backups can retain Feishu credentials.
+
+Mitigation: Restrict access to backup files and review or remove old backups after deployment.
+
+## Reference(s):
+
+- [OpenClaw Agents documentation](https://docs.openclaw.ai/cli/agents)
+- [OpenClaw Channels documentation](https://docs.openclaw.ai/cli/channels)
+- [Feishu Open Platform documentation](https://open.feishu.cn/document)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks, configuration summaries, and validation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single setup flow that may update OpenClaw agent, Feishu channel, route binding, and gateway state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

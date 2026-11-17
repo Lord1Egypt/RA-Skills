@@ -1,0 +1,4 @@
+interface:
+  display_name: "SearchDock"
+  short_description: "Read Search Console metrics and indexing evidence"
+  default_prompt: "Use $searchdock to check my site's search metrics and indexing issues."

@@ -1,40 +1,57 @@
-## Description: <br>
-Helps OpenClaw users inspect disk usage and clean old backup, temporary, Vim swap, and session files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains OpenClaw installations by inspecting system status, analyzing disk usage, and cleaning old backup, temporary, swap, and session files.
 
-## Publisher: <br>
-[mickey3721](https://clawhub.ai/user/mickey3721) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mickey3721](https://clawhub.ai/user/mickey3721)
 
-## Use Case: <br>
-OpenClaw users and maintainers use this skill to review local OpenClaw storage, identify cleanup candidates, and run guided maintenance for backups, temporary files, session files, and gateway status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Accidental deletion of local OpenClaw backup or temporary files. <br>
-Mitigation: Run the cleanup manually first, inspect the listed files, and approve deletion only after confirming they are no longer needed. <br>
-Risk: Deleting Vim swap files can prevent recovery of unsaved edits. <br>
-Mitigation: Check for active editing sessions and recover or close files before allowing swap-file cleanup. <br>
+## Use Case:
 
+Developers and operators use this skill to perform routine OpenClaw maintenance, recover disk space, and review cleanup candidates before removing stale files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mickey3721/system-cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and maintenance guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local files that should be reviewed before deletion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.json release.version and artifact/package.json) <br>
+Risk: The cleanup script can delete editor swap files automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect listed files before deletion and avoid unattended scheduled runs unless automatic cleanup behavior is acceptable.
+
+Risk: The cleanup script handles filenames unsafely in some paths.
+
+Mitigation: Fix the script to use null-delimited filename handling before routine use.
+
+Risk: The skill is marked suspicious by the authoritative security evidence.
+
+Mitigation: Review the artifact files before installing or running and use the skill only for OpenClaw-specific maintenance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mickey3721/skills/system-cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and maintenance instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that inspect or delete OpenClaw-related files; users should review deletion candidates before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

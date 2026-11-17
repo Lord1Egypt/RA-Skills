@@ -1,0 +1,4 @@
+interface:
+  display_name: "Get Money Mindset"
+  short_description: "Validate ethical AI income ideas with buyer evidence."
+  default_prompt: "Use $get-money-mindset-skill to rank three ethical AI income paths and design a seven-day buyer-validation experiment."

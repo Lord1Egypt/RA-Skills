@@ -1,0 +1,65 @@
+# Fictional example. No real candidate data.
+meta:
+  name: Alex Morgan
+  language: en
+  target_market: uk
+  section_order:
+  - education
+  - experience
+  - projects
+  - skills
+contact:
+  email: candidate@example.com
+  phone: +1 202-555-0147
+education:
+- institution: Example Institute of Technology
+  location: China
+  degree: MSc in Data Science and Business Analytics
+  start: 2021-09
+  end: 2023-06
+  details: 'Coursework: Statistical modeling, databases, experimental design and product
+    analytics. Capstone focused on retail inventory forecasting.'
+- institution: Example University
+  location: China
+  degree: BSc in Information Systems
+  start: 2017-09
+  end: 2021-06
+  details: 'Campus project: Led a four-person team researching campus services; synthesized
+    interviews and built an interactive prototype.'
+experience:
+- org: Example Digital Solutions
+  title: Data Product Analyst
+  start: 2023-07
+  end: present
+  bullets:
+  - 'Requirements: Interviewed operations and support teams to identify recurring
+    order-tracking issues, define metrics and prioritize requests.'
+  - 'Product delivery: Wrote requirements, prototypes and acceptance criteria for
+    an operations dashboard; coordinated three releases with design and engineering.'
+  - 'Data quality: Built SQL and Python checks for missing values, duplicates and
+    unusual changes in daily reports, reducing manual review.'
+  - 'Iteration: Analyzed how new users completed key tasks, translated feedback into
+    improvements and maintained monthly review notes.'
+- org: Example Business Research Studio
+  title: Research Analyst Intern
+  start: 2022-06
+  end: 2022-09
+  bullets:
+  - 'Market research: Compared six competing products across features, pricing and
+    target users using public sources and interview notes.'
+  - 'Project support: Maintained source indexes, checked chart definitions and helped
+    the project manager prepare client presentations.'
+projects:
+- name: CSV Quality Checker
+  description: Built a tool for field validation, duplicate detection and error reporting;
+    documented practical usage examples.
+- name: Product Analytics Notes
+  description: Published guides on user interviews, metric design and experiment reviews,
+    illustrated with small public datasets.
+skills:
+  Tools and methods:
+  - Python, SQL, Excel and Figma; data cleaning, user research, prototyping and basic
+    statistical analysis.
+  Languages and collaboration:
+  - Native Mandarin; working proficiency in English. Document decisions, progress
+    and action items clearly.

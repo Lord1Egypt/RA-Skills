@@ -1,43 +1,59 @@
-## Description: <br>
-Production-grade health monitoring, alerting, and service management for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-grade health monitoring, alerting, and service management for OpenClaw agents. Monitor URLs, auto-restart services, get Telegram alerts, track uptime.
 
-## Publisher: <br>
-[mrsmithai](https://clawhub.ai/user/mrsmithai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrsmithai](https://clawhub.ai/user/mrsmithai)
 
-## Use Case: <br>
-Developers and operators use this skill to set up health checks, uptime tracking, Telegram alerting, and service recovery workflows for OpenClaw agents and related production services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The monitoring loop can persist through cron, launchd, or systemd and run configurable restart commands, including privileged commands. <br>
-Mitigation: Review scripts and services.json before installation, restrict write access to trusted admins, and prefer fixed least-privilege restart wrappers over broad sudo or arbitrary shell snippets. <br>
-Risk: Telegram alerting can send operational details outside the host. <br>
-Mitigation: Use a dedicated bot and restricted chat, avoid sensitive service names or secrets in alert text, and review alert content before enabling notifications. <br>
-Risk: Automatic recovery can repeatedly restart unhealthy services if configuration is too broad or incorrect. <br>
-Mitigation: Set conservative cooldowns and maximum restart attempts, test each restart command manually, and monitor recovery logs after enabling automation. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to set up local health checks, uptime metrics, Telegram alerts, task board tracking, and optional service restart workflows for OpenClaw agent services.
 
-## Reference(s): <br>
-- [Agent Ops Kit ClawHub page](https://clawhub.ai/mrsmithai/agent-ops-kit) <br>
-- [Sample configuration](artifact/references/sample-config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell snippets, JSON configuration examples, and bash/Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an executable health-check script and a sample services.json configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Automatic recovery can run broad configured shell commands on a recurring schedule.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable auto-recovery only after reviewing each restart command, replacing free-form commands with allowlisted commands, restricting configuration edits, and avoiding broad sudo privileges.
+
+Risk: Telegram alerting can expose operational details and depends on bot tokens stored in local configuration.
+
+Mitigation: Protect Telegram credentials with restrictive file permissions or a credential store and avoid sending sensitive incident details in alert text.
+
+Risk: The monitor writes operational logs, state, and metrics under ~/.agent-ops.
+
+Mitigation: Review retention settings, file permissions, and cleanup behavior before running the monitor on production systems.
+
+## Reference(s):
+
+- [Agent Ops Kit ClawHub page](https://clawhub.ai/mrsmithai/skills/agent-ops-kit)
+- [Publisher profile](https://clawhub.ai/user/mrsmithai)
+- [Sample configuration](references/sample-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may lead users to create local configuration, logs, state, and metrics under ~/.agent-ops and to schedule recurring health checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "agy-ppt/source_inventory.schema.json",
+  "title": "AGY PPT source inventory (Phase 12)",
+  "description": "Layer B (deterministic) contract for the source inventory sidecar artifact. AGY (Layer A) decides what the source units are, their labels, and their priority; this schema only defines the shape a Python validator can check structurally. It never stores the confidential source text itself -- only a minimal locator and an optional caller-supplied digest of it. This is additive to, and never referenced from, the frozen project_state.schema.json.",
+  "type": "object",
+  "required": ["schema_version", "project_id", "enabled", "sources", "units"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._-]+$"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "source_grounding.enabled. false (or a missing file) means this project does not use source grounding at all; no traceability/coverage/QA artifact is required."
+    },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "sources": {
+      "type": "array",
+      "description": "The documents/materials the deck is grounded in.",
+      "items": { "$ref": "#/definitions/source" }
+    },
+    "units": {
+      "type": "array",
+      "description": "Stable source units carved out of the sources above.",
+      "items": { "$ref": "#/definitions/unit" }
+    }
+  },
+  "definitions": {
+    "source": {
+      "type": "object",
+      "required": ["source_id", "source_type"],
+      "additionalProperties": true,
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^src_[A-Za-z0-9._-]+$",
+          "description": "Stable, human-debuggable, caller-supplied id. Never an absolute local path and never a random-UUID-only identity."
+        },
+        "source_type": {
+          "type": "string",
+          "description": "e.g. 'pdf', 'docx', 'markdown', 'text', 'transcript', 'generic'. Open vocabulary; AGY supplies it."
+        },
+        "label": { "type": ["string", "null"] },
+        "source_digest": {
+          "type": ["string", "null"],
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "Optional sha256 hex digest for change detection. Never the source text itself."
+        },
+        "metadata": {
+          "type": ["object", "null"],
+          "description": "Minimal necessary metadata only. Credential-shaped keys are rejected by the validator."
+        }
+      }
+    },
+    "unit": {
+      "type": "object",
+      "required": ["unit_id", "source_id", "unit_type", "locator", "priority"],
+      "additionalProperties": true,
+      "properties": {
+        "unit_id": {
+          "type": "string",
+          "pattern": "^su:[A-Za-z0-9._-]+:[a-f0-9]{8,}$",
+          "description": "Deterministic stable id derived from (source_id, locator), e.g. 'su:src_contract:1a2b3c4d'. Resume-safe: recomputing it from the same source_id+locator always yields the same value."
+        },
+        "source_id": { "type": "string", "pattern": "^src_[A-Za-z0-9._-]+$" },
+        "unit_type": {
+          "type": "string",
+          "description": "e.g. 'clause', 'paragraph', 'section', 'figure', 'generic'. Open vocabulary; AGY supplies it."
+        },
+        "locator": { "$ref": "#/definitions/locator" },
+        "title": { "type": ["string", "null"] },
+        "priority": {
+          "type": "string",
+          "enum": ["HIGH", "MEDIUM", "LOW"]
+        },
+        "metadata": { "type": ["object", "null"] }
+      }
+    },
+    "locator": {
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": true,
+      "description": "Extensible source-locator contract. Never an OS absolute file path; a locator describes a position *within* a source document, identified by source_id.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["page", "section", "line_range", "generic"]
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "page" } } },
+          "then": { "required": ["start"], "properties": { "start": { "type": "integer", "minimum": 1 }, "end": { "type": ["integer", "null"], "minimum": 1 } } }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "section" } } },
+          "then": { "required": ["label"], "properties": { "label": { "type": "string", "minLength": 1 } } }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "line_range" } } },
+          "then": { "required": ["start"], "properties": { "start": { "type": "integer", "minimum": 1 }, "end": { "type": ["integer", "null"], "minimum": 1 } } }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "generic" } } },
+          "then": { "required": ["label"], "properties": { "label": { "type": "string", "minLength": 1 } } }
+        }
+      ]
+    }
+  }
+}

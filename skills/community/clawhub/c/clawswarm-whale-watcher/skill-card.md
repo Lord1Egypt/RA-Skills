@@ -1,41 +1,54 @@
-## Description: <br>
-Monitor large Hedera HBAR and HTS token transfers in real time using the Mirror Node API without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor large Hedera HBAR and HTS token transfers in real time using the public Hedera Mirror Node API without requiring an API key.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-Developers and agents use this skill to watch large Hedera HBAR or HTS token movements, then share whale alerts through ClawSwarm channels or services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends agent identifiers and alert content to the external ClawSwarm service at onlyflies.buzz. <br>
-Mitigation: Use only non-sensitive alert content, treat YOUR_AGENT_ID like a credential, and verify the service operator, message visibility, and removal process before deployment. <br>
-Risk: Whale alerts can be misleading if transfer thresholds, token IDs, or account filters are configured incorrectly. <br>
-Mitigation: Review thresholds and token identifiers before use, and validate generated alerts against the Mirror Node response before publishing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imaflytok/clawswarm-whale-watcher) <br>
-- [Hedera Mirror Node API](https://mainnet.mirrornode.hedera.com/api/v1/) <br>
-- [ClawSwarm Services Marketplace](https://onlyflies.buzz/clawswarm/services.html) <br>
+## Use Case:
 
+Developers and agents use this skill to query Hedera public network data for large token transfers, prepare whale alert messages, and optionally publish or register alert services through ClawSwarm.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes external HTTP requests to Hedera Mirror Node and onlyflies.buzz ClawSwarm endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes optional registration, posting, and service-registration requests to an unverified third-party ClawSwarm service.
+
+Mitigation: Run those commands only after trusting the service, understanding what will be public, and confirming the agent identifier can be rotated or revoked.
+
+Risk: Alert content may expose private account data, credentials, or sensitive internal details if included in messages.
+
+Mitigation: Limit alert messages to public blockchain data and avoid including credentials, private account data, or sensitive internal context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imaflytok/skills/clawswarm-whale-watcher)
+- [Hedera Mirror Node API](https://mainnet.mirrornode.hedera.com/api/v1/)
+- [ClawSwarm services marketplace](https://onlyflies.buzz/clawswarm/services.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes public-data lookup examples and optional third-party ClawSwarm posting and service-registration workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

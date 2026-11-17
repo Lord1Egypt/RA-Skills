@@ -1,43 +1,60 @@
-## Description: <br>
-Use whenever the user wants to interact with Figshare - searching public datasets/articles, downloading Figshare files, listing their own articles/collections/projects, creating or updating articles, or uploading files (including large multi-part uploads) via the Figshare v2 REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search Figshare, download public article files, manage account articles, and create or upload Figshare research outputs through the Figshare v2 REST API.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-Developers, researchers, and external users use this skill to search Figshare, download public article files, and automate authenticated article, collection, project, upload, and publishing workflows through the Figshare v2 REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload, update, or publish Figshare account content, and published versions can be hard to reverse. <br>
-Mitigation: Use a Figshare token only when needed, confirm article IDs and filenames with the user, and require explicit confirmation before publishing or modifying account content. <br>
-Risk: The downloader writes remote-provided filenames locally without filename sanitization. <br>
-Mitigation: Download only from trusted Figshare articles or sanitize filenames and use a controlled output directory before running the batch download helper. <br>
+## Use Case:
 
+Developers, researchers, and research-support teams use this skill to discover public Figshare content, download article files, and manage authenticated article, collection, project, upload, and publishing workflows from an agent session.
 
-## Reference(s): <br>
-- [Figshare API reference](https://docs.figshare.com/) <br>
-- [Figshare token management](https://figshare.com/account/applications) <br>
-- [ClawHub listing](https://clawhub.ai/agents365-ai/figshare-skill) <br>
-- [Declared homepage](https://github.com/Agents365-ai/figshare-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and script invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; authenticated account operations require FIGSHARE_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Authenticated helper scripts can create, update, upload, or publish Figshare account content and may expose a Figshare token if run in an unsafe environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privileged Figshare token possible, keep the token out of logs and shared shells, and require explicit user confirmation before account-changing operations.
+
+Risk: The download helper may overwrite local files when saving article files into an existing workspace.
+
+Mitigation: Download into a new or reviewed output directory and sanitize or inspect target filenames before using the helper on valuable workspaces.
+
+Risk: The new-version helper publishes after uploading, which can make the new Figshare version public when that is not intended.
+
+Mitigation: Avoid the new-version helper unless publication is explicitly intended, and review the article ID and file path before execution.
+
+## Reference(s):
+
+- [Skill homepage](https://github.com/Agents365-ai/figshare-skill)
+- [ClawHub skill listing](https://clawhub.ai/agents365-ai/skills/figshare-skill)
+- [Figshare API documentation](https://docs.figshare.com/)
+- [Figshare token management](https://figshare.com/account/applications)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON/curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call bundled shell helpers for Figshare download, upload, and new-version workflows when the user confirms account-changing actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

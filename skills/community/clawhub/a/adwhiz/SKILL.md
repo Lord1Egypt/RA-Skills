@@ -1,7 +1,7 @@
 ---
 name: adwhiz
 description: >
-  Manage Google Ads & Meta (Facebook) Ads from your AI coding tool. 102 MCP
+  Manage Google Ads & Meta (Facebook) Ads from your AI coding tool. 113 MCP
   tools for auditing, creating, and optimizing ad accounts using natural language.
 metadata:
   openclaw:
@@ -18,7 +18,7 @@ metadata:
 
 AdWhiz is a hosted MCP server that connects your AI coding tool to the
 Google Ads API and Meta (Facebook) Graph API through a secure, authenticated
-proxy. It exposes **102 tools** across 7 categories so you can audit, create,
+proxy. It exposes **113 tools** across 7 categories so you can audit, create,
 and manage ad campaigns across both platforms using plain English.
 
 All API calls are authenticated via your personal `ADWHIZ_API_KEY` and routed
@@ -37,7 +37,7 @@ after you link your ad accounts at https://adwhiz.ai/connect.
   status by default. Meta write tools require explicit status parameters.
 - **Mutation logging**: Every mutation is recorded in the `get_operation_log`
   tool for full auditability.
-- **Read-only by default**: 39 of 102 tools are strictly read-only and cannot
+- **Read-only by default**: 44 of 113 tools are strictly read-only and cannot
   modify your accounts.
 - **Confirmation required**: Write tools require user confirmation before
   executing via the agent's standard permission flow.
@@ -45,7 +45,7 @@ after you link your ad accounts at https://adwhiz.ai/connect.
   No code is downloaded or executed on the user's machine beyond the thin
   MCP client wrapper.
 
-## Google Ads Tools (70)
+## Google Ads Tools (80)
 
 ### Account (2 tools) — Read-only
 | Tool | Description |
@@ -53,7 +53,7 @@ after you link your ad accounts at https://adwhiz.ai/connect.
 | `list_accounts` | List all accessible Google Ads accounts (auto-expands MCC child accounts) |
 | `get_account_info` | Get account details (currency, timezone, optimization score) |
 
-### Read (20 tools) — Read-only
+### Read (22 tools) — Read-only
 | Tool | Description |
 |------|-------------|
 | `list_campaigns` | List campaigns with status, type, budget, bidding strategy |
@@ -65,6 +65,8 @@ after you link your ad accounts at https://adwhiz.ai/connect.
 | `list_negative_keywords` | Negative keywords at campaign, ad group, or account level |
 | `list_assets` | Sitelinks, callouts, structured snippets |
 | `list_conversion_actions` | Conversion actions with status, type, category |
+| `list_campaign_conversion_goals` | Which conversion categories each campaign actually **bids** toward — not the same as what it reports |
+| `get_campaign_selective_optimization` | The specific conversion actions a campaign optimizes toward (empty = follows category goals) |
 | `list_budgets` | Campaign budgets with associated campaigns |
 | `list_bidding_strategies` | Portfolio bidding strategies |
 | `list_audience_segments` | Audience targeting criteria |
@@ -77,7 +79,7 @@ after you link your ad accounts at https://adwhiz.ai/connect.
 | `list_labels` | Labels for organizing campaigns, ad groups, ads, keywords |
 | `generate_keyword_ideas` | Keyword ideas with search volume, competition, bid ranges |
 
-### Write (45 tools) — Requires user confirmation
+### Write (47 tools) — Requires user confirmation
 | Tool | Description |
 |------|-------------|
 | `create_campaign` | Create Search, Display, PMax, or Video campaign (starts PAUSED) |
@@ -104,6 +106,8 @@ after you link your ad accounts at https://adwhiz.ai/connect.
 | `unlink_asset_from_campaign` | Unlink asset from a campaign |
 | `create_conversion_action` | Create a conversion tracking action |
 | `update_conversion_action` | Update conversion action name or status |
+| `update_campaign_conversion_goal` | Set whether a campaign bids toward a conversion category (supports `validate_only`; refuses to leave a campaign with no biddable goal) |
+| `set_campaign_selective_optimization` | Narrow a campaign to specific conversion actions, or clear it (supports `validate_only`; rejects REMOVED/HIDDEN actions) |
 | `create_budget` | Create a campaign budget |
 | `update_budget` | Update budget amount or name |
 | `create_bidding_strategy` | Create a portfolio bidding strategy |
@@ -126,6 +130,20 @@ after you link your ad accounts at https://adwhiz.ai/connect.
 | `remove_label` | Remove a label from a campaign, ad group, or ad |
 | `create_asset_group` | Create an asset group for Performance Max campaigns |
 
+### Video Ads (6 tools) — YouTube In-stream, In-feed, Shorts
+Dedicated Video campaign + ad group + asset + ad creation, covering the
+placements Slim (MiniMax) requested daily: In-stream (YouTube videos), In-feed
+(discovery), and Shorts. All campaigns/ads start PAUSED.
+
+| Tool | Description |
+|------|-------------|
+| `create_video_campaign` | Create a Video campaign (channel_type=VIDEO). Configurable placements (YOUTUBE_VIDEOS / YOUTUBE_SHORTS / GOOGLE_VIDEO_PARTNERS) and bidding (TARGET_CPV, TARGET_CPM, MAXIMIZE_CONVERSIONS, etc.) |
+| `create_video_ad_group` | Create an ad group for In-stream or Shorts ads (VIDEO_RESPONSIVE) |
+| `create_in_feed_video_ad_group` | Create an ad group for In-feed (discovery) ads — YouTube home feed, search, sidebar |
+| `create_youtube_video_asset` | Register a YouTube video (URL or ID) as an Asset so ads can reference it. Accepts watch, shorts, embed, youtu.be, and bare-ID formats |
+| `create_video_responsive_ad` | Create a Video Responsive Ad with headline (≤15), long headline (≤90), descriptions (≤90), business name (≤25), CTA (≤10), video asset, and final URLs |
+| `create_in_feed_video_ad` | Create an In-feed (discovery) Video Ad with headline (≤100), descriptions (≤35), and thumbnail variant |
+
 ### Audit (2 tools) — Read-only analysis
 | Tool | Description |
 |------|-------------|
@@ -137,9 +155,9 @@ after you link your ad accounts at https://adwhiz.ai/connect.
 |------|-------------|
 | `run_gaql_query` | Execute a read-only GAQL query against your account (max 1,000 rows, SELECT only) |
 
-## Meta (Facebook) Ads Tools (32)
+## Meta (Facebook) Ads Tools (33)
 
-### Meta Read (15 tools) — Read-only
+### Meta Read (16 tools) — Read-only
 | Tool | Description |
 |------|-------------|
 | `meta_list_ad_accounts` | List all connected Meta ad accounts |
@@ -157,6 +175,7 @@ after you link your ad accounts at https://adwhiz.ai/connect.
 | `meta_get_account_pages` | List Facebook pages available for running ads |
 | `meta_get_change_history` | View recent changes (audit log) — who changed what and when |
 | `meta_get_instagram_media` | List Instagram media with Media V2 IDs for partnership/branded content ads |
+| `meta_get_post_comments` | Read comments on a Facebook/Instagram post or ad post (author, text, like count, reply count; supports pagination and top-level/all filter) |
 
 ### Meta Write (16 tools) — Requires user confirmation
 | Tool | Description |
@@ -166,7 +185,7 @@ after you link your ad accounts at https://adwhiz.ai/connect.
 | `meta_set_ad_set_status` | Pause or activate a Meta ad set |
 | `meta_set_ad_status` | Pause or activate a Meta ad |
 | `meta_create_campaign` | Create a new Meta campaign with objective and budget |
-| `meta_create_ad_set` | Create an ad set with targeting, budget, optimization goal |
+| `meta_create_ad_set` | Create an ad set with targeting (required), optimization goal (required), budget |
 | `meta_create_ad_creative` | Create ad creative with image/video, link, CTA. Supports partnership ads via `source_instagram_media_id` or `object_story_id` |
 | `meta_create_ad` | Create an ad linking an ad set to a creative |
 | `meta_update_campaign` | Update campaign name, budget, end time, spend cap |
@@ -192,7 +211,7 @@ packages are downloaded or executed at runtime.
 {
   "mcpServers": {
     "adwhiz": {
-      "transport": "http",
+      "type": "http",
       "url": "https://mcp.adwhiz.ai/mcp",
       "headers": {
         "Authorization": "Bearer ${ADWHIZ_API_KEY}"
@@ -202,10 +221,24 @@ packages are downloaded or executed at runtime.
 }
 ```
 
+The field is `"type"`, not `"transport"` — verified 2026-08-13 by running
+`claude mcp add --transport http …` and reading back what it writes to
+`~/.claude.json`. The CLI flag is spelled `--transport`; the JSON key it
+produces is `"type"`. Configs using `"transport"` are silently not recognised.
+
+For Claude Code the one-liner is equivalent and less error-prone:
+
+```bash
+claude mcp add --transport http adwhiz https://mcp.adwhiz.ai/mcp \
+  --header "Authorization: Bearer $ADWHIZ_API_KEY"
+```
+
+Omit `--header` to use browser OAuth instead of an API key.
+
 ## REST API (Alternative to MCP)
 
 For platforms that cannot use the MCP protocol (GPT Actions, Dify, Coze, or
-any HTTP-based workflow), AdWhiz also exposes all 102 tools as a standard
+any HTTP-based workflow), AdWhiz also exposes all 113 tools as a standard
 REST API with an OpenAPI 3.1.0 spec:
 
 - **OpenAPI spec**: https://mcp.adwhiz.ai/api/v1/openapi.json
@@ -221,7 +254,7 @@ curl -X POST https://mcp.adwhiz.ai/api/v1/tools/list_campaigns \
 ```
 
 Import the OpenAPI spec URL into any platform that supports OpenAPI actions
-to auto-discover all 102 tools.
+to auto-discover all 113 tools.
 
 ## Quick Install
 

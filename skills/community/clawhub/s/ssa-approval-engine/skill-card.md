@@ -1,43 +1,65 @@
-## Description: <br>
-Approval Engine provides rule-driven multi-level approvals, exception detection, automated recovery strategies, and Discord notification integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Approval Engine provides rule-driven approval workflows, exception detection, automated recovery handling, and Discord notifications for OpenClaw workflows.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Developers and operations teams use this skill to add approval controls, exception monitoring, automated recovery, and Discord alerts to workflow automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary says the rule-evaluation path can execute generated JavaScript. <br>
-Mitigation: Review the rule-evaluation path before installation, use only trusted rule files and trusted approval or context inputs, and remove eval-style execution before broader deployment. <br>
-Risk: The server security guidance identifies under-scoped Discord and logging data flows. <br>
-Mitigation: Restrict Discord channels and bot permissions, avoid sending sensitive customer, order, or complaint details unless approved, and set tight filesystem permissions and retention for local logs and JSON stores. <br>
+## Use Case:
 
+Developers and operations teams use this skill to add configurable business approvals, exception alerts, escalation handling, and recovery workflows around quotation, order, permission-change, and incident processes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjboy007/ssa-approval-engine) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Approval rules configuration](artifact/config/approval-rules.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces approval workflow, exception handling, recovery, notification, and configuration guidance for agent use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Configuration can execute code through evaluated approval trigger expressions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove eval-based expression handling and replace it with a constrained parser or declarative rule evaluator before using the skill in real workflows.
+
+Risk: Approval workflows may be bypassed or completed incorrectly if approver logic is not enforced for every required approver.
+
+Mitigation: Require all configured approvers for parallel approvals and add tests for serial, parallel, rejection, timeout, and escalation paths before production use.
+
+Risk: Discord or webhook notification destinations could send approval or incident details outside approved channels.
+
+Mitigation: Allowlist webhook destinations and channel IDs, keep secrets in environment-managed storage, and rotate any exposed Discord credentials.
+
+Risk: Notification payloads and logs may expose sensitive business, customer, approval, or incident data.
+
+Mitigation: Minimize notification fields, redact sensitive values, and define retention limits for approval records, exception logs, and metrics.
+
+Risk: Local JSON persistence can expose or corrupt approval and exception state if filesystem controls are weak.
+
+Mitigation: Store data files in a restricted directory, enforce least-privilege file permissions, back up state, and monitor failed reads or writes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cjboy007/skills/ssa-approval-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces approval records, exception logs, notification payloads, and recovery status data when installed and invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

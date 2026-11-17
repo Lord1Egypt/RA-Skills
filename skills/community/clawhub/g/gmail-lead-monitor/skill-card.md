@@ -1,42 +1,55 @@
-## Description: <br>
-Monitor a Gmail inbox for new emails matching keywords and send real-time Telegram alerts while starring important messages in Gmail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors a Gmail inbox for unseen messages, sends Telegram alerts with sender, subject, and snippets, and stars messages that match configured keywords.
 
-## Publisher: <br>
-[themsquared](https://clawhub.ai/user/themsquared) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[themsquared](https://clawhub.ai/user/themsquared)
 
-## Use Case: <br>
-Developers, operators, and small teams can use this skill to configure an agent-assisted Gmail monitoring workflow that detects lead, order, or support-related messages and sends Telegram notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email subjects and body snippets may be forwarded to Telegram, exposing mailbox content beyond the Gmail account. <br>
-Mitigation: Use a dedicated private Telegram bot and chat, restrict the monitored mailbox to content suitable for forwarding, and consider removing snippets or alerting only on keyword-matching messages. <br>
-Risk: The local configuration stores a Gmail app password and Telegram bot token in plaintext. <br>
-Mitigation: Protect the configuration file with restrictive filesystem permissions, use a dedicated Gmail app password, and rotate credentials if the host or file may have been exposed. <br>
+## Use Case:
 
+Developers and operators use this skill to configure a Python monitor that watches Gmail for lead, order, or support messages and sends Telegram notifications while marking keyword matches in Gmail.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/themsquared/gmail-lead-monitor) <br>
-- [Google Account security](https://myaccount.google.com/security) <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup guidance and runnable local monitoring code that connects Gmail IMAP to Telegram alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The monitor can forward Gmail message metadata and body snippets to the configured Telegram chat for every unseen message processed, not only keyword matches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or modify alerting behavior before use, keep the Telegram bot private, and avoid mailboxes containing sensitive personal, financial, legal, or regulated information unless forwarding is tightly controlled.
+
+Risk: Gmail and Telegram credentials are stored in a plaintext local configuration file.
+
+Mitigation: Use a dedicated Gmail app password, restrict config file permissions, rotate credentials if exposed, and store the config only on trusted systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/themsquared/skills/gmail-lead-monitor)
+- [Google Account Security](https://myaccount.google.com/security)
+- [Telegram BotFather](https://t.me/BotFather)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and Python code.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runnable monitor can create local config and state files and can send Gmail message metadata and body snippets to Telegram.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,51 @@
-## Description: <br>
-Fetch a single X tweet or X Article with charge-first billing (0.001 USDT/call). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch a single X tweet or X Article with charge-first billing (0.001 USDT/call).
 
-## Publisher: <br>
-[huangkefeng-ai](https://clawhub.ai/user/huangkefeng-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huangkefeng-ai](https://clawhub.ai/user/huangkefeng-ai)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve the text and metadata of a single public X status or the text of a single X Article after billing succeeds. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds a billing API key in the runtime file. <br>
-Mitigation: Remove the embedded key, rotate it, and require the billing API key to be supplied through a protected environment variable before deployment. <br>
-Risk: The runtime can fetch or relay non-X URLs without clear limits. <br>
-Mitigation: Restrict accepted inputs to public X/Twitter status and article URLs before making billing or fetch requests. <br>
-Risk: Submitted URLs may be visible to third-party fetch services. <br>
-Mitigation: Use only public X/Twitter URLs and avoid submitting private, sensitive, or access-controlled content. <br>
-Risk: The skill uses charge-first billing. <br>
-Mitigation: Confirm the billing terms before execution and ensure insufficient-balance handling returns a top-up link before any fetch attempt. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangkefeng-ai/x-single-tweet-article-skill) <br>
+## Use Case:
+
+External users and developers use this skill to retrieve the content of one X status URL or one X Article URL from an agent workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill bundles billing authority and charges before fetching content.
+
+Mitigation: Review pricing and billing behavior before use; remove or rotate the embedded billing credential and require an operator-provided credential.
+
+Risk: The skill sends user identifiers and requested URLs to external services and can fetch arbitrary runtime URLs.
+
+Mitigation: Use it in a constrained environment, add URL validation for expected X URLs, and disclose third-party data sharing before deployment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON object on success; error details and PAYMENT_URL on billing failure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful tweet responses may include text, author, screen name, likes, retweets, views, created_at, and original_url. Article responses include title, full_text, and original_url.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+**Output Type(s):** [Text, JSON]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [JSON object containing fetched tweet or article content; billing failures may emit PAYMENT_URL text on stderr.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches one X status URL or one X Article URL per run; fallback tweet text is capped at 12000 characters and article text at 50000 characters.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

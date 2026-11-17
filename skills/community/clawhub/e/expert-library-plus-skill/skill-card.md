@@ -1,42 +1,58 @@
-## Description: <br>
-Expert Library Plus installs and manages an AI expert library that uses name-based quality anchors for 43+ professional experts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and manages Expert Library Plus, an OpenClaw expert library that uses name-based quality anchors and templates for expert guidance.
 
-## Publisher: <br>
-[kalluche](https://clawhub.ai/user/kalluche) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kalluche](https://clawhub.ai/user/kalluche)
 
-## Use Case: <br>
-Developers and external users use this skill to install, verify, update, and operate the Expert Library Plus prompt library for OpenClaw-style expert workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer writes files under ~/.openclaw/experts and may change an existing local expert library. <br>
-Mitigation: Review the installer and require explicit user confirmation before install, update, rollback, or overwrite actions. <br>
-Risk: Skipping backups can remove the user's rollback protection for an existing expert library. <br>
-Mitigation: Keep backups enabled unless the user intentionally chooses --no-backup. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install, verify, update, and manage an expert library with name templates and cross-platform setup guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kalluche/expert-library-plus-skill) <br>
-- [Expert Library Plus Homepage](https://github.com/kalluche/expert-library-plus) <br>
-- [Expert Library Plus Repository](https://github.com/kalluche/expert-library-plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with step-by-step instructions and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation status, file paths, verification commands, platform notes, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter, release evidence) <br>
+Risk: The installer persistently modifies OpenClaw expert files under ~/.openclaw/experts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing, install only from a trusted location, and keep backups of ~/.openclaw/experts.
+
+Risk: The verifier is invoked through an unsafe shell-based call.
+
+Mitigation: Prefer a fixed installer that invokes the verifier with subprocess.run using an argument list.
+
+Risk: Existing expert or name-library files could be overwritten during installation.
+
+Mitigation: Ask before overwriting user-created expert or name-library files and preserve timestamped backups.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/kalluche/expert-library-plus)
+- [ClawHub skill listing](https://clawhub.ai/kalluche/skills/expert-library-plus-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and file path guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include installation status, verification results, troubleshooting steps, and cross-platform path notes.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter, evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,54 @@
-## Description: <br>
-A local SQL helper for formatting SQL, checking syntax, analyzing query structure and EXPLAIN output, and drafting SQL from natural-language prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local SQL helper for formatting SQL, checking syntax, analyzing query structure, converting simple natural-language requests into SQL, and interpreting PostgreSQL-style EXPLAIN output.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and data engineers use this skill to inspect, format, and reason about SQL locally without database access. It supports PostgreSQL EXPLAIN output and partial MySQL and SQLite analysis, plus template-based natural-language to SQL drafting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL is a draft and may include INSERT, UPDATE, or DELETE statements that could alter real data if run without review. <br>
-Mitigation: Review all generated SQL before execution, especially write operations, and validate it against the target database and permissions model. <br>
-Risk: The artifact README includes an optional external curl download path. <br>
-Mitigation: Prefer the packaged artifact, and use any external download only when the source is trusted and independently verified. <br>
-Risk: Static syntax checks and rule-based EXPLAIN analysis can miss database-specific behavior. <br>
-Mitigation: Treat analysis as advisory and confirm important query plans, indexes, and syntax in the target database environment. <br>
+## Use Case:
 
+Developers and database engineers use this skill to inspect SQL, explain query plans, and draft simple SQL statements while working with PostgreSQL, MySQL-compatible, or SQLite queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/sql-explain-cli) <br>
-- [Artifact README](README.md) <br>
-- [Artifact skill design](SKILL.md) <br>
-- [sqlparse package](https://pypi.org/project/sqlparse/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Plain text, JSON, Markdown-style reports, and SQL snippets from local CLI or Python API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with sqlparse and does not require API keys or network access for normal use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Install instructions may fetch executable Python from a mutable GitHub branch without verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install path before use; prefer the bundled sql_explain.py from the reviewed package, or require a pinned commit and SHA-256 verification before running downloaded code.
+
+Risk: Generated INSERT, UPDATE, and DELETE SQL can change data if executed directly.
+
+Mitigation: Treat generated SQL as a draft and require human review before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/sql-explain-cli)
+- [sqlparse package](https://pypi.org/project/sqlparse/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text, Markdown-style reports, JSON-like diagnostics, SQL snippets, and CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated INSERT, UPDATE, and DELETE SQL should be treated as drafts for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

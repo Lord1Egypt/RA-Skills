@@ -1,0 +1,10 @@
+[Unit]
+Description=gold-tracker 数据抓取与提醒检测（单次运行）
+
+[Service]
+Type=oneshot
+# 替换为实际安装路径
+WorkingDirectory=/path/to/gold-tracker
+ExecStart=/bin/sh examples/run_cycle.sh
+# cron 式无交互环境：这里显式补全 PATH，避免找不到 python3/curl
+Environment=PATH=/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin

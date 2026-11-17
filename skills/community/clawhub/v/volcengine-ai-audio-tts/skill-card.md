@@ -1,37 +1,48 @@
-## Description: <br>
-Text-to-speech generation on Volcengine audio services. Use when users need narration, multi-language speech output, voice selection, or TTS troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates text-to-speech output through Volcengine audio services with voice, language, and format controls.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and content teams use this skill to synthesize speech from text with language, voice, output format, and sample-rate controls on Volcengine audio services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for speech synthesis may be sent to Volcengine and could contain confidential or regulated content. <br>
-Mitigation: Avoid confidential or regulated text unless the user's Volcengine account terms, privacy requirements, and data handling policies allow that use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
+## Use Case:
 
+Developers and external users use this skill to convert text into speech, choose voice and language settings, set audio format parameters, and troubleshoot Volcengine TTS requests.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Text or Markdown with generated audio URL or path and reproducible synthesis parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include audio duration, file size, output format, sample rate, language, and voice selection when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: TTS requests may transmit user-provided text to Volcengine.
+
+Mitigation: Avoid sending confidential text unless the Volcengine account, region, retention, and privacy terms meet the deployment requirements.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with an audio URL or path and reproducible TTS parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include duration and file size when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

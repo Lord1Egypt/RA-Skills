@@ -1,0 +1,6 @@
+{
+  "expression": "0 9 * * 1-5",
+  "timezone": "UTC",
+  "after": "2026-10-26T08:59:00Z",
+  "count": 2
+}

@@ -1,43 +1,58 @@
-## Description: <br>
-Tracks Donald Trump's Truth Social posts by syncing CNN's public archive to a local SQLite database for querying, statistics, and keyword-based market-impact alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Donald Trump's Truth Social posts by fetching CNN's public archive, syncing posts with content into a local SQLite database, and supporting queries, statistics, and market-impact keyword alerts.
 
-## Publisher: <br>
-[laigen](https://clawhub.ai/user/laigen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laigen](https://clawhub.ai/user/laigen)
 
-## Use Case: <br>
-Developers and analysts use this skill to keep a local archive of public Trump Truth Social posts, query post history, review engagement statistics, and surface keyword matches that may warrant attention. Market alerts are simple keyword matches and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sync process retains public Truth Social post content in a local SQLite database. <br>
-Mitigation: Use the skill only when local retention is intended, review the database path, and delete retained files when they are no longer needed. <br>
-Risk: Keyword-based market alerts can be incomplete, noisy, or misleading. <br>
-Mitigation: Treat alerts as review prompts only and verify any market-related interpretation against authoritative sources before acting. <br>
-Risk: Report output appends alert content to a local Markdown file. <br>
-Mitigation: Enable report writing only when persistent reports are desired and periodically review or remove generated report files. <br>
+## Use Case:
 
+Developers and analysts use this skill to maintain a local searchable archive of Trump Truth Social posts, inspect engagement statistics, and generate keyword-based market-impact alerts.
 
-## Reference(s): <br>
-- [CNN Truth Social Archive](https://ix.cnn.io/data/truth-social/truth_archive.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/laigen/trump-truth-social-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, SQL queries, Files] <br>
-**Output Format:** [Plain text status output, optional JSON, Markdown alert reports, SQL examples, and SQLite database files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local SQLite database under ~/.openclaw/workspace/temp and can append Markdown alerts under ~/.openclaw/workspace/reports when report output is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill fetches public social-media archive content and can include post excerpts in generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat report excerpts as untrusted public content and review them before using them in decisions or downstream automation.
+
+Risk: Using a custom JSON source can change the data being stored and analyzed.
+
+Mitigation: Use the default CNN archive unless the replacement --json-url source is trusted.
+
+Risk: The --write-report option creates durable markdown alert files in the local workspace.
+
+Mitigation: Enable --write-report only when persistent alert records are intended.
+
+## Reference(s):
+
+- [CNN Truth Social Archive](https://ix.cnn.io/data/truth-social/truth_archive.json)
+- [ClawHub Skill Page](https://clawhub.ai/laigen/skills/trump-truth-social-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, SQL snippets, optional JSON command output, and optional markdown alert reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates a local SQLite database and can append keyword alert summaries to a markdown report when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

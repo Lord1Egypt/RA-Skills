@@ -1,42 +1,60 @@
-## Description: <br>
-Presentation creation, editing, and analysis for creating, modifying, and inspecting PowerPoint .pptx files, including layouts, comments, and speaker notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PPTX helps agents create, edit, analyze, validate, and convert PowerPoint presentations using HTML-to-PowerPoint and Office Open XML workflows.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, analysts, and content teams use this skill to have an agent create, edit, inspect, and validate PowerPoint presentations. It supports HTML-to-PPTX generation, template-based deck updates, OOXML editing, text inventory, replacement workflows, and thumbnail review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or modify PowerPoint files and may overwrite or clear presentation content when replacement JSON is incomplete or output paths are chosen incorrectly. <br>
-Mitigation: Work in a dedicated folder, keep backups of original decks, review replacement JSON before applying it, and choose output paths carefully. <br>
-Risk: Rendering untrusted HTML or processing untrusted Office files may expose the agent environment to document-processing risks. <br>
-Mitigation: Avoid rendering untrusted HTML or Office files outside a sandboxed environment. <br>
+## Use Case:
 
+Developers, presentation authors, and external users use this skill to create new PowerPoint decks, modify template-based presentations, inspect existing PPTX content, edit OOXML directly, validate presentation structure, replace slide text, and generate thumbnails for visual review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/exceltable-in-ppt-pptx) <br>
-- [HTML to PowerPoint Guide](html2pptx.md) <br>
-- [Office Open XML Technical Reference for PowerPoint](ooxml.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, JSON replacement data, and generated or modified PowerPoint files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local presentation artifacts, thumbnails, extracted inventories, replacement JSON, and validation reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill runs local document-conversion and presentation-editing tools against Office files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted PPTX files or inside a sandboxed workspace where local file access and document conversion are acceptable.
+
+Risk: Some workflows may require system or global dependency installation.
+
+Mitigation: Review install commands before running them, avoid elevated privileges unless necessary, and prefer isolated environments for dependencies.
+
+Risk: Template text replacement can clear slide text when replacement entries are missing.
+
+Mitigation: Keep backups of source presentations, review inventory and replacement JSON before applying changes, and validate thumbnails after modification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/exceltable-in-ppt-pptx)
+- [Artifact skill definition](artifact/SKILL.md)
+- [HTML to PowerPoint Guide](artifact/html2pptx.md)
+- [Office Open XML Technical Reference for PowerPoint](artifact/ooxml.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, code snippets, JSON inventories, HTML or JavaScript slide definitions, and generated or modified PowerPoint-related files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify PPTX files, unpacked OOXML directories, thumbnail images, replacement JSON, inventory JSON, and conversion scripts; workflows may call local Python, Node.js, LibreOffice, and presentation-processing dependencies.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

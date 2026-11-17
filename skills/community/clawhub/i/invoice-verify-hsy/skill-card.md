@@ -1,47 +1,56 @@
-## Description: <br>
-使用慧穗云发票查验 API，根据发票代码、号码、日期和金额等信息查询发票详情。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用慧穗云发票查验 API，根据发票代码、号码、日期和金额等信息查询发票详情。
 
-## Publisher: <br>
-[xiaoyierle](https://clawhub.ai/user/xiaoyierle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoyierle](https://clawhub.ai/user/xiaoyierle)
 
-## Use Case: <br>
-Agents and operators use this skill to verify Chinese VAT invoice details through Huisuiyun from invoice number, date, amount, type, and related fields. It helps summarize whether an invoice check succeeded and return key invoice details from the provider response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice details are sent to the external Huisuiyun provider for verification. <br>
-Mitigation: Use the skill only when authorized to submit the relevant invoice information to Huisuiyun. <br>
-Risk: HSY_AK and HSY_SK are provider credentials used to obtain access tokens. <br>
-Mitigation: Keep the credentials private, provide them through environment variables, and avoid exposing them in prompts, logs, or shared command history. <br>
-Risk: Changing HSY_API_URL can send credentials and invoice data to a nonstandard endpoint. <br>
-Mitigation: Leave HSY_API_URL on the official Huisuiyun endpoint unless the replacement endpoint is fully trusted. <br>
-Risk: The storeFlag request option affects whether provider-side storage is acceptable for the submitted invoice data. <br>
-Mitigation: Set storeFlag according to the user's data retention and provider-storage requirements before making verification requests. <br>
+## Use Case:
 
+External users and developers use this skill to submit invoice details to HuiSuiYun's invoice verification API and summarize validation status and key invoice fields.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoyierle/invoice-verify-hsy) <br>
-- [Huisuiyun invoice check API documentation](https://cdk.huisuiyun.com/docs/%E8%BE%85%E5%8A%A9%E5%8A%9F%E8%83%BD%E6%8E%A5%E5%8F%A3/invoice-check) <br>
-- [Huisuiyun token documentation](https://cdk.huisuiyun.com/docs/%E8%BE%85%E5%8A%A9%E5%8A%9F%E8%83%BD%E6%8E%A5%E5%8F%A3/%E8%8E%B7%E5%8F%96token-%E5%90%8C%E6%AD%A5) <br>
-- [Huisuiyun secret key management](https://huisuiyun.com/account/conf/secretkey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON provider responses with concise text guidance for setup and result interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus HSY_AK and HSY_SK environment variables; HSY_API_URL defaults to the official Huisuiyun endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Invoice details and credentials may be sent to an unintended endpoint if HSY_API_URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave HSY_API_URL unset or pin it to the intended HTTPS HuiSuiYun host, and run the skill only where untrusted users cannot modify environment variables.
+
+Risk: Invoice numbers, dates, amounts, check codes, possible tax identifiers, HSY_AK, and HSY_SK are sensitive data handled by a remote service.
+
+Mitigation: Install only if you trust HuiSuiYun and the publisher, protect HSY_AK and HSY_SK as credentials, and avoid running the skill in shared or untrusted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoyierle/skills/invoice-verify-hsy)
+- [HuiSuiYun invoice check API documentation](https://cdk.huisuiyun.com/docs/%E8%BE%85%E5%8A%A9%E5%8A%9F%E8%83%BD%E6%8E%A5%E5%8F%A3/invoice-check)
+- [HuiSuiYun token API documentation](https://cdk.huisuiyun.com/docs/%E8%BE%85%E5%8A%A9%E5%8A%9F%E8%83%BD%E6%8E%A5%E5%8F%A3/%E8%8E%B7%E5%8F%96token-%E5%90%8C%E6%AD%A5)
+- [HuiSuiYun secret key management](https://huisuiyun.com/account/conf/secretkey)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON responses and concise markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus HSY_AK and HSY_SK environment variables; HSY_API_URL defaults to https://huisuiyun.com.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

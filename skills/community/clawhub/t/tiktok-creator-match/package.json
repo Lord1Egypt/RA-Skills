@@ -1,0 +1,27 @@
+{
+  "name": "tiktok-creator-match",
+  "version": "1.0.0",
+  "description": "按关键词、点赞、类目和市场筛选TikTok带货达人，结合达人互动数据、作品表现数据和带货效果给出合作优先级，找到真正和品类、受众及目标匹配的TikTok达人候选。当用户询问达人匹配、达人筛选、合作候选、获取TikTok视频数据、抓博主作品、看TikTok评论、做市场调研分析、做竞品/对标账号监控、短视频选题调研、评论舆情分析、热点追踪、爆款挖掘时使用。覆盖TikTok运营数据获取场景，提供3个能力：①关键词搜索（可按点赞/相关度排序、发布时间筛选）②博主主页作品获取，按主页链接或用户名批量获取公开作品列表，支持最新/最热排序 ③视频评论抓取，按视频链接或作品 ID 获取评论内容、评论者与互动数据。输出结构化JSON（含作者、互动数据、标签、链接）。",
+  "keywords": [
+    "tiktok",
+    "search",
+    "keyword",
+    "content-analysis",
+    "competitor-analysis"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "search": "node scripts/tiktok/search-cli.js",
+    "post": "node scripts/tiktok/post-cli.js",
+    "comment": "node scripts/tiktok/comment-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/tiktok-skill.git"
+  }
+}

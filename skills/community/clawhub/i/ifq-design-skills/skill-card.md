@@ -1,50 +1,61 @@
-## Description: <br>
-Use this skill when the user asks for an HTML-first visual design deliverable: interactive prototype, slide deck, motion demo, infographic, dashboard, landing page, whitepaper, changelog, business card, social cover, brand system, design critique, multi-variant exploration, or export planning for MP4, GIF, PPTX, PDF, or SVG. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user asks for an HTML-first visual design deliverable: interactive prototype, slide deck, motion demo, infographic, dashboard, landing page, whitepaper, changelog, business card, social cover, brand system, design critique, multi-variant exploration, or export planning for MP4, GIF, PPTX, PDF, or SVG.
 
-## Publisher: <br>
-[peixl](https://clawhub.ai/user/peixl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[peixl](https://clawhub.ai/user/peixl)
 
-## Use Case: <br>
-External users, designers, product teams, and agent operators use this skill to turn natural-language visual design requests into local HTML-first artifacts such as prototypes, decks, dashboards, infographics, social cards, brand systems, critiques, and export-ready source structures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated previews may make optional outbound HTTPS requests for fonts, icons, factual checks, or image assets. <br>
-Mitigation: Review generated HTML before sharing, prefer system or self-hosted assets for sensitive work, and run without browser/network access when external fetching is not acceptable. <br>
-Risk: Optional personal memory or asset indexes can expose sensitive personal data, private local paths, credentials, or customer material through prompts or outputs. <br>
-Mitigation: Keep sensitive material out of optional memory indexes and generated artifacts unless the operator has explicitly approved that use. <br>
-Risk: The skill creates and edits local HTML design artifacts in the active workspace. <br>
-Mitigation: Install only for workflows where workspace file creation is intended, inspect changed files before use, and keep agent filesystem permissions scoped to the active workspace. <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to turn natural-language visual design requests into local HTML-first artifacts, including prototypes, decks, dashboards, infographics, motion demos, brand systems, and export-ready source structures. It routes requests through predefined modes and templates, then reports assumptions, verification evidence, and caveats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/peixl/ifq-design-skills) <br>
-- [ClawDIS homepage](https://github.com/peixl/ifq-design-skills) <br>
-- [Agent compatibility](references/agent-compatibility.md) <br>
-- [Modes](references/modes.md) <br>
-- [Workflow](references/workflow.md) <br>
-- [Verification](references/verification.md) <br>
-- [Asset protocol](references/asset-protocol.md) <br>
-- [Anti-slop preflight](references/anti-ai-slop.md) <br>
-- [Template index](assets/templates/INDEX.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with local HTML, SVG, CSS/JS source files, verification notes, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are workspace-scoped and may include assumptions, caveats, template routes, and export plans; MP4, GIF, PDF, and PPTX automation is not bundled in the ClawHub-safe package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.3 (source: SKILL.md frontmatter, CHANGELOG, clawhub.json, server release evidence) <br>
+Risk: Generated commercial, client-owned, or white-label design work may include IFQ branding, ifq.ai text, links, colophons, or visual marks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for clean-room white-label output and audit generated HTML before delivery.
+
+Risk: Some showcase files may load scripts from unpkg.com.
+
+Mitigation: Avoid opening or reusing showcase files that load remote scripts unless that network execution is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/peixl/skills/ifq-design-skills)
+- [Project homepage](https://github.com/peixl/ifq-design-skills)
+- [Package repository](https://github.com/peixl/ifq-design-clawhub)
+- [README](README.md)
+- [Modes](references/modes.md)
+- [Template index](assets/templates/INDEX.json)
+- [Asset protocol](references/asset-protocol.md)
+- [Verification](references/verification.md)
+- [Anti-slop preflight](references/anti-ai-slop.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [HTML files with Markdown summaries, inline shell commands, and optional export guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local workspace artifacts; optional outbound HTTPS may be used for fact checks, fonts, and legal image assets when available.]
+
+## Skill Version(s):
+
+2.4.3 (source: frontmatter, clawhub.json, package.json, changelog, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

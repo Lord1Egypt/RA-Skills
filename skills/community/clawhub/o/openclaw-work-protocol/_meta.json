@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7796g680kfk0pmj6mq13q8k581dmy3",
+  "name": "OpenClaw Agent Workflow Protocol",
   "slug": "openclaw-work-protocol",
-  "version": "1.3.0",
-  "publishedAt": 1771396320557
+  "version": "1.0.0",
+  "description": "A universal workflow protocol for OpenClaw AI Agents combining Two-Lane Pipeline safety with Anthropic's execution methodology. Features todo-driven execution, incremental progress, active reporting, and autonomous problem-solving.",
+  "author": "OpenClaw Community",
+  "tags": ["openclaw", "agent", "workflow", "todo-list", "productivity", "best-practices", "two-lane-pipeline", "anthropic"],
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/jjjojoj/openclaw-work-protocol"
 }

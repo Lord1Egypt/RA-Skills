@@ -1,40 +1,54 @@
-## Description: <br>
-Integrates ZenTao project management APIs so an agent can query and manage products, projects, executions, stories, tasks, bugs, tests, feedback, and tickets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZenTao Project Management API Integration | 禅道-ZenTao 项目管理 API 集成。Query products, projects, executions, stories, tasks, bugs / 查询产品、项目、执行、需求、任务、缺陷等。
 
-## Publisher: <br>
-[yoyoalphax](https://clawhub.ai/user/yoyoalphax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoyoalphax](https://clawhub.ai/user/yoyoalphax)
 
-## Use Case: <br>
-Developers and project teams use this skill to let an agent retrieve ZenTao project-management records and perform create, update, delete, review, and test-run actions against a configured ZenTao account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform write and delete actions in ZenTao with the configured account. <br>
-Mitigation: Use a least-privilege or read-only ZenTao account when possible and require manual review before create, update, delete, review, or test-run actions. <br>
-Risk: ZenTao credentials are stored in TOOLS.md. <br>
-Mitigation: Protect TOOLS.md and do not commit or share credentials. <br>
+## Use Case:
 
+Developers and project teams use this skill to query and manage ZenTao products, projects, executions, stories, tasks, bugs, tests, feedback, and tickets from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yoyoalphax/yoyoalphax-zentao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables, terminal text, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured TOOLS.md ZenTao account; write operations should be manually reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release metadata) <br>
+Risk: The skill reads ZenTao credentials from TOOLS.md and uses them to authenticate to a ZenTao server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep TOOLS.md out of version control, use HTTPS-only ZenTao URLs, and prefer a least-privilege service account.
+
+Risk: The skill can perform high-impact project-management changes such as create, update, delete, review, and test-run actions.
+
+Mitigation: Require explicit confirmation before any mutating operation and review the target object, account, and ZenTao server before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yoyoalphax/skills/yoyoalphax-zentao)
+- [Publisher profile](https://clawhub.ai/user/yoyoalphax)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text command guidance with tabular query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May issue authenticated ZenTao REST or legacy API operations after credentials are configured.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

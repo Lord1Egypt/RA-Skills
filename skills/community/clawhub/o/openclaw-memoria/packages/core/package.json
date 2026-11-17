@@ -1,0 +1,30 @@
+{
+  "name": "@memoria/core",
+  "version": "0.1.0",
+  "description": "Moteur Memoria — aucune dépendance d'hôte. Schéma gouverné, recall fan-out, capture WAL-first, secrets, audit.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.10.0",
+    "smol-toml": "^1.6.1",
+    "sqlite-vec": "^0.1.9"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13"
+  }
+}

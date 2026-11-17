@@ -38,6 +38,8 @@ npx checkly test-sessions get <session-id> --error-group <error-group-id> --full
 - ✅ Local development iteration
 - ✅ Debugging check failures
 
+The CLI dispatches test sessions through Checkly's asynchronous scheduling API and watches scheduling before collecting results. Scheduling failures now fail fast with the server error instead of waiting for the per-check timeout. With `--detach`, the CLI confirms scheduling reached a terminal state before exiting, so dispatch failures still return non-zero.
+
 ## Command reference
 
 ```bash
@@ -54,6 +56,7 @@ npx checkly test [file-pattern] [options]
 | `--retries=<n>` | Retry failed checks (0-3) |
 | `--config=<path>` | Path to checkly.config.ts |
 | `--verify-runtime-dependencies` | Validate npm package versions |
+| `--refresh-cache` | Force a one-off dependency reinstall for this run |
 | `--env-file=<path>` | Load environment variables from file |
 | `--grep=<pattern>` | Filter checks by name pattern |
 
@@ -61,7 +64,7 @@ npx checkly test [file-pattern] [options]
 
 Use `test-sessions` drilldown commands for recorded sessions after `npx checkly test`, `npx checkly trigger`, CI runs, or Playwright Reporter uploads when you need failure details, result IDs, or error-group context for RCA.
 
-For cancelled or timed-out agentic runs started by `checkly test`, `checkly trigger`, or `checkly pw-test`, inspect the recorded session with the existing commands below; this cancellation handling is backend/runner wiring rather than a separate public `test-sessions` command or flag.
+For cancelled or timed-out runs started by `checkly test`, `checkly trigger`, or `checkly pw-test`, inspect the recorded session with the existing commands below; cancellation handling is backend/runner wiring rather than a separate public `test-sessions` command or flag.
 
 ```bash
 # List recent sessions
@@ -185,10 +188,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '22.13.0'
       
       - run: npm ci
       - run: npx checkly test
@@ -261,6 +264,8 @@ npx checkly test --reporter=json > results.json
 
 # Machine-readable output
 ```
+
+For failed gRPC, SSL, and traceroute monitors, terminal and JSON reporters include type-specific diagnostics when available. Inspect gRPC status/health/metadata, TLS certificate and handshake details, or traceroute hops/latency/packet loss before falling back to generic network troubleshooting.
 
 ## Testing strategies
 

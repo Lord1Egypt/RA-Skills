@@ -48,7 +48,7 @@ Then execute the installer. If the host requires command approval, request appro
 After successful install, continue with these next steps:
 
 1. Get your API Key: direct the user to https://go.okki.ai to sign up and get an `sk-...` key, unless the user already has one.
-2. Configure your key: prefer platform secrets/config when available; otherwise ask before saving to the user-level cache with `printf '%s\n' 'sk-xxxxxxxxxxxxxxxxxxxx' | node scripts/okki-auth.js login --with-api-key`.
+2. Configure your key: prefer platform secrets/config when available; otherwise ask before saving to the user-level cache with `printf '%s\n' 'REDACTED-SECRET' | node scripts/okki-auth.js login --with-api-key`.
 3. Verify without printing the key: run `bash scripts/resolve-api-key.sh --check`.
 4. Prompt the user to restart or open a new assistant session if the install target requires reloading skills.
 
@@ -144,7 +144,7 @@ xargs -0 curl -s -X POST "${OKKIGO_BASE_URL:-https://go.okki.ai}/api/v1/auth/reg
       "termsUrl": "https://go.okki.ai/legal/terms",
       "privacyUrl": "https://go.okki.ai/legal/privacy",
       "channel": "agent",
-      "skillVersion": "1.3.3",
+      "skillVersion": "1.3.4",
       "locale": "en-US",
       "affirmationText": "I have read and agree to the Terms of Service and acknowledge the Privacy Policy."
     }
@@ -171,20 +171,20 @@ Preferred save order:
 2. User-level OKKI Go credential cache on macOS/Linux:
 
 ```bash
-printf '%s\n' 'sk-xxxxxxxxxxxxxxxxxxxx' | node scripts/okki-auth.js login --with-api-key
+printf '%s\n' 'REDACTED-SECRET' | node scripts/okki-auth.js login --with-api-key
 ```
 
 3. Shell profile only for terminal-launched agents when local credentials are not acceptable.
 4. Windows PowerShell user-level environment variable:
 
 ```powershell
-[System.Environment]::SetEnvironmentVariable("OKKIGO_API_KEY", "sk-xxxxxxxxxxxxxxxxxxxx", "User")
+[System.Environment]::SetEnvironmentVariable("OKKIGO_API_KEY", "REDACTED-SECRET", "User")
 ```
 
 5. Windows CMD:
 
 ```cmd
-setx OKKIGO_API_KEY "sk-xxxxxxxxxxxxxxxxxxxx"
+setx OKKIGO_API_KEY "REDACTED-SECRET"
 ```
 
 After saving through platform config or user-level env vars, prompt the user to restart the assistant session. The local credentials file is available immediately to tools that can read user config.

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.preflight_handoff.v1.schema.json",
+  "title": "OpenClaw Safe Update Preflight Handoff",
+  "type": "object",
+  "required": ["schema", "effect", "runtime_effect", "external_effect", "external_write_effect", "production_apply_allowed", "operator_approval", "authoritative", "candidate_root", "source_status_digest", "required_gate_ids", "producer", "consumer", "handoff_status", "preflight_status", "decision_digest", "live_e2e"],
+  "properties": {
+    "schema": {"const": "openclaw.safe_update.preflight_handoff.v1"},
+    "effect": {"const": "read_only_phase_handoff"},
+    "runtime_effect": {"const": "none"},
+    "external_effect": {"const": "none"},
+    "external_write_effect": {"const": "none"},
+    "production_apply_allowed": {"const": false},
+    "operator_approval": {"const": false},
+    "authoritative": {"const": false},
+    "candidate_root": {"$ref": "#/$defs/digest"},
+    "source_status_digest": {"$ref": "#/$defs/digest"},
+    "required_gate_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/gateId"}},
+    "producer": {"$ref": "#/$defs/actor"},
+    "consumer": {"$ref": "#/$defs/actor"},
+    "handoff_status": {"enum": ["ready", "blocked"]},
+    "preflight_status": {"const": "ready_for_operator_plan"},
+    "decision_digest": {"$ref": "#/$defs/digest"},
+    "live_e2e": {"const": "not_run"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "actor": {"type": "string", "minLength": 1, "maxLength": 128},
+    "gateId": {"enum": ["lifecycle-download-evidence", "state-migration-rehearsal", "rollback-evidence", "plugin-sdk-contract", "launcher-service-contract", "permissions-contract", "protocol-contract", "channel-crypto-contract", "environment-matched-rehearsal"]}
+  }
+}

@@ -1,41 +1,58 @@
-## Description: <br>
-Track skill usage across agent sessions by logging invocations to a local JSONL file and generating daily usage summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks skill usage across agent sessions by logging invocations to a local JSONL file and generating daily summaries with top, unused, and trending skills.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers and agent operators use this skill to monitor which skills are invoked, summarize daily usage, identify unused skills, and reset or archive local analytics logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can log raw skill triggers and context across sessions, which may capture sensitive or unnecessary usage details. <br>
-Mitigation: Enable it only when workspace-wide skill monitoring is intended; redact trigger text, limit which skills are logged, restrict access to logs and reports, and define retention and deletion rules. <br>
-Risk: The optional scheduled report can repeatedly process and expose local analytics data. <br>
-Mitigation: Review the report script, destination, and access controls before enabling the cron job. <br>
+## Use Case:
 
+Developers and agent operators use this skill to understand which skills are being invoked, summarize recent activity, find unused skills, and archive or reset local usage logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/heleni-skill-analytics) <br>
-- [Publisher profile](https://clawhub.ai/user/netanel-abergel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown reports, JSONL log entries, and shell or cron snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local analytics artifacts that may include raw trigger text, skill names, timestamps, and context labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Cross-session usage logs can include trigger phrases and context values that contain personal or group details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the log as sensitive, redact raw triggers and personal or group details, set restrictive file permissions, and define retention before deployment.
+
+Risk: Echo-based JSON logging can create malformed records or unsafe shell behavior when populated with untrusted text.
+
+Mitigation: Use a safe JSON-writing helper or serializer, validate each entry, and avoid shell interpolation for raw trigger content.
+
+Risk: The optional cron entry creates persistent reporting behavior through a referenced local script.
+
+Mitigation: Enable cron only after auditing the report script, documenting ownership and removal steps, and confirming the report remains local.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/heleni-skill-analytics)
+- [Publisher profile](https://clawhub.ai/user/netanel-abergel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and JSONL log schema]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local JSONL log entries and daily Markdown usage summaries; optional cron scheduling is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

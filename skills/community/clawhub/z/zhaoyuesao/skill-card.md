@@ -1,42 +1,55 @@
-## Description: <br>
-找月嫂 helps users request matched maternity-care service support by collecting city, due-date, service-period, budget, and verified phone contact details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+找月嫂 helps users in supported Chinese cities request maternity matron services by collecting city, due-date timing, service period, budget, phone number, and SMS verification before submitting a lead.
 
-## Publisher: <br>
-[dj-skillhub](https://clawhub.ai/user/dj-skillhub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dj-skillhub](https://clawhub.ai/user/dj-skillhub)
 
-## Use Case: <br>
-External users looking for yuesao maternity and newborn-care services use this skill to provide appointment details, verify a phone number, and submit a service-matching request to a provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Mainland China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive personal information, including phone number, SMS verification code, due date, city, service period, and budget. <br>
-Mitigation: Confirm the collected details with the user before submission, mask phone numbers in responses, and avoid retaining or exposing raw verification data outside the intended workflow. <br>
-Risk: ClawScan flagged under-disclosed backend routing and logging concerns for the provider workflow. <br>
-Mitigation: Review the ClawHub security guidance before installation and use the skill only when the user is comfortable sending the listed details to the provider. <br>
+## Use Case:
 
+External users use this skill to request maternity matron service matching through a guided lead-submission workflow. The agent gathers service needs, confirms details, verifies the user's phone number by SMS, and submits the request to the service provider.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/dj-skillhub/zhaoyuesao) <br>
-- [Command reference](references/commands.md) <br>
-- [Error handling reference](references/errors.md) <br>
+### Deployment Geography for Use:
 
+China (supported cities)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown-style conversational text with command invocations for the agent to execute] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Collects and confirms appointment details before phone verification; phone numbers should be displayed only in masked form.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The workflow handles sensitive phone and pregnancy-related information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after explicit user confirmation, mask phone numbers in user-facing output, and avoid environments where process logs are retained or shared.
+
+Risk: The security summary identifies logging, endpoint-disclosure, and command-construction risks.
+
+Mitigation: Review the skill before installation and deploy only where those risks are acceptable for a lead-generation workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dj-skillhub/skills/zhaoyuesao)
+- [Command reference](references/commands.md)
+- [Error handling reference](references/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON]
+
+**Output Format:** [Conversational text and markdown confirmations with shell command invocations and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before phone collection and masks phone numbers in user-facing output.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

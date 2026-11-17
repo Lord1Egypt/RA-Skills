@@ -1,41 +1,54 @@
-## Description: <br>
-Medical clinical case generator for education with PubMed RAG and OSCE evaluations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Medical clinical case generator for education with PubMed RAG and OSCE evaluations.
 
-## Publisher: <br>
-[shuwanito](https://clawhub.ai/user/shuwanito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuwanito](https://clawhub.ai/user/shuwanito)
 
-## Use Case: <br>
-Educators, clinical training teams, and medical education content authors use this skill to draft clinical cases, differential diagnosis prompts, OSCE scenarios, competency tracking outputs, and source-cited findings for learning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical education drafts may contain incorrect citations, differential diagnoses, clinical facts, confidence scores, or OSCE rubrics. <br>
-Mitigation: Verify all medical content against trusted medical sources before educational or operational use. <br>
-Risk: Users may enter real patient identifiers or sensitive learner records while generating cases or assessments. <br>
-Mitigation: Use de-identified or synthetic inputs and avoid entering sensitive patient or learner data. <br>
+## Use Case:
 
+Educators, clinical training teams, and agent users use this skill to generate educational clinical cases, differential diagnosis material, OSCE scenarios, competency tracking outputs, and source-cited findings.
 
-## Reference(s): <br>
-- [Skill homepage](https://github.com/Shuwanito/SkillsMP/tree/main/.claude/skills/nexus-clinical-case-gen) <br>
-- [ClawHub skill page](https://clawhub.ai/shuwanito/nexus-clinical-case-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with confidence scores, source citations, severity labels, and scored proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include clinical cases, differential diagnoses, OSCE scenarios, competency tracking notes, confidence scores, source citations, and impact/effort priority scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and release evidence) <br>
+Risk: Generated medical cases, citations, or findings could be mistaken for clinical advice for real patients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only as an educational case-generation aid and verify medical content with qualified sources.
+
+Risk: Source lookup or generated citations may be incomplete or insufficient for medical training use.
+
+Mitigation: Require cited sources, confidence scores, and at least two independent sources before relying on generated material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuwanito/skills/nexus-clinical-case-gen)
+- [Project homepage](https://github.com/Shuwanito/SkillsMP/tree/main/.claude/skills/nexus-clinical-case-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text with confidence scores, source citations, severity classifications, and ranked proposals.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational medical case-generation content; users should verify medical outputs with qualified sources.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Find and rank Kubernetes cost-saving opportunities from kubectl, metrics-server, kube-state-metrics, and cloud billing, including right-sizing, idle resource cleanup, autoscaling, node strategy, and purchase-plan recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds and ranks Kubernetes cost-saving opportunities from kubectl, metrics-server, kube-state-metrics, and cloud billing, then produces savings estimates, YAML patches, and implementation guidance for EKS, GKE, and AKS.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, platform engineers, DevOps teams, and FinOps practitioners use this skill to audit EKS, GKE, and AKS clusters, estimate monthly savings, and prepare Kubernetes cost-optimization recommendations with YAML patches or implementation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated kubectl commands, YAML patches, delete actions, scale-to-zero steps, or PV migration plans could disrupt production workloads if applied without review. <br>
-Mitigation: Treat all generated operational changes as proposals, confirm the target cluster and account, and route changes through normal production change review before applying them. <br>
-Risk: Billing exports, cluster inventories, and metrics may contain sensitive infrastructure or cost data. <br>
-Mitigation: Provide redacted or read-only cluster and billing data where possible, and avoid sharing secrets, credentials, or unnecessary account details. <br>
-Risk: Savings-plan, committed-use, or reservation recommendations can create financial commitments. <br>
-Mitigation: Have cloud finance or FinOps owners review purchase recommendations against current commitments and post-optimization baseline usage before buying. <br>
+## Use Case:
 
+Developers, platform engineers, and FinOps teams use this skill to audit Kubernetes clusters, prioritize cost reductions, and prepare safe rollout plans for right-sizing, autoscaling, storage, load balancer, node-pool, spot, and commitment changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/k8s-cost-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with tables, YAML patches, kubectl commands, implementation plans, and report sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include estimated monthly savings, effort and risk ratings, and cloud-provider-specific Kubernetes recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated kubectl, YAML, deletion, scaling, spot-migration, or savings-plan recommendations may affect production workloads or cloud spend if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each recommendation before use and apply changes through normal change control, canaries, monitoring, and rollback plans.
+
+Risk: Cluster metrics and billing exports can expose sensitive infrastructure and cost information.
+
+Mitigation: Provide only approved data, redact secrets and sensitive identifiers, and limit shared exports to the scope needed for cost analysis.
+
+Risk: Cost estimates and right-sizing recommendations can be misleading when based on short or unrepresentative metrics windows.
+
+Mitigation: Use at least 30 days of representative data when possible and validate recommendations against production safety constraints before rollout.
+
+## Reference(s):
+
+- [K8s Cost Optimizer on ClawHub](https://clawhub.ai/charlie-morrison/skills/k8s-cost-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with YAML patches and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ranked recommendations, monthly savings estimates, implementation plans, and safety gates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

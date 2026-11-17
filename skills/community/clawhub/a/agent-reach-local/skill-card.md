@@ -1,43 +1,58 @@
-## Description: <br>
-Agent Reach Local gives an AI agent command guidance for searching, reading, configuring, and interacting with web, social, video, code, RSS, and article platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gives an AI agent commands and setup guidance to search, read, and interact with web, social, video, code, RSS, and article sources across multiple platforms.
 
-## Publisher: <br>
-[larry-at](https://clawhub.ai/user/larry-at) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larry-at](https://clawhub.ai/user/larry-at)
 
-## Use Case: <br>
-Developers and agent users use this skill to route online research, URL reading, platform search, channel setup, and supported account interactions through existing command-line tools and platform connectors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require social-platform cookies or authenticated browser state. <br>
-Mitigation: Use a dedicated account or browser profile, avoid storing raw cookies where possible, and review account access before installation. <br>
-Risk: The skill includes workflows that can post, comment, publish, or otherwise act through live accounts. <br>
-Mitigation: Require explicit user confirmation before any post, comment, publish, or other account-changing action. <br>
-Risk: The skill describes an anti-bot bypass workflow for reading some content. <br>
-Mitigation: Do not use anti-bot bypass steps on services where they violate terms, account rules, or organizational policy. <br>
+## Use Case:
 
+Developers and agent users use this skill to let an agent retrieve information from supported online platforms, inspect shared URLs, run searches, and configure platform-specific channels.
 
-## Reference(s): <br>
-- [Agent Reach homepage](https://github.com/Panniantong/Agent-Reach) <br>
-- [Agent Reach install guide](https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that call external services and account-authenticated platform tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide an agent to access social platforms, web services, and third-party readers using cookies, profiles, proxies, or login setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before cookie use, login setup, proxy configuration, browser-profile access, or third-party URL reader use.
+
+Risk: Some setup paths rely on mutable remote instructions or package installation commands.
+
+Mitigation: Review fetched install instructions and package commands before execution, and prefer isolated environments for new tools.
+
+Risk: The skill includes commands for public posting or interaction on supported platforms.
+
+Mitigation: Require explicit approval for each posting, commenting, publishing, or other account-affecting action.
+
+## Reference(s):
+
+- [Agent Reach Homepage](https://github.com/Panniantong/Agent-Reach)
+- [Agent Reach Install Guide](https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce platform-specific commands, setup steps, diagnostics, API/tool calls, and content retrieval guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

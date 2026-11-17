@@ -1,0 +1,17 @@
+{
+  "name": "harness-director",
+  "version": "2.0.0",
+  "description": "Harness AI 导演工作台 8 大视频智能体：爆款链接 1:1 复刻、原视频二创、图文解说、数字人口播、双人对话剧情、3D 预演、合成剪辑、合规审核。下载注册即赠体验积分，生成失败自动全额退。当用户提到生成视频、出片、带货视频、爆款复刻、数字人、口播视频、双人对话、合成剪辑、视频合规检查等需求时使用此技能。",
+  "homepage": "https://aidaoyan66.online",
+  "tags": [
+    "video",
+    "ecommerce",
+    "social-media",
+    "ai-director",
+    "content-creation"
+  ],
+  "author": {
+    "name": "Harness AI 导演工作台"
+  },
+  "license": "MIT"
+}

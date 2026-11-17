@@ -1,46 +1,65 @@
-## Description: <br>
-Complete DevOps toolkit for AI-assisted software development, covering release pipelines, license compliance, copyright enforcement, repository visibility guards, identity file protection, manifest reconciliation, and MCP-callable core tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete DevOps toolkit for AI-assisted software development, including release pipeline, license compliance, copyright enforcement, repository visibility guard, identity file protection, manifest reconciliation, and MCP-callable core tools.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and AI-assisted engineering teams use this toolbox to install and operate release, repository governance, license compliance, private-to-public sync, and agent hook or MCP workflows across local development environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The toolbox can make broad persistent changes to a local developer environment, including global tools, hooks, MCP servers, OpenClaw plugins, and agent configuration. <br>
-Mitigation: Run dry-run or preview commands first, review every planned change with the user, and proceed only after explicit approval. <br>
-Risk: Bundled private and browser-automation materials may expose sensitive development context or authenticated browser sessions. <br>
-Mitigation: Review bundled ai/ and gstack-private contents before installation, and avoid cookie import features on personal or production accounts unless authenticated automation is explicitly intended. <br>
-Risk: Some workflows can publish externally, interact with GitHub or npm, require OAuth or sensitive credentials, and may make purchases or use wallet-related capabilities. <br>
-Mitigation: Use least-privilege credentials, confirm target repositories and registries before release or sync operations, and keep external publishing behind explicit human approval. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to guide agents through installing and operating AI DevOps tooling for releases, repository management, license checks, identity-file protection, and safe private-to-public publishing workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/parkertoddbrooks/wip-ai-devops-toolbox) <br>
-- [Project Homepage](https://github.com/wipcomputer/wip-ai-devops-toolbox) <br>
-- [README](README.md) <br>
-- [Technical Overview](TECHNICAL.md) <br>
-- [Universal Interface Specification](UNIVERSAL-INTERFACE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and code-oriented instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to run local CLI, npm, git, gh, hook, MCP, or installer commands after dry-run and user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: server release evidence, SKILL.md metadata, and package.json) <br>
+Risk: Persistent hooks, global CLIs, user-scope MCP servers, and release tools can change developer environments and repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted workspaces, run documented dry-runs first, and review enabled hooks and MCP servers before granting repository or publishing access.
+
+Risk: Confirmed unsafe shell-command paths can be risky on untrusted repositories.
+
+Mitigation: Avoid using the affected installer and license-scanning paths on untrusted code until command execution is hardened with argument-vector execution.
+
+Risk: Bundled browser-cookie tooling may read local browser session cookies into automation.
+
+Mitigation: Do not load or use cookie-import features unless that behavior is explicitly intended; prefer isolated browser profiles for automation.
+
+Risk: Repository, release, npm, GitHub, and publishing workflows can act with the user's existing credentials.
+
+Mitigation: Use least-privilege credentials, inspect dry-run output, and require explicit approval before real publish, sync, or release operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/parkertoddbrooks/skills/wip-ai-devops-toolbox)
+- [Project Homepage](https://github.com/wipcomputer/wip-ai-devops-toolbox)
+- [Technical Documentation](TECHNICAL.md)
+- [Universal Interface Spec](tools/wip-universal-installer/SPEC.md)
+- [Dev Guide](DEV-GUIDE-GENERAL-PUBLIC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agent actions across installation, release, compliance, repository-management, and guard workflows.]
+
+## Skill Version(s):
+
+1.9.72 (source: server release, SKILL.md frontmatter, package.json; released 2026-04-21)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

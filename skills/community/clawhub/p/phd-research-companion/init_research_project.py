@@ -1,206 +1,221 @@
 #!/usr/bin/env python3
 """
-PhD Research Project Initializer - Creates complete research environment
-Quick setup for systematic academic research workflow with scientific traceability support.
+PhD Research Project Initializer
+
+Creates the full research environment. The project is created exactly at
+--output; all generated artifacts live in their documented subdirectory
+(dashboard files go to 00-dashboard/, not the project root).
 
 Usage:
-    python init_research_project.py --domain "network traffic fingerprint" --journal "IEEE TIFS" --output ./my-project
+    python init_research_project.py -d "mirror descent vs diagonal GD" \
+        -j JMLR --track theory -o ./my-project
 """
 
+from __future__ import annotations
+
 import argparse
-import os
+import json
+import sys
 from datetime import datetime
 from pathlib import Path
 
+VERSION = "2.4.0"
 
-def create_directory_structure(output_dir: Path):
-    """Create comprehensive research project structure with subdirectories."""
-    
-    directories = [
-        "00-dashboard",
-        "01-literature-survey", 
-        "02-methodology-dev",
-        "03-paper-drafting",
-        "04-experiments",
-        "05-revision-rounds",
-        "06-collaboration", 
-        "07-audit-trail"
-    ]
-    
-    print(f"\n📁 Creating directory structure at {output_dir}/")
-    
-    for d in directories:
-        (output_dir / d).mkdir(parents=True, exist_ok=True)
-        print(f"  ✅ Created: {d}/")
+DIRECTORIES = [
+    "00-dashboard",
+    "01-literature-survey",
+    "02-methodology-dev",
+    "03-paper-drafting",
+    "04-experiments",
+    "05-revision-rounds",
+    "06-collaboration",
+    "07-audit-trail",
+]
+
+TRACK_EXTRA = {
+    "theory": ["02-methodology-dev/proofs", "02-methodology-dev/certificates"],
+    "empirical": ["04-experiments/results", "04-experiments/configs"],
+}
 
 
-def create_dashboard_index(project_name: str, domain: str, journal: str, output_dir: Path):
-    """Generate project overview HTML dashboard."""
-    
-    html_content = f"""<!doctype html>
-<html lang="en-US"><head><meta charset="UTF-8"><title>{project_name} - Dashboard</title>
-<style>body{{font-family:Arial,sans-serif;padding:40px;background:#f5f5f5}} .container{{max-width:1200px;margin:0 auto;background:#fff;padding:30px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1)}} 
-h1{{color:#2c3e50}} .stats{{display:flex;gap:20px;margin:20px 0}} .stat-card{{background:#3498db;color:white;padding:20px;border-radius:6px;flex:1;text-align:center}} 
-.stat-number{{font-size:2.5em;font-weight:bold}}table{{width:100%;border-collapse:collapse;margin:20px 0}} 
-th,td{{padding:12px;text-align:left;border-bottom:1px solid #ddd}} th{{background:#ecf0f1}}</style></head>
-<body><div class="container">
-<h1>🎓 Research Project Dashboard</h1>
-<p><strong>Domain:</strong> {domain}</p>
-<p><strong>Target Journal:</strong> {journal}</p>  
-<p><strong>Created:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M')}</p>
+def slugify(text: str) -> str:
+    s = "".join(c if c.isalnum() else "-" for c in text.strip().lower())
+    while "--" in s:
+        s = s.replace("--", "-")
+    return s.strip("-") or "research-project"
 
-<h2>📊 Project Statistics</h2>
-<div class="stats">
-  <div class="stat-card"><div class="stat-number">0</div><div>Papers in Survey</div></div>
-  <div class="stat-card"><div class="stat-number">0</div><div>Experiments Designed</div></div>  
-  <div class="stat-card"><div class="stat-number">0/6</div><div>Revision Rounds</div></div>
-  <div class="stat-card"><div class="stat-number">0</div><div>Days Progress</div></div>
-</div>
 
-<h2>📋 Quick Action Links</h2>
+def create_structure(output_dir: Path, track: str) -> list[str]:
+    made = []
+    for d in DIRECTORIES + TRACK_EXTRA.get(track, []):
+        p = output_dir / d
+        p.mkdir(parents=True, exist_ok=True)
+        made.append(d)
+    return made
+
+
+def write_dashboard(output_dir: Path, domain: str, journal: str, track: str) -> Path:
+    created = datetime.now().strftime("%Y-%m-%d %H:%M")
+    html = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{domain} - research dashboard</title>
+<style>
+body {{ font-family: system-ui, sans-serif; margin: 0; padding: 32px; background: #f4f5f7; color: #1c1c1c; }}
+.container {{ max-width: 1080px; margin: 0 auto; background: #fff; padding: 28px; border-radius: 10px; }}
+h1 {{ font-size: 22px; margin-top: 0; }}
+h2 {{ font-size: 17px; margin-top: 28px; }}
+.stat {{ display: inline-block; min-width: 150px; margin: 8px 16px 8px 0; padding: 14px; background: #eef2f7; border-radius: 8px; }}
+.stat .n {{ font-size: 24px; font-weight: 600; }}
+.stat .l {{ font-size: 12px; color: #555; }}
+table {{ width: 100%; border-collapse: collapse; margin-top: 12px; }}
+th, td {{ padding: 10px; text-align: left; border-bottom: 1px solid #e2e2e2; font-size: 14px; }}
+th {{ background: #f0f2f5; }}
+code {{ background: #f2f2f2; padding: 1px 5px; border-radius: 3px; }}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>{domain}</h1>
+<p><strong>Target venue:</strong> {journal} &nbsp;|&nbsp;
+<strong>Track:</strong> {track} &nbsp;|&nbsp; <strong>Created:</strong> {created}</p>
+
+<h2>Status</h2>
+<div class="stat"><div class="n" id="papers">0</div><div class="l">papers in survey</div></div>
+<div class="stat"><div class="n" id="rounds">0/5</div><div class="l">revision rounds</div></div>
+<div class="stat"><div class="n" id="claims">0</div><div class="l">claims in ledger</div></div>
+
+<h2>Modules</h2>
 <table>
-  <tr><th>Module</th><th>Latest File</th><th>Status</th></tr>  
-  <tr><td>Literature Survey (01)</td><td>-</td><td>⏳ Awaiting data</td></tr>
-  <tr><td>Methodology Dev (02)</td><td>-</td><td>🔨 Developing</td></tr>  
-  <tr><td>Paper Drafting (03)</td><td>-</td><td>🚀 Ready to start</td></tr>
-  <tr><td>Experiments (04)</td><td>-</td><td>📝 Configure next</td></tr>
+<tr><th>Directory</th><th>Purpose</th></tr>
+<tr><td><code>01-literature-survey/</code></td><td>BibTeX + PDFs + search summaries</td></tr>
+<tr><td><code>02-methodology-dev/</code></td><td>Theorems, proofs, certificates</td></tr>
+<tr><td><code>03-paper-drafting/</code></td><td>LaTeX sources</td></tr>
+<tr><td><code>04-experiments/</code></td><td>Design YAML + results</td></tr>
+<tr><td><code>05-revision-rounds/</code></td><td>Revision history + evidence</td></tr>
+<tr><td><code>06-collaboration/</code></td><td>Advisor and peer feedback</td></tr>
+<tr><td><code>07-audit-trail/</code></td><td>Traceability logs</td></tr>
 </table>
 
-<h2>🔬 Research Focus Areas</h2>  
-<ul>
-<li><strong>Network Traffic Classification:</strong> Deep packet analysis, behavioral fingerprinting</li>
-<li><strong>Evasion Detection:</strong> Encrypted traffic, obfuscation identification techniques</li>  
-<li><strong>Fingerprint Features:</strong> Flow statistics, packet timing, payload patterns</li>
-<li><strong>Machine Learning Approaches:</strong> CNN, RNN, graph neural networks for traffic analysis</li>
-</ul>
+<h2>Next commands</h2>
+<pre>
+python run.py search -q "{domain}" -s arxiv dblp -l 30 -o 01-literature-survey
+python run.py template -j {journal} --track {track} -o 03-paper-drafting
+python run.py ledger --init 02-methodology-dev
+python run.py check -p .
+</pre>
 
-<hr><p style="color:#888;font-size:0.9em">Generated by PhD Research Companion v1.5.0 - Systematic research tracking tool</p></div></body></html>
+<p style="color:#777;font-size:12px">Generated by phd-research-companion {VERSION}</p>
+</div>
+</body>
+</html>
 """
-    
-    save_path = output_dir / "index.html"  
-    with open(save_path, 'w', encoding='utf-8') as f:
-        f.write(html_content)
+    path = output_dir / "00-dashboard" / "index.html"
+    path.write_text(html, encoding="utf-8")
+    return path
 
 
-def create_readme(domain: str, journal: str, output_dir: Path):
-    """Create project README with next steps."""
-    
+def write_readme(output_dir: Path, domain: str, journal: str, track: str) -> Path:
     today = datetime.now().strftime("%Y-%m-%d")
-    
-    readme = f"""# {domain.replace('-', ' ').title()} Research Project
-  
-**Research Domain:** Network Traffic Fingerprint Analysis  
-**Target Venue:** {journal} (IEEE Transactions on Information Forensics and Security)  
-**Project Created:** {today}
+    slug = slugify(domain)
+    theory_block = (
+        "## Theory track\n\n"
+        "- `python run.py ledger --init 02-methodology-dev` - claim ledger (lemma -> theorem DAG)\n"
+        "- `python run.py priority -q \"<claim>\"` - novelty check BEFORE claiming novelty\n"
+        "- `python run.py certify --script proof_check.py` - exact rational-arithmetic certificate\n"
+        "- `python run.py audit -p 02-methodology-dev` - proven vs publishable gap report\n"
+    ) if track == "theory" else (
+        "## Empirical track\n\n"
+        "- `python run.py experiment --type comparison ...` - baseline design\n"
+        "- `python run.py experiment --type ablation ...` - component necessity\n"
+        "- `python run.py experiment --type robustness ...` - stress tests\n"
+    )
 
----
+    readme = f"""# {domain}
 
-## 🎯 Quick Start
+**Target venue:** {journal}
+**Track:** {track}
+**Created:** {today}
 
-This automated researcher environment is set up for systematic work flow:
+## Quick start
 
 ```bash
-# 1. Literature Discovery (first priority) 
-../run search -q "network traffic fingerprint classification" --background
+# 1. literature (real APIs, no fabricated entries)
+python run.py search -q "{domain}" -s arxiv dblp openalex -l 30 -o 01-literature-survey
 
-# 2. Analyze Collected Papers 
-../analyze -i ./01-literature-survey/*.pdf --mode deep
+# 2. analyse downloaded PDFs
+python run.py analyze -i 01-literature-survey --mode deep -o 01-literature-survey/analysis
 
-# 3. Generate IEEE TIFS LaTeX Template  
-../run template --journal "IEEE-TIFS"
+# 3. paper skeleton
+python run.py template -j {journal} --track {track} -o 03-paper-drafting
 
-# 4. Configure Baseline Experiments
-../run exp --type comparison --datasets "CIC-IDS2017,UNSW-NB15,Ton_IoT"
+# 4. pre-submission audit
+python run.py check -p .
 ```
 
----
+{theory_block}
+## Submission gate
 
-## 📁 Project Structure Overview
+- [ ] Literature: >= 50 verified BibTeX entries
+- [ ] Every numbered statement has a proof or is marked `open`
+- [ ] Novelty: priority check recorded for every claim of novelty
+- [ ] Certificates: numerical claims backed by exact-arithmetic scripts
+- [ ] Revision rounds >= 5 with evidence artifacts
+- [ ] `python run.py check -p .` shows no UNVERIFIED rows
 
-Directory | Purpose  
---------|-----------------------------  
-00-dashboard/     | Progress tracking HTML + stats  
-01-literature-survey/ | BibTeX files + extracted PDFs  
-02-methodology-dev/ | Theorems, ML algorithms, proofs  
-03-paper-drafting/  | LaTeX paper drafts (IEEE template)  
-04-experiments/    | YAML configs for reproducibility  
-05-revision-rounds/ | Version tracking (6-8 cycles standard)  
-06-collaboration/   | Peer review + advisor feedback  
-07-audit-trail/   | Scientific traceability logs  
+## Integrity rules
 
----
-
-## 🧪 Recommended Experimental Dataset Selection
-
-Network Traffic Fingerprint Research should validate on:
-
-1. **CIC-IDS2017** (Canadian Institute, 15+ GB) - Botnet/DDoS/Scanning  
-2. **UNSW-NB15** (2.5M flows, hybrid traditional+modern attacks)  
-3. **ToN_IoT** (Large IoT traffic dataset with benign/malicious flow separation)  
-4. **MAWI/CAIDA** - Real-world backbone traffic traces
+1. Never cite an entry that was not verified against its source venue.
+2. A claim is `proven` only with a proof; otherwise it is `open` or `refuted`.
+3. Numerical evidence must be reproducible by a script in `07-audit-trail/`.
 
 ---
-
-## ✅ Submission Readiness Checklist  
-
-Before journal submission:
-
-- [ ] ≥60 papers in literature survey (arXiv + conference papers)  
-- [ ] Baseline comparison experiments: 3+ SOTA methods documented
-- [ ] Ablation studies proving component necessity  
-- [ ] Robustness tests against evasion techniques (encrypted/obfuscated traffic)
-- [ ] Mathematical proofs for any novel fingerprinting algorithms  
-- [ ] Revision rounds tracked (≥6 cycles with version diff logs)
-- [ ] All figures at ≥300 DPI resolution  
-
----
-
-*Research Management powered by PhD Research Companion v1.5.0 - OpenClaw AI Lab tools*
+Generated by phd-research-companion {VERSION}
 """
-    
-    save_path = output_dir / "README.md"
-    with open(save_path, 'w', encoding='utf-8') as f:
-        f.write(readme)
+    path = output_dir / "README.md"
+    path.write_text(readme, encoding="utf-8")
+    return path
 
 
-def main():  
-    parser = argparse.ArgumentParser(description="Initialize PhD research project environment")
-    
-    parser.add_argument("-d", "--domain", required=True, help="Research domain/keywords (e.g., 'network traffic fingerprint analysis')")
-    parser.add_argument("-j", "--journal", default="IEEE-TIFS", help="Target journal/conference (default: IEEE TIFS)")
-    parser.add_argument("-o", "--output", required=True, help="Output directory for new project")
-    
-    args = parser.parse_args()
-    
-    print("🚀 PhD Research Companion - Project Initialization")  
-    print("=" * 60)
-    print(f"Domain:    {args.domain}") 
-    print(f"Journal:   {args.journal}")
-    print(f"Output:    {args.output}\n")
-    
-    output_dir = Path(args.output).expanduser().resolve()  
-    project_name = args.domain.replace(' ', '-').replace('/', '_')
-    
-    # Step 1: Create all directories  
-    create_directory_structure(output_dir)
-    
-    # Step 2: Generate dashboard HTML  
-    create_dashboard_index(project_name, args.domain, args.journal, output_dir)
-    print(f"✅ Dashboard created")
-    
-    # Step 3: Write project README.md  
-    create_readme(args.domain, args.journal, output_dir)
-    print(f"✅ README.md created with research guidelines\n")
-    
-    # Final status report
-    print("=" * 60)  
-    print("✅ Project initialization complete!")
-    print(f"📂 Location: /tmp/{project_name}-2026/")
-    print("\n📖 Next Steps:")
-    print("1. Change to project dir:\n   cd /tmp/" + project_name + "-2026")
-    print("2. Start literature search:\n   ../run search -q '" + args.domain + "' --background")
-    print("3. Review SKILL.md for complete command reference\n")
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Initialise a PhD research project")
+    ap.add_argument("-d", "--domain", required=True)
+    ap.add_argument("-j", "--journal", default="JMLR")
+    ap.add_argument("--track", choices=["theory", "empirical"], default="theory")
+    ap.add_argument("-o", "--output", required=True)
+    args = ap.parse_args()
+
+    output_dir = Path(args.output).expanduser().resolve()
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    print("phd-research-companion: project initialisation")
+    print(f"  domain : {args.domain}")
+    print(f"  venue  : {args.journal}")
+    print(f"  track  : {args.track}")
+    print(f"  output : {output_dir}")
+
+    made = create_structure(output_dir, args.track)
+    for d in made:
+        print(f"  created: {d}/")
+
+    dash = write_dashboard(output_dir, args.domain, args.journal, args.track)
+    readme = write_readme(output_dir, args.domain, args.journal, args.track)
+
+    meta = {"domain": args.domain, "slug": slugify(args.domain),
+            "journal": args.journal, "track": args.track,
+            "version": VERSION, "created": datetime.now().isoformat(timespec="seconds")}
+    (output_dir / "project.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
+
+    (output_dir / "00-dashboard" / "compliance-status.json").write_text(
+        json.dumps({"compliance_status": {}, "created": meta["created"]}, indent=2),
+        encoding="utf-8")
+
+    print(f"\nDashboard: {dash}")
+    print(f"README   : {readme}")
+    print(f"Project  : {output_dir}")
+    return 0
 
 
-if __name__ == "__main__":  
-    main()
+if __name__ == "__main__":
+    sys.exit(main())

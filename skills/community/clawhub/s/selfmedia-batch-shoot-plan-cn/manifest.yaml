@@ -1,0 +1,31 @@
+name: selfmedia-batch-shoot-plan-cn
+slug: selfmedia-batch-shoot-plan-cn
+display_name: 批量拍摄排期单
+description: 输入已经定稿的多条短视频脚本、人物、场地和道具信息，输出按场景与机位合并的拍摄顺序、现场核对项和素材命名表，适合单次章节、场景或短文的集中拍摄。仅整理用户材料，不改写小说或生成分镜；缺少脚本编号、场景、人物或动作摘要时先列缺项；场地映射、机位或拍摄时段未给时标待确认。单表最多100行，超出时要求分批提交。
+version: 1.0.1
+icon: icon-512.png
+repository: https://github.com/xxjrq/selfmedia-batch-shoot-plan-cn
+license: MIT-0
+tags:
+  - 自媒体
+  - 拍摄排期
+  - 现场制作
+  - 素材管理
+  - 短视频
+trigger_words:
+  - 批量拍摄排期
+  - 按场景合并拍摄
+  - 素材命名表
+triggers:
+  - 多条脚本怎么安排一天拍完
+  - 根据场地和机位生成拍摄顺序
+  - 整理短视频现场拍摄计划
+interface:
+  display_name: 批量拍摄排期单
+  short_description: 将已定稿脚本按场景机位合并成现场拍摄顺序与素材命名表
+  default_prompt: 请根据我提供的已确定脚本、人物、场地、道具和机位信息，生成按场景/机位合并的拍摄顺序和素材命名表；若信息不足，先列缺项。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: true
+self_test: python3 scripts/self_test.py

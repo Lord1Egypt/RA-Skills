@@ -1,36 +1,49 @@
-## Description: <br>
-Helps agents draft professional business research, consulting analysis, company research, competitive analysis, user research, and market analysis with sourced Markdown output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business Writing helps agents draft professional business analyses, industry research reports, consulting analyses, company research, competitive analysis, user research, and market analysis with source-backed Markdown output.
 
-## Publisher: <br>
-[teamolab](https://clawhub.ai/user/teamolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[teamolab](https://clawhub.ai/user/teamolab)
 
-## Use Case: <br>
-Business users, analysts, consultants, and researchers use this skill to produce structured business writing such as industry reports, market analyses, company research, competitive reviews, and user research summaries with citations and references. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated citations, market claims, tables, or mermaid graphs may be inaccurate even though the skill instructs the agent to use real sources. <br>
-Mitigation: Users should verify cited sources, data points, and business claims before relying on the output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Employees and external business users can use this skill to produce structured business writing such as research reports, market analysis, competitive analysis, consulting analysis, and company research. The skill emphasizes Markdown formatting, tables, Mermaid charts when supported by real data, and numbered clickable references.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tables, mermaid graphs when supported by real data, numbered clickable citations, and a references section] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the user's language unless otherwise specified; cited facts and data should be verified against real sources.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated business data, sources, tables, or Mermaid charts may be inaccurate even though the skill asks for evidence-backed content.
+
+Mitigation: Verify cited sources, numerical data, tables, and diagrams before using the output for business decisions or publication.
+
+## Reference(s):
+
+- [Business Writing Skill Page](https://clawhub.ai/teamolab/skills/business-writing)
+- [Publisher Profile](https://clawhub.ai/user/teamolab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables, Mermaid diagrams, and numbered clickable reference links when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's language unless otherwise specified; asks for evidence-backed citations and a references section.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

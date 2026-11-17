@@ -1,47 +1,64 @@
-## Description: <br>
-Transforms unstructured clinical input, dictation, transcripts, or rough notes into standardized SOAP medical documentation for physician-reviewed draft generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms unstructured clinical input, including dictation, transcripts, and rough notes, into standardized SOAP medical documentation drafts that require physician review.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Healthcare documentation users and clinical workflow developers use this skill to convert physician dictation, transcripts, or rough encounter notes into draft SOAP notes for licensed clinician review before patient-record use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save sensitive patient information locally. <br>
-Mitigation: Use only in a HIPAA-compliant or otherwise approved clinical environment, avoid protected health information in unsecured paths, and choose protected output locations. <br>
-Risk: Generated SOAP notes may contain inaccurate medical facts, medication details, diagnoses, or treatment plans. <br>
-Mitigation: Treat every output as an unverified draft and require licensed clinician review before entering content into patient records or using it for care decisions. <br>
-Risk: JSON export may retain raw input and identifiers. <br>
-Mitigation: Use JSON export only when retaining raw input and identifiers is acceptable under the applicable privacy and retention controls. <br>
-Risk: Examples may resemble clinical treatment guidance. <br>
-Mitigation: Do not use examples as treatment guidance or for psychiatric, diagnostic, or medication decisions without licensed clinician review. <br>
+## Use Case:
 
+Clinicians, clinical documentation teams, and healthcare workflow builders use this skill to convert encounter text into a structured SOAP note draft for review before use in patient records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/automated-soap-note-generator) <br>
-- [Clinical Documentation Guidelines](references/clinical_guidelines.md) <br>
-- [Medical Terminology Reference](references/medical_terminology.md) <br>
-- [Sample SOAP Notes](references/sample_soap_notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, code, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON SOAP-note drafts, with supporting code examples and shell commands in the skill guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft clinical documentation and require licensed clinician review before use in patient records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Clinical input may contain identifiable patient information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a HIPAA-compliant environment for PHI and de-identify text when processing outside approved clinical systems.
+
+Risk: SOAP drafts may contain incorrect facts, medications, dosages, negations, or clinical interpretation.
+
+Mitigation: Require physician review and correction before entering any generated text into a patient record.
+
+Risk: JSON output or shared folders can preserve raw transcripts or sensitive note content.
+
+Mitigation: Avoid JSON output or shared storage when raw transcripts should not be persisted, and handle generated files under the organization's privacy policy.
+
+Risk: The packaged requirements file includes unnecessary entries for the local script.
+
+Mitigation: Review or remove unnecessary requirements before running dependency installation commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/automated-soap-note-generator)
+- [Clinical Documentation Guidelines](references/clinical_guidelines.md)
+- [Medical Terminology Reference](references/medical_terminology.md)
+- [Sample SOAP Notes](references/sample_soap_notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Structured SOAP note drafts in Markdown or JSON, with review guidance for clinical validation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are documentation drafts only and must be reviewed for medical accuracy, medications, dosages, negations, and completeness before patient-record use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

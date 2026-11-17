@@ -1,40 +1,54 @@
-## Description: <br>
-Reference tool for business covering introductory material, formulas, regulations, risks, instruments, strategies, glossary terms, and checklist-style notes for Dropship Helper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for business that provides quick lookup content for Dropship Helper concepts, formulas, regulations, risks, instruments, strategies, glossary terms, and checklists.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users can use this skill as a lightweight command-line reference for generic Dropship Helper concepts, formulas, regulation topics, risk categories, strategy notes, glossary entries, and checklist items. Its content should be treated as quick reference material, not authoritative financial, regulatory, or compliance advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains generic finance-style, regulatory, and compliance content that may be misleading if treated as tailored dropshipping advice. <br>
-Mitigation: Use it only as a lightweight static reference and verify financial, regulatory, and compliance decisions against authoritative sources. <br>
+## Use Case:
 
+External users and developers use this skill as a lightweight dropshipping business reference for concepts, common calculations, regulatory topics, risk categories, strategies, glossary terms, and operational checklists.
 
-## Reference(s): <br>
-- [Dropship Helper on ClawHub](https://clawhub.ai/ckchzh/dropship-helper) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc output; no credentials, network access, persistence, or system modification identified by server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.2 (source: server release metadata) <br>
+Risk: The skill contains generic business, regulatory, and financial reference material that may be incomplete or outdated for a user's jurisdiction or use case.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as lightweight reference material and verify legal, regulatory, and financial decisions against current authoritative sources and qualified professionals.
+
+Risk: The artifact is a static reference helper and does not validate user-specific facts, calculations, compliance duties, or operational readiness.
+
+Mitigation: Use the checklists and formulas as starting points only, and require human review before applying them to live business workflows.
+
+## Reference(s):
+
+- [Dropship Helper ClawHub listing](https://clawhub.ai/ckchzh/skills/dropship-helper)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static bundled content; no credentials, API keys, network access, or external service calls are required.]
+
+## Skill Version(s):
+
+4.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

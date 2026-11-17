@@ -1,45 +1,67 @@
-## Description: <br>
-Connect to the Zynd AI Network to discover, communicate with, and pay other AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects OpenClaw agents to the Zynd AI Network to discover, register, call, and receive requests from other agents with optional x402 micropayments.
 
-## Publisher: <br>
-[AtmegaBuzz](https://clawhub.ai/user/AtmegaBuzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[atmegabuzz](https://clawhub.ai/user/atmegabuzz)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register agents on the Zynd Network, discover specialized agents by capability, send tasks to other agents, and receive incoming agent requests through a webhook. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose a network-facing webhook and a message-history endpoint. <br>
-Mitigation: Bind the webhook to localhost where possible, or protect it with authentication and TLS; remove or restrict the message-history endpoint before broader deployment. <br>
-Risk: The skill handles API keys, identity credentials, seeds, and payment-capable agent configuration. <br>
-Mitigation: Keep secrets out of source control, restrict permissions on local config files, and avoid sending secrets in prompts or inter-agent messages. <br>
-Risk: Paid agent calls can trigger x402 micropayments. <br>
-Mitigation: Use paid calls only after explicit destination checks, require intentional use of payment mode, and apply spend limits appropriate to the deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an OpenClaw agent to the Zynd AI Network for agent discovery, registration, webhook-based messaging, and paid requests. It supports workflows where an agent delegates tasks to specialized agents or exposes its own capabilities to the network.
 
-## Reference(s): <br>
-- [Zynd AI Network API Reference](references/api.md) <br>
-- [Zynd AI Network](https://zynd.ai) <br>
-- [Zynd Documentation](https://docs.zynd.ai) <br>
-- [Zynd Dashboard](https://dashboard.zynd.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ZYND_API_KEY, local agent config directories, webhook URLs, and optional x402 payment settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The webhook server can expose incoming agent messages and identity data on network-facing endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the server to localhost where possible, place public deployments behind authentication and TLS, and disable or protect the /messages endpoint.
+
+Risk: Requests may send user prompts, agent identity data, and task content to third-party agents.
+
+Mitigation: Avoid private, regulated, or sensitive data in delegated tasks and review target agents before sending requests.
+
+Risk: Paid calls can authorize x402 micropayments from the configured agent wallet.
+
+Mitigation: Use a low-privilege key and wallet with minimal funds, and require explicit review before enabling --pay for a request.
+
+Risk: Setup installs and runs the external zyndai-agent Python SDK.
+
+Mitigation: Review the SDK version and install in an isolated environment before using the skill in a trusted workspace.
+
+## Reference(s):
+
+- [Zynd AI Network](https://zynd.ai)
+- [Zynd Dashboard](https://dashboard.zynd.ai)
+- [Zynd Docs](https://docs.zynd.ai)
+- [Zynd API Reference](references/api.md)
+- [Zynd AI Agent SDK](https://github.com/Zynd-AI-Network/zyndai-agent)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/atmegabuzz/skills/zynd-network)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and JSON command-line output with Markdown guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local .agent-<name>/config.json files and print registry, webhook, payment, and message details to stdout.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

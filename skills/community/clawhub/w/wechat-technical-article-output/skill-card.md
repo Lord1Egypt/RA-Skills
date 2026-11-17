@@ -1,40 +1,48 @@
-## Description: <br>
-微信公众号技术文章端到端生成流程：当用户给出技术主题、可选大纲和目标字数时，引导 agent 完成资料调研、正文撰写、质量检查、错误修复与润色优化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete Chinese WeChat public-account technical articles from a topic, optional outline, and target word count through research, drafting, quality review, and polishing.
 
-## Publisher: <br>
-[sariel20](https://clawhub.ai/user/sariel20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sariel20](https://clawhub.ai/user/sariel20)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, technical writers, and content creators use this skill to turn a technical topic, optional outline, and target length into a polished WeChat-style technical article with title suggestions, Markdown body, optional visual or code placement notes, and further-reading suggestions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated drafts may contain incorrect sourced claims, code examples, or platform-specific formatting.
+
+Mitigation: Review generated articles before publication, with particular attention to factual claims, cited sources, code correctness, and WeChat formatting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, technical writers, and content teams use this skill to turn a technical topic into a polished WeChat technical article. It structures the workflow from source gathering and article drafting through scoring, correction, Markdown formatting, title suggestions, visual markers, and optional further reading. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow encourages online research and source gathering, which can introduce unreliable citations or outdated technical claims. <br>
-Mitigation: Review cited sources, API references, and technical claims before publishing the article. <br>
-Risk: Generated code examples or corrections may be incorrect for the target runtime or library version. <br>
-Mitigation: Run and review code examples before including them in a public article. <br>
+**Output Format:** [Markdown article with title suggestions, optional illustration or code placement notes, and optional further-reading suggestions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sariel20/wechat-technical-article-output) <br>
+**Other Properties Related to Output:** [Requires a topic, accepts an optional outline, and uses a target word count when provided.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown article with title suggestions, code blocks, visual or diagram markers, and optional further-reading notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow may also produce a structured research summary, a quality scorecard, and revision guidance before the final article.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

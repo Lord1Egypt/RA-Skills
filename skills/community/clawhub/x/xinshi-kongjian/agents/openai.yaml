@@ -1,0 +1,4 @@
+interface:
+  display_name: "心事空间"
+  short_description: "树洞、日记、想法与个人成长，连接专属私密档案"
+  default_prompt: "Use $xinshi-kongjian to listen, help me reflect, and manage only my dedicated private archive."

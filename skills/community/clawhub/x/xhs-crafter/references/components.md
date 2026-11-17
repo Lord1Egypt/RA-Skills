@@ -29,20 +29,22 @@
 }
 ```
 
-### 加载方式（Google Fonts）
+### 加载方式（系统字体回退栈，v7.6 移除 Google Fonts CDN）
+
+> v7.6 起，模板不再引用 Google Fonts CDN，改为依赖系统已安装字体。CSS `:root` 变量的字体回退栈会按顺序查找系统字体。若系统未安装指定字体，会回退到通用字体族（serif/sans-serif/monospace）。
 
 ```
-Editorial:
-  Noto Serif SC:wght@400;500;700
-  Playfair Display:ital,wght@0,400;0,500;0,700;1,400;1,500
-  Noto Sans SC:wght@400;500;700
-  Inter:wght@400;500;600
-  IBM Plex Mono:wght@400;500
+Editorial 系统字体需求（推荐安装）:
+  Noto Serif SC / Source Han Serif SC / Songti SC (serif-zh)
+  Playfair Display (serif-en，可选，缺失时回退到 serif-zh)
+  Noto Sans SC / Source Han Sans SC / PingFang SC (sans-zh)
+  Inter (sans-en，可选，缺失时回退到 sans-zh)
+  IBM Plex Mono / JetBrains Mono / Consolas (mono)
 
-Swiss:
-  Inter:wght@200;300;400;500;600
-  Noto Sans SC:wght@400;500;700
-  IBM Plex Mono:wght@400;500
+Swiss 系统字体需求（推荐安装）:
+  Inter / system-ui (sans)
+  Noto Sans SC / PingFang SC (sans-zh)
+  IBM Plex Mono / Consolas (mono)
 ```
 
 ---

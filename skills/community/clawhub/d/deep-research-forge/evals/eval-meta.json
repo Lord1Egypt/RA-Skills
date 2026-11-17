@@ -1,0 +1,11 @@
+{
+  "router_command": "",
+  "expectation_prefix": "",
+  "minimum_assertion_coverage": 0.0,
+  "note": "deep-research-forge is an LLM-based skill without a CLI runner, so there is no structured JSON output for the benchmark runner to assert against. Evals test methodology selection, research question routing, evidence ledger, state-level verification, multi-agent orchestration through prompt-based (LLM-judge) evaluation. The automated gate is structural validation (id, files, expected_output) plus the lint suite (scripts/run_lint_tests.py, 9/9). minimum_assertion_coverage is set to 0.0 to reflect that expectations are human-judged, not machine-executed; raising it would require adding a route_request-style router that emits assertable JSON.",
+  "dimension_semantics": {
+    "blind": "manual: LLM judge evaluates if output matches expected_output",
+    "confusion_matrix": "manual: categorize by product / company / concept / technology / market",
+    "stability": "manual: re-run eval with same prompt to check output consistency"
+  }
+}

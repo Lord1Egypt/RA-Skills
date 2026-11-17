@@ -1,41 +1,57 @@
-## Description: <br>
-Deploys a decentralized three-agent CI/CD pipeline where build, test, and deploy stages run on separate Pilot agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a decentralized CI/CD pipeline with 3 agents.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to configure three Pilot agents for decentralized build, test, and deploy workflows, including role manifests, peer handshakes, artifact transfer, and deployment receipts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup establishes trust between CI/CD agents and exchanges build artifacts across Pilot peers. <br>
-Mitigation: Confirm each peer before handshakes, review dependent Pilot skills, and verify trust state before sending artifacts. <br>
-Risk: The deployer role may publish deployment receipts and trigger post-deploy webhooks for production workflows. <br>
-Mitigation: Use staging first, least-privilege deployment credentials, validated webhook destinations, manual production approval, and rollback procedures. <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to configure a three-agent CI/CD pipeline where build, test, and deploy stages exchange artifacts, test results, webhooks, and deployment receipts over Pilot tunnels.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/teoslayer/pilot-ci-cd-pipeline-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON manifest templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific setup steps for a three-agent CI/CD pipeline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup installs mutable helper skills that can affect build, test, deployment, webhook, and artifact-transfer behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact helper skill versions and publishers before installation and pin or document approved versions where the deployment process allows it.
+
+Risk: The skill establishes production-capable agent trust relationships and data flows across CI/CD stages.
+
+Mitigation: Use a safe hostname prefix and confirm every handshake peer, data-flow direction, and deployment or webhook target before enabling the pipeline.
+
+Risk: Deployment commands and receipts can affect production environments if run against live targets.
+
+Mitigation: Treat the generated setup as production-affecting CI/CD configuration and review it through the same change-control process used for deployment automation.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, clawhub, the pilot-protocol skill, and a running daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

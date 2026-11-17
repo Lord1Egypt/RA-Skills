@@ -1,46 +1,55 @@
-## Description: <br>
-Translate a TypeScript compiler error into plain English, find the smallest type boundary at fault, and prefer the smallest safe fix over suppression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate a TypeScript compiler error into plain English, find the smallest type boundary at fault, and prefer the smallest safe fix over suppression.
 
-## Publisher: <br>
-[ritual](https://clawhub.ai/user/ritual) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ritual](https://clawhub.ai/user/ritual)
 
-## Use Case: <br>
-Developers and engineers use this skill to interpret TypeScript compiler errors, identify the smallest failing type boundary, propose a minimal safe fix, and verify the result with project typecheck commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to inspect or edit local TypeScript project files. <br>
-Mitigation: Review proposed file changes before applying them and verify the result with the project typecheck command. <br>
-Risk: The skill may suggest running TypeScript or package-specific typecheck commands in the local workspace. <br>
-Mitigation: Run only commands appropriate for the current project and inspect command text before execution. <br>
-Risk: The optional knowledge capture flow can create local OKF notes. <br>
-Mitigation: Decline the note-save offer when local project notes are not wanted; the artifact instructs agents not to write the file without approval. <br>
-Risk: The optional Ritual Cloud setup can install a global npm CLI. <br>
-Mitigation: Skip the Ritual Cloud setup unless the user chooses to connect the workspace and accepts the global tool installation. <br>
+## Use Case:
 
+Developers and engineers use this skill to explain TypeScript compiler errors, identify the smallest type boundary causing the mismatch, propose a minimal safe fix, and provide a concrete typecheck command.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ritual/debug-typescript-error) <br>
-- [Ritual homepage](https://ritual.work) <br>
-- [Open Knowledge Format overview](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with plain-language explanation, proposed code changes, and verification commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May offer optional OKF knowledge-note content or Ritual Cloud setup commands; local files or global tools should only be created or installed after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: The optional Ritual Cloud path asks users to install a third-party global CLI and run initialization commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review @ritualai/cli version, provenance, permissions, and what ritual init may read or write before approving that path.
+
+Risk: Optional knowledge-note creation can persist project facts after a debugging task.
+
+Mitigation: Create notes only with explicit user approval and scope them to reusable, non-sensitive project knowledge.
+
+## Reference(s):
+
+- [Debug Typescript Error on ClawHub](https://clawhub.ai/ritual/skills/debug-typescript-error)
+- [Ritual](https://ritual.work)
+- [Open Knowledge Format overview](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with inline code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an optional, user-approved OKF knowledge note when reusable non-sensitive project knowledge is discovered.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

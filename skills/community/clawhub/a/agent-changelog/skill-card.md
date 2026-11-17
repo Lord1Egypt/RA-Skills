@@ -1,46 +1,58 @@
-## Description: <br>
-Advanced handling for agent-changelog requests (history, diffs, restores, rollbacks, snapshots) using git and OpenClaw scripts with clear, user-focused summaries and outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced handling for agent-changelog requests (history, diffs, restores, rollbacks, snapshots) using git and OpenClaw scripts with clear, user-focused summaries and outputs.
 
-## Publisher: <br>
-[noambens](https://clawhub.ai/user/noambens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noambens](https://clawhub.ai/user/noambens)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect workspace change history, compare versions, restore files, roll back changes, and set up automated git-based workspace versioning with optional GitHub or PromptLayer sync. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs persistent workspace versioning automation and hooks. <br>
-Mitigation: Install only when persistent versioning is intended, and review existing OpenClaw hooks before setup because setup can replace matching hook directories. <br>
-Risk: The default tracked scope can include the whole workspace. <br>
-Mitigation: Before setup or first sync, narrow `.agent-changelog.json` to specific paths when appropriate and audit `.gitignore` and tracked files for secrets. <br>
-Risk: External sync can automatically push commits to GitHub or upload tracked workspace snapshots to PromptLayer. <br>
-Mitigation: Enable GitHub or PromptLayer sync only after confirming that automatic pushes or full tracked-repository snapshots are acceptable for the workspace. <br>
-Risk: PromptLayer sync requires a sensitive API key. <br>
-Mitigation: Set `PROMPTLAYER_API_KEY` securely in the environment and do not paste the key into chat or tracked files. <br>
+## Use Case:
 
+Developers and OpenClaw workspace users use this skill to inspect attributed workspace history, compare changes, create snapshots, and stage controlled file restores or rollbacks. It also supports setup guidance for automatic versioning and optional external sync.
 
-## Reference(s): <br>
-- [Agent Changelog on ClawHub](https://clawhub.ai/noambens/agent-changelog) <br>
-- [Publisher profile: noambens](https://clawhub.ai/user/noambens) <br>
-- [PromptLayer public API endpoint](https://api.promptlayer.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured status, log, diff, restore, rollback, and setup output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return raw script stdout for explicit slash-command invocations; summaries are concise for conversational history and diff requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release evidence) <br>
+Risk: Persistent automatic hooks can stage and commit tracked workspace files, and optional sync can send committed content to an external provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only for workspaces that need automatic versioning, narrow .agent-changelog.json before setup, and audit tracked files plus .gitignore for secrets before any remote sync.
+
+Risk: PromptLayer pull can modify local workspace files from a remote collection.
+
+Mitigation: Pull only from trusted PromptLayer collections and versions, review local changes first, and use force only after confirming the target snapshot.
+
+Risk: The security evidence flags unsafe Git and PromptLayer paths that can expose or modify workspace data.
+
+Mitigation: Prefer a release with shell-safe Git calls and validated archive extraction, and test in a disposable workspace before using it on sensitive projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noambens/skills/agent-changelog)
+- [PromptLayer API endpoint used by optional sync](https://api.promptlayer.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and structured status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May stage or summarize workspace file changes when invoked through its scripts and hooks.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

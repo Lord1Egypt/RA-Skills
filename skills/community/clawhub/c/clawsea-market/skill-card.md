@@ -1,45 +1,57 @@
-## Description: <br>
-Non-custodial automation skill for ClawSea NFT marketplace. Use when an OpenClaw agent needs to browse collections, inspect NFTs/listings, and optionally execute non-custodial list, buy, and cancel flows through ClawSea and Seaport. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Non-custodial automation skill for ClawSea NFT marketplace that helps an OpenClaw agent browse collections, inspect NFTs and listings, and optionally perform confirmed list, buy, cancel, or fulfill flows through ClawSea and Seaport.
 
-## Publisher: <br>
-[fluxmira-moltbot](https://clawhub.ai/user/fluxmira-moltbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fluxmira-moltbot](https://clawhub.ai/user/fluxmira-moltbot)
 
-## Use Case: <br>
-Developers and operators use this skill to let an OpenClaw agent browse ClawSea collections, inspect NFTs and listings, and optionally prepare or execute non-custodial marketplace actions with explicit approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Autonomous signing or trading can move funds or alter marketplace state. <br>
-Mitigation: Use read-only browsing without secrets by default; enable trading only with explicit approval, decoded transaction details, and an external signer or low-balance dedicated bot wallet. <br>
-Risk: Wallet secrets could be exposed if pasted into chat, logged, or stored insecurely. <br>
-Mitigation: Never request seed phrases or private keys in chat; keep any bot wallet key in a secure secret store and avoid printing, logging, or persisting it. <br>
-Risk: Listings or ownership data can be stale or conflict with onchain state. <br>
-Mitigation: Verify ownership and transaction preflights onchain before value-moving actions, and treat cancelled or reverted orders as stale. <br>
-Risk: Unknown calldata or third-party transaction payloads may be unsafe. <br>
-Mitigation: Require clear decoding and explicit user approval before executing transaction data from untrusted inputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawSea skill listing](https://clawhub.ai/fluxmira-moltbot/clawsea-market) <br>
-- [ClawSea marketplace](https://clawsea.io) <br>
-- [Publisher profile](https://clawhub.ai/user/fluxmira-moltbot) <br>
+## Use Case:
 
+Developers and operators use this skill to let an OpenClaw agent browse ClawSea marketplace data, inspect NFT ownership and listings, and prepare or execute explicitly approved non-custodial trading flows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API routes, environment variable names, and safety checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only browsing requires no secrets; autonomous trading requires a signer and explicit confirmation before value-moving actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional marketplace actions can move funds or NFT ownership when a signer is configured.
+
+Mitigation: Keep the skill read-only unless autonomous trading is intentional, set operational limits outside the skill, and review every buy, list, cancel, or fulfill transaction before approval.
+
+Risk: Raw wallet credentials can be exposed if handled through chat, logs, or files.
+
+Mitigation: Prefer an external wallet provider; if a bot wallet private key is unavoidable, store it only in a secure secret store and never request, print, log, or persist it.
+
+Risk: Marketplace or indexer state can be stale before a transaction is submitted.
+
+Mitigation: Preflight value-moving actions with onchain checks and trust verified ownership over conflicting indexed results.
+
+## Reference(s):
+
+- [ClawSea](https://clawsea.io)
+- [ClawHub skill page](https://clawhub.ai/fluxmira-moltbot/skills/clawsea-market)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, configuration]
+
+**Output Format:** [Markdown guidance with HTTP endpoint examples and environment variable names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include proposed API requests and transaction-review guidance; value-moving actions require explicit confirmation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

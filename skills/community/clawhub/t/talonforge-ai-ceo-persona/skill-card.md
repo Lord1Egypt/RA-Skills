@@ -1,41 +1,59 @@
-## Description: <br>
-Transforms an AI agent into a bilingual English and Arabic CEO persona for operations, decisions, revenue tracking, and market strategy with memory and safety guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms an AI agent into a bilingual English/Arabic CEO persona for company operations, decision tracking, revenue monitoring, and market strategy.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-Founders, operators, and developers use this persona to guide an AI agent through company operating routines, bilingual English/Arabic market positioning, revenue tracking, launch planning, and decision logging. It is positioned for AI-assisted business operations with Gulf market targeting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona asks an agent to create persistent operating and memory files. <br>
-Mitigation: Decide where generated files may be written, what data must never be stored, and how generated files can be removed or rolled back before use. <br>
-Risk: The persona supports broad business workflows that may affect finances, launches, contracts, accounts, or customers. <br>
-Mitigation: Require explicit human approval before financial actions, public launches, contracts, account changes, or customer-impacting decisions. <br>
+## Use Case:
 
+External users and developers use this skill to configure an AI agent as a bilingual CEO-style operating persona for business planning, operational workflows, memory setup, revenue tracking, and launch preparation.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/casperzinou/talonforge-ai-ceo-persona) <br>
-- [TalonForge homepage](https://talonforge.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and text instructions for agent-created operating files and workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prompt the agent to create persistent files such as SOUL.md, AGENTS.md, MEMORY.md, STATE.md, daily notes, revenue tracking, and launch plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/package.json) <br>
+Risk: The skill asks the agent to create persistent operating and memory files for autonomous business work without clear approval limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a project-local sandbox and require the agent to show every file it plans to create or modify before initialization.
+
+Risk: Generated persona files could override system or user instructions.
+
+Mitigation: Keep generated persona files subordinate to system and user instructions and review them before allowing the agent to rely on them.
+
+Risk: The persona may encourage financial actions, account changes, publishing, platform launches, or other external business effects.
+
+Mitigation: Require explicit human approval before any external business action, financial action, account change, publication, or launch step.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/casperzinou/skills/talonforge-ai-ceo-persona)
+- [Publisher profile](https://clawhub.ai/user/casperzinou)
+- [TalonForge homepage](https://talonforge.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and proposed project-local persona files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent operating, memory, safety, revenue tracking, and launch planning files for the agent workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Set up Worktable"
+  short_description: "Install, connect, and verify Worktable setup"
+  default_prompt: "Use $worktable-setup for this Worktable task."

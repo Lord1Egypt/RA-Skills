@@ -1,41 +1,55 @@
-## Description: <br>
-Send paid messages to real humans via the A.I. Cheese platform (aicheese.app) when an agent needs human input for surveys, feedback, photo tasks, local knowledge, or verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send paid messages to real humans via the A.I. Cheese platform for surveys, feedback, photo tasks, local knowledge, and verification, with USDC payments on Base through the x402 flow.
 
-## Publisher: <br>
-[locjonz](https://clawhub.ai/user/locjonz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[locjonz](https://clawhub.ai/user/locjonz)
 
-## Use Case: <br>
-Developers and agents use this skill to search for human respondents, send paid USDC-backed messages, poll for replies, and register webhooks for human-in-the-loop tasks such as surveys, feedback, photo requests, local knowledge, and verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend real USDC from a raw wallet key without built-in spending caps or per-payment approval. <br>
-Mitigation: Use a dedicated low-balance wallet, keep AGENT_PRIVATE_KEY out of logs and shared shells, and manually review each send before execution. <br>
-Risk: Messages and replies pass through a third-party messaging service. <br>
-Mitigation: Avoid sending secrets, regulated data, or sensitive business information through the service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [A.I. Cheese skill page](https://clawhub.ai/locjonz/ai-cheese) <br>
-- [A.I. Cheese API base](https://aicheese.app) <br>
-- [Base mainnet RPC endpoint](https://mainnet.base.org) <br>
+## Use Case:
 
+Developers and agents use this skill to search for human respondents, send paid messages, collect replies, and register webhooks for human-in-the-loop tasks such as surveys, feedback, photo requests, local knowledge, and verification.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, API calls, configuration, guidance] <br>
-**Output Format:** [Console text and JSON-like API responses from CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx, a funded Base USDC wallet private key, and optional agent and webhook configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use a funded wallet private key to automatically send USDC payments based on remote payment requirements.
+
+Mitigation: Use a dedicated low-balance wallet, avoid main wallet keys, and prefer versions with explicit per-message confirmation and maximum spend limits.
+
+Risk: The security summary reports that the remote server and unpinned runtime code have too much practical authority over a funded wallet.
+
+Mitigation: Review the server endpoint before use, keep the default endpoint only when trusted, and pin and review runtime dependencies before deployment.
+
+## Reference(s):
+
+- [A.I. Cheese Platform](https://aicheese.app)
+- [Base Mainnet RPC Endpoint](https://mainnet.base.org)
+- [ClawHub Skill Page](https://clawhub.ai/locjonz/skills/ai-cheese)
+- [Publisher Profile](https://clawhub.ai/user/locjonz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API calls, Configuration]
+
+**Output Format:** [CLI text output with command-line options and environment-variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npx and a funded wallet private key for paid message sending and balance checks.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

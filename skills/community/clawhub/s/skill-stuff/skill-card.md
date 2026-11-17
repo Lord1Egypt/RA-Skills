@@ -1,41 +1,59 @@
-## Description: <br>
-Recaps the user's day in the style of a selected TV show, with an episode title, story arc, cliffhanger, running memory, and shareable recap output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recaps a user's day in the style of a selected TV show and can deliver a recurring creative summary with episode title, narrative arc, plot points, cliffhanger, and a shareable card.
 
-## Publisher: <br>
-[rednix](https://clawhub.ai/user/rednix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rednix](https://clawhub.ai/user/rednix)
 
-## Use Case: <br>
-Individuals use this skill to turn calendar, email, chat, and other connected daily activity into a creative end-of-day recap. It is intended for users who want an automated, entertaining summary rather than a plain factual digest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the package as suspicious because it is advertised as a daily recap skill but contains many unrelated automation skills involving email, finances, posting, contacts, cloud agents, and appointments. <br>
-Mitigation: Install only after confirming the release is intentionally a multi-skill collection; if only the recap feature is needed, request a clean package with clearly declared data sources, schedule behavior, storage, and delivery controls. <br>
-Risk: The skill can use connected personal data sources such as calendar, email, Slack, GitHub, Notion, Linear, and Todoist to build daily summaries. <br>
-Mitigation: Review configured data sources and delivery channels before enabling scheduled runs, and keep generated recaps in private channels unless the user explicitly chooses to share them. <br>
+## Use Case:
 
+External users use this skill to turn calendar, email, chat, and other connected-source activity into a playful daily recap. It supports setup, on-demand recaps, scheduled delivery, memory-based season continuity, and shareable Markdown or HTML output.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rednix/skill-stuff) <br>
-- [Metadata homepage](https://clawhub.com/skills/main-character-recap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown and self-contained HTML snippets with setup guidance and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write recap history and memory files during configured use; may generate scheduled delivery configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release is presented as Skill Stuff while the primary artifact describes Main Character Recap and includes many unrelated skill documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package contents before installation and require the publisher to ship a focused package or clearly document the bundle and permissions.
+
+Risk: Scheduled recaps can pull from connected accounts such as calendar, email, Slack, GitHub, Notion, Linear, and Todoist.
+
+Mitigation: Enable only the specific data sources needed for the recap and review the permissions before turning on recurring delivery.
+
+Risk: The skill can keep running memory and daily history files that may contain personal activity summaries.
+
+Mitigation: Keep delivery private and periodically review, redact, or disable retained memory and history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rednix/skills/skill-stuff)
+- [ClawHub homepage metadata](https://clawhub.com/skills/main-character-recap)
+- [Publisher profile](https://clawhub.ai/user/rednix)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown recap text with optional HTML shareable card and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write memory and history Markdown files and schedule recurring delivery when enabled by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

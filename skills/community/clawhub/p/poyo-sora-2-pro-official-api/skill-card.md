@@ -1,43 +1,56 @@
-## Description: <br>
-Sora 2 Pro Official video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `sora-2-pro-official`, text-to-video, optional single-image guidance, aspect ratio control, 4 to 20 second clips, 720p, 1024p, or 1080p output, polling, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare, submit, and follow up on Sora 2 Pro Official video generation jobs through the PoYo API.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agent users use this skill to prepare and submit PoYo Sora 2 Pro Official text-to-video or single-image guided video jobs, then track completion through polling or webhooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live submission can create external asynchronous PoYo generation jobs and may incur provider usage. <br>
-Mitigation: Run the submit script only when the user explicitly requests live execution and a trusted server-side environment is configured. <br>
-Risk: Prompts, source image URLs, callback URLs, and API credentials can be exposed to external services or logs if handled carelessly. <br>
-Mitigation: Keep POYO_API_KEY in server-side secrets, avoid logging sensitive payload fields, and submit confidential images or callback URLs only when the user trusts PoYo and the callback receiver. <br>
+## Use Case:
 
+Developers and agents use this skill to create PoYo Sora 2 Pro Official text-to-video or single-image-guided video requests, submit async tasks, and explain polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Sora 2 Pro Official API documentation](https://docs.poyo.ai/api-manual/video-series/sora-2-pro-official) <br>
-- [PoYo Sora 2 Pro Official model page](https://poyo.ai/models/sora-2-pro-official) <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/poyo-sora-2-pro-official-api) <br>
-- [Bundled API reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads and optional curl or shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model id, request type, payload fields, selected duration, aspect ratio, resolution, task_id, and next-step polling or webhook guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: POYO_API_KEY can authorize external API requests if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key in server-side environment variables or a backend secret manager, and never place it in browser code, public repositories, logs, screenshots, or chat output.
+
+Risk: Prompts, source image URLs, and callback URLs are submitted to PoYo and may contain confidential information.
+
+Mitigation: Review payloads before submission and avoid sending confidential prompts, private image URLs, or sensitive callback URLs unless PoYo and the callback receiver are approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-sora-2-pro-official-api)
+- [PoYo Sora 2 Official model page](https://poyo.ai/models/sora-2-official)
+- [PoYo Sora 2 Pro Official API docs](https://docs.poyo.ai/api-manual/video-series/sora-2-pro-official)
+- [Local PoYo API reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payloads and bash curl examples when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected model id, request mode, payload summary, duration, aspect ratio, resolution, reference-image use, returned task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,42 @@
+slug: smart-scraper-web
+name: Smart Scraper
+description: Extract structured data from websites. Tables, lists, prices, articles, metadata. ⚠️ SSRF protection, cache disabled by default, watch mode writes to disk.
+version: 1.3.7
+owner: jlacroix82
+license: MIT-0
+tags:
+  - scraping
+  - web
+  - extract
+  - html
+  - parser
+  - monitoring
+features:
+  extraction:
+    - --extract <url> — Extract structured data from page
+    - --extract --table <url> — Extract tables from page
+    - --extract --list <url> — Extract lists from page
+    - --extract --price <url> — Extract prices from page
+    - --extract --article <url> — Extract article content
+    - --extract --all <url> — Extract everything
+  parsing:
+    - --parse <html> — Parse raw HTML
+  monitoring:
+    - --watch <url> — Monitor for changes
+    - --watch <url> --interval <sec> — Continuous polling
+    - --watch <url> --alert-on-change — CI exit code
+    - --watch <url> --diff-only — Show diff without updating
+  cache:
+    - --cache — Enable disk caching (disabled by default)
+    - --no-cache — Explicitly disable caching
+  status:
+    - --status — Show cache statistics
+security:
+  ssrf_protection: true
+  blocked_schemes: ["file:", "gopher:", "data:", "javascript:", "ftp:"]
+  blocked_ips: ["localhost", "127.0.0.1", "10.x.x.x", "172.16-31.x.x", "192.168.x.x", "169.254.x.x", "cloud_metadata"]
+  redirect_limit: 5
+  rate_limit_ms: 100
+  cache_opt_in: true
+  url_validation: strict
+  no_eval: true

@@ -1,6 +1,6 @@
 ---
 name: opensearch-vector-search
-version: 1.3.0
+version: 1.4.0
 repository: https://github.com/norrishuang/opensearch-vector-search-skill
 description: |
   Amazon OpenSearch vector search expert knowledge base. Comprehensive guidance on vector search configuration, cluster tuning, quantization, cost optimization, instance sizing, and pricing estimation.
@@ -16,6 +16,7 @@ description: |
   (8) User asks about OpenSearch cluster JVM, memory, or thread pool configuration
   (9) Involves Amazon OpenSearch Service pricing, cost calculation, or instance comparison
   (10) User provides an OpenSearch cluster URL/credentials and wants vector configuration analysis or health check
+  (11) For executing reproducible VectorDBBench performance tests, route to the bundled opensearch-vector-benchmark skill
 requirements:
   env:
     - name: AWS_ACCESS_KEY_ID
@@ -40,6 +41,7 @@ requirements:
 - **Pricing script** (`scripts/get_opensearch_pricing.py`): Makes outbound HTTPS requests to the AWS Pricing API (`pricing.us-east-1.amazonaws.com`). Requires `boto3` and valid AWS credentials. The script is **read-only** (fetches public pricing data) and does not modify any AWS resources. Only run it when the user explicitly requests cost estimation.
 - **Reference examples**: Code snippets in `references/` contain example API calls to `localhost:9200` (standard OpenSearch endpoint). These are **documentation examples only** — do NOT execute them automatically. Present them to the user as configuration references.
 - **Cluster analyzer** (`scripts/analyze_cluster.py`): Connects to a user-provided OpenSearch cluster and performs **read-only** analysis. It NEVER creates, modifies, or deletes any indices or data. Only run it when the user explicitly provides cluster credentials (URL + username/password).
+- **Vector benchmark skill** (`opensearch-vector-benchmark/SKILL.md`): VectorDBBench creates, loads, force-merges, and may drop benchmark indices. Use only with a dedicated benchmark target and explicit user confirmation.
 
 ## Knowledge Base Structure
 
@@ -48,7 +50,8 @@ Read the corresponding reference file based on the question type:
 | Question Type | Reference File | Keywords |
 |--------------|----------------|----------|
 | Vector search, k-NN, HNSW, disk mode | `references/vector-search.md` | vector, knn, hnsw, warmup, disk mode, on_disk |
-| Quantization techniques | `references/quantization-techniques.md` | quantization, compression, binary, byte, fp16, product quantization |
+| 1-bit SQ, 32x on-disk tuning and cost | `references/quantization-1bit-32x.md` | 1-bit, scalar quantization, SQ, 32x, on_disk, oversample, cost |
+| Other quantization techniques | `references/quantization-techniques.md` | quantization, binary, byte, fp16, product quantization |
 | Cost optimization, instance sizing, memory calc | `references/cost-optimization.md` | cost, pricing, instance, memory calculation, cluster sizing, budget |
 | Cluster tuning, JVM, thread pools | `references/cluster-tuning.md` | JVM, heap, thread pool, node role, shard allocation |
 | Performance benchmarks, dataset sizing | `references/performance-benchmarks.md` | benchmark, QPS, latency, recall, dataset size |
@@ -56,6 +59,7 @@ Read the corresponding reference file based on the question type:
 | Query optimization | `references/query-optimization.md` | query, filter, aggregation, cache, pagination |
 | Optimized instances (OR1/OR2/OM2/OI2) | `references/optimized-instances.md` | optimized, OR1, OR2, OM2, OI2, S3 durability, indexing throughput |
 | Live cluster analysis | `scripts/analyze_cluster.py` | analyze cluster, connect, diagnose, review config, health check |
+| Execute a vector benchmark | `opensearch-vector-benchmark/SKILL.md` | VectorDBBench, benchmark, QPS, latency, recall, indexing throughput |
 
 ## Core Workflows
 
@@ -81,7 +85,7 @@ After user provides vector count and dimensions:
      Byte (4x):    Memory = 1.1 × (1 × d + 8 × m) × num_vectors × (replicas + 1)
      Binary 4-bit: Memory = 1.1 × (d/2 + 8 × m) × num_vectors × (replicas + 1)
      Binary 2-bit: Memory = 1.1 × (d/4 + 8 × m) × num_vectors × (replicas + 1)
-     Binary 1-bit: Memory = 1.1 × (d/8 + 8 × m) × num_vectors × (replicas + 1)
+     Scalar 1-bit (32x): Memory = 1.1 × (d/8 + 8 × m) × num_vectors × (replicas + 1)
    
    Where: d=vector dimensions, m=HNSW connections (default 16), num_vectors=total vector count
    ```
@@ -110,6 +114,11 @@ When user needs cost estimation:
    Total cost = Instance cost + EBS cost
    ```
 4. Compare cost differences across quantization options
+
+For 1-bit or 32x on-disk questions, read
+`references/quantization-1bit-32x.md` before estimating capacity or cost. Treat
+its 100M benchmark as a versioned reference point, not a portable guarantee.
+Refresh current instance and EBS prices before quoting a present-day total.
 
 ### 4. Live Cluster Analysis (When User Provides Cluster Credentials)
 
@@ -210,7 +219,8 @@ Always recommend these defaults unless user has specific requirements:
   - **Large dataset with NVMe**: OI2 (storage-optimized, no EBS needed)
   - Do NOT recommend: r6g, r5, m5, c5, i3, or any older instance families
 - **HNSW parameters**: ef_construction=512, m=16
-- **Quantization preference**: Byte (4x) for production, Binary (32x) for aggressive cost optimization
+- **Quantization preference**: Byte (4x) for conservative production use; 1-bit SQ
+  (32x) for aggressive cost optimization on OpenSearch 3.6+, preferably 3.7+
 - **Disk mode threshold**: Consider when data > 50M vectors and 100-200ms latency is acceptable
 
 ### Instance Selection Decision Tree

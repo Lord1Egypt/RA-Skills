@@ -1,45 +1,54 @@
-## Description: <br>
-Turn campaign UI references into a new H5/Web campaign proposal, page architecture, and HTML/CSS/JavaScript high-fidelity front-end draft. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn campaign UI references into a new H5/Web campaign proposal, page architecture, and HTML/CSS/JavaScript high-fidelity front-end draft.
 
-## Publisher: <br>
-[bigin58](https://clawhub.ai/user/bigin58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bigin58](https://clawhub.ai/user/bigin58)
 
-## Use Case: <br>
-External users and developers use this skill to analyze campaign or activity UI references, create a new campaign concept, plan mobile-first H5/Web page architecture, and draft fixed-stack front-end files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Explicit local-output requests may create or update files under project/<delivery-slug>/. <br>
-Mitigation: Review the generated file paths and contents before publishing or integrating the artifacts. <br>
-Risk: Poster-led H5 delivery may default to adult female commercial hero imagery. <br>
-Mitigation: Review generated imagery for brand fit, audience appropriateness, and campaign requirements before use. <br>
-Risk: Generated campaign proposals and front-end drafts may include assumptions from incomplete UI references. <br>
-Mitigation: Check observed, inferred, and assumed sections against the original references before relying on the output. <br>
+## Use Case:
 
+Campaign planners, designers, and front-end developers use this skill to analyze campaign UI references, create a new non-copying activity concept, plan H5/Web page architecture, and produce fixed-stack HTML/CSS/JavaScript draft files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bigin58/activity-campaign-from-ui) <br>
-- [Scope](references/scope.md) <br>
-- [README](README.md) <br>
-- [Campaign schema example](examples/campaign-schema-example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, files] <br>
-**Output Format:** [Markdown guidance with optional HTML, CSS, JavaScript, JSON, PPTX, and local project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs stay on the H5/Web stack and may write local artifacts under project/<delivery-slug>/ when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.0 (source: server release evidence and CHANGELOG.md, released 2026-04-08) <br>
+Risk: Generated JavaScript may reuse unsafe innerHTML string rendering patterns for campaign data, rules, prize text, records, or popup content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated JavaScript before campaign use and replace unsafe string rendering with safe DOM construction or textContent for user-controlled or CMS-controlled data.
+
+Risk: Local delivery can generate image assets and write files under project/<delivery-slug>/ when explicitly requested.
+
+Mitigation: Confirm the requested output path and inspect generated files and assets before using them in a real campaign workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bigin58/skills/activity-campaign-from-ui)
+- [Scope](artifact/references/scope.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, files, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional HTML, CSS, JavaScript, mock-data, image asset, and JSON-like campaign configuration files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs stay on the H5/Web HTML/CSS/JavaScript stack; local deliveries are written under project/<delivery-slug>/ when explicitly requested.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release evidence and CHANGELOG.md, released 2026-04-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

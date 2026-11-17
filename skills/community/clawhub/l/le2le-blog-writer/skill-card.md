@@ -1,42 +1,49 @@
-## Description: <br>
-根据提供的文章或主题生成一篇高质量中文文章。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured, natural Chinese blog articles from a user-provided topic or source article.
 
-## Publisher: <br>
-[chatugpt](https://clawhub.ai/user/chatugpt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chatugpt](https://clawhub.ai/user/chatugpt)
 
-## Use Case: <br>
-Writers, marketers, and content editors use this skill to turn a supplied topic or source article into a structured Chinese blog article with a natural, opinionated style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated articles may contain factual errors or unsupported claims. <br>
-Mitigation: Review facts, citations, and claims before publishing. <br>
-Risk: Source material may create originality or copyright concerns. <br>
-Mitigation: Use lawful source material and check the final article for originality before publication. <br>
-Risk: Some publishing contexts may require disclosure that AI assisted the writing. <br>
-Mitigation: Apply the user's editorial and disclosure policy before release. <br>
+## Use Case:
 
+Writers, marketers, and agents use this skill to turn a topic or source article into a complete Chinese blog post with revised structure, original phrasing, and an analytical Zhihu-style tone.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chatugpt/le2le-blog-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Plain Chinese prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs a complete article over 800 Chinese characters and omits analysis process.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated articles may contain inaccurate claims or insufficiently original rewrites when based on source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated text for factual accuracy and originality before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chatugpt/skills/le2le-blog-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Chinese prose article in plain text or Markdown-style paragraphs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Complete article over 800 Chinese characters; no analysis process included.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

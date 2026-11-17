@@ -1,42 +1,60 @@
-## Description: <br>
-进击的知识库 helps agents archive WeChat, Douyin, Xiaohongshu, public-account articles, and local files by downloading or parsing content, uploading it to Tencent Docs, and recording it in an index sheet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ingests WeChat, WeChat Channels, Douyin, Xiaohongshu, official-account articles, and local files into a Tencent Docs knowledge base with an indexed smart sheet.
 
-## Publisher: <br>
-[hitjcl](https://clawhub.ai/user/hitjcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitjcl](https://clawhub.ai/user/hitjcl)
 
-## Use Case: <br>
-External users and agents use this skill to turn social media links, public-account articles, and supported local files into organized Tencent Docs knowledge-base entries. It is intended for content collection, upload, and indexing workflows that require the user to configure their own Tencent Docs space and index sheet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads content, may use platform cookies, sends some links to external services, uploads files to Tencent Docs, and writes persistent index records. <br>
-Mitigation: Start with non-sensitive content, avoid personal session cookies unless necessary, and verify the configured Tencent Docs space, file ID, and sheet ID before use. <br>
-Risk: The security scan flagged under-disclosed data flow and command-execution risks around shell execution, upload destinations, and external services. <br>
-Mitigation: Review or patch shell execution paths and upload destination validation before trusting the skill with private or business data. <br>
+## Use Case:
 
+External users and agents use this skill to capture links or local files, download or parse supported social content, upload it to Tencent Docs, and append an index row for later retrieval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hitjcl/knowledge-base) <br>
-- [Tencent Docs](https://docs.qq.com) <br>
-- [Python](https://python.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance, shell command examples, JSON helper-script results, and generated local files such as downloaded media or caption text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May upload content to Tencent Docs and append records to a configured Tencent Docs index sheet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.1 (source: frontmatter and server release evidence) <br>
+Risk: Unsafe command execution in agent.py could allow local command injection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid agent.py until shell=True command construction is fixed; run the skill only in a constrained environment with trusted links and files.
+
+Risk: Content and metadata are uploaded to Tencent Docs/COS during normal operation.
+
+Mitigation: Use least-privilege Tencent Docs authorization and confirm that each file or link is approved for upload before running the workflow.
+
+Risk: WeChat Channels links are sent to an external parser endpoint.
+
+Mitigation: Require explicit user consent before processing WeChat Channels links and disclose that the link is sent to the external parser service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hitjcl/skills/knowledge-base)
+- [Tencent Docs](https://docs.qq.com)
+- [Python](https://python.org)
+- [WeChat Channels parser endpoint](https://sph.litao.workers.dev/api/fetch_video_profile)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON parser results, and uploaded file or index records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can upload supported local files and link-derived media or articles to Tencent Docs/COS when user authorization and environment variables are configured.]
+
+## Skill Version(s):
+
+2.4.1 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

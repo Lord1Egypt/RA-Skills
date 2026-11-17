@@ -1,41 +1,62 @@
-## Description: <br>
-A local audio separation skill that helps users split audio or video into vocals, accompaniment, drums, bass, piano, and other stems, with preview, download, trimming, history, and REST API workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能音频分离工具 helps an agent guide users through running a local audio and video stem-separation tool that outputs vocals, accompaniment, drums, bass, piano, and other tracks.
 
-## Publisher: <br>
-[nabian1990amber-cmd](https://clawhub.ai/user/nabian1990amber-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nabian1990amber-cmd](https://clawhub.ai/user/nabian1990amber-cmd)
 
-## Use Case: <br>
-External users, creators, podcasters, music educators, and developers use this skill to run a local media-processing web tool for separating audio or video into stems, previewing results, downloading MP3 tracks, trimming segments, and calling the same workflow through REST endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local unauthenticated web API can expose, trim, download, and delete processed media while the service is running. <br>
-Mitigation: Keep the service bound to localhost, stop it when not in use, avoid browsing untrusted sites while it is running, and manually manage or delete sensitive uploads, outputs, trims, and history. <br>
-Risk: The workflow processes local audio and video files and stores uploads, generated stems, trims, and history on disk. <br>
-Mitigation: Use non-sensitive media when possible and clear generated files and history after processing sensitive content. <br>
+## Use Case:
 
+External users, musicians, creators, and developers use this skill to separate uploaded audio or video into stems for covers, remixing, mixing practice, podcast cleanup, video music replacement, and music teaching material. Developers can also use the documented FastAPI endpoints to automate separation, status polling, downloads, trimming, history, and cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nabian1990amber-cmd/sound-split) <br>
-- [Demucs project](https://github.com/facebookresearch/demucs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown with setup commands, REST API descriptions, and bundled FastAPI and HTML source files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local tool produces downloadable MP3 stem files and trimmed audio segments from uploaded media.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The unauthenticated localhost API can expose, alter, or delete task files too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on localhost, stop it when not in use, and add authentication, stricter CORS, and path validation before broader or sensitive use.
+
+Risk: Sensitive audio could be exposed through the local service while the API access controls remain weak.
+
+Mitigation: Avoid processing sensitive audio until the security guidance is addressed and browser exposure from untrusted sites is controlled.
+
+Risk: Dependency and model installation are performed in the local Python environment.
+
+Mitigation: Use a virtual environment with pinned dependencies before installing or running the service.
+
+Risk: The stated cleanup behavior may not remove files automatically as expected.
+
+Mitigation: Verify or implement cleanup behavior before relying on time-based removal of uploaded, separated, or trimmed audio files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nabian1990amber-cmd/skills/sound-split)
+- [Demucs](https://github.com/facebookresearch/demucs)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command snippets, API examples, and bundled application source files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides local FastAPI operation and file-based audio output; separated audio files are produced by the bundled application, not directly by the agent response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

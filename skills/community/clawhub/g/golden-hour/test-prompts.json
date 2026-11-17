@@ -1,0 +1,52 @@
+{
+  "skill": "golden-hour",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "一天中什么时候拍照光线最好？",
+      "expected_behavior": "调用 golden-hour，讲解各时段光线特性和黄金时段",
+      "notes": "正面场景：拍摄时间规划"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "golden hour是什么时候？为什么摄影师都在这个时候拍？",
+      "expected_behavior": "调用 golden-hour，讲解黄金时段的光线特性和优势",
+      "notes": "正面场景：黄金时段学习"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "旅行摄影怎么安排一天的拍摄时间？",
+      "expected_behavior": "调用 golden-hour，按时间段规划不同题材的拍摄",
+      "notes": "正面场景：旅行摄影规划"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "人像应该用顺光还是侧光？",
+      "expected_behavior": "不应调用 golden-hour，应调用 natural-light-direction",
+      "notes": "跨 skill 混淆诱饵：光线方向问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "相机怎么设置白平衡？",
+      "expected_behavior": "纯器材操作问题，不应调用方法论 skill",
+      "notes": "诱饵：器材操作"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "阴天还需要考虑拍摄时间吗？",
+      "expected_behavior": "边界模糊——阴天时段差异减小但仍有影响。可部分回答",
+      "notes": "边界：阴天时段差异"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

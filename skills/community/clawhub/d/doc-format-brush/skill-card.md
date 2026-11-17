@@ -1,43 +1,54 @@
-## Description: <br>
-文档格式刷 helps an agent extract or apply document formatting across Word, Markdown, and plain text files, including template-based formatting, heading-level recognition, and the built-in GB/T 9704-2012 official document style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+文档格式刷帮助代理将 Word、Markdown 或纯文本文档按模板或内置 GB/T 9704-2012 公文格式整理为一致的版式。
 
-## Publisher: <br>
-[yechao1995](https://clawhub.ai/user/yechao1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yechao1995](https://clawhub.ai/user/yechao1995)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to reformat a document to match a Word template, apply official Chinese document formatting, or convert formatted content among .docx, .md, and .txt outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite or create local document outputs at user-provided paths. <br>
-Mitigation: Use clear input and output paths, keep backups before writing over important documents, and avoid targeting files that are open in Word. <br>
-Risk: Extracted format JSON from confidential templates can include local paths and short text snippets. <br>
-Mitigation: Treat generated format profiles as sensitive when templates are confidential and avoid sharing them outside the intended workspace. <br>
-Risk: Runtime use may require python-docx. <br>
-Mitigation: Install python-docx only from a trusted package source when the runtime requires it. <br>
+## Use Case:
 
+Developers and document authors use this skill to format local documents against a template, apply a built-in Chinese official document profile, and convert between Word, Markdown, and plain text outputs.
 
-## Reference(s): <br>
-- [文档格式刷 reference manual](references/format_reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yechao1995/doc-format-brush) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with bash commands and generated document or JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local .docx, .md, .txt, or format-profile JSON files based on user-selected input and output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill reads user-selected documents and writes formatted output files, so an unintended input or output path could expose private content or overwrite expected results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended local documents, review input and output paths before execution, and use distinct output filenames.
+
+Risk: The Word processing path depends on python-docx and local document parsing, which can produce formatting differences across templates or environments.
+
+Mitigation: Install dependencies in a virtual environment from trusted, preferably pinned sources, and inspect generated documents before sharing or publishing.
+
+## Reference(s):
+
+- [文档格式刷参考手册](artifact/references/format_reference.md)
+- [ClawHub skill page](https://clawhub.ai/yechao1995/skills/doc-format-brush)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Markdown, Text, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands; local scripts can produce .docx, .md, .txt, and JSON format profiles.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-selected local documents and python-docx for Word document processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

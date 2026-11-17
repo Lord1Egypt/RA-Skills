@@ -1,0 +1,62 @@
+{
+  "title": "难忘的一件事",
+  "grade_level": 4,
+  "composition_type": "记事",
+  "rating": "良好",
+  "rating_reason": "事情完整，关键经过仍较概括。",
+  "dimensions": [
+    {
+      "name": "内容",
+      "rating": "良好",
+      "evidence": "写清了比赛经过。"
+    },
+    {
+      "name": "结构",
+      "rating": "良好",
+      "evidence": "按先后顺序叙述。"
+    },
+    {
+      "name": "语言",
+      "rating": "合格",
+      "evidence": "第三段出现语序问题。"
+    },
+    {
+      "name": "规范",
+      "rating": "良好",
+      "evidence": "标点基本正确。"
+    }
+  ],
+  "highlights": [
+    {
+      "quote": "我的手心全是汗。",
+      "reason": "用身体反应写出紧张。"
+    }
+  ],
+  "annotations": [
+    {
+      "id": 1,
+      "kind": "correction",
+      "location": "第三段",
+      "quote": "我把终于球接住了。",
+      "problem": "语序不当",
+      "revision": "我终于把球接住了。",
+      "reason": "终于放在把字句前。"
+    }
+  ],
+  "student_comment": "你的比赛过程很清楚，试着把接球的一刻再写具体些。",
+  "focus": [
+    "补充接球时的一个动作。"
+  ],
+  "exercise": {
+    "minutes": 3,
+    "task": "写一句表现着急的动作。",
+    "hint": "想想手脚在做什么。",
+    "success_criteria": [
+      "动作具体",
+      "语句通顺"
+    ],
+    "teacher_reference": "练习参考仅给老师：脚尖不停点地。"
+  },
+  "teacher_reference": "教师私用诊断：下节课练动作描写。",
+  "second_draft": []
+}

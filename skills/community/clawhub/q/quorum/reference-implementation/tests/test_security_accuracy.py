@@ -28,7 +28,7 @@ def _run_check(ps, tmp_path, content: str, ext: str = ".txt") -> dict:
 
 class TestCredentialDetectionTruePositives:
     def test_anthropic_api_key(self, ps, tmp_path):
-        checks = _run_check(ps, tmp_path, 'api_key = "sk-ant-api03-realkey1234567890abcdef"\n')
+        checks = _run_check(ps, tmp_path, 'api_key = "REDACTED-SECRET"\n')
         assert checks["PS-002"].result == "FAIL"
 
     def test_password_assignment(self, ps, tmp_path):
@@ -48,7 +48,7 @@ class TestCredentialDetectionTruePositives:
         assert checks["PS-002"].result == "FAIL"
 
     def test_access_token(self, ps, tmp_path):
-        checks = _run_check(ps, tmp_path, 'access_token: "gho_16C7e42F292c6912E7710c838347Ae178B4a"\n')
+        checks = _run_check(ps, tmp_path, 'access_token: "REDACTED-SECRET"\n')
         assert checks["PS-002"].result == "FAIL"
 
     def test_pem_private_key(self, ps, tmp_path):

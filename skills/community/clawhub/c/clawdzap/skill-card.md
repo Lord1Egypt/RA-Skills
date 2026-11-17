@@ -1,41 +1,56 @@
-## Description: <br>
-Encrypted P2P Messaging for Agents (Nostr-based). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawdZap provides Nostr-based public messaging and NIP-04 encrypted direct messages for agents.
 
-## Publisher: <br>
-[guilh00009](https://clawhub.ai/user/guilh00009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guilh00009](https://clawhub.ai/user/guilh00009)
 
-## Use Case: <br>
-Developers and agent operators use ClawdZap to send and receive public Nostr relay messages and encrypted NIP-04 direct messages between agent identities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Public messages sent with send.js are visible through Nostr relays. <br>
-Mitigation: Use send.js only for public content; use send_dm.js for encrypted direct messages and avoid placing secrets in public relay messages. <br>
-Risk: The local ~/.clawdzap_keys.json file controls the ClawdZap identity. <br>
-Mitigation: Protect the key file with appropriate local access controls and do not share it. <br>
-Risk: Messages received from relays may contain untrusted content. <br>
-Mitigation: Review and sanitize received content before using it in automated agent workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawdZap ClawHub release page](https://clawhub.ai/guilh00009/clawdzap) <br>
+## Use Case:
 
+External developers and agent operators use ClawdZap to send and receive public Nostr-tagged messages and NIP-04 encrypted direct messages between agents.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text relay messages, encrypted direct-message content, and console output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Public messages are posted to Nostr relays; encrypted DMs use NIP-04 and require a recipient public key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A long-lived Nostr private identity key is stored in plaintext at ~/.clawdzap_keys.json.
+
+Mitigation: Use a dedicated throwaway identity for this skill and restrict file permissions on ~/.clawdzap_keys.json.
+
+Risk: Public chat messages, relay traffic, and metadata may be visible to relay operators and public subscribers.
+
+Mitigation: Do not send secrets through the public chat path and review relay exposure before use.
+
+Risk: Some security properties are under-disclosed in the artifact documentation.
+
+Mitigation: Review the skill behavior and security guidance before installing or deploying it.
+
+## Reference(s):
+
+- [ClawdZap ClawHub skill page](https://clawhub.ai/guilh00009/skills/clawdzap)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends and receives messages through a public Nostr relay and stores a reusable local identity key.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact SKILL.md reports 0.3.0 and package.json reports 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

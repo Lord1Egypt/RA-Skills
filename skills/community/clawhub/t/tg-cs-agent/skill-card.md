@@ -1,51 +1,73 @@
-## Description: <br>
-Deploy and manage a Telegram customer service bot powered by Claude and retrieval-augmented generation over local Markdown knowledge base documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage a Telegram customer service bot powered by Claude + RAG for setup, knowledge base updates, lifecycle management, and troubleshooting.
 
-## Publisher: <br>
-[youziyouzishu](https://clawhub.ai/user/youziyouzishu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youziyouzishu](https://clawhub.ai/user/youziyouzishu)
 
-## Use Case: <br>
-Developers and support teams use this skill to deploy a long-running Telegram customer service assistant, configure Telegram and Anthropic credentials, load product documentation into a local knowledge base, and route unresolved requests to a human support chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bot runs from a real Telegram account and depends on a reusable Telethon session plus Telegram and Anthropic API credentials. <br>
-Mitigation: Use a dedicated Telegram account, protect and rotate credentials and session files, and restrict runtime access to the bot host. <br>
-Risk: Customer chat content is sent to Anthropic and escalation notices may forward user identifiers and message excerpts to a human support chat. <br>
-Mitigation: Publish privacy and consent notices before deployment, redact sensitive content where possible, and limit handoff recipients to authorized support staff. <br>
-Risk: The bundled Seers knowledge base includes financial and deposit guidance that may be incomplete or outdated for production support. <br>
-Mitigation: Review and correct the knowledge base before launch, add clear risk disclosures, and establish an update process for market, deposit, and policy information. <br>
-Risk: Dependencies are specified with lower bounds instead of pinned versions. <br>
-Mitigation: Pin and review dependency versions before production deployment, then scan the final environment as part of release. <br>
+## Use Case:
 
+Developers and support operators use this skill to deploy a Telegram customer service agent that answers Seers Markets questions from a local markdown knowledge base and escalates unresolved or account-specific issues to a human support chat.
 
-## Reference(s): <br>
-- [Telegram CS Agent ClawHub Page](https://clawhub.ai/youziyouzishu/tg-cs-agent) <br>
-- [Seers FAQ](references/seers-faq.md) <br>
-- [Seers Platform Overview](references/seers-platform.md) <br>
-- [Seers Trading Guide](references/seers-trading.md) <br>
-- [Seers User Guide (English)](references/seers-user-guide-en.md) <br>
-- [Seers User Guide (Chinese)](references/seers-user-guide-zh.md) <br>
-- [Telegram API Credentials](https://my.telegram.org) <br>
-- [Anthropic API Endpoint](https://api.anthropic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup, operation, customization, and troubleshooting guidance for a Telegram customer support bot.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The bot runs as a real Telegram account and can read and reply to all messages visible to that account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only on a dedicated customer-support Telegram account and add a deny-by-default chat allowlist before production use.
+
+Risk: User messages may be sent to an external AI service without clear user scoping or consent.
+
+Mitigation: Disclose AI and human-support processing to users, limit collection to support chats, and validate that the configured AI endpoint is approved.
+
+Risk: The configurable Anthropic base URL could route conversations to an unintended AI endpoint.
+
+Mitigation: Use the default Anthropic API URL unless an approved endpoint is required, and review any custom base URL before deployment.
+
+Risk: Telegram session files and interactive login secrets can grant account access if exposed.
+
+Mitigation: Protect and rotate the Telethon session, store credentials securely, and replace echoing secret prompts with non-echoing input.
+
+Risk: Unpinned Python dependencies may change behavior or introduce supply-chain risk over time.
+
+Mitigation: Pin dependency versions and scan the resolved environment before production deployment.
+
+## Reference(s):
+
+- [Seers Markets FAQ](references/seers-faq.md)
+- [Seers Markets Platform Introduction](references/seers-platform.md)
+- [Seers Markets Quick Trading](references/seers-trading.md)
+- [Seers User Guide (English)](references/seers-user-guide-en.md)
+- [Seers User Guide (Chinese)](references/seers-user-guide-zh.md)
+- [Telegram API Credentials](https://my.telegram.org)
+- [Seers Markets](https://seers.market)
+- [Seers Markets Website](https://www.seersmarket.com)
+- [ClawHub Skill Release](https://clawhub.ai/youziyouzishu/skills/tg-cs-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands, environment configuration, and Python code files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and operating guidance for a Telegram userbot that uses local markdown knowledge base files, an Anthropic-compatible model API, and human handoff routing.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -13,7 +13,6 @@ Detailed configuration reference for audio intelligence features available in li
   - Custom Spelling
 - Post-Processing Features (after stopRecording)
   - Summarization
-  - Chapterization
   - Custom Metadata
 - Combining Features
 - WebSocket Message Reference
@@ -289,48 +288,6 @@ WebSocket event:
 }
 ```
 
-### Chapterization
-
-Segments the session into chapters with headlines and summaries.
-
-```typescript
-const session = client.liveV2().startSession({
-  // ... audio format ...
-  post_processing: { chapterization: true },
-});
-
-session.on("message", (msg) => {
-  if (msg.type === "post_chapterization") console.log(msg.data.results);
-});
-```
-
-```python
-session = client.live().start_session(
-    LiveV2InitRequest(
-        # ... audio format ...
-        post_processing=LiveV2PostProcessing(chapterization=True),
-    )
-)
-```
-
-WebSocket event:
-
-```json
-{
-  "type": "post_chapterization",
-  "data": {
-    "results": [
-      {
-        "headline": "Introduction",
-        "summary": "...",
-        "start": 0.0,
-        "end": 45.2
-      }
-    ]
-  }
-}
-```
-
 ### Custom Metadata
 
 Attach arbitrary key-value metadata to the session for filtering and retrieval.
@@ -364,7 +321,6 @@ const session = client.liveV2().startSession({
   post_processing: {
     summarization: true,
     summarization_config: { type: "bullet_points" },
-    chapterization: true,
   },
 });
 ```
@@ -385,7 +341,6 @@ Intelligence-related message types:
 | `sentiment_analysis`       | Real-time    | `realtime_processing.sentiment_analysis`       |
 | `named_entity_recognition` | Real-time    | `realtime_processing.named_entity_recognition` |
 | `post_summarization`       | Post-process | `post_processing.summarization`                |
-| `post_chapterization`      | Post-process | `post_processing.chapterization`               |
 
 ---
 

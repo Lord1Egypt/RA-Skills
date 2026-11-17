@@ -1,46 +1,57 @@
-## Description: <br>
-Use when managing Alibaba Cloud Cloud Firewall (Cloudfw) via OpenAPI/SDK, including the user requests firewall policy/resource operations, change management, status checks, or troubleshooting Cloud Firewall API workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing Alibaba Cloud Cloud Firewall (Cloudfw) via OpenAPI/SDK, including firewall policy and resource operations, change management, status checks, and troubleshooting Cloud Firewall API workflows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud security engineers use this skill to discover Alibaba Cloud Cloud Firewall APIs, prepare and review firewall policy/resource operations, check status, and troubleshoot Cloud Firewall API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Firewall policy or resource changes can affect cloud network security posture. <br>
-Mitigation: Use least-privilege Alibaba Cloud credentials and require user confirmation of the exact region, resource identifier, and action before any mutating API call. <br>
-Risk: Saved API output may reveal firewall configuration or operational details. <br>
-Mitigation: Keep generated artifacts under output/aliyun-cloudfw-manage/ private and avoid sharing response payloads unless they have been reviewed for sensitive information. <br>
-Risk: Ambiguous region selection can target the wrong Alibaba Cloud environment. <br>
-Mitigation: Use ALICLOUD_REGION_ID when available and ask the user to choose a region before running mutating operations when the region is unclear. <br>
+## Use Case:
 
+Developers and cloud security operators use this skill to manage and troubleshoot Alibaba Cloud Cloud Firewall workflows through OpenAPI or SDK-based operations. It supports metadata-first API discovery, resource and policy changes, status checks, and reproducible local output capture.
 
-## Reference(s): <br>
-- [Aliyun Cloudfw Manage on ClawHub](https://clawhub.ai/cinience/aliyun-cloudfw-manage) <br>
-- [Sources](references/sources.md) <br>
-- [Alibaba Cloud Cloudfw OpenAPI Product Page](https://api.aliyun.com/product/Cloudfw) <br>
-- [Cloudfw API Metadata](https://api.aliyun.com/meta/v1/products/Cloudfw/versions/2017-12-07/api-docs.json) <br>
-- [Cloudfw Single API Definition](https://api.aliyun.com/meta/v1/products/Cloudfw/versions/2017-12-07/apis/{ApiName}/api.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration, Files, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and saved JSON or Markdown API inventory artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saved artifacts should be written under output/aliyun-cloudfw-manage/ with key region, resource, action, and time-range parameters captured for reproducibility.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Mutating Cloud Firewall operations can change firewall policies or resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Alibaba Cloud credentials and review any proposed Create, Update, Modify, or Set action before execution.
+
+Risk: Generated API inventories or response summaries may contain operational details from the target Alibaba Cloud environment.
+
+Mitigation: Keep generated outputs in output/aliyun-cloudfw-manage/ and avoid storing unnecessary secrets or sensitive API response content.
+
+## Reference(s):
+
+- [Artifact sources reference](references/sources.md)
+- [Alibaba Cloud OpenAPI Cloud Firewall product page](https://api.aliyun.com/product/Cloudfw)
+- [Cloudfw 2017-12-07 API metadata list](https://api.aliyun.com/meta/v1/products/Cloudfw/versions/2017-12-07/api-docs.json)
+- [Cloudfw single API metadata definition](https://api.aliyun.com/meta/v1/products/Cloudfw/versions/2017-12-07/apis/{ApiName}/api.json)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-cloudfw-manage)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated JSON or Markdown artifact files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated API inventory and evidence outputs are expected under output/aliyun-cloudfw-manage/.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Automates marketing workflows across Feishu, DingTalk, and WeCom using official CLI tools for content creation, campaign distribution, lead tracking, customer nurturing, and performance reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates marketing workflows across Feishu, DingTalk, and WeCom by guiding agents through content creation, multi-channel distribution, campaign tracking, lead nurturing, and performance reporting with official CLI commands.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Marketing teams and agent builders use this skill to draft and orchestrate CLI-based workflows for multi-platform marketing operations across Feishu, DingTalk, and WeCom. It helps agents propose campaign launch, lead tracking, nurture, and reporting command sequences that users review before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing messages may be sent to customers without proper consent or unsubscribe suppression. <br>
-Mitigation: Confirm opt-in status, unsubscribe lists, approval status, and frequency limits before running generated messaging commands. <br>
-Risk: Lead or customer data may be transferred across platforms without an appropriate legal basis. <br>
-Mitigation: Verify the legal basis and business approval for any cross-platform customer-data sync before executing generated commands. <br>
-Risk: Generated CLI commands may target the wrong audience, chat, user, or campaign record. <br>
-Mitigation: Review all placeholders, target IDs, audience segments, and campaign metadata before execution. <br>
+## Use Case:
 
+Marketing, sales, and operations teams use this skill to coordinate approved campaign content, lead tracking, customer nurture, and reporting across Feishu, DingTalk, and WeCom. Agents use it to produce platform-specific workflow guidance and shell commands for normal marketing operations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lm203688/marketing-automation-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and workflow templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated commands are proposals that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated marketing commands can contact the wrong chat, recipient, or customer segment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify target chats, recipients, approval status, and customer segment selection before running any generated command.
+
+Risk: Customer outreach or data syncing can violate consent, unsubscribe, frequency, or privacy requirements.
+
+Mitigation: Confirm opt-in and unsubscribe state, apply frequency caps, and verify that customer data may legally be copied between platforms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/marketing-automation-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and platform workflow tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for correct recipients, approvals, consent, opt-out status, and frequency limits before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

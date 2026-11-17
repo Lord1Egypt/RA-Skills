@@ -1,47 +1,61 @@
-## Description: <br>
-HeartFlow is a cognitive engine for AI agents that provides self-reflection, dream-based experience synthesis, emergent personality, memory, psychology, philosophy, and self-positioning analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HeartFlow is a cognitive engine for AI agents that supports self-reflection, dream-based experience synthesis, emergent personality, memory, AI psychology, and AI self-positioning analysis.
 
-## Publisher: <br>
-[yun520-1](https://clawhub.ai/user/yun520-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yun520-1](https://clawhub.ai/user/yun520-1)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add local cognitive-engine behavior to an AI agent, including reflective state analysis, memory retrieval, dream-style synthesis, self-healing strategy selection, and self-positioning summaries through CLI or MCP interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store conversation-derived data in local memory files. <br>
-Mitigation: Avoid storing secrets or sensitive personal data, and review memory contents and retention behavior before enabling persistent use. <br>
-Risk: The skill exposes local daemon and MCP interfaces, including an HTTP SSE service. <br>
-Mitigation: Run only in a trusted local environment, review daemon and MCP startup settings, and set SHUTDOWN_TOKEN when using the daemon. <br>
-Risk: The security summary flags broad code or command execution surfaces through codeExecutor and selfInitiator routes. <br>
-Mitigation: Review or disable those routes before deployment and require explicit approval for any generated code, shell command, or file-writing workflow. <br>
-Risk: The release is marked with sensitive capability tags including requires-wallet and requires-sensitive-credentials. <br>
-Mitigation: Do not provide wallet data, keys, tokens, or credentials unless the exact operation has been reviewed and isolated. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add cognitive reflection, memory retrieval, self-healing strategy selection, dream synthesis, and AI psychology or self-positioning analysis to an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yun520-1/heartflow-ai-self-positioning) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and command-oriented guidance with JavaScript examples and MCP/CLI usage details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or retrieve local memory data when enabled and may expose local daemon or MCP service interfaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.14.0 (source: server release metadata, SKILL.md frontmatter, package.json, CHANGELOG) <br>
+Risk: Powerful code execution may run unsafe or unintended commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated environment and disable, gate, or review code execution paths before use.
+
+Risk: Persistent memory injection can introduce stale, private, or untrusted stored content into prompts.
+
+Mitigation: Review and delete stored memory before allowing it into prompts, and keep runtime memory scoped to the intended workspace.
+
+Risk: Unauthenticated local MCP or memory access may expose agent state to unintended local clients.
+
+Mitigation: Avoid the unauthenticated HTTP MCP server unless local access is explicitly controlled and the environment is isolated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yun520-1/skills/heartflow-ai-self-positioning)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Agent integration guide](artifact/AGENTS.md)
+- [Release changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JavaScript examples, shell commands, and structured tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May expose CLI, daemon, MCP, and memory-tool interactions depending on how the skill is installed and invoked.]
+
+## Skill Version(s):
+
+2.14.0 (source: ClawHub release evidence, SKILL.md frontmatter, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

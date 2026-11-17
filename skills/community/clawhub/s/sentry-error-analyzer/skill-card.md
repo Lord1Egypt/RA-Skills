@@ -1,42 +1,59 @@
-## Description: <br>
-Analyze Sentry error patterns, prioritize issues by user impact, identify root causes, and suggest targeted fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Sentry error patterns, prioritize issues by user impact, identify root causes, and suggest targeted fixes. Use when asked to triage errors, analyze crash reports, or find the most impactful bugs to fix.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to triage Sentry issues, group related failures by root cause, rank them by user impact, and produce focused repair plans for crashes, regressions, and error spikes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes example Sentry API commands that require an authentication token. <br>
-Mitigation: Review commands before execution and use a narrowly scoped read-only Sentry token when possible. <br>
-Risk: Sentry logs, stack traces, and event payloads may contain secrets or unnecessary personal data. <br>
-Mitigation: Redact secrets and unnecessary personal data before sharing inputs with an agent or including them in reports. <br>
+## Use Case:
 
+Developers and engineers use this skill to triage Sentry issues, rank errors by user impact, identify likely root causes, and produce targeted fixes or prevention steps.
 
-## Reference(s): <br>
-- [Sentry Issues API](https://sentry.io/api/0/projects/{org}/{project}/issues/?query=is:unresolved&sort=freq&limit=50) <br>
-- [Sentry Issue Events API](https://sentry.io/api/0/issues/{issue_id}/events/?limit=10) <br>
-- [Sentry Issue Tags API](https://sentry.io/api/0/issues/{issue_id}/tags/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown report with structured sections and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prioritized issue rankings, root cause analysis, mitigation guidance, and sprint planning recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sentry exports and event payloads can contain secrets, personal data, or sensitive customer context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact logs or event data before broad sharing, and limit analysis to data the agent is authorized to inspect.
+
+Risk: Sentry API access requires an authentication token.
+
+Mitigation: Use a least-privilege Sentry token scoped to the intended organization and project.
+
+Risk: Root cause analysis and fix recommendations may be incomplete or incorrect without project-specific code and deployment context.
+
+Mitigation: Have an engineer review recommendations against source code, release history, and reproduction evidence before applying changes.
+
+## Reference(s):
+
+- [Sentry project issues API endpoint](https://sentry.io/api/0/projects/{org}/{project}/issues/?query=is:unresolved&sort=freq&limit=50)
+- [Sentry issue events API endpoint](https://sentry.io/api/0/issues/{issue_id}/events/?limit=10)
+- [Sentry issue tags API endpoint](https://sentry.io/api/0/issues/{issue_id}/tags/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown report with inline shell commands and optional code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prioritized issue summaries, impact scores, root cause analysis, fix recommendations, trend notes, and sprint planning guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

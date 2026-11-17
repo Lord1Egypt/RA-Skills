@@ -1,41 +1,56 @@
-## Description: <br>
-Call GET /api/imdb/title-did-you-know-query/v1 for IMDb 'Did You Know' Insights through JustOneAPI with id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/imdb/title-did-you-know-query/v1 for IMDb 'Did You Know' Insights through JustOneAPI with id.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers, researchers, and content teams use this skill to look up IMDb title 'Did You Know' insights, including trivia, through JustOneAPI by IMDb title ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent to the API as a URL query parameter, which can expose it in URL logs or telemetry. <br>
-Mitigation: Keep the token in the JUST_ONE_API_TOKEN environment variable, avoid pasting it into chat or logs, and rotate it if URL logs or telemetry may have exposed it. <br>
+## Use Case:
 
+External developers and agents use this skill to call JustOneAPI's IMDb titleDidYouKnowQuery endpoint for trivia and title insight enrichment by IMDb title ID.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_did_you_know_query&utm_content=project_link) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_did_you_know_query&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-imdb-title-did-you-know-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, JSON] <br>
-**Output Format:** [Markdown summary with optional raw JSON response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JustOneAPI token and an IMDb title ID; optional languageCountry controls locale.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token is sent as a URL query parameter, which can expose it in logs, monitoring tools, or copied URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token, avoid sharing token-bearing URLs or logs, and rotate the token if exposure is suspected.
+
+Risk: The token may carry quota, billing, or account-level access.
+
+Mitigation: Review token scope before installation and prefer credentials with limited account impact.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-imdb-title-did-you-know-query)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_did_you_know_query&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_did_you_know_query&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API calls]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and JUST_ONE_API_TOKEN; accepts an IMDb title id and optional languageCountry.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

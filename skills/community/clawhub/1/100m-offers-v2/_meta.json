@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "100m-offers-v2",
+  "name": "100m-offers",
+  "title": "$100M Offers: How To Make Offers So Good People Feel Stupid Saying No",
+  "author": "Alex Hormozi",
   "version": "1.0.0",
-  "publishedAt": 1780958508045
+  "license": "MIT",
+  "tags": [
+    "business",
+    "pricing",
+    "sales",
+    "entrepreneurship",
+    "marketing"
+  ],
+  "description": "Alex Hormozi's \"$100M Offers\" — the complete framework for creating Grand Slam Offers that eliminate price comparison and multiply revenue 22x. Covers 5 use cases: ① Grand Slam Offer construction — (\"how to make an irresistible offer\" \"grand slam offer\" \"value equation\") ② Pricing strategy — (\"charge more\" \"premium pricing\" \"stop competing on price\") ③ Value Equation mastery — (\"dream outcome\" \"perceived likelihood\" \"guarantee\" \"bonuses\") ④ Offer enhancements — (\"scarcity\" \"urgency\" \"guarantees\" \"stacking bonuses\" \"naming\") ⑤ Market selection — (\"starving crowd\" \"niche selection\" \"high demand\"). Trigger when users say: \"100m offers\" \"Alex Hormozi\" \"how to price\" \"value proposition\" \"grand slam offer\" \"premium pricing\" \"Acquisition.com\" \"value equation.\"",
+  "homepage": "https://github.com/jaysonmeng/book-skills/tree/main/skills/100m-offers",
+  "clawhub": {
+    "slug": "100m-offers",
+    "owner": "jaysonmeng"
+  }
 }

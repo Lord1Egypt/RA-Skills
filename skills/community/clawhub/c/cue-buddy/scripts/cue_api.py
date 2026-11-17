@@ -7,8 +7,15 @@ general-purpose SDK.
 
 Reads credentials from (in order):
   1. CUE_API_KEY env var
-  2. ~/.cue/config.json   {"api_key": "sk...", "base": "https://..."}
+  2. $CUE_HOME/config.json (if CUE_HOME set), else ~/.cue/config.json
+     {"api_key": "sk...", "base": "https://..."}; legacy ~/.cue/config.json
+     is always searched too so relocating never hides an existing key
   3. CUE_API_BASE env var overrides the base if set
+
+Runtime files (reports/logs/runs/backups/proposals) land under a single
+resolved root - see `python3 cue_api.py root` and sibling paths.py. Config
+and best-effort cooldowns stay in the deterministic config dir
+($CUE_HOME or ~/.cue), not the writability-resolved root.
 
 Public functions:
   - load_config()                      : (api_key, base) or raises
@@ -29,6 +36,7 @@ Public functions:
   - replay(conv_id, on_event)          : reads /api/replay/<id> SSE stream
 
 CLI usage (smoke test from a shell):
+    python3 cue_api.py root               # print resolved writable root
     python3 cue_api.py whoami
     python3 cue_api.py list
     python3 cue_api.py get <template_id>
@@ -46,11 +54,22 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import uuid
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Callable, Iterator
 
+# Single writable-root resolver (sibling module). cue_api needs two things
+# from it: cue_config_dir() - where config.json lives (deterministic, NOT
+# writability-fallback, so an existing key is never hidden) - and cue_root()
+# for the `root` CLI subcommand that lets the agent discover the write root
+# before launching a background run.
+from paths import cue_config_dir, cue_root, CueNoWritableRootError  # noqa: E402
 
-CONFIG_PATH = Path.home() / ".cue" / "config.json"
+
+# config.json lives under the deterministic config home ($CUE_HOME or ~/.cue),
+# resolved dynamically by _config_candidates() (not an import-time constant, so
+# CUE_HOME changes after import are honored). load_config() also searches the
+# legacy ~/.cue/config.json so setting CUE_HOME doesn't hide an existing key.
 DEFAULT_BASE = "https://cuecue.cn/api"
 API_KEY_PAGE = "https://cuecue.cn/api-key"
 
@@ -98,6 +117,12 @@ class CueAPIError(Exception):
             )
         if self.status == 404:
             return "资源不存在（template_id 错了？或已被删除）。"
+        if self.status == 422:
+            return (
+                "文件被服务端拒绝（多为格式不支持或大小超限）。"
+                "换一个受支持的格式（见 /api/file_server/accept_type），"
+                "或压缩 / 拆分后重传。"
+            )
         if self.status == 429:
             return (
                 "调用过于频繁，被服务端限流。请等 30 秒后再试；"
@@ -118,18 +143,45 @@ class CueAPIError(Exception):
 # ---------------------------------------------------------------------------
 
 
+def _config_candidates() -> list[Path]:
+    """Where to look for config.json, in order.
+
+    $CUE_HOME/config.json first (if CUE_HOME set), then the legacy
+    ~/.cue/config.json. Setting CUE_HOME to relocate runtime files must not
+    hide an API key the user already wrote to ~/.cue during setup.
+    """
+    seen: set[str] = set()
+    out: list[Path] = []
+    for c in (cue_config_dir() / "config.json", Path.home() / ".cue" / "config.json"):
+        if str(c) not in seen:
+            seen.add(str(c))
+            out.append(c)
+    return out
+
+
 def load_config() -> tuple[str, str]:
     """Return (api_key, base_url) or raise SystemExit with a helpful hint."""
     api_key = os.environ.get("CUE_API_KEY", "").strip()
     base = os.environ.get("CUE_API_BASE", "").strip()
 
-    if not api_key and CONFIG_PATH.exists():
-        try:
-            blob = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-            api_key = api_key or blob.get("api_key", "").strip()
-            base = base or blob.get("base", "").strip()
-        except Exception:
-            pass
+    if not api_key:
+        # Atomic per-file selection: the file that supplies the key ALSO
+        # supplies base. Never mix key from one file with base from another
+        # (credential boundary - a key must go to the server its file names).
+        # Env CUE_API_KEY / CUE_API_BASE still win over any file.
+        for cand in _config_candidates():
+            if not cand.exists():
+                continue
+            try:
+                blob = json.loads(cand.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            fkey = blob.get("api_key", "").strip()
+            if fkey:
+                api_key = fkey
+                if not base:
+                    base = blob.get("base", "").strip()
+                break
 
     base = base or DEFAULT_BASE
 
@@ -137,7 +189,7 @@ def load_config() -> tuple[str, str]:
         sys.stderr.write(
             "\n[cue-buddy] 缺少 API key。\n"
             f"  → 去 {API_KEY_PAGE} 创建一个 sk-prefixed key\n"
-            "  → 然后 export CUE_API_KEY=sk... (或写入 ~/.cue/config.json)\n\n"
+            f"  → 然后 export CUE_API_KEY=sk... (或写入 {cue_config_dir() / 'config.json'})\n\n"
         )
         raise SystemExit(2)
 
@@ -235,8 +287,52 @@ def get_templates(mode: str = "is_me", include_system: bool = False) -> list[dic
     return []
 
 
+def normalize_template_id(template_id: str | None) -> str | None:
+    """Cue playbook ids are `template_<id>` (see /api/playbook buddies[].template_id).
+
+    Both humans and agents routinely copy just the bare `<id>` suffix from chat
+    or notes and the backend then 404s "模板不存在". Prepend the prefix when
+    missing so a bare suffix still resolves. Called at every template_id entry
+    point below (get/update/frequent/recommended-task) so callers never need to
+    pre-normalize. Conservative: only ever prepends — never strips — so an
+    already-correct id (incl. `template__xWp8N` double-underscore,
+    `template_-GxhWk` leading-dash, `template_corporate_credit_pre_due_diligence`
+    long-slug) is untouched. None passes through (free-form run).
+    """
+    if template_id and not template_id.startswith("template_"):
+        return "template_" + template_id
+    return template_id
+
+
+def validate_template_id(template_id: str | None) -> str | None:
+    """Return an error message if template_id looks implausible, else None.
+
+    Cue template_id suffixes are base62 — they ALWAYS contain letters/_/-,
+    never pure digits (verified: 0/159 buddies have a pure-digit suffix).
+    A pure-digit suffix (e.g. `142` → `template_142`) means the caller
+    grabbed the wrong field — the backend's numeric DB ``id`` (buddies carry
+    both an integer ``id`` and a string ``template_id``) or a list index —
+    instead of the ``template_id`` string (e.g. ``template_fnig0i``).
+    Catching it here fails fast with a clear message instead of burning
+    credits on a guaranteed 404. normalize_template_id has already prepended
+    the prefix, so the suffix is whatever follows ``template_``.
+    """
+    if not template_id:
+        return None
+    suffix = template_id[len("template_"):] if template_id.startswith("template_") else template_id
+    if suffix.isdigit():
+        return (
+            f"template_id={template_id}: 纯数字后缀不是 Cue id。"
+            f"Cue id 形如 template_<base62> (如 template_fnig0i), "
+            f"从搭子的 template_id 字段取——你传的可能是数字 DB id 或列表序号 "
+            f"(搭子同时有数字 id 和字符串 template_id 两字段,易混)。"
+        )
+    return None
+
+
 def get_template(template_id: str) -> dict:
     """Fetch one full template."""
+    template_id = normalize_template_id(template_id)
     data = _request("GET", f"/templates/{template_id}")
     if isinstance(data, dict) and "data" in data and isinstance(data["data"], dict):
         return data["data"]
@@ -453,6 +549,7 @@ def update_template(template_id: str, payload: dict) -> dict:
         CueAPIError: 400 if caller sends ONLY task_input/schedules
             without a regular template field (backend contract).
     """
+    template_id = normalize_template_id(template_id)
     body = _normalize_template_payload(payload)
     # PUT contract sanity: backend (template.py:598-599) rejects 400 if
     # caller didn't include any regular template field. Surface this
@@ -500,6 +597,7 @@ def update_template_recommended_task(
         task_input: directly-executable subject (R9 client-side checked).
             None=omit field (server keeps existing value).
     """
+    template_id = normalize_template_id(template_id)
     if not isinstance(schedules, list) or len(schedules) < 1:
         raise ValueError(
             "update_template_recommended_task requires schedules with ≥1 item; "
@@ -622,6 +720,7 @@ def set_template_frequent(template_id: str, is_frequent: bool = True) -> dict:
     cross-user publishing primitive at the API level; "frequent" simply
     means "pin this to my own workbench 常用 area for quick access."
     """
+    template_id = normalize_template_id(template_id)
     body = {"template_id": template_id, "is_frequent": is_frequent}
     data = _request("POST", "/templates/frequent", body=body)
     if isinstance(data, dict) and isinstance(data.get("data"), dict):
@@ -773,11 +872,17 @@ def replay(
 # ---------------------------------------------------------------------------
 
 
+@lru_cache(maxsize=1)
 def get_accept_type() -> list[str]:
     """Return the server's accepted upload suffixes (lowercase, no dot).
 
     GET /api/file_server/accept_type → DataResponse(data={accept_type: "doc,docx,..."}).
-    Empty list if unavailable (caller treats that as "skip pre-check")."""
+    Empty list if unavailable (caller treats that as "skip pre-check").
+
+    Cached for the process: the accept list is effectively static within a run,
+    and the per-file upload pre-checks (upload_file / upload_material called once
+    per --material) would otherwise each re-hit the endpoint. lru_cache does not
+    memoize the raised CueAPIError, so a transient failure isn't stuck."""
     data = _request("GET", "/file_server/accept_type", timeout=15)
     payload = data.get("data") if isinstance(data, dict) else None
     raw = payload.get("accept_type", "") if isinstance(payload, dict) else ""
@@ -845,6 +950,134 @@ def upload_file(path: str, *, timeout: float = 120.0) -> str:
     return file_hash
 
 
+def upload_material(
+    path: str,
+    *,
+    timeout: float = 300.0,
+    on_progress: Callable[[str, int], None] | None = None,
+) -> str:
+    """Upload a local file to /api/file/upload_stream and return its file_id (cf_…).
+
+    This is the 添加素材 / research-grounding path — DISTINCT from upload_file
+    (which is mimic styling → /file_server/upload, plain-JSON file_hash). Here the
+    server parses + chunks + EMBEDS the file into the conversation's vector store;
+    the returned file_id is later passed in chat_stream's `conversation_file_ids`,
+    and the 研究 agent semantically retrieves the FULL document via its built-in
+    file_retrieval tool (real RAG, not a preview).
+
+    The endpoint streams SSE progress
+    (uploading→uploaded→parsing→chunking→indexing→completed). Two contract traps:
+      - the file_id appears early (at parsing) but is only USABLE at the terminal
+        status=="completed" event — embedding/indexing isn't done before that;
+      - the stream ends with a bare `data: [DONE]` line — it is NOT JSON, so it
+        must be string-matched, never json.loads'd.
+    Note the form field is `files` (plural — the route takes List[UploadFile]).
+
+    `timeout` is the socket read timeout (per blocking read), not a total
+    wall-clock budget — a server dribbling progress frames keeps the stream
+    alive; it only fires if no byte arrives for `timeout` seconds.
+
+    Raises CueAPIError on HTTP / network error, on a server `failed` frame
+    (422), or if the stream ends with no completed file_id (502); SystemExit(2)
+    on missing key / unreadable file.
+    """
+    p = Path(path).expanduser()
+    if not p.is_file():
+        sys.stderr.write(f"[cue] file not found: {p}\n")
+        raise SystemExit(2)
+    api_key, base = load_config()
+
+    # Best-effort SOFT pre-check: the upload_stream accept list may differ from
+    # /file_server/accept_type, so only warn — let the server be the authority
+    # (a wrong client-side reject is worse than a clear server reject).
+    try:
+        accepted = get_accept_type()
+    except CueAPIError:
+        accepted = []
+    suffix = p.suffix.lower().lstrip(".")
+    if accepted and suffix not in accepted:
+        sys.stderr.write(
+            f"[cue] 提示:文件类型 '{suffix}' 不在 /file_server/accept_type {accepted} 内;"
+            "仍尝试上传,若服务端拒绝请另存为受支持格式再传。\n"
+        )
+
+    boundary = "----cuematerial" + uuid.uuid4().hex
+    pre = (
+        f"--{boundary}\r\n"
+        f'Content-Disposition: form-data; name="files"; filename="{p.name}"\r\n'
+        "Content-Type: application/octet-stream\r\n\r\n"
+    ).encode("utf-8")
+    post = f"\r\n--{boundary}--\r\n".encode("utf-8")
+    body = pre + p.read_bytes() + post
+
+    url = base.rstrip("/") + "/file/upload_stream"
+    req = urllib.request.Request(url, data=body, method="POST")
+    req.add_header("Authorization", f"Bearer {api_key}")
+    req.add_header("Content-Type", f"multipart/form-data; boundary={boundary}")
+    req.add_header("Accept", "text/event-stream")
+    try:
+        resp = urllib.request.urlopen(req, timeout=timeout)
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", errors="replace")[:400]
+        raise CueAPIError(e.code, detail, "/file/upload_stream") from e
+    except urllib.error.URLError as e:
+        raise CueAPIError(
+            0, f"network unreachable: {getattr(e, 'reason', e)}", "/file/upload_stream"
+        ) from e
+
+    file_id: str | None = None
+    last_error: str | None = None
+    try:
+        for raw in resp:
+            line = raw.decode("utf-8", errors="replace").rstrip("\r\n")
+            if not line.startswith("data:"):
+                continue
+            chunk = line[5:].lstrip() if line.startswith("data: ") else line[5:]
+            chunk = chunk.rstrip("\r")
+            if chunk == "[DONE]":  # terminal marker — bare string, NOT JSON
+                break
+            try:
+                obj = json.loads(chunk)
+            except json.JSONDecodeError:
+                continue
+            status = obj.get("status")
+            if on_progress:
+                on_progress(status or "", obj.get("progress") or 0)
+            if status == "failed":
+                # The route puts the reason under `error` (e.g. "文件大小超过限制
+                # 50MB" / "不支持的文件格式"), not `message`; keep `message` as a
+                # fallback in case that ever changes.
+                last_error = (
+                    obj.get("error")
+                    or obj.get("message")
+                    or "server reported status=failed"
+                )
+            # file_id repeats from `parsing` on, but only bind it at `completed`.
+            # NOTE: one upload = one file → one `completed`. If the backend ever
+            # emits multiple `completed` frames, this keeps only the last id.
+            if status == "completed" and obj.get("file_id"):
+                file_id = obj["file_id"]
+    finally:
+        # Early `break` (and the no-file_id raise below) would otherwise abandon
+        # the socket; the runner uploads several --material files in one process.
+        resp.close()
+    if not file_id:
+        # NOT a transport failure (the POST succeeded) — don't raise status 0,
+        # which user_hint() renders as "网络不可达" and sends operators chasing
+        # proxy/VPN. A `failed` frame is a file-level reject (422-ish); a silent
+        # cut with no completed/[DONE] is a server/pipeline issue (502-ish).
+        if last_error:
+            raise CueAPIError(
+                422, f"文件处理失败: {last_error}", "/file/upload_stream"
+            )
+        raise CueAPIError(
+            502,
+            "上传流中断,未收到 completed 回执(服务端解析/索引可能失败)",
+            "/file/upload_stream",
+        )
+    return file_id
+
+
 # ---------------------------------------------------------------------------
 # CLI smoke test
 # ---------------------------------------------------------------------------
@@ -865,6 +1098,20 @@ def _cli() -> int:
         return 0
     cmd = sys.argv[1]
     try:
+        if cmd == "root":
+            # Print the resolved writable root (one line, exit 0). Lets the
+            # agent discover where reports/logs/runs will land BEFORE
+            # launching a background run, so the runner and the completion-
+            # detection tail watch the same file. Also a writability precheck:
+            # cue_root() probes candidates; if NOTHING is writable it raises
+            # CueNoWritableRootError -> we exit 2 (not 0 with a fake path) so
+            # the agent doesn't proceed into a guaranteed-failure run.
+            try:
+                print(cue_root())
+                return 0
+            except CueNoWritableRootError as e:
+                sys.stderr.write(f"[cue_api] ✗ {e}\n")
+                return 2
         if cmd == "whoami":
             key, base = load_config()
             print(f"base: {base}")
@@ -879,6 +1126,10 @@ def _cli() -> int:
         if cmd == "get":
             if len(sys.argv) < 3:
                 print("usage: cue_api.py get <template_id>")
+                return 2
+            _bad = validate_template_id(sys.argv[2])
+            if _bad:
+                print(f"[cue_api] ✗ {_bad}")
                 return 2
             print(json.dumps(get_template(sys.argv[2]), ensure_ascii=False, indent=2))
             return 0
@@ -917,6 +1168,10 @@ def _cli() -> int:
             if len(sys.argv) < 3:
                 print("usage: cue_api.py {frequent|unfrequent} <template_id>")
                 return 2
+            _bad = validate_template_id(sys.argv[2])
+            if _bad:
+                print(f"[cue_api] ✗ {_bad}")
+                return 2
             res = set_template_frequent(sys.argv[2], is_frequent=(cmd == "frequent"))
             print(json.dumps(res, ensure_ascii=False, indent=2))
             return 0
@@ -944,6 +1199,10 @@ def _cli() -> int:
                 print("  payload may include any subset of the 4 LLM fields + meta")
                 return 2
             template_id = sys.argv[2]
+            _bad = validate_template_id(template_id)
+            if _bad:
+                print(f"[cue_api] ✗ {_bad}")
+                return 2
             payload_path = sys.argv[3]
             payload = json.loads(Path(payload_path).read_text(encoding="utf-8"))
             res = update_template(template_id, payload)

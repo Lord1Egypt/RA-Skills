@@ -1,44 +1,52 @@
-## Description: <br>
-Looks up attribution details for 11-digit mainland China mobile numbers, including province, city, carrier, carrier type, area code, postal code, and administrative division code through the Jike API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询中国大陆 11 位手机号的归属地省份/城市、运营商、运营商类型、区号、邮编和行政区划编码，数据由即刻数据（jikeapi.cn）接口提供。
 
-## Publisher: <br>
-[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn)
 
-## Use Case: <br>
-External users, developers, and AI agents use this skill to answer mobile-number attribution questions for mainland China numbers. It returns masked human-readable results by default and can emit JSON for downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried phone numbers and the Jike AppKey are sent to a third-party API endpoint. <br>
-Mitigation: Use the skill only for numbers you are authorized to query, and keep the AppKey out of public repositories, command histories, and shared logs. <br>
-Risk: Changing JIKE_API_BASE_URL can route phone numbers and credentials to a non-default endpoint. <br>
-Mitigation: Leave JIKE_API_BASE_URL unset unless you intentionally configure a trusted endpoint. <br>
-Risk: The --no-mask option can expose full phone numbers in agent output. <br>
-Mitigation: Use the default masked output unless full-number display is necessary and appropriate. <br>
+## Use Case:
 
+External users, developers, and AI agents use this skill to look up mainland China mobile number attribution, including location, carrier, area code, postal code, and administrative code. It is intended for user-requested lookups and defaults to masked number display in text output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/jike-mobile-locate) <br>
-- [Jike Data homepage](https://www.jikeapi.cn/) <br>
-- [Jike mobile lookup API endpoint](https://api.jikeapi.cn/v1/mobile/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Masked human-readable text or JSON from a Python CLI script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JIKE_MOBILE_KEY; default text output masks the middle four digits unless --no-mask is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact _meta.json) <br>
+Risk: Queried phone numbers and the Jike AppKey are sent to the provider, and the security evidence reports that an undocumented endpoint override can redirect them to an arbitrary server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing is acceptable; avoid querying real personal numbers without consent; keep JIKE_API_BASE_URL unset or constrain outbound traffic to https://api.jikeapi.cn.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jikeapi-cn/skills/jike-mobile-locate)
+- [Publisher Profile](https://clawhub.ai/user/jikeapi-cn)
+- [Jike Data Homepage](https://www.jikeapi.cn/)
+- [Jike Mobile Query API Endpoint](https://api.jikeapi.cn/v1/mobile/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text lookup results or JSON emitted by a Python command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JIKE_MOBILE_KEY; accepts one or more 11-digit mainland China mobile numbers; masks phone numbers by default unless full display is requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

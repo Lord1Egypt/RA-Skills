@@ -1,38 +1,49 @@
-## Description: <br>
-Get a complete financial overview of the business including balance, recent transactions, outstanding invoices, and upcoming tax obligations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get a complete financial overview of the business including balance, recent transactions, outstanding invoices, and upcoming tax obligations.
 
-## Publisher: <br>
-[stanlee000](https://clawhub.ai/user/stanlee000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stanlee000](https://clawhub.ai/user/stanlee000)
 
-## Use Case: <br>
-Business users and finance operators use this skill to ask for a concise financial status summary that combines balances, recent cash flow, unpaid invoices, and upcoming tax obligations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill retrieves and displays sensitive business balances, transactions, invoices, and tax information in the chat. <br>
-Mitigation: Install only when the Norman Finance MCP server is trusted, and ask the agent to limit scope before retrieving a full overview for ambiguous requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Financial Overview on ClawHub](https://clawhub.ai/stanlee000/financial-overview) <br>
-- [Norman Finance](https://norman.finance) <br>
+## Use Case:
 
+Business users and operators use this skill to ask an agent for a structured financial status summary covering cash balance, recent transaction activity, invoices, tax obligations, and recommended next actions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown financial overview with concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses EUR currency formatting and summarizes sensitive business finance data retrieved through the Norman Finance MCP server.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may cause an agent to retrieve sensitive Norman Finance business financial data when users ask broad financial-status questions.
+
+Mitigation: Install only for agents and users authorized to access Norman Finance balances, transactions, invoices, and tax status; review financial recommendations before acting on them.
+
+## Reference(s):
+
+- [Financial Overview on ClawHub](https://clawhub.ai/stanlee000/skills/financial-overview)
+- [Norman Finance](https://norman.finance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown financial summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses EUR currency formatting and may include actionable recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

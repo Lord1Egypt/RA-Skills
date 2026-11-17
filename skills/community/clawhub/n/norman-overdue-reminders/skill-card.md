@@ -1,42 +1,56 @@
-## Description: <br>
-Finds overdue invoices, groups them by reminder severity, and helps send payment reminders only after user review and approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find overdue invoices and send payment reminders (Zahlungserinnerungen / Mahnungen) to clients.
 
-## Publisher: <br>
-[stanlee000](https://clawhub.ai/user/stanlee000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stanlee000](https://clawhub.ai/user/stanlee000)
 
-## Use Case: <br>
-Finance operators and business users use this skill to review unpaid Norman Finance invoices, decide which clients should receive reminders, and approve each reminder before it is sent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access invoice, client, and transaction data through the Norman Finance MCP. <br>
-Mitigation: Install it only for users who should view this financial data and review invoice, client, and amount details before taking action. <br>
-Risk: Payment reminders and formal Mahnung workflows can affect customer relationships or create legal implications, especially outside Germany. <br>
-Mitigation: Review the recipient, due date, amount, reminder tone, and local legal context before approving any send. <br>
-Risk: A reminder could be sent for an invoice that was recently paid but not yet linked. <br>
-Mitigation: Check recent transactions before approving reminders when payment status is uncertain. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Norman Finance](https://norman.finance) <br>
-- [ClawHub skill page](https://clawhub.ai/stanlee000/norman-overdue-reminders) <br>
+## Use Case:
 
+Business users and finance operators use this skill to identify unpaid invoices, group overdue accounts by reminder severity, review client contact details, and approve payment reminders before they are sent.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown tables, reminder drafts, approval prompts, and final summary reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Norman Finance MCP; reminder sends require explicit user approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses invoice, client contact, and transaction data through the norman-finance MCP connection.
+
+Mitigation: Install and use it only where that connection is trusted for financial and client-contact data.
+
+Risk: Formal Mahnung or final-notice reminders can affect legal position and customer relationships.
+
+Mitigation: Review each reminder carefully and require explicit user approval before any reminder is sent.
+
+Risk: An invoice may appear overdue when a recent payment has not yet been linked.
+
+Mitigation: Check recent transactions before sending reminders for invoices that may have already been paid.
+
+## Reference(s):
+
+- [Norman Finance](https://norman.finance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [Markdown summaries, invoice tables, approval prompts, and final reminder reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user review and explicit approval before sending each reminder.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

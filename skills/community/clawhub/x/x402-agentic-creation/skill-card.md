@@ -1,46 +1,66 @@
-## Description: <br>
-Monetize your agent's API or tools using the x402 protocol and USDC micropayments. Enables provisioning, earnings tracking, and withdrawals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monetize your agent's API or tools using the x402 protocol and USDC micropayments. Enables provisioning, earnings tracking, and withdrawals.
 
-## Publisher: <br>
-[gatex402](https://clawhub.ai/user/gatex402) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gatex402](https://clawhub.ai/user/gatex402)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent provision monetized API routes, check USDC earnings, and trigger withdrawals through GateX402 on supported Base and Solana networks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes live USDC withdrawal authority. <br>
-Mitigation: Use host-enforced approvals for withdrawals, wallet or session limits, destination and network verification, and audit logging for payout actions. <br>
-Risk: Wallet private keys and management tokens are sensitive credentials. <br>
-Mitigation: Store credentials outside agent-visible parameters and inject them only through the host runtime or secure vault interfaces. <br>
-Risk: Provisioning and payout calls depend on the GateX402 backend. <br>
-Mitigation: Restrict network access to approved GateX402 domains and log provisioning, balance, and withdrawal requests. <br>
+## Use Case:
 
+Developers and external agent operators use this skill to provision paid API gateways, set USDC route pricing, check balances, and withdraw earnings through GateX402.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gatex402/x402-agentic-creation) <br>
-- [GateX402 homepage](https://gatex402.dev) <br>
-- [GateX402 LLM documentation](https://gatex402.dev/llms-full.txt) <br>
-- [GateX402 OpenAPI specification](https://api.gatex402.dev/openapi.json) <br>
-- [Safety guardrails](references/safety.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Boundary-wrapped text responses, JSON-like payloads, TypeScript tool calls, shell commands, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tools require host-injected wallet credentials and management token access; withdrawal actions should use host-enforced approvals, session limits, destination and network verification, secure secret storage, and audit logging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can sign wallet messages and trigger USDC withdrawals through the GateX402 backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited wallet or session policy, keep wallet keys in a vault, and require explicit human approval before withdrawals.
+
+Risk: The skill depends on a trusted GateX402 backend for provisioning, balance checks, and withdrawals.
+
+Mitigation: Install only if the GateX402 backend is trusted in the deployment environment and restrict outbound host access to approved domains.
+
+Risk: Wallet private keys and management tokens could be exposed if passed through agent-visible parameters.
+
+Mitigation: Inject credentials only through host-managed callbacks and store management tokens outside the agent transcript.
+
+Risk: Flagged dependencies may be unsuitable for CI or production use without review.
+
+Mitigation: Pin the installer path and update flagged dependencies before CI or production deployment.
+
+## Reference(s):
+
+- [GateX402 Homepage](https://gatex402.dev)
+- [GateX402 LLM Documentation](https://gatex402.dev/llms-full.txt)
+- [GateX402 OpenAPI Spec](https://api.gatex402.dev/openapi.json)
+- [GateX402 Bazaar Discovery](https://gatex402.dev/discover)
+- [Safety Guardrails](references/safety.md)
+- [ClawHub Skill Page](https://clawhub.ai/gatex402/skills/x402-agentic-creation)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, configuration]
+
+**Output Format:** [Boundary-wrapped JSON strings returned by agent tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are sanitized to expose only selected provisioning, balance, withdrawal status, and transaction fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; package.json and skill.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

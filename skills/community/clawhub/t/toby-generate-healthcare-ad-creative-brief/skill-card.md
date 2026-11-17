@@ -1,42 +1,55 @@
-## Description: <br>
-Create detailed visual and messaging plans for paid healthcare campaigns targeting operators, clinics, and patient education teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and hooks for healthcare promotions for paid campaign planning by healthcare operators, clinic teams, and patient educators.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Healthcare operators, clinic teams, and patient educators use this skill to plan paid campaign creative briefs, including audience, goals, constraints, visuals, and messaging hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Healthcare campaign outputs may include patient-facing language or regulated medical claims that are inaccurate or unsupported. <br>
-Mitigation: Require human review by appropriate marketing, clinical, legal, or compliance reviewers before public or patient-facing use. <br>
-Risk: Image-generation prompts or suggested visuals may create unsuitable, misleading, or noncompliant healthcare advertising assets. <br>
-Mitigation: Review generated visual directions and assets against brand, accessibility, consent, and healthcare advertising requirements before publication. <br>
+## Use Case:
 
+Healthcare operators, clinic teams, and patient educators use this skill to draft paid campaign creative briefs that clarify audience, goals, constraints, visual hooks, and deliverables. Human review is needed before patient-facing content or regulated medical claims are used.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-healthcare-ad-creative-brief) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-healthcare-ad-creative-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text creative brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include campaign audience, business goal, constraints, deliverables, visual direction, messaging hooks, and review notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests Bash and Read access even though the described brief-generation workflow does not require shell or local file access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with Bash and Read removed or denied unless a specific local workflow needs them; run in a constrained workspace when enabled.
+
+Risk: Healthcare ad briefs may include patient-facing content or regulated medical claims.
+
+Mitigation: Require qualified human review for accuracy, compliance, and suitability before publishing or relying on generated claims.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/tobeyrebecca/skills/toby-generate-healthcare-ad-creative-brief)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-healthcare-ad-creative-brief)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown creative brief guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include visual direction, messaging hooks, audience notes, constraints, deliverables, and human-review reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

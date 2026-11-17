@@ -1,42 +1,59 @@
-## Description: <br>
-Scans Uniswap deployments across chains for price differences, evaluates profitability after costs, assesses risk, and can optionally execute user-confirmed cross-chain arbitrage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+跨链套利 | Cross-Chain Arbitrage. Uniswap 跨链套利机会 | Uniswap cross-chain arbitrage. 发现不同链上的价格差异 | Find price differences across chains. 触发词：跨链、套利、Uniswap、arbitrage.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers, DeFi operators, and wallet-enabled agents use this skill to scan for cross-chain Uniswap arbitrage opportunities, compare net profitability after gas, bridge, and slippage costs, and prepare or execute user-confirmed trades. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide live cross-chain crypto trades and bridging. <br>
-Mitigation: Use scan-only mode first and require manual wallet review and signing before every transaction. <br>
-Risk: There is no clear default spending cap in the release evidence. <br>
-Mitigation: Set an explicit maximum trade amount before execution and stop if the proposed amount exceeds it. <br>
-Risk: Cross-chain arbitrage opportunities can expire during confirmation or bridge settlement. <br>
-Mitigation: Re-check profitability immediately before execution and present net profit after gas, bridge fees, and slippage rather than gross spread. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/cross-chain-arbitrage-cn) <br>
-- [ClawHub](https://clawhub.ai) <br>
+## Use Case:
 
+Developers and external users use this skill to scan Uniswap deployments across chains for token price discrepancies, estimate profitability after gas, bridge fees, and slippage, and optionally execute a risk-gated arbitrage workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with opportunity tables, risk summaries, execution status, and profit-and-loss details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transaction identifiers, bridge order status, cost breakdowns, and scan-only recommendations when execution is not requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can trigger real on-chain fund movement during cross-chain arbitrage execution.
+
+Mitigation: Install only from a reviewed fixed version or commit, avoid broad wallet permissions, set explicit maximum trade amounts, and require user confirmation before any swap or bridge.
+
+Risk: Arbitrage opportunities are time-sensitive, so price movement during bridge settlement can erase projected profit or create a loss.
+
+Mitigation: Use scan-only mode first, present all-in costs rather than gross spread, re-check profitability near execution, and warn users that actual profit may differ.
+
+Risk: Bridge liquidity, settlement delays, or smart contract issues can prevent safe completion.
+
+Mitigation: Run the documented safety and balance checks, use the risk-assessor gate, veto insufficient-liquidity routes, and report bridge delays or failures clearly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/cross-chain-arbitrage-cn)
+- [ClawHub metadata link](https://clawhub.ai)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with tables, status updates, confirmation prompts, and inline shell commands for installation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce scan-only reports, risk-veto reports, execution progress updates, and final profit-and-loss summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

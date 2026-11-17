@@ -1,46 +1,60 @@
-## Description: <br>
-Generates high-quality positive, negative, and edge-case examples for skills to improve routing and understandability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates reviewable positive, negative, edge-case, mis-trigger, documentation placement, and maintenance examples for skills to improve routing and clarity.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to draft reviewable positive examples, negative examples, edge cases, common misfires, placement guidance, and maintenance notes for skill documentation and release preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional helper can read a selected input path and include that content in generated drafts. <br>
-Mitigation: Point it only at files or directories intended for the draft, and redact sensitive or personal information before use. <br>
-Risk: The optional helper can write to a selected output file. <br>
-Mitigation: Use stdout or dry-run mode for review first, and choose an explicit non-sensitive output path when writing a file. <br>
-Risk: Generated examples may be too generic or may omit important non-trigger cases if the input brief is thin. <br>
-Mitigation: Review the draft against the skill's routing boundaries and add missing positive, negative, and edge-case examples before release. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to draft structured examples and anti-examples for skill documentation, routing, and release preparation.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/52YuanChangXing/skill-example-synthesizer) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [README](artifact/README.md) <br>
-- [Specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown by default, with optional JSON output from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The optional Python helper can read a user-selected input file or directory and can write to a user-selected output path; dry-run and stdout modes are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Generated examples can introduce incorrect or misleading routing guidance if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated examples against the source skill before publishing or release.
+
+Risk: Input snippets may appear in generated reports.
+
+Mitigation: Redact personal, confidential, or sensitive material before using the skill.
+
+Risk: The bundled script includes broader audit helpers beyond the default packaged mode.
+
+Mitigation: Run the script only with intended local inputs and review generated output before relying on helper modes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/skill-example-synthesizer)
+- [README](artifact/README.md)
+- [Output template](artifact/resources/template.md)
+- [Structured specification](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown by default, with optional JSON from the bundled local script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reviewable drafts from local input; the script can write the generated report to a requested output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

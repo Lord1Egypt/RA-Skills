@@ -1,41 +1,59 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI, including web pages, PDFs, images, audio, and YouTube links.
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-Developers and agent users use this skill to call the summarize CLI for summaries of web pages, PDFs, images, audio, local files, and YouTube links. It also helps configure models, provider API keys, output length, JSON output, and optional extraction services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summarized URLs or local files may be sent to external model or extraction providers. <br>
-Mitigation: Avoid confidential, regulated, or private content unless the selected CLI and provider settings meet the user's privacy and compliance requirements. <br>
-Risk: The skill depends on an external summarize CLI and optional provider integrations. <br>
-Mitigation: Install only from trusted sources, confirm the binary and configured providers, and review generated summaries before relying on them. <br>
+## Use Case:
 
+Developers and other ClawHub users use this skill to ask an agent to summarize local files, URLs, and YouTube links through the summarize CLI. It is useful when an agent needs concise summaries or machine-readable summary output from supported document and media inputs.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/yinwuzhe/skills/0514-tosr2-skill) <br>
-- [Summarize CLI homepage](https://summarize.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets; the CLI can produce plain text or JSON summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external summarize binary. Optional provider and extraction API keys change what services may process input content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Local files, URLs, and media inputs may be sent to selected model providers or enabled fallback services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid summarizing secrets, confidential documents, private URLs, or regulated data unless that processing has been approved.
+
+Risk: The summarize CLI is installed from an unpinned third-party Homebrew tap.
+
+Mitigation: Review and trust the Homebrew tap and CLI before installation, and pin or audit the dependency in managed environments.
+
+Risk: Optional Firecrawl and Apify fallbacks can introduce additional external processing paths.
+
+Mitigation: Enable fallback service API keys only when their data handling is acceptable for the content being summarized.
+
+## Reference(s):
+
+- [Summarize homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/yinwuzhe/skills/0514-tosr2-skill)
+- [Publisher profile](https://clawhub.ai/user/yinwuzhe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output length can be controlled with CLI flags such as --length and --max-output-tokens.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

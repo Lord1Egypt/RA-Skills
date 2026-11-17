@@ -1,39 +1,57 @@
-## Description: <br>
-X Tweet Speedread (Premium) provides an instant English brief for an X post using a charge-first SkillPay flow at 0.001 USDT per call. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X Tweet Speedread produces an instant English brief for an X post after a SkillPay charge.
 
-## Publisher: <br>
-[huangkefeng-ai](https://clawhub.ai/user/huangkefeng-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huangkefeng-ai](https://clawhub.ai/user/huangkefeng-ai)
 
-## Use Case: <br>
-External users and agents use this skill to turn an X status URL into a short English speedread with key bullets, a core takeaway, risks, and suggested actions. Each run should be treated as billable through the publisher's SkillPay model. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is billable and uses a caller-supplied user ID, creating an unclear charge authorization boundary. <br>
-Mitigation: Require explicit user confirmation before invoking the script with a user ID and treat each run as a billable action. <br>
-Risk: The skill processes X URLs and may expose private, sensitive, or unwanted content to third-party fetch and billing services. <br>
-Mitigation: Use only non-sensitive X URLs and install the skill only when the publisher and SkillPay billing model are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangkefeng-ai/x-tweet-speedread-skill) <br>
+## Use Case:
 
+External users and agents use this skill to summarize public X posts into a short English speedread with key bullets, a core takeaway, risks, and suggested actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful output includes a charged status, fetch attempts, input URL, and a summary with bullets, core takeaway, risks, and actions; low balance can return PAYMENT_URL and PAYMENT_INFO.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.2 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill ships an exposed billing key.
+
+Mitigation: Remove and rotate the billing key before use, and require deployment-specific secrets from the runtime environment.
+
+Risk: The skill sends post or user identifiers to external services while charging before summarization.
+
+Mitigation: Disclose third-party fetch and billing providers, validate user consent, and restrict billing calls to the intended HTTPS provider.
+
+Risk: The runtime can make unbounded network requests and accepts arbitrary direct fetch targets.
+
+Mitigation: Enforce X status URL validation and remove arbitrary direct fetching before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangkefeng-ai/skills/x-tweet-speedread-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/huangkefeng-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON containing an English summary, key bullets, a core takeaway, risks, actions, and billing or fetch error details when applicable.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an X status URL and optionally a user identifier; may return PAYMENT_URL and PAYMENT_INFO when balance is insufficient.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

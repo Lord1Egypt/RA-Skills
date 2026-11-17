@@ -1,42 +1,59 @@
-## Description: <br>
-财经情报局聚合权威财经新闻源，分析利好、利空和中性信号，评估对市场、行业和公司的影响，并生成投资研究简报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+财经情报局 is a Chinese-language finance intelligence skill that helps agents gather finance news, classify sentiment and impact, map related stocks, and draft investment briefing references.
 
-## Publisher: <br>
-[if530770](https://clawhub.ai/user/if530770) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[if530770](https://clawhub.ai/user/if530770)
 
-## Use Case: <br>
-External users and analysts use this skill to collect finance news, filter by market, source, keyword, industry, or stock, and produce structured research briefings with sentiment, impact level, related securities, and suggested posture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance news summaries, keyword sentiment, and operation advice can be incomplete or misleading if treated as trading advice. <br>
-Mitigation: Verify market-moving claims against primary sources and use the output as research support, not the sole basis for trades. <br>
-Risk: The local script may contact public finance websites and save cache or report files locally. <br>
-Mitigation: Run it in an approved network environment and review generated local files before sharing or relying on them. <br>
+## Use Case:
 
+External users and analysts use this skill to request Chinese-language market news briefings for A-share, Hong Kong, and U.S. equities, with keyword filtering, sentiment labels, impact levels, and related-stock context. Outputs are decision-support references and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/if530770/finance-intel) <br>
-- [Sentiment rules and stock mapping](references/sentiment-rules.md) <br>
-- [Finance source configuration](references/sources-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown briefings and structured JSON news records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save local cache and report files under finance-news unless --no-save is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial sentiment labels, impact levels, and operation suggestions may be incomplete or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review conclusions manually and treat generated briefings as informational references, not investment advice.
+
+Risk: The included fetch logic appears incomplete despite listing many sources, which may lead to empty, stale, or partial news coverage.
+
+Mitigation: Confirm source availability and supplement the briefing with verified market data before relying on it.
+
+Risk: The skill writes local cache and report files under finance-news by default.
+
+Mitigation: Run it in a controlled workspace, use --no-save when persistence is not desired, and review generated files before sharing.
+
+## Reference(s):
+
+- [Sentiment Analysis Rules and Stock Mapping](artifact/references/sentiment-rules.md)
+- [Finance Source Configuration](artifact/references/sources-config.md)
+- [Finance Intel Skill Page](https://clawhub.ai/if530770/skills/finance-intel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown briefings with JSON news data and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local cache and report files under finance-news unless --no-save is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "quick-recurring-rework",
+    "class": "positive",
+    "domain": "personal-project",
+    "severity": "medium",
+    "turns": ["I keep rebuilding the first week of the same small project and never test it with anyone. What am I missing?"],
+    "expected_activation": "light",
+    "expected_mode": "quick"
+  },
+  {
+    "id": "decision-career-commitment",
+    "class": "positive",
+    "domain": "career",
+    "severity": "high",
+    "turns": ["Should I leave a stable job and spend my savings on this product for the next year?"],
+    "expected_activation": "full",
+    "expected_mode": "decision"
+  },
+  {
+    "id": "research-causal-report",
+    "class": "positive",
+    "domain": "workplace-research",
+    "severity": "high",
+    "turns": ["This report says remote work caused a 20% productivity increase. Is that conclusion strong enough to redesign company policy?"],
+    "expected_activation": "full",
+    "expected_mode": "research"
+  },
+  {
+    "id": "learning-transfer",
+    "class": "positive",
+    "domain": "education",
+    "severity": "medium",
+    "turns": ["I can follow the Bayesian explanation while reading it, but I need to use the idea without notes. How should I check whether I learned it?"],
+    "expected_activation": "full",
+    "expected_mode": "learning"
+  },
+  {
+    "id": "review-feature-outcome",
+    "class": "positive",
+    "domain": "product",
+    "severity": "medium",
+    "turns": ["We shipped the onboarding change. Sign-ups rose, but week-one retention fell. Did it improve the real goal?"],
+    "expected_activation": "full",
+    "expected_mode": "review"
+  },
+  {
+    "id": "negative-translation",
+    "class": "negative",
+    "domain": "language",
+    "severity": "low",
+    "turns": ["Translate 'The build passed' into Chinese."],
+    "expected_activation": "none",
+    "expected_mode": null
+  },
+  {
+    "id": "negative-defined-edit",
+    "class": "negative",
+    "domain": "software",
+    "severity": "low",
+    "turns": ["Rename draft.md to final.md."],
+    "expected_activation": "none",
+    "expected_mode": null
+  },
+  {
+    "id": "negative-simple-fact",
+    "class": "negative",
+    "domain": "general-knowledge",
+    "severity": "low",
+    "turns": ["What does HTTP status 404 mean?"],
+    "expected_activation": "none",
+    "expected_mode": null
+  },
+  {
+    "id": "negative-freeform-creation",
+    "class": "negative",
+    "domain": "creative-writing",
+    "severity": "low",
+    "turns": ["Write a four-line poem about summer rain."],
+    "expected_activation": "none",
+    "expected_mode": null
+  },
+  {
+    "id": "negative-emotional-presence",
+    "class": "negative",
+    "domain": "emotional-support",
+    "severity": "medium",
+    "turns": ["I had a terrible day. I do not want advice; please just listen."],
+    "expected_activation": "none",
+    "expected_mode": null
+  },
+  {
+    "id": "boundary-notebook-choice",
+    "class": "boundary",
+    "domain": "shopping",
+    "severity": "low",
+    "turns": ["Which of these two ordinary notebooks should I buy? They cost almost the same."],
+    "expected_activation": "none",
+    "expected_mode": null
+  },
+  {
+    "id": "boundary-weekend-trip",
+    "class": "boundary",
+    "domain": "travel",
+    "severity": "low",
+    "turns": ["Which of these two refundable weekend trips looks better?"],
+    "expected_activation": "none",
+    "expected_mode": null
+  },
+  {
+    "id": "boundary-small-setting",
+    "class": "boundary",
+    "domain": "software",
+    "severity": "low",
+    "turns": ["Should we add this reversible display setting? It affects five internal users and takes an hour."],
+    "expected_activation": "light",
+    "expected_mode": "quick"
+  },
+  {
+    "id": "boundary-book-choice",
+    "class": "boundary",
+    "domain": "learning",
+    "severity": "low",
+    "turns": ["Which of these two introductory books should I read next? I can switch after one chapter."],
+    "expected_activation": "none",
+    "expected_mode": null
+  },
+  {
+    "id": "boundary-one-evening-test",
+    "class": "boundary",
+    "domain": "personal-project",
+    "severity": "low",
+    "turns": ["Is this tiny side-project idea worth one evening? I am not committing beyond that."],
+    "expected_activation": "light",
+    "expected_mode": "quick"
+  },
+  {
+    "id": "update-decision-material-evidence",
+    "class": "evidence_update",
+    "domain": "procurement",
+    "severity": "high",
+    "turns": [
+      "Should we sign a three-year contract with this new vendor based on its sales demo?",
+      "A reversible eight-week pilot now shows lower total cost, successful data export, and no reliability regression under our real workload. What changes?"
+    ],
+    "expected_activation": "full",
+    "expected_mode": "decision",
+    "expected_update": "change"
+  },
+  {
+    "id": "update-research-disconfirmation",
+    "class": "evidence_update",
+    "domain": "public-policy",
+    "severity": "high",
+    "turns": [
+      "This observational study reports a large effect. Is it strong enough to adopt as policy?",
+      "A preregistered replication with a stronger control design finds no effect, and the original result depends on one exclusion rule. What now?"
+    ],
+    "expected_activation": "full",
+    "expected_mode": "research",
+    "expected_update": "strengthen_stop"
+  },
+  {
+    "id": "update-review-proxy-only",
+    "class": "evidence_update",
+    "domain": "community-program",
+    "severity": "medium",
+    "turns": [
+      "We launched a mentoring program to improve six-month retention. How should we review it?",
+      "Event attendance doubled, but six-month retention and participant follow-through did not change. Should we call it successful?"
+    ],
+    "expected_activation": "full",
+    "expected_mode": "review",
+    "expected_update": "hold"
+  },
+  {
+    "id": "update-learning-independent-performance",
+    "class": "evidence_update",
+    "domain": "education",
+    "severity": "medium",
+    "turns": [
+      "I understood the explanation while the tutor guided me. Have I learned the concept?",
+      "A week later, without notes, I explained it accurately, solved a different problem, and identified a counterexample. What changes?"
+    ],
+    "expected_activation": "full",
+    "expected_mode": "learning",
+    "expected_update": "change"
+  },
+  {
+    "id": "update-quick-reframe",
+    "class": "evidence_update",
+    "domain": "team-process",
+    "severity": "medium",
+    "turns": [
+      "Our team repeatedly misses this handoff. Is the problem that people are careless?",
+      "The log shows every miss happens when ownership is undefined, while named handoffs complete on time. What changes?"
+    ],
+    "expected_activation": "light",
+    "expected_mode": "quick",
+    "expected_update": "change"
+  }
+]

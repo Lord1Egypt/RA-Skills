@@ -1,44 +1,57 @@
-## Description: <br>
-Harness Engineering provides a Generator/Evaluator coding workflow for planning, implementation, independent review, quality gates, and change audit records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Harness Engineering is a Generator/Evaluator dual-agent coding workflow for programming tasks that need planning, coding, review, quality gates, and change audit records.
 
-## Publisher: <br>
-[cindypapa](https://clawhub.ai/user/cindypapa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindypapa](https://clawhub.ai/user/cindypapa)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure coding work into planning, implementation, independent evaluation, revision, and delivery stages. It is intended for programming tasks that benefit from explicit quality gates and auditable change records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can direct agents to commit and push code without a clear approval checkpoint. <br>
-Mitigation: Require manual approval before any git commit or git push, and review the diff, commit message, target branch, and remote before delivery. <br>
-Risk: Generated harness records can persist sensitive project details if secrets are included in planning, review, or summary files. <br>
-Mitigation: Keep secrets out of generated harness files and review generated records before committing or sharing them. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure coding work into planning, implementation, independent review, revision, and delivery steps with auditable change records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cindypapa/openclaw-harness-engineering) <br>
-- [Publisher profile](https://clawhub.ai/user/cindypapa) <br>
-- [Harness Engineering skill source](artifact/SKILL.md) <br>
-- [Quality gates template](artifact/templates/quality-gates.md) <br>
-- [Evaluator SOP](artifact/skills/evaluator.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, templates, review reports, code changes, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent .harness planning, review, and summary records when used as directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can automatically commit and push repository changes without a clear user approval checkpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval after reviewing the staged diff, commit message, remote URL, branch, and CI/CD or deployment effects before allowing any commit or push.
+
+Risk: The skill may create .harness workflow files and Chinese-language planning or review reports in the repository.
+
+Mitigation: Review generated .harness files and reports for project fit, confidentiality, and localization requirements before adopting them.
+
+## Reference(s):
+
+- [Harness Engineering Skill Definition](artifact/SKILL.md)
+- [Evaluator SOP](artifact/skills/evaluator.md)
+- [Quality Gates Template](artifact/templates/quality-gates.md)
+- [Website Workflow Rules](artifact/rules/website-workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/cindypapa/skills/openclaw-harness-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate .harness workflow files and Chinese-language planning or review reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

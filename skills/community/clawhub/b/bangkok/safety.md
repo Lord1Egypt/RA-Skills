@@ -1,261 +1,61 @@
-# Bangkok Safety Guide
+# Bangkok Safety & Scams
 
-## Overall Safety
+Bangkok is one of Southeast Asia's safest big cities — violent crime against foreigners is rare. The actual risks, in order: **traffic, scams, a handful of hard laws that carry prison, and petty theft.** Fear the road and the legal red lines, not muggers.
 
-Bangkok is one of the safest major cities in Southeast Asia for tourists and expats. Violent crime against foreigners is rare. Main concerns are scams, traffic, and petty theft.
+## Scams (mechanism → defense)
 
-### Crime Reality
-- **Violent crime**: Very rare against tourists
-- **Petty theft**: Occasional pickpocketing on crowded BTS
-- **Bag snatching**: Rare but possible on quiet streets (motorbike grab-and-go)
-- **Scams**: Most common issue by far
+The Bangkok scams are scripted and repeat verbatim; recognizing the opening line is the whole defense.
 
----
+| Scam | The tell | Defense |
+|------|----------|---------|
+| **Gem scam** | Well-dressed stranger: "temple/palace closed today, but there's a special government gem sale ending today" | Temples don't close randomly; ignore unsolicited helpers near sights — buy no gems, ever |
+| **Tuk-tuk tour** | "Free" or ฿20 all-day tour | It routes to commission tailor/jewelry shops; use Grab, skip cheap tuk-tuk tours |
+| **Taxi meter refusal** | "Meter broken, 300 flat" at tourist spots | Walk away; hail a *moving* cab or open Grab |
+| **Jet ski damage** | Pre-existing scratches "you caused," aggressive demand for thousands | Don't rent jet skis in Thailand — the crews are organized |
+| **Passport-deposit rental** | Bike/jet-ski shop keeps passport as deposit | Never surrender your passport; cash deposit only (`driving.md`) |
+| **Ping-pong / go-go bill** | "Free entry," then ฿5,000-20,000 with a bouncer at the door | Agree all costs in writing or don't enter (`nightlife.md`) |
+| **Fake monk** | "Monk" hands an amulet, then demands a donation | Real monks don't solicit cash; decline street "monks" |
+| **Sick-buffalo / bar-girl tab** | Emotional money story, or drinks piling on your tab | It's a script; pay per round, watch the till |
 
-## Common Scams
+## Laws That Carry Prison (verify current — cannabis especially)
 
-### Gem Scam (Most Famous)
-**How it works**: Stranger approaches, says palace/temple is closed today, offers to take you to "special government gem sale" that's ending today. You buy worthless gems at 10x markup.
+- **Lèse-majesté (§112)**: any insult/defamation of King, Queen, Regent, or Heir → **3-15 years per count**, actively prosecuted including social-media likes/shares. No private-conversation or irony exception. Stand for the royal anthem; never step on currency (the King's image).
+- **Drugs**: trafficking hard drugs (heroin, meth, cocaine) → death penalty possible; possession → prison. Party raids include urine tests, so "trace amounts" reach you.
+- **Cannabis** (rules changed twice — verify): decriminalized Jun 2022, re-restricted toward medical-prescription in 2025, recreational status in flux; extracts >0.2% THC stay controlled. Never smoke in public, never carry any amount across a border.
+- **Vaping**: e-cigarettes are **illegal** — possession/import up to 10 years or ฿500,000; enforcement is sporadic but real. Don't bring vapes.
+- **Gambling**: illegal except the state lottery; private poker games get raided.
+- **Alcohol**: legal age 20; DUI is jail-possible; no public drinking outside licensed venues; official sale hours 11 AM-2 PM and 5 PM-midnight (loosely enforced). Buddhist-holiday sale bans: `festivals.md`.
+- **Criminal defamation**: truth isn't always a defense; tourists have been sued over negative online reviews — phrase complaints factually and privately first.
+- **Public behavior**: nudity (even on beaches) and obscene gestures can be prosecuted; keep public affection minimal.
 
-**Signs**: 
-- "Temple closed today"
-- "Special sale"
-- "Government export promotion"
-- Well-dressed stranger being unusually helpful
+## Traffic — the actual top killer
 
-**Defense**: If anyone approaches you with unsolicited help near tourist areas, politely decline. Temples don't close randomly.
-
-### Tuk-Tuk Tour Scam
-**How it works**: Tuk-tuk offers very cheap or free tour. Takes you to commission shops (tailors, jewelers) where driver gets kickback. You waste hours and may be pressured to buy.
-
-**Defense**: Never accept "free" or suspiciously cheap tours. Use Grab for transport.
-
-### Taxi Meter Refusal
-**How it works**: Driver refuses meter, quotes inflated fixed price.
-
-**Defense**: Walk away. Insist on meter ("meter, meter"). Use Grab.
-
-### Jet Ski Damage Scam
-**How it works**: Rent jet ski (usually Pattaya/islands). Return it. Owner claims you damaged it, demands thousands of baht. Sometimes threatening.
-
-**Defense**: Don't rent jet skis in Thailand. Period. The scam is well-organized.
-
-### Ping Pong Show Bills
-**How it works**: Lured into bar with promises of free entry. Massive bill at end for "mandatory drinks" — sometimes ฿5,000-20,000 with threatening bouncers.
-
-**Defense**: Avoid these entirely. If you must, agree on all costs upfront in writing.
-
-### Bar Girl Scams
-**How it works**: Girl befriends you, orders expensive drinks on your tab, runs up enormous bill. Or: "sick buffalo" sob story asking for money.
-
-**Defense**: Understand the bar fine system, set expectations, don't get emotionally manipulated.
-
-### Fake Monks
-**How it works**: "Monk" gives you amulet or blessing, then demands donation. Real monks don't solicit money directly.
-
-**Defense**: Don't accept items from unsolicited "monks" on the street.
-
----
-
-## Laws You Must Know
-
-### Lèse-Majesté (Royal Defamation)
-
-**The most important law for foreigners to understand.**
-
-- **Offense**: Any criticism, insult, or defamation of the King, Queen, Regent, or Heir
-- **Penalty**: 3-15 years prison PER OFFENSE
-- **Enforcement**: Active. People have been prosecuted for Facebook posts.
-
-**What This Means**:
-- Never criticize the royal family
-- Don't share memes about the monarchy
-- Stand for royal anthem before movies (everyone does)
-- Respect images of the King (on money, photos everywhere)
-- This applies even in private conversations
-
-### Drugs
-
-**Zero tolerance.**
-
-- **Possession**: Up to 10 years for marijuana (though enforcement relaxed since 2022 legalization)
-- **Trafficking**: Death penalty for hard drugs (heroin, meth, cocaine)
-- **Trace amounts**: Can result in arrest
-
-**2022 Cannabis Changes**:
-- Decriminalized for medical/wellness
-- Many cannabis shops opened
-- **Still technically regulated** — extracts over 0.2% THC are controlled
-- Don't assume it's fully legal like Amsterdam
-- Don't smoke in public
-
-### Vaping
-
-**E-cigarettes are illegal in Thailand.**
-
-- Possession: Up to 10 years imprisonment or ฿500,000 fine
-- Import: Same penalties
-- Enforcement: Sporadic but real — tourists have been arrested
-- Vape shops exist (gray market) but that doesn't make it legal
-
-### Gambling
-
-**Illegal** except government lottery.
-
-- Private poker games: Raided periodically
-- Underground casinos: Exist but risky
-- Online gambling: Technically illegal
-
-### Alcohol
-
-- Legal age: 20 (often stated as 21)
-- **No public drinking** outside licensed venues
-- DUI: Strict — jail time possible, high fines
-- Sales hours: Officially 11 AM-2 PM, 5 PM-midnight (often ignored)
-
-### Public Behavior
-
-- **Public affection**: Minimal. Kissing can technically be prosecuted.
-- **Nudity**: Illegal in public (even beaches)
-- **Obscene gestures**: Can result in arrest
-- **Defamation**: Taken seriously — harsh words can be criminal
-
----
+Bangkok traffic injures/kills more foreigners than crime; Thailand's roads are among the world's deadliest (~25-30 deaths/100k, most on motorbikes).
+- **Pedestrians have no de-facto right of way** — traffic (especially motorbikes weaving) comes from unexpected directions even when cars have stopped. Look repeatedly; use footbridges.
+- Rented scooter in Bangkok traffic is how visitors end up in `healthcare.md`. If you ride: valid license for the class (insurance is void without it), helmet driver + passenger, no night riding in unfamiliar areas, no wet roads, video the bike's existing damage before accepting (`driving.md`).
 
 ## LGBTQ+ Safety
 
-### The Reality
-Thailand is **relatively** accepting but has important nuances.
-
-**Positive**:
-- Large visible LGBT community
-- Trans women (kathoey) have cultural acceptance
-- Bangkok has thriving gay scene (Silom Soi 2/4)
-- Same-sex couples generally not harassed
-
-**Legal Status**:
-- Same-sex relationships: **Legal**
-- Same-sex marriage: **Not recognized** (but civil partnership law progressing)
-- Anti-discrimination: Limited protections
-
-**Advice**:
-- Public affection: Keep minimal (same as straight couples)
-- Outside Bangkok: More conservative
-- Use common sense as you would anywhere
-
----
-
-## Emergency Contacts
-
-| Service | Number |
-|---------|--------|
-| **Tourist Police** | 1155 (English speaking) |
-| **Police** | 191 |
-| **Ambulance** | 1669 |
-| **Fire** | 199 |
-| **Your Embassy** | Save before traveling |
-
-**Tourist Police**: Best option for foreigners. They speak English and handle tourist issues.
-
----
-
-## Traffic Safety
-
-### Reality Check
-- Bangkok traffic kills more foreigners than violent crime
-- Motorbike accidents are common
-- Pedestrians have NO right of way
-
-### Pedestrian Safety
-- **Look multiple times** before crossing
-- Use pedestrian bridges when available
-- Traffic may come from unexpected directions
-- Just because traffic stopped doesn't mean it's safe (motorbikes weave through)
-
-### Motorbike Safety
-- Wear helmet (even as passenger)
-- Don't drink and ride
-- Avoid night riding in unfamiliar areas
-- Rain makes roads extremely slippery
-
-### If Renting Motorbike
-- Get proper insurance
-- Have valid license (international + home)
-- Check bike thoroughly before accepting
-- Take video of existing damage
-- Understand you're liable for damage
-
----
-
-## Health & Environmental
-
-### Heat
-- Heatstroke is real
-- Hydrate constantly
-- Take breaks in A/C
-- Don't underestimate 35°C with high humidity
-
-### Air Quality
-- **Nov-Feb**: Worst pollution (AQI 100-200+)
-- Check AQI app daily during season
-- N95 masks help
-- Limit outdoor exercise on bad days
-
-### Water
-- Don't drink tap water
-- Ice is usually safe (commercial)
-- Bottled water everywhere
-
-### Food
-- Generally safe
-- Busy stalls = fresh food
-- If in doubt, eat cooked
-
----
-
-## Neighborhood Safety
-
-| Area | Safety Level | Notes |
-|------|--------------|-------|
-| Sukhumvit | Very Safe | Tourist/expat area |
-| Silom/Sathorn | Very Safe | Business district |
-| Siam | Very Safe | Shopping area |
-| Thonglor | Very Safe | Upscale area |
-| Ari | Very Safe | Residential |
-| Chinatown | Safe | Crowded, watch belongings |
-| Khao San | Safe | Petty theft possible, drunk tourists |
-| Nana | Moderate | Red light area, scams common |
-| Patpong | Moderate | Red light, overcharging scams |
-
----
+Among Asia's most accepting; visible community, trans (kathoey) cultural acceptance, thriving scene (Silom Soi 2/4). Same-sex relationships legal; marriage/partnership law has been progressing. Anti-discrimination protections are limited and rural areas are more conservative — keep public affection to the same low level locals do.
 
 ## Women's Safety
 
-### Generally Safe
-Bangkok is safer than many Western cities for women.
+Safer than many Western cities; solo female travel is common. Standard precautions: Grab (tracked) at night over street taxis, avoid walking alone in quiet areas late, watch your drink (spiking rare but possible). Catcalling is less common than in the West.
 
-### Precautions
-- Standard precautions apply (as anywhere)
-- Solo female travel is common and normal
-- Taxis at night: Use Grab (tracked)
-- Avoid walking alone in quiet areas late night
-- Drink spiking: Rare but possible — watch your drink
+## Neighborhood Read
 
-### Harassment
-- Less catcalling than Western countries
-- Thai men generally don't approach aggressively
-- Some Western men can be problematic in tourist areas
+| Area | Level | Watch for |
+|------|-------|-----------|
+| Sukhumvit, Silom/Sathorn, Siam, Thonglor, Ari | Very safe | — |
+| Chinatown, Khao San | Safe | Crowds/pickpockets; drunk-tourist petty theft |
+| Nana, Patpong | Moderate | Red-light overcharging scams above |
 
----
+## Standing Habits
 
-## General Safety Tips
+- Passport photo saved in phone; original in the hotel safe.
+- Cover the PIN; use bank ATMs (`local.md` on the ฿220 fee).
+- Grab over street taxi after dark — trackable and accountable.
+- Stay calm in any dispute: Thai "face" means raising your voice escalates and loses it (`culture.md`).
+- Tap water: don't drink it; commercial ice and bottled water are fine.
 
-1. **Keep copies of passport** (photo in phone)
-2. **Travel insurance**: Get it. Hospitals want payment upfront.
-3. **Don't flash wealth**: Rolex watches attract attention
-4. **Use hotel safe**: For passport and extra cash
-5. **ATM awareness**: Cover PIN, use bank ATMs
-6. **Grab > street taxis**: Trackable, accountable
-7. **Trust instincts**: If something feels wrong, leave
-8. **Avoid confrontation**: Thai "face" culture means aggressive arguments can escalate
-9. **Document rentals**: Video before/after for any rental (motorbike, apartment)
+Heat and air-quality health risks (heatstroke thresholds, AQI, masks) live in `climate.md`, not here. Hospitals and emergency routing: `healthcare.md`. Emergency numbers: Tourist Police **1155** (English), Police 191, Ambulance 1669, Fire 199.

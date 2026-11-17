@@ -1,6 +1,31 @@
 {
-  "ownerId": "kn76p9404p3srq209bx88qxbz9836bab",
-  "slug": "read-word",
+  "name": "read-word",
+  "displayName": "Read Word Document",
+  "description": "Read Microsoft Word documents (.docx and .doc) with Chinese support. Extract text, search keywords, and save as UTF-8 text files.",
   "version": "1.0.0",
-  "publishedAt": 1773995587157
+  "author": "叶文洁",
+  "license": "MIT",
+  "tags": [
+    "document",
+    "word",
+    "docx",
+    "doc",
+    "office",
+    "read",
+    "parse",
+    "extract",
+    "chinese"
+  ],
+  "minOpenClawVersion": "1.0.0",
+  "dependencies": [
+    "python-docx>=0.8.11",
+    "olefile>=0.46"
+  ],
+  "capabilities": [
+    "file-read"
+  ],
+  "entryPoint": "read_word.py",
+  "repository": "",
+  "homepage": "",
+  "icon": "📄"
 }

@@ -1,42 +1,53 @@
-## Description: <br>
-Pay for x402-enabled Agent endpoints using USDT on TRON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay for x402-enabled Agent endpoints using USDT on TRON.
 
-## Publisher: <br>
-[Hades-Ye](https://clawhub.ai/user/Hades-Ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hades-ye](https://clawhub.ai/user/hades-ye)
 
-## Use Case: <br>
-Developers and agents use this skill to invoke x402-enabled HTTP endpoints that require USDT payments on TRON, including endpoint discovery and paid API requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically use discovered TRON wallet keys and create persistent high-limit USDT approvals. <br>
-Mitigation: Use only a dedicated low-balance TRON wallet, start on testnet, and revoke token approvals when they are no longer needed. <br>
-Risk: Paid mainnet endpoint invocation can spend funds if an agent calls a payment-required endpoint without review. <br>
-Mitigation: Verify the endpoint, network, spender, and price before each use, and require explicit human review before paid mainnet calls. <br>
-Risk: Wallet credentials are required for payment signing. <br>
-Mitigation: Keep signing secrets out of prompts, logs, and shell commands, and configure credentials only through secure local environment or config mechanisms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Hades-Ye/x402-payment-tron) <br>
-- [x402 homepage](https://x402.org) <br>
+## Use Case:
 
+Developers and agents use this skill to invoke x402-enabled agent endpoints and handle USDT payment negotiation on TRON.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tool invocation examples and JSON command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save binary or image responses to temporary files and return file path metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release metadata; artifact frontmatter and package.json report 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet credentials and funds may be exposed if the skill uses broad shared configuration or a high-balance wallet.
+
+Mitigation: Use a dedicated low-balance TRON wallet and remove broad shared-config key discovery before sensitive use.
+
+Risk: Untrusted endpoints can trigger automatic payment signing or token approval behavior.
+
+Mitigation: Invoke only trusted endpoints, review payment requirements before mainnet use, and prefer exact or capped approvals.
+
+## Reference(s):
+
+- [x402](https://x402.org)
+- [ClawHub skill page](https://clawhub.ai/hades-ye/skills/x402-payment-tron)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Files]
+
+**Output Format:** [JSON response with optional temporary file paths for binary responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TRON payment credentials; binary responses may be written to temporary files for the agent to manage.]
+
+## Skill Version(s):
+
+0.0.4 (source: server release metadata; artifact frontmatter/package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

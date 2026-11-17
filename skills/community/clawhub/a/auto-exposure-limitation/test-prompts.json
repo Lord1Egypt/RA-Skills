@@ -1,0 +1,52 @@
+{
+  "skill": "auto-exposure-limitation",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "为什么我用自动模式拍的照片都差不多？",
+      "expected_behavior": "调用 auto-exposure-limitation，解释程序曝光的创造性局限",
+      "notes": "正面场景：自动模式局限"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "aperture priority和program mode有什么区别？",
+      "expected_behavior": "调用 auto-exposure-limitation，对比不同曝光模式的控制程度",
+      "notes": "正面场景：曝光模式对比"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "怎么从自动模式升级到手动控制？",
+      "expected_behavior": "调用 auto-exposure-limitation，讲解过渡方案和"蒙骗"技巧",
+      "notes": "正面场景：从自动到手动"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "光圈f/2.8和f/8有什么区别？",
+      "expected_behavior": "不应调用 auto-exposure-limitation，应调用 exposure-dual-control 或 depth-of-field-control",
+      "notes": "跨 skill 混淆诱饵：光圈效果问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "测光表怎么用？",
+      "expected_behavior": "不应调用 auto-exposure-limitation，应调用 light-meter-compensation",
+      "notes": "跨 skill 混淆诱饵：测光操作问题"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "手机拍照需要调参数吗？",
+      "expected_behavior": "边界模糊——手机计算摄影高度自动化，本 skill 的原则部分适用但技术细节不同",
+      "notes": "边界：手机摄影自动化"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

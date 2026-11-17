@@ -1,42 +1,58 @@
-## Description: <br>
-Local ffmpeg and Pillow thumbnail generator for videos that picks candidate frames, composes thumbnails with text overlays and watermarks, ranks A/B variants with objective click-likelihood metrics, and exports common platform sizes without AI APIs or remote calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local thumbnail generator for videos. Picks the best candidate frames using brightness, sharpness, and scene-change scores, composes professional thumbnails with text overlays, gradient bars, and watermarks, and ranks A/B variants on objective click-likelihood metrics.
 
-## Publisher: <br>
-[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech)
 
-## Use Case: <br>
-External creators, developers, and operators use this skill to generate local video thumbnails, A/B variants, platform-specific exports, and JSON scoring reports without remote services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Dependencies installed from untrusted sources could introduce local execution risk. <br>
-Mitigation: Install ffmpeg, ffprobe, python3, and Pillow only from trusted package sources. <br>
-Risk: Generated thumbnails or reports can overwrite existing files when the same output paths are reused. <br>
-Mitigation: Run the scripts in a dedicated output directory and avoid reusing filenames for files that should be preserved. <br>
-Risk: Frame ranking and click-likelihood scores are heuristic and may not reflect audience response or semantic quality. <br>
-Mitigation: Review selected frames and winning variants before publishing or using them for business decisions. <br>
+## Use Case:
 
+Creators, marketers, and developers use this skill to turn local video frames into platform-ready thumbnails, generate A/B variants, and choose a heuristic winner without remote services or AI APIs.
 
-## Reference(s): <br>
-- [Openclaw Thumbnail Forge on ClawHub](https://clawhub.ai/gopendrasharma89-tech/openclaw-thumbnail-forge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands; generated PNG images and JSON reports when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local ffmpeg, ffprobe, python3, and Pillow; writes outputs to user-selected paths] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and SKILL.md) <br>
+Risk: The workflow invokes local media tools and writes generated PNG or JSON files to output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scripts as a normal user, keep PATH limited to trusted directories, and choose output directories where overwriting generated files is acceptable.
+
+Risk: Pillow is required for image processing.
+
+Mitigation: Install Pillow in a virtual environment from a trusted package index.
+
+Risk: Frame and click-likelihood scores are deterministic heuristics, not semantic review or real CTR prediction.
+
+Mitigation: Treat rankings as a tie-breaker and review selected thumbnails before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gopendrasharma89-tech/skills/openclaw-thumbnail-forge)
+- [OpenClaw homepage](https://clawhub.ai/gopendrasharma89-tech/openclaw-thumbnail-forge)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, text]
+
+**Output Format:** [Markdown guidance with CLI commands and generated PNG or JSON file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local image assets, frame reports, variant rankings, and winner metadata in user-specified output directories.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

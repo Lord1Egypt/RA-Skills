@@ -1,47 +1,53 @@
-## Description: <br>
-Security suite for OpenClaw. Provides security scanning, real-time protection, audit logging, and sensitive data encryption. Use this skill when users need security-related operations, threat detection, or data protection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ShieldClaw is a security suite for OpenClaw that provides security scanning, real-time protection, audit logging, and sensitive data encryption for security operations, threat detection, and data protection.
 
-## Publisher: <br>
-[jzming9](https://clawhub.ai/user/jzming9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jzming9](https://clawhub.ai/user/jzming9)
 
-## Use Case: <br>
-Developers and OpenClaw users use ShieldClaw to scan skills for security issues, enable file and operation protection, encrypt sensitive data, and review audit logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release requests broad storage, network, and filesystem permissions for security-control behavior. <br>
-Mitigation: Review the referenced @shieldclaw dependencies and confirm how OpenClaw enforces Guard hooks before enabling protection. <br>
-Risk: The security evidence says key behavior is under-scoped or delegated to unreviewed external packages. <br>
-Mitigation: Install only after reviewing those dependencies and keep a clear disable path for protection features. <br>
-Risk: Vault and audit features can handle sensitive data, local logs, and keychain-managed encryption keys. <br>
-Mitigation: Avoid storing high-value secrets until the vault implementation is reviewed, verify logging and retention settings, and confirm local data can be deleted. <br>
-Risk: Default protected paths and strictness may not match the user's environment. <br>
-Mitigation: Narrow protected paths and tune Guard settings before relying on runtime protection. <br>
+## Use Case:
 
+Developers and OpenClaw users use ShieldClaw to scan skills for security issues, monitor sensitive file, network, and process operations, encrypt secrets, and review audit logs.
 
-## Reference(s): <br>
-- [ClawHub ShieldClaw listing](https://clawhub.ai/jzming9/shieldclaw) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jzming9) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and natural-language guidance with configuration snippets and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local security scans, guard configuration, audit reports, and vault usage; runtime behavior depends on OpenClaw integration and ShieldClaw packages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server evidence, artifact clawhub.json, README.md, and CHANGELOG.md) <br>
+Risk: Broad filesystem, network, storage, and secret-handling permissions increase the impact of incorrect or unsafe behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review permissions before installation, restrict sensitive paths and network access where possible, and prefer a release with narrower permissions or integrity metadata.
+
+Risk: Advertised real-time protection and secret storage behavior is not fully auditable in the available evidence.
+
+Mitigation: Do not rely on Guard or Vault for production protection, or store real credentials, until implementation, key handling, logging, retention, and disable controls are documented and reviewed.
+
+## Reference(s):
+
+- [ShieldClaw ClawHub Skill Page](https://clawhub.ai/jzming9/skills/shieldclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk scores, audit summaries, security recommendations, and local configuration changes.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata, clawhub.json, CHANGELOG, README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Structure validation (G-01 to G-10)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run build validation
+        run: |
+          chmod +x scripts/validate-structure.sh
+          ./scripts/validate-structure.sh
+
+  shellcheck:
+    name: Shell script lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ShellCheck
+        run: shellcheck scripts/*.sh
+
+  pr-title:
+    name: Conventional commit title check
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title
+        run: |
+          title="${{ github.event.pull_request.title }}"
+          pattern='^(feat|fix|docs|style|refactor|perf|test|ci|chore|revert)(\([a-z0-9-]+\))?!?: .{1,72}$'
+          if [[ ! "$title" =~ $pattern ]]; then
+            echo "::error::PR title does not follow Conventional Commits: ${title}"
+            exit 1
+          fi
+          echo "PR title OK: ${title}"

@@ -1,41 +1,58 @@
-## Description: <br>
-Auto-discovers Polymarket markets matching configured keywords, categories, and volume criteria, then imports matching markets into Simmer on demand or on a schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-discover and import Polymarket markets matching configured keywords, categories, and volume criteria, running on a schedule so new matching markets can be imported into Simmer.
 
-## Publisher: <br>
-[richducat](https://clawhub.ai/user/richducat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richducat](https://clawhub.ai/user/richducat)
 
-## Use Case: <br>
-External users and agent operators use this skill to configure market-search filters, preview matching Polymarket markets, and import selected markets into a Simmer account with quota-aware limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live scheduled imports can change the connected Simmer account and consume import quota. <br>
-Mitigation: Start in dry-run mode, confirm filters and max_per_run, and enable live cron only after the expected imports and quota impact are understood. <br>
-Risk: The skill requires a Simmer API key to search and import markets. <br>
-Mitigation: Use a dedicated or least-privileged API key if available and install only when intentionally connecting this skill to a Simmer account. <br>
+## Use Case:
 
+External Simmer users use this skill to discover Polymarket markets that match their configured search terms, category filters, and liquidity threshold. It previews candidates by default and can import matches into the user's Simmer account when live mode is explicitly enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/richducat/dolph-market-importer) <br>
-- [Publisher profile](https://clawhub.ai/user/richducat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Console text, Markdown instructions, configuration values, and optional JSON automaton status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to dry-run behavior unless live import is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Live mode can make changes to a user's Simmer account by importing markets with the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the default dry run first, enable live mode only after reviewing candidates, and use a scoped API key where available.
+
+Risk: A scheduled live configuration can consume import quota or import more markets than intended.
+
+Mitigation: Keep max_per_run conservative, confirm whether cron scheduling is enabled for live execution, and tune keywords, categories, and minimum volume before scheduled runs.
+
+Risk: The skill depends on simmer-sdk and the SIMMER_API_KEY credential.
+
+Mitigation: Install a pinned or reviewed simmer-sdk version and protect the SIMMER_API_KEY environment variable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richducat/skills/dolph-market-importer)
+- [Simmer dashboard](https://simmer.markets/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls, files]
+
+**Output Format:** [Console text with optional automaton JSON and local JSON state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry run is the default; live mode imports up to max_per_run and persists imported market IDs for deduplication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

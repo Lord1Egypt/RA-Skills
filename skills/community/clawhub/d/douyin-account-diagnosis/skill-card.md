@@ -1,45 +1,60 @@
-## Description: <br>
-抖音账号诊断宗师 accepts a Douyin account name or ID, queries RedFox account and content data, and produces a four-dimension account diagnosis covering account scale, content performance, operational activity, and platform index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses Douyin account health by fetching RedFox profile and recent content data, scoring six operational dimensions, and producing a Markdown report with risk alerts and optimization suggestions.
 
-## Publisher: <br>
-[if530770](https://clawhub.ai/user/if530770) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[if530770](https://clawhub.ai/user/if530770)
 
-## Use Case: <br>
-External brands, MCN operators, creators, and content operations teams use this skill to evaluate Douyin account quality, compare account performance, and generate data-backed optimization suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key and sends entered Douyin account names or IDs to RedFox for lookup. <br>
-Mitigation: Configure the key only in the expected environment variable, avoid exposing it in prompts or logs, and use the skill only when sending those account identifiers to RedFox is acceptable. <br>
-Risk: API calls may consume RedFox credits. <br>
-Mitigation: Use explicit account lookup requests and confirm that API-credit consumption is acceptable before repeated or batch-style use. <br>
-Risk: Fallback results from non-RedFox sources may be lower confidence. <br>
-Mitigation: Prefer RedFox-backed results and clearly treat fallback data as lower confidence when RedFox lookup is unavailable. <br>
+## Use Case:
 
+Douyin operators, content creators, MCNs, brands, and business evaluators use this skill to audit account health, benchmark competitors, screen partnership candidates, and identify optimization priorities from recent account and content metrics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/if530770/douyin-account-diagnosis) <br>
-- [Core workflow](references/core_workflow.md) <br>
-- [RedFox API endpoint](https://redfox.hk/story/api/dyUser/query) <br>
-- [Publisher profile](https://clawhub.ai/user/if530770) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown diagnostic report with scoring breakdowns, account metrics, risk notes, and optimization guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; account names or IDs entered by the user are sent to RedFox for lookup and may consume API credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Target Douyin account identifiers and returned profile or content details are sent to RedFox and may be redisplayed in reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user is comfortable sharing those identifiers and report details with RedFox and downstream report readers.
+
+Risk: The authoritative security evidence reports an embedded shared API key and incomplete user controls.
+
+Mitigation: Prefer a protected REDFOX_API_KEY from the user's environment or secret store, and avoid the embedded shared key and command-line key option.
+
+Risk: Report titles, links, and profile text originate from remotely sourced account data.
+
+Mitigation: Treat report content and links as untrusted, review generated output before sharing, and verify links before clicking.
+
+## Reference(s):
+
+- [Core Workflow](references/core_workflow.md)
+- [Diagnosis Rules](references/diagnosis_rules.md)
+- [API Reference](references/api_reference.md)
+- [Skill Page](https://clawhub.ai/if530770/skills/douyin-account-diagnosis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown diagnostic report with tables, scored dimensions, risk alerts, recent content links, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Douyin nickname or Douyin ID; may use REDFOX_API_KEY for RedFox access.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

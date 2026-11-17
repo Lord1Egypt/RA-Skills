@@ -1,43 +1,63 @@
-## Description: <br>
-A command-line skill advertised as a bearing selection and life calculator, while security evidence reports that the artifact behaves as a local entry tracker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bearing is presented as a bearing selection and life calculator, but the included artifact primarily provides a local JSONL entry store with status, add, list, search, remove, export, stats, and config commands.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers or users can use this skill to add, list, search, remove, configure, and export local text entries. Do not rely on it for bearing calculations without independent review because ClawScan reports a mismatch between the advertised purpose and artifact behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised bearing-calculator purpose does not match the artifact behavior reported by ClawScan. <br>
-Mitigation: Review the script behavior before use and treat outputs as local entry-tracker data, not engineering bearing calculations. <br>
-Risk: User-provided entries are retained locally under ~/.bearing or a BEARING_DIR override. <br>
-Mitigation: Avoid storing sensitive engineering or project data unless local retention is acceptable. <br>
-Risk: Remove and export commands can delete entries or duplicate stored data into local files. <br>
-Mitigation: Review command arguments before running remove or export and inspect generated files before sharing them. <br>
+## Use Case:
 
+Developers or operators can use this skill as a local CLI utility for recording, listing, searching, removing, exporting, and configuring simple entries. Reviewers should not rely on it for bearing calculations unless the implementation is corrected and validated.
 
-## Reference(s): <br>
-- [Bearing on ClawHub](https://clawhub.ai/ckchzh/bearing) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Plain text CLI output with local JSONL storage and optional JSON or CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries under ~/.bearing by default, or under BEARING_DIR when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: The artifact claims to be a bearing calculator but behaves like a local note or database utility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the implementation before installation and do not use it for bearing selection or life calculations unless calculation behavior is added and validated.
+
+Risk: The skill stores local entries and configuration values on disk.
+
+Mitigation: Avoid storing secrets, personal data, or other sensitive information in entries or configuration values.
+
+Risk: CSV exports can carry untrusted entry content into spreadsheet software.
+
+Mitigation: Inspect exported CSV content before opening it in spreadsheet tools, especially when entries come from untrusted sources.
+
+Risk: The config command accepts key and value input that the security evidence flags as unsafe.
+
+Mitigation: Do not run the config command with untrusted key or value input unless the script is fixed and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/bearing)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [Publisher homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain text CLI output with JSONL data storage and optional JSON or CSV export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local data under BEARING_DIR or ~/.bearing and may create bearing-export.json or bearing-export.csv in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Single-file bash CLI for the *arr media stack with SSH remote support, intended for agents running on a different machine than the media services while tunneling API calls through existing SSH config so services stay on localhost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Media Cli helps agents manage a remote *arr media stack from the terminal through an SSH-aware bash CLI.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-External developers and homelab operators use this skill to let an agent manage a remote media stack from the terminal, including searching, adding, monitoring, refreshing, pausing, resuming, and removing media-related downloads and library entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables shell-level control over media services, including actions that can mutate libraries, downloads, queues, and refresh state. <br>
-Mitigation: Require confirmation before add, pause, remove, refresh, or other state-changing actions. <br>
-Risk: Download removal can include file deletion when invoked with delete-file behavior. <br>
-Mitigation: Require explicit user confirmation before delete-file actions and state whether files will be kept or deleted. <br>
-Risk: Stored service API keys and SSH access can expose control over the media stack if mishandled. <br>
-Mitigation: Protect API keys and SSH credentials, keep configuration permissions restricted, and review the external script before running it. <br>
+## Use Case:
 
+Developers, operators, and agent builders use this skill to let an agent inspect and manage Sonarr, Radarr, Prowlarr, qBittorrent, Bazarr, Jellyseerr, and Tdarr without exposing those services publicly.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/solomonneas/media-cli) <br>
-- [Publisher Profile](https://clawhub.ai/user/solomonneas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing CLI guidance for a bash media-control tool; mutation and deletion actions should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill asks users to install external code that can control media services through API keys or SSH access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository before installing, prefer a pinned commit or signed release, and grant only the service credentials and SSH access needed for the intended workflow.
+
+Risk: Media and download management commands can remove downloads, delete files, pause activity, or trigger broad refresh operations.
+
+Mitigation: Require human review before destructive or bulk actions, especially commands that remove downloads, delete files, pause all downloads, or rescan libraries.
+
+Risk: Stored API keys and SSH configuration may give an agent persistent access to personal media services.
+
+Mitigation: Keep the media-cli configuration file permission-restricted, rotate credentials when access changes, and avoid configuring services the agent should not manage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/solomonneas/skills/media-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that affect media libraries, downloads, API-backed services, or SSH-connected hosts.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

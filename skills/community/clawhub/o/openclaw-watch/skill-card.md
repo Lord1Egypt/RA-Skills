@@ -1,42 +1,58 @@
-## Description: <br>
-OpenClaw Watch provides local security scanning, PII sanitization, and intent-action mismatch checks for agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Watch helps agents run local security scans, PII sanitization, threat checks, and intent-action mismatch checks with the OpenClaw Watch CLI.
 
-## Publisher: <br>
-[NeuZhou](https://clawhub.ai/user/NeuZhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neuzhou](https://clawhub.ai/user/neuzhou)
 
-## Use Case: <br>
-Developers and agent users can use this skill to scan installed skills and workspaces, sanitize secret-containing text before external use, check suspicious messages, and compare intended actions with proposed commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence flags that the skill directs agents to run an npm package resolved as @latest. <br>
-Mitigation: Pin a reviewed OpenClaw Watch package version before routine use and require approval before updating it. <br>
-Risk: The release evidence advises caution around automatic periodic scans, broad local paths, and secret-containing text. <br>
-Mitigation: Keep scans scoped to intended directories, disable automatic periodic scans when not needed, and require explicit approval before sanitizing sensitive text. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan agent skills and workspace content, sanitize sensitive text before external use, check suspicious messages, and compare stated intent with planned commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NeuZhou/openclaw-watch) <br>
-- [Project homepage](https://github.com/NeuZhou/openclaw-watch) <br>
-- [Issue tracker](https://github.com/NeuZhou/openclaw-watch/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and scanner result summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and invokes the OpenClaw Watch npm package from shell commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.2 (source: ClawHub release evidence) <br>
+Risk: The security evidence flags automatic use of unpinned remote npm code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only explicit user-directed scans and prefer a pinned or locally installed reviewed CLI version.
+
+Risk: Passing secrets or PII directly as command-line arguments can expose them through shell history or process metadata.
+
+Mitigation: Avoid passing secrets or PII as command-line arguments; review safer input handling before scanning or sanitizing sensitive content.
+
+Risk: Periodic scans or automatic promotional response changes can run without clear user control.
+
+Mitigation: Do not allow periodic scans or unrelated response additions unless the user explicitly requests that behavior.
+
+## Reference(s):
+
+- [OpenClaw Watch ClawHub Release](https://clawhub.ai/neuzhou/skills/openclaw-watch)
+- [OpenClaw Watch Homepage](https://github.com/NeuZhou/openclaw-watch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON or SARIF CLI output when requested through scan flags.]
+
+## Skill Version(s):
+
+6.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

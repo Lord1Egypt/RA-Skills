@@ -1,43 +1,54 @@
-## Description: <br>
-Use when the user asks about their sleep data, dream history, or wants to query sleep entries from the Soft Pillow app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks about their sleep data, dream history, or wants to query sleep entries from the Soft Pillow app.
 
-## Publisher: <br>
-[kivS](https://clawhub.ai/user/kivS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kivs](https://clawhub.ai/user/kivs)
 
-## Use Case: <br>
-External Soft Pillow users can let an agent read sleep status, list and inspect sleep entries, and search dreams or notes after they provide a Soft Pillow API key. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read sensitive sleep, dream, notes, disruption, mood, and activity-related history when an API key is available. <br>
-Mitigation: Use a revocable Soft Pillow API key, share it only through secure local configuration, and limit queries to the entries needed for the task. <br>
-Risk: Dream and sleep history could be exposed in chat transcripts, logs, or downstream summaries. <br>
-Mitigation: Avoid pasting API keys into chat, do not request broad history unless needed, and redact or omit sensitive excerpts before sharing results. <br>
-Risk: Continued API access may remain available after the immediate task is complete. <br>
-Mitigation: Revoke the API key from Soft Pillow settings when agent access is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Soft Pillow homepage](https://paevita.com/en/soft-pillow) <br>
-- [Soft Pillow on the App Store](https://apps.apple.com/us/app/soft-pillow/id6757248808) <br>
-- [ClawHub skill page](https://clawhub.ai/kivS/soft-pillow) <br>
+## Use Case:
 
+External Soft Pillow users use this skill to let an agent query their sleep status, sleep entries, dream history, notes, mood, disruptions, and related records from the Soft Pillow API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with API examples and JSON response snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SOFT_PILLOW_API_KEY; responses may include sensitive sleep and dream history.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access sensitive Soft Pillow sleep, dream, notes, mood, disruption, and related entry data when given an API key.
+
+Mitigation: Install and use it only when that data access is acceptable, and avoid requesting entries that should not be processed by the agent or the Soft Pillow API.
+
+Risk: Exposure of the Soft Pillow API key could allow unauthorized access to the user's account data.
+
+Mitigation: Keep the API key private, store it locally, and revoke it from Soft Pillow app settings when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kivs/skills/soft-pillow)
+- [Soft Pillow homepage](https://paevita.com/en/soft-pillow)
+- [Soft Pillow App Store listing](https://apps.apple.com/us/app/soft-pillow/id6757248808)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Soft Pillow API key and may return personal sleep, dream, notes, mood, disruption, and activity-related entry data.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

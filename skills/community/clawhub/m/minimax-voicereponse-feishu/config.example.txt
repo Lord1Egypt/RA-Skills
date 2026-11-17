@@ -7,4 +7,4 @@
 # 优先级：环境变量 MINIMAX_VOICE_API_KEY > 本配置文件
 
 # 在下方填入你的 MiniMax API Key（删除 # 注释）
-sk-cp-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+REDACTED-SECRET

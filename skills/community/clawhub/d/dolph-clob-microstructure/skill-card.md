@@ -1,42 +1,60 @@
-## Description: <br>
-Analyzes Polymarket order book microstructure for inefficiencies and generates signals to trade fake breakouts and manage position sizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Polymarket CLOB order book microstructure to find structural inefficiencies, score liquidity gaps, imbalance, whale activity, and fake breakout patterns, and generate trading signals.
 
-## Publisher: <br>
-[richducat](https://clawhub.ai/user/richducat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richducat](https://clawhub.ai/user/richducat)
 
-## Use Case: <br>
-External developers and trading automation operators use this skill to scan active Polymarket markets, score order book microstructure, and produce actionable trading signals. In live mode it can place mean-reversion trades through SimmerClient using a configured API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place repeated financial trades automatically using a Simmer API key. <br>
-Mitigation: Start in dry-run or simulation mode, use scoped and revocable credentials, and enable live execution only after independent strategy review. <br>
-Risk: Cron execution can repeat trades without per-trade confirmation. <br>
-Mitigation: Use conservative CLOB_TRADE_SIZE and CLOB_MAX_TRADES settings and avoid live cron execution unless repeated automated trading risk is accepted. <br>
+## Use Case:
 
+External developers and trading-agent operators use this skill to scan active Polymarket markets, evaluate order-book microstructure, and produce actionable signals for dry-run or live Simmer trading.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/richducat/dolph-clob-microstructure) <br>
-- [Polymarket CLOB Order Book Endpoint](https://clob.polymarket.com/book) <br>
-- [Polymarket Trades Data Endpoint](https://data-api.polymarket.com/trades) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, text, shell commands, configuration, API calls] <br>
-**Output Format:** [Console logs and text summaries with generated trading signals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to dry-run unless started with --live.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live mode can place real prediction-market trades while the security summary reports weak safety controls for the requested financial authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, prefer dry-run mode, and use live mode only with a constrained Simmer account and conservative per-trade, per-run, and daily limits.
+
+Risk: The artifact can continue when safety context is unavailable.
+
+Mitigation: Prefer a version or wrapper that fails closed when market context, slippage, or edge checks cannot be retrieved.
+
+Risk: Dependency or external API changes could alter trading behavior.
+
+Mitigation: Pin dependencies and validate behavior against the Polymarket and Simmer APIs before enabling scheduled live execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/richducat/skills/dolph-clob-microstructure)
+- [Publisher Profile](https://clawhub.ai/user/richducat)
+- [Polymarket CLOB Book API](https://clob.polymarket.com/book)
+- [Polymarket Trades API](https://data-api.polymarket.com/trades)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI/log text with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces market scores, trading-signal labels, dry-run summaries, and optional live order placement through SimmerClient.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact files declare 2.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

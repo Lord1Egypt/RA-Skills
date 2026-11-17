@@ -1,46 +1,62 @@
-## Description: <br>
-Runs a fleet-wide Cosmos DB for MongoDB (RU) health check through Azure Managed Grafana, scanning RU consumption, availability, latency, throttling, replication metrics, and abnormal-account logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a fleet-wide Azure Managed Grafana health check for Cosmos DB for MongoDB (RU) accounts, scanning RU consumption, availability, latency, throttling, and replication metrics before deep-diving abnormal accounts.
 
-## Publisher: <br>
-[1w2w3y](https://clawhub.ai/user/1w2w3y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1w2w3y](https://clawhub.ai/user/1w2w3y)
 
-## Use Case: <br>
-Cloud operators and reliability engineers use this skill to assess Cosmos DB for MongoDB (RU) account health across an Azure fleet, identify abnormal resources, and produce prioritized remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive cloud inventory, telemetry, and account health details in generated reports. <br>
-Mitigation: Use the narrowest practical subscription and time range, and periodically review or delete local memory reports that contain infrastructure details. <br>
-Risk: The workflow requires access to Azure Managed Grafana and may run local parsing commands for large results. <br>
-Mitigation: Use a least-privileged Grafana service-account token and approve only expected local parsing commands. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to inspect Azure Cosmos DB for MongoDB (RU) fleets through Azure Managed Grafana, identify abnormal resource health signals, and produce prioritized remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1w2w3y/amg-check-cosmosdb-mongo-ru) <br>
-- [Output Format](reference/output-format.md) <br>
-- [Error Handling](reference/error-handling.md) <br>
-- [Analysis Patterns](reference/analysis-patterns.md) <br>
-- [Phase 4 Deep Metrics](reference/phase4-deep-metrics.md) <br>
-- [Phase 5 Resource Logs](reference/phase5-resource-logs.md) <br>
-- [Deep-Dive Queries](reference/deep-dive-queries.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown health report with tables, findings, action items, and optional local memory updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Azure Resource Graph queries, Azure Monitor metric and log analysis, and updates to a local known-issues report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Setup can expose a Grafana bearer token and grants access to Azure monitoring data for selected subscriptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable Grafana service-account token and avoid storing or pasting the token in shell history.
+
+Risk: The workflow can persist cloud inventory, telemetry summaries, and known-issue reports in local workspace files.
+
+Mitigation: Review or disable local memory/report writes when the workspace is shared, and treat generated reports as potentially sensitive operational data.
+
+Risk: Fleet-wide scans may query every matching Cosmos DB for MongoDB (RU) account through the configured AMG MCP server.
+
+Mitigation: Limit configured subscriptions to the intended scope and review the generated findings before acting on remediation guidance.
+
+## Reference(s):
+
+- [Analysis Patterns & Known Issue Cross-Reference](reference/analysis-patterns.md)
+- [Deep-Dive Queries](reference/deep-dive-queries.md)
+- [Error Handling](reference/error-handling.md)
+- [Output Format](reference/output-format.md)
+- [Phase 4: Tier 2 - Deep Metrics for Abnormal Accounts](reference/phase4-deep-metrics.md)
+- [Phase 5: Resource Logs for Abnormal Accounts](reference/phase5-resource-logs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown health-check report with tables, command snippets, findings, action items, and local configuration/report updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a user-supplied time range and subscription selection; may persist configuration and known-issue reports in workspace memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

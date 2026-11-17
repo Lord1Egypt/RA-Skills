@@ -1,52 +1,66 @@
-## Description: <br>
-A 股全流程量化决策系统 guides an agent through A-share market data collection, technical indicator analysis, position monitoring, scheduled market checks, and structured trading review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through A-share stock analysis using Eastmoney market data, technical indicators, position monitoring, stop-loss rules, and structured daily reviews.
 
-## Publisher: <br>
-[ZooAgentPM](https://clawhub.ai/user/ZooAgentPM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zooagentpm](https://clawhub.ai/user/zooagentpm)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent gather A-share market data, calculate indicators, prepare buy/sell/hold analysis, monitor positions, and produce daily trading reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce buy, sell, hold, stop-loss, and position-management analysis that may be mistaken for automated financial advice. <br>
-Mitigation: Treat trading output as decision-support analysis only and require human review before any market action. <br>
-Risk: Recurring cron or heartbeat tasks can continue market monitoring and persist portfolio or conversation-derived notes after registration. <br>
-Mitigation: Register only the schedules needed, disable unused recurring tasks, and review stored portfolio memory and learning files regularly. <br>
-Risk: Datasaver tokens and Eastmoney cookies are sensitive personal credentials that may leak through shared terminals, repositories, or logs. <br>
-Mitigation: Keep credentials out of shared environments and source control, use short-lived tokens or cookies where possible, and rotate them after exposure. <br>
-Risk: Market data can be stale, malformed, rate-limited, or affected by non-trading days, which can distort analysis. <br>
-Mitigation: Run sanity checks on API responses, verify dates and price units, and confirm market-open status before acting on generated analysis. <br>
+## Use Case:
 
+External users and agents use this skill to collect A-share market data, calculate technical signals, evaluate buy, sell, hold, stop-loss, and take-profit actions, and maintain trading review records. It is decision support and should not be treated as guaranteed investment advice.
 
-## Reference(s): <br>
-- [数据采集 API 手册](references/data-api.md) <br>
-- [技术指标判断手册](references/indicators.md) <br>
-- [盯盘定时任务配置手册](references/watchdog.md) <br>
-- [每日复盘模板](references/review-template.md) <br>
-- [报错处理手册](references/error-handling.md) <br>
-- [Datasaver 安装与配置指南](references/datasaver-setup.md) <br>
-- [推荐阅读 & 扩展资源](references/further-reading.md) <br>
-- [Datasaver official setup document](https://docs.qq.com/doc/DT3FZT09Zd254c1Bv) <br>
-- [InStock open-source quantitative system](https://github.com/myhhub/stock) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, JSON, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scheduled cron payloads, portfolio-memory updates, and credential-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can produce buy, sell, stop-loss, and take-profit guidance that may be incorrect or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as decision support only, verify market data independently, and require human review before making financial decisions.
+
+Risk: Optional Datasaver, Cookie, and bearer-token workflows may expose personal browser credentials in shared workspaces.
+
+Mitigation: Use the no-Datasaver workflow by default; if Datasaver is needed, use a dedicated browser profile and never store real cookies or bearer tokens in shared files.
+
+Risk: Scheduled monitoring and memory-writing workflows can create persistent trading records and automated financial alerts.
+
+Mitigation: Enable cron and memory-writing workflows only intentionally, review schedules before activation, and keep position records out of shared or untrusted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zooagentpm/skills/astock-analyst)
+- [Data collection API guide](references/data-api.md)
+- [Datasaver setup guide](references/datasaver-setup.md)
+- [Error handling guide](references/error-handling.md)
+- [Technical indicator guide](references/indicators.md)
+- [Daily review template](references/review-template.md)
+- [Watchdog scheduled monitoring guide](references/watchdog.md)
+- [Further reading and extensions](references/further-reading.md)
+- [Datasaver documentation](https://docs.qq.com/doc/DT3FZT09Zd254c1Bv)
+- [InStock open source quantitative system](https://github.com/myhhub/stock)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell, Python, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trading decision-support language, cron task JSON, optional browser-tool setup, and memory-file update guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

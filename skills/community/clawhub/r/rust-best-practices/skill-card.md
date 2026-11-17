@@ -1,48 +1,62 @@
-## Description: <br>
-Development guidance for writing idiomatic, performant, and safe Rust code across ownership, error handling, performance, linting, dispatch, API design, and documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Development guidance for writing idiomatic Rust functions, modules, ownership patterns, Result-based error handling, performance tuning, Clippy configuration, dispatch choices, and documentation.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill while building Rust code to choose idiomatic ownership, error handling, API design, performance, documentation, linting, and ecosystem patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested cargo commands may install developer tools or run checks across all targets and features in large or sensitive repositories. <br>
-Mitigation: Review commands before running them, scope invocations to the intended workspace or crate when appropriate, and avoid executing tool-install or all-target commands without project approval. <br>
-Risk: Rust guidance may be misapplied to a codebase with different performance, API stability, or documentation constraints. <br>
-Mitigation: Validate changes with the project's tests, Clippy policy, documentation build, and benchmark or profiling evidence before claiming correctness or performance outcomes. <br>
+## Use Case:
 
+Developers and engineers use this skill while building Rust code to choose idiomatic ownership, error handling, API design, performance, linting, documentation, and dispatch patterns.
 
-## Reference(s): <br>
-- [API Design](references/api-design.md) <br>
-- [Clippy Configuration](references/clippy-config.md) <br>
-- [Coding Idioms](references/coding-idioms.md) <br>
-- [Documentation](references/documentation.md) <br>
-- [Ecosystem Patterns](references/ecosystem-patterns.md) <br>
-- [Generics and Dispatch](references/generics-dispatch.md) <br>
-- [Performance](references/performance.md) <br>
-- [Pointer Types](references/pointer-types.md) <br>
-- [Type State Pattern](references/type-state-pattern.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline Rust, TOML, YAML, and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; suggested cargo commands should be reviewed before execution in large or sensitive repositories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Following generated development commands can modify a Rust project or install Cargo tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, avoid elevated privileges, and pin cargo-installed tool versions when practical.
+
+Risk: Guidance may be applied to the wrong Rust crate context or used to claim performance improvements without evidence.
+
+Mitigation: Run the documented Clippy, documentation, and before-and-after measurement gates before relying on the result.
+
+## Reference(s):
+
+- [Rust Best Practices](artifact/SKILL.md)
+- [API Design](artifact/references/api-design.md)
+- [Clippy Configuration](artifact/references/clippy-config.md)
+- [Coding Idioms](artifact/references/coding-idioms.md)
+- [Documentation](artifact/references/documentation.md)
+- [Ecosystem Patterns](artifact/references/ecosystem-patterns.md)
+- [Generics and Dispatch](artifact/references/generics-dispatch.md)
+- [Performance](artifact/references/performance.md)
+- [Pointer Types](artifact/references/pointer-types.md)
+- [Type State Pattern](artifact/references/type-state-pattern.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Rust code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No credentials required; commands are ordinary Rust development workflow commands.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

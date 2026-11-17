@@ -1,45 +1,55 @@
-## Description: <br>
-Automates GitHub issue management, pull request analysis, release creation, and repository analytics for agents using a configured GitHub token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates GitHub issues, pull request analysis, release creation, repository statistics, and repository health checks for agent workflows.
 
-## Publisher: <br>
-[andy825lay-tech](https://clawhub.ai/user/andy825lay-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[andy825lay-tech](https://clawhub.ai/user/andy825lay-tech)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to automate routine GitHub workflows such as creating and updating issues, analyzing pull requests, publishing releases, and checking repository health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a GitHub token while shipping obfuscated JavaScript. <br>
-Mitigation: Use a fine-grained token scoped only to the target repository and required permissions, and revoke it after use. <br>
-Risk: Configured actions can create or update GitHub issues and releases. <br>
-Mitigation: Verify the owner, repository, action, and parameters before allowing write operations. <br>
-Risk: The artifact includes off-platform crypto payment and license-key claims. <br>
-Mitigation: Do not rely on those claims unless the publisher and payment path are independently verified. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to automate repository maintenance tasks such as creating and updating issues, reviewing pull requests, creating releases, and collecting repository health signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andy825lay-tech/github-automation-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/andy825lay-tech) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Structured JSON-style result objects with Markdown guidance, code examples, and shell commands where applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GitHub token and repository owner/repo configuration; some actions can create or modify GitHub issues and releases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata, package.json) <br>
+Risk: Token-backed GitHub write code is intentionally obfuscated, which can make behavior difficult to review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before use, install only after accepting the obfuscation risk, and use a fine-grained GitHub token limited to the target repositories.
+
+Risk: The skill's memory-security claim is unsupported in the security evidence.
+
+Mitigation: Avoid broad organization or classic tokens, monitor behavior during initial use, and be prepared to revoke the token if behavior is unexpected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andy825lay-tech/skills/github-automation-pro)
+- [README](artifact/README.md)
+- [Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, shell commands, guidance]
+
+**Output Format:** [JSON results and Markdown guidance with TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GitHub token and repository owner/repo configuration for GitHub API operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release, package.json, README, and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-The meta-skill that maps user intent to available tools, skills, MCP servers, APIs, marketplaces, and external repositories so an agent can propose and run capability chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes user intents to available Reson8-Labs skills, MCP tools, integrations, and marketplace packaging paths, including multi-step skill chains with WAVE transition checks.
 
-## Publisher: <br>
-[toolate28](https://clawhub.ai/user/toolate28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toolate28](https://clawhub.ai/user/toolate28)
 
-## Use Case: <br>
-Developers, operators, and external agents use this skill to discover available capabilities, route natural-language requests to suitable tools or skill chains, compose multi-step workflows, and prepare marketplace packaging guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route into powerful account, deployment, file, and public-posting workflows without enough clear boundaries. <br>
-Mitigation: Require explicit approval before connected-account access, CHECKPOINT or full-state sharing, execution logging, file writes, connector or plugin creation, cloud provisioning, deployments, package publishing, or public social posting. <br>
-Risk: Broad orchestration may activate capabilities outside the user's intended scope. <br>
-Mitigation: Review the proposed capability chain with the user before execution and keep high-impact operations gated behind confirmation. <br>
+## Use Case:
 
+Developers, agent operators, and external agents use this skill to inventory available capabilities, select or compose skill chains, and identify packaging paths for integrations and marketplace releases.
 
-## Reference(s): <br>
-- [ClawHub Listing](https://clawhub.ai/toolate28/reson8-activator) <br>
-- [Activation Map](references/activation-map.md) <br>
-- [Composition Patterns](references/composition-patterns.md) <br>
-- [Marketplace Bridges](references/marketplace-bridges.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown plans, capability inventories, workflow chains, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose actions that require user confirmation before connected-account access, file writes, provisioning, deployment, publishing, or public posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Broad orchestration requests can route into cloud provisioning, calendar access, public posting, deployment, package publishing, or persistent file and memory updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before every external write, public post, deployment, package publish, credentialed action, or persistent state change.
+
+Risk: Suggested third-party installs or marketplace packaging steps can introduce unreviewed dependencies or external services.
+
+Mitigation: Pin, sandbox, and review third-party installs and generated packaging instructions before use.
+
+Risk: Multi-step skill chains can carry incorrect assumptions from one step into later actions.
+
+Mitigation: Review proposed chains and use transition checks as advisory gates before executing sensitive or irreversible steps.
+
+## Reference(s):
+
+- [Activation Map](references/activation-map.md)
+- [Composition Patterns](references/composition-patterns.md)
+- [Marketplace Bridges](references/marketplace-bridges.md)
+- [ClawHub Skill Listing](https://clawhub.ai/toolate28/skills/reson8-activator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with ordered activation plans, capability inventories, and command or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose chained actions that require user confirmation before external writes, credentialed operations, deployments, publishing, or persistent state changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

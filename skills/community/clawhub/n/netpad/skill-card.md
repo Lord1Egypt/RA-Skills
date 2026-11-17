@@ -1,46 +1,65 @@
-## Description: <br>
-Manage NetPad forms, submissions, users, and RBAC; use when creating forms with custom fields, submitting data to forms, querying form submissions, managing users/groups/roles, or installing NetPad apps from marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage NetPad forms, submissions, users, RBAC, and marketplace app installs through REST API and CLI guidance.
 
-## Publisher: <br>
-[mrlynn](https://clawhub.ai/user/mrlynn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrlynn](https://clawhub.ai/user/mrlynn)
 
-## Use Case: <br>
-Developers, administrators, and operations teams use this skill to manage NetPad forms, submissions, marketplace apps, users, groups, roles, and permissions through documented CLI and REST API workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help administer NetPad content and may change, delete, export, publish, or unpublish data and configuration. <br>
-Mitigation: Use least-privilege or test API keys when possible, verify the target NetPad base URL, and require explicit confirmation before delete, export, publish, or unpublish actions. <br>
-Risk: The skill can guide marketplace installation and RBAC changes that affect access to NetPad resources. <br>
-Mitigation: Review proposed marketplace, user, group, role, and permission changes before execution and require explicit confirmation for RBAC updates. <br>
-Risk: The skill relies on the external @netpad/cli package for CLI workflows. <br>
-Mitigation: Review the external CLI package and its commands before relying on it in a production environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mrlynn/netpad) <br>
-- [NetPad API v1 Endpoint Reference](references/api-endpoints.md) <br>
-- [NetPad CLI Reference](references/cli-commands.md) <br>
-- [Publisher Website](https://mlynn.org) <br>
-- [Publisher GitHub Profile](https://github.com/mrlynn) <br>
-- [Publisher LinkedIn Profile](https://linkedin.com/in/mlynn) <br>
+## Use Case:
 
+Developers and operators use this skill to create and publish NetPad forms, submit and query form data, manage users, groups, roles, and install NetPad marketplace apps. It is intended for agents helping with NetPad account administration and automation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, curl examples, CLI commands, and JSON payload examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NETPAD_API_KEY for REST API workflows or netpad login for CLI workflows; common helper commands depend on curl, jq, and netpad.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide broad live NetPad account actions, including destructive deletes and RBAC changes.
+
+Mitigation: Use least-privilege NetPad API keys, prefer a test project first, and verify every form, submission, organization, user, group, and role ID before execution.
+
+Risk: Submission exports may contain sensitive data.
+
+Mitigation: Export submissions only in approved contexts and handle exported files according to the data sensitivity of the target form.
+
+Risk: The NetPad CLI install is described as a global package install without a pinned version.
+
+Mitigation: Pin or otherwise verify the @netpad/cli package before installing it globally.
+
+Risk: The helper script allows NETPAD_BASE_URL overrides.
+
+Mitigation: Use only trusted NetPad API base URLs and avoid arbitrary or unreviewed endpoint overrides.
+
+## Reference(s):
+
+- [NetPad Skill Page](https://clawhub.ai/mrlynn/skills/netpad)
+- [NetPad API v1 - Complete Endpoint Reference](artifact/references/api-endpoints.md)
+- [NetPad CLI Reference (@netpad/cli)](artifact/references/cli-commands.md)
+- [Michael Lynn Website](https://mlynn.org)
+- [mrlynn GitHub Profile](https://github.com/mrlynn)
+- [Michael Lynn LinkedIn Profile](https://linkedin.com/in/mlynn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose REST API calls, NetPad CLI commands, helper script usage, and JSON payloads for form and submission workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

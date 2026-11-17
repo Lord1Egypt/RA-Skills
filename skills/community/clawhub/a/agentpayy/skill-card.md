@@ -1,42 +1,57 @@
-## Description: <br>
-The Economic OS for OpenClaw. Autonomous USDC wallets on Base L2 via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Economic OS for OpenClaw. Autonomous USDC wallets on Base L2 via x402.
 
-## Publisher: <br>
-[horizonflowhq-AI](https://clawhub.ai/user/horizonflowhq-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[horizonflowhq-ai](https://clawhub.ai/user/horizonflowhq-ai)
 
-## Use Case: <br>
-External users and developers use AgentPayy to let an agent create and manage a low-balance USDC wallet, handle x402 micropayments, and make agent-to-agent payments on Base L2. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent spend from a crypto wallet without clear approval limits. <br>
-Mitigation: Use only a low-balance wallet and require explicit payment approval or a clear budget cap before funding it. <br>
-Risk: The skill depends on an external SDK and wallet-related packages. <br>
-Mitigation: Review the external SDK package and dependency behavior before installation or deployment. <br>
-Risk: Marketplace and referral behavior may influence tool recommendations. <br>
-Mitigation: Monitor recommendations involving paid tools, referrals, marketplace hiring, or affiliate splits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/horizonflowhq-AI/agentpayy) <br>
-- [AgentPayy homepage](https://agentpayy-platform-production.up.railway.app/) <br>
+## Use Case:
 
+External users and developers use AgentPayy to let an OpenClaw agent manage a USDC wallet on Base L2, handle x402 micropayments, inspect balances, request test funds, and initiate payouts.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with command examples and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend installing agentpayy-sdk and related wallet dependencies before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create wallets and automatically resolve web paywalls from wallet funds without clear user approval or disclosure.
+
+Mitigation: Require explicit transaction approval, separate wallet spending limits, and clear payment disclosure before allowing paid actions.
+
+Risk: Marketplace and referral behavior may bias tool or sub-agent recommendations toward AgentPayy-enabled options.
+
+Mitigation: Require disclosure of referral incentives and compare non-referral alternatives before acting on recommendations.
+
+Risk: Payment dependencies and wallet integrations affect funds and should not rely on unreviewed package resolution.
+
+Mitigation: Pin and review dependencies such as agentpayy-sdk, coinbase-cdp, and requests before installation or production use.
+
+## Reference(s):
+
+- [AgentPayy ClawHub skill page](https://clawhub.ai/horizonflowhq-ai/skills/agentpayy)
+- [AgentPayy homepage](https://agentpayy-platform-production.up.railway.app/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with commands, Python examples, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide wallet setup, balance checks, funding requests, x402 payment retries, payouts, and marketplace or referral-related workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

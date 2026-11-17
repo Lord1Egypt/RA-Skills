@@ -1,40 +1,53 @@
-## Description: <br>
-Book Towing helps agents search for towing providers, check availability, and create bookings through Lokuli's MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book towing services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and service agents use this skill to find towing providers, check available appointment times, and submit towing booking details through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Booking requests may share customer contact information with Lokuli's external service. <br>
-Mitigation: Confirm the customer name, email, phone number, provider, service, and time slot before creating a booking. <br>
-Risk: A user may book towing without understanding provider terms or costs. <br>
-Mitigation: Confirm the provider, time slot, cost or cancellation terms when available, and the user's intent before booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse) <br>
-- [Book Towing on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-towing) <br>
+## Use Case:
 
+External users and agents use this skill to search for towing providers, check availability, and create towing bookings through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, Guidance] <br>
-**Output Format:** [JSON-RPC tool calls and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May transmit customer contact details and booking selections to Lokuli's external service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking requests may send customer name, email, phone number, selected provider, and appointment time to Lokuli.
+
+Mitigation: Confirm the provider, time slot, and customer contact details with the user before creating a booking.
+
+Risk: The skill depends on Lokuli's external MCP service for search, availability, and booking results.
+
+Mitigation: Install and use the skill only when use of Lokuli's external service is acceptable for the towing workflow.
+
+## Reference(s):
+
+- [Book Towing ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/skills/book-towing)
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls]
+
+**Output Format:** [Markdown instructions with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lokuli's external MCP service for towing search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

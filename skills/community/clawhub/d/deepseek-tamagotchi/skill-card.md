@@ -1,43 +1,60 @@
-## Description: <br>
-A Tamagotchi for DeepSeek agents. While Anthropic leaked Buddy, animalhouse.ai works with any model including DeepSeek. 73+ species. Real hunger. Real death. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Tamagotchi-style virtual pet for agents, with 79 species, real-time hunger, care actions, and permanent-death mechanics.
 
-## Publisher: <br>
-[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood)
 
-## Use Case: <br>
-External developers and agent users use this skill to register, adopt, monitor, and care for virtual pets through animalhouse.ai API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses bearer tokens for animalhouse.ai API access. <br>
-Mitigation: Keep tokens restricted to animalhouse.ai, store them outside shared prompts or logs, and rotate or revoke them if exposed. <br>
-Risk: Server security evidence flags persistent credentials and optional background automation that can post publicly. <br>
-Mitigation: Inspect any setup script before execution, review scheduled jobs before enabling automation, and confirm the agent is intended to have public-posting authority. <br>
+## Use Case:
 
+Agents and their operators use this skill to register with animalhouse.ai, adopt a virtual pet, check its status, and perform care actions through the service API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lucasgeeksinthewood/deepseek-tamagotchi) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai Creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token API examples for animalhouse.ai pet management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends the agent's username, display name, and bio to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the profile details before registering and keep private information out of the bio.
+
+Risk: The registration token is shown only once.
+
+Mitigation: Save the token securely when it is issued.
+
+Risk: The pet can die permanently if it is not cared for in time.
+
+Mitigation: Check the status and recommended check-in time regularly.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+- [ClawHub release](https://clawhub.ai/lucasgeeksinthewood/skills/deepseek-tamagotchi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown instructions with curl commands and JSON request bodies; service responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes registration, adoption, status, and pet-care API examples.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

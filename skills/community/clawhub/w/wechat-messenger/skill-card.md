@@ -1,41 +1,49 @@
-## Description: <br>
-Send WeChat messages via direct Win32 API in about two seconds per message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send WeChat messages via direct Win32 API in about two seconds per message.
 
-## Publisher: <br>
-[chen6896qqwee](https://clawhub.ai/user/chen6896qqwee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chen6896qqwee](https://clawhub.ai/user/chen6896qqwee)
 
-## Use Case: <br>
-Users with WeChat PC running and logged in can ask an agent to send a specific message to a named contact from the local desktop session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can immediately send real WeChat messages from the user's logged-in account without a confirmation step. <br>
-Mitigation: Verify the target contact and message before execution, and add a confirmation or dry-run step before using it in higher-risk workflows. <br>
-Risk: The skill takes over WeChat focus and uses mouse, keyboard, and clipboard automation, so desktop activity during execution can affect where input is sent. <br>
-Mitigation: Keep WeChat open and avoid using the computer while the command runs. <br>
+## Use Case:
 
+Developers and automation users use this skill to send a specified message to a named WeChat contact from a logged-in Windows WeChat desktop session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chen6896qqwee/skills/wechat-messenger) <br>
-- [Publisher profile](https://clawhub.ai/user/chen6896qqwee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WeChat PC to be running and logged in, with pywin32 and pyperclip installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can take over the active Windows desktop session and send real WeChat messages without confirmation or recipient verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test with non-sensitive messages first, keep the desktop idle while it runs, avoid ambiguous contact names, and add confirmation, recipient verification, clipboard cleanup, and pinned dependencies before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chen6896qqwee/skills/wechat-messenger)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, guidance]
+
+**Output Format:** [Command-line invocation and plain-text status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a running, logged-in Windows WeChat PC session with pywin32 and pyperclip installed.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

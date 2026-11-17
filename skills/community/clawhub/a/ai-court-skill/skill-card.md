@@ -1,46 +1,61 @@
-## Description: <br>
-A multi-agent collaboration system modeled on the Ming Dynasty cabinet system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Court Skill configures an OpenClaw multi-agent collaboration system modeled on Ming Dynasty cabinet roles.
 
-## Publisher: <br>
-[jlkptom-prog](https://clawhub.ai/user/jlkptom-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jlkptom-prog](https://clawhub.ai/user/jlkptom-prog)
 
-## Use Case: <br>
-Developers and teams use this skill to configure an OpenClaw multi-agent workspace for task routing, software engineering review, operations, content, finance, legal, and Feishu or Discord-based collaboration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup commands can overwrite live OpenClaw configuration under ~/.openclaw. <br>
-Mitigation: Back up ~/.openclaw and review copied files before installing or switching governance/channel configurations. <br>
-Risk: Code-review or audit outputs may expose sensitive project details in Discord or other IM channels. <br>
-Mitigation: Use restricted bots and private channels, and avoid sending full diffs or vulnerability details to broad audiences. <br>
-Risk: Feishu, Discord, and model-provider credentials may be mishandled if stored in shared project files. <br>
-Mitigation: Store App Secrets, bot tokens, and API keys outside shared repositories with tight file permissions or a secrets manager. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install a role-based multi-agent coordination setup, choose Feishu or Discord messaging, configure model credentials, and verify the installation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jlkptom-prog/ai-court-skill) <br>
-- [Feishu setup guide](references/feishu-setup.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
-- [Feishu API documentation](https://open.feishu.cn/document) <br>
-- [OpenClaw Feishu channel documentation](https://docs.openclaw.ai/channels/feishu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw configuration and external Feishu or Discord credentials/API keys when those channels are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Copy-based installation can overwrite existing OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up ~/.openclaw and merge the needed files manually before copying configuration directories.
+
+Risk: Some role instructions may route tasks, diffs, or review reports to Discord.
+
+Mitigation: Review and disable Discord routing unless that sharing path is intended for the deployment.
+
+Risk: The setup requires Feishu, Discord, and model-provider credentials.
+
+Mitigation: Store credentials with restrictive permissions or a secret manager, and use Feishu or Discord allowlists for the smallest audience needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jlkptom-prog/skills/ai-court-skill)
+- [Feishu Setup Guide](references/feishu-setup.md)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+- [Feishu API Documentation](https://open.feishu.cn/document)
+- [OpenClaw Feishu Channel Documentation](https://docs.openclaw.ai/channels/feishu)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation, configuration, role-routing, and troubleshooting guidance for OpenClaw agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

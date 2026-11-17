@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "noCRM.io"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["nocrm_io"]
   icon: "https://static.oomol.com/logo/third-party/NoCRM.io.svg"
 ---
@@ -38,10 +38,10 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `add_tag_to_lead` — Add one or more tags to a noCRM.io lead. [write]
-- `append_to_lead_description` — Append text to the description of a noCRM.io lead.
+- `append_to_lead_description` — Append text to the description of a noCRM.io lead. [write]
 - `assign_lead_to_user` — Assign a noCRM.io lead to a specific user. [write]
-- `change_lead_status_to_cancelled` — Change a noCRM.io lead status to cancelled.
-- `change_lead_status_to_standby` — Change a noCRM.io lead to standby and schedule its next reminder.
+- `change_lead_status_to_cancelled` — Change a noCRM.io lead status to cancelled. [destructive]
+- `change_lead_status_to_standby` — Change a noCRM.io lead to standby and schedule its next reminder. [destructive]
 - `create_lead` — Create a lead in noCRM.io with the provided title and description. [write]
 - `delete_lead` — Delete a noCRM.io lead. [destructive]
 - `duplicate_lead` — Duplicate an existing noCRM.io lead into another step. [write]
@@ -76,11 +76,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — noCRM.io is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=nocrm_io
+  https://console.oomol.com/connections/nocrm_io
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - noCRM.io homepage: https://www.nocrm.io
+- API documentation: https://www.nocrm.io/api

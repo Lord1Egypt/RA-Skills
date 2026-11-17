@@ -1,38 +1,53 @@
-## Description: <br>
-Agent Summary monitors subagent activity and produces brief progress status summaries every 30 seconds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Summary periodically checks subagent status and recent session history to generate concise progress summaries for active workers.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and agent coordinators use this skill to check active subagents, summarize recent status messages, and report concise progress updates only when work changes, completes, or fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads recent subagent messages, which may contain secrets, regulated data, or private content. <br>
-Mitigation: Use it only in tasks where recent subagent conversation content may be safely summarized and surfaced in progress updates. <br>
+## Use Case:
 
+Developers and coordinators use this skill to monitor active subagents and present short progress summaries only when worker state changes, completes, or fails.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangxiaofei860208-source/agent-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with concise status text and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are intended to be 3-5 words and emitted only on status changes, completion, or failure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads recent subagent session history to create progress summaries, which may expose sensitive worker context to the coordinating agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where subagent status review is intended, and limit summary inputs to the latest relevant worker messages.
+
+Risk: Overly frequent progress checks can create unnecessary noise or token usage.
+
+Mitigation: Follow the artifact guidance to poll no more than every 30 seconds, report only changes or terminal states, and respect quiet hours.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/skills/agent-summary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown status summaries with short text labels and optional workflow guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Intended summaries are 3-5 words, update at most every 30 seconds, and are suppressed during quiet hours when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

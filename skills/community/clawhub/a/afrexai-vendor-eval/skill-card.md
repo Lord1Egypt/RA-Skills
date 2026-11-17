@@ -1,42 +1,53 @@
-## Description: <br>
-Provides a structured framework for researching, scoring, and comparing software vendors, service providers, and technology partners before contract decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured framework for evaluating software vendors, service providers, and technology partners before signing contracts.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Operations leaders, CTOs, procurement teams, founders, and technical evaluators use this skill to assess vendors across financial stability, technical fit, security, pricing, references, support, lock-in risk, and roadmap alignment. It supports single-vendor due diligence and side-by-side vendor comparisons with scored GO, CAUTION, or NO-GO recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Vendor reports may influence high-value contract or procurement decisions. <br>
-Mitigation: Verify important claims such as security certifications, pricing, SLA terms, financial stability, and negative news from authoritative sources before acting. <br>
-Risk: Web research and customer-review signals can be incomplete, outdated, or biased. <br>
-Mitigation: Treat the generated score as decision support and confirm material findings with primary vendor documentation, contract language, customer references, and current public records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-vendor-eval) <br>
-- [AfrexAI Context Pack collection](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Operations leaders, CTOs, procurement teams, founders, and other business decision makers use this skill to assess vendors with a consistent due-diligence framework before contracts, partnerships, stack decisions, or comparative shortlists.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown evaluation report with scoring tables, risk summaries, negotiation leverage, and a recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a weighted eight-dimension scoring framework and produces GO, CAUTION, or NO-GO recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Vendor evaluations may include confidential pricing, strategy, contract, security, or procurement details.
+
+Mitigation: Use public information or redacted internal context unless the user is comfortable sharing sensitive business details with the agent.
+
+Risk: Public vendor research can be incomplete, stale, or biased toward marketing material.
+
+Mitigation: Treat the report as decision support and verify high-impact findings against primary sources, contracts, security documentation, and direct vendor references before committing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-vendor-eval)
+- [AfrexAI Context Pack Collection](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown vendor evaluation report with score tables, critical risks, negotiation leverage, and a GO / CAUTION / NO-GO recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a weighted 8-dimension scoring framework and depends on available vendor research evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

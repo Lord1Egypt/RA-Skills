@@ -1,0 +1,86 @@
+part: RA2L1
+link_status: verified_2026-07-01 (datasheet-pdf-mirror-extracted)
+expected_family: "Renesas RA2L1 \u2014 Cortex-M23 48 MHz Ultra-Low-Power General-Purpose MCU"
+main_page: https://www.renesas.com/en/products/ra2l1
+datasheet_path_expected: ../../datasheets/ra2l1.pdf
+created_at: '2026-06-30T18:42:00+08:00'
+specs:
+  family: RA2L1 (RA2 series ultra-low-power tier)
+  cores:
+  - Arm Cortex-M23 @ 48 MHz (32-bit)
+  memory:
+    flash_kb_options:
+    - 128
+    - 256
+    sram_kb: 32
+    sram_ecc: true
+    data_flash_kb: 8
+  operating_conditions:
+    voltage_v_min: 1.6
+    voltage_v_max: 5.5
+    temperature_c_options:
+    - -40 to +85
+    - -40 to +105
+  peripherals:
+    adc_12bit: true
+    dac_12bit: true
+    lpacmp: yes (Low-Power Analog Comparator)
+    timers:
+    - 32-bit general PWM
+    - 16-bit general PWM
+    - low-power asynchronous GP timer
+    rtc: true
+    ctsu2_capacitive_touch: yes (Enhanced Capacitive Touch Sensing Unit v2)
+  communication:
+    sci_uart_spi_i2c: 5
+    spi_multi_master: 2
+    i2c: 2
+    can: 1
+  io:
+    count_options:
+    - 37
+    - 53
+    - 69
+    - 85
+  internal_voltage_regulators: true
+  package_options:
+  - 48-pin
+  - 64-pin
+  - 80-pin
+  - 100-pin
+  safety:
+    features: Renesas standard safety IP across RA family (specifics in raw)
+  security:
+    features: Renesas standard security IP (specifics in raw)
+  use_cases:
+  - "Ultra-low-power capacitive touch (CTSU2) \u2014 buttons/sliders/wheels"
+  - Battery-powered consumer / appliance (wide voltage 1.6-5.5V)
+  - Industrial sensor nodes (CAN + low-power)
+  - Smart home / IoT touch devices
+  - HVAC control with touch
+  - Wearable / fitness (touch-based)
+unverified:
+- exact flash endurance / retention
+- exact ADC sample rate
+- exact standby current
+- exact capacitive touch channel count
+- exact CAN-FD vs CAN 2.0B
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from renesas.com RA2L1 product page via Firecrawl (25,345 bytes raw)."
+- 'Family differentiator vs RA4M1 (existing yaml): RA4M1 is Cortex-M4 @ 100 MHz general-purpose; RA2L1 is Cortex-M23 @ 48
+  MHz ultra-low-power with capacitive touch (CTSU2).'
+- 'Family differentiator vs RA6T2 (existing yaml): RA6T2 is Cortex-M33 @ 240 MHz motor control ASSP; RA2L1 is Cortex-M23 general-purpose
+  ultra-LP.'
+- 'Use case: capacitive touch UI with ultra-low-power + 1.6-5.5V wide voltage. RA2L1 + Renesas FSP + capacitive touch library
+  is the canonical touch- control MCU in 2026.'
+- 'Verified 2026-07-01 via firecrawl-html-extract against RA2L1_group-datasheet.html: 16/29 spec fields matched (55%). Source:
+  https://www.renesas.com/en/document/dst/ra2l1-group-datasheet (vendor product page scraped as HTML; no separate PDF available).'
+- 'Verified 2026-07-01 via Tavily-found mirror PDF + firecrawl scrape: 29/29 spec fields matched (100%). Source: https://www.mouser.com/datasheet/2/698/r01ds0385ej0110_ra2l1-1954918.pdf.
+  Note: raw PDF file is truncated (curl EOF on slow connection), but firecrawl /scrape successfully extracts the full PDF
+  text as markdown. Local file kept at datasheets/ra2l1.pdf for reference.'
+extracted_at: '2026-06-30T18:42:00+08:00'
+extraction_method: firecrawl-extract (keyed) of renesas.com product page
+extraction_source: references/semiconductor-vendor/Renesas/firecrawl-snapshots/RA2L1-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/Renesas/firecrawl-snapshots/RA2L1-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.mouser.com/datasheet/2/698/r01ds0385ej0110_ra2l1-1954918.pdf

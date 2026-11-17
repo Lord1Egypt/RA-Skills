@@ -1,45 +1,56 @@
-## Description: <br>
-AI runtime security monitoring for context graph analysis, runtime audit log correlation with CVE findings, and vulnerability analytics queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI runtime security monitoring — context graph analysis, runtime audit log correlation with CVE findings, and vulnerability analytics queries. Use when the user mentions runtime monitoring, context graphs, lateral movement analysis, audit log correlation, or vulnerability analytics.
 
-## Publisher: <br>
-[msaad00](https://clawhub.ai/user/msaad00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[msaad00](https://clawhub.ai/user/msaad00)
 
-## Use Case: <br>
-Developers and security engineers use this skill to inspect agent runtime context graphs, correlate user-provided audit logs with CVE findings, and query vulnerability analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit logs can contain sensitive runtime details or credential environment variable names. <br>
-Mitigation: Provide only audit logs intended for analysis and verify that raw credential values are not included. <br>
-Risk: Optional ClickHouse analytics introduces operator-managed persistence. <br>
-Mitigation: Enable ClickHouse only when needed, configure credentials explicitly, and set retention according to the deployment policy. <br>
-Risk: Installation depends on trusting the published PyPI package source. <br>
-Mitigation: Confirm the package source before installation and install with the documented pip or pipx package name. <br>
+## Use Case:
 
+Developers and security engineers use this skill to analyze AI agent runtime context, correlate user-provided audit logs with CVE findings, and query vulnerability trends and runtime events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/msaad00/agent-bom-runtime) <br>
-- [agent-bom homepage](https://github.com/msaad00/agent-bom) <br>
-- [agent-bom PyPI package](https://pypi.org/project/agent-bom/) <br>
-- [OpenSSF Scorecard viewer](https://securityscorecards.dev/viewer/?uri=github.com/msaad00/agent-bom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference user-provided audit log paths and optional analytics configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.89.2 (source: frontmatter and server release metadata) <br>
+Risk: The security analysis was partial because the referenced `proxy-audit.jsonl` runtime file was not included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the audit log or confirm it is not needed before installing; the benign scanner verdict is not a guarantee of safety.
+
+Risk: Optional ClickHouse analytics can persist runtime audit data, and the audit data may include credential environment variable names.
+
+Mitigation: Configure ClickHouse only when needed, use an operator-controlled endpoint, and do not include raw credential values in audit data.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/msaad00/skills/agent-bom-runtime)
+- [Project homepage](https://github.com/koda-ai-studio/agent-bom)
+- [PyPI package](https://pypi.org/project/agent-bom/)
+- [OpenSSF Scorecard](https://securityscorecards.dev/viewer/?uri=github.com/koda-ai-studio/agent-bom)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Text]
+
+**Output Format:** [Text and structured analytics results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the scan results, user-provided audit log, and analytics query.]
+
+## Skill Version(s):
+
+0.115.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

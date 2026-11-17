@@ -1,0 +1,38 @@
+{
+  "schema": 2,
+  "id": "openclaw-streaming-mode",
+  "hostVersion": "2026.9.6",
+  "gatewayBuildId": "2026.9.6-release-eb377ac59e6c-2026-09-23T16-33-12.144Z",
+  "sourceCommit": "eb377ac59e6c9fd6c7705028034812becf00271b",
+  "archive": "control-ui.tar.gz",
+  "sha256": "dba0d569d493b57ad2abbd1d73696381788bf1c799e0d4e3c1e40d62e32d7a3a",
+  "builtAt": "2026-09-28",
+  "chunks": [
+    {
+      "file": "control-ui.tar.gz.part-001",
+      "size": 8000000,
+      "sha256": "8588e7b05a6dc8d057252755b8b6941be9eb2d4e9c7b1e59a3e7cb1de89c9a30"
+    },
+    {
+      "file": "control-ui.tar.gz.part-002",
+      "size": 8000000,
+      "sha256": "8a5ccfd1da71e3bac3c291a8c80cf828c0c49255e91d65063d4407508bdb9529"
+    },
+    {
+      "file": "control-ui.tar.gz.part-003",
+      "size": 8000000,
+      "sha256": "f15fb0705737607b41e4d5c93ad5791ed35cf5d888685389a7238db4152b1b61"
+    },
+    {
+      "file": "control-ui.tar.gz.part-004",
+      "size": 8000000,
+      "sha256": "8076af8a76ccfbbe0cd65220653120d4e70f6634d0eba9183397805f9919c669"
+    },
+    {
+      "file": "control-ui.tar.gz.part-005",
+      "size": 5746970,
+      "sha256": "160ffe654884f33a6eea8064767ee5279b48cf61517ee0d9ba1ce53773e01a7a"
+    }
+  ]
+}
+

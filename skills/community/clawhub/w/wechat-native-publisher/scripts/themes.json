@@ -1,0 +1,95 @@
+{
+  "signature": {
+    "id": "signature",
+    "name": "绿橙旗舰",
+    "name_en": "Signature Green & Orange",
+    "desc": "绿主导(结构/骨架70%) + 橙点缀(内容焦点30%)。职场清醒向旗舰模板，视觉层次最丰富。",
+    "scenes": "职场 / 观点 / 个人IP",
+    "colors": {
+      "GREEN":          "rgb(45,157,92)",
+      "GREEN_DARK":     "rgb(31,122,68)",
+      "GREEN_LIGHT":    "rgb(123,196,152)",
+      "GREEN_BG":       "rgb(238,247,241)",
+      "GREEN_BORDER":   "rgb(210,231,220)",
+      "ORANGE_TEXT":    "rgb(183,64,18)",
+      "ORANGE_BG":      "rgb(255,236,227)",
+      "ORANGE_ACCENT":  "rgb(255,120,73)",
+      "ORANGE_CARD_BG": "rgb(255,246,241)",
+      "ORANGE_CARD_BRD":"rgb(255,222,208)",
+      "ORANGE_SHADOW":  "rgba(183,64,18,0.15)",
+      "BODY":           "rgb(26,26,26)",
+      "GRAY":           "rgb(138,138,138)",
+      "GRAY_LT":        "rgb(231,231,231)",
+      "FOOT":           "rgb(153,153,153)"
+    },
+    "hex": {
+      "GREEN": "#2d9d5c", "GREEN_DARK": "#1f7a44", "GREEN_LIGHT": "#7bc498",
+      "GREEN_BG": "#eef7f1", "GREEN_BORDER": "#d2e7dc",
+      "ORANGE_TEXT": "#b74012", "ORANGE_BG": "#ffece3", "ORANGE_ACCENT": "#ff7849",
+      "ORANGE_CARD_BG": "#fff6f1", "ORANGE_CARD_BRD": "#ffded0",
+      "BODY": "#1a1a1a", "GRAY": "#8a8a8a", "GRAY_LT": "#e7e7e7", "FOOT": "#999999"
+    }
+  },
+  "mono": {
+    "id": "mono",
+    "name": "黑白极简",
+    "name_en": "Mono Minimal",
+    "desc": "石墨黑结构 + 经典蓝唯一强调色。干净克制，适合通用职场/科技/方法论类长文。",
+    "scenes": "职场 / 科技 / 方法论",
+    "colors": {
+      "GREEN":          "rgb(51,51,51)",
+      "GREEN_DARK":     "rgb(26,26,26)",
+      "GREEN_LIGHT":    "rgb(148,148,148)",
+      "GREEN_BG":       "rgb(244,244,244)",
+      "GREEN_BORDER":   "rgb(224,224,224)",
+      "ORANGE_TEXT":    "rgb(35,74,144)",
+      "ORANGE_BG":      "rgb(237,243,253)",
+      "ORANGE_ACCENT":  "rgb(60,110,190)",
+      "ORANGE_CARD_BG": "rgb(248,250,253)",
+      "ORANGE_CARD_BRD":"rgb(222,232,246)",
+      "ORANGE_SHADOW":  "rgba(35,74,144,0.15)",
+      "BODY":           "rgb(26,26,26)",
+      "GRAY":           "rgb(138,138,138)",
+      "GRAY_LT":        "rgb(226,226,226)",
+      "FOOT":           "rgb(150,150,150)"
+    },
+    "hex": {
+      "GREEN": "#333333", "GREEN_DARK": "#1a1a1a", "GREEN_LIGHT": "#949494",
+      "GREEN_BG": "#f4f4f4", "GREEN_BORDER": "#e0e0e0",
+      "ORANGE_TEXT": "#234a90", "ORANGE_BG": "#edf3fd", "ORANGE_ACCENT": "#3c6ebe",
+      "ORANGE_CARD_BG": "#f8fafd", "ORANGE_CARD_BRD": "#dee8f6",
+      "BODY": "#1a1a1a", "GRAY": "#8a8a8a", "GRAY_LT": "#e2e2e2", "FOOT": "#969696"
+    }
+  },
+  "paper": {
+    "id": "paper",
+    "name": "暖棕纸感",
+    "name_en": "Warm Paper",
+    "desc": "暖棕结构 + 陶土橙强调，米纸底色卡片。温润耐读，适合读书/随笔/文化/生活方式。",
+    "scenes": "读书 / 随笔 / 文化 / 生活",
+    "colors": {
+      "GREEN":          "rgb(140,100,70)",
+      "GREEN_DARK":     "rgb(102,68,44)",
+      "GREEN_LIGHT":    "rgb(178,148,118)",
+      "GREEN_BG":       "rgb(250,245,238)",
+      "GREEN_BORDER":   "rgb(235,222,204)",
+      "ORANGE_TEXT":    "rgb(160,78,32)",
+      "ORANGE_BG":      "rgb(250,233,214)",
+      "ORANGE_ACCENT":  "rgb(196,110,60)",
+      "ORANGE_CARD_BG": "rgb(252,246,238)",
+      "ORANGE_CARD_BRD":"rgb(240,225,204)",
+      "ORANGE_SHADOW":  "rgba(160,78,32,0.15)",
+      "BODY":           "rgb(40,32,26)",
+      "GRAY":           "rgb(150,132,116)",
+      "GRAY_LT":        "rgb(230,218,202)",
+      "FOOT":           "rgb(160,142,124)"
+    },
+    "hex": {
+      "GREEN": "#8c6446", "GREEN_DARK": "#66442c", "GREEN_LIGHT": "#b29476",
+      "GREEN_BG": "#faf5ee", "GREEN_BORDER": "#ebdecc",
+      "ORANGE_TEXT": "#a04e20", "ORANGE_BG": "#fae9d6", "ORANGE_ACCENT": "#c46e3c",
+      "ORANGE_CARD_BG": "#fcf6ee", "ORANGE_CARD_BRD": "#f0e1cc",
+      "BODY": "#28201a", "GRAY": "#96847c", "GRAY_LT": "#e6daca", "FOOT": "#a08e7c"
+    }
+  }
+}

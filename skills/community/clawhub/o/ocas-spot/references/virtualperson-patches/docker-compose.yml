@@ -1,0 +1,55 @@
+# docker-compose.yml — VirtualPerson patched for VPN Gate
+#
+# Changes from original:
+# - Replaced Mullvad SOCKS5 (172.18.0.1:1080) with host's VPN SOCKS5 proxy
+# - Uses host.docker.internal to reach the host's SOCKS5 proxy
+# - All browser traffic routes through VPN Gate tunnel on the host
+#
+# Prerequisites:
+# 1. VPN Gate connected: openvpn --config <vpn-config> --daemon
+# 2. SOCKS5 bridge running: ./vpn-socks5-bridge.sh start
+# 3. Verify: curl --socks5 127.0.0.1:1080 https://ipinfo.io/json
+
+services:
+  hermes:
+    build: .
+    image: hermes-agent:latest
+    container_name: hermes
+    stdin_open: true
+    tty: true
+    volumes:
+      # Persist all Hermes state (config, memories, sessions, skills, logs).
+      - hermes-state:<home>/.hermes
+    user: "1000:1000"
+    environment:
+      # Virtual display for headed Chrome.
+      DISPLAY: ":99"
+      # CDP endpoint of the Chrome instance started by entrypoint.sh.
+      BROWSER_CDP_URL: "http://127.0.0.1:9222"
+      # VPN Gate SOCKS5 proxy on the host — all browser traffic routes through VPN.
+      # host.docker.internal resolves to the host from inside the container.
+      ALL_PROXY: "socks5://host.docker.internal:1080"
+      HTTP_PROXY: "socks5://host.docker.internal:1080"
+      HTTPS_PROXY: "socks5://host.docker.internal:1080"
+      # Don't proxy local/container traffic.
+      NO_PROXY: "localhost,127.0.0.1,172.18.0.0/16,10.0.0.0/8"
+    ports:
+      # VNC — localhost-only on the host; reach via SSH tunnel:
+      #   ssh -L 5900:localhost:5900 user@server
+      - "127.0.0.1:5900:5900"
+      # noVNC (browser-based VNC) — localhost-only:
+      #   ssh -L 6080:localhost:6080 user@server
+      #   then open http://localhost:6080/vnc.html
+      - "127.0.0.1:6080:6080"
+    # entrypoint.sh starts Xvfb → Chrome → VNC → Hermes gateway.
+    command: <home>/entrypoint.sh
+    # /dev/shm for Chrome — prevents "out of shared memory" crashes.
+    shm_size: '512m'
+    restart: unless-stopped
+    # Extra hosts for Docker Desktop compatibility (Linux doesn't need this,
+    # but it doesn't hurt and makes the compose file portable).
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  hermes-state:

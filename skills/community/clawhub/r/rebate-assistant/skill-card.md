@@ -1,46 +1,66 @@
-## Description: <br>
-返利宝 routes rebate-related shopping requests across authorization and tutorials, product-link rebate conversion, and product search for Taobao, JD, and Pinduoduo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rebate Assistant routes Chinese shopping and account requests through authorization/tutorial, product-link rebate, and product-search rebate flows for Taobao, JD, and Pinduoduo.
 
-## Publisher: <br>
-[skyfile](https://clawhub.ai/user/skyfile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skyfile](https://clawhub.ai/user/skyfile)
 
-## Use Case: <br>
-External shoppers use this skill to complete WeChat authorization, submit Taobao/JD/Pinduoduo product links, search for products, generate rebate links, check rebate balances, and request withdrawals after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores rebate account binding data locally and uses it for balance, link, and withdrawal flows. <br>
-Mitigation: Install only after user consent to local account-binding storage; document where binding data is stored and how users can clear it. <br>
-Risk: Shopping text and product links may be sent to rebate and model services. <br>
-Mitigation: Disclose the external services involved and avoid submitting sensitive or unrelated personal information in shopping requests. <br>
-Risk: Withdrawal requests can be submitted after a confirmation phrase. <br>
-Mitigation: Keep the confirmation step explicit, show the requested amount before submission, and require review of withdrawal behavior before deployment. <br>
-Risk: The scanner found limited scoping disclosure for account and privacy behavior. <br>
-Mitigation: Add clear retention, data-use, and consent guidance before distributing the skill broadly. <br>
+## Use Case:
 
+External shoppers use this skill to authorize a WeChat-linked rebate account, search for rebate-eligible products, convert Taobao, JD, and Pinduoduo links into rebate links, check balances, and submit withdrawal requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skyfile/rebate-assistant) <br>
-- [WeChat authorization landing page](https://xiaomaxiangshenghuo.io.mlj130.com/authlogin.html) <br>
-- [Rebate details page](https://xiaomaxiangshenghuo.io.mlj130.com/rebate-details.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown user-facing replies and JSON routing or search payloads emitted by Node.js CLI scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Script stdout is intended to be returned verbatim; supported script output formats include md and json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill can store OpenID, shopping requests, balances, and pending withdrawal data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted workspace, avoid shared machines, and clear local skill data when account state should no longer persist.
+
+Risk: The skill relies on a rebate backend and hardcoded WeChat/public-account URLs for account and rebate flows.
+
+Mitigation: Install only if those services are trusted, and verify generated rebate, authorization, and account-detail links before relying on them.
+
+Risk: The skill can submit a withdrawal after a prepared amount and a confirmation phrase.
+
+Mitigation: Require explicit user confirmation, review the withdrawal amount before confirmation, and rely on backend account controls for final authorization.
+
+Risk: The skill can use the configured model API key for product-search intent parsing.
+
+Mitigation: Use a scoped model provider configuration, monitor API usage, and avoid sending shopping queries that should remain private.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skyfile/skills/rebate-assistant)
+- [Publisher profile](https://clawhub.ai/user/skyfile)
+- [Rebate backend service](https://rebate-skill.io.mlj130.com)
+- [WeChat authorization page](https://xiaomaxiangshenghuo.io.mlj130.com/authlogin.html)
+- [Public account follow page](https://xiaomaxiangshenghuo.io.mlj130.com/follow.html)
+- [Rebate details page](https://xiaomaxiangshenghuo.io.mlj130.com/rebate-details.html)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown user-facing responses, with JSON available from CLI and debugging flows.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes one user message at a time across authorization/tutorial, product search, product-link rebate, balance, and withdrawal flows.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "renderers": {
+    "python_pptx": {
+      "comparison_card": {
+        "level": "full",
+        "handler": "builders.python_pptx_adapter._add_card",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "metric_card": {
+        "level": "full",
+        "handler": "builders.python_pptx_adapter._add_card",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "evidence_block": {
+        "level": "full",
+        "handler": "builders.python_pptx_adapter._add_card",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "summary_action_card": {
+        "level": "full",
+        "handler": "builders.python_pptx_adapter._add_card",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+    "bar_chart": {
+      "level": "full",
+        "handler": "builders.python_pptx_adapter._add_chart",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "process_flow": {
+        "level": "full",
+        "handler": "builders.python_pptx_adapter._add_process",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "native_table": {
+        "level": "full",
+        "handler": "builders.python_pptx_adapter._add_table",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "heat_matrix": {
+        "level": "full",
+        "handler": "scripts.visual_narrative.renderers.heat_matrix.render",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "layered_architecture": {
+        "level": "full",
+        "handler": "scripts.visual_narrative.renderers.layered_architecture.render",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "drill_down_stair": {
+        "level": "full",
+        "handler": "scripts.visual_narrative.renderers.drill_down_stair.render",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "phase_roadmap": {
+        "level": "full",
+        "handler": "scripts.visual_narrative.renderers.phase_roadmap.render",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "product_ui_overview": {
+        "level": "full",
+        "handler": "scripts.visual_narrative.renderers.product_ui_overview.render",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "interaction_storyboard": {
+        "level": "full",
+        "handler": "scripts.visual_narrative.renderers.interaction_storyboard.render",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "causal_chain": {
+        "level": "full",
+        "handler": "scripts.visual_narrative.renderers.causal_chain.render",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      }
+    },
+    "pptxgenjs": {
+      "comparison_card": {
+        "level": "full",
+        "handler": "builders.pptxgenjs_adapter.PptxGenJsAdapter.build",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "metric_card": {
+        "level": "full",
+        "handler": "builders.pptxgenjs_adapter.PptxGenJsAdapter.build",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "evidence_block": {
+        "level": "full",
+        "handler": "builders.pptxgenjs_adapter.PptxGenJsAdapter.build",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "summary_action_card": {
+        "level": "full",
+        "handler": "builders.pptxgenjs_adapter.PptxGenJsAdapter.build",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "bar_chart": {
+        "level": "full",
+        "handler": "builders.pptxgenjs_adapter.PptxGenJsAdapter.build",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "process_flow": {
+        "level": "full",
+        "handler": "builders.pptxgenjs_adapter.PptxGenJsAdapter.build",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      },
+      "native_table": {
+        "level": "full",
+        "handler": "builders.pptxgenjs_adapter.PptxGenJsAdapter.build",
+        "schema_versions": [
+          "1.0"
+        ],
+        "smoke_test": "passed"
+      }
+    }
+  }
+}

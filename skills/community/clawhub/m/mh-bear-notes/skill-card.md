@@ -1,43 +1,54 @@
-## Description: <br>
-Create, search, and manage Bear notes via grizzly CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, search, and manage Bear notes via grizzly CLI.
 
-## Publisher: <br>
-[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue)
 
-## Use Case: <br>
-External users and developers use this skill to create, read, append to, search, and manage Bear notes on macOS through the grizzly CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to read or change local Bear notes through the third-party grizzly CLI. <br>
-Mitigation: Review note-writing actions before approving them and use dry-run or URL preview options when appropriate. <br>
-Risk: Bear API tokens are sensitive and may appear in shared logs, shell snippets, or loosely protected files. <br>
-Mitigation: Store the token with restrictive file permissions, avoid exposing real tokens in logs or prompts, and prefer token-file based configuration. <br>
-Risk: The install metadata uses the latest grizzly module version, which may change over time. <br>
-Mitigation: Pin or review the grizzly version before installation in managed or commercial environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bear](https://bear.app) <br>
-- [grizzly CLI module](https://github.com/tylerwince/grizzly) <br>
-- [ClawHub skill page](https://clawhub.ai/mohdalhashemi98-hue/mh-bear-notes) <br>
+## Use Case:
 
+Developers and Bear users use this skill to create, read, search, append to, and organize Bear notes from an agent through the grizzly CLI on macOS.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and TOML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Bear note identifiers, JSON callback output, x-callback-url previews, and local configuration paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs an unpinned third-party grizzly CLI dependency.
+
+Mitigation: Use a pinned, reviewed grizzly version before deployment and review upstream changes before upgrading.
+
+Risk: The skill can access Bear notes and some operations require storing a Bear API token in a local plaintext token file.
+
+Mitigation: Store the Bear token with owner-only file permissions, do not commit or share the token file, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [Bear](https://bear.app)
+- [grizzly CLI Go module](https://github.com/tylerwince/grizzly)
+- [ClawHub skill page](https://clawhub.ai/mohdalhashemi98-hue/skills/mh-bear-notes)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown]
+
+**Output Format:** [Markdown with bash and TOML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target Bear on macOS through the grizzly CLI; some operations require a Bear API token.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

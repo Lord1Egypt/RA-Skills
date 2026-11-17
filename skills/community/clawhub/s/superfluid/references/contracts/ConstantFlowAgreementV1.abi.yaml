@@ -28,13 +28,13 @@ meta:
       avalanche-c: "0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58"
       celo-mainnet: "0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad"
       scroll-mainnet: "0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c"
-      degenchain: "0x82cc052d1b17aC554a22A88D5876B56c6b51e95c"
+      arc-mainnet: "0xFb60b139CD14262eC4FEe466B388Bb7f5A06Bf75"
     testnet:
       avalanche-fuji: "0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A"
       base-sepolia: "0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef"
       eth-sepolia: "0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef"
       optimism-sepolia: "0x8a3170AdbC67233196371226141736E4151e7C26"
-      scroll-sepolia: "0xbc46B4Aa41c055578306820013d4B65fff42711E"
+      arc-testnet: "0xa38Eb8Cd48178EbeaEe98aB2d2019969d3eC6CBF"
 
 # == Abbreviations ==
 # 3Ps  — Three Periods: liquidation, patrician, and pleb (solvency model)
@@ -123,6 +123,7 @@ deleteFlow:
   # pirate → liquidator gets full single deposit, protocol covers the bailout.
   notes:
     - "Gotcha: Third-party callers (not sender, receiver, or operator) only succeed if the sender is critical (negative available balance) or either party is jailed."
+    - "Gotcha: Solvency (patrician/pleb/pirate and reward split) uses the account-level totalDeposit from SuperToken.realtimeBalanceOf, summed across CFA and GDA (v1.15.3, live on all networks). Older logic used only this agreement's deposit, so mixed CFA+GDA senders could be treated as pirate."
   mutability: nonpayable
   access: sender | receiver | operator | anyone(if-critical-or-jailed)
   inputs:

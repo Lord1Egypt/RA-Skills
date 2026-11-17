@@ -1,39 +1,54 @@
-## Description: <br>
-Generates and tracks internal agent names in the "货xx" format so teams can avoid duplicate active names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Namer helps internal teams generate and manage concise "货xx"-style agent names, check availability, list active names, and record active or retired names.
 
-## Publisher: <br>
-[cxlhyx](https://clawhub.ai/user/cxlhyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cxlhyx](https://clawhub.ai/user/cxlhyx)
 
-## Use Case: <br>
-Developers and internal agent maintainers use this skill to propose role-appropriate "货xx" candidate names, check whether a name is already active, and record active or retired names in a local registry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Add or kill operations change the local name registry. <br>
-Mitigation: Review registry-changing commands before running them and inspect scripts/used_names.json after updates. <br>
-Risk: Role descriptions used for naming could include sensitive operational details. <br>
-Mitigation: Avoid putting secrets or sensitive internal details in role descriptions. <br>
+## Use Case:
 
+Employees and internal agent builders use this skill to propose role-aligned Chinese-style agent names and keep a local registry from reusing active names.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local JSON registry updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Name registry operations can update scripts/used_names.json when the helper commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Registry updates can fail or behave inconsistently because the helper has reliability issues noted by the security evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test add, revive, and kill operations in a disposable copy and fix the helper before relying on it operationally.
+
+Risk: The tool does not enforce the documented "货xx" naming format.
+
+Mitigation: Manually review names against the documented format or add format validation before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cxlhyx/skills/agent-namer)
+- [Publisher profile](https://clawhub.ai/user/cxlhyx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with inline shell commands and local JSON registry entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 3-5 candidate names with short rationale, availability checks, and registry-management guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

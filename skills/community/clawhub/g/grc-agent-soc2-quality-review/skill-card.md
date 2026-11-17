@@ -1,48 +1,59 @@
-## Description: <br>
-Evaluate SOC 2 report quality using the SOC 2 Quality Guild rubric (Structure, Substance, Source). Use when reviewing a vendor SOC 2 Type 1/Type 2 report, triaging report credibility, producing a risk memo, or preparing diligence follow-up questions and evidence requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate SOC 2 report quality using the SOC 2 Quality Guild rubric (Structure, Substance, Source).
 
-## Publisher: <br>
-[mangopudding](https://clawhub.ai/user/mangopudding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mangopudding](https://clawhub.ai/user/mangopudding)
 
-## Use Case: <br>
-Security, procurement, customer trust, and vendor risk reviewers use this skill to assess SOC 2 Type 1 or Type 2 report quality, score evidence signals, identify credibility gaps, and prepare vendor follow-up requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: SOC 2 reports and related vendor evidence can contain confidential security and business information. <br>
-Mitigation: Confirm permission to provide the report and supporting evidence to the agent, and avoid sharing unnecessary sensitive details. <br>
-Risk: The skill is a quality review aid and could be mistaken for legal advice, certification, penetration testing, or formal compliance approval. <br>
-Mitigation: Use the output as decision support and route legal, procurement, certification, or technical validation questions to the appropriate reviewer. <br>
-Risk: Vendor risk conclusions depend on complete and current report evidence. <br>
-Mitigation: Request the full report, bridge letters, fresh evidence, and vendor clarifications when key sections are missing, unknown, or weak. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SOC 2 Quality Guild](https://s2guild.org/) <br>
-- [SOC 2 Quality Guild Rubric Reference](references/rubric.md) <br>
-- [Advanced Diligence Questions](references/advanced-diligence.md) <br>
-- [Decision Matrix](references/decision-matrix.md) <br>
-- [Confidence Rubric](references/confidence-rubric.md) <br>
-- [Vendor Request Templates](references/vendor-request-templates.md) <br>
-- [Evidence Citation Format](references/evidence-citation-format.md) <br>
-- [Canonical Output Example](references/output-example.md) <br>
+## Use Case:
 
+Security, procurement, customer trust, and GRC reviewers use this skill to assess SOC 2 Type 1 or Type 2 report quality, triage report credibility, prepare risk memos, and generate vendor follow-up requests. It is an advisory review aid and is not a substitute for legal advice, formal certification, or procurement approval.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with an executive verdict, signal-by-signal scorecard, advanced diligence findings, critical risks, vendor follow-up questions, and interim compensating controls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-selected review profile settings for audience, risk posture, data sensitivity, evidence strictness, and output style.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides advisory SOC 2 quality review and may be mistaken for legal advice or a formal certification decision.
+
+Mitigation: Use results as review support only, and route legal, certification, procurement, and acceptance decisions through the responsible internal teams.
+
+Risk: Users may submit confidential vendor assurance reports or other sensitive third-party documents.
+
+Mitigation: Provide only documents the user is authorized to review and handle generated follow-up requests through normal GRC, security, procurement, or vendor-management channels.
+
+## Reference(s):
+
+- [SOC 2 Quality Guild](https://s2guild.org/)
+- [SOC 2 Quality Guild Rubric Reference](references/rubric.md)
+- [S12+ Advanced Diligence Questions](references/advanced-diligence.md)
+- [Decision Matrix](references/decision-matrix.md)
+- [Confidence Rubric](references/confidence-rubric.md)
+- [Evidence Citation Format](references/evidence-citation-format.md)
+- [Vendor Request Templates](references/vendor-request-templates.md)
+- [Canonical Output Example](references/output-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an executive verdict, signal scorecard, advanced diligence findings, critical risks, vendor follow-up questions, and interim compensating controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

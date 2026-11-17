@@ -1,43 +1,64 @@
-## Description: <br>
-Creates ChartGen-backed visualizations, dashboards, diagrams, reports, PPTs, and data analyses from text prompts or spreadsheet files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates charts, dashboards, diagrams, Gantt charts, presentations, reports, and spreadsheet or data analyses through ChartGen.
 
-## Publisher: <br>
-[chartgen-ai](https://clawhub.ai/user/chartgen-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chartgen-ai](https://clawhub.ai/user/chartgen-ai)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to confirm a ChartGen request, submit prompts or spreadsheet files, poll for completion, and receive chart, report, PPT, or data-file artifacts with edit links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected spreadsheet files are sent to ChartGen as an external processor. <br>
-Mitigation: Avoid confidential, regulated, or third-party data unless approved, and submit only after explicit user confirmation. <br>
-Risk: The ChartGen API key or an overridden API URL could be mishandled. <br>
-Mitigation: Keep CHARTGEN_API_KEY private and verify any CHARTGEN_API_URL override before use. <br>
+## Use Case:
 
+External users and agents use this skill to submit confirmed visualization, report, presentation, and spreadsheet-analysis requests to ChartGen and return summaries, generated artifacts, and edit links.
 
-## Reference(s): <br>
-- [Chart Generator on ClawHub](https://clawhub.ai/chartgen-ai/chart-gen) <br>
-- [ChartGen](https://chartgen.ai) <br>
-- [ChartGen API setup](https://chartgen.ai/chat) <br>
-- [Skill upgrade procedure](references/upgrade-skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Files] <br>
-**Output Format:** [Markdown guidance with Node.js command invocations and JSON task results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local chart images, PPT files, spreadsheets, and ChartGen edit URLs after confirmed external processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence and tool version) <br>
+Risk: Shell execution can expose users to command injection if untrusted query text is interpolated into a shell command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass confirmed user text as an argument through a safe process invocation and avoid building shell command strings from untrusted input.
+
+Risk: Changing CHARTGEN_API_URL can send requests, files, and credentials-adjacent workflow data to an untrusted endpoint.
+
+Mitigation: Use the default ChartGen HTTPS endpoint or set CHARTGEN_API_URL only to a trusted HTTPS service.
+
+Risk: Uploaded files and request content are processed by an external ChartGen service.
+
+Mitigation: Use non-sensitive data unless ChartGen's processing and retention practices are trusted for the intended use.
+
+Risk: Downloaded charts, spreadsheets, and presentation artifacts come from an external service.
+
+Mitigation: Treat downloaded artifacts as untrusted files and scan or review them before opening, sharing, or using them in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chartgen-ai/skills/chart-gen)
+- [Publisher Profile](https://clawhub.ai/user/chartgen-ai)
+- [ChartGen Chat and API Setup](https://chartgen.ai/chat)
+- [Skill Upgrade Procedure](references/upgrade-skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with JSON tool results, local artifact paths, and external edit URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return chart image paths, spreadsheet or PPT download paths, task status JSON, and ChartGen edit URLs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "品牌与产品资料整理"
+  short_description: "整理实体资料、来源和不确定性状态"
+  default_prompt: "使用 $aimegeo-entity-profile 把这些资料整理成公司、品牌和产品分开的实体档案，保留出处、未知项和冲突项。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"

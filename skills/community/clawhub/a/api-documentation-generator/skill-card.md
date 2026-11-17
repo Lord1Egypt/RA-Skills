@@ -1,42 +1,52 @@
-## Description: <br>
-Generate comprehensive API documentation from code, extracting endpoints, parameters, response schemas, and examples from Express, FastAPI, Django, Rails, and similar frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate comprehensive API documentation from code by extracting endpoints, parameters, response schemas, and examples from Express, FastAPI, Django, Rails, and more.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect API source code and generate human-readable API references, OpenAPI specifications, endpoint examples, and documentation coverage summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated API documentation may expose authentication requirements, endpoint behavior, or internal API structure from project source.
+
+Mitigation: Use the skill only on codebases where generating and sharing this documentation is appropriate, and review generated documentation before distribution.
+
+Risk: Generated documentation may be incomplete when routes, request bodies, or schemas cannot be inferred from source code.
+
+Mitigation: Review completeness summaries and manually fill gaps for undocumented endpoints, missing type annotations, and raw request bodies.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect API source code and produce human-readable API references, OpenAPI specifications, request examples, and documentation coverage summaries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated API documentation can expose endpoint details, authentication behavior, examples, or other sensitive implementation information. <br>
-Mitigation: Install only for repositories where agent source-code access is acceptable, and review generated documentation before publishing. <br>
-Risk: Providing API keys, cookies, OAuth tokens, or other credentials to the skill can expose sensitive secrets unnecessarily. <br>
-Mitigation: Do not provide sensitive credentials unless a separate trusted workflow explicitly requires them. <br>
-Risk: Generated endpoint schemas, examples, or coverage summaries may be incomplete or inaccurate when source code lacks annotations or uses dynamic request handling. <br>
-Mitigation: Validate generated OpenAPI and Markdown outputs against the application behavior before relying on them. <br>
+**Output Format:** [Markdown API reference, OpenAPI 3.1 specification, curl examples, and documentation coverage summary]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/api-documentation-generator) <br>
+**Other Properties Related to Output:** [May produce multiple documentation files such as an API reference, OpenAPI YAML, and per-endpoint examples.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with API reference sections, OpenAPI YAML, JSON examples, curl examples, and documentation coverage summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose generated files such as docs/api-reference.md, docs/openapi.yaml, and endpoint example directories.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

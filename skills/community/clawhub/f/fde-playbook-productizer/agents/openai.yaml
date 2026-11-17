@@ -1,0 +1,4 @@
+interface:
+  display_name: "FDE Delivery Productizer"
+  short_description: "Turn validated delivery learning into reusable playbooks and assets"
+  default_prompt: "Use $fde-playbook-productizer to turn this adoption and value review into a reusable delivery playbook."

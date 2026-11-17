@@ -1,42 +1,54 @@
-## Description: <br>
-Queries Vipshop product details, review summaries, and review lists so an agent can produce product reputation reports and purchase recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Vipshop product, review-summary, and review-list APIs so an agent can summarize product pricing, customer sentiment, fit feedback, and purchase recommendations.
 
-## Publisher: <br>
-[miketobusy](https://clawhub.ai/user/miketobusy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miketobusy](https://clawhub.ai/user/miketobusy)
 
-## Use Case: <br>
-Shopping assistants and consumer-facing agents use this skill to gather Vipshop pricing, satisfaction, sizing, and review signals for a requested product ID. The collected data supports concise product comparisons, reputation summaries, and purchase guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds and transmits fixed Vipshop account/session-like identity and tracking values with requests. <br>
-Mitigation: Review before running, use only if comfortable contacting Vipshop with those values, and replace them with controlled values where appropriate. <br>
-Risk: Generated JSON files can retain product, review, and request response data after the consultation is complete. <br>
-Mitigation: Delete generated response and extracted-data JSON files when they are no longer needed. <br>
+## Use Case:
 
+Shopping assistants and consumer-facing agents use this skill to gather Vipshop product details and customer-review signals for a specific product ID, then present a concise purchase recommendation. It is most relevant for comparing price, satisfaction, fit, and representative reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miketobusy/vipshop-product-consultant) <br>
-- [Publisher profile](https://clawhub.ai/user/miketobusy) <br>
-- [Vipshop](https://www.vip.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown purchase report with JSON data files and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates product_info.json, review_summary.json, review_list.json, and raw API response JSON files during lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill makes direct Vipshop API calls with embedded shared identifiers and fingerprint tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in environments where those identifiers are acceptable, and prefer a release that removes fixed tokens or uses a documented, user-controlled access method.
+
+Risk: Product and review responses, including reviewer metadata, are written into the working directory.
+
+Mitigation: Make raw-response saving opt-in, minimize reviewer fields before sharing reports, and document retention expectations for generated JSON files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miketobusy/skills/vipshop-product-consultant)
+- [Publisher profile](https://clawhub.ai/user/miketobusy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown report with supporting JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an optional product ID; writes product, review-summary, and review-list JSON data in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

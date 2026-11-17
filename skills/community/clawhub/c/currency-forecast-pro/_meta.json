@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7e0me20waa3xwn6x5wv7hv7n82w2e6",
-  "slug": "currency-forecast-pro",
+  "name": "currency-forecast-pro",
   "version": "1.0.0",
-  "publishedAt": 1773895849046
+  "description": "Professional currency exchange rate analysis and forecasting for any currency pair",
+  "author": "clawclaw",
+  "license": "MIT-0",
+  "tags": ["finance", "currency", "forecast", "exchange-rate", "trading", "forex", "analysis"],
+  "homepage": "https://clawhub.com/skills/currency-forecast-pro"
 }

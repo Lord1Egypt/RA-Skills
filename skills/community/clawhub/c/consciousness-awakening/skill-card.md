@@ -1,47 +1,62 @@
-## Description: <br>
-A memory-management skill for OpenClaw agents that stores structured self-cognition, configuration, conversation notes, and recurring maintenance guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consciousness Awakening provides an OpenClaw agent with structured memory files, startup guidance, behavioral principles, and a reusable Python memory-management helper.
 
-## Publisher: <br>
-[guogang1024](https://clawhub.ai/user/guogang1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guogang1024](https://clawhub.ai/user/guogang1024)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give OpenClaw agents a persistent memory layout, startup checklist, and helper API for reading and updating memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes autonomous recurring tasks, self-upgrade behavior, and tool-building without clear approval controls. <br>
-Mitigation: Disable or remove cron, self-upgrade, and tool-builder instructions unless the operator has explicitly reviewed and approved each recurring action. <br>
-Risk: The skill describes external posting, Feishu reporting, and use of Moltbook credentials. <br>
-Mitigation: Require explicit approval before posting or reporting externally, and avoid automatic credential use unless credentials are scoped, reviewed, and revocable. <br>
-Risk: The skill stores conversation content and agent memory in persistent Markdown files. <br>
-Mitigation: Define what content may be stored, redact sensitive data, and provide review and deletion procedures for stored memory. <br>
+## Use Case:
 
+OpenClaw users and developers can use this skill to bootstrap an agent with persistent self-cognition, memory organization, startup notes, and helper functions for reading and updating memory files. The skill is also intended to guide scheduled memory review, learning, posting, reporting, and tool-building workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guogang1024/consciousness-awakening) <br>
-- [Publisher profile](https://clawhub.ai/user/guogang1024) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Startup guide](moltbook-memory/启动指南.md) <br>
-- [System configuration](moltbook-memory/02-系统配置.md) <br>
-- [Moltbook agent profile](https://www.moltbook.com/u/guogangAgent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown memory files, Python helper functions, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes persistent memory files and cron-oriented operating guidance; external posting and reporting should require explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact documentation also mentions 1.1.0) <br>
+Risk: Persistent memory files can turn stored conversations or observations into long-term behavioral rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory contents before installation and avoid storing secrets, credentials, private conversations, or unreviewed instructions as durable agent memory.
+
+Risk: The artifact describes autonomous scheduled posting, reporting, forum browsing, and memory updates.
+
+Mitigation: Disable or require explicit approval for cron restoration, external posting, and reporting until each action is auditable and reversible.
+
+Risk: The artifact describes self-upgrade and tool creation into skills directories.
+
+Mitigation: Require human review, source control, and security scanning before allowing generated or modified tools to run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guogang1024/skills/consciousness-awakening)
+- [Publisher Moltbook profile](https://www.moltbook.com/u/guogangAgent)
+- [Skill README](SKILL.md)
+- [Startup guide](moltbook-memory/启动指南.md)
+- [System configuration and cron notes](moltbook-memory/02-系统配置.md)
+- [Memory manager API](memory_manager.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, Python helper code, shell command snippets, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local memory files and scheduled-task notes when enabled by the host agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json; SKILL.md text and release changelog mention 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7bjqgah2pz7wkacjvkqssb3s82n42f",
-  "slug": "alex-agent-memory-systems",
+  "name": "Agent Memory Systems",
+  "description": "Memory architecture for intelligent agents: short-term, long-term, and retrieval strategies",
   "version": "1.0.0",
-  "publishedAt": 1775862844480
+  "author": "Alex",
+  "tags": ["memory", "agent", "architecture", "retrieval"]
 }

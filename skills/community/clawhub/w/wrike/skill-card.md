@@ -1,43 +1,57 @@
-## Description: <br>
-Manage Wrike tasks, projects, folders, and comments via the Wrike REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Wrike tasks, projects, folders, and comments via the Wrike REST API.
 
-## Publisher: <br>
-[tallhamn](https://clawhub.ai/user/tallhamn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tallhamn](https://clawhub.ai/user/tallhamn)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to inspect and manage Wrike accounts, spaces, folders, projects, tasks, comments, contacts, workflows, and custom fields through the `claw-wrike` CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses sensitive Wrike data and a locally stored API token. <br>
-Mitigation: Use the least-privileged Wrike token available and protect or remove the local config file when no longer needed. <br>
-Risk: Creates, updates, comments, deletes, or bulk changes can affect shared Wrike workspaces. <br>
-Mitigation: Require explicit confirmation before mutating or bulk operations, and use dry-run support where available. <br>
-Risk: Operating on guessed IDs or stale task state can modify the wrong Wrike object. <br>
-Mitigation: Look up space, folder, task, workflow, and custom status IDs first, and read current task state before updates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tallhamn/wrike) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tallhamn) <br>
-- [claw-wrike npm package](https://www.npmjs.com/package/claw-wrike) <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent manage Wrike spaces, folders, projects, tasks, comments, contacts, workflows, and custom fields through the Wrike CLI and REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands use the `claw-wrike` binary and require `WRIKE_TOKEN`; mutating commands should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on the claw-wrike npm package, which is not pinned in the release evidence.
+
+Mitigation: Install only from a trusted package source and review the selected package version before use.
+
+Risk: Wrike tokens are stored locally by the CLI configuration flow.
+
+Mitigation: Use a least-privilege Wrike token and protect the local configuration file that stores it.
+
+Risk: Create, update, and delete commands can change live Wrike tasks, folders, projects, and comments.
+
+Mitigation: Use dry-run where available, read current state before updates, and require confirmation before bulk changes.
+
+## Reference(s):
+
+- [ClawHub Wrike skill page](https://clawhub.ai/tallhamn/skills/wrike)
+- [Publisher profile](https://clawhub.ai/user/tallhamn)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON response patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require claw-wrike and a Wrike token; use dry-run and read-before-update workflows before changing live Wrike data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

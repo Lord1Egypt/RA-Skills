@@ -1,0 +1,25 @@
+{
+  "schema": "v1",
+  "name": "reversa",
+  "displayName": "Reversa \u2014 SDD & Reverse Engineering for AI Coding Agents",
+  "version": "1.0.2",
+  "description": "Transform legacy software systems into executable specifications (SDD) and formal contracts for autonomous AI coding agents without cloud code storage.",
+  "author": "Prof. Sandeco Macedo / Habilis MCP",
+  "category": "software-development",
+  "tags": [
+    "reversa",
+    "sdd",
+    "reverse-engineering",
+    "legacy-code",
+    "coding-agents",
+    "habilis",
+    "mcp"
+  ],
+  "entrypoint": "SKILL.md",
+  "platforms": [
+    "linux",
+    "darwin",
+    "windows"
+  ],
+  "homepage": "https://xvix.com.br"
+}

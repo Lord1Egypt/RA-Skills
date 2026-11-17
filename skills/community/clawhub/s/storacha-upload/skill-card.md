@@ -1,46 +1,64 @@
-## Description: <br>
-Upload, manage, retrieve, and check files on IPFS through Storacha decentralized storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload, manage, and retrieve files on IPFS through Storacha decentralized storage.
 
-## Publisher: <br>
-[adielliot37](https://clawhub.ai/user/adielliot37) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adielliot37](https://clawhub.ai/user/adielliot37)
 
-## Use Case: <br>
-External users and developers use this skill to operate a Storacha CLI account from an agent: uploading files or directories, retrieving gateway links, checking usage, managing spaces, and handling delegations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploaded files are publicly accessible through IPFS gateway links and may be difficult to fully retract. <br>
-Mitigation: Confirm uploads before execution, avoid unencrypted sensitive data, and treat generated CIDs and gateway links as public. <br>
-Risk: The skill can operate a Storacha CLI account, including changing spaces, deleting listings, and creating delegations. <br>
-Mitigation: Confirm account-changing actions such as uploads, deletions, space changes, and delegations before running the corresponding commands. <br>
-Risk: Storage usage, provider registration, or authentication issues can cause operations to fail or produce incomplete status results. <br>
-Mitigation: Run the health-check flow before important uploads and verify authentication, active space, provider registration, and available storage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/adielliot37/storacha-upload) <br>
-- [Storacha Documentation](https://docs.storacha.network) <br>
-- [Storacha Console](https://console.storacha.network) <br>
-- [Storacha CLI Reference](https://github.com/storacha/storacha/tree/main/packages/cli) <br>
-- [IPFS Gateway](https://storacha.link) <br>
-- [Node.js](https://nodejs.org) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent set up Storacha CLI access, upload files or directories to IPFS, manage spaces and delegations, retrieve gateway links, remove uploads, and report account storage usage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and gateway links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Storacha CIDs, public gateway URLs, account status summaries, and CLI setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Files uploaded to Storacha/IPFS are public to anyone with the CID or gateway URL.
+
+Mitigation: Confirm each upload and encrypt secrets or sensitive personal files before upload.
+
+Risk: Removing an upload from a Storacha listing may not erase copies retained elsewhere on IPFS.
+
+Mitigation: Treat uploads as permanent and warn users before deletion-sensitive workflows.
+
+Risk: The skill can direct uploads, deletions, space switches, and delegations for a user's Storacha account.
+
+Mitigation: Require explicit user confirmation for uploads, deletions, space changes, and delegations, and avoid full-admin delegations unless the recipient is fully trusted.
+
+Risk: Global CLI installation can introduce supply-chain exposure if the Storacha CLI source is not reviewed.
+
+Mitigation: Use a pinned, reviewed Storacha CLI installation and verify Node.js v18 or higher before use.
+
+## Reference(s):
+
+- [Storacha Documentation](https://docs.storacha.network)
+- [Storacha Console](https://console.storacha.network)
+- [Storacha CLI Reference](https://github.com/storacha/storacha/tree/main/packages/cli)
+- [IPFS Gateway](https://storacha.link)
+- [Node.js](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and human-readable status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Storacha gateway URLs, CIDs, storage usage summaries, account setup guidance, and delegation files when requested.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

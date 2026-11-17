@@ -176,7 +176,7 @@ doubao-video-projects/
 
 ### API 调用
 - **通义万相**（图片生成）
-  - API Key: `sk-d05aba5a2dae4453b97ed07fdb983e5a`
+  - API Key: `REDACTED-SECRET`
   - 脚本：`wanxiang_generate.py`
   - 成本：约 ¥0.05-0.10/张
 

@@ -1,47 +1,63 @@
-## Description: <br>
-Ingest Taiwan civil court judgments (HTML or PDF) — exclusively covering Taiwan civil cases — into Qdrant with Ollama embeddings, preserving traceability, deduplication, and incremental updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ingests Taiwan civil court judgment HTML or PDF files into Qdrant with Ollama embeddings while preserving traceability, deduplication, and incremental updates.
 
-## Publisher: <br>
-[alex02131926](https://clawhub.ai/user/alex02131926) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex02131926](https://clawhub.ai/user/alex02131926)
 
-## Use Case: <br>
-Developers and legal-data engineers use this skill to ingest Taiwan civil judgment HTML or PDF files into Qdrant for semantic retrieval and RAG workflows. It is scoped to Taiwan civil court judgments and preserves traceability through local paths, document URLs, deterministic IDs, manifests, and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document text is sent to local or configured Ollama and Qdrant endpoints during ingestion. <br>
-Mitigation: Keep Ollama and Qdrant on localhost or trusted infrastructure, and configure endpoints intentionally. <br>
-Risk: If a run folder mixes FJUD and FINT files, metadata can be mislabeled because the system metadata field is hardcoded to FJUD. <br>
-Mitigation: Avoid mixed FJUD/FINT folders when metadata accuracy matters. <br>
-Risk: The reasoning collection rebuild helper can recreate a Qdrant collection. <br>
-Mitigation: Use rebuild behavior only when collection recreation is intended and acceptable. <br>
+## Use Case:
 
+Developers and legal-technology operators use this skill to ingest archived Taiwan civil court judgments into Qdrant collections for semantic retrieval and RAG workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alex02131926/civil-judgment-taiwan-vectorstore) <br>
-- [Extraction Algorithm Design](references/extraction-design.md) <br>
-- [Internals](references/internals.md) <br>
-- [Judgment RAG Ingestion Plan](references/judgment-rag-ingestion-plan.md) <br>
-- [Qdrant](https://qdrant.tech) <br>
-- [Ollama](https://ollama.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; runtime artifacts include Markdown reports and JSON Lines manifests.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The ingestion scripts create or update Qdrant vector collections and write per-run manifest and report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Full judgment text and identifying metadata can be sent to configurable Ollama and Qdrant HTTP endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only controlled endpoints, preferably localhost or authenticated HTTPS, and check OLLAMA_URL and QDRANT_URL before running ingestion.
+
+Risk: Out-of-scope or mixed FJUD/FINT inputs may be ingested or mislabeled because the documented v1 limitation hardcodes the system metadata to FJUD.
+
+Mitigation: Use a dedicated run folder containing Taiwan civil judgment inputs only, and avoid mixed FJUD/FINT inputs unless the metadata limitation is acceptable.
+
+Risk: Running the scripts creates persistent Qdrant collections and local ingest_report.md, ingest_manifest.jsonl, and possibly issues.jsonl files.
+
+Mitigation: Run in an environment where persistent vector collections and local report artifacts are expected and review generated reports after ingestion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alex02131926/skills/civil-judgment-taiwan-vectorstore)
+- [Internals Reference](references/internals.md)
+- [Extraction Algorithm Design](references/extraction-design.md)
+- [Taiwan Civil Judgment Vector DB Plan](references/judgment-rag-ingestion-plan.md)
+- [Qdrant](https://qdrant.tech)
+- [Ollama](https://ollama.com)
+- [OpenClaw](https://openclaw.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command blocks and ingestion status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent Qdrant collections and local ingest reports or manifests when the ingestion scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and changelog, released 2026-03-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

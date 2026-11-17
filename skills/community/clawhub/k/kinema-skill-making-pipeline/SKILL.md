@@ -1,9 +1,9 @@
 ---
 name: kinema-skill-making-pipeline
 displayName: "Kinema's Skill Making Pipeline"
-version: 1.10.0
+version: 1.11.0
 description: |
-  KinemaClaw Skill development and publishing specification. Defines the standard process for skill development, version management, and publishing. All skills built in KinemaClaw must follow this specification.
+  KinemaClaw cross-platform Skill development and publishing specification. Defines the standard process for Codex and Claude plugin development, version management, marketplace indexing, and publishing. All skills built in KinemaClaw must follow this specification.
   Trigger: Creating new skills, publishing skills, modifying existing skills.
 ---
 
@@ -13,7 +13,7 @@ description: |
 - **Organization**: [KinemaClawWorkspace](https://github.com/KinemaClawWorkspace)
 - **GitHub**: https://github.com/KinemaClawWorkspace/kinema-skill-making-pipeline
 
-本规范定义了 KinemaClaw ecosystem 中 skill 的开发、版本管理、发布的标准化流程。
+本规范定义了 KinemaClaw ecosystem 中 skill 的开发、版本管理和跨 Codex、Claude Code、GitHub、ClawHub 发布的标准化流程。
 
 ## ⚠️ Before First Use | 首次使用必读
 
@@ -28,10 +28,10 @@ description: |
 1. **Git First** - All modifications must be managed in Git repository | 所有修改必须在 Git 仓库中管理
 2. **Atomic Commits** - Each commit must be a meaningful independent change | 每次 commit 必须是有意义的独立变更
 3. **Versioned Releases** - Must create Git tag before publishing | 发布前必须打 Git tag
-4. **No In-Place Publishing** - Never publish raw skills from /app/skills/ | 禁止发布 /app/skills/ 中的原位 skill
+4. **No In-Place Publishing** - Publish from a clean repository or filtered temporary package, never from a runtime install/cache directory | 从干净仓库或过滤后的临时包发布，禁止从运行时安装/缓存目录原位发布
 5. **Onboarding Required** - Every skill must have installation/configuration guide | 每个 skill 必须有安装/配置引导
-6. **Five-Way Sync** - After release, sync versions across: projects repo, ClawHub cache, GitHub Release, ClawHub, Claude Code Marketplace | 发版后同步五地版本：projects 仓库、ClawHub 缓存、GitHub Release、ClawHub、Claude Code Marketplace
-7. **Marketplace on First Publish** - A brand-new skill must be registered in the marketplace index; version updates must NOT | 全新 skill 首发时必须登记 marketplace 索引；版本更新则不需要
+6. **Cross-Platform Sync** - After release, sync every installed target: source repo, GitHub Release, ClawHub, Claude Code, and Codex | 发版后同步源码、GitHub Release、ClawHub、Claude Code 与 Codex
+7. **Marketplace on First Publish** - Register a brand-new skill in every supported marketplace index; version updates must NOT add duplicate entries | 全新 skill 首发时必须登记所有支持平台的 marketplace 索引；版本更新不得重复登记
 
 ## Development Workflow | 开发流程
 
@@ -39,8 +39,9 @@ description: |
 
 ```
 projects/<skill-name>/
-├── .claude-plugin/       # Required: plugin manifest
-│   └── plugin.json       # Required: plugin metadata
+├── .claude-plugin/plugin.json       # Required: Claude Code manifest
+├── .codex-plugin/plugin.json        # Required: Codex manifest
+├── skills/<skill-name>/SKILL.md     # Required: Codex discovery entry
 ├── SKILL.md              # Required: skill definition
 ├── scripts/              # Optional: automation scripts
 ├── references/           # Required: references and onboarding
@@ -74,20 +75,20 @@ git commit -m "fix stuff"
 | **全新 skill 首发**（marketplace 索引中尚无该 skill） | 走常规流程 **+** 更新 marketplace 索引 → 读取 [references/marketplace-publishing.md](references/marketplace-publishing.md) |
 | **已有 skill 版本更新** | 仅走常规流程，**不动** marketplace 索引 |
 
-> 判断方法：在 marketplace 的 `.claude-plugin/marketplace.json` `plugins` 数组中检索本 skill 的 `name`。不存在 = 首发，存在 = 版本更新。
+> 判断方法：分别在 marketplace 的 `.claude-plugin/marketplace.json` 与 `.agents/plugins/marketplace.json` 中检索本 skill 的 `name`。任一支持平台缺失都需要补登记；均存在则是版本更新。
 
 **发版流程概要**（详细步骤见 reference）：
 1. 确认变更已提交
-2. 同步更新 SKILL.md + plugin.json 版本号
+2. 同步更新 SKILL.md + Claude/Codex 两份 plugin.json 版本号
 3. 提交并打 Git tag
 4. Push 到 GitHub
 5. 创建 GitHub Release（Release Notes 强制含「更新内容」+「更新指令」两个 section；更新内容每行一条新功能/bug 修复并附 `@commit-id`）
-6. 发布到 ClawHub（临时文件夹模式，排除 `.claude-plugin/`）
+6. 发布到 ClawHub（临时文件夹模式，排除两种 plugin manifest 与 Codex wrapper）
 7. 更新 ClawHub 本地缓存（仅 `~/.openclaw` 存在时）
-8. 更新 Claude Code 插件（仅 `~/.claude` 存在时）：Agent **直接执行** `claude plugin update`，随后提醒用户重开 CLI 或 `/reload-plugins`
+8. 更新已安装的 Claude Code 与 Codex 插件：Claude 完成后提醒重载；Codex 完成后提醒新开对话
 9. 全量版本校验
 
-> **版本校验工具**: `bash scripts/version-check.sh [expected-version]` — 校验 SKILL.md、plugin.json、git tag 三处版本号一致。
+> **版本校验工具**: `bash scripts/version-check.sh [expected-version]` — 校验 SKILL.md、Claude/Codex manifests 与 git tag 四处版本号一致。
 
 ### 4. Version Numbering | 版本号规则
 
@@ -234,59 +235,65 @@ tool --help
 | **依赖缺失** | 跳转到对应 Step 重新执行安装 |
 | **版本升级后** | 重新执行 references/ONBOARDING.md 全流程（新版本可能引入新依赖） |
 
-### 3. Plugin Manifest | 插件清单
+### 3. Cross-Platform Plugin Manifests | 跨平台插件清单
 
-**`.claude-plugin/plugin.json` 是 Required 文件。** Claude Code 插件规范要求此文件提供标准化元数据，支持 marketplace 分发和插件发现。
+同时支持 Claude Code 与 Codex 的 skill 必须把以下文件作为源码提交，均不得加入 `.gitignore`：
 
-#### 3.1 位置与格式
-
-- 路径：`<skill-name>/.claude-plugin/plugin.json`
-- 格式：JSON
-- **不加入 `.gitignore`**（它是项目源码的一部分，不是缓存）
-
-#### 3.2 必需字段
-
-| 字段 | 说明 |
+| 文件 | 用途 |
 |------|------|
-| `name` | 插件标识，kebab-case，必须与 SKILL.md frontmatter `name` 一致 |
+| `.claude-plugin/plugin.json` | Claude Code plugin metadata |
+| `.codex-plugin/plugin.json` | Codex plugin metadata 与 UI 信息 |
+| `skills/<skill-name>/SKILL.md` | Codex skill 发现入口 |
 
-#### 3.3 推荐字段
+#### 3.1 共享约束
 
-| 字段 | 说明 |
-|------|------|
-| `displayName` | 人类可读名称，建议与 SKILL.md frontmatter `displayName` 一致 |
-| `version` | 语义化版本号，必须与 SKILL.md frontmatter `version` 保持同步 |
-| `description` | 简短功能描述 |
-| `author` | 作者信息，格式：`{ "name": "...", "url": "..." }` |
-| `homepage` | 项目主页 URL |
-| `repository` | 代码仓库 URL |
-| `license` | 开源许可证（如 `GPL-3.0`、`MIT`） |
-| `keywords` | 关键词数组，用于 marketplace 搜索 |
+- 两份 manifest 的 `name` 必须与根 `SKILL.md` 一致。
+- 根 `SKILL.md` 与两份 manifest 的版本必须一致。
+- Codex wrapper 目录名必须与 skill 名称一致。
+- Codex wrapper frontmatter 只使用 `name` 和 `description`，正文通过相对路径引用根规范与 references，避免复制方法论。
+- 只有实际存在对应文件时，Codex manifest 才声明 `apps` 或 `mcpServers`。
 
-#### 3.4 示例
+#### 3.2 Claude Code manifest
+
+`.claude-plugin/plugin.json` 继续使用 Claude Code 支持的 `displayName`、`version`、`description`、`author`、`homepage`、`repository`、`license` 与 `keywords` 字段。
+
+#### 3.3 Codex manifest
+
+`.codex-plugin/plugin.json` 至少包含 `name`、严格 SemVer `version`、`description`、`author.name` 和完整 `interface`。`skills` 使用以 `./` 开头的相对路径：
 
 ```json
 {
   "name": "my-skill-name",
-  "displayName": "My Skill Name",
   "version": "1.0.0",
   "description": "Short description of the skill functionality.",
   "author": {
     "name": "AuthorName",
     "url": "https://github.com/authorname"
   },
-  "homepage": "https://github.com/OrgName/my-skill-name",
   "repository": "https://github.com/OrgName/my-skill-name",
   "license": "GPL-3.0",
-  "keywords": ["keyword1", "keyword2"]
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "My Skill Name",
+    "shortDescription": "Create and publish a cross-platform skill.",
+    "longDescription": "Longer user-facing plugin description.",
+    "developerName": "OrgName",
+    "category": "Developer Tools",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://github.com/OrgName/my-skill-name",
+    "defaultPrompt": ["Use this skill to review my plugin."],
+    "brandColor": "#6366F1"
+  }
 }
 ```
 
-#### 3.5 版本同步规则
+Codex plugin 完成后运行官方 validator；Codex wrapper 完成后运行 skill quick validator。验证命令根据本机 skill 工具实际位置执行，不在仓库规范中硬编码用户目录。
 
-- `plugin.json` 的 `version` 必须 **始终与** SKILL.md frontmatter `version` 一致
-- 发版时两处同时更新，不可遗漏
-- 参考文档：[Plugins Reference](https://code.claude.com/docs/en/plugins-reference)
+#### 3.4 版本同步规则
+
+- 发版时同时更新根 `SKILL.md`、`.claude-plugin/plugin.json` 和 `.codex-plugin/plugin.json`。
+- `scripts/version-check.sh` 必须检查三份版本声明及最新 git tag。
+- Claude Code 参考：[Plugins Reference](https://code.claude.com/docs/en/plugins-reference)。Codex 以当前安装的 `plugin-creator` 与 `skill-creator` 校验规则为准。
 
 ### 4. Prohibited Content | 禁止内容
 
@@ -297,7 +304,7 @@ Skills must NOT contain: | skill 中**禁止**包含：
 - Real names, identity information | 真实姓名、身份信息
 - Cache files, build artifacts | 缓存文件、构建产物（`.clawhub/`、`node_modules/`、`skills/` 等应通过 `.gitignore` 排除）
 
-> **注意**：`.claude-plugin/` 目录**不是缓存**，不应被 `.gitignore` 排除。它是项目源码的一部分，必须被 Git 跟踪。
+> **注意**：`.claude-plugin/`、`.codex-plugin/` 和受 manifest 引用的 `skills/<skill-name>/` 都是项目源码，必须被 Git 跟踪。
 
 ## GitHub Repository Guidelines | GitHub 仓库规范
 
@@ -310,10 +317,11 @@ Skills must NOT contain: | skill 中**禁止**包含：
 
 ```
 <skill-name>/                     # Git repository | Git 仓库
-├── .claude-plugin/               # Required: plugin manifest | 必需：Claude Code 插件清单
-│   └── plugin.json               # Required: plugin metadata | 必需
+├── .claude-plugin/plugin.json    # Required: Claude Code manifest
+├── .codex-plugin/plugin.json     # Required: Codex manifest
 ├── .gitignore                    # Required: must exclude CLI cache files | 必需：排除 CLI 缓存
 ├── SKILL.md                      # Required: skill definition | 必需
+├── skills/<skill-name>/SKILL.md  # Required: Codex discovery wrapper
 ├── README.md                     # Recommended: project readme | 推荐
 ├── LICENSE                       # Recommended: license | 推荐
 ├── scripts/                      # Optional: scripts | 可选
@@ -359,13 +367,13 @@ fi
 git tag -a v$VERSION -m "Release v$VERSION"
 
 # Push | 推送
-git push origin master
+git push origin <default-branch>
 git push origin v$VERSION
 
 # Publish to ClawHub (temp folder mode) | 发布到 ClawHub（临时文件夹模式）
-# .claude-plugin/ causes ClawHub to misidentify as plugin | .claude-plugin/ 会导致 ClawHub 误判
+# Plugin metadata causes ClawHub to misidentify the package | 插件元数据会导致 ClawHub 误判
 TMPDIR=$(mktemp -d /tmp/clawhub-publish-XXXXXX)
-rsync -a --exclude='.git' --exclude='.claude-plugin' --exclude='.claude' --exclude='.clawhub' --exclude='skills' . "$TMPDIR/"
+rsync -a --exclude='.git' --exclude='.claude-plugin' --exclude='.codex-plugin' --exclude='.claude' --exclude='.clawhub' --exclude='skills' . "$TMPDIR/"
 clawhub publish "$TMPDIR" --slug $SKILL_NAME --version $VERSION --changelog "$CHANGELOG"
 EXIT_CODE=$?
 rm -rf "$TMPDIR"
@@ -375,7 +383,7 @@ exit $EXIT_CODE
 ## Related Documentation | 相关文档
 
 - [ClawHub Documentation](https://docs.openclaw.ai) | [ClawHub 文档](https://docs.openclaw.ai)
-- [Skill Creator Specification](/app/skills/skill-creator/SKILL.md) | [Skill 创建规范](/app/skills/skill-creator/SKILL.md)
+- Codex `skill-creator` and `plugin-creator` built-in skills | Codex 内置创建与校验规范
 
 ## References | 参考资料
 

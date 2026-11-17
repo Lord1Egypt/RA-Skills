@@ -1,40 +1,62 @@
-## Description: <br>
-Manages a mihomo (Clash Meta) proxy service on Linux servers by helping configure, update, restart, switch proxy nodes, update subscriptions, and troubleshoot connectivity for existing mihomo installations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages a mihomo (Clash Meta) proxy service on Linux, including configuration, subscription updates, service restarts, node switching, and connection troubleshooting.
 
-## Publisher: <br>
-[lflyice](https://clawhub.ai/user/lflyice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lflyice](https://clawhub.ai/user/lflyice)
 
-## Use Case: <br>
-Developers and server operators use this skill to manage an existing mihomo proxy deployment, including validating configuration, restarting the systemd service, inspecting proxy groups, switching nodes, and generating configuration from subscriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The update helper can turn a subscription URL into shell execution. <br>
-Mitigation: Only use trusted subscription URLs and replace the shell-based downloader with argument-array execution or a native HTTP client with strict URL and content validation before installation. <br>
-Risk: The configuration generator writes directly to the live mihomo config path without built-in backup safeguards. <br>
-Mitigation: Back up the existing mihomo configuration before updates, validate generated configuration with mihomo's test mode, and restart the service only after validation succeeds. <br>
+## Use Case:
 
+Developers and administrators use this skill to operate an existing mihomo proxy service on Linux, generate or validate proxy configuration, update subscriptions, switch nodes, and inspect service health.
 
-## Reference(s): <br>
-- [Mihomo Proxy Manager on ClawHub](https://clawhub.ai/lflyice/mihomo-proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce command sequences for systemd, curl-based local API calls, and mihomo configuration generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill can alter a persistent system proxy service and restart or enable mihomo through systemd.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm service changes before execution, review and harden the systemd unit, and validate configuration before restarting the service.
+
+Risk: Configuration generation can overwrite /opt/mihomo-config/config.yaml.
+
+Mitigation: Back up the existing config.yaml, generate a staged candidate first, and run mihomo validation before replacing the active configuration.
+
+Risk: Subscription download and shell-based curl invocation can expose users to unsafe argument handling and untrusted input.
+
+Mitigation: Run generation as an unprivileged user, replace shell-based curl execution with safe argument handling, and review subscription input before use.
+
+Risk: The helper script uses a fixed /tmp/sub_raw.txt path for subscription data.
+
+Mitigation: Avoid fixed temporary files by using a private, permission-restricted temporary path for each run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lflyice/skills/mihomo-proxy)
+- [Publisher profile](https://clawhub.ai/user/lflyice)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate mihomo config.yaml content and commands that affect a local systemd-managed proxy service.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

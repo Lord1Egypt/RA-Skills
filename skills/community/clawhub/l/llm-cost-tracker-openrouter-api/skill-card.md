@@ -1,45 +1,60 @@
-## Description: <br>
-Tracks OpenClaw LLM token usage and costs from OpenRouter and produces rolling usage reports with model breakdowns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks OpenClaw LLM token usage and billed cost from OpenRouter and reports rolling and calendar-window spend with model breakdowns.
 
-## Publisher: <br>
-[joeyiptk](https://clawhub.ai/user/joeyiptk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyiptk](https://clawhub.ai/user/joeyiptk)
 
-## Use Case: <br>
-Developers and operators use this skill to collect OpenRouter usage facts from local OpenClaw session logs, maintain a local usage database, and generate cost/token reports for recent time windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw session logs and local OpenRouter credentials to collect and verify usage. <br>
-Mitigation: Install it only in environments where that local access is expected, and review the configured session path and credential source before running collection or reporting commands. <br>
-Risk: The skill stores usage metadata in a local SQLite database. <br>
-Mitigation: Treat config/usage.db as local usage history, restrict filesystem access to it, and exclude it from shared snapshots or published artifacts. <br>
-Risk: The documented prune_usage.py --dry-run behavior is flagged as deleting records. <br>
-Mitigation: Avoid prune_usage.py --dry-run until the deletion-order issue is fixed, and back up config/usage.db before using pruning commands. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to collect local OpenClaw usage history and generate OpenRouter cost and token reports for daily or periodic spend monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joeyiptk/llm-cost-tracker-openrouter-api) <br>
-- [Publisher profile](https://clawhub.ai/user/joeyiptk) <br>
-- [Setup guide](artifact/SETUP_GUIDE.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, terminal tables, JSON, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can cover rolling 24-hour and calendar 7-day, 30-day, 90-day, and 365-day windows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: frontmatter, changelog, version.txt, server release evidence) <br>
+Risk: The pruning script's dry-run mode is reported to delete rows instead of only previewing them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use scripts/prune_usage.py --dry-run until fixed; back up config/usage.db and verify the cutoff before running any pruning command.
+
+Risk: The skill reads OpenClaw session history and creates a local usage database.
+
+Mitigation: Install only where local session-history access is acceptable, restrict the configured sessions directory, and protect the generated usage database.
+
+Risk: Normal reports automatically handle OpenRouter API credentials for account-summary data.
+
+Mitigation: Use an explicit least-privileged OpenRouter API key where possible and avoid running setup or tracker commands as root.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeyiptk/skills/llm-cost-tracker-openrouter-api)
+- [Setup Guide](artifact/SETUP_GUIDE.md)
+- [Setup](artifact/SETUP.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text reports, with optional JSON output for scripting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports cover 24h, 7d, 30d, 90d, and 365d windows with model-level cost and token breakdowns.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter, changelog, version.txt, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

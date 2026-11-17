@@ -1,48 +1,57 @@
-## Description: <br>
-Music composition assistant that guides users through genre, mood, theme, tempo, and other musical choices, generates structured Suno or Udio prompts, and can save generated audio to a user-specified path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Music composition assistant that accepts natural language input, guides a multi-turn conversation to define genre, mood, theme, tempo, and other musical elements, generates structured prompts for Suno or Udio, and saves output to a user-specified path.
 
-## Publisher: <br>
-[gentleyo](https://clawhub.ai/user/gentleyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gentleyo](https://clawhub.ai/user/gentleyo)
 
-## Use Case: <br>
-External users and creators use this skill to turn a natural-language music idea into structured prompt variants for Suno or Udio, with optional guidance for web-based or local automated generation. It also helps collect generation settings such as genre, mood, tempo, instrumentation, vocals, duration, and output path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional API automation depends on unofficial community wrappers and may break when Suno or Udio change their services. <br>
-Mitigation: Use the web interface path when prompt generation is sufficient, and review the wrapper project status before enabling automation. <br>
-Risk: Automation may require account session credentials and a SUNO_API_URL endpoint. <br>
-Mitigation: Keep credentials out of shared files, configure them only in the trusted local service, and point SUNO_API_URL only at a trusted endpoint. <br>
-Risk: Generated music may be subject to Suno or Udio platform terms before commercial use. <br>
-Mitigation: Review the selected platform's terms of service before distributing or monetizing generated audio. <br>
-Risk: Generated audio files are written to a user-selected output directory. <br>
-Mitigation: Use a dedicated output folder and confirm the path before running automated generation. <br>
+## Use Case:
 
+External users and creators use this skill to turn a brief music idea into a structured Suno or Udio prompt, choose style variants, and receive guidance for manual or automated generation workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gentleyo/music-generate) <br>
-- [Suno](https://suno.com) <br>
-- [Udio](https://www.udio.com) <br>
-- [Community Suno API wrapper](https://github.com/gcui-art/suno-api) <br>
-- [Community Udio API wrapper](https://github.com/udioapi/udio-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with structured prompt options, setup guidance, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated MP3 files to a user-specified folder when configured with a trusted local API service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automated generation can rely on unofficial Suno or Udio wrappers that use account session credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the manual Suno or Udio web workflow unless the wrapper has been reviewed and isolated.
+
+Risk: The automated path performs network downloads and writes generated track files to disk.
+
+Mitigation: Run automation in a sandbox with restricted network access and a dedicated output directory where overwrites are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gentleyo/skills/music-generate)
+- [Suno](https://suno.com)
+- [Udio](https://www.udio.com)
+- [suno-api community wrapper](https://github.com/gcui-art/suno-api)
+- [udio-api community wrapper](https://github.com/udioapi/udio-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration guidance]
+
+**Output Format:** [Markdown with prompt text, setup guidance, and inline Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create MP3 files in a user-specified output directory when an API workflow is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

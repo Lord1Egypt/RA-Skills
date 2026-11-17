@@ -1,44 +1,66 @@
-## Description: <br>
-Book flights for shopping trips to outlet malls and duty-free destinations, with related travel booking support powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents collect shopping-trip travel parameters, run the flyai CLI, and format live flight and travel booking results with booking links.
 
-## Publisher: <br>
-[ivan97](https://clawhub.ai/user/ivan97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivan97](https://clawhub.ai/user/ivan97)
 
-## Use Case: <br>
-External users use this skill to search shopping-trip flights, compare recommended, cheapest, fastest, or direct routes, and receive booking-oriented Markdown results. The skill also guides agents to collect missing travel parameters and recover from CLI failures without fabricating results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt installation and execution of a global third-party CLI. <br>
-Mitigation: Require explicit user approval before installation or execution, verify the npm package, and prefer an isolated environment. <br>
-Risk: Travel searches may involve sensitive itinerary or personal travel details. <br>
-Mitigation: Share only the minimum details needed for the query and use the provider only when the user trusts it. <br>
+## Use Case:
 
+External users ask an agent to plan shopping-focused travel and compare live booking options. The skill guides the agent to collect route and date details, execute flyai commands, and return Markdown results with booking links instead of relying on model memory.
 
-## Reference(s): <br>
-- [shopping-trip ClawHub page](https://clawhub.ai/ivan97/shopping-trip) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results must be based on flyai CLI output and include booking links when flight options are returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may modify the host by globally installing an unpinned npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user approval before installation, prefer an isolated and pinned CLI install, and verify the installed flyai version before use.
+
+Risk: User-derived travel parameters are passed to a third-party CLI.
+
+Mitigation: Validate origin, destination, dates, and option values against the documented parameter table before running commands.
+
+Risk: Booking links and prices come from a third-party travel service.
+
+Mitigation: Only present results with detailUrl booking links, check booking-link domains before showing them, and make clear that live availability comes from the CLI output.
+
+Risk: CLI failures or empty results could lead an agent to fabricate travel options.
+
+Mitigation: Retry only as described in the fallback guidance, then stop or ask for alternate dates/routes instead of answering from model knowledge.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivan97/skills/shopping-trip)
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI results; should not output raw JSON or booking options without detailUrl links.]
+
+## Skill Version(s):
+
+3.2.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

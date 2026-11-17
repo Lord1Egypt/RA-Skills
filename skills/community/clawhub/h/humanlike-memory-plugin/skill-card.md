@@ -1,46 +1,66 @@
-## Description: <br>
-Long-term memory plugin for OpenClaw: automatic recall, storage, and agent tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long-term memory plugin for OpenClaw: automatic recall, storage, and agent tools.
 
-## Publisher: <br>
-[humanlike2026](https://clawhub.ai/user/humanlike2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[humanlike2026](https://clawhub.ai/user/humanlike2026)
 
-## Use Case: <br>
-OpenClaw users and developers use this plugin to give agents long-term memory across sessions through automatic recall, automatic storage, and explicit memory search and store tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation content may be sent to plugin.human-like.me for long-term storage and retrieval. <br>
-Mitigation: Install only when remote memory storage is acceptable, avoid storing secrets or regulated personal data, and start with addEnabled=false or recallEnabled=false for cautious use. <br>
-Risk: Memories can be associated with the wrong person or agent if identifiers are reused. <br>
-Mitigation: Configure a distinct userId for each real user and align agentId and scenario only when memory sharing is intentional. <br>
-Risk: Platform metadata can expose platform-specific user identifiers when enabled. <br>
-Mitigation: Keep stripPlatformMetadata=true unless cross-platform identity continuity is required. <br>
+## Use Case:
 
+Developers and OpenClaw users use this plugin to give agents long-term memory across sessions, including automatic recall, automatic conversation storage, and agent-callable memory search and storage tools.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/humanlike2026/humanlike-memory-plugin) <br>
-- [Human-Like Memory service](https://plugin.human-like.me) <br>
-- [npm package](https://www.npmjs.com/package/@humanlikememory/human-like-mem) <br>
-- [Source repository](https://gitlab.ttyuyin.com/personalization_group/human-like-mem-openclaw-plugin) <br>
-- [OpenClaw plugin schema](https://openclaw.io/schemas/plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Text and Markdown with OpenClaw configuration commands and agent tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an API key and sends conversation content to a remote memory service when storage or recall is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata, package.json, openclaw.plugin.json) <br>
+Risk: Conversation data is stored and recalled by a remote service by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in sensitive workspaces, use a test API key first, avoid secrets or regulated data, and set addEnabled=false and recallEnabled=false until the behavior is validated.
+
+Risk: Recalled memories can affect future agent prompts and responses.
+
+Mitigation: Limit use to trusted memory stores, review retrieved context during sensitive tasks, and disable recall when memory injection is not appropriate.
+
+Risk: <private> tags should not be treated as a transmission control.
+
+Mitigation: Do not place sensitive content in conversations sent to the plugin; use configuration controls such as addEnabled=false instead of relying on tags.
+
+Risk: Using an untrusted API endpoint could expose conversation content.
+
+Mitigation: Use only the official HTTPS endpoint unless operating a controlled service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/humanlike2026/skills/humanlike-memory-plugin)
+- [Human-Like Memory service](https://plugin.human-like.me)
+- [npm package](https://www.npmjs.com/package/@humanlikememory/human-like-mem)
+- [Source repository](https://gitlab.ttyuyin.com/personalization_group/human-like-mem-openclaw-plugin)
+- [README](artifact/README.md)
+- [Security and Data Transparency](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, API calls, guidance]
+
+**Output Format:** [Agent-readable memory search results, OpenClaw configuration values, and remote memory store or recall operations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an API key and OpenClaw >=2026.2.0. Recall and storage are enabled by default unless configured otherwise.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

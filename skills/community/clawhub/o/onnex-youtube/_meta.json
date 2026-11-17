@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7f2n4dqcdttqgs9z0p73mp8h8281k8",
-  "slug": "onnex-youtube",
+  "name": "onnex-youtube",
   "version": "4.2.2",
-  "publishedAt": 1772622786400
+  "upstream": "youtube-ultimate",
+  "upstream_version": "4.2.2",
+  "upstream_reviewed_at": "2026-03-04",
+  "reviewed_by": "Oppy (automated security audit)"
 }

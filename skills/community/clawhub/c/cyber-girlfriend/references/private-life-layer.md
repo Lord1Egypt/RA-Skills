@@ -80,14 +80,14 @@ These claims should be appended to `life-log.jsonl` and used to prevent repetiti
 Recommended flow:
 
 1. daily planning generates `day-schedule.md`
-2. `companion-presence` runs in an isolated cron session and calls `companion_presence_tick.py`
+2. `companion-presence` runs as an isolated exact argv command automation and calls `companion_presence_tick.py` without an intermediate model turn
 3. the wrapper runs fresh prepare and selects the current real-time event from `day-schedule.md`
-4. only matched events start the stable companion runtime session
+4. only matched events start a fresh dispatch-scoped companion session
 5. the runtime writes one first-person companion message
 6. the runtime calls `companion_presence_tick.py --send-story`; that fixed entrypoint sends through the explicit delivery contract and commits state after successful text delivery
-7. media events then start OpenClaw async media generation, and native completion in the same stable companion session only provides fallback media paths
+7. media events then start OpenClaw async media generation, and native completion in the same dispatch session only provides fallback media paths
 
-Presence cron does not manually assemble the life layer and does not pass `--event-time`.
+Presence automation does not manually assemble the life layer and does not pass `--event-time`.
 
 ## Realism Rules
 

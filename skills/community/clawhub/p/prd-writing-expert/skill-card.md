@@ -1,44 +1,57 @@
-## Description: <br>
-Product Requirements Document (PRD) writing expert. Write structured product requirements documents, including problem statements, user stories, requirement prioritization, and success metrics. Applicable for feature specification writing, defining acceptance criteria, or documenting product decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Product Requirements Document (PRD) writing expert. Write structured product requirements documents, including problem statements, user stories, requirement prioritization, and success metrics. Applicable for feature specification writing, defining acceptance criteria, or documenting product decisions.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Product managers, founders, designers, and product teams use this skill to draft structured PRDs, feature specifications, acceptance criteria, product decision records, prioritization rationale, and success metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PRDs may contain incomplete, incorrect, or ambiguous product requirements if accepted without review. <br>
-Mitigation: Review generated PRDs with product, engineering, design, and business stakeholders before sharing or implementation. <br>
-Risk: Users may include confidential product or business details while drafting requirements. <br>
-Mitigation: Use only approved agent environments for confidential information, and redact sensitive details when approval is not clear. <br>
+## Use Case:
 
+Product managers, founders, and product teams use this skill to draft structured PRDs, feature specifications, acceptance criteria, product decisions, and success metrics.
 
-## Reference(s): <br>
-- [PRD Writing Expert on ClawHub](https://clawhub.ai/openlark/prd-writing-expert) <br>
-- [User Story Writing Guide](references/user-stories.md) <br>
-- [Requirements Prioritization Methods](references/prioritization.md) <br>
-- [Success Metrics Framework](references/metrics.md) <br>
-- [PRD Template](assets/prd-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown PRD documents, structured requirements, user stories, acceptance criteria, prioritization tables, success metrics, and product decision notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or tool calls; outputs should be reviewed before sharing or implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be selected for broad product-planning or requirements requests where PRD-style output is not appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether a PRD format fits the task before adopting the generated output.
+
+Risk: PRD drafting can involve confidential product plans, customer details, or business strategy.
+
+Mitigation: Avoid sharing sensitive product information unless the workspace and downstream handling are trusted.
+
+## Reference(s):
+
+- [PRD Writing Expert on ClawHub](https://clawhub.ai/openlark/skills/prd-writing-expert)
+- [User Story Writing Guide](references/user-stories.md)
+- [Requirements Prioritization Methods](references/prioritization.md)
+- [Success Metrics Framework](references/metrics.md)
+- [PRD Template](assets/prd-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured PRD drafts, user stories, prioritization tables, acceptance criteria, and metric definitions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

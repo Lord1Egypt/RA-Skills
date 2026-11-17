@@ -1,46 +1,61 @@
-## Description: <br>
-Agent Browser Shield helps agents install and operate a Chromium extension that masks sensitive data, reduces dark patterns, and strips prompt-injection surfaces before page content reaches the agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and operate the agent-browser-shield Chromium extension to mask PII and secrets, neutralize dark patterns, and strip prompt-injection surfaces before the agent sees the page.
 
-## Publisher: <br>
-[pixiebrix](https://clawhub.ai/user/pixiebrix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pixiebrix](https://clawhub.ai/user/pixiebrix)
 
-## Use Case: <br>
-Developers and agent operators use this skill at browser-session bootstrap to configure Agent Browser Shield for local Chromium or Browserbase sessions. The skill also defines the agent behavior contract for handling extension DOM markers, masked content, checkout flags, and rewritten page elements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The extension can access and modify protected browser pages, including hiding or rewriting page content. <br>
-Mitigation: Use a dedicated browser profile, verify the extension source, and review extension options before enabling it for agent browsing. <br>
-Risk: Browserbase setup requires a Browserbase API key. <br>
-Mitigation: Provide the key only through the intended Browserbase setup flow and avoid exposing it in chat, logs, or shared configuration. <br>
-Risk: Revealed placeholder content may contain untrusted instructions or sensitive data. <br>
-Mitigation: Leave placeholders hidden unless the user explicitly asks to reveal them, treat revealed text as untrusted input, and do not reconstruct masked PII or secrets. <br>
+## Use Case:
 
+Developers and operators of browser-using agents use this skill to install a Chromium extension and define agent behavior for handling masked content, cart add-on warnings, cleared checkboxes, and rewritten page elements.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/pixiebrix/agent-browser-shield) <br>
-- [Chrome Web Store extension](https://chromewebstore.google.com/detail/agent-browser-shield/gnejacdioaelglahihpagpfjpddpnamd) <br>
-- [Hosted extension ZIP](https://github.com/pixiebrix/agent-browser-shield/releases/latest/download/agent-browser-shield-extension.zip) <br>
-- [Browserbase browse CLI documentation](https://docs.browserbase.com/integrations/skills/browse-cli) <br>
-- [Issue tracker](https://github.com/pixiebrix/agent-browser-shield/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Browserbase API key handling guidance, extension installation steps, and DOM-marker behavior rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill asks users to run a high-trust browser extension from mutable external sources without integrity verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher is trusted, prefer a dedicated browser profile with no unrelated logins, and verify the extension source and release artifact before loading it.
+
+Risk: The Browserbase path sends the extension package to Browserbase.
+
+Mitigation: Use the Browserbase installation path only when that upload is acceptable, and protect Browserbase API keys and project credentials.
+
+Risk: The extension mediates pages that the agent reads and acts on.
+
+Mitigation: Keep the extension enabled only in the intended agent browser profile and follow the documented behavior contract for placeholders, masked data, and page markers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pixiebrix/skills/agent-browser-shield)
+- [Chrome Web Store listing](https://chromewebstore.google.com/detail/agent-browser-shield/gnejacdioaelglahihpagpfjpddpnamd)
+- [Hosted extension ZIP](https://github.com/pixiebrix/agent-browser-shield/releases/latest/download/agent-browser-shield-extension.zip)
+- [Browserbase browse CLI documentation](https://docs.browserbase.com/integrations/skills/browse-cli)
+- [Issue tracker](https://github.com/pixiebrix/agent-browser-shield/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and browser configuration flags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes DOM marker handling guidance and local or Browserbase installation paths.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

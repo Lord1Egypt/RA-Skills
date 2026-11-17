@@ -1,42 +1,49 @@
-## Description: <br>
-Patterns and techniques for evaluating and improving AI agent outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patterns and techniques for evaluating and improving AI agent outputs through self-critique, evaluator-optimizer loops, test-driven code refinement, rubrics, and LLM-as-judge workflows.
 
-## Publisher: <br>
-[boleyn](https://clawhub.ai/user/boleyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boleyn](https://clawhub.ai/user/boleyn)
 
-## Use Case: <br>
-Developers and engineers use this skill to design self-critique, evaluator-optimizer, rubric-based, and test-driven refinement workflows for AI agent outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Iterative evaluation and refinement loops can fail to converge or consume excessive resources. <br>
-Mitigation: Set explicit iteration caps and add convergence checks before deploying these patterns. <br>
-Risk: Generated code or tests produced during refinement may be incorrect or unsafe to run directly. <br>
-Mitigation: Review generated code and execute tests or generated commands only inside a sandboxed environment. <br>
-Risk: Evaluation logs may retain sensitive prompts, outputs, or task data. <br>
-Mitigation: Avoid storing sensitive prompts or outputs in evaluation logs, or redact them before retention. <br>
+## Use Case:
 
+Developers and engineers use this skill to design evaluation loops that critique, score, and refine agent outputs for quality-critical code, reports, analysis, and compliance-sensitive content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boleyn/agentic-eval) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with Python code examples and checklist snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only reference patterns; no executable installer, credential access, or hidden behavior found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Generated code and generated tests may be executed without sufficient containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run generated code and tests only in a disposable, least-privilege sandbox with no inherited secrets, restricted file access, network disabled by default, and strict time and resource limits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/boleyn/skills/agentic-eval)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with Python code examples and implementation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes evaluation patterns, rubric guidance, and example refinement loops.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-60s API 综合技能，提供每日新闻、AI资讯、热搜榜单、天气查询、数据查询、娱乐内容、媒体信息和实用工具。当用户询问新闻、热搜、天气、汇率、农历、笑话、运势、音乐排行、电影票房、翻译、IP查询等中文信息时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+60s API 综合技能，提供每日新闻、AI资讯、热搜榜单、天气查询、数据查询、娱乐内容、媒体信息和实用工具。
 
-## Publisher: <br>
-[awsl1414](https://clawhub.ai/user/awsl1414) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awsl1414](https://clawhub.ai/user/awsl1414)
 
-## Use Case: <br>
-Developers and external users can use this skill to query Chinese-language news, trending topics, weather, exchange rates, entertainment data, media rankings, translation, IP lookup, and related utility endpoints through the 60s API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts and query values to a third-party API service. <br>
-Mitigation: Install only when external requests to the 60s API service are acceptable, and avoid submitting confidential text, private URLs, personal IPs, or sensitive domains. <br>
-Risk: The remote password-check endpoint could expose real passwords or secrets to a third party. <br>
-Mitigation: Do not use the password-check endpoint with real passwords, API keys, tokens, or other secrets. <br>
+## Use Case:
 
+External users and developers use this skill to query Chinese-language public information and utility APIs, including news, trending topics, weather, exchange rates, media rankings, translation, IP lookup, QR codes, hashes, and password tools. It helps an agent choose the right 60s API endpoint, issue curl requests, and summarize results concisely.
 
-## Reference(s): <br>
-- [60s API instance](https://60s.viki.moe) <br>
-- [60s API documentation](https://docs.60s-api.viki.moe) <br>
-- [60s API GitHub repository](https://github.com/vikiboss/60s) <br>
-- [60s Skills GitHub repository](https://github.com/vikiboss/60s-skills) <br>
-- [ClawHub skill page](https://clawhub.ai/awsl1414/60s-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, API Calls, Files, Guidance] <br>
-**Output Format:** [Markdown with inline curl commands and summarized API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce downloaded image or audio files when using media endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill metadata) <br>
+Risk: Queries and submitted content can be sent to the external 60s API service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when external submission to 60s API is acceptable, and avoid sending confidential text, URLs, API keys, tokens, or other secrets.
+
+Risk: The password-check endpoint can send real passwords to an outside service.
+
+Mitigation: Do not use the password-check endpoint with real passwords; prefer local password-strength checks.
+
+Risk: Translation, hash, QR, and OG URL features submit provided text or URLs to an external service.
+
+Mitigation: Use these features only for public or low-sensitivity inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/awsl1414/skills/60s-api)
+- [Publisher profile](https://clawhub.ai/user/awsl1414)
+- [60s API base endpoint](https://60s.viki.moe/v2)
+- [60s API documentation](https://docs.60s-api.viki.moe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Concise text or Markdown with curl commands and summarized API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API responses may include JSON, Markdown, plain text, images, audio, or downloaded files depending on the endpoint.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

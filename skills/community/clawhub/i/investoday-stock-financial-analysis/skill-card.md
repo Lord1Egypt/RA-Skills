@@ -1,43 +1,54 @@
-## Description: <br>
-Analyzes A-share stock financial quality across profitability, earnings quality, growth durability, cash flow, and financial safety, using Investoday finance data to identify stock codes and produce structured reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Chinese A-share stock financial quality, including profitability, earnings quality, growth durability, cash flow, leverage, solvency, and financial safety, using Investoday financial data.
 
-## Publisher: <br>
-[kenneth-bro](https://clawhub.ai/user/kenneth-bro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenneth-bro](https://clawhub.ai/user/kenneth-bro)
 
-## Use Case: <br>
-External users and finance-focused agents use this skill to produce structured financial quality reports for A-share companies from public market data. It supports profitability, earnings quality, cash-flow, balance-sheet, solvency, and growth analysis without giving buy, sell, position-sizing, price-target, or timing advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes public company financial statements and could be mistaken for investment advice. <br>
-Mitigation: Keep outputs framed as informational analysis, include the skill's no-investment-advice constraint, and avoid buy or sell recommendations, position sizing, target prices, or trading timing. <br>
-Risk: The skill depends on investoday-finance-data for actual data access, so incorrect or unavailable data can affect the report. <br>
-Mitigation: Review the dependency before installation and require each conclusion to cite numeric evidence from the retrieved data, writing that a dimension cannot be judged when data is missing. <br>
-Risk: Users could provide personal or confidential financial information even though the skill is intended for public market data. <br>
-Mitigation: Avoid entering personal or confidential financial information and use the skill only for public company analysis. <br>
+## Use Case:
 
+External users and analysts use this skill to generate structured Chinese-language financial analysis reports for A-share stocks from stock names or six-digit stock codes. It is intended for informational financial quality review and explicitly avoids buy or sell advice, target prices, position sizing, and trading timing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenneth-bro/investoday-stock-financial-analysis) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown financial analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the investoday-finance-data skill for public market data access; conclusions must include numeric evidence and avoid investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Financial analysis could be misread as investment advice or used for trading decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only and preserve the skill constraint against buy or sell advice, target prices, position sizing, and timing recommendations.
+
+Risk: Incomplete or unavailable market data can produce weak or unsupported conclusions.
+
+Mitigation: Require numerical evidence for each conclusion and state that a dimension cannot be judged when data is insufficient.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenneth-bro/skills/investoday-stock-financial-analysis)
+- [Publisher profile](https://clawhub.ai/user/kenneth-bro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown financial analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output based on public market data; conclusions require numerical evidence and do not include investment advice.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

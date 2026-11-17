@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 SCF_PROXY_URL = "https://1439498936-eqcpuaevzz.ap-guangzhou.tencentscf.com"
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 
-# 常用机场代码映射
+
 AIRPORT_CODES = {
     "北京": "PEK", "北京首都": "PEK", "北京大兴": "PKX",
     "上海": "SHA", "上海虹桥": "SHA", "上海浦东": "PVG",

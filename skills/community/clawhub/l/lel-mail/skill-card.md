@@ -1,41 +1,60 @@
-## Description: <br>
-Lel Mail helps an agent read unread mailbox messages, queue outgoing email, manage pending email, and act on received email through Python and shell scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lel Mail lets an agent read configured email inboxes, classify unread messages, queue outbound email, and manage pending outbound messages with Python and shell scripts.
 
-## Publisher: <br>
-[Leli1024](https://clawhub.ai/user/Leli1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leli1024](https://clawhub.ai/user/leli1024)
 
-## Use Case: <br>
-Users and agent operators use this skill to connect an agent to a configured mailbox, check unread messages, schedule outbound email, and inspect or delete queued outgoing mail. It is best suited for environments where email credentials and account permissions can be tightly controlled. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Incoming emails can steer agent actions, including memory writes, user contact, and delayed outbound email. <br>
-Mitigation: Keep can_read and can_send disabled unless needed, use a dedicated mailbox or scoped app password, and require manual approval before email-derived memory writes, user contact, or outgoing responses. <br>
-Risk: The local email configuration stores mailbox credentials and account permissions. <br>
-Mitigation: Protect ~/.config/lel-mail/config.json, avoid shared accounts, and review account permissions before enabling mailbox access. <br>
-Risk: Queued outgoing mail may be sent later by the cron-driven sender. <br>
-Mitigation: Review the queue with manage_queue.py before enabling the sender daemon and delete unintended messages before they are sent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Leli1024/lel-mail) <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an agent to IMAP and SMTP mail workflows, including reading unread messages, requesting user input for replies, queueing outbound email, and reviewing or deleting queued messages before delivery.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with shell commands and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON configuration and queue files under ~/.config/lel-mail when installed and run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unread email can trigger persistent memory writes or cross-channel outreach.
+
+Mitigation: Disable automatic memory writes from inbound email and require explicit user approval before notifications or responses.
+
+Risk: Queued outbound email can be sent through configured SMTP accounts.
+
+Mitigation: Require confirmation before enqueueing or sending messages, and review the outgoing queue before the daemon runs.
+
+Risk: The send script has a code-injection risk from an unquoted heredoc.
+
+Mitigation: Fix the heredoc handling before installation and review generated queue entries before sending.
+
+Risk: Mail credentials are stored in the lel-mail configuration file.
+
+Mitigation: Protect the configuration directory with owner-only permissions and prefer a safer secret store over reusable plaintext passwords.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leli1024/skills/lel-mail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local queue entries under the user's lel-mail configuration directory and may send or classify email when configured.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

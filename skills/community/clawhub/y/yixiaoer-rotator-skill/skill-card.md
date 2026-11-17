@@ -1,45 +1,55 @@
-## Description: <br>
-Yixiaoer Rotator Skill helps agents rotate Yixiaoer publishing accounts by platform, synchronize available accounts, and persist local rotation state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yixiaoer Rotator Skill helps agents sync Yixiaoer platform accounts, persist per-platform rotation state, and select the next account for multi-platform publishing workflows.
 
-## Publisher: <br>
-[lsx1205](https://clawhub.ai/user/lsx1205) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lsx1205](https://clawhub.ai/user/lsx1205)
 
-## Use Case: <br>
-Developers and publishing operators use this skill to select the next Yixiaoer account for each content platform, reducing repeated use of the same account during multi-account publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a separate yixiaoer-skill package for API calls. <br>
-Mitigation: Install it only from a trusted source and inspect or pin the dependency before use. <br>
-Risk: The skill requires a Yixiaoer API key and member ID. <br>
-Mitigation: Use scoped, revocable credentials through environment variables and avoid storing them in skill files or logs. <br>
-Risk: Automated account rotation can publish from an unintended account or platform if state is stale or misconfigured. <br>
-Mitigation: Review the local rotation state and selected account before unattended publishing, especially after syncing or resetting accounts. <br>
+## Use Case:
 
+External developers and publishing workflow operators use this skill to rotate among authorized Yixiaoer accounts across platforms without repeatedly selecting the same account. Agents can use it to run sync, status, reset, and next-account commands as part of an automated publishing flow.
 
-## Reference(s): <br>
-- [Yixiaoer Rotator Skill on ClawHub](https://clawhub.ai/lsx1205/yixiaoer-rotator-skill) <br>
-- [Yixiaoer account rotation configuration](references/config.md) <br>
-- [yixiaoer-skill dependency](https://clawhub.ai/yixiaoer-skill) <br>
-- [Yixiaoer service](https://www.yixiaoer.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with bash commands, CLI text output, account identifiers, and JSON state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YIXIAOER_API_KEY and YIXIAOER_MEMBER_ID environment variables and a local yixiaoer-skill dependency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: release metadata) <br>
+Risk: The skill invokes a separately installed dependency while API credentials and the full process environment are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when both packages are trusted, review or pin the dependency where possible, and run it from a limited shell environment without unrelated secrets.
+
+Risk: The local state file stores account rotation metadata that may remain after account access changes.
+
+Mitigation: Treat the state file as account metadata and manually clean it up or resync after permissions or account ownership changes.
+
+## Reference(s):
+
+- [Yixiaoer Rotator Configuration](references/config.md)
+- [Yixiaoer Skill Dependency](https://clawhub.ai/yixiaoer-skill)
+- [Yixiaoer Website](https://www.yixiaoer.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output with a local JSON state file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YIXIAOER_API_KEY, YIXIAOER_MEMBER_ID, and the separately installed yixiaoer-skill dependency.]
+
+## Skill Version(s):
+
+1.0.5 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

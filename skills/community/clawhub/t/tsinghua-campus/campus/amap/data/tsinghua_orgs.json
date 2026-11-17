@@ -1,0 +1,746 @@
+{
+  "snapshot_date": "2026-09-11",
+  "snapshot_source": "清华大学官网 — 院系设置 (https://www.tsinghua.edu.cn/yxsz.htm) + 科研机构 (https://www.tsinghua.edu.cn/kxyj/kyjg.htm)",
+  "snapshot_summary": "清华公开的院系/系/书院/研究中心共 60+ 项；33 学院 + 54 系 + 16 书院 + 多个研究中心/研究院。\n非实体学院（标记 *）：机械工程学院、信息科学技术学院、理学院。",
+  "data_expiry_hint": "建议每 12 个月跑一次 campus-orgs --refresh 重新对齐官方数据。",
+  "institutions": [
+    {
+      "type": "学院",
+      "name": "建筑学院",
+      "url": "http://www.arch.tsinghua.edu.cn/",
+      "departments": [
+        "建筑系",
+        "城市规划系",
+        "建筑技术科学系",
+        "景观学系"
+      ],
+      "location": "116.333449,39.999574",
+      "poi_name": "清华大学建筑学院",
+      "amap_address": "双清路30号清华大学内",
+      "matched_keyword": "建筑学院"
+    },
+    {
+      "type": "学院",
+      "name": "土木水利学院",
+      "url": "http://www.civil.tsinghua.edu.cn/",
+      "departments": [
+        "土木工程系",
+        "水利水电工程系",
+        "建设管理系",
+        "海洋工程系",
+        "交通工程系"
+      ],
+      "location": "116.33026,40.003681",
+      "poi_name": "清华大学土木水利学院",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "土木水利学院"
+    },
+    {
+      "type": "学院",
+      "name": "环境学院",
+      "url": "http://www.env.tsinghua.edu.cn/",
+      "departments": [
+        "环境工程系",
+        "环境科学与健康系",
+        "环境可持续系统管理系"
+      ],
+      "location": "116.334885,39.998165",
+      "poi_name": "清华大学环境学院",
+      "amap_address": "双清路30号清华园清华大学",
+      "matched_keyword": "环境学院"
+    },
+    {
+      "type": "非实体学院",
+      "name": "机械工程学院",
+      "url": "http://www.sme.tsinghua.edu.cn/",
+      "departments": [
+        "机械工程系",
+        "精密仪器系",
+        "能源与动力工程系",
+        "车辆与运载学院",
+        "工业工程系",
+        "基础工业训练中心"
+      ],
+      "location": "116.32534,40.001175",
+      "poi_name": "清华大学机械工程馆",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "机械工程学院"
+    },
+    {
+      "type": "学院",
+      "name": "航天航空学院",
+      "url": "http://www.hy.tsinghua.edu.cn/",
+      "departments": [
+        "工程力学系",
+        "航空宇航工程系"
+      ],
+      "location": "116.335246,40.008670",
+      "poi_name": "清华大学航天航空学院学生航空创新实践基地",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "航天航空学院"
+    },
+    {
+      "type": "非实体学院",
+      "name": "信息科学技术学院",
+      "url": "http://www.sist.tsinghua.edu.cn/",
+      "departments": [
+        "电子工程系",
+        "计算机科学与技术系",
+        "自动化系",
+        "集成电路学院",
+        "网络科学与网络空间研究院",
+        "软件学院",
+        "信息国家研究中心"
+      ],
+      "location": "116.331173,39.996878",
+      "poi_name": "清华信息科学与技术国家实验室",
+      "amap_address": "双清路30号清华园清华大学",
+      "matched_keyword": "清华信息科学"
+    },
+    {
+      "type": "学院",
+      "name": "人工智能学院",
+      "url": "https://collegeai.tsinghua.edu.cn/",
+      "departments": [],
+      "note": "2024 前后成立的新学院",
+      "location": "116.334102,39.994506",
+      "poi_name": "清华大学人工智能学院",
+      "amap_address": "中关村智造大街F座",
+      "matched_keyword": "人工智能学院"
+    },
+    {
+      "type": "学院",
+      "name": "材料学院",
+      "url": "http://www.mse.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.333914,39.998506",
+      "poi_name": "清华大学材料学院",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "材料学院"
+    },
+    {
+      "type": "系",
+      "name": "电机工程与应用电子技术系",
+      "url": "http://www.eea.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.331501,40.001343",
+      "poi_name": "清华大学电机工程与应用电子技术系",
+      "amap_address": "双清路30号清华园清华大学",
+      "matched_keyword": "电机工程与应用电子技术系"
+    },
+    {
+      "type": "系",
+      "name": "工程物理系",
+      "url": "http://www.ep.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.324983,40.001164",
+      "poi_name": "清华大学热能工程系工程热物理研究所",
+      "amap_address": "双清路30号",
+      "matched_keyword": "工程物理系"
+    },
+    {
+      "type": "系",
+      "name": "化学工程系",
+      "url": "http://www.chemeng.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.336032,40.003091",
+      "poi_name": "清华大学化学工程系新区",
+      "amap_address": "双清路30号清华大学内",
+      "matched_keyword": "化学工程系"
+    },
+    {
+      "type": "研究院",
+      "name": "核能与新能源技术研究院",
+      "url": "http://www.inet.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.329252,39.997636",
+      "poi_name": "清华大学核能与新能源技术研究院",
+      "amap_address": "双清路30号",
+      "matched_keyword": "核能与新能源技术研究院"
+    },
+    {
+      "type": "学院",
+      "name": "安全科学学院",
+      "url": "https://www.ssafs.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.335275,40.003825",
+      "poi_name": "清华大学安全科学学院",
+      "amap_address": "清华大学吕大龙楼(自强科技楼4号楼)",
+      "matched_keyword": "安全科学学院"
+    },
+    {
+      "type": "非实体学院",
+      "name": "理学院",
+      "url": "",
+      "departments": [
+        "数学科学系",
+        "物理系",
+        "化学系",
+        "地球系统科学系",
+        "天文系"
+      ],
+      "location": "116.319937,40.005175",
+      "poi_name": "清华大学理学院",
+      "amap_address": "双清路30号清华园清华大学",
+      "matched_keyword": "理学院"
+    },
+    {
+      "type": "系",
+      "name": "心理与认知科学系",
+      "url": "https://www.pcs.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.330775,39.994575",
+      "poi_name": "清华大学心理学系学习科学实验室",
+      "amap_address": "清华科技园阳光厅",
+      "matched_keyword": "清华心理与认知科学系"
+    },
+    {
+      "type": "系",
+      "name": "统计与数据科学系",
+      "url": "https://www.stat.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.335452,40.003819",
+      "poi_name": "清华大学统计与数据科学系",
+      "amap_address": "清华大学吕大龙楼",
+      "matched_keyword": "统计与数据科学系"
+    },
+    {
+      "type": "学院",
+      "name": "生命科学学院",
+      "url": "http://life.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.319686,40.003337",
+      "poi_name": "清华大学生命科学学院",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "生命科学学院"
+    },
+    {
+      "type": "学院",
+      "name": "医学院",
+      "url": "https://www.med.tsinghua.edu.cn/",
+      "departments": [
+        "基础医学院",
+        "药学院",
+        "临床医学院（北京清华长庚医院）",
+        "生物医学工程学院",
+        "医疗管理学院"
+      ],
+      "location": "116.318089,40.004870",
+      "poi_name": "清华大学医学院",
+      "amap_address": "双清路30号清华大学医学科学楼",
+      "matched_keyword": "医学院"
+    },
+    {
+      "type": "学院",
+      "name": "万科公共卫生与健康学院",
+      "url": "http://vsph.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.318168,40.002172",
+      "poi_name": "清华大学万科公共卫生与健康学院",
+      "amap_address": "双清路30号清华大学十六区照澜院平房",
+      "matched_keyword": "万科公共卫生与健康学院"
+    },
+    {
+      "type": "研究院",
+      "name": "高等研究院",
+      "url": "http://www.ias.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.323910,40.002856",
+      "poi_name": "清华大学高等研究院",
+      "amap_address": "双清路30号清华大学科学馆内",
+      "matched_keyword": "高等研究院"
+    },
+    {
+      "type": "研究院",
+      "name": "交叉信息研究院",
+      "url": "https://iiis.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.332125,39.996746",
+      "poi_name": "清华大学FIT楼",
+      "amap_address": "双清路30清华大学",
+      "matched_keyword": "清华FIT楼（手工校正）",
+      "note": "交叉信息研究院（姚班）位于清华 FIT 楼（李兆基科技大楼 A 区）"
+    },
+    {
+      "type": "研究院",
+      "name": "航空发动机研究院",
+      "url": "http://www.ae.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.329798,39.997416",
+      "poi_name": "李兆基科技大楼(公交站)",
+      "amap_address": "清华大学校园车外环",
+      "matched_keyword": "李兆基科技大楼（手工校正）",
+      "note": "清华航空发动机研究院挂牌于李兆基科技大楼（FIT 楼）；amap 唯一同名 POI 为外地同名机构"
+    },
+    {
+      "type": "实验室",
+      "name": "低碳能源实验室",
+      "url": "https://lce.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.323584,40.007605",
+      "poi_name": "清华大学低碳能源实验室",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "低碳能源实验室"
+    },
+    {
+      "type": "中心",
+      "name": "数学科学中心",
+      "url": "https://ymsc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.317088,40.001778",
+      "poi_name": "清华大学数学科学中心",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "数学科学中心"
+    },
+    {
+      "type": "研究院",
+      "name": "生物医学交叉研究院",
+      "url": "https://www.timbr.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.326,40.003",
+      "poi_name": "清华大学生物医学交叉研究院（amap 数据缺）",
+      "amap_address": "北京市海淀区清华园1号",
+      "matched_keyword": "fallback（清华校内通用坐标）",
+      "note": "清华生物医学交叉研究院（TIMBR）位于清华大学校园内（医学科学楼B区/医学楼群附近，具体楼号以清华官网为准）；amap 同名 POI 实为外地机构，坐标错误"
+    },
+    {
+      "type": "实验室",
+      "name": "未来实验室",
+      "url": "http://thfl.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.340336,40.010266",
+      "poi_name": "清华大学未来实验室",
+      "amap_address": "双清综合楼",
+      "matched_keyword": "未来实验室"
+    },
+    {
+      "type": "研究院",
+      "name": "智能产业研究院",
+      "url": "https://air.tsinghua.edu.cn/",
+      "departments": [],
+      "note": "AIR；张亚勤任院长；校址：清华科技园启迪科技大厦 C 座 12 层",
+      "location": "116.330366,39.993299",
+      "poi_name": "清华大学智能产业研究院(AIR)",
+      "amap_address": "启迪科技大厦C座12层",
+      "matched_keyword": "智能产业研究院"
+    },
+    {
+      "type": "研究院",
+      "name": "碳中和研究院",
+      "url": "https://www.icon.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.330440,39.993288",
+      "poi_name": "清华大学碳中和研究院",
+      "amap_address": "清华科技园科技大厦C座18层",
+      "matched_keyword": "碳中和研究院"
+    },
+    {
+      "type": "研究院",
+      "name": "国际与地区研究院",
+      "url": "http://iias.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.321733,40.002618",
+      "poi_name": "清华大学国际合作与交流处",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "清华国际与地"
+    },
+    {
+      "type": "学院",
+      "name": "经济管理学院",
+      "url": "http://www.sem.tsinghua.edu.cn/",
+      "departments": [
+        "会计系",
+        "经济系",
+        "金融系",
+        "创新创业与战略系",
+        "领导力与组织管理系",
+        "管理科学与工程系",
+        "市场营销系"
+      ],
+      "location": "116.330482,39.999647",
+      "poi_name": "清华大学经济管理学院",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "经济管理学院"
+    },
+    {
+      "type": "学院",
+      "name": "公共管理学院",
+      "url": "http://www.sppm.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.331375,39.998739",
+      "poi_name": "清华大学公共管理学院",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "公共管理学院"
+    },
+    {
+      "type": "学院",
+      "name": "马克思主义学院",
+      "url": "http://www.smarx.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.321158,40.006018",
+      "poi_name": "清华大学马克思主义学院",
+      "amap_address": "清华大学",
+      "matched_keyword": "清华大学马克思主义学院（已校准）",
+      "note": "已匹配到正确坐标（之前距离>3km 误判）"
+    },
+    {
+      "type": "学院",
+      "name": "人文学院",
+      "url": "http://www.rwxy.tsinghua.edu.cn/",
+      "departments": [
+        "中国语言文学系",
+        "历史系",
+        "科学史系",
+        "哲学系"
+      ],
+      "location": "116.328281,40.003591",
+      "poi_name": "清华大学人文学院",
+      "amap_address": "学堂路蒙民伟人文楼",
+      "matched_keyword": "人文学院"
+    },
+    {
+      "type": "系",
+      "name": "外国语言文学系",
+      "url": "https://www.dfll.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.327735,40.001920",
+      "poi_name": "清华大学外国语言文学系",
+      "amap_address": "双清路30号黄松益楼清华大学",
+      "matched_keyword": "外国语言文学系"
+    },
+    {
+      "type": "学院",
+      "name": "社会科学学院",
+      "url": "http://www.sss.tsinghua.edu.cn/",
+      "departments": [
+        "社会学系",
+        "政治学系",
+        "国际关系学系",
+        "经济学研究所"
+      ],
+      "location": "116.322290,40.006076",
+      "poi_name": "清华大学社会科学学院",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "社会科学学院"
+    },
+    {
+      "type": "学院",
+      "name": "法学院",
+      "url": "http://www.law.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.332082,39.998238",
+      "poi_name": "清华大学法学院",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "法学院"
+    },
+    {
+      "type": "学院",
+      "name": "新闻与传播学院",
+      "url": "http://www.tsjc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.326084,40.002996",
+      "poi_name": "清华大学新闻与传播学院",
+      "amap_address": "双清路30号学堂路清华大学",
+      "matched_keyword": "新闻与传播学院"
+    },
+    {
+      "type": "学院",
+      "name": "五道口金融学院",
+      "url": "http://www.pbcsf.tsinghua.edu.cn/",
+      "departments": [],
+      "note": "毗邻中关村智造大街",
+      "location": "116.335611,39.993612",
+      "poi_name": "清华大学五道口金融学院",
+      "amap_address": "北京市海淀区成府路43号(五道口地铁站A北口步行210米)",
+      "matched_keyword": "五道口金融学院"
+    },
+    {
+      "type": "学院",
+      "name": "美术学院",
+      "url": "http://www.ad.tsinghua.edu.cn/",
+      "departments": [
+        "艺术史论系",
+        "工业设计系",
+        "环境艺术设计系",
+        "陶瓷艺术设计系",
+        "视觉传达设计系",
+        "染织服装艺术设计系",
+        "信息艺术设计系",
+        "工艺美术系",
+        "绘画系",
+        "雕塑系"
+      ],
+      "location": "116.335764,39.999688",
+      "poi_name": "清华大学美术学院",
+      "amap_address": "双清路30号清华大学校内",
+      "matched_keyword": "美术学院"
+    },
+    {
+      "type": "学院",
+      "name": "教育学院",
+      "url": "https://se.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.327740,40.001944",
+      "poi_name": "清华大学教育学院",
+      "amap_address": "双清路30号清华大学黄松益楼",
+      "matched_keyword": "清华教育学院"
+    },
+    {
+      "type": "学院",
+      "name": "深圳国际研究生院",
+      "url": "https://www.sigs.tsinghua.edu.cn/",
+      "departments": [],
+      "note": "位于深圳",
+      "location": "113.970741,22.590652",
+      "poi_name": "清华大学深圳国际研究生院",
+      "amap_address": "丽水路2279号",
+      "matched_keyword": "深圳国际研究生院"
+    },
+    {
+      "type": "书院",
+      "name": "苏世民书院",
+      "url": "http://www.sc.tsinghua.edu.cn/",
+      "departments": [],
+      "note": "全球学者项目",
+      "location": "116.329628,40.007629",
+      "poi_name": "清华大学苏世民书院",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "苏世民书院"
+    },
+    {
+      "type": "书院",
+      "name": "新雅书院",
+      "url": "http://www.xyc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.330048,40.005714",
+      "poi_name": "清华大学新雅书院",
+      "amap_address": "清华大学10号楼北楼内",
+      "matched_keyword": "新雅书院"
+    },
+    {
+      "type": "书院",
+      "name": "致理书院",
+      "url": "http://www.zlc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.326,40.003",
+      "poi_name": "致理书院（清华校內，amap 数据缺）",
+      "amap_address": "北京市海淀区清华园1号",
+      "matched_keyword": "fallback（清华校内通用坐标）",
+      "note": "清华 2024-2025 新成立机构，位于清华大学校园内（具体楼号待清华官方公布；amap POI 数据库未收录）"
+    },
+    {
+      "type": "书院",
+      "name": "日新书院",
+      "url": "http://www.rxc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.326,40.003",
+      "poi_name": "日新书院（清华校內，amap 数据缺）",
+      "amap_address": "北京市海淀区清华园1号",
+      "matched_keyword": "fallback（清华校内通用坐标）",
+      "note": "清华 2024-2025 新成立机构，位于清华大学校园内（具体楼号待清华官方公布；amap POI 数据库未收录）"
+    },
+    {
+      "type": "书院",
+      "name": "未央书院",
+      "url": "http://www.wyc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.326,40.003",
+      "poi_name": "未央书院（清华校內，amap 数据缺）",
+      "amap_address": "北京市海淀区清华园1号",
+      "matched_keyword": "fallback（清华校内通用坐标）",
+      "note": "清华 2024-2025 新成立机构，位于清华大学校园内（具体楼号待清华官方公布；amap POI 数据库未收录）"
+    },
+    {
+      "type": "书院",
+      "name": "探微书院",
+      "url": "http://www.twc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.326,40.003",
+      "poi_name": "探微书院（清华校內，amap 数据缺）",
+      "amap_address": "北京市海淀区清华园1号",
+      "matched_keyword": "fallback（清华校内通用坐标）",
+      "note": "清华 2024-2025 新成立机构，位于清华大学校园内（具体楼号待清华官方公布；amap POI 数据库未收录）"
+    },
+    {
+      "type": "书院",
+      "name": "行健书院",
+      "url": "http://www.xjc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.326,40.003",
+      "poi_name": "行健书院（清华校內，amap 数据缺）",
+      "amap_address": "北京市海淀区清华园1号",
+      "matched_keyword": "fallback（清华校内通用坐标）",
+      "note": "清华 2024-2025 新成立机构，位于清华大学校园内（具体楼号待清华官方公布；amap POI 数据库未收录）"
+    },
+    {
+      "type": "书院",
+      "name": "求真书院",
+      "url": "https://qzc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.340574,40.010192",
+      "poi_name": "求真书院",
+      "amap_address": "双清路与逸清南路交叉口西240米",
+      "matched_keyword": "求真书院"
+    },
+    {
+      "type": "书院",
+      "name": "为先书院",
+      "url": "https://www.wxc.tsinghua.edu.cn",
+      "departments": [],
+      "location": "116.326,40.003",
+      "poi_name": "为先书院（清华校內，amap 数据缺）",
+      "amap_address": "北京市海淀区清华园1号",
+      "matched_keyword": "fallback（清华校内通用坐标）",
+      "note": "清华 2024-2025 新成立机构，位于清华大学校园内（具体楼号待清华官方公布；amap POI 数据库未收录）"
+    },
+    {
+      "type": "书院",
+      "name": "秀钟书院",
+      "url": "https://www.xzc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.326,40.003",
+      "poi_name": "秀钟书院（清华校內，amap 数据缺）",
+      "amap_address": "北京市海淀区清华园1号",
+      "matched_keyword": "fallback（清华校内通用坐标）",
+      "note": "清华 2024-2025 新成立机构，位于清华大学校园内（具体楼号待清华官方公布；amap POI 数据库未收录）"
+    },
+    {
+      "type": "书院",
+      "name": "笃实书院",
+      "url": "https://www.dsc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.326,40.003",
+      "poi_name": "笃实书院（清华校內，amap 数据缺）",
+      "amap_address": "北京市海淀区清华园1号",
+      "matched_keyword": "fallback（清华校内通用坐标）",
+      "note": "清华 2024-2025 新成立机构，位于清华大学校园内（具体楼号待清华官方公布；amap POI 数据库未收录）"
+    },
+    {
+      "type": "书院",
+      "name": "至善书院",
+      "url": "https://www.zsc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.334494,40.006482",
+      "poi_name": "清华大学出版社(至善路)",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "清华至善书院"
+    },
+    {
+      "type": "书院",
+      "name": "无穹书院",
+      "url": "https://wqc.tsinghua.edu.cn/",
+      "departments": [],
+      "note": "清华 2024-2025 新成立机构，位于清华大学校园内（具体楼号待清华官方公布；amap POI 数据库未收录）",
+      "location": "116.326,40.003",
+      "poi_name": "无穹书院（清华校內，amap 数据缺）",
+      "amap_address": "北京市海淀区清华园1号",
+      "matched_keyword": "fallback（清华校内通用坐标）"
+    },
+    {
+      "type": "书院",
+      "name": "紫荆书院",
+      "url": "https://zijingcollege.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.329398,40.011394",
+      "poi_name": "清华大学紫荆学生公寓",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "清华紫荆书院"
+    },
+    {
+      "type": "书院",
+      "name": "自强书院",
+      "url": "https://zqc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.335475,40.004325",
+      "poi_name": "清华自强科技楼5号楼",
+      "amap_address": "双清路30号",
+      "matched_keyword": "自强书院"
+    },
+    {
+      "type": "书院",
+      "name": "水木书院",
+      "url": "https://smc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.322990,40.003013",
+      "poi_name": "水木清华",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "清华水木书院"
+    },
+    {
+      "type": "学院",
+      "name": "全球创新学院",
+      "url": "http://gix.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.326,40.003",
+      "poi_name": "全球创新学院（清华校內，amap 数据缺）",
+      "amap_address": "北京市海淀区清华园1号",
+      "matched_keyword": "fallback（清华校内通用坐标）",
+      "note": "清华 2024-2025 新成立机构，位于清华大学校园内（具体楼号待清华官方公布；amap POI 数据库未收录）"
+    },
+    {
+      "type": "学院",
+      "name": "国家卓越工程师学院",
+      "url": "https://www.ngce.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.354032,39.991742",
+      "poi_name": "国家卓越工程师学院",
+      "amap_address": "学院路30北京科技大学文法学院",
+      "matched_keyword": "国家卓越工程师学院"
+    },
+    {
+      "type": "其他",
+      "name": "体育部",
+      "url": "http://www.thsports.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.331414,40.005439",
+      "poi_name": "清华大学体育部",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "体育部"
+    },
+    {
+      "type": "中心",
+      "name": "艺术教育中心",
+      "url": "http://www.arts.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.321574,40.004099",
+      "poi_name": "清华大学艺术教育中心",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "清华艺术教育"
+    },
+    {
+      "type": "中心",
+      "name": "语言教学中心",
+      "url": "http://www.lc.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.327735,40.001920",
+      "poi_name": "清华大学外国语言文学系",
+      "amap_address": "双清路30号黄松益楼清华大学",
+      "matched_keyword": "清华语言教学"
+    },
+    {
+      "type": "中心",
+      "name": "数学基础教学中心",
+      "url": "https://www.tcm.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.317088,40.001778",
+      "poi_name": "清华大学数学科学中心",
+      "amap_address": "双清路30号清华大学",
+      "matched_keyword": "清华数学基础"
+    },
+    {
+      "type": "中心",
+      "name": "出土文献研究与保护中心",
+      "url": "http://www.ctwx.tsinghua.edu.cn/",
+      "departments": [],
+      "location": "116.328321,40.003576",
+      "poi_name": "清华大学出土文献研究与保护中心",
+      "amap_address": "清华大学蒙民伟人文楼",
+      "matched_keyword": "出土文献研究与保护中心"
+    }
+  ],
+  "snapshot_metadata": {
+    "address_layer": "amap_poi_text",
+    "address_query": "amap text --keywords \"<机构名>\" --city 110000",
+    "address_note": "通过 amap text 批量查询 + 手工校正；个别新书院/机构 amap 无 POI，用清华园中心坐标 fallback（具体楼号待清华官方确认）"
+  }
+}

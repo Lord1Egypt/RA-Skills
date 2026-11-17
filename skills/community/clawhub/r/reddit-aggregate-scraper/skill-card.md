@@ -1,45 +1,58 @@
-## Description: <br>
-Reddit 数据查询助手，覆盖帖子详情、版块、用户、搜索、评论、推荐等全功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reddit data query assistant for posts, subreddits, users, search, comments, and feeds through MaxHub APIs.
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-External users and developers use this skill to query Reddit posts, subreddit feeds, user profiles, searches, comments, and recommendations through the MaxHub API, then summarize or analyze the returned community data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a MaxHub API key and sends Reddit queries to the external aconfig.cn service. <br>
-Mitigation: Install only when the user trusts MaxHub/aconfig.cn with the API key and submitted query terms; avoid private identifiers or sensitive investigation terms. <br>
-Risk: Security evidence notes automatic fallback guidance to unrelated Douyin/Xiaohongshu APIs. <br>
-Mitigation: Review or remove the unrelated fallback instructions before autonomous use, and constrain execution to the documented Reddit endpoints. <br>
+## Use Case:
 
+External analysts, researchers, content teams, and developers use this skill to collect and summarize Reddit posts, subreddit feeds, user profiles, search results, and comments for community monitoring, market research, and content discovery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/new-ironman/reddit-aggregate-scraper) <br>
-- [MaxHub API Website](https://www.aconfig.cn) <br>
-- [Post Data API Reference](references/api-post.md) <br>
-- [Subreddit API Reference](references/api-subreddit.md) <br>
-- [User and Search API Reference](references/api-user-search.md) <br>
-- [Parameter Mappings](references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and summarized API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual English or Chinese responses, tables, analysis summaries, setup guidance, and next-step suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: server release evidence and frontmatter) <br>
+Risk: The skill requires the sensitive MAXHUB_API_KEY credential for MaxHub API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key out of logs and prompts, use a pinned and verified installer version, and only configure the credential in the intended runtime environment.
+
+Risk: Security evidence reports non-Reddit fallback endpoint instructions despite the skill presenting itself as Reddit-only.
+
+Mitigation: Before deployment, remove or ignore non-Reddit fallback instructions and allow only expected calls to https://www.aconfig.cn/api/v1/reddit/*.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/new-ironman/skills/reddit-aggregate-scraper)
+- [MaxHub API website](https://www.aconfig.cn)
+- [Post Data API / 帖子数据接口](references/api-post.md)
+- [Subreddit API / 版块接口](references/api-subreddit.md)
+- [User & Search API / 用户与搜索接口](references/api-user-search.md)
+- [Parameter Mappings / 参数映射](references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown responses with API-call guidance, summaries, tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English and Chinese output; uses MAXHUB_API_KEY for read-only MaxHub API calls.]
+
+## Skill Version(s):
+
+3.6.1 (source: server evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

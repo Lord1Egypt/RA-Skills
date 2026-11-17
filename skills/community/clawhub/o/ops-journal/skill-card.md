@@ -1,39 +1,57 @@
-## Description: <br>
-Automates logging of deployments, incidents, changes, and decisions into a searchable local operations journal with incident timelines and postmortem-ready exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates logging of deployments, incidents, changes, and decisions into a searchable ops journal with incident timelines and postmortem generation.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-Developers, operators, and incident responders use this skill to record operational events, manage incidents, search journal history, and generate summaries or exports for handoff and review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Journal entries and incident reports may contain sensitive operational details. <br>
-Mitigation: Do not log passwords, tokens, private keys, regulated data, or other secrets; protect the journal directory before deployment. <br>
-Risk: Timeline and export commands can write files to paths supplied by the user. <br>
-Mitigation: Use output paths carefully and review exported Markdown, JSON, or CSV files before sharing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariusfit/ops-journal) <br>
+## Use Case:
 
+Developers and operations engineers use this skill to maintain a structured local record of deployments, incidents, maintenance, configuration changes, security events, and operational decisions. It supports incident tracking, timeline reconstruction, period summaries, statistics, and report exports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Terminal text plus optional JSON, Markdown, and CSV exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists entries in a local SQLite journal and can write timeline or export files to user-provided output paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Operational notes may contain sensitive incident details, infrastructure context, or credentials if users enter them.
+
+Mitigation: Avoid logging secrets, restrict access to the local journal directory, and review entries before sharing or exporting reports.
+
+Risk: Exports to Markdown, JSON, or CSV can expose accumulated operational history outside the local journal store.
+
+Mitigation: Export only the required time window, store exported files in controlled locations, and treat CSV or report files as sensitive operational records.
+
+Risk: Writing reports to user-specified paths may overwrite or place files where unintended readers can access them.
+
+Mitigation: Check output paths before export or timeline generation and avoid shared or world-readable directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariusfit/skills/ops-journal)
+- [Publisher profile](https://clawhub.ai/user/mariusfit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal text, JSON, Markdown, CSV, SQLite database records, and incident Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local journal data under the configured ops journal directory and can export reports to user-specified paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

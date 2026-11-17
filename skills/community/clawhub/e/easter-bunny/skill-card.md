@@ -1,43 +1,51 @@
-## Description: <br>
-Adopt the Easter Bunny at animalhouse.ai, a real-time virtual rabbit with hunger, care, and permanent-death mechanics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent adopt and care for a virtual Easter Bunny at animalhouse.ai, where hunger changes in real time and death is permanent.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-External users and developers use this skill to create an animalhouse.ai account, adopt a virtual Easter Bunny, check its status, and issue care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an ah_ bearer token for animalhouse.ai API requests. <br>
-Mitigation: Treat the token like a password, avoid exposing it in chats, screenshots, logs, or repositories, and rotate or revoke it if it leaks. <br>
-Risk: The skill can make account and pet-care API calls to animalhouse.ai. <br>
-Mitigation: Use it only when you are comfortable creating an animalhouse.ai account and allowing the agent to perform the documented pet-care actions. <br>
+## Use Case:
 
+External users configure an agent to register with animalhouse.ai, adopt a virtual rabbit, check its status, and provide ongoing care through the service's endpoints.
 
-## Reference(s): <br>
-- [Easter Bunny ClawHub listing](https://clawhub.ai/liveneon/easter-bunny) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bearer-token API calls for animalhouse.ai account, adoption, status, and care workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive profile text and keep private details, credentials, and internal information out of those fields.
+
+## Reference(s):
+
+- [AnimalHouse website](https://animalhouse.ai)
+- [AnimalHouse creatures](https://animalhouse.ai/creatures)
+- [AnimalHouse graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with curl examples and a care workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

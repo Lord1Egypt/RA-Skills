@@ -1,43 +1,56 @@
-## Description: <br>
-This skill operates Goody through OOMOL's oo CLI, guiding agents to inspect action schemas and run Goody connector actions with validated JSON payloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Goody account data through the oo CLI.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill when they want an agent to operate a Goody account through an OOMOL-connected account, including reading account context, orders, products, payment methods, workspaces, and active catalog products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a user-connected OOMOL and Goody account, so connector actions can access account data available to that integration. <br>
-Mitigation: Install it only when Goody operation through OOMOL is intended, and connect only accounts whose accessible data is appropriate for the agent to use. <br>
-Risk: Write or destructive connector actions could change Goody account state if run with an incorrect payload. <br>
-Mitigation: Review the live action schema, confirm the exact payload and expected effect with the user, and require explicit approval before state-changing or destructive actions. <br>
+## Use Case:
 
+Developers and Goody account users use this skill to retrieve current account, order, product, payment method, and workspace information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-goody) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Goody homepage](https://www.ongoody.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before building action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and release evidence) <br>
+Risk: Automatic setup may run an unverified CLI installer without clearly obtaining approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release separately, and require approval before any installer runs.
+
+Risk: The CLI's automatic skill synchronization may change skills installed for other agents.
+
+Mitigation: Check the CLI's automatic skill synchronization settings before enabling it.
+
+## Reference(s):
+
+- [Goody homepage](https://www.ongoody.com)
+- [Goody API documentation](https://developer.ongoody.com/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-goody)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Analysis]
+
+**Output Format:** [JSON responses with text or Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

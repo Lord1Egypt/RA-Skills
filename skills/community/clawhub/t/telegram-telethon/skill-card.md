@@ -1,43 +1,58 @@
-## Description: <br>
-Manage Telegram through the tgctl-telethon CLI using Python and Telethon for user-account actions including messaging, chat search, group management, media transfer, profile updates, and message listening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Telegram from an agent through a Python/Telethon CLI for user-account messaging, chat search, group and channel administration, profile actions, media transfer, and listening workflows.
 
-## Publisher: <br>
-[youziyouzishu](https://clawhub.ai/user/youziyouzishu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youziyouzishu](https://clawhub.ai/user/youziyouzishu)
 
-## Use Case: <br>
-Developers and agents use this skill to install and operate a Telethon-based CLI for Telegram user-account workflows. It supports tasks such as sending or editing messages, browsing chats, transferring media, managing groups and channels, and updating account state after the user has configured credentials and logged in. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad powers over a real Telegram user account, including sending, deleting, joining, leaving, inviting, kicking, blocking, changing admins, updating profiles, and listening to chats. <br>
-Mitigation: Require explicit user confirmation before account-changing or privacy-sensitive Telegram actions. <br>
-Risk: Telegram API credentials and local session files can grant account access if exposed. <br>
-Mitigation: Keep API credentials and session files private, and do not store them in shared documentation, logs, or version control. <br>
-Risk: The server security verdict is suspicious because the skill is powerful account automation with limited built-in safety guidance. <br>
-Mitigation: Install only when the operator intends to let an agent control a Telegram user account, and review intended commands before execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and operate a Telethon-backed CLI for Telegram user-account workflows when bot API access is not appropriate.
 
-## Reference(s): <br>
-- [Telegram API Development](https://my.telegram.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/youziyouzishu/telegram-telethon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Telegram API credentials, interactive login, and a local Telethon session before account actions can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks for durable Telegram account-level access and can perform sensitive messaging, deletion, administration, block, join or leave, profile, and listen operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate Telegram profile when possible and require explicit user confirmation before any sensitive Telegram operation.
+
+Risk: Telegram API credentials and local session files can expose account access if stored in shared repositories or left unprotected.
+
+Mitigation: Keep API credentials out of TOOLS.md and shared repositories, and protect or remove ~/.tgctl-telethon sessions when finished.
+
+Risk: The submitted package is incomplete because the installer references a missing tgctl script.
+
+Mitigation: Confirm the executable script is present and reviewed before installing or using the skill.
+
+## Reference(s):
+
+- [Telegram API Development](https://my.telegram.org)
+- [ClawHub skill page](https://clawhub.ai/youziyouzishu/skills/telegram-telethon)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and CLI usage tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may require interactive Telegram login and local session state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

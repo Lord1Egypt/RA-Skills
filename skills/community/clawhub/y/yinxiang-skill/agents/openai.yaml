@@ -1,0 +1,4 @@
+interface:
+  display_name: "印象笔记"
+  short_description: "创建和更新笔记、网页剪藏、筛选统计笔记、管理笔记本和标签"
+  default_prompt: "使用 $yinxiang-skill 操作印象笔记：记录内容、更新笔记、移动笔记本、增删标签、剪藏网页、按关键词/标签名称/笔记本/创建时间筛选统计笔记"

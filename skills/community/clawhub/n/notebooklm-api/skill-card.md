@@ -1,43 +1,62 @@
-## Description: <br>
-Provides agent workflows for creating Google NotebookLM notebooks, adding sources, chatting with content, generating artifacts, and downloading outputs through notebooklm-py. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete API access for Google NotebookLM that helps agents create notebooks, add sources, chat with content, generate artifacts, and download results in multiple formats.
 
-## Publisher: <br>
-[lmanchu](https://clawhub.ai/user/lmanchu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lmanchu](https://clawhub.ai/user/lmanchu)
 
-## Use Case: <br>
-Developers and agent users use this skill to automate Google NotebookLM research, content analysis, and artifact generation from URLs, documents, and media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user prompts and local or sensitive documents to Google NotebookLM under broad activation rules. <br>
-Mitigation: Prefer explicit /notebooklm activation and require confirmation before uploading local or sensitive documents. <br>
-Risk: NotebookLM authentication material can expose access to a user's Google NotebookLM account if logged or shared. <br>
-Mitigation: Keep NOTEBOOKLM_AUTH_JSON out of logs and chat transcripts, and use a dedicated NOTEBOOKLM_HOME or account for automation. <br>
-Risk: Parallel agents can overwrite shared NotebookLM context and operate on the wrong notebook. <br>
-Mitigation: Use explicit notebook IDs or separate NOTEBOOKLM_HOME directories for parallel workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to automate NotebookLM workflows: creating notebooks, importing sources, querying notebook content, generating audio/video/reports/quizzes/flashcards/mind maps/slide decks/infographics/data tables, and downloading outputs.
 
-## Reference(s): <br>
-- [NotebookLM API Skill Page](https://clawhub.ai/lmanchu/notebooklm-api) <br>
-- [lmanchu Publisher Profile](https://clawhub.ai/user/lmanchu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide agents to create notebooks, upload sources, ask questions, generate NotebookLM artifacts, and download outputs in formats such as Markdown, JSON, CSV, HTML, PDF, PNG, MP3, and MP4.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: server release metadata and artifact comment) <br>
+Risk: The skill can direct an agent to use a Google account, create notebooks, upload local files or URLs, and change language settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated virtual environment and least-privileged Google account, and require confirmation before uploads, notebook creation, or account-level setting changes.
+
+Risk: The skill can install or update external notebooklm-py code and its own agent skill wrapper.
+
+Mitigation: Pin and verify the CLI version, avoid installing from an unpinned main branch, and require confirmation before running `notebooklm skill install`.
+
+Risk: CI or multi-agent use can expose Google authentication material or mix notebook context between concurrent agents.
+
+Mitigation: Avoid CI secrets unless necessary, isolate `NOTEBOOKLM_HOME` per account or agent, and prefer explicit notebook IDs over shared context.
+
+Risk: Long-running generation, background agents, and downloads may write files or continue actions after the main conversation moves on.
+
+Mitigation: Require confirmation before spawning background agents or downloading files, and record artifact and notebook IDs for later review.
+
+## Reference(s):
+
+- [NotebookLM API skill page](https://clawhub.ai/lmanchu/skills/notebooklm-api)
+- [Publisher profile: lmanchu](https://clawhub.ai/user/lmanchu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide workflows that create, generate, wait for, and download NotebookLM artifacts through the notebooklm-py CLI.]
+
+## Skill Version(s):
+
+0.3.2 (source: server release metadata and artifact comment)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

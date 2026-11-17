@@ -1,38 +1,54 @@
-## Description: <br>
-Explain, compare, and choose geographic coordinate reference systems and map projections, including CRS selection, EPSG codes, datum differences, axis order, units, and reprojection planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain, compare, and choose geographic coordinate reference systems and map projections, including CRS selection, EPSG codes, datum differences, axis order, units, and reprojection planning.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers, GIS analysts, and mapping practitioners use this skill to choose and compare CRS and projection options, plan reprojection, and avoid common coordinate-system mistakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect CRS, EPSG code, datum transformation, local grid, units, or axis order can misplace data or produce inaccurate measurements. <br>
-Mitigation: Verify source and target CRS definitions, datum transformations, local grid requirements, units, and axis order before applying guidance to important GIS, engineering, or survey data. <br>
+## Use Case:
 
+External users, developers, and GIS practitioners use this skill to choose, compare, and explain CRS and projection options for storage, web maps, measurement, analysis, and coordinate conversion planning.
 
-## Reference(s): <br>
-- [Common Coordinate Systems](artifact/references/common-systems.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance with CRS names, EPSG codes, warnings, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or data-changing actions; local file conversion should be delegated to GIS tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Implicit invocation could apply the skill to unrelated mapping, location, routing, or place-search tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for coordinate-system, EPSG, datum, projection, axis-order, unit, or reprojection-planning questions.
+
+Risk: Incorrect CRS assumptions can lead to misleading measurement or alignment guidance.
+
+Mitigation: Confirm the source CRS, target CRS, units, datum, axis order, and whether a local transformation model is required before using the recommendation.
+
+## Reference(s):
+
+- [Common Coordinate Systems](references/common-systems.md)
+- [ClawHub skill page](https://clawhub.ai/jvy/skills/proj)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline CRS identifiers, conversion recommendations, and handoff instructions when execution is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include EPSG codes, CRS names, axis-order warnings, unit notes, and references to related GIS execution skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

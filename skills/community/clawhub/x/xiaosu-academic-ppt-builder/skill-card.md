@@ -1,41 +1,54 @@
-## Description: <br>
-Helps users plan academic presentation decks for thesis defenses, conference oral talks, grant reports, and paper-summary-to-PPT workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents build academic presentation plans for thesis defenses, conference talks, and funding reports, including story arcs, slide structure, chart guidance, and reproducibility checks.
 
-## Publisher: <br>
-[xiaosu-yj](https://clawhub.ai/user/xiaosu-yj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaosu-yj](https://clawhub.ai/user/xiaosu-yj)
 
-## Use Case: <br>
-External academic users, students, researchers, and grant teams use this skill to convert a paper summary or presentation prompt into a structured academic PPT plan with story arc, slide sequence, visualization guidance, and reproducibility checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad PPT wording could activate the skill for non-academic slide requests. <br>
-Mitigation: State the intended deck type explicitly and reserve this skill for thesis defenses, conference talks, grant reports, and paper-summary-to-PPT workflows. <br>
-Risk: Generated slide plans may overstate claims, causal relationships, statistics, or reproducibility details if source material is incomplete. <br>
-Mitigation: Review the generated story arc, evidence-chain mapping, statistical annotations, ethics statements, and data-availability notes against the source paper or project records before presenting. <br>
+## Use Case:
 
+External users and developers use this skill to turn academic paper summaries or brief presentation requests into structured PPT outlines with story arcs, slide-by-slide content, chart specifications, method pages, and optional research disclosure sections.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/xiaosu-yj/xiaosu-academic-ppt-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaosu-yj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown presentation plan with structured slide outlines, tables, checklists, and visual-design guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on academic story arcs, evidence-chain mapping, reproducible methods pages, self-contained figures, and optional disclosure sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad PPT requests may activate the skill even when the user does not want academic or Chinese-language slide guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the desired context, audience, and language when requesting non-academic or non-Chinese presentation work.
+
+Risk: Generated academic slide plans may include inferred story structure, statistics framing, or disclosure sections that need domain review.
+
+Mitigation: Review the outline, statistical language, chart specifications, and ethics or disclosure statements against the source paper and institutional requirements before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaosu-yj/skills/xiaosu-academic-ppt-builder)
+- [Publisher profile](https://clawhub.ai/user/xiaosu-yj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown slide outline and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces slide-by-slide plans, story arcs, chart specifications, reproducibility checks, and optional disclosure sections; does not generate binary PPT files.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

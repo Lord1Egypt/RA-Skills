@@ -1,40 +1,56 @@
-## Description: <br>
-Yummy Shared provides shared yummycli operating guidance for first-time setup, Gemini credential checks, JSON output handling, and CLI safety rules before image or video generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through first-time yummycli use, Gemini credential checks, JSON output handling, and shared safety rules for image or video generation.
 
-## Publisher: <br>
-[yummysource](https://clawhub.ai/user/yummysource) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yummysource](https://clawhub.ai/user/yummysource)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill when configuring yummycli with Gemini, validating authentication, interpreting command JSON output, and applying shared CLI safety rules before generation or editing tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A Gemini API key could be exposed if entered directly into commands that are captured in shell history or agent logs.
+
+Mitigation: Use provider-side key restrictions, avoid typing real keys into logged commands, and rotate any key that may have been exposed.
+
+Risk: The skill depends on the external @yummysource/yummycli package and the yummycli binary.
+
+Mitigation: Install only if the package source is trusted, and prefer a pinned or reviewed package version when possible.
+
+Risk: Generation commands may overwrite a user-specified output path if invoked that way.
+
+Mitigation: Do not overwrite user-specified output paths unless the user intentionally requests that behavior.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill when operating yummycli to verify Gemini authentication, initialize credentials when needed, interpret JSON command output, and apply shared safety rules for generated image or video files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents passing a Gemini API key through a command-line argument, which can expose sensitive credentials through shell history or process listings. <br>
-Mitigation: Use a dedicated, revocable key through GEMINI_API_KEY, an interactive prompt, or another secret-safe mechanism instead of pasting a live key into chat or a command argument. <br>
-Risk: The skill depends on yummycli for generation workflows and credential handling. <br>
-Mitigation: Install and run the skill only when the publisher and @yummysource/yummycli package are trusted. <br>
+**Output Format:** [Markdown with bash commands and JSON examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Yummy Shared on ClawHub](https://clawhub.ai/yummysource/yummy-shared) <br>
+**Other Properties Related to Output:** [Requires yummycli and GEMINI_API_KEY for Gemini-backed commands.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires yummycli and GEMINI_API_KEY for Gemini-backed commands; generation commands return JSON on stdout.] <br>
+1.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

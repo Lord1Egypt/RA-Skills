@@ -1,40 +1,52 @@
-## Description: <br>
-Format, prettify, minify, or validate JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Format, prettify, minify, or validate JSON.
 
-## Publisher: <br>
-[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, technical writers, and other users use this skill to format, minify, or validate JSON supplied in the current agent session.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: User-provided JSON may contain secrets or sensitive data.
+
+Mitigation: Avoid pasting secrets unless the user is comfortable having the agent process that text in the current session.
+
+Risk: Invalid JSON may be mistaken for repaired JSON if the user expects automatic fixes.
+
+Mitigation: Report parse errors clearly and suggest a repair-focused skill when the user asks to fix invalid JSON.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and other agent users use this skill to format, minify, or validate JSON input, including primitives, objects, and arrays. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports no malicious behavior but notes that the artifact was not available for a full artifact-backed review. <br>
-Mitigation: Review the included skill files before installing and confirm that the behavior matches JSON formatting, minification, and validation. <br>
-Risk: Invalid JSON input may produce parser errors rather than repaired output. <br>
-Mitigation: Use the skill for strict validation and formatting; route JSON repair requests to a dedicated repair workflow when needed. <br>
+**Output Format:** [Markdown with JSON code blocks or validation messages]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ohernandez-dev-blossom/json-format) <br>
+**Other Properties Related to Output:** [May preserve insertion order or sort object keys alphabetically when requested; reports parse errors for invalid JSON.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown containing formatted JSON, compact JSON, or validation messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports 2-space or 4-space indentation and optional alphabetical key sorting.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

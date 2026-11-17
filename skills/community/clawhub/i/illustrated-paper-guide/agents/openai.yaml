@@ -1,0 +1,6 @@
+interface:
+  display_name: "Illustrated Paper Guide"
+  short_description: "Build reviewed top-down paper guides and reading checkpoints"
+  default_prompt: "Use $illustrated-paper-guide and choose the appropriate workflow. For a new full guide, compare source-grounded reading paths, synthesize and review one shallow-to-deep route, then build the guide and linked checklist. For focused questions or local edits, stay single-reader."
+policy:
+  allow_implicit_invocation: true

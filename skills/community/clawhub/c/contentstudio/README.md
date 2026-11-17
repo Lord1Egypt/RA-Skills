@@ -8,9 +8,9 @@
 npx skills add contentstudioio/contentstudio-agent
 ```
 
-ContentStudio CLI — schedule social-media posts, manage media, accounts, comments, and approvals across **Facebook, LinkedIn, Twitter/X, Instagram, YouTube, TikTok, Pinterest, and Google Business Profile** through the [ContentStudio](https://contentstudio.io) public API.
+ContentStudio CLI — schedule social-media posts, generate AI images, manage media, accounts, comments, approvals, the social inbox, and analytics across **Facebook, LinkedIn, Twitter/X, Instagram, YouTube, TikTok, Pinterest, and Google Business Profile** through the [ContentStudio](https://contentstudio.io) public API.
 
-The `contentstudio` CLI provides a command-line interface for developers and AI agents to drive a ContentStudio workspace from the terminal — scheduling posts, uploading media, managing approvals, and auditing accounts/campaigns/labels — using the same API your dashboard does.
+The `contentstudio` CLI provides a command-line interface for developers and AI agents to drive a ContentStudio workspace from the terminal — scheduling posts, generating and editing images with AI, uploading media, managing approvals, triaging the inbox, pulling analytics reports, and auditing accounts/campaigns/labels — using the same API your dashboard does.
 
 ## Why use this CLI
 
@@ -44,6 +44,35 @@ npx skills add contentstudioio/contentstudio-agent
 ```
 
 Pick which agents to install into in the interactive prompt. The SKILL.md is dropped into each agent's skill directory (e.g. `~/.claude/skills/contentstudio/SKILL.md`).
+
+### Cursor and Grok Bot plugin
+
+This repo ships a [Cursor plugin](https://cursor.com/docs/reference/plugins) manifest at `.cursor-plugin/plugin.json`. Plugins listed in the Cursor marketplace are also available in Grok Bot.
+
+The plugin installs the `contentstudio` skill and the hosted ContentStudio MCP server (`https://mcp.contentstudio.io/mcp`, from `mcp.json`). On first use, you sign in to ContentStudio in your browser through OAuth. No API key or local install is needed for the MCP tools.
+
+- **Cursor:** open **Customize** in the sidebar, find **contentstudio**, and select **Install**.
+- **Grok Bot:** add **ContentStudio** from the Plugins marketplace.
+- **Local install (development):**
+
+  ```bash
+  git clone https://github.com/contentstudioio/contentstudio-agent.git
+  ln -s "$(pwd)/contentstudio-agent" ~/.cursor/plugins/local/contentstudio
+  ```
+
+  Then restart Cursor or run **Developer: Reload Window**.
+
+### Grok Build plugin
+
+This repo also has a `.grok-plugin/plugin.json` manifest with the same skill and hosted MCP server, for the [xAI plugin marketplace](https://github.com/xai-org/plugin-marketplace).
+
+### Endpoints and permissions
+
+- `https://mcp.contentstudio.io/mcp`: hosted MCP server (Streamable HTTP).
+- `https://api-prod.contentstudio.io/oauth/*`: OAuth 2.1 sign-in (PKCE, dynamic client registration). Scopes: `contentstudio:read`, `contentstudio:write`.
+- The plugin stores no API key. Some tools publish, delete, or approve posts, so review each write action before you approve it.
+
+> `skills/contentstudio/SKILL.md` is a copy of the root `SKILL.md` (plugin marketplaces don't follow symlinks). After editing `SKILL.md`, run `cp SKILL.md skills/contentstudio/SKILL.md`. CI checks this.
 
 ## Authentication
 
@@ -142,9 +171,10 @@ contentstudio --json campaigns:list
 contentstudio --json categories:list
 contentstudio --json labels:list
 contentstudio --json team:list
+contentstudio --json approval-workflows:list   # use an item's id as --approval-workflow-id
 ```
 
-All support `--page`, `--per-page`, and `--search` filters.
+All support `--page` and `--per-page`; the campaigns/categories/labels/team lists also support `--search`.
 
 ## Connecting Social Accounts
 
@@ -194,6 +224,17 @@ contentstudio --json accounts:add-facebook-group \
 
 The image URL is optional.
 
+### Remove (disconnect) an account
+
+```bash
+# preview first
+contentstudio --json accounts:remove <account_id> --dry-run
+# then actually remove
+contentstudio --json accounts:remove <account_id>
+```
+
+`account_id` is the account's `id` from `accounts:list`. Requires the `save_social` permission (403 otherwise); 404 if the account isn't in the workspace.
+
 All three connect commands support `--dry-run` to preview the payload without calling the API.
 
 ## Creating Posts
@@ -224,6 +265,11 @@ Options:
 | `--video-url` | External video URL |
 | `--media-id` | ID of media in your library (from `media:list`). Repeatable. |
 | `--post-type` | `feed` \| `reel` \| `story` \| `feed+reel` \| `feed+story` \| `feed+reel+story` \| `carousel` \| `carousel+story` \| `video` \| `shorts` |
+| `--facebook-carousel '<json>'` | Facebook carousel (Facebook accounts only): JSON object `{cards:[{image,link,title?,description?}], call_to_action?, end_card?, end_card_url?, accounts?}`. 2–10 cards. CLI adds `is_carousel_post:true`. |
+| `--threads '<json>'` | Threads multi-thread (Threads accounts only): JSON array `[{message, media?, media_ids?}]`. Max 10 items. CLI adds `has_multi_threads:true`. |
+| `--twitter '<json>'` | Twitter/X threaded tweets (Twitter accounts only): JSON array `[{message, media?, media_ids?}]`. Max 10 tweets. CLI adds `has_threaded_tweets:true`. No mixed media per tweet (no images+video together), max 1 video per tweet. |
+| `--first-comment "<message>"` | First comment (≤2000 chars). Build `first_comment:{message, accounts?}`. Requires `--first-comment-account`. |
+| `--first-comment-account <id>` | Account for the first comment. Repeatable. Must be a subset of `--account`; backend 422s if omitted when `--first-comment` is set. |
 | `--dry-run` | Print the body that would be POSTed and exit (no API call) |
 
 ### Multi-account post
@@ -252,6 +298,97 @@ contentstudio posts:create \
   -t draft \
   --media-id <media_library_id>
 ```
+
+### Queued post (added to the publishing queue; no explicit time)
+
+```bash
+contentstudio posts:create \
+  -c "Filler post for the queue" \
+  -i <account_id> \
+  -t queued
+```
+
+`scheduled_at` is optional for `queued` — the backend slots it into the workspace queue automatically.
+
+### Content-category post (accounts come from the category — no `-i`)
+
+```bash
+# Find a category id first:
+contentstudio --json categories:list
+
+# --content-category-id is required for -t content_category; accounts are derived from the category:
+contentstudio posts:create \
+  -c "Evergreen tip of the day" \
+  -t content_category \
+  --content-category-id <category_id>
+```
+
+### Facebook carousel (2–10 cards, Facebook accounts only)
+
+```bash
+contentstudio --json posts:create --dry-run \
+  -c "Shop the new collection" \
+  -i <facebook_account_id> \
+  -t scheduled \
+  -s "2026-07-01 10:00:00" \
+  --facebook-carousel '{"cards":[{"image":"https://e.com/1.jpg","link":"https://e.com/p1","title":"Tee"},{"image":"https://e.com/2.jpg","link":"https://e.com/p2","title":"Hoodie"}],"call_to_action":"SHOP_NOW","end_card":true,"end_card_url":"https://e.com/shop"}'
+```
+
+The CLI parses the JSON locally and adds `is_carousel_post: true`. A carousel and a colored-background text post (`--facebook-background-id`) are different Facebook formats — use one or the other, not both in the same post. CTA values (33 total) include `SHOP_NOW`, `LEARN_MORE`, `BUY_NOW`, `SIGN_UP`, … (see `SKILL.md` for the full list). The backend validates card counts and CTA values.
+
+### Threads multi-thread (chained, max 10 items, Threads accounts only)
+
+```bash
+contentstudio --json posts:create --dry-run \
+  -c "🧵 A thread on shipping CLIs" \
+  -i <threads_account_id> \
+  -t draft \
+  --threads '[{"message":"1/ Start small."},{"message":"2/ Ship a demo.","media":["https://e.com/demo.mp4"]},{"message":"3/ Iterate in public."}]'
+```
+
+The top-level `-c / --content` is the lead post; each `--threads` item is a chained reply, in order (don't repeat the lead text in the items). The CLI parses the JSON array locally and sets `has_multi_threads: true`. Each item needs `message` or `media`; Threads allows mixed media.
+
+### Twitter/X threaded tweets (chained, max 10 tweets, Twitter accounts only)
+
+```bash
+contentstudio --json posts:create --dry-run \
+  -c "Why we built a CLI 🧵" \
+  -i <twitter_account_id> \
+  -t draft \
+  --twitter '[{"message":"1/ Start with the contract."},{"message":"2/ Show, don'\''t tell.","media":["https://e.com/x.jpg"]},{"message":"3/ Ship it."}]'
+```
+
+The top-level `-c / --content` is the lead tweet; each `--twitter` item is a follow-up tweet in the chain, in order (don't repeat the lead text in the items). The CLI parses the JSON array locally and sets `has_threaded_tweets: true`. Each item needs `message` or `media`. Unlike Threads, Twitter does **not** allow mixed media in one tweet (no images + video together) and allows **max 1 video per tweet** — the backend enforces this and returns a 422 if violated.
+
+### Per-platform content overrides (`--platform-overrides`)
+
+Publish the same post to several platforms but swap the caption, post type, or media for one of them:
+
+```bash
+contentstudio --json posts:create --dry-run \
+  -c "Common caption" \
+  -i <facebook_id> -i <tiktok_id> \
+  -t draft \
+  -m https://example.com/common.jpg \
+  --platform-overrides '{"tiktok":{"content":{"media":{"video":"https://example.com/clip.mp4"}}}}'
+```
+
+TikTok publishes with the *common* text (`"Common caption"`, inherited — the override didn't touch `text`) and its *own* video, with **no images at all** — because the override's `content` includes a `media` key, TikTok's media is defined entirely by the override (no per-field fallback to the common image). Facebook, which has no override entry, publishes the common text and image unchanged.
+
+Keyed platforms: `facebook`, `instagram`, `twitter`, `linkedin`, `pinterest`, `youtube`, `tiktok`, `gmb`, `tumblr`, `threads`, `bluesky`, `telegram`. Each value is `{"content":{"text"?,"post_type"?,"media"?:{"images"?,"video"?}}}`. `text` and `post_type` merge independently with the common `content` (an override can set one without the other); `media` is all-or-nothing per platform. Omit `--platform-overrides` to publish the same `content` everywhere.
+
+### Post with a first comment
+
+```bash
+contentstudio --json posts:create --dry-run \
+  -c "New drop is live 🎉" \
+  -i <account_id> \
+  -t draft \
+  --first-comment "🔗 link in bio" \
+  --first-comment-account <account_id>
+```
+
+The CLI builds `first_comment: { message, accounts }`. `--first-comment-account` is **required** by the backend when `--first-comment` is set and must be a subset of the `-i / --account` IDs; otherwise the API returns a 422.
 
 ### Full body via `--body <file.json>`
 
@@ -290,12 +427,37 @@ Body schema:
     "approve_option": "anyone",
     "notes": "please review"
   },
+  // facebook_options: use EITHER carousel OR facebook_background_id (different FB formats, not both):
+  "facebook_options":  { "carousel": { "is_carousel_post": true, "cards": [ {"image":"https://...","link":"https://...","title":"...","description":"..."} ], "call_to_action": "SHOP_NOW", "end_card": true, "end_card_url": "https://..." } },
+  // colored-background text post instead: "facebook_options": { "facebook_background_id": "<id>" },
+  "threads_options":   { "has_multi_threads": true, "multi_threads": [ {"message":"1/ ..."}, {"message":"2/ ...","media":["https://...mp4"]} ] },
   "youtube_options":   { "title": "...", "privacy_status": "public", "category": "EDUCATION", "tags": ["tag1"], "license": "youtube", "made_for_kids": false },
   "tiktok_options":    { "privacy_level": "PUBLIC_TO_EVERYONE", "disable_comment": false, "disable_duet": false, "disable_stitch": false, "auto_add_music": false },
   "pinterest_options": { "title": "...", "link": "https://..." },
   "gmb_options":       { "topic_type": "EVENT", "start_date": "2026-05-01", "end_date": "2026-05-02", "title": "...", "action_type": "BOOK", "cta_link": "https://..." }
 }
 ```
+
+### Repeating posts
+
+```bash
+# Every week for 4 weeks, starting at the scheduled time
+contentstudio --json posts:create -c "Weekly tip" -i <account_id> \
+  -t scheduled -s "2026-10-01 09:00:00" \
+  --repeat-type Week --repeat-times 4 --repeat-gap 1 --dry-run
+```
+
+All three flags are required together. `--repeat-type` is `Day`, `Week` or
+`Month`; `--repeat-times` is 1–30; `--repeat-gap` is 1–99 and must be **≥3 for
+`Day`**. Repeat requires `--publish-type scheduled` — the CLI errors locally on
+any other publish type.
+
+This creates **N independent child posts**, not one recurring post — editing or
+deleting the parent leaves the children alone, and children drop Twitter/X and
+YouTube accounts. Repeat is never inherited on update, so re-sending a post
+without the flags creates nothing new and a read-modify-write is safe. On the
+read side `scheduling.repeat` is `{is_parent, is_child, parent_id, type, times,
+gap}` — no `enabled` key, which is request-only.
 
 ### Always preview with `--dry-run` first
 
@@ -307,6 +469,74 @@ contentstudio --json posts:create --dry-run \
 # → {"ok": true, "data": {"dry_run": true, "endpoint": "...", "body": {...}}}
 ```
 
+## Best Time to Post
+
+`scheduling:best-times` analyses the historical performance of the workspace's connected accounts and returns ranked posting **slots** — a weekday and an hour, best-first.
+
+```bash
+# Best times across every connected account
+contentstudio --json scheduling:best-times
+
+# Just this Facebook page, 3 recommendations for it
+contentstudio --json scheduling:best-times \
+  --account facebook:<account_id> --per-account-slots 3
+
+# Several accounts, and a bigger pooled list
+contentstudio --json scheduling:best-times \
+  --account facebook:<account_id> \
+  --account instagram:<account_id> \
+  --global-slots 10
+
+# Per-account slot counts need the full entity array
+contentstudio --json scheduling:best-times \
+  --entities '[{"id":"<account_id>","type":"facebook","slots":5},
+               {"id":"<account_id>","type":"linkedin","slots":2}]'
+```
+
+`--account` takes `<platform>:<account_id>` — both halves come from a single `accounts:list` row (its `platform` and `_id`). Omit it to analyse everything connected. Supported platforms: `facebook`, `instagram`, `linkedin`, `twitter`, `tiktok`, `youtube`, `pinterest`, `threads`, `gmb`, `tumblr`, `bluesky`, `telegram`.
+
+`--global-slots` (API default 5) and `--per-account-slots` (API default 3) are 1–24 and only control how much of the ranking comes back — they never change the analysis, and they don't affect `heatmap_matrix`, which always carries every hour that had signal.
+
+The `--json` payload:
+
+```json
+{
+  "ok": true,
+  "data": {
+    "meta": {
+      "generated_at": "2026-08-17T09:00:00Z",
+      "timezone": "Asia/Karachi",
+      "warnings": [],
+      "missing_entities": [],
+      "ai_fallback_entities": []
+    },
+    "global": {
+      "top_recommendations": [
+        { "rank": 1, "day": "Wednesday", "date": "2026-08-19", "time": "14",
+          "score": 100, "platform_breakdown": { "facebook": 60, "instagram": 40 } }
+      ],
+      "heatmap_matrix": { "data": [[14, 2, 100]] },
+      "dates_key": ["2026-08-19"]
+    },
+    "individual": {
+      "<account_id>": { "platform": "facebook", "source": "data_driven",
+                        "top_recommendations": [] }
+    }
+  }
+}
+```
+
+**Times are always in the workspace timezone** (echoed as `meta.timezone`); there is no timezone parameter. That is the same clock `posts:create --scheduled-at` writes against, so a slot goes in as-is — converting it to UTC first would move the post:
+
+```bash
+# rank 1 above → Wednesday 2026-08-19 at 14:00 workspace-local
+contentstudio --json posts:create \
+  -c "Launch day is here." -i <account_id> -t scheduled \
+  -s "2026-08-19 14:00:00" --dry-run
+```
+
+A workspace with too little history still returns HTTP 200: the accounts that could not be analysed are listed in `meta.missing_entities` and `global` may be `null`. Accounts in `meta.ai_fallback_entities` are estimates rather than measurements. Errors are 422 (unknown accounts, or no connected accounts) and 502 (`BackendError`) when the optimizer is temporarily unavailable.
+
 ## Managing Posts
 
 ### List posts (with filters)
@@ -316,6 +546,35 @@ contentstudio --json posts:list                                          # all r
 contentstudio --json posts:list --status draft --per-page 5
 contentstudio --json posts:list --status scheduled --status published
 contentstudio --json posts:list --date-from 2026-04-01 --date-to 2026-04-30
+```
+
+### Read one post
+
+```bash
+contentstudio --json posts:get <post_id>
+```
+
+The payload is identical to that post's row in `posts:list`, so this is the
+cheap way to re-read a single post after a write. A deleted post, a post in
+another workspace, and a malformed id all answer **404**.
+
+### Update a post
+
+`posts:update <post_id>` takes the **same flags/body** as `posts:create` (both `--body` and shortcut mode) and PUTs to `/workspaces/{w}/posts/{post_id}`. The backend rejects the update (422) once the post is `published` or `processing`.
+
+```bash
+# Preview an edit (change text + reschedule)
+contentstudio --json posts:update <post_id> -c "Updated copy" -i <account_id> -t scheduled -s "2026-08-01 10:00:00" --dry-run
+
+# Attach an approval workflow (get the id from approval-workflows:list)
+contentstudio --json posts:update <post_id> -c "Q3 launch" -i <account_id> -t draft --approval-workflow-id <workflow_id>
+
+# Mutate the already-attached workflow (update only)
+contentstudio --json posts:update <post_id> -c "Q3 launch" -i <account_id> -t draft --approval-workflow-action restart --approval-workflow-notes "please re-review"
+
+# LinkedIn poll (text-only; requires --post-type poll)
+contentstudio --json posts:update <post_id> -c "Vote!" -i <linkedin_account_id> -t draft --post-type poll \
+  --linkedin-options '{"poll":{"question":"Best day to ship?","options":["Mon","Fri"],"duration":"SEVEN_DAYS"}}'
 ```
 
 ### Delete a post
@@ -363,6 +622,209 @@ contentstudio --json comments:add <post_id> "Heads up" --mention <user_id> --men
 contentstudio --json comments:add <post_id> "test" --note --dry-run
 ```
 
+> Note: `comments:*` are **ContentStudio-internal** comments on a *draft/scheduled
+> post* — collaboration between your team. To reply to a real comment left by a
+> real person on a published post, use the Social Inbox commands below.
+
+## Social Inbox
+
+The inbox brings DMs, post comments, and reviews into one place. It models all
+three as **elements**, each identified by an `element_ref`:
+
+**Ids come from `element_details`.** Use `element_details.element_id` — it is
+accepted by every element-scoped command:
+
+| Id from `inbox:list` | Used by |
+|----------------------|---------|
+| `element_details.element_id` | every element-scoped command, plus `messages` / `send` / `notes` / `bookmarks` |
+| `element_details.post_id` | `comments`, `comment-add` |
+
+The row's top-level `element_ref` is an internal reference, not a command
+argument — take the id from `element_details`.
+
+| Inbox type | What it is |
+|------------|------------|
+| `conversation` | A DM thread (Facebook / Instagram) |
+| `post` | A published post with comments on it |
+| `review` | A review (e.g. Google Business Profile) |
+
+Most write commands also need `--platform-id` — the connected account the item
+belongs to, since replies go out through that account. Find it with
+`accounts:list`.
+
+### Browse and search
+
+```bash
+# Counts per bucket — cheapest way to see if anything needs attention
+contentstudio --json inbox:summary
+
+# Everything
+contentstudio --json inbox:list
+
+# Just unanswered DMs, 50 at a time
+contentstudio --json inbox:list --type conversation --action all --limit 50
+
+# Full-text search, restricted to one Facebook account
+contentstudio --json inbox:list \
+  --search "refund" \
+  --channels '{"facebook":["<account_id>"]}'
+
+# Filter by tag
+contentstudio --json inbox:list --tag <tag_id> --tag <tag_id>
+```
+
+Inbox lists use `--limit` (with `--per-page` accepted as an alias) and `--page`.
+
+**Limits the API enforces**, checked client-side before any request goes out:
+
+| Limit | Applies to |
+|-------|------------|
+| `--limit` ≤ 200 | `inbox:list`, `inbox:messages`, `inbox:comments` |
+| ≤ 100 `--element` refs | `inbox:update` |
+| Exactly one operation per call | `inbox:update` (`--status` / `--archived` / `--assigned` are mutually exclusive) |
+| Tag name ≤ 50 chars | `inbox:tag-create` |
+
+`inbox:update` may also come back as a **partial** success (HTTP `207`) when
+some elements could not be updated. The CLI prints a warning listing the
+untouched refs instead of reporting a clean pass.
+
+### Read a thread
+
+```bash
+# Messages, newest first
+contentstudio --json inbox:messages <conversation_id> --sort-order desc --limit 20
+
+# A thread also contains team activity entries (marked done, archived, ...).
+# Those have `message: null` and an `action` block — filter on
+# `action == null` when you want customer messages only.
+
+# Comments on a published post
+contentstudio --json inbox:comments <post_id>
+
+# Team-only notes attached to a conversation
+contentstudio --json inbox:notes <conversation_id>
+
+# Starred messages
+contentstudio --json inbox:bookmarks <conversation_id>
+
+# Who am I talking to?
+contentstudio --json inbox:contact <element_ref>
+```
+
+### Reply
+
+These reach real customers. Preview with `--dry-run` first.
+
+```bash
+# Send a DM
+contentstudio --json inbox:send <conversation_id> \
+  --platform-type facebook \
+  --platform-id <account_id> \
+  --message "Thanks for reaching out — shipping today!" \
+  --dry-run
+
+# Send a DM with an image attached
+contentstudio --json inbox:send <conversation_id> \
+  --platform-type instagram --platform-id <account_id> \
+  --message "Here's the size chart" \
+  --file ./size-chart.png --file-type image
+
+# Comment on a post
+contentstudio --json inbox:comment-add <post_id> \
+  --platform-type facebook --platform-id <account_id> \
+  --message "Glad you like it!"
+
+# Reply to a specific comment (threaded)
+contentstudio --json inbox:comment-add <post_id> \
+  --platform-type facebook --platform-id <account_id> \
+  --comment-id <comment_id> --message "DMing you the details."
+
+# Facebook private reply — answers a public comment via DM
+contentstudio --json inbox:comment-add <post_id> \
+  --platform-type facebook --platform-id <account_id> \
+  --comment-id <comment_id> --private-reply \
+  --message "Sent you a DM with your order info."
+
+# Reply to a review (upsert — replaces an existing reply)
+contentstudio --json inbox:review-reply <review_id> \
+  --platform-id <account_id> --reply "Thanks for the feedback!"
+
+# Internal note — your team only, never shown to the customer
+contentstudio --json inbox:note-add <conversation_id> \
+  --platform-type facebook --platform-id <account_id> \
+  --message "Escalated to billing" --mention <user_id>
+```
+
+Retrying a send? Pass `--idempotency-key <uuid>` so a repeated request isn't
+delivered twice. It protects sequential retries, not concurrent ones.
+
+### Triage
+
+```bash
+contentstudio --json inbox:mark-read <element_ref>
+
+# Bulk: close out several at once (max 100 refs per call)
+contentstudio --json inbox:update \
+  --element <ref_1> --element <ref_2> --status done
+
+# Archive / assign — exactly ONE operation per call
+contentstudio --json inbox:update --element <ref> --archived
+contentstudio --json inbox:update --element <ref> \
+  --assigned --assigned-to '{"id":"<user_id>"}'
+
+# Star a message
+contentstudio --json inbox:star <message_id>
+contentstudio --json inbox:unstar <message_id>
+```
+
+### Moderate
+
+```bash
+# Hide is reversible — prefer it over delete
+contentstudio --json inbox:comment-hide <comment_id>
+contentstudio --json inbox:comment-unhide <comment_id> \
+  --platform-type facebook --platform-id <account_id>
+
+# Like / unlike (Facebook)
+contentstudio --json inbox:comment-like <comment_id>
+contentstudio --json inbox:comment-unlike <comment_id>
+
+# Delete a comment (LinkedIn additionally needs --comment-urn)
+contentstudio --json inbox:comment-delete <comment_id> \
+  --platform-type facebook --platform-id <account_id>
+
+# Delete a message / a review reply
+contentstudio --json inbox:message-delete <message_id> --platform-id <account_id>
+contentstudio --json inbox:review-reply-delete <review_id> --platform-id <account_id>
+```
+
+### Tags
+
+```bash
+contentstudio --json inbox:tags
+contentstudio --json inbox:tag-create --name "VIP" --color "#ff0055"
+contentstudio --json inbox:tag-update <tag_id> --name "VIP customer"
+contentstudio --json inbox:tag-delete --tag <tag_id> --tag <tag_id>
+
+# Fold several tags into one new tag
+contentstudio --json inbox:tag-merge --name "Support" --color "#0088ff" \
+  --tag <tag_id> --tag <tag_id>
+
+# Attach / detach on an element
+contentstudio --json inbox:tag-attach <element_ref> \
+  --tag <tag_id> --platform-id <account_id> --inbox-type conversation
+contentstudio --json inbox:tag-detach <element_ref> <tag_id> \
+  --platform-id <account_id> --inbox-type conversation
+```
+
+### Updating contact details
+
+```bash
+contentstudio --json inbox:contact-update <element_ref> \
+  --platform-id <account_id> \
+  --name "Jane Doe" --email jane@example.com --company "Acme"
+```
+
 ## Media Library
 
 ### List media assets
@@ -398,7 +860,194 @@ Preview (no upload):
 contentstudio --json media:upload --url https://example.com/img.jpg --dry-run
 ```
 
-The response includes an `_id` you can pass as `--media-id` when creating posts.
+The response includes an `id` you can pass as `--media-id` when creating posts.
+
+## Analytics
+
+Read-only performance reports across Facebook, Instagram, YouTube, Pinterest, LinkedIn, Google Business Profile, TikTok, Twitter/X, Meta Ads and Google Ads, plus cross-network Campaigns & Labels reports — 133 commands under the `analytics:` namespace, one per backend endpoint. Full per-platform command reference lives in [SKILL.md](./SKILL.md#analytics).
+
+```bash
+# Date-range report — most commands take --platform-id + --start-date/--end-date
+contentstudio --json analytics:instagram-top-posts \
+  --platform-id <account_id> --start-date 2026-08-01 --end-date 2026-08-12
+
+# With optional filters (order-by is an enum, media-type is repeatable)
+contentstudio --json analytics:facebook-get-top-posts \
+  --platform-id <account_id> --start-date 2026-08-01 --end-date 2026-08-12 \
+  --order-by comments --media-type IMAGE --media-type VIDEO
+
+# Single-item lookup — platform-native id, not a ContentStudio id
+contentstudio --json analytics:youtube-single-video --platform-id <account_id> --post-id <video_id>
+
+# AI-generated insights
+contentstudio --json analytics:linkedin-ai-insights \
+  --platform-id <account_id> --start-date 2026-08-01 --end-date 2026-08-12 --language en
+
+# See exactly which options a given command takes
+contentstudio analytics:pinterest-top-pins --help
+```
+
+All analytics commands are read-only GETs — none take `--dry-run`. A response with `"status": false` and `"error_code": "ANALYTICS_UPSTREAM_ERROR"` means ContentStudio's own analytics pipeline is temporarily unavailable, not a bad request.
+
+## AI Images
+
+Generate images from a prompt, or run one of the dedicated image tools, and get back a `media_id` that `posts:create` accepts unchanged. Everything lands in the workspace media library.
+
+### Discover what is available
+
+```bash
+contentstudio --json images:tools     # invocable tools, their required inputs and controls
+contentstudio --json images:models    # model identifiers images:generate accepts
+contentstudio --json images:brand     # {configured, enabled} — will --use-brand do anything?
+```
+
+These three describe configuration rather than workspace state, so they are worth caching.
+
+### Generate
+
+```bash
+# Preview the request first — generating costs an image credit
+contentstudio --json images:generate -p "Flat-lay of autumn coffee beans on linen" --dry-run
+
+# Generate
+contentstudio --json images:generate \
+  -p "Flat-lay of autumn coffee beans on linen, warm daylight" \
+  --dimensions square_hd
+
+# Pick a model, and let the service refine the prompt (its default) or not
+contentstudio --json images:generate -p "..." --model nano-banana-pro --no-enhance-prompt
+
+# Transparent background (only gpt-image-2.5-flare and gpt-image-2.5-sunburst honor --background)
+contentstudio --json images:generate -p "Sticker of a coffee cup" --model gpt-image-2.5-flare --background transparent
+
+# Apply the workspace's brand knowledge (resolved server-side; no brand ID exists)
+contentstudio --json images:generate -p "..." --use-brand
+
+# Edit an existing image — the prompt describes the change, not the whole picture
+contentstudio --json images:generate \
+  -p "Make the background a snowy street at dusk" \
+  --image-url https://example.com/base.png
+```
+
+`--dimensions` is one of `square`, `square_hd`, `portrait_4_5`, `landscape_16_9`, and applies to text→image only — an edit keeps the source image's geometry. Exact pixels are the model's choice; read `width`/`height` back off the response.
+
+`--background` is `auto`, `opaque` or `transparent` (sent as `image_background`). It is honored only by the models that support it, currently `gpt-image-2.5-flare` and `gpt-image-2.5-sunburst`; other models ignore it.
+
+**Models and cost per image.** `images:models` lists each model with its `credits_per_image` and supported backgrounds.
+
+| Model | Credits per image | Generate | Edit (`--image-url`) |
+|---|---|---|---|
+| most models (e.g. `nano-banana-pro`) | 1 | yes | yes |
+| `gpt-image-2` | 5 | yes | yes |
+| `gpt-image-2.5-flare` | 3 | yes | yes |
+| `gpt-image-2.5-sunburst` | 5 | yes | yes |
+
+### Generate, then publish
+
+```bash
+MEDIA_ID=$(contentstudio --json images:generate \
+  -p "Flat-lay of autumn coffee beans on linen, warm daylight" \
+  --dimensions square_hd | jq -r '.data.media_id')
+
+contentstudio --json posts:create \
+  -c "Autumn blend is back." -i <account_id> -t draft --media-id "$MEDIA_ID"
+```
+
+`-t draft` keeps it reviewable; `-t scheduled -s "YYYY-MM-DD HH:MM:SS"` sends it. There is
+no publish-now type.
+
+### The dedicated tools
+
+```bash
+contentstudio --json images:product-image --product-image-url https://example.com/mug.png \
+  --instructions "on a marble kitchen counter, morning light"
+contentstudio --json images:headshot --image-url https://example.com/person.jpg --aspect-ratio 4:5
+contentstudio --json images:face-swap \
+  --target-image-url https://example.com/scene.png \
+  --face-image-url https://example.com/face.jpg
+contentstudio --json images:outfit-swap \
+  --target-image-url https://example.com/model.jpg \
+  --outfit-image-url https://example.com/jacket.png
+contentstudio --json images:upscale --image-url https://example.com/small.png --resolution 2k
+contentstudio --json images:remove-background --image-url https://example.com/mug.png
+```
+
+Allowed values for `--resolution` and `--aspect-ratio` come from that tool's `controls` in `images:tools` — they differ per tool, so the CLI forwards them rather than second-guessing the list.
+
+Those `controls` describe the **underlying** tool, though, not the public payload: a control with no matching flag cannot be sent, not even through `images:tool --body`. `upscale` advertises `model` and `upscale_factor` and the API accepts neither; `headshot` and `face-swap` report `accepts_instructions: true` but only `images:product-image` has `--instructions`. An unsupported field is dropped without an error, so it looks like it worked — the flags each command exposes are the real field set.
+
+Every generating command takes `--dry-run`, `--timeout <seconds>` and `--json`.
+
+### Any tool, every control
+
+`images:tool <tool_key> --body '<json>'` posts a raw payload to any tool the API exposes. This is how you reach the controls the dedicated commands don't spell out — `image-to-image`'s `style`, `image_resolution`, `image_quality`, multiple `attachments`, `reference_image_urls` — and it keeps working when a tool is added upstream:
+
+```bash
+contentstudio --json images:tool image-to-image --body '{
+  "prompt": "same mug, editorial magazine styling",
+  "attachments": ["https://example.com/mug.png"],
+  "aspect_ratio": "4:5"
+}'
+```
+
+### The response
+
+```json
+{
+  "ok": true,
+  "data": {
+    "media_id": "66f1a2b3c4d5e6f708192a3b",
+    "url": "https://storage.googleapis.com/contentstudio/.../generated.png",
+    "width": 1024,
+    "height": 1024,
+    "mime_type": "image/png",
+    "model_used": "nano-banana-pro",
+    "brand_applied": false,
+    "credits": { "consumed": 1, "available": 412 },
+    "persist_error": null
+  }
+}
+```
+
+- **`media_id` is the durable handle** — pass it to `posts:create --media-id`. `url` is for previews and for chaining one tool into the next; don't store it.
+- **Check `persist_error` before treating a success as done.** The image was generated *and charged* but could not be saved, so `media_id` is `null` and `url` is a temporary provider link. `media_storage_full` means the workspace is out of media storage and retrying will fail the same way; anything else is worth one retry.
+- **`model_used` names the model that actually ran and is not one of the `images:models` values** — it comes back provider-prefixed (`fal-ai/nano-banana-pro` for a generate, `pixelcut/background-removal` for a background removal). Don't compare it for equality with `--model`. Credit cost follows it (most 1, `gpt-image-2` 5, `gpt-image-2.5-flare` 3, `gpt-image-2.5-sunburst` 5), so read `credits.consumed` rather than assuming. `credits.available` is `null` when the balance could not be read — never `0` as a stand-in.
+- **`brand_applied` is always `false` for the tool commands and for `images:generate --image-url`.** Tools and edits do not apply brand knowledge; only text→image `--use-brand` does.
+
+### Input URLs
+
+Every URL you pass in is downloaded by the image service, so it must be publicly reachable over `http`/`https` — no auth, no expired signature, no private bucket, and no local path. The CLI rejects a non-`http(s)` value before spending a request credit; a URL the service itself cannot fetch comes back as `ValidationError` / `IMAGE_INPUT_REJECTED` and costs no image credits.
+
+To use a local file, put it in the media library first:
+
+```bash
+URL=$(contentstudio --json media:upload --file ./mug.png | jq -r '.data.url')
+contentstudio --json images:upscale --image-url "$URL"
+```
+
+Tools chain the same way — a media-library `url` from one call is valid input to the next (generate → upscale → remove-background). Each call is charged separately.
+
+### Timeouts and retries
+
+Generation is synchronous and can take a while. The server's own deadline is **120 seconds** (past that it answers `504` / `AI_SERVICE_TIMEOUT`), and the CLI waits **150 seconds** by default so a server-side timeout surfaces as that error rather than an opaque local abort. Override with `--timeout <seconds>`; keep it above 120.
+
+Unlike the rest of the CLI, **the generating commands do not auto-retry** `429`/`5xx`. These POSTs are billable and not idempotent — an automatic retry can consume a second image credit — so retrying is left to you. The three discovery commands retry normally.
+
+### Errors
+
+| `error_code` | CLI error | What to do |
+|---|---|---|
+| `IMAGE_CREDIT_LIMIT_EXCEEDED` | `CreditLimitError` (exit 8) | Out of image credits; top up or wait for the cycle. Nothing was charged. The check is strict — a 5-credit model with 3 left is refused, not downgraded |
+| `CONTENT_BLOCKED` | `ValidationError` | The content policy refused the prompt; rephrase it. Retrying as-is fails again |
+| `IMAGE_INPUT_REJECTED` | `ValidationError` | Usually an image URL the service could not download; also a too-small or too-large source |
+| `TOOL_NOT_FOUND` | `NotFoundError` | Unknown, disabled, or a video tool. Re-read `images:tools` |
+| `RATE_LIMIT_EXCEEDED` | `RateLimitError` | 30 requests/minute, shared with the ContentStudio app's own AI usage on this account. Wait out the minute |
+| `AI_SERVICE_TIMEOUT` | `BackendError` | The service did not finish in 120s. Retry with backoff, or use a faster model |
+| `AI_SERVICE_UNAVAILABLE` | `BackendError` | Retry promptly. On a tool run this can arrive after the credit was taken |
+
+A `403` with no `error_code` is a membership or API-request-credit problem and stays an `AuthError`.
+
+Video tools (`image-to-video`, `motion-control`, `lip-sync`, `talking-avatar`) are not exposed on this API — they answer `TOOL_NOT_FOUND` like an unknown key. Sample workspaces are read-only: the three discovery commands work, generation returns `403`.
 
 ## Platform-Specific Examples
 
@@ -471,6 +1120,19 @@ contentstudio posts:create \
   -s "2026-05-01 10:00:00" \
   --video-url https://example.com/reel.mp4 \
   --post-type reel
+
+# Trial reel — shown to non-followers first, not on the profile grid or
+# follower feeds. Requires --post-type reel exactly, plus a video.
+# Rejected (422) together with --instagram-collaborator.
+contentstudio posts:create \
+  -c "" \
+  -i <instagram_id> \
+  -t scheduled \
+  -s "2026-05-01 10:00:00" \
+  --video-url https://example.com/reel.mp4 \
+  --post-type reel \
+  --instagram-trial-reel \
+  --instagram-trial-reel-graduation SS_PERFORMANCE
 
 # Story
 contentstudio posts:create \
@@ -608,7 +1270,7 @@ Agents check both `ok` and the process exit code (non-zero on error).
 
 ### 2. Dry-run by default for safety
 
-Every mutating command (`posts:create`, `posts:delete`, `posts:approve`, `posts:reject`, `comments:add`, `media:upload`) supports `--dry-run` — the agent can validate a payload before committing.
+Every mutating command (`posts:create`, `posts:delete`, `posts:approve`, `posts:reject`, `comments:add`, `media:upload`, and every `images:*` command that generates) supports `--dry-run` — the agent can validate a payload before committing.
 
 ### 3. Discoverable via `npx skills add`
 
@@ -654,9 +1316,9 @@ done
 TIME="2026-05-01 10:00:00"
 
 # List accounts and pick one per platform
-FB=$(contentstudio --json accounts:list --platform facebook | jq -r '.data[0]._id')
-LI=$(contentstudio --json accounts:list --platform linkedin | jq -r '.data[0]._id')
-TW=$(contentstudio --json accounts:list --platform twitter  | jq -r '.data[0]._id')
+FB=$(contentstudio --json accounts:list --platform facebook | jq -r '.data[0].id')
+LI=$(contentstudio --json accounts:list --platform linkedin | jq -r '.data[0].id')
+TW=$(contentstudio --json accounts:list --platform twitter  | jq -r '.data[0].id')
 
 contentstudio --json posts:create \
   -c "Big launch today 🚀" \
@@ -673,7 +1335,7 @@ contentstudio --json posts:create \
 CUTOFF=$(date -d '-30 days' '+%Y-%m-%d')
 
 contentstudio --json posts:list --status draft --date-to "$CUTOFF" --per-page 100 \
-  | jq -r '.data[]._id' \
+  | jq -r '.data[].id' \
   | while read id; do
       contentstudio --json posts:delete "$id"
     done
@@ -688,7 +1350,7 @@ ACCOUNT="<instagram_id>"
 for img in ./photos/*.jpg; do
   # Upload first to get a media library ID
   RESP=$(contentstudio --json media:upload --file "$img")
-  MEDIA_ID=$(echo "$RESP" | jq -r '.data._id')
+  MEDIA_ID=$(echo "$RESP" | jq -r '.data.id')
 
   # Schedule a post with the uploaded media
   TIME=$(date -d "+1 hour" '+%F %T')
@@ -709,7 +1371,7 @@ done
 TRUSTED_USER_ID="<user_id>"
 
 contentstudio --json posts:list --status pending_approval --per-page 50 \
-  | jq -r --arg u "$TRUSTED_USER_ID" '.data[] | select(.created_by == $u) | ._id' \
+  | jq -r --arg u "$TRUSTED_USER_ID" '.data[] | select(.created_by == $u) | .id' \
   | while read id; do
       contentstudio --json posts:approve "$id" --comment "auto-approved (trusted creator)"
     done
@@ -717,7 +1379,7 @@ contentstudio --json posts:list --status pending_approval --per-page 50 \
 
 ## API Endpoints
 
-The CLI wraps these 20 endpoints from the ContentStudio v1 public API. Base URL: `https://api.contentstudio.io/api/v1`.
+The CLI wraps these endpoints from the ContentStudio v1 public API (plus the workspace/label/campaign/team writes and the `inbox:*` surface documented above). Base URL: `https://api.contentstudio.io/api/v1`.
 
 | Method | Endpoint | CLI command |
 |--------|----------|-------------|
@@ -729,18 +1391,62 @@ The CLI wraps these 20 endpoints from the ContentStudio v1 public API. Base URL:
 | POST   | `/workspaces/{w}/connect/{platform}` | `accounts:connect <platform>` |
 | POST   | `/workspaces/{w}/add/bluesky` | `accounts:add-bluesky` |
 | POST   | `/workspaces/{w}/add/facebook-group` | `accounts:add-facebook-group` |
+| DELETE | `/workspaces/{w}/accounts/{account_id}` | `accounts:remove <account_id>` |
 | GET    | `/workspaces/{w}/campaigns` | `campaigns:list` |
+| GET    | `/workspaces/{w}/limits` | `workspaces:limits` |
 | GET    | `/workspaces/{w}/content-categories` | `categories:list` |
+| POST   | `/workspaces/{w}/content-categories` | `categories:create` |
+| GET    | `/workspaces/{w}/content-categories/{c}` | `categories:get` |
+| PUT    | `/workspaces/{w}/content-categories/{c}` | `categories:update` |
+| DELETE | `/workspaces/{w}/content-categories/{c}` | `categories:delete` |
+| POST   | `/workspaces/{w}/content-categories/{c}/shuffle` | `categories:shuffle` |
+| GET    | `/workspaces/{w}/content-categories/{c}/slots` | `category-slots:list` |
+| POST   | `/workspaces/{w}/content-categories/{c}/slots` | `category-slots:create` |
+| GET    | `/workspaces/{w}/content-categories/{c}/slots/next` | `category-slots:next` |
+| PUT    | `/workspaces/{w}/content-categories/{c}/slots/{s}` | `category-slots:update` |
+| DELETE | `/workspaces/{w}/content-categories/{c}/slots/{s}` | `category-slots:delete` |
+| GET    | `/workspaces/{w}/approval-workflows` | `approval-workflows:list` |
+| POST   | `/workspaces/{w}/approval-workflows` | `approval-workflows:create` |
+| GET    | `/workspaces/{w}/approval-workflows/{id}` | `approval-workflows:get` |
+| PUT    | `/workspaces/{w}/approval-workflows/{id}` | `approval-workflows:update` |
+| DELETE | `/workspaces/{w}/approval-workflows/{id}` | `approval-workflows:delete` |
+| POST   | `/workspaces/{w}/approval-workflows/{id}/duplicate` | `approval-workflows:duplicate` |
+| PUT    | `/workspaces/{w}/approval-workflows/{id}/set-default` | `approval-workflows:set-default` |
+| PUT    | `/workspaces/{w}/approval-workflows/{id}/remove-default` | `approval-workflows:remove-default` |
+| GET    | `/workspaces/{w}/approval-workflows/cascade-jobs/{id}` | `approval-workflows:cascade-job` |
+| GET    | `/workspaces/{w}/share-links` | `planner-share-links:list` |
+| POST   | `/workspaces/{w}/share-links` | `planner-share-links:create` |
+| GET    | `/workspaces/{w}/share-links/{id}` | `planner-share-links:get` |
+| PUT    | `/workspaces/{w}/share-links/{id}` | `planner-share-links:update` |
+| DELETE | `/workspaces/{w}/share-links/{id}` | `planner-share-links:delete` |
+| POST   | `/workspaces/{w}/share-links/{id}/send-invitations` | `planner-share-links:send-invitations` |
+| GET    | `/workspaces/{w}/share-links/{id}/activity` | `planner-share-links:activity` |
 | GET    | `/workspaces/{w}/labels` | `labels:list` |
 | GET    | `/workspaces/{w}/team-members` | `team:list` |
 | GET    | `/workspaces/{w}/media` | `media:list` |
 | POST   | `/workspaces/{w}/media` | `media:upload` |
 | GET    | `/workspaces/{w}/posts` | `posts:list` |
+| GET    | `/workspaces/{w}/posts/{p}` | `posts:get` |
 | POST   | `/workspaces/{w}/posts` | `posts:create` |
+| PUT    | `/workspaces/{w}/posts/{p}` | `posts:update` |
 | DELETE | `/workspaces/{w}/posts/{p}` | `posts:delete` |
 | POST   | `/workspaces/{w}/posts/{p}/approval` | `posts:approve`, `posts:reject` |
+| POST   | `/workspaces/{w}/scheduling/optimal-times` | `scheduling:best-times` |
+| GET    | `/workspaces/{w}/ai/images/tools` | `images:tools` |
+| GET    | `/workspaces/{w}/ai/images/models` | `images:models` |
+| GET    | `/workspaces/{w}/ai/brand` | `images:brand` |
+| POST   | `/workspaces/{w}/ai/images/generate` | `images:generate` |
+| POST   | `/workspaces/{w}/ai/images/tools/{tool_key}` | `images:<tool>`, `images:tool <tool_key>` |
 | GET    | `/workspaces/{w}/posts/{p}/comments` | `comments:list` |
 | POST   | `/workspaces/{w}/posts/{p}/comments` | `comments:add` |
+| GET    | `/workspaces/{w}/ai/videos/tools` | `ai-video:tools` |
+| GET    | `/workspaces/{w}/ai/videos/models` | `ai-video:models` |
+| POST   | `/workspaces/{w}/ai/videos/estimate` | `ai-video:estimate` |
+| POST   | `/workspaces/{w}/ai/videos/generate` | `ai-video:generate` |
+| POST   | `/workspaces/{w}/ai/videos/tools/{tool_key}` | `ai-video:run-tool <tool_key>` |
+| GET    | `/workspaces/{w}/ai/jobs` | `ai-video:jobs` |
+| GET    | `/workspaces/{w}/ai/jobs/{job_id}` | `ai-video:job <job_id>` |
+| DELETE | `/workspaces/{w}/ai/jobs/{job_id}` | `ai-video:cancel-job <job_id>` |
 
 Full OpenAPI 3.0 spec: <https://api.contentstudio.io/api-docs.json>
 Human-readable docs: <https://api.contentstudio.io/guide>
@@ -789,9 +1495,11 @@ The CLI provides typed errors with non-zero exit codes:
 | 4 | `ValidationError` | 422 | Malformed request — check `message` for field errors |
 | 5 | `RateLimitError` | 429 | Too many calls — back off and retry |
 | 6 | `BackendError` | 5xx / network | Upstream issue — retry with backoff |
+| 7 | `ConflictError` | 409 | Resource already exists, or a send's delivery outcome is undetermined — verify before retrying |
+| 8 | `CreditLimitError` | 403 | Out of AI image credits (`images:*`) — top up or wait for the cycle. Nothing was charged |
 | 1 | `ConfigError` | — | Local config issue (no key/workspace set) — see `hint` |
 
-The CLI auto-retries on `429` and `5xx` (up to 2 attempts with exponential backoff). Connection timeouts also retry.
+The CLI auto-retries on `429` and `5xx` (up to 2 attempts with exponential backoff). Connection timeouts also retry. The two AI image generation calls are the exception — they are billable and not idempotent, so they never auto-retry.
 
 ## Quick Reference
 
@@ -813,15 +1521,43 @@ contentstudio --json campaigns:list                                             
 contentstudio --json categories:list                                                # Content categories
 contentstudio --json labels:list                                                    # Labels
 contentstudio --json team:list                                                      # Team members
+contentstudio --json workspaces:limits                                              # Plan limits + usage
+
+# Content categories + posting slots
+contentstudio --json categories:get <category_id>                                   # Category (slots inlined)
+contentstudio --json categories:create --name "Tips" --color color_3 --account <id> # Create
+contentstudio --json categories:shuffle <category_id>                               # Re-deal upcoming posts
+contentstudio --json category-slots:list <category_id>                              # Weekly slots
+contentstudio --json category-slots:next <category_id> [--post-id <id>]             # Next free slot
+contentstudio --json category-slots:create <category_id> --day monday --hour 9 --minute 0 --period AM
+
+# Approval workflows (all require the manage_workflow permission)
+contentstudio --json approval-workflows:get <workflow_id>                           # Read one
+contentstudio --json approval-workflows:create --name "Legal" --levels '<json>'     # Create
+contentstudio --json approval-workflows:update <id> --confirmed                     # Re-apply to in-flight posts
+contentstudio --json approval-workflows:delete <id> [--force]                       # Delete
+contentstudio --json approval-workflows:cascade-job <cascade_job_id>                # Poll the cascade
+
+# Planner share links (posts, not analytics)
+contentstudio --json planner-share-links:list                                       # List
+contentstudio --json planner-share-links:create --name "Client Review" --plan <post_id>
+contentstudio --json planner-share-links:send-invitations <id> --email a@b.c --approval-option anyone
+contentstudio --json planner-share-links:activity <id> [--type comment]             # Client comments/actions
 
 # Posts
 contentstudio --json posts:list [--status draft] [--date-from] [--date-to]         # List posts
+contentstudio --json posts:get <post_id>                                           # Read one post
 contentstudio --json posts:create -c "text" -i <account_id> -t draft               # Create (shortcut)
 contentstudio --json posts:create --body /path/to/post.json                        # Create (full body)
 contentstudio --json posts:create [...] --dry-run                                  # Preview, no API call
 contentstudio --json posts:delete <post_id> [--delete-from-social]                 # Delete
 contentstudio --json posts:approve <post_id> [--comment "..."]                     # Approve
 contentstudio --json posts:reject  <post_id> [--comment "..."]                     # Reject
+
+# Best time to post
+contentstudio --json scheduling:best-times                                          # All connected accounts
+contentstudio --json scheduling:best-times --account facebook:<account_id>         # One account
+contentstudio --json scheduling:best-times --global-slots 10                       # More recommendations
 
 # Comments / Notes
 contentstudio --json comments:list <post_id>                                        # List
@@ -831,6 +1567,90 @@ contentstudio --json comments:add  <post_id> "message" [--note] [--mention <id>]
 contentstudio --json media:list [--type images|videos] [--sort recent]             # List
 contentstudio --json media:upload --file <path>                                    # Upload local file
 contentstudio --json media:upload --url <url>                                      # Import from URL
+
+# AI images
+contentstudio --json images:tools                                                   # Tools + their inputs
+contentstudio --json images:models                                                  # Accepted models
+contentstudio --json images:brand                                                   # Will --use-brand apply?
+contentstudio --json images:generate -p "<prompt>" [--dimensions square_hd]         # Prompt → image
+contentstudio --json images:generate -p "<edit>" --image-url <url>                   # Edit an image
+contentstudio --json images:product-image --product-image-url <url>                  # Restage a product
+contentstudio --json images:headshot --image-url <url>                               # Headshot
+contentstudio --json images:face-swap --target-image-url <url> --face-image-url <url>
+contentstudio --json images:outfit-swap --target-image-url <url> --outfit-image-url <url>
+contentstudio --json images:upscale --image-url <url>                                # Upscale
+contentstudio --json images:remove-background --image-url <url>                      # Cut out subject
+contentstudio --json images:tool <tool_key> --body '<json>'                          # Any tool, all controls
+
+# Analytics (133 commands — one per endpoint; see SKILL.md#analytics for the full list)
+contentstudio --json analytics:<platform>-<report> --platform-id <id> --start-date <d> --end-date <d>
+contentstudio --json analytics:<platform>-single-post --platform-id <id> --post-id <native_id>
+contentstudio --json analytics:meta-ads-summary --account-id <act_id> --start-date <d> --end-date <d>
+contentstudio --json analytics:google-ads-ai-insights --account-id <id> --start-date <d> --end-date <d> --type aiInsightsDetailed
+contentstudio analytics:<platform>-<report> --help                                 # Exact options per command
+
+# Analytics — Bluesky (10 commands) and Threads (16); --help lists each one's flags
+contentstudio --json analytics:bluesky-summary --platform-id <did> \
+  --start-date 2026-08-01 --end-date 2026-08-31
+contentstudio --json analytics:threads-top-posts --platform-id <id> \
+  --start-date 2026-08-01 --end-date 2026-08-31 --limit 10
+contentstudio --json analytics:threads-demographics --platform-id <id> \
+  --start-date 2026-08-01 --end-date 2026-08-31 --breakdown age
+
+# Analytics — reports (async: generate, then poll)
+contentstudio --json reports:options                                                # Report types + their sections
+contentstudio reports:generate --name "Aug" --platform-type facebook \
+  --accounts <id> --date "2026-08-01 - 2026-08-31"                                  # Returns an id immediately
+contentstudio reports:generate --name "Rivals" --platform-type facebook_competitor \
+  --competitor-report-id <id> --date "2026-08-01 - 2026-08-31"                      # Competitor set, not accounts
+contentstudio reports:get <report_id> --wait                                        # Poll until ready, print download URL
+contentstudio --json reports:list                                                   # Previously generated
+contentstudio reports:retry <report_id>                                             # Re-run a failed one
+contentstudio reports:delete <report_id>                                            # Remove
+
+# Analytics — recurring schedules
+contentstudio report-schedules:create --name "Monthly" --platform-type facebook \
+  --frequency monthly --accounts <id> --emails a@b.com                              # Provision once
+contentstudio --json report-schedules:list                                          # All schedules
+contentstudio report-schedules:get <schedule_id>                                    # Last run / next run
+contentstudio report-schedules:pause <schedule_id>                                  # Reversible
+contentstudio report-schedules:resume <schedule_id>
+contentstudio report-schedules:run <schedule_id>                                    # Send one now
+contentstudio report-schedules:delete <schedule_id>
+
+# Analytics — client-facing share links
+# NOTE: these currently 404 — there is no public-API route behind them (the
+# endpoints are internal/JWT-only). Share an analytics dashboard from the web app.
+contentstudio share-links:create --title "Q3" --platform instagram \
+  --account-id <id> --date-range "2026-07-01 - 2026-09-30" --password secret        # Pinned + protected
+contentstudio --json share-links:list
+contentstudio share-links:get <id>
+contentstudio share-links:disable <id>                                              # Revoke without deleting
+contentstudio share-links:enable <id>
+contentstudio share-links:delete <id>
+
+# Analytics — competitor benchmarking
+contentstudio competitors:search "Nike" --platform-type facebook                    # Find a page to track
+contentstudio competitor-reports:create --name "Rivals" --platform-type facebook \
+  --competitors "15087023444:Nike,763612290406925:Cheezious"                        # Saved set
+contentstudio --json competitor-reports:list
+contentstudio competitor-reports:get <report_id>                                    # Per-competitor state
+contentstudio competitor-reports:update <report_id> --name "Rivals" \
+  --platform-type facebook --competitors "..."                                      # Replaces the whole set
+contentstudio competitor-reports:delete <report_id>
+contentstudio competitors:compare <report_id> --platform facebook \
+  --start-date 2026-08-01 --end-date 2026-08-31                                     # The comparison numbers
+
+# AI Video
+contentstudio --json ai-video:tools                                                # Enabled tools
+contentstudio --json ai-video:models                                               # Selectable models
+contentstudio --json ai-video:estimate [--duration 6] [--model <key>]              # Credit/time estimate, no charge
+contentstudio --json ai-video:generate --prompt "a cat riding a bike" --dry-run    # Preview, no API call
+contentstudio --json ai-video:generate --prompt "..." --image-url <url>            # Image-to-video job
+contentstudio --json ai-video:run-tool lip-sync --video-url <url> --audio-url <url> --dry-run
+contentstudio --json ai-video:jobs [--status queued]                               # List submitted jobs
+contentstudio --json ai-video:job <job_id>                                         # Poll one job
+contentstudio --json ai-video:cancel-job <job_id>                                  # Cancel an active job
 
 # Globals
 contentstudio --version                                                             # Print version
@@ -860,9 +1680,13 @@ contentstudio-agent/
 │       ├── auth.ts           # auth:login, auth:logout, auth:whoami, auth:status
 │       ├── workspaces.ts     # workspaces:list, workspaces:use, workspaces:current
 │       ├── lookups.ts        # accounts/campaigns/categories/labels/team list commands
-│       ├── posts.ts          # posts:list, posts:create, posts:delete, posts:approve, posts:reject
+│       ├── contentCategories.ts  # categories:* writes + category-slots:*
+│       ├── approvalWorkflows.ts  # approval-workflows:* writes + cascade-job polling
+│       ├── plannerShareLinks.ts  # planner-share-links:* (posts, not analytics)
+│       ├── posts.ts          # posts:list, posts:get, posts:create, posts:delete, posts:approve, posts:reject
 │       ├── comments.ts       # comments:list, comments:add
-│       └── media.ts          # media:list, media:upload
+│       ├── media.ts          # media:list, media:upload
+│       └── images.ts         # images:generate, images:tools/models/brand, one command per tool
 ├── tests/                    # vitest + nock unit + real-API E2E
 ├── skills/contentstudio/SKILL.md  # symlink → ../../SKILL.md
 ├── .claude-plugin/           # Claude Code plugin manifest

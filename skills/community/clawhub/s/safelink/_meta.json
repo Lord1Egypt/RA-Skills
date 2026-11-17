@@ -1,6 +1,90 @@
 {
-  "ownerId": "kn7596t25psnn1hcfb303a45fs82ataq",
+  "owner": "licc921",
   "slug": "safelink",
-  "version": "0.1.4",
-  "publishedAt": 1772688092159
+  "displayName": "SafeLink",
+  "homepage": "https://github.com/charliebot8888/SafeLink",
+  "repository": "https://github.com/charliebot8888/SafeLink",
+  "license": "MIT",
+  "description": "Security-first MCP server for agent-to-agent hiring with on-chain escrow, x402 USDC micropayments, MPC wallets, ERC-8004 identity, and policy-gated transactions on Base.",
+  "tags": ["security", "web3", "a2a", "payments", "escrow", "x402", "erc-8004", "agentic-wallet", "mcp", "production"],
+  "requiredEnv": [
+    {
+      "name": "ANTHROPIC_API_KEY",
+      "description": "Claude Haiku key for task execution (LLM_PROVIDER=anthropic)",
+      "sensitive": true,
+      "required": "when LLM_PROVIDER=anthropic"
+    },
+    {
+      "name": "BASE_RPC_URL",
+      "description": "Base network RPC endpoint (default: https://sepolia.base.org)",
+      "sensitive": false,
+      "required": "always"
+    },
+    {
+      "name": "PRIVY_APP_ID",
+      "description": "Privy application ID for MPC wallet (WALLET_PROVIDER=privy)",
+      "sensitive": false,
+      "required": "when WALLET_PROVIDER=privy"
+    },
+    {
+      "name": "PRIVY_APP_SECRET",
+      "description": "Privy application secret for MPC wallet signing",
+      "sensitive": true,
+      "required": "when WALLET_PROVIDER=privy"
+    },
+    {
+      "name": "COINBASE_CDP_API_KEY_NAME",
+      "description": "Coinbase CDP key name for AgentKit MPC wallet",
+      "sensitive": false,
+      "required": "when WALLET_PROVIDER=coinbase"
+    },
+    {
+      "name": "COINBASE_CDP_API_KEY_PRIVATE_KEY",
+      "description": "Coinbase CDP private key for AgentKit MPC wallet signing",
+      "sensitive": true,
+      "required": "when WALLET_PROVIDER=coinbase"
+    },
+    {
+      "name": "DEPLOYER_PRIVATE_KEY",
+      "description": "One-time deploy key for contracts/deploy-contracts.ts only. NOT used at runtime. Use a throwaway funded key; discard after deploy.",
+      "sensitive": true,
+      "required": "one-time: contract deployment only"
+    },
+    {
+      "name": "ERC8004_REGISTRY_ADDRESS",
+      "description": "Deployed ERC-8004 registry contract address (set automatically by deploy script)",
+      "sensitive": false,
+      "required": "after contract deployment"
+    },
+    {
+      "name": "SAFE_ESCROW_ADDRESS",
+      "description": "Deployed SafeEscrow contract address (set automatically by deploy script)",
+      "sensitive": false,
+      "required": "after contract deployment"
+    },
+    {
+      "name": "X402_FACILITATOR_URL",
+      "description": "x402 payment facilitator URL (default: https://x402.org/facilitator)",
+      "sensitive": false,
+      "required": "always"
+    }
+  ],
+  "requiredBinaries": [
+    {
+      "name": "forge",
+      "description": "Foundry CLI for one-time smart contract deployment (scripts/deploy-contracts.ts only). Not required at runtime.",
+      "required": "one-time: contract deployment only",
+      "installUrl": "https://getfoundry.sh"
+    }
+  ],
+  "runtimeBehavior": {
+    "networkListener": "Opens HTTP server on TASK_SERVER_PORT (default 3402) only when safe_listen_for_hire is called. Binds to 127.0.0.1 by default.",
+    "fileWrites": "scripts/deploy-contracts.ts writes deployed contract addresses back to .env. scripts/generate-env.ts creates .env interactively. Neither runs automatically.",
+    "shellExec": "scripts/deploy-contracts.ts calls forge via child_process for one-time contract deployment only. Not executed at MCP runtime.",
+    "persistence": "Stores PRIVY_WALLET_ID in .env after first wallet creation. No other runtime file writes."
+  },
+  "securityNotes": "Test files under tests/stress/ contain literal prompt-injection strings (e.g. 'Ignore all previous instructions') as adversarial test fixtures that verify the input-gate blocks them. These are not instructions — automated scanners may flag them as false positives.",
+  "latest": {
+    "version": "0.1.1"
+  }
 }

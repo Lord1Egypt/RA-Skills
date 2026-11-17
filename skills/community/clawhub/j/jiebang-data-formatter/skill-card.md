@@ -1,41 +1,53 @@
-## Description: <br>
-Formats and converts developer data across JSON, YAML, XML, SQL, numeric bases, HTML entities, and Cron expressions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats and converts developer data, including JSON/YAML, XML, SQL, numeric bases, HTML entities, and cron expressions.
 
-## Publisher: <br>
-[jiebang-tools](https://clawhub.ai/user/jiebang-tools) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiebang-tools](https://clawhub.ai/user/jiebang-tools)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert and format JSON/YAML, XML, SQL, numeric bases, HTML entities, and Cron expressions during development and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided data is sent to an external jiebang.site service. <br>
-Mitigation: Do not use the skill with secrets, production SQL, internal configuration files, customer data, proprietary XML/HTML, or other sensitive content unless that data transfer is approved. <br>
-Risk: The service call uses an admin-style credential. <br>
-Mitigation: Review the credential handling, permissions, and retention practices before installation or deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert, validate, format, or describe common data formats during software development and operations workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiebang-tools/jiebang-data-formatter) <br>
-- [Jiebang service endpoint](https://www.jiebang.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration] <br>
-**Output Format:** [JSON response containing converted or formatted data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses include success status and result data; some operations also include length, validation, description, or next-run fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-supplied data may be sent to an external service without disclosed retention or access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill on secrets, credentials, proprietary configurations, private SQL, personal data, or regulated content unless the service has been reviewed and trusted.
+
+Risk: Requests use an admin credential for service access.
+
+Mitigation: Replace the admin key with a narrowly scoped service credential and disclose the remote processing requirement before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiebang-tools/skills/jiebang-data-formatter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON results containing converted, formatted, validated, or described data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include formatted JSON, YAML, XML, SQL, base-conversion values, HTML entities, cron descriptions, validation status, and next-run timestamps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

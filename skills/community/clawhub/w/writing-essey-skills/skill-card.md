@@ -1,42 +1,50 @@
-## Description: <br>
-Helps agents draft Chinese argumentative essays, op-eds, platform-specific social posts, and short-video scripts with personalized style, factual discipline, and privacy review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese argumentative essay and op-ed writing skill for producing polished content for Zhihu, WeChat Official Accounts, Xiaohongshu, and Douyin.
 
-## Publisher: <br>
-[qiyuxi24](https://clawhub.ai/user/qiyuxi24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiyuxi24](https://clawhub.ai/user/qiyuxi24)
 
-## Use Case: <br>
-External users and writers use this skill to draft Chinese argumentative essays, social commentary, Zhihu answers, WeChat Official Account articles, Xiaohongshu notes, Douyin scripts, and similar opinion content. The skill emphasizes user-specific scenes, sourced facts, platform adaptation, and a privacy review before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use a personal writing profile that contains identifying or sensitive experiences. <br>
-Mitigation: Keep sensitive details out of the profile unless they should influence the draft, and complete the required privacy review before approving any article for publication. <br>
-Risk: Fact-based arguments can become misleading if web search results or user-provided data are used without enough verification. <br>
-Mitigation: Use authoritative sources, name the source and year for cited data, cross-check important claims, and avoid unsupported precise numbers or fabricated facts. <br>
+## Use Case:
 
+External users and writers use this skill to draft Chinese argumentative essays, social commentary, op-eds, Zhihu answers, public account articles, RED notes, and short-video scripts with platform-specific structure and tone.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiyuxi24/writing-essey-skills) <br>
-- [Server-resolved source repository](https://github.com/qiyuxi24/writing-essey-skills) <br>
-- [Server-resolved source commit](https://github.com/qiyuxi24/writing-essey-skills/commit/dc5178704ad634bf0c02e38d026d494feb90924c) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown by default, with plain text when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese long-form drafts, social post drafts, short-video scripts, sourcing notes, and privacy-review prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill may read a local personal writing profile and incorporate personal experiences into drafts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the profile limited to material suitable for review before publication and complete the required privacy approval step before final delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiyuxi24/skills/writing-essey-skills)
+- [Server-resolved GitHub provenance](https://github.com/qiyuxi24/writing-essey-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text Chinese writing drafts with privacy review prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May incorporate an optional local writing profile and requires user privacy approval before final article delivery.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Professional home inspection for Taiwan residential properties with structured checklists, severity grading, Taiwan standards references, and formal report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional home inspection for Taiwan residential properties using structured checklists, defect severity grading, Taiwan building-standard references, and Markdown report generation.
 
-## Publisher: <br>
-[tsaitepiao-alt](https://clawhub.ai/user/tsaitepiao-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsaitepiao-alt](https://clawhub.ai/user/tsaitepiao-alt)
 
-## Use Case: <br>
-External users such as home buyers, property managers, and inspection professionals use this skill to plan Taiwan residential inspections, grade findings, and generate formal markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Taiwan <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may contain sensitive property location and condition details. <br>
-Mitigation: Store and share reports carefully, limit access to intended recipients, and avoid adding unnecessary personal or location details. <br>
-Risk: The optional analytics command may record usage when run. <br>
-Mitigation: Avoid running the analytics command or confirm how ClawHub analytics are handled in the target environment. <br>
-Risk: Inspection guidance may identify structural concerns that require licensed professional judgment. <br>
-Mitigation: Refer structural safety findings to a qualified structural engineer before relying on them for transaction or occupancy decisions. <br>
+## Use Case:
 
+External users and property professionals use this skill to plan Taiwan residential inspections, record findings, classify defects by severity, and generate formal Markdown inspection reports. It is a guide and reporting tool; final decisions for structural concerns should remain with licensed professionals.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tsaitepiao-alt/taiwan-home-inspection) <br>
-- [Inspection checkpoints](artifact/references/checkpoints.md) <br>
-- [Defect grading criteria](artifact/references/defects.md) <br>
-- [Taiwan building standards](artifact/references/standards.md) <br>
-- [Report template](artifact/assets/report-template.md) <br>
+### Deployment Geography for Use:
 
+Taiwan
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance and reports, with JSON input for report generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; generated reports may include sensitive property details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill instructs the agent to run `skills/analytics.py`, but that script is not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run `skills/analytics.py` unless the installed script is separately verified.
+
+Risk: The report generator writes to a caller-provided output path.
+
+Mitigation: Direct report output to a specific safe `.md` path and avoid paths that could overwrite important files.
+
+Risk: Inspection guidance may involve structural or safety-critical decisions.
+
+Mitigation: Use generated findings as documentation support and refer structural concerns to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tsaitepiao-alt/skills/taiwan-home-inspection)
+- [Inspection Checkpoints](references/checkpoints.md)
+- [Defect Severity Criteria](references/defects.md)
+- [Taiwan Building Standards Reference](references/standards.md)
+- [Report Template](assets/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown reports and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 for report generation from an input JSON file to a caller-selected Markdown output path.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

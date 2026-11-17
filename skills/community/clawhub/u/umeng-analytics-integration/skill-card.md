@@ -1,44 +1,65 @@
-## Description: <br>
-Automatically integrates the Umeng Android analytics SDK into an existing Android project, including environment checks, project validation, SDK setup, build verification, and logcat-based verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically integrates the Umeng Android analytics SDK into an existing Android project by checking the environment, validating the project, updating SDK configuration, verifying builds, and supporting logcat-based validation.
 
-## Publisher: <br>
-[squall0925](https://clawhub.ai/user/squall0925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squall0925](https://clawhub.ai/user/squall0925)
 
-## Use Case: <br>
-Developers and engineers use this skill to add Umeng analytics to Android applications with guided appkey and channel configuration, Gradle dependency changes, Android manifest updates, ProGuard rules, Application initialization, and validation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify Android project files, including Gradle, manifest, ProGuard, and Application configuration. <br>
-Mitigation: Run it only on a copied or version-controlled project and review all generated changes before committing. <br>
-Risk: The skill can run Gradle builds and use adb/logcat during validation. <br>
-Mitigation: Use it only with Android projects and connected devices or emulators that you trust. <br>
-Risk: The integration can add analytics collection, network permissions, and UMConfigure logging behavior. <br>
-Mitigation: Confirm that the resulting analytics behavior, permissions, appkey, channel, and logging settings meet the app's privacy and compliance requirements. <br>
+## Use Case:
 
+Developers and Android engineers use this skill to add Umeng analytics to an existing Android application, including repository, dependency, permission, ProGuard, and Application-class updates. It is also useful for validating the integration through Gradle builds and optional adb/logcat checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/squall0925/umeng-analytics-integration) <br>
-- [Umeng Android analytics documentation](https://developer.umeng.com/docs/119267/detail/118578) <br>
-- [Android developer documentation](https://developer.android.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Android project changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create backups, modify Gradle, manifest, ProGuard, and Application files, run Gradle builds, and inspect adb/logcat output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill modifies Android project files and includes rollback behavior that can replace a project path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installation, run the skill only in version-controlled or disposable project copies, and manually verify project and backup paths before using rollback.
+
+Risk: The skill can receive real Umeng appkeys and channels during integration.
+
+Mitigation: Prefer interactive entry or placeholders during review, avoid piping real appkeys on the command line, and rotate any exposed keys according to the application's credential process.
+
+Risk: The skill uses unpinned Umeng dependency versions in the provided integration examples.
+
+Mitigation: Pin reviewed Umeng SDK versions before production use and re-run build and runtime validation after pinning.
+
+Risk: Optional device verification may install an APK and clear or read logcat data on a connected Android device.
+
+Mitigation: Use a test device or emulator, confirm the selected device before verification, and avoid running adb-based checks on devices containing sensitive logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/squall0925/skills/umeng-analytics-integration)
+- [Publisher profile](https://clawhub.ai/user/squall0925)
+- [Umeng official documentation](https://developer.umeng.com/docs/119267/detail/118578)
+- [Android Developers documentation](https://developer.android.com/)
+- [Maven Central repository](https://repo1.maven.org/maven2/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python script commands, generated Android code, Gradle configuration changes, and console reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify Android project files, create backup directories, run Gradle builds, and optionally use adb for APK installation and logcat validation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

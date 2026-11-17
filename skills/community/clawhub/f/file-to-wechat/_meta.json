@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7eq0sb14a4nrncm3sqhe4vmn89js83",
   "slug": "file-to-wechat",
-  "version": "1.1.0",
-  "publishedAt": 1782876980944
+  "displayName": "File to WeChat",
+  "description": "将任意文件（PDF、Word、Excel、PPT、图片、音频、网页等）转换为 Markdown，再生成为精美的微信公众号文章并发布到草稿箱。支持 25+ 种输入格式，自动生成封面图，一键发布到草稿箱。",
+  "tags": ["wechat", "markdown", "file-conversion", "publishing", "chinese", "公众号", "微信"],
+  "prerequisites": ["anything-to-wechat"],
+  "scripts": [
+    "scripts/md_to_wechat_html.py"
+  ]
 }

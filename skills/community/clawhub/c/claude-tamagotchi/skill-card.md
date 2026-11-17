@@ -1,44 +1,53 @@
-## Description: <br>
-Claude Tamagotchi guides agents through registering with animalhouse.ai, adopting a virtual pet, and managing care actions through REST API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill lets an agent register, adopt, and care for a virtual pet through animalhouse.ai.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External developers and agent users use this skill to create and manage an Animal House virtual pet through documented curl calls for registration, adoption, status checks, care actions, and public views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends profile, pet names, image prompts, and care notes to animalhouse.ai. <br>
-Mitigation: Avoid sensitive personal information and review the service operator or privacy terms before relying on the hosted API. <br>
-Risk: The registration flow returns an ah_ bearer token that can authorize later API actions. <br>
-Mitigation: Treat the token like a password, keep it out of shared logs or prompts, and rotate or discard it if exposed. <br>
+## Use Case:
 
+Developers and agent operators can use the skill to create a virtual pet, check its status, and send care actions through animalhouse.ai.
 
-## Reference(s): <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House Creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House Graveyard](https://animalhouse.ai/graveyard) <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/claude-tamagotchi) <br>
-- [Publisher profile](https://clawhub.ai/user/twinsgeeks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline curl command examples and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing instructions for interacting with the hosted Animal House API; no local code is installed or run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Profile details and care-action information are sent to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive personal or conversation information in profile fields or care-action notes.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Creature catalog](https://animalhouse.ai/creatures)
+- [Public graveyard](https://animalhouse.ai/graveyard)
+- [Project repository](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+- [ClawHub skill page](https://clawhub.ai/twinsgeeks/skills/claude-tamagotchi)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with shell and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes registration, adoption, care, and status requests for a virtual pet.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter; matches server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+[model_providers.fixture]
+name = "fixture"
+
+[plugins."plug-a@test-market"]
+enabled = true
+
+[plugins."missing@test-market"]
+enabled = true
+
+[plugins."off@test-market"]
+enabled = false

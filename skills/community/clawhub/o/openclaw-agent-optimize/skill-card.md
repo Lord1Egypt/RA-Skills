@@ -1,50 +1,69 @@
-## Description: <br>
-Provides an advisory audit and prioritized optimization plan for OpenClaw workspaces, covering cost, model routing, context discipline, delegation, and reliability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Agent Optimize provides advisory audits and prioritized optimization plans for OpenClaw workspaces focused on cost-aware model routing, context discipline, delegation, reliability, rollback, and verification.
 
-## Publisher: <br>
-[phenomenoner](https://clawhub.ai/user/phenomenoner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[phenomenoner](https://clawhub.ai/user/phenomenoner)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to audit agent workspaces and receive reversible optimization recommendations for cost control, context management, automation reliability, model tiering, and delegation. The skill is advisory-first and should present exact proposals, expected impact, rollback steps, and verification plans before persistent changes are made. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optimization advice may lead to persistent configuration, heartbeat, cron, sub-agent, or memory-file changes that affect monitoring coverage, reliability, or cost. <br>
-Mitigation: Review proposed changes before applying them, require explicit approval, and confirm rollback and post-change verification steps. <br>
-Risk: Optional companion tools such as openclaw-mem may add behavior outside this skill's documentation-only scope. <br>
-Mitigation: Evaluate optional tools separately before installation or configuration. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to audit workspace cost, context bloat, model routing, delegation, cron, and heartbeat behavior, then receive a prioritized plan with exact proposed changes, rollback notes, and verification steps.
 
-## Reference(s): <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [ClawHub listing](https://clawhub.ai/phenomenoner/openclaw-agent-optimize) <br>
-- [Optimization Playbook](references/optimization-playbook.md) <br>
-- [Model Selection](references/model-selection.md) <br>
-- [Context Management](references/context-management.md) <br>
-- [Agent Orchestration](references/agent-orchestration.md) <br>
-- [Cron Optimization](references/cron-optimization.md) <br>
-- [Heartbeat Optimization](references/heartbeat-optimization.md) <br>
-- [Memory Patterns](references/memory-patterns.md) <br>
-- [Continuous Learning](references/continuous-learning.md) <br>
-- [Safeguards](references/safeguards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with exact change proposals, command snippets, rollback steps, and verification plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output only; persistent configuration or cron changes require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Optimization advice may propose config, cron, heartbeat, memory, or skill-surface changes that alter cost, reliability, or monitoring coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact proposed change, expected impact, rollback plan, and post-change verification before approving any persistent mutation.
+
+Risk: Installing through an unpinned package command can introduce npm supply-chain exposure.
+
+Mitigation: Use a pinned or otherwise verified installer path when supply-chain assurance is required.
+
+Risk: Reducing heartbeat or cron frequency can lower monitoring coverage.
+
+Mitigation: Choose among explicit cost-versus-coverage profiles and approve reductions only after reviewing the trade-off.
+
+## Reference(s):
+
+- [Optimization Playbook](artifact/references/optimization-playbook.md)
+- [Model Selection](artifact/references/model-selection.md)
+- [Context Management](artifact/references/context-management.md)
+- [Agent Orchestration](artifact/references/agent-orchestration.md)
+- [Cron Optimization](artifact/references/cron-optimization.md)
+- [Heartbeat Optimization](artifact/references/heartbeat-optimization.md)
+- [Memory Patterns](artifact/references/memory-patterns.md)
+- [Continuous Learning](artifact/references/continuous-learning.md)
+- [Safeguards](artifact/references/safeguards.md)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/phenomenoner/skills/openclaw-agent-optimize)
+- [everything-claude-code Inspiration](https://github.com/affaan-m/everything-claude-code)
+- [openclaw-mem](https://github.com/phenomenoner/openclaw-mem)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with structured audit sections, exact change proposals, rollback steps, and verification plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory-first output; persistent config, cron, heartbeat, memory, or skill-surface changes require explicit user approval.]
+
+## Skill Version(s):
+
+1.2.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

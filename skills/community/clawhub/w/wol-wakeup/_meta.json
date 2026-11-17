@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn79pawwxbb4bh4tvc6502npfx82d721",
+  "name": "wol-wakeup",
   "slug": "wol-wakeup",
   "version": "1.0.0",
-  "publishedAt": 1774244459226
+  "description": "局域网唤醒 (WoL) 自动化技能，关键词触发，不依赖大模型",
+  "author": "OpenClaw Community",
+  "category": "automation",
+  "tags": ["wol", "wake-on-lan", "局域网唤醒", "自动化", "system-tools"],
+  "license": "MIT",
+  "repository": "https://github.com/openclaw/skills",
+  "icon": "icon.svg",
+  "publishedAt": 1711174800000,
+  "updatedAt": 1742968800000
 }

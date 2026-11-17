@@ -1,0 +1,42 @@
+{
+  "name": "qique-employee",
+  "version": "0.2.0",
+  "description": "企雀 Qique 医美系统与医美软件的员工 AI 助手。通过本机 MCP 按员工权限查询经营、顾客、预约和报表，并办理已开放且经员工确认的操作。Use for Qique employee assistance, clinic CRM queries and local MCP setup.",
+  "author": {
+    "name": "企雀AI助手"
+  },
+  "homepage": "https://qique.cn/",
+  "repository": "https://github.com/Edmon/qique-employee",
+  "keywords": [
+    "qique",
+    "企雀",
+    "企雀AI助手",
+    "医美系统",
+    "医美软件",
+    "clinic crm",
+    "employee assistant",
+    "appointment",
+    "mcp",
+    "agent skills"
+  ],
+  "variables": {
+    "type": "object",
+    "properties": {
+      "QIQUE_EMPLOYEE_RUNTIME_DIR": {
+        "type": "string",
+        "title": "企雀 AI 助手 official runtime directory",
+        "description": "Absolute local path to the separately installed official package root. No credentials."
+      },
+      "QIQUE_NODE_EXECUTABLE": {
+        "type": "string",
+        "title": "Bundled Node executable",
+        "description": "Absolute local path to Node installed by the official Qique package."
+      }
+    },
+    "required": [
+      "QIQUE_EMPLOYEE_RUNTIME_DIR",
+      "QIQUE_NODE_EXECUTABLE"
+    ]
+  },
+  "license": "MIT-0"
+}

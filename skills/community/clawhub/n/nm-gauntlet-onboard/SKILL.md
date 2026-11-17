@@ -2,7 +2,7 @@
 name: onboard
 description: |
   Guides a new developer through five staged challenge sets covering architecture, domain, patterns, and hardening
-version: 1.9.8
+version: 1.10.3
 triggers:
   - onboarding contributors
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet", "emoji": "\ud83e\udd9e"}}
@@ -10,12 +10,17 @@ source: claude-night-market
 source_plugin: gauntlet
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/gauntlet](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/gauntlet](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Guided Onboarding
 
 Walk a new developer through the codebase in structured stages.
+
+## When NOT To Use
+
+- Ad-hoc questions outside a staged path (use `gauntlet:challenge`)
+- The knowledge base does not exist yet (use `gauntlet:extract`)
 
 ## Stages
 
@@ -41,3 +46,17 @@ Walk a new developer through the codebase in structured stages.
 
 After stage 5, the developer enters the regular gauntlet.
 Answer history carries over.
+
+## Exit Criteria
+
+- [ ] Onboarding progress persists across invocations: current stage
+  and challenge count survive session restarts and are loaded at
+  Step 1
+- [ ] Advancement to the next stage requires 80% correct across 10+
+  challenges in the current stage; partial completion does not
+  advance
+- [ ] Mastery tracking requires correct answers twice for a given
+  challenge before it is marked mastered
+- [ ] After Stage 5 completion, the developer's answer history
+  carries over into the regular gauntlet challenge pool without
+  loss

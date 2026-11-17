@@ -1,0 +1,19 @@
+{
+  "requestId": "sheet-sample-001",
+  "action": "analyze",
+  "recipe": "sales",
+  "period": "2026-10",
+  "sources": [
+    {
+      "file": "samples/sales.csv",
+      "mapping": {
+        "id": "id",
+        "date": "date",
+        "currency": "currency",
+        "category": "category",
+        "amount": "amount",
+        "kind": "kind"
+      }
+    }
+  ]
+}

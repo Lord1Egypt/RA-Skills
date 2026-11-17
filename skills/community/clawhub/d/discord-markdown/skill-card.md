@@ -1,42 +1,54 @@
-## Description: <br>
-Formats Discord-ready messages and templates using Discord Markdown syntax, including emphasis, spoilers, code blocks, mentions, timestamps, and metadata summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Format text for Discord using markdown syntax for messages, bot responses, embed descriptions, forum posts, webhook payloads, and other content destined for Discord's chat interface.
 
-## Publisher: <br>
-[BillChirico](https://clawhub.ai/user/BillChirico) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[billchirico](https://clawhub.ai/user/billchirico)
 
-## Use Case: <br>
-Community managers, Discord moderators, developers, and bot authors use this skill to compose copy-paste-ready Discord messages, bot responses, embed descriptions, forum posts, and webhook payloads with preserved Markdown syntax and message metadata. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Discord messages may include @everyone, @here, or role mentions that notify a broad audience. <br>
-Mitigation: Review mention counts and remove or replace broad notifications before posting. <br>
-Risk: Masked links, public-channel content, or over-limit messages may cause unintended disclosure or posting failures. <br>
-Mitigation: Inspect links and content destination, and split or shorten messages when the metadata summary approaches Discord limits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Discord Markdown Formatting](SKILL.md) <br>
-- [Syntax Highlighting Languages](references/syntax-highlighting.md) <br>
-- [Discord Formatting Templates](references/templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/BillChirico/discord-markdown) <br>
+## Use Case:
 
+External users, community managers, moderators, and developers use this skill to draft Discord-ready messages with correct Discord Markdown, copyable code-block presentation, metadata summaries, and reusable templates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown fenced code blocks with a metadata summary table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Discord-ready messages are presented in copyable fenced code blocks; summaries report character count, sections, mentions, URLs, and code block languages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Discord messages may include broad notifications such as @everyone or @here.
+
+Mitigation: Review mention usage before posting and replace broad notifications with narrower role or user mentions when appropriate.
+
+Risk: Templates may include placeholder links, API placeholders, or moderation/action wording that could be inaccurate if posted unchanged.
+
+Mitigation: Replace placeholders, verify links, and review moderation or action language before publishing the message.
+
+## Reference(s):
+
+- [Syntax Highlighting Languages](references/syntax-highlighting.md)
+- [Discord Formatting Templates](references/templates.md)
+- [ClawHub Discord Markdown Skill Page](https://clawhub.ai/billchirico/skills/discord-markdown)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with fenced code blocks and metadata summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Discord-ready messages are intended to be copy-pasteable and may include mentions, links, timestamps, templates, or nested code blocks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Writing Style Skill is a reusable writing-style template that helps an agent draft in a user's style and learn from original-to-final edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reusable writing-style skill template that learns from a user's edits, extracts style rules, and updates SKILL.md so future drafts better match the user's voice.
 
-## Publisher: <br>
-[jzocb](https://clawhub.ai/user/jzocb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jzocb](https://clawhub.ai/user/jzocb)
 
-## Use Case: <br>
-Developers and writers use this skill to customize an agent's writing voice, record draft-to-final edits, and generate proposed style-rule improvements for future writing tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The observation workflow can store full draft and final text in local JSONL logs. <br>
-Mitigation: Avoid recording confidential drafts and periodically inspect or remove local observation logs. <br>
-Risk: The improvement workflow can use external LLM output to propose or automatically apply changes to skill instructions. <br>
-Mitigation: Review proposal files and SKILL.md diffs before applying changes, and avoid cron or auto mode until the workflow is trusted. <br>
-Risk: A custom LLM command can be executed through IMPROVE_LLM_CMD. <br>
-Mitigation: Set IMPROVE_LLM_CMD only to a command you control and understand. <br>
+## Use Case:
 
+Developers and writers use this skill to customize an agent's writing style and capture recurring edits as reusable writing rules. It supports workflows where an agent drafts content, the user revises it, and helper scripts record the before-and-after text for later style improvement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jzocb/jz-writing-style-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/jzocb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated proposal files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSONL observation logs, Markdown proposal files, and SKILL.md backups when its helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Drafts and final edits may be stored on disk and may contain sensitive or client material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with non-confidential content unless redaction, retention limits, and explicit approval controls are added.
+
+Risk: The improvement workflow may send draft and edit data through the configured LLM CLI.
+
+Mitigation: Confirm the configured LLM command and data handling policy before running extraction on private or regulated content.
+
+Risk: Auto mode can rewrite SKILL.md from generated proposals.
+
+Mitigation: Review proposals and diffs before applying changes, and avoid unattended auto mode for production skills.
+
+## Reference(s):
+
+- [Writing Style Skill on ClawHub](https://clawhub.ai/jzocb/skills/jz-writing-style-skill)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and generated proposal files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can store original and final draft text locally and can update SKILL.md after review or auto mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

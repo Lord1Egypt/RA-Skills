@@ -1,0 +1,10 @@
+interface:
+  display_name: RMBase
+  short_description: Query RMBase v3.0 RNA modification data with provenance
+  default_prompt: Use $rmbase to query RMBase v3.0 and return reproducible results with species, genome assembly, provenance, and limitations.
+policy:
+  allow_implicit_invocation: true
+  products:
+    - chatgpt
+    - codex
+    - api

@@ -1,41 +1,49 @@
-## Description: <br>
-Provides the latest spaceflight news articles and blog posts with keyword search via the Spaceflight News API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides recent spaceflight news articles and blog posts with keyword search through the Spaceflight News API.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve recent spaceflight articles, search space-news coverage by keyword, and collect current blog posts with source URLs and publication metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Space-news search terms are sent to the disclosed Pipeworx gateway. <br>
-Mitigation: Do not include secrets, private material, or sensitive internal topics in searches. <br>
-Risk: Returned articles and blog posts come from upstream news sources and may be incomplete, delayed, or inaccurate. <br>
-Mitigation: Check important facts against the linked source outlet before relying on them. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve recent spaceflight articles and blog posts or search space-news coverage by keyword.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/brucegutman/pipeworx-spacenews) <br>
-- [Publisher profile](https://clawhub.ai/user/brucegutman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Structured article and blog results with title, summary, URL, image, source outlet, and publication timestamp.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports latest-article, keyword-search, and latest-blog retrieval; results depend on the disclosed remote gateway and upstream news sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Article searches and tool requests are sent to the listed external MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including private or sensitive information in search queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-spacenews)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration]
+
+**Output Format:** [Text or Markdown summaries with article metadata, URLs, source outlets, images, and publication timestamps; optional MCP server configuration as JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and retrieval requests are served by an external MCP service.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

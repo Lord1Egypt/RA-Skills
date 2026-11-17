@@ -1,41 +1,59 @@
-## Description: <br>
-Korean tourism content via KTO TourAPI 4.0, with Bash subcommands for area codes, categories, area browsing, nearby search, keyword search, festivals, stays, and full content details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+KTO TourAPI CLI helps agents query Korea Tourism Organization TourAPI 4.0 for Korean tourism areas, categories, places, nearby points of interest, festivals, lodging, keyword search, and detailed content records.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers, travel-planning agents, and content builders use this skill to retrieve authoritative Korean tourism records from KTO TourAPI for itineraries, festival calendars, lodging discovery, nearby place lookup, and grounded tourism answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tourism queries, coordinates, dates, and the data.go.kr TourAPI key are sent to the configured TourAPI endpoint. <br>
-Mitigation: Use the default TourAPI endpoint unless a replacement service is trusted, keep TOURAPI_SERVICE_KEY out of shared logs and transcripts, and avoid exposing query data beyond the intended API call. <br>
-Risk: The CLI supports overriding TOURAPI_BASE, which can redirect requests and credentials to another service. <br>
-Mitigation: Only set TOURAPI_BASE to a trusted endpoint and review environment configuration before running the scripts. <br>
+## Use Case:
 
+Developers and agent builders use this skill to ground Korea travel planning, festival calendars, map-based discovery, and tourism content workflows in Korea Tourism Organization TourAPI data. It is suited for JSONL-producing command-line workflows that feed jq, pandas, publishing tools, or downstream agent skills.
 
-## Reference(s): <br>
-- [KTO TourAPI KorService2 endpoint](https://apis.data.go.kr/B551011/KorService2) <br>
-- [Korean OpenData portal](https://www.data.go.kr/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Bash commands and JSONL output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Subcommands emit one JSON object per line for downstream tools such as jq, csvkit, pandas, or other agent skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The authoritative security summary reports that one command can be tricked into running shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review command arguments before execution and do not expose nearby.sh through automation or user-facing tools until radius input is validated as a plain integer.
+
+Risk: The authoritative security summary reports that TOURAPI_BASE can redirect the TourAPI key.
+
+Mitigation: Pin TOURAPI_BASE to the official HTTPS TourAPI endpoint or use a low-value test key for nonproduction endpoints.
+
+Risk: The skill uses external API credentials and has a suspicious security verdict.
+
+Mitigation: Install only in trusted environments, use trusted prompts and command arguments, and review the skill before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chloepark85/skills/kto-tourapi-cli)
+- [Korean OpenData portal](https://www.data.go.kr/)
+- [Korea Tourism Organization TourAPI 4.0 KorService2 endpoint](https://apis.data.go.kr/B551011/KorService2)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSONL command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, curl, jq, and a TOURAPI_SERVICE_KEY environment variable; command outputs are generally JSONL, with detail lookups returning one compact JSON object.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

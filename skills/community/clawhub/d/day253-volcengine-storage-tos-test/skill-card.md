@@ -1,41 +1,52 @@
-## Description: <br>
-Minimal TOS smoke tests for validating AK/SK configuration, listing buckets, and uploading and downloading objects with Volcengine TOS using tosutil CLI or tos_manage.py. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minimal TOS smoke tests. Validate AK/SK config, list buckets, and upload/download with Volcengine TOS. Supports both tosutil CLI and tos_manage.py script.
 
-## Publisher: <br>
-[day253](https://clawhub.ai/user/day253) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[day253](https://clawhub.ai/user/day253)
 
-## Use Case: <br>
-Developers and operators use this skill to smoke-test Volcengine TOS credentials, endpoint configuration, bucket listing, and object upload/download behavior before relying on a storage workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Running storage smoke tests against production or sensitive buckets can expose, overwrite, or leave behind real objects. <br>
-Mitigation: Use a dedicated non-production bucket with non-sensitive test objects under a test prefix, and delete test objects after validation. <br>
-Risk: Broad or long-lived AK/SK credentials and presigned URLs can grant more access than the smoke test needs. <br>
-Mitigation: Use least-privilege temporary credentials and avoid sharing or logging credentials and presigned URLs. <br>
-Risk: The workflow depends on external CLI, Python package, or helper-script behavior outside the skill card itself. <br>
-Mitigation: Verify tosutil, the tos Python package, and any helper script before running commands in the target environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Volcengine tosutil documentation](https://www.volcengine.com/docs/6349/148772) <br>
+## Use Case:
 
+Developers and engineers use this skill to smoke test Volcengine TOS object storage access with configured AK/SK credentials, including bucket listing, object upload, download validation, metadata checks, presigned URL creation, and cleanup.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Volcengine TOS credentials, endpoint or region settings, and a writable test bucket.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The smoke test uses credentials to upload, presign, download, and delete objects in Volcengine TOS.
+
+Mitigation: Use least-privilege test credentials and run commands only against a disposable bucket or clearly isolated test prefix.
+
+Risk: The workflow depends on the tos package, tosutil CLI, and any tos_manage.py script available in the user's environment.
+
+Mitigation: Verify the package, CLI, and script before use, and install or run them only in an isolated environment.
+
+## Reference(s):
+
+- [Volcengine tosutil CLI documentation](https://www.volcengine.com/docs/6349/148772)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent to run smoke-test commands and compare expected command results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,32 +1,32 @@
-# Server State 数据获取模式
+# Server State data acquisition mode
 
-## 先判断是否需要查询库
+## First determine whether a query library is needed
 
-- 简单静态请求、一次性提交或已有框架 loader 足够表达的页面，不必默认引入查询库。
-- 需要跨组件缓存、去重、后台刷新、分页、乐观更新、预取或 SSR hydration 时，再使用 TanStack Query、SWR、Nuxt 数据获取或项目既有请求缓存方案。
-- 查询库只管理 server state，不替代本地 UI 状态、表单状态、权限判断或 Service Worker 缓存。
+- Simple static requests, one-time submissions, or pages with sufficient expression in the existing framework loader do not need to introduce the query library by default.
+- When cross-component caching, deduplication, background refresh, paging, optimistic updates, prefetching or SSR hydration are required, use TanStack Query, SWR, Nuxt data acquisition or the project's existing request caching solution.
+- The query library only manages server state and does not replace local UI state, form state, permission judgment or Service Worker cache.
 
-## 选型参考
+## Selection reference
 
-先沿用仓库已有请求层和缓存方案；新增依赖时再按框架与复杂度选择。
+First, use the existing request layer and caching solution in the warehouse; when adding new dependencies, choose based on the framework and complexity.
 
-| 场景 | 候选方案 | 注意点 |
+| Scenarios | Alternative solutions | Notes |
 | --- | --- | --- |
-| React server state | TanStack Query / SWR / 项目既有封装 | TanStack Query 适合 mutation、invalidation 和无限查询；SWR 适合轻量读取缓存。 |
-| Vue server state | TanStack Query Vue adapter / VueUse / Nuxt `useFetch` / 项目既有封装 | 不要让 Vue 项目照搬 React-only hook 示例。 |
-| Solid / Svelte / 跨框架 | TanStack Query 对应 adapter 或项目既有资源层 | cache key、staleTime、mutation 回滚原则保持一致。 |
-| 简单页面请求 | 框架 loader、组件内轻量请求或 API composable | 仍要处理 loading/error/empty 和取消或过期响应。 |
-| SSR / SSG | 框架预取、水合或服务端数据边界 | 确保服务端 key 与客户端 key 一致，避免重复请求和水合错配。 |
+| React server state | TanStack Query / SWR / Project existing package | TanStack Query is suitable for mutation, invalidation and infinite queries; SWR is suitable for lightweight read caching. |
+| Vue server state | TanStack Query Vue adapter / VueUse / Nuxt `useFetch` / Project existing package | Don’t let Vue projects copy React-only hook examples. |
+| Solid / Svelte / Cross-framework | TanStack Query corresponds to the existing resource layer of the adapter or project | The cache key, staleTime, and mutation rollback principles are consistent. |
+| Simple page requests | Framework loaders, lightweight requests within components, or API composable | Still have to handle loading/error/empty and cancellation or expiration responses. |
+| SSR / SSG | Framework prefetching, hydration or server-side data boundaries | Ensure that the server key is consistent with the client key to avoid repeated requests and hydration mismatches. |
 
-## 通用边界
+## Universal Boundary
 
-- API 函数只负责请求、解析和错误归一化，不包含 UI toast、loading 或缓存逻辑。
-- cache key/query key 必须包含所有影响响应的参数。
-- mutation 成功后按实体或列表失效；乐观更新必须先保存快照，失败时回滚。
-- 无限查询只处理数据分页；DOM 虚拟化由列表虚拟化流程处理。
-- 预取要有明确用户路径或首屏收益，不为所有可能数据提前请求。
+- API functions are only responsible for requesting, parsing and error normalization, and do not include UI toast, loading or caching logic.
+- The cache key/query key must contain all parameters that affect the response.
+- Mutation fails by entity or list after success; optimistic update must save the snapshot first and roll back when it fails.
+- Infinite queries only handle data paging; DOM virtualization is handled by the list virtualization process.
+- Prefetching must have a clear user path or above-the-fold revenue, and do not request all possible data in advance.
 
-## QueryClient 默认配置
+## QueryClient default configuration
 
 ```tsx
 const queryClient = new QueryClient({
@@ -43,11 +43,11 @@ const queryClient = new QueryClient({
 
 ## Query Key
 
-- 推荐：`["users", "list", { page, status }]`
-- 详情：`["users", "detail", userId]`
-- 所有影响请求结果的参数都必须进入 key。
+- Recommended: `["users", "list", { page, status }]`
+- Details: `["users", "detail", userId]`
+- All parameters that affect the request result must enter key.
 
-## 乐观更新
+## Optimistic update
 
 ```tsx
 const mutation = useMutation({
@@ -82,9 +82,9 @@ const feed = useInfiniteQuery({
 });
 ```
 
-虚拟列表场景将数据分页与 DOM 虚拟化分开设计。
+The virtual list scenario is designed to separate data paging and DOM virtualization.
 
-## API 层整合
+## API layer integration
 
 ```ts
 export async function getUserList(params: GetUserListParams): Promise<GetUserListResponse> {
@@ -100,4 +100,4 @@ export function useUsers(params: GetUserListParams) {
 }
 ```
 
-API 函数不包含 UI toast、loading 或缓存逻辑。
+API functions do not contain UI toast, loading or caching logic.

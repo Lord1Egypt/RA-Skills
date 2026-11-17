@@ -1,43 +1,54 @@
-## Description: <br>
-Miaoji Scene Studio helps agents create platform-native product scene image prompts and composition plans for ecommerce and social content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-oriented ecommerce scene-image prompts and composition plans for TikTok, Instagram, Xiaohongshu, and Amazon product visuals.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Ecommerce sellers, social content creators, and independent store operators use this skill to turn product descriptions or white-background product images into AI image prompts, scene concepts, composition guidance, and platform-specific visual direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated commercial scene prompts may produce visuals that overstate product qualities, misuse brand elements, or miss platform disclosure expectations. <br>
-Mitigation: Review generated prompts and resulting visuals for brand accuracy, product truthfulness, ad disclosure, and platform policy compliance before publication. <br>
-Risk: The artifact includes an optional local Python helper script. <br>
-Mitigation: Review the script before execution and run it only in an environment appropriate for local code from third-party skill packages. <br>
+## Use Case:
 
+External ecommerce sellers, social creators, and storefront operators use this skill to turn product descriptions into scene concepts, bilingual image-generation prompts, and composition guidance for lifestyle product visuals.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/wangm-a3/miaoji-scene-studio) <br>
-- [Publisher Profile](https://clawhub.ai/user/wangm-a3) <br>
-- [Scene Template Reference Library](references/scene-templates.md) <br>
-- [Project Homepage](https://xiaping.coze.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown with Chinese scene descriptions, English AI image prompts, composition notes, platform fit guidance, and optional JSON from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are prompt and planning guidance only; the skill does not generate, modify, store, or upload images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: Generated image prompts or composition plans may be unsuitable for a commercial listing if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts, platform fit, and listing context before using the output in an image tool or published product page.
+
+Risk: The skill is Chinese-oriented and may produce Chinese labels or examples that need localization.
+
+Mitigation: Confirm language, marketplace requirements, and target-audience expectations before publication.
+
+## Reference(s):
+
+- [Scene template reference library](artifact/references/scene-templates.md)
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/miaoji-scene-studio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON text with bilingual prompt examples, composition notes, and optional shell command usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese labels and examples alongside English AI image prompts; the bundled script can emit JSON when requested.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

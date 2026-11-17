@@ -1,46 +1,62 @@
-## Description: <br>
-Micro-frontend architecture design and implementation guide for choosing framework patterns, splitting monoliths, isolating styles, coordinating inter-app communication, and deploying sub-apps independently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Micro-frontend architecture design and implementation guide for designing app boundaries, choosing Module Federation/qiankun/single-spa/wujie, splitting monoliths into sub-apps, implementing style isolation, setting up inter-app communication, and deploying micro-frontends independently.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and implement micro-frontend architectures across Module Federation, qiankun, single-spa, communication, style isolation, and independent deployment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authentication-token examples use localStorage or pass tokens into sub-app props, which can be unsafe if copied directly into production. <br>
-Mitigation: Replace these examples with HttpOnly SameSite cookies, backend-managed sessions, or tightly scoped in-memory tokens, and avoid passing raw tokens to sub-apps. <br>
-Risk: Remote-loading and deployment-manifest workflows can introduce supply-chain or rollback risk if origins and deployment controls are weak. <br>
-Mitigation: Use trusted origins, CI approvals, least-privilege credentials, and rollback controls for remote entries and deployment manifests. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and implement micro-frontend architectures, compare framework options, set up application shells and sub-apps, isolate styles, define inter-app communication, and deploy sub-apps independently.
 
-## Reference(s): <br>
-- [Module Federation](references/module-federation.md) <br>
-- [qiankun](references/qiankun.md) <br>
-- [single-spa](references/single-spa.md) <br>
-- [Inter-App Communication](references/communication.md) <br>
-- [Style Isolation](references/style-isolation.md) <br>
-- [Deployment](references/deployment.md) <br>
-- [ClawHub skill page](https://clawhub.ai/goldath/micro-frontend-arch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript, JSX, YAML, JSON, CSS, HTML, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance with implementation snippets and comparison tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Authentication-token examples may encourage storing bearer tokens in localStorage or sessionStorage or passing raw tokens into sub-apps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid bearer tokens in browser storage, avoid raw token propagation to sub-apps, and require a production authentication design review before applying the examples.
+
+Risk: Dynamic remote-code-loading examples can be unsafe if origins, manifests, versions, and remote entries are not trusted and protected.
+
+Mitigation: Use trusted origins, immutable versions, protected manifests, CSP, and integrity checks for remotely loaded micro-frontends.
+
+Risk: Architecture guidance may be incomplete for a specific production environment.
+
+Mitigation: Review the skill output before relying on it for production architecture decisions.
+
+## Reference(s):
+
+- [Module Federation](references/module-federation.md)
+- [qiankun](references/qiankun.md)
+- [single-spa](references/single-spa.md)
+- [Inter-App Communication](references/communication.md)
+- [Style Isolation](references/style-isolation.md)
+- [Deployment](references/deployment.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell command, configuration, and comparison table examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Architecture guidance should be reviewed before production use, especially examples involving authentication tokens and remote code loading.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

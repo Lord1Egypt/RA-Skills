@@ -1,40 +1,53 @@
-## Description: <br>
-Evaluates OpenClaw trigger rules against the current database state, especially stale mission detection backed by public.openclaw_* tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate real OpenClaw trigger rules against the current database state, especially stale mission detection backed by public.openclaw_* tables.
 
-## Publisher: <br>
-[EcosincronIA](https://clawhub.ai/user/EcosincronIA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ecosincronia](https://clawhub.ai/user/ecosincronia)
 
-## Use Case: <br>
-Developers and operators maintaining OpenClaw workflows use this skill to evaluate the stale_missions_alert trigger and inspect the corresponding trigger rule row against current database state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a hard-coded local OpenClaw engine script that is outside the packaged artifact. <br>
-Mitigation: Install only in a controlled OpenClaw workspace and review stale_missions_engine.sh at the configured path before execution. <br>
-Risk: The inspection command queries a local PostgreSQL container and can expose current trigger rule state. <br>
-Mitigation: Use backed-up or non-critical data first and prefer narrowly scoped database credentials for inspection. <br>
+## Use Case:
 
+Developers and operators use this skill to run the implemented OpenClaw stale_missions_alert evaluator and inspect the current trigger rule row in the database.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EcosincronIA/trigger-evaluator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports evaluate and inspect commands for stale_missions_alert only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill executes an external local OpenClaw engine script that was not reviewed as part of the packaged artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted OpenClaw workspaces and pin or package the engine script before broader use.
+
+Risk: The inspection path uses Docker and PostgreSQL access that may be broader than the narrow trigger-read task requires.
+
+Mitigation: Prefer a dedicated read-only database role and restrict Docker/PostgreSQL access to the minimum needed environment.
+
+## Reference(s):
+
+- [Trigger Evaluator on ClawHub](https://clawhub.ai/ecosincronia/skills/trigger-evaluator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are limited to the supported stale_missions_alert trigger workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

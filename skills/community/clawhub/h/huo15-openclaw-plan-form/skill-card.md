@@ -1,45 +1,64 @@
-## Description: <br>
-Helps an agent classify varied customer planning and demand Excel workbooks into one of three standard templates, normalize their contents, generate filled template workbooks, and mark cell-level differences against prior versions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huo15 Openclaw Plan Form helps an agent classify varied planning Excel workbooks into three standard templates, normalize their contents, generate unified XLSX outputs, and annotate differences against prior versions.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-External users, operations teams, and developers use this skill to turn inconsistent customer planning spreadsheets into standardized Excel templates and to compare new and old workbook versions for planning changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer planning spreadsheets can contain sensitive operational data. <br>
-Mitigation: Install and run the skill only in an approved local environment where processing customer spreadsheets is acceptable. <br>
-Risk: Unfamiliar, multi-sheet, or irregular workbooks may be misclassified or mapped incorrectly. <br>
-Mitigation: Review inspection reports, classification confidence, and generated column mappings before relying on converted templates. <br>
-Risk: Unpinned package ranges may resolve to dependency versions that behave differently over time. <br>
-Mitigation: Pin dependencies or use a lockfile before production deployment. <br>
+## Use Case:
 
+Operations and planning teams use this skill to turn customer demand, production planning, tracking, and DIP scheduling spreadsheets into consistent company templates. Developers and agents can also use it to inspect workbook structure, review classification confidence, apply column mappings, and produce normalized JSON, filled XLSX files, or annotated diff reports.
 
-## Reference(s): <br>
-- [Workflow Guide](artifact/reference/workflow.md) <br>
-- [Classification Guide](artifact/reference/classification.md) <br>
-- [Template Schema](artifact/reference/templates_schema.json) <br>
-- [ClawHub Release Page](https://clawhub.ai/zhaobod1/huo15-openclaw-plan-form) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated JSON and Excel files from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces normalized JSON, standardized Excel templates, annotated Excel diff workbooks, and diff reports when the agent runs the provided scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Customer-provided spreadsheets may contain formulas that are carried into generated Excel files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process trusted spreadsheets only, or add formula sanitization before writing XLSX outputs.
+
+Risk: Unpinned dependencies can make installs less reproducible across environments.
+
+Mitigation: Pin pandas, openpyxl, and xlrd versions before production use.
+
+Risk: Generated outputs can overwrite or mix with existing work if written into shared directories.
+
+Mitigation: Write normalized JSON, generated workbooks, and diff reports to a dedicated work or output directory.
+
+Risk: Automatic sheet, header, date, and column mapping can be wrong for complex or low-confidence workbooks.
+
+Mitigation: Review inspect and extraction reports, then use explicit sheet, header-row, data-start, year, or mapping overrides when confidence is low.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-plan-form)
+- [Workflow guide](reference/workflow.md)
+- [Classification guide](reference/classification.md)
+- [Template schema](reference/templates_schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, JSON, Excel files]
+
+**Output Format:** [Markdown guidance with inline shell commands, normalized JSON, generated XLSX workbooks, and diff JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include filled template workbooks, clean blank template workbooks, annotated diff workbooks, and classification or extraction reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

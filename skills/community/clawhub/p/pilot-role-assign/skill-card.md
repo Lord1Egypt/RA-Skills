@@ -1,40 +1,54 @@
-## Description: <br>
-Assign and manage hierarchical roles within a swarm for coordinated task distribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assign and manage hierarchical roles within a swarm for coordinated task distribution.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators managing Pilot Protocol swarms use this skill to advertise agent capabilities, assign leader, worker, or coordinator roles, and inspect current role distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing capabilities and role assignments can expose operational metadata or affect role coordination if sent through untrusted registries or peers. <br>
-Mitigation: Use the skill only in trusted Pilot Protocol swarms, minimize published agent metadata, and prefer authenticated, encrypted, access-controlled channels. <br>
-Risk: The guidance includes network messaging commands that can change agent roles when executed. <br>
-Mitigation: Review command targets, swarm names, agent addresses, and JSON payloads before execution. <br>
+## Use Case:
 
+Developers and swarm operators use this skill to advertise agent capabilities, assign role responsibilities, and query role distribution in Pilot Protocol swarms.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with bash and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, a running Pilot Protocol daemon, jq, base64, and trusted swarm or registry endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Role-routing examples handle swarm-supplied values in commands, which can produce unsafe role assignment behavior when data is untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted swarm data, pass variables safely to jq, JSON-escape payloads, validate agent IDs and swarm names, and require exact peer matches before sending role assignments.
+
+Risk: The security verdict is suspicious due to unsafe handling in example workflow commands.
+
+Mitigation: Review before installing or using in production, and adapt the examples to local validation and command-safety requirements.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-role-assign)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilot-protocol, pilotctl on PATH, jq, base64, and a running Pilot Protocol daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

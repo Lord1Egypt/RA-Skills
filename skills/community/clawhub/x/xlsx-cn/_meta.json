@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "xlsx-cn",
-  "version": "1.0.1",
-  "publishedAt": 1771604946482
+  "metadata": {
+    "openclaw": {
+      "name": "xlsx-cn",
+      "title": "XLSX 表格处理器",
+      "description": "处理 Microsoft Excel 表格（.xlsx），支持数据读取、写入、格式化和数据分析",
+      "version": "1.0.0",
+      "category": "文档处理",
+      "tags": ["xlsx", "excel", "表格", "office", "数据分析"],
+      "author": "guohongbin-git",
+      "license": "MIT",
+      "homepage": "https://clawhub.com/skills/xlsx-cn"
+    }
+  },
+  "dependencies": [],
+  "environment": {}
 }

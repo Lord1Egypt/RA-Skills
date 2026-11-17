@@ -1,39 +1,54 @@
-## Description: <br>
-A Chinese-language template that guides multiple AI agents through role-based collaboration, including CEO coordination, execution, design, and sales or customer communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Agent Team is a Chinese-language workflow template that helps agents divide complex collaborative work across coordinator, executor, designer, and sales or customer-communication roles.
 
-## Publisher: <br>
-[li-jin-xuan](https://clawhub.ai/user/li-jin-xuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li-jin-xuan](https://clawhub.ai/user/li-jin-xuan)
 
-## Use Case: <br>
-External users and agent operators use this skill to divide complex requests into role-specific tasks, coordinate progress updates, and assemble final deliverables across multiple AI roles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic collaboration phrases may activate the skill in broad situations. <br>
-Mitigation: Review role assignments and task delegation before acting on them. <br>
+## Use Case:
 
+External users and agent operators use this skill to coordinate multi-agent work by assigning roles, splitting tasks, tracking progress, and consolidating deliverables for complex projects.
 
-## Reference(s): <br>
-- [SOP Templates](references/sop-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/li-jin-xuan/agent-team-up) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance and SOP templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language, non-executable coordination workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad collaboration trigger phrases may cause the skill to activate when a user intended a simpler single-agent response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly for multi-agent planning, or narrow trigger usage when broad activation is not desired.
+
+Risk: Role delegation guidance can produce incorrect task assignments or unclear acceptance criteria if the initial request is ambiguous.
+
+Mitigation: Confirm goals, owners, deliverables, and acceptance criteria before executing or consolidating work.
+
+## Reference(s):
+
+- [Team Collaboration SOP Templates](references/sop-templates.md)
+- [ClawHub skill page](https://clawhub.ai/li-jin-xuan/skills/agent-team-up)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with role tables, workflow steps, and SOP templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language collaboration guidance; no code execution, persistence, network access, or hidden data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

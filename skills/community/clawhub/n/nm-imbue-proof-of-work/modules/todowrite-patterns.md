@@ -1,10 +1,9 @@
 ---
 name: todowrite-patterns
 description: Naming conventions for TodoWrite items across imbue skills
-parent_skill: imbue:shared
+parent_skill: imbue:proof-of-work
 category: infrastructure
 estimated_tokens: 150
-reusable_by: [all imbue skills, pensive skills]
 ---
 
 # TodoWrite Patterns
@@ -60,7 +59,7 @@ TaskUpdate now supports deleting tasks. For imbue skills, **keep proof-of-work i
 ### Never Delete
 - `proof:*` items: these are audit evidence
 - `evidence-logging:*` items: these document captured evidence
-- Any items that serve as compliance records
+- Any items that are compliance records
 
 ## Best Practices
 

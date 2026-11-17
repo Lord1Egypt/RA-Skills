@@ -1,6 +1,44 @@
-py-clob-client
-requests
-rich
-questionary
-web3
-typer[all]
+# AUDIT FIX (Low — "Supply Chain Issues", 6 occurrences, 90-98%): v1.0.2
+# declared dependencies with NO version constraint at all, so every install
+# pulled whatever was published at that moment. A compromised upstream package
+# would go straight into a skill that signs transactions.
+#
+# Versions pinned by patch range: picks up a security fix without silently
+# jumping major/minor without review. For a reproducible deploy, freeze with:
+#   pip install -r requirements.txt && pip freeze > requirements.lock.txt
+
+# AUDIT FIX (High — "Known Vulnerable Dependency: requests"):
+#   CVE-2024-35195 (TLS verification dropped for the rest of a session after
+#                   one request opted out of it) — fixed in 2.32.0
+#   CVE-2024-47081 (credential leak from the per-user credentials file to a
+#                   malicious host) — fixed in 2.32.4
+#   CVE-2026-25645 (insecure temp-file reuse in extract_zipped_paths())
+#                 — fixed in 2.33.0. Caught by ClawHub's SkillSpector scan
+#                 on the 2.1.0 publish, after this floor had already been
+#                 set at 2.32.4 — a reminder that pins need re-checking
+#                 against new advisories, not just set once.
+# Floor at 2.33.0. The code also sets Session.trust_env=False, so neither the
+# credentials file nor the proxy environment variables enter the requests.
+requests>=2.33.0,<3
+
+# Order signing on Polymarket's CLOB.
+py-clob-client>=0.34.6,<0.35
+
+# Encrypted V3 keystore (scrypt+AES) — replaces plaintext storage. Already a
+# transitive dependency of py-clob-client; declared here because keystore.py
+# imports it directly.
+eth-account>=0.13.7,<0.14
+
+# CLI and terminal output.
+typer>=0.15.1,<0.28
+rich>=13.9.4,<16
+
+# AUDIT FIX (Low — "Known Vulnerable Dependency: web3", 84%):
+#   CVE-2026-40072 — SSRF via CCIP Read.
+# The dependency was REMOVED instead of updated: no line of code used web3.
+# Dropping the package eliminates the CVE and dozens of transitive
+# dependencies.
+#
+# `questionary` was also dropped: the setup wizard now uses stdlib `getpass`,
+# which does not echo the key and does not add third-party surface to the
+# secret's path.

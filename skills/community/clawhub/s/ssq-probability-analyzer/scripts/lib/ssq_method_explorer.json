@@ -1,0 +1,124 @@
+{
+  "methods": {
+    "hot": {
+      "plays": 3314,
+      "cost": 6628.0,
+      "prize": 4000.0,
+      "roi": -0.3964996982498491,
+      "roi_ex_top": -0.4266747133373567,
+      "max_prize": 200,
+      "any_hit_rate": 0.19070609535304767,
+      "first_hit": 0
+    },
+    "cold": {
+      "plays": 3314,
+      "cost": 6628.0,
+      "prize": 3980.0,
+      "roi": -0.3995171997585999,
+      "roi_ex_top": -0.4296922148461074,
+      "max_prize": 200,
+      "any_hit_rate": 0.19040434520217261,
+      "first_hit": 0
+    },
+    "avoid_last": {
+      "plays": 3314,
+      "cost": 6628.0,
+      "prize": 2675.0,
+      "roi": -0.5964091732045866,
+      "roi_ex_top": -0.6265841882920942,
+      "max_prize": 200,
+      "any_hit_rate": 0.12733856366928184,
+      "first_hit": 0
+    },
+    "balanced": {
+      "plays": 3314,
+      "cost": 6628.0,
+      "prize": 3780.0,
+      "roi": -0.4296922148461074,
+      "roi_ex_top": -0.45986722993361495,
+      "max_prize": 200,
+      "any_hit_rate": 0.19010259505129753,
+      "first_hit": 0
+    },
+    "omission": {
+      "plays": 3314,
+      "cost": 6628.0,
+      "prize": 3030.0,
+      "roi": -0.5428485214242608,
+      "roi_ex_top": -0.5730235365117683,
+      "max_prize": 200,
+      "any_hit_rate": 0.12462281231140615,
+      "first_hit": 0
+    },
+    "interval": {
+      "plays": 3314,
+      "cost": 6628.0,
+      "prize": 3840.0,
+      "roi": -0.42063971031985514,
+      "roi_ex_top": -0.4508147254073627,
+      "max_prize": 200,
+      "any_hit_rate": 0.18648159324079663,
+      "first_hit": 0
+    },
+    "tail": {
+      "plays": 3314,
+      "cost": 6628.0,
+      "prize": 3805.0,
+      "roi": -0.425920337960169,
+      "roi_ex_top": -0.4560953530476765,
+      "max_prize": 200,
+      "any_hit_rate": 0.19010259505129753,
+      "first_hit": 0
+    },
+    "kill_formula": {
+      "plays": 3314,
+      "cost": 6628.0,
+      "prize": 3485.0,
+      "roi": -0.47420036210018107,
+      "roi_ex_top": -0.5043753771876885,
+      "max_prize": 200,
+      "any_hit_rate": 0.18708509354254677,
+      "first_hit": 0
+    },
+    "back_refine": {
+      "plays": 3314,
+      "cost": 6628.0,
+      "prize": 2675.0,
+      "roi": -0.5964091732045866,
+      "roi_ex_top": -0.6265841882920942,
+      "max_prize": 200,
+      "any_hit_rate": 0.12582981291490647,
+      "first_hit": 0
+    },
+    "random_baseline": {
+      "plays": 3314,
+      "roi": -0.3650045262522631,
+      "roi_ex_top": -0.41582428082880707,
+      "any_hit_rate": 0.1917471333735667,
+      "first_hit": 0,
+      "max_prize": 3000,
+      "cost": 6628.0,
+      "prize": 4208.75
+    }
+  },
+  "bonferroni_k": 9,
+  "first_prize_by_method": {
+    "hot": 0,
+    "cold": 0,
+    "avoid_last": 0,
+    "balanced": 0,
+    "omission": 0,
+    "interval": 0,
+    "tail": 0,
+    "kill_formula": 0,
+    "back_refine": 0
+  },
+  "first_prize_baseline": 0,
+  "any_prize_survivors": [
+    "avoid_last",
+    "omission",
+    "back_refine"
+  ],
+  "conclusion": "头条结论：对一等奖，所有候选方法命中 = 0 = 随机，频率排名不构成分析/中一等奖的方法(no_edge)。\n次要结论：任意奖率出现的小幅差异，源于项目已确认的存在显著但幅度仅±15%的频率偏差(卡方90.84>48.6)——选热号会略抬升小额奖命中率；但剥离单次大奖离群值后ROI 仍为负，远不足以克服 house edge，不有正收益。此引擎价值在于'主动猎杀伪模式'闭环，而非发现真边缘。",
+  "no_edge_first_prize": true
+}

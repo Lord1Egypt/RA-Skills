@@ -23,10 +23,11 @@ No authentication required.
 | `/health` | GET | Health check endpoint |
 | `/.well-known/enrollment` | GET | Complete enrollment guide with pricing and steps |
 | `/.well-known/mcp` | GET | MCP discovery metadata — see [mcp-connection-guide.md](mcp-connection-guide.md) |
-| `/docs` | GET | Interactive HTML documentation with Swagger UI |
-| `/openapi.json` | GET | OpenAPI 3.0 specification |
-| `/swagger.json` | GET | OpenAPI 3.0 specification (alias) |
-| `/api/v1/openapi.json` | GET | Versioned OpenAPI specification |
+| `/openapi.json` | GET | Canonical OpenAPI 3.0 specification |
+| `/swagger.json` | GET | OpenAPI 3.0 specification (alias of `/openapi.json`) |
+| `/api/v1/openapi.json` | GET | Deprecated redirect to `/openapi.json` |
+| `/docs/enrollment` | GET | **Removed** — always returns `410 ENDPOINT_REMOVED` |
+| `/api-docs` | * | **Removed** — always returns `410 ENDPOINT_REMOVED` |
 
 ### Authentication
 
@@ -37,7 +38,7 @@ No authentication required.
 
 Login request/response shapes, field constraints, and error semantics are maintained in OpenAPI:
 
-- Canonical contract: [`../api-docs/swagger.json`](../api-docs/swagger.json)
+- Canonical contract: [`../api-docs/swagger.json`](../../api-docs/swagger.json)
 - Runtime endpoints: `GET /openapi.json`, `GET /swagger.json`
 
 For step-by-step API login implementation guidance (challenge retrieval, signing flow, retries, and troubleshooting), use:
@@ -63,11 +64,11 @@ For step-by-step API login implementation guidance (challenge retrieval, signing
       "creature": "Legal Specialist",
       "face": {
         "checksumValid": true,
-        "categories": [
-          "pale-skinned",
-          "Nordic",
-          "oval-faced"
-        ]
+        "categories": {
+          "skinTone": { "index": 2, "letter": "c", "value": "pale-skinned" },
+          "ethnicity": { "index": 1, "letter": "b", "value": "Nordic" },
+          "faceShape": { "index": 0, "letter": "a", "value": "oval-faced" }
+        }
       }
     }
   ],
@@ -85,6 +86,44 @@ For step-by-step API login implementation guidance (challenge retrieval, signing
 
 **Note**: Request non-privileged signing operations through this endpoint. Use permissioned metrics/system/debug/reset endpoints for privileged flows.
 
+### Identity Verification
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/identity/verify` | POST | Verify peer HOLA message (public; optional JWT for `RECIPIENT_MISMATCH`; edge rate-limited) |
+
+**POST /api/identity/verify**:
+
+Verify a HOLA message from a peer agent. No authentication required. When a bearer JWT is supplied, the caller's authenticated identity is used for `RECIPIENT_MISMATCH` warnings (suppress with `expectedRecipient`).
+
+**Request**:
+```json
+{
+  "hola": "HOLA/MUNDO/bkbvehbdcrgm/2026-04-19T10:47:00.000Z/4F9A3C7E.../API.IDENTYCLAW.COM/dGVzdA.../M"
+}
+```
+
+**Response** (HTTP 200 when well-formed — trust only when `verified` is true):
+```json
+{
+  "verified": true,
+  "peerTokenId": "bkbvehbdcrgm",
+  "destinatary": "MUNDO",
+  "checks": {
+    "tokenExists": true,
+    "tokenActive": true,
+    "timestampFresh": true,
+    "nonceReplaySafe": true,
+    "signatureValid": true,
+    "checksumValid": true
+  },
+  "failureReasons": [],
+  "requestId": "01HQXYZ..."
+}
+```
+
+See [hola-agent-authentication.md](hola-agent-authentication.md) for full diagnostics.
+
 ---
 
 ## Protected Endpoints
@@ -97,12 +136,11 @@ Require JWT authentication via `Authorization: Bearer <token>` header.
 |----------|--------|-------------|
 | `/api/me/identity` | GET | Get your own identity information |
 | `/api/identity/token/{tokenId}/full` | GET | Get full identity metadata for any token |
-| `/api/identity/verify` | POST | Verify HOLA message from peer agent |
 | `/api/isauthorizedsigner` | POST | Check if caller is authorized to sign |
 
 **GET /api/identity/token/{tokenId}/full**:
 
-Returns complete identity metadata including DN attributes and facial description.
+Returns complete identity metadata including DN attributes, facial description, and peer-routable `metadata.webhook_url` when set on-chain.
 
 **Response**:
 ```json
@@ -126,40 +164,17 @@ Returns complete identity metadata including DN attributes and facial descriptio
   },
   "face": {
     "checksumValid": true,
-    "categories": [
-      "pale-skinned",
-      "Nordic",
-      "oval-faced"
-    ]
+    "categories": {
+      "skinTone": { "index": 2, "letter": "c", "value": "pale-skinned" },
+      "ethnicity": { "index": 1, "letter": "b", "value": "Nordic" },
+      "faceShape": { "index": 0, "letter": "a", "value": "oval-faced" }
+    }
+  },
+  "metadata": {
+    "webhook_url": "https://my-openclaw.example.com"
   },
   "requestId": "01HQXYZ...",
   "disclaimer": "The DN metadata including creature, name, contact URI, address, and other attributes are self-declared by the agent. It is your responsibility to verify the accuracy and authenticity of this information before relying on it."
-}
-```
-
-**POST /api/identity/verify**:
-
-Verify a HOLA message from a peer agent.
-
-**Request**:
-```json
-{
-  "hola": "HOLA/MUNDO/bkbvehbdcrgm/2026-04-19T10:47:00.000Z/4F9A3C7E.../API.IDENTYCLAW.COM/dGVzdA.../M"
-}
-```
-
-**Response**:
-```json
-{
-  "valid": true,
-  "tokenId": "bkbvehbdcrgm",
-  "recipient": "MUNDO",
-  "timestamp": "2026-04-19T10:47:00.000Z",
-  "ageMs": 1234,
-  "checksumValid": true,
-  "signatureValid": true,
-  "nonceValid": true,
-  "tokenExists": true
 }
 ```
 
@@ -188,6 +203,47 @@ Verify a HOLA message from a peer agent.
 |----------|--------|-------------|
 | `/api/logout` | POST | Logout and invalidate JWT token |
 
+### HOLA Self-Test
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/testhola` | POST | Validate **your own** outbound HOLA before sending to peers (JWT required; not permission-gated) |
+
+**POST /api/testhola**:
+
+Self-testing endpoint — submit a complete HOLA line you generated. On success the server returns its own valid HOLA response. For verifying **another agent's** HOLA, use public `POST /api/identity/verify` instead.
+
+**Request**:
+```json
+{
+  "hola": "HOLA/MUNDO/bkbvehbdcrgm/2026-04-19T10:47:00.000Z/4F9A3C7E2D1B9A4CDEADBEEFCAFEBABE/API.IDENTYCLAW.COM/MFRGG.../J"
+}
+```
+
+Optional: `expectedRecipient` — suppresses `RECIPIENT_MISMATCH` when the HOLA recipient does not match your authenticated Passport ID.
+
+**Response** (HTTP 200 when valid):
+```json
+{
+  "valid": true,
+  "peerTokenId": "bkbvehbdcrgm",
+  "destinatary": "MUNDO",
+  "peerVerified": true,
+  "hola": "HOLA/MUNDO/<serverTokenId>/.../API.IDENTYCLAW.COM/.../X",
+  "serverTokenId": "pkcnjdbdefcp",
+  "checks": {
+    "formatValid": true,
+    "checksumValid": true,
+    "timestampFresh": true,
+    "nonceReplaySafe": true,
+    "signatureValid": true
+  },
+  "requestId": "01HQXYZ..."
+}
+```
+
+Invalid payloads return HTTP 400 with `code: HOLA_VALIDATION_FAILED` and `error.details.reasonCode`.
+
 ---
 
 ## Privileged Endpoints
@@ -211,39 +267,11 @@ Require JWT authentication AND specific permissions in IdentyClaw Passport's `pe
 | `/api/sessions/cleanup` | POST | Cleanup expired sessions | `cleanup` |
 | `/api/sessions/revoke` | POST | Revoke specific session | `revoke` |
 
-### Testing
-
-| Endpoint | Method | Description | Permission Required |
-|----------|--------|-------------|---------------------|
-| `/api/testhola` | POST | Test HOLA message generation | `testhola` |
-
-**Request**:
-```json
-{
-  "recipient": "MUNDO"
-}
-```
-
-**Response**:
-```json
-{
-  "hola": "HOLA/MUNDO/bkbvehbdcrgm/2026-04-19T10:47:00.000Z/4F9A3C7E.../API.IDENTYCLAW.COM/dGVzdA.../M",
-  "components": {
-    "recipient": "MUNDO",
-    "tokenId": "bkbvehbdcrgm",
-    "timestamp": "2026-04-19T10:47:00.000Z",
-    "noncetsHex": "4F9A3C7E2D1B9A4CDEADBEEFCAFEBABE",
-    "signature": "dGVzdA...",
-    "checksum": "M"
-  }
-}
-```
-
 ---
 
 ## DID Resolution
 
-**Status:** Experimental (OpenAPI). **Method specification:** [did-rodit-method.md](did-rodit-method.md).
+**Status:** Experimental HTTP resolver (OpenAPI). **Method specification:** [did-rodit-method.md](did-rodit-method.md) (public: `GET /.well-known/did-method-rodit`). **W3C registry:** [did-method-registry-submission.md](did-method-registry-submission.md).
 
 Protected endpoints for DID resolution (require JWT authentication). Primary identifier: `did:rodit:<12-letter-passport-id>`. Alias: `did:web:<host>:token:<passport-id>`. Resolution uses the server’s `NEAR_CONTRACT_ID` on NEAR mainnet.
 
@@ -293,6 +321,18 @@ Machine-readable capabilities for AI agent discovery (public endpoints).
 | `/api/mcp/resources` | GET | List all available MCP resources |
 | `/api/mcp/resource/{uri}` | GET | Get specific MCP resource by URI |
 | `/api/mcp/schema` | GET | Get MCP schema definition |
+
+### MCP Streamable HTTP Transport
+
+Distinct from REST discovery above — requires an MCP client (not plain `curl` for docs). See [mcp-connection-guide.md](mcp-connection-guide.md).
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/mcp` | GET | SSE stream for an established MCP session (`Accept: text/event-stream`) |
+| `/mcp` | POST | JSON-RPC MCP requests (`Accept: application/json, text/event-stream`) |
+| `/mcp` | DELETE | Terminate an MCP transport session |
+
+---
 
 **GET /api/mcp/resources**:
 
@@ -357,29 +397,30 @@ Public policy documents (no authentication required).
 | `/.well-known/privacy-policy` | GET | Privacy Policy |
 | `/.well-known/data-retention` | GET | Data Retention Policy |
 | `/.well-known/why-identyclaw` | GET | Use cases and benefits of IdentyClaw |
+| `/.well-known/did-method-rodit` | GET | Canonical `did:rodit` DID method specification (Markdown) |
 
 ---
 
 ## Rate Limiting
 
-All endpoints are subject to rate limiting based on your IdentyClaw Passport's `max_requests` and `maxrq_window` settings.
+Two layers apply:
 
-**Headers**:
-- `X-RateLimit-Limit` - Maximum requests allowed
-- `X-RateLimit-Remaining` - Requests remaining in current window
-- `X-RateLimit-Reset` - Unix timestamp when limit resets
+| Layer | Scope | Mechanism |
+|-------|-------|-----------|
+| **Edge (public routes)** | Selected public URIs (e.g. `/api/login/timestamp`, `/api/identity/verify`, `/api/agents`) | nginx `limit_req` per `$remote_addr` — see OpenAPI `info.x-publicRateLimit` (1101 req/min sustained, burst 6101) |
+| **Authenticated routes** | Protected/privileged routes after JWT login | Per-Passport `max_requests` / `maxrq_window` from on-chain metadata via SDK rate limiter |
 
-**Response** (rate limit exceeded):
+The API does **not** emit `X-RateLimit-*` headers. Rate-limit failures use the standard error envelope:
+
+**Response** (HTTP 429, public edge example):
 ```json
 {
-  "statusCode": 429,
-  "code": "RATE_LIMIT_EXCEEDED",
-  "message": "Rate limit exceeded",
-  "details": {
-    "limit": 1000,
-    "window": 3600,
-    "resetAt": "2026-04-19T11:47:00.000Z"
-  }
+  "error": {
+    "code": "RATE_LIMIT_EXCEEDED",
+    "message": "Exceeded anonymous auth-params rate limit"
+  },
+  "requestId": "01HX9WZ7F7B5DDXPKRZC4J8M0X",
+  "timestamp": "2026-04-15T08:20:00.000Z"
 }
 ```
 
@@ -435,7 +476,7 @@ Other chain or policy outcomes on login (`RODIT_NOT_FOUND`, `RODIT_NOT_LIVE`, �
 
 See **[versioning.md](versioning.md)** — HTTP API release in swagger; RODiT JSON-LD `version` only via MCP from chain; `did:rodit` has no separate version.
 
-**HTTP API release** — only [`api-docs/swagger.json`](../api-docs/swagger.json) `info.version`. Surfaces: `GET /`, `GET /openapi.json`, MCP health/service info. Logged at boot as `apiReleaseVersion` in the configuration snapshot. Different **development** vs **main** API versions are done by committing different swagger on each branch (not via `config/development.json`). CI: `npm run validate:version`.
+**HTTP API release** — only [`api-docs/swagger.json`](../../api-docs/swagger.json) `info.version`. Surfaces: `GET /`, `GET /openapi.json`, MCP health/service info. Logged at boot as `apiReleaseVersion` in the configuration snapshot. Different **development** vs **main** API versions are done by committing different swagger on each branch (not via `config/development.json`). CI: `npm run validate:version`.
 
 `X-API-Version` is **not** implemented.
 
@@ -448,4 +489,4 @@ See **[versioning.md](versioning.md)** — HTTP API release in swagger; RODiT JS
 - [Understand token metadata](token-metadata.md)
 - [View JSON-LD integration](jsonld-metadata.md)
 - [Return to main guide](skills.md)
-- [Interactive API docs](https://api.identyclaw.com/docs)
+- [OpenAPI spec](https://api.identyclaw.com/openapi.json)

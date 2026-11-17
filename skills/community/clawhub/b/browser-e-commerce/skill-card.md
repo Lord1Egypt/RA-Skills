@@ -1,43 +1,57 @@
-## Description: <br>
-Browser shopping assistant. Input a product link or keyword; compare browser-visible prices, seller type, reviews, promotions, delivery/return signals, and after-sales risk across shopping sites, then output buy/wait/switch-platform advice. Safe boundary: no login, no order submission, no checkout, and no payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser shopping assistant that compares browser-visible prices, seller type, reviews, promotions, delivery and return signals, and after-sales risk across shopping sites, then recommends whether to buy, wait, switch platform, or avoid.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill for browser-visible shopping research across ecommerce sites, comparing listings by price, seller trust, reviews, delivery, returns, promotions, and caveats before deciding whether to buy, wait, compare another platform, or avoid. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping recommendations can be based on prices, stock, coupons, delivery promises, or return terms that change after review. <br>
-Mitigation: Require the user to recheck final price, stock, delivery, coupons, and after-sales terms before making any purchase. <br>
-Risk: Shopping workflows can expose credentials, identity checks, addresses, payment details, or order-submission actions. <br>
-Mitigation: Keep the skill limited to browser-visible or user-provided information and do not enter credentials, checkout, submit orders, or initiate payment. <br>
-Risk: Seller and review signals may be incomplete, manipulated, or insufficient to establish purchase safety. <br>
-Mitigation: Compare visible seller trust, reviews, returns, promotions, delivery, and caveats, and recommend avoid or further comparison when risk signals are unclear. <br>
+## Use Case:
 
+External shoppers use this skill to compare visible ecommerce listings, promotions, seller and review signals, delivery and return terms, and purchase risks before making their own buying decision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/browser-e-commerce) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown shopping comparison with a buy, wait, switch-platform, or avoid recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses browser-visible or user-provided shopping information only; excludes login, checkout, order submission, and payment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The shopping workflow may encounter credential, identity, address, or payment fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter or provide credentials, SMS codes, passwords, CAPTCHA responses, identity details, addresses, or payment data.
+
+Risk: The agent could be asked to complete a purchase action.
+
+Mitigation: Do not submit orders, click checkout, click final confirmation, or initiate payment; the user must complete any purchase manually.
+
+Risk: Visible price, stock, coupon, delivery, return, and after-sales terms may change or vary by account, location, or time.
+
+Mitigation: Require the user to recheck final purchase terms directly on the shopping site before buying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/browser-e-commerce)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown shopping comparison with buy, wait, switch-platform, or avoid recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses browser-visible or user-provided information only; no login, checkout, order submission, or payment; users must recheck final price, stock, delivery, coupons, and after-sales terms before purchase.]
+
+## Skill Version(s):
+
+0.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

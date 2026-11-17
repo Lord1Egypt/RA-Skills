@@ -1,37 +1,54 @@
-## Description: <br>
-Validate, format, and transform JSON data. Use when user needs to pretty print JSON, validate JSON syntax, minify JSON, extract JSON paths, or convert JSON to other formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate, format, and transform JSON data. Use when user needs to pretty print JSON, validate JSON syntax, minify JSON, extract JSON paths, or convert JSON to other formats.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to validate JSON files, pretty print or minify JSON, extract simple paths, sort keys, and convert JSON into supported formats during local data and configuration work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Formatting, minifying, or sorting can overwrite the selected input file by default. <br>
-Mitigation: Use the --output option or work on a copy when modifying important JSON files. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate JSON syntax, pretty print or minify JSON files, sort keys, run simple path queries, and convert JSON data to YAML or CSV.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operates on local JSON files; formatting, minifying, and sorting can replace the input file unless an output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Some operations modify the original JSON file or create converted files unless an output path is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the --output option for important files or keep a backup before running format, minify, sort, or conversion operations.
+
+Risk: The local script reads files supplied by the user.
+
+Mitigation: Run it only on intended JSON inputs in a trusted local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/json-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that read JSON files and may overwrite or create output files depending on options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

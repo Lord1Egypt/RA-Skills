@@ -1,43 +1,58 @@
-## Description: <br>
-Bank Reconciler Pro reconciles bank statements against orders or invoices, supports common bank and payment-platform formats, and returns matched, difference, unclaimed, and unmatched results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bank Reconciler Pro helps agents reconcile bank statements against orders or invoices by parsing CSV, Excel, PDF, JSON, or text inputs and returning matched transactions, differences, unclaimed payments, unmatched orders, summaries, and optional exports.
 
-## Publisher: <br>
-[yk-global-01](https://clawhub.ai/user/yk-global-01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yk-global-01](https://clawhub.ai/user/yk-global-01)
 
-## Use Case: <br>
-Finance and operations teams use this skill to reconcile uploaded bank statements with orders or invoices, identify matches and discrepancies, and export reports or Feishu cards for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive bank, invoice, and order records. <br>
-Mitigation: Use local-only reconciliation where possible, restrict access to uploaded and exported files, and treat files written to /tmp as confidential financial records. <br>
-Risk: Feishu sharing can expose reconciliation summaries outside the local environment. <br>
-Mitigation: Enable Feishu output only when the destination chat and sharing policy are approved for the underlying financial data. <br>
-Risk: PDF parsing depends on a local parser command for untrusted document inputs. <br>
-Mitigation: Verify the local PDF parser dependency and process untrusted PDFs in a constrained environment before using results operationally. <br>
+## Use Case:
 
+Finance operators, developers, and agents use this skill to compare bank, payment-platform, marketplace, order, and invoice records and identify matched payments, amount differences, unclaimed funds, and unpaid orders.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yk-global-01/bank-reconciler-pro) <br>
-- [Bank Statement Format Reference](artifact/references/supported-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files] <br>
-**Output Format:** [Structured reconciliation results with optional Excel or CSV export and Feishu interactive card JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include matched transactions, differences, unclaimed payments, unmatched orders, summary metrics, and an optional exported file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive financial files and can produce reports containing transaction, counterparty, order, and invoice data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with data the operator is authorized to process, review results before business action, and keep generated exports in approved storage.
+
+Risk: The skill can prepare Feishu messages or cards that share reconciliation summaries outside the local workflow.
+
+Mitigation: Send Feishu reports only to approved chats after confirming the destination and data-sharing policy.
+
+Risk: PDF parsing invokes an external command-line parser.
+
+Mitigation: Run PDF parsing in a constrained environment and treat input PDFs and generated spreadsheets as untrusted until reviewed.
+
+## Reference(s):
+
+- [Supported formats](references/supported-formats.md)
+- [ClawHub skill page](https://clawhub.ai/yk-global-01/skills/bank-reconciler-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python examples plus structured reconciliation results, JSON-style Feishu cards, and optional Excel or CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include sensitive financial reconciliation data and generated spreadsheet paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

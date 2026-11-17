@@ -1,43 +1,60 @@
-## Description: <br>
-Agent Efficiency Manager analyzes OpenClaw agent configurations to estimate token overhead, identify redundant skills, recommend SkillHub additions, track efficiency trends, and prepare optimization reports or notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes OpenClaw agent skill configurations, estimates token and efficiency metrics, recommends skill changes, tracks trends, and can generate or send optimization reports.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw agent skill configurations, reduce prompt-token overhead, and generate recommendation reports for ongoing agent optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw agent configuration, which may expose agent names, installed skills, and optimization context. <br>
-Mitigation: Run it only against intended local configuration files and keep generated reports local unless sharing is explicitly approved. <br>
-Risk: Optional webhook or document-report delivery may publish recommendations outside the local environment. <br>
-Mitigation: Use only trusted webhook destinations and review report contents before enabling push notifications. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect local OpenClaw agent configurations, identify redundant or costly skills, discover candidate skill changes, and produce JSON or Markdown optimization reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/perrykono-debug/agent-efficiency-manager) <br>
-- [Metrics Definitions](references/metrics_definitions.md) <br>
-- [Optimization Patterns](references/optimization_patterns.md) <br>
-- [Recommendation Logic](references/recommendation_logic.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON reports, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are advisory by default; configuration changes require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact _meta.json) <br>
+Risk: The skill can inspect local OpenClaw agent skill configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where the agent configuration may be reviewed, and keep generated reports local unless sharing is intentional.
+
+Risk: Optimization recommendations may remove useful skills or add inappropriate ones.
+
+Mitigation: Review each generated recommendation before applying any configuration change.
+
+Risk: Webhook or scheduled notification features can send derived recommendations outside the local environment.
+
+Mitigation: Enable notifications only with an approved webhook destination and known report contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/agent-efficiency-manager)
+- [metrics_definitions.md](references/metrics_definitions.md)
+- [optimization_patterns.md](references/optimization_patterns.md)
+- [recommendation_logic.md](references/recommendation_logic.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON and Markdown reports with inline shell commands and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local agent configuration and optionally send report content to a user-supplied webhook.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

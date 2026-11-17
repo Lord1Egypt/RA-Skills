@@ -1,0 +1,292 @@
+version: mock-med-kpi-1.0
+domain: 医疗·三级公立医院绩效考核
+datasets:
+- name: dws_dept_monthly
+  source: dws_dept_monthly
+  cn: 科室月度运营宽表
+  grain: 一行一科室一月
+  primary_key:
+  - dept
+  - month
+  ai:
+    instructions: 能答床位使用率/药占比/四级手术占比/医疗服务收入占比/门诊次均费用等国考定量指标；必带月份围栏（stat_date）；汇总粒度无患者明细，个体问题去 inpatients
+  fields:
+  - name: dept
+    role: dim
+    cn: 科室
+    enum: &med_dept
+    - 心血管内科
+    - 骨科
+    - 普外科
+  - name: month
+    role: dim
+    cn: 月份
+    enum: &med_month
+    - '2026-06'
+    - '2026-07'
+    - '2026-08'
+  - name: outpatient_visits
+    role: measure
+    cn: 门诊人次
+  - name: outpatient_rev
+    role: measure
+    cn: 门诊收入
+  - name: drug_rev
+    role: measure
+    cn: 药品收入
+  - name: med_service_rev
+    role: measure
+    cn: 医疗服务收入
+  - name: discharges
+    role: measure
+    cn: 出院人数
+  - name: surgeries
+    role: measure
+    cn: 手术台次
+  - name: level4_surgeries
+    role: measure
+    cn: 四级手术台次
+  - name: open_bed_days
+    role: measure
+    cn: 开放床日数
+  - name: occupied_bed_days
+    role: measure
+    cn: 占用床日数
+  - name: stat_date
+    role: time
+    cn: 统计截止日
+  ontology_ref: 科室
+- name: inpatients
+  source: inpatients
+  cn: 出院患者明细表
+  grain: 一行一名出院患者
+  primary_key: patient_id
+  ai:
+    instructions: 能答平均住院日/超长住院名单/离院方式构成；必带时间围栏（discharge_date）；病历号/身份证号等隐私字段不存在于本表
+  fields:
+  - name: patient_id
+    role: pk
+    cn: 患者编号
+  - name: dept
+    role: dim
+    cn: 出院科室
+    enum: *med_dept
+  - name: stay_days
+    role: measure
+    cn: 住院天数
+  - name: discharge_way
+    role: dim
+    cn: 离院方式
+    enum: &med_way
+    - 医嘱离院
+    - 转院
+    - 非医嘱离院
+  - name: total_fee
+    role: measure
+    cn: 住院总费用
+  - name: discharge_date
+    role: time
+    cn: 出院日期
+  ontology_ref: 患者
+relationships: []
+constraints:
+- {id: dws_pk, kind: unique, dataset: dws_dept_monthly, columns: [dept, month], null_policy: forbid}
+- {id: dws_dept_values, kind: allowed_values, dataset: dws_dept_monthly, field: dept, values: [心血管内科, 骨科, 普外科], null_policy: forbid}
+- {id: dws_month_values, kind: allowed_values, dataset: dws_dept_monthly, field: month, values: ['2026-06', '2026-07', '2026-08'], null_policy: forbid}
+- {id: dws_rev_nonnegative, kind: range, dataset: dws_dept_monthly, field: outpatient_rev, min: 0, null_policy: forbid}
+- {id: dws_stat_date_notnull, kind: not_null, dataset: dws_dept_monthly, field: stat_date, null_policy: forbid}
+- {id: ip_pk, kind: unique, dataset: inpatients, columns: [patient_id], null_policy: forbid}
+- {id: ip_way_values, kind: allowed_values, dataset: inpatients, field: discharge_way, values: [医嘱离院, 转院, 非医嘱离院], null_policy: forbid}
+- {id: ip_stay_positive, kind: range, dataset: inpatients, field: stay_days, min: 1, null_policy: forbid}
+- {id: ip_fee_nonnegative, kind: range, dataset: inpatients, field: total_fee, min: 0, null_policy: forbid}
+- {id: ip_dept_ref, kind: referential, dataset: inpatients, columns: [dept], references: {dataset: dws_dept_monthly, columns: [dept]}, null_policy: forbid}
+- {id: ip_date_notnull, kind: not_null, dataset: inpatients, field: discharge_date, null_policy: forbid}
+concepts:
+- term: 非医嘱离院患者
+  synonyms:
+  - 自动出院患者
+  expand:
+    dataset: inpatients
+    field: discharge_way
+    values:
+    - 非医嘱离院
+metrics:
+- id: avg_stay_days
+  name: 平均住院日
+  synonyms:
+  - 平均住院天数
+  - 住院均日
+  - 患者平均住院时长
+  type: ratio
+  dataset: inpatients
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(stay_days)
+  denominator:
+    expr: COUNT(*)
+  time_field: discharge_date
+  unit: 天
+  caliber:
+    note: 出院患者占用床日数合计 ÷ 出院人数（SUM/SUM 加权，禁行级平均；mock 以住院天数直接合计替代床日口径）
+    basis: 国办发〔2019〕4号三级公立医院绩效考核指标体系（运营效率类定量指标）
+  on_zero_denominator: 'null'
+- id: bed_occupancy_rate
+  name: 床位使用率
+  synonyms:
+  - 病床使用率
+  - 床位占用率
+  - 病床占用率
+  type: ratio
+  dataset: dws_dept_monthly
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(occupied_bed_days)
+  denominator:
+    expr: SUM(open_bed_days)
+  time_field: stat_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 实际占用总床日数 ÷ 实际开放总床日数（SUM/SUM 加权）
+    basis: 国办发〔2019〕4号三级公立医院绩效考核指标体系；国家卫生健康统计调查制度
+  on_zero_denominator: 'null'
+- id: drug_ratio
+  name: 门诊药占比
+  synonyms:
+  - 药占比
+  - 药品收入占比
+  - 门诊药品收入比例
+  type: ratio
+  dataset: dws_dept_monthly
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(drug_rev)
+  denominator:
+    expr: SUM(outpatient_rev)
+  time_field: stat_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 门诊药品收入 ÷ 门诊收入（不含耗材的延伸口径需另行声明）
+    basis: 国办发〔2019〕4号三级公立医院绩效考核指标体系（运营效率类，监测比较指标）
+  on_zero_denominator: 'null'
+- id: level4_surgery_ratio
+  name: 四级手术占比
+  synonyms:
+  - 四级手术比例
+  - 四级手术台次占比
+  - 高难度手术占比
+  type: ratio
+  dataset: dws_dept_monthly
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(level4_surgeries)
+  denominator:
+    expr: SUM(surgeries)
+  time_field: stat_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 四级手术台次 ÷ 手术总台次（出院患者手术口径；mock 以科室汇总台次替代）
+    basis: 国办发〔2019〕4号三级公立医院绩效考核指标体系（医疗质量类定量指标）
+  on_zero_denominator: 'null'
+- id: med_service_rev_ratio
+  name: 医疗服务收入占比
+  synonyms:
+  - 医疗服务收入比例
+  - 服务收入占比
+  - 医疗技术服务收入占比
+  type: ratio
+  dataset: dws_dept_monthly
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(med_service_rev)
+  denominator:
+    expr: SUM(outpatient_rev)
+  time_field: stat_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 医疗服务收入 ÷ 医疗收入（不含药品、耗材、检查检验收入；mock 以门诊收入替代医疗收入口径）
+    basis: 国办发〔2019〕4号三级公立医院绩效考核指标体系（运营效率类定量指标）
+  on_zero_denominator: 'null'
+- id: outpatient_avg_fee
+  name: 门诊次均费用
+  synonyms:
+  - 门诊均次费用
+  - 次均门诊费用
+  - 门诊人均费用
+  type: ratio
+  dataset: dws_dept_monthly
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(outpatient_rev)
+  denominator:
+    expr: SUM(outpatient_visits)
+  time_field: stat_date
+  unit: 元
+  caliber:
+    note: 门诊收入 ÷ 门诊人次数（SUM/SUM 加权，禁行级平均）
+    basis: 国办发〔2019〕4号三级公立医院绩效考核指标体系（次均费用增幅的基期口径）
+  on_zero_denominator: 'null'
+ontology:
+  entities:
+  - name: 科室
+    attributes:
+    - name: 月份
+      value_type: enum
+      values: *med_month
+    note: 一行一科室一月（科室月度运营宽表投影）
+    uid: ent_dept
+    evidence:
+      source: user_provided
+  - name: 患者
+    attributes:
+    - name: 离院方式
+      value_type: enum
+      values: *med_way
+    note: 一行一名出院患者（出院患者明细表投影）
+    uid: ent_patient
+    evidence:
+      source: user_provided
+  - name: 医师
+    note: 本体需要医师实体承载医疗组/职称语义，但本场景物理库仅有科室汇总
+    uid: ent_doctor
+    unprojected_reason: 医师排班与职称明细未接入本场景物理库，宽表中仅有科室级汇总
+    evidence:
+      source: model_inferred
+  - name: 手术
+    note: 本体需要手术实体承载术级/术式语义，但本场景物理库仅有台次汇总
+    uid: ent_surgery
+    unprojected_reason: 手术明细（术式编码/麻醉方式）未接入本场景物理库，宽表中仅有台次汇总列
+    evidence:
+      source: model_inferred
+  relations:
+  - from: 科室
+    to: 患者
+    predicate: 收治
+    mapping: semantic_only
+    note: dws 为科室×月汇总粒度，inpatients 为患者个体粒度，跨粒度无单一落地键；仅作语义声明不投影合同（无键关系不假装外键）
+templates:
+- id: long_stay_patients
+  name: 超长住院患者名单
+  dataset: inpatients
+  columns:
+  - patient_id
+  - dept
+  - stay_days
+  - discharge_date
+  extra_where: stay_days > 30
+  time_field: discharge_date
+  synonyms:
+  - 住院超30天患者
+  - 长住院患者清单
+  - 超长住院日明细
+  note: 按 discharge_date 倒序，默认最多 100 行；超长住院定义按住院日 >30 天
+  status: 已发布

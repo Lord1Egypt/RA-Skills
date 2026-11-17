@@ -1,40 +1,53 @@
-## Description: <br>
-منهج التعليم التوحيدي — قواعد النشر الديني والتعليمي المستمدة من القرآن ببيان النبي وإجماع الصحابة. يشمل: مبدأ التدبر المقصر، قاعدة المصطلحات ممنوعة، التفريق بين كلام الله وكلام البشر. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+منهج التعليم التوحيدي — قواعد النشر الديني والتعليمي المستمدة من القرآن ببيان النبي وإجماع الصحابة. يشمل: مبدأ التدبر المقصر، قاعدة المصطلحات ممنوعة، التفريق بين كلام الله وكلام البشر.
 
-## Publisher: <br>
-[m7madash](https://clawhub.ai/user/m7madash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m7madash](https://clawhub.ai/user/m7madash)
 
-## Use Case: <br>
-External users and agents use this skill to draft or review Islamic educational publishing content according to the methodology described in the artifact, including source checks, required disclaimers, and post structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume the referenced helper scripts are included and available for automated religious-content checks. <br>
-Mitigation: Treat referenced helper scripts as documentation unless they are separately obtained, inspected, and scanned before use. <br>
-Risk: The skill applies a specific Islamic educational publishing methodology that may not match every user's intended editorial or religious-review process. <br>
-Mitigation: Install and use it only when that methodology is intended, and review generated content against trusted sources before publication. <br>
+## Use Case:
 
+External users and agents use this skill to draft or review Islamic religious education and publishing content against the Haqq Education editorial framework, including source checks, wording constraints, and required opening and closing notices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/m7madash/haqq-education) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No included executable helper scripts; referenced helper script paths should be treated as documentation unless separately obtained and inspected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill directs agents to follow a specific Islamic religious editorial framework that may be inappropriate for general-purpose religious drafting or users outside that framework.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when this framework is intended, and review religious or source-sensitive content before publication.
+
+Risk: The artifact references helper scripts, but this release artifact contains only SKILL.md.
+
+Mitigation: Do not assume the referenced script-based checks are available unless those files are separately provided and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/m7madash/skills/haqq-education)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with checklist items and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled executable files; cited helper commands refer to files not present in this release artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

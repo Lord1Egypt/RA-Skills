@@ -1,38 +1,50 @@
-## Description: <br>
-帮助用户通过10本经典投资著作理解不确定性、价值根源、风险意识和常见投资思维模型。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+整合 10 本投资经典，系统讲解不确定性与价值根源，帮助用户构建投资认知体系。
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Chinese-speaking learners, investors, and agents use this skill as an educational reading guide for building investment cognition around uncertainty, valuation, market cycles, and mental models. It supports book recommendations, concept explanations, and suggested learning paths, not personalized financial, legal, or tax advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake investment book summaries, valuation formulas, or reading paths for personalized financial, legal, or tax advice. <br>
-Mitigation: Present the skill as educational guidance, verify important claims independently, and consult a qualified professional before making investment decisions. <br>
+## Use Case:
 
+External users and investors use this skill for educational summaries of classic investment books, core concepts, formulas, mental models, and reading-path guidance. It is intended for investment literacy and not for personalized financial, legal, or tax advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/investor-reading-list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational reading recommendations and conceptual summaries; not personalized financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat educational investment summaries as personalized financial, legal, or tax advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for investment literacy and reading guidance only; an agent should avoid buy, sell, or allocation recommendations unless separate user context, limits, and appropriate advice boundaries are established.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/investor-reading-list)
+- [Skill source artifact](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text educational summaries and reading recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational finance content; not personalized investment, legal, or tax advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

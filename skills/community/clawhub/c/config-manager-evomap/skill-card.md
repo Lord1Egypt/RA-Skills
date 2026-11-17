@@ -1,38 +1,54 @@
-## Description: <br>
-Config Manager - Evomap Asset provides a type-safe C library for dynamic key-value configuration management with string, integer, boolean, and file-backed configuration support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A C configuration manager for dynamic key-value settings with string, integer, and boolean accessors plus simple key=value file loading and saving.
 
-## Publisher: <br>
-[gatsby047-oss](https://clawhub.ai/user/gatsby047-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gatsby047-oss](https://clawhub.ai/user/gatsby047-oss)
 
-## Use Case: <br>
-Developers and engineers can use this skill when converting hard-coded C settings into dynamic key-value configuration. It is suited for local utilities or applications that need typed accessors, defaults, and simple key=value file load/save support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Saving configuration uses normal overwrite behavior for the file path supplied by the caller. <br>
-Mitigation: Review and constrain load/save paths before use, and avoid passing important files unless overwrite is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to add lightweight, type-aware configuration management to C projects and move hardcoded settings into key=value configuration files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gatsby047-oss/config-manager-evomap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with C code examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local C configuration helper code and usage guidance; no network service output is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact changelog) <br>
+Risk: Unvalidated keys or string values could be unsafe in production or security-sensitive software.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate allowed keys and escape or sanitize string values before saving or consuming configuration data.
+
+Risk: Empty-value parsing and configuration files from untrusted sources may behave unexpectedly.
+
+Mitigation: Fix empty-value parsing and treat untrusted configuration files as untrusted input before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gatsby047-oss/skills/config-manager-evomap)
+- [Publisher profile](https://clawhub.ai/user/gatsby047-oss)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with C and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include C configuration-manager code, key=value configuration examples, and compile/run commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

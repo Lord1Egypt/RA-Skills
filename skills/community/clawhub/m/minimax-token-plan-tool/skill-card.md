@@ -1,46 +1,61 @@
-## Description: <br>
-A lightweight MiniMax Token Plan Tool skill that directly calls official MCP APIs using pure JavaScript, without external MCP servers or subprocess invocation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A lightweight MiniMax Token Plan Tool skill that directly calls official MCP APIs using pure JavaScript.
 
-## Publisher: <br>
-[yorch233](https://clawhub.ai/user/yorch233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yorch233](https://clawhub.ai/user/yorch233)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to access MiniMax Token Plan web search, image understanding, and token plan quota checks from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, prompts, quota requests, and selected images are sent to MiniMax APIs. <br>
-Mitigation: Install only when this data sharing is acceptable, and avoid confidential, private, or regulated images. <br>
-Risk: A misconfigured API host could send requests to an unsupported endpoint. <br>
-Mitigation: Use only the documented MiniMax hosts: https://api.minimaxi.com or https://api.minimax.io. <br>
-Risk: Local image inputs are converted and transmitted to MiniMax for analysis. <br>
-Mitigation: Review image content before use and do not submit sensitive local files. <br>
+## Use Case:
 
+Developers and agent users use this skill to search the web with MiniMax Token Plan, analyze images with MiniMax VLM, and check Token Plan quota information from an OpenClaw-compatible JavaScript tool.
 
-## Reference(s): <br>
-- [MiniMax Token Plan Tool on ClawHub](https://clawhub.ai/yorch233/minimax-token-plan-tool) <br>
-- [MiniMax Token Plan Subscription - China Mainland](https://platform.minimaxi.com/subscribe/token-plan) <br>
-- [MiniMax Token Plan Subscription - Global](https://platform.minimax.io/subscribe/token-plan) <br>
-- [MiniMax Coding Plan MCP](https://github.com/MiniMax-AI/MiniMax-Coding-Plan-MCP/) <br>
-- [Minimax Multimodal Toolkit on ClawHub](https://clawhub.ai/minimax-ai-dev/minimax-multimodal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON responses and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, MINIMAX_API_KEY, and a supported MINIMAX_API_HOST.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata) <br>
+Risk: Search queries and image prompts are sent to MiniMax through the configured API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive queries or prompts unless the data is approved for MiniMax processing.
+
+Risk: Local image files can be read and uploaded for MiniMax image understanding.
+
+Mitigation: Use only non-sensitive images and avoid private, regulated, or confidential local file paths.
+
+Risk: Remote image fetching has a reported SSRF weakness.
+
+Mitigation: Avoid untrusted remote image URLs or run the skill in a network-isolated runtime until the weakness is fixed.
+
+## Reference(s):
+
+- [MiniMax Token Plan (China Mainland)](https://platform.minimaxi.com/subscribe/token-plan)
+- [MiniMax Token Plan (Global)](https://platform.minimax.io/subscribe/token-plan)
+- [MiniMax Coding Plan MCP](https://github.com/MiniMax-AI/MiniMax-Coding-Plan-MCP/)
+- [Minimax Multimodal Toolkit](https://clawhub.ai/minimax-ai-dev/minimax-multimodal)
+- [ClawHub skill page](https://clawhub.ai/yorch233/skills/minimax-token-plan-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command output and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a MiniMax Token Plan API key; web search sends queries to MiniMax, and image understanding sends local or remote image content to MiniMax.]
+
+## Skill Version(s):
+
+1.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

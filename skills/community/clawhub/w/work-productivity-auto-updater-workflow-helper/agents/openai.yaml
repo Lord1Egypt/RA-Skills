@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Auto Updater Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for Auto-Updater Sk..."
+  default_prompt: "Use $work-productivity-auto-updater-workflow-helper to help me Agent users show strong demand for Auto-Updater Skill-style workflows on Clawhub. They need practical help fixing bugs,."
+
+policy:
+  allow_implicit_invocation: true

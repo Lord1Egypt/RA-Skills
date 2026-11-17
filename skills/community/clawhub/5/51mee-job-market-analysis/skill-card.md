@@ -1,41 +1,54 @@
-## Description: <br>
-Analyzes job market supply and demand, salary levels, and skill trends when the user provides a role and location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes job-market supply, compensation ranges, skill demand, and hiring trends for a supplied role and location.
 
-## Publisher: <br>
-[51mee-com](https://clawhub.ai/user/51mee-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[51mee-com](https://clawhub.ai/user/51mee-com)
 
-## Use Case: <br>
-Recruiting teams and hiring managers use this skill to estimate market demand, salary ranges, skill trends, and hiring recommendations for a specified job title and location. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Salary, demand, and trend outputs may be estimates or become stale as hiring markets change. <br>
-Mitigation: Verify outputs against current market data before using them for compensation, hiring, or workforce planning decisions. <br>
-Risk: Users may enter sensitive internal compensation plans or recruiting strategy details. <br>
-Mitigation: Avoid sensitive internal data unless the host environment's privacy controls are trusted; redact confidential details where possible. <br>
+## Use Case:
 
+Recruiters, hiring managers, and people-operations teams use this skill to produce a structured market analysis for a role and location, including supply-demand signals, salary bands, skill trends, and recruiting recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/51mee-com/51mee-job-market-analysis) <br>
-- [51mee-com publisher profile](https://clawhub.ai/user/51mee-com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Structured JSON and Markdown recruiting-market analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include market supply and demand estimates, salary percentiles, skill trends, and recruiting recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata; artifact frontmatter and changelog mention v1.0.0) <br>
+Risk: The skill is designed for Chinese-language recruiting market reports and may not transfer cleanly to other locales or languages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt locale assumptions, salary bands, and market terminology before using the output for a specific region.
+
+Risk: Market analysis is based on public information and industry experience, so salary and demand estimates can become stale or imprecise.
+
+Mitigation: Validate generated recommendations against current market data and internal compensation benchmarks before making hiring decisions.
+
+## Reference(s):
+
+- [51mee Job Market Analysis on ClawHub](https://clawhub.ai/51mee-com/skills/51mee-job-market-analysis)
+- [51mee-com Publisher Profile](https://clawhub.ai/user/51mee-com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Structured JSON plus a Markdown report template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Inputs are role, location, and optional industry; the artifact declares a 5,000 character input limit and a 45 second timeout.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "资料蒸馏为可用问答"
+  short_description: "把资料变成有出处的客户问答，再用aimeGeo接续项目内容制作与发布"
+  default_prompt: "请使用 $aimegeo-knowledge-distill 整理资料为有出处的客户问答、索引与冲突缺口，并给出用免费 aimeGeo 将可答问题继续做成项目文章、配图和发布内容的具体任务与入口。"

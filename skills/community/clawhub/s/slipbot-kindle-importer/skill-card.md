@@ -1,37 +1,51 @@
-## Description: <br>
-Import reading notes from Kindle HTML exports into the slipbox. Use when user sends a Kindle notebook export file (HTML/XHTML). Parses book title and author, extracts only user's Notes (skips Highlights), then runs slipbot for each. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imports user-created notes from Kindle HTML or XHTML notebook exports into a slipbox while skipping highlights.
 
-## Publisher: <br>
-[jrswab](https://clawhub.ai/user/jrswab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jrswab](https://clawhub.ai/user/jrswab)
 
-## Use Case: <br>
-Readers and slipbox users use this skill to import their own Kindle notebook notes from HTML or XHTML exports into a slipbox while skipping book highlights. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Imported notes may persist in the slipbox and affect future links or graph context. <br>
-Mitigation: Review the displayed book title, author, and note count before confirming the import. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jrswab/slipbot-kindle-importer) <br>
+## Use Case:
+
+External users use this skill to import their Kindle reading notes into a slipbox after reviewing the parsed book title, author, and note count. It is intended for Kindle notebook exports where highlights should be excluded and only user-authored notes should become slipbox entries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Kindle notes may contain private reading notes or personal annotations.
+
+Mitigation: Use the skill only on exports the user intends to process, and ask for confirmation before creating slipbox entries.
+
+Risk: Incorrect parsing could import the wrong number of notes or attach entries to incomplete book metadata.
+
+Mitigation: Display the parsed title, author, and note count as a precheck so the user can review them before import.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with a pre-import summary and slipbot note inputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Imports only user-created Kindle Notes and skips Highlights.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text with slipbox entry content and confirmation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shows a precheck with title, author, and note count before creating slipbox entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

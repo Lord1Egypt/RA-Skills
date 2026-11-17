@@ -1,40 +1,54 @@
-## Description: <br>
-Track creator-side market movement, signals, and notable shifts that ecommerce and TikTok Shop teams should pay attention to. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track creator-side market movement, signals, and notable shifts that ecommerce and TikTok Shop teams should pay attention to. Use when the user wants a concise operator-ready digest of creator market changes and their potential business impact.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creator commerce, ecommerce, and TikTok Shop operators use this skill to turn recent creator-side observations, notes, links, screenshots, headlines, and examples into a concise digest of market shifts, business impact, affected teams, and watchlist items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market claims may be incomplete or misleading because the skill summarizes supplied signals rather than independently validating them. <br>
-Mitigation: Verify important market claims against authoritative sources before using the digest for business decisions. <br>
-Risk: Inputs may include confidential commercial observations, creator data, or campaign context. <br>
-Mitigation: Avoid providing confidential data unless the agent workspace is approved for that information. <br>
+## Use Case:
 
+Creator commerce, ecommerce, and TikTok Shop operators use this skill to turn recent creator-market observations, links, notes, screenshots, headlines, or examples into a concise market digest with practical implications.
 
-## Reference(s): <br>
-- [Creator Market Digest output template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown digest with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses provided market observations and optional time window, market focus, region, niche, or commerce angle; does not perform real-time platform API reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Creator-market observations can be incomplete, stale, or noisy, which may lead to overconfident conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for a clear time window and source material, cluster repeated signals, and distinguish temporary chatter from actionable pattern shifts.
+
+Risk: The skill does not provide real-time primary-source reporting from platform APIs.
+
+Mitigation: Use verified external platform data when API-grounded or real-time reporting is required.
+
+## Reference(s):
+
+- [Creator Market Digest output template](references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/creator-market-digest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown digest]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise operator briefing with top market shifts, why they matter, affected teams, immediate implications, and a watchlist.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

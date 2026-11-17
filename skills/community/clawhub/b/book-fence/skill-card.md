@@ -1,40 +1,53 @@
-## Description: <br>
-Book Fence helps users search for fence services, check availability, and create bookings through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Fence helps agents find fence services and book appointments through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for fence service providers, check availability, and create a booking through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creating a booking may share customer name, email, phone number, and booking details with Lokuli or its service providers. <br>
-Mitigation: Confirm booking details and user intent before creating a booking, and avoid collecting contact information unless the user intends to proceed. <br>
-Risk: Search, availability, and booking actions depend on an external Lokuli MCP endpoint. <br>
-Mitigation: Treat returned service data as live external data and ask the user to verify provider, service, time slot, and contact details before submission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Fence ClawHub listing](https://clawhub.ai/edwardrodriguez703-design/book-fence) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users or agents use this skill to search for fence service providers, check appointment availability, and create bookings through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON-RPC API calls, guidance] <br>
-**Output Format:** [Text with JSON-RPC tool call arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider, service, time slot, and customer contact details when the user chooses to create a booking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send customer contact details to an external booking service.
+
+Mitigation: Require the agent to show the provider, time slot, customer name, email, and phone number and get explicit confirmation before creating a booking.
+
+Risk: The skill performs transactional booking actions through Lokuli.
+
+Mitigation: Use it only when the user intends to contact or book a fence service, and confirm the booking target and appointment details before submission.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [Book Fence on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-fence)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-RPC request bodies for search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

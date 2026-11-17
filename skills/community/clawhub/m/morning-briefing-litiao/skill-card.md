@@ -1,41 +1,63 @@
-## Description: <br>
-Generates a personalized morning briefing from today's reminders and undone Notion tasks, with optional storage of the resulting report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a personalized morning briefing from today's reminders, unfinished Notion tasks, and optional vault storage.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-Individuals and productivity-focused users can ask an agent for a morning briefing or daily plan that combines reminders with open Notion tasks. Developers can configure the Notion database through environment settings when adapting the workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a Notion API key from ~/.config/notion/api_key and uses it to query a configured Notion database. <br>
-Mitigation: Use a narrowly scoped Notion token and confirm the configured database before running the skill. <br>
-Risk: The briefing may include private reminders and task data, and the evidence notes possible storage of the resulting briefing. <br>
-Mitigation: Review where briefing output will be captured or saved before execution, especially when it may include private task information. <br>
+## Use Case:
 
+People who use Apple Reminders and Notion tasks can ask an agent for a morning briefing or daily plan. The skill summarizes same-day reminders and undone Notion tasks into a concise report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/morning-briefing-litiao) <br>
-- [USAGE.md](references/USAGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-like daily briefing text emitted to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the current date by default and can query a configured Notion tasks database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read personal reminder and task data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in contexts where the user has explicitly requested a briefing and understands which local sources will be queried.
+
+Risk: The skill can use a local Notion API key to query a configured tasks database.
+
+Mitigation: Use a minimally scoped Notion integration, keep the key in local credential storage, and avoid exposing credentials in prompts or generated output.
+
+Risk: Broad activation wording could cause the briefing workflow to run when the user expected only planning advice.
+
+Mitigation: Require clear user confirmation before reading reminders, querying Notion, or writing briefing content.
+
+Risk: Briefing content may be written to a vault if that workflow is enabled.
+
+Mitigation: Confirm the destination and content before writing notes that include personal schedule or task information.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [Usage Guide](artifact/references/USAGE.md)
+- [ClawHub Skill Page](https://clawhub.ai/litiao1224/skills/morning-briefing-litiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown-style morning briefing with reminder and task sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on local reminder access, a configured Notion database ID, a local Notion API key, and any vault-writing workflow configured by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

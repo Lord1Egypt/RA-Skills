@@ -44,12 +44,12 @@ Agent 应使用 `AskUserQuestion` 工具询问用户的使用场景：
 
 从本地路径安装（作为 kinema_skills 组件的一部分）：
 ```bash
-uv tool install D:/modular_dev/kinema_skills/git-log-tracker
+uv tool install "<plugin_root>/src"
 ```
 
 或使用相对路径（如果在 kinema_skills 目录下）：
 ```bash
-uv tool install ./git-log-tracker
+uv tool install "./git-log-tracker/src"
 ```
 
 #### 验证安装
@@ -58,7 +58,7 @@ uv tool install ./git-log-tracker
 git-log-tracker --help
 # 期望: 显示帮助信息
 git-log-tracker --version
-# 期望: git-log-tracker 0.2.0
+# 期望: 与 SKILL.md 和 plugin manifest 相同的当前版本
 ```
 
 ---
@@ -275,10 +275,12 @@ git-log-tracker scan D:/modular_dev
 | 文件 | 版本位置 |
 |------|----------|
 | `pyproject.toml` | `version = "x.y.z"` |
-| `src/git_log_tracker/__init__.py` | `__version__ = "x.y.z"` |
+| `src/__init__.py` | `__version__ = "x.y.z"` |
 | `SKILL.md` | `version: x.y.z` (frontmatter) |
+| `.claude-plugin/plugin.json` | `"version": "x.y.z"` |
+| `.codex-plugin/plugin.json` | `"version": "x.y.z"` |
 
 更新版本后需要重新安装 CLI：
 ```bash
-uv tool install D:/modular_dev/kinema_skills/git-log-tracker --force
+uv tool install "<plugin_root>/src" --force
 ```

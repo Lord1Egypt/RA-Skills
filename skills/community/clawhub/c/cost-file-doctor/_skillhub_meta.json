@@ -1,0 +1,17 @@
+{
+  "name": "cost-file-doctor",
+  "display_name": "造价文件诊断器",
+  "display_name_en": "Cost File Doctor",
+  "version": "1.0.0",
+  "author": "Lxb",
+  "license": "MIT",
+  "category": "data-analysis",
+  "description_zh": "拿到造价软件工程文件先诊断再动手：识别格式归属、判定是否加密、评估可解析性，给出本地解析/装原软件/找现成导出件三条路径，内置分页表头清理器。",
+  "description_en": "Diagnose cost-engineering files before parsing: vendor format, encryption status, and the cheapest viable path, plus a paged-header spreadsheet cleaner.",
+  "examples": [
+    "这个计价文件打不开怎么办",
+    "帮我看看这个文件是不是加密了",
+    "这份导出的Excel表头乱七八糟帮我整理下"
+  ],
+  "minClientVersion": "1.0.0"
+}

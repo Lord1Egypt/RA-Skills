@@ -1,43 +1,56 @@
-## Description: <br>
-Searches Reformed Books Paradise for Reformed and Christian theology books and helps users find downloadable files, prioritizing PDF results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the Reformed Books site (https.ng) for Reformed and Christian theology books and guides agents toward PDF downloads when available.
 
-## Publisher: <br>
-[Lorpha](https://clawhub.ai/user/Lorpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lorpha](https://clawhub.ai/user/lorpha)
 
-## Use Case: <br>
-External users and agents use this skill to search for Reformed, Calvinist, and Christian theology books on a specific external book site, then follow browser or shell-command guidance to locate downloads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to a plain HTTP site and may lead to unverified file downloads. <br>
-Mitigation: Verify that downloaded documents are legitimate and legal to access, and scan files before opening them. <br>
-Risk: The external site may be unavailable or return unexpected content. <br>
-Mitigation: Treat search results and downloads as untrusted external content and retry or verify manually when the site response is inconsistent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lorpha/reformed-books) <br>
-- [Reformed Books Paradise main site](http://www.https.ng) <br>
-- [Reformed Books Paradise search engine](http://www.https.ng:1234) <br>
-- [Reformed Books Paradise advanced search](http://www.https.ng:5757) <br>
-- [Reformed Books Paradise resource navigation](http://www.https.ng:1234/0.html) <br>
+## Use Case:
 
+External users and agents use this skill to find Reformed, Calvinist, and Christian theology books through the referenced third-party book site, with PDF results preferred when available.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with inline browser and shell commands; optional JSON from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and accesses a specific external book site over plain HTTP.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Downloaded files from the third-party HTTP book site may be unsafe, altered, or misleading.
+
+Mitigation: Treat all downloads as untrusted, verify the source when possible, scan files before opening them, and avoid enabling active document content.
+
+Risk: Book downloads may be subject to copyright, licensing, or other usage restrictions.
+
+Mitigation: Confirm the right to download and use each material before retrieving or sharing it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lorpha/skills/reformed-books)
+- [Reformed Books Main Site](http://www.https.ng)
+- [Reformed Books Search](http://www.https.ng:1234)
+- [Reformed Books Advanced Search](http://www.https.ng:5757)
+- [Reformed Books Resource Navigation](http://www.https.ng:1234/0.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with browser actions, shell command examples, and optional JSON output from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers PDF search terms; helper script requires Python and returns guidance because the target site uses browser-based search.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

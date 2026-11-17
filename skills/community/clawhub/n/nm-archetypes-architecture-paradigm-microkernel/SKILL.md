@@ -1,20 +1,20 @@
 ---
 name: architecture-paradigm-microkernel
-description: Applies microkernel architecture with minimal core and plugin extensibility
-version: 1.9.8
+description: Microkernel architecture with a minimal core and plugins
+version: 1.10.3
 triggers:
   - architecture
   - microkernel
   - plugin
   - extensibility
   - platform-design
-  - building platforms where third parties extend core functionality
+  - third parties extend a platform's core
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83c\udfd7\ufe0f"}}
 source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # The Microkernel (Plugin) Architecture Paradigm
@@ -57,13 +57,20 @@ source_plugin: archetypes
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``plugin-loader`` -- discovers, validates, and activates plugins at runtime
-- ``sandbox-executor`` -- runs each plugin in an isolated context with a constrained capability set
-- ``sdk-generator`` -- produces language-specific SDKs from the kernel's stable interface
+- ``plugin-loader``: discovers, validates, and activates plugins at runtime
+- ``sandbox-executor``: runs each plugin in an isolated context with a constrained capability set
+- ``sdk-generator``: produces language-specific SDKs from the kernel's stable interface
+
+## Exit Criteria
+
+- [ ] An ADR documents the microkernel's minimal responsibilities, the plugin contract
+  (registration, capability descriptors, lifecycle hooks), and the permission model.
+- [ ] A formal plugin SDK or specification (templates, testing harness, compatibility checker)
+  exists before any third-party plugin development begins.
+- [ ] An automated plugin validation pipeline (lint, test, sandbox execution) is operational
+  and gates plugin certification.
+- [ ] A compatibility matrix between core versions and supported plugin API versions is
+  published and updated whenever the core plugin contract changes.

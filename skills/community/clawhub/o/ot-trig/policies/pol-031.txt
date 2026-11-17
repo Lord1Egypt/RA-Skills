@@ -1,0 +1,1 @@
+A cyclist suddenly veers into the path of an autonomous vehicle. Prioritizing lane keeping over braking may conflict with safety protocols that prioritize avoiding collisions Include states for lane centering, lane departure, and emergency response The response must include a description of the xxxx

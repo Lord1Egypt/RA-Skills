@@ -1,52 +1,60 @@
-## Description: <br>
-Executes flexible GraphQL queries against ChainStream's on-chain data warehouse for custom analytics such as cross-cube joins, aggregations, filters, time series, and SQL-level blockchain data exploration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes flexible GraphQL queries against ChainStream's on-chain data warehouse for custom blockchain analytics, including cross-cube joins, aggregations, filters, and time-series analysis.
 
-## Publisher: <br>
-[harry5556](https://clawhub.ai/user/harry5556) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harry5556](https://clawhub.ai/user/harry5556)
 
-## Use Case: <br>
-Developers, analysts, and agent builders use this skill to construct and run ChainStream GraphQL queries for custom on-chain analytics across Solana, Ethereum, BSC, Polygon, and trading data. It is suited to cases where prebuilt REST or MCP endpoints are too limited, such as joins, aggregations, complex filters, and custom time-series analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses ChainStream's external CLI and MCP service and may require API keys, wallet signatures, and subscription checks. <br>
-Mitigation: Use a scoped API key or generated low-balance wallet, avoid importing valuable private keys, and review authentication steps before use. <br>
-Risk: Subscription or paid plan flows can spend funds if approved by the user. <br>
-Mitigation: Require explicit user review and confirmation before any paid plan purchase. <br>
-Risk: The broader ChainStream skill set includes DeFi actions, while this release is focused on GraphQL analytics. <br>
-Mitigation: Keep this skill to read-oriented GraphQL analytics and require separate explicit review before any DeFi transaction action. <br>
+## Use Case:
 
+Developers and agents use this skill to build and run custom ChainStream GraphQL analytics over blockchain data when standard REST or MCP endpoints are insufficient.
 
-## Reference(s): <br>
-- [ChainStream GraphQL Schema Guide](references/schema-guide.md) <br>
-- [ChainStream GraphQL Query Patterns](references/query-patterns.md) <br>
-- [Authentication](shared/authentication.md) <br>
-- [Payment Protocols](shared/x402-payment.md) <br>
-- [Supported Chains](shared/chains.md) <br>
-- [Error Handling](shared/error-handling.md) <br>
-- [ChainStream Documentation](https://docs.chainstream.io) <br>
-- [ChainStream API Reference](https://docs.chainstream.io/api-reference) <br>
-- [ChainStream Dashboard](https://app.chainstream.io) <br>
-- [ChainStream MCP Server](https://mcp.chainstream.io/mcp) <br>
-- [ChainStream GraphQL Endpoint](https://graphql.chainstream.io/graphql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline GraphQL, JSON, and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ChainStream CLI commands, GraphQL queries, JSON result interpretation, authentication guidance, and subscription workflow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server evidence release.version) <br>
+Risk: The skill relies on mutable external CLI execution in workflows that may touch credentials, wallets, and paid subscription flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment with a preinstalled, version-pinned ChainStream CLI; review commands before execution and avoid piping remote installers into a shell.
+
+Risk: Authentication and payment flows can create wallets, store keys, import private keys, or purchase quota.
+
+Mitigation: Require explicit user confirmation before wallet creation, key storage, private-key import, or any paid plan purchase; avoid high-value private keys.
+
+## Reference(s):
+
+- [ChainStream GraphQL Schema Guide](artifact/references/schema-guide.md)
+- [ChainStream GraphQL Query Patterns](artifact/references/query-patterns.md)
+- [ChainStream Authentication](artifact/shared/authentication.md)
+- [ChainStream Payment Protocols](artifact/shared/x402-payment.md)
+- [ChainStream Error Handling](artifact/shared/error-handling.md)
+- [ChainStream Documentation](https://docs.chainstream.io)
+- [ChainStream API Reference](https://docs.chainstream.io/api-reference)
+- [ChainStream Dashboard](https://app.chainstream.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with GraphQL snippets, JSON-oriented CLI output, shell commands, and configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke live ChainStream CLI or MCP calls that require API credentials, subscription quota, and explicit confirmation for paid plan purchases.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Fixes WhatsApp Web status 428 connection issues for OpenClaw by providing proxy configuration guidance and an optional repair script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+修复 WhatsApp Web 连接 428 错误和代理配置问题，适用于 WhatsApp 连接断开、需要配置代理或在新机器部署 OpenClaw 后遇到连接问题的场景。
 
-## Publisher: <br>
-[jeffreyCheungRT](https://clawhub.ai/user/jeffreyCheungRT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffreycheungrt](https://clawhub.ai/user/jeffreycheungrt)
 
-## Use Case: <br>
-Developers and operators use this skill when an OpenClaw WhatsApp gateway reports status 428, needs proxy configuration, or requires post-deployment connection recovery steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent local changes to OpenClaw package files and the user systemd service. <br>
-Mitigation: Back up the service file and installed package files before use, run during a maintenance window, and keep a rollback path ready. <br>
-Risk: The fix routes WhatsApp traffic through a configured proxy endpoint. <br>
-Mitigation: Verify the proxy operator and endpoint before use, and only route traffic through a proxy trusted for the deployment. <br>
-Risk: Gateway restart and proxy changes may affect messaging connectivity or behavior. <br>
-Mitigation: Review the script before running it, monitor gateway logs and channel status after restart, and roll back if connectivity changes unexpectedly. <br>
+## Use Case:
 
+Developers and operators use this skill to troubleshoot WhatsApp Web status 428 in OpenClaw, configure proxy settings, and apply or review service and code-level changes that may restore connectivity.
 
-## Reference(s): <br>
-- [WhatsApp 428 detailed reference](references/quick-ref.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an optional bash script that accepts a proxy port argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The automatic repair script can make persistent changes to the OpenClaw gateway service and installed OpenClaw code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script first, prefer the manual steps when possible, and keep or create backups so the service and code changes can be reversed.
+
+Risk: The repair flow may install an npm package from the configured registry and restart the OpenClaw gateway.
+
+Mitigation: Confirm the configured npm registry and package before running, and perform the restart during a maintenance window or after preparing a rollback path.
+
+## Reference(s):
+
+- [WhatsApp 428 quick reference](references/quick-ref.md)
+- [ClawHub skill page](https://clawhub.ai/jeffreycheungrt/skills/whatsapp-428-fix)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell, JavaScript, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an executable repair script and manual OpenClaw service configuration steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

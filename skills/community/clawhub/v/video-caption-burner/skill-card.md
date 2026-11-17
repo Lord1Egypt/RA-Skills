@@ -1,42 +1,54 @@
-## Description: <br>
-Burn existing subtitles or captions directly into video exports so they remain visible across platforms and players. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Burn existing subtitles or captions directly into video exports so they remain visible across platforms and players.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External creators, marketing teams, and video production teams use this skill to plan hardcoded caption burn-ins for videos that already have subtitles or timed captions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided videos and captions may contain sensitive or unpublished content. <br>
-Mitigation: Only process videos and caption files that are appropriate for the agent environment. <br>
-Risk: Burned-in captions can obscure faces, products, demos, or important interface details. <br>
-Mitigation: Review caption placement, readability, and collision risks before publishing the final export. <br>
+## Use Case:
 
+External creators, marketers, product teams, and reviewers use this skill when they already have timed captions and need a platform-ready video with subtitles permanently visible across social, ads, storefronts, or review links.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/video-caption-burner) <br>
-- [Publisher Profile](https://clawhub.ai/user/Leooooooow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown plan with caption style, placement, readability risk, and final export recommendation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses existing caption inputs only; it does not transcribe audio or repair incomplete subtitle timing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Burned-in captions are permanent in the exported video and may be hard to correct after publishing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the rendered export, caption timing, placement, and readability before publishing or distributing the final video.
+
+Risk: Captions can obscure faces, products, demos, or key interface areas.
+
+Mitigation: Check for visual collisions and adjust placement, line length, font size, or background before final export.
+
+## Reference(s):
+
+- [Video Caption Burner output template](artifact/references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/video-caption-burner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown plan with style, placement, readability risk, and export recommendation sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses existing captions or timed subtitle files; does not generate transcripts or repair incomplete timing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

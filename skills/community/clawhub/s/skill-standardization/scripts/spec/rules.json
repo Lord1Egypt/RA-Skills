@@ -1,0 +1,275 @@
+{
+  "_module": "rules",
+  "_version": "2.38.6",
+  "_description": "SKILL.md 审查规则 R-01 ~ R-26 完整定义（v2.38.6 基础；v2.5.0 扩展 R-17 非标章节检测、R-25 C-11 章节顺位/C-12 格式合规；v2.74.0 新增 R-26 LICENSE 声明规范）",
+  "_based_on": "SKILL.md 标准化规范草案 v0.1",
+  "_total_rules": 26,
+  "_error_count": 12,
+  "_warn_count": 9,
+  "rules": [
+    {
+      "id": "R-01",
+      "name": "Frontmatter 存在性",
+      "severity": "ERROR",
+      "category": "frontmatter",
+      "check_description": "存在 YAML frontmatter（--- 包裹）",
+      "method": "regex_frontmatter_exists",
+      "fix_guide": "在文件开头添加 YAML frontmatter：\\n---\\nname: skill-name\\nversion: 1.0.0\\n---"
+    },
+    {
+      "id": "R-02",
+      "name": "name 字段",
+      "severity": "ERROR",
+      "category": "frontmatter",
+      "check_description": "frontmatter 含 name 字段",
+      "method": "yaml_has_name",
+      "fix_guide": "在 frontmatter 中添加 name 字段：\\n  name: <技能目录名>"
+    },
+    {
+      "id": "R-03",
+      "name": "version (SemVer)",
+      "severity": "ERROR",
+      "category": "frontmatter",
+      "check_description": "frontmatter 含 version 且符合 SemVer 格式",
+      "method": "yaml_has_semver_version",
+      "fix_guide": "确保 version 格式为 MAJOR.MINOR.PATCH，如 1.0.0、2.1.3-beta"
+    },
+    {
+      "id": "R-04",
+      "name": "description 字段",
+      "severity": "ERROR",
+      "category": "frontmatter",
+      "check_description": "frontmatter 含 description 字段",
+      "method": "yaml_has_description",
+      "fix_guide": "在 frontmatter 中添加 description 字段，建议用 > 多行格式"
+    },
+    {
+      "id": "R-05",
+      "name": "name 与目录名一致",
+      "severity": "WARN",
+      "category": "consistency",
+      "check_description": "frontmatter name 与所在目录名一致",
+      "method": "name_matches_dirname",
+      "fix_guide": "将 frontmatter 中的 name 改为与父目录名一致"
+    },
+    {
+      "id": "R-06",
+      "name": "正文含一级标题",
+      "severity": "WARN",
+      "category": "body_structure",
+      "check_description": "正文中存在 # 开头的一级标题",
+      "method": "body_has_h1",
+      "fix_guide": "在 frontmatter 后添加 # 一级标题，如 # 技能名 — 简介句"
+    },
+    {
+      "id": "R-07",
+      "name": "触发条件章节",
+      "severity": "WARN",
+      "category": "body_structure",
+      "check_description": "含 ## 触发条件 或同义章节标题",
+      "method": "body_has_trigger_section",
+      "synonym_keywords": [
+        "触发条件",
+        "触发场景",
+        "适用场景",
+        "触发"
+      ],
+      "fix_guide": "添加 ## 触发条件 章节，描述何时调用此技能"
+    },
+    {
+      "id": "R-08",
+      "name": "核心能力章节",
+      "severity": "WARN",
+      "category": "body_structure",
+      "check_description": "含核心功能/能力/概述等章节标题",
+      "method": "body_has_core_section",
+      "synonym_keywords": [
+        "核心功能",
+        "核心能力",
+        "概述",
+        "核心概念",
+        "Overview",
+        "技能概述"
+      ],
+      "fix_guide": "添加 ## 核心功能 章节，用表格列出主要能力"
+    },
+    {
+      "id": "R-09",
+      "name": "工作流程章节",
+      "severity": "WARN",
+      "category": "body_structure",
+      "check_description": "含工作流/使用方式/Workflow 等章节标题",
+      "method": "body_has_workflow_section",
+      "synonym_keywords": [
+        "工作流程",
+        "使用方式",
+        "Workflow",
+        "完整执行流程",
+        "核心指令"
+      ],
+      "fix_guide": "添加 ## 工作流程 或 ## 完整执行流程 章节，步骤化描述"
+    },
+    {
+      "id": "R-10",
+      "name": "version 一致性",
+      "severity": "WARN",
+      "category": "consistency",
+      "check_description": "SKILL.md version 与 manifest.json 记录一致",
+      "method": "version_matches_manifest",
+      "fix_guide": "统一 SKILL.md 和 manifest.json 中的版本号"
+    },
+    {
+      "id": "R-11",
+      "name": "产出物路径规范性（含风险检测）",
+      "severity": "ERROR",
+      "category": "code_quality",
+      "check_description": "scripts/ + 根目录文件 + 非标准子目录 + 全目录交叉引用追踪（铁律4），全面产出物定义含 50+ 扩展名和 30+ 目录名模式",
+      "fixable": true,
+      "fix_action": "fix_artifact_paths(skill_dir) — 自动修正 scripts/*.py 中的产出物路径，将硬编码路径替换为 skills/.standardization/<skill>/ 规范",
+      "method": "check_artifact_paths",
+      "fix_guide": "将脚本中产出物路径改为 <workspace>/standardization/<skill>/ 标准化结构：data/ (持久化数据) / cache/ (缓存) / outputs/ (生成产物) / temp/ (临时文件)"
+    },
+    {
+      "id": "R-12",
+      "name": "外部数据目录规范性（含风险检测）",
+      "severity": "ERROR",
+      "category": "data_management",
+      "check_description": "scripts/中定义的外部数据目录路径必须遵循 standardization/<skill>/ 约定（同R-11），且 _meta.json 必须声明 data_dir 字段与之一致",
+      "fixable": true,
+      "fix_action": "fix_external_data_dir(skill_dir) — 自动修正 _meta.json 和 scripts/*.py 中的数据目录变量，确保符合 skills/.standardization/<skill>/data/ 规范",
+      "method": "check_external_data_dir",
+      "fix_guide": "1. 将数据目录路径改为 .standardization/<skill>/data/ 格式（同R-11约定）；2. 在 _meta.json 中添加 \"data_dir\" 字段，值为 .standardization/<skill>/data/"
+    },
+    {
+      "id": "R-13",
+      "name": "敏感信息访问声明",
+      "severity": "ERROR",
+      "category": "permissions",
+      "check_description": "脚本含敏感信息访问（memory/credentials/token）时，frontmatter 须声明 sensitive_access: true 并在 references/permissions.md 中说明用途",
+      "method": "check_sensitive_access_declaration",
+      "fix_guide": "在 frontmatter 中添加 sensitive_access: true（如果脚本访问敏感信息），并在 references/permissions.md 中说明用途"
+    },
+    {
+      "id": "R-14",
+      "name": "关键位置写入声明",
+      "severity": "ERROR",
+      "category": "permissions",
+      "check_description": "脚本含关键位置写入（skills/.workbuddy/系统目录）时，frontmatter 须声明 critical_write: true 并在 references/permissions.md 中说明用途",
+      "method": "check_critical_write_declaration",
+      "fix_guide": "在 frontmatter 中添加 critical_write: true（如果脚本写入关键位置），并在 references/permissions.md 中说明用途"
+    },
+    {
+      "id": "R-15",
+      "name": "高权限操作风险说明",
+      "severity": "ERROR",
+      "category": "permissions",
+      "check_description": "脚本含高权限操作（风险等级 high/critical）时，references/permissions.md 须包含对应操作的风险说明（不强制代码层授权检查）",
+      "method": "check_authorization_present",
+      "fix_guide": "在 references/permissions.md 中添加高权限操作的风险说明，包括操作内容、风险等级、授权方式"
+    },
+    {
+      "id": "R-16",
+      "name": "权限权重说明",
+      "severity": "WARN",
+      "category": "permissions",
+      "check_description": "frontmatter 须声明 permission_weight（LOW/MEDIUM/HIGH/CRITICAL），且 references/permissions.md 须包含权限权重说明表格",
+      "method": "check_permission_weight_explained",
+      "fix_guide": "在 frontmatter 中添加 permission_weight: <LEVEL>，并在 references/permissions.md 中添加权限权重说明表格"
+    },
+    {
+      "id": "R-17",
+      "name": "渐进加载引用（强制）",
+      "severity": "ERROR",
+      "category": "body_structure",
+      "check_description": "SKILL.md > 230 行时必须拆分白名单章节到 references/，并通过「→ 详见 references/xxx.md」引用；同时检测超出 allowed_sections 白名单的非标准章节（H2），Phase 1 正则粗筛 → Phase 2 LLM 精筛",
+      "method": "check_progressive_loading_forced",
+      "fix_guide": ">230行：优先拆 whitelist_optional 章节到 references/ 并更新渐进式索引表；always_progressive 缺失：将版本日志移到 references/changelog.md，替换为 → 详见引用；nonstandard：LLM 判断后可合并到标准章节或用 fix_split_nonstandard 拆分"
+    },
+    {
+      "id": "R-18",
+      "name": "反模式具体性",
+      "severity": "WARN",
+      "category": "body_quality",
+      "check_description": "正文含 ## 反模式/常见错误 章节，且每条反模式含具体描述（≥20字）或代码示例",
+      "method": "body_has_antipattern_section",
+      "fix_guide": "添加 ## 反模式 章节，每条反模式包含具体错误描述和正确做法示例（≥20字）"
+    },
+    {
+      "id": "R-19",
+      "name": "FAQ 有意义性",
+      "severity": "WARN",
+      "category": "body_quality",
+      "check_description": "正文含 ## FAQ/常见问题 章节，且 Q&A 对有意义（Q≥10字，A≥15字）",
+      "method": "body_has_faq_section",
+      "fix_guide": "添加 ## FAQ 章节，包含至少 3 个有意义的 Q&A 对（Q≥10字，A≥15字）"
+    },
+    {
+      "id": "R-20",
+      "name": "写作规范（术语一致/无模糊表述/中英文混排）",
+      "severity": "WARN",
+      "category": "body_quality",
+      "check_description": "正文术语一致、无模糊表述（可能/应该/大概）、中英文混排有空格",
+      "method": "body_check_writing_standards",
+      "fix_guide": "保持术语统一（创建/更新/改造），避免模糊词（可能/应该），中英文间加空格"
+    },
+    {
+      "id": "R-21",
+      "name": "渐进式加载显式说明",
+      "severity": "WARN",
+      "category": "body_structure",
+      "check_description": "SKILL.md 在显眼位置（核心能力/工作流程章节）显式说明渐进式加载（含「渐进式加载」或「progressive」关键词）",
+      "method": "body_has_progressive_loading_explicit",
+      "fix_guide": "在 ## 核心能力 或 ## 工作流程 章节开头添加渐进式加载说明，包含「渐进式加载」或「progressive」关键词"
+    },
+    {
+      "_id": "R-22",
+      "name": "数据目录规范检查",
+      "severity": "WARN",
+      "check": "安装目录无越位数据文件（构建产物/缓存/日志应放在 data_dir: 声明的数据目录）",
+      "method": "check_data_dir_compliance",
+      "fixable": true,
+      "create_template": "在 frontmatter 中声明 data_dir: ../.standardization/<skill>/"
+    },
+    {
+      "_id": "R-23",
+      "name": "文档-代码一致性检查",
+      "severity": "WARN",
+      "check": "SKILL.md 中引用的脚本/文件/函数名真实存在，代码示例中的调用方式与实际代码一致",
+      "method": "check_doc_code_consistency",
+      "fixable": false,
+      "create_template": "确保 SKILL.md 引用的所有 .py 文件存在于技能目录中，代码示例中的调用方式与实际 argparse/函数签名一致"
+    },
+    {
+      "_id": "R-24",
+      "name": "更新日志渐进加载",
+      "severity": "WARN",
+      "method": "check_changelog_progressive",
+      "check": "更新日志必须放在 references/changelog.md，SKILL.md 只能有引用",
+      "fixable": false,
+      "create_template": "将更新日志移至 references/changelog.md，SKILL.md 中保留引用：「→ 详见 references/changelog.md」"
+    },
+    {
+      "_id": "R-25",
+      "name": "文档写作格式规范",
+      "severity": "WARN",
+      "method": "body_check_document_format",
+      "check": "SKILL.md 正文写作格式统一性检查（11项子检查）。C-01 (ERROR)：H1 标题格式正确（# <技能名>，仅含技能名或技能名 — 简短副标题，不含版本号）；C-02 (WARN)：标题层级限制在 ## 和 ###；C-03 (WARN)：表格用于结构化信息展示；C-04 (WARN)：引用块 > 用于提示/注意/警告；C-05 (WARN)：有序列表用于步骤，无序列表用于选项；C-06 (WARN)：加粗用于关键术语/约束；C-07 (WARN)：代码块使用语言标识；C-08 (WARN)：Checklist [ ] 用于操作前自检；C-09 (WARN)：箭头引用 → 详见 用于渐进式文件引用；C-10 (WARN)：空行规范——frontmatter 后及正文中过多的连续空白行；C-11 (WARN)：章节顺位——检查正文 H2 章节出现顺序是否与 body.json section_order 一致；C-12 (WARN)：章节格式合规——检查每个 H2 章节使用的格式（表格/列表/代码块/引用）是否与 body.json content_format 定义一致。冲突排除：R-06 已检查 H1 存在性（WARN），R-25 C-01 升级为 ERROR 检查 H1 格式质量；R-21 渐进式加载模板句不受 C-02/C-04 约束；R-24 更新日志位置不受 C-02 约束。create 模式作为模板参考。",
+      "fixable": false,
+      "create_template": "## 核心能力\n\n> 📚 **渐进式加载**：本技能采用渐进式 MD 体系，`SKILL.md` 为入口（≤230行），详细内容拆分到 `references/*.md` 按需加载。\n\n| # | 功能 | 说明 |\n|---|------|------|\n| 1 | **功能一** | 描述 |\n| 2 | **功能二** | 描述 |\n\n--- 以上为 R-25 写作格式规范参考模板 ---\n\n写作格式要点：\n1. `# <技能名>` — 全文仅一个 H1（必须）\n2. `##` 主章节 / `###` 子章节 — 不用更深标题\n3. 表格 → 结构化比对数据\n4. `>` → 提示/注意/警告\n5. 有序列表 → 步骤流程；无序列表 → 选项列举\n6. `**加粗**` → 关键术语/约束\n7. ` ``` + 语言 ` → 代码块\n8. `- [ ]` → 操作前自检清单\n9. `→ 详见 references/xxx.md` → 渐进式文件引用\n\nC-11 章节顺位：章节顺序应遵循 body.json section_order（H1→触发条件→核心能力→快速开始→工作流程→...）。\nC-12 格式合规：核心能力用三列表格，触发条件用无序列表+正/否定子列表，快速开始用代码块。"
+    },
+    {
+      "_id": "R-26",
+      "name": "LICENSE 声明规范",
+      "severity": "WARN",
+      "method": "check_license_compliance",
+      "check": "License 声明必须放在 references/LICENSE.md 中，遵循渐进式加载规范。C-01 (ERROR): references/LICENSE.md 文件必须存在；C-02 (ERROR): SKILL.md 正文不得有独立 license/License 章节或声明；C-03 (WARN): 根目录不得存在 LICENSE 文件；C-04 (WARN): scripts/ 下不得存在 LICENSE 文件；C-05 (INFO): 渐进式文件索引表应包含 LICENSE.md；C-06 (ERROR): references/LICENSE.md 不应为空。冲突排除：R-01 保留 frontmatter 的 license 字段。",
+      "fixable": true,
+      "create_template": "创建 references/LICENSE.md（空白 MIT 模板），SKILL.md 正文不含 license 章节，渐进式索引表增加 LICENSE.md 行"
+    }
+  ],
+  "verdict_logic": {
+    "PASS": "全部规则通过（无 FAIL，可包含 SKIP）",
+    "WARN": "有 WARN 级失败但无 ERROR",
+    "FAIL": "有 ERROR 级失败"
+  }
+}

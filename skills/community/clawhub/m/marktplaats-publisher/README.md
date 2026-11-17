@@ -13,7 +13,7 @@ Vanaf versie 0.6.0 is dit vooral een scriptmatige pipeline. De assistent krijgt 
 - Schrijft een volle Nederlandse advertentietekst van ongeveer 3200 tot 3500 tekens.
 - Controleert de tekst voordat Marktplaats wordt ingevuld.
 - Werkt met een bestaande ingelogde Safari-sessie op macOS.
-- Uploadt en controleert foto's via de normale Marktplaats-flow.
+- Begeleidt en controleert foto-upload via de normale Marktplaats-flow.
 - Houdt betaalde promoties standaard uit.
 - Controleert na het plaatsen of de advertentie echt live goed staat.
 - Bewaart lokaal wat er geplaatst is, inclusief tekstcheck en live controle.
@@ -31,7 +31,7 @@ De standaard is:
 - ongeveer 3200 tot 3500 tekens;
 - minimaal 7 duidelijke alinea's of onderdelen;
 - merk/model en productsoort moeten erin staan;
-- een kleine natuurlijke zoekvariant mag, zoals `deur slot` of `buiten antenne`;
+- minimaal één kleine natuurlijke typefout/schrijfvariant in context, zoals `deur slot` of `buiten antenne`;
 - geen losse zoekwoordenlijst;
 - de laatste zin moet ook live zichtbaar zijn na opslaan.
 
@@ -50,6 +50,7 @@ marktplaats-copy-qa ./description.md \
 ```
 
 De check schrijft het resultaat in `ad.json`. Alleen als `copyQuality.passed` op `true` staat, mag de tekst door naar Marktplaats.
+Wil je twee minimale varianten afdwingen, herhaal dan `--variant` en gebruik `--min-variants 2`.
 
 Voor een snelle test van de tool zelf:
 
@@ -81,7 +82,7 @@ Als Marktplaats de tekst niet goed in de HTML meestuurt, gebruik je tekst uit de
 marktplaats-live-verify --ad-json ./ad.json --text ./live-text.txt --update-ad-json
 ```
 
-Deze check faalt als het begin van de omschrijving ontbreekt, de laatste zin ontbreekt, de tekst dubbel staat of er toch een `Zoektermen:` blok live zichtbaar is.
+Deze check faalt als het begin van de omschrijving ontbreekt, de laatste zin ontbreekt, de tekst dubbel staat, alinea's live niet herkenbaar zijn, er toch een `Zoektermen:` blok zichtbaar is, of de live omschrijvingswindow domeinachtige tekst bevat.
 
 ## Register bijwerken
 
@@ -95,6 +96,7 @@ marktplaats-register-update \
 ```
 
 Voer register-updates niet parallel uit op hetzelfde bestand. De tool gebruikt een lock en stopt als er al een update loopt.
+Standaard weigert deze stap advertenties zonder geslaagde live-verificatie. Gebruik `--allow-unverified` alleen voor conceptadministratie.
 
 ## Advertentie voorbereiden
 
@@ -126,6 +128,8 @@ De normale volgorde:
 12. Draai `marktplaats-live-verify`.
 13. Draai `marktplaats-register-update`.
 
+Voor kleinere modellen geldt: één stap uitvoeren, output lezen, dan pas de volgende stap. Geen coördinatenkliks, geen verborgen submit en geen betaal-/promotieroute zonder expliciet akkoord.
+
 ## Gratis blijft gratis
 
 Deze skill kiest standaard geen betaalde opties.
@@ -145,6 +149,8 @@ Daarom:
 - geen koperberichten sturen zonder aparte toestemming.
 
 De browser mag als veilige sessiecontext gebruikt worden. De sessie zelf mag niet worden gelekt.
+
+Werk background-first: browser-fetch en `--open-background` gaan voor zichtbare UI. Safari mag als sessiedrager dienen, maar de gebruiker mag niet onnodig uit de actieve app of tab worden getrokken.
 
 ## Zoek- en categoriehulpen
 
@@ -167,14 +173,46 @@ Formulier inspecteren via de ingelogde browsercontext:
 marktplaats-place-probe --browser --save housekeeping/marktplaats-snapshots/current.json
 ```
 
+Plaatsingspagina rustig in Safari op de achtergrond openen en daarna proben:
+
+```bash
+marktplaats-place-probe --browser \
+  --open-background "https://www.marktplaats.nl/plaats/..." \
+  --save housekeeping/marktplaats-snapshots/current.json
+```
+
 ## Installeren en testen
+
+Node.js 18 of nieuwer is nodig.
+
+Controleer eerst dat je de juiste package hebt:
+
+```bash
+node -p "require('./package.json').name + '@' + require('./package.json').version"
+```
+
+Verwachte package: `marktplaats-publisher`.
+
+Installeer de CLI's vanuit de skillmap:
 
 ```bash
 npm install -g .
 npm test
 ```
 
-Node.js 18 of nieuwer is nodig.
+Als globale commands niet beschikbaar zijn, gebruik de directe fallback vanuit de skillmap:
+
+```bash
+node ./bin/marktplaats-search.js --help
+node ./bin/marktplaats-categories.js --help
+node ./scripts/marktplaats-place-probe.js --self-test
+node ./scripts/marktplaats-copy-qa.js --self-test
+node ./scripts/marktplaats-ad-preflight.js --self-test
+node ./scripts/marktplaats-live-verify.js --self-test
+node ./scripts/marktplaats-register-update.js --self-test
+```
+
+Een licht model mag setup pas als geslaagd zien wanneer `npm test` groen is of alle directe self-tests groen zijn.
 
 ## Wat deze skill niet doet
 

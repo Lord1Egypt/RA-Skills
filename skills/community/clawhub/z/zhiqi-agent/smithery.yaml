@@ -1,0 +1,27 @@
+# 待按官方 schema 核对 —— Smithery 的 smithery.yaml 存在两套写法，字段名随版本演进：
+#   (A) 旧版/最常见:  startCommand: { type, configSchema, commandFunction }
+#   (B) 新版(容器/TS runtime): runtime + build + startCommand
+# 下面采用 (A) 的 commandFunction 写法（官方文档最常见的一种），并给出等价的 command/args
+# 目标值供核对。提交前请以 smithery.ai 当前文档为准，不要直接照抄。
+# 阻塞点：Smithery 以托管运行为主，本 MCP server 是本地 stdio + 本地设备密钥，能否托管待确认。
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      baseUrl:
+        type: string
+        description: "ZhiQi API base URL"
+        default: "https://zhiqi.api.bihongit.com"
+      home:
+        type: string
+        description: "Local identity directory (holds the device key; never uploaded)"
+        default: ".zhiqi"
+    required: []
+  # 等价的目标启动方式：command = python, args = [-m, zhiqi_mcp, --home, <home>, --base-url, <baseUrl>]
+  commandFunction: |
+    (config) => ({
+      command: 'python',
+      args: ['-m', 'zhiqi_mcp', '--home', config.home, '--base-url', config.baseUrl]
+    })

@@ -1,42 +1,55 @@
-## Description: <br>
-Performs Google searches through the Serper.dev API and returns rich results for web, news, images, videos, places, shopping, scholar, patents, and search suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs Google searches through the Serper.dev API with web, news, images, videos, places, shopping, scholar, patents, autocomplete, Knowledge Graph, Answer Box, People Also Ask, and related search results.
 
-## Publisher: <br>
-[minilozio](https://clawhub.ai/user/minilozio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[minilozio](https://clawhub.ai/user/minilozio)
 
-## Use Case: <br>
-Developers and agent users use this skill to let an agent retrieve Google Search results and related search verticals through Serper.dev, with optional filters for time range, country, language, result count, page, and scholar year. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Serper.dev and Google-backed infrastructure. <br>
-Mitigation: Do not submit secrets, private customer data, proprietary project names, or regulated information unless organizational policy allows that provider. <br>
-Risk: Shopping searches consume 2 Serper.dev credits instead of 1 credit. <br>
-Mitigation: Use shopping only when the user explicitly asks for prices or shopping results, and monitor the returned credit balance. <br>
+## Use Case:
 
+Agents, developers, and operators use this skill to retrieve Google Search results and specialized result types from Serper.dev when web, news, image, video, place, shopping, scholar, patent, or suggestion data is needed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/minilozio/serper-google-search) <br>
-- [Serper.dev API Reference](artifact/references/serper-api.md) <br>
-- [Serper.dev](https://serper.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Formatted search-result text with links and snippets, or raw JSON when --json is requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes result metadata such as knowledge graph, answer box, people-also-ask, related searches, and credit balance when returned by Serper.dev.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Search queries are sent to Serper.dev and require a SERPER_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in environments where sending queries to Serper.dev is acceptable and where the API key can be provided through environment variables.
+
+Risk: The documented runtime path can execute an unpinned npm package before the reviewed code runs.
+
+Mitigation: Prefer a pinned, lockfile-backed local tsx installation or compiled JavaScript instead of running unpinned npx tsx commands directly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/minilozio/skills/serper-google-search)
+- [Serper.dev API Reference](references/serper-api.md)
+- [Serper.dev](https://serper.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Formatted terminal text or JSON when requested, usually presented in Markdown with shell command examples and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may include titles, links, snippets, rich result fields, and Serper credit balance information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

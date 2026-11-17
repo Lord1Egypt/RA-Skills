@@ -1,58 +1,77 @@
 ---
 name: session-closeout
-description: Run a structured end-of-session closeout that checks repo hygiene, refreshes a master task list, appends a closeout block to daily memory, and verifies automation health. Use when the user asks to end a session, run closeout, wrap up, or requests /closeout. Also useful as a periodic hygiene check between work blocks.
+description: Run a read-only end-of-session audit of the current workspace and report what still needs attention. Checks for git repos with uncommitted changes, MASTER_TODO.md freshness, and optionally whether named project docs were updated today. Writes nothing and runs nothing it finds in the workspace. Use only when the user explicitly asks to run closeout, end the session, or invokes /closeout.
+license: MIT
 ---
 
 # Session Closeout
 
-Non-destructive end-of-session checklist. Catches loose ends before context resets.
+A read-only audit for the end of a work session. It reads the workspace, prints
+what it found, and stops there. It creates no files, no directories, no commits,
+and it never runs a builder, a hook, or any other script it discovers.
 
-## Quick Start
+Recording the closeout is your job, not the script's. Take the values it prints
+and write them wherever your notes live.
 
-Run the closeout script from the workspace root:
+## Run it
+
+From the workspace root:
 
 ```bash
-bash "$(dirname "$0")/../scripts/session-closeout.sh"
+bash skills/session-closeout/scripts/session-closeout.sh
 ```
 
-Or with overrides (pipe-delimited):
+Optional inputs:
 
-```bash
-CLOSEOUT_OUTCOMES="Shipped feature X|Fixed bug Y" \
-CLOSEOUT_BLOCKERS="Waiting on API key" \
-bash scripts/session-closeout.sh
-```
+| Variable | Effect |
+|---|---|
+| `CLOSEOUT_PROJECTS` | Pipe-delimited project slugs, e.g. `"alpha\|beta"`. Checks whether `STATUS.md`, `DECISIONS.md`, `PROJECT.md`, or `BACKLOG.md` under `projects/<slug>/` were touched today. Warn only. |
+| `CLOSEOUT_TODO_STALE_HOURS` | Age at which `MASTER_TODO.md` counts as stale. Digits only, default 24. |
 
-## What It Checks
+The workspace root is always the current directory. There is no environment
+variable that moves it, and none that moves the projects directory either.
 
-1. **Repo hygiene** — Scans for dirty git repos (uncommitted changes). Reports but never auto-commits.
-2. **Task hygiene** — Refreshes `MASTER_TODO.md` from project backlogs if `scripts/build-master-todo.py` exists. Skipped gracefully if not.
-3. **Memory hygiene** — Appends a timestamped closeout block to `memory/YYYY-MM-DD.md` with outcomes, blockers, and next-start items.
-4. **Automation hygiene** — Flags that cron/automation health should be manually verified.
+## What it checks
 
-## Configuration
+1. **Task hygiene.** Reports whether `MASTER_TODO.md` is fresh, stale, or missing.
+   It never rebuilds the file. If it is stale and you keep a builder, run that
+   builder yourself as a separate, reviewed step, then rerun this audit.
+2. **Repo hygiene.** Finds git repos up to 4 levels below the workspace and lists
+   the ones with uncommitted changes. It reads status only, with the repo's own
+   fsmonitor and hooks pinned off, so scanning a repo cannot run that repo's code.
+3. **Project-doc hygiene** (only with `CLOSEOUT_PROJECTS`). Flags projects whose
+   core docs were not updated today. Slugs must be plain directory names: anything
+   containing a separator, a `..`, or a leading dash is rejected and reported
+   rather than looked up.
+4. **Automation hygiene.** Always reports `not_verified`; check cron and
+   automation health by hand.
 
-The script auto-detects the workspace root (defaults to `$OPENCLAW_WORKSPACE` or the current working directory). Key paths:
+## Read the output
 
-| Item | Default | Override |
-|------|---------|----------|
-| Workspace root | `$OPENCLAW_WORKSPACE` or cwd | Set env var |
-| Daily memory dir | `$ROOT/memory/` | — |
-| Master TODO | `$ROOT/MASTER_TODO.md` | — |
-| TODO builder | `$ROOT/scripts/build-master-todo.py` | Skip if missing |
+The script prints `key=value` lines. Summarize these for the user, then record
+the session outcome yourself if you keep session notes.
 
-## Output
+| Key | Values |
+|---|---|
+| `CLOSEOUT_STATUS` | `ok`, `warning` (dirty repos, stale todo, stale project docs, rejected slugs), `error` (`MASTER_TODO.md` missing) |
+| `WORKSPACE_ROOT` | the directory that was audited |
+| `MASTER_TODO_STATUS` | `fresh`, `stale`, `missing` |
+| `DIRTY_REPO_COUNT`, `DIRTY_REPOS:` | repos to review; never auto-commit or discard |
+| `PROJECT_DOC_WARNINGS` | count of projects with no core doc updated today |
+| `REJECTED_SLUG_COUNT` | slugs that failed validation and were not looked up |
+| `EXCEPTION_n` | `severity\|finding\|suggested action` |
 
-The script prints structured key=value pairs. Report a concise summary to the user:
+## Boundaries
 
-- **CLOSEOUT_STATUS** — `ok`, `warning`, or `error`
-- **DIRTY_REPO_COUNT** — number of repos with uncommitted changes
-- **MASTER_TODO_REFRESH** — whether the task list was refreshed
-- **EXCEPTION_COUNT** — total issues found
+- Writes nothing. If you want a closeout block in a daily note, write it yourself
+  from these values, as a separate and visible step.
+- Runs nothing it discovers in the workspace: no builders, no `closeout-hooks.sh`,
+  no plugins.
+- Extra checks belong in a separate command you review and run yourself, not in
+  this script.
+- Do not invoke it on a timer or as a "wrap up" reflex; it is for explicit
+  closeout requests.
 
-If dirty repos are found, list them but do **not** auto-commit or discard. Let the user decide.
+## Requirements
 
-## Customization
-
-- To add project-specific checks (e.g., pushing status to a dashboard), extend the script or add a `scripts/closeout-hooks.sh` that the main script sources if present.
-- Override closeout bullets via environment variables: `CLOSEOUT_OUTCOMES`, `CLOSEOUT_BLOCKERS`, `CLOSEOUT_NEXT` (pipe-delimited).
+Bash 4+ and git.

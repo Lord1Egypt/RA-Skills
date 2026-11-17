@@ -1,42 +1,59 @@
-## Description: <br>
-Search, download, and summarize academic papers from arXiv for AI and machine learning research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, download, and summarize academic papers from arXiv. Built for AI/ML researchers.
 
-## Publisher: <br>
-[carloscbrls](https://clawhub.ai/user/carloscbrls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carloscbrls](https://clawhub.ai/user/carloscbrls)
 
-## Use Case: <br>
-Researchers, students, technical writers, and security practitioners use this skill to search arXiv, inspect paper metadata, download PDFs, summarize papers, and maintain an optional reading list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download arXiv PDFs to local storage. <br>
-Mitigation: Use explicit download requests and set ARXIV_PAPERS_DIR to a suitable directory when local storage location matters. <br>
-Risk: Optional MongoDB persistence can store paper metadata and reading status. <br>
-Mitigation: Leave MONGODB_URI unset unless that persistence is intended and the database is appropriate for the saved research metadata. <br>
+## Use Case:
 
+Researchers, students, technical content creators, job seekers, and security practitioners use this skill to find arXiv papers, inspect metadata and abstracts, download PDFs, and maintain an optional reading list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/carloscbrls/cc3po-arxiv) <br>
-- [ClawHub metadata homepage](https://clawhub.ai/carloscbrls/arxiv) <br>
-- [arXiv API documentation](https://arxiv.org/help/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown responses with paper metadata, summaries, links, and optional local PDF downloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can optionally use MongoDB for saved-paper metadata and ARXIV_PAPERS_DIR for local PDF storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill performs arXiv network lookups and downloads PDFs to local storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in an environment where arXiv access is expected, and configure ARXIV_PAPERS_DIR to a dedicated download directory.
+
+Risk: Optional MongoDB tracking stores saved paper metadata when MONGODB_URI is configured.
+
+Mitigation: Use a dedicated database and connection string with least-privilege access for reading-list storage.
+
+Risk: Dependency hygiene depends on the installed Python packages.
+
+Mitigation: Install from a locked or reviewed dependency environment before using the skill in shared or production workflows.
+
+## Reference(s):
+
+- [ClawHub skill homepage](https://clawhub.ai/carloscbrls/arxiv)
+- [ClawHub skill listing](https://clawhub.ai/carloscbrls/skills/cc3po-arxiv)
+- [arXiv API documentation](https://arxiv.org/help/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Text and Markdown summaries with optional JSON from command-line operations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include arXiv metadata, paper abstracts, PDF download paths, saved-paper status, and optional MongoDB-backed reading-list results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter; artifact package metadata contains differing local versions)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

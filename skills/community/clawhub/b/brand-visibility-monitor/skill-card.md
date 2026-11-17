@@ -1,44 +1,61 @@
-## Description: <br>
-Monitors brand visibility across AI search and chat platforms, generates a 0-100 GEM visibility score, analyzes why a brand is not recommended, and can send reports to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brand Visibility Monitor checks brand keyword visibility across AI search platforms, generates a 0-100 GEM score, analyzes why a brand may not be recommended, and can push reports to Feishu.
 
-## Publisher: <br>
-[yk-global-01](https://clawhub.ai/user/yk-global-01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yk-global-01](https://clawhub.ai/user/yk-global-01)
 
-## Use Case: <br>
-Marketing teams, brand operators, and developers use this skill to check how visible a brand or competitor is in supported AI answer platforms and to generate a report with scores, snippets, and optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand, competitor, campaign, or client terms may be sent to external services during monitoring. <br>
-Mitigation: Review terms before running the skill and avoid sensitive test data unless external disclosure is acceptable. <br>
-Risk: Reports may be delivered to Feishu when push delivery is enabled. <br>
-Mitigation: Use --no-push unless Feishu delivery is intentional and the webhook destination is trusted. <br>
-Risk: The bundled Tavily API service has weak placeholder authentication if run as a public service. <br>
-Mitigation: Do not expose api/geo_api.py publicly until placeholder keys are replaced, real authentication and rate limits are added, and TAVILY_API_KEY is protected. <br>
+## Use Case:
 
+Marketing, brand, and growth teams use this skill to monitor whether target brands and competitors appear in AI platform responses and to receive concise visibility scores, reports, and optimization guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yk-global-01/brand-visibility-monitor) <br>
-- [YK Global](https://yk-global.com) <br>
-- [Tavily](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with console status text and optional Feishu card delivery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes report files under /tmp; may call external search, verification, AI analysis, and Feishu webhook endpoints when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Brand names, search prompts and results, license checks, and optional reports may be sent to external AI platforms, yk-global, Tavily, and Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable, review configured endpoints and webhooks before use, and avoid submitting confidential brand information unless approved.
+
+Risk: The bundled API service uses placeholder API key handling and lacks production-grade authentication and rate limits.
+
+Mitigation: Do not deploy the API service as-is; replace placeholder keys, add real authentication, enforce rate limits, and perform a deployment security review.
+
+Risk: Local upgrade state and temporary report handling can affect usage controls or leave generated reports on disk.
+
+Mitigation: Validate entitlement logic before commercial deployment and manage generated report files according to local retention and access-control requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yk-global-01/skills/brand-visibility-monitor)
+- [YK Global](https://yk-global.com)
+- [YK Global API Key Verification Endpoint](https://api.yk-global.com/v1/verify)
+- [Tavily](https://tavily.com)
+- [Tavily Search API Endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, console status text, configuration guidance, and optional Feishu notification payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include platform-level visibility results, a GEM score, excerpts, and optimization guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,64 @@
-## Description: <br>
-Connect to Robinhood Agentic Trading via MCP to view portfolios, analyze positions, place trades, and execute automated strategies through Robinhood's official MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to Robinhood Agentic Trading through MCP to view portfolios, analyze positions, place trades, and run automated trading workflows.
 
-## Publisher: <br>
-[leosaucedo](https://clawhub.ai/user/leosaucedo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leosaucedo](https://clawhub.ai/user/leosaucedo)
 
-## Use Case: <br>
-Developers and external users use this skill to connect an agent to Robinhood Agentic Trading for portfolio review, market-data lookup, order review, order placement, and strategy execution through the Robinhood MCP endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants an agent sensitive financial access to Robinhood Agentic Trading. <br>
-Mitigation: Install it only when that access is intentional, use a separately funded Agentic account, and revoke agent access in Robinhood settings when the environment is no longer trusted. <br>
-Risk: OAuth tokens are stored locally and could be misused if the token file is exposed. <br>
-Mitigation: Keep the token file protected, delete it when access is no longer needed, and rely on the documented restrictive local permissions. <br>
-Risk: Trading orders can execute without an app-side confirmation prompt. <br>
-Mitigation: Use Robinhood's review_equity_order MCP tool before placing orders and fund the Agentic account only with assets appropriate for agent-managed trading. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent authenticate with Robinhood Agentic Trading, inspect account and market data, and submit or cancel equity orders through Robinhood's MCP server.
 
-## Reference(s): <br>
-- [Robinhood Agentic Trading overview](https://robinhood.com/us/en/support/articles/agentic-trading-overview/) <br>
-- [Robinhood trading with your agent documentation](https://robinhood.com/us/en/support/articles/trading-with-your-agent/) <br>
-- [ClawHub skill page](https://clawhub.ai/leosaucedo/robinhood-agentic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and command outputs that may be plain text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OAuth authorization and local token storage before calling Robinhood MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact metadata reports 1.0.0) <br>
+Risk: The skill can give an agent broad financial authority over a dedicated Robinhood Agentic account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only funds you are willing to let an agent manage, apply any available Robinhood spending controls, and revoke access in Robinhood settings when finished.
+
+Risk: Trading commands can execute immediately without an app-side confirmation prompt.
+
+Mitigation: Run review_equity_order before any trade and require human review of order details before calling place_equity_order.
+
+Risk: Read-only Robinhood tools may expose information from all Robinhood accounts.
+
+Mitigation: Install and operate the skill only in environments where account and portfolio data exposure is acceptable.
+
+Risk: Reusable OAuth tokens are stored locally and should be treated as financial credentials.
+
+Mitigation: Set RH_TOKEN_FILE outside repositories and shared folders, add token filenames to gitignore, and protect the token file with restrictive permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leosaucedo/skills/robinhood-agentic)
+- [Robinhood Agentic Trading overview](https://robinhood.com/us/en/support/articles/agentic-trading-overview/)
+- [Robinhood trading with your agent docs](https://robinhood.com/us/en/support/articles/trading-with-your-agent/)
+- [Robinhood Agentic MCP endpoint](https://agent.robinhood.com/mcp/trading)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output from the MCP client]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are command-line oriented; called MCP tools may return plain text or JSON.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and package.json list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

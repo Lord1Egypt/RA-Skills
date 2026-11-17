@@ -1,44 +1,58 @@
-## Description: <br>
-Family Cultivation Coach helps parents collect child profiles, family constraints, goals, and execution preferences to generate practical weekly cultivation schedules, review templates, and incremental updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps families create and adjust weekly child development schedules, check time conflicts, and generate weekly reviews while minimizing child and household data collection.
 
-## Publisher: <br>
-[yangchao228](https://clawhub.ai/user/yangchao228) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangchao228](https://clawhub.ai/user/yangchao228)
 
-## Use Case: <br>
-External users and family caregivers use this skill to turn child information, school schedules, family routines, and goals into weekly plans, daily records, and review guidance. It also supports Feishu or Notion-backed record keeping when the user configures those integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive child and family records through Feishu or Notion. <br>
-Mitigation: Use a dedicated workspace or database, limit access to necessary users, test with dummy data first, and confirm retention and deletion procedures before storing real records. <br>
-Risk: The skill may require Feishu or Notion credentials for storage integrations. <br>
-Mitigation: Use a least-privilege integration, avoid pasting production secrets into ordinary chat, and revoke or rotate credentials when access is no longer needed. <br>
-Risk: The skill can push or write family records to connected services. <br>
-Mitigation: Confirm recipients, destination tables or databases, and notification behavior before enabling ongoing record writes or pushes. <br>
+## Use Case:
 
+External caregivers and families use this skill to turn family constraints, child preferences, and development goals into practical weekly schedules, conflict checks, and review templates. It can optionally prepare Feishu or Notion persistence steps after explicit user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangchao228/family-cultivation-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/yangchao228) <br>
-- [Project homepage](https://github.com/yangchao228/family-baby-asistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown schedules, review templates, structured records, and concise configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured schedule data for future reminders when requested by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: server evidence and frontmatter) <br>
+Risk: Child and family scheduling information can be sensitive, and the security summary notes that the child profile template asks for more detail than the skill's privacy-minimization rules require.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aliases, age bands, and broad time constraints; avoid real names, schools, addresses, precise locations, medical details, and unnecessary household details.
+
+Risk: Optional Feishu or Notion persistence could save family records longer or more broadly than intended.
+
+Mitigation: Enable integrations only after reviewing the exact fields, records, retention period, and target workspace or database; use least-privilege connectors and confirm each read, write, push, overwrite, or deletion separately.
+
+Risk: Generated family schedules or reward plans may be too ambitious or unsuitable for a child's current condition.
+
+Mitigation: Treat outputs as editable planning drafts, preserve sleep, meals, movement, recovery, and free time, and seek qualified professional advice for persistent health, developmental, or behavioral concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangchao228/skills/family-cultivation-coach)
+- [Project homepage](https://github.com/yangchao228/family-baby-asistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration guidance]
+
+**Output Format:** [Markdown schedules and weekly reviews with optional structured JSON schedule blocks and integration setup guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to session-only output; external Feishu or Notion reads, writes, pushes, deletion, and retention changes require explicit scope confirmation.]
+
+## Skill Version(s):
+
+1.6.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

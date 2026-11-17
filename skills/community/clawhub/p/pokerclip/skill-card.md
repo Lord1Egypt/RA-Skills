@@ -1,40 +1,58 @@
-## Description: <br>
-Automatically cuts long poker tournament videos into complete hand clips in vertical 9:16 format with subtitles and short-form hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically cuts poker tournament videos into complete hand clips in vertical 9:16 format with subtitles and unique hooks for TikTok and YouTube Shorts.
 
-## Publisher: <br>
-[nicolenovan](https://clawhub.ai/user/nicolenovan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicolenovan](https://clawhub.ai/user/nicolenovan)
 
-## Use Case: <br>
-Content creators and agents working with poker media use this skill to turn long local tournament videos into short, publishable clips with subtitles, hooks, and clip metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates clips, transcript caches, subtitle files, and JSON reports that may contain private source-media content. <br>
-Mitigation: Run it only on intended local video paths, review generated outputs before sharing, and delete clips, transcripts, subtitles, and reports when the media is private or disk usage matters. <br>
+## Use Case:
 
+Content creators and agents use this skill to turn long poker videos into short, publish-ready clips by detecting complete hands, selecting highlights, adding subtitles, and overlaying hooks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicolenovan/pokerclip) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Workspace files including MP4 clips, ASS subtitles, transcript JSON, clip analysis JSON, and a publish report, with concise command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local video path, Python 3.10+, ffmpeg, and openai-whisper; GPU acceleration is recommended for faster transcription.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated clips, transcripts, subtitles, and JSON reports may overwrite prior files in the workspace output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a dedicated workspace or back up existing clips and JSON artifacts before execution.
+
+Risk: Automatic transcription and subtitle generation may misrepresent speech from untrusted or noisy media.
+
+Mitigation: Review generated transcripts, subtitles, hooks, and publish reports before sharing clips publicly.
+
+Risk: Unpinned runtime dependencies can change transcription behavior over time.
+
+Mitigation: Use a virtual environment and pin openai-whisper and related media-processing dependencies for repeatable results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nicolenovan/skills/pokerclip)
+- [Publisher Profile](https://clawhub.ai/user/nicolenovan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated video, subtitle, transcript, analysis, and publish-report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 1080x1920 H.264/AAC clips, ASS subtitles, hook overlays, transcript JSON, clips_analysis.json, and publish_report.json in the configured workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

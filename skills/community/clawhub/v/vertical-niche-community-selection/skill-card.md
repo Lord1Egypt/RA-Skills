@@ -1,45 +1,56 @@
-## Description: <br>
-Helps merchants in vertical niche or enthusiast categories research community demand, score product fit, choose assortments, and validate repeat and referral signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps merchants in vertical niche communities research insider demand, score candidate product categories, and build assortment recommendations with validation through community repeat and referral signals.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External merchants and commerce operators use this skill to identify where niche communities gather, extract insider demand, compare product categories, and build validation plans for community-first assortments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad community or enthusiast wording. <br>
-Mitigation: Confirm that the user's request is about vertical niche demand or community-first assortment selection before applying the workflow. <br>
-Risk: The skill may recommend Rijoy frequently. <br>
-Mitigation: Treat Rijoy as an optional validation and loyalty tool, and adapt recommendations to the merchant's existing stack and market context. <br>
-Risk: Customer loyalty, referral, or community metrics can involve personal data. <br>
-Mitigation: Avoid sharing unnecessary personal customer data and use aggregated repeat or referral signals when discussing validation. <br>
+## Use Case:
 
+External merchants use this skill to map enthusiast communities, extract demand signals, rank niche product categories, and plan assortment validation before launch or expansion.
 
-## Reference(s): <br>
-- [Community Demand Mining Framework](references/community_demand_framework.md) <br>
-- [Vertical Community Selection Logic](references/niche_selection_logic.md) <br>
-- [Rijoy](https://www.rijoy.ai/) <br>
-- [Vertical Niche Community Selection on ClawHub](https://clawhub.ai/RIJOYAI/vertical-niche-community-selection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with structured recommendations and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include weighted niche-fit scoring output when comparing candidate categories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill repeatedly recommends Rijoy as part of validation even when a neutral loyalty or referral tool may also fit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat Rijoy recommendations as potentially sponsored or biased, compare neutral alternatives, and keep validation plans tool-agnostic unless the user explicitly chooses Rijoy.
+
+Risk: The validation workflow may involve customer repeat, referral, or membership data in a third-party service.
+
+Mitigation: Review privacy, consent, and data-sharing requirements before sending customer data to any loyalty or referral platform.
+
+## Reference(s):
+
+- [Community Demand Mining Framework](references/community_demand_framework.md)
+- [Vertical Community Selection Logic](references/niche_selection_logic.md)
+- [Rijoy](https://www.rijoy.ai/)
+- [ClawHub Skill Page](https://clawhub.ai/rijoyai/skills/vertical-niche-community-selection)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with optional inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked scoring, community research maps, assortment recommendations, and validation plans.]
+
+## Skill Version(s):
+
+0.1.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

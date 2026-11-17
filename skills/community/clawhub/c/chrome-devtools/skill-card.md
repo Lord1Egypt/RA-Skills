@@ -1,43 +1,55 @@
-## Description: <br>
-Uses Chrome DevTools via MCP to support web page debugging, browser automation, performance analysis, and network request inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Chrome DevTools via MCP for efficient debugging, troubleshooting and browser automation.
 
-## Publisher: <br>
-[podcasting101](https://clawhub.ai/user/podcasting101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[podcasting101](https://clawhub.ai/user/podcasting101)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect an agent to Chrome DevTools MCP for debugging web pages, automating browser interactions, inspecting page structure, analyzing performance, and troubleshooting network issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The MCP server is launched from npm with the floating chrome-devtools-mcp@latest package. <br>
-Mitigation: Pin the package version before installation or execution so upgrades are reviewed before use. <br>
-Risk: Chrome is configured with --no-sandbox and --disable-setuid-sandbox, which weakens browser isolation. <br>
-Mitigation: Remove the no-sandbox flags unless the runtime environment requires them. <br>
-Risk: Browser automation can interact with authenticated pages and sensitive browser state. <br>
-Mitigation: Use a dedicated low-privilege Chrome profile and avoid logging into sensitive accounts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Chrome DevTools documentation](https://developer.chrome.com/docs/devtools) <br>
-- [Chrome DevTools AI assistance documentation](https://developer.chrome.com/docs/devtools/ai-assistance) <br>
-- [Chrome DevTools MCP troubleshooting](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/troubleshooting.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect web pages, automate browser interactions, analyze performance, and troubleshoot network behavior through Chrome DevTools MCP.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline command and MCP tool names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request file outputs for screenshots, snapshots, or traces through MCP filePath parameters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs a mutable third-party npm package at runtime.
+
+Mitigation: Prefer a pinned and reviewed chrome-devtools-mcp version before use.
+
+Risk: The configured Chrome launch arguments disable sandbox protections.
+
+Mitigation: Avoid sensitive browser profiles and run Chrome or the MCP server in a restricted account or container, especially on untrusted sites.
+
+## Reference(s):
+
+- [Chrome DevTools documentation](https://developer.chrome.com/docs/devtools)
+- [Chrome DevTools AI assistance documentation](https://developer.chrome.com/docs/devtools/ai-assistance)
+- [chrome-devtools-mcp troubleshooting](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/troubleshooting.md)
+- [ClawHub skill page](https://clawhub.ai/podcasting101/skills/chrome-devtools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline tool names, commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct browser inspection, screenshots, snapshots, traces, and MCP tool calls.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

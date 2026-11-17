@@ -1,50 +1,66 @@
-## Description: <br>
-Pub Mcporter helps agents use the mcporter CLI and SkillBoss API to list, configure, authenticate, and call MCP servers, tools, and 50+ model capabilities across chat, media generation, search, documents, email, and SMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pub Mcporter guides agents in using the mcporter and SkillBoss API to list models, configure authentication, and call AI, search, document, email, and SMS capabilities.
 
-## Publisher: <br>
-[ModestyRichards](https://clawhub.ai/user/ModestyRichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and external agents use this skill to discover SkillBoss-backed models, construct authenticated API calls, and run tasks such as chat, media generation, web search, document parsing, email, and SMS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts, documents, media, email, and SMS-related content to external SkillBoss APIs. <br>
-Mitigation: Use it only with data approved for SkillBoss, protect the SKILLBOSS_API_KEY, and revoke the key if exposure is suspected. <br>
-Risk: Email, SMS, OTP, document, media, or sensitive prompt requests can affect third parties or expose private information. <br>
-Mitigation: Require the agent to show the exact destination, content, and request payload, then obtain explicit approval before execution. <br>
-Risk: Smart routing can choose providers automatically, which may reduce visibility into where a request is handled. <br>
-Mitigation: Use explicit model IDs for sensitive workloads and review request payloads before sending them. <br>
+## Use Case:
 
+External developers and agent builders use this skill to discover available SkillBoss models, configure SKILLBOSS_API_KEY authentication, and prepare API calls for chat, media generation, search, document processing, email, SMS, and related utilities.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ModestyRichards/mcporters) <br>
-- [SkillBoss website](https://www.skillboss.co) <br>
-- [SkillBoss API base](https://api.heybossai.com/v1) <br>
-- [Audio Models](artifact/audio-models.md) <br>
-- [Chat Models](artifact/chat-models.md) <br>
-- [Image Models](artifact/image-models.md) <br>
-- [Search & Scraping Models](artifact/search-models.md) <br>
-- [Tool Models](artifact/tools-models.md) <br>
-- [Video Models](artifact/video-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline cURL and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for authenticated SkillBoss API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, documents, audio, images, phone numbers, and messages may be sent to SkillBoss/HeyBossAI and downstream providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the publisher and service are trusted, and avoid sending sensitive inputs unless the user explicitly approves the disclosure.
+
+Risk: Email, SMS, and OTP actions can contact external recipients.
+
+Mitigation: Require explicit user approval for the recipient, content, and action before preparing or running any email, SMS, OTP, or notification request.
+
+Risk: Smart routing can automatically select a provider for a task.
+
+Mitigation: Use direct model IDs when provider choice, data handling, cost, or compliance requirements matter.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/modestyrichards/skills/mcporters)
+- [Publisher Profile](https://clawhub.ai/user/modestyrichards)
+- [SkillBoss Website](https://www.skillboss.co)
+- [HeyBossAI API Base](https://api.heybossai.com/v1)
+- [Audio Models](audio-models.md)
+- [Chat Models](chat-models.md)
+- [Image Models](image-models.md)
+- [Search and Scraping Models](search-models.md)
+- [Tool Models](tools-models.md)
+- [Video Models](video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, curl commands, and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; prepared requests may return text, JSON, URLs, files, or communication results depending on the selected model.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

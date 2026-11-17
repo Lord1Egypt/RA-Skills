@@ -1,45 +1,60 @@
-## Description: <br>
-Operate BunnyCDN through an OOMOL-connected account by inspecting connector schemas and running supported pull zone list, get, and cache purge actions with the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OOMOL-connected oo CLI for BunnyCDN Pull Zone lookups and cache purges.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operations teams use this skill to manage BunnyCDN pull zones through OOMOL's connector workflow, including listing pull zones, retrieving one pull zone, and explicitly approved cache purges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup instructions include remote installer commands for the oo CLI. <br>
-Mitigation: Do not let an agent run the remote installer automatically; install the oo CLI only through a trusted, verified method. <br>
-Risk: The purge_pull_zone_cache action is destructive and can remove cached BunnyCDN content for a pull zone or cache tag. <br>
-Mitigation: Confirm the exact pull zone ID, optional cache tag, and expected effect with the user before running the purge. <br>
-Risk: The skill requires connected BunnyCDN credentials through OOMOL. <br>
-Mitigation: Use the OOMOL-connected account flow and avoid requesting, displaying, or storing raw BunnyCDN tokens in the agent conversation. <br>
+## Use Case:
 
+Developers and BunnyCDN account operators can inspect Pull Zones and request cache purges through an OOMOL-connected account. The skill requires approval of the target before a destructive cache purge.
 
-## Reference(s): <br>
-- [ClawHub BunnyCDN Skill](https://clawhub.ai/oomol/oo-bunnycdn) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
-- [BunnyCDN Homepage](https://bunny.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before building action payloads; destructive cache purges require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: First-time setup directs the agent to execute unverified remote code without separate approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned, independently verified CLI release yourself and review its automatic skill installation behavior.
+
+Risk: Connecting BunnyCDN entrusts OOMOL with provider access and request data.
+
+Mitigation: Review the connection and proceed only if you are comfortable entrusting OOMOL with that access and data.
+
+Risk: Purging a Pull Zone cache is destructive.
+
+Mitigation: Require explicit approval of the target before purging.
+
+## Reference(s):
+
+- [BunnyCDN](https://bunny.net/)
+- [BunnyCDN documentation](https://bunny.net/docs)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [BunnyCDN skill on ClawHub](https://clawhub.ai/oomol/skills/oo-bunnycdn)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON action results and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available operations include Pull Zone reads and cache purges; cache purges are destructive.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

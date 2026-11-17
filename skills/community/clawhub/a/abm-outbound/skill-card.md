@@ -1,46 +1,63 @@
-## Description: <br>
-ABM Outbound helps agents turn LinkedIn prospect URLs into coordinated outbound campaigns by scraping profiles, enriching contact data, finding mailing addresses, and preparing email, LinkedIn, and Scribeless handwritten-letter workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-channel ABM automation that turns LinkedIn URLs into coordinated outbound campaigns. Scrapes profiles, enriches with Apollo (email + phone), gets mailing addresses via Skip Trace, then orchestrates email sequences, LinkedIn touches, and handwritten letters via Scribeless. The secret weapon for standing out in crowded inboxes.
 
-## Publisher: <br>
-[dru-ca](https://clawhub.ai/user/dru-ca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dru-ca](https://clawhub.ai/user/dru-ca)
 
-## Use Case: <br>
-Sales and growth teams use this skill to plan account-based outbound campaigns from LinkedIn prospect lists, enrich contact records, and coordinate email, LinkedIn, and handwritten-letter touchpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow handles sensitive prospect contact data, including residential mailing addresses. <br>
-Mitigation: Use only with a clear lawful basis, prefer business contact data, avoid home-address outreach unless explicitly authorized, and confirm retention and vendor-processing requirements before use. <br>
-Risk: The workflow can add prospects to outbound systems without enough campaign guardrails. <br>
-Mitigation: Start with a small reviewed list and confirm suppression, opt-out, and approval requirements before adding anyone to email, LinkedIn, or letter campaigns. <br>
-Risk: The workflow depends on third-party API keys for enrichment, scraping, email, and mail services. <br>
-Mitigation: Use restricted API keys, keep secrets out of shared files and prompts, and rotate keys if they are exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ABM Outbound on ClawHub](https://clawhub.ai/dru-ca/abm-outbound) <br>
-- [Enrichment Reference](references/enrichment.md) <br>
-- [Scribeless API Reference](references/scribeless-api.md) <br>
-- [Apify](https://apify.com) <br>
-- [Apollo](https://apollo.io) <br>
-- [Scribeless Platform](https://platform.scribeless.co) <br>
+## Use Case:
 
+Sales, growth, and revenue teams use this skill to turn LinkedIn prospect lists into coordinated outbound campaigns across email, LinkedIn, and handwritten letters. The workflow helps agents draft and run API-based enrichment, address lookup, campaign upload, and CSV handoff steps.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, csv] <br>
-**Output Format:** [Markdown with bash, Python, JSON, and CSV examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided prospect data, third-party API keys, campaign identifiers, and review before campaign execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can collect and use sensitive personal contact data and home-address data for outbound campaigns.
+
+Mitigation: Use it only for lawful, authorized business outreach and avoid personal emails, phone numbers, and home addresses unless there is a documented basis to process them.
+
+Risk: Campaign execution can create privacy, consent, suppression-list, unsubscribe, and retention obligations.
+
+Mitigation: Verify vendor terms, suppression lists, unsubscribe handling, data retention, and privacy obligations before running any campaign.
+
+Risk: Skip Trace address matches may be inaccurate or stale.
+
+Mitigation: Verify that Skip Trace state matches the LinkedIn location and skip or review records where the state does not match.
+
+## Reference(s):
+
+- [Enrichment Reference](artifact/references/enrichment.md)
+- [Scribeless API Reference](artifact/references/scribeless-api.md)
+- [ClawHub skill page](https://clawhub.ai/dru-ca/skills/abm-outbound)
+- [Apify](https://apify.com)
+- [Apollo](https://apollo.io)
+- [Scribeless platform](https://platform.scribeless.co)
+- [Scribeless documentation](https://docs.scribeless.co)
+- [Instantly](https://instantly.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with bash, Python, JSON, and CSV examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include API request examples, campaign timing guidance, and CSV fields for enriched prospect data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

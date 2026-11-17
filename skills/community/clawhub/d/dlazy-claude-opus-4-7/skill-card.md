@@ -1,45 +1,64 @@
-## Description: <br>
-Anthropic's flagship multimodal model for long-context reasoning, code generation, and complex tool orchestration with text, image, and video inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent access to dLazy's hosted Claude Opus 4.7 CLI for long-context reasoning, code generation, complex tool orchestration, and multimodal inputs.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and external users can invoke the dLazy CLI to send prompts and optional image or video inputs to a hosted Claude Opus 4.7 model endpoint for reasoning, code generation, and multimodal analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and uses an authenticated CLI. <br>
-Mitigation: Install and authenticate only when you trust the publisher, and use credentials only in accounts and repositories where those permissions are appropriate. <br>
-Risk: Prompts and referenced local image or video files may be sent to dLazy API and storage endpoints. <br>
-Mitigation: Review inputs before execution and avoid sending confidential or restricted files unless the service terms and account controls are acceptable. <br>
-Risk: The skill depends on installing or invoking the third-party @dlazy/cli package. <br>
-Mitigation: Use the pinned package version from the skill metadata and review the package source and install path before deployment. <br>
+## Use Case:
 
+Developers and external agent users use this skill to call Claude Opus 4.7 through the dLazy CLI with prompt, image, and video inputs. It is suited for hosted model inference workflows that can send prompts and selected media to dLazy services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-claude-opus-4-7) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy service](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON responses from the dLazy CLI, often containing model-generated text or structured output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Async mode may return a generation identifier for later polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The skill relies on the external @dlazy/cli npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, prefer npx or an isolated environment for temporary use, and verify the intended package version is 1.2.0.
+
+Risk: Prompts and selected local image or video files are sent to dLazy services for inference.
+
+Mitigation: Avoid sending sensitive data unless approved for the use case, and review dLazy service terms and organizational data-handling requirements before use.
+
+Risk: Authentication may store a dLazy API key in the local CLI configuration.
+
+Mitigation: Use a revocable API key, rotate or revoke it from the dLazy dashboard when needed, and prefer per-invocation environment variables or isolated configuration for shared systems.
+
+Risk: The artifact documentation contains a package-version inconsistency between the install command and provenance text.
+
+Mitigation: Follow the security guidance to verify that the intended @dlazy/cli package version is 1.2.0 before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dlazyai/skills/dlazy-claude-opus-4-7)
+- [dLazy CLI source](https://github.com/dlazyai/cli)
+- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy homepage](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON result envelope with generated output values or asynchronous task status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npm or npx, a dLazy API key, and network access to api.dlazy.com and files.dlazy.com.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

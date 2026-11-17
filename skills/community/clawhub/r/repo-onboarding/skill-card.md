@@ -1,41 +1,53 @@
-## Description: <br>
-Onboard a repo by assessing architecture and dependencies, setting up roadmap and kanban execution workflow, and generating an actionable onboarding report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Onboard a coding repository with both technical architecture intake and execution governance.
 
-## Publisher: <br>
-[Broedkrummen](https://clawhub.ai/user/Broedkrummen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[broedkrummen](https://clawhub.ai/user/broedkrummen)
 
-## Use Case: <br>
-Developers and engineering agents use this skill when entering an unfamiliar repository to capture architecture, dependencies, setup commands, project-management structure, and first execution steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow references local scripts that are not bundled with the skill. <br>
-Mitigation: Review or replace those script paths before execution, or use the documented manual fallback on a branch or disposable copy. <br>
-Risk: The optional daily PM audit installs recurring automation. <br>
-Mitigation: Enable the cron job only after inspecting the cron script and confirming how to disable it. <br>
-Risk: Generated onboarding and planning documents may contain incomplete or incorrect repository guidance. <br>
-Mitigation: Review generated reports and roadmap files before relying on them for execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Repo Onboarding Report Template](references/onboarding-template.md) <br>
+## Use Case:
 
+Developers and engineering agents use this skill when starting work in a new or existing repository to capture architecture, dependency, run, build, and test context, then establish roadmap and kanban execution artifacts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash command blocks and generated JSON/Markdown repository documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates onboarding, roadmap, kanban, architecture, and dependency documentation in the target repository.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to run unreviewed local scripts from absolute paths.
+
+Mitigation: Review the exact local files before execution, confirm the repository changes they will make, and prefer package-relative reviewed scripts.
+
+Risk: The optional daily PM audit installs a persistent cron task.
+
+Mitigation: Enable the cron task only with explicit user approval, document how to remove it, and confirm the schedule, timezone, and agent command before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/broedkrummen/skills/repo-onboarding)
+- [Repo Onboarding Report template](references/onboarding-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated repository documentation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces architecture, dependency, roadmap, kanban, and onboarding-report artifacts when the referenced workflows complete.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,52 @@
-## Description: <br>
-Save and organize web articles as bookmarks with AI summaries and auto-tagging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save and organize web articles as bookmarks with AI summaries and auto-tagging.
 
-## Publisher: <br>
-[chliny](https://clawhub.ai/user/chliny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chliny](https://clawhub.ai/user/chliny)
 
-## Use Case: <br>
-External users and developers use this skill to collect URLs or article text into a local markdown bookmark library, generate concise summaries and tags, maintain an index, and optionally sync the collection to a configured GitHub repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bookmarked pages and summaries can be stored in local files, git history, and a configured GitHub repository. <br>
-Mitigation: Use a dedicated ARTICLE_BOOKMARK_DIR, leave ARTICLE_BOOKMARK_GITHUB unset for local-only storage, and avoid bookmarking private, proprietary, or sensitive pages unless that storage path is acceptable. <br>
-Risk: Deletion and save workflows modify markdown files and git history in the configured bookmark directory. <br>
-Mitigation: Confirm article details before deletion and point ARTICLE_BOOKMARK_DIR only at the intended bookmark folder. <br>
+## Use Case:
 
+External users and developers use this skill to bookmark web articles or pasted text into a structured Markdown collection with generated summaries and tags. It can also help delete saved articles after user confirmation and keep a tag index current.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chliny/article-bookmarker) <br>
-- [bookmark-script.md](references/bookmark-script.md) <br>
-- [file-structure.md](references/file-structure.md) <br>
-- [usage-examples.md](references/usage-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown files and concise agent guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ARTICLE_BOOKMARK_DIR and git; ARTICLE_BOOKMARK_GITHUB and gh enable optional private GitHub synchronization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: release evidence) <br>
+Risk: The skill can commit and push every Markdown file in the configured bookmark directory to GitHub, which may expose unrelated notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated bookmark directory or private dedicated repository, avoid pointing ARTICLE_BOOKMARK_DIR at existing projects or notes vaults, and verify the destination repository and exact files before enabling ARTICLE_BOOKMARK_GITHUB.
+
+## Reference(s):
+
+- [Article Bookmarker Skill](https://clawhub.ai/chliny/skills/article-bookmarker)
+- [bookmark.sh Script Guide](references/bookmark-script.md)
+- [Article Bookmarker - File Structure](references/file-structure.md)
+- [Article Bookmarker - Usage Examples](references/usage-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files with article content, summaries, tags, tag indexes, and inline shell commands for git synchronization]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ARTICLE_BOOKMARK_DIR; optional ARTICLE_BOOKMARK_GITHUB enables GitHub synchronization using git and gh.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

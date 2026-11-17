@@ -1,42 +1,62 @@
-## Description: <br>
-Helps an agent manage tasks in Feishu knowledge-base Bitable and document workflows, including task creation, linked document creation, status updates, and task summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于飞书知识库多维表格和文档能力的任务管理技能。提供创建任务、创建任务关联文档、修改任务状态等功能，可与外部工具灵活集成。
 
-## Publisher: <br>
-[KwokKwok](https://clawhub.ai/user/KwokKwok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kwokkwok](https://clawhub.ai/user/kwokkwok)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure a dedicated Feishu app and run task-management commands against an authorized knowledge-base Bitable. It is intended for creating task records, generating linked task documents, updating status, and checking task statistics from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Feishu App ID and App Secret credentials and can write to Feishu Bitable, wiki, and document resources. <br>
-Mitigation: Use a dedicated Feishu app, store credentials outside shared or synced folders with strict permissions, and do not paste real App Secrets into chat. <br>
-Risk: Commands can create, update, validate, and potentially delete Feishu data in the configured workspace. <br>
-Mitigation: Start with a test or isolated workspace, verify each app_token and table_id before running destructive or cleanup commands, and treat validation as a real write test. <br>
-Risk: Overbroad Feishu permissions can expand the blast radius if credentials are misused. <br>
-Mitigation: Grant the app only to the intended knowledge-base Bitable resource and confirm the required permission level before use. <br>
+## Use Case:
 
+Developers and teams use this skill to configure an agent for Feishu Bitable-based task management, create task records, create linked wiki documents, update task status, and view task statistics through scripted commands.
 
-## Reference(s): <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, API calls, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Feishu task records and wiki documents when commands are executed with valid credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Setup stores Feishu app credentials in local configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat config/credentials.json and any alternate credential files as secrets, restrict filesystem permissions, and do not commit them.
+
+Risk: Validation and task commands can create persistent Feishu Bitable records and wiki documents.
+
+Mitigation: Run validation only against a dedicated test Bitable/wiki area, or confirm that any created records and documents can be cleaned up manually.
+
+Risk: A broadly privileged Feishu app could affect resources beyond the intended task workspace.
+
+Mitigation: Use a Feishu app limited to a dedicated Bitable/wiki area and grant only the permissions needed for the documented task workflow.
+
+Risk: Installing from a mutable package reference may pull a revision that has not been reviewed.
+
+Mitigation: Prefer a pinned and reviewed release or revision before deploying the skill in shared or production workflows.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [ClawHub skill page](https://clawhub.ai/kwokkwok/skills/feishu-bitable-tasker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local credential configuration files and Feishu Bitable/wiki resources when the user runs the documented commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

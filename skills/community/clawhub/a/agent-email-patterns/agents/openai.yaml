@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agent Email Patterns"
+  short_description: "Design reliable agent communication systems"
+  default_prompt: "Use $agent-email-patterns to design this agent communication flow with durable identity, safe authorization, and reliable delivery."
+policy:
+  allow_implicit_invocation: true

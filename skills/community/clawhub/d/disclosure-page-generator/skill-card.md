@@ -1,39 +1,53 @@
-## Description: <br>
-Creates, optimizes, or audits disclosure pages and placement guidance for affiliate links, sponsored content, paid partnerships, referral programs, and FTC-style disclosure needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates, optimizes, or audits affiliate, sponsor, referral, and paid partnership disclosure pages with FTC-oriented content and placement guidance.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External site owners, marketers, and content teams use this skill to draft and audit disclosure pages and disclosure placement for affiliate, sponsored, paid partnership, and referral content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Disclosure guidance can be incomplete for a specific business model, jurisdiction, or regulator expectation. <br>
-Mitigation: Review generated disclosure copy with qualified counsel and update it when affiliate, sponsorship, referral, or paid partnership practices change. <br>
-Risk: A disclosure page alone may not satisfy clear-and-conspicuous placement expectations near monetized content. <br>
-Mitigation: Use both a standalone disclosure page and short in-content disclosures before affiliate or sponsored links where appropriate. <br>
+## Use Case:
 
+External site owners, marketers, and developers use this skill to draft, optimize, or audit disclosure pages and in-content notices for affiliate links, sponsored content, referrals, and paid partnerships.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown disclosure copy with placement guidance and a legal review note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes headline, summary, full disclosure copy, footer and in-content placement guidance, and a note to consult counsel for jurisdiction-specific requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may be applied to unrelated legal, privacy, financial, or security disclosure workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for affiliate, sponsorship, FTC, and paid-partnership disclosures; choose a more specific skill for other disclosure needs.
+
+Risk: Disclosure copy may not satisfy every jurisdiction or site-specific commercial relationship.
+
+Mitigation: Have qualified counsel review jurisdiction-specific disclosure requirements before publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kostja94/skills/disclosure-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with disclosure copy, placement guidance, and a legal review note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; guidance should be reviewed for jurisdiction-specific requirements.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

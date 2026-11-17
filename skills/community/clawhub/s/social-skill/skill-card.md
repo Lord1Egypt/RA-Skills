@@ -1,40 +1,54 @@
-## Description: <br>
-Manage Farcaster social interactions, casting, and feed monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Farcaster social interactions, casting, and feed monitoring.
 
-## Publisher: <br>
-[mrxlolcat](https://clawhub.ai/user/mrxlolcat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrxlolcat](https://clawhub.ai/user/mrxlolcat)
 
-## Use Case: <br>
-External users and developers use this skill to draft Farcaster casts, monitor feeds, route posts to community channels, and prepare replies or voice-cast attachments tied to a Farcaster identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may publish identity-linked Farcaster content or attach generated voice messages without clear approval boundaries. <br>
-Mitigation: Use it as a draft-first assistant and require explicit approval for every cast, reply, voice attachment, and transaction-hash post. <br>
-Risk: The skill depends on external Farcaster and voice-generation services whose account and credential usage are not fully specified. <br>
-Mitigation: Confirm the Farcaster account, Neynar credentials, and ElevenLabs service configuration before enabling any publishing workflow. <br>
+## Use Case:
 
+External users and developers use this skill to draft, monitor, and publish Farcaster social interactions through an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mrxlolcat/social-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, API Calls] <br>
-**Output Format:** [Markdown or plain text drafts with suggested social actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Farcaster casts, replies, channel-specific wording, image embeds, transaction-hash links, and voice attachment generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can publish public Farcaster casts or attach generated audio without enough user-control detail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before publishing casts or attaching audio to public posts.
+
+Risk: The skill may claim that interactions are verified through Farcaster identity without defining how verification is performed.
+
+Mitigation: Only state that an interaction is verified after the runtime performs a real Farcaster identity check.
+
+## Reference(s):
+
+- [Social Skill on ClawHub](https://clawhub.ai/mrxlolcat/skills/social-skill)
+- [Publisher profile: mrxlolcat](https://clawhub.ai/user/mrxlolcat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or concise text with proposed Farcaster post content and action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested cast text, channel-aware response guidance, voice-cast attachment suggestions, and Farcaster identity references.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

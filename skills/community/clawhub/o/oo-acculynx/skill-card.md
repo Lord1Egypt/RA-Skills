@@ -1,45 +1,59 @@
-## Description: <br>
-AccuLynx helps an agent operate AccuLynx through an OOMOL-connected account to read business data and create or update contacts, Lead-milestone jobs, and initial appointments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate AccuLynx through a connected OOMOL account to read information and create or update contacts, jobs, and appointments.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users or teams with an OOMOL-connected AccuLynx account use this skill to inspect live AccuLynx schemas, read company configuration and calendar data, and perform guarded write actions such as creating contacts, creating Lead-milestone jobs, or upserting initial appointments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update records in AccuLynx, including contacts, Lead-milestone jobs, and initial appointments. <br>
-Mitigation: Confirm every write action, target, payload, and expected effect with the user before running the connector command. <br>
-Risk: The release requires sensitive AccuLynx and OOMOL credentials and was flagged for review because it combines broad invocation language with write-capable business-system access. <br>
-Mitigation: Use a least-privileged AccuLynx/OOMOL account and install only when the agent is intended to operate AccuLynx through OOMOL. <br>
-Risk: The first-time setup guidance includes a pipe-to-shell installer fallback for the oo CLI. <br>
-Mitigation: Prefer installing the CLI through a trusted, verified path and avoid letting the agent run the remote installer automatically. <br>
+## Use Case:
 
+Users with a connected AccuLynx account can retrieve company settings and reference data, list calendar appointments, and create contacts or jobs or add and update initial appointments.
 
-## Reference(s): <br>
-- [ClawHub AccuLynx Skill Page](https://clawhub.ai/oomol/oo-acculynx) <br>
-- [AccuLynx Homepage](https://acculynx.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL AccuLynx Connections](https://console.oomol.com/app-connections?provider=acculynx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; write actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: CLI setup may execute software whose installer and connector behavior are outside the verified artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installation source and use an inspected, pinned release before installing.
+
+Risk: The connector mediates access to the user's connected AccuLynx account, and write actions change business data.
+
+Mitigation: Preserve the required approval step and confirm the exact payload and effect before running a write action.
+
+Risk: Agent skill synchronization may cause unwanted changes to the agent environment.
+
+Mitigation: Review the OO CLI command reference for OO_SKILLS_SYNC_DISABLED and disable synchronization if it is unwanted.
+
+## Reference(s):
+
+- [AccuLynx API Documentation](https://apidocs.acculynx.com/docs/authentication)
+- [OO CLI Command Reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [OO CLI Installation Guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON responses and shell commands with inline JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read actions retrieve account data; write actions require user confirmation of the exact payload and effect.]
+
+## Skill Version(s):
+
+1.0.5 (source: artifact frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

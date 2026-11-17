@@ -1,44 +1,59 @@
-## Description: <br>
-Generate a 3x3 grid travel blogger-style collage based on user photos and a specific destination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a 3x3 grid (9-square) travel blogger style collage based on user photos and a specific destination.
 
-## Publisher: <br>
-[swiftuis](https://clawhub.ai/user/swiftuis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swiftuis](https://clawhub.ai/user/swiftuis)
 
-## Use Case: <br>
-External users use this skill to turn uploaded personal photos and a named destination into a nine-frame travel collage with consistent subject appearance, varied poses, and destination-specific scenes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded photos and facial appearance details may be sent into an image-generation workflow. <br>
-Mitigation: Use only photos the user is comfortable processing and avoid sensitive identity, location, or itinerary details in prompts. <br>
-Risk: Destination landmark research may rely on external search and can expose private travel intent if the prompt is overly specific. <br>
-Mitigation: Keep destination prompts general and omit private timing, lodging, or itinerary details unless the user explicitly needs them. <br>
-Risk: Generated collages can contain visual artifacts or inconsistent subject identity across frames. <br>
-Mitigation: Review the generated image before sharing and regenerate specific frames when identity, anatomy, or destination details are incorrect. <br>
+## Use Case:
 
+External users and agents use this skill to turn user-provided photos and a destination into a character-consistent 3x3 travel-photo collage prompt and image-generation request.
 
-## Reference(s): <br>
-- [Destination Scene Templates](references/destinations.md) <br>
-- [Project homepage](https://github.com/qclaw/travel-grid-generator) <br>
-- [ClawHub skill page](https://clawhub.ai/swiftuis/travel-grid-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, image generation request, image] <br>
-**Output Format:** [Markdown-style prompt guidance and a generated 1:1 image when an image-generation tool is available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses uploaded photos, destination text, researched landmark scenes, and a square 3x3 layout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Uploaded personal photos may be analyzed to preserve appearance across generated images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only photos the user has permission to provide and avoid retaining or exposing identifying details beyond what is needed for the generation prompt.
+
+Risk: Destination research may rely on current web search results that vary by language, region, and time.
+
+Mitigation: Confirm the selected locations fit the user's requested destination and avoid treating searched locations as server-resolved provenance when provenance is unavailable.
+
+Risk: Generated travel collages may be mistaken for real travel photos.
+
+Mitigation: Present outputs as AI-generated images and revise or remove frames that misrepresent the person, destination, or scene.
+
+## Reference(s):
+
+- [Destination Scene Templates](references/destinations.md)
+- [Project Homepage](https://github.com/qclaw/travel-grid-generator)
+- [ClawHub Skill Page](https://clawhub.ai/swiftuis/skills/travel-grid-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, API calls]
+
+**Output Format:** [Markdown prompt guidance with an image-generation tool call]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses uploaded photos, destination research, nine scene descriptions, and a square image-generation request.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

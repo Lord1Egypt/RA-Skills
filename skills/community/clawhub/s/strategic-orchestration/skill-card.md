@@ -1,40 +1,58 @@
-## Description: <br>
-Coordinate agents toward a unified objective; assign roles, sequence work, prevent conflicts, and define success criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate agents toward a unified objective; assign roles, sequence work, prevent conflicts, and define success criteria.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multi-agent work by defining roles, sequencing, dependencies, handoffs, and success criteria for a shared objective. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the planning workflow when high-level coordination was not intended. <br>
-Mitigation: Invoke the skill explicitly for coordination tasks or narrow the trigger phrases in environments where accidental activation would be disruptive. <br>
-Risk: Generated plans may propose irreversible or high-impact actions as part of a multi-agent workflow. <br>
-Mitigation: Require explicit approval and governance alignment before carrying out irreversible actions, consistent with the skill's safety rules. <br>
+## Use Case:
 
+Developers, operators, and agent coordinators use this skill to turn a shared objective and current system state into a structured multi-agent execution plan with owners, handoffs, dependencies, validation checkpoints, and success criteria.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mzfshark/strategic-orchestration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plan with structured sections for execution steps, roles, dependencies, handoff messages, and success criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an objective and current system state; outputs proposed coordination guidance rather than executing actions directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Broad trigger phrases may activate this planning skill for ordinary coordination requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated plan before acting on it and confirm it applies to the current objective.
+
+Risk: An orchestration plan may include irreversible or high-impact actions as proposed next steps.
+
+Mitigation: Require explicit approval and governance alignment before carrying out irreversible actions.
+
+Risk: Unclear delegation boundaries can move judgment or risk evaluation to the wrong agent.
+
+Mitigation: Keep strategic judgment and risk evaluation with the responsible owner, and delegate only bounded execution tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/strategic-orchestration)
+- [ClawHub publisher profile](https://clawhub.ai/user/mzfshark)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with ordered steps, role assignments, dependencies, handoff messages, and success criteria.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires objective and system_state inputs; the skill itself does not request tool execution or external credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact metadata reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

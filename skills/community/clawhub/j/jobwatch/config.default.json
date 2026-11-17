@@ -1,0 +1,56 @@
+{
+  "_comment": "由 BOOTSTRAP 入职流程生成/修改。sources 用 scripts/discover_board.py 探测。",
+  "sources": [
+    {
+      "id": "example-gh",
+      "kind": "greenhouse",
+      "board": "REPLACE_ME",
+      "company": "Example (Greenhouse)",
+      "_help": "onboarding 时用 discover_board.py 探测后替换；支持 greenhouse/ashby/lever/gcareers/rss"
+    }
+  ],
+  "prefilter": {
+    "_comment": "标题关键词硬过滤（小写子串匹配）。BOOTSTRAP 时由 agent 根据用户画像生成。",
+    "title_keywords": [
+      "engineer",
+      "software"
+    ],
+    "exclude_keywords": [
+      "intern",
+      "recruit",
+      "marketing",
+      "sales"
+    ]
+  },
+  "judge": {
+    "model": "anthropic/claude-sonnet-4.5",
+    "max_per_run": 40,
+    "bootstrap_max": 20,
+    "jd_max_chars": 9000,
+    "mode": "agent",
+    "_mode_options": "agent(默认,零配置,判级由被唤醒的agent完成) | api(OpenAI兼容端点,更快更稳,需LLM_API_KEY/LLM_BASE_URL)"
+  },
+  "screen": {
+    "enabled": false,
+    "threshold": 4,
+    "model": "",
+    "base_url": "",
+    "max_per_run": 60,
+    "_comment": "stage-1 标题筛（借鉴 AI Digest 三段渐进打分）：抓 JD 前先用 LLM 对 title 批量打分(0-10)，低于 threshold 直接淘汰，省 Firecrawl 抓取 + 全量判级。需要一个 OpenAI 兼容端点：model/base_url 留空则复用 judge 的端点；想零成本就把 base_url 指向本地 Ollama(如 http://localhost:11434/v1，回环地址，不出网)、model 填本地小模型。fail-open：筛选故障不误杀岗位。"
+  },
+  "kb": {
+    "backend": "local",
+    "_options": "local | twobrain | aidigest"
+  },
+  "twobrain": {
+    "base_url": "https://test.2brain.ai/api",
+    "ask_url": "https://test.2brain.ai"
+  },
+  "telegram": {
+    "chat_id": ""
+  },
+  "notify": {
+    "mode": "agent",
+    "_mode_options": "agent(默认,消息经outbox由agent用任意渠道播报) | telegram(直连bot API,低延迟)"
+  }
+}

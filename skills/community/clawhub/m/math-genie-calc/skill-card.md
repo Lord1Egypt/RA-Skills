@@ -1,41 +1,58 @@
-## Description: <br>
-科学计算工具 handles arithmetic, trigonometric, logarithmic, square-root, exponentiation, and factorial requests by routing them to an external calculator API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+math_genie_calc is a scientific calculation skill that helps agents perform basic arithmetic, trigonometric functions, logarithms, square roots, powers, inverse trigonometric functions, and factorials through a third-party API.
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-Students, researchers, and other users can ask for common scientific calculations and receive a summarized result. Use requires an API key and sends calculation inputs to an external service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an API key, stores it locally in .env, and sends calculation inputs to an external service. <br>
-Mitigation: Install only when comfortable with local API-key storage and external processing; prefer a local-only calculator for ordinary scientific calculations. <br>
-Risk: The scanner found the remote API dependency and credential handling unexpected for a scientific calculator. <br>
-Mitigation: Review the publisher's service, data handling, and credential retention expectations before using the skill with sensitive inputs. <br>
+## Use Case:
 
+External users, students, researchers, and agents use this skill to route scientific calculation requests to supported arithmetic, trigonometric, logarithmic, square-root, exponentiation, inverse-trigonometric, and factorial tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alinklab/skills/math-genie-calc) <br>
-- [XiaoBenYang API key page](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text summaries of JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY value and sends calculation inputs to an external API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill requires and stores an API key for a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated key with limited exposure, avoid sharing sensitive values, and rotate or revoke the key if it may have been disclosed.
+
+Risk: Calculation inputs are sent to a third-party API rather than processed locally.
+
+Mitigation: Do not use the skill for confidential, regulated, or business-sensitive numbers unless the third-party service is approved for that data.
+
+Risk: Server security evidence reports mismatched gaokao-related artifacts in this calculator release.
+
+Mitigation: Review the release contents and publisher explanation before deployment, and prefer a local calculator skill when remote execution is unnecessary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/math-genie-calc)
+- [XiaoBenYang API key site](https://xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration guidance]
+
+**Output Format:** [Markdown or text summaries of JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an XBY_APIKEY value before API-backed calculations can run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

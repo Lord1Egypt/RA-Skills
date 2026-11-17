@@ -1,41 +1,53 @@
-## Description: <br>
-Analyze images with multimodal vision models to describe visual content, extract text, answer questions, compare images, and extract structured data from JPG, PNG, GIF, and WebP files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image analysis using multimodal vision models for describing images, extracting text, analyzing visual content, comparing images, and answering visual questions across JPG, PNG, GIF, and WebP inputs.
 
-## Publisher: <br>
-[cntuang](https://clawhub.ai/user/cntuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cntuang](https://clawhub.ai/user/cntuang)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to inspect user-supplied images, perform OCR, answer visual questions, compare images, and extract structured details from receipts, forms, screenshots, charts, or documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied images may contain secrets, IDs, payment details, account numbers, private business information, authentication material, or regulated data. <br>
-Mitigation: Redact sensitive details before analysis and avoid submitting regulated or confidential content unless the use case requires it. <br>
-Risk: OCR, visual descriptions, comparisons, or extracted fields may be incomplete or incorrect. <br>
-Mitigation: Review outputs against the source image before relying on them for decisions or downstream automation. <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect supplied images, extract OCR text or structured fields, compare visuals, and answer questions about screenshots, documents, charts, forms, receipts, and photos.
 
-## Reference(s): <br>
-- [Image Vision on ClawHub](https://clawhub.ai/cntuang/image-vision) <br>
-- [cntuang publisher profile](https://clawhub.ai/user/cntuang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses from the active multimodal model] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include visual descriptions, OCR text, image comparisons, content-moderation assessments, or structured key-value extractions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Images may contain receipts, business cards, forms, screenshots, IDs, medical records, credentials, or confidential business documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on images the agent is intended to inspect, and redact or limit extraction when full details are unnecessary.
+
+Risk: Vision analysis can misread visual details, OCR text, charts, UI states, or extracted structured fields.
+
+Mitigation: Review extracted text, structured data, and image conclusions before relying on them in downstream decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cntuang/skills/image-vision)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, structured data, guidance]
+
+**Output Format:** [Natural-language analysis, markdown summaries, and structured key-value extraction when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-image and multi-image analysis prompts; artifact evidence notes up to 20 images and automatic resizing for large images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

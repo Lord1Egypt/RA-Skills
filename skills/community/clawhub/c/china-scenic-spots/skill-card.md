@@ -1,39 +1,53 @@
-## Description: <br>
-Provides a China Top 100 scenic-spots reference database for answering attraction details, seasonal recommendations, itinerary planning, and destination comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Scenic Spots Top100 helps agents answer China travel questions with a static Top 100 scenic-spots dataset covering locations, ticket references, best visit seasons, recommended duration, tags, seasonal guidance, booking reminders, transportation notes, and difficulty guidance.
 
-## Publisher: <br>
-[anmu14641](https://clawhub.ai/user/anmu14641) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmu14641](https://clawhub.ai/user/anmu14641)
 
-## Use Case: <br>
-External travelers and travel-planning assistants use this skill to answer questions about Chinese scenic spots, compare destinations by season, type, or price, and draft trip plans using the bundled reference data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ticket prices, reservation rules, opening status, and transport suggestions can become outdated. <br>
-Mitigation: Verify current details with official or up-to-date travel sources before booking or traveling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Top100 Scenic Spots Database](artifact/references/top100.md) <br>
-- [Travel Practical Guide](artifact/references/travel-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anmu14641/china-scenic-spots) <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to answer China scenic-spot queries, recommend destinations by province, type, or season, compare attractions, and draft itineraries from March 2025 reference data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown responses with attraction details, recommendations, itinerary plans, and verification reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only reference output; no tool calls, code execution, or credential use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on static March 2025 travel data, so ticket prices, booking rules, access policies, or travel restrictions may be outdated.
+
+Mitigation: Check current official scenic-spot channels or trusted booking platforms before making travel decisions.
+
+Risk: Broad China travel prompts may trigger the skill even when the user needs current conditions or official policy details.
+
+Mitigation: Treat the output as reference guidance and verify time-sensitive travel information with authoritative sources.
+
+## Reference(s):
+
+- [China Scenic Spots Top 100 Database](references/top100.md)
+- [Travel Practical Guide](references/travel-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown travel guidance with lists, tables, and practical reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses static March 2025 travel-reference data; ticket prices, booking rules, and travel restrictions should be checked with official sources before travel.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Check flight schedules between supported airports, show timings, terminals, gates, delays, aircraft details, and optional departure countdowns using a local Python script backed by the Aviationstack API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check flight schedules between supported airports, show timings, terminals, gates, delays, aircraft details, and optional departure countdowns using a local Python script backed by the Aviationstack API.
 
-## Publisher: <br>
-[caddytan](https://clawhub.ai/user/caddytan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caddytan](https://clawhub.ai/user/caddytan)
 
-## Use Case: <br>
-Travelers, travel coordinators, and agents use this skill to check operating flight schedules between supported IATA airports, especially APAC routes and selected long-haul airports. It helps summarize flight times, terminals, gates, status, delays, aircraft details, and optional departure countdowns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Aviationstack API key and route lookup parameters are sent to Aviationstack for API-backed schedule checks. <br>
-Mitigation: Use the skill only when that external API use is acceptable, keep AVIATIONSTACK_API_KEY private, and avoid committing ~/.openclaw/.env. <br>
-Risk: Flight data and fallback lookup links may be incomplete or unavailable for unsupported airport codes or services. <br>
-Mitigation: Use supported IATA airport codes from the built-in list and verify important travel details with an authoritative airline or airport source before acting. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to check flight schedules between supported IATA airports, especially APAC routes and selected long-haul routes. It helps summarize operating flights, timing, terminals, gates, status, delays, aircraft details, and optional departure countdowns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caddytan/flight-tracker-apac) <br>
-- [Aviationstack flight API endpoint](https://api.aviationstack.com/v1/flights) <br>
-- [Google Flights fallback](https://www.google.com/travel/flights) <br>
-- [FlightRadar24 fallback](https://www.flightradar24.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with shell command examples and plain-text flight results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AVIATIONSTACK_API_KEY for API-backed lookups; without the key, the script returns manual lookup links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata and skill frontmatter) <br>
+Risk: The skill sends route lookup parameters and the Aviationstack API key to Aviationstack over HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that data sharing is acceptable, keep ~/.openclaw/.env private, and do not commit the API key to source control.
+
+Risk: When no API key is configured, fallback links include route codes for Google Flights and FlightRadar24.
+
+Mitigation: Use the fallback links only for routes that are acceptable to share with those external services.
+
+Risk: The skill is limited to the airport codes built into the script and does not perform booking or fare comparison.
+
+Mitigation: Use it for schedule lookup only, and verify unsupported routes or booking decisions with a dedicated travel service.
+
+## Reference(s):
+
+- [Flight Tracker for Airports in Asia Pacific on ClawHub](https://clawhub.ai/caddytan/skills/flight-tracker-apac)
+- [caddytan ClawHub profile](https://clawhub.ai/user/caddytan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown summary with inline shell commands and plain-text flight details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include manual HTTPS lookup links when AVIATIONSTACK_API_KEY is not configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

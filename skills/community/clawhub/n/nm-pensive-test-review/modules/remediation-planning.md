@@ -4,7 +4,6 @@ name: remediation-planning
 description: Test improvement strategies and phased remediation
 category: testing
 tags: [remediation, test-improvement, refactoring]
-load_priority: 4
 estimated_tokens: 300
 ---
 
@@ -34,6 +33,7 @@ def test_user_creation():
     user_data = {"email": "alice@example.com", "role": "user"}
     ...
 
+
 def test_user_deletion():
     db = setup_database()
     config = load_test_config()
@@ -49,9 +49,11 @@ def test_db():
     yield db
     db.teardown()
 
+
 @pytest.fixture
 def test_config():
     return load_test_config()
+
 
 def test_user_creation(test_db, test_config):
     user_data = user_factory(email="alice@example.com")
@@ -68,9 +70,10 @@ def user_factory(**overrides):
         "email": "user@example.com",
         "role": "user",
         "verified": True,
-        "created_at": datetime.now()
+        "created_at": datetime.now(),
     }
     return User(**{**defaults, **overrides})
+
 
 # test file
 def test_admin_access():
@@ -121,6 +124,7 @@ assert response.status == 200
 
 # After
 from http import HTTPStatus
+
 assert response.status == HTTPStatus.OK
 ```
 
@@ -148,14 +152,13 @@ wait_for(element.to_be_visible, timeout=5)
 **Mocking internals** → **Mock boundaries**:
 ```python
 # Before: mocking private implementation
-@patch('service._internal_helper')
-def test_service(mock):
-    ...
+@patch("service._internal_helper")
+def test_service(mock): ...
+
 
 # After: mock external dependency
-@patch('requests.post')
-def test_service(mock_requests):
-    ...
+@patch("requests.post")
+def test_service(mock_requests): ...
 ```
 
 ## Phased Remediation

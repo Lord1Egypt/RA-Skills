@@ -1,45 +1,61 @@
-## Description: <br>
-Helps an agent create, format, preview, and publish WeChat public account content through a configured SaaS API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lanreneditor Pro helps agents create, format, preview, and submit WeChat public-account content drafts through a SaaS-based content pipeline.
 
-## Publisher: <br>
-[lufeng321](https://clawhub.ai/user/lufeng321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lufeng321](https://clawhub.ai/user/lufeng321)
 
-## Use Case: <br>
-Content creators, operators, and developers use this skill to manage materials, draft articles, apply WeChat-compatible templates, generate cover and social copy assets, check quotas, and publish or distribute reviewed content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad natural-language triggers and publishing actions can affect a connected WeChat account unintentionally. <br>
-Mitigation: Require manual review of the exact article, assets, template, target account, and destination platforms before publish, distribute, or clear-materials actions. <br>
-Risk: The skill depends on a configured SaaS endpoint and an API key with publishing permissions. <br>
-Mitigation: Install only when the publisher and endpoint are trusted, and use a dedicated, revocable API key rather than a shared credential. <br>
-Risk: Drafts, source articles, materials, and generated assets may be sent to the configured SaaS service. <br>
-Mitigation: Avoid confidential drafts or sensitive account material unless the service and account controls are approved for that content. <br>
+## Use Case:
 
+Developers and content operators use this skill to turn source material or WeChat articles into formatted drafts, cover assets, platform-specific copy, previews, and publishing workflows for WeChat public accounts and related distribution channels.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lufeng321/lanreneditor-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/lufeng321) <br>
-- [Configured SaaS platform](https://open.tyzxwl.cn) <br>
-- [Template designer](https://open.tyzxwl.cn/website/template-designer.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown, HTML snippets, JSON API payloads, interactive choices, and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create drafts, previews, cover assets, social copy, pipeline job IDs, publish task IDs, and account-affecting actions through the configured endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Article drafts, source URLs, images, account identifiers, and API-key authenticated requests may be sent to a configurable external SaaS endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the endpoint is trusted, keep apiBaseUrl pinned to the intended HTTPS service, and start with a least-privilege or test API key.
+
+Risk: Publish, distribute, and clear-materials actions can affect external accounts or stored content.
+
+Mitigation: Require explicit human confirmation before publishing, distributing, or clearing materials, and review the selected account and template before execution.
+
+Risk: Generated drafts, platform copy, covers, and article analysis may be inaccurate, inappropriate, or misaligned with the publisher's requirements.
+
+Mitigation: Manually review all generated content and previews before using the publish or distribution flows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lufeng321/skills/lanreneditor-pro)
+- [SaaS platform](https://open.tyzxwl.cn)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Integration guide](artifact/INTEGRATION.md)
+- [API key management](artifact/APIKEY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, html, api calls, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with interactive selections, API-backed status updates, and HTML preview or rendering links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured HTTPS apiBaseUrl and API key; generated or transformed content should be reviewed before publication or distribution.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

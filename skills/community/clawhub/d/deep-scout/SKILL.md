@@ -1,9 +1,17 @@
 ---
 name: deep-scout
 description: "Multi-stage deep intelligence pipeline (Search → Filter → Fetch → Synthesize). Turns a query into a structured research report with full source citations."
-version: "0.1.4"
 metadata:
-  {"openclaw": {"requires": {"bins": ["bash", "python3"], "anyBins": ["timeout", "gtimeout"]}}}
+  openclaw:
+    version: "0.1.5"
+    emoji: "🧭"
+    homepage: https://clawhub.ai/jonathanjing/deep-scout
+    requires:
+      bins: [bash, python3]
+    envVars:
+      - name: FIRECRAWL_API_KEY
+        required: false
+        description: Optional credential used only by the Firecrawl fallback.
 ---
 
 # deep-scout
@@ -18,7 +26,7 @@ Tell OpenClaw: *"Install the deep-scout skill."* The agent will handle the insta
 ### 2. Manual Installation (CLI)
 If you prefer the terminal, run:
 ```bash
-clawhub install deep-scout
+openclaw skills install @jonathanjing/deep-scout
 ```
 
 ## 🚀 Usage
@@ -68,7 +76,7 @@ If fewer than 3 results returned, retry with `freshness: "py"` (relaxed).
 
 ### Stage 2: FILTER
 
-Load `prompts/filter.txt`. Replace template vars:
+Load `{baseDir}/prompts/filter.txt`. Replace template vars:
 - `{{query}}` → the user's query
 - `{{freshness}}` → freshness param
 - `{{min_score}}` → min_score param
@@ -95,7 +103,7 @@ If content length >= 200 chars → accept, trim to max_chars_per_source
 **Tier 2 — Firecrawl (deep/JS):**
 ```
 If Tier 1 fails or returns < 200 chars:
-  Run: scripts/firecrawl-wrap.sh <url> <max_chars>
+  Run: bash "{baseDir}/scripts/firecrawl-wrap.sh" <url> <max_chars>
   If output != "FIRECRAWL_UNAVAILABLE" and != "FIRECRAWL_EMPTY" → accept
 ```
 
@@ -104,7 +112,7 @@ If Tier 1 fails or returns < 200 chars:
 If Tier 2 fails:
   Call browser(action="open", url=url)
   Call browser(action="snapshot")
-  Load prompts/browser-extract.txt, substitute {{query}} and {{max_chars_per_source}}
+  Load `{baseDir}/prompts/browser-extract.txt`, substitute {{query}} and {{max_chars_per_source}}
   Call LLM with snapshot content + extraction prompt
   If output != "FETCH_FAILED:..." → accept
 ```
@@ -118,8 +126,8 @@ Store: `{ url: extracted_content }` dict.
 ### Stage 4: SYNTHESIZE
 
 Choose prompt template based on `--style`:
-- `report` / `bullets` / `timeline` → `prompts/synthesize-report.txt`
-- `comparison` → `prompts/synthesize-comparison.txt`
+- `report` / `bullets` / `timeline` → `{baseDir}/prompts/synthesize-report.txt`
+- `comparison` → `{baseDir}/prompts/synthesize-comparison.txt`
 
 Replace template vars:
 - `{{query}}` → user query
@@ -187,4 +195,4 @@ See `examples/openclaw-acquisition.md` for a full sample report.
 
 ---
 
-*Deep Scout v0.1.0 · OpenClaw Skills · clawhub: deep-scout*
+*Deep Scout v0.1.5 · OpenClaw Skill*

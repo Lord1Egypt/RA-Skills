@@ -1,43 +1,58 @@
-## Description: <br>
-Data Analyzer supports analysis and visualization of CSV, Excel, and JSON data for sales reports, charts, pivot-style summaries, statistical analysis, and automated reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Analyzer helps analyze CSV, Excel, and JSON datasets with basic statistics, optional group-by summaries, and HTML or JSON reports.
 
-## Publisher: <br>
-[yinanping-CPU](https://clawhub.ai/user/yinanping-CPU) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinanping-cpu](https://clawhub.ai/user/yinanping-cpu)
 
-## Use Case: <br>
-Developers and analysts use this skill to inspect CSV, Excel, and JSON datasets, calculate summary statistics or grouped metrics, and generate HTML or JSON reports for sales and e-commerce workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports can include unescaped data values from input files. <br>
-Mitigation: Prefer JSON output for untrusted datasets and treat generated HTML as unsafe until escaping is fixed or the report is reviewed in a controlled environment. <br>
-Risk: The documentation references helper scripts that are not included in the artifact. <br>
-Mitigation: Use the included scripts/analyze_data.py entry point rather than searching for or substituting missing helper scripts. <br>
-Risk: Analyzing files from third parties or marketplaces may expose the user to unsafe or misleading input data. <br>
-Mitigation: Review the skill before installing it for third-party data workflows and validate input files before generating reports. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yinanping-CPU/yinan-data-analyzer) <br>
-- [Taobao Seller Center](https://myseller.taobao.com/home.htm/QnworkbenchHome/) <br>
-- [Douyin E-commerce Console](https://fxg.jinritemai.com/ffa/mshop/homepage/index?channel=zhaoshang) <br>
+## Use Case:
 
+Developers, analysts, and sellers use this skill to summarize local CSV, Excel, or JSON datasets, run basic statistics and group-by analysis, and produce HTML or JSON reports for sales or e-commerce workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; generated reports may be HTML or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include local HTML or JSON report files generated from user-provided data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: HTML reports may include values from input datasets and are best suited to trusted data.
+
+Mitigation: Use trusted datasets for HTML output, prefer JSON for untrusted inputs, and review generated reports before sharing.
+
+Risk: The output path is user supplied and may create or overwrite files.
+
+Mitigation: Choose output filenames and directories carefully before running the analyzer.
+
+Risk: Some advertised analytics features and helper scripts are not included in the artifact.
+
+Mitigation: Rely on the included scripts/analyze_data.py workflow and verify any additional documented examples before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yinanping-cpu/skills/yinan-data-analyzer)
+- [Taobao Seller Center](https://myseller.taobao.com/home.htm/QnworkbenchHome/)
+- [Douyin Seller Center](https://fxg.jinritemai.com/ffa/mshop/homepage/index?channel=zhaoshang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated reports are HTML or JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local CSV, Excel, or JSON input files. The optional pandas dependency enables Excel support and richer statistics.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

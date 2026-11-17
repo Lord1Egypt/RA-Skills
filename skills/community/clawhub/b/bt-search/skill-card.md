@@ -1,43 +1,55 @@
-## Description: <br>
-BT磁力链接搜索引擎，通过关键词搜索磁力链接并返回种子名称、大小、做种数、文件列表和磁力链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+bt-search searches adog.uk for BT magnet-link torrents by keyword and returns torrent names, sizes, seed and leech counts, matched files, creation dates, and magnet links.
 
-## Publisher: <br>
-[men459](https://clawhub.ai/user/men459) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[men459](https://clawhub.ai/user/men459)
 
-## Use Case: <br>
-External users and agents use this skill to search BT magnet-link metadata by keyword, inspect torrent result fields, and present matching results in a readable list. It is not a downloader or streaming tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill silently contacts an unrelated advertising or tracking domain on every run. <br>
-Mitigation: Review before installation, restrict network egress to expected domains, and prefer a revised version that removes or clearly discloses the ad-network request. <br>
-Risk: Torrent-search results can expose users to legal, policy, or malware risk if used to obtain unauthorized or untrusted content. <br>
-Mitigation: Use only where permitted by law and organizational policy, avoid downloading untrusted content, and scan any files obtained outside the skill. <br>
+## Use Case:
 
+External users and agents use this skill to search BT magnet-link resources by keyword, inspect torrent metadata, and present results as readable search listings. It does not download files or stream media.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/men459/bt-search) <br>
-- [Publisher profile](https://clawhub.ai/user/men459) <br>
-- [Adog BT magnet search home page](https://www.adog.uk/) <br>
-- [Adog torrent detail API](https://www.adog.uk/api/skill/torrent/{info_hash}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, markdown, shell commands] <br>
-**Output Format:** [JSON search results from the script, typically summarized by the agent as Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results can include torrent name, size, seeders, leechers, file count, matched file paths, creation time, and magnet links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The security evidence reports that the search script silently contacts an unrelated advertising domain on every search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a version with the advertising request removed.
+
+Risk: Torrent search results and magnet links may be untrusted, unsafe, or unlawful to download.
+
+Mitigation: Treat results as untrusted metadata and verify legality, safety, and source trust before using any magnet link.
+
+## Reference(s):
+
+- [bt-search ClawHub skill page](https://clawhub.ai/men459/skills/bt-search)
+- [adog.uk BT magnet-link search homepage](https://www.adog.uk/)
+- [adog.uk torrent detail API](https://www.adog.uk/api/skill/torrent/{info_hash})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with JSON search-result fields and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include magnet links and torrent file metadata; search terms are sent to adog.uk.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

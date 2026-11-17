@@ -1,46 +1,59 @@
-## Description: <br>
-Identifies renewal risk signals and separates recoverable issues from high-probability churn signs for renewal, risk, and customer-success workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies renewal risk signals and distinguishes recoverable risks from high-probability churn signals for renewal, risk, and customer-success workflows.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Customer success and renewal teams use this skill to turn customer usage, feedback, and interaction history into a structured renewal-risk review. It highlights risk signals, recoverable items, high-risk factors, suggested actions, time windows, escalation criteria, and missing information for confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer renewal inputs may contain sensitive customer, personal, or commercial data. <br>
-Mitigation: Redact sensitive customer or personal data where possible before use, and keep processing limited to explicit local input files. <br>
-Risk: The generated renewal-risk assessment could be mistaken for a final business decision. <br>
-Mitigation: Treat the output as a review draft and require human confirmation before making renewal, escalation, or account-action decisions. <br>
-Risk: The local script can write reports to a user-selected output path. <br>
-Mitigation: Review the output path before writing and use dry-run or stdout when a persisted report is not needed. <br>
+## Use Case:
 
+Customer-success and renewal teams use this skill to turn customer usage, feedback, and interaction history into a structured renewal-risk brief with risk signals, recoverable items, high-risk factors, suggested actions, timing, and escalation criteria.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/renewal-risk-monitor) <br>
-- [Publisher Profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [README](artifact/README.md) <br>
-- [Output Template](artifact/resources/template.md) <br>
-- [Structured Specification](artifact/resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown by default, with optional JSON report output from the local script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a user-selected local output file; otherwise prints the review draft to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can process customer-success materials that may contain sensitive customer or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide scoped, relevant inputs and redact sensitive material before use when possible.
+
+Risk: Broad directory inputs may include unrelated repositories, folders, or customer records outside the renewal-risk task.
+
+Mitigation: Use narrowly scoped input files or directories and prefer dry-run or stdout output unless an output file is intentionally needed.
+
+Risk: Unused audit code in the helper script may confuse reviewers about the active behavior of the release.
+
+Mitigation: Treat the shipped configuration as the behavior boundary and ask the publisher to remove or document unused audit paths in a future release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/renewal-risk-monitor)
+- [Skill Specification](artifact/resources/spec.json)
+- [Output Template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown brief, with optional JSON output from the local helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write to stdout by default or to an output file when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,12 +1,24 @@
 ---
 name: elevenlabs-voices
-version: 2.1.6
+version: 2.2.0
 description: High-quality voice synthesis with 18 personas, 32 languages, sound effects, batch processing, and voice design using ElevenLabs API.
 tags: [tts, voice, speech, elevenlabs, audio, sound-effects, voice-design, multilingual]
-metadata: {"openclaw":{"requires":{"bins":["python3"],"env":{"ELEVEN_API_KEY":"required","ELEVENLABS_API_KEY":"optional"},"note":"Set ELEVEN_API_KEY. ELEVENLABS_API_KEY is an accepted alias."}}}
+metadata:
+  openclaw:
+    requires:
+      bins: ["python3"]
+    primaryEnv: ELEVEN_API_KEY
+    envVars:
+      - name: ELEVEN_API_KEY
+        required: false
+        description: "ElevenLabs API key used by this skill's scripts."
+      - name: ELEVENLABS_API_KEY
+        required: false
+        description: "Accepted alias. Also the variable OpenClaw's built-in TTS reads."
+    note: "Set ELEVEN_API_KEY or ELEVENLABS_API_KEY - the scripts accept either. OpenClaw has no way to require one-of-two environment variables, so the skill loads without a key and the scripts fail on the first call if none is set. OpenClaw built-in TTS reads ELEVENLABS_API_KEY or XI_API_KEY."
 ---
 
-# ElevenLabs Voice Personas v2.1
+# ElevenLabs Voice Personas v2.2
 
 Comprehensive voice synthesis toolkit using ElevenLabs API.
 
@@ -316,21 +328,34 @@ python3 scripts/tts.py --stats
 
 ### Using with OpenClaw's Built-in TTS
 
-OpenClaw has built-in TTS support that can use ElevenLabs. Configure in `~/.openclaw/openclaw.json`:
+OpenClaw has built-in TTS that can use ElevenLabs. This is separate from the scripts in
+this skill - configuring one does not affect the other.
+
+Provider settings live under `tts.providers.<name>`, not in a `tts.elevenlabs` block.
+Configure in `~/.openclaw/openclaw.json`:
 
 ```json
 {
   "tts": {
     "enabled": true,
+    "auto": "off",
     "provider": "elevenlabs",
-    "elevenlabs": {
-      "apiKey": "your-api-key-here",
-      "voice": "rachel",
-      "model": "eleven_multilingual_v2"
+    "providers": {
+      "elevenlabs": {
+        "apiKey": { "source": "env", "provider": "elevenlabs", "id": "ELEVENLABS_API_KEY" }
+      }
     }
   }
 }
 ```
+
+`apiKey` also accepts a plain string. OpenClaw's own TTS reads `ELEVENLABS_API_KEY` or
+`XI_API_KEY` - not `ELEVEN_API_KEY`, which is the variable this skill's scripts use. Set
+both if you want both paths working.
+
+Voice and model selection belong to the TTS persona configuration under `tts.personas`.
+Run `openclaw config schema` on your install for the fields it accepts, and
+`openclaw doctor --fix` to convert an older `tts.elevenlabs` block.
 
 ### Triggering TTS in Chat
 

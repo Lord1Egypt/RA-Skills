@@ -1,41 +1,53 @@
-## Description: <br>
-Recognize songs by singing or audio file using iFlytek's Query By ACRCloud technology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognize songs by singing or audio file using iFlytek's Query By ACRCloud technology.
 
-## Publisher: <br>
-[Dzy-1026](https://clawhub.ai/user/Dzy-1026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dzy-1026](https://clawhub.ai/user/dzy-1026)
 
-## Use Case: <br>
-Developers and external users use this skill to identify music from a selected audio file or singing sample for song discovery, karaoke, audio content recognition, and music search workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files are sent to iFlytek's service for recognition. <br>
-Mitigation: Use only audio that is approved for external processing, and avoid private speech, confidential recordings, or copyrighted material without the right approvals. <br>
-Risk: The skill requires iFLYTEK API credentials on the machine where it runs. <br>
-Mitigation: Store XF_SONG_APP_ID, XF_SONG_API_KEY, and XF_SONG_API_SECRET in the environment or approved agent configuration, and rotate them if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [iFLYTEK music recognition API documentation](https://www.xfyun.cn/doc/voiceservice/music_recognition/API.html) <br>
-- [ClawHub release page](https://clawhub.ai/Dzy-1026/xfyun-song-rec) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Dzy-1026) <br>
+## Use Case:
 
+External developers and automation users use this skill to identify music from an audio file for song discovery, karaoke, music search, audio content recognition, or similar workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Console text with a JSON recognition result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an audio file path, Python 3, network access, and iFLYTEK API credentials in XF_SONG_APP_ID, XF_SONG_API_KEY, and XF_SONG_API_SECRET.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can upload any readable file path selected for recognition to the external iFlytek API without validating that it is audio or limiting file size.
+
+Mitigation: Use only audio files intentionally meant for iFlytek recognition, avoid sensitive or private recordings, and restrict inputs to an approved upload directory.
+
+Risk: Untrusted prompts or workflows could choose an unintended local file path for recognition.
+
+Mitigation: Do not let untrusted prompts control file paths; prefer a safer wrapper that rejects symlinks and non-regular files, validates audio type, and enforces a maximum size.
+
+## Reference(s):
+
+- [iFLYTEK Music Recognition API Documentation](https://www.xfyun.cn/doc/voiceservice/music_recognition/API.html)
+- [ClawHub Skill Page](https://clawhub.ai/dzy-1026/skills/xfyun-song-rec)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON recognition result with song metadata, confidence, match details, and console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an audio file path and iFLYTEK API credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

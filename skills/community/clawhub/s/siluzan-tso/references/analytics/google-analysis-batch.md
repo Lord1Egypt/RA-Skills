@@ -1,8 +1,22 @@
-# `google-analysis-batch` —— 多账户 × 多维度 Google 数据批处理引擎
+﻿# `google-analysis-batch` —— 多账户 × 多维度 Google 数据批处理引擎
 
 > 适用：账户数 ≥ 5 且需拉 ≥ 2 个 google-analysis 维度。**禁止**外层 for-loop 替代。中断后**必须** `resume`，不得重跑 `run`。
->
 > **数据时效性**：维度的实时 / 每日同步口径见 `references/analytics/account-analytics.md` 顶部「数据时效性」表。当天高消耗排行只能用 `--sections overview`，且**禁止**加 `--min-spend`（其预筛选来自非实时 `accountsoverview`）。
+
+## Contents
+
+- 子命令
+- 命令示例
+- 参数
+- 产物目录
+- stdout 摘要协议
+- 退出码
+- 错误分类与重试
+- 与 google-analysis 的关系
+- 产物消费与 subagent（可选）
+- 常见问题
+
+---
 
 单 Node 进程，复用 keep-alive，双层并发（账户级 × 维度级），断点续跑，错误自动分类重试。
 
@@ -76,6 +90,7 @@ siluzan-tso google-analysis-batch status --json-out ./snap-batch --run-id <runId
 | `--campaign-geo-cost-greater <n>` 等 | 仅 **`campaign-geo`**：与网关 `GetCampaignsGeoReport` 可选 query 一致；写入 `run-manifest.json`，`resume` 沿用 | 不设                               |
 | `--min-spend <n>`                    | 区间消耗 ≤ 此值跳过（与 `-a` 同传无效）                                                                        | 0                                  |
 | `--deadline <dur>`                   | 整任务硬截止（如 `30m` / `2h`），到期标记 paused                                                               | 不设                               |
+| `--time-budget <dur>`                | 单次执行的时间预算（`run` / `resume` 都可传；`off` 不限）。默认按宿主工具超时自动推断并收紧 deadline，一般不用传 | 自动                               |
 | `--task-timeout-ms <n>`              | 单 task 硬超时                                                                                                 | 60000                              |
 | `--max-attempts <n>`                 | 可重试错误最大尝试次数                                                                                         | 3                                  |
 | `--refresh-dp`                       | 执行前强制刷新 Datapermission                                                                                  | false                              |
@@ -155,6 +170,8 @@ const tsType = outline
 
 进度详情读 `progress.json` 与 `state/tasks.jsonl`，不在 stdout。
 
+`state=paused` 时摘要多两个字段：`resumeCommand`（`google-analysis-batch resume --json-out … --run-id …`）和 `agentHint`。被时间预算硬停时还有 `hardStopped:true`。这时批处理**没跑完**：原样执行 `resumeCommand`，重复到 `state` 不再是 `paused` 再消费产物；**禁止**重新 `run`，**禁止**把半截结果交给用户。
+
 ---
 
 ## 退出码
@@ -162,7 +179,7 @@ const tsType = outline
 | 码  | 含义                                       | 后续动作                                      |
 | --- | ------------------------------------------ | --------------------------------------------- |
 | `0` | 全部成功，state=`succeeded`                | 继续后续                                      |
-| `2` | 部分成功（`partial`）或超时（`paused`）    | 看 `errors/` 或消费已有产物                   |
+| `2` | 部分成功（`partial`）或超时（`paused`）    | `partial`：看 `errors/` 后消费产物；`paused`：执行 `resumeCommand` 续跑 |
 | `3` | 全失败 / Token 失效 / 致命错误（`failed`） | `tokenInvalidated:true` → `siluzan-tso login` |
 | `4` | 参数错误（命令未执行）                     | 修正参数重试                                  |
 

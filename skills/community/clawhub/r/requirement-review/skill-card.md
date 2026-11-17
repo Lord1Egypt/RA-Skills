@@ -1,41 +1,50 @@
-## Description: <br>
-Reviews PRD and requirements documents for systemic risks, scores them across five dimensions, and returns actionable improvement guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PRD Review evaluates product requirement documents with a five-dimension scoring framework, root-cause risk analysis, and actionable improvement recommendations.
 
-## Publisher: <br>
-[ken0122](https://clawhub.ai/user/ken0122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ken0122](https://clawhub.ai/user/ken0122)
 
-## Use Case: <br>
-Product managers, reviewers, and development teams use this skill to evaluate PRD or requirements artifacts, identify the top risks and improvements, and decide which issues block development versus which can be deferred. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PRD and requirements reviews may involve sensitive business content or linked documents. <br>
-Mitigation: Use only documents the agent is authorized to access and redact confidential details that are not needed for the review. <br>
-Risk: Applying the review template to non-requirements material can produce misleading scores or recommendations. <br>
-Mitigation: Confirm the input is a PRD or requirements artifact before relying on the score and decision checklist. <br>
+## Use Case:
 
+Product managers, founders, and delivery teams use this skill to review PRDs or requirement documents, identify the most important delivery risks, and turn those findings into concrete improvement and launch-readiness decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ken0122/requirement-review) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ken0122) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown review report with scoring tables, risk analysis, improvement suggestions, and decision checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The output is structured around five scoring dimensions, the top three risks, the top three recommendations, retained strengths, and launch or development gating guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad requests such as reviewing a PRD may trigger this skill and return Chinese-language structured feedback when the user expected a different language or review depth.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the desired language, scope, and depth when the review request is ambiguous.
+
+## Reference(s):
+
+- [PRD Review ClawHub skill page](https://clawhub.ai/ken0122/skills/requirement-review)
+- [ken0122 publisher profile](https://clawhub.ai/user/ken0122)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language structured PRD review with a score, top risks, top recommendations, strengths, and a decision checklist.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

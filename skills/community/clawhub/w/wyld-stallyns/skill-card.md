@@ -1,42 +1,52 @@
-## Description: <br>
-Summon legend perspectives into the booth to help with decisions, creative work, and life's hard questions, or forge a new legend with Rufus as guide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wyld Stallyns summons historical and creative persona lenses to help agents reason through decisions, creative work, and reflective questions.
 
-## Publisher: <br>
-[brucko](https://clawhub.ai/user/brucko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brucko](https://clawhub.ai/user/brucko)
 
-## Use Case: <br>
-External users and agents use this skill to activate named legend perspectives for decision support, creative work, personal reflection, crisis framing, and council-style debate. Users can also forge new legend entries when they want to extend the persona library. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The forge workflow can extend the persona library with generated legend files and council entries. <br>
-Mitigation: Review generated legend content and council.json changes before keeping them. <br>
-Risk: Short aliases may activate an unintended legend perspective. <br>
-Mitigation: Prefer explicit full-name aliases when summoning or registering legends. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucko/wyld-stallyns) <br>
-- [Publisher profile](https://clawhub.ai/user/brucko) <br>
-- [README.md](artifact/README.md) <br>
-- [FORGE.md](artifact/FORGE.md) <br>
+## Use Case:
 
+External ClawHub users and agent operators use this skill to bring named historical-persona perspectives into reflective coaching, decision support, creative ideation, and multi-perspective council-style discussion.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Conversational text and Markdown; forge outputs may include Markdown legend entries and JSON council updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist active legend state and add legend or council files when the user requests the forge workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Stylized historical-persona guidance could be mistaken for professional financial, relationship, or life advice.
+
+Mitigation: Use outputs as reflective coaching and seek qualified professional review for high-stakes decisions.
+
+Risk: Forge or retire behavior can change the local roster of available persona lenses.
+
+Mitigation: Review roster changes before reuse, publication, or deployment of a modified skill package.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucko/skills/wyld-stallyns)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain-text agent responses; JSON-backed roster state for booth and council configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden code execution or data access was identified by the server security scan.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

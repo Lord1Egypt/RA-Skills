@@ -1,44 +1,58 @@
-## Description: <br>
-Searches for agent skills across ClawHub, skills.sh, and SkillsMP, then ranks recommendations by downloads, stars, installs, versions, freshness, comments, and security signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches ClawHub, skills.sh, and SkillsMP for agent skills, ranks candidates by health signals, and returns installation-focused recommendations.
 
-## Publisher: <br>
-[trip1ewhy](https://clawhub.ai/user/trip1ewhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trip1ewhy](https://clawhub.ai/user/trip1ewhy)
 
-## Use Case: <br>
-Agents and developers use this skill to discover, compare, and recommend installable agent skills across multiple public skill directories. It is intended for skill search, ranking, link gathering, and install-command guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms can be sent to external services while querying public skill directories. <br>
-Mitigation: Avoid sensitive or confidential search terms and review external service suitability before use. <br>
-Risk: Recommended third-party skills and install commands may introduce unsafe behavior if accepted without review. <br>
-Mitigation: Inspect recommended skills and their commands before installation, especially commands that skip confirmation. <br>
+## Use Case:
 
+Developers and agents use this skill to discover agent skills across multiple registries, compare candidates using health and security signals, and return ranked recommendations with links and install commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trip1ewhy/skills-wide-search) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/trip1ewhy) <br>
-- [ClawHub](https://clawhub.ai) <br>
-- [skills.sh](https://skills.sh) <br>
-- [SkillsMP](https://skillsmp.com/zh/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendations with platform links, ranking scores, rationale, and install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include health scores, security cautions, platform availability notes, and command snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Search queries are sent to ClawHub, skills.sh, SkillsMP, and the r.jina.ai proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using sensitive internal names or confidential search terms when invoking the skill.
+
+Risk: Recommended install commands may include npx commands or commands ending in --yes.
+
+Mitigation: Review each command before execution and prefer pinned or trusted package sources.
+
+Risk: User-provided queries can become unsafe if interpolated directly into shell commands.
+
+Mitigation: Pass queries as inert arguments or URL-encoded parameters instead of string-splicing user text into shell commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trip1ewhy/skills/skills-wide-search)
+- [Publisher profile](https://clawhub.ai/user/trip1ewhy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown recommendations with links, scores, and inline shell install commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ranked health scores and install commands for selected skills.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,63 @@
-## Description: <br>
-Execute email operations with platform-specific optimizations and secure credential handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute email operations with platform-specific optimizations and secure credential handling.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to help an agent read, search, filter, draft, and send email through Apple Mail SQLite access or the himalaya IMAP/SMTP CLI while preserving review before outbound mail is sent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent access a configured mailbox and prepare outbound messages. <br>
-Mitigation: Review every email before approving send, and require explicit confirmation before syncing, moving, deleting, sending, or bulk-processing mail. <br>
-Risk: Mailbox credentials and mail transport configuration are sensitive. <br>
-Mitigation: Use revocable app passwords or OAuth where possible, store secrets in the configured credential manager, and install himalaya from a trusted source. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Mail skill page](https://clawhub.ai/ivangdavila/mail) <br>
-- [Apple Mail SQLite Queries](apple-mail.md) <br>
-- [himalaya CLI Patterns](himalaya.md) <br>
-- [Email Send Protocol](sending.md) <br>
+## Use Case:
 
+Developers and agent users use this skill to search, read, draft, and send email through himalaya or Apple Mail while preserving explicit review before sends.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include email drafts, search guidance, command examples, and configuration instructions; sending requires explicit user review and confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can help an agent read and search mailbox contents, which may expose sensitive email data.
+
+Mitigation: Install only when comfortable with mailbox access and review any mailbox-derived results before acting on them.
+
+Risk: The skill can prepare outgoing email, creating a risk of accidental or incorrect sends.
+
+Mitigation: Use the documented draft-review-send workflow and approve sends only after reviewing the complete recipient, subject, and body.
+
+Risk: Credential setup guidance involves mailbox authentication secrets.
+
+Mitigation: Create or update Keychain credentials yourself when possible and use app passwords or OAuth tokens rather than regular account passwords.
+
+Risk: Floating himalaya install commands may resolve to changed behavior over time.
+
+Mitigation: Prefer a trusted pinned himalaya version for repeatable behavior.
+
+## Reference(s):
+
+- [Apple Mail SQLite Queries](artifact/apple-mail.md)
+- [himalaya CLI Patterns](artifact/himalaya.md)
+- [Email Send Protocol](artifact/sending.md)
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/mail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-review-send workflow; outgoing messages require explicit user approval before send.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

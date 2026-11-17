@@ -1,45 +1,60 @@
-## Description: <br>
-VoxCPM中文配音 converts foreign-language videos into Chinese-dubbed videos with Whisper transcription, API-backed translation, VoxCPM speech synthesis, subtitle handling, resumable processing, and optional background music. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VoxCPM中文配音 helps agents generate Chinese-dubbed versions of foreign-language videos with transcription, translation, VoxCPM speech synthesis, subtitle generation, optional hard-subtitle detection, and BGM support.
 
-## Publisher: <br>
-[newaiguy](https://clawhub.ai/user/newaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newaiguy](https://clawhub.ai/user/newaiguy)
 
-## Use Case: <br>
-External creators, localization teams, and developers use this skill to generate Chinese-dubbed versions of foreign-language videos, including translated narration, SRT subtitles, subtitle-cover handling, and optional background music mixing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transcripts and selected video frames may be sent to configured third-party AI endpoints for translation and hard-subtitle detection. <br>
-Mitigation: Use the skill only with media approved for those endpoints, configure trusted API URLs, and avoid processing confidential content unless the endpoint terms and controls are acceptable. <br>
-Risk: The package includes a Bilibili upload script that can publish videos using session credentials from a hardcoded local credential path. <br>
-Mitigation: Remove or ignore scripts/upload_bilibili.py unless publishing to Bilibili is intended, and do not place Bilibili credentials at the referenced path unless upload authority is explicitly approved. <br>
-Risk: Generated dubbed audio, subtitles, and BGM mixing may change the meaning, attribution, or rights posture of source videos. <br>
-Mitigation: Review the translated transcript, generated subtitles, source licensing, and platform publishing settings before distributing the output video. <br>
+## Use Case:
 
+Developers and content localization teams use this skill to create Chinese-dubbed versions of permitted foreign-language videos. The workflow can produce translated speech, subtitles, and optionally mixed background music for localized video outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/newaiguy/video-dubbing) <br>
-- [VoxCPM](https://github.com/modelscope/VoxCPM) <br>
-- [OpenAI Whisper](https://github.com/openai/whisper) <br>
-- [Hunyuan-MT-7B](https://huggingface.co/tencent/Hunyuan-MT-7B) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, generated MP4 video files, and SRT subtitle files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primary outputs are Chinese-dubbed video files and subtitle files under the configured workspace output directory; optional BGM mixing can produce an additional video file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and manifest report 1.1.0) <br>
+Risk: The dubbing workflow may share transcripts and at least one video frame with configured translation or vision APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only videos and voice samples the user is allowed to process, avoid sensitive media, and configure trusted API endpoints.
+
+Risk: The package includes a separate authenticated Bilibili upload script.
+
+Mitigation: Remove or isolate scripts/upload_bilibili.py unless authenticated Bilibili publishing is explicitly intended, and keep publishing credentials outside shared skill artifacts.
+
+Risk: Dependencies and external model downloads require review before installation.
+
+Mitigation: Pin and review dependencies and model sources, then run the workflow in an isolated environment before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newaiguy/skills/video-dubbing)
+- [VoxCPM](https://github.com/modelscope/VoxCPM)
+- [OpenAI Whisper](https://github.com/openai/whisper)
+- [Hunyuan-MT-7B](https://huggingface.co/tencent/Hunyuan-MT-7B)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of dubbed video and subtitle files through the bundled scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

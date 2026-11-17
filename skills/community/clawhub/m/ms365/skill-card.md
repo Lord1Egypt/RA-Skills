@@ -1,44 +1,59 @@
-## Description: <br>
-Access and manage Microsoft 365 email, calendar, OneDrive files, To Do tasks, and contacts through Microsoft Graph with authentication support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and manage Microsoft 365 email, calendar, OneDrive files, To Do tasks, and contacts through Microsoft Graph API tooling with authentication support.
 
-## Publisher: <br>
-[cvsloane](https://clawhub.ai/user/cvsloane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cvsloane](https://clawhub.ai/user/cvsloane)
 
-## Use Case: <br>
-People using Clawdbot or a compatible agent use this skill to inspect and manage Microsoft 365 mail, calendars, OneDrive files, tasks, contacts, and optional organization collaboration data through Microsoft Graph. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can request Microsoft Graph permissions that allow reading and modifying mailbox, calendar, file, task, contact, Teams, or SharePoint data. <br>
-Mitigation: Use read-only mode or narrower Graph scopes where possible, and require explicit confirmation before sending mail, creating events, uploading files, deleting items, or posting to Teams. <br>
-Risk: The CLI runs the external @softeria/ms-365-mcp-server npm package without a pinned version. <br>
-Mitigation: Install only after trusting the Softeria package and pin the npm package version in deployment configuration. <br>
-Risk: Headless operation may use Azure client secrets and cached authentication tokens. <br>
-Mitigation: Protect environment variables and token caches, use tenant-scoped credentials, and rotate client secrets according to the Microsoft 365 deployment policy. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an agent authenticate with Microsoft 365, inspect account data, and perform common productivity actions such as reading email, managing calendar events, browsing OneDrive files, and creating tasks.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/cvsloane/ms365) <br>
-- [@softeria/ms-365-mcp-server npm package](https://www.npmjs.com/package/@softeria/ms-365-mcp-server) <br>
-- [Softeria ms-365-mcp-server GitHub repository](https://github.com/Softeria/ms-365-mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may call Microsoft 365 services through the Softeria MCP server and return structured JSON or text responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can request broad Microsoft 365 account access across email, calendar, files, tasks, and contacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Microsoft app registration and prefer read-only mode unless write access is required.
+
+Risk: The skill runs an npm dependency at runtime, and the security summary flags the dependency as unpinned.
+
+Mitigation: Pin or preinstall @softeria/ms-365-mcp-server from a trusted version before deployment.
+
+Risk: Write-capable actions can send email, post messages, delete data, or create and update events and tasks.
+
+Mitigation: Require explicit user confirmation before executing write or destructive Microsoft 365 actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cvsloane/skills/ms365)
+- [@softeria/ms-365-mcp-server npm package](https://www.npmjs.com/package/@softeria/ms-365-mcp-server)
+- [Softeria ms-365-mcp-server repository](https://github.com/Softeria/ms-365-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-formatted command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Microsoft 365 account data returned by the CLI or MCP server, depending on the requested operation and granted permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

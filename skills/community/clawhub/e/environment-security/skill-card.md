@@ -1,43 +1,59 @@
-## Description: <br>
-Verify real local environment facts before an agent uses machine-specific commands, runtimes, compilers, services, or startup scripts, then create or refresh environment baseline JSON and related environment policy, AGENTS, or skill documents from those verified facts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify real local environment facts before an agent uses machine-specific commands, runtimes, compilers, services, or startup scripts, then create or refresh environment baseline JSON and related environment policy, AGENTS, or skill documents from those verified facts.
 
-## Publisher: <br>
-[zshTolors](https://clawhub.ai/user/zshTolors) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zshtolors](https://clawhub.ai/user/zshtolors)
 
-## Use Case: <br>
-Developers and engineers use this skill to verify local toolchains, runtimes, environment variables, services, and startup assumptions before relying on machine-specific commands. It helps them create or refresh synchronized JSON baselines and human-readable environment policy, AGENTS, or reusable skill snippets from verified facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Custom probe files can run local commands while checking tools, services, databases, or startup scripts. <br>
-Mitigation: Review probe files as executable code before use and run only probes that are needed for the current environment task. <br>
-Risk: Generated JSON and Markdown can persist hostnames, local paths, PATH entries, command output, and environment variable values. <br>
-Mitigation: Inspect and redact generated files before sharing, committing, or using them outside the intended local environment. <br>
-Risk: Environment guidance can become stale after toolchain, shell profile, package manager, or machine changes. <br>
-Mitigation: Refresh the relevant baseline facts with targeted verification and keep the JSON baseline and human-readable documents synchronized. <br>
+## Use Case:
 
+Developers and agents use this skill to verify local toolchains, runtime paths, environment variables, services, and startup scripts before running machine-specific commands. It helps create synchronized JSON baselines and Markdown policy snippets from verified machine facts.
 
-## Reference(s): <br>
-- [Document Contracts](references/document-contracts.md) <br>
-- [Probe File](references/probe-file.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON baseline data plus Markdown environment policy, AGENTS snippets, reusable skill snippets, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated environment documents should stay synchronized with verified baseline facts and may include local paths, command output, PATH entries, and environment variable values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Probe files can run arbitrary local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only reviewed probe files from a trusted publisher and do not run probe definitions supplied by an untrusted source.
+
+Risk: Generated baselines and Markdown can preserve sensitive machine details such as local paths, hostnames, PATH entries, and environment-derived secrets.
+
+Mitigation: Review and redact generated JSON and Markdown before committing, publishing, or sharing them.
+
+Risk: Environment-changing actions can modify local software or configuration when performed without review.
+
+Mitigation: Require explicit approval before installing, upgrading, uninstalling, enabling, or reconfiguring software, and prefer user-managed installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zshtolors/skills/environment-security)
+- [Document Contracts](artifact/references/document-contracts.md)
+- [Probe File](artifact/references/probe-file.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command blocks, JSON environment baselines, and optional generated Markdown policy snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce environment-baseline.json, ENVIRONMENT_POLICY.md, AGENTS.environment.md, AGENTS.md sections, or SKILL.environment.md snippets; outputs can include local paths, hostnames, PATH entries, and environment-derived values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

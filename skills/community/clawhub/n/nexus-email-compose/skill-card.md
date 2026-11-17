@@ -1,50 +1,59 @@
-## Description: <br>
-Draft professional communications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft professional communications.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-External users and agents use this skill to draft professional email or message content through a paid NEXUS remote service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make paid remote drafting requests and has payment authority. <br>
-Mitigation: Confirm before paid requests or payment transactions, and set clear spending controls before use. <br>
-Risk: Inputs are sent to an external NEXUS service for LLM processing. <br>
-Mitigation: Do not send secrets, regulated data, or sensitive personal or business communications unless that external processing is approved. <br>
-Risk: Broad auto-invocation could route matching communication tasks to the remote provider. <br>
-Mitigation: Review the invocation scope and payment proof environment variable before installing or enabling the skill. <br>
+## Use Case:
 
+External users and agents use this skill to draft professional emails and messages through the NEXUS remote service after providing an accepted payment proof or sandbox credential.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/nexus-email-compose) <br>
-- [NEXUS Platform](https://ai-service-hub-15.emergent.host) <br>
-- [Email Compose API](https://ai-service-hub-15.emergent.host/api/original-services/email-compose) <br>
-- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
-- [Stellar Fee Sponsorship](https://ai-service-hub-15.emergent.host/api/mpp/stellar/sponsor-info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON object containing a result string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NEXUS_PAYMENT_PROOF or a supported payment credential; requests are sent to an external NEXUS API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Draft content and payment proof information are sent to the NEXUS remote endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when NEXUS is approved for the data being submitted, and avoid prompts containing secrets, regulated data, or highly sensitive business content.
+
+Risk: The skill requires payment proof handling for normal use.
+
+Mitigation: Use the documented sandbox credential for testing and validate payment details before submitting paid requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/skills/nexus-email-compose)
+- [NEXUS platform](https://ai-service-hub-15.emergent.host)
+- [NEXUS email compose API](https://ai-service-hub-15.emergent.host/api/original-services/email-compose)
+- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [JSON object containing a result string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a remote service response for the submitted input; requires NEXUS_PAYMENT_PROOF for normal paid use.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

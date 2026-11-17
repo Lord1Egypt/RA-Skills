@@ -1,40 +1,52 @@
-## Description: <br>
-Scores a repository's health across code quality, testing, documentation, CI/CD, security, dependencies, community, and maintainability, then produces a letter grade with improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores a repository's health across code quality, testing, documentation, CI/CD, security, dependencies, community, and maintainability, then produces a letter grade with specific improvement suggestions.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, maintainers, and technical evaluators use this skill to assess repository maturity, maintenance quality, and adoption risk. It supports quick audits, dependency due diligence, repository comparisons, and improvement planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill inspects repository files, git history, and optional public GitHub community metrics.
+
+Mitigation: Run it only on repositories where local structure, history, and remote repository identity are acceptable inputs for a health score.
+
+Risk: Static scoring can overstate or understate maturity because different project types have different baselines.
+
+Mitigation: Treat the grade as a triage signal and review the dimension findings against the repository's purpose before making adoption or investment decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, maintainers, and technical evaluators use this skill to assess repository maturity, maintenance quality, and adoption risk. It can produce a full score, compare two repositories, or suggest the highest-impact improvements. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads repository files and local git metadata from the directory where it is run. <br>
-Mitigation: Run it only in repositories you intend to inspect, and review the resulting scorecard before relying on it for adoption or investment decisions. <br>
-Risk: Optional community metrics may call GitHub through the authenticated GitHub CLI context. <br>
-Mitigation: Skip or disable the optional GitHub metric commands if outbound GitHub requests or use of the active GitHub CLI account is not acceptable. <br>
+**Output Format:** [Human-readable scorecard, JSON report, Markdown report, or badge URL]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/repository-health-score) <br>
+**Other Properties Related to Output:** [Produces scores across eight dimensions, a total score, an A-F grade, and prioritized improvement suggestions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Human-readable scorecards, Markdown reports, JSON summaries, or badge URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores eight repository-health dimensions, assigns an A-F grade, and can suggest prioritized improvements.] <br>
+1.0.1 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

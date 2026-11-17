@@ -1,41 +1,55 @@
-## Description: <br>
-Guides an agent to use the Ultrahuman MCP to answer questions about sleep, recovery, readiness, daily metrics, ring data, glucose, and metabolic health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Ultrahuman MCP to answer questions about sleep, recovery, readiness, daily metrics, morning brief, ring data, glucose, and metabolic health.
 
-## Publisher: <br>
-[Duzafizzl](https://clawhub.ai/user/Duzafizzl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzafizzl](https://clawhub.ai/user/duzafizzl)
 
-## Use Case: <br>
-External Ultrahuman users and their agents use this skill to turn account health data into morning briefs, recovery checks, daily metric summaries, and short multi-day sleep or glucose trend comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch sensitive biometric and health-related account data through the configured Ultrahuman MCP server. <br>
-Mitigation: Use it only with a trusted MCP server and account, and require user confirmation before fetching data for broad wellness prompts. <br>
-Risk: Sleep, recovery, and glucose summaries could be mistaken for medical advice. <br>
-Mitigation: Keep responses descriptive, avoid diagnoses or treatment advice, and present interpretation heuristics as non-medical orientation. <br>
+## Use Case:
 
+External users use this skill to ask an agent for concise summaries and comparisons of their Ultrahuman sleep, recovery, readiness, activity, ring, and CGM metrics. The skill guides the agent to fetch only relevant daily metrics and present descriptive wellness context without medical diagnosis or treatment advice.
 
-## Reference(s): <br>
-- [Interpreting Ultrahuman metrics](references/interpretation.md) <br>
-- [Ultrahuman metrics glossary](references/metrics_glossary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise Markdown summaries with metric lists, short tables, and descriptive recommendations when appropriate.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include date-specific or multi-day metric comparisons; avoids medical diagnoses and raw JSON unless requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Broad wellness triggers could access sensitive Ultrahuman health data when a user asks an ambiguous sleep or recovery question.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended Ultrahuman account and requested date range for ambiguous requests, then retrieve only the metrics needed to answer the specific question.
+
+Risk: Health metric explanations could be mistaken for medical advice.
+
+Mitigation: Keep interpretations descriptive, use the bundled glossary and interpretation reference for context, and avoid diagnosis, treatment advice, or prescriptive medical targets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duzafizzl/skills/ultrahuman-biodata-assistant)
+- [Interpreting Ultrahuman metrics](references/interpretation.md)
+- [Ultrahuman metrics glossary](references/metrics_glossary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown summaries, compact metric lists, and short comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Ultrahuman MCP data for requested account/date scopes; avoids raw JSON unless the user asks for export.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

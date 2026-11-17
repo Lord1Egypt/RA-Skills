@@ -1,40 +1,53 @@
-## Description: <br>
-Cold email, LinkedIn outreach, and follow-up sequences for sales and networking. Professional templates and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cold email, LinkedIn outreach, and follow-up sequences for sales and networking. Professional templates and best practices.
 
-## Publisher: <br>
-[863king](https://clawhub.ai/user/863king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[863king](https://clawhub.ai/user/863king)
 
-## Use Case: <br>
-External users such as founders, sales teams, freelancers, and job seekers use this skill to draft cold emails, LinkedIn messages, and multi-touch follow-up sequences for sales and professional networking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outreach drafts could contain inaccurate claims, false urgency, or misleading personalization. <br>
-Mitigation: Review and edit generated messages for accuracy, truthful claims, and appropriate tone before sending. <br>
-Risk: Cold outreach can violate email, LinkedIn, or anti-spam rules if used without compliance review. <br>
-Mitigation: Use the templates only within applicable platform policies, consent requirements, unsubscribe practices, and anti-spam laws. <br>
+## Use Case:
 
+External founders, sales teams, freelancers, and job seekers use this skill to draft cold email, LinkedIn outreach, and follow-up sequences for sales and networking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/863king/cold-outreach-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and plain text outreach templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft outreach copy, follow-up sequences, and best-practice guidance for human review before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Generated outreach can be inaccurate, unwanted, or non-compliant with anti-spam or platform rules if sent without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each draft for accuracy, consent, platform policies, and anti-spam compliance before sending.
+
+Risk: Template placeholders or social-proof claims can become misleading if filled with unsupported facts or metrics.
+
+Mitigation: Use only verified facts and remove placeholders or claims that cannot be substantiated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/863king/skills/cold-outreach-pack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain text templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts depend on user-provided recipient, company, pain point, solution, and call-to-action details.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

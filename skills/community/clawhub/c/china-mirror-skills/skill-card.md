@@ -1,43 +1,57 @@
-## Description: <br>
-Configures and diagnoses development-tool mirror settings for China's network environment across Python, Node, Docker, APT, Rust, Go, Conda, Flutter, Homebrew, and GitHub workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures and diagnoses mirror settings for common development tools in China's network environment, including Python, Node.js, Docker, APT, Conda, Rust, Go, Flutter, Homebrew, and GitHub workflows.
 
-## Publisher: <br>
-[loredunk](https://clawhub.ai/user/loredunk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[loredunk](https://clawhub.ai/user/loredunk)
 
-## Use Case: <br>
-Developers and engineers working in China use this skill to diagnose slow package downloads and apply mirror configurations for common development tools, with dry-run, backup, and restore workflows available before persistent changes are made. <br>
-
-### Deployment Geography for Use: <br>
-China <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent mirror and package-source changes can alter package resolution for multiple development tools. <br>
-Mitigation: Run the scripts with --dry-run first, avoid --yes until reviewed, and use the bundled backup and restore scripts for affected tool configurations. <br>
-Risk: Global Git URL rewrite settings can redirect future GitHub clone and fetch operations. <br>
-Mitigation: Review the exact git config --global url.*.insteadOf entries before applying them and remove unwanted entries with git config --global --unset-all. <br>
-Risk: The Homebrew setup path can execute the live upstream installer. <br>
-Mitigation: Do not run the Homebrew setup path unless the user explicitly accepts executing the upstream installer. <br>
-Risk: Diagnostic logs may expose proxy values or network configuration details. <br>
-Mitigation: Redact proxy values and sensitive environment details before sharing diagnostic output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loredunk/china-mirror-skills) <br>
+## Use Case:
 
+Developers and engineers working in China or constrained network environments use this skill to diagnose slow package downloads, compare mirror connectivity, and apply mirror configuration for installed development tools.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and configuration summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can lead to persistent local configuration changes and diagnostic logs when the bundled scripts are executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+China
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent package source, Git routing, shell profile, and trust-setting changes can affect future development workflows.
+
+Mitigation: Run diagnostics and dry-run modes first, avoid automatic confirmation, and review sudo or global Git changes before applying them.
+
+Risk: Backups can include sensitive configuration files such as .npmrc.
+
+Mitigation: Store backups carefully, avoid sharing backup directories, and remove unneeded backups from ~/.china-mirror-backup/.
+
+Risk: Combining mirrors with proxies can cause conflicts or route downloads through unintended third-party services.
+
+Mitigation: Review proxy environment variables and avoid --proxy-clone unless future HTTPS GitHub Git operations should use the selected proxy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loredunk/skills/china-mirror-skills)
+- [Publisher profile](https://clawhub.ai/user/loredunk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and diagnostic summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend dry-run mode, backups, restore commands, and manual review before applying persistent configuration changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

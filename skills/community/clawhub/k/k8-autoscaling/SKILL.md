@@ -1,17 +1,49 @@
 ---
 name: k8s-autoscaling
 description: Configure Kubernetes autoscaling with HPA, VPA, and KEDA. Use for horizontal/vertical pod autoscaling, event-driven scaling, and capacity management.
+license: MIT-0
+metadata:
+  author: rohitg00
+  version: "2.0.0"
+  tools: 12
+  category: scaling
 ---
 
 # Kubernetes Autoscaling
 
 Comprehensive autoscaling using HPA, VPA, and KEDA with kubectl-mcp-server tools.
 
+> Requires the `cost`, `keda` toolsets: start kubectl-mcp-server with `--toolsets default,cost,keda` (or `MCP_TOOLSETS=default,cost,keda`).
+
+## When to Apply
+
+Use this skill when:
+- User mentions: "HPA", "VPA", "KEDA", "autoscale", "scale to zero"
+- Operations: configuring autoscaling, checking scaling status
+- Keywords: "scale automatically", "event-driven", "right-size"
+
+## Priority Rules
+
+| Priority | Rule | Impact | Tools |
+|----------|------|--------|-------|
+| 1 | Verify metrics-server for HPA | CRITICAL | `kubectl_top` |
+| 2 | Set resource requests before HPA | CRITICAL | `kubectl_describe` |
+| 3 | Use KEDA for scale-to-zero | HIGH | `keda_scaledobjects_list` |
+| 4 | Check VPA recommendations | MEDIUM | `get_resource_recommendations` |
+
 ## Quick Reference
 
-### HPA (Horizontal Pod Autoscaler)
+| Task | Tool | Example |
+|------|------|---------|
+| List KEDA ScaledObjects | `keda_scaledobjects_list` | `keda_scaledobjects_list(namespace)` |
+| Get ScaledObject | `keda_scaledobject_get` | `keda_scaledobject_get(name, namespace)` |
+| List ScaledJobs | `keda_scaledjobs_list` | `keda_scaledjobs_list(namespace)` |
+| Check KEDA | `detect_ecosystem` | `detect_ecosystem()` |
+
+## HPA (Horizontal Pod Autoscaler)
 
 Basic CPU-based scaling:
+
 ```yaml
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -34,14 +66,16 @@ spec:
 ```
 
 Apply and verify:
-```
-apply_manifest(hpa_yaml, namespace)
-get_hpa(namespace)
+
+```python
+kubectl_apply(hpa_yaml, namespace)
+kubectl_get(resource_type="hpa", namespace)
 ```
 
-### VPA (Vertical Pod Autoscaler)
+## VPA (Vertical Pod Autoscaler)
 
 Right-size resource requests:
+
 ```yaml
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
@@ -59,30 +93,35 @@ spec:
 ## KEDA (Event-Driven Autoscaling)
 
 ### Detect KEDA Installation
-```
-keda_detect_tool()
+
+```python
+detect_ecosystem()
 ```
 
 ### List ScaledObjects
-```
-keda_scaledobjects_list_tool(namespace)
-keda_scaledobject_get_tool(name, namespace)
+
+```python
+keda_scaledobjects_list(namespace)
+keda_scaledobject_get(name, namespace)
 ```
 
 ### List ScaledJobs
-```
-keda_scaledjobs_list_tool(namespace)
+
+```python
+keda_scaledjobs_list(namespace)
 ```
 
 ### Trigger Authentication
-```
-keda_triggerauths_list_tool(namespace)
-keda_triggerauth_get_tool(name, namespace)
+
+```python
+keda_triggerauths_list(namespace)
+keda_triggerauth_get(name, namespace)
 ```
 
 ### KEDA-Managed HPAs
-```
-keda_hpa_list_tool(namespace)
+
+```python
+keda_hpa_list(namespace)
 ```
 
 See [KEDA-TRIGGERS.md](KEDA-TRIGGERS.md) for trigger configurations.
@@ -90,6 +129,7 @@ See [KEDA-TRIGGERS.md](KEDA-TRIGGERS.md) for trigger configurations.
 ## Common KEDA Triggers
 
 ### Queue-Based Scaling (AWS SQS)
+
 ```yaml
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
@@ -98,7 +138,7 @@ metadata:
 spec:
   scaleTargetRef:
     name: queue-processor
-  minReplicaCount: 0  # Scale to zero!
+  minReplicaCount: 0
   maxReplicaCount: 100
   triggers:
   - type: aws-sqs-queue
@@ -108,17 +148,19 @@ spec:
 ```
 
 ### Cron-Based Scaling
+
 ```yaml
 triggers:
 - type: cron
   metadata:
     timezone: America/New_York
-    start: 0 8 * * 1-5   # 8 AM weekdays
-    end: 0 18 * * 1-5    # 6 PM weekdays
+    start: 0 8 * * 1-5
+    end: 0 18 * * 1-5
     desiredReplicas: "10"
 ```
 
 ### Prometheus Metrics
+
 ```yaml
 triggers:
 - type: prometheus
@@ -142,52 +184,36 @@ triggers:
 ## Cost-Optimized Autoscaling
 
 ### Scale to Zero with KEDA
+
 Reduce costs for idle workloads:
-```
-keda_scaledobjects_list_tool(namespace)
-# ScaledObjects with minReplicaCount: 0 can scale to zero
+
+```python
+keda_scaledobjects_list(namespace)
 ```
 
 ### Right-Size with VPA
+
 Get recommendations and apply:
-```
+
+```python
 get_resource_recommendations(namespace)
-# Apply VPA recommendations
-```
-
-### Predictive Scaling
-Use cron triggers for known patterns:
-```yaml
-# Scale up before traffic spike
-triggers:
-- type: cron
-  metadata:
-    start: 0 7 * * *  # 7 AM
-    end: 0 9 * * *    # 9 AM
-    desiredReplicas: "20"
-```
-
-## Multi-Cluster Autoscaling
-
-Configure KEDA across clusters:
-```
-keda_scaledobjects_list_tool(namespace, context="production")
-keda_scaledobjects_list_tool(namespace, context="staging")
 ```
 
 ## Troubleshooting
 
 ### HPA Not Scaling
-```
-get_hpa(namespace)
-get_pod_metrics(name, namespace)  # Metrics available?
-describe_pod(name, namespace)     # Resource requests set?
+
+```python
+kubectl_get(resource_type="hpa", namespace)
+kubectl_top(name, namespace)
+kubectl_describe(name, namespace)
 ```
 
 ### KEDA Not Triggering
-```
-keda_scaledobject_get_tool(name, namespace)  # Check status
-get_events(namespace)                        # Check events
+
+```python
+keda_scaledobject_get(name, namespace)
+kubectl_get(resource_type="events", namespace)
 ```
 
 ### Common Issues
@@ -201,19 +227,12 @@ get_events(namespace)                        # Check events
 
 ## Best Practices
 
-1. **Always Set Resource Requests**
-   - HPA requires requests to calculate utilization
-
-2. **Use Multiple Metrics**
-   - Combine CPU + custom metrics for accuracy
-
-3. **Stabilization Windows**
-   - Prevent flapping with scaleDown stabilization
-
-4. **Scale to Zero Carefully**
-   - Consider cold start time
-   - Use activation threshold
+1. **Always Set Resource Requests** - HPA requires requests to calculate utilization
+2. **Use Multiple Metrics** - Combine CPU + custom metrics for accuracy
+3. **Stabilization Windows** - Prevent flapping with scaleDown stabilization
+4. **Scale to Zero Carefully** - Consider cold start time
 
 ## Related Skills
+
 - [k8s-cost](../k8s-cost/SKILL.md) - Cost optimization
 - [k8s-troubleshoot](../k8s-troubleshoot/SKILL.md) - Debug scaling issues

@@ -1,45 +1,58 @@
-## Description: <br>
-A complete skill lifecycle manager for discovering, orchestrating, fusing, and evolving skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Evolver helps agents discover, inspect, orchestrate, fuse, and preserve skills as reusable workflows.
 
-## Publisher: <br>
-[testlbin](https://clawhub.ai/user/testlbin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[testlbin](https://clawhub.ai/user/testlbin)
 
-## Use Case: <br>
-Developers and agents use this skill to decide whether to solve a task natively, orchestrate existing skills, fuse partial-fit skills, or preserve a validated workflow as a reusable skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skill-management workflows can change which skills an agent installs, audits, combines, or reuses. <br>
-Mitigation: Approve installs, audits, and new skill creation deliberately; review registry skills and inspect generated fused skills before reuse. <br>
-Risk: Some workflows may propose npm, pnpm, npx, or removal commands. <br>
-Mitigation: Verify package sources, selected skill slugs, and exact target paths before running commands; run removal commands only when the path is the intended skill directory. <br>
+## Use Case:
 
+Developers and agent operators use this skill to choose, inspect, combine, and preserve agent skills across Claude Code, Codex, and OpenClaw-style runtimes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/testlbin/skill-evolver) <br>
-- [Skill Search Workflow](references/skill-search.md) <br>
-- [Skill Inspector Workflow](references/skill-inspector.md) <br>
-- [Skill Fusion Workflow](references/skill-fusion.md) <br>
-- [Vercel Skills CLI](https://github.com/vercel-labs/skills) <br>
-- [ClawHub CLI Documentation](https://docs.openclaw.ai/zh-CN/tools/clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, code] <br>
-**Output Format:** [Markdown reports, plans, checkpoints, command snippets, and optional generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces phase artifacts such as intent analysis, candidate lists, inspection reports, orchestration plans, fusion specifications, verification reports, and audit reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can search registries and install third-party skills globally before auditing them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin CLI and package versions, avoid global or auto-yes installs, inspect downloaded skills in an isolated directory first, and review the skill before use.
+
+Risk: Generated candidate reports may contain untrusted or misleading content from registry results.
+
+Mitigation: Treat generated reports as untrusted data and verify selected skills with the provided installation and security audit steps before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/testlbin/skills/skill-evolver)
+- [Skill Search Workflow](references/skill-search.md)
+- [Skill Inspector Workflow](references/skill-inspector.md)
+- [Skill Fusion Workflow](references/skill-fusion.md)
+- [skills.sh Registry](https://github.com/vercel-labs/skills)
+- [ClawHub CLI Documentation](https://docs.openclaw.ai/zh-CN/tools/clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated workflow files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces staged decision artifacts such as intent analysis, candidate reports, inspection reports, orchestration plans, and optional fusion specifications.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

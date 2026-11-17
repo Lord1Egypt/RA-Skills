@@ -1,45 +1,59 @@
-## Description: <br>
-Uses Playwright to automate local pages, static HTML, or online pages for screenshots, element discovery, console log capture, and UI testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用 Playwright 对本地网页、静态 HTML 或在线页面执行自动化测试、元素发现、控制台日志采集与截图。
 
-## Publisher: <br>
-[carpedx](https://clawhub.ai/user/carpedx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carpedx](https://clawhub.ai/user/carpedx)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to inspect and test web pages by capturing screenshots, listing visible UI elements, and collecting browser console logs. It supports direct page URLs, local HTML files, and workflows that require starting a local service before automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots and console logs may capture sensitive page content from the pages or files the user opens. <br>
-Mitigation: Run the skill only against pages the user is authorized to inspect, and avoid sensitive or authenticated pages unless capture is necessary. <br>
-Risk: The server helper can start local services and run user-specified commands. <br>
-Mitigation: Use the helper only with trusted commands and expected local ports. <br>
-Risk: Opening file URLs can expose local HTML content to automation outputs. <br>
-Mitigation: Review local file paths before use and keep generated screenshots or logs in an appropriate output location. <br>
+## Use Case:
 
+Developers and engineers use this skill to automate browser checks on local, static, or online pages, including screenshots, UI element discovery, and browser console log capture.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/carpedx/playwright-web-test) <br>
-- [Publisher profile: carpedx](https://clawhub.ai/user/carpedx) <br>
-- [Artifact README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Console text with MEDIA file references for screenshots and local log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes screenshots and console logs to a local output directory, defaulting to /tmp/playwright-web-test.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Raw user text may be passed through shell evaluation by the agent entrypoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or change the entrypoint so user input is passed as an argument without shell evaluation before deployment.
+
+Risk: The helper script can start arbitrary local server commands.
+
+Mitigation: Restrict with_server.py usage to approved commands, expected ports, and trusted users.
+
+Risk: file:// targets and console capture can expose sensitive local content or page data.
+
+Mitigation: Use only trusted targets and avoid sensitive local files or confidential browser console output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/carpedx/skills/playwright-web-test)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown or plain text with command suggestions, Python code snippets, console logs, and MEDIA file references for screenshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create screenshot PNG files and console log files under the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

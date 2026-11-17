@@ -20,10 +20,11 @@
  *   ldm --version         Show version
  */
 
-import { existsSync, readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, chmodSync, unlinkSync, readlinkSync, renameSync, statSync, lstatSync, symlinkSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, chmodSync, unlinkSync, readlinkSync, renameSync, statSync, lstatSync, symlinkSync, copyFileSync } from 'node:fs';
 import { join, basename, resolve, dirname } from 'node:path';
-import { execSync } from 'node:child_process';
+import { execSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -211,6 +212,11 @@ function writeJSON(path, data) {
   writeFileSync(path, JSON.stringify(data, null, 2) + '\n');
 }
 
+function parsePositiveInt(value, fallback) {
+  const parsed = Number.parseInt(value || '', 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
 // ── CLI version check (#29) ──
 
 function checkCliVersion() {
@@ -227,6 +233,62 @@ function checkCliVersion() {
   } catch {
     // npm check failed, skip silently
   }
+}
+
+function selectedLdmNpmTrack() {
+  return ALPHA_FLAG ? 'alpha' : BETA_FLAG ? 'beta' : 'latest';
+}
+
+function selectedLdmTrackLabel(npmTag) {
+  return npmTag === 'latest' ? '' : ` (${npmTag} track)`;
+}
+
+function latestLdmCliForSelectedTrack() {
+  const npmTag = selectedLdmNpmTrack();
+  const npmViewCmd = npmTag === 'latest'
+    ? 'npm view @wipcomputer/wip-ldm-os version 2>/dev/null'
+    : `npm view @wipcomputer/wip-ldm-os dist-tags.${npmTag} 2>/dev/null`;
+  const latest = execSync(npmViewCmd, {
+    encoding: 'utf8',
+    timeout: 15000,
+  }).trim();
+  return { latest, npmTag };
+}
+
+function maybeSelfUpdateLdmCliBeforeInstall() {
+  // This shared preflight covers both bare `ldm install` and targeted
+  // `ldm install <app>`. Dry runs never update, but still disclose skew.
+  if (process.env.LDM_SELF_UPDATED) return;
+
+  try {
+    const { latest, npmTag } = latestLdmCliForSelectedTrack();
+    if (!latest || !semverNewer(latest, PKG_VERSION)) return;
+
+    const trackLabel = selectedLdmTrackLabel(npmTag);
+
+    if (DRY_RUN) {
+      console.log(`  LDM OS CLI v${PKG_VERSION} -> v${latest}${trackLabel} is available.`);
+      console.log(`  Dry run only: continuing with v${PKG_VERSION}.`);
+      console.log('');
+      return;
+    }
+
+    console.log(`  LDM OS CLI v${PKG_VERSION} -> v${latest}${trackLabel}. Updating first...`);
+    try {
+      execSync(`npm install -g @wipcomputer/wip-ldm-os@${latest}`, { stdio: 'inherit', timeout: 60000 });
+      console.log(`  CLI updated to v${latest}. Re-running with new code...`);
+      console.log('');
+      const reArgs = process.argv.slice(2);
+      const child = spawnSync('ldm', reArgs.length > 0 ? reArgs : ['install'], {
+        stdio: 'inherit',
+        env: { ...process.env, LDM_SELF_UPDATED: '1' },
+      });
+      if (child.error) throw child.error;
+      process.exit(child.status ?? 1);
+    } catch (e) {
+      console.log(`  ! Self-update failed: ${e.message}. Continuing with v${PKG_VERSION}.`);
+    }
+  } catch {}
 }
 
 // ── Dead backup trigger cleanup (#207) ──
@@ -348,9 +410,39 @@ function cleanStaleHooks() {
 
 // ── Boot hook sync (#49) ──
 
+// The registered SessionStart hook command is the single source of truth for
+// WHERE the boot hook actually executes from. Historically syncBootHook()
+// deployed to ~/.ldm/library/boot while the registered command pointed at
+// ~/.ldm/shared/boot (installer.mjs BOOT_DIR): new code landed in library/,
+// sessions ran the stale copy in shared/, and the install reported success.
+// Resolve the deploy target from the registered entry so the two can never
+// diverge again. Fallback is shared/boot, matching installer.mjs BOOT_DIR and
+// configureSessionStartHook() so a fresh machine stays consistent.
+// Ticket: ai/product/bugs/installer/open-tickets/2026-07-05--cc-mini--shared-library-split-brain-boot-deploy.md
+function getRegisteredBootHookTarget() {
+  const settings = readJSON(join(HOME, '.claude', 'settings.json'));
+  const entries = settings?.hooks?.SessionStart;
+  if (!Array.isArray(entries)) return null;
+  for (const entry of entries) {
+    for (const h of (entry?.hooks || [])) {
+      const cmd = h?.command || '';
+      const m = cmd.match(/(\S*boot-hook\.mjs)/);
+      if (m) return m[1].replace(/^["']|["']$/g, '');
+    }
+  }
+  return null;
+}
+
+function resolveBootExecDir() {
+  const target = getRegisteredBootHookTarget();
+  if (target) return dirname(target);
+  // Canonical default: same as src/boot/installer.mjs BOOT_DIR.
+  return join(LDM_ROOT, 'shared', 'boot');
+}
+
 function syncBootHook() {
   const srcBoot = join(__dirname, '..', 'src', 'boot', 'boot-hook.mjs');
-  const destBoot = join(LDM_ROOT, 'library', 'boot', 'boot-hook.mjs');
+  const destBoot = join(resolveBootExecDir(), 'boot-hook.mjs');
 
   if (!existsSync(srcBoot)) return false;
 
@@ -736,6 +828,24 @@ function deployDocs() {
   const agentDocsCount = renderTemplates(agentLibraryDest);
   if (agentDocsCount > 0) {
     console.log(`  + ${agentDocsCount} personalized doc(s) deployed to ${agentLibraryDest.replace(HOME, '~')}/`);
+  }
+
+  // Migration-window compatibility write (added 2026-04-30).
+  // dev-guide-wipcomputerinc.md was migrated from ~/.ldm/shared/ to
+  // ~/.ldm/library/documentation/ on 2026-04-19, but agent boot files,
+  // ~/.claude/rules/, and other consumers still reference the old shared
+  // path. Without this write, the old path serves stale content and
+  // agents reading by the old path get pre-migration policy.
+  // Forward-migration (grep-update consumers, then remove this compat
+  // write) is tracked separately. See bugs/installer/ ticket
+  // 2026-04-30--cc-mini--dev-guide-split-path-migration.md.
+  const devGuideName = 'dev-guide-wipcomputerinc.md';
+  const devGuideNew = join(agentLibraryDest, devGuideName);
+  const devGuideOld = join(LDM_ROOT, 'shared', devGuideName);
+  if (existsSync(devGuideNew)) {
+    mkdirSync(dirname(devGuideOld), { recursive: true });
+    cpSync(devGuideNew, devGuideOld);
+    console.log(`  + Compat write: ${devGuideName} also deployed to ${devGuideOld.replace(HOME, '~')} (migration window)`);
   }
 
   return docsCount + agentDocsCount;
@@ -1422,23 +1532,6 @@ async function showCatalogPicker() {
 // ── ldm install ──
 
 async function cmdInstall() {
-  if (!DRY_RUN && !acquireInstallLock()) return;
-
-  // Ensure LDM is initialized
-  if (!existsSync(VERSION_PATH)) {
-    console.log('  LDM OS not initialized. Running init first...');
-    console.log('');
-    cmdInit();
-  }
-
-  const { setFlags, installFromPath, installSingleTool, installToolbox, detectHarnesses } = await import('../lib/deploy.mjs');
-  const { detectInterfacesJSON } = await import('../lib/detect.mjs');
-
-  // Refresh harness detection (catches newly installed harnesses)
-  detectHarnesses();
-
-  setFlags({ dryRun: DRY_RUN, jsonOutput: JSON_OUTPUT, origin: 'manual' });
-
   // --help flag (#81)
   if (args.includes('--help') || args.includes('-h')) {
     console.log(`
@@ -1457,6 +1550,25 @@ async function cmdInstall() {
 `);
     process.exit(0);
   }
+
+  maybeSelfUpdateLdmCliBeforeInstall();
+
+  if (!DRY_RUN && !acquireInstallLock()) return;
+
+  // Ensure LDM is initialized
+  if (!existsSync(VERSION_PATH)) {
+    console.log('  LDM OS not initialized. Running init first...');
+    console.log('');
+    cmdInit();
+  }
+
+  const { setFlags, installFromPath, installSingleTool, installToolbox, detectHarnesses } = await import('../lib/deploy.mjs');
+  const { detectInterfacesJSON } = await import('../lib/detect.mjs');
+
+  // Refresh harness detection (catches newly installed harnesses)
+  detectHarnesses();
+
+  setFlags({ dryRun: DRY_RUN, jsonOutput: JSON_OUTPUT, origin: 'manual' });
 
   // Find the target (skip flags)
   const target = args.slice(1).find(a => !a.startsWith('--'));
@@ -1537,13 +1649,21 @@ async function cmdInstall() {
     // npm install --prefix silently fails for scoped packages in temp directories...
     // it creates the lock file but doesn't extract files. npm pack is reliable.
     const npmName = resolvedTarget;
+    // --alpha and --beta select the corresponding npm dist-tag instead of @latest.
+    // Without this, `ldm install --alpha <pkg>` was pulling the @latest version
+    // from npm pack and an existing global install would never advance to the
+    // current alpha. Now the tag flows through pack + the downstream
+    // installSingleTool's `npm install -g <pkg>@<version>` step uses the
+    // version baked into the alpha tarball.
+    const npmTag = ALPHA_FLAG ? 'alpha' : (BETA_FLAG ? 'beta' : '');
+    const packTarget = npmTag ? `${npmName}@${npmTag}` : npmName;
     const tempDir = join(LDM_TMP, `npm-${Date.now()}`);
     console.log('');
-    console.log(`  Installing ${npmName} from npm...`);
+    console.log(`  Installing ${packTarget} from npm...`);
     try {
       mkdirSync(tempDir, { recursive: true });
       // Use npm pack + tar instead of npm install --prefix
-      const tarball = execSync(`npm pack ${npmName} --pack-destination "${tempDir}" 2>/dev/null`, {
+      const tarball = execSync(`npm pack ${packTarget} --pack-destination "${tempDir}" 2>/dev/null`, {
         encoding: 'utf8', timeout: 60000, cwd: tempDir,
       }).trim();
       const tarPath = join(tempDir, tarball);
@@ -1708,6 +1828,135 @@ function migrateRegistry() {
   }
 
   return migrated;
+}
+
+// ── Legacy source.npm honest cleanup (Phase 1 of source-types refactor) ──
+// See ai/product/bugs/installer/2026-05-13--cc-mini--installer-source-npm-honest-cleanup.md
+
+async function migrateLegacyNpmSources({ dryRun = false } = {}) {
+  const {
+    planLegacyNpmSourcesMigration,
+    summaryHasChanges,
+    npmPackageExists,
+    executeDirectoryMoves,
+  } = await import('../lib/registry-migrations.mjs');
+
+  const registry = readJSON(REGISTRY_PATH);
+  if (!registry?.extensions) return null;
+
+  const { newRegistry, summary } = await planLegacyNpmSourcesMigration({
+    registry,
+    probeNpm: (name) => npmPackageExists(name, { timeoutMs: 2000 }),
+    // Resolve the entry's on-disk location before declaring it a phantom.
+    // Entries autoregistered with `ldmPath` (bin/ldm.js:1822 path) or with
+    // a `paths.ldm` field (lib/deploy.mjs path) can live outside the
+    // default ~/.ldm/extensions/<name> location. A naive check would
+    // silently delete a working entry as "phantom."
+    extensionExists: (name, entry) => {
+      const customPath = entry?.paths?.ldm || entry?.ldmPath;
+      if (customPath && existsSync(customPath)) return true;
+      return existsSync(join(LDM_EXTENSIONS, name));
+    },
+    now: () => new Date(),
+  });
+
+  if (!summaryHasChanges(summary)) return summary;
+
+  if (!dryRun) {
+    const stamp = summary.timestamp.replace(/[:.]/g, '-');
+    const backupPath = `${REGISTRY_PATH}.bak-${stamp}`;
+    copyFileSync(REGISTRY_PATH, backupPath);
+    summary.backupPath = backupPath;
+    writeJSON(REGISTRY_PATH, newRegistry);
+
+    // Execute directory moves AFTER the registry write. Each move sends a
+    // deduplicated extension's on-disk directory to ~/.ldm/_trash/<name>-
+    // deduplicated-<timestamp> so autoDetectExtensions (which only scans
+    // ~/.ldm/extensions/) cannot find it on the next install pass.
+    // Without this, the registry dedup reverts within the same install run.
+    // See ai/product/bugs/installer/2026-05-13--cc-mini--installer-dedup-reverts-between-installs.md
+    const { performed, skipped } = executeDirectoryMoves({
+      directoryMoves: summary.directoryMoves,
+      extensionsRoot: LDM_EXTENSIONS,
+      trashRoot: join(LDM_ROOT, '_trash'),
+    });
+    summary.directoryMovesPerformed.push(...performed);
+    summary.directoryMovesSkipped.push(...skipped);
+  }
+
+  return summary;
+}
+
+function printLegacyNpmSourcesSummary(summary, { dryRun = false } = {}) {
+  if (!summary) return;
+  const writeableChanges =
+    summary.migrated.length +
+    summary.phantomsRemoved.length +
+    summary.duplicatesRemoved.length;
+  const probeFailureCount = summary.probeFailures?.length || 0;
+  // Always surface probe failures even when nothing was writeable. If every
+  // probe times out, the install would otherwise look like a no-op and the
+  // [unavailable] rows in `ldm status` would survive silently.
+  if (writeableChanges === 0 && probeFailureCount === 0) return;
+
+  console.log('');
+  console.log(dryRun
+    ? '  Registry source.npm cleanup (dry run, no changes written):'
+    : '  Registry source.npm cleanup:');
+
+  if (summary.migrated.length > 0) {
+    console.log(`  + ${dryRun ? 'Would migrate' : 'Migrated'} ${summary.migrated.length} entr${summary.migrated.length === 1 ? 'y' : 'ies'} to updateSource.type=untracked`);
+    for (const m of summary.migrated) {
+      const detail = m.legacyNpmName
+        ? ` (legacy source.npm "${m.legacyNpmName}" preserved in provenance)`
+        : ' (no source info; classified as untracked)';
+      console.log(`      ${m.name}${detail}`);
+    }
+  }
+  if (summary.phantomsRemoved.length > 0) {
+    console.log(`  + ${dryRun ? 'Would remove' : 'Removed'} ${summary.phantomsRemoved.length} phantom entr${summary.phantomsRemoved.length === 1 ? 'y' : 'ies'}:`);
+    for (const p of summary.phantomsRemoved) {
+      console.log(`      ${p.name} (${p.reason})`);
+    }
+  }
+  if (summary.duplicatesRemoved.length > 0) {
+    console.log(`  + ${dryRun ? 'Would remove' : 'Removed'} ${summary.duplicatesRemoved.length} duplicate entr${summary.duplicatesRemoved.length === 1 ? 'y' : 'ies'}:`);
+    for (const d of summary.duplicatesRemoved) {
+      console.log(`      ${d.removed} (canonical: ${d.keep})`);
+    }
+  }
+  if (summary.directoryMoves && summary.directoryMoves.length > 0) {
+    if (dryRun) {
+      console.log(`  + Would move ${summary.directoryMoves.length} duplicate director${summary.directoryMoves.length === 1 ? 'y' : 'ies'} to ~/.ldm/_trash/ (so autoDetectExtensions cannot re-register):`);
+      for (const m of summary.directoryMoves) {
+        console.log(`      ~/.ldm/extensions/${m.name} -> ~/.ldm/_trash/${m.trashName}`);
+      }
+    } else {
+      const performed = summary.directoryMovesPerformed || [];
+      const skipped = summary.directoryMovesSkipped || [];
+      if (performed.length > 0) {
+        console.log(`  + Moved ${performed.length} duplicate director${performed.length === 1 ? 'y' : 'ies'} to ~/.ldm/_trash/ (autoDetectExtensions cannot re-register):`);
+        for (const m of performed) {
+          console.log(`      ${m.name} -> ${m.destPath.replace(HOME, '~')}`);
+        }
+      }
+      if (skipped.length > 0) {
+        console.log(`  ! ${skipped.length} duplicate director${skipped.length === 1 ? 'y' : 'ies'} could not be moved (registry entries are removed; autoDetect may re-add on next install):`);
+        for (const m of skipped) {
+          console.log(`      ${m.name} (${m.reason})`);
+        }
+      }
+    }
+  }
+  if (summary.probeFailures && summary.probeFailures.length > 0) {
+    console.log(`  ! ${summary.probeFailures.length} npm probe${summary.probeFailures.length === 1 ? '' : 's'} could not complete (will retry on next install):`);
+    for (const f of summary.probeFailures) {
+      console.log(`      ${f.name} (source.npm "${f.npmName}")`);
+    }
+  }
+  if (!dryRun && summary.backupPath) {
+    console.log(`  + Registry backup: ${summary.backupPath.replace(HOME, '~')}`);
+  }
 }
 
 // ── Auto-detect unregistered extensions ──
@@ -1895,38 +2144,6 @@ async function cmdInstallCatalog() {
   // No lock here. cmdInstall() already holds it when calling this.
   installLog(`ldm install started (v${PKG_VERSION}, DRY_RUN=${DRY_RUN})`);
 
-  // Self-update: check if CLI itself is outdated. Update first, then re-exec.
-  // This breaks the chicken-and-egg: new features in ldm install are always
-  // available because the installer upgrades itself before doing anything else.
-  // --alpha and --beta flags check the corresponding npm dist-tag instead of @latest.
-  if (!DRY_RUN && !process.env.LDM_SELF_UPDATED) {
-    try {
-      const npmTag = ALPHA_FLAG ? 'alpha' : BETA_FLAG ? 'beta' : 'latest';
-      const trackLabel = npmTag === 'latest' ? '' : ` (${npmTag} track)`;
-      const npmViewCmd = npmTag === 'latest'
-        ? 'npm view @wipcomputer/wip-ldm-os version 2>/dev/null'
-        : `npm view @wipcomputer/wip-ldm-os dist-tags.${npmTag} 2>/dev/null`;
-      const latest = execSync(npmViewCmd, {
-        encoding: 'utf8', timeout: 15000,
-      }).trim();
-      if (latest && semverNewer(latest, PKG_VERSION)) {
-        console.log(`  LDM OS CLI v${PKG_VERSION} -> v${latest}${trackLabel}. Updating first...`);
-        try {
-          execSync(`npm install -g @wipcomputer/wip-ldm-os@${latest}`, { stdio: 'inherit', timeout: 60000 });
-          console.log(`  CLI updated to v${latest}. Re-running with new code...`);
-          console.log('');
-          // Re-exec with the new binary. LDM_SELF_UPDATED prevents infinite loop.
-          // process.argv.slice(2) skips 'node' and the script path, keeps just 'install' + flags
-          const reArgs = process.argv.slice(2).join(' ') || 'install';
-          execSync(`LDM_SELF_UPDATED=1 ldm ${reArgs}`, { stdio: 'inherit' });
-          process.exit(0);
-        } catch (e) {
-          console.log(`  ! Self-update failed: ${e.message}. Continuing with v${PKG_VERSION}.`);
-        }
-      }
-    } catch {}
-  }
-
   autoDetectExtensions();
 
   // Migrate old registry entries to v2 format (#262)
@@ -1934,6 +2151,12 @@ async function cmdInstallCatalog() {
   if (migrated > 0) {
     console.log(`  + Migrated ${migrated} registry entries to v2 format (source info added)`);
   }
+
+  // Phase 1 of source-types refactor: clear bad source.npm entries, dedupe,
+  // and classify mystery rows as untracked so `ldm status` stops lying.
+  // See ai/product/bugs/installer/2026-05-13--cc-mini--installer-source-npm-honest-cleanup.md
+  const npmCleanupSummary = await migrateLegacyNpmSources({ dryRun: DRY_RUN });
+  printLegacyNpmSourcesSummary(npmCleanupSummary, { dryRun: DRY_RUN });
 
   // Aggregate the bin ownership manifest BEFORE seedLocalCatalog,
   // deployBridge, deployScripts, and the heal walk run. If two
@@ -2865,6 +3088,27 @@ async function cmdDoctor() {
     }
   }
 
+  // Warn on registry entries whose legacy source.npm value 404s on npm.
+  // `ldm install` migrates these to updateSource.type=untracked; this catches
+  // future drift and any entries the install-time probe couldn't reach.
+  // See ai/product/bugs/installer/2026-05-13--cc-mini--installer-source-npm-honest-cleanup.md
+  try {
+    const { findLegacyNpm404Entries, npmPackageExists } = await import('../lib/registry-migrations.mjs');
+    const docRegistry = readJSON(REGISTRY_PATH);
+    const legacy404 = await findLegacyNpm404Entries({
+      registry: docRegistry,
+      probeNpm: (name) => npmPackageExists(name, { timeoutMs: 1500 }),
+    });
+    if (legacy404.length > 0) {
+      console.log('');
+      console.log(`  ! ${legacy404.length} extension(s) declare an npm source whose package does not exist on npm:`);
+      for (const { name, npmName } of legacy404) {
+        console.log(`      ${name}  (source.npm "${npmName}")`);
+      }
+      console.log('      Run `ldm install` to migrate these to updateSource.type=untracked.');
+    }
+  } catch {}
+
   // --fix: clean up registered-missing entries
   if (FIX_FLAG && registeredMissing.length > 0) {
     const registry = readJSON(REGISTRY_PATH);
@@ -2883,6 +3127,161 @@ async function cmdDoctor() {
     const hooksCleaned = cleanStaleHooks();
     if (hooksCleaned > 0) {
       issues = Math.max(0, issues - hooksCleaned);
+    }
+  }
+
+  // Duplicate hook entries + invalid model value in ~/.claude/settings.json.
+  // Duplicates: the same hook (event + matcher + commands) registered more
+  // than once runs once per copy every session. 10 duplicate SessionStart
+  // boot-hook entries observed 2026-07-04 (~450KB of boot context per
+  // session start). Invalid model: a paste carrying ANSI escape codes can
+  // land in /model and get persisted (e.g. "opus" + ESC + "[1m"); every new
+  // session then fails its first API call. The corruption signal is a
+  // CONTROL character (ESC 0x1B etc.), never the visible charset: bracketed
+  // IDs like "claude-fable-5[1m]" are legitimate 1M-context variants and
+  // must be left untouched.
+  // Reported always; collapsed/removed under --fix with a timestamped
+  // backup written before the first mutation.
+  // See ai/product/bugs/installer/open-tickets/2026-07-04--cc-mini--installer-sessionstart-hook-duplicate-registration.md
+  // and ai/product/bugs/guard/2026-07-04--cc-mini--no-blessed-recipe-for-live-settings-remediation.md
+  {
+    const settingsPath = join(HOME, '.claude', 'settings.json');
+    const settings = readJSON(settingsPath);
+    if (!settings && existsSync(settingsPath)) {
+      console.log('  ! ~/.claude/settings.json exists but is not valid JSON; skipping hook/model checks');
+      issues++;
+    }
+    let settingsDirty = false;
+    let backupDone = false;
+    const backupSettingsOnce = () => {
+      if (backupDone) return;
+      const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const bak = `${settingsPath}.bak-${stamp}`;
+      copyFileSync(settingsPath, bak);
+      console.log(`  + Backup written: ${bak}`);
+      backupDone = true;
+    };
+
+    // Duplicate hook entries (same event + matcher + hook command list).
+    // Deliberately ignores type/timeout: entries differing only in timeout
+    // are treated as duplicates and collapse to the first.
+    if (settings?.hooks) {
+      const dupes = [];
+      for (const [event, groups] of Object.entries(settings.hooks)) {
+        if (!Array.isArray(groups)) continue;
+        const seen = new Map();
+        groups.forEach((g, i) => {
+          const key = JSON.stringify({
+            matcher: g?.matcher,
+            hooks: (g?.hooks || []).map((h) => h?.command),
+          });
+          if (!seen.has(key)) seen.set(key, []);
+          seen.get(key).push(i);
+        });
+        for (const idxs of seen.values()) {
+          if (idxs.length > 1) dupes.push({ event, idxs });
+        }
+      }
+      const extra = dupes.reduce((n, d) => n + d.idxs.length - 1, 0);
+      if (extra > 0) {
+        for (const d of dupes) {
+          const cmd = settings.hooks[d.event][d.idxs[0]]?.hooks?.[0]?.command || '(no command)';
+          console.log(`  ! ${d.event}: ${d.idxs.length} identical hook entries for: ${cmd}`);
+        }
+        if (FIX_FLAG) {
+          backupSettingsOnce();
+          for (const d of dupes) {
+            // Keep the first, drop the rest. Right-to-left so indices stay valid.
+            for (let j = d.idxs.length - 1; j >= 1; j--) {
+              settings.hooks[d.event].splice(d.idxs[j], 1);
+            }
+          }
+          settingsDirty = true;
+          console.log(`  + Collapsed ${extra} duplicate hook entr${extra === 1 ? 'y' : 'ies'}`);
+        } else {
+          console.log(`    Run: ldm doctor --fix to collapse ${extra} duplicate hook entr${extra === 1 ? 'y' : 'ies'}`);
+          issues += extra;
+        }
+      }
+    }
+
+    // Invalid model value. Corruption means CONTROL characters (ESC 0x1B
+    // from ANSI fragments, NUL, DEL...) or an impossible length, never a
+    // visible-charset judgment: "claude-fable-5[1m]" is a legitimate
+    // 1M-context model ID and must pass.
+    if (settings && typeof settings.model === 'string') {
+      const valid =
+        settings.model.length > 0 &&
+        settings.model.length <= 256 &&
+        !/[\x00-\x1f\x7f]/.test(settings.model);
+      if (!valid) {
+        console.log(`  ! settings.json model value is invalid: ${JSON.stringify(settings.model)}`);
+        if (FIX_FLAG) {
+          backupSettingsOnce();
+          delete settings.model;
+          settingsDirty = true;
+          console.log('  + Removed invalid model value (re-pick with /model in Claude Code)');
+        } else {
+          console.log('    Run: ldm doctor --fix to remove it, then re-pick with /model in Claude Code');
+          issues++;
+        }
+      }
+    }
+
+    if (settingsDirty) {
+      writeFileSync(settingsPath, JSON.stringify(settings, null, 2) + '\n');
+    }
+  }
+
+  // Boot hook stale at execution path.
+  //
+  // Split-brain deploys are silent: version tracking can say the boot hook
+  // updated while the SessionStart hook still executes an older copy on disk
+  // (2026-07-05: install reported alpha.32's boot trim active, but the live
+  // payload was the untrimmed 49KB because syncBootHook wrote library/boot
+  // while the hook ran shared/boot). Hash-compare the file the registered
+  // hook actually runs against this CLI's src/boot/boot-hook.mjs (the code the
+  // installer would deploy). Divergence means the hook is running stale code.
+  // Ticket: ai/product/bugs/installer/open-tickets/2026-07-05--cc-mini--shared-library-split-brain-boot-deploy.md
+  {
+    const execTarget = getRegisteredBootHookTarget();
+    const srcBoot = join(__dirname, '..', 'src', 'boot', 'boot-hook.mjs');
+    const hashFile = (p) => {
+      try { return createHash('sha256').update(readFileSync(p)).digest('hex'); } catch { return null; }
+    };
+    if (execTarget && existsSync(srcBoot)) {
+      const srcHash = hashFile(srcBoot);
+      const execExists = existsSync(execTarget);
+      const execHash = execExists ? hashFile(execTarget) : null;
+      // Informational: which of the known deploy locations already matches src.
+      const freshCandidates = [
+        join(LDM_ROOT, 'shared', 'boot', 'boot-hook.mjs'),
+        join(LDM_ROOT, 'library', 'boot', 'boot-hook.mjs'),
+      ].filter((p) => existsSync(p) && hashFile(p) === srcHash);
+      if (!execExists || execHash !== srcHash) {
+        const short = (h) => (h ? h.slice(0, 12) : 'missing');
+        console.log(`  ! boot hook stale at execution path: ${execTarget.replace(HOME, '~')}`);
+        console.log(`    the registered SessionStart hook runs ${short(execHash)}, current is ${short(srcHash)}`);
+        if (freshCandidates.length > 0) {
+          console.log(`    a current copy exists at: ${freshCandidates[0].replace(HOME, '~')}`);
+        }
+        if (FIX_FLAG) {
+          try {
+            if (execExists) {
+              const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+              copyFileSync(execTarget, `${execTarget}.bak-${stamp}`);
+            }
+            mkdirSync(dirname(execTarget), { recursive: true });
+            copyFileSync(srcBoot, execTarget);
+            console.log('  + Redeployed the current boot hook to the execution path');
+          } catch (e) {
+            console.log(`  x Could not redeploy boot hook to execution path: ${e.message}`);
+          }
+        } else {
+          console.log('    Run: ldm doctor --fix to redeploy the current boot hook to the execution path');
+          issues++;
+        }
+      }
     }
   }
 
@@ -3225,7 +3624,91 @@ async function cmdDoctor() {
 
 // ── ldm status ──
 
-function cmdStatus() {
+const STATUS_NPM_TIMEOUT_MS = parsePositiveInt(process.env.LDM_STATUS_NPM_TIMEOUT_MS, 5000);
+const STATUS_TOTAL_BUDGET_MS = parsePositiveInt(process.env.LDM_STATUS_TOTAL_BUDGET_MS, 60000);
+const STATUS_NPM_CONCURRENCY = parsePositiveInt(process.env.LDM_STATUS_NPM_CONCURRENCY, 8);
+const STATUS_NPM_REGISTRY_URL = process.env.LDM_STATUS_NPM_REGISTRY_URL || 'https://registry.npmjs.org';
+
+async function npmViewVersionForStatus(pkg, timeoutMs) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const registry = STATUS_NPM_REGISTRY_URL.replace(/\/+$/, '');
+    const response = await fetch(`${registry}/${encodeURIComponent(pkg)}`, {
+      signal: controller.signal,
+      headers: { accept: 'application/vnd.npm.install-v1+json, application/json' },
+    });
+    if (!response.ok) {
+      const error = new Error(`npm registry returned ${response.status}`);
+      error.statusCode = response.status;
+      throw error;
+    }
+    const metadata = await response.json();
+    return metadata?.['dist-tags']?.latest || '';
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function remainingStatusBudgetMs(startedAt) {
+  return Math.max(0, STATUS_TOTAL_BUDGET_MS - (Date.now() - startedAt));
+}
+
+function formatStatusElapsed(ms) {
+  if (!Number.isFinite(ms) || ms <= 0) return '0ms';
+  if (ms < 1000) return `${Math.round(ms)}ms`;
+  return `${(ms / 1000).toFixed(1)}s`;
+}
+
+function classifyStatusCheckError(error) {
+  if (error?.name === 'AbortError' || error?.signal === 'SIGTERM' || error?.code === 'ETIMEDOUT' || String(error?.message || '').includes('ETIMEDOUT')) {
+    return 'timeout';
+  }
+  return 'unavailable';
+}
+
+async function runStatusProbesWithConcurrency(items, concurrency, statusStartedAt) {
+  if (items.length === 0) return [];
+
+  const results = new Array(items.length);
+  const workerCount = Math.max(1, Math.min(concurrency, items.length));
+  let nextIndex = 0;
+
+  async function worker() {
+    while (nextIndex < items.length) {
+      const index = nextIndex;
+      nextIndex += 1;
+      const item = items[index];
+      const remaining = remainingStatusBudgetMs(statusStartedAt);
+
+      if (remaining <= 0) {
+        results[index] = { ...item, status: 'skipped', reason: 'budget', elapsedMs: 0 };
+        continue;
+      }
+
+      const timeout = Math.min(STATUS_NPM_TIMEOUT_MS, remaining);
+      const probeStartedAt = Date.now();
+      console.log(`    ${item.name}: checking npm`);
+
+      try {
+        const latest = await npmViewVersionForStatus(item.npm, timeout);
+        results[index] = { ...item, status: 'ok', latest, elapsedMs: Date.now() - probeStartedAt };
+      } catch (error) {
+        results[index] = {
+          ...item,
+          status: 'skipped',
+          reason: classifyStatusCheckError(error),
+          elapsedMs: Date.now() - probeStartedAt,
+        };
+      }
+    }
+  }
+
+  await Promise.all(Array.from({ length: workerCount }, () => worker()));
+  return results;
+}
+
+async function cmdStatus() {
   const version = readJSON(VERSION_PATH);
   const registry = readJSON(REGISTRY_PATH);
   const extCount = Object.keys(registry?.extensions || {}).length;
@@ -3246,18 +3729,46 @@ function cmdStatus() {
     return;
   }
 
-  // Check CLI version against npm
-  let cliUpdate = null;
-  try {
-    const latest = execSync('npm view @wipcomputer/wip-ldm-os version 2>/dev/null', {
-      encoding: 'utf8', timeout: 10000,
-    }).trim();
-    if (latest && semverNewer(latest, PKG_VERSION)) cliUpdate = latest;
-  } catch {}
+  console.log('');
+  console.log(`  LDM OS v${version.version}`);
+  console.log(`  Installed: ${version.installed?.split('T')[0] || 'unknown'}`);
+  console.log(`  Updated:   ${version.updated?.split('T')[0] || 'unknown'}`);
+  console.log(`  Extensions: ${extCount}`);
+  console.log(`  Root: ${LDM_ROOT}`);
+
+  const statusStartedAt = Date.now();
+  const skipped = [];
+
+  console.log('');
+  console.log('  Checking updates:');
 
   // Check extensions against npm using registry source info (#262)
+  const probeItems = [{
+    kind: 'cli',
+    name: 'ldm cli',
+    npm: '@wipcomputer/wip-ldm-os',
+    current: PKG_VERSION,
+  }];
+
   const updates = [];
+  const untrackedEntries = [];
   for (const [name, info] of Object.entries(registry?.extensions || {})) {
+    // Phase 1 of source-types refactor: entries explicitly marked as untracked
+    // are listed in a separate section and never probed. Honest reporting:
+    // we don't know how to check their source yet.
+    if (info?.updateSource?.type === 'untracked') {
+      const currentVersion = info?.installed?.version || info.version || 'unknown';
+      untrackedEntries.push({ name, version: currentVersion });
+      continue;
+    }
+    // Defensive skip for any other Phase 2 updateSource types (git, bundled,
+    // private, etc.) that may appear in the registry before their probe
+    // logic ships. Falling through would use the legacy info.source.npm
+    // path, which is wrong for these types and would print them as
+    // [unavailable]. Phase 2 replaces this skip with proper dispatch.
+    if (info?.updateSource && info.updateSource.type !== 'npm') {
+      continue;
+    }
     // Use registry source.npm (v2) or fall back to extension's package.json
     let npmPkg = info?.source?.npm || null;
     if (!npmPkg) {
@@ -3268,22 +3779,52 @@ function cmdStatus() {
     if (!npmPkg) continue;
     const currentVersion = info?.installed?.version || info.version;
     if (!currentVersion) continue;
-    try {
-      const latest = execSync(`npm view ${npmPkg} version 2>/dev/null`, {
-        encoding: 'utf8', timeout: 10000,
-      }).trim();
-      if (latest && semverNewer(latest, currentVersion)) {
-        updates.push({ name, current: currentVersion, latest, npm: npmPkg });
-      }
-    } catch {}
+    probeItems.push({
+      kind: 'extension',
+      name,
+      npm: npmPkg,
+      current: currentVersion,
+    });
+  }
+  untrackedEntries.sort((a, b) => a.name.localeCompare(b.name));
+
+  let cliUpdate = null;
+  const probeResults = await runStatusProbesWithConcurrency(probeItems, STATUS_NPM_CONCURRENCY, statusStartedAt);
+  for (const result of probeResults) {
+    if (!result) continue;
+    if (result.status === 'skipped') {
+      skipped.push({
+        name: result.name,
+        npm: result.npm,
+        reason: result.reason,
+        elapsedMs: result.elapsedMs,
+      });
+      continue;
+    }
+
+    if (result.kind === 'cli') {
+      if (result.latest && semverNewer(result.latest, PKG_VERSION)) cliUpdate = result.latest;
+    } else if (result.latest && semverNewer(result.latest, result.current)) {
+      updates.push({
+        name: result.name,
+        current: result.current,
+        latest: result.latest,
+        npm: result.npm,
+      });
+    }
   }
 
   console.log('');
-  console.log(`  LDM OS v${version.version}${cliUpdate ? ` (v${cliUpdate} available)` : ' (latest)'}`);
-  console.log(`  Installed: ${version.installed?.split('T')[0]}`);
-  console.log(`  Updated:   ${version.updated?.split('T')[0]}`);
-  console.log(`  Extensions: ${extCount}${updates.length > 0 ? `, ${updates.length} update(s) available` : ', all up to date'}`);
-  console.log(`  Root: ${LDM_ROOT}`);
+  if (updates.length === 0 && !cliUpdate && skipped.length === 0 && untrackedEntries.length === 0) {
+    console.log('  Update summary: all up to date');
+  } else {
+    const summaryParts = [];
+    if (updates.length > 0) summaryParts.push(`${updates.length} extension update(s) available`);
+    if (cliUpdate) summaryParts.push('CLI update available');
+    if (untrackedEntries.length > 0) summaryParts.push(`${untrackedEntries.length} untracked`);
+    if (skipped.length > 0) summaryParts.push(`${skipped.length} update check(s) skipped`);
+    console.log(`  Update summary: ${summaryParts.join(', ')}`);
+  }
 
   if (updates.length > 0) {
     console.log('');
@@ -3297,6 +3838,24 @@ function cmdStatus() {
 
   if (cliUpdate) {
     console.log(`  CLI update: npm install -g @wipcomputer/wip-ldm-os@${cliUpdate}`);
+  }
+
+  if (untrackedEntries.length > 0) {
+    console.log('');
+    console.log('  Untracked extensions (pending reclassification):');
+    const maxNameLen = Math.max(...untrackedEntries.map(e => e.name.length));
+    for (const e of untrackedEntries) {
+      console.log(`    ${e.name.padEnd(maxNameLen)}  v${e.version}`);
+    }
+    console.log('    (run `ldm doctor --reclassify-sources` to classify these)');
+  }
+
+  if (skipped.length > 0) {
+    console.log('');
+    console.log('  Update checks skipped:');
+    for (const item of skipped) {
+      console.log(`    ${item.name}: [${item.reason} ${formatStatusElapsed(item.elapsedMs)}] ${item.npm}`);
+    }
   }
 
   console.log('');
@@ -3979,7 +4538,7 @@ async function main() {
     console.log('    Module     ... ESM main/exports -> importable');
     console.log('    MCP Server ... mcp-server.mjs -> claude mcp add --scope user');
     console.log('    OpenClaw   ... openclaw.plugin.json -> ~/.ldm/extensions/ + ~/.openclaw/extensions/');
-    console.log('    Skill      ... SKILL.md -> ~/.openclaw/skills/<tool>/');
+    console.log('    Skill      ... SKILL.md or skills/<name>/SKILL.md -> agent skill paths');
     console.log('    CC Hook    ... guard.mjs or claudeCode.hook -> ~/.claude/settings.json');
     console.log('');
     console.log(`  v${PKG_VERSION}`);
@@ -4286,6 +4845,164 @@ async function main() {
     console.log('  To finish, run: npm uninstall -g @wipcomputer/wip-ldm-os');
     console.log('');
     console.log('  LDM OS uninstalled.');
+    console.log('');
+  }
+
+  // ── ldm uninstall <pkg> ──
+  //
+  // Removes a single LDM-installed package. Used to reset a single
+  // extension between dogfood cycles without taking down the rest of
+  // LDM OS. Pairs with the per-package cleanup hook each package may
+  // ship (e.g. `codex-daemon uninstall --purge` for Codex Remote
+  // Control), which the user runs first to clean up product-specific
+  // state. This command then removes the LDM-side install record + the
+  // global npm package + the LDM extension dir.
+  //
+  // Safety:
+  //   - Never touches ~/.codex/ or other unrelated user state.
+  //   - Never removes ~/.ldm/memory/ or ~/.ldm/agents/.
+  //   - Never removes other extensions.
+  //   - Idempotent: running twice exits cleanly.
+  //   - Refuses to uninstall LDM OS itself (use `ldm uninstall` for that).
+
+  async function cmdUninstallPackage(pkgName) {
+    const isDryRun = args.includes('--dry-run');
+
+    if (pkgName === 'wip-ldm-os' || pkgName === '@wipcomputer/wip-ldm-os') {
+      console.error('  Refusing to uninstall LDM OS itself with `ldm uninstall <pkg>`.');
+      console.error('  To remove all of LDM OS: ldm uninstall');
+      process.exit(1);
+    }
+
+    console.log('');
+    console.log(`  ldm uninstall ${pkgName}`);
+    console.log('  ────────────────────────────────────');
+
+    // 1. Look up the package in the registry.
+    const registryPath = join(LDM_EXTENSIONS, 'registry.json');
+    let registry = { _format: 'v1', extensions: {} };
+    try {
+      if (existsSync(registryPath)) {
+        registry = JSON.parse(readFileSync(registryPath, 'utf8'));
+      }
+    } catch (e) {
+      console.error(`  ! could not read registry at ${registryPath}: ${e.message}`);
+    }
+    const entry = registry.extensions?.[pkgName] || null;
+
+    // 2. Resolve npm package name.
+    //    Registry entries from npm installs put the npm name in `source.npm`
+    //    or in the top-level `name` field. Fall back to the user-supplied
+    //    pkgName (works for unscoped packages).
+    const npmPkg = entry?.source?.npm || entry?.name || pkgName;
+
+    // 3. Resolve LDM extension dir(s).
+    const ldmExtPath = entry?.paths?.ldm
+      || entry?.ldmPath
+      || join(LDM_EXTENSIONS, pkgName);
+    const ocExtPath = entry?.paths?.openclaw
+      || entry?.ocPath
+      || null;
+
+    // 4. Build the action plan.
+    const actions = [];
+    let pkgInstalledGlobally = false;
+    try {
+      const npmList = execSync(`npm list -g --depth=0 --json 2>/dev/null`, { encoding: 'utf8' });
+      const deps = JSON.parse(npmList).dependencies || {};
+      pkgInstalledGlobally = !!deps[npmPkg];
+    } catch {}
+
+    if (pkgInstalledGlobally) {
+      actions.push({ kind: 'npm-uninstall', npmPkg });
+    } else {
+      actions.push({ kind: 'skip', label: `npm: ${npmPkg} not installed globally` });
+    }
+    if (existsSync(ldmExtPath)) {
+      actions.push({ kind: 'rm-dir', label: 'LDM extension dir', path: ldmExtPath });
+    } else {
+      actions.push({ kind: 'skip', label: `LDM extension dir: ${ldmExtPath} already gone` });
+    }
+    if (ocExtPath && existsSync(ocExtPath)) {
+      actions.push({ kind: 'rm-dir', label: 'OpenClaw extension dir', path: ocExtPath });
+    }
+    if (entry) {
+      actions.push({ kind: 'registry-remove', name: pkgName });
+    } else {
+      actions.push({ kind: 'skip', label: `registry: no entry for ${pkgName}` });
+    }
+
+    const realActions = actions.filter(a => a.kind !== 'skip');
+    const skips = actions.filter(a => a.kind === 'skip');
+
+    console.log('');
+    if (realActions.length === 0) {
+      for (const s of skips) console.log(`  - ${s.label}`);
+      console.log('');
+      console.log('  Nothing to do.');
+      console.log('');
+      console.log('  Will NOT touch ~/.codex/ or ~/.ldm/memory/ or other extensions.');
+      return;
+    }
+    console.log('  Will:');
+    for (const a of realActions) {
+      switch (a.kind) {
+        case 'npm-uninstall':
+          console.log(`    - npm uninstall -g ${a.npmPkg}`);
+          break;
+        case 'rm-dir':
+          console.log(`    - remove ${a.label}: ${a.path}`);
+          break;
+        case 'registry-remove':
+          console.log(`    - remove registry entry for ${a.name}`);
+          break;
+      }
+    }
+    for (const s of skips) console.log(`    - skipped: ${s.label}`);
+    console.log('');
+    console.log('  Will NOT touch ~/.codex/ or ~/.ldm/memory/ or other extensions.');
+
+    if (isDryRun) {
+      console.log('');
+      console.log('  Dry run. Nothing removed.');
+      console.log('');
+      console.log('  Re-run without --dry-run to apply.');
+      return;
+    }
+
+    console.log('');
+    for (const a of realActions) {
+      switch (a.kind) {
+        case 'npm-uninstall':
+          try {
+            execSync(`npm uninstall -g ${a.npmPkg}`, { stdio: 'pipe', timeout: 60000 });
+            console.log(`  + npm uninstall -g ${a.npmPkg}`);
+          } catch (e) {
+            console.error(`  ! npm uninstall -g ${a.npmPkg} failed: ${e.message}`);
+          }
+          break;
+        case 'rm-dir':
+          try {
+            execSync(`rm -rf "${a.path}"`, { stdio: 'pipe' });
+            console.log(`  + removed ${a.label}: ${a.path}`);
+          } catch (e) {
+            console.error(`  ! could not remove ${a.path}: ${e.message}`);
+          }
+          break;
+        case 'registry-remove':
+          try {
+            delete registry.extensions[a.name];
+            writeFileSync(registryPath, JSON.stringify(registry, null, 2) + '\n');
+            console.log(`  + removed registry entry for ${a.name}`);
+          } catch (e) {
+            console.error(`  ! could not update registry: ${e.message}`);
+          }
+          break;
+      }
+    }
+
+    console.log('');
+    console.log('  Uninstalled.');
     console.log('');
   }
 
@@ -4596,7 +5313,7 @@ async function main() {
       await cmdDoctor();
       break;
     case 'status':
-      cmdStatus();
+      await cmdStatus();
       break;
     case 'sessions':
       await cmdSessions();
@@ -4619,9 +5336,17 @@ async function main() {
     case 'disable':
       await cmdDisable();
       break;
-    case 'uninstall':
-      await cmdUninstall();
+    case 'uninstall': {
+      // ldm uninstall <pkg> [--dry-run]   removes one package
+      // ldm uninstall                     removes the whole LDM OS install
+      const target = args.slice(1).find(a => !a.startsWith('--'));
+      if (target) {
+        await cmdUninstallPackage(target);
+      } else {
+        await cmdUninstall();
+      }
       break;
+    }
     case 'worktree':
       await cmdWorktree();
       break;

@@ -1,38 +1,52 @@
-## Description: <br>
-Generate images using ChatGPT/DALL-E through OpenClaw browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using ChatGPT/DALL-E through OpenClaw browser automation.
 
-## Publisher: <br>
-[sonim1](https://clawhub.ai/user/sonim1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sonim1](https://clawhub.ai/user/sonim1)
 
-## Use Case: <br>
-Developers and external users use this skill to guide an agent through ChatGPT web image generation from an already logged-in browser session, including tab discovery, prompt submission, waiting for generation, and downloading results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill operates an already logged-in ChatGPT browser tab and can submit prompts, inspect visible page state, click controls, and download files through the user's account. <br>
-Mitigation: Use a dedicated browser profile or isolated ChatGPT session, verify the attached tab before actions, and detach or close the tab when finished. <br>
-Risk: The security summary flags the skill as suspicious because it presents use of a real browser session as bypassing bot detection. <br>
-Mitigation: Review the workflow before installing and confirm that this browser-control behavior is acceptable for the intended account, workspace, and terms of use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agents use this skill to drive a logged-in ChatGPT browser tab for image generation requests and related download steps. It is intended for users who have intentionally attached OpenClaw browser control to their own ChatGPT session.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an attached browser tab with an active ChatGPT session and OpenClaw browser relay access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs OpenClaw to control a logged-in ChatGPT browser session, so actions inherit the user's account permissions and settings.
+
+Mitigation: Use it only when browser automation of the user's ChatGPT tab is intentional, review prompts before submission, and keep the relay attached only while needed.
+
+Risk: The release security summary flags explicit bot-detection bypass framing around the browser relay workflow.
+
+Mitigation: Prefer official or built-in image-generation paths when available and confirm that this automation approach is acceptable for the intended account and service context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sonim1/skills/chatgpt-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an attached Chrome or Brave browser tab with an active ChatGPT login.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

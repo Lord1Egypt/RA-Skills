@@ -1,43 +1,56 @@
-## Description: <br>
-Monitors product prices, stock levels, and market data across websites or APIs, then produces alerts, trend analysis, reports, and dashboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors product prices, stock levels, and market data across websites and APIs, with alerts and trend analysis.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chloepark85](https://clawhub.ai/user/chloepark85)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to configure price monitors, compare retailer prices, record price history, generate alerts, and create reports or local dashboards for products, competitor pricing, and market data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release is marked suspicious because broad price monitoring and bundled scripts create local-file and dashboard-script risks.
+
+Mitigation: Review before installing; use only for user-approved price or stock monitoring, avoid sensitive or authenticated pages, and keep dashboards local unless escaping issues are fixed.
+
+Risk: Dashboard content can include monitor names or source data that may be untrusted.
+
+Mitigation: Do not generate dashboards from untrusted monitor data until HTML and script escaping are added.
+
+Risk: Monitor IDs are used to locate local history files.
+
+Mitigation: Use only trusted monitor IDs and add path validation before accepting monitor IDs from untrusted input.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, shoppers, and business users use this skill to configure local price monitors, record price history, detect price drops or restocks, and generate markdown reports or HTML dashboards. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Monitored URLs, target prices, price history, alerts, and reports may contain sensitive purchase or competitor information. <br>
-Mitigation: Store the local price-monitor-data directory in a controlled location and review generated files before sharing or syncing them. <br>
-Risk: Website or API collection can violate source rules if the user monitors targets without permission. <br>
-Mitigation: Use permitted APIs or scraping paths, respect site terms and rate limits, and avoid private targets unless authorized. <br>
-Risk: Capability tags mention purchases, but the reviewed artifacts only support monitoring and recommendations. <br>
-Mitigation: Do not grant purchase authority to this skill; keep buying decisions and transactions under explicit user control. <br>
+**Output Format:** [Markdown guidance with JSON configuration examples, shell command examples, generated JSON data, Markdown reports, and HTML dashboards]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chloepark85/smart-price-monitor) <br>
-- [README](README.md) <br>
+**Other Properties Related to Output:** [Uses local price-monitor-data files for monitor configuration, price history, reports, dashboards, and alert logs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, markdown, JSON, HTML] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples, Python command examples, generated Markdown reports, JSON history and alert files, and self-contained HTML dashboards.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local monitoring state under price-monitor-data by default; PRICE_MONITOR_DATA can override the data directory.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

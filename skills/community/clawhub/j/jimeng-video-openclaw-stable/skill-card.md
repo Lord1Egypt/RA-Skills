@@ -1,44 +1,59 @@
-## Description: <br>
-Runs a controlled OpenClaw browser workflow in Jimeng to generate a video, wait for completion, and download the resulting MP4 locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jimeng Video Stable guides an agent through a stable Jimeng video workflow: open the video page, submit generation, wait for completion, download the video locally, and verify the resulting file.
 
-## Publisher: <br>
-[haohao-ui](https://clawhub.ai/user/haohao-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohao-ui](https://clawhub.ai/user/haohao-ui)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to create a Jimeng video, find the latest generated video, and return a verified local MP4 path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a Jimeng browser session and may act under the user's logged-in account. <br>
-Mitigation: Install and run it only with an OpenClaw browser profile intended for Jimeng video generation. <br>
-Risk: Long-running generation can stall or exceed the expected wait window. <br>
-Mitigation: Use the documented state machine, 20-30 second polling interval, 12-minute timeout, and explicit FAILED(timeout) result. <br>
-Risk: A download may appear complete without producing a usable file. <br>
-Mitigation: Verify that the local file exists, has size greater than zero, and is an MP4 or the page-declared video format. <br>
+## Use Case:
 
+Developers and agents use this skill to operate Jimeng through an OpenClaw-managed browser profile when they need to generate videos, find the latest generated video, download an mp4, and report a verified local file path.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/haohao-ui/jimeng-video-openclaw-stable) <br>
-- [Jimeng Video Workspace](https://jimeng.jianying.com/ai-tool/home/?workspace=0&type=video) <br>
-- [Jimeng Asset Library](https://jimeng.jianying.com/ai-tool/asset) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown with OpenClaw command guidance and a local file path report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports the local absolute path, file existence, file size, video format, or an explicit FAILED(...) state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may use an existing Jimeng browser session or profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with the intended OpenClaw browser profile and review profile selection before submitting generation requests.
+
+Risk: Video generation may run long or fail to complete.
+
+Mitigation: Use the skill's bounded polling posture: check every 20-30 seconds, stop after 12 minutes, and report FAILED(timeout) instead of waiting indefinitely.
+
+Risk: A downloaded video file may be missing, empty, or in an unexpected format.
+
+Mitigation: Verify that the reported file exists, has nonzero size, and is an mp4 or the format declared by the page before using the result.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/haohao-ui/skills/jimeng-video-openclaw-stable)
+- [Jimeng Video Tool](https://jimeng.jianying.com/ai-tool/home/?workspace=0&type=video)
+- [Jimeng Asset Library](https://jimeng.jianying.com/ai-tool/asset)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and final status text containing the local video path and verification result.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a downloaded local video file and reports explicit FAILED states on timeout, submit, download, or verification failures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

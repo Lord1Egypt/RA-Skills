@@ -1,56 +1,70 @@
-## Description: <br>
-Fine-tune large language models using DeepSpeed on local or remote GPUs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fine-tune large language models using DeepSpeed on local or remote GPUs.
 
-## Publisher: <br>
-[delock](https://clawhub.ai/user/delock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[delock](https://clawhub.ai/user/delock)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to plan and run DeepSpeed fine-tuning workflows for large language models on local or remote GPU systems, including LoRA/QLoRA, ZeRO configuration, launch commands, monitoring, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad SSH-level control of remote training machines. <br>
-Mitigation: Use a non-root remote account, review remote commands before execution, and run training in an isolated environment. <br>
-Risk: Persistent SSH keys or passwordless access can remain usable after setup. <br>
-Mitigation: Avoid no-passphrase keys unless revocation is understood, scope credentials to the training host, and remove keys or sessions when training is complete. <br>
-Risk: Host key verification gaps can expose remote training sessions to connection spoofing. <br>
-Mitigation: Verify host keys before routine use and add trusted host keys to known_hosts for subsequent connections. <br>
-Risk: Untrusted models or datasets can introduce unsafe code or data handling behavior during fine-tuning. <br>
-Mitigation: Run untrusted inputs in an isolated environment and explicitly review model loading options, especially remote-code settings. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to plan and run LLM fine-tuning with DeepSpeed, LoRA or QLoRA, ZeRO optimization, local or remote GPU execution, and training monitoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/delock/deepspeed-finetune) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/delock) <br>
-- [Metadata Homepage](https://github.com/deepspeedai/deepspeed-skills/tree/main/openclaw/deepspeed-finetune) <br>
-- [Quick Start Guide](references/quick_start.md) <br>
-- [DeepSpeed Reference Guide](references/deepspeed_guide.md) <br>
-- [LoRA/QLoRA Fine-tuning Guide](references/lora_guide.md) <br>
-- [ZeRO Optimization Guide](references/zero_optimization.md) <br>
-- [Single-GPU Training Strategy](references/single_gpu_strategy.md) <br>
-- [Remote Training Guide](references/remote_training.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [DeepSpeed Documentation](https://www.deepspeed.ai/) <br>
-- [DeepSpeed GitHub](https://github.com/microsoft/DeepSpeed) <br>
-- [ZeRO Paper](https://arxiv.org/abs/1910.02054) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code, JSON configuration examples, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce executable training and SSH commands that require review before running.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Remote SSH control can create lasting passwordless access to a training machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated unprivileged remote account and remove any generated key from both the local machine and the remote authorized_keys file when finished.
+
+Risk: Password-based SSH and unsafe host-key handling can expose remote training connections to credential or man-in-the-middle risk.
+
+Mitigation: Avoid password-based SSH where possible and verify host keys out of band before relying on the remote connection.
+
+Risk: Enabling trust_remote_code for an unreviewed model can execute model-provided code.
+
+Mitigation: Do not enable trust_remote_code unless the model source and code have been reviewed and trusted.
+
+## Reference(s):
+
+- [Quick Start Guide](references/quick_start.md)
+- [DeepSpeed Guide](references/deepspeed_guide.md)
+- [LoRA/QLoRA Fine-tuning Guide](references/lora_guide.md)
+- [ZeRO Optimization Guide](references/zero_optimization.md)
+- [Single-GPU Training Strategy](references/single_gpu_strategy.md)
+- [Remote Training Guide](references/remote_training.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/delock/skills/deepspeed-finetune)
+- [Metadata Homepage](https://github.com/deepspeedai/deepspeed-skills/tree/main/openclaw/deepspeed-finetune)
+- [DeepSpeed Documentation](https://www.deepspeed.ai/)
+- [DeepSpeed GitHub](https://github.com/microsoft/DeepSpeed)
+- [ZeRO Paper](https://arxiv.org/abs/1910.02054)
+- [LoRA Paper](https://arxiv.org/abs/2106.09685)
+- [QLoRA Paper](https://arxiv.org/abs/2305.14314)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local training commands, remote training commands, DeepSpeed configuration files, and monitoring guidance.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,63 @@
-## Description: <br>
-DinzeeAgent helps agents discover and call Dinzee gateway e-commerce data tools for ASIN, keyword, traffic, and ad research for Amazon sellers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DinzeeAgent is a cross-border e-commerce data agent that lets an agent discover Dinzee gateway data sources at runtime, sync bundled business skills locally, invoke matched tools or workflows, and summarize e-commerce research and billing results for the user.
 
-## Publisher: <br>
-[yefeng311](https://clawhub.ai/user/yefeng311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yefeng311](https://clawhub.ai/user/yefeng311)
 
-## Use Case: <br>
-External users and agents use this skill to research Amazon marketplace products and campaigns by discovering available Dinzee providers, invoking selected data tools, and summarizing the returned results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a user integration token and routes requests through a paid third-party data gateway. <br>
-Mitigation: Use an environment variable for the token when possible, keep it revocable, and confirm pricing before paid tool calls. <br>
-Risk: The skill can install or update local agent skills from gateway-delivered packages. <br>
-Mitigation: Use install and update commands only when the Dinzee gateway is trusted as a software delivery channel, and review delivered files before relying on them. <br>
+## Use Case:
 
+External users and developers use DinzeeAgent to run cross-border e-commerce research, product analysis, advertising diagnostics, and bundled business workflows through the Dinzee gateway. The skill helps agents discover available data providers at runtime, call selected tools, sync Dinzee business skills, and return concise reports with billing context.
 
-## Reference(s): <br>
-- [Dinzee Gateway](https://gateway.dinzee.ai/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yefeng311/dinzee-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/yefeng311) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and summarized tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke paid gateway calls and may write installed skill files when users request skill installation or updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can install or update remote skill packages into the live agent runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sync-skills, skill-install, or bulk updates only when the user intends to trust Dinzee-delivered packages and has reviewed the package source.
+
+Risk: Gateway call data may be saved locally with broad data-file permissions.
+
+Mitigation: Use --no-save for sensitive requests or configure DINZEE_DATA_DIR to a private location in single-user or isolated deployments.
+
+Risk: The skill depends on Dinzee gateway availability, policy, authentication, billing, and upstream provider behavior.
+
+Mitigation: Run status, providers, and list-tools before paid workflows, and handle gateway errors as user-facing availability or account issues.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yefeng311/skills/dinzee-agent)
+- [Dinzee Gateway](https://gateway.dinzee.ai/)
+- [Keepa API Reference](references/keepa.md)
+- [Seller Sprite MCP Reference](references/seller-sprite.md)
+- [Server Skill Workflows](references/server-skill-workflows.md)
+- [SIF MCP Reference](references/sif.md)
+- [Sorftime MCP Reference](references/sorftime.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON data outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save gateway call records locally unless --no-save or a private DINZEE_DATA_DIR is used.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

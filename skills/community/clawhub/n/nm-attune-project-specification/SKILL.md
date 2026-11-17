@@ -2,7 +2,7 @@
 name: project-specification
 description: |
   Transforms project briefs into testable specifications with user stories and acceptance criteria. Use after brainstorming, before planning
-version: 1.9.8
+version: 1.10.3
 triggers:
   - specification
   - requirements
@@ -13,12 +13,12 @@ source: claude-night-market
 source_plugin: attune
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 ## Delegation
 
-For detailed specification writing workflows, this skill delegates to `spec-kit:spec-writing` as the canonical implementation. Use this skill for quick specification needs; use spec-kit for comprehensive specification documents.
+For detailed specification writing workflows, this skill delegates to `spec-kit:spec-writing` as the canonical implementation. Use this skill for quick specification needs and spec-kit for thorough specification documents.
 
 ## When To Use
 
@@ -48,6 +48,32 @@ For detailed specification writing workflows, this skill delegates to `spec-kit:
 - Requirement templates
 - Acceptance criteria patterns
 
+## Documentation Audience
+
+Carry the brief's **Doc audience** field into the specification,
+and treat it as a requirement rather than a note: it decides what
+the project's README, guides, and tutorials may contain. When the
+brief did not set one, **ask, do not guess**.
+
+Specify the deep-dive destination alongside it, so extraction has
+somewhere to go before the first document is written: `modules/`
+for skills, `docs/<topic>.md` for repo docs. Tier table
+and cut test: `scribe:slop-detector` module
+`audience-targeting.md`.
+
+## Record the Tradeoff (decision journal)
+
+If the specification settled a design decision with real alternatives (a chosen
+data model, an interface boundary, a constraint accepted), record it to
+`docs/tradeoffs.md` before continuing (draft and confirm):
+
+- If leyline is installed, invoke `Skill(leyline:decision-journal)` and append
+  a tradeoff entry with the decision, the options weighed, and what was
+  sacrificed. Set `phase` to `specify`. Show the draft and append it on
+  confirmation.
+- Fallback (leyline absent): append to `docs/tradeoffs.md` using the in-file
+  ENTRY TEMPLATE. Assign the next `TR-NNN` id.
+
 ## Post-Completion: Workflow Continuation (REQUIRED)
 
 **Automatic Trigger**: After Quality Checks pass and `docs/specification.md` is saved, MUST auto-invoke the next phase.
@@ -69,7 +95,17 @@ For detailed specification writing workflows, this skill delegates to `spec-kit:
 - `docs/specification.md` does not exist or is empty (phase failed)
 - User explicitly requests to stop after specification
 
-**Do NOT prompt the user for confirmation** — this is a lightweight checkpoint, not an interactive gate. The user can always interrupt if needed.
+**Do NOT prompt the user for confirmation**: this is a lightweight checkpoint that continues without waiting. The user can always interrupt if needed.
+
+## Exit Criteria
+
+- [ ] `docs/specification.md` exists, is non-empty, and passes Quality Checks.
+- [ ] Every functional requirement has testable acceptance criteria.
+- [ ] The documentation audience tier is stated, carried from the
+  brief or asked for when the brief omitted it.
+- [ ] Any design decision with real alternatives is recorded to
+  `docs/tradeoffs.md` (or there was no meaningful design fork).
+- [ ] The next phase is auto-invoked unless a bypass condition holds.
 
 ## Related Skills
 

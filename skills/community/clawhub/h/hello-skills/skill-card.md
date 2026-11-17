@@ -1,38 +1,54 @@
-## Description: <br>
-hello-skills returns a greeting-style execution response using supplied name, symbol, timeframe, and message parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+hello-skills is a minimal greeting-style helper that returns execution status, a message, and input-derived data for trading-label parameters.
 
-## Publisher: <br>
-[fuwenquant](https://clawhub.ai/user/fuwenquant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuwenquant](https://clawhub.ai/user/fuwenquant)
 
-## Use Case: <br>
-Developers and agents can use this release as a lightweight parameter echo skill to confirm invocation flow and return a structured status, message, and data payload. It should not be used for real trading analysis or signal generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release description suggests quantitative strategy analysis and signal generation, but the artifact only returns a greeting-style response with echoed parameters. <br>
-Mitigation: Treat outputs as status and echo data only; do not use them for trading decisions or signal generation. <br>
+## Use Case:
 
+Developers and agent users can use this skill as a simple ClawHub release that echoes user and trading-label inputs into a successful response. Server security evidence describes it as a minimal demo or placeholder rather than a real quantitative analysis tool.
 
-## Reference(s): <br>
-- [ClawHub page for hello-skills](https://clawhub.ai/fuwenquant/hello-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON-compatible data] <br>
-**Output Format:** [JSON-compatible object with status, message, and data fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns success, message, and data fields; data includes name, symbol, timeframe, message, and a fixed timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill.json) <br>
+Risk: The package may be mistaken for a full quantitative analysis tool even though server security evidence describes it as a minimal demo or placeholder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for simple greeting-style or parameter-echo workflows unless the publisher supplies additional validated analysis behavior.
+
+Risk: The documentation is Chinese-only, which may lead to misunderstanding for non-Chinese readers.
+
+Mitigation: Review a translated version of the documentation before relying on the skill in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuwenquant/skills/hello-skills)
+- [Publisher profile](https://clawhub.ai/user/fuwenquant)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [JSON-like execution result with success, message, and data fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns name, symbol, timeframe, message, and a fixed timestamp when executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

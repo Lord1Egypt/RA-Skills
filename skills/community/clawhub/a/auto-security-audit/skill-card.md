@@ -1,45 +1,57 @@
-## Description: <br>
-Automates authorized security audits with nmap port and vulnerability scans, nuclei web vulnerability checks, SSL/TLS review, SSH/firewall/fail2ban checks, patch and login review, and Markdown report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Security Audit runs nmap, nuclei, sslscan, SSH, firewall, fail2ban, patch, and login checks to generate Markdown security reports and notification-ready summaries.
 
-## Publisher: <br>
-[nashbuaa-ops](https://clawhub.ai/user/nashbuaa-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nashbuaa-ops](https://clawhub.ai/user/nashbuaa-ops)
 
-## Use Case: <br>
-Developers and system operators use this skill to run authorized host security scans and generate structured findings for review, scheduled follow-up, or Feishu/Lark notification workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Running security scans against systems without permission can be unauthorized activity. <br>
-Mitigation: Install and run the skill only on systems you own or are explicitly authorized to test. <br>
-Risk: The installation workflow downloads nuclei before moving it into /usr/local/bin. <br>
-Mitigation: Verify the nuclei download and release source before installing it on the host. <br>
-Risk: Generated reports may contain sensitive host, service, vulnerability, patch, and login information. <br>
-Mitigation: Restrict access to reports under the OpenClaw workspace and handle summaries as sensitive security data. <br>
-Risk: Scheduled scans and Feishu/Lark notifications can repeatedly execute scans or send findings outside the host. <br>
-Mitigation: Enable cron and notification delivery only when recurring scans and external summary delivery are intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nashbuaa-ops/auto-security-audit) <br>
-- [ProjectDiscovery nuclei releases](https://github.com/projectdiscovery/nuclei/releases/latest) <br>
-- [ProjectDiscovery nuclei release API](https://api.github.com/repos/projectdiscovery/nuclei/releases/latest) <br>
+## Use Case:
 
+Developers, operators, and security engineers use this skill to run authorized host security checks and produce structured reports covering exposed services, known vulnerabilities, TLS posture, SSH configuration, firewall state, fail2ban status, available updates, and recent logins.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Terminal status output, Markdown security report, and plain-text latest scan summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates dated reports and latest-scan-summary.txt under ~/.openclaw/workspace/reports.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill instructs users to install a mutable nuclei release system-wide.
+
+Mitigation: Pin the nuclei version and verify the downloaded artifact with an expected checksum or signature before installation.
+
+Risk: The generated reports may contain sensitive host, service, vulnerability, and login details.
+
+Mitigation: Store reports in a restricted location, limit sharing of notification summaries, and treat report contents as sensitive security data.
+
+Risk: Port and vulnerability scanning can affect systems or networks outside the user's authority.
+
+Mitigation: Run scans only against owned or explicitly authorized systems and public IP addresses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nashbuaa-ops/skills/auto-security-audit)
+- [ProjectDiscovery nuclei latest release API](https://api.github.com/repos/projectdiscovery/nuclei/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Terminal summary text and Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are written under ~/.openclaw/workspace/reports and include a latest-scan-summary.txt file for scheduled notification workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

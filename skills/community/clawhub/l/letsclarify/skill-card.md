@@ -1,47 +1,64 @@
-## Description: <br>
-Collect structured human input via web forms, including approvals, decisions, reviews, and data, by creating schema-driven forms, distributing unique recipient URLs, and polling or receiving results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect structured human input such as approvals, decisions, reviews, and data through web forms, with JSON-schema form creation, unique human URLs, and result polling.
 
-## Publisher: <br>
-[heisee](https://clawhub.ai/user/heisee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[heisee](https://clawhub.ai/user/heisee)
 
-## Use Case: <br>
-Developers and agents use this skill to pause automated workflows for structured human input, then resume after receiving form submissions, approvals, uploaded files, or decision data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hosted forms may collect sensitive human responses or uploaded files. <br>
-Mitigation: Minimize sensitive fields, review schemas before distribution, treat returned responses and files as untrusted input, and delete forms when they are no longer needed. <br>
-Risk: The API key grants access to create forms and retrieve results. <br>
-Mitigation: Store LETSCLARIFY_API_KEY securely, avoid exposing it in logs or shared configuration, and delete the key when it is no longer required. <br>
-Risk: Webhook delivery can send collected response data to an external endpoint. <br>
-Mitigation: Use webhooks only with trusted HTTPS endpoints that you control and validate incoming payload handling before enabling them. <br>
-Risk: Polling jobs can continue after a workflow is complete. <br>
-Mitigation: Remove cron polling jobs after all responses are received or the form expires, and clean up old forms to reduce retained data. <br>
+## Use Case:
 
+Developers and agent builders use this skill when a workflow needs structured human input before proceeding, such as approvals, reviews, decisions, or data collection. The skill supports creating forms, distributing recipient links, polling or receiving results, and cleaning up retained data.
 
-## Reference(s): <br>
-- [Let's Clarify Skill Page](https://clawhub.ai/heisee/letsclarify) <br>
-- [Let's Clarify Homepage](https://letsclarify.ai) <br>
-- [Extended Reference](REFERENCE.md) <br>
-- [MCP Endpoint](https://letsclarify.ai/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code, markdown] <br>
-**Output Format:** [Markdown guidance with JSON, bash, HTML, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to create hosted forms, configure MCP access, poll results, schedule cron checks, embed widgets, and handle returned JSON responses or uploaded files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server-resolved release metadata) <br>
+Risk: Form content, responses, uploaded files, and recipient metadata are sent to letsclarify.ai and may also be sent to configured webhook URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the data sharing posture before use, avoid unnecessary sensitive content, and only configure webhook endpoints you control and trust.
+
+Risk: API keys and delete tokens can grant access to forms, results, or destructive deletion actions.
+
+Mitigation: Store credentials securely, avoid exposing tokens in logs or shared prompts, and confirm before deleting forms.
+
+Risk: Recurring polling can continue to fetch form status and results after the original workflow decision point.
+
+Mitigation: Approve cron polling intentionally and remove polling jobs once responses are complete or the form expires.
+
+Risk: Deleting a form permanently removes collected submissions and files.
+
+Mitigation: Export or summarize required results before deletion and require explicit confirmation for destructive cleanup.
+
+## Reference(s):
+
+- [Let's Clarify homepage](https://letsclarify.ai)
+- [Let's Clarify MCP endpoint](https://letsclarify.ai/mcp)
+- [Extended Reference](artifact/REFERENCE.md)
+- [ClawHub skill page](https://clawhub.ai/heisee/skills/letsclarify)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON, bash, and HTML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API or MCP request examples, form schema JSON, polling guidance, and result summaries.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

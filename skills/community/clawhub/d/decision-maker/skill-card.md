@@ -1,42 +1,54 @@
-## Description: <br>
-Decision Maker helps agents structure personal or project decisions with pros-cons analysis, weighted matrices, blind choice prompts, framework selection, and risk assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decision Maker helps agents structure decisions with pros-cons analysis, weighted matrices, blind-choice prompts, framework recommendations, and risk assessment.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to compare options, reduce decision bias, evaluate risks, and generate reusable decision-analysis templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An unrelated developer-workflow stub script may confuse users about which executable provides the advertised decision-analysis behavior. <br>
-Mitigation: Use scripts/decide.sh for decision-analysis commands and verify command wiring before installation. <br>
-Risk: The stub script can save command arguments to a local history file, which may expose sensitive decision names or business details on the local machine. <br>
-Mitigation: Avoid passing sensitive information to scripts/script.sh, or set an appropriate local data directory and review stored history before sharing the environment. <br>
+## Use Case:
 
+External users and developers use this skill to turn a decision prompt into structured comparison templates, scoring matrices, bias-reduction prompts, framework suggestions, and risk checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/decision-maker) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text and terminal output from shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys are required; outputs are local templates and prompts for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release evidence and SKILL.md frontmatter) <br>
+Risk: The package includes an unrelated workflow helper that writes command history and arguments to local disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation, avoid passing sensitive values as arguments, and prefer a release that removes the helper or clearly documents and controls its logging behavior.
+
+Risk: Decision-support templates may produce incomplete or misleading guidance if treated as a final decision.
+
+Mitigation: Use the outputs as structured prompts for human review, and validate important decisions with appropriate domain expertise.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [Decision Maker on ClawHub](https://clawhub.ai/ckchzh/skills/decision-maker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-like terminal text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English decision templates; no API keys required.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

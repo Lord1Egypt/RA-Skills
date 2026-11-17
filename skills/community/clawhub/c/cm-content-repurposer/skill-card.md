@@ -1,41 +1,53 @@
-## Description: <br>
-Repurposes long-form content into platform-optimized social posts, newsletter snippets, and short summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repurposes long-form content such as blog posts, articles, newsletters, and YouTube transcripts into platform-optimized social posts, threads, newsletter snippets, and short summaries.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Content creators, marketers, and teams use this skill to turn authorized long-form source material into drafts for Twitter/X, LinkedIn, Instagram, Reddit, Hacker News, email newsletters, and concise summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated drafts may be inaccurate, off-brand, or unsuitable for direct publication. <br>
-Mitigation: Review and edit generated posts, summaries, and newsletter snippets before publishing. <br>
-Risk: Users may provide private source material or content they are not authorized to repurpose. <br>
-Mitigation: Use only URLs or files the user is allowed to reuse, and avoid private documents unless they are appropriate to process in the agent context. <br>
+## Use Case:
 
+External creators, marketers, founders, and developers use this skill to turn long-form source material into ready-to-edit posts for Twitter/X, LinkedIn, Instagram, Reddit, Hacker News, newsletters, and summaries.
 
-## Reference(s): <br>
-- [Platform-Specific Formatting Guides](references/platform-guides.md) <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/cm-content-repurposer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections with source analysis and platform-specific draft copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can vary by requested platform, tone, audience, length, CTA, hashtag use, emoji use, and language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may read user-provided URLs or file paths and transform private or sensitive source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should provide only content they intend to summarize or repurpose, and should review generated drafts before sharing them externally.
+
+Risk: Repurposed drafts may omit nuance or introduce misleading emphasis when adapting long-form material for short social formats.
+
+Mitigation: Review the source analysis and each platform draft for accuracy, tone, and context before publication.
+
+## Reference(s):
+
+- [Platform-Specific Formatting Guides](references/platform-guides.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sections containing source analysis and platform-specific draft content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated drafts may include platform-specific character limits, hashtags, calls to action, tone adjustments, and audience targeting when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and STATUS.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

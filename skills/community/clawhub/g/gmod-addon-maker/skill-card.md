@@ -1,45 +1,64 @@
-## Description: <br>
-Assists with creating, scripting, organizing, debugging, and packaging Garry's Mod addons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists with creating, scripting, organizing, debugging, and packaging Garry's Mod addons, with guidance for Lua code, assets, and addon structure.
 
-## Publisher: <br>
-[lzmjlrt](https://clawhub.ai/user/lzmjlrt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lzmjlrt](https://clawhub.ai/user/lzmjlrt)
 
-## Use Case: <br>
-Developers and addon creators use this skill to plan Garry's Mod addon structure, write Lua scripts, reason about client and server realms, debug common Lua errors, and prepare addons for distribution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Lua code generated for autorun or server-side folders could affect live Garry's Mod behavior if used without review. <br>
-Mitigation: Review generated Lua and test it in-game or in a non-production server before placing it in autorun or server-side addon folders. <br>
-Risk: Broad trigger wording may cause the skill to activate more often than necessary. <br>
-Mitigation: Confirm that the current task is specifically about Garry's Mod, GMod Lua, addon structure, packaging, or debugging before relying on the skill. <br>
-Risk: Guessed Garry's Mod API URLs may lead to missing or incorrect documentation. <br>
-Mitigation: Use the Garry's Mod wiki index or search for the exact API term instead of constructing API documentation URLs manually. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lua Folder Structure](references/addon-structure.md) <br>
-- [Common Errors](references/common-error.md) <br>
-- [States / Realms](references/state-exp.md) <br>
-- [Garry's Mod Wiki](https://wiki.facepunch.com/gmod) <br>
-- [ClawHub release page](https://clawhub.ai/lzmjlrt/gmod-addon-maker) <br>
+## Use Case:
 
+Developers and creators use this skill to plan, write, troubleshoot, and package Garry's Mod addons. It helps organize addon folders, reason about client/server/shared Lua realms, and verify Garry's Mod API references before using them.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Lua code, addon structure examples, and command snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated Lua and addon placement guidance should be reviewed before use in a live Garry's Mod server or autorun folder.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The trigger description may invoke the skill for Lua prompts where Garry's Mod is only loosely relevant.
+
+Mitigation: Confirm that the user's task is for Garry's Mod addon development before applying GMod-specific file layout, realm, or API guidance.
+
+Risk: Garry's Mod API URLs or Lua realm assumptions may be incorrect if guessed.
+
+Mitigation: Use the Facepunch Garry's Mod wiki search/index flow and verify the target API page before relying on a function, hook, or realm-specific behavior.
+
+Risk: Generated addon code or packaging advice may still fail in-game because of runtime errors, missing files, or client/server realm mismatches.
+
+Mitigation: Test the addon in Garry's Mod, check console errors, and use the included common-error and Lua realm references to debug before distribution.
+
+Risk: Models, textures, sounds, or other sourced content may have incompatible licenses.
+
+Mitigation: Verify asset licenses and distribution rights before packaging or publishing an addon.
+
+## Reference(s):
+
+- [Lua Folder Structure](references/addon-structure.md)
+- [Common Errors](references/common-error.md)
+- [States / Realms](references/state-exp.md)
+- [Garry's Mod Wiki](https://wiki.facepunch.com/gmod)
+- [GMod Addon Maker on ClawHub](https://clawhub.ai/lzmjlrt/skills/gmod-addon-maker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Lua code snippets, file paths, commands, and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend API lookups, addon file layouts, in-game testing steps, and asset licensing checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

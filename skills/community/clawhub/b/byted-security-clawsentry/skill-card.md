@@ -1,43 +1,58 @@
-## Description: <br>
-Installs and configures OpenClaw security-related plugins, including ai-assistant-security-openclaw, and guides login and setup verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and configures OpenClaw security plugins, including the ai-assistant-security-openclaw plugins, for an OpenClaw environment.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install the AI Assistant Security plugin, obtain the authorization login URL, complete account linking, and verify that the security plugin is enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow performs account linking and device fingerprint transmission. <br>
-Mitigation: Install only when the publisher and Volcengine/Omni Shield service are trusted, and review the authorization page before continuing. <br>
-Risk: The installer stores local login state and writes a polling log. <br>
-Mitigation: Review and remove .state/login_state.json and poll_login.log after setup if they are no longer needed. <br>
-Risk: The installer can automatically change OpenClaw plugin configuration and restart the OpenClaw gateway. <br>
-Mitigation: Run it only in the intended OpenClaw environment and inspect plugin configuration after installation. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install and configure security-related OpenClaw plugins and complete the login and enablement flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/byted-security-clawsentry) <br>
-- [Volcengine official site](https://www.volcengine.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and login URL text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local setup state and polling logs during installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can run local Node.js code, install executable OpenClaw plugin code from an unpinned package, alter OpenClaw configuration, run a detached polling process, and restart the OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted OpenClaw environments after reviewing the skill and approving local command and configuration changes; prefer a release that pins package versions.
+
+Risk: The skill contacts a remote Volcengine or Omni Shield service, uses device fingerprinting, and stores login state and API credentials.
+
+Mitigation: Use only if the publisher and remote service are trusted, obtain explicit user consent for authentication and device fingerprinting, and protect or rotate stored credentials as needed.
+
+Risk: Server security evidence marks the release as suspicious because authentication, credential persistence, background polling, and risky local changes are under-disclosed.
+
+Mitigation: Treat the release as requiring heightened review before deployment and monitor the installation process and resulting OpenClaw security plugin state.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/skills/byted-security-clawsentry)
+- [Volcengine Official Site](https://www.volcengine.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and a login URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local configuration changes, login state, and instructions for post-login monitoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,48 @@
-## Description: <br>
-Analyze and describe screenshots or images, including visible UI elements, text, objects, and context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and describe screenshots or images; use when the user shares a screenshot and wants to understand what is in it, debug a UI issue, or extract information from an image.
 
-## Publisher: <br>
-[cloudcompile](https://clawhub.ai/user/cloudcompile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cloudcompile](https://clawhub.ai/user/cloudcompile)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, designers, and other external users use this skill to analyze uploaded screenshots or images, identify visible UI elements and text, debug visual issues, and extract practical observations from image content.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Uploaded screenshots or images may contain sensitive information such as passwords, API keys, financial details, private messages, internal dashboards, browser tabs, notifications, or account identifiers.
+
+Mitigation: Crop or redact sensitive content before using the skill, and install it only if sending images for AI analysis is acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, designers, and other users use this skill to understand screenshots, debug UI or UX issues, extract visible text, and document software states. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots can expose secrets, credentials, personal messages, financial data, or confidential work. <br>
-Mitigation: Crop or redact sensitive areas before analysis and only upload screenshots that are approved for the target environment. <br>
+**Output Format:** [Markdown analysis with structured sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include an overview, UI breakdown, visible text, analysis, and recommendations based on the uploaded image.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured screenshot analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include overview, UI breakdown, visible text, analysis, and recommendations.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

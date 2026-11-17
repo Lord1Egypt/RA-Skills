@@ -55,11 +55,14 @@ Use for artists and albums.
 tsarr lidarr artist list --json
 tsarr lidarr artist get --id 789 --json
 tsarr lidarr artist search --term "Radiohead" --json
-tsarr lidarr artist add --term "Radiohead"
+tsarr lidarr artist add --term "Radiohead" --foreign-artist-id a74b1b7f-71a5-4011-9441-d0b5e4122711 --quality-profile-id 2 --metadata-profile-id 4 --root-folder /music --no-search --yes
 tsarr lidarr artist refresh --id 789
-tsarr lidarr album list --json
+tsarr lidarr album list --artist-id 789 --json
 tsarr lidarr album get --id 654 --json
 tsarr lidarr album search --term "OK Computer" --json
+tsarr lidarr metadataprofile list --json
+tsarr lidarr release list --album-id 654 --json
+tsarr lidarr release grab --file selected-release.json --yes
 ```
 
 Useful helpers:
@@ -156,6 +159,76 @@ tsarr seerr status show --json
 ```
 
 Seerr uses API key authentication. Configure via `tsarr config init` or environment variables `TSARR_SEERR_URL` and `TSARR_SEERR_API_KEY`.
+
+## Jellyfin
+
+Use for media server tasks: trigger library scans, read watched state, see who is streaming, control playback, manage playlists and collections, and fix artwork.
+
+Full command surface:
+
+```bash
+tsarr jellyfin library refresh
+tsarr jellyfin library folders
+tsarr jellyfin library add --name <name> [--collection-type <collection-type>] [--paths <paths>] [--refresh]
+tsarr jellyfin library remove --name <name>
+tsarr jellyfin item list [--search <search>] [--type <type>] [--parent <parent>] [--user <user>] [--played] [--limit <limit>]
+tsarr jellyfin item get --id <id> --user <user>
+tsarr jellyfin item refresh --id <id> [--mode <mode>] [--replace-metadata] [--replace-images]
+tsarr jellyfin item delete --id <id>
+tsarr jellyfin item counts [--user <user>]
+tsarr jellyfin item latest --user <user> [--limit <limit>]
+tsarr jellyfin item nextup --user <user> [--limit <limit>]
+tsarr jellyfin item resume --user <user> [--limit <limit>]
+tsarr jellyfin image list --id <id>
+tsarr jellyfin image remote --id <id> [--type <type>] [--provider <provider>] [--all-languages] [--limit <limit>]
+tsarr jellyfin image providers --id <id>
+tsarr jellyfin image set --id <id> --type <type> --url <url>
+tsarr jellyfin image delete --id <id> --type <type> [--index <index>]
+tsarr jellyfin watched status --id <id> --user <user>
+tsarr jellyfin watched mark --id <id> --user <user>
+tsarr jellyfin watched unmark --id <id> --user <user>
+tsarr jellyfin watched favorite --id <id> --user <user>
+tsarr jellyfin watched unfavorite --id <id> --user <user>
+tsarr jellyfin session list [--active-within <active-within>]
+tsarr jellyfin session play --id <id> --items <a,b> [--mode <mode>] [--position <position>]
+tsarr jellyfin session pause --id <id>
+tsarr jellyfin session unpause --id <id>
+tsarr jellyfin session stop --id <id>
+tsarr jellyfin session seek --id <id> --position <position>
+tsarr jellyfin session message --id <id> --text <text> [--header <header>] [--timeout <timeout>]
+tsarr jellyfin session command --id <id> --command <command>
+tsarr jellyfin session system --id <id> --command <command>
+tsarr jellyfin session display --id <id> --item <item> --name <name> --type <type>
+tsarr jellyfin session add-user --id <id> --user <user>
+tsarr jellyfin session remove-user --id <id> --user <user>
+tsarr jellyfin playlist create --name <name> --user <user> [--items <a,b>] [--type <type>]
+tsarr jellyfin playlist items --id <id> --user <user> [--limit <limit>]
+tsarr jellyfin playlist add --id <id> --items <a,b> --user <user>
+tsarr jellyfin playlist remove --id <id> --entries <a,b>
+tsarr jellyfin collection create --name <name> [--items <a,b>] [--parent <parent>]
+tsarr jellyfin collection add --id <id> --items <a,b>
+tsarr jellyfin collection remove --id <id> --items <a,b>
+tsarr jellyfin user list
+tsarr jellyfin user get --id <id>
+tsarr jellyfin task list
+tsarr jellyfin task start --id <id>
+tsarr jellyfin task stop --id <id>
+tsarr jellyfin search query --query <query> [--type <type>] [--limit <limit>]
+tsarr jellyfin system status
+tsarr jellyfin system activity [--limit <limit>]
+```
+
+Add `--json` to any command when extracting values.
+
+Jellyfin uses API key authentication. Configure via `tsarr config init` or environment variables `TSARR_JELLYFIN_URL` and `TSARR_JELLYFIN_API_KEY`. Get a key from Dashboard -> Advanced -> API Keys.
+
+**Important:** Jellyfin returns PascalCase JSON (`Id`, `Name`, `Type`, `Items`), unlike the camelCase used by the Servarr services. Use PascalCase when parsing output or passing `--select`.
+
+`--user <userId>` is **required** on `item get`, `item latest`, `item nextup`, `item resume` and all `watched` and `playlist` commands. Jellyfin's spec marks it optional but the server returns 400 without it. Get IDs from `tsarr jellyfin user list --json`.
+
+There is no `playlist get` or `playlist move` — those Jellyfin endpoints need a user-context token and reject API keys; use `tsarr jellyfin item get --id <playlistId> --user <userId>` instead.
+
+See "Fix a missing or poor cover image" in common-workflows.md for the artwork workflow.
 
 ## Multi-instance services
 

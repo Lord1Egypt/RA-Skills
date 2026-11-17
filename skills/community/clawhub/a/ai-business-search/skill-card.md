@@ -1,41 +1,53 @@
-## Description: <br>
-Guides local businesses through a seven-day Chinese-language workflow for improving visibility in AI search recommendations using truthful business information, keyword planning, media articles, publishing guidance, and result checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This Chinese-language skill guides local businesses through a seven-day workflow for improving visibility in AI large-model search recommendations by creating verifiable, AI-friendly media content.
 
-## Publisher: <br>
-[Koharu885](https://clawhub.ai/user/Koharu885) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[koharu885](https://clawhub.ai/user/koharu885)
 
-## Use Case: <br>
-Local business owners and marketers use this skill to create AI-search-friendly keyword strategies, media articles, publishing plans, and verification steps for local services in the Chinese market. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help publish business names, addresses, and phone numbers in public marketing articles. <br>
-Mitigation: Use only authorized business contact details, verify accuracy before publication, and review every article draft before posting. <br>
-Risk: AI-search placement is not guaranteed and generated marketing claims could be misleading if left unchecked. <br>
-Mitigation: Treat the output as draft guidance, keep claims truthful and verifiable, and monitor search results after publication. <br>
+## Use Case:
 
+Local business owners, marketers, and service providers use this skill to plan keywords, generate seven days of Chinese media articles, select relevant publishing channels, and verify whether AI assistants mention the business accurately.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Koharu885/ai-business-search) <br>
-- [Publisher profile](https://clawhub.ai/user/Koharu885) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown articles and step-by-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces seven days of media article drafts, keyword strategy, media selection guidance, and AI-search verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Generated media articles could include inaccurate business names, addresses, phone numbers, or marketing claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the merchant has authorized the exact business details and review all claims for accuracy before publication.
+
+Risk: Publishing content through irrelevant media channels could mislead readers or reduce trust.
+
+Mitigation: Use only media channels that match the business location, industry, and audience, as directed by the skill's safety and media-selection guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/koharu885/skills/ai-business-search)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with article drafts, keyword strategy, media-publishing recommendations, and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output for local business AI-search marketing; generated claims should be checked against authorized business details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

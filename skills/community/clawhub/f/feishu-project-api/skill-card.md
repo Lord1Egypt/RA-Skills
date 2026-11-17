@@ -1,40 +1,53 @@
-## Description: <br>
-飞书项目Open API技能，查询/创建/更新/删除工作项，管理流程模板、节点配置、自定义字段、视图和角色权限，批量分析商机进度与风险。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书项目Open API技能用于查询、创建、更新和删除工作项，管理流程模板、节点配置、自定义字段、视图和角色权限，并批量分析商机进度与风险。
 
-## Publisher: <br>
-[jimislg](https://clawhub.ai/user/jimislg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimislg](https://clawhub.ai/user/jimislg)
 
-## Use Case: <br>
-Project managers, operations teams, and Feishu Project API users use this skill to manage work items, workflows, templates, custom fields, views, comments, work-hour records, and progress-risk analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete Feishu project data and configuration. <br>
-Mitigation: Use a tightly scoped Feishu account or token limited to intended projects. <br>
-Risk: Delete, bulk update, workflow transition, template, field, view, relationship, comment, and work-hour operations can affect business records. <br>
-Mitigation: Require explicit confirmation before performing these operations. <br>
+## Use Case:
 
+Developers and project operations teams use this skill to call Feishu Project Open API endpoints for work item lifecycle management, workflow/template/field/view administration, and opportunity progress risk reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimislg/feishu-project-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown with Feishu Open API endpoint examples, request body examples, and structured report guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce guidance for project keys, work item type keys, workflow operations, custom fields, views, comments, work-hour records, and progress-risk reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide broad Feishu project administration actions, including deletes and workflow, template, field, view, relation, task, comment, and work-hour mutations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Feishu credentials, prefer read-only analysis where possible, and require explicit human confirmation with an affected-object preview before any write or destructive operation.
+
+Risk: Progress and risk analysis may be misleading if work item data is incomplete, stale, or filtered incorrectly.
+
+Mitigation: Review source filters, pagination, and sampled records before acting on generated reports or recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimislg/skills/feishu-project-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API request examples and structured analysis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed Feishu project mutations; review affected objects before writes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,58 @@
-## Description: <br>
-Codex Imggen helps agents generate single, sized, or batch image assets through the Codex CLI, with optional reference images and saved PNG outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images through Codex CLI with size controls, optional reference images, and batch game UI asset prompts.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers, agents, and asset creators use this skill to create game UI artwork, icons, and other image assets with Codex CLI commands. It is most useful when an agent needs prompt-driven image generation, size guidance, batch asset generation, or optional reference-image input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Codex Imggen on ClawHub](https://clawhub.ai/axelhu/codex-imggen) <br>
+Developers and content creators use this skill to generate single images, targeted size or aspect-ratio images, and batch game UI image sheets through Codex CLI. It is useful when an agent needs repeatable shell-command guidance for image generation and copying PNG outputs to a requested directory.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; generated PNG files are copied to the requested output directory or stored under ~/.codex/generated_images/.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the codex binary. The skill uses Codex CLI image generation with default local proxy settings, a recommended timeout of at least 180 seconds, and documented image size limits; users should visually inspect generated images before relying on them.] <br>
+Global
 
-## Skill Version(s): <br>
-1.1.1 (source: SKILL.md frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Prompts and optional reference images may be sent outside the local machine through Codex CLI.
+
+Mitigation: Use only approved Codex accounts, proxy settings, sandboxes, and data-handling policies; avoid confidential prompts, private artwork, internal screenshots, regulated data, and sensitive local image files unless approved.
+
+Risk: The copy step can select the newest shared Codex generated-image directory rather than a guaranteed current-session result.
+
+Mitigation: Run the skill in a restricted, disposable workspace and visually verify the copied output before using or publishing it.
+
+Risk: Requested pixel dimensions may not be exact because the documented Codex CLI image output is constrained to about 1.57 megapixels.
+
+Mitigation: Use the documented safe size keys when possible, and post-process with an image tool when exact final dimensions are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/codex-imggen)
+- [ClawHub publisher profile](https://clawhub.ai/user/axelhu)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and generated PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are copied from ~/.codex/generated_images/ to the requested output directory; batch mode writes a combined PNG image.]
+
+## Skill Version(s):
+
+1.1.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

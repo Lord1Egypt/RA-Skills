@@ -1,44 +1,59 @@
-## Description: <br>
-Use the Imans CLI from OpenClaw agents to query Imans workspace, catalog, and sales order data as JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imans Claw helps OpenClaw agents use the Imans CLI to query Imans workspace, catalog, product variant, sales order, order item, and classification data as JSON.
 
-## Publisher: <br>
-[imans-ai](https://clawhub.ai/user/imans-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imans-ai](https://clawhub.ai/user/imans-ai)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to query Imans workspace, catalog, product variant, sales order, order item, and classification data through the Imans CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve business-sensitive product, order, and customer-related data from an Imans workspace. <br>
-Mitigation: Confirm broad exports before running them, use the narrowest query or profile that answers the request, and summarize results instead of dumping raw JSON into chat. <br>
-Risk: Raw API tokens or login secrets could be exposed through chat or shell history if handled directly. <br>
-Mitigation: Avoid printing or requesting raw tokens; use token environment variables or standard input for automation. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to connect agents to Imans business data through the Imans CLI. It supports targeted queries for workspace, product, variant, sales order, order item, and classification information.
 
-## Reference(s): <br>
-- [Imans CLI GitHub repository](https://github.com/imans-ai/imans-cli) <br>
-- [Imans CLI latest release](https://github.com/imans-ai/imans-cli/releases/latest) <br>
-- [Imans install script](https://imans.ai/install) <br>
-- [ClawHub skill page](https://clawhub.ai/imans-ai/imans-claw) <br>
-- [Publisher profile](https://clawhub.ai/user/imans-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to request JSON output from the Imans CLI and summarize results instead of exposing raw business data unnecessarily.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The setup instructions include a remote installer command that executes mutable code directly in a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the Homebrew or GitHub release installation path, and independently trust and verify any installer before use.
+
+Risk: Imans queries can expose business-sensitive order or customer data during broad exports.
+
+Mitigation: Use least-privilege Imans profiles, run the narrowest query that answers the request, and confirm before broad exports of order or customer data.
+
+Risk: Authentication material can leak through chat or shell history if tokens are handled directly.
+
+Mitigation: Use token environment variables or stdin for automation, and never request or print raw API tokens in chat.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imans-ai/skills/imans-claw)
+- [Imans CLI Homepage](https://github.com/imans-ai/imans-cli)
+- [Imans CLI Releases](https://github.com/imans-ai/imans-cli/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should use narrow filters, summarize parsed JSON, and avoid exposing raw tokens or broad customer/order exports without confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

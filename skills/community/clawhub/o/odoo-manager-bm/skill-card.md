@@ -1,43 +1,54 @@
-## Description: <br>
-Manage Odoo contacts, business objects, and metadata through the External XML-RPC API, including generic CRUD operations, model introspection, and context-aware instance, database, and credential resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Odoo contacts, business objects, and metadata through the official External XML-RPC API, including generic CRUD operations, partner workflows, model introspection, and context-aware instance, database, and credential resolution.
 
-## Publisher: <br>
-[bernhmueller](https://clawhub.ai/user/bernhmueller) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bernhmueller](https://clawhub.ai/user/bernhmueller)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and manage Odoo records across contacts, business models, and metadata from an agent workflow. It is intended for environments where the agent is allowed to use configured Odoo credentials and perform read or write operations through XML-RPC. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, and delete Odoo business records through configured credentials. <br>
-Mitigation: Use a dedicated least-privilege Odoo account and require explicit approval before create, update, or delete actions. <br>
-Risk: Context switching can point the agent at the wrong Odoo instance or database. <br>
-Mitigation: Verify the resolved URL and database before every write or delete operation and reset session context after sensitive work. <br>
-Risk: Odoo passwords or API keys grant account-level access to business data. <br>
-Mitigation: Store credentials in environment variables or a secrets manager, avoid admin credentials, and never display full secrets in responses. <br>
+## Use Case:
 
+Developers and operations teams use this skill to inspect and manage Odoo records across configured instances and databases. It supports connection checks, partner management, generic model CRUD, and Odoo model metadata discovery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bernhmueller/odoo-manager-bm) <br>
-- [Odoo External API documentation](https://www.odoo.com/documentation/18.0/fr/developer/reference/external_api.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline Python, shell, and XML-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include Odoo connection context summaries, record data, CRUD operation plans, and troubleshooting guidance; secrets should not be displayed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can broadly create, update, or delete live Odoo business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Odoo account or API key, verify the resolved URL, database, model, and record count before mutations, and avoid production mutations without explicit confirmation and preview steps.
+
+Risk: Saved credentials may be reused with a changed Odoo server URL or database context.
+
+Mitigation: Restrict use to trusted Odoo URLs, review context overrides before each sensitive operation, and reset temporary or session context after cross-instance work.
+
+## Reference(s):
+
+- [Odoo External API documentation](https://www.odoo.com/documentation/18.0/fr/developer/reference/external_api.html)
+- [ClawHub skill page](https://clawhub.ai/bernhmueller/skills/odoo-manager-bm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline text, JSON examples, Python XML-RPC snippets, and shell environment-variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Odoo XML-RPC call patterns and operational guidance; does not expose full secrets when describing resolved context.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

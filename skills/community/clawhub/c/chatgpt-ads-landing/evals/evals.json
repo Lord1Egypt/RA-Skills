@@ -1,0 +1,72 @@
+{
+  "skill_name": "chatgpt-ads-landing",
+  "evals": [
+    {
+      "id": 1,
+      "name": "new-client-page",
+      "prompt": "新客户 Harbor & Pine Hotels 要投 ChatGPT 广告，帮我做个落地页，仓库在 {REPO}（落地页仓库的副本，直接在里面改）。\n\n资料：\n- 活动：Winter \"Stay 3, Pay 2\"——连住 3 晚只付 2 晚。入住日期 2026-12-01 至 2027-02-28，12/24–12/26 不适用。必须在官网直订，会员非会员都可以。每间房最多 2 成人 2 儿童，含双人早餐。不可与其他优惠同享。\n- 酒店：美国 4 家（Boston、Portland ME、Burlington VT、Bar Harbor），英国 2 家（Edinburgh、York）。\n- 投放国家：美国、英国。美国链接 https://www.harborpinehotels.com/us/offers/stay3pay2?utm_source=chatgpt&utm_medium=cpm&utm_campaign=OAI_US_HP_Winter26 ，英国链接 https://www.harborpinehotels.co.uk/offers/stay3pay2?utm_source=chatgpt&utm_medium=cpm&utm_campaign=OAI_UK_HP_Winter26 ，其他国家跳 https://www.harborpinehotels.com/\n- Pixel ID：TESTpixel123abcDEF。Ads Manager 数据源事件：page_viewed、contents_viewed（看到优惠条款时）、自定义 click_book（点预订按钮）、自定义 scroll_50（滚动一半）\n- 隐私政策：美国 https://www.harborpinehotels.com/us/privacy ，英国 https://www.harborpinehotels.co.uk/privacy ；英国 cookie 政策 https://www.harborpinehotels.co.uk/cookies\n- FAQ：1) Is breakfast included? Yes, for two adults per room. 2) Can I cancel? Free cancellation up to 48 hours before arrival. 3) Do I need to be a member? No, anyone booking direct qualifies.\n- 不能用他们的 logo。\n\n做好后打一个首次部署用的 zip，告诉我怎么上传。",
+      "expected_output": "pages/<slug>/ created from real material only (no invented facts), page.json with US/GB sites + fallback, geo hero CTA, per-country privacy links, GB consent with cookies link, pixelEvents mapping contents_viewed/click_book/scroll_50, own favicon, zip built with --force because url is unknown, upload steps incl. 加密访问 off and the URL-backfill second deploy.",
+      "files": [],
+      "assertions": [
+        "A new pages/<slug>/ with page.json and index.html was created (the existing example page untouched)",
+        "routing.sites has exactly the client's US and GB URLs verbatim, and fallback is https://www.harborpinehotels.com/",
+        "pixelId is TESTpixel123abcDEF",
+        "pixelEvents maps the client's events: contents_viewed (standard, on the offer-terms section), click_book on booking-button clicks, scroll_50 at 50% scroll",
+        "Hero/primary CTA is geo-routed (dest geo) so US visitors go to the US link and UK visitors to the UK link",
+        "Footer has per-country privacy links (US/GB) and a GB cookie-policy link from the given URLs",
+        "UK cookie consent is configured (consent.countries includes GB)",
+        "Page copy uses only the supplied facts (no invented prices, ratings, amenities or hotel details)",
+        "No Harbor & Pine logo used; an own favicon/mark instead",
+        "A zip was produced with index.html at its root and no __MACOSX / dotfiles",
+        "check.js passes except for the not-yet-known url placeholder",
+        "Reply gives upload steps: 新建部署, entry index.html, 加密访问 off, then backfill url and 部署新版本"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "live-pixel-utm-check",
+      "prompt": "我已经上线了，这些 pixel 和 utm 能真正触发吗？https://example-airline.example.com/ 另外帮我确认一下线上是不是最新的包。本地仓库在 {REPO}（只读，不要改）。代理：export https_proxy=http://<your-proxy> http_proxy=http://<your-proxy>",
+      "expected_output": "Checks live vs local dist byte-for-byte; checks proxy exit country and reports honestly if the OpenAI SDK is unreachable (no fake pass); verifies UTM/oppref forwarding and per-country routing; separates verified-live from unverified; gives next step (overseas node / Ads Manager event log).",
+      "files": [],
+      "assertions": [
+        "Compares live files with the local build byte-for-byte (or equivalent) and states whether the live site is the latest build",
+        "Checks the proxy exit / OpenAI SDK reachability and says honestly whether real event delivery was verified",
+        "Does not claim events reached OpenAI unless it observed 2xx responses from bzr.openai.com",
+        "Verifies UTM/oppref forwarding onto CTA links (brand UTM kept, oppref appended)",
+        "Verifies per-country routing of the hero CTA for the 5 target countries",
+        "Gives an actionable next step for what could not be verified (overseas node, Ads Manager event log)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "compliance-question",
+      "prompt": "检测一下 https://example-airline.example.com/ 是否符合 OpenAI 落地页要求？要不要加客服电话和隐私政策链接？投放国家是美、加、英、澳、新。",
+      "expected_output": "Separates OpenAI hard requirements (OAI-AdsBot access, reviewable, destination integrity, truthful) from non-requirements (phone, privacy link); verifies crawler access live; notes existing privacy/cookie links and UK consent; per-country privacy notes labelled as general practice not legal advice; does not cite the six-dimension check as OpenAI rules.",
+      "files": [],
+      "assertions": [
+        "Separates OpenAI's actual requirements from recommendations, with official sources cited",
+        "States that a phone number / privacy link is not an OpenAI requirement",
+        "Verifies live that OAI-AdsBot (and OAI-SearchBot) can fetch the page / robots allows them",
+        "Notices the page already has footer privacy & cookie links (per country) and a UK consent banner",
+        "Notices the page already shows a 24-hour airport hotline (contact info exists)",
+        "Per-country privacy guidance is labelled as general practice, not legal advice / not OpenAI rules",
+        "Does not present the six-dimension checklist as OpenAI requirements"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "publish-via-open-api",
+      "prompt": "Harbor & Pine 的落地页已经在 {REPO} 的 pages/harborpine-winter 做好了，帮我直接部署上线并做一次 GPT 落地页体检，不想手动传 zip。",
+      "expected_output": "Checks login state (publish.mjs whoami), asks for app_id / runs login if needed, confirms site name before creating, runs publish.mjs ship (create → backfill url+siteId → redeploy → audit), reports URL, version, audit verdict grouped by basis, and says pixel/geo/consent still need verify.mjs on an overseas exit.",
+      "files": [],
+      "assertions": [
+        "Checks login state before deploying and runs or asks for the device-code login when not logged in",
+        "Confirms the new site's name/subdomain with the user (or shows deploy --dry-run) before creating it",
+        "Uses publish.mjs (deploy/ship) instead of asking the user to upload a zip",
+        "page.json ends with the real site url and deploy.siteId after the first deploy",
+        "Reports the audit verdict and separates openai_official items from training/regulation items",
+        "States that the audit does not cover pixel delivery, geo routing or consent and runs/asks for verify.mjs"
+      ]
+    }
+  ]
+}

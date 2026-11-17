@@ -1,43 +1,54 @@
-## Description: <br>
-Define, manage, and compile business rules as structured YAML data into LLM-ready prompts and agent-loadable SKILL.md files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rule Spec helps agents define, manage, and compile business rules as structured YAML data into LLM-ready prompts and agent-loadable SKILL.md files.
 
-## Publisher: <br>
-[pallaoro](https://clawhub.ai/user/pallaoro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pallaoro](https://clawhub.ai/user/pallaoro)
 
-## Use Case: <br>
-Developers, operations teams, and policy owners use Rule Spec to author and maintain business rules in rulespec.yaml, validate them, and emit agent-loadable SKILL.md guidance without manually editing generated skill files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SKILL.md files may contain incorrect or stale business-rule guidance if accepted without review. <br>
-Mitigation: Review generated SKILL.md files before loading them into an agent and run rulespec validate after direct rulespec.yaml edits. <br>
-Risk: Rule examples can contain sensitive operational or customer data. <br>
-Mitigation: Avoid putting sensitive examples into rule files unless necessary, and confirm examples are safe before emitting or sharing generated skills. <br>
-Risk: The workflow uses the external rulespec npm package through npx commands. <br>
-Mitigation: Verify the rulespec npm package before running npx commands in trusted environments. <br>
+## Use Case:
 
+Developers and operators use this skill to create, validate, update, and compile operational business rules, policies, guardrails, escalation rules, SLA requirements, and similar constraints for AI agents.
 
-## Reference(s): <br>
-- [Rule Spec on ClawHub](https://clawhub.ai/pallaoro/rulespec) <br>
-- [Clawnify](https://www.clawnify.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with YAML, TypeScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of the rulespec CLI to manage rulespec.yaml and emit SKILL.md files; examples are excluded from emitted SKILL.md by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The skill uses an unpinned npm CLI through npx, so command behavior may change if the package changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin an exact reviewed rulespec package version before use and install only if the package and publisher are trusted.
+
+Risk: Business rules and examples may contain sensitive operational or compliance information.
+
+Mitigation: Run the skill in a least-privileged workspace and avoid sending sensitive rules or examples to untrusted model providers.
+
+## Reference(s):
+
+- [Rule Spec on ClawHub](https://clawhub.ai/pallaoro/skills/rulespec)
+- [Clawnify](https://www.clawnify.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code]
+
+**Output Format:** [Markdown guidance with shell, YAML, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May help produce rulespec.yaml configuration and generated SKILL.md files; examples are excluded from emitted skill files by default unless requested.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

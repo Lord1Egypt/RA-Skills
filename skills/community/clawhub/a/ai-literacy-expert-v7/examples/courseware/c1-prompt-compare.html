@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 通识课 · C1 Prompt 工程基础 · 五要素对比器</title>
+<style>
+  body { font-family: "Microsoft YaHei", sans-serif; margin: 0; background: #0f172a; color: #e2e8f0; }
+  header { padding: 16px 20px; background: #1e293b; }
+  h1 { margin: 0; font-size: 20px; }
+  .wrap { display: flex; flex-wrap: wrap; gap: 16px; padding: 16px 20px; }
+  #canvasHolder { background: #fff; border-radius: 8px; overflow: hidden; }
+  .panel { background: #1e293b; padding: 14px; border-radius: 8px; min-width: 260px; }
+  label { display: block; margin: 6px 0; font-size: 14px; }
+  .row { margin: 10px 0; }
+  button { background: #6366f1; color: #fff; border: 0; padding: 8px 14px; border-radius: 6px; cursor: pointer; margin-right: 8px; }
+  button.secondary { background: #475569; }
+  select { padding: 6px; border-radius: 6px; }
+  .note { font-size: 12px; color: #94a3b8; }
+  .gate { margin: 0 20px 20px; }
+</style>
+</head>
+<body>
+<header><h1>AI 通识课 · C1 Prompt 工程基础 · 五要素对比器</h1></header>
+<div class="wrap">
+  <div id="canvasHolder"></div>
+  <div class="panel">
+    <div><b>开关五要素（实时影响右侧输出质量）</b></div>
+    <label><input type="checkbox" id="elRole" checked /> Role（角色）</label>
+    <label><input type="checkbox" id="elTask" checked /> Task（任务）</label>
+    <label><input type="checkbox" id="elCon" checked /> Constraints（约束）</label>
+    <label><input type="checkbox" id="elEx" /> Examples（示例）</label>
+    <label><input type="checkbox" id="elFmt" /> Format（格式）</label>
+    <div class="row">
+      <span>场景：</span>
+      <select id="scene">
+        <option value="code">写代码</option>
+        <option value="report">写报告</option>
+        <option value="data">分析数据</option>
+      </select>
+    </div>
+    <div class="row">
+      <button id="regen">重新生成输出</button>
+      <button id="reset" class="secondary">重置</button>
+    </div>
+    <div class="note" id="status">当前启用要素：5 / 5，输出质量评分：100</div>
+    <div class="note">核心概念：五要素、CoT 效果、约束≠100% 遵守。</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.0.3/p5.min.js"></script>
+<script>
+  if (typeof p5 === 'undefined') {
+    document.write('<script src="https://cdn.jsdelivr.net/npm/p5@2.0.3/lib/p5.min.js"><\/script>');
+  }
+</script>
+<script>
+const state = { elements: ['elRole','elTask','elCon','elEx','elFmt'], scene: 'code', quality: 100 };
+
+function recompute() {
+  const on = state.elements.filter(id => document.getElementById(id).checked).length;
+  state.quality = Math.round((on / 5) * 100);
+  document.getElementById('status').textContent =
+    `当前启用要素：${on} / 5，输出质量评分：${state.quality}`;
+}
+
+const sketch = (p) => {
+  p.setup = () => {
+    const c = p.createCanvas(420, 320);
+    c.parent('canvasHolder');
+    p.textFont('sans-serif');
+  };
+  p.draw = () => {
+    p.background(245);
+    p.fill(30); p.noStroke();
+    p.textSize(14); p.text('AI 输出质量（五要素驱动）', 16, 26);
+    const w = 360, h = 160, x = 30, y = 60;
+    p.fill(220); p.rect(x, y, w, h);
+    p.fill(99, 102, 241); p.rect(x, y + h - (h * state.quality / 100), w, h * state.quality / 100);
+    p.fill(30); p.textSize(13);
+    p.text(`质量 ${state.quality}%`, x, y + h + 22);
+    p.text(`场景：${({code:'写代码',report:'写报告',data:'分析数据'})[state.scene]}`, x, y + h + 42);
+    const on = state.elements.filter(id => document.getElementById(id).checked).length;
+    p.text(`启用要素 ${on}/5`, x, y + h + 62);
+  };
+};
+new p5(sketch);
+
+state.elements.forEach(id => document.getElementById(id).addEventListener('change', recompute));
+document.getElementById('scene').addEventListener('change', e => { state.scene = e.target.value; });
+document.getElementById('regen').addEventListener('click', () => { recompute(); });
+document.getElementById('reset').addEventListener('click', () => {
+  state.elements.forEach(id => document.getElementById(id).checked = (id === 'elRole' || id === 'elTask' || id === 'elCon'));
+  state.scene = 'code'; document.getElementById('scene').value = 'code';
+  recompute();
+});
+recompute();
+</script>
+</body>
+</html>

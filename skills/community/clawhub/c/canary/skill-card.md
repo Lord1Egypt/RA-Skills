@@ -1,45 +1,60 @@
-## Description: <br>
-Scans an OpenClaw environment for leaked API keys, tokens, credentials in .env files, installed skills, and shell history, and offers permissioned fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans an OpenClaw environment for leaked secrets, including API keys, tokens, credentials in .env files, installed skills, and shell history, with silent startup checks and on-demand deep scans.
 
-## Publisher: <br>
-[sukiraman](https://clawhub.ai/user/sukiraman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sukiraman](https://clawhub.ai/user/sukiraman)
 
-## Use Case: <br>
-Developers and OpenClaw users use Canary to audit local workspaces and configuration files for exposed credentials, understand findings in plain language, and apply or receive guided fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad credential-audit behavior can inspect sensitive local files and paths. <br>
-Mitigation: Review the paths Canary will inspect before deep scans and avoid pasting real secrets into chat. <br>
-Risk: Fixes and backup behavior can change files or leave .canary state, backups, and an integrity marker after use. <br>
-Mitigation: Approve fixes one by one, review retained state locations, and remove Canary state when it is no longer needed. <br>
-Risk: Heuristic secret detection can produce false positives or findings that require human judgment. <br>
-Mitigation: Review each finding before changing files or rotating credentials, and rotate credentials when a real exposure is confirmed. <br>
+## Use Case:
 
+Developers and OpenClaw users use Canary to find exposed local credentials, understand the practical risk, and receive guided or permissioned remediation steps.
 
-## Reference(s): <br>
-- [Canary ClawHub release](https://clawhub.ai/sukiraman/canary) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Claude Project setup guide](artifact/claude-project/project-instructions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain-language Markdown reports with inline shell commands and fix instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file permission changes, backups, scan-state updates, and credential-rotation guidance; user approval is expected before fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Broad local credential scanning can expose sensitive credential locations beyond the user's immediate intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run deep scans only with explicit user intent, narrow scan paths where possible, and use exclusions for unrelated sensitive locations.
+
+Risk: Pasted shell-history or file-content output can expose raw secrets in a hosted chat.
+
+Mitigation: Redact secrets locally before pasting output, use prefix-only previews, and rotate any credential that was pasted into chat.
+
+Risk: Auto-fix and backup workflows may modify or copy files that contain secrets.
+
+Mitigation: Show the proposed change before execution, re-check file state immediately before applying fixes, and keep backups protected with owner-only access and short retention.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sukiraman/skills/canary)
+- [README](artifact/README.md)
+- [Claude Project setup guide](artifact/claude-project/project-instructions.md)
+- [Claude Project system prompt](artifact/claude-project/system-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown chat responses with concise scan reports and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Secrets should be redacted or shown only as prefix-only previews; fixes require user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

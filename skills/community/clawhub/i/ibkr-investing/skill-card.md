@@ -1,46 +1,64 @@
-## Description: <br>
-Invest on Interactive Brokers (stocks/ETFs) via IB Gateway with the same human-in-the-loop confirmation gate as okx-trading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invest on Interactive Brokers stocks and ETFs via IB Gateway with a human-in-the-loop confirmation gate for balances, quotes, trade proposals, confirmed executions, DCA setup, and portfolio snapshots.
 
-## Publisher: <br>
-[vm-development](https://clawhub.ai/user/vm-development) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vm-development](https://clawhub.ai/user/vm-development)
 
-## Use Case: <br>
-External users and agent operators use this skill to inspect Interactive Brokers account state, retrieve market data, prepare stock or ETF trade proposals, and execute only proposals that receive explicit chat confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access brokerage account data and prepare orders through IB Gateway. <br>
-Mitigation: Use paper mode until tested, protect IBKR Gateway credentials and local ~/.aeon/ibkr records, and grant access only where brokerage automation is intended. <br>
-Risk: A confirmed proposal can place a real stock or ETF order when live mode is enabled. <br>
-Mitigation: Require the proposal, explicit YES confirmation, confirmation token, allow-list, per-trade cap, and daily cap before execution. <br>
-Risk: Scheduled DCA or drawdown workflows could create trade recommendations without a user present. <br>
-Mitigation: Scheduled workflows are limited to read-only or proposal-generation behavior; execution still requires the user to review the proposal and confirm it in chat. <br>
+## Use Case:
 
+External users and developers use this skill to inspect Interactive Brokers account state, gather market context, create gated stock or ETF trade proposals, execute only user-confirmed proposals, and maintain DCA or portfolio snapshot workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vm-development/ibkr-investing) <br>
-- [Publisher profile](https://clawhub.ai/user/vm-development) <br>
-- [amuletxheart/ibkr-openclaw](https://clawhub.ai/amuletxheart/ibkr-openclaw) <br>
-- [IB Gateway Docker](https://github.com/gnzsnz/ib-gateway-docker) <br>
-- [ib_async](https://github.com/ib-api-reloaded/ib_async) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or text command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local pending-trade, audit, snapshot, notional-log, and strategy-state files under the user's aeon IBKR directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server evidence) <br>
+Risk: Live mode can place real Interactive Brokers orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in paper mode, switch to live mode only after deliberate review, and keep per-trade and daily notional caps low.
+
+Risk: Broker credentials and 2FA flow are handled by the local IB Gateway setup outside the skill package.
+
+Mitigation: Pin and verify the gateway container and dependency versions before supplying IBKR credentials.
+
+Risk: Execution depends on local pending proposal files that contain agent-readable confirmation tokens.
+
+Mitigation: Keep pending files permission-restricted, use the printed absolute pending-file path, require explicit user confirmation, and let pending proposals expire quickly.
+
+Risk: Scheduled workflows can broaden trading exposure if configured too aggressively.
+
+Mitigation: Use schedules only for read-only checks or proposal creation, avoid broad unattended execution, and require human confirmation for each order.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vm-development/skills/ibkr-investing)
+- [amuletxheart/ibkr-openclaw](https://clawhub.ai/amuletxheart/ibkr-openclaw)
+- [gnzsnz/ib-gateway-docker](https://github.com/gnzsnz/ib-gateway-docker)
+- [ib_async](https://github.com/ib-api-reloaded/ib_async)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also produce or reference local JSON proposal, audit, notional, snapshot, and strategy-state files during use.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

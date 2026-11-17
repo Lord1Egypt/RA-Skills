@@ -1,40 +1,59 @@
-## Description: <br>
-Queue and publish local skills to ClawHub with a strict 5-per-hour cap using the local clawhub CLI and host scheduler. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queue and publish local skills to ClawHub with a strict 5-per-hour cap using the local clawhub CLI and host scheduler.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to queue local skill directories for ClawHub publishing while enforcing a five-attempts-per-hour limit. It helps coordinate local CLI publishing, status tracking, and scheduler-based execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queue-controlled command execution can run broader local shell commands than needed for publishing. <br>
-Mitigation: Use dry-run first, avoid queue items with custom command fields, and prefer a fixed clawhub publish argument list before scheduling. <br>
-Risk: Scheduled execution can repeatedly publish with the wrong account or configuration. <br>
-Mitigation: Verify the logged-in ClawHub account and audit the helper before enabling cron or systemd scheduling. <br>
+## Use Case:
 
+Developers and operators use this skill to queue local Skill directories for ClawHub publishing while respecting a five-publish-attempts-per-hour limit. It provides guidance, queue configuration, and commands for running the local helper with cron or systemd.
 
-## Reference(s): <br>
-- [ClawHub project homepage](https://github.com/openclaw/clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update queue, state, and log files when the local helper is executed by the user or scheduler.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Queue entries can supply a command template that is executed as a broad shell command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only queue files you created and trust, avoid the optional command field, and keep commands limited to publishing the resolved local skill path.
+
+Risk: Scheduling the helper before hardening may repeatedly execute unsafe or unintended commands from the queue.
+
+Mitigation: Do not schedule the helper until the uploader is changed to call a fixed argument list such as clawhub publish <path> with shell=False and protected state updates.
+
+Risk: Publish failures still count against the hourly limit and can consume available attempts when authentication or CLI behavior is broken.
+
+Mitigation: Run a manual clawhub whoami and one dry run before enabling execute mode or a scheduler.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/clawhub-rate-limited-publisher-fixed)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+- [OpenClaw ClawHub homepage](https://github.com/openclaw/clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON queue examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local python3 and clawhub CLI; reads queue JSON and writes adjacent state/log files when the helper is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

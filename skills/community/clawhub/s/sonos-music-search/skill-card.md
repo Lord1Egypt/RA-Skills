@@ -1,42 +1,59 @@
-## Description: <br>
-Search for music via Brave Search and play it on your Sonos speakers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for music via Brave Search and play it on your Sonos speakers.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and developers use this skill to search for Spotify tracks through Brave Search and start playback on a named Sonos speaker from a command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Brave Search API key and sends music search queries to Brave. <br>
-Mitigation: Install only when that credential use and external search request flow are acceptable for the deployment environment. <br>
-Risk: The skill can start playback on a named Sonos speaker and plays the first matched Spotify result without a separate confirmation step. <br>
-Mitigation: Use it in spaces where automatic playback is acceptable, and review the matched track behavior before using it in shared environments. <br>
+## Use Case:
 
+Developers and Sonos users can use this skill to search for Spotify tracks through Brave Search and play the first matching result on a named Sonos speaker. It also supports checking the currently playing track from the command line.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/sonos-music-search) <br>
-- [ClawHub metadata homepage](https://clawhub.com/skills/sonos-music-search) <br>
-- [Brave Search API](https://brave.com/search/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output with setup and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, network access, a Brave Search API key, a local Sonos speaker, and Spotify linked to the Sonos system.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Music searches are sent to Brave Search and may expose user intent or listening preferences to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that disclosure is acceptable, protect the Brave API key, and avoid submitting sensitive search terms.
+
+Risk: The skill discovers and controls Sonos speakers on the local network.
+
+Mitigation: Run it only on trusted networks and confirm the target speaker name before issuing play commands.
+
+Risk: Dependency and API-key handling require operational review before shared or production use.
+
+Mitigation: Pin or update dependencies as needed and review environment-variable handling for the deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/terrycarter1985/skills/sonos-music-search)
+- [ClawHub homepage metadata](https://clawhub.com/skills/sonos-music-search)
+- [Brave Search API](https://brave.com/search/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, BRAVE_API_KEY, network access, a local Sonos speaker, and a Spotify account linked to Sonos.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

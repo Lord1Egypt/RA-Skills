@@ -1,41 +1,53 @@
-## Description: <br>
-Sequentially check and optionally update all docker run containers that already have fixed recreate commands recorded in long-term memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks remembered Docker-run containers sequentially for newer images and, when explicitly requested, recreates those needing updates.
 
-## Publisher: <br>
-[ugvfpdcuwfnh](https://clawhub.ai/user/ugvfpdcuwfnh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugvfpdcuwfnh](https://clawhub.ai/user/ugvfpdcuwfnh)
 
-## Use Case: <br>
-Developers and operators use this skill to batch-check Docker containers whose exact docker run recreate commands are already recorded in MEMORY.md. It supports a default inspection pass and an explicit apply mode for sequential recreation when image IDs change. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect Docker containers and read MEMORY.md entries containing fixed recreate commands. <br>
-Mitigation: Install it only on machines where this access is acceptable and run the default non-apply check first. <br>
-Risk: When explicitly run with --apply, matching containers may be stopped, removed, and recreated. <br>
-Mitigation: Review the matched containers and use --apply only when container recreation is intended. <br>
+## Use Case:
 
+Developers and operators use this skill to check Docker-run containers with saved recreate commands and, after review, refresh containers whose images changed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ugvfpdcuwfnh/docker-container-rerun-all) <br>
-- [Publisher profile](https://clawhub.ai/user/ugvfpdcuwfnh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON] <br>
-**Output Format:** [Chinese grouped report with optional JSON execution summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports updated, already up-to-date, and failed containers; apply mode may stop, remove, and recreate matched containers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and artifact metadata) <br>
+Risk: Applying updates can stop, remove, and recreate running containers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the default check first; use --apply only after explicitly approving the affected containers and their saved recreate commands.
+
+Risk: Saved Docker commands may grant elevated access through docker.sock, privileged mounts, or host paths; mutable image tags can change unexpectedly.
+
+Mitigation: Inspect each saved command, its mounts and privileges, and the images to be pulled before applying updates.
+
+## Reference(s):
+
+- [Docker Container Rerun All on ClawHub](https://clawhub.ai/ugvfpdcuwfnh/skills/docker-container-rerun-all)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Chinese-language grouped report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Groups updated, up-to-date, and failed containers; includes image and status details when available.]
+
+## Skill Version(s):
+
+1.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

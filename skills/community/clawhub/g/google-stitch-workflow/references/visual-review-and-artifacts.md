@@ -30,6 +30,7 @@ Check:
 - typography, spacing, and density carry a clear point of view
 - visuals clarify product, material, workflow, place, or state
 - any metrics, testimonials, logos, prices, or claims were supplied by the user
+- every visible sentence is true for the product and allowed by the store or listing rules; invented privacy promises (offline, no-upload, storage claims) and invented features are defects
   or are visibly placeholders
 - no fake browser, phone, IDE, or code-window chrome is used as decoration
 - mobile output has no horizontal scroll, clipped headings, wrapped primary

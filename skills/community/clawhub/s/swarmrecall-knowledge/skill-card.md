@@ -1,45 +1,60 @@
-## Description: <br>
-Knowledge graph with entities, relations, traversal, and semantic search via the SwarmRecall API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge graph with entities, relations, traversal, and semantic search via the SwarmRecall API.
 
-## Publisher: <br>
-[waydelyle](https://clawhub.ai/user/waydelyle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waydelyle](https://clawhub.ai/user/waydelyle)
 
-## Use Case: <br>
-Developers and agent builders use this skill to store, link, traverse, and search structured knowledge graph data through SwarmRecall's hosted API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected knowledge graph content is sent to and stored by SwarmRecall's hosted service. <br>
-Mitigation: Require explicit user consent before storing personal or sensitive information externally. <br>
-Risk: Shared pool IDs can make entities and relations visible to other pool members. <br>
-Mitigation: Confirm the intended pool and access level before writing shared entities or relations. <br>
-Risk: Delete operations can remove entities or relations from the knowledge graph. <br>
-Mitigation: Confirm entity and relation IDs with the user before deletion. <br>
+## Use Case:
 
+Developers and agents use this skill to persist, relate, search, and traverse structured knowledge through SwarmRecall's hosted knowledge graph service.
 
-## Reference(s): <br>
-- [SwarmRecall website](https://www.swarmrecall.ai) <br>
-- [SwarmRecall API service](https://swarmrecall-api.onrender.com) <br>
-- [ClawHub skill listing](https://clawhub.ai/waydelyle/swarmrecall-knowledge) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/waydelyle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration, text] <br>
-**Output Format:** [Markdown guidance with JSON request examples and API endpoint references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SWARMRECALL_API_KEY for authenticated API use; may self-register when the key is absent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill sends API keys and knowledge graph data to a hosted SwarmRecall API, and the API URL can be overridden through the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts SwarmRecall with the stored knowledge, keep SWARMRECALL_API_KEY private, and use SWARMRECALL_API_URL only for trusted HTTPS endpoints.
+
+Risk: Knowledge graph entities and relations are persisted server-side and may include personal or sensitive information if the agent stores it.
+
+Mitigation: Obtain explicit user consent before storing user-provided content and avoid storing personal or sensitive information unless persistence is intended.
+
+Risk: Shared pool writes can make entities or relations visible to pool members with knowledge read access.
+
+Mitigation: Write to shared pools only when the user confirms the pool scope and the agent has the expected readwrite access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/waydelyle/skills/swarmrecall-knowledge)
+- [Publisher profile](https://clawhub.ai/user/waydelyle)
+- [SwarmRecall website](https://www.swarmrecall.ai)
+- [SwarmRecall API base URL](https://swarmrecall-api.onrender.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTTP request examples and environment variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SWARMRECALL_API_KEY for authenticated use; may self-register if no key is configured.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

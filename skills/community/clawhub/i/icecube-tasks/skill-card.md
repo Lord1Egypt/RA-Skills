@@ -1,37 +1,49 @@
-## Description: <br>
-IceCube Tasks provides file-backed task orchestration and tracking for AI agents, including task persistence, lifecycle tracking, blockers, and execution continuity across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IceCube Tasks helps AI agents manage task files across sessions, track progress, handle blockers, and maintain execution continuity.
 
-## Publisher: <br>
-[ares521521-design](https://clawhub.ai/user/ares521521-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ares521521-design](https://clawhub.ai/user/ares521521-design)
 
-## Use Case: <br>
-Developers and agent users can use this skill to keep durable task ledgers, track task status, manage blockers, and resume work after context compaction or session restarts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update persistent local task files during task-management conversations. <br>
-Mitigation: Ask the agent to confirm before making persistent task changes and review state/tasks updates before relying on them. <br>
+## Use Case:
 
+Developers and AI agent operators use this skill to persist task state in project files, coordinate subtasks and handoffs, track blockers, and resume work after session restarts or context compaction.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML file examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to create or update local YAML task files under state/tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Task titles, descriptions, blockers, and history can persist sensitive project or personal information on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or sensitive personal information in task records, and delete state/tasks entries when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ares521521-design/skills/icecube-tasks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with YAML examples and task-state file conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include persistent task records under state/tasks/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -3,7 +3,7 @@
 /**
  * tob-poc-war-room — POC 战情室 v1.0.0
  *
- * 基于多行业 ToB POC 交付实战经验萃取（去敏）
+ * 基于 10+ ToB POC 交付实战经验萃取（去敏）
  * 不是 POC 项目管理模板，是"只有真干过 POC 的人才知道"的节奏控制和排兵布阵
  *
  * 输入：行业 / POC 目标 / 当前天数 / 问题清单
@@ -135,42 +135,12 @@ function determinePhase(day, industry) {
 // 风险等级评估
 // ═══════════════════════════════════════════════════════════
 
-function assessRisk(day, problems, industry, passRate, silenceDays, procurementPath) {
+function assessRisk(day, problems, industry) {
   const poc = INDUSTRY_POC[industry] || DEFAULT_POC;
   const riskItems = [];
   let riskScore = 0;
 
   const p = (problems || '').toLowerCase();
-  const rate = Number.isFinite(passRate) ? passRate : null;
-  const silentDays = Number.isFinite(silenceDays) ? silenceDays : null;
-  const procurement = (procurementPath || '').trim();
-
-  if (rate !== null) {
-    if (rate >= 90) {
-      riskItems.push({ level: '✅', factor: '通过率达到收口线', impact: '技术侧已具备进入签约推进的基础，前提是 P0 问题清零或有客户接受的 workaround', action: '准备 POC 一页纸复盘，并把剩余问题转为收口清单' });
-    } else if (rate >= 70) {
-      riskItems.push({ level: '🟡', factor: '通过率处于黄区', impact: '客户可能认可方向，但还不足以支撑签约动作', action: '未来 48 小时集中处理影响验收的 Top 2 问题' });
-      riskScore += 2;
-    } else {
-      riskItems.push({ level: '🔴', factor: '通过率低于可收口线', impact: '此时谈合同会放大客户不信任，容易把 POC 变成失败样板', action: '暂停签约推进，重设验收指标并补齐核心场景' });
-      riskScore += 4;
-    }
-  }
-
-  if (silentDays !== null) {
-    if (silentDays >= 7) {
-      riskItems.push({ level: '🔴', factor: '客户沉默达到 7 天', impact: 'POC 成功后沉默不是中性信号，通常意味着内部 buying process 无 owner 或竞品介入', action: '当天触达 champion，要求安排决策人/采购路径确认；同步触发 poc-to-contract-closer' });
-      riskScore += 3;
-    } else if (silentDays >= 3) {
-      riskItems.push({ level: '🟡', factor: '客户沉默达到 3 天', impact: '需要主动维持势能，不能等客户自然回复', action: '发送 POC 进展/结果摘要，明确约下一步会议或确认阻塞' });
-      riskScore += 1;
-    }
-  }
-
-  if (rate !== null && rate >= 90 && !procurement) {
-    riskItems.push({ level: '🟡', factor: '采购路径未知', impact: 'POC 结果好但 buying process 没 owner，报价和合同节点容易空转', action: '触发 poc-to-contract-closer，先确认招投标/比价/单一来源/框架协议/续约路径' });
-    riskScore += 2;
-  }
 
   if (/数据.*未.*到|数据.*没.*有|数据.*延迟|数据.*不到位|数据.*明天|客户说.*数据|数据.*下周|数据.*再给/.test(p)) {
     riskItems.push({ level: '🔴', factor: '数据未到位', impact: 'POC 最大瓶颈，80% 延期源于此', action: '自带脱敏样例数据先行推进；同时明确客户数据交付 deadline' });
@@ -337,9 +307,9 @@ function generate48hPlan(phase, riskItems, industry, problems) {
 // ═══════════════════════════════════════════════════════════
 
 function generateReport(config) {
-  const { industry, objective, day, problems, passRate, silenceDays, procurementPath } = config;
+  const { industry, objective, day, problems, passRate, silenceDays } = config;
   const poc = INDUSTRY_POC[industry] || DEFAULT_POC;
-  const { phase, riskLevel, riskItems, riskScore } = assessRisk(day || 0, problems, industry, passRate, silenceDays, procurementPath);
+  const { phase, riskLevel, riskItems, riskScore } = assessRisk(day || 0, problems, industry);
   const plan48h = generate48hPlan(phase, riskItems, industry, problems);
 
   const lines = [];
@@ -350,9 +320,6 @@ function generateReport(config) {
   lines.push(`> 行业：${industry || '未指定'}`);
   if (objective) lines.push(`> POC 目标：${objective}`);
   lines.push(`> 当前进度：第 ${day || 0} 天（${phase.name}）`);
-  if (Number.isFinite(passRate)) lines.push(`> 当前通过率：${passRate}%`);
-  if (Number.isFinite(silenceDays)) lines.push(`> 客户沉默：${silenceDays} 天`);
-  lines.push(`> 采购路径：${procurementPath || '未知'}`);
   lines.push(`> 典型周期：${poc.typicalDuration}`);
   lines.push('');
 
@@ -366,6 +333,21 @@ function generateReport(config) {
   lines.push(`| 决策链 | ${poc.decisionChain} | ${poc.typicalStakeholders.join(' → ')} |`);
   lines.push(`| 关键指标 | - | ${poc.keyMetrics.join('、')} |`);
   lines.push('');
+
+  // 模块 1.5：POC 绩效指标（如有数据）
+  if (passRate !== undefined || silenceDays !== undefined) {
+    lines.push('### 📊 POC 绩效指标');
+    lines.push('');
+    if (passRate !== undefined) {
+      const rateLabel = passRate >= 90 ? '✅ 通过率达到收口线' : passRate >= 75 ? '🟡 通过率处于黄区' : '🔴 通过率低于警戒线';
+      lines.push(`- 当前通过率：${passRate}%（${rateLabel}）`);
+    }
+    if (silenceDays !== undefined) {
+      const silenceLabel = silenceDays >= 7 ? '⚠️ 客户沉默达到 7 天，需主动触达' : '客户沉默：' + silenceDays + ' 天';
+      lines.push(`- 客户沉默：${silenceDays} 天（${silenceLabel}）`);
+    }
+    lines.push('');
+  }
 
   if (riskItems.length > 0) {
     lines.push('### ⚠️ 风险项');
@@ -424,15 +406,11 @@ function generateReport(config) {
   lines.push('## 四、签约路径预判');
   lines.push('');
 
-  if ((Number.isFinite(passRate) && passRate >= 90) || (Number.isFinite(silenceDays) && silenceDays >= 7) || (phase.phase === 'followup' && day > 7)) {
+  if (phase.phase === 'followup' && day > 7) {
     lines.push('⚠️ **当前状态：POC 后长时间未推进，签单风险高**');
     lines.push('');
     lines.push('建议立即启动 poc-to-contract-closer 六步法：');
-    lines.push('1. 数据达标确认 → 2. 问题清零 → 3. 决策人触达 → 4. 采购路径确认 → 5. 一页纸汇报/报价 → 6. 上线窗口');
-    lines.push('');
-    if (!procurementPath) {
-      lines.push('采购路径当前未知：先确认招投标/比价/单一来源/框架协议/续约路径，不要直接丢报价。');
-    }
+    lines.push('1. 数据达标确认 → 2. 问题清零 → 3. 决策人触达 → 4. 一页纸汇报 → 5. 报价 → 6. 上线节点');
     lines.push('');
   } else if (phase.phase === 'closing') {
     lines.push('✅ **当前状态：POC 收尾阶段，准备启动签约推进**');
@@ -467,12 +445,6 @@ function generateReport(config) {
     lines.push('');
   });
 
-  lines.push('## 六、回退路径');
-  lines.push('');
-  lines.push('- 如果 `poc-to-contract-closer` 判定 P0 未清、通过率不足或验收证据缺失，立即回到本 war-room。');
-  lines.push('- 回退后只做 48h 问题清零、验收证据补齐、客户沟通节奏恢复，不推进报价。');
-  lines.push('');
-
   // 实战案例
   if (poc.caseStudy) {
     lines.push('---');
@@ -492,7 +464,7 @@ function generateReport(config) {
   // 数据来源
   lines.push('---');
   lines.push('');
-  lines.push('> 💡 规则来源：多行业 ToB POC 交付实战经验（去敏）。每条规则来自真实踩坑，不是教科书理论。');
+  lines.push('> 💡 规则来源：10+ ToB POC 交付实战经验（去敏）。每条规则来自真实踩坑，不是教科书理论。');
   lines.push('> ⚠️ 本报告为诊断和排兵布阵参考，实际执行需结合项目具体情况。');
   lines.push('');
 
@@ -514,14 +486,12 @@ function interactiveMode() {
     const objective = await ask('POC 目标（如"政策问答准确率 >80%"）：');
     const dayStr = await ask('当前第几天（如 3 表示第 3 天）：');
     const problems = await ask('当前问题（多个用逗号分隔，如"数据未到位,竞品也在跑"）：');
-    const procurementPath = await ask('采购路径（招投标/比价/单一来源/框架协议/未知，回车跳过）：');
 
     const report = generateReport({
       industry: industry.trim() || null,
       objective: objective.trim() || null,
       day: parseInt(dayStr) || 0,
       problems: problems.trim() || null,
-      procurementPath: procurementPath.trim() || null,
     });
     console.log('\n' + report);
     rl.close();
@@ -533,16 +503,15 @@ function interactiveMode() {
 // ═══════════════════════════════════════════════════════════
 
 function parseArgs(argv) {
-  const args = { industry: null, objective: null, day: 0, problems: null, passRate: null, silenceDays: null, procurementPath: null };
+  const args = { industry: null, objective: null, day: 0, problems: null };
   for (let i = 2; i < argv.length; i++) {
     switch (argv[i]) {
       case '--industry': args.industry = argv[++i]; break;
       case '--objective': args.objective = argv[++i]; break;
       case '--day': args.day = parseInt(argv[++i]) || 0; break;
       case '--problems': args.problems = argv[++i]; break;
-      case '--pass-rate': args.passRate = Number.parseFloat(argv[++i]); break;
-      case '--silence-days': args.silenceDays = Number.parseFloat(argv[++i]); break;
-      case '--procurement-path': args.procurementPath = argv[++i]; break;
+      case '--pass-rate': args.passRate = parseInt(argv[++i]) || 0; break;
+      case '--silence-days': args.silenceDays = parseInt(argv[++i]) || 0; break;
       case '--help': case '-h': printHelp(); process.exit(0);
     }
   }
@@ -563,9 +532,6 @@ tob-poc-war-room — POC 战情室 v1.0.0
   --objective  POC 目标
   --day        当前第几天
   --problems   当前问题（逗号分隔）
-  --pass-rate  当前通过率百分比，例如 93
-  --silence-days 客户最近沉默天数，例如 7
-  --procurement-path 采购路径，例如 招投标/比价/单一来源/框架协议/续约
 
 行业支持：政务、金融、教育、零售
 `);
@@ -573,17 +539,11 @@ tob-poc-war-room — POC 战情室 v1.0.0
 
 if (require.main === module) {
   const args = parseArgs(process.argv);
-  if (!args.industry && !args.objective && !args.problems && !Number.isFinite(args.passRate) && !Number.isFinite(args.silenceDays) && !args.procurementPath) {
+  if (!args.industry && !args.objective && !args.problems) {
     interactiveMode();
   } else {
     console.log(generateReport(args));
   }
 }
 
-module.exports = {
-  assessRisk,
-  determinePhase,
-  generate48hPlan,
-  generateReport,
-  parseArgs,
-};
+module.exports = { generateReport, parseArgs };

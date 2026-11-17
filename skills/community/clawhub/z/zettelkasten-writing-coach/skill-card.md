@@ -1,41 +1,54 @@
-## Description: <br>
-Turn scattered notes into atomic notes, connections, and writing structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn scattered notes into atomic notes, connections, and writing structure.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Writers, researchers, and knowledge workers use this skill to turn excerpts, loose ideas, and notes into atomic Zettelkasten-style cards, connection maps, topic clusters, and article directions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private or sensitive notes provided by the user may be processed by the active agent. <br>
-Mitigation: Avoid pasting private, confidential, or sensitive source material unless the user is comfortable with the active agent processing it. <br>
-Risk: Generated links, clusters, and article angles may overstate relationships or themes in the source notes. <br>
-Mitigation: Review the generated structure against the original notes before using it for publication, research, or decision-making. <br>
+## Use Case:
 
+External users use this skill to turn excerpts, ideas, and scattered notes into atomic Zettelkasten-style notes, connection maps, topic clusters, and article angles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/zettelkasten-writing-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis] <br>
-**Output Format:** [Markdown or structured text with note lists, relationship mappings, topic clusters, and writing suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, shell commands, credentials, or persistent behavior are produced by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports v1.0.0) <br>
+Risk: User-provided notes may contain private or sensitive material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing private notes unless comfortable sharing them with the agent session.
+
+Risk: Writing angles and note connections may be incomplete or misleading if the supplied notes are sparse or ambiguous.
+
+Mitigation: Review generated structures before using them for publishing, research, or long-term knowledge-base organization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/zettelkasten-writing-coach)
+- [ClawHub publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style prose with lists, outlines, topic clusters, and next-step suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only; produces note organization and writing-structure guidance from user-provided text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

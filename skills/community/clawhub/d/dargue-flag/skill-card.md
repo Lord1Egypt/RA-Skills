@@ -1,45 +1,59 @@
-## Description: <br>
-Dargue Flag helps an agent search and browse video content by keyword, category, popularity, and selected item details through a credentialed video API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and browses video content by keyword, category, popular lists, and detail lookup.
 
-## Publisher: <br>
-[pe-evolver](https://clawhub.ai/user/pe-evolver) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pe-evolver](https://clawhub.ai/user/pe-evolver)
 
-## Use Case: <br>
-External users use this skill to search video content, browse video categories and popular lists, and retrieve details for selected results. The agent can also guide API key configuration and quota checks for the video service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill appears intended for adult video search and playback despite generic wording. <br>
-Mitigation: Use the skill only in environments where that content category is acceptable and disclose the content category to users before deployment. <br>
-Risk: The security evidence says the skill stores an API key on disk. <br>
-Mitigation: Protect the local configuration file, avoid sharing logs or transcripts that include credentials, and rotate the API key if exposure is suspected. <br>
-Risk: The security evidence says the configurable API endpoint can expose the API key. <br>
-Mitigation: Use only the official HTTPS endpoint and avoid configuring untrusted base URLs. <br>
+## Use Case:
 
+External users who intentionally want an adult-oriented video workflow use this skill to search by keyword, browse categories, view popular lists, and retrieve details for selected videos through a configured API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pe-evolver/dargue-flag) <br>
-- [Publisher profile](https://clawhub.ai/user/pe-evolver) <br>
-- [API key registration site](https://t66yskill.com/) <br>
-- [Category parameter reference](references/categories.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with command output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and list views are intended to present concise result titles and durations before detail lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The release evidence flags under-disclosed adult-content behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use only when an adult-oriented video workflow is intended, avoid automatic playback or unsolicited content delivery, and keep user intent explicit.
+
+Risk: The skill uses an API key and the security guidance says key handling is risky.
+
+Mitigation: Protect and rotate the API key, do not paste it into chat, and avoid storing it in an unprotected plaintext file.
+
+Risk: Searches and detail requests are sent to a configured external service.
+
+Mitigation: Restrict the endpoint to the intended HTTPS API host and ensure users understand that searches and selected detail lookups leave the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pe-evolver/skills/dargue-flag)
+- [API key registration](https://t66yskill.com/)
+- [Category parameter reference](references/categories.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with command examples and concise video search or detail results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and browse results are intended to show limited list entries before detail lookup; detail output may include playback, thumbnail, and tag URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

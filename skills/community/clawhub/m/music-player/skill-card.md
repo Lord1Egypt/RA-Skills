@@ -1,43 +1,60 @@
-## Description: <br>
-Provides Windows-oriented music search, authorized MP3 download, ID3 metadata embedding, and local playback commands using multiple music API sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Windows-focused music search, high-quality download, ID3 metadata embedding, and local playback using multiple music API sources.
 
-## Publisher: <br>
-[freebook8](https://clawhub.ai/user/freebook8) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freebook8](https://clawhub.ai/user/freebook8)
 
-## Use Case: <br>
-Windows users and agents use this skill to search supported music APIs, download tracks they are authorized to download, add ID3 metadata, and open local audio files in the system player. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download music from public API sources, which may include content the user is not authorized to download. <br>
-Mitigation: Use it only for music you are authorized to download and comply with the applicable music service and content terms. <br>
-Risk: Some scripts include hard-coded Windows demo paths and default download locations. <br>
-Mitigation: Review command arguments and default paths before running, and provide an explicit output path when possible. <br>
-Risk: Dependencies are broad and not pinned in the artifact metadata. <br>
-Mitigation: Pin or minimize dependencies before installing in a sensitive environment. <br>
+## Use Case:
 
+Developers and end users can use this skill to search for tracks, download selected music files, embed metadata, and launch local playback on Windows. It is best suited for personal learning and development workflows around music file handling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/freebook8/music-player) <br>
-- [go-music-api project](https://github.com/caorushizi/go-music-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and file path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create MP3 files, update ID3 metadata, or launch local playback when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, package.json, artifact changelog) <br>
+Risk: Install steps use mutable or unpinned Python dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned skill release, pin Python dependencies in a dependency file, and remove unused dependencies before installation.
+
+Risk: Music downloads write files to local paths and could overwrite important files if pointed at a broad directory.
+
+Mitigation: Save downloads only to a dedicated music folder and review target paths before running download commands.
+
+Risk: The skill depends on external music API sources whose availability and responses can vary.
+
+Mitigation: Review the configured API sources before use and handle failed or unexpected responses before relying on downloaded files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freebook8/skills/music-player)
+- [go-music-api](https://github.com/caorushizi/go-music-api)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python script references, and generated local audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create MP3 files and ID3 metadata in user-selected or default music folders.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, package.json, README, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

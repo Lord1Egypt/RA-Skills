@@ -1,43 +1,55 @@
-## Description: <br>
-Check domain availability and brainstorm names. Checks .com/.net/.org/.io/.ai/.co/.app/.dev and more. Suggests alternatives when taken. No API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check domain availability and brainstorm names. Checks .com/.net/.org/.io/.ai/.co/.app/.dev and more. Suggests alternatives when taken. No API key required.
 
-## Publisher: <br>
-[josephflu](https://clawhub.ai/user/josephflu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josephflu](https://clawhub.ai/user/josephflu)
 
-## Use Case: <br>
-Developers, founders, and product teams use this skill through an AI assistant to check candidate domain availability across common TLDs, see alternatives when names are taken, and optionally brainstorm new domain names from a project description. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Domain availability results are heuristic and can be unknown or stale because they rely on DNS and optional whois checks. <br>
-Mitigation: Verify any candidate domain with a registrar before purchasing or making business decisions. <br>
-Risk: Brainstorm mode sends the project description to OpenRouter when an API key is configured. <br>
-Mitigation: Avoid confidential launch names, internal plans, or sensitive business ideas unless sharing that text with OpenRouter is acceptable. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to check candidate domain names across common TLDs, generate alternatives when a .com is taken, and optionally brainstorm available names from a project description.
 
-## Reference(s): <br>
-- [Popular TLDs Reference](references/tlds.md) <br>
-- [Domain Name Checker Homepage](https://github.com/eagerbots/domain-name-checker) <br>
-- [OpenClaw](https://github.com/eagerbots/openclaw) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/josephflu/domain-name-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown or terminal text with domain status tables and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Basic checks perform DNS lookups; brainstorm mode sends the user-provided description to OpenRouter when OPENROUTER_API_KEY is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Brainstorm mode sends the user's description to OpenRouter when OPENROUTER_API_KEY is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential product details, customer data, or secrets in brainstorm prompts.
+
+Risk: DNS and whois availability checks can be inconclusive or differ from registrar availability.
+
+Mitigation: Treat results marked available or unknown as preliminary and verify with a registrar before purchasing a domain.
+
+## Reference(s):
+
+- [Domain Name Checker Homepage](https://github.com/eagerbots/domain-name-checker)
+- [Popular TLDs Reference](references/tlds.md)
+- [OpenClaw Project](https://github.com/eagerbots/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text terminal tables and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Basic checks use DNS and optional whois results; brainstorm mode uses OpenRouter when OPENROUTER_API_KEY is configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

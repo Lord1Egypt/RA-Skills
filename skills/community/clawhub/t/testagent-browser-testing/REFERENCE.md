@@ -1,97 +1,98 @@
 # Browser Testing Reference
 
-## 工具选择
+## Tool selection
 
-### 对比表
+### Comparison table
 
-| | OpenClaw 内置浏览器 | Playwright MCP | browser-use CLI |
+| | OpenClaw built-in browser | Playwright MCP | browser-use CLI |
 |---|---|---|---|
-| **调用方式** | `browser` 工具（snapshot/act/screenshot） | `playwright__browser_*` 系列 | `exec` 调用 `browser-use` 命令 |
-| **状态获取** | accessibility snapshot（文本树） | snapshot（文本树） | `state`（元素索引列表） |
-| **元素定位** | ref（如 e36） | ref + selector | 数字索引（如 click 5） |
-| **截图返回** | AI 分析文本（❌ 不可分享） | PNG 文件（✅ 可分享） | 保存路径（✅ 可分享） |
-| **JS 执行** | ✅ evaluate | ✅ evaluate | ✅ eval |
-| **键盘事件** | ⚠️ React 受控组件不生效 | ✅ 支持良好 | ✅ `keys "Enter"` |
-| **云浏览器** | ❌ | ❌ | ✅ `cloud connect` |
-| **复用登录态** | ❌ | ❌ | ✅ `--profile "Default"` |
-| **反爬/CAPTCHA** | ❌ | ❌ | ✅ 云浏览器内置 |
-| **住宅代理** | ❌ | ❌ | ✅ 195+ 国家 |
-| **内网隧道** | ❌ | ❌ | ✅ `tunnel <port>` |
-| **多会话并行** | 有限 | 有限 | ✅ `--session NAME` |
-| **命令链** | 不支持 | 不支持 | ✅ `&&` 链式执行 |
+| **Invocation** | `browser` tool (snapshot/act/screenshot) | `playwright__browser_*` family | `exec` calling the `browser-use` command |
+| **State retrieval** | accessibility snapshot (text tree) | snapshot (text tree) | `state` (indexed element list) |
+| **Element targeting** | ref (e.g. e36) | ref + selector | numeric index (e.g. click 5) |
+| **Screenshot output** | AI analysis text (❌ not shareable) | PNG file (✅ shareable) | saved path (✅ shareable) |
+| **JS execution** | ✅ evaluate | ✅ evaluate | ✅ eval |
+| **Keyboard events** | ⚠️ doesn't work on React controlled components | ✅ works well | ✅ `keys "Enter"` |
+| **Cloud browser** | ❌ | ❌ | ✅ `cloud connect` |
+| **Reuse login session** | ❌ | ❌ | ✅ `--profile "Default"` |
+| **Anti-bot/CAPTCHA** | ❌ | ❌ | ✅ built into the cloud browser |
+| **Residential proxy** | ❌ | ❌ | ✅ 195+ countries |
+| **Internal network tunnel** | ❌ | ❌ | ✅ `tunnel <port>` |
+| **Parallel multi-session** | limited | limited | ✅ `--session NAME` |
+| **Command chaining** | not supported | not supported | ✅ chainable with `&&` |
 
-### 何时用哪个
+### When to use which
 
-**→ 用 OpenClaw 内置浏览器（默认首选）**
-- 常规功能测试和页面交互
-- 已登录的会话内操作
-- 不需要截图分享给用户时
-- **优势**：工具集成度高，一步到位
+**→ Use the OpenClaw built-in browser (default choice)**
+- Routine functional testing and page interaction
+- Actions within an already-logged-in session
+- When screenshots don't need to be shared with the user
+- **Advantage**: tightly integrated tooling, gets things done in one step
 
-**→ 用 Playwright MCP**
-- 需要截图分享给用户（bug 截图、状态确认）
-- React/Vue 受控组件的精确交互（键盘事件支持好）
-- 需要精确 selector 定位元素
-- **优势**：元素定位最精确，截图可用
+**→ Use Playwright MCP**
+- Need to share a screenshot with the user (bug screenshots, state confirmation)
+- Precise interaction with React/Vue controlled components (good keyboard event support)
+- Need precise selector-based element targeting
+- **Advantage**: most precise element targeting, screenshots are usable
 
-**→ 用 browser-use CLI**
-- 需要云浏览器（反爬、CAPTCHA、住宅代理）
-- 需要复用用户本地 Chrome 登录态
-- 内网服务需通过隧道访问（`tunnel <port>`）
-- 新产品快速探索（命令链 `&&` 高效）
-- 多产品并行测试（`--session` 多会话）
-- **优势**：浏览器能力最强，云+本地+隧道全覆盖
+**→ Use browser-use CLI**
+- Need a cloud browser (anti-bot, CAPTCHA, residential proxy)
+- Need to reuse the user's local Chrome login session
+- Internal services need to be reached via a tunnel (`tunnel <port>`)
+- Fast exploration of a new product (efficient with `&&` command chains)
+- Parallel testing across multiple products (`--session` multi-session)
+- **Advantage**: strongest browser capabilities, full coverage across cloud + local + tunnel
 
-### 决策树
+### Decision tree
 
-**默认用 OpenClaw 内置浏览器**，遇到以下情况再切换：
+**Default to the OpenClaw built-in browser**, and switch only in these cases:
 
 ```
-需要截图分享给用户？
-  → 先试 Playwright MCP（take_screenshot 存文件）
-    → playwright__browser_navigate 能跑通？→ 用 Playwright MCP
-    → 跑不通（缺系统依赖 / 无 root）？→ 用内置浏览器 + CDP 直连截图（见下方）
+Need to share a screenshot with the user?
+  → Try Playwright MCP first (take_screenshot saved to a file)
+    → Does playwright__browser_navigate actually work? → Use Playwright MCP
+    → Doesn't work (missing system deps / no root)? → Use the built-in browser + direct CDP for screenshots (see below)
 
-React/Vue 受控组件操作失败（键盘事件不生效）？
-  → 改用 Playwright MCP
+React/Vue controlled component interaction fails (keyboard events don't register)?
+  → Switch to Playwright MCP
 
-目标网站有反爬 / CAPTCHA，内置浏览器和 Playwright 都被拦？
-  → 改用 browser-use CLI（cloud connect）
+Target site has anti-bot/CAPTCHA, and both the built-in browser and Playwright are blocked?
+  → Switch to browser-use CLI (cloud connect)
 
-需要复用用户本地 Chrome 登录态？
-  → 改用 browser-use CLI --profile "Default"
+Need to reuse the user's local Chrome login session?
+  → Switch to browser-use CLI --profile "Default"
 
-需要内网隧道或多会话并行？
-  → 改用 browser-use CLI
+Need an internal network tunnel or parallel multi-session?
+  → Switch to browser-use CLI
 ```
 
 ---
 
-## 截图正确流程
+## Correct screenshot workflow
 
-### 路径 1：Playwright MCP（首选）
+### Path 1: Playwright MCP (preferred)
 
 ```
-1. playwright__browser_navigate → 目标 URL（真正跑通才算可用）
-2. playwright__browser_take_screenshot → filename="~/.openclaw/workspace/bug_<序号>_<描述>.png"
-3. 回复中附加: MEDIA:~/.openclaw/workspace/bug_<序号>_<描述>.png
+1. playwright__browser_navigate → target URL (only counts as usable once it actually works)
+2. playwright__browser_take_screenshot → filename="~/.openclaw/workspace/bug_<number>_<description>.png"
+3. Attach in the reply: MEDIA:~/.openclaw/workspace/bug_<number>_<description>.png
 ```
 
-### 路径 2：Chrome CDP 直连（Playwright MCP 不可用时的主 fallback）
+### Path 2: Direct Chrome CDP connection (the main fallback when Playwright MCP is unavailable)
 
-setup.sh 创建了 `~/.local/bin/chrome-cdp` 启动脚本，封装了正确的 LD_LIBRARY_PATH 和启动参数。
+setup.sh creates a `~/.local/bin/chrome-cdp` launcher script that wraps the correct LD_LIBRARY_PATH and startup flags.
 
 ```bash
-# 1. 启动 Chrome（后台运行）
+# 1. Start Chrome (running in background)
 chrome-cdp &
-sleep 2  # 等待启动
+sleep 2  # wait for it to start
 
-# 2. 导航到目标页面
-curl -s http://localhost:9223/json/new?about:blank  # 创建新标签页
+# 2. Navigate to the target page
+curl -s http://localhost:9223/json/new?about:blank  # create a new tab
+
 TARGET_ID=$(curl -s "http://localhost:9223/json" | python3 -c \
   "import json,sys; t=[x for x in json.load(sys.stdin) if x.get('type')=='page']; print(t[0]['id'])")
 
-# 3. 通过 CDP WebSocket 导航
+# 3. Navigate via the CDP WebSocket
 node -e "
 const ws = new (require('ws').WebSocket)('ws://localhost:9223/devtools/page/$TARGET_ID');
 ws.on('open', () => {
@@ -100,7 +101,7 @@ ws.on('open', () => {
 ws.on('message', d => { const r=JSON.parse(d); if(r.id===1){ws.close();} });
 "
 
-# 4. 截图
+# 4. Take a screenshot
 SCREENSHOT="$HOME/.openclaw/workspace/screenshot_$(date +%s).png"
 node -e "
 const ws = new (require('ws').WebSocket)('ws://localhost:9223/devtools/page/$TARGET_ID');
@@ -116,80 +117,80 @@ ws.on('message', d => {
 echo "MEDIA:$SCREENSHOT"
 ```
 
-**JS 交互（填表单、点击按钮）同理**，用 `Runtime.evaluate` 替换截图命令：
+**JS interaction (filling forms, clicking buttons) works the same way** — replace the screenshot command with `Runtime.evaluate`:
 ```javascript
 {id:2, method:'Runtime.evaluate', params:{expression:'document.querySelector("button").click()'}}
 ```
 
-### 路径 3：browser-use CLI（CDP 也搞不定时）
+### Path 3: browser-use CLI (when even CDP won't work)
 
 ```bash
 browser-use screenshot --output ~/.openclaw/workspace/screenshot.png
 ```
 
-**通用注意事项**：
-- 内置浏览器的 `browser screenshot` 只返回 AI 分析文本，三条路径都不包括它
-- `MEDIA:` 只在聊天回复中渲染，写进 `.md` 文件里不显示
-- `mcp doctor --probe` 返回 ok 是假阳性，不代表 Playwright 真正可用
+**General notes**:
+- The built-in browser's `browser screenshot` only returns AI analysis text — none of the three paths above include it
+- `MEDIA:` only renders inside chat replies; writing it into a `.md` file will not display the image
+- `mcp doctor --probe` returning ok is a false positive — it doesn't mean Playwright is actually usable
 
 ---
 
-## 报告格式
+## Report format
 
 ```
-## 测试报告：[功能名称] @ [URL]
-测试时间：YYYY-MM-DD
-测试工具：Playwright MCP / browser-use CLI / 内置浏览器
+## Test Report: [Feature name] @ [URL]
+Test date: YYYY-MM-DD
+Test tool: Playwright MCP / browser-use CLI / built-in browser
 
-### 测试结果摘要
-- 测试点总数：5
-- 通过：3
-- 发现 Bug：2
+### Summary
+- Total test points: 5
+- Passed: 3
+- Bugs found: 2
 
-### 通过的测试点
-- ✅ 正常登录流程
-- ✅ 表单必填项校验
-- ✅ 核心功能 X happy path
+### Passed test points
+- ✅ Normal login flow
+- ✅ Required-field validation
+- ✅ Core feature X happy path
 
-### Bug 清单
+### Bug list
 
-**Bug #1：[标题]**
-- 测试点：[对应的测试点]
-- 现象：[一句话描述]
-- 复现步骤：
+**Bug #1: [Title]**
+- Test point: [corresponding test point]
+- Symptom: [one-sentence description]
+- Steps to reproduce:
   1. ...
   2. ...
   3. ...
-- 期望结果：...
-- 实际结果：...
-- 截图：MEDIA:/root/.openclaw/workspace/bug_1_xxx.png
-- 建议优先级：高（核心功能不可用）
-- 建议 assignee：[根据 AGENTS.md 分工规则]
-- 建议修复工期：2 天
+- Expected result: ...
+- Actual result: ...
+- Screenshot: MEDIA:/root/.openclaw/workspace/bug_1_xxx.png
+- Suggested priority: High (core feature unusable)
+- Suggested assignee: [per the assignment rules in AGENTS.md]
+- Suggested fix timeline: 2 days
 ```
 
 ---
 
-## 优先级规则
+## Priority rules
 
-| 情况 | 建议优先级 | coding-net 值 |
+| Situation | Suggested priority | coding-net value |
 |------|-----------|--------------|
-| 核心功能完全不可用，阻塞用户 | 最高 / 高 | 0 或 1 |
-| 功能异常但存在绕路方案 | 中 | 2 |
-| UI / 体验问题，不影响核心使用 | 低 / 最低 | 3 或 4 |
+| Core feature completely unusable, blocking the user | Highest / High | 0 or 1 |
+| Feature is broken but a workaround exists | Medium | 2 |
+| UI/UX issue, doesn't affect core usage | Low / Lowest | 3 or 4 |
 
-若 AGENTS.md 中有更具体的优先级标准，以 AGENTS.md 为准。
+If AGENTS.md defines more specific priority criteria, defer to AGENTS.md.
 
 ---
 
-## 踩坑
+## Pitfalls
 
-### 内置浏览器启动失败 / 超时（容器环境）
-**现象**：`browser start` 报 `Timeout waiting for browser`，`browser doctor` 卡在 `launching...`
+### Built-in browser fails to start / times out (container environments)
+**Symptom**: `browser start` reports `Timeout waiting for browser`, `browser doctor` hangs at `launching...`
 
-**根因**：容器以 root 运行，Chromium 需要 sandbox，但容器缺少 `USER_NAMESPACE` 权限
+**Root cause**: the container runs as root, Chromium needs a sandbox, but the container lacks `USER_NAMESPACE` permission
 
-**解决**：直接编辑 `~/.openclaw/openclaw.json`（不能用 `config.patch`，browser 路径受保护）：
+**Fix**: edit `~/.openclaw/openclaw.json` directly (can't use `config.patch` — the browser path is protected):
 ```json
 {
   "browser": {
@@ -197,20 +198,20 @@ browser-use screenshot --output ~/.openclaw/workspace/screenshot.png
   }
 }
 ```
-然后执行完整重启序列（顺序不能错）：
+Then run the full restart sequence (order matters):
 ```bash
 browser stop
 openclaw gateway restart
-# 等待约 15 秒
+# wait about 15 seconds
 browser start
 ```
 
-### 内置浏览器导航报 blocked by policy（SSRF 拦截）
-**现象**：`browser navigate` 到目标 URL 时报 `blocked by policy`
+### Built-in browser navigation fails with blocked by policy (SSRF block)
+**Symptom**: `browser navigate` to the target URL reports `blocked by policy`
 
-**根因**：内置浏览器默认启用 SSRF 防护，只允许访问白名单域名
+**Root cause**: the built-in browser enables SSRF protection by default, allowing only allowlisted domains
 
-**解决**：在 `~/.openclaw/openclaw.json` 的 `browser.ssrfPolicy.allowedHostnames` 中添加目标域名，以及登录页的 Auth0 / SSO 域名（否则登录跳转也会被拦截）：
+**Fix**: add the target domain to `browser.ssrfPolicy.allowedHostnames` in `~/.openclaw/openclaw.json`, along with the login page's Auth0/SSO domain (otherwise the login redirect will also be blocked):
 ```json
 {
   "browser": {
@@ -224,39 +225,39 @@ browser start
   }
 }
 ```
-改完同样执行完整重启序列：`browser stop` → `gateway restart` → 等 15 秒 → `browser start`
+After editing, run the full restart sequence again: `browser stop` → `gateway restart` → wait 15 seconds → `browser start`
 
-### Ctrl+Enter 快捷键不生效
-React 受控组件的键盘快捷键在自动化工具中可能无法触发。
+### Ctrl+Enter shortcut doesn't work
+Keyboard shortcuts on React controlled components may not trigger through automation tools.
 
-解决：找页面上真正的发送/提交按钮，用 JS 直接点击：
+Fix: find the actual send/submit button on the page and click it directly via JS:
 ```javascript
-document.querySelector('[aria-label="发送"]').click()
-// 或用 playwright evaluate / browser evaluate
+document.querySelector('[aria-label="Send"]').click()
+// or use playwright evaluate / browser evaluate
 ```
 
-### 截图中文显示乱码（□□□）
-说明字体未正确安装，重新运行 browser-setup skill。
+### Mojibake (□□□) in screenshots for Chinese text
+Indicates the fonts weren't installed correctly — re-run the browser-setup skill.
 
-验证命令：
+Verification command:
 ```bash
 fc-match ":lang=zh"
-# 期望输出包含 "Noto Sans CJK SC"，而非 "DejaVu Sans"
+# Expected output includes "Noto Sans CJK SC", not "DejaVu Sans"
 ```
 
-### Playwright MCP 报 Missing system dependencies
+### Playwright MCP reports Missing system dependencies
 
-**现象**：`playwright__browser_navigate` 报错 `Missing system dependencies`，`mcp doctor --probe` 却返回 ok
+**Symptom**: `playwright__browser_navigate` errors with `Missing system dependencies`, yet `mcp doctor --probe` returns ok
 
-**根因**：`mcp doctor` 只检查 MCP server 进程启动，不验证 Chromium 是否能运行。无 root 环境下 20+ 个系统 `.so` 缺失，Chromium 启动即崩溃。
+**Root cause**: `mcp doctor` only checks that the MCP server process started — it doesn't verify Chromium can actually run. Without root, 20+ system `.so` files are missing and Chromium crashes on launch.
 
-**解决**：不要尝试 `sudo`/`apt`/`install-deps`，直接切换路径：
-- 截图需求 → 内置浏览器 + CDP 直连（见上方路径 2）
-- 页面交互需求 → 继续用内置浏览器（snapshot/act）
+**Fix**: don't try `sudo`/`apt`/`install-deps` — switch paths directly:
+- For screenshots → built-in browser + direct CDP (see Path 2 above)
+- For page interaction → keep using the built-in browser (snapshot/act)
 
-### 遇到操作卡点
-同一方法尝试 2-3 次失败后立即切换策略：
-- 内置浏览器失败 → 改用 Playwright MCP
-- Playwright MCP 失败（缺依赖）→ 截图用 CDP 直连，交互用内置浏览器
-- 都失败 → 改用 browser-use CLI
-- 不要在一条路上死磕
+### Stuck on an action
+If the same method fails 2-3 times, switch strategy immediately:
+- Built-in browser fails → switch to Playwright MCP
+- Playwright MCP fails (missing deps) → use direct CDP for screenshots, built-in browser for interaction
+- Both fail → switch to browser-use CLI
+- Don't keep grinding on one path

@@ -1,45 +1,58 @@
-## Description: <br>
-Automatically discovers and installs high-value skills from ClawHub based on unresolved issues, user profile, and skill compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomously discovers, ranks, and installs high-value ClawHub skills from unresolved user problems, profile signals, and capability gaps.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover, rank, preview, and optionally install ClawHub skills that address unresolved tasks or capability gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read prior user context and profile signals. <br>
-Mitigation: Run it only in environments where that context is approved for skill discovery. <br>
-Risk: The skill can install, clone, scaffold, and self-test new skills. <br>
-Mitigation: Start with --dry-run, keep --max-install low, and manually review recommended skill source before live installs. <br>
-Risk: The skill can send recommendation reports outside the workspace. <br>
-Mitigation: Set SKILL_HUNTER_NO_REPORT=1 unless external reporting has been explicitly approved. <br>
-Risk: Scheduled auto patrol can repeatedly change the skill stack in shared or sensitive environments. <br>
-Mitigation: Avoid cron scheduling in those environments or require human approval for each live install. <br>
+## Use Case:
 
+Developers and agent operators use this skill to find, rank, preview, and optionally install ClawHub skills that address unresolved tasks or recurring capability gaps. It is suited to controlled skill-discovery workflows where recommendations and installation outcomes are reviewed before adoption.
 
-## Reference(s): <br>
-- [Auto Skill Hunter - ClawHub](https://clawhub.ai/wanng-ide/auto-skill-hunter) <br>
-- [Memory Mesh Core - ClawHub](https://clawhub.ai/wanng-ide/memory-mesh-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown recommendation report with install status, selection reasons, and optional generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May clone or scaffold selected skills and run self-tests unless --dry-run is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and claw.json) <br>
+Risk: The skill reads prior chats, task memory, user profile data, personality state, and installed-skill cache data to infer unresolved needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a controlled workspace after reviewing what local memory files are available, and prefer targeted queries or dry-run mode when sensitive chat history may be present.
+
+Risk: Live mode can clone or scaffold new skills into the local skills directory and execute a downloaded index.js self-test.
+
+Mitigation: Avoid --auto and scheduled runs until reviewed; use --dry-run first, keep --max-install low, inspect each repository and destination path manually, and do not execute downloaded skill code without separate approval.
+
+Risk: Recommendation reports may be sent through an external reporting wrapper and could include selected problem summaries or skill choices.
+
+Mitigation: Set SKILL_HUNTER_NO_REPORT=1 for local tests or sensitive workspaces, and review any outbound report payload before enabling reporting.
+
+## Reference(s):
+
+- [Auto Skill Hunter - ClawHub](https://clawhub.ai/wanng-ide/skills/auto-skill-hunter)
+- [Memory Mesh Core - ClawHub](https://clawhub.ai/wanng-ide/memory-mesh-core)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with installation metadata and generated skill files when live installation is enabled]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports dry-run preview, configurable per-run install limits, and disabled outbound reporting with SKILL_HUNTER_NO_REPORT=1.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.release.version and artifact/claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

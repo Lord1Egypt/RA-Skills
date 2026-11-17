@@ -1,41 +1,54 @@
-## Description: <br>
-Use when implementing or reviewing SVG animation, path drawing, icon motion, logo animation, illustration motion, micro-interactions, CSS/SMIL/Framer Motion/GSAP choices, motion accessibility, or fallback behavior; Chinese triggers include SVG 动画, 路径描边, 动效. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers implement and review SVG path, icon, logo, and illustration animation with accessible reduced-motion fallbacks.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to choose and implement SVG animation approaches for icons, logos, illustrations, path drawing, and micro-interactions with accessibility and reduced-motion fallbacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SVG animation code may increase bundle size or degrade animation performance, especially when using Framer Motion or GSAP. <br>
-Mitigation: Review generated code for dependency scope, lazy loading, animation cost, and mobile performance before shipping. <br>
-Risk: Motion-heavy SVG changes can reduce accessibility if they ignore reduced-motion preferences or obscure focus and state changes. <br>
-Mitigation: Require prefers-reduced-motion handling, visible focus states, accessible names for non-decorative SVGs, and static or reduced-motion fallbacks. <br>
+## Use Case:
 
+Developers use this skill to choose and implement SVG animation techniques for interfaces, including reusable components, performance controls, and accessible reduced-motion behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-svg-animation) <br>
-- [Publisher profile](https://clawhub.ai/user/bovinphang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, JSX, and CSS code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include implementation rationale, reduced-motion handling, accessibility notes, and performance checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release evidence and package metadata) <br>
+Risk: Broad animation requests may trigger SVG-specific advice for unrelated work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill for SVG-specific motion tasks and confirm the proposed approach fits the interface.
+
+Risk: Animation may be inaccessible or visually disruptive without an appropriate fallback.
+
+Mitigation: Check keyboard focus, accessible names, and prefers-reduced-motion behavior before shipping.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bovinphang/skills/fec-svg-animation)
+- [Project homepage (package metadata)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with SVG, CSS, and component code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes technique selection, accessibility guidance, and reduced-motion fallbacks.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, package.json, metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

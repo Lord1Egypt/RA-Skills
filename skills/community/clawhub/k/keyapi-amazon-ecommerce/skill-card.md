@@ -1,40 +1,63 @@
-## Description: <br>
-Explore and analyze Amazon e-commerce data at scale, including product search, category browsing, product details, best sellers, deals, seller intelligence, influencer storefronts, reviews, and ASIN/GTIN conversion across 24 Amazon marketplaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore and analyze Amazon e-commerce data at scale for product search, category browsing, product details, best sellers, deals, seller intelligence, influencer storefronts, reviews, and ASIN/GTIN conversion across 24 Amazon marketplaces.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-External developers and analysts use this skill to query KeyAPI's Amazon MCP service for product, seller, deal, review, and influencer storefront research across supported Amazon marketplaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tokens or cached Amazon research results may persist locally if the runner creates a .env file or writes .keyapi-cache files. <br>
-Mitigation: Prefer setting KEYAPI_TOKEN as an environment variable, review or delete any .env file created by the runner, and use --no-cache or remove .keyapi-cache when results are sensitive. <br>
+## Use Case:
 
+Developers, analysts, and marketplace researchers use this skill to query KeyAPI's Amazon MCP service and prepare e-commerce intelligence reports on products, sellers, reviews, deals, offers, and influencer storefronts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lycici/keyapi-amazon-ecommerce) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI Amazon MCP endpoint](https://mcp.keyapi.ai/amazon/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KEYAPI_TOKEN and Node.js; can cache API responses locally under .keyapi-cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles a KeyAPI token and can write it to a local .env file during interactive setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set KEYAPI_TOKEN through the environment or a secure secret store and do not commit any .env file.
+
+Risk: KEYAPI_SERVER_URL can redirect requests and tokens to a different MCP server.
+
+Mitigation: Leave KEYAPI_SERVER_URL unset unless you intentionally trust the specific replacement server.
+
+Risk: Local API response caches may retain retrieved marketplace data under .keyapi-cache.
+
+Mitigation: Review, exclude, or delete cache files before sharing the workspace or committing outputs.
+
+Risk: The security summary notes that the runner is broader than the Amazon-only description.
+
+Mitigation: Review the requested platform and tool before execution and install only if you trust KeyAPI and the publisher.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lycici/skills/keyapi-amazon-ecommerce)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI Amazon MCP server](https://mcp.keyapi.ai/amazon/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save API responses to local JSON output files and date-partitioned .keyapi-cache entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

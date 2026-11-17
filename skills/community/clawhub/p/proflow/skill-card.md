@@ -1,41 +1,57 @@
-## Description: <br>
-Proflow guides agents through a standardized project delivery workflow from requirement brainstorming through planning, execution, documentation, status tracking, and reset operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proflow standardizes project delivery by guiding agents through requirement brainstorming, execution planning, implementation, specification writing, requirement ID management, document naming, and stage tracking.
 
-## Publisher: <br>
-[luis1232023](https://clawhub.ai/user/luis1232023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luis1232023](https://clawhub.ai/user/luis1232023)
 
-## Use Case: <br>
-Developers and project teams use Proflow to standardize feature delivery, including requirement IDs, staged planning, execution records, and generated project documentation. It is most useful when an agent should follow explicit phase commands such as full, brainstorm, plan, execute, spec, status, and reset. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may write project documentation, create local state files, modify .gitignore, and change code without a clear approval gate. <br>
-Mitigation: Keep the project under version control, invoke explicit Proflow subcommands, and review diffs after each run. <br>
-Risk: The workflow depends on separate openspec and superpowers skills. <br>
-Mitigation: Review and install those required skills separately before relying on Proflow output. <br>
+## Use Case:
 
+Developers and engineering teams use Proflow to run a standardized project workflow from requirement discovery through planning, implementation, and specification documentation. It is especially suited to agent-assisted development work that needs consistent document paths, unique requirement IDs, stage status, and execution logs.
 
-## Reference(s): <br>
-- [Proflow on ClawHub](https://clawhub.ai/luis1232023/proflow) <br>
-- [Publisher profile](https://clawhub.ai/user/luis1232023) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command names, file paths, generated documentation, status files, and local script invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates project documentation, logs, status markers, and standardized filenames in the working repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can modify code and create repository-local planning documents, logs, status markers, and .gitignore entries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit proflow commands, review generated or modified files before committing, and keep repository status checks in the workflow.
+
+Risk: Custom requirement IDs are passed to helper scripts that create and track project artifacts.
+
+Mitigation: Avoid unusual custom IDs and review the generated filenames and status entries before relying on them.
+
+Risk: The skill depends on the openspec and superpowers skills for major workflow phases.
+
+Mitigation: Install and review those dependency skills before running full, brainstorm, plan, execute, or spec workflows.
+
+## Reference(s):
+
+- [Proflow on ClawHub](https://clawhub.ai/luis1232023/skills/proflow)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documents, repository-local status files, log files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes project artifacts under docs/ and stage status under .opencode/status/proflow when its workflows are executed.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

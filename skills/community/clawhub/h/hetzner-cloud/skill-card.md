@@ -1,42 +1,54 @@
-## Description: <br>
-Hetzner Cloud CLI for managing servers, volumes, firewalls, networks, DNS, and snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hetzner Cloud CLI for managing servers, volumes, firewalls, networks, DNS, and snapshots.
 
-## Publisher: <br>
-[pasogott](https://clawhub.ai/user/pasogott) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pasogott](https://clawhub.ai/user/pasogott)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to get cautious Hetzner Cloud CLI setup guidance and command examples for managing servers, volumes, firewalls, networks, DNS, snapshots, and related resources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose commands that create or modify cloud infrastructure, including firewall, network, server, volume, and snapshot operations. <br>
-Mitigation: Require explicit user confirmation after showing the exact command, and review each proposed command before execution. <br>
-Risk: Hetzner API tokens or other credentials could be exposed if handled carelessly. <br>
-Mitigation: Use project-specific least-privilege tokens, never paste tokens into chat, and never log credentials. <br>
-Risk: Infrastructure changes can cause service disruption or data loss. <br>
-Mitigation: Suggest a snapshot before modifications and do not execute delete commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hetzner Cloud CLI repository](https://github.com/hetznercloud/cli) <br>
-- [Hetzner Cloud Console](https://console.hetzner.cloud/) <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to get concise Hetzner Cloud CLI setup guidance and command examples for managing cloud resources.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are presented for user review and confirmation; the skill forbids delete commands and credential disclosure.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad SSH firewall rules can expose servers to the whole internet.
+
+Mitigation: Restrict SSH source IP ranges, harden the server before exposure, and approve firewall commands only after reviewing the exact proposed command.
+
+Risk: Cloud administration commands can create or modify billable or security-sensitive Hetzner resources.
+
+Mitigation: Review each proposed hcloud command before approval, use the least-privileged API token possible, and create snapshots before modifications.
+
+## Reference(s):
+
+- [Hetzner Cloud CLI repository](https://github.com/hetznercloud/cli)
+- [Hetzner Cloud Console](https://console.hetzner.cloud/)
+- [ClawHub skill page](https://clawhub.ai/pasogott/skills/hetzner-cloud)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are guidance for user review and approval, not automatic execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

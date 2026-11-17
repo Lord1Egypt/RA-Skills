@@ -1,0 +1,24 @@
+{
+  "name": "openclaw-zen",
+  "version": "1.0.0",
+  "description": "The Zen of OpenClaw - a command-line easter egg for `openclaw evo`.",
+  "bin": {
+    "openclaw": "cli/openclaw.js",
+    "openclaw-evo": "cli/openclaw.js",
+    "openclaw-zen": "cli/openclaw.js"
+  },
+  "author": "Jason Sang",
+  "license": "MIT",
+  "files": [
+    "cli",
+    "skills",
+    "龙虾之禅.md",
+    "README.md"
+  ],
+  "keywords": [
+    "openclaw",
+    "easter-egg",
+    "cli",
+    "zen"
+  ]
+}

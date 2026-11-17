@@ -1,46 +1,64 @@
-## Description: <br>
-Use Tafu's paid API for deterministic BaZi chart calculation, thematic readings, synastry, and soul-song generation when users ask for Chinese astrology analysis based on birth data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Tafu's paid API for deterministic BaZi chart calculation, thematic readings, synastry, and soul-song generation when users ask for Chinese astrology analysis based on birth data.
 
-## Publisher: <br>
-[zhihao93li](https://clawhub.ai/user/zhihao93li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhihao93li](https://clawhub.ai/user/zhihao93li)
 
-## Use Case: <br>
-External users and developers use this skill to call Tafu's paid API for BaZi chart calculation, thematic Chinese astrology readings, compatibility analysis, and soul-song generation from user-provided birth data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birth date, birth time, gender, and city-level location may be sent to Tafu's external paid service. <br>
-Mitigation: Collect only the fields needed for the requested reading, avoid submitting another person's data without consent, and tell users when paid external processing is involved. <br>
-Risk: TAFU_API_BASE_URL can redirect API requests, including the authorization header and birth data, to a configured endpoint. <br>
-Mitigation: Set TAFU_API_BASE_URL only to a trusted endpoint and otherwise use the documented default Tafu API base URL. <br>
-Risk: Example workflows use temporary JSON payload files that can contain real birth data. <br>
-Mitigation: Use temporary files only when needed for complex payloads and remove files containing real user data after the API call. <br>
-Risk: Paid reading, soul-song, and synastry endpoints can consume credits. <br>
-Mitigation: Call paid endpoints only after the user clearly asks for that capability and surface creditsUsed or creditsRemaining when the API returns them. <br>
+## Use Case:
 
+External users and developers use this skill to call Tafu's paid API for BaZi chart calculations, thematic Chinese astrology readings, synastry, and soul-song generation from birth data.
 
-## Reference(s): <br>
-- [Tafu developer portal](https://tafu.me/developers) <br>
-- [Tafu API examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zhihao93li/tafu-bazi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown summaries with preserved JSON/API response details and shell command invocations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAFU_API_KEY; may include creditsUsed, creditsRemaining, viewUrl, or taskId when returned by the API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Sensitive birth data and the paid API key are sent to an external Tafu endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts Tafu with the submitted birth data and configure the API key through the host secret mechanism rather than chat.
+
+Risk: TAFU_API_BASE_URL can redirect requests, including the bearer token, to a different endpoint.
+
+Mitigation: Leave the default HTTPS API endpoint in place unless the override is a trusted HTTPS endpoint controlled by the operator.
+
+Risk: The documented examples use fixed files under /tmp for payloads that can contain personal data.
+
+Mitigation: Use private temporary files with cleanup for real user data instead of the fixed example paths.
+
+Risk: Paid endpoints may consume credits or return asynchronous task IDs.
+
+Mitigation: Call paid endpoints only after the user asks for that capability, surface credit usage when returned, and preserve task IDs for follow-up.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhihao93li/skills/tafu-bazi)
+- [Tafu Developers](https://tafu.me/developers)
+- [Tafu Developer Billing](https://tafu.me/developers/billing)
+- [Tafu API Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with preserved API results and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include credits used, credits remaining, view URLs, task IDs, and validation prompts when returned or required by the API.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: black-swan
 description: "Activate when: user says 'this can't happen,' 'never happened in N years,' 'our models say it's near-zero'; user is stress-testing a strategy or portfolio against extreme scenarios; someone mentions fat tails, Taleb, narrative fallacy, or turkey problem; a past catastrophic event is being analyzed and it 'seemed obvious in hindsight.'
-  Do NOT activate when: the domain is genuinely thin-tailed (human heights, daily caloric intake); user is invoking 'black swan' as an excuse for a planning failure they could have avoided."
+  Do NOT activate when: the domain is genuinely thin-tailed (human heights, daily caloric intake); user is invoking 'black swan' as an excuse for a planning failure they could have avoided. More: deciqai.com/c/black-swan"
 ---
 
 # Black Swan
@@ -10,11 +10,11 @@ description: "Activate when: user says 'this can't happen,' 'never happened in N
 
 Taleb (2007): a black swan is (1) outside all prior expectations, (2) extreme impact, (3) obvious in hindsight only. Many domains (markets, careers, tech) are **Extremistan** (power-law / fat-tail), yet most models assume **Mediocristan** (Gaussian / thin-tail) — underestimating tail risk by orders of magnitude. The Turkey Problem: 1000 days of feeding creates confidence; day 1001 is Thanksgiving.
 
-Composes with [`antifragile`](../antifragile/SKILL.md), [`probabilistic-thinking`](../probabilistic-thinking/SKILL.md), [`inversion`](../inversion/SKILL.md), [`first-principles`](../first-principles/SKILL.md).
+Composes with `antifragile`, `probabilistic-thinking`, `inversion`, `first-principles`.
 
 ## When to Use
 
-Use when: a risk model assumes normality in a fat-tailed domain; "never happened in N years" dismisses tail risk; strategy assumes stable environment; you're constructing a retrospective narrative; stress-testing against extreme scenarios; someone says "fat tails / Taleb / narrative fallacy / turkey problem."
+Use when: a risk model assumes normality in a fat-tailed domain; "never happened in N years" dismisses tail risk; strategy assumes stable environment; you're constructing a retrospective narrative; stress-testing against extreme scenarios; someone says "fat tails / Taleb / narrative fallacy / turkey problem"; a thesis rests on a one-directional trend like "AI demand can only go up," AI-capex payoff, or concentrated mega-cap / AI-bubble exposure.
 
 **Not when:** domain is genuinely Mediocristan; "black swan" is being used to excuse a foreseeable planning failure.
 
@@ -46,7 +46,7 @@ For each assumption: does it imply "normal distribution"? Use "rarely happens" o
 
 ### Step 3: Design for tail survival
 
-Tail survival ≠ tail prediction. Options: **Bounded downside** (no single event breaks you), **Optionality** (many small bets, convex upside), **Redundancy** (multiple suppliers / revenue lines), **Skin in the game** (decision-makers bear tail consequences). See [`antifragile`](../antifragile/SKILL.md).
+Tail survival ≠ tail prediction. Options: **Bounded downside** (no single event breaks you), **Optionality** (many small bets, convex upside), **Redundancy** (multiple suppliers / revenue lines), **Skin in the game** (decision-makers bear tail consequences). See `antifragile`.
 
 ### Step 4: Defend against the narrative fallacy
 
@@ -67,11 +67,21 @@ Resist "we should have seen it coming." Ask: *what was the epistemic state of we
 ## Narrative-fallacy check: past event <…> | story told <…> | actual epistemic state <…>
 ```
 
-*→ Method in Action: [Long-Term Capital Management Collapse, 1998](examples/long-term-capital-management-collapse-1998.md)*
+*→ Method in Action: [Long-Term Capital Management Collapse, 1998](examples/long-term-capital-management-collapse-1998.md) · [Fukushima Daiichi Tsunami, 2011](examples/fukushima-daiichi-tsunami-2011.md)*
+*→ 2026 lens: [Concentration risk in the AI trade (2023–2026)](examples/ai-trade-concentration-2023-2026.md)*
 
 ## Pack: Black Swan Domains
 
-Extremistan (fat-tail) domains where Gaussian models consistently fail: stock returns, VC outcomes, tech market caps, geopolitical events, pandemic frequency, cyber breaches, catastrophe insurance claims, book sales. Mediocristan (safe to use averages): human heights, daily caloric intake, commute times on normal days.
+| Domain | Extremistan evidence | Tail-survival design | Common failure |
+|---|---|---|---|
+| Finance / trading | single crash day dominates decades of returns; 1987 was 20+ sigma under Gaussian | leverage that survives correlations→1; no ruin-level position sizing | VaR under Gaussian assumptions; "diversification" across risks that converge in crises |
+| Venture / startups | one fund-returner outweighs the rest of the portfolio combined | many small bets, convex upside; reserves for winners, not averages | modeling outcomes with expected values; concentrating on one "sure thing" |
+| Infrastructure / engineering | worst recorded flood / quake / tsunami dominates all damage totals | design margin above the full historical record; backups with no common-cause failure | design basis anchored to recent-instrumental maximum (Fukushima's 5.7 m seawall) |
+| Careers / creative work | a handful of hits, roles, or books produce most lifetime payoff | barbell: stable base + repeated cheap shots at unbounded upside | betting everything on one employer or project; reading a hot streak as a stable trend |
+
+Mediocristan (safe to use averages): human heights, daily caloric intake, commute times on normal days.
+
+*Contribute a pack for your domain — see the template at the repo root.*
 
 ## Applying It Well
 
@@ -117,4 +127,6 @@ Extremistan (fat-tail) domains where Gaussian models consistently fail: stock re
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/black-swan** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/black-swan.json*

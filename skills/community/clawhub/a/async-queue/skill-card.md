@@ -1,41 +1,53 @@
-## Description: <br>
-Schedule delayed tasks between OpenClaw agents - set reminders, chain tasks, coordinate agents on a delay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule delayed tasks between OpenClaw agents - set reminders, chain tasks, coordinate agents on a delay.
 
-## Publisher: <br>
-[ktech99](https://clawhub.ai/user/ktech99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ktech99](https://clawhub.ai/user/ktech99)
 
-## Use Case: <br>
-Developers and OpenClaw agent operators use this skill to schedule delayed reminders, follow-up checks, and handoffs between agents when work needs to continue after the current turn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A persistent local daemon can wake OpenClaw agents later through the local queue-wake plugin endpoint. <br>
-Mitigation: Review before installing, configure targets carefully, and unload the launchd plist when the skill is no longer needed. <br>
-Risk: Queued text is injected into agent system events through an endpoint with broad authority. <br>
-Mitigation: Queue only non-sensitive task text and route tasks only to intended agent targets. <br>
+## Use Case:
 
+Developers and OpenClaw agent users use this skill to enqueue reminders, delayed follow-ups, and post-task checks that should wake a target agent later instead of running immediately.
 
-## Reference(s): <br>
-- [Async Queue Protocol](references/PROTOCOL.md) <br>
-- [ClawHub Async Queue Release Page](https://clawhub.ai/ktech99/async-queue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON queue records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces delayed agent system-event text through a local file-backed queue and plugin endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The skill installs a persistent user-level daemon that can wake agents and deliver queued text as system events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the daemon behavior, and keep the LaunchAgent removal path available if the skill is no longer needed.
+
+Risk: Queued task text can be injected into agent system events through local queue files and the authenticated local plugin route.
+
+Mitigation: Restrict who can write to ~/.openclaw/queue files, review allowed targets in targets.json, and cancel unexpected queued tasks before they fire.
+
+## Reference(s):
+
+- [Async Queue Protocol](references/PROTOCOL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON queue records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces delayed queue items with ISO 8601 run times and TTL values for a local OpenClaw queue.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-exchange-rate helps agents convert currencies and query latest, historical, and trend exchange rates using Frankfurter API data sourced from the European Central Bank. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries real-time exchange rates, historical rates, and rate trends using Frankfurter API data sourced from the European Central Bank.
 
-## Publisher: <br>
-[deusyu](https://clawhub.ai/user/deusyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deusyu](https://clawhub.ai/user/deusyu)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to convert currency amounts, look up latest or historical exchange rates, list supported currencies, and inspect exchange-rate trends from a local Bun CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends currency codes, amounts, and dates to the disclosed Frankfurter exchange-rate API. <br>
-Mitigation: Avoid entering sensitive transaction details as amounts or dates unless those query parameters are acceptable to share with the Frankfurter service. <br>
-Risk: Accidental activation could run a local Bun script and make an external exchange-rate query. <br>
-Mitigation: Use clear activation phrases and review the generated command before execution. <br>
-Risk: Exchange-rate data is updated once per working day and may not reflect intraday market movement. <br>
-Mitigation: Treat results as reference exchange-rate data and confirm time-sensitive financial decisions with an authoritative source. <br>
+## Use Case:
 
+Developers and external agent users use this skill to convert currencies, query latest or historical rates, inspect rate trends, and list supported currency codes from an agent workflow.
 
-## Reference(s): <br>
-- [Command Map](references/command-map.md) <br>
-- [Frankfurter API](https://api.frankfurter.dev/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/deusyu/rainman-exchange-rate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Text guidance with Bun shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ISO 4217 currency codes, optional dates in YYYY-MM-DD format, positive numeric amounts, and comma-separated target currency lists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requires outbound network access to Frankfurter for exchange-rate data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allow network access only to the documented Frankfurter API endpoint and treat network, timeout, and HTTP failures as retriable data-access failures.
+
+Risk: The skill may trigger on broad currency terms and natural-language conversion requests.
+
+Mitigation: Confirm source currency, target currency, amount, and date before running commands when the user's request is ambiguous.
+
+Risk: Exchange-rate values may be unsuitable for time-sensitive financial decisions because the source data updates once per working day.
+
+Mitigation: Tell users the data source and update cadence when rate freshness matters.
+
+## Reference(s):
+
+- [Command Map](references/command-map.md)
+- [Frankfurter API](https://api.frankfurter.dev/v1)
+- [ClawHub Skill Page](https://clawhub.ai/deusyu/skills/rainman-exchange-rate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command results depend on Frankfurter availability and European Central Bank working-day data updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

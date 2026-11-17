@@ -1,42 +1,57 @@
-## Description: <br>
-Create new skills, modify and improve existing skills, and measure skill performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create new skills, modify and improve existing skills, and measure skill performance.
 
-## Publisher: <br>
-[luowanqian](https://clawhub.ai/user/luowanqian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[luowanqian](https://clawhub.ai/user/luowanqian)
 
-## Use Case: <br>
-Developers and skill authors use this skill to draft, revise, evaluate, benchmark, package, and improve agent skills. It supports workflows for creating SKILL.md files, running evaluation loops, reviewing outputs, and optimizing skill descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts can send skill content and evaluation data to Claude. <br>
-Mitigation: Review the data before running evaluation or description-improvement workflows, and avoid sensitive repositories unless external processing is acceptable. <br>
-Risk: The review viewer can start a local server and may terminate an existing process on the configured viewer port. <br>
-Mitigation: Prefer static viewer mode or a foreground server in sensitive environments, and check whether the viewer port is already in use before launch. <br>
-Risk: Generated or revised skill instructions may contain incorrect, overfitted, or misleading guidance. <br>
-Mitigation: Review generated skill files, evaluation assertions, and benchmark results before packaging or deploying the skill. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create, revise, evaluate, benchmark, package, and tune agent skills through an iterative workflow.
 
-## Reference(s): <br>
-- [Evaluation and benchmark schemas](references/schemas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON snippets, shell commands, generated files, and review artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce SKILL.md drafts, eval definitions, benchmark summaries, HTML review pages, description candidates, and packaged skill files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Review and evaluation tooling opens local review HTML, may start a localhost server, and may terminate another local process using the chosen viewer port.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer static review output for untrusted evaluations, check the viewer port before serving, and review generated pages before opening them.
+
+Risk: Automation runs local evaluation scripts, calls the claude CLI, and writes temporary .claude command files.
+
+Mitigation: Use the skill only in trusted workspaces, inspect generated prompts and files, and avoid running it on adversarial skill outputs without additional review.
+
+## Reference(s):
+
+- [Skill Creator on ClawHub](https://clawhub.ai/luowanqian/skills/skill-creator-3)
+- [Evaluation and Benchmark Schemas](artifact/references/schemas.md)
+- [Analyzer Agent Guide](artifact/agents/analyzer.md)
+- [Comparator Agent Guide](artifact/agents/comparator.md)
+- [Grader Agent Guide](artifact/agents/grader.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, inline shell commands, generated skill files, evaluation artifacts, and review reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local workspace files, packaged skill archives, benchmark summaries, and static or served HTML review pages.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

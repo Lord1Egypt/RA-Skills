@@ -1,40 +1,58 @@
-## Description: <br>
-Measures page performance, cumulative layout shift, theme flicker, and visual stability with Playwright scripts that agents can run before and after changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measures page performance, cumulative layout shift, theme flicker, visual stability, and browser network activity with ready-to-run Playwright scripts.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and agents use this skill to run local browser diagnostics against pages or endpoints they control, compare before and after changes, and identify performance waterfalls, layout shift, and theme flicker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser diagnostics load user-supplied URLs and page content during testing. <br>
-Mitigation: Run the scripts only against pages and endpoints you control or are authorized to test, and avoid untrusted URLs or sensitive internal/admin endpoints. <br>
-Risk: Theme flicker detection writes screenshots that may capture page content under /tmp. <br>
-Mitigation: Avoid running screenshot diagnostics on sensitive pages, and remove temporary screenshot files after review when needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to verify local or authorized web applications before and after changes by measuring load behavior, network timing, cumulative layout shift, and theme flicker.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/fix-visual-stability-browser-testing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON diagnostic output from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bundled Playwright scripts print measurement JSON to stdout and write flicker screenshots under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The browser checks can load supplied URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only against local or otherwise authorized web applications.
+
+Risk: The flicker check writes screenshots to /tmp/flicker-early.png and /tmp/flicker-final.png, which may retain page contents on disk.
+
+Mitigation: Avoid using the flicker check on pages with sensitive data, or remove the temporary screenshots after the run.
+
+Risk: Runtime package resolution can pull dependencies that are not pinned locally.
+
+Mitigation: Prefer pinned local dependencies or run with npx --no-install.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/fix-visual-stability-browser-testing)
+- [Publisher profile](https://clawhub.ai/user/wu-uk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled scripts report browser performance metrics, network request timings, CLS ratings, and flicker diagnosis results.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

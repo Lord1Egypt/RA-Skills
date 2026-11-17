@@ -1,43 +1,58 @@
-## Description: <br>
-OpenClaw 财务能力终极扩展包 - 覆盖财报分析、杜邦拆解、风险识别、财务报告生成、现金流分析、税务管理等企业级财务工作流。适用于投资分析、尽职调查、财务尽调、预算管理等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw 财务能力终极扩展包 - 覆盖财报分析、杜邦拆解、风险识别、财务报告生成、现金流分析、税务管理等企业级财务工作流。适用于投资分析、尽职调查、财务尽调、预算管理等场景。
 
-## Publisher: <br>
-[aolikeji](https://clawhub.ai/user/aolikeji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aolikeji](https://clawhub.ai/user/aolikeji)
 
-## Use Case: <br>
-Finance, investment, and diligence users use this skill to guide agents through financial statement analysis, DuPont decomposition, risk identification, valuation modeling, budgeting analysis, tax checks, and finance report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to read local Excel or PDF financial reports that contain confidential budgets, diligence files, tax materials, or non-public financial statements. <br>
-Mitigation: Use it only in an environment approved for that data and confirm before allowing the agent to read local files. <br>
-Risk: Finance workflows may use web lookups for company, registry, or industry data that can be incomplete, stale, or mismatched to the target entity. <br>
-Mitigation: Confirm web lookups before they run and cross-check important financial conclusions against official disclosures, audit reports, or other trusted sources. <br>
-Risk: Generated financial analysis, valuation output, or risk ratings could be mistaken for investment advice. <br>
-Mitigation: Treat outputs as decision-support material, keep the artifact disclaimer that analysis is for reference only, and require human review before investment, lending, tax, or diligence decisions. <br>
+## Use Case:
 
+Finance analysts, investment teams, due-diligence reviewers, and business operators use this skill to structure financial statement analysis, DuPont analysis, valuation work, risk checks, budgeting review, tax analysis, and finance report generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aolikeji/skills/finance-pro-plus) <br>
-- [Publisher profile](https://clawhub.ai/user/aolikeji) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown reports and structured finance-analysis guidance, with tables and occasional code or shell-command snippets when the agent needs to process local files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide file reads for Excel or PDF financial reports and web lookups for company or industry data when the user approves those data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill may process sensitive company financial data when used with file-reading tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public reports or files the user is authorized to process, and avoid sending confidential financial data to external tools unless approved.
+
+Risk: Finance reports, valuations, and risk ratings may be inaccurate or incomplete if source data is stale, unaudited, or incomplete.
+
+Mitigation: Cross-check generated analysis against official disclosures, audit reports, and current industry data before making business or investment decisions.
+
+Risk: Web-search-assisted workflows can mix private context with public-source retrieval.
+
+Mitigation: Separate confidential internal analysis from web-search tasks or redact sensitive details before combining them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aolikeji/skills/finance-pro-plus)
+- [Publisher profile](https://clawhub.ai/user/aolikeji)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown reports, structured analysis, checklists, ratings, tables, and finance workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first finance analysis outputs; may reference file reading and web search when the hosting agent provides those tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

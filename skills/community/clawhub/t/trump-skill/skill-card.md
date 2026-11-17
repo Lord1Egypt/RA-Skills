@@ -1,46 +1,60 @@
-## Description: <br>
-Chat with Trump - respond in Trump's voice using his real quotes and speech patterns. Use when user wants to talk to Trump or asks Trump-like questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Trump - respond in Trump's voice using his real quotes and speech patterns. Use when user wants to talk to Trump or asks Trump-like questions.
 
-## Publisher: <br>
-[wwwttlll](https://clawhub.ai/user/wwwttlll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwwttlll](https://clawhub.ai/user/wwwttlll)
 
-## Use Case: <br>
-External users and developers use this skill for Trump-style political roleplay that draws on a local quote database and persona prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to produce partisan, aggressive, and potentially false political persona responses. <br>
-Mitigation: Use it only for intentional roleplay and verify factual political claims with independent sources. <br>
-Risk: The skill uses Bash for local quote lookup. <br>
-Mitigation: Review the bundled Python scripts before installation or execution. <br>
-Risk: Support prompts can write generated persona content inside the skill directory. <br>
-Mitigation: Run the skill in a workspace where skill-directory changes can be reviewed before reuse or release. <br>
+## Use Case:
 
+External users and developers use this skill for explicit roleplay conversations that imitate Donald Trump's speech patterns, catchphrases, and topic framing using a local quote database.
 
-## Reference(s): <br>
-- [Trump Skill on ClawHub](https://clawhub.ai/wwwttlll/trump-skill) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Trump Persona Prompt](artifact/prompts/trump_persona.md) <br>
-- [AgentSkills Standard](https://agentskills.io) <br>
-- [Claude Code](https://claude.ai/code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text chat responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona responses may include partisan, inflammatory, or false political claims and should be fact-checked outside the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Persona rules may discourage corrections, nuance, or normal safety behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope use to explicit roleplay requests and require safety, accuracy, and correction policies to take precedence over the persona.
+
+Risk: The skill may produce partisan, disrespectful, or misleading political responses when users expect neutral factual assistance.
+
+Mitigation: Review before installation in neutral or factual political-answering environments, and label outputs as roleplay rather than factual political analysis.
+
+Risk: Dependency requirements are version ranges rather than exact pins.
+
+Mitigation: Pin and review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwwttlll/skills/trump-skill)
+- [Publisher profile](https://clawhub.ai/user/wwwttlll)
+- [AgentSkills standard](https://agentskills.io)
+- [Claude Code](https://claude.ai/code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style conversational text, with optional shell command snippets for quote lookup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are shaped by persona prompts and local quote search results.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

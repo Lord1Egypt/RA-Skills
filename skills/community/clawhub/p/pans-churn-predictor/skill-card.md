@@ -1,41 +1,53 @@
-## Description: <br>
-AI compute sales teams use this skill to analyze customer usage trends, support tickets, and contract status to identify churn risk, classify risk level, explain likely causes, and generate retention suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pans Churn Predictor analyzes customer usage trends, support tickets, contract status, and competitor activity to identify churn risk and generate retention suggestions.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Customer success, sales, and account teams use this skill to run churn health checks, inspect high-risk customers, and generate retention guidance before renewal or escalation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and reports on commercially sensitive customer usage, support-ticket, and contract data stored locally. <br>
-Mitigation: Install and run it only in workspaces where this local data handling is approved, and restrict filesystem and machine access for shared environments. <br>
-Risk: Broad trigger phrases could invoke churn analysis when the user intended a narrower customer-success task. <br>
-Mitigation: Use explicit commands such as --analyze, --list, --client, --reason, or --suggest when requesting analysis. <br>
+## Use Case:
 
+Customer success, sales, and account teams use this skill to review AI compute customers for churn signals, inspect risk reasons, and prepare retention actions before renewal or escalation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dashiming/pans-churn-predictor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dashiming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text reports with risk levels, reasons, and retention suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON customer, usage, support-ticket, and contract data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The initialization command can overwrite existing local customer, usage, support ticket, and contract datasets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up existing data before running --init, or run the skill against a separate test data directory when evaluating sample data.
+
+Risk: Real customer and contract records may contain sensitive business information.
+
+Mitigation: Use sanitized or authorized datasets and review access controls before installing or running the skill in a customer-success workflow.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dashiming/skills/pans-churn-predictor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with command-line examples and text risk reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces customer risk levels, detected churn signals, reason summaries, and retention suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

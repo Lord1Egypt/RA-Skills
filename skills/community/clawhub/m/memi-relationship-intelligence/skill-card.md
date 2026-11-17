@@ -1,42 +1,54 @@
-## Description: <br>
-A personal CRM and relationship intelligence skill that extracts contacts from conversations, tracks commitments, detects cooling relationships, delivers morning briefs, prepares users before meetings, and gets smarter about relationships over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal CRM and relationship intelligence. Extracts contacts from conversations, tracks commitments, detects cooling relationships, delivers morning briefs, preps you before meetings, and gets smarter about your relationships the more you use it.
 
-## Publisher: <br>
-[Mukund2](https://clawhub.ai/user/Mukund2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mukund2](https://clawhub.ai/user/mukund2)
 
-## Use Case: <br>
-External users and agent developers use this skill to maintain a local relationship memory: saving contacts from natural conversation, tracking commitments, preparing for meetings, drafting follow-ups, and surfacing timely relationship context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates a long-lived local database of sensitive relationship details about the user and other people. <br>
-Mitigation: Install only when that persistence is acceptable, periodically inspect or delete ~/.local/share/memi-ri/memi.db, and avoid storing confidential or third-party data without a clear reason and consent. <br>
-Risk: Optional gog integration can analyze Gmail, Calendar, and Contacts data. <br>
-Mitigation: Keep gog disabled unless the user intentionally enables Google data access, verify Google OAuth scopes first, and avoid using it with confidential emails or private conversations. <br>
+## Use Case:
 
+External users use this OpenClaw skill as a local personal CRM for remembering contacts, tracking commitments, preparing for meetings, and receiving relationship follow-up prompts. It is intended for agents that can maintain a SQLite-backed memory store and optionally use Google data through gog.
 
-## Reference(s): <br>
-- [Relationship Intelligence on ClawHub](https://clawhub.ai/Mukund2/memi-relationship-intelligence) <br>
-- [Mukund2 Publisher Profile](https://clawhub.ai/user/Mukund2) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational text and markdown, with shell commands for local SQLite and optional gog operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists relationship context in a local SQLite database at ~/.local/share/memi-ri/memi.db and optionally uses gog for Google Calendar, Gmail, and Contacts integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can maintain a long-lived local database of personal and third-party relationship information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit save commands, review the local SQLite database periodically, and avoid storing secrets, regulated data, or information about people who would not expect it.
+
+Risk: Optional gog integration can expose Gmail, Calendar, and Contacts data.
+
+Mitigation: Enable gog only when the user is comfortable granting Google access, and keep Google-derived context scoped to the intended relationship-management workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mukund2/skills/memi-relationship-intelligence)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Concise conversational text and Markdown, with occasional shell commands or SQLite guidance when setup or local data inspection is needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local relationship memory in SQLite and can optionally use gog for Gmail, Calendar, and Contacts context.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

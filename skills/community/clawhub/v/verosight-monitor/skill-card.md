@@ -1,46 +1,66 @@
-## Description: <br>
-Verosight Monitor integrates the Verosight API so agents can perform social media intelligence and cyber monitoring across major social, video, thread, and news sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Verosight API for social media intelligence and cyber monitoring across social, news, and web sources, including sentiment analysis, trend detection, influencer identification, bot detection, authentication setup, API querying, and report generation.
 
-## Publisher: <br>
-[jrrqd](https://clawhub.ai/user/jrrqd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jrrqd](https://clawhub.ai/user/jrrqd)
 
-## Use Case: <br>
-External users and developers use this skill to connect agents to Verosight for sentiment analysis, trend monitoring, influencer discovery, bot-detection workflows, and report generation. It is suited to approved social listening, digital reputation, and cyber monitoring tasks that require credentialed API access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys and JWTs may be exposed when passed directly on shared command lines, copied into prompts, or retained in shell history. <br>
-Mitigation: Use test or limited-scope keys where possible, pass credentials through protected environment variables, avoid shared terminals, and rotate credentials after exposure. <br>
-Risk: Search terms, platform selections, returned posts, and generated reports may contain sensitive monitoring data or personal information. <br>
-Mitigation: Run only approved monitoring, minimize retained data, restrict report access, and treat returned posts and reports as sensitive outputs. <br>
-Risk: Sentiment, trend, influencer, and bot-detection outputs can be incomplete or misleading if source coverage is uneven or automated classifications are wrong. <br>
-Mitigation: Use the results as decision support, manually review high-impact findings, and document source coverage and uncertainty in reports. <br>
+## Use Case:
 
+Developers and analysts use this skill to connect agents to the Verosight API for social listening, digital reputation monitoring, sentiment analysis, trend tracking, influencer review, bot-pattern review, and report drafting.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/jrrqd/verosight-monitor) <br>
-- [Verosight API](https://verosight.com) <br>
-- [Verosight Documentation](https://verosight.com/docs) <br>
-- [Sentiment Analysis Workflow](references/sentiment-workflow.md) <br>
-- [PDF Report Generation with pdfkit](references/pdf-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API examples, JSON response descriptions, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce API requests, analysis summaries, monitoring reports, and PDF-generation code snippets for agent use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: API keys and JWTs are used to authenticate with a third-party service and could be exposed if pasted into commands, logs, or reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test or least-privilege credentials where possible, prefer environment variables, and avoid placing production keys or JWTs directly in shared commands or generated deliverables.
+
+Risk: Monitoring queries and returned content are sent to or retrieved from a third-party service and may involve confidential or regulated targets.
+
+Mitigation: Submit only authorized monitoring targets and avoid confidential or regulated data unless the deployment has the required approvals and data-handling controls.
+
+Risk: Generated client-facing reports may accidentally include internal API details, credits, keys, tokens, or raw sensitive findings.
+
+Mitigation: Review and redact reports before distribution, especially sections derived from API metadata, account usage, or raw monitoring results.
+
+Risk: Optional PDF report generation depends on pdfkit and local Node.js packaging.
+
+Mitigation: Pin or isolate the optional pdfkit dependency and scan generated report code before using it in production workflows.
+
+## Reference(s):
+
+- [Verosight API](https://verosight.com)
+- [Verosight Documentation](https://verosight.com/docs)
+- [Verosight API Dashboard](https://verosight.com/dashboard)
+- [Sentiment Analysis Workflow](references/sentiment-workflow.md)
+- [PDF Report Generation with pdfkit](references/pdf-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/jrrqd/skills/verosight-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON API examples, and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Verosight API request examples, response interpretation guidance, and optional PDF report-generation code.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

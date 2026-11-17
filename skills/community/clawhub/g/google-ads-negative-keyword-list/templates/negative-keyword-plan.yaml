@@ -1,0 +1,27 @@
+# Google Ads Negative Keyword List - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+account_name: ""
+search_terms_file: ""
+date_range: ""
+default_match_type: "negative phrase"
+levels_to_write:
+  account: false
+  campaign: true
+  ad_group: false
+brand_terms_to_keep:
+  - ""
+keep_terms:
+  - ""
+candidates:
+  - term: ""
+    source_campaign: ""
+    intent: "irrelevant or research-only"
+    match_type: "negative phrase"
+    level: "campaign"
+    reason: ""
+    needs_human_decision: true
+review_notes: ""
+limits:
+  per_list: 5000
+  per_campaign: 10000
+  account_level: 1000

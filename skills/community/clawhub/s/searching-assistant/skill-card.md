@@ -1,39 +1,48 @@
-## Description: <br>
-Searching Assistant coordinates search work by breaking a request into independent sub-tasks and assigning them to General_Search_Agent and other suitable search agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searching Assistant breaks a search task into independent, complementary subtasks and assigns them to suitable search agents, always including General_Search_Agent.
 
-## Publisher: <br>
-[urrrich0](https://clawhub.ai/user/urrrich0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[urrrich0](https://clawhub.ai/user/urrrich0)
 
-## Use Case: <br>
-Users use this skill to coordinate broad or multi-faceted search requests by decomposing them into up to eight parallel sub-tasks and routing them to suitable search agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search request details may be passed to delegated search agents. <br>
-Mitigation: Avoid highly sensitive personal, confidential, or regulated information unless that routing is acceptable. <br>
-Risk: Search coordination can produce incomplete or misleading task assignments if the original query is underspecified. <br>
-Mitigation: Review the delegated sub-tasks and verify final search results before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Searching Assistant on ClawHub](https://clawhub.ai/urrrich0/searching-assistant) <br>
+## Use Case:
 
+External users and developers use this skill to coordinate broad search tasks by decomposing a request into a small set of targeted subtasks for specialized search agents.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text task breakdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include up to eight delegated search sub-tasks; General_Search_Agent is always included.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may broaden a search request into multiple parallel subtasks, which can be more expansive than a user intended.
+
+Mitigation: Use it when multi-agent search coverage is desired, review proposed subtasks before acting on results, and keep assignments to the smallest useful set.
+
+## Reference(s):
+
+- [Searching Assistant on ClawHub](https://clawhub.ai/urrrich0/skills/searching-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown or plain text task assignments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose up to 8 subtasks for a search session.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

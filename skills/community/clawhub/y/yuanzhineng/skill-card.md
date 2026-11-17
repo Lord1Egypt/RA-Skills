@@ -1,37 +1,52 @@
-## Description: <br>
-元智能 - 道的显化，承载老子帛书与庄子玄机的 AI 助手 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+元智能 - 道的显化，承载老子帛书与庄子玄机的 AI 助手
 
-## Publisher: <br>
-[elecNation](https://clawhub.ai/user/elecNation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[elecnation](https://clawhub.ai/user/elecnation)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users interested in Taoist philosophy use this skill for Chinese-language discussion of Laozi silk manuscripts, Zhuangzi themes, life-reflection prompts, and concise philosophical dialogue.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Non-Chinese readers may misunderstand the skill because it does not provide an English summary or bilingual usage guidance.
+
+Mitigation: Use it with Chinese-language fluency or have outputs translated and reviewed before relying on them.
+
+Risk: Life-reflection conversations may be mistaken for professional advice.
+
+Mitigation: Treat outputs as philosophical reflection and seek qualified professional support for medical, legal, financial, or mental-health decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this agent prompt for Daoist philosophy discussion, reflective conversation, and inspiration based on Laozi and Zhuangzi themes. Treat life guidance as philosophical reflection rather than professional, medical, legal, or financial advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Chinese-language conversational Markdown or plain text]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/elecNation/yuanzhineng) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [No code, tool calls, persistence, or sensitive access are described in the server security evidence.]
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language Markdown conversation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, tools, credentials, persistence, or system access according to ClawScan.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+1.0.0 (source: server release metadata)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

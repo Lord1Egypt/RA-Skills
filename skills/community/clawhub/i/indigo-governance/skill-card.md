@@ -1,39 +1,50 @@
-## Description: <br>
-Query Indigo Protocol governance data including protocol parameters, temperature checks, and polls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Indigo Protocol governance data including protocol parameters, polls, and temperature checks.
 
-## Publisher: <br>
-[adacapo21](https://clawhub.ai/user/adacapo21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adacapo21](https://clawhub.ai/user/adacapo21)
 
-## Use Case: <br>
-External users and developers use this skill to look up Indigo Protocol governance state, including current protocol parameters, active temperature checks, and formal poll results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Governance and protocol data may be incomplete, stale, or misleading if the configured MCP server is not trusted or current. <br>
-Mitigation: Use a trusted Indigo MCP server and verify important financial or governance decisions against authoritative protocol sources before acting. <br>
+## Use Case:
 
+Developers, protocol analysts, and Indigo Protocol community members use this skill to retrieve and summarize current governance parameters, temperature checks, polls, voting data, and proposal status.
 
-## Reference(s): <br>
-- [Governance MCP Tools Reference](references/mcp-tools.md) <br>
-- [Governance Concepts](references/concepts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries of Indigo governance data returned by read-only MCP tool calls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No file output or protocol mutations are described; results depend on the configured Indigo MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Governance and protocol data can affect financial or voting decisions if treated as authoritative.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as informational summaries and verify important decisions against official Indigo Protocol sources before acting.
+
+## Reference(s):
+
+- [Governance MCP Tools Reference](references/mcp-tools.md)
+- [Governance Concepts](references/concepts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise text or Markdown summaries of Indigo Protocol parameters, temperature checks, polls, and voting data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are informational and should be verified against official Indigo Protocol sources before important governance or financial decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

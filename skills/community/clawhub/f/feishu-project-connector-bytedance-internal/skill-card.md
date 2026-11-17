@@ -1,41 +1,58 @@
-## Description: <br>
-Connects an agent to Meego (Feishu Project, ByteDance internal version) through an MCP service with OAuth authentication to query and manage work items, views, and related project data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to Meego, the Feishu Project Bytedance internal version, through an MCP service with OAuth authentication for querying and managing tasks, views, and work items.
 
-## Publisher: <br>
-[wadxm](https://clawhub.ai/user/wadxm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wadxm](https://clawhub.ai/user/wadxm)
 
-## Use Case: <br>
-Developers and authorized Feishu Project users use this skill to configure OAuth-backed MCP access so an agent can query, create, update, and transition Meego work items and views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The remote OAuth flow can expose credential file contents to the agent. <br>
-Mitigation: Prefer browser OAuth where the agent does not see credential contents; for remote OAuth, verify the file contains only intended fields, avoid logs, and clean up temporary files immediately. <br>
-Risk: The connector can create, modify, and transition business work items. <br>
-Mitigation: Review each proposed work-item create, modify, or transition action before execution. <br>
+## Use Case:
 
+Employees and developers working in the Feishu Project or Meego environment use this skill to authenticate through OAuth and query, create, update, or transition Meego work items and views.
 
-## Reference(s): <br>
-- [@lark-project/meego-mcporter npm package](https://www.npmjs.com/package/@lark-project/meego-mcporter) <br>
-- [Remote OAuth setup documentation](https://bytedance.larkoffice.com/wiki/UspfwpHaFi6LxQkt9xBcIS54nNg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require OAuth credentials stored under ~/.mcporter/credentials.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: OAuth credential files may be exposed if copied into chat, logs, temporary files, or locations outside the mcporter credential store.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the browser OAuth flow, require explicit user confirmation for credential operations, keep credentials out of chat and logs, store them only in ~/.mcporter/credentials.json, and immediately remove temporary files.
+
+Risk: Authentication and Meego operations run an unpinned npm package through npm or npx.
+
+Mitigation: Pin and review the @lark-project/meego-mcporter package version before running npm or npx commands.
+
+Risk: OAuth access could grant broader Meego permissions than the task requires.
+
+Mitigation: Use an OAuth account with the minimum Meego permissions needed for the intended workflow.
+
+## Reference(s):
+
+- [@lark-project/meego-mcporter npm package](https://www.npmjs.com/package/@lark-project/meego-mcporter)
+- [Remote OAuth authorization guide](https://bytedance.larkoffice.com/wiki/UspfwpHaFi6LxQkt9xBcIS54nNg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and JSON configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance can include OAuth setup steps, MCP call commands, and credential handling precautions; raw OAuth credentials should not be emitted.]
+
+## Skill Version(s):
+
+1.0.10 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Helps a job seeker use ClawHire to build a candidate profile, search matching jobs, review matches, and communicate with recruiters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help your owner find jobs on ClawHire by guiding them through profile creation, job search, match review, and recruiter communication.
 
-## Publisher: <br>
-[box1d](https://clawhub.ai/user/box1d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[box1d](https://clawhub.ai/user/box1d)
 
-## Use Case: <br>
-External job seekers use this skill as a ClawHire assistant for profile intake, resume extraction, job search, match review, and recruiter-facing profile activation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends sensitive resume and profile details to a remote ClawHire service. <br>
-Mitigation: Use it only when comfortable sharing that data with ClawHire, confirm before uploading a full resume, and avoid sending unnecessary sensitive details. <br>
-Risk: Profile activation can make candidate information visible to recruiters. <br>
-Mitigation: Require explicit user confirmation before activating recruiter visibility. <br>
-Risk: Notification state can be changed by marking notifications as read. <br>
-Mitigation: Ask before marking notifications read and only do so after the user explicitly chooses that action. <br>
+## Use Case:
 
+External job seekers use this skill to create or update a ClawHire candidate profile, search active jobs, review matches, and manage recruiter visibility through authenticated ClawHire API workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/box1d/clawhire-candidate) <br>
-- [ClawHire API base](https://metalink.cc/clawhire/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Guidance] <br>
-**Output Format:** [Markdown conversation guidance with API request descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ClawHire API key and may relay resume or profile details to ClawHire.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill handles resumes, candidate profile details, contact information, salary expectations, recruiter visibility, API keys, and notification state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a ClawHire account you trust, avoid including unrelated sensitive data in resumes or profile text, and confirm how the API key and profile data are stored and deleted.
+
+Risk: Candidate profiles can become visible to recruiters when activated.
+
+Mitigation: Require explicit user confirmation before activating a profile or changing recruiter visibility.
+
+Risk: Notification state can be changed by marking messages as read.
+
+Mitigation: Summarize unread notifications first and ask for confirmation before marking notifications read.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/box1d/skills/clawhire-candidate)
+- [ClawHire API base URL](https://metalink.cc/clawhire/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown and plain text responses with authenticated API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Relays ClawHire server conversation content and summarizes job, profile, match, and notification results for the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

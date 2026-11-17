@@ -15,13 +15,35 @@ Examples:
 - infrastructure migration project notes;
 - lecture preparation materials;
 - drafts, exports, and helper files for one product launch;
+- software development and release preparation;
 - files for a specific client initiative.
 
 Do not use `projects/` for:
+- an installed product's operational installation and working state;
 - general user files unrelated to a project;
 - reference material used across many contexts;
 - temporary artifacts with no project value;
 - standalone reports or presentations when there is no broader project context.
+
+## apps/
+
+Use `apps/` for operational application installations, whether being set up or already in use, managed as distinct operational units. Applications may be developed locally or obtained elsewhere. 
+
+Create a separate subfolder inside `apps/` for each distinct app. The internal structure and file placement rules within each app's subfolder are determined by the application. Release updates must preserve persistent working data, and development/test data must remain separate from operational data.
+
+Examples:
+- an installed inventory application with its working database and configuration;
+- a document-management application with its stored originals, metadata, and search index;
+- a deployed personal finance tracker with its transaction history and operation/recovery instructions;
+- a script-based maintenance tracker managed as an installed product.
+
+Do not use `apps/` for:
+- development source trees and release-preparation materials;
+- development/test instances;
+- independent or shared data stores that are not owned by a particular application.
+
+The key distinction from a development project is that `apps/` holds the operational installation, whether being set up or already in use, rather than development materials.
+The key distinction from `tools/` is that an application is managed as a distinct operational installation, rather than kept as a reusable helper utility.
 
 ## reports/
 
@@ -43,7 +65,7 @@ The root of `reports/` may be used for one-off standalone deliverables when no f
 
 ## user-files/
 
-Use `user-files/` for durable files and derived artifacts that have a direct personal connection to the user and are not part of one specific project.
+Use `user-files/` for durable files and derived artifacts that have a direct personal connection to the user and are not part of a specific project or an application's own working records.
 
 This includes more than traditional documents. It can include:
 - official documents belonging to the user;
@@ -124,13 +146,13 @@ If in doubt, do not use `temp/`.
 
 ## data/
 
-Use `data/` for structured data stores and tightly related support files.
+Use `data/` for standalone or shared structured data stores and tightly related support files.
 
 Examples:
 - sqlite files and other database files;
 - registries and operational tracking tables when they function as durable structured storage.
 
-Create a separate subfolder inside `data/` for each distinct database or registry.
+A database format alone does not determine placement. Development/test stores stay with the project; application-owned working stores normally stay with the operational installation. Create a separate subfolder inside `data/` for each distinct database or registry.
 
 The following may be stored along with the database:
 - schema;
@@ -162,22 +184,22 @@ Examples:
 - maintenance scripts;
 - repeatable helper programs.
 
-If a script belongs only to one project and is easiest to find there, it may live inside that project instead.
+If a script belongs only to one development project and is easiest to find there, it may live inside that project instead. Scripts that form part of an installed product or serve only that installation normally stay with the application.
 
 ## tools/
 
-Use `tools/` for reusable binaries, portable apps, installers, unpacked tool directories, and similar non-script tools kept for ongoing use inside the workspace.
+Use `tools/` for reusable binaries, portable utilities, installers, unpacked tool directories, and similar non-script tools kept for ongoing use inside the workspace.
 
 Examples:
 - standalone binaries;
-- AppImage files;
 - unpacked portable utilities;
 - reusable installers kept as working tools.
 
-Create a separate subfolder inside `tools/` for each distinct app, tool, or utility. 
-Store apps, tools, or utilities together with their related config, examples, license files, and bundled resources.
+Create a separate subfolder inside `tools/` for each distinct tool or utility. 
+Store tools or utilities together with their related config, examples, license files, and bundled resources.
 
 Do not use `tools/` for:
+- applications managed as distinct operational installations that belong in `apps/`;
 - ordinary scripts that belong in `scripts/`;
 - one-off downloads that still await classification.
 

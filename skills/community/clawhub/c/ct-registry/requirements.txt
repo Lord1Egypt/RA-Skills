@@ -1,0 +1,12 @@
+# Required at runtime / 运行时必需
+requests>=2.28
+xlsxwriter>=3.0
+
+# Optional / 可选
+matplotlib>=3.6     # PNG 图表（report.py）
+
+# 已移除（不再被任何脚本使用）：
+#   playwright   - 仅旧版 search_cde.py 本地浏览器兜底；owner rule 禁止本地 Playwright，
+#                  CDE 现经 search_cde_workflow.py 外部端点抓取，ct_registry.py 不再引用 search_cde.py
+#   pandas       - 无任何脚本 import
+#   beautifulsoup4 / lxml - 无任何脚本 import

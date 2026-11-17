@@ -1,39 +1,53 @@
-## Description: <br>
-Analyze images and generate detailed prompts for image generation. Supports portrait, landscape, product, animal, illustration categories with structured or natural output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze images and generate detailed prompts for image generation. Supports portrait, landscape, product, animal, illustration categories with structured or natural output.
 
-## Publisher: <br>
-[Zhang-Shubo](https://clawhub.ai/user/Zhang-Shubo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhang-shubo](https://clawhub.ai/user/zhang-shubo)
 
-## Use Case: <br>
-Developers and creators use this skill to inspect images and turn their visual details into reusable image-generation prompts, either as natural language or structured JSON. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected images may be sent to the configured vision model provider, which can expose sensitive personal photos, confidential screenshots, or proprietary product images. <br>
-Mitigation: Use only images that are appropriate for the provider's settings, retention policy, and consent requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Image2Prompt ClawHub release](https://clawhub.ai/Zhang-Shubo/image2prompt) <br>
-- [OpenClaw Image2Prompt documentation](https://docs.openclaw.ai/tools/image2prompt) <br>
-- [Image2Prompt project page](https://image2prompt.art) <br>
+## Use Case:
 
+External users, developers, and prompt engineers use this skill to analyze images and generate natural-language or structured JSON prompts for AI image generation. It supports category-specific descriptions and optional dimension tags for prompt libraries or downstream prompt composition.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Natural-language prompt text or structured JSON with optional dimension tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include category-specific visual details for portraits, landscapes, products, animals, illustrations, and other images.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Portrait analysis can encourage demographic, body-description, or other sensitive visual descriptions.
+
+Mitigation: Use the skill only on images you have the right to analyze, avoid profiling private people or inferring sensitive attributes without consent, and prefer non-sensitive visual descriptions.
+
+Risk: Generated prompts may reproduce details from images whose use is not authorized.
+
+Mitigation: Confirm that image inputs are authorized for analysis and downstream prompt generation before using the output.
+
+## Reference(s):
+
+- [Image2Prompt OpenClaw documentation](https://docs.openclaw.ai/tools/image2prompt)
+- [Image2Prompt ClawHub listing](https://clawhub.ai/zhang-shubo/skills/image2prompt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown or structured JSON descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include category labels, detailed visual prompt text, structured visual attributes, and optional dimension tags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

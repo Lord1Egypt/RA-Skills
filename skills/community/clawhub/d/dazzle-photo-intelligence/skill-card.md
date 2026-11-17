@@ -1,41 +1,58 @@
-## Description: <br>
-Connects OpenClaw to Dazzle so an agent can answer personalization requests using the signed-in user's Dazzle photo intelligence data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects OpenClaw to Dazzle, an AI agent that deeply understands the user through their photos.
 
-## Publisher: <br>
-[dazzle](https://clawhub.ai/user/dazzle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dazzle](https://clawhub.ai/user/dazzle)
 
-## Use Case: <br>
-External users and agents use this skill to query the signed-in user's Dazzle photo intelligence for personal facts, memories, places, recommendations, and context-aware decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reveal privacy-sensitive inferences from the user's own photos, including places, relationships, routines, and preferences. <br>
-Mitigation: Use narrow prompts and invoke Dazzle only when personalization from the user's photo context is needed. <br>
-Risk: After browser sign-in, follow-up access can continue silently until the local MCP server is removed or the Dazzle grant is revoked. <br>
-Mitigation: Remove the Dazzle MCP server or revoke the Dazzle grant when ongoing access is no longer wanted. <br>
+## Use Case:
 
+External users and agent operators use this skill to let an MCP-capable agent query Dazzle for photo-derived personal context, memories, places, preferences, and recommendations after the user signs in.
 
-## Reference(s): <br>
-- [Dazzle](https://dazzle.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/dazzle/dazzle-photo-intelligence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON photo URL blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries can take up to 60 seconds; matched photos are returned as URLs rather than inline image bytes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.9 (source: pyproject.toml and server release metadata) <br>
+Risk: Dazzle receives sensitive personalization queries and can use photo-derived account context after a one-time sign-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when photo-derived personalization is intended, prefer explicit prompts such as 'ask Dazzle' for sensitive topics, and revoke Dazzle account access when it is no longer needed.
+
+Risk: Matched photos are returned as URLs that an agent may fetch for viewing, analysis, or inclusion in responses.
+
+Mitigation: Fetch returned photo URLs only when the user request requires the image content, and treat those URLs as sensitive personal data.
+
+Risk: Subsequent sessions can be silent after the first browser-based sign-in.
+
+Mitigation: Review the registered MCP server configuration and remove the Dazzle bridge or sign out of Dazzle when silent access is no longer appropriate.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/dazzle/skills/dazzle-photo-intelligence)
+- [Dazzle](https://dazzle.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [MCP text responses, JSON photo URL blocks, and Markdown setup guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a browser-based OAuth sign-in; queries can take up to 60 seconds.]
+
+## Skill Version(s):
+
+0.1.9 (source: pyproject.toml and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

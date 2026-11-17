@@ -1,47 +1,62 @@
-## Description: <br>
-Comprehensive token research for EVM chains (Base, ETH, Arbitrum) and Solana. Use this skill when you want to research crypto tokens, deep-dive projects or monitor tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured cryptocurrency token research for EVM chains including Base, Ethereum, Arbitrum, and Solana, with deep-research, shallow-screening, and monitoring workflows.
 
-## Publisher: <br>
-[0xArtex](https://clawhub.ai/user/0xArtex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xartex](https://clawhub.ai/user/0xartex)
 
-## Use Case: <br>
-External users and developers use this skill to screen and research cryptocurrency tokens across supported EVM chains and Solana, combining API data, web and social research prompts, and report or watchlist workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to call or message the owner and references a local alert script for certain token ratings. <br>
-Mitigation: Require explicit user confirmation before calls, DMs, or execution of ~/workspace/scripts/ape-call.sh. <br>
-Risk: The workflow can spawn sub-agents, run batch deep dives, and persist reports or watchlists automatically. <br>
-Mitigation: Require confirmation before sub-agent spawning, batch deep dives, or writes to report and watchlist paths. <br>
-Risk: Crypto token research can produce incomplete or misleading conclusions from volatile market, social, and API data. <br>
-Mitigation: Treat outputs as research assistance, verify contract addresses and claims across multiple sources, and do not rely on the skill as financial advice. <br>
-Risk: API keys, wallet details, or trading strategy information could be exposed during research workflows. <br>
-Mitigation: Use limited-scope API keys and avoid submitting sensitive wallet or strategy information unless necessary. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to collect token fundamentals, market data, holder information, security signals, and social context for cryptocurrency research reports and watchlists. It supports quick screening and deeper due diligence, but its outputs should be reviewed before any financial decision.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/0xArtex/token-research) <br>
-- [README](artifact/README.md) <br>
-- [API reference](artifact/api_reference.md) <br>
-- [Example usage](artifact/example_usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus generated JSON data files and research summaries when the helper script is run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped research directories and may update report or watchlist files; external API results and web research should be verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may make external token-research API calls and write local research files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that network and file-writing behavior is acceptable, and review generated files before relying on them.
+
+Risk: The skill includes a call and direct-message workflow and references an external ape-call.sh script for WATCH or APE tokens.
+
+Mitigation: Do not allow notification workflows or the external script unless they are explicitly configured and approved.
+
+Risk: Automated token research can produce incomplete or misleading investment signals.
+
+Mitigation: Treat results as research assistance, cross-check critical facts, and require human review before any trading or investment action.
+
+## Reference(s):
+
+- [Token Research ClawHub Listing](https://clawhub.ai/0xartex/skills/token-research)
+- [README](artifact/README.md)
+- [API Reference](artifact/api_reference.md)
+- [Usage Examples](artifact/example_usage.md)
+- [DexScreener Token API](https://api.dexscreener.com/latest/dex/tokens/CHAIN/TOKEN_ADDRESS)
+- [GoPlus Token Security API](https://api.gopluslabs.io/api/v1/token_security/CHAIN_ID?contract_addresses=TOKEN_ADDRESS)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and watchlist entries, with shell commands and JSON API data when the helper script is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local research directories, JSON data files, summaries, reports, and monthly watchlist entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

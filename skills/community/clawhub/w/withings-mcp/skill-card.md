@@ -1,44 +1,59 @@
-## Description: <br>
-Connect an MCP-compatible agent to local Withings body measures, sleep, activity, workouts, and heart records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect an MCP-compatible agent to local Withings body measures, sleep, activity, workouts, and heart records.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers and MCP-compatible agent users use this skill to install, configure, verify, and troubleshoot local Withings MCP access while preserving privacy boundaries for health data and OAuth tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects agents to sensitive Withings health data and OAuth-token-backed local access. <br>
-Mitigation: Keep token files private, avoid printing credentials or private user data, and run connection status or privacy-audit checks before data access. <br>
-Risk: Live provider calls or write-capable actions could access or change user-linked data without adequate consent. <br>
-Mitigation: Require explicit user approval before live provider calls or write-capable actions, and prefer dry-run or audit surfaces first. <br>
-Risk: Health measurements may be misread as medical advice. <br>
-Mitigation: Present Withings data as informational only and do not provide medical, legal, financial, or platform-policy advice. <br>
+## Use Case:
 
+Developers and agent users use this skill to install, configure, troubleshoot, and safely operate Withings MCP with MCP-compatible clients while keeping OAuth tokens and health data private.
 
-## Reference(s): <br>
-- [Withings MCP repository](https://github.com/davidmosiah/withingsmcp) <br>
-- [Withings connector documentation](https://wellness.delx.ai/connectors/withings) <br>
-- [Withings MCP ClawHub listing](https://clawhub.ai/davidmosiah/withings-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include setup, status, privacy-audit, and dry-run guidance before live provider calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill asks users to run an unpinned npm package that handles Withings OAuth tokens and sensitive health data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin a specific trusted version of withings-mcp-unofficial, verify the package source and publisher, and review the skill before installing.
+
+Risk: OAuth tokens, local token files, or health data could be exposed in chat, logs, or agent output.
+
+Mitigation: Avoid exposing token files or health data in chat, keep user consent explicit, and prefer status, manifest, doctor, privacy audit, or dry-run flows before live calls.
+
+Risk: The MCP server may access sensitive local Withings data during agent use.
+
+Mitigation: Run the MCP server under a dedicated low-privilege account or sandbox where practical.
+
+## Reference(s):
+
+- [Withings MCP repository](https://github.com/davidmosiah/withingsmcp)
+- [Withings connector documentation](https://wellness.delx.ai/connectors/withings)
+- [ClawHub skill page](https://clawhub.ai/davidmosiah/skills/withings-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, usage, safety-boundary, and troubleshooting guidance for MCP-compatible agents.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

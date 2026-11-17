@@ -7,15 +7,36 @@ download status, and potential sync issues.
 """
 
 import sys
-from typing import Any, Optional
+from typing import Any
 
 from _common import (
     PhotosDB,
     _safe_col,
-    coredata_to_datetime,
+    coredata_to_local,
+    display_name,
     format_size,
+    has_timezone_offset,
+    original_filename_sql,
     run_script,
+    tz_offset_sql,
 )
+from _schema import FILE_SIZE, ORIGINAL_FILENAME, Degradation, get_schema
+
+# Schema contract (T1.4): see _schema. Missing required → exit 5; missing optional → `degraded`.
+REQUIRED_COLUMNS: tuple[str, ...] = (
+    "ZASSET.ZDATECREATED",
+    "ZASSET.ZFAVORITE",
+    "ZASSET.ZFILENAME",
+    "ZASSET.ZKIND",
+    "ZASSET.ZTRASHEDSTATE",
+    *FILE_SIZE,
+)
+OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {
+    "original_filenames": ORIGINAL_FILENAME,
+    "icloud": ("asset.cloud_local_state",),
+    "ownership": ("asset.cloud_is_my_asset",),
+    "downloadable": ("asset.cloud_is_downloadable",),
+}
 
 # iCloud local state values
 CLOUD_STATE_NOT_UPLOADED = 0
@@ -28,7 +49,7 @@ CLOUD_STATE_NAMES = {
 
 
 def analyze_icloud_status(
-    db_path: Optional[str] = None,
+    db_path: str | None = None,
 ) -> dict[str, Any]:
     """
     Analyze iCloud sync status of all assets.
@@ -36,20 +57,21 @@ def analyze_icloud_status(
     Returns breakdown of sync states, storage impact, and
     assets that might have sync issues.
     """
-    with PhotosDB(db_path) as conn:
+    with PhotosDB(db_path, require=REQUIRED_COLUMNS, operation="iCloud status") as conn:
+        name_col = original_filename_sql(get_schema(conn))
         cursor = conn.cursor()
+        tz_available = has_timezone_offset(cursor)
 
         # Check available columns
-        cursor.execute("PRAGMA table_info(ZASSET)")
-        columns = {row["name"] for row in cursor.fetchall()}
-        has_cloud_state = "ZCLOUDLOCALSTATE" in columns
-        has_cloud_asset = "ZCLOUDISMYASSET" in columns
-        has_cloud_date = "ZCLOUDBATCHPUBLISHDATE" in columns
-        has_downloadable = "ZCLOUDISDOWNLOADABLE" in columns
-        has_visible = "ZVISIBILITYSTATE" in columns
+        degraded = Degradation(get_schema(conn))
+        degraded.check("original_filenames", *OPTIONAL_COLUMNS["original_filenames"])
+        has_cloud_state = degraded.check("icloud", *OPTIONAL_COLUMNS["icloud"])
+        has_cloud_asset = degraded.check("ownership", *OPTIONAL_COLUMNS["ownership"])
+        has_downloadable = degraded.check("downloadable", *OPTIONAL_COLUMNS["downloadable"])
 
         if not has_cloud_state:
             return {
+                "degraded": degraded.entries,
                 "error": "iCloud columns not found in this database version.",
                 "icloud_enabled": False,
                 "summary": {
@@ -63,20 +85,18 @@ def analyze_icloud_status(
         select_cols = [
             "a.Z_PK",
             "a.ZFILENAME",
+            name_col,
             "a.ZDATECREATED",
             "a.ZKIND",
             "a.ZFAVORITE",
             "a.ZCLOUDLOCALSTATE",
             "aa.ZORIGINALFILESIZE",
+            f"{tz_offset_sql(tz_available)} AS tz_offset",
         ]
         if has_cloud_asset:
             select_cols.append("a.ZCLOUDISMYASSET")
-        if has_cloud_date:
-            select_cols.append("a.ZCLOUDBATCHPUBLISHDATE")
         if has_downloadable:
             select_cols.append("a.ZCLOUDISDOWNLOADABLE")
-        if has_visible:
-            select_cols.append("a.ZVISIBILITYSTATE")
 
         query = f"""
             SELECT {", ".join(select_cols)}
@@ -112,7 +132,7 @@ def analyze_icloud_status(
             if kind_name not in by_kind:
                 by_kind[kind_name] = {"synced": 0, "local_only": 0, "synced_size": 0, "local_size": 0}
 
-            created = coredata_to_datetime(rd["ZDATECREATED"])
+            created = coredata_to_local(rd["ZDATECREATED"], rd["tz_offset"])
             yr = str(created.year) if created else "Unknown"
             if yr not in by_year:
                 by_year[yr] = {"synced": 0, "local_only": 0, "synced_size": 0, "local_size": 0}
@@ -147,6 +167,7 @@ def analyze_icloud_status(
                         {
                             "id": rd["Z_PK"],
                             "filename": rd["ZFILENAME"],
+                            "original_filename": rd["original_filename"],
                             "created": created.isoformat() if created else None,
                             "size": size,
                             "size_formatted": format_size(size),
@@ -160,6 +181,7 @@ def analyze_icloud_status(
         local_only_large.sort(key=lambda x: x["size"], reverse=True)
 
         return {
+            "degraded": degraded.entries,
             "icloud_enabled": synced_count > 0,
             "by_state": by_state,
             "by_kind": {
@@ -251,7 +273,7 @@ def format_summary(data: dict[str, Any]) -> str:
         lines.append(f"Large local-only items (>10 MB): {s['large_local_only_count']}")
         for item in data["local_only_large"][:10]:
             fav = "⭐" if item["is_favorite"] else "  "
-            lines.append(f"  {fav} {item['filename']:40s} {item['size_formatted']:>10}  ({item['kind']})")
+            lines.append(f"  {fav} {display_name(item):40s} {item['size_formatted']:>10}  ({item['kind']})")
 
     return "\n".join(lines)
 

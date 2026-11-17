@@ -1,44 +1,62 @@
-## Description: <br>
-Scrapes Spotify-related public news from configured RSS, Hacker News, and DuckDuckGo News sources, then formats a daily or weekly digest with source links and Chinese one-sentence summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape and summarize Spotify-related news from multiple sources, generate one-sentence Chinese summaries for each article, and format them as a daily or weekly digest with original links.
 
-## Publisher: <br>
-[ibillxia](https://clawhub.ai/user/ibillxia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ibillxia](https://clawhub.ai/user/ibillxia)
 
-## Use Case: <br>
-Developers, product analysts, and communications teams use this skill to collect recent Spotify product, engineering, research, community, and industry news into a concise digest for briefings or scheduled updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public news and search results over the network, which may be inappropriate in environments where outbound public access is restricted. <br>
-Mitigation: Run it only where outbound public news and search access is acceptable, and keep configured sources limited to public news domains. <br>
-Risk: Scheduled digests can send generated summaries to an unintended recipient or cadence if approved without review. <br>
-Mitigation: Verify the recipient and schedule before approving any automated digest. <br>
-Risk: Unpinned Python dependencies can change over time and affect reproducibility. <br>
-Mitigation: Review or pin dependencies before installation when reproducibility or production controls matter. <br>
+## Use Case:
 
+External users, developers, and operations teams use this skill to collect Spotify product, engineering, research, business, and community news and produce a concise Chinese digest for one-time or scheduled updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ibillxia/spotify-news-digest) <br>
-- [Source Reference - Spotify News Digest](references/sources_reference.md) <br>
-- [Configured news sources](config/sources.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest with source links; optional grouped article data from the Python helpers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Digest entries are grouped by category and use one-sentence Chinese summaries when supplied by the calling LLM.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill fetches external RSS, Hacker News, and DuckDuckGo news content, so it can process untrusted article text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scheduled jobs in an isolated environment, keep sources restricted to public news domains, and treat article titles and summaries as untrusted quoted content during LLM summarization.
+
+Risk: Scheduled digest delivery could post incorrect, misleading, or unintended summaries to a channel.
+
+Mitigation: Confirm the target channel before scheduling and review generated summaries before using them in sensitive communications.
+
+Risk: The skill depends on third-party Python packages for feed parsing, HTML cleanup, HTTP requests, date parsing, and news search.
+
+Mitigation: Pin and audit dependencies before installation in sensitive or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ibillxia/skills/spotify-news-digest)
+- [Source Reference](references/sources_reference.md)
+- [Spotify Engineering Blog RSS](https://engineering.atspotify.com/feed/)
+- [Spotify Newsroom RSS](https://newsroom.spotify.com/feed/)
+- [Spotify Research RSS](https://research.atspotify.com/feed/)
+- [Spotify Design RSS](https://spotify.design/feed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest with categorized items, Chinese one-sentence summaries, source names, and original article links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The digest is filtered by a configurable time range, deduplicated by title similarity, ranked by source authority and recency, and can be printed or saved to a Markdown file.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

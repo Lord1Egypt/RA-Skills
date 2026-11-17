@@ -1,44 +1,57 @@
-## Description: <br>
-Use PoYo AI GPT Image 1.5 through the `https://api.poyo.ai/api/generate/submit` endpoint to generate or edit media, prepare PoYo-compatible payloads, submit jobs, and poll task status for `gpt-image-1.5` and `gpt-image-1.5-edit`. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use PoYo AI GPT Image 1.5 to prepare payloads, submit image generation or edit jobs, and track task status through PoYo's image-generation API.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to build PoYo GPT Image 1.5 generation or editing payloads, submit authenticated image jobs, and track task status or callback-based completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill submits prompts, image URLs, mask URLs, callback URLs, and API credentials to PoYo's API. <br>
-Mitigation: Use `POYO_API_KEY` from an environment variable, review payloads before submission, and avoid sending confidential prompts, private image URLs, secrets in URLs, or untrusted callback URLs unless sharing them with PoYo is intended. <br>
-Risk: Network requests and API-key use are required for job submission. <br>
-Mitigation: Install and run the skill only when PoYo API access is intended, and inspect generated curl commands or payloads before execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create PoYo-compatible GPT Image 1.5 requests, submit generation or editing jobs, and preserve the returned task ID for polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo GPT Image 1.5 documentation](https://docs.poyo.ai/api-manual/image-series/gpt-image-1.5) <br>
-- [PoYo GPT Image 1.5 OpenAPI JSON](https://docs.poyo.ai/api-manual/image-series/gpt-image-1.5.json) <br>
-- [PoYo task status documentation](https://docs.poyo.ai/api-manual/task-management/status) <br>
-- [Local API reference](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/poyo-gpt-image-1-5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON payloads and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selected model id, payload summary or final payload, reference image usage, returned task_id, and polling or webhook next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, image URLs, callback URLs, and submitted payload data are sent to PoYo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when PoYo is an approved service for the submitted content, and avoid secrets, private internal URLs, regulated data, or sensitive images unless approved.
+
+Risk: API keys can be exposed if passed directly on the command line or included in shared payloads.
+
+Mitigation: Provide POYO_API_KEY through an environment variable or secret manager and keep credentials out of prompts, payload files, logs, and command history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-gpt-image-1-5)
+- [PoYo GPT Image 1.5 model page](https://poyo.ai/models/gpt-image-1-5-api)
+- [PoYo GPT Image 1.5 API docs](https://docs.poyo.ai/api-manual/image-series/gpt-image-1.5)
+- [PoYo GPT Image 1.5 OpenAPI JSON](https://docs.poyo.ai/api-manual/image-series/gpt-image-1.5.json)
+- [PoYo task status docs](https://docs.poyo.ai/api-manual/task-management/status)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON payloads, curl examples, shell commands, and concise task-status guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected model ID, request payload or parameter summary, reference-image usage, returned task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

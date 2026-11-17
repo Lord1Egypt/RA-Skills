@@ -1,45 +1,59 @@
-## Description: <br>
-Scans a user's logged-in social media accounts and distills posts, saves, unfinished plans, interests, and cross-platform patterns into a poetic, data-driven digital epitaph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans a user's logged-in social media accounts and produces a poetic, data-driven Digital Epitaph summarizing posts, saved items, unfinished plans, hidden interests, and recurring themes.
 
-## Publisher: <br>
-[sophie-xin9](https://clawhub.ai/user/sophie-xin9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sophie-xin9](https://clawhub.ai/user/sophie-xin9)
 
-## Use Case: <br>
-External users working with an AI agent use this skill to inspect their own selected social media accounts and generate a humorous, reflective Markdown summary of their digital footprint. It is intended for self-reflection, shareable personality summaries, and reviewing patterns such as unfinished reading lists, hidden interests, multi-platform personas, and activity timelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect logged-in social accounts, including saves, likes, favorites, follows, comments, ratings, and posts. <br>
-Mitigation: Use it only on accounts and platforms the user intentionally selects, and prefer a separate browser profile for collection. <br>
-Risk: Generated summaries and raw collected data can reveal private preferences or account history. <br>
-Mitigation: Review the raw output before sharing, and delete epitaph-data/ after use if retained local history is not desired. <br>
-Risk: The workflow depends on ManoBrowser browser automation and may prompt dependency setup. <br>
-Mitigation: Approve ManoBrowser setup manually and confirm the browser connection before allowing collection. <br>
+## Use Case:
 
+External users and agents use this skill to collect a user's own social-media footprint from supported logged-in accounts and turn it into a humorous, reflective Markdown life summary. It is intended for self-reflection and shareable personal writing, with local handling of collected data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sophie-xin9/epitaph) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Epitaph output template](artifact/templates/epitaph_template.md) <br>
-- [ManoBrowser dependency](https://github.com/ClawCap/ManoBrowser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown digital epitaph with optional local JSON raw data files and setup commands for browser automation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may save raw social account data and generated epitaph files under epitaph-data/ for local review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill asks an agent to control a logged-in browser session across social platforms and can collect sensitive profile details, likes, favorites, follows, comments, IDs, and other account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate browser profile, approve each data category explicitly, keep collected data local, and delete raw data when the final summary is no longer needed.
+
+Risk: The security verdict is suspicious because sensitive account data is consolidated locally with weak controls.
+
+Mitigation: Review the skill before execution, avoid saving raw data unnecessarily, and do not store ManoBrowser API keys in shared configuration files.
+
+Risk: The browser automation dependency can expand the agent's practical access to logged-in accounts.
+
+Mitigation: Pin or manually review ManoBrowser before use and confirm the browser-control connection is limited to the intended session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sophie-xin9/skills/epitaph)
+- [Publisher profile](https://clawhub.ai/user/sophie-xin9)
+- [ManoBrowser dependency](https://github.com/ClawCap/ManoBrowser.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown Digital Epitaph with supporting browser setup and collection guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May consolidate raw local social-media data before producing the final Markdown summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

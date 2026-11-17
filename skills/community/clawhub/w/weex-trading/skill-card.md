@@ -1,45 +1,60 @@
-## Description: <br>
-Trade crypto on Weex exchange via Telegram bot, enabling agents to check prices, view balances, run DCA strategies, execute grid trading, and manage a Weex portfolio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade crypto on Weex exchange through a Telegram bot, enabling agents to check prices, view balances, run DCA strategies, and execute grid trading.
 
-## Publisher: <br>
-[tesseraeventures](https://clawhub.ai/user/tesseraeventures) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tesseraeventures](https://clawhub.ai/user/tesseraeventures)
 
-## Use Case: <br>
-External users and agent developers use this skill to connect OpenClaw agents to a Telegram-based Weex trading workflow for price checks, balance review, DCA automation, grid strategies, and portfolio monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to send live exchange API credentials to an unverified Telegram bot that can place real trades. <br>
-Mitigation: Do not send credentials unless the operator is independently verified and trusted; use a restricted spot-only key with withdrawals disabled. <br>
-Risk: Automated DCA, grid, or order workflows can create unintended financial exposure. <br>
-Mitigation: Keep balances small, require manual confirmation before live orders or strategies, and monitor active strategies regularly. <br>
-Risk: API credentials may be exposed if shared in an unsafe chat context. <br>
-Mitigation: Never share API keys in group chats and remove credentials with the documented disconnect flow when no longer needed. <br>
+## Use Case:
 
+External users and agent developers use this skill to guide setup and operation of Weex trading through @WEEXonTONbot, including price checks, balance review, DCA strategies, grid strategies, and authenticated Weex API access.
 
-## Reference(s): <br>
-- [Weex V3 API Reference](references/weex-api.md) <br>
-- [Weex API Docs](https://www.weex.com/en/api) <br>
-- [Weex Trading Skill Page](https://clawhub.ai/tesseraeventures/weex-trading) <br>
-- [tesseraeventures Publisher Profile](https://clawhub.ai/user/tesseraeventures) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with Telegram bot commands and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide users through exchange API credential setup, Telegram bot commands, DCA strategies, grid trading, and Weex REST API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill enables live crypto trading through a third-party Telegram bot that can place automated trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the workflow before use, start with very small trading limits, and monitor active strategies closely.
+
+Risk: The bot asks users to send exchange API credentials to a third-party service.
+
+Mitigation: Use a dedicated API key with withdrawals disabled, never share keys in group chats, and revoke the key immediately if anything seems wrong.
+
+Risk: The artifact claims message deletion and encrypted storage, but those operational security claims are not independently verified by the evidence.
+
+Mitigation: Do not rely on the artifact alone to verify deletion, encryption, or custody behavior; assess the service before connecting real accounts.
+
+## Reference(s):
+
+- [Weex V3 API Reference](references/weex-api.md)
+- [Weex API Documentation](https://www.weex.com/en/api)
+- [WEEXonTONbot Telegram Bot](https://t.me/WEEXonTONbot)
+- [ClawHub Skill Page](https://clawhub.ai/tesseraeventures/skills/weex-trading)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, API calls]
+
+**Output Format:** [Markdown instructions with Telegram bot commands and REST API endpoint details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes live trading setup and credential-handling guidance; no generated files are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

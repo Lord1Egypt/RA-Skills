@@ -1,41 +1,55 @@
-## Description: <br>
-Master orchestrator for the full autonomous development lifecycle, coordinating planning, issue breakdown, architecture, QA planning, development, testing, code review, and PR management for Claude Code workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master orchestrator for the full autonomous development lifecycle, coordinating feature intake, PRD creation, issue breakdown, architecture, QA planning, development, testing, code review, pull request management, and issue closure.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate an autonomous feature-development workflow from idea intake through PR merge. It is intended for repository work that benefits from explicit QA gates, delegated specialist skills, and structured GitHub issue and PR flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive broad autonomous development and GitHub workflow actions from common planning or feature-development prompts. <br>
-Mitigation: Use it only in trusted repositories and require explicit confirmation before code changes, test execution, GitHub comments, PR creation, merges, or issue closure. <br>
-Risk: Delegated skills and GitHub credentials may expand the practical permissions available during the workflow. <br>
-Mitigation: Verify delegated skills before use and keep GitHub credentials least-privilege for the intended repository tasks. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate an end-to-end feature workflow from idea intake through PR merge and issue closure. It is intended for agent-assisted development sessions where structured planning, QA gates, implementation, testing, and review steps need to stay aligned.
 
-## Reference(s): <br>
-- [Dev Workflow ClawHub Page](https://clawhub.ai/emersonbraun/eb-dev-workflow) <br>
-- [Spec-Kit Reference Templates](artifact/references/spec-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks, checklists, shell commands, and structured status or report sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or coordinate repository changes, GitHub issue or PR text, test plans, test reports, and delegated skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: The skill can be triggered broadly and then drive code, testing, GitHub issue, PR, and merge-related actions with limited per-step user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before code changes, GitHub comments, issue closure, PR creation, and any merge-related action.
+
+Risk: Users may activate an end-to-end autonomous development workflow when they only intended to plan or ask for next steps.
+
+Mitigation: Install and use this skill only when the agent is expected to manage the full development workflow, and confirm the current phase before advancing.
+
+## Reference(s):
+
+- [Spec-Kit Reference Templates](artifact/references/spec-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/emersonbraun/skills/eb-dev-workflow)
+- [Publisher Profile](https://clawhub.ai/user/emersonbraun)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with workflow state blocks, checklists, issue comments, PR descriptions, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate code changes, test execution, GitHub issue comments, pull request creation, and issue closure through the hosting agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

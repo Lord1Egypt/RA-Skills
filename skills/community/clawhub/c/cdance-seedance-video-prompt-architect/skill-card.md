@@ -1,46 +1,59 @@
-## Description: <br>
-Turn rough Seedance and AI video ideas into structured prompt packs, tighter variants, and debugging loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns rough Seedance and AI video ideas into structured prompt packs, tighter variants, and debugging loops for text-to-video, image-to-video, and reference-driven workflows.
 
-## Publisher: <br>
-[aitools101](https://clawhub.ai/user/aitools101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gpt-img-2](https://clawhub.ai/user/gpt-img-2)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to turn rough Seedance, SeaDance, or AI video ideas into structured text-to-video, image-to-video, and reference-driven video prompt packs with variants and revision steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic invocation may apply this prompt-authoring workflow to relevant Seedance or AI video prompt requests. <br>
-Mitigation: Review generated prompt packs and revision steps before using them in production or customer-facing creative workflows. <br>
-Risk: Future releases could change the current text-only security profile by adding scripts, credentials, network automation, or broader file access. <br>
-Mitigation: Recheck security evidence and artifact file changes before upgrading to a newer release. <br>
+## Use Case:
 
+External creators, marketers, and video prompt engineers use this skill to convert rough Seedance or AI video briefs into clearer prompt packs, focused variants, avoid lists, and concrete revision steps.
 
-## Reference(s): <br>
-- [C Dance Seedance Video Prompt Architect Docs](https://cdance.net/docs/cdance-seedance-video-prompt-architect) <br>
-- [C Dance AI Video Generator Demo](https://cdance.net/ai-video-generator) <br>
-- [C Dance Create](https://cdance.net/create) <br>
-- [Raw SKILL.md](https://cdance.net/skills/cdance-seedance-video-prompt-architect/SKILL.md) <br>
-- [Seedance 2.0 FAQ Guide](https://cdance.net/blog/seedance-2-0-faq-guide) <br>
-- [Seedance ComfyUI Workflow Guide](https://cdance.net/blog/seedance-comfyui-workflow-guide) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aitools101/cdance-seedance-video-prompt-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown prompt packs with variants, avoid lists, and revision steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only outputs; no scripts, binaries, required environment variables, or autonomous network calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated prompts could include private images, references, brands, or people before submission to an external video service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each prompt pack before use and remove private, sensitive, or unauthorized references.
+
+Risk: Generated prompts could suggest unsupported model settings or misleading video-generation guidance.
+
+Mitigation: Keep settings constrained to known user requirements or documented C Dance and Seedance guidance, and review revisions before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gpt-img-2/skills/cdance-seedance-video-prompt-architect)
+- [C Dance Seedance Prompt Architect Documentation](https://cdance.net/docs/cdance-seedance-video-prompt-architect)
+- [C Dance AI Video Generator Demo](https://cdance.net/ai-video-generator)
+- [C Dance Create](https://cdance.net/create)
+- [Raw SKILL.md](https://cdance.net/skills/cdance-seedance-video-prompt-architect/SKILL.md)
+- [Seedance FAQ Guide](https://cdance.net/blog/seedance-2-0-faq-guide)
+- [Seedance ComfyUI Workflow Guide](https://cdance.net/blog/seedance-comfyui-workflow-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt packs with structured fields, variants, avoid lists, and revision steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only output; no scripts, binaries, credential use, or local data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

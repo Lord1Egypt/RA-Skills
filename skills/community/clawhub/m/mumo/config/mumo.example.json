@@ -2,6 +2,6 @@
   "url": "https://mumo.chat/api/mcp",
   "transport": "streamable-http",
   "headers": {
-    "Authorization": "Bearer mmo_live_YOUR_KEY_HERE"
+    "Authorization": "Bearer ${MUMO_API_KEY}"
   }
 }

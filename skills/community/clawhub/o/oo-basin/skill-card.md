@@ -1,44 +1,59 @@
-## Description: <br>
-Basin (usebasin.com) helps an agent read, create, update, and delete Basin data through the OOMOL-connected Basin connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Basin (usebasin.com). Use this skill for ANY Basin request — reading, creating, updating, and deleting data. Whenever a task involves Basin, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent manage Basin projects, forms, webhooks, and submissions through a connected OOMOL account. It is intended for Basin workflows that require read access, writes, or explicit user-approved destructive operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read Basin project, form, webhook, and submission data from the connected account. <br>
-Mitigation: Install it only for Basin accounts where agent access is appropriate, and treat returned submission data as account data that may need access controls. <br>
-Risk: Write and destructive actions can change or remove Basin resources. <br>
-Mitigation: Confirm the exact target, payload, and expected effect with the user before running any write or destructive action. <br>
-Risk: The skill depends on OOMOL-connected Basin credentials. <br>
-Mitigation: Use OOMOL connection management for credential setup and renewal, and avoid exposing raw credentials in prompts or files. <br>
+## Use Case:
 
+External users and developers can use the skill to manage Basin projects, forms, webhooks, and submissions through their connected OOMOL account. It provides action-specific command examples and approval guidance for changes and deletions.
 
-## Reference(s): <br>
-- [Basin homepage](https://usebasin.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-basin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; action responses are JSON from the OOMOL connector.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The CLI installation uses downloaded code whose behavior is not established by this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI installation separately before allowing automatic setup.
+
+Risk: Startup skill synchronization may change skills used by other agents.
+
+Mitigation: Consider disabling cross-agent startup skill synchronization with the documented OO_SKILLS_SYNC_DISABLED control.
+
+Risk: Basin write and deletion actions can change or remove account data.
+
+Mitigation: Keep the skill's approval requirements for every write and deletion.
+
+## Reference(s):
+
+- [Basin](https://usebasin.com)
+- [Basin API access documentation](https://docs.usebasin.com/account-management/api-access/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action schemas and example payloads vary by the requested Basin operation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

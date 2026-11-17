@@ -1,0 +1,13 @@
+# Forecast Confidence Check - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+line_item,period,driver,cases,source,owner,review_date,value_base,value_low,value_high,notes
+revenue-01,,,,,,,,,,
+revenue-02,,,,,,,,,,
+cost-01,,,,,,,,,,
+cost-02,,,,,,,,,,
+headcount-01,,,,,,,,,,
+cash-01,,,,,,,,,,
+tax-01,,,,,,,,,,
+capex-01,,,,,,,,,,
+capex-02,,,,,,,,,,
+deferred-revenue,,,,,,,,,,

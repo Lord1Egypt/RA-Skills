@@ -1,0 +1,46 @@
+collection: ANDROID
+sort-by: 10
+shortname: android
+extensions: app
+
+game: 忍者神龟：施莱德的复仇
+file: tmnt.app
+launch: am start --user 0 -n com.netflix.NGP.TMNTShreddersRevenge/crc64ce797c93931d6e91.MainActivity
+assets.box_front: Imgs/忍者神龟：施莱德的复仇.png
+description: 《忍者神龟：施莱德的复仇》，安卓移植平台。
+
+game: 星露谷物语
+file: stardew.app
+launch: am start --user 0 -n com.chucklefish.stardewvalley/.MainActivity
+assets.box_front: Imgs/星露谷物语.png
+description: 《星露谷物语》，安卓移植平台。
+
+game: 泰拉瑞亚
+file: terraria.app
+launch: am start --user 0 -n com.and.games505.TerrariaPaid/com.unity3d.player.UnityPlayerActivity
+assets.box_front: Imgs/泰拉瑞亚.png
+description: 《泰拉瑞亚》，安卓移植平台。
+
+game: 像素足球19
+file: pixelcup19.app
+launch: am start --user 0 -n com.BatoviGamesStudio.PixelCupSoccer19/com.unity3d.player.UnityPlayerActivity
+assets.box_front: Imgs/像素足球19.png
+description: 《像素足球19》，安卓移植平台。
+
+game: 小丑牌
+file: balatro.app
+launch: am start --user 0 -n com.playstack.balatro.android/org.love2d.android.PlatformActivity
+assets.box_front: Imgs/小丑牌.png
+description: 《小丑牌》，安卓移植平台。
+
+game: 海之号角
+file: oceanhorn.app
+launch: am start --user 0 -n com.FDGEntertainment.Oceanhorn.gp/.NativeGameActivity
+assets.box_front: Imgs/海之号角.png
+description: 《海之号角》，安卓移植平台。
+
+game: 口袋博物馆
+file: pocketmuseum.app
+launch: am start --user 0 -n com.pocketmuseum.app/com.godot.game.GodotAppLauncher
+assets.box_front: Imgs/口袋博物馆.png
+description: 《口袋博物馆》，安卓移植平台。

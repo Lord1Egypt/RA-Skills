@@ -1,41 +1,54 @@
-## Description: <br>
-Developer utilities for hashing, unit conversion, timezone math, expressions, DNS lookups, text transforms, and geocoding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Developer utilities for hashing, unit conversion, timezone math, expressions, DNS lookups, text transforms, and geocoding.
 
-## Publisher: <br>
-[CutTheMustard](https://clawhub.ai/user/CutTheMustard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cutthemustard](https://clawhub.ai/user/cutthemustard)
 
-## Use Case: <br>
-Developers and engineers use this skill to route common utility tasks to dedicated services for hashing, conversion, date and timezone work, math, DNS, text transformation, and geocoding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inputs sent for hashing, conversion, DNS, text, math, or geocoding tasks may be processed by external services. <br>
-Mitigation: Avoid confidential, personal, regulated, or highly sensitive business data unless that external sharing is acceptable. <br>
-Risk: Utility results such as live currency rates, DNS data, WHOIS data, geocoding, and calculated transformations can be stale, incomplete, or unsuitable for high-impact decisions. <br>
-Mitigation: Verify critical results against authoritative sources before relying on them operationally. <br>
+## Use Case:
 
+Developers and engineers use Dev Toolkit to route common utility tasks to external agentutil.net APIs for hashing, conversion, timezone math, expression evaluation, DNS lookups, text transformations, and geocoding.
 
-## Reference(s): <br>
-- [Dev Toolkit on ClawHub](https://clawhub.ai/CutTheMustard/dev-toolkit) <br>
-- [AgentUtil homepage](https://agentutil.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include endpoint selection guidance and example API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Requested utility inputs are sent to agentutil.net services and may include sensitive strings, documents, addresses, or other private data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only data the user explicitly chooses to share, and avoid secrets, private keys, passwords, confidential documents, and private addresses.
+
+Risk: Use beyond the free daily limit may trigger USDC x402 charges.
+
+Mitigation: Confirm cost-sensitive use before exceeding the free daily allowance.
+
+## Reference(s):
+
+- [Dev Toolkit on ClawHub](https://clawhub.ai/cutthemustard/skills/dev-toolkit)
+- [AgentUtil Homepage](https://agentutil.net)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls]
+
+**Output Format:** [Markdown with API endpoint tables and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external HTTP API requests to agentutil.net services.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

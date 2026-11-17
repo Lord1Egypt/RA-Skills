@@ -1,41 +1,60 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/gw/api/author/get_author_marketing_info/v1 for Douyin Creator Marketplace (Xingtu) Marketing Metrics through JustOneAPI with oAuthorId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/gw/api/author/get_author_marketing_info/v1 for Douyin Creator Marketplace (Xingtu) Marketing Metrics through JustOneAPI with oAuthorId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and marketing analysts use this skill to call JustOneAPI for Douyin Creator Marketplace creator marketing metrics, including rate card and commercial service data for creator evaluation, campaign planning, and marketplace research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent as a URL query parameter and may be exposed through shared URLs, logs, screenshots, or error output. <br>
-Mitigation: Use a narrowly scoped or disposable token when available, avoid sharing full request URLs or runner output, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+External developers and marketing analysts use this skill to call a focused JustOneAPI endpoint for Douyin Creator Marketplace creator marketing metrics. It supports creator evaluation, campaign planning, marketplace research, and review of rate-card or commercial-service metrics for a supplied author ID.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_author_get_author_marketing_info&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_author_get_author_marketing_info&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-gw-api-author-get-author-marketing-info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and JUST_ONE_API_TOKEN; required endpoint parameter is oAuthorId, with optional platform selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends a JustOneAPI token to api.justoneapi.com and handles the token in exposure-prone ways.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token and install only when sending that token to api.justoneapi.com is acceptable.
+
+Risk: Token values may be exposed on shared machines where process arguments can be inspected.
+
+Mitigation: Avoid running the helper on shared machines and do not paste token values into chat messages, screenshots, or logs.
+
+Risk: Returned creator marketing metrics and rate-card data may be business-sensitive.
+
+Mitigation: Limit access to returned data and handle API responses according to the user's business-data policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-gw-api-author-get-author-marketing-info)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_author_get_author_marketing_info&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_author_get_author_marketing_info&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a JUST_ONE_API_TOKEN; the endpoint requires oAuthorId and accepts an optional platform query value.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

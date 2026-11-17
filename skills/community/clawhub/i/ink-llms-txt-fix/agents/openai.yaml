@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fix llms.txt"
+  short_description: "Check and write a site's llms.txt"
+  default_prompt: "Use $ink-llms-txt-fix to check my site's llms.txt and write a corrected one."

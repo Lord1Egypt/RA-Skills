@@ -1,38 +1,49 @@
-## Description: <br>
-Content Automation Pro generates platform-specific ecommerce and social-media recommendation copy from product details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates platform-specific ecommerce shopping and recommendation copy for social and marketing channels.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Marketing, ecommerce, and social-media teams use this skill to draft product recommendation copy for platforms such as Xiaohongshu, Douyin, WeChat Moments, and Zhihu. It can create single-platform drafts or batch multiple platform-specific versions from the same product information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated promotional copy may include inaccurate or unsupported claims about product price, ratings, benefits, or suitability. <br>
-Mitigation: Review all generated claims against the product source material, current pricing, and applicable advertising requirements before publishing. <br>
+## Use Case:
 
+Marketing operators, ecommerce sellers, and content creators use this skill to draft Chinese shopping recommendation copy for Xiaohongshu, Douyin, WeChat Moments, and Zhihu from product details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yesong-hue/content-automation-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Structured text or Markdown containing titles, promotional copy, scripts, product pros and cons, purchase advice, and hashtags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates local copy drafts from user-provided product inputs; users should review factual and promotional claims before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated ecommerce or social copy may contain inaccurate product claims or platform-noncompliant persuasive language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review product facts, claims, and platform policy compliance before publishing generated content.
+
+## Reference(s):
+
+- [Content Automation Pro ClawHub page](https://clawhub.ai/yesong-hue/skills/content-automation-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured text or Markdown copy with titles, scripts, hashtags, and platform labels.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include randomized hooks, titles, emojis, and hashtags based on product attributes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

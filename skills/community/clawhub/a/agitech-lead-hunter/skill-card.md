@@ -1,46 +1,63 @@
-## Description: <br>
-Autonomous lead generation skill that finds freshly funded companies matching an ideal customer profile, researches them, and delivers qualified leads with personalized outreach drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lead Hunter finds freshly funded companies matching an ideal customer profile, researches and scores them, and produces qualified leads with personalized outreach drafts.
 
-## Publisher: <br>
-[zich-agent](https://clawhub.ai/user/zich-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zich-agent](https://clawhub.ai/user/zich-agent)
 
-## Use Case: <br>
-External sales teams, founders, agencies, recruiters, consultants, and developers use Lead Hunter to set up and run recurring lead generation. It configures an ICP, gathers startup funding signals, researches prospects, scores fit, and drafts outreach without automatically sending messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can scrape websites and install scraping dependencies such as crawl4ai and Chromium. <br>
-Mitigation: Review configured sources before first use and approve any dependency or browser installation before running the scraper fallback. <br>
-Risk: The skill can store lead data, seen-company state, and run logs locally. <br>
-Mitigation: Choose an appropriate output location, avoid storing unnecessary personal data, and review generated lead files and memory logs. <br>
-Risk: The skill can optionally create recurring runs through cron scheduling. <br>
-Mitigation: Enable scheduling only when recurring prospecting is intended, and verify the schedule and timezone before activation. <br>
-Risk: Asana output may require workspace and parent task identifiers or credentials from another skill. <br>
-Mitigation: Confirm whether Asana integration is needed and use the minimum required access for task creation. <br>
+## Use Case:
 
+External users and developers use Lead Hunter to configure an ideal customer profile, research newly funded companies, qualify prospects, and generate outreach-ready lead reports for sales pipeline building.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zich-agent/agitech-lead-hunter) <br>
-- [Lead Hunter - Onboarding Interview](references/onboarding.md) <br>
-- [Lead Sources by Industry](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, CSV rows, Asana task command notes, configuration JSON, and outreach draft text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits full research to 5 leads per run; drafts outreach but does not send messages automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can scrape web sources, including user-provided custom URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandboxed environment, limit custom sources to trusted sites, and review blocked-source reports before expanding the source list.
+
+Risk: The fallback scraper may install Crawl4AI and Playwright Chromium into a local virtual environment.
+
+Mitigation: Require explicit approval before dependency installation and review the runtime environment before scheduled use.
+
+Risk: Scheduled runs and persistent local files can accumulate lead history and run logs.
+
+Mitigation: Review any cron setup, retention needs, and generated lead, seen-state, and memory files for policy fit.
+
+Risk: Asana output can create tasks from generated lead research and outreach drafts.
+
+Mitigation: Review generated Asana commands and task content before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zich-agent/skills/agitech-lead-hunter)
+- [Onboarding interview flow](artifact/references/onboarding.md)
+- [Lead source catalog](artifact/references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, CSV rows, Asana task commands, JSON configuration, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write lead files, local deduplication state, memory logs, and Asana tasks depending on configuration; caps full research at 5 leads per run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

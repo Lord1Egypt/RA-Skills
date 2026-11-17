@@ -1,0 +1,96 @@
+# Skill Manifest — Product Level
+# 适用范围：腾讯云流计算 Oceanus 工作空间运维（SQL/JAR 作业、资源、日志等）
+# 维护团队：oceanus-team
+
+name: tencentcloud-oceanus-ops
+display_name:
+  zh-CN: 腾讯云流计算 Oceanus 运维助手
+  en-US: TencentCloud Oceanus Ops
+version: 1.0.0
+description: >-
+  面向腾讯云流计算 Oceanus 的工作空间级运维 Skill：覆盖 SQL/JAR 作业的创建、
+  配置、发布、运行、停止、Savepoint，依赖资源（jar/config）的上传与版本管理，
+  workspace/folder/catalog/database/table 元数据浏览，以及作业事件、运行日志
+  （CLS/ES）和 COS 日志文件查询。
+  触发场景：用户提及 job/作业、workspace/工作空间、集群、依赖、resource、
+  日志/log、catalog/元数据，或出现 space-*/cluster-*/cql-*/folder-*/resource-*
+  等资源 ID，或显式要求执行 oceanus_ops.py。
+  不触发：通用云资源（CVM/COS/TKE/计费）、集群生命周期（创建/扩缩容/销毁集群）、
+  容器或 Pod 故障排查、其他计算引擎（EMR/DLC 等）。
+author: oceanus-team
+level: product
+license: Apache-2.0
+
+data_classification: L3
+
+# 运行时与外部工具依赖
+dependencies:
+  runtime:
+    - name: python
+      version: ">=3.8"
+      notes: "仅使用 Python 标准库，无第三方包依赖"
+  external_tools:
+    - name: tencentcloud-api
+      version: "TC3-HMAC-SHA256"
+      notes: "通过 scripts/client.py 直连腾讯云 Oceanus OpenAPI"
+  credentials:
+    - name: TENCENTCLOUD_SECRET_ID
+      source: env
+      required: true
+    - name: TENCENTCLOUD_SECRET_KEY
+      source: env
+      required: true
+    - name: TENCENTCLOUD_SECURITY_TOKEN
+      source: env
+      required: false
+      notes: "仅在使用临时密钥（STS）时需要"
+  allowed_tools:
+    - Bash
+    - Read
+    - Write
+
+# 服务等级承诺（SLA）
+sla:
+  availability: "99.5%"          # 月度可用性目标
+  response_time:
+    read_ops_p95_ms: 10000        # describe_* 类只读命令 P95
+    write_ops_p95_ms: 30000       # modify_draft / check_sql 等写入命令 P95
+    mutation_ops_p95_ms: 30000   # create_job / run_jobs / upload_resource 等变更命令 P95
+
+# 可观测性配置
+observability:
+  logging:
+    enabled: true
+    level: INFO
+    rotation: "daily, retain 14 days"
+    redaction:
+      - "TENCENTCLOUD_SECRET_ID"
+      - "TENCENTCLOUD_SECRET_KEY"
+      - "TENCENTCLOUD_SECURITY_TOKEN"
+      - "Authorization"
+    fields:
+      - timestamp
+      - request_id
+      - region
+      - workspace_id
+      - command
+      - exit_code
+      - duration_ms
+  metrics:
+    enabled: true
+    exporter: "stdout-json"
+    counters:
+      - skill.invocations.total
+      - skill.commands.total{command,status}
+      - skill.mutations.total{action,confirmed}
+      - skill.errors.total{error_type}
+    histograms:
+      - skill.command.duration_ms{command}
+      - skill.api.latency_ms{action}
+  audit:
+    enabled: true
+    events:
+      - mutation_executed       # 所有 --confirm 变更操作
+      - destructive_executed    # stop_jobs / delete_folders 等
+      - draft_published         # create_job_config 发布
+      - credential_missing      # MissingCredentials 触发

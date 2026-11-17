@@ -1,44 +1,60 @@
-## Description: <br>
-Batch-pet Aavegotchis on Base via Bankr with cooldown checks, reminder automation, and natural-language routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch-pet Aavegotchis on Base via Bankr with cooldown checks, reminder automation, and natural-language routing.
 
-## Publisher: <br>
-[aaigotchi](https://clawhub.ai/user/aaigotchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaigotchi](https://clawhub.ai/user/aaigotchi)
 
-## Use Case: <br>
-Aavegotchi users and agents use this skill to check petting cooldowns, discover owned or delegated gotchis, and submit batch Bankr transactions when gotchis are ready. It also supports reminders and optional fallback automation for recurring petting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit Bankr blockchain transactions automatically. <br>
-Mitigation: Use dry-run and status commands before enabling live petting, and confirm the Bankr wallet and target gotchi IDs are correct. <br>
-Risk: The skill can reuse broad local credentials for Bankr and Telegram. <br>
-Mitigation: Prefer dedicated Bankr and Telegram credentials, keep them out of shared environments, and avoid shared Telegram chats for reminders. <br>
-Risk: Reminder, cron, at, or background jobs can keep rescheduling the workflow. <br>
-Mitigation: Confirm how to list and cancel scheduled jobs before enabling fallback or recurring automation. <br>
+## Use Case:
 
+External Aavegotchi users use this skill to check on-chain petting cooldowns, batch-pet owned or delegated gotchis on Base through Bankr, and configure reminders or fallback automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaigotchi/pet-me-master) <br>
-- [Aavegotchi Contract Information](artifact/references/contract-info.md) <br>
-- [Usage Guide](artifact/USAGE_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit transaction status, cooldown timers, dry-run JSON, job identifiers, and Telegram notification text depending on the command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.4 (source: server release evidence and artifact changelog) <br>
+Risk: The skill can make unattended wallet-linked blockchain actions through Bankr.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run and status checks first, avoid enabling cron, fallback auto-pet, or recurring loops unless unattended actions are intended, and monitor submitted transactions.
+
+Risk: Bankr credentials and configurable API endpoints affect transaction submission.
+
+Mitigation: Use a dedicated, narrowly scoped Bankr key, protect local config files, avoid environments where untrusted code can change BANKR_API_URL, and rotate credentials after untrusted execution.
+
+Risk: Natural-language pet commands can route to mutating batch pet scripts.
+
+Mitigation: Use transaction dry-run mode or manual confirmation for ambiguous requests before allowing the skill to submit a Bankr transaction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaigotchi/skills/pet-me-master)
+- [aaigotchi publisher profile](https://clawhub.ai/user/aaigotchi)
+- [Aavegotchi contract information](artifact/references/contract-info.md)
+- [Base mainnet RPC](https://mainnet.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger Bankr API calls and blockchain transactions when the user runs mutating scripts; dry-run and status modes are available.]
+
+## Skill Version(s):
+
+2.4.4 (source: server release, artifact/clawhub.json, CHANGELOG top entry)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

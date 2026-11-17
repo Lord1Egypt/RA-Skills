@@ -37,7 +37,7 @@ _无参数_
 | `fundName` | 基金名称 | `平安` |
 | `underlyingIndexCode` | 标的指数代码 | `000010` |
 | `prevTradeDate` | 上一交易日期 | `2008-04-18 00:00:00` |
-| `cashBalance` | 现金差额(元) | `1327.5700` |
+| `cashBalance` | 现金差额(元) | `1327.57` |
 | `navPerCreationUnit` | 最小申赎单位资产净值(元) | `2175819.57` |
 | `nav` | 基金份额净值(元) | `7.253` |
 | `estimatedCashComponent` | 预估现金部分(元) | `-320.43` |
@@ -59,6 +59,8 @@ _无参数_
 | `dailyNetSubscribeLimitPerAccount` | 单个账户当日净申购上限(份) | `1000000` |
 | `dailyNetRedeemLimitPerAccount` | 单个账户当日净赎回上限(份) | `1000000` |
 | `iopvClosePrice` | IOPV收盘价 | `1.2345` |
+| `pageNum` | page number | `1` |
+| `pageSize` | page size | `100` |
 
 ### 接口示例
 
@@ -114,12 +116,64 @@ _无参数_
 | `subscribeSubstituteAmount` | 申购替代金额(元) | `0` |
 | `redeemSubstituteAmount` | 赎回替代金额(元) | `0` |
 | `constituentMarketCapWeight` | 成份股市值占比 | `0.0061` |
+| `pageNum` | page number | `1` |
+| `pageSize` | page size | `100` |
+| `totalCount` | total count | `0` |
 
 ### 接口示例
 
 ```bash
 # Body JSON 可选参数: fundCode, fundCodes, beginDate, endDate, pageNum, pageSize
 investoday-api fund/etf-constituent-stocks --method POST --body-json '{"fundCode":"000001","fundCodes":["000001","000006"],"beginDate":"2025-01-01"}'
+```
+
+---
+
+## 场内基金溢价率
+
+接口路径：`fund/etf-premium-rates`
+请求方式：**`POST`**
+tool_id：`list_etf_premium_rates`
+
+接口说明：支持通过基金代码或代码列表及时间范围查询场内ETF的溢价率数据，返回包括基金代码、名称、日期、单位净值、收盘价及溢价率（百分比）等核心指标，帮助用户分析ETF的市场交易价格与净值偏离情况。
+
+### 输入参数
+
+**Query 参数**
+
+_无参数_
+
+**Body JSON 参数**
+
+| 参数名 | 必填 | 类型 | 说明 | 示例 |
+|--------|:----:|------|------|------|
+| `fundCode` | — | string | 基金代码【与fundCodes组成多选一参数，必须且只能传递其中一个】 | `000001` |
+| `fundCodes` | — | array | 基金代码列表【与fundCode组成多选一参数，必须且只能传递其中一个】 | `['000001', '000006']` |
+| `beginDate` | — | string | 开始日期（格式yyyy-MM-dd） | `2025-01-01` |
+| `endDate` | — | string | 结束日期（格式yyyy-MM-dd） | `2025-01-01` |
+| `pageNum` | — | integer | 页码。 最小值:1; | `1` |
+| `pageSize` | — | integer | 页长。 最小值:1; 最大值:500; | `10` |
+
+### 输出参数
+
+| 字段名 | 说明 | 示例 |
+|--------|------|------|
+| `fundId` | 今日投资内部编码 | `510300` |
+| `fundCode` | 基金代码 | — |
+| `fundName` | 基金名称，优先使用交易所扩展简称，无则使用中文简称 | `沪深300ETF` |
+| `date` | 截止日期 | `2026-09-30 00:00:00` |
+| `unitNav` | 单位净值 | `1.2345` |
+| `closePrice` | 收盘价 | `1.238` |
+| `premiumRate` | 溢价率，单位：% | `0.2834` |
+| `pageNum` | page number | `1` |
+| `pageSize` | page size | `100` |
+| `totalCount` | total count | `0` |
+
+### 接口示例
+
+```bash
+# Body JSON 可选参数: fundCode, fundCodes, beginDate, endDate, pageNum, pageSize
+investoday-api fund/etf-premium-rates --method POST --body-json '{"fundCode":"000001","fundCodes":["000001","000006"],"beginDate":"2025-01-01"}'
 ```
 
 ---

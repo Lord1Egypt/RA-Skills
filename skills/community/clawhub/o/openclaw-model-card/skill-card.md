@@ -1,40 +1,51 @@
-## Description: <br>
-Generate OpenClaw model inventory and model-card images from openclaw.json. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates OpenClaw model inventory and model-card images from openclaw.json for listing configured models, checking default and fallback chains, and sharing a visual card.
 
-## Publisher: <br>
-[sdsdsdff](https://clawhub.ai/user/sdsdsdff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sdsdsdff](https://clawhub.ai/user/sdsdsdff)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect OpenClaw model configuration, list configured providers and defaults, check fallback chains, and optionally render a shareable model-card image. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated text or images can expose model and provider configuration. <br>
-Mitigation: Review generated output before sharing and publish only sanitized artifacts. <br>
-Risk: Rendering untrusted OpenClaw configuration values into an image can carry unsafe or misleading config-derived content into the generated artifact. <br>
-Mitigation: Use an explicit --config path and render only configuration files from trusted sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Model Card on ClawHub](https://clawhub.ai/sdsdsdff/openclaw-model-card) <br>
-- [Publisher profile](https://clawhub.ai/user/sdsdsdff) <br>
+## Use Case:
+
+Developers and engineers use this skill to inspect OpenClaw model configuration, verify default and fallback chains, and produce a shareable model card from openclaw.json.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The screenshot renderer can treat configuration text as active HTML, which may create unexpected rendering or network-resource risk for untrusted configs.
+
+Mitigation: Use text mode for trusted OpenClaw configs, and run image rendering only in a sandbox with no network access when the config comes from another person.
+
+Risk: Generated images can be influenced by attacker-controlled openclaw.json content.
+
+Mitigation: Treat generated images as untrusted output, review them before sharing, and do not rely on current sanitization claims.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Terminal text output, Markdown tables, and optional PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads an OpenClaw JSON configuration and can perform consistency checks for missing model references, alias conflicts, and suspicious context-window values.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, files, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [CLI text or Markdown, with optional PNG image output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run consistency checks for missing model references, alias conflicts, and suspicious contextWindow values.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

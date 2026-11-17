@@ -56,7 +56,7 @@ Good output begins with:
 
 ## 2. Explain The Product In Human Language
 
-Avoid internal product and implementation wording when talking to ordinary users.
+Avoid technical product wording when talking to ordinary users.
 
 Prefer:
 
@@ -67,7 +67,7 @@ Prefer:
 
 Avoid:
 
-- raw internal payload
+- details the user does not need
 - 抓取数据
 - 自动爆款
 - 保证涨粉
@@ -149,10 +149,10 @@ Worth doing when:
   reference image, backend screenshot, comments, or knowledge base
 - produces a concrete next action, not just a prettier answer
 - can be expressed as a reusable workflow or playbook
-- improves retention, repeat usage, content packaging, or paid-scope clarity
-- reduces user confusion or prevents wasted credits
+- improves retention, repeat usage, content packaging, or scope clarity
+- reduces user confusion or prevents unnecessary research expansion
 - turns a high-trust diagnosis moment into an activation package, review loop,
-  content package, or other paid/deeper scope without forced upsell
+  content package, or other deeper scope without forced upsell
 
 Likely noise when:
 
@@ -189,9 +189,9 @@ When judging Lingzao product or a new request, use:
    - pain -> workflow -> output -> next action
 
 5. 产品迭代建议
-   - playbook/prompt/UI/schema/data/credit/knowledge-base change
+   - playbook/prompt/UI/schema/data/resource/knowledge-base change
    - for diagnosis feedback, say whether to add a share-worthy diagnosis card,
-     activation package, psychological massage, or credit-scoped deep follow-up
+     activation package, psychological massage, or scope-controlled deep follow-up
 
 6. 需求优先级
    - P0/P1/P2 or keep as case library
@@ -203,7 +203,7 @@ When judging Lingzao product or a new request, use:
 ## Do Not
 
 - Do not accept every user request as a feature.
-- Do not describe Lingzao mainly as a technical crawler or raw-data tool.
+- Do not describe Lingzao mainly as a bulk-collection or bulk-data tool.
 - Do not promise guaranteed traffic, monetization, or auto-growth.
 - Do not make product copy product-name-first when the user pain is clearer.
 - Do not turn every feedback item into engineering work; some should become

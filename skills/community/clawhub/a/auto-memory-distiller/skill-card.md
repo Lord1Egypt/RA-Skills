@@ -1,39 +1,55 @@
-## Description: <br>
-Automatically converts long OpenClaw conversation logs into structured, topic-based Markdown memory cards with source pointers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Memory Distiller converts OpenClaw conversation history into structured, themed Markdown memory cards with source traceability.
 
-## Publisher: <br>
-[Mashirops](https://clawhub.ai/user/Mashirops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mashirops](https://clawhub.ai/user/mashirops)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to incrementally distill local session logs into long-term Markdown memory organized by topic. It is intended for environments where sending selected conversation content to Gemini and storing persistent local memory files is acceptable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read private OpenClaw session logs and send conversation content to Gemini for summarization. <br>
-Mitigation: Run it manually first, use a dedicated Gemini API key, and redact or exclude sensitive sessions before enabling scheduled automation. <br>
-Risk: The skill stores distilled long-term memory in persistent local Markdown files. <br>
-Mitigation: Review generated files in ~/.openclaw/workspace/memory/topics and confirm local file permissions and retention expectations before relying on the output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mashirops/auto-memory-distiller) <br>
+## Use Case:
+
+OpenClaw users and developers can use this skill to incrementally distill long-running conversation logs into persistent Markdown knowledge cards organized by topic.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Conversation history may be processed and sent to Google's Gemini API.
+
+Mitigation: Enable the skill only for sessions that users explicitly approve and add local secret redaction before external processing.
+
+Risk: Persistent memory cards may be written without clear review controls.
+
+Mitigation: Add review steps or allowlists before memory writes are accepted as long-term knowledge.
+
+Risk: Automatic cron or heartbeat execution can process broad local history silently.
+
+Mitigation: Avoid scheduled execution until opt-in, dependency pinning, and review controls are in place.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown topic files, JSON cursor state, and console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes new OpenClaw JSONL session lines incrementally and writes topic files under the local OpenClaw workspace.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [markdown, configuration, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown files with configuration notes and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates topic memory cards with source file and line pointers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Airtable"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["airtable"]
   icon: "https://static.oomol.com/logo/third-party/Airtable.svg"
 ---
@@ -46,7 +46,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_base_collaborators` — Read Airtable base metadata, including workspaceId and optional collaborator details.
 - `get_base_schema` — Read Airtable table, field, and view schema for a specific base.
 - `get_record` — Read a single Airtable record by record ID.
-- `list_bases` — List Airtable bases accessible to the authenticated personal access token.
+- `list_bases` — List Airtable bases accessible to the authenticated credential.
 - `list_records` — List Airtable records from a table with optional fields, sorting, view filters, formula filters, and pagination.
 - `update_field` — Update an Airtable field name, description, or type-specific options. [write]
 - `update_records` — Update one or more existing Airtable records by record ID. [write]
@@ -78,14 +78,17 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
   oo auth login
   ```
 
-- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Airtable is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Airtable is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2, API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=airtable
+  https://console.oomol.com/connections/airtable
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Airtable homepage: https://airtable.com
+- API documentation: https://airtable.com/developers/web/api/introduction

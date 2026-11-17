@@ -1,62 +1,69 @@
-## Description: <br>
-Alibaba Cloud Tair development toolkit covering architecture selection, data structure design, instance creation and configuration, connection management, performance monitoring, error troubleshooting, and backup and recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and aliyun CLI workflows for Alibaba Cloud Tair architecture selection, data structure design, instance creation, connection management, monitoring, troubleshooting, and backup or recovery.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to plan, create, connect, monitor, troubleshoot, and recover Alibaba Cloud Tair Redis-compatible resources through guided procedures and aliyun CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create billable Alibaba Cloud Tair resources and expose database endpoints. <br>
-Mitigation: Use a least-privilege RAM role scoped to the required account, region, and instances; do not run creation workflows unless paid resource creation and endpoint exposure are explicitly accepted. <br>
-Risk: Restore and destructive database operations can overwrite or remove current data. <br>
-Mitigation: Treat restore and SHUTDOWN NOSAVE as last-resort operations after backups, written confirmation, and review of the affected instance. <br>
-Risk: Credential, TLS, and client examples may be unsafe if copied directly into production code. <br>
-Mitigation: Replace examples with secure credential handling, production TLS configuration, and private or VPC connectivity before operational use. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to plan, configure, connect to, monitor, troubleshoot, back up, and restore Alibaba Cloud Tair instances. It can assist with real Alibaba Cloud operations through aliyun CLI commands and bundled shell workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-tair-devtoolset) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Architecture Selection](references/architecture-selection/arch-selection.md) <br>
-- [Tair vs Open Source Redis](references/architecture-selection/arch-compare-oss-redis.md) <br>
-- [Backup and Recovery](references/backup-and-recovery/backup-recovery.md) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [Connect to Cluster](references/connection-management/connect-cluster.md) <br>
-- [Connect to Standalone or Proxy](references/connection-management/connect-standalone-or-proxy.md) <br>
-- [Connect with TLS](references/connection-management/connect-with-tls.md) <br>
-- [Data Structure Design](references/data-structure-design/data-structure-design.md) <br>
-- [Error Troubleshooting](references/error-troubleshooting/errors-troubleshooting.md) <br>
-- [Instance Creation](references/instance-creation/connect-create-instance.md) <br>
-- [Performance Monitoring](references/performance-monitoring/perf-monitoring.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Related Commands](references/related-commands.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Redis Data Types](https://redis.io/docs/latest/develop/data-types/) <br>
-- [Tair Extended Data Structures](https://help.aliyun.com/zh/redis/developer-reference/extended-data-structures-of-apsaradb-for-redis-enhanced-edition) <br>
-- [Alibaba Cloud Redis Common Errors and Troubleshooting](https://www.alibabacloud.com/help/en/redis/support/common-errors-and-troubleshooting) <br>
-- [Alibaba Cloud Redis Backup and Restoration Solutions](https://www.alibabacloud.com/help/en/redis/user-guide/backup-and-restoration-solutions) <br>
-- [alibabacloud-tair-ai-assistant](https://skills.aliyun.com/skills/alibabacloud-tair-ai-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands, configuration values, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or execute aliyun CLI workflows after user-confirmed parameters and credential prerequisites.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: The skill can assist with live Alibaba Cloud Tair administration, including instance creation, whitelist changes, public endpoint allocation, backups, and restores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandbox or least-privilege RAM role, confirm all user-customizable parameters, review public endpoint creation, and keep credentials out of chat and shell history.
+
+Risk: Restore workflows can overwrite current data and may be irreversible.
+
+Mitigation: Create and verify a current backup, confirm the target instance and restore point with the user, and prefer a new-instance restore when appropriate.
+
+Risk: Examples and downloaded tools may be unsafe if run without review or pinning.
+
+Mitigation: Pin and verify downloaded tools, review generated commands before execution, and require TLS with certificate and hostname validation for production connections.
+
+## Reference(s):
+
+- [RAM permission policy](references/ram-policies.md)
+- [Architecture selection guide](references/architecture-selection/arch-selection.md)
+- [Tair vs Open Source Redis comparison](references/architecture-selection/arch-compare-oss-redis.md)
+- [Data structure design guide](references/data-structure-design/data-structure-design.md)
+- [Instance creation and connection guide](references/instance-creation/connect-create-instance.md)
+- [Standalone or proxy connection guide](references/connection-management/connect-standalone-or-proxy.md)
+- [Cluster connection guide](references/connection-management/connect-cluster.md)
+- [TLS connection guide](references/connection-management/connect-with-tls.md)
+- [Backup and recovery guide](references/backup-and-recovery/backup-recovery.md)
+- [Redis data types](https://redis.io/docs/latest/develop/data-types/)
+- [Tair extended data structures](https://help.aliyun.com/zh/redis/developer-reference/extended-data-structures-of-apsaradb-for-redis-enhanced-edition)
+- [Alibaba Cloud Redis common errors and troubleshooting](https://www.alibabacloud.com/help/en/redis/support/common-errors-and-troubleshooting)
+- [Alibaba Cloud Redis backup and restoration solutions](https://www.alibabacloud.com/help/en/redis/user-guide/backup-and-restoration-solutions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, CLI commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include high-impact operational steps that require user confirmation, least-privilege credentials, and backup validation before execution.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

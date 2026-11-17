@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7cwqq9z8sp0kx3h0tb69gk0582x9gr",
-  "slug": "curlsearch",
+  "name": "Curl Search",
+  "slug": "curl-search",
   "version": "2.0.0",
-  "publishedAt": 1773488287256
+  "description": "Web search using curl + multiple search engines (Baidu, Google, Bing, DuckDuckGo). Includes security enhancements: input sanitization, command injection protection, and URL encoding.",
+  "tags": ["search", "web", "curl", "baidu", "google", "bing", "duckduckgo"],
+  "author": "bluejoy34",
+  "license": "MIT",
+  "requirements": {
+    "binaries": ["curl", "python3"],
+    "os": ["linux", "darwin", "win32"]
+  },
+  "security": {
+    "input_sanitization": true,
+    "command_injection_protection": true,
+    "url_encoding": true
+  }
 }

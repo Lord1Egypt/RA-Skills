@@ -1,41 +1,56 @@
-## Description: <br>
-Cloudflare DNS lets an agent operate Cloudflare DNS through an OOMOL-connected account using the oo CLI to list, read, create, update, and delete zones and DNS records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloudflare DNS (cloudflare.com). Use this skill for ANY Cloudflare DNS request — reading, creating, updating, and deleting data. Whenever a task involves Cloudflare DNS, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect Cloudflare accounts, zones, and DNS records, then perform approved DNS record changes through an OOMOL-connected Cloudflare DNS account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect Cloudflare DNS write or delete payloads can disrupt domains and services. <br>
-Mitigation: Review the exact target, payload, and expected effect with the user before approving create, update, or delete actions. <br>
-Risk: Cloudflare access is mediated through an OOMOL-connected account and oo CLI setup. <br>
-Mitigation: Only install the oo CLI or connect the Cloudflare DNS account when the user trusts OOMOL and intends to grant this access. <br>
+## Use Case:
 
+Developers and operations teams use this agent skill to inspect Cloudflare accounts, zones, and DNS records, and to create, update, or delete DNS records through a connected Cloudflare account.
 
-## Reference(s): <br>
-- [Cloudflare DNS homepage](https://www.cloudflare.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses oo CLI connector calls and JSON responses that include data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: artifact metadata and release evidence) <br>
+Risk: Setup may run unchecked software whose documented behavior can make broader, lasting changes to agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CLI installation separately before allowing automatic setup, prefer an inspected and verified release, and consider the publisher-documented OO_SKILLS_SYNC_DISABLED=1 setting to disable startup skill synchronization.
+
+Risk: Cloudflare credentials may allow access beyond the zones needed for the requested DNS work.
+
+Mitigation: Restrict Cloudflare access to the intended zones and continue approving the exact DNS changes.
+
+## Reference(s):
+
+- [Cloudflare DNS API documentation](https://developers.cloudflare.com/api/resources/dns/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [Cloudflare DNS skill release page](https://clawhub.ai/oomol/skills/oo-cloudflare-dns)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Text responses, JSON connector payloads and results, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live action schemas; DNS writes and deletions require approval of the exact change.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter; server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

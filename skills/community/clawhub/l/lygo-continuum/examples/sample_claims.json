@@ -1,0 +1,7 @@
+[
+  {"id": "c1", "kind": "file_exists", "path": "scripts/continuum.py"},
+  {"id": "c2", "kind": "file_sha256", "path": "scripts/continuum.py"},
+  {"id": "c3", "kind": "file_contains", "path": "scripts/continuum.py", "needle": "lygo.continuum.v1"},
+  {"id": "c4", "kind": "file_contains", "path": "SKILL.md", "needle": "LYGO Continuum"},
+  {"id": "c5", "kind": "glob_count_gte", "pattern": "scripts/*.py", "n": 2}
+]

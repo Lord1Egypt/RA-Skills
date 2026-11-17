@@ -1,42 +1,56 @@
-## Description: <br>
-AI寻路者 is a personal business-positioning and career-development coaching skill that uses a structured interview and bundled market references to recommend AI-era career, side-business, or startup directions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI寻路者 guides users through a structured conversation to create personalized AI-era career, side-business, and business-positioning recommendations.
 
-## Publisher: <br>
-[630886916](https://clawhub.ai/user/630886916) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[630886916](https://clawhub.ai/user/630886916)
 
-## Use Case: <br>
-External users use this skill when they feel uncertain about career direction, side-business options, AI entrepreneurship, or personal business positioning. The skill gathers background, skills, resources, motivation, risk tolerance, and AI-tool experience, then produces a personalized markdown positioning report with recommended paths, validation steps, monetization options, timelines, and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for personal background details such as finances, education, contacts, work history, and failures. <br>
-Mitigation: Users can skip sensitive questions and should avoid sharing exact private details unless they are comfortable using them for the advice. <br>
-Risk: The output is business and career guidance, not a guarantee of income, investment performance, or project success. <br>
-Mitigation: Treat recommendations as planning input, review the assumptions, and validate any business direction with small, reversible tests before committing significant time or money. <br>
+## Use Case:
 
+Individuals use this skill to clarify career direction, evaluate AI-era side-business or entrepreneurship paths, and receive a structured action plan based on their background, skills, resources, motivations, and risk tolerance.
 
-## Reference(s): <br>
-- [AI Personal Business Positioning Dialogue Framework](references/dialogue_framework.md) <br>
-- [AI Personal Business Market Data Reference](references/market_data.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/630886916/ai-pathfinder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown positioning report generated through multi-turn dialogue] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled dialogue and market-data references; no shell commands or code execution are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may ask for employment, education, budget, prior earnings, contacts, motivations, and risk tolerance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should share approximate ranges rather than exact financial or identifying details unless needed.
+
+Risk: Career and business recommendations may be mistaken for guaranteed income, investment advice, or assured business success.
+
+Mitigation: Treat outputs as planning advice, validate ideas with small experiments, and avoid major financial or employment decisions based only on the report.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/630886916/skills/ai-pathfinder)
+- [Publisher Profile](https://clawhub.ai/user/630886916)
+- [Dialogue Framework](references/dialogue_framework.md)
+- [Market Data Reference](references/market_data.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured personal AI business-positioning report with recommendations, monetization paths, timelines, and risk notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

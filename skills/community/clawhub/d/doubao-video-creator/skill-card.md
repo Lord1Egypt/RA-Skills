@@ -1,50 +1,62 @@
-## Description: <br>
-基于火山引擎豆包视频生成模型，辅助用户配置项目、确认分场景提示词，并逐步生成和合成专业短视频。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists agents with requirements collection, scene planning, cinematic prompt generation, and per-scene Doubao Seedance video creation workflows.
 
-## Publisher: <br>
-[cindypapa](https://clawhub.ai/user/cindypapa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindypapa](https://clawhub.ai/user/cindypapa)
 
-## Use Case: <br>
-External users and creators use this skill to plan short-form video projects, generate structured prompts for Doubao Seedance text-to-video or image-to-video workflows, confirm each scene, and assemble final videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports exposed real-looking credentials in the package. <br>
-Mitigation: Do not install this version unless exposed tokens have been removed and rotated; use only limited-scope API keys. <br>
-Risk: The security summary reports plaintext storage of user API keys and project data without enough safeguards. <br>
-Mitigation: Avoid sensitive or private content, limit credential scope, and review local storage handling before use. <br>
-Risk: The security guidance warns against the bundled GitHub publishing scripts. <br>
-Mitigation: Do not run bundled publishing scripts unless they have been reviewed and are necessary for a trusted workflow. <br>
-Risk: Prompts and reference materials may be sent to third-party generation services. <br>
-Mitigation: Assume submitted prompts and assets leave the local environment and avoid confidential materials. <br>
+## Use Case:
 
+Creators, marketers, and agent operators use this skill to plan short promotional or social videos, confirm scene prompts, call Doubao Seedance text-to-video or image-to-video generation, and assemble scene outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cindypapa/doubao-video-creator) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [Best Practices](artifact/BEST_PRACTICES.md) <br>
-- [Cinematography Library](artifact/CINEMATOGRAPHY_LIBRARY.md) <br>
-- [Technical Specs Guide](artifact/TECH_SPECS_GUIDE.md) <br>
-- [Volcengine Ark Console](https://console.volcengine.com/ark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates, Python snippets, JSON configuration examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide generation of local project files, scene prompts, video task requests, and final video assembly workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence, SKILL.md v3.0 notes) <br>
+Risk: The release includes hardcoded credentials and examples of plaintext API key storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use bundled credentials; rotate any matching keys and store user-provided credentials only through a secure secret mechanism.
+
+Risk: Publishing helper files can push code to fixed GitHub or ClawHub destinations and include unsafe publishing guidance.
+
+Mitigation: Remove or disable quick-publish helpers before installation and review all repository or marketplace publishing commands before execution.
+
+Risk: The server security verdict is suspicious.
+
+Mitigation: Review and scan the release before deployment, with particular attention to credential handling and publishing scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cindypapa/skills/doubao-video-creator)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [QUICK_REFERENCE.md](artifact/QUICK_REFERENCE.md)
+- [BEST_PRACTICES.md](artifact/BEST_PRACTICES.md)
+- [TECH_SPECS_GUIDE.md](artifact/TECH_SPECS_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompts, configuration examples, Python snippets, shell commands, and generated video task metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-scene prompts and task guidance; generated media depends on external video and image APIs.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

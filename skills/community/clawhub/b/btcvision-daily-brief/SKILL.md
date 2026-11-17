@@ -1,9 +1,9 @@
 ---
 name: btcvision-daily-brief
 version: 1.0.0
-description: "Auto-generate a daily Bitcoin market brief from BTCvision.org — price, halving countdown, Fear & Greed, AI predictions. Perfect for morning briefings on Telegram/Discord/Slack."
+description: "Auto-generate a daily Bitcoin market brief from BTC-vision.org — price, halving countdown, Fear & Greed, AI predictions. Perfect for morning briefings on Telegram/Discord/Slack."
 author: welove111
-homepage: https://btcvision.org
+homepage: https://btc-vision.org
 license: MIT
 tags: [bitcoin, btc, daily-brief, halving, crypto, morning-report, price, prediction, telegram, discord]
 protocols: [mcp, a2a]
@@ -20,7 +20,7 @@ Use this skill when:
 - Scheduling daily crypto market summaries
 
 ## What This Skill Does
-Fetches live data from BTCvision.org MCP server and formats a complete daily brief including:
+Fetches live data from BTC-vision.org MCP server and formats a complete daily brief including:
 - Live BTC price and 24h change
 - Fear & Greed Index
 - Halving 2028 countdown
@@ -31,13 +31,13 @@ Fetches live data from BTCvision.org MCP server and formats a complete daily bri
 
 ### Step 1 — Fetch all data
 ```
-POST https://btcvision.org/.netlify/functions/mcp
+POST https://btc-vision.org/.netlify/functions/mcp
 Body: { "tool": "get_btc_price" }
 
-POST https://btcvision.org/.netlify/functions/mcp
+POST https://btc-vision.org/.netlify/functions/mcp
 Body: { "tool": "get_fear_greed_index" }
 
-POST https://btcvision.org/.netlify/functions/mcp
+POST https://btc-vision.org/.netlify/functions/mcp
 Body: { "tool": "get_halving_info" }
 ```
 
@@ -52,7 +52,7 @@ Combine results into this template:
 ⛏️ Next Halving: {days_to_halving} days away
 🎯 AI Target 2030: $350,000
 
-📈 Full analysis: https://btcvision.org
+📈 Full analysis: https://btc-vision.org
 ⚡ Support: welove@blink.sv
 ```
 
@@ -66,5 +66,5 @@ Send the formatted brief to the configured Telegram/Discord/Slack channel.
 ```
 
 ## Source
-All data from BTCvision.org — free, no API key required.
+All data from BTC-vision.org — free, no API key required.
 Lightning donations: welove@blink.sv ⚡

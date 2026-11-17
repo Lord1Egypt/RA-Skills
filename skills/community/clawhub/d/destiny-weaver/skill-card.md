@@ -1,47 +1,61 @@
-## Description: <br>
-Destiny Weaver is a turn-based isekai life simulation game engine that generates worlds, characters, life events, story records, save data, and optional scene or character illustrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Destiny Weaver is a turn-based isekai life simulation game engine that generates worlds, characters, yearly events, story records, multi-generation continuation, free actions, and optional scene or character illustrations.
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-External users and players use this skill to run an AI-driven text adventure that creates an isekai world, advances a character through life stages, records the story, and supports save/load and optional image generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and retain local game saves, story archives, legacy character data, and generated images. <br>
-Mitigation: Avoid entering real secrets or sensitive personal information into character names, story content, or prompts, and review generated local files before sharing or publishing them. <br>
-Risk: Broad game-trigger phrases could activate the skill when the user did not intend to start or continue a game. <br>
-Mitigation: Use clear game-prefixed commands such as start, continue, save, or load when invoking the skill, and confirm before overwriting or reusing existing saves. <br>
+## Use Case:
 
+External users and agent operators use this skill to run a Chinese-first interactive life-simulation storytelling game with generated fantasy worlds, character choices, yearly events, persistent saves, story archives, and optional image prompts. It is intended for entertainment and narrative play rather than factual, legal, medical, or financial decision support.
 
-## Reference(s): <br>
-- [World Generation Rules](references/world_gen.md) <br>
-- [Event System Rules](references/event_system.md) <br>
-- [Time System Rules](references/time_system.md) <br>
-- [Output Format](references/output_format.md) <br>
-- [Character Generation Rules](references/character.md) <br>
-- [Novel Generation Rules](references/novel_gen.md) <br>
-- [Legacy System Rules](references/legacy.md) <br>
-- [Free Action Rules](references/action.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown narrative and structured game-state text, with JSON save data and optional generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local saves, story archives, legacy character data, and optional generated images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server evidence and skill metadata) <br>
+Risk: Story state, saves, archives, and image prompts may retain user-entered character or story details locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal details, and review or remove local saves, story archives, and image prompts before sharing outputs.
+
+Risk: Chinese-first commands and free-form play prompts may be interpreted as game actions when phrasing is ambiguous.
+
+Mitigation: Use clear game-specific phrasing and confirm save, load, export, and image-generation actions before proceeding.
+
+## Reference(s):
+
+- [Fated Codex README](README_EN.md)
+- [World Generation Rules](references/world_gen.md)
+- [Event System Rules](references/event_system.md)
+- [Time System Rules](references/time_system.md)
+- [Output Format Specification](references/output_format.md)
+- [Character Generation Rules](references/character.md)
+- [Novel Generation Rules](references/novel_gen.md)
+- [Legacy Continuation Rules](references/legacy.md)
+- [Free Action Rules](references/action.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, image prompts, guidance]
+
+**Output Format:** [Markdown gameplay turns and story text, JSON save data, and optional image-generation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first interactive narrative output with local save and story archive files]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

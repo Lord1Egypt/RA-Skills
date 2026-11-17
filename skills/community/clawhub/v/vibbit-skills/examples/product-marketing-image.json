@@ -1,0 +1,8 @@
+{
+  "prompt": "Create one lifestyle advertising image for US customers using the exact portable projector in the supplied reference. Preserve its shape, color, proportions, lens, controls, and branding. Show a cozy evening setting with the product clearly visible. Use no price, discount, unsupported feature claims, or invented accessories. Keep the layout clean with no added text.",
+  "model": "gpt-image-2.5-sunburst",
+  "size": "1024x1024",
+  "reference_image_urls": [
+    "https://example.com/projector.jpg"
+  ]
+}

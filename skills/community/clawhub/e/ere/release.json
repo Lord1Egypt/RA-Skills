@@ -1,0 +1,31 @@
+{
+  "version": "1.4.0",
+  "date": "2026-08-23",
+  "changelog": {
+    "1.4.0": [
+      "Instruções bilíngues EN + PT em SKILL.md, README.md, CLAUDE.md e AGENTS.md (frontmatter description e manifest também)",
+      "Pipeline, regras de ouro, perfis, mapeamento dos clássicos e seção pt-BR agora com conteúdo paralelo inglês/português"
+    ],
+    "1.3.0": [
+      "Português pt-BR (references/portuguese-writing-principles.md): 33 regras específicas da língua + checklist de anti-padrões, aprofundamento de Comunicação em Prosa Moderna (Othon M. Garcia) — ordem de colocação/inversão, período tenso vs frouxo, falsa coordenação, frase de arrastão/ladainha/fragmentária, paralelismo e correlações, gerúndio, concordância/regência, colocação pronominal, polissemia, anfibologia, pleonasmo, preciosismo, clichês, cacofonia/eco",
+      "SKILL.md: seção 'Português (pt-BR)' com 12 regras de ouro da língua + anti-padrões pt-BR mais frequentes"
+    ],
+    "1.2.0": [
+      "Princípios dos clássicos de escrita (references/writing-principles.md): 46 regras + checklist de anti-padrões consolidados de The Science of Scientific Writing (Gopen & Swan), The Elements of Style (Strunk & White) e Comunicação em Prosa Moderna (Othon M. Garcia)",
+      "SKILL.md: seção 'Princípios dos clássicos de escrita' com mapeamento das regras para as 9 etapas do pipeline + 12 regras de ouro + anti-padrões mais frequentes"
+    ],
+    "1.1.0": [
+      "Frontmatter dual-platform: metadata.hermes + metadata.openclaw (template SKILL)",
+      "Compatibilidade multi-agente: CLAUDE.md (Claude Code/Codex) e AGENTS.md (workspace rules)",
+      "Sanitização: remoção de referências internas (projeto, pipeline) e markers de citação do documento de arquitetura",
+      "Manifest sem dados pessoais (autor genérico, sem email)"
+    ],
+    "1.0.0": [
+      "MVP: Pipeline de 9 etapas (preservação → estilo → estrutura → ritmo → léxico → conectores → introdução → contexto → revisão)",
+      "5 perfis editoriais: default, technical, corporate, creative, minimal",
+      "Catálogo de 33 padrões de IA a detectar/remover",
+      "Análise quantitativa: Flesch, diff, quality score composto",
+      "Zero dependências externas (Python stdlib apenas)"
+    ]
+  }
+}

@@ -1,43 +1,54 @@
-## Description: <br>
-Audit and validate Prisma Access configurations against best practices and security standards. Use when reviewing security policies, checking for misconfigurations, or validating compliance with PAN-OS best practices and CIS benchmarks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and validate Prisma Access configurations against best practices and security standards.
 
-## Publisher: <br>
-[leesandao](https://clawhub.ai/user/leesandao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leesandao](https://clawhub.ai/user/leesandao)
 
-## Use Case: <br>
-Security engineers, network engineers, and compliance reviewers use this skill to audit Prisma Access configuration scope or JSON for policy weaknesses, object hygiene issues, and compliance alignment. It returns prioritized findings with risk and remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security audit recommendations may be incomplete or incorrect if the supplied Prisma Access configuration is partial, stale, or lacks operational context. <br>
-Mitigation: Review findings with a qualified Prisma Access administrator and confirm changes against current PAN-OS and CIS guidance before applying them. <br>
-Risk: Configuration excerpts can contain sensitive network, policy, or identity details. <br>
-Mitigation: Provide only the minimum configuration needed for the audit and redact secrets or sensitive identifiers before sharing outside trusted environments. <br>
-Risk: The available ClawScan evidence reports clean scan signals but still advises review before installation. <br>
-Mitigation: Review the skill listing, requested permissions, and release evidence before deployment. <br>
+## Use Case:
 
+Security engineers, network administrators, and compliance reviewers use this skill to audit Prisma Access configuration data for policy misconfigurations, object hygiene issues, operational gaps, and alignment with PAN-OS best practices and CIS benchmarks.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/leesandao/prisma-audit) <br>
-- [Project homepage](https://github.com/leesandao/prismaaccess-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with severity-tagged findings, a summary score, finding counts, top priorities, and quick wins.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include description, location, risk, recommendation, and reference fields when supported by the provided configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The agent may receive sensitive Prisma Access configuration data during an audit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with configuration data the operator is comfortable providing to the agent, and avoid supplying secrets or unnecessary sensitive details.
+
+Risk: Audit recommendations may be incomplete or unsuitable for a specific production environment.
+
+Mitigation: Have a qualified security or network engineer review findings before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leesandao/skills/prisma-audit)
+- [Project homepage](https://github.com/leesandao/prismaaccess-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit report with severity-tagged findings, recommendations, references, and summary metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings include severity, category, location, risk, recommendation, and reference when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

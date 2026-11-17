@@ -1,40 +1,58 @@
-## Description: <br>
-DAG-based workflow engine supporting sequential, conditional, and parallel task execution with checkpoint persistence and event-driven lifecycle events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workflow Engine provides a DAG-based workflow execution engine for defining and running sequential, conditional, and parallel task flows with checkpoint persistence and lifecycle events.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and engineers use this skill to define and run JavaScript DAG workflows with sequential, conditional, and parallel tasks. It supports checkpoint-based resume behavior and event hooks for workflow and node lifecycle tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow task functions can execute arbitrary logic supplied by the user. <br>
-Mitigation: Review task functions before execution and run untrusted workflows only in controlled environments. <br>
-Risk: Checkpoint files may persist workflow context, node results, or other sensitive runtime data. <br>
-Mitigation: Keep checkpoint directories local and protected, and avoid placing secrets in workflow context unless persistence is acceptable. <br>
+## Use Case:
 
+Developers and agent builders use this skill to define, execute, test, and resume DAG-based workflows with task, condition, and parallel execution nodes.
 
-## Reference(s): <br>
-- [Workflow Engine ClawHub release](https://clawhub.ai/yuyonghao-123/yuyonghao-workflow-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce workflow definitions, execution snippets, checkpoint configuration, and operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: Checkpoint persistence can write workflow context and node results to local JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable checkpointing or isolate the checkpoint directory when workflows may contain secrets, personal data, approvals, payments, deployments, deletion, or other side effects.
+
+Risk: Resume and checkpoint loading depend on caller-provided execution IDs.
+
+Mitigation: Validate execution IDs and avoid exposing checkpoint access directly to untrusted users.
+
+Risk: The conditional workflow helper has a branch execution bug noted by security guidance.
+
+Mitigation: Do not rely on conditional branching for security-sensitive decisions until the branch behavior is fixed and retested.
+
+## Reference(s):
+
+- [Workflow Engine documentation](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-workflow-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write JSON checkpoint files when checkpointing is enabled.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, artifact package.json, and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

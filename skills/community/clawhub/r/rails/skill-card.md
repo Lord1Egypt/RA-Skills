@@ -1,46 +1,53 @@
-## Description: <br>
-Build reliable Rails apps avoiding ActiveRecord traps, N+1 queries, and callback pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build reliable Rails apps avoiding ActiveRecord traps, N+1 queries, and callback pitfalls.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill for concise Rails guidance on ActiveRecord, controllers, routing, views, jobs, and security-sensitive framework pitfalls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agents may generate Rails changes that affect database records, authentication, controller authorization, or escaping behavior. <br>
-Mitigation: Review generated migrations, destructive data operations, authentication changes, controller security logic, and use of Rails escape hatches before applying them. <br>
-Risk: The skill provides compact reference guidance and may not account for project-specific Rails versions, gems, or application conventions. <br>
-Mitigation: Validate recommendations against the target application's Rails version, dependencies, tests, and local coding standards. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Rails skill page](https://clawhub.ai/ivangdavila/rails) <br>
-- [Rails skill overview](SKILL.md) <br>
-- [ActiveRecord traps](activerecord.md) <br>
-- [Controllers traps](controllers.md) <br>
-- [Routing traps](routing.md) <br>
-- [Views traps](views.md) <br>
-- [Jobs traps](jobs.md) <br>
-- [Security traps](security.md) <br>
+## Use Case:
 
+Developers and engineers use this skill as a Rails reference aid for reviewing application code, avoiding common framework traps, and improving Rails reliability, performance, and security practices.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code examples and commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; generated Rails code or commands should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Rails recommendations can be incorrect or incomplete for a specific application, Rails version, or architecture.
+
+Mitigation: Review suggested changes against the target app's version, tests, and production constraints before applying them.
+
+Risk: Guidance about callbacks, bulk deletes, caching, and job retries can involve tradeoffs that affect data integrity or operational behavior.
+
+Mitigation: Have engineers validate these changes in code review and staging, with particular attention to callbacks, audit requirements, cache keys, and retry idempotency.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/rails)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static Rails reference guidance; no executable skill code, credential handling, persistence, or network behavior found in security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Kugou helps agents summarize public Kugou Music playlists, charts, song pages, and artist pages for lightweight trend and style analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kugou helps an agent inspect public Kugou Music playlists, rankings, songs, and artist pages and summarize trend, style, language, and engagement signals.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers and analysts use this skill to inspect public Kugou Music pages and summarize song, playlist, chart, and artist performance data for internal trend tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logged-in Kugou pages may expose personal library or account information if an agent is allowed to inspect them. <br>
-Mitigation: Use the skill on public pages by default and only allow inspection of personal pages that the user explicitly wants summarized. <br>
-Risk: Automated access to dynamic pages can trigger platform controls or exceed acceptable request volume. <br>
-Mitigation: Use human-opened pages, keep request frequency low, and avoid batch scraping, downloads, API reverse engineering, or automated interactions. <br>
+## Use Case:
 
+External users and developers use this skill to gather concise summaries of public Kugou Music playlists, rankings, song metadata, and artist performance trends for lightweight internal analysis and reminders.
 
-## Reference(s): <br>
-- [Kugou Music Homepage](https://www.kugou.com/) <br>
-- [Kugou Ranking Page](https://www.kugou.com/yy/rank/home/1-8888.html) <br>
-- [Kugou Search Page](https://www.kugou.com/yy/html/search.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mike47512/kugou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and structured analysis notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include links, public music metadata, popularity metrics, and style or language distribution summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill may be misused for downloads, bulk scraping, bypassing verification, or automated account-changing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for user-directed inspection of public Kugou pages; avoid downloads, batch collection, reverse engineering, verification bypass, and automatic account interactions.
+
+Risk: Kugou pages may be dynamically rendered or protected by human verification, which can make automated extraction incomplete or unreliable.
+
+Mitigation: Open pages manually when needed, review what the agent reads, and treat summaries as lightweight analysis rather than authoritative records.
+
+## Reference(s):
+
+- [Kugou Music homepage](https://www.kugou.com/)
+- [Kugou Music rankings](https://www.kugou.com/yy/rank/home/1-8888.html)
+- [Kugou Music search](https://www.kugou.com/yy/html/search.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries may include song, playlist, artist, popularity, style, language, and link fields when visible on public pages.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

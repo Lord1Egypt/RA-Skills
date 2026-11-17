@@ -25,11 +25,11 @@ def generate_template():
 
 ---
 
-### ❌ 错误：使用相对路径 `./scripts/foo.py`
+### ❌ 错误：使用相对路径 `./scripts/grid_builder.py`
 
 **问题**：相对路径在不同工作目录下会解析错误，导致脚本找不到。
 
-**正确做法**：使用相对路径（如 `scripts/foo.py`），skill-standardization 审计工具会自动拼接安装目录。
+**正确做法**：使用相对路径（如 `scripts/grid_builder.py`），skill-standardization 审计工具会自动拼接安装目录。
 
 ```markdown
 ❌ 错误：python "C:/Users/.../scripts/template_generator.py"

@@ -1,7 +1,8 @@
 # Lingzao Keyword To Publishable Content Package
 
-Use this playbook when the user gives a keyword, track, or vague topic and wants
-Lingzao to turn it into publishable Xiaohongshu content, such as:
+Use this playbook when the user gives a keyword, track, vague topic, note link,
+creator link, screenshot, saved note, reference image, or inspiration material
+and wants Lingzao to turn it into publishable Xiaohongshu content, such as:
 
 - 给我一个关键词，直接帮我出内容
 - 搜一下女性成长，顺便给我几条能发的图文
@@ -9,6 +10,9 @@ Lingzao to turn it into publishable Xiaohongshu content, such as:
 - 我想做本地生活/好物/AI工具，不知道今天发什么
 - 帮我从关键词到小红书笔记一条龙做完
 - 根据这个关键词，给我 5 条可发布内容包
+- 根据这个链接给我拆成一条能发的内容
+- 按这张图/截图/参考图，直接给我做一篇小红书
+- 从灵感素材到选题到稿子，帮我走一遍
 
 This is different from:
 
@@ -23,18 +27,52 @@ This is different from:
 The user is not asking for a search list. They want a path from "I have a
 keyword" to "I can post something today".
 
+Minimum-deliverable rule: when the user asks for 一条龙, 直接出内容, 把这个拆成
+内容给我发, or gives a keyword/link/image and expects a result, do not stop at
+clarification, analysis, or a search list. Even if the first version is not
+perfect, Lingzao must produce a usable first package with explicit assumptions.
+Ask only the one question that changes the route; otherwise default to a
+Xiaohongshu graphic-note package and keep improving after the user reacts.
+
 Turn keyword research into a publishable package:
 
 1. clarify the user's real intent behind the keyword
 2. clarify or infer who the content is for and who will click
 3. confirm the publishing format: graphic note/image, spoken video, or Vlog
-4. confirm search scope and credit tier before lookup
+4. confirm search scope and research depth before lookup
 5. search only the confirmed keywords or references
 6. filter examples by learnability, not only likes
 7. extract topic, title, cover, structure, keyword, and visual formulas
 8. produce a small batch of publishable content packages
 9. end with one next action: refine one piece, make graphics, save to knowledge
    base, or review data after publishing
+
+The smallest acceptable one-stop package contains:
+
+1. source reading or assumptions based on the keyword/link/image
+2. one recommended topic angle and one backup angle
+3. 3 strongest titles with keyword anchor and click reason
+4. cover copy and visual direction
+5. a 4-page quick graphic-note version, or 7-page expanded version when asked
+6. a Xiaohongshu caption/body copy, or a direct-read spoken script when the
+   user asks for video/口播
+7. 10 publishing keywords
+8. one pinned comment / pinned note idea that guides the next interaction
+9. one pre-publish check and one 24-hour post-publish review instruction
+
+Before returning the final Xiaohongshu package, always run
+`xhs-platform-management-risk-baseline.md` and
+`xhs-content-compliance-risk-gate.md`. The package must not include
+off-platform diversion, WeChat/private-contact guidance, comment-gated
+resources, or exaggerated guarantees as publishable copy. If the user's source
+material contains those lines, show them as "建议改写" or "不建议发布", then give
+the safe replacement. Put useful materials directly into the note instead of
+writing "评论领取", "私信发你", or "加微信拿资料".
+
+For commercial or product-related packages, use the order "公开价值优先、产品名
+后置、无导流动作": the topic, title, cover, and opening should first make the
+reader understand the useful method, checklist, route, case, or judgment; the
+product/service/brand can appear only after the public value is clear.
 
 Use `audience-persona-fit-check.md` when the audience is unclear. Do not write
 a content package as if it is for everyone.
@@ -66,6 +104,17 @@ If the user already names the format, do not ask again:
 - 口播 / 视频文案 / 人物出镜 / 逐字稿 -> use Spoken Script Mode.
 - Vlog / 日常记录 / 生活方式视频 / 分镜 -> use Vlog Storyboard Mode.
 
+If the user does not name the format but asks to "直接发", "直接做一篇", "把这个
+拆成内容", or "一条龙", do not wait. Default to Graphic Note Mode:
+
+- Xiaohongshu 4-page no-face knowledge card
+- one caption around 300 Chinese characters
+- 10 publishing keywords
+- one pinned comment
+
+Then add one closing question: whether they want the same topic converted into
+口播逐字稿 or Vlog 分镜.
+
 For graphic notes, ask for reference images when useful:
 
 你有没有喜欢的参考图片？有的话发我，我按它的排版和风格做；没有的话，我先给你出一版对应主题的无人物知识卡片，比如女性成长干货卡。
@@ -89,6 +138,12 @@ they know the output is grounded:
 
 Do not overdo the deconstruction. The purpose is to prove the output has a
 source, then quickly give one publishable version.
+
+If the user sends only a link or image and Lingzao cannot open the full content
+without online lookup, login, or missing note type, still produce a rough package
+from visible information and clearly mark it as "基于当前可见信息的第一版".
+Then ask the user to paste the title/body/screenshot or enable Lingzao lookup
+for a more accurate version. Do not leave them with only "我看不了".
 
 ## User Style Memory Intake
 
@@ -132,7 +187,7 @@ captured for the current task, current content package, or current conversation.
 If the runtime has an actual memory or knowledge-base tool and the user asks to
 save it, use `content-knowledge-base-workflow.md`.
 
-## First Response And Credit Scope
+## First Response And Research Scope
 
 If the user gives only one keyword and wants content output, do not start a
 large search silently. Explain that this is a content package workflow, then
@@ -142,64 +197,67 @@ Use this wording:
 
 可以做。这个不是单纯搜关键词，而是把关键词下面的参考内容拆成「选题 + 标题 + 封面 + 图文结构 + 正文方向 + 10 个发布关键词」。
 
-先确认范围，避免一下子花太多积分：
+先确认交付范围：
 
-A. 快速版：只搜主关键词 1 次，先给 3 条内容方向和标题/封面建议，通常约 20 credits。
-B. 标准版：搜主关键词 + 3 个相关词，产出 5 条内容包，每条包含标题、封面、图文结构和关键词，通常约 80 credits；如果继续打开单篇详情会再增加。
-C. 批量版：搜 8-10 个相关词，先做 10-20 条选题库，再精写 3 条内容包，通常约 180-220 credits 起；如果要看完整正文、评论区或逐字稿，会进入深度搜索。
+A. 快速版：只搜主关键词 1 次，先给 3 条内容方向和标题/封面建议。
+B. 标准版：搜主关键词 + 3 个相关词，产出 5 条内容包，每条包含标题、封面、图文结构和关键词。
+C. 批量版：搜 8-10 个相关词，先做 10-20 条选题库，再精写 3 条内容包；如果要看完整正文、评论区或逐字稿，会进入深度搜索。
 
-默认搜索设置：小红书、图文优先、近半年、高赞/高收藏内容优先。如果你只回复 A / B / C，就表示接受这些默认搜索设置；如果你有平台、时间、内容类型或排序偏好，可以和选项一起告诉我。
+默认搜索设置：综合排序、全部类型、全部时间。平台请告诉我（小红书 / 抖音等）；如果你有时间、内容类型或排序偏好，可以和选项一起告诉我，没写的我按默认值处理并在开头说明。
 
 快速版只搜你给的主关键词；标准版和批量版会先把准备搜索的相关词列出来让你确认，不会默认把所有相关词都搜完。
 
 If the user already states both scope and search filters, proceed without asking
 again.
 
-If the user states only the scope, such as "标准版", "B", or "批量版", but the
-current conversation has not visibly shown the default platform, note type,
-time range, and sorting, show those defaults first and ask the user to reply
-"默认" or edits before any paid search.
+If the user states only the scope, such as "标准版", "B", or "批量版", and the
+platform is known, use the default note type, time range, and sorting without
+asking first, and state them in one sentence at the start of the reply. If the
+platform is missing and cannot be inferred, ask only for the platform.
 
-If the user says "用默认" or "你看着来" after the default settings have been
-shown, use Standard Version B unless the keyword is too broad or commercial
+If the user says "用默认" or "你看着来", use Standard Version B unless the keyword is too broad or commercial
 search cost is likely high.
 
 ## Search Scope Rules
 
-Before calling Lingzao search tools, use `search-credit-notice.md` whenever the
-scope involves paid search, multiple keywords, note details, comments, full
+Before calling Lingzao search tools, use `research-scope-guard.md` whenever the
+scope involves online search, multiple keywords, note details, comments, full
 copy, subtitles, or transcripts.
 
-Default search settings:
+Default search settings: when filters are missing, search with `general`,
+`不限`, and `不限` and state them in one sentence at the start of the reply. The
+preferences below apply only when the user's request already states that goal;
+otherwise offer them as a next-step adjustment, never silently:
 
-- Xiaohongshu first unless the user names another platform.
-- Prefer recent content for fast-moving topics: last 1-3 months when available.
+- Platform: use the one the user named or the context shows; if none, ask one
+  short platform question.
+- When the user asks for recent or trending content, prefer the last 1-3 months
+  when available.
 - Prefer 图文 when the user says 图文, no-face, cover, page design, or Xiaohongshu
   graphic note.
-- Prefer most-liked for first discovery; use collect-descending when the user
+- When the user asks for popular or high-like examples, use most-liked; use
+  collect-descending when the user
   wants tutorials, checklists, or knowledge-base material.
 - For beginners or low-follower users, prefer low-follower viral notes,
   same-stage accounts, or easy-to-copy formats. Do not lead with 100k+ or
   200k+ creators unless the task is mature positioning research.
 
-If the user only replies A / B / C after the scope prompt above, treat it as
-acceptance of the visible default settings: Xiaohongshu, 图文优先, 近半年, and
-high-like/high-save discovery. If those exact defaults were not shown in the
-current conversation, do not search yet; show the defaults and ask for "默认" or
-edits before any paid search.
+If the user only replies A / B / C after the scope prompt above and the platform
+is known, search with `general`, `不限`, and `不限` and state them in one sentence
+at the start of the reply; do not stop to ask for "默认" first. If the platform
+is missing and cannot be inferred, ask only for the platform.
 
 For Standard Version B, list the main keyword plus the 3 related keywords before
 searching. Ask the user to reply "默认" to accept or replace any term. Do not
 search hidden related terms.
 
-For Batch Version C, list the 8-10 planned search keywords before spending
-credits. Group them by intent when possible, such as audience, pain, result,
+For Batch Version C, list the 8-10 planned search keywords before searching.
+Group them by intent when possible, such as audience, pain, result,
 scenario, city, format, or product. Ask the user to confirm the list or cut the
 scope.
 
-Do not imply that the user pays per returned search result. Credit grows from
-actual searches, profile analysis, note details, comments, full copy, subtitles,
-and broader scope.
+Do not silently expand a list search into profile analysis, note details,
+comments, full copy, subtitles, or a broader keyword scope.
 
 ## Filtering Rules
 
@@ -583,7 +641,7 @@ For each package, include:
 | 发布关键词 | 10 keyword candidates |
 | 用户风格贴合点 | how it uses the user's previous content, favorite references, city, tone, or stated preference |
 | 视觉建议 | no-logo default; cover style, main image, page layout, or prompt direction |
-| 评论引导 | one comment prompt |
+| 置顶内容 | one low-risk pinned comment or pinned-note idea that continues the user journey without comment-gated resources |
 | 复盘点 | what to watch after posting |
 
 Do not fully write all 5 bodies unless the user asks. Fully write only the top
@@ -594,7 +652,87 @@ Recommended batch rule:
 - 10-20 entries: topic library, title direction, cover direction only.
 - 5 entries: title, cover, structure, and keywords.
 - 1-3 entries: full body, page copy, generated images when available or visual
-  directions, 10 keywords, comment guide.
+  directions, 10 keywords, pinned content, and review loop.
+
+### One-Stop Minimum Package
+
+Use when the user gives a keyword, topic, note link, screenshot, image, saved
+material, or rough idea and wants Lingzao to "直接出内容", "一条龙", "拆成内容",
+"给我做一篇", or "从灵感到稿子".
+
+Output this even before the perfect reference pool exists:
+
+```markdown
+## 我先按当前信息做一版
+
+基于你给的：{keyword/link/image/material}
+我先默认做：小红书图文 / 口播 / Vlog
+如果这个默认不对，你告诉我，我再改格式。
+
+### 1. 选题角度
+- 首推角度：
+- 备用角度：
+- 为什么适合发：
+
+### 2. 标题
+1.
+2.
+3.
+
+### 3. 封面
+- 封面大字：
+- 封面副标题：
+- 视觉方向：
+
+### 4. 图文页 / 脚本
+- P1:
+- P2:
+- P3:
+- P4:
+- P5-P7 optional:
+
+### 5. 正文/文案区
+{300-600 Chinese characters, or direct-read spoken script}
+
+### 6. 10 个关键词
+{10 keywords}
+
+### 7. 置顶内容
+{one low-risk pinned comment or pinned-note idea; do not use 评论领取/私信发你/加微信}
+
+### 8. 发前/发后检查
+- 发前：
+- 发后 24 小时：
+```
+
+Do not say "我需要更多信息才能开始" unless the task is impossible or unsafe.
+When assumptions are needed, state them and proceed.
+
+Pinned content should not be empty comment bait or a resource gate. It must not
+ask users to comment, like, follow, save, or message in exchange for a file,
+link, template, group, or private contact. It can only:
+
+- clarify what this note already contains
+- point to a follow-up note, checklist, or series inside the public content
+- help users self-check with the method already written in the note
+- invite a light non-transactional discussion only when it naturally fits the
+  topic
+
+Good examples:
+
+- "这篇把方法直接写在 4 页里，不需要评论领取。你可以先按第 3 页做一次自查。"
+- "这一篇先讲判断标准，下一篇继续拆具体页面结构。"
+- "如果你已经有草稿，先对照标题、封面、前三行和关键词这 4 项检查。"
+
+Bad examples:
+
+- "想要资料扣 1"
+- "评论区领取"
+- "关注后私信发你"
+- "加微信拿模板"
+- "不看后悔"
+- any promise of guaranteed growth, revenue, medical/financial result, or
+  unverifiable effect
 
 ## Delivery Modes
 
@@ -608,7 +746,7 @@ want to do spoken video.
 
 The user does not need to write image prompts. If they provide only a broad
 topic such as 女性成长, search or inspect suitable public references within the
-confirmed credit scope, extract the reusable angle, rewrite it into original
+confirmed research scope, extract the reusable angle, rewrite it into original
 graphic-note content, and then route to visual generation when available.
 
 Process:
@@ -636,7 +774,8 @@ Graphic note package must include:
 - Xiaohongshu caption around 300-600 Chinese characters depending on content
   complexity
 - 10 publishing keywords
-- one comment prompt
+- one pinned comment or pinned-note idea
+- one pre-publish check and one 24-hour post-publish review instruction
 
 ### Spoken Script Mode
 
@@ -652,7 +791,8 @@ Spoken package must include:
 - 300-character Xiaohongshu caption
 - 10 publishing keywords
 - optional cover text or opening frame text
-- one comment prompt
+- one pinned comment or pinned-note idea
+- one pre-publish check and one 24-hour post-publish review instruction
 
 The title should still carry the core keyword and click reason. Use proven title
 formulas from the selected references, but do not copy titles directly.
@@ -674,7 +814,8 @@ Vlog package must include:
 - suggested cover frame and cover copy
 - 300-character Xiaohongshu caption
 - 10 publishing keywords
-- one comment prompt
+- one pinned comment or pinned-note idea
+- one pre-publish check and one 24-hour post-publish review instruction
 
 Keep the storyboard realistic for a beginner. Prefer simple daily scenes such
 as opening the window, making coffee or breakfast, exercising, commuting,

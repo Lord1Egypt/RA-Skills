@@ -1,43 +1,54 @@
-## Description: <br>
-Automatically tracks and commits changes to selected OpenClaw configuration and workspace Markdown files using local Git history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Config Tracker automatically tracks and commits changes to OpenClaw configuration files and selected workspace Markdown files.
 
-## Publisher: <br>
-[AltairCardinal](https://clawhub.ai/user/AltairCardinal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[altaircardinal](https://clawhub.ai/user/altaircardinal)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to keep automatic local Git snapshots of selected workspace Markdown files and the OpenClaw configuration file before each prompt is built. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic Git commits can preserve sensitive configuration, memory, profile, or workspace data without per-run approval. <br>
-Mitigation: Enable the skill only when local history is intended, narrow the tracked file list, and avoid tracking secrets or private memory/profile data. <br>
-Risk: Local Git history may later sync sensitive tracked data if an affected repository has or later receives a remote. <br>
-Mitigation: Check repository remotes before enabling the skill and review committed contents before any push or sync. <br>
-Risk: The skill auto-initializes Git repositories for the workspace and OpenClaw configuration directory. <br>
-Mitigation: Use it only in directories where automatic repository creation is acceptable, or disable and reconfigure it before use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to keep Git history for configuration and selected workspace Markdown files so changes across conversation turns can be reviewed or recovered.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AltairCardinal/config-tracker) <br>
-- [OpenClaw project homepage](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text] <br>
-**Output Format:** [Local Git commits and console log text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a configurable tracked-file list and commit message prefix; defaults to a five-second commit cooldown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and package.json) <br>
+Risk: The skill automatically creates Git history for OpenClaw and workspace configuration files that may contain credentials, private endpoints, personal data, or sensitive agent instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the tracked file list before installing; disable the skill or narrow workspaceFiles and openclawConfig when those files may contain sensitive data.
+
+Risk: Automatic commits run at the start of conversation turns and can create local repositories or commit many changes without a separate confirmation step.
+
+Mitigation: Install only when automatic history is intended, and monitor repository history or adjust enabled and cooldown settings before use.
+
+## Reference(s):
+
+- [Config Tracker ClawHub listing](https://clawhub.ai/altaircardinal/skills/config-tracker)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Git commits with text commit messages and console log text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs automatically on the before_prompt_build hook and applies a 5 second cooldown between checks.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

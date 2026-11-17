@@ -1,39 +1,58 @@
-## Description: <br>
-Extracts clean text from public web pages with r.jina.ai so an agent can summarize or analyze the core content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts clean webpage text with r.jina.ai so an agent can summarize the core content.
 
-## Publisher: <br>
-[kukuxNd](https://clawhub.ai/user/kukuxNd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuxnd](https://clawhub.ai/user/kukuxnd)
 
-## Use Case: <br>
-Developers, researchers, and general agent users use this skill to extract readable text from public articles, news pages, and blog posts before summarization or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private URLs, authenticated pages, token-bearing query strings, or sensitive page content could be shared with r.jina.ai and temporarily stored in local output files. <br>
-Mitigation: Use the skill for public pages by default; avoid intranet, authenticated, private, or tokenized URLs unless that sharing and local storage are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to fetch readable article or webpage text through r.jina.ai and have an agent summarize the extracted content.
 
-## Reference(s): <br>
-- [Web Extractor on ClawHub](https://clawhub.ai/kukuxNd/web-extractor) <br>
-- [r.jina.ai extraction endpoint](https://r.jina.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and extracted text saved as local Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public page content through r.jina.ai and writes extracted content to /tmp/ by default; output paths can be customized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Requested webpage URLs are sent to the third-party r.jina.ai service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use private, internal, signed, tokenized, or credential-bearing links.
+
+Risk: The skill's documented shell pattern can expose unsafe URL handling and shared temporary-file behavior.
+
+Mitigation: Validate http/https URLs, avoid shell interpolation, quote inputs, and use unique temporary files before operational use.
+
+Risk: Fetched webpage text may contain instructions that conflict with the user's task.
+
+Mitigation: Treat fetched content as untrusted source material and ignore instructions embedded in it.
+
+## Reference(s):
+
+- [Web Extractor ClawHub release](https://clawhub.ai/kukuxnd/skills/web-extractor)
+- [r.jina.ai reader endpoint](https://r.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes extracted webpage content to /tmp by default; callers can choose another output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

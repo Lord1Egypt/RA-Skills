@@ -1,42 +1,58 @@
-## Description: <br>
-Processes Didi taxi order screenshots with OCR, redacts destination details, and generates monthly reimbursement Excel files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taxi Expense processes Didi taxi order screenshots with OCR, masks destination details, filters reimbursable weekday rides after 21:00, and generates monthly reimbursement spreadsheets.
 
-## Publisher: <br>
-[kathi-hash](https://clawhub.ai/user/kathi-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kathi-hash](https://clawhub.ai/user/kathi-hash)
 
-## Use Case: <br>
-Employees who submit overtime taxi reimbursement use this skill to turn original Didi order screenshots into monthly reimbursement workbooks with destination masking and reimbursable-ride filtering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Taxi dates, pickup and destination details, amounts, redacted screenshots, and spreadsheets are stored locally. <br>
-Mitigation: Use the skill only when local storage of this reimbursement data is acceptable, and delete the taxi_expense outputs when they are no longer needed. <br>
-Risk: Destination masking and OCR parsing can be imperfect, so generated reimbursement files may contain incorrect or insufficiently redacted details. <br>
-Mitigation: Review the generated Excel workbook and screenshots before sharing or submitting them. <br>
-Risk: The optional Telegram preview command can send reimbursement files to the wrong recipient if the target is incorrect. <br>
-Mitigation: Confirm the Telegram recipient manually before sending any generated workbook or screenshot. <br>
+## Use Case:
 
+Employees use this skill to process Didi taxi screenshots, redact destination details, and produce monthly Excel reimbursement records for eligible weekday evening rides.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kathi-hash/taxi-expense) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Console summary plus generated XLSX workbook, JSON order data, and redacted PNG screenshots] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Monthly XLSX files include reimbursement details and redacted order screenshots; local JSON data is deduplicated by date and amount.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Taxi screenshots, JSON records, and spreadsheets can contain sensitive trip dates, times, locations, amounts, and receipt images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated records local, restrict sharing, review spreadsheets and screenshots before distribution, and delete retained records when they are no longer needed.
+
+Risk: Destination masking can silently fail or leave enough visible context to identify a trip destination.
+
+Mitigation: Manually inspect redacted screenshots and Excel destination fields before reimbursement submission or external sharing.
+
+Risk: Setup downloads Node dependencies and OCR trained data that evidence.security says should be reviewed before production use.
+
+Mitigation: Run setup without elevated privileges and use updated, pinned dependencies plus verified OCR model files for production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kathi-hash/skills/taxi-expense)
+- [Tesseract OCR trained data source](https://github.com/tesseract-ocr/tessdata)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration]
+
+**Output Format:** [Console text plus JSON records, PNG screenshots, and Excel spreadsheets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files include monthly reimbursement workbooks, local order data, and desensitized screenshot images.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

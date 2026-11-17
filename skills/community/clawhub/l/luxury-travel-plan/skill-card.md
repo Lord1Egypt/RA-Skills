@@ -1,42 +1,55 @@
-## Description: <br>
-Curate ultra-luxury travel experiences for discerning travelers seeking the finest accommodations, first-class flights, private jets, luxury cruises, and exclusive experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curate ultra-luxury travel experiences for discerning travelers seeking the finest accommodations, first-class flights, private jets, luxury cruises, and exclusive experiences.
 
-## Publisher: <br>
-[fishhao123](https://clawhub.ai/user/fishhao123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fishhao123](https://clawhub.ai/user/fishhao123)
 
-## Use Case: <br>
-Travel planners and travelers use this skill to draft high-end itineraries with premium flights, luxury accommodations, private transportation, dining, exclusive experiences, budget summaries, and booking-link checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated plans may recommend expensive travel options or vendor links that are outdated, unavailable, mismatched, or unsuitable for the traveler. <br>
-Mitigation: Verify prices, availability, vendor identity, booking links, itinerary fit, and cancellation terms before relying on recommendations. <br>
-Risk: Booking luxury travel can involve sensitive personal documents, payment information, and reservation commitments. <br>
-Mitigation: Require explicit user confirmation before sharing personal information, payment details, or making reservations. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to assemble premium itineraries with high-end flights, hotels, private transportation, dining, exclusive experiences, budgets, and booking-link suggestions. It is oriented toward Chinese-language luxury travel planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fishhao123/luxury-travel-plan) <br>
-- [Luxury Travel Examples](examples.md) <br>
-- [Luxury Travel Reference](reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown itinerary with tables, budget summaries, booking links, and optional search commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prices, vendor links, and search guidance that require user verification before booking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Travel recommendations and booking links may be outdated, mismatched, or unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify each itinerary item, price, availability, and link with the provider before booking or sharing with a traveler.
+
+Risk: Prompts for travel planning can include sensitive passport, payment, account, or identity details.
+
+Mitigation: Share only destination, timing, budget, and preference details needed for planning; avoid unnecessary credentials or payment data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fishhao123/skills/luxury-travel-plan)
+- [Luxury Travel Examples](examples.md)
+- [Luxury Travel Reference](reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown travel plan with tables, budgets, booking links, and inline search-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include travel dates, prices, suppliers, and booking links that should be checked before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

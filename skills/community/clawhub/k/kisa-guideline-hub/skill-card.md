@@ -1,46 +1,61 @@
-## Description: <br>
-Automatically collect and publish security guidelines and guides from KISA and Boho to Notion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically collect security guidelines from KISA and Boho/KRCERT and publish them to Notion, including PDF attachments for Boho guidelines.
 
-## Publisher: <br>
-[rebugui](https://clawhub.ai/user/rebugui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rebugui](https://clawhub.ai/user/rebugui)
 
-## Use Case: <br>
-Developers and operators use this skill to collect Korean security guideline posts from KISA and Boho, download related PDFs, and publish the collected material into a configured Notion database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a sibling security-news-feed module that is not part of this release artifact. <br>
-Mitigation: Review and trust the referenced sibling module before installing or running this skill. <br>
-Risk: The skill reads workspace environment secrets for Notion and related publishing configuration. <br>
-Mitigation: Use a least-privilege Notion integration scoped only to the intended database and avoid sharing logs or screenshots that expose .env values. <br>
-Risk: The artifact describes automatic LaunchAgent or cron execution. <br>
-Mitigation: Run the collection and publishing flow manually first, then enable scheduling only after verifying behavior and outputs. <br>
+## Use Case:
 
+Developers and security operations teams use this skill to collect Korean security guideline publications from KISA and Boho/KRCERT and publish them into a configured Notion guideline database. It supports manual collection, full publish runs, and unattended scheduling when local credentials and dependencies are configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rebugui/kisa-guideline-hub) <br>
-- [Notion database schema for guidelines](references/schema.md) <br>
-- [Example guideline publications](references/examples.md) <br>
-- [KISA guideline source](https://xn--3e0b707e.xn--3e0b31i8re36g/2060207) <br>
-- [Boho guideline source](https://www.boho.or.kr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Publishes collected guideline records and PDF attachments to Notion when run with valid local dependencies and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.1.0) <br>
+Risk: The skill uses Notion credentials and writes directly to a configured Notion database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Notion token, keep it in a skill-specific environment file, and test against a non-production Notion database before production use.
+
+Risk: The publishing script depends on unbundled code from a sibling security-news-feed skill.
+
+Mitigation: Review and verify the sibling skill code and its dependencies before running collection or publishing commands.
+
+Risk: Unattended scheduling can repeatedly publish or mispublish guideline content if configuration or duplicate handling is wrong.
+
+Mitigation: Do not enable LaunchAgent or cron automation until logging, duplicate handling, and a rollback or disable path have been tested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rebugui/skills/kisa-guideline-hub)
+- [KISA guideline source](https://xn--3e0bnl907agre90ivg11qswg.xn--3e0b707e/2060207)
+- [Boho/KRCERT source](https://www.boho.or.kr)
+- [Notion database schema for guidelines](artifact/references/schema.md)
+- [Example guideline publications](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Notion database entries and uploaded PDF file blocks when executed in a configured environment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

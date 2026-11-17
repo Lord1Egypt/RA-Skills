@@ -1,44 +1,59 @@
-## Description: <br>
-Tushare converts Chinese natural-language financial research requests into executable data retrieval, cleaning, comparison, export, and concise analysis workflows for A-share stocks, indexes, ETFs/funds, financial statements, valuation, funds flow, announcements, sectors, concepts, and macro data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+tushare turns Chinese natural-language financial data requests into Tushare workflows for data retrieval, cleaning, comparison, filtering, export, and brief analysis across equities, indexes, ETFs, funds, financials, valuation, capital flows, disclosures, news, sectors, themes, and macro data.
 
-## Publisher: <br>
-[lidayan](https://clawhub.ai/user/lidayan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lidayan](https://clawhub.ai/user/lidayan)
 
-## Use Case: <br>
-External users and developers use this skill to turn Chinese-language financial research, screening, comparison, macro, funds-flow, announcement, and export requests into Tushare-backed workflows. It is intended for research support and data preparation, not trading execution or personalized investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Tushare account token and quota. <br>
-Mitigation: Provide TUSHARE_TOKEN only in an environment where the agent is permitted to use that account, and keep the token out of prompts, logs, and generated files. <br>
-Risk: Financial summaries may be incomplete or unsuitable for investment decisions. <br>
-Mitigation: Treat generated market summaries as research support, verify conclusions against authoritative data, and do not use the skill as a substitute for investment advice. <br>
-Risk: Requested exports may create local CSV or parquet files. <br>
-Mitigation: Specify the output folder and filename before export, then review generated files before using them in downstream analysis or backtests. <br>
+## Use Case:
 
+External users and developers use this skill to turn Chinese-language financial research requests into Tushare data pulls, concise market summaries, comparison tables, and CSV or parquet exports. It is intended for research workflows over market, company, fund, news, sector, capital-flow, and macroeconomic data, not for trading execution or personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lidayan/tushare-data) <br>
-- [Tushare token registration](https://tushare.pro/register) <br>
-- [Tushare data interface catalog](references/数据接口.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown summaries with tables, optional Python or shell snippets, and CSV/parquet export paths when data files are generated] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Tushare API calls and an optional TUSHARE_TOKEN; generated market summaries should be treated as research support rather than investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.16 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill uses a Tushare token and makes network calls to Tushare.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when sharing that token with the agent and allowing Tushare network access is acceptable.
+
+Risk: Broad data pulls or exports can write large local CSV or parquet files.
+
+Mitigation: Review requested ranges and output locations before running broad exports, and require explicit instructions before writing local data files.
+
+Risk: Financial summaries can be mistaken for investment advice.
+
+Mitigation: Use the skill for data research and summaries, and keep trading decisions or advisory conclusions outside the skill's scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lidayan/skills/tushare-data)
+- [Tushare token registration](https://tushare.pro/register)
+- [Tushare API interface list](references/数据接口.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with optional tables, Python snippets, shell commands, and CSV or parquet file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local data exports and retrieval metadata such as interface name, request parameters, pull time, row count, field list, and failed segments.]
+
+## Skill Version(s):
+
+1.1.19 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

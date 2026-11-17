@@ -1,45 +1,60 @@
-## Description: <br>
-AI legal database search assistant for lawyers, judge assistants, and legal operations teams that helps retrieve statutes, verify cases, analyze similar cases, and generate interactive HTML legal analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI法律数据库检索助手面向律师、法官助理、法务人员，提供法律法规检索、案例查证、类案分析，并可生成交互式HTML法律分析报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Legal professionals use this skill to turn a legal question, case number, or matter description into structured legal search results, similar-case analysis, and an HTML report. It is intended for workflows that use user-configured Yuandian or PKULaw connectors, with a local demo mode for evaluation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-configured legal data connectors require API keys or access tokens for third-party services. <br>
-Mitigation: Confirm trust in the legal data providers before installation, keep secrets in MCP configuration only, and rotate tokens if they are exposed. <br>
-Risk: Generated HTML reports may contain sensitive client, matter, or litigation records. <br>
-Mitigation: Store, share, and delete generated reports according to confidentiality and records-retention requirements. <br>
-Risk: Legal database results and AI case analysis can be incomplete or require jurisdiction-specific validation. <br>
-Mitigation: Review the original statutes, case texts, and cited sources before relying on the report for legal work. <br>
+## Use Case:
 
+Legal practitioners, judicial assistants, and legal operations users use this skill to retrieve Chinese statutes and judicial cases, compare similar cases, and prepare structured legal research reports. Developers and agents can also use it to configure Yuandian or PKULaw data access and run the bundled report-generation scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/legal-search) <br>
-- [Legal data source API guide](artifact/references/api-guide.md) <br>
-- [Yuandian Open Platform](https://open.chineselaw.com/) <br>
-- [PKULaw MCP](https://mcp.pkulaw.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown, HTML files] <br>
-**Output Format:** [Markdown guidance with JSON MCP configuration snippets, shell commands, structured legal analysis, and generated HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local legal_report_*.html or legal_report_demo.html files from structured legal search data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can run a mutable third-party MCP package with an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the Yuandian and PKULaw providers are trusted, and pin or otherwise verify the npm MCP server before use.
+
+Risk: Provider API tokens may be exposed to third-party tooling or incur usage costs if mishandled.
+
+Mitigation: Keep API tokens scoped, store them outside shared artifacts, rotate them if exposed, and review provider billing and access settings.
+
+Risk: Generated HTML reports may contain unsanitized legal-data fields and sensitive legal research content.
+
+Mitigation: Treat generated reports as sensitive files, avoid opening reports built from untrusted records until HTML escaping is added, and sanitize provider data before sharing reports.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/legal-search)
+- [法律数据源 API 配置指南](references/api-guide.md)
+- [元典开放平台](https://open.chineselaw.com/)
+- [北大法宝 MCP](https://mcp.pkulaw.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, structured legal analysis text, and generated HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local HTML reports containing legal query results, case summaries, similar-case comparisons, and analysis guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

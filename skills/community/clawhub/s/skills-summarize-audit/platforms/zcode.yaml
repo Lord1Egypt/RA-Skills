@@ -1,0 +1,4 @@
+platform: zcode
+# scan_paths 定义已迁移到 config.yaml（唯一配置源），此文件仅存平台特征。
+# ⚠️ 触发词权威来源：SKILL.md 触发词矩阵。此文件不重复定义。
+project_scan_default_depth: 10

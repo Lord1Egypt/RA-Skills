@@ -1,40 +1,54 @@
-## Description: <br>
-This skill buffers segmented ASR transcript chunks until an explicit end signal, then rewrites the full segment into fluent written text and optionally translates it when target_language is provided. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill buffers segmented ASR transcript text until an explicit end signal, then rewrites the full segment into fluent written text and optionally translates it when a target language is provided.
 
-## Publisher: <br>
-[Hei-MaoM](https://clawhub.ai/user/Hei-MaoM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hei-maom](https://clawhub.ai/user/hei-maom)
 
-## Use Case: <br>
-Developers and product teams use this skill to post-process completed ASR sessions for meeting notes, interviews, podcasts, video transcript cleanup, or voice dictation workflows where final written quality matters more than real-time captions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Buffered ASR transcripts can contain sensitive meeting or dictation content. <br>
-Mitigation: Confirm host-app retention settings before use and avoid archiving transcript buffers unless retention is explicitly required. <br>
-Risk: Final rewriting can accidentally alter names, numbers, or technical terms from noisy ASR input. <br>
-Mitigation: Use a domain lexicon where available and review final text before relying on it for decisions or records. <br>
+## Use Case:
 
+Developers and product teams use this skill to post-process completed meeting, interview, podcast, video, or dictation transcripts into readable written text. It is suited to workflows that prefer a single final transcript after completion instead of live subtitle updates.
 
-## Reference(s): <br>
-- [Interface and Product Integration Guide](references/interface-guide-zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text final output, with optional implementation guidance for buffering and end-of-stream handling.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emits a final result only after an explicit end signal; translates only when target_language is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: ASR transcripts may contain sensitive meeting, interview, or dictation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Control when buffering ends, define transcript retention behavior, and verify which rewriting or translation service processes the text.
+
+Risk: Premature finalization could produce unstable or incomplete written text.
+
+Mitigation: Gate final output on explicit end signals such as end_of_stream, is_session_final, commit=true, or a user submission action.
+
+## Reference(s):
+
+- [Interface and Product Integration Guide](references/interface-guide-zh.md)
+- [ClawHub skill page](https://clawhub.ai/hei-maom/skills/shumianyu)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Plain text or Markdown guidance with final rewritten transcript text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Buffers segmented ASR text until an explicit end or commit signal; translation is only applied when target_language is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

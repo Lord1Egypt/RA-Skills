@@ -1,42 +1,55 @@
-## Description: <br>
-A-share daily market analysis tool for market trends, sector rotation, capital flows, and hot-sector analysis, triggered by user questions about A-share行情,走势,分析,股市行情,今日A股,大盘分析, or 板块轮动. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides A-share market search and analysis for index trends, sector rotation, capital flows, and market hotspots using Tavily search results.
 
-## Publisher: <br>
-[FMouseBoy](https://clawhub.ai/user/FMouseBoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fmouseboy](https://clawhub.ai/user/fmouseboy)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve Tavily-backed A-share market information and produce concise market, sector, funding-flow, hot-topic, and risk-summary reports. It is research support for market analysis, not a substitute for financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends A-share-related search terms to Tavily and requires a Tavily API key. <br>
-Mitigation: Use a dedicated Tavily API key when appropriate and avoid entering sensitive holdings, account details, or proprietary research terms. <br>
-Risk: Generated market analysis may be incomplete, stale, or unsuitable for investment decisions. <br>
-Mitigation: Treat outputs as research support and verify market data and recommendations against authoritative financial sources before acting. <br>
+## Use Case:
 
+External users and agents use this skill to gather current A-share market information and draft concise market-analysis reports. It is intended for informational market research, not as a substitute for professional financial advice.
 
-## Reference(s): <br>
-- [Tavily](https://tavily.com/) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
-- [ClawHub skill page](https://clawhub.ai/FMouseBoy/a-stock-investment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, analysis, guidance] <br>
-**Output Format:** [Markdown market analysis report with source listings from Tavily search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAVILY_API_KEY and sends finance search queries to Tavily.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market search results or generated analysis may be stale, incomplete, or unsuitable as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational and verify important claims against reliable financial sources before making decisions.
+
+Risk: Market-search queries are sent to Tavily and could expose sensitive information if prompts include private data, account details, or trading plans.
+
+Mitigation: Use only non-sensitive queries and keep private financial data or confidential trading plans out of prompts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fmouseboy/skills/a-stock-investment)
+- [Tavily](https://tavily.com/)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown market-analysis report with answer and source sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY; search result count is capped by the script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

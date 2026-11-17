@@ -1,46 +1,53 @@
-## Description: <br>
-OPC项目全流程管理，每个项目创建独立档案，覆盖从立项到交付的完整生命周期. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an OPC project lifecycle workflow for creating project archives and tracking each project from initiation through delivery and review.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-OPC teams and project operators use this skill to create project archives, track lifecycle stages, coordinate handoffs with related OPC skills, and produce stage reports, dashboards, reviews, and achievement records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent project archives can collect sensitive client, financial, legal, or confidential business information. <br>
-Mitigation: Review before writes or syncs, redact sensitive fields, and define retention and deletion rules before using real project data. <br>
-Risk: Cross-skill coordination can pass project data into other OPC workflows. <br>
-Mitigation: Confirm the data scope for each handoff and require approval before sharing confidential material with downstream skills. <br>
-Risk: Privileged skill creation or patching behavior could alter operational workflows. <br>
-Mitigation: Disable skill_manage create or patch workflows, or require separate explicit approval before they run. <br>
+## Use Case:
 
+OPC mentors, operators, and project leads use this skill to manage project records, lifecycle stages, stage-gate outputs, review reports, and achievement tracking across an OPC project portfolio.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/opc-project-lifecycle) <br>
-- [README.md](README.md) <br>
-- [SOP操作手册.md](references/SOP操作手册.md) <br>
-- [快速启动检查清单.md](references/快速启动检查清单.md) <br>
-- [成就徽章数据库.md](references/成就徽章数据库.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown project archives, templates, checklists, dashboards, stage reports, and status updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update persistent local project records and coordinate data across related OPC skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Project prompts, outputs, logs, and migrated materials may be saved into local archives and may contain sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm archive location, access controls, and data handling expectations before use; avoid secrets, raw customer personal data, and confidential contracts unless controls are appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-project-lifecycle)
+- [ClawHub publisher profile](https://clawhub.ai/user/golngod)
+- [SOP操作手册](artifact/references/SOP操作手册.md)
+- [快速启动检查清单](artifact/references/快速启动检查清单.md)
+- [成就徽章数据库](artifact/references/成就徽章数据库.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown project lifecycle documents, checklists, reports, status tables, and operating guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local project archive files and dashboards when used by an agent with file access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

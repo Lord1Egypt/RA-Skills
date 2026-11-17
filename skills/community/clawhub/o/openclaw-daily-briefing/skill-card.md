@@ -1,43 +1,53 @@
-## Description: <br>
-Generates a concise weekday morning briefing that combines weather, calendar, task, news, and commute context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Daily Briefing generates a concise morning brief that combines weather, calendar, to-do, news, and commute information.
 
-## Publisher: <br>
-[yangkai258](https://clawhub.ai/user/yangkai258) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangkai258](https://clawhub.ai/user/yangkai258)
 
-## Use Case: <br>
-Employees and individual users use this skill to prepare for the workday with a single morning summary of weather, meetings, due tasks, news, and practical suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Briefings may include personal or work-sensitive weather, calendar, task, news, and commute context. <br>
-Mitigation: Review the permissions and data access of the dependent weather, calendar, task, and news skills before enabling scheduled or automated use. <br>
-Risk: The included weather helper contacts wttr.in unless it is replaced or disabled. <br>
-Mitigation: Replace the weather helper with an approved provider or disable external weather lookup when outbound requests are not appropriate. <br>
-Risk: Enterprise WeChat calendar and task integrations may expose organizational schedule and todo data. <br>
-Mitigation: Confirm Enterprise WeChat credentials, scopes, and recipients before enabling those integrations. <br>
+## Use Case:
 
+Users can request or schedule a Chinese-language weekday morning briefing to review weather, meetings, tasks, news, and commute considerations before starting the workday.
 
-## Reference(s): <br>
-- [OpenClaw Daily Briefing on ClawHub](https://clawhub.ai/yangkai258/openclaw-daily-briefing) <br>
-- [Publisher profile: yangkai258](https://clawhub.ai/user/yangkai258) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style briefing text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May incorporate weather, calendar, task, news, and commute context when dependent skills or APIs are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog) <br>
+Risk: Calendar, to-do, news, and scheduled briefing integrations may expose sensitive meetings, tasks, or account data in generated output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm which accounts are connected and limit displayed briefing content to information appropriate for the deployment context.
+
+Risk: The weather helper retrieves and displays external weather responses, and the evidence recommends transport-security and sanitization improvements.
+
+Mitigation: Use HTTPS for weather requests and sanitize displayed responses before relying on scheduled or repeated briefings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangkai258/skills/openclaw-daily-briefing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style briefing text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; optional calendar, to-do, news, and scheduled briefing integrations may require connected accounts or APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

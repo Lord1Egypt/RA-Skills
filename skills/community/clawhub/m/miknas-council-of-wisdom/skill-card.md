@@ -1,49 +1,60 @@
-## Description: <br>
-Facilitates structured multi-agent debates with opposing expert views, a referee moderator, and nine specialized AI council votes for balanced decision-making. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facilitates structured multi-agent debates with opposing expert views, a referee moderator, and nine specialized council votes for balanced decision-making.
 
-## Publisher: <br>
-[miknasbh-stack](https://clawhub.ai/user/miknasbh-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miknasbh-stack](https://clawhub.ai/user/miknasbh-stack)
 
-## Use Case: <br>
-Developers, operators, and decision teams use this skill to run structured debates on complex strategic, technical, risk, product, policy, or business questions. It orchestrates opposing arguments, council evaluation, voting, and an outcome report with recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debate topics, transcripts, votes, and reports may contain confidential or regulated information and are saved in local logs or reports. <br>
-Mitigation: Use only approved data, redact sensitive inputs, restrict workspace permissions, and define retention or deletion rules for generated logs and reports. <br>
-Risk: Optional GitHub, external LLM provider, hosted API, or webhook integrations may send debate content outside the local environment. <br>
-Mitigation: Disable remote sync, webhooks, hosted API use, and multi-provider routing unless approved; use private repositories and review provider data-handling terms. <br>
-Risk: The artifact suggests an optional sudo symlink for system-wide CLI installation. <br>
-Mitigation: Prefer user-level PATH configuration and use a sudo symlink only when system-wide installation is necessary and reviewed. <br>
+## Use Case:
 
+Developers and decision-makers use this skill to frame complex choices as structured debates, compare opposing viewpoints, and receive a vote tally with concise recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/miknasbh-stack/miknas-council-of-wisdom) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [PROJECT-SUMMARY.md](artifact/PROJECT-SUMMARY.md) <br>
-- [IMPLEMENTATION.md](artifact/IMPLEMENTATION.md) <br>
-- [referee-prompt.md](artifact/templates/referee-prompt.md) <br>
-- [debater-prompt.md](artifact/templates/debater-prompt.md) <br>
-- [council-prompts.md](artifact/templates/council-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and prompts with shell command examples and JSON metadata or configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local workspaces, debate logs, outcome reports, prompt templates, and optional GitHub issues or repositories when the CLI workflow is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Debate topics, transcripts, reports, or GitHub issues may contain confidential, regulated, or proprietary information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after reviewing logging, repository publishing, API submission, and retention settings; avoid sensitive topics unless those controls are explicitly configured.
+
+Risk: Installation guidance includes a sudo symlink option and workspace commands that can affect local files.
+
+Mitigation: Prefer adding the skill script directory to PATH, choose an explicit workspace, and validate project names before initialization or execution.
+
+Risk: Agent lifecycle cleanup and multi-agent orchestration may leave sessions or context active if the runtime integration fails.
+
+Mitigation: Review the cleanup behavior, monitor active sessions, and verify that temporary agents and debate context are cleared after each run.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/miknasbh-stack/skills/miknas-council-of-wisdom)
+- [Skill Documentation](artifact/SKILL.md)
+- [Implementation Guide](artifact/IMPLEMENTATION.md)
+- [Quick Start README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, prompt templates, JSON configuration examples, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces debate transcripts, vote tallies, recommendations, workspace files, monitoring templates, and optional GitHub issue content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

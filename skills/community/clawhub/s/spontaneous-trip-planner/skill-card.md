@@ -1,41 +1,56 @@
-## Description: <br>
-Generates personalized travel plans with Feizhu travel tools after collecting departure city, travel scenario, group size, and two travel priorities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent collect travel preferences and generate three seasonal trip plans with destination, route, budget, transportation, attraction, hotel, and booking-link recommendations using Feizhu/flyai travel tools.
 
-## Publisher: <br>
-[chenshinan](https://clawhub.ai/user/chenshinan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chenshinan](https://clawhub.ai/user/chenshinan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and travel-planning agents use this skill to turn departure city, travel scenario, group size, budget/time/quality preferences, and season into concise itinerary recommendations. It is especially suited to Chinese-language leisure travel planning that needs Feizhu/flyai searches for points of interest, flights, hotels, and booking links.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may open a popup and collect trip details such as departure city, travel scenario, group size, and travel preferences.
+
+Mitigation: Confirm the user wants itinerary help before invoking the skill, especially when travel is mentioned casually.
+
+Risk: Destination and preference queries may be sent to flyai travel tools.
+
+Mitigation: Avoid entering sensitive personal details beyond what is needed for travel planning and review returned booking links before use.
+
+Risk: The skill is best suited for Chinese-language travel planning and may be less effective for other travel contexts.
+
+Mitigation: Set user expectations about language and regional coverage before relying on the itinerary.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users invoke this skill to turn travel preferences into three personalized itinerary options with destination, transportation, budget, seasonal attraction, and booking-link guidance. It is intended for travel planning scenarios such as solo trips, friends, couples, and family travel. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill prompts users for trip details, including departure city, travel scenario, group size, and travel priorities. <br>
-Mitigation: Share only information needed for itinerary planning and avoid entering sensitive personal, financial, or credential data. <br>
-Risk: Travel recommendations, budgets, transit options, seasonal suitability, and booking links may be incomplete, outdated, or region-specific. <br>
-Mitigation: Review generated plans before booking and verify prices, availability, travel times, safety conditions, and cancellation terms with trusted travel providers. <br>
-Risk: The artifact is primarily written in Chinese and the security guidance notes usability concerns for non-Chinese users. <br>
-Mitigation: Use the skill only when you can understand the questions and itinerary details, or translate and review the prompts before submitting trip information. <br>
+**Output Format:** [Markdown itinerary recommendations with travel-search command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces three recommended plans and may include booking links returned by travel tools.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown itinerary with structured options and inline flyai command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces three travel-plan options with seasonal highlights, transportation comparisons, budget estimates, suitability notes, and booking links when available.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

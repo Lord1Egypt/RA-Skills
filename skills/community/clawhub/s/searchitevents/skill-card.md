@@ -1,42 +1,57 @@
-## Description: <br>
-Finds new upcoming IT events worldwide based on user-selected interests and location, avoids duplicates, and helps return official registration or payment links on request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds new upcoming IT events worldwide based on user-selected interests and location, avoids duplicates, and helps return official registration or payment links on request.
 
-## Publisher: <br>
-[frankyjo](https://clawhub.ai/user/frankyjo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankyjo](https://clawhub.ai/user/frankyjo)
 
-## Use Case: <br>
-Developers and technical community managers use this skill to find future IT conferences, meetups, workshops, webinars, and similar events for selected topics and locations. It supports one-time searches, recurring digests, deduplication through a local state file, and follow-up lookup of official registration or payment links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create a persistent weekly OpenClaw cron job. <br>
-Mitigation: Enable recurring automation only after confirming the schedule, command, state file path, and deletion procedure; use one-time searches when persistent background execution is not wanted. <br>
-Risk: Helper scripts create or update a local deduplication state file. <br>
-Mitigation: Review memory/it-events-sent.json before and after runs when state retention or duplicate suppression needs to be audited. <br>
-Risk: Artifact instructions and helper scripts differ on location handling; the scripts shown in evidence hardcode Ukraine while the skill text describes country or worldwide search. <br>
-Mitigation: Confirm the intended location behavior before relying on script automation for non-Ukraine or worldwide event searches. <br>
+## Use Case:
 
+External users and developers use this skill to find upcoming IT events by interest and location, receive concise digests of new events, and retrieve official registration or payment links for previously surfaced events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frankyjo/searchitevents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown digest with event details and links; helper scripts emit shell output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains deduplication state in memory/it-events-sent.json when searches or digests are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The weekly setup helper can create a persistent OpenClaw cron job.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run setup only after confirming recurring delivery is intended, and review the cron schedule, message, timezone, and deletion command before enabling it.
+
+Risk: Helper scripts in the artifact hard-code Ukraine and Ukrainian in their OpenClaw prompts instead of honoring the documented location and language behavior.
+
+Mitigation: Verify the intended location and response language before using the scripts; use manual search behavior when the requested scope differs from the script prompt.
+
+Risk: The skill writes event history under the OpenClaw workspace for deduplication.
+
+Mitigation: Confirm that storing event names, dates, locations, and links in memory/it-events-sent.json is acceptable for the user's workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frankyjo/skills/searchitevents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Concise Markdown event digests and short follow-up responses, with optional shell commands for one-time searches or weekly digest setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains event deduplication state in memory/it-events-sent.json when used through the helper scripts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

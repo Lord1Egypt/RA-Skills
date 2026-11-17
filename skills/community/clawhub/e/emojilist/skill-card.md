@@ -1,39 +1,50 @@
-## Description: <br>
-Search emojis by name or category and copy them for instant use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search emojis by name or category and print matching emoji details for manual copying.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, writers, and chat users use Emojilist to find emojis by keyword or category, browse emoji groups, and get random or popular emoji from a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This is an executable Bash script from a third-party publisher. <br>
-Mitigation: Install and run it only in trusted local environments; the server security review found no hidden network activity, credential handling, persistence, or destructive behavior. <br>
+## Use Case:
 
+Developers, employees, and external users use this terminal utility to find emojis by keyword or category, browse common emoji sets, and print selections for manual copying into messages, documents, or code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/emojilist) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text output with emoji, names, categories, and brief usage context.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally as a Bash command and does not require external services or credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill description advertises copying, but security evidence confirms only terminal printing for manual copying.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set user expectations that results must be copied manually from terminal output and do not rely on this skill for automatic clipboard updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/emojilist)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text output with emoji, names, categories, and brief usage notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prints emoji results for manual copying; no automatic clipboard operation is confirmed by security evidence.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

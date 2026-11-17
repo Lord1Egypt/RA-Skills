@@ -1,46 +1,68 @@
-## Description: <br>
-Automates Banji Xiaoguanjia homework screenshot capture, original image download, and optional AI-assisted homework analysis for teachers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Banjixiaoguanjia homework capture by controlling Chrome with Playwright to enter a course, scroll student lists, capture homework screenshots, download original images, and optionally analyze homework with DashScope/Qwen.
 
-## Publisher: <br>
-[wosuiyu](https://clawhub.ai/user/wosuiyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wosuiyu](https://clawhub.ai/user/wosuiyu)
 
-## Use Case: <br>
-Educators and agents supporting educators use this skill to collect student homework screenshots from Banji Xiaoguanjia, download original homework images, and generate AI-assisted grading notes and reports. It is intended for authorized class workflows where student work may be processed locally and, when analysis is enabled, by an external AI service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Student homework images may be uploaded to DashScope/Qwen or similar external AI services during analysis. <br>
-Mitigation: Use the skill only with proper authorization, consent, and data-retention review; disable AI analysis when external upload is not permitted. <br>
-Risk: The artifact handles credentials unsafely and includes API-key material that should not be trusted. <br>
-Mitigation: Treat included keys as compromised, revoke or ignore them, and use new scoped credentials supplied through a controlled secret-management process. <br>
-Risk: The artifact contains many archived or deprecated scripts, increasing the chance of running an unintended workflow. <br>
-Mitigation: Run only the documented current scripts from SCRIPT-GUIDE.md after reviewing where screenshots, original images, and reports will be written. <br>
+## Use Case:
 
+Teachers or authorized school staff use this skill to collect, download, and optionally AI-review student homework from Banjixiaoguanjia courses. It is intended for bulk screenshot capture and grading-support workflows where the operator has permission to process the students' work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wosuiyu/banjixiaoguanjia) <br>
-- [Publisher profile](https://clawhub.ai/user/wosuiyu) <br>
-- [SCRIPT-GUIDE.md](artifact/SCRIPT-GUIDE.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [package.json](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples; runtime scripts may create screenshots, downloaded images, TXT reports, and Word documents.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, Playwright, Chrome access, and optional DashScope/Qwen credentials for AI analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, artifact frontmatter, package.json) <br>
+Risk: The skill processes student homework and may capture personal or educational records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with authorization to process the relevant students' work, minimize collected data, and add explicit confirmation and retention controls before deployment.
+
+Risk: Homework images may be sent to DashScope/Qwen for AI analysis.
+
+Mitigation: Confirm that the external AI service is approved for this data before use, or disable AI analysis when such transfer is not allowed.
+
+Risk: The artifact includes credential handling issues, including a hard-coded API key and shell profile reads.
+
+Mitigation: Remove hard-coded secrets, rotate any exposed key, stop reading .zshrc, and use approved secret storage or environment variables.
+
+Risk: Some scripts use shell-based curl calls and generated Python execution.
+
+Mitigation: Replace shell execution and generated scripts with safer API clients, validate paths and URLs, and avoid executing generated code from untrusted inputs.
+
+Risk: Browser automation uses a logged-in Chrome session and remote debugging port.
+
+Mitigation: Run with an isolated browser profile, restrict access to the debugging port, and confirm the operator is logged into the intended authorized account.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/wosuiyu/skills/banjixiaoguanjia)
+- [Banjixiaoguanjia web app](https://service.banjixiaoguanjia.com/appweb/)
+- [Alibaba Bailian console](https://bailian.console.aliyun.com)
+- [DashScope compatible-mode API endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JavaScript/Python code examples; bundled scripts produce image files, text reports, and Word documents.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime outputs are written to local course folders and may include student homework screenshots, downloaded images, AI analysis text, and generated DOCX reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

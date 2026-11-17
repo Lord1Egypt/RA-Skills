@@ -1,46 +1,61 @@
-## Description: <br>
-Intelligent data analysis report generator. Auto-identifies Excel/CSV data structure (dimensions, metrics, timelines), performs multi-dimensional parallel analysis, and generates professional HTML reports with ECharts interactive charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent data analysis report generator that auto-identifies Excel/CSV data structure, performs multi-dimensional analysis, and generates professional HTML reports with ECharts interactive charts.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to analyze trusted Excel or CSV files and generate styled HTML data reports with summary statistics, charts, and concise insights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can run unsafe JavaScript from crafted spreadsheet content. <br>
-Mitigation: Use the skill only with trusted spreadsheets, review generated reports before opening or sharing them, and sanitize spreadsheet-derived text before browser rendering. <br>
-Risk: Generated reports load ECharts from an external CDN by default. <br>
-Mitigation: For sensitive or controlled environments, replace the CDN reference with a locally bundled and reviewed ECharts asset. <br>
-Risk: Additional custom pandas analysis scripts may be added during report customization. <br>
-Mitigation: Review and explicitly approve any custom analysis script before execution. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to turn Excel or CSV files into HTML data analysis reports with statistics, interactive charts, and narrative insights.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/openlark/data-analysis-report-generator) <br>
-- [Chart Type Selection Guide](artifact/references/chart_types.md) <br>
-- [Report Style Reference](artifact/references/report_styles.md) <br>
-- [Style Variables](artifact/references/style_variables.json) <br>
-- [ECharts 5.5.0 CDN](https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [JSON analysis artifacts and a self-contained HTML report with ECharts chart configuration code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python scripts for CSV/Excel analysis and chart generation; generated reports may load ECharts from a CDN unless adapted for local bundling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports can execute unsafe JavaScript from spreadsheet-derived names or labels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted spreadsheets only, escape all report data before rendering, and open generated reports in a controlled browser context.
+
+Risk: Generated reports load ECharts from an external CDN.
+
+Mitigation: Bundle ECharts locally or use an integrity-pinned, reviewed dependency source before deployment.
+
+Risk: The report template uses dynamic JavaScript evaluation during chart initialization.
+
+Mitigation: Replace eval-based initialization with direct chart setup code and review generated chart options before opening reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/data-analysis-report-generator)
+- [Chart Type Selection Guide](references/chart_types.md)
+- [Report Style Reference](references/report_styles.md)
+- [Style Variables](references/style_variables.json)
+- [ECharts 5.5.0 CDN](https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated HTML/JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a self-contained HTML report using ECharts; intermediate analysis and chart configuration are JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

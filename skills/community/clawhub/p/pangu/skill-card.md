@@ -1,44 +1,58 @@
-## Description: <br>
-盘古·skill helps users distill a knowledge base, folder, document, or prior workflow into a structured, installable agent skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+盘古·skill helps agents distill knowledge bases, folders, single documents, or recent task workflows into structured, installable Skill files.
 
-## Publisher: <br>
-[cizixiu](https://clawhub.ai/user/cizixiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cizixiu](https://clawhub.ai/user/cizixiu)
 
-## Use Case: <br>
-External users, developers, and knowledge workers use this skill to convert document collections or IMA Copilot knowledge bases into reusable skills with distilled workflows, references, examples, and quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process broad or sensitive knowledge-base, folder, document, or conversation content when the user selects a wide scope. <br>
-Mitigation: Use explicit targets and avoid full-knowledge-base runs on sensitive material unless that scope is necessary. <br>
-Risk: Generated skills may contain incorrect, overbroad, or misleading triggers, workflows, boundaries, or references. <br>
-Mitigation: Review generated triggers, references, boundary rules, and quality checks before installing or sharing the output skill. <br>
+## Use Case:
 
+Developers, creators, and agent users use this skill to turn reusable knowledge-base practices into self-contained Skill directories with frontmatter, references, examples, and quality checks. It is especially aimed at workflows where the source material contains repeatable processes, rules, decision tables, templates, or checklists.
 
-## Reference(s): <br>
-- [Distillation Best Practices](artifact/references/distillation-best-practices.md) <br>
-- [Complete Knowledge Base Distillation Example](artifact/examples/example-complete-distillation.md) <br>
-- [Folder Distillation Example](artifact/examples/example-folder-distillation.md) <br>
-- [Single Document Distillation Example](artifact/examples/example-single-doc-distillation.md) <br>
-- [Nuwa Skill reference](https://github.com/alchaincyf/nuwa-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown skill files, reference documents, examples, and installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a self-contained skill directory or zip-ready file set for review and installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Generated skills can preserve or summarize private, copyrighted, regulated, or otherwise sensitive source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide material you have the right to distill, scope the knowledge base explicitly, and review generated files before installing or sharing them.
+
+Risk: A generated skill can encode misleading, stale, or overgeneralized guidance if the source material is not suitable for distillation.
+
+Mitigation: Use the skill's suitability checks and quality validation steps, and keep rapidly changing data or professional-judgment material as references rather than executable guidance.
+
+## Reference(s):
+
+- [Distillation Best Practices](references/distillation-best-practices.md)
+- [Example: Complete Knowledge Base Distillation](examples/example-complete-distillation.md)
+- [Example: Folder Distillation](examples/example-folder-distillation.md)
+- [Example: Single Document Distillation](examples/example-single-doc-distillation.md)
+- [ClawHub Skill Page](https://clawhub.ai/cizixiu/skills/pangu)
+- [Nuwa Skill](https://github.com/alchaincyf/nuwa-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown skill files with structured instructions, references, examples, and optional shell or installation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before installation or sharing, especially when source material contains private, copyrighted, regulated, or rapidly changing content.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

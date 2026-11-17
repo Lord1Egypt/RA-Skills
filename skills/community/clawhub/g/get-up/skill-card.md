@@ -1,42 +1,60 @@
-## Description: <br>
-Sends semantically selected Haocun dancing or selfie image URLs through OpenClaw messaging channels in response to photo, dance, or status requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an OpenClaw agent to choose fixed Haocun dance or selfie images from a user prompt and send them to messaging channels.
 
-## Publisher: <br>
-[qidu](https://clawhub.ai/user/qidu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qidu](https://clawhub.ai/user/qidu)
 
-## Use Case: <br>
-External OpenClaw users and agent builders use this skill to let an agent select fixed dance or selfie images and send them through configured messaging channels after collecting the prompt, channel, and target. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can persistently change the agent identity and persona. <br>
-Mitigation: Back up IDENTITY.md and SOUL.md, and install only when persistent adoption of the Haocun/Clawra persona is intended. <br>
-Risk: External messaging behavior is under-scoped. <br>
-Mitigation: Use least-privilege OpenClaw gateway tokens and require explicit confirmation of channel, recipient, caption, and image before sending. <br>
+## Use Case:
 
+External users and OpenClaw agent developers use this skill to add prompt-triggered dance and selfie image sending to an agent over supported messaging channels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qidu/get-up) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [Hosted reference image source](https://cdn.jsdelivr.net/gh/christoagent/haoclaw@main/assets/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown instructions, bash commands, and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OpenClaw CLI or a local gateway API to send selected hosted image URLs to configured channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: evidence release, package.json, manifest.json) <br>
+Risk: The skill can persistently change an OpenClaw agent's identity or persona.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation behavior before use, back up existing persona files, and preview or approve persona changes before applying them.
+
+Risk: The skill can send media through messaging integrations.
+
+Mitigation: Require explicit confirmation for each outbound send and validate the channel, target, media URL, gateway URL, and token configuration.
+
+Risk: The declared tool permissions are broader than the selfie-sending feature requires.
+
+Mitigation: Narrow runtime permissions to the minimum commands and file access needed for OpenClaw messaging and local configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qidu/skills/get-up)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [Clawra project](https://clawra.dev/)
+- [Hosted image assets](https://cdn.jsdelivr.net/gh/christoagent/haoclaw@main/assets/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send media through OpenClaw messaging integrations when invoked with channel and target details.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

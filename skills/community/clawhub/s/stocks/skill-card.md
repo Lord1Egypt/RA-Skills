@@ -1,42 +1,58 @@
-## Description: <br>
-Stock and Crypto Data information pull skill with 56+ Yahoo Finance-backed tools for prices, fundamentals, earnings, dividends, options, crypto, forex, commodities, news, and related market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock, ETF, crypto, forex and commodity data from Yahoo Finance. Prices, history, fundamentals, TTM financials, ratios, valuation history, earnings and estimates, dividends, options, holders and insiders, news, market movers, sectors and industries, and earnings, IPO, economic and split calendars.
 
-## Publisher: <br>
-[lkcair](https://clawhub.ai/user/lkcair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lkcair](https://clawhub.ai/user/lkcair)
 
-## Use Case: <br>
-Developers and agent users use this skill to route finance questions to Yahoo Finance-backed stock, crypto, forex, commodity, earnings, dividend, options, news, and comparison lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Yahoo Finance-backed self-test, complete analysis, comparison, and bulk query flows can generate many outbound market-data requests. <br>
-Mitigation: Use the skill only for expected finance lookups, narrow routing rules to explicit finance questions, and avoid self-test or complete analysis unless the request volume is acceptable. <br>
-Risk: Dependency or runtime drift can make finance lookups inconsistent across environments. <br>
-Mitigation: Install the skill in an isolated virtual environment and pin dependencies when repeatable behavior matters. <br>
-Risk: Market data can be delayed, unavailable, or incomplete and should not be treated as financial advice. <br>
-Mitigation: Treat returned data as informational, verify important figures with authoritative sources, and apply normal investment or compliance review before acting on it. <br>
+## Use Case:
 
+Developers and financial-data users can retrieve and review market prices, company fundamentals, financial statements, analyst estimates, dividends, options, market news, and related market information through the skill's listed functions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lkcair/stocks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain text finance responses with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on Yahoo Finance availability and may reflect delayed or incomplete market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.2.1 (source: server release evidence, created 2026-05-16) <br>
+Risk: Some financial results may be reported for a different period than requested; the TTM income-statement option can return annual figures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify the reporting period and figures before relying on or sharing results.
+
+Risk: The complete-analysis result omits many supporting results.
+
+Mitigation: Check the relevant underlying function results and supporting data rather than relying on the summary alone.
+
+Risk: The alternative uvx installation may track an unpinned release.
+
+Mitigation: Prefer the documented pinned setup, or review and pin a specific version before using uvx.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/lkcair/skills/stocks)
+- [Related project link listed in the skill](https://github.com/lkcair/yfinance-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Financial data, Analysis]
+
+**Output Format:** [Formatted text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market information returned by the selected data-retrieval function.]
+
+## Skill Version(s):
+
+5.0.4 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

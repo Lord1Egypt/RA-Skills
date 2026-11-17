@@ -1,43 +1,52 @@
-## Description: <br>
-Analyze video content by extracting frames at regular intervals for review, scene understanding, and description of common video formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video-Watch helps agents analyze video content by extracting frames at regular intervals from common video formats for review and scene description.
 
-## Publisher: <br>
-[kartinW](https://clawhub.ai/user/kartinW) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kartinw](https://clawhub.ai/user/kartinw)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect video files by extracting still frames, then sampling those frames to understand scenes, text, UI elements, actions, or transitions when direct video playback is not available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Video content is converted into still image files in the workspace, which can expose sensitive frames after analysis. <br>
-Mitigation: Use a dedicated output folder for sensitive videos and clean up extracted frames after review. <br>
-Risk: Using an existing output folder can overwrite or mix with frame_*.jpg files that need to be kept. <br>
-Mitigation: Choose a fresh output directory for each extraction and avoid reusing folders containing important frame files. <br>
-Risk: The skill depends on ffmpeg being installed locally. <br>
-Mitigation: Install ffmpeg only from trusted package managers before running the extraction script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Frame extraction script](artifact/scripts/extract_frames.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/kartinW/video-watcher) <br>
+## Use Case:
 
+Developers and agents use Video-Watch to extract video frames with ffmpeg, inspect sampled frames, and describe scene content when direct playback is not available.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JPEG frame files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg and writes extracted frame images to a workspace output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The frame-extraction script has unsafe output-file handling that could overwrite local files in some scenarios.
+
+Mitigation: Use a private output directory and avoid shared or attacker-writable folders until output validation and overwrite behavior are improved.
+
+Risk: Unsafe argument handling can make untrusted video paths or fps values risky to process locally.
+
+Mitigation: Use trusted video paths, keep fps numeric, and prefer the default fps unless the value has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kartinw/skills/video-watcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and extracted JPEG frame files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg; generated frames are written to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

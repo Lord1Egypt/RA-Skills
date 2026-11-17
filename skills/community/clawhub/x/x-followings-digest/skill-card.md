@@ -1,40 +1,61 @@
-## Description: <br>
-Auto-fetches recent X/Twitter posts from followed accounts and helps generate structured AI digests for configurable time ranges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches recent tweets from X/Twitter followings and helps generate a structured AI digest from the collected tweet data.
 
-## Publisher: <br>
-[kaima2022](https://clawhub.ai/user/kaima2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kaima2022](https://clawhub.ai/user/kaima2022)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to fetch recent posts from their X/Twitter followings and turn them into daily or weekly intelligence digests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires X/Twitter session cookie values AUTH_TOKEN and CT0, which can expose account access if shared or logged. <br>
-Mitigation: Treat AUTH_TOKEN and CT0 like passwords; use a trusted machine and CLI, and keep the values out of shell history, logs, screenshots, and shared environments. <br>
-Risk: Scheduled use can repeatedly fetch authenticated X/Twitter data from followed accounts. <br>
-Mitigation: Configure recurring jobs only when that behavior is intended, and review where fetched tweet JSON and generated digests are stored or shared. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI Digest Analyst Prompt Template](references/analyst_prompt_template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaima2022/x-followings-digest) <br>
+## Use Case:
 
+Developers and external users can use this skill to fetch tweets from their X/Twitter followings and turn the collected posts into a concise AI-focused digest. It supports daily or weekly digest workflows with an analyst prompt template for English, Chinese, or bilingual output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON tweet data and Markdown digest guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports configurable tweet limits and lookback windows of 1, 3, 7, or custom days.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to provide sensitive X/Twitter browser session credentials through AUTH_TOKEN and CT0.
+
+Mitigation: Avoid storing these credentials in persistent shell profiles or logs, and consider rotating or revoking the X/Twitter session after use.
+
+Risk: The skill depends on the external bird CLI to fetch following tweets.
+
+Mitigation: Install bird only from a trusted source and review commands before execution.
+
+Risk: The advertised time-range filtering may not reliably limit fetched tweets.
+
+Mitigation: Treat the requested day range as approximate unless the filtering behavior is fixed and verified.
+
+Risk: Tweets can contain prompt-injection text that may affect digest generation.
+
+Mitigation: Run digest generation in a tool-limited context and review generated analysis before acting on it.
+
+## Reference(s):
+
+- [AI Digest Analyst Prompt Template](references/analyst_prompt_template.md)
+- [X Followings Digest on ClawHub](https://clawhub.ai/kaima2022/skills/x-followings-digest)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON tweet data, and structured digest output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Digest output can be English, Chinese, or bilingual depending on the selected prompt template.]
+
+## Skill Version(s):
+
+1.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

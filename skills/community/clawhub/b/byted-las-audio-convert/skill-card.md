@@ -1,46 +1,60 @@
-## Description: <br>
-Converts and transcodes audio formats and encoding settings with Volcengine LAS, including sample rate, bitrate, channels, compression, quality, TOS paths, and local uploads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts and transcodes audio files with Volcengine LAS, including format changes and adjustments to sample rate, bitrate, channels, compression, and ffmpeg parameters for TOS paths or local uploads.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare audio for downstream workflows by converting files among formats such as wav, mp3, flac, m4a, ogg, and aac, adjusting encoding parameters, and handling local or TOS-hosted inputs through Volcengine LAS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can fetch remote metadata and install or upgrade a remote SDK without explicit integrity verification. <br>
-Mitigation: Preinstall or independently verify the Volcengine LAS SDK before use, and review the setup script before sourcing it. <br>
-Risk: The skill requires sensitive cloud credentials and may send selected audio files to Volcengine/TOS. <br>
-Mitigation: Use least-privilege temporary credentials, process only approved audio, and keep credential files such as env.sh out of shared or version-controlled folders. <br>
-Risk: Region or TOS bucket mismatches can cause permission errors or failed uploads. <br>
-Mitigation: Confirm LAS_REGION, API key scope, and TOS bucket region before uploading or processing audio. <br>
-Risk: Cloud processing can incur charges that differ from estimates. <br>
-Mitigation: Estimate cost from audio duration, disclose that billing is an estimate, and wait for explicit user confirmation before submitting work. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare or convert audio assets for downstream workflows, including changing container format, sample rate, bitrate, channels, and compression settings. It supports local file upload and TOS cloud storage paths through the Volcengine LAS audio conversion operator.
 
-## Reference(s): <br>
-- [las_audio_convert API Reference](references/api.md) <br>
-- [Pricing Information](references/prices.md) <br>
-- [Volcengine LAS Pricing](https://www.volcengine.com/docs/6492/1544808) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local data/result JSON files and invoke LAS/TOS APIs after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The environment setup can install a remote Volcengine LAS SDK wheel without pinned verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the SDK package before use and install only in an isolated environment.
+
+Risk: The workflow handles LAS and optional TOS cloud credentials.
+
+Mitigation: Use narrowly scoped or temporary credentials and avoid broad long-lived keys where possible.
+
+Risk: Audio conversion can upload local files or write outputs to TOS paths after price estimation.
+
+Mitigation: Keep the required user confirmation pause before upload or conversion and confirm the target region and bucket path.
+
+## Reference(s):
+
+- [las_audio_convert API reference](references/api.md)
+- [Pricing information](references/prices.md)
+- [Volcengine LAS pricing](https://www.volcengine.com/docs/6492/1544808)
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-las-audio-convert)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown]
+
+**Output Format:** [Markdown with inline shell commands, JSON request examples, and conversion result tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes estimated pricing guidance and a billing disclaimer before or after conversion execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

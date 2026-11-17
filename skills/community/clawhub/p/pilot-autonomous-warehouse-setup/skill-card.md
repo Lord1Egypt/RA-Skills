@@ -1,40 +1,62 @@
-## Description: <br>
-Deploy an autonomous warehouse orchestration setup with four agents for robot fleet coordination, inventory tracking, pick-wave optimization, and dock scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy an autonomous warehouse orchestration system with four agents for robot fleet coordination, inventory tracking, pick optimization, and dock scheduling.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to configure a multi-agent warehouse setup that coordinates robot fleets, inventory state, pick assignments, and dock events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup can install downstream Pilot skills and change local Pilot configuration for warehouse agents. <br>
-Mitigation: Review the role manifest and each downstream pilot-* skill before installation, especially skills that handle escrow or webhook behavior. <br>
-Risk: Agent handshakes could connect warehouse coordination flows to unintended peers. <br>
-Mitigation: Handshake only with known trusted peer hostnames and verify trust state before publishing operational messages. <br>
+## Use Case:
 
+Developers and warehouse automation teams use this skill to configure a four-agent autonomous warehouse setup that coordinates robot dispatch, inventory state, pick waves, and dock events.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown with shell commands and JSON manifest snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes role-specific hostnames, peer handshakes, and Pilot manifest content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill gives agents high-impact setup and messaging authority across warehouse roles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup before installation and use it only in a controlled, least-privileged warehouse environment.
+
+Risk: The setup depends on installed skills, pilotctl, clawhub, and a running daemon.
+
+Mitigation: Pin and verify each installed dependency before enabling the setup.
+
+Risk: Peer trust and data-sharing behavior may expose operational messages if identities are not checked.
+
+Mitigation: Validate deployment prefixes as hostname-safe values and manually confirm peer identities before handshakes.
+
+Risk: The pick-optimizer role references payment escrow behavior.
+
+Mitigation: Avoid enabling the payment-escrow role unless the financial workflow is explicitly required and separately reviewed.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-autonomous-warehouse-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON manifest templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-specific setup guidance, hostnames, manifests, data-flow descriptions, and peer handshake commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-A Python crawler and data engineering skill for designing web crawler systems, data collection pipelines, SQLAlchemy ORM models, anti-blocking strategies, asynchronous aiohttp workflows, and data cleaning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python Crawler Architect helps developers design Python web crawler systems, including SQLAlchemy data models, async collection pipelines, proxy and retry components, and data-cleaning guidance.
 
-## Publisher: <br>
-[strong-cyber](https://clawhub.ai/user/strong-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[strong-cyber](https://clawhub.ai/user/strong-cyber)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and data engineers use this skill to plan and implement crawler architectures, database schemas, async request flows, state management, retry behavior, and deployment notes for public-data collection workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Crawler guidance could be applied to unauthorized or terms-violating collection from third-party sites.
+
+Mitigation: Use the skill only for authorized, terms-compliant collection of public data, and review generated plans against robots.txt, rate limits, privacy rules, and site terms before use.
+
+Risk: Generated proxy templates may expose proxy credentials through credential-bearing URLs or unredacted logging.
+
+Mitigation: Store proxy credentials in secrets or environment variables, avoid embedding credentials in proxy URLs, and redact proxy values from logs.
+
+Risk: Default proxy health checks may call a third-party service and disclose network metadata.
+
+Mitigation: Replace third-party health-check URLs with an approved internal endpoint or a site-specific authorized test endpoint.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and data engineers use this skill to plan and implement Python web crawlers, including database schemas, asynchronous request flows, retry and resume behavior, proxy handling, and deployment guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated crawler designs may be used against sites without authorization or in ways that violate robots.txt, rate limits, terms, or privacy rules. <br>
-Mitigation: Review generated crawlers before running them and limit use to lawful, authorized scraping that respects site policies and privacy requirements. <br>
-Risk: Crawler implementations can require API keys, proxy credentials, or other sensitive values. <br>
-Mitigation: Keep credentials in environment variables or managed secrets and avoid hardcoding them in generated code or configuration. <br>
-Risk: Anti-blocking guidance can increase operational and compliance risk if applied without governance. <br>
-Mitigation: Use proxy rotation, user-agent rotation, and retry behavior only with approved targets, conservative request rates, and human review. <br>
+**Output Format:** [Markdown with Python, shell command, and configuration code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/strong-cyber/python-crawler-architect) <br>
+**Other Properties Related to Output:** [Outputs are advisory crawler designs and implementation templates; generated code requires review before use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code blocks, configuration examples, commands, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SQLAlchemy models, aiohttp crawler structure, retry logic, proxy and state management patterns, and deployment notes.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

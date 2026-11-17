@@ -1,40 +1,56 @@
-## Description: <br>
-Create and modify scripts in ~/.nanobot/workspace/test with strict Git versioning, one repository per script, user confirmation before changes, and a shared Python virtual environment for package management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and modify scripts in ~/.nanobot/workspace/test with strict Git versioning, isolated per-script repositories, confirmation before execution, progress reporting, and Python dependency management through ~/.nanobot/workspace/venv.
 
-## Publisher: <br>
-[cadot-eu](https://clawhub.ai/user/cadot-eu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cadot-eu](https://clawhub.ai/user/cadot-eu)
 
-## Use Case: <br>
-Developers and automation users use this skill to create or modify local scripts through a confirmation-gated workflow that keeps each script in its own Git repository. It is intended for controlled script editing, dependency installation through a dedicated virtual environment, and progress reporting after each step. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or modify local files and Git repositories under ~/.nanobot/workspace/test. <br>
-Mitigation: Review the proposed directory, file name, requested edits, and commit message before confirming the plan. <br>
-Risk: The skill can install Python packages into ~/.nanobot/workspace/venv. <br>
-Mitigation: Approve only trusted and preferably pinned packages before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cadot-eu/script-creator) <br>
-- [Publisher profile](https://clawhub.ai/user/cadot-eu) <br>
+## Use Case:
 
+Developers and engineers use this skill to create or modify scripts under a controlled workspace workflow with explicit user confirmation, per-script Git history, and Python dependency management through a shared virtual environment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local script files, initialize Git repositories, commit changes, and install Python packages after explicit user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks an agent to create files and run shell commands in a user workspace.
+
+Mitigation: Review planned file paths and commands before execution, and require paths to stay inside ~/.nanobot/workspace/test.
+
+Risk: The skill can install Python packages into a shared virtual environment without pinned versions.
+
+Mitigation: Use trusted and reviewed dependency names, pin package versions where possible, and consider per-script virtual environments for stronger isolation.
+
+Risk: Unvalidated script names or dependency names could affect shell command behavior.
+
+Mitigation: Validate names, quote shell arguments, and reject ambiguous or unsafe input before running commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cadot-eu/skills/script-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and code-oriented workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before creation or modification steps; no fixed token caps are specified.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

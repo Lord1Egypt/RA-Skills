@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 """
 Nomtiq 小饭票 - 地图 API 搜索
-中国：高德地图 POI 搜索（结构化数据，免费 5000次/天）
-海外：Serper Google Maps（结构化数据，有评分/营业时间/价格档次）
+中国：高德地图 Web Service API（POI 2.0）
+海外：Serper Google Maps（结构化数据）
+
+安全约束：
+  - 只从 AMAP_WEBSERVICE_KEY 环境变量读取 Key。
+  - 兼容旧变量 AMAP_KEY，但不再推荐使用。
+  - 可选 AMAP_WEBSERVICE_SECRET 用于生成高德数字签名。
+  - 不打印、不保存、不返回包含 Key 或安全密钥的请求 URL。
 
 用法:
   python3 search_maps.py "约会餐厅 环境好" --city 长沙 --district 岳麓区
@@ -10,78 +18,151 @@ Nomtiq 小饭票 - 地图 API 搜索
   python3 search_maps.py "dim sum" --city "New York" --mode overseas
 """
 
-import sys, json, argparse, os, re, subprocess
-from pathlib import Path
-from urllib.request import urlopen, Request
+import sys, json, argparse, os, re, hashlib
+from urllib.request import Request
 from urllib.parse import urlencode
-from urllib.error import URLError
-from datetime import date
+from urllib.error import URLError, HTTPError
 
-WORKSPACE = Path(__file__).parent.parent.parent.parent
-DATA_DIR = Path(__file__).parent.parent / 'data'
-
-# 用户需申请自己的 key 配置到环境变量 AMAP_KEY
-AMAP_KEY = os.environ.get('AMAP_KEY', '')
+from serper_client import search_maps_raw, search_web
+from safe_http import is_allowed_https_url, open_no_redirect, quoted_search_term
 
 # ── 高德地图 POI 搜索 ─────────────────────────────────────────
 
-AMAP_KEY = os.environ.get('AMAP_KEY', '')
-
-# 高德城市代码映射（常用城市）
-AMAP_CITY_CODES = {
-    '北京': '010', '上海': '021', '广州': '020', '深圳': '0755',
-    '成都': '028', '杭州': '0571', '武汉': '027', '西安': '029',
-    '南京': '025', '重庆': '023', '长沙': '0731', '天津': '022',
-    '苏州': '0512', '郑州': '0371', '青岛': '0532', '厦门': '0592',
-}
-
 # 高德餐饮 POI 类型代码
 AMAP_FOOD_TYPES = '050000'  # 餐饮服务大类
+AMAP_API_BASE = 'https://restapi.amap.com'
+_WARNED_LEGACY_KEY = False
+
+
+def _get_amap_credentials() -> tuple[str, str]:
+    """只从运行环境读取高德凭证，不读取 skill 目录内配置文件。"""
+    global _WARNED_LEGACY_KEY
+    key = os.environ.get('AMAP_WEBSERVICE_KEY', '').strip()
+    if not key:
+        key = os.environ.get('AMAP_KEY', '').strip()
+        if key and not _WARNED_LEGACY_KEY:
+            print("⚠️  AMAP_KEY 已废弃，请迁移到 AMAP_WEBSERVICE_KEY", file=sys.stderr)
+            _WARNED_LEGACY_KEY = True
+    secret = os.environ.get('AMAP_WEBSERVICE_SECRET', '').strip()
+    return key, secret
+
+
+def _sign_amap_params(params: dict, secret: str) -> str:
+    """按高德 Web Service 数字签名规则生成 sig。"""
+    canonical = '&'.join(
+        f"{name}={params[name]}" for name in sorted(params) if params[name] is not None
+    )
+    return hashlib.md5(f"{canonical}{secret}".encode('utf-8')).hexdigest()
+
+
+def _amap_request(path: str, params: dict, timeout: int = 10) -> dict:
+    """调用高德 API，错误输出不得包含完整 URL、Key 或安全密钥。"""
+    key, secret = _get_amap_credentials()
+    if not key:
+        print("⚠️  未配置 AMAP_WEBSERVICE_KEY，跳过高德搜索", file=sys.stderr)
+        return {}
+
+    request_params = {
+        name: str(value)
+        for name, value in params.items()
+        if value is not None and value != ''
+    }
+    request_params['key'] = key
+    if secret:
+        request_params['sig'] = _sign_amap_params(request_params, secret)
+
+    url = f"{AMAP_API_BASE}{path}?{urlencode(request_params)}"
+    try:
+        req = Request(url, headers={'User-Agent': 'Nomtiq/0.5.1'})
+        with open_no_redirect(req, timeout=timeout) as resp:
+            data = json.loads(resp.read())
+    except (HTTPError, URLError, TimeoutError):
+        print("高德请求失败（网络或服务不可用）", file=sys.stderr)
+        return {}
+    except (json.JSONDecodeError, ValueError):
+        print("高德返回了无法解析的数据", file=sys.stderr)
+        return {}
+    except Exception:
+        print("高德请求失败", file=sys.stderr)
+        return {}
+
+    if data.get('status') != '1':
+        info = str(data.get('info') or '未知错误')[:80]
+        infocode = str(data.get('infocode') or '')[:20]
+        suffix = f" ({infocode})" if infocode else ''
+        print(f"高德 API 错误: {info}{suffix}", file=sys.stderr)
+        return {}
+    return data
+
+
+def _geocode_amap(place: str, city: str = '') -> str:
+    """将明确地点解析为高德经纬度，失败时返回空字符串。"""
+    if not place:
+        return ''
+    data = _amap_request('/v3/geocode/geo', {
+        'address': place,
+        'city': city,
+        'batch': 'false',
+        'output': 'json',
+    })
+    geocodes = data.get('geocodes') or []
+    if not geocodes:
+        return ''
+    return str(geocodes[0].get('location') or '')
 
 
 def search_amap(query: str, city: str = '', district: str = '',
-                max_results: int = 20) -> list:
-    """高德地图 POI 搜索"""
-    if not AMAP_KEY:
-        print("⚠️  未配置 AMAP_KEY，跳过高德搜索", file=sys.stderr)
+                max_results: int = 20, radius: int = 3000) -> list:
+    """
+    高德 POI 2.0 搜索。
+
+    有明确地点时：地理编码 -> v5/place/around。
+    只有城市/关键词时：v5/place/text。
+    单次最多返回 25 条，避免推荐任务中的无界分页请求。
+    """
+    key, _ = _get_amap_credentials()
+    if not key:
+        print("⚠️  未配置 AMAP_WEBSERVICE_KEY，跳过高德搜索", file=sys.stderr)
         return []
 
-    city_code = AMAP_CITY_CODES.get(city, city)
-    keywords = f"{district} {query}".strip() if district else query
-
-    params = {
-        'key': AMAP_KEY,
-        'keywords': keywords,
+    page_size = max(1, min(int(max_results), 25))
+    common = {
         'types': AMAP_FOOD_TYPES,
-        'city': city_code,
-        'citylimit': 'true',
-        'offset': min(max_results, 25),
-        'page': 1,
-        'extensions': 'all',  # 返回详细信息（评分、营业时间等）
+        'show_fields': 'business',
+        'page_size': page_size,
+        'page_num': 1,
         'output': 'json',
     }
 
-    url = f"https://restapi.amap.com/v3/place/text?{urlencode(params)}"
-    try:
-        req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read())
+    data = {}
+    if district:
+        center = _geocode_amap(district, city)
+        if center:
+            data = _amap_request('/v5/place/around', {
+                **common,
+                'location': center,
+                'keywords': query,
+                'radius': max(100, min(int(radius), 50000)),
+                'sortrule': 'weight',
+                'region': city,
+                'city_limit': 'true' if city else 'false',
+            })
 
-        if data.get('status') != '1':
-            print(f"高德 API 错误: {data.get('info')}", file=sys.stderr)
-            return []
+    if not data:
+        keywords = f"{district} {query}".strip()
+        data = _amap_request('/v5/place/text', {
+            **common,
+            'keywords': keywords,
+            'region': city or district,
+            'city_limit': 'true' if (city or district) else 'false',
+        })
 
-        pois = data.get('pois', [])
-        results = []
-        for poi in pois:
-            r = _parse_amap_poi(poi)
-            if r:
-                results.append(r)
-        return results
-
-    except Exception as e:
-        print(f"高德搜索出错: {e}", file=sys.stderr)
-        return []
+    results = []
+    for poi in data.get('pois') or []:
+        parsed = _parse_amap_poi(poi)
+        if parsed:
+            results.append(parsed)
+    return results
 
 
 def _parse_amap_poi(poi: dict) -> dict | None:
@@ -99,10 +180,11 @@ def _parse_amap_poi(poi: dict) -> dict | None:
     if any(t in type_name for t in skip_types):
         return None
 
-    # 评分（高德评分 1-5 星，biz_ext 里）
-    biz_ext = poi.get('biz_ext', {})
+    # POI 2.0 通过 show_fields=business 返回商业字段。
+    # biz_ext 仅作为旧版响应兼容。
+    business = poi.get('business') or poi.get('biz_ext') or {}
     rating = None
-    rating_raw = biz_ext.get('rating', '')
+    rating_raw = business.get('rating', '')
     if rating_raw and rating_raw != 'none':
         try:
             rating = float(rating_raw)
@@ -111,7 +193,7 @@ def _parse_amap_poi(poi: dict) -> dict | None:
 
     # 人均消费
     avg_cost = None
-    cost_raw = biz_ext.get('cost', '')
+    cost_raw = business.get('cost', '')
     if cost_raw and cost_raw != 'none':
         try:
             avg_cost = int(float(cost_raw))
@@ -119,7 +201,11 @@ def _parse_amap_poi(poi: dict) -> dict | None:
             pass
 
     # 营业时间
-    open_time = biz_ext.get('open_time', '') or poi.get('business_area', '')
+    open_time = (
+        business.get('opentime_today', '')
+        or business.get('opentime_week', '')
+        or business.get('open_time', '')
+    )
 
     # 地址
     address = poi.get('address', '')
@@ -132,7 +218,9 @@ def _parse_amap_poi(poi: dict) -> dict | None:
     adname = poi.get('adname', '')  # 区
 
     # 菜系（从 type 字段提取）
-    cuisines = _extract_cuisines_cn(type_name + ' ' + name)
+    cuisines = _extract_cuisines_cn(
+        type_name + ' ' + name + ' ' + str(business.get('tag', ''))
+    )
     type_display = poi.get('_type_display', type_name)
 
     return {
@@ -145,12 +233,14 @@ def _parse_amap_poi(poi: dict) -> dict | None:
         'district': adname,
         'city': cityname,
         'open_time': open_time,
-        'tel': poi.get('tel', ''),
+        'tel': poi.get('tel', '') or business.get('tel', ''),
         'source': 'amap',
         'sources': ['amap'],
         'cross_verified': False,
         'amap_id': poi.get('id', ''),
         'location': poi.get('location', ''),  # 经纬度
+        'distance': poi.get('distance', ''),
+        'business_area': business.get('business_area', ''),
     }
 
 
@@ -182,7 +272,7 @@ def search_bmap(query: str, city: str = '', district: str = '',
     url = f"https://api.map.baidu.com/place/v2/search?{urlencode(params)}"
     try:
         req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urlopen(req, timeout=10) as resp:
+        with open_no_redirect(req, timeout=10) as resp:
             data = json.loads(resp.read())
 
         if data.get('status') != 0:
@@ -196,8 +286,8 @@ def search_bmap(query: str, city: str = '', district: str = '',
                 results.append(r)
         return results
 
-    except Exception as e:
-        print(f"百度搜索出错: {e}", file=sys.stderr)
+    except Exception:
+        print("百度搜索出错（网络、服务或响应不可用）", file=sys.stderr)
         return []
 
 
@@ -247,32 +337,14 @@ def _parse_bmap_place(place: dict) -> dict | None:
 # ── Serper Google Maps（海外）────────────────────────────────
 
 def search_serper_maps(query: str, city: str = '', max_results: int = 20) -> list:
-    """Serper Google Maps 搜索（海外场景）"""
+    """Serper Google Maps 搜索（海外场景，直接调用官方 API）。"""
     full_query = f"{query} {city}".strip()
-
-    try:
-        result = subprocess.run(
-            ['serperV', 'search', '-q', full_query, '-t', 'maps',
-             '-l', str(max_results)],
-            capture_output=True, text=True, timeout=20
-        )
-        if result.returncode != 0:
-            print(f"Serper maps 出错: {result.stderr[:100]}", file=sys.stderr)
-            return []
-
-        data = json.loads(result.stdout)
-        places = data.get('places', [])
-
-        results = []
-        for p in places:
-            r = _parse_serper_place(p)
-            if r:
-                results.append(r)
-        return results
-
-    except Exception as e:
-        print(f"Serper maps 出错: {e}", file=sys.stderr)
-        return []
+    results = []
+    for place in search_maps_raw(full_query, max_results):
+        parsed = _parse_serper_place(place)
+        if parsed:
+            results.append(parsed)
+    return results
 
 
 def _parse_serper_place(p: dict) -> dict | None:
@@ -396,9 +468,11 @@ def search_maps(query: str, city: str = '', district: str = '',
         amap = search_amap(query, city, district, max_results)
         print(f"   高德: {len(amap)} 家", file=sys.stderr)
 
-        print(f"🗺️  百度地图搜索...", file=sys.stderr)
-        bmap = search_bmap(query, city or district, district, max_results)
-        print(f"   百度: {len(bmap)} 家", file=sys.stderr)
+        bmap = []
+        if BMAP_KEY:
+            print(f"🗺️  百度地图搜索（可选）...", file=sys.stderr)
+            bmap = search_bmap(query, city or district, district, max_results)
+            print(f"   百度: {len(bmap)} 家", file=sys.stderr)
 
         merged = merge_cn_sources(amap, bmap)
         print(f"   合并后: {len(merged)} 家（{sum(1 for r in merged if r.get('cross_verified'))} 家双源验证）", file=sys.stderr)
@@ -447,18 +521,12 @@ if __name__ == '__main__':
 
 # ── 社交媒体交叉验证（公开数据，无需登录）────────────────────
 
-WORKSPACE = Path(__file__).parent.parent.parent.parent
-HUB_SCRIPT = str(WORKSPACE / 'skills/search-hub/scripts/hub.py')
-
-
 def cross_verify_social(restaurants: list, max_verify: int = 5) -> list:
     """
     用 Serper 搜索公开社交媒体数据做交叉验证。
     不需要用户登录任何账号。
     国内：搜小红书 + 大众点评公开页面
     """
-    import subprocess
-
     print(f"🔍 社交媒体交叉验证（top {max_verify}）...", file=sys.stderr)
 
     for r in restaurants[:max_verify]:
@@ -466,30 +534,27 @@ def cross_verify_social(restaurants: list, max_verify: int = 5) -> list:
         clean_name = re.sub(r'[（(][^）)]*[）)]', '', name).strip()
 
         # 搜小红书公开页面
-        xhs_query = f'site:xiaohongshu.com {clean_name} 探店'
-        try:
-            result = subprocess.run(
-                ['python3.13', HUB_SCRIPT, 'search', xhs_query, '-t', 'text', '-l', '3'],
-                capture_output=True, text=True, timeout=20
+        xhs_query = f'site:xiaohongshu.com {quoted_search_term(clean_name)} 探店'
+        hits = [
+            hit for hit in search_web(xhs_query, 3, country='cn', language='zh-cn')
+            if is_allowed_https_url(
+                hit.get('url') or hit.get('link') or '',
+                ('xiaohongshu.com',),
             )
-            if result.returncode == 0:
-                data = json.loads(result.stdout)
-                hits = data.get('results', [])
-                if hits:
-                    r['xhs_verified'] = True
-                    snippets = ' '.join(
-                        h.get('snippet', '') + h.get('title', '') for h in hits
-                    )
-                    neg_words = ['难吃', '踩雷', '失望', '不推荐', '差评', '坑', '后悔', '一般']
-                    pos_words = ['好吃', '推荐', '必去', '超棒', '喜欢', '值得', '宝藏', '惊喜']
-                    neg = sum(1 for w in neg_words if w in snippets)
-                    pos = sum(1 for w in pos_words if w in snippets)
-                    r['xhs_sentiment'] = 'negative' if neg > pos else ('positive' if pos > 0 else 'neutral')
-                    print(f"   ✅ {clean_name}: 小红书 {len(hits)} 条，情感={r['xhs_sentiment']}", file=sys.stderr)
-                else:
-                    print(f"   — {clean_name}: 小红书无记录", file=sys.stderr)
-        except Exception as e:
-            print(f"   ⚠️  {clean_name} 验证出错: {e}", file=sys.stderr)
+        ]
+        if hits:
+            r['xhs_verified'] = True
+            snippets = ' '.join(
+                h.get('snippet', '') + h.get('title', '') for h in hits
+            )
+            neg_words = ['难吃', '踩雷', '失望', '不推荐', '差评', '坑', '后悔', '一般']
+            pos_words = ['好吃', '推荐', '必去', '超棒', '喜欢', '值得', '宝藏', '惊喜']
+            neg = sum(1 for w in neg_words if w in snippets)
+            pos = sum(1 for w in pos_words if w in snippets)
+            r['xhs_sentiment'] = 'negative' if neg > pos else ('positive' if pos > 0 else 'neutral')
+            print(f"   ✅ {clean_name}: 小红书 {len(hits)} 条，情感={r['xhs_sentiment']}", file=sys.stderr)
+        else:
+            print(f"   — {clean_name}: 小红书无记录", file=sys.stderr)
 
     return restaurants
 
@@ -617,23 +682,9 @@ def search_fancard(location: str, city: str = '北京',
     饭卡模式主入口：找适合两人聊天的本地小馆
     location: 地点（如"酒仙桥"）
     """
-    # 多关键词搜索，覆盖不同风格
-    queries = [
-        f"特色餐厅",
-        f"小馆",
-        f"私房菜",
-    ]
-
-    all_results = {}
-    for q in queries:
-        results = search_amap(q, city, location, max_results=25)
-        for r in results:
-            key = _normalize_name(r['name'])
-            if key not in all_results:
-                all_results[key] = r
-
-    merged = list(all_results.values())
-    filtered = fancard_filter(merged, budget_low, budget_high)
+    # 周边搜索只调用一次 POI API，再在本地做风格和预算筛选。
+    results = search_amap('', city, location, max_results=25)
+    filtered = fancard_filter(results, budget_low, budget_high)
 
     # 社交媒体交叉验证（top 5，公开数据，无需登录）
     filtered = cross_verify_social(filtered, max_verify=5)

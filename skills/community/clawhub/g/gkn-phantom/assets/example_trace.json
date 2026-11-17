@@ -1,0 +1,154 @@
+{
+  "run_id": "run-2026-06-20-001",
+  "started_at": "2026-06-20T14:00:00Z",
+  "ended_at": "2026-06-20T14:12:33Z",
+  "states": [
+    {
+      "state": "INIT",
+      "entered_at": "2026-06-20T14:00:00Z",
+      "exited_at": "2026-06-20T14:00:01Z",
+      "actions": [
+        "Validated inputSchema against references/data_schemas.md",
+        "Loaded config defaults: rate_limit_rps=3, safe_mode=true, require_human_approval=true",
+        "Initialized state.current=INIT, state.history=[]"
+      ],
+      "exit_criteria_met": "input valid; config loaded"
+    },
+    {
+      "state": "SCOPE_CHECK",
+      "entered_at": "2026-06-20T14:00:01Z",
+      "exited_at": "2026-06-20T14:00:03Z",
+      "actions": [
+        "Prompted human for authorization confirmation (require_human_approval=true) -> APPROVED",
+        "Ran scripts/scope_guard.py against 2 targets",
+        "Resolved staging.example.test -> 10.0.0.12 (in 10.0.0.0/24)",
+        "Resolved api.staging.example.test -> 10.0.0.13 (in 10.0.0.0/24)",
+        "Domain match OK; IP range match OK; path allowlist OK"
+      ],
+      "exit_criteria_met": "all targets in scope"
+    },
+    {
+      "state": "RECONNAISSANCE",
+      "entered_at": "2026-06-20T14:00:03Z",
+      "exited_at": "2026-06-20T14:03:00Z",
+      "risk_level": "L1-L2",
+      "actions": [
+        "Passive subdomain discovery via certificate transparency -> api.staging.example.test, admin.staging.example.test (admin.* out of scope, skipped)",
+        "Port scan abstraction: nmap -sT --top-ports 100 10.0.0.12 (rate-limited to 3 rps)",
+        "HTTP fingerprinting: Server: nginx/1.25, X-Powered-By: Express, no CSP",
+        "Endpoint discovery: /robots.txt (200), /sitemap.xml (404), common wordlist -> /search, /api/users, /login"
+      ],
+      "output": {
+        "assets": {
+          "domains": ["staging.example.test", "api.staging.example.test"],
+          "ips": ["10.0.0.12", "10.0.0.13"],
+          "endpoints": [
+            {"url": "https://staging.example.test/search", "methods": ["GET"]},
+            {"url": "https://staging.example.test/login", "methods": ["GET", "POST"]},
+            {"url": "https://api.staging.example.test/users", "methods": ["GET", "POST"]},
+            {"url": "https://api.staging.example.test/users/{id}", "methods": ["GET"]}
+          ]
+        }
+      },
+      "exit_criteria_met": "assets enumerated"
+    },
+    {
+      "state": "AUTH_SETUP",
+      "entered_at": "2026-06-20T14:03:00Z",
+      "exited_at": "2026-06-20T14:03:30Z",
+      "risk_level": "L3",
+      "actions": [
+        "Injected cookie session=PTSKILLTEST-session-abc",
+        "Verified against https://api.staging.example.test/me -> 200 {user: 'ptskill-test-user'}",
+        "Persisted state.session_ref=sess-abc123"
+      ],
+      "output": {
+        "authenticated": true,
+        "session_ref": "sess-abc123",
+        "method": "cookie",
+        "verified_at": "2026-06-20T14:03:25Z"
+      },
+      "exit_criteria_met": "session verified"
+    },
+    {
+      "state": "ACTIVE_TESTING",
+      "entered_at": "2026-06-20T14:03:30Z",
+      "exited_at": "2026-06-20T14:08:00Z",
+      "risk_level": "L2-L3 (L4 blocked: safe_mode=true)",
+      "actions": [
+        "Ran scripts/vuln_detector.py -> generated severity-tiered plan (low/medium/high/critical)",
+        "LOW tier:",
+        "  info_leak: GET /static/js/main.js.map -> 200 (18KB source map) -> finding-005 (info_leak, low, detected)",
+        "  open_redirect: /login?returnUrl=https://oob.authorized.test/PTSKILLTEST -> 302 to sink -> finding-006 (open_redirect, low, detected)",
+        "  misconfig: missing CSP, missing HSTS, X-Powered-By present -> finding-004 (misconfig, low, detected)",
+        "  csrf: state-changing endpoints checked; token present + SameSite=Lax -> no candidate",
+        "MEDIUM tier:",
+        "  xss reflected: /search?q=PTSKILLTEST<xss>9a3f -> reflected unescaped -> finding-001 (xss, high, detected)",
+        "  path_traversal: /api/users?file=../../../../etc/passwd -> root:x:0:0: in body -> finding-007 (path_traversal, medium, detected)",
+        "  ssti: POST /render {template:PTSKILLTEST{{7*7}}} -> response PTSKILLTEST49 -> finding-008 (ssti, medium, detected)",
+        "  command_injection: /ping?host=127.0.0.1;sleep 3 # -> 3.0s delta -> finding-009 (command_injection, medium, detected)",
+        "  xxe/deserialization: no XML/octet-stream endpoints found -> no candidate",
+        "HIGH tier:",
+        "  sqli: boolean differential on /api/users?id=1 (TRUE/FALSE) -> response differs -> finding-002 (sqli, critical, detected)",
+        "  idor: GET /api/users/2 as ptskill-test-user vs unauthenticated -> 200 vs 403 -> finding-003 (idor, high, detected)",
+        "  ssrf: /api/users/webhook -> BLOCKED (L4 requires approval; safe_mode=true). Logged as skipped.",
+        "CRITICAL tier (all L4 blocked in safe_mode):",
+        "  rce: skipped (safe_mode) — would escalate from finding-009 command_injection",
+        "  auth_bypass: skipped (safe_mode)",
+        "  priv_esc: skipped (safe_mode)",
+        "  data_exposure: deferred to VALIDATION (PII regex scan on confirmed responses)",
+        "All probes routed through scripts/rate_limiter.py (3 rps)"
+      ],
+      "candidates": ["finding-001", "finding-002", "finding-003", "finding-004", "finding-005", "finding-006", "finding-007", "finding-008", "finding-009"],
+      "exit_criteria_met": "all endpoint surfaces tested across low/medium/high/critical tiers"
+    },
+    {
+      "state": "VALIDATION",
+      "entered_at": "2026-06-20T14:08:00Z",
+      "exited_at": "2026-06-20T14:10:00Z",
+      "actions": [
+        "Ran scripts/finding_validator.py for each candidate",
+        "finding-001: replayed /search?q=PTSKILLTEST<xss>9a3f -> signal matched -> confidence 0.9 -> validated (TP)",
+        "finding-002: replayed boolean differential -> signal matched -> confidence 0.95 -> validated (TP)",
+        "finding-003: replayed IDOR -> signal matched -> confidence 0.85 -> validated (TP)",
+        "finding-004: passive (no replay needed); confirmed missing headers -> validated (TP)",
+        "finding-005: replayed /static/js/main.js.map -> 200 source map -> validated (TP)",
+        "finding-006: replayed /login?returnUrl=sink -> 302 to sink -> validated (TP)",
+        "finding-007: replayed /api/users?file=../../../../etc/passwd -> root:x:0:0: -> validated (TP)",
+        "finding-008: replayed POST /render {PTSKILLTEST{{7*7}}} -> PTSKILLTEST49 -> validated (TP)",
+        "finding-009: replayed /ping?host=...;sleep 3 -> 3.0s delta -> validated (TP)",
+        "data_exposure scan: ran vuln_detector.classify_data_exposure() on all validated responses; PII counts below threshold -> no critical upgrade applied"
+      ],
+      "exit_criteria_met": "all candidates classified"
+    },
+    {
+      "state": "ATTACK_PATH_ANALYSIS",
+      "entered_at": "2026-06-20T14:10:00Z",
+      "exited_at": "2026-06-20T14:11:00Z",
+      "actions": [
+        "Ran scripts/attack_path.py",
+        "Detected chain: finding-001 (XSS on /login surface) enables finding-003 (IDOR) -> path-001 (auth bypass -> data exposure)",
+        "finding-002 (SQLi) standalone data exposure -> path-002"
+      ],
+      "exit_criteria_met": "paths built"
+    },
+    {
+      "state": "REPORT_GENERATION",
+      "entered_at": "2026-06-20T14:11:00Z",
+      "exited_at": "2026-06-20T14:12:33Z",
+      "actions": [
+        "Ran scripts/report_generator.py",
+        "Computed risk_score=70 (sqli 25 + idor 15 + xss 15 + misconfig 8 + blocked_l4 5 + ... capped 100)",
+        "Generated SARIF-like JSON",
+        "Assembled recommendations"
+      ],
+      "exit_criteria_met": "report assembled"
+    },
+    {
+      "state": "DONE",
+      "entered_at": "2026-06-20T14:12:33Z",
+      "exited_at": "2026-06-20T14:12:33Z",
+      "actions": ["Persisted state and memory", "Returned FinalOutput"]
+    }
+  ]
+}

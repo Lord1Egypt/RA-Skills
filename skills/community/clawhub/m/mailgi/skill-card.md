@@ -1,42 +1,57 @@
-## Description: <br>
-Mailgi lets agents register email addresses and use Mailgi's API, SDK, or CLI to send, receive, read, organize, and manage mail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give an AI agent a real, deliverable email address. Register in one POST with no OAuth and no signup form, then send, receive, read and organise mail over a plain REST API — polling or webhooks — on a shared handle or your own verified domain. Receiving and mail between agents are free; mail to outside addresses is prepaid, pay as you go.
 
-## Publisher: <br>
-[oyagev](https://clawhub.ai/user/oyagev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oyagev](https://clawhub.ai/user/oyagev)
 
-## Use Case: <br>
-Developers and agents use this skill to operate a Mailgi mailbox for task-related email workflows, including registration, inbox reads, message sending, mailbox organization, and API key management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent access to read, send, delete mail, organize mailbox state, and manage API keys. <br>
-Mitigation: Limit inbox reads to the task at hand, review recipients and message content before sending, and require explicit confirmation before deleting mail, changing mailbox state, or revoking API keys. <br>
-Risk: Mailgi API keys and DID-based tokens are sensitive credentials that can grant mailbox access. <br>
-Mitigation: Keep keys private, store the one-time registration API key immediately in a secure location, and create scoped or task-specific keys where practical. <br>
+## Use Case:
 
+AI agent developers use Mailgi to register agent email addresses and automate sending, receiving, reading, and organizing mail through its REST API or optional webhooks.
 
-## Reference(s): <br>
-- [Mailgi ClawHub listing](https://clawhub.ai/oyagev/mailgi) <br>
-- [Mailgi skill instructions](artifact/SKILL.md) <br>
-- [Mailgi API base URL](https://api.mailgi.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with REST examples, JSON payloads, bash commands, TypeScript snippets, and CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Mailgi API key or optional DID-based token; sending is limited to 100 external emails per day per API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Mailgi hosts mailbox contents, and an API key can change the mailbox and send messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect stored API keys and keep mailbox changes, recipients, and permanent deletion under the user's control.
+
+Risk: External sending and storage incur charges, which may draw on a shared organization wallet.
+
+Mitigation: Check recipients, current prices, and the wallet being charged before sending or topping up.
+
+## Reference(s):
+
+- [Mailgi service homepage](https://www.mailgi.xyz)
+- [Mailgi skill instructions](https://www.mailgi.xyz/SKILL.md)
+- [Mailgi API documentation](https://api.mailgi.xyz/docs)
+- [Mailgi OpenAPI specification](https://api.mailgi.xyz/openapi.json)
+- [ClawHub release page](https://clawhub.ai/oyagev/skills/mailgi)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown instructions with JSON examples and inline curl, JavaScript, and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.5.1 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-TinyURL (tinyurl.com). Use this skill for ANY TinyURL request — reading, creating, and updating data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TinyURL (tinyurl.com). Use this skill for ANY TinyURL request — reading, creating, and updating data. Whenever a task involves TinyURL, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to operate TinyURL through an OOMOL-connected account, including creating short links and listing account URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create TinyURL links through the user's connected account. <br>
-Mitigation: Confirm the destination URL and intended effect with the user before running `create_short_url`. <br>
-Risk: The skill depends on an OOMOL account connection and may require trusted setup steps. <br>
-Mitigation: Run CLI installation, login, or TinyURL connection setup only when needed and only through the documented OOMOL setup paths. <br>
-Risk: TinyURL actions may require sensitive credentials managed outside the agent. <br>
-Mitigation: Use the OOMOL connector flow so credentials remain server-side and are not handled directly in prompts or shell payloads. <br>
+## Use Case:
 
+Users can list TinyURLs in their connected account and create short links for destination URLs.
 
-## Reference(s): <br>
-- [TinyURL homepage](https://tinyurl.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL TinyURL connection setup](https://console.oomol.com/app-connections?provider=tinyurl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas and returns connector responses as JSON when actions run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Setup instructions can execute unpinned remote software without a separate approval or verification step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI installation separately; require approval before running an installer or changing installed agent skills.
+
+Risk: Creating a short link changes the user's TinyURL account.
+
+Mitigation: Preserve the skill's confirmation requirement and confirm the destination URL before running the create action.
+
+## Reference(s):
+
+- [TinyURL API documentation](https://api.tinyurl.com/)
+- [TinyURL](https://tinyurl.com)
+- [oo CLI usage reference](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [TinyURL ClawHub release](https://clawhub.ai/oomol/skills/oo-tinyurl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Text or JSON action results, including URL listings or a created short link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the requested TinyURL action and connected account.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

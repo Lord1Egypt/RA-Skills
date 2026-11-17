@@ -1,38 +1,53 @@
-## Description: <br>
-Publish messages to all trusted peers on a topic over the Pilot Protocol network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish messages to all trusted peers on a topic over the Pilot Protocol network.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-External users and developers who use Pilot Protocol use this skill to broadcast announcements, status updates, notifications, or alerts to all trusted peers on a topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broadcast messages are not private and may be visible to trusted peers subscribed to the topic. <br>
-Mitigation: Verify the trust network and intended recipient scope before publishing, and do not include secrets, credentials, personal data, or sensitive internal status in broadcasts. <br>
+## Use Case:
 
+Developers and agent operators use this skill to publish announcements, status updates, notifications, and alerts to trusted peers over Pilot Protocol topics.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl on PATH, a running Pilot daemon, and active trust relationships.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broadcast recipient scope is unclear, which could send operational updates to unintended trusted peers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the Pilot Protocol publish scope before use and avoid sensitive message content unless the recipient set is explicit.
+
+Risk: Messages may expose credentials, private keys, personal data, or sensitive operational details if broadcast broadly.
+
+Mitigation: Do not include secrets or sensitive data in broadcast payloads; use a private messaging workflow when targeting a specific peer.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl on PATH, a running Pilot Protocol daemon, and active trust relationships.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

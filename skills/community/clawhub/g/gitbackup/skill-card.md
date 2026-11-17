@@ -1,36 +1,51 @@
-## Description: <br>
-Create a local Git bundle backup of the OpenClaw workspace repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a local Git bundle backup of the OpenClaw workspace repository.
 
-## Publisher: <br>
-[Trumppo](https://clawhub.ai/user/Trumppo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trumppo](https://clawhub.ai/user/trumppo)
 
-## Use Case: <br>
-Developers and operators use this skill to create a self-contained local Git bundle of the OpenClaw workspace repository and report the backup path and file size. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Git bundles can contain the full repository history and refs, including sensitive content already committed to the workspace. <br>
-Mitigation: Treat each bundle like a full repository copy, store it securely, avoid casual sharing, and remove old backups when they are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and operators use this skill to create a local Git bundle containing the workspace repository history and refs, then report the generated bundle path and size.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The created Git bundle may include private code, branches, tags, and previously committed secrets.
+
+Mitigation: Treat bundle files as sensitive artifacts and restrict, rotate, or delete them according to retention requirements.
+
+Risk: Older backup bundles are not deleted automatically.
+
+Mitigation: Monitor the backup directory and remove obsolete bundles when storage or retention limits apply.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text status output with a generated Git bundle file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundle filename includes a UTC timestamp and older bundles are not deleted.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text status output with a local bundle path and size.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a local Git bundle file under /root/.openclaw/backups; older bundles are not deleted.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

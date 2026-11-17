@@ -1,40 +1,55 @@
-## Description: <br>
-OpenClaw Multi Agent Orchestrator manages local AI agent registration, task dispatch, load balancing, performance monitoring, and inter-agent communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Multi Agent Orchestrator helps agents register collaborators, dispatch tasks, balance load, exchange local messages, and inspect coordination status.
 
-## Publisher: <br>
-[williamwg2025](https://clawhub.ai/user/williamwg2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwg2025](https://clawhub.ai/user/williamwg2025)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multiple local agents, route tasks to suitable agents, inspect agent status, and exchange inter-agent messages through local CLI scripts and JSON configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dispatched tasks and inter-agent messages may remain in local JSON state files. <br>
-Mitigation: Avoid entering secrets, credentials, passwords, or sensitive business data into tasks or messages unless local retention is acceptable. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate multiple local agents for task routing, collaboration tracking, message exchange, and status monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/williamwg2025/openclaw-multi-agent-orchestrator) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output and local JSON configuration/state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent, task, message, and collaboration state is stored in local JSON files under the skill config directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Task messages and collaboration records are stored locally in JSON files and may contain sensitive user-provided content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting secrets or confidential data in task messages, and review local configuration and message files before sharing or publishing the skill directory.
+
+Risk: The README recommends optional related-skill installation commands that are separate third-party installs.
+
+Mitigation: Review and pin any optional related-skill install commands before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/williamwg2025/skills/openclaw-multi-agent-orchestrator)
+- [README_EN.md](artifact/README_EN.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text output and JSON-backed configuration/state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local Python scripts read and write skill configuration files for agent registry, task history, messages, and collaboration records.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

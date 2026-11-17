@@ -7,7 +7,12 @@ Usage:
   python polymarket_query.py <command> [options]
 
 Commands:
-  categories                          List all market categories
+  categories                          List sports metadata & popular tags
+                                      (note: /categories endpoint was removed;
+                                       this command now uses /sports + /tags)
+  sports-meta [--limit N]             List sports metadata from /sports endpoint
+  series [--limit N]                  List series (NFL/NBA/etc.) from /series
+  tournaments [--limit N]             List tournaments from /tournaments
   trending [--limit N]                Show trending/active markets (default N=10)
   search <keyword> [--limit N]        Search markets by keyword
   event <event_id>                    Get event details with all sub-markets
@@ -20,14 +25,23 @@ Commands:
   live                                Show currently live/in-play markets
   schedule [--sport X] [--date YYYY-MM-DD]  Show sports schedule by sport & date
 
+Note: --limit N is supported for all limit-accepting commands. For backward
+      compatibility, a bare positional integer (e.g. `trending 5`) is also
+      accepted.
+
 Examples:
   python polymarket_query.py schedule --sport nba --date 2026-04-12
   python polymarket_query.py schedule --sport soccer --date 2026-04-11
   python polymarket_query.py search Bitcoin
   python polymarket_query.py market 540816
+  python polymarket_query.py trending --limit 10
+  python polymarket_query.py sports-meta
+  python polymarket_query.py series --limit 20
+  python polymarket_query.py tournaments
 """
 
 import sys
+import io
 import json
 import re
 import urllib.request
@@ -35,6 +49,20 @@ import urllib.parse
 import urllib.error
 import ssl
 from datetime import datetime
+
+# Force UTF-8 stdout/stderr on Windows to avoid GBK encoding errors when
+# market data contains non-ASCII characters (e.g., Norwegian names like "Bø",
+# Spanish "ñ", emoji, etc.). Reconfigure in place if possible (Python 3.7+).
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except (AttributeError, Exception):
+    # Fallback for environments where reconfigure isn't available
+    try:
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 # API Base URLs
 GAMMA_API = "https://gamma-api.polymarket.com"
@@ -75,14 +103,22 @@ ctx = _make_ssl_context()
 # Values can be a single prefix string or a list of prefixes to search.
 # Game events use short prefixes (e.g. "lal", "epl"), while season/award
 # events may use longer prefixes (e.g. "la-liga", "english-premier-league").
+# For soccer, "fifwc" is the FIFA World Cup slug prefix (e.g. fifwc-esp-bel-2026-07-10).
 SPORT_MAP = {
     "nba": "nba", "basketball": "nba",
     "nfl": "nfl", "football": "nfl",
     "mlb": "mlb", "baseball": "mlb",
     "nhl": "nhl", "hockey": "nhl",
-    "soccer": ["epl", "lal", "serie", "bundes", "ligue"], "epl": "epl", "premierleague": ["epl", "english-premier-league"],
+    # Soccer — includes club leagues + FIFA World Cup (fifwc) + UEFA tournaments
+    "soccer": ["epl", "lal", "serie", "bundes", "ligue", "fifwc", "ucl", "uel", "ueu"],
+    "epl": "epl", "premierleague": ["epl", "english-premier-league"],
     "laliga": ["lal", "la-liga"], "ligue1": ["ligue-1", "l1"], "seriea": ["serie", "serie-a"], "bundesliga": ["bundes", "bundesliga"],
     "ucl": "ucl", "championsleague": "ucl",
+    "uel": "uel", "europaleague": "uel",
+    "ueu": "ueu", "europaconference": "ueu",
+    # FIFA World Cup — explicit keywords for direct access
+    "worldcup": "fifwc", "fifaworldcup": "fifwc", "fifawc": "fifwc",
+    "fifa": "fifwc", "wc": "fifwc", "fifwc": "fifwc",
     "mls": "mls", "atp": "atp", "tennis": "atp", "wta": "wta",
     "ufc": "ufc", "mma": "ufc",
     "cs2": "cs2", "csgo": "cs2", "counterstrike": "cs2",
@@ -132,31 +168,123 @@ def format_volume(vol):
 
 
 def cmd_categories():
-    """List all categories."""
-    data = fetch(f"{GAMMA_API}/categories?limit=100")
+    """List sports metadata and popular tags.
+
+    NOTE: Polymarket's /categories endpoint was removed (HTTP 404 as of 2026).
+    This command now uses /sports and /tags endpoints to provide equivalent
+    browsing capability.
+    """
+    print("=" * 60)
+    print("POLYMARKET SPORTS & TAGS")
+    print("=" * 60)
+    print("(Note: /categories endpoint was removed; using /sports + /tags)")
+
+    # Fetch sports metadata
+    sports = fetch(f"{GAMMA_API}/sports?limit=500")
+    if isinstance(sports, dict) and "error" in sports:
+        print(f"\nError fetching sports: {sports['error']}")
+    elif isinstance(sports, list) and sports:
+        print(f"\nSPORTS ({len(sports)} entries):")
+        print("-" * 60)
+        for s in sports:
+            sport_name = s.get("sport", "N/A")
+            sid = s.get("id", "?")
+            series = s.get("series", "N/A")
+            tags = s.get("tags", "N/A")
+            print(f"  {sport_name:<15} (id: {sid}, series: {series}, tags: {tags})")
+    else:
+        print("\nNo sports metadata found.")
+
+    # Fetch popular tags
+    tags_data = fetch(f"{GAMMA_API}/tags?limit=50")
+    if isinstance(tags_data, dict) and "error" in tags_data:
+        print(f"\nError fetching tags: {tags_data['error']}")
+    elif isinstance(tags_data, list) and tags_data:
+        print(f"\nPOPULAR TAGS (showing {len(tags_data)} of many):")
+        print("-" * 60)
+        for t in tags_data[:30]:
+            label = t.get("label", "N/A")
+            slug = t.get("slug", "N/A")
+            tid = t.get("id", "?")
+            print(f"  {label:<30} (slug: {slug}, id: {tid})")
+        if len(tags_data) > 30:
+            print(f"  ... and {len(tags_data) - 30} more (use `sports-meta` or query /tags directly)")
+    else:
+        print("\nNo tags found.")
+
+
+def cmd_sports_meta(limit=100):
+    """List all sports metadata from /sports endpoint."""
+    data = fetch(f"{GAMMA_API}/sports?limit={limit}")
     if isinstance(data, dict) and "error" in data:
         print(f"Error: {data['error']}")
         return
 
-    parents = {}
-    children = {}
-    for cat in data:
-        pc = cat.get("parentCategory")
-        if not pc:
-            parents[cat["id"]] = cat
-        else:
-            if pc not in children:
-                children[pc] = []
-            children[pc].append(cat)
+    print("=" * 80)
+    print(f"SPORTS METADATA ({len(data) if isinstance(data, list) else 0} entries)")
+    print("=" * 80)
+    if not isinstance(data, list) or not data:
+        print("No sports metadata found.")
+        return
 
-    print("=" * 60)
-    print("POLYMARKET CATEGORIES")
-    print("=" * 60)
-    for pid, parent in sorted(parents.items(), key=lambda x: x[1].get("label", "")):
-        print(f"\n  {parent['label']} (slug: {parent['slug']})")
-        if pid in children:
-            for child in sorted(children[pid], key=lambda x: x.get("label", "")):
-                print(f"    -> {child['label']} (slug: {child['slug']})")
+    for s in data:
+        print(f"\n  Sport: {s.get('sport', 'N/A')} (id: {s.get('id', '?')})")
+        print(f"  Series: {s.get('series', 'N/A')}")
+        print(f"  Tags: {s.get('tags', 'N/A')}")
+        if s.get("image"):
+            print(f"  Image: {s.get('image')}")
+        if s.get("resolution"):
+            print(f"  Resolution: {s.get('resolution')}")
+
+
+def cmd_series(limit=20):
+    """List series (NFL/NBA/etc.) from /series endpoint."""
+    data = fetch(f"{GAMMA_API}/series?limit={limit}&active=true&closed=false")
+    if isinstance(data, dict) and "error" in data:
+        print(f"Error: {data['error']}")
+        return
+
+    print("=" * 80)
+    print(f"SERIES ({len(data) if isinstance(data, list) else 0} entries)")
+    print("=" * 80)
+    if not isinstance(data, list) or not data:
+        print("No series found.")
+        return
+
+    for s in data:
+        print(f"\n  Title: {s.get('title', 'N/A')} (slug: {s.get('slug', 'N/A')})")
+        print(f"  ID: {s.get('id', 'N/A')} | Ticker: {s.get('ticker', 'N/A')}")
+        print(f"  Type: {s.get('seriesType', 'N/A')} | Recurrence: {s.get('recurrence', 'N/A')}")
+        print(f"  Active: {s.get('active', 'N/A')} | Closed: {s.get('closed', 'N/A')}")
+        vol24 = s.get("volume24hr", 0)
+        print(f"  24h Vol: {format_volume(vol24)}")
+
+
+def cmd_tournaments(limit=20):
+    """List tournaments from /tournaments endpoint."""
+    data = fetch(f"{GAMMA_API}/tournaments?limit={limit}")
+    if isinstance(data, dict) and "error" in data:
+        print(f"Error: {data['error']}")
+        return
+
+    print("=" * 80)
+    print(f"TOURNAMENTS ({len(data) if isinstance(data, list) else 0} entries)")
+    print("=" * 80)
+    if not isinstance(data, list) or not data:
+        print("No tournaments found.")
+        return
+
+    for t in data:
+        print(f"\n  Name: {t.get('name', 'N/A')} (id: {t.get('id', '?')})")
+        print(f"  Entrants: {t.get('numEntrants', 'N/A')}")
+        phases = t.get("phases", [])
+        if phases:
+            print(f"  Phases ({len(phases)}):")
+            for p in phases:
+                pname = p.get("displayName", "N/A")
+                pround = p.get("roundSize", "?")
+                ptype = p.get("phaseType", "?")
+                print(f"    - {pname} (roundSize: {pround}, type: {ptype})")
 
 
 def cmd_trending(limit=10):
@@ -425,7 +553,7 @@ def cmd_live(limit=20):
         print(f"Error: {data['error']}")
         return
 
-    now = datetime.utcnow()
+    now = datetime.now(datetime.timezone.utc)
     live_markets = []
 
     for m in data:
@@ -739,7 +867,11 @@ def cmd_schedule(sport=None, date_str=None, limit=50):
         if date_filter:
             print(f"  Date: {date_filter}")
         print(f"\nSupported sport keywords:")
-        print(f"  nba, nfl, mlb, nhl, soccer/epl, atp/tennis, ufc/mma, cs2, lol, f1, pga/golf, boxing")
+        print(f"  nba, nfl, mlb, nhl, soccer/epl/laliga/ligue1/seriea/bundesliga,")
+        print(f"  worldcup/fifawc/fifa/wc (FIFA World Cup),")
+        print(f"  ucl/championsleague, uel/europaleague, ueu/europaconference,")
+        print(f"  mls, atp/tennis, wta, ufc/mma, cs2/csgo, lol/leagueoflegends,")
+        print(f"  f1/racing, pga/golf, boxing, cricket")
         if sport:
             print(f"\nTip: Try without date to see all upcoming {sport.upper()} events")
         return
@@ -782,64 +914,102 @@ def print_usage():
     print(__doc__)
 
 
+def parse_limit(args, default):
+    """Parse limit from args, supporting both `--limit N` and a bare positional int.
+
+    Returns (limit, remaining_args_after_consuming_limit).
+    """
+    limit = default
+    remaining = []
+    i = 0
+    while i < len(args):
+        a = args[i]
+        if a == "--limit" and i + 1 < len(args):
+            try:
+                limit = int(args[i + 1])
+                i += 2
+                continue
+            except ValueError:
+                pass
+        # Try bare positional integer
+        try:
+            limit = int(a)
+            i += 1
+            continue
+        except ValueError:
+            pass
+        remaining.append(a)
+        i += 1
+    return limit, remaining
+
+
 def main():
     if len(sys.argv) < 2:
         print_usage()
         return
 
     command = sys.argv[1].lower()
+    args = sys.argv[2:]
 
     if command == "categories":
         cmd_categories()
+    elif command == "sports-meta" or command == "sportsmeta":
+        limit, _ = parse_limit(args, 100)
+        cmd_sports_meta(limit)
+    elif command == "series":
+        limit, _ = parse_limit(args, 20)
+        cmd_series(limit)
+    elif command == "tournaments":
+        limit, _ = parse_limit(args, 20)
+        cmd_tournaments(limit)
     elif command == "trending":
-        limit = int(sys.argv[2]) if len(sys.argv) > 2 else 10
+        limit, _ = parse_limit(args, 10)
         cmd_trending(limit)
     elif command == "search":
-        if len(sys.argv) < 3:
-            print("Usage: polymarket_query.py search <keyword> [limit]")
+        # search <keyword> [--limit N]
+        if not args:
+            print("Usage: polymarket_query.py search <keyword> [--limit N]")
             return
-        keyword = sys.argv[2]
-        limit = int(sys.argv[3]) if len(sys.argv) > 3 else 10
+        keyword = args[0]
+        limit, _ = parse_limit(args[1:], 10)
         cmd_search(keyword, limit)
     elif command == "event":
-        if len(sys.argv) < 3:
+        if not args:
             print("Usage: polymarket_query.py event <event_id>")
             return
-        cmd_event(sys.argv[2])
+        cmd_event(args[0])
     elif command == "market":
-        if len(sys.argv) < 3:
+        if not args:
             print("Usage: polymarket_query.py market <market_id>")
             return
-        cmd_market(sys.argv[2])
+        cmd_market(args[0])
     elif command == "odds":
-        if len(sys.argv) < 3:
+        if not args:
             print("Usage: polymarket_query.py odds <market_id>")
             return
-        cmd_odds(sys.argv[2])
+        cmd_odds(args[0])
     elif command == "sports":
-        limit = int(sys.argv[2]) if len(sys.argv) > 2 else 15
+        limit, _ = parse_limit(args, 15)
         cmd_sports(limit)
     elif command == "politics":
-        limit = int(sys.argv[2]) if len(sys.argv) > 2 else 15
+        limit, _ = parse_limit(args, 15)
         cmd_politics(limit)
     elif command == "crypto":
-        limit = int(sys.argv[2]) if len(sys.argv) > 2 else 15
+        limit, _ = parse_limit(args, 15)
         cmd_crypto(limit)
     elif command == "category":
-        if len(sys.argv) < 3:
-            print("Usage: polymarket_query.py category <slug> [limit]")
+        if not args:
+            print("Usage: polymarket_query.py category <slug> [--limit N]")
             return
-        slug = sys.argv[2]
-        limit = int(sys.argv[3]) if len(sys.argv) > 3 else 15
+        slug = args[0]
+        limit, _ = parse_limit(args[1:], 15)
         cmd_category(slug, limit)
     elif command == "live":
-        limit = int(sys.argv[2]) if len(sys.argv) > 2 else 20
+        limit, _ = parse_limit(args, 20)
         cmd_live(limit)
     elif command == "schedule":
         sport = None
         date_str = None
-        # Parse --sport and --date args
-        args = sys.argv[2:]
         i = 0
         while i < len(args):
             if args[i] == "--sport" and i + 1 < len(args):

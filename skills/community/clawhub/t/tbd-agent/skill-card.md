@@ -1,44 +1,56 @@
-## Description: <br>
-Prediction market for crypto, sports, politics, and culture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TBD is a prediction market for crypto, sports, politics, and culture.
 
-## Publisher: <br>
-[coreyjoshuamiller](https://clawhub.ai/user/coreyjoshuamiller) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coreyjoshuamiller](https://clawhub.ai/user/coreyjoshuamiller)
 
-## Use Case: <br>
-External users and developers use this skill to configure agents that browse TBD prediction-market campaigns, check USDC balances, and place bets through the TBD CLI or HTTP API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help automate real-money USDC prediction-market betting without clear per-bet approval. <br>
-Mitigation: Require explicit user approval and hard spending limits before enabling autonomous betting loops. <br>
-Risk: API keys may be exposed through logs, shell history, or unsafe automation. <br>
-Mitigation: Keep the API key out of logs and shell history, and use a dedicated low-balance account. <br>
-Risk: A strategy file can influence betting behavior in ways the user may not expect. <br>
-Mitigation: Review the strategy file before running the agent and after any strategy changes. <br>
+## Use Case:
 
+External developers and agents use this skill to browse TBD prediction-market campaigns, inspect account balance, configure bet size, and place USDC-backed bets through the tbd-vote CLI or HTTP API.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/coreyjoshuamiller/tbd-agent) <br>
-- [TBD website](https://tbd.vote) <br>
-- [TBD API base URL](https://production-tbd-bets-api.tbd.vote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, CLI examples, and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes JSON-oriented CLI usage guidance for parseable agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can enable repeated real-money USDC bets without clear per-bet confirmation or strong spending controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation for each bet, set strict spending limits, monitor balances, and keep API-key revocation or rotation available before use.
+
+Risk: A global latest-version CLI install can make agent behavior depend on an unpinned package version.
+
+Mitigation: Use an isolated, pinned CLI install when possible and review the installed package before granting access to a funded account.
+
+## Reference(s):
+
+- [TBD skill page](https://clawhub.ai/coreyjoshuamiller/skills/tbd-agent)
+- [Publisher profile](https://clawhub.ai/user/coreyjoshuamiller)
+- [TBD website](https://tbd.vote)
+- [TBD API base URL](https://production-tbd-bets-api.tbd.vote)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with inline bash, JSON, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers API-key authentication, JSON CLI output, USDC bet sizing, rate limits, and raw HTTP fallback commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

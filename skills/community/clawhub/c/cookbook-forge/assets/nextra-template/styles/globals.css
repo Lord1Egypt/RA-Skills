@@ -1,0 +1,57 @@
+/* Callout 卡片 */
+.callout {
+  border-left: 4px solid;
+  padding: 0.75em 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+.callout h4 { margin-top: 0; }
+.callout.chapteroutline { background: rgba(59,130,246,0.08); border-color: #3b82f6; }
+.callout.keypoints      { background: rgba(34,197,94,0.08);  border-color: #22c55e; }
+.callout.recipe         { background: rgba(245,158,11,0.08); border-color: #f59e0b; }
+.callout.pitfall        { background: rgba(239,68,68,0.08);  border-color: #ef4444; }
+
+.dark .callout.chapteroutline { background: rgba(59,130,246,0.16); }
+.dark .callout.keypoints      { background: rgba(34,197,94,0.16); }
+.dark .callout.recipe         { background: rgba(245,158,11,0.16); }
+.dark .callout.pitfall        { background: rgba(239,68,68,0.16); }
+
+/* figure + caption */
+figure { margin: 1.25em 0; text-align: center; }
+figure img { max-width: 100%; height: auto; }
+figcaption {
+  font-size: 0.875em;
+  color: var(--nx-color-fg-default, #6b7280);
+  margin-top: 0.5em;
+}
+
+/* 表格横向滚动 */
+.overflow-x-auto { overflow-x: auto; }
+.overflow-x-auto > table { min-width: 540px; }
+
+/* 下载按钮 */
+.download-btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin-right: 0.5em;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+.download-btn:hover { background: #1d4ed8; }
+.download-btn.secondary { background: #6b7280; }
+.download-btn.secondary:hover { background: #4b5563; }
+
+/* 封面网格 */
+.cover-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5em;
+  align-items: start;
+  margin: 1em 0 2em;
+}
+@media (max-width: 640px) {
+  .cover-grid { grid-template-columns: 1fr; }
+}

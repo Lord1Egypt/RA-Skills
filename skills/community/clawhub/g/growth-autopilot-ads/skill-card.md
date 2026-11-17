@@ -1,41 +1,56 @@
-## Description: <br>
-Automate full-funnel strategy generation, budget structure design, and dynamic bid/scale adjustments for Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, Shopify Ads, and DSP/programmatic campaigns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate full-funnel strategy generation, budget structure design, and dynamic bid/scale adjustments for Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, Shopify Ads, and DSP/programmatic campaigns.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Growth marketers, performance marketing operators, and agencies use this skill to draft paid growth strategy, budget allocation policy, bid and scale rules, safety guardrails, and monitoring workflows across major advertising platforms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bid, budget, freeze, rollback, or scaling recommendations could affect live advertising spend if applied without review. <br>
-Mitigation: Require human approval before applying recommendations and define explicit budget caps, platform scope, rollback conditions, and monitoring-only defaults. <br>
-Risk: Automated optimization guidance may respond poorly to delayed metrics, anomalies, or degraded data quality. <br>
-Mitigation: Pause automated changes when metrics are delayed, route severe anomalies to human review, and switch to monitoring-only mode when data quality degrades. <br>
-Risk: Policy-sensitive creative or campaign changes may introduce account compliance issues. <br>
-Mitigation: Keep manual override paths available and route risky creative or policy-sensitive changes to human review before approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/danyangliu-sandwichlab/growth-autopilot-ads) <br>
+## Use Case:
 
+Growth marketers, performance media operators, and developers use this skill to draft paid-media automation policies for budget allocation, bid and scale adjustments, guardrails, rollback rules, and monitoring workflows across major ad platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with strategy sections, policy rules, YAML examples, and pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Spend-related recommendations should be reviewed before use in live ad accounts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide automated ad budget and bidding changes without a clear human approval gate.
+
+Mitigation: Keep outputs advisory or monitoring-only unless explicit human approval, budget caps, rollback limits, audit logging, and platform-specific execution permissions are enforced outside the skill.
+
+Risk: Incorrect performance signals or delayed metrics could lead to harmful optimization recommendations.
+
+Mitigation: Pause automated changes when critical metrics are delayed or data quality degrades, and require human review before resuming execution.
+
+Risk: Policy-sensitive creative or campaign changes could be approved too aggressively.
+
+Mitigation: Do not auto-approve policy-sensitive creative changes; route policy rejection spikes and high-severity anomalies to a human review queue.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/growth-autopilot-ads)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Code]
+
+**Output Format:** [Markdown with policy YAML and pseudocode examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces strategy blueprints, budget and structure policies, dynamic bid/scale rules, safety guardrails, kill-switches, and monitoring workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

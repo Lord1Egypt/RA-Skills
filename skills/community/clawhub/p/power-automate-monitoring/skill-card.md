@@ -1,45 +1,59 @@
-## Description: <br>
-Pro+ subscription required; tenant-wide Power Automate flow health monitoring, failure-rate analytics, and asset inventory using the FlowStudio MCP cached store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tenant-wide Power Automate flow health monitoring, failure rate analytics, and asset inventory using the FlowStudio MCP cached store for Pro+ subscribers.
 
-## Publisher: <br>
-[ninihen1](https://clawhub.ai/user/ninihen1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ninihen1](https://clawhub.ai/user/ninihen1)
 
-## Use Case: <br>
-Tenant administrators and Power Platform operators use this skill to monitor tenant-wide Power Automate health, review failure trends, audit makers, and inventory flows, environments, connections, and Power Apps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive tenant-wide Power Platform data, including cached flow definitions, trigger URLs, maker details, and run history. <br>
-Mitigation: Use it only with trusted tenant administrators, prefer aggregate reports, and avoid sharing raw trigger URLs or full flow definitions unless explicitly needed. <br>
-Risk: The skill can guide changes to monitoring, notification, tagging, criticality, and governance metadata. <br>
-Mitigation: Require clear user approval before any update and confirm the intended flow, environment, and governance fields before applying changes. <br>
-Risk: Store data may be stale because FlowStudio scans Power Automate data on a schedule. <br>
-Mitigation: Check scanned and nextScan fields before relying on cached results, and use live diagnostic tools when fresh run-level evidence is required. <br>
+## Use Case:
 
+Developers, platform administrators, and governance teams use this skill to analyze tenant-wide Power Automate health, failure trends, maker activity, asset inventory, and compliance posture from FlowStudio cached store data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ninihen1/power-automate-monitoring) <br>
-- [FlowStudio MCP](https://mcp.flowstudio.app) <br>
-- [FlowStudio Teams monitoring guide](https://learn.flowstudio.app/teams-monitoring) <br>
-- [FlowStudio pricing](https://mcp.flowstudio.app/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tool names, workflow steps, filters, and response-shape notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include aggregate monitoring summaries, inventory tables, governance recommendations, and requested tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Tenant-wide FlowStudio cached-store access can expose sensitive flow, owner, connection, trigger URL, and governance metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where FLOWSTUDIO_MCP_TOKEN access is appropriate for tenant-wide monitoring, and avoid sharing trigger URLs or tenant data in chats, tickets, or logs.
+
+Risk: The skill can guide persistent governance changes through update_store_flow, including monitoring, notification, criticality, ownership, tier, and security metadata.
+
+Mitigation: Require explicit user intent before suggesting or executing metadata updates, and review the proposed field changes before applying them.
+
+Risk: FlowStudio cached-store data may be stale because scans run periodically.
+
+Mitigation: Check scanned or nextScan freshness fields before treating cached health metrics as current operational truth.
+
+## Reference(s):
+
+- [Power Automate Monitoring ClawHub release](https://clawhub.ai/ninihen1/skills/power-automate-monitoring)
+- [FlowStudio MCP homepage](https://mcp.flowstudio.app)
+- [FlowStudio Teams monitoring documentation](https://learn.flowstudio.app/teams-monitoring)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tool names, JSON response-shape examples, and workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FLOWSTUDIO_MCP_TOKEN and FlowStudio Pro+ access; may guide tenant health summaries, cached-store queries, and governance metadata updates.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

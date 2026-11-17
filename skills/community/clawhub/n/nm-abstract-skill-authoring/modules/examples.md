@@ -2,8 +2,8 @@
 
 Annotated walk-throughs of skills that ship in this repo.
 Each example highlights one or two authoring decisions worth
-copying. Read these after `tdd-methodology.md` and
-`progressive-disclosure.md`. Citations are to real files; you
+copying. Read these after the TDD methodology and progressive
+disclosure modules listed in `SKILL.md`. Citations are to real files. You
 can `Read` any path below to see the full source.
 
 ## Example 1: a focused technique skill
@@ -26,7 +26,7 @@ description that names the job again, will activate reliably.
 
 **Skill**: `Skill(pensive:tiered-audit)`
 **Path**:
-`/home/alext/claude-night-market/plugins/pensive/skills/tiered-audit/SKILL.md`
+`plugins/pensive/skills/tiered-audit/SKILL.md`
 
 What to copy from this skill:
 
@@ -38,7 +38,8 @@ What to copy from this skill:
 2. **Default to the cheapest tier**. The skill says "default
    to Tier 1" and requires explicit approval to escalate. This
    counters the rationalization "I'll do a thorough job by
-   running Tier 3 just in case." See `anti-rationalization.md`.
+   running Tier 3 just in case." See
+   `../../../shared-modules/skill-selection-judgment.md`.
 
 3. **Output contract per tier**. Tier 1 produces a different
    artifact than Tier 3. The skill names both. The reader
@@ -52,7 +53,7 @@ tiers explicitly rather than letting Claude pick.
 
 **Skill**: `Skill(abstract:subagent-testing)`
 **Path**:
-`/home/alext/claude-night-market/plugins/abstract/skills/subagent-testing/SKILL.md`
+`plugins/abstract/skills/subagent-testing/SKILL.md`
 
 This skill exists because `skill-authoring` requires baseline
 tests in fresh subagents. Rather than restating the testing
@@ -72,16 +73,18 @@ What to copy:
    Most of its content is in the `subagent-testing` skill's
    testing-patterns module, loaded only when needed.
 
-3. **Hub Table of Contents**. The hub starts with a TOC. For
-   skills above 100 lines, the TOC pays for itself in
-   navigation. The `skills-eval` rubric penalizes skills above
-   100 lines that lack one (see `evaluation-criteria.md`).
+3. **No Table of Contents**. The hub goes from frontmatter
+   straight to content. An anchor list restates the headings
+   below it and costs tokens on every load, and grep finds the
+   headings directly. `bloat-detector` names this ToC bloat and
+   the `skills-eval` rubric docks it (see
+   `evaluation-criteria.md`).
 
 ## Example 4: an enforcement skill
 
 **Skill**: `Skill(imbue:proof-of-work)`
 **Path**:
-`/home/alext/claude-night-market/plugins/imbue/skills/proof-of-work/SKILL.md`
+`plugins/imbue/skills/proof-of-work/SKILL.md`
 
 This skill enforces evidence before "done." It is referenced
 by `skill-authoring/SKILL.md` as the source of detailed
@@ -95,7 +98,7 @@ What to copy:
    completion claims to refuse. The positive content (what
    counts as evidence) takes less room than the refusals. This
    matches how Claude actually fails. It rarely fails to do
-   work; it fails to verify the work it did.
+   work. It fails to verify the work it did.
 
 2. **Explicit acceptance criteria template**. The skill
    provides a template the user can paste into any
@@ -114,7 +117,7 @@ What to copy:
 
 **Skill**: `Skill(scribe:slop-detector)`
 **Path**:
-`/home/alext/claude-night-market/plugins/scribe/skills/slop-detector/SKILL.md`
+`plugins/scribe/skills/slop-detector/SKILL.md`
 
 What to copy:
 
@@ -135,7 +138,7 @@ What to copy:
 
 **Skill**: `Skill(abstract:skill-graph-audit)`
 **Path**:
-`/home/alext/claude-night-market/plugins/abstract/skills/skill-graph-audit/SKILL.md`
+`plugins/abstract/skills/skill-graph-audit/SKILL.md`
 
 What to copy:
 

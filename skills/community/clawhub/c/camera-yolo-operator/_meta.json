@@ -2,5 +2,14 @@
   "ownerId": "kn75k53tcdhqwka2fra5x817p9821zpb",
   "slug": "camera-yolo-operator",
   "version": "1.3.0",
-  "publishedAt": 1777531989029
+  "publishedAt": 1775240252543,
+  "changelog": [
+    {
+      "version": "1.3.0",
+      "changes": [
+        "Standardize model and output paths: models now live under ~/.cache/huggingface/modules/camera-yolo-operator, outputs under ~/.openclaw/workspace/projects/camera-yolo-operator, and the skill folder stays code-only. 统一模型与输出路径：模型放 modules 缓存，运行结果放 projects，技能文件夹仅保留代码。",
+        "Refresh the bilingual ClawHub Summary and default script paths for cleaner publishing and runtime behavior. 更新双语 ClawHub Summary 与脚本默认路径，提升发布与运行目录规范性。"
+      ]
+    }
+  ]
 }

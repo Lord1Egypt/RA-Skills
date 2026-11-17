@@ -1,50 +1,61 @@
-## Description: <br>
-Humanizer-DE analyzes German text for AI-like writing patterns, scores the likelihood of AI-generated prose, and provides concrete rewriting suggestions or humanized revisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humanizer-DE analyzes German text for AI-writing patterns, vocabulary markers, statistical signals, and human-facing rewrite suggestions, with an optional offline Node.js CLI subset.
 
-## Publisher: <br>
-[tikitackr](https://clawhub.ai/user/tikitackr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tikitackr](https://clawhub.ai/user/tikitackr)
 
-## Use Case: <br>
-Writers, editors, and German-speaking teams use this skill to review German drafts for AI-sounding wording, repetitive structure, and statistical signals, then improve the text with targeted suggestions or rewrites. It also includes an optional local CLI for quick file-based scoring, suggestions, and auto-fix output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill when the user only intended to discuss similar wording. <br>
-Mitigation: Invoke it with explicit German text-review or humanizing requests and confirm the desired mode before relying on the result. <br>
-Risk: Rewrites or auto-fix output can change meaning or add personal-sounding claims that were not in the source text. <br>
-Mitigation: Review rewritten text and any CLI-generated fixed output before publishing, committing, or sharing it. <br>
-Risk: The optional CLI can modify intended file outputs during auto-fix workflows. <br>
-Mitigation: Run the CLI only on intended files and inspect the generated output before replacing the original text. <br>
+## Use Case:
 
+German-speaking writers, editors, and developers use this skill to assess whether German text reads like AI-generated writing and to receive concrete scoring, flagged passages, and revision guidance. It can also rewrite text with baseline or Lesch-style humanization patterns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tikitackr/humanizer-de) <br>
-- [README](artifact/README.md) <br>
-- [KI-Schreibmuster](artifact/references/ki-muster.md) <br>
-- [Deutsche KI-Vokabel-Datenbank](artifact/references/vokabeln.md) <br>
-- [Statistische Signale](artifact/references/statistische-signale.md) <br>
-- [Personality Injection](artifact/references/personality-injection.md) <br>
-- [Humanisierungs-Beispiele](artifact/references/examples.md) <br>
-- [Stil-Layer: Basis](artifact/references/stil-layer/basis.md) <br>
-- [Stil-Layer: Lesch](artifact/references/stil-layer/lesch.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis reports, rewritten German text, replacement suggestions, and optional CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores German text from 0 to 100 and may produce file-based CLI outputs that users should review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The optional CLI fix command writes predictable local backup and fixed-output files that may overwrite user-writable targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI before using fix, run it only in trusted working directories, and prefer score, analyze, and suggest for routine local text review.
+
+Risk: Humanizing rewrites can add personal-sounding details that may change meaning or factual fidelity.
+
+Mitigation: Manually review rewritten text against the original source before publication or submission.
+
+## Reference(s):
+
+- [Humanizer-DE ClawHub page](https://clawhub.ai/tikitackr/skills/humanizer-de)
+- [README](artifact/README.md)
+- [KI-Muster](artifact/references/ki-muster.md)
+- [Vokabeln](artifact/references/vokabeln.md)
+- [Statistische Signale](artifact/references/statistische-signale.md)
+- [Personality Injection](artifact/references/personality-injection.md)
+- [Examples](artifact/references/examples.md)
+- [Basis Stil-Layer](artifact/references/stil-layer/basis.md)
+- [Lesch Stil-Layer](artifact/references/stil-layer/lesch.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports, inline scoring summaries, rewrite suggestions, and optional Node.js CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [German-language analysis and rewriting guidance; offline CLI mode uses local file input and output.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

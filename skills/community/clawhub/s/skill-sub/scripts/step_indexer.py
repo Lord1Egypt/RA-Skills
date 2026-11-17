@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-step_indexer.py - Step Blueprint Indexer v1.29.0
+step_indexer.py - Step Blueprint Indexer v1.32.1
 步骤蓝图索引器：扫描已安装技能，构建步骤级蓝图索引，
 支持搜索、状态查询、增量更新。
+
+v1.32.1 新增：
+  - prepare-llm-input: 输出 SKILL.md 内容供 LLM 提取
+  - apply-blueprint: 接收 LLM 提取的步骤并校验保存
+  - scan --check-fingerprint: 仅输出变更列表，不真正修改
 
 零外部依赖，仅使用 Python 标准库。
 跨平台支持 Windows/Linux/macOS。
@@ -245,6 +250,36 @@ def cmd_scan(args):
     total_skills = 0
     total_steps = 0
 
+    # --check-fingerprint 模式：不修改，只输出变更列表
+    if getattr(args, 'check_fingerprint', False):
+        changed = []
+        unchanged = []
+        for entry in sorted(skills_dir.iterdir()):
+            if not entry.is_dir() or entry.name.startswith("."):
+                continue
+            md = entry / "SKILL.md"
+            if not md.exists():
+                continue
+            name = entry.name
+            if args.skill and name != args.skill:
+                continue
+            total_skills += 1
+            if meta and name in meta.get("skills", {}):
+                cached_md5 = meta["skills"][name].get("md5", "")
+                if cached_md5 == _md5_of_file(md):
+                    unchanged.append({"name": name, "status": "unchanged"})
+                    continue
+            changed.append({"name": name, "status": "changed"})
+
+        result = {
+            "total": total_skills,
+            "changed": changed,
+            "unchanged": unchanged,
+            "message": f"{len(changed)} 个技能指纹变更，{len(unchanged)} 个未变",
+        }
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return 0
+
     for entry in sorted(skills_dir.iterdir()):
         if not entry.is_dir() or entry.name.startswith("."):
             continue
@@ -332,6 +367,31 @@ def cmd_search(args):
     if not meta or not meta.get("skills"):
         print("❌ 步骤索引为空，请先运行 scan")
         return 1
+
+    # v1.32.2: 蓝图过期检测 — 指纹不一致则阻止搜索
+    stale_skills = []
+    if not getattr(args, 'ignore_stale', False):
+        skills_dir = get_skills_dir()
+        for name, info in meta.get("skills", {}).items():
+            if not isinstance(info, dict):
+                continue
+            md = skills_dir / name / "SKILL.md"
+            if not md.exists():
+                continue
+            cached_md5 = info.get("md5", "")
+            if cached_md5 != _md5_of_file(md):
+                stale_skills.append(name)
+
+        if stale_skills:
+            print(f"❌ 蓝皮书过期（{len(stale_skills)} 个技能 SKILL.md 已变更）:")
+            for s in stale_skills:
+                print(f"   - {s}")
+            print()
+            print(f"请先更新蓝皮书再搜索：")
+            print(f"  1. LLM 路径：check-fingerprint → prepare-llm-input → LLM → apply-blueprint")
+            print(f"  2. Regex 兜底：scan [--force]")
+            print(f"  或使用 --ignore-stale 跳过检测强制搜索")
+            return 1
 
     # 全量搜索 vs 指定技能搜索
     search_skills = args.skill.split(",") if args.skill else list(meta["skills"].keys())
@@ -584,8 +644,183 @@ def _save_meta_index(meta):
 
 
 # ============================================================
-# CLI 入口
+# v1.32.1: LLM 提取相关命令
 # ============================================================
+
+def cmd_prepare_llm_input(args):
+    """输出 SKILL.md 内容供 LLM 提取步骤。
+
+    输出格式：JSON {skill_name, version, description, skill_md_content}
+    Agent 读取此输出后送 LLM 做步骤提取。
+    """
+    skills_dir = get_skills_dir()
+    if args.skill:
+        skills = [skills_dir / args.skill]
+    else:
+        # 先查指纹，只输出变更的
+        meta = _load_meta_index()
+        skills = []
+        for entry in sorted(skills_dir.iterdir()):
+            if not entry.is_dir() or entry.name.startswith("."):
+                continue
+            md = entry / "SKILL.md"
+            if not md.exists():
+                continue
+            name = entry.name
+            if meta and name in meta.get("skills", {}):
+                cached_md5 = meta["skills"][name].get("md5", "")
+                if not args.force and cached_md5 == _md5_of_file(md):
+                    continue  # 指纹一致，跳过
+            skills.append(entry)
+
+    if not skills:
+        print('{"skills": [], "message": "所有技能指纹一致，无需更新"}')
+        return 0
+
+    outputs = []
+    for skill_dir in skills:
+        md = skill_dir / "SKILL.md"
+        meta = {}
+        meta_file = skill_dir / "_meta.json"
+        if meta_file.exists():
+            meta = json.load(open(meta_file, encoding="utf-8"))
+        content = md.read_text(encoding="utf-8")
+        outputs.append({
+            "skill_name": skill_dir.name,
+            "version": meta.get("version", ""),
+            "description": content.split("\n")[0] if content else "",
+            "skill_md5": _md5_of_file(md),
+            "skill_md_content": content,
+        })
+
+    result = {
+        "skills": outputs,
+        "total": len(outputs),
+        "message": f"共 {len(outputs)} 个技能需要提取",
+    }
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    return 0
+
+
+def cmd_apply_blueprint(args):
+    """接收 LLM 提取的步骤并校验保存到索引。
+
+    用法：
+      python step_indexer.py apply-blueprint \\
+        --skill "analysis-toolkit" \\
+        --steps-json '[{"step_name":"数据分析","consumes":"原始数据","produces":"分析报告"}]' \\
+        [--self-check-json '{"issues":[],"passed":true}']
+    """
+    from skill_extractor import validate_llm_output
+
+    skill_name = args.skill
+    skill_dir = find_skill_dir(skill_name) if not args.path else Path(args.path)
+    if not skill_dir:
+        print(f"❌ 技能 '{skill_name}' 未找到")
+        return 1
+
+    # 解析 steps-json
+    try:
+        steps_data = json.loads(args.steps_json) if isinstance(args.steps_json, str) else args.steps_json
+    except json.JSONDecodeError as e:
+        print(f"❌ steps-json 解析失败: {e}")
+        return 1
+
+    # 格式校验
+    validation = validate_llm_output(steps_data)
+    if not validation["valid"]:
+        print(f"❌ 格式校验失败（{len(validation['errors'])} 个错误）:")
+        for e in validation["errors"]:
+            print(f"  - {e}")
+        return 1
+
+    # 自检信息（可选）
+    self_check = None
+    if args.self_check_json:
+        try:
+            self_check = json.loads(args.self_check_json)
+        except json.JSONDecodeError:
+            print("⚠️  自检 JSON 解析失败，忽略")
+            self_check = {"issues": [], "passed": True}
+
+    # 读取元信息
+    meta = {}
+    meta_file = skill_dir / "_meta.json"
+    if meta_file.exists():
+        meta = json.load(open(meta_file, encoding="utf-8"))
+
+    md5 = _md5_of_file(skill_dir / "SKILL.md")
+
+    # 构建完整蓝图
+    steps = []
+    for i, s in enumerate(validation["steps"], 1):
+        step_id = f"{skill_name}.{s['step_name'].replace(' ', '-')[:30]}"
+        steps.append({
+            "step_id": step_id,
+            "step_name": s["step_name"],
+            "skill_name": skill_name,
+            "section": f"LLM 提取 - {s['step_name']}",
+            "description": s["action"] or s["step_name"],
+            "call_address": {"instructions": [], "cli": ""},
+            "interface": {
+                "consumes": [{"type": "text", "desc": s["consumes"]}] if s["consumes"] else [],
+                "produces": [{"type": "text", "desc": s["produces"]}] if s["produces"] else [],
+            },
+            "_llm_extracted": True,
+        })
+
+    blueprint = {
+        "skill_name": skill_name,
+        "version": meta.get("version", ""),
+        "description": meta.get("description", ""),
+        "triggers": [],
+        "skill_md5": md5,
+        "scanned_at": datetime.now().isoformat(),
+        "total_steps": len(steps),
+        "usable_steps": len(steps),
+        "steps": steps,
+        "self_check": self_check,
+        "_extraction_method": "llm",
+    }
+
+    # 保存蓝图
+    bp_file = INDEX_DIR / f"{skill_name}.json"
+    with open(bp_file, "w", encoding="utf-8") as f:
+        json.dump(blueprint, f, ensure_ascii=False, indent=2)
+
+    # 更新元索引
+    idx_meta = _load_meta_index()
+    if not idx_meta:
+        idx_meta = {"version": "1.32.1", "built_at": "", "total_skills": 0, "total_steps": 0, "skills": {}}
+    idx_meta["skills"][skill_name] = {
+        "md5": md5,
+        "version": meta.get("version", ""),
+        "steps": len(steps),
+        "usable_steps": len(steps),
+        "built_at": blueprint["scanned_at"],
+        "extraction_method": "llm",
+    }
+    idx_meta["built_at"] = datetime.now().isoformat()
+    idx_meta["total_skills"] = len(idx_meta["skills"])
+    idx_meta["total_steps"] = sum(v["steps"] for v in idx_meta["skills"].values() if isinstance(v, dict))
+    _save_meta_index(idx_meta)
+
+    check_info = ""
+    if self_check:
+        issues = self_check.get("issues", [])
+        if issues:
+            check_info = f" (自检发现 {len(issues)} 个问题)"
+        else:
+            check_info = " (自检通过)"
+
+    print(f"✅ 蓝图已保存: {skill_name}")
+    print(f"  步骤数: {len(steps)}")
+    print(f"  指纹: {md5[:12]}...{check_info}")
+    return 0
+
+
+# CLI 入口：在 subparsers 中添加新命令
+# 修改 main() 中 subparsers 的部分，在 rebuild 后追加
 
 def main():
     # 修复 Windows 控制台编码问题
@@ -595,19 +830,25 @@ def main():
         pass
 
     parser = argparse.ArgumentParser(
-        description="Step Indexer v1.29.0 - 步骤蓝图索引工具",
+        description=("Step Indexer v1.32.1 - 步骤蓝图索引工具 "
+                     "(LLM 优先，regex 兜底)"),
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-示例:
-  python step_indexer.py scan
-  python step_indexer.py scan --skill "triphasic-execution"
-  python step_indexer.py scan --force
-  python step_indexer.py search --intent "代码审查并生成报告"
-  python step_indexer.py search --intent "分析" --skill "skill-standardization"
-  python step_indexer.py info --step "skill-standardization.R-01"
-  python step_indexer.py status
-  python step_indexer.py rebuild
-        """
+        epilog=(
+            "命令优先级（LLM 优先）：\n"
+            "\n"
+            "  # LLM 主路径\n"
+            "  python step_indexer.py scan --check-fingerprint\n"
+            "  python step_indexer.py prepare-llm-input --skill \"name\"\n"
+            "  python step_indexer.py apply-blueprint --skill \"name\" \\\n"
+            "      --steps-json '...'\n"
+            "\n"
+            "  # Regex 兜底\n"
+            "  python step_indexer.py scan [--force]\n"
+            "\n"
+            "示例:\n"
+            "  python step_indexer.py scan\n"
+            "  python step_indexer.py scan --skill \"triphasic-execution\""
+        ),
     )
     subparsers = parser.add_subparsers(dest="command", help="可用命令")
 
@@ -616,6 +857,8 @@ def main():
     p_scan.add_argument("--skill", default="", help="指定技能名称（可选，不指定则扫全部）")
     p_scan.add_argument("--force", action="store_true", help="强制全量扫描（跳过增量缓存）")
     p_scan.add_argument("--verbose", "-v", action="store_true", help="详细输出")
+    p_scan.add_argument("--check-fingerprint", action="store_true",
+                        help="仅输出指纹变更列表（JSON），不真正修改")
 
     # search
     p_search = subparsers.add_parser("search", help="在步骤蓝图中搜索")
@@ -624,6 +867,8 @@ def main():
     p_search.add_argument("--min-score", type=float, default=0.1, help="最低匹配分数（默认0.1）")
     p_search.add_argument("--json", action="store_true", help="JSON 格式输出")
     p_search.add_argument("--limit", type=int, default=20, help="最大结果数（默认20）")
+    p_search.add_argument("--ignore-stale", action="store_true",
+                          help="跳过蓝皮书过期检测，强制搜索")
 
     # info
     p_info = subparsers.add_parser("info", help="查看步骤详情")
@@ -634,6 +879,18 @@ def main():
 
     # rebuild
     subparsers.add_parser("rebuild", help="全量重建步骤索引")
+
+    # prepare-llm-input (v1.32.1)
+    p_prep = subparsers.add_parser("prepare-llm-input", help="输出 SKILL.md 供 LLM 提取步骤")
+    p_prep.add_argument("--skill", default="", help="指定技能名称（可选，不指定则扫全部变更）")
+    p_prep.add_argument("--force", action="store_true", help="强制输出所有技能，忽略指纹")
+
+    # apply-blueprint (v1.32.1)
+    p_apply = subparsers.add_parser("apply-blueprint", help="接收 LLM 提取的步骤并保存到索引")
+    p_apply.add_argument("--skill", required=True, help="技能名称")
+    p_apply.add_argument("--path", default="", help="技能目录路径（可选）")
+    p_apply.add_argument("--steps-json", required=True, help="LLM 提取的步骤 JSON 字符串")
+    p_apply.add_argument("--self-check-json", default="", help="自检结果 JSON（可选）")
 
     args = parser.parse_args()
 
@@ -647,6 +904,8 @@ def main():
         "info": cmd_info,
         "status": cmd_status,
         "rebuild": cmd_rebuild,
+        "prepare-llm-input": cmd_prepare_llm_input,
+        "apply-blueprint": cmd_apply_blueprint,
     }
 
     cmd_func = commands.get(args.command)

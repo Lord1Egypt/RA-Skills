@@ -1,44 +1,60 @@
-## Description: <br>
-Forge creates, reviews, repairs, and validates complete Agent Skill packages through a mandatory six-phase pipeline that outputs finished installable skill files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill architect and builder. Designs, builds, and validates complete Agent Skill packages through a mandatory eight-phase pipeline. Default output is the finished installable package. Not for skill evaluation (use skilllab) or variant proposals (use ocas-mentor).
 
-## Publisher: <br>
-[indigokarasu](https://clawhub.ai/user/indigokarasu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigokarasu](https://clawhub.ai/user/indigokarasu)
 
-## Use Case: <br>
-Developers and agent builders use Forge to design, build, critique, repair, and validate Agent Skill packages. It is intended for complete skill package production rather than one-off plans, skill evaluation, or non-skill artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Forge can create or change skill packages, process intake files, and write run journals. <br>
-Mitigation: Review generated or repaired skill files before enabling them, and restrict who or what can write to the Mentor intake path. <br>
-Risk: Forge registers background jobs, including a daily self-update that may replace installed files from GitHub. <br>
-Mitigation: Review scheduled jobs before installation and disable the daily self-update unless automatic replacement is acceptable. <br>
+## Use Case:
 
+Developers and skill-library maintainers use Forge to design, build, repair, consolidate, and validate Agent Skill packages through a required pipeline. It is used when the desired output is a complete installable skill package, validation report, journal entry, or synchronization guidance.
 
-## Reference(s): <br>
-- [Forge ClawHub release](https://clawhub.ai/indigokarasu/ocas-forge) <br>
-- [Authoring Rules](references/authoring_rules.md) <br>
-- [Package Patterns](references/package_patterns.md) <br>
-- [Examples](references/examples.md) <br>
-- [Journal](references/journal.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown instructions plus complete skill package files and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include installable skill package contents, validation findings, repair changes, journals, and local configuration records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release evidence, skill.json, README changelog) <br>
+Risk: Forge can manage skills, repositories, journals, and OCAS dispatch state, so misuse or incorrect commands can mutate local skill-library state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher and review sync, consolidate, closure, and fix operations before allowing them to run.
+
+Risk: The security scan reports under-disclosed credential-authoring guidance and self-update behavior.
+
+Mitigation: Review or disable self-update cron behavior before use and inspect generated skill reference files for credential access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/indigokarasu/skills/ocas-forge)
+- [SKILL.md](SKILL.md)
+- [README.md](README.md)
+- [Design Pipeline](references/design_pipeline.md)
+- [Authoring Rules](references/authoring_rules.md)
+- [Builder Workflows](references/builder_workflows.md)
+- [Dispatch Pipeline Guide](references/dispatch-pipeline-guide.md)
+- [Schemas](references/schemas.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell command, and configuration snippets; may also produce installable skill-package files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include package files, validation findings, journals, and synchronization instructions.]
+
+## Skill Version(s):
+
+2.3.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-查询灵犀Note销售录音和会议录音列表，并根据列表返回的数据查看录音详情。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+灵犀Note录音文件查询 helps an agent query sales and meeting recording lists and details from the Lingxi API.
 
-## Publisher: <br>
-[liubf1215](https://clawhub.ai/user/liubf1215) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liubf1215](https://clawhub.ai/user/liubf1215)
 
-## Use Case: <br>
-External users or teams with authorized Lingxi Note access use this skill to query sales and meeting recording lists, inspect returned recording details, and configure the API key needed for those requests. It should be used only for recordings the user is authorized to access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a sensitive Lingxi API key. <br>
-Mitigation: Store the key with restrictive permissions, avoid displaying it in terminals or screen shares, and rotate it if exposure is possible. <br>
-Risk: Recording responses may include private transcripts, summaries, analytics, and audio URLs. <br>
-Mitigation: Use only with authorized Lingxi accounts, avoid shared chats for private recording data, and show only the details needed for the request. <br>
-Risk: List queries can retrieve broad recording data by default. <br>
-Mitigation: Review returned items before sharing them and use API-provided recording IDs for detail requests instead of inventing identifiers. <br>
+## Use Case:
 
+External users and agents use this skill to configure a Lingxi API key, query sales or meeting recordings, and inspect returned recording details without inventing IDs or responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liubf1215/lingxiai-note-recording) <br>
-- [配置灵犀API](references/config.md) <br>
-- [录音文件列表查询](references/list.md) <br>
-- [Lingxi API base URL](https://aiapi.szyldata.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API calls] <br>
-**Output Format:** [Markdown responses with optional curl commands and parsed JSON recording data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LYK_API_KEY and may return private transcripts, summaries, analysis fields, and audio URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses a live Lingxi API key that can access recording metadata, audio URLs, transcripts, and analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an API key intended for this access level, keep the OpenClaw config file permission-restricted, redact the key in chat and terminal output, and rotate any exposed key.
+
+Risk: Recording content can include private customer, sales, or meeting information.
+
+Mitigation: Return only the information the user requested, avoid posting full recording contents in shared channels, and confirm authorization before exposing audio URLs or transcript details.
+
+Risk: The artifact includes guidance for viewing configuration that could reveal secrets if followed literally.
+
+Mitigation: Use masked checks for configuration validation and never display the full `LYK_API_KEY` value.
+
+## Reference(s):
+
+- [Recording list and detail query reference](artifact/references/list.md)
+- [Lingxi API configuration reference](artifact/references/config.md)
+- [Lingxi API base URL](https://aiapi.szyldata.com/api)
+- [ClawHub skill page](https://clawhub.ai/liubf1215/skills/lingxiai-note-recording)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API request examples and structured recording data summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API-derived recording metadata, audio URLs, transcripts, summaries, and analysis fields when authorized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

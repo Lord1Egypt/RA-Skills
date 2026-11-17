@@ -1,38 +1,50 @@
-## Description: <br>
-快速草稿 generates structured email, message, weekly report, and meeting-note drafts from a few user-provided points using built-in templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快速草稿 generates structured drafts for emails, messages, weekly reports, and meeting notes from a few user-provided points.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to quickly draft routine business communications such as follow-up emails, thank-you notes, assistance requests, weekly reports, and meeting summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft prompts, parameters, and generated content may be saved locally in quick_drafts.json. <br>
-Mitigation: Avoid highly sensitive personal, legal, medical, or business content unless you know where the local history file is stored and how to delete it. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to turn short bullet points into structured follow-up, thank-you, request, weekly-report, and meeting-note drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-quick-draft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text drafts with optional Python usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated drafts may include subjects, bodies, template metadata, and locally saved draft history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: Generated drafts may contain confidential or personal information and are automatically stored locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive inputs unless history storage has clear opt-in behavior, deletion controls, retention limits, and restrictive file permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-quick-draft)
+- [ClawHub publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Plain text and Markdown draft content, including email subject and body fields when the selected template supports them.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated drafts may be saved to local plaintext draft history.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

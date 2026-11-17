@@ -1,42 +1,54 @@
-## Description: <br>
-计算两个表格之间的 Spearman 相关性，并输出 FDR 校正后的结果。适用于微生物组数据（如 Family 丰度表与环境因子/功能基因表）的相关性分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates Spearman correlations between two tabular datasets and outputs FDR-adjusted results for microbiome-style analyses such as family abundance versus environmental factors or functional gene tables.
 
-## Publisher: <br>
-[zd200572](https://clawhub.ai/user/zd200572) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zd200572](https://clawhub.ai/user/zd200572)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to run Spearman correlation analysis between paired tabular datasets, especially microbiome abundance tables and environmental or functional-gene tables. It supports single-file and batch folder workflows, applies Benjamini-Hochberg FDR correction, and summarizes significant positive and negative associations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-selected tables or folders and creates Excel result files. <br>
-Mitigation: Run it only on intended input paths, use a trusted Python environment, and confirm output locations before batch runs. <br>
-Risk: Batch output may overwrite existing analysis files if paths are reused. <br>
-Mitigation: Choose a dedicated output directory or review filenames before writing results. <br>
-Risk: Small sample sizes or constant feature rows can produce unstable correlations or NaN values. <br>
-Mitigation: Review sample counts and NaN outputs before interpreting significant associations. <br>
+## Use Case:
 
+Developers, data analysts, and microbiome researchers use this skill to compare matched feature tables, run single-file or batch Spearman correlation analysis, apply Benjamini-Hochberg FDR correction, and summarize significant positive and negative associations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zd200572/spearman-correlation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, files, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown summary plus Excel (.xlsx) result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Excel workbooks contain correlation, pvalue, and FDR worksheets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Correlation results may be scientifically unstable for small sample sizes or affected by undefined correlations for constant rows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated summaries and spreadsheets before relying on results, especially when sample counts are small or NaN values appear.
+
+Risk: The workflow reads and analyzes user-specified files or folders.
+
+Mitigation: Point the agent only at directories containing data intended for analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zd200572/skills/spearman-correlation)
+- [Publisher profile](https://clawhub.ai/user/zd200572)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files]
+
+**Output Format:** [Markdown guidance and summaries, with generated Excel (.xlsx) result files when analysis is performed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Excel workbooks contain correlation, pvalue, and FDR sheets; summaries include raw and FDR significance counts plus top positive and negative associations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

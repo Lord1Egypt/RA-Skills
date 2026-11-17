@@ -1,46 +1,59 @@
-## Description: <br>
-Send, read, search, draft, reply to, and manage Gmail messages through the Gmail REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send, read, search, and manage Gmail emails via the Gmail REST API.
 
-## Publisher: <br>
-[cehd5170](https://clawhub.ai/user/cehd5170) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cehd5170](https://clawhub.ai/user/cehd5170)
 
-## Use Case: <br>
-Users and developers use this skill to let an agent work with Gmail messages, drafts, replies, searches, labels, and read state through OAuth-authenticated Gmail API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad Gmail read, send, and mailbox-change capability. <br>
-Mitigation: Install only when that access is acceptable, use the narrowest OAuth scopes possible, and revoke tokens when finished. <br>
-Risk: The skill lacks clear confirmation safeguards for email sending, message body changes, attachments, external research sources, labels, and read-state changes. <br>
-Mitigation: Require the agent to confirm exact recipients, message body, attachments, external research sources, and label or read-state changes before acting. <br>
-Risk: Long-lived refresh tokens can preserve Gmail access beyond a single session. <br>
-Mitigation: Avoid refresh tokens unless needed and store any client secrets or refresh tokens outside shared prompts or logs. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent send, read, search, reply to, draft, and label Gmail messages through the Gmail REST API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cehd5170/gmail-checker) <br>
-- [Google Cloud OAuth credentials](https://console.cloud.google.com/apis/credentials) <br>
-- [Gmail API enablement](https://console.cloud.google.com/apis/library/gmail.googleapis.com) <br>
-- [Gmail API send endpoint](https://gmail.googleapis.com/gmail/v1/users/me/messages/send) <br>
-- [OAuth token endpoint](https://oauth2.googleapis.com/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash, JSON, and YAML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, GMAIL_ACCESS_TOKEN, Gmail API network access, and OAuth scopes for send, readonly, or modify operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can send, read, and modify Gmail messages using powerful Gmail credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest OAuth scopes practical for the task and require manual confirmation before sending, replying, changing labels, marking messages, or performing bulk mailbox actions.
+
+Risk: Long-lived refresh tokens and access tokens can expose mailbox access if included in prompts, logs, or shared artifacts.
+
+Mitigation: Store credentials only in environment variables or a secrets manager, keep them out of prompts and logs, and avoid long-lived refresh tokens unless necessary.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cehd5170/skills/gmail-checker)
+- [Publisher Profile](https://clawhub.ai/user/cehd5170)
+- [Google Cloud OAuth Credentials](https://console.cloud.google.com/apis/credentials)
+- [Gmail API](https://console.cloud.google.com/apis/library/gmail.googleapis.com)
+- [Gmail Send Scope](https://www.googleapis.com/auth/gmail.send)
+- [Gmail Readonly Scope](https://www.googleapis.com/auth/gmail.readonly)
+- [Gmail Modify Scope](https://www.googleapis.com/auth/gmail.modify)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, YAML, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Gmail OAuth bearer tokens and requires curl, jq, and GMAIL_ACCESS_TOKEN.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

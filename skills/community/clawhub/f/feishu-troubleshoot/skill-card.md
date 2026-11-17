@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents guide users through OpenClaw and Feishu connection troubleshooting, including bot setup, event subscription, application publishing, and required permission scopes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through Feishu permission, bot capability, event subscription, and long-connection settings so OpenClaw can receive and reply to messages.
 
-## Publisher: <br>
-[TinaDu-AI](https://clawhub.ai/user/TinaDu-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tinadu-ai](https://clawhub.ai/user/tinadu-ai)
 
-## Use Case: <br>
-Developers and workspace administrators use this skill when configuring or troubleshooting an OpenClaw bot integration with Feishu. It provides concise setup guidance and permission JSON for bot messaging, long-connection event handling, calendar access, and task access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs users to grant broad Feishu workspace permissions for messaging, calendar, task, and contact access. <br>
-Mitigation: Have a Feishu administrator review each scope, import only the permissions needed for the deployment, and test first in a limited app or workspace. <br>
-Risk: Message-event and long-connection setup may expose operational messages or logs through the OpenClaw gateway. <br>
-Mitigation: Confirm how the gateway handles message events and logs before enabling event subscriptions in a production workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TinaDu-AI/feishu-troubleshoot) <br>
-- [飞书开放平台](https://open.feishu.cn/app) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+## Use Case:
 
+Developers and operators configuring OpenClaw with Feishu use this skill to troubleshoot bot replies, permission imports, calendar and task access, event subscriptions, and app publishing.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, JSON] <br>
-**Output Format:** [Markdown with JSON permission examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only troubleshooting guidance; users should review permission scopes before applying them.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad Feishu chat, calendar, task-writing, and employee-ID scopes may grant more access than a deployment needs.
+
+Mitigation: Review each scope before import, grant only the message, calendar, task, and employee-ID permissions the integration requires, prefer read-only scopes where possible, and revoke unused write or directory access from published apps.
+
+Risk: Permission JSON snippets may be pasted into production apps without environment-specific review.
+
+Mitigation: Validate the scopes and bot event behavior in a limited Feishu app before publishing changes broadly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tinadu-ai/skills/feishu-troubleshoot)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON permission snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only troubleshooting guidance; no code execution is required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact skill.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

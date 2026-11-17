@@ -1,48 +1,64 @@
-## Description: <br>
-Use APIDot for Wan 2.5 API workflows, including Alibaba Wan 2.5, text-to-video API, image-to-video API, optional audio text planning, short video generation, 480p 720p 1080p planning, async task submission, task_id handling, polling, task status, webhook integration, and APIDot docs routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for Wan 2.5 API workflows, including Alibaba Wan 2.5, text-to-video API, image-to-video API, optional audio text planning, short video generation, 480p 720p 1080p planning, async task submission, task_id handling, polling, task status, webhook integration, and APIDot docs routing.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and agents use this documentation-only skill to plan APIDot Wan 2.5 text-to-video and image-to-video integrations, including model routing, async task handling, polling, webhooks, and secure API-key handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys, prompts, source media URLs, callback URLs, and generated video URLs may be sensitive. <br>
-Mitigation: Keep APIDOT_API_KEY in server-side secrets, avoid logging sensitive request data or generated URLs, and make live APIDot calls only from an intended server-side environment. <br>
-Risk: Model request fields, availability, limits, and commercial terms may change outside the artifact. <br>
-Mitigation: Use the current APIDot docs and model pages before preparing payloads or making product claims. <br>
-Risk: Webhook retries or duplicate deliveries may create duplicate visible results if handlers are not idempotent. <br>
-Mitigation: Persist task IDs and statuses together and treat webhook handlers as idempotent. <br>
+## Use Case:
 
+Developers and agents use this skill to route Wan 2.5 API integration questions to APIDot documentation, model pages, async task guidance, polling, webhook, and API key handling notes.
 
-## Reference(s): <br>
-- [APIDot Wan 2.5 Reference](references/api.md) <br>
-- [APIDot Docs](https://apidot.ai/docs) <br>
-- [APIDot Wan 2.5 Model Page](https://apidot.ai/models/wan-2-5) <br>
-- [APIDot Wan 2.5 Docs](https://apidot.ai/docs/wan-2-5) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with API integration notes and code-planning recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable files, hidden automation, network calls, or stored credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: APIDot API keys or private media details could be exposed if copied into client-side code, logs, repositories, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY in server-side secrets or environment variables and avoid logging API keys, private prompts, private media URLs, generated video URLs, or callback URLs.
+
+Risk: Model fields, limits, pricing, and availability may change outside this documentation-only skill.
+
+Mitigation: Use the live APIDot documentation and model page for current request fields, commercial terms, and product details before making real API calls.
+
+Risk: Live APIDot calls may create external tasks or process user media when intentionally invoked.
+
+Mitigation: Only make live API calls after explicit user approval and with a safe server-side environment; persist task_id, status, media references, and final URLs together.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiehao71727/skills/apidot-wan-2-5-api)
+- [APIDot documentation](https://apidot.ai/docs)
+- [APIDot Wan 2.5 model page](https://apidot.ai/models/wan-2-5)
+- [APIDot Wan 2.5 API docs](https://apidot.ai/docs/wan-2-5)
+- [APIDot quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot examples](https://github.com/APIDotAI/apidot-examples)
+- [APIDot Wan 2.5 Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions, API Calls]
+
+**Output Format:** [Markdown guidance with links, integration notes, and API workflow recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no executable files, bundled clients, stored credentials, or automatic network calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

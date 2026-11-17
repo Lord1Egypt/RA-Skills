@@ -1,40 +1,48 @@
-## Description: <br>
-Provides multi-step browser automation patterns with tab management, login checks, stale reference recovery, and session handling for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation patterns for OpenClaw: multi-step flows, login checks, tab management, stale ref recovery.
 
-## Publisher: <br>
-[aaronmda](https://clawhub.ai/user/aaronmda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aaronmda](https://clawhub.ai/user/aaronmda)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to run multi-step OpenClaw browser flows with clearer tab management, login-state checks, stale reference recovery, and blocker reporting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Using an existing browser profile can interact with sites where the user is already signed in.
+
+Mitigation: Review browser actions before allowing sensitive account changes, and stop for login, 2FA, captcha, permissions, or other manual blockers.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide browser automation beyond a single page check, including tab reuse, login-state checks, action targeting, stale reference recovery, and manual blocker reporting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration, json]
 
-## Known Risks and Mitigations: <br>
-Risk: An agent operating in an existing logged-in browser session could perform sensitive actions such as purchases, account changes, form submissions, admin work, or public posting. <br>
-Mitigation: Supervise sensitive browser actions and require user confirmation or manual completion for purchases, account changes, form submissions, admin work, public posting, login, CAPTCHA, 2FA, and permission prompts. <br>
-Risk: Stale browser references or duplicated tabs can lead the agent to act on the wrong page or control. <br>
-Mitigation: Use stable tab labels, list and reuse existing tabs, take a fresh snapshot before each action, and retry stale references once with a current ref before reporting a blocker. <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON browser tool examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaronmda/openclaw-browser-flows) <br>
+**Other Properties Related to Output:** [Guidance covers browser state checks, stable tab handles, snapshot-before-action workflows, stale reference recovery, existing user browser sessions, and Google Meet flows.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only browser automation guidance; no files or code are generated directly.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

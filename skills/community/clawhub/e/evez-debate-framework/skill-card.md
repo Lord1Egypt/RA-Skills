@@ -1,40 +1,52 @@
-## Description: <br>
-Framework where multiple AI agents debate to reach better conclusions through adversarial reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Framework where multiple AI agents debate to reach better conclusions through adversarial reasoning, including debate orchestration, judge evaluation, argument scoring, and convergence detection.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[evezart](https://clawhub.ai/user/evezart)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent builders use this skill to structure multi-agent debate, red-team model outputs, compare opposing positions, and synthesize consensus or unresolved issues.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The broad trigger description may select this skill for general output-quality tasks where a structured debate is unnecessary.
+
+Mitigation: Use it when adversarial reasoning, consensus-seeking, red-teaming, or explicit judge evaluation is needed.
+
+Risk: Debate scores and confidence values may be mistaken for factual validation.
+
+Mitigation: Review conclusions against source evidence or domain expertise before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent builders use this skill to structure multi-agent debates for consensus-seeking workflows, red-team opposition, and LLM output improvement. It supports configurable debate rounds, agent stances, judge criteria, argument scoring, and convergence checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, code, configuration, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Debate topics, prompts, and transcripts may contain sensitive information if adapted to call external LLM providers. <br>
-Mitigation: Review where prompts and transcripts are sent, and avoid placing sensitive information in debate topics or agent arguments. <br>
-Risk: Debate outputs and heuristic scores may be incorrect, incomplete, or misleading. <br>
-Mitigation: Review debate results before using them for decisions, and treat judge scores as advisory rather than authoritative. <br>
+**Output Format:** [Markdown guidance, Python snippets, and JSON-compatible debate results]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/evez-debate-framework) <br>
+**Other Properties Related to Output:** [Debate transcripts can be exported as JSON by the bundled helper.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce debate configuration guidance, role definitions, scoring criteria, and local Python framework usage examples.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

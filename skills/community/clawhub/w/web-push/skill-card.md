@@ -1,41 +1,57 @@
-## Description: <br>
-Send Web Push notifications from a Node.js backend using the web-push npm library with VAPID authentication and payload encryption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send Web Push notifications from a Node.js backend using the web-push npm library, including VAPID authentication, payload encryption, browser subscriptions, CLI usage, compatibility notes, and common pitfalls.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers use this skill to configure browser Push API subscriptions, manage VAPID keys, and send encrypted Web Push notifications from Node.js services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: VAPID private keys, GCM API keys, push endpoints, and subscription auth values are sensitive credentials. <br>
-Mitigation: Store credentials in environment variables or a secrets manager, avoid committing real values, and rotate any credential exposed in prompts or logs. <br>
-Risk: Notification sends can contact third-party browser push services and reach real end users. <br>
-Mitigation: Use test subscriptions before production sends, validate recipients and payloads, and limit access to production subscription data. <br>
+## Use Case:
 
+Developers use this skill to add browser push notifications to Node.js backends with the web-push package. It helps with VAPID key setup, browser subscription handling, notification sends, CLI usage, browser compatibility, and troubleshooting.
 
-## Reference(s): <br>
-- [web-push Complete API Reference](references/webpush.md) <br>
-- [ClawHub Web Push Notifications release](https://clawhub.ai/openlark/web-push) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with JavaScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes examples using VAPID keys, PushSubscription JSON, and environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: VAPID private keys, GCM keys, and push subscription endpoint or key material can be exposed if copied into commands, logs, or shared examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a secrets manager, avoid pasting real secrets into command-line arguments, and redact credential values before sharing outputs.
+
+Risk: Stored browser push subscriptions may reveal user-linked endpoint data and should be treated as sensitive backend data.
+
+Mitigation: Disclose push subscription storage to users, restrict backend access, and apply normal data protection controls for subscription records.
+
+Risk: Installing the web-push CLI globally or without version pinning can introduce npm supply-chain drift.
+
+Mitigation: Prefer a pinned local project dependency and review package provenance during normal npm dependency management.
+
+## Reference(s):
+
+- [web-push Complete API Reference](artifact/references/webpush.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes placeholder credentials and configuration examples; real push credentials and subscription data should be protected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

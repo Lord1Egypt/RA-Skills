@@ -1,40 +1,57 @@
-## Description: <br>
-Agent Andri periodically reports its idle status by appending a timestamped message to a designated meeting-room file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Andri periodically sends its status report to the meeting-room by appending a message to a designated local file.
 
-## Publisher: <br>
-[alibabacloudservice19-collab](https://clawhub.ai/user/alibabacloudservice19-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alibabacloudservice19-collab](https://clawhub.ai/user/alibabacloudservice19-collab)
 
-## Use Case: <br>
-Agents or operators use Agent Andri as a worker-style status reporter that appends an idle status line to a shared meeting-room file every 30 seconds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reporter writes continuously to a shared meeting-room file and can run indefinitely. <br>
-Mitigation: Run it only while status reporting is needed, monitor the shared file, and stop the script when reporting should end. <br>
-Risk: Providing NV_API_KEY could expose a secret to a skill version that does not use it. <br>
-Mitigation: Do not provide NV_API_KEY for this version unless a future release documents a concrete need for it. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run Andri as a worker agent that reports idle status into a shared meeting-room coordination file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alibabacloudservice19-collab/agent-andri) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text status lines appended to a local file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends one timestamped idle status every 30 seconds until the script is stopped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The script writes visible status messages into a local meeting-room coordination file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a workspace where this coordination file is expected and appropriate.
+
+Risk: The status loop runs continuously until externally stopped.
+
+Mitigation: Run it under supervision or with external lifecycle controls.
+
+Risk: The skill documents NV_API_KEY even though the current script does not use it.
+
+Mitigation: Avoid providing NV_API_KEY unless a future version requires it and handles it as a secret.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alibabacloudservice19-collab/skills/agent-andri)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text status messages appended by a shell script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a timestamped idle-status line every 30 seconds to the configured meeting-room file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

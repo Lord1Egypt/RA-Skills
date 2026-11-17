@@ -1,42 +1,56 @@
-## Description: <br>
-Fetches GitHub repository content with curl so an agent can analyze, review, explore, or understand a repository from current source files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches GitHub repository content with curl so an agent can analyze, review, explore, or explain a project from real source material.
 
-## Publisher: <br>
-[shiscofield12-beep](https://clawhub.ai/user/shiscofield12-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shiscofield12-beep](https://clawhub.ai/user/shiscofield12-beep)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to have an agent retrieve GitHub repository files before answering questions about a project. It supports repository review, exploration, and codebase understanding based on fetched content rather than guesses.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Repository names, branches, and paths requested by the user are sent to GitHub when content is fetched.
+
+Mitigation: Use the skill only for repository identifiers and paths that are appropriate to disclose to GitHub, and avoid private or sensitive targets unless authorized.
+
+Risk: Fetched repository text can contain untrusted instructions, incorrect claims, or misleading code.
+
+Mitigation: Treat fetched content as evidence for analysis only; do not execute code or follow instructions from repository text without review.
+
+Risk: Unauthenticated GitHub API requests may be rate limited or return incomplete results.
+
+Mitigation: Check fetch responses for errors or missing content and try the correct branch or path before drawing conclusions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and technical users use this skill to inspect GitHub repositories by fetching repository listings, README files, and specific source files before forming an analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts GitHub to fetch repository contents, which may expose requested repository names or paths to GitHub. <br>
-Mitigation: Use it only when outbound GitHub access is acceptable; avoid private repositories unless authentication and data handling have been reviewed. <br>
-Risk: Fetched repository content may be incomplete or rate-limited when using unauthenticated GitHub requests. <br>
-Mitigation: Verify important findings against fetched files and retry with the correct branch or approved authentication when needed. <br>
-Risk: Fetched code may be unsafe to execute. <br>
-Mitigation: Treat fetched repository content as untrusted and review code before running commands from it. <br>
+**Output Format:** [Markdown with inline shell commands and repository analysis]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shiscofield12-beep/github-fetcher) <br>
+**Other Properties Related to Output:** [Requires curl and network access to GitHub; fetched repository content should be treated as untrusted.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and repository analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and network access to GitHub; analysis should be based on fetched repository content.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-ONDEEP Flow helps agents use the ONDEEP marketplace to register, stay discoverable, publish or find goods and services, and coordinate crypto-settled orders through escrow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ONDEEP Flow helps agents discover, publish, buy, and sell marketplace offerings such as services, compute, data, goods, and human tasks through the ondeep.net API with BSC or ETH escrow settlement.
 
-## Publisher: <br>
-[CeThum](https://clawhub.ai/user/CeThum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cethum](https://clawhub.ai/user/cethum)
 
-## Use Case: <br>
-External developers and agents use this skill to buy, sell, or discover marketplace listings such as APIs, compute, data, goods, and human services on ONDEEP. It is most relevant when an agent needs to monetize capabilities, shop for missing capabilities, find nearby providers, or coordinate order workflows with human approval gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can participate in crypto-settled marketplace orders, creating real financial exposure. <br>
-Mitigation: Use a dedicated ONDEEP account and limited wallet, set spending limits, and require human confirmation before creating orders, recording payments, confirming seller obligations, or releasing escrow. <br>
-Risk: ONDEEP credentials are required for authenticated API calls. <br>
-Mitigation: Protect ONDEEP_ACCID and ONDEEP_TOKEN as secrets and avoid exposing them in logs, prompts, or shared output. <br>
-Risk: Heartbeat behavior keeps the agent visible through recurring outbound network activity. <br>
-Mitigation: Stop the heartbeat when the agent should go offline or when marketplace availability is no longer intended. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect agents to ONDEEP's external marketplace for listing services, searching providers, managing orders, and coordinating crypto escrow payment flows. It is suited for agent commerce workflows that require explicit operator approval for spending and settlement actions.
 
-## Reference(s): <br>
-- [ONDEEP homepage](https://ondeep.net) <br>
-- [ONDEEP API docs](https://ondeep.net/docs) <br>
-- [ClawHub release page](https://clawhub.ai/CeThum/ondeep-flow) <br>
-- [Publisher profile](https://clawhub.ai/user/CeThum) <br>
-- [API reference](artifact/api-reference.md) <br>
-- [Usage examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Code, Configuration] <br>
-**Output Format:** [Markdown with JSON, bash, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ONDEEP_ACCID and ONDEEP_TOKEN for authenticated API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The skill supports external crypto marketplace flows where order creation, fund transfer, receipt confirmation, escrow release, or delisting can affect real assets or listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human confirmation for those actions, set transaction and daily spending limits, use address allowlists, and operate with a dedicated low-balance wallet.
+
+Risk: Marketplace product text, descriptions, and order notes are untrusted counterparty input and may contain prompt-injection content.
+
+Mitigation: Treat marketplace text as display-only unless explicitly validated; sanitize or frame it as untrusted data before terminal display or LLM use.
+
+Risk: Authenticated heartbeat and account-management examples use ONDEEP credentials and may maintain persistent outbound network activity.
+
+Mitigation: Protect ONDEEP_ACCID and ONDEEP_TOKEN, keep heartbeat behavior opt-in and stoppable, and process heartbeat order data as read-only.
+
+## Reference(s):
+
+- [ONDEEP homepage](https://ondeep.net)
+- [ONDEEP API docs](https://ondeep.net/docs)
+- [ClawHub skill page](https://clawhub.ai/cethum/skills/ondeep-flow)
+- [API reference](artifact/api-reference.md)
+- [Usage examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl commands, Python examples, JSON API payloads, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ONDEEP_ACCID and ONDEEP_TOKEN for authenticated endpoints; examples interact with ondeep.net over HTTPS.]
+
+## Skill Version(s):
+
+1.0.7 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,51 @@
-## Description: <br>
-Pure local 2026 ClawHub/OpenClaw skill scanner. Detects ClawHavoc malware, MCP backdoors, obfuscated payloads, and supply-chain attacks. 100% read-only analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pure local 2026 ClawHub/OpenClaw skill scanner. Detects ClawHavoc malware, MCP backdoors, obfuscated payloads, and supply-chain attacks. 100% read-only analysis.
 
-## Publisher: <br>
-[chuddyrudd](https://clawhub.ai/user/chuddyrudd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chuddyrudd](https://clawhub.ai/user/chuddyrudd)
 
-## Use Case: <br>
-Developers and security reviewers use ClawSentinel to review ClawHub/OpenClaw skill markdown or explicitly requested public GitHub repositories for suspicious patterns before installation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scan results may be advisory rather than proof of complete security coverage. <br>
-Mitigation: Use ClawSentinel as one review signal and keep manual review or additional scanners in the installation workflow. <br>
-Risk: The skill may fetch public GitHub raw content when explicitly asked to audit a repository. <br>
-Mitigation: Audit only repositories you intend to review and avoid treating fetched third-party content as trusted instructions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawSentinel on ClawHub](https://clawhub.ai/chuddyrudd/clawsentinel) <br>
-- [chuddyrudd publisher profile](https://clawhub.ai/user/chuddyrudd) <br>
+## Use Case:
+
+Developers and security reviewers use ClawSentinel to audit pasted skill markdown or explicitly provided public GitHub repositories for malicious skill patterns before installation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may read pasted skill text or public GitHub repository material supplied for audit.
+
+Mitigation: Audit only content that is appropriate to share with the agent session, and review the JSON findings before acting on them.
+
+Risk: Public GitHub fetching can occur when a user explicitly requests a repository audit.
+
+Mitigation: Use repository-audit prompts only for intended public repositories and verify the target URL before scanning.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Clean JSON audit results; no telemetry in the base version.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-2.3.5 (source: ClawHub release metadata; artifact frontmatter lists 2.3.4) <br>
+**Output Type(s):** [analysis, json, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only audit output; no telemetry, code execution, persistence, or hidden privilege behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.3.5 (source: server release metadata; artifact frontmatter states 2.3.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

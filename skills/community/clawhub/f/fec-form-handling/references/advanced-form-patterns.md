@@ -1,33 +1,33 @@
-# 高级表单模式
+# Advanced form mode
 
-## 先判断是否需要表单库
+## First determine whether a form library is needed
 
-- 1-3 个字段、无复杂校验、无动态字段、无组件库适配压力的表单，可用框架原生状态、浏览器约束校验和轻量提交状态。
-- 需要动态字段、跨字段校验、多步流程、文件上传、异步校验、服务端错误回填或明显输入卡顿时，再引入专门表单方案。
-- 表单库只管理字段状态和校验流程，不替代 API 错误映射、权限判断、可访问性标注或服务端最终校验。
+- A form with 1-3 fields, no complex validation, no dynamic fields, and no component library adaptation pressure. The native state of the framework, browser constraint verification, and lightweight submission state are available.
+- When dynamic fields, cross-field verification, multi-step processes, file uploads, asynchronous verification, server-side error backfilling or obvious input lag are required, a special form solution will be introduced.
+- The form library only manages field status and verification process, and does not replace API error mapping, permission judgment, accessibility annotation or server-side final verification.
 
-## 选型参考
+## Selection reference
 
-先沿用项目已有表单库、schema 库和组件库适配方式；新增依赖时再按场景选择。
+First, use the existing form library, schema library and component library adaptation method of the project; when adding new dependencies, select them according to the scenario.
 
-| 场景 | 候选方案 | 注意点 |
+| Scenarios | Alternative solutions | Notes |
 | --- | --- | --- |
-| React 复杂表单 | React Hook Form + Zod | 非受控优先，第三方受控组件用 `Controller`。 |
-| Vue 复杂表单 | vee-validate / FormKit + Zod、Yup 或 Valibot | 不要为 Vue 项目引入 React-only 表单 API；优先沿用项目既有 Vue 表单库。 |
-| 简单表单 | 框架原生状态 + 基础校验 | 避免为了 1-3 个字段引入重型表单体系。 |
-| 多步表单 | 分步 schema + 最终提交 schema | 明确跨步数据保存、返回上一步和最终校验策略。 |
-| 文件上传 | 表单库字段状态 + `FormData` | 校验文件数量、大小、类型；不要把 `File` JSON 序列化。 |
-| 异步校验 | 提交边界校验或 debounce 字段校验 | 避免每次键入请求；处理竞态和旧响应覆盖。 |
+| React complex form | React Hook Form + Zod | Uncontrolled first, use `Controller` for third-party controlled components. |
+| Vue complex forms | vee-validate / FormKit + Zod, Yup or Valibot | Do not introduce React-only form API into Vue projects; give priority to using the existing Vue form library of the project. |
+| Simple form | Framework native state + basic validation | Avoid introducing heavy form system for 1-3 fields. |
+| Multi-step form | Step-by-step schema + final submission schema | Clear step-by-step data saving, return to the previous step and final verification strategies. |
+| File upload | Form library field status + `FormData` | Verify file quantity, size, type; do not serialize `File` JSON. |
+| Asynchronous validation | Submit bounds validation or debounce field validation | Avoid each type request; handle race conditions and old response overwrites. |
 
-## 通用实现原则
+## General implementation principles
 
-- 运行时 schema 或校验函数负责外部输入边界；TypeScript 类型不能替代运行时校验。
-- 默认值、reset 数据和服务端回填数据要形状一致，避免字段在受控/非受控之间切换。
-- 字段错误要能映射到具体字段；全局错误用于提交失败、权限或服务不可用等非字段问题。
-- 组件库适配层要透传 value、onChange、onBlur、name/ref 或等价字段注册能力。
-- 提交时保护 loading、重复提交、取消/过期请求、服务端错误回填和成功后 reset。
-- 文件上传使用 `FormData` 或直传流程，前端校验只做体验保护，服务端仍需最终校验。
-- 性能优化优先使用字段级订阅、局部组件拆分和延迟校验，不要全表单 watch 后驱动整页重渲染。
+- The runtime schema or validation function is responsible for external input bounds; TypeScript types are not a substitute for runtime validation.
+- The default value, reset data and server-side backfill data must have the same shape to avoid fields switching between controlled/uncontrolled.
+- Field errors must be mapped to specific fields; global errors are used for non-field problems such as submission failure, permissions or service unavailability.
+- The component library adaptation layer must transparently transmit value, onChange, onBlur, name/ref or equivalent field registration capabilities.
+- Protect loading, duplicate submissions, cancellation/expiration requests, server-side error backfill and reset after success when submitting.
+- File upload uses `FormData` or direct transfer process. Front-end verification is only for experience protection, and the server still needs final verification.
+- Performance optimization prioritizes the use of field-level subscriptions, partial component splitting, and delayed verification. Do not watch the entire form and then drive the entire page to re-render.
 
 ## React Hook Form Controller
 
@@ -35,7 +35,7 @@
 <Controller
   name="role"
   control={control}
-  rules={{ required: "请选择角色" }}
+  rules={{ required: "Please select a role" }}
   render={({ field, fieldState }) => (
     <>
       <Select {...field} options={roleOptions} />
@@ -45,9 +45,9 @@
 />
 ```
 
-用于不暴露原生 `ref` 的 Select、DatePicker、RichEditor 等组件。
+Used for components such as Select, DatePicker, RichEditor, etc. that do not expose native `ref`.
 
-## React Hook Form 动态字段
+## React Hook Form dynamic fields
 
 ```tsx
 const { fields, append, remove } = useFieldArray({
@@ -58,14 +58,14 @@ const { fields, append, remove } = useFieldArray({
 {fields.map((field, index) => (
   <div key={field.id}>
     <input {...register(`contacts.${index}.name`)} />
-    <button type="button" onClick={() => remove(index)}>删除</button>
+    <button type="button" onClick={() => remove(index)}>Delete</button>
   </div>
 ))}
 ```
 
-`key` 必须使用 `field.id`，不要使用数组 index。
+`key` must use `field.id`, do not use array index.
 
-## Zod 联动校验
+## Zod linkage verification
 
 ```ts
 const schema = z
@@ -74,28 +74,28 @@ const schema = z
     confirmPassword: z.string().min(8),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "两次密码不一致",
+    message: "The two passwords are inconsistent",
     path: ["confirmPassword"],
   });
 ```
 
-## Zod 文件上传校验
+## Zod file upload verification
 
 ```ts
 const schema = z.object({
   avatar: z
     .instanceof(FileList)
-    .refine((files) => files.length > 0, "请上传头像")
-    .refine((files) => files[0]?.size <= 5 * 1024 * 1024, "文件大小不超过 5MB")
-    .refine((files) => ["image/jpeg", "image/png"].includes(files[0]?.type), "仅支持 JPG/PNG"),
+    .refine((files) => files.length > 0, "Please upload an avatar")
+    .refine((files) => files[0]?.size <= 5 * 1024 * 1024, "The file size does not exceed 5MB")
+    .refine((files) => ["image/jpeg", "image/png"].includes(files[0]?.type), "Only JPG/PNG is supported"),
 });
 ```
 
-提交时用 `FormData`，不要把 `File` JSON 序列化。
+Use `FormData` when submitting, do not serialize `File` JSON.
 
-## 性能
+## Performance
 
-- 用 `useWatch` 或字段级订阅替代全表单 watch。
-- 大表单拆成 memoized 子组件或框架等价的局部更新单元。
-- 高频输入不要每次键入触发网络校验。
-- 多步表单要明确每步 schema 和跨步最终 schema。
+- Replace full form watch with `useWatch` or field level subscription.
+- Split large forms into memoized sub-components or framework-equivalent local update units.
+- For high-frequency input, do not trigger network verification every time you type.
+- For multi-step forms, the schema of each step and the final schema of the step must be clear.

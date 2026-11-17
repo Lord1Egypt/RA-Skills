@@ -1,39 +1,55 @@
-## Description: <br>
-Create, edit, and package AgentSkills with a structured authoring workflow for English and Chinese requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, and package new AgentSkills for English and Chinese skill-authoring requests.
 
-## Publisher: <br>
-[eddieguan801-oss](https://clawhub.ai/user/eddieguan801-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eddieguan801-oss](https://clawhub.ai/user/eddieguan801-oss)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create, refine, validate, and package modular AgentSkills with consistent structure, naming, and reusable resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to create or package files in local OpenClaw skill directories and may use local helper scripts. <br>
-Mitigation: Review generated or modified skill files before deployment, and inspect any helper scripts that are outside this package or installed in privileged locations. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create, edit, structure, validate, and package modular AgentSkills.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/eddieguan801-oss/codex-skill-authoring) <br>
-- [Skill Design Patterns](references/design-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command examples and optional local file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to create, edit, validate, or package files in local skill directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Skill authoring can create or modify persistent files in the OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated skill files before packaging or installing them.
+
+Risk: The bundled listing utility can read installed skills' SKILL.md metadata and print names, descriptions, and paths when invoked.
+
+Mitigation: Run the utility only in workspaces where listing installed skill metadata and paths is acceptable.
+
+## Reference(s):
+
+- [Skill Design Patterns](references/design-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/eddieguan801-oss/skills/codex-skill-authoring)
+- [Publisher Profile](https://clawhub.ai/user/eddieguan801-oss)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent workspace files for skill source, references, scripts, and packaged skill archives.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

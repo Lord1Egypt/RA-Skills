@@ -1,40 +1,61 @@
-## Description: <br>
-Extract, summarize, and synthesize WeChat public account articles into structured knowledge cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract, summarize, and synthesize WeChat public account articles into structured knowledge cards.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers, analysts, and readers use this skill to turn public WeChat articles into concise summaries, structured knowledge cards, Markdown notes, or cross-article synthesis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands in maintainer workflows could affect the wrong repository, account, or deployment. <br>
-Mitigation: Confirm the target before running moderation, migration, email, or autoreview commands and use documented dry-run, backup, confirmation, and opt-out controls. <br>
-Risk: Article summaries and extracted quotes may over-retain source material or misrepresent the source article. <br>
-Mitigation: Use the skill for summaries and extracts rather than full-text republication, review generated notes before sharing, and skip paywalled content. <br>
+## Use Case:
 
+External users and developers use this skill to turn public WeChat account articles, URL lists, shared text, or archived HTML into concise summaries, structured knowledge cards, and cross-article syntheses.
 
-## Reference(s): <br>
-- [Output Formats Reference](references/formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown, plain text, and JSON knowledge-card structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print structured notes to stdout or write batch outputs to files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may access URL-list files and output folders chosen by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only to the specific input files and destination folders needed for the digest task.
+
+Risk: Providing private articles, cookies, or account credentials could expose sensitive content or account access.
+
+Mitigation: Use public articles only and do not provide cookies, credentials, or private article material unless a future version documents why they are needed and how they are protected.
+
+Risk: Article summaries and extracted facts may omit context or include extraction errors.
+
+Mitigation: Review generated summaries, key data, and quotes against the source article before relying on them for decisions or publication.
+
+Risk: Republishing long excerpts from copyrighted articles may create rights concerns.
+
+Mitigation: Use the skill for summaries and extracts rather than full-text republication, matching the artifact's stated safety posture.
+
+## Reference(s):
+
+- [WeChat Digest Output Formats Reference](artifact/references/formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown summaries and JSON-style knowledge cards or cross-article synthesis objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write structured notes to stdout or files; summaries are intended as extracts rather than full-text republishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

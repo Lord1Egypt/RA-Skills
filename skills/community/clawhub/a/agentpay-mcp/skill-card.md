@@ -1,42 +1,53 @@
-## Description: <br>
-MCP server that gives AI agents the ability to make payments, manage budgets, and handle billing -- directly from Claude Desktop, Cursor, Cline, or any MCP-compatible agent runtime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP server that gives AI agents the ability to make payments, manage budgets, and handle billing -- directly from Claude Desktop, Cursor, Cline, or any MCP-compatible agent runtime.
 
-## Publisher: <br>
-[up2itnow](https://clawhub.ai/user/up2itnow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[up2itnow](https://clawhub.ai/user/up2itnow)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure MCP-compatible agents to send USDC payments, check balances, track spending, manage payment channels, and bridge USDC across supported chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server gives an agent ongoing private-key signing authority for USDC payments. <br>
-Mitigation: Use an isolated low-balance wallet, avoid reusing production keys, and provide AGENT_PRIVATE_KEY only in a controlled environment. <br>
-Risk: Under-limit transfers may execute without clear per-payment approval. <br>
-Mitigation: Set very small MAX_TX_USDC and MAX_DAILY_USDC values and require explicit MCP client approval before every payment-related tool call. <br>
-Risk: The release depends on an external npm package that can perform payment actions. <br>
-Mitigation: Inspect or pin the package version before installation and review updates before exposing wallet credentials. <br>
+## Use Case:
 
+Developers and external agent operators use this MCP server to let compatible agent runtimes send USDC payments, check balances, track spending, manage payment channels, and initiate cross-chain settlement with configured limits.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/up2itnow/agentpay-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON MCP configuration, environment variables, and tool descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node plus AGENT_PRIVATE_KEY and RPC_URL environment variables; payment behavior depends on configured MAX_TX_USDC and MAX_DAILY_USDC limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter) <br>
+Risk: Agent-driven crypto payments can cause asset loss if a funded wallet key is exposed, misconfigured, or used beyond intended limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, avoid primary or treasury keys, keep transaction and daily limits low, and require human approval for larger payments, bridging, or unfamiliar recipients.
+
+Risk: The release asks users to install an unpinned global npm package before granting it access to wallet credentials.
+
+Mitigation: Pin and verify the npm package before installation, run it in an isolated environment, and use a safer secret mechanism where available.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/up2itnow/skills/agentpay-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration snippets, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MCP setup instructions and describes payment-related tool calls; runtime behavior depends on configured wallet keys, RPC endpoint, package installation, and spending limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

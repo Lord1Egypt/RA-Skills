@@ -1,44 +1,60 @@
-## Description: <br>
-Turn a day of memory into a clear owner brief with highlights, decisions, open loops, and next-step recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a day of memory into a clear owner brief with highlights, decisions, open loops, and next-step recommendations.
 
-## Publisher: <br>
-[asistent-alex](https://clawhub.ai/user/asistent-alex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asistent-alex](https://clawhub.ai/user/asistent-alex)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to convert daily memory files and lossless-claw SQLite messages into structured owner briefs with highlights, decisions, open loops, and next-step recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes broad GraQle agent instructions that are unrelated to normal Mindkeeper brief generation. <br>
-Mitigation: Review the bundled agent instructions before installation and disable or ignore them unless GraQle behavior is explicitly desired. <br>
-Risk: Generated briefs can contain sensitive memory-derived content. <br>
-Mitigation: Use local text, HTML, or .eml output first and inspect the full content before sharing or sending it. <br>
-Risk: Optional email delivery can send brief content through sendmail or NexLink. <br>
-Mitigation: Verify the recipient, subject, body, and delivery mode before enabling live email delivery. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to turn daily memory files and optional lossless-claw SQLite messages into owner-facing briefs with highlights, decisions, open loops, and recommendations.
 
-## Reference(s): <br>
-- [Openclaw Mindkeeper ClawHub Release](https://clawhub.ai/asistent-alex/openclaw-mindkeeper) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Text or HTML briefs, optional .eml email messages, and CLI diagnostics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local output files and can optionally deliver email through file output, sendmail, or NexLink when email flags are supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can read local OpenClaw memory and summarize potentially sensitive daily context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --session-key with --use-lcm, keep memory sources narrowly scoped, and inspect generated briefs before sharing them.
+
+Risk: The skill can write files and optionally send generated summaries by email.
+
+Mitigation: Prefer file output for review first, verify recipients and message content before live sends, and enable email delivery only when needed.
+
+Risk: The artifact includes unrelated GraQle agent-routing instructions.
+
+Mitigation: Remove or ignore CLAUDE.md if those instructions should not affect agent tool routing in the installation environment.
+
+## Reference(s):
+
+- [Openclaw Mindkeeper on ClawHub](https://clawhub.ai/asistent-alex/skills/openclaw-mindkeeper)
+- [Publisher profile](https://clawhub.ai/user/asistent-alex)
+- [Firma de AI](https://firmade.ai)
+- [Firma de IT](https://firmade.it)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or HTML brief, with optional output files and email message output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run locally from the Node CLI, read markdown memory files, optionally read lossless-claw SQLite messages, and optionally write or send generated briefs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

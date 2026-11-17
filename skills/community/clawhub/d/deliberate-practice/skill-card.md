@@ -1,39 +1,54 @@
-## Description: <br>
-Helps agents coach users through deliberate practice design for skill plateaus, expert-benchmark gaps, and feedback-rich training programs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to diagnose skill plateaus and design targeted, feedback-rich deliberate practice toward expert performance.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn vague skill-improvement goals into targeted practice plans with expert benchmarks, rapid feedback loops, repetition structure, and stop rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Sources - deliberate-practice](references/sources.md) <br>
-- [Berlin Violin Study (1991-1993)](examples/berlin-violin-study-1991-1993.md) <br>
-- [The Role of Deliberate Practice in the Acquisition of Expert Performance](https://doi.org/10.1037/0033-295X.100.3.363) <br>
+Learners, coaches, and organizations use this skill to diagnose skill plateaus and design focused practice around a specific expert performance gap, with timely feedback and progress measures tied to perception.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured coaching questions and a practice design artifact template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may pause for user responses during step-by-step coaching and does not require files, credentials, accounts, or external tools.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Practice built around a weak benchmark or delayed feedback may reinforce the wrong habits.
+
+Mitigation: Anchor exercises to a credible expert standard and use reliable feedback during or soon after each session.
+
+## Reference(s):
+
+- [Deliberate Practice on ClawHub](https://clawhub.ai/deciqai/skills/deliberate-practice)
+- [Deliberate Practice sources](references/sources.md)
+- [Ericsson, Krampe & Tesch-Römer (1993)](https://doi.org/10.1037/0033-295X.100.3.363)
+- [deciqAI Deliberate Practice](https://www.deciqai.com/c/deliberate-practice)
+- [deciqAI knowledge-skills repository](https://github.com/deciqAI/knowledge-skills)
+- [Machine-readable skill metadata](https://www.deciqai.com/s/deliberate-practice.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Coaching prompts and a structured practice design in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to the user's skill, expert benchmark, feedback source, and practice constraints.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

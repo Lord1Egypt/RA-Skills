@@ -1,42 +1,57 @@
-## Description: <br>
-Monitors competitors across public web sources and generates daily or weekly intelligence briefings with alerts, analysis, and suggested actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Competitor Alert System monitors public competitor activity across websites, social media, news, pricing, hiring, funding, and sentiment, then produces daily or weekly intelligence briefings with alerts and strategic suggestions.
 
-## Publisher: <br>
-[rockywang0910-ux](https://clawhub.ai/user/rockywang0910-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rockywang0910-ux](https://clawhub.ai/user/rockywang0910-ux)
 
-## Use Case: <br>
-Investors, executives, business development teams, market researchers, and entrepreneurs use this skill to track competitor updates, market signals, pricing, funding, hiring, sentiment, and regulatory changes from public sources. It helps turn those signals into briefings, alerts, impact analysis, and suggested next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ongoing competitor monitoring can exceed the user's intended scope or collect records that later need correction or deletion. <br>
-Mitigation: Define allowed competitors, sources, schedules, alert thresholds, and delivery channels before use, and ensure monitoring can be stopped and stored records can be deleted or corrected. <br>
-Risk: Reports based on public web sources can contain stale, incomplete, or misleading information. <br>
-Mitigation: Require citations and timestamps in reports and treat AI-generated intelligence as a supplement to human review. <br>
-Risk: The skill may be pointed at private or authenticated data sources without appropriate authorization. <br>
-Mitigation: Use only public or explicitly authorized sources and avoid private or authenticated data unless authorization is documented. <br>
+## Use Case:
 
+Investors, business leaders, market researchers, business development teams, and entrepreneurs use this skill to track public competitor signals, summarize market changes, and generate action-oriented intelligence reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rockywang0910-ux/competitor-alert-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown reports, structured competitor records, alert summaries, and action guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should include citations, timestamps, monitored sources, and clearly scoped alert thresholds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Competitor names, domains, monitoring topics, and strategy details may be sensitive when searched through external public web or business-data sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential target lists or non-public strategy details unless the deployment environment and data-handling policy permit that use.
+
+Risk: Cron-based monitoring or push alerts can repeatedly send sensitive monitoring topics to external sources.
+
+Mitigation: Approve scheduled monitoring and alert delivery deliberately, and limit monitored inputs to information suitable for those channels.
+
+Risk: Reports are based on public information and may be incomplete, delayed, or unsuitable as standalone investment advice.
+
+Mitigation: Use generated intelligence as a supplement to human review and validate important findings against original public sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rockywang0910-ux/skills/competitor-alert-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown reports with structured competitor lists, source notes, alert summaries, and action recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports daily briefings, weekly reports, and event-triggered alerts based on public web and business-data sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

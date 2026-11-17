@@ -1,44 +1,60 @@
-## Description: <br>
-Aha Codex Omx helps Codex agents with OMX installed discover, select, combine, and reselect available capability surfaces for task-driven orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codex+OMX orchestration keeps the current Codex session as decision maker and integrator while using bounded native subagents and runtime-resolved OMX roles for search, reading, research, testing, review, and mutually exclusive writes.
 
-## Publisher: <br>
-[its-how](https://clawhub.ai/user/its-how) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[its-how](https://clawhub.ai/user/its-how)
 
-## Use Case: <br>
-Codex users and developers with OMX installed use this skill to route work across native runtime capabilities, OMX surfaces, skills, MCPs, commands, subagents, and worktrees while keeping orchestration decisions transparent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward broader delegation surfaces such as subagents, worktrees, network access, or external APIs when those surfaces are available. <br>
-Mitigation: Review the OMX capabilities available in the environment and keep execution within the runtime permission envelope. <br>
-Risk: Partial OMX availability or failed discovery could lead to overclaiming available capabilities. <br>
-Mitigation: Run the skill's multi-level pre-check, skip only unavailable surfaces, and state limitations transparently when discovery fails. <br>
-Risk: Out-of-session handoff guidance could expose sensitive material if copied without filtering. <br>
-Mitigation: Exclude credentials, tokens, cookies, browser session material, provider state, live state, account state, and equivalent secrets from handoff material. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route non-trivial Codex work through the lowest-sufficient mix of native capability, OMX surfaces, subagents, review, and verification while preserving confirmation gates and final integration in the main session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/its-how/skills/aha-codex-omx) <br>
-- [Repository metadata](https://github.com/its-How/aha-orch) <br>
-- [Capability orchestration reference](references/capability-orchestration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No persistent state is maintained by the skill; output depends on the Codex runtime, OMX availability, and configured capability surfaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill metadata) <br>
+Risk: Installing or upgrading from a moving source can introduce unreviewed changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a reviewed release or pinned commit before installing or upgrading.
+
+Risk: OMX orchestration and delegation can expand cost, persistence, worktree use, or autonomous activity.
+
+Mitigation: Require confirmation for high-cost, persistent, worktree, or autonomous activity and keep the primary Codex session responsible for final integration.
+
+Risk: Delegation or handoff material can expose sensitive session details if boundaries are not enforced.
+
+Mitigation: Keep credentials, tokens, cookies, browser session material, provider state, and live account state out of subagent and out-of-session handoffs.
+
+## Reference(s):
+
+- [Capability Orchestration](references/capability-orchestration.md)
+- [aha-orch Repository](https://github.com/its-How/aha-orch)
+- [Codex CLI](https://github.com/openai/codex)
+- [oh-my-codex](https://github.com/Yeachan-Heo/oh-my-codex)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing orchestration guidance; no persistent state is maintained by the skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

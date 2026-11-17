@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents perform threat modeling, security architecture review, and risk assessment using methods such as STRIDE, PASTA, attack trees, and security requirement extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides threat modeling guidance for security architecture review, risk assessment, and secure-by-design planning using methods such as STRIDE, PASTA, attack trees, and security requirement extraction.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Developers, security engineers, and architecture reviewers use this skill to identify threats, review trust boundaries and data flows, prioritize security risks, and document mitigations during system design or review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Threat modeling can expose sensitive architecture details when prompts or outputs are stored in an insufficiently controlled workspace. <br>
-Mitigation: Use the skill only in appropriately access-controlled workspaces and avoid pasting sensitive architecture details unless that environment is approved for them. <br>
-Risk: Security review guidance may be applied to systems outside the user's authorized scope. <br>
-Mitigation: Use the skill only for systems the user is authorized to review. <br>
+## Use Case:
 
+Developers, security engineers, and architects use this skill to structure threat modeling sessions, identify threats across system components and data flows, prioritize risk, and document mitigations and residual risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solomonneas/s3-threat-modeling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, analysis, markdown] <br>
-**Output Format:** [Markdown or structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include threat models, attack trees, risk scores, mitigation plans, security requirements, and residual-risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive architecture details, secrets, or confidential system information could be overexposed while creating threat models.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only details appropriate for the review context and apply access controls to any threat model containing sensitive information.
+
+Risk: Threat-modeling recommendations may be incomplete or incorrect if scope, trust boundaries, or system context are missing.
+
+Mitigation: Confirm system scope, trust boundaries, data flows, and residual risks with the responsible engineering and security teams before acting on recommendations.
+
+## Reference(s):
+
+- [S³ Threat Modeling on ClawHub](https://clawhub.ai/solomonneas/skills/s3-threat-modeling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text threat models, attack trees, risk scoring, mitigation plans, and residual-risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include threat categories, prioritized risks, recommended controls, and residual risk notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Operates Databar.ai through the OOMOL oo CLI for reading tables, creating tables, inserting rows, and running enrichment or waterfall tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Databar.ai to read, create, and update data through a connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to manage Databar.ai tables and submit enrichment or waterfall jobs from an agent through their connected OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create tables and insert rows in Databar.ai, so mistaken payloads can change workspace data. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before write actions, and inspect the live action schema before running commands. <br>
-Risk: Broad activation wording may cause an agent to use Databar.ai for loosely related requests. <br>
-Mitigation: Be explicit when requesting Databar.ai work and review proposed connector actions before approval. <br>
+## Use Case:
 
+Databar.ai users can use the skill to inspect tables and enrichments, retrieve account and task information, and create tables, insert rows, or submit enrichment tasks through their connected account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/skills/oo-databar-ai) <br>
-- [Databar.ai Homepage](https://databar.ai/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses oo CLI connector schemas before execution; write actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The setup fallback may install software or affect other agent skills, and the external installer and hosted credential handling have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, check whether it adds or updates other skills, and disable that behavior if unwanted. Connect only the intended Databar account.
+
+Risk: Write actions can change Databar.ai data.
+
+Mitigation: Retain confirmation for every write and review the exact action and payload before running it.
+
+## Reference(s):
+
+- [Databar.ai API documentation](https://docs.databar.ai/)
+- [Databar.ai](https://databar.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action inputs must match the live connector schema; write actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

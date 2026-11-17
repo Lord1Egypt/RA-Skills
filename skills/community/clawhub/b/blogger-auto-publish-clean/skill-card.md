@@ -1,49 +1,67 @@
-## Description: <br>
-Automatically publish Markdown articles to Google Blogger with batch publishing, draft management, and automatic HTML conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically publish Markdown articles to Google Blogger with batch publishing, draft management, and automatic HTML conversion.
 
-## Publisher: <br>
-[rainco2008](https://clawhub.ai/user/rainco2008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rainco2008](https://clawhub.ai/user/rainco2008)
 
-## Use Case: <br>
-External developers and content operators use this skill to configure OAuth access to a Blogger account, convert Markdown articles to Blogger HTML posts, publish drafts or live posts, and list existing blog posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth access to a Blogger account and can publish to a live blog. <br>
-Mitigation: Use a test blog first, prefer draft mode for validation, and grant access only to accounts where the user is comfortable allowing Blogger write operations. <br>
-Risk: Google credentials and OAuth tokens are sensitive files used by the skill. <br>
-Mitigation: Keep credentials.json and token.json private, restrict file permissions, and avoid committing or sharing them. <br>
-Risk: The bundled examples include deletion and automation flows that may affect existing blog content. <br>
-Mitigation: Avoid deletion examples unless backups exist, and review automation scripts before running them against production blogs. <br>
-Risk: The security review flags an unauthenticated publishing webhook example as under-scoped. <br>
-Mitigation: Do not deploy webhook publishing without authentication, input limits, and network restrictions. <br>
+## Use Case:
 
+Developers and content operators use this skill to configure Blogger OAuth access and publish Markdown posts as drafts or live Blogger articles. It is suited for blog automation workflows that need repeatable publishing commands, post metadata, and Markdown-to-HTML conversion.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rainco2008/blogger-auto-publish-clean) <br>
-- [API Reference](references/REFERENCES.md) <br>
-- [Examples](references/EXAMPLES.md) <br>
-- [Google Blogger API v3 Reference](https://developers.google.com/blogger/docs/3.0/reference) <br>
-- [Google APIs Node.js Client](https://github.com/googleapis/google-api-nodejs-client) <br>
-- [OAuth 2.0 for Web Applications](https://developers.google.com/identity/protocols/oauth2/web-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JavaScript configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions and commands that can trigger live Blogger API actions when valid OAuth credentials and a blog ID are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish any local file path it is given.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Markdown post directory and review file paths before running publish commands, especially when prompts or generated commands suggest paths.
+
+Risk: OAuth credentials and tokens are sensitive and may be weakly protected.
+
+Mitigation: Keep credentials.json and token.json private with restrictive filesystem permissions, and avoid copying tokens through shared or temporary locations.
+
+Risk: An unauthenticated webhook-style example could expose publishing capability if deployed as-is.
+
+Mitigation: Do not use webhook examples without authentication and access controls.
+
+Risk: Unpinned dependencies can change behavior across installations.
+
+Mitigation: Pin and review dependencies before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rainco2008/skills/blogger-auto-publish-clean)
+- [Publisher Profile](https://clawhub.ai/user/rainco2008)
+- [API Reference](references/REFERENCES.md)
+- [Examples](references/EXAMPLES.md)
+- [Setup Guide](SETUP.md)
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [Blogger](https://www.blogger.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide OAuth setup and Blogger publishing operations that create, list, or manage posts when the user runs the generated commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

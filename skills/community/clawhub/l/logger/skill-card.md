@@ -1,43 +1,58 @@
-## Description: <br>
-Appends log entries, audit trails, and automated event records to a pre-configured Google Sheet using PortEden Secure access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Sheets Log Automation. Use when the user wants to append log entries, record audit trails, or automate event logging to a pre-configured Google Sheet (PortEden Secure access).
 
-## Publisher: <br>
-[porteden](https://clawhub.ai/user/porteden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[porteden](https://clawhub.ai/user/porteden)
 
-## Use Case: <br>
-Developers and agents use this skill to append structured event logs, audit trails, task logs, and error records to a configured Google Sheet through the PortEden CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires credentials that can access Google Drive and Sheets. <br>
-Mitigation: Install only when PortEden CLI access is trusted, review token scope, and use a token with the minimum required Drive access. <br>
-Risk: Log entries may expose secrets, personal data, regulated records, confidential prompts, or other sensitive information in the destination sheet. <br>
-Mitigation: Avoid logging sensitive data unless the sheet has appropriate access controls and retention rules. <br>
-Risk: Rows may be appended to the wrong spreadsheet or range if the target sheet is misconfigured. <br>
-Mitigation: Set the sheet ID deliberately, read the header row before appending, and verify recent rows after logging. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to append event, audit, error, and task log rows to a configured Google Sheet through the PortEden CLI.
 
-## Reference(s): <br>
-- [PortEden homepage](https://porteden.com) <br>
-- [ClawHub skill page](https://clawhub.ai/porteden/logger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PortEden CLI commands for Google Sheets authentication, sheet discovery, appending rows, and verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Log rows may contain secrets, credentials, personal data, internal prompts, or sensitive stack traces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive content before appending logs to the Google Sheet.
+
+Risk: The skill sends log data to an external Google Sheet through PortEden CLI credentials.
+
+Mitigation: Use a limited-scope token, confirm the connected Google account, and verify the target PE_SHEET_ID before logging.
+
+Risk: Installing an unreviewed latest CLI version can change behavior outside the skill artifact.
+
+Mitigation: Prefer a pinned or otherwise verified PortEden CLI release from a trusted installation path.
+
+## Reference(s):
+
+- [PortEden homepage](https://porteden.com)
+- [ClawHub skill page](https://clawhub.ai/porteden/skills/logger)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with shell command examples and compact JSON CLI output recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses PortEden CLI commands and PE_API_KEY or keyring credentials with PE_SHEET_ID for the target spreadsheet.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

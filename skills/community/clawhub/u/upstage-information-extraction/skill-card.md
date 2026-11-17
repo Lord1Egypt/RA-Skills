@@ -1,38 +1,54 @@
-## Description: <br>
-Extracts named fields from documents with Upstage Information Extraction using custom JSON schemas or prebuilt receipt, invoice, and trade-document models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts named fields from documents with the Upstage Information Extraction API using custom JSON schemas or prebuilt receipt, invoice, waybill, bill-of-lading, and export-certificate models.
 
-## Publisher: <br>
-[upstage-deployment](https://clawhub.ai/user/upstage-deployment) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upstage-deployment](https://clawhub.ai/user/upstage-deployment)
 
-## Use Case: <br>
-Developers and operations teams use this skill to turn invoices, receipts, waybills, bills of lading, and related documents into structured JSON fields for review or downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Upstage Information Extraction Console](https://console.upstage.ai/api/information-extraction) <br>
-- [ClawHub Skill Page](https://clawhub.ai/upstage-deployment/upstage-information-extraction) <br>
+Developers and document-processing teams use this skill to guide agents in extracting specific named values from receipts, invoices, waybills, bills of lading, export certificates, and similar documents. It is intended for structured field extraction with a schema or supported prebuilt model, not general OCR or full document conversion.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API calls, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python examples and JSON extraction output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses UPSTAGE_API_KEY from the environment; extracted results can contain sensitive document data and may be saved as local JSON files, so choose protected output paths and remove temporary files when no longer needed.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Documents sent for extraction may contain sensitive information and are uploaded to Upstage for processing.
+
+Mitigation: Use the skill only when the user is comfortable sending the relevant documents to Upstage, and avoid submitting unnecessary pages or files.
+
+Risk: Extracted JSON can contain sensitive business, financial, or personal data.
+
+Mitigation: Prefer an explicit private output path with restricted permissions, avoid shared temporary directories, and delete saved JSON files when they are no longer needed.
+
+## Reference(s):
+
+- [Upstage Information Extraction API](https://console.upstage.ai/api/information-extraction)
+- [ClawHub Skill Page](https://clawhub.ai/upstage-deployment/skills/upstage-information-extraction)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with Python examples, API request patterns, and JSON output file instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The agent is instructed to save extracted data as JSON and report the resolved absolute output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

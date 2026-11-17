@@ -1,6 +1,6 @@
 ---
-name: yescan-scan-universal
-description: 当用户需要对图片、截图进行画质优化、瑕疵去除或视觉增强时，使用此技能——包括画质增强、证件照优化、考试试卷增强、合同增强等场景。智能去除手写笔迹、水印、阴影、摩尔纹、底色等干扰元素。支持图像裁剪与矫正、素描效果转换、线稿提取等，输出优化后的高清图片。本技能由夸克扫描王提供支持。即使用户没有明确提到"增强"或"处理"，只要用户的需求涉及提升图片清晰度、清理干扰元素或优化图像质量，也应触发此技能。不适用于文字提取/识别、文档转换 (Word/Excel/PDF)、AI 图像生成、证件照制作
+name: alibaba-quark-scan
+description: 由夸克扫描王官方提供的文件高清扫描工具。当用户需要对图片、截图进行画质优化、瑕疵去除或视觉增强时，使用此技能——包括画质增强、证件照优化、考试试卷增强、合同增强等场景。智能去除手写笔迹、水印、阴影、摩尔纹、底色等干扰元素。支持图像裁剪与矫正、素描效果转换、线稿提取等，输出优化后的高清图片。本技能由夸克扫描王提供支持。即使用户没有明确提到"增强"或"处理"，只要用户的需求涉及提升图片清晰度、清理干扰元素或优化图像质量，也应触发此技能。不适用于文字提取或识别、图片转 Word/Excel/PDF 文档或 AI 图像生成
 metadata: {"openclaw":{"emoji":"🔍︎","requires":{"bins":["python3"],"env":["SCAN_WEBSERVICE_KEY"]},"primaryEnv":"SCAN_WEBSERVICE_KEY"},"homepage":"https://scan.quark.cn/business"}
 ---
 
@@ -16,7 +16,7 @@ metadata: {"openclaw":{"emoji":"🔍︎","requires":{"bins":["python3"],"env":["
 
 配置 `SCAN_WEBSERVICE_KEY` 环境变量到 OpenClaw：
 ```bash
-openclaw config set skills.entries.yescan-scan-universal.env.SCAN_WEBSERVICE_KEY "your_scan_webservice_key_here"
+openclaw config set skills.entries.alibaba-quark-scan.env.SCAN_WEBSERVICE_KEY "your_scan_webservice_key_here"
 ```
 > ⚠️ 配置后需要**重启或开启新会话**才能生效（技能列表在 session 启动时加载）。
 

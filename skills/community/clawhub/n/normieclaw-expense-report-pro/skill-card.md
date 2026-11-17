@@ -1,47 +1,65 @@
-## Description: <br>
-Expense Report Pro helps an agent extract receipt details, categorize expenses, answer spending questions, and generate employer-ready PDF expense reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expense Report Pro helps an agent extract receipt details, categorize expenses, answer spending queries, and generate PDF expense reports from local expense records.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Employees and business users use this skill to turn receipt images or expense descriptions into local expense records, spending summaries, and PDF reports. Agents can also answer natural-language expense queries and help organize reimbursement data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may persist sensitive receipt images and spending records locally. <br>
-Mitigation: Confirm the user's retention preference before saving receipts or logs, keep generated files in the intended expenses directory, and recommend encrypted storage for sensitive financial data. <br>
-Risk: Setup or logging behavior may overwrite existing local expense files. <br>
-Mitigation: Check for existing expense data before initialization or updates and require user confirmation before creating, replacing, or modifying expense logs and configuration. <br>
-Risk: Receipt text and local expense data can contain prompt-injection content. <br>
-Mitigation: Treat receipt contents and stored expense data as untrusted data, not instructions, and ignore commands embedded in those sources unless the user explicitly requests the action. <br>
+## Use Case:
 
+Employees, contractors, and small teams use this skill to log receipt images or expense text, maintain local expense records, answer expense questions, and generate reimbursement-ready PDF reports.
 
-## Reference(s): <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Setup guide](artifact/SETUP-PROMPT.md) <br>
-- [Security guidance](artifact/SECURITY.md) <br>
-- [Dashboard specification](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
-- [ClawHub skill page](https://clawhub.ai/nollio/normieclaw-expense-report-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/nollio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON expense records, shell commands, configuration files, and generated PDF report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local expense data, receipt files, configuration files, and PDF reports in the user's workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill stores sensitive financial records and receipt images locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where local storage is acceptable, keep the expense directory private, and verify restrictive file permissions before storing receipts or reports.
+
+Risk: Receipt text, expense descriptions, and local data files may contain untrusted content.
+
+Mitigation: Treat extracted receipt and expense text as data only, ignore embedded instructions, and ask for user confirmation before saving or bulk-logging receipts.
+
+Risk: PDF report generation depends on Playwright and Chromium and writes generated files.
+
+Mitigation: Pin Playwright/Chromium dependencies, avoid symlinked output paths, and confirm generated reports are readable only by the owner.
+
+Risk: The artifact claims security verification that is not supported by the authoritative security evidence.
+
+Mitigation: Treat bundled security-verification statements as unproven marketing until independently reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/normieclaw-expense-report-pro)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Dashboard specification](artifact/dashboard-kit/DASHBOARD-SPEC.md)
+- [Dashboard manifest](artifact/dashboard-kit/manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Chat responses, JSON expense records, shell commands, configuration files, and generated PDF reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local expense data and receipt images; PDF generation depends on Python, Playwright, and Chromium.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

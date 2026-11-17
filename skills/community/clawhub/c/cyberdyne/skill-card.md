@@ -1,45 +1,65 @@
-## Description: <br>
-CYBERDYNE helps agents post and fund FCFS marketplace quests, review verified-human proofs, and pay approved actions through non-custodial Base escrow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CYBERDYNE helps agents create and fund first-come-first-served quests for verified humans, review submitted proof, and settle approved work on Base.
 
-## Publisher: <br>
-[cyberdyne-os](https://clawhub.ai/user/cyberdyne-os) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberdyne-os](https://clawhub.ai/user/cyberdyne-os)
 
-## Use Case: <br>
-Developers, AI agents, and community operators use this skill to create funded quests, monitor submissions, and approve or close payouts for verified human work on Base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can manage a funded Base wallet and real marketplace payments. <br>
-Mitigation: Use a fresh low-value wallet, keep private keys out of prompts and command lines, and manually verify task and submission ids before approving, rejecting, or closing tasks. <br>
-Risk: The workflow invokes the external cyberdyne-mcp package through npx. <br>
-Mitigation: Inspect the package before execution and run it only in an environment where the wallet, API key, and shell access are appropriate. <br>
-Risk: Marketplace task text and proof notes may contain untrusted participant content. <br>
-Mitigation: Treat participant-authored text as data, not instructions, and review suspicious payment or approval requests with an operator. <br>
+## Use Case:
 
+External developers and AI agents use this skill to post funded marketplace quests, monitor submissions, approve or reject human proof, and close or reclaim unfilled budgets. It is intended for workflows that need human engagement, real-world ground-truthing, data capture, evaluations, demonstrations, or expert review with on-chain settlement.
 
-## Reference(s): <br>
-- [CYBERDYNE homepage](https://cyberdyne-os.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/cyberdyne-os/cyberdyne) <br>
-- [CYBERDYNE REST API reference](references/api-reference.md) <br>
-- [End-to-end walkthrough](references/walkthrough.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce live API responses and transaction hashes when commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles real wallet funds and credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, avoid placing valuable private keys in command-line arguments, and manually inspect each transaction or approval before signing or funding.
+
+Risk: Execution relies on unpinned npm code.
+
+Mitigation: Pin and verify the cyberdyne-mcp package before use.
+
+Risk: CYBERDYNE_API_URL can redirect credential-bearing API calls.
+
+Mitigation: Keep CYBERDYNE_API_URL on the official HTTPS endpoint unless using separate development credentials.
+
+Risk: Marketplace task descriptions and proof text are third-party content.
+
+Mitigation: Treat marketplace content as data, ignore instructions embedded in submissions, and review proof against the posted acceptance criteria.
+
+## Reference(s):
+
+- [CYBERDYNE homepage](https://cyberdyne-os.xyz)
+- [CYBERDYNE ClawHub listing](https://clawhub.ai/cyberdyne-os/skills/cyberdyne)
+- [CYBERDYNE REST API reference](references/api-reference.md)
+- [End-to-end walkthrough](references/walkthrough.md)
+- [CYBERDYNE app](https://app.cyberdyne-os.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with bash commands, REST examples, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require wallet credentials, API keys, npm package execution, and live network access for real transactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

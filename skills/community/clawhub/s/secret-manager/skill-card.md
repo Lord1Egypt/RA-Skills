@@ -1,41 +1,57 @@
-## Description: <br>
-Manage API keys securely via GNOME Keyring and inject them into OpenClaw config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage API keys securely via GNOME Keyring and inject them into OpenClaw config.
 
-## Publisher: <br>
-[jswortz](https://clawhub.ai/user/jswortz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jswortz](https://clawhub.ai/user/jswortz)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to store supported API keys in GNOME Keyring, update OpenClaw credential configuration, propagate environment variables, and restart the gateway service after changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles API keys and may expose secrets through shell history or plaintext environment files if used carelessly. <br>
-Mitigation: Prefer interactive or stdin entry, avoid passing secrets directly as shell arguments, and review any configured secrets environment file before use. <br>
-Risk: The skill can change OpenClaw credential configuration and import environment variables into the user systemd session. <br>
-Mitigation: Review the target OpenClaw paths and supported key names before running it, and verify the resulting credential configuration after updates. <br>
-Risk: The skill restarts the OpenClaw gateway service and may stop related gateway processes inside the configured Distrobox container. <br>
-Mitigation: Run it during an acceptable maintenance window and confirm the configured container and gateway service names match the intended environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Secret Manager on ClawHub](https://clawhub.ai/jswortz/secret-manager) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to store supported API keys in GNOME Keyring, update OpenClaw authentication configuration, and refresh the gateway service after secret changes.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and a bash script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports interactive, direct argument, and stdin-based secret entry for configured key names.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Secrets can be supplied as command arguments, which may expose them through shell history or process listings.
+
+Mitigation: Prefer the interactive prompt or stdin entry paths for secret values.
+
+Risk: A configurable SECRETS_ENV_FILE can be sourced during execution.
+
+Mitigation: Use SECRETS_ENV_FILE only when the file is controlled, audited, and protected by appropriate filesystem permissions.
+
+Risk: The script modifies OpenClaw configuration and restarts or force-stops gateway processes.
+
+Mitigation: Review the target OpenClaw paths and service names before installing or running it, and run it in an environment where gateway restarts are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jswortz/skills/secret-manager)
+- [Skill homepage](https://github.com/openclaw/skills)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash commands and CLI usage instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires secret-tool, systemctl, and python3; installs or runs secret-manager.sh for OpenClaw secret management.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

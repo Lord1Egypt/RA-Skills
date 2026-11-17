@@ -1,48 +1,66 @@
-## Description: <br>
-Provides reference material and examples for integrating with PDF API Hub REST APIs for document automation, including HTML or URL to PDF conversion, PDF operations, OCR, watermarking, signing, and file management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through integrating with PDF API Hub REST APIs for HTML/URL-to-PDF generation and related document automation workflows.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise reference when building integrations with PDF API Hub for HTML-to-PDF generation, document conversion, OCR, PDF editing, signing, and related file workflows. It supplies endpoint contracts, authentication notes, error handling guidance, and code examples without executing API calls itself. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF API Hub processes documents and URLs outside the local environment, which can expose confidential PDFs, internal URLs, customer data, signatures, or passwords if used without approval. <br>
-Mitigation: Use approved data only, review the service's retention and deletion terms, and avoid sending sensitive documents or secrets unless the external data flow is authorized. <br>
-Risk: The API requires a CLIENT-API-KEY, and examples could be adapted in ways that hardcode or expose credentials. <br>
-Mitigation: Store API keys outside source code, preferably in environment variables or a secrets manager, and review generated code before use. <br>
-Risk: Delete-file and delete-template operations can remove remote resources. <br>
-Mitigation: Require explicit user confirmation before implementing calls to deleteFile or deleteTemplate. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to implement PDF API Hub calls for converting HTML or URLs into PDFs and for related document workflows such as merge, split, OCR, watermarking, signing, locking, and file management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rishabhdugar/pdf-api-hub) <br>
-- [PDF API Hub homepage](https://pdfapihub.com/) <br>
-- [PDF API Hub documentation](https://pdfapihub.com/docs) <br>
-- [PDF API Hub signup](https://pdfapihub.com/signup) <br>
-- [Endpoint reference](endpoints.md) <br>
-- [Code examples](examples.md) <br>
-- [Advanced workflows](advanced.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with API reference tables and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; examples may include API request patterns but the skill does not execute API calls or store credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Using the documented API with real files, URLs, or content sends that data to pdfapihub.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm authorization to share the selected documents and review the service's retention and deletion expectations before running adapted examples.
+
+Risk: Copied examples may involve API keys, passwords, signatures, or extracted document data.
+
+Mitigation: Store secrets in environment variables or a secrets manager, avoid committing them, and review outputs before sharing them.
+
+Risk: Delete, unlock, signing, and encryption workflows can affect document access or availability.
+
+Mitigation: Confirm target files, permissions, and intended effects before executing adapted workflow code.
+
+Risk: Hosted output URLs may expire or become unavailable.
+
+Mitigation: Download or persist generated files promptly when long-term access is required.
+
+## Reference(s):
+
+- [PDF API Hub Documentation](https://pdfapihub.com/docs)
+- [PDF API Hub Homepage](https://pdfapihub.com/)
+- [ClawHub Skill Page](https://clawhub.ai/rishabhdugar/skills/pdf-api-hub)
+- [Endpoint Reference](artifact/endpoints.md)
+- [Code Examples](artifact/examples.md)
+- [Advanced Workflows](artifact/advanced.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with REST API guidance and cURL, Python, and Node.js examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; examples require a PDF API Hub API key and user-selected document URLs or content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

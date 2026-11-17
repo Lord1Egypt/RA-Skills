@@ -1,42 +1,61 @@
-## Description: <br>
-Tianshu Huangdao helps agents answer Chinese almanac, auspicious-date, I Ching, zodiac fortune, and naming requests using traditional calendrical and metaphysical reference data, with some features requiring a 1.68 USD PayPal payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tianshu Huangdao helps agents answer Traditional Chinese calendar, auspicious-date, I Ching, fortune, zodiac, five-elements, and naming questions, with PayPal-gated paid reports for full fortune, hexagram, and naming workflows.
 
-## Publisher: <br>
-[makclaw](https://clawhub.ai/user/makclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[makclaw](https://clawhub.ai/user/makclaw)
 
-## Use Case: <br>
-External users ask an agent for Chinese almanac guidance, auspicious dates, zodiac or I Ching readings, and Chinese naming suggestions. The skill guides the agent through free queries and paid PayPal-gated API calls when a fuller fortune, hexagram, or naming report is requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger paid external service calls for selected features. <br>
-Mitigation: Confirm the 1.68 USD PayPal charge with the user before invoking paid features. <br>
-Risk: Fortune and naming requests may involve personal details such as birth dates, surnames, or gender. <br>
-Mitigation: Send personal details to sinodata.io only when the user intentionally requests the corresponding reading or naming result. <br>
+## Use Case:
 
+External users and agents use this skill to provide Traditional Chinese responses for huangli date selection, Chinese zodiac and fortune readings, I Ching hexagram lookup, and Chinese naming suggestions. Paid flows require user confirmation, PayPal payment, and a paypal_order_id before full reports are requested.
 
-## Reference(s): <br>
-- [Tianshu Huangdao ClawHub listing](https://clawhub.ai/makclaw/tianshu-huangdao) <br>
-- [Publisher profile](https://clawhub.ai/user/makclaw) <br>
-- [sinodata.io API gateway](https://sinodata.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown, Configuration] <br>
-**Output Format:** [Markdown and HTTP API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for Traditional Chinese user-facing responses; paid features require confirming the PayPal charge and passing a paypal_order_id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: The skill contacts sinodata.io and may require birth dates or naming details for fortune and naming reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when users are comfortable sharing those details with the service, and avoid collecting unnecessary personal information.
+
+Risk: Paid fortune, I Ching, and full naming reports require PayPal payment before the report is requested.
+
+Mitigation: Confirm the paid action with the user, complete the PayPal flow, and pass a valid paypal_order_id only after payment succeeds.
+
+Risk: The skill is intended to produce Traditional Chinese calendar, fortune, and naming guidance that users may interpret as advisory.
+
+Mitigation: Present outputs as cultural or informational guidance and avoid treating them as professional, financial, legal, or medical advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/makclaw/skills/tianshu-huangdao)
+- [Tianshu Huangdao API gateway](https://sinodata.io)
+- [Huangdao help endpoint](https://sinodata.io/v1/huangdao/help)
+- [Packaged skill instructions](artifact/SKILL.md)
+- [Packaged calendar, naming, I Ching, five-elements, and zodiac datasets](artifact/data/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls, Configuration]
+
+**Output Format:** [Traditional Chinese text or Markdown with API request guidance and returned report data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid fortune, I Ching, and full naming outputs require a PayPal order ID; free calendar, naming preview, and help responses do not require payment.]
+
+## Skill Version(s):
+
+1.0.7 (source: evidence.release.version and target metadata; artifact files include older embedded versions)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Provides a static city guide to Maoming, Guangdong, covering geography, economy, culture, tourism, food, and transportation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a static Chinese-language city guide to Maoming, covering geography, economy, culture, tourism, food, transportation, and practical local information.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and agents use this skill to answer general questions or draft city and travel overview content about Maoming, China. It is informational and should be checked against current official or recent sources for time-sensitive details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tourism routes, attraction status, business figures, and contact details may become outdated. <br>
-Mitigation: Verify current details from official or recent sources before relying on them. <br>
-Risk: The guide may be mistaken for authoritative local government or travel advice. <br>
-Mitigation: Treat the content as general information and confirm operational decisions with official channels. <br>
+## Use Case:
 
+External users and agents use this skill as a concise reference for answering questions about Maoming's city profile, tourism, culture, economy, and transportation. It is most useful for general orientation and travel-planning context rather than authoritative operational decisions.
 
-## Reference(s): <br>
-- [Maoming Municipal Government](https://www.maoming.gov.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/maoming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown city guide with tables, lists, and concise informational sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static informational content; no commands, code execution, credentials, or hidden agent behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Travel, transportation, population, economic, and tourism details may become outdated or require local confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify time-sensitive or decision-critical facts against current official sources before relying on the skill output.
+
+Risk: The visible guide content is Chinese-language despite artifact metadata listing both Chinese and English.
+
+Mitigation: Confirm language suitability for the intended audience or provide translation where English output is required.
+
+## Reference(s):
+
+- [Maoming municipal government website](https://www.maoming.gov.cn)
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/maoming)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reference content in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static informational guide; travel and factual details should be independently verified before reliance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

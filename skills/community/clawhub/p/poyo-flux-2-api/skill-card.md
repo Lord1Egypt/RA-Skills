@@ -1,43 +1,60 @@
-## Description: <br>
-Use PoYo AI Flux 2 through the `https://api.poyo.ai/api/generate/submit` endpoint to generate or edit media, prepare PoYo-compatible payloads, submit jobs, and poll task status for supported Flux 2 models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use PoYo AI Flux 2 through the PoYo generate-submit endpoint to prepare payloads, submit media generation or editing jobs, and track task status for the Flux 2 model family.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agent users use this skill to build PoYo Flux 2 generation or editing payloads, submit them to PoYo's API, and track returned task IDs through polling or callbacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payloads, prompts, image URLs, and callback URLs are sent to PoYo's API. <br>
-Mitigation: Review each payload before submission, avoid sensitive prompts or private/internal image URLs, and use callback URLs only for endpoints you control. <br>
-Risk: API key exposure can occur if credentials are passed through command arguments or shared logs. <br>
-Mitigation: Keep POYO_API_KEY in an environment variable and avoid pasting bearer tokens into prompts, scripts, or logs. <br>
+## Use Case:
 
+Developers and agents use this skill to build PoYo-compatible Flux 2 requests, choose the right model variant, submit authenticated jobs, and report the returned task identifier for follow-up polling or callback handling.
 
-## Reference(s): <br>
-- [PoYo Flux 2 API Reference](references/api.md) <br>
-- [PoYo Flux 2 Documentation](https://docs.poyo.ai/api-manual/image-series/flux-2) <br>
-- [PoYo Flux 2 OpenAPI JSON](https://docs.poyo.ai/api-manual/image-series/flux-2.json) <br>
-- [PoYo Task Status Documentation](https://docs.poyo.ai/api-manual/task-management/status) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payloads and curl or shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include the selected model ID, payload summary, reference-image usage, returned task_id, and next polling or webhook step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The PoYo API key may be exposed through command-line or process arguments if passed directly to the helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use POYO_API_KEY from the environment, avoid passing secrets on the command line, and rotate any key that may already have been exposed.
+
+Risk: Prompts, image URLs, callback URLs, and generated media requests are sent to PoYo and may contain confidential information.
+
+Mitigation: Review payloads before submission, avoid sensitive content unless approved for PoYo processing, and use approved callback endpoints.
+
+Risk: The helper script can expose the full request payload through process arguments while submitting jobs.
+
+Mitigation: Prefer non-sensitive payloads, keep local execution environments controlled, and review requests before using the shell helper.
+
+## Reference(s):
+
+- [PoYo Flux 2 model page](https://poyo.ai/models/flux-2)
+- [PoYo Flux 2 API docs](https://docs.poyo.ai/api-manual/image-series/flux-2)
+- [PoYo Flux 2 OpenAPI JSON](https://docs.poyo.ai/api-manual/image-series/flux-2.json)
+- [PoYo task status docs](https://docs.poyo.ai/api-manual/task-management/status)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include the selected model id, request parameters, reference-image usage, returned task_id, and next-step polling or webhook guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

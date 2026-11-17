@@ -1,42 +1,58 @@
-## Description: <br>
-Web search and content extraction via Brave Search API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search and content extraction via Brave Search API. Use for searching documentation, facts, or any web content. Lightweight, no browser required.
 
-## Publisher: <br>
-[AlexeyVorobiev](https://clawhub.ai/user/AlexeyVorobiev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexeyvorobiev](https://clawhub.ai/user/alexeyvorobiev)
 
-## Use Case: <br>
-Developers and agents use this skill to run web searches, retrieve search result snippets, and optionally extract readable Markdown from public web pages without an interactive browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Brave and page extraction fetches public URLs, which can expose sensitive query terms or browsing targets. <br>
-Mitigation: Use non-sensitive queries and URLs, and review network access expectations before enabling the skill in restricted environments. <br>
-Risk: Fetched page text is untrusted reference material and may be inaccurate, maliciously framed, or irrelevant. <br>
-Mitigation: Treat extracted content as evidence to verify, not as instructions, and cross-check important facts against trusted sources. <br>
-Risk: The release documentation mentions Brave Search API usage, while the security review notes that the artifact appears to scrape Brave web search pages. <br>
-Mitigation: Confirm that the search mechanism matches the deployment's policy requirements before production use. <br>
+## Use Case:
 
+Developers and agent builders use this skill to search the web, look up documentation or current facts, and extract readable page content as markdown without launching a browser.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AlexeyVorobiev/alexey-brave-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text search results with optional Markdown page content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output includes result titles, links, snippets, and optional extracted page content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries are sent to Brave, and evidence.security reports that the skill scrapes Brave result pages rather than using the advertised API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for queries appropriate to send to Brave, disclose this behavior to users, and expect result parsing to require review if Brave changes its page structure.
+
+Risk: The skill can fetch arbitrary web pages from the agent's network context.
+
+Mitigation: Run it with outbound network controls and avoid environments that can reach private admin services, cloud metadata endpoints, or sensitive internal sites.
+
+Risk: evidence.security reports that the release materially under-discloses how searches and content fetching are performed.
+
+Mitigation: Review the skill before deployment and document its network behavior for operators and users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexeyvorobiev/skills/alexey-brave-search)
+- [Brave Search](https://search.brave.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text search results with optional Markdown page extracts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include title, link, snippet, and optional extracted content; standalone content extraction returns readable Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

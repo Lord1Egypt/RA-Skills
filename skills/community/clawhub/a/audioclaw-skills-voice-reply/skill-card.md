@@ -1,47 +1,65 @@
-## Description: <br>
-Use when AudioClaw Skills, Feishu, or Lark needs to send AudioClaw voice replies with runtime-switchable voice_id, emotion preset, or speaking style, including per-message speaker overrides, voice-family emotion routing, cache reuse, and safe fallback when a requested voice is unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when AudioClaw Skills, Feishu, or Lark needs to send AudioClaw voice replies with runtime-switchable voice_id, emotion preset, or speaking style, including per-message speaker overrides, voice-family emotion routing, cache reuse, and safe fallback when a requested voice is unavailable.
 
-## Publisher: <br>
-[kikidouloveme79](https://clawhub.ai/user/kikidouloveme79) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kikidouloveme79](https://clawhub.ai/user/kikidouloveme79)
 
-## Use Case: <br>
-Developers and AudioClaw operators use this skill to turn final assistant text into voice replies, choose or remember voice settings, and deliver Feishu or Lark-friendly audio. It is intended for workflows that need dynamic voice selection, fallback handling, caching, and optional direct Feishu audio sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated audio can be sent to Feishu using local credentials and an inferred chat destination. <br>
-Mitigation: Test with --skip-direct-send first, pass an explicit chat_id for production use, and keep Feishu app permissions narrow. <br>
-Risk: Voice generation can send reply text to a cloud TTS provider. <br>
-Mitigation: Avoid sending sensitive text unless the deployment has reviewed data handling, consent, and retention requirements. <br>
-Risk: Credential and workspace path resolution depends on local helper modules and configuration. <br>
-Mitigation: Review the local _shared helper modules and credential files before installation or deployment. <br>
-Risk: Requested voices may be unavailable to the current API key and could fall back to another voice. <br>
-Mitigation: Use strict_voice or disable fallback when the exact speaker identity is required, and validate voice access at synthesis time. <br>
+## Use Case:
 
+Developers and AudioClaw operators use this skill to turn finalized assistant replies into SenseAudio TTS files, route voice and emotion choices, reuse cached audio, and deliver Feishu or Lark audio replies when configured.
 
-## Reference(s): <br>
-- [OpenClaw Voice Switchboard Reference](references/openclaw_voice_switchboard.md) <br>
-- [SenseAudio Text-to-Speech API](https://senseaudio.cn/docs/text_to_speech_api) <br>
-- [SenseAudio Voice API](https://senseaudio.cn/docs/voice_api) <br>
-- [Feishu Internal Tenant Access Token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime scripts can produce a JSON manifest and local audio files for downstream delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can automatically send generated audio through Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where direct Feishu audio sending is intended, and require explicit operator approval for deployments that send messages on behalf of users.
+
+Risk: The Feishu sender can infer recipients from local session logs.
+
+Mitigation: Prefer explicit chat IDs and restrict access to workspace logs that may contain routing information.
+
+Risk: Request JSON can influence paths such as ffmpeg_exe and cache_dir.
+
+Mitigation: Do not accept untrusted request JSON, and do not expose ffmpeg_exe or cache_dir controls to end users.
+
+Risk: The skill uses stored credentials and sends generated voice replies to external services.
+
+Mitigation: Review credential storage and treat synthesized reply text and audio as data sent to SenseAudio and Feishu.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/kikidouloveme79/skills/audioclaw-skills-voice-reply)
+- [OpenClaw Voice Switchboard Reference](references/openclaw_voice_switchboard.md)
+- [SenseAudio Text-to-Speech API](https://senseaudio.cn/docs/text_to_speech_api)
+- [SenseAudio Voice API](https://senseaudio.cn/docs/voice_api)
+- [SenseAudio TTS endpoint](https://api.senseaudio.cn/v1/t2a_v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with JSON request and manifest examples, inline shell commands, and generated audio files when the scripts are run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call SenseAudio and Feishu APIs, write workspace-local audio files, cache generated audio, and emit traceable JSON manifests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

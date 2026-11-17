@@ -1,43 +1,62 @@
-## Description: <br>
-Skill Deep Audit helps an agent audit agent-skill folders with deterministic static and read-only dry-run checks, scoring, findings, and fix guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generic skill-quality auditor for agent skills that runs a seven-dimension static or read-only dry-run analysis, scores findings with ERR/WARN severity, and produces a scorecard with fix guidance.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to check whether an agent skill is ready to ship, identify ERR and WARN findings across seven audit dimensions, and receive a scorecard with prioritized remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A normal audit may write an AUDIT-{date}.md report into the target skill folder, and fix mode can edit that target skill after explicit authorization. <br>
-Mitigation: Run it only on skill directories you are comfortable having read and annotated, review proposed fixes before authorizing them, and rely on the documented backup step before any fix workflow. <br>
-Risk: Static and read-only dry-run checks can miss context or produce findings that need human judgment. <br>
-Mitigation: Review the generated scorecard, especially ERR and WARN items, before using its results for release or deployment decisions. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to audit agent skill packages before release, checking process closure, portability, usability, security posture, code quality, and dependency footprint. It is intended for quality review and release readiness decisions rather than for executing the audited skill's business workflow.
 
-## Reference(s): <br>
-- [Check Rules](references/check-rules.md) <br>
-- [Controlled Domains](references/controlled-domains.md) <br>
-- [Audit Report Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/songhonglei/skill-deep-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown scorecard file plus concise text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an AUDIT-{date}.md scorecard with ERR/WARN findings, scoring, citations, dependency notes, and fix recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill reads the selected target skill folder and writes an audit report into it by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on trusted or sandboxed skill copies and review the generated AUDIT report before relying on its findings.
+
+Risk: The bundled path-boundary checker may read outside the chosen target when an untrusted archive contains symlinks.
+
+Mitigation: Avoid running it directly on untrusted archives; inspect or unpack them in a sandbox that prevents symlink traversal to sensitive paths.
+
+Risk: Fix mode can modify audited skill files.
+
+Mitigation: Require explicit confirmation before fix mode edits and keep the documented backup step before any changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/songhonglei/skills/skill-deep-audit)
+- [README](README.md)
+- [Complete check rules](references/check-rules.md)
+- [Audit report output template](references/output-template.md)
+- [Scan command reference](references/scan-commands.md)
+- [Controlled-domain configuration](references/controlled-domains.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown audit scorecard with cited ERR/WARN findings, summary text, dependency notes, and fix recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes an AUDIT-{YYYY-MM-DD}.md report by default; fix-mode changes require explicit user confirmation and a backup first.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

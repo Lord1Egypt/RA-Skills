@@ -1,41 +1,58 @@
-## Description: <br>
-臻选顾问 - 共健臻选AI产品顾问，查询保健品信息、推荐产品 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+臻选顾问 helps users query the 共健臻选 supplement catalog and receive product recommendations using catalog data.
 
-## Publisher: <br>
-[foxbabby](https://clawhub.ai/user/foxbabby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[foxbabby](https://clawhub.ai/user/foxbabby)
 
-## Use Case: <br>
-External users use this skill to query 共健臻选 supplement product information and receive product suggestions by category, keyword, price, stock, or stated shopping need. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Answers depend on a live GitHub-hosted product catalog that can change over time. <br>
-Mitigation: Verify important product names, prices, stock, and claims against the current catalog or the official purchase channel before relying on them. <br>
-Risk: Supplement recommendations may touch health-sensitive needs such as sleep, surgery recovery, children, heart health, or weight loss. <br>
-Mitigation: Treat recommendations as shopping assistance, seek explicit user confirmation for health-sensitive needs, and do not present the output as medical advice. <br>
+## Use Case:
 
+External users can ask about 共健臻选 supplement products, including categories, prices, claimed effects, inventory, and recommendations for common wellness needs. The skill steers purchases to the 共健臻选 WeChat mini-program.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/foxbabby/gongjian-catalog) <br>
-- [Live product catalog referenced by the skill](https://raw.githubusercontent.com/foxbabby/gongjian-catalog/master/products.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown product cards and concise shopping recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations depend on live catalog data when available and should be treated as shopping assistance, not medical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.20260419.1133 (source: server evidence release.version) <br>
+Risk: The skill can present supplement recommendations and health-related product claims as catalog guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review responses for medical neutrality and make clear that product suggestions are not a substitute for professional health advice.
+
+Risk: The product catalog data is mutable and retrieved remotely, so prices, inventory, and claims can change outside the skill file.
+
+Mitigation: Confirm remote catalog contents before deployment and periodically review product claims, prices, inventory, and availability.
+
+Risk: The skill promotes a single WeChat mini-program as the purchase channel.
+
+Mitigation: Disclose the commercial channel clearly and avoid presenting recommendations as neutral marketplace comparisons.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/foxbabby/skills/gongjian-catalog)
+- [Remote product catalog data](https://raw.githubusercontent.com/foxbabby/gongjian-catalog/master/products.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown product cards and recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include product names, prices, claimed effects, inventory counts, and the WeChat mini-program purchase channel.]
+
+## Skill Version(s):
+
+1.20260419.1133 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

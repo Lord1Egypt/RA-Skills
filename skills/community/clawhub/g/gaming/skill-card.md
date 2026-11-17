@@ -1,37 +1,49 @@
-## Description: <br>
-Help users with game recommendations, stuck points, settings optimization, and healthy gaming habits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users with game recommendations, stuck points, settings optimization, and healthy gaming habits.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to get game recommendations, spoiler-aware stuck-point help, settings optimization guidance, spending advice, multiplayer advice, and healthy gaming habit support. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask about preferences, hardware, budget, or gaming habits to tailor advice. <br>
-Mitigation: Users should avoid sharing account credentials, payment details, or private platform session information because the skill does not need them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Gaming skill page](https://clawhub.ai/ivangdavila/gaming) <br>
+## Use Case:
 
+External users use this skill to get concise gaming advice, including game recommendations, stuck-point help, settings optimization, multiplayer guidance, spending judgment, and healthier play habits.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for gameplay preferences, platform constraints, hardware, budget, or habits to tailor advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Game, price, platform, and hardware recommendations can become inaccurate or may not match the user's constraints.
+
+Mitigation: Treat recommendations as advisory and confirm current prices, compatibility, hardware requirements, and personal limits before purchasing or upgrading.
+
+## Reference(s):
+
+- [ClawHub Gaming skill page](https://clawhub.ai/ivangdavila/skills/gaming)
+- [ClawHub publisher profile: ivangdavila](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only output; no code execution, persistence, credential handling, or hidden behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

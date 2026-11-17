@@ -1,43 +1,54 @@
-## Description: <br>
-Track leads locally, manage outreach campaigns, and export as CSV for download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track leads locally, manage outreach campaigns, and export as CSV for download.
 
-## Publisher: <br>
-[3rdbrain](https://clawhub.ai/user/3rdbrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[3rdbrain](https://clawhub.ai/user/3rdbrain)
 
-## Use Case: <br>
-External users and agents use this skill to track outreach leads in a local workspace, log interactions, generate outreach sequences, and export lead data as CSV for download. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The clear command can erase all stored leads immediately. <br>
-Mitigation: Require explicit user confirmation before running clear, and recommend exporting or backing up important leads first. <br>
-Risk: Lead and interaction records may contain sensitive business or contact data stored in the agent workspace. <br>
-Mitigation: Treat the JSON and CSV files as sensitive data, limit access to the workspace, and avoid storing unnecessary personal or confidential details. <br>
-Risk: CSV exports can expose stored lead data when downloaded or shared. <br>
-Mitigation: Share exported CSV files only with intended recipients and remove exports from the workspace when no longer needed. <br>
+## Use Case:
 
+Sales and outreach users use this skill to store leads locally, log interactions, generate outreach sequences, score prospects, and export lead data for CSV-based workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/3rdbrain/outreach-crm) <br>
-- [Publisher Profile](https://clawhub.ai/user/3rdbrain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [CLI text output, generated outreach guidance, local JSON lead storage, and CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes lead data to the agent workspace and prints CSV export paths for download.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The clear command can permanently remove stored lead records without an explicit confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation, a force flag, or a backup/export workflow before clearing retained lead data.
+
+Risk: CSV exports may contain untrusted lead fields that spreadsheet software can interpret as formulas.
+
+Mitigation: Neutralize formula-prefixed values before opening or sharing exports, and treat generated CSV files as untrusted data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/3rdbrain/skills/outreach-crm)
+- [ClawHub publisher profile](https://clawhub.ai/user/3rdbrain)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Plain text command output with local JSON and CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores retained lead records in the agent workspace and can export those records as CSV.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Get a practical, step-by-step privacy compliance checklist for any market, including GDPR, CCPA, LGPD, and PIPL, with actionable readiness plans and templates for privacy policies, cookie banners, data-processing agreements, and DSAR workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get a practical, step-by-step privacy compliance checklist for any market, including GDPR, CCPA, LGPD, and PIPL, with actionable readiness plans and templates.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External founders, product managers, operations teams, marketers, and compliance coordinators use this skill to plan cross-border privacy readiness for overseas users. It turns market-entry context into data inventories, gap checks, consent and lawful-basis checklists, vendor reviews, retention templates, DSAR workflows, and validation questions for qualified privacy counsel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Privacy-law readiness outputs may be mistaken for jurisdiction-specific legal conclusions. <br>
-Mitigation: Treat outputs as planning prompts and have qualified privacy counsel verify compliance conclusions, thresholds, exemptions, transfer mechanisms, and templates before operational use. <br>
-Risk: Privacy rules and platform requirements may change after the skill's guidance is generated. <br>
-Mitigation: Validate local laws, platform policies, and current market facts with reliable sources before making launch or compliance decisions. <br>
+## Use Case:
 
+External teams, founders, product managers, operations teams, marketers, and compliance coordinators use this skill to prepare cross-border privacy readiness checklists, data inventories, consent reviews, vendor checks, retention plans, DSAR workflows, and counsel-validation questions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/harrylabsj/cb-data-privacy-readiness-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with concise tables, checklists, matrices, templates, assumptions, and validation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure descriptive output; no code execution, API calls, network access, credentials, or external side effects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Users may treat privacy-readiness checklists as jurisdiction-specific legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as non-legal planning guidance and verify compliance steps with qualified privacy counsel before acting.
+
+Risk: Users may include unnecessary personal data or customer records in prompts.
+
+Mitigation: Provide summaries, categories, and representative examples instead of personal data or customer records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/cb-data-privacy-readiness-guide)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Acceptance criteria](artifact/ACCEPTANCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with tables, checklists, templates, and bullet-point rationale]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure descriptive output; no code execution, API calls, network access, credentials, or external side effects.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

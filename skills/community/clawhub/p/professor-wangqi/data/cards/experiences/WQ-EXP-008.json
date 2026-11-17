@@ -1,0 +1,200 @@
+{
+  "card_id": "WQ-EXP-008",
+  "source_type": "clinical_experience",
+  "source_file": "基于“伏邪学说”探析国医大师王琦“脱敏消癜汤”的组方规律_周瑶瑶.pdf",
+  "title": "基于“伏邪学说”探析国医大师王琦“脱敏消癜汤”的组方规律",
+  "authors": [
+    "周瑶瑶"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "属于中医“肌衄”“斑毒”“葡萄疫”范畴。"
+  },
+  "treatment_approach": {
+    "main_formula": "玉屏风散",
+    "related_formulas": [
+      "玉屏风散",
+      "六味地黄丸",
+      "过敏煎"
+    ],
+    "principle": "",
+    "herbs": [
+      "防风",
+      "甘草",
+      "丹皮"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "为局部皮肤紫癜，随着病情发展可逐渐累及消化道、关节、肾脏。由于HSP的病因及发病机制尚不明确，西医治疗以对症治疗为主。而中医对于该病的认识较早，《外科正宗》载：“葡萄疫，其患多生小儿，感受四时不正之气，郁于皮肤不散，结成大小青紫斑点，色若葡萄，发在遍体头面，乃为腑症”。 体，脾湿亦不少”。体质的差异决定了机体对某种邪气的易感性。 体为本，贯穿始终 王琦教授在治疗过敏性疾病时常以“辨体”为先，将调理过敏体质贯穿疾病治疗的始终，“脱敏调体方”是其调理过敏体质和治疗多种过敏性疾病的基础方，由乌梅、蝉蜕、防风、无柄赤芝（赤芝）组成。乌梅味酸性敛，可防止血液耗散，兼可滋生阴液；蝉蜕具有清、透之效，可清血分之热，两药合用，一收一散，调节肺的宣降功能，利于斑疹的消散。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "Keywords: Latent pathogen theory; Henoch-Schönlein purpura (HSP); Differentiation-constitution, differentiation- disease, differentiation-syndrome; Allergic constitution; Tuomin Xiaodian Decoction ·研究报告· 基金资助：国家重点研发计划项目（No",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "中国工程院院士、国医大师王琦教授认为过敏体质是 HSP发生的背景和土壤，伏邪内伏，热毒伤络是其主要病机，临床上采用“辨体-辨病-辨证”的诊疗模式和主病主方的思想， 中华中医药杂志(原中国医药学报)2023年7月第38卷第7期 CJTCMP, July 2023, Vol",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "伏邪与过敏体质、HSP 《温热论》言：“在阳旺之躯， 胃湿恒多；在阴盛之体，脾湿亦不少”",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：属于中医“肌衄”“斑毒”“葡萄疫”范畴。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为玉屏风散。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括防风、甘草、丹皮。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "为局部皮肤紫癜，随着病情发展可逐渐累及消化道、关节、肾脏",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "由于HSP的病因及发病机制尚不明确，西医治疗以对症治疗为主",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [],
+  "related_diseases": [],
+  "evidence_sentences": [
+    {
+      "sentence": "Keywords: Latent pathogen theory; Henoch-Schönlein purpura (HSP); Differentiation-constitution, differentiation- disease, differentiation-syndrome; Allergic constitution; Tuomin Xiaodian Decoction ·研究报告· 基金资助：国家重点研发计划项目（No",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "中国工程院院士、国医大师王琦教授认为过敏体质是 HSP发生的背景和土壤，伏邪内伏，热毒伤络是其主要病机，临床上采用“辨体-辨病-辨证”的诊疗模式和主病主方的思想， 中华中医药杂志(原中国医药学报)2023年7月第38卷第7期 CJTCMP, July 2023, Vol",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "伏邪与过敏体质、HSP 《温热论》言：“在阳旺之躯， 胃湿恒多；在阴盛之体，脾湿亦不少”",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [],
+    "disease": [],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 3,
+    "sections": {
+      "methods": {
+        "start": 3,
+        "end": 3
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.385287",
+  "methods": {
+    "study_design": "Meta分析"
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.504094",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.504100"
+  }
+}

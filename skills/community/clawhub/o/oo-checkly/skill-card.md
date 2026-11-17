@@ -1,44 +1,59 @@
-## Description: <br>
-Use this skill to search and read Checkly data through an OOMOL-connected account instead of calling the Checkly API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Checkly data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, operators, and external users use this skill to inspect Checkly checks, check results, current statuses, and account details through an OOMOL-managed connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes Checkly access through an OOMOL-managed connector and requires the user to connect a Checkly account. <br>
-Mitigation: Install only after confirming trust in OOMOL as the connector provider and confirming the intended Checkly account connection. <br>
-Risk: A future connector schema or skill version could expose write or destructive Checkly actions. <br>
-Mitigation: Require explicit user approval before running any action that writes, removes, overwrites, or changes Checkly data. <br>
-Risk: First-time setup may require installing the oo CLI before the connector can run. <br>
-Mitigation: Use organization-approved installation practices and fall back to setup steps only after a command fails because the CLI, authentication, or connection is missing. <br>
+## Use Case:
 
+Developers and operators use this skill to find Checkly checks and read check details, results, statuses, and account information.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/skills/oo-checkly) <br>
-- [Checkly Homepage](https://www.checklyhq.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector actions return JSON data with execution metadata when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The setup instructions use remote installers and the resulting CLI executable was not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately before setup.
+
+Risk: Agent-skill synchronization may introduce broader agent changes without clear approval.
+
+Mitigation: Decide whether agent-skill synchronization is acceptable before enabling it.
+
+Risk: OOMOL may hold Checkly credentials and process requests.
+
+Mitigation: Use a read-only Checkly API key and decide whether OOMOL's credential handling is acceptable.
+
+## Reference(s):
+
+- [Checkly API documentation](https://www.checklyhq.com/docs/api/)
+- [Checkly](https://www.checklyhq.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API data, Text, Guidance]
+
+**Output Format:** [JSON results summarized as text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Checkly information]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -27,6 +27,13 @@ metadata:
 
 This skill provides a suite of scripts to interact with a Zotero library, covering the full document lifecycle: adding, searching, and reading. Includes **enhanced metadata fetching** for PDFs with DOI or arXiv IDs.
 
+## Safety & Security Notes
+
+- **Network**: scripts talk only to the Zotero API (`api.zotero.org`), Crossref, and arXiv; WebDAV scripts additionally talk to your configured WebDAV server. `read_universal.sh` sends the API key only to `https://*.zotero.org` download URLs.
+- **Credentials**: passed exclusively via environment variables. `ZOTERO_WEBDAV_URL` must be `https://` — plaintext `http://` is refused so credentials never travel unencrypted.
+- **Temporary files**: created in unpredictable per‑run `mktemp -d` directories (mode 0700) and removed on exit; downloaded archives are checked for path‑traversal entries before extraction.
+- **Deletion is irreversible**: `delete_note.sh --no-confirm` deletes without asking — intended for non‑interactive automation that has already obtained user consent; verify with `--dry-run` first. `--backup` saves note content to `~/.zotero-backup/` (directory 0700, files 0600) at the user's explicit request.
+
 ## Storage Modes
 
 The skill supports two storage configurations:
@@ -41,7 +48,7 @@ The skill supports two storage configurations:
 - For users with their own WebDAV server (Synology, Nextcloud, etc.)
 - No file size limits (subject to server constraints)
 - Supports both `imported_file` (stored directly) and `imported_url` (referenced via WebDAV URL) attachment types
-- **Required variables:** `ZOTERO_USER_ID`, `ZOTERO_API_KEY`, `WEBDAV_URL`, `WEBDAV_USER`, `WEBDAV_PASS`
+- **Required variables:** `ZOTERO_USER_ID`, `ZOTERO_API_KEY`, `ZOTERO_WEBDAV_URL` (https:// enforced), `ZOTERO_WEBDAV_USER`, `ZOTERO_WEBDAV_PASS`
 
 ## Authentication
 
@@ -81,12 +88,12 @@ ZOTERO_USER_ID="<user_id>" \
 ZOTERO_API_KEY="<api_key>" \
 bash scripts/read_universal.sh "ITEM_KEY"
 
-# For WebDAV storage (add WebDAV variables):
+# For WebDAV storage (add WebDAV variables; https:// required):
 ZOTERO_USER_ID="<user_id>" \
 ZOTERO_API_KEY="<api_key>" \
-WEBDAV_URL="<url>" \
-WEBDAV_USER="<user>" \
-WEBDAV_PASS="<pass>" \
+ZOTERO_WEBDAV_URL="https://<webdav-host>" \
+ZOTERO_WEBDAV_USER="<user>" \
+ZOTERO_WEBDAV_PASS="<pass>" \
 bash scripts/read_universal.sh "ITEM_KEY"
 ```
 
@@ -207,8 +214,8 @@ bash scripts/delete_note.sh --dry-run "NOTE_KEY"
 ```
 
 #### Safety Features
-- **Confirmation prompt**: Requires manual confirmation unless `--no-confirm` is used
-- **Backup option**: Saves note content to `~/.zotero-backup/` before deletion
+- **Confirmation prompt**: Requires manual confirmation. `--no-confirm` skips the prompt for non‑interactive automation — the caller is responsible for having user consent; prefer `--dry-run` first
+- **Backup option**: Saves note content to `~/.zotero-backup/` before deletion (directory 0700, backup files 0600)
 - **Version checking**: Prevents deletion if note was modified by another process
 - **Dry-run mode**: Preview deletion without actually deleting
 
@@ -235,9 +242,9 @@ bash scripts/add_to_zotero_universal.sh "/path/to/paper.pdf"
 # WebDAV storage:
 ZOTERO_USER_ID="<user_id>" \
 ZOTERO_API_KEY="<api_key>" \
-WEBDAV_URL="<url>" \
-WEBDAV_USER="<user>" \
-WEBDAV_PASS="<pass>" \
+ZOTERO_WEBDAV_URL="https://<webdav-host>" \
+ZOTERO_WEBDAV_USER="<user>" \
+ZOTERO_WEBDAV_PASS="<pass>" \
 bash scripts/add_to_zotero_universal.sh "/path/to/paper.pdf"
 ```
 
@@ -248,11 +255,11 @@ The universal script will:
 3. Create Zotero item with complete metadata
 4. Upload PDF via Zotero API (cloud) or WebDAV (if configured)
 
-### Option B: Enhanced Upload (Flexible Storage)
-Use `scripts/add_to_zotero_enhanced.sh` for flexible storage with metadata fetching. Supports both Zotero cloud and WebDAV storage.
+### Option B: Enhanced Upload (WebDAV)
+Use `scripts/add_to_zotero_enhanced.sh` for WebDAV storage with metadata fetching (DOI/arXiv). Requires WebDAV — for Zotero cloud storage use `add_to_zotero_universal.sh`.
 
-### Option C: Basic Upload (Flexible Storage)
-Use `scripts/add_to_zotero.sh` for flexible storage with title-only extraction. Supports both Zotero cloud and WebDAV storage.
+### Option C: Basic Upload (WebDAV)
+Use `scripts/add_to_zotero.sh` for WebDAV storage with title‑only extraction. Requires WebDAV — for Zotero cloud storage use `add_to_zotero_universal.sh`.
 
 ## 5. Requirements
 
@@ -298,6 +305,56 @@ brew install curl jq poppler zip
    ```
 
 ## Changelog
+
+### v1.3.14 (2026‑09‑16)
+- **Bug fix** (scan finding T09 on v1.3.13, `add_to_zotero_universal.sh`):
+  - **Partial WebDAV config now fails closed**: previously the mode banner read WebDAV from URL presence alone, while the actual branch required all three variables — a URL-only setup silently uploaded the PDF to Zotero cloud instead. Now: all three of `ZOTERO_WEBDAV_URL`/`ZOTERO_WEBDAV_USER`/`ZOTERO_WEBDAV_PASS` must be set, or none.
+  - **https:// validation moved to startup**: the scheme check runs before any Zotero API write, so a plaintext `http://` URL can no longer leave an orphan item in the library before the script exits.
+  - Mode banner now reflects the same all‑three‑variables condition the upload branch uses.
+- `_meta.json` version synced to the published version.
+
+### v1.3.13 (2026‑09‑16)
+- **Security fixes** (scan findings T09/TM1/EA2 on v1.3.12):
+  - `delete_note.sh --backup`: backup directory now created with mode 0700 and backup files set to 0600 (were default umask).
+  - `add_to_zotero.sh` / `add_to_zotero_enhanced.sh`: no longer claim “file stored in Zotero cloud” in cloud mode — **these scripts never had a cloud upload path**. They now fail fast with a clear error when WebDAV is not fully configured, before creating any item; use `add_to_zotero_universal.sh` for Zotero cloud storage.
+  - SKILL.md/SECURITY.md: `--no-confirm` documented as a risk note (unattended deletion), added a Safety & Security Notes section, corrected the false “supports Zotero cloud” claims for both legacy adder scripts, and qualified the backup exception in SECURITY.md.
+- Script versions synced to v1.3.13.
+
+### v1.3.12 (2026‑09‑16)
+- **Security hardening** (scan findings T09):
+  - `ZOTERO_WEBDAV_URL` must now be an **https://** URL — all five WebDAV scripts (`add_to_zotero.sh`, `add_to_zotero_enhanced.sh`, `add_to_zotero_universal.sh`, `read.sh`, `read_universal.sh`) refuse plaintext `http://` so credentials never travel unencrypted.
+  - `read_universal.sh` validates the attachment download URL against an allowlist (`https://*.zotero.org`) before sending the Zotero API key.
+  - Temporary files now use unpredictable per‑run directories (`mktemp -d`, 0700) instead of predictable `/tmp` paths; archives are checked for path‑traversal entries before extraction (zip‑slip guard); API‑provided filenames are stripped of path components.
+- Script `--version` strings synced to v1.3.12.
+
+### v1.3.11 (2026‑09‑16)
+- **Breaking change (env rename)**: WebDAV environment variables renamed to be skill-scoped:
+  - `WEBDAV_URL` → `ZOTERO_WEBDAV_URL`
+  - `WEBDAV_USER` → `ZOTERO_WEBDAV_USER`
+  - `WEBDAV_PASS` → `ZOTERO_WEBDAV_PASS`
+- Updated all WebDAV‑touching scripts (`add_to_zotero.sh`, `add_to_zotero_enhanced.sh`, `add_to_zotero_universal.sh`, `read.sh`, `read_universal.sh`, `check_deps.sh`) and `SKILL.md`.
+- Internal derived variables (`WEBDAV_BASE_URL`, `WEBDAV_TARGET_URL`, `WEBDAV_SOURCE_URL`) are unchanged.
+
+### v1.3.10 (2026‑08‑10)
+- **Bug fix**: Alnum fallback path only applied `_filter_year` + `_filter_issue`, missing `_filter_abstract`, `_filter_keywords`, and `grep -v` exclusions. Now applies the full filter set, matching the CJK branch (review #2).
+- **Improvement**: WebDAV `trap` documented as known limitation (overwrites existing EXIT traps; acceptable for standalone script, review #1).
+- **Note**: Issues #3 (awk byte/char), #4 (version header skip), #5 (BSD fallback CJK Extension B coverage) acknowledged as low-priority; not blocking.
+
+### v1.3.9 (2026‑08‑10)
+- **Bug fix (critical)**: CJK detection `grep '[一-龥]'` is locale-sensitive — fails in `C.UTF-8` (error) and silently matches nothing in `zh_CN.UTF-8`. Replaced with `grep -P '[\x{4E00}-\x{9FFF}]'` (codepoint-based, collation-independent) with BSD grep fallback probe.
+- **Bug fix**: Filter patterns `年.*期` / `第.*期` too greedy — killed legitimate titles like "青少年时期心理健康研究". Tightened to `^[0-9０-９]{2,4}.*年` and `第[0-9０-９一二三四五六七八九十]+[期卷]`.
+- **Bug fix**: Fullwidth space variants `摘　要` (U+3000) / `关 键 词` not covered. Now using `摘[[:space:]　]*要` / `关[[:space:]　]*键`.
+- **Improvement**: Alnum fallback path now applies same header filters as CJK branch (was only scanning 5 lines unfiltered — another regression path to grabbing issue headers).
+- **Improvement**: Added `|| true` to `title=$(...)` pipelines for explicit pipefail safety (was safe by accident due to function ending with `echo`).
+- **Improvement**: WebDAV upload failure now exits non-zero instead of printing "Success!". Added `trap 'rm -f ...' EXIT` for cleanup on failure/Ctrl-C.
+- **Improvement**: `TMP_DIR` now uses `${TMPDIR:-/tmp}` instead of hardcoded `/tmp`.
+- **Improvement**: Header version comment updated to match `--version` output.
+
+### v1.3.8 (2026‑08‑10)
+- **Bug fix (critical)**: WebDAV upload failed with exit code 3 — `mktemp` creates an empty 0-byte file, then `zip -j` treats it as an invalid existing archive and fails. Replaced `mktemp` with `$TMP_DIR/${ATTACH_KEY}.prop` and `$TMP_DIR/${ATTACH_KEY}.zip` (with `rm -f` guard), which also fixes a secondary bug where files were uploaded with random mktemp names instead of the required `<ATTACH_KEY>.zip`/`<ATTACH_KEY>.prop` filenames.
+- **Bug fix**: Chinese paper title extraction grabbed issue headers (e.g. "２０２１年第４期") instead of the actual title. Added `extract_title_from_pdf()` function with CJK-aware filtering: skips date/issue/volume markers, abstracts, keywords, author bios, and fund project notes; strips trailing footnote markers (＊).
+- **Improvement**: WebDAV curl uploads now report HTTP status codes instead of failing silently with `-f`.
+- **Improvement**: WebDAV upload URL uses explicit filename (`$WEBDAV_BASE_URL/${ATTACH_KEY}.prop`) instead of relying on curl's trailing-slash filename appending behavior.
 
 ### v1.3.6 (2026‑06‑11)
 
@@ -366,4 +423,4 @@ brew install curl jq poppler zip
 
 ### "File too large for Zotero API"
 - Large files (>100MB) require WebDAV storage
-- Set `WEBDAV_URL`, `WEBDAV_USER`, `WEBDAV_PASS` variables
+- Set `ZOTERO_WEBDAV_URL` (https:// required), `ZOTERO_WEBDAV_USER`, `ZOTERO_WEBDAV_PASS` variables

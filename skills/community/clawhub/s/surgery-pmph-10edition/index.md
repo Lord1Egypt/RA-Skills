@@ -37,7 +37,7 @@
 
 | Skill | Description | Use When |
 |-------|-------------|----------|
-| [laryngeal-mask-airway-indications-and-contraindications](laryngeal-mask-airway-indications-and-contraindications/SKILL.md) | 评估患者是否适合使用喉罩建立声门上人工气道 | 当需快速建立气道且患者张口度≥2cm、无误吸高风险、无咽喉结构异常时使用 |
+| [laryngeal-maREDACTED-SECRET](laryngeal-maREDACTED-SECRET/SKILL.md) | 评估患者是否适合使用喉罩建立声门上人工气道 | 当需快速建立气道且患者张口度≥2cm、无误吸高风险、无咽喉结构异常时使用 |
 | [肠扭转三要素风险评估](volvulus-three-factor-risk-assessment/SKILL.md) | 评估患者发生肠扭转的风险，基于解剖异常、肠内容物骤增/肿瘤、强烈肠蠕动或体位突变三个必要因素 | 当患者存在闭袢性肠梗阻高危背景（如术后粘连、便秘伴乙状结肠冗长）并出现急性腹痛时触发 |
 | [阑尾解剖变异与症状定位](appendix-anatomical-variants/SKILL.md) | 根据急性阑尾炎患者的压痛部位推断阑尾尖端的解剖方位，解释非典型腹痛表现并指导查体重点与手术入路 | 当患者腹痛位置不典型（如耻骨上、右腰部或左下腹）时触发 |
 | [postoperative-fever-differential-diagnosis](postoperative-fever-differential-diagnosis/SKILL.md) | 根据术后发热出现的时间判断发热原因是否为感染性或非感染性 | 当术后患者体温≥37℃时，依据发热时间窗指导病因排查与处理决策 |
@@ -473,7 +473,7 @@
 - [术后尿潴留评估与处理](postoperative-urinary-retention/SKILL.md)
 
 ### 💉 麻醉与疼痛
-- [laryngeal-mask-airway-indications-and-contraindications](laryngeal-mask-airway-indications-and-contraindications/SKILL.md)
+- [laryngeal-maREDACTED-SECRET](laryngeal-maREDACTED-SECRET/SKILL.md)
 - [气管内插管适应症与位置确认](endotracheal-intubation-indications/SKILL.md)
 - [subarachnoid-anesthesia-level-adjustment](subarachnoid-anesthesia-level-adjustment/SKILL.md)
 - [subarachnoid-anesthesia-local-anesthetic-dosing](subarachnoid-anesthesia-local-anesthetic-dosing/SKILL.md)

@@ -1,41 +1,50 @@
-## Description: <br>
-Generates Chinese-language industry scenario plans from an industry and product direction, including pain point analysis, representative use cases, PPT-ready Markdown material, and customer conversation prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language industry scenario packages from an industry and product direction, including pain-point analysis, use cases, PPT-ready material, and customer conversation talk tracks.
 
-## Publisher: <br>
-[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255)
 
-## Use Case: <br>
-Sales and solution teams use this skill to prepare industry-specific customer discussion material, scenario narratives, and presentation-ready Markdown for products such as ONN, IOC, EA, and digital twins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use web search for industry research, which can expose sensitive customer context if the prompt includes it. <br>
-Mitigation: Do not include confidential customer names, private deal strategy, or sensitive internal data when requesting scenario drafts. <br>
-Risk: Generated sales scenarios may be inaccurate or too generic for a specific customer meeting. <br>
-Mitigation: Review and adapt pain points, examples, and talk tracks before sharing them with customers. <br>
+## Use Case:
 
+Sales and customer-facing teams use this skill to prepare industry-specific scenario narratives, pain-point analysis, solution positioning, use cases, PPT material, and talk tracks for customer conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/industry-scenario-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/andyrenxu7255) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with structured sections, tables, talk tracks, and optional PPT page outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May tailor content by industry, product direction, customer role, and requested depth.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Generated sales scenarios may include unverified industry claims, search-derived details, or customer references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated claims and customer examples before customer use, especially when the skill uses web search or references real cases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/skills/industry-scenario-generator)
+- [Publisher profile](https://clawhub.ai/user/andyrenxu7255)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with structured analysis, use cases, comparison tables, talk tracks, and optional PPT material outlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language sales content; generated claims and customer references should be reviewed before customer use.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

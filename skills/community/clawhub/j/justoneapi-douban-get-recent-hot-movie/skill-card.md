@@ -1,41 +1,52 @@
-## Description: <br>
-Call GET /api/douban/get-recent-hot-movie/v1 for Douban Movie Recent Hot Movie through JustOneAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douban/get-recent-hot-movie/v1 for Douban Movie Recent Hot Movie through JustOneAPI.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI's Douban recent hot movie endpoint and retrieve recent movie trend data, including ratings, posters, and subject metadata. It is suited for movie discovery and trend monitoring workflows that need the documented v1 endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sensitive and is sent as a URL query parameter for this endpoint. <br>
-Mitigation: Use a limited-scope token when available, avoid sharing logs or command histories that may contain request URLs, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+Developers and external agents use this skill to call JustOneAPI's Douban Movie recent hot movie endpoint, retrieve ratings, posters, and subject metadata, and summarize movie discovery or trend monitoring results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-douban-get-recent-hot-movie) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban_get_recent_hot_movie&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban_get_recent_hot_movie&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with raw JSON API response data and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses operation getRecentHotMovieV1 and optional page query parameter; requires JUST_ONE_API_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The API token can be exposed through command arguments and request URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable JustOneAPI token, avoid running the helper on shared systems where process arguments may be visible, and rotate the token if command logs or URL logs may capture it.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban_get_recent_hot_movie&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban_get_recent_hot_movie&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-douban-get-recent-hot-movie)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown summary with raw JSON API response when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses operation getRecentHotMovieV1 with required JUST_ONE_API_TOKEN authentication and optional page pagination.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

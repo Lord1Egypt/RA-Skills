@@ -1,44 +1,59 @@
-## Description: <br>
-Safe Shrink helps agents route document optimization tasks to SafeShrink for compression, sanitization, SSD conversion, OCR, and batch file-processing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe Shrink helps agents guide users through offline document compression, sanitization, OCR, and conversion to the .ssd enhanced Markdown format.
 
-## Publisher: <br>
-[jinwatech](https://clawhub.ai/user/jinwatech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinwatech](https://clawhub.ai/user/jinwatech)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to prepare documents for downstream analysis by compressing files, masking sensitive information, converting documents to Markdown-like .ssd output, or generating SafeShrink CLI commands for single-file and batch workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0 (skill package)
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to download and run a cached Windows executable from GitHub. <br>
-Mitigation: Install only after verifying the release source and integrity, and limit execution to environments where running the SafeShrink EXE is acceptable. <br>
-Risk: Compression, OCR, sanitization, and SSD conversion can alter or remove document content. <br>
-Mitigation: Run the tool on copies of source documents and review outputs before relying on or sharing them. <br>
-Risk: The release makes broad offline and safety claims around a bundled executable. <br>
-Mitigation: Treat those claims as publisher assertions, avoid blanket antivirus exclusions, and apply normal endpoint security review. <br>
+## Use Case:
 
+Developers and end users use Safe Shrink to prepare Office, PDF, image, text, code, and structured files for sharing or AI workflows by shrinking documents, masking sensitive data, extracting OCR text, and producing .ssd or Markdown-style outputs.
 
-## Reference(s): <br>
-- [ClawHub Safe Shrink release page](https://clawhub.ai/jinwatech/safe-shrink) <br>
-- [SafeShrink project repository](https://github.com/JinwaTech/safeshrink) <br>
-- [SafeShrink latest releases](https://github.com/JinwaTech/safeshrink/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline SafeShrink CLI commands and file-handling recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce command examples and suggested output filenames such as .ssd, _slim, or sanitized document variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.15 (source: server evidence release.version and artifact _meta.json) <br>
+Risk: The security evidence marks the release as suspicious because it directs broad file handling into an unverified downloaded Windows executable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only run the executable on specific documents after independently verifying the release artifact, and test it in an isolated environment before processing sensitive files.
+
+Risk: The artifact recommends broad antivirus exclusions for the SafeShrink folder.
+
+Mitigation: Do not add broad antivirus exclusions; follow endpoint security policy and investigate any antivirus detection before use.
+
+Risk: The skill processes sensitive documents and claims sanitization, but missed or incorrect masking could expose data.
+
+Mitigation: Review sanitized outputs before sharing externally and avoid processing highly sensitive files unless the release artifact and results have been verified.
+
+## Reference(s):
+
+- [Safe Shrink ClawHub page](https://clawhub.ai/jinwatech/skills/safe-shrink)
+- [SafeShrink GitHub repository](https://github.com/JinwaTech/safeshrink)
+- [SafeShrink releases](https://github.com/JinwaTech/safeshrink/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI command examples and local document output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce .ssd, text, Markdown, compressed document, sanitized document, image, or batch output files through a local Windows executable.]
+
+## Skill Version(s):
+
+1.2.15 (source: evidence.release.version and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

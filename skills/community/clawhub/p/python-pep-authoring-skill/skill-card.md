@@ -1,45 +1,57 @@
-## Description: <br>
-Draft, review, edit, or prepare Python Enhancement Proposals using the official python/peps repository rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft, review, edit, or prepare Python Enhancement Proposals using the official python/peps repository rules.
 
-## Publisher: <br>
-[zhaoqyu](https://clawhub.ai/user/zhaoqyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoqyu](https://clawhub.ai/user/zhaoqyu)
 
-## Use Case: <br>
-Developers, PEP authors, and reviewers use this skill to draft, review, edit, and prepare Python Enhancement Proposals that follow the official python/peps process, metadata, formatting, and validation expectations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to edit files in a local python/peps checkout. <br>
-Mitigation: Use a trusted checkout and review generated PEP changes before committing or opening a pull request. <br>
-Risk: The skill may suggest running repository validation commands. <br>
-Mitigation: Confirm commands target the intended python/peps checkout before execution. <br>
+## Use Case:
 
+Developers and technical writers use this skill to draft, review, revise, and prepare Python Enhancement Proposals in line with the official python/peps repository workflow, metadata, formatting, and validation expectations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaoqyu/skills/python-pep-authoring-skill) <br>
-- [Source repository](https://github.com/zhaoqyu/python-pep-authoring-skill) <br>
-- [Official python/peps repository](https://github.com/python/peps) <br>
-- [PEP index](https://peps.python.org/) <br>
-- [PEP 1](https://peps.python.org/pep-0001/) <br>
-- [PEP 12](https://peps.python.org/pep-0012/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown prose with review findings, PEP draft text, reStructuredText snippets, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file-edit guidance and validation command recommendations for a local python/peps checkout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The artifact names bundled reference files that are not present, which can leave detailed PEP process or formatting claims under-sourced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a live python/peps checkout or the official PEP links when making detailed claims, and prefer local repository files when available.
+
+Risk: Repository validation commands may run in untrusted checkouts.
+
+Mitigation: Review commands before execution and run validation only in a trusted or disposable checkout.
+
+## Reference(s):
+
+- [Server-resolved source repository](https://github.com/zhaoqyu/python-pep-authoring-skill)
+- [Official python/peps repository](https://github.com/python/peps)
+- [PEP index](https://peps.python.org/)
+- [PEP 1](https://peps.python.org/pep-0001/)
+- [PEP 12](https://peps.python.org/pep-0012/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with review findings, draft or revision text, and validation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file and line references for PEP reviews and commands to run in a local python/peps checkout.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

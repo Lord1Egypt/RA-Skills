@@ -307,7 +307,7 @@ if __name__ == "__main__":
         test_vault = EncryptedVault(vault_path="/tmp/test_vault.vault")
         
         # Store some credentials
-        test_vault.set("test_platform", "api_key", "sk-super-secret-key-12345")
+        test_vault.set("test_platform", "api_key", "REDACTED-SECRET")
         test_vault.set("test_platform", "token", "bearer-token-67890")
         test_vault.set("another", "secret", "my-password")
         
@@ -322,7 +322,7 @@ if __name__ == "__main__":
         
         # Verify we can read it back
         test_vault2 = EncryptedVault(vault_path="/tmp/test_vault.vault")
-        assert test_vault2.get("test_platform", "api_key") == "sk-super-secret-key-12345"
+        assert test_vault2.get("test_platform", "api_key") == "REDACTED-SECRET"
         assert test_vault2.get("test_platform", "token") == "bearer-token-67890"
         assert test_vault2.get("another", "secret") == "my-password"
         print("  ✅ Decryption successful — all credentials recovered")

@@ -1,45 +1,57 @@
-## Description: <br>
-Stop waiting for prompts. Keep working. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stop waiting for prompts. Keep working.
 
-## Publisher: <br>
-[ayakolin](https://clawhub.ai/user/ayakolin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayakolin](https://clawhub.ai/user/ayakolin)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up a task queue, proactive heartbeat routine, and operating practices that help agents continue approved work between human prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled autonomous work can continue with weak safety boundaries if the queue contains unapproved or sensitive tasks. <br>
-Mitigation: Restrict the task queue to human-approved work, limit writable paths and external actions, and require approval for sensitive or destructive tasks. <br>
-Risk: Frequent heartbeats and status reporting can expose private data if agents write secrets or sensitive context into memory files or team channels. <br>
-Mitigation: Disable automatic team-channel posting unless the channel is approved, and instruct agents not to log secrets or private data. <br>
-Risk: Autonomous task selection can drift away from current human priorities. <br>
-Mitigation: Keep human requests first, maintain explicit Ready/In Progress/Blocked/Done queue states, and escalate blockers before continuing. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure a task queue, proactive heartbeat routine, and scheduled work patterns so agents can continue useful work between human prompts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ayakolin/temp-agent-autonomy-kit) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Task Queue Template](artifact/templates/QUEUE.md) <br>
-- [Heartbeat Template](artifact/templates/HEARTBEAT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces task queue and heartbeat guidance for agent operation; the artifact contains documentation and templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Recurring autonomous work from mutable task queues can cause agents to act without timely human review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit acceptable task types, restrict who can edit the queue, and require approval for writes, messages, spending, command execution, and agent spawning.
+
+Risk: Cron or frequent heartbeat schedules can keep autonomous work running longer than intended.
+
+Mitigation: Document every scheduled job, keep disable steps easy to find, and review active schedules before enabling the skill.
+
+Risk: Autonomous work may reach files or external communication channels beyond the intended scope.
+
+Mitigation: Constrain file access and external channel access before enabling proactive heartbeat or scheduled work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ayakolin/skills/temp-agent-autonomy-kit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes queue and heartbeat templates plus guidance for scheduled autonomous work.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

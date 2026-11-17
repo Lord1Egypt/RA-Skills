@@ -30,7 +30,7 @@ DEFAULT_ASPECT_RATIO = "1:1"
 VALID_SIZES = {"1K", "2K", "4K"}
 VALID_ASPECTS = {"1:1", "16:9", "9:16", "3:4", "4:3"}
 # Default API key (fallback if MINIMAX_API_KEY env var not set)
-DEFAULT_API_KEY = "sk-cp-MFXJC1WqfJR0j-ZDmIdOlAvkhfoiu3awjraCF2b7jDeKnIkAucoebrHj_KIrqwdxWjiCHDpIGGmPBjvE62g86MnubennRzM8fBy_Iq9615D7RX7W1dvmiG0"
+DEFAULT_API_KEY = "REDACTED-SECRET"
 
 
 def get_api_endpoint() -> str:

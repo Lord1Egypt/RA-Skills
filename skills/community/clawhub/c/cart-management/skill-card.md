@@ -1,37 +1,47 @@
-## Description: <br>
-Provides React cart state management patterns for duplicate prevention, localStorage persistence, and CartContext design when building or fixing shopping carts, product lists, or cart-related UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+React cart state management: duplicate prevention, localStorage persistence, CartContext patterns. Use when building or fixing shopping carts, product lists, or cart-related UI.
 
-## Publisher: <br>
-[konscious0beast](https://clawhub.ai/user/konscious0beast) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[konscious0beast](https://clawhub.ai/user/konscious0beast)
 
-## Use Case: <br>
-Developers use this skill to implement or repair React shopping-cart behavior, including duplicate prevention, cart persistence, centralized CartContext logic, and same-product quantity updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persisting cart state in localStorage can expose sensitive user or payment data if examples are copied without filtering stored fields. <br>
-Mitigation: Store only non-sensitive cart data in localStorage and keep payment details, secrets, and private user information out of browser storage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cart Management skill page](https://clawhub.ai/konscious0beast/cart-management) <br>
+## Use Case:
+
+Developers building React commerce interfaces use this skill for cart state patterns that prevent duplicate entries, persist cart state with localStorage, and centralize add/remove behavior in CartContext.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Cart state persisted in browser localStorage can expose sensitive data if teams store personal, payment, or credential data there.
+
+Mitigation: Use localStorage only for non-sensitive cart state, avoid storing personal or payment data, and validate cart contents on the backend before checkout.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code] <br>
-**Output Format:** [Markdown with TypeScript/React code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Code]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with TypeScript/TSX code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

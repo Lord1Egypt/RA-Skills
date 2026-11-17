@@ -1,38 +1,52 @@
-## Description: <br>
-Google Workspace Alert Center: Manage Workspace security alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace Alert Center: Manage Workspace security alerts.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Google Workspace administrators and automation agents use this skill to inspect Alert Center resources, list or retrieve security alerts, update Alert Center settings, and perform delete or undelete workflows through the gws CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Admin-level Alert Center commands can delete alerts, undelete alerts, or update customer-level settings when directed. <br>
-Mitigation: Use least-privileged Google Workspace credentials where possible, and confirm alert IDs, customer context, and intended changes before running delete, batch delete, undelete, or update settings commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/gws-alertcenter) <br>
-- [Publisher Profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+## Use Case:
 
+Developers and workspace administrators use this skill to inspect and operate Google Workspace Alert Center commands for listing, retrieving, deleting, undeleting, and configuring security alerts through the gws CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and Google Workspace credentials; commands that delete, undelete, or update settings should be confirmed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Alert deletion, batch deletion, or settings updates may affect the wrong customer, alert, or retention state if parameters are incorrect.
+
+Mitigation: Before mutation commands, confirm the target customer, alert IDs, and expected retention or recovery behavior.
+
+Risk: The agent operates against Google Workspace Alert Center through configured gws credentials.
+
+Mitigation: Install and use the skill only in environments where those credentials are intended for Alert Center operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-alertcenter)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and configured Google Workspace credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

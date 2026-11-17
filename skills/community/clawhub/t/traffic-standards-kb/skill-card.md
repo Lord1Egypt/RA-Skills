@@ -1,47 +1,60 @@
-## Description: <br>
-Retrieves Chinese transportation standards (GB, JT, and GA) through the Solvex API and formats citations for smart transportation solution documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves Chinese transportation standards (GB, JT, and GA) through the Solvex API and formats citations for smart transportation proposals and technical documents.
 
-## Publisher: <br>
-[solvex-top](https://clawhub.ai/user/solvex-top) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solvex-top](https://clawhub.ai/user/solvex-top)
 
-## Use Case: <br>
-Developers, solution architects, and proposal writers use this skill when drafting Chinese smart transportation solutions, bids, or technical proposals that need GB/JT/GA standards citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends transportation-standard queries and relevant prompt context to solvexpert.net. <br>
-Mitigation: Get explicit user approval before API calls and redact confidential bid, project, or internal planning text. <br>
-Risk: The skill requires a sensitive Solvex API key and documents a shared searchAuthToken. <br>
-Mitigation: Store STANDARDS_API_KEY outside source control, treat the documented searchAuthToken as sensitive, and avoid logging credentials or full request bodies. <br>
-Risk: Automatically inserted standards citations can be incomplete or mismatched if API responses are empty or off topic. <br>
-Mitigation: Validate successful responses and review citations before using them in formal solutions or proposals. <br>
+## Use Case:
 
+External developers and transportation solution teams use this skill to query relevant Chinese GB/JT/GA standards and insert formatted citations into smart transportation proposals, bids, and technical plans.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/solvex-top/traffic-standards-kb) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Traffic Standards Knowledge Base README](artifact/README.md) <br>
-- [API Reference](artifact/api-reference.md) <br>
-- [Solvex API key portal](https://solvexpert.net) <br>
-- [Solvex Standards API endpoint](https://solvexpert.net/api/v1/standards/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell examples, JSON API examples, and formatted citation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STANDARDS_API_KEY and the documented searchAuthToken; sends transportation-standard queries and related prompt context to solvexpert.net.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Standards lookup queries are sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use minimal generic keywords and avoid sending customer names, exact locations, bid details, unpublished architecture, credentials, or full proposal text.
+
+Risk: Broad global installation and update-to-latest instructions can expand the skill's reach before review.
+
+Mitigation: Prefer project-local installation and review the skill before updating or deploying it broadly.
+
+Risk: Long-lived API keys in agent-wide settings can increase exposure if reused across projects.
+
+Mitigation: Use the narrowest available secret mechanism and avoid storing long-lived API keys in global agent settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/solvex-top/skills/traffic-standards-kb)
+- [Solvex API service](https://solvexpert.net)
+- [Solvex standards query endpoint](https://solvexpert.net/api/v1/standards/query)
+- [API reference](artifact/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, API request examples, JSON response examples, and formatted standards citations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Solvex API key and sends standards lookup queries to solvexpert.net.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

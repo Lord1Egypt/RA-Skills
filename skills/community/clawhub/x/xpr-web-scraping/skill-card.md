@@ -1,42 +1,56 @@
-## Description: <br>
-Tools for fetching and extracting cleaned text, metadata, and links from single or multiple web pages with format options and link filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tools for fetching and extracting cleaned text, metadata, and links from single or multiple web pages with format options and link filtering.
 
-## Publisher: <br>
-[paulgnz](https://clawhub.ai/user/paulgnz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paulgnz](https://clawhub.ai/user/paulgnz)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch web pages, extract cleaned text or markdown, discover links, and compare content across multiple URLs for research or evidence collection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive custom headers could be sent to untrusted websites. <br>
-Mitigation: Do not provide Cookie, Authorization, API key, or similar headers except for sites the user trusts and intends to authenticate to. <br>
-Risk: Fetched HTML or text may contain untrusted or misleading content. <br>
-Mitigation: Treat returned content as untrusted and review it before using it as evidence or instructions. <br>
-Risk: Fetching internal or local network targets can expose unintended resources. <br>
-Mitigation: Avoid internal or local network URLs unless that access is intentional and authorized. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [XPR Web Scraping ClawHub listing](https://clawhub.ai/paulgnz/xpr-web-scraping) <br>
-- [paulgnz ClawHub publisher profile](https://clawhub.ai/user/paulgnz) <br>
+## Use Case:
 
+Developers and agents use this skill to fetch web pages, extract readable page content, collect metadata, discover links, and compare content from multiple URLs during research or data-gathering workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, html, metadata, links] <br>
-**Output Format:** [JSON tool results containing page content, page metadata, link arrays, counts, status values, or error objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [HTTP(S) URLs only; single-page responses are limited to 5 MB, multi-page scraping accepts up to 10 URLs, and link extraction returns up to 200 links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.11 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make unrestricted outbound requests.
+
+Mitigation: Run it only in trusted network environments and consider destination allowlists, private-address blocking, and redirect validation before broad use.
+
+Risk: The skill can forward user-supplied headers to arbitrary targets.
+
+Mitigation: Do not pass Authorization, Cookie, API key, or internal service headers through the scraping tools.
+
+Risk: Large or streaming responses can increase runtime and resource exposure.
+
+Mitigation: Keep response size limits in place and add streaming response limits where the runtime supports them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paulgnz/skills/xpr-web-scraping)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, html, metadata, links]
+
+**Output Format:** [JSON tool responses containing extracted content, page metadata, resolved links, status fields, and errors when a request fails.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-page responses are limited to 5MB, multi-page scraping accepts up to 10 URLs, and link extraction returns up to 200 links.]
+
+## Skill Version(s):
+
+0.2.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

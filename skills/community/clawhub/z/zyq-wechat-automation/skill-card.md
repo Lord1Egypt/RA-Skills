@@ -1,45 +1,63 @@
-## Description: <br>
-Wechat Automation helps an agent automate Windows PC WeChat tasks such as sending messages, bulk messaging, reading chat history, listing contacts, auto-replying, and managing Moments through pywechat127. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Windows PC WeChat tasks through pywechat127, including sending messages, batch messaging, reading chat history, retrieving contacts, auto-replies, and Moments management.
 
-## Publisher: <br>
-[838997125](https://clawhub.ai/user/838997125) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[838997125](https://clawhub.ai/user/838997125)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to operate a live Windows PC WeChat session from an agent, including message sending, batch sends, contact lookup, chat-history reads, and environment checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a live WeChat account and send messages, including bulk sends, from the user's desktop session. <br>
-Mitigation: Require explicit manual confirmation for every send, bulk send, file transfer, auto-reply, and Moments action, and avoid promotional or spam-like use. <br>
-Risk: The skill can read private chat history and contact information and print results to the terminal. <br>
-Mitigation: Confirm each contact listing or chat-history read before execution and keep chat and contact output out of shared logs, transcripts, and terminals. <br>
-Risk: Generated .bat files run WeChat automation outside the agent sandbox in the user's real Windows desktop session. <br>
-Mitigation: Inspect generated .bat files before running them and execute them only in a trusted local session. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to check a Windows WeChat environment and automate authorized WeChat messaging, contact lookup, and chat-history retrieval from a logged-in desktop session.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/838997125/zyq-wechat-automation) <br>
-- [pywechat127 PyPI](https://pypi.org/project/pywechat127/) <br>
-- [pywechat GitHub](https://github.com/Hello-Mr-Crab/pywechat) <br>
-- [FAQ](references/faq.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets; scripts may print WeChat contact, message, and execution status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows, a logged-in WeChat desktop session, and pywechat127-related dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can read and send private WeChat messages and contact data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on Windows accounts and WeChat sessions the operator is authorized to automate, and treat chat and contact output as sensitive data.
+
+Risk: Bulk messaging can send unwanted or policy-violating messages.
+
+Mitigation: Review recipients and message content before sending, avoid unsolicited promotion, and use delays and limits for any batch workflow.
+
+Risk: Generated Windows batch files may execute unsafe recipient, path, or message values.
+
+Mitigation: Do not run generated .bat files with untrusted input; inspect generated files before execution.
+
+Risk: The artifact relies on a hard-coded local pywechat import path and unpinned dependencies.
+
+Mitigation: Remove or control the hard-coded D:\code\pywechat3 path and pin dependencies before deployment.
+
+## Reference(s):
+
+- [pywechat127 PyPI](https://pypi.org/project/pywechat127/)
+- [pywechat GitHub](https://github.com/Hello-Mr-Crab/pywechat)
+- [FAQ](references/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python snippets, shell commands, and optional JSON or Windows batch files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows 10 or 11, Python 3, PC WeChat 3.9.12.x or 4.0+, and a logged-in desktop WeChat session.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

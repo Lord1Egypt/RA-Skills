@@ -1,29 +1,43 @@
-﻿---
+---
 name: hifleet-skills
 description: >-
-  HiFleet 综合技能：船位、档案、轨迹/航程/航次、PSC、区域通航、港口、租船船货盘、港距排序、船期、航线、气象、船队、AIS。Position, track, voyage, PSC, port, charter, fleet, weather, AIS.
-version: 0.3.8
+  HiFleet 综合技能：船位、档案、事故事件、制裁、海事处罚、轨迹/航程/航次、PSC、区域通航、港口、公开船货盘、港距排序、班轮船期、航线、气象、船队、AIS。Position, track, voyage, casualty, sanction, maritime penalty, PSC, port, public tonnage, liner schedule, fleet, weather, AIS.
+version: 0.3.21
 # 必选：本技能依赖鉴权，需先配置环境变量后再使用
 requiredEnv:
   - HIFLEET_API_KEY
 # 来源与联系（便于安全审核）
-homepage: https://www.hifleet.com
-source: https://api.hifleet.com
+homepage: https://skills.hifleet.com
+source: https://github.com/charleiWang/hifleet-skills
 ---
 
 # 技能说明
 
 本技能使用时需先配置 `api_key`；技能列表与触发词见 [references/skills_index.md](references/skills_index.md)。
 
+## 安装获取
+
+| 途径 | 地址 |
+|------|------|
+| ClawHub | https://clawhub.ai/charleiwang/skills/hifleet-skills |
+| GitHub | https://github.com/charleiWang/hifleet-skills |
+| 手动安装包（zip） | http://static.hifleet.com/download/skills/hifleet-skills-latest.zip |
+
+完整安装步骤见 [INSTALL.md](INSTALL.md)；尚无 `api_key` 时见 [FIRST_SETUP.md](FIRST_SETUP.md)。
+
 | 技能 | 状态 | 说明 |
 |------|------|------|
 | 船位 Ship Position | ✅ 已实现 | 获取最新船舶位置 |
 | 档案 Archive | ✅ 已实现 | 船舶/公司档案 |
+| 事故事件 Casualty & Events | ✅ 已实现 | 按 IMO 查事故/事件列表，按 eventId 查详情 |
+| 制裁 Sanction | ✅ 已实现 | 按 IMO 评估船舶制裁风险（US/EU/UK/Canada/UN/CN） |
+| 海事处罚 Maritime Penalty | ✅ 已实现 | 按船名/MMSI/时间查海事行政处罚公示 |
+| 船舶档案统计 Ship Archive Statistics | ✅ 已实现 | 船旗、船型、公司船队等预聚合统计，以及船舶档案明细分页查询 |
 | 红海/波斯湾通航 Strait Traffic | ✅ 已实现 | 海峡通航统计（曼德、苏伊士、好望角、霍尔木兹） |
 | 区域船舶 Area Traffic | ✅ 已实现 | 查询指定区域内的当前船舶：支持 bbox、areaId（区域清单 id）或 polygon（WKT） |
 | PSC 检查 PSC Inspection | ✅ 已实现 | 单船 PSC（按 IMO）→ 统计异常 `openclaw/anomalies*` → 宏观统计 `openclaw/stats/compare|defects/top|mix/compare` |
-| 港口 Port guide | ✅ 已实现 | 港口列表/检索（港名或代码）、单港详情（`piuid`→`portId`）；`portguide/getPort/token`、`portguide/getPortDetail/token` |
-| 租船 Charter | ✅ 已实现（内置模块） | 邮箱船货盘+预抵（`hifleet-mytonnages`）；班轮（`hifleet-schedule`）；**公开船货**（`hifleet-opentonnages`） |
+| 进港指南 Port guide | ✅ 已实现 | 进港指南港口列表/检索（港名或代码）、单港详情 |
+| 租船 Charter | ✅ 已实现（内置模块） | 班轮（`hifleet-schedule`）；**公开船货**（`hifleet-opentonnages`） |
 | 性能 Performance | 待实现 | 油耗、能效、主机性能 |
 | 航程 Voyage | ✅ 已实现（部分） | 历史轨迹、航程、航线规划、历史挂靠、历史航次、上一港、当前停船|
 | 航线 Route | 待实现 | 推荐航线、航路点 |
@@ -31,13 +45,15 @@ source: https://api.hifleet.com
 | 气象海况 Weather | 待实现 | 风浪、台风、能见度 |
 | 船队 Fleet | 待实现 | 多船监控、船队报表 |
 | AIS | 待实现 | AIS 报文、轨迹回放 |
-| 账户与用量 Account & Usage | ✅ 已实现 | api_key 积分余额、调用汇总/明细、入账出账流水 |
+| 账户与用量 Account & Usage | ✅ 已实现 | 注册/登录/Key、积分充值/订阅/发票、混合计费额度；已有 Key 可换票打开 Skills 控制台 |
 
 ---
 
 ## api_key 配置（必填）
 
 船位、档案、PSC、港口等已实现功能依赖 HiFleet API 鉴权：优先读取环境变量 `HIFLEET_API_KEY`，项目/ClawHub 内统一按 `api_key` 传入。
+
+**用户尚无 api_key 时**：按 [FIRST_SETUP.md](FIRST_SETUP.md) 引导 **发验证码 →（按需人机）→ 验证码登录/注册（免密码）→ 配置 Key**；积分或订阅额度不足时引导 **充值/订阅 → 收银台付款 → 开票**，见 [references/account_onboarding_api.md](references/account_onboarding_api.md) 与 [references/billing_api.md](references/billing_api.md)。
 
 ## 常用定义
 
@@ -83,6 +99,51 @@ source: https://api.hifleet.com
 - **脚本**：`scripts/get_archive.py`（支持 IMO 或 MMSI，MMSI 直接传 mmsi 参数，需 `api_key`）
 
 **调用流程**：检查 `api_key` → 按 **IMO** 或 **MMSI** 调用档案接口（内贸船无 IMO 可传 MMSI）→ 解析 data，按 labelZh 分块展示。
+
+### 事故事件 / Casualty & Events
+
+查询船舶事故与海事事件（碰撞、搁浅、火灾等）：先按 **IMO** 取列表，再用列表中的 **eventId** 查详情（描述、位置、船舶、航次、货物、关联事件）。与网站船舶档案页「事故和事件」同源；**勿与** MSA 事故报告、海盗事件混用。
+
+- **触发**：事故、事件、casualty、collision、grounding、海事事故、事故记录、事故详情 / casualty, marine casualty, incident, collision, grounding
+- **输入**：列表需 **IMO**（7 位）；仅有船名时先 `shipSearch` 取 IMO；详情需 **eventId**（来自列表）。`api_key` 从配置读取
+- **API 详情**：[references/casualty_api.md](references/casualty_api.md)
+- **脚本**：`scripts/get_casualty.py list <IMO>`、`scripts/get_casualty.py detail <eventId>`
+
+**调用流程**：检查 `api_key` →（无 IMO 则 shipSearch）→ `GET {base}/casualty/list/token?imo=...&api_key=...` → 展示列表 → 用户选定后 `GET {base}/casualty/detail/token?eventId=...&api_key=...`。无记录时如实说明，勿伪造。
+
+### 制裁 / Sanction
+
+按 **IMO** 评估船舶制裁风险（US SDN → EU → UK → Canada → UN → CN 依次命中），返回风险等级、来源、制裁对象与明细。
+
+- **触发**：制裁、制裁风险、OFAC、SDN、是否被制裁、制裁名单 / sanction, sanction risk, OFAC, SDN, sanctioned vessel
+- **输入**：Query 参数名必须是 **`imonumber`**（不是 `imo`）；仅有船名时先 `shipSearch`，取结果里的 IMO 填入 `imonumber`。`api_key` 从配置读取
+- **正确接口（仅此）**：`GET/POST {base}/sanction/assess/shiprisk/token?imonumber={imo}&api_key=...`
+- **勿调用**：网站路径 `/shipdetail/sanction/...`；勿用 `imo` 参数；勿与海事处罚 `/maritime/penalty/...`、制裁区港口 `/sanctions/port/token` 混淆
+- **API 详情**：[references/sanction_api.md](references/sanction_api.md)
+- **脚本**：`scripts/get_sanction.py <IMO>`
+
+**调用流程**：检查 `api_key` →（无 IMO 则 shipSearch）→ 调上述 `/token` 接口 → 按 `riskLevel`（字符串 `HIGH_RISK` / `MEDIUM_RISK` / `LOW_RISK`）展示；高风险看 `data`，中风险看 `otherships`。
+
+### 海事处罚 / Maritime Penalty
+
+查询中国海事局**行政处罚**公示（案号、案由、处罚对象、处罚结果等）。数据为爬取入库的公示信息，**不是** PSC 或制裁名单。
+
+- **触发**：海事处罚、行政处罚、海事局处罚、案号、案由 / maritime penalty, administrative penalty, MSA penalty
+- **输入**：优先 `shipName`（中文船名/主体名）；可选 `mmsi`、`startTime`/`endTime`、分页。`api_key` 从配置读取
+- **API 详情**：[references/maritime_penalty_api.md](references/maritime_penalty_api.md)
+- **脚本**：`scripts/get_maritime_penalty.py --ship-name ...`（或 `--mmsi` / 时间范围）
+
+**调用流程**：检查 `api_key` → `GET {base}/maritime/penalty/list/token?shipName=...&api_key=...` → 展示 `list[].details`（案号、案由、处罚结果）。无记录如实说明。
+
+### 船舶档案统计 / Ship Archive Statistics（OpenClaw）
+
+查询船舶档案日批预聚合统计和当前批次的船舶档案明细，可回答特定船旗、船型、公司船队、建造年份、载重吨区间、船厂交付、证书到期或登记国的数量与分布问题；也可按条件分页检索船舶档案。该能力是**批次快照统计**，不是实时 AIS 数据或单船完整档案。
+
+- **触发**：船旗船舶数量、某国船旗统计、船型分布、船队规模、公司有多少船、船龄分布、新造船趋势、载重吨分布、船厂交付、证书到期、船籍登记国、船舶档案统计、船舶档案明细 / ship archive statistics, fleet statistics, flag statistics, ship type distribution, company fleet, newbuild trend, DWT distribution, certificate expiry
+- **输入**：统计查询需 `intent`；可选 `statDate`（`yyyy-MM-dd`）或 `batchNo` 以指定统计批次，二者均不传时取最近成功全量批次；可选 `filters`。明细列表额外支持 `page`、`pageSize` 和 IMO、MMSI、船旗、船型、船东、船名关键字等筛选。`api_key` 从配置读取。
+- **API 详情**：[references/ship_archive_stats_api.md](references/ship_archive_stats_api.md)
+
+**Agent 路由**：用户问“某船”本身的详细档案时，优先使用上方 **档案 / Archive**；用户问“多少艘、分布、趋势、排行、某公司船队规模”等聚合问题时使用本能力的 `/query`。用户需要满足条件的船舶逐条结果时使用 `/list`。调用前如需要确认数据批次或数据更新时间，先调用 `/meta`；不要把不同批次的结果混在一起比较。
 
 ### 航程 / Voyage（OpenClaw）
 
@@ -180,9 +241,9 @@ source: https://api.hifleet.com
 
 ### 进港指南 / Port guide
 
-港口列表检索与单港详细信息。列表可用 `portName` 或 `portCode` 筛选；详情用列表项 `piuid` 作为 `portId`。
+港口列表检索与单港详细信息。列表可用 `portName` 或 `portCode` 筛选；。
 
-- **触发**：港口、港名、港口代码、UN/LOCODE、泊位、锚地、港口信息、port guide、port detail
+- **触发**：进港指南港口、港口信息、port guide、port detail
 - **输入**：列表步可选港名、港口代码；详情步必选港口 id（来自上一步的 `piuid`）；`api_key` 从配置读取；可选 `HIFLEET_API_BASE`
 - **API 详情**：[references/port_api.md](references/port_api.md)
 - **脚本**：`scripts/get_port.py`（子命令 `search [--port-name] [--port-code]`、`detail <portId>`）
@@ -191,17 +252,15 @@ source: https://api.hifleet.com
 
 ### 租船 / Charter
 
-租船能力拆为**四个**分册：
+租船能力拆为**两个**分册：
 
 | 分册 | 能力 | 说明 |
 |------|------|------|
-| **`hifleet-mytonnages/`** | 邮箱船货盘 + 预抵 | 需邮箱（A）与 `hifleet_api_key`（C + 富化）；预抵联系方式按需 unlock |
 | **`hifleet-schedule/`** | 班轮船期 | 散杂货/滚装/集装箱；联系方式按需 unlock |
 | **`hifleet-opentonnages/`** | **公开船盘 + 公开货盘** | 列表查船货信息；**联系方式按需**（记录 id + unlock）；可选 enrich |
-| （综合） | 船位/档案/航程等 | 本仓库 `hifleet-skills` 其它模块 |
 
-- **触发**：租船、船盘、货盘、预抵、**公开船盘/公开货盘/平台船货** / charter, open vessel, cargo, public tonnage, public cargo, marketplace
-- **执行入口**：邮箱/预抵 → `hifleet-mytonnages/SKILL.md`；班轮 → `hifleet-schedule/SKILL.md`；**公开船货** → `hifleet-opentonnages/SKILL.md`
+- **触发**：租船、船盘、货盘、**公开船盘/公开货盘/平台船货**、班轮船期 / charter, open vessel, cargo, public tonnage, public cargo, marketplace, liner schedule
+- **执行入口**：班轮 → `hifleet-schedule/SKILL.md`；**公开船货** → `hifleet-opentonnages/SKILL.md`
 
 ### 集装箱红海饶航 / Container ship Red Sea detour
 
@@ -275,20 +334,38 @@ source: https://api.hifleet.com
 
 ### 账户与用量 / Account & Usage
 
-用户询问**积分余额、调用记录、扣费流水**时使用（与业务查询共用同一 `api_key`）。**查询本身不扣积分**。
+用户询问**积分余额、调用记录、扣费流水**，或需 **注册、充值、订阅、开发票** 时使用（与业务查询共用同一 `api_key`）。账户查询**本身不扣积分**。
 
-- **触发**：积分、余额、还剩多少、用了多少、调用记录、扣费、消费、流水、account balance、usage、credits、billing
-- **输入**：`api_key` 从 `HIFLEET_API_KEY` 读取；可选时间范围（见分册）
-- **API 详情**：[references/account_api.md](references/account_api.md)
+- **触发**：积分、余额、还剩多少、用了多少、调用记录、扣费、消费、流水、注册、开户、充值、订阅、包月、Token Plan、付费、发票、控制台、打开控制台、用 api_key 登录、account balance、usage、credits、billing、invoice、signup、console SSO
+- **入门**：[FIRST_SETUP.md](FIRST_SETUP.md)（无 Key 时必读）
+- **注册与 Key**：[references/account_onboarding_api.md](references/account_onboarding_api.md)（已实现）
+- **换票进控制台**：[references/console_sso_api.md](references/console_sso_api.md)（已有 Key 时打开用量/钱包，无需再验证码登录）
+- **充值与发票**：[references/billing_api.md](references/billing_api.md)（已实现）
+- **用量查询**：[references/account_api.md](references/account_api.md)（已实现）
+- **脚本**：`scripts/open_console.py`（换票并打开 `consoleUrl`）
 
 **Agent 路由（必守）**：
 
-| 用户意图 | 接口 |
-|----------|------|
-| 还能用多少积分 | `GET/POST {base}/openclaw/account/summary` → 只向用户强调 **`availablePoints`** |
+| 用户意图 | 接口 / 文档 |
+|----------|-------------|
+| 没有 api_key、怎么开始、注册 | [FIRST_SETUP.md](FIRST_SETUP.md) → `send-code` → `register`（402 时打开 `register-capture.html`） |
+| 打开控制台、看用量页、钱包、用 api_key 登录 | [console_sso_api.md](references/console_sso_api.md) → 换票 → 打开 `consoleUrl`（skills.hifleet.com） |
+| 介绍 Skills / 产品页 | `https://skills.hifleet.com/`（无需换票） |
+| 还能用多少积分 | `GET/POST {base}/openclaw/account/summary` → 只向用户强调 **`availablePoints`**（含混合计费可调用量） |
+| 我的订阅、周期额度 | `GET {base}/openclaw/billing/subscription` 或 `token-plans` 中的 `quota` |
+| 积分不足、充值、订阅、买单 | [billing_api.md](references/billing_api.md) → `token-plans` → `billing/orders` → `paymentPageUrl` |
+| 付了吗、到账了吗 | `billing/orders/{orderId}` + `account/summary` 或 `billing/subscription` |
+| 取消订阅、超额用积分 | `billing/subscription/cancel`、`billing/subscription/over-quota` |
+| 发票、开票、报销 | [billing_api.md](references/billing_api.md) §4 |
 | 最近调了哪些接口 | `{base}/openclaw/account/usage/details` |
 | 什么时候真正扣款 | `{base}/openclaw/account/transactions` |
 | 按小时统计 | `{base}/openclaw/account/usage` |
+
+**积分不足（业务调用失败时）**：
+
+1. 业务接口返回 `code=4021` 或 `summary.availablePoints <= 0` → 先 `billing/subscription` 区分周期额度用尽还是无充值积分，再引导充值或续订（勿伪造付款链接）。  
+2. 下单成功后发送 **`paymentPageUrl`** 完整链接，让用户在收银台选微信/支付宝；勿硬编码支付渠道。  
+3. 支付成功后：积分单用 `summary` + `transactions`（`direction=IN`）确认；订阅单用 `billing/subscription` 确认额度。
 
 **回答规则**：
 
@@ -296,7 +373,7 @@ source: https://api.hifleet.com
 2. 余额问题**只引用 `availablePoints`**，勿自行对 `accountBalance` 与 `pendingDeduction` 做加减。  
 3. **调用明细 ≠ 积分流水**：明细是每次请求；流水是账户真正入账/出账。用户问「扣了没有」而流水暂无 → 说明可能**待入账**（小时结算后出现在 `transactions`）。  
 4. 勿向用户解释内部结算、unsettled 等运维术语；`pendingDeduction` 出现时按 `balanceHint` / `agentSummary` 简述即可。  
-5. 勿伪造积分、调用次数或流水。
+5. 勿伪造积分、调用次数、流水、支付链接或发票。完整 **api_key 仅注册/轮换时展示一次**，后续对话只显示前缀与末 4 位。
 
 ---
 
@@ -309,10 +386,15 @@ source: https://api.hifleet.com
 | 路径 | 说明 |
 |------|------|
 | [SECURITY.md](SECURITY.md) | 安全说明（网络行为、Token 用途、无动态代码） |
+| [INSTALL.md](INSTALL.md) | 安装获取：ClawHub / GitHub / zip 手动安装包 |
 | [references/api_base.md](references/api_base.md) | API 基址 `{base}` 与 `HIFLEET_API_BASE` 约定 |
 | [references/skills_index.md](references/skills_index.md) | 技能清单（中英双语、触发词） |
 | [references/position_api.md](references/position_api.md) | 船位 API 完整说明与响应字段 |
 | [references/archive_api.md](references/archive_api.md) | 档案 API 说明与 data 分类 |
+| [references/casualty_api.md](references/casualty_api.md) | 事故事件 API：按 IMO 列表、按 eventId 详情 |
+| [references/sanction_api.md](references/sanction_api.md) | 制裁风险评估 API：按 IMO（US/EU/UK/Canada/UN/CN） |
+| [references/maritime_penalty_api.md](references/maritime_penalty_api.md) | 海事行政处罚 API：按船名/MMSI/时间 |
+| [references/ship_archive_stats_api.md](references/ship_archive_stats_api.md) | 船舶档案统计 API：聚合统计、档案明细分页和批次元信息（OpenClaw） |
 | [references/voyage_api.md](references/voyage_api.md) | 航程 API：历史挂靠、历史航次、上一港、当前停船（OpenClaw） |
 | [references/strait_traffic_api.md](references/strait_traffic_api.md) | 红海/波斯湾海峡通航 API（oid、时间范围） |
 | [references/area_traffic_api.md](references/area_traffic_api.md) | 区域船舶 API（bbox、areaId、polygon、api_key） |
@@ -321,9 +403,17 @@ source: https://api.hifleet.com
 | [references/psc_anomaly_api.md](references/psc_anomaly_api.md) | PSC 统计异常 API（openclaw/anomalies*，api_key，可选 HIFLEET_API_BASE） |
 | [references/psc_openclaw_stats_api.md](references/psc_openclaw_stats_api.md) | PSC 宏观统计（openclaw/stats/compare、defects/top、mix/compare） |
 | [references/psc_stats_field_semantics.md](references/psc_stats_field_semantics.md) | PSC 多表字段语义：`authority`=检查国、`ship_type`=检查类型（非船型） |
-| [references/account_api.md](references/account_api.md) | 账户与用量：summary / usage / usage/details / transactions（需 `api_key`） |
+| [FIRST_SETUP.md](FIRST_SETUP.md) | 首次配置：注册、api_key、充值、发票全链路 |
+| [references/account_onboarding_api.md](references/account_onboarding_api.md) | 账户入门：注册、登录、api_key 发放（已实现） |
+| [references/console_sso_api.md](references/console_sso_api.md) | Skills 控制台 SSO：api_key 换票打开 skills.hifleet.com 控制台 |
+| [references/billing_api.md](references/billing_api.md) | 计费与发票：积分包、订阅、收银台、混合额度、开票（已实现） |
+| [references/account_api.md](references/account_api.md) | 账户与用量：summary / usage / usage/details / transactions（需 `api_key`，已实现） |
+| scripts/open_console.py | 用 `HIFLEET_API_KEY` 换票并打开控制台 `consoleUrl` |
 | scripts/get_position.py | 按关键字或 MMSI 获取船位（需 `api_key`；可选 `HIFLEET_API_BASE`） |
 | scripts/get_archive.py | 按 IMO 或 MMSI 获取船舶档案（需 `api_key`；可选 `HIFLEET_API_BASE`） |
+| scripts/get_casualty.py | 事故事件：`list <IMO>` / `detail <eventId>`（需 `api_key`；可选 `HIFLEET_API_BASE`） |
+| scripts/get_sanction.py | 制裁风险评估：`<IMO>`（需 `api_key`；可选 `HIFLEET_API_BASE`） |
+| scripts/get_maritime_penalty.py | 海事行政处罚：`--ship-name` / `--mmsi` / 时间（需 `api_key`） |
 | scripts/get_strait_traffic.py | 海峡通航统计（POST `{base}/position/statisticzonetraffic`）；可选 `HIFLEET_API_BASE` |
 | scripts/get_avoidredsea_traffic.py | 集装箱红海饶航（POST `{base}/routerisk/getAvoidRedSeaDetail/token`）；可选 `HIFLEET_API_BASE` |
 | scripts/get_areas.py | 区域清单（`{base}/position/areas/token`）；可选 `HIFLEET_API_BASE` |

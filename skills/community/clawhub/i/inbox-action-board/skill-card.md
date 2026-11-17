@@ -1,45 +1,56 @@
-## Description: <br>
-Organizes emails or messages into reply, waiting, follow-up, and archive action views for inbox triage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes emails or messages into four reviewable action views: reply, waiting, follow-up, and archive.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees and productivity-focused users use this skill to turn email summaries, chat snippets, and pending replies into a reviewable Markdown action board with next steps and confirmation gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inbox and message inputs may contain private or sensitive information. <br>
-Mitigation: Treat message contents as private data and consider redaction before processing or sharing generated boards. <br>
-Risk: The generated action board may be incomplete or may misclassify reply, waiting, follow-up, or archive items. <br>
-Mitigation: Review the board and confirmation gaps before sending messages, deleting content, or making external-system changes. <br>
-Risk: The helper script can create or overwrite the specified output file. <br>
-Mitigation: Run it only on intended input files and choose an output path that is acceptable to create or overwrite. <br>
+## Use Case:
 
+Employees, external users, and productivity-focused agents use this skill to turn inbox summaries, chat snippets, and pending replies into a structured triage board. It produces reviewable next steps without sending messages, deleting content, or modifying external systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/inbox-action-board) <br>
-- [Skill README](artifact/README.md) <br>
-- [Output template](artifact/resources/template.md) <br>
-- [Structured specification](artifact/resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown action board, or JSON containing the generated report when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a local output file when the helper script is run with an explicit output path; otherwise prints to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Inbox and message content may contain private or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and minimize input before use; redact sensitive material where practical.
+
+Risk: Using an output path can overwrite a local file.
+
+Mitigation: Choose an output path that is safe to create or replace, or run without an output path to print the report.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/inbox-action-board)
+- [Skill Definition](artifact/SKILL.md)
+- [Output Template](artifact/resources/template.md)
+- [Structured Spec](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown or JSON structured inbox triage report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only, reviewable output organized into reply, waiting, follow-up, archive, risk, and today sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

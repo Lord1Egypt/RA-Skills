@@ -1,43 +1,54 @@
-## Description: <br>
-Manages post-posting bookkeeping for approved Reddit drafts after a human confirms the live Reddit URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages bookkeeping after manually approved Reddit drafts are posted, including moving files, adding Reddit URLs, updating active tasks, and logging outcomes.
 
-## Publisher: <br>
-[lknezic](https://clawhub.ai/user/lknezic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lknezic](https://clawhub.ai/user/lknezic)
 
-## Use Case: <br>
-Operators who coordinate Reddit posting use this skill after Luka manually posts an approved draft, so the agent can archive the posted draft, attach the Reddit URL, update active task records, and log outcome signals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The support material includes account-warming, karma-building, and anti-detection guidance that could be used to bypass subreddit or platform rules. <br>
-Mitigation: Review or remove that guidance before installation, and limit use to local bookkeeping after a human-confirmed post. <br>
-Risk: The workflow modifies local posting records and deletes the pending draft after archiving. <br>
-Mitigation: Verify the APPROVED decision file, confirm the live Reddit URL, and confirm the posted copy exists before deleting the pending draft. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Reddit Post Skill](artifact/SKILL.md) <br>
-- [Posting Settings Reference](artifact/ref-settings.md) <br>
-- [Safety and Anti-Detection Rules](artifact/ref-safety.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lknezic/reddit-post) <br>
-- [Publisher profile](https://clawhub.ai/user/lknezic) <br>
+## Use Case:
 
+Operators using a manual Reddit publishing workflow use this skill after Luka confirms a post URL, so the agent can archive the posted draft, update task records, and capture outcome signals without submitting content to Reddit.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown file updates and concise status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local bookkeeping updates only; it does not submit content to Reddit.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bundled reference guidance includes account-warming and anti-detection language that could encourage platform-evasion behavior.
+
+Mitigation: Review and rewrite that guidance as plain compliance guidance focused on subreddit rules, required disclosures, and stopping activity when moderation issues occur.
+
+Risk: Incorrect bookkeeping could move or delete pending drafts before a post is confirmed.
+
+Mitigation: Require a Reddit URL from Luka before moving drafts to posted storage, and confirm the posted copy exists before deleting the pending draft.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lknezic/skills/reddit-post)
+- [Safety and Anti-Detection Rules](artifact/ref-safety.md)
+- [Posting Settings Reference](artifact/ref-settings.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown file updates and task-log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bookkeeping updates after a human supplies a Reddit URL; it does not submit posts to Reddit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

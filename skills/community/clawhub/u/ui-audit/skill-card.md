@@ -1,51 +1,75 @@
-## Description: <br>
-AI skill for automated UI audits. Evaluate interfaces against proven UX principles for visual hierarchy, accessibility, cognitive load, navigation, and more. Based on Making UX Decisions by Tommy Geoco. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI skill for automated UI audits that evaluates interfaces against UX principles for visual hierarchy, accessibility, cognitive load, navigation, and related design concerns.
 
-## Publisher: <br>
-[tommygeoco](https://clawhub.ai/user/tommygeoco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tommygeoco](https://clawhub.ai/user/tommygeoco)
 
-## Use Case: <br>
-Designers, product teams, and developers use this skill to review interfaces, choose UI patterns, evaluate design trade-offs, and produce structured audit reports covering visual hierarchy, accessibility, navigation, usability, onboarding, forms, and related UX concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installing through npm runs a postinstall script. <br>
-Mitigation: The reviewed postinstall script only prints setup instructions; inspect package scripts before npm installation and install from trusted sources. <br>
-Risk: UI audit recommendations can be subjective or miss product-specific context. <br>
-Mitigation: Review generated audit findings against product goals, accessibility requirements, user research, and implementation constraints before making design changes. <br>
+## Use Case:
 
+Designers, product teams, and developers use this skill to review interfaces, select UI patterns, and produce structured audit findings for visual hierarchy, visual style, accessibility, navigation, usability, onboarding, social proof, and forms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tommygeoco/ui-audit) <br>
-- [Guidelines](https://audit.uxtools.co) <br>
-- [Making UX Decisions](https://uxdecisions.com) <br>
-- [Core Framework](references/00-core-framework.md) <br>
-- [Anchors](references/01-anchors.md) <br>
-- [Information Scaffold](references/02-information-scaffold.md) <br>
-- [New Interfaces Checklist](references/10-checklist-new-interfaces.md) <br>
-- [Fidelity Checklist](references/11-checklist-fidelity.md) <br>
-- [Visual Style Checklist](references/12-checklist-visual-style.md) <br>
-- [Innovation Checklist](references/13-checklist-innovation.md) <br>
-- [Accessibility Patterns](references/27-patterns-accessibility.md) <br>
-- [Navigation Patterns](references/31-patterns-navigation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with optional structured JSON audit fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pass, warn, fail, or not-applicable checks and prioritized fixes with framework references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: package.json and ClawHub release evidence) <br>
+Risk: Audit recommendations may be incomplete or misleading if applied without product context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review findings against product requirements, user evidence, accessibility expectations, and team constraints before implementation.
+
+Risk: Privacy-related design suggestions may require product or legal review before adoption.
+
+Mitigation: Treat privacy-related recommendations, including geolocation defaults, as prompts for careful review rather than automatic implementation advice.
+
+## Reference(s):
+
+- [ClawHub UI Audit skill page](https://clawhub.ai/tommygeoco/skills/ui-audit)
+- [UI Audit guidelines](https://audit.uxtools.co)
+- [Making UX Decisions](https://uxdecisions.com)
+- [npm package: ui-audit](https://npmjs.com/package/ui-audit)
+- [Core Framework](references/00-core-framework.md)
+- [Foundational Anchors](references/01-anchors.md)
+- [Information Scaffold](references/02-information-scaffold.md)
+- [New Interfaces Checklist](references/10-checklist-new-interfaces.md)
+- [Fidelity Checklist](references/11-checklist-fidelity.md)
+- [Visual Style Checklist](references/12-checklist-visual-style.md)
+- [Innovation Checklist](references/13-checklist-innovation.md)
+- [Chunking Patterns](references/20-patterns-chunking.md)
+- [Progressive Disclosure Patterns](references/21-patterns-progressive-disclosure.md)
+- [Cognitive Load Patterns](references/22-patterns-cognitive-load.md)
+- [Visual Hierarchy Patterns](references/23-patterns-visual-hierarchy.md)
+- [Social Proof Patterns](references/24-patterns-social-proof.md)
+- [Feedback Patterns](references/25-patterns-feedback.md)
+- [Error Handling Patterns](references/26-patterns-error-handling.md)
+- [Accessibility Patterns](references/27-patterns-accessibility.md)
+- [Personalization Patterns](references/28-patterns-personalization.md)
+- [Onboarding Patterns](references/29-patterns-onboarding.md)
+- [Information Architecture Patterns](references/30-patterns-information.md)
+- [Navigation Patterns](references/31-patterns-navigation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown analysis or structured JSON audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit reports include required visual hierarchy, visual style, and accessibility sections, with contextual sections when relevant.]
+
+## Skill Version(s):
+
+1.0.1 (source: package.json and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

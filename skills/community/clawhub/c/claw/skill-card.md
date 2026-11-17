@@ -1,43 +1,53 @@
-## Description: <br>
-ClawEmail helps agents use Google Workspace services including Gmail, Drive, Docs, Sheets, Slides, Calendar, and Forms through Google APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawEmail gives agents Google Workspace access across Gmail, Drive, Docs, Sheets, Slides, Calendar, and Forms.
 
-## Publisher: <br>
-[cto1](https://clawhub.ai/user/cto1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cto1](https://clawhub.ai/user/cto1)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an agent to Google Workspace tasks such as email search and sending, Drive file management, document editing, spreadsheet updates, presentation changes, calendar scheduling, and form review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad Google Workspace permissions can expose or modify email, files, calendars, documents, and forms. <br>
-Mitigation: Use a dedicated or least-privileged Google account, review OAuth scopes before connecting, and install only when the publisher and service are trusted. <br>
-Risk: Externally visible or destructive actions such as sending email, sharing files, deleting files, calendar changes, and bulk edits may occur through API calls. <br>
-Mitigation: Require explicit preview and confirmation before allowing sends, shares, deletes, calendar changes, or bulk edits. <br>
-Risk: Credentials and cached OAuth tokens can grant access to the connected Google account. <br>
-Mitigation: Protect the credentials file and token cache, restrict local file permissions, and rotate or revoke credentials if exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawEmail](https://clawemail.com) <br>
-- [ClawHub skill page](https://clawhub.ai/cto1/claw) <br>
-- [Publisher profile](https://clawhub.ai/user/cto1) <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to let an agent search and send Gmail, manage Drive files, edit Google Docs, Sheets, and Slides, schedule Calendar events, and create or inspect Forms using ClawEmail credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash, curl, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ClawEmail credentials via CLAWEMAIL_CREDENTIALS and uses a cached Google OAuth access token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate on a live Google Workspace account with broad read, write, share, send, and delete capability.
+
+Mitigation: Use only credentials approved for this workflow and confirm every send, share, delete, or update action before execution.
+
+Risk: OAuth access tokens are cached locally.
+
+Mitigation: Restrict permissions on both the credentials file and token cache, and revoke or rotate credentials if either location is exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cto1/skills/claw)
+- [ClawEmail Credentials and OAuth Setup](https://clawemail.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, curl examples, and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWEMAIL_CREDENTIALS and a cached Google OAuth access token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

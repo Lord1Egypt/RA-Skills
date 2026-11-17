@@ -1,46 +1,61 @@
-## Description: <br>
-Complete toolkit for creating autonomous AI agents and managing Discord channels for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete toolkit for creating autonomous AI agents and managing Discord channels for OpenClaw.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and operators use this skill to create OpenClaw agent workspaces, bind agents to Discord channels, manage channel setup or renaming, and configure gateway allowlists for multi-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live Discord and OpenClaw configuration changes. <br>
-Mitigation: Inspect generated gateway patches, use a Discord bot with minimal permissions, and confirm the target guild, channel IDs, workspace path, and agent ID before running scripts. <br>
-Risk: The skill can create persistent agent automation through gateway bindings, workspaces, and cron jobs. <br>
-Mitigation: Review and remove created gateway bindings, agent workspaces, and cron jobs when they are no longer needed. <br>
-Risk: Workspace rename operations can modify Markdown files under the selected workspace. <br>
-Mitigation: Avoid broad workspace paths and review changed files before committing or relying on the renamed references. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to create autonomous agent workspaces, configure agent memory and gateway bindings, and create or rename Discord channels for multi-agent systems.
 
-## Reference(s): <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw agents documentation](https://docs.openclaw.ai/agents) <br>
-- [OpenClaw Discord channel documentation](https://docs.openclaw.ai/channels/discord) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration patches, and generated Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts can create local agent workspaces, Discord channels, OpenClaw gateway bindings, and optional cron jobs when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent OpenClaw and Discord changes may affect live gateway behavior, channels, workspaces, and scheduled jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files, config patches, Discord channel operations, and cron settings in a non-production environment before applying them to a real OpenClaw deployment.
+
+Risk: Untrusted agent names, prompts, channel names, workspace paths, or config values could lead to unintended shell commands or unsafe configuration changes.
+
+Mitigation: Use only trusted input values, inspect any generated config.patch command before running it, and avoid copying commands that include untrusted text.
+
+Risk: The channel management scripts read Discord bot configuration and can create or rename live Discord channels.
+
+Mitigation: Run the scripts with a Discord bot limited to the intended guild and permissions, and verify channel IDs, category IDs, and bot permissions before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/abel-agent-council)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw multi-agent patterns](https://docs.openclaw.ai/agents)
+- [OpenClaw Discord bot setup](https://docs.openclaw.ai/channels/discord)
+- [Skill setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, code snippets, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create agent workspace files, gateway configuration patches, Discord channel changes, workspace reference edits, and optional cron jobs when used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

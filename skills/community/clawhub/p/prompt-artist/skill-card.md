@@ -1,42 +1,53 @@
-## Description: <br>
-Optimize and generate text-to-image prompts for Midjourney, Nano Banana, Dreamina, and Qwen, including platform-specific variations, style modifiers, aspect ratios, and negative prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes and generates text-to-image prompts for Midjourney, Nano Banana, Dreamina, and Qwen, including platform variations, style, lighting and composition modifiers, negative prompts, and Chinese/English input.
 
-## Publisher: <br>
-[elevo11](https://clawhub.ai/user/elevo11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[elevo11](https://clawhub.ai/user/elevo11)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to turn short image ideas into platform-ready text-to-image prompts and to browse or apply reusable art styles. It also supports prompt history, favorites, and SkillPay billing flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The billing command can charge the configured SkillPay account by default. <br>
-Mitigation: Require explicit user approval before each charge and verify the user ID, amount, and SkillPay account tied to SKILLPAY_API_KEY. <br>
-Risk: Prompt history and favorites are stored locally and may include sensitive prompt text. <br>
-Mitigation: Avoid entering sensitive prompt text unless local retention is acceptable, and review or clear stored history when needed. <br>
-Risk: The skill depends on a SkillPay API key for billing operations. <br>
-Mitigation: Store SKILLPAY_API_KEY securely, restrict access to the runtime environment, and rotate the key if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Platform Specifications](references/platform-specs.md) <br>
-- [Prompt Artist ClawHub Listing](https://clawhub.ai/elevo11/prompt-artist) <br>
+## Use Case:
 
+External users and developers use this skill to turn short image ideas into platform-ready prompts, prompt variants, style guidance, and negative prompts for common AI art platforms. It can also keep local prompt history and favorites.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON prompt-optimization results with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include optimized prompts, negative prompts, platform tips, style listings, history records, billing status, and payment-link responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The billing command can send SkillPay charge requests using SKILLPAY_API_KEY and may charge a user account if run automatically.
+
+Mitigation: Require explicit user approval for each billing action, and verify the user id, amount, and intended charge before running the billing command.
+
+Risk: Generated image prompts and platform guidance may be unsuitable for a target image model or policy context.
+
+Mitigation: Review generated prompts, negative prompts, and style modifiers before submitting them to image generation platforms.
+
+## Reference(s):
+
+- [Platform Specifications](references/platform-specs.md)
+- [Prompt Artist on ClawHub](https://clawhub.ai/elevo11/skills/prompt-artist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration]
+
+**Output Format:** [Markdown or plain text prompt blocks, with JSON available from script flags.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local prompt history and favorites; billing actions can call SkillPay when explicitly run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

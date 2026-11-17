@@ -1,41 +1,54 @@
-## Description: <br>
-Generates professional CLI scaffolds for Node.js CLI applications, with documented support for Commander.js, yargs, oclif, and Ink. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional Node.js CLI application scaffolds with project structure, command templates, documentation, and test setup.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and engineers use this skill to create starter files for Node.js command-line tools, including package metadata, an executable entry point, a README, and local development commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The generated scaffold may contain quality mismatches or code that needs correction before use. <br>
-Mitigation: Inspect and fix generated files before running npm install, npm link, or publishing the package. <br>
-Risk: The generator writes files into a local project directory. <br>
-Mitigation: Run it from a new empty directory and review the resulting project contents before continuing. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly scaffold Node.js command-line tools with common CLI framework patterns, package metadata, README content, and local development commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/cli-scaffold-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/Sunshine-del-ux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Generated project files and console guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local Node.js CLI scaffold directory with package.json, executable JavaScript, README, and test folder structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The generator can overwrite unintended files when run with unsafe project names or output locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable or empty directory and avoid absolute paths or ../ path components.
+
+Risk: Generated npm project metadata or dependencies may be unsafe when derived from untrusted inputs.
+
+Mitigation: Inspect the generated package.json before running npm install, npm link, or publishing commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunshine-del-ux/skills/cli-scaffold-generator)
+- [Publisher Profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Generated project files with command-line status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a CLI project directory containing JavaScript source, package metadata, README content, tests, and executable permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

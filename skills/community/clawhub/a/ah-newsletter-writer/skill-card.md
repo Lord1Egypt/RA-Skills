@@ -1,41 +1,54 @@
-## Description: <br>
-Newsletter Writer helps create engaging email newsletters that build audience relationships, drive engagement, and convert subscribers into customers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps create engaging email newsletters with guidance for strategy, subject lines, content structure, personalization, growth, monetization, analytics, and optimization.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Marketing teams, creators, and business operators use this skill to plan newsletter strategy, draft subject lines and email structures, build subscriber sequences, and reason about growth and optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future integrations with email platforms, subscriber lists, analytics exports, or monetization tools could expose sensitive customer data or sending authority. <br>
-Mitigation: Review and approve any added workflow or integration separately before connecting this skill to production email systems or customer data. <br>
-Risk: Newsletter strategy, benchmarks, and monetization guidance may not match a specific audience, brand, or compliance context. <br>
-Mitigation: Have a human editor validate claims, audience fit, unsubscribe expectations, and commercial calls to action before sending. <br>
+## Use Case:
 
+Marketing teams, founders, creators, and communications professionals use this skill to plan, draft, structure, and optimize newsletters that build audience relationships and drive engagement.
 
-## Reference(s): <br>
-- [Newsletter Writer Code Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-newsletter-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with newsletter drafts, structured recommendations, workflow templates, and TypeScript-style examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools, credentials, or runtime integrations detected in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated newsletter copy may include inaccurate claims, unsuitable marketing language, or compliance-sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated copy for factual accuracy, consent, legal compliance, and brand suitability before sending.
+
+Risk: Users may provide subscriber data while asking for personalization or segmentation help.
+
+Mitigation: Limit subscriber data shared with the agent and handle any provided data according to applicable privacy and consent requirements.
+
+## Reference(s):
+
+- [Newsletter Writer Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-newsletter-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with newsletter copy, strategy guidance, templates, and occasional TypeScript-style examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for accuracy, consent, compliance, and appropriate handling of any subscriber data provided by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

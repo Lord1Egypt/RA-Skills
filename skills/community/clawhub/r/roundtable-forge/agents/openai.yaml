@@ -1,0 +1,14 @@
+interface:
+  display_name: "Roundtable Forge"
+  short_description: "Convene cross-disciplinary multi-agent roundtables"
+  default_prompt: "Use $roundtable-forge when the user wants a multi-agent, cross-disciplinary roundtable discussion involving real people, historical figures, or fictional characters. Capture the core question, select a diverse initial roster of 3-5 character-lanes, build an agent_profile for each character, choose a runtime tier (single_backend_multi_session by default, real_subagent_runtime when explicitly requested and host-supported), initialize a shared Memory file, run focused topic segments through independent character agents coordinated by a neutral Conductor. The Conductor collects speaking intents after every speech, selects the next speaker dynamically, and writes each speech to Memory in real time, so agents can extend, rebut, question, interrupt, or speak independently within a flowing conversation. When the host supports it, spawn each character as a separate subagent via the Task tool. Dynamically expand seats when new disciplines or perspectives are needed, synthesize consensus and divergence, then generate a traceable argument_graph artifact whose atomic nodes and controlled relations cite original speech_ids. Produce the shareable transcript, argument graph, and updated Memory file for downstream continuation. Append the disclaimer about AI-generated content and third-party rights to every output."
+
+  triggers:
+    - "use roundtable-forge"
+    - "从不同角度分析这个问题"
+    - "召唤专家讨论"
+    - "召集一个圆桌讨论"
+    - "多角色研讨"
+    - "每个角色一个 Agent"
+    - "让XX和YY讨论一下"
+    - "跨学科圆桌"

@@ -1,52 +1,67 @@
-## Description: <br>
-Property search, screening, comparison, map enrichment, profile memory, watched listings, and listing publishing orchestration for rent, buy, compare, shortlist, commute, amenity, neighborhood-risk, preference-memory, watch-listing, and property-publishing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Property Advisor orchestrates property search, screening, comparison, map enrichment, profile memory, watched listings, and listing publishing workflows through upstream source adapters and a bundled public OSM map-context skill.
 
-## Publisher: <br>
-[dongzzzzzzzzz](https://clawhub.ai/user/dongzzzzzzzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongzzzzzzzzz](https://clawhub.ai/user/dongzzzzzzzzz)
 
-## Use Case: <br>
-External users, agents, and property operators use this skill to search, screen, compare, and monitor property listings, enrich them with public map context, and prepare property listing publication drafts through upstream listing skills. It is designed as an orchestration layer that normalizes upstream listing results into fixed decision outputs rather than as a native property portal crawler. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store housing preferences and search history in local profile memory. <br>
-Mitigation: Use --no-memory or a temporary --memory-dir for sensitive searches, and avoid storing passwords, bank details, contracts, or other highly sensitive documents. <br>
-Risk: Address, location, or listing contact details may be sent to public map services or upstream listing skills during enrichment and publishing flows. <br>
-Mitigation: Skip map enrichment when location privacy matters and review any upstream account, session, or credential requirements before running listing workflows. <br>
-Risk: Publishing workflows can prepare listing content and route to upstream submit flows. <br>
-Mitigation: Review generated listing fields, contact details, and readiness reports, and only proceed with real submission after explicit user confirmation. <br>
-Risk: The skill orchestrates upstream property sources and does not itself guarantee full-market listing coverage. <br>
-Mitigation: Treat results as available-source screening, verify original listing URLs, and avoid assuming all external platforms were searched unless their adapters actually ran. <br>
+## Use Case:
 
+External users and property operators use the skill to search, compare, shortlist, and monitor property listings, enrich candidates with map context, and prepare listing-publishing readiness reports before confirmed submission.
 
-## Reference(s): <br>
-- [Data Contract](references/data-contract.md) <br>
-- [Output Contract](references/output-contract.md) <br>
-- [Map Context Contract](references/map-context-contract.md) <br>
-- [Upstream Sources](references/upstream-sources.md) <br>
-- [Decision Dimensions](references/decision-dimensions.md) <br>
-- [Region Profiles](references/region-profiles.md) <br>
-- [Viewing Checklist](references/viewing-checklist.md) <br>
-- [Response Examples](references/response-examples.md) <br>
-- [Decision Toolkit](references/decision-toolkit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and narrative guidance, with JSON-compatible intermediate contracts and CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default search output is a fixed eight-column candidate table with original listing URLs, missing facts, risks, and next-step guidance; publishing flows produce readiness reports and draft title or description content before any confirmed submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.2 (source: server release metadata) <br>
+Risk: The skill can run auto-discovered upstream OK/GT skill code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set explicit trusted OK/GT skill roots, avoid untrusted workspaces, and review upstream skills before use.
+
+Risk: The skill can keep local housing preferences, searches, watched listings, and map cache data.
+
+Mitigation: Use --no-memory for private searches and clear ~/property-advisor/ and the OSM cache when local state should not persist.
+
+Risk: Publishing workflows can prepare payloads for real listing submission.
+
+Mitigation: Review every publishing payload and use real submission only after explicit confirmation with --confirm-submit.
+
+Risk: Public OSM map context is best-effort and may be incomplete, unavailable, or only area-level.
+
+Mitigation: Treat OSM enrichment as screening support, use manual verification links for final checks, and avoid precise listing-level distance claims when only area-level evidence is available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dongzzzzzzzzz/skills/property-advisor)
+- [Upstream Sources](references/upstream-sources.md)
+- [Map Context Contract](references/map-context-contract.md)
+- [Data Contract](references/data-contract.md)
+- [Output Contract](references/output-contract.md)
+- [Response Examples](references/response-examples.md)
+- [Public OSM Map Context Skill](public-osm-map-context-skill/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown decision tables and JSON reports, with shell commands for deterministic CLI workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search outputs preserve original listing URLs; publishing workflows default to dry-run/readiness reporting and require explicit confirmation for real submission.]
+
+## Skill Version(s):
+
+3.1.2 (source: ClawHub release evidence; artifact pyproject.toml reports 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

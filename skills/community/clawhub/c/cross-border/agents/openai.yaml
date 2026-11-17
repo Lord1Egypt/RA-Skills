@@ -1,0 +1,4 @@
+interface:
+  display_name: "跨境电商评论分析 · 多站点消费者洞察"
+  short_description: "八大站点跨站对比，判断本地化改款方向"
+  default_prompt: "使用 $cross-border-review-analysis 为一个 Amazon ASIN 一键生成 VOC 报告。"

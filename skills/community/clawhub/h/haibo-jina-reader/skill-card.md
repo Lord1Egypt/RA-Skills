@@ -1,41 +1,53 @@
-## Description: <br>
-Extract clean, readable markdown content from any URL using Jina Reader API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract clean, readable markdown content and optional metadata from public web pages using the Jina Reader API.
 
-## Publisher: <br>
-[smile-xuc](https://clawhub.ai/user/smile-xuc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[smile-xuc](https://clawhub.ai/user/smile-xuc)
 
-## Use Case: <br>
-Developers and agents use this skill to turn web pages into markdown or JSON for research, summarization, content analysis, and follow-up processing after search. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Requested URLs are sent to Jina's external reader service. <br>
-Mitigation: Use only public URLs that are appropriate to share with an external service; avoid private, authenticated, internal, token-bearing, and pre-signed URLs. <br>
-Risk: The optional output-file argument can overwrite local content if pointed at an important path. <br>
-Mitigation: Choose output paths deliberately and review the destination before writing extracted content. <br>
-Risk: Fetched page content may be incomplete, blocked, or affected by service rate limits and timeouts. <br>
-Mitigation: Validate extracted content before relying on it for analysis, and adjust timeout or retry strategy for slow pages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smile-xuc/haibo-jina-reader) <br>
+## Use Case:
 
+Developers and researchers use this skill to fetch readable markdown and metadata from public URLs for summarization, content analysis, and search-result follow-up.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, files, guidance] <br>
-**Output Format:** [Markdown or JSON from command-line tools, with optional file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses requested URLs as input, supports timeout selection, and can write extracted content to a caller-provided output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Private or token-bearing URLs may be sent to Jina's external reader service.
+
+Mitigation: Use the skill for public web pages only; avoid private links, authenticated content, and URLs containing secrets.
+
+Risk: Retrieved page content may be incomplete, blocked, stale, or untrusted.
+
+Mitigation: Validate important outputs against the original source before relying on summaries or downstream analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smile-xuc/skills/haibo-jina-reader)
+- [Jina Reader API endpoint](https://r.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Shell commands]
+
+**Output Format:** [Markdown text or JSON with metadata, optionally saved to a file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts a target URL, output format, timeout, and optional output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

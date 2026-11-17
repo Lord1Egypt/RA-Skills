@@ -5,7 +5,44 @@ description: "Design Workflow Engine — turn any vague idea into a polished vis
 
 # XDesign — Design Workflow Engine
 
-This skill exists because turning a vague idea into a polished visual deliverable normally takes 6–10 hours of tool-switching (Figma → PowerPoint → Keynote → After Effects). XDesign compresses that into a single conversation by routing through three intent-driven modes and reusing a bundled library of curated themes, design systems, and animation primitives.
+This skill exists because turning a vague idea into a polished visual deliverable normally takes 6–10 hours of tool-switching (Figma → PowerPoint → Keynote → After Effects). XDesign compresses that into a single conversation by routing through three intent-driven modes and reusing a bundled library of curated themes, design systems, and animation primitives.---
+
+# Core Principle #0: One System for Humans and Agents
+
+XDesign is built so that **people and AI agents build the same way, from the same reference**. Every routing table, frontmatter schema, fallback strategy, and validation rule in this skill serves both audiences simultaneously.
+
+**The parity promise:** Any change that makes XDesign easier for an agent to use also makes it easier for a human to use — and vice versa. Agent-facing docs (routing tables, fallback matrices) are human-facing docs. There is no separate "agent-only" configuration.
+
+**What this means in practice:**
+- The [Intent Router](#intent-router--pick-a-mode-once-then-stay-in-it) is both a machine-parseable dispatch table and a human-readable "which mode should I pick?" guide.
+- The [Runtime Fallback Strategies](#runtime-fallback-strategies) table is both an agent's error-recovery protocol and a human's troubleshooting checklist.
+- The [deck-studio](../../deck-studio/) assets are self-contained static files — usable by any agent (Claude Code, Codex, Cursor) without XDesign, and by any human with a browser.
+
+---
+
+## Fact-Verify Before Designing (Core Principle #1)
+
+When the request involves a **specific product, technology, company, or public figure** (e.g., "给大疆 Pocket 5 做发布动画", "设计一个 Gemini 4 的 landing page"), `WebSearch` the entity first before starting any design work. Do not rely on training-data memory for existence, version numbers, release dates, or specs.
+
+**Why:** Building a launch animation for a product that released last week — but the model thinks "hasn't launched yet" — wastes the entire session on a wrong assumption. A 10-second search prevents a multi-hour rework.
+
+**Hard rule:** If the search confirms the entity exists and has official assets (logo, product photos, press kit), those become required inputs. See [Brand Asset Protocol](./references/brand-asset-protocol.md).
+
+## 验证第一步必带（Validation-First Step）
+
+无论进入哪个 Mode，在投入完整交付物之前必须先产出一个**最小可验证样本**供用户确认方向。这一步避免"生成完 30 页 deck / 20 屏 prototype 后才发现方向跑偏"的灾难性返工。
+
+| Mode | 最小验证样本 | 确认点 |
+|------|-------------|--------|
+| Mode 1 Presentation | 1-3 张代表性 slides（封面 + 内容页 + 主题切换各 1） | 主题风格 / 版式节奏 / 字体配色 |
+| Mode 2 Prototype | 单个关键页面（首页或核心交互页）的 hi-fi 静态稿 | 视觉风格 / 信息架构 / 品牌还原度 |
+| Mode 3 Animation | 关键帧或首尾帧静态图（含 1 段动效预览） | 动效风格 / 节奏 / 视觉语言 |
+
+**执行规则：**
+- 用户描述需求后，**先输出最小验证样本**，等用户确认"方向对了"再生成完整交付物
+- 用户已给出强约束（"必须用某某主题"、"就按这个模板"、"按上次的风格再做一份"）时可跳过，直接进入完整生成
+- 最小样本与最终交付物之间的差异**只允许在量级上**（页数/组件数），不允许在视觉语言上发生根本性变化
+- Mode 1 的"Streaming Preview（>8 slides 拆两轮）"是此规则的长 deck 子情况，规则保持一致
 
 ## Path conventions
 
@@ -39,6 +76,7 @@ Before routing, check if the user's input is **structured data** rather than a d
 | 做一份 PPT / 幻灯片 / 演讲稿 / 演示文稿 / keynote / deck / slides / presentation / reveal / 小红书图文 / 技术分享 / 演讲者模式 / 提词器 / pitch deck / 产品发布会 | make a deck, slides, keynote, reveal, slideshow, pitch deck, tech sharing, presenter view, speaker notes | **Mode 1: Presentation / Deck** → `deck-studio/`, with its themes, templates, animations, and presenter mode |
 | 设计一个 APP / 界面 / 原型 / 落地页 / dashboard / UI Kit / 设计系统 / 提取品牌色 / 做一个高保真 | design a prototype, build a UI, landing page, dashboard, design system, brand extraction, wireframe, mockup | **Mode 2: Visual Design / Prototype** → XDesign native workflow (design system extract → wireframe → hi-fi), see `references/mode-2-prototype.md` |
 | 做一个动效视频 / 时间轴动画 / motion design / Lottie 替代 / SVG 动效 | make an animation, motion design, timeline animation, animated video | **Mode 3: Animation / Video** → same XDesign native path as Mode 2, with `animations.jsx` as the Phase 3 starter |
+| 审查 / 检查 / audit / review / 把关 / 无障碍 / accessibility / a11y / WCAG / polish / 上线前检查 / 帮我审一下 | audit this, review for issues, accessibility check, a11y, polish pass, review this page | **Review Mode** → [`references/review-passes.md`](./references/review-passes.md)（4 pass：Accessibility / AI-Slop / Hierarchy & Rhythm / Interaction States；可审任意 HTML，不依赖生产流） |
 
 ### When the request is ambiguous
 
@@ -51,7 +89,7 @@ The agent is biased toward **asking once with focused options** rather than gues
 - "我有一份大纲" → ask: "Is this a deck to present, or an interactive prototype?"
 - "帮我做个好看的展示" → default Mode 1 (decks serve one-time presentations better than prototypes).
 - "我要去给团队讲 xxx" → Mode 1 with the `presenter-mode-reveal` template.
-- Vague but visual ("make it look better", "design a hero section") → Mode 2 with one clarifying question about brand or context.
+- Vague but visual ("make it look better", "design a hero section", "帮我设计个页面") → Mode 2, but check whether the user gave any brand/reference. If none, route to the **Design Direction Advisor** ([references/design-direction-advisor.md](./references/design-direction-advisor.md)) — produce 3 differentiated visual directions before committing to a full build.
 
 ### Once a mode is chosen
 
@@ -68,6 +106,10 @@ For Mode 1 minimum execution skeleton:
 ```
 
 For Mode 2/3, open [`references/mode-2-prototype.md`](./references/mode-2-prototype.md) and follow the PPAF loop in [`references/workflow-guide.md`](./references/workflow-guide.md).
+
+### Review Mode (cross-cutting)
+
+Review Mode 可在任何 Mode 产出后、或对任意外部 HTML 独立运行。它不是生产模式的替代，而是独立的质检层——4 个 pass（Accessibility / AI-Slop / Hierarchy & Rhythm / Interaction States）可单跑可全跑。生产流内的 CP4 是"出厂自检"，Review Mode 是"独立质检站"。触发词与执行流程见 [`references/review-passes.md`](./references/review-passes.md)。
 
 ---
 
@@ -204,9 +246,53 @@ The PPAF loop (Perception → Planning → Action → Feedback) is non-negotiabl
 
 Mode 2/3 deliverables are single self-contained HTML files. They can be opened in any browser, exported to PDF via `./scripts/package-export.sh pdf <file>`, or loosely exported to PPTX via `./scripts/package-export.sh pptx <file>` (lossy — for review, not delivery).
 
+## Design Direction Advisor (Mode 2/3 fallback for vague requests)
+
+When Mode 2/3 receives a request with **no brand name, no screenshot, no reference URL**, do not produce a generic "universal design." Instead, route to the [Design Direction Advisor](./references/design-direction-advisor.md): generate **3 differentiated visual directions** (Information-first → Balanced → Concept-led), let the user pick, then enter the normal PPAF loop with the confirmed direction. The Advisor uses the existing 36 themes + 58 brand DESIGN.md files as its ammunition library — no new assets needed.
+
+**Motion-specific additions** (v2.7+): The Advisor now includes `ANIMATION_FREQUENCY` dial (based on usage frequency — high-frequency interactions get reduced/no animation), and a [Motion Vocabulary](./references/design-direction-advisor.md#motion-vocabulary-translate-vague-requests-to-precise-terms) translation table to convert vague descriptions ("弹一下") into precise animation parameters.
+
+**Progressive Intake** (v2.7+): When the user gives a vague request ("做个落地页"), the agent MUST run the [3-round intake interview](./references/mode-2-prototype.md#progressive-intake-interview-for-vague-requests) — structured multiple-choice questions that guide the user to provide useful constraints without forcing them to make design decisions. Max 3 rounds, then proceed with inference.
+
+## Animation Quality Standards (Mode 3)
+
+For Mode 3 (Animation/Video) deliverables, the [Animation Reason Checklist](./references/animation-standards.md#animation-reason-checklist-mode-3-mandatory-before-generating) is **mandatory** — every animation must justify itself with a functional reason (spatial consistency, state indication, relationship explanation, prevent disorientation, or feedback). Animations without a valid reason are removed rather than generated.
+
+Additionally, 7 animation-specific [Pre-flight Checks](./references/animation-standards.md#pre-flight-animation-quality-rules-additive-to-existing-checks) (#11-#17) run after the existing CP4 checklist, covering duration bounds, easing curves, GPU-layer properties, touch device safety, and reduced-motion granularity.
+
+**Physical correctness default:** Entrance animations start from `scale(0.95) + opacity: 0` (elements don't appear from nothing), not `scale(0)`. See `deck-studio/assets/animations/animations.css` for the updated defaults.
+
 ---
 
 # Tooling
+
+A unified CLI entry point dispatching to task-specific scripts:
+
+```bash
+# Export
+./scripts/xdesign export pdf  <input.html> [output.pdf]
+./scripts/xdesign export pptx <input.html> [output.pptx]
+./scripts/xdesign export social wechat|xhs|x <input.html> [output]
+
+# Theme management
+./scripts/xdesign theme list
+./scripts/xdesign theme validate
+
+# Brand scaffolding
+./scripts/xdesign brand add <slug> <display-name> [hex]
+
+# Prototype scaffolding
+./scripts/xdesign proto new <name> [brand-slug]
+
+# Eject (swizzle) a sub-block from a file
+./scripts/xdesign eject <input.html> <block-id> [output.html]
+
+# Lint + package
+./scripts/xdesign lint
+./scripts/xdesign dist [output-dir]
+```
+
+All subcommands proxy to the existing `package-export.sh`, `add-brand.sh`, `new-prototype.sh`, `validate-themes.py`, `lint-skill.py`, and `dist.sh` — the CLI adds a consistent interface, not new logic.
 
 Three scripts in `scripts/` handle the high-frequency automations that would otherwise be reinvented per invocation:
 
@@ -227,13 +313,45 @@ Run `python3 scripts/lint-skill.py` after editing SKILL.md to catch regressions.
 
 # Evals
 
-Quantitative evaluations live in [`evals/evals.json`](./evals/evals.json), following the schema in `skill-creator/references/schemas.md`. Three test prompts cover:
+Quantitative evaluations live in [`evals/evals.json`](./evals/evals.json), following the schema in `skill-creator/references/schemas.md`. Eight test prompts cover:
 
 1. Vague brand reference (Mode 1) — coffee shop pitch deck with brand color hint
 2. Clear multi-screen prototype (Mode 2) — SaaS dashboard with layout specs
 3. Iteration on existing output (Mode 2/3 hybrid) — color swap + new animation
+4. URL-to-brand extraction + landing page (Mode 2)
+5. Animation with brand constraints (Mode 3)
+6. **Vibe test** — anti-slop compliance for premium-consumer landing page
+7. **Vibe test** — narrative arc and hierarchy for tech talk deck
+8. **Vibe test** — animation justification and reduced-motion for logo reveal
 
-The legacy `evals/eval-plan.json` (dual-perspective review rubric) is retained as supplementary metadata describing why the prompts were chosen, not as a runnable benchmark.
+**Vibe tests** (evals 6-8) are inspired by Astryx's "earned by measurement" principle: they test visual quality conventions rather than assert them, using a rubric of dimensions (`anti-slop:gradient`, `pattern:narrative-arc`, `animation:valid-reason`, etc.). Results are held loosely — a failed vibe test signals a rule that may need revisiting, not a hard failure.
+
+The legacy `evals/eval-plan.json` (dual-perspective review rubric) is retained as supplementary metadata describing why the prompts were chosen, not as a runnable benchmark.---
+
+# Architecture: Foundations → Components → Patterns
+
+XDesign's visual capability is organized in three layers, each built on the below:
+
+| Layer | What it provides | Where it lives |
+|---|---|---|
+| **Foundations** | Visual tokens: color palettes, typography scales, spacing systems, shadow elevation | `deck-studio/assets/themes/`, [deck-studio references](../deck-studio/references/themes.md) |
+| **Components** | Single-slide building blocks: 31 layouts covering openers, data displays, diagrams, closers | `deck-studio/templates/single-page/`, [layouts.md](../deck-studio/references/layouts.md) |
+| **Patterns** | Multi-slide narrative recipes: 8 battle-tested arcs (pitch, landing, dashboard, narrative, comparison, process, report, course) | [patterns.md](./references/patterns.md) |
+
+**How to use:**
+- When the user asks for a **deck**, the Intent Router (Mode 1) picks a template. Patterns suggest which sequence of layouts to use.
+- When the user asks for a **prototype** (Mode 2), Foundations provide the tokens, Components provide the building blocks.
+- When the request matches a known pattern trigger (e.g., "pitch deck", "dashboard"), reference the pattern by name and fill its slots.
+
+Patterns are defaults, not mandates — if the user provides their own structure, respect it.
+
+---
+
+## Agent Decision Guide
+
+For routing logic, fallback matrices, context management, and error recovery specific to AI agents, see [references/agent-playbook.md](./references/agent-playbook.md).
+
+---
 
 # Runtime Fallback Strategies
 
@@ -288,5 +406,8 @@ XDesign operates in HTML-generation mode, which is token-heavy. Follow these bud
 
 | Version | Date | Changes |
 |---|---|---|
+| v2.7 | 2026-07 | **Animation Quality System** + **Progressive Intake**: **#1 Animation Reason Checklist** (mandatory for Mode 3): every animation must justify itself with a functional reason. **#2 Animation Frequency Dial**: `ANIMATION_FREQUENCY` in Design Direction Advisor. **#3 Motion Vocabulary**: vague→precise translation table. **#4 Pre-flight Animation Rules (#11-17)**: duration bounds, easing curves, GPU-layer only, touch safety, reduced-motion granularity. **#5 Physical Correctness Defaults**: `kf-zoom` changed from `scale(.6)` to `scale(.96)`. **#6 Reduced-Motion Granularity**: color-only (always) + transform (suppressed). **#7 Progressive Intake Interview**: 3-round max structured questions for vague requests — guides users to provide constraints without forcing design decisions. |
+| v2.6 | 2026-06 | **Anti-Slop Deepening** — inspired by taste-skill methodology research (MIT,理念借鉴/文本原创), added 4 improvements: **#1 Design Preference Layer (P1)**: New section in `mode-2-prototype.md` — deeper bias correction across typography (serif-as-creative-tell, Inter-everywhere), color (premium-consumer farmhouse palette, mid-design drift), layout (centered-hero-over-mesh, equal-card-filler), and motion (purposeless marquee, ambient particles). Each rule has WHY + deliberate alternative. **#2 Three Dials (P2)**: New internal config system in `design-direction-advisor.md` — `DESIGN_VARIANCE / MOTION_INTENSITY / VISUAL_DENSITY` (1-10), inferred from user signals, drives layout/motion/density decisions. Invisible to user, recorded in HTML reasoning block. **#3 Brief Inference 6-Signal (P3)**: Upgraded Phase 1 from 3-question dump to 6-dimension signal scan (page kind / vibe words / references / audience / brand assets / quiet constraints) + one-line "Design Read" output. Ask only when genuinely ambiguous. **#4 Pre-flight Check (P4)**: 10-item mechanical checklist in `mode-2-prototype.md` CP4 — color consistency lock, saturation <80%, italic descender clearance, no orphaned placeholders, marquee ≤1, prefers-reduced-motion, mobile hit targets ≥44px, etc. All content originally authored; no external text reproduced. |
+| v2.5 | 2026-06 | **Decision-Support Layer upgrade** — inspired by design methodology research, added 5 new mechanisms: **#1 Design Direction Advisor (P0)**: New `references/design-direction-advisor.md` — when Mode 2/3 receives vague requests with no brand/reference, generates 3 differentiated visual directions (Information-first → Balanced → Concept-led) before committing to full build. Uses existing 36 themes + 58 DESIGN.md as ammunition library. **#2 Brand Asset Protocol (P1)**: New `references/brand-asset-protocol.md` — 5-step hard flow (Ask → Search → Download → Verify → Freeze) for acquiring real brand assets. Two trigger types: designing FOR a brand, and designing WITH identifiable brands. **#3 Anti-AI-Slop Rules (P1)**: Expanded `mode-2-prototype.md` with WHY explanations and legitimate-exception boundaries for each slop pattern. **#4 Image Pre-flight Checkpoint (P2)**: New Phase 1.5 in PPAF loop — content-essential designs must fetch real images before designing, never substitute with CSS blocks. **#5 Fact-Verify Principle #0 (P2)**: WebSearch specific products/technologies before designing — prevents building on wrong assumptions. **#6 Tweaks Template (P3)**: Full HTML/JS implementation template for in-design variation controls with localStorage persistence. **#7 Junior Designer Workflow (P3)**: 4-checkpoint rhythm (Assumptions → Wireframe → First hi-fi → Full) with mandatory HTML reasoning block. All content originally authored; no external text reproduced. |
 | v2.4 | 2026-06 | **#1 Extended Frontmatter**: Added mode/scenario/surface/recommended/tags/example_id to all 15 deck template READMEs. Added Template Matching table and scenario-based fallback to SKILL.md routing. Updated deck count 5→15 in path conventions. **#2 Streaming Preview**: Added two-pass generation for decks >8 slides with partial HTML preview + dismissible banner. **#3 Social Export**: Added `social wechat|xhs|x` subcommands to package-export.sh. WeChat = juice-inlined CSS; XHS/X = 2× retina PNG via Playwright. Updated Tooling table. **#4 Format Auto-Detect**: Added fast path for CSV/JSON/SQL/Markdown-table input. Structured data skips Perception phase and routes directly to Mode 2 data visualization. **#5 Cross-Agent Compatibility**: Documented deck-studio as self-contained static assets usable from any coding agent (Claude Code / Codex / Cursor). Added symlink + path reference guide. |
 | v2.3 | 2026-06 | Synced deck-studio to 36 themes + 15 full-decks from upstream. Added evals for Mode 3 and URL-to-brand. Created automated eval pipeline (`evals/run-evals.sh`). Added Runtime Fallback Strategies & Token Budget Guidelines. Updated all reference docs to match resource counts. |

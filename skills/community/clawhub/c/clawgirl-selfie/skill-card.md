@@ -1,41 +1,58 @@
-## Description: <br>
-AI girlfriend selfie generator. Injects "NingYao" persona and generates images through ClawGirl API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI girlfriend selfie generator. Injects "NingYao" persona and generates images through ClawGirl API.
 
-## Publisher: <br>
-[blueoriginai](https://clawhub.ai/user/blueoriginai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blueoriginai](https://clawhub.ai/user/blueoriginai)
 
-## Use Case: <br>
-External users install this OpenClaw skill to generate persona-based selfie or outfit-change images through the ClawGirl API from natural-language prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and a ClawGirl API key to clawgirl.date. <br>
-Mitigation: Install only if you trust clawgirl.date with the API key and prompt content; set CLAWGIRL_API_KEY explicitly and avoid sensitive prompts. <br>
-Risk: Generated images may remain in the local OpenClaw media directory. <br>
-Mitigation: Periodically remove generated images from the media directory when local retention is not desired. <br>
+## Use Case:
 
+External OpenClaw users use this skill to route selfie, photo, and outfit-change requests to the ClawGirl service and return generated media or text responses to the agent.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/blueoriginai/clawgirl-selfie) <br>
-- [ClawGirl Website](https://clawgirl.date) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text] <br>
-**Output Format:** [Plain text status lines containing IMAGE_PATH, IMAGE_URL, DOWNLOAD_FAILED, or TEXT_RESPONSE_BASE64 values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved locally when download succeeds; text responses are base64-encoded UTF-8.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.24 (source: server release evidence) <br>
+Risk: Prompts and credentials are sent to an external ClawGirl service under broad selfie and outfit-change triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a constrained environment, a limited API key, and avoid sending private or sensitive details through the skill.
+
+Risk: The external service influences returned text and image download URLs.
+
+Mitigation: Review returned content before relying on it and restrict execution to environments where unexpected remote outputs have limited impact.
+
+Risk: Generated media can be saved locally.
+
+Mitigation: Use a dedicated media directory and periodically review or remove generated files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blueoriginai/skills/clawgirl-selfie)
+- [ClawGirl website](https://clawgirl.date)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, configuration]
+
+**Output Format:** [Key-value shell output such as IMAGE_PATH=..., IMAGE_URL=..., DOWNLOAD_FAILED=true, or TEXT_RESPONSE_BASE64=...]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWGIRL_API_KEY; may save generated media locally and may return base64-encoded text for the agent to decode.]
+
+## Skill Version(s):
+
+0.0.24 (source: server release metadata; artifact frontmatter is 0.0.20)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

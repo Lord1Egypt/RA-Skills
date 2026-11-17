@@ -1,41 +1,61 @@
-## Description: <br>
-Fast, explicit terminal execution via OpenClaw exec for users who type the exact command to run. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast, explicit terminal execution via OpenClaw exec (direct dispatch; you type the exact command).
 
-## Publisher: <br>
-[liuwujijay](https://clawhub.ai/user/liuwujijay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liuwujijay](https://clawhub.ai/user/liuwujijay)
 
-## Use Case: <br>
-Developers and power users use this skill to quickly dispatch exact terminal commands through OpenClaw when they already know the command they want to run. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-supplied shell commands can modify or delete local state when the command is destructive. <br>
-Mitigation: Prefer read-only commands by default and double-check paths before running commands that delete, overwrite, or move files. <br>
-Risk: Secrets placed directly in command lines can be exposed through shell history, logs, or process inspection. <br>
-Mitigation: Avoid putting tokens, API keys, cookies, or other secrets in command arguments. <br>
-Risk: Remote download-and-execute pipelines can run untrusted code. <br>
-Mitigation: Do not run curl-or-download pipelines that execute immediately unless the source is fully trusted and reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuwujijay/agi-term-helper) <br>
+## Use Case:
 
+Developers and power users use this skill to run exact terminal commands through OpenClaw when they already know the command they want and need quick deterministic shell execution.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Raw shell command text with terminal output returned by the runtime] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are user-supplied and forwarded without model rewriting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill forwards raw terminal commands exactly as typed, so destructive commands can delete or overwrite files.
+
+Mitigation: Review commands before execution, prefer read-only checks by default, and double-check paths before running commands that modify state.
+
+Risk: Secrets placed in command lines may be exposed through shell history, process listings, logs, or terminal output.
+
+Mitigation: Avoid putting tokens, API keys, cookies, or other secrets directly in `/term` command arguments.
+
+Risk: Remote execution one-liners can run unreviewed downloaded code.
+
+Mitigation: Avoid `curl ... | sh` and other download-and-execute pipelines; inspect remote content before running it.
+
+Risk: Sandbox and host execution behavior may differ, including environment variable availability.
+
+Mitigation: Use sandboxing where possible and explicitly configure required environment variables for the runtime that executes the command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuwujijay/skills/agi-term-helper)
+- [Publisher profile](https://clawhub.ai/user/liuwujijay)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, guidance]
+
+**Output Format:** [Plain text terminal output with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Forwards the user's raw command string to the configured exec tool without rewriting.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

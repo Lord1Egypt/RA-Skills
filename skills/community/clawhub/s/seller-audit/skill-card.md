@@ -1,44 +1,57 @@
-## Description: <br>
-Run a structured health check of your ecommerce seller account covering listing quality, policy compliance, performance metrics, and account standing to catch problems before they catch you. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a structured health check of your ecommerce seller account, covering listing quality, policy compliance, performance metrics, and account standing, to catch problems before they catch you.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce sellers, operators, and advisors use this skill to run repeatable account-health audits across listings, policy compliance, customer feedback, financial health, inventory, and risk scoring before issues escalate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit process may involve private seller-account data, screenshots, financial details, and account-health reports. <br>
-Mitigation: Keep audit exports and reports in trusted storage, redact sensitive data before sharing, and do not provide platform credentials to an agent unless the workflow is separately trusted. <br>
-Risk: Marketplace policy and account-health thresholds can change after the skill is published. <br>
-Mitigation: Confirm current thresholds and policy requirements in the seller platform before making account-risk or campaign decisions. <br>
+## Use Case:
 
+External ecommerce sellers and account operators use this skill to run recurring account-health audits across listings, policy status, performance metrics, customer feedback, finances, and inventory. It helps teams identify platform risk, prioritize corrective actions, and document audit outcomes before issues escalate.
 
-## Reference(s): <br>
-- [Seller Audit Report Template](output-template.md) <br>
-- [Platform Health Metrics Reference](platform-health-metrics.md) <br>
-- [Violation Response Guide](violation-response-guide.md) <br>
-- [Seller Audit Quality Checklist](quality-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/seller-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown checklist, report template, tables, and step-by-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill content; no executable code or hidden installation behavior was reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The audit workflow may involve business-sensitive seller account data and customer-related records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with accounts you are authorized to audit and avoid sharing credentials or unnecessary private customer data with the agent.
+
+Risk: Platform policy and metric thresholds can change after the skill release.
+
+Mitigation: Confirm current requirements in the relevant seller dashboard or official platform policy materials before making account decisions.
+
+## Reference(s):
+
+- [Seller Audit release page](https://clawhub.ai/leooooooow/skills/seller-audit)
+- [Seller Audit Report](output-template.md)
+- [Platform Health Metrics Reference](platform-health-metrics.md)
+- [Violation Response Guide](violation-response-guide.md)
+- [Seller Audit Quality Checklist](quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, tables, examples, and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured audit guidance and documentation prompts; no executable behavior.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

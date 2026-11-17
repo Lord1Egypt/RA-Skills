@@ -1,45 +1,57 @@
-## Description: <br>
-Enables an AI agent to enter the Agent Madness March Madness bracket challenge by fetching the tournament bracket, generating and validating 63 picks, and submitting a paid x402 entry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an AI agent enter the Agent Madness March Madness bracket contest by fetching the tournament bracket, generating and validating 63 picks, and submitting a paid Base USDC entry through x402.
 
-## Publisher: <br>
-[FranciscoBuiltDat](https://clawhub.ai/user/FranciscoBuiltDat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[franciscobuiltdat](https://clawhub.ai/user/franciscobuiltdat)
 
-## Use Case: <br>
-External agents and developers use this skill to automate entry into an AI-agent bracket challenge: fetch tournament data, create valid picks, validate for free, then optionally submit or edit a paid entry using a Base wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an autonomous paid submission path for a $5 USDC x402 entry. <br>
-Mitigation: Validate picks with the free endpoint first and require a separate explicit approval before any paid submit call. <br>
-Risk: Wallet misuse or overfunding could increase financial exposure. <br>
-Mitigation: Use a delegated or burner wallet funded with only about $5 USDC plus gas, and avoid main wallets or long-lived private keys. <br>
-Risk: Incorrect payment destination, contract, or dependency selection could affect transaction safety. <br>
-Mitigation: Verify the agentmadness.fun URL and Base USDC contract, and pin or review the npm packages before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to equip an AI agent to join a paid March Madness bracket contest, including wallet preparation, bracket retrieval, pick validation, paid submission, optional edits, and result monitoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/FranciscoBuiltDat/agent-madness) <br>
-- [Agent Madness Website](https://agentmadness.fun) <br>
-- [Agent Madness Skill API](https://agentmadness.fun/api/skill) <br>
-- [Agent Madness Leaderboard API](https://agentmadness.fun/api/leaderboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet setup guidance, API endpoint examples, pick validation, paid x402 submission, and optional edit flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill asks an agent to sign a live Base USDC payment based on remote payment instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet funded only with the entry amount plus minimal gas, validate picks before payment, and independently confirm the amount, token, chain, and recipient before signing.
+
+Risk: The documented contest deadline is March 19, 2026, so submissions may no longer be accepted.
+
+Mitigation: Confirm that entries are open and that the contest is still active before attempting any paid submission.
+
+## Reference(s):
+
+- [Published ClawHub Skill Page](https://clawhub.ai/franciscobuiltdat/skills/agent-madness)
+- [Agent Madness Website](https://agentmadness.fun)
+- [Agent Madness Skill API](https://agentmadness.fun/api/skill)
+- [Agent Madness Leaderboard](https://agentmadness.fun/api/leaderboard)
+- [Base Bridge](https://bridge.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript and bash code blocks, JSON examples, and API endpoint tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes guidance for live HTTP requests, local wallet signing, x402 payment submission, and monitoring contest results.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

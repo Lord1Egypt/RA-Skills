@@ -1,41 +1,61 @@
-## Description: <br>
-Aky I Ching Divination provides Yijing readings using Zhouyi hexagram texts, Plum Blossom Yi Shu methods, traditional coin casting, trigram correspondences, and body-use analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aky I Ching Divination helps agents produce structured Yijing readings using Zhouyi source text, Plum Blossom methods, traditional coin casting, trigram correspondences, and interpretive guidance.
 
-## Publisher: <br>
-[wangfromchu-ai](https://clawhub.ai/user/wangfromchu-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangfromchu-ai](https://clawhub.ai/user/wangfromchu-ai)
 
-## Use Case: <br>
-External users and agents use this skill to run cultural, educational, or entertainment-oriented I Ching divination sessions, generate hexagrams from coin, number, time, character, or free-text inputs, and synthesize reflective guidance from the bundled references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on divination readings as predictions or professional advice. <br>
-Mitigation: Treat outputs as cultural, educational, and entertainment-oriented reflection only, and do not use them as the sole basis for medical, legal, financial, safety, mental-health, relationship, or business decisions. <br>
+## Use Case:
 
+External users and agents use this skill for cultural, educational, or entertainment-style I Ching divination sessions. It guides question framing, method selection, hexagram generation, and reflective interpretation.
 
-## Reference(s): <br>
-- [I Ching 64 Hexagrams](references/iching-core.md) <br>
-- [Interpretation Guide](references/interpretation-guide.md) <br>
-- [Plum Blossom Divination Methods](references/plum-blossom-methods.md) <br>
-- [Trigram Correspondences](references/trigram-correspondences.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown divination reading with hexagram sections, interpretation, and advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or external data access; outputs should be treated as reflective entertainment rather than predictions or professional advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat divination output as authoritative advice for medical, legal, financial, or safety-critical decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame readings as cultural or entertainment-style reflection and direct high-stakes decisions to qualified professional sources.
+
+Risk: Some users may ask for repeated readings, gambling numbers, life-or-death guidance, or malicious uses.
+
+Mitigation: Follow the skill's usage cautions by discouraging repeat casting for the same question and refusing harmful or high-stakes divination requests.
+
+Risk: Chinese terminology and traditional concepts may be difficult for some readers to understand.
+
+Mitigation: Offer English-only or bilingual explanations and clarify specialized terms when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangfromchu-ai/skills/aky-iching-divination)
+- [I Ching 64 Hexagrams](references/iching-core.md)
+- [Interpretation Guide](references/interpretation-guide.md)
+- [Plum Blossom Divination Methods](references/plum-blossom-methods.md)
+- [Trigram Correspondences](references/trigram-correspondences.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis]
+
+**Output Format:** [Markdown reading with headings, tables, bilingual terminology, and practical advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reflective cultural guidance; no executable, network, credential, or persistence behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

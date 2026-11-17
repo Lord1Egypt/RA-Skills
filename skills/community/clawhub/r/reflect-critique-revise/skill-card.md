@@ -1,43 +1,53 @@
-## Description: <br>
-Runs a multi-pass code review loop that critiques draft code, revises it, and reports confidence in the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Three-pass reflection loop that takes draft code, runs a senior-engineer critique, then produces a revised version to catch bugs, API misuse, and pattern drift.
 
-## Publisher: <br>
-[stephenlthorn](https://clawhub.ai/user/stephenlthorn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stephenlthorn](https://clawhub.ai/user/stephenlthorn)
 
-## Use Case: <br>
-Developers and engineers use this skill to review generated or supplied code, apply critique-driven revisions, and receive a confidence rating for the revised output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reviewed code may be sent to the configured LLM endpoint. <br>
-Mitigation: Use a trusted local or approved endpoint and avoid submitting drafts that contain secrets or sensitive proprietary material. <br>
-Risk: Automatic review triggers may invoke the skill on broad review wording. <br>
-Mitigation: Narrow activation rules when teams only want explicit invocation. <br>
-Risk: LLM-generated critique and revised code may be incomplete or incorrect. <br>
-Mitigation: Review and test revised code before deployment. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to review generated code, revise it against critique findings, and return a confidence rating for the final result.
 
-## Reference(s): <br>
-- [Reflect Critique Revise ClawHub page](https://clawhub.ai/stephenlthorn/reflect-critique-revise) <br>
-- [Publisher profile](https://clawhub.ai/user/stephenlthorn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Text, Markdown, Guidance] <br>
-**Output Format:** [Text or JSON containing revised code, critique history, confidence, and pass count] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a configured LLM endpoint and may send the reviewed draft code to that endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Reviewed code can be sent to a configured LLM service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted local or HTTPS endpoint and avoid automatic use on sensitive or proprietary code unless that endpoint is approved.
+
+Risk: Revised output may be incorrect or unsuitable for deployment.
+
+Mitigation: Review revised code manually before saving, executing, or deploying it.
+
+## Reference(s):
+
+- [Reflect Critique Revise on ClawHub](https://clawhub.ai/stephenlthorn/skills/reflect-critique-revise)
+
+## Skill Output:
+
+**Output Type(s):** [code, text, guidance]
+
+**Output Format:** [Revised code text, or JSON containing revised code, critique history, confidence, and passes used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default behavior uses up to two critique-and-revision passes; JSON mode includes critique history and confidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

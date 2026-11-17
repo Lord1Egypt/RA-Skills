@@ -1,45 +1,54 @@
-## Description: <br>
-Access Splitwise expense and group data via MCP for expense, group, friend, balance, and account-management requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Splitwise expense and group data via MCP. Use when the user asks about Splitwise expenses, groups, friends, or balances, or wants to add, edit, or delete expenses. Triggers on phrases like "add that expense to Splitwise", "split this with the vacation group", "make sure Sam is in that group", "what do I owe", or any request involving shared expenses or group management in Splitwise. Requires splitwise-mcp installed and the splitwise server registered (see Setup below).
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to Splitwise through an MCP server, retrieve expense and group information, and create, update, or delete expenses when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, edit, delete, and otherwise change Splitwise expense and group data. <br>
-Mitigation: Ask the agent to confirm before making live account changes, especially expense edits, deletions, and group membership changes. <br>
-Risk: The skill requires a Splitwise API key that is attached to API requests. <br>
-Mitigation: Store the API key in MCP environment configuration or a local .env file, and avoid sharing it in prompts, logs, or committed files. <br>
-Risk: Soft-deleted expenses require the Splitwise web app for restoration. <br>
-Mitigation: Review the target expense ID and intended action before deletion. <br>
+## Use Case:
 
+People using Splitwise can ask an agent to look up shared expenses, groups, friends, balances, and receipts, or to manage expenses and group membership through Splitwise. The agent can summarize account information and prepare changes for user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrischall/splitwise-mcp) <br>
-- [splitwise-mcp npm package](https://www.npmjs.com/package/splitwise-mcp) <br>
-- [splitwise-mcp source](https://github.com/chrischall/splitwise-mcp) <br>
-- [Splitwise app registration](https://secure.splitwise.com/apps/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, API calls] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Splitwise API key and a registered splitwise MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.9 (source: server release evidence) <br>
+Risk: The benign security verdict has medium confidence, and Skillspector coverage was partial because references were unresolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review unresolved references and the skill before enabling it with a Splitwise API key.
+
+Risk: The skill uses a Splitwise API key to access account and shared-expense data.
+
+Mitigation: Keep the API key in the configured secret environment variable and approve each proposed write after reviewing its preview.
+
+## Reference(s):
+
+- [Project repository](https://github.com/chrischall/splitwise-mcp)
+- [splitwise-mcp on npm](https://www.npmjs.com/package/splitwise-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Expense and group data, Confirmation previews]
+
+**Output Format:** [Natural-language summaries and structured expense or group data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations require user confirmation; receipt retrieval can return image or PDF files.]
+
+## Skill Version(s):
+
+3.7.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

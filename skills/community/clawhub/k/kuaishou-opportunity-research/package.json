@@ -1,0 +1,31 @@
+{
+  "name": "kuaishou-opportunity-research",
+  "version": "1.1.1",
+  "description": "研究快手搜索结果、作品结构、达人数据和用户反馈，筛选值得继续验证的机会。当用户询问快手选题、快手增长或用户痛点时使用。支持三大能力：(1) 关键词搜索视频，可按点赞数、发布时间、视频时长筛选排序；(2) 达人作品抓取，按主页链接获取公开作品列表；(3) 视频评论分析，按视频链接获取评论内容与互动数据。",
+  "keywords": [
+    "快手",
+    "爆款视频",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长"
+  ],
+  "homepage": "https://github.com/um-why/kuaishou-skill",
+  "bugs": {
+    "url": "https://github.com/um-why/kuaishou-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/kuaishou-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "main": "scripts/kuaishou/search-cli.js",
+  "scripts": {
+    "search": "node scripts/kuaishou/search-cli.js",
+    "post": "node scripts/kuaishou/post-cli.js",
+    "comment": "node scripts/kuaishou/comment-cli.js"
+  }
+}

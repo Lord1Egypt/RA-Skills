@@ -135,6 +135,21 @@
         "头部 injector-version 标识符与当前 SKILL.md version 一致"
       ],
       "files": []
+    },
+    {
+      "id": 11,
+      "name": "codex-agents-md-target",
+      "prompt": "使用 Codex 为这个 Python + TypeScript monorepo 注入 Kinema TDD 规范。",
+      "expected_behavior": [
+        "读取 skills/kinema-tdd-injector/SKILL.md 后继续完整读取根级 SKILL.md 与 references/ONBOARDING.md",
+        "调用 render.py 时显式传入 --target codex",
+        "草稿路径为 .kinema-agents.draft.md，最终写入根级 AGENTS.md",
+        "不创建、不读取为升级源且不修改 CLAUDE.md",
+        "渲染结果标题包含 AGENTS.md，适用对象包含 Codex",
+        "扫描并保留子目录 AGENTS.md 的就近覆盖语义",
+        "AI 协作署名启用时使用 Codex <codex@openai.com>"
+      ],
+      "files": []
     }
   ]
 }

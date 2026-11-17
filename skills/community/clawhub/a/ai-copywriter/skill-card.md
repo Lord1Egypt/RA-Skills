@@ -1,40 +1,52 @@
-## Description: <br>
-Generates, rewrites, and polishes Chinese Xiaohongshu-style marketing copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites, polishes, and generates Xiaohongshu-style Chinese copy.
 
-## Publisher: <br>
-[huangfeng1995](https://clawhub.ai/user/huangfeng1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huangfeng1995](https://clawhub.ai/user/huangfeng1995)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and creators use this skill to turn source notes or draft text into Xiaohongshu-style post copy, including titles, body structure, hooks, engagement prompts, and hashtag suggestions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Outputs may be strongly biased toward Xiaohongshu-style Chinese copy even when a different brand voice or channel is desired.
+
+Mitigation: Review generated copy for the intended audience, platform, and brand voice before publishing.
+
+Risk: The skill references a persona file that is not included in the artifact.
+
+Mitigation: Provide the missing persona guidance or explicitly restate required style and medical-boundary constraints in the user prompt.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators and marketers use this skill to turn draft notes into Xiaohongshu-style posts, titles, body copy, and topic tags. It is a copywriting aid and should not be used as medical or compliance advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may be inaccurate, misleading, or unsuitable for health-adjacent topics such as pregnancy diet. <br>
-Mitigation: Review and edit outputs before publishing, and get qualified review for medical, legal, financial, or compliance-sensitive claims. <br>
-Risk: The Xiaohongshu style constraints may produce platform-specific tone, emojis, hooks, or tags that do not match every brand or audience. <br>
-Mitigation: Adapt the copy to brand standards, audience expectations, and platform policies before use. <br>
+**Output Format:** [Markdown or plain text Chinese copy suggestions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangfeng1995/ai-copywriter) <br>
+**Other Properties Related to Output:** [May include titles, optimized post body text, engagement prompts, emoji, and topic hashtags.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text copy with titles, body text, and topic-tag suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; generated copy should be reviewed before publishing.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

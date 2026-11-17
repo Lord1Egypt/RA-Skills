@@ -1,61 +1,77 @@
-## Description: <br>
-Create robust, accessible web forms with best practices for HTML structure, CSS styling, JavaScript interactivity, form validation, and server-side processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create robust, accessible web forms with best practices for HTML structure, CSS styling, JavaScript interactivity, form validation, and server-side processing.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and engineers use this skill to create accessible, secure, and user-friendly web forms with HTML, CSS, JavaScript, PHP, Python, database integration, APIs, and progressive web app considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated forms may handle sensitive credentials, tokens, payment data, or personally identifiable information. <br>
-Mitigation: Review generated forms before deployment, keep secrets in environment variables or a secret manager, and prefer hosted payment tokenization over raw payment-data handling. <br>
-Risk: Client-side validation, hidden fields, and example code can be bypassed or misused if treated as authoritative controls. <br>
-Mitigation: Use server-side validation and authorization for all user-controlled input, and do not trust hidden fields. <br>
-Risk: Database-backed form examples can introduce SQL injection if user input is interpolated into queries. <br>
-Mitigation: Use prepared statements for all user-controlled SQL. <br>
-Risk: Framework or cookie examples can be unsafe in production if debug or cookie settings are left at development defaults. <br>
-Mitigation: Disable Flask debug mode in production and configure cookies securely. <br>
+## Use Case:
 
+Developers and engineers use this skill to create accessible, secure, and user-friendly web forms, including HTML structure, styling, validation, client-side behavior, backend handling, database integration, and API exchange.
 
-## Reference(s): <br>
-- [Create Web Form Skill](SKILL.md) <br>
-- [Form Basics Reference](references/form-basics.md) <br>
-- [HTML Form Elements Reference](references/html-form-elements.md) <br>
-- [Form Controls Reference](references/form-controls.md) <br>
-- [Web Accessibility Reference](references/accessibility.md) <br>
-- [ARIA Form Role Reference](references/aria-form-role.md) <br>
-- [CSS Styling Reference](references/css-styling.md) <br>
-- [Styling Web Forms Reference](references/styling-web-forms.md) <br>
-- [JavaScript Reference](references/javascript.md) <br>
-- [Form Data Handling Reference](references/form-data-handling.md) <br>
-- [PHP Forms Reference](references/php-forms.md) <br>
-- [PHP MySQL Database Reference](references/php-mysql-database.md) <br>
-- [Python Contact Form Reference](references/python-contact-form.md) <br>
-- [Python Flask Reference](references/python-flask.md) <br>
-- [Web Security Reference](references/security.md) <br>
-- [Web API Reference](references/web-api.md) <br>
-- [Web Performance Reference](references/web-performance.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jhauga/create-web-form) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline code examples and implementation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HTML, CSS, JavaScript, PHP, Python, SQL, API, accessibility, security, and performance guidance depending on the form being built.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Generated backend form code may include insecure patterns if examples are applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated backend code before use in real applications and apply server-side validation, output encoding, and production dependency pinning.
+
+Risk: Hidden fields, broadly bound Flask debug servers, or user-controlled output can create security exposure.
+
+Mitigation: Do not trust hidden fields for security decisions, do not deploy Flask with debug enabled or broad network binding, and encode all user-controlled output.
+
+## Reference(s):
+
+- [Create Web Form Skill](artifact/SKILL.md)
+- [Web Accessibility Reference](artifact/references/accessibility.md)
+- [ARIA Form Role Reference](artifact/references/aria-form-role.md)
+- [CSS Styling Reference](artifact/references/css-styling.md)
+- [Form Basics Reference](artifact/references/form-basics.md)
+- [Form Controls Reference](artifact/references/form-controls.md)
+- [Form Data Handling Reference](artifact/references/form-data-handling.md)
+- [HTML Form Elements Reference](artifact/references/html-form-elements.md)
+- [HTML Form Examples Reference](artifact/references/html-form-example.md)
+- [Hypertext Transfer Protocol (HTTP) Reference](artifact/references/hypertext-transfer-protocol.md)
+- [JavaScript Reference](artifact/references/javascript.md)
+- [PHP Cookies Reference](artifact/references/php-cookies.md)
+- [PHP Forms Reference](artifact/references/php-forms.md)
+- [PHP JSON Reference](artifact/references/php-json.md)
+- [PHP MySQL Database Reference](artifact/references/php-mysql-database.md)
+- [Progressive Web App Reference](artifact/references/progressive-web-app.md)
+- [Python as Web Framework Reference](artifact/references/python-as-web-framework.md)
+- [Python Contact Form Reference](artifact/references/python-contact-form.md)
+- [Python Flask App Reference](artifact/references/python-flask-app.md)
+- [Python Flask Forms Reference](artifact/references/python-flask.md)
+- [Web Security Reference](artifact/references/security.md)
+- [Styling Web Forms Reference](artifact/references/styling-web-forms.md)
+- [Web API Reference](artifact/references/web-api.md)
+- [Web Performance Reference](artifact/references/web-performance.md)
+- [XML Reference](artifact/references/xml.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration, Shell commands]
+
+**Output Format:** [Markdown guidance with code snippets and implementation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce frontend and backend form examples that require review before deployment.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

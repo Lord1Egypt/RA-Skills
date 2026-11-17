@@ -1,43 +1,59 @@
-## Description: <br>
-Generates impressionist-style artwork from text prompts using the Neta/TalesOfAI image generation API, with optional size selection and reference-image style inheritance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate impressionist-style images from text prompts using the Neta AI image generation API, with size options and optional reference-image style inheritance.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users, creators, educators, and developers use this skill to generate impressionist-style images for wall art, print concepts, art education, painting references, garden scenes, and portrait studies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, the Neta token, and reference image UUIDs are sent to the Neta/TalesOfAI service. <br>
-Mitigation: Use the skill only with a trusted provider and publisher, and prefer scoped or trial tokens where available. <br>
-Risk: Long-lived API tokens may be exposed if pasted directly into shared shell history or logs. <br>
-Mitigation: Avoid placing long-lived secrets in shared command histories and rotate tokens if exposure is suspected. <br>
-Risk: Generated art usage rights may depend on the external provider's terms. <br>
-Mitigation: Review the provider's terms before using generated images for commercial or public release. <br>
+## Use Case:
 
+External users and developers use this skill to turn text prompts into impressionist-style image URLs through the Neta API for art, education, reference, or print workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/impressionist-art-generator) <br>
-- [Neta Open](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text image URL, with status and error messages on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports landscape, portrait, square, and tall image sizes, plus optional reference-image style inheritance by UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: API tokens can be exposed when pasted directly into commands that are saved in shell history or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a shell variable or another secret-management workflow, and avoid committing or sharing tokens.
+
+Risk: Prompts, reference-image IDs, and the API token are sent to an external image-generation service.
+
+Mitigation: Avoid submitting sensitive prompts or private reference identifiers unless the service is approved for that data.
+
+Risk: The documented npx install command is mutable and should be reviewed before installation.
+
+Mitigation: Prefer the ClawHub install path or a pinned, verified package source, and review the skill before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blammectrappora/skills/impressionist-art-generator)
+- [Neta API Token Access](https://www.neta.art/open/)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; runtime output is a direct image URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; supports size selection and optional reference-image UUID style inheritance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Web search via the Tavily API for looking up sources and links when Brave web_search is unavailable or undesired, returning compact result sets with titles, URLs, snippets, and optional short answer summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search via Tavily API for looking up sources, finding links, and returning concise result sets when Brave web_search is unavailable or undesired.
 
-## Publisher: <br>
-[gyzx](https://clawhub.ai/user/gyzx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gyzx](https://clawhub.ai/user/gyzx)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tavily-backed web searches from an OpenClaw workspace and return concise source links, snippets, or optional answer summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Tavily, which can expose sensitive terms or context to a third-party service. <br>
-Mitigation: Avoid using the skill for secrets, personal data, confidential project names, or private research unless external sharing with Tavily is acceptable. <br>
-Risk: The skill requires a Tavily API key through TAVILY_API_KEY or ~/.openclaw/.env. <br>
-Mitigation: Provide the key through local environment or config only, and avoid placing it in prompts, logs, or checked-in files. <br>
+## Use Case:
 
+Developers and agent users use this skill to run Tavily-powered web searches from an OpenClaw workspace and return compact search results, optional answer summaries, or Markdown lists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gyzx/openclaw-tavily-search-0-1-0) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Text] <br>
-**Output Format:** [CLI output as raw JSON, Brave-compatible JSON, or a compact Markdown list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAVILY_API_KEY; max-results is clamped to 1-10 and defaults to 5.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact _meta.json reports 0.1.0) <br>
+Risk: Search queries and the Tavily API key are sent to Tavily's API when the skill runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when Tavily-backed web search is intended, keep the Tavily key scoped to Tavily, and avoid submitting sensitive queries unless that use is approved.
+
+Risk: The skill can read TAVILY_API_KEY from ~/.openclaw/.env.
+
+Mitigation: Store only the Tavily API key needed by this skill in that file and avoid placing unrelated secrets there.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gyzx/skills/openclaw-tavily-search-0-1-0)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON or Markdown search results with titles, URLs, snippets, and optional short answer summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits max-results to 1-10, with 3-5 recommended by the skill documentation to reduce token and reading load.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

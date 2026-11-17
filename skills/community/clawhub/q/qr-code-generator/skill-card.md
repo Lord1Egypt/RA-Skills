@@ -1,44 +1,61 @@
-## Description: <br>
-Creates customizable QR codes for URLs, text, WiFi credentials, contact cards, email, phone, SMS, locations, calendar events, and custom data, with batch generation and multiple export formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates customizable QR codes for URLs, text, WiFi credentials, vCards, email, phone, SMS, location coordinates, calendar events, and custom data, with batch generation and multiple export formats.
 
-## Publisher: <br>
-[anisafifi](https://clawhub.ai/user/anisafifi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[anisafifi](https://clawhub.ai/user/anisafifi)
 
-## Use Case: <br>
-External users and developers use this skill to create QR code files or terminal QR output for links, credentials, contact details, messages, locations, events, and bulk input lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: Generated QR codes and terminal output expose the encoded data, including WiFi passwords, contact details, or private messages. <br>
-Mitigation: Encode only information intended for sharing, control distribution of generated files, and avoid long-lived secrets or sensitive personal data unless sharing is deliberate. <br>
-Risk: The encoded content may appear in terminal or agent logs during generation. <br>
-Mitigation: Avoid entering private content in shared sessions and restrict or clear logs when sensitive data is handled. <br>
-Risk: Image-processing dependencies may become outdated. <br>
-Mitigation: Install in a virtual environment and keep qrcode, segno, and Pillow updated. <br>
+## Use Case:
 
+Developers and operators use this skill to generate individual or batch QR codes for links, credentials, contact cards, events, product information, and similar scannable data.
 
-## Reference(s): <br>
-- [QR Code Generator Reference](references/readme.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anisafifi/qr-code-generator) <br>
-- [OpenClawCLI](https://clawhub.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated QR outputs such as PNG, SVG, PDF, EPS, or terminal ASCII.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local QR code files and batch output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: QR codes may contain sensitive WiFi passwords or personal data, and this version may print encoded data to stderr.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using secrets in shared terminals, CI logs, or agent logs, and treat generated QR codes containing credentials or personal data as sensitive artifacts.
+
+Risk: Batch CSV or JSON inputs can write outside the chosen output folder.
+
+Mitigation: Process only trusted batch files and choose an output directory that is acceptable for the skill to write into.
+
+Risk: Installing Python packages into the system environment can affect the local Python installation.
+
+Mitigation: Install dependencies in a virtual environment before running the skill.
+
+## Reference(s):
+
+- [QR Code Generator reference](references/readme.md)
+- [ClawHub skill page](https://clawhub.ai/anisafifi/skills/qr-code-generator)
+- [qrcode Python package](https://pypi.org/project/qrcode/)
+- [segno Python package](https://pypi.org/project/segno/)
+- [Pillow documentation](https://python-pillow.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated QR image or document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate PNG, SVG, PDF, EPS, or terminal ASCII output; batch mode can process text, CSV, or JSON inputs.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and reference readme)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

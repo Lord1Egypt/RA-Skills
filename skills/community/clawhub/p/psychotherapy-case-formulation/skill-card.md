@@ -1,41 +1,56 @@
-## Description: <br>
-Use this skill when a licensed clinician or supervisee needs to convert deidentified intake notes and mental status exam information into a structured draft biopsychosocial case formulation with 4Ps synthesis, provisional diagnosis support, risk-management flags, and questions for clinician review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps licensed mental-health clinicians or supervised trainees convert deidentified intake notes and mental status exam data into a draft 4Ps biopsychosocial case formulation with provisional DSM-5-TR/ICD-11 diagnosis, risk-management flags, and questions for clinician review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External licensed mental-health clinicians and supervised trainees use this skill to organize deidentified intake, MSE, biopsychosocial, and risk-indicator data into a draft case formulation for review, supervision, consultation, or utilization-review preparation. The skill is not a substitute for clinical judgment, final diagnosis, treatment-plan authorship, mandated-reporting decisions, or risk assessment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may process sensitive mental-health information.
+
+Mitigation: Use only deidentified case details and do not provide direct identifiers such as names, dates of birth, contact details, medical record numbers, addresses, employers, schools, or photos.
+
+Risk: Draft clinical output could be mistaken for a final diagnosis, treatment plan, or risk assessment.
+
+Mitigation: Treat every output as draft clinical support that must be reviewed, edited, and signed by a licensed mental-health clinician or supervised trainee before use.
+
+Risk: Acute safety, mandated-reporting, or level-of-care decisions require jurisdiction-specific professional action.
+
+Mitigation: Follow the user's licensure jurisdiction and local safety pathways; use the skill's stop-and-confirm behavior for active suicide, homicide, abuse, psychosis, intoxication, withdrawal, or acute medical-risk signals.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Licensed mental-health clinicians, supervised trainees, and clinical educators use this skill to organize deidentified intake, mental status, biopsychosocial, and risk information into a draft case formulation for review, supervision, documentation preparation, or utilization-review support. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive clinical context and could be misused as a substitute for professional judgment. <br>
-Mitigation: Use it only as a draft documentation aid for licensed clinicians or supervised trainees, and require responsible clinician review before any diagnosis, risk, mandated-reporting, level-of-care, or treatment-plan decision. <br>
-Risk: Client privacy could be harmed if direct identifiers or PHI are entered. <br>
-Mitigation: Share only deidentified information, redact direct identifiers, and follow the skill's PHI posture checks before collecting clinical content. <br>
+**Output Format:** [Structured Markdown draft case formulation with headings, tables, risk flags, questions to resolve, and mandatory clinician-review banners.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/psychotherapy-case-formulation) <br>
-- [Publisher profile](https://clawhub.ai/user/archlab-space) <br>
+**Other Properties Related to Output:** [Requires deidentified client details; output remains a draft for licensed clinician review before medical-record use, client sharing, utilization review, or care decisions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft case-formulation document with structured sections and review banners] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires deidentified inputs and licensed clinician review; not a final diagnosis, treatment plan, risk assessment, prescribing recommendation, or substitute for clinical judgment.] <br>
+0.1.1 (source: changelog, released 2026-05-28; server release version)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and changelog, released 2026-05-28) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

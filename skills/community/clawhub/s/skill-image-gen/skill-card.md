@@ -1,45 +1,61 @@
-## Description: <br>
-Generates AI images with the Gitee AI API, saves them locally, and can optionally upload generated files to Tencent Cloud COS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI images with the Gitee AI API, saves them locally, and can optionally upload generated images to Tencent Cloud COS.
 
-## Publisher: <br>
-[weznai](https://clawhub.ai/user/weznai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weznai](https://clawhub.ai/user/weznai)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate image assets from prompts with Gitee AI, save local PNG files, and optionally publish generated files to Tencent Cloud COS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys and COS secrets may be exposed through chat, console output, or plaintext configuration files. <br>
-Mitigation: Use limited-scope or disposable keys, avoid pasting real keys into chat, avoid commands that print secrets, and restrict permissions on local config files. <br>
-Risk: Prompts and generated images are processed by Gitee AI and may also be uploaded to Tencent Cloud COS when upload is enabled. <br>
-Mitigation: Avoid sensitive prompts or images unless that processing is acceptable, and keep COS upload disabled unless cloud storage is required. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to generate images from text prompts with Gitee AI, save PNG outputs locally, and optionally publish generated images to a Tencent COS bucket.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/weznai/skill-image-gen) <br>
-- [Gitee AI](https://ai.gitee.com/) <br>
-- [Gitee AI documentation](https://ai.gitee.com/docs) <br>
-- [Reference README](references/README.md) <br>
-- [Gitee AI API key guide](references/GET_API_KEY.md) <br>
-- [Configuration example](references/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [PNG image files with optional JSON status output and COS URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Gitee AI API key; optional Tencent Cloud COS credentials enable upload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts are sent to Gitee AI, and generated images may be uploaded to Tencent COS when COS upload is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and generated content suitable for those services, and keep COS upload disabled unless cloud storage is required.
+
+Risk: Gitee API keys and Tencent COS credentials may be collected through setup flows or stored in configuration files.
+
+Mitigation: Store credentials outside chat transcripts with restrictive file permissions or a secret manager, use narrowly scoped keys, and avoid logging full secrets.
+
+Risk: The URL-download helper can fetch external image URLs without additional network or size controls.
+
+Mitigation: Do not expose URL downloads to untrusted URLs unless the caller adds allowlists, content-size limits, and timeout checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weznai/skills/skill-image-gen)
+- [Gitee AI](https://ai.gitee.com/)
+- [Gitee AI documentation](https://ai.gitee.com/docs)
+- [Gitee AI API key guide](references/GET_API_KEY.md)
+- [Configuration example](references/config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance, shell commands, Python snippets, JSON status, and generated PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Gitee AI API key; optional Tencent COS credentials enable cloud upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

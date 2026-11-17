@@ -1,43 +1,54 @@
-## Description: <br>
-Use when the user wants to analyze local AI coding assistant session data from Claude Code, Codex, and Kimi Code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes local Claude Code, Codex, and Kimi Code session data so an agent can summarize activity, tool use, projects, timelines, and friction points.
 
-## Publisher: <br>
-[tanktechnology](https://clawhub.ai/user/tanktechnology) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanktechnology](https://clawhub.ai/user/tanktechnology)
 
-## Use Case: <br>
-Developers and engineers use this skill to summarize local AI coding assistant sessions, compare tool usage, inspect project activity, and identify patterns or friction across recent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts inspect local AI assistant histories that may contain private project names, file paths, shell commands, and conversation details. <br>
-Mitigation: Install and run the skill only when that local-history inspection is intended, and treat terminal output and generated reports as private. <br>
-Risk: The optional HTML report embeds sensitive session details and may load a CDN script. <br>
-Mitigation: Avoid sharing or publicly hosting generated reports, and use the no-open option when the report should not open automatically in a browser. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect local AI coding assistant histories, compare Claude Code, Codex, and Kimi Code activity, and produce observations about projects, tool patterns, and recent workflow changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tanktechnology/ai-session-analysis) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
-- [Skill reference](SKILL.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [Terminal text summaries and optional self-contained HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The HTML report embeds local session details and should be treated as private.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill reads local Claude Code, Codex, and Kimi Code session histories that may include sensitive file paths, commands, project names, and workflow details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted local machines, prefer terminal summaries or the HTML report with --no-open for sensitive logs, and do not share generated reports.
+
+Risk: The authoritative security summary says the HTML report handles sensitive local data in ways that need review before installation.
+
+Mitigation: Review the generated report behavior before using the skill on sensitive work logs, and address the CDN dependency and unescaped report fields noted in the security guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanktechnology/skills/ai-session-analysis)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown or plain text analysis, with optional self-contained HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize sensitive local session history; HTML reports should remain local.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-AI image, video, and music generation and editing via the VAP API, with support for Flux, Veo 3.1, and Suno V5. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VAP Media API skill for image, video, music, and media editing through VAP. Uses VAP product keys with current Media API endpoints.
 
-## Publisher: <br>
-[elestirelbilinc-sketch](https://clawhub.ai/user/elestirelbilinc-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[elestirelbilinc-sketch](https://clawhub.ai/user/elestirelbilinc-sketch)
 
-## Use Case: <br>
-External users and developers use this skill to generate images, videos, and music, and to edit or enhance media through VAP API workflows. It can return generated media URLs, operation status, and curl-based API commands for free or authenticated usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Media prompts, media URLs, and editing instructions are sent to VAP and its backend providers. <br>
-Mitigation: Avoid private or sensitive media links and prompts unless the user is comfortable sharing them with those services. <br>
-Risk: Authenticated workflows use the user's VAP account features, quota, or balance. <br>
-Mitigation: Set VAP_API_KEY only when the user intends to use account-backed generation or editing features. <br>
+## Use Case:
 
+Developers, creators, and external agent users use this skill to generate images, videos, and music or to edit and enhance existing media through VAP Media API endpoints.
 
-## Reference(s): <br>
-- [VAP Homepage](https://vapagent.com) <br>
-- [VAP API Docs](https://api.vapagent.com/docs) <br>
-- [VAP Showcase Repository](https://github.com/vapagentmedia/vap-showcase) <br>
-- [ClawHub Skill Page](https://clawhub.ai/elestirelbilinc-sketch/vap-multimedia-generation) <br>
-- [Publisher Profile](https://clawhub.ai/user/elestirelbilinc-sketch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with curl commands, JSON response examples, and generated media URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require curl and VAP_API_KEY for authenticated image, video, music, and editing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: Media prompts, task metadata, and referenced media URLs are sent to VAP when the skill performs generation or editing tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential prompts, private signed URLs, regulated data, or sensitive media unless VAP's terms and the user's data-handling requirements allow it.
+
+Risk: The skill requires a VAP_API_KEY for authenticated calls to VAP Media API.
+
+Mitigation: Keep the API key in an environment variable, do not paste it into shared chat logs or generated artifacts, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/elestirelbilinc-sketch/skills/vap-multimedia-generation)
+- [VAP Developer Hub](https://vapagent.com/developer/)
+- [VAP Media API Keys](https://vapagent.com/developer/?key=media#keys)
+- [VAP AI](https://vapagent.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API request examples, setup guidance, status summaries, and final media URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a VAP_API_KEY for authenticated Media API calls.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

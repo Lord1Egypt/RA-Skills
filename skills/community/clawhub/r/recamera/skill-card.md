@@ -1,45 +1,62 @@
-## Description: <br>
-reCameraV2 provides a reCamera (RV1126B) Web API reference for authentication, device management, media configuration, recording and storage, AI inference, terminal and log access, and SenseCraft cloud model conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+reCamera (RV1126B) device full-stack Web API reference covering authentication, device management, video/audio/image configuration, recording rules and storage, AI model inference, terminal/logs, and SenseCraft cloud model conversion.
 
-## Publisher: <br>
-[mjq2020](https://clawhub.ai/user/mjq2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mjq2020](https://clawhub.ai/user/mjq2020)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, debug, and operate integrations with reCamera devices and SenseCraft AI services. It helps agents construct authenticated HTTP and WebSocket calls, follow device-specific configuration workflows, and look up endpoint schemas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through network scanning and powerful reCamera device-control workflows. <br>
-Mitigation: Use it only for reCamera devices and networks the user owns or is authorized to manage, and require clear confirmation before scans or device-control actions. <br>
-Risk: Authenticated workflows may expose passwords, cookies, tokens, logs, or proprietary model files. <br>
-Mitigation: Avoid exposing secrets or sensitive artifacts in outputs, redact logs when appropriate, and keep tokens scoped to the active session. <br>
-Risk: Resets, firmware changes, storage formatting, file deletion, terminal access, and configuration writes can disrupt devices or data. <br>
-Mitigation: Require explicit user confirmation before these actions and follow the documented read-before-write pattern for configuration updates. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, debug, and operate integrations with reCamera device HTTP/WebSocket APIs, including authentication, configuration, recording, inference, storage, firmware, and SenseCraft cloud workflows.
 
-## Reference(s): <br>
-- [API_REFERENCE.md](artifact/API_REFERENCE.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mjq2020/recamera) <br>
-- [SenseCraft training API](https://sensecraft-train-api.seeed.cc) <br>
-- [SenseCraft authorization endpoint](https://sensecraft.seeed.cc/ai/authorize?client_id=seeed_recamera&response_type=token&scop=profile&redirec_url={your_url}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with HTTP endpoint references, JSON examples, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authenticated HTTP/WebSocket call guidance for authorized reCamera devices and SenseCraft AI services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide agents through broad device administration and subnet discovery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with reCamera devices and subnets the user owns or is explicitly authorized to manage.
+
+Risk: Authenticated workflows require handling device and SenseCraft tokens.
+
+Mitigation: Prefer HTTPS for authenticated traffic and avoid exposing tokens in scripts, logs, browser JavaScript, or shared outputs.
+
+Risk: Documented actions include reboot, factory reset, storage formatting, model deletion, firmware upgrade, and terminal access.
+
+Mitigation: Require explicit user confirmation before any destructive, service-interrupting, firmware-changing, or terminal-access operation.
+
+Risk: Configuration updates can misconfigure a device if partial payloads omit required fields.
+
+Mitigation: Follow the documented read-before-write pattern: fetch the current full configuration, modify only intended fields, and submit the complete updated object.
+
+## Reference(s):
+
+- [API_REFERENCE.md](artifact/API_REFERENCE.md)
+- [ClawHub skill page](https://clawhub.ai/mjq2020/skills/recamera)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline JSON, HTTP endpoint examples, and bash command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include authenticated API call patterns, device configuration guidance, and structured troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

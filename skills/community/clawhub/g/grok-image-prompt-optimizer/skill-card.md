@@ -1,43 +1,54 @@
-## Description: <br>
-Optimizes text-to-image prompts for Grok and similar image models, especially poster prompts, competition-grade visual concepts, negative prompts, aviation safety campaign visuals, official publicity images, and Chinese-language contest briefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes text-to-image prompts for Grok and similar image models, with emphasis on aviation posters, safety campaign visuals, official publicity images, and Chinese-language contest briefs.
 
-## Publisher: <br>
-[iamkingab](https://clawhub.ai/user/iamkingab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamkingab](https://clawhub.ai/user/iamkingab)
 
-## Use Case: <br>
-External users and prompt writers use this skill to turn rough image briefs into focused, production-ready prompts with Chinese and English main prompts, a matching negative prompt, and quick style adjustment options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts or resulting images may include inaccurate aviation, safety, or official-publicity details if the brief is incomplete or the image model invents details. <br>
-Mitigation: Review prompts and generated images against the relevant domain requirements before publication, contest submission, or operational use. <br>
-Risk: Prompts sent to external image-generation services may contain private or sensitive information from the original brief. <br>
-Mitigation: Remove private, sensitive, or confidential details before submitting optimized prompts to external image services. <br>
-Risk: The skill's aviation and official-poster style preferences may not fit every brand, campaign, or jurisdiction. <br>
-Mitigation: Adjust the generated prompt's tone, layout, and terminology to match the user's brand standards and local requirements. <br>
+## Use Case:
 
+External users and prompt designers use this skill to turn vague image briefs into structured bilingual image prompts, negative prompts, and quick tuning options for poster-style image generation. It is especially tailored to Chinese civil-aviation, cabin-safety, and official public-service poster concepts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iamkingab/grok-image-prompt-optimizer) <br>
-- [Aviation Poster Patterns](references/aviation-poster-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with Chinese and English main prompts, a negative prompt, and quick tweak options.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompt rewrites only; no code, shell commands, or configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is opinionated toward Chinese/English prompt output and Chinese civil-aviation poster conventions, which may be unsuitable for other regions, languages, or visual domains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Explicitly provide the desired language, region, visual style, and domain when using it outside Chinese aviation or safety-poster contexts.
+
+Risk: Generated image prompts for aviation, transport, healthcare, industrial safety, or emergency scenes could imply inaccurate equipment, procedures, or layouts if the source brief is underspecified.
+
+Mitigation: Review generated prompts for domain plausibility before image generation, and supply required equipment, procedure, safety, and layout details in the brief.
+
+## Reference(s):
+
+- [Aviation Poster Patterns](artifact/references/aviation-poster-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/iamkingab/skills/grok-image-prompt-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown sections containing Chinese and English prompts, a negative prompt, and quick tweak options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or system access; output is prompt-writing guidance for downstream image generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

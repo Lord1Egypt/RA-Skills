@@ -1,40 +1,58 @@
-## Description: <br>
-Set up native macOS notifications for Claude Code on local and devpod/remote environments, including terminal-notifier, SSH reverse tunnels, a launchd listener, tmux passthrough, and Claude Code notification hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets up native macOS notifications for Claude Code in local and devpod/remote environments using terminal-notifier, notification hooks, and SSH reverse tunnels.
 
-## Publisher: <br>
-[ajitsingh25](https://clawhub.ai/user/ajitsingh25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajitsingh25](https://clawhub.ai/user/ajitsingh25)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Claude Code notifications on a local Mac and optionally route notifications from trusted devpod or remote SSH hosts back to macOS Notification Center. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup creates a persistent local notification listener and SSH reverse-forwarding configuration. <br>
-Mitigation: Install only when this behavior is desired, use trusted devpod SSH hostnames, and review the listener and SSH configuration before enabling it. <br>
-Risk: The setup changes local Claude Code settings and may also change remote ~/.claude and ~/.tmux.conf files. <br>
-Mitigation: Review or back up ~/.claude/settings.json, ~/.ssh/config, and relevant remote configuration files before running setup. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Claude Code notifications on macOS, including local alerts and devpod notifications routed through SSH reverse tunnels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ajitsingh25/claude-notifications) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS for setup and may configure local Claude Code settings, launchd, SSH config, and remote devpod files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The setup flow persistently changes Claude hook settings, SSH config, remote devpod files, and macOS startup settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup script before running it and verify the affected Claude, SSH, devpod, and LaunchAgent configuration after installation.
+
+Risk: Devpod setup depends on user-supplied SSH hostnames.
+
+Mitigation: Use only trusted devpod hostnames and confirm the resolved SSH target before allowing the skill to configure remote files or SSH forwarding.
+
+Risk: The local listener and fixed notification port may need stronger listener authentication and port-conflict handling.
+
+Mitigation: Assess listener authentication and port 19876 availability before deployment, and harden those controls where required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ajitsingh25/skills/claude-notifications)
+- [Publisher profile](https://clawhub.ai/user/ajitsingh25)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide macOS and SSH setup actions that write local and remote configuration files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-LLM Memory V9 provides a public framework package that links a user-controlled local private configuration directory through CNB_PRIVATE_WORKSPACE while keeping shared templates separate from private files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Llm Memory V9 provides a public framework for linking a user-specified local private configuration directory into an agent skill workspace.
 
-## Publisher: <br>
-[xkzs2007](https://clawhub.ai/user/xkzs2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xkzs2007](https://clawhub.ai/user/xkzs2007)
 
-## Use Case: <br>
-Developers and agent users use this skill to install default workspace templates and optionally link a local private configuration directory into the skill workspace for custom AGENTS.md, TOOLS.md, memory, and configuration files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The postinstall hook can automatically link or copy private local files from CNB_PRIVATE_WORKSPACE into the skill workspace. <br>
-Mitigation: Review the CNB_PRIVATE_WORKSPACE path before installation, use a dedicated minimal directory, and avoid including secrets or broad personal folders. <br>
-Risk: Permission metadata may underreport the private local file access performed by the postinstall hook. <br>
-Mitigation: Treat install-time linking as a review point and use --no-hooks or unset CNB_PRIVATE_WORKSPACE when private files should not be linked. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep public workspace templates separate from private local memory, agent rules, tool configuration, and other user-controlled files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xkzs2007/llm-memory-integration) <br>
-- [Hooks README](hooks/README.md) <br>
-- [Workspace template README](workspace_template/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, guidance, shell commands] <br>
-**Output Format:** [Markdown documentation, workspace template files, and local filesystem link or copy actions during postinstall] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; CNB_PRIVATE_WORKSPACE is optional and controls private file linking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.0.1 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The postinstall hook can link or copy broad private local content into the trusted skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set CNB_PRIVATE_WORKSPACE only to a narrow, reviewed directory containing files intended for agent use.
+
+Risk: Imported private files such as AGENTS.md, TOOLS.md, MEMORY.md, scripts, or config files can affect agent behavior after installation.
+
+Mitigation: Review private workspace contents before installation and avoid home folders, synced folders, or shared directories.
+
+Risk: Users who do not need private configuration import still receive an install hook path.
+
+Mitigation: Install with hooks disabled when private local configuration import is not required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xkzs2007/skills/llm-memory-integration)
+- [Hook documentation](artifact/hooks/README.md)
+- [Workspace template documentation](artifact/workspace_template/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Configuration, Guidance, Shell commands]
+
+**Output Format:** [Markdown guidance and local workspace files or symlinks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses optional CNB_PRIVATE_WORKSPACE to link or copy user-controlled local files at install time.]
+
+## Skill Version(s):
+
+9.0.1 (source: frontmatter, package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

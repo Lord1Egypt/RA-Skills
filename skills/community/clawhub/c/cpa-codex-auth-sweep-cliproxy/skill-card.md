@@ -1,45 +1,55 @@
-## Description: <br>
-Scans Codex authentication files through the CLI Proxy Management API, reports invalid or quota-exhausted credentials, and deletes 401 entries only after explicit confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Codex authentication files through a CLI Proxy management API, reports invalid or quota-exhausted credentials, and can delete 401 entries only after explicit confirmation.
 
-## Publisher: <br>
-[bddiudiu](https://clawhub.ai/user/bddiudiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bddiudiu](https://clawhub.ai/user/bddiudiu)
 
-## Use Case: <br>
-Developers and operators managing CLI Proxy Codex authentication files use this skill to audit credential health, identify 401 or weekly-quota-zero accounts, and optionally remove confirmed invalid entries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The management key can enumerate and modify Codex authentication files. <br>
-Mitigation: Use the skill only with a CLI Proxy instance you control, keep the management key secret, and start with scan-only output before enabling deletion. <br>
-Risk: The probe flow can forward real tokens to the configured probe host. <br>
-Mitigation: Keep the default chatgpt.com probe host unless a trusted alternative has been explicitly approved, and avoid unsafe probe-host overrides. <br>
-Risk: Bulk deletion can remove authentication files that are still needed. <br>
-Mitigation: Use deletion only after reviewing the JSON results and confirming that the listed 401 entries are safe to remove. <br>
-Risk: Disabling TLS verification can expose management traffic or probe traffic to interception. <br>
-Mitigation: Avoid insecure TLS flags except for explicitly authorized internal troubleshooting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bddiudiu/cpa-codex-auth-sweep-cliproxy) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
+
+Developers and operators use this skill to audit Codex credentials managed by CLI Proxy, identify invalid or weekly-quota-exhausted entries, and optionally remove confirmed 401 credentials.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles CLI Proxy management credentials and can cause real Codex tokens to be forwarded to the configured probe host.
+
+Mitigation: Use only trusted CLI Proxy servers and operator environments, keep the default chatgpt.com probe target, and avoid overriding the allowed host list.
+
+Risk: Unsafe probe hosts or disabled TLS verification can broaden credential exposure.
+
+Mitigation: Do not use --allow-unsafe-probe-host or --insecure unless the operator has explicitly reviewed and accepted the endpoint and TLS risk.
+
+Risk: The scanner can delete 401 authentication files in bulk.
+
+Mitigation: Use --delete-401 --yes only after reviewing generated deletion targets and confirming the environment can recover deleted auth files.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON scan results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CLI Proxy base URL and management key; scan-only mode is the default, while deletion requires explicit confirmation.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+**Output Type(s):** [Shell commands, JSON, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell commands and optional JSON scanner output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports progress, aggregate status counts, reason buckets, deletion status, and per-auth scan results when JSON output is enabled.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

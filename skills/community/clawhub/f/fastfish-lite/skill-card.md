@@ -1,41 +1,57 @@
-## Description: <br>
-fastfish 开源精简版，帮助代理整理微信公众号内容、执行本地敏感词检测、拉取每日热点并生成本地 HTML 预览；微信发布、授权和原创度检测需要商业版。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+fastfish-lite helps agents format WeChat public-account content, run local sensitive-word checks, preview HTML locally, and fetch or schedule daily trending-topic summaries without WeChat publishing or account authorization.
 
-## Publisher: <br>
-[superxs777](https://clawhub.ai/user/superxs777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[superxs777](https://clawhub.ai/user/superxs777)
 
-## Use Case: <br>
-Developers and content operations teams use this skill to guide an agent through local fastfish-lite CLI workflows for WeChat article formatting, local compliance checks, HTML preview, and daily-hot-topic retrieval or push setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing or running fastfish-lite involves third-party code and Python dependencies. <br>
-Mitigation: Review the linked repository and dependencies, use a pinned trusted release, and run in an isolated non-root environment before deployment. <br>
-Risk: The skill uses API keys and webhook credentials for authenticated access and hot-topic push channels. <br>
-Mitigation: Keep credentials in .env only, do not display or commit them, and enable push channels only where the operator controls the destination. <br>
-Risk: Scheduled hot-topic tasks can push content repeatedly or to the wrong channel if misconfigured. <br>
-Mitigation: Create, edit, or remove cron jobs only after explicit operator approval and verify the selected channel before enabling recurring pushes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superxs777/fastfish-lite) <br>
+## Use Case:
 
+External users and developers use this skill to operate fastfish-lite for WeChat public-account drafting workflows, including article formatting, local compliance checks, HTML preview, and trending-topic retrieval or notification setup.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides CLI invocation and configuration; it does not itself publish to WeChat.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing and running fastfish-lite can introduce supply-chain risk through a third-party repository and dependencies.
+
+Mitigation: Install only from trusted sources, review the repository and dependencies before use, pin releases when possible, and run in a virtual environment or container without root privileges.
+
+Risk: The skill may use API keys and webhook credentials for API access and hot-topic push channels.
+
+Mitigation: Keep credentials in environment or .env configuration, scope keys narrowly, avoid exposing secret values in agent responses, and do not commit credentials to source control.
+
+Risk: Scheduled hot-topic push jobs can create persistent daily notifications if configured unintentionally.
+
+Mitigation: Create or modify scheduled push jobs only after explicit user approval, and confirm the intended channel, schedule, and recipient before enabling recurring notifications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superxs777/skills/fastfish-lite)
+- [fastfish-lite GitHub repository](https://github.com/superxs777/fastfish-lite)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and JSON CLI arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+, a running fastfish-lite service, optional MEDIA_AGENT_API_KEY, and configured push-channel credentials for scheduled hot-topic notifications.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

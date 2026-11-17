@@ -1,11 +1,11 @@
 # IDMT\_BoardItem interface
 
-板子属性
+Board property
 
 ## Signature
 
 ```typescript
-interface IDMT_BoardItem 
+interface IDMT_BoardItem
 ```
 
 ## Properties
@@ -14,118 +14,94 @@ interface IDMT_BoardItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [itemType](./IDMT_BoardItem.md)
 
-
 </td><td>
 
 `readonly`
-
 
 </td><td>
 
 [EDMT\_ItemType.BOARD](../enums/EDMT_ItemType.md)
 
-
 </td><td>
 
-项目类型
-
+Project type
 
 </td></tr>
 <tr><td>
 
 [name](./IDMT_BoardItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-板子名称
-
+Board name
 
 </td></tr>
 <tr><td>
 
 [parentProjectUuid](./IDMT_BoardItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属工程 UUID
-
+UUID of the project it belongs to
 
 </td></tr>
 <tr><td>
 
 [pcb](./IDMT_BoardItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [IDMT\_PcbItem](./IDMT_PcbItem.md)
 
-
 </td><td>
 
-下属 PCB
-
+Subordinate PCB
 
 </td></tr>
 <tr><td>
 
 [schematic](./IDMT_BoardItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [IDMT\_SchematicItem](./IDMT_SchematicItem.md)
 
-
 </td><td>
 
-下属原理图
-
+Subordinate schematic
 
 </td></tr>
 </tbody></table>
@@ -138,7 +114,7 @@ string
 
 # IDMT\_BoardItem.itemType property
 
-项目类型
+Project type
 
 ## Signature
 
@@ -150,7 +126,7 @@ readonly itemType: EDMT_ItemType.BOARD;
 
 # IDMT\_BoardItem.name property
 
-板子名称
+Board name
 
 ## Signature
 
@@ -162,7 +138,7 @@ name: string;
 
 # IDMT\_BoardItem.parentProjectUuid property
 
-所属工程 UUID
+UUID of the project it belongs to
 
 ## Signature
 
@@ -174,7 +150,7 @@ parentProjectUuid: string;
 
 # IDMT\_BoardItem.pcb property
 
-下属 PCB
+Subordinate PCB
 
 ## Signature
 
@@ -186,7 +162,7 @@ pcb: IDMT_PcbItem;
 
 # IDMT\_BoardItem.schematic property
 
-下属原理图
+Subordinate schematic
 
 ## Signature
 

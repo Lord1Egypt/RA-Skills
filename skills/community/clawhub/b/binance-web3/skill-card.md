@@ -1,42 +1,62 @@
-## Description: <br>
-Query token prices, market data, K-line charts, and smart money trading signals via Binance Web3 APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query token prices, market data, K-line charts, and smart money trading signals via Binance Web3 APIs.
 
-## Publisher: <br>
-[torchesfrms](https://clawhub.ai/user/torchesfrms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[torchesfrms](https://clawhub.ai/user/torchesfrms)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to query Binance Web3 market data for token discovery, prices, liquidity, holders, candlestick charts, wallet token balances, and smart money signals across BSC, Base, Solana, and Ethereum. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries can disclose token symbols, contract addresses, chain IDs, and wallet addresses to Binance Web3 or related Web3 data providers. <br>
-Mitigation: Use the skill only for data you are comfortable sharing with those providers, and avoid querying sensitive wallet addresses. <br>
-Risk: The market-rank helper can use an HTTP proxy from the environment or a localhost default. <br>
-Mitigation: Review proxy settings before running market-rank.sh and unset or set HTTP_PROXY explicitly when needed. <br>
-Risk: Some helper scripts are not described in the public skill overview. <br>
-Mitigation: Review the bundled scripts before installation or execution, especially address-info.sh, meme-rush.sh, token-audit.sh, and market-rank.sh. <br>
+## Use Case:
 
+Developers and external users use this skill to search tokens, inspect market data, retrieve candlestick data, and review smart money trading signals on supported Web3 networks.
 
-## Reference(s): <br>
-- [ClawHub Binance Web3 skill page](https://clawhub.ai/torchesfrms/binance-web3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and JSON API responses from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, and jq. Some helper scripts send token symbols, contract addresses, chain IDs, and wallet addresses to Web3 data providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Inputs such as token symbols, contract addresses, chain IDs, and wallet addresses are sent to Binance Web3 or the K-line API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those values is intended, and avoid submitting sensitive user-associated wallet addresses without consent.
+
+Risk: Market and smart money results come from unauthenticated third-party API data.
+
+Mitigation: Treat responses as informational signals and verify important trading or compliance decisions with authoritative sources.
+
+Risk: The security review notes documentation and validation gaps.
+
+Mitigation: Review scripts before deployment and add input validation or clearer operating guidance before broad use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/torchesfrms/skills/binance-web3)
+- [Publisher Profile](https://clawhub.ai/user/torchesfrms)
+- [Binance Web3 Token Search API](https://web3.binance.com/bapi/defi/v5/public/wallet-direct/buw/wallet/market/token/search)
+- [Binance Web3 Token Dynamic Info API](https://web3.binance.com/bapi/defi/v4/public/wallet-direct/buw/wallet/market/token/dynamic/info)
+- [Binance Web3 Smart Money Signal API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/web/signal/smart-money)
+- [K-Line Candles API](https://dquery.sintral.io/u-kline/v1/k-line/candles)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, json, guidance]
+
+**Output Format:** [Markdown guidance with shell commands that return JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is documented; scripts send supplied token symbols, contract addresses, chain IDs, and wallet addresses to external API hosts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

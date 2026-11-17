@@ -1,6 +1,45 @@
 {
-  "ownerId": "kn76exfa515asyamdbyx8cd3vx82f0fs",
+  "name": "seedancer",
   "slug": "seedancer",
-  "version": "3.0.0",
-  "publishedAt": 1782127231751
+  "version": "10.0.3",
+  "description": "AIGC 影视导演操作系统——P0-P2 预生产管线 + 五大硬门系统 + 五大导演系统（场景原型路由 + 摄影机-情绪同步 + 表演微节拍 + JSON API 输出 + 光源规则）+ CINEDANCE 16-block + LIRA 4-D + ACTING + GEO + Style Prefix + SCALE LAW + AI 导演 + 失败诊断 38 码。多模型支持（Seedance/Kling/Veo/Wan/GPT Image/Seedream），从剧本解析到成片交付端到端制片管线。",
+  "author": "taosiuman",
+  "license": "MIT-0",
+  "tags": [
+    "seedance",
+    "video-generation",
+    "prompt-engineering",
+    "filmmaking",
+    "ai-director",
+    "seedance-2.5",
+    "cinedance",
+    "lira",
+    "acting",
+    "geo-spatial",
+    "aigc",
+    "multi-model",
+    "pre-production",
+    "character-assets",
+    "emotion-curve"
+  ],
+  "platforms": [
+    "jimeng",
+    "doubao",
+    "volcano-engine",
+    "kling",
+    "veo",
+    "wan",
+    "gpt-image",
+    "seedream"
+  ],
+  "upstream_sources": [
+    "seedance-2-prompt-engineering-skill",
+    "Emily2040/seedance-2.0",
+    "ifeihong/aigc-film-studio",
+    "chaoge-assets-trial",
+    "seedance20-video-prompts",
+    "shotlist-builder",
+    "seedance-director",
+    "hellgrind"
+  ]
 }

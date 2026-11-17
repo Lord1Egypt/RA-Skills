@@ -1,47 +1,59 @@
-## Description: <br>
-Detects cats, dogs, and birds in home monitoring images or video streams and returns structured pet detection reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects cats, dogs, and birds in a target area using video or images for home pet monitoring.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users and developers use this skill to submit household pet images or videos for cat, dog, and bird detection, count detected animals, and retrieve structured current or historical detection reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Household pet images or videos and a username or phone-derived open-id are sent to a cloud service. <br>
-Mitigation: Use only media you are comfortable sharing with the service, avoid sensitive household footage, and confirm retention and handling terms before production use. <br>
-Risk: The skill may store local account tokens in a workspace SQLite database. <br>
-Mitigation: Restrict workspace access, review or clear the workspace data directory after use, and rotate credentials if the workspace is shared or exposed. <br>
-Risk: Historical report access can retrieve cloud report records associated with the supplied open-id. <br>
-Mitigation: Use a dedicated non-sensitive open-id, avoid shared identifiers, and verify report access controls with the publisher. <br>
-Risk: The security guidance notes a mismatch between pet detection behavior and health-analysis documentation. <br>
-Mitigation: Validate the configured endpoints and returned report fields in a controlled environment before relying on the skill for normal workflows. <br>
+## Use Case:
 
+Home pet owners use the skill to detect and count cats, dogs, and birds in submitted images or video, and to view previous analysis reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-pet-detection-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/18072937735) <br>
-- [Pet detection API documentation](artifact/references/api_doc.md) <br>
-- [Shared analysis API documentation](artifact/skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown, JSON, and plain text reports with optional saved output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include pet counts, structured detection payloads, historical report lists, and report export links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter states 1.0.5) <br>
+Risk: Media analysis and remote report features may handle sensitive household footage or report data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service and report handling before use, and submit only media and report queries the user intends to share.
+
+Risk: The skill initializes an internal account identity and uses account or token handling for remote analysis and history lookups.
+
+Mitigation: Review identity and credential handling before installation; keep internal identifiers and credentials out of user-facing output.
+
+Risk: History lookup and report export features extend beyond detecting pets in provided media.
+
+Mitigation: Use history lookup or report export only when requested, and confirm the account's report data is appropriate to access.
+
+## Reference(s):
+
+- [Pet detection API reference](references/api_doc.md)
+- [Analysis API details](skills/smyx_analysis/references/api_doc.md)
+- [Skill usage demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Markdown]
+
+**Output Format:** [Structured JSON analysis results, text reports, and Markdown report lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can include detected counts, category statistics, confidence summaries, and report links.]
+
+## Skill Version(s):
+
+1.0.19 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Use when you work, or plan to work, a physically demanding job and want an agent to personalize a minimal-equipment strength, mobility, and recovery program around your job demands, shifts, pain, and fatigue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you work or plan to work in a physically demanding job and want an agent to personalize minimal-equipment strength, mobility, recovery, progress tracking, and shift-aware adjustments around job demands, pain, and fatigue.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users in physically demanding trades, caregiving, delivery, farming, warehousing, and gig work use this skill to generate and maintain personalized occupational resilience training plans. The agent conducts assessments, creates weekly strength and mobility plans, tracks pain and progress in local files, and adapts work-capacity guidance around shifts and recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for personal fitness, pain, injury, schedule, and work-capacity details and may store them in local files. <br>
-Mitigation: Use it only when the user is comfortable with local logging, keep generated logs under the user's control, and avoid sharing health-adjacent details unnecessarily. <br>
-Risk: Exercise guidance can be inappropriate for injuries, medical conditions, sharp pain, or worsening symptoms. <br>
-Mitigation: Treat outputs as general coaching, stop activities that cause sharp or neurological pain, and seek a qualified medical, physical therapy, or training professional when needed. <br>
+## Use Case:
 
+External users in trades, delivery, caregiving, farming, warehousing, and similar physical work use this skill to have an agent assess job demands, create weekly training plans, maintain local progress logs, and adapt routines around pain, fatigue, equipment, and work shifts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/trades-longevity-training) <br>
-- [Publisher profile](https://clawhub.ai/user/howtousehumans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with checklists, tables, templates, and local file logging instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce user_profile.md, workout_log.md, and pain_tracker.md content for local filesystem storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may create local files containing health-adjacent details such as pain, injury, age, activity, and workout history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated files in a private location, remove them when they are no longer needed, and avoid sharing them without review.
+
+Risk: The skill provides fitness planning support and may be used around pain, fatigue, or prior injuries.
+
+Mitigation: Treat the output as planning guidance, stop activity for sharp or neurological pain, and consult a qualified professional for medical concerns or pre-existing conditions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/trades-longevity-training)
+- [Publisher profile](https://clawhub.ai/user/howtousehumans)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration, Files]
+
+**Output Format:** [Markdown guidance, checklists, training tables, decision trees, and local log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local files such as user_profile.md, workout_log.md, and pain_tracker.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

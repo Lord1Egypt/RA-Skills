@@ -1,40 +1,53 @@
-## Description: <br>
-Teamo Lite Offline helps an agent choose between quick information retrieval and deeper research, writing, or code workflows based on the user's request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teamo Lite Offline routes user requests between quick fact-based answers and deeper content, code, and research workflows.
 
-## Publisher: <br>
-[urrrich0](https://clawhub.ai/user/urrrich0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[urrrich0](https://clawhub.ai/user/urrrich0)
 
-## Use Case: <br>
-External users and developers use this skill to route simple information requests to direct answers and more complex writing, research, or code requests to search and delegated workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automatic web searches, URL scraping, and delegated workflows may expose private data or act beyond user expectations. <br>
-Mitigation: Use only with non-sensitive tasks, or deploy in a runtime that enforces approval and data-minimization rules for external tools and handoffs. <br>
-Risk: The offline name may lead users to assume the skill does not use networked tools. <br>
-Mitigation: Review the security summary before installation and disable or require approval for search, scraping, and delegation tools where needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/urrrich0/teamo-lite-offline) <br>
-- [Publisher profile](https://clawhub.ai/user/urrrich0) <br>
+## Use Case:
 
+Developers and external users can use this skill to choose an efficient response path for routine Q&A, information gathering, writing, summaries, reports, and code-related tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text responses, with code blocks or command snippets when the user request calls for them.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include web-search-supported summaries, scraped-source syntheses, code, and delegated outputs depending on the runtime tools available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can route routine tasks into search, scraping, or other-agent handoff.
+
+Mitigation: Review planned tool use before installation and run it only where those actions are acceptable.
+
+Risk: Private documents, proprietary code, credentials, or sensitive personal data could be exposed through broad information-gathering workflows.
+
+Mitigation: Avoid using the skill with sensitive inputs unless the host agent enforces consent, data minimization, and access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/urrrich0/skills/teamo-lite-offline)
+- [Publisher profile](https://clawhub.ai/user/urrrich0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with optional inline code and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tool-use guidance or handoff recommendations depending on the selected workflow.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

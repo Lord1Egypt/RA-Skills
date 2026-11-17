@@ -1,0 +1,4 @@
+interface:
+  display_name: "Abonten Lead Skill"
+  short_description: "Turn offline signs into researched leads"
+  default_prompt: "Use $abonten-lead-skill to process these offline lead images and build a verified outreach list."

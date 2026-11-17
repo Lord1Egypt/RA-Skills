@@ -57,13 +57,13 @@ SLACK_BOT_TOKEN
 Example:
 
 ```bash
-export SLACK_BOT_TOKEN="xoxb-xxxxxxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxx"
+export SLACK_BOT_TOKEN="REDACTED-SECRET"
 ````
 
 Or in `.env` format:
 
 ```
-SLACK_BOT_TOKEN=xoxb-xxxxxxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxx
+SLACK_BOT_TOKEN=REDACTED-SECRET
 ```
 
 ### Token Requirements

@@ -1,38 +1,57 @@
-## Description: <br>
-Generates an ASCII tree or JSON representation of a directory structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates an ASCII tree or JSON representation of a directory structure. Use when you need to visualize file hierarchies, document folder contents, or debug directory layouts.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect, document, or debug project folder structures as readable tree output or structured JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill on sensitive directories can expose filenames and paths to the agent output or logs. <br>
-Mitigation: Run it only on intended project folders, avoid home, root, secrets, and other sensitive directories, and use --depth for large projects. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect, document, or debug local directory layouts by generating a readable folder tree or a structured JSON representation.
 
-## Reference(s): <br>
-- [Folder Tree Generator on ClawHub](https://clawhub.ai/wanng-ide/folder-tree-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [ASCII tree text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints directory names and paths to standard output; recursion depth can be limited with --depth.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Recursive directory scans can follow symbolic links outside the selected folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill on trusted folders, avoid folders containing symbolic links, and add symlink handling before broader deployment.
+
+Risk: The scan can run without a default depth limit and may enumerate large directory trees.
+
+Mitigation: Use an explicit small --depth value when inspecting unfamiliar or large folders.
+
+Risk: Output may expose local directory names and paths.
+
+Mitigation: Review generated output before sharing it outside the intended audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanng-ide/skills/folder-tree-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, json]
+
+**Output Format:** [ASCII tree text or pretty-printed JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file and directory names and paths; supports optional JSON output and recursion depth limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import json
+import os
 import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Iterator
 
-from .config import load_config
+from .config import load_config, make_private_dir
 
 
 SCHEMA = """
@@ -37,7 +38,10 @@ CREATE TABLE IF NOT EXISTS documents (
 
   needs_review INTEGER NOT NULL DEFAULT 0,
   status TEXT DEFAULT 'received',
-  notes TEXT
+  notes TEXT,
+
+  -- JSON {backend, model, provider, documents_left_machine}: where this document was read
+  processed_by TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_documents_tax_year ON documents(tax_year);
@@ -126,6 +130,31 @@ CREATE TABLE IF NOT EXISTS transactions_1099da (
   raw_json TEXT
 );
 
+-- Per-sale rows read from 1099-B / consolidated-1099 transaction detail
+-- (separate extraction pass; feeds the Form 8949 CSV and TXF exports)
+CREATE TABLE IF NOT EXISTS transactions_1099b (
+  id TEXT PRIMARY KEY,
+  document_id TEXT REFERENCES documents(id) ON DELETE CASCADE,
+  lot_index INTEGER,
+  page INTEGER,
+  description TEXT,
+  cusip TEXT,
+  quantity TEXT,
+  date_acquired TEXT,
+  date_sold TEXT,
+  proceeds TEXT,
+  cost_basis TEXT,
+  accrued_market_discount TEXT,
+  wash_sale_loss_disallowed TEXT,
+  gain_loss TEXT,
+  term TEXT,
+  basis_reported_to_irs INTEGER,
+  form_8949_box TEXT,
+  raw_json TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_transactions_1099b_document_id ON transactions_1099b(document_id);
+
 CREATE TABLE IF NOT EXISTS review_queue (
   id TEXT PRIMARY KEY,
   document_id TEXT NOT NULL,
@@ -155,8 +184,14 @@ def _db_path() -> Path:
 
 def connect() -> sqlite3.Connection:
     path = _db_path()
-    path.parent.mkdir(parents=True, exist_ok=True)
+    make_private_dir(path.parent)
     con = sqlite3.connect(str(path))
+    # Owner-only: the database holds SSNs/TINs. SQLite gives the -wal/-shm files the same mode.
+    try:
+        if path.stat().st_mode & 0o077:
+            os.chmod(path, 0o600)
+    except OSError:
+        pass
     con.row_factory = sqlite3.Row
     con.execute("PRAGMA journal_mode=WAL;")
     con.execute("PRAGMA foreign_keys=ON;")
@@ -172,6 +207,8 @@ def init_db() -> None:
         cols = [r[1] for r in con.execute("PRAGMA table_info(documents)").fetchall()]
         if "display_name" not in cols:
             con.execute("ALTER TABLE documents ADD COLUMN display_name TEXT;")
+        if "processed_by" not in cols:
+            con.execute("ALTER TABLE documents ADD COLUMN processed_by TEXT;")
 
         # Best-effort backfill for existing rows.
         con.execute(

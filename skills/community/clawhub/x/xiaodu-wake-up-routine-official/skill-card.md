@@ -1,45 +1,58 @@
-## Description: <br>
-Orchestrates a child's Xiaodu wake-up routine by reusing the installed xiaodu-control-official scripts to trigger morning scenes, adjust supported Xiaodu IoT devices, and use Xiaodu smart-screen speech or media capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates a child wake-up routine through the installed xiaodu-control-official skill, preferring existing XiaoDu IoT scenes and falling back to conservative smart-screen and supported device actions.
 
-## Publisher: <br>
-[dueros-mcp](https://clawhub.ai/user/dueros-mcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dueros-mcp](https://clawhub.ai/user/dueros-mcp)
 
-## Use Case: <br>
-External users and home-automation agents use this skill to turn broad Chinese wake-up requests into a conservative, scene-first Xiaodu morning routine for a child's room. It helps choose supported scene, light, curtain, comfort, smart-screen speech, and optional media actions while avoiding unsupported device assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate real smart-home actions through its xiaodu-control-official dependency and could target the wrong room, device, or smart screen if the environment is ambiguous. <br>
-Mitigation: Use only with a trusted xiaodu-control-official installation and trusted Xiaodu/mcporter account, refresh device lists before execution, and require a minimal confirmation when room or device targeting is unclear. <br>
-Risk: The skill can store household wake-up preferences, which may reveal routines or affect future automation behavior. <br>
-Mitigation: Set clear preferences for weather, time, reminders, music, and memory use before first deployment, and review memory updates after preference changes. <br>
-Risk: The security evidence notes inconsistent defaults for media, weather, reminders, and music. <br>
-Mitigation: Configure allowed default content explicitly and supervise early runs so optional weather, reminder, and media actions occur only when intended. <br>
+## Use Case:
 
+External users with a configured XiaoDu control skill use this skill to coordinate a wake-up routine for a child, preferring existing scenes and falling back to safe, sequential smart-screen and IoT actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dueros-mcp/xiaodu-wake-up-routine-official) <br>
-- [Publisher profile](https://clawhub.ai/user/dueros-mcp) <br>
-- [Usage notes](references/usage-notes.md) <br>
-- [Test cases](references/test-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Natural-language guidance with ordered shell-command calls and concise user-facing status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update household wake-up preferences when the agent has explicit evidence that a memory file was written.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can store household wake-up preferences in shared memory and later reuse them when controlling smart-home devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use skill-scoped preference storage with explicit consent, clear deletion controls, and confirmation before reusing older preferences for device control.
+
+Risk: Default wake-up behavior may be unclear about which actions happen automatically versus only after a user asks.
+
+Mitigation: Document default actions separately from requested optional actions, and confirm before controlling ambiguous rooms or devices.
+
+Risk: Household device inventory in documentation can expose sensitive home-context details.
+
+Mitigation: Remove real household inventory from public documentation or replace it with sanitized examples.
+
+## Reference(s):
+
+- [Usage notes](references/usage-notes.md)
+- [Test cases](references/test-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown guidance with sequential shell command examples and natural-language status responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions are planned as a single sequential routine, with unsupported or unconfirmed devices skipped rather than assumed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Monitor wallet balances and on-chain activity, with alerts when balances change or specified conditions are met. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors wallet balances and on-chain activity across multiple chains, with alerts for balance changes or specified conditions.
 
-## Publisher: <br>
-[zhiuannnn](https://clawhub.ai/user/zhiuannnn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhiuannnn](https://clawhub.ai/user/zhiuannnn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to monitor cryptocurrency wallet addresses, track portfolios, detect unusual activity, and check airdrop eligibility across supported chains.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Watched wallet addresses can reveal portfolio associations and activity patterns.
+
+Mitigation: Treat configured addresses as sensitive information and share monitoring output only with trusted recipients.
+
+Risk: Webhook alerts may disclose wallet activity or portfolio relationships to the configured endpoint.
+
+Mitigation: Use ALERT_WEBHOOK only with endpoints the user controls or explicitly trusts.
+
+Risk: Short watchlist commands can list or change monitored addresses.
+
+Mitigation: Review command targets before running add, remove, addresses, or balance operations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to monitor blockchain wallet balances and activity across supported chains, track portfolios, detect unusual activity, and monitor airdrop eligibility. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Watched wallet addresses and alert contents may reveal sensitive portfolio or activity information. <br>
-Mitigation: Treat monitored addresses and generated alerts as sensitive data and share them only with trusted systems and recipients. <br>
-Risk: Webhook alerts can expose monitoring data or route notifications to an untrusted endpoint. <br>
-Mitigation: Use only trusted webhook URLs and verify the destination before enabling alerts. <br>
-Risk: Crypto monitoring workflows can be misused if private keys, seed phrases, or signing permissions are provided. <br>
-Mitigation: Provide public wallet addresses only; do not provide private keys, seed phrases, or signing permissions. <br>
+**Output Format:** [Markdown guidance with environment variable settings and command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Crypto Address Sentinel ClawHub listing](https://clawhub.ai/zhiuannnn/crypto-address-sentinel) <br>
+**Other Properties Related to Output:** [May reference configured wallet addresses, webhook endpoints, watchlist changes, balances, activity changes, and alert conditions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

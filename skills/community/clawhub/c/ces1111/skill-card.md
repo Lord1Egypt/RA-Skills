@@ -1,37 +1,53 @@
-## Description: <br>
-Provides a profile of workplace skills across requirements analysis, project management, data organization and visualization, process optimization, collaboration, tools, and language abilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ce1111 summarizes professional capabilities in requirements analysis, project management, data organization and visualization, workflow optimization, cross-functional collaboration, office and documentation tools, and Chinese and English language ability.
 
-## Publisher: <br>
-[liuzixiao666](https://clawhub.ai/user/liuzixiao666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuzixiao666](https://clawhub.ai/user/liuzixiao666)
 
-## Use Case: <br>
-Developers and agents can use this skill as a concise capability profile for tasks that need workplace skill context, such as requirements analysis, planning, documentation, data organization, process improvement, collaboration, and bilingual document work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a broad profile-style listing and may not be relevant to every workflow. <br>
-Mitigation: Review the listed skills before use and rely on it only when that workplace-skill context is helpful. <br>
+## Use Case:
 
+Developers, reviewers, and agent users can use this static profile as a concise reference for the publisher's professional skills, collaboration strengths, tool familiarity, and language abilities.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static profile content with no executable behavior or special access requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Readers may need clearer language scope because the artifact is a Chinese-language skills profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Reviewers can add a bilingual or explicitly Chinese-scoped description before publication.
+
+Risk: Static profile content can be published without runtime checks for accuracy or freshness.
+
+Mitigation: Review the profile text and release changelog before deployment or presentation.
+
+## Reference(s):
+
+- [ClawHub skill page for ce1111](https://clawhub.ai/liuzixiao666/skills/ces1111)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static Chinese-language profile; no code, shell commands, credentials, persistence, or external data flows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

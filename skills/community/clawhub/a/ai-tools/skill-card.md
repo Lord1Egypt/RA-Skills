@@ -1,42 +1,53 @@
-## Description: <br>
-This skill provides guidance for monetizing AI tools through SaaS subscriptions, API billing, content channels, execution planning, metrics, and compliance-aware operating practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides Chinese-language guidance for monetizing AI tools through SaaS subscriptions, API usage billing, channel testing, compliance checks, and execution planning.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Entrepreneurs, product teams, and operators use this skill to plan and refine monetization paths for AI tools, including MVP validation, channel selection, pricing, conversion tracking, delivery workflows, and 30-day execution planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes legal, tax, platform, identity, and payment setup guidance that may vary by jurisdiction and platform. <br>
-Mitigation: Treat those sections as informational and verify requirements with the relevant platform, jurisdiction, or qualified professional before submitting documents or payment details. <br>
-Risk: Business guidance about monetization, pricing, and channel performance can be inaccurate for a specific market or product. <br>
-Mitigation: Validate recommendations with small tests, track metrics such as conversion rate, retention, refund rate, and LTV/CAC, and avoid absolute performance claims. <br>
-Risk: Promotional workflows can create compliance issues if they encourage exaggerated claims, spam, infringement, or platform policy violations. <br>
-Mitigation: Review public copy and operating procedures for platform policy, copyright, contract, invoice, and advertising compliance before launch. <br>
+## Use Case:
 
+External creators, developers, and small teams use this skill to plan, launch, and iterate AI-tool monetization workflows with channel selection, MVP validation, pricing, metrics, delivery, and compliance checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/ai-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, planning steps, metric definitions, and template-style operating notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only business guidance; no code execution, file access, account access, or credential handling is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Business guidance about platform rules, advertising claims, contracts, taxes, identity documents, business licenses, or payment setup may be incomplete or jurisdiction-dependent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify applicable platform policies, legal requirements, tax obligations, and payment-provider rules before acting on the guidance.
+
+Risk: Monetization advice can lead to misleading claims, infringement, or prohibited traffic practices if applied without review.
+
+Mitigation: Review promotional copy, data claims, copyright status, channel tactics, and delivery commitments before publishing or scaling any campaign.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/ai-tools)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown prose with checklists, execution plans, and template-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static Chinese-language business guidance; no code execution, private data access, or persistent changes are requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

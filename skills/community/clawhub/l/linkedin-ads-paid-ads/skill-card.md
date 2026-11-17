@@ -1,40 +1,48 @@
-## Description: <br>
-Guides setup, targeting, creative, budget, tracking, and optimization for LinkedIn Ads campaigns, especially B2B paid ads where professional targeting matters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides LinkedIn Ads setup, targeting, and optimization for B2B paid advertising.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing teams and growth practitioners use this skill to plan, set up, optimize, and review LinkedIn Ads campaigns, especially B2B campaigns using professional targeting signals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Drafted campaign changes could affect budget, targeting, tracking, or publishing in a real ad account.
+
+Mitigation: Review budgets, targeting, tracking setup, and publishing actions before applying any recommendations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing teams, growth teams, and operators use this skill to plan and refine LinkedIn Ads campaigns, including campaign naming, ad format selection, professional targeting, creative checks, budget and bidding choices, and tracking setup. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release as suspicious because the scanned bundle may request high-impact authority. <br>
-Mitigation: Install only in a trusted maintainer environment and verify any target account, reason, and requested action before use. <br>
-Risk: Campaign, targeting, or tracking recommendations could affect ad spend, attribution, or lead quality if applied without review. <br>
-Mitigation: Review recommendations against the active LinkedIn Ads account, budget, conversion tracking, and campaign objective before publishing changes. <br>
+**Output Format:** [Markdown guidance with checklists and tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/linkedin-ads-paid-ads) <br>
+**Other Properties Related to Output:** [Advisory content only; no code execution, credentials, persistence, or hidden authority.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists and campaign setup recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include campaign naming patterns, targeting tables, budget and bidding guidance, tracking recommendations, and pre-launch checklists.] <br>
+1.0.1 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

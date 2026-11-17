@@ -1,42 +1,59 @@
-## Description: <br>
-Manage sequences, contacts, email accounts, and schedules in Reply.io directly from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Reply.io sequences, contacts, email accounts, schedules, and campaign statistics from the terminal.
 
-## Publisher: <br>
-[grizzlyzp1](https://clawhub.ai/user/grizzlyzp1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grizzlyzp1](https://clawhub.ai/user/grizzlyzp1)
 
-## Use Case: <br>
-Developers, operators, and sales operations teams use this skill to let an agent inspect Reply.io campaign data, manage contacts, and run Reply.io CLI commands for sequences, accounts, and schedules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live Reply.io campaign and contact-changing authority, including creating contacts, enrolling or removing contacts, and starting or pausing sequences. <br>
-Mitigation: Use the narrowest available Reply.io API key, avoid exposing it broadly in default agent environments, and require explicit confirmation before contact, enrollment, or sequence state changes. <br>
-Risk: The skill depends on REPLY_API_KEY credentials that could expose Reply.io account access if logged or hardcoded. <br>
-Mitigation: Store the API key in a protected environment variable, OpenClaw environment configuration, or Docker secret, and do not print or persist the key in agent logs. <br>
+## Use Case:
 
+External developers and revenue operations teams use this skill to ask an agent for Reply.io CLI commands and setup guidance for viewing outreach performance, managing contacts, enrolling contacts, and controlling sequences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/grizzlyzp1/reply-cli) <br>
-- [Reply.io](https://reply.io) <br>
-- [Reply.io API settings](https://run.reply.io/Dashboard/Material#/settings/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, curl, and REPLY_API_KEY; CLI commands commonly use --json or --pretty for machine-readable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill invokes an unpinned npm package with npx, which can resolve package code at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned or preinstalled reviewed reply-cli package before use.
+
+Risk: Reply.io API key exposure could allow unauthorized account access.
+
+Mitigation: Use a narrowly scoped REPLY_API_KEY, store it in an environment variable or Docker secret, and avoid hardcoding or logging it.
+
+Risk: CLI commands can start or pause sequences, create contacts, and change sequence enrollment.
+
+Mitigation: Require explicit user approval before commands that change campaigns, contacts, or enrollment.
+
+## Reference(s):
+
+- [Reply.io](https://reply.io)
+- [Reply.io API Settings](https://run.reply.io/Dashboard/Material#/settings/api)
+- [ClawHub Skill Page](https://clawhub.ai/grizzlyzp1/skills/reply-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses REPLY_API_KEY for authenticated Reply.io CLI operations and favors --json or --pretty output when the agent needs parseable results.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

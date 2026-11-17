@@ -1,46 +1,63 @@
-## Description: <br>
-One-shot pipeline that converts provided URLs, files, or text into a 4000-word article, 5-9 social-card images, and a compressed text summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Article Tuwen converts provided URLs, files, or text into a long-form article, 5-9 social card images, and a text summary, with web-search enrichment, local file creation, and opt-in Feishu sync.
 
-## Publisher: <br>
-[edwardwason](https://clawhub.ai/user/edwardwason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardwason](https://clawhub.ai/user/edwardwason)
 
-## Use Case: <br>
-Content creators, marketers, and publishing teams use this skill to turn supplied source material into Xiaohongshu or WeChat-style social cards, a long-form article source, and a concise text draft. It is intended for transformation of provided material, not original writing from scratch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The zero-confirmation workflow can read provided files or URLs and publish generated outputs to Feishu without a final user approval step. <br>
-Mitigation: Require explicit confirmation before cloud sync and avoid using confidential, proprietary, or regulated content unless the workflow is modified for review. <br>
-Risk: The workflow may stop Python processes broadly during screenshot preparation. <br>
-Mitigation: Replace blanket Python process termination with targeted cleanup of only the HTTP server process started for the current run. <br>
-Risk: Generated articles and social cards may incorrectly summarize or overstate source material. <br>
-Mitigation: Review generated Markdown, PNG cards, text summaries, and image-source logs before publication. <br>
+## Use Case:
 
+Content creators and operators use this skill to turn supplied source material into a ready-to-share social-card package. It is intended for conversion workflows where the user explicitly asks to transform material into Chinese graphic-text content.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/edwardwason/article-tuwen) <br>
-- [Article Tuwen Pipeline](references/pipeline.md) <br>
-- [README](README.md) <br>
-- [README English](README.en.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Text, Configuration, Shell commands] <br>
-**Output Format:** [PNG social cards, Markdown article source, plain-text summary, JSON image-source log, and delivery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 5-9 1080x1440 PNG cards, a 3500-4500 word article source, an 800-1000 character text summary, and used-images.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog, released 2026-06-12) <br>
+Risk: Automatic web fetches and web searches may process sensitive source material or reveal topics externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with material appropriate for web-assisted processing, and avoid confidential content unless the user has reviewed the workflow.
+
+Risk: The skill creates local Desktop output files from user-provided material.
+
+Mitigation: Confirm the intended output folder and remove generated files that should not remain on the local machine.
+
+Risk: Optional Feishu cloud sync can upload generated PNG and text outputs.
+
+Mitigation: Approve Feishu sync only after checking the exact filenames and using a safe simple slug; do not upload confidential source-derived content unless the upload manifest is explicit.
+
+Risk: The skill orchestrates sub-skills for article writing and card rendering.
+
+Mitigation: Review the installed transcript-crafter and xhs-crafter skill declarations before use in sensitive workflows.
+
+## Reference(s):
+
+- [Article Tuwen pipeline](artifact/references/pipeline.md)
+- [Article Tuwen ClawHub page](https://clawhub.ai/edwardwason/skills/article-tuwen)
+- [lark-cli](https://github.com/larksuite/lark-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, guidance]
+
+**Output Format:** [Markdown article, PNG image files, plain-text summary, and optional Feishu upload guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a Desktop output folder with 5-9 1080x1440 PNG cards, an article markdown file, a text summary, and an image-source log.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,51 @@
-## Description: <br>
-DNA translates raw A-T-C-G sequences into health, longevity, and pharmacogenomic guidance for an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DNA is an agent skill for interpreting raw DNA sequence data into health, longevity, and pharmacogenomic guidance.
 
-## Publisher: <br>
-[AGImodel](https://clawhub.ai/user/AGImodel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agimodel](https://clawhub.ai/user/agimodel)
 
-## Use Case: <br>
-External users use this skill to ask an agent for genomic wellness, longevity, nutrigenomics, and pharmacogenomic analysis from DNA files or gene variants. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to handle genomic, health, and family details without documented privacy controls. <br>
-Mitigation: Do not provide raw DNA, VCF/FASTQ files, prescription lists, or family health details unless the publisher documents concrete local processing, deletion, retention, and clinical-safety controls. <br>
-Risk: The skill can produce medication, supplement, or pharmacogenomic guidance that may be mistaken for clinical advice. <br>
-Mitigation: Do not change medication, supplements, or medical care based on this skill without review by a qualified clinician. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AGImodel/dna) <br>
+## Use Case:
+
+External users and agents use this skill to analyze genomic inputs such as FASTQ or VCF data for wellness, supplementation, longevity, and drug-response guidance. Outputs should be reviewed by a qualified clinician or genetic counselor before they inform prescriptions, supplements, diagnosis, or treatment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to handle highly sensitive genomic data.
+
+Mitigation: Users should avoid uploading genomic files unless they understand where processing occurs and how the data is protected.
+
+Risk: The skill can produce health, supplement, and drug-response recommendations from genetic data.
+
+Mitigation: Users should not change prescriptions, supplements, diagnosis, or treatment based on outputs without review by a qualified clinician or genetic counselor.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or shell commands are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

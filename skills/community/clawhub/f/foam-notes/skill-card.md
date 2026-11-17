@@ -1,50 +1,65 @@
-## Description: <br>
-Helps agents work with Foam Markdown note repositories by creating, editing, linking, tagging, searching, and summarizing notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Foam note repositories. Create, edit, link, and tag notes. Get intelligent wikilink and tag suggestions. Skill supports backlinks discovery, daily notes, templates, graph visualization, note deletion, and renaming. Full Foam documentation included for easy querying.
 
-## Publisher: <br>
-[Hegghammer](https://clawhub.ai/user/Hegghammer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hegghammer](https://clawhub.ai/user/hegghammer)
 
-## Use Case: <br>
-Developers, knowledge workers, and agents use this skill to manage local Foam workspaces, create and organize Markdown notes, inspect backlinks and tags, and apply wikilink or tag suggestions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify local Markdown notes and templates, including deleting notes, renaming files, fixing links, and applying tag or wikilink suggestions. <br>
-Mitigation: Set foam_root or FOAM_WORKSPACE to the intended notes folder, keep backups or version control, and review changes before using delete, rename, --force, --fix-links, --auto-apply, or broad tag/link application options. <br>
-Risk: Workspace auto-detection may target the wrong notes folder if configuration is unset. <br>
-Mitigation: Prefer an explicit --foam-root argument, FOAM_WORKSPACE value, or config.json foam_root when operating on important workspaces. <br>
-Risk: Automated wikilink and tag suggestions may add links or tags that do not match the user's intended organization. <br>
-Mitigation: Use dry-run or interactive selection modes first, then review resulting Markdown changes before accepting them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Foam Notes release page](https://clawhub.ai/Hegghammer/foam-notes) <br>
-- [Foam Documentation Overview](artifact/references/foam-overview.md) <br>
-- [Foam Notes Configuration](artifact/references/configuration.md) <br>
-- [Wikilinks in Foam](artifact/references/wikilinks.md) <br>
-- [Backlinks in Foam](artifact/references/backlinks.md) <br>
-- [Tags in Foam](artifact/references/tags.md) <br>
-- [Daily Notes in Foam](artifact/references/daily-notes.md) <br>
-- [Templates in Foam](artifact/references/templates.md) <br>
-- [Foam official site](https://foamnotes.com) <br>
-- [Foam project repository](https://github.com/foambubble/foam) <br>
+## Use Case:
 
+External users and developers use this skill to manage Foam-based Markdown knowledge bases: creating notes, daily notes, templates, wikilinks, backlinks, tags, and graph summaries. It is useful for agents that need to inspect or update local Foam workspaces while preserving Foam conventions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local Markdown/configuration file changes when scripts are used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operates on a local Foam workspace selected by --foam-root, FOAM_WORKSPACE, config.json, auto-detection, or current working directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scripts can create, modify, rename, or delete local Markdown notes, and the security review warns that some operations may affect files outside the intended Foam workspace.
+
+Mitigation: Set the Foam root explicitly, review resolved paths before execution, keep backups or version control enabled, and avoid untrusted note names or paths.
+
+Risk: Force or automatic-apply modes can bypass interactive review for destructive deletes, renames, wikilink insertion, or tag insertion.
+
+Mitigation: Avoid --force and --auto-apply for normal use; preview suggestions and apply only selected changes after review.
+
+Risk: Deleting or renaming notes can change backlinks and linked notes in ways that are difficult to unwind.
+
+Mitigation: Use backup mode for deletion, inspect affected backlinks before confirming, and review workspace diffs after the command finishes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hegghammer/skills/foam-notes)
+- [Foam official site](https://foamnotes.com)
+- [Foam GitHub repository](https://github.com/foambubble/foam)
+- [Foam overview](references/foam-overview.md)
+- [Wikilinks](references/wikilinks.md)
+- [Backlinks](references/backlinks.md)
+- [Tags](references/tags.md)
+- [Daily notes](references/daily-notes.md)
+- [Templates](references/templates.md)
+- [Configuration](references/configuration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text guidance with inline shell commands; local scripts may produce Markdown files, JSON summaries, or workspace file edits.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill operates on local Foam workspaces and may create, update, rename, or delete Markdown notes when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-LessonLoop captures high-value user feedback as compact local memory and promotes durable behavior rules when justified while avoiding verbose reflection loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight experience-capture and behavior-hardening for Goat; it records high-value lessons from explicit feedback, promotes durable rules into memory when justified, and avoids verbose self-reflection loops.
 
-## Publisher: <br>
-[stevengaojn2010](https://clawhub.ai/user/stevengaojn2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevengaojn2010](https://clawhub.ai/user/stevengaojn2010)
 
-## Use Case: <br>
-Developers and agent operators use LessonLoop to capture explicit corrections, preferences, repeated mistakes, and new operating rules as compact local memory so future sessions can apply them without continuous self-reflection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User corrections, preferences, or sensitive details may be persisted in local memory files and LessonLoop logs. <br>
-Mitigation: Avoid storing secrets or sensitive personal details, review memory entries periodically, and delete entries that should not affect future sessions. <br>
-Risk: Scripts write to a configured workspace path, so an incorrect path can place memory files in an unintended location. <br>
-Mitigation: Configure and review the workspace path before using write scripts. <br>
+## Use Case:
 
+Developers and agent operators use LessonLoop to capture important user corrections, preferences, repeated mistakes, and new operating rules as compact lessons. The skill helps agents apply feedback immediately while keeping long-term memory updates selective.
 
-## Reference(s): <br>
-- [LessonLoop ClawHub page](https://clawhub.ai/stevengaojn2010/lessonloop) <br>
-- [README](README.md) <br>
-- [Lesson types](references/lesson-types.md) <br>
-- [Ollama first-pass template](references/ollama-pass-template.md) <br>
-- [LessonLoop status/report format](references/status-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local Markdown memory files and JSONL LessonLoop event logs when scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can change persistent agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review captured lessons before promotion and avoid storing secrets, temporary context, or sensitive material.
+
+Risk: Scripts may write outside intended memory paths when invoked with unsafe arguments.
+
+Mitigation: Restrict workspaces to approved directories and patch or wrap script execution so dates are validated and lesson content is bounded and sanitized.
+
+## Reference(s):
+
+- [Lesson types](references/lesson-types.md)
+- [Ollama first-pass template](references/ollama-pass-template.md)
+- [LessonLoop status/report format](references/status-format.md)
+- [Publisher profile](https://clawhub.ai/user/stevengaojn2010)
+- [ClawHub skill page](https://clawhub.ai/stevengaojn2010/skills/lessonloop)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, JSON, shell commands]
+
+**Output Format:** [Markdown guidance with optional JSON, JSONL logs, text reports, and shell command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes compact lessons to daily memory files and structured LessonLoop event logs when its scripts are invoked.]
+
+## Skill Version(s):
+
+0.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn751cs05f46j016xa7q3519hs83gke6",
+  "name": "a2a-secret-manager",
   "slug": "a2a-secret-manager",
   "version": "1.0.0",
-  "publishedAt": 1774483951080
+  "description": "Manages A2A node secrets for EvoMap hub connectivity, including validation, rotation, and credential updates.",
+  "author": "jpengcheng523-netizen",
+  "tags": ["security", "secrets", "a2a", "evomap", "authentication"],
+  "license": "MIT"
 }

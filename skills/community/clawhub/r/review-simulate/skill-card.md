@@ -1,44 +1,63 @@
-## Description: <br>
-This skill runs Chinese voice interview practice sessions with ASR transcription, LLM-driven follow-up questions, TTS interviewer prompts, and structured feedback reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+进行中文求职语音模拟面试。适用于用户想围绕目标岗位进行多轮中文面试练习，并通过 ASR 识别回答、由 LLM 决定追问或换题、由 TTS 播报面试官问题，最终输出结构化评估报告、改进建议和示例优化回答的场景。
 
-## Publisher: <br>
-[cows21](https://clawhub.ai/user/cows21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cows21](https://clawhub.ai/user/cows21)
 
-## Use Case: <br>
-External users and developers use this skill to conduct multi-round Chinese job interview practice for a target role, collect per-round scoring, and generate actionable improvement guidance. It supports voice-based practice through configured LLM, ASR, and TTS providers, with text input available when audio is not used. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends interview audio or text to configured external LLM, ASR, and TTS providers. <br>
-Mitigation: Use dedicated API keys, confirm the configured providers are trusted, and use text input or --no-tts when reducing audio upload or generation is preferred. <br>
-Risk: Practice answers and generated reports may contain sensitive employer, identity, or career information. <br>
-Mitigation: Avoid sharing confidential details during practice and delete the outputs directory or custom report files when they contain sensitive interview content. <br>
-Risk: Interview scores and feedback are practice guidance and should not be treated as real hiring decisions. <br>
-Mitigation: Use the generated feedback as coaching input and review conclusions against the user's actual answers before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to run a Chinese job-interview practice session for a target role, with ASR-based answer capture, LLM-guided follow-up questions, optional TTS playback, and a structured final feedback report. It is intended for practice feedback rather than real hiring decisions or candidate ranking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cows21/review-simulate) <br>
-- [Prompt templates](references/prompts_cn.md) <br>
-- [State schema](references/state_schema_cn.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, audio, guidance] <br>
-**Output Format:** [Chinese interview prompts, per-round JSON evaluation records, optional generated audio, and a final structured report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured LLM, ASR, and TTS API keys for full voice operation; reports and generated audio may be written to local outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Interview audio, transcripts, prompts, and summaries may be sent to configured LLM, ASR, and TTS cloud providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when this data sharing is acceptable, avoid sensitive personal details in practice answers, and configure providers according to the user's privacy requirements.
+
+Risk: The skill saves final reports and optional generated audio locally, which may contain personal interview practice content.
+
+Mitigation: Use private output locations and delete saved reports or audio after use when retention is not needed.
+
+Risk: TTS adds an additional cloud-service call and local audio output.
+
+Mitigation: Run with --no-tts when voice playback is unnecessary.
+
+Risk: Dependencies are declared with minimum versions, which can allow unreviewed newer package versions during installation.
+
+Mitigation: Prefer pinned dependency versions in controlled deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cows21/skills/review-simulate)
+- [Prompt templates reference](artifact/references/prompts_cn.md)
+- [State schema reference](artifact/references/state_schema_cn.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands plus JSON interview state and report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces interview questions, ASR transcripts, per-round scores, decisions, optional MP3 TTS audio, and a final_report.json output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

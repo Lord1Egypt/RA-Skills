@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn790g3nvy4r4dwkn4wzpxp8z980akny",
-  "slug": "shou-zhuo",
+  "name": "shou-zhuo",
   "version": "1.0.0",
-  "publishedAt": 1776265693401
+  "description": "守拙 — 中国顶级基金经理虚拟心智模型，融合朱少醒/曹名长/丘栋荣/冯柳/董承非/张坤/谢治宇七大高手的共同智慧",
+  "author": "Nova Group B",
+  "license": "MIT",
+  "tags": ["investment", "china", "fund", "value", "contrarian", "risk-management"],
+  "platform": "openclaw"
 }

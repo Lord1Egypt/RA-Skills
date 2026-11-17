@@ -1,38 +1,53 @@
-## Description: <br>
-Standard PR review and merge workflow for task-driven development, used when reviewing a programmer agent PR linked to a task, deciding merge versus change request, handling post-merge actions, and sending a clear outcome handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standard PR review and merge workflow for task-driven development. Use when reviewing a programmer agent PR linked to a task, deciding merge vs change request, handling post-merge actions (Trello + branch cleanup), and sending a clear outcome handoff.
 
-## Publisher: <br>
-[anikgnr](https://clawhub.ai/user/anikgnr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anikgnr](https://clawhub.ai/user/anikgnr)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide agent-assisted pull request review, local validation, merge decisions, Trello follow-up, branch cleanup, and final handoff for task-linked work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can lead an agent to participate in pull request review, merge decisions, Trello updates, and branch deletion. <br>
-Mitigation: Limit GitHub and Trello permissions to the intended repositories and projects, use protected branches, and require human approval for merges when appropriate. <br>
-Risk: Local PR validation may expose sensitive workspace data or environment variables to test, lint, or build commands. <br>
-Mitigation: Run validation in an isolated workspace without sensitive environment variables. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and reviewer agents use this skill to review task-linked pull requests, decide whether to merge or request changes, complete Trello and branch cleanup after merge, and hand off the final outcome.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with review outcomes and optional local validation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review decisions such as merged, CR sent, or waiting for fixes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow includes actions that can change project state, including PR review and merge decisions, Trello card updates, and task branch deletion.
+
+Mitigation: Install this skill only where the agent is authorized to perform those task-scoped repository and Trello actions.
+
+Risk: Branch cleanup could remove the wrong branch if the task branch is not clearly distinguished from protected branches.
+
+Mitigation: Confirm the branch is the task branch before deletion and preserve the main branch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anikgnr/skills/task-review-workflow)
+- [Publisher profile](https://clawhub.ai/user/anikgnr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text review feedback with optional shell commands and merge handoff status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include approve or merge notes, change-request comments, local validation command suggestions, and post-merge action guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

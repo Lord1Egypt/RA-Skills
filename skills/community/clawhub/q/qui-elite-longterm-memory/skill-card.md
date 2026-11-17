@@ -1,47 +1,62 @@
-## Description: <br>
-A memory setup skill that guides agents to create durable session state, curated memory files, vector recall, git-notes, and optional cloud-backed fact extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an AI agent memory workflow and CLI for maintaining session state, long-term Markdown archives, semantic recall, git-notes guidance, and optional cloud backup.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent project memory to coding agents through local markdown files, semantic recall, git-notes, and optional SkillBoss-backed sync and extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages durable cross-session memory, which can retain secrets, private conversations, regulated data, or sensitive project details longer than intended. <br>
-Mitigation: Define what may be stored before use, review generated memory files regularly, and avoid storing sensitive data without an explicit retention and deletion process. <br>
-Risk: Optional cloud backup and fact extraction can send memory content to a third-party service. <br>
-Mitigation: Disable or avoid cloud backup and extraction unless the user explicitly trusts the provider and has approved the data that may be transmitted. <br>
-Risk: The skill requires a sensitive API credential for SkillBoss-backed features. <br>
-Mitigation: Provide the API key only through the runtime environment, keep it out of project files and logs, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and agent operators use this skill to initialize and maintain persistent memory for AI coding agents. It helps create session state, curated Markdown memory, daily logs, semantic recall practices, git-notes guidance, and optional SkillBoss backup or extraction workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quincygunter/qui-elite-longterm-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/quincygunter) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1) <br>
-- [memory-lancedb plugin](https://clawdhub.com/skills/lancedb-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create SESSION-STATE.md, MEMORY.md, and memory daily-log files when the CLI init or today commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill encourages long-term retention of conversation facts, preferences, decisions, and workspace context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what is written to memory files, keep sensitive projects local-only where possible, and regularly inspect or prune stored memories.
+
+Risk: The documented optional SkillBoss auto-extraction flow can send conversation content to a third-party service.
+
+Mitigation: Avoid enabling SkillBoss auto-extraction for sensitive, private, regulated, or secret-bearing conversations unless the user has approved that processing.
+
+Risk: The guidance describes silently persisting decisions and facts, which can record information the user did not intend to preserve.
+
+Mitigation: Require explicit user approval before silently storing facts or decisions, especially when the content includes personal data, credentials, private code, or business-sensitive context.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/quincygunter/skills/qui-elite-longterm-memory)
+- [npm package](https://www.npmjs.com/package/elite-longterm-memory)
+- [ClawdHub source skill page](https://clawdhub.com/skills/elite-longterm-memory)
+- [Bulletproof Memory reference](https://clawdhub.com/skills/bulletproof-memory)
+- [LanceDB Memory reference](https://clawdhub.com/skills/lancedb-memory)
+- [Git Notes Memory reference](https://clawdhub.com/skills/git-notes-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, JavaScript examples, and generated Markdown memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI can create SESSION-STATE.md, MEMORY.md, and daily files under memory/; optional cloud and extraction flows require SKILLBOSS_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and package.json report 1.2.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

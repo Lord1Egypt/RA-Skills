@@ -1,5 +1,5 @@
 #!/bin/bash
-# Okki Go update notification setup script (macOS/Linux)
+# OKKI Go update notification setup script (macOS/Linux)
 # Usage: bash scripts/enable-notifications.sh
 
 set -e
@@ -16,7 +16,7 @@ CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-echo -e "${CYAN}🌐 Okki Go skill update notification setup${NC}"
+echo -e "${CYAN}🌐 OKKI Go update notification setup${NC}"
 echo "━━━━━━━━━━━━━��━━━━━━━━━━━━━━━━━━━━"
 echo ""
 
@@ -83,7 +83,7 @@ if openclaw cron list 2>/dev/null | grep -q "$CRON_NAME"; then
 fi
 
 # Welcome message
-echo -e "${CYAN}📬 Would you like to enable Okki Go update notifications?${NC}"
+echo -e "${CYAN}📬 Would you like to enable OKKI Go update notifications?${NC}"
 echo ""
 echo "Once enabled, you will receive:"
 echo "  • New version release alerts"
@@ -105,7 +105,7 @@ if [[ "$confirm" =~ ^[Nn]$ ]]; then
 fi
 
 # Create cron job
-PAYLOAD='CURRENT=$(cat ~/.openclaw/workspace/skills/okki-go/VERSION 2>/dev/null); if [ -z "$CURRENT" ]; then CURRENT=$(grep "^version:" ~/.openclaw/workspace/skills/okki-go/SKILL.md 2>/dev/null | awk '\''{print $2}'\''); fi; if [ -z "$CURRENT" ]; then CURRENT="unknown"; fi; LATEST=$(clawhub search okki go --limit 1 2>/dev/null | jq -r '\''if .[0] then .[0].version else "unknown" end'\''); if [ -n "$LATEST" ] && [ "$CURRENT" != "$LATEST" ] && [ "$LATEST" != "unknown" ]; then CHANGELOG=$(clawhub show okki-go@$LATEST --changelog 2>/dev/null | head -15); echo "📦 Okki Go new version available"; echo ""; echo "Current version: $CURRENT"; echo "Latest version:  $LATEST"; echo ""; echo "What'\''s new:"; echo "$CHANGELOG"; echo ""; echo "Update command: openclaw skills update okki-go"; echo "Skip: dismiss this notification, remind again next week"; elif [ "$CURRENT" = "$LATEST" ]; then echo "✅ Okki Go is already up to date ($CURRENT)"; fi'
+PAYLOAD='CURRENT=$(cat ~/.openclaw/workspace/skills/okki-go/VERSION 2>/dev/null); if [ -z "$CURRENT" ]; then CURRENT=$(grep "^version:" ~/.openclaw/workspace/skills/okki-go/SKILL.md 2>/dev/null | awk '\''{print $2}'\''); fi; if [ -z "$CURRENT" ]; then CURRENT="unknown"; fi; LATEST=$(clawhub search okki go --limit 1 2>/dev/null | jq -r '\''if .[0] then .[0].version else "unknown" end'\''); if [ -n "$LATEST" ] && [ "$CURRENT" != "$LATEST" ] && [ "$LATEST" != "unknown" ]; then CHANGELOG=$(clawhub show okki-go@$LATEST --changelog 2>/dev/null | head -15); echo "📦 OKKI Go new version available"; echo ""; echo "Current version: $CURRENT"; echo "Latest version:  $LATEST"; echo ""; echo "What'\''s new:"; echo "$CHANGELOG"; echo ""; echo "Update command: openclaw skills update okki-go"; echo "Skip: dismiss this notification, remind again next week"; elif [ "$CURRENT" = "$LATEST" ]; then echo "✅ OKKI Go is already up to date ($CURRENT)"; fi'
 
 echo ""
 echo "📝 Configuring update notifications..."

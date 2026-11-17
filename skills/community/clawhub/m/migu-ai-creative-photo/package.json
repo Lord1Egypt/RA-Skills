@@ -1,0 +1,10 @@
+{
+  "name": "migu-ai-creative-photo-skill",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "creative-photo": "node scripts/migu_ai_creative_photo_client.mjs",
+    "check": "node --check scripts/migu_ai_creative_photo_client.mjs"
+  }
+}

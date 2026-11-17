@@ -1,46 +1,56 @@
-## Description: <br>
-Generate vertical satisfying pressure-wash shorts with WeryAI from text prompts or dirty-surface images, emphasizing rinse motion and a moving clean/dirty line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate vertical satisfying pressure-wash shorts with WeryAI from text prompts or dirty-surface images, producing rinse motion with a moving clean/dirty line.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators and agent operators use this skill to turn cleaning briefs or dirty-surface reference images into short vertical pressure-washing video generations through WeryAI. It helps assemble valid prompts and parameters, confirm them with the user, run the Node.js CLI, and return playable video URLs or actionable API errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a WERYAI_API_KEY and sends generation requests to WeryAI services. <br>
-Mitigation: Install only from a trusted publisher, keep the API key out of source control, and run generation in a controlled environment. <br>
-Risk: Using a local image path can cause the script to read that file and upload it to WeryAI. <br>
-Mitigation: Prefer public HTTPS image URLs; use local files only after explicit user consent and review of the selected file. <br>
-Risk: Successful generation runs can consume WeryAI credits. <br>
-Mitigation: Confirm the expanded prompt and parameters before running the CLI, and avoid repeated runs unless the user approves the cost. <br>
+## Use Case:
 
+External creators and operators use this skill to generate vertical pressure-washing videos from text briefs or public HTTPS dirty-surface images. The agent expands the prompt, checks WeryAI parameters, asks for confirmation, and returns playable video URLs or a clear failure explanation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/pressure-wash-video) <br>
-- [Publisher profile](https://clawhub.ai/user/zoucdr) <br>
-- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md) <br>
-- [WeryAI video API host](https://api.weryai.com) <br>
-- [WeryAI models and upload API host](https://api-growth-agent.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON command payloads and returned video URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, network access, and WeryAI credits for successful generation runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: A local image path can cause a readable local file to be uploaded to WeryAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public HTTPS image URLs by default; only use local paths after reviewing the script, isolating the runtime, and explicitly consenting to upload that exact file.
+
+Risk: Paid WeryAI generation can consume credits when wait or submit commands are run.
+
+Mitigation: Show the full parameter table and get user confirmation before submitting a real generation request; use dry-run when checking payload shape.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/pressure-wash-video)
+- [WeryAI video CLI and JSON reference](artifact/resources/WERYAI_VIDEO_API.md)
+- [WeryAI video API host](https://api.weryai.com)
+- [WeryAI model registry and upload host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with parameter tables, JSON command payloads, and returned video URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, network access, and user confirmation before paid generation.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

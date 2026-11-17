@@ -1,0 +1,15 @@
+[
+  {
+    "number": 1,
+    "title": "Fictional issue",
+    "url": "https://github.com/example/demo/issues/1",
+    "updatedAt": "2026-09-01T00:00:00Z",
+    "state": "OPEN",
+    "labels": [
+      {
+        "name": "demo"
+      }
+    ],
+    "assignees": []
+  }
+]

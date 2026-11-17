@@ -1,45 +1,55 @@
-## Description: <br>
-Set up and use 1Password CLI (op) for installation, desktop app integration, sign-in, and secret read, injection, or runtime workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and use the 1Password CLI (`op`) for installation, desktop app integration, sign-in, and secret reads or injection with explicit security guardrails.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and operators use this skill when they need an agent to help with 1Password CLI setup, account authorization, and guarded secret access workflows. It emphasizes local verification, tmux isolation, and avoiding secret exposure in chat, logs, files, or network commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help operate 1Password CLI workflows that involve sensitive credentials. <br>
-Mitigation: Install only for intended 1Password CLI use, keep 1Password app approvals under user control, and require op whoami verification before secret access. <br>
-Risk: Resolved secrets could be exposed through chat, logs, files, clipboard tools, or network-transmitting commands. <br>
-Mitigation: Do not paste secret values into chat or logs, prefer op run or op inject over writing secrets to disk, and refuse piping op output to network commands. <br>
-Risk: Unquoted vault, item, account, or field names in shell commands could allow shell metacharacter injection. <br>
-Mitigation: Single-quote user-provided values in op command arguments before proposing or running shell commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and operate the 1Password CLI, authenticate safely, and retrieve or inject secrets without exposing them in logs, chat, network transfers, or shell-expanded arguments.
 
-## Reference(s): <br>
-- [1Password CLI get started](https://developer.1password.com/docs/cli/get-started/) <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/1password-hardened) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/1password) <br>
-- [SAFETY.md](artifact/SAFETY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command proposals and operational guidance; secret values should remain masked or local-only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A signed-in 1Password CLI session can expose secrets if command arguments are built unsafely or shell metacharacters are expanded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass vault, item, account, and field names as separate argv elements or use proven shell escaping; verify access with `op whoami` before secret reads.
+
+Risk: Resolved secrets can be leaked through logs, chat, files, clipboard tools, or network-transmitting commands.
+
+Mitigation: Keep resolved secret values local, prefer `op run` or `op inject`, retain masking, and avoid piping `op read` or injected output to network commands.
+
+## Reference(s):
+
+- [1Password CLI get started](https://developer.1password.com/docs/cli/get-started/)
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/1password-hardened)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/1password)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and step-by-step operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the 1Password CLI (`op`) and tmux for authenticated CLI workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

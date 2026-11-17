@@ -1,41 +1,52 @@
-## Description: <br>
-Guides an agent through public industry-source search, filtering, extraction, and cross-validation to produce structured intelligence summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+观势 — 情报获取专家 searches, fetches, extracts, and cross-checks external industry intelligence sources such as annual reports, research reports, white papers, and third-party reports, then returns structured sourced summaries.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Strategy and research agents use this skill to collect public industry intelligence, fetch report or web page text, extract key figures, compare multiple sources, and return confidence-labeled summaries for downstream analysis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: External industry sources may be stale, biased, paywalled, or inconsistent across reporting methods.
+
+Mitigation: Preserve source URLs and dates, use the skill's confidence labels, mark blocked or stale sources, and review conflicts before downstream analysis.
+
+Risk: Public web collection can cross access or privacy boundaries if used against restricted sources.
+
+Mitigation: Use lawful public sources only, do not bypass paywalls or access controls, and substitute accessible sources when content is blocked.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business analysts, strategy researchers, and coordinated agent teams use this skill to gather public annual reports, research reports, white papers, and third-party market sources, then extract key metrics with source URLs, freshness, and confidence labels. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, JSON, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may search the web and fetch external pages or PDFs. <br>
-Mitigation: Use only sources the operator is allowed to access and keep source URLs with extracted findings. <br>
-Risk: Extracted figures from public reports can be stale, partial, or based on conflicting definitions. <br>
-Mitigation: Review dates, freshness labels, confidence labels, and conflict tables before relying on the intelligence. <br>
-Risk: Paywalls, login walls, or scanned PDFs can limit extraction quality. <br>
-Mitigation: Label blocked or low-quality extraction explicitly and seek alternative sources when needed. <br>
+**Output Format:** [Markdown with structured JSON snippets, source URLs, dates, findings, and confidence labels]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Outputs should preserve source URLs and publication dates, flag stale or blocked sources, and limit a single task to at most 10 fetched URLs unless the user confirms expansion.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Structured JSON intelligence summaries and concise markdown tables with source metadata, freshness, and confidence labels.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flags stale data, source conflicts, paywalls, scanned PDFs, and intelligence gaps when encountered.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

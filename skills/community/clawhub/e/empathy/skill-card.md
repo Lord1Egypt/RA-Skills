@@ -1,44 +1,64 @@
-## Description: <br>
-Respond to emotional content with genuine-feeling empathy using Chain of Empathy reasoning, reflection-before-response, and calibrated validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Respond to emotional content with genuine-feeling empathy using Chain of Empathy reasoning, reflection-before-response, and calibrated validation.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Agents use this skill to respond to users' emotional content with more specific, calibrated, and less formulaic empathy. It is intended for communication contexts such as support, coaching-style conversation, personal assistance, and team conflict where emotional acknowledgement should precede action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages tracking sensitive emotional histories, triggers, crisis details, or vulnerability patterns across conversations without clear consent or retention controls. <br>
-Mitigation: Install only where persistent memory can be controlled or disabled, and store sensitive emotional patterns only after explicit user opt-in with review and deletion controls. <br>
-Risk: Users may treat empathetic responses as therapy or crisis support. <br>
-Mitigation: Treat the skill as communication-style guidance only; escalate crisis, self-harm, abuse, medical, legal, or psychological concerns to appropriate human or professional support. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/empathy) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Empathy Techniques](artifact/techniques.md) <br>
-- [Ethical Safeguards & Transparency](artifact/safeguards.md) <br>
-- [Empathy in Different Contexts](artifact/contexts.md) <br>
-- [Self-Improvement & Feedback Tracking](artifact/feedback.md) <br>
+## Use Case:
 
+External users and agent builders use this skill to make assistant responses to emotional content more specific, calibrated, and supportive across customer support, coaching, personal assistant, group, and crisis-adjacent contexts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Natural-language responses guided by internal reasoning steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no tool calls, API keys, or executable code are included.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make an agent appear more emotionally intimate or caring than its actual capabilities support.
+
+Mitigation: Keep responses transparent about AI limits, avoid claiming subjective feelings or personal experience, and encourage human or professional support when appropriate.
+
+Risk: The skill encourages tracking emotional patterns and user preferences across conversations, which may capture sensitive personal information.
+
+Mitigation: Avoid cross-session memory for emotional triggers, recovery patterns, and user-specific vulnerabilities unless the user clearly opts in and can inspect or delete stored memory.
+
+Risk: Emotionally sensitive or crisis-adjacent conversations may exceed what an agent can safely handle.
+
+Mitigation: Escalate when self-harm, abuse, immediate safety, medical, legal, or psychological concerns appear, and do not promise confidentiality or try to replace professional care.
+
+Risk: Instructions to simulate personal loss can blur the line between empathetic style and fabricated personal experience.
+
+Mitigation: Use specific acknowledgment and calibrated language without presenting invented life experience as fact.
+
+## Reference(s):
+
+- [Empathy Skill Page](https://clawhub.ai/ivangdavila/skills/empathy)
+- [Empathy Techniques](artifact/techniques.md)
+- [Ethical Safeguards and Transparency](artifact/safeguards.md)
+- [Empathy in Different Contexts](artifact/contexts.md)
+- [Self-Improvement and Feedback Tracking](artifact/feedback.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Natural-language agent responses guided by Markdown instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload; the skill changes response style and may guide context tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Real-time GEO metrics monitoring and alerting orchestrator for tracking AI visibility metrics such as AIGVR, Share of Model, citation volume, coverage, and related indicators over time across generative engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time GEO metrics monitoring and alerting orchestrator for tracking, visualizing, and reacting to AI GEO performance metrics over time.
 
-## Publisher: <br>
-[GEOlyAI](https://clawhub.ai/user/GEOlyAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geolyai](https://clawhub.ai/user/geolyai)
 
-## Use Case: <br>
-Marketing, SEO, analytics, and engineering teams use this skill to design ongoing GEO monitoring systems that turn static AI visibility reports into metrics catalogs, tracking schemas, dashboards, alert rules, and operating routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated schemas, alert thresholds, dashboard plans, or integration suggestions may be inappropriate for a team's actual metrics, APIs, notification channels, or sensitive logs. <br>
-Mitigation: Review generated plans and thresholds before connecting them to real business systems, APIs, alerting channels, or sensitive data sources. <br>
+## Use Case:
 
+Developers, GEO/SEO teams, and marketing operations teams use this skill to design ongoing AI visibility monitoring systems, including metrics catalogs, tracking schemas, dashboards, alert rules, and operational routines.
 
-## Reference(s): <br>
-- [GEO Metrics Tracker reference templates](references/metrics-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/GEOlyAI/geo-metrics-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, pseudo-code, pseudo-YAML, and optional generated schema snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning-only outputs should be reviewed before implementation in business systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated dashboard schemas, alert rules, or pseudo-configurations may be inaccurate for a team's actual BI, alerting, or data systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt all generated specifications before implementing them in production systems.
+
+Risk: Users may be tempted to provide live credentials or direct system access while implementing monitoring workflows.
+
+Mitigation: Use normal approved credential-management and access-review workflows; the skill does not require direct credentials to provide design guidance.
+
+## Reference(s):
+
+- [GEO Metrics Tracker on ClawHub](https://clawhub.ai/geolyai/skills/geo-metrics-tracker)
+- [GEO Metrics Tracker Reference Templates](references/metrics-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with tables, pseudo-configuration snippets, schemas, and runbook-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include pseudo-SQL, pseudo-JSON, pseudo-YAML, and implementation-ready dashboard or alert specifications for review before deployment.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

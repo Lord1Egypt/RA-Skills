@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillmelody.dev/schemas/pptx-inspection.schema.json",
+  "title": "Article HTML to PPT PPTX Inspection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "pptx", "pptx_sha256", "slide_count", "status", "metrics", "slides", "issues"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "pptx": {"type": "string"},
+    "pptx_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "slide_count": {"type": "integer", "minimum": 0},
+    "status": {"enum": ["passed", "failed"]},
+    "metrics": {"type": "object"},
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["slide_index", "slide_id", "objects", "metrics", "issues"],
+        "properties": {
+          "slide_index": {"type": "integer", "minimum": 1},
+          "slide_id": {"type": "string"},
+          "objects": {
+            "type": "array",
+            "items": {"$ref": "#/$defs/inspectedObject"}
+          },
+          "metrics": {"type": "object"},
+          "issues": {
+            "type": "array",
+            "items": {"$ref": "#/$defs/issue"}
+          }
+        }
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/issue"}
+    }
+  },
+  "$defs": {
+    "inspectedObject": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "object_id",
+        "slide_id",
+        "shape_id",
+        "shape_type",
+        "name",
+        "x_in",
+        "y_in",
+        "w_in",
+        "h_in",
+        "area_ratio",
+        "text",
+        "font_sizes_pt",
+        "fill_colors",
+        "line_colors",
+        "source_relationship"
+      ],
+      "properties": {
+        "object_id": {"type": "string"},
+        "slide_id": {"type": "string"},
+        "shape_id": {"type": "integer"},
+        "shape_type": {"enum": ["text", "table", "chart", "connector", "picture", "svg", "shape", "group", "smartart", "ole", "media", "unknown"]},
+        "name": {"type": "string"},
+        "x_in": {"type": "number"},
+        "y_in": {"type": "number"},
+        "w_in": {"type": "number"},
+        "h_in": {"type": "number"},
+        "area_ratio": {"type": "number"},
+        "text": {"type": "string"},
+        "font_sizes_pt": {"type": "array", "items": {"type": ["number", "null"]}},
+        "font_colors": {"type": "array", "items": {"type": "string"}},
+        "fill_colors": {"type": "array", "items": {"type": "string"}},
+        "line_colors": {"type": "array", "items": {"type": "string"}},
+        "source_relationship": {"type": ["string", "null"]},
+        "font_families": {"type": "array", "items": {"type": "string"}},
+        "geometry_type": {"type": ["string", "null"]},
+        "image_ext": {"type": ["string", "null"]},
+        "image_px": {
+          "type": ["object", "null"],
+          "properties": {
+            "width": {"type": "integer"},
+            "height": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "issue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue_id",
+        "issue_code",
+        "severity",
+        "category",
+        "detector",
+        "slide_id",
+        "object_id",
+        "ppt_shape_id",
+        "evidence",
+        "message",
+        "repair_action",
+        "repair_status",
+        "verification"
+      ],
+      "properties": {
+        "issue_id": {"type": "string"},
+        "issue_code": {"type": "string"},
+        "severity": {"enum": ["info", "warning", "error", "fatal"]},
+        "category": {"type": "string"},
+        "detector": {"type": "string"},
+        "slide_id": {"type": ["string", "null"]},
+        "object_id": {"type": ["string", "null"]},
+        "ppt_shape_id": {"type": ["integer", "null"]},
+        "evidence": {"type": "object"},
+        "message": {"type": "string"},
+        "repair_action": {"type": ["object", "null"]},
+        "repair_status": {"type": "string"},
+        "verification": {"type": ["object", "null"]}
+      }
+    }
+  }
+}

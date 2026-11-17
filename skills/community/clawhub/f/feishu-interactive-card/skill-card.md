@@ -1,39 +1,49 @@
-## Description: <br>
-Deprecated Feishu Interactive Card skill that directs users to install the renamed feishu-msg-reader replacement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This deprecated skill redirects users to feishu-msg-reader, the renamed replacement for the Feishu interactive card skill.
 
-## Publisher: <br>
-[deadblue22](https://clawhub.ai/user/deadblue22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deadblue22](https://clawhub.ai/user/deadblue22)
 
-## Use Case: <br>
-Developers and agent users use this deprecated skill as a transition notice when they encounter the old Feishu Interactive Card package. It points them to the renamed feishu-msg-reader skill instead of providing active Feishu card functionality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may install the replacement skill without reviewing its separate behavior, permissions, and security posture. <br>
-Mitigation: Confirm that feishu-msg-reader by deadblue22 is the intended replacement and review that skill's contents and permissions before installation. <br>
+## Use Case:
 
+Developers and agents encountering older Feishu Interactive Card references use this skill to identify feishu-msg-reader as the replacement instead of treating this package as a functional Feishu integration.
 
-## Reference(s): <br>
-- [ClawHub listing for Feishu Interactive Card](https://clawhub.ai/deadblue22/feishu-interactive-card) <br>
-- [Replacement skill: feishu-msg-reader](https://clawhub.com/deadblue22/feishu-msg-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with an inline install command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecation notice only; no executable behavior is provided by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill is a deprecation notice rather than a functional Feishu integration, and its recommended replacement is a separate package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review feishu-msg-reader independently, including its publisher identity and security posture, before installing or using it.
+
+## Reference(s):
+
+- [Replacement skill: feishu-msg-reader](https://clawhub.com/deadblue22/feishu-msg-reader)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated redirect notice; no code execution or credential access requested.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

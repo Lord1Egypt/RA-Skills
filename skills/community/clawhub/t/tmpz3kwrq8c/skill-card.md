@@ -1,42 +1,57 @@
-## Description: <br>
-Article Taster evaluates Chinese articles for quality, genre fit, originality, AI-like patterns, and reading value. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese article-quality analyzer that scores technical articles, essays, novels, heuristic AI-generation signals, and originality indicators, then returns reading advice.
 
-## Publisher: <br>
-[forealmy](https://clawhub.ai/user/forealmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forealmy](https://clawhub.ai/user/forealmy)
 
-## Use Case: <br>
-External users, developers, and editors use this skill to analyze Chinese article text before reading or sharing it. It classifies article type, scores content quality, estimates AI-generated characteristics, applies originality exemptions for classical literature, and returns reading recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency setup may drift or introduce vulnerable packages. <br>
-Mitigation: Install in a virtual environment or container, pin dependencies, and scan Python packages before running. <br>
-Risk: Article text is processed locally by an analysis tool and may include sensitive content. <br>
-Mitigation: Only analyze documents that are appropriate to process in the local execution environment. <br>
-Risk: AI-detection labels and scores are heuristic and may be misleading or overly harsh. <br>
-Mitigation: Treat AI-detection results as advisory signals and review conclusions before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Chinese article drafts or candidate reading material for article type, quality dimensions, heuristic AI-generation signals, originality exemptions, and reading recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/forealmy/tmpz3kwrq8c) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Markdown, Guidance] <br>
-**Output Format:** [JSON report and Markdown summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes article type, scores, AI-detection heuristics, originality signals, and reading advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: AI-generation and originality scores are heuristic and can be wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the scores as advisory signals, not as proof of authorship or quality, and keep human review in the decision process.
+
+Risk: Python dependencies are declared without exact pinned versions.
+
+Mitigation: Pin and scan dependencies in the deployment environment before production use.
+
+Risk: Private drafts could be exposed if optional external LLM processing is later enabled or added without clear disclosure.
+
+Mitigation: Keep analysis local for sensitive text unless data sharing is disclosed, consented to, and approved for the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/forealmy/skills/tmpz3kwrq8c)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [JSON reports and Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local heuristic scoring of Chinese article text; batch mode is documented but reports that it is still in development.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

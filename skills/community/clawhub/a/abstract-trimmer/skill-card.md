@@ -1,43 +1,59 @@
-## Description: <br>
-Compress academic abstracts to meet strict word limits while preserving key information, scientific accuracy, and readability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compress academic abstracts to meet strict word limits while preserving key information, scientific accuracy, and readability.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers, editors, and academic writers use this skill to shorten abstracts for journal submissions, conference applications, and grant proposals while preserving core scientific claims. It can check word counts, apply conservative, balanced, or aggressive trimming, and emit compressed abstracts as JSON, plain text, or a local output file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-selected output paths can overwrite an existing file. <br>
-Mitigation: Choose output paths deliberately and avoid pointing the tool at files you do not want replaced. <br>
-Risk: Automated abstract compression can remove context or change scientific emphasis. <br>
-Mitigation: Review the trimmed abstract against the original before using it in a submission. <br>
-Risk: Local file input may expose sensitive draft text to the runtime environment. <br>
-Mitigation: Use non-sensitive abstracts when possible and run the script only in trusted local environments. <br>
+## Use Case:
 
+External researchers, authors, and academic support teams use this skill to shorten English academic abstracts for journal submissions, conference applications, and grant proposals while preserving important scientific content.
 
-## Reference(s): <br>
-- [Abstract Trimmer Guidelines](references/guidelines.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AIPOCH-AI/abstract-trimmer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON or plain text, with optional local file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided abstract text or a local text file and may write a user-specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The script reads input text from a provided path or stdin, which can expose sensitive abstracts or draft content to the local agent workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only abstracts or text files intended for processing, keep inputs inside the current workspace, and avoid sensitive or confidential documents.
+
+Risk: The --output option writes to the supplied path and can overwrite any file the agent process is allowed to modify.
+
+Mitigation: Write to a new or disposable output path and review the destination before running the command.
+
+Risk: Automated compression can remove context or alter the emphasis of scientific claims.
+
+Mitigation: Have a qualified human review the trimmed abstract for scientific accuracy, quantitative integrity, and readability before submission.
+
+## Reference(s):
+
+- [Abstract Trimmer on ClawHub](https://clawhub.ai/aipoch-ai/skills/abstract-trimmer)
+- [aipoch-ai Publisher Profile](https://clawhub.ai/user/aipoch-ai)
+- [Abstract Trimmer References](references/guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands]
+
+**Output Format:** [JSON or plain text trimmed abstract output, with optional file output when an output path is provided.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes original word count, final word count, and reduction percentage in JSON mode.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

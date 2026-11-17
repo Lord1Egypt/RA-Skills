@@ -1,45 +1,64 @@
-## Description: <br>
-Security testing for web applications and APIs based on OWASP standards, covering vulnerability identification, test-case generation, scan-result analysis, and security report writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security Tester helps agents test web application and API security against OWASP guidance by generating vulnerability test cases, analyzing scan results, and drafting security test reports.
 
-## Publisher: <br>
-[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk)
 
-## Use Case: <br>
-Developers, security engineers, and authorized testers use this skill to plan OWASP-aligned web application and API security checks, generate test cases, analyze vulnerability scan results, and write security findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copyable security testing examples could probe, stress, or alter real systems when run outside an approved scope. <br>
-Mitigation: Use only on authorized targets, prefer staging or test accounts, review each command manually, and set low request limits. <br>
-Risk: Examples include SSRF, brute-force, resource-exhaustion, and destructive payload patterns that may be inappropriate for some environments. <br>
-Mitigation: Avoid those checks unless explicitly permitted in the test plan and approved by the system owner. <br>
+## Use Case:
 
+Developers, security engineers, and authorized application testers use this skill to plan OWASP-aligned web and API security tests, document findings, and produce remediation-oriented reports.
 
-## Reference(s): <br>
-- [OWASP Top 10](https://owasp.org/Top10/) <br>
-- [OWASP API Security Top 10](https://owasp.org/API-Security/) <br>
-- [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/) <br>
-- [FIRST CVSS](https://www.first.org/cvss/) <br>
-- [OWASP Top 10 Detailed Test Procedures](references/owasp-top10-tests.md) <br>
-- [API Security Testing](references/api-security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command examples and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands and payloads require human review and authorized target scope before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes exploit-style web and API test commands that may disrupt systems or exceed authorization if used outside an approved scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on systems you own or are explicitly authorized to test, define the exact target scope before execution, and prefer staging environments and test accounts.
+
+Risk: Some example payloads and probes may be destructive, resource-intensive, or directed at sensitive cloud metadata endpoints.
+
+Mitigation: Avoid destructive payloads and cloud metadata probes unless separately approved, and set conservative request limits for all testing.
+
+Risk: Security testing output may expose tokens, credentials, personal data, or configuration details in logs and reports.
+
+Mitigation: Redact sensitive values from command output, logs, and reports before sharing or retaining results.
+
+## Reference(s):
+
+- [OWASP Top 10](https://owasp.org/Top10/)
+- [OWASP API Security Top 10](https://owasp.org/API-Security/)
+- [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
+- [FIRST CVSS](https://www.first.org/cvss/)
+- [OWASP Top 10 Detailed Test Procedures](references/owasp-top10-tests.md)
+- [API Security Testing](references/api-security.md)
+- [ClawHub Skill Page](https://clawhub.ai/zhanghengyi1986-afk/skills/security-tester)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/zhanghengyi1986-afk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include vulnerability test procedures, CVSS scoring guidance, and security report content.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

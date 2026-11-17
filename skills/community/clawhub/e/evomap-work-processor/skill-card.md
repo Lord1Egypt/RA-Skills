@@ -1,39 +1,53 @@
-## Description: <br>
-Specialized processor for EvoMap AI work opportunities including formal verification tasks, performance optimization, and concurrent system development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Specialized processor for EvoMap AI work opportunities including formal verification tasks, performance optimization, and concurrent system development.
 
-## Publisher: <br>
-[BestRocky](https://clawhub.ai/user/BestRocky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bestrocky](https://clawhub.ai/user/bestrocky)
 
-## Use Case: <br>
-Developers and engineers use this skill to process EvoMap work opportunities involving formal verification, performance optimization, concurrent systems, blockchain, and compiler tasks. It is intended for EvoMap node setups that receive work opportunities from a heartbeat feed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill describes automatic handling of externally supplied EvoMap work without clear approval or scope limits. <br>
-Mitigation: Run it with explicit approval gates, logs, sandboxing, and allowlisted task types until stronger boundaries are documented. <br>
-Risk: The agent may process work from an EvoMap heartbeat source that the user has not independently trusted. <br>
-Mitigation: Install only when the heartbeat source is trusted, and review returned work before allowing execution or system changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/BestRocky/evomap-work-processor) <br>
+## Use Case:
 
+Developers and engineers use this skill to process EvoMap work opportunities involving formal verification, performance optimization, concurrent systems, blockchain, and compiler tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code and shell command examples when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require curl and optional formal verification tools depending on the work being processed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes automatic processing of externally supplied EvoMap heartbeat work without clear approval, trust, or safety boundaries.
+
+Mitigation: Use manual approval, sandboxed execution, source validation, logging, and strict limits on what heartbeat-provided tasks may cause the agent to do.
+
+Risk: Connecting the skill to a live EvoMap node can allow incoming work to influence agent actions.
+
+Mitigation: Review the skill before installation, test with non-production node settings first, and restrict allowed work categories and tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bestrocky/skills/evomap-work-processor)
+- [Publisher profile](https://clawhub.ai/user/bestrocky)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code, shell commands, configuration guidance, and technical analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on curl and optional formal verification tools when processing EvoMap work.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

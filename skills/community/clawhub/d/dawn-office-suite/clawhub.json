@@ -1,0 +1,15 @@
+{
+  "name": "dawn-office-suite",
+  "version": "2.0.1",
+  "description": "Word、PPT、Excel、PDF 来回切换、格式全乱？一个技能全包：文档生成、表格公式、PPT 设计、PDF 提取合并转换。",
+  "license": "MIT",
+  "tags": [
+    "office",
+    "docx",
+    "pptx",
+    "xlsx",
+    "pdf",
+    "办公",
+    "文档"
+  ]
+}

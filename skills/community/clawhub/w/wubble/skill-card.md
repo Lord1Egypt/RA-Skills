@@ -1,45 +1,59 @@
-## Description: <br>
-Use when a user wants to connect to or use Wubble's official remote MCP server for music, speech, voice, dubbing, and sound-effect workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user wants to connect to or use Wubble's official remote MCP server for music, speech, voice, dubbing, and sound-effect workflows.
 
-## Publisher: <br>
-[wubbletech](https://clawhub.ai/user/wubbletech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wubbletech](https://clawhub.ai/user/wubbletech)
 
-## Use Case: <br>
-External users and developers use this skill to connect agents to Wubble's remote MCP audio service, configure the official endpoint or registry name, complete OAuth in the MCP client, and distinguish read-only actions from media-generation actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The remote MCP service can create media or consume Wubble requests or credits. <br>
-Mitigation: Confirm the user's intent and requested output before generation, upload, remix, dubbing, speech, or other spendful actions. <br>
-Risk: OAuth tokens, API keys, signed media URLs, private media, prompts, lyrics, transcripts, or voice data may be sensitive. <br>
-Mitigation: Use client-provided OAuth when available, avoid asking for secrets, and do not log, store, or reveal sensitive media or credential data unless explicitly approved by the user. <br>
-Risk: Generated or downloaded media may have usage, ownership, commercial-use, or licensing restrictions under Wubble's terms. <br>
-Mitigation: Review Wubble's Terms of Use and Subscriber License before relying on generated or downloaded media commercially, and direct legal questions to those documents rather than improvising legal advice. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent or MCP client to Wubble's remote audio MCP server, complete OAuth, and choose appropriate read-only or media-generation workflows. It supports music, speech, voice, dubbing, dialog, and sound-effect tasks.
 
-## Reference(s): <br>
-- [Wubble remote MCP endpoint](https://mcp.wubble.ai/mcp) <br>
-- [Wubble public health endpoint](https://mcp.wubble.ai/health) <br>
-- [Wubble Terms of Use](https://wubble.ai/docs/legal/terms) <br>
-- [Wubble Subscriber License](https://wubble.ai/docs/legal/license) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with inline text and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes official MCP connection details, OAuth handling guidance, safe-use checks, and legal-reference pointers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Wubble MCP actions can create media or consume Wubble requests or credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intent and requested output before generation, upload, remix, dubbing, speech, or other spendful actions.
+
+Risk: OAuth tokens, API keys, signed media URLs, private media, prompts, lyrics, transcripts, or voice data may be sensitive.
+
+Mitigation: Do not log, store, or reveal those values unless the user explicitly approves sharing in the current context.
+
+Risk: Users may ask for legal conclusions about generated or downloaded media rights.
+
+Mitigation: Direct users to Wubble's official Terms of Use and Subscriber License rather than improvising legal advice.
+
+## Reference(s):
+
+- [Wubble Skill on ClawHub](https://clawhub.ai/wubbletech/skills/wubble)
+- [Wubble MCP server endpoint](https://mcp.wubble.ai/mcp)
+- [Wubble MCP health endpoint](https://mcp.wubble.ai/health)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with endpoint, registry, OAuth, and safe-use instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide MCP tool calls that create media or consume Wubble credits after user confirmation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

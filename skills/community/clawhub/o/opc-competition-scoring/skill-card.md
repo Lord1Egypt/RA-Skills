@@ -1,44 +1,65 @@
-## Description: <br>
-专为商业大赛评委设计，从人工逐份阅读到AI批量标准化打分的效率跃迁 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language agent skill for business competition judges that applies a five-dimension, 100-point scoring rubric to business plans and produces reports, rankings, comments, and review prompts.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-Competition judges and review teams use this skill to score business plans consistently across batch or single-project review workflows, including structured scoring, ranking, comments, and follow-up questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill combines local scoring with broad online background checks. <br>
-Mitigation: Use external checks only with explicit consent and require human review of background, legal-risk, and verification findings before acting on them. <br>
-Risk: The security review says the batch script does not actually read submitted PPT, PDF, or Word documents before scoring. <br>
-Mitigation: Fix document parsing to read real submission content or fail closed, and review outputs before using them for real competition decisions. <br>
+## Use Case:
 
+Competition judges, mentors, and event operators use this skill to standardize first-round or semifinal reviews of startup and business-plan submissions. It helps produce scoring reports, ranking tables, issue lists, and follow-up questions for human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/opc-competition-scoring) <br>
-- [README](README.md) <br>
-- [打分标准参考表](references/打分标准表.md) <br>
-- [常见扣分点清单](references/常见扣分点.md) <br>
-- [优秀案例库](references/优秀案例库.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, ranking tables, scoring summaries, Python scripts, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured scores, deduction notes, judge comments, risk flags, and batch review outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill handles participant business plans and proposes broad background checks, which can involve sensitive personal, company, or competition data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit authority to process the materials, disclose any external verification sources, minimize retained data, and avoid non-public social-security or tax records.
+
+Risk: Automated scoring can influence judging outcomes even when the analysis is incomplete or mistaken.
+
+Mitigation: Require qualified human judges to review scores, deductions, rankings, and comments before they are used in competition decisions.
+
+Risk: The included batch script discovers submitted files but currently scores placeholder content instead of parsing the actual documents.
+
+Mitigation: Do not rely on the script as-is for real judging; validate document extraction separately or use manually reviewed extracted text as input.
+
+Risk: The online verification module can create privacy, consent, and source-quality issues if applied without boundaries.
+
+Mitigation: Run external checks only with separate consent and source-by-source disclosure, and treat results as review prompts rather than final determinations.
+
+## Reference(s):
+
+- [打分标准参考表](references/打分标准表.md)
+- [常见扣分点清单](references/常见扣分点.md)
+- [优秀案例库](references/优秀案例库.md)
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-competition-scoring)
+- [Publisher profile](https://clawhub.ai/user/golngod)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, ranking tables, JSON summaries, structured review comments, and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes individual scoring reports, batch ranking outputs, deception-risk flags, missing-information checks, and judge review prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

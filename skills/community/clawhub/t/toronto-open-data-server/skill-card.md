@@ -1,41 +1,59 @@
-## Description: <br>
-Provides agent tools for discovering and querying Toronto open-data datasets, including dataset search, schema inspection, record queries, dataset statistics, and CSV previews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个通过CKAN API直接访问多伦多开放数据的MCP服务器，支持智能数据集发现、灵活查询和CSV数据预览，专为LLM代理设计。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-External users and developers use this skill to explore Toronto open-data datasets, inspect schemas, retrieve sample records, and preview CSV-backed data through agent tool calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents itself as Toronto open-data access while routing requests and the XBY API key through a third-party Xiaobenyang service. <br>
-Mitigation: Install only if third-party routing and API-key handling are acceptable; prefer a version that calls Toronto CKAN directly or clearly documents proxy, retention, and deletion behavior. <br>
-Risk: The skill persists the XBY API key in a local .env file. <br>
-Mitigation: Use a scoped or revocable key where possible, avoid shared working directories, and delete the local .env entry when the skill is no longer needed. <br>
+## Use Case:
 
+Developers and external agents use this skill to discover Toronto Open Data datasets, inspect dataset schemas and statistics, query available records, and preview CSV-backed resources.
 
-## Reference(s): <br>
-- [XiaoBenYang API key service](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown summaries of JSON tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool calls return success, raw, and message fields; CSV previews are bounded by a max_lines parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Toronto data queries, filters, natural-language questions, CSV URLs, and the Xiaobenyang API key are sent to a third-party intermediary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that intermediary is trusted, avoid sensitive query content, and review whether a direct Toronto Open Data integration is preferable.
+
+Risk: The API key is persisted in a local .env file, which can be exposed in shared workspaces or repositories.
+
+Mitigation: Keep credentials out of shared repositories, prefer session-only secrets where possible, and rotate the key if it may have been exposed.
+
+Risk: The public description presents the skill as direct CKAN access even though server evidence identifies a third-party proxy.
+
+Mitigation: Disclose the Xiaobenyang dependency to users before installation and verify that transmitted data is acceptable for the intended use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/toronto-open-data-server)
+- [Xiaobenyang service](https://xiaobenyang.com)
+- [Xiaobenyang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries of JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Xiaobenyang API key and may return dataset listings, schemas, query results, statistics, CSV previews, or follow-up guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved ClawHub release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Renders an industry analysis workspace into a single-page, scrollable visual HTML report with charts, SVG diagrams, comparison tables, timelines, and responsive layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Renders a Chinese industry analysis report into a single-page, scrollable visual HTML report with charts, SVG diagrams, comparison tables, and timelines.
 
-## Publisher: <br>
-[zrxparley](https://clawhub.ai/user/zrxparley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrxparley](https://clawhub.ai/user/zrxparley)
 
-## Use Case: <br>
-Developers and analysts use this skill as the final step of an industry-analysis pipeline to convert session data, four dimension markdown files, and a main report into a shareable visual HTML report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rerunning the skill may overwrite output/{industry-slug}/industry-analysis-report.html and update output/{industry-slug}/session.json. <br>
-Mitigation: Check whether the HTML report already exists before running, and preserve any report that should not be replaced. <br>
+## Use Case:
 
+Developers and analysts use this skill as the final step in an industry-analysis pipeline to convert session data, four dimension reports, and a main Markdown report into a shareable HTML page.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zrxparley/industry-analyzer-html-renderer) <br>
-- [Chart suggestions](references/chart-suggestions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [HTML, Configuration, Guidance] <br>
-**Output Format:** [Single-page HTML file plus session JSON status update and concise error messages when inputs are missing or rendering fails.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output/{industry-slug}/industry-analysis-report.html and updates output/{industry-slug}/session.json; reruns may overwrite the HTML report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill writes an HTML report and updates session.json, which could overwrite existing local work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check output/{industry-slug}/industry-analysis-report.html and session.json before running, and preserve any work that should not be replaced.
+
+## Reference(s):
+
+- [行业分析 HTML 渲染 · 图表建议](references/chart-suggestions.md)
+- [ClawHub Skill Page](https://clawhub.ai/zrxparley/skills/industry-analyzer-html-renderer)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Configuration]
+
+**Output Format:** [HTML file with session status updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes output/{industry-slug}/industry-analysis-report.html and updates session.json.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

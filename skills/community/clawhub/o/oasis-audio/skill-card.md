@@ -1,47 +1,61 @@
-## Description: <br>
-Oasis Audio is an AI audio narration generator that transforms your current state of mind, content you want to digest, or recent life events into personalized audio with background music. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Oasis Audio helps agents create personalized Chinese or English narrated audio with background music from user prompts, selected local context, long content, or recent events.
 
-## Publisher: <br>
-[yuanyxu](https://clawhub.ai/user/yuanyxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyxu](https://clawhub.ai/user/yuanyxu)
 
-## Use Case: <br>
-External users and agent operators use this skill to turn requests, notes, long-form content, or recent personal context into a narrated audio piece. It is intended for personalized audio generation, content digests, learning aids, briefings, bedtime radio, and similar single-narrator listening experiences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads OpenClaw/QClaw session history, memory notes, and USER.md to personalize audio. <br>
-Mitigation: Install only when this local data access is acceptable, and use the dry-run or preview path before sending personalized prompts. <br>
-Risk: Derived personal details can be sent to the xplai.ai API for audio generation. <br>
-Mitigation: Review the generated prompt before transmission and require explicit confirmation before sending content that may be sensitive. <br>
-Risk: Audit logging can save sent prompts locally when enabled. <br>
-Mitigation: Enable audit logging only when local prompt records are intentionally needed, and avoid debug mode for private content. <br>
+## Use Case:
 
+External users and developers use Oasis Audio to generate personalized audio narration, podcasts, briefings, digests, learning material, or reflective audio. The skill is useful when an audio version of a prompt, document, conversation topic, or recent life context would add value.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyxu/oasis-audio) <br>
-- [Publisher profile](https://clawhub.ai/user/yuanyxu) <br>
-- [xplai.ai](https://www.xplai.ai/) <br>
-- [xplai.ai audio API endpoint](https://eagle-api.xplai.ai) <br>
-- [Audio modes](artifact/audio_modes.md) <br>
-- [Text architecture](artifact/text_architecture.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and audio generation status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates prompts for a third-party audio API and returns an audio identifier/status for polling; generated audio is MP3 according to the artifact documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: The skill can read local OpenClaw/QClaw conversations, memory files, and USER.md profile data to personalize audio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when local history access is acceptable; use generic generation when personalization is unnecessary.
+
+Risk: Derived personal context may be sent to xplai.ai as part of the composed prompt.
+
+Mitigation: Review the composed prompt before sending and avoid health, financial, legal, relationship, credential, or other sensitive content.
+
+Risk: Prompt details can be retained locally when audit or debug options are enabled.
+
+Mitigation: Leave audit and debug modes off unless local plaintext prompt retention is intended and acceptable.
+
+## Reference(s):
+
+- [Oasis Audio ClawHub Skill Page](https://clawhub.ai/yuanyxu/skills/oasis-audio)
+- [xplai.ai](https://www.xplai.ai/)
+- [xplai.ai audio generation API endpoint](https://eagle-api.xplai.ai)
+- [Audio Modes](artifact/audio_modes.md)
+- [Text Architecture](artifact/text_architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated audio status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an audio generation request, an audio ID, status updates, and a final xplai.ai audio page URL when generation succeeds.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

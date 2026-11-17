@@ -1,0 +1,19 @@
+{
+  "tool_name": "batch_factor_analysis",
+  "feature_days": 5,
+  "factor_dict": {
+    "CS_Size": "out = np.log(d['总市值'].replace(0, np.nan))",
+    "CS_Value_EP": "ac = d['close'] * d['adj_factor']\nout = d['每股收益'] / ac",
+    "CS_Value_BP": "out = d['市净率']",
+    "CS_Growth_Rev": "out = d['每股营业收入'] / d['每股营业收入'].shift(252) - 1",
+    "CS_Growth_Profit": "out = d['每股收益'] / d['每股收益'].shift(252) - 1",
+    "CS_Momentum": "ac = d['close'] * d['adj_factor']\nout = ac / ac.shift(60) - 1",
+    "CS_Reversal": "ac = d['close'] * d['adj_factor']\nout = -(ac / ac.shift(20) - 1)",
+    "CS_Volatility": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nout = ret.rolling(20).std()",
+    "CS_Liquidity": "out = d['换手率']",
+    "CS_Leverage": "out = d['资产负债率']",
+    "CS_Profitability": "out = d['每股收益'] / d['每股净资产'].replace(0, np.nan)",
+    "CS_NLSize": "r = row_rank(np.log(d['总市值'].replace(0, np.nan)))\nout = -((r - 0.5) ** 2)"
+  },
+  "save_path": "output\\factor-CITIC_Shenwan.xlsx"
+}

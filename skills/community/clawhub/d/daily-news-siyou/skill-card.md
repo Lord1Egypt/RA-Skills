@@ -1,46 +1,58 @@
-## Description: <br>
-Fetches current news for user-defined categories and creates scheduled Chinese text or voice broadcasts through Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily News Skill fetches recent news for configured categories and prepares scheduled text or voice news broadcasts through Feishu and NoizAI.
 
-## Publisher: <br>
-[Anightmare2](https://clawhub.ai/user/Anightmare2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anightmare2](https://clawhub.ai/user/anightmare2)
 
-## Use Case: <br>
-External users and developers use this skill to configure personalized news categories, generate daily news summaries, and post text or voice broadcasts to a Feishu chat on demand or by cron schedule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu, NoizAI, and Tavily credentials are required for normal operation and could be exposed through shared shell profiles, logs, or unattended cron jobs. <br>
-Mitigation: Use least-privilege Feishu credentials, keep API keys out of shared profiles and logs, and review cron logging before enabling scheduled broadcasts. <br>
-Risk: Unattended scheduled broadcasts can post recurring messages to the wrong chat or before the output format has been verified. <br>
-Mitigation: Test with text-only output or a test chat before enabling cron, then add recurring jobs only when the target chat and content are confirmed. <br>
-Risk: Voice mode depends on a separate Feishu voice skill and may fall back to text if that dependency is unavailable. <br>
-Mitigation: Review and test the separate feishu-voice-skill before relying on voice broadcasts. <br>
+## Use Case:
 
+Individuals or teams use this skill to create category-based daily news briefings and send text or voice updates to a Feishu chat on a schedule.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Anightmare2/daily-news-siyou) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [Cron Examples](artifact/examples/crontab.txt) <br>
-- [Tavily Search API Endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated Chinese news broadcast text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can post text or voice output to Feishu and can be scheduled with cron.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact clawhub.yaml) <br>
+Risk: The bundled script is reported as unsafe because a configurable news limit can become local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid running it until the news limit is validated and passed to Python as data rather than source code.
+
+Risk: Scheduled runs can automatically send messages to a Feishu chat using stored credentials.
+
+Mitigation: Run only under a low-privilege account, do not run cron as root, narrowly scope the Feishu app, protect configuration files, and confirm the destination chat.
+
+Risk: The skill depends on Feishu, NoizAI, and Tavily credentials.
+
+Mitigation: Store credentials in protected secret storage and restrict access to users and automation that need to run the broadcaster.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anightmare2/skills/daily-news-siyou)
+- [Tavily search API endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash examples; runtime output is terminal text and optional Feishu voice broadcast.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu, NoizAI, and optionally Tavily credentials; scheduled operation can be configured with cron.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

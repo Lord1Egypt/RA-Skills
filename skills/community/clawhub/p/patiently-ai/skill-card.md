@@ -1,39 +1,57 @@
-## Description: <br>
-Patiently AI simplifies medical documents for patients by explaining doctor's letters, test results, prescriptions, discharge summaries, and clinical notes in clear, personalised language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patiently AI simplifies medical documents for patients by explaining doctor's letters, test results, prescriptions, discharge summaries, and clinical notes in clear, personalized language.
 
-## Publisher: <br>
-[nickjlamb](https://clawhub.ai/user/nickjlamb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickjlamb](https://clawhub.ai/user/nickjlamb)
 
-## Use Case: <br>
-Patients and carers use this skill to turn medical documents or consultation records into clear summaries, section-by-section explanations, plain-language term definitions, and questions to discuss with a healthcare provider. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive health information while asking for document explanations. <br>
-Mitigation: Only process health information that users are comfortable sharing in their AI environment. <br>
-Risk: A simplified explanation could be mistaken for medical advice. <br>
-Mitigation: Treat outputs as explanations of the provided document and discuss care questions with a healthcare provider. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PharmaTools.AI](https://pharmatools.ai) <br>
+## Use Case:
 
+External users and carers use this skill to understand medical paperwork by turning clinical text, images, PDFs, and consultation audio into plain-language explanations. It is intended to support comprehension, not diagnosis, triage, treatment decisions, or replacement of professional medical advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plain-language explanation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May be personalized by reading level, tone, length, and language when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Medical documents may include sensitive health information.
+
+Mitigation: Only share health documents the user is comfortable processing in the agent environment.
+
+Risk: Simplified explanations could be mistaken for medical advice.
+
+Mitigation: Use the output for understanding paperwork and rely on a qualified healthcare provider for care decisions.
+
+Risk: The agent could overstate meaning when clinical content is unclear.
+
+Mitigation: Reflect only what the document says, preserve uncertainty, and state when something is unclear.
+
+## Reference(s):
+
+- [Patiently AI ClawHub Page](https://clawhub.ai/nickjlamb/skills/patiently-ai)
+- [PharmaTools.AI](https://pharmatools.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown plain-language explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summaries, section breakdowns, plain-language term definitions, questions for a doctor, and a reminder to consult a healthcare provider.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

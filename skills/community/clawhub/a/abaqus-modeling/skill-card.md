@@ -1,42 +1,57 @@
-## Description: <br>
-Guides agents through Abaqus/CAE finite element modeling, including part creation, material property definition, assemblies, sketching, and CAD associative interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Abaqus有限元建模完整流程技能。覆盖部件创建、材料属性定义、装配、草图绘制、CAD关联接口。
 
-## Publisher: <br>
-[jijinbao-code](https://clawhub.ai/user/jijinbao-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jijinbao-code](https://clawhub.ai/user/jijinbao-code)
 
-## Use Case: <br>
-Developers and structural or mechanical engineers use this skill to get Abaqus/CAE modeling guidance for creating parts, assigning materials, building assemblies, sketching geometry, and preparing finite element models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finite element modeling guidance can be incomplete or unsuitable for a specific production simulation. <br>
-Mitigation: Review advice against official Abaqus/SIMULIA documentation and normal engineering review before applying it to production simulations. <br>
+## Use Case:
 
+Developers and engineers use this Chinese-language skill for Abaqus/CAE finite element modeling guidance covering part creation, material properties, assembly, sketching, CAD associative interfaces, and related modeling considerations.
 
-## Reference(s): <br>
-- [Abaqus Modeling on ClawHub](https://clawhub.ai/jijinbao-code/abaqus-modeling) <br>
-- [SIMULIA Documentation](https://help.3ds.com) <br>
-- [Abaqus/CAE](https://www.3ds.com/products/simulia/abaqus/cae) <br>
-- [Abaqus CAD Associative Interface](https://www.3ds.com/products/simulia/abaqus/cad-associative-interface) <br>
-- [Composites Modeler for Abaqus/CAE](https://www.3ds.com/products/simulia/abaqus/composites-modeler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable code, installers, credential use, or model-file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill is written in Chinese, which may limit usefulness for users who need English or multilingual modeling guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm language support requirements before deployment or pair the skill with a reviewed translation workflow.
+
+Risk: Abaqus modeling guidance can be misapplied to engineering analyses if users skip domain review.
+
+Mitigation: Have qualified engineers review modeling assumptions, material definitions, element choices, and boundary conditions before relying on analysis results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jijinbao-code/skills/abaqus-modeling)
+- [SIMULIA Abaqus Documentation](https://help.3ds.com)
+- [Abaqus/CAE](https://www.3ds.com/products/simulia/abaqus/cae)
+- [Abaqus CAD Associative Interface](https://www.3ds.com/products/simulia/abaqus/cad-associative-interface)
+- [Composites Modeler for Abaqus/CAE](https://www.3ds.com/products/simulia/abaqus/composites-modeler)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown prose and bullet lists in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, install hooks, or data access are present in the artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "rigorous-consulting-report",
+  "display_name": "严谨咨询报告",
+  "description": "白底、结论式标题、高信息密度、严谨图表",
+  "preview": "preview.svg",
+  "files": {"tokens": "theme.css", "templates": "templates.html"},
+  "identity": {
+    "composition": "白底宽页边距，顶部结论标题，主体用对齐严格的分析网格、表格和图表。",
+    "hierarchy": "每页标题直接写结论；副标题给判断边界；证据与含义在同一视线链上。",
+    "image_treatment": "图片保持真实比例，白底细框，使用编号、来源脚注和局部放大，不做装饰性裁切。",
+    "module_language": "细分隔线、小圆角或无圆角、节制浅灰底、编号式分析模块。",
+    "chart_evidence": "统一坐标、直接标注、来源脚注；表格突出一行关键判断而非整块上色。",
+    "motion": "按论证顺序淡入或轻微上移；先结论后证据，禁用大幅位移与抢眼弹性。"
+  },
+  "tokens": {
+    "colors": {"canvas": "#ffffff", "ink": "#17202a", "navy": "#123c69", "teal": "#2a7f82", "accent": "#d79b2d", "surface": "#f3f5f7", "line": "#c7ced6", "muted": "#5d6874"},
+    "font_stacks": {"display": "Georgia, Source Han Serif SC, serif", "body": "Arial, PingFang SC, sans-serif", "mono": "SFMono-Regular, Consolas, monospace"},
+    "type_scale": {"display": "clamp(44px, 4.3vw, 68px)", "heading": "clamp(34px, 3vw, 52px)", "body": "18px", "caption": "12px"},
+    "spacing": {"canvas_x": "72px", "canvas_y": "48px", "module": "22px", "gap": "20px"},
+    "borders": {"hairline": "1px solid #c7ced6", "module": "1px solid #aeb7c1", "radius": "2px", "shadow": "none"}
+  },
+  "canvas": {"aspect_ratio": "16:9", "safe_area": "72px 72px 54px", "grid": "12 columns, strict shared baselines", "density": "high but bounded; 5-8 evidence units with one explicit takeaway"},
+  "layout_variants": [
+    {"id": "executive-summary", "use": "cover thesis and decision frame"},
+    {"id": "issue-tree", "use": "diagnosis and mutually exclusive breakdown"},
+    {"id": "workstream-grid", "use": "process, operating model, or roadmap"},
+    {"id": "evidence-tableau", "use": "chart plus exact evidence table"},
+    {"id": "recommendation-matrix", "use": "priorities, owners, and next decision"}
+  ],
+  "components": {
+    "chart": "Use a labeled scale, restrained series colors, zero-baseline bars when quantitative, and an explicit takeaway sentence.",
+    "table": "Use aligned numeric columns, short row labels, light rules, and one highlighted decision row.",
+    "evidence_card": "Pair source metadata, artifact, and interpretation in a numbered frame with a visible citation path.",
+    "image": "Preserve aspect ratio and source fidelity; use thin rules, caption, date, and one callout inset."
+  },
+  "motion": {"enter": "opacity with 10-14px upward movement over 320-420ms", "stagger": "reveal claim, then evidence groups in reading order", "disabled": ["bounce", "rotation", "parallax", "continuous animation"]},
+  "forbidden": ["decorative gradients", "unlabeled axes", "3D charts", "floating glass cards", "oversized ornamental quote", "color-only theme differentiation"],
+  "template_contract": {"placeholder_format": "{{UPPER_SNAKE_CASE}}", "minimum_slides": 5, "required_markers": ["data-layout", "fragment", "data-step"]}
+}

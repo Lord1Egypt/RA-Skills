@@ -1,44 +1,58 @@
-## Description: <br>
-分析公司银行流水，输出集团总体、收入、支出、应收应付、重大款项及风险分析报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+分析公司银行流水，输出集团总体、收入、支出、应收应付、重大款项及风险分析报告。
 
-## Publisher: <br>
-[duzhilei951](https://clawhub.ai/user/duzhilei951) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzhilei951](https://clawhub.ai/user/duzhilei951)
 
-## Use Case: <br>
-Finance teams and business operators use this skill to analyze local CSV or XLSX bank-statement exports, summarize income, expenses, large transactions, cash-flow trends, receivables/payables, and generate Markdown risk reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bank-statement inputs and generated reports may contain confidential financial records. <br>
-Mitigation: Run the skill only on trusted local files, keep input files and Markdown reports out of public repositories or broad sync folders, and redact account identifiers or names before sharing reports. <br>
-Risk: Spreadsheet files from unknown sources can carry parsing and supply-chain risk. <br>
-Mitigation: Prefer trusted CSV inputs when possible, and update the xlsx dependency before opening spreadsheets from untrusted sources. <br>
-Risk: Generated financial summaries may be incomplete because bank statements do not fully capture contracts, invoices, or manual receivables/payables context. <br>
-Mitigation: Review the report against source statements and supporting finance records before using it for decisions or external reporting. <br>
+## Use Case:
 
+Finance and operations users can analyze company bank-statement CSV or XLSX exports to summarize cash flow, income, expenses, receivables and payables, large transactions, and financial risk signals. The skill is intended for local report generation from trusted financial files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duzhilei951/bank-analysis) <br>
-- [Skill definition](SKILL.md) <br>
-- [Usage guide](使用指南.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Files, Shell commands] <br>
-**Output Format:** [Markdown report file with console summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local CSV/XLSX bank-statement files and writes a *_分析报告.md report next to the input file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill processes sensitive bank-statement data and generated reports may contain transaction details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted local inputs, restrict access to the working directory, and delete or protect generated reports after use.
+
+Risk: The release uses a flagged XLSX parser version.
+
+Mitigation: Update or replace the xlsx dependency before production use and avoid opening untrusted spreadsheet files.
+
+Risk: Spreadsheet text is written into Markdown reports without sanitation.
+
+Mitigation: Use trusted input files, sanitize untrusted spreadsheet text before sharing reports, and avoid Markdown viewers that load remote content for untrusted reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duzhilei951/skills/bank-analysis)
+- [ClawHub publisher profile](https://clawhub.ai/user/duzhilei951)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with console text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a cleartext Markdown report next to the input CSV or XLSX file.]
+
+## Skill Version(s):
+
+2.0.0 (source: server evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

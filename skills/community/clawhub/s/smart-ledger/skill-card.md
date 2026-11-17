@@ -1,42 +1,58 @@
-## Description: <br>
-Smart Ledger tracks personal income and expenses from Chinese or English natural-language notes, classifies transactions, and generates daily, weekly, monthly, and trend reports from local JSON data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Ledger lets users record income and expenses from Chinese or English natural-language entries, auto-categorize transactions, and generate daily, weekly, monthly, and trend reports using local JSON storage.
 
-## Publisher: <br>
-[dyby99-gif](https://clawhub.ai/user/dyby99-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dyby99-gif](https://clawhub.ai/user/dyby99-gif)
 
-## Use Case: <br>
-Individuals and agents supporting personal finance management use Smart Ledger to record income and expenses from natural-language notes, classify records, review summaries, and generate daily, weekly, monthly, and trend reports while keeping data local. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Personal finance notes, income, spending amounts, and raw transaction text are stored in a local JSON file. <br>
-Mitigation: Install only when local storage of this data is acceptable, keep the file under the user's account, and back up ~/.openclaw/workspace/data/expenses/expenses.json if the records matter. <br>
-Risk: Deleting a record by ID is immediate. <br>
-Mitigation: Double-check record IDs before deletion and keep a current backup before removing important records. <br>
-Risk: Natural-language parsing and keyword classification can misread amounts, dates, transaction type, or category. <br>
-Mitigation: Review created records and reports before relying on them, and refine notes or category keywords when classification is inaccurate. <br>
+## Use Case:
 
+External users and personal-finance users use this skill to track income and expenses, review category-level spending, and generate periodic budget reports from locally stored records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dyby99-gif/smart-ledger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text reports, JSON records or reports, and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and edits records in a local JSON file at ~/.openclaw/workspace/data/expenses/expenses.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill stores personal finance records in a local JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local file access expectations before use and protect or back up ~/.openclaw/workspace/data/expenses/expenses.json according to the user's privacy needs.
+
+Risk: Delete operations or manual bulk edits can remove or corrupt expense records.
+
+Mitigation: Back up ~/.openclaw/workspace/data/expenses/expenses.json before using delete commands or editing records directly.
+
+Risk: Natural-language parsing and keyword classification may misclassify transactions or miss amounts.
+
+Mitigation: Review generated records and reports before relying on them for budgeting decisions, and update category keywords when classifications are inaccurate.
+
+## Reference(s):
+
+- [Smart Ledger on ClawHub](https://clawhub.ai/dyby99-gif/skills/smart-ledger)
+- [Publisher Profile](https://clawhub.ai/user/dyby99-gif)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local expense records and reports under ~/.openclaw/workspace/data/expenses/expenses.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,57 @@
-## Description: <br>
-About Page Generator helps agents create, optimize, and audit About page content, including company story, team presentation, SEO metadata, and trust elements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates, optimizes, or audits About page content, including company story, team, trust, SEO metadata, and AboutPage schema guidance.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Website owners, marketers, and developers use this skill to plan, draft, optimize, or audit About pages that communicate a company's story, mission, team, proof points, SEO metadata, and trust signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local project context may contain sensitive, outdated, or inaccurate company information that could be reflected in generated About page content. <br>
-Mitigation: Review relevant project context files and generated About page content before publication or external sharing. <br>
+## Use Case:
 
+Developers, marketers, and site owners use this skill to plan or improve an About page that explains the organization, builds trust, and supports search visibility.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kostja94/about-page-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown with About page outlines, narrative guidance, SEO metadata, and trust-element checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May consult local project context files when present to tailor company story, values, and differentiation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Project-context files can contain private company story, values, or differentiation details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact project-context inputs before using them to draft public About page content.
+
+Risk: Generated About page claims, metrics, awards, testimonials, and team details may be incomplete or outdated.
+
+Mitigation: Verify public-facing claims and proof points against approved company sources before publication.
+
+Risk: SEO metadata and AboutPage schema guidance may not match the site's final implementation or entity model.
+
+Mitigation: Review metadata and schema placement during site integration, especially where Organization schema is handled elsewhere.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/about-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured outlines, checklists, metadata recommendations, and schema guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use existing project-context files when present to tailor company story, values, and differentiation.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter metadata and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

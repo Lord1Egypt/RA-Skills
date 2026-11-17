@@ -1,36 +1,49 @@
-## Description: <br>
-Pattern Mine helps agents find recurring and divergent code patterns across a codebase and produce prioritized refactoring guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers recurring patterns in a codebase, including convergent, divergent, emerging, and outdated patterns, so developers can prioritize refactoring and cleanup work.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineering teams use Pattern Mine before refactoring, onboarding, code review follow-up, or code health checks to identify repeated decisions, divergent conventions, emerging abstractions, and outdated patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads source code to compare implementation patterns and may surface incorrect or misleading refactoring recommendations. <br>
-Mitigation: Install only for repositories you are authorized to analyze, and review any recommendations before asking an agent to make changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect a codebase for repeated decisions, duplicated logic, misleading abstractions, and obsolete conventions before refactoring, onboarding, or cleanup planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report with prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only code analysis guidance; recommendations should be reviewed before implementation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may inspect broad parts of a codebase when used for planning, onboarding, or repository-wide refactoring analysis.
+
+Mitigation: Use it only on repositories where that scope is appropriate and review generated recommendations before acting on them.
+
+## Reference(s):
+
+- [Pattern Mine on ClawHub](https://clawhub.ai/jcools1977/skills/pattern-mine)
+- [jcools1977 publisher profile](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis report with prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports pattern categories, affected locations, cleanup recommendations, and estimated effort.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

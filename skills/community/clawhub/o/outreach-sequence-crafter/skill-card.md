@@ -1,46 +1,58 @@
-## Description: <br>
-Build respectful multi-touch outreach sequences with channel mix, follow-up timing, objection handling, and logging templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build respectful multi-touch outreach sequences with channel mix, follow-up timing, objection handling, and logging templates.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to draft structured outreach cadences from an offer, target persona, channel plan, timeline, proof assets, and stated boundaries. It produces first-pass messaging, follow-up branches, a tracking table, and a testing plan for review before external use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script can overwrite an existing JSON file if the selected output path already exists. <br>
-Mitigation: Choose an explicit output path that will not overwrite important files before running the script. <br>
-Risk: Generated outreach could contain inaccurate claims or violate consent, anti-spam, or legal requirements if sent without review. <br>
-Mitigation: Review generated outreach for accuracy, consent, and applicable requirements before using it externally. <br>
-Risk: The skill may be asked to fill missing proof, metrics, credentials, or legal certainty that were not provided. <br>
-Mitigation: Keep assumptions explicit and mark uncertain fields for confirmation instead of fabricating evidence. <br>
+## Use Case:
 
+External users and business teams use this skill to draft respectful multi-touch outreach cadences from an offer, target persona, channels, timeline, proof assets, and stated boundaries. It helps produce first-touch messages, follow-ups, reply branches, a tracking sheet, and a testing plan for review before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/outreach-sequence-crafter) <br>
-- [README](artifact/README.md) <br>
-- [Example prompt](artifact/examples/example-prompt.md) <br>
-- [Cadence presets](artifact/resources/cadence_presets.yaml) <br>
-- [Smoke test](artifact/tests/smoke-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON draft files and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local Python helper to write an outreach_sequence.json draft to an explicit output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 1.1.0) <br>
+Risk: Generated outreach copy may contain inaccurate claims, unsupported proof, or language that is not appropriate for the recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every draft before sending, keep claims tied to user-provided proof assets, and mark uncertain details for confirmation.
+
+Risk: A cadence can become spammy or ignore recipient boundaries if used without judgment.
+
+Mitigation: Use preview or draft mode first, honor opt-outs and channel rules, and do not treat the skill as an automated sending system.
+
+Risk: The local helper script writes a JSON output file.
+
+Mitigation: Pass an explicit output path and inspect the generated file before using it in a campaign workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/outreach-sequence-crafter)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with optional local JSON file output from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled helper script can write an outreach sequence JSON file to an explicit local output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

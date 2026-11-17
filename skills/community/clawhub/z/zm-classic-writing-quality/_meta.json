@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn716ewtc7z7a76wre4bsckgas8398j1",
+  "ownerId": "local-zhumeng-openclaw",
   "slug": "zm-classic-writing-quality",
+  "displayName": "ZM 经典表达与写作质量",
   "version": "0.1.0",
-  "publishedAt": 1782235885297
+  "status": "local",
+  "createdAt": "2026-06-23",
+  "description": "文章经典表达、传播性、认可感、表达密度和真人现场感质量提升 Skill。"
 }

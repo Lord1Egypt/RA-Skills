@@ -1,44 +1,57 @@
-## Description: <br>
-Send WhatsApp messages to other people or search/sync WhatsApp history via the wacli CLI (not for normal user chats). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send WhatsApp messages to other people or search/sync WhatsApp history via the wacli CLI (not for normal user chats).
 
-## Publisher: <br>
-[Sieyer](https://clawhub.ai/user/Sieyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sieyer](https://clawhub.ai/user/sieyer)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to send WhatsApp messages to third parties, authenticate wacli, sync or backfill WhatsApp history, or search chats and messages on explicit request. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send WhatsApp messages or files to direct chats and groups. <br>
-Mitigation: Require an explicit recipient and message or attachment, then confirm the recipient, group versus direct chat, message text, and attachment path before sending. <br>
-Risk: Authentication and sync can retain WhatsApp history locally under ~/.wacli. <br>
-Mitigation: Use sync or backfill only when needed, and review or remove ~/.wacli when local WhatsApp history should not be retained. <br>
-Risk: The skill depends on the external wacli package source. <br>
-Mitigation: Install only when the external wacli source is trusted and the user accepts QR-based WhatsApp account linking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [wacli homepage](https://wacli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/Sieyer/whats-1-0-0) <br>
-- [Homebrew formula steipete/tap/wacli](steipete/tap/wacli) <br>
-- [Go module github.com/steipete/wacli/cmd/wacli](github.com/steipete/wacli/cmd/wacli@latest) <br>
+## Use Case:
 
+External users and agents use this skill to send WhatsApp messages to third parties when explicitly requested, and to sync or search WhatsApp history through wacli. It is not intended for routine chats with the user over WhatsApp.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference JSON output when the agent needs machine-readable wacli results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The external wacli CLI can access WhatsApp login state and message history.
+
+Mitigation: Install only when the wacli project is trusted, and use a separate store path when limiting where session data is kept.
+
+Risk: The skill can send WhatsApp messages to direct or group recipients.
+
+Mitigation: Require an explicit recipient and message text, confirm both before sending, and ask a clarifying question when anything is ambiguous.
+
+Risk: History backfill depends on the user's phone being online and may return best-effort results.
+
+Mitigation: Treat backfill results as incomplete unless verified by subsequent sync or search.
+
+## Reference(s):
+
+- [wacli homepage](https://wacli.sh)
+- [ClawHub skill page](https://clawhub.ai/sieyer/skills/whats-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use machine-readable JSON from wacli when parsing command output is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

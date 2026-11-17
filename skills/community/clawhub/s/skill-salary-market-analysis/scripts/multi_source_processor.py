@@ -316,9 +316,12 @@ class MultiSourceSalaryProcessor:
 
             # 按国家/地区统计（海外薪酬新增）
             if country:
-                salary_cny_for_country = self.convert_currency(annual_avg, self.target_currency, 'CNY')
+                if annual_avg:
+                    salary_cny_for_country = self.convert_currency(annual_avg, self.target_currency, 'CNY')
+                else:
+                    salary_cny_for_country = None
                 country_stats[country]['count'] += 1
-                if annual_avg > 0:
+                if annual_avg and annual_avg > 0 and salary_cny_for_country:
                     country_stats[country]['salaries_cny'].append(salary_cny_for_country)
                     country_stats[country]['salaries_target'].append(annual_avg)
 

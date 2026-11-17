@@ -32,7 +32,7 @@ description: 一键配置 OpenClaw 对接 aicodee.com MiniMax 模型中转服务
 | 字段 | 匹配模式 | 示例 |
 |------|----------|------|
 | **API Base URL** | 正则：`(?:API\s*Base\s*URL|baseurl|base_url|接口地址|地址)[：:\s]*(\S+)` | `API Base URL：https://v2.aicodee.com` |
-| **API Key** | 正则：`(?:API\s*Key|apikey|api_key|密钥|key)[：:\s]*((?:sk-\|sk3)[a-zA-Z0-9]{20,})` | `API Key：sk-3a099f856d7664c76c60905895c6a36f` |
+| **API Key** | 正则：`(?:API\s*Key|apikey|api_key|密钥|key)[：:\s]*((?:sk-\|sk3)[a-zA-Z0-9]{20,})` | `API Key：REDACTED-SECRET` |
 | **模型名称** | 正则：`(?:模型名称|模型|model)[：:\s]*([^\s\n]+)`，取第一个 MiniMax 开头的 | `模型名称：MiniMax-M2.7-highspeed` |
 
 ### 默认值
@@ -55,13 +55,13 @@ description: 一键配置 OpenClaw 对接 aicodee.com MiniMax 模型中转服务
 **输入（混乱格式）：**
 ```
 API Base URL：https://v2.aicodee.com
-API Key:sk-3a099f856d7664c76c60905895c6a36f
+API Key:REDACTED-SECRET
 模型: MiniMax-M2.5-highspeed / MiniMax-M2.7-highspeed
 ```
 
 **提取结果：**
 - base-url = `https://v2.aicodee.com`
-- api-key = `sk-3a099f856d7664c76c60905895c6a36f`
+- api-key = `REDACTED-SECRET`
 - model-id = `MiniMax-M2.5-highspeed`（取第一个 MiniMax 开头的）
 
 ---
@@ -74,7 +74,7 @@ API Key:sk-3a099f856d7664c76c60905895c6a36f
 ## 脚本用法
 
 ```bash
-python scripts/configure.py --base-url "https://v2.aicodee.com" --api-key "sk-3a099f856d7664c76c60905895c6a36f" --provider-name "jisuaivauto"
+python scripts/configure.py --base-url "https://v2.aicodee.com" --api-key "REDACTED-SECRET" --provider-name "jisuaivauto"
 ```
 
 **参数说明：**

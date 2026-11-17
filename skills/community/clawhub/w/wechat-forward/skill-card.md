@@ -1,40 +1,54 @@
-## Description: <br>
-For explicit user requests, this skill prepares recent chat content and sends it to the user's own WeChat account through the wxclawbot CLI for mobile viewing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forwards the current conversation or selected content to the user's own WeChat account through wxclawbot only after an explicit WeChat forwarding request.
 
-## Publisher: <br>
-[davidchyi-beep](https://clawhub.ai/user/davidchyi-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidchyi-beep](https://clawhub.ai/user/davidchyi-beep)
 
-## Use Case: <br>
-External users use this skill when they explicitly want an agent to forward the current or summarized conversation content to their own WeChat account for reading on a phone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send conversation content outside the chat interface to WeChat when invoked. <br>
-Mitigation: Use it only after an explicit user request to send to WeChat, and confirm the destination account or message scope before sending sensitive content. <br>
-Risk: The skill depends on an authenticated local wxclawbot setup and existing WeChat account credentials. <br>
-Mitigation: Keep the local account configuration protected, verify wxclawbot account status before use, and prefer least-privilege local execution. <br>
+## Use Case:
 
+External users and developers use this skill to send a concise copy or summary of current chat content to their own WeChat account for mobile reading. The skill is intended for explicit, user-requested forwarding only, not scheduled pushes, alerts, or automatic summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidchyi-beep/wechat-forward) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON CLI result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires wxclawbot on macOS and an existing OpenClaw WeChat account configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Message text or file paths could be handled unsafely if copied directly into a shell command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke wxclawbot with safe argument handling and avoid pasting raw untrusted text or paths into shell commands.
+
+Risk: Untrusted or copied content could be forwarded to WeChat without adequate review.
+
+Mitigation: Use the skill only after an explicit user request, verify the destination is the user's own WeChat account, and review content before forwarding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidchyi-beep/skills/wechat-forward)
+- [Publisher profile](https://clawhub.ai/user/davidchyi-beep)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, wxclawbot, and configured WeChat account credentials; sends only to the user's own WeChat account after explicit request.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

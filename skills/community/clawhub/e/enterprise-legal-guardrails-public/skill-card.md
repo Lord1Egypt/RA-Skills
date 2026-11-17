@@ -1,40 +1,56 @@
-## Description: <br>
-Legal/compliance guardrails for outbound OpenClaw actions, including anti-spam, defamation, privacy, and financial-claim checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legal/compliance guardrails for outbound OpenClaw actions (anti-spam, defamation, privacy, financial claims).
 
-## Publisher: <br>
-[lawyered0](https://clawhub.ai/user/lawyered0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lawyered0](https://clawhub.ai/user/lawyered0)
 
-## Use Case: <br>
-Developers and operators use this skill to preflight outbound bot content before posting, messaging, publishing, or running outbound commands that may create legal or compliance risk. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The outbound wrapper can run commands after a guardrail check, and review-worthy content may proceed unless strict mode is enabled. <br>
-Mitigation: Use --strict for real sending, posting, trading, or publishing workflows, keep --allowed-command narrow, enable --sanitize-env, and configure audit logs deliberately. <br>
-Risk: --allow-any-command bypasses command allow-list enforcement. <br>
-Mitigation: Avoid --allow-any-command except for explicitly approved emergency use, and require an approval reason, approval token, and audit trail when it is used. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Guardrail Policy Map](references/guardrail-policy-map.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/lawyered0/enterprise-legal-guardrails-public) <br>
+## Use Case:
 
+Developers and operators use this skill to preflight outbound posts, comments, messages, market commentary, and other publish actions before execution. It returns policy status and rewrite guidance for legal, defamation, privacy, HR, anti-spam, and financial-claim risk families.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text decisions, optional JSON, and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guardrail decisions include PASS, WATCH, REVIEW, and BLOCK; the outbound wrapper can run approved commands after checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The command-wrapper path can execute publishing commands after REVIEW decisions by default.
+
+Mitigation: Prefer direct checker use for sensitive drafts, enable --strict for wrapper runs, and route REVIEW outcomes to human or legal review before publishing.
+
+Risk: Wrapped command execution depends on operational scoping and can be under-controlled if broad command permissions are used.
+
+Mitigation: Use absolute-path allowlists, avoid --allow-any-command in production, require ticketed approval when bypassing allowlists, set timeouts, and enable audit logging for wrapped outbound commands.
+
+Risk: Sensitive draft text passed through process arguments may appear in local process metadata or logs.
+
+Mitigation: Avoid passing sensitive text through command-line arguments; prefer file or stdin inputs where appropriate and enable --sanitize-env with narrow keep rules for wrapped commands.
+
+## Reference(s):
+
+- [Guardrail Policy Map](references/guardrail-policy-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON guardrail reports with status, findings, suggestions, optional safe text, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Statuses are PASS, WATCH, REVIEW, and BLOCK; wrapper execution can emit stderr warnings, return process exit codes, and write JSONL audit records when configured.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

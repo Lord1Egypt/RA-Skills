@@ -1,45 +1,65 @@
-## Description: <br>
-Publishes and updates skills to GitHub and ClawHub with repository scaffolding, security audit, change detection, version bumping, and changelog generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes completed agent skills to GitHub, ClawHub, and SkillHub with pre-publish safety checks, version checks, repository packaging, and user confirmation before visible external publishing or local synchronization actions.
 
-## Publisher: <br>
-[edwardwason](https://clawhub.ai/user/edwardwason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardwason](https://clawhub.ai/user/edwardwason)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to prepare, validate, version, and publish agent skills to GitHub and ClawHub. It supports both first-time releases and iterative updates with security review and changelog generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe credential handling may expose or reuse sensitive GitHub credentials. <br>
-Mitigation: Remove hardcoded tokens and local paths before use, rotate any exposed token, and prefer gh CLI or a secure credential manager. <br>
-Risk: External publishing behavior may affect the wrong repository, account, visibility setting, file set, or ClawHub slug if inputs are not confirmed. <br>
-Mitigation: Confirm the target repository, account, visibility, files to upload, and ClawHub slug before running any publish or update workflow. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to prepare and publish completed agent skills across GitHub, ClawHub, and SkillHub while checking version conflicts, packaging rules, and pre-publish security requirements.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/edwardwason/skill-publisher-ai) <br>
-- [Repo Structure Reference](references/repo-structure.md) <br>
-- [Security Audit Reference](references/security-audit.md) <br>
-- [Publish Procedures Reference](references/publish-procedures.md) <br>
-- [Change Detection Reference](references/change-detection.md) <br>
-- [Changelog Generation Reference](references/changelog-generation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline command examples and generated repository files or configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation for target repository, account, visibility, ClawHub slug, and version changes before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata and SKILL.md frontmatter, released 2026-06-11) <br>
+Risk: Publishing tokens and platform write access can mutate repositories and marketplace releases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable granting those credentials, and run authentication on a trusted single-user machine.
+
+Risk: Local synchronization can overwrite installed skill files.
+
+Mitigation: Disable or tightly review the local sync step, and use dry-run review before allowing synchronization.
+
+Risk: All-skills synchronization and installer or authentication steps increase operational impact.
+
+Mitigation: Avoid all-skills sync mode and install required CLIs through verified manual paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardwason/skills/skill-publisher-ai)
+- [Project homepage](https://github.com/EdwardWason/skill-publisher)
+- [Publishing Guide](references/publishing-guide.md)
+- [Publish Procedures](references/publish-procedures.md)
+- [Security Audit Reference](references/security-audit.md)
+- [SkillHub Publishing](references/skillhub-publishing.md)
+- [Change Detection and Version Bump](references/change-detection.md)
+- [Changelog Generation](references/changelog-generation.md)
+- [Repo Structure](references/repo-structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown reports with tables, command snippets, and generated repository files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before publishing or local synchronization; uses publishing credentials from declared environment variables.]
+
+## Skill Version(s):
+
+5.22.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

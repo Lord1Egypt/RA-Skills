@@ -1,46 +1,63 @@
-## Description: <br>
-Local calorie logging and visual reporting (auto-refreshes and returns report image after each log). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local calorie logging and visual reporting (auto-refreshes and returns report image after each log)
 
-## Publisher: <br>
-[VintLin](https://clawhub.ai/user/VintLin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vintlin](https://clawhub.ai/user/vintlin)
 
-## Use Case: <br>
-External users and agent developers use this skill to log meals, estimate calorie and protein intake, and generate refreshed visual nutrition reports from local records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Meal history and optional photo paths are stored in a local SQLite database. <br>
-Mitigation: Install only in workspaces where local health and food logs are acceptable, and limit access to the generated database and report files. <br>
-Risk: Food search terms may be sent to USDA when the optional online fallback is enabled. <br>
-Mitigation: Use --offline or leave USDA_API_KEY unset when food search terms should remain local. <br>
-Risk: Profile-derived calorie targets can use personal health fields from USER.md. <br>
-Mitigation: Set config.daily_goal manually or set config.user_refused_profile True when profile-based target calculation is not desired. <br>
-Risk: Report rendering depends on Python packages and a local Chromium or Chrome runtime. <br>
-Mitigation: Keep the Python dependencies and browser runtime patched before deployment. <br>
+## Use Case:
 
+External users and developers use Calorie Visualizer to log meals locally, look up nutrition values from a local food database with optional USDA fallback, and generate a daily report image for calorie and protein tracking.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/VintLin/calorie-visualizer) <br>
-- [README](README.md) <br>
-- [Quick Start](QUICK_START.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [CLI text, summaries, and REPORT_IMAGE paths to generated PNG reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates a local SQLite database and daily report image.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: CHANGELOG, package.json, and server release metadata) <br>
+Risk: The skill reads body metrics from a workspace USER.md profile by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set an explicit daily_goal or configure user_refused_profile=True when profile-based goal calculation is not desired.
+
+Risk: Food search terms can be sent to the USDA API when USDA_API_KEY is configured.
+
+Mitigation: Use --offline for local-only lookup or leave USDA_API_KEY unset when external lookup is not acceptable.
+
+Risk: Diet data is stored locally in calorie_data.db.
+
+Mitigation: Run the skill in a trusted workspace and control access to the generated database and report image files.
+
+Risk: HTML rendering has weak controls for untrusted meal names until escaping is fixed.
+
+Mitigation: Avoid untrusted meal names and review logged input before rendering reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vintlin/skills/calorie-visualizer)
+- [README](README.md)
+- [Quick Start](QUICK_START.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration]
+
+**Output Format:** [Plain text CLI output with summaries, REPORT_IMAGE paths, generated PNG report images, and local SQLite records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local calorie_data.db storage and may cache USDA lookup results when online fallback is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: CHANGELOG, package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

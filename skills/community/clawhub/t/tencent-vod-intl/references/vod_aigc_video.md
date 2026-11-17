@@ -6,7 +6,7 @@
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| `--model` | enum | ✅ | Model name (GV/Hailuo/Kling/Jimeng/Vidu/Hunyuan/Mingmou/OS/Seedance/PixVerse) |
+| `--model` | enum | ✅ | Model name (GV/Hailuo/Kling/Jimeng/Vidu/Hunyuan/Mingmou/OS/Seedance/PixVerse/H2) |
 | `--model-version` | string | - | Model version (uses default version if not specified) |
 | `--prompt` | string | ❌* | Prompt for video generation (required when no reference file is provided) |
 | `--negative-prompt` | string | ❌ | Prompt to prevent the model from generating certain content (negative prompt) |
@@ -19,8 +19,8 @@
 | `--file-id` | string | ❌ | Media file ID of the reference file (single value; use `--file-infos` for multiple reference images) |
 | `--file-url` | string | ❌ | URL of the reference file (single value; use `--file-infos` for multiple reference images) |
 | `--file-infos` | JSON | ❌ | JSON array of multiple reference images, format: `[{"Type":"Url","Url":"...","Category":"Image","Usage":"Reference","Text":"pic1","ReferenceType":"subject","ObjectId":"..."}]`; supports all SDK fields: `Type`/`FileId`/`Url`/`Base64`/`Category`/`Usage`/`Text`/`ReferenceType`/`ObjectId`/`VoiceId`/`KeepOriginalSound` |
-| `--file-category` | enum | ❌ | Category of the single reference file: `Image` / `Video`; used by Kling motion_control / avatar_i2v scenes to distinguish image vs video |
-| `--file-usage` | enum | ❌ | Usage of the single reference file: `FirstFrame` / `Reference`; used by PixVerse, Vidu, Kling multi-mode disambiguation |
+| `--file-category` | enum | ❌ | Category of the single reference file: `Image` / `Video` / `Audio`; used by Kling motion_control / avatar_i2v scenes to distinguish image vs video; `Audio` is for Hailuo H3 multimodal reference generation |
+| `--file-usage` | enum | ❌ | Usage of the single reference file: `FirstFrame` / `LastFrame` / `Reference`; used by PixVerse, Vidu, Kling multi-mode disambiguation; Hailuo H3 reference video/audio uses `Reference` |
 | `--file-text` | string | ❌ | Name/description of the single reference file (PixVerse multi-image subject reference only; e.g. Text=`pic1` so that Prompt can use `@pic1 walking`) |
 | `--reference-type` | enum | ❌ | Reference type of the single file: `subject` / `background` / `mask`; PixVerse video edit uses subject/background; GV/Kling also applicable |
 
@@ -86,13 +86,105 @@
 
 | Parameter | Supported Values |
 |------|--------|
-| Version | 02, 2.3, 2.3-fast |
-| Duration | **02: 6/8/10/12/15/20s (interface tested: 02 accepts up to 20s+); 2.3 / 2.3-fast: 6s, 10s (default: 6s)** |
-| Resolution | 768P, 1080P (default: 768P) |
-| Aspect Ratio | Not supported |
-| First/Last Frame Generation | Not supported |
-| Audio Generation | Not supported |
-| Notes | 02 is the latest version with extended duration vs 2.3 series; interface confirmed 02 accepts 20s+ |
+| Version | 02, 2.3, 2.3-fast, **H3** |
+| Duration | **02: 6/8/10/12/15/20s (interface tested: 02 accepts up to 20s+); 2.3 / 2.3-fast: 6s, 10s (default: 6s); H3: `--output-duration 15` verified (output 15.084s)** |
+| Resolution | 768P, 1080P (default: 768P); **H3 verified to output 2560x1440** |
+| Aspect Ratio | Not supported on 02 / 2.3 / 2.3-fast; **supported on H3 (verified: `--output-aspect-ratio 16:9` takes effect, output 2560x1440)** |
+| First/Last Frame Generation | Not supported on 02 / 2.3 / 2.3-fast; **supported on H3 (first ≤ 1, last ≤ 1)** |
+| Audio Generation | Not supported on 02 / 2.3 / 2.3-fast; **H3 generates audio natively (verified: output carries AAC 32 kHz stereo, no need to set `--output-audio-generation`)** |
+| Notes | 02 has extended duration vs the 2.3 series (tested 20s+); **H3 (released 2026-07-31) is the natively multimodal version — see below** |
+
+##### Hailuo H3 (MiniMax H3, released 2026-07-31)
+
+Native multimodal understanding and generation: accepts text, image, audio and video input/output for end-to-end content creation; supports fine-grained edits such as replacement and reference; covers commercial scenarios including film, advertising, gaming, branding and e-commerce.
+
+**Two mutually exclusive input modes** (cannot be combined):
+
+| Mode | Meaning | Usage values |
+|------|---------|--------------|
+| i2va | Image-to-video (first / last frame) | `FirstFrame` / `LastFrame` |
+| r2va | Multimodal reference generation (reference video / audio) | `Reference` |
+
+**Image input** (first frame / last frame / reference image)
+
+| Item | Limit |
+|------|-------|
+| Formats | JPG, JPEG, PNG, WEBP, HEIC, HEIF |
+| Size per file | ≤ 30 MB |
+| Width/height range | [256, 5760] px |
+| Aspect ratio (w/h) | [0.4, 2.5] |
+| Count | first ≤ 1, last ≤ 1, reference ≤ 9 |
+
+**Video input** (r2va reference generation)
+
+| Item | Limit |
+|------|-------|
+| Container/format | MP4 (.mp4), MOV (.mov) |
+| Codecs | Video H.264/AVC, H.265/HEVC; audio AAC, MP3 |
+| Size per file | ≤ 50 MB |
+| Count | ≤ 3 |
+| Clip duration | [2, 15] s; total ≤ 15 s |
+| Width/height range | [256, 5760] px |
+| Aspect ratio (w/h) | [0.4, 2.5] |
+| Frame rate | [23.976, 60] |
+
+**Audio input** (r2va reference generation)
+
+| Item | Limit |
+|------|-------|
+| Formats | WAV, MP3 |
+| Size per file | ≤ 15 MB |
+| Count | ≤ 3 |
+| Clip duration | [2, 15] s; total ≤ 15 s |
+
+> The script validates count limits and the i2va/r2va exclusivity before submission,
+> failing fast with an explanatory message. Formats, file sizes, dimensions,
+> durations and frame rates are validated server-side.
+
+**Verified output specs** (2026-08-02, text-only with `--output-aspect-ratio 16:9 --output-duration 15`)
+
+| Item | Measured |
+|------|----------|
+| Duration | 15.084 s |
+| Resolution | 2560x1440 (16:9) |
+| Video codec | H.264, 24 fps, 362 frames |
+| Audio | AAC 32 kHz stereo (**generated natively, not explicitly enabled**) |
+| Bitrate / size | 5.1 Mbps / 9.6 MB |
+| Task time | about 8 min 21 s |
+
+> ⚠️ The "Aspect Ratio / Audio Generation not supported" rows in the Hailuo family table above
+> describe 02 / 2.3 / 2.3-fast and **do not apply to H3**. H3 accepts `--output-aspect-ratio`
+> and emits an audio track natively.
+
+**Examples**
+
+```bash
+# Text-to-video only
+python3 scripts/vod_aigc_video.py create \
+    --model Hailuo --model-version H3 \
+    --prompt "A girl holding a kite runs toward the camera on a playground, orbiting camera move from front to behind. Cinematic quality"
+
+# i2va: first frame + last frame
+python3 scripts/vod_aigc_video.py create \
+    --model Hailuo --model-version H3 \
+    --prompt "Slow dolly-in" \
+    --file-url "https://example.com/first.jpg" \
+    --file-category Image --file-usage FirstFrame \
+    --last-frame-url "https://example.com/last.jpg"
+
+# r2va: multiple reference videos (exclusive with first/last frame)
+python3 scripts/vod_aigc_video.py create \
+    --model Hailuo --model-version H3 \
+    --prompt "Continue the camera style of the reference videos" \
+    --file-infos '[{"Type":"Url","Url":"https://example.com/a.mp4","Category":"Video","Usage":"Reference"},{"Type":"Url","Url":"https://example.com/b.mp4","Category":"Video","Usage":"Reference"}]'
+
+# r2va: reference audio
+python3 scripts/vod_aigc_video.py create \
+    --model Hailuo --model-version H3 \
+    --prompt "Match the visual rhythm to the reference audio" \
+    --file-url "https://example.com/ref.mp3" \
+    --file-category Audio --file-usage Reference
+```
 
 #### Kling
 
@@ -156,14 +248,47 @@
 
 | Parameter | Supported Values |
 |------|--------|
-| Version | 3.1, 3.1-fast, 3.1-lite |
-| Duration | Fixed 8 seconds |
-| Resolution | 720P, 1080P (default: 720P) |
+| Version | 3.1, 3.1-fast, 3.1-lite, **omni** |
+| Duration | 3.1 series: fixed 8 seconds; **omni: 3–10 seconds** |
+| Resolution | 720P, 1080P (default: 720P); **omni additionally supports 2K/4K (both super-resolution output)** |
 | Aspect Ratio | 16:9, 9:16 (default: 16:9) |
-| Multi-image Reference | Up to 3 images |
-| First/Last Frame Generation | Supported |
-| Audio Generation | Native audio-visual sync; supports both audio and silent modes |
-| Notes | Faces are not blocked; when using multi-image input, LastFrameFileId/LastFrameUrl cannot be used simultaneously |
+| Multi-image Reference | 3.1 series: up to 3 images; **omni: up to 7 images without a video reference, up to 5 images when paired with a video reference, total quota 7** |
+| First/Last Frame Generation | 3.1 series: supported; **omni: not supported (use `<FIRST_FRAME>`/`<IMAGE_REF_N>` markup syntax instead)** |
+| Audio Generation | Native audio-visual sync; supports both audio and silent modes; **omni generates natively via AI, external audio upload not supported** |
+| Notes | Faces are not blocked; when using multi-image input (`--file-infos`), LastFrameFileId/LastFrameUrl cannot be used simultaneously (the script now enforces this validation and rejects the request if violated) |
+
+##### GV omni (Google Veo Omni, released 2026-07-09)
+
+Official docs: https://ai.google.dev/gemini-api/docs/omni?hl=zh-cn
+
+**Key features**:
+- Generation modes: text-to-video, image-reference-to-video, video-reference-to-video
+- Supports **stateful video editing** (iterative editing): continue modifying the previous generation result without re-uploading the video
+- Reference assets: up to 7 images without a video reference; up to 5 images when paired with a video reference; accepts video references up to 3 seconds
+- Prompt limit 20,000 characters; supports `<FIRST_FRAME>` (first-frame markup) and `<IMAGE_REF_N>` (reference-image markup, 0-indexed) syntax
+- Billing: in addition to per-second output billing, input images/audio/text are converted to input tokens, and chain-of-thought tokens are billed as output tokens
+
+**Stateful video editing usage**: pass `PreviousTaskId` (the TaskId of the previous video generation task, only tasks within the last 24 hours are supported) via `--ext-info` to continue editing from the last result:
+
+```bash
+# First generation
+python3 scripts/vod_aigc_video.py create \
+    --model GV --model-version omni \
+    --file-url "https://example.com/f0.jpg" \
+    --prompt "Two man are studying" \
+    --enhance-prompt Enabled \
+    --sub-app-id 1308104797
+
+# Continue editing based on the previous task result (assume previous TaskId is xxx-AigcVideoTask-yyy)
+python3 scripts/vod_aigc_video.py create \
+    --model GV --model-version omni \
+    --prompt "Make the background invisible" \
+    --enhance-prompt Enabled \
+    --ext-info '{"AdditionalParameters":"{\"PreviousTaskId\":\"xxx-AigcVideoTask-yyy\"}"}' \
+    --sub-app-id 1308104797
+```
+
+> ⚠️ For the stateful editing flow, the second call does **not** need `--file-url`/`--file-id` again — context is linked purely via `ExtInfo.PreviousTaskId`.
 
 #### OS
 
@@ -179,7 +304,7 @@
 
 | Parameter | Supported Values |
 |------|--------|
-| Version | 1.0-pro, 1.0-lite-i2v, 1.0-pro-fast, 1.5-pro |
+| Version | 1.0-pro-fast, 1.5-pro (default 1.5-pro) |
 | Audio Generation | 1.5-pro supports both audio and silent modes (`OutputConfig.AudioGeneration: Enabled/Disabled`) |
 | Resolution | 1.5-pro does NOT support 1080P |
 | Notes | **Interface name is `Seedance`** (earlier docs incorrectly used `SV`; interface tested: passing `SV` returns `ModelName SV is invalid`); Seedance is the ByteDance Doubao video series |
@@ -197,6 +322,43 @@
 | Multi-subject (@name reference) | c1/v6 multi-image mode requires `Category=Image` + `Usage=Reference`; use `--file-text` or file-infos `Text` to name images (e.g. `pic1`), then reference as `@pic1` in Prompt |
 | Video Edit | v5.6/v6/c1 support video edit: reference video uses `--file-category Video` + `--reference-type subject` (replace subject) or `background` (replace background) |
 | Notes | c1 is the latest character-consistency version; v6 is the general flagship; v5.6 is the previous stable version; SceneType (motion_control/avatar_i2v/lip_sync) is Kling-only and NOT supported by PixVerse |
+
+#### H2 (Kuaile Ma / MiniMax H2 series)
+
+| Parameter | Supported Values |
+|------|--------|
+| Version | 1.0 (released 2026-04-30), **1.1** (added 2026-06-24, default) |
+| Generation Mode | Text-to-video, first-frame-to-video (1.0: first-frame only), reference-to-video (1-9 images) |
+| Resolution | 720P, 1080P, 2K, 4K |
+| Aspect Ratio | 1.0: 16:9, 9:16, 1:1, 3:4, 4:3; **1.1 adds**: 4:5, 5:4, 9:21, 21:9 (default 16:9) |
+| Duration | 3-15 seconds (default 5 seconds) |
+| Audio Generation | Supported |
+| Notes | Image-to-video only supports first-frame (no first/last-frame or last-frame-only input); 1.1 adds 4 aspect ratio options compared to 1.0, all other parameters are identical |
+
+**Usage examples**:
+
+```bash
+# Text-to-video
+python3 scripts/vod_aigc_video.py create \
+    --model H2 --model-version 1.1 \
+    --prompt "A happy little horse running on the grassland, cinematic quality" \
+    --output-resolution 1080P --output-aspect-ratio 16:9 --output-duration 5 \
+    --sub-app-id 1308104797
+
+# First-frame image-to-video
+python3 scripts/vod_aigc_video.py create \
+    --model H2 --model-version 1.1 \
+    --file-url "https://example.com/first.jpg" \
+    --prompt "Make the horse in the image run" \
+    --sub-app-id 1308104797
+
+# Reference-to-video (1-9 reference images)
+python3 scripts/vod_aigc_video.py create \
+    --model H2 --model-version 1.1 \
+    --file-infos '[{"Type":"Url","Url":"https://example.com/ref1.jpg","Category":"Image","Usage":"Reference"},{"Type":"Url","Url":"https://example.com/ref2.jpg","Category":"Image","Usage":"Reference"}]' \
+    --prompt "Blend elements from the reference images" \
+    --sub-app-id 1308104797
+```
 
 ### Task Status Reference
 
@@ -530,12 +692,13 @@ python3 scripts/vod_aigc_video.py create \
 |---|---|
 | Kling | **720P, 1080P, 4K** (default: 720P; interface tested: all versions accept 4K) |
 | Jimeng | **ExtInfo `width`/`height` only** (does not support OutputConfig.Resolution) |
-| Hailuo | 768P, 1080P (default: 768P) |
+| Hailuo | 768P, 1080P (default: 768P); H3 verified to output 2560x1440 |
 | Vidu | 720P, 1080P (default: 720P) |
-| GV | 720P, 1080P (default: 720P) |
+| GV | 3.1 series: 720P, 1080P (default: 720P); **omni: 720P, 1080P, 2K, 4K** (2K/4K are super-resolution output) |
+| H2 | **720P, 1080P, 2K, 4K** (1.0/1.1 identical) |
 | OS | 720P standard; also supports ExtInfo `width`/`height` |
 | PixVerse | **360P, 540P, 720P, 1080P, 4K** (interface tested: all versions accept 4K) |
-| Seedance | 1.0-pro/1.0-pro-fast multiple tiers; 1.5-pro does NOT support 1080P |
+| Seedance | 1.0-pro-fast multiple tiers; 1.5-pro does NOT support 1080P |
 | Mingmou | **ExtInfo `width`/`height` only** |
 | Hunyuan 1.5 | **ExtInfo `size` only** |
 | Hunyuan 3d_2.0 + 3d_scene | 1080P (recommended) |

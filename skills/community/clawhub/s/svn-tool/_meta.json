@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn794r6kts2m2z7pc858rn27zn84sah6",
-  "slug": "svn-tool",
+  "name": "svn-tool",
   "version": "1.0.0",
-  "publishedAt": 1776082683090
+  "source": "local",
+  "installedAt": 1744568040000,
+  "description": "Subversion (SVN) 代码版本控制工具"
 }

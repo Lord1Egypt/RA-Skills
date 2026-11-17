@@ -1,44 +1,63 @@
-## Description: <br>
-A-Stock Reporter provides real-time China A-share quotes, market briefs, historical daily reports, and optional cron-triggered trading-session updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-Stock Reporter helps agents query A-share stock quotes, generate market briefs, retrieve historical daily reports, and prepare scheduled trading-session updates.
 
-## Publisher: <br>
-[laojun509](https://clawhub.ai/user/laojun509) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[laojun509](https://clawhub.ai/user/laojun509)
 
-## Use Case: <br>
-External users and developers use this skill to query China A-share securities, generate market summaries, review saved historical reports, and configure scheduled trading-session updates. Outputs are informational market data and should not be treated as investment advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scheduled cron execution can continue producing recurring reports after initial setup. <br>
-Mitigation: Enable cron only when recurring reports are needed and remove the cron entry when scheduled reporting should stop. <br>
-Risk: Market reports may be mistaken for investment advice. <br>
-Mitigation: Treat outputs as informational market data and verify decisions with independent financial review. <br>
-Risk: A-share routing may be affected by an out-of-scope ticker in the bundled sector list. <br>
-Mitigation: Review the bundled sector data and confirm ticker scope before relying on generated reports. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Strategy rules](references/rules.md) <br>
-- [Sector taxonomy](references/sectors.json) <br>
-- [Watchlists](references/watchlist.json) <br>
-- [ClawHub release page](https://clawhub.ai/laojun509/a-stock-reporter) <br>
+## Use Case:
 
+External users and agents use this skill to produce Chinese A-share market snapshots, individual stock reports, historical daily summaries, and scheduled trading updates for review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown-style market reports with shell command and cron examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save daily report files under assets/reports and can be scheduled with cron for recurring updates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated market stance can be mistaken for financial advice.
+
+Mitigation: Treat reports as informational market summaries and confirm decisions with qualified financial review.
+
+Risk: Third-party public market data can be delayed, unavailable, or inaccurate.
+
+Mitigation: Confirm time-sensitive prices and index data against an authoritative market data source before acting.
+
+Risk: Cron entries create scheduled network activity and recurring reports.
+
+Mitigation: Add cron entries only intentionally, and review the schedule, environment paths, and report destination before enabling them.
+
+Risk: Dependency versions are not pinned in the artifact documentation.
+
+Mitigation: Install in a virtual environment and pin reviewed dependency versions before routine use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laojun509/skills/a-stock-reporter)
+- [Strategy Rules](references/rules.md)
+- [Sector Definitions](references/sectors.json)
+- [Watchlists](references/watchlist.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese plain-text market reports with optional shell command snippets and cron entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on third-party public market data sources; historical reports may be read from saved files or fetched online.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

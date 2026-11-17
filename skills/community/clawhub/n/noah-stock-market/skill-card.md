@@ -1,49 +1,64 @@
-## Description: <br>
-Provides read-only Hong Kong and U.S. stock market data queries and structured market summaries for quotes, market snapshots, intraday and K-line data, market depth, trades, broker queues, market status, capital flow, fundamentals, options, and related lookup scenarios; it does not place orders or provide investment advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides read-only Hong Kong and U.S. stock market data queries and structured market summaries, including quotes, snapshots, intraday and K-line data, market status, capital flow, fundamentals, rankings, IPO data, financial data, shareholder activity, and supported wealth or asset lookups.
 
-## Publisher: <br>
-[xuyun9160-lgtm](https://clawhub.ai/user/xuyun9160-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuyun9160-lgtm](https://clawhub.ai/user/xuyun9160-lgtm)
 
-## Use Case: <br>
-External users and agents use this skill to answer Hong Kong and U.S. equity market-data questions with concise, structured summaries. It is suited for read-only quote, chart, market status, capital-flow, financial-data, and shareholder-information lookups when the user has configured the required market-data token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials and can access private wealth, balance, total-asset, fixed-income, and private-asset data. <br>
-Mitigation: Install only when private securities-account data access is intended, use a least-privilege market-data token, and avoid trading-capable or broadly privileged tokens. <br>
-Risk: Market-data results may be unavailable, permission-limited, stale, or unsupported for some symbols, markets, and endpoints. <br>
-Mitigation: Check the response status and data timestamp, explain 401/403/404 or empty-data cases directly, and do not fabricate missing market data. <br>
-Risk: Structured market summaries could be mistaken for trading recommendations. <br>
-Mitigation: Keep responses objective, avoid buy or sell advice, and present market observations as data summaries rather than investment guidance. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve and summarize read-only Hong Kong and U.S. market data through the configured Noah securities API token. It is intended for factual market and supported wealth or asset lookups, not order placement, trading execution, account changes, or investment advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xuyun9160-lgtm/noah-stock-market) <br>
-- [Usage Guide](references/usage-guide.md) <br>
-- [Current Availability](references/current-availability.md) <br>
-- [Authentication and Preflight](references/auth-and-preflight.md) <br>
-- [Routing Specification](references/routing-spec.md) <br>
-- [Known Limitations](references/known-limitations.md) <br>
-- [Output Policy](references/output-policy.md) <br>
-- [OpenAPI Protocol Reference](references/openapi.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with occasional inline shell commands or configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default responses summarize market data, translate enum values into readable labels, include data time or status when available, and avoid raw JSON unless details are explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.10 (source: ClawHub release metadata) <br>
+Risk: The skill can access private wealth or asset data through the configured Noah API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for users who need those lookups and configure a dedicated, least-privileged read-only token.
+
+Risk: A broad token or changed base URL could expose data beyond normal market-data use.
+
+Mitigation: Keep the base URL fixed to the documented production host and avoid credentials that permit trading or broader account actions.
+
+Risk: Some routes are only partially verified or unavailable in the current environment.
+
+Mitigation: Do not overstate unverified capabilities; report API failures or unsupported symbols directly instead of fabricating market data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xuyun9160-lgtm/skills/noah-stock-market)
+- [References Index](references/README.md)
+- [Usage Guide](references/usage-guide.md)
+- [Authentication and Preflight](references/auth-and-preflight.md)
+- [Current Availability](references/current-availability.md)
+- [Known Limitations](references/known-limitations.md)
+- [Output Policy](references/output-policy.md)
+- [API Mapping](references/api-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with optional inline shell commands and concise status or error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to summary-first responses; detail mode is limited to recent records and raw JSON is avoided unless explicitly requested.]
+
+## Skill Version(s):
+
+1.2.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

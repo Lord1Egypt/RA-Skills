@@ -1,43 +1,57 @@
-## Description: <br>
-Remember-this trigger: memory updates + recall for preferences, goals, boundaries, prior work, decisions, dates, and todos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remember-this trigger: memory updates + recall for preferences, goals, boundaries, prior work, decisions, dates, and todos. Use whenever user asks to remember, continue previous context, personalize behavior, or retrieve what was decided earlier.
 
-## Publisher: <br>
-[AchalS-iglu](https://clawhub.ai/user/AchalS-iglu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[achals-iglu](https://clawhub.ai/user/achals-iglu)
 
-## Use Case: <br>
-External users and agents use this skill to maintain structured local memory about preferences, goals, boundaries, prior work, decisions, dates, and todos so future responses can be personalized and prior context can be recalled. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local memory files may retain private, stale, or inaccurate user context. <br>
-Mitigation: Review MEMORY.md and dated memory notes periodically, correct or delete stale entries, and honor user requests to forget information immediately. <br>
-Risk: Sensitive personal details could be saved if the user explicitly asks for them to be remembered. <br>
-Mitigation: Avoid storing sensitive details unless the user clearly requests retention, and prefer concise behavioral context over raw conversation logs. <br>
-Risk: Inferred hypotheses about the user may be mistaken. <br>
-Mitigation: Tag inferred memories as hypotheses with confidence, validate them through lightweight check-ins, and discard or demote unvalidated assumptions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Templates](references/templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AchalS-iglu/remember-me) <br>
-- [Publisher Profile](https://clawhub.ai/user/AchalS-iglu) <br>
+## Use Case:
 
+External users and agent developers use this skill to maintain structured memory about preferences, goals, boundaries, decisions, dates, todos, and prior work so future responses can be personalized and better grounded in remembered context.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown memory entries and guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes or updates local MEMORY.md and dated memory notes when the agent follows the skill workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create durable memory records about user preferences, boundaries, projects, and inferred behavior.
+
+Mitigation: Require explicit approval before every memory write or promotion, and review memory/YYYY-MM-DD.md and MEMORY.md periodically.
+
+Risk: Inferred preferences or behavior could be stored with more certainty than warranted.
+
+Mitigation: Keep hypotheses explicitly tagged with confidence, validate them in later conversation, and discard or demote unvalidated assumptions.
+
+Risk: Operational instructions, authorization claims, secrets, or third-party content could be mistaken for user preferences.
+
+Mitigation: Do not store those categories as preferences, and keep sensitive personal details out of memory unless the user explicitly asks.
+
+## Reference(s):
+
+- [Templates](references/templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/achals-iglu/skills/remember-me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown memory notes and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose updates to daily memory files and long-term MEMORY.md entries.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

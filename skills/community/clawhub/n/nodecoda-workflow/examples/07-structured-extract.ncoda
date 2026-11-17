@@ -1,0 +1,43 @@
+@language nodecoda/1
+@mode workflow
+
+// 结构化抽取:extract<T> 从自由文本提取具名 record
+// 展示 extract<T>(model, text, opts)、.ok/.reason/.value、数组字段、条件分支
+// (条件比较左侧须为 1 级字段,2 级字段先绑定局部变量;见 gotchas G10)
+
+const MODEL = "openai_api_compatible/gpt-5.4";
+
+type TravelRequest = {
+    string city;
+    float days;
+    bool flexible;
+    string[] tags;
+}
+
+function main(string raw_text) -> string {
+    let extracted = extract<TravelRequest>(MODEL, raw_text, {
+        "instruction": "从用户描述中提取旅行需求",
+        "descriptions": {
+            "city": "目的地城市",
+            "days": "旅行天数",
+            "flexible": "日期是否灵活",
+            "tags": "旅行偏好"
+        },
+        "strategy": "prompt"
+    });
+
+    // 必须先检查 .ok,失败时 .reason 含错误说明
+    if (!extracted.ok) {
+        return `抽取失败:${extracted.reason}`;
+    }
+
+    // 2 级字段(extracted.value.days)不能直接比较,先绑定为局部变量
+    let trip_days = extracted.value.days;
+    if (trip_days > 5) {
+        if (extracted.value.flexible) {
+            return `长途旅行,目的地:${extracted.value.city},日期可灵活调整。`;
+        }
+        return `长途旅行,目的地:${extracted.value.city},日期固定。`;
+    }
+    return `短途旅行,目的地:${extracted.value.city}。`;
+}

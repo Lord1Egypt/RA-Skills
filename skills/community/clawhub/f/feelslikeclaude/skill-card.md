@@ -1,41 +1,53 @@
-## Description: <br>
-A local-only style overlay that helps OpenClaw feel more proactive, calm, competent, and execution-focused while preserving the base agent identity and avoiding network activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feelslikeclaude is a local-only OpenClaw behavior overlay that makes the agent more proactive, calm, concise, and execution-focused without changing identity files or using network activity.
 
-## Publisher: <br>
-[whooshinglander](https://clawhub.ai/user/whooshinglander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whooshinglander](https://clawhub.ai/user/whooshinglander)
 
-## Use Case: <br>
-Developers and agent users use this skill to make OpenClaw interactions more proactive, concise, calm, and execution-focused without changing the base agent identity or runtime settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence notes limited independent inspection of the matching skill artifact. <br>
-Mitigation: Review the published SKILL.md and any included scripts before installing or granting credentials, network access, or permission to modify local or external data. <br>
-Risk: The skill changes agent behavior and could produce overconfident action-first responses if used without the user's existing safety constraints. <br>
-Mitigation: Keep existing user, system, and safety rules in force, and retain confirmation for destructive, public, external, credentialed, or otherwise high-impact actions. <br>
+## Use Case:
 
+External users and developers use this skill to make OpenClaw responses more direct, action-first, and follow-through oriented while preserving existing safety constraints and identity boundaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whooshinglander/feelslikeclaude) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/whooshinglander) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance for agent behavior and communication style] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-only behavior overlay; does not install code, call external APIs, or change identity files by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill may make the agent more action-oriented and less likely to ask for confirmation on routine reversible work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep confirmations for destructive, public, external, credentialed, or otherwise high-impact actions, as required by the artifact guardrails.
+
+Risk: Users could misread the skill name as an identity change.
+
+Mitigation: The artifact explicitly says this is a style overlay and instructs the agent not to claim to be Claude or rewrite personality/config files unless asked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whooshinglander/skills/feelslikeclaude)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown behavior instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-only style overlay; no API calls, package installation, executable payloads, or automatic identity-file changes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

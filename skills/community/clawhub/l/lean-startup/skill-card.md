@@ -1,43 +1,52 @@
-## Description: <br>
-Guides founders and product teams through Lean Startup experiments that identify a load-bearing assumption, build the smallest MVP, measure actionable behavior, and decide whether to pivot or persevere. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides teams through Build–Measure–Learn experiments to test demand assumptions and decide whether to pivot or persevere.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External founders, product teams, and agents supporting them use this skill to test business-model assumptions before building. It helps them name the riskiest assumption, design a small MVP, pre-commit metrics, and decide pivot or persevere from real behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business-method guidance can be misapplied if cited claims or assumptions are treated as conclusive. <br>
-Mitigation: Verify important business claims and compare recommendations against real customer behavior before making product or funding decisions. <br>
-Risk: Users may provide sensitive customer, buyer, or company information while framing an experiment. <br>
-Mitigation: Share only information the user intends the agent to reason about, and remove unnecessary confidential details from prompts. <br>
+## Use Case:
 
+Founders, product teams, and developers use the skill to identify a startup's riskiest demand assumption, design a small experiment, measure customer behavior, and make a pivot-or-persevere decision.
 
-## Reference(s): <br>
-- [Sources - lean-startup](references/sources.md) <br>
-- [Dropbox's Video MVP (2007)](examples/dropboxs-video-mvp-2007.md) <br>
-- [Why the Lean Start-Up Changes Everything](https://hbr.org/2013/05/why-the-lean-start-up-changes-everything) <br>
-- [Dropbox demo video](https://www.youtube.com/watch?v=7QmCUDHpNzE) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching response and experiment card] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause at explicit wait points in coach mode; produces guidance rather than executable code or shell commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Experiments may involve customer-facing tests, spending, or confidential customer details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Separately authorize customer-facing tests or spending, and keep confidential customer details out of reusable observations.
+
+## Reference(s):
+
+- [Lean Startup primary sources](artifact/references/sources.md)
+- [Why the Lean Start-Up Changes Everything](https://hbr.org/2013/05/why-the-lean-start-up-changes-everything)
+- [Dropbox 2007 demo video](https://www.youtube.com/watch?v=7QmCUDHpNzE)
+- [Introducing ChatGPT](https://openai.com/index/chatgpt/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown, including a structured experiment card]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts between step-by-step coaching and direct experiment planning based on whether the user has a concrete hypothesis.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

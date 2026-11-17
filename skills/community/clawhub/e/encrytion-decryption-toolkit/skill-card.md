@@ -1,46 +1,55 @@
-## Description: <br>
-Encrytion Decryption Toolkit helps agents call AgentPMT-hosted cryptographic tools to generate random values, compute hashes and HMACs, create signatures, and perform AES-256-GCM encryption or decryption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AgentPMT-hosted remote cryptography actions for generating secure random values, hashing, HMACs, digital signatures, and AES-256-GCM encryption or decryption.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs remote cryptographic utility calls for token generation, checksums, HMAC validation, signatures, or AES-256-GCM encryption and decryption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote cryptographic operations may send raw keys, secrets, private keys, plaintext, or decrypted data to AgentPMT. <br>
-Mitigation: Use the skill only when AgentPMT is trusted for the exact material involved, and avoid production secrets or regulated data without explicit approval and a retention/logging policy. <br>
-Risk: AES-256-GCM encryption depends on correct key size and unique IV use. <br>
-Mitigation: Provide 32-byte keys, use 12-byte IVs, and never reuse the same IV with the same key. <br>
-Risk: Remote schema or examples may drift from the generated artifact. <br>
-Mitigation: Fetch live schema or instructions before production integrations when parameters, enum values, outputs, or examples are unclear. <br>
+## Use Case:
 
+Developers and agents use this skill to call AgentPMT-hosted cryptographic utilities for secure token generation, checksums, HMAC validation, signatures, and AES-256-GCM encryption workflows.
 
-## Reference(s): <br>
-- [Generated action schema](artifact/schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/encrytion-decryption-toolkit) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/encrytion-decryption-toolkit) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers six remote actions: generate, hash, hmac, sign, encrypt, and decrypt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Remote cryptography calls can expose plaintext, private keys, HMAC secrets, AES keys, credentials, or private file contents to AgentPMT.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when AgentPMT is explicitly trusted for the exact data being processed; avoid production secrets and prefer local cryptographic tools or KMS/HSM key references for sensitive work.
+
+Risk: Live remote instructions and setup commands can change after installation.
+
+Mitigation: Independently review live instructions before production use and pin or replace setup commands with reviewed, controlled installation steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/encrytion-decryption-toolkit)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/encrytion-decryption-toolkit)
+- [Generated action schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and schema references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote tool responses are JSON outputs from the selected AgentPMT action.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

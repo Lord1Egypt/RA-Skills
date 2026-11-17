@@ -1,42 +1,56 @@
-## Description: <br>
-Huo15 Plan Mode provides advisory scripts and guidance for classifying risky shell operations and generating confirmation prompts before potentially destructive commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huo15 Plan Mode helps an agent identify risky shell operations, pause before execution, request user confirmation, and record confirmation activity.
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to add a confirmation checkpoint around commands that may delete data, change system state, push Git history, install dependencies, or make network calls. It is intended to support human review before potentially destructive agent actions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The integration helper can execute arbitrary shell commands without protection when Plan Mode is disabled or when a command is classified as not dangerous.
+
+Mitigation: Do not source or use the integration wrapper until it fails closed by default, avoids eval-based execution, and requires confirmation for unknown or risky commands.
+
+Risk: Setup modifies persistent OpenClaw workspace files and writes command activity logs.
+
+Mitigation: Review the setup script before installation, confirm the intended HEARTBEAT.md changes, and monitor or rotate logs under ~/.openclaw/workspace/memory/activity.
+
+Risk: The security scan verdict is suspicious because the skill is protective in intent but has unsafe execution behavior.
+
+Mitigation: Review this skill carefully before installing and treat it as untrusted until the execution wrapper and confirmation behavior are hardened.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators can use this skill as an advisory Plan Mode helper to identify higher-risk commands, produce confirmation text, and document a confirmation workflow for OpenClaw workspaces. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the skill for a complete safety boundary for destructive commands. <br>
-Mitigation: Treat it as advisory only, and require platform- or agent-level confirmation controls before executing destructive commands in real workspaces. <br>
-Risk: The setup flow modifies workspace heartbeat content and creates activity log files. <br>
-Mitigation: Review the workspace file changes before installation and test the setup in a disposable workspace first. <br>
-Risk: The integration wrapper includes eval-based command execution paths. <br>
-Mitigation: Do not source the integration wrapper around untrusted command strings, and review commands explicitly before execution. <br>
+**Output Format:** [Markdown and shell-oriented command guidance with JSON configuration]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jobzhao15/huo15-plan-mode) <br>
+**Other Properties Related to Output:** [May write confirmation logs under ~/.openclaw/workspace/memory/activity and update ~/.openclaw/workspace/HEARTBEAT.md during setup.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory risk checks and confirmation prompt text; it does not fully implement reply handling or gated command execution by itself.] <br>
+1.1.0 (source: server release metadata and artifact version text)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

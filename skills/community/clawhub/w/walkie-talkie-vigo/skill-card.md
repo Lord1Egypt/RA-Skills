@@ -1,39 +1,52 @@
-## Description: <br>
-Handles voice-to-voice conversations on WhatsApp by transcribing incoming audio and responding with local TTS audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles voice-to-voice conversations on WhatsApp by transcribing incoming audio and responding with local TTS audio.
 
-## Publisher: <br>
-[rubenfb23](https://clawhub.ai/user/rubenfb23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rubenfb23](https://clawhub.ai/user/rubenfb23)
 
-## Use Case: <br>
-Users who prefer voice interactions use this skill to receive WhatsApp audio messages, process the transcribed prompt, and return both text and local TTS audio. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Voice messages may contain sensitive personal content that is transcribed and transformed into audio replies locally. <br>
-Mitigation: Use the skill only with audio the user is comfortable processing on the local machine. <br>
-Risk: Generated voice replies may not reflect the intended response before they are sent. <br>
-Mitigation: Review generated replies before sending when the client workflow supports review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rubenfb23/walkie-talkie-vigo) <br>
+## Use Case:
 
+External users and developers use this skill when they want WhatsApp voice-note conversations: the agent transcribes incoming audio, processes it as a prompt, and returns both text and voice output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, audio, shell commands, guidance] <br>
-**Output Format:** [Text responses with generated OGG voice-note files and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local ASR/TTS workflow; replies are expected to include both text and audio.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: WhatsApp voice notes may contain sensitive spoken content that is transcribed and processed by the agent.
+
+Mitigation: Use an explicit opt-in and disable flow for walkie-talkie mode, and make it clear when incoming audio will be transcribed.
+
+Risk: The manual TTS example writes synthesized audio to a fixed temporary path, which can overwrite or expose prior responses on shared systems.
+
+Mitigation: Generate a unique private temporary .ogg file for each response and delete it after the voice note is sent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rubenfb23/skills/walkie-talkie-vigo)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Markdown/plain text guidance with bash commands and OGG audio file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local .ogg voice-note files alongside text responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

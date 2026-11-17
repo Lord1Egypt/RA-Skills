@@ -1,0 +1,14 @@
+{
+  "investigators": [],
+  "pulp": false,
+  "rules": {
+    "criticalRange": [
+      1,
+      1
+    ],
+    "fumbleRange": null,
+    "tempInsanityThreshold": 5,
+    "indefiniteInsanitySingleLoss": 20,
+    "indefiniteInsanityDailyFraction": 0.2
+  }
+}

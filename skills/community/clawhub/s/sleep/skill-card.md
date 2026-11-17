@@ -1,43 +1,57 @@
-## Description: <br>
-Auto-learns your sleep patterns. Absorbs data from wearables, conversations, and observations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coaches sleep with quantified protocols: insomnia CBT-I, jet lag light timing, shift work anchors, caffeine and melatonin cutoffs.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users can use this skill to help an agent observe sleep-related signals, maintain a private sleep memory, and identify schedule, preference, and correlation patterns over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may persist sensitive sleep and wellness details from broad sources, including conversations and possible device or environmental data. <br>
-Mitigation: Set explicit allowed data sources, require confirmation before saving incidental or inferred observations, and review the stored sleep memory regularly. <br>
-Risk: The skill stores user-specific sleep data in ~/sleep/memory.md. <br>
-Mitigation: Ensure the user knows how to inspect and delete ~/sleep/memory.md, and avoid sharing that file with other people or systems. <br>
-Risk: Low-reliability inferred signals such as late messages or environmental cues can be mistaken for sleep facts. <br>
-Mitigation: Use inferred observations only as tentative signals and confirm repeated patterns before treating them as stable sleep data. <br>
+## Use Case:
 
+External users use this skill for practical sleep coaching across insomnia, circadian timing, jet lag, shift work, sleep environment, substances, trackers, parasomnias, and life-stage modifiers. The skill triages red flags before protocol advice and routes medical warning signs to clinicians.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/sleep) <br>
-- [Sleep Pattern Detection Criteria](patterns.md) <br>
-- [Sleep Data Sources](sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown notes and agent guidance for maintaining sleep memory] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update user-specific sleep memory at ~/sleep/memory.md when the hosting agent permits file writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can persist sensitive sleep, health-adjacent, substance, household, prescription-context, and travel-plan details under ~/Clawic/data/sleep/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review that storage behavior before installation, avoid recording unnecessary sensitive details, and protect or delete the local directory when the data is no longer needed.
+
+Risk: Sleep guidance can be inappropriate when symptoms indicate a medical condition such as apnea, severe sleepiness, narcolepsy, pregnancy-related breathing concerns, or depression-related insomnia.
+
+Mitigation: Use the skill's red-flag triage before protocol advice and route warning signs to a clinician rather than continuing self-coaching.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/sleep)
+- [Clawic Skill Page](https://clawic.com/skills/sleep)
+- [Sleep Skill Definition](artifact/SKILL.md)
+- [Setup](artifact/setup.md)
+- [Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance, protocol tables, and local memory/configuration file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose user-maintained local files under ~/Clawic/data/sleep/ for diary, memory, trip plans, and preferences.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-Gmail assistant pack for reading, searching, analyzing, organizing, responding to, scheduling, and reporting on Gmail messages via gog CLI or Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gmail email-management automation pack for reading and searching mail, organizing labels and messages, analyzing phishing, prompts, and tasks, drafting or sending replies, scheduling workflows, and reporting activity.
 
-## Publisher: <br>
-[Coorops25](https://clawhub.ai/user/Coorops25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[coorops25](https://clawhub.ai/user/coorops25)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect Gmail mailboxes, summarize or classify messages, organize labels and spam, draft or send replies, schedule email workflows, and produce reports. It is appropriate only when the user intends to grant broad Gmail management access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can request Gmail scopes beyond read-only, including modify and compose access. <br>
-Mitigation: Review and limit Google OAuth scopes before use, and install only when broad Gmail management access is intended. <br>
-Risk: Email organization workflows can move, trash, delete, or bulk-modify messages. <br>
-Mitigation: Confirm every destructive or bulk action, avoid irreversible delete unless explicitly required, and test on small message sets first. <br>
-Risk: Responder and scheduler workflows can draft, send, or automate email actions. <br>
-Mitigation: Require explicit user confirmation before sending messages and avoid --auto or cron cleanup until behavior has been reviewed. <br>
-Risk: Email contents may be sent to Anthropic-powered analysis or response generation and may be written to local logs or report files. <br>
-Mitigation: Use the AI analysis and response features only for appropriate mailbox data, and review local audit logs, reports, and prompt logs for sensitive content handling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Coorops25/gmailcleanerv2) <br>
-- [Publisher profile](https://clawhub.ai/user/Coorops25) <br>
-- [Google Gmail readonly scope](https://www.googleapis.com/auth/gmail.readonly) <br>
-- [Google Gmail modify scope](https://www.googleapis.com/auth/gmail.modify) <br>
-- [Google Gmail compose scope](https://www.googleapis.com/auth/gmail.compose) <br>
+## Use Case:
 
+External users and developers use this skill to inspect Gmail mailboxes, summarize and prioritize messages, manage labels and mailbox state, draft or send replies, schedule recurring checks, and produce reports.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON outputs from Gmail-related tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local audit logs, Markdown reports, Gmail drafts, labels, or scheduled actions depending on the selected workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The package is presented as an email reader but also includes mailbox-changing, sending, scheduling, and external AI-analysis behavior.
+
+Mitigation: Review requested actions before execution, prefer read-only OAuth credentials for reader and reporting use, and use separate accounts or tokens before enabling organizer, responder, or scheduler workflows.
+
+Risk: Gmail modify and compose scopes can alter mailbox state or send messages.
+
+Mitigation: Avoid permanent delete and auto modes unless backups exist and the exact query, message IDs, and intended action have been reviewed.
+
+Risk: Analyzer, responder, and summarizer behavior can send email content to Anthropic for analysis or drafting.
+
+Mitigation: Confirm that email content is appropriate for external AI processing and redact sensitive content when possible before using AI-backed analysis or drafting.
+
+Risk: Automated scheduler workflows can run recurring mailbox operations with reduced user review.
+
+Mitigation: Run scheduled workflows in confirmation mode first, keep conservative query limits, and enable automatic cleanup only after reviewing the affected mailbox scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coorops25/skills/gmailcleanerv2)
+- [ClawHub publisher profile](https://clawhub.ai/user/coorops25)
+- [Gmail read-only OAuth scope](https://www.googleapis.com/auth/gmail.readonly)
+- [Gmail modify OAuth scope](https://www.googleapis.com/auth/gmail.modify)
+- [Gmail compose OAuth scope](https://www.googleapis.com/auth/gmail.compose)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON outputs from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Gmail message summaries, analysis JSON, draft text, audit logs, reports, and mailbox action commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

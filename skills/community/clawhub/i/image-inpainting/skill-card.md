@@ -1,47 +1,66 @@
-## Description: <br>
-Mask-driven image inpainting on RunComfy via the runcomfy CLI for object removal, watermark removal, region replacement, blemish cleanup, and controlled local edits where a binary mask defines the target area. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mask-driven image inpainting on RunComfy via the runcomfy CLI, routing to Z-Image Turbo Inpainting for masked region edits and to instruction-driven image edit models when no mask is available.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers and agents use this skill to route still-image inpainting requests through RunComfy, choosing a mask-driven Z-Image endpoint when a mask is available and description-based edit models when the region must be specified in prose. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends images and masks to RunComfy for processing, which can expose private visual content to an external service. <br>
-Mitigation: Use only images and masks the user intends to process with RunComfy, avoid sensitive inputs where possible, and use a dedicated or revocable RunComfy token. <br>
-Risk: Broad object or watermark removal requests can modify content in unintended or inappropriate ways. <br>
-Mitigation: Confirm the user's intent and the masked region before execution, especially for object or watermark removal. <br>
-Risk: Using an untrusted CLI installation path or long-lived token increases account and environment exposure. <br>
-Mitigation: Install the RunComfy CLI only through the documented package manager flow and prefer scoped, revocable credentials. <br>
+## Use Case:
 
+Developers and image-production teams use this skill to guide an agent through local image edits such as object removal, region replacement, blemish cleanup, and masked fill workflows using RunComfy model endpoints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kalvinrv/image-inpainting) <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=image-inpainting) <br>
-- [Z-Image Turbo Inpainting](https://www.runcomfy.com/models/tongyi-mai/z-image/turbo/inpainting?utm_source=clawhub&utm_medium=skill&utm_campaign=image-inpainting) <br>
-- [Z-Image Turbo Inpainting LoRA](https://www.runcomfy.com/models/tongyi-mai/z-image/turbo/inpainting/lora?utm_source=clawhub&utm_medium=skill&utm_campaign=image-inpainting) <br>
-- [RunComfy image editing models collection](https://www.runcomfy.com/models/collections/best-image-editing-models?utm_source=clawhub&utm_medium=skill&utm_campaign=image-inpainting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the runcomfy CLI, a RunComfy account token, and user-provided image and mask URLs for mask-driven workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill supports watermark or attribution removal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for images the user has rights to edit, and avoid removing watermarks, attribution, or other ownership marks.
+
+Risk: The workflow depends on a third-party CLI with account access.
+
+Mitigation: Prefer a pinned, locally installed RunComfy CLI version and use a narrowly scoped token where possible.
+
+Risk: Uploaded images, masks, prompts, and generated outputs are handled by RunComfy.
+
+Mitigation: Do not send sensitive or unauthorized media, and treat all inputs and generated outputs as data shared with RunComfy.
+
+Risk: Mask-driven edits can modify the wrong area if the mask does not match the user's intent.
+
+Mitigation: Confirm that the mask corresponds to the current source image and the exact region the user asked to replace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/permew/skills/image-inpainting)
+- [RunComfy](https://www.runcomfy.com)
+- [RunComfy CLI Documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=image-inpainting)
+- [Z-Image Turbo Inpainting](https://www.runcomfy.com/models/tongyi-mai/z-image/turbo/inpainting?utm_source=clawhub&utm_medium=skill&utm_campaign=image-inpainting)
+- [Z-Image Turbo Inpainting LoRA](https://www.runcomfy.com/models/tongyi-mai/z-image/turbo/inpainting/lora?utm_source=clawhub&utm_medium=skill&utm_campaign=image-inpainting)
+- [Best Image Editing Models Collection](https://www.runcomfy.com/models/collections/best-image-editing-models?utm_source=clawhub&utm_medium=skill&utm_campaign=image-inpainting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON input snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the runcomfy CLI, RUNCOMFY_TOKEN, and RunComfy configuration; generated image files are written by the CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+{
+  "title": "{{TITLE}}",
+  "author": "{{AUTHOR}}",
+  "date": "{{DATE}}",
+  "source_draft": "{{SOURCE_DRAFT_PATH}}",
+  "channels": ["wechat", "linkedin", "html", "archive"],
+  "generated_at": "{{ISO_TIMESTAMP}}",
+  "status": "draft",
+  "notion_page_id": null,
+  "notes": ""
+}

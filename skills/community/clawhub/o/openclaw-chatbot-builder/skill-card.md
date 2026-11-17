@@ -1,40 +1,54 @@
-## Description: <br>
-Describes an OpenClaw-focused chatbot builder for WeChat, DingTalk, and Telegram, with automated generation, AI analysis, multi-format output, and batch processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds OpenClaw-oriented chatbot guidance for WeChat, DingTalk, and Telegram integrations with Chinese-language scenario support.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Business users, freelancers, developers, and operators can use this skill as guidance for evaluating or framing OpenClaw chatbot builder offerings across supported messaging platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This release is descriptive text only, so it does not itself implement the advertised chatbot builder capabilities. <br>
-Mitigation: Confirm the required implementation, integrations, and operational details before relying on it for production chatbot work. <br>
-Risk: Future versions that add messaging-platform integrations, API keys, chatbot credentials, bulk posting, or local/private data access could introduce security and privacy risk. <br>
-Mitigation: Review and rescan later versions before installation, and verify credential handling, platform permissions, and data access before use. <br>
+## Use Case:
 
+Developers, operators, and business users can use this skill to frame OpenClaw chatbot-building workflows for Chinese-language, multi-platform customer or operations scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/openclaw-chatbot-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Descriptive text only; this release does not include code, shell commands, install scripts, or credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The artifact provides pricing, efficiency, cost-savings, ROI, and supported-platform claims without implementation details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify commercial terms, supported platforms, and ROI assumptions before procurement or deployment.
+
+Risk: The package contains only a brief Chinese-language product description, so operational behavior and integration requirements are not fully specified.
+
+Mitigation: Review vendor documentation and test the skill in a controlled environment before relying on it for production chatbot workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-chatbot-builder)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, install steps, persistence, or sensitive data handling are described in the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

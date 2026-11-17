@@ -1,42 +1,54 @@
-## Description: <br>
-Search X/Twitter and the web in real-time using xAI's Grok API with agentic search tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X/Twitter and the web in real-time using xAI's Grok API with agentic search tools.
 
-## Publisher: <br>
-[aydencook03](https://clawhub.ai/user/aydencook03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aydencook03](https://clawhub.ai/user/aydencook03)
 
-## Use Case: <br>
-Developers and agents use this skill to run real-time web, X/Twitter, or combined searches through xAI's Grok API and return the resulting answer with available citations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to xAI/Grok and may include sensitive content if entered by the user. <br>
-Mitigation: Do not submit secrets, regulated data, or confidential internal information in search queries. <br>
-Risk: The helper requires an xAI API key in the execution environment. <br>
-Mitigation: Provide XAI_API_KEY only in trusted environments and avoid exposing it in command history, logs, or shared configuration. <br>
-Risk: The helper depends on the external xai-sdk package. <br>
-Mitigation: Use an isolated Python environment and pin the xai-sdk version when deploying the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [xAI API documentation](https://docs.x.ai/docs/) <br>
-- [ClawHub xAI Search release page](https://clawhub.ai/aydencook03/xai-search) <br>
+## Use Case:
 
+Developers and agent users use this skill to search the web and X/Twitter through xAI's Grok API for current information, sentiment, and research queries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and streamed plain-text search responses with optional source URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XAI_API_KEY and sends user search queries to xAI/Grok.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries are sent to xAI/Grok and may include sensitive user-provided content.
+
+Mitigation: Avoid confidential, regulated, or secret content in queries unless organizational policy allows use of xAI/Grok for that data.
+
+Risk: The helper script depends on an XAI_API_KEY environment variable and the xai-sdk package.
+
+Mitigation: Use a virtual environment and install a pinned, reviewed xai-sdk version; manage XAI_API_KEY as a secret.
+
+## Reference(s):
+
+- [xAI Documentation](https://docs.x.ai/docs/)
+- [xAI Chat Completions API](https://api.x.ai/v1/chat/completions)
+- [ClawHub xAI Search Skill](https://clawhub.ai/aydencook03/skills/xai-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text search responses with optional source URLs and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XAI_API_KEY and may call xAI/Grok web_search or x_search tools.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

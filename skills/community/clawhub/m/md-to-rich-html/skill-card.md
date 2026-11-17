@@ -1,41 +1,54 @@
-## Description: <br>
-Turn Markdown files or folders into a polished, human-readable, self-contained HTML page by having the agent understand the document, choose an appropriate information design, generate custom HTML/CSS/JS, and validate the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn Markdown files or folders into a polished, human-readable, self-contained HTML page by having the agent understand the document, choose an appropriate information design, generate custom HTML/CSS/JS, and validate the result.
 
-## Publisher: <br>
-[441126098](https://clawhub.ai/user/441126098) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[441126098](https://clawhub.ai/user/441126098)
 
-## Use Case: <br>
-Developers, engineers, and technical writers use this skill to convert Markdown files or folders into self-contained HTML pages that are easier to scan, compare, publish, and share. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Source Markdown may contain private information that an agent must read to generate the HTML. <br>
-Mitigation: Use the skill only on documents the user is comfortable letting an agent inspect. <br>
-Risk: Generated HTML may be incorrect, misleading, or unsuitable for publishing without review. <br>
-Mitigation: Review generated HTML before publishing or sharing, especially when the source contains private information, diagrams, or complex formatting. <br>
+## Use Case:
 
+Developers and technical writers use this skill to transform one Markdown file or a folder of Markdown documents into a self-contained HTML page with clearer structure, hierarchy, and responsive reading affordances.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/441126098/md-to-rich-html) <br>
-- [ClawHub skill page](https://clawhub.ai/441126098/md-to-rich-html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Self-contained HTML with inline CSS and JavaScript, plus concise Markdown guidance when reporting results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML should be portable and reviewed before publishing or sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated HTML may include content derived from sensitive Markdown inputs or embedded diagrams/scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated HTML before sharing, especially when source Markdown contains private information or embedded executable content.
+
+Risk: The skill reads the Markdown files or folders selected for conversion.
+
+Mitigation: Run it only on intended input paths and avoid including unrelated confidential files in the conversion folder.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/441126098/skills/md-to-rich-html)
+- [Project homepage](https://github.com/441126098/md-to-rich-html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Self-contained HTML with inline CSS and optional JavaScript, typically accompanied by concise Markdown status or validation notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-selected Markdown files or folders and writes portable HTML output unless external assets are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

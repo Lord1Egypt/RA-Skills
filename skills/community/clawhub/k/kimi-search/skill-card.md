@@ -1,42 +1,54 @@
-## Description: <br>
-Uses the Moonshot Kimi API built-in web search tool to perform live web searches for Chinese and English queries and requires MOONSHOT_API_KEY. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kimi Search lets an agent use Moonshot Kimi's built-in web search tool to answer Chinese or English queries that need current web information.
 
-## Publisher: <br>
-[ChrisBDZ](https://clawhub.ai/user/ChrisBDZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chrisbdz](https://clawhub.ai/user/chrisbdz)
 
-## Use Case: <br>
-Developers and agent users use this skill to ask Kimi/Moonshot for current web search answers from an agent workflow. It is intended for real-time information lookup when a Moonshot API key and Python runtime are available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to the third-party Moonshot/Kimi API. <br>
-Mitigation: Avoid using the skill with passwords, API keys, confidential code, customer data, or unreleased business information. <br>
-Risk: A Moonshot API key is required for operation. <br>
-Mitigation: Store the key in MOONSHOT_API_KEY or protected user configuration, and prefer environment-variable storage on shared machines. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kimi Search on ClawHub](https://clawhub.ai/ChrisBDZ/kimi-search) <br>
-- [Moonshot Open Platform](https://platform.moonshot.cn) <br>
-- [Moonshot Web Search Guide](https://platform.moonshot.cn/docs/guide/use-web-search) <br>
-- [Moonshot Chat Pricing](https://platform.moonshot.cn/docs/pricing/chat) <br>
+## Use Case:
 
+Developers and external agent users use this skill to ask Moonshot Kimi for web-grounded answers when current information is needed. It requires a Moonshot API key and returns the original query, an answer, and token usage data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON object containing the original query, Kimi's answer, and token usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MOONSHOT_API_KEY and sends search queries to the Moonshot/Kimi API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make repeated paid Moonshot API and web-search calls without a local request limit.
+
+Mitigation: Use an isolated environment, protect and rotate MOONSHOT_API_KEY, monitor Moonshot usage, and add a local request or tool-call limit before regular use.
+
+Risk: Search queries are sent to Moonshot for processing.
+
+Mitigation: Avoid sending confidential or regulated content unless Moonshot processing is approved for the intended use case.
+
+## Reference(s):
+
+- [Moonshot Open Platform](https://platform.moonshot.cn)
+- [Kimi Web Search Documentation](https://platform.moonshot.cn/docs/guide/use-web-search)
+- [Moonshot Chat Pricing](https://platform.moonshot.cn/docs/pricing/chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON containing query, answer, and usage fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MOONSHOT_API_KEY and may consume paid Moonshot API and web-search usage.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

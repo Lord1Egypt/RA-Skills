@@ -1,40 +1,58 @@
-## Description: <br>
-Redirect: jingdong has been merged into jd-shopping. Use jd-shopping for JD.com search, review checks, price comparison, SKU selection, and safe cart preparation. Safe boundary: no login, no order submission, no payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jingdong Redirect routes legacy jingdong requests to jd-shopping for JD.com shopping assistance while keeping login, checkout, order submission, and payment out of scope.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and agents use this legacy entry point to route old jingdong requests to the maintained jd-shopping skill for JD.com search, review checks, price comparison, SKU selection, and safe cart preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The legacy redirect may activate on broad JD.com or Jingdong mentions. <br>
-Mitigation: Use it to route users to jd-shopping and keep purchase, login, payment, and final order actions manual. <br>
-Risk: Shopping guidance can become stale because prices, stock, delivery terms, coupons, and after-sales terms change. <br>
-Mitigation: Rely on browser-visible or user-provided information and have the user recheck final purchase details before acting. <br>
+## Use Case:
 
+External users and agents use this legacy entry point to redirect JD.com shopping requests to the maintained jd-shopping skill for search, review checks, price comparison, SKU selection, and cart preparation without completing purchases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/jingdong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text handoff guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Redirects legacy jingdong requests to jd-shopping while preserving manual checkout and payment boundaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and package metadata) <br>
+Risk: The redirect points users to jd-shopping, which is not included or audited in this package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the separate jd-shopping skill before relying on the transferred shopping workflow.
+
+Risk: Generic JD mentions may invoke this legacy redirect unexpectedly.
+
+Mitigation: Confirm that the user intends JD.com shopping before handing off to jd-shopping.
+
+Risk: Shopping workflows can involve credentials, checkout, order submission, or payment actions.
+
+Mitigation: Keep those actions outside the agent boundary and have the user recheck final price, stock, delivery, coupons, and after-sales terms before purchase.
+
+## Reference(s):
+
+- [Jingdong Redirect on ClawHub](https://clawhub.ai/harrylabsj/skills/jingdong)
+- [harrylabsj publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Redirect guidance only; no credentials, checkout, order submission, or payment actions.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence, clawhub.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

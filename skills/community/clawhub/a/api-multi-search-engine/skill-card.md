@@ -1,41 +1,54 @@
-## Description: <br>
-Multi search engine integration with 17 engines (8 CN + 9 Global). Supports advanced search operators, time filters, site search, privacy engines, and WolframAlpha knowledge queries. No API keys required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides no-API search guidance across 17 Chinese and international search engines, including advanced operators, time filters, site search, privacy-oriented engines, and WolframAlpha queries.
 
-## Publisher: <br>
-[kakaxiazai](https://clawhub.ai/user/kakaxiazai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kakaxiazai](https://clawhub.ai/user/kakaxiazai)
 
-## Use Case: <br>
-Developers and external users use this skill to prepare search queries across Chinese and international search engines without API keys. It is useful for web research workflows that need advanced operators, site-specific queries, time filters, privacy-oriented engines, or WolframAlpha knowledge queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may be sent to external search providers selected by the user. <br>
-Mitigation: Do not include secrets, personal data, credentials, private internal project names, or confidential business terms in search queries. <br>
-Risk: Bundled artifact metadata differs from the registry metadata for slug and version. <br>
-Mitigation: Verify the ClawHub publisher, slug, and version before installing or referencing this release. <br>
+## Use Case:
 
+Developers and agent users use this skill to construct search URLs and web_fetch calls for broad web, site-specific, filetype, time-filtered, privacy-oriented, and knowledge-query searches without managing API keys.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kakaxiazai/api-multi-search-engine) <br>
-- [International Search Guide](artifact/references/international-search.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with inline web_fetch examples and search URL patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys required; search queries are sent to the selected external search provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub registry metadata and server release evidence) <br>
+Risk: Search terms are disclosed to the selected external search provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not search for passwords, tokens, confidential company material, or personal data unless that disclosure is authorized and acceptable.
+
+Risk: Cached or archived-result search examples may expose sensitive or unauthorized content.
+
+Mitigation: Use cached or archived-result techniques only when authorized and appropriate for the investigation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kakaxiazai/skills/api-multi-search-engine)
+- [International search guide](artifact/references/international-search.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with URL templates and inline web_fetch examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys required; queries are sent to the selected external search provider.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

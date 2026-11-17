@@ -1,24 +1,41 @@
-# Social Video Resizer — Output Template
+# 尺寸适配方案输出模板
 
-## Input Summary
-- Source file:
-- Target platforms:
-- Requested ratios / sizes:
-- Priority area to preserve:
+每次交付按以下结构输出。
 
-## Recommended Versions
-| Platform | Ratio / Size | Strategy | Why |
-|---|---|---|---|
+## 1. 任务概览
 
-## Framing Notes
-- Face / subject safety:
-- Product visibility:
-- Subtitle / text safety:
+- 源素材：文件名 / 分辨率 / 比例 / 时长 / 大小
+- 保护优先级：人脸 / 字幕 / 产品 / 完整画面
+- 品牌约束：pad 底色 / 边距偏好 / 字幕样式
 
-## Compatibility Notes
-- File size / placement considerations:
-- Any likely crop risks:
+## 2. 目标平台清单
 
-## Optional Extra Versions
-- 
-- 
+| 平台/位置 | 比例 | 分辨率 | 时长上限 | 大小限制 | 备注 |
+|---|---|---|---|---|---|
+| | | | | | |
+
+## 3. 各版本适配方案
+
+### 版本 X — 平台（比例 分辨率）
+
+- **策略：** crop / pad / scale 组合，具体参数（crop 区域坐标、pad 结构）
+- **理由：** 为什么这个策略最优
+- **构图取舍：** 保住了什么、牺牲了什么
+- **字幕处理：** 保留 / 上移 / 重烧
+- **安全区检查：** 平台 UI 遮挡确认结果
+- **风险：** 需人工复核的镜头（时间码）
+- **命令（可选）：** ffmpeg 命令
+
+## 4. 建议的额外版本
+
+- 未被要求但值得出的版本及理由（例：既然出了 9:16，Shorts 和 Reels 可直接复用）
+
+## 5. 遗留问题
+
+- 需重烧字幕的版本
+- 建议重构图/重拍的版本
+- 超时长需先剪辑的版本（转 product-video-cutter）
+
+## 6. 一句话交付说明
+
+例："出 3 版：TikTok 9:16 上下 pad 加标题区、IG 1:1 偏左 crop、YT 16:9 模糊 pad；1:1 版第 42s 产品切边需复核。"

@@ -1,0 +1,69 @@
+{
+  "version": "2.9.0",
+  "source_id": "semantic-scholar",
+  "status": "blocked",
+  "checked_at": "2026-10-16T12:24:47.986Z",
+  "entry": {
+    "url": "https://api.semanticscholar.org/graph/v1/paper/search",
+    "title": "Semantic Scholar Graph API",
+    "status": "rate-limited",
+    "note": "无 API key 时 429 频繁；不能立即循环重试。"
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "semantic-scholar:citation-count",
+      "source_id": "semantic-scholar",
+      "title": "按题名取引文数",
+      "task_kind": "citation-count",
+      "status": "blocked",
+      "parameters": [
+        "title"
+      ],
+      "steps": [
+        "GET https://api.semanticscholar.org/graph/v1/paper/search?limit=3&fields=title,year,citationCount,externalIds,venue&query=<title>",
+        "按 title 与 year 核对命中条目，读取 citationCount。"
+      ],
+      "notes": [
+        "实测（2026-10-16）：无 key 时大量返回 429，四次查询仅一次成功（“Big data: The next frontier…” 得 citationCount 5825）。",
+        "遇到 429 按响应头退避，不要立即循环重试；单次任务内最多两次重试。",
+        "429 或超时不等于该论文不存在、也不等于引文数为 0。",
+        "需要交叉印证时用 OpenAlex（见 openalex 流程）作为备用源；但题目指定本工具时不得用备用源数值替换。"
+      ],
+      "retrieval_channels": [
+        {
+          "kind": "api",
+          "name": "Semantic Scholar Graph API — paper search",
+          "documentation": "https://api.semanticscholar.org/api-docs/graph",
+          "endpoint": "https://api.semanticscholar.org/graph/v1/paper/search",
+          "auth": "optional-api-key",
+          "tested_at": "2026-10-16",
+          "tested_result": "无 key 时 4 次查询仅 1 次 HTTP 200（返回 citationCount），其余 3 次 HTTP 429",
+          "covers": "按题名/关键词取 paperId、citationCount、year、venue、externalIds",
+          "does_not_cover": "429 与超时不代表论文不存在或引文数为 0",
+          "notes": [
+            "fields 需显式声明，例如 fields=title,year,citationCount,externalIds,venue。",
+            "无 key 时限流严格：按 Retry-After 或指数退避，单次任务最多两次重试，不要循环。",
+            "需要第二来源时用 OpenAlex 交叉印证结论方向；数值属另一口径（实测相差约一成），题目指定本工具时不得替换其数字。"
+          ],
+          "blocker": {
+            "kind": "rate-limit",
+            "detail": "无 API key 时 429 频繁",
+            "first_seen": "2026-10-16"
+          }
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "rate-limit",
+      "detail": "无 API key 时 429 频繁",
+      "first_seen": "2026-10-16T12:24:47.986Z"
+    }
+  ],
+  "provenance": {
+    "observed_at": "2026-10-16T12:24:47.986Z",
+    "evidence": "实测 search 端点：一次 200 返回 citationCount，其余三次 429。"
+  }
+}

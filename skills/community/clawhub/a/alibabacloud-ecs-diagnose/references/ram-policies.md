@@ -7,7 +7,7 @@ This document lists all RAM permissions required by the `alibabacloud-ecs-diagno
 ### Basic Diagnostics: Cloud Platform Checks (Read-Only)
 
 | API Action | Permission | Purpose |
-|------------|------------|---------|
+| ------------ | ------------ | --------- |
 | `DescribeInstances` | `ecs:DescribeInstances` | Query instance details |
 | `DescribeInstanceAttribute` | `ecs:DescribeInstanceAttribute` | Query instance attributes |
 | `DescribeInstanceStatus` | `ecs:DescribeInstanceStatus` | Query instance status |
@@ -16,7 +16,8 @@ This document lists all RAM permissions required by the `alibabacloud-ecs-diagno
 | `DescribeSecurityGroupAttribute` | `ecs:DescribeSecurityGroupAttribute` | Query security group rules |
 | `DescribeVpcs` | `vpc:DescribeVpcs` | Query VPC information |
 | `DescribeEipAddresses` | `vpc:DescribeEipAddresses` | Query EIP binding status |
-| `DescribeMetricLast` | `cms:DescribeMetricLast` | Query monitoring metrics |
+| `DescribeMetricLast` (API) | `cms:QueryMetricLast` | Query latest monitoring metrics — ⚠️ **the RAM action differs from the API name**: granting `cms:DescribeMetricLast` does NOT authorize this API |
+| `DescribeMetricList` (API) | `cms:QueryMetricList` | Query time-range monitoring metrics — same API-name/action-name mismatch (only needed if `describe-metric-list` is used) |
 
 ### Deep Diagnostics: System & Service Checks
 
@@ -24,6 +25,17 @@ This document lists all RAM permissions required by the `alibabacloud-ecs-diagno
 |------------|------------|---------|
 | `RunCommand` | `ecs:RunCommand` | Execute commands via Cloud Assistant |
 | `DescribeInvocationResults` | `ecs:DescribeInvocationResults` | Query command execution results |
+
+### EBS Disk Performance Diagnosis (Optional)
+
+These permissions are only needed when using the **Disk Performance / IO Bottleneck**
+diagnosis scenario. All three actions are L1 low-risk read-only operations.
+
+| API Action | Permission | Purpose |
+| ------------ | ------------ | --------- |
+| `DescribeLensMonitorDisks` | `ebs:DescribeLensMonitorDisks` | List disks monitored by CloudLens for EBS |
+| `CreateDiagnoseReport` | `ebs:CreateDiagnoseReport` | Initiate a disk performance diagnosis report |
+| `DescribeDiagnoseReport` | `ebs:DescribeDiagnoseReport` | Poll diagnosis status and retrieve results |
 
 ## Policy JSON Template
 
@@ -56,7 +68,8 @@ This document lists all RAM permissions required by the `alibabacloud-ecs-diagno
     {
       "Effect": "Allow",
       "Action": [
-        "cms:DescribeMetricLast"
+        "cms:QueryMetricLast",
+        "cms:QueryMetricList"
       ],
       "Resource": "*"
     }
@@ -95,7 +108,78 @@ This document lists all RAM permissions required by the `alibabacloud-ecs-diagno
     {
       "Effect": "Allow",
       "Action": [
-        "cms:DescribeMetricLast"
+        "cms:QueryMetricLast",
+        "cms:QueryMetricList"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+### Repair Execution Policy (Optional Add-on — paired write permissions only)
+
+> **[MUST] Repair permissions are granted ONLY in pairs.** Every write permission below
+> is listed together with its rollback permission — an account that can authorize a
+> security group rule but cannot revoke it (or can allocate an EIP but cannot release
+> one) must NOT run repairs, because a change it cannot undo must not be made. Attach
+> this add-on **only** when the user has explicitly opted into repair execution; pure
+> diagnosis never needs it. See `SKILL.md` "Cleanup / Write-Operation Protocol".
+
+```json
+{
+  "Version": "1",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecs:AuthorizeSecurityGroup",
+        "ecs:RevokeSecurityGroup",
+        "ecs:StartInstance",
+        "ecs:StopInstance",
+        "ecs:RebootInstance",
+        "ecs:ModifyInstanceAttribute"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "vpc:AllocateEipAddress",
+        "vpc:ReleaseEipAddress",
+        "vpc:AssociateEipAddress",
+        "vpc:UnassociateEipAddress"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+| Write operation | Rollback (paired) permission |
+| --------------- | ---------------------------- |
+| `ecs:AuthorizeSecurityGroup` | `ecs:RevokeSecurityGroup` |
+| `vpc:AllocateEipAddress` | `vpc:ReleaseEipAddress` |
+| `vpc:AssociateEipAddress` | `vpc:UnassociateEipAddress` |
+| `ecs:StartInstance` | `ecs:StopInstance` |
+| `ecs:RebootInstance` / `ecs:StopInstance` / `ecs:ModifyInstanceAttribute` (password reset) | cannot be reverted by an API pair — requires explicit user confirmation each time, plus recording in the session report |
+
+### EBS Performance Diagnosis Policy (Optional Add-on)
+
+The two policies above do NOT include `ebs` permissions by design. Only attach this
+add-on policy when the **Disk Performance / IO Bottleneck** diagnosis scenario is
+needed, to maintain the least privilege principle.
+
+```json
+{
+  "Version": "1",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ebs:DescribeLensMonitorDisks",
+        "ebs:CreateDiagnoseReport",
+        "ebs:DescribeDiagnoseReport"
       ],
       "Resource": "*"
     }
@@ -124,21 +208,21 @@ Create policy file `ecs-diagnostics-policy.json` with the JSON above, then:
 aliyun ram create-policy \
   --policy-name ECS-Diagnostics-Policy \
   --policy-document file://ecs-diagnostics-policy.json \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id}
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id} skill-version/{skill-version}"
 
 # Attach to a user
 aliyun ram attach-policy-to-user \
   --policy-name ECS-Diagnostics-Policy \
   --policy-type Custom \
   --user-name <your-ram-user-name> \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id}
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id} skill-version/{skill-version}"
 
 # Attach to a role
 aliyun ram attach-policy-to-role \
   --policy-name ECS-Diagnostics-Policy \
   --policy-type Custom \
   --role-name <your-ram-role-name> \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id}
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id} skill-version/{skill-version}"
 ```
 
 ## Least Privilege Principle
@@ -155,26 +239,26 @@ After applying permissions, verify they work correctly:
 ```bash
 # Test ECS read permission
 aliyun ecs describe-instances \
-  --region-id cn-hangzhou \
+  --biz-region-id cn-hangzhou \
   --page-size 1 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id}
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id} skill-version/{skill-version}"
 
 # Test VPC read permission
 aliyun vpc describe-vpcs \
-  --region-id cn-hangzhou \
+  --biz-region-id cn-hangzhou \
   --page-size 1 \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id}
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id} skill-version/{skill-version}"
 
 # Test CMS read permission
 aliyun cms describe-metric-last \
   --namespace acs_ecs_dashboard \
   --metric-name CPUUtilization \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id}
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id} skill-version/{skill-version}"
 
 # Test Cloud Assistant permission (only if Deep Diagnostics is needed)
 aliyun ecs describe-invocation-results \
-  --region-id cn-hangzhou \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id}
+  --biz-region-id cn-hangzhou \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-ecs-diagnose/{session-id} skill-version/{skill-version}"
 ```
 
 ## Troubleshooting Permission Issues
@@ -184,6 +268,7 @@ aliyun ecs describe-invocation-results \
 **Cause**: Current account lacks required permissions
 
 **Solution**:
+
 1. Check which API action failed
 2. Verify the corresponding permission exists in your policy
 3. Re-attach the policy or add missing permissions

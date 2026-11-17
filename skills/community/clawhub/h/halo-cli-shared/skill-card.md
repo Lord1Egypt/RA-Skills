@@ -1,44 +1,58 @@
-## Description: <br>
-Use when a task broadly involves Halo CLI and the correct command area is not yet clear, or when you need shared rules for profiles, JSON output, help discovery, config paths, and destructive actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a task broadly involves Halo CLI and the correct command area is not yet clear, or when shared rules are needed for profiles, JSON output, help discovery, config paths, and destructive actions.
 
-## Publisher: <br>
-[ruibaby](https://clawhub.ai/user/ruibaby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruibaby](https://clawhub.ai/user/ruibaby)
 
-## Use Case: <br>
-Developers and operators use this skill to orient Halo CLI work, choose the right command area, and apply shared rules for authentication profiles, JSON output, help discovery, configuration paths, and destructive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or invoking the Halo CLI could trust an npm package source or local binary the user did not intend to use. <br>
-Mitigation: Install the Halo CLI only from a trusted npm package source and verify the binary with halo --version and halo --help before using it. <br>
-Risk: Authenticated profiles may have broad access to Halo content, operations, moderation, or backup actions. <br>
-Mitigation: Use least-privileged Halo profiles and specify --profile when multiple profiles exist. <br>
-Risk: Publish, delete, backup, moderation, or --force commands can make destructive or externally visible changes. <br>
-Mitigation: Manually confirm these commands before execution, especially in non-interactive workflows that require --force. <br>
+## Use Case:
 
+Developers and operators use this skill when working with Halo CLI and they need a shared starting point for command discovery, profile handling, JSON output, configuration paths, authentication expectations, and routing to more specific Halo CLI skills.
 
-## Reference(s): <br>
-- [Halo site](https://www.halo.run) <br>
-- [ClawHub skill page](https://clawhub.ai/ruibaby/halo-cli-shared) <br>
-- [Publisher profile](https://clawhub.ai/user/ruibaby) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend Halo CLI commands and profile/configuration paths for follow-up agent execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata; artifact frontmatter states 1.0.0) <br>
+Risk: The skill recommends installing @halo-dev/cli globally without a pinned package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the package source and pin a reviewed version or install in a controlled environment before using it.
+
+Risk: Halo authentication creates local profiles and stores credentials in the system keyring.
+
+Mitigation: Use profiles only for trusted Halo instances and review profile selection before running authenticated commands.
+
+Risk: Some non-interactive dangerous commands may require --force.
+
+Mitigation: Read command-specific help and review the target profile, site, and action before using --force.
+
+## Reference(s):
+
+- [Halo website](https://www.halo.run)
+- [ClawHub skill page](https://clawhub.ai/ruibaby/skills/halo-cli-shared)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI option names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance assumes the halo binary is available and may recommend JSON output for automation.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-E-commerce inventory management for Taobao, Douyin, and other platforms. Use when tracking stock levels, syncing inventory across stores, managing suppliers, or automating reorder alerts. Supports multi-store sync and sales forecasting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+E-commerce inventory management for Taobao, Douyin, and other platforms, including stock tracking, multi-store sync, supplier management, reorder alerts, and sales forecasting.
 
-## Publisher: <br>
-[yinanping-CPU](https://clawhub.ai/user/yinanping-CPU) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinanping-cpu](https://clawhub.ai/user/yinanping-cpu)
 
-## Use Case: <br>
-External e-commerce sellers and developers use this skill to check stock levels, sync inventory between Taobao and Douyin, manage low-stock alerts, and prepare supplier purchase-order workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live inventory sync and listing changes can affect sales operations if quantities or conflict-resolution rules are wrong. <br>
-Mitigation: Use limited test stores or sample data first, add dry-run previews, require explicit confirmation, set per-SKU limits, and keep backups and audit logs. <br>
-Risk: Automatic reorders and supplier purchase orders can create unwanted cost or supplier commitments. <br>
-Mitigation: Require human approval before purchase orders are sent, enforce order-value limits, and use approved supplier lists. <br>
-Risk: Email, WeChat, and supplier-contact data may expose sensitive operational or personal information. <br>
-Mitigation: Minimize stored contact data, protect credentials outside the skill content, and define clear data-handling rules before using live notifications. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Taobao Seller Center](https://myseller.taobao.com/home.htm/QnworkbenchHome/) <br>
-- [Douyin Seller Center](https://fxg.jinritemai.com/ffa/mshop/homepage/index?channel=zhaoshang) <br>
+## Use Case:
 
+E-commerce sellers and operations teams use this skill to check stock reports, simulate inventory synchronization, configure low-stock alerts, and reason about supplier and reorder workflows across storefronts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and optional CSV file outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe inventory reports, sync actions, alert settings, supplier order data, and forecasting workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release overstates live Taobao and Douyin capabilities while the bundled script uses sample inventory data.
+
+Mitigation: Validate real platform integrations, credentials handling, and SKU mapping before relying on sync or reporting results.
+
+Risk: Inventory sync actions can create incorrect stock levels if conflict rules or store targets are misconfigured.
+
+Mitigation: Use dry-run review, scoped SKU tests, and explicit conflict-resolution settings before applying updates to production stores.
+
+Risk: Alerting workflows may expose business or contact information if notification channels are not documented and protected.
+
+Mitigation: Define privacy handling for email or WeChat alerts and avoid storing secrets or personal contact data in skill files.
+
+## Reference(s):
+
+- [Taobao Seller Center](https://myseller.taobao.com/home.htm/QnworkbenchHome/)
+- [Douyin Merchant Center](https://fxg.jinritemai.com/ffa/mshop/homepage/index?channel=zhaoshang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and CSV or JSON-style operational outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local CSV stock reports when the bundled script is executed with an output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

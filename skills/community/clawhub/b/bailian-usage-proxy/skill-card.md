@@ -1,45 +1,60 @@
-## Description: <br>
-Bailian Usage Proxy helps teams share an Alibaba Bailian account by proxying OpenAI-compatible API calls, tracking per-user token usage, enforcing quotas, and exposing usage reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bailian Usage Proxy helps deploy an OpenAI-compatible proxy for Alibaba Bailian/DashScope shared accounts with per-user token usage tracking, call counting, quota management, and usage reports.
 
-## Publisher: <br>
-[bjmfjoy](https://clawhub.ai/user/bjmfjoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bjmfjoy](https://clawhub.ai/user/bjmfjoy)
 
-## Use Case: <br>
-Developers and operations teams use this skill to deploy and operate a proxy for shared Alibaba Bailian accounts so they can attribute usage by user, model, and time period, manage quotas, and export usage reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Admin and reporting functions can expose user management and usage data without clear access control. <br>
-Mitigation: Add admin authentication and authorization, restrict network access, and keep admin routes off public networks until those controls are in place. <br>
-Risk: The upstream Bailian API key and generated user keys can enable unauthorized model usage or account spend if exposed. <br>
-Mitigation: Store upstream credentials in a protected secret store or locked-down environment variables, rotate keys printed or shared during setup, and revoke unused internal keys. <br>
-Risk: The proxy records usage metadata and may process model traffic for multiple users. <br>
-Mitigation: Define allowed retention and logging scope before deployment, minimize stored request details, and limit access to usage logs and exports. <br>
+## Use Case:
 
+Developers and platform administrators use this skill to deploy and operate a shared-account proxy for Alibaba Bailian/DashScope, issue internal API keys, track token usage by user and model, enforce quotas, and export usage reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bjmfjoy/bailian-usage-proxy) <br>
-- [API Reference](references/api.md) <br>
-- [Architecture Reference](references/architecture.md) <br>
-- [Database Reference](references/database.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local service setup steps, proxy configuration, user-management commands, and usage-report guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and app package __version__) <br>
+Risk: Admin and credential-management endpoints may expose paid API usage controls if reachable by untrusted users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add authentication and authorization to all admin routes before deployment and restrict admin access to trusted networks.
+
+Risk: Plaintext environment secrets, internal API keys, and default service credentials can be exposed or reused.
+
+Mitigation: Use a managed secret store where possible, protect or hash issued user API keys, and replace all default database and application secrets.
+
+Risk: Unreviewed dependencies and deployment defaults can increase operational risk for a shared paid API proxy.
+
+Mitigation: Review and scan the release before deployment, pin or lock dependencies with hashes, and expose only the required service ports.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bjmfjoy/skills/bailian-usage-proxy)
+- [API Documentation](references/api.md)
+- [Architecture Documentation](references/architecture.md)
+- [Database Documentation](references/database.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code blocks and deployment commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include environment variable guidance, Docker or shell commands, API examples, and usage reporting instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and app package version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

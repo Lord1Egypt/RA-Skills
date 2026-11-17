@@ -67,7 +67,7 @@ Authorization: Bearer sk-sumike-xxxxx
 
 ```bash
 curl -X GET https://hannah.sumike.ai/v1/coworkers \
-  -H "Authorization: Bearer sk-sumike-your-key-here"
+  -H "Authorization: Bearer REDACTED-SECRET"
 ```
 
 **Response:**
@@ -100,7 +100,7 @@ curl -X GET https://hannah.sumike.ai/v1/coworkers \
 
 ```bash
 curl -X POST https://hannah.sumike.ai/v1/tasks \
-  -H "Authorization: Bearer sk-sumike-your-key-here" \
+  -H "Authorization: Bearer REDACTED-SECRET" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "German EV Market Research",
@@ -134,7 +134,7 @@ curl -X POST https://hannah.sumike.ai/v1/tasks \
 ```bash
 # Wait 2-3 minutes first!
 curl -X GET https://hannah.sumike.ai/v1/tasks/task_xyz789 \
-  -H "Authorization: Bearer sk-sumike-your-key-here"
+  -H "Authorization: Bearer REDACTED-SECRET"
 ```
 
 **Response (In Progress):**
@@ -172,7 +172,7 @@ curl -X GET https://hannah.sumike.ai/v1/tasks/task_xyz789 \
 ```bash
 # Only after status is COMPLETED
 curl -X GET https://hannah.sumike.ai/v1/tasks/task_xyz789/result \
-  -H "Authorization: Bearer sk-sumike-your-key-here"
+  -H "Authorization: Bearer REDACTED-SECRET"
 ```
 
 **Response:**
@@ -198,7 +198,7 @@ curl -X GET https://hannah.sumike.ai/v1/tasks/task_xyz789/result \
 
 ```bash
 curl -X POST https://elena.sumike.ai/v1/tasks \
-  -H "Authorization: Bearer sk-sumike-your-key-here" \
+  -H "Authorization: Bearer REDACTED-SECRET" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Q2 Campaign Launch Planning",
@@ -221,7 +221,7 @@ Maintain conversation context across multiple requests:
 ```bash
 # First message
 curl -X POST https://hannah.sumike.ai/v1/chat/completions \
-  -H "Authorization: Bearer sk-sumike-your-key-here" \
+  -H "Authorization: Bearer REDACTED-SECRET" \
   -H "Content-Type: application/json" \
   -d '{
     "messages": [
@@ -234,7 +234,7 @@ curl -X POST https://hannah.sumike.ai/v1/chat/completions \
 
 # Follow-up message (include previous context)
 curl -X POST https://hannah.sumike.ai/v1/chat/completions \
-  -H "Authorization: Bearer sk-sumike-your-key-here" \
+  -H "Authorization: Bearer REDACTED-SECRET" \
   -H "Content-Type: application/json" \
   -d '{
     "messages": [
@@ -260,7 +260,7 @@ Specify research depth and data sources:
 
 ```bash
 curl -X POST https://hannah.sumike.ai/v1/chat/completions \
-  -H "Authorization: Bearer sk-sumike-your-key-here" \
+  -H "Authorization: Bearer REDACTED-SECRET" \
   -H "Content-Type: application/json" \
   -d '{
     "messages": [
@@ -279,7 +279,7 @@ Elena automatically delegates to Hannah when needed:
 
 ```bash
 curl -X POST https://elena.sumike.ai/v1/chat/completions \
-  -H "Authorization: Bearer sk-sumike-your-key-here" \
+  -H "Authorization: Bearer REDACTED-SECRET" \
   -H "Content-Type: application/json" \
   -d '{
     "messages": [
@@ -302,7 +302,7 @@ Get real-time progress updates:
 
 ```bash
 curl -X POST https://hannah.sumike.ai/v1/chat/completions \
-  -H "Authorization: Bearer sk-sumike-your-key-here" \
+  -H "Authorization: Bearer REDACTED-SECRET" \
   -H "Content-Type: application/json" \
   -d '{
     "messages": [
@@ -335,7 +335,7 @@ data: [DONE]
 const response = await fetch('https://hannah.sumike.ai/v1/chat/completions', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer sk-sumike-your-key-here',
+    'Authorization': 'Bearer REDACTED-SECRET',
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
@@ -434,7 +434,7 @@ If research tasks take longer than expected:
 # Increase timeout
 curl -X POST https://hannah.sumike.ai/v1/chat/completions \
   --max-time 600 \
-  -H "Authorization: Bearer sk-sumike-your-key-here" \
+  -H "Authorization: Bearer REDACTED-SECRET" \
   -H "Content-Type: application/json" \
   -d '{"messages":[{"role":"user","content":"Deep research request"}]}'
 ```
@@ -452,7 +452,7 @@ curl -X POST https://hannah.sumike.ai/v1/chat/completions \
 
 ```bash
 # Store key in variable
-export HANNAH_KEY="sk-sumike-your-key-here"
+export HANNAH_KEY="REDACTED-SECRET"
 
 # Test authentication
 curl -X POST https://hannah.sumike.ai/v1/chat/completions \
@@ -544,7 +544,7 @@ from openai import OpenAI
 
 # Hannah client
 hannah = OpenAI(
-    api_key="sk-sumike-your-hannah-key",
+    api_key="REDACTED-SECRET",
     base_url="https://hannah.sumike.ai/v1"
 )
 
@@ -559,7 +559,7 @@ print(response.choices[0].message.content)
 
 # Elena client
 elena = OpenAI(
-    api_key="sk-sumike-your-elena-key",
+    api_key="REDACTED-SECRET",
     base_url="https://elena.sumike.ai/v1"
 )
 
@@ -579,7 +579,7 @@ print(response.choices[0].message.content)
 import OpenAI from 'openai';
 
 const hannah = new OpenAI({
-  apiKey: 'sk-sumike-your-hannah-key',
+  apiKey: 'REDACTED-SECRET',
   baseURL: 'https://hannah.sumike.ai/v1'
 });
 

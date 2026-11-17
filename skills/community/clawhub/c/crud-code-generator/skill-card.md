@@ -1,45 +1,60 @@
-## Description: <br>
-Generates CRUD code for database table objects across Java/Spring Boot backends and Vue 2 frontends from DDL SQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Java/Spring Boot CRUD layers, Vue 2 admin pages, and SQL files from DDL table definitions.
 
-## Publisher: <br>
-[endcy](https://clawhub.ai/user/endcy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[endcy](https://clawhub.ai/user/endcy)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold management CRUD implementations from database DDL, including backend Java layers, SQL files, optional Vue 2 frontend pages, and validation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write many Java, Vue, and SQL files into a project. <br>
-Mitigation: Use it in a version-controlled workspace, confirm backend and frontend roots before generation, and review generated diffs before applying or committing them. <br>
-Risk: Generated SQL and CRUD logic may not match project-specific authorization, data, or schema requirements. <br>
-Mitigation: Review generated SQL, permissions, entity mappings, query fields, and controller behavior before deploying the changes. <br>
-Risk: Local build validation can run Maven or npm commands in the target repository. <br>
-Mitigation: Avoid running Maven or npm validation in untrusted repositories, and inspect project scripts before executing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold CRUD implementation files from database DDL, including backend Java/Spring Boot classes, optional Vue 2 frontend files, SQL scripts, and validation commands.
 
-## Reference(s): <br>
-- [CRUD Code Generator on ClawHub](https://clawhub.ai/endcy/crud-code-generator) <br>
-- [Java Templates](references/java-templates.md) <br>
-- [SQL Templates](references/sql-templates.md) <br>
-- [Vue Templates](references/vue-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated code, SQL snippets, shell commands, and file lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write multiple project files and may run local Maven or npm validation when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and README version table) <br>
+Risk: Generated CRUD code may be under-scoped for tenant or ownership boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated read, update, delete, list, count, and export operations before merging, add tenant or ownership checks, and derive operatorId from the authenticated user rather than client input.
+
+Risk: Generated or templated SQL may include destructive DROP TABLE statements.
+
+Mitigation: Treat destructive SQL as development-only unless deliberately approved, and review all generated SQL before applying it to shared or production databases.
+
+Risk: Incorrect target paths could place generated files in the wrong project modules.
+
+Mitigation: Use explicit target paths, confirm auto-detected backend and frontend structure, and review the generated file list before build or deployment.
+
+## Reference(s):
+
+- [Java Code Templates](references/java-templates.md)
+- [SQL Templates](references/sql-templates.md)
+- [Vue Frontend Templates](references/vue-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/endcy/skills/crud-code-generator)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and file-generation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DDL SQL and target project paths; may produce backend files, frontend files, SQL files, and validation commands.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact version table)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

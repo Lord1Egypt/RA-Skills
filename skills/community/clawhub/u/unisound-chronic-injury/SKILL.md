@@ -16,7 +16,7 @@ metadata:
 
 面向**理赔材料中的影像/检查报告文字**（可由 OCR 或人工整理），在调用方给定的分类体系下（常见为 **陈旧伤 / 新伤 / 无伤 / 未提及**），对**指定解剖部位**做出伤情类别判断，并按题干要求的**固定行格式**输出。
 
-本 skill **不接院内 PACS**，题干由上游拼装；与慢病/大病审核（走后端业务接口）不同，本包**直连公司内部医疗大模型**，接口与参数约定同 `medbench` 类评测脚本。
+本 skill **不接院内 PACS**，题干由上游拼装；与慢病/大病审核（走后端业务接口）不同，本包**直连公司内部医疗大模型**，接口与参数约定同医疗大模型直连问答脚本（`--question` / `--input` / `--appkey` 等）。
 
 ## 数据与合规
 
@@ -65,4 +65,4 @@ python3 scripts/run.py --input case.json --text-only --appkey YOUR_KEY
 
 ## 模型
 
-- 默认 `u1-insuremed`，`https://maas-api.hivoice.cn/v1/chat/completions`。
+- 默认 `u2-med`，`https://maas-api.hivoice.cn/v1/chat/completions`。

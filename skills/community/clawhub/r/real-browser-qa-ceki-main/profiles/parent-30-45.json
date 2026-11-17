@@ -1,0 +1,41 @@
+{
+  "id": "parent-30-45",
+  "label": "Parent 30-45",
+  "emoji": "👨‍👩‍👧‍👦",
+  "demographics": {
+    "gender": "any",
+    "age_range": [30, 45],
+    "tier": "millennial-gen-x"
+  },
+  "active_hours": {
+    "description": "Fragmented — early morning, school hours, after kids bedtime",
+    "peak": [6, 9, 13, 15, 21, 23],
+    "off_peak_min": 5
+  },
+  "typing": {
+    "description": "Interrupted typing — possible pauses for distractions, moderate speed",
+    "wpm": { "min": 65, "max": 95 },
+    "profile": "careful",
+    "think_prob": 0.018,
+    "think_ms": [500, 2000],
+    "backspace_freq": 0.035
+  },
+  "scroll": {
+    "passes": 2,
+    "description": "Efficient — has limited time, scans quickly",
+    "speed_px_per_ms": { "min": 25, "max": 55 },
+    "pause_between_passes_ms": { "min": 300, "max": 1000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 800, "max": 3000 },
+    "pre_click_pause_ms": { "min": 200, "max": 600 },
+    "inter_action_pause_ms": { "min": 300, "max": 1500 }
+  },
+  "mouse": {
+    "speed": 0.85,
+    "curvature": 0.18,
+    "jitter": 0.3,
+    "description": "Moderate, purposeful"
+  }
+}

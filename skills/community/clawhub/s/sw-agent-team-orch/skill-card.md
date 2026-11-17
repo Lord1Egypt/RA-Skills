@@ -1,40 +1,53 @@
-## Description: <br>
-Set up and coordinate multi-agent teams with defined roles, task workflows, handoff protocols, and quality review checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and coordinate multi-agent teams with defined roles, task workflows, handoff protocols, and quality review checkpoints.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
 
-## Use Case: <br>
-Developers and agent operators use this skill to design multi-agent workflows, assign clear specialist roles, define handoff briefs, and set review gates before delivering work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Handoff briefs or shared state files may accidentally include secrets, private credentials, or sensitive project context. <br>
-Mitigation: Keep shared state inside the relevant project, avoid writing secrets into briefs, and review persistent context before another agent reuses it. <br>
-Risk: Coordinated agents may propagate incorrect assumptions or unverified information across tasks. <br>
-Mitigation: Use explicit acceptance criteria, require review checkpoints, and verify links, references, and factual claims before delivery. <br>
+## Use Case:
 
+Developers and agent-team operators use this skill to define roles, route tasks, manage handoffs, maintain shared state, and apply quality gates for multi-agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amdf01-debug/sw-agent-team-orch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown templates and structured planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; produces coordination plans, handoff formats, and quality-gate checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unclear task boundaries or acceptance criteria can lead agents to route, execute, or review work inconsistently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define one task per agent, include explicit acceptance criteria in task briefs, and apply quality gates before delivery.
+
+Risk: Shared state can be misplaced or become stale across agent restarts.
+
+Mitigation: Choose a deliberate shared-state file location and require handoff briefs to include current context and artifacts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/amdf01-debug/skills/sw-agent-team-orch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured role, task lifecycle, handoff, and quality gate templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include role definitions, task briefs, handoff protocols, quality checklists, and shared-state conventions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

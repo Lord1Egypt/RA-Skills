@@ -1,45 +1,51 @@
-## Description: <br>
-StatusCake connector skill for reading and managing uptime monitoring resources through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+StatusCake (statuscake.com). Use this skill for ANY StatusCake request — reading, creating, updating, and deleting data. Whenever a task involves StatusCake, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operations teams use this skill to inspect and manage StatusCake uptime tests, monitoring locations, alerts, probe history, and uptime or downtime periods from an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, and delete StatusCake monitoring data. <br>
-Mitigation: Confirm the exact target, payload, and expected effect with the user before running write or destructive actions. <br>
-Risk: The skill requires sensitive account credentials through an OOMOL-connected StatusCake account. <br>
-Mitigation: Use the OOMOL connection flow and avoid handling raw StatusCake API tokens in prompts, files, or shell history. <br>
-Risk: Suggested first-time setup commands install or invoke the oo CLI. <br>
-Mitigation: Verify the oo CLI installer source before running curl or PowerShell install commands. <br>
+## Use Case:
 
+External users can use this skill to inspect StatusCake uptime tests, locations, alerts, history, and uptime periods, and to create, update, or delete tests through their connected account. Changes and deletions require user approval.
 
-## Reference(s): <br>
-- [StatusCake homepage](https://www.statuscake.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-statuscake) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before actions; write and destructive actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Initial setup can automatically execute an unverified remote CLI installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, preferably using a verified release. Confirm whether setup will install or update other agent skills, and ensure you trust OOMOL to handle the StatusCake connection.
+
+## Reference(s):
+
+- [StatusCake](https://www.statuscake.com)
+- [StatusCake API documentation](https://developers.statuscake.com/)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON action requests and responses with concise textual summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action and payload vary by the requested StatusCake operation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

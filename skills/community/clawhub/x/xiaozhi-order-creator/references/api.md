@@ -200,6 +200,7 @@
 | `inExpress` | int | 是 | 上门方式，固定 `2` |
 | `inExpressTime` | string | 是 | 上门时间，格式 `YYYY-MM-DD HH:MM:SS` |
 | `price` | float | 是 | 总价（单价 × 重量） |
+| `estimatedPrice` | string | 是 | 预估金额，取值与 `price` 一致 |
 | `detail` | string | 否 | 订单备注 |
 | `orderItems` | array | 是 | 订单商品列表 |
 
@@ -213,6 +214,7 @@
 | `itemName` | string | 是 | 固定 `衣服` |
 | `itemPrice` | float | 是 | 单价（来自询价接口） |
 | `itemWeight` | float | 是 | 重量（kg） |
+| `itemModel` | string | 是 | 预估下单重量，取值与 `itemWeight` 一致 |
 
 #### 请求示例
 
@@ -223,6 +225,7 @@
     "areaName": "朝阳区",
     "cityId": 110100,
     "cityName": "北京市",
+    "estimatedPrice": "6.6",
     "inExpress": 2,
     "inExpressTime": "2026-06-16 16:00:00",
     "mobile": "15711111111",
@@ -232,6 +235,7 @@
             "goodsType": 1,
             "itemCates": "衣服",
             "itemCatesId": 2767,
+            "itemModel": "11",
             "itemName": "衣服",
             "itemPrice": 0.60,
             "itemWeight": 11

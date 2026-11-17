@@ -1,41 +1,59 @@
-## Description: <br>
-Lightweight anti-infinite-loop guard for LLM agents that observes agent actions, detects repetitive or stalled behavior, and returns healing, pause, or abort directives for the host agent to apply. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A lightweight Python guard that helps LLM agents detect likely infinite loops and respond with healing, pause, or abort directives across common agent harnesses.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers and engineers use this skill to add loop detection and recovery behavior to LLM agents, coding agents, RAG systems, data pipelines, and multi-agent workflows. It helps identify repeated actions, low novelty, intent drift, fast retry patterns, and known loop fingerprints before the host agent wastes tokens or stalls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Loop fingerprints and small samples of agent actions can be retained on local disk for cross-session detection. <br>
-Mitigation: Avoid passing secrets or sensitive customer data in action strings, use a project-specific storage path when appropriate, and periodically review or delete ~/.anti_loop/loops.json. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add loop detection, pre-flight plan checks, local loop fingerprinting, and corrective intervention directives to LLM agent workflows. It is aimed at agents that may repeat tool calls, drift from intent, or need a recoverable alternative to hard aborts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/morgana-anti-infinite-loop-v2-en) <br>
-- [PyPI project page](https://pypi.org/project/anti-loop/) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code snippets, shell commands, configuration examples, and JSON-like directive objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces host-agent directives such as heal, pause, or abort; it does not directly execute the user's agent workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: release metadata) <br>
+Risk: Healing mode can promote observed agent text into a system-message-style directive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat healing output as advisory data, sanitize it before use, and preserve role separation when adding it to an agent context.
+
+Risk: Loop samples and fingerprints are stored locally by default.
+
+Mitigation: Avoid passing secrets in action strings, configure or isolate the Loop DNA storage path, and periodically delete retained loop history.
+
+Risk: The security verdict recommends review before installation in tool-enabled agents.
+
+Mitigation: Install only a pinned, reviewed package in a virtual environment and review the skill before deploying it with tool access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/morgana-anti-infinite-loop-v2-en)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation with Python and shell snippets; runtime output is a directive dictionary for agent intervention.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Core package is documented as zero-dependency, with optional extras for numpy, torch, and multi-agent use.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

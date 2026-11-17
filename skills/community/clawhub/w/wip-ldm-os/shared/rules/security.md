@@ -15,3 +15,7 @@ Never overwrite shared workspace files. Always append or edit specific sections.
 ## Protected paths
 
 Do not modify: secrets/, credentials/, auth-profiles.json, or any file containing API keys.
+
+## Config doctors can silently strip keys
+
+Never run `openclaw doctor --fix` (or any config doctor with strict-schema validation) without checking `git diff` on the config afterward. Doctor tools silently strip keys they do not recognize; git is the safety net.

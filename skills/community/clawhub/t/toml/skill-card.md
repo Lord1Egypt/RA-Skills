@@ -1,38 +1,53 @@
-## Description: <br>
-Write valid TOML configuration files with correct types and structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write valid TOML configuration files with correct types and structure.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agents use this skill as a concise TOML reference when writing or reviewing configuration files, including strings, keys, tables, arrays, inline tables, primitive types, and date/time values. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated or edited TOML may contain incorrect settings, production-impacting values, or secrets in configuration fields. <br>
-Mitigation: Review generated TOML before applying it to real application or infrastructure configuration, especially for secrets and production settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub TOML skill page](https://clawhub.ai/ivangdavila/toml) <br>
-- [Publisher profile: ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Developers and engineers use this skill as a compact TOML reference when asking an agent to draft or review configuration files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TOML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior; review generated TOML before applying it to application or infrastructure configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated TOML may be incorrect for the user's target application or configuration schema.
+
+Mitigation: Review generated TOML against the consuming application's documentation before applying it to important configuration files.
+
+Risk: The skill is an informational reference and does not execute a TOML parser or validator.
+
+Mitigation: Use the target application's validation command or a TOML parser when syntax or compatibility must be confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/toml)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown text with TOML examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational guidance only; users should review generated TOML before applying it to important configuration files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

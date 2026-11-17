@@ -1,46 +1,61 @@
-## Description: <br>
-Plans Tibet travel across Lhasa, Potala Palace, Jokhang Temple, Namtso Lake, Everest Base Camp, and related booking workflows using flyai CLI data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Tibet pilgrimage travel around Lhasa, Potala Palace, Jokhang Temple, Namtso Lake, Everest Base Camp, monastery visits, bookings, itinerary planning, visa information, insurance, and related travel logistics using Fliggy-powered flyai CLI results.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to search flights, hotels, attractions, and Tibet itinerary options through flyai/Fliggy CLI data, returning booking-linked Markdown rather than offline travel advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run a global flyai CLI. <br>
-Mitigation: Review the package source and installation path before use, and run it in an environment where global package changes are acceptable. <br>
-Risk: Travel searches may be sent to a third-party provider. <br>
-Mitigation: Avoid entering passport, payment, or highly sensitive itinerary details unless data handling and logging controls are clear. <br>
-Risk: The artifact includes behavior for persisting raw request logs locally. <br>
-Mitigation: Disable, review, or regularly clear local execution logs when queries may contain sensitive travel details. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search live Tibet travel options, compare flights, hotels, attractions, and itinerary components, and return booking-oriented Markdown grounded in flyai CLI output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/explore-tibet) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and short guidance with booking links; shell commands for flyai CLI execution may be generated for the agent to run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel data; raw JSON should not be shown to users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill asks the agent to install a global npm package automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before global installation, or instruct the user to install @fly-ai/flyai-cli manually.
+
+Risk: The skill can persist raw travel requests in a local execution log.
+
+Mitigation: Disable logging by default or redact user travel details before writing logs with safe file-writing practices.
+
+Risk: Travel prices, availability, and booking links can become stale or unavailable.
+
+Mitigation: Use live flyai CLI output for travel results and clearly report partial failures, empty results, or CLI errors.
+
+## Reference(s):
+
+- [Explore Tibet skill page](https://clawhub.ai/xiejinsong/skills/explore-tibet)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands when retries or setup are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on live flyai CLI results, include booking links when results are shown, and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

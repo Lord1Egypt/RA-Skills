@@ -1,45 +1,61 @@
-## Description: <br>
-M-flow Memory gives OpenClaw agents persistent long-term memory by storing conversations as structured knowledge graphs and retrieving relevant context across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long-term memory engine for OpenClaw agents using M-flow knowledge graphs that stores conversations as structured episodic memories and retrieves them via graph-routed search.
 
-## Publisher: <br>
-[flowelement-alexunbridled](https://clawhub.ai/user/flowelement-alexunbridled) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flowelement-alexunbridled](https://clawhub.ai/user/flowelement-alexunbridled)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill when an agent needs to remember prior conversations, user preferences, decisions, facts, or plans across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores conversations automatically as long-term memory, which can capture sensitive, regulated, or unwanted information. <br>
-Mitigation: Use it only when cross-session memory is intended, avoid storing secrets or regulated data, and use the provided deletion or pruning tools when memory should be removed. <br>
-Risk: Setup requires an LLM API key and runs a persistent Docker service exposed on a local port. <br>
-Mitigation: Use a dedicated limited-scope API key, restrict access to the Docker-exposed port, and review the OpenClaw MCP configuration change before relying on the service. <br>
-Risk: Memory data persists in a Docker volume after restarts and may remain after teardown unless removal is explicitly requested. <br>
-Mitigation: Review retention expectations before use and remove the Docker volume when stored memories should be deleted. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to give agents persistent memory for past conversations, preferences, facts, and decisions. It is intended for agents that need memory search, storage, deletion, and graph-based recall across sessions.
 
-## Reference(s): <br>
-- [M-flow homepage](https://github.com/FlowElement-ai/m_flow) <br>
-- [M-flow documentation](https://docs.m-flow.ai) <br>
-- [M-flow LoCoMo benchmark](https://github.com/FlowElement-ai/mflow-benchmarks) <br>
-- [ClawHub skill page](https://clawhub.ai/flowelement-alexunbridled/mflow-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with shell commands and MCP tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Docker, an LLM API key, a persistent Docker volume, and OpenClaw MCP registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.6 (source: server release metadata) <br>
+Risk: The skill persists conversation-derived memories across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where long-term retention is expected, review stored memories regularly, and avoid storing secrets, regulated data, or confidential work without consent and retention controls.
+
+Risk: The setup starts a Docker MCP service and exposes a local port.
+
+Mitigation: Run it on a trusted local machine, keep the service bound to localhost, and review the generated OpenClaw MCP registration before use.
+
+Risk: The skill requires an LLM API key for knowledge extraction.
+
+Mitigation: Use a limited API key with budget controls and avoid entering credentials into shared or untrusted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flowelement-alexunbridled/skills/mflow-memory)
+- [M-flow GitHub](https://github.com/FlowElement-ai/m_flow)
+- [M-flow documentation](https://docs.m-flow.ai)
+- [M-flow skill repository path](https://github.com/FlowElement-ai/m_flow/tree/main/openclaw-skill/mflow-memory)
+- [M-flow benchmarks](https://github.com/FlowElement-ai/mflow-benchmarks)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and MCP tool instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker and an LLM_API_KEY; stores memory data in a Docker volume and registers an MCP server with OpenClaw.]
+
+## Skill Version(s):
+
+0.3.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Teaches an agent a structured security-vetting protocol for reviewing ClawHub skills before and after installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches agents a four-phase method for vetting ClawHub skills before installation, using red and green flag heuristics, post-install checks, and transparent human review.
 
-## Publisher: <br>
-[nyxur42](https://clawhub.ai/user/nyxur42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nyxur42](https://clawhub.ai/user/nyxur42)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent perform structured security vetting of ClawHub skills before installation, explain audit decisions, and guide post-install checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to inspect local artifact files and basic system state during a security review. <br>
-Mitigation: Limit reviews to the intended skill artifact or workspace, and avoid unrelated private directories unless the user explicitly requests that inspection. <br>
-Risk: Security assessments can become overconfident if the agent treats heuristic checks as proof of safety. <br>
-Mitigation: Have the agent show evidence, call out uncertainty, and ask the user before acting on unresolved yellow flags. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/nyxur42/nyx-archive-skill-security-protocol) <br>
+## Use Case:
 
+Developers and agents use this skill to review ClawHub skills before installation, explain security decisions, and perform post-install verification when command examples are appropriate for the local environment.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples and security assessment text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no scripts or dependencies are included in the artifact evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local inspection and recovery command examples can expose private filesystem details or discard uncommitted work if run without review.
+
+Mitigation: Treat commands as examples to adapt; review paths and git status, back up work, and confirm exact files before running recovery commands.
+
+Risk: The skill provides security reasoning guidance rather than automated enforcement, so incorrect audit conclusions can still lead to unsafe installations.
+
+Mitigation: Use the protocol as a review checklist and involve a human whenever yellow flags or unresolved uncertainty remain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nyxur42/skills/nyx-archive-skill-security-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure instruction-based skill; no scripts or dependencies in the artifact.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

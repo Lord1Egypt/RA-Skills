@@ -1,3 +1,15 @@
 display_name: FlashRev AI Enrich
-short_description: Enrich FlashRev CSV lead lists with dry-run estimates and sample previews.
-default_prompt: Run FlashRev AI Enrich on a CSV using a dry-run first, then enrich after approval.
+short_description: Enrich FlashRev CSV lead lists through the FlashRev CLI with schema-first capability selection.
+default_prompt: >
+  Use flashrev-ai-enrich in AI mode. Run doctor --no-api, schema --json,
+  tokens --json, plan --json for broad jobs, and dry-run --json before live
+  enrichment. Select only capabilities returned by the live schema and use
+  explicit --capability, not --prompt, unless the user explicitly asks for
+  prompt routing. Treat plan --json as read-only unless --emit-jobs is approved.
+  For contact-only planning, use --contact-type email|phone|both. Before full
+  live runs, use run --sample-only --json --yes after the user approves sample
+  token spend, show the returned sample, then continue only after approval. In
+  AI mode, run stdout is the structured JSON report and progress is stderr.
+  Stop on approvalReasons such as contact cleartext unlock, customer_api egress,
+  --allow-internal-targets, output overwrite, and high-volume runs. Use
+  --overwrite only after explicit approval.

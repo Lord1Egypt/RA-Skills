@@ -1,46 +1,61 @@
-## Description: <br>
-Quantitative strategy backtesting for implementing, running, and tuning trading rules on historical data, with performance metrics such as CAGR, max drawdown, Sharpe ratio, win rate, and simple parameter sweeps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through quantitative trading strategy backtesting, parameter tuning, and reporting workflows using historical data and explicit assumptions.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Developers, researchers, and quantitative trading practitioners use this skill to run backtests, optimize strategy parameters, and produce reports grounded in actual run outputs rather than invented metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local CLI can install and run analysis tooling and save experiment history on the user's machine. <br>
-Mitigation: Run it in a controlled local environment, use read-only connector credentials, and avoid storing sensitive experiment payloads unless required. <br>
-Risk: Backtest outputs can be misleading if costs, slippage, survivorship bias, data adjustments, or overfitting are not addressed. <br>
-Mitigation: Base reports only on actual run outputs, document assumptions, validate optimized parameters out of sample, and treat results as research rather than investment advice. <br>
+## Use Case:
 
+Developers, analysts, and external users can use this skill to structure backtest specifications, run or review strategy workflow commands, compare parameters, and produce concise Markdown reports with assumptions and caveats. Users should verify all metrics from actual execution output before relying on any result.
 
-## Reference(s): <br>
-- [Strategy Backtest Framework & Guide](references/strategy_backtest_guide.md) <br>
-- [Backtrader documentation](https://www.backtrader.com/docu/) <br>
-- [Backtrader on GitHub](https://github.com/mementum/backtrader) <br>
-- [Hacker News - backtesting pitfalls](https://news.ycombinator.com/item?id=39462946) <br>
-- [Reddit r/algotrading discussion](https://www.reddit.com/r/algotrading/comments/1073140yyz/quant_backtest_ai/) <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/strategy-backtest) <br>
-- [Publisher profile](https://clawhub.ai/user/mikeclaw007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON CLI output, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should state assumptions for fees, spreads, leverage, time zones, data quality, and metric definitions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled tool returns success messages and stores command arguments without computing full backtest results or reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated records as workflow logs, verify any metrics with a real backtesting engine, and do not present logged success messages as investment analysis.
+
+Risk: Command inputs may contain private dataset paths, account identifiers, proprietary strategy details, or other sensitive information.
+
+Mitigation: Avoid passing secrets or confidential strategy data, and test the skill only in an isolated environment.
+
+Risk: Trading strategy backtests can be misleading when costs, slippage, survivorship bias, or overfitting are not handled explicitly.
+
+Mitigation: Document assumptions, validate out of sample, and include limitations in any report.
+
+## Reference(s):
+
+- [Strategy Backtest Guide](references/strategy_backtest_guide.md)
+- [Backtrader Documentation](https://www.backtrader.com/docu/)
+- [Backtrader on GitHub](https://github.com/mementum/backtrader)
+- [Hacker News Backtesting Pitfalls Discussion](https://news.ycombinator.com/item?id=39462946)
+- [Reddit r/algotrading Discussion](https://www.reddit.com/r/algotrading/comments/1073140yyz/quant_backtest_ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports, JSON command output, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Backtest metrics must be grounded in actual run output; command inputs may be stored locally by the bundled tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

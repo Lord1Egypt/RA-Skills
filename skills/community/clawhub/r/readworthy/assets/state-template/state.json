@@ -1,0 +1,6 @@
+{
+  "schema_version": 2,
+  "storage_layout": "split-json",
+  "source_of_truth": "state-directory",
+  "created_by": "readworthy"
+}

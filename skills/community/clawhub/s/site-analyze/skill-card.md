@@ -1,46 +1,62 @@
-## Description: <br>
-Analyzes domains and IP addresses to produce a site profile covering DNS resolution, IP ownership, ISP/ASN, traceroute path, latency, WHOIS registration, and robots.txt policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Site Analyzing Tools analyzes a domain or IP address and produces a website and network profile covering hosting location, ISP and ASN attribution, DNS and GeoDNS behavior, WHOIS details, traceroute path, latency, and robots.txt policy.
 
-## Publisher: <br>
-[EvanFromDowntown](https://clawhub.ai/user/EvanFromDowntown) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evanfromdowntown](https://clawhub.ai/user/evanfromdowntown)
 
-## Use Case: <br>
-Developers, site operators, and network engineers use this skill to inspect a domain or IP address and summarize hosting location, network path, ownership, connectivity, and crawling policy. It is intended for authorized analysis of public or user-controlled targets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may disclose analyzed domains, IPs, route data, or DNS queries to third-party DNS and IP-information services. <br>
-Mitigation: Use it only for targets you are authorized to test, notify users before remote lookups, and provide a no-remote-lookups mode for sensitive environments. <br>
-Risk: The environment probe stores local network details in ~/.site-analyzer-env.json. <br>
-Mitigation: Inspect or delete the file after use, and avoid running the probe on corporate, sensitive, or internal networks unless approved. <br>
-Risk: Network-derived probe data may be handled unsafely if serialized into generated code or shell contexts. <br>
-Mitigation: Serialize probe data with structured JSON writers and avoid embedding raw network-derived strings into executable code. <br>
+## Use Case:
 
+Developers and site operators use this skill to inspect domains or IP addresses for hosting attribution, DNS behavior, route quality, registration details, and crawler policy before troubleshooting, monitoring, or documenting a site.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/EvanFromDowntown/site-analyze) <br>
-- [ip-api JSON endpoint](http://ip-api.com/json/{ip}) <br>
-- [ipinfo JSON endpoint](https://ipinfo.io/{ip}/json) <br>
-- [Google DNS over HTTPS endpoint](https://dns.google/resolve) <br>
-- [AliDNS DNS over HTTPS endpoint](https://dns.alidns.com/resolve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown or terminal text with optional JSON output from the bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run DNS, WHOIS, ping, traceroute, robots.txt, and IP information probes for a supplied domain or IP address.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can actively probe third-party domains or IP addresses through DNS queries, WHOIS, traceroute, ping, TCP connection checks, and robots.txt fetches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for targets you are authorized to analyze, and disable traceroute, ping, or robots checks when active probing is not appropriate.
+
+Risk: The first-run environment probe profiles the user's own network and stores local exit IP, location, ISP, DNS, and tool availability data.
+
+Mitigation: Review or disable the environment probe before managed-network use, and remove ~/.site-analyzer-env.json when the local profile should not be retained.
+
+Risk: External lookup behavior includes plaintext HTTP requests and may send target IPs or domains to third-party services.
+
+Mitigation: Avoid sensitive internal domains or customer IPs, and replace plaintext or untrusted lookup paths with approved HTTPS-only services before private-network deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evanfromdowntown/skills/site-analyze)
+- [ip-api lookup endpoint](http://ip-api.com/json/{ip})
+- [ipinfo lookup endpoint](https://ipinfo.io/{ip}/json)
+- [api.ipify IP endpoint](https://api.ipify.org)
+- [AliDNS DNS over HTTPS endpoint](https://dns.alidns.com/resolve)
+- [Google DNS over HTTPS endpoint](https://dns.google/resolve)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text reports or JSON records with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local first-run network profile to ~/.site-analyzer-env.json.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

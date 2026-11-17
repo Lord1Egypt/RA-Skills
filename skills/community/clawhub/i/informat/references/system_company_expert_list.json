@@ -1,0 +1,37 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_expert_list",
+    "description": "Query team expert list with pagination and optional name, status, key, or id filters. Returns {list,count}.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "pageIndex": {
+          "type": "integer",
+          "description": "Page number, starting from 1 (optional, default 1)."
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "Number of records per page (optional, default 30)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Fuzzy match by expert name, optional."
+        },
+        "status": {
+          "type": "string",
+          "description": "Filter by expert status, optional.",
+          "enum": ["draft", "enabled", "disabled"]
+        },
+        "key": {
+          "type": "string",
+          "description": "Exact match by expert key, optional."
+        },
+        "id": {
+          "type": "string",
+          "description": "Exact match by expert ID, optional."
+        }
+      }
+    }
+  }
+}

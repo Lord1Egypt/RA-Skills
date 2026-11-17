@@ -1,45 +1,56 @@
-## Description: <br>
-龙虾直聘 helps agents turn a company or industry profile into role-based ClawHub skill package recommendations and installs selected skills only after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向招聘与团队搭建场景的技能编排助手。用户提供公司名称、行业赛道或公司类型时，先检索公司与岗位画像信息，再在 claw.ai / ClawHub 搜索可用技能，产出“可一键安装”的角色技能包建议，并在用户确认后执行安装。适用于初次搭建 AI 团队角色、按行业快速选型技能、以及基于公司背景做技能组合推荐。
 
-## Publisher: <br>
-[tato447](https://clawhub.ai/user/tato447) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tato447](https://clawhub.ai/user/tato447)
 
-## Use Case: <br>
-Recruiters, founders, and operators use this skill to analyze a company or industry profile, find matching ClawHub skills, and assemble a compact role-based package for business, delivery, and growth teams. The skill is intended for recommendation and confirmation-gated installation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend an unsuitable skill package if company, industry, or role context is incomplete or inaccurate. <br>
-Mitigation: Review the company snapshot and proposed skills before installation, and approve only skills that match the intended team roles. <br>
-Risk: Fallback installation may introduce different skills than the first recommendation. <br>
-Mitigation: Treat fallback installs as a separate confirmation decision and continue only after reviewing the replacement mapping. <br>
-Risk: Company or hiring details provided for lookup-based analysis may be sensitive. <br>
-Mitigation: Avoid entering confidential company details unless they are appropriate for lookup-based analysis. <br>
+## Use Case:
 
+Recruiting, operations, and team-building users use this skill to turn a company name, industry, or company type into a concise company or industry profile, grouped candidate skills, and a confirmation-gated one-click skill package recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tato447/longxia-zhipin) <br>
-- [行业分类词库](references/industry-taxonomy.md) <br>
-- [角色技能包手册](references/role-pack-playbook.md) <br>
-- [English Output Templates](references/output-templates-en.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendations with grouped skill candidates, install confirmation prompts, and install result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ClawHub skill identifiers, install order, fallback recommendations, and explicit confirmation prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill recommends and installs bundles of other skills, which can change the user's agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each recommended skill before installation, including publisher, exact skill ID and version, requested permissions, and uninstall or rollback options.
+
+Risk: Unknown third-party skills may be unsafe in environments containing sensitive data or credentials.
+
+Mitigation: Avoid installing unknown third-party skills into sensitive agent environments, and use the confirmation step to reject or revise risky recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tato447/skills/longxia-zhipin)
+- [Industry Taxonomy](references/industry-taxonomy.md)
+- [Role Pack Playbook](references/role-pack-playbook.md)
+- [English Output Templates](references/output-templates-en.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with structured recommendations, confirmation prompts, and installation result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose skill installation bundles and fallback choices; installation should occur only after explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

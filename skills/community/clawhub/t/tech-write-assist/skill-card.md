@@ -1,44 +1,63 @@
-## Description: <br>
-AI技术报告社媒宣发一键生成器，可从PDF技术报告生成X Thread、小红书帖子、微信公众号文章，并可选择生成配图提示或图片。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns PDF technical reports into platform-specific promotional drafts for X threads, Xiaohongshu posts, WeChat articles, and optional image prompts or generated images.
 
-## Publisher: <br>
-[christianashannon](https://clawhub.ai/user/christianashannon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christianashannon](https://clawhub.ai/user/christianashannon)
 
-## Use Case: <br>
-Developers, researchers, and technical marketing teams use this skill to turn a PDF technical report or paper into platform-specific launch and social media copy. It supports English X threads, Chinese Xiaohongshu posts, Chinese WeChat articles, and image specifications for optional AI-generated illustrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local Python scripts and install Python packages while processing a PDF. <br>
-Mitigation: Run it in a virtual environment or sandbox and review the dependency list before execution. <br>
-Risk: When image API keys are available, report-derived prompts may be sent to third-party image generation services. <br>
-Mitigation: Use --no-image for confidential or unpublished PDFs unless external API use has been approved. <br>
-Risk: Generated output files may contain extracted report content and publication-ready summaries. <br>
-Mitigation: Review the output directory after use and delete generated files that should not remain on disk. <br>
+## Use Case:
 
+External creators, researchers, and developer relations teams use this skill to convert a PDF technical report into audience-specific launch and promotional content for X, Xiaohongshu, and WeChat. It can also prepare image specifications and optionally call image-generation providers when API credentials are available.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/christianashannon/tech-write-assist) <br>
-- [Image Prompt Guide](artifact/references/image-prompt-guide.md) <br>
-- [Platform Specs](artifact/references/platform-specs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown content files, JSON image specifications, optional image files, and a Markdown summary report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated assets under an output directory; optional image generation may call external image APIs when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic package installation can change the execution environment during skill use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install reviewed, pinned dependencies in an isolated environment before running the skill.
+
+Risk: Network-enabled image generation can send report-derived prompts to third-party providers.
+
+Mitigation: Use --no-image for confidential reports or only configure image API credentials when external sharing is acceptable.
+
+Risk: Broad network shell access can allow external requests during skill execution.
+
+Mitigation: Run the skill with network controls appropriate to the report sensitivity and review any external API use before enabling credentials.
+
+Risk: Processing untrusted PDF paths may expose the agent runtime to malformed or unexpected inputs.
+
+Mitigation: Run the skill only on trusted PDFs in a constrained workspace and review extracted content before reuse.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/christianashannon/skills/tech-write-assist)
+- [Image Prompt Engineering Guide](references/image-prompt-guide.md)
+- [Platform Content Specifications](references/platform-specs.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown files with optional JSON image specifications and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-platform drafts, an image_specs.json file, optional generated images, and a summary report under an output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

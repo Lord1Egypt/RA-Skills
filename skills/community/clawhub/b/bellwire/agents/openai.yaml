@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bellwire"
+  short_description: "Private-first live cards and iPhone notifications"
+  default_prompt: "Use $bellwire to connect this project with privacy-first cards and reliable iPhone notifications."

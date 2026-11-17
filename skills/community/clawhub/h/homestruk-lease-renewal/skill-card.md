@@ -1,40 +1,54 @@
-## Description: <br>
-Track lease expirations and manage the 90-day renewal process. Use when checking upcoming lease expirations, planning rent increases, drafting renewal offers, or managing the renewal negotiation timeline. Reads property and tenant data to proactively flag leases expiring within 90 days and guides through the Homestruk renewal SOP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks lease expirations and manages the 90-day renewal process by checking upcoming expirations, supporting rent increase planning, drafting renewal offers, and managing renewal negotiation timelines.
 
-## Publisher: <br>
-[AdamsJB](https://clawhub.ai/user/AdamsJB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamsjb](https://clawhub.ai/user/adamsjb)
 
-## Use Case: <br>
-External self-managing landlords and property managers use this skill to find leases expiring within 90 days, plan renewal decisions, draft tenant renewal offers, and manage follow-up through the renewal timeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create renewal drafts or propose updates to rent-roll and property records. <br>
-Mitigation: Keep routine expiration checks read-only and require explicit approval before saving drafts, updating rent-roll.json or properties.json, sending notices, changing rent, or scheduling recurring runs. <br>
-Risk: The skill depends on local tenant, property, and rent-roll files that may contain sensitive property-management data. <br>
-Mitigation: Install and run it only when the agent is expected to access those local files, and review generated renewal decisions or notices before use. <br>
+## Use Case:
 
+Self-managing landlords and property managers use this skill to identify leases expiring within 90 days, plan renewal pricing, draft tenant renewal offers, track follow-ups, and prepare vacancy workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AdamsJB/homestruk-lease-renewal) <br>
+### Deployment Geography for Use:
 
+Massachusetts, United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with renewal dashboards, renewal offer drafts, timeline guidance, and file update recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local property, tenant, and rent-roll records and may propose draft files or updates for explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can read local tenant, property, and rent records that may contain sensitive business or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where the agent is authorized to access those records, and review file access expectations before use.
+
+Risk: The skill may draft renewal offers or update renewal-related rent-roll and property status records without clear confirmation safeguards.
+
+Mitigation: Require explicit human confirmation before sending drafts, changing rent-roll.json, or updating property status data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/adamsjb/skills/homestruk-lease-renewal)
+- [Publisher Profile](https://clawhub.ai/user/adamsjb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown and structured plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May draft renewal letters and propose updates to lease-renewal tracking, rent-roll, and property status records.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,30 @@
+{
+  "call_id": "test_001",
+  "userid": "zhangsan",
+  "direction": "outbound",
+  "state": "ending",
+  "confidence": 0.95,
+  "asr_text": "明天天气怎么样",
+  "pending_confirmation": "",
+  "history": [
+    {
+      "role": "agent",
+      "content": "您好，我是语音助手",
+      "time": "2026-07-15T16:14:20.407762"
+    },
+    {
+      "role": "user",
+      "content": "明天天气怎么样",
+      "confidence": 0.95,
+      "time": "2026-07-15T16:14:20.408448"
+    },
+    {
+      "role": "agent",
+      "content": "明天北京晴，25度",
+      "time": "2026-07-15T16:14:20.409193"
+    }
+  ],
+  "start_time": 1784103260.4062111,
+  "last_activity": 1784103260.4112015,
+  "turn_count": 2
+}

@@ -1,44 +1,55 @@
-## Description: <br>
-Remove visible Gemini AI watermarks from images via reverse alpha blending. Use for cleaning Gemini-generated images, removing the star/sparkle logo watermark. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Remove visible Gemini AI watermarks from images via reverse alpha blending.
 
-## Publisher: <br>
-[FZLRA](https://clawhub.ai/user/FZLRA) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[fzlra](https://clawhub.ai/user/fzlra)
 
-## Use Case: <br>
-Developers and image workflow users use this skill to run a local Python utility that removes visible bottom-right Gemini watermark logos from images they are authorized to edit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can remove visible AI provenance watermarks before sharing or publishing images. <br>
-Mitigation: Use it only on images you are authorized to edit, and do not use it to hide AI origin, bypass platform rules, or misrepresent generated media. <br>
-Risk: Running third-party image-processing code can alter source assets or introduce local execution risk. <br>
-Mitigation: Review the skill before installing, run it in a virtual environment, and keep original image files unchanged. <br>
-Risk: Edited images may still need AI-origin disclosure even after visible watermark cleanup. <br>
-Mitigation: Preserve appropriate AI-origin disclosure when sharing edited images. <br>
+## Use Case:
 
+Developers and external users use this skill to run local Python commands that remove the visible bottom-right Gemini watermark from images they are allowed to edit. The artifact states that it is for personal learning and research only and prohibits commercial use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FZLRA/gemini-watermark-remover) <br>
-- [README.md](artifact/README.md) <br>
-- [README_zh.md](artifact/README_zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local command guidance for generating edited image files; no remote image upload is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: The skill is designed to remove visible AI watermarking, which can create content-authenticity, licensing, service-terms, or disclosure concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on images the user is allowed to edit, preserve AI-origin disclosure through other means, and review applicable service terms before publication.
+
+Risk: The skill installs and runs Python image-processing dependencies locally.
+
+Mitigation: Install dependencies in a pinned or isolated environment before processing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fzlra/skills/gemini-watermark-remover)
+- [Artifact README](artifact/README.md)
+- [Artifact Chinese README](artifact/README_zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local command guidance and an edited image file when the generated commands are run.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

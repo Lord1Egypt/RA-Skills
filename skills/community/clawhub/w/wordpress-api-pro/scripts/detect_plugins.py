@@ -18,7 +18,7 @@ import os
 import sys
 import requests
 from base64 import b64encode
-from security import warn_insecure_wp_url
+from security import require_secure_wp_url
 
 def detect_plugins(url, username, password, verbose=False):
     """Detect WordPress plugins via REST API"""
@@ -139,7 +139,7 @@ def main():
         print(json.dumps({"error": "App password required (--app-password or WP_APP_PASSWORD env var)"}),
               file=sys.stderr)
         sys.exit(1)
-    warn_insecure_wp_url(args.url)
+    require_secure_wp_url(args.url)
 
     try:
         plugins = detect_plugins(args.url, args.username, args.app_password, args.verbose)

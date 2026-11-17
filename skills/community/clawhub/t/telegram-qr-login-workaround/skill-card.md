@@ -1,41 +1,58 @@
-## Description: <br>
-Guides agents through using Telethon QR login as a workaround for Telegram PHONE_CODE_EXPIRED login failures, including setup commands, a Python example, and troubleshooting notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Telegram新设备登录 — 绕过PHONE_CODE_EXPIRED错误，用QR码扫描代替验证码，附脚本和完整流程
 
-## Publisher: <br>
-[polityang](https://clawhub.ai/user/polityang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polityang](https://clawhub.ai/user/polityang)
 
-## Use Case: <br>
-Developers and automation users use this skill when Telegram phone-code login fails on a new device and they need QR-based Telethon login guidance. It also helps them understand session reuse, common Telegram login errors, and safe handling of generated QR images and session files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow handles Telegram API credentials, QR login images, and session files that can grant account access. <br>
-Mitigation: Use the steps only on a trusted machine, keep credentials, QR images, and session files secret, and revoke Telegram sessions that are no longer needed. <br>
-Risk: The artifact includes publishing steps involving GitHub PATs and ClawHub tokens, which are sensitive credentials. <br>
-Mitigation: Perform publishing through your own authenticated browser or CLI session, do not share PATs or login QR images with another person or agent, and revoke tokens that are no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to troubleshoot Telegram new-device login failures and generate a local QR-based Telethon login flow when phone-code authentication reports PHONE_CODE_EXPIRED.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/polityang/telegram-qr-login-workaround) <br>
-- [Telegram API portal](https://my.telegram.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes credential-sensitive login guidance involving Telegram API credentials, QR images, and session files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Telegram QR login URLs, QR images, and session files can expose account access if shared or stored insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate and display QR codes locally, keep session files private, delete temporary QR artifacts, and do not send QR login material to an assistant or chat.
+
+Risk: Publishing instructions mention sharing GitHub PATs, ClawHub tokens, and other credentials.
+
+Mitigation: Do not share access tokens with an assistant or chat; use local authentication flows and avoid unrelated publishing instructions when applying the Telegram workaround.
+
+Risk: The server security verdict is suspicious because the workflow can expose account or platform credentials.
+
+Mitigation: Audit and correct the workflow before installation or use, following the server-provided security guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/polityang/skills/telegram-qr-login-workaround)
+- [Telegram API credentials](https://my.telegram.org)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes procedural troubleshooting guidance and examples for generating and handling Telegram QR login artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

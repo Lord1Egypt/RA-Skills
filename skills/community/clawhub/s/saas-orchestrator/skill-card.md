@@ -1,47 +1,58 @@
-## Description: <br>
-Orchestrate SAAS factory operations - spawn subagents, track projects, manage revenue targets, and coordinate development workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates SaaS factory operations by creating subagent task prompts, tracking projects, managing revenue targets, and coordinating development workflows.
 
-## Publisher: <br>
-[JuniorXcoder](https://clawhub.ai/user/JuniorXcoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[juniorxcoder](https://clawhub.ai/user/juniorxcoder)
 
-## Use Case: <br>
-Developers and operators use this skill to coordinate SaaS product research, MVP planning, portfolio status review, and revenue-focused next actions. It is most useful as a planning and task-generation aid for SaaS factory workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated plans may direct agents toward payment setup, deployment, account creation, or public launch actions. <br>
-Mitigation: Require explicit human approval before any agent executes deployment, payment, account, credential, or public launch steps. <br>
-Risk: Generated subagent prompts may contain incorrect assumptions or overly broad work instructions. <br>
-Mitigation: Review and narrow generated prompts before assigning them to an acting agent. <br>
-Risk: Factory status output may be mock data rather than live portfolio information. <br>
-Mitigation: Treat status reports as illustrative unless they are connected to verified project data. <br>
-Risk: Acting on SaaS build instructions can touch external services or credentials. <br>
-Mitigation: Use sandboxed environments and least-privilege credentials for any deliberate execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SAAS Orchestrator skill page](https://clawhub.ai/JuniorXcoder/saas-orchestrator) <br>
-- [Reference Documentation for Saas Orchestrator](artifact/references/api_reference.md) <br>
-- [MVP Patterns That Get You to Revenue Fast](artifact/references/mvp-patterns.md) <br>
-- [Revenue Models That Actually Work](artifact/references/revenue-models.md) <br>
-- [Proven SAAS Niches That Print Money](artifact/references/saas-niches.md) <br>
+## Use Case:
 
+Developers, founders, and operators use this skill to plan SaaS product research, generate MVP build tasks, review portfolio status, and coordinate revenue-focused launch workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text task plans, status reports, and generated Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local task or status report files when the bundled scripts are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can generate broad research, build, marketing, and launch tasks that may be unsuitable if followed without review.
+
+Mitigation: Review each generated task before execution and confirm scope, assumptions, and business constraints.
+
+Risk: Generated workflows may propose actions involving accounts, payments, public posting, or real business systems.
+
+Mitigation: Require explicit human approval before creating accounts, configuring payments, posting publicly, or modifying production business systems.
+
+Risk: The artifact describes subagent orchestration without clear confirmation boundaries.
+
+Mitigation: Use it as a planning aid and keep agent spawning or command execution under manual operator control.
+
+## Reference(s):
+
+- [Proven SAAS Niches That Print Money](references/saas-niches.md)
+- [Revenue Models That Actually Work](references/revenue-models.md)
+- [MVP Patterns That Get You to Revenue Fast](references/mvp-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with generated task text and optional local text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local research, build, or factory status reports when helper scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

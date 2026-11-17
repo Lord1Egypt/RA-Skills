@@ -1,44 +1,54 @@
-## Description: <br>
-Generate a structured LEONIDAS prompt from any professional pain point using the Ask Leonidas OpenClaw API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a structured LEONIDAS prompt from any professional pain point using the Ask Leonidas OpenClaw API, with automatic role, industry, and desired outcome inference.
 
-## Publisher: <br>
-[leonidas-esquire](https://clawhub.ai/user/leonidas-esquire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leonidas-esquire](https://clawhub.ai/user/leonidas-esquire)
 
-## Use Case: <br>
-External users and developers use this skill to turn professional pain points into structured prompts for SOUL.md, AGENTS.md, cron instructions, skill briefs, and agent workflows. It returns the generated prompt with detected role, industry, desired outcome, confidence, quality score, prompt type, and request metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided professional challenges and optional context to the external Ask Leonidas API. <br>
-Mitigation: Avoid submitting sensitive business or personal details unless the user is comfortable sharing them with that service. <br>
-Risk: The skill depends on an API key and service configuration. <br>
-Mitigation: Keep ASK_LEONIDAS_API_KEY private and keep ASK_LEONIDAS_API_BASE set to https://askleonidas.com unless deliberately using another trusted endpoint. <br>
-Risk: Generated prompts may be copied into persistent agent instruction files such as SOUL.md or AGENTS.md. <br>
-Mitigation: Review generated prompts before placing them into persistent agent instructions or workflows. <br>
+## Use Case:
 
+External users and developers use this skill to turn business or workflow pain points into structured prompts for SOUL.md, AGENTS.md, cron job instructions, skill briefs, and agent-owned workflows.
 
-## Reference(s): <br>
-- [Ask Leonidas Homepage](https://askleonidas.com) <br>
-- [Ask Leonidas OpenClaw Page](https://askleonidas.com/openclaw) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leonidas-esquire/ask-leonidas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured text or Markdown with prompt metadata; helper scripts return JSON for API responses and errors.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ASK_LEONIDAS_API_BASE and ASK_LEONIDAS_API_KEY; submits the pain point and optional role, industry, and desired outcome to the external Ask Leonidas service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can send API keys and prompt-related business context to the API base URL configured in the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set ASK_LEONIDAS_API_BASE exactly to https://askleonidas.com and avoid entering secrets, customer data, regulated data, or highly confidential details in pain points.
+
+Risk: On API failure, the skill may open the configured service URL in a browser fallback.
+
+Mitigation: Review browser fallback behavior before deployment and prefer a version that validates the API host and asks before opening a browser.
+
+## Reference(s):
+
+- [Ask Leonidas homepage](https://askleonidas.com)
+- [Ask Leonidas ClawHub skill page](https://clawhub.ai/leonidas-esquire/skills/ask-leonidas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-formatted metadata followed by generated prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes detected role, detected industry, detected desired outcome, confidence, quality score, prompt type, and request ID when returned by the service.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

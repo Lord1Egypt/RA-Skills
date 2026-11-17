@@ -1,43 +1,56 @@
-## Description: <br>
-AI-powered platform that generates personalized career roadmaps for multimedia and gaming professionals based on skills assessment and learning goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered platform that generates personalized career roadmaps for multimedia and gaming professionals based on skills assessment and learning goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External developers, career counselors, training providers, educational institutions, and talent-development teams use this skill to generate multimedia and gaming career roadmaps, specialization recommendations, learning paths, milestones, and next steps from assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends career assessment details, session IDs, optional user IDs, skills, goals, and experience information to an external third-party API. <br>
-Mitigation: Use pseudonymous session and user identifiers where possible, and avoid sending confidential employer, client, or personally sensitive information. <br>
-Risk: The release carries crypto and purchase capability tags, but the security evidence does not document a clear need for wallet, crypto, purchase, or payment authority. <br>
-Mitigation: Do not grant wallet, crypto, purchase, or payment authority unless the publisher separately documents a specific operational need. <br>
+## Use Case:
 
+External developers, career platforms, training providers, educational institutions, and enterprise talent teams use this skill to generate personalized multimedia and gaming career roadmaps, specialization recommendations, structured learning paths, milestones, and next steps from assessment data.
 
-## Reference(s): <br>
-- [OpenAPI specification](artifact/openapi.json) <br>
-- [API Docs](https://api.mkkpro.com:8184/docs) <br>
-- [Kong Route](https://api.mkkpro.com/career/multimedia-gaming) <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-multimedia-gaming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON] <br>
-**Output Format:** [JSON API responses with career roadmap guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include profile summaries, skill gaps, specialization recommendations, phased learning paths, milestones, estimated timelines, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and OpenAPI info.version) <br>
+Risk: Career history, skills, goals, session identifiers, timestamps, and optional user IDs may be sent to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only necessary assessment data and confirm the provider's privacy and retention terms before use.
+
+Risk: Generated career roadmaps and recommendations may be incomplete, outdated, or unsuitable for consequential career decisions without review.
+
+Mitigation: Have qualified reviewers validate recommendations before using them for counseling, training plans, or talent decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-multimedia-gaming)
+- [Kong Route](https://api.mkkpro.com/career/multimedia-gaming)
+- [API Docs](https://api.mkkpro.com:8184/docs)
+- [OpenAPI Specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, JSON]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces external API call guidance and structured career roadmap responses; requests may include experience, skills, goals, session identifiers, timestamps, and an optional user ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

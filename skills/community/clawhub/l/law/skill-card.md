@@ -1,40 +1,57 @@
-## Description: <br>
-Support legal understanding from everyday rights to professional practice and scholarship. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Support legal understanding from everyday rights to professional practice and scholarship.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, legal learners, attorneys, researchers, educators, and paralegals use this skill to frame legal questions, distinguish information from advice, reason through doctrine, and prepare materials for appropriate attorney or jurisdiction-specific review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated legal information as legal advice for a specific situation. <br>
-Mitigation: Frame outputs as general information, ask for jurisdiction before substantive discussion, and direct users to a qualified lawyer for jurisdiction-specific, urgent, or high-stakes matters. <br>
-Risk: Legal information can be outdated, unsettled, or jurisdiction-specific. <br>
-Mitigation: Flag uncertainty, identify the relevant jurisdiction, prefer current primary authority where available, and require qualified legal review for consequential use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Law on ClawHub](https://clawhub.ai/ivangdavila/law) <br>
-- [ivangdavila publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users, students, legal professionals, educators, researchers, and support staff use this skill for general legal education, legal reasoning support, drafting structure, citation guidance, and issue framing. Outputs are informational and should be reviewed by qualified counsel for jurisdiction-specific or high-stakes decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text legal information with citations and disclaimers when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tools, persistence, or data access are defined by the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may mistake general legal information or draft language for legal advice tailored to their situation.
+
+Mitigation: State that outputs are informational, ask for jurisdiction before substantive discussion, and direct users to qualified counsel for jurisdiction-specific or high-stakes decisions.
+
+Risk: Legal information may be outdated, unsettled, or non-binding in the user's jurisdiction.
+
+Mitigation: Flag uncertainty, distinguish binding from persuasive authority, identify source dates when available, and recommend verification of current law before reliance.
+
+Risk: Drafts or procedural support could be used without professional review.
+
+Mitigation: Mark drafts and substantive work product as requiring attorney review before filing, signing, or sending.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/law)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain-language text responses with legal explanations, cautions, citations, checklists, and draft language for review.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational output only; jurisdiction, authority status, currency of law, privilege, and attorney-review caveats should be surfaced when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

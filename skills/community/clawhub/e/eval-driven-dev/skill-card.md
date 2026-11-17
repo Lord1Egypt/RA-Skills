@@ -1,41 +1,53 @@
-## Description: <br>
-Helps developers add instrumentation, build golden datasets, write eval-based tests, run them, root-cause failures, and iterate on Python LLM applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents add instrumentation, build golden datasets, write and run eval-based tests, root-cause failures, and iterate on Python LLM applications.
 
-## Publisher: <br>
-[yiouli](https://clawhub.ai/user/yiouli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yiouli](https://clawhub.ai/user/yiouli)
 
-## Use Case: <br>
-Developers and engineers use this skill to add evaluation-driven QA to Python LLM applications, including instrumentation, trace capture, golden datasets, eval tests, and failure investigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may upgrade project dependencies or reinstall itself as part of startup checks. <br>
-Mitigation: Run it in a branch or disposable environment and require explicit approval before dependency upgrades or skill reinstallation. <br>
-Risk: Eval setup can capture prompts, traces, expected outputs, and other sensitive application data in the pixie_qa directory. <br>
-Mitigation: Use scoped test API keys, avoid production data where possible, and inspect pixie_qa for secrets or sensitive prompts before committing, sharing, or retaining it. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up and iterate on evaluation pipelines for Python applications that call LLMs. It guides agents through instrumentation, trace capture, dataset creation, eval test writing, test execution, and root-cause analysis.
 
-## Reference(s): <br>
-- [Pixie API Reference](artifact/references/pixie-api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yiouli/eval-driven-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code edits, shell commands, and generated pixie_qa files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project instrumentation, eval datasets, tests, scripts, and pixie_qa artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.11 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The skill directs agents to upgrade pixie-qa and reinstall the skill from remote sources before starting work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve the exact package and skill versions before upgrades, prefer pinned dependencies, and run the workflow in a virtual environment or container.
+
+Risk: Evaluation traces and datasets may contain prompts, user inputs, model outputs, and metadata.
+
+Mitigation: Treat the pixie_qa directory as sensitive, review it before committing or sharing, and redact secrets or private data.
+
+## Reference(s):
+
+- [Pixie API Reference](references/pixie-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python code changes, generated eval files, JSON datasets, and test results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update pixie_qa working files, including notes, traces, datasets, tests, and helper scripts.]
+
+## Skill Version(s):
+
+0.1.11 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

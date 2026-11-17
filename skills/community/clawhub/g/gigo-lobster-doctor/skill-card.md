@@ -1,47 +1,68 @@
-## Description: <br>
-Checks an OpenClaw GIGO Lobster environment for gateway, Python dependency, task-bundle, and PNG certificate readiness without running the formal benchmark. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gigo Lobster Doctor checks whether an OpenClaw environment can reach the gateway, satisfy Python runtime dependencies, access the task bundle, and generate PNG certificates without running the full benchmark.
 
-## Publisher: <br>
-[gigolab](https://clawhub.ai/user/gigolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gigolab](https://clawhub.ai/user/gigolab)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to run a preflight environment check before a GIGO Lobster benchmark. It verifies gateway availability, Python/runtime dependencies, task-bundle access, and certificate generation readiness without starting the formal tasting run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The doctor may contact the GIGO API, check a local OpenClaw gateway, and read OpenClaw secrets.env into its environment. <br>
-Mitigation: Run it only in an environment where those credentials and network contacts are acceptable, and review the configured GIGO/OpenClaw endpoints before execution. <br>
-Risk: The skill may create a managed Python runtime and install packages while performing diagnostics. <br>
-Mitigation: Use an isolated workspace or virtual environment and review package/bootstrap behavior before running on sensitive systems. <br>
-Risk: The packaged artifact includes broader benchmark runner code with shell execution and upload paths beyond the doctor label. <br>
-Mitigation: Use the documented run_doctor.py entrypoint for environment checks, and avoid invoking main.py or setting GIGO_V2_AGENT_COMMAND unless broader benchmark execution is intended. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill before a GIGO Lobster evaluation to verify local setup, task-bundle access, output writing, and certificate readiness while avoiding a full benchmark run.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gigolab/gigo-lobster-doctor) <br>
-- [Publisher profile](https://clawhub.ai/user/gigolab) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [bundle/README.md](bundle/README.md) <br>
-- [bundle/INTEGRATION.md](bundle/INTEGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance, files] <br>
-**Output Format:** [Markdown-style agent responses with inline shell commands, progress updates, and diagnostic result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write diagnostic logs and output artifacts under the configured OpenClaw workspace output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release metadata and artifact manifest) <br>
+Risk: The doctor check may create a local Python runtime and install packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated OpenClaw workspace or container and review the resolved package environment before broader use.
+
+Risk: The skill may read OpenClaw secrets.env into the process environment.
+
+Mitigation: Use a workspace with only the minimum required secrets and avoid running it in directories that contain unrelated credentials.
+
+Risk: The skill contacts api.agent-gigo.com and fetches task bundle metadata.
+
+Mitigation: Allow network access only when that service is expected, and use offline mode or network controls when remote checks are not desired.
+
+Risk: The skill writes logs and output checks to the local output directory.
+
+Mitigation: Choose an output directory that is safe for generated logs and review gigo-run.log before sharing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gigolab/skills/gigo-lobster-doctor)
+- [Skill instructions](artifact/SKILL.md)
+- [GIGO Lobster skill family README](artifact/README.md)
+- [Task bundle README](artifact/bundle/README.md)
+- [Task bundle integration guide](artifact/bundle/INTEGRATION.md)
+- [Task schema](artifact/bundle/specs/task-schema.md)
+- [Evaluator types](artifact/bundle/specs/evaluator-types.md)
+- [Scoring specification](artifact/bundle/specs/scoring.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Terminal status text with a run log file and environment readiness guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default doctor mode does not run the full benchmark or upload leaderboard results; it may write gigo-run.log and temporary output-directory checks.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

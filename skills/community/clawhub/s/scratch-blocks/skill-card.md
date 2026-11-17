@@ -1,40 +1,50 @@
-## Description: <br>
-Use this skill when the user uploads a `.sb3` or `.sprite3` file, or when the conversation is about Scratch and clearer block-style visualization would help. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user uploads a `.sb3` or `.sprite3` file, or when the conversation is about Scratch and clearer block-style visualization would help.
 
-## Publisher: <br>
-[z-bra0](https://clawhub.ai/user/z-bra0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z-bra0](https://clawhub.ai/user/z-bra0)
 
-## Use Case: <br>
-Developers, educators, and Scratch users use this skill to inspect Scratch project or sprite files, reason over extracted Scratch block structures, and present Scratch code as readable rendered ASCII blocks instead of raw JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local extraction and rendering can leave generated Scratch data in /tmp/scratchcode or beside raw JSON inputs. <br>
-Mitigation: Delete generated scratch-json and rendered-output files after use when retained local copies are not desired. <br>
+## Use Case:
 
+Developers, educators, and Scratch users use this skill to inspect uploaded Scratch projects, reason about Scratch code, and show block-style visualizations instead of raw Scratch JSON.
 
-## Reference(s): <br>
-- [Scratch Blocks on ClawHub](https://clawhub.ai/z-bra0/scratch-blocks) <br>
-- [Uploaded Scratch Files](references/UPLOADS.md) <br>
-- [Block Catalog Spec](data/BLOCK_CATALOG_SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with fenced ASCII-rendered Scratch blocks and concise explanatory prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Python scripts to extract Scratch files into scratch-json and render Scratch blocks for display; scratch-json is an internal intermediate format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Oversized or malicious Scratch archives could consume local disk, memory, or CPU during extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, run in a constrained environment, and add archive and JSON size limits before processing untrusted uploads.
+
+## Reference(s):
+
+- [Uploaded Scratch Files](references/UPLOADS.md)
+- [Block Catalog Spec](data/BLOCK_CATALOG_SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with fenced ASCII Scratch block renderings and concise prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses internal scratch-json for reasoning; user-facing Scratch code is rendered through scripts/render_ascii.py.]
+
+## Skill Version(s):
+
+0.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

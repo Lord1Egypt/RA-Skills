@@ -1,0 +1,22 @@
+{
+  "skill": "ocas-forge",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-forge",
+  "evals": [
+    {
+      "input": "Design a new skill for managing Docker containers",
+      "expected_output": "Creates a skill package with proper SKILL.md frontmatter, command definitions, and reference files",
+      "description": "Skill design and construction"
+    },
+    {
+      "input": "Validate an existing skill package",
+      "expected_output": "Runs validation checks on structure, frontmatter, and content quality",
+      "description": "Skill validation"
+    },
+    {
+      "input": "Build a skill from a specification document",
+      "expected_output": "Produces a complete skill package ready for testing",
+      "description": "Skill building from spec"
+    }
+  ]
+}

@@ -1,43 +1,57 @@
-## Description: <br>
-Mic Recorder guides agents through recording microphone audio on macOS with a user-created Automator app, denoising it with FFmpeg, and sending the processed WAV file to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records microphone audio and sends the resulting file to Feishu, covering both voice and background sound.
 
-## Publisher: <br>
-[Tazio7](https://clawhub.ai/user/Tazio7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tazio7](https://clawhub.ai/user/tazio7)
 
-## Use Case: <br>
-Developers and agent users use this skill to capture voice or ambient audio on macOS, apply FFmpeg denoising, and send the resulting workspace audio file to Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Microphone recordings may capture people who have not consented. <br>
-Mitigation: Use the skill only when all recorded parties know about and consent to the recording. <br>
-Risk: Audio may be sent to the wrong Feishu destination. <br>
-Mitigation: Verify the Feishu destination before sending any recording. <br>
-Risk: Sensitive audio may be uploaded or retained longer than intended. <br>
-Mitigation: Inspect recordings before upload and define how local and Feishu copies will be retained or deleted. <br>
+## Use Case:
 
+Developers and agent users use this skill to capture local microphone audio on macOS, denoise it, place the processed WAV file in the workspace, and send it to Feishu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tazio7/mic-recorder) <br>
-- [Publisher profile](https://clawhub.ai/user/Tazio7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local recording paths, FFmpeg denoising commands, Automator usage steps, and Feishu send examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Microphone recordings may capture private background speech or other sensitive audio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with consent from affected people, keep recording duration minimal, and review or delete recordings when appropriate.
+
+Risk: The local RecordMic.app used for recording is outside the published skill artifact.
+
+Mitigation: Verify the local Automator app and its FFmpeg command before relying on the skill.
+
+Risk: Processed audio is sent to Feishu and may be exposed to unintended recipients or channels.
+
+Mitigation: Confirm the intended Feishu destination and send only workspace-copied files that are appropriate to share.
+
+## Reference(s):
+
+- [Mic Recorder ClawHub Skill Page](https://clawhub.ai/tazio7/skills/mic-recorder)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on local WAV recordings, denoising with FFmpeg, workspace file placement, and Feishu delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

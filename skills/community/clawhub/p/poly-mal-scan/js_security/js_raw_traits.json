@@ -1,0 +1,40 @@
+{
+  "代码/命令执行": {
+    "plain": [
+      "eval(atob(",
+      "eval(window.atob("
+    ],
+    "base64": [
+      "ZXZhbChhdG9iKA=="
+    ]
+  },
+  "XSS/注入": {
+    "plain": [
+      "document.write('<div>",
+      "</script><script>alert",
+      "innerHTML = location.",
+      "</script><script>"
+    ],
+    "base64": [
+      "PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="
+    ]
+  },
+  "网络外带/SSRF": {
+    "base64": [
+      "ZXZpbC5jb20="
+    ]
+  },
+  "系统/子进程": {
+    "plain": [
+      "cp.spawn(\"/bin/sh\"",
+      "spawn(\"/bin/sh\""
+    ]
+  },
+  "DOM/敏感操作": {
+    "plain": [
+      "document.cookie =",
+      "location.href = "
+    ]
+  },
+  "权限维持/常驻": {}
+}

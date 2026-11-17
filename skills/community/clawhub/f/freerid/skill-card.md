@@ -1,45 +1,60 @@
-## Description: <br>
-Manages free AI models from OpenRouter for OpenClaw, automatically ranks models by quality, configures fallbacks for rate-limit handling, and updates openclaw.json. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FreeRide manages free OpenRouter models for OpenClaw by ranking available models, configuring fallbacks, and updating openclaw.json.
 
-## Publisher: <br>
-[goozdx-eng](https://clawhub.ai/user/goozdx-eng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goozdx-eng](https://clawhub.ai/user/goozdx-eng)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure OpenClaw with OpenRouter free models, ranked fallbacks, and optional model rotation when rate limits occur. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change OpenClaw's default model and fallback list. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json before first use and review the changed model settings after running FreeRide. <br>
-Risk: The skill requires an OpenRouter API key that could be exposed through shared or committed configuration. <br>
-Mitigation: Use a dedicated OpenRouter key and avoid storing it in shared files or committed config. <br>
-Risk: The optional watcher can run ongoing background checks and automatically rotate models. <br>
-Mitigation: Run freeride-watcher --daemon only when continuous monitoring and automatic rotation are desired. <br>
+## Use Case:
 
+External users and developers use this skill to configure OpenClaw with free OpenRouter models and fallback routing when model rate limits occur.
 
-## Reference(s): <br>
-- [ClawHub FreeRide skill page](https://clawhub.ai/goozdx-eng/freerid) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [OpenRouter API keys](https://openrouter.ai/keys) <br>
-- [OpenRouter models API](https://openrouter.ai/api/v1/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend updates to ~/.openclaw/openclaw.json and optional background model-rotation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persistently change OpenClaw's default model and fallback list.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up ~/.openclaw/openclaw.json and review the generated model routing before restarting OpenClaw.
+
+Risk: Install instructions and dependency versions are unpinned or inconsistent across the release evidence.
+
+Mitigation: Review the install command, prefer the documented free-ride slug, and pin installer and Python dependency versions where possible.
+
+Risk: Watcher or daemon mode can automatically rotate models after rate-limit checks.
+
+Mitigation: Use watcher or daemon mode only after explicitly opting into automatic model rotation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goozdx-eng/skills/freerid)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [OpenRouter](https://openrouter.ai)
+- [Artifact-declared FreeRide repository](https://github.com/Shaivpidadi/FreeRide)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may update OpenClaw model settings, a local model cache, and optional watcher state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact files also list 1.0.0, 1.0.1, and 1.0.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

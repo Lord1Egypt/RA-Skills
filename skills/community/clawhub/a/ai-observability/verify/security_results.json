@@ -1,0 +1,274 @@
+{
+  "skill": "ai-observability",
+  "version": "1.0.0",
+  "generated_at": "2026-08-28",
+  "note": "AI 可观测性监控 · 质量与安全稳定性实测（本地闭环）",
+  "dimensions": [
+    {
+      "key": "obs_timeliness",
+      "label": "方法时效",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "01-可观测性全景.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "02-调用追踪与日志.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "03-质量监控指标.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "04-性能与成本监控.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "05-护栏与安全监控.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "06-告警体系.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "07-平台与落地.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "08-FAQ.md 含核对基准日",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "coverage_completeness",
+      "label": "覆盖完整",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "references 模块数=8（实际 8）",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 01-可观测性全景.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 02-调用追踪与日志.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 03-质量监控指标.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 04-性能与成本监控.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 05-护栏与安全监控.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 06-告警体系.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 07-平台与落地.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 08-FAQ.md",
+          "pass": true
+        },
+        {
+          "name": "关键模块 01-可观测性全景",
+          "pass": true
+        },
+        {
+          "name": "关键模块 02-调用追踪与日志",
+          "pass": true
+        },
+        {
+          "name": "关键模块 03-质量监控指标",
+          "pass": true
+        },
+        {
+          "name": "关键模块 04-性能与成本监控",
+          "pass": true
+        },
+        {
+          "name": "关键模块 05-护栏与安全监控",
+          "pass": true
+        },
+        {
+          "name": "关键模块 06-告警体系",
+          "pass": true
+        },
+        {
+          "name": "关键模块 07-平台与落地",
+          "pass": true
+        },
+        {
+          "name": "关键模块 08-FAQ",
+          "pass": true
+        },
+        {
+          "name": "快速上手存在",
+          "pass": true
+        },
+        {
+          "name": "能力边界存在",
+          "pass": true
+        },
+        {
+          "name": "版权与许可段存在",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "tool_usability",
+      "label": "工具可用",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "--help 可执行",
+          "pass": true
+        },
+        {
+          "name": "命令 pillars 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 metrics 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 alert 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 trace 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 plan 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "pillars 含三大支柱",
+          "pass": true
+        },
+        {
+          "name": "metrics 含幻觉率",
+          "pass": true
+        },
+        {
+          "name": "alert 含分级",
+          "pass": true
+        },
+        {
+          "name": "trace 含敏感过滤",
+          "pass": true
+        },
+        {
+          "name": "plan 含灰度监控",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "judgment_accuracy",
+      "label": "判定正确",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "命令[pillars]含[追踪]",
+          "pass": true
+        },
+        {
+          "name": "命令[metrics]含[成本]",
+          "pass": true
+        },
+        {
+          "name": "命令[alert]含[P1]",
+          "pass": true
+        },
+        {
+          "name": "命令[trace]含[会话]",
+          "pass": true
+        },
+        {
+          "name": "命令[plan]含[天]",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "structure_compliance",
+      "label": "结构一致",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "frontmatter 有 9 必填字段",
+          "pass": true
+        },
+        {
+          "name": "description 值无半角冒号+空格（YAML 安全）",
+          "pass": true
+        },
+        {
+          "name": "LICENSE.md 存在",
+          "pass": true
+        },
+        {
+          "name": "SECURITY_AUDIT.md 存在",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "security_cleanliness",
+      "label": "安全净度",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "references+SKILL.md 无敏感词",
+          "pass": true
+        },
+        {
+          "name": "工具脚本零网络依赖",
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total": 50,
+    "passed": 50,
+    "failed": 0,
+    "overall": 5.0
+  },
+  "benchmarks": {
+    "industry_baseline": {
+      "obs_timeliness": 3.0,
+      "coverage_completeness": 3.2,
+      "tool_usability": 3.0,
+      "judgment_accuracy": 3.4,
+      "structure_compliance": 3.2,
+      "security_cleanliness": 3.0
+    },
+    "enterprise_standard": {
+      "obs_timeliness": 4.5,
+      "coverage_completeness": 4.5,
+      "tool_usability": 4.5,
+      "judgment_accuracy": 4.5,
+      "structure_compliance": 4.5,
+      "security_cleanliness": 4.5
+    }
+  }
+}

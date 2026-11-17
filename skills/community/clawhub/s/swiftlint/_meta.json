@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7cwyamm34vbpzwmza9av88ws82gqp1",
   "slug": "swiftlint",
+  "name": "SwiftLint",
   "version": "1.0.0",
-  "publishedAt": 1773006597397
+  "description": "Swift linting and style enforcement — rules, autocorrect, custom configurations, and CI integration via SwiftLint CLI",
+  "author": "alexissantosperez",
+  "tags": ["ios", "macos", "swift", "linting", "codestyle", "xcode", "cicd"],
+  "requires": ["swiftlint"],
+  "install": "brew install swiftlint",
+  "license": "MIT"
 }

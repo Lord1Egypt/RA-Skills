@@ -1,43 +1,55 @@
-## Description: <br>
-Time-blind friendly planning, executive function support, and daily structure for ADHD brains, specializing in realistic time estimation, dopamine-aware task design, and systems for neurodivergent minds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Time-blind friendly planning, executive function support, and daily structure for ADHD brains.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users use this skill to get ADHD-aware daily planning support, including realistic time estimates, transition buffers, priority winnowing, task initiation prompts, and dopamine-aware task design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat ADHD planning prompts or medication tracking templates as medical advice. <br>
-Mitigation: Use the skill as a planning and tracking aid only; medication dose, timing, side effects, or changes should be discussed with a prescribing clinician or pharmacist. <br>
-Risk: Planning suggestions may be inaccurate or poorly matched to a user's current executive function capacity. <br>
-Mitigation: Review outputs before acting on them and adapt plans to current energy, urgency, and support needs. <br>
+## Use Case:
 
+External users use this skill for ADHD-aware daily planning, time estimation, task initiation, transition buffers, and flexible routines. It provides self-help planning support, not medical advice, diagnosis, or medication-management guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/marjoriebroad/marjorie-adhd-daily-planner) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
-- [The Dopamine Menu](references/dopamine-menu.md) <br>
-- [Executive Function Toolkit](references/executive-function-toolkit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with planning templates and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning prompts, time-blocking structures, executive function strategies, and non-medical tracking aids.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may mistake ADHD planning templates, medication reminders, or dopamine-related guidance for medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for planning support; refer diagnosis, medication dose, timing, side effects, and effectiveness questions to a licensed clinician or pharmacist.
+
+Risk: A generated plan may be too rigid or ambitious for a user's current executive-function capacity.
+
+Mitigation: Treat plans as flexible suggestions, start with the smallest viable action, and adjust scope to current capacity.
+
+## Reference(s):
+
+- [Complete setup guide](https://skillboss.co/skill.md)
+- [The Dopamine Menu](references/dopamine-menu.md)
+- [Executive Function Toolkit](references/executive-function-toolkit.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with planning templates, checklists, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; content should be treated as self-help planning support rather than clinical advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-Atomic node skill to share a file in Google Drive using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to share a file in Google Drive using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zvirb](https://clawhub.ai/user/zvirb)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents use this skill when a user asks to share a specific Google Drive file or folder with a named recipient or make it public. It guides the agent to form a gog CLI sharing command and expect a JSON permission confirmation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can change Google Drive sharing permissions and may expose files or folders if the target, recipient, sharing type, or role is wrong.
+
+Mitigation: Require confirmation of the exact file or folder, recipient or public sharing type, and permission role before running gog.
+
+Risk: The schema example grants writer access even though the directive uses reader access.
+
+Mitigation: Default to reader access and use writer only when the user explicitly requests write permission.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and agents use this skill when they need to create a Google Drive sharing permission for a specific file or folder through the gog CLI. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, guidance, json]
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may propose sharing the wrong Google Drive file or folder, recipient, role, or public-access setting. <br>
-Mitigation: Before execution, confirm the exact file or folder ID, recipient email, permission role, and whether public access is intended; prefer reader access unless broader permissions are necessary. <br>
+**Output Format:** [Markdown instructions with an inline gog command and a JSON output expectation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/google-drive-share-file) <br>
+**Other Properties Related to Output:** [Requires a Google Drive file or folder ID, sharing type, role, and recipient email when user-based sharing is requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and expected JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog CLI and a Google Drive file or folder ID, role, permission type, and recipient email when sharing with a user.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

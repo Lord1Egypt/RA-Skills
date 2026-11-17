@@ -1,44 +1,58 @@
-## Description: <br>
-Intelligent git commit assistant that analyzes diffs, enforces conventional commits, checks for common secret patterns, and generates commit messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent git commit assistant that analyzes diffs, enforces conventional commits, detects common secret patterns, and generates meaningful commit messages.
 
-## Publisher: <br>
-[NakedoShadow](https://clawhub.ai/user/NakedoShadow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nakedoshadow](https://clawhub.ai/user/nakedoshadow)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to inspect local Git changes, stage explicit files, scan staged diffs for common secret patterns, and create conventional commits with a proposed message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can stage files and create local Git commits. <br>
-Mitigation: Review the staged files, generated commit message, and exact Git commands before allowing a commit. <br>
-Risk: Secret-like values may appear in terminal output during grep-based staged-diff checks. <br>
-Mitigation: Run the workflow in a trusted terminal and stop if the scan reports sensitive files or secret matches. <br>
-Risk: The fixed co-author trailer may not match every repository's authorship policy. <br>
-Mitigation: Confirm or edit the commit message and trailer before committing. <br>
+## Use Case:
 
+Developers and coding agents use this skill to review repository changes, run local git safety checks, prepare explicit staging choices, and create conventional commits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NakedoShadow/shadows-smart-commit) <br>
-- [Publisher profile](https://clawhub.ai/user/NakedoShadow) <br>
-- [Metadata homepage](https://clawhub.ai/NakedoShadow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes changed-file summary, security scan result, proposed commit message, explicit files to stage, and post-commit status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md) <br>
+Risk: The skill can stage files and create local git commits when used on broad commit-related triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed file list and commit message before allowing any write action.
+
+Risk: The built-in grep-based secret scan may print secret-like values in terminal output.
+
+Mitigation: Run the scan only in a secure terminal where output is not logged or shared.
+
+Risk: The built-in secret scan may miss obfuscated secrets or produce false positives.
+
+Mitigation: Use a dedicated scanner such as gitleaks or trufflehog for high-security repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nakedoshadow/skills/shadows-smart-commit)
+- [ClawHub homepage metadata](https://clawhub.ai/NakedoShadow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline git commands and proposed commit text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local git workflow guidance with proposed files to stage, security scan results, commit message, and post-commit status.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

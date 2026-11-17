@@ -1,30 +1,14 @@
 ---
 name: dlazy-viduq2-i2v
-version: 1.2.0
-description: Convert static images into dynamic videos using Vidu Q2 image-to-video model.
-metadata:
-  {
-    'clawdbot':
-      {
-        'emoji': '🤖',
-        'requires': { 'bins': ['npm', 'npx'] },
-        'install': 'npm install -g @dlazy/cli@1.2.0',
-        'installAlternative': 'npx @dlazy/cli@1.2.0',
-        'homepage': 'https://github.com/dlazyai/cli',
-        'source': 'https://github.com/dlazyai/cli',
-        'author': 'dlazyai',
-        'license': 'see-repo',
-        'npm': 'https://www.npmjs.com/package/@dlazy/cli',
-        'configLocation': '~/.dlazy/config.json',
-        'apiEndpoints': ['api.dlazy.com', 'files.dlazy.com'],
-      },
-    'openclaw': { 'systemPrompt': 'When invoking this skill, use dlazy viduq2-i2v -h for help.' },
-  }
+version: 1.3.5
+description: "Convert static images into dynamic videos using Vidu Q2 image-to-video model. 使用 Vidu Q2 图生视频模型，将静态图片通过智能运镜转化为动态视频。"
+metadata: {"clawdbot":{"emoji":"🤖","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli@1.2.3","installAlternative":"npx @dlazy/cli@1.2.3","homepage":"https://github.com/dlazy-ai/cli","source":"https://github.com/dlazy-ai/cli","author":"dlazyai","license":"see-repo","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"When invoking this skill, use dlazy viduq2-i2v -h for help."}}
 ---
 
-# dlazy-viduq2-i2v
+# 图生视频 Vidu Q2
 
 [English](./SKILL.md) · [中文](./SKILL-cn.md)
+
 
 Convert static images into dynamic videos using Vidu Q2 image-to-video model.
 
@@ -64,18 +48,18 @@ Each key is scoped to your dLazy organization and can be **rotated or revoked at
 
 ## About & Provenance
 
-- **CLI source code**: [github.com/dlazyai/cli](https://github.com/dlazyai/cli)
+- **CLI source code**: [github.com/dlazy-ai/cli](https://github.com/dlazy-ai/cli)
 - **Maintainer**: dlazyai
-- **npm package**: `@dlazy/cli` (pinned to `1.0.9` in this skill's install spec)
+- **npm package**: `@dlazy/cli` (pinned to `1.2.3` in this skill's install spec)
 - **Homepage**: [dlazy.com](https://dlazy.com)
 
 You can install on demand without persisting a global binary by running:
 
 ```bash
-npx @dlazy/cli@1.2.0 <command>
+npx @dlazy/cli@1.2.3 <command>
 ```
 
-Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@1.2.0`). Review the GitHub source before installing.
+Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@1.2.3`). Review the GitHub source before installing.
 
 ## How It Works
 
@@ -101,7 +85,7 @@ Options:
   --images [images...]                 Images [image: url or local path] (max 10) [only when !(generation_mode="frames")]
   --firstFrame [firstFrame]            First Frame [image: url or local path] [only when generation_mode="frames"]
   --lastFrame [lastFrame]              Last Frame [image: url or local path] [only when generation_mode="frames"]
-  --subjects [subjects...]             Subjects (max 7) [only when !(generation_mode="frames")]
+  --subjects [subjects...]             Subject IDs (max 7) [only when !(generation_mode="frames")]
   --audio [audio]                      Audio [default: false] (choices: "true", "false")
   --audioType [audioType]              Audio Type [default: all] (choices: "all", "speech_only") [only when !(generation_mode="frames")]
   --duration [duration]                Duration (s) [default: 5] (choices: "2", "3", "4", "5", "6", "7", "8", "9", "10")
@@ -110,6 +94,7 @@ Options:
   --dry-run                            Print payload + cost estimate without calling API
   --no-wait                            Return generateId immediately for async tasks
   --timeout <seconds>                  Max seconds to wait for async completion (default: "1800")
+  --save <path>                        Download the result asset to this local path (mkdir + retry handled for you)
   -h, --help                           display help for command
 ```
 
@@ -122,7 +107,7 @@ Options:
   "ok": true,
   "result": {
     "tool": "viduq2-i2v",
-    "modelId": "viduq2-i2v",
+    "modelId": "vidu-i2v-viduq2",
     "outputs": [
       {
         "type": "image",
@@ -151,15 +136,14 @@ dlazy viduq2-i2v --prompt 'prompt text' --image 'https://files.dlazy.com/image.p
 
 | Code | Error Type                         | Example Message                                                                                                          |
 | ---- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 401  | Unauthorized (No API Key)          | `ok: false, code: "unauthorized", message: "API key is missing or invalid"`                                              |
-| 501  | Missing required parameter         | `error: required option '--prompt <prompt>' not specified`                                                               |
-| 502  | Local file read error              | `Error: Image file/Video file not found: C:\path\to\your\file`                                                           |
-| 503  | API request failed (no balance)    | `ok: false, code: "insufficient_balance"`                                                                                |
-| 503  | API request failed (server error)  | `HTTP status code error (500 server crash)`                                                                              |
+| 401  | Unauthorized (No API Key)          | `ok: false, code: "unauthorized", message: "API key is missing or invalid"`                                                              |
+| 501  | Missing required parameter         | `error: required option '--prompt <prompt>' not specified`                                                              |
+| 502  | Local file read error              | `Error: Image file/Video file not found: C:\path\to\your\file`                                                          |
+| 503  | API request failed (no balance)    | `ok: false, code: "insufficient_balance"` |
+| 503  | API request failed (server error)  | `HTTP status code error (500 server crash)`                                                                             |
 | 504  | Asynchronous task execution failed | `=== Generation Failed ===` / `{Specific error reason returned by backend, for example "Prompt violates safety policy"}` |
 
-> **AGENT CRITICAL INSTRUCTION**:
->
+> **AGENT CRITICAL INSTRUCTION**: 
 > 1. If the execution result returns `code: "insufficient_balance"`, you MUST explicitly inform the user that their credits are insufficient and guide them to recharge: [https://dlazy.com/dashboard/organization/settings?tab=credits](https://dlazy.com/dashboard/organization/settings?tab=credits)
 > 2. If the execution result returns `code: "unauthorized"` or indicates missing API key, you MUST inform the user to get their API key from [https://dlazy.com/dashboard/organization/api-key](https://dlazy.com/dashboard/organization/api-key) and save it using `dlazy auth set <key>` and resume the task.
 

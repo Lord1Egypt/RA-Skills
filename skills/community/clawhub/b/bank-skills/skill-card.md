@@ -1,46 +1,57 @@
-## Description: <br>
-Traditional banking via Wise API + on-chain token swaps on Base. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Traditional banking via Wise API + on-chain token swaps on Base.
 
-## Publisher: <br>
-[singularityhacker](https://clawhub.ai/user/singularityhacker) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[singularityhacker](https://clawhub.ai/user/singularityhacker)
 
-## Use Case: <br>
-Developers and external agent users use this skill to let an agent query Wise balances and receiving details, initiate transfers, and operate a Base wallet for token swaps and token transfers in controlled R&D settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move real money through Wise transfers and on-chain token operations. <br>
-Mitigation: Use only low-balance test accounts and require external human approval before send, send-token, or buy-token actions. <br>
-Risk: The export-private-key action can reveal wallet secrets. <br>
-Mitigation: Set a strong CLAWBANK_WALLET_PASSWORD and require human approval before export-private-key is available to an autonomous agent. <br>
-Risk: A compromised Wise API token could expose banking functionality. <br>
-Mitigation: Restrict and rotate the Wise API token, enable Wise token or IP controls where available, and avoid storing the token in shared configuration. <br>
+## Use Case:
 
+Developers and external users can give agents controlled access to Wise balance, receive-detail, transfer, wallet, token-swap, and token-transfer workflows. Use only in controlled R&D settings with minimal funds and human confirmation for value-moving actions.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/singularityhacker/bank-skills) <br>
-- [Skills.sh listing](https://skills.sh/singularityhacker/bank-skills/bank-skill) <br>
-- [NPM package](https://www.npmjs.com/package/@singularityhacker/bank-skill) <br>
-- [Wise API documentation](https://docs.wise.com/api-reference) <br>
-- [Base mainnet RPC endpoint](https://mainnet.base.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files] <br>
-**Output Format:** [JSON over stdout, with optional local wallet and sweep configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include balances, account details, transfer IDs, transaction hashes, wallet addresses, and private keys when the export-private-key action is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; packaged skill sources report 0.1.4 in SKILL.md, pyproject.toml, CHANGELOG.md, and skill.json) <br>
+Risk: The skill can move real banking or crypto funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use minimal funds, a least-privileged Wise token, and a separate human confirmation process before transfers or swaps.
+
+Risk: Weak wallet passwords or private-key export can compromise the wallet.
+
+Mitigation: Set a strong CLAWBANK_WALLET_PASSWORD before creating any wallet; avoid wallets created with the default password and treat exported, copied, logged, or shared private keys as compromised.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/singularityhacker/skills/bank-skills)
+- [Publisher Profile](https://clawhub.ai/user/singularityhacker)
+- [Wise API Reference](https://docs.wise.com/api-reference)
+- [NPM Package](https://www.npmjs.com/package/@singularityhacker/bank-skill)
+- [Base Mainnet RPC](https://mainnet.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API calls, Shell commands, Configuration]
+
+**Output Format:** [JSON responses over stdin/stdout, with documented shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WISE_API_TOKEN for banking actions; optional WISE_PROFILE_ID, CLAWBANK_WALLET_PASSWORD, and BASE_RPC_URL configure profile and Base wallet behavior.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact files report 0.1.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

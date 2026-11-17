@@ -1,41 +1,54 @@
-## Description: <br>
-Grade Amazon product listing quality from an ASIN with a 0-100 score, a seven-dimension breakdown, and improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grades Amazon product listing quality from an ASIN with a 0-100 score, dimension breakdown, and improvement suggestions.
 
-## Publisher: <br>
-[linbeihanda](https://clawhub.ai/user/linbeihanda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbeihanda](https://clawhub.ai/user/linbeihanda)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate Amazon product listing quality, identify strong and weak listing dimensions, and prioritize improvements for title, bullets, reviews, sales signals, BSR, and badges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Each run sends the user's CLAW_KEY and Amazon product URL to the configured external scraping API. <br>
-Mitigation: Use only a trusted HTTPS CLAW_API_BASE value supplied with the key, keep the .env file private, and rotate the key if it may have been exposed. <br>
-Risk: Listing grades depend on parsed Amazon page data returned by the configured service and may be incomplete or stale. <br>
-Mitigation: Review the returned title, listing fields, score breakdown, and suggestions before using the grade for business decisions. <br>
+## Use Case:
 
+External sellers, marketplace operators, and developers can use this skill to assess Amazon product listing quality from an ASIN and prioritize listing improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linbeihanda/amazon-listing-judge) <br>
-- [CLAW key provider](https://claw-school.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, json, shell commands, guidance] <br>
-**Output Format:** [JSON result with score, grade, per-dimension breakdown, and suggestions; agents may present it as a structured report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an ASIN plus CLAW_KEY and CLAW_API_BASE credentials for the configured scraping service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: A long-lived CLAW_KEY and requested ASIN URL are sent to the configured external scraping service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS CLAW_API_BASE, protect and rotate the CLAW_KEY, and avoid submitting sensitive or private product URLs.
+
+Risk: The script depends on httpx without a pinned dependency version.
+
+Mitigation: Pin dependencies and review dependency updates before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/linbeihanda/skills/amazon-listing-judge)
+- [CLAW Key Provider](https://claw-school.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the grading script, typically summarized as a structured Markdown report by the agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAW_KEY and CLAW_API_BASE; each run sends the requested ASIN URL to the configured external scraping service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

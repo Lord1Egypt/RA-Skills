@@ -271,7 +271,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ### API Key
 
 ```
-Authorization: Bearer tmr_sk_live_a1b2c3d4e5f6789012345678901234567890abcdef
+Authorization: Bearer tmr_REDACTED-SECRET
 ```
 
 Both formats use the same `Authorization: Bearer` header. The server distinguishes between JWT tokens and API keys by their prefix pattern.

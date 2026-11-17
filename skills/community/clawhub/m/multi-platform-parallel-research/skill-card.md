@@ -1,44 +1,57 @@
-## Description: <br>
-Auto Researcher helps an agent research topics across X/Twitter, Reddit, YouTube, GitHub, Hacker News, Product Hunt, and news sites, then produce structured research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Researcher researches a topic across X/Twitter, Reddit, YouTube, GitHub, Hacker News, Product Hunt, and news sites, then generates structured market, competitor, technical, and user-feedback reports.
 
-## Publisher: <br>
-[yofoan](https://clawhub.ai/user/yofoan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yofoan](https://clawhub.ai/user/yofoan)
 
-## Use Case: <br>
-Developers, researchers, and product teams can use this skill to gather public signals about a topic, market, competitor, technology choice, or user feedback theme and turn the results into Markdown, JSON, or presentation-style research outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the included shell scripts can run unintended local code from a crafted research topic. <br>
-Mitigation: Review and patch heredoc input handling before running the shell scripts, and avoid using pasted or untrusted topics until that handling is fixed. <br>
-Risk: The security summary says research queries are sent to several outside services. <br>
-Mitigation: Do not use confidential topics unless sharing those queries with the listed services and any configured CLI accounts is acceptable. <br>
+## Use Case:
 
+Developers, product teams, and market researchers use this skill to gather public signals about a topic across multiple platforms and turn them into structured research reports. It supports market trend research, competitor analysis, technical research, and user feedback summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yofoan/multi-platform-parallel-research) <br>
-- [Publisher profile](https://clawhub.ai/user/yofoan) <br>
-- [Hacker News Algolia Search API](https://hn.algolia.com/api/v1/search) <br>
-- [Jina AI Reader](https://r.jina.ai/) <br>
-- [GitHub repository search](https://github.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, generated Markdown reports, JSON data files, and presentation outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Research results may be written to temporary local files and may depend on external services and locally configured CLI tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Crafted research topics may trigger code execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix the heredoc topic-injection issue before normal use and review topic handling before installing or running the skill.
+
+Risk: Research topics and queries are sent to third-party services.
+
+Mitigation: Do not use sensitive internal project names, customer data, credentials, or confidential plans as research topics.
+
+Risk: Reports and raw data are stored locally under /tmp or a user-selected output directory.
+
+Mitigation: Run the scripts as an unprivileged user and prefer a fixed, trusted output directory with appropriate permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yofoan/skills/multi-platform-parallel-research)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports, JSON data files, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes reports and raw research data to local output directories, normally under /tmp.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

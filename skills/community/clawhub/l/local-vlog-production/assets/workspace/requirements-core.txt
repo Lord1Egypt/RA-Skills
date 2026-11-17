@@ -1,0 +1,3 @@
+# Install into a local virtual environment.
+Pillow>=10.4,<13
+numpy>=1.26,<3

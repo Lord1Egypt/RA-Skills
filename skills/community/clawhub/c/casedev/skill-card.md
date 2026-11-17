@@ -1,40 +1,58 @@
-## Description: <br>
-case.dev helps agents use the casedev CLI for encrypted legal document vaults, OCR, audio transcription, legal search, and related setup workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+case.dev helps agents install and use the casedev CLI for legal document vaults, OCR, transcription, and web, legal, case law, patent, and vault search.
 
-## Publisher: <br>
-[maxsonderby](https://clawhub.ai/user/maxsonderby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maxsonderby](https://clawhub.ai/user/maxsonderby)
 
-## Use Case: <br>
-Legal teams, developers, and agents use this skill to install and authenticate the casedev CLI, manage encrypted case document vaults, run OCR and transcription jobs, and search legal, web, patent, and vault sources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to upload, download, search, and process sensitive legal materials through case.dev. <br>
-Mitigation: Use it only with trusted case.dev accounts, protect API keys, and confirm exact vaults, files, directories, and outputs before running commands. <br>
-Risk: The setup guidance includes a shell installer and broad API commands, including API URL overrides and raw endpoint calls. <br>
-Mitigation: Prefer the Homebrew install path or inspect the installer first, and require explicit approval before raw API calls, API URL overrides, or operations that create or change remote data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [case.dev](https://case.dev) <br>
-- [ClawHub skill page](https://clawhub.ai/maxsonderby/casedev) <br>
+## Use Case:
 
+External users and legal-workflow developers use this skill to set up the casedev CLI, authenticate to case.dev, manage encrypted vaults, extract text from documents, transcribe recordings, and run legal or web research through CLI commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents to use --json for machine-readable casedev CLI output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes a curl-to-sh installer path.
+
+Mitigation: Prefer the Homebrew installation path, or independently verify the shell script source before executing it.
+
+Risk: Legal documents, directories, recordings, and document URLs may contain privileged or confidential information.
+
+Mitigation: Upload only materials the user is authorized to send to case.dev after checking privacy, retention, and client-confidentiality requirements.
+
+Risk: API keys may be stored in a local config file on shared machines.
+
+Mitigation: Prefer CASE_API_KEY environment variables or a managed secret store, and avoid persistent local key storage on shared systems.
+
+## Reference(s):
+
+- [case.dev](https://case.dev)
+- [ClawHub skill listing](https://clawhub.ai/maxsonderby/skills/casedev)
+- [case.dev shell installer source](https://raw.githubusercontent.com/CaseMark/homebrew-casedev/main/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON-oriented CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI commands usually request --json for machine-readable agent workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

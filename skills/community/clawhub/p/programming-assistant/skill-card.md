@@ -1,42 +1,49 @@
-## Description: <br>
-Assists with programming tasks using Claude CLI, including project setup, code generation, code modification, debugging, refactoring, code review, and documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assist with programming tasks using Claude CLI, including project setup, code generation, debugging, refactoring, and code review.
 
-## Publisher: <br>
-[leowing](https://clawhub.ai/user/leowing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leowing](https://clawhub.ai/user/leowing)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate programming workflows such as project setup, code generation, code modification, debugging, refactoring, code review, and documentation generation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose or perform broad file-changing programming work. <br>
-Mitigation: Use it in a version-controlled project, ask it to preview intended file changes, and review diffs before accepting setup or refactoring edits. <br>
-Risk: Generated code or refactoring guidance may be incorrect or unsuitable for the target project. <br>
-Mitigation: Review generated code for correctness, run relevant tests, and validate changes against project requirements before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Programming Best Practices Reference](references/best-practices.md) <br>
-- [Code Review Checklist](references/code-review-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leowing/programming-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/leowing) <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide OpenClaw through creating, modifying, debugging, reviewing, and documenting software projects with Claude CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code, shell commands, configuration notes, and file-change guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include proposed file edits, project scaffolding steps, debugging guidance, and review recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The project setup script can write outside the intended directory or overwrite files if given unsafe paths.
+
+Mitigation: Use only trusted, explicit target directories and safe project names; avoid running the bundled shell script on untrusted input or in directories where overwriting README.md or .gitignore would matter.
+
+## Reference(s):
+
+- [Programming Best Practices Reference](artifact/references/best-practices.md)
+- [Code Review Checklist](artifact/references/code-review-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and code-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or recommend file edits, project scaffolding, tests, and command execution steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

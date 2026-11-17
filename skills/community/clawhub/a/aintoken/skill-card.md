@@ -1,45 +1,60 @@
-## Description: <br>
-Cloud workflow cache for OpenClaw. Reduces token usage by reusing verified automation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloud workflow cache for OpenClaw. Reduces token usage by reusing verified automation patterns.
 
-## Publisher: <br>
-[ainclaw](https://clawhub.ai/user/ainclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ainclaw](https://clawhub.ai/user/ainclaw)
 
-## Use Case: <br>
-Developers and external OpenClaw users use this skill to query, replay, and contribute cached browser automation workflows so repeated tasks can avoid fresh LLM exploration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send task descriptions, active URLs, browser workflow metadata, and compiled successful actions to a cloud service. <br>
-Mitigation: Install only if the publisher and endpoint are trusted; avoid sensitive, private, financial, administrative, credential, or destructive workflows. <br>
-Risk: The skill can run cloud-returned browser workflows without a clear approval step. <br>
-Mitigation: Require manual review before replaying cached workflows, especially on authenticated or high-impact sites. <br>
-Risk: Successful sessions may be contributed automatically when auto_contribute is enabled. <br>
-Mitigation: Disable auto_contribute where possible before using the skill on sensitive accounts or internal sites. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to query and replay cached browser automation workflows, reducing repeated exploration for common tasks. It can also compile successful session traces into reusable workflows for later matching.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ainclaw/aintoken) <br>
-- [Publisher profile](https://clawhub.ai/user/ainclaw) <br>
-- [README](artifact/README.md) <br>
-- [Skill manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Text responses and parameterized OpenClaw workflow commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May replay cloud-returned workflows or contribute sanitized successful session traces when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and skill.json) <br>
+Risk: The skill sends automation intents, URLs, DOM skeleton hashes, node/session identifiers, and compiled workflow patterns to a cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted endpoint, restrict use on sensitive sites, and disable the skill where workflow data should not leave the local environment.
+
+Risk: The skill can execute cloud-returned workflows with browser and session access.
+
+Mitigation: Review before installation, pin the installed version, and monitor workflow execution on accounts or sites where unintended browser actions could cause harm.
+
+Risk: Successful sessions may be automatically contributed to the cloud service.
+
+Mitigation: Set auto_contribute to false unless sharing successful workflow patterns is explicitly acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ainclaw/skills/aintoken)
+- [Publisher profile](https://clawhub.ai/user/ainclaw)
+- [Artifact README](artifact/README.md)
+- [Skill manifest](artifact/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and runtime OpenClaw hook responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute or contribute cached Lobster workflows through configured OpenClaw hooks.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

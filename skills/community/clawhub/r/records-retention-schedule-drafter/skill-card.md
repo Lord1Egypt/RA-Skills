@@ -1,43 +1,57 @@
-## Description: <br>
-Use this skill when a RIM lead, IG officer, compliance officer, or legal-ops professional needs to draft an ARMA GARP-aligned records retention schedule; it covers multi-jurisdictional regulatory citations, privacy-law minimization overlays, and format-specific disposition, and produces a DRAFT schedule for governance-committee review, not legal advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a RIM lead, IG officer, compliance officer, or legal-ops professional needs to draft an ARMA GARP-aligned records retention schedule covering multi-jurisdictional regulatory citations, privacy-law minimization overlays, and format-specific disposition.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Records, information governance, compliance, legal operations, privacy, and audit teams use this skill to draft a defensible records retention schedule from scoped intake, record-series inventory, jurisdictional requirements, citations, triggers, format-specific disposition, privacy minimization, legal-hold suspension, and governance sign-off needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft retention schedules may contain incorrect, outdated, or incomplete legal and regulatory citations. <br>
-Mitigation: Require Records, Privacy, Legal, IT/Security, and relevant business owners to verify citations and approve retention or destruction policy before adoption. <br>
-Risk: Users could include personal identifiers, PHI, FERPA records, account numbers, or other confidential records in prompts. <br>
-Mitigation: Use organization codes and redact named people, customers, students, patients, counterparties, full account numbers, full SSNs, and individually identifiable confidential records before drafting. <br>
-Risk: A generated schedule could be mistaken for legal advice or an executed records-control policy. <br>
-Mitigation: Keep the output as a draft for governance-committee review with unsigned Records Officer, Privacy Officer, General Counsel, IT/Security, and Internal Audit sign-off. <br>
+## Use Case:
 
+Records and information governance leads, compliance officers, legal-operations professionals, and records-governance committees use this skill to draft a review-ready records retention schedule. It supports intake, record-series inventory, retention basis mapping, format-specific disposition, privacy minimization overlays, legal-hold suspension, and sign-off preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/records-retention-schedule-drafter) <br>
-- [Open-Skill-Hub feedback and contributions](https://github.com/archlab-space/Open-Skill-Hub/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft records retention schedule with tables, open items, self-check, basis register, and unsigned sign-off block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output for governance committee review; citations and retention decisions require Records, Privacy, Legal, IT/Security, and business-owner verification before adoption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server evidence and changelog, released 2026-05-28) <br>
+Risk: Draft retention schedules, citations, or periods could be mistaken for legal approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as a drafting aid only; counsel and records-governance owners should verify citations and approve any final schedule before adoption.
+
+Risk: Users could paste employee, customer, patient, student, account, or other identifying data into the drafting session.
+
+Mitigation: Use non-identifying organization codes and redact real personal, account, PHI, FERPA, and similarly sensitive data before drafting.
+
+Risk: Privacy-law minimization duties can conflict with statutory retention floors.
+
+Mitigation: Surface each conflict for counsel and governance-committee resolution instead of silently choosing a retention outcome.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/records-retention-schedule-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown draft schedule with structured tables, open items, review notes, and sign-off block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft output only; final retention periods, citations, and schedule adoption require records-governance and counsel review.]
+
+## Skill Version(s):
+
+0.1.1 (source: server evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

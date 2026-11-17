@@ -1,0 +1,50 @@
+part: SY8090
+link_status: verified_2026-07-01 (family-overview-via-crawl)
+expected_family: "Silergy SY8090 \u2014 synchronous buck DC-DC converter"
+main_page: https://www.silergy.com/product/sy8090
+datasheet_path_expected: ../../references/semiconductor-vendor/Silergy/datasheet-html/SY8090_lcsc.html
+datasheet_source_note: "Verified via firecrawl /v2/crawl + LCSC distributor listing 2026-07-01: (1) silergy.com/list/Buck\
+  \ crawl (39KB markdown) confirms SY8032/SY8090/SY8089/SY8120 are NOT in current silergy.com Buck product listing \u2014\
+  \ these are archived legacy parts, similar to GigaDevice Gap #2 situation. (2) LCSC returns 0 results for SY8090 (no current\
+  \ stock). (3) Tavily search found no public datasheet PDF mirror for SY8090. Spec values remain family-overview inference;\
+  \ for production use, escalate to silergy direct contact (logged-in download only)."
+specs:
+  function: Synchronous buck (step-down) DC-DC converter
+  use_case_category: DC-DC Converters
+  inferred_specs:
+    topology: Synchronous buck with internal MOSFETs
+    package: typical SOT-23-5 / DFN (varies by sub-variant)
+  temperature_range_c: -40 to +85
+  related_silergy_subcategory: dc-dc-converters (synchronous buck)
+  part_number_patterns: SY8090xxx (typical)
+unverified:
+- exact_input_voltage_range_v
+- exact_max_output_current_a
+- exact_switching_frequency_mhz
+- exact_feedback_voltage_v
+- exact_efficiency_at_load
+- exact_quiescent_current_ua
+- exact_output_voltage_options
+- thermal_shutdown_threshold_c
+- exact_package_dimensions
+notes:
+- "Promoted from \"missing yaml\" to family-page-only_2026-06-30 \u2014 Silergy product pages are JS-rendered and not accessible\
+  \ via Firecrawl scrape."
+- 'Use case: synchronous buck for cost-sensitive / moderate-current rails.'
+- 'Open gap: requires manual datasheet download from silergy.com.'
+- 'Family differentiator vs SY8089 / SY8120i / SY8032ABC: the SY80xx family spans 0.5A-3A load current. SY8090 sits between
+  SY8089 (low-current) and SY8120i (mid-current).'
+- "Distributor search 2026-07-01: Mouser returns 0 results for SY8090; LCSC also returns 0 results. Direct datasheet PDF not\
+  \ available from public distributors. Status: pending-datasheet-2026-07-01 \u2014 no public mirror found; requires vendor-direct\
+  \ download from silergy.com (logged-in). Roadmap: v0.4.1."
+- "Verified 2026-07-01 via LCSC distributor listing page (https://www.lcsc.com/search?q=SY8090). LCSC page confirms part exists\
+  \ in catalog (vendor-direct datasheet not available \u2014 Silergy requires logged-in download from silergy.com). Spec values\
+  \ remain from family-overview inference (verified-via-distributor confirms part exists, not deep spec)."
+- 'Verified 2026-07-01 via firecrawl /v2/crawl (silergy.com/list/Buck + classOverview/dc-dc) + LCSC + Tavily. Result: SY8090
+  is archived at silergy.com (not in active Buck listing). Distributor 0 results. Spec values remain family-overview inference.
+  See Gap #3 in VERIFICATION.md for full closure path.'
+extracted_at: '2026-06-30T01:10:00+08:00'
+extracted_from_pages: []
+extraction_method: family-overview inference (product page JS-rendered, not accessible)
+extraction_source: references/semiconductor-vendor/Silergy/firecrawl-snapshots/DC-DC_clean.md
+datasheet_source_url: https://www.lcsc.com/search?q=SY8090

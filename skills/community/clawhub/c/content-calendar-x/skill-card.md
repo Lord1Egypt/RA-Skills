@@ -1,42 +1,54 @@
-## Description: <br>
-Content Calendar helps agents build content strategies, post ideas, repurposing plans, and scheduled calendars for businesses or creators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Calendar helps businesses and creators plan content strategy, generate post ideas, schedule platform-specific posts, and repurpose existing content.
 
-## Publisher: <br>
-[v3ads](https://clawhub.ai/user/v3ads) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[v3ads](https://clawhub.ai/user/v3ads)
 
-## Use Case: <br>
-Marketing teams, creators, founders, and content operators use this skill to turn business goals, audience context, platforms, cadence, and timeframe into actionable content pillars, post ideas, and publishing calendars. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated calendars or post ideas may include inaccurate, off-brand, or misleading claims if the input context is incomplete. <br>
-Mitigation: Review generated calendars before publishing and verify claims, CTAs, and platform-specific recommendations against the brand's current policies and facts. <br>
-Risk: Calendar configuration or prompts may contain sensitive unpublished campaign or business details. <br>
-Mitigation: Avoid placing sensitive unpublished business details in config files unless the user is comfortable with the local agent processing them. <br>
+## Use Case:
 
+External creators, marketers, and teams use this skill to turn business context, audience goals, platform choices, cadence, and existing content into content pillars, post ideas, calendars, and repurposing plans.
 
-## Reference(s): <br>
-- [Post Formats by Platform](references/post-formats.md) <br>
-- [Content Calendar Template](assets/calendar-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/v3ads/content-calendar-x) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown calendar and planning guidance, with optional JSON calendar entries from the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include content pillars, post ideas, scheduled calendar entries, CTAs, hashtags, repurposing notes, and draft placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated post copy, hashtags, CTAs, or scheduling guidance may be inaccurate, off-brand, or misleading if published without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated content and calendar timing before scheduling or publishing.
+
+Risk: The bundled script can write generated calendar output to a local file when an output path is provided.
+
+Mitigation: Choose the destination path explicitly and inspect the generated file before using it.
+
+## Reference(s):
+
+- [Post Formats by Platform](references/post-formats.md)
+- [Content Calendar Template](assets/calendar-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown content calendars, optional JSON calendar entries, and concise planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local calendar file when the agent is given an output path; generated copy should be reviewed before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

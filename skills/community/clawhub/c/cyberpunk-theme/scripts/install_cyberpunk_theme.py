@@ -3,12 +3,19 @@ from __future__ import annotations
 
 import argparse
 import base64
+import binascii
+import hashlib
+import io
+import inspect
 import json
 import os
 import re
 import shutil
 import subprocess
 import sys
+import urllib.error
+import urllib.request
+import zipfile
 from datetime import datetime
 from pathlib import Path
 
@@ -27,33 +34,44 @@ SCRIPT_ID = 'openclaw-workspace-theme-script'
 LEGACY_STYLE_IDS = ['openclaw-custom-theme']
 LEGACY_SCRIPT_IDS = ['openclaw-custom-theme-script']
 DEFAULT_ASSISTANT_NAMEPLATE = '菠萝包 // BOLO BAO'
-HELPER_NAMEPLATE = '消息助手 helper'
 
 THEME_ASSET_NAMES = (
     'bao-dream.gif',
     'chat-bg-cyberpunk.jpg',
-    'avatar1.png',
     'avatar2.png',
     'header.png',
-    'history-avatar.png',
 )
 OBSOLETE_THEME_ASSET_NAMES = (
+    'avatar1.png',
+    'history-avatar.png',
     'tool-avatar.gif',
     'pineapple-bun-breathe.gif',
+)
+OBSOLETE_ENCODED_THEME_ASSET_NAMES = (
+    'avatar1.png.txt',
+    'history-avatar.png.txt',
 )
 ENCODED_THEME_ASSET_TARGETS = {
     'bao-dream.gif.txt': Path('assets/bao-dream.gif'),
     'chat-bg-cyberpunk.jpg.txt': Path('assets/chat-bg-cyberpunk.jpg'),
-    'avatar1.png.txt': Path('assets/avatar1.png'),
     'avatar2.png.txt': Path('assets/avatar2.png'),
     'header.png.txt': Path('assets/header.png'),
-    'history-avatar.png.txt': Path('assets/history-avatar.png'),
     'dreaming-bg.png.txt': Path('dreaming-bg.png'),
 }
+ENCODED_THEME_ASSET_SHA256 = {
+    'avatar2.png.txt': '5858eeee0e1e13fbb9ca8df6759a920925ea7dc4f71fad414d975e765cbed81a',
+    'bao-dream.gif.txt': 'd3efa2c7e71de23a28146b049cc59925508fd61ceab229292579559bd2adbff9',
+    'chat-bg-cyberpunk.jpg.txt': '7ad9040c1d4ac2e58c1c9e90995706744ef41c82367aed807a7e36838e78248c',
+    'dreaming-bg.png.txt': 'b73b594c9ec611465d9fa186f518726992962a498d40448b2ab606e21636437d',
+    'header.png.txt': '4e9dbc48f8ffe7d3fe4e1d7958a84b17da1ef66e7c0230fb0471b5697c7a4df7',
+}
+FALLBACK_ASSET_BUNDLE_URL = (
+    'https://clawhub.ai/api/v1/download?slug=cyberpunk-theme&version=1.0.21'
+)
+FALLBACK_ENCODED_ASSET_PREFIX = 'assets/theme/encoded-assets/'
+FALLBACK_ASSET_BUNDLE_MAX_BYTES = 20 * 1024 * 1024
 SLOT_TARGETS = {
     'assistant_avatar': Path('assets/avatar2.png'),
-    'tool_avatar': Path('assets/avatar1.png'),
-    'help_avatar': Path('assets/history-avatar.png'),
     'user_avatar': Path('assets/header.png'),
     'chat_background': Path('assets/chat-bg-cyberpunk.jpg'),
     'dream_avatar': Path('assets/bao-dream.gif'),
@@ -64,8 +82,6 @@ CONFIG_KEY_ALIASES = {
     'workspace': ('workspace', 'workspacePath'),
     'dist_dir': ('dist_dir', 'distDir'),
     'assistant_avatar': ('assistant_avatar', 'assistantAvatar'),
-    'tool_avatar': ('tool_avatar', 'toolAvatar'),
-    'help_avatar': ('help_avatar', 'helpAvatar', 'history_avatar', 'historyAvatar', 'other_avatar', 'otherAvatar'),
     'user_avatar': ('user_avatar', 'userAvatar'),
     'chat_background': ('chat_background', 'chatBackground'),
     'dream_avatar': ('dream_avatar', 'dreamAvatar'),
@@ -155,15 +171,24 @@ def resolve_assistant_nameplate(workspace: Path) -> str:
     )
 
 
+def compact_theme_css(css_source: str) -> str:
+    """Compact delivery CSS while preserving quoted content and calc spacing."""
+    tokens = re.split(r'''("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|/\*[\s\S]*?\*/)''', css_source)
+    return ''.join(
+        (' ' if token.startswith('/*') else token)
+        if index % 2 else re.sub(r'\s+', ' ', token)
+        for index, token in enumerate(tokens)
+    ).strip()
+
+
 def build_runtime_theme_css(css_source: str, workspace: Path) -> str:
     assistant_nameplate = resolve_assistant_nameplate(workspace)
     vars_block = (
         ':root {\n'
         f'  --oc-assistant-nameplate: "{css_string(assistant_nameplate)}";\n'
-        f'  --oc-helper-nameplate: "{css_string(HELPER_NAMEPLATE)}";\n'
         '}\n\n'
     )
-    return vars_block + css_source
+    return vars_block + compact_theme_css(css_source)
 
 
 def parse_args() -> argparse.Namespace:
@@ -178,8 +203,6 @@ def parse_args() -> argparse.Namespace:
         help='control-ui dist directory',
     )
     parser.add_argument('--assistant-avatar', type=Path, help='Override main assistant portrait')
-    parser.add_argument('--tool-avatar', type=Path, help='Override tool portrait')
-    parser.add_argument('--help-avatar', type=Path, help='Override help/history portrait')
     parser.add_argument('--user-avatar', type=Path, help='Override user portrait')
     parser.add_argument('--chat-background', type=Path, help='Override chat background image')
     parser.add_argument('--dream-avatar', type=Path, help='Override dream avatar image')
@@ -232,8 +255,6 @@ def merge_config_into_args(args: argparse.Namespace, config: dict[str, object]) 
 
     for attr in (
         'assistant_avatar',
-        'tool_avatar',
-        'help_avatar',
         'user_avatar',
         'chat_background',
         'dream_avatar',
@@ -260,8 +281,6 @@ def validate_override(path: Path | None, label: str) -> Path | None:
 def resolve_slot_overrides(args: argparse.Namespace) -> dict[str, Path | None]:
     return {
         'assistant_avatar': validate_override(args.assistant_avatar, 'assistant avatar'),
-        'tool_avatar': validate_override(args.tool_avatar, 'tool avatar'),
-        'help_avatar': validate_override(args.help_avatar, 'help avatar'),
         'user_avatar': validate_override(args.user_avatar, 'user avatar'),
         'chat_background': validate_override(args.chat_background, 'chat background'),
         'dream_avatar': validate_override(args.dream_avatar, 'dream avatar'),
@@ -282,25 +301,99 @@ def backup_existing_theme(workspace: Path, theme_dir: Path, apply_script: Path) 
     return backup_root
 
 
-def install_theme_sources(theme_dir: Path) -> None:
+def install_theme_sources(theme_dir: Path, overridden_targets: set[Path] | None = None) -> None:
     theme_dir.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(DEFAULT_THEME_DIR, theme_dir, dirs_exist_ok=True)
-    restore_encoded_theme_assets(theme_dir)
+    for name in OBSOLETE_THEME_ASSET_NAMES:
+        (theme_dir / 'assets' / name).unlink(missing_ok=True)
+    for name in OBSOLETE_ENCODED_THEME_ASSET_NAMES:
+        (theme_dir / 'encoded-assets' / name).unlink(missing_ok=True)
+    restore_encoded_theme_assets(theme_dir, skip_targets=overridden_targets)
 
 
-def restore_encoded_theme_assets(theme_dir: Path) -> list[Path]:
+def decode_encoded_theme_asset(encoded_name: str, encoded_text: str) -> bytes:
+    try:
+        payload = base64.b64decode(''.join(encoded_text.split()), validate=True)
+    except (ValueError, binascii.Error) as exc:
+        raise SystemExit(f'invalid encoded theme asset: {encoded_name}') from exc
+
+    expected_sha256 = ENCODED_THEME_ASSET_SHA256[encoded_name]
+    actual_sha256 = hashlib.sha256(payload).hexdigest()
+    if actual_sha256 != expected_sha256:
+        raise SystemExit(
+            f'theme asset checksum mismatch: {encoded_name} '
+            f'(expected {expected_sha256}, got {actual_sha256})'
+        )
+    return payload
+
+
+def download_fallback_encoded_theme_assets(encoded_names: list[str]) -> dict[str, str]:
+    if not encoded_names:
+        return {}
+
+    request = urllib.request.Request(
+        FALLBACK_ASSET_BUNDLE_URL,
+        headers={'User-Agent': 'cyberpunk-theme-installer/1.0.24'},
+    )
+    print('- downloading verified default asset bundle from ClawHub 1.0.21')
+    try:
+        with urllib.request.urlopen(request, timeout=180) as response:
+            bundle = response.read(FALLBACK_ASSET_BUNDLE_MAX_BYTES + 1)
+    except (OSError, urllib.error.URLError) as exc:
+        raise SystemExit(
+            'default theme assets are missing and the verified ClawHub fallback bundle '
+            f'could not be downloaded: {exc}'
+        ) from exc
+
+    if len(bundle) > FALLBACK_ASSET_BUNDLE_MAX_BYTES:
+        raise SystemExit('downloaded ClawHub fallback bundle exceeds the 20 MiB safety limit')
+
+    try:
+        with zipfile.ZipFile(io.BytesIO(bundle)) as archive:
+            return {
+                encoded_name: archive.read(
+                    f'{FALLBACK_ENCODED_ASSET_PREFIX}{encoded_name}'
+                ).decode('ascii')
+                for encoded_name in encoded_names
+            }
+    except (KeyError, UnicodeDecodeError, zipfile.BadZipFile) as exc:
+        raise SystemExit('downloaded ClawHub fallback bundle is invalid or incomplete') from exc
+
+
+def restore_encoded_theme_assets(
+    theme_dir: Path,
+    skip_targets: set[Path] | None = None,
+) -> list[Path]:
     encoded_dir = theme_dir / 'encoded-assets'
-    if not encoded_dir.exists():
-        return []
+    skipped = skip_targets or set()
+    pending: list[tuple[str, Path, Path]] = []
+
+    for encoded_name, target_rel in ENCODED_THEME_ASSET_TARGETS.items():
+        target = theme_dir / target_rel
+        if target.exists() or target_rel in skipped:
+            continue
+        pending.append((encoded_name, encoded_dir / encoded_name, target))
+
+    remote_names = [
+        encoded_name
+        for encoded_name, encoded_path, _target in pending
+        if not encoded_path.exists()
+    ]
+    remote_assets = (
+        download_fallback_encoded_theme_assets(remote_names)
+        if remote_names
+        else {}
+    )
 
     restored: list[Path] = []
-    for encoded_name, target_rel in ENCODED_THEME_ASSET_TARGETS.items():
-        encoded_path = encoded_dir / encoded_name
-        target = theme_dir / target_rel
-        if target.exists() or not encoded_path.exists():
-            continue
+    for encoded_name, encoded_path, target in pending:
+        encoded_text = (
+            encoded_path.read_text(encoding='ascii')
+            if encoded_path.exists()
+            else remote_assets[encoded_name]
+        )
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(base64.b64decode(encoded_path.read_text(encoding='ascii')))
+        target.write_bytes(decode_encoded_theme_asset(encoded_name, encoded_text))
         restored.append(target)
     return restored
 
@@ -318,7 +411,7 @@ def apply_slot_overrides(theme_dir: Path, overrides: dict[str, Path | None]) -> 
 
 
 def build_apply_wrapper() -> str:
-    return '''#!/usr/bin/env python3
+    wrapper = '''#!/usr/bin/env python3
 from __future__ import annotations
 
 import os
@@ -334,16 +427,15 @@ SCRIPT_ID = 'openclaw-workspace-theme-script'
 LEGACY_STYLE_IDS = ['openclaw-custom-theme']
 LEGACY_SCRIPT_IDS = ['openclaw-custom-theme-script']
 DEFAULT_ASSISTANT_NAMEPLATE = '菠萝包 // BOLO BAO'
-HELPER_NAMEPLATE = '消息助手 helper'
 THEME_ASSET_NAMES = (
     'bao-dream.gif',
     'chat-bg-cyberpunk.jpg',
-    'avatar1.png',
     'avatar2.png',
     'header.png',
-    'history-avatar.png',
 )
 OBSOLETE_THEME_ASSET_NAMES = (
+    'avatar1.png',
+    'history-avatar.png',
     'tool-avatar.gif',
     'pineapple-bun-breathe.gif',
 )
@@ -407,15 +499,17 @@ def resolve_assistant_nameplate() -> str:
     )
 
 
+CSS_COMPACTOR_PLACEHOLDER
+
+
 def build_runtime_theme_css(css_source: str) -> str:
     assistant_nameplate = resolve_assistant_nameplate()
     vars_block = (
         ':root {\\n'
         f'  --oc-assistant-nameplate: "{css_string(assistant_nameplate)}";\\n'
-        f'  --oc-helper-nameplate: "{css_string(HELPER_NAMEPLATE)}";\\n'
         '}\\n\\n'
     )
-    return vars_block + css_source
+    return vars_block + compact_theme_css(css_source)
 
 
 def resolve_dist_dir() -> Path:
@@ -448,8 +542,10 @@ def resolve_dist_dir() -> Path:
 def backup_index(dist_dir: Path) -> Path:
     backup_dir = WORKSPACE / 'backups'
     backup_dir.mkdir(parents=True, exist_ok=True)
-    backup_index_path = backup_dir / 'openclaw-control-ui-index.before-cyberpunk-theme.html'
     index_html = dist_dir / 'index.html'
+    build = re.search(r'data-openclaw-control-ui-build-id="([^"]+)"', index_html.read_text(encoding='utf-8'))
+    suffix = '.' + re.sub(r'[^a-zA-Z0-9._-]', '_', build.group(1)) if build else ''
+    backup_index_path = backup_dir / f'openclaw-control-ui-index{suffix}.before-cyberpunk-theme.html'
     if not backup_index_path.exists():
         backup_index_path.write_text(index_html.read_text(encoding='utf-8'), encoding='utf-8')
     return backup_index_path
@@ -490,6 +586,8 @@ def ensure_inline_theme(dist_dir: Path) -> str:
             raise RuntimeError(f'Could not find </body> in {index_html}')
         html = html.replace('</body>', script_block + '</body>')
 
+    if len(html.encode('utf-8')) > 262144:
+        raise RuntimeError('themed index.html exceeds OpenClaw 256 KiB limit; live entry was not changed')
     index_html.write_text(html, encoding='utf-8')
     return 'updated-inline'
 
@@ -554,6 +652,7 @@ def main() -> int:
 if __name__ == '__main__':
     raise SystemExit(main())
 '''
+    return wrapper.replace('CSS_COMPACTOR_PLACEHOLDER', inspect.getsource(compact_theme_css))
 
 
 def write_apply_wrapper(workspace: Path) -> Path:
@@ -600,6 +699,8 @@ def ensure_inline_theme(workspace: Path, dist_dir: Path) -> str:
             raise RuntimeError(f'Could not find </body> in {index_html}')
         html = html.replace('</body>', script_block + '</body>')
 
+    if len(html.encode('utf-8')) > 262144:
+        raise RuntimeError('themed index.html exceeds OpenClaw 256 KiB limit; live entry was not changed')
     index_html.write_text(html, encoding='utf-8')
     return 'updated-inline'
 
@@ -635,8 +736,10 @@ def cleanup_obsolete_theme_assets(dist_dir: Path) -> list[str]:
 def backup_index(workspace: Path, dist_dir: Path) -> Path:
     backup_dir = workspace / 'backups'
     backup_dir.mkdir(parents=True, exist_ok=True)
-    backup_index = backup_dir / 'openclaw-control-ui-index.before-cyberpunk-theme.html'
     index_html = dist_dir / 'index.html'
+    build = re.search(r'data-openclaw-control-ui-build-id="([^"]+)"', index_html.read_text(encoding='utf-8'))
+    suffix = '.' + re.sub(r'[^a-zA-Z0-9._-]', '_', build.group(1)) if build else ''
+    backup_index = backup_dir / f'openclaw-control-ui-index{suffix}.before-cyberpunk-theme.html'
     if not backup_index.exists():
         backup_index.write_text(index_html.read_text(encoding='utf-8'), encoding='utf-8')
     return backup_index
@@ -693,7 +796,12 @@ def main() -> int:
         )
 
     backup_root = backup_existing_theme(workspace, theme_dir, apply_script)
-    install_theme_sources(theme_dir)
+    overridden_targets = {
+        SLOT_TARGETS[slot]
+        for slot, source in overrides.items()
+        if source is not None
+    }
+    install_theme_sources(theme_dir, overridden_targets)
     applied_overrides = apply_slot_overrides(theme_dir, overrides)
     apply_wrapper = write_apply_wrapper(workspace)
 

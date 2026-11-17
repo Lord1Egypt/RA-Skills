@@ -20,6 +20,15 @@ This skill is for routing Grok Imagine questions to the right APIDot docs, model
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Grok Imagine model page: https://apidot.ai/models/grok-imagine
+- Read Grok Imagine API docs: https://apidot.ai/docs/grok-imagine
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

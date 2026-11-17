@@ -1,47 +1,62 @@
-## Description: <br>
-End-user guide for running and configuring the `translate` CLI across text/stdin/file/glob inputs, provider selection, presets, custom prompt templates, and TOML settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-user guide for running and configuring the `translate` CLI across text/stdin/file/glob inputs, provider selection, presets, custom prompt templates, and TOML settings.
 
-## Publisher: <br>
-[atacan](https://clawhub.ai/user/atacan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atacan](https://clawhub.ai/user/atacan)
 
-## Use Case: <br>
-Developers and end users use this skill to construct `translate` CLI commands, configure providers and TOML defaults, manage presets and prompt templates, validate dry runs, and troubleshoot translation behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The CLI may send user text or file contents to configured translation providers. <br>
-Mitigation: Review provider choice and custom base URLs before use, and prefer dry-run validation when checking command behavior. <br>
-Risk: Commands can overwrite files when in-place output and confirmation bypass flags are used. <br>
-Mitigation: Use output-file modes before broad file operations, and avoid `--in-place --yes` unless files are backed up or version-controlled. <br>
-Risk: API keys may be exposed if entered directly into commands or shared configuration. <br>
-Mitigation: Prefer environment variables or private local configuration for provider credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Flags and Subcommands](references/flags-and-subcommands.md) <br>
-- [TOML Configuration](references/config-toml.md) <br>
-- [Providers and Environment](references/providers-and-env.md) <br>
-- [Presets and Prompts](references/presets-and-prompts.md) <br>
-- [Behavior, Validation, and Errors](references/behavior-and-errors.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/atacan/translate-cli) <br>
+## Use Case:
 
+Developers and CLI users use this skill to construct reliable `translate` commands, configure providers and TOML defaults, customize prompts, and troubleshoot translation behavior for text, stdin, files, globs, and `.xcstrings` catalogs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command examples and TOML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider setup, credential handling guidance, dry-run checks, and troubleshooting notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Translated text or file contents may be sent to the configured provider.
+
+Mitigation: Use trusted providers for sensitive documents and run `--dry-run` first when checking provider, model, and prompt resolution.
+
+Risk: `--in-place` or `--yes` can overwrite files without an interactive confirmation.
+
+Mitigation: Prefer explicit output files or backups, review the output plan, and use `--yes` only after confirming overwrite behavior.
+
+Risk: API keys can be exposed if placed directly on command lines or stored carelessly.
+
+Mitigation: Prefer environment variables or protected config files and avoid sharing shell history or logs that contain credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/atacan/skills/translate-cli)
+- [Quickstart](references/quickstart.md)
+- [Flags and Subcommands](references/flags-and-subcommands.md)
+- [TOML Configuration](references/config-toml.md)
+- [Providers and Environment](references/providers-and-env.md)
+- [Presets and Prompts](references/presets-and-prompts.md)
+- [Behavior, Validation, and Errors](references/behavior-and-errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and TOML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command examples, provider setup steps, prompt templates, config keys, validation checks, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

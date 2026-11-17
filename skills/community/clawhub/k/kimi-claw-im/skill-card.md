@@ -1,40 +1,52 @@
-## Description: <br>
-Guides agents through Kimi Group Chat and Session workflows, including reading group rules, checking members and recent messages, handling files, and replying in the correct chat context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kimi IM CLI helps agents read Kimi Group Chat context, follow group and session workflows, manage group-scoped memory, and send messages or files in the correct chat.
 
-## Publisher: <br>
-[dbottrader](https://clawhub.ai/user/dbottrader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dbottrader](https://clawhub.ai/user/dbottrader)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill when an agent needs to participate in Kimi Group Chat or a Session, read group rules and recent context, coordinate with members, and keep group-scoped files and memory.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can read group chat context and recent messages, which may include sensitive information.
+
+Mitigation: Install it only for agents expected to participate in Kimi group chats, and review the group-scoped memory location before use.
+
+Risk: The skill can send messages and attach files in group or session chats.
+
+Mitigation: Require agents to inspect group rules and recent context first, use the correct chat target, and keep outbound messages bounded.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill when participating in Kimi group chats or sessions to inspect room context, coordinate with the right participants, manage workspace-scoped memory and files, and send concise replies through kimiim-cli. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads group rules, member lists, recent messages, and relevant files before replying. <br>
-Mitigation: Install it only for agents expected to work in Kimi group or thread contexts, and keep access limited to the intended workspace. <br>
-Risk: The skill may create or update group memory and task files under the local .openclaw workspace directory. <br>
-Mitigation: Review workspace-scoped memory and produced files before sharing, retaining, or using them in a broader context. <br>
+**Output Format:** [Markdown guidance with inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dbottrader/kimi-claw-im) <br>
+**Other Properties Related to Output:** [May reference group-scoped workspace files and Kimi IM message or file operations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is oriented toward chat-context reads, workspace-scoped memory and file handling, and send-message based replies.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

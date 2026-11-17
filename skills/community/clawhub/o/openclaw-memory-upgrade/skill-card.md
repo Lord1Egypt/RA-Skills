@@ -1,43 +1,58 @@
-## Description: <br>
-Complete guide to upgrading OpenClaw's memory system for persistent, searchable context across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete guide to upgrading OpenClaw's memory system for persistent, searchable context across sessions.
 
-## Publisher: <br>
-[johnnywang2001](https://clawhub.ai/user/johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure persistent, searchable memory across sessions, including memory flush prompts, session indexing, hybrid search, plugin-backed recall, and manual memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic long-term memory capture can store sensitive conversation content, including secrets, personal details, contact information, and technical credentials. <br>
-Mitigation: Remove API keys, tokens, contact details, and other sensitive data from capture prompts before applying the skill; narrow or disable auto-capture where possible. <br>
-Risk: Searchable session history and memory files can retain information longer than intended. <br>
-Mitigation: Set explicit retention and deletion rules for memory files, session indexes, and plugin-backed memories before enabling cross-session recall. <br>
-Risk: External or optional memory plugins can add additional behavior and data handling requirements. <br>
-Mitigation: Review external memory plugins before installation and audit optional plugins, especially those requiring Docker or flagged by security review. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure persistent memory, session indexing, hybrid memory search, and plugin-backed recall across agent sessions.
 
-## Reference(s): <br>
-- [OpenClaw Memory Upgrade on ClawHub](https://clawhub.ai/johnnywang2001/openclaw-memory-upgrade) <br>
-- [Publisher profile](https://clawhub.ai/user/johnnywang2001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, code, shell commands, markdown] <br>
-**Output Format:** [Markdown with JSON configuration snippets, shell commands, and agent instruction text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces configuration guidance for OpenClaw memory behavior; does not execute changes directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The memory configuration can persist credentials, personal data, contact details, confidential business information, and searchable session history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove sensitive categories from capture rules, redact secrets before saving memory, and avoid use in environments with confidential or multi-user conversations unless retention and access controls are defined.
+
+Risk: Automatic session indexing and auto-recall can expose old conversation content in later responses.
+
+Mitigation: Enable session indexing and auto-recall only where needed, set explicit retention and deletion procedures for memory files, indexes, caches, and plugin stores, and review recalled context before acting on it.
+
+Risk: Third-party memory plugins may add supply-chain and data-handling risk.
+
+Mitigation: Pin and audit plugin versions before deployment, review plugin source behavior, and skip optional plugins that have not been audited for the target environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnywang2001/skills/openclaw-memory-upgrade)
+- [Publisher profile](https://clawhub.ai/user/johnnywang2001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers OpenClaw memory configuration, optional plugin installation, verification commands, and operational safeguards.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

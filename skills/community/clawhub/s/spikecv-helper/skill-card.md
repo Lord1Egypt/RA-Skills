@@ -1,46 +1,64 @@
-## Description: <br>
-Help AI Agents answer questions and execute tasks for SpikeCV, an ultra-high-speed spike camera vision framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help AI agents answer questions and execute tasks for SpikeCV, an ultra-high-speed spike camera vision framework.
 
-## Publisher: <br>
-[lhs183019](https://clawhub.ai/user/lhs183019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lhs183019](https://clawhub.ai/user/lhs183019)
 
-## Use Case: <br>
-Developers and agents use this skill to answer SpikeCV questions, install the SpikeCV toolkit, find project references, download supported datasets, and run documented SpikeCV CLI workflows for reconstruction and tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup and workflow guidance may include package installation, dataset downloads, or shell profile changes. <br>
-Mitigation: Review commands before running them, use a virtual environment or container when possible, and confirm any install, download, or shell profile change. <br>
-Risk: SpikeCV command examples can fail or produce misleading results when run with the wrong dataset, path, or CLI version. <br>
-Mitigation: Check current CLI help, verify dataset locations, and use structured output flags where supported before relying on results. <br>
+## Use Case:
 
+Developers and engineers use this skill to get SpikeCV setup guidance, navigate the SpikeCV project, download spike-camera datasets, and run supported SpikeCV CLI workflows for reconstruction and tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lhs183019/spikecv-helper) <br>
-- [More About SpikeCV](references/About_SpikeCV.md) <br>
-- [How to Install Conda](references/install_miniconda.md) <br>
-- [SpikeCV documentation](https://spikecv.readthedocs.io) <br>
-- [SpikeCV official website](https://spikecv.github.io) <br>
-- [SpikeCV publications](https://spikecv.github.io/publications.html) <br>
-- [SpikeCV source repository](https://github.com/Zyj061/SpikeCV) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SpikeCV CLI commands, setup steps, dataset paths, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Installation and dataset workflow commands can download files, install packages, or change the user's shell environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, use a virtual environment or container, and confirm dataset downloads and conda init profile changes are acceptable.
+
+Risk: Following the latest SpikeCV repository state may introduce unreviewed upstream changes.
+
+Mitigation: Pin the SpikeCV repository to a reviewed commit when repeatability or security review is required.
+
+Risk: Miniconda installer commands download executable installers from the network.
+
+Mitigation: Verify installers where possible and use trusted network and package sources.
+
+## Reference(s):
+
+- [About SpikeCV](references/About_SpikeCV.md)
+- [Install Miniconda](references/install_miniconda.md)
+- [SpikeCV Documentation](https://spikecv.readthedocs.io)
+- [SpikeCV Official Website](https://spikecv.github.io)
+- [SpikeCV Publications](https://spikecv.github.io/publications.html)
+- [SpikeCV: open a continuous computer vision era](https://link.springer.com/article/10.1007/s11432-023-4565-6)
+- [SpikeCV Code Repository](https://github.com/Zyj061/SpikeCV)
+- [SpikeCV OpenI Datasets](https://openi.pcl.ac.cn/Cordium/SpikeCV/datasets)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI-oriented troubleshooting notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommends structured SpikeCV CLI output with --agent-used when supported.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-A personal expense-tracking skill for recording income and spending, categorizing transactions, managing budgets, and exporting reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+记账工具 - 收支记录、分类统计、预算管理
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to track personal income and expenses, manage categories and budgets, and review monthly summaries, category breakdowns, trends, and exports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles financial data and the security evidence flags it for review.
+
+Mitigation: Review the skill before installing and avoid entering or exporting sensitive financial details unless the data storage and transfer behavior is understood.
+
+Risk: The security evidence notes an unexplained network-capable dependency and an unpinned installer command.
+
+Mitigation: Prefer a pinned, trusted installer version and confirm why curl is required before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to track personal income and expenses, review category and monthly statistics, set budgets, and export financial reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive income, spending, budget, account, and exported report data. <br>
-Mitigation: Treat finance records and exports as sensitive and verify where records are stored or exported before use. <br>
-Risk: The artifact declares a curl binary requirement without explaining why it is needed. <br>
-Mitigation: Clarify the curl requirement before relying on the skill in a sensitive finance workflow. <br>
+**Output Format:** [Markdown with inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/xiao-expense-tracker) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference income, spending, budget, account, and exported report data that should be treated as sensitive.] <br>
+1.0.0 (source: server release evidence and artifact metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,65 @@
-## Description: <br>
-AI-optimized web search via AIsa's Tavily API proxy. Returns concise, relevant results for AI agents through AIsa's unified API gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-optimized web search via AIsa's Tavily API proxy, returning concise and relevant results for AI agents through AIsa's unified API gateway.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and AI agents use this skill to run web searches and extract public URL content through AIsa's Tavily gateway, with options for result count, deep search, general or news topics, and news recency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and requested URLs are sent to AIsa/Tavily using the user's AISA_API_KEY. <br>
-Mitigation: Use a dedicated key where possible, avoid confidential internal URLs, private network targets, signed links, or customer-specific resources, and keep the API key out of logs and shared environments. <br>
-Risk: URL extraction can be misused to retrieve paywalled, subscription-gated, or otherwise access-controlled content. <br>
-Mitigation: Extract only content the user is authorized to access, refuse paywall circumvention, and direct users to subscriptions, institutional access, or public alternatives. <br>
-Risk: Redundant or excessive searches can waste API quota and create service-abuse patterns. <br>
-Mitigation: Consolidate overlapping requests into two or three focused queries before running the search command. <br>
+## Use Case:
 
+Developers and AI agents use this skill to run web searches, news searches, deeper research queries, and URL content extraction through AIsa's Tavily API proxy. It is intended for concise source discovery and page-content retrieval inside an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/snazar-faberlens/openclaw-aisa-web-search-tavily-hardened) <br>
-- [AIsa](https://aisa.one) <br>
-- [AIsa API key marketplace](https://marketplace.aisa.one) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/openclaw-aisa-web-search-tavily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown sections containing answers, source lists, extracted URL content, and failed URL notices.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and AISA_API_KEY; search results are capped at 20 per query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries, extraction URLs, and AISA_API_KEY-authenticated requests are sent to AIsa.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable; avoid private/internal URLs, signed links, URLs containing credentials, and sensitive queries.
+
+Risk: URL extraction can be misused against paywalled or subscription-gated content.
+
+Mitigation: Do not extract from paywalled or access-controlled sites; use proper subscriptions, institutional access, or publisher-approved licensing instead.
+
+Risk: Redundant query variations can waste API quota and increase unnecessary data transmission.
+
+Mitigation: Consolidate overlapping searches into two or three focused queries before running the tool.
+
+Risk: Search results or extracted content may be inappropriately transmitted to external endpoints.
+
+Mitigation: Keep retrieved content in the agent conversation and let the user decide how to share it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/openclaw-aisa-web-search-tavily-hardened)
+- [AIsa](https://aisa.one)
+- [AIsa marketplace](https://marketplace.aisa.one)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/openclaw-aisa-web-search-tavily)
+- [SAFETY.md](SAFETY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with search answers, source lists, extracted page content, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and AISA_API_KEY; search result count is capped at 20 by the script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

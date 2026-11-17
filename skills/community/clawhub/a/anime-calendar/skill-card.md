@@ -1,42 +1,52 @@
-## Description: <br>
-Provides a weekly domestic anime update calendar for querying airing times, this week's new shows, watch calendars, and new anime lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+国内动漫每周更新日历。用于查询动漫更新时间、本周新番列表、追番日历。当用户询问动漫更新时间表、本周更新、追番日历、新番列表时触发此技能。
 
-## Publisher: <br>
-[anmu14641](https://clawhub.ai/user/anmu14641) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmu14641](https://clawhub.ai/user/anmu14641)
 
-## Use Case: <br>
-Anime viewers and agents use this skill to find weekly anime schedules, daily updates, airing reminders, and new season information from public web sources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Public anime schedule data may be incomplete or vary by platform. <br>
-Mitigation: Verify important airing times on the original platform, such as Bilibili, Bangumi, or 动漫之家. <br>
-Risk: Web-backed lookups can return stale or conflicting schedule information. <br>
-Mitigation: Prefer recent source pages and present source uncertainty when schedule accuracy matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmu14641/anime-calendar) <br>
-- [Bilibili](https://www.bilibili.com) <br>
-- [Bangumi](https://bgm.tv) <br>
-- [动漫之家](https://dmzj.com) <br>
+## Use Case:
 
+External users use this skill to look up weekly Chinese anime update calendars, daily airing updates, specific show reminders, and new-season information from public anime sources.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown schedule summaries with dates, titles, episode numbers, and source-based notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public web-backed schedule lookups; airing times should be verified on the original platform when accuracy matters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Anime airing dates, episode numbers, and platform availability may vary by region or change after lookup.
+
+Mitigation: Check schedule output against the original public platforms before relying on it.
+
+Risk: Results are centered on Chinese public anime information sites and may omit shows or platforms outside that coverage.
+
+Mitigation: Treat the output as a China-platform-centered schedule aid and broaden sources when coverage is important.
+
+## Reference(s):
+
+- [Bilibili](https://www.bilibili.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with date-grouped anime schedule lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are based on live public web lookups and should be checked against original platforms for current airing details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

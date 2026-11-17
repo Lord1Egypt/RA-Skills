@@ -1,40 +1,53 @@
-## Description: <br>
-Provides Chinese-language construction engineering guidance across DIY, student, professional, technical, research, and education contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+建设工程专业工程咨询技能，支持从DIY项目到专业实践的全方位工程理解与技术指导.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Construction engineers, technicians, students, educators, researchers, and DIY users use this skill for engineering calculations, material selection, standards guidance, drawing interpretation, quantity estimates, quality checks, troubleshooting, and safety planning. Outputs should be treated as advisory and reviewed by qualified local professionals for safety-critical or regulated work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Engineering guidance can be unsafe if applied with the wrong jurisdiction, code version, units, or project assumptions. <br>
-Mitigation: Confirm jurisdiction, code versions, units, assumptions, and safety factors before using the output. <br>
-Risk: Safety-critical construction, structural, electrical mains, gas, pressure, and permitting decisions require professional accountability. <br>
-Mitigation: Require review and sign-off from a qualified local professional before implementation. <br>
+## Use Case:
 
+External users, developers, engineers, students, educators, and construction practitioners use this skill for Chinese-language construction-engineering consultation, including calculations, material selection, standard references, drawing interpretation, quantity estimates, quality checks, troubleshooting, and safety guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruiyongwang/cn-engineering) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with calculations, assumptions, units, safety notes, and standards references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or credential access; outputs are advisory engineering guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Construction-engineering guidance may be incorrect or mismatched to the user's jurisdiction, applicable standards, site conditions, or project assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require users to confirm jurisdiction, standards, units, assumptions, and safety factors before applying the guidance.
+
+Risk: Structural, electrical, gas, pressure, permit-dependent, or life-safety work can cause serious harm if acted on without qualified review.
+
+Mitigation: Direct users to obtain review and approval from an appropriately licensed professional before performing regulated or safety-critical work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/cn-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with calculations, assumptions, units, safety factors, checklists, and standards references when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses should identify assumptions, applicable jurisdiction, professional review requirements, and life-safety limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

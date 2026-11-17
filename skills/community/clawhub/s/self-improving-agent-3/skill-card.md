@@ -1,46 +1,60 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections so coding agents can log failures, user feedback, missing capabilities, outdated knowledge, and recurring best practices for later review and promotion.
 
-## Publisher: <br>
-[Buradly](https://clawhub.ai/user/Buradly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buradly](https://clawhub.ai/user/buradly)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to capture corrections, command failures, knowledge gaps, feature requests, and reusable practices as structured markdown logs for later review and promotion into project memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning files can retain sensitive or incorrect information if entries are copied from command output or conversation context without review. <br>
-Mitigation: Do not log secrets, credentials, or raw sensitive output; review and redact every entry before keeping it or promoting it into agent instruction files. <br>
-Risk: Broad hook configuration can inject reminders into more sessions than intended and add recurring prompt context. <br>
-Mitigation: Keep hooks project-local, prefer narrow matchers where available, and enable only the activator or error detector that is needed for the workspace. <br>
-Risk: Cross-session sharing and memory promotion can spread unverified guidance. <br>
-Mitigation: Manually validate entries before sending them to another session or promoting them to AGENTS.md, SOUL.md, TOOLS.md, CLAUDE.md, or similar instruction files. <br>
+## Use Case:
 
+Developers and coding-agent users use this skill to capture corrections, command failures, feature requests, knowledge gaps, and useful recurring patterns in structured Markdown logs. Teams can later review those logs and promote durable guidance into agent memory or project instruction files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Buradly/self-improving-agent-3) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Entry Examples](references/examples.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured log templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local learning, error, and feature-request records; optional hooks emit short reminder messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill encourages persistent self-improvement memory and promotion into agent or project instruction files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before writing conversation-derived content into CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or Copilot instruction files.
+
+Risk: Always-on hooks can inject reminders into future agent sessions.
+
+Mitigation: Prefer project-local hook setup, avoid user-global hooks, narrow hook matchers, and review the shell and OpenClaw hook code before enabling hooks.
+
+Risk: Learning logs may capture sensitive project details, personal data, raw transcripts, credentials, or secrets.
+
+Mitigation: Redact sensitive content before writing to .learnings and do not store secrets, credentials, personal data, or raw transcripts in persistent logs.
+
+## Reference(s):
+
+- [Hook Setup Guide](references/hooks-setup.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Entry Examples](references/examples.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured log templates, shell commands, hook configuration examples, and optional helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent learning, error, and feature-request records that may be promoted to project or agent memory files after review.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,5 @@
 ---
-name: tube-cog
+name: youtube-video-cellcog
 description: "AI YouTube content creation powered by CellCog. YouTube videos, Shorts, thumbnails, video scripts, tutorials, vlogs, educational videos, product reviews, video essays. From script to finished video with voiceover and music."
 metadata:
   openclaw:
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Tube Cog - YouTube Content Powered by CellCog
+# YouTube Video - YouTube Content Powered by CellCog
 
 Create YouTube videos that get views - from Shorts to long-form tutorials to eye-catching thumbnails.
 
@@ -27,6 +27,7 @@ result = client.create_chat(
     notify_session_key="agent:main:main",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 ```
 
@@ -38,6 +39,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 print(result["message"])
 ```
@@ -145,16 +147,16 @@ Content planning before production:
 
 ---
 
-## Chat Mode for YouTube Content
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Shorts, thumbnails, scripts, standard tutorials | `"agent"` |
-| Documentary-style content, complex video essays, multi-part series planning | `"agent team"` |
+**Use `chat_mode="agent", chat_tier="max"` for YouTube video production.** Long-form video needs script craft, pacing, and multi-segment production.
 
-**Use `"agent"` for most YouTube content.** Shorts, thumbnails, and standard videos execute well in agent mode.
+| Scenario | Recommended |
+|----------|-------------|
+| Full videos, documentaries, video essays | `chat_mode="agent", chat_tier="max"` |
+| Quick shorts or tests | `chat_mode="agent", chat_tier="flash"` |
 
-**Use `"agent team"` for complex narratives** - documentaries, video essays, or content requiring deep research and storytelling craft.
+Agent Team (`chat_mode="team"`) is reserved for deep research — YouTube video production runs best on Agent max.
 
 ---
 
@@ -224,6 +226,7 @@ There is a real learning curve to generating videos with CellCog. It takes time,
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

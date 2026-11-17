@@ -1,48 +1,67 @@
-## Description: <br>
-Skill Price helps B2B export teams monitor competitor pricing, track market price trends, configure price alerts, and prepare pricing strategy reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps B2B export teams monitor competitor pricing, track market price trends, configure price alerts, and prepare pricing strategy reports.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External users and business operators use this skill to compare competitor prices, monitor market changes, and generate pricing recommendations for B2B export products. It can also help configure alerts and recurring price-monitoring reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a TradeGPT API key and may submit business pricing context to YunlvAI services. <br>
-Mitigation: Use a scoped API key when available and avoid sending confidential customer, margin, or strategy data unless approved. <br>
-Risk: Monitoring reports and alerts may expose competitor, product, or pricing information through local storage, email, or WhatsApp recipients. <br>
-Mitigation: Make monitoring targets, recipients, thresholds, and retention settings explicit before enabling alerts. <br>
-Risk: Price recommendations can be affected by delayed customs data, reference-price differences, or incomplete market coverage. <br>
-Mitigation: Treat recommendations as decision support and verify important pricing decisions against authorized data sources and business constraints. <br>
+## Use Case:
 
+External business users and pricing analysts use this skill to compare competitor prices, analyze trends, configure alerts, and generate pricing recommendations for B2B export decisions.
 
-## Reference(s): <br>
-- [Skill Price ClawHub page](https://clawhub.ai/wangm-a3/skill-price) <br>
-- [YunlvAI homepage](https://yunlvai.com) <br>
-- [YunlvAI TradeGPT API](https://api.yunlvai.com) <br>
-- [YunlvAI customs price data](https://data.yunlvai.com) <br>
-- [Competitor monitoring template](artifact/references/competitor_list_template.md) <br>
-- [Price analysis report template](artifact/references/price_analysis_report.md) <br>
-- [Pricing strategy guide](artifact/references/pricing_strategy_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with structured tables, JSON examples, alert configuration, and pricing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use TRADEGPT_API_KEY-backed API calls and may write monitoring configurations, reports, alerts, and logs under the documented local data path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Product, competitor, market, and pricing details may be commercially sensitive when sent to YunlvAI or TradeGPT services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-confidential or approved business data and confirm that sharing pricing information with the provider is acceptable for the intended workflow.
+
+Risk: Email or WhatsApp price alerts may disclose business-sensitive pricing analysis to unintended recipients.
+
+Mitigation: Confirm recipients before enabling alerts and periodically review notification settings.
+
+Risk: The skill can activate on generic pricing-analysis prompts where external service use may not be expected.
+
+Mitigation: Narrow activation or require user confirmation when the workflow includes sensitive pricing data.
+
+Risk: Pricing reports and recommendations may be misleading if source data is delayed, incomplete, or only indicative.
+
+Mitigation: Treat recommendations as decision support and verify important pricing decisions against approved source data, costs, order terms, and market context.
+
+## Reference(s):
+
+- [Skill Price ClawHub Page](https://clawhub.ai/wangm-a3/skills/skill-price)
+- [YunlvAI Homepage](https://yunlvai.com)
+- [YunlvAI TradeGPT API](https://api.yunlvai.com)
+- [YunlvAI Customs Price Data](https://data.yunlvai.com)
+- [Competitor Monitoring Template](references/competitor_list_template.md)
+- [Price Analysis Report Template](references/price_analysis_report.md)
+- [Pricing Strategy Guide](references/pricing_strategy_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured JSON examples and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include competitor price comparisons, trend summaries, alert rules, and pricing recommendations.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

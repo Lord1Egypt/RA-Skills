@@ -1,41 +1,49 @@
-## Description: <br>
-Watch is a lightweight reference skill that prints static devtools documentation for watch-related workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides plain-text reference documentation for watch-related devtools topics.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise reference documentation for watch concepts, quickstarts, common patterns, debugging, performance, security, migration, and quick-reference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill name may be confused with the standard Unix watch command. <br>
-Mitigation: Verify this is the ClawHub reference helper before invoking it in an agent workflow. <br>
-Risk: The generated reference documentation is generic and may not match a specific production environment. <br>
-Mitigation: Review outputs against the target environment's authoritative documentation before applying operational guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise local reference snippets for watch-related devtools concepts, setup, patterns, debugging, performance, security, migration, and quick-reference workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/watch) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc output; no network access, credentials, or system-state access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The broad skill name may overlap with ordinary requests involving watching files, processes, or media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the skill is being invoked for generic watch-related devtools reference snippets before using its output.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text with Markdown-style headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local heredoc output; no API keys, credentials, network access, or external API calls.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

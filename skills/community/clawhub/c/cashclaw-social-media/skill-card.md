@@ -1,41 +1,54 @@
-## Description: <br>
-Creates content calendars, writes platform-specific posts, tracks analytics, and manages social media presence across Instagram, Twitter/X, LinkedIn, Facebook, and TikTok. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates content calendars, writes platform-specific posts, tracks analytics, and manages social media presence across Instagram, Twitter/X, LinkedIn, Facebook, and TikTok.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-External social media managers, marketers, and small businesses use this skill to create platform-specific content calendars, post drafts, brand voice guides, and monthly analytics reports for Instagram, Twitter/X, LinkedIn, Facebook, and TikTok. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social media calendars, post drafts, or analytics summaries may be inaccurate, off-brand, or unsuitable if client goals, brand voice, audience context, or source metrics are incomplete. <br>
-Mitigation: Review outputs against the client's approved brand voice, campaign goals, platform rules, and source analytics before publishing or sharing reports. <br>
-Risk: If the npm CLI later asks to connect social media accounts or use API tokens, overly broad permissions could expose account access. <br>
-Mitigation: Review requested scopes before connecting accounts, prefer least-privilege credentials, and avoid sharing unnecessary tokens or account permissions. <br>
+## Use Case:
 
+External users and social media operators use this skill to create client content calendars, platform-specific post copy, brand voice guides, and monthly analytics report drafts for major social platforms.
 
-## Reference(s): <br>
-- [Cashclaw Social Media on ClawHub](https://clawhub.ai/andreataide86/skills/cashclaw-social-media) <br>
-- [andreataide86 publisher profile](https://clawhub.ai/user/andreataide86) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown deliverables, platform-specific post copy, YAML-style brand voice guidance, analytics report tables, and example shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces calendars, post drafts, visual notes, brand voice guides, and analytics report outlines; artifact evidence does not show automatic posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release installs and runs an unpinned npm command, so the reviewed behavior may not be fixed to a known package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cashclaw npm package, publisher, source, and exact version before installation, and prefer a pinned, reviewed package version.
+
+Risk: Social media credentials or client analytics could be exposed during use.
+
+Mitigation: Run with minimal permissions and only provide credentials or client analytics when authorized.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andreataide86/skills/cashclaw-social-media)
+- [Publisher profile](https://clawhub.ai/user/andreataide86)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with tables, templates, and inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces social media calendars, post drafts, analytics report drafts, brand voice guidance, and CLI usage examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

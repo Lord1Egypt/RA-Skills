@@ -1,47 +1,65 @@
-## Description: <br>
-ERC8004 Agent helps agents create or manage Ethereum wallet-backed ERC-8004 identities, register onchain, maintain registration metadata, and authenticate through SIWA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ERC8004 Agent helps agents create or manage an Ethereum wallet, register an ERC-8004 onchain identity, build registration metadata, and authenticate to services with SIWA.
 
-## Publisher: <br>
-[limone-eth](https://clawhub.ai/user/limone-eth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[limone-eth](https://clawhub.ai/user/limone-eth)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up ERC-8004 onchain agent identities, prepare registration metadata, operate a keyring proxy, and complete SIWA authentication flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent wallet-signing capability for SIWA messages and onchain transactions. <br>
-Mitigation: Use a fresh low-value wallet, prefer testnets during evaluation, and require explicit user approval before each signing operation or onchain transaction. <br>
-Risk: The external SDK and keyring proxy are privileged signing dependencies. <br>
-Mitigation: Audit or pin the SDK and proxy before production use, and run the keyring proxy as an isolated process with HMAC credentials kept out of shared memory. <br>
-Risk: SIWA or JWT session tokens stored in MEMORY.md or shared agent memory could leak authentication state. <br>
-Mitigation: Do not store SIWA or JWT session tokens in MEMORY.md or shared memory files; store only public identity state and redact tokens from logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/limone-eth/erc8004-agent) <br>
-- [ERC-8004 registration guide](references/registration-guide.md) <br>
-- [SIWA protocol specification](references/siwa-spec.md) <br>
-- [ERC-8004 contract addresses and ABIs](references/contract-addresses.md) <br>
-- [Security model](references/security-model.md) <br>
-- [Registration template](assets/registration-template.json) <br>
-- [Keyring proxy deployment guide](https://siwa.builders.garden/docs/deploy) <br>
+## Use Case:
 
+Developers and agent operators use this skill to register agents under the ERC-8004 Trustless Agents standard, manage public identity state, prepare registration metadata, and perform SIWA authentication. It is intended for workflows where an agent needs an onchain identity and controlled wallet-signing boundary.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash, TypeScript, Python, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include onchain transaction steps, public identity state updates, registration JSON, and SIWA authentication requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata; artifact frontmatter and package.json show 0.0.1) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad wallet-signing authority could authorize unintended transactions, identity changes, or resets.
+
+Mitigation: Restrict signer operations to approved chains, contracts, functions, and domains, and require clear user confirmation before transactions, resets, and identity changes.
+
+Risk: SIWA session tokens may be written to readable memory.
+
+Mitigation: Store session tokens in a real secret store instead of MEMORY.md and use short-lived sessions.
+
+Risk: Mutable external SDK or CLI installs can change behavior after review.
+
+Mitigation: Use a pinned and verified SDK or CLI version before installing or executing the skill.
+
+Risk: The shared keyring proxy secret could be exposed to general agent context.
+
+Mitigation: Isolate KEYRING_PROXY_SECRET from normal agent context and expose it only to the signing boundary that needs it.
+
+## Reference(s):
+
+- [ERC8004 Agent on ClawHub](https://clawhub.ai/limone-eth/skills/erc8004-agent)
+- [ERC-8004 Registration Guide](artifact/references/registration-guide.md)
+- [SIWA Protocol Specification](artifact/references/siwa-spec.md)
+- [ERC-8004 Contract Addresses and ABIs](artifact/references/contract-addresses.md)
+- [Security Model](artifact/references/security-model.md)
+- [Keyring Proxy Deployment Guide](https://siwa.builders.garden/docs/deploy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON templates, TypeScript examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose wallet, registration, SIWA, and keyring proxy operations that require user confirmation before transactions or identity changes.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata; artifact frontmatter and package.json remain 0.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

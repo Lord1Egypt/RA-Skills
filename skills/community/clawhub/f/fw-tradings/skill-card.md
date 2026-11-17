@@ -1,44 +1,60 @@
-## Description: <br>
-FW-trading routes an agent through Fosun Wealth Hong Kong and U.S. stock OpenAPI workflows for shared credential setup, account and market-data queries, holdings and cash checks, and confirmed real or simulated order changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FW-trading helps agents manage Fosun Wealth OpenAPI credentials and route Hong Kong and U.S. stock account, cash, holdings, market data, and order operations across real and simulated trading.
 
-## Publisher: <br>
-[fosunwealth](https://clawhub.ai/user/fosunwealth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fosunwealth](https://clawhub.ai/user/fosunwealth)
 
-## Use Case: <br>
-External developers and agents use this skill to prepare Fosun Wealth OpenAPI credentials, choose real or simulated trading, inspect accounts, cash, holdings, orders, and market data, and submit order changes only after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access live brokerage data and place live trades after confirmation. <br>
-Mitigation: Install only from a trusted publisher, verify every real-trade intent before confirmation, and use simulated trading first for unfamiliar workflows. <br>
-Risk: The skill handles API keys, public-key material, fosun.env, and local credential backups. <br>
-Mitigation: Avoid pasting secrets into chat, restrict permissions on fosun.env and backup directories, and rotate or revoke credentials if exposure is suspected. <br>
-Risk: The installer retrieves remote tools and SDK dependencies. <br>
-Mitigation: Prefer manual dependency installation or review the installer and dependency sources before using the skill with real accounts. <br>
+## Use Case:
 
+External users and trading workflow operators use this skill to prepare Fosun Wealth OpenAPI credentials, inspect account and market information, and submit confirmed real or simulated Hong Kong and U.S. stock order actions through an agent.
 
-## Reference(s): <br>
-- [FW-trading ClawHub release page](https://clawhub.ai/fosunwealth/fw-tradings) <br>
-- [Credential management flow](artifact/fosun-env-setup/reference/credential-management-flow.md) <br>
-- [uv installation documentation](https://docs.astral.sh/uv/getting-started/installation/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update fosun.env and local credential backups; credential setup can also generate QR image artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata and artifact/_meta.json) <br>
+Risk: The skill handles API keys and trading credential files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fosun.env and its backups as sensitive trading credentials and restrict access to systems and users that need them.
+
+Risk: Real trading authority can affect live accounts.
+
+Mitigation: Require the user to explicitly choose real trading and confirm order creation, modification, or cancellation before running those actions.
+
+Risk: The installer and SDK source are review-worthy supply-chain surfaces.
+
+Mitigation: Audit or harden the installer first, prefer preinstalling uv, verify the Fosun SDK source, and use custom SDK or base URLs only when you control them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fosunwealth/skills/fw-tradings)
+- [Credential management flow](fosun-env-setup/reference/credential-management-flow.md)
+- [uv documentation](https://docs.astral.sh/uv/)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured script-output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may guide credential setup and trading workflows, including operations that require explicit user confirmation.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

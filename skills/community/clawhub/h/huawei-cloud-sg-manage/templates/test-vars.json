@@ -1,0 +1,126 @@
+{
+  "region": "cn-north-4",
+  "notes": "All cases are offline syntax checks (hcloud --help / hcloud version). Preview-gate and error-contract behaviour is covered by tests/test_offline_contract.py, which the CLI smoke executor cannot run (it only executes hcloud/curl commands).",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "huawei_list_security_groups - CLI syntax check (read-only R3)",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC ListSecurityGroups/v3 --cli-region={region} --help",
+      "note": "Underlying CLI of huawei_list_security_groups. --help syntax check (rc=0)."
+    },
+    {
+      "id": "TC-02",
+      "name": "huawei_list_security_group_rules - CLI syntax check (read-only R3)",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC ListSecurityGroupRules/v3 --cli-region={region} --help",
+      "note": "Underlying CLI of huawei_list_security_group_rules. --help syntax check (rc=0)."
+    },
+    {
+      "id": "TC-03",
+      "name": "huawei_get_security_group - CLI syntax check",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC ShowSecurityGroup/v3 --cli-region={region} --help",
+      "note": "--help syntax check (rc=0). Live form: huawei_get_security_group security_group_id=<sg-id>."
+    },
+    {
+      "id": "TC-04",
+      "name": "huawei_diagnose_sg_port_connectivity - CLI syntax check",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC ListSecurityGroupRules/v3 --cli-region={region} --help",
+      "note": "Underlying CLI of huawei_diagnose_sg_port_connectivity. --help syntax check (rc=0)."
+    },
+    {
+      "id": "TC-05",
+      "name": "huawei_analyze_sg_rule_conflict - CLI syntax check",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC ListSecurityGroupRules/v3 --cli-region={region} --help",
+      "note": "Underlying CLI of huawei_analyze_sg_rule_conflict. --help syntax check (rc=0)."
+    },
+    {
+      "id": "TC-06",
+      "name": "huawei_audit_sg_overexposed_rules - CLI syntax check",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC ListSecurityGroupRules/v3 --cli-region={region} --help",
+      "note": "Underlying CLI of huawei_audit_sg_overexposed_rules. --help syntax check (rc=0)."
+    },
+    {
+      "id": "TC-07",
+      "name": "huawei_create_security_group - CLI syntax check (R2 write, --help only)",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC CreateSecurityGroup/v3 --cli-region={region} --help",
+      "note": "Write op (R2). Live mutation gated by confirmation policy. --help only."
+    },
+    {
+      "id": "TC-08",
+      "name": "huawei_create_sg_rule - CLI syntax check (R2 write, --help only)",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC CreateSecurityGroupRule/v3 --cli-region={region} --help",
+      "note": "Write op (R2). Live mutation gated by confirmation policy. --help only."
+    },
+    {
+      "id": "TC-09",
+      "name": "huawei_update_security_group - CLI syntax check (R2 write, --help only)",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC UpdateSecurityGroup/v3 --cli-region={region} --help",
+      "note": "Write op (R2). /v3 suffix matches the runtime and SKILL.md. --help only."
+    },
+    {
+      "id": "TC-10",
+      "name": "huawei_delete_security_group - CLI syntax check (R1 write, --help only)",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC DeleteSecurityGroup/v3 --cli-region={region} --help",
+      "note": "Write op (R1, irreversible). Live deletion gated by confirmation policy. --help only."
+    },
+    {
+      "id": "TC-11",
+      "name": "huawei_delete_sg_rule - CLI syntax check (R1 write, --help only)",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC DeleteSecurityGroupRule/v3 --cli-region={region} --help",
+      "note": "Write op (R1). Live deletion gated by confirmation policy. --help only."
+    },
+    {
+      "id": "TC-12",
+      "name": "KooCLI availability - hcloud version (prerequisite check)",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud version",
+      "note": "Prints Current KooCLI version: (rc=0). Same check SKILL.md Prerequisites documents."
+    },
+    {
+      "id": "TC-13",
+      "name": "delete-rule preview lookup - CLI syntax check",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC ShowSecurityGroupRule/v2 --cli-region={region} --help",
+      "note": "Underlying CLI of the huawei_delete_sg_rule preview (captured_rule). --help only."
+    },
+    {
+      "id": "TC-14",
+      "name": "create-rule preview - CLI syntax check",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC CreateSecurityGroupRule/v3 --cli-region={region} --security_group_rule.direction=ingress --help",
+      "note": "Preview form used by huawei_create_sg_rule (direction is required). --help only, no request sent."
+    },
+    {
+      "id": "TC-15",
+      "name": "region-scoped read - CLI syntax check",
+      "type": "syntax",
+      "executor": "cli",
+      "command": "hcloud VPC ListSecurityGroups/v3 --cli-region={region} --limit=1 --help",
+      "note": "--help only; documents the literal region + limit form used in SKILL.md."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "ownerId": "583963",
+  "slug": "keyword-radar",
+  "version": "1.5.3",
+  "workflow": "keyword_radar",
+  "focus": "all",
+  "outputTemplate": "review_keyword_radar",
+  "requiredCapabilities": [
+    "keyword_radar"
+  ],
+  "releaseWave": 6
+}

@@ -1,0 +1,78 @@
+{
+  "research_object": "Cursor IDE",
+  "research_question": "What is Cursor, why did it grow, and is it still worth watching?",
+  "generated_at": "2026-06-28T10:00:00Z",
+  "evidence_window": "2023-2026",
+  "entries": [
+    {
+      "id": "E-001",
+      "lane_id": "source-scout",
+      "agent_role": "source-scout",
+      "claim": "Cursor is an AI-first code editor built on a VS Code fork",
+      "status": "confirmed_fact",
+      "source_type": "official",
+      "source_title": "Cursor — Official Website",
+      "source_url": "https://cursor.com",
+      "published_at": "2024-01-15",
+      "accessed_at": "2026-06-28",
+      "reliability": "high",
+      "citation_strength": "direct-primary",
+      "implication": "Cursor positions itself as a standalone product, not a VS Code extension"
+    },
+    {
+      "id": "E-002",
+      "lane_id": "source-scout",
+      "agent_role": "source-scout",
+      "claim": "Cursor raised $60M Series A at $400M valuation",
+      "status": "reported_claim",
+      "source_type": "media",
+      "source_title": "TechCrunch — Cursor raises Series A",
+      "source_url": "https://techcrunch.com/cursor-series-a",
+      "published_at": "2024-08-01",
+      "accessed_at": "2026-06-28",
+      "reliability": "medium",
+      "citation_strength": "single-secondary",
+      "corroboration_group": "CG-001",
+      "upstream_source_id": "E-002-upstream",
+      "implication": "Funding suggests market validation but valuation is unverified"
+    },
+    {
+      "id": "E-003",
+      "lane_id": "user-signal-analyst",
+      "agent_role": "user-signal-analyst",
+      "claim": "Users praise Cursor's tab completion and multi-file edits",
+      "status": "user_signal",
+      "source_type": "community",
+      "source_title": "Reddit r/cursor — User reviews thread",
+      "source_url": "https://reddit.com/r/cursor/reviews",
+      "accessed_at": "2026-06-28",
+      "reliability": "medium",
+      "citation_strength": "user-signal-only",
+      "implication": "Positive user sentiment supports product-market fit hypothesis"
+    },
+    {
+      "id": "E-004",
+      "lane_id": "timeline-analyst",
+      "agent_role": "timeline-analyst",
+      "claim": "Cursor was forked from VS Code in early 2023",
+      "status": "inference",
+      "source_type": "analysis",
+      "source_title": "GitHub commit history analysis",
+      "accessed_at": "2026-06-28",
+      "reliability": "medium",
+      "citation_strength": "indirect-primary",
+      "implication": "Early fork decision enabled deep IDE integration"
+    },
+    {
+      "id": "E-005",
+      "lane_id": "dissent-reviewer",
+      "agent_role": "dissent-reviewer",
+      "claim": "Cursor's market position may weaken if GitHub Copilot adds similar features",
+      "status": "gap",
+      "source_type": "analysis",
+      "reliability": "low",
+      "citation_strength": "unsupported-gap",
+      "implication": "Competitive risk is unquantified and needs monitoring"
+    }
+  ]
+}

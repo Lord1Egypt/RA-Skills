@@ -1,0 +1,9 @@
+{
+  "name": "统一凭据保险库（真实可用 · 本地零知识）",
+  "normalizedName": "credential-vault-design",
+  "description": "一个真正能跑的本地凭据保险库，用于回答「密码密钥散得到处都是怎么收拢」「AI 要用凭据但不能让它看见明文」「密码忘了会不会锁死」这类问题。把分散的口令 / 密钥 / 授权收敛成统一、可恢复、分级授权、带防篡改审计链的体系；配套完整 CLI（init / set / get / list / token / verify / audit / recover）、可量化安全自测（八维）与实测雷达图。凭据登记与时效令牌签发按注册方法论执行，审计链留痕对应证据链审计。全生态同读（含鸿蒙）、零知识加密、可恢复不锁死。触发词：凭据管理、密码管理、密钥管理、统一凭据、零知识加密、分级授权、防篡改审计、时效令牌、密钥收拢、break-glass、credential vault、secret management。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺卫(Phylax)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "2.0.0",
+  "license": "MIT"
+}

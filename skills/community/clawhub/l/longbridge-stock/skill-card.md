@@ -1,43 +1,61 @@
-## Description: <br>
-Real-time stock quotes and account queries for Longbridge users, covering US, Hong Kong, and China stocks, account balance, and positions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time stock quotes and account queries for Longbridge users, including US, Hong Kong, and China A-share market quotes, account balance, and portfolio positions.
 
-## Publisher: <br>
-[weipapa](https://clawhub.ai/user/weipapa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weipapa](https://clawhub.ai/user/weipapa)
 
-## Use Case: <br>
-Developers and Longbridge users use this skill to let an agent retrieve stock quotes, account balances, and portfolio positions after Longbridge credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Longbridge credentials can allow access to brokerage account balances and holdings. <br>
-Mitigation: Keep the config outside shared workspaces and repositories, restrict file permissions, and rotate tokens if they are exposed. <br>
-Risk: Account balance or position queries can expose sensitive brokerage data more broadly than intended. <br>
-Mitigation: Run balance and position queries only after the user explicitly asks for account data. <br>
+## Use Case:
 
+External Longbridge users and developers use this skill to retrieve stock quotes, account balances, and portfolio positions through Longbridge API scripts. It is suited for market lookup and account review workflows where the user intentionally provides Longbridge credentials.
 
-## Reference(s): <br>
-- [Longbridge stock on ClawHub](https://clawhub.ai/weipapa/longbridge-stock) <br>
-- [Longbridge Open Platform](https://open.longport.com/) <br>
-- [Configuration guide](references/config.md) <br>
-- [Stock symbol guide](references/symbols.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown tables and command-line text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include sensitive brokerage balances and holdings when account scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles brokerage credentials and account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the agent is intended to use Longbridge credentials, prefer a dedicated low-privilege token if available, and ask for confirmation before balance or position queries.
+
+Risk: The configuration can store credentials in plaintext files.
+
+Mitigation: Store the config outside shared workspaces with restrictive file permissions and do not commit it.
+
+Risk: Custom Longbridge API endpoints can redirect sensitive API traffic.
+
+Mitigation: Use the documented Longbridge endpoints unless the custom endpoint is fully trusted.
+
+## Reference(s):
+
+- [Longbridge API configuration](references/config.md)
+- [Stock symbol formats](references/symbols.md)
+- [Longbridge Open Platform](https://open.longport.com/)
+- [ClawHub skill page](https://clawhub.ai/weipapa/skills/longbridge-stock)
+- [Publisher profile](https://clawhub.ai/user/weipapa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and console text with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include real-time market data and account data returned by the Longbridge API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

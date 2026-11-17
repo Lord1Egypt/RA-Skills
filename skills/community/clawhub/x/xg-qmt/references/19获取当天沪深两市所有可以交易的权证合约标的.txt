@@ -1,0 +1,48 @@
+有办法获取当天沪深两市所有可以交易的权证合约标的吗？ 
+28161
+发表于 2023-12-22 15:20:05
+|
+只看该作者
+只看大图
+阅读模式
+|
+可以的. 参考示例第九行
+
+http://dict.thinktrader.net/inne ... A%E6%B6%A8%E5%B9%85
+
+
+#coding:gbk
+import time
+
+class a():
+        pass
+A = a()
+
+def init(C):
+        A.hsa = C.get_stock_list_in_sector('沪深A股')
+        A.vol_dict = {}
+        for stock in A.hsa:
+                A.vol_dict[stock] = C.get_last_volume(stock)
+        C.run_time("f","1nSecond","2019-10-14 13:20:00")
+
+def f(C):
+        t0 = time.time()
+        full_tick = C.get_full_tick(A.hsa)
+        total_market_value = 0
+        total_ratio = 0
+        count = 0
+        for stock in A.hsa:
+                ratio = full_tick[stock]['lastPrice'] / full_tick[stock]['lastClose'] - 1
+                rise_price = round(full_tick[stock]['lastClose'] *1.2,2) if stock[0] == '3' or stock[:3] == '688' else round(full_tick[stock]['lastClose'] *1.1,2)
+                #如果要打印涨停品种
+                #if abs(full_tick[stock]['lastPrice'] - rise_price) <0.01:
+                #        print(f"涨停品种 {stock} {C.get_stock_name(stock)}")
+                market_value = full_tick[stock]['lastPrice'] * A.vol_dict[stock]
+                total_ratio += ratio * market_value
+                total_market_value += market_value
+                count += 1
+        #print(count)
+        total_ratio /= total_market_value
+        total_ratio *= 100
+        print(f'A股加权涨幅 {round(total_ratio,2)}% 函数运行耗时{round(time.time()- t0,5)}秒')
+

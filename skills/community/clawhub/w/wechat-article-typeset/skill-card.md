@@ -1,45 +1,61 @@
-## Description: <br>
-Formats Markdown articles with preset WeChat public-account themes, writes copy-ready HTML, and can generate an edit.shiker.tech preview link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+公众号文章预设主题排版--Markdown 一键渲染主题并生成复制页预览链接（不含 AI 结构化预览）
 
-## Publisher: <br>
-[shiker1996](https://clawhub.ai/user/shiker1996) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiker1996](https://clawhub.ai/user/shiker1996)
 
-## Use Case: <br>
-Content creators, editorial teams, and developers use this skill to convert Markdown drafts into themed WeChat public-account HTML and a copy-page preview link. It is intended for preset theme rendering, not AI rewriting or custom article redesign. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The copy workflow uploads rendered article HTML to edit.shiker.tech to create a preview link. <br>
-Mitigation: Use the upload workflow only for drafts that are acceptable to send to that external service; avoid confidential drafts, secrets, regulated personal data, and internal announcements unless that upload is approved. <br>
-Risk: Generated HTML automatically includes a 稿定助手 branded mini-program header/link. <br>
-Mitigation: Inspect article.preset.html before publishing and confirm the inserted branding is acceptable for the article and organization. <br>
-Risk: Preview links contain long generated identifiers that can be miscopied if manually transcribed. <br>
-Mitigation: Use the script output or generated wechat-preview-url.txt as the source of truth for the preview URL. <br>
+## Use Case:
 
+External users and content operators use this skill to convert a Markdown article into preset-themed WeChat-ready HTML and a copy-page preview link. It is intended for preset theme rendering, not AI rewriting or custom structured HTML design.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shiker1996/wechat-article-typeset) <br>
-- [Publisher profile](https://clawhub.ai/user/shiker1996) <br>
-- [edit.shiker.tech copy API](https://edit.shiker.tech/api/copy) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated HTML, and preview URL text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces article.preset.html and wechat-preview-url.txt when the copy workflow succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata; artifact frontmatter and package.json report 1.0.0) <br>
+Risk: Full rendered article HTML is uploaded to edit.shiker.tech to create the copy-page preview.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use this skill on confidential drafts unless the user accepts that upload.
+
+Risk: Generated HTML may include undisclosed branded mini-program content.
+
+Mitigation: Inspect article.preset.html and the preview page before publication, and remove or disclose promotional content as appropriate.
+
+Risk: Unsafe link or image URI schemes from untrusted Markdown may pass through into generated HTML.
+
+Mitigation: Use trusted Markdown sources and inspect generated links and images before copying the article into WeChat.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shiker1996/skills/wechat-article-typeset)
+- [Publisher profile](https://clawhub.ai/user/shiker1996)
+- [Skill instructions](artifact/SKILL.md)
+- [Skill README](artifact/README.md)
+- [Copy preview API](https://edit.shiker.tech/api/copy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, a preview URL, generated HTML, and a text file containing the preview URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces article.preset.html and wechat-preview-url.txt in the Markdown file directory when the copy script succeeds.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

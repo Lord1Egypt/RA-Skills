@@ -1,41 +1,58 @@
-## Description: <br>
-Notify guides agents to send timely, batched notifications through appropriate channels while respecting user preferences, quiet hours, and escalation limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI agents in delivering timely, batched notifications through appropriate channels while respecting urgency, user preferences, time zones, and quiet hours.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and AI agent builders use this skill to choose notification channels, timing, batching, message formats, and escalation behavior for user-facing alerts and summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notification bodies may be sent through an external email API example. <br>
-Mitigation: Confirm recipients are user-approved and avoid sending secrets or regulated data in notification content. <br>
-Risk: The optional API example uses a sensitive SKILLBOSS_API_KEY credential. <br>
-Mitigation: Store the key securely and grant only the least privilege needed for notification delivery. <br>
+## Use Case:
 
+Developers and agent builders use this skill to decide when, where, and how an AI agent should notify users. It is intended for notification routing, batching, formatting, escalation, and preference collection across chat, push, email, SMS, and logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-notify) <br>
-- [SkillBoss API Hub endpoint](https://api.skillbossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with tables, examples, checklists, and a Python API example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional third-party email API usage; notification recipients and content should be user-approved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The optional email-sending example can transmit recipient addresses and message content to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm recipients before sending, avoid secrets or unnecessary personal data in notification bodies, and use the email example only when the deployment accepts that data flow.
+
+Risk: Notification guidance can still be applied in ways that create spam, fatigue, or unwanted escalation.
+
+Mitigation: Respect the user's timezone, quiet hours, channel preferences, batching rules, and the skill's limit of three critical-alert attempts before stopping.
+
+Risk: The integration example depends on an API key for real notification delivery.
+
+Mitigation: Store the API key in secure environment configuration and do not place credentials in prompts, notification content, logs, or source text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-notify)
+- [ClawHub publisher profile](https://clawhub.ai/user/tobeyrebecca)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, examples, and a Python API call snippet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include notification copy, routing recommendations, batching rules, confirmation text, and optional integration code.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

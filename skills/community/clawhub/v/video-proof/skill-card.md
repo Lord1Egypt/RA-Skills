@@ -1,42 +1,62 @@
-## Description: <br>
-Records browser or API proof artifacts after coding tasks, including videos, screenshots, console logs, API results, and Markdown summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records video and API proof artifacts for completed coding tasks, including screen recordings, screenshots, console logs, API results, and Markdown summaries.
 
-## Publisher: <br>
-[rikisann](https://clawhub.ai/user/rikisann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[rikisann](https://clawhub.ai/user/rikisann)
 
-## Use Case: <br>
-Developers and coding agents use this skill after implementation work to run scripted UI or API checks and produce proof artifacts that demonstrate the changed feature. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Proof specs can start arbitrary commands and make browser or API requests against configured targets. <br>
-Mitigation: Use only trusted proof specs and review start_command, start_port, base_url, goto targets, and API request definitions before running. <br>
-Risk: Generated videos, screenshots, logs, and API results can capture credentials, private data, or sensitive staging details. <br>
-Mitigation: Avoid production credentials and sensitive data during proof runs, and inspect or redact generated artifacts before committing or sharing them. <br>
-Risk: Setup and proof scripts may install packages or system dependencies, including commands that can invoke sudo or package managers. <br>
-Mitigation: Review setup behavior before execution and do not allow unexpected sudo or package-manager changes. <br>
+## Use Case:
 
+Developers and coding agents use this skill after implementation to run scripted UI or API proofs and attach evidence artifacts to pull requests or task deliverables.
 
-## Reference(s): <br>
-- [Proof Spec Reference](references/proof-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML proof specs, shell commands, screenshots, videos, logs, and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proof-artifacts output directories; browser proofs may include WebM or MP4 video, screenshots, console logs, and proof-summary.md; API proofs may include api-proof.md and api-results.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Proof specs can start applications using shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a disposable or project-limited environment and review every proof spec before execution.
+
+Risk: Untrusted PR-provided specs may trigger unsafe local actions.
+
+Mitigation: Do not run specs supplied by untrusted contributors until they have been reviewed and reduced to the expected proof steps.
+
+Risk: Generated screenshots, videos, console logs, and API results may contain sensitive information.
+
+Mitigation: Inspect and redact proof artifacts before committing, publishing, or sharing them.
+
+Risk: The setup script can install mutable dependencies and request elevated system package installation.
+
+Mitigation: Review setup.sh before running it and prefer controlled environments where dependency installation and sudo use are acceptable.
+
+## Reference(s):
+
+- [Proof Spec Reference](references/proof-spec.md)
+- [ClawHub Skill Page](https://clawhub.ai/rikisann/skills/video-proof)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown reports, JSON API results, WebM or MP4 recordings, PNG screenshots, console logs, YAML proof specs, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces pass/fail summaries and exits nonzero when proof steps or API requests fail.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Generates multiple landing-page narrative angles for one product and labels audience fit, evidence needs, risk points, headline ideas, and test order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates multiple narrative angles for a product landing page and annotates audience fit, evidence needs, headline ideas, risks, and test sequence.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Marketing, growth, and product teams use this skill to turn product claims, target audiences, and constraints into reviewable landing-page messaging angles and A/B test sequencing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated landing-page copy could include incorrect, unsupported, or overstated marketing claims. <br>
-Mitigation: Review all generated claims against product evidence before publishing and keep unclear items in the evidence-needs or confirmation sections. <br>
-Risk: Sensitive product, customer, or personal information in inputs may be reflected in local report output. <br>
-Mitigation: Use explicit marketing input files, redact sensitive material before processing, and choose output paths deliberately. <br>
+## Use Case:
 
+Marketing, growth, and product teams use this skill to turn product claims, target users, and constraints into reviewable landing-page angle drafts for messaging and A/B narrative planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/landing-page-angle-tester) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown; optional JSON or Markdown output from the local script when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local input processing with reviewable drafts; generated claims should be checked before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The authoritative security summary says the bundled script contains unrelated local-audit and sensitive-pattern scanning functions that do not match the copywriting purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and remove or clearly re-scope the unrelated audit paths before treating the package as a low-risk landing-page copywriting skill.
+
+Risk: The skill can read local input paths and the security guidance recommends avoiding broad project directories or credential-containing files.
+
+Mitigation: Use non-sensitive landing-page inputs, prefer a narrow input file, and avoid pointing the script at directories that may contain credentials or private project data.
+
+Risk: The skill produces marketing copy drafts that could overstate features or imply unsupported testimonials if not reviewed.
+
+Mitigation: Require human review of every draft, confirm evidence needs against source materials, and do not fabricate testimonials, claims, or results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/landing-page-angle-tester)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+- [Specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown by default, with optional JSON output from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script accepts an input file, directory, or inline string and can write to stdout or a controlled output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

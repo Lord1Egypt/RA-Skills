@@ -1,44 +1,63 @@
-## Description: <br>
-Helps users search for, filter, recommend, and download adult videos using saved preferences, site reachability checks, proxy configuration, and yt-dlp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Finder helps users search, filter, and download adult videos using stored preferences, proxy configuration, yt-dlp downloads, progress tracking, and feedback.
 
-## Publisher: <br>
-[xiaoka520](https://clawhub.ai/user/xiaoka520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoka520](https://clawhub.ai/user/xiaoka520)
 
-## Use Case: <br>
-External users use this skill to locate adult videos matching stated preferences, review filtered results, choose a target item, and download it to a selected local directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently store highly sensitive adult-content preferences, download history, feedback, and proxy credentials. <br>
-Mitigation: Install only if this storage is acceptable; prefer session-only proxy use and regularly review or delete files under ~/.openclaw/skills/video-finder/. <br>
-Risk: Ambiguous requests may trigger an adult-content search and download workflow. <br>
-Mitigation: Avoid ambiguous invocations unless the workflow is explicitly intended, and require user confirmation before download. <br>
-Risk: Stored proxy credentials may expose access details if local files are mishandled. <br>
-Mitigation: Do not echo proxy secrets in chat, logs, or examples, and avoid persisting credentials unless necessary. <br>
+## Use Case:
 
+External users use this OpenClaw agent skill to search adult-video sites, filter results by stored preferences, confirm a selection, and download chosen videos with yt-dlp. Use only where adult-content access and downloading are legal.
 
-## Reference(s): <br>
-- [Source repository](https://github.com/xiaoka520/video-finder) <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoka520/skills/video-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoka520) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include search results, download commands, progress updates, local preference and proxy file guidance, and history entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill searches and downloads adult content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a private environment and only where the requested access and downloads are legal.
+
+Risk: The skill can store sensitive viewing preferences, history, and feedback in local JSON and Markdown files.
+
+Mitigation: Review or delete generated preferences, tracking, and history files after use, and treat them as sensitive records.
+
+Risk: Proxy configuration may contain plaintext credentials.
+
+Mitigation: Avoid storing reusable proxy passwords and redact proxy credentials in logs, examples, and conversation output.
+
+Risk: Background yt-dlp jobs and cleanup commands can touch the selected download directory.
+
+Mitigation: Choose a dedicated download directory and review download paths before approving a download.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaoka520/skills/video-finder)
+- [Publisher Profile](https://clawhub.ai/user/xiaoka520)
+- [Source Repository](https://github.com/xiaoka520/video-finder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and generated JSON/Markdown state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local preference, proxy, download-tracking, and history files; may run background yt-dlp download commands.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

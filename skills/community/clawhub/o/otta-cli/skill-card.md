@@ -1,42 +1,52 @@
-## Description: <br>
-Guides agents to use the otta CLI for otta.fi worktime, absence, sick-leave, status, calendar, and reporting workflows with JSON-first terminal commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to use otta-cli for otta.fi worktime, absence, sick-leave, holiday, saldo, and calendar workflows with JSON-first terminal commands.
 
-## Publisher: <br>
-[mekedron](https://clawhub.ai/user/mekedron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mekedron](https://clawhub.ai/user/mekedron)
 
-## Use Case: <br>
-Developers, operators, and employees use this skill to guide agents through Otta time-tracking workflows such as authentication, worktime changes, absence lookup, holiday retrieval, saldo checks, and calendar reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An agent can update or delete Otta worktime records. <br>
-Mitigation: Show the target worktime record and obtain explicit user confirmation before update or delete operations. <br>
-Risk: Credentials or tokens could be exposed through command arguments, logs, or summaries. <br>
-Mitigation: Prefer password-stdin or secret environment handling, and never print raw credentials or tokens in summaries. <br>
-Risk: Incorrect API base URL, config path, or cache path could direct operations to the wrong account or environment. <br>
-Mitigation: Verify the API base URL and config/cache paths before account-changing operations, and run status with JSON output when cached identity is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mekedron/otta-cli) <br>
-- [Otta CLI repository listed by the skill](https://github.com/mekedron/otta-cli) <br>
+## Use Case:
 
+Employees, operators, and developers use this skill to automate Otta time-tracking workflows from a terminal, including authentication, status checks, worktime changes, absences, holidays, saldo, and calendar reports.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers --format json for data-producing commands and requires credentials or tokens to be omitted from summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Login examples and diagnostics can expose Otta credentials or tokens if copied into shell history, logs, or summaries.
+
+Mitigation: Use --password-stdin or protected secret handling, and redact OTTA_CLI_PASSWORD, access tokens, and refresh tokens from logs and responses.
+
+Risk: Worktime add, update, and delete commands can change account records.
+
+Mitigation: Confirm mutating actions before execution and list existing worktimes first when the target record ID is not explicit.
+
+## Reference(s):
+
+- [Otta CLI repository listed by the skill](https://github.com/mekedron/otta-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON-oriented command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers machine-readable --format json output and concise failure reporting with credentials and tokens redacted.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

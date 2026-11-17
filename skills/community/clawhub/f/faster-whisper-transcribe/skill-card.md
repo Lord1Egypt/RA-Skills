@@ -1,39 +1,51 @@
-## Description: <br>
-Transcribes local voice messages to text using Faster Whisper models for fast, privacy-focused speech recognition on audio files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes local voice messages to text using Faster Whisper models for fast, privacy-focused speech recognition on audio files.
 
-## Publisher: <br>
-[Kalmuraee](https://clawhub.ai/user/Kalmuraee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kalmuraee](https://clawhub.ai/user/kalmuraee)
 
-## Use Case: <br>
-Developers and users who handle voice messages use this skill to transcribe local audio files into text with Faster Whisper while keeping processing local. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing with the documented --break-system-packages command can affect the system Python environment. <br>
-Mitigation: Install Faster Whisper in a virtual environment and pin dependencies before use. <br>
-Risk: Audio files may contain sensitive content. <br>
-Mitigation: Transcribe only files intended for local processing and handle resulting text according to data policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Kalmuraee/faster-whisper-transcribe) <br>
+## Use Case:
+
+Developers and agent operators use this skill to transcribe local audio or voice message files into text while keeping processing on the local machine.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The install instructions use an unpinned package install with --break-system-packages.
+
+Mitigation: Install in an isolated virtual environment or pipx-style environment, pin reviewed dependency versions, and avoid sudo or root privileges.
+
+Risk: The voice-transcribe implementation is not included in the artifact, so the exact audio-processing behavior is uncertain.
+
+Mitigation: Review the installed command and process only audio files from trusted or approved sources before using it in production workflows.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text transcription with Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Model size can trade transcription speed, accuracy, and memory use.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks and plain text transcription output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports tiny, base, small, and medium Faster Whisper model choices; larger models require more RAM.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

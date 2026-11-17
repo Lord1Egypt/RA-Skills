@@ -1,0 +1,8 @@
+{
+  "id": "fleet-conductor",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh fleet-conductor"
+  ],
+  "trust_level": "workspace"
+}

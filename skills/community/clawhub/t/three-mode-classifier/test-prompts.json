@@ -1,0 +1,73 @@
+{
+  "skill": "three-mode-classifier",
+  "version": "0.1.0",
+  "source_book": "《价值互联网产业应用蓝皮书（2025 年）》 — 价值互联网产业应用蓝皮书编写组",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我们茶园想用 Web3 转型，但不知道走哪条路、组织要怎么搭？",
+      "expected_behavior": "应激活 S3，用两轴（组织改造度×融资导向）定位为产业变革型，并给组织形态与合规路径建议",
+      "notes": "正面场景：传统地方产业上链选型"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "有人说我们这是 RWA，有人说是产业数字化，到底算哪类模式？",
+      "expected_behavior": "应激活 S3，做三问定位（资产/组织/融资）并唯一落定一类、书面排除其余两类",
+      "notes": "正面场景：模式归类混淆，需判别器裁定"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "我们想用充电桩收益权去融资、发 RWA，这属于哪种主导模式？",
+      "expected_behavior": "应激活 S3，定位为链改-资产支持型，并提示若拟境内发行须止步转 S2/S8",
+      "notes": "正面场景：融资导向项目的模式判别"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "我们想从零做个创作者共建社区、按贡献分配，这是不是原生 Web3？",
+      "expected_behavior": "应激活 S3，按'新建共建社区+非融资导向'判为原生型，并给路径建议",
+      "notes": "正面场景：原生型判别，组织形态选型"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我们这个项目算不算真 Web3？还是只是套了区块链壳？",
+      "expected_behavior": "不应激活 S3，应转 S4（W-ABCD 真假 Web3 识别器）。S3 在'已认定真 Web3'之后才做选型",
+      "notes": "诱饵：意图是真伪识别而非模式选型；S3 边界明确'只想判断是不是真 Web3→用 S4'"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "境内能不能发币、做稳定币？会不会违法？",
+      "expected_behavior": "不应激活 S3，应转 S2（合规边界红线检查）。用户问单一合规裁决，不是模式选型",
+      "notes": "诱饵：出现'发币/RWA'相关词但意图是合规红线，属 S2"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "RWA 具体十环节怎么落地、要向哪些部门备案？",
+      "expected_behavior": "不应激活 S3，应转 S8（RWA 落地流程与路径设计器）。S3 是选型前置，不做工程作业",
+      "notes": "诱饵：已确认链改型的工程落地，属 S8；S3 边界明确'已确认链改型只缺工程步骤→用 S8'"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我们做农产品上链溯源，类似马陆葡萄那种，算产业变革型还是链改型？",
+      "expected_behavior": "激活 S3，定位为产业变革型（RDA 数据赋能、弱融资，非锚定现金流融资），排除链改型",
+      "notes": "边界：同'上链'易与链改型混淆（书中马陆葡萄案例正是此边界），检验两轴判别是否准确"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "我们判为链改-资产支持型了，想在境内发行，该怎么做？",
+      "expected_behavior": "激活 S3 做判别后，因'判为链改型且拟境内发行'立即判停，提示境内严禁代币化融资，转 S2/S8 走香港沙盒+证监会备案",
+      "notes": "边界：模式选定后的合规断点。检验 S3 判停条件与联动 S2/S8 是否生效"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "4 条 should_trigger + 3 条 should_not_trigger + 2 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0）。"
+}

@@ -1,45 +1,53 @@
-## Description: <br>
-MiMo V2.5 TTS generates speech with Xiaomi MiMo V2.5 models, including preset voices, voice design, voice cloning, natural-language style control, director mode, emotion and dialect tags, and singing for preset voices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese and English speech with Xiaomi MiMo V2.5 TTS using preset voices, text-described voice design, or consent-based voice cloning, with optional Feishu voice-message delivery.
 
-## Publisher: <br>
-[xcchenx345](https://clawhub.ai/user/xcchenx345) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xcchenx345](https://clawhub.ai/user/xcchenx345)
 
-## Use Case: <br>
-Developers and agents use this skill to generate WAV speech from text with Xiaomi MiMo, choose preset or designed voices, clone authorized voice samples, and optionally send generated audio through Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends TTS text, style prompts, and voice-cloning samples to Xiaomi MiMo. <br>
-Mitigation: Use the skill only with text and voice samples that are appropriate to share with Xiaomi MiMo, and avoid sensitive or unauthorized voice data. <br>
-Risk: Voice cloning can reproduce a person's voice without adequate consent. <br>
-Mitigation: Use voice cloning only for voices the user is authorized to reproduce, and keep consent requirements explicit before running the voice-clone script. <br>
-Risk: The Feishu helper can send generated audio to a private or group recipient. <br>
-Mitigation: Confirm the Feishu recipient ID and recipient type before sending audio, and protect Feishu application credentials. <br>
+## Use Case:
 
+Developers and agents use this skill to turn text into speech, design voices from text descriptions, clone voices from user-provided audio samples, and optionally deliver generated audio as Feishu voice messages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xcchenx345/mimo-tts-wav) <br>
-- [Publisher profile](https://clawhub.ai/user/xcchenx345) <br>
-- [Xiaomi MiMo API endpoint](https://api.xiaomimimo.com/v1) <br>
-- [Feishu Open Platform authentication endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python script usage that produces WAV audio files and optional Feishu audio messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MiMo credentials for TTS generation; Feishu credentials are required only when sending generated audio messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: TTS text, style context, and voice-cloning samples are sent to Xiaomi MiMo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive content unless the user accepts that remote-service exposure, keep MiMo API keys scoped, and use voice cloning only with consent from the voice owner.
+
+Risk: Optional Feishu delivery sends generated audio and recipient identifiers to Feishu.
+
+Mitigation: Use Feishu delivery only for intended recipients and avoid untrusted receiver values until the sending script validates and JSON-encodes them safely.
+
+## Reference(s):
+
+- [ClawHub skill release: mimo-tts-wav](https://clawhub.ai/xcchenx345/skills/mimo-tts-wav)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files]
+
+**Output Format:** [Markdown guidance with command examples; scripts produce WAV audio files and optional Feishu audio messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MIMO_API_KEY for MiMo TTS. Optional Feishu delivery requires FEISHU_APP_ID, FEISHU_APP_SECRET, ffmpeg, curl, and recipient identifiers.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

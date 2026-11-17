@@ -1,0 +1,219 @@
+/* =============================================================================
+ * academic-charts.css — reading-notes-master v2.8.0
+ * 科研级图表设计令牌 + HTML/SVG 组件层（吸收 academic-figures v5.9.0）
+ *
+ * 用法：<div class="af-chart" data-af-theme="okabe-ito" data-af-journal="nature">
+ *         <svg viewBox="0 0 800 480">…</svg>
+ *       </div>
+ * 或直接 <link rel="stylesheet" href="academic-charts.css"> 后复用 .af-* 类。
+ *
+ * 设计契约见 references/academic-chart-system.md §3 / §4 / §5。
+ * 硬约束：白底、隐藏上右边框、单图 ≤7 色、语义色跨图一致、打印强制白底。
+ * ============================================================================= */
+
+:root {
+  /* ---- 默认色板：glm（色盲安全，白底 4.5:1 对比） ---- */
+  --af-c1:  #5B8DBE;
+  --af-c2:  #D79D55;
+  --af-c3:  #6BA776;
+  --af-c4:  #9B7BB8;
+  --af-c5:  #C9694E;
+  --af-c6:  #5BA0A0;
+  --af-c7:  #B47A8E;
+  --af-c8:  #7A7A7A;
+  --af-c9:  #C4A44A;
+  --af-c10: #7AAF42;
+
+  /* ---- 语义色：跨卡片 / 跨面板 / 跨页强制复用 ---- */
+  --af-control:   var(--af-c8);   /* 对照组：中性灰 */
+  --af-treatment: var(--af-c1);   /* 处理组：主色 */
+  --af-up:        #C9694E;        /* 升 / 危险：暖 */
+  --af-down:      #5B8DBE;        /* 降 / 保护：冷（中国惯例涨红跌绿时互换 .af-up/.af-down） */
+  --af-ref:       #9A9A9A;        /* 参照线：灰虚线 */
+  --af-ink:       #1A1A1A;        /* 墨色，禁止 #000 */
+  --af-paper:     #FFFFFF;        /* 白底零容忍深色 */
+  --af-grid:      #D8D8D8;
+  --af-grid-alpha: 0.15;
+
+  /* ---- 字体 / 字号层级（pt → px @96dpi，1pt = 1.333px） ---- */
+  --af-font-sans: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  --af-font-serif: Georgia, "Songti SC", "Noto Serif CJK SC", serif;
+  --af-fs:        11pt;   /* 轴标签 / 标题 */
+  --af-fs-tick:   calc(var(--af-fs) - 1pt);  /* 刻度 */
+  --af-fs-note:   max(6pt, var(--af-fs) - 3pt);  /* 注释 / 显著性，≥6pt */
+  --af-fs-min:    7pt;    /* 印刷安全线；nature/science 为 5pt，其余 6pt */
+
+  /* ---- 线宽 / 几何 ---- */
+  --af-line:      2px;    /* 折线 */
+  --af-line-ref:  1px;    /* 参照线，虚线 */
+  --af-line-ci:   1.5px;  /* 森林图 CI */
+  --af-hatch-edge: 0.6px;
+  --af-grid-alpha-line: 1px;
+  --af-pad:       4%;     /* SVG 端点 pad：viewBox 四周自留 ≥4% 跨度 */
+
+  /* ---- 期刊栏宽基准（双栏 mm；--af-fig-w 用于图表盒栅格） ---- */
+  --af-fig-w:     183mm;
+  --af-fig-w-single: 89mm;
+  --af-dpi:       600;
+
+  /* ---- v2.9 · 4K 导出栅格（所有图型图表统一尺度） ---- */
+  --af-export-w:      3840px;   /* 横图长边 / 4K UHD */
+  --af-export-h:      2160px;   /* 横图短边 */
+  --af-export-short:  2160px;   /* 硬门槛：min(W,H) ≥ 2160 */
+  --af-export-long:   3840px;   /* 硬门槛：max(W,H) ≥ 3840 */
+  --af-export-scale:  2;        /* @2x 基准：1920×1080 → 3840×2160；高分屏用 @4x */
+  --af-export-dpi:    600;      /* 线条图默认；期刊单栏锁宽时由桥接器自动反推到 ~1774 */
+  --af-export-px:     8294400;  /* 3840×2160 = 8.29MP，验收最低总像素 */
+}
+
+/* v2.9：版式截图导出基准（生成器读这些令牌，禁止用 1280×720 幻灯片截图冒充 4K 图表）
+ * 16:9  → 3840×2160 ｜ NG 竖版 → 2160×3840 ｜ HBR 横版 → 3840×4560（612×756pt 等比）
+ * 导出后按 PNG IHDR 复核 max(W,H)≥3840 且 min(W,H)≥2160，不达标重截。 */
+[data-af-export="4k"]        { --af-out-w: var(--af-export-w); --af-out-h: var(--af-export-h); }
+[data-af-export="4k-portrait"] { --af-out-w: var(--af-export-h); --af-out-h: var(--af-export-w); }
+[data-af-export="4k-hbr"]    { --af-out-w: var(--af-export-w); --af-out-h: 4560px; }
+
+/* ============================ 9 套色板 ============================ */
+[data-af-theme="okabe-ito"], [data-af-theme="okabe"], [data-af-theme="colorblind"] {
+  --af-c1:#E69F00; --af-c2:#56B4E9; --af-c3:#009E73; --af-c4:#F0E442; --af-c5:#0072B2;
+  --af-c6:#D55E00; --af-c7:#CC79A7; --af-c8:#000000; --af-c9:#999999; --af-c10:#44AA99;
+  --af-fs:7pt; --af-grid-alpha:0.2; --af-fs-min:7pt;
+}
+[data-af-theme="cool"] {
+  --af-c1:#1B4965; --af-c2:#2E6F9E; --af-c3:#4FA3C5; --af-c4:#3D8080; --af-c5:#62A0A8;
+  --af-c6:#5B7BA0; --af-c7:#7B9AB5; --af-c8:#9DB5CC; --af-c9:#7A7A7A; --af-c10:#44AA99;
+  --af-fs:8pt; --af-grid-alpha:0.15;
+}
+[data-af-theme="classic"] {
+  --af-c1:#4C72B0; --af-c2:#DD8452; --af-c3:#55A868; --af-c4:#C44E52; --af-c5:#8172B3;
+  --af-c6:#937860; --af-c7:#DA8BC3; --af-c8:#8C8C8C; --af-c9:#CCB974; --af-c10:#64B5CD;
+  --af-fs:11pt; --af-grid-alpha:0.3;
+}
+[data-af-theme="nature"], [data-af-theme="npg"] {
+  --af-c1:#E64B35; --af-c2:#4DBBD5; --af-c3:#00A087; --af-c4:#3C5488; --af-c5:#F39B7F;
+  --af-c6:#8491B4; --af-c7:#91D1C2; --af-c8:#DC0000; --af-c9:#7E6148; --af-c10:#B09C85;
+  --af-fs:7pt; --af-grid-alpha:0.2; --af-fs-min:5pt;
+}
+[data-af-theme="lancet"] {
+  --af-c1:#00468B; --af-c2:#ED0000; --af-c3:#42B540; --af-c4:#0099B4; --af-c5:#525252;
+  --af-c6:#7F6F00; --af-c7:#ED7D31; --af-c8:#8B6914; --af-c9:#4C0099; --af-c10:#99CC00;
+  --af-fs:7pt; --af-grid-alpha:0.25;
+}
+[data-af-theme="nejm"] {
+  --af-c1:#BC3C29; --af-c2:#0072B5; --af-c3:#E18727; --af-c4:#20854E; --af-c5:#7876B1;
+  --af-c6:#6F99AD; --af-c7:#FFDC91; --af-c8:#EE4C97; --af-c9:#7A7A7A; --af-c10:#44AA99;
+  --af-fs:8pt; --af-grid-alpha:0.25;
+}
+[data-af-theme="science"], [data-af-theme="aaas"] {
+  --af-c1:#3B4992; --af-c2:#EE0000; --af-c3:#008B45; --af-c4:#631879; --af-c5:#008280;
+  --af-c6:#BB0021; --af-c7:#5F559B; --af-c8:#A20056; --af-c9:#808180; --af-c10:#1B1919;
+  --af-fs:7pt; --af-grid-alpha:0.2; --af-fs-min:5pt;
+}
+[data-af-theme="conservative"] {
+  --af-c1:#2E86C1; --af-c2:#A0A0A0; --af-c3:#E74C3C; --af-c4:#27AE60; --af-c5:#F39C12;
+  --af-c6:#8E44AD; --af-c7:#1ABC9C; --af-c8:#E67E22; --af-c9:#34495E; --af-c10:#16A085;
+  --af-fs:8pt; --af-grid-alpha:0.3;
+}
+
+/* ============================ 9 套期刊预设 ============================ */
+[data-af-journal="nature"]  { --af-fig-w:183mm; --af-fig-w-single:89mm;  --af-fs:7pt; --af-fs-min:5pt; --af-font-sans:Helvetica,Arial,sans-serif; --af-dpi:600; }
+[data-af-journal="lancet"]  { --af-fig-w:183mm; --af-fig-w-single:85mm;  --af-fs:8pt; --af-fs-min:6pt; --af-font-sans:Arial,sans-serif;          --af-dpi:600; }
+[data-af-journal="science"] { --af-fig-w:120mm; --af-fig-w-single:55mm;  --af-fs:7pt; --af-fs-min:5pt; --af-font-sans:Helvetica,Arial,sans-serif; --af-dpi:600; }
+[data-af-journal="cell"]    { --af-fig-w:176mm; --af-fig-w-single:85mm;  --af-fs:8pt; --af-fs-min:6pt; --af-font-sans:Arial,sans-serif;          --af-dpi:300; }
+[data-af-journal="nejm"]    { --af-fig-w:190mm; --af-fig-w-single:89mm;  --af-fs:8pt; --af-fs-min:6pt; --af-font-sans:Helvetica,Arial,sans-serif; --af-dpi:300; }
+[data-af-journal="jama"]    { --af-fig-w:183mm; --af-fig-w-single:89mm;  --af-fs:8pt; --af-fs-min:6pt; --af-font-sans:Arial,sans-serif;          --af-dpi:600; }
+[data-af-journal="ieee"]    { --af-fig-w:181mm; --af-fig-w-single:89mm;  --af-fs:8pt; --af-fs-min:6pt; --af-font-sans:"Times New Roman",serif;   --af-dpi:600; }
+[data-af-journal="cma"]     { --af-fig-w:170mm; --af-fig-w-single:80mm;  --af-fs:8pt; --af-fs-min:6pt; --af-font-sans:Arial,"PingFang SC",sans-serif; --af-dpi:600; }
+[data-af-journal="cn-core"] { --af-fig-w:170mm; --af-fig-w-single:80mm;  --af-fs:9pt; --af-fs-min:6pt; --af-font-sans:Arial,"PingFang SC",sans-serif; --af-dpi:300; }
+
+/* ============================ 图表容器 ============================ */
+.af-chart {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--af-fig-w);
+  margin: 0 auto;
+  padding: var(--af-pad);              /* 构造性端点 pad，防标记被裁半 */
+  background: var(--af-paper);          /* 白底硬约束 */
+  color: var(--af-ink);
+  font-family: var(--af-font-sans);
+  font-size: var(--af-fs);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+.af-chart svg, .af-chart img { display:block; width:100%; height:auto; overflow:visible; }
+
+/* 坐标轴：隐藏上、右边框；y 轴虚线网格 */
+.af-axis                 { stroke:var(--af-ink); stroke-width:1px; fill:none; }
+.af-axis-top, .af-axis-right { display:none; }
+.af-gridline             { stroke:var(--af-grid); stroke-width:1px; stroke-dasharray:3 3; opacity:var(--af-grid-alpha); }
+.af-ref                  { stroke:var(--af-ref); stroke-width:var(--af-line-ref); stroke-dasharray:5 4; opacity:.6; }
+.af-ci                   { stroke-width:var(--af-line-ci); }
+.af-line                 { stroke-width:var(--af-line); fill:none; }
+.af-hatch                { stroke:#000; stroke-width:var(--af-hatch-edge); fill:url(#af-hatch-pattern); }
+
+/* 语义色 class（跨图一致） */
+.af-control   { fill:var(--af-control);   stroke:var(--af-control); }
+.af-treatment { fill:var(--af-treatment); stroke:var(--af-treatment); }
+.af-up        { fill:var(--af-up);        stroke:var(--af-up); }
+.af-down      { fill:var(--af-down);      stroke:var(--af-down); }
+.af-s1 { fill:var(--af-c1); } .af-s2 { fill:var(--af-c2); } .af-s3 { fill:var(--af-c3); }
+.af-s4 { fill:var(--af-c4); } .af-s5 { fill:var(--af-c5); } .af-s6 { fill:var(--af-c6); }
+.af-s7 { fill:var(--af-c7); } .af-s8 { fill:var(--af-c8); }
+
+/* 图例：预留顶部带（不浮在数据区） */
+.af-legend-band {
+  display:flex; flex-wrap:wrap; gap:14px; align-items:center;
+  min-height:1.6em; margin-bottom:10px;
+  border:0; background:transparent; font-size:var(--af-fs-tick);
+}
+.af-legend-band .item { display:inline-flex; align-items:center; gap:6px; }
+.af-legend-band .swatch { width:12px; height:12px; border-radius:2px; display:inline-block; }
+
+/* 折线末端直接标注（优先于图例） */
+.af-end-label { font-size:var(--af-fs-tick); font-weight:600; fill:var(--af-ink); dominant-baseline:middle; }
+.af-near-edge { text-anchor:end; }        /* 最右 10% 区域自动内翻 */
+.af-near-top  { dominant-baseline:hanging; }
+
+/* 多面板 A/B/C：CSS Grid + 角标伪元素；span 对应 grid-row/column span */
+.af-panels { display:grid; gap:18px; grid-template-columns:repeat(var(--af-cols,2),minmax(0,1fr)); }
+.af-panel  { position:relative; min-width:0; min-height:0; background:var(--af-paper); }
+.af-panel::before {
+  content:attr(data-af-label); position:absolute; top:0; left:0;
+  font-size:calc(var(--af-fs) + 3pt); font-weight:700; letter-spacing:.02em;
+  color:var(--af-ink);
+}
+.af-panel[data-af-span="2"] { grid-column:span 2; }
+.af-panel[data-af-span="3"] { grid-column:span 3; }
+.af-panel .af-panel-title { font-size:var(--af-fs); font-weight:600; text-align:left; }
+.af-panel .af-panel-note  { font-size:var(--af-fs-note); color:var(--af-c8); }
+
+/* 图注 / 来源 / 无障碍旁车 */
+.af-caption { margin-top:10px; font-size:var(--af-fs-note); line-height:1.6; color:var(--af-ink); }
+.af-source  { font-size:var(--af-fs-note); color:var(--af-c8); }
+.af-alt     { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+
+/* nature-clean 皮肤：无框线、无网格、无框图例、左对齐粗标题 */
+.af-chart[data-af-style="nature-clean"] .af-gridline,
+.af-chart[data-af-style="nature-clean"] .af-axis-top,
+.af-chart[data-af-style="nature-clean"] .af-axis-right { display:none; }
+.af-chart[data-af-style="nature-clean"] .af-axis { stroke-width:1px; }
+.af-chart[data-af-style="nature-clean"] .af-title {
+  font-weight:700; text-align:left; font-size:calc(var(--af-fs) + 2pt);
+}
+
+/* 灰度可分辨辅助：三重冗余（色 / 明度 / 斜纹或标记形状） */
+.af-chart[data-af-proof="grayscale"] { filter:grayscale(1); }
+.af-chart[data-af-proof="grayscale"] .af-s1,
+.af-chart[data-af-proof="grayscale"] .af-s2,
+.af-chart[data-af-proof="grayscale"] .af-s3 { stroke:#000; stroke-dasharray:var(--af-hatch-edge,1px) 2px; }
+
+/* ============================ 打印层 ============================ */
+@media print {
+  .af-chart { background:#FFFFFF !important; color:#1A1A1A !important; box-shadow:none !important; }
+  .af-chart * { text-shadow:none !important; box-shadow:none !important; }
+  .af-gridline { opacity:.15; }
+  .af-legend-band { break-inside:avoid; }
+  .af-panel { break-inside:avoid; }
+  .af-caption, .af-source { break-after:avoid; }
+}

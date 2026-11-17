@@ -1,40 +1,53 @@
-## Description: <br>
-Summarizes a Xiaohongshu/Rednote post and representative comments into a Chinese report covering the main post content and comment sentiment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes a Xiaohongshu post and representative comments into a Chinese report covering main content and audience sentiment.
 
-## Publisher: <br>
-[xiwei26](https://clawhub.ai/user/xiwei26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiwei26](https://clawhub.ai/user/xiwei26)
 
-## Use Case: <br>
-External users use this skill to analyze a Rednote post URL by collecting the main post text and representative comments, then producing a concise Chinese summary of the content and audience reaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require an authenticated browser session to access complete Rednote post and comment content. <br>
-Mitigation: Use only an intended account session, avoid sharing cookies or credentials, and pause for user login when manual authentication is required. <br>
-Risk: Summaries can be incomplete if comments fail to load or only a limited set of representative comments is available. <br>
-Mitigation: Ask the browser agent to load more comments when needed and treat the resulting report as a synthesis of the visible content. <br>
+## Use Case:
 
+External users and agents use this skill to open a provided Xiaohongshu post URL, ask the user to complete browser login when required, and produce a concise Chinese summary of the post and comment sentiment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiwei26/rednote-summarize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes separate sections for the main post summary and comment summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The workflow may lead an agent to request sensitive account credentials such as cookies or session tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only browser-based user login flows such as QR login, and do not provide cookies, session tokens, passwords, one-time codes, or other credentials through chat or prompts.
+
+Risk: Summaries may omit context or mischaracterize representative comment sentiment.
+
+Mitigation: Review the generated report against the source post and sampled comments before relying on it for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiwei26/skills/rednote-summarize)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown report with separate main-post and comment-summary sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires browser access to the provided Xiaohongshu URL and may require user-completed QR login.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

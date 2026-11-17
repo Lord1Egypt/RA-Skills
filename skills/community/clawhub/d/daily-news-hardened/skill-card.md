@@ -1,47 +1,60 @@
-## Description: <br>
-Fetch top news from Baidu, Google, and other sources daily. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch top news from Baidu, Google, and other sources daily.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to fetch a concise daily list of trending news topics from Baidu and Google Trends through a Python script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to Baidu and Google Trends. <br>
-Mitigation: Run it in an isolated environment and allow outbound network access only to expected news and trends endpoints. <br>
-Risk: Dependencies are listed without pinned versions. <br>
-Mitigation: Install in a virtual environment or container and pin dependency versions before production use. <br>
-Risk: The printed Beijing-time label may use the runtime host timezone. <br>
-Mitigation: Confirm the runtime timezone or update the script to use an explicit Asia/Shanghai timezone. <br>
-Risk: Command execution could be misused for file access, credential exposure, or repeated polling. <br>
-Mitigation: Execute only daily_news.py, install only from requirements.txt, sanitize error output, and require user direction before any retry. <br>
+## Use Case:
 
+External users and agents use this skill to run a Python news script and return a daily list of trending headlines from Baidu, Google Trends, and similar sources.
 
-## Reference(s): <br>
-- [Daily News Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/daily-news-hardened) <br>
-- [Faberlens Daily News Safety Evaluation](https://faberlens.ai/explore/daily-news) <br>
-- [Baidu Realtime Hot Search](https://top.baidu.com/board?tab=realtime) <br>
-- [Google Trends Daily Search RSS](https://trends.google.com/trends/trendingsearches/daily/rss?geo=US) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text news list with Markdown setup and execution instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs the Python news script at most once per user request; results depend on upstream Baidu and Google Trends availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill runs a Python script and depends on external Python packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it in a virtual environment or other low-privilege sandbox, and pin and review dependency versions before use.
+
+Risk: The script makes outbound requests to external news and trends sources and returns untrusted headline text.
+
+Mitigation: Treat returned headlines as untrusted external content and avoid using them as instructions for unrelated agent actions.
+
+Risk: Unrelated shell commands, file operations, or repeated autonomous retries could expand the skill's operational risk.
+
+Mitigation: Limit execution to the declared news script and dependency installation, run the script at most once per user request, and require user direction after failures.
+
+## Reference(s):
+
+- [Daily News Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/skills/daily-news-hardened)
+- [Faberlens Safety Evaluation](https://faberlens.ai/explore/daily-news)
+- [Baidu Realtime Hot Board](https://top.baidu.com/board?tab=realtime)
+- [Google Trends Daily RSS](https://trends.google.com/trends/trendingsearches/daily/rss?geo=US)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown containing the script output and concise operational guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a Python script and returns a single daily headline stream; dependencies are declared in requirements.txt.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

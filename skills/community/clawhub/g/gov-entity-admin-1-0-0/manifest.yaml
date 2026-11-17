@@ -1,0 +1,16 @@
+# 技能包元数据（SkillHub / clawhub 上架必备）
+name: gov-entity-admin
+display_name: 政企行政助手
+version: "1.0.0"
+author: "一线评标专家&ChesaraM"
+description: 政府、企事业单位通用行政文书与流程辅助（公文、会议纪要、定期报告、会议准备、跨部门通信、合规提醒）。独立于招投标、政府采购等专业方向。
+tags:
+  - government
+  - public-sector
+  - enterprise-admin
+  - admin-documents
+homepage: ""
+feedback:
+  channel: github
+  account: ""          # 填入实际仓库 / issues 地址
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈。"

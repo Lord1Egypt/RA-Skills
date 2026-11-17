@@ -1,40 +1,50 @@
-## Description: <br>
-热点追踪、爆款跟进 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PV_38 helps agents track viral trends, follow up on meme-driven online moments, and maintain local memory of user preferences and decisions.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users can use this skill to follow viral topics and generate fast-response viral-content guidance. The skill also describes local cross-session memory for preferences, decisions, and context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to automatically save user preferences, decisions, and important information across sessions. <br>
-Mitigation: Review before installing, avoid sensitive personal, financial, health, credential, or confidential information, and use the skill only when local memory storage is acceptable. <br>
-Risk: Local memory may persist under the user's home directory without clear opt-in, review, deletion, or disable controls. <br>
-Mitigation: Require explicit consent and provide review, deletion, and disable controls before relying on persistent memory behavior. <br>
+## Use Case:
 
+External users and creators use PV_38 to monitor viral content and meme trends, then generate fast follow-up guidance or content responses. The skill also proposes persistent local memory for preferences and decisions, which should be reviewed before installation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/psyvector-pv38) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands, code] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes suggested local memory behavior and example commands for storing, searching, and loading memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks the agent to automatically save and reload user preferences and decisions across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, avoid sharing sensitive information, inspect or remove ~/.openclaw/pv_palace/memories.json as needed, and prefer a version with opt-in memory plus clear deletion and retention controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/psyvector-pv38)
+- [ClawHub publisher profile](https://clawhub.ai/user/jkzfhq)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include persistent-memory guidance that writes local user preference and decision records.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

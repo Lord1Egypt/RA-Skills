@@ -1,48 +1,66 @@
-## Description: <br>
-Automates TikTok slideshow marketing workflows for apps and products, including competitor research, image generation, text overlays, social posting, analytics tracking, and iteration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates TikTok slideshow marketing for apps and products by guiding competitor research, image generation, text overlays, Postiz posting, analytics tracking, and iterative content optimization.
 
-## Publisher: <br>
-[Batsirai](https://clawhub.ai/user/Batsirai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[batsirai](https://clawhub.ai/user/batsirai)
 
-## Use Case: <br>
-External developers, app marketers, and product teams use this skill to set up agent-assisted TikTok slideshow campaigns, generate content assets, post through Postiz, and use analytics or conversion data to refine hooks and calls to action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags social posting automation, recurring analytics collection, plaintext secrets, and broad setup authority. <br>
-Mitigation: Review before installing, keep secrets in environment variables or a secrets manager, and require explicit approval before installs, posting, scheduled jobs, or analytics access. <br>
-Risk: The security review warns that account-warmup or anti-detection guidance may violate platform rules. <br>
-Mitigation: Avoid account-warmup and anti-detection workflows, and confirm that any posting process complies with TikTok, Postiz, and other platform terms. <br>
-Risk: RevenueCat and analytics integrations can expose subscriber, conversion, and campaign performance data. <br>
-Mitigation: Grant only the minimum required API access, avoid committing configuration files with secrets, and review generated reports before sharing them. <br>
+## Use Case:
 
+External developers, app makers, and product teams use this skill to set up and operate a TikTok slideshow marketing workflow. It helps create content, post through Postiz, track engagement and optional RevenueCat conversions, and revise hooks and CTAs based on performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Batsirai/larryskill) <br>
-- [Analytics & Feedback Loop](references/analytics-loop.md) <br>
-- [App Category Templates](references/app-categories.md) <br>
-- [Competitor Research Guide](references/competitor-research.md) <br>
-- [RevenueCat Integration](references/revenuecat-integration.md) <br>
-- [Slide Structure & Hook Writing](references/slide-structure.md) <br>
-- [Postiz](https://postiz.pro/oliverhenry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration, JavaScript scripts, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local campaign files, reports, and scheduled automation configuration when the user approves the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks for persistent API-driven social posting and revenue analytics access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a separate working directory, and require explicit approval before browser research, Postiz posting, cross-posting, RevenueCat access, npm installation, sudo commands, or scheduled jobs.
+
+Risk: Configuration and analytics files can contain API keys, social platform identifiers, revenue data, or transaction-derived timestamps.
+
+Mitigation: Prefer environment variables or a secret manager, do not commit tiktok-marketing/config.json or analytics snapshots, rotate any key stored in a shared file, and set retention and deletion rules for reports and snapshots.
+
+Risk: Automated posting and analytics matching can connect the wrong TikTok video ID after publication.
+
+Mitigation: Wait for the TikTok indexing window described by the artifact, compare unconnected Postiz posts against new TikTok video IDs, and verify counts before connecting release IDs.
+
+Risk: The artifact includes a Postiz signup URL that may be an author referral link.
+
+Mitigation: Use a neutral Postiz signup URL when a referral relationship is not desired.
+
+## Reference(s):
+
+- [Analytics & Feedback Loop](references/analytics-loop.md)
+- [App Category Templates](references/app-categories.md)
+- [Competitor Research Guide](references/competitor-research.md)
+- [RevenueCat Integration](references/revenuecat-integration.md)
+- [Slide Structure & Hook Writing](references/slide-structure.md)
+- [ClawHub Skill Page](https://clawhub.ai/batsirai/skills/larryskill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration files, shell commands, JavaScript helper scripts, generated image files, analytics snapshots, and daily report Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local files under the user's TikTok marketing workspace and may call configured third-party APIs when the user supplies credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

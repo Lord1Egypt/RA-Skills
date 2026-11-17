@@ -1,0 +1,35 @@
+[
+  {
+    "word": "get",
+    "mode": "phrasal-hub",
+    "mode_ok": true,
+    "fabrications": [],
+    "bad_fake_family_chain": false,
+    "card_count": 4,
+    "chain": "得到 → 到达 → 变得 → 易混点",
+    "family_count": 1,
+    "pass": true
+  },
+  {
+    "word": "the",
+    "mode": "function-word",
+    "mode_ok": true,
+    "fabrications": [],
+    "bad_fake_family_chain": false,
+    "card_count": 4,
+    "chain": "特指 → 怎么用 → 别和 a/an 混 → 习惯说法",
+    "family_count": 0,
+    "pass": true
+  },
+  {
+    "word": "run",
+    "mode": "phrasal-hub",
+    "mode_ok": true,
+    "fabrications": [],
+    "bad_fake_family_chain": false,
+    "card_count": 4,
+    "chain": "跑 → 高频短语 → 延伸义 → 词形",
+    "family_count": 2,
+    "pass": true
+  }
+]

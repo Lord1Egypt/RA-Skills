@@ -1,42 +1,53 @@
-## Description: <br>
-Validates JSON-exported webpack configuration files for structural issues, deprecated loaders/plugins, optimization gaps, and best-practice concerns when auditing configs, preparing production builds, or enforcing CI standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate JSON-exported webpack configuration files for structural issues, deprecated loaders/plugins, optimization gaps, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and build/release engineers use this skill to validate JSON-exported webpack configs, identify structural, deprecation, and optimization issues, and generate checks or fix suggestions for local audits or CI standards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exporting a webpack config with Node executes code from the target project. <br>
-Mitigation: Use trusted repositories or a disposable environment before exporting configs from untrusted projects. <br>
-Risk: The validator works on JSON-exported webpack configs and cannot directly parse raw JS or TS config files. <br>
-Mitigation: Export the config to JSON first and review non-serializable functions or regular expressions that may lose detail during export. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit JSON-exported webpack configurations before production builds or CI enforcement. It highlights structural errors, deprecated loaders and plugins, optimization gaps, and best-practice issues, and can propose concrete configuration fixes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/webpack-config-validator) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Release status](artifact/STATUS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; validator output can be text, JSON, or summary format.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports validate, check, explain, and suggest modes; strict mode can fail CI when warnings are present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Exporting a webpack.config.js through Node can execute code from the target project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the export command only in trusted project workspaces; pass the validator a JSON-exported config file rather than the JavaScript config itself.
+
+Risk: Static configuration checks can miss project-specific build behavior or produce findings that need judgment.
+
+Mitigation: Review validation output before changing build settings, and confirm changes with the project's normal webpack build and CI tests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/webpack-config-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, summary text, or JSON findings with optional suggested configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI-style validation output may include errors, warnings, informational findings, exit codes, and fix suggestions.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata, created 2026-05-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

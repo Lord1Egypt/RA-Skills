@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclawlab.dev/pptsmith/audience-route.schema.json",
+  "title": "PPTSmith Audience Route Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "selected_route",
+    "confidence",
+    "scores",
+    "route_evidence",
+    "rejected_routes",
+    "narrative_contract",
+    "blocking_codes"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "status": {"enum": ["ready", "blocked"]},
+    "selected_route": {
+      "type": ["string", "null"],
+      "enum": [
+        "strategic_decision",
+        "investor_commercial",
+        "product_prd",
+        "technical_architecture",
+        "project_governance",
+        "research_insight",
+        "education_explanation",
+        "brand_content_communication",
+        null
+      ]
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "strategic_decision",
+        "investor_commercial",
+        "product_prd",
+        "technical_architecture",
+        "project_governance",
+        "research_insight",
+        "education_explanation",
+        "brand_content_communication"
+      ],
+      "properties": {
+        "strategic_decision": {"type": "number", "minimum": 0, "maximum": 1},
+        "investor_commercial": {"type": "number", "minimum": 0, "maximum": 1},
+        "product_prd": {"type": "number", "minimum": 0, "maximum": 1},
+        "technical_architecture": {"type": "number", "minimum": 0, "maximum": 1},
+        "project_governance": {"type": "number", "minimum": 0, "maximum": 1},
+        "research_insight": {"type": "number", "minimum": 0, "maximum": 1},
+        "education_explanation": {"type": "number", "minimum": 0, "maximum": 1},
+        "brand_content_communication": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "route_evidence": {"type": "array", "items": {"type": "string"}},
+    "rejected_routes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "narrative_contract": {
+      "type": ["object", "null"],
+      "properties": {
+        "sequence": {
+          "type": "array",
+          "minItems": 3,
+          "items": {"type": "string", "minLength": 1}
+        }
+      },
+      "required": ["sequence"],
+      "additionalProperties": false
+    },
+    "blocking_codes": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "candidate_evidence": {"type": "object", "additionalProperties": {"type": "array", "items": {"type": "string"}}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "ready"}}},
+      "then": {
+        "properties": {
+          "selected_route": {"type": "string"},
+          "confidence": {"minimum": 0.7},
+          "rejected_routes": {"minItems": 7, "maxItems": 7},
+          "narrative_contract": {"type": "object"},
+          "blocking_codes": {"maxItems": 0}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "blocked"}}},
+      "then": {
+        "properties": {
+          "selected_route": {"type": "null"},
+          "confidence": {"const": 0},
+          "narrative_contract": {"type": "null"},
+          "blocking_codes": {"minItems": 1}
+        }
+      }
+    }
+  ]
+}

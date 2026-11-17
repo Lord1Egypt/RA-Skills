@@ -1,40 +1,53 @@
-## Description: <br>
-Persona Forge is a local command-line utility for recording, viewing, searching, and exporting persona and character-development notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persona Forge helps agents record, review, search, and export local persona and character-creation notes.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Writers, game designers, and agents can use this skill to keep a local history of persona ideas, character notes, comparisons, checks, and exports. It is best understood as a persona note and activity tracker rather than a full autonomous character generator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona notes may contain private or proprietary material and are saved locally under ~/.local/share/persona-forge. <br>
-Mitigation: Avoid entering sensitive material unless local storage in that directory is acceptable, and manage file permissions and retention accordingly. <br>
-Risk: The advertised generation, export, and status behavior may not match what users expect from a full character generator. <br>
-Mitigation: Treat the skill as a local note/history tracker and verify command behavior before relying on generated exports or reports. <br>
+## Use Case:
 
+External users and developers can use this skill to keep local records of persona ideas, character profiles, trait analysis, comparisons, batch generation notes, and exports. The implementation is best understood as a local text logging and retrieval utility for character material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/persona-forge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output and local JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries and exports under ~/.local/share/persona-forge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Raw prompts, character notes, and other entered text can be stored persistently on the local machine and later searched or exported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal, proprietary, or private story material unless the local files are managed and deleted appropriately.
+
+Risk: The release is presented as a character creator, but the security evidence characterizes the bundled behavior as broad local text logging.
+
+Mitigation: Review the artifact behavior before installation and use it only when local logging, search, and export are desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/persona-forge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local text file outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI use may create local log and export files under ~/.local/share/persona-forge.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

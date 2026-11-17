@@ -1,0 +1,164 @@
+'''
+33智能算法VWAP函数
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+smart_algo_passorder - 智能算法（VWAP 等）函数
+提示
+
+调用该函数需要有【智能算法】使用权限
+用于使用主动算法或被动算法交易的函数如VWAP TWAP等
+
+调用方法一：
+
+python
+
+smart_algo_passorder(opType,orderType,accountid,orderCode,prType,price,volume,strageName,quickTrade,userOrderId,smartAlgoType,limitOverRate,minAmountPerOrder,[targetPriceLevel,startTime,endTime,limitControl],ContextInfo)
+提示
+
+可选参数可缺省
+
+参数：
+其他参数同passorder，详细解释可参考passorder的说明
+
+参数名	类型	说明	提示
+prType	int	可选值：
+11:限价（只对单股情况支持,对组合交易不支持）
+12:市价
+特别的对于套利：这个prType只对篮子起作用，期货的采用默认的方式	
+smartAlgoType	str	智能算法类型 [enum_constants#smartAlgoType智能算法类型]	
+limitOverRate	int	量比 数据范围0-100	网格算法无此项
+若在algoParam中填写量比，则填写范围0-1的小数。
+minAmountPerOrder	int	智能算法最小委托金额，数据范围0-100000	
+targetPriceLevel	int	智能算法目标价格,可选值：
+1：己方盘口 1
+2：己方盘口2
+3：己方盘口3
+4：己方盘口4
+5：己方盘口5
+6：最新价
+7：对方盘口	一、输入无效值则targetPriceLevel为1
+二、本项只针对冰山算法,其他算法可缺省。
+startTime	str	智能算法开始时间	格式"HH:MM:SS"，如"10:30:00"。如果缺省值，则默认为"09:30:00"
+endTime	str	智能算法截止时间	格式"HH:MM:SS"，如"14:30:00"。如果缺省值，则默认为"15:30:00"
+limitControl	int	涨跌停控制	默认值为1
+1：涨停不卖跌停不买
+0：无限制
+返回
+无
+
+示例：
+
+python
+#coding:gbk
+
+
+def init(ContextInfo):
+    pass
+
+
+def after_init(ContextInfo):
+    # # 使用smart_algo_passorder 下单
+    smart_algo_passorder(
+        23,                # 买入
+        1101,              # 表示volume的单位是股
+        account,           # 资金账号
+        '000001.SZ',
+        12,                #  11限价，12市价
+        0,                 # 限价时，价格填任意数量占位
+        50000,             # 5000股
+        '',
+        2,                 # quickTrade
+        '',
+        'VWAP',
+        25,                 # 量比25%
+        0,                  # 智能算法最小委托金额
+        1,                  # 智能算法目标价格 本项只针对冰山算法,其他算法可缺省。
+        "10:25:00",         # 开始时间
+        "14:50:00",         # 结束时间
+        1,                  # 涨跌停控制 1为涨停不卖跌停不卖 0 为无限制
+        ContextInfo
+        )
+调用方法二：
+当时用algoParam时，函数声明为：smart_algo_passorder(opType,orderType,accountid,orderCode,prType,modelprice,volume,strageName,quickTrade,userid,smartAlgoType,startTime,endTime,algoParam,ContextInfo)参数均不可缺省
+smartAlgoType,startTime,endTime 含义同上，algoParam请使用下面的方法获取：
+
+获取algoParam具体字段
+释义
+
+获取智能算法参数配置信息
+
+用法
+
+python
+get_smart_algo_param(algoList)
+参数
+
+参数	类型	说明
+algoList	list	需要查询参数配置信息的算法名称列表, 若传空则查询全部有权限的算法参数配置信息
+返回
+
+返回一个字典，键为算法名称，值为参数字典列表。
+
+字段	类型	说明
+key	string	参数名称key值,即smart_algo_order中algoList字典需要传的键值
+name	string	参数名称
+dataType	string	参数类型
+valueRange	string	参数范围
+defaultValue	string	参数默认值
+enumName	string	参数枚举值的名称
+enumValue	string	参数实际的枚举值
+unit	string	参数的单位, 当单位为%时, 值要填写小数而非参数范围所示的百分数值
+valueRangeByName	string	不同算法参数范围
+defaultValueByName	string	不同算法参数默认值
+示例
+
+python
+
+#coding:gbk
+
+
+def init(ContextInfo):
+    pass
+
+    # 方法2 使用algoParam 和smart_algo_passorder
+    # 该方法部分旧版本客户端可能会不支持
+    # algoParam
+    # 先获取所有需要传入的参数
+    #
+    print(get_smart_algo_param(['VWAP']))
+    '''
+    输出：[2024-01-30 11:21:10][智能算法1][SH000300][日线] 
+    {'VWAP': [
+        {'key': 'm_dLimitOverRate', 'name': '量比比例', 'dataType': '浮点数', 'valueRange': '0.00-100.00', 'defaultValue': '20.00', 'enumName': '', 'enumValue': '', 'unit': '%', 'valueRangByName': '', 'defaultValueByName': ''}, 
+        {'key': 'm_dMinAmountPerOrder', 'name': '委托最小金额', 'dataType': '整数', 'valueRange': '0-100000', 'defaultValue': '0', 'enumName': '', 'enumValue': '', 'unit': '', 'valueRangByName': '', 'defaultValueByName': ''},
+        {'key': 'm_dMaxAmountPerOrder', 'name': '委托最大金额', 'dataType': '浮点数', 'valueRange': '0.00-100000000.00', 'defaultValue': '0', 'enumName': '', 'enumValue': '', 'unit': '', 'valueRangByName': '', 'defaultValueByName': ''}, 
+        {'key': 'm_nStopTradeForOwnHiLow', 'name': '涨跌停控制', 'dataType': '整数', 'valueRange': '', 'defaultValue': '涨停不卖跌停不买', 'enumName': '无,涨停不卖跌停不买', 'enumValue': '0,1', 'unit': '', 'valueRangByName': '', 'defaultValueByName': ''}, 
+        {'key': 'm_dMulitAccountRate', 'name': '多账号总量比', 'dataType': '浮点数', 'valueRange': '0.00-100.00', 'defaultValue': '0', 'enumName': '', 'enumValue': '', 'unit': '%', 'valueRangByName': '', 'defaultValueByName': ''}, 
+        {'key': 'm_strCmdRemark', 'name': '投资备注', 'dataType': '字符串', 'valueRange': '', 'defaultValue': '', 'enumName': '', 'enumValue': '', 'unit': '', 'valueRangByName': '', 'defaultValueByName': ''}]}
+    '''
+    algoParam={
+    'm_dLimitOverRate': 0.25,      # 量比 25%
+    'm_dMinAmountPerOrder':0,      # 委托最小金额
+    'm_dMaxAmountPerOrder':10000,  # 委托最大金额
+    'm_nStopTradeForOwnHiLow': 1,  # 涨跌停控制
+    'm_dMulitAccountRate':0.30,    # 多账号总量比
+    'm_strCmdRemark':  '投资备注1'  # 投资备注
+    }
+    smart_algo_passorder(
+        23,
+        1101,
+        account,
+        '600000.SH',
+        12,
+        0,
+        10000,
+        '',
+        2,               # quickTrade
+        '投资备注',
+        'VWAP',
+        "10:25:00",      # 开始时间
+        "14:50:00",      # 结束时间
+        algoParam,       # 算法参数
+        ContextInfo
+        ) 
+    

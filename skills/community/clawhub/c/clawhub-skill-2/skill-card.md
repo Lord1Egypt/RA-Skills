@@ -1,47 +1,62 @@
-## Description: <br>
-Configure, run, and troubleshoot Xrouter, an OpenAI-compatible LLM router that uses a hardware-aware classifier to route requests across local and cloud model providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures, runs, and troubleshoots Xrouter, an OpenAI-compatible LLM routing proxy that uses a hardware-aware classifier to route requests across local and cloud providers.
 
-## Publisher: <br>
-[pathemata-mathemata](https://clawhub.ai/user/pathemata-mathemata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pathemata-mathemata](https://clawhub.ai/user/pathemata-mathemata)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up an inference router, configure provider routes, run local or cloud-backed model endpoints, and inspect routing behavior and token usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The documented router defaults may expose a provider-backed chat proxy and usage dashboard. <br>
-Mitigation: Bind HOST to localhost unless remote access is intentional, set ROUTER_API_KEY, and protect .env and upstreams.json. <br>
-Risk: Prompts routed to cloud providers may be subject to provider retention or logging practices. <br>
-Mitigation: Avoid routing sensitive prompts to cloud providers unless the provider's handling practices are trusted. <br>
-Risk: Running an npm project from an untrusted source can execute code in the local environment. <br>
-Mitigation: Review the source repository before installing dependencies or running npm commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure an LLM routing proxy, connect local and cloud providers, test OpenAI-compatible chat requests, and inspect routing and token usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pathemata-mathemata/clawhub-skill-2) <br>
-- [Ollama Quickstart](https://ollama.readthedocs.io/en/quickstart/) <br>
-- [vLLM OpenAI-Compatible Server](https://docs.vllm.ai/en/stable/serving/openai_compatible_server/) <br>
-- [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) <br>
-- [trtllm-serve](https://nvidia.github.io/TensorRT-LLM/1.0.0rc2/commands/trtllm-serve.html) <br>
-- [llama.cpp](https://github.com/ggml-org/llama.cpp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands, configuration keys, and endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes router setup steps, provider configuration guidance, environment variables, and local service endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: Prompts may be forwarded to the configured local or cloud providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only approved providers and avoid sending sensitive data to providers that have not been reviewed.
+
+Risk: Provider API keys may be stored in local configuration files.
+
+Mitigation: Keep .env and upstreams.json out of source control and restrict local file access.
+
+Risk: The router may be exposed beyond localhost if bound to a broad network interface.
+
+Mitigation: Bind the router only to trusted interfaces and require a router API key when it is reachable outside localhost.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pathemata-mathemata/skills/clawhub-skill-2)
+- [Ollama Quickstart](https://ollama.readthedocs.io/en/quickstart/)
+- [vLLM OpenAI-Compatible Server](https://docs.vllm.ai/en/stable/serving/openai_compatible_server/)
+- [NVIDIA TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM)
+- [TensorRT-LLM trtllm-serve](https://nvidia.github.io/TensorRT-LLM/1.0.0rc2/commands/trtllm-serve.html)
+- [llama.cpp](https://github.com/ggml-org/llama.cpp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include local service URLs, environment variables, provider settings, and request examples.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

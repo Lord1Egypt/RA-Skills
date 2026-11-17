@@ -1,42 +1,53 @@
-## Description: <br>
-日语朗读作业AI批改（教师模式）——支持音频转写、CEFR分级评价、纠错与成绩录入。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A1/A2/B1(N5/N4/N3)日语朗读音频作业批改，faster-whisper ASR+声学双通道四维AI评测；支持单人/批量批改、纠错反馈、成绩归档；AI预批改，教师人工终审，满分10分。
 
-## Publisher: <br>
-[bianmaxingkong](https://clawhub.ai/user/bianmaxingkong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bianmaxingkong](https://clawhub.ai/user/bianmaxingkong)
 
-## Use Case: <br>
-Teachers use this skill to grade Japanese reading-aloud audio submissions, transcribe audio with local Whisper, provide CEFR-aligned feedback, record Canvas grades, and generate class summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can post Canvas grades and upload class summaries without an explicit confirmation step. <br>
-Mitigation: Manually review every grade, comment, course ID, assignment ID, student ID, and summary file before running Canvas posting or upload commands. <br>
-Risk: Audio transcription uncertainty can lead to incorrect grading feedback. <br>
-Mitigation: Use the artifact's alignment check against the standard answer and send uncertain, missing, extra, or failed transcriptions to manual review instead of automatic scoring. <br>
-Risk: Canvas credentials and permissions are not described by the artifact. <br>
-Mitigation: Confirm credential storage, scope, and access controls before use, and run the workflow only for Canvas courses the user controls. <br>
+## Use Case:
 
+Teachers use this skill to pre-grade Japanese reading audio assignments for A1/A2/B1 learners, generate concise feedback, and support batch grading records. The skill is designed as an AI-assisted workflow with teacher review before final grades are recorded.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bianmaxingkong/skills/japanese-reading-grader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style guidance with plain-text grading feedback and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Feedback comments are capped at 1000 characters; batch processing guidance limits a run to 50 students.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.2 (source: server release evidence) <br>
+Risk: Student audio, scores, reports, and progress files may contain sensitive education data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in authorized teaching contexts, keep generated files in restricted course folders, minimize student identifiers, and follow school retention rules for deletion or archival.
+
+Risk: ASR or acoustic analysis can misidentify pronunciation or reading errors, especially for low-confidence audio.
+
+Mitigation: Use the skill's confidence tiers and require teacher review for low-confidence cases and pronunciation-sensitive deductions before recording final grades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bianmaxingkong/skills/japanese-reading-grader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or plain text feedback reports with scores, diagnostic notes, correction suggestions, and optional local report/progress file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce per-student report text, batch progress records, failed-audio records, and teacher-review prompts for low-confidence or pronunciation-sensitive findings.]
+
+## Skill Version(s):
+
+2.2.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,27 @@
+part: RA4M1
+link_status: verified_2026-06-27
+expected_family: "Renesas RA4M1 \u2014 ultra-low-power Cortex-M23 MCU"
+main_page: https://www.renesas.com/ra/ra4m1
+datasheet_path_expected: ../../embedded_dev/renesas/datasheet/RA4M1_datasheet.pdf
+datasheet_source_url: https://www.renesas.com/ra/ra4m1
+datasheet_source_note: 'Renesas official product page. Verify datasheet URL on page; renesas.com may serve datasheet via JS
+  so use Alldatasheet mirror as fallback.
+
+  '
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  cores:
+  - Arm Cortex-M23 (TrustZone, verify clock in datasheet)
+  wireless: none
+unverified:
+- all
+notes:
+- Placeholder YAML. Run scripts/update_specs.py after datasheet download.
+- "RA4M1 \u2014 Renesas ultra-low-power Cortex-M23 MCU. Targets battery-powered IoT endpoints."
+- 'Family differentiator vs RA6M5: lower power, lower performance, lower cost.'
+- 'Family differentiator vs RA4M2/RA4M3: fewer peripherals, lower pin count.'
+- Numerical specs (flash/RAM/clocks/peripherals) NOT included.
+- '2026-07-01 search via Tavily: no accessible datasheet PDF found for RA4M1. Vendor PDF returns 404/myPortal login or only
+  summary. Status kept as legacy; re-verify when vendor publishes accessible datasheet.'
+extracted_at: '2026-06-27T20:39:00+08:00'
+extracted_from_pages: []

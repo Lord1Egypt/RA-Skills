@@ -1,41 +1,48 @@
-## Description: <br>
-Diagnose OpenClaw node connection and pairing failures for Android, iOS, and macOS companion apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose OpenClaw node connection and pairing failures for Android, iOS, and macOS companion apps.
 
-## Publisher: <br>
-[chuangyinbot-boop](https://clawhub.ai/user/chuangyinbot-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chuangyinbot-boop](https://clawhub.ai/user/chuangyinbot-boop)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to diagnose OpenClaw companion-app connection, routing, pairing, and authorization failures across local, tailnet, and public gateway setups.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Approving the latest pending device can authorize an unintended device when others can reach the pairing endpoint.
+
+Mitigation: Inspect pending pairing requests and approve only the intended device; avoid relying on --latest when unexpected or competing requests may exist.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw node-to-gateway connection routes, QR or setup-code pairing failures, and companion app authorization issues across local Wi-Fi, Tailscale, public URL, and remote gateway setups. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Setup codes, bootstrap tokens, and similar pairing output may expose sensitive access details if shared publicly. <br>
-Mitigation: Do not publish full setup-code or token-like output; redact sensitive values before sharing diagnostic logs. <br>
-Risk: Approving an unexpected pending device could grant access to the wrong device. <br>
-Mitigation: Run device approval only after confirming the pending device belongs to the user. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chuangyinbot-boop/cool-node-connect) <br>
-- [Publisher profile](https://clawhub.ai/user/chuangyinbot-boop) <br>
+**Other Properties Related to Output:** [Produces diagnostic questions, route analysis, concrete OpenClaw commands, and configuration repair guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Troubleshooting responses should identify one route and one concrete diagnosis when evidence is sufficient.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

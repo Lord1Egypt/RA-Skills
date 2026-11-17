@@ -1,45 +1,50 @@
-## Description: <br>
-Dlazy Gpt Image 2 lets agents generate images from text and edit or synthesize images from reference inputs through the dLazy CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GPT Image 2 model for text-to-image and image editing. Supports generating images from text as well as editing and synthesizing images with reference inputs.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to create or edit images with prompts, optional reference images, and output settings such as size, format, and quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and explicit image inputs are sent to dLazy's hosted service, and generated files are hosted by dLazy. <br>
-Mitigation: Avoid sending sensitive prompts or images unless the user accepts the service handling and hosting model. <br>
-Risk: The dLazy API key may be saved in the local CLI configuration. <br>
-Mitigation: Use per-invocation credentials when appropriate, protect the local config file, and rotate or revoke the key from the dLazy dashboard if it may be exposed. <br>
-Risk: The install command tracks @latest rather than a fixed CLI version. <br>
-Mitigation: Prefer npx for one-off use or review the dLazy CLI source and resolved package version before persistent installation. <br>
+## Use Case:
 
+Developers and creators use this skill to generate images from text prompts or edit and synthesize images with reference inputs through dLazy's hosted service.
 
-## Reference(s): <br>
-- [Dlazy Gpt Image 2 on ClawHub](https://clawhub.ai/dlazyai/dlazy-gpt-image-2) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, json] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated image results are returned as hosted file URLs; asynchronous runs may return a task identifier for polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The security assessment reports an unexplained CLI login step and incomplete scan coverage because some local references could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, verify what the CLI login authorizes and that it is for the intended image service; review the CLI and service behavior before sending prompts or reference images.
+
+## Reference(s):
+
+- [dLazy](https://dlazy.com)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+
+## Skill Output:
+
+**Output Type(s):** [Images, API Calls, JSON]
+
+**Output Format:** [Image files (JPEG, PNG, or WebP) with JSON result metadata and hosted output URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return an asynchronous task identifier; generated images can be saved to a local path.]
+
+## Skill Version(s):
+
+1.3.42 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

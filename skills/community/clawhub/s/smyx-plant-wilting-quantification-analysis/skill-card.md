@@ -1,44 +1,51 @@
-## Description: <br>
-Quantifies plant wilting from full-plant images or videos and returns severity, likely underwatering or overwatering cause, guidance, and report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes plant images or videos to estimate wilting severity, assess possible underwatering or overwatering with optional soil-moisture data, and provide intervention guidance.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users and developers use this skill to analyze plant images, videos, or URLs for wilting severity, possible water-stress cause, intervention direction, and historical report access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plant photos, videos, or supplied URLs may be processed by the publisher's cloud service. <br>
-Mitigation: Avoid sending sensitive indoor footage or private/internal URLs unless that processing is acceptable. <br>
-Risk: The skill can silently create or reuse an identity and link reports to that identity. <br>
-Mitigation: Review identity handling before installation and use a controlled workspace or account boundary for testing. <br>
-Risk: The skill may persist user records and authentication tokens locally for report history access. <br>
-Mitigation: Review local workspace data files and token storage before deployment and clean them according to the environment's retention policy. <br>
+## Use Case:
 
+Gardeners, greenhouse operators, and plant-factory teams use it to assess plant wilting from images or video and, when available, combine soil-moisture readings to distinguish likely underwatering from overwatering.
 
-## Reference(s): <br>
-- [Plant Wilting Quantification API Documentation](references/api_doc.md) <br>
-- [Skill Demo](https://lifeemergence.com/sample.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-plant-wilting-quantification-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON text with report links and optional saved output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call publisher cloud APIs for analysis and historical report retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release metadata) <br>
+Risk: The security review flags account and token management, broad media processing, and possible analysis despite an export-only option as behavior beyond the stated plant-wilting purpose; data handling and export-only behavior remain unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, ask the publisher why these features are included, what media and identity data are sent externally and how they are retained, and what the export-only option does.
+
+## Reference(s):
+
+- [Plant Wilting Quantification API documentation](artifact/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-plant-wilting-quantification-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured analysis report in JSON; report listings and guidance in Markdown or text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports wilting severity, possible cause, intervention direction, and report links; does not provide a specific watering quantity.]
+
+## Skill Version(s):
+
+1.0.20 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Use @ainative/react-sdk to add AI chat, credit tracking, provider setup, and loading/error handling guidance to React apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use @ainative/react-sdk to add AI chat, credit tracking, managed sessions, and React hook guidance to React apps.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers and engineers use this skill when integrating the @ainative/react-sdk package into React applications, including installing the package, configuring AINativeProvider, using chat and credit hooks, and handling loading or error UI states. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser examples can expose long-lived AINative API keys when keys are placed in REACT_APP_ or VITE_ variables or passed directly to a client-side provider. <br>
-Mitigation: Keep secret API keys on a backend and use only scoped, short-lived, browser-safe tokens in React clients when the service supports them. <br>
+## Use Case:
 
+Developers use this skill when adding AINative React SDK chat, credit balance, provider setup, and loading or error handling patterns to React applications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/urbantech/ainative-react-sdk) <br>
-- [useChat hook implementation](packages/sdks/react/src/hooks/useChat.ts) <br>
-- [useCredits hook implementation](packages/sdks/react/src/hooks/useCredits.ts) <br>
-- [AINativeProvider context](packages/sdks/react/src/AINativeProvider.tsx) <br>
-- [Package exports](packages/sdks/react/src/index.ts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript, TSX, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes React provider, hook, environment variable, and error/loading state guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser-delivered React configuration can expose a real AINative API key and chat or account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep real AINative API keys out of React source and browser-delivered environment variables; use backend mediation or short-lived scoped client tokens, and minimize data sent to the service.
+
+Risk: Installing an unpinned SDK package can pull a version different from the reviewed release.
+
+Mitigation: Pin and verify the @ainative/react-sdk package version before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/urbantech/skills/ainative-react-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include React provider setup, hook usage, environment variable examples, and loading or error state handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

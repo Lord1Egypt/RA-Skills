@@ -1,41 +1,56 @@
-## Description: <br>
-One interface to call 6 AI providers. Swap models with a config change, not a code rewrite. Zero external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides one zero-dependency interface for calling Anthropic, OpenAI, Google, xAI, Mistral, and Ollama models while switching models through configuration.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and agents use this skill to call Anthropic, OpenAI, Google, xAI, Mistral, or local Ollama models through one JavaScript interface and switch providers by changing model configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, conversation history, and system prompts may be sent to external cloud AI providers when non-Ollama models are configured. <br>
-Mitigation: Use Ollama for local-only processing, and send data to Anthropic, OpenAI, Google, xAI, or Mistral only when those providers are approved for the data and use case. <br>
-Risk: Secrets, regulated data, or proprietary content could be exposed if included in prompts or provider configuration. <br>
-Mitigation: Do not send sensitive content to cloud providers unless approved, and supply provider credentials through controlled environment variables or a secrets manager. <br>
+## Use Case:
 
+Developers and agent builders use this skill to route a single chat interface across cloud AI providers or local Ollama models without rewriting provider-specific request code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/ai-provider-bridge) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, API Calls, Configuration] <br>
-**Output Format:** [JavaScript module responses and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses provider-specific API keys for cloud providers; Ollama can run locally without an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Prompts and conversation context may be sent to the selected cloud AI provider when a cloud model is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is intended; use Ollama for local-only operation and avoid secrets or regulated data in prompts unless approved.
+
+Risk: Configuring unnecessary provider credentials increases exposure if the runtime environment is compromised.
+
+Mitigation: Configure only the API keys for providers actually used by the skill.
+
+## Reference(s):
+
+- [AI Provider Bridge ClawHub Page](https://clawhub.ai/theshadowrose/skills/ai-provider-bridge)
+- [Publisher Profile](https://clawhub.ai/user/theshadowrose)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Configuration]
+
+**Output Format:** [JavaScript module API returning provider response text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured API keys for selected cloud providers; Ollama can be used for local-only operation.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

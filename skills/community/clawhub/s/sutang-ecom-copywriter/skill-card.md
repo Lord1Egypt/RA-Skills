@@ -1,40 +1,54 @@
-## Description: <br>
-专为小电商卖家设计，输入产品信息，一键生成淘宝/抖音/小红书/拼多多全平台适配的详情页文案和带货脚本。解决小卖家写不完文案的痛点。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates platform-specific ecommerce detail-page copy and short-form selling scripts for small sellers on Taobao/Tmall, Douyin, Xiaohongshu, and Pinduoduo.
 
-## Publisher: <br>
-[miromiraclemiro-ux](https://clawhub.ai/user/miromiraclemiro-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miromiraclemiro-ux](https://clawhub.ai/user/miromiraclemiro-ux)
 
-## Use Case: <br>
-Small e-commerce sellers and 1-5 person storefront teams use this skill to generate platform-adapted product detail page copy, short-video sales scripts, social posts, and marketplace descriptions from product information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include incorrect prices, inventory counts, discounts, sales numbers, reviews, guarantees, shipping promises, ingredients, safety claims, or product effects. <br>
-Mitigation: Verify all factual and promotional claims against current product, store, and legal requirements before publishing. <br>
-Risk: Regulated categories such as medicine, medical devices, finance, insurance, food, cosmetics, and child-related products may require stricter claim review. <br>
-Mitigation: Use additional expert or compliance review before publishing generated copy for regulated or sensitive products. <br>
+## Use Case:
 
+External ecommerce sellers and small operations teams use this skill to turn product details, audience, price range, and differentiators into product-page copy, social commerce notes, and selling scripts tailored to common Chinese ecommerce platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miromiraclemiro-ux/sutang-ecom-copywriter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text copy blocks for product pages, short-video scripts, social posts, and product descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated marketing copy should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated marketing copy may include unsupported testimonials, sales figures, scarcity claims, discounts, guarantees, before-and-after results, or other factual claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require users to provide verified evidence for factual marketing claims before publishing; omit any claim that cannot be verified.
+
+Risk: Copy for regulated or sensitive products such as drugs, medical devices, financial products, or insurance may create compliance risk.
+
+Mitigation: Route regulated-product copy through qualified human review and remove medical, financial, efficacy, guarantee, or legal claims that are not explicitly supported.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miromiraclemiro-ux/skills/sutang-ecom-copywriter)
+- [ClawHub publisher profile](https://clawhub.ai/user/miromiraclemiro-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted ecommerce copy, product descriptions, social posts, and short video scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output depends on user-provided product facts, target platform, audience, pricing, and differentiators.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

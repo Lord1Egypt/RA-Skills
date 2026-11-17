@@ -1,39 +1,52 @@
-## Description: <br>
-Mp Prototype guides agents to build disposable logic or UI prototypes that answer design questions before production implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a throwaway prototype to flesh out a design before committing to it.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[paudyyin](https://clawhub.ai/user/paudyyin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and designers use this skill to create quick disposable prototypes that answer a design, UI, or state-model question before committing to production code.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Temporary prototype files may be mistaken for production-ready code.
+
+Mitigation: Keep prototype files clearly marked as throwaway, review them before keeping or merging, and delete or absorb the validated decision after use.
+
+Risk: The skill intentionally skips production polish and tests for speed.
+
+Mitigation: Treat generated prototypes as learning artifacts and add normal error handling, persistence, and tests only when folding decisions into production code.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and product builders use this skill when they need an agent to create a quick throwaway prototype for testing state logic, UI options, or design assumptions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, code, shell commands, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prototypes may be mistaken for production code. <br>
-Mitigation: Keep prototype files clearly named as disposable, colocate them with the explored code, and delete or absorb them once the question is answered. <br>
-Risk: Prototype output may introduce incorrect or misleading implementation choices if retained without review. <br>
-Mitigation: Review generated files before keeping them and run a separate implementation and review pass before treating any prototype as production-ready. <br>
+**Output Format:** [Markdown guidance with generated prototype files and runnable command suggestions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Prototype state is kept in memory by default and generated artifacts should be clearly marked as throwaway.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, markdown] <br>
-**Output Format:** [Guidance with optional prototype code, shell commands, and markdown notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prototype output is temporary by design and should remain in memory unless the task explicitly requires scratch persistence.] <br>
+1.0.0 (source: package.json, server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,52 @@
-## Description: <br>
-Simplified CLI tools for Camoufox anti-detection browser automation that provide fox-open, fox-scrape, fox-eval, fox-close, and fox-bilibili-stats commands for web scraping and data extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simplified CLI tools for camoufox anti-detection browser automation. Provides fox-open, fox-scrape, fox-eval, fox-close, and fox-bilibili-stats commands for easy web scraping and data extraction.
 
-## Publisher: <br>
-[AdAstraAbyssoque](https://clawhub.ai/user/AdAstraAbyssoque) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[adastraabyssoque](https://clawhub.ai/user/adastraabyssoque)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and automation users use this skill to run concise shell commands for browser automation, page scraping, JavaScript evaluation, browser cleanup, and Bilibili video statistic extraction through camoufox and agent-browser.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Anti-detection browser automation and scraping can be misused or violate site policies when run without authorization.
+
+Mitigation: Use the commands only on sites and data you are authorized to access, and review the target site's policies and privacy obligations before collecting data.
+
+Risk: The installer modifies the user's shell startup file to add the skill's bin directory to PATH for future sessions.
+
+Mitigation: Inspect install.sh before installation and confirm the shell profile change is acceptable in the target environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and automation users use this skill to install and run simplified shell commands for Camoufox browser automation, page scraping, JavaScript evaluation, and Bilibili video statistic collection. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Anti-detection browser automation can be misused for unauthorized scraping or activity that violates target site policies. <br>
-Mitigation: Use the commands only on sites and accounts where automation is authorized, and confirm that the workflow complies with applicable site terms and organizational policy. <br>
-Risk: fox-eval runs JavaScript in the current browser page and can expose data from sensitive logged-in sessions. <br>
-Mitigation: Run only reviewed JavaScript snippets, avoid sensitive sessions, and close the browser after the task is complete. <br>
-Risk: The installer persistently modifies the user's shell startup file to add the skill's bin directory to PATH. <br>
-Mitigation: Review the shell profile change during installation and remove the PATH entry when uninstalling or disabling the skill. <br>
+**Output Format:** [Markdown documentation with inline shell command examples and configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Camoufox Tools on ClawHub](https://clawhub.ai/AdAstraAbyssoque/camoufox-tools) <br>
-- [AdAstraAbyssoque publisher profile](https://clawhub.ai/user/AdAstraAbyssoque) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Install script](artifact/install.sh) <br>
+**Other Properties Related to Output:** [Commands may open browser sessions, scrape page content, evaluate JavaScript, close browser instances, or return Bilibili video statistics.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires openclaw CLI, Camoufox, and the agent-browser extension; commands may open browser sessions, scrape page content, or evaluate JavaScript in the current page.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

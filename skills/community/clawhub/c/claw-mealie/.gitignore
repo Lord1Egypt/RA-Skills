@@ -1,0 +1,11 @@
+# Local credentials
+.env
+.env.*
+!.env.example
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Generated release archives
+/mealie-skill.tar.gz

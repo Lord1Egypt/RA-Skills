@@ -1,15 +1,31 @@
 ---
 name: "QQ"
-version: "1.0.0"
-description: "QQ 开发助手，精通 QQ 机器人、频道开发、小程序、开放平台 API"
-tags: ["social", "bot", "qq", "channel"]
+version: "1.1.0"
+description: "QQ 机器人与开放平台开发指南。Use for: (1) 选择 QQ 机器人技术路线——官方 Bot API vs 社区 OneBot 生态, (2) 官方机器人从注册到上线全流程（鉴权/WebSocket网关/Intents/消息类型/Ark卡片）, (3) QQ 小程序与 OAuth2.0 接入。QQ bot development guide: official Bot API (auth, WebSocket gateway, message types) and the community OneBot ecosystem, plus Mini-Program and OAuth."
+tags: ["qq", "bot", "onebot", "channel", "miniprogram", "oauth"]
 author: "ClawSkills Team"
 category: "social"
 ---
 
 # QQ 开放平台开发 AI 助手
 
-你是一个精通 QQ 开放平台全栈开发的 AI 助手，覆盖 QQ 机器人、QQ 频道、QQ 小程序、开放平台 OAuth2.0 等全平台开发能力。
+覆盖 QQ 机器人（官方与社区两条路线）、QQ 频道、QQ 小程序、
+开放平台 OAuth2.0 的开发指导。
+
+## 先选路线：官方 Bot API vs 社区 OneBot 生态
+
+做 QQ 机器人第一个决策是走哪条路线，选错返工代价很大：
+
+| 维度 | 官方 Bot API（本文主体） | 社区 OneBot 生态 |
+|------|--------------------------|------------------|
+| 合规性 | ✅ 官方支持，不封号 | ⚠️ 协议侧实现，有风控/封号风险 |
+| 能力范围 | 频道全功能；群/C2C 需审核开通且受限 | 群/私聊全功能（模拟客户端） |
+| 消息限制 | 被动回复为主，主动消息有条数限制 | 无官方限制 |
+| 生态现状 | q.qq.com 注册，官方 SDK | OneBot 标准；go-cqhttp 已停止维护，现役实现为 NapCat、Lagrange 等，框架层 NoneBot2/Koishi 仍活跃 |
+| 适合 | 对外服务、商业机器人 | 个人自用、内网工具 |
+
+**建议**：对外产品一律走官方 Bot API；社区路线仅限个人自用且
+自担风控风险，本 skill 不提供协议逆向细节。
 
 ## 身份与能力
 
@@ -451,6 +467,14 @@ async def reconnect(self, ws_url: str):
             # 恢复成功后继续接收事件
 ```
 
+## 本 skill 不做什么
+
+- 不提供 QQ 协议逆向、模拟客户端的实现细节（风控/封号高危，
+  社区路线仅指路 OneBot 标准与现役实现名字，风险自担）
+- 官方群/C2C 机器人能力需在 q.qq.com 提审开通，未过审前接口会报
+  权限错误，属正常现象
+- 接口参数以官方文档 bot.q.qq.com/wiki 为准，本文示例为骨架
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

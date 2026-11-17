@@ -1,46 +1,61 @@
-## Description: <br>
-Answer technical questions by searching daily.dev's developer community article knowledge base and synthesizing answers with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answer technical questions using daily.dev's knowledge base by searching developer community articles and synthesizing answers with source links.
 
-## Publisher: <br>
-[nimrodkra](https://clawhub.ai/user/nimrodkra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nimrodkra](https://clawhub.ai/user/nimrodkra)
 
-## Use Case: <br>
-Developers and technical users use this skill to ask technical questions and receive answers grounded in daily.dev community articles, with source links and clear notes when coverage is partial. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a daily.dev API token from the user's environment or secret store. <br>
-Mitigation: Use a dedicated, revocable token and keep it in the operating system secret store or an environment variable rather than committing it to files. <br>
-Risk: Technical questions and context sent to daily.dev may expose sensitive information to that service. <br>
-Mitigation: Avoid sending private code, credentials, or sensitive internal questions unless sharing them with daily.dev is intended. <br>
-Risk: A misdirected request could expose the token outside daily.dev. <br>
-Mitigation: Verify API calls are made only to api.daily.dev before execution. <br>
+## Use Case:
 
+Developers and technical users use this skill to search daily.dev's article knowledge base for technical questions, compare relevant results, and receive a source-linked answer grounded in the returned articles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nimrodkra/daily-dev-ask) <br>
-- [daily.dev Plus](https://app.daily.dev/plus) <br>
-- [daily.dev API token settings](https://app.daily.dev/settings/api) <br>
-- [daily.dev keyword recommendation endpoint](https://api.daily.dev/public/v1/recommend/keyword?q={keywords}&limit=20) <br>
-- [daily.dev semantic recommendation endpoint](https://api.daily.dev/public/v1/recommend/semantic?q={query}&limit=20) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown answer with source links and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounds claims in daily.dev article results and includes relevant source links, engagement signals, and coverage gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill requires a daily.dev API token that can grant access to personalized content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the token in an environment secret or operating system credential store, never commit it, and send it only to api.daily.dev.
+
+Risk: Technical search queries are sent to daily.dev when the skill performs keyword or semantic searches.
+
+Mitigation: Install and use the skill only when sending those queries to daily.dev is acceptable; avoid sensitive or confidential query text.
+
+Risk: Optional shell-profile auto-load examples can affect future terminal sessions if copied into startup files.
+
+Mitigation: Review profile changes before adding them and prefer scoped environment secrets when available.
+
+## Reference(s):
+
+- [daily.dev Ask on ClawHub](https://clawhub.ai/nimrodkra/skills/daily-dev-ask)
+- [daily.dev Plus](https://app.daily.dev/plus)
+- [daily.dev API Token Settings](https://app.daily.dev/settings/api)
+- [daily.dev Keyword Recommend API](https://api.daily.dev/public/v1/recommend/keyword?q={keywords}&limit=20)
+- [daily.dev Semantic Recommend API](https://api.daily.dev/public/v1/recommend/semantic?q={query}&limit=20)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown answer with source links and optional inline shell or PowerShell commands for setup and API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should be grounded in daily.dev article results, include relevant source links, and state gaps when returned articles only partially answer the question.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

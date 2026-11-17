@@ -1,37 +1,53 @@
-## Description: <br>
-Generates and updates a structured world bible for Vietnamese text stories, maintaining lore modules, cross-references, hooks, gap analysis, and character state for outline workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and updates structured world bibles for Vietnamese text stories, maintaining lore modules, cross-references, hooks, gap analysis, and character state.
 
-## Publisher: <br>
-[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev)
 
-## Use Case: <br>
-External writers and agent users use this skill to build a dense markdown lorebook from a story premise and to update that lorebook from outline deltas after several chapters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaibazax-dev/vn-worldbuilding) <br>
+External creators and writing agents use this skill to build an initial lorebook from a story premise or update an existing lorebook after 5-10 outline chapters. It is intended for Vietnamese text-based story planning, not for drafting prose or scenes.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown lorebook with structured sections, module IDs, cross-references, hook registry, gap analysis, character state, and changelog.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Build Mode creates a full world bible from premise details; Update Mode incorporates outline deltas after 5-10 chapters. Review generated lore for consistency before using it as downstream planning context.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated lorebook updates may add or promote creative canon details that the user did not intend.
+
+Mitigation: Review generated canon, hooks, and character-state updates before treating the lorebook as the source of truth.
+
+Risk: Long structured Markdown outputs may become hard to audit if the premise, scope, or outline delta is vague.
+
+Mitigation: Provide a clear premise for Build Mode or concrete chapter deltas for Update Mode, then check the gap analysis and hook registry.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/skills/vn-worldbuilding)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown lorebook or lorebook update]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Build Mode produces long cross-referenced world bibles; Update Mode incorporates outline deltas and updates hooks, gap analysis, and character state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

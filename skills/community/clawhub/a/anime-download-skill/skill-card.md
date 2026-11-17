@@ -1,43 +1,61 @@
-## Description: <br>
-Use when the user asks to search anime torrents, download anime episodes, find anime resources, or browse miobt.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent search, browse, and download anime torrents from miobt.com using the AniCatch CLI.
 
-## Publisher: <br>
-[isongxw](https://clawhub.ai/user/isongxw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isongxw](https://clawhub.ai/user/isongxw)
 
-## Use Case: <br>
-External users and agent operators use this skill to search anime torrent listings, browse seasonal anime, and prepare download commands through the anicatch CLI. Users should confirm that any requested download is lawful and safe for their environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BitTorrent downloads can create legal, privacy, and untrusted-file exposure. <br>
-Mitigation: Confirm each download explicitly, verify that the content is lawful to download, use a safe output folder, and scan or validate downloaded files before opening them. <br>
-Risk: The skill runs the external anicatch CLI through uvx or pipx. <br>
-Mitigation: Install only if the user accepts that dependency path and review the generated command before execution. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent find seasonal anime listings, search anime torrent results, and run AniCatch commands to download selected items. Users should apply it only where torrent downloads are legal and allowed by their network policy.
 
-## Reference(s): <br>
-- [Anime Download Skill on ClawHub](https://clawhub.ai/isongxw/anime-download-skill) <br>
-- [anicatch GitHub Repository](https://github.com/isongxw/anicatch) <br>
-- [anicatch on PyPI](https://pypi.org/project/anicatch/) <br>
-- [uv Documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may invoke uvx or pipx to run the external anicatch CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.3 (source: server release evidence) <br>
+Risk: Torrent downloads may be illegal in some jurisdictions or disallowed by a user's network policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where torrent activity is legal and explicitly permitted by applicable network and organizational policy.
+
+Risk: Torrent activity may expose the user's IP address through public BitTorrent infrastructure.
+
+Mitigation: Review privacy and network exposure before downloading, and avoid use on networks where public peer-to-peer traffic is not approved.
+
+Risk: The skill documents mutable third-party installation and execution commands such as curl-to-sh and unpinned uvx or pipx usage.
+
+Mitigation: Verify the upstream tool and version before execution, and prefer pinned or reviewed installation paths where available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/isongxw/skills/anime-download-skill)
+- [AniCatch CLI Repository](https://github.com/isongxw/anicatch)
+- [AniCatch on PyPI](https://pypi.org/project/anicatch/)
+- [uv Documentation](https://docs.astral.sh/uv/)
+- [AgentSkills.io Standard](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are read from stdout; downloads may write torrent output to a user-selected directory.]
+
+## Skill Version(s):
+
+0.3.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

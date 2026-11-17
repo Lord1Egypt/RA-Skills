@@ -1,42 +1,64 @@
-## Description: <br>
-OpenAI's general-purpose model balancing reasoning quality with response speed for chat, writing, planning, and multimodal analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill invokes dLazy's gpt-5.5 CLI workflow for chat, writing, planning, and multimodal analysis.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and agents use this skill to call the dLazy GPT 5.5 command-line interface for general-purpose language and multimodal tasks, including chat, writing, planning, code-oriented responses, and analysis of supplied image or video inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and stores or reads credentials through the dLazy CLI. <br>
-Mitigation: Use organization-scoped API keys, keep them in the CLI config or environment as documented, and rotate or revoke keys from the dLazy dashboard when access changes. <br>
-Risk: Prompts and referenced image or video files may be sent to dLazy API and media storage endpoints for processing. <br>
-Mitigation: Review prompts and file paths before invocation, avoid sending confidential or regulated data unless permitted, and use dry-run behavior where appropriate to inspect requests before calling the API. <br>
+## Use Case:
 
+Developers and external users can use this skill to route prompts and optional image or video inputs through the dLazy CLI for hosted model responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-gpt-5-5) <br>
-- [dLazy CLI homepage](https://github.com/dlazyai/cli) <br>
-- [dLazy npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, json] <br>
-**Output Format:** [JSON envelope containing generated outputs or async task status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the dLazy CLI, npm or npx, and a dLazy API key; prompts and referenced media files may be sent to dLazy API and media storage endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The skill is presented as an OpenAI-style model while using a third-party dLazy hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the provider, service terms, and model claims before use, and disclose the third-party dependency to users.
+
+Risk: Prompts and selected media files can be sent to api.dlazy.com and files.dlazy.com.
+
+Mitigation: Do not submit confidential prompts or local file paths unless the data is approved for upload to dLazy.
+
+Risk: The workflow requires running @dlazy/cli@1.2.0 through npm or npx.
+
+Mitigation: Prefer npx or a sandboxed local install, and verify the package and source before execution.
+
+Risk: A dLazy API key may be stored in a local user configuration file.
+
+Mitigation: Protect the local config file, prefer per-invocation environment variables when appropriate, and rotate or revoke keys when access changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dlazyai/skills/dlazy-gpt-5-5)
+- [dLazy CLI Source](https://github.com/dlazyai/cli)
+- [dLazy CLI npm Package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy Homepage](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, JSON, guidance]
+
+**Output Format:** [JSON responses from the dLazy CLI, often containing generated text or structured model output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports prompt input, up to 10 image references, up to 8 video references, dry-run mode, asynchronous execution, and timeout control.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release evidence; artifact frontmatter reports 1.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

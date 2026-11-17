@@ -1,47 +1,54 @@
-## Description: <br>
-Git Reporter analyzes local Git history, branch state, and worktree changes to generate daily standups, weekly reports, or Sprint reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a local Git repository's commit history, branch state, and work in progress to generate structured daily standups, weekly reports, or sprint reviews.
 
-## Publisher: <br>
-[maximum2974](https://clawhub.ai/user/maximum2974) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maximum2974](https://clawhub.ai/user/maximum2974)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn local repository activity into concise status reports for standups, weekly updates, and Sprint reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may expose sensitive repository metadata such as commit messages, branch names, stash labels, author information, or file paths. <br>
-Mitigation: Review each generated report before sharing it outside the intended team or system. <br>
-Risk: The skill reads local working-tree and git history state, including uncommitted summaries. <br>
-Mitigation: Run it only in repositories where the agent is allowed to inspect git metadata and worktree summaries. <br>
-Risk: Report conclusions are inferred from local git data and may miss work that happened outside the current clone or fetched history. <br>
-Mitigation: Treat generated standups and reviews as drafts and confirm important status, blockers, and team activity before publishing. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to summarize local Git activity into human-facing status reports, including individual or team daily standups, weekly updates, and sprint reviews. It is useful when users need concise progress, carry-over work, and risk signals derived from repository history and current worktree state.
 
-## Reference(s): <br>
-- [Git Reporter ClawHub release](https://clawhub.ai/maximum2974/git-reporter) <br>
-- [Git Reporter README](artifact/README.md) <br>
-- [Daily standup example](artifact/examples/daily.md) <br>
-- [Weekly report example](artifact/examples/weekly.md) <br>
-- [Sprint review example](artifact/examples/sprint.md) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with headings, bullets, tables, and inline git-derived metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports daily, weekly, and Sprint report modes; can filter by author or summarize team activity from local repository history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Crafted report parameters could be inserted into Bash commands and run unintended shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted mode, day-count, and author values; review generated commands before execution until command templates add strict validation or structured argument passing.
+
+Risk: The skill inspects local repository metadata and work-in-progress state, including commit messages, branch names, stash entries, and contributor emails.
+
+Mitigation: Run it only in repositories whose Git history and working-tree metadata can be disclosed to the active agent session, and avoid repositories with sensitive commit messages or branch names.
+
+## Reference(s):
+
+- [Git Reporter ClawHub Skill Page](https://clawhub.ai/maximum2974/skills/git-reporter)
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown status report with concise sections, summary metrics, and optional inline shell command context]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report language follows the repository's commit-message language, and daily and weekly modes aim to stay concise.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

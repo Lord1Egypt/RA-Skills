@@ -1,43 +1,54 @@
-## Description: <br>
-Helps agents upgrade OpenClaw plugins, including general npm-based plugins and the QQ bot plugin, by running a bundled upgrade script with version targeting, file verification, compatibility handling, rollback, and optional gateway restart. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Plugin Upgrade helps agents upgrade general OpenClaw plugins and provides a focused upgrade path for the QQ bot plugin, including version targeting, file verification, compatibility handling, rollback, and gateway restart support.
 
-## Publisher: <br>
-[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini)
 
-## Use Case: <br>
-Developers and operators use this skill to upgrade installed OpenClaw plugins from npm packages and report the resulting plugin version and status. It is especially tailored for @tencent-connect/openclaw-qqbot upgrades that need file checks, legacy directory cleanup, and OpenClaw 3.23+ configuration compatibility handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The upgrade script can install npm packages, remove legacy plugin directories, execute plugin postinstall code, and restart the gateway. <br>
-Mitigation: Use only trusted OpenClaw plugins and confirm the package name, plugin ID, target version, cleanup directories, and restart behavior before execution. <br>
-Risk: Untrusted or typo-prone package names may install unintended code. <br>
-Mitigation: Confirm the exact npm package name and avoid untrusted package sources. <br>
-Risk: Custom legacy directory values can cause unintended cleanup. <br>
-Mitigation: Pass legacy directory names only after verifying they are simple plugin directory names. <br>
+## Use Case:
 
+Developers and operators use this skill to upgrade installed OpenClaw plugins from an agent session, especially @tencent-connect/openclaw-qqbot. It is intended for controlled maintenance workflows where plugin package names, versions, and cleanup paths are known and trusted.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanlee-gemini/openclaw-plugin-upgrade) <br>
-- [Publisher profile](https://clawhub.ai/user/ryanlee-gemini) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured status lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Script output includes fields such as PLUGIN_NEW_VERSION, PLUGIN_ID, and PLUGIN_REPORT for agent-facing summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill changes installed OpenClaw plugins and can restart the gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where plugin maintenance and gateway restart are expected, and use the no-restart option when restart timing must be controlled.
+
+Risk: The upgrade flow gives broad control over package selection, cleanup paths, and package-supplied code.
+
+Mitigation: Use exact trusted package names and versions, avoid arbitrary legacy directory values, and review or fix the script before using it near important local files or credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryanlee-gemini/skills/openclaw-plugin-upgrade)
+- [Publisher profile](https://clawhub.ai/user/ryanlee-gemini)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and structured command output fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The upgrade script emits fields such as PLUGIN_NEW_VERSION, PLUGIN_ID, and PLUGIN_REPORT for agent-facing status reporting.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

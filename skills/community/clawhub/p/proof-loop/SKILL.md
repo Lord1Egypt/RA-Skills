@@ -2,7 +2,7 @@
 name: proof-loop
 description: "Run evidence-gated coding sprints with frozen ACs, separated builder/verifier roles, and durable proof artifacts."
 metadata:
-  version: "0.2.1"
+  version: "0.3.3"
 ---
 # Proof Loop
 
@@ -82,3 +82,11 @@ python3 scripts/check_task.py .agent/tasks/TASK_ID
 ```
 
 See `references/artifacts.md` for schemas.
+
+## Mechanical validation limits
+
+The local helpers validate artifact structure and complete AC coverage against `spec.md`. They require a verify-phase verdict, recorded verifier identity, non-empty evidence, and an explicitly empty problems file. They cannot authenticate verifier independence or prove that recorded checks really ran; a human or independent verifier must inspect that evidence. Repository tests and demo fixtures are maintainer tools, not the skill’s writing or verification authority.
+
+## Registry installs
+
+Public examples are under `examples/*/tasks/`; real project tasks still use `.agent/tasks/`. ClawHub does not preserve executable bits, so run the unified CLI as `python3 bin/proof-loop` and shell wrappers with `bash`. The doctor checks runtime files, not GitHub CI metadata.

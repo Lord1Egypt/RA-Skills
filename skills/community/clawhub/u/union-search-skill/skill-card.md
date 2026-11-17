@@ -1,53 +1,64 @@
-## Description: <br>
-Provides a unified command-line search interface across developer communities, social platforms, general search engines, AI search providers, RSS feeds, URL-to-Markdown conversion, and multi-platform image search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Union Search Skill gives agents a unified interface for searching across developer communities, social platforms, web search engines, video services, RSS feeds, and image sources, with structured output, filtering, response archiving, and batch image download support.
 
-## Publisher: <br>
-[runningZ1](https://clawhub.ai/user/runningZ1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runningz1](https://clawhub.ai/user/runningz1)
 
-## Use Case: <br>
-Developers and agents use this skill to run searches across many web, social, developer, media, and image sources through a common CLI, then return structured results or archived responses for downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch and download web content from many external sources. <br>
-Mitigation: Install and run it only in workspaces where broad web retrieval is acceptable, and review downloaded or fetched content before reuse. <br>
-Risk: Some integrations may use local credentials, API keys, browser cookies, or account cookies. <br>
-Mitigation: Use least-privilege credentials, avoid account cookies unless necessary, and rotate or remove secrets after testing. <br>
-Risk: Server security evidence reports a hardcoded SerpAPI key. <br>
-Mitigation: Remove or replace the hardcoded key before use and provide secrets through managed environment variables. <br>
-Risk: Search logs and archived responses may retain sensitive queries or retrieved content. <br>
-Mitigation: Disable logging when not needed, store logs outside sensitive directories, and delete retained responses according to the user's data-handling policy. <br>
-Risk: Server security evidence identifies a command-injection-prone legacy Exa mcporter helper. <br>
-Mitigation: Do not use that helper until the shell invocation is fixed and reviewed. <br>
+## Use Case:
 
+Developers and research-oriented agents use this skill to run multi-platform searches, compare results, collect structured search output, and save raw responses or downloaded image assets for later review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/runningZ1/union-search-skill) <br>
-- [README](README.md) <br>
-- [API credential guide](references/api_credentials.md) <br>
-- [Rate limits](references/rate_limits.md) <br>
-- [Platform notes](references/platform_notes.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Google search guide](references/google_search_guide.md) <br>
-- [Baidu API key guide](references/baidu_apikey_fetch.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown, JSON, terminal text, saved response files, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save raw API responses and search logs when enabled by the invoked scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Unsafe command handling may expose users to unintended command execution when helper scripts receive untrusted queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Exa helper before installation and avoid using the Exa mcporter script with untrusted queries.
+
+Risk: Token routing can send API credentials or session-derived access to the wrong service if host configuration is changed.
+
+Mitigation: Keep TIKHUB_HOST set only to the real TikHub API host and use least-privilege API keys.
+
+Risk: Browser cookies, session cookies, raw responses, downloads, search logs, and image metadata can contain sensitive local data.
+
+Mitigation: Avoid browser or session cookies unless needed, and treat generated logs, response archives, downloads, and metadata as sensitive files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/runningz1/skills/union-search-skill)
+- [Skill overview](artifact/README.md)
+- [API credential guide](artifact/references/api_credentials.md)
+- [Rate limits](artifact/references/rate_limits.md)
+- [Platform notes](artifact/references/platform_notes.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [Union search module](artifact/scripts/union_search/README.md)
+- [Union image search module](artifact/scripts/union_image_search/UNION_IMAGE_SEARCH_README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown tables, JSON responses, saved response files, downloaded image files, and command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May archive raw API responses, search logs, downloads, and image metadata locally.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-基于《因子投资：方法与实践》的量化选股系统，融合Fama-French多因子模型与技术面选股，提供集合竞价选股、盘中监控、持仓复盘等功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于《因子投资：方法与实践》的量化选股系统，融合Fama-French多因子模型与技术面选股，提供集合竞价选股、盘中监控、持仓复盘等功能。
 
-## Publisher: <br>
-[shenkunming](https://clawhub.ai/user/shenkunming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenkunming](https://clawhub.ai/user/shenkunming)
 
-## Use Case: <br>
-External users can ask an agent to produce A-share stock screening, intraday monitoring, scoring, and position review reports using factor-investing and technical-analysis criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate concrete stock screening and trading-analysis suggestions that may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as informational only, independently verify market data, and apply qualified financial review before acting. <br>
-Risk: The artifact includes an embedded 600905 holding example that may not match the user's portfolio. <br>
-Mitigation: Remove or replace the embedded holding context before using the skill for a user's own positions. <br>
+## Use Case:
 
+Investors and financial analysis agents use this skill to structure China A-share factor screening, intraday monitoring, holding review, and report generation with Fama-French-style and technical indicators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenkunming/factor-investment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with scoring tables and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stock screening reports, intraday suggestions, portfolio review summaries, and watchlist updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes a preconfigured holding that may influence analysis or appear in generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the holding, mark it clearly as sample data, or require the user to provide portfolio details before producing holding-specific analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenkunming/skills/factor-investment)
+- [Skill prompt documentation](artifact/prompts/default.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, tables, scoring summaries, and natural-language investment guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stock screening reports, intraday selection suggestions, holding review reports, portfolio updates, and risk notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

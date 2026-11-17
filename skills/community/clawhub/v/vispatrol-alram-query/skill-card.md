@@ -1,44 +1,63 @@
-## Description: <br>
-Queries VisPatrol alarm records and associated snapshot images on trusted Windows hosts after explicit approval to read the local vpup.json runtime configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries VisPatrol alarm records on Windows, retrieves matching snapshots, and helps an agent produce alarm reports after explicit approval to read local vpup.json runtime configuration.
 
-## Publisher: <br>
-[baymax1957](https://clawhub.ai/user/baymax1957) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baymax1957](https://clawhub.ai/user/baymax1957)
 
-## Use Case: <br>
-Operators and automation agents use this skill on trusted Windows VisPatrol hosts to query alarms by time, type, device, alarm ID, or pagination and produce alarm reports with matching snapshot images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local VisPatrol session token from %TEMP%/vpup.json. <br>
-Mitigation: Install only on a trusted Windows VisPatrol host, require the OpenClaw approval config, and obtain explicit user approval before each run reads vpup.json. <br>
-Risk: Alarm snapshot images may be saved locally and can contain sensitive surveillance content. <br>
-Mitigation: Store snapshots only in the declared workspace or user-specified snapshot directory and delete saved images when they are no longer needed. <br>
-Risk: Consent enforcement is documented in the skill instructions rather than guaranteed by the Python script itself. <br>
-Mitigation: Gate the skill through the configured approval setting and review each invocation before allowing token-backed alarm or snapshot queries. <br>
+## Use Case:
 
+Operations staff and developers use this skill on trusted Windows VisPatrol hosts to answer alarm-history questions, filter by time, alarm type, device, or alarm ID, and produce concise reports with associated snapshot images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baymax1957/vispatrol-alram-query) <br>
-- [Security boundary](artifact/SECURITY.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, files, guidance] <br>
-**Output Format:** [Markdown alarm report with optional JSON-backed image attachment paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local snapshot file paths written under ~/.openclaw/workspace/tmp_files/ or a user-specified snapshot directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill reads and decrypts a local VisPatrol session token from vpup.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on trusted Windows VisPatrol hosts and require explicit approval before each run that reads vpup.json or uses its token.
+
+Risk: Snapshot downloads can forward the session token while retrieving image data.
+
+Mitigation: Restrict snapshot downloads to the configured VisPatrol media-service origin and avoid forwarding tokens to arbitrary URLs or nonlocal HTTP services.
+
+Risk: Downloaded snapshot images may persist on disk after reports are generated.
+
+Mitigation: Use a controlled snapshot output directory and define a cleanup policy for saved snapshot images.
+
+Risk: The security verdict is suspicious because token handling and snapshot URL validation need review before broad use.
+
+Mitigation: Require script-enforced per-run approval, pin dependencies, and review the token and snapshot handling before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baymax1957/skills/vispatrol-alram-query)
+- [Artifact security boundary](artifact/SECURITY.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown or plain text alarm reports with optional JSON results and local snapshot image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-only; may save snapshot images to a configured local directory after approved vpup.json access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

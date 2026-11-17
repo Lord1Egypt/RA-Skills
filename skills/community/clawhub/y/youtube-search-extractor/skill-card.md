@@ -1,43 +1,54 @@
-## Description: <br>
-Searches YouTube for a keyword, extracts video links from the results page, deduplicates them, and saves formatted local outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts YouTube video links from keyword search results and saves a formatted link list for agent workflows.
 
-## Publisher: <br>
-[shuai1iu](https://clawhub.ai/user/shuai1iu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shuai1iu](https://clawhub.ai/user/shuai1iu)
 
-## Use Case: <br>
-Developers and external users can use this skill to automate YouTube searches and collect topic-specific video URLs for review, research, or content discovery workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a global browser-automation dependency that contacts YouTube and writes local HTML and link files. <br>
-Mitigation: Install only in environments where that dependency and network behavior are acceptable, and review or delete generated files before sharing outputs. <br>
-Risk: Search terms and saved results may contain sensitive or private information. <br>
-Mitigation: Use non-sensitive search terms and handle generated HTML and link files according to local data-handling requirements. <br>
-Risk: Unpinned dependencies can change behavior over time. <br>
-Mitigation: Use pinned dependencies or a reviewed lockfile in stricter environments. <br>
+## Use Case:
 
+Developers and agents use this skill to search YouTube by keyword, collect matching video URLs, and produce reusable link files for research, curation, or content discovery workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuai1iu/youtube-search-extractor) <br>
-- [agent-browser](https://github.com/vercel-labs/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated local HTML and text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an HTML snapshot and a deduplicated text file of YouTube video links for the requested search term.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill installs and runs an unpinned global browser-automation dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandbox or disposable environment, pin agent-browser to a reviewed version, and prefer a local install over a global install.
+
+Risk: Saved YouTube search-result HTML may contain personal page state, recommendations, or other session-adjacent data.
+
+Mitigation: Delete generated HTML files when they are no longer needed and avoid running the skill in sensitive authenticated browsing contexts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shuai1iu/skills/youtube-search-extractor)
+- [agent-browser Project](https://github.com/vercel-labs/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated text files containing YouTube URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also save a YouTube search-result HTML file and a timestamped link list.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

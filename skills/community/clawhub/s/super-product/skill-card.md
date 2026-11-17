@@ -1,38 +1,57 @@
-## Description: <br>
-A command reference for using the Super Productivity CLI to manage tasks, counters, projects, and daily status from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Product is a task-management CLI guide for managing Super Productivity tasks, counters, projects, and daily status from the command line.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-Developers and productivity-focused users can use this skill to ask an agent for Super Productivity CLI commands that list, create, edit, complete, plan, log, and delete tasks and counters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some referenced CLI commands can change or delete Super Productivity data. <br>
-Mitigation: Review targets with list, search, or view before edit, done, log, plan, or delete commands, and treat delete operations as potentially permanent unless the CLI documents recovery. <br>
+## Use Case:
 
+Developers and task-management users use this skill to operate the Super Productivity CLI for listing, searching, creating, editing, completing, and deleting tasks and counters, and for viewing projects and daily status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/super-product) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe JSON, NDJSON, or full entity CLI output options when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill guides installation of an unpinned Python package that runs on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the package in a virtual environment, verify the package source before use, and review package updates before upgrading.
+
+Risk: The documented edit, completion, logging, and delete commands can modify Super Productivity task-management data.
+
+Mitigation: Use list or search commands to confirm IDs first, keep recoverable backups or sync history, and review command arguments before running data-changing operations.
+
+Risk: Windows users may encounter the compatibility and encoding issues documented by the artifact.
+
+Mitigation: Use JSON output or set PYTHONIOENCODING=utf-8 for encoding issues, and verify runtime compatibility before depending on the CLI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goog/skills/super-product)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output-format guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents JSON, NDJSON, and full entity output options for the external CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,54 +1,41 @@
-# active-defense-sentinal
+# Active Defense Sentinal
 
-A defensive triage scaffold for OpenClaw, Hermes Agent, the local host, and the OpenClaw skill supply chain.
+Defensive triage helpers for OpenClaw, Hermes Agent, host telemetry, and skill
+supply-chain screening. Read-only diagnostics are separate from explicitly
+requested installation, replacement, and quarantine actions.
 
-## What it does
-- Detects prompt injection and unsafe instruction sources
-- Checks OpenClaw and Hermes session health
-- Performs bounded host-side defensive scanning
-- Screens skills before installation or activation
-- Preserves evidence before any remediation
-- Recommends safe containment and recovery actions
+## Current OpenClaw integration
 
-## Safety posture
-This project is intentionally defensive.
-It is designed to:
-- stay read-only by default
-- treat untrusted content as hostile until verified
-- separate verified facts from speculation
-- prefer containment over silent repair
-- avoid stealth, persistence, or destructive auto-remediation
+```bash
+python3 scripts/sentinal.py openclaw-health
+python3 scripts/sentinal.py openclaw-health --profile work --timeout 2500
+python3 scripts/sentinal.py auto-scan
+python3 scripts/sentinal.py scan-install-local /path/to/candidate
+```
 
-## What’s included
-- `SKILL.md` - publishable skill specification
-- `scripts/` - executable helpers for scanning, staged installs, quarantine, and adapter health checks
-- `references/` - policy, workflow, quarantine, and adapter notes
-- `examples/` - sample incident flows and outputs
+Gateway health uses `openclaw health --json`, not a hardcoded Chrome debugging
+port. Browser checks remain available as `browser-health --endpoint URL`.
+State/home/profile/workspace overrides are respected. Scanner errors and unknown
+report formats fail closed, including under `--force`.
 
-## Skill-supply-chain scanning
-This scaffold incorporates the OpenClaw `openclaw-skill-scanner` model:
-- scan candidate skills before install
-- stage ClawHub installs before exposing them
-- block High/Critical findings
-- allow Medium/Low/Info with warnings
-- quarantine only when policy explicitly allows it
+The helper reports observations, not a verdict that your clone, host, session,
+or skills are clean. `ok: true` means the Gateway RPC returned a snapshot; it
+does not establish channel health or security. CLI and scanner executables must
+be separately reviewed and trusted before use.
 
-See:
-- `references/scan-workflow.md`
-- `references/quarantine-policy.md`
-- `references/skill-scanner-adapter.md`
+See [SKILL.md](SKILL.md) for command semantics, environment overrides, policy,
+coverage boundaries, and quarantine requirements. See
+[COMPATIBILITY.md](COMPATIBILITY.md) for the exact upstream baseline and test
+limits. `references/` and `examples/` provide additional triage guidance.
 
-## Repository layout
-- `SKILL.md` - main publishable skill spec
-- `references/` - policy and implementation notes
-- `examples/` - representative scenarios and expected behavior
+## Tests and packaging
 
-## Publication notes
-Before publishing to clawhub.ai:
-1. Review the scanner workflow and quarantine policy.
-2. Confirm the wording matches the intended defensive posture.
-3. Verify the examples still reflect the behavior you want users to see.
-4. Publish the skill package with the repo-ready description in `PUBLISHING.md`.
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+```
 
-## Status
-This repository is ready as a releasable documentation package and scaffold for clawhub.ai publication.
+The tests are offline with mocked scanner, OpenClaw, and ClawHub calls. They do
+not install dependencies, contact a live Gateway, or execute candidate skills.
+Runtime and current compatibility documentation are mirrored in
+`dist/active-defense-sentinal-clawhub/`. This change is unreleased; it does not
+publish to ClawHub or create a release. Review `PUBLISHING.md` before publication.

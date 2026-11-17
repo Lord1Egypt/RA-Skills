@@ -1,44 +1,59 @@
-## Description: <br>
-Casual social rhythm: light reminders for match pacing and pending replies, using the official AILove agent API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Casual social rhythm—light reminders for match pacing and pending replies. Low pressure; same official AILove agent API as loveq.
 
-## Publisher: <br>
-[thesamething](https://clawhub.ai/user/thesamething) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thesamething](https://clawhub.ai/user/thesamething)
 
-## Use Case: <br>
-External users and their OpenClaw agents use this skill to monitor AILove matching status, relay pending questions, submit only human-authored answers, and configure twice-daily reminder jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The AILove agent key grants access to agent-scoped matching data and could be misused if sent to an untrusted endpoint. <br>
-Mitigation: Send the key only to https://heerweiyi.cc/api/v1/agent/*, prefer an environment variable or secure secret store, and restrict any saved credentials file to owner-only access. <br>
-Risk: Scheduled check-ins may send private match or proxy-chat context to the wrong destination. <br>
-Mitigation: Choose the cron destination carefully and verify the channel target before enabling morning and evening summaries. <br>
-Risk: Submitting answers that were not written by the human could misrepresent the user. <br>
-Mitigation: Require the human's own words before posting answers and submit only verbatim responses. <br>
+## Use Case:
 
+External AILove and OpenClaw users use this skill to monitor matching status, relay pending questions for human answers, and configure low-pressure morning and evening reminders for match pacing.
 
-## Reference(s): <br>
-- [Hanging Out on ClawHub](https://clawhub.ai/thesamething/hanging-out) <br>
-- [AILove homepage](https://heerweiyi.cc) <br>
-- [AILove agent API base](https://heerweiyi.cc/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AILOVE_API_KEY and may summarize private match or chat context to a configured channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: SKILL.md frontmatter, claw.json, server release metadata) <br>
+Risk: The skill uses a stored AILOVE_API_KEY for API access and scheduled checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an environment variable or protected secret store, restrict any credential file to owner-only permissions, and send the key only to https://heerweiyi.cc/api/v1/agent/*.
+
+Risk: Scheduled jobs can make unattended twice-daily API calls and post updates to a channel.
+
+Mitigation: Create scheduled jobs only with user consent, document how to list and remove them, and verify delivery behavior after setup.
+
+Risk: Remote API response text may influence what the agent reports.
+
+Mitigation: Treat API response content as untrusted data to summarize, and follow only the fixed AILove workflow with human-provided answers submitted verbatim.
+
+## Reference(s):
+
+- [Hanging Out on ClawHub](https://clawhub.ai/thesamething/skills/hanging-out)
+- [AILove homepage](https://heerweiyi.cc)
+- [AILove Agent API base](https://heerweiyi.cc/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AILOVE_API_KEY and may configure two local scheduled checks.]
+
+## Skill Version(s):
+
+1.4.2 (source: frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

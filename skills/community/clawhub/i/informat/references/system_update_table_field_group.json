@@ -1,0 +1,25 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_update_table_field_group",
+    "description": "Update data table field group.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "description": "Data table ID (must exist)."
+        },
+        "groupId": {
+          "type": "string",
+          "description": "Field group ID (must exist)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Group name"
+        }
+      },
+      "required": ["tableId", "groupId", "name"]
+    }
+  }
+}

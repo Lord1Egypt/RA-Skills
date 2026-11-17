@@ -1,44 +1,58 @@
-## Description: <br>
-Create fallback site adapters for websites that do not expose native WebMCP. Use when a site needs a new adapter module, tool schema design, browser-side request execution, or request-template extraction from observed page behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create fallback site adapters for websites that do not expose native WebMCP. Use when a site needs a new adapter module, tool schema design, browser-side request execution, or request-template extraction from observed page behavior.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and engineers use this skill to create or update fallback WebMCP site adapters when a website lacks native WebMCP support. It guides adapter scaffolding, tool contract design, browser-side request execution, request-template extraction, fallback behavior, and test coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scaffold helper can run unintended local code if given crafted adapter details. <br>
-Mitigation: Review or patch the scaffold script before use, and do not pass untrusted site names, hosts, URLs, display names, or package names to it. <br>
-Risk: Generated adapters may perform authenticated site actions through the user's browser session. <br>
-Mitigation: Confirm generated adapters only perform the authenticated site actions intended by the user, and keep credential replay or auth bypass logic out of the adapter. <br>
+## Use Case:
 
+Developers and engineers use this skill to create or update fallback SiteAdapter modules for websites that do not expose native WebMCP. It guides adapter scaffolding, browser-side request discovery, stable tool-contract design, fallback behavior, and testing.
 
-## Reference(s): <br>
-- [End-to-end adapter creation flow](references/workflow.md) <br>
-- [Network discovery](references/network-discovery.md) <br>
-- [Request template patterns](references/request-template-patterns.md) <br>
-- [Adapter runtime patterns](references/adapter-runtime-patterns.md) <br>
-- [Testing expectations](references/testing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, code, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to scaffold adapter files and validate generated adapter behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The scaffold helper has a confirmed command-execution flaw when crafted host, URL, display name, or package name values are supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the Perl replacement handling before running the helper with untrusted values; until then, only run it with trusted inputs and minimal secrets in the environment.
+
+Risk: Generated adapters can act through a logged-in browser session.
+
+Mitigation: Keep adapter behavior scoped to explicit user intent, avoid credential replay or secret vaulting, and fail closed on authentication, challenge, or upstream-change states.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jolestar/skills/webmcp-adapter-creator)
+- [Workflow](artifact/references/workflow.md)
+- [Network Discovery](artifact/references/network-discovery.md)
+- [Request Template Patterns](artifact/references/request-template-patterns.md)
+- [Adapter Runtime Patterns](artifact/references/adapter-runtime-patterns.md)
+- [Testing](artifact/references/testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated adapter source/configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated adapters should keep privileged site actions in the browser page context and return JSON-serializable tool payloads.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

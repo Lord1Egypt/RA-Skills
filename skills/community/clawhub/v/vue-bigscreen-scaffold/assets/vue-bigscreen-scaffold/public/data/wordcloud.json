@@ -1,0 +1,25 @@
+{
+  "name": "品牌关键词热度",
+  "items": [
+    { "name": "数字化", "value": 100 },
+    { "name": "智能", "value": 92 },
+    { "name": "增长", "value": 86 },
+    { "name": "创新", "value": 80 },
+    { "name": "客户", "value": 74 },
+    { "name": "服务", "value": 68 },
+    { "name": "品质", "value": 63 },
+    { "name": "效率", "value": 58 },
+    { "name": "协同", "value": 53 },
+    { "name": "生态", "value": 49 },
+    { "name": "数据", "value": 45 },
+    { "name": "洞察", "value": 41 },
+    { "name": "突破", "value": 38 },
+    { "name": "引领", "value": 35 },
+    { "name": "价值", "value": 32 },
+    { "name": "赋能", "value": 30 },
+    { "name": "共赢", "value": 27 },
+    { "name": "领先", "value": 24 },
+    { "name": "稳健", "value": 22 },
+    { "name": "卓越", "value": 20 }
+  ]
+}

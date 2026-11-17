@@ -1,41 +1,55 @@
-## Description: <br>
-One-click initialization of an AI-driven unit testing environment for frontend projects, including React, Vue, pure TypeScript, and Next.js projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-click initialization of an AI-driven unit testing environment for frontend projects, with support for React, Vue, pure TypeScript, and Next.js.
 
-## Publisher: <br>
-[hibehero](https://clawhub.ai/user/hibehero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hibehero](https://clawhub.ai/user/hibehero)
 
-## Use Case: <br>
-Developers and engineers use this skill to initialize Vitest-based frontend unit testing, generate test configuration files, install test dependencies, add Claude Code test-generation commands, and integrate a Husky pre-commit test guard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify dependency manifests, lockfiles, Vitest/MSW configuration, .claude command files, and Husky pre-commit hooks in the target project. <br>
-Mitigation: Review generated files, dependency changes, and hook changes before committing them. <br>
-Risk: Automatic test generation can send selected repository source context to Claude Code when command workflows are invoked. <br>
-Mitigation: Keep AUTO_GEN_TEST unset unless automatic generation is intended, and run /gen-unit-test only on paths that are appropriate to share with the configured agent. <br>
+## Use Case:
 
+Developers and engineers use this skill to initialize and maintain Vitest-based unit testing in frontend projects. It detects the project framework, prepares testing configuration, adds reusable Claude Code test-generation prompts, and can wire project-scoped pre-commit checks.
 
-## Reference(s): <br>
-- [AI Unit Test Generation Rules](references/gen-unit-test-prompt.md) <br>
-- [Test Failure Repair Rules](references/fix-test-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated configuration files, scripts, and Claude Code command templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local project changes for Vitest, Testing Library, MSW, Husky, and .claude command workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence) <br>
+Risk: The skill can modify a project by adding test dependencies, Vitest setup files, Claude Code command prompts, and a Husky pre-commit hook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated files and hook changes before committing or enabling them in repositories that require team approval.
+
+Risk: AI-assisted test generation and repair may produce tests that are incorrect or that hide source-code defects.
+
+Mitigation: Inspect generated tests, review any source-code diagnostics, and rerun the test suite and coverage checks before relying on the results.
+
+## Reference(s):
+
+- [Unit Test Automation ClawHub Page](https://clawhub.ai/hibehero/skills/setup-unit-test)
+- [AI Unit Test Generation Rules](artifact/references/gen-unit-test-prompt.md)
+- [Test Failure Repair Rules](artifact/references/fix-test-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON detection output, and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install development dependencies and write Vitest setup files, Claude Code command prompts, and a Husky pre-commit hook inside the target project.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

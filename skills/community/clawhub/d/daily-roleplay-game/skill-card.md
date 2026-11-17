@@ -1,51 +1,69 @@
-## Description: <br>
-Daily profession roleplay game engine with hidden kink guessing, AI-driven personality generation, achievement tracking, and multi-backend image generation (ComfyUI/SD WebUI/Midjourney/Nano Banana Pro). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Roleplay Game sets up a Chinese-language adult OpenClaw roleplay workspace with daily character generation, hidden kink guessing, achievement tracking, scheduled messages, and optional image generation.
 
-## Publisher: <br>
-[nannyu](https://clawhub.ai/user/nannyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Private use; no redistribution without permission <br>
+## Publisher:
 
+[nannyu](https://clawhub.ai/user/nannyu)
 
-## Use Case: <br>
-External users and OpenClaw developers use this skill to deploy and run a daily adult roleplay agent that creates daily character scenarios, manages hidden guessing-game state, posts scheduled messages, and archives roleplay progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Private use; do not redistribute without permission
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled adult roleplay messages or generated intimate content may be posted to an unintended conversation or channel. <br>
-Mitigation: Review heartbeat and cron settings before enabling the skill, use a dedicated private message channel, and avoid the "last" target unless routing to the most recent conversation is acceptable. <br>
-Risk: Heartbeat configuration can affect agents beyond the roleplay agent when configured globally. <br>
-Mitigation: Scope heartbeat behavior to the dedicated role-play agent where possible, and avoid agents.defaults unless global heartbeat behavior is intended. <br>
-Risk: Calendar, reminder, or personal schedule data can influence roleplay personalization. <br>
-Mitigation: Disable calendar and reminder personalization if private schedule data should not be used by the agent. <br>
-Risk: Roleplay archives and generated images can retain intimate content over time. <br>
-Mitigation: Use a private workspace and periodically delete archives or images that should not be retained. <br>
-Risk: Messaging or image-service credentials can be exposed if bot tokens are stored in shared files. <br>
-Mitigation: Keep bot tokens out of shared files and review channel configuration before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to install and run a private OpenClaw roleplay agent that generates daily characters, manages guess progress, sends scheduled roleplay messages, and archives generated state and images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nannyu/daily-roleplay-game) <br>
-- [Project homepage](https://github.com/nannyu/openclaw-role-play-skill) <br>
-- [OpenClaw setup guide](docs/OPENCLAW_SETUP.md) <br>
-- [Cron configuration](docs/CRON_CONFIG.md) <br>
-- [Daily roleplay design](docs/daily-roleplay-game.md) <br>
-- [OpenClaw multi-agent documentation](https://docs.openclaw.ai/concepts/multi-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, JSON/YAML configuration, shell commands, roleplay messages, and optional image-generation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local workspace files such as roleplay-active.md, guess-log.md, archives, tracker JSON, and image-generation configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The skill is a disclosed adult roleplay workspace with persistent agent behavior and recurring messages or images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user intentionally wants a Chinese-language adult roleplay workspace.
+
+Risk: Recurring messages may be sent to an unintended destination if the message channel is left as last.
+
+Mitigation: Configure a fixed private message channel before enabling scheduled roleplay messages.
+
+Risk: Heartbeat configuration under global agent defaults can affect agents beyond the roleplay workspace.
+
+Mitigation: Avoid placing the heartbeat under agents.defaults unless the user explicitly wants that global behavior.
+
+Risk: Calendar, memory, or todo summaries can expose private context through generated roleplay messages.
+
+Mitigation: Disable calendar and memory todo summaries unless the user explicitly wants that data used and sent.
+
+Risk: Scheduled archive behavior can retain generated images and roleplay state in local archives.
+
+Mitigation: Review or patch wrapup.sh before scheduling it, and decide how archives should be deleted or protected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nannyu/skills/daily-roleplay-game)
+- [Project homepage](https://github.com/nannyu/openclaw-role-play-skill)
+- [OpenClaw setup guide](docs/OPENCLAW_SETUP.md)
+- [Cron configuration](docs/CRON_CONFIG.md)
+- [Daily roleplay design document](docs/daily-roleplay-game.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and YAML/JSON configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent workspace files and may trigger recurring messages and generated images when configured.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

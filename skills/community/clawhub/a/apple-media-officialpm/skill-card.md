@@ -1,39 +1,51 @@
-## Description: <br>
-Discover and control Apple media/AirPlay devices (HomePod, Apple TV, AirPlay speakers) from macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and control Apple media and AirPlay devices, including HomePod, Apple TV, and AirPlay speakers, from macOS.
 
-## Publisher: <br>
-[officialpm](https://clawhub.ai/user/officialpm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[officialpm](https://clawhub.ai/user/officialpm)
 
-## Use Case: <br>
-Developers and end users on macOS use this skill to discover local Apple/AirPlay media devices, map device names to network identifiers, connect speakers, and control playback or volume through pyatv and Airfoil. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local network scans and JSON summaries can reveal private device names, IP addresses, identifiers, and service details. <br>
-Mitigation: Run scans only on networks and devices you own or are authorized to manage, and avoid storing or sharing scan outputs. <br>
-Risk: The skill can control Apple/AirPlay devices through pyatv, Airfoil, and sibling Airfoil scripts. <br>
-Mitigation: Verify pyatv, Airfoil, and the referenced Airfoil skill before granting permissions or issuing control commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Apple Media ClawHub listing](https://clawhub.ai/officialpm/apple-media-officialpm) <br>
+## Use Case:
+
+Developers and technical users use this skill to discover local AirPlay and Apple media devices, map names to IP addresses or identifiers, and issue playback, connection, and volume commands through pyatv and Airfoil.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill performs local-network discovery and control of Apple and AirPlay devices, which can expose device names, IP addresses, identifiers, and service metadata at runtime.
+
+Mitigation: Run scans only on networks and devices you are authorized to discover or control, and avoid committing scan output.
+
+Risk: The skill depends on third-party tools, including pyatv and Airfoil, for installation and device control.
+
+Mitigation: Confirm the dependencies are trusted before installing and consider pinning pyatv to a reviewed version.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON scan summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local network scan results that include device names, IP addresses, identifiers, and service details.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and changelog, released 2026-01-28) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and optional JSON scan output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local network scan output containing device names, IP addresses, models, identifiers, and service metadata.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and changelog, released 2026-01-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

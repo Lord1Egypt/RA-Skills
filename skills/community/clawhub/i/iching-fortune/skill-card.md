@@ -1,42 +1,60 @@
-## Description: <br>
-Provides interactive Chinese and Western divination sessions, including I Ching, Ba Zi, Zi Wei, Tarot, Astrology, Numerology, Palmistry, Face Reading, Feng Shui, Runes, and HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guided fortune-telling sessions across Chinese and Western divination methods, including I Ching, Ba Zi, Zi Wei, Tarot, astrology, numerology, palmistry, face reading, Feng Shui, runes, crystal gazing, and oracle cards.
 
-## Publisher: <br>
-[yw-0311](https://clawhub.ai/user/yw-0311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yw-0311](https://clawhub.ai/user/yw-0311)
 
-## Use Case: <br>
-External users use this skill for entertainment or spiritual divination readings, decision prompts, and method education across Chinese and Western fortune-telling traditions. The agent guides method selection, collects method-specific inputs, performs symbolic interpretation, and may generate a styled HTML reading report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some methods may ask for sensitive personal details such as exact birth information, legal names, face or hand photos, addresses, and home layouts. <br>
-Mitigation: Prefer lower-data methods such as I Ching, Tarot, or Runes; avoid sharing exact addresses, floor plans, face photos, hand photos, full legal names, or exact birth details unless truly necessary. <br>
-Risk: Divination outputs may be mistaken for professional advice or fixed predictions. <br>
-Mitigation: Treat outputs as entertainment or spiritual guidance and do not rely on them for medical, legal, financial, safety, or other professional decisions. <br>
+## Use Case:
 
+External users use this skill to choose a divination method, provide method-specific inputs, and receive symbolic fortune-telling guidance with a generated HTML report.
 
-## Reference(s): <br>
-- [Chinese Divination Methods](references/chinese-methods.md) <br>
-- [Fortune-Telling Preparation Guide](references/preparation.md) <br>
-- [Western/International Divination Methods](references/western-methods.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with optional HTML report code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Readings should be treated as entertainment or spiritual guidance, not professional advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may request sensitive personal, image, or household data for methods such as Ba Zi, astrology, palmistry, face reading, or Feng Shui.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approximate or redacted inputs where possible, and avoid sharing exact identity, address, face, palm, or floor-plan data unless necessary.
+
+Risk: Generated HTML reports may contain submitted personal details.
+
+Mitigation: Treat generated reports as private and review their contents before sharing or storing them.
+
+Risk: The skill provides fortune-telling guidance that may be mistaken for reliable prediction or practical decision analysis.
+
+Mitigation: Use the output as symbolic entertainment or reflection, and rely on qualified professional advice for legal, medical, financial, employment, or safety decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yw-0311/skills/iching-fortune)
+- [Chinese Divination Methods](references/chinese-methods.md)
+- [Western/International Divination Methods](references/western-methods.md)
+- [Fortune-Telling Preparation Guide](references/preparation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Files]
+
+**Output Format:** [Conversational guidance with optional HTML report code or file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request personal, image, or household details depending on the chosen divination method.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

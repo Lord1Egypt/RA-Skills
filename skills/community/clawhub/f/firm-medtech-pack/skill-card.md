@@ -1,42 +1,58 @@
-## Description: <br>
-Curated skill bundle for medical device companies, digital health startups and pharma R&D teams that activates RA, Clinical, R&D and Quality agents for FDA/CE compliance, clinical documentation and pharmacovigilance workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curated skill bundle for medical device companies, digital health startups, and pharma R&D teams that configures Regulatory Affairs, Clinical, R&D, and Quality agents for FDA/CE compliance, clinical documentation, and pharmacovigilance workflows.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Medtech, digital health, and pharma R&D teams use this skill to coordinate regulatory affairs, clinical, R&D, quality, legal, and operations workflows for submissions, adverse event review, documentation, and compliance-oriented research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Real patient or protected health information could be exposed if medtech workflows are used before privacy controls are configured. <br>
-Mitigation: Do not process real PHI unless secure production mode, anonymization, export restrictions, and audit logging are configured and tested. <br>
-Risk: Companion skills recommended by the bundle may add tools or behaviors outside this artifact's instruction-only scope. <br>
-Mitigation: Review and scan companion skills before installing or using them in regulated workflows. <br>
-Risk: Regulatory and adverse-event outputs may be incomplete or unsuitable for regulated decisions without review. <br>
-Mitigation: Use the generated drafts and triage matrices as review inputs and require qualified human validation before submission, reporting, or operational action. <br>
+## Use Case:
 
+Developers, regulatory affairs, clinical, quality, and medtech operations teams use this skill to configure firm-style agent workflows for regulated healthcare tasks such as FDA/CE compliance, submission preparation, adverse-event triage, pharmacovigilance, and quality documentation.
 
-## Reference(s): <br>
-- [Firm Medtech Pack ClawHub Listing](https://clawhub.ai/romainsantoli-web/firm-medtech-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration snippets, and structured prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow bundle; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The skill recommends unpinned companion skill installation for sensitive healthcare workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the ClawHub installer and each companion skill version before installation.
+
+Risk: The skill uses session-orchestration tools in contexts that may involve PHI, adverse-event reports, audit trails, or regulatory work.
+
+Mitigation: Use a restricted sandbox with no production credentials until companion skills and session-orchestration permissions are separately approved.
+
+Risk: Generated regulatory, clinical, quality, or pharmacovigilance outputs may be inaccurate or incomplete.
+
+Mitigation: Require qualified human review before using outputs in submissions, reportability decisions, audits, or patient-data workflows.
+
+## Reference(s):
+
+- [Firm Medtech Pack on ClawHub](https://clawhub.ai/romainsantoli-web/skills/firm-medtech-pack)
+- [romainsantoli-web publisher profile](https://clawhub.ai/user/romainsantoli-web)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands, JSON configuration snippets, and prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include regulated-workflow guidance and should be reviewed before use with PHI, adverse-event reports, audit trails, or regulatory submissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

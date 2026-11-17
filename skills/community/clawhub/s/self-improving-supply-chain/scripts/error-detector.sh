@@ -1,5 +1,6 @@
 #!/bin/bash
 # Supply Chain Self-Improvement Error Detector Hook (Optional)
+# Inspects CLAUDE_TOOL_OUTPUT in-process only. Never writes tool output, secrets, or transcripts to disk.
 # Detects operational disruption terms in PostToolUse output.
 # Reads CLAUDE_TOOL_OUTPUT only when provided by the hook context.
 

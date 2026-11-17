@@ -1,45 +1,61 @@
-## Description: <br>
-Helps users find, compare, and select OpenClaw skills from the Clawhub marketplace based on task descriptions, domains, and desired outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users find, compare, and select OpenClaw skills from the Clawhub marketplace based on their tasks, output needs, and troubleshooting context.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-External users and developers use this skill to identify suitable OpenClaw or Clawhub skills, compare alternatives, and get practical usage or troubleshooting guidance for skill-based workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes exposed credentials or token-like material. <br>
-Mitigation: Do not reuse included tokens or app secrets; rotate them if they are real before any installation or publication workflow. <br>
-Risk: Publishing, upload, or account-linked commands appear in the artifact and may not fit the skill-search purpose. <br>
-Mitigation: Treat those commands as examples only and avoid running them unless the credential, destination, and user confirmation are explicit. <br>
-Risk: The skill is a broad recommendation guide and may produce unsuitable or incomplete skill matches. <br>
-Mitigation: Verify recommendations against the current skill documentation and user requirements before deployment or task execution. <br>
+## Use Case:
 
+Developers, researchers, and OpenClaw users use this skill to identify suitable marketplace skills, compare options for a task, and get concise usage or troubleshooting guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earthwalking/clawhub-skill-search) <br>
-- [Clawhub skills marketplace](https://clawhub.ai/skills) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw skill creation documentation](https://docs.openclaw.ai/skills/creating) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with recommendation tables and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces skill recommendations, comparisons, quick-start guidance, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Published artifacts may expose credential-shaped Clawhub and WeChat secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after the publisher removes those artifacts or secrets and rotates any affected credentials.
+
+Risk: Publishing and upload workflows are bundled into a skill-search guide, which can broaden the skill beyond discovery tasks.
+
+Mitigation: Narrow activation to explicit skill-discovery requests and move publishing workflows into a separately scoped publishing skill with confirmation and secret-handling guidance.
+
+Risk: The authoritative security verdict is suspicious.
+
+Mitigation: Review the evidence security summary and scan the release before deployment; treat skill recommendations and command examples as guidance that must be checked before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/earthwalking/skills/clawhub-skill-search)
+- [Publisher Profile](https://clawhub.ai/user/earthwalking)
+- [ClawHub Marketplace](https://clawhub.ai/skills)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw Skill Development Guide](https://docs.openclaw.ai/skills/creating)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline command examples and comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommended skill names, task-to-skill mappings, troubleshooting steps, and command templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

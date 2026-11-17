@@ -1,41 +1,53 @@
-## Description: <br>
-Memory forensics with Volatility and related tools. Acquire RAM dumps, extract processes and DLLs, investigate rootkits and fileless malware, recover credentials from memory, and reconstruct timelines from memory images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory forensics with Volatility and related tools. Acquire RAM dumps, extract processes and DLLs, investigate rootkits and fileless malware, recover credentials from memory, and reconstruct timelines from memory images.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Security engineers, incident responders, and forensic analysts use this skill for authorized memory acquisition and RAM-dump analysis, including process, network, DLL, injection, rootkit, credential, and timeline investigations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory images and command outputs may expose passwords, hashes, tokens, private user activity, and malware artifacts. <br>
-Mitigation: Use the skill only for authorized incident response, forensic, or lab work; store outputs securely, restrict access, redact before sharing, and rotate any exposed credentials. <br>
-Risk: Live memory acquisition and credential-recovery steps can require elevated privileges and may affect forensic handling if run without preparation. <br>
-Mitigation: Confirm authorization and scope before acquisition, minimize acquisition footprint, document tool use and timestamps, hash memory dumps, and maintain chain-of-custody records. <br>
+## Use Case:
 
+Security practitioners, incident responders, and malware analysts use this skill for memory acquisition, Volatility-based analysis, artifact extraction, credential-recovery review, rootkit investigation, and timeline reconstruction from memory images.
 
-## Reference(s): <br>
-- [Memory Forensics skill page](https://clawhub.ai/solomonneas/memory-forensics) <br>
-- [Volatility 3 symbol downloads](https://downloads.volatilityfoundation.org/volatility3/symbols/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command and code examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance can lead to forensic artifacts and command outputs containing sensitive memory contents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: Memory acquisition and credential-recovery commands can expose sensitive data or affect systems if run without proper authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run acquisition and credential-recovery steps only on systems and memory images the operator is authorized to examine, and protect or redact recovered secrets in notes and reports.
+
+Risk: Installing or running forensic tools with elevated privileges can increase host risk.
+
+Mitigation: Prefer a pinned isolated environment, avoid installing tools as root where possible, and review commands before execution.
+
+## Reference(s):
+
+- [Volatility 3 Symbol Tables](https://downloads.volatilityfoundation.org/volatility3/symbols/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, markdown]
+
+**Output Format:** [Markdown with inline shell commands, code snippets, checklists, and analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include forensic acquisition steps, Volatility commands, detection patterns, and reporting guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

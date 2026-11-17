@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 104" width="100%">
+  <defs>
+    <!-- ct-* 系列通用：圆弧角方框柔和投影（A 档靛蓝主色，ct-base §12） -->
+    <filter id="logoShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" flood-color="#1C6DD0" flood-opacity="0.30"/>
+    </filter>
+  </defs>
+
+  <!-- 整体圆弧角方框（含柔和投影）—— A 档：底统一 #EAF2FB，描边用主色淡色调 #C9D6EE（§12 两档表） -->
+  <rect x="-52" y="-52" width="104" height="104" rx="20" fill="#EAF2FB" stroke="#C9D6EE" stroke-width="0.5" transform="translate(52,52)" filter="url(#logoShadow)"/>
+  
+  <!-- 左上角统一文字（ct-* 系列通用）：等距留白 + 最粗字重 + 同色描边加粗，贴近左上圆角（A 档 #1C6DD0） -->
+  <g transform="translate(7,13)">
+    <text font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="900" font-style="italic" fill="#1C6DD0" stroke="#1C6DD0" stroke-width="0.25" paint-order="stroke" stroke-linejoin="round">Clinical</text>
+    <text y="12" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="900" font-style="italic" fill="#1C6DD0" stroke="#1C6DD0" stroke-width="0.25" paint-order="stroke" stroke-linejoin="round">Trial</text>
+  </g>
+  
+  <!-- 多层淡色背景曲线（A 档淡色调 #C9D6EE） -->
+  <g transform="translate(15,54) scale(1.05)" opacity="0.3">
+    <path d="M0 30 C8 30,14 24,20 16 C26 8,32 -2,38 -10 C44 -18,52 -22,60 -22 C68 -22,76 -16,82 -8 C88 0,94 10,100 18" fill="none" stroke="#C9D6EE" stroke-width="0.8"/>
+  </g>
+  
+  <g transform="translate(15,54) scale(1.05)" opacity="0.25">
+    <path d="M0 34 C8 34,14 28,20 20 C26 14,32 4,38 -4 C44 -12,52 -16,60 -14 C68 -12,76 -6,82 2 C88 10,94 18,100 24" fill="none" stroke="#C9D6EE" stroke-width="0.8"/>
+  </g>
+  
+  <!-- 主钟形曲线（A 档主色 #1C6DD0；≥3px 粗描边，符合 §12 主色应用铁律） -->
+  <g transform="translate(15,54) scale(1.05)">
+    <path d="M0 34 C8 34,14 28,20 20 C26 12,32 2,38 -6 C44 -14,52 -18,60 -18 C68 -18,76 -14,82 -6 C88 2,94 12,100 20 C106 28,112 34,120 34" fill="none" stroke="#1C6DD0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- 曲线下方填充区（A 档主色淡显，§12 主色铁律：实心大图形承载主色） -->
+    <path d="M60 -18 C68 -18,76 -14,82 -6 C88 2,94 12,100 20 C106 28,112 34,120 34 L120 34 L0 34 L0 34 C8 34,14 28,20 20 C26 12,32 2,38 -6 C44 -14,52 -18,60 -18 Z" fill="#1C6DD0" opacity="0.25"/>
+    
+    <!-- α 阈值线（跨档统一语义色 #D85A30） -->
+    <line x1="72.4" y1="38" x2="72.4" y2="-22" stroke="#D85A30" stroke-width="1.5"/>
+    
+    <!-- α 标注 -->
+    <text x="74.3" y="-13" font-family="sans-serif" font-size="12" font-weight="500" fill="#D85A30">α</text>
+    
+    <!-- 峰顶十字（临床医学标识） -->
+    <g transform="translate(60,-22)">
+      <line x1="-3.5" y1="0" x2="3.5" y2="0" stroke="#D85A30" stroke-width="1.8"/>
+      <line x1="0" y1="-3.5" x2="0" y2="3.5" stroke="#D85A30" stroke-width="1.8"/>
+    </g>
+  </g>
+</svg>

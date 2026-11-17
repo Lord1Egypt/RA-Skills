@@ -1,37 +1,53 @@
-## Description: <br>
-Configuration migration and integrity audit pack for shell environment sanitization, plugin integrity, token separation, OpenTelemetry redaction, and RPC rate limiting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configuration migration and integrity audit pack for shell environment sanitization, plugin integrity, token separation, OpenTelemetry redaction, and RPC rate limiting.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit configuration migrations before rollout, with checks for environment injection risk, plugin manifest drift, token boundary separation, telemetry PII redaction, and RPC rate limiting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/romainsantoli-web/firm-config-migration-pack) <br>
+Developers and engineers use this skill to audit configuration migrations before rollout, with checks for environment sanitization, plugin manifest drift, token separation, telemetry redaction, and RPC rate limiting.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.0.0.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill depends on mcp-openclaw-extensions for the actual audit checks.
+
+Mitigation: Confirm the required package is trusted and intentionally installed before using the skill.
+
+Risk: Audit findings can require judgment before configuration migration changes are applied.
+
+Mitigation: Review audit results before making migration changes manually.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/skills/firm-config-migration-pack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline tool invocation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on mcp-openclaw-extensions >= 3.0.0 for the actual audit checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

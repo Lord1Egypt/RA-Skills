@@ -1,48 +1,60 @@
-## Description: <br>
-MiniMax TTS helps an agent convert text into speech with the MiniMax API, manage available voices, and clone custom voices when the user provides authorized voice material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax TTS helps agents use MiniMax APIs to convert text into speech, manage voices, and create cloned voices.
 
-## Publisher: <br>
-[turbos7](https://clawhub.ai/user/turbos7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[turbos7](https://clawhub.ai/user/turbos7)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate speech audio from text, choose or search MiniMax voices, run long-form asynchronous synthesis, and create custom voice clones with appropriate speaker permission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MiniMax receives submitted text and voice-related data during synthesis, voice listing, and voice cloning requests. <br>
-Mitigation: Avoid submitting secrets, regulated content, or voice material without appropriate consent, and install only if the MiniMax data flow is acceptable for the use case. <br>
-Risk: The skill requires a MiniMax API key that could be exposed if copied into prompts, logs, or shared scripts. <br>
-Mitigation: Keep MINIMAX_API_KEY in a private environment variable or secret store and do not paste it into agent-visible text. <br>
-Risk: Voice cloning can create synthetic speech that resembles a real speaker. <br>
-Mitigation: Clone voices only with the speaker's permission and use watermarking or disclosure controls when appropriate. <br>
-Risk: Voice deletion commands may remove custom voices irreversibly. <br>
-Mitigation: Double-check the target voice_id before using deletion options. <br>
+## Use Case:
 
+Developers and agent operators use this skill to synthesize spoken audio from text, select or manage MiniMax voices, and create cloned voices through MiniMax APIs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/turbos7/turbos7-minimax-tts) <br>
-- [Async text-to-speech API reference](references/tts-async.md) <br>
-- [Sync text-to-speech API reference](references/tts-sync.md) <br>
-- [Voice clone API reference](references/voice-clone.md) <br>
-- [Voice management API reference](references/voice-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; scripts produce console text, API responses, and saved audio files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated audio is saved locally by the bundled synthesis script; API calls require MINIMAX_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Synthesis text, task metadata, voice IDs, voice-cloning inputs, and API credentials may be sent to MiniMax.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use MINIMAX_API_KEY, avoid sensitive text and unauthorized voice samples, and run the skill only with data approved for MiniMax processing.
+
+Risk: Voice cloning and deletion can affect account voices, including deletion of custom voices documented as unrecoverable.
+
+Mitigation: Confirm consent and rights for voice samples, and manually verify voice IDs before cloning or deletion.
+
+Risk: The server security verdict is suspicious because the skill sends data to a third-party service and has limited safeguards around voice management.
+
+Mitigation: Review the commands before execution, prefer environment-based credentials over command-line API keys, and limit use to trusted MiniMax accounts.
+
+## Reference(s):
+
+- [Async TTS API Reference](references/tts-async.md)
+- [Sync TTS API Reference](references/tts-sync.md)
+- [Voice Clone API Reference](references/voice-clone.md)
+- [Voice Management API Reference](references/voice-management.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When synthesis scripts are executed, they can save generated audio files under ~/.openclaw/workspace/assets/audios.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

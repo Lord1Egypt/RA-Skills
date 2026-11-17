@@ -1,41 +1,54 @@
-## Description: <br>
-Extracts title, keyword, and abstract metadata from academic PDF files and returns structured JSON for literature management and citation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts title, keywords, and abstract metadata from academic PDFs and returns structured JSON for literature organization, citation preparation, and quick paper review.
 
-## Publisher: <br>
-[y-egg](https://clawhub.ai/user/y-egg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[y-egg](https://clawhub.ai/user/y-egg)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to parse academic PDFs and collect citation-ready metadata for literature organization, reference preparation, and analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the first part of each selected PDF to Moonshot's API using MOONSHOT_API_KEY. <br>
-Mitigation: Use it only with documents approved for third-party processing, and avoid confidential, unpublished, licensed, or personal documents unless that processing is acceptable. <br>
-Risk: Dependency installation instructions do not pin package versions. <br>
-Mitigation: Pin and review dependencies before deployment in managed or production environments. <br>
+## Use Case:
 
+Developers, researchers, and literature-management users can use this skill to extract a paper title, keywords, and abstract from a supplied PDF into JSON for downstream citation and data-management workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/y-egg/pdf-literature-parser) <br>
-- [Moonshot API endpoint used by the artifact](https://api.moonshot.cn/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The JSON includes title_apa, keywords, and abstract fields; read and extraction errors are also returned as JSON messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may send extracted PDF text to Moonshot's external AI API when an API key is present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation or use, and avoid confidential, unpublished, regulated, or license-restricted PDFs unless this external data flow is approved.
+
+Risk: The artifact does not document the remote data flow, dependency pinning, consent handling, or a local-only mode.
+
+Mitigation: Prefer a reviewed version that documents the remote service, asks for consent, pins dependencies, and offers a local-only option.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/y-egg/skills/pdf-literature-parser)
+- [Moonshot API endpoint](https://api.moonshot.cn/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON object with title_apa, keywords, and abstract fields, plus concise setup and command-line guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a PDF path input; when MOONSHOT_API_KEY is configured, up to the first 5,000 characters of extracted PDF text may be sent to Moonshot's external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

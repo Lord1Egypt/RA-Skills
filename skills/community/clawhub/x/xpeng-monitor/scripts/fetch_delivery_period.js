@@ -83,6 +83,49 @@ function findMatchingSku(skus, defaultCodes) {
 }
 
 /**
+ * 获取页面真实使用的交付周期数据（listDeliveryPeriodByVersion，按 carCode 维度）
+ * 官网配置页用该接口的返回覆盖 SKU 列表里的 min/maxDeliveryPeriod 旧字段，
+ * 因此交付周期必须以此接口为准；失败时返回 null，调用方回退到旧字段。
+ * @param {string} carVersionCode
+ * @returns {Promise<Object|null>} carCode -> {minDeliveryPeriod, maxDeliveryPeriod} 映射
+ */
+async function fetchDeliveryPeriodMap(carVersionCode) {
+  try {
+    const url = 'https://store.xiaopeng.com/api/v1/client/orion/configurator/listDeliveryPeriodByVersion?carVersionSn=' + carVersionCode;
+    const res = await httpGet(url);
+    if (res.code !== 200 || !Array.isArray(res.data) || res.data.length === 0) {
+      return null;
+    }
+    const map = {};
+    for (const item of res.data) {
+      if (item && item.carCode) {
+        map[item.carCode] = item;
+      }
+    }
+    return map;
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * 用页面口径的交付周期覆盖匹配到的 SKU（在原对象上修改）
+ * @param {Object|null} sku - 默认配置匹配到的 SKU
+ * @param {Object|null} dpMap - fetchDeliveryPeriodMap 的返回
+ */
+function applyDeliveryPeriodOverride(sku, dpMap) {
+  if (!sku || !dpMap) return;
+  const hit = dpMap[sku.carCode];
+  if (hit && hit.minDeliveryPeriod != null && hit.maxDeliveryPeriod != null) {
+    sku.minDeliveryPeriod = hit.minDeliveryPeriod;
+    sku.maxDeliveryPeriod = hit.maxDeliveryPeriod;
+    if (hit.expectDeliveryTime != null) {
+      sku.expectDeliveryTime = hit.expectDeliveryTime;
+    }
+  }
+}
+
+/**
  * 判断是否为 Case 1 车型（GX/M03/P7）
  */
 function isCase1Model(carSeriesCode) {
@@ -134,8 +177,12 @@ async function handleCase1(carVersionCode, carSeriesCode) {
       return;
     }
 
-    // 3) 找到默认配置匹配的 SKU，输出交付周期
+    // 3) 找到默认配置匹配的 SKU
     const matchedSku = findMatchingSku(skuRes.data, defaultCodes);
+
+    // 4) 用页面口径的交付周期（listDeliveryPeriodByVersion）覆盖，失败回退旧字段
+    const dpMap = await fetchDeliveryPeriodMap(carVersionCode);
+    applyDeliveryPeriodOverride(matchedSku, dpMap);
     outputDelivery(matchedSku);
   } catch (e) {
     console.error('ERROR|0|0|');
@@ -151,7 +198,7 @@ async function handleCase1(carVersionCode, carSeriesCode) {
  * @param {string} versionCode - 要查询的版本代码
  * @param {string} [prefix] - 输出前缀（--all 模式使用）
  */
-function processVersionFromAllInOne(allInOneData, versionCode, prefix) {
+async function processVersionFromAllInOne(allInOneData, versionCode, prefix) {
   const carSpecGroupVoMap = allInOneData.carSpecGroupVoMap || {};
   const carInfoVoMap = allInOneData.carInfoVoMap || {};
 
@@ -167,6 +214,10 @@ function processVersionFromAllInOne(allInOneData, versionCode, prefix) {
   }
 
   const matchedSku = findMatchingSku(skus, defaultCodes);
+
+  // 用页面口径的交付周期（listDeliveryPeriodByVersion）覆盖，失败回退旧字段
+  const dpMap = await fetchDeliveryPeriodMap(versionCode);
+  applyDeliveryPeriodOverride(matchedSku, dpMap);
   outputDelivery(matchedSku, prefix);
 }
 
@@ -192,7 +243,7 @@ async function handleCase2All(carSeriesCode) {
     }
 
     for (const versionCode of versionCodes) {
-      processVersionFromAllInOne(res.data, versionCode, versionCode);
+      await processVersionFromAllInOne(res.data, versionCode, versionCode);
     }
   } catch (e) {
     console.error('ERROR: ' + e.message);
@@ -219,7 +270,7 @@ async function handleCase2Single(carVersionCode, carSeriesCode) {
       return;
     }
 
-    processVersionFromAllInOne(res.data, carVersionCode);
+    await processVersionFromAllInOne(res.data, carVersionCode);
   } catch (e) {
     console.error('ERROR|0|0|');
     process.exit(1);

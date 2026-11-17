@@ -1,42 +1,48 @@
-## Description: <br>
-Quickly extract the key points from a book or article and organize them into structured markdown notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quickly extract the key points from a book or article and organize them into structured markdown notes.
 
-## Publisher: <br>
-[chenyichu86](https://clawhub.ai/user/chenyichu86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chenyichu86](https://clawhub.ai/user/chenyichu86)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and developers can use this skill to turn a book, article, or paper into concise, audience-tailored markdown notes. It is useful when a reader needs key themes, section summaries, practical takeaways, and a mind-map-friendly hierarchy.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may ask the agent to reproduce copyrighted books or articles at length.
+
+Mitigation: Use user-provided excerpts that the user is allowed to process and ask for summaries or distilled notes instead of long verbatim reproduction.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to turn books, papers, and articles into concise markdown notes tailored to a specific target audience. It is useful for quick comprehension, study notes, and mind-map-friendly summaries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Summaries can omit nuance or introduce inaccuracies, especially when source material is complex or domain-specific. <br>
-Mitigation: Verify important claims against the original source before relying on the notes. <br>
-Risk: Outputs may be mistaken for expert legal, medical, financial, or safety-critical advice. <br>
-Mitigation: Use the notes as reading support only and seek qualified review for high-impact decisions. <br>
-Risk: Users may provide copyrighted or otherwise restricted source material. <br>
-Mitigation: Use lawful source material or references and keep quotations brief. <br>
+**Output Format:** [Structured Markdown notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenyichu86/quick-read) <br>
+**Other Properties Related to Output:** [Uses a clear H1/H2/H3 hierarchy suitable for import into mind-mapping tools such as XMind.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown notes with headings, bullet points, quotations or distilled takeaways, action suggestions, and further reading] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for clear hierarchy and import into mind-mapping tools such as XMind] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

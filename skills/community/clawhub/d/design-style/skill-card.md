@@ -1,41 +1,54 @@
-## Description: <br>
-Design Style helps agents select and apply bundled frontend design-system prompts for web pages, UI components, and visual styling work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design Style helps agents select and apply a design-system prompt library when building or improving frontend interfaces, web pages, UI components, and visual styling.
 
-## Publisher: <br>
-[BenAngel65](https://clawhub.ai/user/BenAngel65) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[benangel65](https://clawhub.ai/user/benangel65)
 
-## Use Case: <br>
-Developers and agents use this skill during frontend and UI work to choose a design style, load the matching prompt, and produce code or guidance that follows the selected visual system. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly for frontend or UI work and steer results toward a specific design-system aesthetic even when styling is only a small part of the task. <br>
-Mitigation: Confirm the desired style and scope before applying a bundled prompt, especially in established products with existing design systems. <br>
-Risk: Bundled helper scripts are present for listing styles and checking skill structure. <br>
-Mitigation: Review the helper script behavior before running it and use it only when style discovery or local verification is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/BenAngel65/design-style) <br>
-- [Reference guide](reference.md) <br>
-- [Style mapping](styles-mapping.json) <br>
+## Use Case:
 
+Developers and design-focused coding agents use this skill to choose a frontend aesthetic, load the matching style prompt, and produce style-consistent UI code, configuration, and guidance for web interfaces.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May load bundled style prompt files before producing implementation guidance or frontend code.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated frontend code may include external fonts, remote texture URLs, or animation libraries suggested by the style prompts.
+
+Mitigation: Review generated code before deployment and replace external assets with local or approved resources for privacy-sensitive sites.
+
+Risk: Some style prompts may encourage forced dark or light themes, uppercase text, or motion-heavy effects that can reduce accessibility or fit poorly with an existing product.
+
+Mitigation: Check contrast, typography, motion, and theme behavior against project accessibility and brand requirements before release.
+
+## Reference(s):
+
+- [Design Style Skill Reference Guide](artifact/reference.md)
+- [Style Mapping](artifact/styles-mapping.json)
+- [Design Style Prompt Library](artifact/prompts/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional code, shell, and configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the selected design style and the user's frontend stack.]
+
+## Skill Version(s):
+
+1.0.0 (source: target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

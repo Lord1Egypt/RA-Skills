@@ -1,46 +1,60 @@
-## Description: <br>
-Turns science or technical explainer text into a single-page HTML presentation or flowchart-style animation using bundled PPT and Animation templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms popular-science or technical explanatory content into single-page HTML presentation animations, with a default PPT-style carousel mode and an optional flowchart-style visual reconstruction mode.
 
-## Publisher: <br>
-[unclecheng-li](https://clawhub.ai/user/unclecheng-li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unclecheng-li](https://clawhub.ai/user/unclecheng-li)
 
-## Use Case: <br>
-Content creators, educators, and developers use this skill to transform science or technical explainer text into browser-based slide animations for videos, classroom lessons, demos, and technical sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled templates and generated HTML may contact third-party CDNs for fonts or icon libraries. <br>
-Mitigation: Review generated HTML before publishing or deploying, and replace CDN dependencies with approved local assets when offline or controlled execution is required. <br>
-Risk: Some bundled templates contain unrelated OpenClaw-specific warning content or a restriction-removal example that may be unsuitable for neutral presentations. <br>
-Mitigation: Inspect selected templates before use and remove or replace unrelated warning content before relying on the output. <br>
-Risk: The workflow can overwrite an existing AI_Animation.html file when the output path is not explicit. <br>
-Mitigation: Specify the output path for each run and confirm whether an existing file may be overwritten. <br>
+## Use Case:
 
+Developers, educators, and technical content creators use this skill to turn explanatory text into HTML-based presentation or flowchart animations for teaching, video, and knowledge-sharing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unclecheng-li/unclecheng-ai-animation) <br>
-- [README](artifact/README.md) <br>
-- [Skill workflow](artifact/SKILL.md) <br>
-- [PPT template selection guide](artifact/assets/templates/PPT Template-level2/SUMMARY.md) <br>
-- [Animation template selection guide](artifact/assets/templates/Animation/SUMMARY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and generated single-file HTML/CSS/JavaScript presentation code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may use bundled HTML templates and can write or rewrite an AI_Animation.html file at a user-selected path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Generated presentation HTML may contact mutable third-party CDNs when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or vendor remote scripts and fonts, pin dependency versions, and add integrity checks before distribution.
+
+Risk: Generated HTML may contain leftover demo content or unsafe prompt examples.
+
+Mitigation: Review the completed HTML before publishing, teaching, or using it in video production.
+
+Risk: The workflow can write an HTML output file to a user-selected or default path.
+
+Mitigation: Confirm the output destination before file writes and avoid overwriting existing work without review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unclecheng-li/skills/unclecheng-ai-animation)
+- [README](README.md)
+- [PPT template selection guide](assets/templates/PPT Template-level2/SUMMARY.md)
+- [Animation template selection guide](assets/templates/Animation/SUMMARY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated HTML/CSS/JavaScript code or HTML file instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bundled HTML presentation and animation templates; generated pages may reference third-party CDN assets unless removed or vendored.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

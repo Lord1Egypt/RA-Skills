@@ -1,0 +1,12 @@
+{
+  "tool_name": "batch_factor_analysis",
+  "feature_days": 5,
+  "factor_dict": {
+    "MERTON_DD": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nmkt = get_stock_index('000001', 'close').pct_change()\nsigma = ret.rolling(252).std() * np.sqrt(252)\nmu = ret.rolling(252).mean() * 252\nequity = d['每股净资产'] * d['总股本']\ndr = d['资产负债率'].replace(0, np.nan)\nTA = equity / (1 - dr.clip(upper=0.99))\nD = TA * dr\nE = d['总市值']\nDD = (np.log((E / D).replace(0, np.nan)) + (mu - 0.5 * sigma ** 2) * 1) / (sigma * np.sqrt(1))\nout = DD",
+    "CF_OCF_YIELD": "price = d['总市值'] / d['总股本']\nout = d['每股经营现金流净额'] / price.replace(0, np.nan)",
+    "CF_FCF_YIELD": "price = d['总市值'] / d['总股本']\nout = d['每股企业自由现金流量'] / price.replace(0, np.nan)",
+    "CF_EBITDA_YIELD": "out = d['息税折旧摊销前利润'] / d['总市值'].replace(0, np.nan)",
+    "CF_DIV_YIELD": "out = d['股息率TTM']"
+  },
+  "save_path": "output\\factor-Merton_CashFlow.xlsx"
+}

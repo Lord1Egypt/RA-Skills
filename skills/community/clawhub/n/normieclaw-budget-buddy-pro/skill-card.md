@@ -1,48 +1,60 @@
-## Description: <br>
-Budget Buddy Pro turns an AI agent into a local personal finance coach that parses bank and credit card statements, categorizes transactions, builds budgets, tracks bills, savings goals, and net worth, and generates spending summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Budget Buddy Pro helps an AI agent organize local personal-finance data by parsing statements, categorizing transactions, building budgets, tracking bills, savings goals, and net worth, and producing spending summaries.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-External users use this skill to manage personal finances locally with an agent: importing statements, reviewing spending, creating budgets, tracking recurring bills, setting savings goals, and generating financial summaries. It is an organization and tracking aid, not a licensed financial advisor. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive bank, credit card, income, bill, and net worth data in local files. <br>
-Mitigation: Install and run it only in a trusted local workspace, keep restrictive file permissions, and use disk encryption where appropriate. <br>
-Risk: Merchant names, transaction descriptions, and exchange-rate lookups could disclose financial details if web search is used. <br>
-Mitigation: Disable or avoid web_search for transaction-derived lookups unless the user explicitly approves each lookup. <br>
-Risk: Raw statements and generated financial records may persist after setup or import. <br>
-Mitigation: Back up existing budget data before setup and delete raw statements from the skill data directory when they are no longer needed. <br>
-Risk: Budget summaries and insights may be mistaken for investment, tax, legal, or professional financial advice. <br>
-Mitigation: Treat outputs as informational organization and tracking assistance, and consult a licensed professional for personalized advice. <br>
+## Use Case:
 
+External users and personal-finance agents use this skill to organize transaction history, create and review budgets, track recurring bills, savings goals, and net worth, and generate local spending summaries. Outputs are informational financial organization aids, not licensed financial, tax, legal, or investment advice.
 
-## Reference(s): <br>
-- [Budget Buddy Pro on ClawHub](https://clawhub.ai/nollio/normieclaw-budget-buddy-pro) <br>
-- [README](artifact/README.md) <br>
-- [Security Audit](artifact/SECURITY.md) <br>
-- [Setup Prompt](artifact/SETUP-PROMPT.md) <br>
-- [Dashboard Companion Kit Spec](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON data files and optional shell, Python, PNG, or PDF report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may write local budget, transaction, rule, recurring bill, savings goal, and net worth files under its data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Financial records may include highly sensitive merchant names, transaction details, balances, income, debt, and net-worth information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the local data directory protected, avoid uploading real bank or credit-card statements until reviewed, and confirm the agent platform's session retention behavior before use.
+
+Risk: The skill's local-only privacy claims conflict with allowed web_search use for vendor lookup and exchange rates.
+
+Mitigation: Disable web_search for this skill or require explicit per-query approval, and never send merchant names, transaction descriptions, or other transaction-derived details to external lookup tools.
+
+Risk: The bundled scripts need hardening before handling sensitive financial data.
+
+Mitigation: Review and harden report HTML escaping and parser output-path restrictions, then scan the scripts again before processing real statements.
+
+## Reference(s):
+
+- [Budget Buddy Pro ClawHub page](https://clawhub.ai/nollio/skills/normieclaw-budget-buddy-pro)
+- [README.md](artifact/README.md)
+- [SECURITY.md](artifact/SECURITY.md)
+- [Dashboard Companion Kit Spec](artifact/dashboard-kit/DASHBOARD-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown chat guidance, JSON data files, shell command snippets, configuration files, and optional PNG or PDF budget reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes sensitive financial records locally, stores budget data in JSON files, and may generate local visual reports; users should review outputs before making financial decisions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

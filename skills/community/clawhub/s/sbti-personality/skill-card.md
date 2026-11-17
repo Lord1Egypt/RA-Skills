@@ -1,39 +1,55 @@
-## Description: <br>
-A Chinese-language joke personality quiz skill that asks playful SBTI-style questions and generates an intentionally unserious personality type and humorous interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SBTI 恶搞人格测试会向用户提出一组中文搞笑人格测试题，并根据回答生成一个离谱的人格类型和幽默解读。
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enihsago](https://clawhub.ai/user/enihsago)
 
-## Use Case: <br>
-External users can use this skill for a lighthearted Chinese personality-style quiz that asks 10 random questions and returns a humorous, non-scientific SBTI result. It is intended for entertainment, not psychological assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat an entertainment quiz as real psychological assessment or disclose sensitive personal details while answering. <br>
-Mitigation: Keep the non-scientific framing visible, avoid requesting sensitive personal information, and present results as humor only. <br>
+## Use Case:
 
+External users use this skill to run an irreverent Chinese parody personality quiz in conversation. The agent asks randomized questions, scores four humorous dimensions, and returns a playful result card with a disclaimer that the test has no scientific basis.
 
-## Reference(s): <br>
-- [SBTI 测试题库](references/questions.md) <br>
-- [SBTI 人格类型](references/types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown quiz prompts and a Chinese result card] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces entertainment-only quiz questions and a concise humorous personality interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake a parody result for a real psychological assessment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the no-scientific-basis disclaimer in the quiz introduction and result card.
+
+Risk: The output can include joking or mildly insulting personality language.
+
+Mitigation: Use the skill only in contexts where irreverent Chinese humor is appropriate and keep comments playful rather than targeted or sensitive.
+
+## Reference(s):
+
+- [SBTI Skill Page](https://clawhub.ai/enihsago/skills/sbti-personality)
+- [SBTI 测试题库](references/questions.md)
+- [SBTI 人格类型](references/types.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese conversational text and Markdown-style result card]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are humorous parody personality results and should not be treated as psychological assessment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

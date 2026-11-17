@@ -1,40 +1,54 @@
-## Description: <br>
-Launch a crypto-native storefront from scratch with an x402 merchant starter kit, agent payment rails playbook, and commerce security hardening guide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers launch a crypto-native storefront using a bundled x402 merchant starter kit, agent payment rails playbook, and commerce security hardening guide.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-External developers and agent builders use this bundle when planning or assembling crypto-native storefronts, payment rails, and agent commerce security controls. The reviewed package is a concise bundle listing and should be checked against the publisher's delivered materials before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package requests powerful payment, crypto, signing, dashboard, GitHub, and API credentials. <br>
-Mitigation: Use least-privilege test credentials first, require explicit approval before live purchases or payments, and avoid production secrets until the publisher supplies the complete materials. <br>
-Risk: The reviewed artifact is a short listing rather than the promised deployable kit and guides. <br>
-Mitigation: Verify the delivered code and guides separately before installation, deployment, or payment-flow integration. <br>
+## Use Case:
 
+External developers and engineers use this bundle to bootstrap a crypto-native storefront and plan payment rails and security controls for agent commerce workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mirni/greenhelix-bundle-x402-commerce-kit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code, configuration, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require GitHub, wallet, dashboard, GreenHelix, signing, and Stripe credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and frontmatter) <br>
+Risk: The package requests powerful credentials without shipped functionality or a clearly documented need.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide credentials until the publisher supplies the missing code or guides and documents why each secret is needed, its minimum scope, and how to revoke it.
+
+Risk: The inspected artifact is non-executable and does not include the claimed deployable starter kit or guide content.
+
+Mitigation: Verify the package contents and expected deliverables before using it in a commerce workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-bundle-x402-commerce-kit)
+- [ClawHub publisher profile](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell commands, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The inspected artifact is non-executable and contains only the skill definition and bundle summary; verify promised code and guides before use.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

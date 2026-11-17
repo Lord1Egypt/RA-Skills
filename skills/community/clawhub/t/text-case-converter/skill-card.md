@@ -1,39 +1,50 @@
-## Description: <br>
-Convert text in a file to upper, lower, or title case when the user wants to change file text capitalization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert text in a file to upper, lower, or title case when the user wants to change the capitalization of text in a file.
 
-## Publisher: <br>
-[jinwangmok](https://clawhub.ai/user/jinwangmok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinwangmok](https://clawhub.ai/user/jinwangmok)
 
-## Use Case: <br>
-Developers, employees, and external users can use this skill to standardize or preview text capitalization from a local file without modifying the original file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill prints the converted contents of the file path supplied by the user, which could expose sensitive file contents in command output. <br>
-Mitigation: Use it only on files whose contents may be displayed, and avoid running it on sensitive files unless that output exposure is acceptable. <br>
+## Use Case:
 
+Developers and other users use this skill to standardize or change capitalization in local text files by printing upper, lower, or title case output without modifying the source file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinwangmok/text-case-converter) <br>
-- [Publisher profile](https://clawhub.ai/user/jinwangmok) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output with status lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints converted file contents to standard output and does not modify the source file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill prints the provided file's contents to the terminal, which can expose sensitive text through terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with files whose contents are acceptable to display, or redirect output according to local data handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinwangmok/skills/text-case-converter)
+- [User manual](artifact/MANUAL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text output with file, case, converted content, and status lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads the user-provided local file and prints converted contents; does not modify the source file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

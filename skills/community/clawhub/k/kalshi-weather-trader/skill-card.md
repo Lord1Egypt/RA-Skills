@@ -1,46 +1,65 @@
-## Description: <br>
-Kalshi Weather Trader helps agents configure, dry-run, and optionally execute Kalshi weather-market trades using NOAA forecasts, the Simmer SDK, and DFlow on Solana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Kalshi weather markets using NOAA forecasts via the Simmer SDK and DFlow on Solana.
 
-## Publisher: <br>
-[simmer](https://clawhub.ai/user/simmer) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simmer](https://clawhub.ai/user/simmer)
 
-## Use Case: <br>
-External users and agent operators use this skill to inspect Kalshi weather positions, configure weather-trading thresholds and locations, and run dry-run or live automated temperature-market scans. Live trading requires Simmer API credentials and a Solana wallet private key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a raw Solana private key for live trading. <br>
-Mitigation: Use a dedicated low-balance wallet, never reuse a primary wallet key, and store the key only in a secured environment. <br>
-Risk: Live mode can place automated trades, and safeguards can be bypassed. <br>
-Mitigation: Keep dry-run mode enabled until the strategy is understood, avoid --no-safeguards for live trades, and set explicit spending limits before enabling scheduled or quiet live runs. <br>
-Risk: Weather temperature markets can resolve by gapping to near zero, so stop-loss monitoring may not cap losses. <br>
-Mitigation: Size positions conservatively and assume each position can become a full loss. <br>
+## Use Case:
 
+External developers and traders use this skill to configure, dry-run, and optionally execute automated Kalshi temperature-market trades driven by NOAA forecast signals. It also helps inspect account balances, open weather positions, and trading thresholds.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/simmer/kalshi-weather-trader) <br>
-- [Simmer API](https://api.simmer.markets) <br>
-- [NOAA Weather API](https://api.weather.gov) <br>
-- [DFlow Proof verification](https://dflow.net/proof) <br>
-- [Simmer dashboard](https://simmer.markets/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, environment configuration, and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit JSON automaton status from the trading entrypoint; dry-run is the default unless live trading is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence and frontmatter) <br>
+Risk: The security summary says live-trading safeguards can fail open.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run mode enabled until behavior is verified, and do not rely on advertised safeguards unless the fail-open behavior is fixed or acceptable for the user's risk tolerance.
+
+Risk: The skill handles wallet-signing credentials and can place real on-chain orders.
+
+Mitigation: Use a dedicated low-balance wallet, keep the Solana private key only in secured environment storage, and avoid connecting funds beyond the amount intended for this strategy.
+
+Risk: The security guidance notes an unpinned Simmer SDK dependency.
+
+Mitigation: Pin or review the simmer-sdk version before live use, especially before installing updates or enabling scheduled runs.
+
+Risk: Automated weather-market trades can lose value quickly near resolution and may not be recoverable.
+
+Mitigation: Use conservative position sizing, start with paper or simulated runs, and review market resolution timing before enabling live execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simmer/skills/kalshi-weather-trader)
+- [Simmer API](https://api.simmer.markets)
+- [Simmer dashboard](https://simmer.markets/dashboard)
+- [NOAA Weather API](https://api.weather.gov)
+- [DFlow Proof KYC](https://dflow.net/proof)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run is the default; live trading requires explicit --live execution and configured credentials.]
+
+## Skill Version(s):
+
+1.0.12 (source: server evidence, frontmatter, changelog released 2026-09-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Provides resources to stay updated with Golang news, communities and people to follow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides resources to stay updated with Golang news, communities and people to follow. Use when seeking Go learning resources, discovering new libraries, finding community channels, or keeping up with Go language changes and releases.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill to find curated Go ecosystem resources, including official documentation, newsletters, community channels, blogs, videos, and people to follow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a Go resource guide, but the security evidence says it declares broader local editing, shell, git, and agent permissions than the guide appears to need. <br>
-Mitigation: Review before installing and prefer a version limited to read, search, and web access unless a clear user-directed workflow requires editing files or running Go or git commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to find curated Go news sources, package discovery resources, community channels, blogs, video channels, and people to follow. It helps agents answer questions about staying current with the Go ecosystem without relying only on generic recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/samber/golang-stay-updated) <br>
-- [Source Homepage](https://github.com/samber/cc-skills-golang) <br>
-- [Go Official Website](https://go.dev/) <br>
-- [Go Package Documentation](https://pkg.go.dev/) <br>
-- [Go Blog](https://go.dev/blog) <br>
-- [Go Wiki](https://go.dev/wiki/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown resource recommendations with links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include external links to Go resources, communities, newsletters, blogs, videos, and people to follow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill requests workspace editing, command execution, network, and agent delegation permissions beyond what its resource-guide behavior requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if those permissions are acceptable, or restrict the skill to read-only/static use where the host allows permission controls.
+
+Risk: Curated community links, social profiles, and learning resources may become outdated over time.
+
+Mitigation: Treat recommendations as starting points and verify current resource availability before relying on a specific link or profile.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samber/skills/golang-stay-updated)
+- [ClawHub Metadata Homepage](https://github.com/samber/cc-skills-golang)
+- [Go Official Website](https://go.dev/)
+- [pkg.go.dev](https://pkg.go.dev/)
+- [The Go Blog](https://go.dev/blog)
+- [Go Wiki](https://go.dev/wiki/)
+- [Golang Weekly](https://golangweekly.com/)
+- [Go Forum](https://forum.golangbridge.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with curated links and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-readable resource recommendations; it does not generate code or modify files as part of its documented guide behavior.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

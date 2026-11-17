@@ -1,50 +1,60 @@
-## Description: <br>
-Eric's Life Wisdom is a Chinese life-advice skill that applies an opinionated cognitive framework to questions about life choices, wealth, career development, social trends, education, investment decisions, relationships, happiness, and personal change. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eric's Life Wisdom is a Chinese-language cognitive guidance skill for life choices, wealth thinking, career development, era judgment, human behavior, education, investment decisions, class mobility, and personal change.
 
-## Publisher: <br>
-[shun1989](https://clawhub.ai/user/shun1989) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shun1989](https://clawhub.ai/user/shun1989)
 
-## Use Case: <br>
-External users and agents use this skill for reflective, Chinese-language coaching on life direction, career and wealth thinking, education, relationships, happiness, and broad personal strategy. It is not intended for pure engineering help, academic research, legal advice, or as a substitute for professional financial, legal, medical, or mental-health advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides strongly opinionated life, career, wealth, education, and relationship guidance that may shape ordinary advice requests through one worldview. <br>
-Mitigation: Treat responses as reflective coaching, compare them with other sources, and keep human judgment in control. <br>
-Risk: The skill discusses finance, relationships, education, and life decisions but is not professional financial, legal, medical, or mental-health advice. <br>
-Mitigation: Consult qualified professionals for regulated or high-stakes decisions. <br>
-Risk: The skill has broad triggers around life choices, wealth, career, and personal change. <br>
-Mitigation: Use it only when this Chinese, direct coaching style is desired, and avoid routing unrelated technical, legal, academic, or clinical requests to it. <br>
+## Use Case:
 
+External users can use this skill for direct, opinionated Chinese-language reflection on personal, career, wealth, relationship, education, and era-level decisions. It is not positioned as legal, academic, engineering, financial, medical, or mental-health advice.
 
-## Reference(s): <br>
-- [AI Future](references/ai-future.md) <br>
-- [Cognitive Frameworks](references/cognitive-frameworks.md) <br>
-- [Education Truth](references/education-truth.md) <br>
-- [Era Cycle](references/era-cycle.md) <br>
-- [Insight Map](references/insight-map.md) <br>
-- [Life Director](references/life-director.md) <br>
-- [Relations Happiness](references/relations-happiness.md) <br>
-- [Wealth Essence](references/wealth-essence.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shun1989/erics-life-wisdom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Text] <br>
-**Output Format:** [Markdown text with structured coaching sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code execution, tool use, data access, or environment changes are reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release evidence) <br>
+Risk: The skill provides strongly opinionated advice about wealth, investment, relationships, career, education, and life decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as perspective for reflection, and require qualified professional review for financial, legal, medical, mental-health, or other regulated decisions.
+
+Risk: Direct advice may be over-applied to personal situations that require local context or specialist judgment.
+
+Mitigation: Ask users for relevant constraints, separate value judgments from actionable steps, and avoid presenting the skill's perspective as authoritative professional advice.
+
+## Reference(s):
+
+- [AI时代生存法则](artifact/erics-life-wisdom/references/ai-future.md)
+- [认知框架](artifact/erics-life-wisdom/references/cognitive-frameworks.md)
+- [教育祛魅](artifact/erics-life-wisdom/references/education-truth.md)
+- [时代周期](artifact/erics-life-wisdom/references/era-cycle.md)
+- [洞察图谱](artifact/erics-life-wisdom/references/insight-map.md)
+- [人生编剧](artifact/erics-life-wisdom/references/life-director.md)
+- [情感与幸福](artifact/erics-life-wisdom/references/relations-happiness.md)
+- [财富真相](artifact/erics-life-wisdom/references/wealth-essence.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with structured diagnostic sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, strongly opinionated life-advice framing; no files, shell commands, credentials, or tool calls are produced by the skill itself.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

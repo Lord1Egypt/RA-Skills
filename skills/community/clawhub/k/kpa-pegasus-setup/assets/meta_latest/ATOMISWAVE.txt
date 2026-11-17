@@ -1,0 +1,49 @@
+collection: ATOMISWAVE
+sort-by: 10
+shortname: atomiswave
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/flycast_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: VR运动会
+file: VR运动会.bin
+assets.box_front: Imgs/VR运动会.png
+description: 《VR运动会》，Atomiswave 街机 平台。
+game: 上海2005
+file: 上海2005.bin
+assets.box_front: Imgs/上海2005.png
+description: 《上海2005》，Atomiswave 街机 平台。
+game: 全日本职业摔角2
+file: 全日本职业摔角2.bin
+assets.box_front: Imgs/全日本职业摔角2.png
+description: 《全日本职业摔角2》，Atomiswave 街机 平台。
+game: 动物篮子
+file: 动物篮子.bin
+assets.box_front: Imgs/动物篮子.png
+description: 《动物篮子》，Atomiswave 街机 平台。
+game: 姆沙皮的巧克力记录
+file: 姆沙皮的巧克力记录.bin
+assets.box_front: Imgs/姆沙皮的巧克力记录.png
+description: 《姆沙皮的巧克力记录》，Atomiswave 街机 平台。
+game: 宇宙扣球
+file: 宇宙扣球.bin
+assets.box_front: Imgs/宇宙扣球.png
+description: 《宇宙扣球》，Atomiswave 街机 平台。
+game: 心跳不止-偶像明星
+file: 心跳不止-偶像明星.bin
+assets.box_front: Imgs/心跳不止-偶像明星.png
+description: 《心跳不止-偶像明星》，Atomiswave 街机 平台。
+game: 快打刑事EX
+file: 快打刑事EX.bin
+assets.box_front: Imgs/快打刑事EX.png
+description: 《快打刑事EX》，Atomiswave 街机 平台。
+game: 玩具格斗
+file: 玩具格斗.bin
+assets.box_front: Imgs/玩具格斗.png
+description: 《玩具格斗》，Atomiswave 街机 平台。
+game: 罪恶装备X
+file: 罪恶装备X.bin
+assets.box_front: Imgs/罪恶装备X.png
+description: 《罪恶装备X》，Atomiswave 街机 平台。
+game: 美少女泡泡龙
+file: 美少女泡泡龙.bin
+assets.box_front: Imgs/美少女泡泡龙.png
+description: 《美少女泡泡龙》，Atomiswave 街机 平台。

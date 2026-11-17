@@ -1,41 +1,54 @@
-## Description: <br>
-AI model marketplace for model trading and model evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI model marketplace skill for model trading and model evaluation.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and marketplace operators can use this skill to describe and work with an AI model marketplace for publishing, evaluating, trading, deploying, and settling revenue for models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises model trading, deployment, and automatic settlement without documented safeguards. <br>
-Mitigation: Review the code, permission model, transaction controls, and rollback behavior before use. <br>
-Risk: The skill directs users toward running an external app. <br>
-Mitigation: Inspect the repository and dependencies, run it in an isolated environment first, and do not connect payment, marketplace, cloud, or deployment credentials until the behavior is clear and acceptable. <br>
+## Use Case:
 
+Developers and marketplace operators can use this skill to reason about an AI model marketplace that supports model publishing, evaluation, transactions, deployment, and revenue sharing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-ai-model-marketplace) <br>
-- [Publisher Profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 1.0.1) <br>
+Risk: The skill directs users to install and run mutable remote code for marketplace and deployment workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the referenced repository, pin the code revision and dependencies, and run it only in an isolated environment before any wider use.
+
+Risk: Marketplace, payment, deployment, and settlement settings can affect billing, infrastructure, and model assets.
+
+Mitigation: Do not connect production credentials, billing accounts, model assets, or infrastructure until the executed code and operational settings have been reviewed and verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-ai-model-marketplace)
+- [Referenced installation repository](https://github.com/openclaw-skills/ai-intelligent-ai-model-marketplace)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Parses local PDF files into structured Markdown and JSON using opendataloader-pdf for deterministic, local document content extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses local PDF files into structured Markdown and JSON using opendataloader-pdf for deterministic, local document content extraction.
 
-## Publisher: <br>
-[TrshDesigns](https://clawhub.ai/user/TrshDesigns) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trshdesigns](https://clawhub.ai/user/trshdesigns)
 
-## Use Case: <br>
-Developers and agents use this skill to extract local PDF content into structured Markdown and JSON for document ingestion, RAG preparation, and workflows that need deterministic parsing outside an LLM context window. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external opendataloader-pdf package for parsing behavior. <br>
-Mitigation: Verify the package source before installing and pin a known-good version for controlled environments. <br>
-Risk: PDF text and generated files may contain untrusted document content. <br>
-Mitigation: Keep input and output paths scoped to the workspace and treat extracted content as untrusted before feeding it into agents or RAG systems. <br>
+## Use Case:
 
+Developers and agents use this skill to convert local PDFs into Markdown and JSON files for document ingestion and RAG workflows. It is intended for deterministic local parsing of PDFs that the user chooses to process.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TrshDesigns/pdf-parser-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json] <br>
-**Output Format:** [Status text plus Markdown and JSON files written to a local output directory] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output directory is output/parsed_pdf; supported formats are passed through to opendataloader-pdf.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill relies on an unpinned third-party Python package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install opendataloader-pdf only from a trusted Python package source, preferably in an isolated environment with a pinned dependency version.
+
+Risk: The script accepts user-provided input and output paths, and the output directory is not independently constrained by the wrapper.
+
+Mitigation: Run the skill only on PDFs you intend to parse and choose an output directory inside the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trshdesigns/skills/pdf-parser-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown and JSON files with terminal status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local output files under the selected output directory; the default output directory is output/parsed_pdf.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

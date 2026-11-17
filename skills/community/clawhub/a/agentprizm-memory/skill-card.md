@@ -1,44 +1,55 @@
-## Description: <br>
-Give your OpenClaw agent persistent, cross-session memory via AgentPrizm so it can recall durable facts, decisions, preferences, lessons, and contacts before acting and store new ones as it learns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give an OpenClaw agent persistent, cross-session memory through AgentPrizm so it can recall durable facts, decisions, preferences, lessons, and contacts before acting, then store new durable knowledge as it learns.
 
-## Publisher: <br>
-[agentprizm](https://clawhub.ai/user/agentprizm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentprizm](https://clawhub.ai/user/agentprizm)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to give an agent long-term memory for durable facts, decisions, preferences, lessons, contacts, and bookmarks across sessions while keeping memory scoped by container. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected durable memories are sent to a hosted AgentPrizm service and may contain sensitive user or project context if used carelessly. <br>
-Mitigation: Install only when hosted memory persistence is acceptable, avoid secrets and regulated or confidential data unless explicitly approved, and periodically review or forget stored memories. <br>
-Risk: Memory can bleed between unrelated clients or projects if reads and writes are not scoped carefully. <br>
-Mitigation: Use separate containers for separate clients, projects, or environments, and use validity windows for time-sensitive facts. <br>
-Risk: A broadened MCP setup can expose AgentPrizm marketplace tools beyond the memory tools needed by this skill. <br>
-Mitigation: Keep the default memory_* tool filter unless marketplace access is intentionally required. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to connect an agent to AgentPrizm's remote MCP memory service, recall prior context before work, and store durable facts, lessons, preferences, directives, contacts, and bookmarks for future sessions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/agentprizm/skills/agentprizm-memory) <br>
-- [AgentPrizm](https://agentprizm.com) <br>
-- [AgentPrizm MCP endpoint](https://agentprizm.com/api/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and MCP server JSON configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTPRIZM_API_KEY; optional AGENTPRIZM_CONTAINER scopes memory containers. The default MCP tool filter exposes memory_* tools only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter and changelog report 1.2.0) <br>
+Risk: An unfiltered MCP setup can expose AgentPrizm marketplace-management tools in addition to the memory tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the recommended install with --include "memory_*" or verify that only memory_* tools are exposed before using the skill.
+
+Risk: Remote memory may receive sensitive or regulated information if an agent stores it without review.
+
+Mitigation: Do not store secrets, credentials, or regulated data in AgentPrizm memory unless AgentPrizm policies and the user's data handling requirements have been reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentprizm/skills/agentprizm-memory)
+- [AgentPrizm](https://agentprizm.com)
+- [AgentPrizm MCP Endpoint](https://agentprizm.com/api/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with inline shell commands and MCP configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide the agent to use a remote MCP memory service; no local model artifact is produced.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter and changelog report 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

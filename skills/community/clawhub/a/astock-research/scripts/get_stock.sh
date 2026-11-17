@@ -9,7 +9,7 @@ if [ -z "$CODE" ]; then
 fi
 
 echo "=== 查询 $CODE 实时行情 ==="
-export QVERIS_API_KEY=sk-XVkZepqEZYvLIDHkm_uB3za58x1gUjIb1_jwE8LP_V4
+export QVERIS_API_KEY=REDACTED-SECRET
 
 ~/.local/bin/uv run /home/ubuntu/.openclaw/workspace/skills/qveris/scripts/qveris_tool.py execute ths_ifind.real_time_quotation.v1 \
   --search-id "9869fb66-3bc7-4c4d-854f-4bedc22d3b10" \

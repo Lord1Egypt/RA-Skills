@@ -1,44 +1,51 @@
-## Description: <br>
-Blog Writer helps draft long-form blog posts in a specified personal style, incorporate user-provided research, iterate with feedback, publish drafts to Notion, and save finalized examples for future style calibration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps draft blog posts, articles, and long-form content in a direct, conversational, opinionated writing style, then supports review, Notion publication, and saving finalized examples for future style calibration.
 
-## Publisher: <br>
-[flyfujian](https://clawhub.ai/user/flyfujian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyfujian](https://clawhub.ai/user/flyfujian)
 
-## Use Case: <br>
-Content creators and professionals use this skill to create blog posts, articles, and thought leadership in a distinctive personal voice. It is intended for workflows that include research review, draft iteration, Notion publication, and retention of finalized examples for future writing calibration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts may be published to the configured Notion database as part of the workflow. <br>
-Mitigation: Use the skill only when Notion publication is intended, and review the target database and content before publication. <br>
-Risk: Finalized posts may be retained as local style examples for future writing calibration. <br>
-Mitigation: Avoid confidential or sensitive material, or redact it before confirming a draft as final. <br>
+## Use Case:
 
+External users and writing agents use this skill to create blog drafts and thought leadership pieces in the publisher's established style, especially for AI, productivity, sales, marketing, and technology topics. It is intended for workflows where generated drafts may be reviewed, revised, published to Notion, and added back to the example library after final approval.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/flyfujian/blog-writer-0-1-0) <br>
-- [Publisher profile](https://clawhub.ai/user/flyfujian) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Writing style guide](artifact/style-guide.md) <br>
-- [Notion project link](https://www.notion.so/2a5b4629bb3780189199f3c496980c0c) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown prose with optional Notion-flavored Markdown and local markdown example files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets 800-1500 word drafts by default and may retain finalized posts as future style examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated drafts and incorporated source material may be copied to a hard-coded Notion workspace before final approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when that Notion destination is intended; remove or override the publication step before using confidential notes, client research, business plans, or personal material.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/flyfujian/skills/blog-writer-0-1-0)
+- [Blog Writer README](artifact/README.md)
+- [Tom Panos Writing Style Guide](artifact/style-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, files, guidance]
+
+**Output Format:** [Markdown blog draft with Notion-flavored Markdown publication content and optional saved Markdown example files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default target length is 800-1500 words; workflow requires copying drafts to a specified Notion database and may save finalized posts into the example library.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta version 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

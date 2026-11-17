@@ -1,39 +1,56 @@
-## Description: <br>
-Finds target icons or small images in screenshots or pictures using multi-scale OpenCV template matching with deduplication, then reports, marks, or clicks matched locations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screen Icon Finder helps an agent locate a target icon in a screenshot or full-screen capture using OpenCV template matching, mark matches with scores, and optionally click a matched center point.
 
-## Publisher: <br>
-[lieyingthh](https://clawhub.ai/user/lieyingthh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lieyingthh](https://clawhub.ai/user/lieyingthh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and desktop automation agents use this skill to find a small target image within a larger screenshot, return match coordinates and confidence, annotate results, and optionally click a found icon.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can capture the full screen, which may include sensitive information.
+
+Mitigation: Use an explicit non-sensitive screenshot when possible and avoid running it on screens containing confidential data.
+
+Risk: The skill can leave captured and annotated screenshots on disk.
+
+Mitigation: Delete _temp_screen.png and _result.png after use, especially when screenshots may contain private content.
+
+Risk: The skill can guide clicks on the active desktop based on template-matching results.
+
+Mitigation: Review the annotated result and coordinates before allowing any click action.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and automation agents use this skill to locate a user-provided icon or UI image in a screenshot, label the matches with coordinates and confidence scores, and optionally click a detected target. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, code, shell commands, files, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Full-screen capture can expose secrets, private messages, or sensitive application state visible on the desktop. <br>
-Mitigation: Use the skill in a clean desktop session and keep secrets, sensitive chats, and unrelated applications off screen before allowing screenshot capture. <br>
-Risk: Automated clicking may activate the wrong UI element if template matching is uncertain or the screen changes after detection. <br>
-Mitigation: Review the marked output and confidence scores first, then require explicit approval before any click action. <br>
+**Output Format:** [Markdown or plain text with Python and shell command snippets, coordinate results, and generated annotated image files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May create _temp_screen.png for full-screen capture and _result.png for annotated matches.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell command examples; the script returns console text and can write marked image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce screen coordinates, confidence scores, annotated screenshots, and optional click actions.] <br>
+0.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.0.1 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

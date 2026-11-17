@@ -1,49 +1,70 @@
-## Description: <br>
-反向穷游根据用户预算、出发城市和可出行天数，搜索交通、住宿和景点价格并生成三档旅行方案及预算拆解。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+反向穷游助手，我有X元能去哪？输入总预算、出发城市、可出行天数，AI反向搜索所有可能性，生成3档方案（省钱极限版/舒适版/极限拉满版），每档含完整预算拆解。
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-External travelers use this skill to ask what destinations fit a stated budget, departure city, travel duration, and preferences. The agent searches FlyAI travel data, compares candidate destinations, and returns budget-aware itinerary options with cost breakdowns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses external FlyAI travel search services, so generated plans may depend on remote service availability and returned price data. <br>
-Mitigation: Review current prices and booking details before relying on a generated itinerary or making purchases. <br>
-Risk: The skill can retain travel preferences in memory or a local profile file. <br>
-Mitigation: Store only profile details the user is comfortable keeping persistently, and honor requests to ignore or avoid saved preferences. <br>
-Risk: The release security guidance warns against automatic global npm, sudo, or TLS-disabling commands. <br>
-Mitigation: Use a pinned user-level CLI setup, keep certificate validation enabled, and require user review before running installation or network commands. <br>
+## Use Case:
 
+External travelers use this skill to answer budget-first trip planning questions, such as where they can go from a given departure city for a fixed budget and duration. It compares transport, lodging, attractions, meals, and local transport into three budget tiers.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/hello-ahang/flyai-reverse-budget) <br>
-- [Workflow](reference/workflow.md) <br>
-- [Tool usage](reference/tools.md) <br>
-- [Flight search reference](reference/search-flight.md) <br>
-- [Hotel search reference](reference/search-hotel.md) <br>
-- [POI search reference](reference/search-poi.md) <br>
-- [User profile storage](reference/user-profile-storage.md) <br>
-- [Example dialogue](reference/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown travel recommendations with budget tables, command snippets, and booking or detail links when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include price estimates, three-tier destination comparisons, itinerary details, and user preference updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security summary flags unsafe network and install practices, including guidance that can disable TLS verification or install an unpinned global CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep TLS verification enabled, use a verified pinned FlyAI CLI in an isolated environment, and avoid sudo or global @latest installs unless separately reviewed.
+
+Risk: The skill can persist travel preferences and profile data through memory tools or a local profile file.
+
+Mitigation: Make profile storage opt-in, show users what will be saved, and provide a clear way to inspect, update, and delete saved travel data.
+
+Risk: Travel prices, availability, and booking links may change after the agent produces a plan.
+
+Mitigation: Label price-sensitive recommendations as current estimates and require users to verify final prices and terms before booking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hello-ahang/skills/flyai-reverse-budget)
+- [Workflow](reference/workflow.md)
+- [Tools](reference/tools.md)
+- [User profile storage](reference/user-profile-storage.md)
+- [Examples](reference/examples.md)
+- [AI search](reference/ai-search.md)
+- [Keyword search](reference/keyword-search.md)
+- [Flight search](reference/search-flight.md)
+- [Hotel search](reference/search-hotel.md)
+- [Marriott hotel search](reference/search-marriott-hotel.md)
+- [Marriott package search](reference/search-marriott-package.md)
+- [POI search](reference/search-poi.md)
+- [Train search](reference/search-train.md)
+- [Self learning](reference/self-learning.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown travel recommendations with budget breakdowns, comparison tables, booking links, and inline shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are grounded in live travel search results when available and may include user preference updates after confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

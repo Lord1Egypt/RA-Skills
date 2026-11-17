@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WeChat Inline Image</title>
+  <link rel="stylesheet" href="../css/wechat-inline-image.css" />
+</head>
+<body>
+  <main class="inline-image"
+    data-background-asset="{{background_asset.asset_id}}"
+    style="background-image:url('{{background_asset.url}}'); background-position: {{background_asset.object_position}};"
+  >
+    <div class="text-layer {{text_visibility}}">
+      <p>{{optional_text}}</p>
+    </div>
+  </main>
+</body>
+</html>

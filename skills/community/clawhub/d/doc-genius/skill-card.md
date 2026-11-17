@@ -1,43 +1,54 @@
-## Description: <br>
-Doc Genius helps agents summarize PDF, Word, Markdown, and text documents, convert document formats, and batch-process folders of documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc Genius helps agents summarize PDF, Word, Markdown, and text documents, convert documents to Markdown or HTML, and run batch document processing.
 
-## Publisher: <br>
-[imgolye](https://clawhub.ai/user/imgolye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imgolye](https://clawhub.ai/user/imgolye)
 
-## Use Case: <br>
-Developers, researchers, content creators, and enterprise users can use this skill to extract document text, generate summaries and keywords, convert documents to Markdown or HTML, and process document folders in batches. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Under-disclosed billing behavior and a hardcoded billing API key are present in the paid processor script. <br>
-Mitigation: Do not run scripts/doc_processor_paid.py unless billing is intended and approved; require the publisher to remove or rotate the embedded key and document the paid flow. <br>
-Risk: AI summarization can send extracted document text to OpenAI. <br>
-Mitigation: Use local summarization for sensitive documents unless users have approved external API processing and configured OPENAI_API_KEY appropriately. <br>
-Risk: The release has a suspicious security verdict. <br>
-Mitigation: Review and scan the skill before installation, and test it in a restricted environment before using it on trusted documents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [API examples](references/api-examples.md) <br>
-- [Supported formats](references/supported-formats.md) <br>
-- [ClawHub skill page](https://clawhub.ai/imgolye/doc-genius) <br>
+## Use Case:
 
+Developers, researchers, content teams, and enterprise users can use this skill to summarize documents, convert common document formats, and process folders of files into structured summaries or converted outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, HTML, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands; processor outputs JSON, Markdown, HTML, or plain text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [AI summarization can require OPENAI_API_KEY; local summarization is available for sensitive documents.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive document content can be sent to an external AI provider when AI or auto summarization uses a configured API key.
+
+Mitigation: Use local or TextRank mode for sensitive documents, and select AI or auto mode only when remote processing is intended and approved.
+
+Risk: The paid processor includes under-disclosed billing behavior and an embedded billing credential.
+
+Mitigation: Do not run the paid processor until billing behavior is documented and the embedded credential is removed and rotated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imgolye/skills/doc-genius)
+- [API Examples](references/api-examples.md)
+- [Supported Formats](references/supported-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, HTML, shell commands, configuration, guidance]
+
+**Output Format:** [JSON, Markdown, plain text, HTML, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write converted document files or batch report files when an output path or report path is provided.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

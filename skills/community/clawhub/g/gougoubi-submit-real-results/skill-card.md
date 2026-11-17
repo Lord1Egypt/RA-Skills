@@ -1,41 +1,59 @@
-## Description: <br>
-Submit real-world outcomes for Gougoubi conditions using deterministic evidence from condition skills and public market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit real-world outcomes for Gougoubi conditions using deterministic evidence from condition skills and public market data.
 
-## Publisher: <br>
-[chinasong](https://clawhub.ai/user/chinasong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinasong](https://clawhub.ai/user/chinasong)
 
-## Use Case: <br>
-Developers and operators use this skill to map public evidence to Gougoubi condition results and submit one result per condition. It supports resolved-only settlement, full result submission, and explicit forced fallback handling for pending conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger real on-chain state changes through project-local scripts that are not included in the release artifact. <br>
-Mitigation: Inspect the referenced project scripts, run help or dry-run modes first, and confirm the proposal, chain, wallet, signer, gas cost, and evidence mapping before any real submission. <br>
-Risk: Forced fallback mode can submit a result for conditions that are not officially resolved. <br>
-Mitigation: Prefer resolved-only mode, use force mode only after explicit user confirmation, and keep evidence mapping with every submitted transaction result. <br>
+## Use Case:
 
+Developers and prediction-market operators use this skill to map public market evidence to Gougoubi condition outcomes and submit one result per eligible condition. It supports resolved-only settlement, full proposal submission when outcomes are clear, and explicit forced fallback submission for pending conditions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chinasong/gougoubi-submit-real-results) <br>
-- [Gougoubi website](https://gougoubi.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [Structured JSON with submitted, skipped, failed, warning, and transaction-hash fields; may include shell command guidance for project script entry points.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs preserve the proposal address, selected mode, evidence mapping, result status, and transaction hashes when submissions occur.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Blockchain submissions may be irreversible and high impact if proposal, chain, signer, or condition results are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual confirmation of chain, signer, proposal, condition results, calldata, fees, and dry-run output before any real submission.
+
+Risk: The skill references unbundled relative project scripts for result submission.
+
+Mitigation: Use only in a controlled repository where the referenced scripts are known, reviewed, and pinned.
+
+Risk: Forced fallback submission can submit outcomes for pending conditions.
+
+Mitigation: Prefer resolved-only mode and use force mode only when explicitly requested by the user.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chinasong/skills/gougoubi-submit-real-results)
+- [Gougoubi Website](https://gougoubi.ai)
+- [Gougoubi Repository](https://github.com/gougoubi/gougoubi)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured JSON with submitted, skipped, failed, warning, and transaction-hash fields, with shell commands when invoking project scripts is appropriate.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result submission should preserve evidence mapping with transaction outcomes and avoid duplicate submissions for conditions that already have results.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-Book winter escape flights to warm destinations for a winter sun getaway, with support for flight booking and related travel planning tasks powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book winter escape flights to warm destinations for a winter sun getaway using real-time flyai CLI results.
 
-## Publisher: <br>
-[liquanyu123](https://clawhub.ai/user/liquanyu123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liquanyu123](https://clawhub.ai/user/liquanyu123)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search winter escape flights, compare recommended, cheapest, fastest, or direct options, and format live booking results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run an unpinned global CLI package from npm. <br>
-Mitigation: Install and verify @fly-ai/flyai-cli separately before use, or run the skill in an isolated environment. <br>
-Risk: The skill handles travel searches that may involve personal travel preferences or account context. <br>
-Mitigation: Provide only the travel details needed for the search and avoid unnecessary personal or account information. <br>
-Risk: Flight availability and prices can change quickly and may be misleading if results are not generated from live CLI output. <br>
-Mitigation: Require current flyai CLI output and booking detailUrl links for any listed flight results. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to collect route and date preferences, run flyai for current winter escape flight options, and return booking-ready results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liquanyu123/winter-escape-flight) <br>
-- [Parameter Collection and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown flight-search summaries with inline booking links and supporting shell commands when setup or execution is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results should be based on flyai CLI output and include Book links when flight options are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can install and run a global third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation, verify the package and version, and run the skill in a constrained environment.
+
+Risk: The skill runs shell commands using user-derived travel parameters.
+
+Mitigation: Use only documented flyai parameters, validate date and route inputs, and quote user-provided values before execution.
+
+Risk: Returned booking links and prices are third-party commercial output.
+
+Mitigation: Present them as third-party booking information and ask users to confirm prices and terms on the booking page.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liquanyu123/skills/winter-escape-flight)
+- [Parameter collection and output templates](references/templates.md)
+- [Scenario playbooks](references/playbooks.md)
+- [Failure recovery](references/fallbacks.md)
+- [Execution runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables with booking links and inline bash commands when setup or execution is needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flight results must come from flyai CLI output, and each displayed result must include a booking link.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

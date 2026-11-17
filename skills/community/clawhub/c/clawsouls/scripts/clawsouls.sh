@@ -12,7 +12,7 @@ fi
 
 # Check if npx is available
 if command -v npx &>/dev/null; then
-  exec npx --yes clawsouls "$@"
+  exec npx --yes clawsouls@0.16.1 "$@"
 fi
 
 # Fallback: try node directly

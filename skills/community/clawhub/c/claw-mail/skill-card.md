@@ -1,48 +1,65 @@
-## Description: <br>
-Multi-account email management skill for IMAP/SMTP that fetches, reads, searches, composes, sends, replies, forwards, and organizes emails across multiple accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-account email management skill for IMAP/SMTP that fetches, reads, searches, composes, sends, replies, forwards, and organizes emails across multiple accounts.
 
-## Publisher: <br>
-[borgcube](https://clawhub.ai/user/borgcube) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[borgcube](https://clawhub.ai/user/borgcube)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to automate mailbox workflows across configured IMAP/SMTP accounts, including fetching, reading, searching, composing, sending, replying, forwarding, archiving, and rule-based processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, send, modify, and automate actions across configured mailboxes. <br>
-Mitigation: Grant access only to accounts and folders intended for automation, and review configuration before enabling live send, move, archive, or heartbeat workflows. <br>
-Risk: Forwarding, auto-reply, mail-merge, fallback SMTP, and webhook rules can disclose email content or send unintended messages. <br>
-Mitigation: Review each rule and recipient target, avoid catch-all rules, test with dry-run or limited accounts where available, and approve external webhook destinations before use. <br>
-Risk: Plaintext credentials or command-line password flags can expose mailbox secrets. <br>
-Mitigation: Use 1Password, macOS Keychain, or environment-backed credential references, keep TLS enabled, and avoid storing secrets directly in configuration files. <br>
-Risk: Heartbeat state, queues, drafts, attachments, and mailbox processing files may contain sensitive email metadata or message content. <br>
-Mitigation: Store generated state and output files only in private locations with appropriate filesystem permissions and retention controls. <br>
+## Use Case:
 
+Developers and operators use this skill to manage email workflows across multiple IMAP/SMTP accounts, including reading, searching, sending, replying, forwarding, folder management, rules, archival, mail merge, calendar invitations, and conversation threading.
 
-## Reference(s): <br>
-- [clawMail Skill - API Reference](references/REFERENCE.md) <br>
-- [Processing Rules Reference](references/RULES.md) <br>
-- [Email Templates Reference](references/TEMPLATES.md) <br>
-- [ClawHub skill page](https://clawhub.ai/borgcube/claw-mail) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/borgcube) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples, JSON script outputs, and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts may read or write email messages, attachments, mailbox state, drafts, queues, and configuration-driven rule actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles email credentials and message content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted configuration files, prefer 1Password, macOS Keychain, or environment-variable credential references, and avoid plaintext secrets.
+
+Risk: OAuth token endpoints and webhook actions can send sensitive data to external services.
+
+Mitigation: Restrict OAuth token_uri and webhook URLs to trusted HTTPS providers before enabling rules or account profiles.
+
+Risk: Rules can send, forward, reply to, move, archive, and expose metadata about emails.
+
+Mitigation: Review processing rules before automation and limit rule actions to expected accounts, folders, and recipients.
+
+Risk: Transport or state-file choices can weaken email confidentiality or reliability.
+
+Mitigation: Keep IMAP/SMTP TLS enabled and avoid shared or /tmp state files for queues, drafts, or processing state.
+
+## Reference(s):
+
+- [claw-mail on ClawHub](https://clawhub.ai/borgcube/skills/claw-mail)
+- [API Reference](references/REFERENCE.md)
+- [Processing Rules Reference](references/RULES.md)
+- [Email Templates Reference](references/TEMPLATES.md)
+- [Example Configuration](assets/config.example.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, YAML configuration examples, and JSON or CLI-formatted command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include email metadata, rendered message content, draft or send results, mailbox operation results, processing results, and configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter metadata.version is 0.7.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

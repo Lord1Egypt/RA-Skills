@@ -1,47 +1,62 @@
-## Description: <br>
-Manage YouTube comments by listing, creating, updating, deleting, marking as spam, and changing moderation status through the yutu CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube comments by listing, creating, updating, deleting, marking as spam, or setting moderation status through the yutu CLI.
 
-## Publisher: <br>
-[OpenWaygate](https://clawhub.ai/user/OpenWaygate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openwaygate](https://clawhub.ai/user/openwaygate)
 
-## Use Case: <br>
-Developers, channel operators, and agents use this skill to manage YouTube comment workflows from the command line after configuring Google OAuth credentials and yutu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth credential and cached token files can grant access to a YouTube account. <br>
-Mitigation: Keep client_secret.json, youtube.token.json, YUTU_CREDENTIAL, and YUTU_CACHE_TOKEN out of source control and chats; restrict access to the local environment where yutu runs. <br>
-Risk: Delete, reject, spam, ban-author, update, and insert commands can modify live YouTube comments. <br>
-Mitigation: Verify comment IDs, target status, author-ban settings, and comment text before allowing the agent to run mutating commands. <br>
+## Use Case:
 
+Developers and operators use this skill to manage YouTube comment workflows from an agent by preparing yutu commands for listing replies, creating or updating comments, deleting comments, and applying moderation actions.
 
-## Reference(s): <br>
-- [Yutu CLI Homepage](https://github.com/eat-pray-ai/yutu) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Comment Delete](references/comment-delete.md) <br>
-- [Comment Insert](references/comment-insert.md) <br>
-- [Comment List](references/comment-list.md) <br>
-- [Comment MarkAsSpam](references/comment-markAsSpam.md) <br>
-- [Comment SetModerationStatus](references/comment-setModerationStatus.md) <br>
-- [Comment Update](references/comment-update.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI commands, option tables, and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate through yutu and can require OAuth credential and token configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.7-dev (source: server release evidence) <br>
+Risk: The skill relies on a third-party yutu CLI that receives Google or YouTube OAuth credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified yutu version, keep client_secret.json and youtube.token.json out of repositories and shared workspaces, and restrict access to credential files.
+
+Risk: Comment deletion, spam marking, rejection, and author bans can change public YouTube content or account moderation state.
+
+Mitigation: Manually review comment IDs, target channels, and moderation statuses before executing commands, especially destructive or bulk actions.
+
+## Reference(s):
+
+- [Yutu CLI homepage](https://github.com/eat-pray-ai/yutu)
+- [ClawHub skill page](https://clawhub.ai/openwaygate/skills/youtube-comment)
+- [Setup guide](references/setup.md)
+- [Comment list reference](references/comment-list.md)
+- [Comment insert reference](references/comment-insert.md)
+- [Comment update reference](references/comment-update.md)
+- [Comment delete reference](references/comment-delete.md)
+- [Comment mark-as-spam reference](references/comment-markAsSpam.md)
+- [Comment moderation-status reference](references/comment-setModerationStatus.md)
+- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands can return table, JSON, YAML, or silent output depending on yutu flags.]
+
+## Skill Version(s):
+
+0.10.7-dev (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

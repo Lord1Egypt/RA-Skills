@@ -1,43 +1,57 @@
-## Description: <br>
-Automates community group spreadsheet export processing by cleaning customer group data, auditing key metrics, appending filtered records to a BI upload workbook, and verifying the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes BAIC community export workbooks by cleaning selected group-label data, checking key metrics, and merging the result into a BI upload workbook using the source file creation date as the statistics date.
 
-## Publisher: <br>
-[yuhui435](https://clawhub.ai/user/yuhui435) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuhui435](https://clawhub.ai/user/yuhui435)
 
-## Use Case: <br>
-Operations or data analysts use this skill to process BAIC community group Excel exports from Downloads, retain selected group-label rows, validate numeric metrics, and append the cleaned data to the BI community data upload workbook. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads matching customer and BI Excel files from the local Downloads folder. <br>
-Mitigation: Keep only the intended source workbook in Downloads before execution and review the generated BI upload workbook before using it. <br>
-Risk: The merge workflow is append-only and can duplicate records when rerun against the same source data. <br>
-Mitigation: Run the merge once per intended export, or inspect and remove duplicate appended rows before uploading the BI workbook. <br>
-Risk: The workflow uses file creation time as the statistics date, so an incorrect source file can produce records for the wrong date. <br>
-Mitigation: Confirm the latest matching customer group export in Downloads is the intended file before running the process. <br>
+## Use Case:
 
+Operations users and data analysts use this skill to automate daily cleaning, validation, and incremental BI workbook preparation for BAIC community group exports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yuhui435/community-data-process) <br>
-- [Publisher profile](https://clawhub.ai/user/yuhui435) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Console status text plus generated Excel workbooks and a text result report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates cleaned and merged BI upload workbooks in the local Downloads folder; normal operation depends on pandas and openpyxl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The workflow automatically reads and writes Excel files in Downloads and creates BI upload workbooks from local source data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated workbooks before upload and add output confirmation or overwrite safeguards before operational use.
+
+Risk: Spreadsheet content from source workbooks may carry unsafe formulas or misleading values into generated outputs.
+
+Mitigation: Use spreadsheet protections and add formula sanitization before processing untrusted source data.
+
+Risk: Validation safeguards are weak for an automated business workflow.
+
+Mitigation: Block uploads on audit failures and require review of generated files before downstream BI use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuhui435/skills/community-data-process)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Text]
+
+**Output Format:** [Excel workbooks and plain-text audit or status reports with console output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes cleaned and merged .xlsx files plus a text result report in the user's Downloads folder.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

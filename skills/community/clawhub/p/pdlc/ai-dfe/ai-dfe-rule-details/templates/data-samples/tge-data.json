@@ -1,0 +1,44 @@
+{
+  "$schema": ".kiro/pdlc/ai-tge-rule-details/data-schema/tge-data.schema.json",
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "ai-tge",
+  "data": {
+    "mode": "Full Chain",
+    "currentPhase": "Observation",
+    "lastStageCompleted": 9,
+    "lastUpdated": "2026-06-22T12:00:00Z",
+    "engineVersion": "AI-TGE v1.0.0",
+    "registerStats": {
+      "commitmentsTracked": 24,
+      "testsRequired": 24,
+      "testsExisting": 20,
+      "testsMissing": 4,
+      "testsFailing": 1,
+      "coverage": 83
+    },
+    "riskSummary": {
+      "critical": 0,
+      "high": 2,
+      "medium": 5,
+      "low": 8,
+      "totalScored": 15
+    },
+    "depthLevel": {
+      "level": "Standard",
+      "totalScore": "15/25"
+    },
+    "observationHistory": [
+      {
+        "cycle": 1,
+        "date": "2026-06-22T12:00:00Z",
+        "testsAdded": 20,
+        "testsDeprecated": 0,
+        "coverageBefore": 0,
+        "coverageAfter": 83
+      }
+    ]
+  }
+}

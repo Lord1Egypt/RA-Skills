@@ -1,43 +1,59 @@
-## Description: <br>
-Rewrites text to reduce common AI-writing patterns so drafts sound more natural and human while preserving meaning and tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites text to reduce common AI-generated writing patterns and make the result read more naturally.
 
-## Publisher: <br>
-[unclecheng-li](https://clawhub.ai/user/unclecheng-li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unclecheng-li](https://clawhub.ai/user/unclecheng-li)
 
-## Use Case: <br>
-External users and editors use this skill to revise text they are allowed to edit, reducing formulaic AI style markers and preserving the intended meaning and tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to make AI-generated text appear human-written or evade AI-detection checks. <br>
-Mitigation: Use it only for transparent style editing of text the user is allowed to revise, and follow academic, platform, workplace, and authorship disclosure rules. <br>
-Risk: Users may expose sensitive drafts if they send content to third-party detector or rewriting services. <br>
-Mitigation: Keep sensitive drafts within approved tools and avoid third-party services unless the content and service are authorized. <br>
+## Use Case:
 
+External users and developers use this skill to edit drafts so they read less like generic AI output and more like natural human writing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/unclecheng-li/unclecheng-reduce-ai-perception) <br>
-- [Publisher profile](https://clawhub.ai/user/unclecheng-li) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Rewritten text or edited draft content with an optional concise change summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may directly edit user-provided drafts when file editing is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter reports 2.2.0) <br>
+Risk: The skill is designed around hiding AI authorship signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use it for academic submissions, compliance-controlled writing, or contexts where authorship disclosure matters.
+
+Risk: The artifact includes guidance to upload full documents to third-party rewriting or detection services.
+
+Mitigation: Do not process confidential, personal, or regulated documents with external services unless approved.
+
+Risk: The artifact includes guidance that can make invented examples appear research-based.
+
+Mitigation: Require fact checking and source review for factual additions before using the rewritten text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unclecheng-li/skills/unclecheng-reduce-ai-perception)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text containing rewritten content and optional change notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a rewritten text stream; may include a brief summary of edits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,31 @@
 {
-  "ownerId": "kn75qfs77ks11v8e707repnydn82ydsj",
+  "name": "Claw_OpenWebUI_API",
   "slug": "claw-openwebui-api",
-  "version": "1.0.3",
-  "publishedAt": 1773556038033
+  "version": "1.0.0",
+  "author": "南極磷蝦",
+  "description": "整合 Open WebUI RAG 知識庫 API，讓 OpenClaw 能自動上傳文件和查詢知識庫。",
+  "triggers": [
+    "openwebui",
+    "rag",
+    "知識庫",
+    "上傳文件",
+    "搜尋知識庫"
+  ],
+  "metadata": {
+    "openclaw": {
+      "emoji": "🦞",
+      "requires": {
+        "env": ["OPENWEBUI_URL", "OPENWEBUI_API_KEY"],
+        "bins": ["python3", "requests"]
+      },
+      "install": [
+        {
+          "id": "pip",
+          "kind": "pip",
+          "package": "requests",
+          "label": "Install requests library"
+        }
+      ]
+    }
+  }
 }

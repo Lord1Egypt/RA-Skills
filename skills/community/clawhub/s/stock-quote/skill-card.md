@@ -1,46 +1,60 @@
-## Description: <br>
-Fetches stock quotes and fundamental data for one or more ticker symbols from Stooq, yfinance, Financial Modeling Prep, or Yahoo Finance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches stock prices and selected fundamental data for one or more stock symbols using Stooq, yfinance, Financial Modeling Prep, or Yahoo Finance pages.
 
-## Publisher: <br>
-[linux2010](https://clawhub.ai/user/linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve ticker quote fields for portfolio updates, pre-trade price checks, and valuation workflows. It supports single-symbol and bulk quote requests with text or JSON output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default source can return delayed data despite real-time wording. <br>
-Mitigation: Check the returned source, date, and timestamp before using results, and choose an explicit real-time-capable source when freshness matters. <br>
-Risk: Ticker symbols are sent to external finance services. <br>
-Mitigation: Use the skill only when sharing the requested symbols with those services is acceptable. <br>
-Risk: Quote values may be unavailable, stale, or rate-limited. <br>
-Mitigation: Check the returned error field and verify data independently before trading, compliance, or valuation decisions. <br>
+## Use Case:
 
+Agents and users use this skill to look up stock quotes, refresh portfolio valuations, and check basic price or fundamental signals before analysis or trading-rule checks.
 
-## Reference(s): <br>
-- [Stock Data API Sources](references/api-sources.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/linux2010/stock-quote) <br>
-- [Stooq CSV Quote Endpoint](https://stooq.com/q/l/?s=SYMBOL.us&f=sd2t2ohlc&h=&t=csv) <br>
-- [Financial Modeling Prep](https://financialmodelingprep.com) <br>
-- [Yahoo Finance Quote Pages](https://finance.yahoo.com/quote/{SYMBOL}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, API calls] <br>
-**Output Format:** [Plain text quote summaries or JSON objects with symbol, price, source, timestamp, and related market fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bulk ticker input is supported; results may include an error field when a provider fails or a symbol is invalid.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill includes a daily heartbeat example that can cause agents to write recurring portfolio-memory updates with hard-coded holdings and a stop-loss value that may not belong to the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not add HEARTBEAT.md or MEMORY.md entries unless the holdings, share counts, stop-losses, recurrence, and deletion path are explicitly provided and approved by the user.
+
+Risk: Quote data may be delayed or incomplete, especially because the default Stooq source is described as delayed end-of-day data.
+
+Mitigation: Treat quote data as informational and verify prices with an authoritative market data source before trading or financial decisions.
+
+Risk: The skill depends on network data sources and optional Python packages.
+
+Mitigation: Install dependencies in an isolated, pinned environment for higher assurance.
+
+## Reference(s):
+
+- [Stock Data API Sources](references/api-sources.md)
+- [Stooq quote CSV endpoint](https://stooq.com/q/l/?s=SYMBOL.us&f=sd2t2ohlc&h=&t=csv)
+- [Yahoo Finance quote pages](https://finance.yahoo.com/quote/{SYMBOL})
+- [Financial Modeling Prep](https://financialmodelingprep.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Code]
+
+**Output Format:** [Human-readable quote text or JSON objects from the quote CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Quote records may include price, change, previous close, day range, volume, market capitalization, P/E ratio, 52-week range, dividend yield, timestamp, source, or error fields depending on the data source.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,19 @@
+version: 1
+collection:
+  key: COLL0001
+  snapshot_count: 3
+allocations:
+  - item_index: 1
+    item_key: ITEM0001
+    status: ingested
+    pages:
+      - Deep-Learning-Foundations
+  - item_index: 2
+    item_key: ITEM0002
+    status: allocated_elsewhere
+    pages:
+      - Optimization-for-Deep-Learning
+  - item_index: 3
+    item_key: ITEM0003
+    status: omitted
+    omission_reason: Duplicate capture of ITEM0001 with no additional source content.

@@ -1,41 +1,54 @@
-## Description: <br>
-Resizes local image files to custom or preset dimensions, with support for batch resizing and preserving aspect ratio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resizes images to specific dimensions with support for custom sizes, batch resizing, aspect ratio preservation, presets, and local Pillow-based processing.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers, creators, and automation agents use this skill to resize one or more local images to specific dimensions, common social media presets, or constrained width and height while optionally preserving aspect ratio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch resizing can read every supported image in the selected input directory and write resized copies to an output directory. <br>
-Mitigation: Limit agent access to only the image files or folders intended for resizing and review output paths before execution. <br>
-Risk: The skill depends on Python and Pillow to process local image files. <br>
-Mitigation: Install Pillow only in a trusted environment and keep dependencies maintained. <br>
+## Use Case:
 
+Developers and end users use this skill to resize individual images or batches of images to exact dimensions, preset social-media/document sizes, or proportional widths and heights while preserving image quality.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/image-size-resizer) <br>
-- [Publisher profile](https://clawhub.ai/user/tobewin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce resized image files when executed by an agent with access to the selected input and output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill depends on Pillow for image processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a virtual environment when possible and pin Pillow to a reviewed version.
+
+Risk: Batch resizing creates output files for every supported image in the selected input directory.
+
+Mitigation: Run batch operations only on directories intentionally chosen by the user and confirm the output directory before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/image-size-resizer)
+- [Publisher profile](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline Python and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create resized image files in user-selected output paths or directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

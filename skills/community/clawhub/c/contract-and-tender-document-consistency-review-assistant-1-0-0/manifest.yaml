@@ -1,0 +1,142 @@
+# OpenClaw 兼容标准 manifest.yaml
+name: bid-contract-consistency-review
+display_name: 合同与招投标文件一致性审查助手
+version: 1.1.0
+description: 对照招标文件、投标文件与拟签合同草案，识别阴阳合同/黑白合同/变相让利/文字游戏等实质性偏离，输出可审计的合规审查报告。联动 IMA 知识库（招投标实务与合规 + 招投标评标否决AI知识库 + 政府采购实务与合规）核实法条时效，内置 TC1–TC9 回归测试用例（TC1–TC4、TC9 强制）保障稳定性。
+author: ChesaraM
+license: MIT-0
+emoji: "⚖️"
+metadata:
+  openclaw:
+    author: ChesaraM
+    emoji: "⚖️"
+    homepage: https://github.com/chesaram/my-skill-hub
+    triggers:
+      - pattern: "合同与招标文件不一致"
+      - pattern: "签约前核对"
+      - pattern: "标后合同核对"
+      - pattern: "阴阳合同"
+      - pattern: "黑白合同"
+      - pattern: "合同背离投标"
+      - pattern: "审查合同偏离"
+      - pattern: "合同一致性审查"
+      - pattern: "合同背离招标及投标响应"
+    tags:
+      - 招投标
+      - 合同审查
+      - 一致性核对
+      - 阴阳合同
+      - 合规
+    feedback:
+      channel: "微信公众号"
+      account: "一线评标专家"
+      note: "使用问题、误报反馈、实务建议，欢迎关注公众号「一线评标专家」留言交流"
+linked_knowledge_bases:
+  - name: "招投标实务与合规"
+    id: "7463402595160740"
+    role: "实质性内容实务口径、阴阳合同判定、签约阶段雷区、响应性评审框架"
+  - name: "招投标评标否决AI知识库"
+    id: "7460608999968055"
+    role: "招标基准输入库；否决事由/实质性要求判例，用于识别投标未响应的前置风险"
+  - name: "政府采购实务与合规"
+    id: "7463496212028405"
+    role: "政府采购合同法定必备条款、异常低价合同变更监管、行政协议可诉口径"
+dependencies:
+  tools:
+    - "ima-mcp（IMA 知识库检索，用于核实法条时效与最新实务口径）"
+  optional_skills:
+    - "tencent-docs-routing（读取本地 Office/PDF 招标/投标/合同文件）"
+    - "tencent-local-office-edit（实时读写本地 .docx/.wps 等文档）"
+  upstream_skills:
+    - "tender-version-compare（招标文件多版时先定最终版基线）"
+    - "bid-rejection-risk-radar（从招标文件抽取实质性要求作为本技能基准输入）"
+platforms:
+  clawhub:
+    name: "Bid-Contract Consistency Review"
+    display_name: "Bid-Contract Consistency Review"
+    description: "Reviews a draft contract against the tender documents and the winning bidder's bid response, detecting substantive deviations (yin-yang/black-white contracts, concealed concessions, wording games) and outputting an auditable compliance report. Cross-validates against IMA knowledge bases for legal-effectiveness, with built-in TC1–TC9 regression tests."
+    version: "1.1.0"
+    author: "ChesaraM"
+    license: "MIT-0"
+    emoji: "⚖️"
+    tags:
+      - contract-review
+      - bidding-compliance
+      - yin-yang-contract
+      - consistency-check
+    triggers:
+      - pattern: "bid contract consistency review"
+      - pattern: "contract deviates from tender"
+      - pattern: "yin-yang contract check"
+  skillhub:
+    name: "合同与招投标文件一致性审查助手"
+    display_name: "合同与招投标文件一致性审查助手"
+    description: "对照招标文件、投标文件与拟签合同草案，识别阴阳合同/黑白合同/变相让利/文字游戏等实质性偏离，输出可审计的合规审查报告。联动 IMA 知识库（招投标实务与合规 + 招投标评标否决AI知识库 + 政府采购实务与合规）核实法条时效，内置 TC1–TC9 回归测试用例（TC1–TC4、TC9 强制）保障稳定性。"
+    version: "1.1.0"
+    author: "ChesaraM"
+    license: "MIT-0"
+    emoji: "⚖️"
+    tags:
+      - 招投标
+      - 合同审查
+      - 一致性核对
+      - 阴阳合同
+      - 合规
+    triggers:
+      - pattern: "合同与招标文件不一致"
+      - pattern: "签约前核对"
+      - pattern: "标后合同核对"
+      - pattern: "阴阳合同"
+      - pattern: "黑白合同"
+      - pattern: "合同背离投标"
+      - pattern: "审查合同偏离"
+      - pattern: "合同一致性审查"
+      - pattern: "合同背离招标及投标响应"
+  cocoloop:
+    name: "合同与招投标文件一致性审查助手"
+    display_name: "合同与招投标文件一致性审查助手"
+    description: "对照招标文件、投标文件与拟签合同草案，识别阴阳合同/黑白合同/变相让利/文字游戏等实质性偏离，输出可审计的合规审查报告。联动 IMA 知识库（招投标实务与合规 + 招投标评标否决AI知识库 + 政府采购实务与合规）核实法条时效，内置 TC1–TC9 回归测试用例（TC1–TC4、TC9 强制）保障稳定性。"
+    version: "1.1.0"
+    author: "ChesaraM"
+    license: "MIT-0"
+    emoji: "⚖️"
+    tags:
+      - 招投标
+      - 合同审查
+      - 一致性核对
+      - 阴阳合同
+      - 合规
+    triggers:
+      - pattern: "合同与招标文件不一致"
+      - pattern: "签约前核对"
+      - pattern: "标后合同核对"
+      - pattern: "阴阳合同"
+      - pattern: "黑白合同"
+      - pattern: "合同背离投标"
+      - pattern: "审查合同偏离"
+      - pattern: "合同一致性审查"
+      - pattern: "合同背离招标及投标响应"
+  coze:
+    name: "合同与招投标文件一致性审查助手"
+    display_name: "合同与招投标文件一致性审查助手"
+    description: "对照招标文件、投标文件与拟签合同草案，识别阴阳合同/黑白合同/变相让利/文字游戏等实质性偏离，输出可审计的合规审查报告。联动 IMA 知识库（招投标实务与合规 + 招投标评标否决AI知识库 + 政府采购实务与合规）核实法条时效，内置 TC1–TC9 回归测试用例（TC1–TC4、TC9 强制）保障稳定性。"
+    version: "1.1.0"
+    author: "ChesaraM"
+    license: "MIT-0"
+    emoji: "⚖️"
+    tags:
+      - 招投标
+      - 合同审查
+      - 一致性核对
+      - 阴阳合同
+      - 合规
+    triggers:
+      - pattern: "合同与招标文件不一致"
+      - pattern: "签约前核对"
+      - pattern: "标后合同核对"
+      - pattern: "阴阳合同"
+      - pattern: "黑白合同"
+      - pattern: "合同背离投标"
+      - pattern: "审查合同偏离"
+      - pattern: "合同一致性审查"
+      - pattern: "合同背离招标及投标响应"

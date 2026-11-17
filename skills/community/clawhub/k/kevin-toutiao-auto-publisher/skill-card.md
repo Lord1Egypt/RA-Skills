@@ -1,47 +1,66 @@
-## Description: <br>
-Automates Toutiao article and short-post publishing, including topic selection, content drafting, image handling, cookie-based login, mixed text-image publishing, scheduling, and notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates publishing Toutiao articles and micro-posts, including topic selection, article drafting, image handling, cookie-based login, mixed text-image posting, scheduling, and Feishu notifications.
 
-## Publisher: <br>
-[kevin1220](https://clawhub.ai/user/kevin1220) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevin1220](https://clawhub.ai/user/kevin1220)
 
-## Use Case: <br>
-External creators and operators use this skill to generate and publish Toutiao articles or short posts from configured topics, images, account cookies, and notification settings. It is suited for users who intentionally want an agent to operate a live Toutiao account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use raw account cookies to operate a live Toutiao account. <br>
-Mitigation: Keep cookie files private and out of repositories, use a dedicated browser or profile, and rotate cookies when access changes. <br>
-Risk: Publishing and scheduler flows can create live public posts without a clear final approval gate. <br>
-Mitigation: Use generation-only or dry-run modes where available, review generated content before publication, and enable scheduled runs only with monitoring and a stop procedure. <br>
-Risk: Feishu notifications may send publication metadata to a third party. <br>
-Mitigation: Configure Feishu notifications only when that disclosure is acceptable and limit message content to necessary status information. <br>
+## Use Case:
 
+External creators and developers use this skill to generate, schedule, and publish Toutiao articles or micro-posts with images through a configured Toutiao account, then receive Feishu status notifications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kevin1220/kevin-toutiao-auto-publisher) <br>
-- [Toutiao Creator Platform](https://mp.toutiao.com) <br>
-- [Toutiao Article Publish Page](https://mp.toutiao.com/profile_v4/graphic/publish) <br>
-- [Toutiao Short Post Publish Page](https://mp.toutiao.com/profile_v4/weitoutiao/publish) <br>
-- [Feishu Open Platform Token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu Open Platform Message API](https://open.feishu.cn/open-apis/message/v4/send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with Python scripts, configuration examples, generated post text, publication status, logs, and notifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish live public content when configured with valid account cookies and publishing commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence) <br>
+Risk: The skill can publish public Toutiao content using a logged-in account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated account, test generation-only or non-publishing flows first, and require human review before enabling live publishing.
+
+Risk: Session cookies and Feishu configuration can grant account or notification access if exposed.
+
+Mitigation: Keep cookie and configuration files out of repositories and backups, restrict file permissions, and rotate cookies regularly.
+
+Risk: Scheduled posting can repeat public publishing without timely oversight.
+
+Mitigation: Avoid unattended scheduling until confirmation controls, monitoring, and rollback procedures are in place.
+
+Risk: Browser automation interacts with a logged-in web session and may be affected by page changes or unexpected dialogs.
+
+Mitigation: Run the browser in an isolated unprivileged environment with sandboxing enabled where possible and inspect logs or screenshots after test runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevin1220/skills/kevin-toutiao-auto-publisher)
+- [Toutiao publisher portal](https://mp.toutiao.com)
+- [Toutiao article publishing page](https://mp.toutiao.com/profile_v4/graphic/publish)
+- [Toutiao micro-post publishing page](https://mp.toutiao.com/profile_v4/weitoutiao/publish)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu message send API](https://open.feishu.cn/open-apis/message/v4/send)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration examples, generated publishing text, and execution guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local logs, screenshots, article drafts, micro-post text, image references, and Feishu notification status.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

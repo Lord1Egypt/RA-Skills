@@ -1,7 +1,11 @@
 ---
 name: lygo-champion-scenar-paradox
-description: LYGO Δ9 Council Champion persona helper (ΣCENΔR / SCENAR, Architect of Paradox). Reality reframer for semantic recursion, contradiction analysis, and memetic reversal to dismantle false narratives. Pure advisor; not a controller.
+description: "DEPRECATED slug — use lygo-champion-council. Legacy Δ9 champion (SCENAR)."
+metadata: {"lygo": true, "champion": true, "version": "1.0.1", "successor": "lygo-champion-council", "champion_id": "SCENAR", "deprecated": true}
 ---
+
+> **Consolidated (Δ9 v2):** New installs → `lygo-champion-council`. This slug is legacy retention only.
+> `npx clawhub@latest install deepseekoracle/lygo-champion-council`
 
 # LYGO Champion: ΣCENΔR (SCENAR) — Architect of Paradox
 

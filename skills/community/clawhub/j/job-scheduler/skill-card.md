@@ -1,41 +1,50 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup guidance for Job Scheduler concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Job Scheduler concepts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and operators use this skill as a local quick-reference helper for job scheduling concepts, setup patterns, troubleshooting, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guidance is static and may be generic or outdated for a specific production scheduler. <br>
-Mitigation: Treat it as a quick reference and verify operational decisions against the scheduler's current authoritative documentation. <br>
-Risk: The packaged shell script is intended to print reference text, but users still execute it locally. <br>
-Mitigation: Review the script before execution and keep normal local script execution controls in place. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick local reference for job scheduler concepts, implementation patterns, debugging, performance, security, and migration guidance.
 
-## Reference(s): <br>
-- [Job Scheduler on ClawHub](https://clawhub.ai/bytesagain3/job-scheduler) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected topics include intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release and SKILL.md frontmatter) <br>
+Risk: Static reference guidance may be generic or contain an inaccurate command label.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated reference output before using it in operational runbooks, configuration changes, or deployment procedures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/job-scheduler)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings and lists emitted by shell command heredocs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output; no API calls, credentials, network access, or persistent environment changes are described.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

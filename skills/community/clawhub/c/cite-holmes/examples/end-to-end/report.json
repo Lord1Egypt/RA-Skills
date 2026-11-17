@@ -1,0 +1,146 @@
+{
+  "version": "5.5.0",
+  "profile": "general",
+  "offline": false,
+  "bluf": {
+    "verdict": "可用：0/1 条 verified,1 条 partial 需降级使用",
+    "key_numbers": "CiteScore 40/100 (D), verified 0/1, invalid 0, 复核 0 条（其中撤稿 0 条）",
+    "blocker": "1 条 partial",
+    "next_action": "partial 项在正文引用时注明保留意见",
+    "cite_holmes_version": "5.5.0",
+    "score": 40,
+    "grade": "D",
+    "counts": {
+      "verified": 0,
+      "partial": 1,
+      "unreachable": 0,
+      "unverified": 0,
+      "invalid": 0
+    }
+  },
+  "bluf_yaml": "---\nverdict: 可用：0/1 条 verified,1 条 partial 需降级使用\nkey_numbers: CiteScore 40/100 (D), verified 0/1, invalid 0, 复核 0 条（其中撤稿 0 条）\nblocker: 1 条 partial\nnext_action: partial 项在正文引用时注明保留意见\ncite_holmes_version: 5.5.0\n---",
+  "scorecard": {
+    "score": 40,
+    "grade": "D",
+    "total": 1,
+    "counts": {
+      "verified": 0,
+      "partial": 1,
+      "unreachable": 0,
+      "unverified": 0,
+      "invalid": 0
+    },
+    "weights": {
+      "verified": 10,
+      "partial": 4,
+      "unreachable": 0,
+      "unverified": -2,
+      "invalid": -8
+    }
+  },
+  "results": [
+    {
+      "title": "Nanometre-scale thermometry in a living cell",
+      "url": "https://doi.org/10.1038/nature12373",
+      "doi": "10.1038/nature12373",
+      "pmid": "",
+      "arxiv": "",
+      "source": "",
+      "year": 2013,
+      "tier": "official",
+      "semantic": "",
+      "verdict": "partial",
+      "http_status": 200,
+      "note": "DOI 元数据核验一致（相似度 1.00）；HEAD 200；学界评价：被引 ≥30 次（语境覆盖率 43%）；后续文献如是以引用：《Geometric estimation of NV charge-state contributions from a low-dimensional spe》；缺字段 来源(source)；磁盘缓存命中（0h 前验证；--refresh-cache 强制重验）",
+      "needs_human_check": false,
+      "checks": {
+        "doi_metadata": {
+          "matched": true,
+          "adjust": "",
+          "csl": {
+            "title": "Nanometre-scale thermometry in a living cell",
+            "authors": [
+              "KUCSKO G",
+              "MAURER P C",
+              "YAO N Y",
+              "KUBO M",
+              "NOH H J",
+              "LO P K",
+              "PARK H",
+              "LUKIN M D"
+            ],
+            "container": "Nature",
+            "year": 2013,
+            "volume": "500",
+            "issue": "7460",
+            "page": "54-58"
+          }
+        },
+        "retraction": {
+          "retracted": false
+        },
+        "url": {
+          "reachable": true,
+          "status": 200
+        },
+        "citation_contexts": {
+          "ran": true,
+          "cited_by": 30
+        }
+      },
+      "semantic_audit": null,
+      "citation_contexts": {
+        "cited_by": 30,
+        "samples": [
+          {
+            "context": "Its spin-dependent optical response enables measurements of magnetic fields [3–5], temperature [6], electric fields [7], and other physical quantities.",
+            "intents": [],
+            "influential": false,
+            "citing_title": "Geometric estimation of NV charge-state contributions from a low-dimensional spe"
+          },
+          {
+            "context": "These estimates account for the saturation of the constant-coupling enhancement near 𝑁 ∼ 50 and the resonance-like maximum of the 𝑔 𝑁 = 𝑔𝑁 curve near 𝑁 ∼ 7 observed in Fig.",
+            "intents": [],
+            "influential": true,
+            "citing_title": "Coherence-Enhanced Spatial Quantum Thermometry"
+          },
+          {
+            "context": "NV-based thermometry, specifically, has garnered significant attention [6, 12, 13] stemming from its combination of optical readout, nanoscale spatial resolution, and operability in ambient and in vivo settings [6, 7].",
+            "intents": [],
+            "influential": false,
+            "citing_title": "Thermometry in Near-Degenerate Nitrogen-Vacancy Ensembles Enabled by Bright-Dark"
+          }
+        ],
+        "coverage": 0.43
+      },
+      "index": 1
+    }
+  ],
+  "context_check": {
+    "citations": [
+      {
+        "marker": "Kucsko et al. (2013)",
+        "sentence": "Kucsko et al. (2013) demonstrated nanoscale thermometry.",
+        "ref_index": 1,
+        "ref_verdict": "partial",
+        "anchor_rate": 0.4,
+        "anchor": "ok",
+        "bound": true
+      },
+      {
+        "marker": "[1]",
+        "sentence": "Penguins breed on ice [1].\n\n## References\n[1] Some other paper about penguins.",
+        "ref_index": 1,
+        "ref_verdict": "partial",
+        "anchor_rate": 0.0,
+        "anchor": "low",
+        "bound": true
+      }
+    ],
+    "n_citations": 2,
+    "n_unbound": 0,
+    "n_low_anchor": 1,
+    "anchor_threshold": 0.34,
+    "note": "锚词率=引文句与被引标题的内容词重叠(阈值 0.34);low≠错引,是语义层人工复核候选"
+  }
+}

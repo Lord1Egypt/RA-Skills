@@ -1,11 +1,11 @@
 # ISCH\_NetInfo interface
 
-网络属性
+Net property
 
 ## Signature
 
 ```typescript
-interface ISCH_NetInfo 
+interface ISCH_NetInfo
 ```
 
 ## Properties
@@ -14,59 +14,47 @@ interface ISCH_NetInfo
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [net](./ISCH_NetInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-网络名称
-
+Net name
 
 </td></tr>
 <tr><td>
 
 [wires](./ISCH_NetInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISCH\_WireInfo](./ISCH_WireInfo.md)<!-- -->&gt;
 
-
 </td><td>
 
-导线
-
+Wire
 
 </td></tr>
 </tbody></table>
@@ -79,7 +67,7 @@ Array&lt;[ISCH\_WireInfo](./ISCH_WireInfo.md)<!-- -->&gt;
 
 # ISCH\_NetInfo.net property
 
-网络名称
+Net name
 
 ## Signature
 
@@ -91,7 +79,7 @@ net: string;
 
 # ISCH\_NetInfo.wires property
 
-导线
+Wire
 
 ## Signature
 

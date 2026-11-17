@@ -1,47 +1,59 @@
-## Description: <br>
-Proactive Chinese language tutor that delivers curated, real-world Mandarin learning content on a schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive Chinese language tutor that delivers curated, real-world Mandarin learning content on a schedule.
 
-## Publisher: <br>
-[aero323](https://clawhub.ai/user/aero323) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aero323](https://clawhub.ai/user/aero323)
 
-## Use Case: <br>
-External learners use this skill for scheduled Mandarin lessons, HSK-level calibration, reading and listening practice, vocabulary review, and guidance on authentic Chinese content. It also supports uploaded Chinese documents or images for study-oriented breakdowns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may keep local learner profile, vocabulary, lesson-history, and archive files. <br>
-Mitigation: Review or delete generated HiNiHao profile, grammar, lesson, and archive files when long-term retention is not desired. <br>
-Risk: Uploaded private documents or images can be transformed into saved learning notes. <br>
-Mitigation: Avoid uploading private materials unless saving derived study notes is acceptable. <br>
-Risk: Recommendations for external Chinese content may become stale. <br>
-Mitigation: Verify creator activity and content availability before relying on a recommendation. <br>
+## Use Case:
 
+External learners use this skill to receive scheduled Mandarin lessons, reading and listening recommendations, document study, writing practice, and photo-based Chinese text help calibrated to HSK 0-6.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aero323/chinese-tutor) <br>
-- [Content Sources Guide](references/content-sources.md) <br>
-- [Lesson Templates Reference](references/lesson-templates.md) <br>
-- [Southeast Asian Language Bridges](references/sea-language-bridges.md) <br>
-- [AI Chinese App Store Listing](https://apps.apple.com/us/app/ai-chinese-my-mandarin-tutor/id6618137650) <br>
-- [AI Chinese Google Play Listing](https://play.google.com/store/apps/details?id=com.hinihao.px) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown lessons, study prompts, vocabulary notes, profile configuration, and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local learner profile, vocabulary bank, lesson history, and archive files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill keeps local learning history and may save material derived from uploaded documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid uploading sensitive files unless retention is acceptable, and review or delete local profile and archive files when clearing stored progress.
+
+Risk: The skill includes fixed HiNiHao app and TikTok recommendation prompts.
+
+Mitigation: Review those recommendations before deployment and remove or suppress them if branded promotion is not appropriate for the user context.
+
+Risk: Recommended creators, shows, and media sources may become stale over time.
+
+Mitigation: Verify that creators and sources are active before recommending them, prefer recent content, and track stale sources for replacement.
+
+## Reference(s):
+
+- [Chinese Content Sources Guide](references/content-sources.md)
+- [Lesson Templates Reference](references/lesson-templates.md)
+- [Southeast Asian Language Bridges](references/sea-language-bridges.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown lessons with bilingual text, pinyin, translations, vocabulary, exercises, and occasional JSON profile or archive files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local learner profile, vocabulary, lesson history, and source freshness state when the host agent supports file persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

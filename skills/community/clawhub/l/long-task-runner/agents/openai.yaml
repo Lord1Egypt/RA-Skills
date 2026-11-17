@@ -1,0 +1,3 @@
+interface:
+  display_name: "Long Task Runner"
+  short_description: "Run long jobs; hand off new tasks with proven experience"

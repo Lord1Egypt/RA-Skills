@@ -1,45 +1,61 @@
-## Description: <br>
-PPT Creator helps an agent create, review, edit, style, and download PowerPoint presentations from topics, outlines, local text documents, or project summaries through Yoo AI APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PPT Creator helps agents create, review, edit, restyle, and download presentation decks through Yoo AI from topics, structured outlines, local files, or project summaries.
 
-## Publisher: <br>
-[daan0701](https://clawhub.ai/user/daan0701) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daan0701](https://clawhub.ai/user/daan0701)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to generate presentation decks, review and revise outlines before generation, add speaker notes, insert slides, change styles, preview covers, and create image-based PPTs when visual quality is more important than text editability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PPT topics, document text, outlines, and project summaries are sent to the external Yoo AI service. <br>
-Mitigation: Use the skill only with content approved for Yoo AI processing, and avoid submitting confidential or regulated information unless the deployment has appropriate approval. <br>
-Risk: A Yoo AI API key is required and could be exposed if stored directly in config.json. <br>
-Mitigation: Set YOO_AI_API_KEY as an environment variable when possible; protect or remove config.json if it contains a real key and rotate any key that may have been exposed. <br>
-Risk: Generated presentations, task metadata, editor links, and download paths may be written locally or printed in command output. <br>
-Mitigation: Review local output directories and .tasks.json for sensitive content, and avoid sharing terminal logs that include task IDs or editor URLs. <br>
-Risk: Image-based PPT mode produces slides whose text cannot be edited after generation. <br>
-Mitigation: Confirm the user wants image-based mode before use and choose standard editable PPT generation when downstream text editing is required. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to turn prompts, outlines, files, and codebase summaries into PPT decks, then review outlines, preview covers, add speaker notes, insert slides, or regenerate with a different style before downloading the result.
 
-## Reference(s): <br>
-- [PPT Creator ClawHub Listing](https://clawhub.ai/daan0701/ppt-creator) <br>
-- [Yoo AI API Service Endpoint](https://saas.api.yoo-ai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Files, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with node commands; generated PPTX files, task status text, editor or download URLs, and JSON or Markdown outlines.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist task status in .tasks.json and write generated presentations to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can send PPT content, local file contents, or project summaries to Yoo AI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with content approved for that external service, and avoid sensitive or confidential source material unless sharing is authorized.
+
+Risk: The skill needs a Yoo AI API key and can read a fallback key from config.json.
+
+Mitigation: Prefer storing YOO_AI_API_KEY in a secure environment variable and avoid committing real credentials into config.json.
+
+Risk: The documented command templates accept user-provided text, paths, JSON, and URLs.
+
+Mitigation: Pass arguments with safe argument-array execution and review untrusted inputs before running commands.
+
+Risk: The skill writes downloaded decks, outline JSON files, and task records to the local workspace.
+
+Mitigation: Review the configured output directory and generated files before sharing or retaining them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daan0701/skills/ppt-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown and text guidance with shell commands, JSON outline files, status and editor URLs, and downloaded PPTX files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Yoo AI API key; generated decks and task records are written locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

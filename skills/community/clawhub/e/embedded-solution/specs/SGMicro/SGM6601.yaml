@@ -1,0 +1,57 @@
+part: SGM6601
+link_status: verified_2026-07-02 (datasheet-html-extracted)
+expected_family: "SGMicro SGM6601 \u2014 high-frequency boost converter (LCD bias / LED backlight)"
+main_page: https://www.sg-micro.com/product/sgm6601
+datasheet_path_expected: ../../datasheets/SGM6601_DS.pdf
+datasheet_source_note: SGM6601 datasheet PDF not in catalog. Family page reachable via Firecrawl; specs extracted from product
+  page markdown. Datasheet PDF is downloadable from sg-micro.com/rect/assets/.../SGM6601.pdf.
+specs:
+  function: High-frequency boost (step-up) DC-DC converter
+  specs_performance:
+    input_voltage_range_v: 1.8-5.5
+    switch_current_limit_ma: 400
+    switching_frequency_max_mhz: 1
+    quiescent_current_ua: 20
+    topology: Synchronous boost with internal switch
+  output:
+    capacitor_compatibility:
+    - ceramic
+    - tantalum
+  temperature_range_c: -40 to +85
+  packages:
+  - TDFN-2x2-6L
+  - TSOT-23-5
+  use_cases:
+  - Small to medium LCD bias supply
+  - White LED backlight supply
+  - Low-power boost applications
+  pricing_usd:
+    1-24 units: 1.05
+    25-99: 0.9
+    199-249: 0.75
+    250-499: 0.6
+    500-999: 0.525
+    1000-9999: 0.39
+unverified:
+- exact_maximum_output_voltage_v
+- exact_efficiency_at_load
+- exact_soft_start_time_ms
+- exact_thermal_shutdown_threshold_c
+- shutdown_current_na
+- feedback_voltage_accuracy_pct
+notes:
+- "Promoted from \"missing yaml\" to verified_2026-06-30 \u2014 extracted from sg-micro.com SGM6601 product page via Firecrawl\
+  \ (10KB raw \u2192 9.4KB clean)."
+- "Use case: boost converter for LCD bias or LED backlight in portable / battery-powered designs. Low 20\xB5A Iq extends battery\
+  \ life vs competitors."
+- 'Family differentiator vs SGM8903: SGM6601 is boost (step-up); SGM8903 is LDO (step-down). Different functions.'
+- "Cost: $0.39 @ qty 1000 \u2014 competitive with TI TPS61236P / Analog LT3466 in small-package form factor."
+- "Re-labeled verified_2026-07-02 via Tavily-found source (sg-micro.com/product/SGM6601) + firecrawl scrape: 15/20 spec fields\
+  \ matched (75 percent). Source: sg-micro.com. NOTE: SGMicro direct PDFs (sg-micro.com/uploads/files/.../SGM-DS.pdf) return\
+  \ 404 \u2014 vendor uses logged-in download. Replaces pre-v0.4.1 family-page-extract tag."
+extracted_at: '2026-06-30T01:00:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract of sg-micro.com product page markdown
+extraction_source: references/semiconductor-vendor/SGMicro/firecrawl-snapshots/SGM6601_clean.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.sg-micro.com/product/SGM6601

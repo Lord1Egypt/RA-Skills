@@ -1,51 +1,68 @@
-## Description: <br>
-ManoBrowser lets agents operate a user's logged-in Chrome through a Chrome extension and MCP connection to extract web data, reverse-engineer web APIs, and build reusable browser automation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ManoBrowser operates a user's own Chrome browser with logged-in sessions to extract login-gated web data, reverse-engineer website APIs into reusable skills, and automate browser workflows.
 
-## Publisher: <br>
-[sophie-xin9](https://clawhub.ai/user/sophie-xin9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sophie-xin9](https://clawhub.ai/user/sophie-xin9)
 
-## Use Case: <br>
-External users and developers use ManoBrowser to automate browser tasks, extract login-gated web data, explore platforms, reverse-engineer APIs, and generate reusable skills from recorded browser workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Chrome session through a remote MCP connection. <br>
-Mitigation: Use it only with accounts and browser sessions where delegated automation is acceptable, and avoid banking, healthcare, email, admin consoles, and other highly sensitive services. <br>
-Risk: The skill can use cookies and collect sensitive page data while extracting login-gated content. <br>
-Mitigation: Review the target site, requested data, and extraction output before reuse, and remove sensitive fields from saved artifacts. <br>
-Risk: Generated workflows may perform uploads, submits, publishes, or other state-changing actions. <br>
-Mitigation: Require final manual confirmation before any upload, submit, publish, purchase, or account-changing operation. <br>
-Risk: Temporary cookie files and detailed workflow logs may persist sensitive session or page information. <br>
-Mitigation: Delete temporary cookie files and workflow logs after use, and store any retained artifacts only in approved locations. <br>
+## Use Case:
 
+Developers and automation users use ManoBrowser to operate a real Chrome session for browser automation, structured page extraction, platform exploration, API data skill generation, and reusable workflow creation for sites that may require login.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sophie-xin9/manobrowser) <br>
-- [Metadata Homepage](https://github.com/ClawCap/ManoBrowser) <br>
-- [Chrome Web Store Listing](https://chromewebstore.google.com/detail/manobrowser/ihlggihggghoiijfcmgkapojamifohfh) <br>
-- [Browser Automation Module](browser-automation/SKILL.md) <br>
-- [Web Data Extractor Module](web-data-extractor/SKILL.md) <br>
-- [API Skill Builder Module](api-skill-builder/SKILL.md) <br>
-- [Platform Data Explorer Module](platform-data-explorer/SKILL.md) <br>
-- [Chrome Workflow Build Module](chrome-workflow-build/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, JSON snippets, shell commands, and generated skill files or workflow artifacts when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser operation plans, extracted page data, API mappings, reusable skill drafts, workflow logs, and configuration instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.7 (source: server release metadata) <br>
+Risk: The skill can access private data through a real logged-in Chrome session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate browser profile or test account and avoid running it on sensitive sites unless the publisher and workflow are trusted.
+
+Risk: The DEVICE_ID token can grant access to the connected browser service if exposed.
+
+Mitigation: Store the token outside chats, prefer environment variables or a secrets-aware configuration path, and rotate or revoke it if it is exposed.
+
+Risk: Browser data may pass through external services during MCP operation.
+
+Mitigation: Review the connection endpoint and only connect accounts or browser profiles appropriate for the data-sharing risk.
+
+Risk: Workflow logs, /tmp cookie files, TOOLS.md changes, or generated skills may persist sensitive data or agent behavior changes after use.
+
+Mitigation: Review and remove those files or changes after execution, especially before sharing the workspace or generated skills.
+
+## Reference(s):
+
+- [ManoBrowser ClawHub Page](https://clawhub.ai/sophie-xin9/skills/manobrowser)
+- [ManoBrowser Homepage](https://github.com/ClawCap/ManoBrowser)
+- [ManoBrowser Chrome Web Store Listing](https://chromewebstore.google.com/detail/manobrowser/ihlggihggghoiijfcmgkapojamifohfh)
+- [Browser Automation Module](browser-automation/SKILL.md)
+- [Web Data Extractor Module](web-data-extractor/SKILL.md)
+- [Platform Data Explorer Module](platform-data-explorer/SKILL.md)
+- [API Skill Builder Module](api-skill-builder/SKILL.md)
+- [Chrome Workflow Builder Module](chrome-workflow-build/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, code, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce generated skill files, workflow definitions, browser-extracted JSON, and configuration snippets depending on the selected module.]
+
+## Skill Version(s):
+
+2.2.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

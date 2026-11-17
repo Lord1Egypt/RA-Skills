@@ -1,44 +1,59 @@
-## Description: <br>
-Build, debug, and integrate Leaflet web maps across vanilla HTML, Vite, React, and other frontend apps, including setup, tile layers, markers, popups, GeoJSON overlays, bounds fitting, event handling, and plugin-safe patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, debug, and integrate Leaflet web maps for map setup, tile layers, markers, popups, GeoJSON overlays, bounds fitting, event handling, and frontend framework integration.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, debug, and integrate practical 2D Leaflet maps with tile layers, markers, popups, GeoJSON overlays, framework lifecycle handling, and plugin-aware implementation patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated map code may omit required tile-provider attribution or use a provider outside its terms. <br>
-Mitigation: Review the selected tile provider's attribution and usage terms, then keep the tile URL and attribution configurable. <br>
-Risk: Popup content or GeoJSON feature properties from untrusted data may introduce unsafe HTML into a map. <br>
-Mitigation: Escape or sanitize untrusted popup and property content before rendering it in Leaflet. <br>
-Risk: Examples adapted for production could accidentally hardcode private tokens, private tile servers, or machine-specific paths. <br>
-Mitigation: Move secrets and environment-specific values into configuration and review generated code before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to create or troubleshoot practical 2D Leaflet maps in frontend apps, including tiles, markers, popups, GeoJSON overlays, sizing issues, and SPA lifecycle handling.
 
-## Reference(s): <br>
-- [Leaflet Documentation](https://leafletjs.com/) <br>
-- [Leaflet Patterns](references/patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jvy/leaflet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include targeted debugging analysis, minimal reproducible Leaflet examples, framework lifecycle notes, and tile-provider or CRS assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated map examples can omit or misuse tile-provider terms, attribution, rate limits, or private service tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review provider terms, include required attribution, and keep tile URLs and tokens configurable before production use.
+
+Risk: Popup or feature-property examples can expose raw untrusted HTML.
+
+Mitigation: Escape or sanitize user-provided feature properties before binding popup content.
+
+Risk: Incorrect CRS or coordinate-order assumptions can place features in the wrong location.
+
+Mitigation: Confirm WGS84 and GeoJSON coordinate order before rendering, and use a reprojection workflow when the source data uses another CRS.
+
+## Reference(s):
+
+- [Leaflet Homepage](https://leafletjs.com/)
+- [Leaflet Patterns](references/patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/jvy/skills/leaflet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tile attribution, CRS assumptions, lifecycle cleanup notes, and security notes for token or tile-provider handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

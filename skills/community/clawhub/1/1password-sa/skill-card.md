@@ -1,44 +1,63 @@
-## Description: <br>
-Securely inject secrets from 1Password into agent workflows using service accounts with op run and .env.tpl as the primary pattern, op read as a fallback, and hardened security guidance for credential handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Securely inject secrets from 1Password into agent workflows using service accounts with op run and .env.tpl as the primary pattern, op read as a fallback, and hardened rules for authentication, permissions, and secret handling.
 
-## Publisher: <br>
-[in-liberty420](https://clawhub.ai/user/in-liberty420) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[in-liberty420](https://clawhub.ai/user/in-liberty420)
 
-## Use Case: <br>
-Developers and agent operators use this skill to access API keys, credentials, and other 1Password secrets without exposing values in chat, logs, shell history, or process arguments. It provides safe command patterns for service-account authentication, secret injection, fallback reads, and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: 1Password service-account tokens can expose real secrets if leaked. <br>
-Mitigation: Use least-privilege vault access, keep tokens out of chat, logs, shell history, and repositories, and rotate or revoke any token that may have been exposed. <br>
-Risk: Diagnostic commands can reveal account emails, vault names, item IDs, URLs, and other sensitive metadata. <br>
-Mitigation: Treat diagnostic output as sensitive and avoid recording or logging it in agent sessions. <br>
-Risk: Unsafe CLI patterns can print or persist secrets. <br>
-Mitigation: Prefer `op run` with masking enabled, avoid `--no-masking`, `--reveal`, `set -x`, verbose curl output, raw stdout reads, and command-line secret arguments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [1Password CLI Get Started](https://developer.1password.com/docs/cli/get-started/) <br>
-- [Get Started](references/get-started.md) <br>
-- [CLI Examples](references/cli-examples.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve and inject 1Password-managed API keys, credentials, and other secrets into command workflows while minimizing secret exposure in logs, process arguments, and generated responses.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the 1Password CLI binary (`op`) and an `OP_SERVICE_ACCOUNT_TOKEN` supplied from a secure store.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents may expose secrets by printing command output, dumping environment variables, enabling shell tracing, or passing secrets as command-line arguments.
+
+Mitigation: Use op run with .env.tpl where possible, keep masking enabled, avoid set -x and verbose logging, and never include secret values in chat, logs, tool output, or agent responses.
+
+Risk: A broadly scoped or mishandled 1Password service account can grant more vault or item access than the workflow needs.
+
+Mitigation: Scope the service account to the minimum required vaults and items, store OP_SERVICE_ACCOUNT_TOKEN in a secure store, unset it after use, and rotate it if expired or revoked.
+
+Risk: Untrusted vault, item, field, or .env.tpl input can alter command behavior or expose secret reference structure.
+
+Mitigation: Validate dynamic names, quote shell variables, reject dangerous metacharacters and dangerous environment variable names, restrict .env.tpl permissions, and avoid accepting templates from untrusted sources.
+
+Risk: Diagnostic commands can reveal sensitive metadata such as account emails, vault names, item IDs, and URLs.
+
+Mitigation: Treat diagnostic output as sensitive in logged or recorded sessions and prefer low-impact checks only when needed for troubleshooting.
+
+## Reference(s):
+
+- [1Password CLI get started](https://developer.1password.com/docs/cli/get-started/)
+- [get-started.md](references/get-started.md)
+- [cli-examples.md](references/cli-examples.md)
+- [troubleshooting.md](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the 1Password CLI op binary and OP_SERVICE_ACCOUNT_TOKEN for service-account workflows.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

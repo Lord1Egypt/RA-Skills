@@ -1,45 +1,56 @@
-## Description: <br>
-通过命令行下载任意网站 favicon，支持多种尺寸与格式，无依赖。Using favicondl.com API to download favicon for any domain via CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 HTTPS API 或零依赖 CLI 下载任意网站的可用 favicon，支持尺寸偏好、图片重定向、JSON 元数据和 Windows/Linux/macOS。
 
-## Publisher: <br>
-[sweesama](https://clawhub.ai/user/sweesama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sweesama](https://clawhub.ai/user/sweesama)
 
-## Use Case: <br>
-Developers and automation agents use this skill to fetch favicon image files for websites from the command line. It supports icon collection for bookmarks, directories, design references, SEO assets, and scripted workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested website domains are sent to favicondl.com and downloads may follow redirects to favicon hosts. <br>
-Mitigation: Use the tool only for domains that are acceptable to disclose to the favicon service and expected redirect targets. <br>
-Risk: The script writes to the requested output path and removes that file when a download fails. <br>
-Mitigation: Choose a non-critical output path and avoid pointing the command at existing files that should be preserved. <br>
-Risk: Downloaded favicon files originate from external network services. <br>
-Mitigation: Review the script before installation and scan downloaded files before using them in sensitive workflows. <br>
+## Use Case:
 
+Developers and agent builders use FaviconDL to retrieve website favicon images or JSON favicon metadata through a documented HTTPS API, a zero-dependency Bash CLI, or an optional local stdio MCP adapter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sweesama/favicondl) <br>
-- [FaviconDL website](https://favicondl.com) <br>
-- [Favicon API endpoint](https://favicondl.com/api/favicon?domain={domain}&size={size}&format=redirect) <br>
-- [NPM package](https://www.npmjs.com/package/favicondl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and local favicon image file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads are requested through favicondl.com and saved to the specified local output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Install instructions include raw GitHub commands that can fetch changed executable code from a mutable branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the REST API or bundled reviewed Bash script; when downloading scripts, use pinned commits, checksums, or manual review before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sweesama/skills/favicondl)
+- [FaviconDL API Endpoint](https://favicondl.com/api/extract)
+- [OpenAPI Specification](https://favicondl.com/openapi.yaml)
+- [LLM Usage Notes](https://favicondl.com/llms.txt)
+- [Human API Documentation](https://favicondl.com/documentation.html)
+- [Canonical Agent API Documentation](https://github.com/sweesama/favicondl.com/blob/main/SKILL.md)
+- [Local MCP Adapter Documentation](https://github.com/sweesama/favicondl.com/blob/main/mcp/README.md)
+- [OpenClaw Marketplace Asset](https://openclawmp.cc/asset/s-5a9fb4e7ff343062)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, URLs, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to download image files with target-controlled formats or request JSON metadata from the FaviconDL API.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

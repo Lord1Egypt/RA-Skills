@@ -9,12 +9,20 @@ import { randomUUID } from "crypto";
 import { type Message, db } from "../db.js";
 import { messageRepo } from "../repo/sqlite-impl.js";
 import { pushToAgent } from "../sse.js";
-import { auditLog, type AuthContext } from "../security.js";
+import { auditLog, type AuthContext, assertOwns } from "../security.js";
 import { resolveAgentId } from "../identity.js";
 import { dedupMessage, validateMessageBody } from "../dedup.js";
-import { getRow, getAllRows, withRetry, requireAuth, mcpError } from "../utils.js";
-import { getErrorMessage } from "../types.js";
 import { logError } from "../logger.js";
+import { withRetry, requireAuth, authed, mcpError, mcpFail } from "../utils.js";
+import { getErrorMessage } from "../types.js";
+import { RateLimiter } from "../ratelimit.js";
+
+/** 全局 RateLimiter 实例，由 server.ts 在启动时注入 */
+export let messageRateLimiter: RateLimiter | null = null;
+
+export function setMessageRateLimiter(rl: RateLimiter): void {
+  messageRateLimiter = rl;
+}
 
 export function registerMessageTools(server: McpServer, authContext?: AuthContext): void {
 
@@ -34,8 +42,7 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
       metadata: z.record(z.unknown()).optional()
                   .describe("附加结构化数据，如 taskId、priority 等"),
     },
-    async ({ from, to, content, type, metadata }) => {
-      const ctx = requireAuth(authContext, "send_message");
+    authed(authContext, "send_message", async (ctx, { from, to, content, type, metadata }) => {
 
       // ── from_agent 格式规范化（Phase 2.1） ────────────────
       const resolvedFrom = resolveAgentId(from);
@@ -66,6 +73,40 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
           }],
           isError: true,
         };
+      }
+
+      // T5：发送者身份校验——from 必须等于调用方 agent_id（与 broadcast_message 一致）
+      if (resolvedFrom !== ctx.agentId) {
+        return {
+          content: [{
+            type: "text",
+            text: JSON.stringify({
+              success: false,
+              error: "Sender identity mismatch: 'from' must equal your authenticated agent_id",
+              code: "INVALID_SENDER",
+            }),
+          }],
+          isError: true,
+        };
+      }
+
+      // 限流检查（P2-8）
+      if (messageRateLimiter) {
+        const decision = messageRateLimiter.consume(resolvedFrom, 1);
+        if (!decision.allowed) {
+          return {
+            content: [{
+              type: "text",
+              text: JSON.stringify({
+                success: false,
+                error: "Rate limited. Please retry after the specified time.",
+                code: "RATE_LIMITED",
+                retry_after_ms: decision.retryAfterMs,
+              }),
+            }],
+            isError: true,
+          };
+        }
       }
 
       // 消息去重 + 完整性校验
@@ -122,7 +163,7 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -137,8 +178,7 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
       content:   z.string(),
       metadata:  z.record(z.unknown()).optional(),
     },
-    async ({ from, agent_ids, content, metadata }) => {
-      const ctx = requireAuth(authContext, "broadcast_message");
+    authed(authContext, "broadcast_message", async (ctx, { from, agent_ids, content, metadata }) => {
 
       // 消息体校验
       const validation = validateMessageBody(content);
@@ -153,6 +193,11 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
             }),
           }],
         };
+      }
+
+      // T5：发送者身份校验——from 必须等于调用方 agent_id
+      if (from !== ctx.agentId) {
+        return mcpFail(`Sender identity mismatch: from must equal your agent_id`);
       }
 
       const results: Record<string, boolean> = {};
@@ -205,7 +250,7 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -218,8 +263,7 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
       message_id: z.string().describe("消息 ID"),
       agent_id:   z.string().describe("确认方 Agent ID，如 hermes"),
     },
-    async ({ message_id, agent_id }) => {
-      requireAuth(authContext, "acknowledge_message");
+    authed(authContext, "acknowledge_message", async (ctx, { message_id, agent_id }) => {
 
       try {
         const msg = await withRetry(
@@ -234,6 +278,8 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
             }],
           };
         }
+        // T5：对象级授权——仅接收方或 admin 可确认
+        assertOwns("message", message_id, ctx, "recipient");
         await withRetry(
           () => messageRepo.markAcknowledged(message_id),
           "acknowledge_message:update"
@@ -263,7 +309,7 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
           }],
         };
       }
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -277,24 +323,24 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
       agent_id: z.string().optional().describe("限定 Agent ID（按发送方或接收方过滤）"),
       limit:    z.number().min(1).max(50).optional().default(10).describe("最大返回数量"),
     },
-    async ({ query, agent_id, limit }) => {
-      const ctx = requireAuth(authContext, "search_messages");
+    authed(authContext, "search_messages", async (ctx, { query, agent_id, limit }) => {
 
       try {
         const conditions: string[] = ["content LIKE ?"];
         const params: (string | number)[] = [`%${query}%`];
 
-        if (agent_id) {
-          conditions.push("(from_agent = ? OR to_agent = ?)");
-          params.push(agent_id, agent_id);
-        }
+        // T5：强制数据隔离——仅允许查询本人收发消息；
+        // 仅 admin 且显式传 agent_id 时，才放宽到指定 Agent（非 admin 传他人 agent_id 自动归一到本人）
+        const effectiveAgentId = (ctx.role === "admin" && agent_id) ? agent_id : ctx.agentId;
+        conditions.push("(from_agent = ? OR to_agent = ?)");
+        params.push(effectiveAgentId, effectiveAgentId);
 
         const where = conditions.join(" AND ");
         const messages = db.prepare(
           `SELECT id, from_agent, to_agent, content, type, status, created_at
            FROM messages WHERE ${where}
            ORDER BY created_at DESC LIMIT ?`
-        ).all(...params, limit) as Message[];
+        ).all(...params, limit) as any[];
 
         return {
           content: [{
@@ -319,7 +365,7 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
       } catch (err: unknown) {
         return mcpError(err, "search_messages");
       }
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -337,8 +383,12 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
       status: z.enum(["unread", "delivered"]).optional().default("unread").describe("要确认的消息状态，默认 unread"),
       limit: z.number().int().min(1).max(500).default(100).describe("最多确认的消息数量，默认 100，上限 500"),
     },
-    async ({ agent_id, from_agent, before, after, status, limit }) => {
-      const ctx = requireAuth(authContext, "batch_acknowledge_messages");
+    authed(authContext, "batch_acknowledge_messages", async (ctx, { agent_id, from_agent, before, after, status, limit }) => {
+
+      // T5：权限校验——仅能批量确认本人消息，admin 可代任意 Agent
+      if (agent_id !== ctx.agentId && ctx.role !== "admin") {
+        return mcpFail("Permission denied: cannot acknowledge messages for another agent", "batch_acknowledge_messages");
+      }
 
       try {
         // 构建查询条件
@@ -370,7 +420,7 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
         // 先查询匹配的消息数量
         const countResult = db.prepare(
           `SELECT COUNT(*) as cnt FROM messages WHERE ${whereClause}`
-        ).get(...params) as { cnt: number } | undefined;
+        ).get(...params) as any;
 
         const totalCount = countResult?.cnt ?? 0;
         const actualLimit = Math.min(limit, totalCount);
@@ -417,7 +467,7 @@ export function registerMessageTools(server: McpServer, authContext?: AuthContex
         logError("batch_acknowledge_messages_error", err);
         return mcpError(err, "batch_acknowledge_messages");
       }
-    }
+    })
   );
 
 }

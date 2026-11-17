@@ -1,83 +1,47 @@
 ---
 name: cms-star-ratings
-description: "CMS Star Ratings clinical intelligence for Medicare Advantage pharmacy optimization. Use when analyzing plan performance against Star cutpoints, identifying gap-to-threshold opportunities on triple-weighted adherence measures (diabetes meds, RAS antagonists, statins), prioritizing adherence interventions by PDC and clinical risk layering, detecting guideline drift between clinical guidelines and CMS/MIPS measure specifications, optimizing MTM/CMR completion and clinical impact, working with SUPD or polypharmacy measures (COB, Poly-ACH), or any Medicare Part D Stars strategy question. Designed for clinical pharmacists in managed care, Stars optimization, or medication management platform roles."
+description: "Educational and professional workflow guidance for reviewing CMS Medicare Advantage and Part D Star Ratings pharmacy measures, interpreting adherence gaps, recognizing clinical-versus-measure tradeoffs, and planning pharmacist-led medication reviews. Refer to current official CMS, PQA, and clinical guideline specifications before drawing conclusions."
 ---
 
 # CMS Star Ratings Clinical Intelligence
 
-Clinical decision support for Medicare Advantage Star Ratings optimization. Translates plan
-performance data into prioritized, evidence-based intervention recommendations.
+This skill helps clinical pharmacists and quality teams **review** Medicare Advantage and Part D pharmacy quality-measure questions. It is a general reference and planning aid, not a validated clinical decision engine or an automated treatment protocol.
 
-## Core Workflow
+## Workflow
 
-### 1. Assess Plan Performance
+### 1. Understand the question
+Identify the applicable measurement year, contract or population, specific measure, and whether the question concerns quality reporting or patient care. Ask for missing details rather than inventing them.
 
-When given plan-level data, perform gap-to-threshold analysis:
+### 2. Check current specifications
+Review the official CMS Star Ratings Technical Notes, applicable measure specifications, and relevant PQA materials for the **requested measurement year**. Confirm measure names, eligible populations, exclusions, drug lists, weights, cutpoints, and methodology. Do not rely on older examples as current policy.
 
-1. Map each measure to current CMS cutpoints and star thresholds
-2. Calculate gap-to-next-star for each measure (absolute and relative)
-3. Weight by measure impact: triple-weighted measures first, then display measures by improvement feasibility
-4. Identify the smallest lifts that move the overall star rating
+Read `references/measures.md` for a checklist of what to verify.
 
-Load **references/measures.md** for current cutpoints, measure weights, and threshold logic.
+### 3. Review adherence barriers with clinical context
+Where relevant, review medication fills and patient-reported barriers alongside clinical history and the prescriber's current plan. A claims-based gap does not, by itself, establish that medication use should increase. Do not assume treatment is indicated simply because doing so would improve a quality measure.
 
-### 2. Prioritize Adherence Interventions
+Read `references/adherence-interventions.md` for non-prescriptive interview and review prompts.
 
-When given patient-level PDC data and medication lists:
+### 4. Recognize differences between measures and guidelines
+If a measure specification and current clinical guidance appear to point in different directions, report the sources and versions, explain the potential tension, and recommend clinician or quality-team review. Do not treat an apparent mismatch as confirmed without checking original sources.
 
-1. Flag patients below 80% PDC threshold
-2. Stratify by proximity to threshold (78-79% PDC = highest conversion potential)
-3. Layer clinical risk factors on top of PDC:
-   - **Statins**: ASCVD risk score, LDL level, recent CV event
-   - **RAS antagonists**: BP at goal, CKD stage, heart failure status
-   - **Diabetes meds**: A1C level, hypoglycemia risk, recent hospitalization
-4. Score composite priority: PDC gap × clinical risk × measure weight
-5. Recommend specific interventions matched to root cause of non-adherence
+Read `references/guideline-drift.md` for documentation guidance.
 
-Load **references/adherence-interventions.md** for PDC logic, risk layering framework, and intervention mapping.
+### 5. Support MTM/CMR workflows
+Help plan medication reconciliation, clinical issue identification, patient-friendly action plans, documentation, and follow-up. Encourage equitable access and patient-centered decisions. Do not infer guaranteed clinical or Star Ratings gains.
 
-### 3. Detect Guideline Drift
+Read `references/mtm-cmr.md` for workflow considerations.
 
-When reviewing clinical guidelines or measure specifications:
+## Input handling
+- Identify whether inputs are plan-level, contract-level, or patient-level.
+- State missing or outdated data clearly.
+- Do not assume PDC, numerator, denominator, or measure eligibility from incomplete claims.
+- Treat all patient information as sensitive. Use minimum necessary, appropriately authorized data.
 
-1. Check the guideline drift registry for known mismatches
-2. Use the drift detection framework to evaluate new guideline updates against current CMS measure specs and MIPS quality measures
-3. Flag clinical implications: where following the guideline diverges from what the measure rewards
-4. Recommend platform logic updates or measure feedback to CMS
-
-Load **references/guideline-drift.md** for the drift registry, detection framework, and mismatch template.
-
-### 4. Optimize MTM/CMR
-
-When building CMR strategy:
-
-1. Identify highest-yield CMR candidates (clinical complexity × likelihood of completion)
-2. Structure interventions for clinical impact, not just completion rate
-3. Align CMR content with open adherence gaps and other Star measures
-4. Track CMR completion rate against the Star measure threshold (resumes scoring 2027)
-
-Load **references/mtm-cmr.md** for CMR candidate prioritization, intervention structuring, and measure alignment.
-
-## MY2026 Key Changes (Cross-Cutting)
-
-These changes affect multiple workflows. Surface when relevant:
-
-- **Temporary weight change**: Triple-weighting of Part D adherence measures is temporary for MY2026 only (reverts to standard weighting). Flag when discussing multi-year strategy or measure prioritization. See references/measures.md.
-- **SDS risk adjustment**: New sociodemographic status (SDS) risk adjustment on adherence measures — accounts for age, gender, LIS status, disability, and dual eligibility. Flag when analyzing plan performance or adherence prioritization for plans serving high-need populations. See references/measures.md and references/adherence-interventions.md.
-- **IP/SNF PDC methodology**: CMS now excludes inpatient and SNF stay days from PDC denominators. Flag when discussing PDC calculations, adherence outliers, or members with recent hospitalizations/SNF stays. See references/adherence-interventions.md.
-
-## Input Formats
-
-The skill accepts plan and patient data in any structured format. When data is provided:
-
-- Normalize measure names to CMS measure IDs (D10, D11, D12, etc.)
-- Treat PDC values as decimals (0.80) or percentages (80%) — normalize to percentages internally
-- Flag missing data explicitly rather than assuming defaults
-
-## Clinical Guardrails
-
-- Never recommend starting or stopping a medication — frame as considerations for prescriber discussion
-- Cite guideline sources (ACC/AHA, ADA, KDIGO, AGS Beers, etc.) when relevant
-- When evidence is clear, be direct; when mixed or limited, say so explicitly
-- Flag drug interaction severity (major/moderate/minor) with clinical significance
-- Distinguish between "measure-optimal" and "clinically optimal" when they diverge
+## Clinical and evidence safeguards
+- Never independently recommend that a patient start, stop, or change a prescription solely to improve a measure.
+- Escalate patient-specific treatment decisions to an authorized clinician.
+- Clearly separate **measure performance** from **clinical appropriateness**.
+- Cite the year and version of CMS/PQA specifications and clinical guidelines used.
+- Where evidence or specifications conflict, describe the uncertainty rather than inventing a rule.
+- Do not represent these instructions as proprietary validated software, regulatory approval, or individualized medical advice.

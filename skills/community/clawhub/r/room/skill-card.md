@@ -1,39 +1,54 @@
-## Description: <br>
-Organize room inventory and maintenance schedules. Use when adding furniture items, tracking appliances, scheduling deep cleans, setting repair reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize room inventory and maintenance schedules. Use when adding furniture items, tracking appliances, scheduling deep cleans, setting repair reminders.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and home operators use this skill to keep room inventory, appliances, deep-clean schedules, repair reminders, costs, and maintenance notes organized through local terminal commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local persistence of household inventory, schedules, costs, reminders, and maintenance notes may capture sensitive household, financial, or security details. <br>
-Mitigation: Review storage behavior before installing, avoid entering sensitive details, and confirm retention, deletion, and file-permission safeguards before regular use. <br>
+## Use Case:
 
+External users and developers use Room to record room inventory, maintenance schedules, reminders, costs, and notes from a local CLI, then review, search, or export that data.
 
-## Reference(s): <br>
-- [Room on ClawHub](https://clawhub.ai/bytesagain-lab/room) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output with optional JSON, CSV, or text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists local history and category logs under ~/.local/share/room.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Room and household notes are stored locally under ~/.local/share/room until the user removes them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive household details unless local storage is acceptable, and delete or back up ~/.local/share/room according to the user's retention needs.
+
+Risk: CSV exports may preserve formula-like user-entered values that spreadsheet software could evaluate.
+
+Mitigation: Review or sanitize exported CSV values before opening them in spreadsheet software, especially when entries may contain untrusted text.
+
+## Reference(s):
+
+- [Room ClawHub Listing](https://clawhub.ai/bytesagain-lab/skills/room)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text terminal output with optional JSON, CSV, or TXT exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local data under ~/.local/share/room and can export room records for backup or review.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

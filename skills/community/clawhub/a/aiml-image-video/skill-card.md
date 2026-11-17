@@ -1,42 +1,61 @@
-## Description: <br>
-Generate images or videos via AIMLAPI from prompts, with retries, explicit User-Agent headers, and async video polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images or videos via AIMLAPI from prompts, including image-to-image and image-to-video flows through helper scripts with retries, User-Agent headers, and async video polling.
 
-## Publisher: <br>
-[aimlapihello](https://clawhub.ai/user/aimlapihello) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aimlapihello](https://clawhub.ai/user/aimlapihello)
 
-## Use Case: <br>
-Developers and agents use this skill to generate image, image-to-image, text-to-video, and image-to-video media through AIMLAPI using prompt-driven helper scripts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected media are sent to AIMLAPI for remote generation. <br>
-Mitigation: Do not include private, regulated, credential, or confidential content in prompts or media inputs unless AIMLAPI use is approved for that data. <br>
-Risk: The image input option can upload any local file path it is given, not only image files. <br>
-Mitigation: Pass only intended image files or trusted image URLs to image input options, and avoid credential files, SSH keys, browser profiles, and other sensitive paths. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AIMLAPI media notes](references/aimlapi-media.md) <br>
-- [Image-to-Image (I2I) Generation](references/IMAGE-TO-IMAGE.md) <br>
-- [Image-to-Video (I2V) Generation](references/IMAGE-TO-VIDEO.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aimlapihello/aiml-image-video) <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate image and video assets through AIMLAPI from text prompts or starting images. It is suited to workflows that need reusable command examples, media-generation scripts, and troubleshooting guidance for AIMLAPI image and video endpoints.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated media files written by helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AIMLAPI_API_KEY; prompts, selected image inputs, and generation parameters are sent to AIMLAPI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, parameters, and explicitly provided local image inputs may be sent to AIMLAPI.
+
+Mitigation: Avoid sensitive prompts and private files; use the skill only in environments where AIMLAPI is approved to receive that data.
+
+Risk: Remote API responses are trusted when downloading generated media, creating avoidable network and file-write exposure.
+
+Mitigation: Run with a constrained output directory and restricted network environment until media URL validation, bounded downloads, and safe video filename generation are added.
+
+Risk: The skill requires an AIMLAPI API key and supports loading it from a file path.
+
+Mitigation: Store the API key securely, pass only intended key files, and review command arguments before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aimlapihello/skills/aiml-image-video)
+- [AIMLAPI media notes](references/aimlapi-media.md)
+- [Image-to-image generation](references/IMAGE-TO-IMAGE.md)
+- [Image-to-video generation](references/IMAGE-TO-VIDEO.md)
+- [AIMLAPI image API base URL](https://api.aimlapi.com/v1)
+- [AIMLAPI video API base URL](https://api.aimlapi.com/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with bash command examples; generated media is written as image or video files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AIMLAPI_API_KEY and may send prompts, selected parameters, and explicitly provided image inputs to AIMLAPI.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

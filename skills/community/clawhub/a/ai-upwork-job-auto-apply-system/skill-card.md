@@ -1,44 +1,67 @@
-## Description: <br>
-Automates finding, qualifying, and bidding on Upwork jobs with tailored proposals, application tracking, and a learning loop that promotes successful hooks into a proposal vault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HunterAI helps freelancers qualify Upwork opportunities, draft tailored proposals, maintain a local application ledger, and promote successful hooks into a reusable proposal vault.
 
-## Publisher: <br>
-[DTTNpole-commits](https://clawhub.ai/user/DTTNpole-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dttnpole-commits](https://clawhub.ai/user/dttnpole-commits)
 
-## Use Case: <br>
-Freelancers and agents use this skill to configure an Upwork bidding workflow that filters job opportunities, writes personalized proposals, records bids, and learns from interviews or hires. Users should review every generated proposal and ledger entry before taking action on a real Upwork account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Upwork proposals or application records may be inaccurate, misleading, or unsuitable for a real client interaction. <br>
-Mitigation: Review each proposal and job entry before submitting anything through an Upwork account. <br>
-Risk: The local application log and proposal vault may contain sensitive business strategy, client information, or proposal history. <br>
-Mitigation: Periodically inspect, redact, or delete local log and vault files when they contain sensitive information. <br>
+## Use Case:
 
+Freelancers and small agencies use this skill to screen Upwork-style job opportunities against budget, client quality, competition, skills, and blacklist criteria, then generate proposal drafts and local run reports. It is also used to track application outcomes and reuse hooks from proposals that led to interviews or hires.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DTTNpole-commits/ai-upwork-job-auto-apply-system) <br>
-- [Publisher profile](https://clawhub.ai/user/DTTNpole-commits) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [pre-apply-check.sh](artifact/pre-apply-check.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, proposal text, local ledger entries, vault updates, and bash command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local profile, criteria, proposal vault, and application log files as state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: Local files may contain freelancer profile details, generated proposals, job history, and reusable winning hooks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the workspace private, avoid committing sensitive local data, and review or redact profile, ledger, and vault files before sharing the skill workspace.
+
+Risk: Generated proposal drafts could include inaccurate claims, overstate capabilities, or fail to match the freelancer's real experience.
+
+Mitigation: Review each proposal before submission and keep FREELANCER_PROFILE.md limited to accurate skills, rates, and credibility anchors.
+
+Risk: The skill uses auto-apply language, but server security guidance treats it as local drafting and logging unless connected to a real Upwork workflow.
+
+Mitigation: Require explicit human review and confirmation before any real Upwork submission or external automation is connected.
+
+Risk: Qualification and blacklist rules may reject or prioritize jobs incorrectly if the local criteria files are stale or incomplete.
+
+Mitigation: Regularly update FREELANCER_PROFILE.md and IDEAL_JOB_CRITERIA.md, and inspect qualification reports before relying on a run's recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dttnpole-commits/skills/ai-upwork-job-auto-apply-system)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Freelancer profile template](artifact/FREELANCER_PROFILE.md)
+- [Ideal job criteria and scoring rubric](artifact/IDEAL_JOB_CRITERIA.md)
+- [Proposal vault](artifact/PROPOSAL_VAULT.md)
+- [Pre-apply qualification filter](artifact/pre-apply-check.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, proposal drafts, application log entries, proposal-vault updates, and human-readable shell output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and updates local workspace files for freelancer profile data, job criteria, proposal hooks, and application history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

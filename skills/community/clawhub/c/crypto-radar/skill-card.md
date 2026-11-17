@@ -1,43 +1,57 @@
-## Description: <br>
-Crypto Radar helps users check cryptocurrency prices, market capitalization, trading volume, and related market signals using public market data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Radar monitors cryptocurrency prices and market context for major tokens using public Yahoo Finance, CoinGecko, and Binance data sources.
 
-## Publisher: <br>
-[gold3bear](https://clawhub.ai/user/gold3bear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gold3bear](https://clawhub.ai/user/gold3bear)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve public cryptocurrency quotes and summarize market context for BTC, ETH, SOL, BNB, XRP, DOGE, ADA, and related assets. The output is informational market data and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Yahoo Finance, CoinGecko, and Binance to retrieve public market data. <br>
-Mitigation: Use it only in environments where outbound requests to those public finance APIs are acceptable. <br>
-Risk: Market data and interpretation can be mistaken for financial advice. <br>
-Mitigation: Treat outputs as informational only and review them before making trading or investment decisions. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve read-only crypto market snapshots and Chinese-language market commentary for tracked assets such as BTC, ETH, SOL, BNB, XRP, DOGE, ADA, AVAX, DOT, and MATIC.
 
-## Reference(s): <br>
-- [Crypto Radar on ClawHub](https://clawhub.ai/gold3bear/crypto-radar) <br>
-- [Yahoo Finance chart endpoint](https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?interval=1d&range=1d) <br>
-- [CoinGecko markets endpoint](https://api.coingecko.com/api/v3/coins/markets) <br>
-- [Binance 24hr ticker endpoint](https://api.binance.com/api/v3/ticker/24hr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown summary with market data and concise interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public market data APIs; outputs should be reviewed before financial decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: The skill makes live requests to public Yahoo Finance, CoinGecko, and Binance endpoints for market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where outbound requests to those public services are acceptable, and treat returned prices as time-sensitive third-party data.
+
+Risk: The skill produces Chinese-language crypto-market commentary, including DXY and VIX macro context, that is not fully disclosed in the short description.
+
+Mitigation: Disclose the language and commentary scope before deployment, and review outputs so users understand they are market context rather than financial advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gold3bear/skills/crypto-radar)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/gold3bear)
+- [Yahoo Finance Chart Endpoint](https://query2.finance.yahoo.com/v8/finance/chart/{symbol})
+- [CoinGecko Markets Endpoint](https://api.coingecko.com/api/v3/coins/markets)
+- [Binance 24hr Ticker Endpoint](https://api.binance.com/api/v3/ticker/24hr)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Chinese-language console text and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only public market-data lookup; no credential environment variables detected.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, created 2026-04-30)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

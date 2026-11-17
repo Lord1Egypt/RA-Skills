@@ -1,42 +1,55 @@
-## Description: <br>
-SolanaProx MCP lets agents send prompts to supported AI models through SolanaProx, using a Solana wallet and deposited balance instead of API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and use solanaprox-mcp 2.0.0, the MCP server for SolanaProx (solanaprox.com): AI models paid per call from a prepaid USDC balance on Solana, for Claude Desktop, Cursor, Claude Code and other MCP clients. Auth is a signed-in solx_ token, never a wallet address. No tool sends funds. Use it when the user wants SolanaProx as MCP tools and agrees to pay for model calls.
 
-## Publisher: <br>
-[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure an MCP-compatible assistant to check SolanaProx balances, estimate costs, list models, and make paid AI requests through SolanaProx. It is intended for workflows where wallet-based micropayments replace traditional API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, code snippets, model settings, and the configured wallet address are sent to SolanaProx and may be processed by upstream AI providers. <br>
-Mitigation: Do not submit secrets, private keys, regulated data, or proprietary code unless the provider terms and controls have been reviewed. <br>
-Risk: Calls to ask_ai can deduct from the user's deposited SolanaProx balance. <br>
-Mitigation: Check balance and estimate cost before large or automated tasks, and require user confirmation before retrying failed or payment-related requests. <br>
+## Use Case:
 
+Developers using Claude Desktop, Cursor, Claude Code, or another MCP client use this skill to connect to SolanaProx, discover available models and prices, and make model requests or check account and deposit information.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/unixlamadev-spec/solanaprox-mcp) <br>
-- [SolanaProx homepage](https://solanaprox.com) <br>
-- [SolanaProx API docs](https://solanaprox.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Plain text MCP tool responses and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool responses can include model output, balance details, cost estimates, available model lists, and error guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The security summary reports an unpinned MCP launch command and incomplete reference resolution, so scan coverage is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install command and its package/version against the SolanaProx documentation before installing.
+
+Risk: Model requests send prompts and conversation content to SolanaProx and its selected model provider; ask_ai uses prepaid USDC, and the access token is a bearer credential.
+
+Mitigation: Do not include secrets or personal data, keep the token out of prompts and logs, use a low daily spend cap, and confirm the model and price with the user before a paid request.
+
+## Reference(s):
+
+- [SolanaProx documentation](https://solanaprox.com/docs)
+- [SolanaProx service](https://solanaprox.com)
+- [MCP server repository (metadata homepage)](https://github.com/solanaprox/mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, MCP tool calls]
+
+**Output Format:** [Markdown guidance, shell commands, JSON configuration, and MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Model requests can incur prepaid USDC charges; available models and prices are retrieved live.]
+
+## Skill Version(s):
+
+4.0.1 (source: server-resolved release metadata, CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

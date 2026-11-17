@@ -1,42 +1,58 @@
-## Description: <br>
-PM Master helps project managers coordinate BA and SA work across project kickoff, MVP planning, workload assessment, project planning, and iteration planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PM Master helps project managers coordinate BA and SA inputs and produce project-management planning artifacts across project initiation, MVP planning, workload assessment, overall project planning, and iteration planning.
 
-## Publisher: <br>
-[leo21cn](https://clawhub.ai/user/leo21cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leo21cn](https://clawhub.ai/user/leo21cn)
 
-## Use Case: <br>
-Project managers and software delivery teams use this skill to draft project management artifacts, including iteration 0 plans, MVP plans, workload assessments, overall project plans, and detailed iteration plans. The skill's own guidance treats outputs as drafts that require review by a human PM before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route project requirements, architecture documents, estimates, and plans through a third-party remote MCP service. <br>
-Mitigation: Install only when that service is trusted and approved for the project data being shared; avoid confidential or sensitive materials unless data handling terms are clear. <br>
-Risk: The release embeds a reusable bearer token for the remote service. <br>
-Mitigation: Rotate or replace the token before operational use and limit access to environments where the remote service is intended to be used. <br>
-Risk: Generated schedules, estimates, and project plans may be incomplete or incorrect. <br>
-Mitigation: Treat outputs as drafts and require review by a human project manager before using them for commitments or delivery decisions. <br>
+## Use Case:
 
+Project managers and delivery teams use this skill to draft project plans, iteration plans, MVP work plans, workload assessments, and overall planning proposals from upstream requirements, architecture, constraints, and team context. Outputs are planning drafts that require review by a real project manager before use.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leo21cn/pm-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown documents and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PM planning drafts, estimates, risk notes, and staged prompts that require human review before adoption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: ClawHub release metadata) <br>
+Risk: Project requirements, plans, estimates, and workflow context may be sent to a remote MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data appropriate for that service and obtain explicit consent before sending confidential project information.
+
+Risk: The release ships a reusable bearer token for the remote MCP service.
+
+Mitigation: Replace shared credentials with per-user credentials before production use.
+
+Risk: The remote service can inject workflow rules after review.
+
+Mitigation: Review service-provided protocol or workflow changes before relying on generated plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leo21cn/skills/pm-master)
+- [PM MCP service endpoint](https://mcp.smartmoves.com.cn/pm/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance, Configuration]
+
+**Output Format:** [Markdown planning documents and text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a remote MCP service to generate staged project-management outputs.]
+
+## Skill Version(s):
+
+1.8.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

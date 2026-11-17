@@ -1,0 +1,12 @@
+{
+  "Repository": "",
+  "ReportDirectory": "",
+  "ApplicationNames": [],
+  "KeepValidPackages": 2,
+  "MinimumAgeDays": 0,
+  "RustMinimumIdleHours": 24,
+  "ShortcutRoots": [],
+  "ProtectedPaths": [],
+  "RustCaches": [],
+  "RustTargetDefinitions": []
+}

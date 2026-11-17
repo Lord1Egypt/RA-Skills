@@ -1,39 +1,58 @@
-## Description: <br>
-Extract and summarize titles, authors, updates, content, and links from publicly shared DingTalk pages, public app pages, and group invitation pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract and summarize titles, authors, updates, and content from publicly shared Dingtalk pages, apps, and group invitations without internal API access.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and developers use this skill to extract and summarize public DingTalk announcements, public app information, and group invitation details. It is intended for publicly accessible content only and does not provide internal API access or permission bypass. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill on private enterprise DingTalk pages, authenticated content, administrative workflows, messaging, or internal business data could expose sensitive information to the agent workflow. <br>
-Mitigation: Use the skill only with publicly accessible DingTalk links unless the user has intentionally approved processing that private or authenticated content. <br>
+## Use Case:
 
+Developers and analysts use this skill to extract human-readable summaries and structured fields from publicly accessible DingTalk share pages, app pages, announcements, and group invitation pages.
 
-## Reference(s): <br>
-- [DingTalk homepage](https://www.dingtalk.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/dingtalk-hot-trend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries may include extracted fields such as title, author, update time, source link, app version information, and public page terms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Users may try to apply the skill to private enterprise DingTalk content or authenticated workflows outside its defined scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with publicly accessible pages and avoid account actions, messaging, admin tasks, internal APIs, or any content that requires authentication.
+
+Risk: Dynamic pages may be parsed before content finishes rendering, producing incomplete summaries.
+
+Mitigation: Wait for page rendering to complete before extraction and verify key fields against the visible public page.
+
+Risk: Repeated access to public pages can create unnecessary traffic or violate platform expectations.
+
+Mitigation: Apply frequency controls and avoid repeated requests when collecting public page information.
+
+## Reference(s):
+
+- [DingTalk homepage](https://www.dingtalk.com/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/dingtalk-hot-trend)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text summaries with extracted fields and relevant links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are limited to public DingTalk content and may include titles, authors, update times, summaries, tags, source links, app details, version information, and invitation-page notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

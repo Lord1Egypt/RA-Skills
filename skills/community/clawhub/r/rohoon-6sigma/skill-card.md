@@ -1,49 +1,64 @@
-## Description: <br>
-Rohoon Six Sigma provides Six Sigma and Lean quality management support for DMAIC/DMADV workflows, SPC control charts, process capability indices, MSA analysis, DOE, FMEA, 5S, VSM, automotive quality management, process optimization, and supplier assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rohoon Six Sigma professional support for DMAIC/DMADV, SPC control charts, process capability, MSA analysis, DOE, FMEA, 5S/VSM, automotive quality management, process optimization, and supplier assessment.
 
-## Publisher: <br>
-[williamhyzhu](https://clawhub.ai/user/williamhyzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamhyzhu](https://clawhub.ai/user/williamhyzhu)
 
-## Use Case: <br>
-Quality engineers, manufacturing engineers, supplier quality teams, and agents supporting them use this skill to calculate SPC, process capability, MSA, and DOE results, then produce PDF, Excel, JSON, Markdown, and command-line report outputs for quality reviews and continuous-improvement work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local Python scripts can execute report-generation logic and write files in the agent environment. <br>
-Mitigation: Install and run the skill in an environment approved for local script execution, and review generated artifacts before sharing them externally. <br>
-Risk: Dependency drift could change numerical, plotting, or document-generation behavior. <br>
-Mitigation: Pin or lock Python dependencies before production use and rerun representative SPC, MSA, DOE, PDF, and Excel checks after dependency updates. <br>
-Risk: Batch PDF processing may open or process files from a folder that contains untrusted PDFs. <br>
-Mitigation: Run batch PDF workflows only on trusted inputs, or remove or disable the automatic open step before processing untrusted folders. <br>
-Risk: Quality calculations and report conclusions depend on correct input data, specification limits, distribution assumptions, and study design. <br>
-Mitigation: Have a qualified quality or process engineer review inputs, assumptions, and conclusions before using results for audits, supplier decisions, or production controls. <br>
+## Use Case:
 
+Quality engineers, manufacturing teams, and agent developers use this skill to analyze process capability, control charts, measurement systems, designed experiments, and AIAG-VDA style quality reports for automotive and industrial quality workflows.
 
-## Reference(s): <br>
-- [Rohoon Six Sigma on ClawHub](https://clawhub.ai/williamhyzhu/rohoon-6sigma) <br>
-- [Control Charts Reference](references/control-charts.md) <br>
-- [Process Capability Indices](references/capability-indices.md) <br>
-- [MSA Reference Guide](references/msa-reference.md) <br>
-- [Design of Experiments Guide](references/doe-guide.md) <br>
-- [Lean Six Sigma Tools Reference](references/lean-six-sigma-tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON-capable script output, and generated PDF or Excel report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Python report-generation scripts may write local PDF, Excel, chart, or JSON artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.2 (source: server release metadata) <br>
+Risk: Maintenance guidance may lead an agent to perform broad backups or stage many files at once.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review maintenance steps before execution and scope any backup or git operation to the intended files.
+
+Risk: The batch PDF generator may automatically open generated files.
+
+Mitigation: Run batch report generation only in an environment where automatic file opening is acceptable.
+
+Risk: Dependencies and statistical outputs may affect production quality decisions.
+
+Mitigation: Use a virtual environment with pinned dependencies and independently validate report conclusions before audits or production use.
+
+## Reference(s):
+
+- [README](README.md)
+- [Excel Import and Report Features](EXCEL_IMPORT_REPORT_FEATURES.md)
+- [Process Capability Indices](references/capability-indices.md)
+- [Control Charts Reference](references/control-charts.md)
+- [Design of Experiments Guide](references/doe-guide.md)
+- [Lean Six Sigma Tools Reference](references/lean-six-sigma-tools.md)
+- [MSA Reference Guide](references/msa-reference.md)
+- [ClawHub Skill Listing](https://clawhub.ai/williamhyzhu/rohoon-6sigma)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, plus optional JSON, PDF, Excel, and CSV artifacts when scripts are run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include statistical analysis, report-generation commands, quality report files, and configuration guidance.]
+
+## Skill Version(s):
+
+1.8.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

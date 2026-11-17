@@ -1,41 +1,59 @@
-## Description: <br>
-Research public social-media and web trends, compare signals across platforms, summarize trend opportunities, and produce safe bilingual trend briefs without scraping private data or bypassing platform rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research public social-media and web trends, compare signals across platforms, summarize trend opportunities, and produce safe bilingual trend briefs without scraping private data or bypassing platform rules.
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External creators, marketers, brands, and agent users use this skill to research public social and web trend signals, compare platforms, and turn findings into trend briefs, content plans, and bilingual English/Arabic summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated trend gathering could violate platform access rules or touch restricted data if used carelessly. <br>
-Mitigation: Use only public URLs, official APIs, RSS feeds, search results, or user-provided exports; stop when access is blocked and ask for an official export, API access, or public URL list. <br>
-Risk: Trend briefs can overstate weak signals or turn uncertain web activity into misleading recommendations. <br>
-Mitigation: Prefer multiple signals, cite source URLs and timestamps, mark uncertainty, separate facts from recommendations, and include legal, brand safety, misinformation, privacy, and platform-policy cautions. <br>
+## Use Case:
 
+External creators, marketers, brands, and researchers use this skill to identify public social and web trends, compare signals across platforms, and turn them into trend briefs, platform comparisons, content plans, or Arabic/English summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/social-trend-radar) <br>
-- [Skill homepage](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, tables, ranked lists, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source URLs, timestamps, confidence labels, risk notes, hashtags, search terms, and bilingual English/Arabic sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill could be misapplied to private accounts, credentials, session tokens, cookies, or non-public data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public pages, official APIs, RSS feeds, search results, or user-provided exports, and never provide private credentials or tokens.
+
+Risk: Attempts to bypass platform controls such as logins, paywalls, rate limits, CAPTCHAs, robots.txt restrictions, or anti-scraping systems could violate platform rules.
+
+Mitigation: Stop when automated access is blocked and use official exports, approved API access, or public URL lists instead.
+
+Risk: Trend recommendations may be misleading if based on a single weak signal or uncertain source.
+
+Mitigation: Compare multiple public signals, save source URLs and timestamps, mark uncertainty, and separate facts from recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/social-trend-radar)
+- [Publisher profile](https://clawhub.ai/user/abdullah944)
+- [Skill homepage](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown trend briefs, platform comparisons, content plans, and bilingual Arabic/English reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked trend tables, evidence links, scores, content ideas, hashtags or search terms, action plans, source timestamps, confidence labels, and risk notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

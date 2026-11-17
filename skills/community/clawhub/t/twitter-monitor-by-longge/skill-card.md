@@ -1,41 +1,58 @@
-## Description: <br>
-Monitor X/Twitter accounts for new tweets and send notifications to Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor X/Twitter accounts for new tweets and send notifications to Telegram.
 
-## Publisher: <br>
-[mmmuffin](https://clawhub.ai/user/mmmuffin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mmmuffin](https://clawhub.ai/user/mmmuffin)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor a configured X/Twitter account for new tweets and receive Telegram chat notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive Twitter session cookies. <br>
-Mitigation: Store cookie values only in protected environment variables or a secrets manager, do not commit or paste them into logs, and review the skill before installation. <br>
-Risk: The security review found insufficient handling or safety disclosure for Twitter session cookies. <br>
-Mitigation: Prefer a version that uses official scoped API credentials or clearly documents cookie handling before using it with sensitive accounts. <br>
+## Use Case:
 
+Developers and operators use this skill to configure and run a lightweight monitor for selected X/Twitter accounts and receive Telegram notifications when new tweets appear.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mmmuffin/twitter-monitor-by-longge) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mmmuffin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell command and environment-variable instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Twitter session cookie values and Telegram bot/chat identifiers supplied through environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Twitter session cookies can grant account access and are passed to xreach as process arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or low-risk X/Twitter session where possible, avoid shared hosts, and rotate or revoke credentials after use.
+
+Risk: The skill depends on an external xreach tool to fetch tweets.
+
+Mitigation: Verify the source and version of xreach before installation and execution.
+
+Risk: Telegram bot credentials and notification destinations control where tweet alerts are sent.
+
+Mitigation: Use a dedicated Telegram bot token, confirm the chat ID before running, and limit access to the configured environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mmmuffin/skills/twitter-monitor-by-longge)
+- [Publisher profile](https://clawhub.ai/user/mmmuffin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration variable names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands and environment variable guidance for Twitter and Telegram credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

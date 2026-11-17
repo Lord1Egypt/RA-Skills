@@ -1,43 +1,61 @@
-## Description: <br>
-Generate images from text prompts using xAI's Grok API with options for output format, batch size, and automatic media attachment in OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images from text prompts using xAI's Grok API with options for output format, batch size, and OpenClaw media attachment.
 
-## Publisher: <br>
-[mexicanamerican](https://clawhub.ai/user/mexicanamerican) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mexicanamerican](https://clawhub.ai/user/mexicanamerican)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to request images from xAI's Grok image-generation API, save or return generated images, and attach resulting media in agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed bundle is missing the main xai-gen executable that would handle API keys, prompts, network calls, and generated files. <br>
-Mitigation: Review or obtain the executable from a trusted source before installing the skill or providing an xAI API key. <br>
-Risk: Prompts are expected to be sent to xAI's API for image generation. <br>
-Mitigation: Avoid confidential or personal data in prompts and review xAI account and data-handling requirements before use. <br>
-Risk: Persisting XAI_API_KEY in shell profiles can expose the key as local plaintext. <br>
-Mitigation: Use a dedicated limited-scope key where possible and persist it only if local plaintext exposure is acceptable. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to ask an agent to create images through xAI's image generation API, save generated media, or return base64 output for downstream workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mexicanamerican/xai-image-gen) <br>
-- [xAI Console](https://console.x.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, configuration] <br>
-**Output Format:** [CLI text output with MEDIA file paths, saved image files, or base64 image text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XAI_API_KEY and network access to xAI; generated image behavior depends on the external API and the missing executable should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/skill.json) <br>
+Risk: Prompts and generated-image requests are sent to xAI using the user's xAI API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for prompts suitable for xAI processing and review xAI account, billing, and data-handling expectations before deployment.
+
+Risk: The xAI API key could be exposed through shared dotfiles, synced shell profiles, logs, or copied setup snippets.
+
+Mitigation: Prefer a per-session export or secret manager, and avoid storing the key in shared or synced shell configuration files.
+
+Risk: The reviewed package appears to be missing the documented xai-gen executable.
+
+Mitigation: Verify the executable is present and runnable before installation, publication, or agent use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mexicanamerican/skills/xai-image-gen)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Artifact README.md](artifact/README.md)
+- [xAI console](https://console.x.ai)
+- [xAI image generation endpoint](https://api.x.ai/v1/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Image files with MEDIA path text, or base64 text; documentation uses Markdown with shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XAI_API_KEY; batch mode can produce multiple generated image files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

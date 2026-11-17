@@ -17,18 +17,23 @@
 
 ## 系統配置
 
-- Base URL：`$INSURAI_AGENT_URL`（預設 `https://insurai.com.tw/insurai/agent`）
+- Base URL：`$INSURAI_AGENT_URL`（預設 `https://insurai.com.tw/insurai/agent`；必須為 HTTPS）
 - 路徑前綴：`/api/skill/v1`
 - 認證：所有請求帶 Header `X-API-KEY: $INSURAI_API_KEY`
-- TLS 驗證：`$INSURAI_TLS_VERIFY`（預設 `true`；可設 `false` 或 CA bundle 路徑）
+- TLS 驗證：一律啟用，使用 Python `requests` 預設安全設定；`INSURAI_AGENT_URL` 必須使用 HTTPS，且不提供停用 TLS 驗證的環境變數
+
+若尚未取得 `INSURAI_API_KEY`，請先至 https://insurai.com.tw 註冊會員，登入後申請 `INSURAI-API-KEY`，再設定 `INSURAI_API_KEY`。`INSURAI_AGENT_URL` 可省略，預設使用正式端點。
+
+> Privacy notice: insurance planning and lookup inputs may contain sensitive personal or financial information. Required request fields are transmitted to the configured `INSURAI_AGENT_URL`. Before the first API call in a conversation, inform users and obtain consent to continue. Submit only the minimum necessary data, and avoid unnecessary identifiers such as national ID numbers, contact details, full policy documents, payment data, or medical records.
+> TLS policy: `INSURAI_AGENT_URL` must be an HTTPS URL. Certificate verification is always required and cannot be disabled through this helper. The helper uses Python `requests` default TLS verification for all API traffic.
 
 ```bash
-export INSURAI_AGENT_URL=https://insurai.com.tw/insurai/agent
 export INSURAI_API_KEY=your_api_key_here
-export INSURAI_TLS_VERIFY=true
+# Optional: override the production endpoint.
+export INSURAI_AGENT_URL=https://insurai.com.tw/insurai/agent
 ```
 
-範例中 `$BASE` = `${INSURAI_AGENT_URL}`、`$KEY` = `${INSURAI_API_KEY}`。
+範例中 `$BASE` = `${INSURAI_AGENT_URL:-https://insurai.com.tw/insurai/agent}`；helper 會從 `INSURAI_API_KEY` 讀取 API key 並放入 `X-API-KEY` header。
 
 ---
 

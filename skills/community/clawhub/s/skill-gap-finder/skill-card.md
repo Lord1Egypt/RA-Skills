@@ -1,44 +1,60 @@
-## Description: <br>
-Scans existing skill bundles to identify duplicate responsibilities, coverage gaps, conflicts, and priority areas for new skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans existing skill bundles to identify duplicates, coverage gaps, responsibility conflicts, and the highest-priority missing skills.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, maintainers, and skill publishers use this skill to audit a local skills directory, understand distribution and overlap, and prepare reviewable publishing recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the folder path supplied by the user, which can expose private notes, secrets, or unrelated project files in generated reports. <br>
-Mitigation: Run it only against the specific skills directory intended for review, avoid broad home or repository roots, and redact sensitive material before sharing reports. <br>
-Risk: Generated gap and publishing recommendations may be incomplete or misleading when the input directory is partial or stale. <br>
-Mitigation: Treat the report as a review draft, confirm the scanned inputs, and inspect the pending confirmations before acting on recommendations. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to audit a skills directory, find overlapping responsibilities and missing roles, and draft publishing recommendations before changing a skill bundle.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/skill-gap-finder) <br>
-- [Publisher Profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Specification](artifact/resources/spec.json) <br>
-- [Artifact Output Template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report by default, with optional JSON output from the support script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are structured around distribution, duplicate responsibilities, gaps, conflicts, priority additions, publishing advice, and pending confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill reads user-specified local directories, so reports can include names or snippets from sensitive files if pointed at a broad workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against the intended skills root and avoid home directories or repositories containing unrelated secrets.
+
+Risk: The generated audit report may be incomplete or misleading when the input directory is incomplete or stale.
+
+Mitigation: Review the report before using it for publishing, configuration, or bundle planning decisions.
+
+Risk: The bundled script can write a report file when an output path is supplied.
+
+Mitigation: Use stdout or dry-run behavior for review first, and choose a controlled output path when writing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/skill-gap-finder)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+- [resources/spec.json](artifact/resources/spec.json)
+- [resources/template.md](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Structured Markdown by default, with optional JSON output from the bundled script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write the report to a user-specified output file; otherwise prints to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

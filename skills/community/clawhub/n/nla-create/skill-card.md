@@ -1,42 +1,57 @@
-## Description: <br>
-Create a Natural Language Agreement escrow on-chain for locking ERC20 tokens with a natural language demand that an AI oracle will arbitrate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a Natural Language Agreement escrow on-chain by gathering escrow parameters, helping craft an AI-arbitrated natural-language demand, and running the nla CLI.
 
-## Publisher: <br>
-[mlegls](https://clawhub.ai/user/mlegls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mlegls](https://clawhub.ai/user/mlegls)
 
-## Use Case: <br>
-Developers and external users use this skill to create ERC20-backed Natural Language Agreement escrows, gather required transaction parameters, craft an evaluable demand, and run the nla CLI to create the escrow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help lock ERC20 tokens in an on-chain escrow, so incorrect network, token, amount, oracle, or demand choices can cause financial loss or unusable escrows. <br>
-Mitigation: Use a dedicated low-balance wallet and require explicit confirmation of the network, token, amount, oracle, and demand before running escrow creation. <br>
-Risk: Wallet private keys may be exposed if entered into chat or passed directly on the command line. <br>
-Mitigation: Avoid pasting private keys into chat or commands; prefer secure wallet configuration outside the agent session. <br>
-Risk: Demand text and arbitration settings may become public on-chain. <br>
-Mitigation: Keep secrets and private data out of demands, prompts, and arbitration settings, and warn users before submission. <br>
+## Use Case:
 
+Developers and external users use this skill to create on-chain ERC20 escrows whose release condition is written as a natural-language demand and evaluated by an AI oracle.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mlegls/nla-create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes escrow UID reporting and next-step guidance after command execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Wallet private keys or signing credentials may be exposed through chat, command-line flags, or environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet and avoid pasting private keys into chat or command lines.
+
+Risk: Incorrect network, token, amount, oracle, or transaction details can create unsafe or unintended blockchain transactions.
+
+Mitigation: Independently confirm the network, token contract, amount, oracle address, and transaction details before signing.
+
+Risk: Running an unverified nla CLI package can introduce supply-chain or execution risk.
+
+Mitigation: Verify the nla package source and version before installing or using it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mlegls/skills/nla-create)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include the escrow UID returned by nla escrow:create and next-step guidance for fulfillment and collection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

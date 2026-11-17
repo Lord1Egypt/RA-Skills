@@ -1,11 +1,11 @@
 ---
 name: oo-stabilityai
-description: "Stability AI (stability.ai). Use this skill for ANY Stability AI request — searching and reading data. Whenever a task involves Stability AI, use this skill instead of calling the API directly."
+description: "Stability AI (stability.ai). Use this skill for ANY Stability AI request — reading, creating, and updating data. Whenever a task involves Stability AI, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Stability AI"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["stabilityai"]
   icon: "https://static.oomol.com/logo/third-party/stabilityai.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `text_to_audio` — Generate audio from a text prompt with Stability AI and upload the generated file to connector transit storage.
+- `text_to_audio` — Generate audio from a text prompt with Stability AI and upload the generated file to connector transit storage. [write]
 
 ## Safety
 
@@ -68,11 +68,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Stability AI is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=stabilityai
+  https://console.oomol.com/connections/stabilityai
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Stability AI homepage: https://stability.ai
+- API documentation: https://platform.stability.ai/docs/api-reference

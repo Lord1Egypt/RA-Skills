@@ -1,39 +1,56 @@
-## Description: <br>
-Scrape documentation content from Zoomin Software portals using Playwright browser automation to handle dynamic content loading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape documentation content from Zoomin Software portals using Playwright browser automation to handle dynamic content loading.
 
-## Publisher: <br>
-[recklessop](https://clawhub.ai/user/recklessop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[recklessop](https://clawhub.ai/user/recklessop)
 
-## Use Case: <br>
-Developers and documentation engineers use this skill to scrape rendered text from dynamic Zoomin Software documentation portals when static HTTP fetching misses the main article content. It can also summarize and categorize scraped text files for downstream documentation review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The scraper performs browser-based network requests and writes extracted documentation content to local output paths. <br>
-Mitigation: Run it in a dedicated virtual environment, review the URL list before scraping, and choose a non-sensitive output directory. <br>
-Risk: The batch analyzer reads local text files and prints summaries to stdout. <br>
-Mitigation: Do not pass private or sensitive files to the analyzer unless stdout capture and retention are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/recklessop/zoomin-scraper-recklessop) <br>
+## Use Case:
 
+Developers and documentation engineers use this skill to scrape rendered article text from Zoomin-powered documentation portals when standard static fetching does not capture the main content.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, plus scraped text files and JSON summaries when scripts are run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a URL list, an output directory, and a Python virtual environment with Playwright and Chromium installed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The URL list can drive a browser to arbitrary addresses.
+
+Mitigation: Install only when the URL source is trusted, avoid URLs containing secrets, and restrict or validate URLs to expected Zoomin documentation domains before running.
+
+Risk: The scraper writes extracted content to a local output directory.
+
+Mitigation: Run in a constrained environment with a dedicated virtual environment and choose an output directory that can be safely populated.
+
+Risk: The release security verdict is suspicious and requires review before installation.
+
+Mitigation: Review the skill and scan results before deployment, and constrain network and filesystem access during execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/recklessop/skills/zoomin-scraper-recklessop)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Extracted documentation text files, JSON batch-analysis summaries, and Markdown usage guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a URL list, output directory, Python virtual environment, Playwright, and Chromium browser binaries.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,60 @@
-## Description: <br>
-nature-reader turns a scientific paper PDF, DOI, arXiv ID, or URL into a structured bilingual Markdown reading note with Chinese translation, figure grounding, source anchors, and section summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-paper bilingual reader for Nature-series papers that converts a PDF or URL into structured, annotated Markdown with Chinese translation, figure grounding, source anchors, and section summaries.
 
-## Publisher: <br>
-[yang1bai](https://clawhub.ai/user/yang1bai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1bai](https://clawhub.ai/user/yang1bai)
 
-## Use Case: <br>
-Researchers, students, and technical readers use this skill to read, translate, and annotate scientific papers in bilingual Markdown with figure explanations and section summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read or fetch user-provided papers, DOIs, arXiv IDs, and URLs. <br>
-Mitigation: Provide only sources you are comfortable having the agent access, and review the generated notes before relying on them. <br>
-Risk: The optional export flow can save a generated Markdown file. <br>
-Mitigation: Review the destination path and generated Markdown before using or sharing the exported file. <br>
+## Use Case:
 
+External users, researchers, and developers use this skill to read, translate, summarize, and annotate scientific papers from a PDF path, DOI, arXiv ID, or URL into a bilingual Markdown study document.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1bai/nature-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual English and Chinese sections, source anchors, figure explanations, summaries, key numbers, and optional export guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may be used with papers from sources that the user is not authorized to access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use lawful paper sources such as publisher pages, arXiv, institutional access, or Unpaywall before generating the Markdown analysis.
+
+Risk: The optional export behavior can save generated Markdown to an unintended path.
+
+Mitigation: Confirm the export path with the user before writing any generated Markdown file.
+
+Risk: Generated translations, summaries, figure notes, and source anchors can contain inaccuracies.
+
+Mitigation: Review the generated Markdown against the source paper before using it for citation, publication, or research decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1bai/skills/nature-reader)
+- [DOI resolver](https://doi.org/)
+- [Unpaywall API](https://unpaywall.org/products/api)
+- [arXiv](https://arxiv.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Structured Markdown bilingual paper analysis with summaries, translations, figure notes, citations, source anchors, and optional exported .md file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output options include full bilingual reading, summary-only reading, methods-focused reading, and export to a user-confirmed Markdown path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

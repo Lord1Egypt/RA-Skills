@@ -1,49 +1,60 @@
-## Description: <br>
-Command-line interface for Zotero - search your Zotero library, add/edit notes, read attachments, and manage bibliographic references from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line interface for Zotero - search your Zotero library, add/edit notes, read attachments, and manage bibliographic references from the terminal.
 
-## Publisher: <br>
-[killgfat](https://clawhub.ai/user/killgfat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[killgfat](https://clawhub.ai/user/killgfat)
 
-## Use Case: <br>
-Researchers, students, writers, and developers use this skill to install and operate zotero-cli from an agent workflow for Zotero library search, note management, attachment reading, citation export, and bibliography automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional setup and update scripts can install packages, change shell PATH settings, or run package-manager commands. <br>
-Mitigation: Prefer pipx installation and inspect helper scripts before running setup, update, restore, cleanup, or scheduled examples. <br>
-Risk: Some installation examples show forced system-package installation or other commands that can affect the host Python environment. <br>
-Mitigation: Use pipx or a virtual environment and avoid forced system-package examples unless they have been reviewed for the target system. <br>
-Risk: Zotero configuration and backup folders can contain API credentials. <br>
-Mitigation: Keep Zotero config and backup directories private and review backup or restore outputs before sharing files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/killgfat/zotero-cli) <br>
-- [zotero-cli project homepage](https://github.com/jbaiter/zotero-cli) <br>
-- [Zotero](https://www.zotero.org) <br>
-- [Zotero API key settings](https://www.zotero.org/settings/keys) <br>
-- [PEP 668](https://peps.python.org/pep-0668/) <br>
-- [Quick start guide](QUICKSTART.md) <br>
-- [Installation guide](INSTALL.md) <br>
-- [Usage examples](EXAMPLES.md) <br>
-- [Helper scripts guide](scripts/README.md) <br>
+## Use Case:
 
+External users, researchers, and developers use this skill to work with Zotero from the terminal: searching libraries, reading attachments, adding or editing notes, exporting citations, and running batch research workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; helper scripts may produce console text, tables, JSON, Markdown, BibTeX, RIS, or plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and either zotcli or zotero-cli; uses Zotero API credentials configured by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Install and update helpers can invoke package managers, change PATH-related shell startup files, and suggest unsafe installation modes.
+
+Mitigation: Prefer pipx or an isolated virtual environment, avoid sudo pip, --break-system-packages, curl-piped shell execution, and git:// master installs, and review setup or update scripts before running them.
+
+Risk: Backup helpers can copy Zotero configuration containing API credentials into local backup directories.
+
+Mitigation: Keep the Zotero configuration and backup directory readable only by the user account, review backup contents before sharing or syncing them, and revoke or regenerate the Zotero API key if exposure is possible.
+
+Risk: Helper scripts can write local output files such as query results, citation exports, restored query files, and backups.
+
+Mitigation: Run helpers from a trusted working directory, inspect target paths before execution, and avoid feeding private library queries or exports into shared locations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/killgfat/skills/zotero-cli)
+- [zotero-cli GitHub Repository](https://github.com/jbaiter/zotero-cli)
+- [Zotero Documentation](https://www.zotero.org/support/)
+- [Zotero API Key Settings](https://www.zotero.org/settings/keys)
+- [PEP 668](https://peps.python.org/pep-0668/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration steps, Python and shell helper scripts, and optional JSON, Markdown, BibTeX, RIS, and plain-text command outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and either zotcli or zotero-cli; helper scripts can call local Zotero CLI commands and write local result, citation, backup, or configuration files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence; artifact frontmatter and _meta.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

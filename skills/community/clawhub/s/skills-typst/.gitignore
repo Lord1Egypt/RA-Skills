@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# IDE / editor
+.idea/
+.vscode/
+
+# User working area (generated documents live here)
+/outputs/
+
+# Typst has no aux files — it emits only a PDF next to the source. The compiled
+# sample and its previews live in examples/ and ARE committed on purpose; a PDF
+# built in-place next to a template source is not.
+/templates/**/*.pdf
+
+# Note: examples/**/*.pdf and examples/**/*.png are committed on purpose (previews).

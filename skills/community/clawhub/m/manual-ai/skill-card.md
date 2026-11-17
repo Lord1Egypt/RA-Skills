@@ -1,45 +1,64 @@
-## Description: <br>
-Manual AI guides users through manually completing AI generation tasks on Gemini, Google AI, ChatGPT, Doubao, Qianwen, and NotebookLM when automated API calls fail or a specific platform is preferred. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manual AI helps users complete AI generation tasks through guided human-in-the-loop use of Gemini, Google AI, ChatGPT, Doubao, Qianwen, and NotebookLM when automated API calls fail or a specific platform is better suited.
 
-## Publisher: <br>
-[luhuiwang](https://clawhub.ai/user/luhuiwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luhuiwang](https://clawhub.ai/user/luhuiwang)
 
-## Use Case: <br>
-External users, developers, and operators use this skill as a fallback when automated AI APIs are rate-limited, unavailable, or unsuitable. It helps select a third-party AI platform and prepare manual prompting, upload, copy, or download steps for text, image, code, and document-generation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may send prompts, files, credentials, proprietary code, regulated records, or confidential documents to external AI services. <br>
-Mitigation: Use only approved services and accounts for the data involved, and do not paste secrets, private customer data, proprietary code, regulated records, or confidential documents into third-party AI platforms unless that use is authorized. <br>
+## Use Case:
 
+Developers, operators, and AI-assisted content creators use this skill as a fallback path when API access is rate-limited, unavailable, or not suited to the task. It recommends an external AI platform and provides prompts and manual steps for text, image, code, document, and knowledge-visualization workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/luhuiwang/manual-ai) <br>
-- [Platform Operation Guide](references/platform-guides.md) <br>
-- [Gemini](https://gemini.google.com) <br>
-- [Google AI Search](https://google.com/search?udm=50) <br>
-- [ChatGPT](https://chatgpt.com) <br>
-- [Doubao](https://doubao.com) <br>
-- [Qianwen](https://qianwen.com) <br>
-- [NotebookLM](https://notebooklm.google.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with platform recommendations, prompt templates, and manual task instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may direct users to external AI services where prompts, uploaded files, and generated results are handled by those services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: External AI websites may process or retain submitted prompts, files, personal data, confidential business material, or regulated content under their own terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste or upload secrets, credentials, personal data, confidential documents, or regulated material unless organizational policy permits that provider and use case.
+
+Risk: Installer or source integrity depends on obtaining the skill through a trusted ClawHub path.
+
+Mitigation: Install through a trusted ClawHub path or a pinned verified installer when possible.
+
+Risk: Manual guidance for third-party AI platforms can become outdated as platform availability, account requirements, pricing, or capabilities change.
+
+Mitigation: Verify the selected platform's current access requirements, limits, and terms before relying on generated output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luhuiwang/skills/manual-ai)
+- [Platform operation quick reference](artifact/references/platform-guides.md)
+- [Gemini](https://gemini.google.com)
+- [Google AI Search](https://google.com/search?udm=50)
+- [ChatGPT](https://chatgpt.com)
+- [Doubao](https://doubao.com)
+- [Qianwen](https://qianwen.com)
+- [NotebookLM](https://notebooklm.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with platform recommendations, prompts, links, step-by-step instructions, and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for manual execution by a user on third-party AI websites.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

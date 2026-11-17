@@ -1,40 +1,54 @@
-## Description: <br>
-Governance behavior for AI agents governed by DashClaw, covering guard checks, approval handling, action recording, session lifecycle management, and DashClaw MCP policy and capability loading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Governance behavior for AI agents governed by DashClaw, covering guard checks, approval decisions, action recording, session lifecycle management, and org-specific policy and capability loading from DashClaw MCP resources.
 
-## Publisher: <br>
-[dashclaw](https://clawhub.ai/user/dashclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashclaw](https://clawhub.ai/user/dashclaw)
 
-## Use Case: <br>
-Developers and operators use this skill to make agents follow DashClaw governance while performing actions, including risk checks, approvals, audit recording, session handoff, and credential hygiene. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes the agent's workflow through DashClaw governance controls. <br>
-Mitigation: Install it only when DashClaw governance is intended for the agent, and review the enabled policies, capabilities, and approval settings before use. <br>
-Risk: Audit records, handoff bundles, learning notes, and related governance context may retain sensitive task information. <br>
-Mitigation: Use a trusted DashClaw MCP server and avoid recording unnecessary secrets or sensitive details in summaries, records, and handoffs. <br>
+## Use Case:
 
+Developers and governed agents use this skill to apply DashClaw policy checks, approval waits, audit recording, and session handoff practices during agent work. It is intended for agents operating with the DashClaw MCP server and Mission Control workflows.
 
-## Reference(s): <br>
-- [DashClaw Governance Patterns](references/governance-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; relies on configured DashClaw MCP resources and tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: DashClaw governance can affect broad agent activity across a working session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when the operator intentionally wants DashClaw to govern the session, and verify the MCP server identity, policy provenance, and allowed capability IDs before sensitive work.
+
+Risk: Action records, approvals, and session handoff context may include sensitive, personal, or proprietary information.
+
+Mitigation: Confirm logging destinations, access controls, retention and deletion settings, and redaction rules before using the skill on sensitive work.
+
+## Reference(s):
+
+- [DashClaw Governance Skill Page](https://clawhub.ai/dashclaw/skills/dashclaw-governance)
+- [Governance Patterns](references/governance-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with governance decision tables and tool-call patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DashClaw MCP resources and tools for the full governance flow; includes a static protocol fallback when resources are unavailable.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

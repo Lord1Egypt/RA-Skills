@@ -1,0 +1,2338 @@
+{
+  "version": 1,
+  "description": "Compact theme index for progressive discovery. Shortlist 3 via mood/best_for/aliases, then load full theme details only after the user picks. aliases map frontend-slides STYLE_PRESET names and common synonyms to package IDs.",
+  "themes": [
+    {
+      "name": "claude",
+      "scheme": "light",
+      "formality": "medium",
+      "mood": [
+        "warm",
+        "editorial",
+        "human",
+        "high-craft"
+      ],
+      "best_for": [
+        "AI products",
+        "developer tools",
+        "thought leadership",
+        "calm product launches"
+      ],
+      "avoid_for": [
+        "neon nightlife brands",
+        "ultra-corporate banking"
+      ],
+      "swatches": [
+        "#faf9f5",
+        "#141413",
+        "#d97757",
+        "#6a9bcc"
+      ],
+      "aliases": [
+        "Claude",
+        "Warm Paper",
+        "Anthropic"
+      ],
+      "gallery": "examples/structured/claypaper-brief.html"
+    },
+    {
+      "name": "default-tech",
+      "scheme": "dark",
+      "formality": "medium",
+      "mood": [
+        "edgy",
+        "neon",
+        "startup",
+        "confident"
+      ],
+      "best_for": [
+        "SaaS",
+        "AI",
+        "fintech",
+        "deep tech demos"
+      ],
+      "avoid_for": [
+        "luxury retail",
+        "healthcare bedside"
+      ],
+      "swatches": [
+        "#0e0e12",
+        "#f4f4f5",
+        "#7c3aed",
+        "#22d3ee"
+      ],
+      "aliases": [
+        "Neon Tech",
+        "Default Tech",
+        "startup dark"
+      ],
+      "gallery": "examples/structured/neonforge-pitch.html"
+    },
+    {
+      "name": "corporate",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "formal",
+        "restrained",
+        "boardroom",
+        "clean"
+      ],
+      "best_for": [
+        "consulting",
+        "enterprise B2B",
+        "legal",
+        "financial services"
+      ],
+      "avoid_for": [
+        "consumer playful apps",
+        "gaming"
+      ],
+      "swatches": [
+        "#ffffff",
+        "#1a2035",
+        "#1d4ed8",
+        "#6b7280"
+      ]
+    },
+    {
+      "name": "playful",
+      "scheme": "light",
+      "formality": "low",
+      "mood": [
+        "bright",
+        "friendly",
+        "creative",
+        "energetic"
+      ],
+      "best_for": [
+        "consumer apps",
+        "education",
+        "community",
+        "health & wellness"
+      ],
+      "avoid_for": [
+        "investor board updates",
+        "crisis communications"
+      ],
+      "swatches": [
+        "#fffbf0",
+        "#1a1a2e",
+        "#ff4757",
+        "#2ed573"
+      ]
+    },
+    {
+      "name": "luxury-minimalist",
+      "scheme": "dark",
+      "formality": "high",
+      "mood": [
+        "quiet",
+        "premium",
+        "nocturnal",
+        "gold",
+        "serif"
+      ],
+      "best_for": [
+        "private equity",
+        "LP updates",
+        "luxury goods",
+        "architecture",
+        "premium fashion"
+      ],
+      "avoid_for": [
+        "hackathon demos",
+        "kids products",
+        "bright consumer launch"
+      ],
+      "swatches": [
+        "#0f0d0c",
+        "#f9f6ef",
+        "#c9a84c",
+        "#a8a29e"
+      ],
+      "gallery": "examples/solstice-update.html"
+    },
+    {
+      "name": "retro-arcade",
+      "scheme": "dark",
+      "formality": "low",
+      "mood": [
+        "neon",
+        "nostalgic",
+        "pixel",
+        "loud"
+      ],
+      "best_for": [
+        "gaming",
+        "crypto/Web3",
+        "hackathons",
+        "retro brand launches"
+      ],
+      "avoid_for": [
+        "healthcare",
+        "government"
+      ],
+      "swatches": [
+        "#0d0015",
+        "#e0e0ff",
+        "#ff00ff",
+        "#00ffff"
+      ]
+    },
+    {
+      "name": "editorial-serif",
+      "scheme": "light",
+      "formality": "medium-high",
+      "mood": [
+        "magazine",
+        "ink",
+        "literary",
+        "crimson"
+      ],
+      "best_for": [
+        "media",
+        "publishing",
+        "annual reports",
+        "cultural brands"
+      ],
+      "avoid_for": [
+        "arcade/gaming",
+        "ultra-tech dark UIs"
+      ],
+      "swatches": [
+        "#faf7f2",
+        "#1c1a17",
+        "#9c1c1c",
+        "#a67c1e"
+      ]
+    },
+    {
+      "name": "brutalist-mono",
+      "scheme": "light",
+      "formality": "medium",
+      "mood": [
+        "raw",
+        "technical",
+        "monospace",
+        "hazard"
+      ],
+      "best_for": [
+        "infrastructure",
+        "security",
+        "architecture reviews",
+        "devtool launches"
+      ],
+      "avoid_for": [
+        "wedding/lifestyle",
+        "soft wellness"
+      ],
+      "swatches": [
+        "#f0efe9",
+        "#0a0a0a",
+        "#ff3600",
+        "#57554c"
+      ],
+      "aliases": [
+        "Brutalist Mono",
+        "Brutalist",
+        "Mono Brutal"
+      ],
+      "gallery": "examples/structured/concrete-spec.html"
+    },
+    {
+      "name": "pastel-dreamy",
+      "scheme": "light",
+      "formality": "low-medium",
+      "mood": [
+        "soft",
+        "approachable",
+        "blush",
+        "gentle"
+      ],
+      "best_for": [
+        "wellness",
+        "education",
+        "lifestyle",
+        "community products"
+      ],
+      "avoid_for": [
+        "industrial B2B",
+        "cybersecurity"
+      ],
+      "swatches": [
+        "#fdf6fb",
+        "#3a2e4d",
+        "#e893c2",
+        "#8ab4f8"
+      ]
+    },
+    {
+      "name": "aurora-glass",
+      "scheme": "dark",
+      "formality": "medium",
+      "mood": [
+        "aurora",
+        "glass",
+        "neon",
+        "cinematic"
+      ],
+      "best_for": [
+        "AI infrastructure",
+        "SaaS pitches",
+        "developer platforms",
+        "tech launches"
+      ],
+      "avoid_for": [
+        "print-first board books",
+        "kids products"
+      ],
+      "swatches": [
+        "#000000",
+        "#ffffff",
+        "#a78bfa",
+        "#67e8f9"
+      ],
+      "aliases": [
+        "Aurora Glass",
+        "Aurora",
+        "Glass Aurora"
+      ],
+      "gallery": "examples/novaspark-pitch.html"
+    },
+    {
+      "name": "ft-editorial",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "broadsheet",
+        "ink",
+        "financial",
+        "serious"
+      ],
+      "best_for": [
+        "sales proposals",
+        "consulting",
+        "finance",
+        "B2B research"
+      ],
+      "avoid_for": [
+        "gaming",
+        "consumer meme brands"
+      ],
+      "swatches": [
+        "#f7f5f0",
+        "#0a0a0a",
+        "#1a4fd8",
+        "#c0392b"
+      ],
+      "aliases": [
+        "FT Editorial",
+        "Financial Times",
+        "Broadsheet Blue"
+      ],
+      "gallery": "examples/meridian-sales.html"
+    },
+    {
+      "name": "genz-bento",
+      "scheme": "light",
+      "formality": "low",
+      "mood": [
+        "bold",
+        "sticker",
+        "youthful",
+        "hard-shadow"
+      ],
+      "best_for": [
+        "consumer apps",
+        "product launches",
+        "Gen-Z brands",
+        "community"
+      ],
+      "avoid_for": [
+        "enterprise legal",
+        "luxury PE"
+      ],
+      "swatches": [
+        "#fff9f5",
+        "#0f0f1a",
+        "#ff4d2e",
+        "#b6f542"
+      ],
+      "aliases": [
+        "GenZ Bento",
+        "Bento",
+        "Hard Bento"
+      ],
+      "gallery": "examples/bounce-launch.html"
+    },
+    {
+      "name": "crt-terminal",
+      "scheme": "dark",
+      "formality": "low",
+      "mood": [
+        "phosphor",
+        "hacker",
+        "retro",
+        "monospace"
+      ],
+      "best_for": [
+        "privacy tools",
+        "open source demos",
+        "security",
+        "hacker culture"
+      ],
+      "avoid_for": [
+        "healthcare bedside",
+        "luxury retail"
+      ],
+      "swatches": [
+        "#06040a",
+        "#f5f0e8",
+        "#39ff14",
+        "#00f5ff"
+      ],
+      "aliases": [
+        "Terminal Green",
+        "CRT Terminal",
+        "phosphor green",
+        "hacker terminal"
+      ],
+      "gallery": "examples/retronet-demo.html"
+    },
+    {
+      "name": "swiss-typographic",
+      "scheme": "light",
+      "formality": "medium-high",
+      "mood": [
+        "grid",
+        "minimal",
+        "signal-red",
+        "international"
+      ],
+      "best_for": [
+        "design agencies",
+        "architecture",
+        "brand systems",
+        "cultural institutions"
+      ],
+      "avoid_for": [
+        "playful kids apps",
+        "neon nightlife"
+      ],
+      "swatches": [
+        "#ffffff",
+        "#0a0a0a",
+        "#e2231a",
+        "#636363"
+      ],
+      "aliases": [
+        "Swiss Modern",
+        "Swiss Typographic",
+        "International Style",
+        "Swiss grid"
+      ],
+      "gallery": "examples/gridsystems-agency.html"
+    },
+    {
+      "name": "candy-pop",
+      "scheme": "light",
+      "formality": "low",
+      "mood": [
+        "sweet",
+        "playful",
+        "rounded",
+        "loud"
+      ],
+      "best_for": [
+        "DTC launches",
+        "kids/family",
+        "food & beverage",
+        "fun consumer"
+      ],
+      "avoid_for": [
+        "crisis comms",
+        "defense/infra"
+      ],
+      "swatches": [
+        "#fdf3e7",
+        "#1a1a2e",
+        "#ff5d8f",
+        "#2d7dd2"
+      ],
+      "aliases": [
+        "Candy Pop",
+        "Candy"
+      ],
+      "gallery": "examples/jellybean-launch.html"
+    },
+    {
+      "name": "aerospace-hud",
+      "scheme": "dark",
+      "formality": "medium",
+      "mood": [
+        "hud",
+        "cyan",
+        "instrument",
+        "precise"
+      ],
+      "best_for": [
+        "robotics",
+        "aerospace",
+        "deep tech",
+        "hardware demos"
+      ],
+      "avoid_for": [
+        "lifestyle wellness",
+        "editorial magazines"
+      ],
+      "swatches": [
+        "#0a1d3a",
+        "#f0f8ff",
+        "#5ec8ff",
+        "#ff7a18"
+      ],
+      "aliases": [
+        "Aerospace HUD",
+        "HUD",
+        "mission control"
+      ],
+      "gallery": "examples/axiom-robotics.html"
+    },
+    {
+      "name": "brutalist-acid",
+      "scheme": "dark",
+      "formality": "medium",
+      "mood": [
+        "acid",
+        "brutal",
+        "mono",
+        "loud"
+      ],
+      "best_for": [
+        "Series A tech pitches",
+        "devtools",
+        "security",
+        "infrastructure"
+      ],
+      "avoid_for": [
+        "wellness",
+        "luxury retail"
+      ],
+      "swatches": [
+        "#1c1c1c",
+        "#e8e6e1",
+        "#d6ff00",
+        "#ffffff"
+      ],
+      "aliases": [
+        "Brutalist Acid",
+        "Acid Brutalist",
+        "MONOLITH"
+      ],
+      "gallery": "examples/monolith-seriesa.html"
+    },
+    {
+      "name": "bauhaus",
+      "scheme": "light",
+      "formality": "medium",
+      "mood": [
+        "geometric",
+        "primary",
+        "modernist",
+        "bold"
+      ],
+      "best_for": [
+        "design keynotes",
+        "architecture",
+        "brand systems",
+        "cultural"
+      ],
+      "avoid_for": [
+        "fintech dark UIs",
+        "neon nightlife"
+      ],
+      "swatches": [
+        "#f4f1ea",
+        "#0d0d0d",
+        "#e63946",
+        "#1f4ae0"
+      ],
+      "aliases": [
+        "Bauhaus",
+        "Bauhaus Primary"
+      ],
+      "gallery": "examples/primary-keynote.html"
+    },
+    {
+      "name": "y2k-aero",
+      "scheme": "light",
+      "formality": "low",
+      "mood": [
+        "aero",
+        "bubble",
+        "optimistic",
+        "chrome"
+      ],
+      "best_for": [
+        "consumer launches",
+        "lifestyle apps",
+        "playful SaaS"
+      ],
+      "avoid_for": [
+        "boardroom PE",
+        "crisis"
+      ],
+      "swatches": [
+        "#e0f7ff",
+        "#0c4a6e",
+        "#38bdf8",
+        "#a3e635"
+      ],
+      "aliases": [
+        "Y2K Aero",
+        "Y2K",
+        "Aero Glass"
+      ],
+      "gallery": "examples/bubbleflow-launch.html"
+    },
+    {
+      "name": "risograph-zine",
+      "scheme": "light",
+      "formality": "low-medium",
+      "mood": [
+        "print",
+        "zine",
+        "craft",
+        "overprint"
+      ],
+      "best_for": [
+        "seed pitches",
+        "creative agencies",
+        "indie brands",
+        "media"
+      ],
+      "avoid_for": [
+        "enterprise legal",
+        "healthcare"
+      ],
+      "swatches": [
+        "#f3ecdd",
+        "#1a1209",
+        "#ff4f4f",
+        "#2b3aff"
+      ],
+      "gallery": "examples/inkwell-pitch.html"
+    },
+    {
+      "name": "neon-noir",
+      "scheme": "dark",
+      "formality": "medium",
+      "mood": [
+        "noir",
+        "neon",
+        "cinematic",
+        "night"
+      ],
+      "best_for": [
+        "platform launches",
+        "entertainment",
+        "nightlife tech",
+        "crypto"
+      ],
+      "avoid_for": [
+        "kids products",
+        "print annual reports"
+      ],
+      "swatches": [
+        "#050510",
+        "#e8e4f0",
+        "#ff2e97",
+        "#00e5ff"
+      ],
+      "aliases": [
+        "Neon Cyber",
+        "Neon Noir",
+        "cyber neon",
+        "neon cyberpunk"
+      ],
+      "gallery": "examples/neondistrict-launch.html"
+    },
+    {
+      "name": "vaporwave",
+      "scheme": "dark",
+      "formality": "low",
+      "mood": [
+        "nostalgic",
+        "sunset",
+        "chrome",
+        "mallsoft"
+      ],
+      "best_for": [
+        "consumer launches",
+        "music/culture",
+        "retro brands"
+      ],
+      "avoid_for": [
+        "consulting",
+        "government"
+      ],
+      "swatches": [
+        "#1a0533",
+        "#fff0f9",
+        "#ff6ad5",
+        "#5ce1ff"
+      ],
+      "aliases": [
+        "Vaporwave",
+        "Mallsoft",
+        "Aesthetics"
+      ],
+      "gallery": "examples/mallsoft-launch.html"
+    },
+    {
+      "name": "botanical-luxe",
+      "scheme": "dark",
+      "formality": "high",
+      "mood": [
+        "forest",
+        "gold",
+        "serif",
+        "impact"
+      ],
+      "best_for": [
+        "impact reports",
+        "climate",
+        "premium sustainability",
+        "foundations"
+      ],
+      "avoid_for": [
+        "arcade/gaming",
+        "kids candy brands"
+      ],
+      "swatches": [
+        "#1d3a2f",
+        "#f3efe4",
+        "#bfa55a",
+        "#4a7c59"
+      ],
+      "gallery": "examples/verdant-impact.html"
+    },
+    {
+      "name": "heritage-editorial",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "heritage",
+        "serif",
+        "warm",
+        "terracotta"
+      ],
+      "best_for": [
+        "brand stories",
+        "luxury lifestyle",
+        "cultural",
+        "hospitality"
+      ],
+      "avoid_for": [
+        "devtools",
+        "neon nightlife"
+      ],
+      "swatches": [
+        "#f4efe9",
+        "#16130f",
+        "#c98b7a",
+        "#a07854"
+      ],
+      "gallery": "examples/atelier-brand.html"
+    },
+    {
+      "name": "fintech-clean",
+      "scheme": "light",
+      "formality": "medium-high",
+      "mood": [
+        "clean",
+        "violet",
+        "mint",
+        "product"
+      ],
+      "best_for": [
+        "fintech sales",
+        "SaaS pricing",
+        "payments",
+        "B2B product"
+      ],
+      "avoid_for": [
+        "editorial magazines",
+        "retro brands"
+      ],
+      "swatches": [
+        "#fbfbfd",
+        "#0a0a0a",
+        "#635bff",
+        "#00d4b1"
+      ],
+      "aliases": [
+        "Fintech Clean",
+        "Fintech",
+        "Clean Finance"
+      ],
+      "gallery": "examples/ledgerline-sales.html"
+    },
+    {
+      "name": "developer-dark",
+      "scheme": "dark",
+      "formality": "medium",
+      "mood": [
+        "github",
+        "code",
+        "terminal",
+        "green"
+      ],
+      "best_for": [
+        "devtools demos",
+        "API launches",
+        "open source",
+        "engineering"
+      ],
+      "avoid_for": [
+        "luxury PE",
+        "kids products"
+      ],
+      "swatches": [
+        "#0d1117",
+        "#e6edf3",
+        "#3fb950",
+        "#58a6ff"
+      ],
+      "aliases": [
+        "Dev Dark",
+        "Developer Dark",
+        "IDE dark"
+      ],
+      "gallery": "examples/forge-demo.html"
+    },
+    {
+      "name": "data-editorial",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "report",
+        "navy",
+        "chart",
+        "serif"
+      ],
+      "best_for": [
+        "industry reports",
+        "research",
+        "policy",
+        "benchmarks"
+      ],
+      "avoid_for": [
+        "gaming",
+        "consumer candy brands"
+      ],
+      "swatches": [
+        "#ffffff",
+        "#1a1a1a",
+        "#2b6cb0",
+        "#e63946"
+      ],
+      "gallery": "examples/signalbox-report.html"
+    },
+    {
+      "name": "scandinavian",
+      "scheme": "light",
+      "formality": "medium",
+      "mood": [
+        "hygge",
+        "sage",
+        "linen",
+        "calm"
+      ],
+      "best_for": [
+        "lifestyle brands",
+        "wellness",
+        "home",
+        "sustainable consumer"
+      ],
+      "avoid_for": [
+        "cybersecurity",
+        "arcade"
+      ],
+      "swatches": [
+        "#efe9df",
+        "#2b2926",
+        "#9caf88",
+        "#c9826b"
+      ],
+      "gallery": "examples/hygge-brand.html"
+    },
+    {
+      "name": "art-deco",
+      "scheme": "dark",
+      "formality": "high",
+      "mood": [
+        "deco",
+        "gold",
+        "emerald",
+        "investor"
+      ],
+      "best_for": [
+        "investor prospectus",
+        "private clubs",
+        "luxury real estate"
+      ],
+      "avoid_for": [
+        "playful kids apps",
+        "hacker tools"
+      ],
+      "swatches": [
+        "#0c2a24",
+        "#f5eed8",
+        "#c8a24a",
+        "#e2c47a"
+      ],
+      "gallery": "examples/meridianclub-investor.html"
+    },
+    {
+      "name": "kinetic-wrapped",
+      "scheme": "dark",
+      "formality": "low",
+      "mood": [
+        "wrapped",
+        "acid",
+        "loud",
+        "year-in-review"
+      ],
+      "best_for": [
+        "year in review",
+        "recaps",
+        "campaign wrap",
+        "social"
+      ],
+      "avoid_for": [
+        "board books",
+        "legal"
+      ],
+      "swatches": [
+        "#0a0a0a",
+        "#ffffff",
+        "#c8ff00",
+        "#ff00cc"
+      ],
+      "aliases": [
+        "Kinetic Wrapped",
+        "Wrapped",
+        "Spotify Wrapped"
+      ],
+      "gallery": "examples/pulse-wrapped.html"
+    },
+    {
+      "name": "blueprint",
+      "scheme": "dark",
+      "formality": "medium",
+      "mood": [
+        "engineering",
+        "cyan",
+        "grid",
+        "mission"
+      ],
+      "best_for": [
+        "mission briefs",
+        "hardware",
+        "aerospace-adjacent",
+        "systems design"
+      ],
+      "avoid_for": [
+        "soft lifestyle",
+        "candy consumer"
+      ],
+      "swatches": [
+        "#0a1f3d",
+        "#e8f4ff",
+        "#00e5ff",
+        "#ffffff"
+      ],
+      "aliases": [
+        "Blueprint",
+        "Engineering Blueprint"
+      ],
+      "gallery": "examples/apsis-mission.html"
+    },
+    {
+      "name": "glassmorphism",
+      "scheme": "light",
+      "formality": "medium",
+      "mood": [
+        "glass",
+        "soft",
+        "indigo",
+        "pricing"
+      ],
+      "best_for": [
+        "SaaS pricing",
+        "product marketing",
+        "modern B2B"
+      ],
+      "avoid_for": [
+        "newspaper media kits",
+        "brutalist mono"
+      ],
+      "swatches": [
+        "#f8f9ff",
+        "#0f1333",
+        "#5b6af5",
+        "#22d3ee"
+      ],
+      "aliases": [
+        "Glassmorphism",
+        "Frosted Glass",
+        "Glass"
+      ],
+      "gallery": "examples/cloudpeak-pricing.html"
+    },
+    {
+      "name": "broadsheet",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "newspaper",
+        "ink",
+        "masthead",
+        "print"
+      ],
+      "best_for": [
+        "media kits",
+        "publishing",
+        "press",
+        "editorial brands"
+      ],
+      "avoid_for": [
+        "neon nightlife",
+        "devtools"
+      ],
+      "swatches": [
+        "#f2ece0",
+        "#1a1208",
+        "#5c4d38",
+        "#8a7560"
+      ],
+      "aliases": [
+        "Broadsheet",
+        "Newspaper"
+      ],
+      "gallery": "examples/dailyledger-mediakit.html"
+    },
+    {
+      "name": "soft-editorial",
+      "scheme": "light",
+      "formality": "medium-high",
+      "mood": [
+        "editorial",
+        "warm",
+        "magazine",
+        "pastel"
+      ],
+      "best_for": [
+        "literary pitches",
+        "research notebooks",
+        "brand storytelling",
+        "cultural brands"
+      ],
+      "avoid_for": [
+        "neon cyberpunk",
+        "devtools terminals"
+      ],
+      "swatches": [
+        "#F2EEDF",
+        "#2A241B",
+        "#B7C7A8",
+        "#E1A4C2"
+      ],
+      "aliases": [
+        "Soft Editorial",
+        "Warm Editorial"
+      ],
+      "gallery": "examples/structured/quill-editorial.html"
+    },
+    {
+      "name": "editorial-forest",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "editorial",
+        "forest",
+        "quiet",
+        "literary"
+      ],
+      "best_for": [
+        "quarterly reviews",
+        "art-book monographs",
+        "literary pitches",
+        "annual reports"
+      ],
+      "avoid_for": [
+        "neon nightlife",
+        "arcade gaming"
+      ],
+      "swatches": [
+        "#efe7d4",
+        "#2e4a2a",
+        "#e89cb1",
+        "#1a1a17"
+      ],
+      "aliases": [
+        "Editorial Forest",
+        "Forest Editorial"
+      ]
+    },
+    {
+      "name": "pin-and-paper",
+      "scheme": "light",
+      "formality": "low",
+      "mood": [
+        "notebook",
+        "field-report",
+        "playful",
+        "analog"
+      ],
+      "best_for": [
+        "workshops",
+        "research field notes",
+        "creative reviews",
+        "education"
+      ],
+      "avoid_for": [
+        "formal finance disclosures",
+        "luxury fashion"
+      ],
+      "swatches": [
+        "#EFE56A",
+        "#1F3A8A",
+        "#C2342B",
+        "#F8F1D6"
+      ],
+      "aliases": [
+        "Pin and Paper",
+        "Pin & Paper",
+        "Cork Pin"
+      ]
+    },
+    {
+      "name": "vellum",
+      "scheme": "dark",
+      "formality": "high",
+      "mood": [
+        "gallery",
+        "monochrome",
+        "literary",
+        "still"
+      ],
+      "best_for": [
+        "exhibition decks",
+        "archive essays",
+        "art institutions",
+        "founder letters"
+      ],
+      "avoid_for": [
+        "multi-color consumer pop",
+        "arcade demos"
+      ],
+      "swatches": [
+        "#2A3870",
+        "#E8D85C",
+        "#3A7878",
+        "#1F2858"
+      ],
+      "aliases": [
+        "Vellum",
+        "Colorfield"
+      ]
+    },
+    {
+      "name": "neo-grid-bold",
+      "scheme": "light",
+      "formality": "medium",
+      "mood": [
+        "poster",
+        "grid",
+        "brutal",
+        "editorial"
+      ],
+      "best_for": [
+        "design week talks",
+        "brand systems",
+        "annual reports",
+        "agency credentials"
+      ],
+      "avoid_for": [
+        "soft wellness",
+        "pastel consumer"
+      ],
+      "swatches": [
+        "#ECECE8",
+        "#0A0A0A",
+        "#E6FF3D",
+        "#F5F4EF"
+      ],
+      "aliases": [
+        "Neo Grid Bold",
+        "Neo Grid"
+      ]
+    },
+    {
+      "name": "editorial-tri-tone",
+      "scheme": "light",
+      "formality": "medium-high",
+      "mood": [
+        "arts",
+        "tri-tone",
+        "literary",
+        "poster"
+      ],
+      "best_for": [
+        "arts publications",
+        "cultural pitches",
+        "independent magazines",
+        "brand manifestos"
+      ],
+      "avoid_for": [
+        "corporate navy decks",
+        "devtools"
+      ],
+      "swatches": [
+        "#F2B6C6",
+        "#F2D86A",
+        "#7A1F35",
+        "#F2B6C6"
+      ],
+      "aliases": [
+        "Editorial Tri-Tone",
+        "Tri-Tone"
+      ]
+    },
+    {
+      "name": "creative-mode",
+      "scheme": "light",
+      "formality": "medium-low",
+      "mood": [
+        "neo-brutalist",
+        "zine",
+        "loud",
+        "graphic"
+      ],
+      "best_for": [
+        "agency credentials",
+        "creative reviews",
+        "indie SaaS",
+        "brand redesigns"
+      ],
+      "avoid_for": [
+        "quiet institutional finance",
+        "healthcare patient materials"
+      ],
+      "swatches": [
+        "#EFE9D9",
+        "#0F0F0F",
+        "#E85A1F",
+        "#F06CA8"
+      ],
+      "aliases": [
+        "Creative Mode",
+        "Mode Blocks"
+      ]
+    },
+    {
+      "name": "broadside",
+      "scheme": "dark",
+      "formality": "medium-high",
+      "mood": [
+        "protest",
+        "editorial",
+        "loud",
+        "newspaper"
+      ],
+      "best_for": [
+        "brand manifestos",
+        "bilingual decks",
+        "design talks",
+        "founder vision"
+      ],
+      "avoid_for": [
+        "quiet wellness",
+        "pastel consumer"
+      ],
+      "swatches": [
+        "#111111",
+        "#E85D26",
+        "#F0ECE5",
+        "#888880"
+      ],
+      "aliases": [
+        "Broadside",
+        "Broadside Fire"
+      ]
+    },
+    {
+      "name": "bold-signal",
+      "scheme": "dark",
+      "formality": "medium",
+      "mood": [
+        "confident",
+        "high-impact",
+        "modern",
+        "bold"
+      ],
+      "best_for": [
+        "startup pitches",
+        "product launches",
+        "keynotes",
+        "brand reveals"
+      ],
+      "avoid_for": [
+        "quiet literary essays",
+        "heritage luxury"
+      ],
+      "swatches": [
+        "#1a1a1a",
+        "#ffffff",
+        "#FF5722",
+        "#2d2d2d"
+      ],
+      "aliases": [
+        "Bold Signal",
+        "Signal Orange"
+      ],
+      "gallery": "examples/structured/signalforge-launch.html"
+    },
+    {
+      "name": "notebook-tabs",
+      "scheme": "light",
+      "formality": "medium-high",
+      "mood": [
+        "editorial",
+        "tactile",
+        "organized",
+        "notebook"
+      ],
+      "best_for": [
+        "workshops",
+        "curriculum",
+        "editorial planning",
+        "product strategy"
+      ],
+      "avoid_for": [
+        "neon cyber",
+        "hard brutalist"
+      ],
+      "swatches": [
+        "#f8f6f1",
+        "#1a1a1a",
+        "#98d4bb",
+        "#c7b8ea"
+      ],
+      "aliases": [
+        "Notebook Tabs",
+        "Tabs"
+      ]
+    },
+    {
+      "name": "creative-voltage",
+      "scheme": "dark",
+      "formality": "low",
+      "mood": [
+        "energetic",
+        "retro-modern",
+        "electric",
+        "creative"
+      ],
+      "best_for": [
+        "creative agencies",
+        "hackathons",
+        "product demos",
+        "design showcases"
+      ],
+      "avoid_for": [
+        "heritage luxury",
+        "quiet finance"
+      ],
+      "swatches": [
+        "#0066ff",
+        "#1a1a2e",
+        "#d4ff00",
+        "#ffffff"
+      ],
+      "aliases": [
+        "Creative Voltage",
+        "Voltage"
+      ]
+    },
+    {
+      "name": "signal",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "literary",
+        "intelligence",
+        "restrained",
+        "editorial"
+      ],
+      "best_for": [
+        "intelligence briefings",
+        "long-form strategy",
+        "investor letters",
+        "policy decks"
+      ],
+      "avoid_for": [
+        "arcade neon",
+        "candy consumer"
+      ],
+      "swatches": [
+        "#F0ECE3",
+        "#1C2644",
+        "#C8A870",
+        "#1A2030"
+      ],
+      "aliases": [
+        "Signal",
+        "Signal Briefing"
+      ]
+    },
+    {
+      "name": "electric-studio",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "bold",
+        "clean",
+        "professional",
+        "high-contrast"
+      ],
+      "best_for": [
+        "agency credentials",
+        "product keynotes",
+        "studio portfolios",
+        "brand launches"
+      ],
+      "avoid_for": [
+        "soft wellness",
+        "pastel consumer"
+      ],
+      "swatches": [
+        "#ffffff",
+        "#0a0a0a",
+        "#4361ee",
+        "#0a0a0a"
+      ],
+      "aliases": [
+        "Electric Studio",
+        "Studio Blue"
+      ],
+      "gallery": "examples/structured/voltstudio-credentials.html"
+    },
+    {
+      "name": "dark-botanical",
+      "scheme": "dark",
+      "formality": "high",
+      "mood": [
+        "elegant",
+        "botanical",
+        "premium",
+        "artistic"
+      ],
+      "best_for": [
+        "luxury brands",
+        "art galleries",
+        "fragrance",
+        "editorial portfolios"
+      ],
+      "avoid_for": [
+        "neon gaming",
+        "devtools terminals"
+      ],
+      "swatches": [
+        "#0f0f0f",
+        "#e8e4df",
+        "#d4a574",
+        "#e8b4b8"
+      ],
+      "aliases": [
+        "Dark Botanical",
+        "Botanical Dark"
+      ]
+    },
+    {
+      "name": "pastel-geometry",
+      "scheme": "light",
+      "formality": "medium-low",
+      "mood": [
+        "friendly",
+        "organized",
+        "pastel",
+        "approachable"
+      ],
+      "best_for": [
+        "education",
+        "wellness",
+        "consumer apps",
+        "community"
+      ],
+      "avoid_for": [
+        "dark cyberpunk",
+        "formal finance"
+      ],
+      "swatches": [
+        "#c8d9e6",
+        "#1a1a1a",
+        "#f0b4d4",
+        "#9b8dc4"
+      ],
+      "aliases": [
+        "Pastel Geometry",
+        "Geometry Pills"
+      ]
+    },
+    {
+      "name": "split-pastel",
+      "scheme": "light",
+      "formality": "low",
+      "mood": [
+        "playful",
+        "friendly",
+        "creative",
+        "pastel"
+      ],
+      "best_for": [
+        "consumer launches",
+        "creator brands",
+        "education",
+        "lifestyle"
+      ],
+      "avoid_for": [
+        "boardroom finance",
+        "legal briefs"
+      ],
+      "swatches": [
+        "#f5e6dc",
+        "#e4dff0",
+        "#c8f0d8",
+        "#f0d4e0"
+      ],
+      "aliases": [
+        "Split Pastel",
+        "Pastel Split"
+      ]
+    },
+    {
+      "name": "vintage-editorial",
+      "scheme": "light",
+      "formality": "medium",
+      "mood": [
+        "witty",
+        "editorial",
+        "vintage",
+        "confident"
+      ],
+      "best_for": [
+        "brand manifestos",
+        "thought leadership",
+        "cultural pitches",
+        "founder letters"
+      ],
+      "avoid_for": [
+        "neon nightlife",
+        "arcade gaming"
+      ],
+      "swatches": [
+        "#f5f3ee",
+        "#1a1a1a",
+        "#e8d4c0",
+        "#555555"
+      ],
+      "aliases": [
+        "Vintage Editorial",
+        "Vintage Geo"
+      ]
+    },
+    {
+      "name": "paper-ink",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "literary",
+        "editorial",
+        "thoughtful",
+        "classic"
+      ],
+      "best_for": [
+        "publishing",
+        "essays",
+        "book launches",
+        "long-form strategy"
+      ],
+      "avoid_for": [
+        "neon consumer pop",
+        "arcade demos"
+      ],
+      "swatches": [
+        "#faf9f7",
+        "#1a1a1a",
+        "#c41e3a",
+        "#5c574c"
+      ],
+      "aliases": [
+        "Paper Ink",
+        "Literary Paper"
+      ]
+    },
+    {
+      "name": "biennale-yellow",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "editorial",
+        "atmospheric",
+        "cultural-institution",
+        "poster-like"
+      ],
+      "best_for": [
+        "exhibition decks",
+        "museum programmes",
+        "design conferences",
+        "literary publications"
+      ],
+      "avoid_for": [
+        "multi-color consumer pop",
+        "neon gaming"
+      ],
+      "swatches": [
+        "#E9E5DB",
+        "#1B2566",
+        "#F1EE2E",
+        "#E26B4A"
+      ],
+      "aliases": [
+        "Biennale Yellow",
+        "Biennale"
+      ]
+    },
+    {
+      "name": "bold-poster",
+      "scheme": "light",
+      "formality": "medium",
+      "mood": [
+        "bold",
+        "editorial",
+        "loud",
+        "poster"
+      ],
+      "best_for": [
+        "brand manifestos",
+        "founder vision",
+        "cultural pitches",
+        "creative reviews"
+      ],
+      "avoid_for": [
+        "dense data reports",
+        "regulatory briefs"
+      ],
+      "swatches": [
+        "#FFFFFF",
+        "#1C1410",
+        "#D8000F",
+        "#F5F2EF"
+      ],
+      "aliases": [
+        "Bold Poster",
+        "Poster Ink"
+      ]
+    },
+    {
+      "name": "coral",
+      "scheme": "mixed",
+      "formality": "medium",
+      "mood": [
+        "bold",
+        "poster",
+        "sport-editorial",
+        "high-impact"
+      ],
+      "best_for": [
+        "brand launches",
+        "sports / culture decks",
+        "creative reviews",
+        "campaign keynotes"
+      ],
+      "avoid_for": [
+        "quiet healthcare",
+        "dense regulatory"
+      ],
+      "swatches": [
+        "#F5F0E8",
+        "#1A1A1A",
+        "#E85D5D",
+        "#FFFFFF"
+      ],
+      "aliases": [
+        "Coral",
+        "Coral Hatch"
+      ]
+    },
+    {
+      "name": "emerald-editorial",
+      "scheme": "mixed",
+      "formality": "medium-high",
+      "mood": [
+        "editorial",
+        "magazine",
+        "theatrical",
+        "fashion"
+      ],
+      "best_for": [
+        "fashion / beauty",
+        "magazine covers",
+        "cultural institutions",
+        "brand books"
+      ],
+      "avoid_for": [
+        "neon gaming",
+        "tech terminal"
+      ],
+      "swatches": [
+        "#3CD896",
+        "#0F1A5C",
+        "#F1E9D6",
+        "#2DC684"
+      ],
+      "aliases": [
+        "Emerald Editorial",
+        "Emerald"
+      ]
+    },
+    {
+      "name": "sakura-chroma",
+      "scheme": "light",
+      "formality": "low",
+      "mood": [
+        "playful",
+        "japanese-print",
+        "cassette",
+        "chroma"
+      ],
+      "best_for": [
+        "consumer product",
+        "music / culture",
+        "creator brands",
+        "zine-style decks"
+      ],
+      "avoid_for": [
+        "board finance",
+        "legal disclosures"
+      ],
+      "swatches": [
+        "#F1E6CB",
+        "#3A2516",
+        "#E5392A",
+        "#E54489"
+      ],
+      "aliases": [
+        "Sakura Chroma",
+        "Sakura",
+        "Chroma Cassette"
+      ]
+    },
+    {
+      "name": "pink-script",
+      "scheme": "dark",
+      "formality": "medium-high",
+      "mood": [
+        "couture",
+        "nocturnal",
+        "editorial",
+        "luxury"
+      ],
+      "best_for": [
+        "fashion lookbooks",
+        "fragrance",
+        "nightlife brands",
+        "creative portfolios"
+      ],
+      "avoid_for": [
+        "kids education",
+        "industrial B2B"
+      ],
+      "swatches": [
+        "#060507",
+        "#F5EDF1",
+        "#ED3D8C",
+        "#FF66A8"
+      ],
+      "aliases": [
+        "Pink Script",
+        "Afterhours Script"
+      ]
+    },
+    {
+      "name": "block-frame",
+      "scheme": "light",
+      "formality": "medium-low",
+      "mood": [
+        "neobrutalist",
+        "playful",
+        "loud",
+        "toy-packaging"
+      ],
+      "best_for": [
+        "startup launches",
+        "youth brands",
+        "creative agencies",
+        "hackathon demos"
+      ],
+      "avoid_for": [
+        "enterprise compliance",
+        "luxury quiet"
+      ],
+      "swatches": [
+        "#FFFDF5",
+        "#000000",
+        "#FE90E8",
+        "#99E885"
+      ],
+      "aliases": [
+        "Block Frame",
+        "Brutal Frame"
+      ]
+    },
+    {
+      "name": "capsule",
+      "scheme": "light",
+      "formality": "medium-low",
+      "mood": [
+        "playful",
+        "editorial",
+        "memphis",
+        "soft-pop"
+      ],
+      "best_for": [
+        "consumer apps",
+        "wellness brands",
+        "creator tools",
+        "lifestyle pitches"
+      ],
+      "avoid_for": [
+        "dense data tables",
+        "regulatory"
+      ],
+      "swatches": [
+        "#F5F5F0",
+        "#1A1A1A",
+        "#E85D4E",
+        "#C4D94E"
+      ],
+      "aliases": [
+        "Capsule",
+        "Capsule Pills"
+      ]
+    },
+    {
+      "name": "cobalt-grid",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "architectural",
+        "analytical",
+        "classical",
+        "precise"
+      ],
+      "best_for": [
+        "architecture / design",
+        "research briefings",
+        "strategy papers",
+        "museum programmes"
+      ],
+      "avoid_for": [
+        "neon consumer pop",
+        "arcade demos"
+      ],
+      "swatches": [
+        "#F0EBDE",
+        "#1F2BE0",
+        "#E6E0CE",
+        "#5560E5"
+      ],
+      "aliases": [
+        "Cobalt Grid",
+        "Cobalt"
+      ]
+    },
+    {
+      "name": "8-bit-orbit",
+      "scheme": "dark",
+      "formality": "low",
+      "mood": [
+        "retro-tech",
+        "arcade",
+        "neon",
+        "cyberpunk"
+      ],
+      "best_for": [
+        "gaming",
+        "web3 / indie tools",
+        "hackathon demos",
+        "synthwave brands"
+      ],
+      "avoid_for": [
+        "healthcare patient-facing",
+        "quiet finance"
+      ],
+      "swatches": [
+        "#0A0E27",
+        "#5EDCF4",
+        "#F0A6CA",
+        "#F4D03F"
+      ],
+      "aliases": [
+        "8-Bit Orbit",
+        "8-bit",
+        "Pixel Arcade"
+      ]
+    },
+    {
+      "name": "studio",
+      "scheme": "dark",
+      "formality": "medium",
+      "mood": [
+        "electric",
+        "bold",
+        "graphic",
+        "design-led"
+      ],
+      "best_for": [
+        "studio credentials",
+        "creative agency pitches",
+        "brand showcases",
+        "art-direction reviews"
+      ],
+      "avoid_for": [
+        "quiet institutional",
+        "healthcare soft"
+      ],
+      "swatches": [
+        "#1C1C1C",
+        "#F5D200",
+        "#242422",
+        "#2E2E2C"
+      ],
+      "aliases": [
+        "Studio Acid",
+        "Acid Studio"
+      ]
+    },
+    {
+      "name": "grove",
+      "scheme": "dark",
+      "formality": "medium-high",
+      "mood": [
+        "organic",
+        "literary",
+        "warm",
+        "considered"
+      ],
+      "best_for": [
+        "sustainability brands",
+        "wellness",
+        "wineries",
+        "literary / arts decks"
+      ],
+      "avoid_for": [
+        "neon energy",
+        "rapid-fire pop"
+      ],
+      "swatches": [
+        "#192B1B",
+        "#D4CFBF",
+        "#C8524A",
+        "#E8E4D6"
+      ],
+      "aliases": [
+        "Grove",
+        "Grove Monograph"
+      ]
+    },
+    {
+      "name": "scatterbrain",
+      "scheme": "light",
+      "formality": "low",
+      "mood": [
+        "playful",
+        "workshop",
+        "messy-on-purpose",
+        "warm"
+      ],
+      "best_for": [
+        "brainstorms",
+        "workshops",
+        "creative agency credentials",
+        "ideation pitches"
+      ],
+      "avoid_for": [
+        "institutional weight",
+        "regulatory density"
+      ],
+      "swatches": [
+        "#FAF8F3",
+        "#FFE066",
+        "#A5D8FF",
+        "#FFC9C9"
+      ],
+      "aliases": [
+        "Scatterbrain",
+        "Corkboard"
+      ]
+    },
+    {
+      "name": "peoples-platform",
+      "scheme": "light",
+      "formality": "medium-low",
+      "mood": [
+        "activist",
+        "loud",
+        "graphic",
+        "honest"
+      ],
+      "best_for": [
+        "manifestos",
+        "civic / community decks",
+        "campaign pitches",
+        "founder vision"
+      ],
+      "avoid_for": [
+        "institutional restraint",
+        "quiet healthcare"
+      ],
+      "swatches": [
+        "#F5F2EA",
+        "#2C2CDC",
+        "#F2A03A",
+        "#E83A2A"
+      ],
+      "aliases": [
+        "Peoples Platform",
+        "People's Platform"
+      ]
+    },
+    {
+      "name": "retro-windows",
+      "scheme": "light",
+      "formality": "low",
+      "mood": [
+        "nostalgic",
+        "retro",
+        "geeky",
+        "playful"
+      ],
+      "best_for": [
+        "retro gaming",
+        "Y2K brands",
+        "tech-history talks",
+        "tongue-in-cheek decks"
+      ],
+      "avoid_for": [
+        "modern elegant",
+        "institutional credibility"
+      ],
+      "swatches": [
+        "#C0C0C0",
+        "#000080",
+        "#FFFFFF",
+        "#008000"
+      ],
+      "aliases": [
+        "Retro Windows",
+        "Windows 95",
+        "Win95"
+      ]
+    },
+    {
+      "name": "raw-grid",
+      "scheme": "light",
+      "formality": "medium-low",
+      "mood": [
+        "raw",
+        "punchy",
+        "energetic",
+        "confident"
+      ],
+      "best_for": [
+        "founder pitches",
+        "accelerator demos",
+        "indie launches",
+        "creator portfolios"
+      ],
+      "avoid_for": [
+        "soft quiet",
+        "warm hospitality"
+      ],
+      "swatches": [
+        "#FFFFFF",
+        "#0A0A0A",
+        "#F2D4CF",
+        "#E5EDD6"
+      ],
+      "aliases": [
+        "Raw Grid",
+        "Grid Brutal"
+      ]
+    },
+    {
+      "name": "long-table",
+      "scheme": "light",
+      "formality": "medium",
+      "mood": [
+        "warm",
+        "intimate",
+        "hospitality",
+        "editorial"
+      ],
+      "best_for": [
+        "supper clubs",
+        "restaurants",
+        "membership pitches",
+        "lifestyle / wine brands"
+      ],
+      "avoid_for": [
+        "corporate polish",
+        "cold minimalism"
+      ],
+      "swatches": [
+        "#FAF1E2",
+        "#B53D2A",
+        "#F2E5CF",
+        "#8E2D1F"
+      ],
+      "aliases": [
+        "Long Table",
+        "Supper Table"
+      ]
+    },
+    {
+      "name": "mat",
+      "scheme": "dark",
+      "formality": "medium",
+      "mood": [
+        "mid-century",
+        "tactile",
+        "warm-modern",
+        "considered"
+      ],
+      "best_for": [
+        "architecture / interiors",
+        "ceramics / craft / furniture",
+        "design studio credentials",
+        "advisory decks"
+      ],
+      "avoid_for": [
+        "fast tech energy",
+        "cold neon"
+      ],
+      "swatches": [
+        "#232E26",
+        "#F0E8D2",
+        "#C07030",
+        "#EDE6D0"
+      ],
+      "aliases": [
+        "Mat",
+        "Woodglow Mat"
+      ]
+    },
+    {
+      "name": "stencil-tablet",
+      "scheme": "light",
+      "formality": "medium-high",
+      "mood": [
+        "archival",
+        "earthy",
+        "tactile",
+        "graphic"
+      ],
+      "best_for": [
+        "museum / cultural decks",
+        "architecture brands",
+        "heritage / craft",
+        "research field manuals"
+      ],
+      "avoid_for": [
+        "digital-native polish",
+        "playful pop"
+      ],
+      "swatches": [
+        "#E2DCC9",
+        "#0A0A0A",
+        "#A06A3C",
+        "#C73B7A"
+      ],
+      "aliases": [
+        "Stencil Tablet",
+        "Tablet Earth"
+      ]
+    },
+    {
+      "name": "cartesian",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "quiet",
+        "elegant",
+        "warm-minimal",
+        "considered"
+      ],
+      "best_for": [
+        "investment theses",
+        "white papers",
+        "advisory",
+        "gallery / cultural decks"
+      ],
+      "avoid_for": [
+        "visual heat",
+        "multi-accent urgency"
+      ],
+      "swatches": [
+        "#EDE8E0",
+        "#1A1A1A",
+        "#8A8178",
+        "#B8B0A4"
+      ],
+      "aliases": [
+        "Cartesian",
+        "Draft Grid"
+      ]
+    },
+    {
+      "name": "monochrome",
+      "scheme": "light",
+      "formality": "high",
+      "mood": [
+        "restrained",
+        "literary",
+        "archival",
+        "ledger"
+      ],
+      "best_for": [
+        "user research synthesis",
+        "white papers",
+        "academic / policy briefs",
+        "advisory deliverables"
+      ],
+      "avoid_for": [
+        "color-led storytelling",
+        "playful brands"
+      ],
+      "swatches": [
+        "#FAFADF",
+        "#1A1A16",
+        "#5E5E54",
+        "#F5F0E4"
+      ],
+      "aliases": [
+        "Monochrome",
+        "Black and White",
+        "Mono"
+      ]
+    },
+    {
+      "name": "blue-professional",
+      "scheme": "light",
+      "formality": "medium-high",
+      "mood": [
+        "professional",
+        "modern",
+        "calm",
+        "trustworthy"
+      ],
+      "best_for": [
+        "B2B SaaS pitches",
+        "consulting deliverables",
+        "investor reports",
+        "advisory updates"
+      ],
+      "avoid_for": [
+        "playful informal",
+        "hot neon brands"
+      ],
+      "swatches": [
+        "#FDFAE7",
+        "#1E2BFA",
+        "#111111",
+        "#6B6B6B"
+      ],
+      "aliases": [
+        "Blue Professional",
+        "Corporate Blue"
+      ]
+    },
+    {
+      "name": "daisy-days",
+      "scheme": "light",
+      "formality": "low",
+      "mood": [
+        "cheerful",
+        "friendly",
+        "soft",
+        "playful"
+      ],
+      "best_for": [
+        "kids / family brands",
+        "wellness",
+        "friendly consumer launches",
+        "community events"
+      ],
+      "avoid_for": [
+        "institutional sober",
+        "finance formal"
+      ],
+      "swatches": [
+        "#F5F0E6",
+        "#7ECDC0",
+        "#F7C8D4",
+        "#FDE68A"
+      ],
+      "aliases": [
+        "Daisy Days",
+        "Daisy"
+      ]
+    },
+    {
+      "name": "retro-zine",
+      "scheme": "light",
+      "formality": "medium-low",
+      "mood": [
+        "crafted",
+        "lo-fi",
+        "underground",
+        "warm-retro"
+      ],
+      "best_for": [
+        "indie zines",
+        "music / arts brands",
+        "creator portfolios",
+        "small-batch craft"
+      ],
+      "avoid_for": [
+        "digital-native polish",
+        "fast tech energy"
+      ],
+      "swatches": [
+        "#C8B99A",
+        "#008F4D",
+        "#1A1A1A",
+        "#F4EFE6"
+      ],
+      "aliases": [
+        "Retro Zine",
+        "Zine Riso"
+      ]
+    }
+  ]
+}

@@ -194,9 +194,7 @@ def main():
     serial_no = "XXXXXXXXXXXXXXXXXXXXXXXX"
     
     # 示例私钥（请替换为你的真实私钥）
-    private_key_pem = """-----BEGIN PRIVATE KEY-----
-MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDxxx...（请替换）
------END PRIVATE KEY-----"""
+    private_key_pem = """REDACTED-SECRET"""
     
     demo = SignatureDemo(mchid, serial_no, private_key_pem=private_key_pem)
     

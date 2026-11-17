@@ -1,45 +1,59 @@
-## Description: <br>
-Search, compare, book, and manage flights with price tracking, multi-platform comparison, and loyalty optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches, compares, books, and fixes flights across fares, connections, baggage, seats, miles, delays, passenger rights, travel documents, passenger needs, corporate policy, and flight-data APIs.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to compare flight options, track prices and status, manage booking decisions, and optimize loyalty points while keeping high-impact travel actions subject to user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent could proceed with booking, payment, cancellation, or rebooking without sufficiently clear user approval. <br>
-Mitigation: Require explicit user confirmation before any booking, payment, cancellation, rebooking, or non-refundable purchase action. <br>
-Risk: Saved preferences, PNRs, travel history, and loyalty details may contain sensitive travel or account information. <br>
-Mitigation: Keep loyalty credentials out of routine prompts, review saved travel files, and delete stored PNRs or history when no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to plan, compare, book, monitor, change, and troubleshoot flights, including fare rules, award tickets, baggage, disruptions, refunds, travel documents, passenger needs, and corporate travel constraints. It can also guide developers who are building flight-search, pricing, tracking, or booking workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/flight) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Search Guide](artifact/search.md) <br>
-- [Booking Guide](artifact/booking.md) <br>
-- [Price Tracking Guide](artifact/tracking.md) <br>
-- [Miles, Points, and Loyalty Guide](artifact/points.md) <br>
-- [APIs and Integrations Guide](artifact/apis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance, checklists, comparisons, alerts, and suggested travel actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local preference, search, booking, alert, and travel-history files when the agent follows the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks for broad local travel, booking, contact, finance, project, and profile access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a persistent local flight assistant is intended, and review the configured folders before use.
+
+Risk: The skill can keep sensitive travel plans, locators, loyalty data, companion details, claims, and card-fee metadata in plain local notes.
+
+Mitigation: Back up and protect those local files, and avoid storing passwords, card numbers, passport numbers, bank details, boarding-pass barcodes, or programme PINs.
+
+Risk: The skill writes sensitive records without a confirmation gate, including possible deletions or shared finance and contact updates.
+
+Mitigation: Review writes and deletions, especially shared booking, finance, contact, and project updates.
+
+## Reference(s):
+
+- [Flight skill on ClawHub](https://clawhub.ai/ivangdavila/skills/flight)
+- [Flight homepage](https://clawic.com/skills/flight)
+- [Clawic](https://clawic.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text travel guidance, with structured tables or local-note entries when useful.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce durable local travel-memory updates when the user asks or when the skill records flights, prices, deadlines, loyalty data, claims, vouchers, or reusable procedures.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

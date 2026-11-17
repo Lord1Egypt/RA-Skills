@@ -1,7 +1,7 @@
 ---
 name: architecture-paradigm-functional-core
 description: Applies Functional Core, Imperative Shell to isolate logic from side effects
-version: 1.9.8
+version: 1.10.3
 triggers:
   - architecture
   - functional-core
@@ -15,7 +15,7 @@ source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # The Functional Core, Imperative Shell Paradigm
@@ -59,13 +59,20 @@ source_plugin: archetypes
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``boundary-validator`` -- guards inputs to the pure core so the core can stay total
-- ``core-test-generator`` -- generates property-based tests against the deterministic core
-- ``shell-adapter-generator`` -- scaffolds the imperative shell that wires the core into I/O
+- ``boundary-validator``: guards inputs to the pure core so the core can stay total
+- ``core-test-generator``: generates property-based tests against the deterministic core
+- ``shell-adapter-generator``: scaffolds the imperative shell that wires the core into I/O
+
+## Exit Criteria
+
+- [ ] An explicit side-effect inventory exists mapping every I/O operation to the shell layer
+  before any refactoring begins.
+- [ ] Core unit tests run with no I/O mocks (no database, HTTP, or filesystem calls) and achieve
+  > 90% deterministic coverage.
+- [ ] Automated architecture tests (e.g., import analysis or namespace rules) confirm the core
+  contains zero imports from I/O or framework libraries.
+- [ ] Rollout metrics (deployment lead time, incident rate in the shell layer) are baselined
+  before migration and compared after to demonstrate the pattern's value.

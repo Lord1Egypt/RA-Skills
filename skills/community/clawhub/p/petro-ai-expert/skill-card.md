@@ -1,42 +1,56 @@
-## Description: <br>
-Provides Chinese-language guidance for oil and gas information technology topics, academic paper structuring, drafting workflows, rewriting, and industry AI learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides oil-and-gas information technology writing guidance, paper structure help, sector terminology, and domain topics such as smart oilfields, digital twins, industrial control security, and oil-and-gas digitalization.
 
-## Publisher: <br>
-[112297720](https://clawhub.ai/user/112297720) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[112297720](https://clawhub.ai/user/112297720)
 
-## Use Case: <br>
-Oil and gas IT practitioners and technical learners use this skill for Chinese-language support on smart oilfields, digital twins, industrial control security, petrochemical digital transformation, and paper-format guidance. Human review is needed before deployment because the security evidence flags academic ghostwriting, plagiarism-reduction, and AI-detection-evasion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic ghostwriting, plagiarism-reduction, and AI-detection-evasion workflows could enable misconduct or misrepresent authorship. <br>
-Mitigation: Review and remove or disable those workflows before deployment; limit the skill to legitimate learning, outlining, citation, editing, and domain-explanation support. <br>
-Risk: Recurring crawling or push-update behavior could collect or distribute information without clear user consent. <br>
-Mitigation: Require explicit opt-in, documented sources, privacy controls, and user-visible controls before enabling recurring collection or notifications. <br>
+## Use Case:
 
+External users and domain practitioners can use this skill for Chinese-language oil-and-gas IT paper outlining, formatting, polishing, terminology guidance, and learning support. Reviewers should treat its plagiarism-score reduction and AI-detection avoidance material as a misuse risk before deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/112297720/petro-ai-expert) <br>
-- [AI detection avoidance reference](references/ai-detection-avoidance.md) <br>
-- [Petrochemical paper style reference](references/papers-style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose, outlines, tables, and structured Chinese-language drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paper outlines, section drafts, rewriting suggestions, terminology lists, and reference-format guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may help users bypass plagiarism and AI-authorship checks for academic papers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or tightly restrict evasion guidance, and limit use to legitimate editing, citation, originality, and compliance support.
+
+Risk: The artifact describes scheduled crawling and weekly push behavior without clear source controls.
+
+Mitigation: Require explicit deployment approval, vetted sources, and user consent before enabling collection or push workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/112297720/skills/petro-ai-expert)
+- [Publisher profile](https://clawhub.ai/user/112297720)
+- [Petrochemical paper style guide](artifact/references/papers-style.md)
+- [AI detection avoidance checklist](artifact/references/ai-detection-avoidance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses in Chinese, including outlines, paper sections, rewriting suggestions, terminology, and reference-format guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys, MCP tools, or shell execution are detected in the bundled artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

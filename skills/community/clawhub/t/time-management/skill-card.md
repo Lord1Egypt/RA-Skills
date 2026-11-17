@@ -1,46 +1,54 @@
-## Description: <br>
-Plan days, prioritize tasks, and protect focus time with time blocking, weekly reviews, and energy-aware scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan days, prioritize tasks, and protect focus time with time blocking, weekly reviews, and energy-aware scheduling.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees and external users use this skill to plan days and weeks, prioritize important work, create time blocks, and maintain lightweight planning memory for schedule preferences and commitments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local planning memory may contain schedule preferences, focus times, weekly priorities, and commitments. <br>
-Mitigation: Use an only-when-asked activation style for less proactive prompting, and delete ~/time-management/ to remove stored planning memory. <br>
-Risk: The skill does not access calendar, email, or external services, so schedules may omit commitments the user has not provided. <br>
-Mitigation: Treat generated schedules as planning drafts and confirm fixed meetings, deadlines, and constraints before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ivangdavila/time-management) <br>
-- [Time Management homepage](https://clawic.com/skills/time-management) <br>
-- [Setup process](artifact/setup.md) <br>
-- [Memory template](artifact/memory-template.md) <br>
-- [Time blocking method](artifact/time-blocking.md) <br>
-- [Prioritization frameworks](artifact/prioritization.md) <br>
-- [Weekly review process](artifact/weekly-review.md) <br>
-- [Common time traps](artifact/traps.md) <br>
+## Use Case:
 
+External users and employees use this skill to plan days and weeks, prioritize tasks, protect deep work, and maintain a local time-management profile when they explicitly choose to save preferences.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown or plain text guidance with time blocks, review prompts, and planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local planning memory in ~/time-management/ when the user explicitly asks to save preferences or review notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may store personal scheduling preferences and commitments in local files.
+
+Mitigation: Use it only with explicit approval for saving details, and periodically review or delete ~/time-management/memory.md and ~/time-management/weekly-review.md.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/time-management)
+- [Skill homepage](https://clawic.com/skills/time-management)
+- [Memory template](artifact/memory-template.md)
+- [Time blocking reference](artifact/time-blocking.md)
+- [Prioritization frameworks](artifact/prioritization.md)
+- [Weekly review process](artifact/weekly-review.md)
+- [Common time traps](artifact/traps.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration guidance]
+
+**Output Format:** [Markdown or plain text guidance, schedules, checklists, and local memory templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can propose or update local files under ~/time-management/ only when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

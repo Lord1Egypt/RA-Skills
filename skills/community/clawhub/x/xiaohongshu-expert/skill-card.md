@@ -1,45 +1,60 @@
-## Description: <br>
-专业采集和分析小红书关键词、笔记、评论和博主数据，支持爆款指标、博主画像、定时跟踪和飞书多维表格输出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects and analyzes Xiaohongshu keyword, post, creator profile, engagement, and trend-tracking data, with optional Feishu Bitable export.
 
-## Publisher: <br>
-[Suzanneyp](https://clawhub.ai/user/Suzanneyp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suzanneyp](https://clawhub.ai/user/suzanneyp)
 
-## Use Case: <br>
-Marketing, research, and operations users use this skill to collect Xiaohongshu topic and creator data, analyze engagement metrics, identify high-performing content, and organize findings into reports or Feishu tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Xiaohongshu collection may exceed platform limits or collect data without proper authorization. <br>
-Mitigation: Install and run only when authorized to collect the data, comply with platform terms, privacy rules, and copyright obligations, and set strict per-run limits. <br>
-Risk: Full-content and comment harvesting may capture personal profile details, comments, or copyrighted material. <br>
-Mitigation: Avoid collecting full comments or personal profile details unless necessary, minimize stored fields, and review outputs before sharing or reuse. <br>
-Risk: Cloud export and scheduled tracking can continue sending collected data after the original task is complete. <br>
-Mitigation: Review Feishu destinations and credentials before export, and disable or expire scheduled jobs when they are no longer needed. <br>
+## Use Case:
 
+Developers, analysts, and content operations teams use this skill to collect Xiaohongshu topic and creator data, analyze high-performing posts and engagement metrics, and organize results into reports or Feishu Bitable tables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Suzanneyp/xiaohongshu-expert) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [小红书全栈专家.md](artifact/å°çº¢ä¹¦å¨æ ä¸å®¶.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, structured tables, Feishu Bitable export instructions, and scheduling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Xiaohongshu links, engagement metrics, creator profile fields, comments, and optional Feishu Bitable field mappings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can scrape and preserve substantial Xiaohongshu post, comment, and creator profile data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation for each collection scope, minimize full-comment and personal/profile field storage, and define retention limits before use.
+
+Risk: The skill can export collected data to Feishu Bitable and recurring notifications.
+
+Mitigation: Confirm each Feishu export and scheduled job, restrict access to exported tables or notification channels, and periodically review active tracking tasks.
+
+Risk: Collection activity may conflict with Xiaohongshu rules or applicable privacy and copyright obligations.
+
+Mitigation: Use only collection scopes that comply with platform rules and applicable obligations, and reduce collection volume when compliance or consent is unclear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/suzanneyp/skills/xiaohongshu-expert)
+- [Publisher profile](https://clawhub.ai/user/suzanneyp)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, tables, Feishu Bitable field plans, cron expressions, and setup snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May preserve substantial collected source text, comments, creator profile fields, and monitoring outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

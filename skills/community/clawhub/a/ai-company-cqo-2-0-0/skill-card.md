@@ -1,43 +1,62 @@
-## Description: <br>
-Provides an AI company Chief Quality Officer workflow for end-to-end quality inspection, PDCA-BROKE improvement loops, G0-G4 quality gates, multi-level review, and meta-prompt optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Company CQO provides an AI-native chief quality officer role for end-to-end quality inspection workflows, PDCA-BROKE governance loops, G0-G4 quality gates, multi-agent review, and quality improvement planning.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Quality, governance, and agent-operations teams use this skill to structure AI quality assurance workflows, quality-gate decisions, defect reporting, and continuous improvement plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation may route unrelated quality or governance prompts into this skill. <br>
-Mitigation: Use explicit prompts that name the intended CQO workflow, language, and quality-governance scope. <br>
-Risk: Subagent or session workflows may expose sensitive project context if used with confidential inputs. <br>
-Mitigation: Avoid sharing sensitive project data with subagent or session workflows unless that exposure is acceptable. <br>
-Risk: The bundled checker writes a report file into the checked skill directory. <br>
-Mitigation: Run the checker only on intended skill directories and review generated reports before committing or publishing them. <br>
+## Use Case:
 
+Developers, operators, and quality teams use this skill to structure AI-agent quality governance, inspect deliverables against quality gates, produce defect and risk reports, and define follow-up improvement plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnsmithfan/ai-company-cqo-2-0-0) <br>
-- [ClawHub metadata homepage](https://clawhub.com/skills/ai-company-cqo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured quality-governance guidance, with optional code or shell commands for local quality-gate checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce quality assessments, defect reports, improvement plans, review decisions, and local checker reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter says 2.3.0) <br>
+Risk: The bundled quality checker writes reports into the directory being checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with low privileges on trusted directories, especially in CI or when evaluating third-party skill packages.
+
+Risk: The skill has a broad agent-coordination and quality-governance scope that requires review before installation.
+
+Mitigation: Review the skill before deployment, narrow activation triggers, and confirm its workflows match the intended quality process.
+
+Risk: The security result from the bundled checker is not authoritative by itself.
+
+Mitigation: Use stronger scanning and human review before relying on the skill for security or release decisions.
+
+Risk: Some artifact instructions ask agents to expose reasoning traces.
+
+Mitigation: Avoid instructions that request chain-of-thought disclosure and require concise, reviewable rationales instead.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/ai-company-cqo-2-0-0)
+- [Declared skill homepage](https://clawhub.com/skills/ai-company-cqo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured reports, JSON examples, code snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include quality assessments, defect reports, governance workflows, audit-oriented records, and improvement plans.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter states 2.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

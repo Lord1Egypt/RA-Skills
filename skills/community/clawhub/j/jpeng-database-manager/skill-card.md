@@ -1,41 +1,53 @@
-## Description: <br>
-Database management skill supporting PostgreSQL, MySQL, SQLite, and MongoDB. Query, migrate, backup, and manage databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Database management skill supporting PostgreSQL, MySQL, SQLite, and MongoDB. Query, migrate, backup, and manage databases.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and engineers use this skill to query, migrate, back up, restore, import, export, and manage PostgreSQL, MySQL or MariaDB, SQLite, and MongoDB databases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database write, restore, import, or migration commands can change data or schema state. <br>
-Mitigation: Review every write-capable command before execution, prefer read-only credentials when possible, and use non-production databases unless production access is explicitly intended. <br>
-Risk: Backups and exports can contain sensitive records. <br>
-Mitigation: Protect exported files and backups with appropriate access controls, storage locations, and retention practices. <br>
-Risk: Database connection settings and credentials can expose privileged access. <br>
-Mitigation: Use least-privileged credentials, keep secrets out of shared logs and files, and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage PostgreSQL, MySQL/MariaDB, SQLite, and MongoDB databases, including querying, migrations, backups, restores, schema management, and CSV import/export.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Database operations may produce files such as backups, migration outputs, exports, or query result summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Database credentials and connection settings may be exposed in shared terminals or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege database accounts and avoid entering real credentials in shared terminals or persistent logs.
+
+Risk: Restore, migration, import, and query commands can affect real data.
+
+Mitigation: Confirm the target database before running data-changing commands and test destructive operations outside production first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-database-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown with shell command examples and JSON result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include database operation results such as success status, affected row counts, and returned rows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

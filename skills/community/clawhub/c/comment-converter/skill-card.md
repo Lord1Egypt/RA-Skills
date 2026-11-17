@@ -1,40 +1,47 @@
-## Description: <br>
-Turn Reddit thread context into genuinely helpful comments that build trust and can convert to profile/link clicks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn Reddit thread context into genuinely helpful comments that build trust and can convert to profile/link clicks.
 
-## Publisher: <br>
-[xammarie](https://clawhub.ai/user/xammarie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xammarie](https://clawhub.ai/user/xammarie)
 
-## Use Case: <br>
-External users and marketing teams use this skill to draft Reddit comments that fit a thread, lead with useful context, and avoid hard-sell link placement. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Reddit comments may be misleading, irrelevant, or non-compliant with subreddit rules if used without review. <br>
-Mitigation: Use comments only when they are truthful and relevant, follow community rules, and disclose affiliation or promotional intent where appropriate. <br>
-Risk: CTA-oriented comments can create spam or trust risks when they lead with links or hard selling. <br>
-Mitigation: Follow the skill's stated approach: lead with value, avoid links in the first comment, and share resources only when asked or clearly relevant. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xammarie/comment-converter) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xammarie) <br>
+## Use Case:
+
+External creators, founders, marketers, and community operators use this skill to draft native Reddit comments that answer the thread, build trust, and optionally support profile or link clicks without leading with a hard sell.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: AI-generated Reddit comments may conflict with subreddit rules or community disclosure expectations.
+
+Mitigation: Review subreddit rules and disclosure norms before posting, edit drafts manually, and avoid automated posting or account access.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces comment variants with a goal, draft comment, and rationale for why each variant should work in the thread.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with comment variants and rationale]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a goal, draft comment, and thread-fit rationale for each variant.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

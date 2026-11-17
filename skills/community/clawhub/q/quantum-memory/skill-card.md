@@ -1,44 +1,59 @@
-## Description: <br>
-Quantum-enhanced long-term memory for AI agents - #1 on LongMemEval (98.6% R@5, 99.4% R@10, 0.9426 NDCG). Chunked gte-large retrieval with QAOA+CVaR subgraph optimization for agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quantum Memory Graph provides quantum-enhanced long-term memory for AI agents using chunked gte-large retrieval and optional QAOA+CVaR graph optimization.
 
-## Publisher: <br>
-[dustin-a11y](https://clawhub.ai/user/dustin-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dustin-a11y](https://clawhub.ai/user/dustin-a11y)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add long-term memory, semantic recall, and optional graph-based retrieval refinement to AI agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored conversations may persist as sensitive long-term agent memory. <br>
-Mitigation: Avoid storing credentials, personal data, or proprietary content until storage location, deletion behavior, and access controls are verified. <br>
-Risk: The FastAPI server mode may expose memory endpoints if bound to untrusted interfaces. <br>
-Mitigation: Confirm server binding, network exposure, and authentication or isolation controls before using it with real conversations. <br>
-Risk: The skill depends on an external PyPI package to handle agent memory. <br>
-Mitigation: Review and pin the package before deployment, and install it only in environments where third-party memory handling is acceptable. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add persistent semantic memory, recall endpoints, and graph-based retrieval guidance to AI agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dustin-a11y/quantum-memory) <br>
-- [GitHub project](https://github.com/Dustin-a11y/quantum-memory-graph) <br>
-- [PyPI package](https://pypi.org/project/quantum-memory-graph/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces installation and usage guidance for integrating a persistent memory package or FastAPI memory server with an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: The skill asks users to install and run a persistent memory service with network endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified package version, run it in an isolated environment, and keep the service private or authenticated.
+
+Risk: Persistent memory can retain secrets, sensitive conversations, or regulated data.
+
+Mitigation: Avoid storing sensitive data unless retention, deletion, access control, and encryption are clearly handled.
+
+Risk: Security evidence rates the release as suspicious because the service has little security guidance.
+
+Mitigation: Review the skill carefully before installation and scan the package and deployment configuration before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dustin-a11y/skills/quantum-memory)
+- [Project GitHub repository](https://github.com/Dustin-a11y/quantum-memory-graph)
+- [PyPI package](https://pypi.org/project/quantum-memory-graph/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include package installation commands, local service commands, API endpoint guidance, and memory retrieval examples.]
+
+## Skill Version(s):
+
+1.2.0 (source: release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

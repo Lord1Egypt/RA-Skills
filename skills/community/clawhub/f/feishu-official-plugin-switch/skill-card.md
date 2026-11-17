@@ -1,45 +1,65 @@
-## Description: <br>
-Guides an OpenClaw Feishu deployment through switching from the community plugin to the official Feishu plugin, including streaming output, user identity features, and diagnostic commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw users through switching from the community Feishu plugin to the official Feishu/Lark plugin with streaming output, user identity support, and expanded official tools.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-Developers and operators use this skill to plan and validate an OpenClaw Feishu plugin migration, review required Feishu permissions, and collect the commands needed for installation, configuration, restart, and diagnostics. The implementation returns guidance and status-style messages rather than independently proving that those system changes occurred. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can report installation, configuration, restart, and verification steps as successful even when those actions were not actually executed or checked. <br>
-Mitigation: Treat responses as an instructional checklist; manually run and verify each OpenClaw and Feishu command before relying on the migration state. <br>
-Risk: Suggested package installation and OpenClaw configuration commands may affect the local gateway or plugin setup. <br>
-Mitigation: Use a pinned and trusted package version, avoid sudo unless necessary, and back up the current plugin configuration before applying changes. <br>
-Risk: The documented Feishu permissions include broad user and tenant scopes for advanced features. <br>
-Mitigation: Grant only the Feishu scopes required for the intended features and review authorization choices before enabling user-identity operations. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to plan and execute a Feishu plugin migration, configure streaming output, switch plugin settings, restart the OpenClaw gateway, and check the resulting setup.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rfdiosuao/feishu-official-plugin-switch) <br>
-- [Official Feishu plugin guide](https://bytedance.larkoffice.com/docx/MFK7dDFLFoVlOGxWCv5cTXKmnMh) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Referenced GitHub README](https://github.com/rfdiosuao/openclaw-skills/blob/main/feishu-official-plugin-switch/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown text with bash and TypeScript command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns instructional status reports, next-action labels, permission examples, troubleshooting steps, and diagnostic commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata, skill.json, SKILL.md frontmatter) <br>
+Risk: Mutable npm installer commands can install unreviewed package versions, and examples include elevated execution patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the @larksuite/openclaw-lark-tools package to a reviewed version, verify the package source and registry, and avoid elevated privileges unless independently required.
+
+Risk: Plugin switching and gateway restart steps can interrupt the Feishu bot or overwrite working OpenClaw settings.
+
+Mitigation: Back up OpenClaw configuration, schedule a maintenance window, and verify plugin state after restart before relying on the migrated bot.
+
+Risk: Requested Feishu/Lark user permissions can allow broad read and write access to workspace content.
+
+Mitigation: Grant only the permissions needed for the intended workflow and complete user authorization only after reviewing workspace data-access implications.
+
+Risk: The artifact reports success in guided steps without independently proving that each external change has occurred.
+
+Mitigation: Run the documented doctor, info, and plugin-list checks after each change and treat success messages as guidance until verified in the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rfdiosuao/skills/feishu-official-plugin-switch)
+- [Official Feishu/Lark plugin guide](https://bytedance.larkoffice.com/docx/MFK7dDFLFoVlOGxWCv5cTXKmnMh)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw Lark tools repository](https://github.com/larksuite/openclaw-lark)
+- [Artifact-linked skill repository](https://github.com/rfdiosuao/openclaw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status messages with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns step status, next-action hints, diagnostic guidance, and manual commands for OpenClaw and npm-based plugin tooling.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

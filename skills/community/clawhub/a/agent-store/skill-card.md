@@ -1,46 +1,59 @@
-## Description: <br>
-Use when the user wants to buy, purchase, order, pay for, or top up API keys or API credits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to buy, purchase, order, pay for, or top up API keys or API credits.
 
-## Publisher: <br>
-[levey](https://clawhub.ai/user/levey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[levey](https://clawhub.ai/user/levey)
 
-## Use Case: <br>
-Agents and their operators use this skill to purchase API credits or API keys through a wallet-backed ClawHub release workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend wallet funds and approve token use. <br>
-Mitigation: Use a limited wallet and verify the product, price, asset, chain, recipient, approval amount, publisher, wallet CLI, and API host before each run. <br>
-Risk: A successful API key purchase can change future agent model settings. <br>
-Mitigation: Separately approve runtime configuration edits and model switching after reviewing the delivery result. <br>
-Risk: The workflow can buy an under-described VPS product even though the public trigger text focuses on API keys and credits. <br>
-Mitigation: Run only the intended product type and confirm the requested purchase target before execution. <br>
+## Use Case:
 
+External users and developers use this skill to buy API keys or top up API credits through an agent-run purchase flow and receive a concise delivery or failure report.
 
-## Reference(s): <br>
-- [Agent Store on ClawHub](https://clawhub.ai/levey/agent-store) <br>
-- [Publisher profile](https://clawhub.ai/user/levey) <br>
-- [awp-wallet](https://github.com/awp-core/awp-wallet) <br>
-- [Base mainnet RPC endpoint](https://mainnet.base.org) <br>
-- [Agent Store API host](https://api.tkns.store) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with shell command usage, log-file reporting, JSON delivery results, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update the agent-store provider configuration after a successful API key purchase and verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and frontmatter) <br>
+Risk: The skill can initiate a real purchase using a wallet-backed payment flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before wallet unlock, approval, signing, and payment submission.
+
+Risk: Payment challenge fields may not be strongly validated before signing.
+
+Mitigation: Validate payment amount, token, recipient, chain, spender, RPC URL, and provider endpoint against trusted allowlists before proceeding.
+
+Risk: A successful API key purchase can lead to persistent runtime provider configuration changes and active-model changes.
+
+Mitigation: Require explicit confirmation before editing runtime configuration, sending verification requests, or changing the active model.
+
+## Reference(s):
+
+- [Agent Store on ClawHub](https://clawhub.ai/levey/skills/agent-store)
+- [levey ClawHub Profile](https://clawhub.ai/user/levey)
+- [awp-wallet](https://github.com/awp-core/awp-wallet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary plus JSON delivery output and plain-text logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update runtime model-provider configuration after a successful API key purchase.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Run safe read-only queries against MySQL or PostgreSQL for data inspection, reporting, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run safe read-only queries against MySQL or PostgreSQL for data inspection, reporting, and troubleshooting.
 
-## Publisher: <br>
-[reed1898](https://clawhub.ai/user/reed1898) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[reed1898](https://clawhub.ai/user/reed1898)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to inspect schemas, sample data, count rows, troubleshoot database state, and export read-only query results from PostgreSQL or MySQL without modifying data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Using write-capable or administrative database credentials can increase impact if a query or environment is misconfigured. <br>
-Mitigation: Use a dedicated read-only database account and review each query before execution. <br>
-Risk: The --out option can overwrite files writable by the current user. <br>
-Mitigation: Export only to intentional, safe paths and verify the destination before running the command. <br>
-Risk: Large unrestricted reads can expose more data than needed or strain database resources. <br>
-Mitigation: Prefer LIMIT clauses and scoped filters for exploratory queries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DB Readonly ClawHub release](https://clawhub.ai/reed1898/db-readonly) <br>
-- [Query Cookbook](references/query-cookbook.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect PostgreSQL or MySQL schemas, run read-only reporting queries, count rows, sample data, troubleshoot database state, and optionally export query results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and database query outputs in table, CSV, TSV, or JSON formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can export query output to a user-selected file path when --out is provided.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The read-only claim is not a hard security boundary.
+
+Mitigation: Use a dedicated read-only database user or read replica, and do not run the skill with owner or administrator credentials.
+
+Risk: The export option can overwrite arbitrary local files.
+
+Mitigation: Avoid using --out unless exports are constrained to a safe directory and overwrite behavior is reviewed.
+
+Risk: Queries can expose sensitive database contents.
+
+Mitigation: Limit queries to approved datasets, prefer scoped SELECT statements with LIMIT for exploration, and avoid printing secrets from environment variables.
+
+## Reference(s):
+
+- [Query Cookbook (Read-Only)](references/query-cookbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce database query output in table, CSV, TSV, or JSON form when the bundled shell script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

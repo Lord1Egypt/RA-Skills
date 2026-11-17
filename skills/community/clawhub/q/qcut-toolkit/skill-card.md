@@ -1,49 +1,66 @@
-## Description: <br>
-QCut Toolkit routes agents across project organization, FFmpeg media processing, AI content generation and analysis, QCut editor control, video prompt writing, MCP preview testing, and PR comment workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QCut Toolkit routes media workflow requests across project setup, FFmpeg processing, AI content generation and analysis, QCut editor control, video prompt writing, MCP preview testing, and PR review processing.
 
-## Publisher: <br>
-[donghaozhang](https://clawhub.ai/user/donghaozhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[donghaozhang](https://clawhub.ai/user/donghaozhang)
 
-## Use Case: <br>
-Developers and media creators use this skill to choose and run QCut workflows for organizing projects, transforming media, generating or analyzing AI media, preparing subtitles, and controlling editor-related tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Media and audio may be uploaded to public or third-party services. <br>
-Mitigation: Use only non-confidential inputs unless the upload path is replaced with approved private storage and reviewed service providers. <br>
-Risk: API keys and credentials are required for several media and AI workflows. <br>
-Mitigation: Store keys in approved credential stores, avoid printing or committing secrets, and rotate exposed credentials. <br>
-Risk: Persistent skill or rule-file updates could change future agent behavior. <br>
-Mitigation: Review proposed changes to CLAUDE.md and skill rule files before accepting them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/donghaozhang/qcut-toolkit) <br>
-- [QCut Toolkit skill definition](artifact/SKILL.md) <br>
-- [AI Content Pipeline reference](artifact/ai-content-pipeline/REFERENCE.md) <br>
-- [AI Content Pipeline examples](artifact/ai-content-pipeline/EXAMPLES.md) <br>
-- [FFmpeg command reference](artifact/ffmpeg-skill/REFERENCE.md) <br>
-- [FFmpeg concepts](artifact/ffmpeg-skill/CONCEPTS.md) <br>
-- [MCP preview testing guide](artifact/qcut-mcp-preview-test/SKILL.md) <br>
-- [Video cut talk-edit workflow](artifact/videocut/talk-edit/SKILL.md) <br>
-- [Video subtitle workflow](artifact/videocut/subtitles/SKILL.md) <br>
+## Use Case:
 
+Developers, media creators, and QCut users use this skill to organize media projects, transform video and audio, generate or analyze AI media, prepare subtitles, and guide editor automation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local media files, subtitles, review artifacts, or editor project changes when the user approves the workflow commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The toolkit may start local review servers for media and subtitle workflows.
+
+Mitigation: Run the servers only in a controlled local environment and avoid exposing them to other devices or webpages.
+
+Risk: Some workflows upload audio or video to public hosting and cloud AI providers.
+
+Mitigation: Do not use confidential media unless those external transfers are acceptable for the project.
+
+Risk: Credential handling includes plaintext or local skill-directory patterns.
+
+Mitigation: Keep secrets out of .claude/skills and prefer controlled credential stores or environment handling.
+
+Risk: The bundled self-evolve sub-skill can update skill guidance based on feedback.
+
+Mitigation: Avoid or disable the self-evolve sub-skill unless changes are reviewed before use.
+
+## Reference(s):
+
+- [QCut Toolkit ClawHub Release](https://clawhub.ai/donghaozhang/skills/qcut-toolkit)
+- [AI Content Pipeline Reference](ai-content-pipeline/REFERENCE.md)
+- [AI Content Pipeline Examples](ai-content-pipeline/EXAMPLES.md)
+- [FFmpeg Concepts](ffmpeg-skill/CONCEPTS.md)
+- [FFmpeg Command Reference](ffmpeg-skill/REFERENCE.md)
+- [FFmpeg Advanced Workflows](ffmpeg-skill/ADVANCED.md)
+- [Volcengine Speech Recognition Console](https://console.volcengine.com/speech/new/experience/asr?projectName=default)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, code snippets, configuration examples, and generated media workflow files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to create QCut project folders, media outputs, subtitle JSON/SRT files, review HTML, and editor/API commands depending on the selected sub-skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Genetic algorithm optimizer for AI agents that supports multi-objective Pareto optimization for portfolio weights, pricing, hyperparameters, marketing mix, and other nonlinear search problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Oraclaw Evolve helps AI agents run genetic algorithm optimization for multi-objective problems such as portfolio weights, pricing, hyperparameters, and marketing mix across nonlinear search spaces.
 
-## Publisher: <br>
-[whatsonyourmind](https://clawhub.ai/user/whatsonyourmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whatsonyourmind](https://clawhub.ai/user/whatsonyourmind)
 
-## Use Case: <br>
-Developers and agents use this skill to configure and call OraClaw Evolve for nonlinear or combinatorial optimization problems with multiple competing objectives. It is suited for tradeoff analysis such as portfolio optimization, marketing mix modeling, hyperparameter tuning, and pricing optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optimization inputs are sent to the OraClaw service using ORACLAW_API_KEY. <br>
-Mitigation: Install only if the user trusts the OraClaw service with the optimization inputs provided. <br>
-Risk: Large or repeated optimizations may incur paid usage. <br>
-Mitigation: Confirm the intended run size and cost expectations before high-generation or repeated calls. <br>
+## Use Case:
 
+External developers and agents use Oraclaw Evolve to submit multi-objective optimization jobs for nonlinear, discontinuous, or combinatorial problems such as portfolio allocation, marketing mix, pricing, and ML hyperparameter tuning.
 
-## Reference(s): <br>
-- [OraClaw Evolve homepage](https://oraclaw.dev/evolve) <br>
-- [ClawHub skill listing](https://clawhub.ai/whatsonyourmind/oraclaw-evolve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of ORACLAW_API_KEY and optimize_evolve parameters; the external service returns best chromosome, Pareto frontier, convergence generation, and execution time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requires an ORACLAW_API_KEY and charges per optimization request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the API key and payment terms before use, and monitor optimization volume for cost control.
+
+Risk: Optimization inputs are sent to OraClaw's service.
+
+Mitigation: Avoid submitting sensitive financial or business data unless OraClaw's service terms and data handling meet the deployment requirements.
+
+Risk: Genetic algorithm results are approximate and may vary with generations, mutation rate, and selection or crossover settings.
+
+Mitigation: Review convergence statistics and the Pareto frontier, then tune parameters or rerun jobs before relying on results for consequential decisions.
+
+## Reference(s):
+
+- [Oraclaw Evolve Homepage](https://oraclaw.dev/evolve)
+- [ClawHub Skill Page](https://clawhub.ai/whatsonyourmind/skills/oraclaw-evolve)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, JSON]
+
+**Output Format:** [Markdown instructions with JSON parameter examples and optimization result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ORACLAW_API_KEY; paid per optimization; returns best chromosome, Pareto frontier, convergence generation, and execution time.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

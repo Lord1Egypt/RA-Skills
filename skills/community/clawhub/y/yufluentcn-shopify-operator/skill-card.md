@@ -1,46 +1,59 @@
-## Description: <br>
-Provides six-stage Shopify store operations coaching for product sourcing, supplier planning, listing, store design, social content, and monitoring through Yufluent cloud execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides six-stage Shopify store operations guidance for sourcing, supplier evaluation, listings, store decoration, social content, and monitoring reviews through the Yufluent cloud service.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External ecommerce operators and their agents use this skill to gather context about a Shopify store stage and request Yufluent-generated operating plans for sourcing, suppliers, listings, storefront decoration, social content, or monitoring reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can transmit store details, private storefront analytics, proprietary strategy context, and an API key to a remote Yufluent endpoint. <br>
-Mitigation: Review the provider's privacy and retention terms before installing; avoid entering sensitive customer or proprietary data unless the user accepts that transfer, and use a scoped or disposable API key where possible. <br>
-Risk: TOKENAPI_BASE_URL can redirect skill traffic and credentials to a different endpoint. <br>
-Mitigation: Do not override TOKENAPI_BASE_URL except to an endpoint the user controls and trusts, and verify the environment before running the skill. <br>
-Risk: Generated Shopify operating plans may contain incorrect, noncompliant, or misleading business guidance. <br>
-Mitigation: Require human review before execution and check outputs against Shopify policies, target-market rules, and the actual products being sold. <br>
+## Use Case:
 
+External ecommerce operators and their agents use this skill to collect store context and request Markdown operating plans for Shopify product selection, supplier checks, listing optimization, store presentation, social planning, and performance review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluentcn-shopify-operator) <br>
-- [Yufluent console](https://claw.changzhiai.com) <br>
-- [OpenClaw integration](https://claw.changzhiai.com/app/openclaw) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Artifact README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with optional structured tables and CLI run metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOKENAPI_KEY and may use TOKENAPI_BASE_URL to send request data to the Yufluent cloud service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can send TOKENAPI_KEY and store or business context to a configurable Yufluent endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS Yufluent endpoint or a loopback development proxy, keep TOKENAPI_KEY private, and avoid sending customer or payment data in prompts.
+
+Risk: Local import paths can load sibling _shared code when the installation directory is writable by untrusted users.
+
+Mitigation: Install the skill in a trusted directory and restrict write access to sibling shared-code paths.
+
+Risk: Operational plans and marketing copy can be inaccurate or unsuitable for a target market.
+
+Mitigation: Review generated plans before execution and verify claims, suppliers, listings, promotions, and compliance obligations manually.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metahuan/skills/yufluentcn-shopify-operator)
+- [Yufluent console](https://claw.changzhiai.com)
+- [OpenClaw setup](https://claw.changzhiai.com/app/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text returned from the Yufluent skill run, with optional CLI metadata on stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOKENAPI_KEY and may use TOKENAPI_BASE_URL to select the Yufluent endpoint.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

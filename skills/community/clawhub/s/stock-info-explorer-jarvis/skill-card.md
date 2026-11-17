@@ -1,41 +1,58 @@
-## Description: <br>
-A Yahoo Finance (yfinance) powered financial analysis tool that gets real-time quotes, generates high-resolution charts with moving averages and indicators, summarizes fundamentals, and runs one-shot reports with text summaries and Pro charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Yahoo Finance (yfinance) powered financial analysis tool that gets real-time quotes, generates high-resolution charts with moving averages and indicators, summarizes fundamentals, and runs one-shot reports with text summaries and chart output.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to fetch ticker data from Yahoo Finance, inspect fundamentals, view terminal trend output, and generate PNG charts with locally computed technical indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python code and may fetch Python packages through uv. <br>
-Mitigation: Review the artifact and run it in an environment where local code execution and package installation are acceptable. <br>
-Risk: The skill contacts Yahoo Finance/yfinance for ticker data, so availability and data quality can vary by ticker or market. <br>
-Mitigation: Treat generated quotes, fundamentals, indicators, and charts as informational and verify important financial decisions against authoritative sources. <br>
-Risk: Generated chart files are left in /tmp. <br>
-Mitigation: Clear temporary chart files when they are no longer needed, especially on shared systems. <br>
+## Use Case:
 
+Developers, analysts, and external users can use this skill to fetch Yahoo Finance market data, inspect ticker prices and fundamentals, and generate local technical-analysis summaries and charts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Analysis] <br>
-**Output Format:** [Terminal text and tables, ASCII charts, and PNG chart files with CHART_PATH output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated charts are written to /tmp; outputs depend on Yahoo Finance/yfinance data availability and quality.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.11 (source: server release metadata and _meta.json) <br>
+Risk: The skill fetches ticker data from Yahoo Finance, so outputs may reflect upstream market-data availability, delay, or quality issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review market data against authoritative sources before making financial or operational decisions.
+
+Risk: Python dependencies are resolved at runtime by the script metadata.
+
+Mitigation: Run the skill in an isolated environment and pin or review dependencies before production use.
+
+Risk: Chart output uses predictable /tmp paths based on ticker symbols.
+
+Mitigation: Avoid shared multi-user systems or adjust chart generation to use unique private temporary files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bingze00000/skills/stock-info-explorer-jarvis)
+- [Publisher Profile](https://clawhub.ai/user/bingze00000)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Markdown/text with inline shell commands, terminal tables, ASCII charts, and local PNG chart paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit CHART_PATH values for PNG charts written under /tmp.]
+
+## Skill Version(s):
+
+1.2.11 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

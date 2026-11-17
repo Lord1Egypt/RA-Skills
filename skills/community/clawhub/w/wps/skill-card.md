@@ -1,41 +1,59 @@
-## Description: <br>
-WPS Office workflow for Chinese users: create, edit, review, convert, and troubleshoot Writer/Spreadsheets/Presentation documents in .docx/.xlsx/.pptx and WPS native formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WPS Office workflow for Chinese users: create, edit, review, convert, and troubleshoot Writer, Spreadsheets, and Presentation documents in .docx, .xlsx, .pptx, and WPS native formats.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-External users and office document authors use this skill to plan reproducible WPS Writer, Spreadsheets, and Presentation workflows for Chinese-language documents, format compatibility, review, PDF export, and Microsoft Office migration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional apt install may use a package source that is not trusted for the user's system. <br>
-Mitigation: Confirm the package source before installing WPS Office. <br>
-Risk: Office document workflows can overwrite originals or expose sensitive document contents. <br>
-Mitigation: Keep backups of original documents and use placeholders instead of real sensitive information in examples or shared files. <br>
+## Use Case:
 
+External users and developers use this skill to automate and guide Chinese WPS Office document workflows, including format conversion, Chinese document generation, spreadsheet cleanup, delivery inspection, and compatibility troubleshooting.
 
-## Reference(s): <br>
-- [WPS Reference](references/wps-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jvy/wps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown instructions with checklists and optional install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file format checklists, compatibility troubleshooting steps, and safe handling reminders for document work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill runs local scripts against user-selected Office documents, which may contain sensitive business or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review document contents before conversion or cleanup, avoid exposing real sensitive data in examples, and run the scripts only on files the user intentionally provides.
+
+Risk: The Python helper scripts depend on local packages and office conversion tools such as python-docx, openpyxl, and LibreOffice.
+
+Mitigation: Use a virtual environment, prefer pinned dependencies, and confirm required binaries are installed before relying on generated or converted files.
+
+Risk: Spreadsheet cleanup and document conversion can change files or produce delivery artifacts that need review.
+
+Mitigation: Keep source copies, use generated output files or backups where available, and inspect converted documents before delivery.
+
+## Reference(s):
+
+- [WPS Reference](references/wps-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/jvy/skills/wps)
+- [LibreOffice Downloads](https://www.libreoffice.org/download/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional generated Office files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local .docx, .xlsx, .pptx, .pdf, and backup files when the bundled scripts are run on user-selected documents.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

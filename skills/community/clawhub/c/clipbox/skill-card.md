@@ -1,39 +1,54 @@
-## Description: <br>
-Clipbox saves and organizes reusable text snippets, command templates, and development notes for quick retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save and organize reusable text snippets for quick retrieval. Use when storing code fragments, saving command templates, or building snippet libraries.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use Clipbox to save, search, review, and export reusable snippets, command templates, and timestamped development notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clipbox stores user-entered snippets and activity logs in local files, which can persist sensitive content if users enter it. <br>
-Mitigation: Do not save passwords, API keys, private keys, confidential code, or sensitive notes; review and delete local log files as needed. <br>
+## Use Case:
 
+Developers and other external users use Clipbox to save timestamped snippets, command templates, lint or check results, diffs, and reports locally for later search, review, or export.
 
-## Reference(s): <br>
-- [Clipbox ClawHub listing](https://clawhub.ai/xueyetianya/clipbox) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text command output and local log or export files in JSON, CSV, or TXT.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command entries under ~/.local/share/clipbox.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Saved snippets and command text are stored locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets, credentials, proprietary code, or other sensitive content in Clipbox logs.
+
+Risk: CSV, JSON, and text exports may include unsanitized saved content.
+
+Mitigation: Review exported files before sharing or opening them in tools that may evaluate formulas or markup.
+
+## Reference(s):
+
+- [Clipbox ClawHub page](https://clawhub.ai/xueyetianya/skills/clipbox)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and local file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local plaintext log and export files under ~/.local/share/clipbox.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+{
+  "owner": "SashaDiz",
+  "slug": "posteahora",
+  "displayName": "PosteAhora",
+  "description": "Schedule and publish social media posts across 16 networks — Instagram, TikTok, YouTube, X (Twitter), Facebook, LinkedIn, Threads, Bluesky, Mastodon, Discord, Telegram, WordPress, Dev.to, Tumblr, Pinterest and Google Business — from your own code, your terminal, CI, or an AI agent, via a CLI, an MCP server, or a REST API.",
+  "latest": {
+    "version": "1.0.0"
+  }
+}

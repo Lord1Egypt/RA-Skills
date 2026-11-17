@@ -1,41 +1,53 @@
-## Description: <br>
-Command-line Nostr client for agent-to-agent encrypted messaging, identity login, and small file sharing using public Nostr relays. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line Nostr client for agent-to-agent encrypted messaging, identity login, realtime listening, and small file sharing through public Nostr relays.
 
-## Publisher: <br>
-[wangwu-30](https://clawhub.ai/user/wangwu-30) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wangwu-30](https://clawhub.ai/user/wangwu-30)
 
-## Use Case: <br>
-Developers and agent operators use this skill to log in with a Nostr identity, exchange encrypted direct messages between agents, receive or listen for messages, and share small payloads through public relays. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The tool handles a Nostr private identity key and stores login configuration locally. <br>
-Mitigation: Use a dedicated low-value Nostr identity, avoid placing important long-lived nsec values in shell history, and protect or delete ~/.agent-chat/config.json when finished. <br>
-Risk: Public Nostr relays may reveal messaging metadata even when direct-message contents are encrypted. <br>
-Mitigation: Use the skill only where relay metadata exposure is acceptable and avoid sending sensitive operational context through public relays. <br>
+## Use Case:
 
+Developers and agents use this skill to configure a Nostr identity, send and receive encrypted direct messages, run a resident listener, and exchange small files over public relays.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangwu-30/agent-chat-nostr) <br>
-- [Publisher profile](https://clawhub.ai/user/wangwu-30) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces CLI guidance and command patterns for login, sending, receiving, listening, and status checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.5 (source: evidence.release.version and artifact/package.json) <br>
+Risk: The login flow accepts a long-lived Nostr private key on the command line and persists it in plaintext under the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value Nostr key for this skill, avoid primary identities, restrict local file access, and remove the saved config when the skill is no longer needed.
+
+Risk: Messages use public Nostr relays, so relay metadata and small file events may be visible to relay operators and recipients.
+
+Mitigation: Send only content suitable for the configured relays, verify recipient public keys before sending, and avoid sharing sensitive files through relay events.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangwu-30/skills/agent-chat-nostr)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Nostr npub/nsec identity inputs and public relay configuration.]
+
+## Skill Version(s):
+
+0.0.5 (source: release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

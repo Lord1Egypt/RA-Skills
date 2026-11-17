@@ -1,47 +1,63 @@
-## Description: <br>
-Personal knowledge graph. Record notes, track moods, manage tasks, spot patterns in someone's life. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal knowledge graph. Record notes, track moods, manage tasks, spot patterns in someone's life.
 
-## Publisher: <br>
-[Vladikasik](https://clawhub.ai/user/Vladikasik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vladikasik](https://clawhub.ai/user/vladikasik)
 
-## Use Case: <br>
-External users and their connected agents use Neron to query and update a personal knowledge graph built from notes, moods, activities, body states, tasks, people, projects, and AI-generated insights. The skill helps agents search the graph, synthesize patterns, manage tasks, and write back notes or insights through the Neron MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connected agents can access private notes, inferred moods, body and substance data, relationships, tasks, and long-term memories. <br>
-Mitigation: Install only for trusted, user-directed agents and avoid sharing tokens, passwords, screenshots, logs, or chats that contain credentials or sensitive graph data. <br>
-Risk: The skill exposes write, delete, bulk-create, and raw Cypher capabilities that can change or remove graph data. <br>
-Mitigation: Review agent actions before enabling autonomous writes, deletes, or raw queries, and prefer explicit user approval for destructive operations. <br>
-Risk: Bearer tokens and connector passwords grant access to a user's Neron graph if exposed. <br>
-Mitigation: Store credentials outside shared repositories and logs, rotate them if exposed, and use the documented per-user revocation flow. <br>
+## Use Case:
 
+External users and their agents use Neron to connect to a personal knowledge graph, search notes and entities, track tasks and mood patterns, and record new notes or insights through MCP.
 
-## Reference(s): <br>
-- [Neron ClawHub page](https://clawhub.ai/Vladikasik/neron) <br>
-- [Neron README](README.md) <br>
-- [Neron User Guide](docs/USER-GUIDE.md) <br>
-- [Connect Neron to Your Agent](docs/CONNECT-AGENT.md) <br>
-- [Neron MCP Tool Reference](docs/mcp-tools.md) <br>
-- [Neron MCP endpoint](https://mcp.neron.guru/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with JSON and Cypher examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to call Neron MCP tools for search, graph traversal, entity creation, updates, deletion, bulk creation, and raw Cypher analytics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The connected agent can access sensitive journal-like data, including mood, body, substance, relationship, task, and inferred pattern records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted agents, protect the token or password, and rotate credentials if they may have been exposed.
+
+Risk: The skill exposes write and delete operations that can alter or remove personal graph records.
+
+Mitigation: Require explicit confirmation before writes, ai_note auto-logging, raw Cypher queries, or delete operations.
+
+Risk: Pattern summaries or analytics may be sensitive or misleading when based on incomplete personal data.
+
+Mitigation: Present insights as tentative, user-reviewable summaries and avoid exposing raw mood or body fields unless the user specifically asks.
+
+## Reference(s):
+
+- [Neron ClawHub skill page](https://clawhub.ai/vladikasik/skills/neron)
+- [Neron MCP endpoint](https://mcp.neron.guru/mcp)
+- [README](README.md)
+- [Connect Agent](docs/CONNECT-AGENT.md)
+- [Connect Neron to Claude](docs/CONNECT-CLAUDE.md)
+- [Neron MCP Tool Reference](docs/mcp-tools.md)
+- [Neron Quick Start](docs/USER-GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration]
+
+**Output Format:** [Natural language responses with JSON MCP tool arguments and Markdown setup examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read and mutate a user's personal graph through MCP tools, including raw Cypher analytics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

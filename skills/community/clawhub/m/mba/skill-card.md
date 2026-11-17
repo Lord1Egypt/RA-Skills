@@ -1,44 +1,56 @@
-## Description: <br>
-Complete MBA curriculum with structured learning, case studies, financial analysis, and practical business decision-making. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete MBA curriculum with structured learning, case studies, financial analysis, and practical business decision-making.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Entrepreneurs, corporate professionals, career changers, and students use this skill for structured MBA-style learning and to apply business frameworks to finance, strategy, marketing, operations, leadership, startup, and case-study decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Learning notes, exercises, case analyses, and business details may be saved under ~/mba/. <br>
-Mitigation: Avoid storing confidential company, client, financial, or personnel details there unless local storage is acceptable; periodically review or delete the folder. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MBA Skill Overview](artifact/SKILL.md) <br>
-- [Strategy & Competitive Analysis](artifact/strategy.md) <br>
-- [Finance & Accounting](artifact/finance.md) <br>
-- [Marketing & Growth](artifact/marketing.md) <br>
-- [Leadership & Management](artifact/leadership.md) <br>
-- [Operations & Metrics](artifact/operations.md) <br>
-- [Entrepreneurship & Startups](artifact/startups.md) <br>
-- [Case Study Methodology](artifact/cases.md) <br>
+## Use Case:
 
+External users, entrepreneurs, corporate professionals, career changers, and students use this skill for structured MBA-style learning, case study practice, financial analysis, and applying business frameworks to real decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown with structured explanations, tables, checklists, exercises, and case analyses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update progress, case, exercise, and notes files under ~/mba/ when local learning tracking is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may create local files under ~/mba/ containing progress, notes, exercises, and case analyses that could include confidential business plans, financials, or personal career information.
+
+Mitigation: Avoid entering sensitive business or personal information unless local storage in ~/mba/ is acceptable, and review those files before sharing or syncing them.
+
+## Reference(s):
+
+- [MBA skill page](https://clawhub.ai/ivangdavila/skills/mba)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Strategy & Competitive Analysis](artifact/strategy.md)
+- [Finance & Accounting](artifact/finance.md)
+- [Marketing & Growth](artifact/marketing.md)
+- [Leadership & Management](artifact/leadership.md)
+- [Operations & Metrics](artifact/operations.md)
+- [Entrepreneurship & Startups](artifact/startups.md)
+- [Case Study Methodology](artifact/cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files]
+
+**Output Format:** [Markdown text with structured business analysis, exercises, and learning notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local progress, notes, exercises, and case analysis files under ~/mba/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

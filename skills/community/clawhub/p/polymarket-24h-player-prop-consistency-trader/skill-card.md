@@ -1,44 +1,59 @@
-## Description: <br>
-Trades NBA player prop mispricings on Polymarket by detecting cross-stat consistency or divergence for the same player (Points, Rebounds, Assists O/U) and identifying outlier stats that disagree with the consensus direction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades NBA player prop mispricings on Polymarket by detecting cross-stat consistency or divergence for the same player and identifying outlier stats that disagree with the consensus direction.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External agents and developers use this skill to analyze NBA player prop markets on Polymarket for cross-stat consistency or divergence and, when explicitly enabled, place Simmer-managed trades within configured risk limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live trading can place real Polymarket orders and expose funds to loss. <br>
-Mitigation: Use the default simulation mode first; enable live trading only deliberately and set max-position, max-open-position, spread, volume, and trade-size tunables to match loss limits. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a sensitive credential. <br>
-Mitigation: Use a dedicated limited-scope API key where possible and keep funds limited before live use. <br>
-Risk: Cross-stat market signals can be stale, incomplete, or wrong under changing game conditions. <br>
-Mitigation: Review the generated reasoning and monitor thresholds, liquidity filters, and open positions before relying on live execution. <br>
+## Use Case:
 
+External developers and trading operators use this skill to scan NBA player prop markets, group related player statistics, and produce paper or live trade actions when cross-stat consistency signals meet configured thresholds.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/diagnostikon/polymarket-24h-player-prop-consistency-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Configuration, API calls, Text logs] <br>
-**Output Format:** [Plain text logs, Python command execution, environment configuration, and Simmer trading API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to simulation mode; live Polymarket trading requires an explicit live flag and a SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: The skill can place live Polymarket trades when run with --live and valid trading credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep paper mode unless intentionally trading, use a restricted API key, and limit account balance exposure.
+
+Risk: Advertised volume, open-position, and context safeguards may be weaker or incomplete.
+
+Mitigation: Review and modify the code before relying on those controls as complete risk limits.
+
+Risk: The skill depends on simmer-sdk for market access and trade execution.
+
+Mitigation: Verify the SDK package and version before granting credentials or enabling live execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-24h-player-prop-consistency-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code, API calls]
+
+**Output Format:** [Markdown guidance, Python code, JSON configuration, and console status output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can place paper trades by default and live Polymarket trades only when run with --live and valid credentials.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

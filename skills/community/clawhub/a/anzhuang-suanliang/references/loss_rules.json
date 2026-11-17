@@ -1,0 +1,74 @@
+{
+  "conduit_loss_pct": 5.0,
+  "tray_loss_pct": 3.0,
+  "wire_loss_pct": 2.0,
+  "cable_loss_pct": 2.0,
+  "device_loss_pct": 1.0,
+  "reserve_per_end_m": 1.5,
+  "match_radius_mm": 30000,
+  "tray_max_segment_mm": 50000,
+  "electrical_high_radius_mm": 10000,
+  "water_match_radius_mm": 15000,
+  "water_fallback_radius_mm": 20000,
+  "water_pipe_loss_pct": 3.0,
+  "water_support_spacing_m": {
+    "sprinkler": {
+      "DN15": 2.5,
+      "DN20": 2.5,
+      "DN25": 3.0,
+      "DN32": 3.5,
+      "DN40": 4.0,
+      "DN50": 4.5,
+      "DN65": 5.0,
+      "DN80": 6.0,
+      "DN100": 6.5,
+      "default": 3.0
+    },
+    "fire": {
+      "DN15": 3.0,
+      "DN20": 3.0,
+      "DN25": 3.5,
+      "DN32": 3.5,
+      "DN40": 4.0,
+      "DN50": 4.5,
+      "DN65": 5.0,
+      "DN80": 5.0,
+      "DN100": 5.5,
+      "DN150": 6.0,
+      "default": 4.0
+    },
+    "supply": {
+      "DN15": 2.5,
+      "DN20": 2.5,
+      "DN25": 2.5,
+      "DN32": 3.0,
+      "DN40": 3.0,
+      "DN50": 3.0,
+      "DN65": 4.0,
+      "DN80": 4.0,
+      "DN100": 4.0,
+      "DN150": 5.0,
+      "default": 3.0
+    },
+    "drainage": {
+      "DN50": 2.0,
+      "DN75": 2.0,
+      "DN100": 2.0,
+      "DN150": 2.0,
+      "default": 2.0
+    },
+    "default": {
+      "default": 3.0
+    }
+  },
+  "tray_support_spacing_m": 1.5,
+  "support_loss_pct": 2.0,
+  "floor_height_mm": 4200,
+  "risers": [
+    {
+      "name": "示例-喷淋立管",
+      "count": 0,
+      "note": "根数需人工从系统图数出后填入"
+    }
+  ]
+}

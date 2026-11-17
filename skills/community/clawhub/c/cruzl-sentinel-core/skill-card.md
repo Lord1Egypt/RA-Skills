@@ -1,42 +1,57 @@
-## Description: <br>
-Cruzl Sentinel Core scores supported Web3 ecosystems, generates onchain interaction strategies, and provides basic wallet activity suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes onchain activity by scoring ecosystems, generating tailored strategies, and suggesting behavior to avoid bot-like patterns across multiple platforms.
 
-## Publisher: <br>
-[cruzlx](https://clawhub.ai/user/cruzlx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cruzlx](https://clawhub.ai/user/cruzlx)
 
-## Use Case: <br>
-External Web3 users use this skill to compare supported ecosystems, request simple strategy guidance, and get basic wallet activity suggestions. Outputs should be treated as illustrative planning aids, not evidence-backed financial or onchain instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat rule-based ecosystem scores and wallet suggestions as evidence-backed financial or onchain strategy. <br>
-Mitigation: Use outputs only for illustrative planning and validate any onchain action with independent data and human review. <br>
-Risk: Wallet addresses and Web3 activity can expose sensitive behavioral information. <br>
-Mitigation: Submit only wallet addresses intentionally selected for analysis, and never provide seed phrases, private keys, wallet sessions, or signing access. <br>
-Risk: The skill has broad activation and weak privacy boundaries for wallet-oriented prompts. <br>
-Mitigation: Review prompts and outputs before use, and avoid routing unintended wallet data through the skill. <br>
+## Use Case:
 
+Web3 users and agents use this skill to score supported ecosystems, generate rule-based onchain interaction strategies, and receive basic wallet activity suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cruzlx/cruzl-sentinel-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, JSON data] <br>
-**Output Format:** [JSON objects or short text guidance depending on query mode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rule-based scoring includes random variation; outputs are illustrative and not evidence-backed financial or onchain advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and manifest.json) <br>
+Risk: Anti-bot-pattern strategy advice could be misused to evade protocol rules, farm rewards deceptively, or disguise automated activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the strategy guidance only for legitimate planning and require users to follow protocol terms and applicable program rules.
+
+Risk: Wallet-address analysis can expose financial metadata tied to a public address.
+
+Mitigation: Analyze only wallet addresses the user intentionally provides and avoid storing or sharing address-level results unnecessarily.
+
+Risk: Rule-based and randomized scores may be inaccurate or misleading for financial or operational decisions.
+
+Mitigation: Treat results as planning suggestions and verify important decisions against current onchain data and project documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cruzlx/skills/cruzl-sentinel-core)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, JSON]
+
+**Output Format:** [JSON-compatible objects with scored ecosystems, strategy guidance, wallet analysis, or a short fallback message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rule-based scoring with randomized score variation; no live onchain data integration is described for this release.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

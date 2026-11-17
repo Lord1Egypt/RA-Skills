@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "dev-tools-pack",
+  "schema_version": "1",
+  "name": "dev-tools-pack",
   "version": "1.0.0",
-  "publishedAt": 1772639155172
+  "description": "Complete developer tools collection - Chrome extensions, code review, GitHub tools, and more",
+  "homepage": "",
+  "author": {
+    "name": "Sunshine-del-ux",
+    "email": "",
+    "url": ""
+  },
+  "repository": "",
+  "keywords": ["developer", "tools", "chrome-extension", "code-review", "github", "generator"],
+  "license": "MIT",
+  "dependencies": {}
 }

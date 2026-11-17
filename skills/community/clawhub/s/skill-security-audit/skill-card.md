@@ -1,43 +1,54 @@
-## Description: <br>
-Conduct comprehensive security audits and vulnerability analysis on codebases when explicitly asked for security analysis, code security review, vulnerability assessment, SAST scanning, or source-code security issue identification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct comprehensive security audits and vulnerability analysis on codebases. Use when explicitly asked for security analysis, code security review, vulnerability assessment, SAST scanning, or identifying security issues in source code. Covers injection flaws, broken access control, hardcoded secrets, insecure data handling, authentication weaknesses, LLM safety, and privacy violations.
 
-## Publisher: <br>
-[kylehuan](https://clawhub.ai/user/kylehuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kylehuan](https://clawhub.ai/user/kylehuan)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to perform evidence-based audits of codebases and OpenClaw skill instructions. It focuses on vulnerability categories such as injection, broken access control, hardcoded secrets, insecure data handling, authentication weaknesses, prompt-injection risks, and privacy issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Security review reports may contain vulnerability details, sensitive file paths, or references to secrets. <br>
-Mitigation: Treat generated .shield_security/ reports and review output as sensitive and share them only with authorized reviewers. <br>
-Risk: Using the skill on repositories without authorization could expose private code or security findings. <br>
-Mitigation: Run the skill only on codebases and instruction files that the user is allowed to audit. <br>
-Risk: The skill contains risky-looking attack strings as examples for detection. <br>
-Mitigation: Interpret those strings as audit patterns, not operational instructions, consistent with the server security summary. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kylehuan/skill-security-audit) <br>
-- [prompt-injection-patterns.md](references/prompt-injection-patterns.md) <br>
-- [vulnerability-patterns.md](references/vulnerability-patterns.md) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit codebases and agent skill files for security, privacy, and prompt-injection risks when they explicitly request a review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown security review report with findings, severity, locations, evidence, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create .shield_security/ reports when explicitly instructed; reports can contain sensitive vulnerability details, file paths, or secret references.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill documentation contains dangerous command, exfiltration, and prompt-injection examples for detection purposes.
+
+Mitigation: Treat those examples as indicators to recognize during review, not as commands or instructions to execute.
+
+Risk: Security audits may require reading project files and may surface sensitive code, credentials, or privacy-relevant data.
+
+Mitigation: Use the skill only after an explicit security-review request and keep any report artifacts limited to the project workspace.
+
+## Reference(s):
+
+- [Prompt Injection & SKILL.md Security Patterns](artifact/references/prompt-injection-patterns.md)
+- [LLM Security & Malicious Action Patterns](artifact/references/vulnerability-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/kylehuan/skills/skill-security-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown security report with findings, locations, descriptions, and remediation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include read-only inspection commands and workspace-local report artifact guidance when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

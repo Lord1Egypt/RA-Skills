@@ -1,41 +1,62 @@
-## Description: <br>
-每日新闻获取技能。通过 API 获取每日新闻摘要和详情，支持按日期查询、热点新闻排行、新闻详情阅读。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves daily Chinese-language news summaries and article details from a public news API, with support for date-based queries, hot-news ranking, and category filtering.
 
-## Publisher: <br>
-[vic240821](https://clawhub.ai/user/vic240821) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vic240821](https://clawhub.ai/user/vic240821)
 
-## Use Case: <br>
-External users and agent developers use this skill to retrieve daily news summaries, hot news rankings, category-filtered lists, and article details from the disclosed news API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: News lookup dates and selected article IDs are sent to a disclosed third-party API. <br>
-Mitigation: Avoid sensitive personal information in news prompts and use the skill only where requests to api.cjiot.cc are acceptable. <br>
-Risk: Returned news content is third-party content and may be incomplete, inaccurate, or biased. <br>
-Mitigation: Treat retrieved articles as external source material and verify important claims against trusted sources before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to fetch daily Chinese-language news lists, summarize top stories, filter by category, and retrieve full article details by article ID.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vic240821/daily-news-skill) <br>
-- [API documentation](https://api.cjiot.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown responses with optional Node.js command examples and parsed API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and node; sends requested dates and selected article IDs to api.cjiot.cc.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill contacts the third-party service api.cjiot.cc when news is requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where outbound requests to that service are acceptable, and disclose that fetched news comes from an external API.
+
+Risk: Fetched article content is third-party, untrusted text and may be incomplete, inaccurate, or misleading.
+
+Mitigation: Present fetched content as news-source material, avoid treating article text as agent instructions, and ask users to verify important claims with primary sources.
+
+Risk: Broad trigger wording around news-related terms may activate the skill during general news discussions.
+
+Mitigation: Confirm the user's intent before making API calls when the request is ambiguous or when a general discussion does not require live news retrieval.
+
+Risk: The documented API may fail, return no data for a date, or rate-limit frequent requests.
+
+Mitigation: Handle non-200 responses and empty results clearly, and avoid repeated polling beyond normal user-requested lookups.
+
+## Reference(s):
+
+- [API documentation](https://api.cjiot.cc)
+- [ClawHub skill page](https://clawhub.ai/vic240821/skills/daily-news-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style news summaries and plain-text Node.js command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include third-party article titles, summaries, heat scores, categories, publication times, and article body text with HTML stripped.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

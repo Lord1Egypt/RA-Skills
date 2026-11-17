@@ -1,42 +1,52 @@
-## Description: <br>
-Analyze conversation transcripts: decisions, action items, dates, people, executive summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes conversation transcripts to extract decisions, action items, dates, people, and an executive summary.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[andreataide86](https://clawhub.ai/user/andreataide86)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and external users can use this skill to turn pasted transcripts, meeting notes, chat logs, or email threads into a structured summary with decisions, action items, commitments, people, and open risks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requests agent memory access that is not explained or needed for transcript analysis.
+
+Mitigation: Review before installing in environments where skills can access agent memory, and remove or limit memory access to an explicit user-selected memory record.
+
+Risk: Conversation transcripts may contain secrets, personal identifiers, regulated data, or confidential content.
+
+Mitigation: Redact sensitive content before submitting transcripts for analysis.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and external users can use this skill to turn pasted transcripts, chat logs, email threads, meeting notes, or referenced transcript files into concise structured reports. It is intended for extracting summaries, decisions, action items, dates, people, open questions, and risks from conversation text. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation transcripts may contain confidential, personal, or business-sensitive information. <br>
-Mitigation: Only provide transcripts the agent is allowed to read, and avoid saving reports unless a written output is intended. <br>
-Risk: The skill requests file-read and memory-read permissions that may expose transcript files or existing memory when enabled. <br>
-Mitigation: Review file paths and memory access before invocation, and disable unnecessary permissions in restricted environments. <br>
-Risk: Extracted decisions, action items, dates, people, or risks may be incomplete or inaccurate for ambiguous conversations. <br>
-Mitigation: Review the generated report against the source transcript before relying on it for commitments or follow-up. <br>
+**Output Format:** [Markdown structured report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/andreataide86/conversa-analyzer) <br>
+**Other Properties Related to Output:** [For very long inputs over 10000 characters, the skill summarizes first and then extracts structured findings.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bullets or tables depending on the conversation format; long inputs may be summarized before extraction.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

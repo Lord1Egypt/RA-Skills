@@ -1,44 +1,56 @@
-## Description: <br>
-Manage Alibaba Cloud Key Management Service (KMS) via OpenAPI/SDK. Use whenever the user needs key lifecycle/resource operations, policy/configuration changes, status inspection, or troubleshooting KMS API workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Alibaba Cloud Key Management Service (KMS) via OpenAPI/SDK for key lifecycle and resource operations, policy and configuration changes, status inspection, and troubleshooting KMS API workflows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to inspect, configure, and troubleshoot Alibaba Cloud KMS resources through OpenAPI metadata, SDK calls, and command-oriented workflows. It supports key lifecycle operations, policy and configuration changes, and status verification after the account, region, and resource identifiers are confirmed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: KMS create, update, disable, rotate, policy, or deletion actions can affect encryption keys and dependent Alibaba Cloud resources. <br>
-Mitigation: Confirm the Alibaba Cloud account, region, key identifier, requested action, and expected impact before approving mutating operations; prefer read-only inspection first. <br>
-Risk: Credential misuse or over-permissioned AccessKeys could expose sensitive KMS operations. <br>
-Mitigation: Use least-privilege Alibaba Cloud credentials from environment variables or the shared credentials file, and avoid exposing credential values in prompts, logs, or saved artifacts. <br>
+## Use Case:
 
+Developers, cloud operators, and security engineers use this skill to guide Alibaba Cloud KMS administration, including metadata-first API discovery, key lifecycle operations, configuration changes, and verification with list or describe APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cinience/alicloud-security-kms) <br>
-- [Alibaba Cloud KMS OpenAPI Product Page](https://api.aliyun.com/product/Kms) <br>
-- [Alibaba Cloud KMS API Metadata List](https://api.aliyun.com/meta/v1/products/Kms/versions/2016-01-20/api-docs.json) <br>
-- [Alibaba Cloud KMS API Definition Template](https://api.aliyun.com/meta/v1/products/Kms/versions/2016-01-20/apis/{ApiName}/api.json) <br>
-- [Skill Sources](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python snippets, and optional JSON or Markdown API inventory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When saving responses or generated artifacts, the skill directs the agent to write them under output/alicloud-security-kms/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can guide powerful Alibaba Cloud KMS administration actions, including mutating Create, Update, Modify, and Set API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped Alibaba Cloud credentials and review any mutating API call before execution.
+
+Risk: Saved API discovery outputs or operation results may contain cloud resource details.
+
+Mitigation: Keep generated outputs under output/alicloud-security-kms/ and review them before sharing.
+
+## Reference(s):
+
+- [Alibaba Cloud KMS OpenAPI product page](https://api.aliyun.com/product/Kms)
+- [Alibaba Cloud KMS API metadata](https://api.aliyun.com/meta/v1/products/Kms/versions/2016-01-20/api-docs.json)
+- [Alibaba Cloud KMS single API metadata template](https://api.aliyun.com/meta/v1/products/Kms/versions/2016-01-20/apis/{ApiName}/api.json)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/alicloud-security-kms)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown, API Calls]
+
+**Output Format:** [Markdown with inline shell commands and generated JSON or Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated discovery artifacts and operation outputs should be kept under output/alicloud-security-kms/.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

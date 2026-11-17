@@ -1,44 +1,57 @@
-## Description: <br>
-Generate images and videos with 25+ visual AI models (Seedream, FLUX, GPT Image, Kling, Seedance) through one unified API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos with 25+ visual AI models through ArkRoute's unified API, with OpenAI-compatible and MCP server support.
 
-## Publisher: <br>
-[guixiang123124](https://clawhub.ai/user/guixiang123124) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guixiang123124](https://clawhub.ai/user/guixiang123124)
 
-## Use Case: <br>
-Developers and agent users use ArkRoute to configure API access and call a unified image and video generation service from shell commands, OpenAI-compatible code, or MCP-capable agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, private images, or media-generation requests may be sent to ArkRoute and routed to upstream providers. <br>
-Mitigation: Avoid secrets, regulated data, private images, and confidential project details unless ArkRoute and any upstream routing meet the user's data-handling requirements. <br>
-Risk: The skill requires an ArkRoute API key with possible billing or credit-use impact. <br>
-Mitigation: Use a dedicated API key when possible, monitor usage and billing, and rotate or revoke the key if it is exposed. <br>
+## Use Case:
 
+Developers and external users use ArkRoute to configure agents or clients for image and video generation through ArkRoute's unified API and MCP endpoint.
 
-## Reference(s): <br>
-- [ArkRoute homepage](https://ark-route.com) <br>
-- [ArkRoute dashboard](https://ark-route.com/dashboard) <br>
-- [ArkRoute playground](https://ark-route.com/playground) <br>
-- [ArkRoute pricing](https://ark-route.com/pricing) <br>
-- [ClawHub ArkRoute release](https://clawhub.ai/guixiang123124/arkroute) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, JSON, Python, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ARKROUTE_API_KEY and curl; sends generation prompts and requests to ArkRoute.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Prompts and generation requests are sent to ArkRoute using the user's ArkRoute API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending private or regulated content unless ArkRoute's policies and account settings meet the intended use.
+
+Risk: The skill depends on an external API key and curl for its documented setup and examples.
+
+Mitigation: Confirm ARKROUTE_API_KEY is configured and curl is available before use.
+
+## Reference(s):
+
+- [ArkRoute homepage](https://ark-route.com)
+- [ArkRoute dashboard](https://ark-route.com/dashboard)
+- [ArkRoute playground](https://ark-route.com/playground)
+- [ArkRoute pricing](https://ark-route.com/pricing)
+- [ArkRoute ClawHub listing](https://clawhub.ai/guixiang123124/skills/arkroute)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ARKROUTE_API_KEY; generation requests are sent to ArkRoute.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

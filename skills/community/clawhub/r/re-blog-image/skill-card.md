@@ -1,43 +1,58 @@
-## Description: <br>
-Generate a 1600px-wide WebP blog thumbnail image using the nano-img CLI when a user provides a blog topic or blog name. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a 1600-pixel-wide WebP blog thumbnail from a supplied topic using the user's configured pixr CLI.
 
-## Publisher: <br>
-[dishant0406](https://clawhub.ai/user/dishant0406) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dishant0406](https://clawhub.ai/user/dishant0406)
 
-## Use Case: <br>
-Developers, writers, and site operators use this skill to generate a blog thumbnail from a topic and record the resulting image path in local blog metadata when a matching metadata file exists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill checks NANO_IMAGE_API_KEY in ways that can expose credential values in terminal output. <br>
-Mitigation: Verify that the variable is present without printing the secret value, and keep credentials out of completion reports and logs. <br>
-Risk: The skill may install or invoke the nano-img/nanobana CLI and send prompts to an external image service. <br>
-Mitigation: Review the CLI package and service terms before use, run it in an environment appropriate for external API calls, and avoid including sensitive information in image prompts. <br>
-Risk: The skill can modify local blog metadata files after generation. <br>
-Mitigation: Review the matched ~/blog-meta/*.json file before and after the run, and confirm only the intended thumbnail_path field changed. <br>
+## Use Case:
 
+Blog authors and content teams use this skill to create topic-based thumbnails and link the resulting image to a matching blog metadata record when one exists.
 
-## Reference(s): <br>
-- [Image Generation Reference](references/image-generation.md) <br>
-- [Re Blog Image on ClawHub](https://clawhub.ai/dishant0406/re-blog-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Markdown, Configuration guidance] <br>
-**Output Format:** [WebP image file, JSON metadata update, and Markdown/text completion report with shell command details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a 1600px-wide WebP thumbnail and may update the thumbnail_path field in a matching ~/blog-meta/*.json file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence) <br>
+Risk: Sourcing ~/.zshrc may execute shell-profile commands and expose configured credentials to pixr.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the shell profile and confirm credential use before sourcing it.
+
+Risk: Installing pixr-cli globally changes the user's environment.
+
+Mitigation: Ask for approval before a global npm installation.
+
+Risk: Generated files and automatic blog metadata edits can change local content unexpectedly.
+
+Mitigation: Confirm output and metadata targets before writing, and review the matching JSON update.
+
+## Reference(s):
+
+- [ClawHub blog-image release](https://clawhub.ai/dishant0406/skills/re-blog-image)
+- [Image Generation Reference](references/image-generation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Image files, Shell commands, Status report]
+
+**Output Format:** [WebP image and text completion report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates one 1600-pixel-wide thumbnail under ~/blog-images by default; may update the thumbnail_path in matching ~/blog-meta JSON.]
+
+## Skill Version(s):
+
+1.1.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

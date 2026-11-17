@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-hunyuan-3d-3-1
 description: Hunyuan 3D v3.1 asset generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `hunyuan-3d/v3.1/pro/text-to-3d`, `hunyuan-3d/v3.1/pro/image-to-3d`, `hunyuan-3d/v3.1/rapid/text-to-3d`, `hunyuan-3d/v3.1/rapid/image-to-3d`, text-to-3D, image-to-3D, PBR, geometry, face count, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/3d-series/hunyuan-3d-3-1","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/hunyuan-3d-3-1","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Hunyuan 3D v3.1 Asset Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/hunyuan-3d-3-1>
+- API docs: <https://docs.poyo.ai/api-manual/3d-series/hunyuan-3d-3-1>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Hunyuan 3D v3.1 jobs on PoYo. It covers Pro and Rapid workflows for text-to-3D and image-to-3D asset generation.
 

@@ -1,46 +1,61 @@
-## Description: <br>
-OpenClaw Backup YYC backs up and restores selected OpenClaw data under ~/.openclaw after exact bilingual trigger commands and user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up and restores selected OpenClaw data under ~/.openclaw using exact Chinese or English trigger commands and confirmation prompts.
 
-## Publisher: <br>
-[teldyang](https://clawhub.ai/user/teldyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teldyang](https://clawhub.ai/user/teldyang)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to create backup archives of default OpenClaw configuration, workspace, agent, cron, and media data, and to restore those items from trusted backup archives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local scripts that read and rewrite OpenClaw data. <br>
-Mitigation: Review the scripts before installation, avoid running them as root, and create or retain a current backup before restoring. <br>
-Risk: Restore operations can replace or rename existing OpenClaw workspace, agent, cron, and media directories. <br>
-Mitigation: Restore only archives you personally trust, confirm the selected archive carefully, and restart OpenClaw Gateway after a successful restore. <br>
-Risk: The backup script contacts public IP services to generate an SCP command example. <br>
-Mitigation: Run the backup only in environments where this outbound network lookup is acceptable, or review and modify the script before use. <br>
-Risk: Only the default OpenClaw paths are backed up. <br>
-Mitigation: Manually identify and save any OpenClaw-related files stored outside ~/.openclaw/openclaw.json, workspace, agents, cron, and media. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to create archives of default OpenClaw configuration, workspace, agent, cron, and media data, then restore those archives when needed. The skill is triggered only by exact Chinese or English backup and restore commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teldyang/openclaw-backup-yyc) <br>
-- [Publisher profile](https://clawhub.ai/user/teldyang) <br>
-- [Author blog](https://blog.tag.gg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shows backup file paths, file sizes, restore choices, confirmation prompts, warnings, and SCP download command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Backup execution performs external IP lookups to generate an SCP command, which can disclose server network information to third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the lookup or make it opt-in, and let users provide the host value explicitly before displaying SCP instructions.
+
+Risk: Restore uses tar archive extraction and can accept arbitrary absolute backup paths.
+
+Mitigation: Validate archive members before extraction, reject unsafe paths, and restrict restore inputs to expected backup locations unless the user explicitly approves another path.
+
+Risk: Restore operations rename existing OpenClaw folders and copy archived directories into place.
+
+Mitigation: Require confirmation for every restore path and recommend taking a fresh backup before restoring.
+
+Risk: Operational prompts include unrelated promotional links.
+
+Mitigation: Remove promotional links from backup and restore prompts so users can focus on operational warnings and file-handling decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teldyang/skills/openclaw-backup-yyc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown and terminal text with shell commands and backup archive files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates OpenClaw-Backup-YYC timestamped tar.gz archives and can restore workspace, agents, cron, media, and extracted configuration files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,10 @@
 # TPVL API 調查報告
 
+> ⚠️ **2026-10 更新：本文件為 2026-03 舊版調查，官網已改版成 Next.js App Router，
+> `__NEXT_DATA__` 已不存在，`/record`→`/standings`、`/schedule/schedule`→`/matches`。
+> 現行做法見 `SKILL.md`：從 RSC flight payload（`self.__next_f.push`）解析，
+> 並展開 `"$L<id>"` lazy 參照。以下內容僅供歷史參考。**
+
 ## 調查日期: 2026-03-23
 
 ## 官網資訊

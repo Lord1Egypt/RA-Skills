@@ -1,44 +1,55 @@
-## Description: <br>
-Provides US Treasury debt and foreign holding data analysis, including risk signals for Treasury supply and demand conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a US Treasury debt and foreign-holdings risk report that combines TreasuryDirect data with estimated TIC-style demand indicators.
 
-## Publisher: <br>
-[kai157isme-lgtm](https://clawhub.ai/user/kai157isme-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kai157isme-lgtm](https://clawhub.ai/user/kai157isme-lgtm)
 
-## Use Case: <br>
-External users and analysts can use this skill to generate a concise Treasury demand and supply report from public TreasuryDirect data and TIC-based estimates. The output is informational and should be checked against official releases before decisions are made. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Treasury or TIC values may be stale, delayed, estimated, or replaced by fallback values when live requests fail. <br>
-Mitigation: Verify figures against official TreasuryDirect and TIC releases and check the output's source dates before relying on the analysis. <br>
-Risk: Risk signals could be mistaken for investment advice. <br>
-Mitigation: Treat the report as informational financial analysis only and apply independent review before making trading, allocation, or policy decisions. <br>
+## Use Case:
 
+Developers and finance-focused agent users use this skill to generate an indicative US Treasury supply-and-demand report with risk signals. The report is suitable for monitoring and discussion, not as authoritative financial data or investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kai157isme-lgtm/us-treasury-radar) <br>
-- [Publisher profile](https://clawhub.ai/user/kai157isme-lgtm) <br>
-- [TreasuryDirect debt API](https://www.treasurydirect.gov/NP_WS/debt/current) <br>
-- [TreasuryDirect Fed holdings API](https://www.treasurydirect.gov/NP_WS/feddata/current) <br>
-- [Treasury International Capital reports](https://home.treasury.gov/data/treasury-international-capital-tic-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Terminal text report with tabular metrics and risk-signal guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes live TreasuryDirect values when available and clearly notes estimated or delayed TIC-based values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.0 (source: server release metadata) <br>
+Risk: The financial report can present hard-coded or estimated market data as a live monitoring signal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify TreasuryDirect and TIC figures independently before using the output for financial analysis or investment decisions.
+
+Risk: The skill may trigger on broad finance-related phrases and outputs Chinese text.
+
+Mitigation: Deploy it where Chinese-language financial reporting is expected and constrain invocation triggers if broad finance prompts would be inappropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kai157isme-lgtm/skills/us-treasury-radar)
+- [TreasuryDirect current debt API](https://www.treasurydirect.gov/NP_WS/debt/current)
+- [TreasuryDirect federal securities holdings API](https://www.treasurydirect.gov/NP_WS/feddata/current)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Chinese text report with tabular console output and risk-signal commentary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes live API-derived values when available and fallback or estimated values for some holdings data. Treat outputs as indicative and verify financial figures independently.]
+
+## Skill Version(s):
+
+4.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Send local files, URLs, or reusable Telegram file_ids into a Telegram chat via the Bot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends local files, URLs, or reusable Telegram file_ids into a Telegram chat via the Telegram Bot API.
 
-## Publisher: <br>
-[wangwllu](https://clawhub.ai/user/wangwllu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangwllu](https://clawhub.ai/user/wangwllu)
 
-## Use Case: <br>
-Developers and operators use this skill to deliver selected local files, URLs, or known Telegram file IDs from an agent workflow into a Telegram chat or topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Files can be sent to the wrong Telegram chat or topic if the target is auto-detected incorrectly. <br>
-Mitigation: Verify the resolved chat_id and topic_id before sending sensitive or important material. <br>
-Risk: Telegram bot tokens grant send access through the configured bot. <br>
-Mitigation: Keep the bot token private, restrict bot access to intended chats, and rotate the token if exposure is suspected. <br>
-Risk: Selected files, credentials, regulated data, or internal-only URLs could be disclosed through Telegram. <br>
-Mitigation: Do not send secrets, regulated data, or internal-only URLs unless the destination and authorization are confirmed. <br>
+## Use Case:
 
+Developers and operators use this skill to deliver local files, URLs, or reusable Telegram file_ids to a Telegram chat or topic from an agent workflow. It is for file delivery, not normal assistant chat replies.
 
-## Reference(s): <br>
-- [Telegram Bot API File Sending Reference](references/api_reference.md) <br>
-- [Telegram Send File ClawHub Release](https://clawhub.ai/wangwllu/telegram-send-file) <br>
-- [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot) <br>
-- [OpenClaw](https://github.com/wangwllu/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and CLI status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends one file or a sequential batch; reports Telegram message metadata or an error status when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can upload any local file readable by the agent to Telegram.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the file path and intended recipient before execution, and restrict the agent's filesystem access where possible.
+
+Risk: The skill can auto-discover bot credentials and chat context without an explicit confirmation step.
+
+Mitigation: Prefer explicit --chat-id and --topic-id values, store bot tokens in an environment secret manager or restricted-permission file, and avoid passing tokens on the command line.
+
+Risk: Unpinned runtime dependencies may change behavior over time.
+
+Mitigation: Pin python-telegram-bot and other dependencies in the deployment environment.
+
+## Reference(s):
+
+- [Telegram Bot API File Sending Reference](references/api_reference.md)
+- [OpenClaw](https://github.com/wangwllu/openclaw)
+- [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot)
+- [ClawHub Skill Page](https://clawhub.ai/wangwllu/skills/telegram-send-file)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends selected files through Telegram and may return delivery status, message IDs, file IDs, or error text.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

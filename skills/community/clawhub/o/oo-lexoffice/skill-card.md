@@ -1,44 +1,53 @@
-## Description: <br>
-lexoffice (office.lexware.de). Use this skill for any lexoffice request involving reading, creating, or updating data through the OOMOL-connected lexoffice connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+lexoffice (office.lexware.de). Use this skill for ANY lexoffice request — reading, creating, and updating data. Whenever a task involves lexoffice, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and business operators use this skill to let an agent work with lexoffice records through an OOMOL-connected account, including profiles, organization metadata, contacts, articles, and voucher metadata. It supports read workflows and confirmed write workflows for creating or updating contacts and articles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and update business records in a connected lexoffice account. <br>
-Mitigation: Install it only when agent access to that lexoffice account is intended, and review requested operations against the account context before use. <br>
-Risk: Write actions can create or update contacts and articles. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running any action marked as write. <br>
-Risk: First-time setup may require installing the oo CLI. <br>
-Mitigation: Run the optional installer only from trusted OOMOL sources and only when the CLI is actually missing. <br>
+## Use Case:
 
+Accounting operators and assistants use this skill to read Lexoffice articles, contacts, vouchers, and profile information, and to create or update articles and contacts through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-lexoffice) <br>
-- [lexoffice homepage](https://office.lexware.de/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the oo CLI to inspect live connector schemas and run lexoffice actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup instructions can run downloaded installer code without separate approval, including automatic skill synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and separately approve the CLI installation and synchronization; prefer a pinned, independently verified installer. Confirm accounting changes before execution.
+
+## Reference(s):
+
+- [Lexoffice API documentation](https://developers.lexoffice.io/)
+- [Lexoffice homepage](https://office.lexware.de/)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [ClawHub skill release](https://clawhub.ai/oomol/skills/oo-lexoffice)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [Shell commands with JSON request payloads and JSON responses, plus Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read actions retrieve account data; create and update actions change Lexoffice records and require confirmation of the exact payload and effect.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

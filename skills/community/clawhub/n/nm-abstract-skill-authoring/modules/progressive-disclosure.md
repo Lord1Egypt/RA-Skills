@@ -6,7 +6,7 @@ Progressive disclosure structures skills so Claude loads only what's needed when
 
 ## Core Principle
 
-**SKILL.md is the table of contents, not the encyclopedia.**
+**SKILL.md is the table of contents. Detail goes in modules.**
 
 - Main file provides overview and entry points
 - Detailed content is in separate files
@@ -182,7 +182,7 @@ High-level task list with module pointers:
 
 - **Creating new skill**: See "Quick Start" above
 - **Optimizing descriptions**: See `modules/description-writing.md`
-- **Bulletproofing**: See `modules/anti-rationalization.md`
+- **Skill Selection**: See `../../../shared-modules/skill-selection-judgment.md`
 ```
 
 ### What Goes in Modules
@@ -361,7 +361,6 @@ Don't force module loading upfront:
 Before using this skill, read all modules:
 - modules/tdd-methodology.md
 - modules/persuasion-principles.md
-- modules/anti-rationalization.md
 ```
 
 **Lazy Loading (preferred):**

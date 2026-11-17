@@ -1,44 +1,57 @@
-## Description: <br>
-Business ROI Calculator helps evaluate business partnerships, channels, and revenue opportunities by calculating short-term ROI, long-term ROI, expected value, and threshold-based recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business ROI Calculator helps users estimate short-term and long-term return on investment for business collaborations, outreach campaigns, services, and digital product launches.
 
-## Publisher: <br>
-[gdp6539](https://clawhub.ai/user/gdp6539) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gdp6539](https://clawhub.ai/user/gdp6539)
 
-## Use Case: <br>
-Business users and agents use this skill to assess whether a partnership, channel campaign, consulting offer, training launch, or similar revenue opportunity is worth pursuing. It turns user-provided revenue, cost, probability, and timeframe assumptions into a structured Markdown ROI report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad questions such as whether something is worth doing, even when the request is not really about partnership, channel, or ROI evaluation. <br>
-Mitigation: Confirm the request is an ROI-style business evaluation before relying on the score or recommendation. <br>
-Risk: The resulting recommendation depends on user-provided revenue, cost, success-rate, and timeframe assumptions. <br>
-Mitigation: Use current business data, include hidden or opportunity costs, and treat the report as decision support rather than a guaranteed financial outcome. <br>
+## Use Case:
 
+Business, sales, and finance users use this skill to evaluate whether a proposed collaboration or investment is worth pursuing based on expected revenue, costs, success probability, and timeframe. It produces ROI calculations, threshold-based recommendations, sensitivity analysis, break-even estimates, and practical next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gdp6539/business-roi-calculator) <br>
-- [README](README.md) <br>
-- [Preset templates](references/templates.md) <br>
-- [Calculation examples](references/examples.md) <br>
-- [ROI calculation script](scripts/calculate-roi.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report with optional Python CLI or JSON output when using the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include input assumptions, short-term ROI, long-term ROI, expected value, threshold-based recommendation, and optional sensitivity or break-even analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: ROI recommendations can be misleading when input revenue, cost, timeframe, or success-rate assumptions are inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify assumptions against historical data or industry benchmarks and treat outputs as estimates, not financial advice.
+
+Risk: Outreach and partnership examples may lead users to act without checking consent, opt-out, privacy, platform, or anti-spam requirements.
+
+Mitigation: Review applicable legal, privacy, platform, and email compliance requirements before acting on outreach recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gdp6539/skills/business-roi-calculator)
+- [README](artifact/README.md)
+- [ROI examples](artifact/references/examples.md)
+- [ROI templates](artifact/references/templates.md)
+- [ROI calculation script](artifact/scripts/calculate-roi.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports and optional JSON or shell-command output from the local ROI script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided revenue, cost, success-rate, and timeframe assumptions to produce estimates and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact version notes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

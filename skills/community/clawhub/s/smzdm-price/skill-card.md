@@ -1,43 +1,58 @@
-## Description: <br>
-什么值得买价格爬取 helps agents look up public product prices on smzdm.com and return sorted price summaries for NAS devices, computer hardware, phones, and similar products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+什么值得买价格爬取Skill - 从smzdm.com爬取NAS、电脑、手机等商品价格
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-External users and shopping researchers use this skill to search public smzdm.com listings for product prices and summarize configuration, price, time, source, and links in a markdown table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad price-related trigger words may activate the skill unexpectedly. <br>
-Mitigation: Use specific product queries and avoid entering private or sensitive search terms. <br>
-Risk: Public price listings can be delayed or differ from the merchant checkout page. <br>
-Mitigation: Verify prices and availability on the merchant page before buying. <br>
-Risk: Repeated public price lookups may put unnecessary load on smzdm.com or conflict with site expectations. <br>
-Mitigation: Use reasonable query frequency and follow the site's terms when collecting public price information. <br>
+## Use Case:
 
+External users can use this skill to look up public price information from smzdm.com for NAS devices, computer hardware, phones, and other consumer electronics. It guides agents to extract page-structure data and return a concise lowest-price summary plus a sorted Markdown table.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/smzdm-price) <br>
-- [什么值得买](https://www.smzdm.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary and table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Price rows should include configuration, price, time, source, link, and notes, sorted from low to high when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill may activate on broad NAS or brand-related price queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user explicitly wants public smzdm.com price lookup.
+
+Risk: Frequent automated access could conflict with site expectations or terms.
+
+Mitigation: Avoid excessive scraping and follow the site's usage terms.
+
+Risk: Displayed prices may be delayed or differ from the final merchant price.
+
+Mitigation: Verify prices on the actual merchant page before purchase decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/skills/smzdm-price)
+- [什么值得买](https://www.smzdm.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown price summary and table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tables include configuration, price, time, source, link, and notes, with prices sorted from low to high.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

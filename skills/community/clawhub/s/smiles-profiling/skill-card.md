@@ -1,46 +1,60 @@
-## Description: <br>
-Comprehensive SMILES profiling through SwissTargetPrediction, PubChem, ADMETlab 3.0, ChEMBL, and PK-Smart. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive SMILES profiling through SwissTargetPrediction, PubChem, ADMETlab 3.0, ChEMBL, and PK-Smart.
 
-## Publisher: <br>
-[hendr15k](https://clawhub.ai/user/hendr15k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hendr15k](https://clawhub.ai/user/hendr15k)
 
-## Use Case: <br>
-Developers, researchers, and cheminformatics users can profile a single SMILES string to collect identity, physicochemical, predicted target, analog, ADMET, and pharmacokinetic context from named chemistry services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SMILES strings submitted through the skill may be sent to third-party chemistry services. <br>
-Mitigation: Use only compound structures that your organization permits you to share with those external services; avoid confidential, unpublished, proprietary, or regulated structures unless approved. <br>
+## Use Case:
 
+Developers and chemistry researchers use this skill to profile one user-provided SMILES string across target prediction, compound identity, physicochemical properties, similar compounds, ADMET signals, and pharmacokinetic estimates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hendr15k/smiles-profiling) <br>
-- [SwissTargetPrediction](https://www.swisstargetprediction.ch/) <br>
-- [ADMETlab 3.0](https://admetlab3.scbdd.com/) <br>
-- [ADMETlab 3.0 OpenAPI](https://admetlab3.scbdd.com/api/openapi.json) <br>
-- [PubChem PUG REST](https://pubchem.ncbi.nlm.nih.gov/rest/pug) <br>
-- [ChEMBL Data Web Services](https://www.ebi.ac.uk/chembl/api/data) <br>
-- [PK-Smart Single SMILES](https://pk-predictor.serve.scilifelab.se/PKSmart_Single_SMILES) <br>
-- [endpoints.md](references/endpoints.md) <br>
-- [tool-notes.md](references/tool-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tool-specific sections and optional JSON-like structured data from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports preserve tool names, units, thresholds, misses, and graceful failure notes when a source is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: A submitted SMILES string is sent to third-party chemistry services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only compounds approved for those providers, and avoid confidential, proprietary, or pre-publication compounds unless their terms and retention practices are acceptable.
+
+Risk: Remote chemistry services can be unavailable or return partial results.
+
+Mitigation: Review tool-specific error messages and treat incomplete sections as missing evidence rather than negative findings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hendr15k/skills/smiles-profiling)
+- [Endpoints](references/endpoints.md)
+- [Tool Notes](references/tool-notes.md)
+- [SwissTargetPrediction](https://www.swisstargetprediction.ch/)
+- [ADMETlab 3.0 OpenAPI](https://admetlab3.scbdd.com/api/openapi.json)
+- [PubChem PUG REST](https://pubchem.ncbi.nlm.nih.gov/rest/pug)
+- [ChEMBL Data Web Services](https://www.ebi.ac.uk/chembl/api/data)
+- [PK-Smart Single SMILES](https://pk-predictor.serve.scilifelab.se/PKSmart_Single_SMILES)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown report or JSON from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Profiles a single SMILES string and may include partial results when a chemistry service is unavailable.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

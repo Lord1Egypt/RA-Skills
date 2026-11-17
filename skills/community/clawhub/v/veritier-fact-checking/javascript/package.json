@@ -1,7 +1,7 @@
 {
   "name": "veritier-fact-checking-examples",
-  "version": "1.0.0",
-  "description": "JavaScript examples for the Veritier AI Fact-Checking API",
+  "version": "2.2.0",
+  "description": "JavaScript examples for the Veritier Agent Trust Gate API — attest_action, signed workpapers (Claim Credentials), extract, verify, and validate",
   "private": true,
   "type": "module",
   "engines": {
@@ -12,12 +12,14 @@
     "express": "^5.0.0"
   },
   "keywords": [
-    "fact-checking",
-    "ai",
+    "agent-trust-gate",
     "veritier",
-    "hallucination-detection",
+    "attestation",
+    "workpapers",
     "mcp",
-    "verification"
+    "verification",
+    "fact-checking",
+    "ai"
   ],
   "license": "MIT"
 }

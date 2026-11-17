@@ -1,43 +1,59 @@
-## Description: <br>
-Deep Research coordinates planning, subagent delegation, document analysis, and synthesized reporting for complex research tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research Agent specializes in complex, multi-step research tasks that require planning, decomposition, and long-context reasoning across tools and files.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-Developers, analysts, and research teams use this skill to decompose broad questions, coordinate research threads, analyze local or gathered context, and produce synthesized recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research inputs and context may be sent to an external Crafted service that requires an API key. <br>
-Mitigation: Confirm retention, deletion, storage, and opt-out controls before using private, regulated, or business-sensitive material. <br>
-Risk: Broad local file and context analysis can expose sensitive or irrelevant workspace information. <br>
-Mitigation: Restrict which files, folders, and sources the agent may use before invoking the research workflow. <br>
-Risk: Subagent delegation and persistent cross-conversation memory can retain or spread research context beyond a single request. <br>
-Mitigation: Avoid sensitive details unless memory controls are understood, and clear or limit retained context when available. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to plan complex research, decompose broad questions into sub-tasks, analyze large context across tools and files, and synthesize findings into actionable reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asterisk622/xiaoding-deep-research) <br>
-- [Crafted Deep Research service](https://we-crafted.com/agents/deep-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research report with synthesized findings and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on an external Crafted API key, local files, web or search tools, subagents, and persistent memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill requests use of an external Crafted service and a CRAFTED_API_KEY, which may expose research context outside the local agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user is comfortable with the external service, and avoid providing sensitive files, secrets, or confidential research unless the publisher documents storage, transmission, opt-out, and deletion controls.
+
+Risk: The skill describes retained cross-conversation memory without clear limits or user controls.
+
+Mitigation: Use separate research contexts for sensitive work and review publisher documentation for retention, deletion, and memory-management controls before deployment.
+
+Risk: The skill asks for broad local and external research access, which can increase exposure if the workspace contains private files.
+
+Mitigation: Review the installed skill and workspace scope before use, limit accessible files to the intended research corpus, and scan proposed actions before execution.
+
+## Reference(s):
+
+- [Deep Research on ClawHub](https://clawhub.ai/asterisk622/skills/xiaoding-deep-research)
+- [Crafted Deep Research](https://we-crafted.com/agents/deep-research)
+- [Crafted](https://we-crafted.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research plans, synthesized analysis, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on external Crafted service access, local research context, and retained cross-conversation memory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

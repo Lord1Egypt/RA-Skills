@@ -1,41 +1,58 @@
-## Description: <br>
-Emily helps users query Radix DLT blockchain data for wallet balances, token prices, validators, transactions, network statistics, ecosystem news, DeFi yield pools, trading venues, dApps, and developer resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Radix DLT blockchain data including wallet balances and performance, token prices and market movers, validator staking info, transaction history, network statistics, ecosystem news, DeFi yield pools, XRD trading venues, dApp directory, and developer resources.
 
-## Publisher: <br>
-[MAvRemu](https://clawhub.ai/user/MAvRemu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mavremu](https://clawhub.ai/user/mavremu)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to query Radix mainnet wallets, tokens, validators, DeFi yield data, ecosystem updates, dApps, trading venues, and developer resources through the Emily MCP service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses, .xrd domains, token identifiers, and related query details are sent to Emily and its listed data providers. <br>
-Mitigation: Avoid querying addresses, domains, or transaction details that are personally identifying or sensitive unless that disclosure is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Emily](https://www.ineedemily.com) <br>
-- [Radix Gateway API](https://docs.radixdlt.com/docs/network-apis) <br>
-- [Astrolescent](https://astrolescent.com) <br>
-- [CoinMarketCap](https://coinmarketcap.com) <br>
-- [Attos Earn](https://earn.attos.world) <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for Radix DLT wallet, token, validator, transaction, DeFi, dApp, trading venue, ecosystem news, and developer-resource lookups. It is intended for mainnet Radix queries, including XRD wallets, resource addresses, staking, .xrd domains, Attos Earn, and buying or bridging XRD.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with MCP tool names, query guidance, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses mcporter and the Emily MCP endpoint; no API key is required by the skill evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet addresses, RNS domains, transaction searches, and LP-position queries are sent to the configured Emily MCP service and named data providers.
+
+Mitigation: Use the skill only for queries you are comfortable sharing with those external services.
+
+Risk: The npm installer for mcporter is not version-pinned.
+
+Mitigation: Use a reviewed or pinned mcporter version where possible.
+
+## Reference(s):
+
+- [Emily](https://www.ineedemily.com)
+- [Emily MCP endpoint](https://www.ineedemily.com/api/mcp/mcp)
+- [Radix Gateway API documentation](https://docs.radixdlt.com/docs/network-apis)
+- [Astrolescent](https://astrolescent.com)
+- [CoinMarketCap](https://coinmarketcap.com)
+- [Attos Earn](https://earn.attos.world)
+- [ClawHub skill page](https://clawhub.ai/mavremu/skills/emily)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the mcporter CLI and uses a configured external Emily MCP service for Radix mainnet lookups.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

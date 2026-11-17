@@ -1,45 +1,55 @@
-## Description: <br>
-End-to-end TikTok ad video pipeline. Product script -> Veo base video -> animated caption overlay -> audio mix -> final MP4. One command, full automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end TikTok ad video pipeline. Product script -> Veo base video -> animated caption overlay -> audio mix -> final MP4. One command, full automation.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Developers and marketing teams use this skill to generate short-form TikTok product ad videos from product identifiers, scripts, optional logos, and background audio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs user-influenced shell commands. <br>
-Mitigation: Install and run it only in a contained workspace, and avoid passing untrusted captions, model names, language values, product IDs, or file paths. <br>
-Risk: External skill dependencies are under-declared. <br>
-Mitigation: Confirm required external video-generation skills and command-line tools are installed before use. <br>
-Risk: ffmpeg filter values are influenced by input values. <br>
-Mitigation: Prefer a version that validates ffmpeg filter values and replaces bash -lc shell invocation with argument-array subprocess calls. <br>
+## Use Case:
 
+Developers and marketing operators use this skill to generate vertical TikTok product ad videos from product identifiers, script text, optional logos, and optional background audio.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-tiktok-video-pipeline) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Product configuration](artifact/config/products.json) <br>
-- [Asset notes](artifact/assets/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration] <br>
-**Output Format:** [MP4 video files with console progress output and MEDIA path markers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv, ffmpeg, node, GEMINI_API_KEY for non-dry-run Veo generation, and compatible external video-generation skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter, artifact metadata, server release metadata) <br>
+Risk: Unsafe command and path handling could allow crafted inputs to run unintended commands or write outside the intended output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a low-privilege disposable workspace with trusted inputs, validate paths and arguments before execution, and avoid exposing unrelated secrets in the environment.
+
+Risk: The pipeline depends on local binaries and external video-generation credentials.
+
+Mitigation: Confirm uv, ffmpeg, node, the dependent video-generation skill, and GEMINI_API_KEY are configured only in the intended execution environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zero2ai-hub/skills/skill-tiktok-video-pipeline)
+- [Skill README](artifact/SKILL.md)
+- [Assets README](artifact/assets/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with command examples and generated MP4 file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces final vertical MP4 videos under output/tiktok and may emit MEDIA path lines.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, artifact metadata, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

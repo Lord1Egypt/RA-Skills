@@ -1,48 +1,60 @@
-## Description: <br>
-Market prediction skill using Kronos for finance market time-series forecasting and news-aware forecast adjustments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Market prediction skill using Kronos. Use when user needs finance market time-series forecasting or news-aware finance market adjustments.
 
-## Publisher: <br>
-[zhouzhonglu8-png](https://clawhub.ai/user/zhouzhonglu8-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouzhonglu8-png](https://clawhub.ai/user/zhouzhonglu8-png)
 
-## Use Case: <br>
-Financial analysts and agent developers use this skill to generate Kronos-based market time-series forecasts and adjust them with current news context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries, ticker interests, or market research context may be sent to third-party search, stock-data, model, or LLM services. <br>
-Mitigation: Review provider settings before use and avoid confidential strategy terms or proprietary watchlists unless those providers are approved. <br>
-Risk: Market forecasts and news-based adjustments can be wrong, stale, or misleading. <br>
-Mitigation: Treat outputs as decision-support analysis, review forecasts before acting, and compare results with current market data and independent analysis. <br>
-Risk: Local finance and news caches may retain research activity beyond the immediate interaction. <br>
-Mitigation: Review local database paths and retention practices before deployment in sensitive environments. <br>
-Risk: Custom model checkpoints can change behavior and may introduce model-loading risk. <br>
-Mitigation: Use only trusted checkpoints and keep the documented checkpoint pattern and safe loading controls in place. <br>
+## Use Case:
 
+Developers and finance analysts use this skill to generate Kronos-based market time-series forecasts and adjust them with recent news context. It supports workflows that need base OHLC-style forecasts plus a structured rationale for news-aware adjustments.
 
-## Reference(s): <br>
-- [AlphaEar Predictor ClawHub page](https://clawhub.ai/zhouzhonglu8-png/alphaear-predictor) <br>
-- [Publisher profile](https://clawhub.ai/user/zhouzhonglu8-png) <br>
-- [Forecast adjustment prompts](references/PROMPTS.md) <br>
-- [Kronos model reference paper](https://arxiv.org/pdf/2406.07548.pdf) <br>
-- [Soft entropy reference paper](https://arxiv.org/pdf/1911.05894.pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [JSON forecasts with text or Markdown rationale and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Forecast quality depends on available market history, selected model weights, embedding configuration, and news context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Unsafe model-checkpoint loading can run code if an untrusted .pt checkpoint is placed under exports/models.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only controlled model directories, do not place untrusted checkpoints under exports/models, and prefer loaders that require weights_only=True or a non-executable model format.
+
+Risk: The skill caches stock, search, news, and signal data locally.
+
+Mitigation: Run it in an environment where local cache contents are acceptable for the data being processed, and clear or isolate the cache when handling sensitive workflows.
+
+Risk: The skill can make outbound calls to market data, search, model, and configured LLM providers.
+
+Mitigation: Review configured providers and API keys before use, and restrict network access in deployment environments that require tighter data-control boundaries.
+
+## Reference(s):
+
+- [AlphaEar Predictor prompts](references/PROMPTS.md)
+- [ClawHub skill page](https://clawhub.ai/zhouzhonglu8-png/skills/alphaear-predictor)
+- [BSQ paper](https://arxiv.org/pdf/2406.07548.pdf)
+- [Soft entropy paper](https://arxiv.org/pdf/1911.05894.pdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples and strict JSON forecast-adjustment output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Forecast adjustment output is expected to include adjusted OHLCV points and a rationale.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

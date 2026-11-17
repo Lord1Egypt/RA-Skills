@@ -1,42 +1,59 @@
-## Description: <br>
-Generates structured comic script JSON from a one-line theme, including characters, scenes, dialogue, camera direction, and mood for Chinese-style comic drama workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese comic storyboard script JSON from a one-line theme, including characters, scenes, dialogue, camera direction, and mood for genres such as xianxia, palace intrigue, wuxia, and zhiguai.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and story-production agents use this skill to turn a short theme into a validated script.json for Chinese-style comic or drama storyboarding workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled paid media API helpers can call external services, upload local media, and incur costs beyond the advertised script-generation flow. <br>
-Mitigation: Run the skill in a controlled project folder and provide ARK_API_KEY only when deliberately using those helper paths. <br>
-Risk: Fallback script generation requires ANTHROPIC_API_KEY and sends the prompt to an external model provider. <br>
-Mitigation: Use direct agent-authored JSON when possible, provide ANTHROPIC_API_KEY only for intended fallback generation, and review generated script.json before downstream use. <br>
+## Use Case:
 
+Creators and agent operators use this skill to turn a brief Chinese-language story premise into a structured script.json for short-form guofeng comic or video production. Developers can also run the included CLI as a fallback generator and validator.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-comic-script) <br>
-- [Volcengine Seedance documentation](https://www.volcengine.com/docs/82379/1520757) <br>
-- [Volcengine TTS documentation](https://www.volcengine.com/docs/6561/97465) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, JSON files] <br>
-**Output Format:** [JSON script data and Markdown usage guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or validates script.json; fallback generation requires ANTHROPIC_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Shared media-production helpers can send prompts or local media to external APIs when used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing and remove or disable the shared media modules unless the broader media pipeline is intended.
+
+Risk: The fallback script-generation path can call Anthropic when API credentials are configured.
+
+Mitigation: Use direct agent-mode JSON generation or validation-only mode when external model calls are not intended, and provide ANTHROPIC_API_KEY only for approved use.
+
+Risk: Cost and checkpoint helpers may write local tracking files during broader pipeline use.
+
+Mitigation: Run the skill in a controlled project directory and review generated checkpoint or cost files when using the bundled pipeline helpers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhaobod1/skills/huo15-comic-script)
+- [Volcengine Seedance Documentation](https://www.volcengine.com/docs/82379/1520757)
+- [Volcengine TTS Documentation](https://www.volcengine.com/docs/6561/97465)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Shell commands, Guidance]
+
+**Output Format:** [Structured JSON script files and concise agent guidance, with optional CLI commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces script.json with title, style, genre, duration, characters, scenes, dialogue, camera, and mood; the fallback CLI may call Anthropic when ANTHROPIC_API_KEY is configured.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

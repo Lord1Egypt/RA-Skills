@@ -1,44 +1,61 @@
-## Description: <br>
-开箱即用的Windows桌面GUI自动化集成技能，整合原生UI自动化、鼠标控制、截图识别、AI视觉分析，一站式解决Windows桌面自动化需求。支持打开应用、点击、输入、截图、OCR识别、流程自动化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+开箱即用的Windows桌面GUI自动化集成技能，整合原生UI自动化、鼠标控制、截图识别、AI视觉分析，一站式解决Windows桌面自动化需求。支持打开应用、点击、输入、截图、OCR识别、流程自动化。
 
-## Publisher: <br>
-[xiatian5](https://clawhub.ai/user/xiatian5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiatian5](https://clawhub.ai/user/xiatian5)
 
-## Use Case: <br>
-Developers and operators use this skill to guide Windows desktop automation workflows, including launching applications, locating UI controls, clicking, typing, taking screenshots, OCR, and AI-assisted visual analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Windows desktop automation can capture visible sensitive information or operate active applications through screenshots, clicks, typing, and submissions. <br>
-Mitigation: Use it only when desktop automation is intended, keep passwords and private documents out of view, and require confirmation before screenshots, clicks, typing, submissions, or saved logs. <br>
-Risk: Runtime behavior depends on separately installed automation skills. <br>
-Mitigation: Review the dependent automation skills before use and install only the dependencies required for the intended workflow. <br>
+## Use Case:
 
+Developers, automation engineers, and operations users use this skill to plan Windows desktop automation workflows for launching applications, locating controls, clicking, typing, capturing screenshots, OCR, and AI-assisted visual analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiatian5/windows-gui-automation-cn) <br>
-- [windows-ui-automation](https://clawhub.ai/skills/windows-ui-automation) <br>
-- [win-mouse-native](https://clawhub.ai/skills/win-mouse-native) <br>
-- [midscene-computer-automation](https://clawhub.ai/skills/midscene-computer-automation) <br>
-- [windows-rpa](https://clawhub.ai/skills/windows-rpa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with PowerShell examples and workflow templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance for coordinating dependent Windows automation skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: Broad desktop control can perform unintended clicking or typing in active Windows sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, least-privileged Windows session and require confirmation before actions that click, type, or operate applications.
+
+Risk: Screenshots, OCR output, AI visual analysis, and logs may expose sensitive on-screen information.
+
+Mitigation: Close sensitive windows before use and treat captured images, OCR text, AI analysis, and logs as sensitive data.
+
+Risk: The skill depends on multiple automation skills that affect desktop control behavior.
+
+Mitigation: Pin and verify dependent automation skills where possible before installing or running workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiatian5/skills/windows-gui-automation-cn)
+- [windows-ui-automation](https://clawhub.ai/skills/windows-ui-automation)
+- [win-mouse-native](https://clawhub.ai/skills/win-mouse-native)
+- [midscene-computer-automation](https://clawhub.ai/skills/midscene-computer-automation)
+- [windows-rpa](https://clawhub.ai/skills/windows-rpa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline PowerShell examples and workflow templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing instructions for coordinating dependent Windows automation skills; no standalone executable artifact is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

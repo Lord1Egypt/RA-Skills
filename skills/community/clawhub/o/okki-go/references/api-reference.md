@@ -16,7 +16,7 @@
 ```http
 Authorization: ApiKey sk-your-key-here
 X-Okki-Install-Id: <anonymous install id>
-X-Okki-Skill-Version: 1.3.3
+X-Okki-Skill-Version: 1.3.4
 X-Okki-Skill-Runtime: <agent runtime>
 X-Okki-Source-Type: npm_wrapper
 X-Okki-Source-Package: @okki-global/okki-go-taroball
@@ -39,7 +39,7 @@ X-Okki-Agent-Model: <optional model name>
 3. [解锁公司](#3-解锁公司)
 4. [查看公司 Profile](#4-查看公司-profile)
 5. [获取公司联系人邮件](#5-获取公司联系人邮件)
-6. [搜索联系人](#6-搜索联系人)
+6. [联系人搜索（已下架）](#6-联系人搜索已下架)
 7. [发送批量开发信](#7-发送批量开发信)
 8. [发送个性化开发信](#8-发送个性化开发信)
 9. [查询邮件任务列表](#9-查询邮件任务列表)
@@ -292,76 +292,29 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 
 ---
 
-## 6. 搜索联系人
+## 6. 联系人搜索（已下架）
 
 **POST** `/api/v1/contacts/search`
 
-- 认证：必须
-- 计费：**每次请求扣 1 积分**（无论结果数量）
-- 独立于公司搜索，可直接按姓名/邮箱/职位跨公司搜索
+- 状态：**已下架**
+- 计费：不扣积分
+- 替代方案：先调用 `/api/v1/companies/unlock` 解锁公司，再通过 `/api/v1/companies/:companyHashId/profileEmails` 获取该公司的联系人邮箱
 
-### 请求体
-
-```json
-{
-  "name": "Alice Wang",
-  "title": "Procurement Manager",
-  "company_name": "Acme Corp",
-  "country_codes": "US",
-  "has_email": 1,
-  "has_linkedin": 1,
-  "employees_min": 50,
-  "employees_max": 500,
-  "size": 20,
-  "page": 1
-}
-```
-
-### 请求参数说明
-
-| 参数 | 类型 | 必填 | 约束 | 说明 |
-|------|------|------|------|------|
-| `name` | string | 否 | — | 联系人姓名（支持邮箱搜索，配合 `contact_match`）|
-| `contact_match` | string | 否 | `"email"` | 指定 `name` 字段按邮箱匹配 |
-| `title` | string | 否 | — | 职位关键词 |
-| `title_type` | string | 否 | — | 职位类型分类 |
-| `company_name` | string | 否 | — | 所属公司名称 |
-| `working_company` | string | 否 | — | 工作单位 |
-| `description` | string | 否 | — | 描述信息 |
-| `primary_industry_name` | string | 否 | — | 主行业名称 |
-| `country_codes` | string | 否 | ISO alpha-2 | 国家代码，多个用逗号分隔 |
-| `industry_codes` | string | 否 | — | 行业代码 |
-| `has_email` | integer | 否 | `0` / `1` | 是否有邮箱 |
-| `has_phone` | integer | 否 | `0` / `1` | 是否有电话 |
-| `has_linkedin` | integer | 否 | `0` / `1` | 是否有 LinkedIn |
-| `has_facebook` | integer | 否 | `0` / `1` | 是否有 Facebook |
-| `has_company_name` | integer | 否 | `0` / `1` | 是否有公司名 |
-| `employees_min` | integer | 否 | — | 所属公司最小员工数 |
-| `employees_max` | integer | 否 | — | 所属公司最大员工数 |
-| `size` | integer | 否 | 最大 100，默认 20 | 每页数量 |
-| `page` | integer | 否 | 默认 1 | 页码 |
-
-### 响应示例
+### 响应示例（410 Gone）
 
 ```json
 {
-  "list": [
-    {
-      "id": "contact_001",
-      "name": "Alice Wang",
-      "email": "alice@acme.com",
-      "phone": "+1-555-0123",
-      "linkedin": "https://linkedin.com/in/alicewang",
-      "title": "Procurement Manager",
-      "company": "Acme Corp",
-      "country": "US"
-    }
-  ],
-  "total": 8,
-  "page": 1,
-  "size": 20
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.11",
+  "title": "Contact Search Retired",
+  "status": 410,
+  "detail": "POST /api/v1/contacts/search has been retired. Use company unlock and profileEmails instead.",
+  "instance": "/api/v1/contacts/search",
+  "code": "contact_search_retired",
+  "replacement": "/api/v1/companies/:companyHashId/profileEmails"
 }
 ```
+
+> Skill 和 wrapper 不应再调用该接口。旧客户端收到 410 后应停止重试，并迁移到“搜索公司 → 解锁公司 → profileEmails”的流程。
 
 ---
 
@@ -379,6 +332,7 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 {
   "content": "Dear company_name, we would love to partner with you.",
   "body_format": "html",
+  "task_subject": "Germany Expo customer follow-up",
   "recipients": [
     {
       "email": "alice@acme.com",
@@ -396,6 +350,7 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 |------|------|------|------|------|
 | `content` | string | 是 | ≤50000 字符 | 邮件正文模板，可包含变量名（直接写变量名，不加 `{{}}`）|
 | `body_format` | string | 是 | `"text"` / `"html"` | 正文格式 |
+| `task_subject` | string | 否 | ≤255 字符 | 任务主题；提交时自动清理前后空白和不可见字符 |
 | `recipients` | array | 是 | 1–100 个 | 收件人列表 |
 | `recipients[].email` | string | 是 | 有效邮箱格式 | 收件人邮箱 |
 | `recipients[].subject` | string | 是 | ≤200 字符 | 邮件主题 |
@@ -424,6 +379,7 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 
 ```json
 {
+  "task_subject": "Personalized July campaign",
   "emails": [
     {
       "content": "Hi Alice, Acme Corp has been leading the textile industry...",
@@ -441,6 +397,7 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 
 | 参数 | 类型 | 必填 | 约束 | 说明 |
 |------|------|------|------|------|
+| `task_subject` | string | 否 | ≤255 字符 | 任务主题；提交时自动清理前后空白和不可见字符 |
 | `emails` | array | 是 | 1–100 个 | 邮件列表 |
 | `emails[].content` | string | 是 | ≤50000 字符 | 该封邮件的独立正文 |
 | `emails[].body_format` | string | 是 | `"text"` / `"html"` | 正文格式 |
@@ -477,6 +434,7 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 |------|------|--------|------|
 | `task_ids` | string | — | 逗号分隔任务 ID，如 `1001,1002` |
 | `subject` | string | — | 邮件主题模糊匹配 |
+| `task_subject` | string | — | 任务主题模糊匹配 |
 | `statuses` | string | — | 逗号分隔状态，可选值：`pending`/`requested`/`completed`/`partial`/`failed` |
 | `recipient_email` | string | — | 收件人邮箱精确匹配 |
 | `recipient_nickname` | string | — | 收件人昵称模糊匹配 |
@@ -508,6 +466,8 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
       "status": "completed",
       "sentCount": 48,
       "failedCount": 2,
+      "openedCount": 16,
+      "taskSubject": "Germany Expo customer follow-up",
       "createdAt": "2026-03-20T08:00:00.000Z",
       "completedAt": "2026-03-20T08:05:32.000Z"
     }
@@ -543,6 +503,8 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
   "status": "partial",
   "sentCount": 48,
   "failedCount": 2,
+  "openedCount": 16,
+  "taskSubject": "Germany Expo customer follow-up",
   "createdAt": "2026-03-20T08:00:00.000Z",
   "completedAt": "2026-03-20T08:05:32.000Z",
   "content": "Dear company_name, we have a great product for you.",
@@ -674,7 +636,7 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 | `POST /companies/unlock` | Points | 首次解锁扣 1 积分，同一 domain 30 天内重复免费 |
 | `GET /companies/:id/profile` | 无 | 完全免费（纯查询） |
 | `GET /companies/:id/profileEmails` | 无 | 完全免费（纯查询） |
-| `POST /contacts/search` | Points | 每次请求扣 1 积分（与结果数量无关） |
+| `POST /contacts/search` | 无 | 已下架，返回 410，不扣积分 |
 | `POST /emails/send/batch` | EDM 配额 | 每个收件人扣 1 配额；余额不足则全部退还并返回 402 |
 | `POST /emails/send/personalized` | EDM 配额 | 每封邮件扣 1 配额；中途不足则退还已扣并返回 402 |
 | `GET /emails/tasks` | 无 | 完全免费 |
@@ -703,6 +665,7 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 | 402 | `insufficient-credits` | 搜索积分或 EDM 配额不足 | 引导用户购买套餐/加购包 |
 | 403 | `forbidden` | Free 套餐无 EDM 发送权限 | 引导升级套餐 |
 | 404 | `not-found` | companyHashId 或资源不存在 | 确认 `companyHashId` 来自 `/companies/unlock` 响应；不要使用 free-search ID/raw `id` |
+| 410 | `contact_search_retired` | `/contacts/search` 已下架 | 使用 `/companies/unlock` + `/companies/:companyHashId/profileEmails` |
 | 429 | `rate-limit` / `quota-exceeded` | 速率超限（60次/分钟）或月/日配额超限 | 等待后重试；配额超限需等下月重置或购买加购包 |
 | 502 | `upstream-error` | EDM 第三方服务异常 | 稍后重试，已扣配额自动退还 |
 
@@ -714,6 +677,6 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
   "title": "Payment Required",
   "status": 402,
   "detail": "Insufficient points balance. Required: 1, Available: 0",
-  "instance": "/api/v1/contacts/search"
+  "instance": "/api/v1/companies/unlock"
 }
 ```

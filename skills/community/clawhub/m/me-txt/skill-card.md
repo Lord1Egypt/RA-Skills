@@ -1,40 +1,54 @@
-## Description: <br>
-Create, fetch, and validate me.txt personal identity files for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, fetch, and validate me.txt personal identity files for AI agents.
 
-## Publisher: <br>
-[rollsmorr1](https://clawhub.ai/user/rollsmorr1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rollsmorr1](https://clawhub.ai/user/rollsmorr1)
 
-## Use Case: <br>
-External users and developers use this skill to create public me.txt identity files, place them on websites, fetch existing files, and validate that they follow the expected markdown structure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Public me.txt files can expose private contact details, location information, secrets, or other sensitive personal information. <br>
-Mitigation: Review generated content before publishing and omit anything that should not be publicly indexed. <br>
-Risk: Optional npx helper commands and the metxt.org lookup fallback rely on external packages or services. <br>
-Mitigation: Use the helper only when the npm package is trusted, and avoid external lookup fallbacks for private or sensitive domains. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [me.txt homepage](https://metxt.org) <br>
-- [me.txt specification](https://metxt.org/spec) <br>
+## Use Case:
 
+External users and developers use this skill to create, retrieve, and validate me.txt files that describe personal identity information for AI agents.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and me.txt file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a me.txt file body, validation checklist, fetch URLs, and optional npx commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends unpinned npx commands that may download and execute mutable third-party code.
+
+Mitigation: Prefer manual me.txt creation and direct HTTPS fetches, or run an exact reviewed CLI version in a restricted environment without unnecessary credentials.
+
+Risk: A me.txt file can publish personal identity, contact, preference, and work information.
+
+Mitigation: Ask the user to approve each included section before publishing and omit sensitive or unnecessary personal details.
+
+## Reference(s):
+
+- [me.txt homepage](https://metxt.org)
+- [me.txt specification](https://metxt.org/spec)
+- [ClawHub skill listing](https://clawhub.ai/rollsmorr1/skills/me-txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and me.txt file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated me.txt content should be concise and include only sections with user-provided content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

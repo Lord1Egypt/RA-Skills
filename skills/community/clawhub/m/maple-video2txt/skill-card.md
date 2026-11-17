@@ -1,40 +1,57 @@
-## Description: <br>
-将本地视频或音频文件转写为 SRT 字幕文件和 TXT 纯文本文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将本地视频或音频文件转写为 SRT 字幕文件和 TXT 纯文本文件.
 
-## Publisher: <br>
-[Chentx1243](https://clawhub.ai/user/Chentx1243) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chentx1243](https://clawhub.ai/user/chentx1243)
 
-## Use Case: <br>
-Developers and external users use this skill to transcribe local media into timestamped subtitles and plain-text transcripts for reviewing or understanding video and audio content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store plain-text transcripts of media content on the local filesystem. <br>
-Mitigation: Choose output paths intentionally and avoid transcribing media whose transcript should not be stored locally. <br>
-Risk: The first run may download Whisper model files and install or use local Python dependencies. <br>
-Mitigation: Install only in an environment where local Python execution, package installation, and model downloads are acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe selected local video or audio files into timestamped SRT subtitles and plain TXT text for captioning, media review, and video understanding workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Chentx1243/maple-video2txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [SRT subtitle files, TXT transcript files, and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes transcript files to a chosen local output path and may download Whisper model files on first use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill uses unpinned Python dependency ranges, so installation may fetch newer package versions than originally tested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a controlled environment and review dependency resolution before deployment.
+
+Risk: The first run may download Whisper model files and create a local model cache.
+
+Mitigation: Run only where model downloads and local cache storage are acceptable.
+
+Risk: The script writes SRT and TXT files to user-selected output paths.
+
+Mitigation: Review input and output paths before execution and run it only on media files intentionally selected for transcription.
+
+## Reference(s):
+
+- [ClawHub skill release: maple-video2txt](https://clawhub.ai/chentx1243/skills/maple-video2txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; runtime output is SRT and TXT files plus progress logs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes SRT/TXT files to the selected output path, uses local media input, and may create a model cache directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

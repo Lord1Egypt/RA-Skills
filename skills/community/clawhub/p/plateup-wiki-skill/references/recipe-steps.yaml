@@ -1,0 +1,1971 @@
+---
+meta:
+  source_file: recipes.yaml
+  generated_from: ordered step prose; action terms are lexical matches, not inferred workflow semantics
+  duration_unit: seconds
+  duration_semantics: duration_details classifies only explicit wording; unknown is used when the source text does not identify the time role.
+recipe_steps:
+- recipe_id: steak
+  recipe_name_en: Steak
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  duration_mentions_seconds:
+  - 5.0
+  - 2.0
+  - 2.0
+  - 10.0
+  - 19.0
+  source_text: 'Cook Raw Meat: 5s Rare, +2s Medium, +2s Well-done, +10s to burn (19s total).'
+  duration_details:
+  - seconds: 5.0
+    role: cook_stage_increment
+    label: Rare
+  - seconds: 2.0
+    role: cook_stage_increment
+    label: Medium
+  - seconds: 2.0
+    role: cook_stage_increment
+    label: Well-done
+  - seconds: 10.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 19.0
+    role: total_duration
+    label: total
+- recipe_id: steak
+  recipe_name_en: Steak
+  section: steps
+  order: 2
+  action_terms:
+  - plate
+  - serve
+  duration_mentions_seconds: []
+  source_text: Plate and serve. A plated steak cannot be cooked further.
+  duration_details: []
+- recipe_id: bone_in_steaks
+  recipe_name_en: Bone-in Steaks
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  duration_mentions_seconds:
+  - 5.0
+  - 3.0
+  - 3.0
+  - 4.0
+  - 15.0
+  source_text: Cook 5s Rare, +3s Medium, +3s Well-done, +4s to burn (15s total).
+  duration_details:
+  - seconds: 5.0
+    role: cook_stage_increment
+    label: Rare
+  - seconds: 3.0
+    role: cook_stage_increment
+    label: Medium
+  - seconds: 3.0
+    role: cook_stage_increment
+    label: Well-done
+  - seconds: 4.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 15.0
+    role: total_duration
+    label: total
+- recipe_id: bone_in_steaks
+  recipe_name_en: Bone-in Steaks
+  section: steps
+  order: 2
+  action_terms:
+  - plate
+  - serve
+  duration_mentions_seconds: []
+  source_text: Plate and serve.
+  duration_details: []
+- recipe_id: bone_in_steaks
+  recipe_name_en: Bone-in Steaks
+  section: steps
+  order: 3
+  action_terms:
+  - plate
+  - portion
+  - discard
+  duration_mentions_seconds:
+  - 2.0
+  source_text: After eating, portion bone from plate (2s) and discard.
+  duration_details:
+  - seconds: 2.0
+    role: action_duration
+    label: portion
+- recipe_id: thick_cut_steaks
+  recipe_name_en: Thick Cut Steaks
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  duration_mentions_seconds:
+  - 10.0
+  - 8.0
+  - 8.0
+  - 8.0
+  - 34.0
+  source_text: Cook 10s Rare, +8s Medium, +8s Well-done, +8s to burn (34s total).
+  duration_details:
+  - seconds: 10.0
+    role: cook_stage_increment
+    label: Rare
+  - seconds: 8.0
+    role: cook_stage_increment
+    label: Medium
+  - seconds: 8.0
+    role: cook_stage_increment
+    label: Well-done
+  - seconds: 8.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 34.0
+    role: total_duration
+    label: total
+- recipe_id: thick_cut_steaks
+  recipe_name_en: Thick Cut Steaks
+  section: steps
+  order: 2
+  action_terms:
+  - plate
+  - serve
+  duration_mentions_seconds: []
+  source_text: Plate and serve.
+  duration_details: []
+- recipe_id: thin_cut_steaks
+  recipe_name_en: Thin Cut Steaks
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  duration_mentions_seconds:
+  - 4.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 7.0
+  source_text: Cook 4s Rare, +1s Medium, +1s Well-done, +1s to burn (7s total).
+  duration_details:
+  - seconds: 4.0
+    role: cook_stage_increment
+    label: Rare
+  - seconds: 1.0
+    role: cook_stage_increment
+    label: Medium
+  - seconds: 1.0
+    role: cook_stage_increment
+    label: Well-done
+  - seconds: 1.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 7.0
+    role: total_duration
+    label: total
+- recipe_id: thin_cut_steaks
+  recipe_name_en: Thin Cut Steaks
+  section: steps
+  order: 2
+  action_terms:
+  - plate
+  - serve
+  duration_mentions_seconds: []
+  source_text: Plate and serve.
+  duration_details: []
+- recipe_id: steak_sauce_mushroom
+  recipe_name_en: Steak Sauce - Mushroom
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine pot, water, and onion to make broth.
+  duration_details: []
+- recipe_id: steak_sauce_mushroom
+  recipe_name_en: Steak Sauce - Mushroom
+  section: steps
+  order: 2
+  action_terms:
+  - cook
+  - refill
+  duration_mentions_seconds:
+  - 15.0
+  - 3.0
+  source_text: 'Cook broth: 15s initially; 3s after refill; does not burn.'
+  duration_details:
+  - seconds: 15.0
+    role: cook_duration
+    label: cook
+  - seconds: 3.0
+    role: unknown
+    label: 
+- recipe_id: steak_sauce_mushroom
+  recipe_name_en: Steak Sauce - Mushroom
+  section: steps
+  order: 3
+  action_terms:
+  - chop
+  - combine
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Chop mushroom (1s) and combine with broth.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: steak_sauce_mushroom
+  recipe_name_en: Steak Sauce - Mushroom
+  section: steps
+  order: 4
+  action_terms:
+  - cook
+  duration_mentions_seconds:
+  - 5.0
+  source_text: Cook mushroom sauce (5s; does not burn).
+  duration_details:
+  - seconds: 5.0
+    role: cook_duration
+    label: cook
+- recipe_id: steak_sauce_mushroom
+  recipe_name_en: Steak Sauce - Mushroom
+  section: steps
+  order: 5
+  action_terms:
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine with plated steak; pot provides 10 portions.
+  duration_details: []
+- recipe_id: steak_sauce_red_wine_jus
+  recipe_name_en: Steak Sauce - Red Wine Jus
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - refill
+  duration_mentions_seconds:
+  - 15.0
+  - 3.0
+  source_text: Make broth from pot, water, and onion; cook 15s initially / 3s after refill (does not burn).
+  duration_details:
+  - seconds: 15.0
+    role: cook_duration
+    label: cook
+  - seconds: 3.0
+    role: cook_duration
+    label: cook
+- recipe_id: steak_sauce_red_wine_jus
+  recipe_name_en: Steak Sauce - Red Wine Jus
+  section: steps
+  order: 2
+  action_terms:
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine wine with broth.
+  duration_details: []
+- recipe_id: steak_sauce_red_wine_jus
+  recipe_name_en: Steak Sauce - Red Wine Jus
+  section: steps
+  order: 3
+  action_terms:
+  - cook
+  duration_mentions_seconds:
+  - 5.0
+  source_text: Cook jus 5s (does not burn).
+  duration_details:
+  - seconds: 5.0
+    role: cook_duration
+    label: cook
+- recipe_id: steak_sauce_red_wine_jus
+  recipe_name_en: Steak Sauce - Red Wine Jus
+  section: steps
+  order: 4
+  action_terms:
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine with plated steak; pot provides 10 portions.
+  duration_details: []
+- recipe_id: steak_topping_mushroom
+  recipe_name_en: Steak Topping - Mushroom
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Chop mushroom (1s).
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: steak_topping_mushroom
+  recipe_name_en: Steak Topping - Mushroom
+  section: steps
+  order: 2
+  action_terms:
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine with plated steak.
+  duration_details: []
+- recipe_id: steak_topping_tomato
+  recipe_name_en: Steak Topping - Tomato
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  duration_mentions_seconds:
+  - 0.5
+  source_text: Chop tomato (0.5s).
+  duration_details:
+  - seconds: 0.5
+    role: action_duration
+    label: chop
+- recipe_id: steak_topping_tomato
+  recipe_name_en: Steak Topping - Tomato
+  section: steps
+  order: 2
+  action_terms:
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine with plated steak.
+  duration_details: []
+- recipe_id: salad
+  recipe_name_en: Salad
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  duration_mentions_seconds:
+  - 1.0
+  - 0.5
+  source_text: Chop lettuce (1s); optionally chop tomato (0.5s).
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+  - seconds: 0.5
+    role: action_duration
+    label: chop
+- recipe_id: salad
+  recipe_name_en: Salad
+  section: steps
+  order: 2
+  action_terms:
+  - plate
+  duration_mentions_seconds: []
+  source_text: Plate chopped lettuce and optional chopped tomato.
+  duration_details: []
+- recipe_id: apple_salad
+  recipe_name_en: Apple Salad
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - combine
+  duration_mentions_seconds:
+  - 0.1
+  source_text: Chop egg (0.1s) and combine with oil to make mayonnaise.
+  duration_details:
+  - seconds: 0.1
+    role: action_duration
+    label: chop
+- recipe_id: apple_salad
+  recipe_name_en: Apple Salad
+  section: steps
+  order: 2
+  action_terms:
+  - chop
+  duration_mentions_seconds:
+  - 1.0
+  - 1.0
+  source_text: Chop lettuce (1s) and apple (1s).
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: apple_salad
+  recipe_name_en: Apple Salad
+  section: steps
+  order: 3
+  action_terms:
+  - plate
+  duration_mentions_seconds: []
+  source_text: Plate mayonnaise, chopped lettuce, chopped apple, and nuts.
+  duration_details: []
+- recipe_id: potato_salad
+  recipe_name_en: Potato Salad
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - cook
+  - add
+  duration_mentions_seconds:
+  - 1.0
+  - 5.0
+  source_text: Chop potato (1s); add to pot with water and cook 5s (does not burn).
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+  - seconds: 5.0
+    role: cook_duration
+    label: cook
+- recipe_id: potato_salad
+  recipe_name_en: Potato Salad
+  section: steps
+  order: 2
+  action_terms:
+  - chop
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Chop onion (1s).
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: potato_salad
+  recipe_name_en: Potato Salad
+  section: steps
+  order: 3
+  action_terms:
+  - chop
+  - combine
+  duration_mentions_seconds:
+  - 0.1
+  source_text: Chop egg (0.1s), combine with oil for mayonnaise.
+  duration_details:
+  - seconds: 0.1
+    role: action_duration
+    label: chop
+- recipe_id: potato_salad
+  recipe_name_en: Potato Salad
+  section: steps
+  order: 4
+  action_terms:
+  - plate
+  duration_mentions_seconds: []
+  source_text: Plate cooked potato, chopped onion, and mayonnaise.
+  duration_details: []
+- recipe_id: salad_toppings
+  recipe_name_en: Salad Toppings
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Chop onion (1s).
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: salad_toppings
+  recipe_name_en: Salad Toppings
+  section: steps
+  order: 2
+  action_terms:
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine chopped onion and/or olives with plated salad.
+  duration_details: []
+- recipe_id: pizza
+  recipe_name_en: Pizza
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - knead
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Knead flour (1s) or combine flour with water for dough.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: knead
+- recipe_id: pizza
+  recipe_name_en: Pizza
+  section: steps
+  order: 2
+  action_terms:
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine dough with oil for pizza base.
+  duration_details: []
+- recipe_id: pizza
+  recipe_name_en: Pizza
+  section: steps
+  order: 3
+  action_terms:
+  - chop
+  duration_mentions_seconds:
+  - 0.5
+  - 1.0
+  - 1.0
+  source_text: Chop tomato twice (0.5s + 1s) for sauce; chop cheese (1s).
+  duration_details:
+  - seconds: 0.5
+    role: action_duration
+    label: chop
+  - seconds: 1.0
+    role: unknown
+    label: 
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: pizza
+  recipe_name_en: Pizza
+  section: steps
+  order: 4
+  action_terms:
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine base, sauce, and chopped cheese for raw pizza.
+  duration_details: []
+- recipe_id: pizza
+  recipe_name_en: Pizza
+  section: steps
+  order: 5
+  action_terms:
+  - cook
+  duration_mentions_seconds:
+  - 8.0
+  - 8.0
+  source_text: Cook 8s; +8s to burn.
+  duration_details:
+  - seconds: 8.0
+    role: cook_duration
+    label: cook
+  - seconds: 8.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: pizza
+  recipe_name_en: Pizza
+  section: steps
+  order: 6
+  action_terms:
+  - portion
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Portion 1s onto plates; 4 portions.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: portion
+- recipe_id: mushroom_pizza
+  recipe_name_en: Mushroom Pizza
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - cook
+  - combine
+  - portion
+  duration_mentions_seconds:
+  - 1.0
+  - 8.0
+  - 8.0
+  - 1.0
+  source_text: Chop mushroom (1s), combine with raw pizza, cook 8s (+8s to burn), portion 1s; 4 portions.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+  - seconds: 8.0
+    role: cook_duration
+    label: cook
+  - seconds: 8.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 1.0
+    role: cook_duration
+    label: cook
+- recipe_id: onion_pizza
+  recipe_name_en: Onion Pizza
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - cook
+  - combine
+  - portion
+  duration_mentions_seconds:
+  - 1.0
+  - 8.0
+  - 8.0
+  - 1.0
+  source_text: Chop onion (1s), combine with raw pizza, cook 8s (+8s to burn), portion 1s; 4 portions.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+  - seconds: 8.0
+    role: cook_duration
+    label: cook
+  - seconds: 8.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 1.0
+    role: cook_duration
+    label: cook
+- recipe_id: dumplings
+  recipe_name_en: Dumplings
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - knead
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Knead flour (1s) or combine with water for dough.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: knead
+- recipe_id: dumplings
+  recipe_name_en: Dumplings
+  section: steps
+  order: 2
+  action_terms:
+  - chop
+  duration_mentions_seconds:
+  - 2.0
+  - 1.0
+  source_text: Chop raw meat (2s) and carrot (1s).
+  duration_details:
+  - seconds: 2.0
+    role: action_duration
+    label: chop
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: dumplings
+  recipe_name_en: Dumplings
+  section: steps
+  order: 3
+  action_terms:
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine chopped meat and carrot with dough.
+  duration_details: []
+- recipe_id: dumplings
+  recipe_name_en: Dumplings
+  section: steps
+  order: 4
+  action_terms:
+  - knead
+  duration_mentions_seconds:
+  - 0.1
+  source_text: Knead unwrapped dumplings (0.1s).
+  duration_details:
+  - seconds: 0.1
+    role: action_duration
+    label: knead
+- recipe_id: dumplings
+  recipe_name_en: Dumplings
+  section: steps
+  order: 5
+  action_terms:
+  - cook
+  - plate
+  - serve
+  duration_mentions_seconds:
+  - 1.0
+  - 3.0
+  source_text: Cook raw dumplings 1s; +3s to burn; plate and serve.
+  duration_details:
+  - seconds: 1.0
+    role: cook_duration
+    label: cook
+  - seconds: 3.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: dumpling_soy_sauce
+  recipe_name_en: Dumpling - Soy Sauce
+  section: steps
+  order: 1
+  action_terms: []
+  duration_mentions_seconds: []
+  source_text: After each customer in the group receives the main, soy sauce may be requested; place on the table or on an adjacent Conveyor/Grabber/Teleporter.
+  duration_details: []
+- recipe_id: seaweed
+  recipe_name_en: Seaweed
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - combine
+  duration_mentions_seconds:
+  - 1.0
+  - 3.0
+  source_text: Cook raw seaweed 1s; +3s to burn; combine with plated dumplings.
+  duration_details:
+  - seconds: 1.0
+    role: cook_duration
+    label: cook
+  - seconds: 3.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: black_coffee
+  recipe_name_en: Black Coffee
+  section: steps
+  order: 1
+  action_terms: []
+  duration_mentions_seconds: []
+  source_text: Grab a coffee cup from machine and place it back.
+  duration_details: []
+- recipe_id: black_coffee
+  recipe_name_en: Black Coffee
+  section: steps
+  order: 2
+  action_terms: []
+  duration_mentions_seconds:
+  - 3.0
+  source_text: Fill automatically in 3s (does not burn).
+  duration_details:
+  - seconds: 3.0
+    role: action_duration
+    label: fill
+- recipe_id: black_coffee
+  recipe_name_en: Black Coffee
+  section: steps
+  order: 3
+  action_terms:
+  - serve
+  duration_mentions_seconds: []
+  source_text: Grab and serve; provide requested sugar, milk, or cupcake stand item.
+  duration_details: []
+- recipe_id: iced_coffee
+  recipe_name_en: Iced Coffee
+  section: steps
+  order: 1
+  action_terms:
+  - refill
+  duration_mentions_seconds:
+  - 10.0
+  source_text: Wait for ice dispenser to refill (one ice every 10s).
+  duration_details:
+  - seconds: 10.0
+    role: unknown
+    label: 
+- recipe_id: iced_coffee
+  recipe_name_en: Iced Coffee
+  section: steps
+  order: 2
+  action_terms:
+  - combine
+  - serve
+  duration_mentions_seconds: []
+  source_text: Combine black coffee with ice and serve.
+  duration_details: []
+- recipe_id: latte
+  recipe_name_en: Latte
+  section: steps
+  order: 1
+  action_terms:
+  - refill
+  duration_mentions_seconds: []
+  source_text: Refill milk steamer with milk.
+  duration_details: []
+- recipe_id: latte
+  recipe_name_en: Latte
+  section: steps
+  order: 2
+  action_terms:
+  - serve
+  duration_mentions_seconds: []
+  source_text: Froth black coffee on milk steamer to make latte; serve.
+  duration_details: []
+- recipe_id: tea
+  recipe_name_en: Tea
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - steep
+  duration_mentions_seconds:
+  - 10.0
+  source_text: Combine tea pot, water, and tea bag; steep 10s.
+  duration_details:
+  - seconds: 10.0
+    role: action_duration
+    label: steep
+- recipe_id: tea
+  recipe_name_en: Tea
+  section: steps
+  order: 2
+  action_terms:
+  - serve
+  duration_mentions_seconds: []
+  source_text: Serve pot (up to four customers can share) and one tea cup per customer.
+  duration_details: []
+- recipe_id: affogato
+  recipe_name_en: Affogato
+  section: steps
+  order: 1
+  action_terms: []
+  duration_mentions_seconds:
+  - 3.0
+  source_text: Make coffee (3s automatic).
+  duration_details:
+  - seconds: 3.0
+    role: unknown
+    label: 
+- recipe_id: affogato
+  recipe_name_en: Affogato
+  section: steps
+  order: 2
+  action_terms:
+  - combine
+  - serve
+  - select
+  duration_mentions_seconds: []
+  source_text: Select vanilla ice cream and combine one scoop with coffee; serve.
+  duration_details: []
+- recipe_id: burgers
+  recipe_name_en: Burgers
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  duration_mentions_seconds:
+  - 2.0
+  - 2.0
+  source_text: Cook raw patty 2s; +2s to burn.
+  duration_details:
+  - seconds: 2.0
+    role: cook_duration
+    label: cook
+  - seconds: 2.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: burgers
+  recipe_name_en: Burgers
+  section: steps
+  order: 2
+  action_terms:
+  - combine
+  - plate
+  - serve
+  - add
+  duration_mentions_seconds: []
+  source_text: Combine cooked patty with burger bun; add requested toppings; plate and serve.
+  duration_details: []
+- recipe_id: fresh_patties
+  recipe_name_en: Fresh Patties
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  duration_mentions_seconds:
+  - 2.0
+  - 0.1
+  source_text: Chop raw meat 2s and egg 0.1s.
+  duration_details:
+  - seconds: 2.0
+    role: action_duration
+    label: chop
+  - seconds: 0.1
+    role: action_duration
+    label: chop
+- recipe_id: fresh_patties
+  recipe_name_en: Fresh Patties
+  section: steps
+  order: 2
+  action_terms:
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine chopped meat with cracked egg to make raw patty; continue burger process.
+  duration_details: []
+- recipe_id: burger_toppings
+  recipe_name_en: Burger Toppings
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - combine
+  duration_mentions_seconds:
+  - 1.0
+  - 0.5
+  source_text: Chop onion 1s and/or tomato 0.5s; combine with burger.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+  - seconds: 0.5
+    role: action_duration
+    label: chop
+- recipe_id: cheeseburgers
+  recipe_name_en: Cheeseburgers
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - combine
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Chop cheese 1s; combine with burger.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: sandwiches
+  recipe_name_en: Sandwiches
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - knead
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Knead flour 1s or combine with water for dough.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: knead
+- recipe_id: sandwiches
+  recipe_name_en: Sandwiches
+  section: steps
+  order: 2
+  action_terms:
+  - bake
+  duration_mentions_seconds:
+  - 20.0
+  - 20.0
+  source_text: Bake loaf 20s; +20s to burn.
+  duration_details:
+  - seconds: 20.0
+    role: cook_duration
+    label: bake
+  - seconds: 20.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: sandwiches
+  recipe_name_en: Sandwiches
+  section: steps
+  order: 3
+  action_terms:
+  - portion
+  duration_mentions_seconds:
+  - 0.5
+  source_text: Portion bread 0.5s (10 portions).
+  duration_details:
+  - seconds: 0.5
+    role: action_duration
+    label: portion
+- recipe_id: sandwiches
+  recipe_name_en: Sandwiches
+  section: steps
+  order: 4
+  action_terms:
+  - serve
+  duration_mentions_seconds: []
+  source_text: Serve customer-requested fillings (tomato, lettuce, ham), then bread slice; whole loaf may be served when accepted.
+  duration_details: []
+- recipe_id: sandwich_eggs
+  recipe_name_en: Sandwich - Eggs
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - serve
+  - crack
+  duration_mentions_seconds:
+  - 0.1
+  - 3.0
+  - 10.0
+  source_text: Crack egg 0.1s; cook 3s; +10s to burn; serve if requested.
+  duration_details:
+  - seconds: 0.1
+    role: action_duration
+    label: crack
+  - seconds: 3.0
+    role: cook_duration
+    label: cook
+  - seconds: 10.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: sandwich_toast
+  recipe_name_en: Sandwich - Toast
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - serve
+  - portion
+  duration_mentions_seconds:
+  - 0.5
+  - 3.0
+  - 3.0
+  source_text: Portion bread 0.5s; cook slice 3s; +3s to burn; serve.
+  duration_details:
+  - seconds: 0.5
+    role: action_duration
+    label: portion
+  - seconds: 3.0
+    role: cook_duration
+    label: cook
+  - seconds: 3.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: sandwich_mayo
+  recipe_name_en: Sandwich - Mayonnaise
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - serve
+  - crack
+  duration_mentions_seconds: []
+  source_text: Crack egg; combine with oil for mayonnaise; serve if requested.
+  duration_details: []
+- recipe_id: sandwich_cheese
+  recipe_name_en: Sandwich - Cheese
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - serve
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Chop cheese 1s; serve if requested.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: sandwich_toppers
+  recipe_name_en: Sandwich - Toppers
+  section: steps
+  order: 1
+  action_terms:
+  - serve
+  duration_mentions_seconds: []
+  source_text: Serve requested pickles or olives.
+  duration_details: []
+- recipe_id: club_sandwiches
+  recipe_name_en: Club Sandwiches
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - portion
+  - discard
+  - toast
+  duration_mentions_seconds:
+  - 20.0
+  - 10.0
+  - 1.0
+  source_text: Cook turkey 20s; +10s to burn. Portion turkey (1s) if requested; toast/bread is also assembled as ordered. Discard bones.
+  duration_details:
+  - seconds: 20.0
+    role: cook_duration
+    label: cook
+  - seconds: 10.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 1.0
+    role: action_duration
+    label: portion
+- recipe_id: giant_sandwiches
+  recipe_name_en: Giant Sandwiches
+  section: steps
+  order: 1
+  action_terms:
+  - serve
+  duration_mentions_seconds: []
+  source_text: Serve bread, then each requested filling in order, then final bread; each filling follows its own preparation method.
+  duration_details: []
+- recipe_id: turkey
+  recipe_name_en: Turkey
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  duration_mentions_seconds:
+  - 20.0
+  - 10.0
+  source_text: Cook raw turkey 20s; +10s to burn.
+  duration_details:
+  - seconds: 20.0
+    role: cook_duration
+    label: cook
+  - seconds: 10.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: turkey
+  recipe_name_en: Turkey
+  section: steps
+  order: 2
+  action_terms:
+  - portion
+  - discard
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Portion cooked turkey 1s; 4 portions; discard bones or use for gravy.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: portion
+- recipe_id: turkey_cranberry_sauce
+  recipe_name_en: Turkey - Cranberry Sauce
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - combine
+  - add
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Chop cranberry 1s; combine with sugar; add to plated turkey.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: turkey_gravy
+  recipe_name_en: Turkey - Gravy
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - refill
+  duration_mentions_seconds:
+  - 15.0
+  - 3.0
+  source_text: Make broth with pot, water, onion; cook 15s (3s after refill).
+  duration_details:
+  - seconds: 15.0
+    role: cook_duration
+    label: cook
+  - seconds: 3.0
+    role: cook_duration
+    label: cook
+- recipe_id: turkey_gravy
+  recipe_name_en: Turkey - Gravy
+  section: steps
+  order: 2
+  action_terms:
+  - cook
+  - combine
+  duration_mentions_seconds:
+  - 6.0
+  source_text: Combine broth with turkey bones; cook gravy 6s (does not burn); serves 20 portions.
+  duration_details:
+  - seconds: 6.0
+    role: cook_duration
+    label: cook
+- recipe_id: turkey_stuffing
+  recipe_name_en: Turkey - Stuffing
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - portion
+  - bake
+  - toast
+  duration_mentions_seconds:
+  - 20.0
+  - 20.0
+  - 3.0
+  - 3.0
+  - 1.0
+  source_text: Make dough and bake bread 20s (+20s to burn); portion slices, toast 3s (+3s), chop toast 1s.
+  duration_details:
+  - seconds: 20.0
+    role: cook_duration
+    label: bake
+  - seconds: 20.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 3.0
+    role: action_duration
+    label: portion
+  - seconds: 3.0
+    role: action_duration
+    label: portion
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: turkey_stuffing
+  recipe_name_en: Turkey - Stuffing
+  section: steps
+  order: 2
+  action_terms:
+  - cook
+  - combine
+  duration_mentions_seconds:
+  - 3.0
+  - 6.0
+  source_text: Combine breadcrumbs with chopped onion; cook stuffing 3s (+6s to burn); combine with turkey.
+  duration_details:
+  - seconds: 3.0
+    role: cook_duration
+    label: cook
+  - seconds: 6.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: pies
+  recipe_name_en: Pies
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - combine
+  - plate
+  - serve
+  duration_mentions_seconds:
+  - 5.0
+  - 20.0
+  - 3.0
+  source_text: Combine meat with pie crust; cook raw meat pie 5s (+20s to burn), or 3s when crust is pre-cooked; plate and serve.
+  duration_details:
+  - seconds: 5.0
+    role: cook_duration
+    label: cook
+  - seconds: 20.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 3.0
+    role: unknown
+    label: 
+- recipe_id: pies
+  recipe_name_en: Pies
+  section: base
+  order: 1
+  action_terms:
+  - combine
+  - knead
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Knead flour 1s or combine with water for dough.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: knead
+- recipe_id: pies
+  recipe_name_en: Pies
+  section: base
+  order: 2
+  action_terms:
+  - knead
+  - bake
+  duration_mentions_seconds:
+  - 2.0
+  - 5.0
+  - 20.0
+  source_text: Knead dough 2s for raw pie crust; optional pre-bake 5s (+20s to burn).
+  duration_details:
+  - seconds: 2.0
+    role: action_duration
+    label: knead
+  - seconds: 5.0
+    role: cook_duration
+    label: bake
+  - seconds: 20.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: mushroom_pie
+  recipe_name_en: Mushroom Pie
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - bake
+  duration_mentions_seconds: []
+  source_text: Combine mushroom with pie crust; bake as pie.
+  duration_details: []
+- recipe_id: vegetable_pies
+  recipe_name_en: Vegetable Pies
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - bake
+  duration_mentions_seconds: []
+  source_text: Combine carrot and broccoli with pie crust; bake as pie.
+  duration_details: []
+- recipe_id: cakes
+  recipe_name_en: Cakes (Pastry)
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - combine
+  - knead
+  duration_mentions_seconds:
+  - 0.1
+  - 2.0
+  source_text: 'Base batter: chop egg 0.1s; combine with flour and sugar in mixing bowl; knead 2s.'
+  duration_details:
+  - seconds: 0.1
+    role: action_duration
+    label: chop
+  - seconds: 2.0
+    role: action_duration
+    label: knead
+- recipe_id: cakes
+  recipe_name_en: Cakes (Pastry)
+  section: steps
+  order: 2
+  action_terms:
+  - cook
+  - combine
+  duration_mentions_seconds:
+  - 2.0
+  - 2.0
+  source_text: 'Chocolate flavor: cook chocolate 2s (+2s to burn), then combine into cake recipe.'
+  duration_details:
+  - seconds: 2.0
+    role: cook_duration
+    label: cook
+  - seconds: 2.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: sponge_cake
+  recipe_name_en: Sponge Cake
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - portion
+  - bake
+  - add
+  duration_mentions_seconds:
+  - 45.0
+  - 12.0
+  - 5.0
+  - 1.0
+  source_text: Combine batter with milk; bake in cake tin 45s (+12s to burn), or microwave 5s; add flavor; portion 1s; 6 portions.
+  duration_details:
+  - seconds: 45.0
+    role: cook_duration
+    label: bake
+  - seconds: 12.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 5.0
+    role: unknown
+    label: 
+  - seconds: 1.0
+    role: action_duration
+    label: portion
+- recipe_id: cupcake
+  recipe_name_en: Cupcake
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - portion
+  - bake
+  - add
+  duration_mentions_seconds:
+  - 12.0
+  - 12.0
+  - 1.0
+  source_text: Combine batter and milk; bake in cupcake tray 12s (+12s); portion 1s; add flavor; 4 portions.
+  duration_details:
+  - seconds: 12.0
+    role: cook_duration
+    label: bake
+  - seconds: 12.0
+    role: cook_duration
+    label: bake
+  - seconds: 1.0
+    role: action_duration
+    label: portion
+- recipe_id: doughnut
+  recipe_name_en: Doughnut
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - portion
+  - fry
+  - rise
+  - add
+  duration_mentions_seconds:
+  - 10.0
+  - 2.0
+  source_text: Combine batter and milk; rise 10s in tray. Portion doughnut, fry in oil 2s, portion each; add flavor; 12 portions.
+  duration_details:
+  - seconds: 10.0
+    role: unknown
+    label: 
+  - seconds: 2.0
+    role: action_duration
+    label: portion
+- recipe_id: brownies
+  recipe_name_en: Brownies
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - portion
+  - bake
+  duration_mentions_seconds:
+  - 9.0
+  - 20.0
+  - 1.0
+  source_text: Combine chocolate flavor with batter; bake 9s (+20s to burn); portion 1s; 6 portions.
+  duration_details:
+  - seconds: 9.0
+    role: cook_duration
+    label: bake
+  - seconds: 20.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 1.0
+    role: action_duration
+    label: portion
+- recipe_id: cake_flavour_coffee
+  recipe_name_en: Cake Flavour - Coffee
+  section: steps
+  order: 1
+  action_terms: []
+  duration_mentions_seconds:
+  - 3.0
+  source_text: Make coffee (3s automatic); use as cake flavor.
+  duration_details:
+  - seconds: 3.0
+    role: unknown
+    label: 
+- recipe_id: cake_flavour_lemon
+  recipe_name_en: Cake Flavour - Lemon
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  duration_mentions_seconds:
+  - 1.0
+  source_text: Chop lemon 1s; use as cake flavor.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: spaghetti
+  recipe_name_en: Spaghetti
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - plate
+  duration_mentions_seconds:
+  - 2.0
+  source_text: Cook spaghetti in pot with water for 2s; dispose water according to selected variant; plate serves 2 portions.
+  duration_details:
+  - seconds: 2.0
+    role: unknown
+    label: 
+- recipe_id: spaghetti
+  recipe_name_en: Spaghetti
+  section: steps
+  order: 2
+  action_terms:
+  - chop
+  - combine
+  duration_mentions_seconds:
+  - 0.5
+  - 1.0
+  source_text: Chop tomato twice (0.5s + 1s) for sauce; combine with plain spaghetti.
+  duration_details:
+  - seconds: 0.5
+    role: action_duration
+    label: chop
+  - seconds: 1.0
+    role: unknown
+    label: 
+- recipe_id: traditional_recipe
+  recipe_name_en: Traditional Recipe
+  section: steps
+  order: 1
+  action_terms: []
+  duration_mentions_seconds: []
+  source_text: Pasta water may be poured into sinks.
+  duration_details: []
+- recipe_id: extra_starch
+  recipe_name_en: Extra Starch
+  section: steps
+  order: 1
+  action_terms: []
+  duration_mentions_seconds: []
+  source_text: Pasta water cannot be poured into sinks; customers pay extra.
+  duration_details: []
+- recipe_id: spaghetti_bolognese
+  recipe_name_en: Spaghetti Bolognese
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - combine
+  duration_mentions_seconds:
+  - 2.0
+  - 2.0
+  - 3.0
+  source_text: Cook mince 2s (+2s to burn); make tomato sauce; combine with mince in pot; cook sauce 3s (does not burn); combine with pasta.
+  duration_details:
+  - seconds: 2.0
+    role: cook_duration
+    label: cook
+  - seconds: 2.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 3.0
+    role: cook_duration
+    label: cook
+- recipe_id: cheesy_spaghetti
+  recipe_name_en: Cheesy Spaghetti
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - cook
+  - combine
+  - knead
+  duration_mentions_seconds:
+  - 2.0
+  - 1.0
+  - 1.0
+  source_text: Cook flour and butter roux 2s (does not burn); combine milk and knead 1s twice to make white sauce; chop cheese 1s; combine with pasta.
+  duration_details:
+  - seconds: 2.0
+    role: cook_duration
+    label: cook
+  - seconds: 1.0
+    role: action_duration
+    label: knead
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+- recipe_id: lasagne
+  recipe_name_en: Lasagne
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - portion
+  duration_mentions_seconds:
+  - 20.0
+  - 10.0
+  - 1.0
+  source_text: Layer bolognese, pasta sheet, white sauce twice; cook 20s (+10s to burn); portion 1s; 4 portions.
+  duration_details:
+  - seconds: 20.0
+    role: cook_duration
+    label: cook
+  - seconds: 10.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 1.0
+    role: action_duration
+    label: portion
+- recipe_id: scoops
+  recipe_name_en: Scoops
+  section: steps
+  order: 1
+  action_terms:
+  - serve
+  - add
+  duration_mentions_seconds: []
+  source_text: Serve sundae glass; add requested 2–4 scoops.
+  duration_details: []
+- recipe_id: homemade
+  recipe_name_en: 'Sundaes II: Homemade'
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - serve
+  - portion
+  - freeze
+  - mix
+  - add
+  duration_mentions_seconds:
+  - 5.0
+  - 2.0
+  - 1.0
+  source_text: Combine sugar and milk in bowl; freeze 5s; add chocolate, strawberry, or neither for vanilla; mix 2s; portion 1s (5 portions); serve requested 2–4 scoops in glass.
+  duration_details:
+  - seconds: 5.0
+    role: unknown
+    label: 
+  - seconds: 2.0
+    role: unknown
+    label: 
+  - seconds: 1.0
+    role: action_duration
+    label: portion
+- recipe_id: sundae_syrups
+  recipe_name_en: Sundae Syrups
+  section: steps
+  order: 1
+  action_terms:
+  - serve
+  duration_mentions_seconds: []
+  source_text: Serve requested syrup; bottles may be placed on table or buffet.
+  duration_details: []
+- recipe_id: sundae_toppings
+  recipe_name_en: Sundae Toppings
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - serve
+  duration_mentions_seconds:
+  - 2.0
+  source_text: Serve requested cranberry; chop nuts 2s before serving.
+  duration_details:
+  - seconds: 2.0
+    role: action_duration
+    label: chop
+- recipe_id: giant_sundaes
+  recipe_name_en: Giant Sundaes
+  section: steps
+  order: 1
+  action_terms:
+  - serve
+  duration_mentions_seconds: []
+  source_text: Serve requested flavors and any requested toppings/syrup.
+  duration_details: []
+- recipe_id: fish
+  recipe_name_en: Fish
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - plate
+  - serve
+  duration_mentions_seconds:
+  - 7.0
+  - 14.0
+  - 4.0
+  - 6.0
+  source_text: Cook blue fish 7s (+14s to burn) or pink fish 4s (+6s to burn); plate and serve.
+  duration_details:
+  - seconds: 7.0
+    role: cook_duration
+    label: cook
+  - seconds: 14.0
+    role: burn_delay
+    label: burn threshold
+  - seconds: 4.0
+    role: unknown
+    label: 
+  - seconds: 6.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: fish
+  recipe_name_en: Fish
+  section: steps
+  order: 2
+  action_terms: []
+  duration_mentions_seconds: []
+  source_text: Providers vary fish selection by day/cards.
+  duration_details: []
+- recipe_id: crab_cake
+  recipe_name_en: Crab Cake
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - cook
+  - combine
+  duration_mentions_seconds:
+  - 1.0
+  - 0.1
+  - 5.0
+  - 6.0
+  source_text: Chop crab 1s and egg 0.1s; combine with cracked egg then flour; cook 5s (+6s to burn).
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+  - seconds: 0.1
+    role: action_duration
+    label: chop
+  - seconds: 5.0
+    role: cook_duration
+    label: cook
+  - seconds: 6.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: fish_fillet
+  recipe_name_en: Fish Fillet
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - cook
+  duration_mentions_seconds:
+  - 2.0
+  - 3.0
+  - 4.0
+  source_text: Chop raw fillet 2s; cook 3s (+4s to burn).
+  duration_details:
+  - seconds: 2.0
+    role: action_duration
+    label: chop
+  - seconds: 3.0
+    role: cook_duration
+    label: cook
+  - seconds: 4.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: oysters
+  recipe_name_en: Oysters
+  section: steps
+  order: 1
+  action_terms:
+  - chop
+  - plate
+  duration_mentions_seconds:
+  - 0.2
+  source_text: Chop/shuck 2–3 oysters, 0.2s each; plate all together.
+  duration_details:
+  - seconds: 0.2
+    role: action_duration
+    label: chop
+- recipe_id: spiny_fish
+  recipe_name_en: Spiny Fish
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - portion
+  - discard
+  duration_mentions_seconds:
+  - 1.0
+  - 4.0
+  - 8.0
+  source_text: Portion spines from raw fish 1s and discard; cook deboned fish 4s (+8s to burn).
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: portion
+  - seconds: 4.0
+    role: cook_duration
+    label: cook
+  - seconds: 8.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: tacos
+  recipe_name_en: Tacos
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - combine
+  - portion
+  - add
+  duration_mentions_seconds:
+  - 2.0
+  - 1.0
+  source_text: Cook mince 2s; combine tortilla with taco tray; add cooked mince; portion 1s; tray yields 4 portions.
+  duration_details:
+  - seconds: 2.0
+    role: cook_duration
+    label: cook
+  - seconds: 1.0
+    role: action_duration
+    label: portion
+- recipe_id: tacos
+  recipe_name_en: Tacos
+  section: steps
+  order: 2
+  action_terms:
+  - serve
+  duration_mentions_seconds: []
+  source_text: Alternatively serve the divisible tray for customers to take portions.
+  duration_details: []
+- recipe_id: hot_dogs
+  recipe_name_en: Hot Dogs
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - combine
+  - plate
+  - serve
+  duration_mentions_seconds:
+  - 3.0
+  - 4.0
+  source_text: Cook raw hot dog 3s (+4s to burn); combine with bun; plate and serve.
+  duration_details:
+  - seconds: 3.0
+    role: cook_duration
+    label: cook
+  - seconds: 4.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: hot_dogs
+  recipe_name_en: Hot Dogs
+  section: steps
+  order: 2
+  action_terms: []
+  duration_mentions_seconds: []
+  source_text: Provide ketchup or mustard if requested.
+  duration_details: []
+- recipe_id: fajitas
+  recipe_name_en: Fajitas
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - combine
+  duration_mentions_seconds: []
+  source_text: Combine Frying Pan with chopped meat and cook.
+  duration_details: []
+- recipe_id: fajitas
+  recipe_name_en: Fajitas
+  section: steps
+  order: 2
+  action_terms:
+  - cook
+  - add
+  duration_mentions_seconds: []
+  source_text: Optionally add chopped bell pepper and/or onion to the pan; cook after each addition.
+  duration_details: []
+- recipe_id: fajitas
+  recipe_name_en: Fajitas
+  section: steps
+  order: 3
+  action_terms:
+  - serve
+  - reheat
+  duration_mentions_seconds: []
+  source_text: Serve the pan item while sizzling; if it cools, reheat before serving.
+  duration_details: []
+- recipe_id: fajitas
+  recipe_name_en: Fajitas
+  section: steps
+  order: 4
+  action_terms:
+  - chop
+  - combine
+  - serve
+  duration_mentions_seconds: []
+  source_text: Chop lettuce on a Counter; combine a Tortilla with chopped lettuce and serve alongside the fajitas.
+  duration_details: []
+- recipe_id: fajitas
+  recipe_name_en: Fajitas
+  section: steps
+  order: 5
+  action_terms:
+  - chop
+  - combine
+  - serve
+  duration_mentions_seconds: []
+  source_text: For cheese or tomato extras, chop the requested ingredient and combine it with a Tortilla; serve alongside the main.
+  duration_details: []
+- recipe_id: breakfast
+  recipe_name_en: Breakfast
+  section: steps
+  order: 1
+  action_terms:
+  - combine
+  - knead
+  - bake
+  duration_mentions_seconds:
+  - 1.0
+  - 20.0
+  - 20.0
+  source_text: Knead flour 1s or combine with water for dough; bake dough 20s (+20s to burn) as bread.
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: knead
+  - seconds: 20.0
+    role: cook_duration
+    label: bake
+  - seconds: 20.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: breakfast
+  recipe_name_en: Breakfast
+  section: steps
+  order: 2
+  action_terms:
+  - cook
+  - serve
+  - portion
+  - toast
+  duration_mentions_seconds:
+  - 0.5
+  - 3.0
+  - 3.0
+  source_text: Portion slice 0.5s (10 portions); cook slice 3s (+3s to burn) as toast; serve.
+  duration_details:
+  - seconds: 0.5
+    role: action_duration
+    label: portion
+  - seconds: 3.0
+    role: cook_duration
+    label: cook
+  - seconds: 3.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: stir_fry
+  recipe_name_en: Stir Fry
+  section: steps
+  order: 1
+  action_terms:
+  - cook
+  - combine
+  duration_mentions_seconds:
+  - 2.0
+  - 10.0
+  source_text: Combine wok with raw rice; cook 2s (+10s to burn).
+  duration_details:
+  - seconds: 2.0
+    role: cook_duration
+    label: cook
+  - seconds: 10.0
+    role: burn_delay
+    label: burn threshold
+- recipe_id: stir_fry
+  recipe_name_en: Stir Fry
+  section: steps
+  order: 2
+  action_terms:
+  - chop
+  - cook
+  - add
+  duration_mentions_seconds:
+  - 1.0
+  - 2.0
+  - 10.0
+  source_text: Chop carrot and/or broccoli 1s; add one vegetable and cook 2s (+10s).
+  duration_details:
+  - seconds: 1.0
+    role: action_duration
+    label: chop
+  - seconds: 2.0
+    role: cook_duration
+    label: cook
+  - seconds: 10.0
+    role: cook_duration
+    label: cook
+- recipe_id: stir_fry
+  recipe_name_en: Stir Fry
+  section: steps
+  order: 3
+  action_terms:
+  - cook
+  - plate
+  - serve
+  - add
+  duration_mentions_seconds:
+  - 2.0
+  - 10.0
+  source_text: Optionally add second vegetable and cook 2s (+10s); add requested bamboo/mushroom/meat; plate and serve.
+  duration_details:
+  - seconds: 2.0
+    role: cook_duration
+    label: cook
+  - seconds: 10.0
+    role: cook_duration
+    label: cook

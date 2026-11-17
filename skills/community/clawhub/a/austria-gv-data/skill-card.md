@@ -1,41 +1,50 @@
-## Description: <br>
-Austrian federal portal helper that searches oesterreich.gv.at, uses fetched official pages, and answers only when explicit Österreich-GV scope keywords are present. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Austrian federal portal (oesterreich.gv.at). Site-restricted Brave search, use host auto-fetched pages, answer with byte-identical source URLs. Only on explicit Österreich-GV keywords.
 
-## Publisher: <br>
-[maximedogawa](https://clawhub.ai/user/maximedogawa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maximedogawa](https://clawhub.ai/user/maximedogawa)
 
-## Use Case: <br>
-External users and agents use this skill to answer Austrian government-service questions from official oesterreich.gv.at pages, with scoped search, source-restricted fetching, and cited German or English responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User topics are sent to web search and fetch tools. <br>
-Mitigation: Avoid including unnecessary personal details in prompts. <br>
-Risk: Administrative or legal conclusions may be incomplete or outdated if read without the cited official page context. <br>
-Mitigation: Verify important conclusions against the cited oesterreich.gv.at pages and seek binding interpretation from the proper authority or a lawyer when needed. <br>
+## Use Case:
 
+External users and agents use this skill to answer Austrian federal-portal questions from official oesterreich.gv.at pages when explicit Österreich-GV trigger phrases are present. It is intended for sourced informational responses, including legal or administrative topics, rather than binding legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maximedogawa/austria-gv-data) <br>
-- [Austrian federal portal](https://www.oesterreich.gv.at/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown answer with source URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers must include a Quellen or Sources section listing each oesterreich.gv.at URL used in the turn.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Legal or administrative answers may be mistaken for binding advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present answers as informational, cite only oesterreich.gv.at source pages, and direct users to a lawyer or official Bescheid process for binding interpretation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maximedogawa/skills/austria-gv-data)
+- [Austrian federal portal](https://www.oesterreich.gv.at/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown answer with source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires source-backed answers from oesterreich.gv.at pages and a final Quellen/Sources section.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

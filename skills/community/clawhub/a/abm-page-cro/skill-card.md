@@ -1,41 +1,53 @@
-## Description: <br>
-Helps agents audit marketing pages and recommend conversion rate optimization improvements for value proposition, calls to action, trust signals, objections, friction, experiments, and copy alternatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents analyze marketing pages and recommend conversion improvements across value proposition, headlines, CTAs, visual hierarchy, trust signals, objections, friction, and test ideas.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing, growth, and product teams use this skill to evaluate homepages, landing pages, pricing pages, feature pages, and blog posts for conversion blockers. It produces prioritized CRO recommendations, experiment ideas, and copy alternatives tailored to the page type and conversion goal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CRO recommendations may be based on incomplete, stale, or unrepresentative page and traffic context. <br>
-Mitigation: Validate recommendations against current analytics, traffic source data, user research, and controlled A/B tests before broad rollout. <br>
-Risk: The skill may rely on a local product-marketing context note that contains sensitive or outdated business details. <br>
-Mitigation: Review the local context file before use and remove confidential, obsolete, or irrelevant details. <br>
+## Use Case:
 
+Marketing, growth, product, and web teams use this skill to audit homepages, landing pages, pricing pages, feature pages, and blog posts for conversion barriers. The skill produces prioritized CRO recommendations, A/B test ideas, and alternative headline or CTA copy.
 
-## Reference(s): <br>
-- [Page CRO Experiment Ideas](references/experiments.md) <br>
-- [ClawHub Page Cro release](https://clawhub.ai/mariokarras/abm-page-cro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown recommendations organized into quick wins, high-impact changes, test ideas, and copy alternatives] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local product-marketing context note when present; does not execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: CRO suggestions involving tracking, personalization, enrichment, hidden fields, or gated downloads may create privacy, consent, or opt-out obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review consent, privacy notices, data minimization, opt-out handling, and legal requirements before implementation.
+
+Risk: Marketing-page recommendations are advisory and may be incorrect for a specific audience, traffic source, or conversion goal.
+
+Mitigation: Review recommendations with the responsible marketing or product team and validate material changes through controlled experiments where appropriate.
+
+## Reference(s):
+
+- [Page CRO Experiment Ideas](artifact/references/experiments.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are organized as quick wins, high-impact changes, test ideas, and copy alternatives.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact metadata reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

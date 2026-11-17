@@ -1,41 +1,52 @@
-## Description: <br>
-Manage Nginx Proxy Manager (NPM) for reverse proxy and SSL termination to internal services like staging/prod apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Nginx Proxy Manager (NPM) for reverse proxy and SSL termination to internal services like staging/prod apps.
 
-## Publisher: <br>
-[mw-slc](https://clawhub.ai/user/mw-slc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mw-slc](https://clawhub.ai/user/mw-slc)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Nginx Proxy Manager proxy hosts, SSL certificates, HTTPS settings, websocket support, and routing for staging or production services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: NPM admin credentials may be exposed or mishandled. <br>
-Mitigation: Store credentials outside the skill, use environment variables or a local secret store, and avoid logging or publishing real tokens. <br>
-Risk: Proxy, DNS, upstream, or SSL changes can affect production traffic. <br>
-Mitigation: Confirm the domain, DNS target, upstream host and port, and SSL options before applying changes; export or document existing production settings first. <br>
-Risk: HSTS or HTTPS redirect changes can cause redirect loops or hard-to-reverse browser behavior. <br>
-Mitigation: Validate routing and certificates first, apply changes to staging when possible, and enable HSTS only after validation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mw-slc/nginx-proxy-manager) <br>
+## Use Case:
 
+Developers and operators use this skill to configure Nginx Proxy Manager reverse proxy hosts, SSL certificates, HTTPS redirects, websocket support, and domain routing for internal staging or production services.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses placeholders for domains, hosts, credentials, and upstream services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Credentials or tokens could be exposed if supplied directly in prompts or hardcoded into shared skill content.
+
+Mitigation: Provide NPM credentials through environment variables or a local secret store, and review shared copies for real domains, IPs, emails, and tokens.
+
+Risk: Incorrect production proxy or SSL changes could disrupt application traffic.
+
+Mitigation: Review production changes before applying them, document or export previous values, and apply changes to staging first when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mw-slc/skills/nginx-proxy-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes checklist-style operational guidance for Nginx Proxy Manager changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

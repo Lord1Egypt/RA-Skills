@@ -4,9 +4,13 @@ set -eu
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 SKILL_DIR=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 PACKAGE_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/../.." && pwd)
-INSTALL_BASE=${REVDOKU_INSTALL_BASE:-https://raw.githubusercontent.com/revdoku/revdoku/main}
 JQ_VERSION=1.8.1
 JQ_BASE_URL=https://github.com/jqlang/jq/releases/download/jq-${JQ_VERSION}
+JQ_TEMP_DIR=
+trap '[ -z "$JQ_TEMP_DIR" ] || rm -rf "$JQ_TEMP_DIR"' EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+trap 'exit 129' HUP
 
 die() {
   echo "error: $1" >&2
@@ -25,24 +29,18 @@ sha256_file() {
   fi
 }
 
-download_file() {
-  case "$INSTALL_BASE" in
-    file://*)
-      cp "${INSTALL_BASE#file://}/$1" "$2"
-      return
-      ;;
-  esac
-  command -v curl >/dev/null 2>&1 || die "requires curl"
-  curl -fsSL "${INSTALL_BASE%/}/$1" -o "$2"
-}
-
 ensure_cli() {
-  if [ -x "$SKILL_DIR/bin/revdoku" ] || [ -x "$PACKAGE_ROOT/bin/revdoku" ]; then
+  # Hub installers may write every file with mode 0644. The explicitly
+  # referenced shell payload is runnable through bash without chmod.
+  if [ -f "$SCRIPT_DIR/revdoku-cli.sh" ] && [ ! -L "$SCRIPT_DIR/revdoku-cli.sh" ]; then
     return
   fi
-  mkdir -p "$SKILL_DIR/bin"
-  download_file "skills/revdoku/bin/revdoku" "$SKILL_DIR/bin/revdoku"
-  chmod 0755 "$SKILL_DIR/bin/revdoku"
+  # Source checkouts keep the generated public CLI in the package.
+  # A missing executable means the installation is incomplete, not an update.
+  if [ -f "$PACKAGE_ROOT/src/revdoku.sh.in" ] && [ -x "$PACKAGE_ROOT/bin/revdoku" ] && [ ! -L "$PACKAGE_ROOT/bin/revdoku" ]; then
+    return
+  fi
+  die "bundled Revdoku CLI is missing or not executable; reinstall the complete skill from its original trusted source in the same scope"
 }
 
 ensure_jq() {
@@ -61,31 +59,42 @@ ensure_jq() {
   esac
 
   mkdir -p "$SKILL_DIR/bin"
-  tmp=$(mktemp)
+  JQ_TEMP_DIR=$(mktemp -d "$SKILL_DIR/bin/.jq.XXXXXX")
+  tmp="$JQ_TEMP_DIR/jq"
   command -v curl >/dev/null 2>&1 || die "requires curl"
-  curl -fsSL "$JQ_BASE_URL/$asset" -o "$tmp"
+  curl -q --proto '=https' --proto-redir '=https' -fsSL "$JQ_BASE_URL/$asset" -o "$tmp"
   actual=$(sha256_file "$tmp")
   if [ "$actual" != "$expected" ]; then
     rm -f "$tmp"
     die "downloaded jq checksum mismatch"
   fi
+  chmod 0755 "$tmp"
   mv "$tmp" "$SKILL_DIR/bin/jq"
-  chmod 0755 "$SKILL_DIR/bin/jq"
+  rm -rf "$JQ_TEMP_DIR"
+  JQ_TEMP_DIR=
 }
 
 ensure_cli
-ensure_jq
+offline=false
+for arg in "$@"; do
+  case "$arg" in --dry-run|--help|-h|help|--version|version) offline=true ;; esac
+done
+if [ "$offline" = false ]; then ensure_jq; fi
 
 PATH="$SKILL_DIR/bin:$PATH"
 export PATH
 
-if [ -x "$SKILL_DIR/bin/revdoku" ]; then
-  exec "$SKILL_DIR/bin/revdoku" "$@"
+# Preserve the Skill entry path through the CLI's browser sign-in.
+REVDOKU_SIGNUP_MEDIUM=skill
+export REVDOKU_SIGNUP_MEDIUM
+
+if [ -f "$SKILL_DIR/VERSION" ]; then
+  REVDOKU_CLIENT_VERSION_FILE="$SKILL_DIR/VERSION"
+  export REVDOKU_CLIENT_VERSION_FILE
 fi
 
-if [ -x "$PACKAGE_ROOT/bin/revdoku" ]; then
-  exec "$PACKAGE_ROOT/bin/revdoku" "$@"
+if [ -f "$SCRIPT_DIR/revdoku-cli.sh" ] && [ ! -L "$SCRIPT_DIR/revdoku-cli.sh" ]; then
+  exec bash "$SCRIPT_DIR/revdoku-cli.sh" "$@"
 fi
 
-REPO_ROOT=$(CDPATH= cd -- "$PACKAGE_ROOT/../../.." && pwd)
-exec "$REPO_ROOT/bin/revdoku" "$@"
+exec "$PACKAGE_ROOT/bin/revdoku" "$@"

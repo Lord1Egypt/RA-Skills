@@ -1,0 +1,59 @@
+{
+  "coverage": "GB2312 level one plus current demo and UI characters; other characters use system fallback",
+  "fonts": [
+    {
+      "file": "elegant.woff2",
+      "family": "Noto Serif SC",
+      "source": "https://github.com/google/fonts/tree/main/ofl/notoserifsc",
+      "license": "elegant-OFL.txt"
+    },
+    {
+      "file": "business.woff2",
+      "family": "Noto Sans SC",
+      "source": "https://github.com/google/fonts/tree/main/ofl/notosanssc",
+      "license": "business-OFL.txt"
+    },
+    {
+      "file": "brush.woff2",
+      "family": "Ma Shan Zheng",
+      "source": "https://github.com/google/fonts/tree/main/ofl/mashanzheng",
+      "license": "brush-OFL.txt"
+    },
+    {
+      "file": "playful.woff2",
+      "family": "ZCOOL KuaiLe",
+      "source": "https://github.com/google/fonts/tree/main/ofl/zcoolkuaile",
+      "license": "playful-OFL.txt"
+    },
+    {
+      "file": "wenkai.woff2",
+      "family": "LXGW WenKai TC",
+      "source": "https://github.com/google/fonts/tree/main/ofl/lxgwwenkaitc",
+      "license": "wenkai-OFL.txt"
+    },
+    {
+      "file": "inter.woff2",
+      "family": "Inter",
+      "source": "https://rsms.me/inter/",
+      "license": "inter-OFL.txt"
+    },
+    {
+      "file": "lora.woff2",
+      "family": "Lora",
+      "source": "https://github.com/cyrealtype/Lora-Cyrillic",
+      "license": "lora-OFL.txt"
+    },
+    {
+      "file": "jetbrains.woff2",
+      "family": "JetBrains Mono",
+      "source": "https://www.jetbrains.com/lp/mono/",
+      "license": "jetbrains-OFL.txt"
+    },
+    {
+      "file": "excalifont.woff2",
+      "family": "Excalifont",
+      "source": "https://github.com/excalidraw/excalidraw/tree/master/packages/excalidraw/fonts/Excalifont",
+      "license": "excalifont-OFL.txt"
+    }
+  ]
+}

@@ -19,8 +19,7 @@ from _spapi_feeds_common import (
     developer_proxy_call,
     emit_result,
     ensure_auth_skill_available,
-    get_store_tokens,
-    lf_inline_flag,
+        lf_inline_flag,
     load_cli_params,
     merge_success_json,
     norm_marketplace_ids,
@@ -73,13 +72,8 @@ def main() -> None:
     body_obj = _build_body(params)
     body_str = json.dumps(body_obj, ensure_ascii=False)
 
-    tokens = get_store_tokens(seller_id, region)
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
     proxy = developer_proxy_call(
-        region, path, "POST", tokens["accessToken"], body=body_str
+        region, path, "POST", seller_id, body=body_str
     )
     out: dict = {
         "developerProxy": proxy,

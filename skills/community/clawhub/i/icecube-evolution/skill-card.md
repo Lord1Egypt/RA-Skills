@@ -1,40 +1,57 @@
-## Description: <br>
-IceCube Evolution gives AI agents a structured self-improvement protocol for logging mistakes, capturing success patterns, queuing improvements, and reviewing recurring behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IceCube Evolution helps AI agents continuously improve by logging mistakes, capturing success patterns, queueing improvements, and running scheduled verification loops.
 
-## Publisher: <br>
-[ares521521-design](https://clawhub.ai/user/ares521521-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ares521521-design](https://clawhub.ai/user/ares521521-design)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a repeatable improvement loop that records mistakes and successful patterns, schedules follow-up work, and verifies proposed agent rule or memory changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to persistently change its own rules, memory, configuration, and installed skills without clear user approval. <br>
-Mitigation: Supervise use closely and require reviewed diffs, explicit approval, and rollback notes before edits to AGENTS.md, SOUL.md, MEMORY.md, openclaw.json, procedural memory, or installed skills. <br>
-Risk: Evolution logs may become persistent local records that contain sensitive user or workflow data. <br>
-Mitigation: Avoid storing secrets or raw user data in logs and review retained records before sharing or reuse. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up a self-improvement workflow for agents that records mistakes and successes, turns them into queued changes, and verifies approved improvements.
 
-## Reference(s): <br>
-- [ClawHub listing: IceCube Evolution](https://clawhub.ai/ares521521-design/icecube-evolution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with shell command and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent local logging and process-change guidance for agent memory, rules, and configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill promotes persistent changes to agent instructions, memory, configuration, skills, and tools without clear human approval controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review for every generated change and keep proposed improvements in a review queue before applying them.
+
+Risk: Mistake and success logs may capture secrets, personal data, or other sensitive operational details.
+
+Mitigation: Forbid logging secrets or personal data and review evolution logs before retaining or sharing them.
+
+Risk: Approved self-improvements can reduce reliability if a change is incorrect or difficult to reverse.
+
+Mitigation: Use versioned rollback for approved changes and verify each change before marking it complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ares521521-design/skills/icecube-evolution)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Proposes persistent agent memory files, instruction updates, heartbeat checks, and verification records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

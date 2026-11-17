@@ -68,8 +68,10 @@ Algorithm:
 1. Compute `flowRatePerTick = flowRate / ticksPerSecond`
 2. Format to ether and inspect the result
 3. If the integer part is non-zero → show 0 decimal places
-4. Otherwise count leading zeroes after the decimal point, add 2
-5. Cap at 18 (max ether precision)
+4. If there is no fractional part (dust rate truncated to 0 per tick,
+   `formatEther(0n)` is `"0"`) → show 0 decimal places
+5. Otherwise count leading zeroes after the decimal point, add 2
+6. Cap at 18 (max ether precision)
 
 This means a high flow rate (changing whole tokens per tick) shows no
 decimals, while a tiny trickle shows many — and the animation looks
@@ -219,7 +221,8 @@ function useFlowingDecimalPoint(params: {
         const [beforeDecimal, afterDecimal] = formatEther(flowRatePerTick).split(".")
         const abs = (n: bigint) => (n >= 0 ? n : -n)
 
-        if (abs(BigInt(beforeDecimal)) > 0n) return 0
+        // No "." when flowRatePerTick truncates to 0 (dust rates)
+        if (abs(BigInt(beforeDecimal)) > 0n || !afterDecimal) return 0
 
         const withoutLeadingZeroes = BigInt(afterDecimal)
         const leadingZeroes = afterDecimal

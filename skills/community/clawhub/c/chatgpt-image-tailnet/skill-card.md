@@ -1,43 +1,54 @@
-## Description: <br>
-Generates and downloads ChatGPT images through a remote Camoufox browser reachable over a tailnet, using the browser session to submit prompts and capture downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and download ChatGPT images through the remote Camoufox browser reachable over the tailnet, especially when residential/IP reputation matters more than the local host IP.
 
-## Publisher: <br>
-[lotfinity](https://clawhub.ai/user/lotfinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lotfinity](https://clawhub.ai/user/lotfinity)
 
-## Use Case: <br>
-Developers and automation users use this skill to generate ChatGPT images through a trusted remote residential browser session and save the resulting image locally when local IP reputation or direct image downloads are unreliable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generated images pass through a remote Camoufox browser and ChatGPT session. <br>
-Mitigation: Use only with a trusted remote browser host and session, and avoid sensitive prompts unless that routing is acceptable. <br>
-Risk: Generated images are saved locally. <br>
-Mitigation: Choose an output path you can manage and delete generated files when they are no longer needed. <br>
-Risk: The workflow depends on a specific remote browser endpoint and current ChatGPT image-generation UI behavior. <br>
-Mitigation: Confirm the remote browser is reachable before use and inspect the helper script if selectors or download behavior need adjustment. <br>
+## Use Case:
 
+Developers and operators use this skill to generate ChatGPT images through a trusted remote Camoufox browser on a tailnet and capture the resulting image download from the browser session.
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/lotfinity/chatgpt-image-tailnet) <br>
-- [ChatGPT](https://chatgpt.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; the helper script prints JSON status and saves a PNG image file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-driven; optional base URL, user, session, output path, and timeout parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill controls a remote browser session through a tailnet HTTP API without clear endpoint-level safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where you own and trust the browser host and restrict access to port 9377 with tailnet ACLs or firewall rules.
+
+Risk: Prompts and generated images pass through the remote browser session and may be saved to disk.
+
+Mitigation: Avoid sensitive prompts unless endpoint authentication and session isolation are added; review saved files and retention paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lotfinity/skills/chatgpt-image-tailnet)
+- [ChatGPT](https://chatgpt.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash examples; the helper script emits JSON status and saves image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated PNG files to disk via remote browser downloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

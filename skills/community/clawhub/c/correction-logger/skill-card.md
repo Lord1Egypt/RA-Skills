@@ -1,38 +1,53 @@
-## Description: <br>
-Records and manages user corrections, agent mistakes, and improvement suggestions with priority ranking, effectiveness feedback, and full-text search while preserving compatibility with the existing correction log format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Correction Logger records and manages user corrections, agent errors, and improvement suggestions with priority, effectiveness feedback, and full-text search while preserving the existing Markdown correction format.
 
-## Publisher: <br>
-[whoisme007](https://clawhub.ai/user/whoisme007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whoisme007](https://clawhub.ai/user/whoisme007)
 
-## Use Case: <br>
-Developers and agent operators use this skill to persist correction memories, review recent corrections, search prior fixes, and check planned actions against high-priority correction history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved corrections may contain sensitive prompts, credentials, or private user data because the skill writes persistent local correction memory. <br>
-Mitigation: Avoid logging secrets or confidential data, and periodically review or delete corrections.md, corrections_enhanced.db, and archived correction files. <br>
+## Use Case:
 
+Developers and agent builders use this skill to persist correction history, retrieve relevant prior corrections before actions, and inspect correction health or effectiveness during agent operation.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/whoisme007/correction-logger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation with Python examples, shell commands, YAML configuration, and local correction records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent local correction memory in Markdown and SQLite files under ~/self-improving by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Correction records may include sensitive prompts, credentials, private customer data, or other context that becomes persistent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid logging sensitive data; add redaction, access controls, retention limits, deletion tooling, and approval rules before allowing records to influence future agent behavior.
+
+Risk: Correction history is stored on disk and may outlive a single agent session.
+
+Mitigation: Keep correction files, databases, archives, and logs in access-controlled locations and review retention requirements before commercial use.
+
+## Reference(s):
+
+- [Correction Logger ClawHub release page](https://clawhub.ai/whoisme007/skills/correction-logger)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown correction records, command-line text, Python dictionaries, and YAML configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists correction history locally and can return recent corrections, pre-action matches, statistics, and health-check results.]
+
+## Skill Version(s):
+
+2.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

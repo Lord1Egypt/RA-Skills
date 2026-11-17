@@ -1,0 +1,355 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MedsState",
+  "description": "State file for the med-reminder OpenClaw skill. One file per user.",
+  "type": "object",
+  "required": ["version", "global", "meds"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1",
+      "description": "Schema version. Bump when making breaking changes."
+    },
+    "global": { "$ref": "#/definitions/globalConfig" },
+    "meds": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/medication" },
+      "description": "All tracked medications. One object per med."
+    },
+    "tick": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional tick-engine bookkeeping (issue #1). watermark_utc is set once by the history migration; occurrences before it are never enumerated. The tick advances it only past done work and mirrors it into tick-heartbeat.json.",
+      "properties": {
+        "watermark_utc": {
+          "$ref": "#/definitions/isoDatetime",
+          "description": "UTC instant of the last completed tick (initially the migration instant)."
+        },
+        "last_good_timezone": {
+          "type": "string",
+          "description": "Last timezone that resolved successfully; used as a fallback (with an alert) when global.timezone goes bad."
+        },
+        "tz_alert_date": {
+          "type": "string",
+          "description": "Local date (YYYY-MM-DD) of the last bad-timezone alert — one alert per day."
+        },
+        "schedule_alerts": {
+          "type": "object",
+          "description": "med id → local date (YYYY-MM-DD) of that med's last 'can't process schedule' alert — one alert per failing med per day."
+        },
+        "force_nonces": {
+          "type": "object",
+          "description": "Duplicate-override nonces offered by confirm's exit 3: nonce → {med_id, taken_at_utc, expires_utc}. Single-use, 10-minute TTL."
+        }
+      }
+    }
+  },
+  "definitions": {
+    "globalConfig": {
+      "type": "object",
+      "required": ["timezone", "quiet_hours", "paused", "digest_time", "delivery_channel"],
+      "additionalProperties": false,
+      "properties": {
+        "timezone": {
+          "type": "string",
+          "description": "IANA timezone string, e.g. 'America/Los_Angeles'. Required — no system inference.",
+          "examples": ["America/Los_Angeles", "America/Chicago", "America/New_York", "Europe/London"]
+        },
+        "quiet_hours": {
+          "type": "object",
+          "required": ["start", "end"],
+          "additionalProperties": false,
+          "description": "No reminders sent during this window. Times in local HH:MM (24h).",
+          "properties": {
+            "start": { "$ref": "#/definitions/timeHHMM" },
+            "end":   { "$ref": "#/definitions/timeHHMM" }
+          }
+        },
+        "paused": {
+          "type": "boolean",
+          "description": "Global pause. When true, all dispatch exits silently regardless of med state."
+        },
+        "digest_time": {
+          "$ref": "#/definitions/timeHHMM",
+          "description": "Daily digest fires once at this local time."
+        },
+        "delivery_channel": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Messaging channel for outbound reminders, e.g. 'whatsapp', 'telegram', 'sms'. Wire up send-message.sh for your channel."
+        },
+        "log_redact": {
+          "type": "boolean",
+          "default": false,
+          "description": "Optional privacy switch (issue #1 §7). When true (or MEDS_LOG_REDACT=1), logs use med ids only and sender stderr is redacted."
+        },
+        "last_digest_order": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Med ids in the order today's digest listed them. Written by the tick when it queues the digest; reply.py --position N resolves against it (issue #1 §6)."
+        },
+        "last_digest_date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Local date (YYYY-MM-DD) of the digest that produced last_digest_order. A --position reply from any other date is refused."
+        }
+      }
+    },
+    "medication": {
+      "type": "object",
+      "required": ["id", "name", "type", "dose", "unit", "paused", "schedule", "escalation", "state"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^med-[0-9]{3,}$",
+          "description": "Stable unique identifier, e.g. 'med-001'. Never reused after deletion."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human name used in messages and fuzzy matching, e.g. 'Metformin'."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["pill", "liquid", "injection", "patch", "inhaler", "other"],
+          "description": "Medication form factor."
+        },
+        "dose": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Prescribed dose amount as a string, e.g. '500', '2', '10'."
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Dose unit, e.g. 'mg', 'ml', 'tablet', 'unit', 'IU'."
+        },
+        "paused": {
+          "type": "boolean",
+          "description": "Per-med pause. When true, dispatch skips this med only."
+        },
+        "active_since_utc": {
+          "$ref": "#/definitions/isoDatetime",
+          "description": "UTC instant the med became active (add, unpause, schedule or timezone edit). Occurrences before it are never enumerated — no phantom misses. Set by reply.py's add/edit commands."
+        },
+        "start_date": {
+          "type": ["string", "null"],
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Optional first active local date (YYYY-MM-DD, in global.timezone) — for courses and seasonal meds. Occurrences on earlier local dates are never enumerated. Null/absent = no start bound. Must be <= end_date when both are set."
+        },
+        "end_date": {
+          "type": ["string", "null"],
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Optional last active local date (YYYY-MM-DD, in global.timezone) — INCLUSIVE. Occurrences on later local dates are never enumerated and never logged missed (no phantom misses after a course ends). Null/absent = no end bound."
+        },
+        "syringe": {
+          "type": ["string", "null"],
+          "enum": ["U-100", "U-50", null],
+          "description": "Optional syringe type for the reconstitution calculator (PR 8a, #10). Absent/null = U-100. U-100: 1 unit = 10 µL; U-50: 1 unit = 20 µL. Only used when the dose is in mcg or mg and a mix has been logged (reply.py reconstitute)."
+        },
+        "inventory_unit": {
+          "type": ["string", "null"],
+          "minLength": 1,
+          "description": "Optional inventory tracking (PR 8b, #10): the unit stock is counted in — 'vial', 'tablet', 'pen', 'mL', … On hand is derived from restocked/counted events minus taken doses (reply.py restock); nothing is stored."
+        },
+        "doses_per_unit": {
+          "type": ["number", "null"],
+          "exclusiveMinimum": 0,
+          "description": "Optional: prescribed doses per inventory unit (e.g. 133 doses per vial). Needed only when it can't be derived — the dose unit equals inventory_unit, syringe units with inventory in mL, or a logged vial mix."
+        },
+        "reorder_when_below_days": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "description": "Optional: the digest flags 'reorder' when the derived days of supply drop below this (e.g. 30 for a peptide with shipping lead time)."
+        },
+        "min_gap_hours": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Override for the duplicate-confirm window (issue #1 §4). Default is half the shortest scheduled gap."
+        },
+        "schedule": { "$ref": "#/definitions/schedule" },
+        "escalation": { "$ref": "#/definitions/escalation" },
+        "state": { "$ref": "#/definitions/medState" }
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "required": ["frequency"],
+      "additionalProperties": false,
+      "properties": {
+        "frequency": {
+          "type": "string",
+          "enum": ["once_daily", "twice_daily", "interval", "weekly", "as_needed"],
+          "description": "How often the med is taken. 'interval' uses interval_hours; others use times[]."
+        },
+        "times": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/timeHHMM" },
+          "minItems": 1,
+          "maxItems": 6,
+          "description": "Local HH:MM dose times. Required for once_daily, twice_daily, weekly. Omit for interval/as_needed."
+        },
+        "interval_hours": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "maximum": 168,
+          "description": "Hours between doses. Required when frequency is 'interval'. Null otherwise."
+        },
+        "day_of_week": {
+          "description": "Dose day(s) for weekly meds: a single day ('mon', legacy) or a list for multi-day protocols (['tue','sat'], ['mon','tue','wed','thu','fri']). Lists are stored sorted mon..sun and deduped; single strings stay strings for compat reads. Required when frequency is 'weekly' — without it reminders fire daily. Null otherwise.",
+          "oneOf": [
+            { "type": "string", "enum": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] },
+            {
+              "type": "array",
+              "items": { "type": "string", "enum": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] },
+              "minItems": 1,
+              "maxItems": 7,
+              "uniqueItems": true
+            },
+            { "type": "null" }
+          ]
+        },
+        "with_food": {
+          "type": "boolean",
+          "description": "Whether the med should be taken with food. Informational only — shown in digest."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Free-text timing notes shown in the digest, e.g. 'Take with morning meal'."
+        },
+        "quiet_policy": {
+          "type": "string",
+          "enum": ["ignore", "shift"],
+          "description": "Interval meds only: 'shift' (default when omitted) holds a dose that lands in quiet hours until quiet hours end — the dose keeps its slot in the interval chain, and if the next dose arrives first the held one closes as missed and only the latest is announced; 'ignore' fires on time through quiet hours (strict intervals). Asked at interview (issue #1 §8, #11)."
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "frequency": { "const": "interval" } }, "required": ["frequency"] },
+          "then": { "required": ["interval_hours"], "properties": { "interval_hours": { "type": "integer" } } }
+        },
+        {
+          "if": {
+            "properties": { "frequency": { "enum": ["once_daily", "twice_daily", "weekly"] } },
+            "required": ["frequency"]
+          },
+          "then": { "required": ["times"] }
+        }
+      ]
+    },
+    "escalation": {
+      "type": "object",
+      "required": ["late_threshold_minutes", "missed_threshold_minutes", "late_message", "missed_message"],
+      "additionalProperties": false,
+      "properties": {
+        "late_threshold_minutes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 480,
+          "description": "Nudge cadence (#11): a nudge every N minutes after the dose (or a snooze wake) until it is taken, skipped, snoozed, or closed as missed when the next dose is due (at most 25h after it). Default: 30."
+        },
+        "missed_threshold_minutes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1440,
+          "description": "RETIRED (#11) — no longer read; a dose is logged missed when the next dose is due. Still required so older readers load the file. Default: 90."
+        },
+        "late_message": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Message sent on LATE. Supports {name}, {dose}, {unit} template vars."
+        },
+        "missed_message": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Message sent on MISSED. Supports {name}, {dose}, {unit} template vars."
+        }
+      }
+    },
+    "medState": {
+      "type": "object",
+      "required": ["status", "last_taken", "last_reminded", "next_due", "missed_count", "history"],
+      "additionalProperties": false,
+      "description": "Runtime state. Written only through safe_write.py (the tick and reply.py).",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pending", "reminded", "confirmed", "late", "missed", "deferred"],
+          "description": "Current dose status. 'deferred' resets to 'pending' at midnight."
+        },
+        "last_taken": {
+          "type": ["string", "null"],
+          "$ref": "#/definitions/isoDatetime",
+          "description": "ISO 8601 timestamp of last confirmed dose. Null until first confirmation."
+        },
+        "last_reminded": {
+          "type": ["string", "null"],
+          "$ref": "#/definitions/isoDatetime",
+          "description": "ISO 8601 timestamp of last outbound reminder sent."
+        },
+        "next_due": {
+          "type": ["string", "null"],
+          "$ref": "#/definitions/isoDatetime",
+          "description": "ISO 8601 timestamp of next scheduled dose. Set by setup-tasks.py on registration. Recomputed after each confirmation via compute_next_due()."
+        },
+        "confirmed_dose": {
+          "type": ["string", "null"],
+          "$ref": "#/definitions/isoDatetime",
+          "description": "Scheduled dose occurrence credited by the last confirm. A scheduled event is skipped only when it matches this occurrence, so an early confirm and a same-day second dose are never conflated. Null for interval/as-needed meds; absent in older state files."
+        },
+        "missed_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Cumulative missed dose count. Incremented on MISSED, never decremented."
+        },
+        "history": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/historyEntry" },
+          "maxItems": 30,
+          "description": "Last 30 dose events. Oldest trimmed when count exceeds 30."
+        }
+      }
+    },
+    "historyEntry": {
+      "type": "object",
+      "required": ["timestamp", "event", "dose_prescribed"],
+      "additionalProperties": false,
+      "properties": {
+        "timestamp": {
+          "$ref": "#/definitions/isoDatetime",
+          "description": "When this event occurred."
+        },
+        "event": {
+          "type": "string",
+          "enum": ["taken", "missed", "late_nudge_sent", "deferred"],
+          "description": "What happened. 'late_nudge_sent' records the nudge without confirming the dose."
+        },
+        "dose_prescribed": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The prescribed dose at the time of this event, e.g. '500mg'."
+        },
+        "dose_taken": {
+          "type": ["string", "null"],
+          "description": "Actual dose taken if different from prescribed. Null means same as prescribed."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Optional free-text note, e.g. 'took with food', 'felt nauseous'."
+        }
+      }
+    },
+    "timeHHMM": {
+      "type": "string",
+      "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+      "description": "24-hour time string in HH:MM format, e.g. '08:00', '20:30'."
+    },
+    "isoDatetime": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+      "description": "ISO 8601 datetime with timezone offset, e.g. '2026-04-21T08:00:00-07:00'."
+    }
+  }
+}

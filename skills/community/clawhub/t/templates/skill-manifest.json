@@ -1,0 +1,17 @@
+{
+  "name": "read-figma-design",
+  "version": "0.1.0",
+  "description": "Read Figma design context from Multica issue figma_urls without Figma MCP.",
+  "runtime": {
+    "node": ">=22",
+    "dependencies": "node-builtins-only",
+    "entrypoint": "scripts/read-figma-context.mjs"
+  },
+  "schemas": {
+    "manifest": 1,
+    "targetNode": 1,
+    "contextTree": 1,
+    "designProperties": 1,
+    "codeConnect": 1
+  }
+}

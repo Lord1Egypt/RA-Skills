@@ -1,37 +1,53 @@
-## Description: <br>
-介绍数字 3 的文化含义和象征意义（中英文双语）。Use when users ask about the cultural meaning of number 3, "三的文化", "symbolism of three", "为什么 3 很重要", "meaning of number three" etc. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual Chinese and English explanations of the cultural meaning and symbolism of the number 3 across philosophical, religious, cultural, and modern contexts.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and agents use this skill to answer questions about the cultural meaning, symbolism, and modern significance of the number 3 in Chinese and English. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cultural and religious explanations may be incomplete, simplified, or treated as authoritative scholarship. <br>
-Mitigation: Present the material as general reference guidance and qualify deeper cultural or religious claims when appropriate. <br>
+## Use Case:
 
+External users use this skill to receive concise bilingual explanations of the number 3's symbolism in Chinese, Western, philosophical, religious, and modern contexts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise bilingual Markdown or plain-text explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior; responses may vary depth based on the user's cultural or philosophical focus.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bilingual responses may not match a user's language preference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow the user's requested language and ask for clarification when no language preference is clear.
+
+Risk: Cultural symbolism can vary by tradition and context.
+
+Mitigation: Present interpretations as contextual, and narrow the answer when the user specifies a culture, religion, or time period.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leocryptoflow/skills/three)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text bilingual explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise Chinese and English explanatory responses tailored to the user's requested angle.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

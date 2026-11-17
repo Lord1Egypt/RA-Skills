@@ -1,44 +1,58 @@
-## Description: <br>
-Use when building C# applications with .NET 8+, ASP.NET Core APIs, or Blazor web apps. Invoke for Entity Framework Core, minimal APIs, async patterns, CQRS with MediatR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when building C# applications with .NET 8+, ASP.NET Core APIs, or Blazor web apps, including Entity Framework Core, minimal APIs, async patterns, and CQRS with MediatR.
 
-## Publisher: <br>
-[lhwa8685](https://clawhub.ai/user/lhwa8685) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lhwa8685](https://clawhub.ai/user/lhwa8685)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, implement, optimize, and test modern C# and .NET applications, including ASP.NET Core APIs, Blazor applications, Entity Framework Core data access, and performance-sensitive services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated authentication, authorization, and database migration examples may be unsafe if applied to real services without review. <br>
-Mitigation: Review generated code before applying it, with particular attention to authentication flows, authorization policies, EF Core migrations, and production data access. <br>
-Risk: Configuration examples may involve connection strings, JWT signing keys, or other secrets. <br>
-Mitigation: Keep secrets in secure configuration such as environment variables, user-secrets, or a managed secrets store rather than hard-coding them in generated code or appsettings files. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, review, and optimize C#/.NET applications, including ASP.NET Core APIs, Blazor interfaces, Entity Framework Core data access, async workflows, CQRS patterns, and tests.
 
-## Reference(s): <br>
-- [Modern C# Patterns](references/modern-csharp.md) <br>
-- [ASP.NET Core Patterns](references/aspnet-core.md) <br>
-- [Entity Framework Core Patterns](references/entity-framework.md) <br>
-- [Blazor Patterns](references/blazor.md) <br>
-- [Performance Optimization](references/performance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with C# and configuration code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include domain models, DTOs, API endpoints, services, repository implementations, Program.cs and appsettings.json configuration, tests, and brief architectural rationale.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata; skill frontmatter reports 1.0.0) <br>
+Risk: Generated authentication, authorization, rate limiting, and secret-handling examples may be unsafe if copied into production without project-specific review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review authentication secrets, trusted client identity, rate limiting, authorization policies, and secure secret storage before production use.
+
+Risk: Database migration and bulk delete guidance can affect production data if applied without operational controls.
+
+Mitigation: Require backups, migration review, and explicit safeguards before running generated database changes.
+
+## Reference(s):
+
+- [Modern C# Patterns](references/modern-csharp.md)
+- [ASP.NET Core Patterns](references/aspnet-core.md)
+- [Entity Framework Core Patterns](references/entity-framework.md)
+- [Blazor Patterns](references/blazor.md)
+- [Performance Optimization](references/performance.md)
+- [Metadata Author Profile](https://github.com/Jeffallan)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with C# code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include architectural rationale, implementation steps, and testing guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

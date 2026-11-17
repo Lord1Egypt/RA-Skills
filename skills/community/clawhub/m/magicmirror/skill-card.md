@@ -1,45 +1,62 @@
-## Description: <br>
-Guided self-reflection and introspection skill for exploring personal history, values, life decisions, and optional wisdom-style reframing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guided self-reflection and introspection skill for exploring the past, clarifying core values, processing life decisions, and optionally using Wisdom Sage Mode with insights from Buffett, Duan Yongping, and Munger.
 
-## Publisher: <br>
-[slientrain-new](https://clawhub.ai/user/slientrain-new) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slientrain-new](https://clawhub.ai/user/slientrain-new)
 
-## Use Case: <br>
-External users use this skill for guided self-reflection, identity exploration, values clarification, and processing life decisions through a patient listening posture. Agents may also use it to produce structured Markdown session summaries and maintain timeline-style reflection notes when the user asks to close or summarize a session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain detailed personal reflection notes across sessions without a clear consent or deletion flow. <br>
-Mitigation: Tell users before preserving timeline or summary notes, avoid storing credentials, health crises, financial identifiers, or private third-party details, and provide a clear way to review and delete generated notes. <br>
-Risk: Reflection sessions may include sensitive life history, relationships, locations, and emotional context. <br>
-Mitigation: Keep summaries minimal, sanitize sensitive details, and confirm with the user before writing or reusing long-term reflection records. <br>
+## Use Case:
 
+Users and assistants use this skill for guided personal reflection, life-story exploration, value clarification, and decision processing through patient listening and gentle mirroring. It can also produce structured Markdown session summaries and timeline notes when a conversation closes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/slientrain-new/magicmirror) <br>
-- [Stage guidance](artifact/references/stages.md) <br>
-- [Conversation techniques](artifact/references/techniques.md) <br>
-- [Session summary format](artifact/references/session-output.md) <br>
-- [Timeline schema](artifact/references/timeline-schema.json) <br>
-- [Success case](artifact/references/success-case.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational text and Markdown summaries, with optional JSON-style timeline records and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create reflection summaries and timeline notes that contain sensitive personal history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may store detailed personal life history, names, places, emotions, and session summaries in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in protected environments and review storage, retention, deletion, encryption, and per-user isolation expectations before deployment.
+
+Risk: Personal reflection sessions can include sensitive private information.
+
+Mitigation: Avoid sharing passwords, tokens, private keys, or details that should not be stored or resurfaced later.
+
+Risk: The skill presents itself as reflective support and is not a therapist or clinical tool.
+
+Mitigation: Keep responses framed as listening and reflection, and do not rely on it for medical, mental-health, or emergency guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/slientrain-new/skills/magicmirror)
+- [Session stages reference](references/stages.md)
+- [Conversation techniques reference](references/techniques.md)
+- [Timeline schema](references/timeline-schema.json)
+- [Session summary output format](references/session-output.md)
+- [Success case reference](references/success-case.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Conversational text with optional Markdown session summaries and JSON timeline records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist personal timeline entries and session notes in local plaintext files]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

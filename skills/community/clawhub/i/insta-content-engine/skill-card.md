@@ -1,42 +1,58 @@
-## Description: <br>
-Find trending topics, create editorial-style social media graphics, and post to X/Twitter and Instagram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find trending topics, create editorial-style social media graphics, and post to X/Twitter and Instagram.
 
-## Publisher: <br>
-[ashmonmc](https://clawhub.ai/user/ashmonmc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashmonmc](https://clawhub.ai/user/ashmonmc)
 
-## Use Case: <br>
-Social media creators and operators use this skill to research viral topics, generate editorial carousel graphics, and prepare or publish content to Instagram and X/Twitter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content to real social media accounts. <br>
-Mitigation: Review every caption and media file before posting, and use a dedicated or low-risk account where possible. <br>
-Risk: The skill handles social account credentials, API keys, and an Instagram session file. <br>
-Mitigation: Prefer environment variables or a secret manager over command-line passwords, and remove ~/.openclaw/ig_session.json when the Instagram session is no longer needed. <br>
-Risk: Untrusted prompts or queries could lead to misleading content or unintended posting behavior. <br>
-Mitigation: Avoid running the workflow on untrusted prompts or queries, and keep human review in the publishing loop. <br>
+## Use Case:
 
+Content creators, marketers, and social media operators use this skill to research trending topics, draft content workflows, generate editorial-style carousel graphics, and publish posts to Instagram and X/Twitter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ashmonmc/insta-content-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke OpenAI image generation, Brave Search, the bird CLI, and Instagram posting tools when configured with the required credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles live social account credentials and saved sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated, low-privilege social accounts, rotate credentials after testing, and avoid sharing session files.
+
+Risk: The skill can publish posts to public social platforms.
+
+Mitigation: Require manual preview and confirmation before any generated post, story, reel, or carousel is published.
+
+Risk: The security evidence reports exploitable command-generation patterns.
+
+Mitigation: Avoid untrusted query or action values and review generated shell commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ashmonmc/skills/insta-content-engine)
+- [Publisher profile](https://clawhub.ai/user/ashmonmc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, prompts, configuration notes, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke external services and social posting tools when configured with the required credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

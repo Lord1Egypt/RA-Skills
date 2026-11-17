@@ -1,47 +1,58 @@
-## Description: <br>
-ML Pipeline guides agents through quantitative trading ML workflows, including feature engineering, AutoML, deep learning, financial RL, model training, and anti-leakage validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete machine learning pipeline for trading: feature engineering, AutoML, deep learning, and financial RL for automated parameter sweeps, feature creation, model training, and anti-leakage validation.
 
-## Publisher: <br>
-[ahuserious](https://clawhub.ai/user/ahuserious) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ahuserious](https://clawhub.ai/user/ahuserious)
 
-## Use Case: <br>
-Developers and quantitative research teams use this skill to plan, implement, validate, and deploy machine learning pipelines for trading research. It is most useful for feature engineering, automated model search, model evaluation, and leakage-aware time-series validation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill overstates its ML and trading capabilities. <br>
-Mitigation: Treat generated trading pipeline guidance as a starter template and validate all claims, metrics, and model choices against your own data and review process. <br>
-Risk: The security review notes broad local command and file authority, including scripts that can scan, copy, overwrite, and delete files. <br>
-Mitigation: Install only in a dedicated workspace, inspect proposed Bash, Write, and Edit actions before approving them, and use deployment helpers only with source and target paths you are comfortable modifying. <br>
-Risk: Recursive analyzers and bundled utility scripts may traverse sensitive directories if pointed at broad paths. <br>
-Mitigation: Run scripts only on scoped project directories or sanitized sample data, and avoid using sensitive home, credential, or production directories as inputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ahuserious/ml-pipeline) <br>
-- [References README](references/README.md) <br>
-- [scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html) <br>
-- [SHAP Documentation](https://shap.readthedocs.io/) <br>
-- [PyTorch Lightning Documentation](https://lightning.ai/docs/pytorch/stable/) <br>
-- [Stable-Baselines3 Documentation](https://stable-baselines3.readthedocs.io/) <br>
-- [FinRL](https://github.com/AI4Finance-Foundation/FinRL) <br>
+## Use Case:
 
+Developers and quantitative trading researchers use this skill to plan, audit, and implement ML feature engineering and model pipelines, including data validation, anti-leakage checks, model evaluation, and deployment artifact preparation.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, configuration examples, and repo-ready file changes when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or modify local scripts, configuration files, reports, and deployment artifacts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security summary says the skill materially overstates its trading ML validation, feature engineering, model evaluation, feature importance, and leakage-checking capabilities.
+
+Mitigation: Treat bundled scripts as starting points only; rewrite and test validation, feature engineering, model evaluation, feature importance, and leakage checks before relying on them for trading ML work.
+
+Risk: The security summary flags local file-scanning behavior and deployment utilities with unsafe overwrite and rollback behavior.
+
+Mitigation: Run scripts only on narrow test directories, avoid sensitive workspaces or home directories, and do not use the deployment utility on important targets until overwrite, rollback, and symlink-containment safeguards are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahuserious/skills/ml-pipeline)
+- [References README](references/README.md)
+- [scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html)
+- [SHAP Documentation](https://shap.readthedocs.io/)
+- [PyTorch Lightning Documentation](https://lightning.ai/docs/pytorch/stable/)
+- [Stable-Baselines3 Documentation](https://stable-baselines3.readthedocs.io/)
+- [FinRL Repository](https://github.com/AI4Finance-Foundation/FinRL)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and optional generated files or shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce repo-ready pipeline code, configuration templates, validation reports, and deployment commands depending on task.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

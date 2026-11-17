@@ -1,0 +1,5 @@
+interface:
+  display_name: Fingerprint Failure Triage
+  short_description: Read a liarjs fingerprint report and attribute each failing check to the component that produced it - what the check id measures, whether the signal comes from the launch configuration, the page-modifying layer, the network path or the machine image, and which failures are inherent to headless or.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.png

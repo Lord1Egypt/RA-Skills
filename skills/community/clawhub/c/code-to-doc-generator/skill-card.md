@@ -1,47 +1,61 @@
-## Description: <br>
-从代码和 UI 逆向提取业务逻辑，生成不同类型的项目文档，包括 BRD/MRD、PRD、HLD、DDD、LLD、编码指南、测试文档、运营手册、SLI/SLO 监控文档和 CI/CD 文档。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates or synchronizes project documentation by reverse-extracting business logic from code and UI, with templates for BRD/MRD, PRD, HLD, DDD, LLD, coding guides, test documentation, operations manuals, SLI/SLO monitoring documents, and CI/CD documentation.
 
-## Publisher: <br>
-[suifei](https://clawhub.ai/user/suifei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suifei](https://clawhub.ai/user/suifei)
 
-## Use Case: <br>
-Developers, architects, product managers, QA engineers, SREs, DevOps teams, and operations staff use this skill to generate or synchronize project documentation from source code, UI text, and existing docs. It supports new documentation and reverse-sync workflows where code is treated as the source of truth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read project source, existing documentation, and sensitive local context while generating documentation. <br>
-Mitigation: Run it only in the intended repository scope and avoid exposing secrets or unrelated files. <br>
-Risk: Generated or synchronized documentation may introduce inaccurate guidance if code-derived facts and inferred statements are not reviewed. <br>
-Mitigation: Review generated diffs before committing and verify any FACT, INFER, or OBSERVE annotations against the project. <br>
-Risk: The artifact includes SVG content that may have interactive behavior in permissive viewers. <br>
-Mitigation: Treat the SVG as inert content or disable its click handlers when viewing or publishing it. <br>
+## Use Case:
 
+Developers, architects, product managers, QA engineers, SREs, DevOps engineers, and operations teams use this skill to create or refresh project documentation from an implementation source of truth. It is especially useful when documentation has drifted from code or when a project needs structured delivery documents for different software lifecycle audiences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suifei/code-to-doc-generator) <br>
-- [Document Types Strategy](references/document-types.md) <br>
-- [Document Structure Guide](references/document-structure.md) <br>
-- [Analysis Dimensions](references/analysis-dimensions.md) <br>
-- [Exploration Strategy](references/exploration-strategy.md) <br>
-- [Reverse Sync Procedure](references/reverse-sync.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown documentation, Mermaid diagrams, structured summaries, and repository documentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update docs/[project]/ markdown files and OBSERVATIONS.md during reverse-sync workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill reads repository code and project documentation to generate or synchronize documentation, which may expose sensitive implementation details to the active agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in repositories where that level of code and documentation access is acceptable.
+
+Risk: Generated documentation can contain incorrect inferences or stale observations if the implementation is ambiguous.
+
+Mitigation: Review generated documents before committing them, especially OBSERVATIONS.md and content marked with inference or observation labels.
+
+Risk: The artifact includes an SVG with clickable prompt actions.
+
+Mitigation: Avoid opening the SVG in environments where clickable prompt actions can run unless those prompt suggestions are intended.
+
+## Reference(s):
+
+- [Analysis Dimensions](references/analysis-dimensions.md)
+- [Document Structure](references/document-structure.md)
+- [Document Types](references/document-types.md)
+- [Exploration Strategy](references/exploration-strategy.md)
+- [Reverse Sync](references/reverse-sync.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documents with tables, Mermaid diagrams, command snippets, and inline fact or inference markers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create new documentation under docs/ or update existing documentation during reverse sync; generated material should be reviewed before commit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

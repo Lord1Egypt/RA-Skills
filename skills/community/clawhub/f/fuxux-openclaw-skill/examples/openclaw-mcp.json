@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "fuxux": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://www.fuxux.com/api/mcp",
+        "--header",
+        "Authorization: Bearer ${FUXUX_API_KEY}"
+      ]
+    }
+  }
+}

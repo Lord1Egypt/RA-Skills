@@ -1,44 +1,63 @@
-## Description: <br>
-An OpenClaw memory system skill that organizes persistent memories into user, feedback, project, and reference categories, supports Dream Agent log consolidation, team memory sharing, auto capture, session state management, and task progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huo15 Memory Evolution helps OpenClaw agents capture, organize, recall, summarize, and share persistent memories across personal and team workspaces.
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to preserve preferences, feedback, project context, references, session state, and asynchronous task progress across conversations and agent workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory files may retain private user, project, or workspace content across OpenClaw sessions. <br>
-Mitigation: Review stored memories regularly, avoid storing secrets or raw credentials, and back up the ~/.openclaw workspace before installation, migration, rollback, or team synchronization. <br>
-Risk: Team memory features can share selected memories between agents and workspaces. <br>
-Mitigation: Share only reviewed entries, keep the built-in secret scan enabled, and run team synchronization only for intended workspaces. <br>
-Risk: MiniMax integration can send log or prompt content to an external API using bundled credentials and unsafe TLS settings. <br>
-Mitigation: Remove or review MiniMax scripts before use, replace bundled credentials with user-managed configuration, and re-enable TLS certificate verification. <br>
-Risk: Batch installation, migration, rollback, and snapshot scripts can broadly mutate ~/.openclaw workspace files. <br>
-Mitigation: Create a backup first, verify the target workspace variables, and run broad mutation commands only after reviewing their planned scope. <br>
+## Use Case:
 
+Developers and operators of OpenClaw agents use this skill to maintain long-lived user, feedback, project, and reference memory, recover session state, track asynchronous work, and share selected team context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jobzhao15/huo15-memory-evolution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown memory files, JSON indexes, configuration files, shell command output, and guidance text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent memory, index, team-memory, session-state, snapshot, and task-progress files under OpenClaw workspaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.5 (source: server-resolved release evidence) <br>
+Risk: The skill handles private agent memory and may send log or memory content to an external LLM service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review external data sharing before installation, avoid sensitive workspaces until documented, and require explicit user approval for any memory export.
+
+Risk: The security review reports bundled credentials and disabled TLS verification in external API behavior.
+
+Mitigation: Remove bundled API keys, load secrets from a managed environment, and restore normal TLS certificate verification before use.
+
+Risk: Batch installation and team-memory scripts can modify multiple agent workspaces.
+
+Mitigation: Require explicit target selection, validate persistent memory paths, and take backups before cross-agent changes.
+
+Risk: Unpinned dependencies or helper tools can change behavior across installations.
+
+Mitigation: Pin dependencies and document required tool versions before approving production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jobzhao15/skills/huo15-memory-evolution)
+- [Memory type configuration](artifact/config/memory-types.json)
+- [Memory file template](artifact/templates/memory-file.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown memory files, shell command output, JSON configuration, and plain-text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write persistent memory, session-state, task-progress, and team-memory files in OpenClaw workspaces.]
+
+## Skill Version(s):
+
+3.4.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

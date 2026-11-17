@@ -1,43 +1,58 @@
-## Description: <br>
-Clawtip Weather.Bak provides Chinese-language daily weather reports for a user-specified location after a Clawtip payment verification flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides paid daily weather reports for a user-specified location after creating and verifying a Clawtip/JD payment order.
 
-## Publisher: <br>
-[liulian822](https://clawhub.ai/user/liulian822) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liulian822](https://clawhub.ai/user/liulian822)
 
-## Use Case: <br>
-External users use this skill to request paid weather reports for a specific location. The agent creates an order, coordinates Clawtip payment verification, and returns the weather report after payment succeeds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can invoke a payment flow before delivering the weather report. <br>
-Mitigation: Review the payment amount and recipient before proceeding, and install only when a paid weather service is expected. <br>
-Risk: Payment tokens, orders, and payment credential files may be stored locally, including plaintext token storage in the bundled payment helper. <br>
-Mitigation: Avoid shared machines, restrict local file permissions, and remove local order or token files when they are no longer needed. <br>
-Risk: The security review marked the release suspicious because it bundles a high-impact payment/wallet helper with background polling and broad local file access. <br>
-Mitigation: Review the skill before deployment and prefer a version that pins and verifies the payment dependency, validates local file paths, and uses protected secret storage. <br>
+## Use Case:
 
+External users use this skill to request a weather report for a location after completing a paid Clawtip/JD order flow. Agents use it to create the order, pass payment parameters to the bundled Clawtip payment helper, and return the resulting weather report or payment status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liulian822/clawtip-weather-bak) <br>
-- [Clawtip wallet](https://clawtip.jd.com/qrcode?bizUrl=https://jpay.jd.com/ecnya2a/claw/index) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and key-value payment/status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user location and a verified order number/payment credential before report generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill drives real payment flows before producing the weather report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this specific paid weather workflow is intended, require clear user confirmation for payment actions, and do not allow the workflow to skip payment inspection or confirmation.
+
+Risk: Payment tokens and order credentials are stored in local plaintext JSON files.
+
+Mitigation: Use a single-user trusted machine, restrict file and directory permissions, and apply disk encryption on shared or security-sensitive hosts.
+
+Risk: The weather skill depends on the bundled Clawtip payment helper and its external JD payment endpoints.
+
+Mitigation: Verify the Clawtip payment skill publisher and version before use, and review outbound network behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liulian822/skills/clawtip-weather-bak)
+- [ClawHub publisher profile](https://clawhub.ai/user/liulian822)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with command snippets, order fields, payment status, and a weather report response.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow can initiate a paid order, stores order/payment state locally, and requires payment verification before report generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata; artifact metadata lists bundled source version 1.0.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

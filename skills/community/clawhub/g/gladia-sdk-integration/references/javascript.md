@@ -18,7 +18,7 @@ Patterns and details specific to the `@gladiaio/sdk` package.
 ## Package Info
 
 - **npm**: [@gladiaio/sdk](https://www.npmjs.com/package/@gladiaio/sdk)
-- **Version**: 1.0.4 (auto-synced by CI — see [sdk-versions.md](./sdk-versions.md))
+- **Version**: 2.1.0
 - **Runtime**: Node.js 20+, Bun, browsers
 - **Bundle formats**: ESM, CJS, IIFE (via unpkg/jsdelivr)
 - **Dependencies**: 0 runtime deps

@@ -1,48 +1,64 @@
-## Description: <br>
-Cliente Python assíncrono para as APIs do TSE (Tribunal Superior Eleitoral), integrating DivulgaCandContas REST election, candidate, and campaign finance data with CKAN open-data datasets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an asynchronous Python client for Brazil's TSE election APIs, covering DivulgaCandContas candidate and campaign-accounting endpoints plus CKAN open-data dataset discovery and download URLs.
 
-## Publisher: <br>
-[olegantonov](https://clawhub.ai/user/olegantonov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olegantonov](https://clawhub.ai/user/olegantonov)
 
-## Use Case: <br>
-Developers and data analysts use this skill to add asynchronous Python access to Brazilian TSE election data, including candidates, election metadata, campaign finance records, donor rankings, and bulk open-data downloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to documented public TSE and CKAN endpoints. <br>
-Mitigation: Install and run it only when outbound access to those public endpoints is acceptable for the environment. <br>
-Risk: Public API availability, response shape, and election data freshness may affect generated code or analysis. <br>
-Mitigation: Handle timeouts and API errors, and validate important results against official TSE sources before relying on them. <br>
-Risk: The package does not require credentials, so unnecessary secrets could expand exposure without benefit. <br>
-Mitigation: Use a virtual environment and do not provide credentials or private tokens for normal use. <br>
+## Use Case:
 
+Developers and data analysts use this skill to query Brazilian election, candidate, campaign finance, and open-data dataset information from public TSE APIs through async Python code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olegantonov/tse-eleicoes) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/olegantonov) <br>
-- [DivulgaCandContas API reference](references/divulgacandcontas-api.md) <br>
-- [CKAN Dados Abertos TSE reference](references/ckan-api.md) <br>
-- [TSE website](https://www.tse.jus.br/) <br>
-- [TSE Dados Abertos portal](https://dadosabertos.tse.jus.br/) <br>
-- [CKAN API documentation](https://docs.ckan.org/en/2.10/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to create or use Python code that performs outbound HTTP requests to public TSE and CKAN endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, pyproject.toml) <br>
+Risk: Generated usage may make outbound requests to public TSE and CKAN API domains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an environment where those domains are expected and allowed, and review network policy before CI or production use.
+
+Risk: Dependency ranges can change resolved package versions over time.
+
+Mitigation: Pin or lock dependencies before use in CI or production.
+
+Risk: Public API responses, available datasets, and election identifiers can change over time.
+
+Mitigation: Validate important results against official TSE sources and update constants or references when the upstream APIs change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olegantonov/skills/tse-eleicoes)
+- [DivulgaCandContas API reference](references/divulgacandcontas-api.md)
+- [CKAN Dados Abertos TSE reference](references/ckan-api.md)
+- [DivulgaCandContas REST base API](https://divulgacandcontas.tse.jus.br/divulga/rest/v1)
+- [TSE Dados Abertos CKAN API](https://dadosabertos.tse.jus.br/api/3/action)
+- [TSE open data portal](https://dadosabertos.tse.jus.br/)
+- [CKAN API documentation](https://docs.ckan.org/en/2.10/api/)
+- [Tribunal Superior Eleitoral](https://www.tse.jus.br/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated usage may make outbound HTTP requests to public TSE DivulgaCandContas and CKAN API domains.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

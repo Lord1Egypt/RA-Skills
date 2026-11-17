@@ -1,0 +1,32 @@
+{
+  "skill_name": "ui-framework-spec",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use Ant Design React to build an enterprise analytics overview dashboard.",
+      "expected_output": "Clean React component code utilizing official Ant Design 5.x components, layout grid, and design tokens.",
+      "files": [],
+      "expectations": [
+        "Imports components strictly from official 'antd' package (Card, Row, Col, Statistic, Table, etc.)",
+        "Utilizes Ant Design 5.x Design Token system (e.g. useToken or ConfigProvider) rather than ad-hoc custom CSS",
+        "Structures page layout using Ant Design 24-column grid (Row, Col)",
+        "Leverages built-in AntD APIs for tables and loading states without unnecessary custom reimplementations",
+        "Maintains consistent Ant Design component prop naming and event conventions"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "将一段基于 Element Plus 的表单组件代码迁移重构为 Ant Design React 组件。",
+      "expected_output": "Accurate framework migration mapping Vue 3 Element Plus components, props, events, and validation rules to Ant Design 5.x React.",
+      "files": [],
+      "expectations": [
+        "Correctly maps component names (ElForm -> Form, ElInput -> Input, ElSelect -> Select, ElButton -> Button)",
+        "Migrates event handlers accurately (@change / @input -> onChange, @submit.prevent -> onFinish)",
+        "Translates form validation rule schema (ElForm rules -> Form.Item rules)",
+        "Adapts 24-column layout (el-row/el-col -> Row/Col)",
+        "Provides clear migration change log and rationale"
+      ]
+    }
+  ]
+}
+

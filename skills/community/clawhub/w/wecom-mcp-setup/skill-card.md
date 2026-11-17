@@ -1,42 +1,58 @@
-## Description: <br>
-Guides users through configuring a WeCom MCP integration in OpenClaw, including MCP server setup, tool allowlisting, gateway restart, and validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+企业微信 MCP 配置指南。当用户需要"添加企业微信"、"配置企微"、"启用企微消息"、"设置企业微信集成"时触发。提供完整的 MCP Server 配置、权限白名单设置和 Gateway 重启指引。
 
-## Publisher: <br>
-[stliuexp](https://clawhub.ai/user/stliuexp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stliuexp](https://clawhub.ai/user/stliuexp)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill when adding or troubleshooting a WeCom MCP server so agents can access approved WeCom messaging, todo, meeting, schedule, and contact tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup runs a third-party npm package through npx for the MCP server. <br>
-Mitigation: Verify the wecom-mcp-server package and publisher before use, and pin a trusted package version where operationally practical. <br>
-Risk: The configuration uses WeCom credentials, including WECOM_SECRET. <br>
-Mitigation: Keep secrets out of version control, store them only in local configuration, rotate them periodically, and scope credentials to the minimum permissions needed. <br>
-Risk: Allowlisting the MCP server gives OpenClaw access to WeCom capabilities exposed by that server. <br>
-Mitigation: Enable only the required WeCom tools and review the configured tool permissions before deployment. <br>
+## Use Case:
 
+Developers and administrators use this skill to configure an OpenClaw MCP integration for WeCom, including server setup, tool allowlisting, Gateway restart, and basic verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stliuexp/wecom-mcp-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides setup and troubleshooting instructions; it does not execute commands directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The setup runs an unpinned third-party `wecom-mcp-server` package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package source and publisher before use, then pin the MCP package to a reviewed exact version.
+
+Risk: The MCP server uses WeCom enterprise credentials.
+
+Mitigation: Use a least-privilege WeCom application, keep secrets in local configuration only, and rotate the WeCom secret if exposure is suspected.
+
+Risk: The setup grants MCP tool access and restarts the Gateway.
+
+Mitigation: Restrict the MCP process where possible and allow only the required `wecom_mcp` tool.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stliuexp/skills/wecom-mcp-setup)
+- [Publisher profile](https://clawhub.ai/user/stliuexp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup prerequisites, MCP server configuration, allowlist commands, restart guidance, verification steps, troubleshooting, and security notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

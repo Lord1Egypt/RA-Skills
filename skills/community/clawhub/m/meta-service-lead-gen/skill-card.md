@@ -1,50 +1,66 @@
-## Description: <br>
-Design, audit, diagnose, and improve Meta/Facebook/Instagram lead-generation funnels for service businesses that sell through applications, booking pages, nurture, and sales calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs, audits, diagnoses, and improves Meta/Facebook/Instagram lead-generation funnels for service businesses that sell through applications, booking pages, nurture, and sales calls.
 
-## Publisher: <br>
-[aiwithenoch](https://clawhub.ai/user/aiwithenoch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiwithenoch](https://clawhub.ai/user/aiwithenoch)
 
-## Use Case: <br>
-External service-business operators, marketers, and consultants use this skill to diagnose Meta/Facebook/Instagram lead funnels, identify the weakest stage, and draft practical fixes for ads, applications, booking flows, nurture, and sales-call feedback loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing recommendations may be mistaken for legal, privacy, or platform-policy advice. <br>
-Mitigation: Verify current Meta policies, local legal requirements, privacy disclosures, and regulated-category rules before launching campaigns. <br>
-Risk: Users may expose unnecessary campaign, CRM, or sales-performance data while requesting diagnosis. <br>
-Mitigation: Share only the metrics needed for the task and avoid providing sensitive personal data or unneeded customer records. <br>
-Risk: Meta Ads Manager labels, automation defaults, and eligibility rules can change over time. <br>
-Mitigation: Treat UI-specific instructions as platform-dependent and verify current Ads Manager labels before applying click-by-click guidance. <br>
-Risk: Advice for restricted or sensitive categories can create targeting, claims, creative, consent, or verification issues. <br>
-Mitigation: Check whether the offer falls into a regulated or sensitive category, avoid sensitive personal-attribute claims, and obtain qualified review where required. <br>
+## Use Case:
 
+External operators, marketers, and service-business teams use this skill to diagnose Meta ad funnel bottlenecks, draft funnel assets, plan tracking, and improve qualified-lead, booking, show, and sales-call conversion quality.
 
-## Reference(s): <br>
-- [Compliance And Platform Boundaries](artifact/references/compliance-and-platform.md) <br>
-- [Current Meta Setup Notes](artifact/references/current-meta-setup.md) <br>
-- [Diagnostics](artifact/references/diagnostics.md) <br>
-- [Funnel Assets](artifact/references/funnel-assets.md) <br>
-- [Response Patterns](artifact/references/response-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aiwithenoch/meta-service-lead-gen) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/aiwithenoch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, analysis, markdown, configuration] <br>
-**Output Format:** [Markdown or plain text recommendations, templates, checklists, and funnel calculations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include diagnostic questions, funnel math, ad/page/nurture drafts, measurement plans, and platform-dependent caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and evidence.release.version) <br>
+Risk: Advice for regulated or sensitive categories could conflict with current platform rules or local legal obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check current Meta policies and applicable law before launch; add category-specific restrictions for targeting, claims, creative, and verification.
+
+Risk: Tracking, CRM feedback, Pixel, or Conversions API recommendations may involve personal or campaign-performance data.
+
+Mitigation: Use consent-aware, data-minimized measurement practices, keep disclosures current, and do not treat tracking integrations as a privacy workaround.
+
+Risk: Ad copy or funnel assets can become misleading if they imply sensitive personal attributes or use unsubstantiated proof.
+
+Mitigation: Avoid personal-attribute claims, fabricated proof, fake scarcity, and unsupported guarantees; qualify outcomes by context, effort, and fit.
+
+Risk: Meta Ads Manager labels, defaults, eligibility, and regional behavior change over time.
+
+Mitigation: Verify current platform labels and official account settings before giving or following click-by-click launch instructions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aiwithenoch/skills/meta-service-lead-gen)
+- [Diagnostics](references/diagnostics.md)
+- [Funnel Assets](references/funnel-assets.md)
+- [Current Meta Setup Notes](references/current-meta-setup.md)
+- [Compliance And Platform Boundaries](references/compliance-and-platform.md)
+- [Response Patterns](references/response-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured plain-language recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include funnel math, diagnostic checklists, ad/page/nurture drafts, tracking recommendations, and platform-policy caveats.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

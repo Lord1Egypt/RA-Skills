@@ -1,45 +1,58 @@
-## Description: <br>
-Writes, rewrites, enhances, and reviews Chinese content in Cell's warm, concrete, friend-to-friend style while avoiding academic or AI-template phrasing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cell 风格写作 helps agents write, rewrite, enhance, or review Chinese content in Cell's friend-to-friend style while preserving truthful source meaning and avoiding academic or AI-template phrasing.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-Writers, creators, and agent users use this skill to draft, rewrite, enhance, or audit Chinese articles in a specific Cell-style voice while preserving truthful source meaning and avoiding fabricated personal details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can introduce Cell persona details or first-person biographical claims that are inaccurate for the intended speaker. <br>
-Mitigation: Review the personal-variables file before use and require accurate source material or explicit Cell-style sample-voice framing for biographical claims. <br>
-Risk: Style emulation can overuse catchphrases, hooks, or personal voice markers until the result becomes misleading or performative. <br>
-Mitigation: Use the quality bar and style-review checklist to preserve source meaning, limit device overuse, and remove fabricated experience, data, quotes, or evidence. <br>
+## Use Case:
 
+External users and content creators use this skill to produce, reshape, or audit Chinese prose so it matches Cell's warm, concrete, lightly sharp writing style. It supports new drafts, rewrites, style enhancement, and style diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cellinlab/celf-style-writer) <br>
-- [Skill homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/celf-style-writer) <br>
-- [Content Method](references/content-method.md) <br>
-- [Personal Variables](references/personal-variables.md) <br>
-- [Quality Bar](references/quality-bar.md) <br>
-- [Style Skeleton](references/style-skeleton.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or Chinese prose with optional style-review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; the skill does not execute code, access credentials, use the network, or persist data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill is tailored to a specific Chinese writing voice and may produce an unsuitable style for other languages or less personalized writing tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Explicitly override the requested language, tone, or style when the Cell voice is not desired.
+
+Risk: Generated prose could add unsupported personal details, quotes, data, or evidence if the source material is thin.
+
+Mitigation: Require source-grounded details for personal experience and verifiable claims, and review final text against the artifact's truthfulness and no-fabrication rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cellinlab/skills/celf-style-writer)
+- [Skill homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/celf-style-writer)
+- [Content Method](references/content-method.md)
+- [Personal Variables](references/personal-variables.md)
+- [Quality Bar](references/quality-bar.md)
+- [Style Skeleton](references/style-skeleton.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown Chinese prose with optional style review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses are writing, rewriting, enhancement, or review guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

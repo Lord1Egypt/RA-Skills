@@ -1,46 +1,60 @@
-## Description: <br>
-Validate, lint, audit, or fix PromQL queries and alerting rules while detecting anti-patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate, lint, audit, or fix PromQL queries and alerting rules; detects anti-patterns.
 
-## Publisher: <br>
-[qq280948982](https://clawhub.ai/user/qq280948982) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qq280948982](https://clawhub.ai/user/qq280948982)
 
-## Use Case: <br>
-Developers, SREs, and platform engineers use this skill to validate PromQL queries and alerting rules, detect syntax, semantic, and performance issues, and refine queries to match monitoring intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs included local Python scripts to validate query text. <br>
-Mitigation: Review the included scripts before use in restricted environments and run them only where Python 3 and local code execution are permitted. <br>
-Risk: Metric type detection is heuristic-based and custom metric names may be misclassified. <br>
-Mitigation: Confirm counter, gauge, histogram, or summary types with the user or metric schema before applying recommendations. <br>
-Risk: The validators do not have runtime access to a Prometheus server and cannot prove that metrics or label values exist. <br>
-Mitigation: Test revised queries against the target Prometheus environment before using them for production dashboards or alerts. <br>
+## Use Case:
 
+Developers and site reliability engineers use this skill to validate PromQL expressions, review alerting rules, explain query behavior, and identify performance or correctness issues before using queries in dashboards, alerts, or troubleshooting workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qq280948982/promql-validator) <br>
-- [PromQL best practices guide](docs/best_practices.md) <br>
-- [PromQL anti-patterns guide](docs/anti_patterns.md) <br>
-- [Official Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) <br>
-- [Prometheus metric naming practices](https://prometheus.io/docs/practices/naming/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and JSON output from local validation scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include syntax status, semantic findings, performance suggestions, query explanations, and clarifying questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Pasting an untrusted PromQL query into the documented shell command form could allow local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke validator scripts through a structured process call that passes the query as one argument, or pass the query through stdin; do not interpolate untrusted query text into a shell command.
+
+Risk: Metric-type and semantic checks are heuristic and do not know the target Prometheus deployment's actual metrics or labels.
+
+Mitigation: Confirm inferred metric types and test important queries against the intended Prometheus server before using them for production alerting or dashboards.
+
+## Reference(s):
+
+- [PromQL Validator Skill Page](https://clawhub.ai/qq280948982/skills/promql-validator)
+- [PromQL Official Documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/)
+- [Prometheus Best Practices](https://prometheus.io/docs/practices/)
+- [Best Practices for Naming Metrics](https://prometheus.io/docs/practices/naming/)
+- [PromQL Cheat Sheet](https://promlabs.com/promql-cheat-sheet/)
+- [Common Query Patterns in PromQL](https://www.robustperception.io/common-query-patterns-in-promql/)
+- [Best Practices Documentation](docs/best_practices.md)
+- [Anti-Patterns Documentation](docs/anti_patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with JSON validation results, PromQL code snippets, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include syntax findings, semantic warnings, optimization suggestions, output label descriptions, corrected PromQL examples, and citation line references.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

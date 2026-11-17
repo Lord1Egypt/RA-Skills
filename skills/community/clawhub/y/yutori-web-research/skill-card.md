@@ -1,41 +1,55 @@
-## Description: <br>
-Yutori research uses Yutori's Research and Browsing APIs to research topics, collect sources, navigate sites, and extract structured facts from the web. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Yutori Research and Browsing APIs to research topics, collect sources, navigate sites, and extract structured facts from the web when Yutori endpoints and API credentials are available.
 
-## Publisher: <br>
-[juanpin](https://clawhub.ai/user/juanpin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[juanpin](https://clawhub.ai/user/juanpin)
 
-## Use Case: <br>
-Developers and agent users use this skill to delegate web research, source collection, site navigation, and structured fact extraction to Yutori cloud agents when local browsing tools are not ideal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, URLs, and browsing tasks are sent to Yutori's cloud service. <br>
-Mitigation: Use a limited Yutori API key and avoid sending confidential URLs, internal data, or secrets unless approved. <br>
-Risk: Browsing tasks may include form submission or other state-changing actions. <br>
-Mitigation: Confirm with the user before form submission or other state-changing browsing tasks. <br>
-Risk: The configured Yutori endpoint may point to a development or production environment. <br>
-Mitigation: Verify YUTORI_API_BASE points to the intended endpoint before running research or browsing tasks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Yutori website](https://yutori.com) <br>
+## Use Case:
 
+Developers and agents with Yutori API access use this skill to delegate web research and cloud browsing tasks, then return briefs, reading lists, extracted facts, and source URLs to users.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with bullet lists and source URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YUTORI_API_KEY; long-running tasks may return a view URL for later polling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send research prompts, browsed URLs, and the Yutori API key to the endpoint configured in YUTORI_API_BASE.
+
+Mitigation: Set YUTORI_API_BASE only to an official HTTPS Yutori endpoint and avoid confidential or internal URLs unless approved.
+
+Risk: The security evidence marks the release suspicious because endpoint configuration can redirect sensitive requests.
+
+Mitigation: Review the script before installation and consider hardening it to allowlist Yutori origins before sending credentials.
+
+## Reference(s):
+
+- [Yutori website](https://yutori.com)
+- [Yutori production API endpoint](https://api.yutori.com)
+- [Yutori development API endpoint](https://api.dev.yutori.com)
+- [ClawHub skill page](https://clawhub.ai/juanpin/skills/yutori-web-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown bullets with source URLs and optional shell or curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YUTORI_API_KEY and may use YUTORI_API_BASE to choose the Yutori endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Call GET /api/v1/google/maps/photos for Google SERP Maps Photos through Just Serp API with data_id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/maps/photos for Google SERP Maps Photos through Just Serp API with data_id.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call Just Serp API's Google Maps Photos endpoint, retrieving photo data and related metadata for visual location research and listing quality assurance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Just Serp API key. <br>
-Mitigation: Store JUST_SERP_API_KEY in the environment and avoid pasting the key into chat, screenshots, or logs. <br>
-Risk: Google Maps location identifiers are sent to Just Serp API for processing. <br>
-Mitigation: Submit location identifiers only when the user is comfortable sharing them with Just Serp API. <br>
+## Use Case:
 
+Developers and external users use this skill to call Just Serp API's Google Maps Photos endpoint with a Google Maps data_id, retrieve photo data and related metadata, and support visual location research or listing QA.
 
-## Reference(s): <br>
-- [Just Serp API project site](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_maps_photos&utm_content=project_link) <br>
-- [Just Serp API documentation](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_maps_photos&utm_content=project_link) <br>
-- [ClawHub skill listing](https://clawhub.ai/justserpapi/justserpapi-google-maps-photos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and a data_id query parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The documented command passes the Just Serp API key as a process argument, which may expose it locally through process listings or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a version that reads JUST_SERP_API_KEY directly from the environment or another protected secret source; avoid pasting API keys into chat messages, screenshots, or logs.
+
+## Reference(s):
+
+- [Google SERP Maps Photos API on ClawHub](https://clawhub.ai/justserpapi/skills/justserpapi-google-maps-photos)
+- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_maps_photos&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_maps_photos&utm_content=project_link)
+- [Generated Google SERP Maps Photos Operations](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, JSON, Guidance]
+
+**Output Format:** [Markdown summary with endpoint details and raw JSON API response when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_SERP_API_KEY; the main operation is mapsPhotos for /api/v1/google/maps/photos.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,97 @@
+{
+ "client": "example-orbit-podcast",
+ "episode": "ep-012",
+ "video": "../source.mp4",
+ "video_sha256": "0933252b7c30287922d92ec96901101c323f4f022a4eb169fea2b1d4956f9426",
+ "brand": {
+  "hook": true,
+  "uppercase": true,
+  "accent": "#FFD60A",
+  "text": "#FFFFFF",
+  "hook_bg": "#FFD60A",
+  "hook_text": "#0B132B",
+  "logo_position": "top-left",
+  "logo_scale": 0.16,
+  "end_card": {
+   "text": "Full episode: Example Orbit Podcast",
+   "seconds": 1.5,
+   "bg": "#0B132B",
+   "color": "#FFD60A"
+  },
+  "mark": "EXAMPLE ONLY",
+  "logo_sha256": "2d43469d64a548b50902cfd07567b37379bde415b4d889b06b49a7c34901c4ff"
+ },
+ "clips": [
+  {
+   "id": "01",
+   "file": "clip-01.mp4",
+   "sha256": "28a9ff978696dcbd9c1c8bb0c22bcdca4a2f2b9c5c2928d47ade2755a4831597",
+   "bytes": 838506,
+   "seconds": 23.5,
+   "end_card_seconds": 1.5,
+   "window": [
+    3.36,
+    24.88
+   ],
+   "ranges": [
+    [
+     3.12,
+     25.08
+    ]
+   ],
+   "framing": "crop",
+   "hook": "The Moon isn't a place. It's a direction",
+   "names_fixed": [],
+   "cover": "clip-01-cover.jpg",
+   "spec": "aadbf21f6d0bea53"
+  },
+  {
+   "id": "02",
+   "file": "clip-02.mp4",
+   "sha256": "be95e3bf2c5ede2b506fb5e19cbaffdb7693f72cd003139877cf40a92ac7f27e",
+   "bytes": 934492,
+   "seconds": 29.6,
+   "end_card_seconds": 1.5,
+   "window": [
+    40.7,
+    68.46
+   ],
+   "ranges": [
+    [
+     40.7,
+     68.78
+    ]
+   ],
+   "framing": "crop",
+   "hook": "1989: the case for Mars",
+   "names_fixed": [],
+   "cover": "clip-02-cover.jpg",
+   "spec": "d9c2ee0adb781d08"
+  },
+  {
+   "id": "03",
+   "file": "clip-03.mp4",
+   "sha256": "c70cd7d8f29fb71cfb911db1559753452f920e711700993be26d598d0375f247",
+   "bytes": 477203,
+   "seconds": 23.2,
+   "end_card_seconds": 1.5,
+   "window": [
+    74.1,
+    95.53
+   ],
+   "ranges": [
+    [
+     74.13,
+     95.8
+    ]
+   ],
+   "framing": "fit",
+   "hook": "Why we get bored of the Moon",
+   "names_fixed": [],
+   "cover": "clip-03-cover.jpg",
+   "spec": "0a6e31a685b00cd0"
+  }
+ ],
+ "contactSheet": "contact-sheet.jpg",
+ "warnings": []
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Record and replay event streams for debugging, testing, and audit purposes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record and replay event streams for debugging, testing, and audit purposes.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to capture event streams into NDJSON recordings, replay them against downstream consumers, debug event-driven workflows, and audit event history with timestamps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Captured event payloads may contain sensitive or operationally important data. <br>
-Mitigation: Store recordings in protected locations, delete them when no longer needed, and review payload handling requirements before sharing or replaying recordings. <br>
-Risk: Wildcard capture or replay into live destinations can affect systems beyond the intended test scope. <br>
-Mitigation: Prefer narrow topics over wildcard capture and replay only into isolated test targets unless explicitly authorized for a live destination. <br>
+## Use Case:
 
+Developers and engineers use Pilot Event Replay to capture Pilot Protocol event streams into NDJSON recordings, replay them into test targets, debug event-driven workflows, and audit event history with timestamps.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-event-replay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command patterns for recording NDJSON event streams and replaying them with configurable host, topic, timeout, file, and delay values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad event captures can record sensitive event data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Capture only authorized streams, avoid broad wildcard captures unless necessary, use a private directory with restrictive permissions, and redact sensitive data before sharing recordings.
+
+Risk: Replaying events can trigger duplicate downstream side effects.
+
+Mitigation: Replay only into isolated test targets unless downstream systems are known to handle duplicate events safely.
+
+## Reference(s):
+
+- [Pilot Event Replay on ClawHub](https://clawhub.ai/teoslayer/skills/pilot-event-replay)
+- [Pilot Protocol](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce NDJSON recording and replay commands that require pilotctl, jq, and a running Pilot Protocol daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

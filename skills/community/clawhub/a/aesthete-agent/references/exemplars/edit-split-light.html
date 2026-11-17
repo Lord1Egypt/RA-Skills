@@ -1,0 +1,158 @@
+<!-- exemplar
+kind: landing
+register: light
+recipe: EDIT-SPLIT
+techniques: R2,R5,R9,菜单卡,KPI阶梯
+palette: 01161E,124559,598392,AEC3B0,EFF6E0
+validated: 四闸 PASS(0P0/0P1/0P2)+渲染评审 v1-v7
+regen: python3 scripts/make_exemplars.py(勿手改本文件)
+-->
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>夜松工作室</title>
+<!-- recipe-source: EDIT-SPLIT(0.14) 声明色板: 01161E,124559,598392,6E8F91,99AE9E,9CB7B5,AEC3B0,EFF6E0,F8FBF1 跨度序列: 6+5/8/5+4+3/2+8+2/4xKPI/6 明暗: 全浅+深色点缀 -->
+<style>:root{
+  --night:#01161E;--pale:#EFF6E0;--mist:#6E8F91;--sage:#9CB7B5;
+  --surface:#AEC3B0;--ink:#01161E;--ink2:#124559;--accent:#598392;
+  --card:#F8FBF1;--line:#99AE9E;
+  --serif:'Noto Serif SC','Source Han Serif SC','Songti SC',Georgia,serif;
+  --sans:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;
+  --display:var(--sans);
+  --mono:ui-monospace,'SF Mono',Consolas,monospace;
+}
+:lang(zh){text-autospace:normal;line-break:strict}
+h1,h2{text-wrap:balance}
+p{text-wrap:pretty}
+:lang(zh) :is(h1,h2,h3){font-feature-settings:"palt" 1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--pale);color:var(--ink);font:400 16px/1.75 var(--sans)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+:focus-visible{outline:3px solid var(--sage);outline-offset:3px}
+.kicker{display:flex;align-items:center;gap:10px;font:700 12px/1.6 var(--sans);
+         letter-spacing:.28em;color:var(--accent-ink,var(--accent));margin-bottom:14px}
+.kicker::before{content:"";width:24px;height:1px;background:var(--accent)}
+.hairline{border:0;border-top:1px solid var(--line)}
+.mono{font:400 12px/1.6 var(--mono);letter-spacing:.05em;opacity:.62}
+.btn{display:inline-block;background:var(--ink);color:var(--pale);font:700 15px/1 var(--sans);
+      padding:16px 32px;border-radius:10px}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.ghost-num{font:900 clamp(96px,12vw,160px)/1 var(--serif);color:transparent;
+            -webkit-text-stroke:1px var(--line);pointer-events:none}
+.cross{position:absolute;width:11px;height:11px;pointer-events:none}
+.cross::before{content:"";position:absolute;left:5px;top:0;width:1px;height:11px;background:var(--ink2);opacity:.5}
+.cross::after{content:"";position:absolute;top:5px;left:0;width:11px;height:1px;background:var(--ink2);opacity:.5}
+.side-label{position:absolute;writing-mode:vertical-rl;font:600 11px/1.8 var(--mono);
+             letter-spacing:.3em;color:var(--ink2);opacity:.55;pointer-events:none}
+.bg-motif{position:absolute;pointer-events:none;opacity:.07}
+.dark .bg-motif{opacity:.12}
+section{padding:96px 0}
+section .sub{padding:64px 0 0}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{background:var(--surface);text-align:left;padding:12px 18px;font-weight:700}
+td{padding:12px 18px;border-top:1px solid var(--line)}
+.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.lift{transition:transform .22s ease,box-shadow .22s ease}
+.lift:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(17,22,30,.12)}
+@media (prefers-reduced-motion:reduce){.lift,.lift:hover{transform:none;box-shadow:none;transition:none}}
+figcaption{font:400 12px/1.6 var(--mono);letter-spacing:.05em;color:var(--ink2);margin-top:10px}
+@supports (initial-letter:3){.dropcap>p:first-of-type::first-letter{initial-letter:3 2;
+  font:700 1em var(--serif);color:var(--accent-ink,var(--accent));margin-right:10px}}
+@media (max-width:900px){.grid>*{grid-column:1/-1!important}section{padding:64px 0}.wrap{padding:0 24px}}
+
+body{background:#FFFFFF}
+.hero{display:grid;grid-template-columns:6fr 5fr;gap:64px;align-items:start;padding:64px 0 88px}
+.hero h1{font:800 clamp(40px,5.8vw,76px)/1.14 var(--sans);letter-spacing:0.01em;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--ink2)}
+.hero .lede{font-size:16.5px;line-height:1.7;color:var(--ink2);margin:20px 0 26px;max-width:44ch}
+.stats{display:flex;gap:44px;margin-top:36px}
+.stats .n{font:800 clamp(26px,2.6vw,34px)/1 var(--sans);font-variant-numeric:tabular-nums;
+          color:var(--accent-ink,var(--accent))}
+.stats .l{font-size:12.5px;color:var(--ink2);margin-top:6px}
+.menu-card{border:1px solid var(--line);border-radius:16px;padding:30px 30px 22px;background:#FFFFFF}
+.menu-card h3{font:800 15px var(--sans);letter-spacing:.14em;margin-bottom:6px}
+.menu-card .season-note{font-size:12px;color:var(--ink2);margin-bottom:14px}
+.menu-item{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+           padding:14px 0;border-top:1px solid var(--line)}
+.menu-item .mi-name{font:700 15px var(--sans)}
+.menu-item .mi-desc{font-size:12.5px;color:var(--ink2);margin-top:3px}
+.menu-item .price{font:800 15px var(--sans);font-variant-numeric:tabular-nums;white-space:nowrap}
+.menu-item .tag{display:inline-block;font:700 11px var(--sans);color:var(--accent-ink,var(--accent));
+                background:var(--pale);border-radius:4px;padding:2px 8px;margin-left:8px;
+                vertical-align:2px}
+.menu-more{display:inline-block;margin-top:14px;font:700 13px var(--sans);color:var(--ink);
+           border-bottom:1.5px solid var(--ink);padding-bottom:2px}
+.claim{max-width:66ch;margin:0 auto}
+.claim h2{font:700 clamp(28px,3.4vw,42px)/1.25 var(--serif);margin-bottom:14px;
+          -webkit-text-stroke:.4px currentColor}
+.claim-points{display:flex;gap:40px;margin-top:30px;flex-wrap:wrap}
+.claim-points>div{max-width:230px}
+.claim-points .no{font:700 13px var(--mono);color:var(--accent-ink,var(--accent))}
+.claim-points p{font-size:13.5px;color:var(--ink2);margin-top:6px}
+.features{display:grid;grid-template-columns:5fr 4fr 3fr;gap:24px}
+.cat-chip{display:inline-block;font:700 11px var(--sans);letter-spacing:.08em;
+          border-radius:4px;padding:3px 9px;margin-bottom:14px}
+.quoteband{grid-column:1/-1;background:var(--pale);border-radius:16px;padding:56px 40px}
+.quote{max-width:40ch;margin:0 auto;text-align:center}
+.quote p{font:700 clamp(24px,3vw,38px)/1.5 var(--serif)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.kpi{border-radius:14px;padding:26px 24px;min-height:150px;display:flex;flex-direction:column;
+     justify-content:space-between}
+.kpi .n{font:800 clamp(26px,2.4vw,34px)/1 var(--sans);font-variant-numeric:tabular-nums}
+.kpi .l{font-size:12.5px;margin-top:8px;opacity:.82}
+.dark-cta{background:var(--night);color:var(--pale)}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}}
+</style></head><body>
+<div style='display:flex;height:5px' aria-hidden='true'><span style='flex:1;background:#01161E'></span><span style='flex:1;background:#124559'></span><span style='flex:1;background:#598392'></span><span style='flex:1;background:#9CB7B5'></span><span style='flex:1;background:#EFF6E0'></span></div>
+<header style="background:var(--pale)"><div class="wrap" style="display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:20px"><a href="#" style="font:700 17px var(--serif);color:var(--night)">夜松工作室</a><nav style="display:flex;gap:24px;font-size:13.5px;font-weight:600"><a style="color:var(--ink2)" href="#s1">一览</a><a style="color:var(--ink2)" href="#s2">方法</a><a style="color:var(--ink2)" href="#cta">联系</a></nav></div></header>
+<div class="wrap"><section class="hero" style="position:relative">
+  <span class="cross" style="right:0;top:-6px"></span>
+  <div><p class="kicker">NIGHTPINE · 一句话定位(替换)</p>
+    <h1>标题两行内，<br>说完一件事。</h1>
+    <p class="lede">两行以内的价值陈述,给一个具体的、可验证的承诺。(替换)</p>
+    <div style="display:flex;gap:14px;margin-bottom:8px">
+      <a class="btn" style="background:var(--night);color:#fff" href="#cta">预约试吃</a>
+      <a class="btn ghost" href="#s1">看方法</a></div>
+    <div class="stats">
+      <div><div class="n">—</div><div class="l">指标一(替换)</div></div>
+      <div><div class="n">—</div><div class="l">指标二(替换)</div></div>
+      <div><div class="n">—</div><div class="l">指标三(替换)</div></div></div></div>
+  <aside class="menu-card">
+    <h3>本周出品(替换)</h3>
+    <p class="season-note">档期说明(替换)</p>
+    <div class="menu-item"><div><span class="mi-name">品名一(替换)</span><span class="tag">本季</span>
+      <p class="mi-desc">风味 · 要点(替换)</p></div><span class="price">¥ —(替换)</span></div>
+    <div class="menu-item"><div><span class="mi-name">品名二(替换)</span>
+      <p class="mi-desc">风味 · 要点(替换)</p></div><span class="price">¥ —(替换)</span></div>
+    <div class="menu-item"><div><span class="mi-name">品名三(替换)</span>
+      <p class="mi-desc">风味 · 要点(替换)</p></div><span class="price">¥ —(替换)</span></div>
+    <a class="menu-more" href="#s1">完整菜单 →</a>
+  </aside>
+</section>
+<section class="sub" id="s1" style="position:relative">
+  <div class="bg-motif" style="left:-60px;top:-20px"><svg width='300' height='300' viewBox='0 0 300 300' aria-hidden='true' style='display:block'><g fill='none' stroke='#9CB7B5' stroke-width='2'><circle cx='150.0' cy='150.0' r='136.0'/><circle cx='150.0' cy='150.0' r='99.0'/><circle cx='150.0' cy='150.0' r='60.0'/></g><g fill='none' stroke='#598392' stroke-width='2'><circle cx='150.0' cy='150.0' r='21.000000000000004'/></g><circle cx='150.0' cy='150.0' r='8.0' fill='#01161E'/></svg></div>
+  <div class="claim" style="position:relative">
+  <p class="kicker">理念</p><h2>一节只说一件事，说透。(替换)</h2>
+  <p style="color:var(--ink2)">支持句:给出可验证的细节与数字,不写形容词。(替换)</p>
+  <div class="claim-points">
+    <div><span class="no">01</span><p>每周小批量,售完即止</p></div>
+    <div><span class="no">02</span><p>配料表公开,可查证</p></div></div></div></section>
+<section class="sub"><div class="features">
+  <article class="lift" style="background:var(--card);border-radius:14px;padding:26px 26px 20px;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:190px"><span style="position:absolute;right:12px;top:0;font:900 84px var(--serif);color:var(--surface)">01</span><h3 style="font:800 19px var(--serif);position:relative">季节限定</h3><p style="font-size:13.5px;color:var(--ink2);position:relative;margin-top:6px">当季莓果 · 轻乳脂</p><div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;position:relative"><span style="font:800 17px var(--serif)">¥ —</span><span style="font-size:12.5px;color:var(--ink2)">周期 — 天</span></div></article>
+  <article class="lift" style="background:var(--card);border-radius:14px;padding:26px 26px 20px;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:190px"><span style="position:absolute;right:12px;top:0;font:900 84px var(--serif);color:var(--surface)">02</span><h3 style="font:800 19px var(--serif);position:relative">婚礼定制</h3><p style="font-size:13.5px;color:var(--ink2);position:relative;margin-top:6px">三层 · 手工糖花</p><div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;position:relative"><span style="font:800 17px var(--serif)">¥ —</span><span style="font-size:12.5px;color:var(--ink2)">周期 — 天</span></div></article>
+  <article class="lift" style="background:var(--card);border-radius:14px;padding:26px 26px 20px;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:190px"><span style="position:absolute;right:12px;top:0;font:900 84px var(--serif);color:var(--surface)">03</span><h3 style="font:800 19px var(--serif);position:relative">下午茶礼盒</h3><p style="font-size:13.5px;color:var(--ink2);position:relative;margin-top:6px">六件 · 当日配送</p><div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;position:relative"><span style="font:800 17px var(--serif)">¥ —</span><span style="font-size:12.5px;color:var(--ink2)">周期 — 天</span></div></article></div></section>
+<section class="sub"><div class="grid"><div class="quoteband"><div class="quote">
+  <p>「一句客户原话,带时间与细节。(替换)」</p>
+  <footer style="margin-top:14px;font-size:13px;color:var(--ink2)">—— 署名,年份</footer>
+</div></div></div></section>
+<section class="sub"><div class="kpis"><div class="kpi" style="background:#01161E;color:var(--pale)"><span class="n">—</span><span class="l">指标一(替换)</span></div><div class="kpi" style="background:#124559;color:var(--pale)"><span class="n">—</span><span class="l">指标二(替换)</span></div><div class="kpi" style="background:#598392;color:var(--pale)"><span class="n">—</span><span class="l">指标三(替换)</span></div><div class="kpi" style="background:#9CB7B5;color:var(--ink)"><span class="n">—</span><span class="l">指标四(替换)</span></div></div></section>
+</div>
+<section class="dark-cta" id="cta"><div class="wrap" style="max-width:66ch;text-align:center">
+  <h2 style="font:800 clamp(28px,3.6vw,44px)/1.25 var(--serif)">收尾行动,先具体,再干脆。(替换)</h2>
+  <p style="color:var(--mist);margin:14px 0 26px">说明第一步做什么、成本与承诺。(替换)</p>
+  <a class="btn" style="background:var(--pale);color:var(--night)" href="#">预约试吃</a></div></section>
+<footer><div class="wrap" style="padding-top:26px;padding-bottom:40px;font-size:13px;color:var(--ink2);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+  <span>© 2026 夜松工作室</span><span>配色与布局:aesthete-agent 配方 EDIT-SPLIT(四闸 PASS · 本页实测)</span></div></footer>
+</body></html>

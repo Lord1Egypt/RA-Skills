@@ -1,44 +1,60 @@
-## Description: <br>
-每15分钟扫描 OpenClaw 会话记录，识别任务、决策、教训和配置变更，并将遗漏的重要信息写入每日 memory 文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+记忆自动主动管理：每15分钟自动扫描对话，发现重要信息自动写入每日 memory，解决主动记录经常遗漏的问题。
 
-## Publisher: <br>
-[a1003916989-blip](https://clawhub.ai/user/a1003916989-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a1003916989-blip](https://clawhub.ai/user/a1003916989-blip)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to set up scheduled memory scans that capture important conversation outcomes into daily and weekly memory files. It helps preserve completed tasks, decisions, lessons, configuration changes, and pending items without relying on manual note taking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scheduled task reads private conversation transcripts and may store selected details long-term. <br>
-Mitigation: Use it only for chats appropriate for persistent memory, and add redaction, review, deletion, and retention rules before using it with sensitive content. <br>
-Risk: The artifact does not define clear cleanup limits for generated memory files. <br>
-Mitigation: Define retention and deletion procedures for daily memory files, weekly summaries, scan state, and last-write metadata. <br>
-Risk: Feishu delivery can send memory merge notifications outside the local workspace if enabled. <br>
-Mitigation: Keep delivery disabled unless the destination user ID and notification contents are known and approved. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to run scheduled memory checks that scan new conversation transcript messages, compare them with existing memory files, and record missed tasks, decisions, lessons, configuration changes, or blockers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a1003916989-blip/xiazun-memory-auto) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown] <br>
-**Output Format:** [Markdown with shell commands, JSON examples, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs a Python scanner and OpenClaw cron configuration that can create and update memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata, release evidence, and SKILL.md frontmatter) <br>
+Risk: Scheduled runs read conversation transcripts and expose selected transcript text to a tool-enabled agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only for workspaces where transcript scanning is acceptable; configure an explicit transcript path and review/redact sensitive content before memory writes.
+
+Risk: The cron workflow requests exec, read, and write authority and can write to memory files automatically.
+
+Mitigation: Limit permissions to the narrowest workspace paths possible and review the cron commands, generated memory entries, and scan-state files after installation.
+
+Risk: Optional Feishu delivery can send memory-derived data outside the local environment.
+
+Mitigation: Do not enable Feishu delivery unless external delivery is intended and the recipient user ID, channel, and content handling are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a1003916989-blip/skills/xiazun-memory-auto)
+- [Publisher profile](https://clawhub.ai/user/a1003916989-blip)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and operating guidance for OpenClaw cron jobs and memory files; the bundled scan script prints transcript excerpts and current memory content for agent review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

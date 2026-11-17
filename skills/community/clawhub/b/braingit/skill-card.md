@@ -1,38 +1,55 @@
-## Description: <br>
-Automate committing Markdown-only changes in a git repo with safe staging, ideal for note snapshots without affecting code or binaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate committing Markdown-only changes in a git repo with safe staging, ideal for note snapshots without affecting code or binaries.
 
-## Publisher: <br>
-[gleb-urvanov](https://clawhub.ai/user/gleb-urvanov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gleb-urvanov](https://clawhub.ai/user/gleb-urvanov)
 
-## Use Case: <br>
-Developers, engineers, and note-taking agents use Braingit to create git snapshots of Markdown-only changes in a repository without staging code, binaries, or unrelated files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create git commits for matching Markdown files, which may include unintended notes or sensitive text if those files are not excluded. <br>
-Mitigation: Review the target repository, keep .gitignore exclusions current, use BRAINGIT_DRY_RUN=1 before automation, and avoid storing secrets in Markdown. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Braingit protocol](references/protocol.md) <br>
-- [Braingit article](https://github.com/gleb-urvanov/braingit/blob/master/braingit-article.md) <br>
+## Use Case:
 
+Developers, writers, and teams use Braingit to snapshot Markdown notes, specs, plans, and research in a Git repository without intentionally staging code or binaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces git commits when invoked outside dry-run mode; exits successfully when no matching Markdown changes are present.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The commit script can accidentally include files that were already staged before it runs, including non-Markdown files.
+
+Mitigation: Run it only in repositories with a clean index or use dry-run first; avoid scheduled automation until the script aborts on pre-existing staged files or uses an isolated Git index.
+
+Risk: Scheduled snapshots can commit sensitive Markdown content if secrets are stored in notes.
+
+Mitigation: Keep ignore rules and path exclusions current, and avoid storing secrets in Markdown repositories that are committed automatically.
+
+## Reference(s):
+
+- [Braingit protocol](references/protocol.md)
+- [Braingit article](https://github.com/gleb-urvanov/braingit/blob/master/braingit-article.md)
+- [ClawHub skill page](https://clawhub.ai/gleb-urvanov/skills/braingit)
+- [Publisher profile](https://clawhub.ai/user/gleb-urvanov)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill provides command examples and environment-variable options; it does not produce binary artifacts.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

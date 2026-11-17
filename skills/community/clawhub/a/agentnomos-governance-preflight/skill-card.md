@@ -1,43 +1,54 @@
-## Description: <br>
-Run a fail-closed governance preflight before consequential AI-agent actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a fail-closed governance preflight before consequential AI-agent actions.
 
-## Publisher: <br>
-[agentnomos](https://clawhub.ai/user/agentnomos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentnomos](https://clawhub.ai/user/agentnomos)
 
-## Use Case: <br>
-Agents and developers use this skill before consequential actions to assess identity, authority, scope, risk, human approval requirements, and evidence readiness without executing the action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users or agents may mistake an advisory result for legal, compliance, or production authorization. <br>
-Mitigation: Treat the result as a preflight checklist only and keep existing platform policies, user confirmations, and human approvals in force. <br>
-Risk: Requests may contain secrets or sensitive raw data. <br>
-Mitigation: Do not repeat sensitive values; redact them with neutral placeholders and block when secret exposure is detected. <br>
-Risk: Incomplete authority, scope, approval, or evidence can lead to unsafe consequential action. <br>
-Mitigation: Hold for review unless the actor, authority, scope, risk, required approval, and evidence are explicit and current. <br>
+## Use Case:
 
+Developers, operators, and governance reviewers use this skill to check whether consequential agent actions are authorized, scoped, reviewable, and supported by evidence before execution.
 
-## Reference(s): <br>
-- [AgentNOMOS](https://agentnomos.com) <br>
-- [ClawHub skill page](https://clawhub.ai/agentnomos/skills/agentnomos-governance-preflight) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Concise explanation followed by structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory only; the skill returns a not_executed flag and does not authorize or execute the proposed action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may hold or block consequential tasks when authority, scope, approval, or evidence is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it where fail-closed governance review is expected, and provide explicit current authority, scope, approvals, and required evidence when an action should proceed.
+
+Risk: Requests may contain secrets or sensitive raw data.
+
+Mitigation: Do not repeat sensitive values; redact them with neutral placeholders and return BLOCK when secret exposure is detected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentnomos/skills/agentnomos-governance-preflight)
+- [AgentNOMOS](https://agentnomos.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Concise explanation followed by structured JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only advisory result; sensitive values are redacted and not_executed remains true.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

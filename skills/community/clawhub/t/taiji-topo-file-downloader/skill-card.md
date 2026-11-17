@@ -1,38 +1,57 @@
-## Description: <br>
-Automates locating the node sidebar, opening the configuration file panel, and downloading files from Taiji workflow pages at a.taiji.woa.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在太极平台 a.taiji.woa.com 工作流页面自动定位节点侧边栏、打开配置文件面板并下载文件。用于“下载太极拓扑配置文件/模型文件”“在太极页面里找到文件并保存到本地”等任务，特别适合需要先校验页面是否已正确打开、再稳定定位侧边栏与文件列表的场景。
 
-## Publisher: <br>
-[m-final](https://clawhub.ai/user/m-final) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[m-final](https://clawhub.ai/user/m-final)
 
-## Use Case: <br>
-Developers and operators use this skill to guide browser automation that downloads topology configuration or model files from Taiji workflow pages after checking the active page, sidebar, file list, and local download result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates the user's current Chrome session on a.taiji.woa.com and moves the newest Chrome temporary download file, which could select the wrong file if other downloads are active. <br>
-Mitigation: Use it only for the intended Taiji page, avoid concurrent Chrome downloads, confirm the target file name, and review the destination path before running the move and rename command. <br>
+## Use Case:
 
+Developers and workflow operators use this skill to guide browser automation that opens Taiji workflow file panels, downloads selected topology or model files, and saves them to a timestamped local directory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/m-final/taiji-topo-file-downloader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code] <br>
-**Output Format:** [Markdown with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes browser automation steps, page-state checks, file matching guidance, and a local download rename command pattern.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: package.json and server release metadata) <br>
+Risk: The local shell step can mishandle or overwrite files in the user's Downloads directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a unique fixed download directory, confirm the selected file before moving it, and require confirmation before overwriting local files.
+
+Risk: Filename or topology-name inputs can affect local paths.
+
+Mitigation: Reject path separators in filenames and sanitize directory names before creating folders or moving files.
+
+Risk: The shell snippet uses eval to expand the base download path.
+
+Mitigation: Replace eval-based path expansion with a fixed, explicit download directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/m-final/skills/taiji-topo-file-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces browser automation steps and local file-handling commands for the agent to execute or adapt.]
+
+## Skill Version(s):
+
+1.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

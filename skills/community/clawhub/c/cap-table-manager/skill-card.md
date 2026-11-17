@@ -1,41 +1,57 @@
-## Description: <br>
-Equity cap table management for startups and growth-stage companies, including SAFEs, convertible notes, priced rounds, token allocations, dilution scenarios, 409A prep, investor-ready cap tables, waterfall analyses, and scenario models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Equity cap table management for startups and growth-stage companies, including SAFEs, convertible notes, priced equity rounds, token allocations, dilution scenarios, and 409A valuation prep.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Founders, finance teams, and startup operators use this skill to model ownership, financing rounds, SAFE and note conversions, option pools, token side-tables, 409A inputs, and exit waterfalls. It produces planning outputs for review by the company's finance, legal, tax, and cap table system-of-record stakeholders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cap table inputs may include confidential ownership, stakeholder, financing, and valuation information. <br>
-Mitigation: Use placeholders or redacted stakeholder names where possible, and export CSV or Sheets outputs only to approved, access-controlled locations. <br>
-Risk: Cap table calculations and planning outputs may be mistaken for legal, tax, securities, or board-authorized records. <br>
-Mitigation: Review outputs with securities counsel, a qualified tax advisor, or the company's cap table system of record before using them for legal, tax, filing, or governance decisions. <br>
+## Use Case:
 
+Startup operators, finance teams, founders, and advisors use this skill to model ownership, financing rounds, dilution, SAFE and note conversions, waterfall outcomes, token side-tables, and 409A preparation materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/cap-table-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, CSV, Guidance] <br>
-**Output Format:** [Markdown tables, CSV templates, spreadsheet-ready analysis, formulas, and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scenario models, ownership tables, SAFE and note conversion schedules, option pool calculations, waterfall analyses, and 409A preparation checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Cap table, securities, tax, valuation, or 409A outputs could be mistaken for legal, tax, valuation, or official ledger advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a modeling aid; route legal execution, tax advice, securities filings, official recordkeeping, and board-authorized ledger decisions to qualified counsel, a CPA, valuation professionals, or the system of record.
+
+Risk: Prompts and generated tables may contain confidential company ownership, financing, investor, or compensation data.
+
+Mitigation: Use the skill only in an agent environment trusted for that data and avoid sharing confidential company information unless approved.
+
+Risk: Financial models may be incorrect if assumptions such as pre-money versus post-money option pools, SAFE conversion terms, or liquidation preferences are misunderstood.
+
+Mitigation: Review inputs, assumptions, formulas, and scenario outputs before using them with investors, valuation firms, counsel, or internal decision makers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/cap-table-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with tables, formulas, CSV examples, and structured financial modeling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include spreadsheet-ready tables, scenario models, waterfall analyses, and document checklists.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

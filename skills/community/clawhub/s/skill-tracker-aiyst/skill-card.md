@@ -1,44 +1,58 @@
-## Description: <br>
-Skill Tracker records Python and Node.js skill usage, success rates, timing, and rankings in local files for usage analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Tracker records local usage metrics for OpenClaw skills in Python and Node.js and generates reports on calls, success rates, failures, duration, and usage rankings.
 
-## Publisher: <br>
-[aiyst1982](https://clawhub.ai/user/aiyst1982) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiyst1982](https://clawhub.ai/user/aiyst1982)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to instrument Python or Node.js skills, collect local usage statistics, and review reports that show call counts, success rates, failures, and timing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local logs may include user, session, and error metadata. <br>
-Mitigation: Protect or periodically delete the data directory, configure retention, and avoid passing secrets, tokens, personal data, or raw exception text into context or error fields. <br>
-Risk: The tracker records usage history for any skills integrated with it. <br>
-Mitigation: Use it only with skills whose activity you intentionally want recorded, and disable raw logging or remove the tracker where local activity history is not appropriate. <br>
+## Use Case:
 
+Developers and skill maintainers use Skill Tracker to instrument Python or Node.js skills, collect local usage statistics, and review which skills are used most often or fail most often. It is suited for teams that want lightweight local analytics without sending tracker data to an external service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiyst1982/skill-tracker-aiyst) <br>
-- [Publisher profile](https://clawhub.ai/user/aiyst1982) <br>
-- [README](artifact/README.md) <br>
-- [CHANGELOG](artifact/CHANGELOG.md) <br>
-- [Configuration example](artifact/config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, local JSON/JSONL usage data, and Python or Node.js integration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 according to ClawHub metadata; supports Linux, macOS, and Windows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence, package.json, CHANGELOG) <br>
+Risk: The tracker stores per-call user, session, and error context in local plaintext logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid logging real names, session IDs, tokens, request payloads, or raw exception messages; use a controlled local data directory and delete sensitive logs when no longer needed.
+
+Risk: Retention controls are documented, but the security evidence says retention cleanup is not actually enforced.
+
+Mitigation: Manually rotate or delete skill-stats.json and usage-log.jsonl until retention cleanup is implemented and verified.
+
+Risk: Future pip or npm install commands may be used before the package publisher and exact version are verified.
+
+Mitigation: Prefer local source installation, or verify the publisher and package version before using package-manager installs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aiyst1982/skills/skill-tracker-aiyst)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/aiyst1982)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with local JSON and JSONL data files, plus Python, JavaScript, shell, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records aggregate statistics in skill-stats.json and raw usage events in usage-log.jsonl when integrated.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence, README badge, package.json, and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

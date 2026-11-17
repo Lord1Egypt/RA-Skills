@@ -1,41 +1,52 @@
-## Description: <br>
-Unified skill for resolving, downloading, and delivering media (audio/video) to chat platforms. Integrates yt-dlp for resolution and handles Spotify metadata sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified skill for resolving, downloading, and delivering media (audio/video) to chat platforms. Integrates yt-dlp for resolution and handles Spotify metadata sync.
 
-## Publisher: <br>
-[sieershafilone](https://clawhub.ai/user/sieershafilone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sieershafilone](https://clawhub.ai/user/sieershafilone)
 
-## Use Case: <br>
-External users and agent operators use this skill to resolve requested audio, video, or Spotify media, download it into the OpenClaw workspace, and deliver the resulting file or playback metadata through WhatsApp or Telegram workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads requested media into the OpenClaw workspace, which can leave private, copyrighted, or large files on disk. <br>
-Mitigation: Confirm media requests before execution, monitor workspace storage, and periodically remove downloaded files because the evidence does not show automatic deletion or file-size limits. <br>
-Risk: The skill can send resulting files through configured WhatsApp or Telegram accounts. <br>
-Mitigation: Confirm the intended recipient and chat target before sending any media file. <br>
-Risk: The workflow depends on local media tooling and configured chat integrations. <br>
-Mitigation: Install and verify required tools and account integrations in the target environment before relying on the skill for delivery. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sieershafilone/media-orchestrator) <br>
+## Use Case:
 
+Developers and operators use this skill to resolve media requests, download audio or video, synchronize Spotify metadata, and deliver the resulting media through WhatsApp or Telegram workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code] <br>
-**Output Format:** [Agent guidance with local command execution and generated media or JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download media files into the OpenClaw workspace and send files through configured WhatsApp or Telegram accounts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can execute local commands, download media, write workspace files, and send files or messages through configured chat accounts.
+
+Mitigation: Review before installation, use only with controlled outbound recipients, and deploy in an environment where workspace file retention is acceptable.
+
+Risk: Spotify handling depends on a separate spotify-surface component.
+
+Mitigation: Install only when the spotify-surface dependency is trusted, reviewed, and pinned for the target environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sieershafilone/skills/media-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Text]
+
+**Output Format:** [Downloaded media files, Spotify metadata JSON, and chat delivery status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes media and metadata into the OpenClaw workspace and can send files or messages through configured WhatsApp or Telegram accounts.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,29 @@
+<!--
+  quote-block.html — ⛔ 已弃用(2026-08-02):渐变左边框+斜体是典型"AI PPT"指纹。
+  引用页请用 quote-hero.html(巨引号+正体,原型 6);本文件仅为兼容保留,不再进入 INDEX。
+  斜体/超链接的特性写法仍可参考本文件(font-style:italic、<a href>)。
+-->
+  参数:
+    X / Y / W         — 引用区位置与宽度(H 自适应内容,约 160-200px)
+    GRAD_FROM         — 左边框渐变起始色
+    GRAD_TO           — 左边框渐变结束色
+    QUOTE             — 引用文字(可用 <i> 局部斜体强调)
+    AUTHOR            — 署名(如 — CEO 年度致辞)
+    LINK_URL          — 超链接 URL(如 https://example.com)
+    LINK_TEXT         — 超链接文字(如 完整讲话)
+  z 序:左边框 z-index:1 → 文字 z-index:10
+  提示:左边框宽 6px,渐变方向 to bottom;引用文字 font-style:italic
+-->
+<!-- 渐变左边框 -->
+<div data-object="true" data-object-type="shape"
+     style="position:absolute;left:{{X}};top:{{Y}};width:6px;height:180px;
+            background:linear-gradient(to bottom,{{GRAD_FROM}},{{GRAD_TO}});border-radius:3px;z-index:1;"></div>
+<!-- 引用文字 -->
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:calc({{X}} + 30px);top:{{Y}};width:calc({{W}} - 30px);height:180px;
+            font-size:24px;font-style:italic;color:var(--text-primary);line-height:1.6;z-index:10;">
+  "{{QUOTE}}"
+  <br><span style="font-size:16px;font-style:normal;color:var(--text-tertiary);letter-spacing:1px;">
+    {{AUTHOR}} · 参阅 <a href="{{LINK_URL}}" style="color:var(--signal-blue);">{{LINK_TEXT}}</a>
+  </span>
+</div>

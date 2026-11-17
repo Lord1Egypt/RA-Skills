@@ -1,46 +1,62 @@
-## Description: <br>
-A bilingual multi-agent patent workflow suite for technology mining, prior-art search, inventiveness evaluation, drafting, claims architecture, audit, valuation, document conversion, and continuous learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patent Professional Agents is a bilingual multi-agent patent drafting and optimization suite for idea mining, prior-art search, inventiveness evaluation, drafting, audit, valuation, and document conversion across patent application workflows.
 
-## Publisher: <br>
-[BigPiPiHua](https://clawhub.ai/user/BigPiPiHua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bigpipihua](https://clawhub.ai/user/bigpipihua)
 
-## Use Case: <br>
-Patent practitioners, inventors, and IP teams use this skill to turn ideas, drafts, or agency feedback into patent disclosures, prior-art search reports, inventiveness assessments, drafting and optimization recommendations, audit reports, valuation reports, and Word documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patent and invention details may be sent to external search services or additional search skills during prior-art research. <br>
-Mitigation: Confirm before external searches, avoid unnecessary confidential details, and use approved patent databases or isolated accounts for sensitive work. <br>
-Risk: The continuous-learning workflow can mine local work records and store learned drafting or search patterns. <br>
-Mitigation: Limit the directory scope, review stored observations and instincts, and avoid broad work-record folders or sensitive material unless retention is approved. <br>
-Risk: The document converter runs local conversion tools and writes Word files beside source Markdown files. <br>
-Mitigation: Run conversion in an isolated workspace, review generated files, and verify Pandoc, Mermaid CLI, and python-docx installations before use. <br>
-Risk: Outputs include patent strategy, grant-rate predictions, and valuation guidance that can affect legal or commercial decisions. <br>
-Mitigation: Treat the outputs as drafting and decision support only, and have qualified patent, legal, or valuation professionals review them before filing, licensing, or investment decisions. <br>
-Risk: The workflow recommends installing additional ClawHub skills for patent search. <br>
-Mitigation: Review requested skills and install only trusted dependencies needed for the task. <br>
+## Use Case:
 
+External users and developers use this skill to turn invention ideas, patent drafts, or agency feedback into patent drafting workflows, prior-art search reports, inventiveness and audit analysis, optimization recommendations, valuation reports, and optional Word conversion. It supports Chinese and English patent drafting assistance and excludes Office Action response handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BigPiPiHua/patent-professional-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and patent drafts, Word document conversion output, Python conversion code, and command or configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local report files, Word documents, and learned pattern files depending on the invoked workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad external search could expose confidential invention details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential invention disclosures unless external searches are explicitly approved and scoped.
+
+Risk: Dynamic skill discovery or installation can expand the execution surface.
+
+Mitigation: Review dependencies before installing and do not allow automatic installation of newly discovered skills.
+
+Risk: Persistent learning and work-record mining can retain sensitive project information.
+
+Mitigation: Disable or tightly scope continuous learning and avoid broad memory or work-record mining.
+
+Risk: Document conversion uses local rendering and conversion tools on patent files.
+
+Mitigation: Run conversion as an unprivileged user in an isolated workspace with sandboxed rendering.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bigpipihua/skills/patent-professional-agents)
+- [Publisher Profile](https://clawhub.ai/user/bigpipihua)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, patent drafts, Word documents, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce patent analysis, search, inventiveness, audit, optimization, decision, valuation, and technical disclosure reports; may convert patent Markdown into .docx files.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

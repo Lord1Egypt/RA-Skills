@@ -1,42 +1,60 @@
-## Description: <br>
-Lightweight CRM with SQLite – manage contacts. Upgrade to Pro for email, messaging, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight CRM with SQLite - manage contacts.
 
-## Publisher: <br>
-[businessbrainsolutions](https://clawhub.ai/user/businessbrainsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[businessbrainsolutions](https://clawhub.ai/user/businessbrainsolutions)
 
-## Use Case: <br>
-External users and operators use this skill to manage a local SQLite contact list through an agent, including adding, searching, updating, and deleting contacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete CRM records through broad natural-language requests. <br>
-Mitigation: Use explicit commands for update and delete actions, such as naming the target contact and requested change. <br>
-Risk: Important contact data could be lost if local records are modified or deleted unintentionally. <br>
-Mitigation: Keep backups of important contact data before using write or delete operations. <br>
+## Use Case:
 
+External users and developers use this skill to manage a local SQLite contact list by adding, searching, updating, and deleting contact records.
 
-## Reference(s): <br>
-- [Charmie CRM Lite on ClawHub](https://clawhub.ai/businessbrainsolutions/charmie-crm-lite) <br>
-- [Business Brain Solutions homepage](https://BusinessBrainSolutions.WealthDaoinc.com) <br>
-- [Charmie CRM Professional upgrade](https://BusinessBrainSolutions.WealthDaoinc.com/pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [Plain text responses and JSON-encoded contact search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create, update, and delete records in a local SQLite contacts database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.3 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Contact records are stored locally in a plaintext SQLite database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for low-sensitivity contact lists and keep the installation directory private.
+
+Risk: Contact records can be updated or deleted by name without built-in confirmation.
+
+Mitigation: Manually confirm the exact contact before asking an agent to update or delete records.
+
+Risk: Dependency installation may introduce third-party package risk.
+
+Mitigation: Review dependency versions before running npm install.
+
+## Reference(s):
+
+- [Charmie CRM Lite on ClawHub](https://clawhub.ai/businessbrainsolutions/skills/charmie-crm-lite)
+- [Publisher profile](https://clawhub.ai/user/businessbrainsolutions)
+- [Product homepage](https://BusinessBrainSolutions.WealthDaoinc.com)
+- [Professional upgrade information](https://BusinessBrainSolutions.WealthDaoinc.com/pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands]
+
+**Output Format:** [Text responses and JSON-serialized contact records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores contacts in a local SQLite database.]
+
+## Skill Version(s):
+
+3.0.3 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Parses CSV, JSON, Excel, Parquet, and SQL data files with encoding detection, common repair steps, conversion helpers, and data-cleaning utilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses and cleans CSV, JSON, Excel, Parquet, and SQL data files with encoding detection, common repair helpers, format conversion, and structured data extraction.
 
-## Publisher: <br>
-[qiuwenxi416488212-ship-it](https://clawhub.ai/user/qiuwenxi416488212-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiuwenxi416488212-ship-it](https://clawhub.ai/user/qiuwenxi416488212-ship-it)
 
-## Use Case: <br>
-Developers, data engineers, and analysts use this skill to read, repair, clean, convert, and inspect common structured data files in agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote URL parsing can reach untrusted or internal network resources when parse_from_url is used without restrictions. <br>
-Mitigation: Restrict or disable remote URL parsing in sensitive networks and allow only trusted external sources. <br>
-Risk: Unpinned parser dependencies can change behavior or introduce supply-chain risk over time. <br>
-Mitigation: Pin and review dependency versions before production use. <br>
-Risk: Untrusted spreadsheets or Parquet files may exercise complex third-party parsers. <br>
-Mitigation: Sandbox parsing jobs and avoid processing sensitive data without isolation and review. <br>
+## Use Case:
 
+Developers, data analysts, and agent workflows use this skill to inspect, parse, clean, convert, and sample tabular or semi-structured data files before downstream analysis or automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiuwenxi416488212-ship-it/data-parser-toolkit) <br>
-- [Publisher profile](https://clawhub.ai/user/qiuwenxi416488212-ship-it) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce parsed tabular data, dictionaries, lists, converted files, validation errors, warnings, and retry guidance depending on the called parser utility.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: URL parsing can fetch arbitrary destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use URL parsing only for explicitly approved destinations and prefer local trusted files when possible.
+
+Risk: Archive parsing and large data files can exhaust memory, disk, or processing resources.
+
+Mitigation: Run the skill in an isolated environment, inspect archive contents first, and set operational limits for file size, extracted content, and processing time.
+
+Risk: Conversion and export helpers can overwrite or create output files.
+
+Mitigation: Use dedicated output directories, review target paths before execution, and keep backups of source data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiuwenxi416488212-ship-it/skills/data-parser-toolkit)
+- [PyPI project page](https://pypi.org/project/data-parser-toolkit/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples, plus parsed data objects or converted data files when the toolkit code is executed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce pandas DataFrames, Python dictionaries or lists, warnings, statistics, and exported CSV or Excel files depending on the selected parser or conversion helper.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

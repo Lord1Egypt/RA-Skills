@@ -1,41 +1,51 @@
-## Description: <br>
-Fetches public Nature RSS and New Scientist Technology pages, filters for recent AI-related articles, and returns grouped summaries with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and summarize the latest AI-related articles from Nature's RSS feed and the top 7 AI news from New Scientist Technology.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and researchers use this skill to ask an agent for a compact, source-labeled digest of recent AI-related articles from Nature and New Scientist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public source pages may change, and keyword filtering may include adjacent technology items or miss relevant AI articles. <br>
-Mitigation: Review summaries and source links for accuracy before relying on the digest. <br>
-Risk: The skill performs public web requests to Nature and New Scientist. <br>
-Mitigation: Use it only in environments where fetching those public pages is acceptable. <br>
+## Use Case:
 
+External users and agents use this skill to fetch current AI-related headlines from Nature and New Scientist, filter them for relevant research and technology topics, and present a concise grouped digest with source links.
 
-## Reference(s): <br>
-- [Nature RSS feed](https://www.nature.com/nature.rss) <br>
-- [New Scientist Technology](https://www.newscientist.com/subject/technology/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown digest grouped by source with headlines, one-sentence summaries, dates when available, and URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public web fetches and limits results to at most 7 items per source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.0 (source: server release evidence) <br>
+Risk: Results depend on live third-party Nature and New Scientist pages, so article availability and ordering may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review returned dates, titles, and URLs before relying on the digest as a complete or stable news summary.
+
+## Reference(s):
+
+- [Nature RSS](https://www.nature.com/nature.rss)
+- [New Scientist Technology](https://www.newscientist.com/subject/technology/)
+- [ClawHub Skill Page](https://clawhub.ai/goog/skills/nature)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown digest grouped by source with headlines, dates when available, one-sentence summaries, and URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Up to seven items per source; results depend on live public pages and article availability.]
+
+## Skill Version(s):
+
+1.9.0 (source: server release evidence, released 2026-04-04)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

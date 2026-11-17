@@ -1,44 +1,60 @@
-## Description: <br>
-Forward trading alerts and webhook events from TradingView to Telegram instantly. No subscriptions, no middlemen. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forward trading alerts and webhook events from TradingView to Telegram instantly.
 
-## Publisher: <br>
-[Shinzzyak](https://clawhub.ai/user/Shinzzyak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shinzzyak](https://clawhub.ai/user/shinzzyak)
 
-## Use Case: <br>
-External developers, traders, and operations teams use Signallink to self-host a webhook receiver that formats TradingView or generic alert payloads and forwards them to a configured Telegram chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says one reachable endpoint can allow arbitrary messages to be sent to the configured Telegram chat. <br>
-Mitigation: Set WEBHOOK_SECRET, patch or disable /webhook/raw until it requires the same secret, and expose the service only behind HTTPS and network restrictions. <br>
-Risk: Webhook payloads may contain secrets, personal data, or sensitive trading or incident details that are forwarded to Telegram and may appear in server logs. <br>
-Mitigation: Use a dedicated Telegram bot, store the bot token in a local secret mechanism, and avoid sending sensitive data in webhook payloads. <br>
+## Use Case:
 
+Developers, traders, and operators use this skill to configure a self-hosted webhook relay that forwards TradingView alerts or other webhook events into Telegram.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Shinzzyak/signallink) <br>
-- [SignalLink Homepage](https://github.com/Shinzzyak/SignalLink) <br>
-- [README](artifact/README.md) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON payload examples, and environment configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides setup of a FastAPI webhook service that forwards formatted alert messages to Telegram.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The relay can be exposed broadly, and one message-forwarding endpoint is unauthenticated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a non-empty WEBHOOK_SECRET on every POST endpoint, including /webhook/raw, before exposing the service beyond localhost.
+
+Risk: Webhook payloads may contain secrets or private incident data and full webhook bodies are logged.
+
+Mitigation: Avoid sending sensitive data in webhook payloads and restrict access to service logs.
+
+Risk: A publicly reachable deployment can forward unwanted messages to the configured Telegram chat.
+
+Mitigation: Bind locally or place the service behind a protected reverse proxy with access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shinzzyak/skills/signallink)
+- [SignalLink homepage](https://github.com/Shinzzyak/SignalLink)
+- [Telegram BotFather](https://t.me/BotFather)
+- [Telegram userinfobot](https://t.me/userinfobot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Telegram bot and chat configuration; optional webhook secret is recommended before exposure beyond localhost.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter and changelog state 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

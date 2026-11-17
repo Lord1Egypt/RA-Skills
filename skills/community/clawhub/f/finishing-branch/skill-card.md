@@ -1,41 +1,56 @@
-## Description: <br>
-Completes development work by guiding test verification and presenting structured merge, pull request, keep, or discard options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete development work by presenting structured options for merge, PR, or cleanup.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineers use this skill after implementation is complete to verify tests and choose a structured branch integration path. It helps an agent guide local merge, pull request creation, branch preservation, or explicit discard workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide local and remote branch deletion. <br>
-Mitigation: Confirm the exact branch and worktree path before cleanup, and use dry-run or listing modes before deletion when available. <br>
-Risk: Running project tests may execute code from the current repository. <br>
-Mitigation: Use the skill only in trusted repositories, or inspect the test commands before allowing the agent to run them. <br>
-Risk: The security review notes inconsistent cleanup instructions. <br>
-Mitigation: Review the selected option before cleanup and preserve the worktree for workflows that should keep it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wpank/finishing-branch) <br>
+## Use Case:
 
+Developers and engineering agents use this skill after implementation is complete and tests pass to decide whether to merge locally, create a pull request, keep the branch, or discard the work.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline shell commands and structured options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts for explicit confirmation before destructive discard actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run project test commands and Git or GitHub mutations during branch completion.
+
+Mitigation: Review commands before execution and prefer dry-run or manual confirmation for repository-changing actions.
+
+Risk: Branch cleanup can delete local or remote branches, including forced local deletion in the discard workflow.
+
+Mitigation: Avoid cleanup or delete flags on shared repositories unless the target branch and commits have been reviewed and the destructive action is explicitly confirmed.
+
+Risk: The server security verdict is suspicious because branch deletion safeguards are limited.
+
+Mitigation: Install only from a pinned commit or verified source, and require human review before allowing branch deletion or remote deletion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wpank/skills/finishing-branch)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated PR or merge-summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run project test commands and Git or GitHub branch operations when the agent follows the workflow.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

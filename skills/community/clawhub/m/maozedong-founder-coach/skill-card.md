@@ -1,41 +1,55 @@
-## Description: <br>
-Guides founders and CEOs with Mao Zedong-inspired strategic frameworks for startup growth, market competition, resource focus, user research, and long-term business decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides founders and CEOs with Mao Zedong-inspired strategic frameworks for startup growth, market competition, user research, resource focus, and long-term planning.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-Founders, CEOs, and startup operators use this skill to frame strategy decisions, diagnose market and resource constraints, and produce concrete next actions using bilingual English or Chinese coaching prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review found broad file, shell, and web tool access that is not needed for the coaching purpose. <br>
-Mitigation: Review before installing and prefer a version that removes those tools or requires explicit confirmation before file, shell, or web actions. <br>
-Risk: The skill provides strategic coaching rather than validated business, legal, or financial advice. <br>
-Mitigation: Use its recommendations as a brainstorming framework and verify decisions with domain experts, customer evidence, and current market data. <br>
+## Use Case:
 
+External users, founders, CEOs, and startup advisors use this skill to discuss business-stage challenges and receive Mao-themed strategic coaching. It selects relevant frameworks, asks clarifying questions, and returns practical next actions for market entry, resource allocation, user research, product strategy, and ecosystem planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/maozedong-founder-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/zhuqingsonga) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching responses with structured recommendations and action steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in English or Chinese based on the user's language; may include staged questions, strategy selection, tactical guidance, and 3-5 action steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.json release and artifact _meta.json) <br>
+Risk: The skill grants file, shell, editing, and network tools that are not needed for conversational business coaching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a version with no tool permissions, or restrict tool use to tightly scoped actions with explicit user confirmation.
+
+Risk: Broad trigger phrases may invoke the skill unintentionally.
+
+Mitigation: Invoke it only when Mao-themed business strategy guidance is intended, and review activation phrases before deployment.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/zhuqingsonga/skills/maozedong-founder-coach)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational coaching response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in English or Chinese based on the user's language and typically includes selected strategic frameworks plus 3-5 action steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

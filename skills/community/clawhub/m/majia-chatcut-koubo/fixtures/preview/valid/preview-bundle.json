@@ -1,0 +1,93 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/preview-bundle.schema.json",
+  "schemaVersion": "1.0.0",
+  "previewBundleId": "preview_bundle_4857bd70d77b",
+  "projectId": "proj_demo",
+  "runId": "run_demo",
+  "timelineId": "timeline_demo",
+  "timelineRevision": "rev_demo",
+  "timelineRange": {
+    "domain": "timeline",
+    "rate": {
+      "numerator": 30,
+      "denominator": 1
+    },
+    "start": 0,
+    "end": 180
+  },
+  "planHash": "sha256:f6850dade638dfed44228323b690207bb2d1b5b770537e4890d44f3849948866",
+  "styleFingerprint": "sha256:5a7f8654f8c85a338d1ee517fa9286981042504b91324cf232dc4f95cf8c4c78",
+  "requiredReasons": [
+    "opening-60s",
+    "complex-operation",
+    "privacy-risk",
+    "ending"
+  ],
+  "windows": [
+    {
+      "windowId": "preview_opening",
+      "reason": "opening-60s",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 0,
+        "end": 180
+      },
+      "subjectRefs": [
+        "timeline_demo"
+      ]
+    },
+    {
+      "windowId": "preview_complex",
+      "reason": "complex-operation",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 90,
+        "end": 180
+      },
+      "subjectRefs": [
+        "state_002"
+      ]
+    },
+    {
+      "windowId": "preview_privacy_001",
+      "reason": "privacy-risk",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 90,
+        "end": 120
+      },
+      "subjectRefs": [
+        "privacy_001"
+      ]
+    },
+    {
+      "windowId": "preview_ending",
+      "reason": "ending",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 0,
+        "end": 180
+      },
+      "subjectRefs": [
+        "timeline_demo"
+      ]
+    }
+  ],
+  "status": "ready"
+}

@@ -1,44 +1,57 @@
-## Description: <br>
-Enables agents to operate MotherDuck through OOMOL's oo CLI connector for organization user, token, account, and Duckling configuration workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OOMOL-connected account to read and manage MotherDuck users, access tokens, and Duckling configuration.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to administer MotherDuck organization users, access tokens, active accounts, and Duckling configuration through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer MotherDuck users, tokens, and configuration, including privileged write and destructive actions. <br>
-Mitigation: Require explicit user confirmation for write or destructive operations and verify the target user, token, account, or configuration before execution. <br>
-Risk: Using the skill in conversations that contain untrusted instructions could lead to unintended account-administration actions. <br>
-Mitigation: Avoid using the skill in conversations with untrusted instructions, and inspect the live connector schema before constructing action payloads. <br>
-Risk: Security evidence marks the release as suspicious because of broad account-administration and token-management power. <br>
-Mitigation: Install only when the user trusts OOMOL and wants an agent to administer the connected MotherDuck organization. <br>
+## Use Case:
 
+Developers and account administrators use this skill to inspect MotherDuck accounts, tokens, and Duckling settings, and to make approved changes through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [MotherDuck homepage](https://motherduck.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, text, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands invoke the oo CLI and may return JSON connector responses with meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Setup may execute remote CLI or bundled-skill software that has not been verified separately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately; prefer a pinned, verified release and check bundled-skill installation behavior before proceeding.
+
+Risk: Account changes and deletions can modify or permanently remove MotherDuck users, tokens, or configuration.
+
+Mitigation: Connect only the needed MotherDuck permissions and confirm the exact target and effect before write or destructive actions, as the skill instructs.
+
+## Reference(s):
+
+- [MotherDuck](https://motherduck.com)
+- [MotherDuck REST API documentation](https://motherduck.com/docs/sql-reference/rest-api/motherduck-rest-api/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [MotherDuck skill release](https://clawhub.ai/oomol/skills/oo-mother-duck)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON connector requests and responses with concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the live action schema; write and destructive actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.4 (source: artifact/SKILL.md metadata, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

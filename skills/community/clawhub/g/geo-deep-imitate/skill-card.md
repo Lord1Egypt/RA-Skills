@@ -1,43 +1,58 @@
-## Description: <br>
-Geo Deep Imitate fetches reference sources with web_fetch, submits them to the GEO service for deep imitation article generation, exports a ZIP, and reports completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Geo Deep Imitate uses web_fetch to gather reference sources, generate deep imitation content through the GEO service, export a ZIP, and report completion to the GEO workflow.
 
-## Publisher: <br>
-[chameleon-nexus](https://clawhub.ai/user/chameleon-nexus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chameleon-nexus](https://clawhub.ai/user/chameleon-nexus)
 
-## Use Case: <br>
-Developers and operators use this skill inside GEO automation workflows to gather source material, generate a deep imitation draft, export the resulting ZIP, and mark the imitation workflow complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a GEO API key in a local plaintext file. <br>
-Mitigation: Store the key with restrictive file permissions and remove the local key file when it is no longer needed. <br>
-Risk: The skill sends task content, fetched reference content, and task metadata to ai.gaobobo.cn. <br>
-Mitigation: Use the skill only when sharing that information with the GEO service is acceptable for the task. <br>
-Risk: The skill exports generated ZIP files to the local GEO exports directory. <br>
-Mitigation: Review exported files before reuse or distribution. <br>
+## Use Case:
 
+External GEO workflow users and developers use this skill to fetch reference sources, generate deep imitation content through the GEO SaaS API, export the resulting ZIP, and report the branch as complete.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chameleon-nexus/geo-deep-imitate) <br>
-- [GEO service](https://ai.gaobobo.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches reference content, sends task metadata to the GEO service, and writes exported ZIP files under the user's local GEO export directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill persists a GEO API key in plaintext on the local filesystem.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a platform secret manager when available, restrict ~/.qclaw/geo-api-key to owner-only permissions, and rotate the key if it may have been exposed.
+
+Risk: The skill contacts the GEO SaaS service with an API key and may submit source material and task metadata there.
+
+Mitigation: Install and run it only when that data transfer is intended, authorized, and acceptable for the workflow.
+
+Risk: The security summary flags undeclared shell and API operations.
+
+Mitigation: Review the local file writes, export path, and GEO API calls before installation and execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chameleon-nexus/skills/geo-deep-imitate)
+- [GEO SaaS service](https://ai.gaobobo.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can store GEO exports locally as a fangxie.zip file after the remote workflow completes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

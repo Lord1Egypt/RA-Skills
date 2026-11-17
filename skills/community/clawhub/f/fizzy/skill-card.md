@@ -1,39 +1,56 @@
-## Description: <br>
-Manages Fizzy boards, cards, steps, comments, and reactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Fizzy boards, cards, steps, comments, and reactions.
 
-## Publisher: <br>
-[Portavion](https://clawhub.ai/user/Portavion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[portavion](https://clawhub.ai/user/portavion)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent manage Fizzy project-management workspaces, including boards, cards, steps, comments, reactions, tags, users, notifications, and attachments through the Fizzy CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through delete, upload, and download operations in a Fizzy workspace. <br>
-Mitigation: Confirm destructive and file-transfer operations explicitly before execution, and use exact card numbers, resource IDs, and file paths. <br>
-Risk: The skill requires a Fizzy API token and account configuration for CLI access. <br>
-Mitigation: Store the token with least privilege and restrictive local access, and avoid exposing credential values in chat or command output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fizzy skill page](https://clawhub.ai/Portavion/fizzy) <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and manage Fizzy boards, cards, tasks, comments, reactions, users, tags, notifications, uploads, and workflow state through the Fizzy CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs often include Fizzy card numbers, resource IDs, jq filters, command results, and concise operation summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs an unpinned third-party Fizzy CLI.
+
+Mitigation: Install only from a trusted Fizzy CLI source and verify the package before use.
+
+Risk: The skill can modify or delete project data, including boards, cards, columns, comments, steps, reactions, notifications, and uploads.
+
+Mitigation: Require explicit confirmation before delete, close, bulk read-all, upload, or update actions.
+
+Risk: Broad Fizzy API credentials may expose more data or write access than a task requires.
+
+Mitigation: Use the narrowest token permissions available and avoid storing tokens in world-readable files or logs.
+
+## Reference(s):
+
+- [Fizzy ClawHub Skill Listing](https://clawhub.ai/portavion/skills/fizzy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, jq patterns, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include command guidance for reading, creating, updating, uploading, closing, or deleting Fizzy resources.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

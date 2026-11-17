@@ -1,39 +1,54 @@
-## Description: <br>
-Guides an agent through a Chinese-language financial statement analysis workflow for checking profit quality, bargaining position, financial risk signals, management efficiency, and potential reporting red flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This Chinese-language skill guides agents through financial statement checks for profit quality, bargaining power, financial risk, management efficiency, asset quality, group control, cost drivers, receivables risk, and budget management.
 
-## Publisher: <br>
-[aiyouwolegequ](https://clawhub.ai/user/aiyouwolegequ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiyouwolegequ](https://clawhub.ai/user/aiyouwolegequ)
 
-## Use Case: <br>
-External users, analysts, and finance-focused agents use this skill to turn company financial statements into a structured risk review without requiring deep accounting background. It is intended to surface issues such as low cash conversion, weak industry position, goodwill impairment exposure, inventory pressure, and earnings-quality concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may attempt to retrieve public company financial data from unspecified sources when the user does not provide data. <br>
-Mitigation: Provide the relevant financial statements directly in restricted environments and verify any externally retrieved data before relying on the analysis. <br>
-Risk: Financial and investment conclusions may be misleading if based on incomplete, stale, confidential, or non-public reports. <br>
-Mitigation: Avoid submitting confidential or non-public reports unless the environment is approved, and independently verify conclusions with qualified review before acting on them. <br>
+## Use Case:
 
+External users and analysts use this skill to prompt an agent to evaluate listed-company financial statements, identify red flags, and produce structured risk assessments from supplied or public financial data.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown or JSON-style analysis with conclusions, sub-skill results, risk assessments, and final suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on user-provided financial statements or public financial data; conclusions should be independently verified before financial or investment decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial risk labels or calculations may be incomplete or misleading if source filings are missing, stale, or misread.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted filings, verify extracted values and calculations, and treat the agent's conclusions as analysis support rather than investment advice.
+
+Risk: The skill may automatically look up public financial data when the user does not provide statements.
+
+Mitigation: Confirm the data source, reporting period, and company identity before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiyouwolegequ/skills/zhang-financial-analysis-doubao)
+- [Publisher profile](https://clawhub.ai/user/aiyouwolegequ)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown or JSON-style analysis with conclusions, sub-skill results, ranked risks, and final suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language financial analysis; may rely on public financial data when the user does not provide source statements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

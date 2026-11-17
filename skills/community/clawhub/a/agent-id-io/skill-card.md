@@ -1,45 +1,63 @@
-## Description: <br>
-OpenClaw skill for the agent-id.io identity and trust service to register an AI agent, authenticate with challenge/response, manage passkeys and cryptographic keys, verify domains/repos/websites, handle sponsorships, and inspect public agent profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for the agent-id.io identity and trust service. Use it to register an AI agent, authenticate with challenge/response, manage passkeys and cryptographic keys, verify domains/repos/websites, handle sponsorships, and inspect public agent profiles.
 
-## Publisher: <br>
-[plak](https://clawhub.ai/user/plak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plak](https://clawhub.ai/user/plak)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate agent-id.io identity workflows for AI agents, including registration, authentication, key rotation, verification, sponsorship, and public profile lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and uses long-lived private cryptographic keys for agent identity. <br>
-Mitigation: Use encrypted keyfiles, store passphrases separately in a trusted secret manager, and avoid committing or sharing generated key material. <br>
-Risk: Temporary decrypted keyfiles or JWT tokens can remain on disk after authentication workflows. <br>
-Mitigation: Prefer interactive passphrase entry, write decrypted keys and tokens only to short-lived locations, and delete them immediately after use. <br>
-Risk: Overriding the API endpoint could send identity operations or signatures to an unintended service. <br>
-Mitigation: Verify any AGENT_ID_API override before running registration, authentication, sponsorship, or key-rotation commands. <br>
-Risk: Deriving SSH or PGP keys from the same agent seed expands the impact of seed compromise. <br>
-Mitigation: Derive additional keys only when this trust model is acceptable, and protect the master seed as the recovery source for every derived identity. <br>
+## Use Case:
 
+Developers and operators use this skill to register and authenticate AI agents with agent-id.io, manage agent passkeys and cryptographic keys, perform ownership verification for domains, repositories, and websites, and handle sponsorship workflows.
 
-## Reference(s): <br>
-- [Agent-ID API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/plak/agent-id-io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads and bash/Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local key, token, signature, and encrypted keyfile artifacts when users run the supplied scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill manages long-lived agent identity private keys and short-lived authentication tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and agent-id.io service are trusted, generate encrypted key output from the start, and keep tokens in restricted local storage for the minimum time needed.
+
+Risk: Plaintext key or token files can remain in temporary paths or local working directories.
+
+Mitigation: Avoid plaintext /tmp key or token files where possible; when temporary plaintext files are unavoidable, use restrictive permissions and delete them immediately after use.
+
+Risk: Changing AGENT_ID_API can redirect production credentials or signed requests to an unintended endpoint.
+
+Mitigation: Use AGENT_ID_API with production tokens only when the destination is explicitly trusted and uses HTTPS.
+
+Risk: Deriving SSH and PGP keys from the agent master seed expands the impact of master-key compromise.
+
+Mitigation: Treat SSH and PGP derivation as a separate opt-in decision and protect the master seed as the root credential for all derived identities.
+
+## Reference(s):
+
+- [Agent-ID API Reference v1](references/api.md)
+- [agent-id.io API](https://agent-id.io/v1)
+- [ClawHub skill page](https://clawhub.ai/plak/skills/agent-id-io)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, JSON, files]
+
+**Output Format:** [Markdown guidance with bash commands, Python helper scripts, JSON request and response payloads, and generated key or token files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated secrets and tokens require secure local storage and short-lived operational handling.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

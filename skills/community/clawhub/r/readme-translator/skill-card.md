@@ -1,41 +1,49 @@
-## Description: <br>
-将 GitHub README 自动翻译成多种语言，支持中文、英文、日文、韩文等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+README Translator is intended to translate GitHub README files into multiple languages while preserving Markdown formatting.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and documentation maintainers use this skill to prepare translated versions of GitHub README files while preserving Markdown-oriented structure and common terminology. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled script may be mistaken for a complete README translation tool even though the security evidence says it is a placeholder and does not write output. <br>
-Mitigation: Review or replace the script before relying on it for real translation work, and verify generated README content before publication. <br>
-Risk: Translation API credentials could be supplied without clear runtime behavior in the current artifact. <br>
-Mitigation: Only provide translation API credentials after reviewing the implementation that will use them. <br>
+## Use Case:
 
+Developers and maintainers can use this skill to request translated README Markdown for multilingual project documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/readme-translator) <br>
-- [Publisher profile](https://clawhub.ai/user/Sunshine-del-ux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with command-line usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included shell script prints placeholder translated README content and does not write an output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: Users may rely on the release as a working README translator even though the security evidence says the bundled script does not actually translate README content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated output before use and verify translation behavior with representative README files before installing or deploying the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunshine-del-ux/skills/readme-translator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command examples and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script emits placeholder translated README content and does not process the input README.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

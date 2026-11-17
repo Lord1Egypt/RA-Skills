@@ -1,41 +1,56 @@
-## Description: <br>
-Generates an A-share daily market review report and can optionally send it by email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate A-share daily review report (stock-analysis/daily_review.py). Supports --email.
 
-## Publisher: <br>
-[cnxufei-tech](https://clawhub.ai/user/cnxufei-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cnxufei-tech](https://clawhub.ai/user/cnxufei-tech)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to create daily A-share market recaps with market overview, leaderboards, sentiment signals, and next-day strategy notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: SMTP email delivery can expose account credentials if a personal password is reused or stored unsafely. <br>
-Mitigation: Use a dedicated SMTP or app password from an environment variable and avoid committing email configuration with secrets. <br>
-Risk: Date text copied into shell commands could lead to unintended command execution if it is not trusted. <br>
-Mitigation: Validate date inputs and use only the supported YYYYMMDD, YYYY-MM-DD, or omitted-date forms before running the command. <br>
-Risk: External AkShare data sources can be intermittently unavailable, which may affect report completeness. <br>
-Mitigation: Review generated reports before sharing or trading on them, and rely on the skill's documented retry and fallback behavior only as a resilience aid. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnxufei-tech/daily-review-assistant) <br>
+## Use Case:
 
+External users and developers use this skill to generate daily A-share market review reports in Markdown, including market overview, leaderboards, sentiment signals, and next-day strategy. It can optionally send the generated report by SMTP email when configured.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report file with optional SMTP email delivery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves reports to stock-analysis/reports/YYYYMMDD.md; accepts YYYYMMDD, YYYY-MM-DD, or today's date when omitted.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill executes a workspace Python script that is not bundled in the artifact.
+
+Mitigation: Review stock-analysis/daily_review.py in the target workspace before running the skill.
+
+Risk: Optional email delivery can send reports to configured recipients through SMTP.
+
+Mitigation: Inspect email_config.json recipient settings before using --email and use an SMTP app password or authorization code rather than an account password.
+
+Risk: Market data collection depends on AkShare data sources that may intermittently disconnect.
+
+Mitigation: Expect occasional data-source failures and verify report contents before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnxufei-tech/skills/daily-review-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files]
+
+**Output Format:** [Markdown report saved under stock-analysis/reports/YYYYMMDD.md, with optional SMTP email delivery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, AkShare, and the workspace stock-analysis/daily_review.py script; email sending depends on local email configuration and SMTP_PASSWORD.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Generates personalized AI avatars and mobile wallpapers across multiple visual styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized AI avatars and mobile wallpapers with multiple selectable styles.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users and developers use this skill to prompt a CLI-based image workflow for avatars, mobile wallpapers, batch generation, and style selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt files or image-generation inputs may contain sensitive personal data, secrets, or private image details. <br>
-Mitigation: Review prompts before use and avoid including secrets, private images, or sensitive personal data. <br>
-Risk: The artifact metadata reports version 1.0.0 while the server release evidence reports version 1.2.0. <br>
-Mitigation: Use the server release version for this card and confirm the package metadata before operational rollout. <br>
-Risk: The artifact lists curl as required without explaining the expected network behavior. <br>
-Mitigation: Confirm the CLI's network calls and data handling with the publisher before production use. <br>
-Risk: The artifact describes paid tiers and daily limits that may affect commercial workflows. <br>
-Mitigation: Confirm current pricing, limits, watermark behavior, and subscription terms before relying on generated assets. <br>
+## Use Case:
 
+External users and developers use this skill to generate personalized avatar images and mobile wallpapers in styles such as anime, realistic, abstract, watercolor, and pixel art.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kaising-openclaw1/xiaoming-ai-avatar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Artifact documentation describes 512x512 PNG avatar output and 1080x1920 PNG wallpaper output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence; artifact _meta.json reports 1.0.0) <br>
+Risk: Installing with an unpinned `@latest` package can pull a newer, unreviewed installer version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the ClawHub installer to a reviewed version before installation.
+
+Risk: The skill documentation and examples are primarily Chinese, which can lead to misunderstanding for non-Chinese readers.
+
+Mitigation: Translate and review the prompts, commands, and expected behavior before use.
+
+Risk: Paid avatar-generation features may have service terms or usage limits.
+
+Mitigation: Review the Pro or subscription terms before using paid generation features.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-ai-avatar)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG image files with Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Avatar output is documented as 512x512 PNG; wallpaper output is documented as 1080x1920 PNG.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

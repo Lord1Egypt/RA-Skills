@@ -1,46 +1,61 @@
-## Description: <br>
-Deep Research guides an agent through iterative web search, page reading, gap analysis, and synthesis to produce well-sourced Markdown research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research guides an agent through iterative web search, page reading, gap analysis, and synthesis to produce comprehensive, well-sourced Markdown reports.
 
-## Publisher: <br>
-[yangsjt](https://clawhub.ai/user/yangsjt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangsjt](https://clawhub.ai/user/yangsjt)
 
-## Use Case: <br>
-Developers, analysts, and external users can use this skill to turn complex research questions into structured, citation-rich Markdown briefings using available web search and page-fetch tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The standalone script grants broad automatic Gemini CLI permissions. <br>
-Mitigation: Prefer the SKILL.md workflow with normal platform search and fetch tools, or review and constrain the script before running it. <br>
-Risk: Background execution behavior needs review before unattended use. <br>
-Mitigation: Avoid the background mode until the shell construction is fixed, and run the script in the foreground where output can be inspected. <br>
-Risk: Sensitive research questions may be sent through the Gemini-based script or an intentionally started local search fallback. <br>
-Mitigation: Do not paste sensitive internal research questions into the script, and only run the Docker fallback when a local SearXNG service is intended. <br>
+## Use Case:
 
+Developers, analysts, and other external users can use this skill to structure deep web research, evaluate sources, resolve gaps, and produce citation-rich Markdown briefings in the user's language.
 
-## Reference(s): <br>
-- [Research Methodology Reference](references/research-methodology.md) <br>
-- [Deep Research repository](https://github.com/yangsjt/deep-research.git) <br>
-- [OpenClaw](https://github.com/anthropics/openclaw) <br>
-- [Gemini CLI](https://github.com/google-gemini/gemini-cli) <br>
-- [SearXNG](https://github.com/searxng/searxng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown research report with inline citations and a source list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's prompt language when generating the report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The standalone script can run Gemini with broad unattended authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before use and prefer configurations that keep tool approval interactive or tightly scoped.
+
+Risk: Background mode has unsafe command handling when task names or prompts are untrusted or free-form.
+
+Mitigation: Avoid background mode for untrusted inputs and use simple, trusted task names when the script is run.
+
+Risk: The fallback search path may start a local SearXNG Docker container.
+
+Mitigation: Do not run the Docker fallback unless a local SearXNG container is explicitly intended.
+
+## Reference(s):
+
+- [Research Methodology Reference](references/research-methodology.md)
+- [ClawHub skill page](https://clawhub.ai/yangsjt/skills/deep-research-cli)
+- [OpenClaw](https://github.com/anthropics/openclaw)
+- [Gemini CLI](https://github.com/google-gemini/gemini-cli)
+- [SearXNG](https://github.com/searxng/searxng)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with inline citations and a numbered source list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches the user's prompt language and includes executive summary, key findings, detailed analysis, contradictions, limitations, and sources.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

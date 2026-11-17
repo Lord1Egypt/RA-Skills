@@ -1,50 +1,65 @@
-## Description: <br>
-OpenClaw browser hosting and automation capabilities for web interaction, scraping, and UI testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw browser hosting and automation capabilities for web interaction, scraping, and UI testing.
 
-## Publisher: <br>
-[frisky1985](https://clawhub.ai/user/frisky1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frisky1985](https://clawhub.ai/user/frisky1985)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to control isolated or remote browsers for web interaction, scraping, UI testing, content extraction, and repeatable browser workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent authority to control live or remote browsers. <br>
-Mitigation: Install only when browser-control authority is intended, prefer isolated managed profiles, and review browser actions before submission, purchase, posting, account-setting, or authenticated-data workflows. <br>
-Risk: Using an existing Chrome profile can expose logged-in sessions and personal browsing state. <br>
-Mitigation: Prefer the isolated openclaw profile and use the chrome profile only when the agent is explicitly permitted to operate in the logged-in browser context. <br>
-Risk: Remote CDP and Browserless endpoints can expose browser sessions, network traffic, and tokens if misconfigured. <br>
-Mitigation: Use only trusted endpoints with TLS, short-lived tokens, and redacted logs and configuration. <br>
-Risk: Configuration may require sensitive credentials such as Browserless tokens. <br>
-Mitigation: Store secrets in environment variables or a secrets manager, avoid committing tokens, and rotate credentials if exposure is suspected. <br>
-Risk: File upload and content extraction workflows can move local files or authenticated data to websites. <br>
-Mitigation: Review target sites, selected files, extracted data, and destination forms before allowing upload or extraction actions. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to drive isolated or remote browser sessions for web scraping, UI workflow automation, testing, content extraction, and browser snapshot-based interaction.
 
-## Reference(s): <br>
-- [Browser Configuration Guide](references/configuration.md) <br>
-- [Browser Profiles Reference](references/profiles.md) <br>
-- [Browser Snapshot System](references/snapshot-system.md) <br>
-- [Browser Automation Workflow Example](assets/example-workflow.md) <br>
-- [ClawHub release page](https://clawhub.ai/frisky1985/browser-hosting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and browser automation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser snapshots, screenshots, PDFs, network observations, and generated command sequences depending on the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser automation authority can interact with web pages, forms, uploads, and content visible in a browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this authority is acceptable, use the isolated openclaw profile for routine automation, and review browser actions before sensitive interactions.
+
+Risk: Chrome relay or remote CDP profiles can expose an existing logged-in browser or remote browser endpoint to the agent.
+
+Mitigation: Avoid chrome mode unless access to that session is intentional, and use only trusted TLS-protected remote CDP or browserless endpoints.
+
+Risk: Tokens, passwords, or browserless credentials may be exposed through command lines or configuration examples.
+
+Mitigation: Store secrets in environment variables or protected configuration and avoid placing credentials directly in shell commands.
+
+Risk: The packaging helper and file upload workflows are unsafe for untrusted skill directories or unreviewed files.
+
+Mitigation: Run packaging only on trusted skill directories and review files before upload or execution.
+
+## Reference(s):
+
+- [Browser Hosting ClawHub Page](https://clawhub.ai/frisky1985/skills/browser-hosting)
+- [Configuration Guide](artifact/references/configuration.md)
+- [Browser Profiles Reference](artifact/references/profiles.md)
+- [Browser Snapshot System](artifact/references/snapshot-system.md)
+- [Example Workflow](artifact/assets/example-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Code, Guidance, Text, Markdown]
+
+**Output Format:** [Markdown guidance with inline bash, JSON, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide actions that produce browser snapshots, screenshots, PDFs, extracted text, network observations, or UI automation results.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

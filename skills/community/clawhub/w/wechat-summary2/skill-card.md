@@ -1,41 +1,54 @@
-## Description: <br>
-Summarizes WeChat Official Account articles from user-provided mp.weixin.qq.com links and can fall back to a Python fetch script when WebFetch cannot retrieve the content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes WeChat Official Account articles from mp.weixin.qq.com links into concise Chinese prose or bullet points.
 
-## Publisher: <br>
-[mick2458pan](https://clawhub.ai/user/mick2458pan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mick2458pan](https://clawhub.ai/user/mick2458pan)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve and summarize WeChat Official Account articles. It is useful when a user provides a WeChat article link and wants a concise Chinese summary, key points, data, conclusions, time-sensitive information, or action suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make an outbound request to a user-provided article URL, including through the Python fallback script. <br>
-Mitigation: Use only public, non-sensitive article URLs and avoid private, internal, or sensitive links. <br>
-Risk: WeChat validation pages or page structure changes can prevent complete article extraction. <br>
-Mitigation: Tell the user when retrieval is incomplete or fails, then ask them to check the link or paste the article text directly. <br>
+## Use Case:
 
+External users and agent operators use this skill to understand WeChat Official Account articles quickly by extracting article text and generating a brief Chinese summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mick2458pan/wechat-summary2) <br>
-- [Publisher profile](https://clawhub.ai/user/mick2458pan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Chinese plain text; long summaries may use concise bullet lists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make outbound requests to user-provided URLs and may run the included Python fetch script when WebFetch fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The fallback fetcher can request arbitrary URLs from the agent environment if a user supplies an untrusted link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation and validate URLs so fallback fetching is limited to trusted WeChat article URLs, ideally https://mp.weixin.qq.com.
+
+Risk: Running the fetcher in an environment with access to internal services or metadata endpoints could expose sensitive network targets.
+
+Mitigation: Run the skill only in a network-restricted environment that cannot reach internal services or sensitive metadata endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mick2458pan/skills/wechat-summary2)
+- [Publisher profile](https://clawhub.ai/user/mick2458pan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Chinese plain text summary, with optional command output from the fallback article fetcher.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summary form adapts to article length: short prose for short articles, a paragraph for medium articles, and bullet points for long articles.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

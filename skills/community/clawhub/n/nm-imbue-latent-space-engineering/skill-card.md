@@ -1,41 +1,58 @@
-## Description: <br>
-Shapes agent behavior via instruction framing and style transfer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shapes agent behavior via instruction framing and style transfer
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agent authors use this skill to frame prompts, skill instructions, parallel reviews, and style-matched code or documentation so agents follow the intended tone and conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to appear during unrelated documentation or development work. <br>
-Mitigation: Review when it triggers and disable or narrow the skill if it appears outside prompt-engineering, instruction-framing, style-transfer, or review workflows. <br>
-Risk: Prompt-framing guidance can affect review tone and incentives if copied without judgment. <br>
-Mitigation: Review proposed prompt or skill text before deployment, and keep competitive review framing evidence-backed and severity-prioritized. <br>
+## Use Case:
 
+Developers and agent authors use the skill to write delegation prompts and skill instructions, choose instruction-framing techniques, and match an existing code or writing style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-imbue-latent-space-engineering) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/imbue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools, credentials, or API calls are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Named-register guidance may fade during long sessions, and its effect depends on the model's prior knowledge of the named standard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test the register before relying on it and use deterministic checks for critical style requirements.
+
+Risk: Competitive review framing can encourage inflated issue counts without evidence requirements.
+
+Mitigation: Require evidence for each finding and prioritize findings by severity rather than count.
+
+## Reference(s):
+
+- [Emotional Framing](modules/emotional-framing.md)
+- [Style Gene Transfer](modules/style-gene-transfer.md)
+- [Competitive Review Framing](modules/competitive-review.md)
+- [Named Register Invocation](modules/named-register-invocation.md)
+- [Know Your Delegate](modules/know-your-delegate.md)
+- [Claude Night Market imbue plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Natural-language guidance and prompt text, commonly in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advice is tailored to the task type and the delegate's context.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

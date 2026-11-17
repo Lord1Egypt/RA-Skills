@@ -1,0 +1,5 @@
+{
+  "action": "import-csv",
+  "file": "samples/cards.csv",
+  "requestId": "demo-import-unique"
+}

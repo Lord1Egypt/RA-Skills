@@ -3,7 +3,7 @@ name: movie-coupon
 display_name: 电影票优惠券-淘票票、猫眼等电影平台优惠
 description: 获取电影票优惠券，包括淘票票、猫眼等主流电影平台的优惠。返回领取链接和二维码图片，用户可点击链接或扫描二维码领取优惠。
 english_description: Fetch movie ticket coupons from platforms like Taopiaopiao and Maoyan. Returns coupon links and QR code images for users to redeem via WeChat.
-version: 1.0.0
+version: 2.0.2
 author: moooai
 permissions: 网络访问权限（调用电影优惠券API）
 homepage: https://github.com/moooai/movie-coupon
@@ -13,12 +13,12 @@ homepage: https://github.com/moooai/movie-coupon
 
 ## Overview
 
-此skill通过调用电影优惠券API接口，获取电影票优惠信息，包括淘票票大礼包等优惠服务。返回优惠券链接（coupon_url）和二维码图片（coupon_qrcode_img_url），供用户点击链接或扫描二维码领取优惠。
+此skill通过调用电影优惠券API接口，获取电影票优惠信息，包括全国 10000+ 影院在线购票优惠（8折起）等。返回优惠券链接（coupon_url，部分项含二维码 coupon_qrcode_img_url），供用户点击链接或扫描二维码领取优惠。
 
 ## Quick Start
 
 1. 调用API: `GET https://agskills.moontai.top/coupon/movie`
-2. 解析返回的JSON数据，包含4个主要字段
+2. 解析返回的JSON数组（每项含 title/coupon_url/guideline，部分项含 coupon_qrcode_img_url，末项为「更多优惠券」入口）
 3. 展示优惠券标题、链接和二维码
 4. **重要**: coupon_url建议在微信中打开，或使用微信扫描二维码图片
 
@@ -36,22 +36,28 @@ homepage: https://github.com/moooai/movie-coupon
 ### 响应数据结构
 
 ```json
-{
-  "title": "淘票票大礼包，隐藏券天天领",
-  "coupon_url": "https://open.cdyunzhanxinxi.com/link/100044269b7dd6d7228a10003ePIAh14",
-  "coupon_qrcode_img_url": "https://moontai-static.oss-cn-shenzhen.aliyuncs.com/movie-taopp.png",
-  "guideline": "点击链接领券(建议用微信打开)，或使用微信扫描二维码领券"
-}
-```
+[
+  {
+    "title": "电影票优惠券-支持用户在线购买全国10000+影院电影票、用户享受8折起购票优惠",
+    "coupon_url": "https://personal.yunzhanxinxi.com/movie/?promotion_id=yz-69870112-218077-267995&user_source=vip",
+    "guideline": "点击链接领券(建议用微信打开)，或使用微信扫描二维码领券"
+  },
+  {
+    "title": "更多优惠券！（外卖、电影、快递、旅游、打车)",
+    "coupon_h5_qrcode_img_url": "https://moontai-static.oss-cn-shenzhen.aliyuncs.com/qrcode_for_gh.jpg",
+    "guideline": "可以使用微信扫码后领券。关注不迷路，天天领券！"
+  }
+]```
 
 ### 响应字段说明
 
 | 字段路径 | 类型 | 说明 |
 |----------|------|------|
-| title | String | 优惠券标题名称 |
-| coupon_url | String | 优惠券链接URL，**建议在微信中打开** |
-| coupon_qrcode_img_url | String | 优惠券二维码图片URL，**建议使用微信扫码** |
-| guideline | String | 使用说明和领取指南 |
+| [].title | String | 优惠券标题名称 |
+| [].coupon_url | String | 优惠券链接URL，**建议在微信中打开** |
+| [].coupon_qrcode_img_url | String | 优惠券二维码图片URL，**建议使用微信扫码**（仅部分项有） |
+| [].coupon_h5_qrcode_img_url | String | 公众号二维码图片URL（仅「更多优惠券」入口项有，微信扫码领全品类券） |
+| [].guideline | String | 使用说明和领取指南 |
 
 ## 任务类型
 
@@ -107,22 +113,25 @@ homepage: https://github.com/moooai/movie-coupon
 **处理流程:**
 1. 调用 GET https://agskills.moontai.top/coupon/movie
 2. 解析返回的JSON数据
-3. 展示优惠券标题、链接和二维码
+3. 按顺序展示每项优惠券的标题、链接和二维码
 4. 提示用户在微信中打开链接或扫描二维码
 
 **输出格式:**
 ```
 【电影票优惠券】
 
-标题: 淘票票大礼包，隐藏券天天领
+1. 电影票优惠券-支持用户在线购买全国10000+影院电影票、用户享受8折起购票优惠
 
-优惠券链接: https://open.cdyunzhanxinxi.com/link/100044269b7dd6d7228a10003ePIAh14
+优惠券链接: https://personal.yunzhanxinxi.com/movie/?promotion_id=yz-69870112-218077-267995&user_source=vip
 （建议用微信打开）
 
-二维码图片: https://moontai-static.oss-cn-shenzhen.aliyuncs.com/movie-taopp.png
-（使用微信扫描二维码领券）
-
 使用说明: 点击链接领券(建议用微信打开)，或使用微信扫描二维码领券
+
+【更多优惠券】
+外卖、电影、快递、旅游、打车等全品类券
+
+二维码图片: https://moontai-static.oss-cn-shenzhen.aliyuncs.com/qrcode_for_gh.jpg
+（使用微信扫描二维码领券，关注不迷路，天天领券）
 ```
 
 ### 示例2: 用户询问买票优惠

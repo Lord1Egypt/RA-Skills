@@ -11,7 +11,7 @@
 
 支持的模型：
   - Hunyuan（腾讯混元）
-  - Hailuo（海螺，版本 02 / 2.3 / 2.3-fast）
+  - Hailuo（海螺，版本 02 / 2.3 / 2.3-fast / H3；H3 为原生多模态，支持图片/视频/音频输入）
   - Kling（可灵，版本 1.6 / 2.0 / 2.1 / 2.5 / O1 / 2.6 / 3.0 / 3.0-Omni）
   - Vidu（版本 q2 / q2-pro / q2-turbo / q3 / q3-pro / q3-turbo / q3-mix）
   - OS（版本 2.0）
@@ -117,6 +117,11 @@ import argparse
 import json
 import os
 import sys
+
+# 同目录模块解析：保证被当作模块 import 时也能找到 mps_auto_upgrade
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPT_DIR)
 from mps_auto_upgrade import check_sdk_version
 import time
 
@@ -146,61 +151,105 @@ SUPPORTED_MODELS = {
     "Hunyuan": {
         "description": "腾讯混元大模型",
         "versions": [],
-        "duration_options": [],
-        "default_duration": None,
         "supports_multishot": False,
     },
     "Hailuo": {
         "description": "海螺视频模型",
-        "versions": ["02", "2.3", "2.3-fast"],
-        "duration_options": [6, 10],
-        "default_duration": 6,
+        # H3（2026-07-31 发布）为原生多模态版本，支持图片/视频/音频输入
+        "versions": ["02", "2.3", "2.3-fast", "H3"],
+        # ⚠️ 02/2.3/2.3-fast 仅接受 6 / 10 秒，且**越界值被静默忽略**——
+        # 实测（2026-08-08）：请求 8s 任务照样 DONE，但产物回落默认 5.88s。
+        # 这类「不报错但无效」的参数必须本地拦截，否则用户拿到错时长而不自知。
+        # （H3 是连续区间 4~15，另见 h3_limits.duration_range）
+        "silent_ignore_durations": [6, 10],
         "supports_multishot": False,
+        # H3 多模态输入限制。此处只保留脚本会实际用到的「数量上限」与提示文案；
+        # 宽高范围 [256,5760]px、宽高比 [0.4,2.5]、帧率 [23.976,60]、单片段/总时长
+        # 等由接口侧校验，本地拿不到媒体元信息，不在此重复定义以免形成死配置。
+        #
+        # 三条数量上限彼此独立，不是一个总额：
+        #   图片：首帧 ≤ 1，尾帧 ≤ 1，参考图 ≤ 9
+        #   视频：≤ 3          音频：≤ 3
+        # 若按「图片总数 ≤ 9」汇总，「9 张参考图 + 1 尾帧」这类合法组合会被误拒。
+        # 首帧/尾帧对应的参数是单值（非 append），天然不会超过 1，故不设数量字段。
+        "h3_limits": {
+            "image": {
+                "formats": "JPG/JPEG/PNG/WEBP/HEIC/HEIF",
+                "size_mb": 30,
+                "reference_max": 9,
+            },
+            "video": {
+                "formats": "MP4/MOV",
+                "size_mb": 50,
+                "max": 3,
+                "clip_seconds": (2, 15),
+            },
+            "audio": {
+                "formats": "WAV/MP3",
+                "size_mb": 15,
+                "max": 3,
+                "clip_seconds": (2, 15),
+            },
+            # ↓ 以下两项为 2026-08-02 真接口逐值实测结论（非文档推断）。
+            #
+            # duration：4~15 秒**连续区间**，逐个整数验证过，区间内无失效值。
+            #   实测 4→4.46s  5→5.17s  6→6.58s  7→7.29s  8→8.00s  9→9.42s
+            #        10→10.12s 11→11.54s 12→12.25s 13→13.67s 14→14.38s 15→15.08s
+            #   越界的 3 / 16 / 20 会被接口**静默忽略**（任务仍返回 DONE，
+            #   但产物回落默认 5.17s），因此必须本地前置拦截，否则用户会
+            #   误以为参数生效。切勿写成 [6,8,10,15] 白名单——那会误拒
+            #   4/5/7/9/11/12/13/14 这 8 个合法值。
+            "duration_range": (4, 15),
+            "default_duration_seconds": 5.17,
+            # resolution：H3 原生输出 2560x1440，choices 四档已全部实测——
+            #   720P / 1080P / 2K → 均输出 2560x1440（参数被静默忽略）
+            #   4K                → 3840x2160（唯一真正生效，音频采样率
+            #                        随之变为 44100Hz，其余档均 32000Hz）
+            "effective_resolutions": ["4K"],
+            "native_resolution": "2560x1440",
+        },
     },
     "Kling": {
         "description": "可灵视频模型",
         "versions": ["1.6", "2.0", "2.1", "2.5", "O1", "2.6", "3.0", "3.0-Omni"],
-        "duration_options": [5, 10],
-        "default_duration": 5,
         "supports_multishot": True,  # 支持分镜
     },
     "Vidu": {
         "description": "Vidu 视频模型",
         "versions": ["q2", "q2-pro", "q2-turbo", "q3", "q3-pro", "q3-turbo", "q3-mix"],
-        "duration_options": list(range(1, 11)),
-        "default_duration": 4,
         "supports_multishot": False,
     },
     "OS": {
         "description": "OS 视频模型",
         "versions": ["2.0"],
-        "duration_options": [4, 8, 12],
-        "default_duration": 8,
         "supports_multishot": False,
     },
     "GV": {
         "description": "GV 视频模型",
-        "versions": ["3.1", "3.1-fast"],
-        "duration_options": [8],
-        "default_duration": 8,
+        # 3.1-lite / omni 已真接口验证（任务终态 DONE）
+        "versions": ["3.1", "3.1-fast", "3.1-lite", "omni"],
         "supports_multishot": False,
     },
     "Mingmou": {
         "description": "明眸横转竖模型",
         "versions": [],
-        "duration_options": [],
-        "default_duration": None,
         "supports_multishot": False,
     },
     "PixVerse": {
         "description": "PixVerse 视频模型（v5.6 / v6 / c1）",
         "versions": ["v5.6", "v6", "c1"],
+        # 实测（2026-08-08）：1/3/5/8/15s 均精确生效，16s 起接口明确报错
         "duration_options": list(range(1, 16)),  # 1~15 秒
-        "default_duration": 5,
         "supports_multishot": False,
         "aspect_ratios": ["16:9", "4:3", "1:1", "3:4", "9:16", "2:3", "3:2", "21:9"],
         "quality_options": ["360p", "540p", "720p", "1080p"],
         "default_quality": "540p",
+    },
+    "H2": {
+        "description": "快乐马视频模型",
+        # 1.0 / 1.1 均已真接口验证（提交 + 任务终态 DONE）
+        "versions": ["1.0", "1.1"],
+        "supports_multishot": False,
     },
 }
 
@@ -449,11 +498,11 @@ except ImportError:
         return False
 
 def get_credentials():
-    """从环境变量获取腾讯云凭证。若缺失则尝试从系统文件自动加载后重试。"""
+    """从环境变量获取腾讯云凭证。若缺失则尝试从 dotenv 文件自动加载后重试。"""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
-        # 尝试从系统环境变量文件自动加载
+        # 凭证可能写在 ~/.env 等 dotenv 文件中而未导出，先尝试加载再重试
         if _LOAD_ENV_AVAILABLE:
             print("[load_env] 环境变量未设置，尝试从系统文件自动加载...", file=sys.stderr)
             _ensure_env_loaded(verbose=True)
@@ -461,12 +510,12 @@ def get_credentials():
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
         if not secret_id or not secret_key:
             if _LOAD_ENV_AVAILABLE:
-                from mps_load_env import _print_setup_hint, _TARGET_VARS
+                from mps_load_env import _print_setup_hint
                 _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
             else:
                 print(
                     "\n错误：TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY 未设置。\n"
-                    "请在 /etc/environment、~/.profile 等文件中添加这些变量。\n",
+                    "请在 ~/.env、~/.bashrc、~/.profile 或 <SKILL_DIR>/.env 中添加这些变量。\n",
                     file=sys.stderr,
                 )
             sys.exit(1)
@@ -647,6 +696,10 @@ def build_create_params(args):
     # 场景类型（可选）
     if args.scene_type:
         params["SceneType"] = args.scene_type
+        # 3D 场景必须搭配 ModelVersion=3d_2.0，用户未显式指定时自动补齐
+        if args.scene_type == "3d_scene" and not params.get("ModelVersion"):
+            params["ModelVersion"] = "3d_2.0"
+            print(f"ℹ️  3D 场景自动设置 ModelVersion: 3d_2.0")
 
     # 提示词
     if args.prompt:
@@ -817,6 +870,51 @@ def build_create_params(args):
     
     if video_infos:
         params["VideoInfos"] = video_infos
+
+    # 参考音频（AudioInfos）—— Hailuo H3 多模态参考生成 r2va
+    # 与 VideoInfos 同理：结构不支持 CosInputInfo，COS 路径需先转为预签名 URL
+    audio_infos = []
+
+    # 1. 直接传入的 URL
+    if getattr(args, "ref_audio_url", None):
+        for url in args.ref_audio_url:
+            audio_infos.append({"AudioUrl": url})
+
+    # 2. COS 路径输入 —— 生成预签名 URL 填入 AudioUrl
+    if getattr(args, "ref_audio_cos_key", None):
+        cos_buckets = args.ref_audio_cos_bucket or []
+        cos_regions = args.ref_audio_cos_region or []
+        secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
+        secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
+
+        for i, key in enumerate(args.ref_audio_cos_key):
+            bucket = cos_buckets[i] if i < len(cos_buckets) else (cos_buckets[0] if cos_buckets else get_cos_bucket())
+            region = cos_regions[i] if i < len(cos_regions) else (cos_regions[0] if cos_regions else get_cos_region())
+
+            if not bucket:
+                print(f"❌ 错误: --ref-audio-cos-key[{i}] 缺少对应的 bucket", file=sys.stderr)
+                sys.exit(1)
+
+            presigned_url = resolve_cos_input(bucket, region, key, secret_id, secret_key)
+            if not presigned_url:
+                print(f"❌ 错误: 无法为 --ref-audio-cos-key[{i}] 生成预签名 URL", file=sys.stderr)
+                sys.exit(1)
+
+            audio_infos.append({"AudioUrl": presigned_url})
+
+    # 3. 本地文件 —— 上传到 COS 后以预签名 URL 传入
+    if getattr(args, "ref_audio_local", None):
+        upload_bucket = args.ref_audio_cos_bucket[0] if getattr(args, "ref_audio_cos_bucket", None) else get_cos_bucket()
+        upload_region = args.ref_audio_cos_region[0] if getattr(args, "ref_audio_cos_region", None) else get_cos_region()
+        for local_path in args.ref_audio_local:
+            uploaded = upload_to_cos(local_path, upload_bucket, upload_region)
+            if not uploaded:
+                print(f"❌ 错误: 参考音频上传失败: {local_path}", file=sys.stderr)
+                sys.exit(1)
+            audio_infos.append({"AudioUrl": uploaded})
+
+    if audio_infos:
+        params["AudioInfos"] = audio_infos
 
     # 时长
     if args.duration is not None:
@@ -1069,12 +1167,54 @@ def validate_args(args, parser):
             if len(args.ref_video_cos_region) != len(args.ref_video_cos_key):
                 parser.error("--ref-video-cos-region 数量必须与 --ref-video-cos-key 相同，或只指定一个")
 
+    # COS 路径参数校验 - 参考音频（与参考视频保持一致）
+    if getattr(args, "ref_audio_cos_key", None):
+        if not args.ref_audio_cos_bucket and not get_cos_bucket():
+            parser.error("使用 --ref-audio-cos-key 时必须指定 --ref-audio-cos-bucket 或设置 TENCENTCLOUD_COS_BUCKET 环境变量")
+        if args.ref_audio_cos_region and len(args.ref_audio_cos_region) > 1:
+            if len(args.ref_audio_cos_region) != len(args.ref_audio_cos_key):
+                parser.error("--ref-audio-cos-region 数量必须与 --ref-audio-cos-key 相同，或只指定一个")
+
+    # Hailuo H3（2026-07-31 发布）为原生多模态版本，多处校验需要区分它与
+    # 02 / 2.3 / 2.3-fast，故在所有使用点之前统一判定一次。
+    is_hailuo_h3 = (args.model == "Hailuo" and args.model_version == "H3")
+
+    # Hailuo 02 / 2.3 / 2.3-fast 的时长白名单校验。
+    # 这些版本对越界时长**不报错**，而是静默回落默认时长（实测请求 8s → 产物 5.88s），
+    # 属于「不拦就会让用户拿到错时长而不自知」的场景，故必须本地前置拦截。
+    # 其余模型（Kling / Vidu / OS / GV / PixVerse）越界时接口会明确报错，
+    # 交由接口报错更准确，本地不做白名单以免误拒合法值。
+    if args.model == "Hailuo" and not is_hailuo_h3 and args.duration is not None:
+        allowed = SUPPORTED_MODELS["Hailuo"]["silent_ignore_durations"]
+        if args.duration not in allowed:
+            parser.error(
+                f"Hailuo {args.model_version or '(默认版本)'} 仅支持时长 "
+                f"{' / '.join(str(d) for d in allowed)} 秒，当前指定: {args.duration}。"
+                f"其他值不会报错，但会被接口静默忽略并回落默认时长（实测约 5.88 秒），"
+                f"故在此提前拦截"
+            )
+
+    # Hailuo 2.3-fast 不支持文生视频（实测接口报错：
+    # model MiniMax-Hailuo-2.3-Fast does not support Text-to-Video mode），必须传首帧图。
+    if args.model == "Hailuo" and args.model_version == "2.3-fast":
+        has_first_frame = bool(args.image_url or args.image_cos_key
+                               or getattr(args, "image_local", None))
+        if not has_first_frame:
+            parser.error(
+                "Hailuo 2.3-fast 不支持文生视频，必须提供首帧图片"
+                "（--image-url / --image-cos-key / --image-local）。"
+                "如需纯文本生成视频，请改用 02 / 2.3 / H3 版本"
+            )
+
     # 尾帧图片校验：使用 GV 时必须同时传入首帧
+    # 注：此校验历史上未限定模型，对所有模型生效。Hailuo H3 的文档明确
+    # 「首帧 ≤ 1，尾帧 ≤ 1」是两条彼此独立的限制，未要求尾帧必须搭配首帧，
+    # 故 H3 排除在此校验之外；其余模型保持原有行为不变。
     has_first_frame = (bool(args.image_url) or bool(args.image_cos_key)
                        or bool(getattr(args, 'image_local', None)))
     has_last_frame = (bool(args.last_image_url) or bool(args.last_image_cos_key)
                       or bool(getattr(args, 'last_image_local', None)))
-    if has_last_frame and not has_first_frame:
+    if has_last_frame and not has_first_frame and not is_hailuo_h3:
         parser.error("使用尾帧图片时需要同时指定首帧图片（--image-url / --image-cos-key / --image-local）")
 
     # 多图参考与 ImageUrl/LastImageUrl 互斥（GV 模型限制）
@@ -1107,11 +1247,27 @@ def validate_args(args, parser):
         elif total_ref_images == 0:
             parser.error("--ref-image-type 需要配合 --ref-image-url / --ref-image-cos-key / --ref-image-local 使用")
 
-    # 参考视频校验（VideoInfos 支持 Kling 和 Mingmou 模型）
+    # 参考视频校验（VideoInfos 支持 Kling / Mingmou；Hailuo H3 用于 r2va 多模态参考生成）
     has_ref_video = bool(args.ref_video_url) or bool(args.ref_video_cos_key)
     if has_ref_video:
-        if args.model not in ("Kling", "Mingmou"):
-            parser.error("参考视频（--ref-video-url 或 --ref-video-cos-key）目前仅 Kling 和 Mingmou 模型支持")
+        if args.model not in ("Kling", "Mingmou", "H2", "Vidu") and not is_hailuo_h3:
+            parser.error("参考视频（--ref-video-url 或 --ref-video-cos-key）目前仅 Kling / Mingmou / H2 / "
+                         "Vidu 和 Hailuo H3 模型支持")
+        # 实测：Vidu 参考视频仅 q2-pro 支持，
+        # q2 / q2-turbo / q3 / q3-pro 均返回 FieldLacking
+        if args.model == "Vidu" and args.model_version != "q2-pro":
+            parser.error(
+                f"Vidu 的参考视频仅 q2-pro 版本支持，当前指定 {args.model_version or '未指定'}。"
+                f"其他版本会被上游拒绝（FieldLacking）；"
+                f"如需使用参考视频请改用 --model-version q2-pro"
+            )
+        # 实测：H2 参考视频仅 1.0 支持，1.1 传参考视频报 Model not exist
+        if args.model == "H2" and args.model_version and args.model_version != "1.0":
+            parser.error(
+                f"H2 的参考视频仅 1.0 版本支持，当前指定 {args.model_version}。"
+                f"该组合会被上游拒绝（Model not exist）；"
+                f"如需使用参考视频请改用 --model-version 1.0"
+            )
 
     total_ref_videos = 0
     if args.ref_video_url:
@@ -1126,6 +1282,91 @@ def validate_args(args, parser):
 
     if args.keep_original_sound and not has_ref_video:
         parser.error("--keep-original-sound 需要配合 --ref-video-url 或 --ref-video-cos-key 使用")
+
+    # ── Hailuo H3 多模态输入校验（2026-07-31 发布）──────────────────────
+    # 接口侧同样会校验，这里提前拦截以给出明确提示，避免提交后才失败。
+    #
+    # 三条数量上限彼此独立（首帧 ≤ 1、尾帧 ≤ 1、参考图 ≤ 9、视频 ≤ 3、音频 ≤ 3），
+    # 不能按「图片总数」汇总——否则「9 张参考图 + 1 尾帧」这类合法组合会被误拒。
+    total_ref_audios = 0
+    for _attr in ("ref_audio_url", "ref_audio_cos_key", "ref_audio_local"):
+        _v = getattr(args, _attr, None)
+        if _v:
+            total_ref_audios += len(_v)
+
+    if total_ref_audios and not is_hailuo_h3:
+        parser.error("参考音频（--ref-audio-url / --ref-audio-cos-key / --ref-audio-local）"
+                     "目前仅 Hailuo H3 模型支持")
+
+    if is_hailuo_h3:
+        h3 = SUPPORTED_MODELS["Hailuo"]["h3_limits"]
+
+        # 首帧 / 尾帧各自 ≤ 1。参数本身是单值（非 append），天然不会超过 1，
+        # 这里只统计是否存在，用于后续 i2va/r2va 互斥判断。
+        has_first = bool(args.image_url or args.image_cos_key
+                         or getattr(args, "image_local", None))
+        has_last = bool(args.last_image_url or args.last_image_cos_key
+                        or getattr(args, "last_image_local", None))
+
+        # 参考图 ≤ 9（与首帧/尾帧分开计数）
+        ref_max = h3["image"]["reference_max"]
+        if total_ref_images > ref_max:
+            parser.error(
+                f"Hailuo H3 的参考图最多 {ref_max} 张，当前 {total_ref_images} 张。"
+                f"图片限制：格式 {h3['image']['formats']}，单文件 ≤ {h3['image']['size_mb']} MB"
+            )
+
+        # 参考视频 ≤ 3
+        vid_max = h3["video"]["max"]
+        if total_ref_videos > vid_max:
+            parser.error(
+                f"Hailuo H3 的参考视频最多 {vid_max} 个，当前 {total_ref_videos} 个。"
+                f"视频限制：格式 {h3['video']['formats']}，单文件 ≤ {h3['video']['size_mb']} MB，"
+                f"单片段 {h3['video']['clip_seconds'][0]}-{h3['video']['clip_seconds'][1]} 秒"
+            )
+
+        # 参考音频 ≤ 3
+        aud_max = h3["audio"]["max"]
+        if total_ref_audios > aud_max:
+            parser.error(
+                f"Hailuo H3 的参考音频最多 {aud_max} 个，当前 {total_ref_audios} 个。"
+                f"音频限制：格式 {h3['audio']['formats']}，单文件 ≤ {h3['audio']['size_mb']} MB，"
+                f"单片段 {h3['audio']['clip_seconds'][0]}-{h3['audio']['clip_seconds'][1]} 秒"
+            )
+
+        # i2va（首帧/尾帧）与 r2va（参考视频/音频）互斥
+        has_i2va = has_first or has_last
+        has_r2va = bool(total_ref_videos or total_ref_audios)
+        if has_i2va and has_r2va:
+            parser.error(
+                "Hailuo H3 的图生视频（i2va，首帧/尾帧）与多模态参考生成"
+                "（r2va，参考视频/音频）互斥，不可混用。"
+                "请二者择一：使用首帧/尾帧图，或使用参考视频/音频"
+            )
+
+        # 时长区间校验（2026-08-02 真接口实测：4~15 秒连续可用）
+        # 越界值不会被接口拒绝，而是静默忽略并回落默认时长，任务照样返回
+        # DONE。若不在此拦截，用户会误以为拿到了指定时长的视频。
+        dur_lo, dur_hi = h3["duration_range"]
+        if args.duration is not None and not (dur_lo <= args.duration <= dur_hi):
+            parser.error(
+                f"Hailuo H3 支持的视频时长为 {dur_lo}~{dur_hi} 秒之间的整数"
+                f"（区间内任意整数均可），当前指定: {args.duration}。"
+                f"超出该区间的值会被接口静默忽略并回落默认约 "
+                f"{h3['default_duration_seconds']} 秒，不会报错，故在此提前拦截"
+            )
+
+        # 分辨率生效性提示（实测：仅 4K 真正改变输出）
+        # 同样属于「静默忽略」类参数，指定无效档位不会报错但毫无效果，
+        # 直接拦截并说明，避免用户误以为已降/升分辨率。
+        eff_res = h3["effective_resolutions"]
+        if args.resolution and args.resolution not in eff_res:
+            parser.error(
+                f"Hailuo H3 原生输出 {h3['native_resolution']}，"
+                f"--resolution {args.resolution} 会被接口静默忽略（不报错但无效果）。"
+                f"H3 仅 {' / '.join(eff_res)} 会真正改变输出分辨率；"
+                f"如需原生分辨率请省略 --resolution"
+            )
 
     # 错峰模式仅 Vidu 支持
     if args.off_peak and args.model != "Vidu":
@@ -1502,7 +1743,7 @@ def main():
 
 支持的模型：
   Hunyuan     腾讯混元大模型（默认）
-  Hailuo      海螺视频模型，版本 02 / 2.3，时长 6 / 10 秒
+  Hailuo      海螺视频模型，版本 02 / 2.3 / 2.3-fast / H3，时长 6 / 10 秒（H3 实测支持 8 / 15 秒）
   Kling       可灵视频模型，版本 2.0-3.0/O1/3.0-Omni，时长 5 / 10 秒，**支持分镜**，**支持参考视频**
   Vidu        Vidu 视频模型，版本 q2/q2-pro/q2-turbo/q3-pro/q3-turbo，时长 1-10 秒
   OS          OS 视频模型，版本 2.0，时长 4 / 8 / 12 秒
@@ -1541,10 +1782,10 @@ def main():
     # ---- 模型配置 ----
     model_group = parser.add_argument_group("模型配置")
     model_group.add_argument("--model", type=str, default="Hunyuan",
-                             choices=["Hunyuan", "Hailuo", "Kling", "Vidu", "OS", "GV", "Mingmou", "PixVerse"],
+                             choices=["Hunyuan", "Hailuo", "Kling", "Vidu", "OS", "GV", "Mingmou", "PixVerse", "H2"],
                              help="模型名称（默认 Hunyuan）")
     model_group.add_argument("--model-version", type=str,
-                             help="模型版本号（如 Kling: 2.5, Hailuo: 2.3, Vidu: q2-pro, PixVerse: v6/c1）")
+                             help="模型版本号（如 Kling: 2.5, Hailuo: 2.3, Vidu: q2-pro, PixVerse: v6/c1, GV: 3.1-lite/omni, H2: 1.0/1.1）")
     model_group.add_argument("--scene-type", type=str,
                              choices=["motion_control", "land2port", "template_effect", "3d_scene"],
                              help="场景类型（部分模型支持）")
@@ -1626,7 +1867,20 @@ def main():
     video_ref_group.add_argument("--ref-video-cos-region", type=str, action="append",
                                  help="参考视频所在 COS Region（如 ap-guangzhou，与 --ref-video-cos-key 一一对应）")
     video_ref_group.add_argument("--ref-video-cos-key", type=str, action="append",
-                                   help="参考视频的 COS Key（如 /input/video.mp4，与 --ref-video-cos-bucket/--ref-video-cos-region 配合使用。会自动生成预签名 URL 填入 VideoUrl）")
+                                 help="参考视频的 COS Key（如 /input/video.mp4，与 --ref-video-cos-bucket/--ref-video-cos-region 配合使用。会自动生成预签名 URL 填入 VideoUrl）")
+
+    # ---- 参考音频输入（Hailuo H3 多模态参考生成 r2va） ----
+    audio_ref_group = parser.add_argument_group("参考音频（Hailuo H3 模型支持）")
+    audio_ref_group.add_argument("--ref-audio-url", type=str, action="append",
+                                 help="参考音频 URL（WAV/MP3，单文件 ≤ 15 MB，2-15 秒，最多 3 个，可多次指定）。仅 Hailuo H3 支持，与首帧/尾帧互斥")
+    audio_ref_group.add_argument("--ref-audio-cos-bucket", type=str, action="append",
+                                 help="参考音频所在 COS Bucket（与 --ref-audio-cos-region/--ref-audio-cos-key 配合使用，可多次指定）")
+    audio_ref_group.add_argument("--ref-audio-cos-region", type=str, action="append",
+                                 help="参考音频所在 COS Region（如 ap-guangzhou，与 --ref-audio-cos-key 一一对应）")
+    audio_ref_group.add_argument("--ref-audio-cos-key", type=str, action="append",
+                                 help="参考音频的 COS Key（如 /input/audio.mp3，会自动生成预签名 URL 填入 AudioUrl）")
+    audio_ref_group.add_argument("--ref-audio-local", type=str, action="append", metavar="FILE",
+                                 help="本地参考音频文件路径（自动上传 COS 后以预签名 URL 传入，可多次指定）")
 
     # ---- 视频输出配置 ----
     output_group = parser.add_argument_group("视频输出配置")

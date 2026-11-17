@@ -1,43 +1,55 @@
-## Description: <br>
-Hermes runtime traffic monitoring baseline for opt-in proxy inspection, egress detection, and attestation-aware traffic posture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes runtime traffic monitoring baseline for opt-in proxy inspection, egress detection, and attestation-aware traffic posture.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Developers and security engineers use this skill as a specification baseline for opt-in Hermes traffic monitoring, including planned proxy inspection, exfiltration and injection detection, redacted local findings, and posture export for attestation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future proxy or HTTPS inspection behavior could expose sensitive request data if configured too broadly. <br>
-Mitigation: Keep monitoring opt-in, scope proxy settings per process, require operator-supplied CA trust for HTTPS inspection, bound scanned content, and redact snippets before logs or attestation-linked outputs. <br>
-Risk: This release is a specification scaffold and does not include active traffic-monitoring runtime code. <br>
-Mitigation: Treat the package as implementation guidance, and review future runtime code for proxy behavior, CA trust handling, log redaction, and background-mode behavior before deployment. <br>
+## Use Case:
 
+Developers and security engineers use this skill as a Hermes traffic-monitoring specification baseline for scoped proxy inspection, exfiltration and injection detection, redacted local findings, and attestation posture export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-hermes-traffic-guardian) <br>
-- [ClawSec homepage](https://clawsec.prompt.security) <br>
-- [Hermes Traffic Guardian Specification](SPEC.md) <br>
-- [Hermes Traffic Guardian README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, JSON schemas] <br>
-**Output Format:** [Markdown with shell command examples and JSON schema snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Specification-only release; no active proxy or runtime implementation is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1-beta5 (source: server release evidence, frontmatter, skill.json, and changelog, released 2026-06-23) <br>
+Risk: The release includes an unpinned npx install command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source and prefer the documented signed-release verification workflow or a pinned CLI/source version.
+
+Risk: Future runtime proxy functionality could broaden traffic inspection or trust-store impact if implemented carelessly.
+
+Mitigation: Review future implementations for opt-in operation, per-process proxy scope, no automatic system CA changes, redacted logs, and no default blocking.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davida-ps/skills/clawsec-hermes-traffic-guardian)
+- [Publisher Profile](https://clawhub.ai/user/davida-ps)
+- [ClawSec Homepage](https://clawsec.prompt.security)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON schema examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Specification-only release; no runtime proxy code is shipped in this version.]
+
+## Skill Version(s):
+
+0.0.1-beta5 (source: server release metadata, frontmatter, skill.json, changelog released 2026-06-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

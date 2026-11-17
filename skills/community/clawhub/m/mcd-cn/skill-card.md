@@ -1,43 +1,57 @@
-## Description: <br>
-Query McDonald's China MCP server via the mcd-cn CLI for campaign calendars, coupons, and auto-claiming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query McDonald's China MCP server via the mcd-cn CLI for campaign calendars, coupons, and auto-claiming. Use for human-friendly coupon lookup or JSON output for scripts.
 
-## Publisher: <br>
-[ryanchen01](https://clawhub.ai/user/ryanchen01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryanchen01](https://clawhub.ai/user/ryanchen01)
 
-## Use Case: <br>
-External users and developers use this skill to check McDonald's China campaign calendars and coupon information through the mcd-cn CLI, including optional JSON output for scripts. <br>
-
-### Deployment Geography for Use: <br>
-China <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The MCP token can grant access to account-specific coupon actions if exposed. <br>
-Mitigation: Store MCDCN_MCP_TOKEN like a password and avoid committing it in .env files or logs. <br>
-Risk: The auto-bind-coupons command can claim coupons on the user's account. <br>
-Mitigation: Run auto-bind-coupons only when the user explicitly intends to claim coupons. <br>
-Risk: Installation depends on a third-party Homebrew tap and CLI. <br>
-Mitigation: Install only after deciding to trust the ryanchen01 tap and the mcd-cn binary. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanchen01/mcd-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/ryanchen01) <br>
-- [Declared homepage](https://github.com/ryanchen01/mcd-cn) <br>
+## Use Case:
 
+External users and developers use this skill to query McDonald's China campaign calendars and coupons through the mcd-cn CLI, including human-readable lookups and JSON output for scripts.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the mcd-cn binary and MCDCN_MCP_TOKEN environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release asks users to install an unpinned third-party CLI and provide an account token.
+
+Mitigation: Review the upstream mcd-cn project and Homebrew tap before installation, and use a minimally scoped token if one is available.
+
+Risk: The auto-bind-coupons command can change account state rather than only reading coupon data.
+
+Mitigation: Treat auto-bind-coupons as an account-changing action and confirm intent before running it.
+
+Risk: A token stored in a committed .env file could expose account access.
+
+Mitigation: Set MCDCN_MCP_TOKEN in the runtime environment and avoid committing .env files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryanchen01/skills/mcd-cn)
+- [Project homepage](https://github.com/ryanchen01/mcd-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI responses may be human-readable text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the mcd-cn CLI and MCDCN_MCP_TOKEN; rate limit is 600 requests per minute per token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

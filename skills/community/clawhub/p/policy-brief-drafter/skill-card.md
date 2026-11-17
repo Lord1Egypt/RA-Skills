@@ -1,45 +1,55 @@
-## Description: <br>
-Helps government-affairs analysts, think-tank researchers, and advocacy staff convert legislative and regulatory evidence into a draft decision-maker policy brief with options analysis, recommendation, risks, source map, and talking points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a government-affairs analyst, think-tank researcher, or advocacy staffer needs to convert legislative text, regulatory dockets, and stakeholder notes into a 2-4 page decision-maker policy brief.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Government affairs analysts, think-tank researchers, advocacy staff, agency staffers, and communications teams use this skill to turn sourced policy materials into a draft decision-maker brief and talking-points appendix for a pending decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft policy guidance may be mistaken for final legal, policy, or counsel-approved advice. <br>
-Mitigation: Use the output as a drafting aid and require policy lead, legal, or general counsel review before external use. <br>
-Risk: Unsupported claims, fabricated citations, or weak source classifications could mislead decision-makers. <br>
-Mitigation: Verify all citations, quotations, quantitative claims, and source classifications before relying on the brief. <br>
-Risk: Confidential coalition strategy, member positions, or embargoed material may be exposed in an inappropriate session. <br>
-Mitigation: Avoid sharing confidential or embargoed materials unless the session environment is approved for that content. <br>
-Risk: A one-sided advocacy brief may omit material counter-positions. <br>
-Mitigation: Require counter-evidence intake and downgrade to an informational brief when counter-sources are not supplied. <br>
+## Use Case:
 
+Government-affairs analysts, think-tank researchers, advocacy staff, agency staff, and communications teams use this skill to turn policy source material into a decision-maker brief with options analysis, a recommendation, source map, risk discussion, decision-window flag, and talking-points appendix.
 
-## Reference(s): <br>
-- [Policy Brief Drafter README](artifact/README.md) <br>
-- [Policy Brief Drafter on ClawHub](https://clawhub.ai/archlab-space/policy-brief-drafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft policy brief with tables and a talking-points/Q&A appendix] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Marked as DRAFT for policy lead review; requires user-supplied sources and citations for quantitative claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: release evidence and changelog, released 2026-05-28) <br>
+Risk: The skill may process sensitive policy, advocacy, coalition, or draft regulatory materials in-session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an approved agent environment for confidential material and route outputs through policy lead or counsel review before distribution.
+
+Risk: A policy brief could mislead decision-makers if it includes unsupported quantitative claims, fabricated citations, or one-sided advocacy.
+
+Mitigation: Require user-supplied citations, source-class tagging, counter-position intake, and removal or downgrading of unsourced claims before drafting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/policy-brief-drafter)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown policy brief draft with tables, source map, talking points, and Q&A appendix]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Marked DRAFT for policy lead review; quantitative claims and direct quotations must trace to user-supplied sources.]
+
+## Skill Version(s):
+
+0.1.2 (source: release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

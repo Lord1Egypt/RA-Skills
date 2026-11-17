@@ -1,37 +1,48 @@
-## Description: <br>
-Auto-generate structured weekly business reports covering KPIs, accomplishments, blockers, and plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generate structured weekly business reports covering KPIs, accomplishments, blockers, and plans. Save hours of reporting time every week.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Managers, founders, and team leads use this skill to draft weekly executive, team, sales, marketing, and project status reports from supplied metrics, accomplishments, blockers, risks, and plans. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include sensitive business metrics, revenue, customer names, internal blockers, or other confidential operational details. <br>
-Mitigation: Review generated reports for accuracy and sensitivity before sharing, and avoid supplying unnecessary confidential information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Weekly Report Generator on ClawHub](https://clawhub.ai/1kalin/weekly-report-generator) <br>
+## Use Case:
 
+Managers, founders, team leads, and business operators use this skill to draft concise weekly executive, team, sales, marketing, and project status reports from their metrics, accomplishments, blockers, and plans.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Text] <br>
-**Output Format:** [Markdown report templates and concise business-report prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report sections may include KPI tables, summaries, blockers, risks, next steps, and action items.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Weekly reports may include confidential business metrics, deal details, staffing information, or project risks.
+
+Mitigation: Only provide sensitive business data in agent sessions approved for that data, and review generated reports before sharing them with stakeholders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/weekly-report-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report drafts with tables, bullets, and concise narrative sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured weekly report content based on user-provided business context and metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

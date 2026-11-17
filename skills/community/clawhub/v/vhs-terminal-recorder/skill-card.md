@@ -1,42 +1,59 @@
-## Description: <br>
-Helps agents create reproducible terminal recordings with Charmbracelet VHS by authoring, validating, rendering, and debugging .tape files for GIF, MP4, or WebM output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using Charmbracelet VHS to author, validate, render, and cautiously publish reproducible terminal recordings from .tape files.
 
-## Publisher: <br>
-[tmchow](https://clawhub.ai/user/tmchow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tmchow](https://clawhub.ai/user/tmchow)
 
-## Use Case: <br>
-Developers and technical writers use this skill to script deterministic terminal demos, validate VHS tape files, render terminal recordings, and debug failures without relying on ambient shell state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendering a VHS tape executes the scripted terminal commands, which can modify files, run project commands, or contact external services. <br>
-Mitigation: Read tapes before execution, use small deterministic fixtures, validate syntax first, and review the target commands before rendering. <br>
-Risk: Terminal recordings and VHS publishing can expose secrets, private paths, account prompts, or other sensitive local context. <br>
-Mitigation: Scan tapes and generated recordings for secrets or private data, and only publish a specific rendered file after explicit approval. <br>
+## Use Case:
 
+Developers, documentation authors, and agents use this skill to create deterministic command-line screencasts and documentation assets with Charmbracelet VHS while validating tapes and avoiding secrets, ambient shell state, and unintended publishing.
 
-## Reference(s): <br>
-- [Charmbracelet VHS](https://github.com/charmbracelet/vhs) <br>
-- [VHS installation documentation](https://github.com/charmbracelet/vhs#installation) <br>
-- [ClawHub skill page](https://clawhub.ai/tmchow/skills/vhs-terminal-recorder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and VHS .tape snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify .tape files and propose VHS render commands; rendered media files are produced by local VHS execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Rendering a VHS tape can execute commands, modify files, or use the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect tapes before rendering, install from trusted sources, and validate syntax before running project commands.
+
+Risk: Terminal recordings can accidentally expose secrets, private paths, customer data, shell history, or account-specific prompts.
+
+Mitigation: Use deterministic sample data and scan tapes and rendered output for sensitive information before committing or sharing.
+
+Risk: VHS publishing uploads output publicly when explicitly requested.
+
+Mitigation: Run publish commands only after the user approves the exact rendered file for public sharing.
+
+## Reference(s):
+
+- [Charmbracelet VHS](https://github.com/charmbracelet/vhs)
+- [VHS installation documentation](https://github.com/charmbracelet/vhs#installation)
+- [ClawHub skill page](https://clawhub.ai/tmchow/skills/vhs-terminal-recorder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and VHS tape snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce .tape snippets and commands for validation or rendering; public publishing requires explicit user approval.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

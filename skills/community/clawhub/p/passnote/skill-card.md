@@ -1,41 +1,54 @@
-## Description: <br>
-Create and manage disposable memos using PassNote. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage disposable memos using PassNote. Share secure, auto-destructing notes with others.
 
-## Publisher: <br>
-[shiweifu](https://clawhub.ai/user/shiweifu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiweifu](https://clawhub.ai/user/shiweifu)
 
-## Use Case: <br>
-External users and developers use this skill to create temporary PassNote memos and receive a viewing link plus passcode for sharing secure notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memo contents and the PassNote API token are sent to the configured PassNote server. <br>
-Mitigation: Use only trusted PassNote deployments, prefer HTTPS, and configure a scoped or revocable PASSNOTE_API_TOKEN. <br>
-Risk: Users may place long-lived passwords, API keys, or regulated data into temporary memos. <br>
-Mitigation: Avoid sending regulated data or long-lived secrets unless the configured PassNote deployment is approved for those materials. <br>
+## Use Case:
 
+External users and developers use this skill through OpenClaw to create temporary PassNote memos and return the generated viewing URL and passcode to the requester.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shiweifu/passnote) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/shiweifu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command output with a PassNote link, passcode, and expiration details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PASSNOTE_API_URL and PASSNOTE_API_TOKEN; memo contents are sent to the configured PassNote server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill sends memo content and an API bearer token to the configured PassNote endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure PASSNOTE_API_URL only for a trusted PassNote server, prefer HTTPS, and restrict the API token scope where possible.
+
+Risk: The security review reports weak endpoint safety and incomplete disclosure for secret-handling behavior.
+
+Mitigation: Review the skill before installing, avoid high-value passwords or regulated data unless you control the server and token scope, and rotate the token if it may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shiweifu/skills/passnote)
+- [OpenClaw PassNote Skill README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with shell command examples and generated PassNote URL and passcode output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PASSNOTE_API_URL and PASSNOTE_API_TOKEN; default memo expiration is 24 hours and can be configured up to 48 hours.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

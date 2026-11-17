@@ -1,41 +1,56 @@
-## Description: <br>
-Self-improving agent system for OpenClaw that detects workspace errors, selects improvement topics, creates research and backlog items, records impact, and remembers useful procedures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-improving OpenClaw agent system that detects errors, selects improvement topics, creates research and backlog tasks, and records impact measurements.
 
-## Publisher: <br>
-[mopga](https://clawhub.ai/user/mopga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mopga](https://clawhub.ai/user/mopga)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn OpenClaw error logs, circuit-breaker state, and backlog patterns into prioritized improvement tasks, research notes, and impact measurements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically turn workspace errors into persistent future agent work without clear approval boundaries. <br>
-Mitigation: Keep cron or auto-trigger execution disabled until generated research files and backlog tasks have been reviewed. <br>
-Risk: The skill reads logs and writes memory, backlog, and impact files in the configured workspace. <br>
-Mitigation: Restrict workspace write access and avoid storing secrets in logs or memory files that the skill reads. <br>
-Risk: Generated tasks may cause later agents to make changes based on incomplete or stale error analysis. <br>
-Mitigation: Require human review before any agent executes generated tasks and re-check the current workspace state first. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to monitor workspace error signals, prioritize improvement topics, and create agent-facing research, backlog, impact, and procedural-memory records for later review and execution.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research and backlog entries, JSON logs, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to the configured OpenClaw workspace, including memory, backlog, research, trigger, and impact files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically create persistent agent-facing backlog and research entries from workspace logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep cron integration disabled until the scripts are reviewed, restrict who can write error logs, and require human approval before generated backlog tasks are executed.
+
+Risk: Procedural memory stores reusable commands that could expose or preserve sensitive operational details.
+
+Mitigation: Avoid storing secrets in procedural commands and periodically review memory entries before agents reuse them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mopga/skills/self-evalutaed-agent)
+- [Publisher profile](https://clawhub.ai/user/mopga)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, JSON and JSONL records, and terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent records under the configured OpenClaw workspace, including memory, backlog, research, trigger, impact, and procedural-memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

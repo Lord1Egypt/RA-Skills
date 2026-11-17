@@ -1,43 +1,58 @@
-## Description: <br>
-Connect to remote ACP server and execute commands via imclaw-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to remote ACP server and execute commands via imclaw-cli.
 
-## Publisher: <br>
-[smallnest](https://clawhub.ai/user/smallnest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallnest](https://clawhub.ai/user/smallnest)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure imclaw-cli for connecting to a remote ACP server, sending prompts to a selected agent, reusing sessions, and controlling remote file or shell access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote ACP connections can execute agent-driven shell commands or file operations on the target environment. <br>
-Mitigation: Use only trusted servers, restrict --allowed-tools and --cwd, and avoid --approve-all unless the environment is isolated and remote file or shell changes are acceptable. <br>
-Risk: Default examples include ws:// transport and servers may be started without an auth token. <br>
-Mitigation: Prefer wss:// or an SSH tunnel, bind servers to localhost or private interfaces where possible, and require a strong token for remote access. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect an agent to a remote ACP server, run one-shot prompts, continue sessions, and configure remote execution with optional authentication and tool restrictions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smallnest/acp-remote) <br>
-- [imclaw project homepage](https://github.com/smallnest/imclaw) <br>
-- [imclaw releases API](https://api.github.com/repos/smallnest/imclaw/releases/latest) <br>
-- [imclaw install script](https://raw.githubusercontent.com/smallnest/imclaw/main/scripts/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command-line parameter tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports text, JSON, or quiet output from imclaw-cli depending on the selected command options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+Risk: The skill supports remote agent command execution, including modes that can approve broad command access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use authenticated wss:// connections, restrict --allowed-tools and --cwd, and avoid --approve-all except in tightly controlled sandboxes.
+
+Risk: Dependency setup may run unverified external code or install latest global packages.
+
+Mitigation: Review installation scripts, pin dependency versions, and prefer verified artifacts before use in production environments.
+
+Risk: Authentication tokens may be exposed if stored broadly in shell startup files or reused across environments.
+
+Mitigation: Use scoped tokens, avoid long-lived secrets in shell profiles, and rotate credentials after testing or incident response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smallnest/skills/acp-remote)
+- [IMClaw project homepage](https://github.com/smallnest/imclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command-line examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include text, JSON, or quiet command output when using imclaw-cli output format options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

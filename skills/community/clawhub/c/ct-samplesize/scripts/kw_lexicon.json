@@ -1,0 +1,1498 @@
+{
+  "extra": {
+    "高血压": "hypertension",
+    "糖尿病": "diabetes mellitus",
+    "冠心病": "coronary heart disease",
+    "心衰": "heart failure",
+    "房颤": "atrial fibrillation",
+    "慢阻肺": "COPD",
+    "哮喘": "asthma",
+    "乙肝": "hepatitis B",
+    "丙肝": "hepatitis C",
+    "肝硬化": "liver cirrhosis",
+    "抑郁症": "depression",
+    "焦虑症": "anxiety",
+    "骨质疏松": "osteoporosis",
+    "阿尔茨海默病": "Alzheimer disease",
+    "帕金森": "Parkinson disease",
+    "癫痫": "epilepsy",
+    "类风湿性关节炎": "rheumatoid arthritis",
+    "红斑狼疮": "systemic lupus erythematosus",
+    "甲状腺": "thyroid",
+    "乳腺癌": "breast cancer",
+    "胃癌": "gastric cancer",
+    "肝癌": "liver cancer",
+    "结直肠癌": "colorectal cancer",
+    "白血病": "leukemia",
+    "淋巴瘤": "lymphoma",
+    "骨髓瘤": "myeloma",
+    "食管癌": "esophageal cancer",
+    "胰腺癌": "pancreatic cancer",
+    "宫颈癌": "cervical cancer",
+    "前列腺癌": "prostate cancer",
+    "卵巢癌": "ovarian cancer",
+    "膀胱癌": "bladder cancer",
+    "肾癌": "renal cell carcinoma",
+    "鼻咽癌": "nasopharyngeal carcinoma",
+    "黑色素瘤": "melanoma",
+    "骨转移": "bone metastasis",
+    "脑转移": "brain metastasis",
+    "肝转移": "liver metastasis",
+    "肺转移": "lung metastasis",
+    "免疫治疗": "immunotherapy",
+    "化疗": "chemotherapy",
+    "靶向治疗": "targeted therapy",
+    "内分泌治疗": "endocrine therapy",
+    "新辅助": "neoadjuvant",
+    "辅助": "adjuvant",
+    "一线": "first-line",
+    "二线": "second-line",
+    "佐妥昔单抗": "Zolbetuximab",
+    "恶心呕吐": "nausea/vomiting",
+    "恶心": "nausea",
+    "呕吐": "vomiting",
+    "止吐": "antiemetic"
+  },
+  "class_en2zh": {
+    "sartan": "沙坦",
+    "statin": "他汀",
+    "fibrate": "贝特",
+    "ace inhibitor": "ACE抑制剂",
+    "acei": "ACE抑制剂",
+    "angiotensin receptor blocker": "血管紧张素受体拮抗剂",
+    "angiotensin ii receptor blocker": "血管紧张素II受体拮抗剂",
+    "angiotensin receptor antagonist": "血管紧张素受体拮抗剂",
+    "arb": "沙坦类",
+    "beta blocker": "β受体阻滞剂",
+    "beta-blocker": "β受体阻滞剂",
+    "calcium channel blocker": "钙通道阻滞剂",
+    "ccb": "钙通道阻滞剂",
+    "diuretic": "利尿剂",
+    "nsaid": "非甾体抗炎药",
+    "nonsteroidal anti-inflammatory drug": "非甾体抗炎药",
+    "ppi": "质子泵抑制剂",
+    "proton pump inhibitor": "质子泵抑制剂",
+    "mab": "单抗",
+    "nib": "替尼",
+    "cept": "融合蛋白",
+    "gliptin": "列汀",
+    "gliflozin": "格列净",
+    "glinide": "格列奈",
+    "glitazone": "格列酮",
+    "insulin": "胰岛素",
+    "sulfonylurea": "磺脲",
+    "agis": "糖苷酶抑制"
+  },
+  "class_members": {
+    "sartan": [
+      "valsartan",
+      "losartan",
+      "irbesartan",
+      "telmisartan",
+      "olmesartan",
+      "candesartan",
+      "azilsartan",
+      "eprosartan",
+      "fimasartan"
+    ],
+    "statin": [
+      "atorvastatin",
+      "rosuvastatin",
+      "simvastatin",
+      "pravastatin",
+      "fluvastatin",
+      "pitavastatin",
+      "lovastatin"
+    ],
+    "gliptin": [
+      "sitagliptin",
+      "saxagliptin",
+      "vildagliptin",
+      "linagliptin",
+      "alogliptin",
+      "teneligliptin",
+      "trelagliptin",
+      "dutogliptin",
+      "gemigliptin",
+      "anagliptin",
+      "evogliptin",
+      "omegliptin"
+    ],
+    "gliflozin": [
+      "dapagliflozin",
+      "empagliflozin",
+      "canagliflozin",
+      "ertugliflozin",
+      "ipragliflozin",
+      "luseogliflozin",
+      "tofogliflozin"
+    ],
+    "glinide": [
+      "repaglinide",
+      "nateglinide",
+      "mitiglinide"
+    ],
+    "glitazone": [
+      "pioglitazone",
+      "rosiglitazone",
+      "lobeglitazone"
+    ],
+    "sulfonylurea": [
+      "glimepiride",
+      "gliclazide",
+      "glibenclamide",
+      "glipizide",
+      "glyburide",
+      "gliquidone",
+      "glimepiride",
+      "glimiperide"
+    ],
+    "nib": [
+      "osimertinib",
+      "gefitinib",
+      "erlotinib",
+      "afatinib",
+      "lapatinib",
+      "sorafenib",
+      "sunitinib",
+      "imatinib",
+      "dasatinib",
+      "nilotinib",
+      "pazopanib",
+      "cabozantinib",
+      "lenvatinib",
+      "regorafenib",
+      "rucaparib",
+      "olaparib",
+      "crizotinib",
+      "alectinib",
+      "ibrutinib",
+      "acalabrutinib",
+      "ponatinib",
+      "bosutinib",
+      "vandetanib",
+      "vemurafenib",
+      "dabrafenib",
+      "trametinib",
+      "larotrectinib",
+      "entrectinib",
+      "lorlatinib",
+      "abemaciclib",
+      "palbociclib",
+      "ribociclib",
+      "ruxolitinib",
+      "tofacitinib",
+      "baricitinib",
+      "upadacitinib",
+      "fedratinib",
+      "pacritinib"
+    ],
+    "ace inhibitor": [
+      "enalapril",
+      "lisinopril",
+      "ramipril",
+      "benazepril",
+      "captopril",
+      "perindopril",
+      "quinapril",
+      "moexipril",
+      "fosinopril"
+    ],
+    "beta blocker": [
+      "metoprolol",
+      "bisoprolol",
+      "carvedilol",
+      "atenolol",
+      "propranolol",
+      "nebivolol",
+      "labetalol"
+    ],
+    "ccb": [
+      "amlodipine",
+      "nifedipine",
+      "felodipine",
+      "diltiazem",
+      "verapamil",
+      "lercanidipine"
+    ],
+    "fibrate": [
+      "fenofibrate",
+      "bezafibrate",
+      "ciprofibrate",
+      "gemfibrozil"
+    ],
+    "diuretic": [
+      "furosemide",
+      "hydrochlorothiazide",
+      "indapamide",
+      "spironolactone",
+      "torasemide",
+      "bumetanide"
+    ],
+    "nsaid": [
+      "ibuprofen",
+      "naproxen",
+      "diclofenac",
+      "celecoxib",
+      "meloxicam",
+      "etoricoxib",
+      "indomethacin"
+    ],
+    "ppi": [
+      "omeprazole",
+      "esomeprazole",
+      "pantoprazole",
+      "lansoprazole",
+      "rabeprazole",
+      "dexrabeprazole"
+    ],
+    "insulin": [
+      "insulin glargine",
+      "insulin aspart",
+      "insulin lispro",
+      "insulin detemir",
+      "insulin degludec",
+      "insulin glulisine"
+    ],
+    "agis": [
+      "acarbose",
+      "miglitol",
+      "voglibose"
+    ]
+  },
+  "mab_families": {
+    "anti-PD-1": [
+      "pembrolizumab",
+      "nivolumab",
+      "cemiplimab"
+    ],
+    "anti-PD-L1": [
+      "atezolizumab",
+      "avelumab",
+      "durvalumab"
+    ],
+    "anti-CTLA-4": [
+      "ipilimumab",
+      "tremelimumab"
+    ],
+    "anti-HER2": [
+      "trastuzumab",
+      "pertuzumab",
+      "ado-trastuzumab emtansine",
+      "trastuzumab deruxtecan",
+      "margetuximab"
+    ],
+    "anti-EGFR": [
+      "cetuximab",
+      "panitumumab",
+      "nimotuzumab"
+    ],
+    "anti-VEGF": [
+      "bevacizumab",
+      "aflibercept",
+      "ranibizumab",
+      "brolucizumab"
+    ],
+    "anti-CD20": [
+      "rituximab",
+      "obinutuzumab",
+      "ofatumumab",
+      "ocrelizumab"
+    ],
+    "anti-CD38": [
+      "daratumumab",
+      "isatuximab"
+    ],
+    "anti-IL": [
+      "secukinumab",
+      "ixekizumab",
+      "ustekinumab",
+      "guselkumab",
+      "risankizumab",
+      "tildrakizumab",
+      "brodalumab"
+    ],
+    "anti-TNF": [
+      "infliximab",
+      "adalimumab",
+      "etanercept",
+      "golimumab",
+      "certolizumab"
+    ],
+    "anti-PCSK9": [
+      "evolocumab",
+      "alirocumab"
+    ],
+    "anti-RANKL": [
+      "denosumab"
+    ],
+    "anti-IgE": [
+      "omalizumab"
+    ],
+    "anti-CD52": [
+      "alemtuzumab"
+    ],
+    "anti-BCMA": [
+      "belantamab mafodotin"
+    ],
+    "anti-CD19": [
+      "tafasitamab",
+      "loncastuximab tesirine"
+    ],
+    "anti-Claudin18.2": [
+      "zolbetuximab"
+    ]
+  },
+  "class_alias": {
+    "dpp-4抑制剂": "gliptin",
+    "dpp4抑制剂": "gliptin",
+    "二肽基肽酶4抑制剂": "gliptin",
+    "sglt2抑制剂": "gliflozin",
+    "钠-葡萄糖共转运蛋白2抑制剂": "gliflozin",
+    "ace抑制剂": "ace inhibitor",
+    "血管紧张素转化酶抑制剂": "ace inhibitor",
+    "arb": "sartan",
+    "血管紧张素受体拮抗剂": "sartan",
+    "血管紧张素受体阻断剂": "sartan",
+    "β受体阻滞剂": "beta blocker",
+    "β阻断剂": "beta blocker",
+    "β受体阻断剂": "beta blocker",
+    "钙通道阻滞剂": "ccb",
+    "钙通道阻断剂": "ccb",
+    "磺脲类": "sulfonylurea",
+    "磺酰脲类": "sulfonylurea",
+    "噻唑烷二酮类": "glitazone",
+    "格列酮类": "glitazone",
+    "格列奈类": "glinide",
+    "meglitinide类": "glinide",
+    "hmg-coa还原酶抑制剂": "statin",
+    "他汀类": "statin",
+    "贝特类": "fibrate",
+    "质子泵抑制剂": "ppi",
+    "胰岛素类": "insulin",
+    "α-糖苷酶抑制剂": "agis",
+    "糖苷酶抑制": "agis"
+  },
+  "synonyms": [
+    [
+      "非小细胞肺癌",
+      "non-small cell lung cancer"
+    ],
+    [
+      "NSCLC",
+      "non-small cell lung cancer"
+    ],
+    [
+      "小细胞肺癌",
+      "small cell lung cancer"
+    ],
+    [
+      "SCLC",
+      "small cell lung cancer"
+    ],
+    [
+      "肺腺癌",
+      "lung adenocarcinoma"
+    ],
+    [
+      "肺鳞癌",
+      "lung squamous cell carcinoma"
+    ],
+    [
+      "三阴性乳腺癌",
+      "triple-negative breast cancer"
+    ],
+    [
+      "TNBC",
+      "triple-negative breast cancer"
+    ],
+    [
+      "胃食管结合部癌",
+      "gastroesophageal junction cancer"
+    ],
+    [
+      "肝细胞癌",
+      "hepatocellular carcinoma"
+    ],
+    [
+      "HCC",
+      "hepatocellular carcinoma"
+    ],
+    [
+      "结肠直肠癌",
+      "colorectal cancer"
+    ],
+    [
+      "胆管癌",
+      "cholangiocarcinoma"
+    ],
+    [
+      "胆囊癌",
+      "gallbladder cancer"
+    ],
+    [
+      "肾细胞癌",
+      "renal cell carcinoma"
+    ],
+    [
+      "RCC",
+      "renal cell carcinoma"
+    ],
+    [
+      "尿路上皮癌",
+      "urothelial carcinoma"
+    ],
+    [
+      "神经母细胞瘤",
+      "neuroblastoma"
+    ],
+    [
+      "胶质母细胞瘤",
+      "glioblastoma"
+    ],
+    [
+      "GBM",
+      "glioblastoma"
+    ],
+    [
+      "急性髓系白血病",
+      "acute myeloid leukemia"
+    ],
+    [
+      "AML",
+      "acute myeloid leukemia"
+    ],
+    [
+      "急性淋巴细胞白血病",
+      "acute lymphoblastic leukemia"
+    ],
+    [
+      "ALL",
+      "acute lymphoblastic leukemia"
+    ],
+    [
+      "慢性淋巴细胞白血病",
+      "chronic lymphocytic leukemia"
+    ],
+    [
+      "CLL",
+      "chronic lymphocytic leukemia"
+    ],
+    [
+      "慢性髓系白血病",
+      "chronic myeloid leukemia"
+    ],
+    [
+      "CML",
+      "chronic myeloid leukemia"
+    ],
+    [
+      "非霍奇金淋巴瘤",
+      "non-Hodgkin lymphoma"
+    ],
+    [
+      "NHL",
+      "non-Hodgkin lymphoma"
+    ],
+    [
+      "霍奇金淋巴瘤",
+      "Hodgkin lymphoma"
+    ],
+    [
+      "骨髓增生异常综合征",
+      "myelodysplastic syndrome"
+    ],
+    [
+      "MDS",
+      "myelodysplastic syndrome"
+    ],
+    [
+      "软组织肉瘤",
+      "soft tissue sarcoma"
+    ],
+    [
+      "头颈鳞癌",
+      "head and neck squamous cell carcinoma"
+    ],
+    [
+      "HNSCC",
+      "head and neck squamous cell carcinoma"
+    ],
+    [
+      "EGFR突变",
+      "EGFR mutation"
+    ],
+    [
+      "ALK融合",
+      "ALK fusion"
+    ],
+    [
+      "BRAF突变",
+      "BRAF mutation"
+    ],
+    [
+      "HER2阳性",
+      "HER2 positive"
+    ],
+    [
+      "PD-L1高表达",
+      "PD-L1 high expression"
+    ],
+    [
+      "MSI-H",
+      "microsatellite instability-high"
+    ],
+    [
+      "dMMR",
+      "deficient mismatch repair"
+    ],
+    [
+      "BRCA突变",
+      "BRCA mutation"
+    ],
+    [
+      "KRAS突变",
+      "KRAS mutation"
+    ],
+    [
+      "免疫检查点抑制剂",
+      "immune checkpoint inhibitor"
+    ],
+    [
+      "PD-1抑制剂",
+      "PD-1 inhibitor"
+    ],
+    [
+      "PD-L1抑制剂",
+      "PD-L1 inhibitor"
+    ],
+    [
+      "CTLA-4抑制剂",
+      "CTLA-4 inhibitor"
+    ],
+    [
+      "CAR-T",
+      "CAR T-cell therapy"
+    ],
+    [
+      "抗血管生成",
+      "anti-angiogenic therapy"
+    ],
+    [
+      "新辅助化疗",
+      "neoadjuvant chemotherapy"
+    ],
+    [
+      "辅助化疗",
+      "adjuvant chemotherapy"
+    ],
+    [
+      "放疗",
+      "radiotherapy"
+    ],
+    [
+      "2型糖尿病",
+      "type 2 diabetes"
+    ],
+    [
+      "1型糖尿病",
+      "type 1 diabetes"
+    ],
+    [
+      "T2DM",
+      "type 2 diabetes"
+    ],
+    [
+      "糖尿病肾病",
+      "diabetic nephropathy"
+    ],
+    [
+      "糖尿病视网膜病变",
+      "diabetic retinopathy"
+    ],
+    [
+      "高脂血症",
+      "hyperlipidemia"
+    ],
+    [
+      "血脂异常",
+      "dyslipidemia"
+    ],
+    [
+      "心肌梗死",
+      "myocardial infarction"
+    ],
+    [
+      "心梗",
+      "myocardial infarction"
+    ],
+    [
+      "MI",
+      "myocardial infarction"
+    ],
+    [
+      "心力衰竭",
+      "heart failure"
+    ],
+    [
+      "心衰",
+      "heart failure"
+    ],
+    [
+      "HFrEF",
+      "heart failure with reduced ejection fraction"
+    ],
+    [
+      "HFpEF",
+      "heart failure with preserved ejection fraction"
+    ],
+    [
+      "房颤",
+      "atrial fibrillation"
+    ],
+    [
+      "AF",
+      "atrial fibrillation"
+    ],
+    [
+      "脑卒中",
+      "stroke"
+    ],
+    [
+      "卒中",
+      "stroke"
+    ],
+    [
+      "外周动脉疾病",
+      "peripheral arterial disease"
+    ],
+    [
+      "PAD",
+      "peripheral arterial disease"
+    ],
+    [
+      "慢性肾病",
+      "chronic kidney disease"
+    ],
+    [
+      "CKD",
+      "chronic kidney disease"
+    ],
+    [
+      "肥胖",
+      "obesity"
+    ],
+    [
+      "痛风",
+      "gout"
+    ],
+    [
+      "高尿酸血症",
+      "hyperuricemia"
+    ],
+    [
+      "慢性阻塞性肺疾病",
+      "chronic obstructive pulmonary disease"
+    ],
+    [
+      "慢阻肺",
+      "chronic obstructive pulmonary disease"
+    ],
+    [
+      "COPD",
+      "chronic obstructive pulmonary disease"
+    ],
+    [
+      "特发性肺纤维化",
+      "idiopathic pulmonary fibrosis"
+    ],
+    [
+      "IPF",
+      "idiopathic pulmonary fibrosis"
+    ],
+    [
+      "肺动脉高压",
+      "pulmonary arterial hypertension"
+    ],
+    [
+      "PAH",
+      "pulmonary arterial hypertension"
+    ],
+    [
+      "囊性纤维化",
+      "cystic fibrosis"
+    ],
+    [
+      "炎症性肠病",
+      "inflammatory bowel disease"
+    ],
+    [
+      "IBD",
+      "inflammatory bowel disease"
+    ],
+    [
+      "克罗恩病",
+      "Crohn disease"
+    ],
+    [
+      "溃疡性结肠炎",
+      "ulcerative colitis"
+    ],
+    [
+      "UC",
+      "ulcerative colitis"
+    ],
+    [
+      "非酒精性脂肪性肝炎",
+      "non-alcoholic steatohepatitis"
+    ],
+    [
+      "NASH",
+      "non-alcoholic steatohepatitis"
+    ],
+    [
+      "胃食管反流病",
+      "gastroesophageal reflux disease"
+    ],
+    [
+      "GERD",
+      "gastroesophageal reflux disease"
+    ],
+    [
+      "消化性溃疡",
+      "peptic ulcer"
+    ],
+    [
+      "阿尔茨海默病",
+      "Alzheimer disease"
+    ],
+    [
+      "AD",
+      "Alzheimer disease"
+    ],
+    [
+      "帕金森",
+      "Parkinson disease"
+    ],
+    [
+      "PD",
+      "Parkinson disease"
+    ],
+    [
+      "多发性硬化",
+      "multiple sclerosis"
+    ],
+    [
+      "MS",
+      "multiple sclerosis"
+    ],
+    [
+      "偏头痛",
+      "migraine"
+    ],
+    [
+      "精神分裂症",
+      "schizophrenia"
+    ],
+    [
+      "失眠",
+      "insomnia"
+    ],
+    [
+      "类风湿性关节炎",
+      "rheumatoid arthritis"
+    ],
+    [
+      "RA",
+      "rheumatoid arthritis"
+    ],
+    [
+      "银屑病",
+      "psoriasis"
+    ],
+    [
+      "银屑病关节炎",
+      "psoriatic arthritis"
+    ],
+    [
+      "强直性脊柱炎",
+      "ankylosing spondylitis"
+    ],
+    [
+      "AS",
+      "ankylosing spondylitis"
+    ],
+    [
+      "系统性红斑狼疮",
+      "systemic lupus erythematosus"
+    ],
+    [
+      "SLE",
+      "systemic lupus erythematosus"
+    ],
+    [
+      "特应性皮炎",
+      "atopic dermatitis"
+    ],
+    [
+      "斑秃",
+      "alopecia areata"
+    ],
+    [
+      "荨麻疹",
+      "urticaria"
+    ],
+    [
+      "干燥综合征",
+      "Sjogren syndrome"
+    ],
+    [
+      "硬皮病",
+      "systemic sclerosis"
+    ],
+    [
+      "血管炎",
+      "vasculitis"
+    ],
+    [
+      "慢性乙型肝炎",
+      "chronic hepatitis B"
+    ],
+    [
+      "丙肝",
+      "hepatitis C"
+    ],
+    [
+      "HIV",
+      "human immunodeficiency virus"
+    ],
+    [
+      "艾滋病",
+      "acquired immunodeficiency syndrome"
+    ],
+    [
+      "AIDS",
+      "acquired immunodeficiency syndrome"
+    ],
+    [
+      "巨细胞病毒",
+      "cytomegalovirus"
+    ],
+    [
+      "CMV",
+      "cytomegalovirus"
+    ],
+    [
+      "血友病",
+      "hemophilia"
+    ],
+    [
+      "地中海贫血",
+      "thalassemia"
+    ],
+    [
+      "镰状细胞病",
+      "sickle cell disease"
+    ],
+    [
+      "静脉血栓栓塞",
+      "venous thromboembolism"
+    ],
+    [
+      "VTE",
+      "venous thromboembolism"
+    ],
+    [
+      "甲状腺机能亢进",
+      "hyperthyroidism"
+    ],
+    [
+      "甲亢",
+      "hyperthyroidism"
+    ],
+    [
+      "甲状腺机能减退",
+      "hypothyroidism"
+    ],
+    [
+      "甲减",
+      "hypothyroidism"
+    ],
+    [
+      "甲状旁腺功能亢进",
+      "hyperparathyroidism"
+    ],
+    [
+      "慢性疼痛",
+      "chronic pain"
+    ],
+    [
+      "骨关节炎",
+      "osteoarthritis"
+    ],
+    [
+      "OA",
+      "osteoarthritis"
+    ],
+    [
+      "子宫内膜异位症",
+      "endometriosis"
+    ],
+    [
+      "多囊卵巢综合征",
+      "polycystic ovary syndrome"
+    ],
+    [
+      "PCOS",
+      "polycystic ovary syndrome"
+    ]
+  ],
+  "brand_generic": [
+    [
+      "泰瑞沙",
+      "Tagrisso",
+      "osimertinib",
+      "奥希替尼"
+    ],
+    [
+      "易瑞沙",
+      "Iressa",
+      "gefitinib",
+      "吉非替尼"
+    ],
+    [
+      "特罗凯",
+      "Tarceva",
+      "erlotinib",
+      "厄洛替尼"
+    ],
+    [
+      "吉泰瑞",
+      "Giotrif",
+      "afatinib",
+      "阿法替尼"
+    ],
+    [
+      "多吉美",
+      "Nexavar",
+      "sorafenib",
+      "索拉非尼"
+    ],
+    [
+      "索坦",
+      "Sutent",
+      "sunitinib",
+      "舒尼替尼"
+    ],
+    [
+      "格列卫",
+      "Gleevec",
+      "imatinib",
+      "伊马替尼"
+    ],
+    [
+      "施达赛",
+      "Sprycel",
+      "dasatinib",
+      "达沙替尼"
+    ],
+    [
+      "达希纳",
+      "Tasigna",
+      "nilotinib",
+      "尼洛替尼"
+    ],
+    [
+      "赞可达",
+      "Zykadia",
+      "ceritinib",
+      "塞瑞替尼"
+    ],
+    [
+      "安圣莎",
+      "Alecensa",
+      "alectinib",
+      "阿来替尼"
+    ],
+    [
+      "可瑞达",
+      "Keytruda",
+      "pembrolizumab",
+      "帕博利珠单抗"
+    ],
+    [
+      "欧狄沃",
+      "Opdivo",
+      "nivolumab",
+      "纳武利尤单抗"
+    ],
+    [
+      "泰圣奇",
+      "Tecentriq",
+      "atezolizumab",
+      "阿替利珠单抗"
+    ],
+    [
+      "英飞凡",
+      "Imfinzi",
+      "durvalumab",
+      "度伐利尤单抗"
+    ],
+    [
+      "阿维鲁单抗",
+      "Bavencio",
+      "avelumab",
+      "阿维鲁单抗"
+    ],
+    [
+      "赫赛汀",
+      "Herceptin",
+      "trastuzumab",
+      "曲妥珠单抗"
+    ],
+    [
+      "帕捷特",
+      "Perjeta",
+      "pertuzumab",
+      "帕妥珠单抗"
+    ],
+    [
+      "爱博新",
+      "Ibrance",
+      "palbociclib",
+      "哌柏西利"
+    ],
+    [
+      "唯择",
+      "Verzenio",
+      "abemaciclib",
+      "阿贝西利"
+    ],
+    [
+      "安维汀",
+      "Avastin",
+      "bevacizumab",
+      "贝伐珠单抗"
+    ],
+    [
+      "爱必妥",
+      "Erbitux",
+      "cetuximab",
+      "西妥昔单抗"
+    ],
+    [
+      "美罗华",
+      "MabThera",
+      "rituximab",
+      "利妥昔单抗"
+    ],
+    [
+      "拜万戈",
+      "Stivarga",
+      "regorafenib",
+      "瑞戈非尼"
+    ],
+    [
+      "达伯舒",
+      "Tyvyt",
+      "sintilimab",
+      "信迪利单抗"
+    ],
+    [
+      "拓益",
+      "Tuoyi",
+      "toripalimab",
+      "特瑞普利单抗"
+    ],
+    [
+      "百泽安",
+      "Brukinsa",
+      "tislelizumab",
+      "替雷利珠单抗"
+    ],
+    [
+      "修美乐",
+      "Humira",
+      "adalimumab",
+      "阿达木单抗"
+    ],
+    [
+      "类克",
+      "Remicade",
+      "infliximab",
+      "英夫利西单抗"
+    ],
+    [
+      "恩利",
+      "Enbrel",
+      "etanercept",
+      "依那西普"
+    ],
+    [
+      "雅美罗",
+      "Actemra",
+      "tocilizumab",
+      "托珠单抗"
+    ],
+    [
+      "尚杰",
+      "Xeljanz",
+      "tofacitinib",
+      "托法替布"
+    ],
+    [
+      "可善挺",
+      "Cosentyx",
+      "secukinumab",
+      "司库奇尤单抗"
+    ],
+    [
+      "特诺雅",
+      "Tremfya",
+      "guselkumab",
+      "古塞奇尤单抗"
+    ],
+    [
+      "喜达诺",
+      "Stelara",
+      "ustekinumab",
+      "乌司奴单抗"
+    ],
+    [
+      "格华止",
+      "Glucophage",
+      "metformin",
+      "二甲双胍"
+    ],
+    [
+      "拜唐苹",
+      "Glucobay",
+      "acarbose",
+      "阿卡波糖"
+    ],
+    [
+      "立普妥",
+      "Lipitor",
+      "atorvastatin",
+      "阿托伐他汀"
+    ],
+    [
+      "可定",
+      "Crestor",
+      "rosuvastatin",
+      "瑞舒伐他汀"
+    ],
+    [
+      "舒降之",
+      "Zocor",
+      "simvastatin",
+      "辛伐他汀"
+    ],
+    [
+      "波立维",
+      "Plavix",
+      "clopidogrel",
+      "氯吡格雷"
+    ],
+    [
+      "倍林达",
+      "Brilinta",
+      "ticagrelor",
+      "替格瑞洛"
+    ],
+    [
+      "络活喜",
+      "Norvasc",
+      "amlodipine",
+      "氨氯地平"
+    ],
+    [
+      "拜新同",
+      "Adalat",
+      "nifedipine",
+      "硝苯地平"
+    ],
+    [
+      "代文",
+      "Diovan",
+      "valsartan",
+      "缬沙坦"
+    ],
+    [
+      "科素亚",
+      "Cozaar",
+      "losartan",
+      "氯沙坦"
+    ],
+    [
+      "倍他乐克",
+      "Betaloc",
+      "metoprolol",
+      "美托洛尔"
+    ],
+    [
+      "洛汀新",
+      "Lotensin",
+      "benazepril",
+      "贝那普利"
+    ],
+    [
+      "蒙诺",
+      "Monopril",
+      "fosinopril",
+      "福辛普利"
+    ],
+    [
+      "依苏",
+      "Enalapril",
+      "enalapril",
+      "依那普利"
+    ],
+    [
+      "拜阿司匹灵",
+      "Bayaspirin",
+      "aspirin",
+      "阿司匹林"
+    ],
+    [
+      "华法林",
+      "Coumadin",
+      "warfarin",
+      "华法林"
+    ],
+    [
+      "达比加群",
+      "Pradaxa",
+      "dabigatran",
+      "达比加群"
+    ],
+    [
+      "利伐沙班",
+      "Xarelto",
+      "rivaroxaban",
+      "利伐沙班"
+    ],
+    [
+      "阿哌沙班",
+      "Eliquis",
+      "apixaban",
+      "阿哌沙班"
+    ]
+  ],
+  "drug_en2zh": {
+    "imatinib": "伊马替尼",
+    "gefitinib": "吉非替尼",
+    "erlotinib": "厄洛替尼",
+    "sorafenib": "索拉非尼",
+    "sunitinib": "舒尼替尼",
+    "dasatinib": "达沙替尼",
+    "nilotinib": "尼洛替尼",
+    "lapatinib": "拉帕替尼",
+    "afatinib": "阿法替尼",
+    "crizotinib": "克唑替尼",
+    "alectinib": "阿来替尼",
+    "olaparib": "奥拉帕利",
+    "ibrutinib": "伊布替尼",
+    "lenalidomide": "来那度胺",
+    "bortezomib": "硼替佐米",
+    "trastuzumab": "曲妥珠单抗",
+    "rituximab": "利妥昔单抗",
+    "bevacizumab": "贝伐珠单抗",
+    "cetuximab": "西妥昔单抗",
+    "pembrolizumab": "帕博利珠单抗",
+    "nivolumab": "纳武利尤单抗",
+    "ipilimumab": "伊匹木单抗",
+    "atezolizumab": "阿替利珠单抗",
+    "avelumab": "阿维鲁单抗",
+    "metformin": "二甲双胍",
+    "insulin": "胰岛素",
+    "warfarin": "华法林",
+    "aspirin": "阿司匹林",
+    "atorvastatin": "阿托伐他汀",
+    "rosuvastatin": "瑞舒伐他汀",
+    "clopidogrel": "氯吡格雷",
+    "amlodipine": "氨氯地平",
+    "enalapril": "依那普利",
+    "losartan": "氯沙坦",
+    "valsartan": "缬沙坦",
+    "metoprolol": "美托洛尔",
+    "bisoprolol": "比索洛尔",
+    "furosemide": "呋塞米",
+    "spironolactone": "螺内酯",
+    "pantoprazole": "泮托拉唑",
+    "omeprazole": "奥美拉唑",
+    "azithromycin": "阿奇霉素",
+    "amoxicillin": "阿莫西林",
+    "ciprofloxacin": "环丙沙星",
+    "ceritinib": "塞瑞替尼",
+    "brigatinib": "布格替尼",
+    "lorlatinib": "洛拉替尼",
+    "selpercatinib": "塞尔帕替尼",
+    "pralsetinib": "普拉替尼",
+    "capmatinib": "卡马替尼",
+    "tepotinib": "特泊替尼",
+    "sotorasib": "索托拉西布",
+    "adagrasib": "阿达格拉西布",
+    "dabrafenib": "达拉非尼",
+    "trametinib": "曲美替尼",
+    "selumetinib": "司美替尼",
+    "binimetinib": "比美替尼",
+    "encorafenib": "康奈非尼",
+    "larotrectinib": "拉罗替尼",
+    "entrectinib": "恩曲替尼",
+    "repotrectinib": "瑞波替尼",
+    "pexidartinib": "培西达替尼",
+    "avapritinib": "阿伐替尼",
+    "ripretinib": "瑞派替尼",
+    "tucatinib": "图卡替尼",
+    "neratinib": "奈拉替尼",
+    "dacomitinib": "达克替尼",
+    "simotinib": "西莫替尼",
+    "olmutinib": "奥莫替尼",
+    "aumolertinib": "阿美替尼",
+    "furmonertinib": "伏美替尼",
+    "almonertinib": "奥美替尼",
+    "sulmonertinib": "舒美替尼",
+    "borfurmonertinib": "波齐替尼",
+    "anlotinib": "安罗替尼",
+    "fruquintinib": "呋喹替尼",
+    "surufatinib": "索凡替尼",
+    "chidamide": "西达本胺",
+    "tucidinostat": "西达本胺",
+    "panobinostat": "帕比司他",
+    "belinostat": "贝利司他",
+    "romidepsin": "罗米地辛",
+    "vorinostat": "伏立诺他",
+    "tazemetostat": "他泽司他",
+    "enasidenib": "恩西地平",
+    "ivosidenib": "艾伏尼布",
+    "olutasidenib": "奥鲁西地平",
+    "venetoclax": "维奈克拉",
+    "navitoclax": "纳维克拉",
+    "fludarabine": "氟达拉滨",
+    "cladribine": "克拉屈滨",
+    "nelarabine": "奈拉滨",
+    "pentostatin": "喷司他丁",
+    "zanubrutinib": "泽布替尼",
+    "acalabrutinib": "阿可替尼",
+    "tirabrutinib": "替拉鲁布替尼",
+    "orelabrutinib": "奥布替尼",
+    "pirtobrutinib": "吡托布鲁替尼",
+    "duvelisib": "杜韦利西布",
+    "idelalisib": "艾代拉里斯",
+    "copanlisib": "可泮利塞",
+    "alpelisib": "阿培利司",
+    "taselisib": "他司利塞",
+    "umbralisib": "乌布利西布",
+    "leniolisib": "利尼西布",
+    "inavolisib": "伊那利塞",
+    "capivasertib": "卡帕塞替尼",
+    "ipatasertib": "伊帕他塞替尼",
+    "sapanisertib": "帕尼塞替尼",
+    "vistusertib": "维斯特替尼",
+    "samotolisib": "萨莫利西布",
+    "gedatolisib": "格达利西布",
+    "parsaclisib": "帕萨利西布",
+    "zandelisib": "赞德利西布",
+    "linperlisib": "林普利塞",
+    "valemetostat": "伐美司他",
+    "resminostat": "瑞米司他",
+    "givinostat": "吉维司他",
+    "quisinostat": "奎西司他",
+    "abexinostat": "阿贝西诺他",
+    "pracinostat": "普拉西诺他",
+    "etinostat": "依他诺他",
+    "mocetinostat": "莫西司他",
+    "entinostat": "恩替诺他",
+    "ricolinostat": "瑞可利诺他",
+    "domatinostat": "多马提诺他",
+    "cinacalcet": "西那卡塞",
+    "etelcalcetide": "依特卡肽",
+    "evocalcet": "依伏卡塞",
+    "upacicalcet": "乌帕卡塞",
+    "oxelumab": "奥昔单抗",
+    "teprotumumab": "替妥木单抗",
+    "burosumab": "布罗索尤单抗",
+    "sibatlimab": "西妥利单抗",
+    "envafolimab": "恩沃利单抗",
+    "pucotenlimab": "普特利单抗",
+    "camrelizumab": "卡瑞利珠单抗",
+    "sintilimab": "信迪利单抗",
+    "toripalimab": "特瑞普利单抗",
+    "tislelizumab": "替雷利珠单抗",
+    "penpulimab": "派普利单抗",
+    "prolgolimab": "普洛利单抗",
+    "retifanlimab": "瑞凡利单抗",
+    "naxitamab": "那昔单抗",
+    "isotuximab": "伊妥木单抗",
+    "margetuximab": "玛格妥昔单抗",
+    "pertuzumab": "帕妥珠单抗",
+    "moxetumomab pasudotox": "莫西妥莫单抗假单抗毒素",
+    "belantamab mafodotin": "贝兰妥单抗马福多汀",
+    "tisotumab vedotin": "替索单抗维多汀",
+    "enfortumab vedotin": "恩诺单抗维多汀",
+    "sacituzumab govitecan": "戈沙妥珠单抗",
+    "mirvetuximab soravtansine": "索伐妥珠单抗",
+    "loncastuximab tesirine": "特司林单抗",
+    "inotuzumab ozogamicin": "奥加伊妥珠单抗",
+    "gemtuzumab ozogamicin": "吉妥珠单抗奥唑米星",
+    "coltuximab ravtansine": "考妥昔单抗",
+    "depatuxizumab mafodotin": "德帕妥昔单抗",
+    "rovalpituzumab tesirine": "罗伐妥珠单抗",
+    "cantuzumab mertansine": "坎妥珠单抗",
+    "cantuzumab ravtansine": "坎妥昔单抗",
+    "lintuzumab": "林妥珠单抗",
+    "vadastuximab talirine": "伐达妥昔单抗",
+    "solitomab": "索利妥莫单抗",
+    "blinatumomab": "博纳吐莫单抗",
+    "catumaxomab": "卡妥索单抗",
+    "ertumaxomab": "厄妥莫单抗",
+    "naptumomab estafenatox": "那妥莫单抗",
+    "anetumab ravtansine": "安奈妥单抗",
+    "pinatuzumab vedotin": "比那妥珠单抗",
+    "polatuzumab vedotin": "泊洛妥珠单抗",
+    "indusatumab vedotin": "因杜妥珠单抗",
+    "lifastuzumab vedotin": "利法妥珠单抗",
+    "serclutamab": "司氯他莫单抗",
+    "tovetumab": "托维特单抗",
+    "dusigitumab": "杜西妥木单抗",
+    "figitumumab": "非吉妥单抗",
+    "cixutumumab": "西妥木单抗",
+    "dalotuzumab": "达洛妥珠单抗",
+    "robatumumab": "罗巴妥木单抗",
+    "ganitumab": "加尼妥单抗",
+    "conatumumab": "科那妥木单抗",
+    "drozitumab": "卓西妥单抗",
+    "lexatumumab": "来萨妥木单抗",
+    "mapatumumab": "马帕妥木单抗",
+    "ofatumumab": "奥妥珠单抗",
+    "obinutuzumab": "奥妥珠单抗",
+    "ublituximab": "乌利妥昔单抗",
+    "mogamulizumab": "莫加珠单抗",
+    "tafasitamab": "他法西他单抗",
+    "isatuximab": "伊沙妥昔单抗",
+    "daratumumab": "达雷妥尤单抗",
+    "elotuzumab": "埃罗妥珠单抗",
+    "felzartamab": "非泽妥单抗",
+    "mezaslimab": "梅扎司利单抗",
+    "felrilazamab": "非利拉扎单抗",
+    "teclistamab": "特司利单抗",
+    "elranatamab": "埃兰妥单抗",
+    "alnuctamab": "阿努克妥单抗",
+    "linvoseltamab": "林沃塞他单抗",
+    "talquetamab": "他克他单抗",
+    "cevostamab": "塞沃司他单抗",
+    "elrexfio": "埃雷夫西奥",
+    "elranatamab-bcmm": "埃雷那他单抗",
+    "tarlatamab": "塔拉他单抗",
+    "amivantamab": "阿米万他单抗",
+    "mobocertinib": "莫博赛替尼",
+    "sunvozertinib": "舒沃替尼",
+    "dZD9331": "DZD9331",
+    "befotertinib": "贝福替尼",
+    "rezivertinib": "瑞齐替尼",
+    "naquotinib": "那屈替尼",
+    "poziotinib": "波齐替尼",
+    "tarloxotinib": "他洛索替尼"
+  }
+}

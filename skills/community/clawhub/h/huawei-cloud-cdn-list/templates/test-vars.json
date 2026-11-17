@@ -1,0 +1,34 @@
+{
+  "skill_name": "huawei-cloud-cdn-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "CLI 服务可用性检查",
+      "command": "hcloud CDN --help",
+      "expected": "帮助信息正常输出，命令存在",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "CDN ListDomains 只读加速域名列表",
+      "command": "hcloud CDN ListDomains --cli-region={region} --page_size=1 --page_number=1",
+      "expected": "返回加速域名列表 JSON 或空列表",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "CDN ListDomains 服务端过滤（domain_status）",
+      "command": "hcloud CDN ListDomains --cli-region={region} --page_size=1 --page_number=1 --domain_status=online",
+      "expected": "过滤参数被接受，返回匹配的加速域名列表",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ],
+  "env_vars_required": [
+    "以 HUAWEI/HW/HWC 开头的环境变量中匹配 AK/SK 的键值对"
+  ],
+  "notes": "只读用例使用真实可用的 hcloud 只读命令（CDN ListDomains），区域 cn-north-4；过滤参数 --domain_status 为服务端查询参数（回归用例）。缺 hcloud/凭据时用例跳过，不产生伪失败；真实只读验证由 QA 带外执行。"
+}

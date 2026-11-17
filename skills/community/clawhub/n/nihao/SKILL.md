@@ -55,7 +55,7 @@ go install github.com/dergigi/nihao@latest
 ### Step 2: Create Identity
 
 ```bash
-nihao --name "<AGENT_NAME>" --about "<AGENT_BIO>" --nsec-file ./nsec.key --json --quiet
+nihao --bot --name "<AGENT_NAME>" --about "<AGENT_BIO>" --nsec-file ./nsec.key --json --quiet
 ```
 
 This generates a keypair, publishes the identity, and securely writes the nsec to `./nsec.key` with `0600` permissions. Parse the JSON output to extract `npub`, `pubkey`, and `relays`.
@@ -76,7 +76,7 @@ If the user provides their npub, the agent should follow them. nihao doesn't han
 ## Setup — Create a New Identity
 
 ```bash
-nihao --name "AgentName" --about "I do things" --json
+nihao --bot --name "AgentName" --about "I do things" --json
 ```
 
 What this does:
@@ -95,6 +95,7 @@ What this does:
 |---|---|
 | `--name <name>` | Display name (default: "nihao-user") |
 | `--about <text>` | Bio |
+| `--bot` | Self-identify as a bot via NIP-24 (`"bot": true` in kind 0) |
 | `--picture <url>` | Profile picture URL |
 | `--banner <url>` | Banner image URL |
 | `--nip05 <user@domain>` | NIP-05 identifier |
@@ -125,13 +126,13 @@ nihao never writes keys to disk by default. Secret keys are handled securely:
 
 ```bash
 # Generate and save securely
-nihao --name "Bot" --nsec-file ./bot-nsec.key --json
+nihao --bot --name "Bot" --nsec-file ./bot-nsec.key --json
 
 # Pipe to password manager
-nihao --name "Bot" --nsec-cmd "pass insert -m nostr/nsec" --json
+nihao --bot --name "Bot" --nsec-cmd "pass insert -m nostr/nsec" --json
 
 # Use existing key via stdin (avoids process list exposure)
-echo "$NSEC" | nihao --name "Bot" --stdin
+echo "$NSEC" | nihao --bot --name "Bot" --stdin
 ```
 
 ## Check — Audit an Existing Identity

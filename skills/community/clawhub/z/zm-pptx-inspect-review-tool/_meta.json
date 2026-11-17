@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn716ewtc7z7a76wre4bsckgas8398j1",
+  "ownerId": "local-zhumeng-openclaw",
   "slug": "zm-pptx-inspect-review-tool",
+  "displayName": "ZM PPTX 检查与审核工具",
   "version": "0.1.0",
-  "publishedAt": 1782241946286
+  "status": "local",
+  "createdAt": "2026-06-23",
+  "description": "读取、解析、提取、检查、拆分、合并或审核 PPTX 文件，支持渲染核验、文本抽取、备注/版式/资源检查。"
 }

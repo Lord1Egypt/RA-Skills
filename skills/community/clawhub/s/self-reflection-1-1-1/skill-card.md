@@ -1,44 +1,54 @@
-## Description: <br>
-Continuous self-improvement through structured reflection and memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuous self-improvement through structured reflection and memory.
 
-## Publisher: <br>
-[86293073](https://clawhub.ai/user/86293073) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[86293073](https://clawhub.ai/user/86293073)
 
-## Use Case: <br>
-Developers and agent operators use this skill to help an AI agent periodically check whether reflection is due, read prior lessons, and log new lessons into a persistent memory file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup references an external CLI source outside the scanned package. <br>
-Mitigation: Review and pin the external CLI source before running installation or command examples. <br>
-Risk: The skill can store long-lived reflection memory that may capture sensitive prompts, incident details, or proprietary workflow notes. <br>
-Mitigation: Avoid logging secrets, customer data, private prompts, incident details, or proprietary notes; configure the memory file location and retention deliberately. <br>
-Risk: Heartbeat-based reflection can create recurring agent activity even when it is not wanted. <br>
-Mitigation: Enable the heartbeat only when recurring self-reflection is intended, and review the interval and active-hours configuration before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to prompt periodic self-reflection, review recent lessons, and log improvements into a persistent memory file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/86293073/self-reflection-1-1-1) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq and date; may write reflection notes and timer state to configured local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact manifest/frontmatter reports 1.1.1) <br>
+Risk: Recurring heartbeat execution can repeatedly run an unreviewed executable from a mutable clone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the executable before use, pin installation to a trusted commit, and only enable recurring heartbeat execution after that review.
+
+Risk: Reflection logs can capture sensitive operational details or private data.
+
+Mitigation: Store memory and state files in controlled locations and avoid logging secrets, credentials, customer data, or sensitive incident details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/86293073/skills/self-reflection-1-1-1)
+- [ClawHub publisher profile](https://clawhub.ai/user/86293073)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or update configured local memory and state files.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

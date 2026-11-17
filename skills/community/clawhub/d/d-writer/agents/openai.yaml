@@ -1,0 +1,6 @@
+interface:
+  display_name: "Dragon Writer"
+  short_description: "Create, continue, audit, and recover file-backed novels."
+  default_prompt: "Use $dragon-writer to inspect my file-backed novel and continue it from its latest validated state."
+policy:
+  allow_implicit_invocation: false

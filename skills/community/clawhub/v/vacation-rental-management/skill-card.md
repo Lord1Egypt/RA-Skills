@@ -1,49 +1,64 @@
-## Description: <br>
-Manage vacation rental turnovers, guest reservations, and cleaning schedules across TIDY CLI, MCP server, and REST API workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage vacation rental turnovers, guest reservations, and cleaning schedules; auto-schedule cleanings based on guest check-out, coordinate multi-property turnovers, manage checklists, and support CLI, MCP server, and REST API approaches.
 
-## Publisher: <br>
-[mchusma](https://clawhub.ai/user/mchusma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mchusma](https://clawhub.ai/user/mchusma)
 
-## Use Case: <br>
-External Airbnb hosts, VRBO managers, short-term rental operators, and property managers use this skill to have an agent plan, schedule, monitor, cancel, or reschedule vacation-rental turnovers and guest reservations through TIDY. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad authority over rental operations, including booking, canceling, deleting, and rescheduling work. <br>
-Mitigation: Require explicit user approval before any booking, cancellation, deletion, or rescheduling action is submitted to TIDY. <br>
-Risk: Prompts may include sensitive property details such as addresses, access instructions, gate codes, or lockbox codes. <br>
-Mitigation: Avoid sharing access codes unless strictly necessary, limit prompt context to the current task, and handle property access data as sensitive information. <br>
-Risk: TIDY tokens and local credential files can grant access to rental operations and customer data. <br>
-Mitigation: Store TIDY_API_TOKEN securely, protect the local credentials file, and rotate or revoke tokens when exposure is suspected. <br>
+## Use Case:
 
+External vacation-rental hosts, short-term rental managers, property operators, and developers use this skill to coordinate guest reservations, turnover cleanings, checklists, property setup, and schedule changes through TIDY CLI, MCP, or REST API workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mchusma/vacation-rental-management) <br>
-- [TIDY Homepage](https://tidy.com) <br>
-- [Authentication](references/authentication.md) <br>
-- [MCP Server Reference](references/mcp-server-reference.md) <br>
-- [REST API Reference](references/rest-api-reference.md) <br>
-- [Vacation Workflows](references/vacation-workflows.md) <br>
-- [TIDY REST API Documentation](https://public-api.tidy.com/docs) <br>
-- [TIDY MCP Endpoint](https://public-api.tidy.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with natural-language examples, bash commands, JSON configuration, and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated TIDY workflows require TIDY_API_TOKEN or MCP login credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can give an agent broad authority over reservations, jobs, property records, credentials, and access details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing it and use it only with a TIDY account and token whose authority is acceptable for the intended properties.
+
+Risk: Agent actions may cancel, reschedule, delete, or bulk-change operational property-management records.
+
+Mitigation: Require explicit human confirmation before cancellations, reschedules, deletes, or bulk changes.
+
+Risk: Property setup and workflow examples may include sensitive gate, parking, or lockbox access details.
+
+Mitigation: Avoid sending permanent gate or lockbox codes unless strictly necessary, and prefer temporary or rotated access instructions where possible.
+
+## Reference(s):
+
+- [Vacation Rental Management ClawHub Page](https://clawhub.ai/mchusma/skills/vacation-rental-management)
+- [TIDY Homepage](https://tidy.com)
+- [TIDY REST API Docs](https://public-api.tidy.com/docs)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Authentication](references/authentication.md)
+- [MCP Server Reference](references/mcp-server-reference.md)
+- [REST API Reference](references/rest-api-reference.md)
+- [Vacation Rental Workflows](references/vacation-workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with bash, JSON, MCP, and REST API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes TIDY CLI commands, MCP server configuration, REST requests, and async polling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Campaign Cleaner"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.5"
   services: ["campaign_cleaner"]
   icon: "https://static.oomol.com/logo/third-party/campaign_cleaner.png"
 ---
@@ -74,11 +74,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Campaign Cleaner is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=campaign_cleaner
+  https://console.oomol.com/connections/campaign_cleaner
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Campaign Cleaner homepage: https://campaigncleaner.com
+- API documentation: https://docs.campaigncleaner.com/api-reference/introduction

@@ -1,0 +1,180 @@
+{
+  "name": "workbuddy-skill-assistant",
+  "version": "6.8.1",
+  "built_at": "2026-09-20T16:28:52",
+  "source": "workbuddy-skill-assistant",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "68df6fefd79885d8577084fb5d5097c8dd7e47a3a58d7cd11adb70402a6aea3e"
+    },
+    {
+      "path": "references/best-practices/checklist-details.md",
+      "sha256": "31cbb734cda1eeb063532a3bc39256dcc65a5f223ae6834861738efc7544eb6a"
+    },
+    {
+      "path": "references/best-practices/checklist.md",
+      "sha256": "7458b971a63b406a501325637a04de33c161bdec1b68705a8dba6caf8a7418c6"
+    },
+    {
+      "path": "references/best-practices/toolbox.md",
+      "sha256": "256c9f9fe2376cd2ebc9b7939e89b0f70c599dade9884385de58a68512c17c83"
+    },
+    {
+      "path": "references/config-templates/automation-templates.md",
+      "sha256": "abd870f033f4b6138583acc70e4f6a8c6e4ac49b79aadc499d61502270aa2ace"
+    },
+    {
+      "path": "references/config-templates/connector-quick-ref.md",
+      "sha256": "35b212ee9cc2f4a2c5c834780c627ccc12c33adbb1c293acbd2e8d8974a62a9d"
+    },
+    {
+      "path": "references/config-templates/soul-setup-template.md",
+      "sha256": "d8e87e93aa7ab6ab927668d4004437d8b8843bcc928d517cb1b7b7ba253fa2c8"
+    },
+    {
+      "path": "references/execution.md",
+      "sha256": "9a9b5302719fd1d9b9b12380755b015880e7c83efce4665835b83cd7128ecbde"
+    },
+    {
+      "path": "references/faq.md",
+      "sha256": "69ce745f5e743c2e00940ec54f68474a37b2bb5d0798c5ed264ccb02698e282a"
+    },
+    {
+      "path": "references/quick-start.md",
+      "sha256": "b60bcb55985b4eeba4634367078a9e66660bd2668801eab4d2762afa3bfb23e2"
+    },
+    {
+      "path": "references/README.md",
+      "sha256": "461fd57a2bbe5edde9022cc2bd02f162caba75bf8be33e4f77a5b8c45d6f1a8e"
+    },
+    {
+      "path": "references/report-format.md",
+      "sha256": "73b0876e1a4708f010bbee2b91a3434c86d38e9729b92e9ac9525b4fb842c4ea"
+    },
+    {
+      "path": "references/retry-policy.md",
+      "sha256": "e4c6b4be0e3f06799bab1a62f8106be8a197727853131198e555c86801dbf866"
+    },
+    {
+      "path": "references/self-evolution-log.md",
+      "sha256": "1c6aebf0d43257ea5685b28644877e5d1ee1085e9fdc4f529c3352a79c2f1452"
+    },
+    {
+      "path": "references/self-evolution.md",
+      "sha256": "6b79fa95e73db05c1f6a957f267f346b17f8c8ebeaba701f9a075b69fa8a945e"
+    },
+    {
+      "path": "references/skill-catalog/core.md",
+      "sha256": "bd33e6723b5c2d446c02109c6925191bdeb667236c1f1dd8081c6f14e5305432"
+    },
+    {
+      "path": "references/skill-catalog/INDEX.md",
+      "sha256": "40cc8d91f66dac38faddac544d236f46beec747db00c68cee1a88cdde5071c60"
+    },
+    {
+      "path": "references/skill-catalog/profile-theme-map.md",
+      "sha256": "67581d25b32541f10b9782df4c4e15832d6b9aa9b8e9cc205c19db0d51584e00"
+    },
+    {
+      "path": "references/skill-catalog/themes/document-management.md",
+      "sha256": "764b195deccc931f7a921941cd2efc2a40c7003cfd71417f80afcf63f1fdd3c1"
+    },
+    {
+      "path": "references/skill-catalog/themes/finance-accounting.md",
+      "sha256": "aed5a92180a095e3407628d7cbcddd658353e7d95147d9ac6fd18106a799361c"
+    },
+    {
+      "path": "references/skill-catalog/themes/html-frontend.md",
+      "sha256": "c61cb60c555f8f7d62c3c88a29aa364f070cf91177db0b04076a6355d8932dca"
+    },
+    {
+      "path": "references/skill-catalog/themes/investment-analysis.md",
+      "sha256": "1fd9706b9b3105b07fca7a304031aa0e4e3abc570052d26843c1355bbdcff0c7"
+    },
+    {
+      "path": "references/skill-catalog/themes/knowledge-management.md",
+      "sha256": "3b89964e249c965d507d288b5668c3e2ffb4951cfafb946f6b1292e28a514669"
+    },
+    {
+      "path": "references/skill-catalog/themes/ppt-presentation.md",
+      "sha256": "9550f6bb398990ff0e344adbf004d296afd29b4cbcdcadc2efb2264dd90d428f"
+    },
+    {
+      "path": "references/skill-catalog/themes/visualization.md",
+      "sha256": "a8846d0d91457f13c54509dc36915ade521b674b117cfab4bb3b7299267a5d0b"
+    },
+    {
+      "path": "references/skill-ecosystem.md",
+      "sha256": "7eb1b6997953014a85dc3cd2ea9c30f33441a4dddccf79b1de9752fdf3655b18"
+    },
+    {
+      "path": "references/skill-registry.md",
+      "sha256": "cc986c4859fa4d5afc53fea1dfda8bdcaf5c3234c5e098efb5a155b63524a248"
+    },
+    {
+      "path": "references/skill-sources.md",
+      "sha256": "d55adbc0e6eb514a63da4febf0c3e4d90c74994272b1b0c7531f2105f4cbf400"
+    },
+    {
+      "path": "references/skill-taxonomy.md",
+      "sha256": "5c2815fa1e43aa699dd3b83758a0213d64a292df53c4417d1c400db1f080b804"
+    },
+    {
+      "path": "references/skill-usage-guide.md",
+      "sha256": "23510ec21d5705f520e564c712847282832ce1f47dfcaf1cbf913e31629dfbb6"
+    },
+    {
+      "path": "references/state-schema.md",
+      "sha256": "d1260fde4f991a35ada78cbc109f8ddedecc9ff6049cc4d1b4a5a5e88ff66eeb"
+    },
+    {
+      "path": "references/system-scan.md",
+      "sha256": "9b08b4744e22a49be15c240eb575f1a8a75d92065915d3ee3b983a7b3e7219b8"
+    },
+    {
+      "path": "references/token-management-checklist.md",
+      "sha256": "bee02f2a751ac142da2737e627dd399ffcb8a84a448b89b5643d7e3f9c9d10b3"
+    },
+    {
+      "path": "references/workflows/morning-briefing.md",
+      "sha256": "a7c9f910832b57eb13117d5c20aea3c00b54bbc4a523ff2ea795ea7359f77029"
+    },
+    {
+      "path": "references/workflows/README.md",
+      "sha256": "61a8203dc34f1004190493a4560935402617da91c0c59815d433fca759c33961"
+    },
+    {
+      "path": "scripts/publish_build.py",
+      "sha256": "0dc1ed6a69cdd24827d9a1a76f7d0d421e86292fb2ec46d35a1bfd2775a50dbb"
+    },
+    {
+      "path": "scripts/report_builder.py",
+      "sha256": "69342c263eb7afe847eea9cbdbaeb5894a938b0da71e3666bc8498cdcda2c4a8"
+    },
+    {
+      "path": "scripts/retry_helper.py",
+      "sha256": "5afbf6f39abe536b311bcb63d7d18a1aaebb5b640c2cef31795b40fd63a63f49"
+    },
+    {
+      "path": "scripts/skillhub_alibaba.py",
+      "sha256": "eb48cfe6105ad95385d6adbb0e772cbdaf32ac41d05ed1135c1f4515eaf8c571"
+    },
+    {
+      "path": "scripts/usage_diag.py",
+      "sha256": "44384a4a7a3e78ad9ed04219f08f089ad28df7cdc92fb20bf6bb02c305d62ca0"
+    },
+    {
+      "path": "scripts/version.py",
+      "sha256": "2df7582b7c5a4d5f0cfc9e466956ac02a91012c3e2f43cf1f3f765f189201468"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "e302f452fcabb9eaa3c0686e5f85a4a4d6638ca6d34f35a534a3643b965abb30"
+    },
+    {
+      "path": "state.md",
+      "sha256": "5dfd6519ea2c0a941f5a1e2a7a6dccb0c6a23181e1806b5d231527795b87ae89"
+    }
+  ]
+}

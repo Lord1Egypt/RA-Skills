@@ -1,41 +1,56 @@
-## Description: <br>
-Enables a CEO user to notify other agents by writing messages to shared memory notification logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Allows a CEO-style coordinating agent to notify other agents through shared memory files.
 
-## Publisher: <br>
-[Stingan](https://clawhub.ai/user/Stingan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stingan](https://clawhub.ai/user/stingan)
 
-## Use Case: <br>
-Operators and developers using multi-agent workflows can send short notifications from a CEO role to named agents for later retrieval through shared memory. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill writes persistent cross-agent memory from notification inputs. <br>
-Mitigation: Review before installing, use only trusted messages, and ask before writing persistent shared memory. <br>
-Risk: Target agent names and message content are not validated or escaped before being used in shell-managed log writes. <br>
-Mitigation: Use known simple agent names, validate target names, and escape message content in a revised version. <br>
-Risk: The implementation relies on hardcoded personal filesystem and OpenClaw executable paths. <br>
-Mitigation: Declare shell, filesystem, and OpenClaw requirements, and replace hardcoded paths with configured environment-specific paths before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ceo Notify Agents on ClawHub](https://clawhub.ai/Stingan/ceo-notify-agents) <br>
+## Use Case:
 
+Coordinators acting as a CEO use this skill to send short notifications to named agents so those agents can retrieve the messages later from shared notification logs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text status message with persistent notification log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes per-agent and aggregate notification logs under a hardcoded shared-memory path and indexes OpenClaw memory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses unsafe shell execution and persistent shared memory that can be abused.
+
+Mitigation: Review before installing, avoid sensitive messages or privileged environments, and rewrite to use a constrained file or memory API.
+
+Risk: Agent names and message content may be handled unsafely when writing notifications.
+
+Mitigation: Validate agent names, pass message content as data rather than shell source, and label stored notifications as untrusted.
+
+Risk: Stored notifications may persist longer than intended.
+
+Mitigation: Provide retention or deletion controls for notification records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stingan/skills/ceo-notify-agents)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Plain text confirmation with appended notification log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes per-agent and aggregate notification records to persistent shared memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

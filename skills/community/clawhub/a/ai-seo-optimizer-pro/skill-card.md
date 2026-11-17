@@ -1,42 +1,55 @@
-## Description: <br>
-AI SEO Optimizer provides keyword research, content optimization, rank tracking, competitor comparison, and internal-link suggestions for SEO workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI SEO Optimizer provides SEO analysis workflows for keyword research, content optimization, rank tracking, competitor comparison, and internal-link suggestions.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-Content creators, marketers, website administrators, and agencies can use this skill to generate SEO analysis reports, keyword opportunities, content optimization suggestions, ranking summaries, and internal-link recommendations for websites or draft content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may present simulated SEO metrics and rankings as real business analytics. <br>
-Mitigation: Treat outputs as demo-quality or advisory unless the publisher documents trustworthy SEO data sources and clearly labels simulated data. <br>
-Risk: SEO inputs such as URLs, domains, keywords, and content may contain business-sensitive information. <br>
-Mitigation: Review privacy, retention, and third-party processing terms before using production or client data. <br>
+## Use Case:
 
+Content creators, website administrators, digital marketing teams, and developers can use this skill to generate SEO reports, prioritize content improvements, explore keyword opportunities, monitor rankings, and plan internal links.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lvjunjie-byte/ai-seo-optimizer-pro) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill description](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Structured SEO analysis reports and recommendation lists, often represented as JSON-like objects or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include keyword metrics, content scores, ranking summaries, competitor comparisons, and internal-link recommendations; SEO data should be treated as advisory unless trustworthy live data sources are documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact clawhub.json, artifact package.json, artifact README) <br>
+Risk: The security review reports that the package presents simulated SEO rankings and metrics as business intelligence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ranking, search-volume, difficulty, competitor, and traffic values as illustrative until the publisher documents and replaces the simulated data sources.
+
+Risk: Unpublished content or site strategy may be sensitive when used for SEO analysis.
+
+Mitigation: Avoid submitting sensitive unpublished content for production use until the publisher documents data handling and retention.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/skills/ai-seo-optimizer-pro)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Structured SEO analysis reports and JavaScript object-style results, often presented as Markdown guidance or code examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include SEO scores, keyword metrics, ranking summaries, competitor comparisons, prioritized recommendations, and implementation steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, clawhub.json, README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

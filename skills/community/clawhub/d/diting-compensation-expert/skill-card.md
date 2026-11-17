@@ -1,45 +1,60 @@
-## Description: <br>
-谛听薪酬专家。薪酬对标、调薪方案、薪酬公平性、薪酬结构设计。Use when 薪酬对标、调薪方案、薪酬公平性分析、薪酬结构设计、市场分位值分析、薪酬带宽设计、薪酬竞争力评估、宽带薪酬设计。不适用于绩效体系设计、劳动法合规、培训方案设计等非薪酬类 HR 问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language compensation analysis skill for salary benchmarking, raise planning, pay equity analysis, compensation structure design, market percentile analysis, salary band design, and compensation competitiveness assessment.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-HR compensation specialists and managers use this skill to analyze compensation benchmarking, salary adjustment plans, pay equity, pay structures, market percentiles, and compensation competitiveness. The skill returns structured analysis, risk notes, confidence statements, templates, and calculation guidance for compensation-focused decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process sensitive employee compensation data. <br>
-Mitigation: Use it only when authorized, prefer anonymized employee IDs, and collect only fields needed for the specific compensation analysis. <br>
-Risk: Compensation fairness or benchmarking work may involve protected demographic data. <br>
-Mitigation: Avoid uploading protected demographic data unless legally and operationally justified, and store outputs securely. <br>
-Risk: Working files and generated reports may retain sensitive HR information after analysis. <br>
-Mitigation: Delete working files when no longer needed and limit access to generated outputs. <br>
+## Use Case:
 
+HR and compensation practitioners use this skill to produce structured compensation analyses, including market benchmarking, raise allocation, internal pay equity review, and compensation structure recommendations. It is designed for Chief-mediated specialist use and can fall back to scoped direct use when called independently.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/diting-compensation-expert) <br>
-- [Output templates](references/output-templates.md) <br>
-- [Compensation analysis tools](references/tools.md) <br>
-- [Classic compensation books summary](references/classic-books.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured tables, formulas, concise analysis, risk notes, confidence statements, and optional code or command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request or use compensation data fields for benchmarking, adjustment planning, fairness analysis, and pay-structure calculations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The skill is expected to handle sensitive HR salary and employee compensation data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only necessary fields, anonymize employee identifiers where possible, and treat compensation inputs and outputs as confidential.
+
+Risk: Compensation recommendations can be misleading if market data, internal salary records, performance data, or job matching inputs are stale or incomplete.
+
+Mitigation: Require users to label data sources, sample sizes, years, assumptions, and confidence levels before relying on recommendations.
+
+Risk: The skill primarily produces Chinese-language compensation analysis, which may not match every user's preferred output language.
+
+Mitigation: Confirm the desired output language when users do not want Chinese responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuobadaidai/skills/diting-compensation-expert)
+- [Output templates](references/output-templates.md)
+- [Compensation analysis tools](references/tools.md)
+- [Classic compensation books](references/classic-books.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown reports, tables, checklists, and occasional Python calculation snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language compensation analysis with conclusions, risk notes, confidence statements, and data-source caveats]
+
+## Skill Version(s):
+
+2.1.2 (source: server release metadata; artifact frontmatter reports 2.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

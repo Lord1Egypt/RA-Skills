@@ -1,39 +1,54 @@
-## Description: <br>
-Guidance-only playbook for planning and reviewing Feishu document and folder permission management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guidance-only playbook for planning and reviewing Feishu document and folder permission management.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Employees and team administrators use this skill to design least-privilege Feishu document, folder, and workspace sharing plans, audit collaborator access, and produce repeatable access review checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Permission recommendations could expose restricted Feishu documents if applied without review or with unnecessary access details shared to the agent. <br>
-Mitigation: Share only the minimum access context needed, review recommendations with the document owner or security team, and make actual Feishu permission changes manually after approval. <br>
+## Use Case:
 
+Employees and workspace administrators use this skill to plan least-privilege Feishu document, folder, and workspace sharing, audit existing access, and produce repeatable access review checklists.
 
-## Reference(s): <br>
-- [Feishu Perm ClawHub release](https://clawhub.ai/terrycarter1985/terry-feishu-perm) <br>
-- [Publisher profile: terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Analysis] <br>
-**Output Format:** [Markdown permission matrix, high-risk findings, and remediation plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; does not request credentials or perform Feishu permission changes automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Permission guidance could recommend broad access, external sharing, or elevated privileges that are inappropriate for a specific document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a document owner verify full-access, external-sharing, and expiration recommendations before applying changes in Feishu.
+
+Risk: The skill provides advisory output only and cannot confirm the live state of Feishu collaborators or inherited folder permissions.
+
+Mitigation: Compare the recommendation against current Feishu access settings and keep an audit trail of who received access, why, and when.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/terry-feishu-perm)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with permission matrices, risk findings, and remediation plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only output; does not execute Feishu changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

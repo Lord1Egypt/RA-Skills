@@ -1,7 +1,7 @@
 ---
 name: investoday-finance-data
 title: 今日投资金融数据
-version: 1.8.34
+version: 1.8.99
 description: "获取中国市场金融数据与投研信息，覆盖 A股、港股、基金、指数、财务、公告、研报和宏观经济等 200+ 接口。Use when: 用户要查股票走势、基金净值、指数行情、财务报表、估值指标、公告研报、机构观点、宏观数据、板块主题、产业链、市场统计，或要拉取、导出、对比结构化金融数据。Do not use when: 用户要直接买卖建议、自动下单、交易执行、非金融数据查询、系统运维排查，或在无数据时要求编造结论。"
 tags:
   - stock
@@ -69,7 +69,7 @@ requirements:
 - 查看宏观经济和市场数据
 - 导出研究数据，供后续分析、对比或回测使用
 
-先判断用户要解决的问题，再决定是浏览分组、搜索接口，还是直接调用具体接口。
+先判断用户要解决的问题，再决定是读取接口索引和 references，还是直接调用具体接口。
 
 ## 何时使用
 
@@ -110,8 +110,8 @@ requirements:
 按以下顺序执行：
 
 1. 先识别用户要的是行情、财务、公告研报、基金指数、宏观、数据导出，还是不属于本 skill 的请求。
-2. 如果接口不明确，先用 `investoday-api list` 浏览分组，或用 `investoday-api search-api` 按关键词搜索接口。
-3. 如果接口明确但参数不明确，先用 `investoday-api search-api` 查询接口说明、参数和示例。
+2. 如果接口不明确，先读取 `docs/references-index.md`，按业务分类定位对应 references 文档，再从文档确定接口。
+3. 如果接口明确但参数不明确，读取对应 references 文档中的接口说明、参数和示例。
 4. 如果接口和参数都明确，再执行 `investoday-api <endpoint> [key=value ...]`。
 5. 如果查询结果为空或受限，说明查询口径、时间范围、权限或网络限制，不要编造数据结论。
 
@@ -136,12 +136,6 @@ investoday-api init
 # 非交互式一次性初始化
 investoday-api init --api-key "<API_KEY>" --auto-update --skip-verify
 
-# 用于浏览多级分组和叶子菜单
-investoday-api list <group/subgroup/leaf>
-
-#用于按关键词搜索接口(其中query、tool_ids支持多个入参，以英文逗号隔开)
-investoday-api search-api query=<query> tool_ids=<tool_ids>
-
 #发起请求
 investoday-api <endpoint> [key=value ...]
 
@@ -158,16 +152,6 @@ investoday-api init
 # 非交互式一次性初始化
 investoday-api init --api-key "<API_KEY>" --auto-update --skip-verify
 
-# 列举
-investoday-api list
-investoday-api list 沪深京数据
-investoday-api list 沪深京数据/公司行为/基本信息
-
-# 关键词搜索
-investoday-api search-api query=股票,基本面分析
-# 工具信息搜索
-investoday-api search-api tool_ids=list_stock_violation_penalt,list_stock_report_schema
-
 # 调用数据
 investoday-api search key=贵州茅台 type=11
 investoday-api stock/basic-info stockCode=600519
@@ -176,8 +160,8 @@ investoday-api industry-quote/realtime-v2 --method POST industryLevel=1 industry
 ```
 
 ## 使用策略
-- 未明确接口：使用 `list` 或 `search-api` 查找。
-- 明确接口但不明确参数：使用 `search-api` 获取接口使用方式。
+- 未明确接口：先读取 `docs/references-index.md`，按业务分类定位并读取对应 references 文档。
+- 明确接口但不明确参数：从对应 references 文档获取接口使用方式。
 - 明确接口和参数：直接调用目标接口。
 - POST 接口如 references 区分 `Query 参数` 和 `Body JSON 参数`，Query 使用 `key=value`，Body 使用 `--body-json`；不要把数组或对象 Body 写成普通字符串参数。
 
@@ -189,4 +173,4 @@ investoday-api industry-quote/realtime-v2 --method POST industryLevel=1 industry
 - 如果网络、权限或服务不可用，明确说明当前无法取得数据，并停止基于该数据继续推断。
 
 ## 辅助文档
-- 文档版接口索引见：`docs/references-index.md`
+- 接口不明确或需要按业务分类定位接口时，先读取：`docs/references-index.md`。

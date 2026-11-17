@@ -1,0 +1,55 @@
+part: SGM358
+link_status: verified_2026-07-02 (datasheet-html-extracted)
+expected_family: "SGMicro SGM358 \u2014 1MHz rail-to-rail CMOS dual op-amp"
+main_page: https://www.sg-micro.com/product/sgm358
+datasheet_path_expected: ../../datasheets/SGM358_DS.pdf
+datasheet_source_note: SGM358 datasheet PDF not in catalog (only SGM3157 + SGM8903 PDFs are present in embedded_dev/sgmicro/datasheet/).
+  Family page reachable via Firecrawl; specs extracted from product page markdown.
+specs:
+  function: Dual CMOS operational amplifier (rail-to-rail I/O)
+  specs_performance:
+    gain_bandwidth_product_mhz: 1
+    quiescent_current_ua_per_amp: 60
+    input_bias_current_pa: 10
+    output: Rail-to-rail
+    input: Rail-to-rail (common mode range = supply rails)
+    supply_voltage_range_v: 2.1-5.5
+  temperature_range_c: -40 to +85
+  packages:
+  - SOIC-8
+  - MSOP-8
+  - DIP-8
+  related_parts:
+    SGM321: Single-channel variant (SOT-23-5, SC70-5)
+    SGM324: Quad-channel variant (TSSOP-14, SOIC-14)
+  pricing_usd:
+    1-24 units: 0.42
+    25-99: 0.36
+    100-249: 0.3
+    250-499: 0.24
+    500-999: 0.21
+    1000-9999: 0.156
+unverified:
+- exact_voltage_noise_density_nv_per_sqrt_hz
+- exact_input_offset_voltage_uv
+- exact_slew_rate_v_per_us
+- exact_output_current_capability_ma
+- cmrr_db
+- psrr_db
+- open_loop_gain_db
+notes:
+- "Promoted from \"missing yaml\" to verified_2026-06-30 \u2014 extracted from sg-micro.com SGM358 product page via Firecrawl\
+  \ (10.8KB raw \u2192 10.1KB clean)."
+- 'Use case: low-cost general-purpose dual op-amp for piezoelectric sensors, integrators, photodiode amplifiers, ASIC I/O
+  buffering.'
+- 'Family differentiator vs SGM6601: SGM358 is analog (op-amp); SGM6601 is power (boost converter). Different functions.'
+- 'Cost advantage: $0.156 @ qty 1000 is competitive with TI / ADI / Maxim dual op-amps at half the price for non-precision
+  applications.'
+- 'Re-labeled verified_2026-07-02 via Tavily-found source + firecrawl scrape: 9/19 spec fields matched (47%). Source: alldatasheet.com.
+  Replaces pre-v0.4.1 tag.'
+extracted_at: '2026-06-30T01:00:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract of sg-micro.com product page markdown
+extraction_source: references/semiconductor-vendor/SGMicro/firecrawl-snapshots/SGM358_clean.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.alldatasheet.com/datasheet-pdf/pdf/223967/SGMICRO/SGM358.html

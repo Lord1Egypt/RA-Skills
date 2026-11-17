@@ -1,0 +1,190 @@
+{
+  "language": "zh",
+  "stopwords": [
+    "的",
+    "了",
+    "和",
+    "是",
+    "在",
+    "我",
+    "有",
+    "而",
+    "及",
+    "与",
+    "着",
+    "或",
+    "一个",
+    "没有",
+    "我们",
+    "你们",
+    "他们",
+    "这个",
+    "那个",
+    "因此"
+  ],
+  "patterns": [
+    {
+      "id": "ZH001",
+      "type": "SLOP_PHRASE",
+      "pattern": "在当今快节奏的世界中",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH002",
+      "type": "SLOP_PHRASE",
+      "pattern": "在数字化时代",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH003",
+      "type": "SLOP_PHRASE",
+      "pattern": "值得注意的是",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH004",
+      "type": "SLOP_PHRASE",
+      "pattern": "不可否认的是",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH005",
+      "type": "SLOP_PHRASE",
+      "pattern": "总而言之",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH006",
+      "type": "SLOP_PHRASE",
+      "pattern": "综上所述",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH007",
+      "type": "SLOP_PHRASE",
+      "pattern": "此外",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH008",
+      "type": "SLOP_PHRASE",
+      "pattern": "更重要的是",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH009",
+      "type": "SLOP_PHRASE",
+      "pattern": "扮演着至关重要的角色",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH010",
+      "type": "SLOP_PHRASE",
+      "pattern": "不仅",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH011",
+      "type": "SLOP_PHRASE",
+      "pattern": "而且",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH012",
+      "type": "SLOP_PHRASE",
+      "pattern": "深入探讨",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH013",
+      "type": "SLOP_PHRASE",
+      "pattern": "这不仅关乎",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH014",
+      "type": "SLOP_PHRASE",
+      "pattern": "见证了",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH015",
+      "type": "SLOP_PHRASE",
+      "pattern": "双刃剑",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH016",
+      "type": "SLOP_PHRASE",
+      "pattern": "在当前环境下",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH017",
+      "type": "SLOP_PHRASE",
+      "pattern": "毋庸置疑",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH018",
+      "type": "SLOP_PHRASE",
+      "pattern": "需要指出的是",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH019",
+      "type": "SLOP_PHRASE",
+      "pattern": "随着时代的发展",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH020",
+      "type": "SLOP_PHRASE",
+      "pattern": "从本质上讲",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH021",
+      "type": "SLOP_PHRASE",
+      "pattern": "在不断变化的格局中",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH022",
+      "type": "SLOP_PHRASE",
+      "pattern": "开启了新的篇章",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH023",
+      "type": "SLOP_PHRASE",
+      "pattern": "改变游戏规则",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH024",
+      "type": "SLOP_PHRASE",
+      "pattern": "无缝衔接",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH025",
+      "type": "SLOP_PHRASE",
+      "pattern": "全方位的方法",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "ZH026",
+      "type": "DEFINITIONAL_OPENING",
+      "pattern": "^(?:在.*?的背景下|在.*?领域中|在.*?世界里)，",
+      "scope": "paragraph-start",
+      "fixInstruction": "Start with the specific subject or event instead of a generic framing clause."
+    },
+    {
+      "id": "ZH027",
+      "type": "STRUCTURAL_CLICHE",
+      "pattern": "不仅[\\s\\S]{0,100}?而且",
+      "fixInstruction": "State both claims directly without the stock paired construction."
+    }
+  ]
+}

@@ -1,39 +1,52 @@
-## Description: <br>
-宽数题库项目入口，涵盖四套量化题库来源、仓库结构、常用命令与当前公网部署信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+宽数题库项目入口，涵盖四套量化题库来源、仓库结构、常用命令与当前公网部署信息。
 
-## Publisher: <br>
-[aznikline](https://clawhub.ai/user/aznikline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aznikline](https://clawhub.ai/user/aznikline)
 
-## Use Case: <br>
-Developers and maintainers use this skill to understand the multi-source quantitative puzzle project, locate data and page code, run validation or build commands, and prepare deliberate Vercel deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a production Vercel deploy command that can publish the current build to the public site. <br>
-Mitigation: Review repository scripts first, confirm the active Vercel account and deployment intent, and run validation/build checks before using the production deploy command. <br>
+## Use Case:
 
+Developers and maintainers use this skill to understand, run, extend, validate, and deploy the kuanshu-tiku multi-source quantitative puzzle bank project.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aznikline/kuanshu-tiku) <br>
-- [Public project site](https://quantics-bank.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Project orientation, build/test/deploy command guidance, and source-location references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill documents a one-command production Vercel deployment using an unpinned CLI and --yes, which can bypass an explicit human safety check.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository and build output, install with npm ci and a lockfile, pin the Vercel CLI version, confirm the target Vercel account and project, run a preview deployment first, and avoid --yes for production without human approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aznikline/skills/kuanshu-tiku)
+- [Publisher profile](https://clawhub.ai/user/aznikline)
+- [GitHub repository](https://github.com/aznikline/kuanshu-tiku)
+- [Current public site](https://quantics-bank.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and project paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

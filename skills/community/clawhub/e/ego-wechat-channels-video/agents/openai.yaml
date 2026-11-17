@@ -1,0 +1,4 @@
+interface:
+  display_name: "WeChat Channels video"
+  short_description: "Draft a Channels video via Ego Lite; login-check first"
+  default_prompt: "Use wechat-channels-video: check-login, then save a draft (never publish)."

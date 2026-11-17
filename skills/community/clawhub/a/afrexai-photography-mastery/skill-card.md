@@ -1,41 +1,49 @@
-## Description: <br>
-Complete photography system covering exposure, composition, lighting, genre-specific workflows, editing, gear selection, portfolio building, and client management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete photography system \u2014 exposure, composition, lighting, genre-specific workflows, editing, gear selection, portfolio building, and client management. From beginner to professional.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Photographers, creative professionals, and learning-focused agents use this skill to provide practical guidance on camera settings, lighting, composition, editing workflows, portfolio development, and photography business planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The README includes disclosed promotional links to AfrexAI storefront pages and related skills. <br>
-Mitigation: Review external links before following them and distinguish educational guidance from promotional material. <br>
-Risk: Broad natural-language prompts may invoke this skill outside a photography context. <br>
-Mitigation: Use explicit photography wording when asking for guidance, as recommended by the security evidence. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-photography-mastery) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI storefront](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+External photography learners and working photographers use this skill for coaching on camera settings, lighting, composition, editing workflows, portfolio development, and photography business planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and structured examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only educational guidance; no code execution or persistent behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad photography-related activation phrases may invoke the skill when general photography terms are used.
+
+Mitigation: Use explicit wording when requesting photography help, and review generated guidance before applying it to paid client work or safety-sensitive shooting conditions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-photography-mastery)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, and inline YAML-style planning blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces photography coaching, critique frameworks, settings recommendations, shoot plans, portfolio guidance, and business planning templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

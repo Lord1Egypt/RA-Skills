@@ -1,0 +1,20 @@
+{
+  "688981": {"logic": "intact", "note": "Q2量价齐升+Q3指引毛利率26-28%+产能满载95%，PB历史中低位", "support": [115.8, 113], "valid_until": "2026-09-30"},
+  "688256": {"logic": "intact", "note": "中报营收+108%净利+122%，订单饱满，国产算力主线未变；周五主力回流", "support": [1000, 950], "valid_until": "2026-09-30"},
+  "002436": {"logic": "intact", "note": "中报净利+283%，先进封装国产化政策落地，PCB周期上行+28.8%", "support": [38, 37], "valid_until": "2026-09-30"},
+  "601138": {"logic": "intact", "note": "AI服务器代工核心受益，算力capex直接传导", "support": [], "valid_until": "2026-09-30"},
+  "300308": {"logic": "intact", "note": "CPO板块本周主力净流入300亿+，光模块主线资金未撤", "support": [], "valid_until": "2026-09-30"},
+  "002463": {"logic": "intact", "note": "PCB最强板块，AI服务器高多层板需求", "support": [], "valid_until": "2026-09-30"},
+  "002916": {"logic": "intact", "note": "PCB载板景气+国产替代", "support": [], "valid_until": "2026-09-30"},
+  "688041": {"logic": "intact", "note": "国产算力芯片，超跌后修复弹性大", "support": [], "valid_until": "2026-09-30"},
+  "002371": {"logic": "intact", "note": "设备国产替代+大基金长逻辑完好", "support": [], "valid_until": "2026-09-30"},
+  "688072": {"logic": "intact", "note": "薄膜沉积设备国产替代逻辑完好", "support": [], "valid_until": "2026-09-30"},
+  "300456": {"logic": "intact", "note": "测试设备国产替代逻辑完好", "support": [], "valid_until": "2026-09-30"},
+  "688008": {"logic": "intact", "note": "DDR5内存接口芯片渗透率提升逻辑在", "support": [], "valid_until": "2026-09-30"},
+  "603986": {"logic": "intact", "note": "存储涨价周期（原厂库存<10天），逻辑在但短期受美股存储暴跌扰动", "support": [], "valid_until": "2026-09-30"},
+  "300502": {"logic": "intact", "note": "光模块主线，跟随旭创节奏", "support": [], "valid_until": "2026-09-30"},
+  "300394": {"logic": "weak", "note": "光模块三兄弟中率先走坏(M8高开诱多)，掉队迹象", "support": [], "valid_until": "2026-09-30"},
+  "001309": {"logic": "weak", "note": "存储散户情绪票，波动结构不适合扛，美股存储暴跌传导最直接", "support": [], "valid_until": "2026-09-30"},
+  "002475": {"logic": "weak", "note": "消费电子无AI增量，苹果链平淡，逻辑与量价双弱", "support": [], "valid_until": "2026-09-30"},
+  "688608": {"logic": "weak", "note": "20日无修复，结构性走弱，逻辑待验证", "support": [], "valid_until": "2026-09-30"}
+}

@@ -1,42 +1,57 @@
-## Description: <br>
-BigPlan helps agents research a product direction by analyzing market, technology, supply-chain, pricing, and business-model factors, then producing high-, medium-, and low-tier product specification plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BigPlan guides agents through product and market research, including competitor analysis, technical assessment, supply-chain review, and three high/mid/low product plan options.
 
-## Publisher: <br>
-[kobenfang](https://clawhub.ai/user/kobenfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kobenfang](https://clawhub.ai/user/kobenfang)
 
-## Use Case: <br>
-External users, product managers, founders, and developers use this skill to structure product research for hardware-oriented product ideas. It produces market, technical, supply-chain, cost, pricing, timeline, and risk guidance to support product planning decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad product-analysis trigger phrases may activate the skill during general product questions. <br>
-Mitigation: Confirm that BigPlan-style product research is intended before relying on its output. <br>
-Risk: BOM, pricing, supplier, and timeline estimates may not be verified supplier quotes. <br>
-Mitigation: Treat estimates as research guidance and validate them against current suppliers, quotes, and market data before business decisions. <br>
-Risk: Market data and search-derived findings may be stale or incomplete. <br>
-Mitigation: Refresh key market, competitor, regulatory, and pricing data during review of the generated product plan. <br>
+## Use Case:
 
+Product managers, founders, developers, and planning teams use this skill to turn a product direction into a structured research report covering market context, competitors, technology choices, supply chain considerations, costs, pricing, timelines, risks, and recommended product tiers.
 
-## Reference(s): <br>
-- [BigPlan ClawHub page](https://clawhub.ai/kobenfang/bigplan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown product research report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market, technology, supply-chain, BOM, pricing, timeline, and risk estimates that should be verified before business use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Broad trigger phrases may cause the skill to activate for general analysis requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user is asking for product, market, competitor, technical, or planning research before relying on the skill output.
+
+Risk: Market figures, BOM costs, pricing, supplier information, and timelines can be stale or estimated from public data.
+
+Mitigation: Validate important figures with current sources, supplier quotes, and domain experts before making investment, procurement, or launch decisions.
+
+Risk: The artifact notes a hardware-oriented bias that may make pure software product analysis less complete.
+
+Mitigation: For software-only products, supplement the report with software-specific evidence such as platform constraints, integration costs, cloud operating costs, security requirements, and user research.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kobenfang/skills/bigplan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown product research report with structured sections and tiered product specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes market, competitor, technical, supply-chain, cost, pricing, timeline, risk, and recommendation sections; estimates should be marked for validation when data is insufficient.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

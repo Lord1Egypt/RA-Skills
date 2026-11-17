@@ -1,41 +1,59 @@
-## Description: <br>
-Searches Chinese finance communities and portals with Baidu Qianfan web_summary to summarize market sentiment, events, and sector or stock discussions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+百度财经搜索 skill。基于超哥方法论定制，支持雪球/知乎/东方财富/同花顺等站点的财经舆情搜索，适合短线情绪博弈和事件驱动分析。
 
-## Publisher: <br>
-[huangrichao2020](https://clawhub.ai/user/huangrichao2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangrichao2020](https://clawhub.ai/user/huangrichao2020)
 
-## Use Case: <br>
-Developers and analysts can use this skill to run Baidu Qianfan finance searches across sources such as Xueqiu, Zhihu, East Money, and 10jqka for short-term sentiment, event-driven research, and sector rotation analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill disables HTTPS certificate verification while sending a Baidu API key and user queries. <br>
-Mitigation: Use only a limited Baidu API key and prefer a fixed version that restores normal HTTPS certificate verification. <br>
-Risk: Search queries and message history may contain confidential account data or non-public investment research. <br>
-Mitigation: Avoid confidential account data and non-public investment research in queries or message history. <br>
+## Use Case:
 
+Developers and financial-analysis agents use this skill to query Baidu Qianfan AI Search for Chinese finance sentiment, announcements, policy news, earnings discussion, and sector rotation signals across sites such as Xueqiu, Eastmoney, 10jqka, Zhihu, and Sina Finance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huangrichao2020/baidu-finance-search) <br>
-- [Baidu Qianfan web_summary endpoint](https://qianfan.baidubce.com/v2/ai_search/web_summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, API calls, shell commands, configuration] <br>
-**Output Format:** [Markdown-style console text followed by summarized JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIDU_API_KEY and accepts JSON parameters for query, sites, time_range, top_k, instruction, and messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill disables TLS certificate checks while sending the Baidu API key and user queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and remove the disabled certificate verification before use.
+
+Risk: User prompts may include confidential trading plans, personal data, or sensitive business research sent to the Baidu API.
+
+Mitigation: Avoid submitting confidential or personal data, and use the skill only with data approved for third-party API processing.
+
+Risk: A Baidu API key may be exposed or abused if this version is used on untrusted networks.
+
+Mitigation: Keep the API key low-privilege and rotate it if the skill has already been used in an untrusted environment.
+
+## Reference(s):
+
+- [Baidu Qianfan AI Search web_summary endpoint](https://qianfan.baidubce.com/v2/ai_search/web_summary)
+- [ClawHub skill page](https://clawhub.ai/huangrichao2020/skills/baidu-finance-search)
+- [ClawHub publisher profile](https://clawhub.ai/user/huangrichao2020)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Console text with Markdown-style sections plus a summarized JSON block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY and sends user queries to the Baidu Qianfan web_summary API; AI analysis text is truncated to 3000 characters in the human-readable output and 500 characters in the summarized JSON block.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter and _meta.json report 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

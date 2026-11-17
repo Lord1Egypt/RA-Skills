@@ -1,47 +1,62 @@
-## Description: <br>
-Generates offline Chinese interactive HTML courses from a codebase, with a product-manager mode focused on business flow and architecture and a developer mode focused on technical architecture, data flow, and implementation decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a codebase into an offline Chinese interactive HTML course, with a product-manager mode for business flows and a developer mode for architecture, data flow, and technical explanations.
 
-## Publisher: <br>
-[zhouchang1988](https://clawhub.ai/user/zhouchang1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhouchang1988](https://clawhub.ai/user/zhouchang1988)
 
-## Use Case: <br>
-Developers, engineers, product managers, and business stakeholders use this skill to turn a repository into a local, browser-readable course that explains system behavior, module responsibilities, architecture, and data flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads source repositories that may contain sensitive code or credentials. <br>
-Mitigation: Use it on trusted repositories or disposable workspaces, and review generated course content before sharing it. <br>
-Risk: Generated HTML may expose private implementation details from sensitive codebases. <br>
-Mitigation: Review the generated HTML and derived output directory before opening, publishing, or distributing the course. <br>
-Risk: Course generation creates a derived output directory and performs a local build step. <br>
-Mitigation: Check the resolved output path and generated files before relying on the build output. <br>
+## Use Case:
 
+Developers, product managers, and technical educators use this skill in Claude Code to turn local or GitHub code repositories into Chinese, offline-ready interactive browser courses for business or technical onboarding.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Design System](references/design-system.md) <br>
-- [Interactive Elements](references/interactive-elements.md) <br>
-- [Product Content Philosophy](references/content-philosophy.md) <br>
-- [Developer Content Philosophy](references/content-philosophy-pro.md) <br>
-- [Implementation Gotchas](references/gotchas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [A local HTML course directory with Markdown briefs, HTML modules, CSS and JavaScript assets, an assembled index.html file, and build commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated courses are intended to run offline with localized assets and no external CDN dependency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Generated interactive HTML may run injected browser code when untrusted repository content is incorporated into unsafe browser-rendered content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted repositories, inspect generated module HTML before opening index.html, and add strict escaping or sanitization before using the skill with untrusted input.
+
+Risk: The skill reads the target repository and writes a generated course directory.
+
+Mitigation: Run it in a controlled workspace and review generated files before sharing, opening, or deploying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouchang1988/skills/codebase-to-course-cn)
+- [README](README.md)
+- [Design system overview](DESIGN.md)
+- [Product-manager content philosophy](references/content-philosophy.md)
+- [Developer content philosophy](references/content-philosophy-pro.md)
+- [Design system reference](references/design-system.md)
+- [Interactive elements reference](references/interactive-elements.md)
+- [Common gotchas](references/gotchas.md)
+- [Module brief template](references/module-brief-template.md)
+- [Inspiration project link from README](https://github.com/zarazhangrui/codebase-to-course)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance plus generated HTML, CSS, JavaScript, shell script, and assembled browser course files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a course directory named from user-provided keywords and version mode; generated courses are intended to run offline.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

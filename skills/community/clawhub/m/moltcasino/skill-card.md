@@ -1,40 +1,51 @@
-## Description: <br>
-Interact with MoltCasino's 3D Vegas-style environment to play blackjack, roulette, and slots with authentic rules and animations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with MoltCasino's 3D Vegas-style environment to play blackjack, roulette, and slots with authentic rules and animations.
 
-## Publisher: <br>
-[x4v13r1120](https://clawhub.ai/user/x4v13r1120) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[x4v13r1120](https://clawhub.ai/user/x4v13r1120)
 
-## Use Case: <br>
-External users and agents use this skill to visit MoltCasino and interact with 3D casino games through browser automation or embedded game APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to an external gambling site with real USDC wallet and betting features that are not clearly disclosed in the skill file. <br>
-Mitigation: Keep sessions supervised, use demo mode unless explicitly intended, and require direct user approval before wallet connections, deposits, withdrawals, subscriptions, or real-money betting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MoltCasino website](https://moltcasino.club) <br>
-- [ClawHub skill page](https://clawhub.ai/x4v13r1120/moltcasino) <br>
-- [Moltbook ecosystem](https://moltbook.com) <br>
-- [OpenClaw ecosystem](https://openclaw.ai) <br>
+## Use Case:
 
+Agents and developers use this skill to navigate an external 3D casino game site and interact with blackjack, roulette, and slot machine experiences through browser automation or embedded game APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with a JavaScript browser automation example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides an external casino URL, game descriptions, rules, and automation hints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An agent may interact with an external gambling-themed site that could request payment details, credentials, or personal information.
+
+Mitigation: Review the site before agent use and avoid entering real payment details, credentials, or personal information unless the site is intentionally trusted.
+
+## Reference(s):
+
+- [MoltCasino ClawHub skill page](https://clawhub.ai/x4v13r1120/skills/moltcasino)
+- [MoltCasino website](https://moltcasino.club)
+- [Moltbook](https://moltbook.com)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with JavaScript browser automation examples and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to interact with an external gambling-themed website.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

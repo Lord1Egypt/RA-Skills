@@ -1,41 +1,55 @@
-## Description: <br>
-OpenRouter Vision Agent helps an agent analyze images through OpenRouter's vision API using x-ai/grok-4.1-fast. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes images with OpenRouter's vision API using x-ai/grok-4.1-fast and returns concise descriptions, explanations, or interpretations.
 
-## Publisher: <br>
-[gawainchin](https://clawhub.ai/user/gawainchin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gawainchin](https://clawhub.ai/user/gawainchin)
 
-## Use Case: <br>
-Developers and agents use this skill to describe, explain, and interpret publicly accessible images through OpenRouter when visual analysis is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images, image URLs, and prompts are sent to OpenRouter as part of the skill's stated function. <br>
-Mitigation: Use only when sending the selected image content to OpenRouter is acceptable; avoid private, regulated, or sensitive images unless that provider use has been approved. <br>
-Risk: The skill requires an OpenRouter API key. <br>
-Mitigation: Keep OPENROUTER_API_KEY in the environment or another secret store and do not write the key into files or prompts. <br>
+## Use Case:
 
+Developers and agent users use this skill to route image-description and image-interpretation requests through OpenRouter's vision API when an OpenRouter API key and public image URL are available.
 
-## Reference(s): <br>
-- [OpenRouter Chat Completions API](https://openrouter.ai/api/v1/chat/completions) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gawainchin/openrouter-vision-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and OpenRouter response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OPENROUTER_API_KEY and returns model-generated image analysis from choices[0].message.content; documented max_tokens range is 500-2000.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Images, image URLs, and prompts are sent to OpenRouter for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with private, sensitive, regulated, or confidential images unless the provider's data-handling terms have been reviewed and accepted.
+
+Risk: The skill requires an OpenRouter API key and publicly accessible image URLs.
+
+Mitigation: Confirm OPENROUTER_API_KEY is configured and use only intended public HTTP/HTTPS image URLs.
+
+## Reference(s):
+
+- [OpenRouter chat completions endpoint](https://openrouter.ai/api/v1/chat/completions)
+- [ClawHub skill page](https://clawhub.ai/gawainchin/skills/openrouter-vision-skill)
+- [Publisher profile](https://clawhub.ai/user/gawainchin)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with JSON API request examples and parsed text response content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY and sends image URLs, uploaded image content, and prompts to OpenRouter; the documented response token range is 500-2000.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

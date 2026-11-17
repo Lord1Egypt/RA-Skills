@@ -1,41 +1,54 @@
-## Description: <br>
-Guides agents through structured exploratory QA testing using charters, session notes, tours, role play, and findings reports to uncover gaps missed by scripted tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides time-boxed exploratory testing with charters, scenario tours, role play, session notes, and documented findings to uncover issues missed by scripted tests.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, developers, and product teams use this skill to plan and document session-based exploratory testing for a defined feature, workflow, or risk area. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on casual requests for random, free-form, or exploratory testing. <br>
-Mitigation: Give the agent a clear testing target, scope, exploration domain, and timebox before starting a session. <br>
-Risk: Exploratory QA may include Bash-driven testing steps against live systems. <br>
-Mitigation: Run any commands only against systems and environments the tester is authorized to assess. <br>
+## Use Case:
 
+QA testers and developers use this skill to plan focused exploratory sessions, probe untested workflows and failure paths, and record reproducible findings and coverage gaps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-exploratory-testing) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kokxi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown with structured sections for exploration charters, session notes, findings, bug reports, and coverage notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are scoped to the testing target, exploration domain, optional heuristics, and optional timebox supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and release evidence) <br>
+Risk: Test notes or examples could expose customer, payment, identity, or production data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use synthetic or masked test data; do not paste real sensitive data into sessions.
+
+Risk: The optional unpinned npx installation command installs a broader external skill set.
+
+Mitigation: Review and pin the package and version before running the optional installation command.
+
+## Reference(s):
+
+- [Exploratory charter and tour methods](references/charter-methods.md)
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-exploratory-testing)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Time-boxed test charters, session notes with IDs, findings, bug reports, and coverage notes.]
+
+## Skill Version(s):
+
+1.8.0 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

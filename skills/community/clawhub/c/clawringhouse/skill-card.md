@@ -1,48 +1,59 @@
-## Description: <br>
-Helps agents research products with Clawringhouse, compare options, prepare carts or affiliate-tagged product links, and present purchase-ready recommendations for human review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawringhouse helps agents research shopping options, compare products, and present budget-conscious recommendations or prepared carts for human review.
 
-## Publisher: <br>
-[francoisjosephlacroix](https://clawhub.ai/user/francoisjosephlacroix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[francoisjosephlacroix](https://clawhub.ai/user/francoisjosephlacroix)
 
-## Use Case: <br>
-External users and their agents use this skill to research gifts or household supplies, compare options, prepare shopping carts, and send budget-conscious recommendations for human review before purchase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping queries are sent to Clawringhouse. <br>
-Mitigation: Tell the user when a shopping query will be sent to Clawringhouse and avoid including sensitive personal details unless the user approves. <br>
-Risk: The skill encourages use of memory, calendar context, and logged-in browser sessions for proactive shopping. <br>
-Mitigation: Ask before reading memory or calendar context, opening a logged-in shopping session, or using browser automation on a user's shopping account. <br>
-Risk: Cart automation can add or change items before the user has reviewed them. <br>
-Mitigation: Require explicit user approval before adding or changing cart items, and stop at cart preparation rather than checkout. <br>
-Risk: Affiliate-tagged Amazon links may set tracking cookies or attribution. <br>
-Mitigation: Disclose affiliate-tagged links before using them and ask before setting affiliate links or cookies. <br>
+## Use Case:
 
+External users and their agents use this skill to find product recommendations for gifts, pet care, household supplies, and similar shopping needs while keeping final purchase approval with the human.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/francoisjosephlacroix/clawringhouse) <br>
-- [Clawringhouse API](https://clawringhouse.onrender.com) <br>
-- [Clawringhouse Website](https://clawringhouse.shop) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples, API URLs, cart links, and product-link recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations may include affiliate-tagged Amazon links and cart URLs for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Shopping queries, personal context, and product preferences may be sent to the Clawringhouse API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the context needed for the shopping request and avoid sending sensitive personal, account, or payment details.
+
+Risk: The skill encourages use of logged-in browser sessions and cart changes.
+
+Mitigation: Require explicit user approval before using any logged-in browser session or modifying a cart, and show the exact account, items, prices, links, and affiliate behavior first.
+
+Risk: Product and cart links may include affiliate tracking.
+
+Mitigation: Disclose affiliate-link behavior clearly and let the user choose whether to open or use those links.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/francoisjosephlacroix/skills/clawringhouse)
+- [Clawringhouse API](https://clawringhouse.onrender.com)
+- [Clawringhouse Website](https://clawringhouse.shop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline Python and shell examples plus product or cart links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include affiliate-tagged Amazon links and API response examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

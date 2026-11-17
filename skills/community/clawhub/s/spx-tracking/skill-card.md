@@ -1,44 +1,56 @@
-## Description: <br>
-Queries SPX Express and CAINIAO Malaysia shipment tracking numbers through SPX and returns structured JSON, human-readable text, or a one-line status summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries SPX Express and supported CAINIAO Malaysia tracking numbers and returns shipment status, timeline, delivery estimates, location route, and delay analysis.
 
-## Publisher: <br>
-[WizisCool](https://clawhub.ai/user/WizisCool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wiziscool](https://clawhub.ai/user/wiziscool)
 
-## Use Case: <br>
-External users and agents use this skill to check SPX Express or CAINIAO Malaysia delivery status from a tracking number, including ETA, timeline, route, and delay details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Malaysia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tracking requests send user-provided SPX or CAINIAO tracking numbers to spx.com.my and may return shipment details such as recipient, route, and timing. <br>
-Mitigation: Use the skill only for intended SPX or CAINIAO shipments and share the minimum tracking details needed for the user's request. <br>
-Risk: The optional cookie can contain browser session data. <br>
-Mitigation: Avoid using the cookie unless necessary; never log it, echo it, or paste broad browser session cookies into shared or untrusted environments. <br>
-Risk: The skill depends on the external SPX API and network availability. <br>
-Mitigation: Handle request and parse failures explicitly, and avoid treating unavailable or stale API results as confirmed delivery status. <br>
+## Use Case:
 
+External users, support agents, and delivery operations teams use this skill to check SPX Express or CAINIAO Malaysia package status from a tracking number and summarize delivery progress, estimated delivery, route, and delays.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WizisCool/spx-tracking) <br>
-- [SPX Express tracking site](https://spx.com.my/) <br>
-- [SPX tracking API endpoint](https://spx.com.my/shipment/order/open/order/get_order_info) <br>
+### Deployment Geography for Use:
 
+Global for users tracking SPX Express Malaysia shipments.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands] <br>
-**Output Format:** [JSON, human-readable text report, or one-line summary selected by --format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 or python and requests; optional cookie input can contain session data and should not be logged.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The optional cookie argument can expose browser session data when passed on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using --cookie unless required; if authentication is needed, prefer a credential store, protected file, or stdin-based secret handling and never log or echo the cookie.
+
+Risk: Tracking results may include recipient names, full addresses, GPS coordinates, and detailed shipment timelines.
+
+Mitigation: Return only the fields needed for the user's request, avoid raw API dumps, and treat output as sensitive delivery information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wiziscool/skills/spx-tracking)
+- [Publisher profile](https://clawhub.ai/user/wiziscool)
+- [SPX Express website](https://spx.com.my/)
+- [SPX tracking API endpoint](https://spx.com.my/shipment/order/open/order/get_order_info)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON, human-readable text, or one-line summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include shipment status, timestamps, estimated delivery windows, recipient names, addresses, GPS coordinates, and delay analysis.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

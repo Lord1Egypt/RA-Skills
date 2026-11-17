@@ -19,7 +19,7 @@ aliyun sls get-logs-v2 \
   --to "<timestamp>" \
   --query "<query>" \
   --line 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 ### Profile Handling Rules (Critical)
@@ -45,7 +45,7 @@ Assistant: OK, I will use the default credential chain for queries (no --profile
 - **Do NOT use `--profile` parameter** (Evaluation system Forbidden)
 - Rely on default credential chain
 - **Do NOT explicitly pass AK/SK**
-- All commands MUST include `--user-agent AlibabaCloud-Agent-Skills`
+- All commands MUST include `--user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"`
 
 ### Region Defaults
 
@@ -64,14 +64,14 @@ If user does not specify Region, default to `cn-hangzhou`. If query returns no r
 aliyun waf-openapi <Action> \
   --version 2021-10-01 --force \
   --region <region> \
-  --user-agent AlibabaCloud-Agent-Skills \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}" \
   --<ParamName> '<value>'
 ```
 
 **MUST include**:
 - `--version 2021-10-01` — WAF 3.0 API version
 - `--force` — Skip API metadata validation (REQUIRED for WAF 3.0)
-- `--user-agent AlibabaCloud-Agent-Skills` — User-Agent identifier
+- `--user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"` — User-Agent identifier
 - **Do NOT use `--profile` parameter** — Rely on default credential chain
 
 **Parameter Naming**: PascalCase (e.g., `--InstanceId`, `--Domain`, `--RegionId`)
@@ -93,7 +93,7 @@ aliyun sls get-logs-v2 \
   --to "$TO" \
   --query "<query_string>" \
   --line 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 **Time Parameters**:
@@ -108,7 +108,7 @@ aliyun sls get-logs-v2 \
 
 ```bash
 aliyun sts get-caller-identity \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 Used to get AccountId and derive SLS Project name.
@@ -149,7 +149,7 @@ aliyun sls get-logs-v2 \
   --to "$(date +%s)" \
   --query "request_traceid: <traceid>" \
   --line 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 ### 6.2 Query by host + path + status
@@ -162,7 +162,7 @@ aliyun sls get-logs-v2 \
   --to "$TO" \
   --query "host:example.com and request_path:/api/login and status:403" \
   --line 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 ### 6.3 Query blocked requests
@@ -175,7 +175,7 @@ aliyun sls get-logs-v2 \
   --to "$TO" \
   --query "host:example.com and final_action:block" \
   --line 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 ---

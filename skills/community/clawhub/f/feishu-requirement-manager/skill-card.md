@@ -1,41 +1,54 @@
-## Description: <br>
-Feishu Requirement Manager helps agents create requirements, split them into tasks, track progress, and support custom fields in Feishu bitable workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent manage Feishu Bitable requirements by creating requirements and tasks, splitting work, tracking progress, and handling custom fields.
 
-## Publisher: <br>
-[maoxiaohei2026-tech](https://clawhub.ai/user/maoxiaohei2026-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maoxiaohei2026-tech](https://clawhub.ai/user/maoxiaohei2026-tech)
 
-## Use Case: <br>
-Employees, external collaborators, and developers can use this skill to manage Feishu-based requirement intake, task decomposition, assignment, status tracking, and progress review with extensible fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update Feishu workspace records. <br>
-Mitigation: Require user confirmation before setup, table creation, or record updates, and use a Feishu account authorized for the target workspace. <br>
-Risk: Stored table identifiers may be reused from shared memory without clear user or workspace scoping. <br>
-Mitigation: Scope stored Feishu table identifiers to the current user or workspace and verify the target app and table before modifying records. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to organize product or engineering requirements in Feishu Bitable, create linked tasks, assign executors, and review progress.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/maoxiaohei2026-tech/feishu-requirement-manager) <br>
-- [Usage examples](artifact/references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured Feishu bitable field mappings and JSON-like API call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Feishu requirement, task, and project records when connected to appropriate Feishu tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may store Feishu app_token and table_id values in shared memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that storing these identifiers in shared memory is acceptable for the workspace before first use.
+
+Risk: The skill can guide an agent to create or modify Feishu Bitable tables and records.
+
+Mitigation: Confirm the allowed Feishu app and tables before allowing requirement, task, or project record changes.
+
+## Reference(s):
+
+- [Usage Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/maoxiaohei2026-tech/skills/feishu-requirement-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, API Calls, Markdown]
+
+**Output Format:** [Markdown guidance with JSON-style Feishu Bitable call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to create or update Feishu Bitable records and store app_token and table_id values in shared memory.]
+
+## Skill Version(s):
+
+3.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

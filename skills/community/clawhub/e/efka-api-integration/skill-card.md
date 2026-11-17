@@ -1,43 +1,56 @@
-## Description: <br>
-Greek social security (EFKA) integration for employee records, contribution calculations, and APD declarations with human approval for submissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Greek social security (EFKA) integration — employee records, contribution calculations, APD declarations. Human approval for submissions.
 
-## Publisher: <br>
-[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto)
 
-## Use Case: <br>
-Payroll operators, accounting firms, and developers use this skill to manage Greek EFKA employee records, calculate social security contributions, prepare APD declarations, and coordinate compliance workflows with required human approval before submission. <br>
-
-### Deployment Geography for Use: <br>
-Greece <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive EFKA credentials and employee payroll data. <br>
-Mitigation: Install only in environments where EFKA credentials and /data/efka/ are restricted to trusted payroll operators. <br>
-Risk: Generated APD declarations, lifecycle files, or employee-record changes could be incorrect or submitted prematurely. <br>
-Mitigation: Keep the four-eyes approval requirement mandatory and review generated APD and lifecycle files before upload. <br>
-Risk: Optional notifications or calendar sync could expose employee personal information. <br>
-Mitigation: Avoid sending PII to Slack or calendar integrations and limit notifications to non-sensitive status information. <br>
-Risk: The setup guidance includes a sudo dependency installation command. <br>
-Mitigation: Run privileged dependency installation only when it matches the organization's approved provisioning process. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/satoshistackalotto/efka-api-integration) <br>
+## Use Case:
 
+Developers, payroll operators, and accounting teams use this skill to configure EFKA-oriented workflows for Greek employee records, contribution calculations, APD declaration preparation, deadline monitoring, and human-approved submissions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown with command examples and file-organization guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces EFKA workflow guidance, OpenClaw command references, and file-based payroll/compliance outputs for review before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: EFKA submission, registration, payment, Slack, or calendar workflows may be live unless dry-run behavior is confirmed.
+
+Mitigation: Confirm dry-run defaults before installation, test in a controlled environment, and require explicit human approval before any regulated submission or payment action.
+
+Risk: EFKA credentials and employee identifiers could be exposed through shell history, shared files, logs, or committed configuration.
+
+Mitigation: Use managed secret injection, avoid plaintext credentials in commands or files, restrict access to payroll data directories, and review logging before using real employee data.
+
+Risk: Four-eyes approval and external-access boundaries are described, but security evidence says they need review.
+
+Mitigation: Verify the technical enforcement of approval status, role separation, audit records, and outbound integrations before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/satoshistackalotto/skills/efka-api-integration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference file paths under OPENCLAW_DATA_DIR and optional Slack or calendar integration settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

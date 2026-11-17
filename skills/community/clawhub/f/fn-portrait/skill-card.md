@@ -1,43 +1,59 @@
-## Description: <br>
-Financial report footnote extraction and analysis tool for Chinese A-share listed companies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FN Portrait Toolkit helps agents guide financial report footnote extraction, LLM-assisted analysis, and portrait chart generation for Chinese A-share listed companies.
 
-## Publisher: <br>
-[mapufan](https://clawhub.ai/user/mapufan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapufan](https://clawhub.ai/user/mapufan)
 
-## Use Case: <br>
-External users and developers use this skill to download Chinese A-share annual reports from CNINFO, extract financial footnote data, run optional LLM-assisted analysis, and generate financial portrait outputs for a listed company. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External LLM providers may receive extracted annual report text and derived financial summaries when DeepSeek or Moonshot credentials are configured. <br>
-Mitigation: Only set DEEPSEEK_API_KEY or KIMI_API_KEY when that data sharing is acceptable; use local Ollama or --skip-llm for private PDFs. <br>
-Risk: Unpinned Python dependencies can change behavior or supply-chain exposure over time. <br>
-Mitigation: Install in an isolated Python environment and pin or lock dependency versions before production use. <br>
-Risk: Downloaded PDFs, extracted spreadsheets, text, and portrait images are written to local output directories. <br>
-Mitigation: Review and manage RAWPDF, output2, and portraits locations before and after running the pipeline. <br>
+## Use Case:
 
+Developers and analysts use this skill to run a pipeline that downloads Chinese annual-report PDFs, extracts financial note data, performs optional LLM analysis, and generates Excel outputs and portrait visualizations.
 
-## Reference(s): <br>
-- [FN Portrait Toolkit on ClawHub](https://clawhub.ai/mapufan/fn-portrait) <br>
-- [mapufan ClawHub Profile](https://clawhub.ai/user/mapufan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, files] <br>
-**Output Format:** [Command-line guidance and generated PDF, Excel, text, and PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads PDFs into RAWPDF, writes extracted data and LLM analysis under output2, and writes portrait images under portraits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release evidence) <br>
+Risk: Remote LLM providers may receive analysis prompts and require API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local Ollama when appropriate, or knowingly opt into DeepSeek or Moonshot and avoid exposing unrelated API keys.
+
+Risk: Dependencies are unpinned in the artifact requirements.
+
+Mitigation: Install in an isolated Python environment and consider pinning dependencies before production use.
+
+Risk: CNINFO report downloads use HTTP and downloaded PDFs are untrusted inputs.
+
+Mitigation: Treat downloaded PDFs as untrusted files and review handling before using the pipeline in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mapufan/skills/fn-portrait)
+- [FN Portrait Toolkit README](README.md)
+- [CNINFO disclosure search](http://www.cninfo.com.cn/new/commonUrl/pageOfSearch)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and file path descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides installation, LLM provider configuration, report download, data extraction, Excel analysis, and portrait chart generation.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

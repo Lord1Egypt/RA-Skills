@@ -1,47 +1,55 @@
-## Description: <br>
-An agent for interacting with GitLab. Supports gitlab.com and self-hosted instances. Requires no GitLab DUO. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate assigned GitLab work with owner-verified project access and guarded MR delivery.
 
-## Publisher: <br>
-[xrowgmbh](https://clawhub.ai/user/xrowgmbh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xrowgmbh](https://clawhub.ai/user/xrowgmbh)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to automate GitLab issue, merge request, branch, label, comment, and CI follow-up work through GitLab CLI workflows. It is intended for GitLab.com or self-hosted GitLab projects where autonomous changes are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive broad autonomous GitLab changes, including issue, merge request, branch, CI, label, and comment updates. <br>
-Mitigation: Use a dedicated least-privilege GitLab token, limit it to approved projects, and monitor the resulting GitLab activity. <br>
-Risk: The bundled recurring job could repeatedly execute automation after setup. <br>
-Mitigation: Keep the recurring job disabled until a manual run has been reviewed and GitLab authentication has been confirmed. <br>
-Risk: Agent-generated GitLab updates may be incorrect, overly broad, or misaligned with project workflow expectations. <br>
-Mitigation: Review merge requests, issue comments, labels, and CI actions before relying on them for production workflow decisions. <br>
+## Use Case:
 
+Developers use this skill to manage GitLab work items and merge requests, move assigned work through review, and report queue progress.
 
-## Reference(s): <br>
-- [GitLab default roles](https://docs.gitlab.com/user/permissions/#default-roles) <br>
-- [CI Tools Components Catalog for GitLab](https://ci-tools.xrow.de/) <br>
-- [CI Tools label component](https://ci-tools.xrow.de/Components/label) <br>
-- [OpenClaw creating skills](https://docs.openclaw.ai/tools/creating-skills) <br>
-- [xrow public skills project](https://gitlab.com/xrow-public/skills) <br>
-- [ClawHub skill page](https://clawhub.ai/xrowgmbh/skills/xrowgmbh-gitlab-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, shell commands, code changes, configuration snippets, and GitLab issue or merge request updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the glab CLI and GITLAB_TOKEN; may create or update remote GitLab resources when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.62.0 (source: server release evidence) <br>
+Risk: ClawScan rates this release suspicious. Scanner evidence reports that it can claim unassigned work and make GitLab changes, including label changes after project access checks fail; scan coverage is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust these actions and their scope. Review the skill and use a narrowly scoped GitLab token, then monitor its changes.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/xrowgmbh/skills/xrowgmbh-gitlab-agent)
+- [GitLab Agent Skill source](https://gitlab.com/xrow-public/helm-openclaw/-/tree/main/profile/eugene-harold-krabs/skills/gitlab-agent)
+- [GitLab default roles](https://docs.gitlab.com/user/permissions/#default-roles)
+- [GitLab contribution guide](https://docs.gitlab.com/development/contributing/#make-changes-and-open-a-merge-request)
+- [OpenClaw skill authoring guide](https://docs.openclaw.ai/tools/creating-skills)
+- [Discovery performance notes](artifact/references/discovery-performance.md)
+- [Documentation style guide](artifact/references/documentation-style.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Markdown, GitLab work item and merge request changes]
+
+**Output Format:** [GitLab updates, code changes, and Markdown work summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make remote GitLab changes using the configured account.]
+
+## Skill Version(s):
+
+1.147.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

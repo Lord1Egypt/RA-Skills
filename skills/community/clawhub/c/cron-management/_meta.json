@@ -1,0 +1,7 @@
+{
+  "name": "cron-management",
+  "description": "Manage OpenClaw cron jobs — list, pause, resume, maintenance mode, and health checks.",
+  "version": "1.0.0",
+  "author": "cloudy",
+  "entry": "scripts/cronctl.sh"
+}

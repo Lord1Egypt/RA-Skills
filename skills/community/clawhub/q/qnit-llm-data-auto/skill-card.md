@@ -1,38 +1,53 @@
-## Description: <br>
-LLM数据自动化 helps agents generate Python and Pandas data-processing code from user-described data tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动生成满足需求的Python和Pandas数据处理代码，支持基于描述快速完成数据操作任务。
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to turn natural-language data processing requirements into Python and Pandas code that can be reviewed and adapted for their datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python or Pandas code can contain mistakes or perform unwanted changes if run without review. <br>
-Mitigation: Review generated code before running it on important or sensitive data, and test it on representative non-critical data first. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to turn a clear data-processing request into draft Python and Pandas code for common data operations. The generated code should be reviewed and tested before it is run on real datasets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yesong-hue/qnit-llm-data-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or text containing Python and Pandas code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated code should be reviewed before use on important or sensitive data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact frontmatter) <br>
+Risk: Generated Python or Pandas code may be incorrect, inefficient, or unsafe to run unchanged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the generated code, test it with limited sample data, and run it in a constrained environment before using it on production datasets.
+
+Risk: Prompts or data descriptions may be processed through an LLM/API workflow.
+
+Mitigation: Avoid including sensitive datasets or confidential details unless the workflow is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yesong-hue/skills/qnit-llm-data-auto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text with Python and Pandas code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated code is draft output and should be inspected before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

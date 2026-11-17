@@ -1,45 +1,57 @@
-## Description: <br>
-High-fidelity UI page replication workflow for backend/admin systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-fidelity UI page replication workflow for backend/admin systems that helps Codex inspect an existing browser page and recreate its layout, interactions, data models, mock data, API layer, TypeScript interfaces, and styling.
 
-## Publisher: <br>
-[yhcong6](https://clawhub.ai/user/yhcong6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhcong6](https://clawhub.ai/user/yhcong6)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to replicate authorized backend/admin UI pages by collecting browser evidence, traversing interactions, and generating matching React/TypeScript implementation assets, mock data, API-shaped functions, styles, and verification notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser collection can capture sensitive admin information in screenshots, DOM snapshots, and interaction notes. <br>
-Mitigation: Use the skill only on pages you own or are authorized to replicate, and prefer staging or sanitized data. <br>
-Risk: Traversing create, update, delete, submit, or audit flows on a live system could cause unintended changes. <br>
-Mitigation: Avoid confirming real mutating actions during exploration and implement mock-backed API functions first. <br>
+## Use Case:
 
+Developers and engineers use this skill to recreate existing backend or admin UI pages in a host frontend project while preserving visible structure, workflows, data models, mock data, API-shaped functions, and styling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yhcong6/skills/ui-page-replication-v1) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Reference Source README](references/source/README.md) <br>
-- [Replication Prompt](references/source/prompt.ts) <br>
-- [Configuration](references/source/config.ts) <br>
-- [Page Schema Types](references/source/types.ts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, TypeScript interfaces, mock data, API layer notes, styles, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to capture Playwright screenshots, DOM snapshots, and interaction notes as supporting artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and references/source/config.ts) <br>
+Risk: Browser inspection may capture screenshots, DOM snapshots, and network clues from sensitive pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on pages the operator is authorized to inspect, and avoid pages containing secrets, private customer data, or sessions that should not be stored in local project artifacts.
+
+Risk: Generated UI, mock data, and API-shaped functions may not fully match the source system's business rules.
+
+Mitigation: Review generated behavior, data models, and fidelity gaps before using the replicated page in a production workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yhcong6/skills/ui-page-replication-v1)
+- [Reference source README](artifact/references/source/README.md)
+- [Reference source config](artifact/references/source/config.ts)
+- [Reference source prompt](artifact/references/source/prompt.ts)
+- [Reference source types](artifact/references/source/types.ts)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with implementation notes, code changes, TypeScript interfaces, mock data, API-shaped functions, styles, and verification commands when feasible]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local Playwright screenshots, DOM snapshots, and implementation artifacts when the agent inspects a browser page.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and reference source config)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

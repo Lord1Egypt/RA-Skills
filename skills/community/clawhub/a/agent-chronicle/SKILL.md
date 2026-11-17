@@ -1,8 +1,12 @@
 ---
 name: agent-chronicle
-version: 0.7.2
-description: AI-powered diary generation for agents - creates rich, reflective journal entries (400-600 words) with Quote Hall of Fame, Curiosity Backlog, Decision Archaeology, Relationship Evolution, mood analytics, weekly digests, "On This Day" resurfacing, and cron auto-generation. Works best with Claude models (Haiku, Sonnet, Opus).
-metadata: {"openclaw":{"requires":{"bins":["python3"],"note":"No API keys needed. Uses OpenClaw sessions_spawn."}}}
+version: 0.8.0
+description: AI-powered diary generation for agents - creates rich, reflective journal entries (400-600 words) with Quote Hall of Fame, Curiosity Backlog, Decision Archaeology, Relationship Evolution, mood analytics, weekly digests, "On This Day" resurfacing, and scheduled auto-generation. Works best with Claude models (Haiku, Sonnet, Opus).
+metadata:
+  openclaw:
+    requires:
+      bins: ["python3"]
+    note: "No API keys needed. Uses the OpenClaw sessions_spawn tool."
 ---
 
 # Agent Chronicle 📜
@@ -81,6 +85,8 @@ cp config.example.json config.json
 
 ### Write Today's Entry
 
+OpenClaw 2.0 keeps sessions across calendar-day boundaries by default. `Today's sessions` can therefore include activity from more than one calendar day.
+
 #### Recommended (v0.6.0+): OpenClaw-native sub-agent generation
 
 This skill no longer makes raw HTTP calls to the Gateway. Instead, have your agent
@@ -101,7 +107,10 @@ python3 scripts/generate.py --today --emit-task > $TMP_DIR/chronicle-task.json
   - user: `task.prompt`
   - ask the sub-agent to **output only the final markdown entry**
 
-3) **Save the generated entry**:
+3) **Wait for parallel sub-agents**:
+- If you called `sessions_spawn` in parallel, call `sessions_yield` after all spawn calls and wait for the final results.
+
+4) **Save the generated entry**:
 ```bash
 # Pipe the sub-agent's markdown output into the saver
 python3 scripts/generate.py --today --from-stdin
@@ -502,55 +511,63 @@ python3 scripts/analyze.py --json
 
 ---
 
-## Auto-Generation via Cron ⏰
+## Auto-generation with OpenClaw automations
 
-Generate diary entries automatically on a schedule using OpenClaw cron.
+Generate diary entries on a schedule with an OpenClaw automation. Create it with `openclaw automations add` or the `automations` tool; `openclaw cron` still works as an alias. A YAML `cron:` list in the OpenClaw configuration does nothing - that format never existed.
 
 ### Usage
 
 ```bash
-# Auto-generate: emits task JSON for sub-agent spawning
+# Prepare a task JSON for an OpenClaw sub-agent
 python3 scripts/generate.py --auto
 ```
 
-The `--auto` flag:
-- Uses today's date automatically
-- Skips generation if an entry already exists for today
-- Emits a sub-agent task JSON (for `sessions_spawn`)
-- Requires no user interaction
+The `--auto` flag uses today's date, skips an existing entry for that date, and emits the task JSON for `sessions_spawn`. The scheduled agent must pass that task to a sub-agent, wait for the result, and save the returned markdown with `--from-stdin`.
 
 ### Configuration
 
-Enable in `config.json`:
+Enable automatic generation in this skill's `config.json`:
+
 ```json
 {
   "auto_generate": true
 }
 ```
 
-### OpenClaw Cron Setup
+### Create the daily automation
 
-Add to your OpenClaw config (`~/.openclaw/config.yaml` or similar):
+Replace `/path/to/skills/agent-chronicle` with the installed skill directory. The cron expression runs at 23:00 in the Gateway host timezone. Add `--tz <IANA-timezone>` when the job needs another timezone.
 
-```yaml
-cron:
-  - id: daily-diary
-    schedule: "0 23 * * *"       # Every day at 11 PM
-    task: |
-      Generate today's diary entry using agent-chronicle.
-      Run: python3 /path/to/skills/agent-chronicle/scripts/generate.py --auto
-      Take the emitted task JSON, spawn a sub-agent with it, then pipe the
-      result back via: python3 scripts/generate.py --today --from-stdin
-    channel: telegram             # Optional: notify channel on completion
-```
-
-Or use the two-step flow in a shell script:
 ```bash
-#!/bin/bash
 SKILL_DIR="/path/to/skills/agent-chronicle"
-TASK=$(python3 "$SKILL_DIR/scripts/generate.py" --auto 2>/dev/null)
-# Feed $TASK to your agent for sub-agent spawning
+
+openclaw automations add \
+  --name "Agent Chronicle daily entry" \
+  --cron "0 23 * * *" \
+  --session isolated \
+  --message "Run python3 ${SKILL_DIR}/scripts/generate.py --auto. Pass the emitted task JSON to sessions_spawn. After all parallel sessions_spawn calls, call sessions_yield and wait for the final output. Pipe the final markdown into python3 ${SKILL_DIR}/scripts/generate.py --today --from-stdin. Return NO_REPLY if no entry is needed; report failures."
 ```
+
+Use `--announce --channel <channel-plugin-id> --to <target>` if the job should deliver its final response to a channel. Omit those flags when the job only needs to write the diary entry.
+
+### Test and inspect the job
+
+```bash
+openclaw automations list
+openclaw automations show <job-id>
+openclaw automations run <job-id> --wait --wait-timeout 10m --poll-interval 2s
+openclaw automations runs --id <job-id> --limit 20
+```
+
+### Configure exec approval
+
+The scheduled agent uses `exec` for the `--auto` and `--from-stdin` commands. Connect the OpenClaw Control UI or a native OpenClaw app before the first run. Automation approval cards appear only on those approval surfaces. Chat channels do not receive them.
+
+Run the job once with `openclaw automations run <job-id> --wait`. When an approval card appears, choose **Always allow** for each exact command the job runs. The grant also binds the command to the same working directory, environment, and automation configuration. Keep those values unchanged on later runs.
+
+If no approval surface is connected, the `--auto` command is denied immediately. The run records an error, and repeated failures can disable the recurring job. Inspect disabled jobs with `openclaw automations list --all` and check the run history before enabling it again.
+
+See the [OpenClaw automations documentation](https://docs.openclaw.ai/automation/cron-jobs) for other schedule and delivery options.
 
 ---
 
@@ -574,6 +591,8 @@ python3 scripts/digest.py --date 2026-03-20
 ```bash
 python3 scripts/digest.py --emit-task
 ```
+
+Pass the emitted task to `sessions_spawn`. If you start multiple sub-agents in parallel, call `sessions_yield` after all spawn calls and wait for their results before saving the digest with `--from-stdin`.
 
 **Read AI-generated digest from stdin:**
 ```bash
@@ -604,14 +623,19 @@ Saved as `YYYY-WXX-weekly.md` in the diary directory (e.g., `2026-W13-weekly.md`
 @diary weekly
 ```
 
-### Cron Setup for Weekly Digest
-```yaml
-cron:
-  - id: weekly-digest
-    schedule: "0 22 * * 0"       # Every Sunday at 10 PM
-    task: |
-      Generate this week's diary digest using agent-chronicle.
-      Run: python3 /path/to/skills/agent-chronicle/scripts/digest.py
+### Schedule the weekly digest
+
+Automation jobs use the OpenClaw CLI. This command payload runs the existing non-AI digest on Sundays at 22:00 in the Gateway host timezone. Replace both paths before running it.
+
+```bash
+SKILL_DIR="/path/to/skills/agent-chronicle"
+WORKSPACE_DIR="/path/to/workspace"
+
+openclaw automations add \
+  --name "Agent Chronicle weekly digest" \
+  --cron "0 22 * * 0" \
+  --command "python3 ${SKILL_DIR}/scripts/digest.py" \
+  --command-cwd "${WORKSPACE_DIR}"
 ```
 
 ---

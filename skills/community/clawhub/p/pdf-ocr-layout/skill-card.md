@@ -1,38 +1,59 @@
-## Description: <br>
-Multimodal document deep analysis tool based on Zhipu GLM-OCR, GLM-4.7, and GLM-4.6V. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multimodal document deep analysis tool based on Zhipu GLM-OCR, GLM-4.7, and GLM-4.6V.
 
-## Publisher: <br>
-[baokui](https://clawhub.ai/user/baokui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[baokui](https://clawhub.ai/user/baokui)
 
-## Use Case: <br>
-Developers and document-analysis users use this skill to extract document layout elements from PDFs or images, convert tables to Markdown, crop charts and figures, and generate semantic analysis for tables and images. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected PDFs, images, and extracted context are sent to Zhipu cloud APIs for OCR and analysis. <br>
-Mitigation: Process only documents approved for that external service, avoid confidential or regulated material unless sharing is authorized, and use a dedicated API key. <br>
-Risk: Extracted text, analysis JSON, and cropped images are saved locally in the chosen output directory. <br>
-Mitigation: Use a secure output directory with appropriate access controls and remove generated files when they are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and document-processing teams use this skill to extract tables and charts from PDFs or images, convert tables to Markdown, crop visual elements, and generate GLM-based semantic analysis of document content.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Input documents, extracted tables, captions, and cropped images are sent to Zhipu GLM services.
+
+Mitigation: Process only documents approved for that provider and avoid confidential or regulated content unless organizational policy allows it.
+
+Risk: Generated analysis may be influenced by malicious or misleading text inside source documents.
+
+Mitigation: Treat analysis as model output and review conclusions before using them in decisions or downstream workflows.
+
+Risk: Intermediate JSON reports and cropped images may contain sensitive document content on disk.
+
+Mitigation: Use a protected output directory and apply retention or cleanup controls appropriate for the processed documents.
+
+Risk: Multi-page PDFs default to first-page processing, which can produce incomplete document analysis.
+
+Mitigation: Extend or verify batch-page handling before relying on results for multi-page documents.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Files] <br>
-**Output Format:** [JSON report with Markdown table content, deep-understanding text, and local cropped image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHIPU_API_KEY, writes extracted text and cropped images to the selected output directory, and processes the first page of multi-page PDFs by default.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with bash commands and JSON result descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; writes intermediate JSON, final analysis JSON, and cropped image files to the configured output directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

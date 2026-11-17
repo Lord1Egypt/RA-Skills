@@ -9,7 +9,7 @@ set -euo pipefail
 # -- Package info (injected at build time) ------------------------------------
 readonly PKG_NAME="siluzan-cso-cli"
 # PKG_VERSION 锁定到与本脚本同批构建产物一致的版本，避免与 dist/skill 错位
-readonly PKG_VERSION="1.1.30"
+readonly PKG_VERSION="1.1.46"
 readonly CLI_BIN="siluzan-cso"
 readonly SKILL_LABEL="Siluzan CSO"
 readonly INSTALL_CMD="npm install -g siluzan-cso-cli"

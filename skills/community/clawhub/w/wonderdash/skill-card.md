@@ -1,40 +1,53 @@
-## Description: <br>
-WonderDash helps an agent create and manage widgets on the user's WonderDash mobile dashboard through a GitHub-backed widget repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage widgets on the user's WonderDash mobile dashboard via GitHub.
 
-## Publisher: <br>
-[Hay-wired](https://clawhub.ai/user/Hay-wired) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hay-wired](https://clawhub.ai/user/hay-wired)
 
-## Use Case: <br>
-Developers and WonderDash users use this skill to create, update, reorder, archive, restore, and delete dashboard widgets represented as JSON files. The skill is intended for agents that can work with Git and SSH to manage a dedicated WonderDash widgets repository. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dedicated SSH deploy key for a GitHub-backed widgets repository. <br>
-Mitigation: Use a repository-scoped key, avoid reusing broad GitHub credentials, and remove ~/.ssh/wonderdash_deploy plus the related SSH config entry when no longer needed. <br>
-Risk: Widget deletion and Git pushes can permanently change the user's dashboard repository. <br>
-Mitigation: Review proposed changes before pushing and prefer archiving widgets by removing them from dashboard.json before permanent deletion. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WonderDash ClawHub listing](https://clawhub.ai/Hay-wired/wonderdash) <br>
-- [Hay-wired publisher profile](https://clawhub.ai/user/Hay-wired) <br>
+## Use Case:
 
+External users use WonderDash to create, update, order, archive, and delete mobile dashboard widgets stored as JSON files in a GitHub repository.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces self-contained widget JSON, dashboard index changes, Git commands, and SSH setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter declares 5.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow uses an SSH private key for GitHub repository access.
+
+Mitigation: Treat the deploy key as a secret, scope it to the intended wonderdash-widgets repository, avoid logging or sharing it, and remove the local key and SSH config entry when the integration is no longer needed.
+
+Risk: Permanent widget deletion removes files from the active repository while git history may still retain prior content.
+
+Mitigation: Archive widgets when unsure, and reserve permanent deletion for content that has been reviewed and is intended to be removed from the active dashboard repository.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hay-wired/skills/wonderdash)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/hay-wired)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces self-contained widget JSON and dashboard index changes for a GitHub-backed WonderDash dashboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 5.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

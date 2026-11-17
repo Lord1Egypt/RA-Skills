@@ -1,39 +1,48 @@
-## Description: <br>
-System safety and control-plane skill that helps prevent agent deadlocks and freezes by providing non-LLM controls to inspect task state, flush message queues, cancel long-running work, and recover without restarting the container. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System safety and control-plane skill that helps OpenClaw agents inspect task state, cancel long-running work, flush message queues, and recover from deadlocks or freezes without restarting the container.
 
-## Publisher: <br>
-[Amar1432](https://clawhub.ai/user/Amar1432) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amar1432](https://clawhub.ai/user/amar1432)
 
-## Use Case: <br>
-Developers and operators use this skill to add emergency control-plane commands and watchdog behavior for long-running or high-risk OpenClaw workloads. It is intended for advanced users who need to inspect task health, cancel stalled work, and recover from unresponsive agent sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Emergency control commands can terminate active work or exec sessions. <br>
-Mitigation: Restrict who can invoke /flush and /recover, and verify whether process termination can affect unrelated sessions before enabling autonomous use. <br>
-Risk: The sub-agent spawning helper may create additional sessions with limited scoping or confirmation. <br>
-Mitigation: Review or disable the spawning helper unless isolated sub-agent execution is required for the deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Amar1432/error-guard) <br>
+## Use Case:
 
+Developers and operators use this skill to add control-plane recovery primitives for long-running OpenClaw tasks, sub-agents, benchmark workers, and background monitors. It is intended for advanced users who need non-LLM status, flush, cancellation, watchdog, and recovery controls when work can block or hang.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript helper modules and control command descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines control-plane actions for status checks, flush, recovery, task heartbeat events, watchdog cancellation, and optional sub-agent spawning.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The emergency recovery path can kill visible process sessions without ownership checks or confirmation.
+
+Mitigation: Limit /flush and /recover to skill-owned sessions, require explicit operator authorization or confirmation, preserve accurate success/failure results, and document the risk of losing unrelated in-flight work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amar1432/skills/error-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command names and JSON-like status or recovery results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are designed to be non-LLM control-plane actions that report status, cancel tracked work, clear queues, or initiate recovery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

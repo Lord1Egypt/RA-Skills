@@ -1,42 +1,58 @@
-## Description: <br>
-Queries A-share announcement and research-report data for market-wide dates or individual stocks, and can download announcement or report PDFs by url_hash from market.ft.tech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves A-share announcement and research report lists and downloads related PDF files from market.ft.tech by date, stock code, or url_hash.
 
-## Publisher: <br>
-[Shawn92](https://clawhub.ai/user/Shawn92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawn92](https://clawhub.ai/user/shawn92)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve A-share announcement or research-report listings by date or stock code, then download selected PDFs when a url_hash is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill executes included Python scripts that contact market.ft.tech and may save PDFs locally. <br>
-Mitigation: Use only documented subskills, review requested downloads before execution, and choose output filenames deliberately. <br>
-Risk: A requested PDF output filename could overwrite an existing file in the skill working directory. <br>
-Mitigation: Use unique output filenames and verify the destination before downloading. <br>
+## Use Case:
 
+External users and analysts use this skill to look up A-share announcements or research reports for a date or stock, then download a selected PDF by url_hash.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Shawn92/ftshare-announcement-data) <br>
-- [Publisher profile](https://clawhub.ai/user/Shawn92) <br>
-- [market.ft.tech API host](https://market.ft.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, files, guidance] <br>
-**Output Format:** [JSON responses for listings and download status, with optional PDF files saved locally and agent-facing summaries in text or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network requests contact market.ft.tech; PDF downloads save to a chosen filename under the skill working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The local command dispatcher and PDF-saving behavior are broader than needed for the advertised data retrieval workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, invoke only documented subskill names, and run the skill from a disposable working directory.
+
+Risk: Downloaded PDF output can write local files and may overwrite files when unsafe filenames, symlinks, or sensitive working directories are used.
+
+Mitigation: Use trusted output filenames under the current working directory and avoid installation or execution locations where overwritten files could affect important local files.
+
+Risk: Results and downloaded documents come from an external market.ft.tech service and may be unavailable, incomplete, or unsuitable as sole financial evidence.
+
+Mitigation: Check returned JSON and downloaded PDFs before relying on them, and corroborate important financial conclusions with authoritative market or issuer sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shawn92/skills/ftshare-announcement-data)
+- [market.ft.tech API base](https://market.ft.tech)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Text, Markdown]
+
+**Output Format:** [JSON responses and downloaded PDF files, often summarized by the agent as Markdown tables or bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network calls use HTTP GET; PDF downloads write files under the execution working directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

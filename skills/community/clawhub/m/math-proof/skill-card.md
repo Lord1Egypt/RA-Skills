@@ -1,41 +1,53 @@
-## Description: <br>
-Automated step-by-step proof generation and review for user-submitted theorems with iterative refinement until acceptance or retry limit is reached. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated step-by-step mathematical proof generation and review for user-submitted theorems with iterative refinement until acceptance or retry limit.
 
-## Publisher: <br>
-[xiaoyu20011021-hub](https://clawhub.ai/user/xiaoyu20011021-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoyu20011021-hub](https://clawhub.ai/user/xiaoyu20011021-hub)
 
-## Use Case: <br>
-Developers, students, and mathematical writers use this skill to ask an agent to draft a proof, have a second agent review it for logical gaps and constraint violations, and iterate until accepted or stopped. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional reference files may expose sensitive or unrelated local content to spawned proof and review agents. <br>
-Mitigation: Use specific non-sensitive files as references and avoid whole folders, credentials, private notes, or unrelated documents. <br>
-Risk: The generated proof may still contain mathematical errors if the review loop accepts an invalid argument. <br>
-Mitigation: Treat final proofs as drafts for human mathematical review, especially for high-stakes or publication use. <br>
+## Use Case:
 
+Students, educators, and developers use this skill to generate and critique step-by-step proofs for mathematical statements while preserving requested methods, tools, language, and output constraints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoyu20011021-hub/math-proof) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoyu20011021-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown proof text with round-by-round status and review feedback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include LaTeX-formatted mathematical notation and concise revision summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-selected reference files or folders may expose sensitive local content when included as proof context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only narrow, non-sensitive reference materials and avoid broad directories, credentials, private notes, or project folders with secrets.
+
+Risk: The iterative proof and review loop can add latency or cost, especially with high retry limits.
+
+Mitigation: Set clear retry expectations and stop or lower the retry limit when the proof no longer improves.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoyu20011021-hub/skills/math-proof)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown proof text with LaTeX-compatible mathematical notation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include iterative review feedback, round status, and a final accepted proof or retry-limit failure summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

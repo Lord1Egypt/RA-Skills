@@ -1,41 +1,49 @@
-## Description: <br>
-Checks and reports a DeepSeek API account's balance and availability using a configured API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks a DeepSeek API account balance and reports total, granted, topped-up, and account availability details.
 
-## Publisher: <br>
-[liflife](https://clawhub.ai/user/liflife) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liflife](https://clawhub.ai/user/liflife)
 
-## Use Case: <br>
-Developers and API users use this skill to query DeepSeek account balance, granted balance, topped-up balance, and account availability from a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: If DEEPSEEK_API_KEY is unset, the skill can send ANTHROPIC_AUTH_TOKEN to DeepSeek as a fallback credential. <br>
-Mitigation: Set DEEPSEEK_API_KEY explicitly before use, unset ANTHROPIC_AUTH_TOKEN in the execution environment, or remove the fallback from the command. <br>
-Risk: The skill requires a sensitive API credential to query account balance. <br>
-Mitigation: Run it only in a trusted shell session and avoid pasting or logging the API key. <br>
+## Use Case:
 
+Developers and API users use this skill to check DeepSeek account balance from a terminal when they need current quota, remaining balance, or account availability information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liflife/deepseek-balance) <br>
-- [DeepSeek balance API endpoint](https://api.deepseek.com/user/balance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Bash commands, embedded Python JSON parsing, and sample terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DeepSeek API key in the environment before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: If DEEPSEEK_API_KEY is unset, the skill can fall back to ANTHROPIC_AUTH_TOKEN and send that token to DeepSeek.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated DEEPSEEK_API_KEY, avoid the ANTHROPIC_AUTH_TOKEN fallback, and rotate any Anthropic token previously exposed through this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liflife/skills/deepseek-balance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with bash code blocks and terminal output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DeepSeek API key environment variable for normal use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

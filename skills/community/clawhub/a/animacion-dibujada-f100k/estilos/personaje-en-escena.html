@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Personaje en escena</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ANATOMIA: estilizada — personaje chibi de la ficha (brazos de tubo con mitón); ver nucleo/personaje.js
+// ====================== LO QUE PUEDES CAMBIAR ======================
+// La FICHA la escribe Claude MIRANDO la foto o el dibujo de la persona (ver personajes/ejemplo-*.json).
+// Puede ir aquí mismo (objeto) o como ruta a un .json junto a la pieza: const FICHA = 'mi-ficha.json';
+const FICHA = {
+  "nombre": "Don Chuy, el pastelero", "tipo": "humano",
+  "pelo": { "color": "#3a2a24", "largo": "corto", "estilo": "flequillo" },
+  "piel": "#c98d68", "ojos": "#2a1a14", "labios": "#a2584f",
+  "ropa": { "arriba": "#f6f3ec", "tipo_arriba": "filipina", "abajo": "#2f3448", "tipo_abajo": "pantalon", "zapatos": "#1f1f24" },
+  "accesorios": ["gorro-chef", "delantal", "lentes"]
+};
+const ESTILO = 'vector';                                // 'vector' | 'pixel' | 'papel'
+// Lo que hace, en orden. accion: quieto, caminar, saludar, señalar, saltar, hablar, festejar, pensar, presentar, contar.
+// Opcional en cada una: expresion ('feliz' | 'sorpresa' | 'duda' | 'triste' | 'guiño'), n (hasta cuánto cuenta «contar»).
+// «caminar» va de donde está a «hasta» ('izq' | 'centro' | 'der' | 'fuera-izq' | 'fuera-der' | un número de px) en «dur» segundos:
+// camina DE PERFIL, el paso se ajusta a esa velocidad (los pies no patinan) y al detenerse gira de frente.
+const INICIO = 'fuera-izq';                             // dónde empieza
+const ACCIONES = [
+  { accion: 'caminar', dur: 1.4, hasta: 'centro' },
+  { accion: 'saludar', dur: 1.1, expresion: 'feliz' },
+  { accion: 'hablar', dur: 1.9 },
+  { accion: 'presentar', dur: 1.2 },
+  { accion: 'festejar', dur: 1.0 },
+];
+const FRASE = 'te enseño a vender con lo que ya sabes';   // sale en un globo desde el primer «hablar» ('' = sin globo)
+const COLORES = {
+  pared: '#f6e5d6', piso: '#e3bf9c', acento: '#7b5cd6',  // vector
+  cielo: '#8fd3ff', pasto: '#5cc46a', tierra: '#9a6a3f',  // pixel
+  papel: '#dcc6a4', cerros: ['#9fc9a0', '#6fae7a'],       // papel
+  globo: '#ffffff', tinta: '#1d1a24',
+};
+// ===================================================================
+
+const W = 1080, H = 1920, FPS = 30;
+const INICIOS = []; { let a = .2; for (const x of ACCIONES) { INICIOS.push(a); a += x.dur; } }
+const FIN_ACCIONES = INICIOS[INICIOS.length - 1] + ACCIONES[ACCIONES.length - 1].dur;
+const DUR = +(FIN_ACCIONES + .8).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script src="../nucleo/personaje.js"></script>
+<script>
+let PJ = null;
+window.LISTO = (typeof FICHA === 'string' ? cargarJSON(FICHA) : Promise.resolve(FICHA))
+  .then(f => { PJ = crearPersonaje(f, { estilo: ESTILO, alto: 700 }); });
+
+const PIES_Y = 1420, CENTRO_X = W / 2;                    // pies dentro de la zona segura (abajo 450 libres)
+
+// dónde está parado al empezar cada acción, y hacia dónde mira (sale de los «caminar»)
+const LUGARES = { izq: 300, centro: CENTRO_X, der: W - 300, 'fuera-izq': -300, 'fuera-der': W + 300 };
+const lugarX = v => typeof v === 'number' ? v : (LUGARES[v] ?? CENTRO_X);
+const TRAMOS = []; { let x = lugarX(INICIO), mira = 1, perfil = false;
+  for (const a of ACCIONES) { const x1 = a.accion === 'caminar' ? lugarX(a.hasta ?? 'centro') : x;
+    if (a.accion === 'caminar' && x1 !== x) mira = x1 > x ? 1 : -1;
+    TRAMOS.push({ x0: x, x1, mira, desdePerfil: perfil && a.accion !== 'caminar' }); perfil = a.accion === 'caminar'; x = x1; } }
+
+// ¿qué acción toca en el segundo t? (la última se queda sonando hasta el final)
+function accionEn(t) {
+  let i = 0; for (let k = 0; k < ACCIONES.length; k++) if (t >= INICIOS[k]) i = k;
+  return { i, accion: ACCIONES[i].accion, t: Math.max(0, t - INICIOS[i]) };
+}
+function posicionX(t) {
+  const { i } = accionEn(Math.min(t, FIN_ACCIONES - 1e-6)), T = TRAMOS[i];
+  return lerp(T.x0, T.x1, prog(t, INICIOS[i], INICIOS[i] + ACCIONES[i].dur));   // velocidad constante: el paso calza con ella
+}
+
+// ---------- fondos ----------
+const FONDO = (() => {
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
+  if (ESTILO === 'vector') {
+    g.fillStyle = COLORES.pared; g.fillRect(0, 0, W, H);
+    g.fillStyle = COLORES.piso; g.fillRect(0, PIES_Y - 40, W, H);
+    g.fillStyle = 'rgba(0,0,0,.06)'; g.fillRect(0, PIES_Y - 40, W, 14);
+    // ventana y planta, planos
+    g.fillStyle = '#ffffff'; g.beginPath(); g.roundRect(640, 520, 300, 360, 26); g.fill();
+    g.fillStyle = '#cfe8f7'; g.beginPath(); g.roundRect(662, 542, 256, 316, 16); g.fill();
+    g.fillStyle = '#ffffff'; g.fillRect(786, 542, 8, 316); g.fillRect(662, 696, 256, 8);
+    g.fillStyle = COLORES.acento; g.beginPath(); g.roundRect(118, PIES_Y - 190, 120, 150, 18); g.fill();
+    g.fillStyle = '#4f9a63'; [[150, PIES_Y - 250, 46], [205, PIES_Y - 280, 52], [178, PIES_Y - 330, 44]].forEach(([x, y, r]) => { g.beginPath(); g.ellipse(x, y, r * .55, r, (x - 178) / 90, 0, 7); g.fill(); });
+  } else if (ESTILO === 'papel') {
+    g.drawImage(hacerPapel(COLORES.papel, { viñeta: .22 }), 0, 0);
+    const cerro = (y, col, fase) => { g.beginPath(); g.moveTo(-20, H); for (let x = -20; x <= W + 20; x += 20) g.lineTo(x, y + Math.sin(x / 170 + fase) * 50); g.lineTo(W + 20, H); g.closePath();
+      g.save(); g.translate(5, 7); g.fillStyle = 'rgba(60,40,20,.25)'; g.fill(); g.restore(); g.lineWidth = 9; g.strokeStyle = '#fffdf6'; g.stroke(); g.fillStyle = col; g.fill(); };
+    g.fillStyle = '#fffdf6'; g.beginPath(); g.arc(820, 560, 118, 0, 7); g.fill(); g.fillStyle = '#f3b33d'; g.beginPath(); g.arc(820, 560, 108, 0, 7); g.fill();
+    cerro(PIES_Y - 330, COLORES.cerros[0], 1); cerro(PIES_Y - 60, COLORES.cerros[1], 3.2);
+  }
+  return c;
+})();
+
+function fondoPixel(t) {                                  // el fondo pixel usa el mismo tamaño de pixel que el personaje
+  const px = PJ.tamPixel, gw = Math.ceil(W / px), gh = Math.ceil(H / px);
+  if (!fondoPixel.c) { fondoPixel.c = document.createElement('canvas'); fondoPixel.c.width = gw; fondoPixel.c.height = gh; }
+  const g = fondoPixel.c.getContext('2d'), suelo = Math.round(PIES_Y / px);
+  g.fillStyle = COLORES.cielo; g.fillRect(0, 0, gw, gh);
+  g.fillStyle = '#b5e3ff'; for (let y = Math.round(gh * .3); y < suelo; y += 6) g.fillRect(0, y, gw, 1);
+  [[8, 30, 16], [48, 44, 20], [70, 22, 11]].forEach(([x, y, w], i) => { const xx = Math.floor((x + t * (1.5 + i)) % (gw + 24)) - 12;
+    g.fillStyle = '#ffffff'; g.fillRect(xx, y, w, 3); g.fillRect(xx + 2, y - 2, w - 5, 2); });
+  g.fillStyle = COLORES.pasto; g.fillRect(0, suelo, gw, 5); g.fillStyle = '#3f9b4f'; for (let x = 0; x < gw; x += 3) g.fillRect(x, suelo + (x % 2), 1, 1);
+  g.fillStyle = COLORES.tierra; g.fillRect(0, suelo + 5, gw, gh);
+  g.fillStyle = '#7d5230'; for (let i = 0; i < 50; i++) g.fillRect(Math.floor(hash2(i, 1) * gw), suelo + 7 + Math.floor(hash2(i, 2) * 30), 2, 1);
+  ctx.imageSmoothingEnabled = false; ctx.drawImage(fondoPixel.c, 0, 0, gw * px, gh * px);
+}
+
+// ---------- globo de diálogo ----------
+function globo(t) {
+  const k = ACCIONES.findIndex(a => a.accion === 'hablar'); if (k < 0 || !FRASE) return;
+  const e = back(prog(t, INICIOS[k], INICIOS[k] + .35)); if (e <= 0) return;
+  const aj = autoajuste(FRASE, ESTILO === 'papel' ? LETRA_MANO : LETRA_LIMPIA, 800, 760, 3, 78, 44);
+  const alto = aj.rs.length * aj.size * 1.18 + 80, x = 120, y = 290, w = 840;
+  const cola = [CENTRO_X + 40, y + alto + 90];
+  ctx.save(); ctx.translate(cola[0], cola[1]); ctx.scale(e, e); ctx.translate(-cola[0], -cola[1]);
+  if (ESTILO === 'pixel') {
+    const px = PJ.tamPixel;
+    ctx.fillStyle = COLORES.tinta; ctx.fillRect(x - px, y - px, w + 2 * px, alto + 2 * px);
+    ctx.fillStyle = COLORES.globo; ctx.fillRect(x, y, w, alto);
+    for (let i = 0; i < 5; i++) { ctx.fillStyle = COLORES.tinta; ctx.fillRect(cola[0] - 40 + i * px, y + alto + i * px, (6 - i) * px, px); }
+  } else {
+    if (ESTILO === 'papel') { ctx.fillStyle = 'rgba(60,40,20,.25)'; ctx.beginPath(); ctx.roundRect(x + 6, y + 8, w, alto, 40); ctx.fill(); }
+    ctx.beginPath(); ctx.roundRect(x, y, w, alto, 40); ctx.moveTo(cola[0] - 50, y + alto - 2); ctx.lineTo(cola[0], cola[1] - 30); ctx.lineTo(cola[0] + 20, y + alto - 2);
+    ctx.fillStyle = COLORES.globo; ctx.fill();
+    if (ESTILO === 'vector') { ctx.lineWidth = 6; ctx.strokeStyle = COLORES.tinta; ctx.stroke(); }
+  }
+  ctx.font = aj.font; ctx.fillStyle = COLORES.tinta; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  aj.rs.forEach((r, i) => ctx.fillText(r, W / 2, y + 42 + i * aj.size * 1.18));
+  ctx.restore();
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  if (!PJ) return;
+  if (ESTILO === 'pixel') fondoPixel(t); else ctx.drawImage(FONDO, 0, 0);
+  // al terminar las acciones queda en reposo y QUIETA (el último cuadro no se mueve)
+  const ult = TRAMOS[TRAMOS.length - 1];
+  if (t >= FIN_ACCIONES) PJ.dibujar(ctx, posicionX(t), PIES_Y, { accion: 'quieto', t: 0, mira: ult.mira, expresion: ACCIONES[ACCIONES.length - 1].expresion });
+  else {
+    const a = accionEn(t), A = ACCIONES[a.i], T = TRAMOS[a.i];
+    const velocidad = A.accion === 'caminar' ? Math.abs(T.x1 - T.x0) / A.dur : 0;
+    PJ.dibujar(ctx, posicionX(t), PIES_Y, { accion: a.accion, t: a.t, mira: T.mira, velocidad, desdePerfil: T.desdePerfil, expresion: A.expresion, n: A.n });
+  }
+  globo(t);
+});
+</script>
+</body>
+</html>

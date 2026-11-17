@@ -1,40 +1,54 @@
-## Description: <br>
-Build long-running autonomous agent loops using ClawVault primitives for tasks, projects, memory types, templates, and heartbeats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build long-running autonomous agent loops using ClawVault primitives (tasks, projects, memory types, templates, heartbeats).
 
-## Publisher: <br>
-[G9Pedro](https://clawhub.ai/user/G9Pedro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[g9pedro](https://clawhub.ai/user/g9pedro)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up task-driven autonomous agent workflows with persistent memory, project grouping, customizable templates, and heartbeat-based work queues. It also supports adapting those primitives to existing agent frameworks and shared multi-agent vaults. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recurring heartbeat or cron-driven task loops can continue operating without adequate oversight or shutdown controls. <br>
-Mitigation: Use a private or tightly controlled vault, define which projects and tools the agent may use, require human approval for risky actions, log each run, and configure a clear pause or shutdown mechanism before enabling recurring execution. <br>
-Risk: The workflow depends on installing and using the clawvault npm package. <br>
-Mitigation: Verify the clawvault package before installation and consider pinning or isolating the install. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Adaptation Guide](references/adaptation-guide.md) <br>
-- [Template Customization Guide](references/template-customization.md) <br>
+## Use Case:
 
+Developers and agent builders use this skill to organize autonomous agents around typed memory, task files, project grouping, configurable schemas, and heartbeat-driven work queues. It also guides adaptation across OpenClaw, LangChain, CrewAI, AutoGen, custom loops, and shared-vault multi-agent setups.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash, YAML, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for configuring ClawVault-backed agent autonomy; it does not directly execute commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Autonomous heartbeat loops can execute queued work outside the user's intended scope.
+
+Mitigation: Restrict the task queue to approved work, run agents in a least-privileged sandbox, and require human approval for destructive, external, financial, credential-related, or irreversible actions.
+
+Risk: An unpinned global ClawVault installation can change behavior across environments.
+
+Mitigation: Pin and verify the ClawVault package before installation, and avoid global or privileged installs where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/g9pedro/skills/agent-autonomy-primitives)
+- [Adaptation Guide](references/adaptation-guide.md)
+- [Template Customization Guide](references/template-customization.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow guidance for creating ClawVault-backed memory, tasks, projects, schemas, and heartbeat loops.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

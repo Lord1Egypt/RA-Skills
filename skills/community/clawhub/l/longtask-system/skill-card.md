@@ -1,42 +1,58 @@
-## Description: <br>
-State-file driven long task manager that splits tasks into sequential subtasks, supports multi-agent collaboration, and provides real-time visual monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LongTask System is a state-file driven long task manager that breaks work into sequential subtasks, coordinates multi-agent execution, and renders a visual cockpit for monitoring progress.
 
-## Publisher: <br>
-[noah-1106](https://clawhub.ai/user/noah-1106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noah-1106](https://clawhub.ai/user/noah-1106)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate long-running work by defining ordered task JSON steps, dispatching them to one or more agents, recording completion state, and monitoring progress through logs or a generated cockpit view. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent daemon orchestration can continue dispatching agent work from local task JSON after setup. <br>
-Mitigation: Use trusted task files, monitor daemon logs and inbox state, and keep a clear stop procedure for the screen or setsid process. <br>
-Risk: Subtasks force a new agent conversation, which can drop important constraints from earlier context. <br>
-Mitigation: Repeat critical user requirements and safety constraints inside every task step before execution. <br>
-Risk: Generated cockpit HTML may render untrusted task content without escaping. <br>
-Mitigation: Avoid opening cockpit HTML from untrusted task files until content escaping is fixed or reviewed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate long-running OpenClaw workflows by splitting work into ordered JSON-defined steps, assigning steps to agents, tracking completion, and recovering through an inbox fallback when direct delivery fails.
 
-## Reference(s): <br>
-- [LongTask System ClawHub page](https://clawhub.ai/noah-1106/longtask-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces task orchestration instructions, state-file conventions, daemon commands, inbox recovery guidance, and cockpit rendering guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata) <br>
+Risk: Task JSON files have broad influence over agent sessions and persistent local state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review task files before launching the daemon, restrict which agents and sessions the skill may target, and avoid untrusted task parameters.
+
+Risk: The security guidance identifies jq and HTML escaping issues for shared or untrusted inputs.
+
+Mitigation: Fix the jq and HTML escaping issues before using the skill with shared or untrusted task definitions.
+
+Risk: The skill sends a /new command before subtask execution, which can reset agent conversation context.
+
+Mitigation: For single-agent use, remove /new from the notification message construction if preserving context is required.
+
+## Reference(s):
+
+- [LongTask System on ClawHub](https://clawhub.ai/noah-1106/skills/longtask-system)
+- [Publisher profile](https://clawhub.ai/user/noah-1106)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces task-state updates, inbox entries, logs, and an HTML cockpit when the bundled scripts are executed.]
+
+## Skill Version(s):
+
+1.2.2 (source: ClawHub release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

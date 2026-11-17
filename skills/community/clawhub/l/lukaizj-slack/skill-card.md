@@ -1,42 +1,55 @@
-## Description: <br>
-Slack integration - Send messages, manage channels, and automate Slack workflows <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slack integration - Send messages, manage channels, and automate Slack workflows.
 
-## Publisher: <br>
-[lukaizj](https://clawhub.ai/user/lukaizj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lukaizj](https://clawhub.ai/user/lukaizj)
 
-## Use Case: <br>
-Developers and agent users use this skill to send Slack messages, list channels, and create Slack channels from an OpenClaw workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Slack bot token that grants access to workspace actions. <br>
-Mitigation: Use a least-privilege bot token and store it as a protected environment variable. <br>
-Risk: Tool calls can post real Slack messages and create real Slack channels. <br>
-Mitigation: Review requested channel and message actions before execution in production workspaces. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an agent to Slack so it can send messages, list channels, and create public channels in an authorized workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lukaizj/lukaizj-slack) <br>
-- [Skill homepage](https://github.com/lukaizj/slack-integration-skill) <br>
-- [Slack app setup](https://api.slack.com/apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration] <br>
-**Output Format:** [JSON-like tool results with success flags, error messages, timestamps, channel IDs, or channel lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SLACK_BOT_TOKEN and can post messages or create channels in the connected Slack workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: claw.json and server release metadata) <br>
+Risk: A Slack bot token may expose more workspace actions or channel access than the integration needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with a Slack bot token scoped only to the intended workspace and required permissions.
+
+Risk: Message sending and channel creation are live Slack workspace actions.
+
+Mitigation: Review the target channel, message text, and channel name before invoking write actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lukaizj/skills/lukaizj-slack)
+- [Skill Homepage](https://github.com/lukaizj/slack-integration-skill)
+- [Slack App Configuration](https://api.slack.com/apps)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration, JSON, Guidance]
+
+**Output Format:** [JSON responses from Slack tool calls with setup guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SLACK_BOT_TOKEN with only the Slack scopes needed for the intended workspace actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

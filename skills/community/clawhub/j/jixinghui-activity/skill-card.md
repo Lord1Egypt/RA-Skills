@@ -1,44 +1,59 @@
-## Description: <br>
-Automates participation in a Jixinghui DuMate experience activity, including registration guidance, DuMate setup, screenshots, Baidu Cloud account ID collection, and activity information submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动化参与极星会 DuMate 体验活动，包括报名、体验、截图、获取百度云账号 ID 和提交信息。
 
-## Publisher: <br>
-[kaiyuanjianghu](https://clawhub.ai/user/kaiyuanjianghu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuanjianghu](https://clawhub.ai/user/kaiyuanjianghu)
 
-## Use Case: <br>
-External users use this skill to coordinate the steps required to participate in a Jixinghui DuMate activity. It helps open the relevant service pages, guide client setup and login, prepare full-screen screenshots, collect the Baidu Cloud account ID, and submit the activity form. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to collect and submit account-linked data, including a Baidu Cloud account ID. <br>
-Mitigation: Confirm the destination page before submission and avoid repeating the full account ID in chat or reports. <br>
-Risk: The skill asks for full-screen desktop screenshots, which may expose private windows, notifications, or unrelated personal information. <br>
-Mitigation: Close private content first, then inspect or redact screenshots before uploading them. <br>
-Risk: The security summary says the skill lacks sufficient privacy controls for collecting account-linked data and screenshots. <br>
-Mitigation: Review the skill carefully before installing and use it only when the user is comfortable with those data flows. <br>
+## Use Case:
 
+External users use this skill to guide or automate participation in the 极星会 DuMate experience activity, including event signup, DuMate setup, required screenshots, Baidu Cloud account ID retrieval, and final submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuanjianghu/jixinghui-activity) <br>
-- [DuMate download page](https://www.dumate.cn?track=sfhzjxh) <br>
-- [Baidu Cloud console](https://cloud.baidu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown and terminal text with saved screenshot file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create screenshot filenames under ~/Desktop/jixinghui_screenshots/ and report activity status, account ID status, and submission status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to collect a Baidu Cloud account ID and submit it to an activity form.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have the user verify the activity destination and approve the account ID before submission; do not substitute a phone number, nickname, or unrelated identifier.
+
+Risk: The skill asks for full-screen screenshots, which may capture other apps, notifications, or sensitive desktop content.
+
+Mitigation: Review and redact screenshots before upload, close unrelated apps, and avoid capturing private notifications or documents.
+
+Risk: Security evidence marks the release suspicious because screenshot upload and account-ID collection have weak scoping and consent controls.
+
+Mitigation: Prefer manual final submission unless the destination is clearly trusted and the user has explicitly approved the files and account ID.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiyuanjianghu/skills/jixinghui-activity)
+- [DuMate download page](https://www.dumate.cn?track=sfhzjxh)
+- [Baidu Cloud console](https://cloud.baidu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown or plain-text procedural guidance, status reporting, and optional Python command-line output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or reference three full-screen screenshot files under the user's Desktop and report the collected Baidu Cloud account ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""实战 58 Deep Research 简版 (2026-06-16)
+"""v20.58 Deep Research 简版 (2026-06-16)
 - 3 步: 主 search + LLM 拆 3 子问题 + 3 子 search + LLM 综合
 - 端到端 20-30s
 - 端点: POST /v1/deep_research {query}
@@ -13,7 +13,7 @@ import urllib.error
 from typing import List, Dict, Optional
 from pathlib import Path
 
-LLM_BASE_URL = os.environ.get('LLM_BASE_URL', 'https://api.token-star.cn/v1')
+LLM_BASE_URL = os.environ.get('LLM_BASE_URL', 'https://api.<service-domain>/v1')
 LLM_API_KEY = os.environ.get('LLM_API_KEY', '')
 LLM_MODEL = os.environ.get('LLM_MODEL', 'DeepSeek-V4-Flash')
 LLM_TIMEOUT = int(os.environ.get('LLM_TIMEOUT', '25'))
@@ -28,7 +28,7 @@ if _env_path.exists():
                     k, _, v = line.partition('=')
                     k = k.strip()
                     v = v.strip()
-                    if k == 'LLM_BASE_URL' and v and LLM_BASE_URL == 'https://api.token-star.cn/v1':
+                    if k == 'LLM_BASE_URL' and v and LLM_BASE_URL == 'https://api.<service-domain>/v1':
                         LLM_BASE_URL = v
                     elif k == 'LLM_API_KEY' and v:
                         LLM_API_KEY = v
@@ -83,7 +83,7 @@ def _run_search_subprocess(query: str, top: int = 5) -> List[Dict]:
 import subprocess
 
 def decompose_to_subqueries(query: str, main_results: List[Dict]) -> List[str]:
-    """实战 58: LLM 拆 3 个子问题
+    """v20.58: LLM 拆 3 个子问题
     返回: list of str (3 子问题)
     """
     # 准备上下文: 主 query + top 3 结果标题
@@ -116,7 +116,7 @@ def decompose_to_subqueries(query: str, main_results: List[Dict]) -> List[str]:
 
 def synthesize_report(query: str, main_results: List[Dict], sub_queries: List[str],
                      sub_results_list: List[List[Dict]]) -> Dict:
-    """实战 58: LLM 综合所有结果
+    """v20.58: LLM 综合所有结果
     返回: {summary, key_points, sources}
     """
     # 拼所有结果 + 引用编号
@@ -185,7 +185,7 @@ def synthesize_report(query: str, main_results: List[Dict], sub_queries: List[st
     return result
 
 def deep_research(query: str) -> Dict:
-    """实战 58: 3 步 Deep Research
+    """v20.58: 3 步 Deep Research
     Step 1: 主 search (top 5)
     Step 2: LLM 拆 3 子问题 + 3 子 search
     Step 3: LLM 综合报告

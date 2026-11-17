@@ -1,39 +1,53 @@
-## Description: <br>
-When the user wants to add, optimize, or audit popups or modals for lead capture or offers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in adding, optimizing, or auditing popups and modals for lead capture and offers.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, marketers, and conversion teams use this skill to plan, optimize, or audit popup and modal experiences for lead capture, offers, newsletters, discounts, or lightweight signup flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend popup patterns that may harm user experience, accessibility, mobile SEO, or conversion if applied without context. <br>
-Mitigation: Review proposed timing, dismissal, frequency, mobile behavior, and value exchange before deployment; avoid dark patterns and intrusive mobile interstitials. <br>
+## Use Case:
 
+Developers, designers, and marketing teams use this skill to create or review popup and modal guidance for lead capture, offers, and conversion-oriented user flows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kostja94/popup-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured recommendations and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include offer copy, trigger recommendations, design guidance, and a mobile checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill may activate on generic mentions of modal, popup, lightbox, or overlay when the user intended a different UI or concept.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's popup or modal design intent when the request is ambiguous.
+
+Risk: Popup guidance could lead to intrusive mobile experiences if applied without review.
+
+Mitigation: Review proposed timing, frequency, close controls, and mobile behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/popup-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with offer copy, trigger recommendations, design notes, and a mobile checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

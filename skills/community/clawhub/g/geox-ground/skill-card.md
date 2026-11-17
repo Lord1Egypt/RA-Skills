@@ -1,42 +1,58 @@
-## Description: <br>
-Provides physics-based, data-grounded Earth science reasoning with explicit uncertainty for geology, wells, seismic, petrophysics, and subsurface analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides physics-based, data-grounded Earth science reasoning with explicit uncertainty for geology, wells, seismic, petrophysics, and subsurface analyses.
 
-## Publisher: <br>
-[ariffazil](https://clawhub.ai/user/ariffazil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ariffazil](https://clawhub.ai/user/ariffazil)
 
-## Use Case: <br>
-External users, developers, and domain specialists use this skill to make Earth-domain responses separate observation, derivation, interpretation, and speculation while preserving uncertainty. It is most relevant for geology, wells, seismic interpretation, petrophysics, basin modeling, and other subsurface reasoning tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad activation language can trigger evidence-labeling behavior on generic terms outside a geoscience context. <br>
-Mitigation: Apply the skill when Earth-domain reasoning is relevant, and review unexpectedly activated outputs before relying on them. <br>
-Risk: Geoscience outputs can be mistaken for operational conclusions in wells, seismic interpretation, reserves, or safety-critical workflows. <br>
-Mitigation: Treat outputs as advisory and require qualified human review, source data checks, and explicit authorization before operational use. <br>
+## Use Case:
 
+Geoscience analysts, developers, and agents use this skill to ground geology, wells, seismic, petrophysics, and subsurface reasoning in observations, derived data, explicit interpretation labels, and uncertainty.
 
-## Reference(s): <br>
-- [Geox Ground on ClawHub](https://clawhub.ai/ariffazil/geox-ground) <br>
-- [GEOX Epistemic Labels](references/epistemic-labels.md) <br>
-- [GEOX Hold Conditions](references/hold-conditions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown or plain text with explicit epistemic labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OBS, DER, INT, and SPEC labels to distinguish evidence levels; safety-critical or operational outputs remain advisory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Broad activation terms such as pressure, depth, formation, or structure may influence unrelated answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow routing or confirm geoscience context before applying the skill when terms are ambiguous.
+
+Risk: Subsurface interpretations can be misleading when observations, derived values, interpretations, and speculation are mixed together.
+
+Mitigation: Use the skill's OBS, DER, INT, and SPEC labels and preserve uncertainty bands for quantitative claims.
+
+Risk: Safety-critical geoscience topics such as HPHT wells, unknown pressure regimes, H2S, or CO2 storage require extra review.
+
+Mitigation: Apply the documented hold conditions and pause before making operational recommendations when safety-critical conditions are present.
+
+## Reference(s):
+
+- [GEOX Epistemic Labels Usage Guide](references/epistemic-labels.md)
+- [GEOX Hold Conditions](references/hold-conditions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance with OBS, DER, INT, and SPEC labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or data access; responses should preserve uncertainty and apply hold conditions for under-supported or safety-critical geoscience conclusions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

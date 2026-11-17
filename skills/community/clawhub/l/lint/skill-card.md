@@ -1,41 +1,59 @@
-## Description: <br>
-Lint provides shell commands for recording and searching local lint-related activity logs rather than performing syntax or style checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lint records developer code-quality activity in local log files and provides commands to review, search, export, and summarize that history.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and code reviewers can use this skill to record lint-related checks, formatting notes, fixes, and reports in local timestamped logs, then search or export those records. It should not be relied on to perform linting, style enforcement, syntax checking, or CI gating. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package is presented as a linting and auto-fix tool, but the security review identifies it as a local logbook that does not actually lint, enforce style, fix code, or gate CI. <br>
-Mitigation: Use it only for recording lint-related notes; run trusted linters, formatters, and CI checks separately before relying on results. <br>
-Risk: Users may enter secrets, proprietary code, credentials, or sensitive review details into local logs that can be searched or exported. <br>
-Mitigation: Avoid recording secrets or sensitive code, and review local log and export files before sharing them. <br>
+## Use Case:
 
+Developers and engineers use Lint to keep a timestamped local record of code review, linting, formatting, diff, fix, and report activity, then review, search, or export that history. It is best suited for local activity tracking rather than as a primary code analyzer or auto-fix engine.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/lint) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance and CLI-style text output; exports can be JSON, CSV, or TXT.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries locally under ~/.local/share/lint and can export collected logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: release evidence; artifact metadata reports 2.0.0) <br>
+Risk: The package is labeled as a linting tool but primarily records user-provided developer text in local logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for local activity tracking only, and use a real linter or analyzer for code checks and auto-fixes.
+
+Risk: Local logs and exports can contain secrets, proprietary code snippets, or sensitive review notes.
+
+Mitigation: Do not record sensitive data, and review, protect, or delete files under ~/.local/share/lint before sharing or reuse.
+
+Risk: Exported CSV, JSON, or TXT files may contain untrusted content from another person.
+
+Mitigation: Treat exports as untrusted input and inspect them before importing, executing, or sharing downstream.
+
+## Reference(s):
+
+- [ClawHub Lint Skill](https://clawhub.ai/xueyetianya/skills/lint)
+- [Publisher Profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Terminal text and local JSON, CSV, or TXT export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores logs and exports under ~/.local/share/lint]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release metadata; artifact reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

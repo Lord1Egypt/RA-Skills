@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sleep Routine Coach"
+  short_description: "Short setup for flexible, gentle sleep reminders"
+  default_prompt: "Use $sleep-routine-coach to set up gentle sleep-time reminders without requiring a fixed sleep duration."

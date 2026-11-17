@@ -1,48 +1,63 @@
-## Description: <br>
-Gate Pay payment execution skill for completing merchant charges through Gate Pay when the user has selected Gate Pay, provided complete payment details, and completed payment authorization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate Pay Payment Skill helps agents execute prepared Gate Pay merchant order payments after user intent, required payment details, and Gate payment authorization are verified.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and agents use this skill to complete prepared Gate Pay merchant order charges, including pay-first flows such as HTTP 402, after verifying payment intent, order details, and Gate Pay authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute irreversible Gate Pay charges. <br>
-Mitigation: Use only for trusted merchant orders and verify the exact order ID, amount, currency, merchant context, selected Gate Pay method, and Gate Pay account before allowing payment. <br>
-Risk: Broad activation language could route payment requests too aggressively. <br>
-Mitigation: Require clear user payment intent in the current or immediately previous user turn and block execution when intent, authorization, or required payment fields are missing. <br>
-Risk: The package references mutable external Gate runtime rules that are not pinned inside the package. <br>
-Mitigation: Review the referenced runtime rules before installation and before payment execution in sensitive environments. <br>
-Risk: Duplicate payment attempts can occur if a status check is mistaken for a new charge request. <br>
-Mitigation: Do not charge the same order twice in the conversation context; if no status query tool is available, explain the limitation instead of charging again. <br>
+## Use Case:
 
+External users and their agents use this skill to complete prepared merchant Gate Pay charges in pay-first checkout flows. It produces localized receipts or actionable failure guidance after payment execution.
 
-## Reference(s): <br>
-- [Gate Pay MCP Specification](references/mcp.md) <br>
-- [Gate Pay Payment Scenarios](references/scenarios.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/gate-exchange-pay) <br>
-- [Gate Runtime Rules](https://github.com/gate/gate-skills/blob/master/skills/gate-runtime-rules.md) <br>
-- [Exchange Runtime Rules](https://github.com/gate/gate-skills/blob/master/skills/exchange-runtime-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Localized Markdown receipts, planned-charge summaries, and failure guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the Gate Pay MCP charge tool after explicit payment intent, complete order details, and valid Gate Pay authorization are verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can initiate irreversible Gate Pay charges from an authenticated account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the assistant to show the merchant, order ID, exact amount, currency, and payment method, then obtain fresh explicit approval for those exact details before any charge.
+
+Risk: Broad payment-intent triggers could route ambiguous checkout requests into a payment execution flow.
+
+Mitigation: Block execution unless the user selected Gate Pay, all required charge fields are present, authorization is valid, and current payment intent is explicit.
+
+Risk: Some runtime rules are referenced from mutable external documents rather than fully bundled in the reviewed package.
+
+Mitigation: Review the referenced runtime rules at install and update time, and revalidate behavior before enabling authenticated payment execution.
+
+Risk: A status-check request could be mistaken for permission to charge again.
+
+Mitigation: Do not call the payment tool to infer status; direct the user to Gate payment history or merchant support when no status query tool is available.
+
+## Reference(s):
+
+- [Gate Pay MCP Specification](references/mcp.md)
+- [Gate Pay Payment Scenarios](references/scenarios.md)
+- [Gate Pay Payment Skill on ClawHub](https://clawhub.ai/gate-exchange/skills/gate-exchange-pay)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Localized Markdown receipts and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include merchant order ID, amount, currency, payment status, timestamp, and payment method; voucher fields should appear only when returned by the payment API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

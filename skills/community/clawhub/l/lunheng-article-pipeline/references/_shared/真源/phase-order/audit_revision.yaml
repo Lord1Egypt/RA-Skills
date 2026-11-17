@@ -1,0 +1,45 @@
+# 论衡流程真源 · 第二部分：节点 audit_revision（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: audit_revision   # 别名：文档层「Phase 4.2」
+  phase: "Phase 4.2"
+  phase_seq: 15
+  kind: bounded_loop
+  verdict_scale: four_tier   # v2.12.40：T7 审计报告判定落四档（「本轮无 P0/P1」= 通过，非失败）
+  rerun_after_report: true   # v2.12.40「报告后激活」：前提 = 审计报告已落盘；不得沿用审计进行中的中间态
+  max_rounds: 2
+  rounds_carrier: overview-arbitration   # 轮次契约载体 = pipeline-overview.md「修订回环仲裁规则」generated 块（T5 dispatch 明文不复述轮次数字；架构评审 v3 R2③ 收口）
+  # v2.12.49 M-6：轮次耗尽出口改「三选一」（废「默认走最保守项」fail-open）
+  # 原状：`max_rounds` 用尽且仍有未决 P0/P1/P2（非豁免项）⇒ 程序性资源耗尽被当质量结论
+  #   ⇒ 流水线自动 GO。**对比 G14 Warning 出口（主控暂停 + 3 选 1）设计正确却未复制**。
+  # 现口径：未决 P0/P1/P2（非豁免项）+ max_rounds 用尽 ⇒ **主控暂停 + 主人三选一**（fail-closed，无默认）：
+  #   A. **接受现状 + Acknowledged Limitations**（交付说明必填局限性段）
+  #   B. **破例追加 1 轮**（显式授权，超 max_rounds 上限）
+  #   C. **主人手工润色**（退出论衡流水线）
+  #   三项**无默认**；不得「按最保守项自动继续」；也不得「P2=1 ⇒ 自动接受」。
+  rounds_exhausted_outlet:
+    trigger: max_rounds_used AND has_unresolved_defects
+    unresolved_levels: [P0, P1]   # P2 移除（归 T8 inline 亲修，不触发修订）
+    owner_decision:
+      - id: accept_with_limitations
+        label: 接受现状 + Acknowledged Limitations
+        requires: deliverables.md 加局限性段 + status.md 记 accepted_under_owner_decision
+      - id: extend_one_round
+        label: 破例追加 1 轮
+        requires: 主人在 phase4 节点拍板「授权追加」，不计 max_rounds 上限
+      - id: manual_polish
+        label: 主人手工润色
+        requires: 流水线暂停，退出论衡 agent，主人手动改稿
+    no_default_option: true   # 不得「P2=1 ⇒ 自动接受」 / 不得「按最保守项继续」
+    halt_pending_owner: true
+  input: audits/审计报告-vN.md + drafts/current_draft.md
+  output: drafts/初稿-v{N+1}.md + drafts/修订说明-v{N+1}.md
+  condition_undecidable: report_to_owner   # v2.12.54 R-6：T7 报告不可读/缺失 ⇒ 呈主人（不得静默按未触发跳过）
+  condition: T7_P0_or_P1   # 命中定义：T7 审计报告存在 P0 或 P1 级发现（全 P2/无发现 = 不命中）
+  on_not_triggered: record_not_triggered_in_status   # v2.12.37 门：有 condition 必须声明未触发处置（防「未触发」与「漏跑」不可分）
+  # after_each：`current_draft_sync` 是**真节点 id**（每轮修订后必须重写 current_draft.md，否则 T7/T9 读旧稿 —— 2026-09-12 审计 P0-3）；
+  # `rerun_t7` 为动作名（非节点 id）：重跑 t7_audit。
+  # v2.12.40（业主定案 A1）：**删除 `rerun_g14_if_enabled`** —— G14 不再在每轮修订后复检，改为定稿前只审一次（见 g14_style_gate）。
+  # 机械搬运合并（v2.12.32，实测 P2）：`current_draft_sync` 属纯复制，与相邻实质节点合并可少一个 spawn 失败面（实测 sync 3 次各 52-74k tokens；T2 回填子会话 Agent run failed 零产物）。
+  after_each: [current_draft_sync, rerun_t7]
+  next: t1b_targeted_review   # v2.13.0 P0-1：审计修订退出后先过定向回查窗口，再进 T7.5

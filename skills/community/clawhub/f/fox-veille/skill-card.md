@@ -1,46 +1,64 @@
-## Description: <br>
-RSS feed aggregator, deduplication engine, LLM scoring, and output dispatcher for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches configurable RSS and Atom feeds, deduplicates articles by URL and topic, optionally scores articles with an OpenAI-compatible LLM, and dispatches digests to configured outputs.
 
-## Publisher: <br>
-[qinthqod](https://clawhub.ai/user/qinthqod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinthqod](https://clawhub.ai/user/qinthqod)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to fetch RSS/Atom articles, remove duplicate URLs and topics, optionally score articles with an OpenAI-compatible LLM, and send digests to configured destinations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public RSS content and can pass article text into LLM scoring or digest generation. <br>
-Mitigation: Treat feed text as untrusted content and keep the provided untrusted-content wrapping and prompt guidance in place. <br>
-Risk: Enabled outputs can send digests externally or write files without interaction when scheduled. <br>
-Mitigation: Keep outputs disabled until recipients, file paths, token scope, and companion skills are reviewed. <br>
-Risk: LLM scoring requires an API key when enabled. <br>
-Mitigation: Store API keys in the configured secret file, verify file permissions, and leave LLM scoring disabled unless needed. <br>
+## Use Case:
 
+Developers and operators use this skill to gather recent RSS and Atom articles, remove already-seen or duplicate topics, prepare agent-readable digests, and send them to configured notification or storage channels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qinthqod/fox-veille) <br>
-- [Publisher profile](https://clawhub.ai/user/qinthqod) <br>
-- [Skill homepage](https://github.com/Rwx-G/openclaw-skill-veille) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Cron prompt template](references/cron_prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON and Markdown digests with CLI output and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local digest files and dispatch to Telegram, email, Nextcloud, or file outputs when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional LLM scoring can send feed-derived article text and an API key to the configured OpenAI-compatible endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep scoring disabled unless needed, store the API key in a dedicated secret file, verify file permissions, and use only trusted HTTPS LLM endpoints.
+
+Risk: Configured outputs or cron can dispatch digests without further user interaction.
+
+Mitigation: Review the configuration before enabling outputs or cron, disable unused outputs, and audit dispatch logs for enabled channels.
+
+Risk: RSS source configuration causes network requests from the user's machine to configured feed URLs.
+
+Mitigation: Only add RSS sources that are trusted for the deployment environment and review custom source files before running fetch jobs.
+
+Risk: SMTP fallback can place mail credentials in the output configuration.
+
+Mitigation: Prefer delegated mail-client handling where possible and avoid storing SMTP passwords in the general skill configuration.
+
+## Reference(s):
+
+- [Fox Veille on ClawHub](https://clawhub.ai/qinthqod/skills/fox-veille)
+- [OpenClaw](https://openclaw.ai)
+- [Troubleshooting](references/troubleshooting.md)
+- [Cron prompt template](references/cron_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON digests, wrapped untrusted-content listings, Markdown or text dispatch payloads, and setup or CLI guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetch output includes article metadata, count and skip totals, and an untrusted-content wrapper; optional scoring adds scores, reasons, and ghost picks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

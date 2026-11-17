@@ -1,40 +1,53 @@
-## Description: <br>
-Local Bay Area parking spot research and flip opportunities using place search, web search, browser-based listing review, and local notes for parking availability, resale arbitrage, and local hustle research in Alameda, San Francisco, and Oakland. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BayHustleLocal helps agents research Bay Area parking availability, parking spot arbitrage, resale flips, and local hustle opportunities using local places and current listing research.
 
-## Publisher: <br>
-[aaronmda](https://clawhub.ai/user/aaronmda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronmda](https://clawhub.ai/user/aaronmda)
 
-## Use Case: <br>
-External users use this skill to research Bay Area parking availability, parking spot sublet or flip opportunities, Craigslist and garage-sale resale leads, and other local side-gig opportunities. The skill helps gather current local listings and summarize prices, availability, and arbitrage potential. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may consult web, marketplace, browser, and local-note sources beyond the user's intended scope. <br>
-Mitigation: Before use, specify the permitted sites, marketplaces, and local notes, and exclude private or logged-in pages unless explicitly intended. <br>
-Risk: Parking permit resale, sublet, or arbitrage recommendations may conflict with local rules or platform terms. <br>
-Mitigation: Verify each opportunity against applicable municipal rules, property policies, permit terms, and marketplace terms before acting. <br>
+## Use Case:
 
+External users use this skill to guide agents through local Bay Area research for parking spots, possible sublet opportunities, Craigslist or marketplace resale flips, garage sale leads, and related side-gig analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aaronmda/bayhustlelocal) <br>
+### Deployment Geography for Use:
 
+United States (Bay Area, California)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research summary with recommendations and cited local listing context when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guidance; may include local pricing, opportunity summaries, and compliance cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may prompt broad searches of workspace files, memory, private conversations, credentials, or logged-in marketplace accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to user-approved listing research and specifically approved parking-data files; avoid arbitrary workspace, memory, credential, or private account access.
+
+Risk: The skill may scrape or inspect third-party listing sites without clear consent or scope limits.
+
+Mitigation: Confirm the user's intended listing sources and access permissions before using browser automation or scraping workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaronmda/skills/bayhustlelocal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain-text research summaries with links, prices, opportunity analysis, and suggested search actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on current local listings and user-approved access to listing sites or local data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Parse, generate, and transform XML with correct namespace handling and encoding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse, generate, and transform XML with correct namespace handling and encoding.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and technical writers use this skill as a compact XML reference for namespace handling, encoding, escaping, XPath, structure, and validation while parsing, generating, or transforming XML. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: XML parser settings or generated XML transformations may affect important files or security-sensitive systems. <br>
-Mitigation: Review parser settings and generated XML transformations before applying them to important files or security-sensitive systems. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/xml) <br>
-- [XML Schema namespace](http://www.w3.org/2001/XMLSchema) <br>
+## Use Case:
 
+Developers and engineers use this skill for guidance when parsing, generating, validating, and transforming XML, especially around namespaces, encodings, escaping, whitespace, XPath, document structure, and schema validation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, external tool use, data access, or persistence is requested by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: XML-processing code or commands produced during later tasks could be incorrect or unsuitable for a specific parser, schema, or production environment.
+
+Mitigation: Review generated XML code and commands before running them, and validate documents against the intended schema and parser behavior.
+
+## Reference(s):
+
+- [ClawHub XML skill page](https://clawhub.ai/ivangdavila/skills/xml)
+- [W3C XML Schema namespace](http://www.w3.org/2001/XMLSchema)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with XML, XPath, and schema snippets when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only skill; does not add tools, automation, or external service calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

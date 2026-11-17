@@ -1,46 +1,64 @@
-## Description: <br>
-Social By IDM helps agents create, schedule, publish, update, delete, and analyze social media posts across Instagram, Facebook, X/Twitter, LinkedIn, and TikTok through the Social by InstantDM API and hosted MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, schedule, manage, and analyze social media posts across Instagram, Facebook, X/Twitter, LinkedIn, and TikTok through the Social by InstantDM API and hosted MCP server.
 
-## Publisher: <br>
-[sanjaykhanssk](https://clawhub.ai/user/sanjaykhanssk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanjaykhanssk](https://clawhub.ai/user/sanjaykhanssk)
 
-## Use Case: <br>
-External users, social media operators, and developers use this skill to connect agents to Social by InstantDM for drafting, scheduling, cross-posting, publishing, deleting, status checks, and analytics across connected social accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish, schedule, edit, and delete posts on connected social accounts through the service API. <br>
-Mitigation: Use scoped API keys, prefer draft mode for review, and confirm before publishing live content. <br>
-Risk: An exposed workspace API key could allow unauthorized actions against connected social accounts. <br>
-Mitigation: Store the key like a password, do not search local secret stores for it, and revoke the key from the dashboard when access is no longer needed. <br>
-Risk: Platform-specific delete, status, and publishing behavior can produce partial results or leave content live. <br>
-Mitigation: Check per-platform status, inspect delete results, and verify important changes against the real social feed. <br>
+## Use Case:
 
+External users, developers, and social media operators use this skill to draft, schedule, publish, update, delete, check status, and retrieve analytics for posts across connected social accounts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sanjaykhanssk/skills/social-by-idm) <br>
-- [Server-resolved GitHub source](https://github.com/sanjaykhanssk/social-by-idm/tree/main/skills/social-by-idm) <br>
-- [Social by InstantDM API documentation](https://socialbyidm.com/docs) <br>
-- [Social by InstantDM MCP server](https://socialbyidm.com/mcp) <br>
-- [Social by InstantDM agents overview](https://socialbyidm.com/agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, JSON examples] <br>
-**Output Format:** [Markdown with JSON configuration and REST request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Social by InstantDM workspace API key; recommends draft mode and explicit confirmation before live publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can publish or delete content on connected social accounts using a workspace API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the narrowest required API-key scopes and require explicit user confirmation before publish or delete actions.
+
+Risk: Credential-bearing connector URLs can expose the API key if they are shared, logged, or screenshotted.
+
+Mitigation: Prefer the `X-Api-Key` header over `?key=...`, avoid sharing URLs that contain credentials, and revoke exposed keys.
+
+Risk: Unpinned update commands can pull changed skill content.
+
+Mitigation: Verify the package and version before running update commands or install from a reviewed source.
+
+Risk: The artifact says the skill may be outdated more than 60 days after its 2026-06-24 last-updated date.
+
+Mitigation: Check the current Social by InstantDM API and MCP documentation before use and update the skill when needed.
+
+## Reference(s):
+
+- [Server-resolved source import](https://github.com/sanjaykhanssk/social-by-idm/tree/main/skills/social-by-idm)
+- [Social by InstantDM API Docs](https://socialbyidm.com/docs)
+- [Social by InstantDM MCP Tools](https://socialbyidm.com/mcp)
+- [Social by InstantDM Agents Overview](https://socialbyidm.com/agents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, REST, MCP configuration, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in API calls that create, schedule, publish, update, delete, or analyze social media content when used with valid credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

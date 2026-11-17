@@ -1,38 +1,52 @@
-## Description: <br>
-Search and explore ProductBoard features, products, and feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and explore ProductBoard features, products, and feedback
 
-## Publisher: <br>
-[robertoamoreno](https://clawhub.ai/user/robertoamoreno) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[robertoamoreno](https://clawhub.ai/user/robertoamoreno)
 
-## Use Case: <br>
-Product managers, product operations teams, and agents use this skill to search a Productboard workspace, inspect products and components, find features by keyword or status, and retrieve customer feedback notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose product, feature, and customer feedback data from a connected Productboard workspace to the agent session. <br>
-Mitigation: Connect only Productboard workspaces or accounts whose data is appropriate for the agent session, and confirm the available Productboard connector or tools are trusted before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/robertoamoreno/productboard-search) <br>
-- [Project homepage](https://github.com/robertoamoreno/openclaw-productboard) <br>
+## Use Case:
 
+Product and engineering teams use this skill to search a ProductBoard workspace, inspect feature and product hierarchy, and find customer feedback notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls] <br>
-**Output Format:** [Text guidance with Productboard tool names, filters, and example queries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses available Productboard search, list, get, hierarchy, and note tools; results may include direct Productboard links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may be able to read ProductBoard product plans, feature details, and customer feedback data.
+
+Mitigation: Install this skill only in workspaces where the agent is allowed to read that ProductBoard data.
+
+Risk: The underlying ProductBoard connector and credentials determine the actual data available to the agent.
+
+Mitigation: Scope connector credentials and ProductBoard permissions to the minimum workspace data needed for the intended use.
+
+## Reference(s):
+
+- [Productboard Search on ClawHub](https://clawhub.ai/robertoamoreno/skills/productboard-search)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown guidance with tool names and example queries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-oriented ProductBoard search and lookup guidance; accessible data depends on configured ProductBoard connector credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

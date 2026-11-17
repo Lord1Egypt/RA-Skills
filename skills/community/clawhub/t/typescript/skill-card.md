@@ -1,43 +1,57 @@
-## Description: <br>
-Write type-safe TypeScript with proper narrowing, inference patterns, and strict mode best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes, reviews, and debugs type-safe TypeScript: type errors, narrowing, generics, tsconfig strictness, and declaration files.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to get concise TypeScript guidance for narrowing, inference, discriminated unions, utility types, declaration files, and JavaScript migration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TypeScript recommendations may be too general for a project's compiler settings, framework, runtime, or package versions. <br>
-Mitigation: Review generated guidance against the project's tsconfig, bundler setup, dependency versions, and existing code conventions before applying it. <br>
-Risk: Migration or declaration-file advice can affect type coverage without changing runtime behavior, which may hide integration problems until build or test time. <br>
-Mitigation: Run the TypeScript compiler and relevant tests after applying migration, declaration, or module-boundary changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose TypeScript compiler errors, design safer type models, configure tsconfig, write declaration files, manage JS-to-TS migrations, and address TypeScript module or performance issues.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ivangdavila/typescript) <br>
-- [Generic Traps](artifact/generics.md) <br>
-- [Utility Type Traps](artifact/utility-types.md) <br>
-- [Declaration File Traps](artifact/declarations.md) <br>
-- [Migration Traps](artifact/migration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline TypeScript examples and configuration advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden behavior was identified in the reviewed artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: The skill may persist TypeScript preferences and prior context in ~/Clawic/data/typescript/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or delete files in that folder if persistent personalization is not desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/typescript)
+- [Clawic TypeScript Skill Page](https://clawic.com/skills/typescript)
+- [Runtime Boundaries](artifact/boundaries.md)
+- [Declaration File Traps](artifact/declarations.md)
+- [Error Decoding](artifact/errors.md)
+- [Generic Traps](artifact/generics.md)
+- [Modules & Interop](artifact/modules.md)
+- [Performance](artifact/performance.md)
+- [tsconfig](artifact/tsconfig.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript code, shell-command examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a disclosed per-user preference-memory folder at ~/Clawic/data/typescript/.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

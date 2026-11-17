@@ -1,41 +1,57 @@
-## Description: <br>
-Manage Komodo infrastructure, including servers, Docker deployments, stacks, builds, and procedures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Komodo infrastructure - servers, Docker deployments, stacks, builds, and procedures. Use when user asks about server status, container management, deployments, builds, or any Komodo-related infrastructure tasks.
 
-## Publisher: <br>
-[weird-aftertaste](https://clawhub.ai/user/weird-aftertaste) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[weird-aftertaste](https://clawhub.ai/user/weird-aftertaste)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to inspect and administer Komodo-managed servers, deployments, stacks, builds, repositories, and procedures through the Komodo Core API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete live Komodo infrastructure. <br>
-Mitigation: Use least-privilege, environment-scoped Komodo API keys and require explicit human approval before stop, restart, deploy, delete, run-build, or run-procedure actions. <br>
-Risk: Stack creation can upload compose files and environment-file contents to a Komodo environment. <br>
-Mitigation: Review compose and env files before use, keep production credentials separate, and upload secrets only when intended for the target environment. <br>
-Risk: Komodo API credentials grant infrastructure access. <br>
-Mitigation: Set credentials only in trusted sessions, avoid sharing command output that may expose environment details, and rotate or revoke keys when access is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Komodo API Documentation](https://komo.do/docs) <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to inspect Komodo-managed servers, deployments, stacks, builds, procedures, and repositories, and to run authenticated Komodo Core API actions when managing infrastructure.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and plain-text or JSON API output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KOMODO_ADDRESS, KOMODO_API_KEY, and KOMODO_API_SECRET environment variables for API-backed commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can perform production-impacting Komodo execute and write actions, including deploy, stop, restart, run-procedure, create-stack, and delete-stack.
+
+Mitigation: Use least-privilege Komodo API credentials and review every execute or write command before running it.
+
+Risk: Komodo API credentials may be sent to an untrusted or plaintext endpoint if KOMODO_ADDRESS is misconfigured.
+
+Mitigation: Use only trusted HTTPS Komodo Core endpoints and avoid plaintext HTTP.
+
+Risk: Stack creation may upload compose and environment file contents to Komodo.
+
+Mitigation: Review compose and env files before create-stack and avoid uploading unintended secrets or configuration.
+
+## Reference(s):
+
+- [Komodo API documentation](https://komo.do/docs)
+- [ClawHub skill page](https://clawhub.ai/weird-aftertaste/skills/komodo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and terminal/API response text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KOMODO_ADDRESS, KOMODO_API_KEY, and KOMODO_API_SECRET for authenticated Komodo Core API operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

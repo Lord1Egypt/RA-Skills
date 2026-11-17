@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 420" width="100%" role="img">
+  <title>投票示意图</title>
+  <desc>远零点自动投对票,近零点可能投反票,但它们的总和不如远零点</desc>
+
+  <rect x="40" y="30" width="280" height="180" rx="8" fill="#04342C" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="180" y="60" text-anchor="middle" class="th" fill="#9FE1CB">远零点</text>
+  <text x="180" y="85" text-anchor="middle" class="ts" fill="#5DCAA5">自动投对票 ✓</text>
+
+  <rect x="70" y="100" width="220" height="30" rx="4" fill="#1D9E75" fill-opacity="0.3" stroke="#5DCAA5" stroke-width="0.5"/>
+  <text x="180" y="120" text-anchor="middle" class="ts" fill="#9FE1CB">σ&lt;0.5 侧: 推σ增大 ↑</text>
+
+  <rect x="70" y="140" width="220" height="30" rx="4" fill="#1D9E75" fill-opacity="0.3" stroke="#5DCAA5" stroke-width="0.5"/>
+  <text x="180" y="160" text-anchor="middle" class="ts" fill="#9FE1CB">σ&gt;0.5 侧: 推σ减小 ↓</text>
+
+  <rect x="70" y="175" width="220" height="25" rx="4" fill="#9FE1CB" fill-opacity="0.2"/>
+  <text x="180" y="193" text-anchor="middle" class="ts" fill="#9FE1CB">贡献 = 正票 ✓ 大</text>
+
+  <rect x="360" y="30" width="280" height="180" rx="8" fill="#4B1528" stroke="#D85A30" stroke-width="0.5"/>
+  <text x="500" y="60" text-anchor="middle" class="th" fill="#F0997B">近零点</text>
+  <text x="500" y="85" text-anchor="middle" class="ts" fill="#D85A30">可能投反票 ?</text>
+
+  <rect x="390" y="100" width="220" height="30" rx="4" fill="#E24B4A" fill-opacity="0.2" stroke="#D85A30" stroke-width="0.5"/>
+  <text x="500" y="120" text-anchor="middle" class="ts" fill="#F0997B">σ&lt;0.5 侧: 可能推σ减小 ↓ (反票!)</text>
+
+  <rect x="390" y="140" width="220" height="30" rx="4" fill="#E24B4A" fill-opacity="0.2" stroke="#D85A30" stroke-width="0.5"/>
+  <text x="500" y="160" text-anchor="middle" class="ts" fill="#F0997B">σ&gt;0.5 侧: 可能推σ增大 ↑ (反票!)</text>
+
+  <rect x="390" y="175" width="220" height="25" rx="4" fill="#F0997B" fill-opacity="0.15"/>
+  <text x="500" y="193" text-anchor="middle" class="ts" fill="#F0997B">贡献 = 反票 ? 小</text>
+
+  <rect x="130" y="240" width="420" height="50" rx="8" fill="#FAECE7" fill-opacity="0.1" stroke="#D85A30" stroke-width="1"/>
+  <text x="340" y="262" text-anchor="middle" class="th" fill="#D85A30">关键不等式</text>
+  <text x="340" y="282" text-anchor="middle" class="ts" fill="#F0997B">|近零点反票总和| &lt; |远零点正票总和|</text>
+
+  <text x="340" y="320" text-anchor="middle" class="ts" fill="#D3D1C7">若一直成立 → 总票力永远正确 → 碗底始终在 σ=0.5 → RH 成立</text>
+  <text x="340" y="345" text-anchor="middle" class="ts" fill="#D3D1C7">若有一次不成立 → 碗底可能被推开 → RH 可能不成立</text>
+
+  <text x="340" y="390" class="ts" fill="#9FE1CB">数值验证(1225点): 不等式在所有测试点成立 ✓</text>
+  <text x="340" y="410" class="ts" fill="#D85A30">解析证明: 待完成</text>
+</svg>

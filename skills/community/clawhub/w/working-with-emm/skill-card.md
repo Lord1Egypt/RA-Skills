@@ -1,51 +1,65 @@
-## Description: <br>
-Working with Emm AI helps agents use Emm AI over MCP to store and retrieve long-term personal context, follow standing instructions, maintain output wiki artifacts, run recurring mission-control cycles, and optionally coordinate connected remote actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Working with Emm AI helps an agent use Emm AI over MCP to recall and save long-term user context, manage standing instructions and wiki outputs, and run recurring task cycles when those tools are enabled.
 
-## Publisher: <br>
-[gregertw](https://clawhub.ai/user/gregertw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gregertw](https://clawhub.ai/user/gregertw)
 
-## Use Case: <br>
-External users and their agents use this skill to make Emm AI-backed memory, standing instructions, output wiki records, recurring task cycles, and optional connected actions available across conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place broad long-term personal context into Emm AI memory. <br>
-Mitigation: Install only when long-term memory is intended, review what gets saved, and avoid storing sensitive details that do not need to persist. <br>
-Risk: The skill can guide agents through connected-device or service actions when remote-action tools are enabled. <br>
-Mitigation: Grant remote-action permissions only when needed and require explicit instruction before external actions such as email, calendar, or remote methods. <br>
-Risk: Dashboard comments and task entries can become trusted work sources for future agent runs. <br>
-Mitigation: Treat dashboard comments as commands that agents may later follow and keep untrusted content out of trusted task surfaces. <br>
-Risk: CLI setup can involve durable OAuth credential storage. <br>
-Mitigation: Secure the manual OAuth credentials file or avoid CLI setup when local credential storage is not acceptable. <br>
+## Use Case:
 
+External users and agent operators use this skill to give an AI assistant durable personal context, searchable memories, managed output drafts, standing instructions, and recurring mission-control workflows through the Emm AI MCP connector.
 
-## Reference(s): <br>
-- [Working with Emm AI on ClawHub](https://clawhub.ai/gregertw/working-with-emm) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Memory Best Practices](references/memory-best-practices.md) <br>
-- [Emm AI Mission Control Reference Card](references/mission-control.md) <br>
-- [Shared Memories from Connections](references/shared-memories.md) <br>
-- [Remote Action Execution](references/remote-actions.md) <br>
-- [Task Builder](references/task-builder.md) <br>
-- [Custom Memory Categories](references/custom-categories.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with tool names, links, tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to create or update Emm AI memories, outputs, instructions, task logs, dashboards, and action drafts through MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter, changelog, server release evidence) <br>
+Risk: The skill grants broad persistent authority over personal memories, outputs, tasks, and standing instructions through Emm AI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is intended, review memory sharing settings, and avoid saving sensitive data unless explicitly desired.
+
+Risk: Connected actions may affect external services when configured.
+
+Mitigation: Keep action-triggering workflows under explicit user approval and review drafted outputs before they are sent or applied.
+
+Risk: The manual OAuth helper can place credentials in the local mcporter vault.
+
+Mitigation: Prefer platform-managed OAuth; when manual OAuth is necessary, protect ~/.mcporter with owner-only permissions and revoke credentials when no longer needed.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gregertw/skills/working-with-emm)
+- [Setup Guide](references/setup.md)
+- [Mission Control](references/mission-control.md)
+- [Tool Surface](references/tool-surface.md)
+- [Memory Best Practices](references/memory-best-practices.md)
+- [Shared Memories](references/shared-memories.md)
+- [Task Builder](references/task-builder.md)
+- [Remote Actions](references/remote-actions.md)
+- [Custom Categories](references/custom-categories.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline tool names, MCP workflow instructions, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the agent to call Emm AI MCP tools and produce memories, wiki outputs, task updates, logs, drafts, or standing-instruction changes when the connector is available.]
+
+## Skill Version(s):
+
+2.5.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

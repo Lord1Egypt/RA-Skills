@@ -1,48 +1,60 @@
-## Description: <br>
-Uses Jiekou AI to run multimodal tasks including text-to-image, image editing, text-to-video, image-to-video, text-to-speech, speech-to-text, and multimodal understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes Jiekou AI multimodal tasks for text-to-image, image editing, text-to-video, image-to-video, text-to-speech, and speech-to-text.
 
-## Publisher: <br>
-[ximasadila](https://clawhub.ai/user/ximasadila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ximasadila](https://clawhub.ai/user/ximasadila)
 
-## Use Case: <br>
-Developers and agent users use this skill to call Jiekou's cloud API for media generation, media editing, speech conversion, transcription, and basic multimodal analysis from chat-driven requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, audio, images, and video references may be sent to Jiekou's cloud API. <br>
-Mitigation: Use the skill only for media and prompts approved for external processing, and review Jiekou privacy and pricing terms before submitting sensitive or paid tasks. <br>
-Risk: The skill documentation permits API keys in chat messages and local config files. <br>
-Mitigation: Do not paste API keys into chat; use a protected secret or environment variable with a dedicated low-privilege key and restrict permissions on any local config file. <br>
-Risk: Generation and transcription requests can consume paid API quota. <br>
-Mitigation: Confirm the intended task, model, and expected cost before execution, and use account-level limits where available. <br>
+## Use Case:
 
+Developers and end users use this skill to send multimodal generation, editing, speech synthesis, and transcription requests to Jiekou AI. It is suited for workflows that need generated media URLs, audio output, transcription text, and progress updates around asynchronous video tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ximasadila/jiekou-multimodal) <br>
-- [API reference](artifact/references/api-reference.md) <br>
-- [Examples](artifact/references/examples.md) <br>
-- [Test cases](artifact/references/test-cases.md) <br>
-- [Jiekou API base URL](https://api.jiekou.ai) <br>
-- [Jiekou API key management](https://jiekou.ai/settings/key-management) <br>
-- [Jiekou pricing](https://jiekou.ai/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands, JSON request examples, API result URLs, and progress updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return generated image, video, or audio URLs and may poll asynchronous video tasks until completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: API keys may be exposed if users paste real keys into chat or create config files without protecting file permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables or a local config file with restricted permissions, and do not paste real API keys into chat.
+
+Risk: Prompts, media URLs, images, audio, or video content are sent to Jiekou AI for processing.
+
+Mitigation: Review Jiekou AI data handling terms before use and avoid sending sensitive, regulated, or confidential content unless approved.
+
+Risk: The security evidence reports unsafe API-key handling and insufficient explanation of third-party data sharing.
+
+Mitigation: Review the skill before installation and add user-facing disclosure or local policy controls where the deployment requires them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ximasadila/skills/jiekou-multimodal)
+- [API Reference](artifact/references/api-reference.md)
+- [Examples](artifact/references/examples.md)
+- [Test Cases](artifact/references/test-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown responses with API request examples, configuration guidance, progress messages, and generated media or transcription results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return URLs for generated images, videos, or audio; video generation uses asynchronous task polling.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

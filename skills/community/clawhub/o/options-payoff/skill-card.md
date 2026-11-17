@@ -1,42 +1,63 @@
-## Description: <br>
-Generate an interactive options payoff curve chart with dynamic parameter controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate an interactive options payoff curve chart with dynamic parameter controls.
 
-## Publisher: <br>
-[himself65](https://clawhub.ai/user/himself65) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[himself65](https://clawhub.ai/user/himself65)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to turn described or screenshot-based options positions into interactive payoff and theoretical P&L visualizations with adjustable pricing assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated payoff charts may rely on defaulted or misread strikes, premiums, expiry, spot price, volatility, or broker screenshot details. <br>
-Mitigation: Review extracted inputs and generated chart assumptions before relying on the visualization for trading or risk decisions. <br>
-Risk: Broker screenshots can contain sensitive account or position information. <br>
-Mitigation: Avoid sharing unnecessary account details and review screenshots for sensitive data before using them with the skill. <br>
+## Use Case:
 
+External users and agents use this skill to turn described or screenshotted options positions into interactive payoff visualizations, including expiry and theoretical P&L curves, live risk stats, and controls for strikes, premiums, volatility, DTE, and spot price.
 
-## Reference(s): <br>
-- [Options Payoff on ClawHub](https://clawhub.ai/himself65/options-payoff) <br>
-- [Options Strategy Payoff Formulas](references/strategies.md) <br>
-- [Black-Scholes JavaScript Implementation](references/bs_code.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, guidance] <br>
-**Output Format:** [Markdown response with an interactive HTML widget and embedded JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include chart controls for strikes, premium, quantity, multiplier, implied volatility, days to expiry, risk-free rate, and spot price.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The remote install command is not pinned to a reviewed commit or immutable release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted, pinned version or reviewed commit.
+
+Risk: Broker screenshots may contain account details unrelated to payoff visualization.
+
+Mitigation: Redact unrelated account details before sharing screenshots with an agent.
+
+Risk: The skill can infer missing trading inputs such as spot, premium, IV, DTE, multiplier, and strikes, which may make the chart misleading if defaults are wrong.
+
+Mitigation: Verify all inferred values before relying on the chart for trading decisions.
+
+Risk: Broad financial-screenshot activation rules may trigger the skill when an options payoff visualization is not intended.
+
+Mitigation: Use the skill only when an options payoff visualization is explicitly desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/himself65/skills/options-payoff)
+- [Options Strategy Payoff Formulas](references/strategies.md)
+- [Black-Scholes JavaScript Implementation](references/bs_code.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, markdown, guidance]
+
+**Output Format:** [Interactive HTML widget with concise Markdown explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided or inferred options parameters to render dynamic payoff and theoretical P&L charts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

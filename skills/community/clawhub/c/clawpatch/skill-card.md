@@ -1,46 +1,59 @@
-## Description: <br>
-Clawpatch guides an agent through using the Clawpatch CLI to review repositories, read findings, choose fix workflows, and avoid unsafe review or fix patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill teaches an agent how to operate the Clawpatch CLI for automated repository review, structured findings, and controlled per-finding fixes when Clawpatch is explicitly requested.
 
-## Publisher: <br>
-[tmchow](https://clawhub.ai/user/tmchow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tmchow](https://clawhub.ai/user/tmchow)
 
-## Use Case: <br>
-Developers and coding agents use this skill when Clawpatch is explicitly requested for repository review, triage, per-finding fixes, or PR handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to run terminal commands and create local .clawpatch review state in a repository. <br>
-Mitigation: Use it only in repositories where Clawpatch review state and terminal execution are expected, and review generated state before continuing. <br>
-Risk: Provider CLIs or optional API credentials may be needed for review and fix workflows. <br>
-Mitigation: Configure credentials outside the skill, avoid interactive login delegation, and limit credential exposure to the intended provider. <br>
-Risk: User-directed fixes or PR creation can change code or propose changes based on false-positive findings. <br>
-Mitigation: Review findings before allowing fixes, confirm each finding is real, and keep changes within the minimum fix scope. <br>
-Risk: Parallel fixing with shared Clawpatch state can create conflicting or misplaced patches. <br>
-Mitigation: Use separate worktrees for parallel scanner-only fixes and reserve Clawpatch's own fix loop for sequential workflows. <br>
+## Use Case:
 
+Developers and coding agents use this skill when a user explicitly asks to run Clawpatch, review its findings, choose a scanner-only or full-cycle fix path, and avoid known workflow hazards around provider CLIs and repository state.
 
-## Reference(s): <br>
-- [Clawpatch Skill Page](https://clawhub.ai/tmchow/clawpatch) <br>
-- [tmchow Publisher Profile](https://clawhub.ai/user/tmchow) <br>
-- [Clawpatch Homepage](https://clawpatch.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires terminal access and may rely on a configured provider CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: frontmatter and server release metadata) <br>
+Risk: Installing and running Clawpatch requires trusting an npm package and the skills installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pinned package versions, avoid running install commands as root, and review the install source before use.
+
+Risk: Provider CLIs can access repository contents during review or fix workflows.
+
+Mitigation: Authenticate providers deliberately, choose providers appropriate for the repository, and treat full-repo review as code exposure.
+
+Risk: Automated fixes can modify project code or act on false-positive findings.
+
+Mitigation: Require user selection before fixing, keep worktrees clean for full-cycle fixes, validate changes with tests, and avoid parallel Clawpatch fixes on shared state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tmchow/skills/clawpatch)
+- [Clawpatch homepage](https://clawpatch.ai)
+- [Clawpatch upstream project](https://github.com/openclaw/clawpatch)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented parsing instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational instructions for an agent; does not itself install Clawpatch or authenticate provider CLIs.]
+
+## Skill Version(s):
+
+0.1.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,51 @@
-## Description: <br>
-Enable agents to collaborate using shared memory, team inboxes, and user artifacts via Fulcra's versioned file storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated - renamed to fulcra-workspaces. Use the fulcra-workspaces skill instead.
 
-## Publisher: <br>
-[fulcra](https://clawhub.ai/user/fulcra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fulcra](https://clawhub.ai/user/fulcra)
 
-## Use Case: <br>
-Agents and developers use this skill to coordinate agent teams through Fulcra shared storage, including artifact uploads, team inbox messaging, and shared progress and task records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared team storage can persist or expose user context, generated files, or workspace content to other agents. <br>
-Mitigation: Share content only after explicit authorization and only with agents that are authorized to receive it. <br>
-Risk: Optional heartbeats or cron jobs can repeatedly read, write, archive, or delete team files beyond the user's intent. <br>
-Mitigation: Before enabling automation, define the team name, agent name, frequency, duration, and allowed file actions. <br>
-Risk: Uploaded artifacts or team messages may contain secrets or private workspace data. <br>
-Mitigation: Review content before upload and avoid storing secrets or private material unless every receiving agent is authorized. <br>
+## Use Case:
 
+Developers and agents use this deprecated skill as a pointer from fulcra-agent-teams to the replacement fulcra-workspaces skill. It helps users avoid relying on removed team coordination documentation and locate the renamed workspace skill.
 
-## Reference(s): <br>
-- [Fulcra Agent Teams on ClawHub](https://clawhub.ai/fulcra/skills/fulcra-agent-teams) <br>
-- [Fulcra Agent Teams CLI Reference](references/fulcra-agent-teams-cli.md) <br>
-- [Fulcra CLI Documentation](https://raw.githubusercontent.com/fulcradynamics/agent-skills/main/skills/fulcra-onboarding/references/fulcra-cli.md) <br>
-- [Open Knowledge Format Specification](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Fulcra file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Fulcra-backed team, member, inbox, archive, task, session, knowledge, and artifact files when authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.6 (source: server release metadata) <br>
+Risk: Users may expect fulcra-agent-teams to provide active team coordination behavior even though this release is only a deprecated pointer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install fulcra-workspaces separately when Fulcra shared workspace features are needed.
+
+## Reference(s):
+
+- [Fulcra Agent Teams on ClawHub](https://clawhub.ai/fulcra/skills/fulcra-agent-teams)
+- [Fulcra Agent Skills Repository](https://github.com/fulcradynamics/agent-skills)
+- [fulcra-workspaces skill](https://github.com/fulcradynamics/agent-skills/tree/main/skills/fulcra-workspaces)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with install and replacement-skill references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated placeholder; no executable code or hidden behavior reported by security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

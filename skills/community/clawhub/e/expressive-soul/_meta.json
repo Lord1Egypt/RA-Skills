@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn79h3qxq754x91h3p6ct9176h83cbw4",
+  "ownerId": "kn70pywhg0fyz996kpa8xj89s57yhv26",
   "slug": "expressive-soul",
   "version": "1.0.0",
-  "publishedAt": 1774198728088
+  "publishedAt": 1742736000000,
+  "license": "MIT",
+  "author": "@chenye1313",
+  "tags": ["expression", "self-improvement", "reflection", "mao-style", "chinese"]
 }

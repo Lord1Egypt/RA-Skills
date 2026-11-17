@@ -1,41 +1,58 @@
-## Description: <br>
-Automates X/Twitter account growth tasks for @Gsdata5566, including verified-follower follow-back, new-follower follow-back, drafted comments, and friendly replies on growth-oriented posts after the user logs into X. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Twitter/X operations for @Gsdata5566, including following back verified followers and new followers, drafting deeper comments, and posting friendly growth-oriented replies through a user-authenticated X web session.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-Social media operators use this skill to run follow-back and comment workflows for a logged-in X account. It helps draft public replies and execute OpenClaw browser automation scripts for targeted account-growth interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can follow accounts and post public replies from a logged-in X account with limited safeguards. <br>
-Mitigation: Install only for intentional live X account operation, confirm the correct account is logged in, and review target posts and comment text before execution. <br>
-Risk: Automated follow-back and public reply workflows can create platform-rule or reputation risk. <br>
-Mitigation: Keep batches small and consider X platform rules before running follow or comment actions. <br>
+## Use Case:
 
+Social media operators and account owners use this skill to automate routine Twitter/X engagement tasks for a specific logged-in account, including follow-backs and short public replies. It is intended for controlled account operations where the user has intentionally logged in and authorized the session.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/kelcey2023/zeelin-twitter-x-autopost) <br>
-- [Target X Account](https://x.com/Gsdata5566) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell command invocations and short status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces public comment drafts and OpenClaw browser automation script invocations for X follow-back and reply workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill can follow accounts or post replies from whichever X account is currently logged into the browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the active account before each run and use it only with an account the user intentionally authenticated for this purpose.
+
+Risk: Immediate follow-back automation may create unwanted follows or exceed the user's intended scope.
+
+Mitigation: Require explicit confirmation, set conservative per-run limits, and review target lists before executing follow-back commands.
+
+Risk: Public replies may be posted without adequate review.
+
+Mitigation: Preview and approve every reply draft before posting, and avoid repetitive or promotional text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelcey2023/skills/zeelin-twitter-x-autopost)
+- [Target X account](https://x.com/Gsdata5566)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and short status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces public-reply drafts and command-oriented browser automation steps for an authenticated X session.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

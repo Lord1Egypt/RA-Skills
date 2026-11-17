@@ -1,39 +1,52 @@
-## Description: <br>
-Reddit content creation assistant for indie developers and product builders that creates community-appropriate posts, researches subreddits, logs published links, and analyzes Reddit performance data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reddit content creation assistant for indie developers and product builders that drafts posts, researches communities, and tracks performance data via the Reddit API.
 
-## Publisher: <br>
-[EdisonChenAI](https://clawhub.ai/user/EdisonChenAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edisonchenai](https://clawhub.ai/user/edisonchenai)
 
-## Use Case: <br>
-External developers, indie builders, and product teams use this skill to draft Reddit posts, research suitable communities, record published post URLs, and summarize post performance for future content decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to run local startup and workflow scripts that were not included in the reviewed package. <br>
-Mitigation: Inspect or supply the referenced scripts before allowing automatic startup commands, and run the skill only in a controlled directory. <br>
-Risk: Local memory files may retain launch plans, internal URLs, product strategy, post drafts, and performance history. <br>
-Mitigation: Avoid storing confidential material unless local retention is acceptable, and review memory files before sharing or exporting the workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EdisonChenAI/reddit-assistant) <br>
+## Use Case:
 
+External developers, founders, and product builders use this skill to draft Reddit posts, research target subreddits, log published posts, and generate performance reports from Reddit activity.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local memory files for configuration, drafts, subreddit profiles, post logs, and monthly performance reports when the referenced helper scripts are available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter states 2.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review reports unresolved shell scripts and Bash command interpolation that could execute unintended commands.
+
+Mitigation: Audit all referenced scripts before installation and invoke commands without shell interpolation of user-controlled content.
+
+Risk: The skill may save local product data, subreddit profiles, drafts, post logs, and analytics reports.
+
+Mitigation: Warn users before writing local files and review saved memory files for sensitive product or campaign information.
+
+## Reference(s):
+
+- [Reddit Assistant on ClawHub](https://clawhub.ai/edisonchenai/skills/reddit-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and saved local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save drafts, product configuration, subreddit profiles, post logs, and performance reports when the referenced scripts are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

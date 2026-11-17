@@ -1,40 +1,58 @@
-## Description: <br>
-Analyze your MCP server config to estimate token consumption per tool. Identify which tools are blowing up your context window, get per-role groupings to keep subagents under the limit, and generate optimized role-specific MCP configs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes an MCP configuration to estimate tool-schema token usage, identify high-cost tools, and suggest per-role groupings for keeping agent contexts under a target limit.
 
-## Publisher: <br>
-[abhinas90](https://clawhub.ai/user/abhinas90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhinas90](https://clawhub.ai/user/abhinas90)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit MCP configuration token footprint, identify high-cost tools, and plan smaller role-specific MCP setups for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Token estimates and role groupings are approximate and may not match the exact tokenizer or runtime behavior of every agent environment. <br>
-Mitigation: Review the audit results and test revised MCP configurations before relying on them in production workflows. <br>
-Risk: The auditor reads local MCP configuration files and its report may reveal server names, tool names, and workflow structure. <br>
-Mitigation: Run it only against intended config paths and review reports before sharing them outside the workspace. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit local MCP configs, understand tool-schema token footprint, and plan role-specific MCP server groupings before running subagents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abhinas90/mcp-token-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Human-readable audit report or JSON summary with token estimates, role groupings, and optimization suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write the selected report format to a user-specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The audit reads the MCP config file selected by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against intended local config files and install it only if that access is acceptable.
+
+Risk: Reports may expose private development details such as server names, tool names, paths, and configuration structure.
+
+Mitigation: Review and redact audit output before sharing it outside the intended audience.
+
+Risk: The skill suggests role groupings but does not generate ready-to-use role-specific MCP config files.
+
+Mitigation: Treat groupings as planning guidance and manually create and validate any derived MCP configs.
+
+## Reference(s):
+
+- [MCP Token Auditor on ClawHub](https://clawhub.ai/abhinas90/skills/mcp-token-audit)
+- [Publisher profile: abhinas90](https://clawhub.ai/user/abhinas90)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Human-readable audit report or JSON, with command examples in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports estimated token totals, per-server and per-role breakdowns, top token consumers, and suggested role groupings; it does not create ready-to-use role-specific MCP config files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

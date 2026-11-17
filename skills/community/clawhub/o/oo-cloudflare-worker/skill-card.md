@@ -1,44 +1,55 @@
-## Description: <br>
-Cloudflare Worker (workers.cloudflare.com). Use this skill for any Cloudflare Worker request, including reading, creating, updating, and deleting Cloudflare Worker resources through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloudflare Worker (workers.cloudflare.com). Use this skill for ANY Cloudflare Worker request — reading, creating, updating, and deleting data. Whenever a task involves Cloudflare Worker, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Cloudflare Workers, scripts, settings, and secrets through the OOMOL oo CLI after inspecting the live connector schema for each action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloudflare Worker source, settings, account data, and secret-related reads may expose sensitive information. <br>
-Mitigation: Check Cloudflare account scopes before use and treat source and secret-related reads as sensitive. <br>
-Risk: Write, upload, secret change, and delete actions can alter or remove live Cloudflare Worker resources. <br>
-Mitigation: Require exact target and payload confirmation before uploads, writes, secret changes, or deletes. <br>
+## Use Case:
 
+Developers use this skill to inspect and manage Cloudflare Workers, scripts, builds, settings, and secrets through their connected Cloudflare account. It can also create, update, upload, or delete Worker resources when the user approves the specific change.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/skills/oo-cloudflare-worker) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [Cloudflare Workers](https://workers.cloudflare.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads; connector responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live action schema inspection before execution; write, upload, secret, and destructive actions require exact user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The first-time setup fallback can run a remote CLI installer without prior approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the installation before running it; prefer a pinned, verified release and check whether setup adds other agent skills.
+
+Risk: Write and destructive actions can change, overwrite, or remove Cloudflare Worker resources.
+
+Mitigation: Confirm the exact payload and effect before writes, and confirm the target and obtain explicit approval before destructive actions.
+
+## Reference(s):
+
+- [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/)
+- [Cloudflare Workers](https://workers.cloudflare.com)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [Structured JSON responses summarized in text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected Cloudflare account and the selected action.]
+
+## Skill Version(s):
+
+1.0.9 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

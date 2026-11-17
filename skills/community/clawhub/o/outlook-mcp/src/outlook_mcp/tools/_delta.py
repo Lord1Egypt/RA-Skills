@@ -19,16 +19,92 @@ Tokens are *not* persisted by outlook-mcp — that's the caller's job (an
 agent decides where it wants to store its watermark). We pass the raw
 ``@odata.deltaLink`` / ``@odata.nextLink`` URL through as the opaque
 cursor string.
+
+That last point is why ``require_graph_url`` exists: because the cursor
+lives outside this process and comes back in as a request URL carrying the
+mailbox bearer token, it is untrusted input, and every URL that would
+receive the token is checked against ``graph.microsoft.com`` first.
 """
 
 from __future__ import annotations
 
+import re
+from datetime import datetime, timezone
 from typing import Any
+from urllib.parse import unquote, urlsplit
 
 import httpx
 
+from outlook_mcp.errors import ForeignCursorError, UntrustedURLError, graph_json
+from outlook_mcp.graph import GRAPH_HOST  # the only host that may receive a Graph token
+from outlook_mcp.throttle import send_with_retry
+
 GRAPH_BASE = "https://graph.microsoft.com/v1.0/"
 GRAPH_TOKEN_SCOPE = "https://graph.microsoft.com/.default"
+
+
+# Control characters and spaces: the set that different URL parsers disagree
+# about. A real Graph cursor contains none of them.
+_FORBIDDEN_URL_CHARS = re.compile(r"[\x00-\x20\x7f-\xa0]")
+
+# The one endpoint each delta tool may request, as a whole path. A cursor is a
+# full URL that comes back from outside this process, so pinning the host alone
+# left every tool willing to GET any Graph path it was handed — `/me/messages`
+# through the calendar tool, say — and return the result.
+#
+# `/me` and nothing else: it is how this server asks, and Graph answers in the
+# spelling it was asked in, so no other mailbox path is a cursor issued here. A
+# key segment is written either `/id` or `('id')` — Graph returns
+# `mailFolders('inbox')` for a first URL that said `mailFolders/inbox`. Case is
+# ignored because Graph ignores it in these segment names, and ASCII-only
+# because without `re.ASCII`, `IGNORECASE` also folds a few non-ASCII letters
+# onto these.
+_KEY = r"(?:/[^/]+|\('[^'/]+'\))"
+_FLAGS = re.IGNORECASE | re.ASCII
+_DELTA_ENDPOINTS: dict[str, re.Pattern[str]] = {
+    "mail": re.compile(rf"/v1\.0/me/mailFolders{_KEY}/messages/delta", _FLAGS),
+    "calendar": re.compile(r"/v1\.0/me/calendarView/delta", _FLAGS),
+    "contacts": re.compile(r"/v1\.0/me/contacts/delta", _FLAGS),
+}
+
+# A dot segment, or a separator, hiding in a path — plain or percent-encoded.
+# An HTTP client collapses `..` before sending, so a path that matches the
+# pattern above as written could still arrive somewhere else.
+_PATH_TRICKS = re.compile(r"(?:^|/)(?:\.|%2e){1,2}(?:/|$)|%2f|%5c|\\", re.IGNORECASE)
+
+# The query options each tool's delta link may carry, lower-cased. Graph folds
+# every option of a sync round into its `$deltatoken` or `$skiptoken`, so the
+# links it issues carry one of those; the rest are what this server's own first
+# request sends to that endpoint (`mail_delta`, `calendar_delta`,
+# `contacts_delta`). Pinning the path alone left a cursor free to add options —
+# `$select`, `$expand` — that Graph never issued and this server never asks for.
+_STATE_TOKENS = frozenset({"$deltatoken", "$skiptoken"})
+_DELTA_QUERY_OPTIONS: dict[str, frozenset[str]] = {
+    "mail": _STATE_TOKENS | {"$top", "$filter"},
+    "calendar": _STATE_TOKENS | {"startdatetime", "enddatetime"},
+    "contacts": _STATE_TOKENS,
+}
+
+
+def _query_is_the_endpoints_own(query: str, resource: str) -> bool:
+    """Whether every option in ``query`` is one ``resource``'s delta links carry.
+
+    Names are compared percent-decoded and in any ASCII case, so a real link is
+    not refused for spelling an option `%24skiptoken` or `$deltaToken`; either
+    way the name must still be one listed above. Only the names are checked: the
+    values are Graph's tokens and this server's own first-request values.
+    """
+    if not query:
+        return True
+    allowed = _DELTA_QUERY_OPTIONS[resource]
+    for option in query.split("&"):
+        name = unquote(option.partition("=")[0])
+        # ASCII first: `str.lower()` folds a few non-ASCII letters (the Kelvin
+        # sign, say) onto ASCII ones, and the names are ASCII.
+        if not name.isascii() or name.lower() not in allowed:
+            return False
+    return True
+
 
 # Safety cap multiplier — bound a single tool call to at most this many
 # items even when Graph keeps handing us more ``@odata.nextLink`` pages
@@ -37,10 +113,106 @@ GRAPH_TOKEN_SCOPE = "https://graph.microsoft.com/.default"
 PAGE_SIZE_CAP_MULTIPLIER = 4
 
 
+def parse_graph_datetime(value: str) -> datetime | None:
+    """Parse a Graph ISO 8601 string to an aware UTC datetime. ``None`` on failure.
+
+    Graph hands us strings like ``"2026-05-21T10:00:00Z"`` (mail
+    received times) and ``"2026-05-22T14:00:00.0000000"`` (event
+    dateTime — note the trailing fractional zeros and no zone). We
+    normalize both to aware UTC.
+    """
+    if not value:
+        return None
+    s = value.strip()
+    # Strip trailing Z → +00:00 for fromisoformat compatibility.
+    if s.endswith("Z"):
+        s = s[:-1] + "+00:00"
+    try:
+        dt = datetime.fromisoformat(s)
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
+
 def _bearer_token(credential: Any) -> str:
     """Mint a Graph access token from an azure-identity credential."""
     tok = credential.get_token(GRAPH_TOKEN_SCOPE)
     return tok.token
+
+
+def require_graph_url(url: str, *, source: str, resource: str | None = None) -> str:
+    """Return ``url`` if it is an https Graph URL, else refuse.
+
+    With ``resource`` ("mail", "calendar" or "contacts") the path must also be
+    that tool's delta endpoint — see ``_DELTA_ENDPOINTS``. The host is checked
+    first either way: an off-Graph URL is the worse failure and gets its own
+    error.
+
+    Every URL this module requests carries the mailbox bearer token, and two of
+    them arrive from outside: the caller's ``delta_token`` and the
+    ``@odata.nextLink`` read back out of a response body. Neither is trustworthy
+    — an agent that reads mail can be told what cursor to use — so the host is
+    checked before the token is attached, not after.
+
+    Parsed, not string-matched, for the same reason
+    ``resolve_attachment_path`` resolves instead of comparing substrings: a
+    ``startswith`` test on the Graph prefix passes
+    ``https://graph.microsoft.com@evil.example/`` (whose real host is
+    ``evil.example``) and ``https://graph.microsoft.com.evil.example/``.
+
+    Parsing alone is not enough either, because parsers disagree. ``urlsplit``
+    deletes tab/CR/LF before parsing while an HTTP client does not, so the two
+    can read different hosts out of one string. The characters that cause the
+    disagreement are refused outright, and the comparison is against the whole
+    ``netloc`` rather than ``hostname`` so userinfo and an explicit port — the
+    other two classic sources of parser differentials — are refused with it.
+    Graph emits neither in a deltaLink.
+
+    ``source`` names where the URL came from so the refusal says which cursor to
+    throw away.
+    """
+    if url is not None and not isinstance(url, str):
+        # A cursor is a URL string. Anything else is refused here rather than
+        # failing in the string handling below as an unexplained crash.
+        raise UntrustedURLError(source, str(url))
+    candidate = (url or "").strip()
+    if not candidate:
+        raise UntrustedURLError(source, url)
+
+    # ``urlsplit`` silently deletes tab, CR and LF before parsing, so
+    # ``https://evil.example\t@graph.microsoft.com/x`` reads as Graph here and
+    # as something else to an HTTP client. Rather than try to agree with every
+    # parser, refuse the characters that make them disagree.
+    if _FORBIDDEN_URL_CHARS.search(candidate):
+        raise UntrustedURLError(source, url)
+
+    try:
+        parsed = urlsplit(candidate)
+    except ValueError as exc:
+        # A host urlsplit cannot parse is not a host we are willing to send a
+        # token to.
+        raise UntrustedURLError(source, url) from exc
+
+    # ``netloc``, not ``hostname``: equality also rules out userinfo and an
+    # explicit port, neither of which Graph puts in a deltaLink, and both of
+    # which are classic ways to make two parsers read different hosts.
+    if parsed.scheme.lower() != "https" or parsed.netloc.lower() != GRAPH_HOST:
+        raise UntrustedURLError(source, url)
+
+    if resource is not None:
+        endpoint = _DELTA_ENDPOINTS[resource]
+        if (
+            _PATH_TRICKS.search(parsed.path)
+            or not endpoint.fullmatch(parsed.path)
+            or not _query_is_the_endpoints_own(parsed.query, resource)
+        ):
+            raise ForeignCursorError(source, url, resource)
+
+    # Return what was checked, not what was passed in — validating one string
+    # and sending another is how a check gets bypassed.
+    return candidate
 
 
 def format_delta_item(raw: dict, normal_formatter) -> dict:
@@ -68,6 +240,7 @@ async def fetch_delta_pages(
     initial_url: str,
     delta_token: str | None,
     page_size: int,
+    resource: str,
     headers: dict[str, str] | None = None,
     timeout: float = 30.0,
 ) -> tuple[list[dict], str | None, bool]:
@@ -105,10 +278,19 @@ async def fetch_delta_pages(
         page_size = 1
     cap = page_size * PAGE_SIZE_CAP_MULTIPLIER
 
-    url: str = delta_token if delta_token else initial_url
+    # Check the host before minting the token, so a poisoned cursor costs a
+    # refusal rather than a request.
+    url: str = (
+        require_graph_url(delta_token, source="delta_token", resource=resource)
+        if delta_token
+        else require_graph_url(initial_url, source="initial_url", resource=resource)
+    )
     base_headers = {
         "Authorization": f"Bearer {_bearer_token(credential)}",
         "Accept": "application/json",
+        # httpx decompresses transparently; delta pages are large and highly
+        # compressible, and polling agents fetch them constantly.
+        "Accept-Encoding": "gzip",
     }
     if headers:
         base_headers.update(headers)
@@ -119,9 +301,11 @@ async def fetch_delta_pages(
 
     async with httpx.AsyncClient(timeout=timeout) as client:
         while True:
-            r = await client.get(url, headers=base_headers)
+            # Retry the delta GET on 429/503 (this raw-httpx path bypasses the
+            # SDK's kiota RetryHandler, so it must honor Retry-After itself).
+            r = await send_with_retry(client, "GET", url, headers=base_headers)
             r.raise_for_status()
-            body = r.json()
+            body = graph_json(r)
 
             page_items = body.get("value") or []
             collected.extend(page_items)
@@ -131,12 +315,18 @@ async def fetch_delta_pages(
 
             if delta_link:
                 # Reached the end of this sync round. The deltaLink is the
-                # cursor for the *next* round.
-                next_token = delta_link
+                # cursor for the *next* round — validated before we return it so
+                # a poisoned link is never stored by the caller and replayed.
+                next_token = require_graph_url(
+                    delta_link, source="@odata.deltaLink", resource=resource
+                )
                 has_more = False
                 break
 
             if next_link:
+                next_link = require_graph_url(
+                    next_link, source="@odata.nextLink", resource=resource
+                )
                 if len(collected) >= cap:
                     # Hit the per-call cap mid-sync. Hand the nextLink back
                     # so the caller resumes from where we stopped.

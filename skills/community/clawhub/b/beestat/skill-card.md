@@ -1,40 +1,58 @@
-## Description: <br>
-Query ecobee thermostat data via Beestat API including temperature, humidity, air quality (CO2, VOC), sensors, and HVAC runtime. Use when user asks about home temperature, thermostat status, air quality, or heating/cooling usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query ecobee thermostat data via Beestat API including temperature, humidity, air quality (CO2, VOC), sensors, and HVAC runtime.
 
-## Publisher: <br>
-[mjrussell](https://clawhub.ai/user/mjrussell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mjrussell](https://clawhub.ai/user/mjrussell)
 
-## Use Case: <br>
-External users and home automation operators use this skill to query ecobee thermostat, sensor, air quality, and HVAC runtime information through the Beestat CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Skill outputs may reveal private home occupancy, temperature, air quality, thermostat, and HVAC usage details. <br>
-Mitigation: Use the skill only in trusted sessions and avoid sharing command output in public transcripts, logs, or support tickets. <br>
-Risk: The skill depends on an external npm CLI and a Beestat API key. <br>
-Mitigation: Install only if you trust the beestat-cli package, store BEESTAT_API_KEY as an environment variable, and do not paste the key into prompts or command output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Beestat](https://beestat.io) <br>
-- [ClawHub Beestat release](https://clawhub.ai/mjrussell/beestat) <br>
+## Use Case:
 
+External users and home automation operators use this skill to check ecobee thermostat status, sensor readings, air quality, HVAC runtime, and related Beestat analytics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the beestat CLI and BEESTAT_API_KEY environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses `BEESTAT_API_KEY`, which can grant access to thermostat and household analytics data if exposed.
+
+Mitigation: Store the API key in a private environment, avoid logging or committing it, and rotate it if exposure is suspected.
+
+Risk: Command output may reveal private household information such as occupancy, sensor history, temperature patterns, and HVAC runtime.
+
+Mitigation: Treat command output as private data and avoid sharing it in public logs, screenshots, or transcripts.
+
+Risk: The skill depends on the external `beestat-cli` binary.
+
+Mitigation: Verify the installed package is the intended `beestat-cli` package and consider pinning a reviewed version before deployment.
+
+## Reference(s):
+
+- [Beestat homepage](https://beestat.io)
+- [ClawHub skill page](https://clawhub.ai/mjrussell/skills/beestat)
+- [Publisher profile](https://clawhub.ai/user/mjrussell)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may return text or JSON output from the Beestat CLI.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Sends local images, files, audio, and video to Feishu through nanobot's message tool, with attachment upload and message type handling delegated to the Feishu channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to send local images, files, audio, and video to Feishu through nanobot's message tool, with attachments supplied through the media field.
 
-## Publisher: <br>
-[xinyuqinfeng](https://clawhub.ai/user/xinyuqinfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinyuqinfeng](https://clawhub.ai/user/xinyuqinfeng)
 
-## Use Case: <br>
-Developers and operators using nanobot with Feishu use this skill to send local media or file attachments to the current Feishu chat or a specified chat_id without manually calling Feishu APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user may send a sensitive or unintended local file to Feishu. <br>
-Mitigation: Verify the file path, file contents, and recipient or chat_id before sending attachments. <br>
-Risk: Feishu credentials or nanobot configuration could be exposed if copied into chat or shared with others. <br>
-Mitigation: Keep ~/.nanobot/config.json private and avoid sending secrets or personal data unless authorized. <br>
+## Use Case:
 
+Developers and nanobot users use this skill to prepare Feishu attachment messages for the current chat or a specified chat_id. It helps the agent place local file paths in media, select supported attachment types, and avoid sending only path text in content.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Security Guide](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, JSON examples] <br>
-**Output Format:** [Markdown with JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local file paths in the media field and an already configured nanobot Feishu channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and skill.json) <br>
+Risk: Local paths placed in media upload the actual local file contents to Feishu and share them with the current or specified chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the file contents and recipient or chat_id before sending; avoid sending secrets, credentials, configuration files, or private documents.
+
+Risk: Feishu credentials and nanobot configuration can be exposed if users share app secrets or mishandle ~/.nanobot/config.json.
+
+Mitigation: Keep ~/.nanobot/config.json private, restrict local access to the current user, and do not disclose appSecret values in chat.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xinyuqinfeng/skills/nanobot-feishu-send)
+- [README](artifact/README.md)
+- [Chinese README](artifact/README.zh-CN.md)
+- [Security guidance](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, text]
+
+**Output Format:** [Markdown guidance with JSON message examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance focuses on local file paths, the media field, optional Feishu chat_id targeting, and supported attachment extensions.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

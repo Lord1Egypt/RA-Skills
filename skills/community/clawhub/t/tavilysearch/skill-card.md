@@ -1,45 +1,56 @@
-## Description: <br>
-Tavily Search helps agents run web searches, extract page content, crawl sites, create research reports, and check Tavily usage through the Tavily API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tavily Search lets agents use Tavily for web search, content extraction, site crawling, deep research, and API usage checks.
 
-## Publisher: <br>
-[raydoomed](https://clawhub.ai/user/raydoomed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raydoomed](https://clawhub.ai/user/raydoomed)
 
-## Use Case: <br>
-Developers and agent builders use this skill to give agents Tavily-backed live web search, URL extraction, website crawling, research-report generation, and usage lookup capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, URLs, crawl targets, and research prompts are sent to Tavily. <br>
-Mitigation: Use the skill only for data you are comfortable sending to Tavily, and avoid submitting secrets or internal-only URLs. <br>
-Risk: Broad crawls or deep research requests can consume Tavily credits quickly. <br>
-Mitigation: Use domain and path filters, conservative crawl limits, and usage checks to monitor credit consumption. <br>
-Risk: The skill requires a Tavily API key. <br>
-Mitigation: Keep TAVILY_API_KEY private and store it only in the intended local configuration. <br>
+## Use Case:
 
+Developers and agent builders use this skill to retrieve current web information, extract page content, crawl sites, produce research reports, and inspect Tavily API usage from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Tavily Search Skill Page](https://clawhub.ai/raydoomed/tavilysearch) <br>
-- [Tavily Website](https://tavily.com/) <br>
-- [Tavily API Documentation](references/api-docs.md) <br>
-- [Tavily Usage Endpoint](https://docs.tavily.com/documentation/api-reference/endpoint/usage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text, Markdown, or JSON returned from Tavily API-backed commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include search result snippets, extracted page content, crawl summaries, research reports with citations, usage metrics, and Tavily credit usage when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and SKILL.md version history, released 2026-03-15) <br>
+Risk: Queries, URLs, crawl targets, and research prompts are sent to Tavily's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, private URLs, internal hostnames, or confidential research prompts to Tavily.
+
+Risk: Site crawling can traverse external pages by default and consume API credits.
+
+Mitigation: Use crawl limits plus domain and path filters before running broad crawl jobs.
+
+## Reference(s):
+
+- [Tavily API Reference](references/api-docs.md)
+- [Tavily Website](https://tavily.com/)
+- [Tavily Usage API Documentation](https://docs.tavily.com/documentation/api-reference/endpoint/usage)
+- [ClawHub Skill Page](https://clawhub.ai/raydoomed/skills/tavilysearch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON responses from Tavily-backed command-line workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY; requests may consume Tavily API credits.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and SKILL.md version update)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

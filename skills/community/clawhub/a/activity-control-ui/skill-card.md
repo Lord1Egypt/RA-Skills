@@ -1,40 +1,61 @@
-## Description: <br>
-Anime-style real-time activity dashboard with a virtual avatar for OpenClaw that displays agent activities, session status, token usage, and ongoing tasks in a local web UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activity Control UI provides an anime-style local dashboard for OpenClaw that shows agent activity, session status, token usage, and current tasks in real time.
 
-## Publisher: <br>
-[rudagebil11-jpg](https://clawhub.ai/user/rudagebil11-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rudagebil11-jpg](https://clawhub.ai/user/rudagebil11-jpg)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run a local OpenClaw activity dashboard that visualizes current work, token usage, task state, and live activity messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local dashboard server exposes control and file access paths that need review before installation. <br>
-Mitigation: Bind the server to localhost, avoid exposing it through tunnels or LAN interfaces, and review or restrict the static file handler before use. <br>
-Risk: Control actions from the dashboard could be invoked by unintended clients if the server is exposed. <br>
-Mitigation: Require a strong unguessable token for any control action and keep the dashboard reachable only from trusted local clients. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run a local web dashboard for monitoring OpenClaw activity, context usage, active tasks, and status updates during an agent session.
 
-## Reference(s): <br>
-- [ClawHub Activity Control Ui Release Page](https://clawhub.ai/rudagebil11-jpg/activity-control-ui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown usage guidance plus Node.js commands, local web UI files, JSON status responses, and WebSocket activity messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local HTTP and WebSocket dashboard server, with activity broadcasts accepted through the bundled Node.js helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The unauthenticated local server can expose agent status and activity if reachable from an untrusted network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted machines and networks, prefer binding to 127.0.0.1, and add authentication before exposing it beyond the local host.
+
+Risk: Static file serving path containment may allow unintended files to be served.
+
+Mitigation: Restrict served paths to the intended asset directory and verify path containment before deployment.
+
+Risk: The dashboard loads an external Google Fonts stylesheet, which may be unsuitable for privacy-sensitive or offline environments.
+
+Mitigation: Remove the external font request or self-host the font when privacy, network isolation, or offline operation matters.
+
+Risk: The ws dependency is resolved through a non-default npm mirror in the lockfile.
+
+Mitigation: Update the dependency from a trusted registry and verify lockfile integrity before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rudagebil11-jpg/skills/activity-control-ui)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Local web dashboard with JSON status responses, WebSocket activity messages, and CLI broadcast commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Displays recent activity history, token usage, task state, and session status; requires Node.js and the ws package.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

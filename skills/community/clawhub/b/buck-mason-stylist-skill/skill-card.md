@@ -1,53 +1,75 @@
-## Description: <br>
-Personal shopping skill for Buck Mason. Stock-checks (online + nearby store), wardrobe gap analysis, season- and event-aware outfit suggestions, AI try-on lookbooks, and one-shot MPP checkout via link-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal shopping skill for Buck Mason that supports stock checks, wardrobe gap analysis, season- and event-aware outfit suggestions, AI try-on lookbooks, and one-shot MPP checkout via link-cli.
 
-## Publisher: <br>
-[nickmerwin](https://clawhub.ai/user/nickmerwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickmerwin](https://clawhub.ai/user/nickmerwin)
 
-## Use Case: <br>
-External Buck Mason shoppers and their agents use this skill to check live stock, build outfit recommendations from profile, wardrobe, and event context, generate try-on or editorial lookbooks, and optionally complete MPP checkout after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Buck Mason storefront, payment, shipping, and local data-transfer availability. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use personal profile data, including sizes, zip codes, photos, and contact or shipping details for selected workflows. <br>
-Mitigation: Keep profile.md minimal and provide shipping details or photos only for workflows that require them. <br>
-Risk: The skill can generate and publish try-on lookbooks that may expose personal imagery or partner vote data. <br>
-Mitigation: Use local-only output or --no-voting for private lookbooks, and only enable auto-publishing when the chosen host's privacy posture is acceptable. <br>
-Risk: The optional MPP checkout path can complete purchases through @stripe/link-cli. <br>
-Mitigation: Leave @stripe/link-cli uninstalled unless agent-driven checkout is desired, and require explicit item, total, shipping, and return-policy confirmation before payment. <br>
-Risk: Account-wide order history may involve tokens or email magic links. <br>
-Mitigation: Prefer guest order-code lookup, avoid saving JWTs, and require explicit authorization before any email MCP retrieval. <br>
+## Use Case:
 
+External shoppers and shopping agents use this skill to check Buck Mason inventory, create personalized outfit and lookbook recommendations, manage order tracking or returns, and run explicitly confirmed agent-driven checkout flows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/nickmerwin/buck-mason-stylist-skill) <br>
-- [Pima MCP API reference](references/mcp-api.md) <br>
-- [Merchant Payments Protocol reference](references/mpp.md) <br>
-- [Image generation workflow](references/image-generation.md) <br>
-- [Lookbook output formats](references/output-formats.md) <br>
-- [Voting capability reference](references/voting.md) <br>
-- [OpenAI API keys](https://platform.openai.com/api-keys) <br>
-- [gpt-image-2 verification guidance](https://help.openai.com/en/articles/10910291) <br>
-- [Stripe link-cli source](https://github.com/stripe/link-cli) <br>
-- [Stripe link-cli package](https://www.npmjs.com/package/@stripe/link-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with structured API examples, shell commands, configuration snippets, generated files, and hosted lookbook artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local lookbook files, hosted lookbook URLs, product recommendations, stock summaries, checkout handoff details, and validation summaries depending on the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.2 (source: server release evidence and frontmatter) <br>
+Risk: Public-by-link hosted lookbooks can expose styling choices, generated imagery, and feedback links to anyone with the URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm before public deployment, use private hosting where available, and avoid sharing sensitive customer details in generated lookbook content.
+
+Risk: Default voting endpoints may collect partner or stakeholder feedback without authentication.
+
+Mitigation: Use --no-voting for read-only lookbooks or add authentication before collecting private feedback.
+
+Risk: Shopping and account state may persist locally, including wishlist, purchase, or token-related data.
+
+Mitigation: Prefer order-code flows over saved JWTs, avoid storing payment credentials, and review local files before shared or managed deployments.
+
+Risk: Untrusted lookbook configuration or picks JSON can affect generated files and hosted output.
+
+Mitigation: Run builders only on trusted inputs and validate generated lookbooks before sharing or deploying.
+
+Risk: Checkout, returns, email access, and public deployment can have financial, privacy, or account consequences.
+
+Mitigation: Require explicit same-turn confirmation before payment, return initiation, mailbox access, or public publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickmerwin/skills/buck-mason-stylist-skill)
+- [Pima MCP API reference](references/mcp-api.md)
+- [Pima order and returns API reference](docs/advanced/pima-api.md)
+- [Image generation reference](references/image-generation.md)
+- [Lookbook output formats](references/output-formats.md)
+- [MPP checkout reference](references/mpp.md)
+- [Voting reference](references/voting.md)
+- [OpenAI API keys](https://platform.openai.com/api-keys)
+- [OpenAI gpt-image-2 verification](https://help.openai.com/en/articles/10910291)
+- [Stripe link-cli source](https://github.com/stripe/link-cli)
+- [Stripe link-cli npm package](https://www.npmjs.com/package/@stripe/link-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with compact tables, product links, shell commands, configuration snippets, and optional generated lookbook files such as PNG, PPTX, or hosted HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external commerce, image-generation, hosting, voting, and payment-token services when the relevant workflow and user confirmation require them.]
+
+## Skill Version(s):
+
+0.7.2 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

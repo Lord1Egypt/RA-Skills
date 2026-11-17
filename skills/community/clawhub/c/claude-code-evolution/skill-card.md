@@ -1,49 +1,67 @@
-## Description: <br>
-Guides OpenClaw administrators through a five-stage Claude Code architecture upgrade covering memory structure, tool permissions, multi-agent coordination, security hardening, and prompt optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claude Code Evolution guides experienced OpenClaw administrators through a five-stage upgrade covering structured memory, tool permissions, coordinator-worker collaboration, security hardening, and prompt optimization.
 
-## Publisher: <br>
-[yudch999-bot](https://clawhub.ai/user/yudch999-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yudch999-bot](https://clawhub.ai/user/yudch999-bot)
 
-## Use Case: <br>
-Experienced OpenClaw administrators and developers use this skill to plan and apply structured memory, four-level permission controls, coordinator-worker collaboration, credential-protection workflows, and prompt optimization changes. It is intended for owned or fully authorized OpenClaw environments where scripts and configuration changes can be reviewed before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential migration and credential protection scripts have unsafe defaults and may persist or print sensitive data. <br>
-Mitigation: Do not run these scripts on real secrets until hardcoded password fallbacks are removed and secret previews are eliminated from configuration, reports, console output, audit logs, and memory logs. <br>
-Risk: Approval and sandbox components are prototypes and should not be treated as enforceable security controls. <br>
-Mitigation: Use them only after code review and keep independent permission boundaries, manual approvals, and environment isolation in place. <br>
-Risk: The skill performs system configuration, credential, and security architecture changes. <br>
-Mitigation: Back up affected files, test in a non-production environment first, and apply changes only on systems where the operator has full authorization. <br>
+## Use Case:
 
+Developers and experienced OpenClaw administrators use this skill to plan and apply an architecture upgrade that adds structured memory, permission modeling, coordinator-worker protocols, security tooling, and prompt optimization. The skill is best handled as an administrative change workflow because it includes scripts that can affect credentials, configuration, and agent behavior.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/yudch999-bot/claude-code-evolution) <br>
-- [Coordinator+Worker Protocol](references/coordinator-worker-protocol-v1.md) <br>
-- [Coordinator+Worker Test Scenarios](references/coordinator-worker-test-scenarios.md) <br>
-- [Agent Role Definitions](references/agent-role-definitions.md) <br>
-- [Memory Index Template](references/memory-index-template.md) <br>
-- [Tools Classification Config](references/tools-classification-config.yaml) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw GitHub Repository](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration references, and Python utility scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational scripts and templates that should be reviewed before use, especially credential and approval workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: High-impact administrative workflows include credential migration, permission sandboxing, and prompt optimization tools that should not be treated as production security controls without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a test OpenClaw workspace first and fix the approval gate, credential storage, redaction, and missing sandbox or configuration resources before production use.
+
+Risk: Credential migration can affect sensitive configuration if run without preparation.
+
+Mitigation: Use an explicit strong password, run a dry-run or test workflow first, and back up configuration before migration.
+
+Risk: Permission and prompt changes can alter agent behavior and operational policy.
+
+Mitigation: Review proposed configuration changes, validate memory and permission behavior, and benchmark prompt changes before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yudch999-bot/skills/claude-code-evolution)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Agent role definitions](references/agent-role-definitions.md)
+- [Coordinator-worker protocol](references/coordinator-worker-protocol-v1.md)
+- [Coordinator-worker test scenarios](references/coordinator-worker-test-scenarios.md)
+- [Memory index template](references/memory-index-template.md)
+- [Tool classification configuration](references/tools-classification-config.yaml)
+- [Reference pointers memory template](references/memory-templates/reference-pointers.md)
+- [User profile memory template](references/memory-templates/user-profile.md)
+- [Feedback logs memory template](references/memory-templates/feedback-logs.md)
+- [Project states memory template](references/memory-templates/project-states.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python scripts, YAML configuration, memory templates, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes administrative scripts and reference templates for OpenClaw memory, permissions, credential handling, sandboxing, coordinator-worker workflows, testing, benchmarking, and prompt optimization.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

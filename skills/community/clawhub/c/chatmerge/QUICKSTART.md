@@ -132,7 +132,7 @@ ChatMerge 需要 OpenClaw 已经配置好聊天平台才能直接读取消息。
 {
   "channels": {
     "slack": {
-      "botToken": "xoxb-your-bot-token",
+      "botToken": "REDACTED-SECRET",
       "appToken": "xapp-your-app-token"
     }
   }

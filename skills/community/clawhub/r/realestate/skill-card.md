@@ -1,42 +1,57 @@
-## Description: <br>
-Real estate transaction support with affordability analysis, property evaluation, and offer strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real estate transaction support with affordability analysis, property evaluation, and offer strategy.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Home buyers, sellers, renters, and their supporting agents use this skill for educational real-estate planning, affordability estimates, property evaluation checklists, offer planning, lease review support, and transaction milestone tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-estate and financial planning details may be saved locally by the skill. <br>
-Mitigation: Install only if local storage of this information is acceptable, and manage retention or deletion of the agent workspace memory files. <br>
-Risk: Affordability estimates, property evaluations, lease notes, and offer strategies may be incomplete or unsuitable for a specific jurisdiction or transaction. <br>
-Mitigation: Treat outputs as educational support and verify decisions with licensed real-estate, mortgage, and legal professionals. <br>
-Risk: The artifact references helper scripts that are not included in this release. <br>
-Mitigation: Use only bundled files or trusted local code, and do not fetch missing helper scripts from untrusted sources. <br>
+## Use Case:
 
+External users and agents use this skill for educational support during home buying, selling, property evaluation, affordability analysis, lease review, and offer planning. It does not replace licensed real estate, mortgage, or legal professionals.
 
-## Reference(s): <br>
-- [RealEstate on ClawHub](https://clawhub.ai/AGIstack/realestate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text with local script commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local real-estate planning records under the agent workspace memory directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Property details and financial inputs may be stored locally in the OpenClaw real estate memory area.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local retention expectations before use and delete local real estate memory when the information is no longer needed.
+
+Risk: Affordability estimates, property evaluations, offer plans, lease reviews, and transaction checklists may be incomplete or unsuitable for a specific jurisdiction or transaction.
+
+Mitigation: Use the skill for educational support only and rely on licensed real estate, mortgage, and legal professionals for transaction decisions.
+
+Risk: The skill does not have MLS access, lender connections, or document-submission capabilities.
+
+Mitigation: Verify listing, financing, and document-submission steps through authoritative transaction systems and qualified professionals.
+
+## Reference(s):
+
+- [RealEstate skill release](https://clawhub.ai/agistack/skills/realestate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local JSON records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store affordability calculations, property evaluations, offer notes, inspection findings, contract notes, and transaction tracking data in local real estate memory when scripts are run.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

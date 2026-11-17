@@ -38,7 +38,7 @@
 | get-delist-schedule | [] | Get Delist Schedule |
 | get-limit-price-pairs | [] | Get Limit Price Pairs |
 | get-list-schedule | [] | Get list Schedule |
-| get-margin-asset-risk-based-liquidation-ratio | [] | Get Margin Asset Risk-Based Liquidation Ratio |
+| get-margin-asset-riREDACTED-SECRET | [] | Get Margin Asset Risk-Based Liquidation Ratio |
 | get-margin-restricted-assets | [] | Get Margin Restricted Assets |
 | query-isolated-margin-tier-data | `symbol` [`tier`] | Query Isolated Margin Tier Data |
 | query-liability-coin-leverage-bracket-in-cross-margin-pro-mode | [] | Query Liability Coin Leverage Bracket in Cross Margin Pro Mode |

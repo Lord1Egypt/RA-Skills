@@ -1,46 +1,64 @@
-## Description: <br>
-Provides full-process support for China construction commercial mediation, including dispute diagnosis, stakeholder analysis, BATNA/WATNA assessment, mediation strategy design, agreement drafting, and judicial confirmation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Construction Mediation supports Chinese construction commercial mediation by helping agents diagnose disputes, analyze stakeholders and BATNA/WATNA, design mediation plans, draft settlement agreements, and guide judicial confirmation.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Mediators, lawyers, cost engineers, project managers, and construction-party legal teams use this skill to analyze China construction disputes, design mediation plans, draft mediation documents, and plan judicial confirmation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides legal and mediation guidance that may be incomplete for a specific dispute, jurisdictional update, or high-value matter. <br>
-Mitigation: Treat outputs as reference material, verify current law and facts, and have qualified counsel review mediation agreements before signing or filing. <br>
-Risk: Using the skill or related workflows in an untrusted environment may expose sensitive dispute details or credentials. <br>
-Mitigation: Install only from trusted ClawHub sources, review the skill before deployment, and confirm any target systems or credentials before taking external actions. <br>
+## Use Case:
 
+External mediators, lawyers, cost engineers, project managers, and construction-company legal teams use this skill to structure Chinese construction dispute mediation from issue diagnosis through settlement drafting and judicial confirmation guidance.
 
-## Reference(s): <br>
-- [调解协议模板库](references/agreement-templates.md) <br>
-- [BATNA/WATNA 分析框架](references/batna-framework.md) <br>
-- [建设工程争议类型分类与处理指引](references/dispute-types.md) <br>
-- [司法确认全流程指引](references/judicial-confirmation.md) <br>
-- [法律法规速查表](references/legal-basis.md) <br>
-- [调解策略与技巧库](references/mediation-strategies.md) <br>
-- [五方利益方深度分析](references/stakeholder-analysis.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, tables, checklists, and draft mediation documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dispute diagnostics, stakeholder maps, BATNA/WATNA evaluations, mediation agendas, legal references, agreement drafts, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Construction disputes may involve personal identifiers, bank account details, trade secrets, or privileged communications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact unnecessary sensitive information before use and avoid submitting privileged or confidential details unless disclosure is authorized.
+
+Risk: Generated legal analysis or agreement language may be incomplete, outdated, or unsuitable for a specific matter.
+
+Mitigation: Have any agreement, filing, or legal conclusion reviewed by a qualified lawyer before signing, filing, or relying on it.
+
+Risk: The skill is scoped to Chinese construction commercial mediation and does not cover other jurisdictions, other industries, criminal matters, or administrative matters.
+
+Mitigation: Use a more appropriate specialist workflow for matters outside this scope, and seek multi-party professional review for high-value or group disputes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/cn-construction-mediation)
+- [Construction dispute type guide](artifact/references/dispute-types.md)
+- [Stakeholder analysis guide](artifact/references/stakeholder-analysis.md)
+- [BATNA/WATNA analysis framework](artifact/references/batna-framework.md)
+- [Mediation strategies and techniques](artifact/references/mediation-strategies.md)
+- [Mediation agreement templates](artifact/references/agreement-templates.md)
+- [Judicial confirmation guide](artifact/references/judicial-confirmation.md)
+- [Legal basis quick reference](artifact/references/legal-basis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports, tables, legal-reference summaries, mediation plans, and document drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite specific Chinese legal provisions when giving legal or procedural guidance; generated agreements require qualified legal review before signing or filing.]
+
+## Skill Version(s):
+
+2.3.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

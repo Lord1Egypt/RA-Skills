@@ -1,0 +1,4 @@
+interface:
+  display_name: "荒年纪 AI 玩家"
+  short_description: "让 Codex 与 OpenClaw 安全读取局面并持续游玩荒年纪"
+  default_prompt: "Use $famine-survival-player to continue my journey, prioritize surviving longer, and earn more survival points."

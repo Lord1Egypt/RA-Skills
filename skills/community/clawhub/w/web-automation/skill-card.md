@@ -1,43 +1,54 @@
-## Description: <br>
-Automate authorized browsing tasks with navigation, browser interaction, data extraction, form filling, and high-resolution screenshot capture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate browsing tasks with advanced navigation, interaction, data scraping, form filling, and high-resolution screenshot capture using a headless browser.
 
-## Publisher: <br>
-[rudigta](https://clawhub.ai/user/rudigta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rudigta](https://clawhub.ai/user/rudigta)
 
-## Use Case: <br>
-Users and agents use this skill to automate authorized web browsing workflows that require navigation, dynamic page interaction, screenshots, scraping, and multi-step form handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated browsing, cookie handling, or private-data scraping could expose sensitive account information. <br>
-Mitigation: Use only sites and accounts the user explicitly authorizes, and require clear confirmation before login, cookie reuse, or private-data scraping. <br>
-Risk: Automated form submissions can change account state, including purchases, posts, deletions, or other irreversible actions. <br>
-Mitigation: Require explicit user confirmation before any submission or browser action that could change account state. <br>
-Risk: Broad browser automation and scraping can collect more data than the user intended. <br>
-Mitigation: Limit extraction to the requested pages and fields, and review captured text, screenshots, and structured data before relying on them. <br>
+## Use Case:
 
+Developers and agents use this skill to browse websites, inspect pages, capture screenshots, extract page content, and automate form interactions when simple HTTP requests are insufficient.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rudigta/web-automation) <br>
-- [Publisher profile](https://clawhub.ai/user/rudigta) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Structured data] <br>
-**Output Format:** [Markdown responses with extracted page content, structured data summaries, and screenshot artifacts when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use browser state, cookies, and custom user-agent strings when the user authorizes those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Authenticated browsing, cookie handling, form submission, and arbitrary site interaction can affect sensitive accounts or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit user direction for logins, session reuse, submissions, and actions that can change account or business data.
+
+Risk: Screenshots, extracted text, attributes, and structured data can contain private or sensitive web content.
+
+Mitigation: Limit automation to intended sites and data, and treat captured browser output as sensitive unless the user confirms it is safe to share or store.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rudigta/skills/web-automation)
+- [Publisher Profile](https://clawhub.ai/user/rudigta)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional inline commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe navigation steps, extracted page content, screenshot capture instructions, browser interaction plans, and retry guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

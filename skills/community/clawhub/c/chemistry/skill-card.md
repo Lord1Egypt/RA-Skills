@@ -1,40 +1,52 @@
-## Description: <br>
-Support chemistry learning from kitchen experiments to molecular research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Support chemistry learning from kitchen experiments to molecular research.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, students, teachers, and researchers use this skill for chemistry tutoring, instructional support, mechanisms, spectroscopy, nomenclature, and safety-aware discussion of reactions or procedures. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Chemistry guidance can affect real-world experiments, including unsafe mixing, fumes, heat, pressure, concentrated chemicals, or regulated substances. <br>
-Mitigation: State safety considerations before reactions or procedures; restrict home activities to clearly identified low-risk household materials; recommend ventilation, eye protection, supervision for minors, and qualified guidance for higher-risk work. <br>
-Risk: Tutoring output can be incorrect or oversimplified for the user's level or task. <br>
-Mitigation: Verify stoichiometry and balanced equations, clarify when a model is simplified, and distinguish accepted mechanisms from proposed mechanisms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/chemistry) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External learners, students, teachers, and researchers use this skill for chemistry explanations, problem-solving support, safety reminders, and instructional guidance adapted to their level.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or plain text chemistry explanations with equations, safety notes, and step-by-step reasoning when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts explanations to beginner, student, teacher, or researcher context; no tool, API, or shell-command output is required by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Chemistry advice can involve experiments, reagents, regulated substances, or lab procedures where incorrect or incomplete guidance may create safety risk.
+
+Mitigation: Apply normal chemistry safety judgment, state hazards and safety considerations before procedures, and require qualified review for lab work or regulated materials.
+
+Risk: Educational simplifications can be mistaken for complete technical guidance by advanced users.
+
+Mitigation: Clarify when a model is simplified for pedagogy and verify stoichiometry, reaction conditions, and mechanistic certainty for advanced work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/chemistry)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with explanations, safety notes, equations, and step-by-step reasoning]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Safety considerations should precede reactions or procedures.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

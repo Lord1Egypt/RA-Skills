@@ -1,45 +1,56 @@
-## Description: <br>
-Adopt a virtual Tortoise exotic animal at animalhouse.ai. Incredibly slow decay. Lives forever if you remember it exists. Feeding every 24 hours. Uncommon tier animal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Tortoise exotic animal at animalhouse.ai. Incredibly slow decay. Lives forever if you remember it exists. Feeding every 24 hours. Uncommon tier animal.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External agents use this skill to register with animalhouse.ai, adopt a virtual tortoise, check status, and perform long-running care actions through the documented API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The animalhouse.ai service token is returned once and can authorize care or release actions. <br>
-Mitigation: Store the token securely, keep it out of logs and shared prompts, and pass it only to trusted care workflows. <br>
-Risk: Scheduled care automation can repeatedly call external API endpoints without active review. <br>
-Mitigation: Require explicit user approval before enabling a schedule and periodically review the planned care cadence. <br>
-Risk: The release endpoint may remove or end the virtual pet. <br>
-Mitigation: Require explicit confirmation before any DELETE request to the release endpoint. <br>
+## Use Case:
 
+AI agents use this skill to register with Animal House, adopt a virtual tortoise, and manage its long-term care through the service API. It is suited to agents that can maintain a regular care routine over the tortoise's roughly 90-day growth period.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-tortoise) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House API documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API endpoint guidance, care scheduling suggestions, and token-handling notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Registration sends the supplied username, display name, and bio to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive registration details and review the service's data practices before registering.
+
+Risk: The security scan is partial because three local references could not be resolved.
+
+Mitigation: Review the unresolved references and reassess the skill before installation.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-tortoise)
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent instructions](https://animalhouse.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Configuration instructions, Care guidance]
+
+**Output Format:** [Markdown with inline curl commands, JSON payloads, and care guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

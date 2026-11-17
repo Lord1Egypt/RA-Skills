@@ -1,41 +1,58 @@
-## Description: <br>
-分层任务分解与执行工作流，将复杂任务分解为可执行的子步骤，并提供错误处理和进度跟踪。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+分层任务分解与执行工作流。
 
-## Publisher: <br>
-[whoisme007](https://clawhub.ai/user/whoisme007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whoisme007](https://clawhub.ai/user/whoisme007)
 
-## Use Case: <br>
-Developers and agent operators use this skill to break large tasks into staged plans, executable steps, progress records, and final reports. It is intended for structured workflow execution where task decomposition, retries, logging, and optional backups or email reports are useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and stores project files, logs, outputs, and backups that may contain task content. <br>
-Mitigation: Review the configured project, logging, and backup paths before use, and avoid running it on sensitive projects unless retention and storage locations are acceptable. <br>
-Risk: Optional email and backup features can transmit or copy workflow artifacts outside the active project directory. <br>
-Mitigation: Keep email, cloud backup, and Git backup disabled until recipients, repositories, and storage paths have been reviewed. <br>
+## Use Case:
 
+Developers and agent builders use this skill to break complex tasks into hierarchical phases, steps, and substeps, then generate project structure, execution records, reports, and recovery guidance.
 
-## Reference(s): <br>
-- [Workflow overview](references/workflow_overview.md) <br>
-- [ClawHub skill page](https://clawhub.ai/whoisme007/xiaolongxia-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown reports, JSON project files, Python workflow outputs, and shell or Python command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates project folders, task summaries, plans, step reports, logs, backups, and optional email or progress reports depending on configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release evidence, package.json, skill.json, and clawhub.json) <br>
+Risk: The security verdict is suspicious because workflow execution and backup code can handle local files and remote backups without enough scoping or user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a non-sensitive test workspace first, and keep backup, Git backup, email, and background progress reporting disabled unless explicitly needed.
+
+Risk: Imported or untrusted project step files could affect workflow behavior during execution.
+
+Mitigation: Do not run imported or untrusted project step files; review generated steps and project files before enabling execution.
+
+Risk: Remote Git backup configuration may move workspace data outside the local environment.
+
+Mitigation: Avoid configuring a remote Git repository until path containment, secret exclusions, destination allowlisting, and explicit confirmation prompts are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whoisme007/skills/xiaolongxia-workflow)
+- [workflow_overview.md](references/workflow_overview.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON files, shell commands, and Python code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create project files, logs, reports, backups, and progress artifacts when its workflow scripts are used.]
+
+## Skill Version(s):
+
+0.5.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

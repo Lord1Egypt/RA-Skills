@@ -14,7 +14,7 @@ It builds a **digital soul clone** of you through everyday AI conversations, and
 
 ## Design Principles
 
-- 🔒 **Local-first** — data lives in `~/.agent-commons/skills_data/soul-archive/`, never uploaded
+- 🔒 **Local-first** — data lives in `~/.agent-guild/skills_data/soul-archive/`, never uploaded
 - 📂 **Readable & editable** — plaintext JSON, open and edit anytime
 - 🤖 **Active companion** — the AI extracts and recalls automatically as you chat
 - 🎯 **Single-user simplicity** — one user, one machine, one soul
@@ -95,7 +95,7 @@ The skill is the engine; the soul data lives in your home directory so any IDE /
 
 ## Privacy
 
-- Data lives in `~/.agent-commons/skills_data/soul-archive/`, plaintext JSON, **never uploaded**.
+- Data lives in `~/.agent-guild/skills_data/soul-archive/`, plaintext JSON, **never uploaded**.
 - The data directory has a `.gitignore` that blocks accidental commits.
 - Soul Chat builds prompts locally; whether they're sent to an external LLM depends on **your** agent / platform.
 - Sensitive topics (health / finance / intimate relationships) require explicit confirmation by default.

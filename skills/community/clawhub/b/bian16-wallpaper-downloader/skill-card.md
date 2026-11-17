@@ -1,46 +1,59 @@
-## Description: <br>
-Downloads and verifies 4K mobile wallpapers from pic.netbian.com using a logged-in cookie, token-based original image downloads, rate-limit spacing, and optional cleanup of non-4K files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download 4K mobile wallpapers specifically from pic.netbian.com, including WeChat QR login, token-based original image download, rate-limit spacing, 4K validation, and cleanup of non-4K files.
 
-## Publisher: <br>
-[guitu917](https://clawhub.ai/user/guitu917) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guitu917](https://clawhub.ai/user/guitu917)
 
-## Use Case: <br>
-External users and developers use this skill when they explicitly want to batch download mobile wallpapers from pic.netbian.com, preserve only true 4K images, and validate or clean downloaded JPEG files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires copied login cookies, which can expose account credentials if logged, shared, or stored insecurely. <br>
-Mitigation: Use only an account and downloads the user is authorized to access, treat cookies like passwords, avoid command history and log exposure, and remove copied cookies after use. <br>
-Risk: CAPTCHA or slider handling can become unreliable or violate site controls if automated aggressively. <br>
-Mitigation: Keep CAPTCHA and slider completion manual by default; allow at most cautious assistance with explicit user consent, then fall back to manual completion and refresh the cookie. <br>
-Risk: Batch downloading may trigger site limits or conflict with the site's terms if run too quickly or at excessive scale. <br>
-Mitigation: Respect the site's rate limits and terms, keep the default 180-second interval unless the user has a clear reason to change it, and stop on repeated access failures. <br>
-Risk: The cleanup script can delete local JPEG files that do not meet the configured 4K threshold. <br>
-Mitigation: Run cleanup only in a controlled wallpaper directory and review the target path before using deletion mode. <br>
+## Use Case:
 
+External users and developers use this skill when they explicitly want to batch download and verify 4K mobile wallpapers from pic.netbian.com.
 
-## Reference(s): <br>
-- [Download Notes](references/download-notes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/guitu917/bian16-wallpaper-downloader) <br>
-- [pic.netbian.com](https://pic.netbian.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and downloaded JPEG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local wallpaper files and console validation results; cleanup can delete non-4K JPEG files when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill requires a logged-in pic.netbian.com session cookie, which can expose account access if pasted into shell history, logs, or shared transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the cookie only in a private execution context, avoid placing real session cookies directly in shared commands or logs, and refresh the cookie after completing any manual verification.
+
+Risk: The verification script can permanently remove non-matching JPG files when run with --delete.
+
+Mitigation: Run verification without --delete first, inspect the target directory, and use --delete only on a directory dedicated to this download workflow.
+
+Risk: Automated retries around slider or captcha checks may create account or site-access issues.
+
+Mitigation: Pause for manual completion by default, use only cautious assisted attempts when explicitly approved, and continue only after reading a fresh browser cookie.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guitu917/skills/bian16-wallpaper-downloader)
+- [Download Notes](references/download-notes.md)
+- [pic.netbian.com](https://pic.netbian.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; downloaded JPG files are produced by the bundled scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in pic.netbian.com session cookie and uses configurable count, interval, output directory, category, minimum width, and scan-page parameters.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

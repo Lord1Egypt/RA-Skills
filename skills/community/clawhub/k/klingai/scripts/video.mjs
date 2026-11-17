@@ -2,22 +2,184 @@
 /**
  * Kling AI video generation — text-to-video, image-to-video, Omni, multi-shot
  * Node.js 18+, zero external deps
+ *
+ * Paths and body fields follow official docs:
+ * https://klingai.com/document-api/llms.txt
  */
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { submitTask, queryTask, pollAndDownload, downloadFile } from './shared/task.mjs';
+import {
+  submitTask,
+  queryTask,
+  pollAndDownload,
+  downloadFile,
+  taskStatusOf,
+  taskMessageOf,
+  isTaskSucceeded,
+  resultUrlOf,
+} from './shared/task.mjs';
 import { parseArgs, getTokenOrExit, readMediaAsValue, readOmniVideoRefUrl, resolveAllowedOutputDir } from './shared/args.mjs';
 
-const API_T2V = '/v1/videos/text2video';
-const API_I2V = '/v1/videos/image2video';
-const API_OMNI = '/v1/videos/omni-video';
+const API_TASKS = '/tasks';
+
+const RANGE_3_15 = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+const RANGE_3_10 = [3, 4, 5, 6, 7, 8, 9, 10];
+const RANGE_3_20 = Array.from({ length: 18 }, (_, i) => i + 3);
+const RANGE_3_30 = Array.from({ length: 28 }, (_, i) => i + 3);
+const DURATION_5_10 = [5, 10];
+const RES_720 = ['720p'];
+const RES_720_1080 = ['720p', '1080p'];
+const RES_720_1080_4K = ['720p', '1080p', '4k'];
+
+/** Official video models (path-encoded). Source: klingai.com/document-api */
+const BASIC_MODELS = {
+  'kling-3.0': {
+    t2v: '/text-to-video/kling-3.0',
+    i2v: '/image-to-video/kling-3.0',
+    durations: RANGE_3_15,
+    resolutions: RES_720_1080_4K,
+    audio: ['native', 'off'],
+    multiShot: true,
+    lastFrame: true,
+    i2vElements: true,
+    t2vPromptField: true,
+  },
+  'kling-3.0-turbo': {
+    t2v: '/text-to-video/kling-3.0-turbo',
+    i2v: '/image-to-video/kling-3.0-turbo',
+    durations: RANGE_3_15,
+    resolutions: RES_720_1080,
+    audio: null,
+    multiShot: false,
+    lastFrame: false,
+    t2vPromptField: true,
+  },
+  'kling-2.6': {
+    t2v: '/text-to-video/kling-2.6',
+    i2v: '/image-to-video/kling-2.6',
+    durations: DURATION_5_10,
+    resolutions: RES_720_1080,
+    audio: ['native', 'off'],
+    multiShot: false,
+    lastFrame: true,
+    t2vPromptField: true,
+    audioRequires1080p: true,
+    lastFrameRequires1080pSilent: true,
+    maxVoices: 2,
+  },
+  'kling-2.5-turbo': {
+    t2v: '/text-to-video/kling-2.5-turbo',
+    i2v: '/image-to-video/kling-2.5-turbo',
+    durations: DURATION_5_10,
+    resolutions: RES_720_1080,
+    audio: null,
+    multiShot: false,
+    lastFrame: true,
+    t2vPromptField: true,
+    lastFrameRequires1080p: true,
+  },
+  'kling-4.0': {
+    t2v: '/text-to-video/kling-4.0',
+    i2v: '/image-to-video/kling-4.0',
+    durations: RANGE_3_30,
+    resolutions: RES_720_1080,
+    audio: null,
+    multiShot: false,
+    lastFrame: true,
+    middleFrame: true,
+    maxImages: 10,
+    t2vPromptField: true,
+  },
+  'kling-4.0-flash': {
+    t2v: '/text-to-video/kling-4.0-flash',
+    i2v: '/image-to-video/kling-4.0-flash',
+    durations: RANGE_3_20,
+    resolutions: RES_720,
+    audio: null,
+    multiShot: false,
+    lastFrame: false,
+    t2vPromptField: true,
+  },
+};
+
+const OMNI_MODELS = {
+  'kling-3.0-omni': {
+    path: '/omni-video/kling-3.0-omni',
+    durations: RANGE_3_15,
+    resolutions: RES_720_1080_4K,
+    audio: ['native', 'original', 'off'],
+    multiShot: true,
+    lastFrame: true,
+    maxImages: 7,
+    maxImagesWithVideo: 4,
+    maxRefs: 7,
+    maxRefsWithVideo: 4,
+    maxVideos: 1,
+    frameMaxElements: 3,
+  },
+  'kling-o1': {
+    path: '/omni-video/kling-o1',
+    durations: RANGE_3_10,
+    resolutions: RES_720_1080,
+    audio: ['original', 'off'],
+    multiShot: false,
+    lastFrame: true,
+    maxImages: 7,
+    maxImagesWithVideo: 4,
+    maxRefs: 7,
+    maxRefsWithVideo: 4,
+    maxVideos: 1,
+    frameMaxElements: 3,
+  },
+  'kling-4.0': {
+    path: '/omni-video/kling-4.0',
+    durations: RANGE_3_30,
+    defaultAspectRatio: '',
+    resolutions: RES_720_1080,
+    audio: ['original', 'native'],
+    multiShot: false,
+    lastFrame: true,
+    middleFrame: true,
+    maxImages: 10,
+    maxImagesWithVideo: 10,
+    maxVideos: 5,
+    // images + videos + elements + voices <= 15
+    maxRefs: 15,
+    maxElements: 7,
+    maxVoices: 3,
+  },
+  'kling-4.0-flash': {
+    path: '/omni-video/kling-4.0-flash',
+    durations: RANGE_3_20,
+    defaultAspectRatio: '',
+    resolutions: RES_720,
+    audio: ['original', 'native'],
+    multiShot: false,
+    lastFrame: true,
+    maxImages: 10,
+    maxImagesWithVideo: 10,
+    maxVideos: 5,
+    // images + videos + elements <= 15. Create API has no contents type=voice.
+    maxRefs: 15,
+    maxElements: 7,
+  },
+};
+
+const FRAME_TYPES = ['first_frame', 'middle_frame', 'last_frame'];
+
+const LEGACY_MODEL_RENAMES = new Map([
+  ['kling-v3', 'kling-3.0'],
+  ['kling-v3-omni', 'kling-3.0-omni'],
+  ['kling-video-o1', 'kling-o1'],
+  ['kling-v2-6', 'kling-2.6'],
+  ['kling-v2-5-turbo', 'kling-2.5-turbo'],
+]);
 
 function normalizeModelName(v) {
   return String(v || '').trim();
 }
 
-/** Lowercase trim for route checks and API `model_name` enum matching. */
 function normalizeModelKey(v) {
   return normalizeModelName(v).toLowerCase();
 }
@@ -29,18 +191,19 @@ function normalizeAliasKey(v) {
 function getVideoModelAliasTarget(v) {
   const key = normalizeAliasKey(v);
   const aliasMap = new Map([
-    ['omni3', 'kling-v3-omni'],
-    ['omni-3', 'kling-v3-omni'],
-    ['omni-v3', 'kling-v3-omni'],
-    ['kling-video-o3', 'kling-v3-omni'],
-    ['v3-omni', 'kling-v3-omni'],
-    ['o3', 'kling-v3-omni'],
-    ['O3', 'kling-v3-omni'],
-    ['kling-o3', 'kling-v3-omni'],
-    ['omni1', 'kling-video-o1'],
-    ['omni-1', 'kling-video-o1'],
-    ['o1', 'kling-video-o1'],
-    ['kling-o1', 'kling-video-o1'],
+    ['omni3', 'kling-3.0-omni'],
+    ['omni-3', 'kling-3.0-omni'],
+    ['omni-v3', 'kling-3.0-omni'],
+    ['kling-video-o3', 'kling-3.0-omni'],
+    ['v3-omni', 'kling-3.0-omni'],
+    ['o3', 'kling-3.0-omni'],
+    ['kling-o3', 'kling-3.0-omni'],
+    ['omni1', 'kling-o1'],
+    ['omni-1', 'kling-o1'],
+    ['o1', 'kling-o1'],
+    ['kling-video-o1', 'kling-o1'],
+    ['kling-4.0-omni', 'kling-4.0'],
+    ['kling-4.0-flash-omni', 'kling-4.0-flash'],
   ]);
   return aliasMap.get(key) || '';
 }
@@ -48,20 +211,52 @@ function getVideoModelAliasTarget(v) {
 function validateModelAliasInput(rawModel) {
   if (!rawModel) return;
   const model = normalizeModelKey(rawModel);
+  const renamed = LEGACY_MODEL_RENAMES.get(model);
+  if (renamed) {
+    throw new Error(
+      `Invalid --model / 请改用官网模型名: ${rawModel} → ${renamed}`,
+    );
+  }
   const target = getVideoModelAliasTarget(rawModel);
   if (!target || model === target) return;
   throw new Error(
     `Invalid --model alias / --model 使用了别名: ${rawModel}\n`
     + `Use canonical name / 请改用标准名: ${target}\n`
-    + 'Alias mapping / 别名映射: omni3 | omni v3 | o3 -> kling-v3-omni; o1 | omni1 -> kling-video-o1',
+    + 'Alias mapping / 别名映射: omni3 | omni v3 | o3 -> kling-3.0-omni; o1 | omni1 -> kling-o1; '
+    + 'kling-4.0-omni -> kling-4.0; kling-4.0-flash-omni -> kling-4.0-flash '
+    + '(one name for T2V / I2V / Omni; route follows flags / 4.0、4.0 Flash 三种接口同名，按参数分流)',
   );
 }
 
-function normalizeSound(v) {
-  const s = String(v || '').trim().toLowerCase();
-  if (!s) return '';
-  if (s === 'on' || s === 'off') return s;
-  return s;
+function parseBoolFlag(raw, flagName) {
+  if (raw === undefined || raw === null || raw === '') return undefined;
+  if (raw === true) return true;
+  const s = String(raw).trim().toLowerCase();
+  if (s === 'true' || s === '1' || s === 'yes') return true;
+  if (s === 'false' || s === '0' || s === 'no') return false;
+  throw new Error(`Invalid ${flagName} / ${flagName} 须为 true 或 false`);
+}
+
+function parseDuration(raw, fallback = 5) {
+  if (raw == null || raw === '') {
+    if (fallback == null) return null;
+    raw = fallback;
+  }
+  const n = parseInt(String(raw), 10);
+  if (!Number.isInteger(n)) {
+    throw new Error('Invalid --duration / --duration 须为整数秒');
+  }
+  return n;
+}
+
+function parseResolution(raw) {
+  if (!raw) return '';
+  return String(raw).trim().toLowerCase();
+}
+
+function parseAudio(raw) {
+  if (!raw) return '';
+  return String(raw).trim().toLowerCase();
 }
 
 function normalizeReferType(v) {
@@ -70,153 +265,13 @@ function normalizeReferType(v) {
   return s;
 }
 
-function normalizeKeepOriginalSound(v) {
-  const s = String(v || '').trim().toLowerCase();
-  if (!s) return '';
-  return s;
+function isBaseVideoEdit(videoState) {
+  return Boolean(videoState?.hasBase);
 }
 
-/** Multi-shot `shot_type`: `customize` | `intelligence` (empty → default customize when --multi_shot) */
-function normalizeShotType(v) {
-  const s = String(v || '').trim().toLowerCase();
-  if (!s) return '';
-  if (s === 'customize' || s === 'intelligence') return s;
-  return s;
-}
-
-/**
- * Sets `multi_shot`, `shot_type`, and `prompt` / `multi_prompt` on payload (text2video / image2video / omni-video share rules).
- * Exits the process on validation error.
- * @param {Record<string, unknown>} payload
- * @param {Record<string, unknown>} args
- */
-function mergeMultiShotIntoPayload(payload, args) {
-  const rawShot = normalizeShotType(args.shot_type);
-  const shotType = rawShot || 'customize';
-  if (shotType !== 'customize' && shotType !== 'intelligence') {
-    console.error(
-      'Error / 错误: --shot_type must be customize or intelligence / 须为 customize 或 intelligence',
-    );
-    process.exit(1);
-  }
-  payload.multi_shot = true;
-  payload.shot_type = shotType;
-
-  if (shotType === 'customize') {
-    if (!args.multi_prompt || !String(args.multi_prompt).trim()) {
-      console.error(
-        'Error / 错误: customize multi-shot requires --multi_prompt / 自定义分镜须提供 --multi_prompt',
-      );
-      process.exit(1);
-    }
-    try {
-      payload.multi_prompt = JSON.parse(args.multi_prompt);
-    } catch {
-      console.error('Error / 错误: --multi_prompt must be valid JSON / 必须是合法 JSON');
-      process.exit(1);
-    }
-    payload.prompt = '';
-  } else {
-    const p = String(args.prompt || '').trim();
-    if (!p) {
-      console.error(
-        'Error / 错误: intelligence multi-shot requires non-empty --prompt / 智能分镜须提供非空 --prompt',
-      );
-      process.exit(1);
-    }
-    if (args.multi_prompt && String(args.multi_prompt).trim()) {
-      console.error(
-        'Error / 错误: intelligence multi-shot does not use --multi_prompt / 智能分镜请勿传 --multi_prompt',
-      );
-      process.exit(1);
-    }
-    payload.prompt = p;
-  }
-}
-
-function validateModelForRoute(apiPath, args) {
-  validateModelAliasInput(args.model);
-  const model = normalizeModelKey(args.model);
-  if (!model) return;
-
-  // We only validate what we can be sure about from public enums.
-  // - omni-video: only kling-v3-omni / kling-video-o1
-  // - non-omni video: must not use omni-only models
-  if (apiPath === API_OMNI) {
-    const allowed = new Set(['kling-v3-omni', 'kling-video-o1']);
-    if (!allowed.has(model)) {
-      throw new Error(
-        `Invalid --model for omni-video / omni-video 不支持该模型: ${model}\n`
-        + `Allowed / 允许: kling-v3-omni, kling-video-o1`,
-      );
-    }
-  } else {
-    const forbidden = new Set(['kling-v3-omni', 'kling-video-o1', 'kling-image-o1']);
-    if (forbidden.has(model)) {
-      throw new Error(
-        `Invalid --model for text2video/image2video / 文生/图生不支持该模型: ${model}\n`
-        + `Hint / 提示: remove --model or use a basic video model (e.g. kling-v3, kling-v2-6)`,
-      );
-    }
-  }
-}
-
-function validateSoundConstraints(apiPath, args) {
-  const sound = normalizeSound(args.sound || 'off') || 'off';
-  const model = normalizeModelKey(args.model);
-
-  if (apiPath === API_OMNI && args.video && sound === 'on') {
-    throw new Error(
-      'Invalid --sound with Omni --video / Omni 参考视频时 sound 仅支持 off。\n'
-      + 'Fix / 修复: remove --sound or set --sound off',
-    );
-  }
-  if (model === 'kling-video-o1' && sound === 'on') {
-    throw new Error(
-      'Invalid --sound for kling-video-o1 / kling-video-o1 不支持 sound。\n'
-      + 'Fix / 修复: set --sound off or omit it',
-    );
-  }
-}
-
-function validateOmniVideoListRules(args) {
-  if (!args.video) {
-    if (args.video_refer_type) {
-      throw new Error(
-        'Invalid --video_refer_type without --video / 仅在传入 --video 时才能设置 --video_refer_type。',
-      );
-    }
-    if (args.keep_original_sound) {
-      throw new Error(
-        'Invalid --keep_original_sound without --video / 仅在传入 --video 时才能设置 --keep_original_sound。',
-      );
-    }
-    return { referType: '', keepOriginalSound: '' };
-  }
-
-  const rawVideo = String(args.video).trim();
-  if (!rawVideo) {
-    throw new Error('Invalid --video / --video 不能为空，video_url 必须为非空公网 http(s) URL。');
-  }
-  if (rawVideo.includes(',')) {
-    throw new Error('Invalid --video / 当前仅支持 1 段参考视频，请只传一个 video_url。');
-  }
-
-  const referType = normalizeReferType(args.video_refer_type);
-  if (referType !== 'feature' && referType !== 'base') {
-    throw new Error(
-      `Invalid --video_refer_type / 无效 refer_type: ${referType}. Allowed / 允许: feature, base`,
-    );
-  }
-
-  const keepOriginalSound = normalizeKeepOriginalSound(args.keep_original_sound);
-  if (keepOriginalSound && keepOriginalSound !== 'yes' && keepOriginalSound !== 'no') {
-    throw new Error(
-      `Invalid --keep_original_sound / 无效 keep_original_sound: ${keepOriginalSound}. Allowed / 允许: yes, no`,
-    );
-  }
-
-  return { referType, keepOriginalSound };
+function shouldSendOmniAspectRatio(args, imageState, videoState) {
+  if (args.aspect_ratio) return true;
+  return !imageState.hasFirstFrame && !isBaseVideoEdit(videoState);
 }
 
 function parseImageInputs(rawImageArg) {
@@ -240,9 +295,14 @@ function parseImageTypes(rawImageTypesArg, imageCount) {
   }
   for (const t of parts) {
     if (!t) continue;
-    if (t !== 'first_frame' && t !== 'end_frame') {
+    if (t === 'end_frame') {
       throw new Error(
-        `Invalid image type / 无效图片 type: ${t}. Allowed / 允许: first_frame, end_frame, empty`,
+        'Invalid image type end_frame / 请改用 last_frame（官网枚举）',
+      );
+    }
+    if (!FRAME_TYPES.includes(t) && t !== 'refer_image') {
+      throw new Error(
+        `Invalid image type / 无效图片 type: ${t}. Allowed / 允许: first_frame, middle_frame (kling-4.0), last_frame, refer_image, empty`,
       );
     }
   }
@@ -260,68 +320,75 @@ function parseElementIds(rawElementIdsArg) {
   return parts;
 }
 
-function validateOmniImageListRules(args, imageInputs, imageTypes, hasTailArg) {
-  // API limit: with reference video max 4 images, otherwise max 7.
-  const maxImages = args.video ? 4 : 7;
-  const totalImages = imageInputs.length + (hasTailArg ? 1 : 0);
-  if (totalImages > maxImages) {
+function parseVoiceIds(rawVoiceIdsArg) {
+  if (!rawVoiceIdsArg) return [];
+  const parts = String(rawVoiceIdsArg).split(',').map(s => s.trim());
+  if (parts.some(p => !p)) {
     throw new Error(
-      `Too many images for omni-video / omni-video 图片数量超限: max ${maxImages} (current ${totalImages})`,
+      'Invalid --voice_ids list / --voice_ids 列表中存在空值；请移除空项并确保每个 voice_id 非空。',
     );
   }
-
-  const hasFirstFrame = imageTypes.includes('first_frame');
-  const hasEndFrame = imageTypes.includes('end_frame') || hasTailArg;
-
-  if (hasEndFrame && !hasFirstFrame) {
-    throw new Error(
-      'Invalid image_list: end_frame needs first_frame / 不支持仅尾帧，配置 end_frame 时必须同时有 first_frame。',
-    );
-  }
-
-  // O1 + >2 images does not support end_frame.
-  const model = normalizeModelKey(args.model);
-  if (model === 'kling-video-o1' && hasEndFrame && totalImages > 2) {
-    throw new Error(
-      'Invalid image_list for kling-video-o1 / kling-video-o1 在图片数超过 2 时不支持任何 end_frame。',
-    );
-  }
-
-  // Frame generation cannot be used with video editing (base).
-  const hasFrame = hasFirstFrame || hasEndFrame;
-  if (hasFrame && args.video && normalizeReferType(args.video_refer_type) === 'base') {
-    throw new Error(
-      'Invalid combo: frame images with video edit / 首帧或尾帧生视频不能与视频编辑（--video_refer_type base）同时使用。',
-    );
-  }
-  return { totalImages, hasFirstFrame, hasEndFrame };
+  return parts;
 }
 
-function validateOmniElementListRules(args, elementIds, imageState) {
-  if (!elementIds.length) return;
-  const model = normalizeModelKey(args.model);
-  const hasFirstAndEnd = imageState.hasFirstFrame && imageState.hasEndFrame;
-
-  // Frame-generation with subjects supports up to 3 subjects.
-  if ((imageState.hasFirstFrame || imageState.hasEndFrame) && elementIds.length > 3) {
+function validateVoices(route, model, spec, voiceIds) {
+  if (!voiceIds.length) return;
+  if (model === 'kling-4.0' && route !== 'omni') {
     throw new Error(
-      `Too many subjects with frame generation / 首帧或尾帧生视频时主体最多 3 个: current ${elementIds.length}`,
+      `Unsupported --voice_ids for ${model} text/image-to-video / ${model} 音色仅 Omni 全能参考支持，文生视频和图生视频不要传 --voice_ids`,
     );
   }
-
-  // First+last frame with O1 does not support subjects.
-  if (hasFirstAndEnd && model === 'kling-video-o1') {
+  if (model === 'kling-2.6' && route !== 'i2v') {
     throw new Error(
-      'Invalid element_list for kling-video-o1 / kling-video-o1 在首尾帧生视频场景不支持主体。',
+      'Unsupported --voice_ids for kling-2.6 text-to-video / kling-2.6 音色仅图生视频支持，文生视频不要传 --voice_ids',
     );
   }
-
-  // Combined reference count limit: images + elements.
-  const totalRefs = imageState.totalImages + elementIds.length;
-  const maxRefs = args.video ? 4 : 7;
-  if (totalRefs > maxRefs) {
+  if (!spec.maxVoices) {
     throw new Error(
-      `Too many refs for omni-video / omni-video 参考图与主体总数超限: max ${maxRefs} (current ${totalRefs})`,
+      `Unsupported --voice_ids for ${model} / 音色仅 kling-4.0 的 Omni、kling-2.6 的图生视频支持（contents type=voice）`,
+    );
+  }
+  if (voiceIds.length > spec.maxVoices) {
+    throw new Error(
+      `Too many voices / 音色数量超限: max ${spec.maxVoices} (current ${voiceIds.length})`,
+    );
+  }
+}
+
+function appendVoiceContents(contents, voiceIds) {
+  for (let i = 0; i < voiceIds.length; i++) {
+    contents.push({
+      type: 'voice',
+      voice_id: String(voiceIds[i]),
+      id: String(i + 1),
+    });
+  }
+}
+
+function rejectRemovedVideoFlags(args) {
+  if (args.mode) {
+    throw new Error(
+      'Removed --mode / --mode 已移除。请改用 --resolution 720p|1080p|4k（对应原 std/pro/4k）',
+    );
+  }
+  if (args.sound) {
+    throw new Error(
+      'Removed --sound / --sound 已移除。请改用 --audio native|off|original',
+    );
+  }
+  if (args.shot_type || args.multi_prompt) {
+    throw new Error(
+      'Removed --shot_type / --multi_prompt / 已移除。多镜头请用 --prompt「镜头 n, m, words;」并设置 --multi_shot true|false',
+    );
+  }
+  if (args.keep_original_sound) {
+    throw new Error(
+      'Removed --keep_original_sound / 已移除。请改用 --audio original',
+    );
+  }
+  if (args.negative_prompt) {
+    throw new Error(
+      'Unsupported --negative_prompt / 当前视频接口不支持 --negative_prompt',
     );
   }
 }
@@ -333,107 +400,492 @@ Usage:
   node kling.mjs video --prompt <text> [options]               # Text-to-video
   node kling.mjs video --image <path|url> [--prompt ...]       # Image-to-video
   node kling.mjs video --prompt "..." [--image ...] [--element_ids ...]  # Omni
-  node kling.mjs video --multi_shot --shot_type customize --multi_prompt <json>  # Multi-shot (customize)
-  node kling.mjs video --multi_shot --shot_type intelligence --prompt "..."       # Multi-shot (intelligence)
+  node kling.mjs video --multi_shot true --prompt "镜头 1, 2, ...; 镜头 2, 3, ...;"
   node kling.mjs video --task_id <id> [--download]              # Query/download
 
 Submit (common):
-  --prompt          Video description (Omni: <<<element_1>>> <<<image_1>>> <<<video_1>>>)
-  --duration        Duration 3-15 s (default: 5)
-  --model           T2V/I2V: kling-v3 / kling-v2-6 / …; explicit kling-v3-omni or kling-video-o1 → omni-video (simple t2v/i2v too). Omni default: kling-v3-omni or kling-video-o1
-  --mode            pro / std (default: pro)
-  --aspect_ratio    16:9 / 9:16 / 1:1 (default: 16:9). With --image, this routes to omni-video
-  --sound           on / off (default: off). v3/omni support; with --video only off; o1 no sound
-  --negative_prompt Negative prompt
+  --prompt          Video description (Omni / 4.0: @image_1 @element_1 @video_1; voice @1)
+  --duration        Seconds; model-dependent (4.0: 3-30, 4.0-flash: 3-20, 3.0/turbo: 3-15, o1: 3-10, 2.6/2.5: 5|10).
+                    kling-4.0: omitted duration is not sent. The server reads the prompt,
+                    then base_video on Omni, otherwise its official 10.
+                    kling-4.0-flash: omitted duration is not sent. Do not pass 10 to fill a default
+                    (T2V / I2V: explicit, else prompt, else 10; Omni with base_video: explicit, else prompt, else that video, else 10).
+                    Other models: omitted duration is sent as 5.
+  --model           kling-4.0 / kling-4.0-flash / kling-3.0 / kling-3.0-turbo / kling-2.6 / kling-2.5-turbo / kling-3.0-omni / kling-o1
+                    kling-4.0 and kling-4.0-flash are each one name for T2V / I2V / Omni; the route follows the flags below
+  --resolution      720p / 1080p / 4k (4k: kling-3.0 and kling-3.0-omni only; kling-4.0-flash: 720p only).
+                    Official default: 1080p for kling-4.0, else 720p
+  --aspect_ratio    16:9 / 9:16 / 1:1. kling-4.0 adds 4:3 / 3:4 / 21:9 (T2V / Omni) and adaptive (Omni).
+                    kling-4.0-flash adds 4:3 / 3:4 / 21:9 (T2V / Omni) and adaptive (Omni).
+                    Image-to-video has no aspect_ratio, so --image plus this flag routes to Omni
+                    (including a first frame or kling-4.0 keyframes) and the value is submitted as given.
+                    A first frame, or kling-4.0 frame-only keyframes, without this flag stays image-to-video.
+                    Omni submits an explicit value even with a first frame or base video.
+                    Omitted on Omni with no first frame and not a base edit: 16:9
+                    (kling-4.0 / kling-4.0-flash: not sent, official adaptive).
+  --audio           native / off / original (model-dependent; official default: off).
+                    kling-4.0 / kling-4.0-flash Omni: original (keep input video sound) or native (new audio). T2V / I2V: not accepted.
+                    original requires --video (reference video, not a video subject) and rejects --voice_ids.
+                    kling-3.0-omni / kling-o1 feature video: off only; their base video cannot be native.
   --output_dir      Output dir (default: ./output)
   --no-wait         Submit only, do not wait
   --wait            Wait for completion (default)
 
 Image-to-video / Omni:
-  --image           Image list path or URL (comma-separated for Omni)
-  --image_types     Optional type list aligned with --image (comma-separated): first_frame/end_frame/empty
-  --image_tail      Last-frame image
-  --element_ids     Subject IDs, comma-separated (Omni; combined limits with images)
-  --video           Omni reference video: public http(s) URL only (video_list[].video_url)
-  --video_refer_type feature / base (default: base)
-  --keep_original_sound yes / no (optional; works for feature/base)
+  --image           Image path or URL (comma-separated for Omni refer images)
+  --image_types     Optional type list aligned with --image: first_frame / middle_frame / last_frame / refer_image / empty
+                    middle_frame: kling-4.0 only. Do not combine last_frame with --image_tail
+                    kling-4.0: frame-only types (no refer_image) stay on image-to-video (max 10 images)
+                    unless --aspect_ratio is set; image-to-video has no aspect_ratio, so that case goes Omni
+                    kling-4.0-flash: only first_frame stays image-to-video; last_frame or --image_tail routes to Omni (no middle_frame)
+  --image_tail      Last-frame image (maps to contents type last_frame). Do not combine with --image_types last_frame
+  --element_ids     Subject IDs, comma-separated. I2V kling-3.0: contents type=element (max 3). Else Omni.
+  --voice_ids       Voice IDs, comma-separated. contents type=voice.
+                    kling-4.0: Omni only, max 3, voice_id plus id 1, prompt @1. --audio original is rejected.
+                    T2V / I2V reject this flag. kling-4.0-flash rejects this flag.
+                    kling-2.6: image-to-video only, max 2, id 1, prompt @1.
+                    Omitted --audio becomes native and resolution 1080p. --audio off is rejected.
+                    Not on 3.0 / 3.0-omni / turbo / 2.5 / o1. Does not change route by itself.
+  --video           Omni reference video URL(s), comma-separated. Public http(s) only.
+                    kling-4.0 / kling-4.0-flash: up to 5, prompt @video_1 @video_2 …. kling-3.0-omni / kling-o1: 1.
+                    At most one base_video. kling-4.0 / kling-4.0-flash, no video-character subjects: max 5 videos.
+                    With video-character subjects, those subjects plus videos total at most 5
+                    (subject type is not known from an element id; the server checks that cap).
+  --video_refer_type feature / base, or a list aligned with --video.
+                    One URL and omitted type → base. Several URLs: list each type, or one feature for all.
 
-Multi-shot (text2video / image2video / omni-video; same rules; see SKILL.md):
-  --multi_shot      Enable multi-shot (with customize, top-level --prompt unused; not with --image_tail)
-  --shot_type       customize | intelligence (required when multi_shot; default: customize)
-  --multi_prompt    customize only: JSON array, max 6 shots, durations sum to --duration
-  --prompt          intelligence: required (model splits shots); customize: ignored if set
+Multi-shot:
+  --multi_shot      true / false. Request field only on kling-3.0 / kling-3.0-omni (official default true; not kling-4.0 / kling-4.0-flash).
+                    kling-3.0 / kling-3.0-omni base video edit: if omitted, CLI sends false (server default true would fail).
+                    Turbo: write 镜头 n, m, words; in --prompt; do not pass --multi_shot.
 
 Query/download:
   --task_id         Task ID
   --download        Download if task succeeded
 
 Watermark:
-  --watermark       Generate with watermark (adds watermark_info: {enabled: true})
+  --watermark       Generate with watermark (options.watermark_info.enabled=true)
 
 Env:
-  credentials file  ~/.config/kling/.credentials (access_key_id, secret_access_key)
-  KLING_TOKEN       Session-only Bearer (optional override)
+  credentials file  ~/.config/kling/.credentials (api_key)
+  KLING_API_KEY     Session-only Bearer (optional override)
   KLING_MEDIA_ROOTS Comma-separated extra dirs for local media / --output_dir (default: cwd only)
   KLING_ALLOW_ABSOLUTE_PATHS=1  Allow any local path (e.g. WSL downloads outside project)`);
 }
 
-function chooseApiPath(args) {
-  if (args.element_ids || args.video) return API_OMNI;
-  const m = normalizeModelKey(args.model);
-  const explicitOmniModel = m === 'kling-v3-omni' || m === 'kling-video-o1';
-  if (args.image) {
-    const images = args.image.split(',').map(s => s.trim()).filter(Boolean);
-    // image2video does not support aspect_ratio; route to omni-video when explicitly provided.
-    if (args.aspect_ratio) return API_OMNI;
-    if (images.length > 1) return API_OMNI;
-    if (explicitOmniModel) return API_OMNI;
-    return API_I2V;
-  }
-  if (explicitOmniModel) return API_OMNI;
-  return API_T2V;
+function isFrameOnlyList(imageTypes) {
+  return imageTypes.length > 0 && imageTypes.every((t) => FRAME_TYPES.includes(t));
 }
 
-async function queryTaskAnyPath(taskId, token) {
-  const paths = [API_OMNI, API_I2V, API_T2V];
-  for (const apiPath of paths) {
-    try {
-      const data = await queryTask(apiPath, taskId, token);
-      if (data && (data.task_status === 'succeed' || data.task_status === 'failed' || data.task_status === 'processing' || data.task_status === 'submitted')) {
-        return { apiPath, data };
-      }
-    } catch (_) { /* try next */ }
+/**
+ * Models in OMNI_MODELS only always go Omni. kling-4.0 and kling-4.0-flash are listed in both tables
+ * and pick T2V / I2V / Omni from the flags, same as when --model is omitted.
+ */
+function chooseRoute(args, imageTypes = []) {
+  const m = normalizeModelKey(args.model);
+  const basicSpec = m ? BASIC_MODELS[m] : undefined;
+  const sharedName = Boolean(basicSpec && OMNI_MODELS[m]);
+  if (m && OMNI_MODELS[m] && !basicSpec) return 'omni';
+  if (m && !basicSpec && !OMNI_MODELS[m]) {
+    throw new Error(
+      `Unknown --model / 未知模型: ${m}\n`
+      + 'Allowed / 允许: kling-4.0, kling-4.0-flash, kling-3.0, kling-3.0-turbo, kling-2.6, kling-2.5-turbo, kling-3.0-omni, kling-o1',
+    );
   }
-  throw new Error(`Task not found / 未找到任务: ${taskId}`);
+    if (args.video) return 'omni';
+  if (args.image) {
+    const images = args.image.split(',').map(s => s.trim()).filter(Boolean);
+    if (m === 'kling-4.0-flash' && (args.image_tail || imageTypes.includes('last_frame'))) return 'omni';
+    if (args.aspect_ratio) return 'omni';
+    if (images.length > 1 && basicSpec?.middleFrame && isFrameOnlyList(imageTypes) && !args.element_ids) {
+      return 'i2v';
+    }
+    if (images.length > 1) return 'omni';
+    if (args.element_ids) {
+      const model = m || 'kling-4.0';
+      if (BASIC_MODELS[model]?.i2vElements) return 'i2v';
+      if (OMNI_MODELS[model]) return 'omni';
+      if (BASIC_MODELS[model]) {
+        throw new Error(
+          `Unsupported --element_ids for ${model} / 官网图生视频仅 kling-3.0 的 contents 含 element；turbo/2.6/2.5 请去掉 --element_ids，或改用 kling-3.0 / kling-3.0-omni / kling-o1 / kling-4.0 / kling-4.0-flash`,
+        );
+      }
+    }
+    if (sharedName && imageTypes[0] === 'refer_image') return 'omni';
+    return 'i2v';
+  }
+  if (args.element_ids) return 'omni';
+  return 't2v';
+}
+
+function resolveModel(route, args) {
+  const m = normalizeModelKey(args.model);
+  if (route === 'omni') {
+    if (!m) return 'kling-4.0';
+    if (!OMNI_MODELS[m]) {
+      throw new Error(
+        `Invalid --model for Omni / Omni 不支持该模型: ${m}\n`
+        + 'Allowed / 允许: kling-3.0-omni, kling-o1, kling-4.0, kling-4.0-flash',
+      );
+    }
+    return m;
+  }
+  if (!m) return 'kling-4.0';
+  if (!BASIC_MODELS[m]) {
+    throw new Error(
+      `Invalid --model for text/image-to-video / 文生/图生不支持该模型: ${m}\n`
+      + 'Allowed / 允许: kling-3.0, kling-3.0-turbo, kling-2.6, kling-2.5-turbo, kling-4.0, kling-4.0-flash',
+    );
+  }
+  return m;
+}
+
+function modelSpec(route, model) {
+  return route === 'omni' ? OMNI_MODELS[model] : BASIC_MODELS[model];
+}
+
+function apiPathOf(route, model) {
+  const spec = modelSpec(route, model);
+  if (route === 'omni') return spec.path;
+  return route === 't2v' ? spec.t2v : spec.i2v;
+}
+
+function buildSettings({ spec, duration, resolution, aspectRatio, audio, multiShot, includeAspect }) {
+  const settings = {};
+  if (duration != null) settings.duration = duration;
+  if (resolution) settings.resolution = resolution;
+  if (includeAspect && aspectRatio) settings.aspect_ratio = aspectRatio;
+  if (audio && spec.audio) settings.audio = audio;
+  if (spec.multiShot && multiShot !== undefined) settings.multi_shot = multiShot;
+  return settings;
+}
+
+function buildOptions(args) {
+  if (!args.watermark) return undefined;
+  return { watermark_info: { enabled: true } };
+}
+
+function validateSettings(route, model, spec, args, ctx, voiceIds = [], videoState = { hasBase: false }) {
+  const duration = parseDuration(
+    args.duration,
+    model === 'kling-4.0' || model === 'kling-4.0-flash' ? null : (spec.defaultDuration ?? 5),
+  );
+  if (duration != null && !spec.durations.includes(duration)) {
+    throw new Error(
+      `Invalid --duration for ${model} / 该模型时长须为: ${spec.durations.join(', ')}`,
+    );
+  }
+
+  let resolution = parseResolution(args.resolution);
+  if (resolution && !spec.resolutions.includes(resolution)) {
+    throw new Error(
+      `Invalid --resolution for ${model} / 该模型清晰度须为: ${spec.resolutions.join(', ')}`,
+    );
+  }
+
+  let audio = parseAudio(args.audio);
+  if (voiceIds.length && spec.audio?.includes('native')) {
+    if (audio && audio !== 'native') {
+      throw new Error(
+        'Invalid --audio with --voice_ids / 指定音色时 audio 须为 native（不要用 off / original）',
+      );
+    }
+    if (!audio && model !== 'kling-4.0' && model !== 'kling-4.0-flash') audio = 'native';
+  }
+  if (audio) {
+    if (!spec.audio) {
+      throw new Error(`Unsupported --audio for ${model} / 该模型接口无 audio 字段`);
+    }
+    if (!spec.audio.includes(audio)) {
+      throw new Error(
+        `Invalid --audio for ${model} / 该模型 audio 须为: ${spec.audio.join(', ')}`,
+      );
+    }
+  }
+  if (spec.audioRequires1080p && audio === 'native' && !resolution && voiceIds.length) {
+    resolution = '1080p';
+  }
+
+  let multiShot = parseBoolFlag(args.multi_shot, '--multi_shot');
+  if (multiShot !== undefined && !spec.multiShot) {
+    throw new Error(
+      `Unsupported --multi_shot for ${model} / 该模型请求体无 settings.multi_shot。`
+      + (model === 'kling-3.0-turbo'
+        ? ' 官网 Turbo 多镜头写在 --prompt：镜头 n, m, words;'
+        : ''),
+    );
+  }
+  if (spec.multiShot && multiShot === undefined && isBaseVideoEdit(videoState)) {
+    multiShot = false;
+  }
+
+  if (spec.audioRequires1080p && audio === 'native' && (resolution || '720p') !== '1080p') {
+    throw new Error(
+      'Invalid --audio native / 官网：生成有声视频时仅支持 1080p。请设置 --resolution 1080p',
+    );
+  }
+
+  if (ctx.hasLastFrame && !spec.lastFrame) {
+    throw new Error(`Unsupported last_frame for ${model} / 该模型不支持尾帧`);
+  }
+  if (ctx.hasLastFrame && spec.lastFrameRequires1080p && (resolution || '720p') !== '1080p') {
+    throw new Error('Invalid last_frame / 官网：该模型尾帧仅支持 1080p');
+  }
+  if (ctx.hasLastFrame && spec.lastFrameRequires1080pSilent) {
+    if ((resolution || '720p') !== '1080p') {
+      throw new Error('Invalid last_frame / 官网：kling-2.6 尾帧仅支持 1080p 且无声');
+    }
+    if (audio && audio !== 'off') {
+      throw new Error('Invalid last_frame / 官网：kling-2.6 尾帧仅支持无声视频（--audio off）');
+    }
+  }
+
+  if (model === 'kling-o1' && ctx.hasFirstFrame && !ctx.hasReferImage && !args.video && duration != null) {
+    if (duration !== 5 && duration !== 10) {
+      throw new Error(
+        'Invalid --duration for kling-o1 first_frame / 官网：仅首帧且无 refer_image/参考视频时时长仅 5 或 10 秒',
+      );
+    }
+  }
+
+  return { duration, resolution, audio, multiShot };
+}
+
+function parseVideoList(rawVideo, rawTypes) {
+  if (!rawVideo || !String(rawVideo).trim()) {
+    if (rawTypes) {
+      throw new Error(
+        'Invalid --video_refer_type without --video / 仅在传入 --video 时才能设置 --video_refer_type。',
+      );
+    }
+    return { items: [], hasBase: false, hasFeature: false };
+  }
+
+  const urls = String(rawVideo).split(',').map((s) => s.trim());
+  if (urls.some((url) => !url)) {
+    throw new Error('Invalid --video / --video 列表中存在空值；请移除空项。');
+  }
+  const normalized = urls.map((url) => readOmniVideoRefUrl(url));
+
+  let types;
+  if (!rawTypes) {
+    if (normalized.length > 1) {
+      throw new Error(
+        'Invalid --video_refer_type / 多段 --video 时须逐段指定 feature 或 base，也可只写一个 feature 表示全部为特征参考。最多 1 段 base_video',
+      );
+    }
+    types = ['base'];
+  } else {
+    let parts = String(rawTypes).split(',').map((s) => s.trim().toLowerCase());
+    if (parts.length === 1 && normalized.length > 1) {
+      if (parts[0] !== 'feature') {
+        throw new Error(
+          'Invalid --video_refer_type / 多段参考视频里最多 1 段 base_video，其余须为 feature',
+        );
+      }
+      parts = Array(normalized.length).fill('feature');
+    }
+    if (parts.length !== normalized.length) {
+      throw new Error(
+        `Invalid --video_refer_type / 数量需与 --video 一致: expected ${normalized.length}, got ${parts.length}`,
+      );
+    }
+    types = parts.map((part) => {
+      if (part !== 'feature' && part !== 'base') {
+        throw new Error(
+          `Invalid --video_refer_type / 无效 refer_type: ${part}. Allowed / 允许: feature, base`,
+        );
+      }
+      return part;
+    });
+  }
+
+  const baseCount = types.filter((type) => type === 'base').length;
+  if (baseCount > 1) {
+    throw new Error('Too many base videos / 待编辑视频 base_video 最多 1 段');
+  }
+  return {
+    items: normalized.map((url, index) => ({ url, referType: types[index] })),
+    hasBase: baseCount === 1,
+    hasFeature: types.includes('feature'),
+  };
+}
+
+function assertOmniVideoCount(model, spec, videoState) {
+  const maxVideos = spec.maxVideos ?? 1;
+  if (videoState.items.length > maxVideos) {
+    throw new Error(
+      `Too many reference videos for ${model} / 参考视频数量超限: max ${maxVideos} (current ${videoState.items.length})`,
+    );
+  }
+}
+
+function validateOmniImageListRules(args, imageInputs, imageTypes, hasTailArg, model, spec, videoState) {
+  const maxImages = args.video ? spec.maxImagesWithVideo : spec.maxImages;
+  const totalImages = imageInputs.length + (hasTailArg ? 1 : 0);
+  if (totalImages > maxImages) {
+    throw new Error(
+      `Too many images for omni-video / Omni 图片数量超限: max ${maxImages} (current ${totalImages})`,
+    );
+  }
+
+  const hasFirstFrame = imageTypes.includes('first_frame');
+  const hasLastFrame = imageTypes.includes('last_frame') || hasTailArg;
+  const hasReferImage = imageTypes.some((t) => (t || 'refer_image') === 'refer_image');
+
+  if (hasLastFrame && !hasFirstFrame && model !== 'kling-4.0' && model !== 'kling-4.0-flash') {
+    throw new Error(
+      'Invalid image list: last_frame needs first_frame / 不支持仅尾帧，配置 last_frame 时必须同时有 first_frame。',
+    );
+  }
+
+  if (model === 'kling-o1' && hasLastFrame && totalImages > 2) {
+    throw new Error(
+      'Invalid image list for kling-o1 / kling-o1 在图片数超过 2 时不支持 last_frame。',
+    );
+  }
+
+  const hasFrame = hasFirstFrame || hasLastFrame;
+  if (hasFrame && videoState.hasBase && (model === 'kling-3.0-omni' || model === 'kling-o1')) {
+    throw new Error(
+      'Invalid combo: frame images with video edit / 首帧或尾帧不能与视频编辑（--video_refer_type base）同时使用。',
+    );
+  }
+  return { totalImages, hasFirstFrame, hasLastFrame, hasReferImage };
+}
+
+function validateOmniElementListRules(args, elementIds, imageState, model, spec, voiceIds = [], videoState = { items: [] }) {
+  const hasFirstAndLast = imageState.hasFirstFrame && imageState.hasLastFrame;
+
+  if (elementIds.length) {
+    if (spec.maxElements && elementIds.length > spec.maxElements) {
+      throw new Error(
+        `Too many subjects for ${model} / 主体数量超限: max ${spec.maxElements} (current ${elementIds.length})`,
+      );
+    }
+
+    if (spec.frameMaxElements
+      && (imageState.hasFirstFrame || imageState.hasLastFrame)
+      && elementIds.length > spec.frameMaxElements) {
+      throw new Error(
+        `Too many subjects with frame generation / 首帧或尾帧生视频时主体最多 ${spec.frameMaxElements} 个: current ${elementIds.length}`,
+      );
+    }
+
+    if (hasFirstAndLast && model === 'kling-o1') {
+      throw new Error(
+        'Invalid element_list for kling-o1 / kling-o1 在首尾帧生视频场景不支持主体。',
+      );
+    }
+  }
+
+  if (model === 'kling-4.0' || model === 'kling-4.0-flash') {
+    const total = imageState.totalImages + videoState.items.length + elementIds.length + voiceIds.length;
+    if (total > spec.maxRefs) {
+      const what = model === 'kling-4.0'
+        ? '图片、参考视频、主体与音色总数超限'
+        : '图片、参考视频与主体总数超限';
+      throw new Error(
+        `Too many refs for ${model} / ${what}: max ${spec.maxRefs} (current ${total})`,
+      );
+    }
+    return;
+  }
+
+  if (!elementIds.length && !voiceIds.length) return;
+
+  const totalRefs = imageState.totalImages + elementIds.length + voiceIds.length;
+  const maxRefs = args.video ? spec.maxRefsWithVideo : spec.maxRefs;
+  if (totalRefs > maxRefs) {
+    throw new Error(
+      `Too many refs for omni-video / Omni 参考图、主体与音色总数超限: max ${maxRefs} (current ${totalRefs})`,
+    );
+  }
+}
+
+function validateOmniAudioVideoRules(model, spec, audio, args, multiShot, imageState, videoState) {
+  if (audio === 'original' && !videoState.items.length) {
+    throw new Error(
+      'Invalid --audio original without --video / original 为保留输入视频原声，须同时提供 --video（视频主体不算）',
+    );
+  }
+  if (!videoState.items.length) return;
+
+  const clipAudioLocked = model !== 'kling-4.0' && model !== 'kling-4.0-flash';
+  if (videoState.hasFeature) {
+    if (clipAudioLocked && audio && audio !== 'off') {
+      throw new Error(
+        'Invalid --audio with feature video / 官网：特征参考视频时 audio 只能为 off',
+      );
+    }
+    if (multiShot === false) {
+      throw new Error(
+        'Invalid --multi_shot false with feature video / 官网：特征参考视频生成多镜头时 multi_shot 只能为 true',
+      );
+    }
+    if (model === 'kling-o1' && imageState.hasLastFrame) {
+      throw new Error(
+        'Invalid last_frame with feature video / 官网：kling-o1 特征参考视频仅支持首帧，不支持尾帧',
+      );
+    }
+  }
+  if (videoState.hasBase) {
+    if (clipAudioLocked && audio === 'native') {
+      throw new Error(
+        'Invalid --audio native with base video / 官网：待编辑视频 audio 不能为 native',
+      );
+    }
+    if (multiShot === true) {
+      throw new Error(
+        'Invalid --multi_shot with base video / 官网：待编辑视频不支持多镜头',
+      );
+    }
+    if ((model === 'kling-3.0-omni' || model === 'kling-o1') && (imageState.hasFirstFrame || imageState.hasLastFrame)) {
+      throw new Error(
+        'Invalid frames with base video / 官网：待编辑视频不支持定义首帧或尾帧',
+      );
+    }
+  }
+  if (!spec.audio?.includes('original') && audio === 'original') {
+    throw new Error(`Invalid --audio original for this model / 该模型不支持 original`);
+  }
+}
+
+async function queryExistingTask(taskId, token, outputDir, download) {
+  const data = await queryTask(API_TASKS, taskId, token);
+  const status = taskStatusOf(data) || 'unknown';
+  console.log(`Task ID / 任务 ID: ${taskId}`);
+  console.log(`Status / 状态: ${status}`);
+  const msg = taskMessageOf(data);
+  if (msg) console.log(`Message / 消息: ${msg}`);
+  const url = resultUrlOf(data);
+  if (url) {
+    console.log(`Video URL / 视频链接: ${url}`);
+    const wm = Array.isArray(data?.outputs)
+      ? data.outputs.find((item) => item?.type === 'video' && item?.watermark_url)?.watermark_url
+      : data?.task_result?.videos?.[0]?.watermark_url;
+    if (wm) console.log(`Watermark URL / 水印视频: ${wm}`);
+    if (download && isTaskSucceeded(status)) {
+      const { mkdir } = await import('node:fs/promises');
+      const { join } = await import('node:path');
+      await mkdir(outputDir, { recursive: true });
+      await downloadFile(url, join(outputDir, `${taskId}.mp4`));
+    }
+  }
 }
 
 export async function main() {
-  const args = parseArgs(process.argv, ['multi_shot']);
+  const args = parseArgs(process.argv);
   if (args.help) { printHelp(); return; }
   validateModelAliasInput(args.model);
+  rejectRemovedVideoFlags(args);
 
   const token = await getTokenOrExit();
   const outputDir = resolveAllowedOutputDir(args.output_dir || './output');
 
-  if (args.task_id && !args.prompt && !args.image && !args.multi_shot) {
+  if (args.task_id && !args.prompt && !args.image && args.multi_shot === undefined) {
     try {
-      const { apiPath, data } = await queryTaskAnyPath(args.task_id, token);
-      console.log(`Task ID / 任务 ID: ${args.task_id}`);
-      console.log(`Status / 状态: ${data?.task_status || 'unknown'}`);
-      if (data?.task_status_msg) console.log(`Message / 消息: ${data.task_status_msg}`);
-      const videos = data?.task_result?.videos || [];
-      if (videos.length > 0 && videos[0].url) {
-        console.log(`Video URL / 视频链接: ${videos[0].url}`);
-        if (videos[0].watermark_url) {
-          console.log(`Watermark URL / 水印视频: ${videos[0].watermark_url}`);
-        }
-        if (args.download) {
-          const { mkdir } = await import('node:fs/promises');
-          const { join } = await import('node:path');
-          await mkdir(outputDir, { recursive: true });
-          await downloadFile(videos[0].url, join(outputDir, `${args.task_id}.mp4`));
-        }
-      }
+      await queryExistingTask(args.task_id, token, outputDir, args.download);
     } catch (e) {
       console.error(`Error / 错误: ${e.message}`);
       process.exit(1);
@@ -443,11 +895,19 @@ export async function main() {
 
   const imageInputs = parseImageInputs(args.image);
   const imageTypes = parseImageTypes(args.image_types, imageInputs.length);
+  if (args.image_tail && imageTypes.includes('last_frame')) {
+    throw new Error(
+      'Invalid combo: --image_tail with --image_types last_frame / 尾帧只用 --image_tail 或 --image_types last_frame，不要同时传',
+    );
+  }
+  if (args.image_tail && imageInputs.length > 0 && !imageTypes[0]) {
+    imageTypes[0] = 'first_frame';
+  }
   const elementIds = parseElementIds(args.element_ids);
-  const aspectForcesOmni = Boolean(args.image && args.aspect_ratio && imageInputs.length > 0);
-  const videoState = validateOmniVideoListRules(args);
+  const voiceIds = parseVoiceIds(args.voice_ids);
+  const videoState = parseVideoList(args.video, args.video_refer_type);
   const hasImage = imageInputs.length > 0;
-  if (!args.prompt && !hasImage && !args.multi_shot) {
+  if (!args.prompt && !hasImage && args.multi_shot === undefined) {
     console.error('Error / 错误: --prompt, --image, or --multi_shot required');
     console.error('Use --help / 使用 --help 查看帮助');
     process.exit(1);
@@ -455,13 +915,6 @@ export async function main() {
 
   if (args.image_tail && !hasImage) {
     console.error('Error / 错误: --image_tail requires --image (first frame) / 首尾帧需要首帧 --image');
-    process.exit(1);
-  }
-
-  if (args.multi_shot && args.image_tail) {
-    console.error(
-      'Error / 错误: multi-shot does not support first+last frame (--image_tail) / 多镜头不支持首尾帧生视频，请去掉 --image_tail',
-    );
     process.exit(1);
   }
 
@@ -474,161 +927,160 @@ export async function main() {
     }
   }
 
-  const apiPath = chooseApiPath(args);
-  const queryHint = `node kling.mjs video --task_id`;
-  if (apiPath === API_OMNI && aspectForcesOmni && args.model) {
-    const model = normalizeModelKey(args.model);
-    const isOmniModel = model === 'kling-v3-omni' || model === 'kling-video-o1';
-    if (!isOmniModel) {
-      console.error(
-        `Error / 错误: --model ${model} does not support --aspect_ratio with --image.\n`
-        + 'Use omni model / 请使用 Omni 模型: kling-v3-omni or kling-video-o1',
-      );
-      process.exit(1);
-    }
-  }
-  if (apiPath === API_OMNI && aspectForcesOmni && args.negative_prompt) {
-    console.error(
-      'Info / 提示: omni-video does not support --negative_prompt; this parameter will be ignored',
-    );
-  }
-
   try {
-    validateModelForRoute(apiPath, args);
-    validateSoundConstraints(apiPath, args);
+    const route = chooseRoute(args, imageTypes);
+    const model = resolveModel(route, args);
+    const spec = modelSpec(route, model);
+    const apiPath = apiPathOf(route, model);
+    const queryHint = `node kling.mjs video --task_id`;
 
-    if (apiPath === API_T2V) {
-      const payload = {
-        model_name: args.model ? normalizeModelKey(args.model) : 'kling-v3',
-        negative_prompt: args.negative_prompt || '',
-        duration: String(args.duration || '5'),
-        mode: args.mode || 'pro',
-        aspect_ratio: args.aspect_ratio || '16:9',
-        sound: args.sound || 'off',
-        callback_url: '',
-        external_task_id: '',
-      };
-      if (args.watermark) payload.watermark_info = { enabled: true };
-      if (args.multi_shot) {
-        mergeMultiShotIntoPayload(payload, args);
-      } else {
-        const p = String(args.prompt || '').trim();
-        if (!p) {
-          console.error(
-            'Error / 错误: text-to-video requires --prompt when not using --multi_shot / 文生视频非多镜头须提供 --prompt',
-          );
-          process.exit(1);
-        }
-        payload.prompt = args.prompt;
-      }
-      const result = await submitTask(API_T2V, payload, token);
-      console.log(`\nTask ID / 任务 ID: ${result.taskId}`);
-      console.log(`Query / 查询: ${queryHint} ${result.taskId} [--download]`);
-      if (args.wait !== false) {
-        console.log();
-        const outPath = await pollAndDownload(API_T2V, result.taskId, outputDir, { token });
-        console.log(`\n✓ Done / 完成: ${outPath}`);
-      }
-      return;
+    if (route === 'omni') assertOmniVideoCount(model, spec, videoState);
+    if (imageTypes.includes('middle_frame') && !spec.middleFrame) {
+      throw new Error(
+        `Unsupported middle_frame for ${model} / 中间帧仅 kling-4.0 支持，请加 --model kling-4.0`,
+      );
+    }
+    const totalImageCount = imageInputs.length + (args.image_tail ? 1 : 0);
+    if (route === 'i2v' && spec.maxImages && totalImageCount > spec.maxImages) {
+      throw new Error(
+        `Too many images for image-to-video / 图生视频图片数量超限: max ${spec.maxImages} (current ${totalImageCount})`,
+      );
     }
 
-    if (apiPath === API_I2V) {
-      const payload = {
-        model_name: args.model ? normalizeModelKey(args.model) : 'kling-v3',
-        image: await readMediaAsValue(args.image),
-        image_tail: args.image_tail ? await readMediaAsValue(args.image_tail) : '',
-        negative_prompt: args.negative_prompt || '',
-        duration: String(args.duration || '5'),
-        mode: args.mode || 'pro',
-        sound: args.sound || 'off',
-        callback_url: '',
-        external_task_id: '',
-      };
-      if (args.watermark) payload.watermark_info = { enabled: true };
-      if (args.multi_shot) {
-        mergeMultiShotIntoPayload(payload, args);
-      } else {
-        payload.prompt = args.prompt || '';
-      }
-      const result = await submitTask(API_I2V, payload, token);
-      console.log(`\nTask ID / 任务 ID: ${result.taskId}`);
-      console.log(`Query / 查询: ${queryHint} ${result.taskId} [--download]`);
-      if (args.wait !== false) {
-        console.log();
-        const outPath = await pollAndDownload(API_I2V, result.taskId, outputDir, { token });
-        console.log(`\n✓ Done / 完成: ${outPath}`);
-      }
-      return;
-    }
-
-    const payload = {
-      model_name: args.model ? normalizeModelKey(args.model) : 'kling-v3-omni',
-      duration: String(args.duration || '5'),
-      mode: args.mode || 'pro',
-      sound: args.sound || 'off',
-      callback_url: '',
+    let imageState = {
+      totalImages: imageInputs.length + (args.image_tail ? 1 : 0),
+      hasFirstFrame: imageTypes.includes('first_frame') || (route === 'i2v' && hasImage),
+      hasLastFrame: imageTypes.includes('last_frame') || Boolean(args.image_tail),
+      hasReferImage: imageTypes.some((t) => t === 'refer_image'),
     };
-    const hasFirstFrameRef = imageTypes.includes('first_frame');
-    const usesVideoEdit = Boolean(args.video && normalizeReferType(args.video_refer_type) === 'base');
-    const requireAspectRatio = !hasFirstFrameRef && !usesVideoEdit;
-    if (args.aspect_ratio) {
-      payload.aspect_ratio = args.aspect_ratio;
-    } else if (requireAspectRatio) {
-      payload.aspect_ratio = '16:9';
+    if (route === 'omni' && (imageInputs.length > 0 || args.image_tail)) {
+      imageState = validateOmniImageListRules(args, imageInputs, imageTypes, Boolean(args.image_tail), model, spec, videoState);
     }
-    if (args.watermark) payload.watermark_info = { enabled: true };
+    if (route === 'omni') validateOmniElementListRules(args, elementIds, imageState, model, spec, voiceIds, videoState);
+    validateVoices(route, model, spec, voiceIds);
 
-    if (args.multi_shot) {
-      mergeMultiShotIntoPayload(payload, args);
+    const { duration, resolution, audio, multiShot } = validateSettings(route, model, spec, args, imageState, voiceIds, videoState);
+    if (route === 'omni') validateOmniAudioVideoRules(model, spec, audio, args, multiShot, imageState, videoState);
+
+    const prompt = String(args.prompt || '').trim();
+    if (route === 't2v' && !prompt) {
+      throw new Error('text-to-video requires --prompt / 文生视频须提供 --prompt');
+    }
+    if (route === 'omni' && !prompt) {
+      throw new Error('Omni requires non-empty --prompt / Omni 须提供非空 --prompt');
+    }
+
+    const includeAspect = route === 't2v'
+      || (route === 'omni' && shouldSendOmniAspectRatio(args, imageState, videoState));
+    const aspectRatio = args.aspect_ratio || (includeAspect ? (spec.defaultAspectRatio ?? '16:9') : '');
+    const settings = buildSettings({
+      spec,
+      duration,
+      resolution,
+      aspectRatio,
+      audio,
+      multiShot,
+      includeAspect,
+    });
+    const options = buildOptions(args);
+
+    let payload;
+    if (route === 't2v') {
+      payload = { prompt, settings };
+      if (voiceIds.length) {
+        const contents = [];
+        appendVoiceContents(contents, voiceIds);
+        payload.contents = contents;
+      }
+    } else if (route === 'i2v') {
+      const contents = [];
+      if (prompt) contents.push({ type: 'prompt', text: prompt });
+      if (spec.middleFrame) {
+        for (let i = 0; i < imageInputs.length; i++) {
+          contents.push({
+            type: imageTypes[i] || 'first_frame',
+            url: await readMediaAsValue(imageInputs[i]),
+            id: `image_${i + 1}`,
+          });
+        }
+        if (args.image_tail) {
+          contents.push({
+            type: 'last_frame',
+            url: await readMediaAsValue(args.image_tail),
+            id: `image_${imageInputs.length + 1}`,
+          });
+        }
+      } else {
+        contents.push({ type: 'first_frame', url: await readMediaAsValue(imageInputs[0]) });
+        if (args.image_tail) {
+          contents.push({ type: 'last_frame', url: await readMediaAsValue(args.image_tail) });
+        }
+      }
+      if (elementIds.length) {
+        if (!spec.i2vElements) {
+          throw new Error(
+            `Unsupported --element_ids for ${model} / 官网图生视频仅 kling-3.0 的 contents 含 element`,
+          );
+        }
+        if (elementIds.length > 3) {
+          throw new Error(
+            `Too many subjects for image-to-video / 官网：图生视频最多 3 个主体: current ${elementIds.length}`,
+          );
+        }
+        for (let i = 0; i < elementIds.length; i++) {
+          contents.push({
+            type: 'element',
+            element_id: String(elementIds[i]),
+            id: `element_${i + 1}`,
+          });
+        }
+      }
+      appendVoiceContents(contents, voiceIds);
+      payload = { contents, settings };
     } else {
-      const p = String(args.prompt || '').trim();
-      if (!p) {
-        console.error(
-          'Error / 错误: Omni (non-multi-shot) requires non-empty --prompt / 非多镜头 Omni 须提供非空 --prompt',
-        );
-        process.exit(1);
-      }
-      payload.multi_shot = false;
-      payload.prompt = args.prompt;
-    }
-
-    const imageList = [];
-    let imageState = { totalImages: 0, hasFirstFrame: false, hasEndFrame: false };
-    if (imageInputs.length > 0 || args.image_tail) {
-      imageState = validateOmniImageListRules(args, imageInputs, imageTypes, Boolean(args.image_tail));
-    }
-    validateOmniElementListRules(args, elementIds, imageState);
-    if (imageInputs.length > 0) {
+      const contents = [];
+      if (prompt) contents.push({ type: 'prompt', text: prompt });
       for (let i = 0; i < imageInputs.length; i++) {
-        const item = { image_url: await readMediaAsValue(imageInputs[i]) };
-        if (imageTypes[i]) item.type = imageTypes[i];
-        imageList.push(item);
+        const type = imageTypes[i] || 'refer_image';
+        contents.push({
+          type,
+          url: await readMediaAsValue(imageInputs[i]),
+          id: `image_${i + 1}`,
+        });
       }
+      if (args.image_tail) {
+        contents.push({
+          type: 'last_frame',
+          url: await readMediaAsValue(args.image_tail),
+          id: `image_${imageInputs.length + 1}`,
+        });
+      }
+      for (let i = 0; i < elementIds.length; i++) {
+        contents.push({
+          type: 'element',
+          element_id: String(elementIds[i]),
+          id: `element_${i + 1}`,
+        });
+      }
+      for (let i = 0; i < videoState.items.length; i++) {
+        const item = videoState.items[i];
+        contents.push({
+          type: item.referType === 'feature' ? 'feature_video' : 'base_video',
+          url: item.url,
+          id: `video_${i + 1}`,
+        });
+      }
+      appendVoiceContents(contents, voiceIds);
+      payload = { contents, settings };
     }
-    if (args.image_tail) {
-      imageList.push({ image_url: await readMediaAsValue(args.image_tail), type: 'end_frame' });
-    }
-    if (imageList.length > 0) payload.image_list = imageList;
+    if (options) payload.options = options;
 
-    if (elementIds.length > 0) {
-      payload.element_list = elementIds.map(id => {
-        return { element_id: String(id.trim()) };
-      });
-    }
-
-    if (args.video) {
-      const videoUrl = readOmniVideoRefUrl(args.video);
-      const videoItem = { video_url: videoUrl, refer_type: videoState.referType };
-      if (videoState.keepOriginalSound) videoItem.keep_original_sound = videoState.keepOriginalSound;
-      payload.video_list = [videoItem];
-    }
-
-    const result = await submitTask(API_OMNI, payload, token);
+    const result = await submitTask(apiPath, payload, token);
     console.log(`\nTask ID / 任务 ID: ${result.taskId}`);
     console.log(`Query / 查询: ${queryHint} ${result.taskId} [--download]`);
     if (args.wait !== false) {
       console.log();
-      const outPath = await pollAndDownload(API_OMNI, result.taskId, outputDir, { token });
+      const outPath = await pollAndDownload(API_TASKS, result.taskId, outputDir, { token });
       console.log(`\n✓ Done / 完成: ${outPath}`);
     }
   } catch (e) {

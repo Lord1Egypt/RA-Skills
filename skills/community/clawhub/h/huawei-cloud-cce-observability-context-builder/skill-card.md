@@ -1,43 +1,55 @@
-## Description: <br>
-Collects and consolidates Huawei Cloud CCE alarms, metrics, logs, and events into an observability context package for diagnosis handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects Huawei Cloud CCE alarms, metrics, logs, and events into a structured observability context package for diagnosis handoff.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers and SREs use this skill to gather Huawei Cloud CCE observability signals across a selected time window and produce structured context for incident diagnosis or hand-off. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package is presented as read-only observability, but server security evidence reports broad cloud and Kubernetes admin surfaces plus sensitive credential-handling paths. <br>
-Mitigation: Restrict execution to the listed observability actions and use least-privilege read-only IAM and Kubernetes credentials. <br>
-Risk: The skill can handle sensitive cluster material, logs, reports, and credentials. <br>
-Mitigation: Run it in an isolated workspace, avoid account-wide admin AK/SK, do not enable raw secret or kubeconfig outputs, and sanitize log excerpts. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to gather Huawei Cloud CCE alarms, Kubernetes events, pod and node metrics, and logs into a timeline before handing off to diagnosis skills.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pintudeyudi/huawei-cloud-cce-observability-context-builder) <br>
-- [Workflow](references/workflow.md) <br>
-- [Output Schema](references/output-schema.md) <br>
-- [Risk Rules](references/risk-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON context-package structure and shell command proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize alarms, events, metrics, logs, timeline gaps, and recommended next diagnostic skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Read-only observability claims conflict with the security evidence that the bundled dispatcher exposes cluster-changing actions and Kubernetes secret access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, enforce a strict read-only action allowlist, and remove mutation and secret-data actions from the package.
+
+Risk: Cloud and Kubernetes access could expose credentials, certificates, sensitive logs, or operational controls beyond the intended observability scope.
+
+Mitigation: Use tightly scoped read-only Huawei Cloud IAM and Kubernetes RBAC, deny secrets, create/update/delete, scaling, node, EIP, and remediation permissions, use verified TLS, and store temporary certificates securely.
+
+## Reference(s):
+
+- [Workflow](references/workflow.md)
+- [Risk Rules](references/risk-rules.md)
+- [Output Schema](references/output-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON context package with concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scope, signals, timeline, gaps, and next diagnostic skill recommendation.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

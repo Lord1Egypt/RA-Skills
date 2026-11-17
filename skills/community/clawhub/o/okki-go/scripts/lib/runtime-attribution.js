@@ -6,7 +6,7 @@ const path = require('path');
 
 const DEFAULT_SOURCE_PACKAGE = '@okki-global/okki-go';
 const DEFAULT_CHANNEL_CODE = 'organic';
-const DEFAULT_SKILL_VERSION = '1.3.3';
+const DEFAULT_SKILL_VERSION = '1.3.4';
 const DEFAULT_SKILL_RUNTIME = 'unknown';
 
 function firstLine(value) {

@@ -1,41 +1,53 @@
-## Description: <br>
-Guides agents through repo-aware email implementation, review, auditing, and QA workflows for templates, content systems, and tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through repo-aware planning, implementation, review, and QA for email templates, content systems, tests, and related code changes.
 
-## Publisher: <br>
-[polnikale](https://clawhub.ai/user/polnikale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polnikale](https://clawhub.ai/user/polnikale)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to plan, implement, review, and verify email-related code changes in repositories. It is intended for template edits, React Email work, MDX content changes, QA scripts, codebase diffs, and testable email fixes while keeping live production actions behind explicit approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email workflow guidance could be mistaken for approval to perform live sends or production email-system changes. <br>
-Mitigation: Require explicit approval before live sends, contact imports, DNS/authentication changes, suppression edits, provider migrations, destructive cleanup, or production automation changes. <br>
-Risk: Template or content edits can introduce rendering regressions, unresolved dynamic fields, or tracking/localization mistakes. <br>
-Mitigation: Run the narrowest useful verification, such as render previews, lint, type checks, snapshots, unit tests, or visual smoke checks, and report any verification that could not run. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make email-related repository changes, such as template edits, React Email updates, MDX content changes, QA scripts, and testable fixes, while keeping live email operations behind explicit approval gates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/polnikale/codexemailskill) <br>
-- [Operating checklist](artifact/references/operating-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks, file change summaries, QA results, and approval-gated recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repo-aware implementation plans, template diffs, QA scripts, render checks, content patches, concise change reports, and remaining-risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Email code changes can affect live campaigns, recipient data, DNS or authentication settings, suppression rules, and production automations if treated as operational actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep repository changes scoped and verifiable, report remaining production steps separately, and require explicit approval before live sends, imports, DNS or authentication changes, suppression edits, or production automation changes.
+
+Risk: Template or content changes can introduce broken rendering, unresolved dynamic fields, tracking mistakes, or missing fallbacks.
+
+Mitigation: Use the narrowest useful verification, such as render previews, linting, type checks, snapshots, unit tests, or visual smoke checks, and confirm dynamic fields and fallbacks before rollout.
+
+## Reference(s):
+
+- [Codex Email Skill Operating Checklist](references/operating-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with implementation plans, diffs or patches, QA checks, command snippets, and concise change reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit approval before live sends, contact imports, DNS or authentication changes, suppression edits, or production automation changes.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

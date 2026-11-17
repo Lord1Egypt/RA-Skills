@@ -34,6 +34,7 @@ Do NOT use `web_fetch` or Playwright for twbsball — they will be blocked by An
 - `scripts/cpbl_schedule.py`  賽程
 - `scripts/cpbl_standings.py`  戰績 排名
 - `scripts/cpbl_stats.py`  球員與排行榜數據
+- `scripts/cpbl_advanced.py`  進階數據（stats.cpbl.com.tw Statcast 級）
 
 ## Common commands
 
@@ -44,7 +45,26 @@ uv run skills/cpbl/scripts/cpbl_games.py --year 2025 --limit 10
 uv run skills/cpbl/scripts/cpbl_schedule.py --month 2026-04 --all
 uv run skills/cpbl/scripts/cpbl_standings.py
 uv run skills/cpbl/scripts/cpbl_stats.py --year 2025 --category batting --top 10
+
+### 進階數據（stats.cpbl.com.tw，2026-09-04 新增）
+
+```bash
+# 擊球初速 × 仰角排行（打者）
+uv run skills/cpbl/scripts/cpbl_advanced.py leaderboard exit-velocity --type batter --year 2026
+# 球種球速轉速（投手）
+uv run skills/cpbl/scripts/cpbl_advanced.py leaderboard pitch-tracking --type pitcher --year 2026
+# wOBA/AVG/SLG PR 百分位
+uv run skills/cpbl/scripts/cpbl_advanced.py leaderboard pr-table --type batter --year 2026
+# 擊球彈道分布 + 過濾（月份/球隊/守位/球種）
+uv run skills/cpbl/scripts/cpbl_advanced.py leaderboard batted-ball --type batter --year 2026 --team 兄弟 --position SS
+# 聯盟年度總覽
+uv run skills/cpbl/scripts/cpbl_advanced.py summary --year 2026
+# 單一球員逐球紀錄（Trackman 球速轉速）
+uv run skills/cpbl/scripts/cpbl_advanced.py logs --player 曾子祐 --year 2026 --limit 10
+# 球員基本資料
+uv run skills/cpbl/scripts/cpbl_advanced.py info --player 魔鷹
 ```
+
 
 ## Game type codes
 
@@ -57,6 +77,24 @@ uv run skills/cpbl/scripts/cpbl_stats.py --year 2025 --category batting --top 10
 - `G` 一軍熱身賽
 - `H` 未來之星邀請賽
 - `X` 國際交流賽
+
+## Advanced stats API (stats.cpbl.com.tw)
+
+2026-09-04 整合官方進階數據站（Statcast 級，Trackman 資料）。所有端點經 `/api/proxy/v1/...`，直接 HTTP GET（需 `User-Agent` + `Content-Type: application/json` header），無需登入或 CSRF token。
+
+可用端點：
+- `/v1/leaderboards/exit-velocity` — 擊球初速（EvAvg/EvMax/Ev90th）、仰角（LaAvg）、HardHit%、Barrels
+- `/v1/leaderboards/batted-ball` — 滾地/飛球/平飛/內飛/高飛比例（Gbp/Airp/Fbp/Ldp/Pup）
+- `/v1/leaderboards/pitch-tracking` — 球種（fastball/breakingball/細分）、均速極速（Kph/KphMax）、轉速（SpinRate/SpinRateMax）
+- `/v1/leaderboards/pr-table` — wOBA/AVG/SLG + PR 百分位
+- `/v1/leaderboards/summary` — 聯盟年度總覽（需 `gameKind` + `year`）
+- `/v1/players/{acnt}` — 球員基本資料（Basic/Rmk 經歷）
+- `/v1/players/logs` — 逐球紀錄（需 `playerType`/`acnt`/`year`/`kindCode`；含 Trackman Pitch.Release 的 RelSpeed/SpinRate/Extension）
+- `/v1/players/autocomplete` — 球員搜尋（回 Acnt）
+
+filter 參數：`searchType`(batter/pitcher)、`gameKind`(A~X)、`year`、`month`(1-12)、`teamCode`、`opponentTeamCode`、`defendStationCode`(P/C/1B/2B/3B/SS/LF/CF/RF/DH/PH)、`batSide`、`pitchHand`、`fieldAbbe`(F04=台南/F08=新莊/F19=洲際/F29=大巨蛋...)、`pitchType`、`playerAcnt`。空值參數會被 API 忽略，可省略。
+
+⚠️ 注意：pitch-tracking 的 `--type` 不影響結果（預設即投手球種資料）；searchType 只對 exit-velocity/batted-ball/pr-table 有意義。
 
 ## Live score notes
 
@@ -101,16 +139,23 @@ Look for the latest "延賽公告" entry. The live script now auto-detects postp
 
 ### Scrapling 查詢維基館
 
-使用 `skills/cpbl/.venv` 裡的 scrapling，**不要用 `web_fetch` 或 Playwright**。
+CPBL 腳本皆為 PEP 723 inline script，`uv run` 會自動處理依賴，**不需手動建 venv 或 pip install**。
+**不要用 `web_fetch` 或 Playwright**。
 
 **安裝（首次使用前）：**
 ```bash
-# 1. 建立 venv 並安裝依賴（如果 .venv 不存在）
-cd skills/cpbl && uv venv && uv pip install -e .
-# 2. 安裝 stealth browser（Scrapling StealthyFetcher 需要）
-.venv/bin/scrapling install --force
+# 唯一需要手動裝的：patchright browser（StealthyFetcher 底層依賴）
+# 利用 cpbl_games.py 等腳本已有的 scrapling[ai] 依賴
+cd skills/cpbl && uv run --with "scrapling[ai]" --with curl_cffi patchright install
 ```
 
+**使用 cpbl_twbsball.py（推薦）：**
+```bash
+uv run skills/cpbl/scripts/cpbl_twbsball.py "中華職棒年度最有價值球員"
+uv run skills/cpbl/scripts/cpbl_twbsball.py "陳鏞基" --output json
+```
+
+**或直接在 Python 中使用：**
 ```python
 from scrapling.fetchers import StealthyFetcher
 
@@ -121,13 +166,6 @@ page = StealthyFetcher.fetch(
 )
 text = page.css("#mw-content-text")[0].get_all_text()
 print(text)
-```
-
-CLI 替代方案（適合一次性查詢，需先執行安裝步驟 2）：
-```bash
-skills/cpbl/.venv/bin/scrapling extract stealthy-fetch \
-  "https://twbsball.dils.tku.edu.tw/wiki/index.php?title=中華職棒年度最有價值球員" \
-  result.md --ai-targeted --wait 10000
 ```
 
 注意事項：

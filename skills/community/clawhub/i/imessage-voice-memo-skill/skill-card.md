@@ -1,45 +1,65 @@
-## Description: <br>
-Voice Memo sends native iMessage voice bubbles using ElevenLabs TTS and BlueBubbles for users who want spoken responses instead of text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send native iMessage voice bubbles with ElevenLabs TTS via BlueBubbles when a user asks to send spoken messages, storytelling, summaries, or other voice-delivered responses.
 
-## Publisher: <br>
-[amzzzzzzz](https://clawhub.ai/user/amzzzzzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[amzzzzzzz](https://clawhub.ai/user/amzzzzzzz)
 
-## Use Case: <br>
-External users and agent developers use this skill to convert a text response into an ElevenLabs-generated voice memo and send it as a native iMessage voice bubble through a local BlueBubbles server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real iMessages through a local BlueBubbles Private API. <br>
-Mitigation: Require explicit confirmation of the recipient and message before every send, remove the hardcoded default recipient, bind BlueBubbles to localhost where possible, and use a strong BlueBubbles password. <br>
-Risk: Message text is sent to ElevenLabs for text-to-speech generation. <br>
-Mitigation: Avoid sending sensitive or private content unless the user has approved that disclosure, and keep the ElevenLabs API key in environment configuration rather than in prompts or source text. <br>
-Risk: Broad activation or default-recipient behavior could cause unintended message delivery. <br>
-Mitigation: Limit invocation to explicit voice-message requests and require the agent to confirm both the recipient and final text before executing the send script. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate text-to-speech audio, convert it to an iMessage-compatible voice memo format, and send it through a local BlueBubbles server.
 
-## Reference(s): <br>
-- [ElevenLabs Voice Options](references/VOICES.md) <br>
-- [BlueBubbles](https://bluebubbles.app) <br>
-- [ElevenLabs](https://elevenlabs.io) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration, Audio messages] <br>
-**Output Format:** [Shell command execution that generates an Opus CAF audio file and sends it as an iMessage voice bubble.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS afconvert, BlueBubbles Private API, ElevenLabs credentials, BlueBubbles credentials, and an iMessage recipient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Private message text is sent to ElevenLabs for text-to-speech generation and generated audio is sent through BlueBubbles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user accepts those external service flows, and avoid sending sensitive or regulated content.
+
+Risk: A hard-coded fallback recipient can send voice memos to an unintended phone number if no recipient is supplied.
+
+Mitigation: Remove the fallback recipient and require an explicit recipient plus confirmation before every send.
+
+Risk: The script sources ~/.openclaw/.env directly, which can execute shell content in that file.
+
+Mitigation: Replace direct sourcing with safe key-value parsing for the required environment variables.
+
+Risk: BLUEBUBBLES_URL can be changed to an untrusted endpoint.
+
+Mitigation: Restrict BLUEBUBBLES_URL to a trusted local server or an approved HTTPS endpoint.
+
+## Reference(s):
+
+- [Voice options](references/VOICES.md)
+- [ClawHub skill page](https://clawhub.ai/amzzzzzzz/skills/imessage-voice-memo-skill)
+- [BlueBubbles](https://bluebubbles.app)
+- [ElevenLabs](https://elevenlabs.io)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and environment variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for sending a voice memo through external ElevenLabs and BlueBubbles services; the shell script creates temporary MP3 and CAF files during execution.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

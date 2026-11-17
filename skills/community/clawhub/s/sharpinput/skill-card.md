@@ -1,50 +1,68 @@
-## Description: <br>
-SharpInput improves prompts, questions, requirements, plans, ideas, and messages into clearer, better scoped, copy-ready inputs while preserving the user's intent and avoiding direct answers to the underlying task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user asks to optimize, sharpen, clarify, rewrite, pressure-test, or improve an input, prompt, question, requirement, plan, idea, or message before sending it to an AI or person.
 
-## Publisher: <br>
-[gaoyechen](https://clawhub.ai/user/gaoyechen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoyechen](https://clawhub.ai/user/gaoyechen)
 
-## Use Case: <br>
-External users and developers use SharpInput to turn weak or ambiguous prompts, questions, and ideas into clearer, better scoped, copy-ready prompts for use with AI systems or people. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save and silently reuse detailed user preference history. <br>
-Mitigation: Clear included preference files before installation and require opt-in before any self-learning writes. <br>
-Risk: The skill requests broader file and command permissions than its prompt-improvement workflow clearly needs. <br>
-Mitigation: Review requested permissions before installation, remove Bash where possible, and constrain Write access to the preference JSON when retained. <br>
-Risk: Silent autofill from stored preferences can affect future prompt upgrades without the user's awareness. <br>
-Mitigation: Require confirmation before reusing stored preference values in each session. <br>
+## Use Case:
 
+External users and developers use SharpInput to turn vague, under-scoped, or high-stakes prompts, questions, plans, requirements, and messages into clearer copy-ready prompts while preserving the original intent. It is especially suited to prompt optimization workflows that need intent detection, scenario slots, context completion, pressure testing, and quality review.
 
-## Reference(s): <br>
-- [ClawHub SharpInput release page](https://clawhub.ai/gaoyechen/sharpinput) <br>
-- [Handoff contract](artifact/references/handoff-contract.md) <br>
-- [Intent taxonomy](artifact/references/intent-taxonomy.md) <br>
-- [Prompt patterns](artifact/references/prompt-patterns.md) <br>
-- [Pressure strategies](artifact/references/pressure-strategies.md) <br>
-- [Output templates](artifact/references/output-templates.md) <br>
-- [Judge rubric](artifact/references/judge-rubric.md) <br>
-- [Self-learning reference](artifact/references/self-learning.md) <br>
-- [User preferences reference](artifact/references/user-preferences.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured sections and a quote block containing a copy-ready upgraded prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask concise clarification questions before producing the final prompt; does not answer the underlying task by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter declares 3.0) <br>
+Risk: Broad agent, shell, and file permissions increase the impact of an unexpected or misrouted workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and run it only in environments where those permissions are acceptable.
+
+Risk: Bundled preference history may be read, updated, and reused across sessions without being obvious to the user.
+
+Mitigation: Remove bundled preference files and disable or gate self-learning before normal use.
+
+Risk: Subagent delegation can make prompt-improvement behavior harder to inspect during normal use.
+
+Mitigation: Limit use to trusted workflows and review generated prompts before sending them to another AI or person.
+
+## Reference(s):
+
+- [SharpInput ClawHub Skill Page](https://clawhub.ai/gaoyechen/skills/sharpinput)
+- [handoff-contract.md](references/handoff-contract.md)
+- [intent-taxonomy.md](references/intent-taxonomy.md)
+- [intent-details.md](references/intent-details.md)
+- [interaction-patterns.md](references/interaction-patterns.md)
+- [scenario-slot-templates.md](references/scenario-slot-templates.md)
+- [prompt-patterns.md](references/prompt-patterns.md)
+- [pressure-strategies.md](references/pressure-strategies.md)
+- [output-templates.md](references/output-templates.md)
+- [judge-rubric.md](references/judge-rubric.md)
+- [self-learning.md](references/self-learning.md)
+- [user-preferences.md](references/user-preferences.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections and a copy-ready prompt quote block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs identify the detected level, intent, scenario, context status, diagnosis, upgraded prompt, additions, trade-off note, and one minimal missing field when needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Azure Speech TTS generates local audio files from plain text or SSML using Azure Speech, with options for voice, format, speaking rate, pitch, style, and role. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Azure Speech TTS generates local audio files from plain text or complete SSML using Azure Speech, with options for voice, format, speaking rate, pitch, style, and role.
 
-## Publisher: <br>
-[conanwhf](https://clawhub.ai/user/conanwhf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[conanwhf](https://clawhub.ai/user/conanwhf)
 
-## Use Case: <br>
-Developers and agents use this skill to synthesize speech files from text or complete SSML while selecting Azure voices, output formats, and speech controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text or SSML provided to the skill is sent to Azure Speech for synthesis. <br>
-Mitigation: Use the skill only with content that is appropriate to send to Azure Speech. <br>
-Risk: The helper writes audio or saved SSML to paths supplied through command-line options. <br>
-Mitigation: Review output and save-SSML paths before execution. <br>
-Risk: Azure Speech credentials are required for live synthesis. <br>
-Mitigation: Use a dedicated Azure Speech key and keep credentials in environment variables rather than config files. <br>
+## Use Case:
 
+Developers and agents use this skill to synthesize narration or SSML-driven speech into local MP3, WAV, PCM, or OGG files and return the generated audio path to the user.
 
-## Reference(s): <br>
-- [Azure Speech TTS Cheatsheet](references/azure-speech-cheatsheet.md) <br>
-- [ClawHub skill page](https://clawhub.ai/conanwhf/azure-speech-tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Local audio files with a JSON command summary and optional saved SSML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports MP3, WAV, PCM, and OGG outputs; requires Azure Speech credentials in environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: A tampered Azure region value could send the Azure Speech key and speech text to a non-Azure host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate or patch the region handling before installation and use only known Azure region values.
+
+Risk: Speech text is sent to a cloud service for synthesis and may contain sensitive content.
+
+Mitigation: Avoid sending sensitive text unless cloud processing is approved, and keep the Azure Speech key least-privileged and rotatable.
+
+Risk: Explicit output paths can overwrite local files.
+
+Mitigation: Choose output paths carefully and review generated paths before running synthesis commands.
+
+## Reference(s):
+
+- [Azure Speech TTS Cheatsheet](references/azure-speech-cheatsheet.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON summaries; generated audio files are MP3, WAV, PCM, or OGG.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Azure Speech credentials and writes audio to local output paths.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

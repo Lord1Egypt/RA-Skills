@@ -1,42 +1,58 @@
-## Description: <br>
-Latticework helps agents apply independent mental models from multiple disciplines to stress-test decisions, map convergence and divergence, and identify blind spots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to analyze complex situations by applying and comparing mental models from multiple disciplines.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, developers, and analysts use this skill when a decision or strategy needs multiple independent disciplinary lenses instead of a single-framework analysis. It guides the agent to compare predictions, surface live unknowns, and produce a calibrated conclusion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports decision analysis and could produce incomplete or overconfident recommendations for high-impact business, financial, legal, or operational decisions. <br>
-Mitigation: Use the output as structured decision support, require human review for consequential decisions, and verify assumptions, blind spots, and residual uncertainty before acting. <br>
-Risk: The skill can pause for user input in coach mode, so incomplete interaction may leave the analysis unfinished. <br>
-Mitigation: Continue through the prompted steps until the convergence map, blind spots, lollapalooza effects, and calibrated conclusion are all produced. <br>
+## Use Case:
 
+Decision makers and analysts use this skill to examine complex strategy, business, or operational questions through three to five independent disciplinary lenses. It helps compare predictions, find convergence and disagreement, and identify blind spots before people make consequential decisions.
 
-## Reference(s): <br>
-- [Sources - latticework](references/sources.md) <br>
-- [Charlie Munger 1994 USC Business School Address example](examples/charlie-munger-1994-usc-business-school-address.md) <br>
-- [deciqAI](https://deciqai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with tables, checklists, and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause for user input in coach mode before completing the full analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Framework-based analysis may miss relevant factors or produce misleading recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a thinking aid and independently review consequential recommendations.
+
+Risk: Confidential information could be exposed through reusable failure-pattern examples.
+
+Mitigation: Avoid recording confidential details in the failure-pattern table.
+
+## Reference(s):
+
+- [Latticework sources](artifact/references/sources.md)
+- [Latticework on deciqAI](https://www.deciqai.com/c/latticework)
+- [ClawHub skill page](https://clawhub.ai/deciqai/skills/latticework)
+- [Stanford AI Index](https://aiindex.stanford.edu)
+- [Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165)
+- [deciqAI Knowledge Skills repository](https://github.com/deciqAI/knowledge-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown with a structured analysis, tables, and a calibrated conclusion]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Applies 3–5 independent lenses and summarizes convergence, disagreement, blind spots, confidence, and residual uncertainty.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

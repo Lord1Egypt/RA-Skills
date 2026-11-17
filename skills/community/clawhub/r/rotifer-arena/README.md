@@ -1,18 +1,27 @@
 # Rotifer Arena
 
-> Objective, quantifiable capability evaluation for AI agents.
+> Objective, quantifiable evaluation of Rotifer Genes.
 
-One-click Gene comparison and evaluation powered by [Rotifer Protocol](https://rotifer.dev).
+Head-to-head Gene comparison in the Arena of [Rotifer Protocol](https://rotifer.dev).
+
+**Not for general benchmarking.** Everything here operates on Rotifer Genes and
+the Rotifer CLI — it does not evaluate arbitrary AI capabilities, load-test
+services, or compare things that are not Genes. A ClawHub Skill can be evaluated
+only by first importing it *as* a Gene, which is a step you approve.
 
 ## What It Does
 
-Evaluate any AI capability against the Arena — no setup required:
+Compare Rotifer Genes and produce a report you can act on:
 
 | Say this | It does this |
 |----------|-------------|
-| "Evaluate the web-search skill from ClawHub" | Imports, compiles, finds the top opponent, runs Arena battle |
-| "Compare my two implementations" | Head-to-head comparison with fitness breakdown |
-| "Build a quantitative strategy benchmark" | Scaffolds the scenario, creates Genes, runs evaluation |
+| "Evaluate the web-search skill from ClawHub as a Rotifer Gene" | Imports it as a Gene, compiles, finds the top opponent in its domain, runs the Arena evaluation |
+| "Compare my two Rotifer Genes" | Head-to-head F(g) comparison with fitness breakdown |
+| "Build a Rotifer Gene benchmark for this domain" | Scaffolds the scenario, creates the Genes, runs evaluation |
+
+**Setup it does need**: a Rotifer workspace (`rotifer.json`), the CLI
+(`npm i -g @rotifer/playground@0.38.0`), and — for Native Genes — the TS→WASM toolchain
+that `rotifer doctor` checks.
 
 Every evaluation produces a structured Markdown report with:
 - **F(g)** fitness scores and ranking
@@ -36,11 +45,26 @@ The Skill handles the rest: confirms both Genes exist, submits to Arena, and gen
 4. **Arena submit** — run the evaluation
 5. **Generate report** — structured Markdown with scores, rankings, and next steps
 
+## What this Skill does on your machine
+
+It has no code of its own — it tells your assistant which `rotifer` commands to
+run. That is what its manifest's process-execution, filesystem and network
+permissions are for: the CLI acting, not this Skill.
+
+| | |
+|---|---|
+| **Runs** | The `rotifer` CLI, pinned to `@rotifer/playground@0.38.0`. If it is not installed, it is downloaded from npm only after you approve the install (see Prerequisites in SKILL.md). |
+| **Reads** | Genes and Agent definitions in the current project. |
+| **Writes** | Compiled Gene artifacts in the project, and — only when you reply "save" — an evaluation report under `arena-reports/`. Outside the project: the CLI's own state in your home directory (`~/.rotifer/`, `~/.config/rotifer/`); when `rotifer compile` runs, the javy toolchain it calls writes its own caches in your user cache folder; and npm's cache or global prefix when the CLI is installed. |
+| **Sends** | Arena submissions and registry queries to the public Rotifer API. Your Gene's source is not uploaded unless you run `rotifer publish` yourself. |
+
+Full detail in [SKILL.md](SKILL.md).
+
 ## Related Skills
 
-- [rotifer-guide](https://clawhub.ai/skills/rotifer-guide) — Learn Rotifer from scratch
-- [rotifer-agent](https://clawhub.ai/skills/rotifer-agent) — Compose Genes into Agents
-- [rotifer-self-evolving-agent](https://clawhub.ai/skills/rotifer-self-evolving-agent) — Auto-evolve your Agent
+- [rotifer-guide](https://clawhub.ai/skill/rotifer-guide) — Learn Rotifer from scratch
+- [rotifer-agent](https://clawhub.ai/skill/rotifer-agent) — Compose Genes into Agents
+- [rotifer-self-evolving-agent](https://clawhub.ai/skill/rotifer-self-evolving-agent) — Auto-evolve your Agent
 
 ## Links
 

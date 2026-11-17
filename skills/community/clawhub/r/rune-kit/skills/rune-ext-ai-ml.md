@@ -770,21 +770,21 @@ interface ModelConfig {
 
 const MODELS: Record<string, ModelConfig> = {
   fast: {
-    id: 'claude-haiku-4-5-20251001',
+    id: 'claude-haiku-4-5',
     provider: 'anthropic',
     costPer1kTokens: 0.001,
     maxTokens: 4096,
     latencyP50Ms: 200,
   },
   balanced: {
-    id: 'claude-sonnet-4-6',
+    id: 'claude-sonnet-5',
     provider: 'anthropic',
     costPer1kTokens: 0.01,
     maxTokens: 8192,
     latencyP50Ms: 800,
   },
   deep: {
-    id: 'claude-opus-4-6',
+    id: 'claude-opus-4-8',
     provider: 'anthropic',
     costPer1kTokens: 0.05,
     maxTokens: 16384,
@@ -1127,7 +1127,7 @@ function deduplicateEntities<T>(entities: T[], keyFn: (e: T) => string): T[] {
 | Page structure changes break extraction (no error, wrong data) | Monitor extraction quality via sampling; alert on schema violation rate > 5% |
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

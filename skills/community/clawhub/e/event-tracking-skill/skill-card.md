@@ -1,47 +1,69 @@
-## Description: <br>
-Coordinates GA4 and Google Tag Manager tracking work from site discovery through schema review, GTM sync, preview QA, and publish readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you need GA4 + GTM tracking delivery from site discovery through publish, or when the right phase entry point is still unclear.
 
-## Publisher: <br>
-[jtrackingai](https://clawhub.ai/user/jtrackingai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jtrackingai](https://clawhub.ai/user/jtrackingai)
 
-## Use Case: <br>
-Developers, analytics engineers, and implementation teams use this skill to plan, configure, validate, and prepare GA4/GTM event tracking for websites. It is especially useful when the right workflow phase is unclear or when an existing artifact directory needs to be resumed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GTM-scoped OAuth access can modify tracking configuration when sync or publish steps are run. <br>
-Mitigation: Grant access only for intended GA4/GTM work, confirm the account, container, and workspace before sync, and require explicit publish approval. <br>
-Risk: Local credentials and refresh tokens are stored in the workflow artifact directory. <br>
-Mitigation: Keep credentials.json and artifact directories out of source control and restrict access to users who need to operate the tracking workflow. <br>
-Risk: Analytics parameters may expose full URLs, referrers, link destinations, form destinations, tokens, personal data, or private paths. <br>
-Mitigation: Sanitize event parameters and review analytics privacy choices before publishing tracking changes. <br>
+## Use Case:
 
+Developers, marketing operations teams, and analytics implementers use this skill to route GA4 and GTM tracking work from site discovery through schema design, GTM synchronization, preview validation, and publish readiness.
 
-## Reference(s): <br>
-- [Architecture Reference](references/architecture.md) <br>
-- [Output Contract](references/output-contract.md) <br>
-- [Event Schema Generation Guide](references/event-schema-guide.md) <br>
-- [GA4 Event Guidelines](references/ga4-event-guidelines.md) <br>
-- [GTM Troubleshooting](references/gtm-troubleshooting.md) <br>
-- [Telemetry Consent](references/telemetry-consent.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands plus JSON and configuration artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces checkpoint-driven workflow artifacts and reports for review before GTM publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release evidence) <br>
+Risk: The workflow can install mutable remote tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from the trusted `jtrackingai/analytics-tracking-automation` source, verify the intended version, and run the workflow in a controlled workspace.
+
+Risk: The workflow stores a reusable GTM write credential locally.
+
+Mitigation: Keep `credentials.json` out of shared folders and backups, and revoke or clear the OAuth token when the workflow is complete or no longer trusted.
+
+Risk: Incorrect GTM account, container, workspace, or publish choices can affect live tracking.
+
+Mitigation: Review every GTM target selection and publish prompt carefully; do not proceed without explicit confirmation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jtrackingai/skills/event-tracking-skill)
+- [Architecture Reference](references/architecture.md)
+- [Skill Map Reference](references/skill-map.md)
+- [Output Contract](references/output-contract.md)
+- [Crawl Guide](references/crawl-guide.md)
+- [Page Grouping Guide](references/page-grouping-guide.md)
+- [Event Schema Generation Guide](references/event-schema-guide.md)
+- [GA4 Event Naming Guidelines](references/ga4-event-guidelines.md)
+- [GTM Troubleshooting](references/gtm-troubleshooting.md)
+- [Shopify Workflow](references/shopify-workflow.md)
+- [Telemetry Consent Interaction](references/telemetry-consent.md)
+- [Preview Validation Report Template](references/preview-report.md)
+- [Google Tag Manager API](https://console.cloud.google.com/apis/library/tagmanager.googleapis.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and generated workflow artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces site-specific GA4/GTM workflow artifacts and requires explicit user approval at tracking, GTM target, telemetry consent, and publish checkpoints.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

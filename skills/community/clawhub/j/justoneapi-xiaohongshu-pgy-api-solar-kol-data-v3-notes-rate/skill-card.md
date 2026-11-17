@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/xiaohongshu-pgy/api/solar/kol/dataV3/notesRate/v1 for Xiaohongshu Creator Marketplace (Pugongying) Note Performance Metrics through JustOneAPI with userId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/xiaohongshu-pgy/api/solar/kol/dataV3/notesRate/v1 for Xiaohongshu Creator Marketplace (Pugongying) Note Performance Metrics through JustOneAPI with userId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and operators use this skill to query Xiaohongshu Creator Marketplace note performance metrics for a specified KOL user ID. It supports content efficiency analysis, creator benchmarking, and campaign planning through JustOneAPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a JustOneAPI token and queried Xiaohongshu user IDs, which can be sensitive if exposed through command history, process listings, logs, screenshots, or shared machines. <br>
-Mitigation: Use tokens you trust with JustOneAPI, prefer scoped or short-lived tokens where available, avoid shared machines, and redact tokens and user IDs before sharing output. <br>
-Risk: Backend error output may include API payloads or request context from the JustOneAPI endpoint. <br>
-Mitigation: Review error output before reuse or sharing, and remove sensitive token, user ID, creator, or campaign data. <br>
+## Use Case:
 
+External developers and analysts use this skill to retrieve Xiaohongshu Creator Marketplace note performance metrics for content efficiency analysis, creator benchmarking, and campaign planning.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/justoneapi/justoneapi-xiaohongshu-pgy-api-solar-kol-data-v3-notes-rate) <br>
-- [Endpoint operations reference](generated/operations.md) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_api_solar_kol_data_v3_notes_rate&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and userId; optional query filters include business, noteType, dateType, and advertiseSwitch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The JustOneAPI token may be exposed through command-line arguments, URL query strings, logs, process listings, telemetry, or error reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or disposable token when available, avoid sharing transcripts or full request URLs, and rotate the token if exposure is suspected.
+
+Risk: Requests send the JustOneAPI credential to the declared JustOneAPI endpoint.
+
+Mitigation: Install and run the skill only when that credential flow matches the user's trust and data handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-xiaohongshu-pgy-api-solar-kol-data-v3-notes-rate)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_api_solar_kol_data_v3_notes_rate&utm_content=project_link)
+- [Xiaohongshu Pugongying operations reference](generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON when results are available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and userId; optional query filters include business, noteType, dateType, and advertiseSwitch.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

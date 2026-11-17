@@ -1,41 +1,53 @@
-## Description: <br>
-Position management and market monitoring tools for active traders, including risk-based position sizing and a quick market health pulse monitor covering trend, volatility, breadth, and sentiment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Position management and market monitoring tools for active traders, including risk-based position sizing and a quick market health pulse monitor.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-External traders and agent users use this pack to install and coordinate position sizing and market pulse helper skills for structured risk management and pre-trade market checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The pack references trading helper skills whose calculations, dependencies, and market-data access were not included in the reviewed pack files. <br>
-Mitigation: Review and scan the referenced position sizing and market pulse skills separately before installation or use. <br>
-Risk: Trading outputs may be informational and could be incorrect, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Verify calculations, data sources, and risk assumptions independently before making trading decisions. <br>
+## Use Case:
 
+External users and active stock traders use this skill pack to install tools for risk-based position sizing and fast market health monitoring before opening or managing positions.
 
-## Reference(s): <br>
-- [Medici Investments Pack on ClawHub](https://clawhub.ai/clawdiri-ai/medici-investments) <br>
-- [Publisher profile: clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise trading workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pack-level output describes installation and use of two referenced trading helper skills; review those skills separately before relying on their calculations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The pack references two installable trading-helper skills without pinned versions or included source contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the referenced skills are the intended packages from a trusted publisher and prefer pinned versions or integrity verification when available.
+
+Risk: The referenced skills provide trading support, which may lead to incorrect position sizing or market-read decisions if used without review.
+
+Mitigation: Review the installed skills, their assumptions, and their market-data dependencies before using their output in trading workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/skills/medici-investments)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise trading-tool guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [This pack points users to two related skills; review those referenced skills separately before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

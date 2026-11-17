@@ -1,44 +1,59 @@
-## Description: <br>
-Searches and filters Amazon products with Keepa data across marketplace, category, price, BSR, monthly sales, reviews, ratings, package dimensions, fulfillment, and historical rank criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于Keepa数据的亚马逊高级商品搜索与筛选，支持品类、价格、月销量、关键词、BSR排名、评论数、评分、包装尺寸、重量、配送方式等多维度条件。
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-Amazon sellers and e-commerce researchers use this skill to turn product-research intent into structured Keepa-backed searches, compare candidate products, and filter by sales, rank, price, category, fulfillment, rating, review, size, weight, and history signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product-research queries and optional feedback are sent to LinkFox. <br>
-Mitigation: Use the skill only when sharing those queries with LinkFox is acceptable, and avoid including sensitive business strategy in feedback. <br>
-Risk: The skill uses LINKFOXAGENT_API_KEY for authenticated API calls. <br>
-Mitigation: Provide the key through the environment, keep it out of prompts and files, and rotate it if it may have been exposed. <br>
-Risk: Incorrect marketplace selection can produce irrelevant Amazon product results. <br>
-Mitigation: Confirm the target marketplace before running searches outside the default US marketplace. <br>
+## Use Case:
 
+Amazon sellers and ecommerce researchers use this skill to turn product-research criteria into Keepa-backed Amazon product searches, compare structured product metrics, and inspect saved JSON results.
 
-## Reference(s): <br>
-- [Keepa Product Search API Reference](references/api.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/linkfox-ai/linkfox-keepa-product-search) <br>
-- [LinkFox Skills](https://skill.linkfox.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with JSON request examples, shell command examples, and structured product-search results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses LINKFOXAGENT_API_KEY for authenticated LinkFox API calls; results may include product tables, pagination details, price conversions, BSR explanations, and error guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uses a paid LinkFox Keepa gateway and may trigger account, billing, or plan-purchase flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user intends to spend LinkFox credits, explain additional cost before repeated searches, and require explicit approval before any plan purchase or payment order.
+
+Risk: The skill depends on LinkFox API keys and SMS onboarding flows.
+
+Mitigation: Avoid exposing API keys, phone numbers, or one-time passwords in shared logs; prefer a secure secret store over shell profile files where possible.
+
+Risk: The release security summary reports silent feedback reporting plus credential and local-storage behaviors that need review before installation.
+
+Mitigation: Review the skill before installing, run it only with trusted environment variables, and inspect generated local files before sharing the workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-keepa-product-search)
+- [Keepa Product Search API Reference](references/api.md)
+- [Authentication and Billing Onboarding](references/onboarding.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples, shell commands, and saved JSON response files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The search script saves full API responses under a linkfox session data directory and prints either full JSON or a concise summary depending on response size.]
+
+## Skill Version(s):
+
+1.0.7 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

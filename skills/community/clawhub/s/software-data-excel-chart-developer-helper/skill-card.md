@@ -1,41 +1,57 @@
-## Description: <br>
-Create and troubleshoot Excel reporting workbooks with charts, dashboards, conditional formatting, print areas, PDF/image export, openpyxl or Office automation, and recurring data refresh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and troubleshoot Excel chart reports, dashboards, print areas, conditional formatting, and export workflows for XLSX workbooks.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Analysts, finance teams, operations teams, and developers use this skill to design, generate, repair, and validate recurring Excel report workbooks with charts, dashboards, print settings, and export-ready output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad auto-activation wording can cause the skill to be used for general Excel-related requests where workbook edits or outputs are not fully specified. <br>
-Mitigation: Confirm the exact workbook files, intended outputs, and report target before applying changes. <br>
-Risk: Workbook automation can overwrite important spreadsheets or create misleading reports if formulas, chart ranges, formatting, or exports are not reviewed. <br>
-Mitigation: Keep copies of important spreadsheets and validate formulas, chart references, print areas, and exported files before relying on the result. <br>
+## Use Case:
 
+Analysts, finance teams, operations teams, and developers use this skill to build or repair recurring XLSX report workbooks while keeping charts, formulas, formatting, print settings, and exports aligned.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/software-data-excel-chart-developer-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with optional code blocks and validation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include workbook architecture, repair diagnosis, implementation steps, and checks for formulas, charts, formatting, and exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad trigger wording may invoke the skill for spreadsheet tasks that are not actually Excel or XLSX reporting work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the task concerns Excel report workbooks before allowing changes to important files.
+
+Risk: Workbook automation can alter formulas, formatting, charts, print areas, or export settings in business spreadsheets.
+
+Mitigation: Keep backups and validate formulas, chart ranges, formatting, print settings, and exported files after automation runs.
+
+Risk: PDF and image export fidelity can depend on desktop Excel rendering, available fonts, and print setup.
+
+Mitigation: Review exports for clipping, missing labels, scaling issues, and font substitution before using them in reporting.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with optional code blocks, shell commands, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workbook architecture, repair diagnosis, implementation steps, and checks for formulas, charts, formatting, and exports.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

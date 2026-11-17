@@ -1,38 +1,56 @@
-## Description: <br>
-RSS监控技能 - 监控RSS/Atom订阅源，检测更新，获取新内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RSS监控技能 - 监控RSS/Atom订阅源，检测更新，获取新内容。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[534422530](https://clawhub.ai/user/534422530)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to parse RSS/Atom feeds, check for new entries, and retrieve recent feed items for monitoring blogs, news sources, podcasts, and social updates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Untrusted RSS or Atom feed URLs can create network trust and egress exposure when fetched by an agent or deployed service.
+
+Mitigation: Only add public feed URLs from trusted sources; validate feed URLs and restrict network egress before exposing this behavior as a service.
+
+Risk: The skill depends on the third-party Python package feedparser.
+
+Mitigation: Install feedparser in an isolated environment when practical and prefer a pinned version.
+
+Risk: Fetched feed content may include inaccurate, stale, or untrusted third-party text and links.
+
+Mitigation: Review fetched feed items before using them in decisions, publication workflows, or automated downstream actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, researchers, and content teams use this skill to parse RSS/Atom feeds, check for new entries, filter categories, and monitor blogs, news, podcasts, or social media feeds. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Code, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Fetching arbitrary RSS/Atom URLs can contact untrusted, localhost, or private-network endpoints if the user provides them. <br>
-Mitigation: Use trusted public feed URLs unless private-network access is intentional, and review new versions that add background polling, saved history, or broader network access. <br>
+**Output Format:** [Markdown with Python and shell code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/534422530/laosi-rss) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch user-provided RSS/Atom URLs; examples require the Python feedparser package.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

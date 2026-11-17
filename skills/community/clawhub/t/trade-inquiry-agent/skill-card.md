@@ -1,43 +1,56 @@
-## Description: <br>
-外贸工厂询盘全流程 Agent。覆盖：询盘解析、产品可行性分析、报价单生成（中英文）、专业外贸邮件起草、客户建档与跟进管理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+外贸工厂询盘全流程 Agent。覆盖：询盘解析、产品可行性分析、报价单生成（中英文）、专业外贸邮件起草、客户建档与跟进管理。当用户提到外贸询盘、海外客户报价、出口报价单、外贸邮件、FOB/CIF 报价、工厂对外贸、出口报价等场景时触发。
 
-## Publisher: <br>
-[aaronnee520](https://clawhub.ai/user/aaronnee520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronnee520](https://clawhub.ai/user/aaronnee520)
 
-## Use Case: <br>
-External trade and factory sales teams use this skill to parse overseas customer inquiries, assess product fit, prepare FOB/CIF/EXW quotations, draft professional follow-up emails, and maintain structured customer records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated quotations, trade terms, prices, payment terms, bank details, customs or legal claims, and translated customer-facing text may be incorrect or incomplete. <br>
-Mitigation: Have a qualified human reviewer verify all commercial, legal, financial, and customer-facing content before sending. <br>
-Risk: Inquiry text and customer records may contain sensitive customer or contract data. <br>
-Mitigation: Share only the minimum necessary information with the agent and avoid pasting unnecessary confidential details. <br>
+## Use Case:
 
+External trade teams and factory sales staff use this skill to parse overseas inquiries, assess order feasibility, draft bilingual quotations and trade emails, and maintain structured customer follow-up notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaronnee520/trade-inquiry-agent) <br>
-- [邮件模板库](references/email_templates.md) <br>
-- [产品分类与参数参考](references/product_classification.md) <br>
-- [报价单结构参考](references/quotation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables, structured checklists, and bilingual Chinese/English business text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces inquiry summaries, feasibility judgments, quotation drafts, email drafts, customer records, and review checklists for human review before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated customer profiles may contain business-sensitive contact details and inquiry history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Include only necessary customer data and handle generated profiles according to the user's business data policy.
+
+Risk: Generated quotations, trade terms, tariff references, or compliance notes may be inaccurate or incomplete for a specific transaction.
+
+Mitigation: Confirm prices, quantities, Incoterms, payment terms, tariffs, certifications, and legal or compliance requirements before sending outputs to customers.
+
+## Reference(s):
+
+- [Email Templates](references/email_templates.md)
+- [Product Classification](references/product_classification.md)
+- [Quotation Structure](references/quotation.md)
+- [ClawHub Skill Page](https://clawhub.ai/aaronnee520/skills/trade-inquiry-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured tables, checklists, email drafts, quotation text, and customer profile notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden execution or persistence; outputs should be reviewed before sending to customers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

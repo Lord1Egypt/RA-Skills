@@ -1,42 +1,59 @@
-## Description: <br>
-Connects agents to SaaS tools through Maton AI with Clawdbot Gateway UI integration for API key setup, OAuth app connection, and connection management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to SaaS tools via Maton AI with a Clawdbot Gateway dashboard for configuring API keys and managing OAuth app connections.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Maton in Clawdbot Gateway, connect SaaS applications through OAuth, and manage those app connections from the gateway UI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a Maton API key and manages OAuth connections to SaaS accounts. <br>
-Mitigation: Install only if you trust Maton with connected SaaS accounts, rotate the Maton API key, and review or remove unused app connections regularly. <br>
-Risk: Starting OAuth flows or deleting connections can change access to external SaaS tools. <br>
-Mitigation: Confirm the selected app and connection before authorizing OAuth flows or deleting existing connections. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Maton Reference Implementation](reference/README.md) <br>
-- [Maton](https://maton.ai) <br>
-- [Maton API base URL](https://ctrl.maton.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/maverick-software/maton-agent-tools) <br>
+## Use Case:
 
+Developers and Clawdbot Gateway operators use this skill to add Maton SaaS OAuth connection management, configure MATON_API_KEY, and manage connected apps such as Gmail, Slack, Notion, and HubSpot.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, Code, Shell commands] <br>
-**Output Format:** [Markdown with TypeScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes reference implementation files for Clawdbot Gateway UI and Maton API integration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The integration handles sensitive MATON_API_KEY credentials and OAuth authority.
+
+Mitigation: Protect MATON_API_KEY like a password and avoid committing or syncing the Clawdbot config file.
+
+Risk: OAuth connection flows can direct users to authorization destinations outside the dashboard.
+
+Mitigation: Verify OAuth destinations before authorizing apps and consider URL allowlisting for production gateways.
+
+Risk: Connection deletion can remove SaaS access configuration.
+
+Mitigation: Add confirmation prompts for deletion in production deployments.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/maverick-software/skills/maton-agent-tools)
+- [Maton website](https://maton.ai)
+- [Maton control API](https://ctrl.maton.ai)
+- [Reference implementation guide](artifact/reference/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with TypeScript reference code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Clawdbot Gateway RPC handlers, Lit UI components, and API key/OAuth connection setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

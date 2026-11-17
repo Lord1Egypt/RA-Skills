@@ -1,41 +1,53 @@
-## Description: <br>
-Query OpenAnt wallet addresses and on-chain balances for Solana, EVM, native assets, and token holdings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query OpenAnt wallet addresses and on-chain balances for SOL, ETH, SPL tokens, and USDC using read-only CLI commands.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ant-1984](https://clawhub.ai/user/ant-1984)
 
-## Use Case: <br>
-External users and agents use this skill to check OpenAnt wallet status, wallet addresses, SOL or ETH balances, token holdings, and insufficient-balance issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose wallet addresses and balances from a local OpenAnt session. <br>
-Mitigation: Review before installing and require explicit confirmation before revealing full wallet identifiers or holdings. <br>
-Risk: The allowed wallet command access is broader than a read-only balance checker needs. <br>
-Mitigation: Narrow allowed commands to status, wallet addresses, and wallet balance where the host agent supports command restrictions. <br>
-Risk: The skill invokes an external CLI with the latest version selector. <br>
-Mitigation: Pin or review the OpenAnt CLI version before use. <br>
+## Use Case:
 
+External users and their agents use this skill to check OpenAnt wallet addresses, inspect on-chain balances, and troubleshoot insufficient-balance errors before wallet-related actions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the local OpenAnt CLI session and on-chain RPC queries to return wallet addresses and balances.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill executes an unpinned remote CLI package in an authenticated wallet context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin @openant-ai/cli to a reviewed release and run it with minimal filesystem, environment, and network access.
+
+Risk: Wallet addresses and balances may be displayed automatically.
+
+Mitigation: Ask before showing full addresses or balances and redact sensitive wallet details when a full value is not required.
+
+## Reference(s):
+
+- [ClawHub skill page for Check Wallet](https://clawhub.ai/ant-1984/skills/check-wallet)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON CLI output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands append --json for structured output from the OpenAnt CLI.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+# Keep the published skill bundle small and free of personal data.
+# The DuckDB file is per-person sensitive state and must never be bundled.
+*.duckdb
+db/
+reports/
+__pycache__/
+*.pyc
+.idea/
+.DS_Store

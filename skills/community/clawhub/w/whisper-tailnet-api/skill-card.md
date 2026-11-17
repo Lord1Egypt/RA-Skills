@@ -1,42 +1,50 @@
-## Description: <br>
-Consume the shared Whisper speech-to-text API over Tailnet at http://100.92.116.99:8765 using OpenAI-compatible audio transcription endpoint (/v1/audio/transcriptions). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents call a shared Tailnet Whisper speech-to-text API using the OpenAI-compatible /v1/audio/transcriptions endpoint.
 
-## Publisher: <br>
-[lotfinity](https://clawhub.ai/user/lotfinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lotfinity](https://clawhub.ai/user/lotfinity)
 
-## Use Case: <br>
-Developers and agents use this skill to check a shared Tailnet Whisper service, submit selected audio for transcription, add language and file-type hints, time requests, and troubleshoot response output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploaded audio may contain confidential, regulated, or private content handled by the Tailnet Whisper server. <br>
-Mitigation: Send recordings only when the server operator and data handling are trusted; avoid sensitive audio unless approved. <br>
-Risk: Transcription behavior depends on the availability and trustworthiness of the disclosed server at 100.92.116.99:8765. <br>
-Mitigation: Run the health check and confirm the intended Tailnet service before submitting audio. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lotfinity/whisper-tailnet-api) <br>
-- [Whisper Tailnet API base URL](http://100.92.116.99:8765) <br>
-- [Whisper Tailnet API health check](http://100.92.116.99:8765/health) <br>
-- [OpenAI-compatible transcription endpoint example](http://100.92.116.99:8765/v1/audio/transcriptions?ext=.wav) <br>
+## Use Case:
 
+Developers and agents use this skill to check service health, submit audio, time transcription requests, pass file and language hints, and troubleshoot responses from the shared Tailnet Whisper transcription service.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls] <br>
-**Output Format:** [Markdown with curl commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-selected audio files and sends binary audio to a disclosed Tailnet endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Uploaded audio is shared with the disclosed Tailnet Whisper service and may include confidential, regulated, or consent-sensitive content.
+
+Mitigation: Use the skill only when you trust the server operator, network path, and retention practices; avoid sensitive recordings unless those conditions are met.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lotfinity/skills/whisper-tailnet-api)
+- [Tailnet Whisper API base URL](http://100.92.116.99:8765)
+- [Tailnet Whisper transcription endpoint](http://100.92.116.99:8765/v1/audio/transcriptions?ext=.wav)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes curl examples for health checks, binary audio upload, request timing, file extension hints, and optional language hints.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

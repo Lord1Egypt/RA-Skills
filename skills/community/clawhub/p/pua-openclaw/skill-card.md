@@ -1,41 +1,57 @@
-## Description: <br>
-Pua is an instruction-only pressure-coaching skill that pushes an agent toward exhaustive problem-solving, validation evidence, and changed approaches after frustration or repeated failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forces high-agency exhaustive problem-solving with corporate PUA pressure, triggering on user frustration, repeated failures, passive behavior, or quality complaints across task types.
 
-## Publisher: <br>
-[rorschachachxd](https://clawhub.ai/user/rorschachachxd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rorschachachxd](https://clawhub.ai/user/rorschachachxd)
 
-## Use Case: <br>
-Developers and agent users use Pua to make coding or troubleshooting agents take a more assertive, evidence-driven posture. It emphasizes validation commands, root-cause analysis, method switching after repeated failures, and structured failure reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate broadly in response to user frustration or repeated failures, which may make an agent's tone more aggressive than intended. <br>
-Mitigation: Prefer explicit /pua activation, and keep normal safety, approval, and tone rules above the skill. <br>
-Risk: The skill asks the agent to keep persistent cross-session behavior records in ~/.pua/evolution.md. <br>
-Mitigation: Do not allow writes to ~/.pua/evolution.md unless persistent behavior records are intentionally desired. <br>
+## Use Case:
 
+Developers and agent users use this skill to push an agent into a forceful problem-solving posture for debugging, implementation, code review, research, and ambiguous tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rorschachachxd/pua-openclaw) <br>
-- [Homepage](https://github.com/tanweai/pua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional command and validation-output snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; may request validation evidence and structured failure reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata, target metadata, and SKILL.md frontmatter) <br>
+Risk: The skill can activate on broad user-frustration phrases rather than only on an explicit command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or disable the automatic trigger list and require explicit user approval before activating this work mode.
+
+Risk: The skill describes a persistent ~/.pua/evolution.md mechanism that can carry behavior rules across sessions.
+
+Mitigation: Disable or remove the persistence mechanism before use unless persistent behavior baselines are intentionally desired.
+
+Risk: The skill encourages broad searches, repository scans, endpoint calls, and extra work outside the immediate request.
+
+Mitigation: Require explicit user approval before broad searches, repository-wide scans, endpoint calls, or work outside the requested task.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/tanweai/pua)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown responses with optional code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce validation evidence, task plans, review findings, and explicit status markers during agent work.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter; artifact/_meta.json lists 2.9.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

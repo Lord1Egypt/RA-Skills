@@ -1,42 +1,52 @@
-## Description: <br>
-Deep microservices workflow—service boundaries, data ownership, synchronous vs async integration, contracts, deployment independence, and operational complexity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep microservices workflow covering service boundaries, data ownership, synchronous versus asynchronous integration, contracts, deployment independence, and operational complexity.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[clawkk](https://clawhub.ai/user/clawkk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to evaluate whether microservices are appropriate, define service boundaries and data ownership, choose integration patterns, plan contract versioning, and review reliability and operational readiness.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Architecture guidance may be applied without enough organizational or platform maturity.
+
+Mitigation: Use the skill's review stages to confirm goals, ownership, delivery maturity, reliability practices, and operational governance before adopting microservices.
+
+Risk: Users may treat the advisory workflow as an automated migration tool.
+
+Mitigation: Keep human architecture review in the loop; the skill does not inspect or change systems and should inform, not replace, implementation decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to evaluate microservice boundaries, data ownership, integration patterns, contracts, reliability, and operational readiness when splitting a monolith, reviewing services, or debugging distributed failures. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The release security verdict is suspicious based on the authoritative ClawHub security summary. <br>
-Mitigation: Install only when the publisher is trusted and review the skill before deployment. <br>
-Risk: Microservice recommendations can increase operational and contract complexity if applied without sufficient delivery maturity. <br>
-Mitigation: Confirm that a modular monolith was considered and that service ownership, platform capabilities, and operational readiness are in place before acting on the guidance. <br>
-Risk: Incorrect service boundaries or shared writable data stores can create hidden coupling and reliability problems. <br>
-Mitigation: Require an entity-to-owning-service map, contract versioning policy, reliability patterns at service boundaries, and operational ownership before implementation. <br>
+**Output Format:** [Markdown guidance and review checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/clawkk/microservices) <br>
+**Other Properties Related to Output:** [Text-only advisory workflow; it does not execute commands, inspect systems, or modify files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured workflow guidance with checklist-style review items.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

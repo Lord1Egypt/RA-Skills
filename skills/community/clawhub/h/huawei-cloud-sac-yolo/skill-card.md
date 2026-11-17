@@ -1,50 +1,65 @@
-## Description: <br>
-Deploys a YOLO training platform on Huawei Cloud with GPU ECS infrastructure managed through Terraform and helper scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a GPU-accelerated YOLO training platform on Huawei Cloud with Terraform-managed ECS, networking, storage, backup, and verification guidance.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to prepare and deploy a GPU-backed YOLO visual model training environment on Huawei Cloud, review Terraform variables and plans, verify the running service, and clean up provisioned resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud access keys may be written to terraform.auto.tfvars.json on the local machine. <br>
-Mitigation: Use short-lived or least-privilege Huawei Cloud credentials, avoid writing AK/SK values to the file unless explicitly intended, keep terraform.auto.tfvars.json local, and add it to ignore rules if generated. <br>
-Risk: Terraform apply or destroy can create, modify, delete, or incur charges for Huawei Cloud GPU resources. <br>
-Mitigation: Require a manual review of terraform plan and explicit user confirmation before apply or destroy, and verify billing parameters before deployment. <br>
-Risk: Exposing the YOLO web UI or SSH broadly can create unnecessary network exposure. <br>
-Mitigation: Use restricted CIDR ranges for SSH and TCP port 8001, avoid opening access to all addresses, and verify security group rules after deployment. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to deploy, review, verify, and clean up a Huawei Cloud GPU ECS environment for YOLO model training with Terraform.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huaweiclouddev/huawei-cloud-sac-yolo) <br>
-- [Huawei Cloud YOLO solution page](https://www.huaweicloud.com/solution/implementations/quickly-build-a-yolo-training-platform.html) <br>
-- [Huawei Cloud YOLO IAM reference](https://support.huaweicloud.com/yolo-aislt/yolo_04.html) <br>
-- [Terraform template download](https://documentation-samples.obs.cn-north-4.myhuaweicloud.com/solution-as-code-publicbucket/solution-as-code-moudle/quickly-build-a-yolo-training-platform/quickly-build-a-yolo-training-platform.tf) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [IAM Policies](references/iam-policies.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Related Commands](references/related-commands.md) <br>
+### Deployment Geography for Use:
 
+Global; the deployment workflow itself supports only Huawei Cloud cn-north-4.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON outputs from helper scripts and Terraform] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local Terraform working files, including terraform.auto.tfvars.json, and may guide Terraform apply or destroy after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill can require broad Huawei Cloud permissions for infrastructure creation and deletion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited IAM user where possible, avoid Tenant Administrator unless required, inspect terraform plan carefully, and require explicit intent before apply or destroy.
+
+Risk: The workflow can write Huawei Cloud access keys to a local terraform.auto.tfvars.json file.
+
+Mitigation: Keep the tfvars file local and out of source control, prefer short-lived or tightly scoped AK/SK credentials, and do not expose credentials in chat or generated output.
+
+Risk: The deployed YOLO UI requires an ingress rule for TCP port 8001.
+
+Mitigation: Add the rule manually after deployment and restrict the CIDR to the user's own IP or another narrow trusted range.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-sac-yolo)
+- [Huawei Cloud YOLO solution page](https://www.huaweicloud.com/solution/implementations/quickly-build-a-yolo-training-platform.html)
+- [Huawei Cloud YOLO IAM support documentation](https://support.huaweicloud.com/yolo-aislt/yolo_04.html)
+- [Huawei Cloud YOLO Terraform template](https://documentation-samples.obs.cn-north-4.myhuaweicloud.com/solution-as-code-publicbucket/solution-as-code-moudle/quickly-build-a-yolo-training-platform/quickly-build-a-yolo-training-platform.tf)
+- [CLI Installation Guide](references/cli-installation-guide.md)
+- [IAM Policies](references/iam-policies.md)
+- [Verification Method](references/verification-method.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Related Commands](references/related-commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Terraform workflow guidance and helper-script outputs; deployment changes require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

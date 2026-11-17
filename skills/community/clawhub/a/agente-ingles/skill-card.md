@@ -1,40 +1,53 @@
-## Description: <br>
-Agente Ingles helps an agent coach FUVEST first-phase English reading comprehension, focusing on text genres, inference, logical-discursive relations, vocabulary from context, and exam pacing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides targeted FUVEST first-phase English reading-comprehension preparation focused on text genre, inference, logical-discursive relations, and vocabulary from context.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
 
-## Use Case: <br>
-Learners and tutoring agents use this skill to practice the reading-only English portion of the FUVEST first-phase exam. It is especially tailored to a learner who is comfortable with technical English and needs targeted practice with formal and humanistic texts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is personalized around a learner named Antonio, so its assumptions may not match other users. <br>
-Mitigation: Adjust the learner profile, priorities, and pacing before using the guidance for a different student. <br>
-Risk: The skill is intentionally narrow and does not validate answers, fetch updated exam materials, or cover English production skills. <br>
-Mitigation: Use it as a focused reading-comprehension aid and verify study plans against current FUVEST preparation materials. <br>
+## Use Case:
 
+External learners preparing for FUVEST use this skill for focused English reading practice, especially when they already read technical English but need practice with formal academic and humanities texts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntonioVFranco/agente-ingles) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown study guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tools, credentials, persistence, or executable outputs identified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is tailored to Antonio's study context and may not match every learner's preparation needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against the user's current English level, target exam plan, and weak areas before relying on the study sequence.
+
+Risk: The skill may activate for some general academic English reading requests rather than only exam-specific FUVEST requests.
+
+Mitigation: Use exam-specific prompts when FUVEST preparation is intended, and narrow activation language if broader academic reading support is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antoniovfranco/skills/agente-ingles)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to FUVEST English reading preparation; no executable output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

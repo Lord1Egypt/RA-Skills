@@ -56,26 +56,33 @@ export GHOST_URL=$(node -e "const creds=JSON.parse(require('fs').readFileSync(pr
     "slug": "custom-slug",
     "custom_excerpt": "Optional excerpt",
     "feature_image": "https://url-to-image.jpg",
-    "tags": [{"name": "tag-name"}],
-    "email_segment": "all"
+    "tags": [{"name": "tag-name"}]
   }]
 }
 ```
 
 **status:** `draft` | `published` | `scheduled`
-**email_segment:** `all` | `free` | `paid` (only fires when status=published)
 
 ### Publish + send email (one call)
+`POST /posts/?source=html&newsletter={newsletter_slug}&email_segment=all`
+(or `PUT /posts/{id}/?newsletter={newsletter_slug}&email_segment=all` to publish an existing draft)
+
 ```json
 {
   "posts": [{
     "title": "Title",
     "html": "<p>Body</p>",
-    "status": "published",
-    "email_segment": "all"
+    "status": "published"
   }]
 }
 ```
+
+**newsletter** (query param): the newsletter's **slug** (for example `default-newsletter`), not its display name. List them with `GET /newsletters/`.
+**email_segment** (query param): `all` | `status:free` | `status:-free` (or another member NQL filter). Sending only happens on the draft → published transition.
+
+Ghost 5.x reads `newsletter` and `email_segment` from the **query string**. The production-verified send (2026-10-13) used query params. Older guidance put `email_segment` in the body, and in Ghost 5.x that is not documented to trigger a send.
+
+Do not call `/emails/` directly. That endpoint is limited to staff sessions and returns 403 `NoPermissionError` for integration keys.
 
 ### Update post
 `PUT /posts/{id}/?source=html`

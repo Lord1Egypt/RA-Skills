@@ -1,46 +1,60 @@
-## Description: <br>
-Lead Generation finds high-intent buyers in live Twitter, Instagram, and Reddit conversations, researches a product, generates targeted search queries, and discovers people actively looking for related solutions through Xpoz MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find high-intent buyers in live Twitter, Instagram, and Reddit conversations by researching a product, generating targeted search queries, and surfacing people looking for matching solutions.
 
-## Publisher: <br>
-[qq63523555](https://clawhub.ai/user/qq63523555) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qq63523555](https://clawhub.ai/user/qq63523555)
 
-## Use Case: <br>
-Sales, growth, marketing, and customer-discovery users use this skill to research a product, find social posts and users showing buyer intent, score leads, and draft outreach for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends generated search queries to Xpoz and may include sensitive product, customer, or prospecting details. <br>
-Mitigation: Keep confidential details out of search queries and validate the product profile with the user before running discovery. <br>
-Risk: The skill depends on Xpoz, mcporter, and the xpoz-setup OAuth flow. <br>
-Mitigation: Install and authorize only when those dependencies are trusted, and verify access with the documented checkAccessKeyStatus command. <br>
-Risk: Local lead-generation files can retain product profiles, queries, and sent-lead history. <br>
-Mitigation: Periodically review or delete files under data/lead-generation according to the user's retention needs. <br>
-Risk: Generated outreach drafts may be inaccurate, noncompliant, or omit required context for a specific campaign. <br>
-Mitigation: Require human review and editing before any outreach is sent, including disclosure of affiliations. <br>
+## Use Case:
 
+External sales, growth, marketing, and customer-discovery users use this skill to research a product, query Xpoz-powered social indexes, score matching prospects, and draft outreach for human review.
 
-## Reference(s): <br>
-- [Lead Generation ClawHub page](https://clawhub.ai/qq63523555/lead-gen-xpoz) <br>
-- [Publisher profile](https://clawhub.ai/user/qq63523555) <br>
-- [Xpoz](https://xpoz.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON file paths, lead scoring notes, and outreach draft text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates product profile, search query, and sent-lead tracking files under data/lead-generation; final lead records include username, quote, URL, score, fit rationale, outreach draft, engagement, and timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, SKILL.md frontmatter, changelog released 2026-04-13) <br>
+Risk: Supply-chain exposure from the npm-installed mcporter helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trust in the Xpoz service and mcporter package before installation, and prefer a pinned or reviewed package version where available.
+
+Risk: The workflow uses an Xpoz account to query indexed social conversations and stores local lead-generation notes.
+
+Mitigation: Review account access and social-data handling before use, and protect local product-profile, query, and sent-lead files appropriately.
+
+Risk: Outreach drafts could be treated as approved messaging without review.
+
+Mitigation: Keep outreach as drafts for user review before sending, and disclose affiliations as the skill instructs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qq63523555/skills/lead-gen-xpoz)
+- [Publisher profile](https://clawhub.ai/user/qq63523555)
+- [Xpoz homepage](https://xpoz.ai)
+- [Xpoz MCP endpoint](https://mcp.xpoz.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured lead records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local JSON notes for product profiles, search queries, and deduplicated sent leads.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, target metadata, SKILL.md frontmatter, changelog released 2026-04-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

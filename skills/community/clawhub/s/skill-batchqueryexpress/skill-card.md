@@ -1,44 +1,59 @@
-## Description: <br>
-Batch queries courier logistics information for multiple tracking numbers through the Xdccy API and can return console summaries or export result files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch queries parcel-tracking information for multiple express numbers and returns logistics status, tracking events, and exportable reports.
 
-## Publisher: <br>
-[xdccycom](https://clawhub.ai/user/xdccycom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xdccycom](https://clawhub.ai/user/xdccycom)
 
-## Use Case: <br>
-External users, support teams, and operations teams use this skill to query logistics status for one or many courier tracking numbers, including SF shipments that require a phone-tail value. It can summarize results for review or export logistics data for customer and internal follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shipment identifiers, optional phone-tail digits, and API credentials are sensitive. <br>
-Mitigation: Use limited credentials where possible, provide only shipment data needed for the task, and avoid storing credentials in shared prompts, files, or shell history. <br>
-Risk: Exported result files may contain detailed logistics history and courier contact information. <br>
-Mitigation: Protect generated XLSX, CSV, TXT, or JSON files, restrict access to intended recipients, and delete files when they are no longer needed. <br>
-Risk: The skill sends tracking data to a third-party API operated by xdccy.com. <br>
-Mitigation: Install and run the skill only when the user trusts xdccy.com and the configured API account or channel. <br>
+## Use Case:
 
+External users and developers use this skill to query logistics status for one or more express tracking numbers, including SF shipments that require a phone suffix. It helps agents summarize parcel status, inspect tracking history, and export results for downstream handling.
 
-## Reference(s): <br>
-- [Input format specification](references/input-format.md) <br>
-- [小递查查 API and credential portal](https://xdccy.com) <br>
-- [ClawHub release page](https://clawhub.ai/xdccycom/skill-batchqueryexpress) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Console text, JSON, and optional XLSX, CSV, TXT, or JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PlatformID, MemberID, and APIKey credentials; exported files may include shipment history and courier contact details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Tracking numbers and required phone suffixes are sent to the xdccy service for lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, minimize submitted shipment data, and avoid querying shipments without appropriate permission.
+
+Risk: PlatformID, MemberID, and APIKey values can be exposed if pasted directly into shell commands or logs.
+
+Mitigation: Provide credentials through protected environment variables or a secret manager, and avoid storing real API keys in command history, transcripts, or shared files.
+
+Risk: Exported CSV, TXT, JSON, or XLSX files may contain detailed logistics events and contact-related delivery information.
+
+Mitigation: Save exports only to approved locations, restrict sharing, and delete result files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xdccycom/skills/skill-batchqueryexpress)
+- [小递查查 credential and API service site](https://xdccy.com)
+- [Input format reference](references/input-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, files]
+
+**Output Format:** [Console text, JSON, CSV, TXT, or XLSX files depending on query count and output path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include detailed logistics events, timestamps, courier details, phone suffixes, and exported result files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

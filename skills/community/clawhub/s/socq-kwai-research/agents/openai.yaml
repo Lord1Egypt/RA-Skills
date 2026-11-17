@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Kwai Research"
+  short_description: "Collect and analyze public Kwai data"
+  default_prompt: "Use $socq-kwai-research to collect and analyze this public Kwai research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Kwai data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=kwai"

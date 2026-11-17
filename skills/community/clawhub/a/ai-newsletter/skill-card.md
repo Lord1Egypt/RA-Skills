@@ -1,41 +1,58 @@
-## Description: <br>
-Generate a daily AI news newsletter from fresh web sources for current AI digests, roundups, curated newsletters, or daily briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a daily AI news newsletter from fresh web sources.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-External users, developers, and AI practitioners use this skill to collect fresh AI/ML news, verify candidate articles, and produce a concise daily newsletter with source links and structured article data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Brave and Firecrawl API keys, which can expose service access, quota, or cost if over-scoped. <br>
-Mitigation: Use dedicated low-privilege API keys with usage limits and rotate them according to the owning organization's credential policy. <br>
-Risk: Search queries, article URLs, and fetched article content are sent through the configured search and fetch services. <br>
-Mitigation: Avoid using the skill for sensitive internal topics or private URLs, and review data-sharing requirements before deployment. <br>
+## Use Case:
 
+Developers, editors, and AI practitioners use this skill to produce current AI news roundups from fresh web sources. It is intended for daily digests, curated newsletters, briefings, and practitioner-relevant AI developments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j3ffyang/ai-newsletter) <br>
-- [Publisher profile](https://clawhub.ai/user/j3ffyang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON] <br>
-**Output Format:** [Markdown newsletter plus JSON newsletter object and article item list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes article titles, URLs, domains, publication dates, concise summaries, relevance scores, source queries, and actionable warnings when fetches or validation checks fail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated summaries may reflect stale, incomplete, or mismatched web pages from external sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated links and summaries as editorial output before publication.
+
+Risk: The skill uses configured Brave and Firecrawl credentials to search and fetch external web pages.
+
+Mitigation: Provide credentials only through environment variables and do not expose secret values in prompts or generated output.
+
+Risk: Fetched article text may be copyrighted or unsuitable for republication in full.
+
+Mitigation: Use concise factual summaries and source links rather than reproducing full article text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/ai-newsletter)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Structured response containing newsletter_items, markdown_newsletter, and json_newsletter.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source URLs, publication metadata when available, relevance scores, and actionable warnings for fetch or validation issues.]
+
+## Skill Version(s):
+
+1.3.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

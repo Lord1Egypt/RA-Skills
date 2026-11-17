@@ -1,40 +1,53 @@
-## Description: <br>
-Complete inventory management, demand forecasting, supplier evaluation, and supply chain optimization for businesses of any size. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete inventory management, demand forecasting, supplier evaluation, and supply chain optimization for businesses of any size.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Operations, purchasing, warehouse, and business teams use this skill to classify SKUs, forecast demand, calculate reorder points, evaluate suppliers, plan purchase orders, and review inventory health. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Purchase orders, supplier recommendations, reorder decisions, and stock-count workflows could affect inventory records or spending if accepted without review. <br>
-Mitigation: Treat generated outputs as drafts and require normal business approval before changing records or committing spend. <br>
-Risk: Forecasting, reorder point, safety stock, and EOQ calculations depend on accurate demand, lead-time, cost, and stock data. <br>
-Mitigation: Verify source data and assumptions before using recommendations for operational decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/1kalin/afrexai-inventory-supply-chain) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Employees, operators, and business owners use this skill to classify SKUs, forecast demand, calculate reorder points, evaluate suppliers, draft purchase orders, and monitor inventory health for businesses that buy, stock, and sell physical products.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured checklists, tables, formulas, YAML examples, and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning drafts and decision-support outputs for human review; it does not execute purchases or access inventory systems by itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Purchase-order and receiving guidance could affect real suppliers, inventory records, and accounts payable if used autonomously.
+
+Mitigation: Use the skill as an advisory template and require human approval before sending orders, updating systems, contacting suppliers, or triggering accounting workflows.
+
+Risk: Incorrect inventory or demand assumptions could produce misleading reorder, safety stock, EOQ, or supplier recommendations.
+
+Mitigation: Validate source data, formulas, lead times, service levels, and supplier terms before relying on generated recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-inventory-supply-chain)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with templates, formulas, checklists, and example records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include inventory classifications, demand forecasts, reorder calculations, supplier scorecards, purchase order drafts, dashboards, and review agendas.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

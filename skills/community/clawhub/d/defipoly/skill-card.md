@@ -1,45 +1,58 @@
-## Description: <br>
-Play Defipoly, a Monopoly-inspired DeFi game on Solana, by buying properties, earning daily DPOLY yield, shielding against theft, stealing from players or the bank, and rolling dice for bonuses with an autonomously managed funded wallet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play Defipoly, a Monopoly-inspired DeFi game on Solana, by checking game state and using a funded SOL wallet to buy properties, earn DPOLY yield, shield assets, steal, and roll dice for bonuses.
 
-## Publisher: <br>
-[Rengon0x](https://clawhub.ai/user/Rengon0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rengon0x](https://clawhub.ai/user/rengon0x)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate a Defipoly game wallet, inspect game state, and execute supported Solana game actions through the bundled CLI. It is intended for users who understand the risks of funding a game-specific wallet for autonomous on-chain play. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign and submit funded Solana mainnet transactions for game actions. <br>
-Mitigation: Use a dedicated, low-balance Defipoly wallet and keep only small SOL and DPOLY amounts in it. <br>
-Risk: Importing a valuable wallet exposes primary funds to autonomous game actions and local wallet handling. <br>
-Mitigation: Do not import a primary Solana wallet or paste a valuable private key; prefer generating a new wallet for this skill. <br>
-Risk: Wallet and authentication artifacts may remain on disk after play. <br>
-Mitigation: Delete the skill's .wallet.json file and cached /tmp Defipoly tokens when finished. <br>
-Risk: Autonomous play can make irreversible financial moves, including buys, sells, shields, claims, and steal attempts. <br>
-Mitigation: Review transactions where possible, monitor balances, and stop play before adding more funds. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Defipoly app](https://defipoly.app) <br>
-- [ClawHub skill page](https://clawhub.ai/Rengon0x/defipoly) <br>
-- [Publisher profile](https://clawhub.ai/user/Rengon0x) <br>
+## Use Case:
 
+External users and agents use this skill to play Defipoly from a funded Solana wallet, inspect balances and game state, and submit game transactions through the Defipoly service.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Text] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON readouts, and plain text action status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create or read wallet files, cache authentication tokens, and submit signed Solana transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access a funded Solana wallet and submit irreversible transactions.
+
+Mitigation: Use a new low-value wallet, avoid importing existing private keys, and review proposed actions before allowing transactions.
+
+Risk: The backend transaction build and submit flow requires high trust in the Defipoly service.
+
+Mitigation: Install only if comfortable with the Defipoly service trust model and keep SOL/DPOLY exposure limited.
+
+Risk: The artifact behavior includes searching for wallet files during setup.
+
+Mitigation: Do not allow filesystem wallet discovery; provide an explicit low-value wallet only when needed.
+
+## Reference(s):
+
+- [Defipoly app](https://defipoly.app)
+- [ClawHub Defipoly skill page](https://clawhub.ai/rengon0x/skills/defipoly)
+- [Publisher profile](https://clawhub.ai/user/rengon0x)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; CLI commands return JSON or OK/FAIL text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js/npm and a funded Solana wallet; game actions may submit irreversible on-chain transactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-双色球幸运号码预测 - 基于天干地支阴阳五行+随机森林机器学习模型。根据用户输入的彩票开奖日期，计算八字并生成推荐号码。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Luckyball generates Chinese Double Color Ball lottery number predictions using BaZi-style calendar features and random-forest/AR(1) models.
 
-## Publisher: <br>
-[landyun](https://clawhub.ai/user/landyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[landyun](https://clawhub.ai/user/landyun)
 
-## Use Case: <br>
-External users use this skill to generate entertainment-oriented Double Color Ball lottery number predictions, bazi and five-element analysis, model scoring tables, and prior-prediction comparison summaries for a requested draw date. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can keep a local history of lottery predictions and compare it against web-searched results. <br>
-Mitigation: Confirm before allowing memory-file reads or writes, and only use web lookup for prior draw results when that behavior is expected. <br>
-Risk: Hardcoded local file paths may not match the user's environment. <br>
-Mitigation: Review and adjust local memory and history-data paths before running prediction or backtest workflows. <br>
-Risk: Lottery predictions can be misunderstood as betting advice despite the skill's entertainment framing. <br>
-Mitigation: Present outputs as entertainment-only analysis and preserve the disclaimer that lottery outcomes are random and not scientifically predictable. <br>
+## Use Case:
 
+External users use this skill to produce entertainment-only lottery prediction reports for a requested draw date, including BaZi analysis, ranked red and blue ball candidates, five candidate number sets, and backtest summaries.
 
-## Reference(s): <br>
-- [Luckyball release page](https://clawhub.ai/landyun/luckyball) <br>
-- [landyun publisher profile](https://clawhub.ai/user/landyun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with prediction tables, analysis summaries, recommended numbers, and model status details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local prediction-history comparison output when prior records are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Persistent prediction history reads and writes, memory-index updates, and web searches may occur without clear per-action user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; require explicit user approval for each read, write, memory update, and web lookup, or change persistence to a skill-owned local data file.
+
+Risk: Lottery predictions may be mistaken for reliable betting advice even though the artifact describes them as entertainment-only and notes that lottery draws are random.
+
+Mitigation: Keep the entertainment-only disclaimer visible in generated reports and avoid presenting recommendations as financially reliable predictions.
+
+## Reference(s):
+
+- [Luckyball ClawHub Skill Page](https://clawhub.ai/landyun/skills/luckyball)
+- [landyun ClawHub Publisher Profile](https://clawhub.ai/user/landyun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with analysis tables, ranked lottery-number candidates, and brief guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prior prediction comparison when stored history is available.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

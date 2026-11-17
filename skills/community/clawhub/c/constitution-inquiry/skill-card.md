@@ -1,41 +1,54 @@
-## Description: <br>
-小象中医体质辨识 guides a user through a structured Traditional Chinese Medicine constitution questionnaire, summarizes their answers, identifies up to three constitution factors, and recommends matching foods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供中医体质辨识服务，问题简洁专业，针对体型、体力、皮肤面色、寒热出汗、情绪睡眠、胃肠道状况等提问，进行体质辨识并给出适合的食物推荐；当用户需要进行体质辨识、体质调理方案或健康状况评估时使用。
 
-## Publisher: <br>
-[jettli85](https://clawhub.ai/user/jettli85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jettli85](https://clawhub.ai/user/jettli85)
 
-## Use Case: <br>
-External users use this skill for a guided wellness-style TCM constitution intake and food recommendation flow. It is intended for questionnaire-based guidance, not diagnosis or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks sensitive health-related questions and gives personalized TCM-style food recommendations. <br>
-Mitigation: Ask only for information needed to complete the questionnaire, avoid collecting unnecessary health details, and treat the output as wellness guidance. <br>
-Risk: Users may mistake constitution factors or food recommendations for medical diagnosis, treatment, or medication advice. <br>
-Mitigation: Do not rely on the skill for diagnosis, treatment, medication decisions, pregnancy concerns, chronic illness, allergies, or severe or persistent symptoms; consult a qualified clinician in those cases. <br>
+## Use Case:
 
+External users use this Chinese-language skill to complete a structured TCM constitution questionnaire, receive a concise pattern summary, and get 3-5 food recommendations from the included food list.
 
-## Reference(s): <br>
-- [Food list](references/food-list.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jettli85/constitution-inquiry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversation with questionnaire prompts, a summary, constitution factors, and food recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces personalized wellness guidance from user-provided questionnaire answers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill collects health-related questionnaire responses without explicit consent, privacy expectations, or opt-out language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add clear consent, privacy, and skip or stop language before the questionnaire begins.
+
+Risk: The skill provides TCM-style medicinal-food recommendations without safety boundaries.
+
+Mitigation: Add a medical disclaimer and red-flag guidance directing users, special populations, and users with concerning symptoms to qualified healthcare professionals.
+
+## Reference(s):
+
+- [Food List Reference](artifact/references/food-list.md)
+- [ClawHub Skill Page](https://clawhub.ai/jettli85/skills/constitution-inquiry)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese-language prompts, questionnaire summaries, constitution analysis, and food recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive 9-question flow with conditional follow-up questions for insomnia and constipation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,190 @@
+{
+  "language": "de",
+  "stopwords": [
+    "der",
+    "die",
+    "und",
+    "in",
+    "den",
+    "von",
+    "zu",
+    "das",
+    "mit",
+    "sich",
+    "des",
+    "auf",
+    "für",
+    "ist",
+    "im",
+    "dem",
+    "nicht",
+    "ein",
+    "eine",
+    "als"
+  ],
+  "patterns": [
+    {
+      "id": "DE001",
+      "type": "SLOP_PHRASE",
+      "pattern": "in\\s+der\\s+heutigen\\s+schnelllebigen\\s+Welt",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE002",
+      "type": "SLOP_PHRASE",
+      "pattern": "es\\s+ist\\s+wichtig\\s+zu\\s+beachten",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE003",
+      "type": "SLOP_PHRASE",
+      "pattern": "zusammenfassend\\s+lässt\\s+sich\\s+sagen",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE004",
+      "type": "SLOP_PHRASE",
+      "pattern": "darüber\\s+hinaus",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE005",
+      "type": "SLOP_PHRASE",
+      "pattern": "nicht\\s+zuletzt",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE006",
+      "type": "SLOP_PHRASE",
+      "pattern": "spielt\\s+eine\\s+entscheidende\\s+Rolle",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE007",
+      "type": "SLOP_PHRASE",
+      "pattern": "ein\\s+Beweis\\s+dafür",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE008",
+      "type": "SLOP_PHRASE",
+      "pattern": "in\\s+einer\\s+sich\\s+ständig\\s+verändernden",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE009",
+      "type": "SLOP_PHRASE",
+      "pattern": "nicht\\s+nur",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE010",
+      "type": "SLOP_PHRASE",
+      "pattern": "sondern\\s+auch",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE011",
+      "type": "SLOP_PHRASE",
+      "pattern": "im\\s+digitalen\\s+Zeitalter",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE012",
+      "type": "SLOP_PHRASE",
+      "pattern": "es\\s+lässt\\s+sich\\s+nicht\\s+leugnen",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE013",
+      "type": "SLOP_PHRASE",
+      "pattern": "es\\s+ist\\s+erwähnenswert",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE014",
+      "type": "SLOP_PHRASE",
+      "pattern": "in\\s+der\\s+heutigen\\s+Zeit",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE015",
+      "type": "SLOP_PHRASE",
+      "pattern": "eine\\s+Vielzahl\\s+von",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE016",
+      "type": "SLOP_PHRASE",
+      "pattern": "in\\s+der\\s+modernen\\s+Welt",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE017",
+      "type": "SLOP_PHRASE",
+      "pattern": "den\\s+Weg\\s+ebnen",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE018",
+      "type": "SLOP_PHRASE",
+      "pattern": "die\\s+Spielregeln\\s+ändern",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE019",
+      "type": "SLOP_PHRASE",
+      "pattern": "nahtlos",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE020",
+      "type": "SLOP_PHRASE",
+      "pattern": "ganzheitlicher\\s+Ansatz",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE021",
+      "type": "SLOP_PHRASE",
+      "pattern": "wertvolle\\s+Einblicke",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE022",
+      "type": "SLOP_PHRASE",
+      "pattern": "in\\s+der\\s+sich\\s+entwickelnden\\s+Landschaft",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE023",
+      "type": "SLOP_PHRASE",
+      "pattern": "am\\s+Ende\\s+des\\s+Tages",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE024",
+      "type": "SLOP_PHRASE",
+      "pattern": "ohne\\s+Zweifel",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE025",
+      "type": "SLOP_PHRASE",
+      "pattern": "von\\s+entscheidender\\s+Bedeutung",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "DE026",
+      "type": "DEFINITIONAL_OPENING",
+      "pattern": "^(?:Im Kontext von|Im Bereich von|In der Welt von) [\\w\\s]+,",
+      "scope": "paragraph-start",
+      "fixInstruction": "Start with the specific subject or event instead of a generic framing clause."
+    },
+    {
+      "id": "DE027",
+      "type": "STRUCTURAL_CLICHE",
+      "pattern": "\\bnicht\\s+nur\\b[\\s\\S]{0,100}?\\bsondern\\s+auch\\b",
+      "fixInstruction": "State both claims directly without the stock paired construction."
+    }
+  ]
+}

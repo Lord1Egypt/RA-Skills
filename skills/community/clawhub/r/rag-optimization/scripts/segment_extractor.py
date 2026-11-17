@@ -22,6 +22,9 @@ from dataclasses import dataclass
 from typing import List, Dict, Any, Optional, Tuple
 from enum import Enum
 
+# 统一 LLM 客户端抽象层：score() 内部处理安全数字解析 + 重试 + 缓存
+from llm_client import LLMClient, wrap_llm
+
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -43,6 +46,23 @@ class Segment:
     start_pos: int                 # 原文起始位置
     end_pos: int                   # 原文结束位置
     resolved_text: Optional[str]   # 指代消解后的文本
+
+    def to_document_unit(self) -> "DocumentUnit":
+        """转换为统一 DocumentUnit 格式（Phase 1 数据协议集成）"""
+        from document_unit import DocumentUnit
+        return DocumentUnit(
+            id=self.source_doc,
+            content=self.text,
+            parent_paragraph=self.source_doc,
+            metadata={
+                "relevance_score": self.relevance_score,
+                "start_pos": self.start_pos,
+                "end_pos": self.end_pos,
+                "resolved_text": self.resolved_text,
+            },
+        )
+
+
 
 
 class SegmentSplitter:
@@ -135,10 +155,15 @@ class SegmentSplitter:
 class RelevanceScorer:
     """相关性评分器"""
     
+    # 中文停用字（用于无嵌入模型时的关键词回退打分）
+    _STOP_CHARS = set('的了吗呢啊吧么呀哦哈什么如何怎样怎么是否与和或等这那之以及于被把让给有没有没')
+    
     def __init__(self, llm_client=None, embedding_model=None, config: Dict = None):
         self.llm = llm_client
         self.embedding_model = embedding_model
         self.config = config or {}
+        # 用统一 LLMClient 包装原始客户端
+        self.llm_client = wrap_llm(llm_client)  # H23: 已是 LLMClient 则原样返回，避免重试放大
         self.score_mode = self.config.get('score_mode', 'hybrid')  # vector / llm / hybrid
         self.vector_threshold = self.config.get('vector_threshold', 0.3)
     
@@ -180,9 +205,9 @@ class RelevanceScorer:
                 )
                 return float(similarity)
             
-            # 没有嵌入模型，使用简单的关键词匹配
-            query_words = set(query.lower().split())
-            segment_words = set(segment.lower().split())
+            # 没有嵌入模型，使用兼容中英文的关键词匹配
+            query_words = self._tokenize(query)
+            segment_words = self._tokenize(segment)
             
             if not query_words:
                 return 0.0
@@ -193,11 +218,49 @@ class RelevanceScorer:
         except Exception as e:
             logger.error(f"向量评分失败: {e}")
             return 0.0
+
+    @staticmethod
+    def _tokenize(text: str) -> set:
+        """
+        中英文兼容分词：
+        - 英文/数字：提取完整单词（长度>=2）
+        - 中文：按单字提取并过滤停用字
+        """
+        import re
+        text = text.lower()
+        tokens = set()
+        # 英文与数字词
+        for w in re.findall(r'[a-z0-9]+', text):
+            if len(w) >= 2:
+                tokens.add(w)
+        # 中文单字（过滤停用字与数字）
+        for ch in re.findall(r'[\u4e00-\u9fff]', text):
+            if ch not in RelevanceScorer._STOP_CHARS:
+                tokens.add(ch)
+        return tokens
     
     def _llm_score(self, query: str, segment: str) -> float:
-        """使用LLM评分"""
+        """使用LLM评分（通过统一 LLMClient）"""
         if not self.llm:
             return 0.5
+
+        prompt = f"""
+请评估以下文本片段与用户问题的相关性（0-1分）：
+
+用户问题：{query}
+
+文本片段：{segment[:300]}
+
+评分标准：
+- 1.0: 片段直接回答了问题
+- 0.7-0.9: 片段包含相关信息
+- 0.4-0.6: 片段与问题有一定关联
+- 0.0-0.3: 片段与问题无关
+
+只返回一个0到1之间的数字。
+"""
+        # LLMClient.score() 内部处理安全解析 + 重试 + 缓存
+        return self.llm_client.score(prompt, default=0.5)
         
         try:
             prompt = f"""
@@ -218,8 +281,15 @@ class RelevanceScorer:
             
             response = self.llm.invoke(prompt) if hasattr(self.llm, 'invoke') else self.llm(prompt)
             score_text = response.strip() if isinstance(response, str) else str(response)
-            score = float(''.join(c for c in score_text if c.isdigit() or c == '.'))
-            return max(0.0, min(1.0, score))
+            match = re.search(r'(-?\d*\.\d+|-?\d+)', score_text)
+            if match:
+                raw = float(match.group(1))
+                if raw > 1.0 and raw <= 100.0:
+                    raw = raw / 100.0
+                score = max(0.0, min(1.0, raw))
+            else:
+                score = 0.5
+            return score
             
         except Exception as e:
             logger.error(f"LLM评分失败: {e}")

@@ -1,48 +1,61 @@
-## Description: <br>
-AI Invest Master helps agents route Chinese-language investment questions to investment frameworks associated with Buffett, Munger, Lynch, Druckenmiller, Dalio, Soros, Swensen, and Cathie Wood. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ai-invest-master provides a Chinese-language investment research framework that routes user questions to one or two investor-style analysis models covering value investing, growth investing, macro strategy, asset allocation, bubbles, and disruptive innovation.
 
-## Publisher: <br>
-[footballqq](https://clawhub.ai/user/footballqq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[footballqq](https://clawhub.ai/user/footballqq)
 
-## Use Case: <br>
-External users and investment researchers use this skill for Chinese-language educational investment analysis, including company and industry review, asset allocation framing, macro trend interpretation, and structured decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on AI-generated investment guidance. <br>
-Mitigation: Treat outputs as educational analysis and independently verify market data, assumptions, and suitability before acting. <br>
-Risk: Connected tools could expose trading, fund-transfer, or account-modification actions. <br>
-Mitigation: Do not allow any connected tool to trade, transfer funds, or modify accounts without explicit user confirmation. <br>
+## Use Case:
 
+External users and investment researchers use this skill to structure company, industry, macro, and portfolio-allocation analysis through named investor frameworks. It supports research workflows and should not be treated as personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/footballqq/ai-invest-master) <br>
-- [Buffett reference framework](references/buffett.md) <br>
-- [Munger reference framework](references/munger.md) <br>
-- [Peter Lynch reference framework](references/peter-lynch.md) <br>
-- [Druckenmiller reference framework](references/druckenmiller.md) <br>
-- [Dalio reference framework](references/dalio.md) <br>
-- [Soros reference framework](references/soros.md) <br>
-- [Swensen reference framework](references/swensen.md) <br>
-- [Cathie Wood reference framework](references/cathie-wood.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language investment research assistance; outputs should be verified against current market data and user assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Investment analysis may be incomplete, outdated, or unsuitable for a user's financial situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market data independently and treat outputs as research support rather than personalized buy, sell, leverage, or allocation advice.
+
+Risk: The skill can frame high-risk investment styles, including concentrated growth, macro, leverage, or speculative strategies.
+
+Mitigation: Use qualified financial advice and explicit risk controls before acting on any strategy or portfolio decision.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/footballqq/skills/ai-invest-master)
+- [Warren Buffett Reference Framework](references/buffett.md)
+- [Charlie Munger Reference Framework](references/munger.md)
+- [Peter Lynch Reference Framework](references/peter-lynch.md)
+- [Stanley Druckenmiller Reference Framework](references/druckenmiller.md)
+- [Ray Dalio Reference Framework](references/dalio.md)
+- [George Soros Reference Framework](references/soros.md)
+- [David Swensen Reference Framework](references/swensen.md)
+- [Cathie Wood Reference Framework](references/cathie-wood.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language investment research support; outputs depend on user-provided questions and independently verified market data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

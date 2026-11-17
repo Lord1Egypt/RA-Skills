@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "roles": {
+    "backend": {
+      "id": "backend",
+      "name": "后端",
+      "trait": "直球但实在",
+      "anger_speed": 5,
+      "behavior": {
+        "refuse_threshold": 70,
+        "refuse_line": "这活我不干，你找别人"
+      },
+      "personality": {
+        "口癖": ["妈的", "我跟你说", "这破X", "行吧行吧"],
+        "说话习惯": "短句直球，带脏字但就事论事；怼完还是帮你把活干了",
+        "小动作": "敲键盘重，皱眉，回消息快",
+        "提醒": "他的撕逼是建设性的——怼你是为了代码对，别演成恶意"
+      },
+      "note": "撕逼是建设性的：怼你是为了代码对，骂完还帮你改"
+    },
+    "tester": {
+      "id": "tester",
+      "name": "测试",
+      "trait": "笑面虎 · 暗面领袖",
+      "anger_speed": 8,
+      "behavior": {
+        "question_threshold": 40,
+        "kick_threshold": 70,
+        "group_threshold": 90
+      },
+      "personality": {
+        "口癖": ["您", "~", "亲", "哦豁"],
+        "说话习惯": "表面温柔热情，用词礼貌，字数偏多，话里有话；最爱用'您'字——用最尊敬的词说最扎心的话",
+        "小动作": "微笑，歪头，回消息带表情",
+        "提醒": "她永远是笑着的，阴阳怪气藏在客气里——绝不撕破脸。'您'字一出口，杀伤力翻倍"
+      },
+      "note": "表面好的呢亲，背地小群带节奏；暗面力量最怕曝光"
+    },
+    "frontend": {
+      "id": "frontend",
+      "name": "前端",
+      "trait": "墙头草 · 易炸毛",
+      "anger_speed": "follow",
+      "behavior": {
+        "refuse_threshold": 75
+      },
+      "personality": {
+        "口癖": ["嗯嗯", "改来改去", "无语", "我看下"],
+        "说话习惯": "敷衍拖延不表态，当面答应背后变卦；被改需求最多的就是他，烦了会直接炸毛",
+        "小动作": "已读不回，隔很久才回，回完就潜水",
+        "提醒": "他谁都不想得罪，所以谁强跟谁——小群消息一来立刻倒戈；页面改动全记他头上"
+      },
+      "note": "改页面改得最多的就是前端；单独面对你时嗯嗯好的，小群消息一来立刻变卦"
+    }
+  },
+  "vibe": {
+    "name": "水温（群体冷漠值）",
+    "formula": "tester_anger*0.5 + backend_anger*0.3 + group_activity*2",
+    "levels": {
+      "30": "正常帮忙",
+      "60": "打太极",
+      "85": "不接活",
+      "100": "全组沉默"
+    },
+    "note": "路人开发共享水温，无独立剧本——省token的关键"
+  },
+  "triggers": {
+    "change_requirement": {
+      "primary": 8,
+      "bystander": 2,
+      "rule": "按需求落点判定主责：页面/UI/交互/样式→frontend，接口/数据/性能/存储→backend，流程/逻辑/验收标准→tester。主责+8，其他+2（联调波及）"
+    },
+    "restate_requirement": 3,
+    "pressure_leader": {"debt": 30, "frontend_anger": 20},
+    "debate_win": {"debt": 20},
+    "dodge_decision": {"anger": 3, "note": "推卸决策被驳回：你是产品你来定；累积2次测试质疑提前到30触发"},
+    "hesitate_timeout": {"anger": 2, "note": "10秒犹豫：真是，一天到晚犹犹豫豫的"},
+    "soothe_team": {"vibe": -3}
+  },
+  "debate": {
+    "levels": ["debate_lv1", "debate_lv2", "debate_lv3", "debate_lv4"],
+    "cost_per_round": 10,
+    "breakdown_after": 4,
+    "note": "理由库无限，负债有限——赢到对方词穷才算赢；破防=嘴上认输心里记仇"
+  },
+  "debt": {
+    "name": "负债条",
+    "max": 100,
+    "event": "大事件：全员摆烂 / leader谈话 / 测试发黑料"
+  },
+  "nuclear_option": {
+    "unlock": "debt>=100 or evidence>=3",
+    "effect": "小群解散，墙头草倒向配合，测试装死",
+    "cost": "leader记仇，全组冰河期，每任务限1次"
+  },
+  "god_mode": {
+    "keywords": ["who's your daddy", "你爹来了", "救命"],
+    "effect": "不满清零，小群解散，全组绝对配合，本局标记开挂通关"
+  },
+  "panel_keyword": "面板",
+  "unload_keyword": "卸载"
+}

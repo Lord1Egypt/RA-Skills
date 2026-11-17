@@ -1,41 +1,58 @@
-## Description: <br>
-Sync Obsidian OpenClaw config across multiple iCloud devices. Manages symlinks for seamless multi-device sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync Obsidian OpenClaw config across multiple iCloud devices and manage symlinks for multi-device sync.
 
-## Publisher: <br>
-[boyd4y](https://clawhub.ai/user/boyd4y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[boyd4y](https://clawhub.ai/user/boyd4y)
 
-## Use Case: <br>
-Developers and OpenClaw users on macOS use this skill to inspect iCloud-hosted Obsidian vaults and link OpenClaw configuration, media, projects, team files, skills, and workspaces into a local OpenClaw setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Running setup with --overwrite can replace a local openclaw.json with a symlink to the iCloud version. <br>
-Mitigation: Run status first, verify the selected vault and paths, and back up any local openclaw.json before using --overwrite. <br>
-Risk: Running setup with --no-confirm skips the confirmation prompt before creating symlinks. <br>
-Mitigation: Avoid --no-confirm until the vault index and planned symlink targets have been reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Vault Structure Reference](references/vault-structure.md) <br>
-- [Sync Helper Script](scripts/sync_helper.py) <br>
-- [ClawHub Skill Page](https://clawhub.ai/boyd4y/obsidian-openclaw-sync) <br>
+## Use Case:
 
+Developers and OpenClaw users on macOS use this skill to inspect iCloud Obsidian vaults, select a vault, and sync local OpenClaw configuration through symlinks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text with status listings, prompts, and symlink setup or removal actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS-only; requires Python and an iCloud Obsidian vault path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup can persistently redirect active OpenClaw skills and configuration to content from a selected iCloud Obsidian vault.
+
+Mitigation: Install and run it only with iCloud vaults you trust, and review the printed symlink plan before confirming setup.
+
+Risk: Using --overwrite can replace the local openclaw.json path with a symlink to the iCloud version.
+
+Mitigation: Back up local ~/.openclaw configuration and avoid --overwrite unless replacing the local configuration is intended.
+
+Risk: Using --no-confirm skips the interactive review step before filesystem changes.
+
+Mitigation: Prefer the confirmation flow and reserve --no-confirm for reviewed, repeatable setup commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boyd4y/skills/obsidian-openclaw-sync)
+- [OpenClaw Vault Structure Reference](references/vault-structure.md)
+- [Sync Helper Script](scripts/sync_helper.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration guidance]
+
+**Output Format:** [Terminal text with command output and prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or remove local symlinks as part of setup and unset flows.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

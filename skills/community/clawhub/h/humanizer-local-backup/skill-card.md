@@ -1,41 +1,54 @@
-## Description: <br>
-Removes signs of AI-generated writing from text and rewrites it to sound more natural and human-written. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edits text to reduce common AI-writing patterns and make drafts sound more natural while preserving the intended meaning and tone.
 
-## Publisher: <br>
-[12357851](https://clawhub.ai/user/12357851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[12357851](https://clawhub.ai/user/12357851)
 
-## Use Case: <br>
-Writers, editors, and agents use this skill to review pasted text or clearly specified local documents, identify AI-writing patterns, and produce a more natural rewrite while preserving meaning and tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can revise local text and may introduce wording changes that alter meaning or tone. <br>
-Mitigation: Review edits before accepting them, especially for factual, legal, policy, or attributed text. <br>
-Risk: Humanized output could be used to mislead readers about whether AI helped produce the text. <br>
-Mitigation: Use the skill transparently and avoid representing AI-assisted writing as unaided human authorship when that distinction matters. <br>
+## Use Case:
 
+External users and content editors use this skill to review drafts, identify AI-sounding patterns, and rewrite passages in a more natural voice.
 
-## Reference(s): <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with a rewritten passage and optional summary of changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May edit pasted text or clearly specified files; review changes before accepting them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 2.1.1) <br>
+Risk: The skill is designed to remove AI-origin signals from text, which can be misused where authorship disclosure, academic integrity, or platform policy compliance matters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for appropriate style editing, and require users to follow disclosure rules, academic integrity requirements, and platform policies.
+
+Risk: The skill may edit documents in place during rewriting workflows.
+
+Mitigation: Review proposed changes before publishing or saving over important content, and keep backups for sensitive documents.
+
+## Reference(s):
+
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown containing rewritten text and, when helpful, a brief summary of changes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May revise user-provided documents when file editing is appropriate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json; SKILL.md frontmatter reports 2.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

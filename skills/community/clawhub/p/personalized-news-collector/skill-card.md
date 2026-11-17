@@ -1,41 +1,53 @@
-## Description: <br>
-Get current news which matches user's recent interests. It can be triggered when user ask about current news or the events happening around without selecting a specific topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current news which matches user's recent interests. It can be triggered when user ask about current news or the events happening around without selecting a specific topic.
 
-## Publisher: <br>
-[zeron90](https://clawhub.ai/user/zeron90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zeron90](https://clawhub.ai/user/zeron90)
 
-## Use Case: <br>
-External users use this skill to infer at least three recent interests from conversation or memory, collect current news from relevant sources, and receive a categorized Markdown report sorted by apparent popularity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may infer user interests from recent conversation or memory before collecting news. <br>
-Mitigation: Ask the agent to confirm inferred interests first, or provide an explicit topic list. <br>
-Risk: The skill contacts third-party news sources and feeds, which may vary in availability, freshness, and reliability. <br>
-Mitigation: Specify preferred sources or require source citations and freshness checks in the final report. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zeron90/personalized-news-collector) <br>
-- [Publisher profile](https://clawhub.ai/user/zeron90) <br>
-- [Bundled news source list](artifact/sources.md) <br>
+## Use Case:
 
+External users use this skill to have an agent infer recent interests from the conversation or memory, collect current news about those interests, and return a categorized report ranked by apparent popularity.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with categorized news items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks news by frequency across sources, with judgment used as a tie-breaker.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can infer news interests from prior conversation or memory without clear consent.
+
+Mitigation: Ask before using conversation history or memory, then confirm the inferred interests before collecting news.
+
+Risk: The skill can fetch arbitrary web pages without clear source, redirect, or size limits.
+
+Mitigation: Prefer the reviewed source list and restrict outbound fetching to trusted HTTPS news domains with redirect and response-size limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zeron90/skills/personalized-news-collector)
+- [News source list](artifact/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown news report with categorized ranked items and optional inline shell commands for collection.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [At least three interests and at least three news items per interest are requested by the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

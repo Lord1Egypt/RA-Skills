@@ -1,42 +1,58 @@
-## Description: <br>
-Fitlog is a local Bash command-line productivity logger that records, searches, summarizes, and exports timestamped entries under ~/.local/share/fitlog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fitlog is a Bash command-line tool for logging local productivity entries, reviewing activity, searching history, and exporting records.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users can use this skill as a local command-line logger for tasks, plans, progress notes, streaks, reminders, tags, reports, weekly reviews, searches, and exports. The release should be evaluated as a generic productivity logger rather than a workout-specific tracker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as a fitness tracker, but the artifact implements a broader productivity logger. <br>
-Mitigation: Evaluate and present the skill as a generic local productivity logger, not as a workout-specific tracker. <br>
-Risk: User entries and exports may contain sensitive health, work, or personal details stored under ~/.local/share/fitlog. <br>
-Mitigation: Avoid entering sensitive details unless local storage and export behavior are acceptable; manually remove ~/.local/share/fitlog when data should be cleared. <br>
+## Use Case:
 
+External users can use this skill as a local command-line journal for tasks, planning, tracking, reminders, streaks, reviews, and exports. The evidence notes that it is broader than the advertised workout-tracking summary.
 
-## Reference(s): <br>
-- [ClawHub Fitlog skill page](https://clawhub.ai/ckchzh/fitlog) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ckchzh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-only Bash workflow; stores logs and exports under ~/.local/share/fitlog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence; artifact files report v2.0.0) <br>
+Risk: The skill is advertised as a workout tracker, but the artifact implements a broader productivity journal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the command list before installation and use it only when a general local journal is acceptable.
+
+Risk: Arbitrary notes, reminders, and exports are stored in plaintext under the user's home directory.
+
+Mitigation: Avoid entering sensitive information and manage access to the local data directory and export files.
+
+Risk: CSV exports may contain user-provided text that is unsafe to open in spreadsheets if the data is untrusted.
+
+Mitigation: Inspect or sanitize exported CSV data before opening it in spreadsheet software.
+
+## Reference(s):
+
+- [ClawHub Fitlog listing](https://clawhub.ai/ckchzh/skills/fitlog)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The installed script writes plaintext log and export files under the user's home directory.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

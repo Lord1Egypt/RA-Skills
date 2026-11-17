@@ -1,40 +1,58 @@
-## Description: <br>
-生成上市公司可比公司分析报告。当用户请求分析某家公司的竞争对手、可比公司、同业对比、竞品分析、对标公司分析时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成上市公司可比公司分析报告，当用户请求分析某家公司的竞争对手、可比公司、同业对比、竞品分析或对标公司分析时使用。
 
-## Publisher: <br>
-[wxai-space](https://clawhub.ai/user/wxai-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wxai-space](https://clawhub.ai/user/wxai-space)
 
-## Use Case: <br>
-External users and analysts use this skill to generate Markdown peer comparison reports for A-share listed companies, including business profiling, comparable-company screening, business progress comparison, and financial comparison. The report is research support and is not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may query external financial and news tools, so report quality depends on the availability, freshness, and correctness of those sources. <br>
-Mitigation: Confirm the data sources are acceptable for the use case and independently verify important figures before relying on the report. <br>
-Risk: Generated peer-comparison reports can be mistaken for investment advice or may contain outdated market data. <br>
-Mitigation: Treat outputs as research support only, keep the report disclaimer, and review conclusions before sharing or acting on them. <br>
+## Use Case:
 
+External users and financial analysts use this skill to produce structured A-share comparable-company analysis reports for a target listed company, including business review, peer selection, peer comparison, financial metrics, and conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wxai-space/comparable-company-analysis-simple) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a named report attachment for the target company; users should verify important figures independently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial analysis may become stale because company fundamentals, valuation metrics, and market prices are time-sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that the report uses the latest available financial period and current valuation data before relying on the output.
+
+Risk: The generated report could be mistaken for investment advice.
+
+Mitigation: Keep the report positioned as research support, preserve the disclaimer, and have qualified reviewers assess conclusions before use.
+
+Risk: The workflow depends on financial-data and news/search tools whose coverage or freshness may vary.
+
+Mitigation: Review cited data sources, check missing values explicitly, and rerun data collection when key financial or business-progress fields are incomplete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wxai-space/skills/comparable-company-analysis-simple)
+- [Publisher profile](https://clawhub.ai/user/wxai-space)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance]
+
+**Output Format:** [Markdown report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report content is based on current financial data and news/search results, so outputs should be reviewed for source quality, timeliness, and investment-advice risk.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

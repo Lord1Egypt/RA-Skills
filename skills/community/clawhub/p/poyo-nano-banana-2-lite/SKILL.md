@@ -6,6 +6,12 @@ metadata: {"openclaw":{"homepage":"https://poyo.ai/models/nano-banana-2-lite","r
 
 # PoYo Nano Banana 2 Lite Image Generation and Editing
 
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/nano-banana-2-lite>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/nano-banana-2-lite>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 Use this skill for Nano Banana 2 Lite jobs on PoYo. It helps agents prepare lightweight image generation and edit payloads, submit async tasks, and describe safe server-side integration.
 
 ## Use When

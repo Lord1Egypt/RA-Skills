@@ -1,42 +1,58 @@
-## Description: <br>
-Provides manual audit checklists and configuration guidance to harden OpenClaw/Aegis deployments against instance exposure, credential leakage, malicious skill installation, unauthorized gateway access, and post-compromise recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides audit checklists, configuration guidance, and incident-response steps for hardening OpenClaw and Aegis deployments against exposure, credential leakage, unsafe skill installation, unauthorized gateway access, and compromise recovery.
 
-## Publisher: <br>
-[thebrierfox](https://clawhub.ai/user/thebrierfox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thebrierfox](https://clawhub.ai/user/thebrierfox)
 
-## Use Case: <br>
-Developers and operators use this skill to review OpenClaw/Aegis deployments, audit exposed gateways and credential storage, verify skills before installation, and follow incident response checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hardening and incident response commands may interrupt services or require elevated privileges. <br>
-Mitigation: Review each command before running it, back up configuration files, and plan for service interruption where applicable. <br>
-Risk: Credential rotation workflows involve sensitive tokens and secrets. <br>
-Mitigation: Rotate credentials through provider dashboards and avoid exposing secret values to the agent or workspace files. <br>
-Risk: Checklist guidance can be misapplied if deployment paths, ports, or service names differ. <br>
-Mitigation: Treat the skill as manual guidance and adapt commands to the verified local environment before execution. <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw and Aegis deployments, tighten gateway and credential handling, vet third-party skills before installation, and follow containment and recovery procedures after suspected compromise.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/thebrierfox/security-hardening-toolkit-v1-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Manual checklist; review commands before execution and apply environment-specific judgment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Some command snippets can reveal gateway tokens or other credentials in terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace secret-printing checks with redacted or boolean checks before use.
+
+Risk: Incident-response copy commands can create additional copies of logs and configuration files containing sensitive data.
+
+Mitigation: Create incident evidence directories with restrictive permissions before copying logs or configuration files.
+
+Risk: Broad process termination commands can stop unrelated sessions or services.
+
+Mitigation: Preview matching process IDs and scopes before terminating processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thebrierfox/skills/security-hardening-toolkit-v1-0)
+- [Publisher profile](https://clawhub.ai/user/thebrierfox)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with checklists, command snippets, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides operator-facing recommendations; command snippets should be reviewed and adapted before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

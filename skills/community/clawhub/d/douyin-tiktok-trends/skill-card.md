@@ -1,48 +1,66 @@
-## Description: <br>
-Fetches current trending topics, hashtags, songs, and creators on Douyin/TikTok using TikTok Creative Center as the primary data source. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and analyzes current Douyin/TikTok trending topics, hashtags, songs, and creators using TikTok Creative Center as the primary data source.
 
-## Publisher: <br>
-[lucasye378](https://clawhub.ai/user/lucasye378) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucasye378](https://clawhub.ai/user/lucasye378)
 
-## Use Case: <br>
-Marketing, content strategy, and social media teams use this skill to fetch and summarize current TikTok/Douyin trends, including hashtags, songs, creators, and hashtag detail pages. Agents can use it when a user asks what is trending on TikTok or wants a concise trend analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad trend or hot-topic requests that are not specifically about TikTok or Douyin. <br>
-Mitigation: For ambiguous trend requests, confirm the intended platform before relying on this skill's output. <br>
-Risk: Some Creative Center pages may be login-gated or return incomplete data. <br>
-Mitigation: Fall back to public home and hashtag pages and clearly state when creator, song, or video details are unavailable. <br>
-Risk: TikTok and Douyin trend data changes frequently and may become stale quickly. <br>
-Mitigation: Include the fetch timestamp and avoid presenting trend rankings as durable facts. <br>
-Risk: China-specific Douyin coverage is limited because automated access to Douyin data is restricted. <br>
-Mitigation: Describe Douyin-specific results as limited coverage unless the fetched source directly supports the claim. <br>
+## Use Case:
 
+External users, marketers, creators, and analysts use this skill to ask an agent for current TikTok trend summaries, hashtag deep dives, regional popularity, audience insights, and content-trend analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lucasye378/douyin-tiktok-trends) <br>
-- [TikTok Creative Center](https://ads.tiktok.com/business/creativecenter/) <br>
-- [TikTok Creative Center Trending Hashtags](https://ads.tiktok.com/business/creativecenter/inspiration/popular/hashtag/pc/en) <br>
-- [TikTok Creative Center Trends Home](https://ads.tiktok.com/business/creativecenter/trends/home/pc/en) <br>
-- [TikTok Creative Center Trending Creators](https://ads.tiktok.com/business/creativecenter/inspiration/popular/creator/pc/en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown trend summaries with tables, bullets, and optional simple Topic / Heat / Trend lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include fetch timestamps, ranked hashtags, songs, creators, post counts, commercial-use indicators, regional popularity, audience notes, and related interests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: Trend results may reflect TikTok Creative Center's English/global pages by default rather than a specific country, language, or China-specific Douyin market.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the requested geography and language when summarizing results, and explicitly qualify global/default-source limits when no market-specific evidence is fetched.
+
+Risk: Login-gated Creative Center pages can return empty or incomplete data.
+
+Mitigation: Fall back to the public home page and hashtag pages, and tell the user when songs, videos, or creator details could not be retrieved.
+
+Risk: Douyin-specific coverage is limited because China-specific Douyin data may block automated access.
+
+Mitigation: Do not present TikTok Creative Center data as China-specific Douyin evidence unless the source fetched supports that claim.
+
+Risk: Trend data changes frequently and can become stale quickly.
+
+Mitigation: Record the fetch timestamp in the agent output and avoid reusing old trend summaries as current evidence.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lucasye378/skills/douyin-tiktok-trends)
+- [TikTok Creative Center](https://ads.tiktok.com/business/creativecenter/)
+- [TikTok Creative Center Trending Hashtags](https://ads.tiktok.com/business/creativecenter/inspiration/popular/hashtag/pc/en)
+- [TikTok Creative Center Trends Home](https://ads.tiktok.com/business/creativecenter/trends/home/pc/en)
+- [TikTok Creative Center Trending Creators](https://ads.tiktok.com/business/creativecenter/inspiration/popular/creator/pc/en)
+- [TikTok Creative Center Videos Inspiration](https://ads.tiktok.com/business/creativecenter/inspiration/popular/pc/en)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown trend report with tables and optional simple Topic, Heat, and Trend lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current web fetches; record the fetch timestamp; default source pages are global/English unless the user requests a qualified market.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

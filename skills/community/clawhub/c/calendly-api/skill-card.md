@@ -1,47 +1,57 @@
-## Description: <br>
-Calendly API integration with managed OAuth for accessing event types, scheduled events, invitees, availability, booking workflows, and webhook management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents access Calendly scheduling data and manage approved scheduling workflows through a connected Maton account.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and agents use this skill to connect to Calendly through Maton, inspect scheduling data, check availability, book meetings, cancel scheduled events, and manage webhook subscriptions with user-approved API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Maton API key and can access scheduling data through a connected Calendly account. <br>
-Mitigation: Protect MATON_API_KEY, avoid exposing it in logs or shared prompts, and use only trusted runtime environments. <br>
-Risk: Write operations can create invitees, cancel scheduled events, or create and delete webhook subscriptions. <br>
-Mitigation: Require explicit user approval before any create, update, delete, booking, cancellation, or webhook operation, and confirm the target resource and intended effect. <br>
-Risk: Multiple Calendly connections can cause requests to affect the wrong account. <br>
-Mitigation: Verify the intended Calendly/Maton connection and include the Maton-Connection header when more than one connection exists. <br>
+## Use Case:
 
+Users and developers can ask an agent to review Calendly event types, meetings, invitees, and availability, or to set up approved bookings, webhooks, and scheduling automations.
 
-## Reference(s): <br>
-- [ClawHub Calendly Skill Release](https://clawhub.ai/byungkyu/calendly-api) <br>
-- [Calendly Developer Portal](https://developer.calendly.com/) <br>
-- [Calendly API Reference](https://developer.calendly.com/api-docs) <br>
-- [Calendly API Use Cases](https://developer.calendly.com/api-use-cases) <br>
-- [Maton](https://maton.ai) <br>
-- [Related ClawHub API Gateway Skill](https://clawhub.ai/byungkyu/api-gateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with HTTP endpoint descriptions and Python, JavaScript, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and a connected Calendly account through Maton.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Calendly access can expose invitee details and meeting links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended account and requested data, use least-privilege access, and approve writes separately.
+
+Risk: Webhooks, triggers, and hosted functions may persistently forward scheduling information.
+
+Mitigation: Before approval, review the exact destination URL, data fields, and how long the automation will remain active.
+
+## Reference(s):
+
+- [ClawHub Calendly skill](https://clawhub.ai/byungkyu/skills/calendly-api)
+- [Maton](https://maton.ai)
+- [Calendly API documentation](https://developer.calendly.com/api-docs)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [Calendly trigger reference](artifact/references/calendly/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON examples]
+
+**Output Format:** [Markdown with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read/list operations by default; account connections, writes, and automation require user approval.]
+
+## Skill Version(s):
+
+1.2.7 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

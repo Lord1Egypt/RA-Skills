@@ -1,40 +1,57 @@
-## Description: <br>
-Fridge Chef helps an agent identify visible fridge ingredients from a photo, flag items likely to expire soon, and suggest simple recipes with detailed instructions on request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fridge Chef helps an agent identify visible food items from a user-provided fridge photo, flag items that may spoil soon, and suggest simple recipes using available ingredients.
 
-## Publisher: <br>
-[stigg86](https://clawhub.ai/user/stigg86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stigg86](https://clawhub.ai/user/stigg86)
 
-## Use Case: <br>
-Home cooks and general users use this skill to turn a fridge photo into an ingredient inventory, spoilage-aware notes, recipe suggestions, and detailed cooking steps when they choose a recipe. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fridge photos may include sensitive personal information or private household details. <br>
-Mitigation: Avoid including sensitive personal information in images before sharing them with the agent. <br>
-Risk: Food identification and expiration cues from photos can be incomplete or incorrect. <br>
-Mitigation: Treat ingredient and expiry notes as suggestions, and verify food identity and safety before cooking. <br>
+## Use Case:
 
+Home cooks and meal-planning assistants use this skill to turn fridge photos into ingredient inventories, spoilage prompts, and practical recipe ideas. The skill is useful when a user wants meal options based on food already visible in their refrigerator.
 
-## Reference(s): <br>
-- [Fridge Chef ClawHub skill page](https://clawhub.ai/stigg86/fridge-chef) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with categorized inventory, expiring-soon notes, numbered recipe ideas, and detailed recipe instructions on request] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on input photo quality; uncertain ingredients should be labeled as likely rather than definitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Fridge photos may reveal personal household details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only photos the user is comfortable sharing and avoid exposing unnecessary personal context.
+
+Risk: Food identification from an image can be uncertain or incomplete.
+
+Mitigation: Label unclear ingredients as likely rather than certain and ask the user to confirm important items before cooking.
+
+Risk: Recipe suggestions may not account for allergies, spoilage, or food safety constraints.
+
+Mitigation: Have the user independently verify allergies, freshness, and safe handling before preparing a suggested recipe.
+
+## Reference(s):
+
+- [Fridge Chef ClawHub skill page](https://clawhub.ai/stigg86/skills/fridge-chef)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes categorized ingredient lists, expiring-soon notes, numbered recipe suggestions, and detailed cooking instructions when requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

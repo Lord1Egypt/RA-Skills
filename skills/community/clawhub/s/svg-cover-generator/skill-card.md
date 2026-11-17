@@ -1,42 +1,50 @@
-## Description: <br>
-Create polished, editable SVG cover artwork for reports, articles, slide decks, social cards, ebook covers, posters, and landing-page hero images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create polished, editable SVG cover artwork for reports, articles, slide decks, social cards, ebook covers, posters, and landing-page hero images.
 
-## Publisher: <br>
-[NimaChu](https://clawhub.ai/user/NimaChu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nimachu](https://clawhub.ai/user/nimachu)
 
-## Use Case: <br>
-Developers, designers, and content creators use this skill to generate self-contained, editable SVG covers for reports, slide decks, social cards, posters, ebook covers, and hero images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SVG files can overwrite existing files when the user asks the agent to save output to a path. <br>
-Mitigation: Choose destination paths deliberately and avoid overwriting important files. <br>
-Risk: SVG output may be structurally invalid or may include unintended external references if not checked. <br>
-Mitigation: Run the bundled local SVG validator against saved SVG files before delivery. <br>
+## Use Case:
 
+Developers, designers, and content teams use this skill to generate editable, self-contained SVG cover artwork for reports, slide decks, social cards, posters, ebooks, and hero images.
 
-## Reference(s): <br>
-- [SVG Cover Design Rules](references/design-rules.md) <br>
-- [Layout Recipes](references/layout-recipes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/NimaChu/svg-cover-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with fenced SVG code blocks or saved SVG files plus concise validation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to be self-contained SVG with editable text, inline styles, no remote assets, and optional local validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: SVG files from untrusted sources can contain unsafe constructs, and the included validator is not a complete SVG security sanitizer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review SVG content before opening or distributing it; use the bundled validator as a structural check and apply trusted SVG sanitization where security boundaries matter.
+
+## Reference(s):
+
+- [SVG Cover Design Rules](references/design-rules.md)
+- [Layout Recipes](references/layout-recipes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown with fenced SVG code blocks or generated SVG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Self-contained SVG with editable text and no external dependencies; optional structural validation with scripts/check_svg.py.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

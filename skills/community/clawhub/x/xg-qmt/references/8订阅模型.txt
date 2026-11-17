@@ -1,0 +1,59 @@
+'''
+8订阅模型
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+subscribe_formula - 订阅模型
+原型
+
+内置python
+
+subscribe_formula(
+   formula_name,stock_code,period
+   ,start_time="",end_time="",count=-1
+   ,dividend_type="none"
+   ,extend_param={}
+   ,callback=None)
+释义 订阅vba模型运行结果，使用前要注意补充本地K线数据或分笔数据
+
+参数
+
+字段名	类型	描述
+formula_name	str	模型名称名
+stock_code	str	模型主图代码形式如'stkcode.market'，如'000300.SH'
+period	str	K线周期类型，可选范围：'tick':分笔线，'1d':日线，'1m':分钟线，'3m':三分钟线，'5m':5分钟线，'15m':15分钟线，'30m':30分钟线，'1h':小时线，'1w':周线，'1mon':月线，'1q':季线，'1hy':半年线，'1y':年线
+start_time	str	模型运行起始时间，形如:'20200101'，默认为空视为最早
+end_time	str	模型运行截止时间，形如:'20200101'，默认为空视为最新
+count	int	模型运行范围为向前 count 根 bar，默认为 -1 运行所有 bar
+dividend_type	str	复权方式，默认为主图除权方式，可选范围：'none':不复权，'front':向前复权，'back':向后复权，'front_ratio':等比向前复权，'back_ratio':等比向后复权
+extend_param	dict	模型的入参，形如 {'a': 1, '__basket': {}}
+__basket	dict	可选参数，组合模型的股票池权重，形如 {'600000.SH': 0.06, '000001.SZ': 0.01}
+返回值 分两块，
+
+subscribe_formula返回模型的订阅号,可用于后续反订阅，失败返回 -1
+
+callback:
+
+timelist： 数据时间戳
+outputs：模型的输出值，结构为{变量名:值}
+示例
+
+示例
+
+#encoding=gbk
+def callback(data):
+    print(data)
+
+def init(ContextInfo):
+    basket={
+       '600000.SH':0.06,
+       '000001.SZ':0.01
+      }
+    argsDict={'a':100,'__basket':basket}
+    subID=subscribe_formula(
+      '单股模型示范','000300.SH','1d',
+      '20240101','20240201',-1,
+      "none",
+      argsDict,
+      callback
+   )
+

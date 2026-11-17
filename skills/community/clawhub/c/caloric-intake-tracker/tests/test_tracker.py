@@ -18,11 +18,12 @@ def test_database_init(temp_db):
     
     assert "entries" in table_names
     assert "daily_goal" in table_names
-    assert "weight_log" in table_names
     assert "measurement_types" in table_names
     assert "measurement_log" in table_names
     assert "day_notes" in table_names
     assert "meal_types" in table_names
+    # weight_log is migrated into the generic measurement system
+    assert "weight_log" not in table_names
     
     # Check if body_measurements exists as a view
     views = conn.execute("SELECT name FROM sqlite_master WHERE type='view'").fetchall()
@@ -33,6 +34,12 @@ def test_database_init(temp_db):
     columns = conn.execute("PRAGMA table_info(day_notes)").fetchall()
     col_names = [c['name'] for c in columns]
     assert "completed" in col_names
+
+    # weight is a first-class measurement type
+    types = conn.execute("SELECT key FROM measurement_types").fetchall()
+    type_keys = [t['key'] for t in types]
+    assert "weight" in type_keys
+    assert "waist" in type_keys
     
     conn.close()
 
@@ -442,6 +449,39 @@ def test_cmd_list_and_stats_day_default_grouping_and_no_group(temp_db, capsys):
     assert "[2]" in captured_stats_raw and "[lunch] Banana: 100 kcal, 1g P" in captured_stats_raw
     assert "[3]" in captured_stats_raw and "[dinner] Steak: 500 kcal, 40g P" in captured_stats_raw
     assert "[4]" in captured_stats_raw and "[dinner] Broccoli: 40 kcal" in captured_stats_raw
+
+
+def test_weight_log_migration(temp_db):
+    """Legacy weight_log rows migrate into measurement_log under the 'weight' type."""
+    import sqlite3
+    from scripts.tracker import init_db
+
+    # Recreate a legacy weight_log table (init_db normally consolidates it away)
+    conn = sqlite3.connect(temp_db)
+    c = conn.cursor()
+    c.execute("DROP VIEW IF EXISTS v_weight_summary")
+    c.execute("CREATE TABLE weight_log (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL UNIQUE, weight_kg REAL NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+    c.execute("INSERT INTO weight_log (date, weight_kg, created_at) VALUES ('2026-06-10', 80.0, '2026-06-10 08:00:00')")
+    c.execute("INSERT INTO weight_log (date, weight_kg, created_at) VALUES ('2026-06-12', 79.5, '2026-06-12 08:00:00')")
+    conn.commit()
+    conn.close()
+
+    # Re-init triggers the consolidation migration
+    init_db(temp_db)
+
+    conn = sqlite3.connect(temp_db)
+    conn.row_factory = sqlite3.Row
+    rows = conn.execute("SELECT date, value FROM measurement_log WHERE type_key='weight' ORDER BY date").fetchall()
+    assert [ (r['date'], r['value']) for r in rows ] == [('2026-06-10', 80.0), ('2026-06-12', 79.5)]
+
+    # weight_log table is dropped once consolidated
+    tables = conn.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
+    assert "weight_log" not in [t['name'] for t in tables]
+
+    # BMI view now reads from measurement_log
+    v = conn.execute("SELECT sql FROM sqlite_master WHERE name='v_weight_summary' AND type='view'").fetchone()
+    assert "measurement_log" in v['sql']
+    conn.close()
 
 
 def test_legacy_database_migration(tmp_path):

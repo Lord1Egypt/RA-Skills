@@ -1,0 +1,333 @@
+{
+  "title": "弹性",
+  "season": 1,
+  "episode": 2,
+  "durationTarget": 48,
+  "hook": "老板宣布：公司实行弹性工作制，什么时候干完什么时候走",
+  "reversal": "老板自己的活没干完，被大老板催；他一个人加班到十一点，第二天就把制度改了",
+  "unsaid": "我不想加班",
+  "characters": [
+    {
+      "name": "阿强",
+      "persona": "认真的执行者",
+      "voice": "云希-清亮少年",
+      "gender": "male"
+    },
+    {
+      "name": "老板",
+      "persona": "一本正经定离谱规则",
+      "voice": "云扬-沉稳男声",
+      "gender": "male"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S1",
+      "title": "宣布规则",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.88
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    },
+    {
+      "id": "S2",
+      "title": "开始执行",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.98
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    },
+    {
+      "id": "S3",
+      "title": "升级",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.92
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    },
+    {
+      "id": "S4",
+      "title": "反转",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.52,
+        "zoom": 0.95
+      },
+      "positions": {
+        "阿强": 0.29,
+        "老板": 0.7
+      }
+    }
+  ],
+  "lines": [
+    {
+      "seq": 1,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "从今天起，实行弹性工作制。",
+      "emotion": "得意",
+      "sfx": "叮",
+      "scene": "S1"
+    },
+    {
+      "seq": 2,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "什么时候干完，什么时候走。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 3,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "真弹性？",
+      "emotion": "惊讶",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 4,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "真弹性。",
+      "emotion": "得意",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 5,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "第二天，阿强早上十点才来。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 6,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "你迟到了。",
+      "emotion": "愤怒",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 7,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "弹性。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 8,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "晚上六点，阿强走了。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 9,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "活儿还没干完。",
+      "emotion": "愤怒",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 10,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "弹性。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 11,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "老板在群里发了一长段话。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 12,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "阿强回了一个字。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 13,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "弹。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 14,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "你这是钻空子！",
+      "emotion": "愤怒",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 15,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "我这是严格执行。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 16,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "三天后，老板的活也没干完。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 17,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "大老板问我进度，我说什么？",
+      "emotion": "悲伤",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 18,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "说弹性。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 19,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "那是给你们的！",
+      "emotion": "愤怒",
+      "sfx": "咚",
+      "scene": "S3"
+    },
+    {
+      "seq": 20,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "弹性不分上下级。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 21,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "当晚，老板一个人干到十一点。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 22,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "第二天，制度改了。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 23,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "恢复固定工时，九点上班。",
+      "emotion": "无语",
+      "sfx": "乌鸦",
+      "scene": "S4"
+    },
+    {
+      "seq": 24,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "那我明天九点到。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 25,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "你不是弹性吗？",
+      "emotion": "惊讶",
+      "sfx": "",
+      "scene": "S4"
+    },
+    {
+      "seq": 26,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "您取消了啊。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    }
+  ]
+}

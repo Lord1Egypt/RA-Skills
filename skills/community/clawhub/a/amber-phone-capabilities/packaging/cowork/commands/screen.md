@@ -11,6 +11,8 @@ arguments:
 
 Control inbound call screening. When active, Amber answers incoming calls, identifies the caller, takes a message, and delivers a summary.
 
+Screening may process caller audio through Twilio/OpenAI and store local summaries/transcripts. Configure caller notice/consent and retention before enabling it for real callers.
+
 ## Usage
 
 ```

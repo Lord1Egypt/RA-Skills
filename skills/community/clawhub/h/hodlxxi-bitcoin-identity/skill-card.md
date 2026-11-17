@@ -1,43 +1,63 @@
-## Description: <br>
-Read-only-by-default integration guide for HODLXXI / UBID Bitcoin-native identity discovery, OAuth2/OIDC metadata, LNURL-Auth boundaries, JWT verification guidance, and explicit operator-approved agent handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only-by-default integration guide for HODLXXI / UBID Bitcoin-native identity discovery, OAuth2/OIDC metadata, LNURL-Auth boundaries, JWT verification guidance, and explicit operator-approved agent handoff.
 
-## Publisher: <br>
-[hodlxxi](https://clawhub.ai/user/hodlxxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hodlxxi](https://clawhub.ai/user/hodlxxi)
 
-## Use Case: <br>
-Developers and agents use this skill to understand and integrate HODLXXI / UBID as a Bitcoin-native identity provider. It supports public discovery, OAuth2/OIDC metadata review, LNURL-Auth boundaries, JWT verification guidance, and operator-approved agent handoff planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth registration, token exchange, wallet login, agent job submission, or Lightning payment actions could expose credentials, identity claims, or funds if performed automatically. <br>
-Mitigation: Keep the skill read-only by default and require explicit operator approval for the exact endpoint, payload, scopes, and payment impact before any sensitive or privileged action. <br>
-Risk: Identity tokens can be trusted incorrectly if JWT validation is incomplete or uses stale discovery metadata. <br>
-Mitigation: Verify issuer, audience, expiration, expected algorithm, key id, signature, and current JWKS before trusting claims. <br>
-Risk: Recurring polling or heartbeat behavior can create unwanted persistence or repeated network activity. <br>
-Mitigation: Leave heartbeat and polling disabled unless the operator explicitly configures the cadence, destination, and stop condition. <br>
+## Use Case:
 
+Developers and agents use this skill to read public HODLXXI identity discovery metadata and explain OAuth/OIDC, LNURL-Auth, JWT verification, agent handoff, and Lightning payment boundaries without taking privileged actions by default.
 
-## Reference(s): <br>
-- [HODLXXI / UBID homepage](https://github.com/hodlxxi/Universal-Bitcoin-Identity-Layer) <br>
-- [ClawHub skill page](https://clawhub.ai/hodlxxi/hodlxxi-bitcoin-identity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance describing public endpoints, identity-flow boundaries, JWT verification checks, and approval requirements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only by default; public GET discovery is allowed, while token exchange, OAuth client registration, wallet login, agent job submission, Lightning invoice handling, shell execution, dependency installation, filesystem writes, and recurring polling require explicit operator approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence and skill frontmatter) <br>
+Risk: Identity credentials, bearer tokens, private keys, wallet material, cookies, or environment values could be exposed if an agent treats the skill as permission to handle secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill read-only by default and do not request, print, persist, or transmit secrets through the skill.
+
+Risk: OAuth registration, token exchange, LNURL-Auth session creation, agent job submission, or Lightning payment actions could affect identity, execution, or funds.
+
+Mitigation: Require explicit operator approval for the exact destination, payload class, and payment behavior before any sensitive or privileged action.
+
+Risk: JWT identity claims could be trusted incorrectly if token validation is incomplete.
+
+Mitigation: Verify issuer, audience, expiration, signature algorithm, key id, and current JWKS before trusting identity claims.
+
+Risk: Recurring polling or heartbeat behavior could create unintended persistence or beaconing.
+
+Mitigation: Keep heartbeat behavior disabled by default and enable recurring polling only when the operator explicitly configures it.
+
+## Reference(s):
+
+- [Universal Bitcoin Identity Layer](https://github.com/hodlxxi/Universal-Bitcoin-Identity-Layer)
+- [HODLXXI public deployment](https://hodlxxi.com)
+- [ClawHub skill page](https://clawhub.ai/hodlxxi/skills/hodlxxi-bitcoin-identity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with endpoint references, boundary checks, and approval requirements.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only by default; sensitive identity, payment, execution, shell, dependency, and filesystem actions require explicit operator approval.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

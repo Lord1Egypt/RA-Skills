@@ -1,0 +1,18 @@
+{
+  "name": "openclaw-workflow-starter",
+  "version": "1.0.0",
+  "description": "OpenClaw 工作流快速入门指南 - 含业务流程处理与数字资源入库的端到端实操步骤",
+  "author": "terrycarter1985",
+  "created": "2026-08-16",
+  "tags": [
+    "guide",
+    "workflow",
+    "openclaw",
+    "taskflow",
+    "digital-resource",
+    "onboarding"
+  ],
+  "source": "workspace://resource-center-example",
+  "license": "MIT",
+  "lastReviewed": "2026-08-16"
+}

@@ -1,66 +1,73 @@
 ---
 name: fec-motion-interaction
-description: Use when designing, implementing, or reviewing frontend interaction motion, page transitions, scroll animation, Framer Motion, GSAP, Lottie, CSS animation, motion intensity, animation performance, reduced-motion behavior, or cinematic but accessible UI motion. Do not use for SVG-only path drawing, Canvas/WebGL rendering, or ordinary hover states; Chinese triggers include 动效设计, 交互动效, 页面转场, 滚动动画, Framer Motion, GSAP.
+description: Use when designing, implementing, or reviewing frontend interaction motion, page transitions, scroll animation, Framer Motion, GSAP, Lottie, CSS animation, motion intensity, animation performance, reduced-motion behavior, or cinematic but accessible UI motion. Do not use for SVG-only path drawing, Canvas/WebGL rendering, or ordinary hover states; Chinese triggers include motion design, interactive effects, page transitions, scroll animation, Framer Motion, GSAP.
 ---
 
-# 交互动效
+# Interactive effects
 
-适用于需要把页面转场、滚动叙事、组件入场、微交互和反馈节奏设计成可维护、可降级、可验证的前端动效任务。需要具体实现模式时加载 [motion-patterns.md](references/motion-patterns.md)。
+It is suitable for front-end animation tasks that need to design page transitions, scrolling narratives, component introductions, micro-interactions and feedback rhythms into maintainable, degradable and verifiable forms. Load [motion-patterns.md](references/motion-patterns.md) when a specific implementation pattern is required.
 
 ## Purpose
 
-为前端界面选择合适动效工具、强度和质量门禁。
+Choose the right animation tools, intensity, and quality gates for your front-end interface.
 
 ## Procedure
 
-1. 判断动效职责
-   - 先写清动效服务的用户意图：定位、反馈、层级变化、状态确认、叙事引导或品牌记忆。
-   - 工具型界面默认克制，优先保障扫描效率；营销页和作品页可增加节奏，但不能遮挡主要信息。
-   - 若动效只装饰而不改善理解、反馈或品牌识别，应删掉或改成静态视觉处理。
-   - loading、skeleton、toast、错误提示和成功反馈属于状态沟通；动效只能增强反馈节奏，不能替代文本、语义或可见状态。
+1. Determine animation responsibilities
+   - First write down the user intention of the dynamic effect service: positioning, feedback, level changes, status confirmation, narrative guidance or brand memory.
+   - The tool-based interface is restrained by default, and priority is given to ensuring scanning efficiency; the marketing page and work page can increase the rhythm, but cannot block the main information.
+   - If animation is merely decorative and does not improve understanding, feedback or brand recognition, it should be deleted or replaced with a static visual treatment.
+   - Loading, skeleton, toast, error prompts and success feedback belong to status communication; animations can only enhance the feedback rhythm and cannot replace text, semantics or visible status.
 
-2. 选择技术路线
-   - CSS transition/keyframes：hover、focus、toast、简单入场和小型状态反馈。
-   - Framer Motion：React 状态驱动、布局过渡、列表编排和可中断的组件级动画。
-   - GSAP：时间轴、滚动触发、复杂序列和跨元素精确编排。
-   - Lottie：设计工具输出的图标或空状态动画，按需懒加载。
-   - CSS scroll-driven animation：可接受渐进增强且无需旧浏览器一致性时使用。
+2. Choose a technical route
+   - CSS transitions/keyframes: hover, focus, toast, simple entry and small status feedback.
+   - Framer Motion: React state-driven, layout transitions, list orchestration, and interruptible component-level animations.
+   - GSAP: timelines, scroll triggers, complex sequences and precise orchestration across elements.
+   - Lottie: The icon or empty state animation output by the design tool is lazy loaded on demand.
+   - CSS scroll-driven animation: Use when progressive enhancement is acceptable and legacy browser consistency is not required.
 
-3. 定义强度等级
-   - Level 1-2：只用 150-250ms opacity/transform，适合后台、表单和高频工具。
-   - Level 3-4：加入短 stagger、局部 spring 和轻量 reveal，适合仪表盘、设置页和管理台。
-   - Level 5-6：加入视差、布局 morph、指针响应，适合产品展示和交互式首页。
-   - Level 7+：使用滚动叙事、固定段落或 3D/WebGL 配合，必须单独做移动端和 reduced-motion 降级。
+3. Define intensity levels
+   - Level 1-2: Only uses 150-250ms opacity/transform, suitable for background, forms and high-frequency tools.
+   - Level 3-4: Add short stagger, partial spring and lightweight reveal, suitable for dashboards, settings pages and management consoles.
+   - Level 5-6: Add parallax, layout morph, and pointer response, suitable for product display and interactive homepage.
+- Level 7+: To use scrolling narrative, fixed paragraphs or 3D/WebGL cooperation, the mobile version and reduced-motion downgrade must be done separately.
+   - Scenario default values: public services, medical, financial and highly accessible products start from Level 1-2; SaaS tools and data backends start from Level 2-3; marketing pages, brand pages and portfolios can start from Level 4-6; only experimental activity pages or immersive narratives can consider Level 7+.
+   - If the UI design process already has a motion intensity dial set up, use that dial; don’t automatically increase the intensity just because a certain motion library is introduced.
 
-4. 建立性能边界
-   - 只高频动画 `transform`、`opacity`，谨慎使用 `filter` 和 `clip-path`。
-   - GSAP、Lottie、Three.js、重型动画组件必须动态导入或隔离在叶子组件。
-   - 持续动画需要暂停条件：不可见、标签页隐藏、用户关闭、低电量或 reduced motion。
-   - 不在滚动事件中同步读写布局；使用 IntersectionObserver、ScrollTimeline 或节流后的 rAF。
+4. Establish performance boundaries
+   - Only high-frequency animations `transform`, `opacity`, use `filter` and `clip-path` with caution.
+   - GSAP, Lottie, Three.js, heavy animation components must be dynamically imported or isolated in leaf components.
+- Sustained animations require pause conditions: invisible, tab hidden, user closed, low battery, or reduced motion.
+   - Do not read and write layout synchronously on scroll events; use IntersectionObserver, ScrollTimeline, or throttled rAF.
+   - Scroll narrative, stagger, spring, magnetic pointer and parallax effects must have clear responsibilities respectively; do not stack multiple high-intensity motion languages on the same screen at the same time.
+   - The rhythm of repeated reveal animations on long pages must be controlled to avoid each block entering with the same delay, direction, and easing, causing a template feel and scrolling fatigue.
 
-5. 设计可访问降级
-   - 所有非必要动效读取 `prefers-reduced-motion`，降级为静态、淡入或即时状态。
-   - 自动播放或循环动效若超过 5 秒，应提供暂停方式或只在局部非关键区域运行。
-   - 不闪烁超过每秒 3 次；不要用动效作为唯一状态提示。
-   - focus ring、错误提示、成功反馈必须在无动效时同样清楚。
-   - 手势动画必须有点击、键盘或明确控件替代；拖拽、滑动和长按不能成为唯一操作路径。
+5. Design for accessible degradation
+   - All non-essential motion effects read `prefers-reduced-motion` and downgrade to static, fade-in or instant state.
+   - If the automatic playback or looping animation exceeds 5 seconds, a pause method should be provided or it should only run in local non-critical areas.
+   - Do not flash more than 3 times per second; do not use animation as the only status reminder.
+   - The focus ring, error prompt, and success feedback must be equally clear when there is no animation.
+   - Gesture animations must be replaced by clicks, keyboards, or explicit controls; dragging, sliding, and long-pressing cannot be the only operation paths.
 
-6. 验证交付
-   - 在 375px、768px、1440px 检查动效是否遮挡文案、按钮或表格内容。
-   - 检查首次加载 bundle 是否因动效库显著膨胀。
-   - 手动开启 reduced motion，确认动画被禁用或弱化。
-   - 用性能面板或实际设备确认滚动和关键交互没有明显掉帧。
+6. Verify delivery
+   - Check whether the animation blocks the copy, button or table content at 375px, 768px, and 1440px.
+   - Check whether the first loaded bundle is significantly bloated by the animation library.
+   - Turn on reduced motion manually and confirm that the animation is disabled or weakened.
+   - Confirm scrolling and key interactions without noticeable frame drops using the performance panel or actual device.
+   - Check that the animation intensity matches the page type: the workbench should not have a marketing-style scrolling theater, and the portfolio should not only have a default hover fade-in.
+   - Verify that scroll trigger sequences allow users to reach content quickly without losing context due to pinned blocks, long timelines, or uninterruptible transitions.
 
 ## Constraints
 
-- 不在同一个组件内混用 Framer Motion 和 GSAP 控制同一元素。
-- 不用动效掩盖 loading、empty、error、disabled 等状态缺失。
-- 不为普通后台表格、配置页和高频工作台默认加入大幅视差或滚动劫持。
-- 不动画 `width`、`height`、`top`、`left`、`margin`、`padding` 等会频繁触发布局的属性。
-- 不把大型 Lottie JSON、GSAP 插件或 3D 场景放入首屏同步包。
-- 不让动画改变阅读顺序、焦点顺序或键盘可达性。
-- 不用 skeleton 长时间占位掩盖真实加载失败；超过预期时应转入可理解的 loading、retry 或 error 状态。
+- Do not mix Framer Motion and GSAP controls for the same element within the same component.
+- Don’t use animations to cover up missing statuses such as loading, empty, error, disabled, etc.
+- Do not add large parallax or scroll hijacking by default for ordinary background tables, configuration pages and high-frequency workbench.
+- Do not use the same reveal template for all blocks; the rhythm of the animation should vary with the information level and user tasks.
+- Do not animate `width`, `height`, `top`, `left`, `margin`, `padding` and other properties that frequently trigger layout.
+- Do not put large Lottie JSON, GSAP plug-ins or 3D scenes into the above-the-fold sync package.
+- Don't let animations change reading order, focus order, or keyboard accessibility.
+- Do not use skeleton for a long time to cover up the actual loading failure; when it exceeds expectations, it should be transferred to an understandable loading, retry or error state.
 
 ## Expected Output
 
-输出应包含动效目的、技术选型、强度等级、降级策略、性能边界和验证结果。完成后交互动效应帮助用户理解状态和层级，在 reduced-motion 与低端设备上仍可用，并且不显著拖慢首屏或滚动体验。
+The output should include animation purpose, technology selection, intensity level, degradation strategy, performance boundaries and verification results. Post-completion interactions help users understand state and hierarchy, remain available on reduced-motion and low-end devices, and do not significantly slow down the above-the-fold or scrolling experience.

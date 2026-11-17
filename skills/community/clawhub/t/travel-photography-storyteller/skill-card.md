@@ -1,40 +1,54 @@
-## Description: <br>
-Helps travelers plan meaningful travel photography. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps travelers plan meaningful travel photography.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Travelers, photographers, and content creators use this skill to turn trip context into story concepts, shot plans, ethical photography considerations, editing structure, and practical next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel, venue, weather, legal, and cultural details may be incomplete, outdated, or too general for a specific trip. <br>
-Mitigation: Verify important details with official or current sources before acting on the plan. <br>
-Risk: The skill may activate on broad travel or memory-related prompts where travel photography planning is not the user's intent. <br>
-Mitigation: Confirm the requested task is travel photography planning before relying on the output. <br>
+## Use Case:
 
+Travelers and content creators use this skill to turn trip context into narrative photography plans, shot frameworks, ethical photography considerations, editing structure, checklists, and next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/travel-photography-storyteller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, json] <br>
-**Output Format:** [Structured JSON and human-readable planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational travel photography planning only; no bookings, real-time data, external APIs, or code execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may treat the output as live travel, booking, weather, or availability information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present it as descriptive planning guidance and verify time-sensitive trip details with official sources before acting.
+
+Risk: Cultural and ethical photography guidance may be too general for a specific destination or community.
+
+Mitigation: Confirm local customs and rules, ask permission before photographing people, and adapt shot plans to local expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/travel-photography-storyteller)
+- [ClawHub publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes input analysis, recommendations, frameworks, checklists, considerations, next steps, and a descriptive-use disclaimer.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

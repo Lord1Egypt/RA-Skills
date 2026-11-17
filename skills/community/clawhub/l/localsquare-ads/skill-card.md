@@ -1,48 +1,65 @@
-## Description: <br>
-Helps agents find LocalSquare board availability and reserve paid public advertising pins for local businesses after user approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents discover LocalSquare town-board ad space and, with explicit user approval, claim a paid local business advertising pin through x402.
 
-## Publisher: <br>
-[ThatDudeFreak](https://clawhub.ai/user/ThatDudeFreak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thatdudefreak](https://clawhub.ai/user/thatdudefreak)
 
-## Use Case: <br>
-External users and business-support agents use this skill to discover available LocalSquare advertising space for a ZIP-code market and reserve a public business pin. It is intended for local advertising workflows where the user explicitly approves payment, placement, and public listing details. <br>
-
-### Deployment Geography for Use: <br>
-United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A wallet payment could be approved for the wrong domain, facilitator, recipient, network, amount, town, or square position. <br>
-Mitigation: Before any wallet approval, verify the domain, x402 facilitator, recipient, Base network, amount, town, and square position with the user. <br>
-Risk: Raw private keys or signing secrets could be exposed if entered into an agent prompt or configuration. <br>
-Mitigation: Use only secure external wallet signing such as a hardware wallet, browser extension, or WalletConnect, and never provide raw private keys to the agent. <br>
-Risk: Business details submitted through the skill are intended to become public and searchable. <br>
-Mitigation: Review the business name, contact details, address, image, and description with the user before submitting a claim. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ThatDudeFreak/localsquare-ads) <br>
-- [LocalSquare Homepage](https://yourlocalsquare.com) <br>
-- [LocalSquare AI Documentation](https://yourlocalsquare.com/llms.txt) <br>
-- [Agent API Status](https://yourlocalsquare.com/api/agent/status) <br>
-- [x402 Discovery](https://yourlocalsquare.com/.well-known/x402.json) <br>
-- [x402 Protocol](https://x402.org) <br>
-- [Privacy Policy](https://yourlocalsquare.com/privacy) <br>
-- [Terms of Service](https://yourlocalsquare.com/terms) <br>
+## Use Case:
 
+Small-business owners, marketers, and agents use this skill to find available LocalSquare grid cells by ZIP code and claim an advertising pin after the user approves the town, cell, cost, and payment details.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with HTTP examples, JSON request and response bodies, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing workflow guidance for discovery, user confirmation, x402 payment handling, and public listing follow-up.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence) <br>
+United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can initiate a real paid advertising claim and public posting.
+
+Mitigation: Require explicit user approval before payment, show the town, cell, price, and total cost, and verify recipient and payment details before signing.
+
+Risk: Wallet signing could expose funds if private keys are pasted into the agent or payment details are not checked.
+
+Mitigation: Use only an external wallet signer, never provide raw private keys to the agent, and confirm the x402 facilitator, recipient, network, and amount before signing.
+
+Risk: Lifetime-versus-expiration language could affect user expectations about the purchased pin.
+
+Mitigation: Clarify the lifetime, expiration, and renewal terms with LocalSquare before purchase when that commitment matters to the user.
+
+Risk: Business address, phone number, and listing details may become publicly visible on the advertising page.
+
+Mitigation: Confirm with the user which business details should be included before submitting the claim.
+
+## Reference(s):
+
+- [LocalSquare homepage](https://yourlocalsquare.com)
+- [LocalSquare AI documentation](https://yourlocalsquare.com/llms.txt)
+- [LocalSquare agent API status](https://yourlocalsquare.com/api/agent/status)
+- [LocalSquare x402 discovery](https://yourlocalsquare.com/.well-known/x402.json)
+- [x402 protocol](https://x402.org)
+- [ClawHub skill page](https://clawhub.ai/thatdudefreak/skills/localsquare-ads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with HTTP endpoint examples, JSON payloads, and user-consent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes free discovery calls, paid claim workflow details, wallet-safety requirements, and post-claim result links.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

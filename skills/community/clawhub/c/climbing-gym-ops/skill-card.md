@@ -1,41 +1,58 @@
-## Description: <br>
-Operational assistant for independent climbing gyms and bouldering studios covering membership management, churn reduction, route-setting coordination, youth program scheduling, safety compliance, and revenue optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operational assistant for independent climbing gyms and bouldering studios - membership management, churn reduction, route-setting coordination, youth program scheduling, safety compliance, and revenue optimization.
 
-## Publisher: <br>
-[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit)
 
-## Use Case: <br>
-External gym owners and managers use this skill to plan and review climbing gym operations, including member retention, route-setting, youth programs, facility maintenance, safety checklists, finances, and marketing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated customer outreach may use sensitive member data or be sent without appropriate consent. <br>
-Mitigation: Use only the member data needed for the task, confirm email or SMS consent and unsubscribe requirements, and review outreach before sending. <br>
-Risk: Safety, insurance, or legal recommendations may not match a gym's jurisdiction, equipment, or professional inspection requirements. <br>
-Mitigation: Treat safety and compliance outputs as checklists to verify with qualified professionals and applicable local requirements. <br>
+## Use Case:
 
+External climbing gym owners and managers use this skill to coordinate membership retention, route-setting, youth programs, facility safety tasks, financial operations, and community marketing for independent gyms or small climbing-gym chains.
 
-## Reference(s): <br>
-- [Climbing Gym Revenue Optimization Playbook](references/revenue-optimization-playbook.md) <br>
-- [Climbing Gym Safety Compliance Checklist](references/safety-compliance-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, reports, outreach drafts, schedules, and operational recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before use with customer data, safety decisions, legal compliance, or customer outreach.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may process member, staff, waiver, billing, incident, or outreach data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with gym data the operator is authorized to access and retain according to applicable privacy and business requirements.
+
+Risk: Generated email or SMS outreach may trigger consent, marketing, or privacy obligations.
+
+Mitigation: Confirm opt-in status and legal requirements before sending member re-engagement or promotional messages.
+
+Risk: Safety, waiver, incident, and compliance guidance may vary by jurisdiction, insurer, equipment vendor, and facility design.
+
+Mitigation: Review safety and legal outputs with qualified professionals and authoritative local requirements before operational use.
+
+## Reference(s):
+
+- [Climbing Gym Safety Compliance Checklist](references/safety-compliance-checklist.md)
+- [Climbing Gym Revenue Optimization Playbook](references/revenue-optimization-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain-language operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include outreach templates, checklists, schedules, reports, and recommendations for gym operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

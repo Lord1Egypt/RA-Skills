@@ -1,42 +1,53 @@
-## Description: <br>
-List all packages for an Appian application by UUID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List all packages for an Appian application by UUID. Use when the user wants to see what packages exist in an application, or to find a package UUID before inspecting or deploying.
 
-## Publisher: <br>
-[solarspiker](https://clawhub.ai/user/solarspiker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solarspiker](https://clawhub.ai/user/solarspiker)
 
-## Use Case: <br>
-Developers and Appian release engineers use this skill to list packages for a specific Appian application and find package UUIDs before inspection, export, or deployment work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive Appian credentials and sends API requests to the configured Appian base URL. <br>
-Mitigation: Set APPIAN_BASE_URL and APPIAN_API_KEY explicitly, verify the base URL points to the intended Appian environment, and prefer a least-privileged read-only API key. <br>
-Risk: The script can read appian.json from the current working directory or parent directories, which may unintentionally load credentials from an untrusted workspace. <br>
-Mitigation: Run the skill from a controlled directory and avoid untrusted workspaces containing appian.json files. <br>
+## Use Case:
 
+Developers and Appian administrators use this skill to enumerate packages for a specific Appian application and find package UUIDs before inspecting, exporting, or deploying packages.
 
-## Reference(s): <br>
-- [Appian Package Management API](https://docs.appian.com/suite/help/25.4/Package_Management_API.html) <br>
-- [ClawHub skill page](https://clawhub.ai/solarspiker/appian-listpkg) <br>
-- [solarspiker ClawHub profile](https://clawhub.ai/user/solarspiker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance, API calls] <br>
-**Output Format:** [Plain text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Appian application UUID and Appian API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and script metadata) <br>
+Risk: Credential and configuration handling is broader than users should accept without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer injected environment secrets, and avoid relying on appian.json fallback files.
+
+Risk: An untrusted APPIAN_BASE_URL or parent-directory appian.json file could affect where credentials are used.
+
+Mitigation: Use only trusted APPIAN_BASE_URL values and do not run the skill from directories where an untrusted parent appian.json could be discovered.
+
+## Reference(s):
+
+- [Appian v2 Deployment Management API package management documentation](https://docs.appian.com/suite/help/25.4/Package_Management_API.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output listing package names, UUIDs, object counts, timestamps, and optional package metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Appian application UUID and APPIAN_BASE_URL/APPIAN_API_KEY credentials.]
+
+## Skill Version(s):
+
+1.1.0 (source: release metadata and scripts/index.js header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

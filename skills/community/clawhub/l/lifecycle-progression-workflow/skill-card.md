@@ -1,42 +1,52 @@
-## Description: <br>
-Build workflows to automate contact progression through the sales funnel: Lead to MQL to SQL to Opportunity to Customer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build workflows to automate contact progression through the sales funnel: Lead to MQL to SQL to Opportunity to Customer. Each transition is triggered by a specific event (score threshold, meeting booked, deal created, deal won).
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tomgranot](https://clawhub.ai/user/tomgranot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing, sales, and revenue operations teams use this skill to configure HubSpot workflows that move contacts forward through lifecycle stages based on lead score, meeting, deal, and closed-won events.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: HubSpot workflow changes can update lifecycle stages and send internal notifications.
+
+Mitigation: Use appropriate HubSpot permissions, test with sample contacts first, and verify trigger logic before enabling workflows broadly.
+
+Risk: Workflow skeletons generated with Breeze may use OR-style event triggers where these progression workflows require AND logic with the current lifecycle stage.
+
+Mitigation: Manually review and correct enrollment conditions for each workflow before activation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Sales and marketing operations teams use this skill to create HubSpot contact-based workflows that move contacts forward through lifecycle stages when score, meeting, deal, and closed-won conditions are met. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect trigger logic could enroll contacts when only part of the intended lifecycle condition is true. <br>
-Mitigation: Verify that each workflow uses AND logic between the event condition and the current lifecycle stage before publishing. <br>
-Risk: Published workflows can automatically change many HubSpot contact lifecycle stages. <br>
-Mitigation: Test with sample contacts or a limited segment and review workflow history before broad rollout. <br>
-Risk: Browser-extension-driven workflow edits may make unintended UI changes. <br>
-Mitigation: Supervise extension-driven edits and manually confirm triggers, actions, and re-enrollment settings before enabling workflows. <br>
+**Output Format:** [Markdown guidance with workflow prompts and setup steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tomgranot/lifecycle-progression-workflow) <br>
+**Other Properties Related to Output:** [Produces HubSpot workflow configuration guidance; no executable code.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown instructions with workflow trigger and action specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-facing setup guidance for HubSpot workflow configuration; it does not execute CRM changes directly.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Code Reviewer conducts adversarial code and pull request reviews focused on security issues, edge cases, maintainability, accessibility, and actionable fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts rigorous, adversarial code reviews that identify security issues, edge cases, bad practices, and quality problems across Python, R, JavaScript/TypeScript, SQL, and front-end code.
 
-## Publisher: <br>
-[corbin-breton](https://clawhub.ai/user/corbin-breton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[corbin-breton](https://clawhub.ai/user/corbin-breton)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to get structured, skeptical reviews of code snippets, diffs, and pull requests. It helps identify blocking defects, required changes, structural erosion, and concrete next steps before feedback is posted or changes are accepted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review feedback may be incorrect, too severe, or unsuitable to post directly to a pull request. <br>
-Mitigation: Manually confirm findings and edit feedback before sharing it with maintainers or applying recommendations. <br>
-Risk: Optional dual-review mode can send code or diffs to a configured second model. <br>
-Mitigation: Use dual-review mode only when the reviewed material can be shared with that second model under the applicable project and data-handling rules. <br>
-Risk: Users could treat a review-only skill as permission to make source changes without supervision. <br>
-Mitigation: Keep the skill in review-only use unless the user explicitly asks the agent to make code changes, then review any edits separately. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to request direct PR or code review feedback, prioritize findings by severity, and receive actionable recommendations before merging changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/corbin-breton/adversarial-code-reviewer) <br>
-- [Publisher Profile](https://clawhub.ai/user/corbin-breton) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Structured Markdown review with severity sections, findings, verdict, and recommended next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include short code examples or replacement patterns. Optional dual-review mode can add cost, latency, and second-model data-sharing considerations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Optional cross-model review can increase model usage, latency, and cost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --dual only when deeper scrutiny is worth the additional time and spend, and audit each second-reviewer finding before accepting it.
+
+Risk: The deliberately direct review posture can overstate low-confidence findings if context is incomplete.
+
+Mitigation: Keep findings tied to concrete file locations and failure modes, and mark uncertain concerns as verification items rather than blocking defects.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/corbin-breton/skills/adversarial-code-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown review with severity tiers and actionable recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional --dual mode can perform cross-model iterative review with added cost and latency.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

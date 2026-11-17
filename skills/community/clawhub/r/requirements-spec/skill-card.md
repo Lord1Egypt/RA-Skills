@@ -1,40 +1,54 @@
-## Description: <br>
-Assists in writing high-quality requirements documents using an 8-dimension framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Requirements Spec helps users draft, structure, and review PRDs and requirements documents using an 8-dimension framework covering background, objectives, scope, detailed flows, non-functional needs, data tracking, acceptance criteria, and risk assessment.
 
-## Publisher: <br>
-[profitpioneer](https://clawhub.ai/user/profitpioneer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[profitpioneer](https://clawhub.ai/user/profitpioneer)
 
-## Use Case: <br>
-Product managers, developers, and teams use this skill to draft, structure, or review PRDs and requirements specifications across background, objectives, scope, feature flows, non-functional needs, data tracking, acceptance criteria, and risk assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt for product goals, metrics, risks, business context, or customer-related details that could be sensitive. <br>
-Mitigation: Use it only in an agent environment where sharing that information is acceptable, and avoid entering confidential strategy or customer data unless approved. <br>
+## Use Case:
 
+Product managers, developers, and product teams use this skill to draft or review PRDs and requirements specifications for completeness, measurable objectives, clear scope, acceptance criteria, and risk coverage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/profitpioneer/requirements-spec) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown requirements document structure, checklists, questions, gap review, and quality scoring guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prompt for product goals, metrics, risks, timelines, user scenarios, and business context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Requirements drafts can be incomplete or misleading when source context is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask targeted questions for missing background, users, constraints, reference documents, and designs, then review the draft against all 8 dimension checklists.
+
+Risk: The skill may activate for product-spec writing or review requests where organization-specific constraints are not fully represented.
+
+Mitigation: Have product, engineering, operations, support, and acceptance owners confirm scope, non-functional requirements, tracking, acceptance criteria, and risk ownership before relying on the output.
+
+## Reference(s):
+
+- [Requirements Spec Skill Page](https://clawhub.ai/profitpioneer/skills/requirements-spec)
+- [Requirements Spec README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown document outlines, checklists, review notes, and quality scores]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; security evidence reports no commands, network access, persistence, or sensitive data handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

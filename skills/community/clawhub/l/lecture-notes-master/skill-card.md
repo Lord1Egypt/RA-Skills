@@ -1,45 +1,65 @@
-## Description: <br>
-Generates structured Obsidian markdown lecture notes from lectures, articles, videos, URLs, transcripts, and PDFs, including a hub note, recursive atomic notes, glossary entries, Mermaid diagrams, comparison tables, bilingual terms, and wikilinks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obsidian lecture notes with recursive atomic decomposition. Generates main note (hub), atomic notes (3+ layers deep, rich structure each), and unlimited glossary entries. Inputs: lectures, articles, videos, URLs, transcripts, PDFs. Outputs: Obsidian markdown with Mermaid diagrams, comparison tables, bilingual terms, wikilinks.
 
-## Publisher: <br>
-[SchaeferAnjon](https://clawhub.ai/user/SchaeferAnjon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[schaeferanjon](https://clawhub.ai/user/schaeferanjon)
 
-## Use Case: <br>
-Students, educators, researchers, and knowledge workers use this skill to convert source material into an Obsidian-ready study vault with a main hub note, recursive concept notes, glossary entries, review questions, diagrams, and optional chart assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes note files and optional chart assets to local directories, including the configured Obsidian vault path. <br>
-Mitigation: Use a test folder first, review the planned file tree and destination path, and confirm the output directory before allowing writes. <br>
-Risk: The skill can process URLs, videos, PDFs, transcripts, and documents, which may expose private material if external extraction or model tools are used. <br>
-Mitigation: Avoid sending private URLs or documents through external extraction or model tools unless that processing is acceptable. <br>
-Risk: Generated study notes may need human review for accuracy, placeholders, and source fidelity before they are used for coursework or exam preparation. <br>
-Mitigation: Review generated notes, diagrams, glossary entries, and review questions against the original source material before relying on them. <br>
+## Use Case:
 
+Students, educators, researchers, and knowledge workers use this skill to turn lectures, articles, videos, transcripts, PDFs, and other study materials into structured Obsidian notes with bilingual glossary entries, diagrams, review questions, and wikilinks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SchaeferAnjon/lecture-notes-master) <br>
-- [Publisher profile](https://clawhub.ai/user/SchaeferAnjon) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Usage examples](artifact/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Obsidian Markdown files with YAML frontmatter, Mermaid diagrams, wiki-links, tables, and optional PNG chart assets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured or user-specified output paths and may create local directories, note files, glossary files, and visualization assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create or overwrite many local files in an Obsidian vault or caller-supplied output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target folder and complete file tree before running, keep backups, and prefer a dedicated sandbox or staging folder.
+
+Risk: Untrusted titles or concept names may influence generated paths and filenames.
+
+Mitigation: Review and sanitize topic, title, concept, and glossary names before file generation.
+
+Risk: URL and video extraction may send provided links or content to external processing tools.
+
+Mitigation: Use URL or video extraction only for content that may be shared with the configured extraction service.
+
+Risk: Optional Python dependencies may affect the local environment.
+
+Mitigation: Install optional dependencies in an isolated, pinned Python environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/schaeferanjon/skills/lecture-notes-master)
+- [Skill instructions](artifact/SKILL.md)
+- [Usage examples](artifact/EXAMPLES.md)
+- [Configuration](artifact/config.json)
+- [Note templates](artifact/templates/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files for Obsidian, Mermaid diagrams, CSV-backed guidance, and optional PNG visualizations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create multiple local files in a configured or user-supplied Obsidian vault path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

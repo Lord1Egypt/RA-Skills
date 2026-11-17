@@ -20,10 +20,10 @@ CrewAI 需要 LLM API Key 才能运行。
 
 ```bash
 # 方式 A：临时设置（当前终端会话有效）
-export DASHSCOPE_API_KEY="sk-your-actual-key-here"
+export DASHSCOPE_API_KEY="REDACTED-SECRET"
 
 # 方式 B：永久设置（添加到 zshrc）
-echo 'export DASHSCOPE_API_KEY="sk-your-actual-key-here"' >> ~/.zshrc
+echo 'export DASHSCOPE_API_KEY="REDACTED-SECRET"' >> ~/.zshrc
 source ~/.zshrc
 
 # 方式 C：创建 .env 文件
@@ -44,7 +44,7 @@ python3.10 test_team.py
 ## 方案 2：使用 OpenAI
 
 ```bash
-export OPENAI_API_KEY="sk-your-openai-key-here"
+export OPENAI_API_KEY="REDACTED-SECRET"
 ```
 
 ---

@@ -1,40 +1,59 @@
-## Description: <br>
-Download YouTube videos and upload them to Pocket Casts Files for offline viewing, for personal use with content the user owns or has rights to. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download YouTube videos and upload them to Pocket Casts Files for offline viewing. For personal use with content you own or have rights to.
 
-## Publisher: <br>
-[ManuelHettich](https://clawhub.ai/user/ManuelHettich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[manuelhettich](https://clawhub.ai/user/manuelhettich)
 
-## Use Case: <br>
-Individuals use this skill to download YouTube videos they own or have permission to download and upload them to Pocket Casts Files for offline viewing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive Pocket Casts refresh tokens and YouTube cookies on the local machine. <br>
-Mitigation: Treat these credentials like passwords, keep credential files private, check logs before sharing them, and revoke or rotate credentials if exposed. <br>
-Risk: The workflow depends on a shell script and external command-line tools that interact with YouTube and Pocket Casts. <br>
-Mitigation: Review the shell script before use and install dependencies, including Deno if needed, through trusted methods. <br>
-Risk: Downloading or uploading media without the necessary rights may violate terms of service or copyright law. <br>
-Mitigation: Use the skill only for personal recordings, Creative Commons content, videos the user created, or content where downloading is explicitly permitted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill to prepare a YouTube URL for offline viewing by downloading it, converting it to MP4, and uploading it to Pocket Casts Files. It is intended for personal use with media the user owns or has rights to download and upload.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads MP4 video files to the user's Pocket Casts Files library and removes the local temporary copy.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow stores a long-lived Pocket Casts refresh token and YouTube cookies locally.
+
+Mitigation: Keep the credentials directory permission-restricted, avoid sharing logs or local files, and rotate or revoke credentials if exposure is suspected.
+
+Risk: The workflow runs unpinned external runtime tools with access to local credentials.
+
+Mitigation: Review or pin external tools before use and do not run the script with elevated privileges.
+
+Risk: Downloading or uploading media without the necessary rights may violate terms of service or copyright law.
+
+Mitigation: Use the skill only with personal recordings, Creative Commons media, user-created videos, or content where downloading and uploading are permitted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/manuelhettich/skills/pocket-casts-yt)
+- [Publisher profile](https://clawhub.ai/user/manuelhettich)
+- [Pocket Casts](https://pocketcasts.com)
+- [Deno install script](https://deno.land/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime workflow creates and removes a temporary MP4 file and prints upload status plus the Pocket Casts file UUID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

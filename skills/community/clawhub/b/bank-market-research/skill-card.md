@@ -1,41 +1,53 @@
-## Description: <br>
-AI-powered market research and competitive intelligence assistant for banks that analyzes industries, competitors, market trends, and generates structured market intelligence reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides banks with a structured method for researching industries, competitors, market trends, opportunities, and risks, then drafting market intelligence reports.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Bank strategy teams, corporate banking officers, product managers, relationship managers, and research analysts use this skill to research sectors, benchmark competitors, size markets, assess policy and regional risk, and draft structured banking opportunity reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market research outputs may be incomplete, outdated, or mistaken and could be misread as investment advice or credit approval guidance. <br>
-Mitigation: Review reports with qualified banking, credit, or risk personnel and verify important claims against current authoritative sources before making business decisions. <br>
-Risk: The skill may activate on broad market research or competitor analysis requests and produce banking recommendations outside the user's intended scope. <br>
-Mitigation: Constrain prompts to the specific sector, geography, data sources, and decision context, and treat generated recommendations as draft analysis for human review. <br>
+## Use Case:
 
+Bank strategy teams, product managers, relationship managers, and research analysts use it to structure public-information research, assess market opportunities and risks, and draft reports for qualified human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/bank-market-research) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown reports and structured analytical guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public-information market research templates and banking risk review framing; no executable code or hidden data access is disclosed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.1 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The security review was incomplete because the skill was only partially inspected after a manifest parsing error.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill and manifest yourself before installation if you need greater confidence.
+
+Risk: Market, policy, and regulatory information can become outdated or use inconsistent definitions.
+
+Mitigation: Check dates, definitions, and key figures against current official publications and independent sources before relying on the analysis.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/bank-market-research)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Structured Simplified Chinese market research reports with tables, frameworks, risk assessments, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research drafts for qualified human review; not investment advice or a credit decision]
+
+## Skill Version(s):
+
+5.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

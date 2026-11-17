@@ -1,45 +1,60 @@
-## Description: <br>
-Create professional Harvard-style resumes, CVs, and matching cover letters from user-provided candidate descriptions, structured data, or existing resumes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create professional Harvard-style resumes, CVs, and matching cover letters from user-provided candidate descriptions, structured data, or existing resumes.
 
-## Publisher: <br>
-[jasoncodespace](https://clawhub.ai/user/jasoncodespace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasoncodespace](https://clawhub.ai/user/jasoncodespace)
 
-## Use Case: <br>
-External users and agents use this skill to turn candidate notes, structured JSON, or existing resumes into role-targeted Harvard-style resumes and matching cover letters. It supports multiple tracks, concise factual rewriting, DOCX generation, and optional PDF export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes resume and cover-letter data supplied by the user, which may include personal information. <br>
-Mitigation: Review candidate JSON before use and keep generated outputs in the intended local folder. <br>
-Risk: Optional PDF export relies on local LibreOffice document conversion. <br>
-Mitigation: Use PDF export only in an environment where LibreOffice conversion is acceptable, or generate DOCX output only. <br>
-Risk: Installing dependencies changes the local Python environment. <br>
-Mitigation: Approve pip installation only when needed and review requirements.txt before installing. <br>
+## Use Case:
 
+External users and agents use this skill to turn candidate notes, structured profile data, or existing resumes into role-targeted resumes and optional matching cover letters. It supports one or more job tracks, stronger bullets, clean black-and-white formatting, and DOCX output with optional PDF conversion.
 
-## Reference(s): <br>
-- [CV Skill on ClawHub](https://clawhub.ai/jasoncodespace/cv-skill) <br>
-- [Input Schema](references/input-schema.md) <br>
-- [Rewriting Guide](references/rewriting-guide.md) <br>
-- [Harvard HES 2024 Notes](references/harvard-hes-2024-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [DOCX files, optional PDF files, Markdown guidance, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates one resume per selected track from structured candidate JSON; optional cover letter content is used when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: Resume generation may process sensitive candidate personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in a constrained workspace, and provide only the personal data needed for the resume or cover letter.
+
+Risk: Installing python-docx and transitive dependencies introduces supply-chain exposure.
+
+Mitigation: Pin and review python-docx and its transitive dependencies before running the documented pip install step.
+
+Risk: Role-targeted rewriting can accidentally add unsupported claims or metrics.
+
+Mitigation: Keep facts intact, avoid invented results, and validate bullets against the source candidate material before delivery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jasoncodespace/skills/cv-skill)
+- [Input Schema](references/input-schema.md)
+- [Rewriting Guide](references/rewriting-guide.md)
+- [Harvard HES 2024 Notes](references/harvard-hes-2024-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance, JSON input schema, shell commands, and generated DOCX files with optional PDF export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated filenames are sanitized from candidate name and track key; PDF export depends on LibreOffice availability.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

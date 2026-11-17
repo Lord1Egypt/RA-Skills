@@ -1,44 +1,62 @@
-## Description: <br>
-AI-powered content creation workflow for slides, documents, diagrams, websites, data visualizations, research reports, storybooks, financial analysis, images, and related Anygen task outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered content creation suite for generating slides, documents, diagrams, websites, data visualizations, reports, financial analysis, images, and related assets.
 
-## Publisher: <br>
-[supertilico2001](https://clawhub.ai/user/supertilico2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supertilico2001](https://clawhub.ai/user/supertilico2001)
 
-## Use Case: <br>
-Developers and external users use this skill to run an Anygen CLI workflow that discovers supported operations, gathers requirements, creates content generation tasks, waits for results, and delivers or iterates on generated files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Feishu/Lark delivery path reads local app secrets and sends files through raw API calls. <br>
-Mitigation: Use least-privilege Feishu/Lark app credentials, verify the destination chat before sending, and avoid uploading confidential files unless Anygen and the messaging destination are approved for that data. <br>
-Risk: The workflow requires sensitive Anygen credentials and trust in the installed @anygen/cli package. <br>
-Mitigation: Install only if Anygen and @anygen/cli are trusted, scope credentials to the minimum needed access, and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through Anygen CLI workflows for generating and modifying content assets such as presentations, documents, diagrams, websites, analyses, and images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/supertilico2001/anygen-workflow-generate) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/supertilico2001) <br>
-- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu image upload API endpoint](https://open.feishu.cn/open-apis/im/v1/images) <br>
-- [Feishu file upload API endpoint](https://open.feishu.cn/open-apis/im/v1/files) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Files] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, download, preview, and deliver generated files; requires the anygen CLI and ANYGEN_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompts and reference files may be sent to Anygen during task preparation and generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and files approved for Anygen processing, and avoid submitting confidential material unless the environment and service terms allow it.
+
+Risk: The Feishu/Lark delivery path may read local app credentials and use API calls to upload and send files.
+
+Mitigation: Run only where those credentials are intended for agent use, protect logs, and confirm recipient and file scope before delivery.
+
+Risk: The release depends on the external @anygen/cli package and an ANYGEN_API_KEY.
+
+Mitigation: Review the CLI package source and version before installation, and scope the API key to the minimum permissions needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supertilico2001/skills/anygen-workflow-generate)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu image upload API](https://open.feishu.cn/open-apis/im/v1/images)
+- [Feishu message send API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=chat_id)
+- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files)
+- [Anygen task download related skill](../anygen-task-download/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce downloadable generated files, thumbnail previews, task URLs, and modification guidance through the Anygen CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

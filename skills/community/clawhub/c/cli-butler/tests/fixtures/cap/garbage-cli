@@ -1,0 +1,3 @@
+#!/bin/sh
+printf '\xff\xfe binary garbage no structure here\n' 
+exit 0

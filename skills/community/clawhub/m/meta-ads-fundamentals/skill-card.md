@@ -1,39 +1,50 @@
-## Description: <br>
-Provides core Meta Ads reference guidance for auction behavior, pacing, breakdown effects, CBO versus ABO, learning phase behavior, auction overlap, and ad relevance diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a reference for Meta Ads fundamentals, including the auction, pacing, breakdown effects, CBO versus ABO, learning phase behavior, auction overlap, and ad relevance diagnostics.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
 
-## Use Case: <br>
-Marketing operators, growth teams, and agents supporting Meta Ads analysis use this skill to explain campaign behavior, troubleshoot anomalies, and justify optimization decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Advertising guidance may be outdated, incomplete, or misapplied to a specific Meta Ads account or campaign objective. <br>
-Mitigation: Treat the skill as general educational material and verify important campaign decisions against official Meta documentation and current account data. <br>
-Risk: Budget, learning phase, or optimization advice could influence paid advertising spend if followed without review. <br>
-Mitigation: Have a qualified operator review recommendations before changing budgets, campaign structure, targeting, or creative strategy. <br>
+## Use Case:
 
+External advertisers, marketing analysts, and agents use this skill to explain Meta Ads delivery behavior and support campaign troubleshooting or optimization decisions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static educational reference content; no account access, credential use, code execution, or automatic campaign actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Meta Ads platform behavior, diagnostic thresholds, and advertising figures may change or vary by account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify guidance against current Meta documentation and account-specific Ads Manager data before making budget or optimization decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elias-didoo/skills/meta-ads-fundamentals)
+- [Publisher profile](https://clawhub.ai/user/elias-didoo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text explanations and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable reference guidance; no commands, API calls, credentials, or data access are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

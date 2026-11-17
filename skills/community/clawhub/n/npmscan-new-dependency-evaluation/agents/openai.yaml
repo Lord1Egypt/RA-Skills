@@ -1,0 +1,7 @@
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "npmscan"
+      description: "npm package search, comparison, and alternative-suggestion lookups (search, package metadata, compare_packages, suggest_alternative)"
+      transport: "streamable_http"
+      url: "https://npmscan.com/api/mcp"

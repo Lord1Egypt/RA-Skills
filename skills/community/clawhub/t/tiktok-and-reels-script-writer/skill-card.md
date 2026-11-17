@@ -1,39 +1,54 @@
-## Description: <br>
-Generates ready-to-film TikTok and Instagram Reels scripts in three proven formats: trending audio hooks, story/narrative, and educational. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates ready-to-film TikTok and Instagram Reels scripts in three formats: trending audio hooks, story/narrative, and educational videos, with on-screen text, captions, and hashtag sets.
 
-## Publisher: <br>
-[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk)
 
-## Use Case: <br>
-Content creators, brands, small businesses, podcasters, and writers use this skill to turn a topic, product, or story into short-form video scripts with hooks, spoken lines, on-screen text, pacing notes, captions, and hashtags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts, captions, factual claims, and hashtags may be inaccurate or unsuitable for sensitive topics. <br>
-Mitigation: Review the generated content before publishing, with extra scrutiny for medical, legal, financial, reputational, or otherwise sensitive uses. <br>
+## Use Case:
 
+External content creators, brands, small businesses, podcasters, and writers use this skill to turn a topic, product, or story into ready-to-film short-form video scripts for TikTok and Instagram Reels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/tiktok-and-reels-script-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/tetsuakira-vk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured sections for scripts, on-screen text, pacing notes, captions, and hashtag blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate one requested format or all three formats in sequence; no API keys or privileged behavior are indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The README installation command relies on an @latest installer version, which can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the ClawHub installer version before installation.
+
+Risk: Generated scripts, captions, and hashtags may repeat inaccurate claims if the provided topic includes unverified facts.
+
+Mitigation: Review factual claims, captions, and hashtag choices before filming or publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/skills/tiktok-and-reels-script-writer)
+- [Publisher profile](https://clawhub.ai/user/tetsuakira-vk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured script sections, captions, pacing notes, and hashtag blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate one selected script format or all three formats for a given topic.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

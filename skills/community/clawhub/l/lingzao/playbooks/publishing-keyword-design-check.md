@@ -42,7 +42,7 @@ selection.
 
 Only use Lingzao search when the user explicitly wants recent hot terms,
 low-follower viral references, platform examples, keyword ecosystem research, or
-industry trend validation. Before searching, use `search-credit-notice.md`.
+industry trend validation. Before searching, use `research-scope-guard.md`.
 
 ## Audience Gate
 
@@ -234,7 +234,7 @@ Before searching, say:
 如果只是给这一篇配关键词，我可以不搜索，直接根据标题、封面和正文来做。
 如果你想知道最近这个赛道哪些词更容易出爆款，就需要做关键词搜索：我会先选主词和相关词，按你确认的范围查，不会默认把所有下拉词都搜完。
 
-Then use `search-credit-notice.md`.
+Then use `research-scope-guard.md`.
 
 After search, still return only 10 final publishing keywords for the user's
 current piece, plus a separate "research-backed candidates" list.

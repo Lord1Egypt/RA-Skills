@@ -1,39 +1,53 @@
-## Description: <br>
-Check NZBGet download status and queue information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check NZBGet download status and queue information. Use when the user asks about NZBGet downloads, wants to know how many things are downloading, check download speed, view the queue, or get a full status report of their Usenet downloads.
 
-## Publisher: <br>
-[aricus](https://clawhub.ai/user/aricus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aricus](https://clawhub.ai/user/aricus)
 
-## Use Case: <br>
-External users and operators use this skill to check a configured NZBGet instance for active download counts, current speed, queue contents, and concise status reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses NZBGET_USER, NZBGET_PASS, and NZBGET_HOST to query NZBGet, so credentials and host configuration affect exposure. <br>
-Mitigation: Install only in trusted environments, prefer localhost or a trusted private network for NZBGET_HOST, and avoid exposing NZBGet over untrusted networks. <br>
-Risk: The helper script builds an HTTP JSON-RPC URL containing credentials for the configured NZBGet endpoint. <br>
-Mitigation: Use HTTPS or a safer curl authentication pattern if supported by the NZBGet setup, and keep secrets in environment variables rather than prompts or chat text. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aricus/nzbget) <br>
+## Use Case:
 
+Users and operators with an NZBGet instance use this skill to check download counts, speed, queue contents, and concise status reports from their Usenet download queue.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queue listings are capped at 10 items to keep responses concise.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: NZBGet credentials may be exposed because the helper constructs a plaintext HTTP URL containing the username and password.
+
+Mitigation: Use the skill only with a trusted local NZBGet instance, or update the helper to use HTTPS and curl authentication options that keep credentials out of the URL.
+
+Risk: Using the helper against a remote NZBGet host over an untrusted network could disclose credentials or status data.
+
+Mitigation: Avoid remote untrusted network use and prefer a least-privileged NZBGet account when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aricus/skills/nzbget)
+- [Publisher profile](https://clawhub.ai/user/aricus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Concise text or Markdown summaries with optional shell command references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queue listings are capped at 10 items in the bundled script.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

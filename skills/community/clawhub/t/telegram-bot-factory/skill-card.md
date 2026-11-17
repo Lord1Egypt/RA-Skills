@@ -1,39 +1,48 @@
-## Description: <br>
-Telegram Bot Factory helps developers plan and build Telegram bots for cryptocurrency payments, trading charts, group management, content subscriptions, and Mini App backends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Telegram Bot Factory helps agents guide development of Telegram bots for crypto payments, trading charts and alerts, group management, paid content subscriptions, and mini app backends.
 
-## Publisher: <br>
-[Katrina-jpg](https://clawhub.ai/user/Katrina-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[katrina-jpg](https://clawhub.ai/user/katrina-jpg)
 
-## Use Case: <br>
-Developers and engineers use this skill to scope, design, implement, deploy, and test Telegram bots across payment, trading, moderation, subscription, analytics, and Mini App backend workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Real Telegram bot deployments may handle payments, moderation actions, subscriptions, analytics, or user data. <br>
-Mitigation: Require secure token handling, payment verification, privacy controls, audit logs, testing mode, rollback options, and explicit human approval before live deployment. <br>
-Risk: Trading, payment, or subscription bots can create financial or access-control impact if deployed from incomplete guidance. <br>
-Mitigation: Review generated plans and code, validate payment and authorization logic, and test in non-production environments before release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Telegram Bot Factory on ClawHub](https://clawhub.ai/Katrina-jpg/telegram-bot-factory) <br>
+## Use Case:
 
+External developers and operators use this skill to plan and build Telegram bots across payment, trading, moderation, subscription, and mini app backend use cases. It outlines bot categories, implementation workflow, expected technology stacks, and pricing ranges.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with implementation guidance, code snippets, command examples, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable artifact files were included.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bots created from this guidance may handle bot tokens, payment keys, trading credentials, moderation privileges, or user analytics data.
+
+Mitigation: Use scoped permissions, secure secret handling, explicit user consent where needed, and deployment testing before operating a real bot.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/katrina-jpg/skills/telegram-bot-factory)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with implementation steps, technology choices, and pricing information]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce bot architecture recommendations, development workflow guidance, deployment suggestions, and implementation code or configuration for Telegram bot projects.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

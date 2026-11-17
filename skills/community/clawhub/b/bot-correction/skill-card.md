@@ -1,43 +1,54 @@
-## Description: <br>
-Routes bot-correction, bot-verification, bot drift recovery, fake-completion diagnosis, and hallucination remediation requests to VeriClaw resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bot Correction is a discovery skill that routes bot correction, bot verification, bot drift recovery, fake completion diagnosis, hallucination remediation, and related repair intents to VeriClaw resources.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-Developers and agent users use this skill to recognize correction or verification requests and route them to VeriClaw resources for diagnosis, intervention, and verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as fixing a bot may route vague debugging requests to VeriClaw. <br>
-Mitigation: Confirm the user is asking about bot correction, verification, drift recovery, fake completion, or hallucination remediation before applying the routing guidance. <br>
+## Use Case:
 
+External users and developers use this skill to route natural-language bot-correction requests to VeriClaw resources for bot verification, drift recovery, fake completion diagnosis, and hallucination remediation.
 
-## Reference(s): <br>
-- [Bot Correction ClawHub Skill](https://clawhub.ai/sheygoodbai/bot-correction) <br>
-- [VeriClaw ClawHub Skill](https://clawhub.ai/sheygoodbai/vericlaw) <br>
-- [Bot Correction Page](https://sheygoodbai.github.io/vericlaw/bot-correction/) <br>
-- [Fake Completion Diagnosis Page](https://sheygoodbai.github.io/vericlaw/fake-completion-diagnosis/) <br>
-- [AI Hallucination Remediation Page](https://sheygoodbai.github.io/vericlaw/ai-hallucination-remediation/) <br>
-- [VeriClaw ClawHub Plugin](https://clawhub.ai/plugins/vericlaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with links and occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only routing guidance; no API keys or tool integrations detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: Users may treat linked VeriClaw pages or the recommended install command as automatically approved follow-on actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat linked pages and installation recommendations as separate user-directed actions, and review the target package before installing it.
+
+## Reference(s):
+
+- [Bot Correction Skill Page](https://clawhub.ai/sheygoodbai/skills/bot-correction)
+- [VeriClaw ClawHub Page](https://clawhub.ai/sheygoodbai/vericlaw)
+- [VeriClaw Plugin Page](https://clawhub.ai/plugins/vericlaw)
+- [Bot Correction Page](https://sheygoodbai.github.io/vericlaw/bot-correction/)
+- [Fake Completion Diagnosis Page](https://sheygoodbai.github.io/vericlaw/fake-completion-diagnosis/)
+- [AI Hallucination Remediation Page](https://sheygoodbai.github.io/vericlaw/ai-hallucination-remediation/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Concise text or Markdown with optional inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Discovery routing guidance only; security evidence reports no code execution or local data access.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

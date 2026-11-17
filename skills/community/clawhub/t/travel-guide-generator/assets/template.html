@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html {{LANG_ATTR}}>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>{{TITLE}}</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
-
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
@@ -320,8 +318,19 @@ body {
 .spot:nth-child(odd) .spot-icon { background: #fff0f0; }
 .spot:nth-child(even) .spot-icon { background: #f0f4ff; }
 .spot-name {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
   font-weight: 700;
   font-size: 1.05em;
+}
+.spot-title { min-width: 0; }
+.spot-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
 }
 .spot-price {
   display: inline-block;
@@ -419,6 +428,21 @@ body {
   padding: 2px 8px;
   border-radius: 6px;
   margin-left: 6px;
+  font-weight: 400;
+}
+
+/* ===== 估算标签（降级数据标识） ===== */
+/* 当路线距离/用时为估算值（API 不可用、超时或失败时）使用，明确告知用户非实测数据 */
+.estimate-tag {
+  display: inline-flex;
+  align-items: center;
+  background: #f5f5f5;
+  color: #999;
+  border: 1px dashed #ccc;
+  font-size: .7em;
+  padding: 1px 8px;
+  border-radius: 8px;
+  margin-left: 4px;
   font-weight: 400;
 }
 
@@ -935,6 +959,157 @@ html {
   }
 }
 
+/* ===== 结构化攻略增强模块 ===== */
+.tool-card,
+.preferences-section,
+.weather-section,
+.quality-section,
+.sources-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.tool-card { position: sticky; top: 8px; z-index: 90; padding: 12px 16px; }
+.toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.toolbar button {
+  border: 1px solid #d9def8;
+  background: #f8f9ff;
+  color: #5b63c8;
+  border-radius: 9px;
+  padding: 8px 12px;
+  min-height: 40px;
+  cursor: pointer;
+}
+.toolbar button:hover { background: #eef0ff; }
+#saveStatus { color: #888; font-size: .78em; margin-left: auto; }
+.preferences-section h2,
+.weather-section h2,
+.quality-section h2,
+.sources-section h2 { font-size: 1.1em; margin-bottom: 12px; }
+.meta-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.meta-chip {
+  display: inline-flex;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #f3f4ff;
+  color: #5b63a8;
+  font-size: .82em;
+}
+.weather-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: .84em;
+}
+.weather-item:last-child { border-bottom: 0; }
+.weather-backup { grid-column: 1 / -1; color: #5b63a8; font-size: .9em; }
+.quality-section { border-left: 4px solid #faad14; }
+.quality-section.quality-ok { border-left-color: #52c41a; }
+.quality-summary { color: #777; font-size: .84em; margin-bottom: 8px; }
+.issue-list, .sources-section ul { padding-left: 20px; font-size: .82em; }
+.issue-list li, .sources-section li { padding: 4px 0; }
+.issue-error, .issue-conflict { color: #c33; }
+.issue-warning { color: #ad6800; }
+.issue-list code { color: #888; }
+.source-badge {
+  display: inline-block;
+  margin: 5px 5px 0 0;
+  padding: 2px 7px;
+  border-radius: 7px;
+  background: #f2f5f8;
+  color: #667;
+  font-size: .7rem;
+  text-decoration: none;
+}
+.source-badge:hover { background: #e6eaff; color: #4f58bd; }
+.source-type {
+  display: inline-block;
+  min-width: 58px;
+  color: #888;
+  text-transform: uppercase;
+  font-size: .72em;
+}
+.item-toggle { padding-top: 10px; }
+.item-check { width: 20px; height: 20px; accent-color: #7c6ef0; }
+.spot-main { flex: 1; min-width: 0; }
+.itinerary-item.completed { opacity: .58; }
+.itinerary-item.completed .spot-title { text-decoration: line-through; }
+.favorite-btn {
+  border: 0;
+  background: transparent;
+  color: #e45a85;
+  font-size: 1.25em;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.favorite-btn.active { color: #e33b70; }
+.edit-btn {
+  border: 1px solid #dfe2f1;
+  border-radius: 7px;
+  padding: 3px 9px;
+  background: #fff;
+  color: #626aa3;
+  font: inherit;
+  font-size: .72em;
+  font-weight: 600;
+  cursor: pointer;
+}
+.edit-btn:hover,
+.edit-btn[aria-expanded="true"] {
+  border-color: #8d83e8;
+  background: #f3f1ff;
+  color: #6658cc;
+}
+.editable-schedule {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 5px;
+}
+.schedule-display { color: #666; }
+.item-edit-controls[hidden] { display: none !important; }
+.time-input,
+.cost-input {
+  border: 1px solid #dde1ef;
+  border-radius: 7px;
+  padding: 3px 6px;
+  background: #fff;
+  color: #555;
+  font: inherit;
+}
+.time-input { width: 92px; }
+.cost-input { width: 82px; }
+.cost-editor { display: block; margin-top: 7px; color: #888; font-size: .76em; }
+.budget-total small { font-size: .62em; font-weight: 400; }
+
+@media (max-width: 768px) {
+  .tool-card,
+  .preferences-section,
+  .weather-section,
+  .quality-section,
+  .sources-section { padding: 16px; }
+  .tool-card { position: static; }
+  #saveStatus { width: 100%; margin-left: 0; }
+  .weather-item { grid-template-columns: 1fr 1fr; }
+  .spot-transit { white-space: normal; margin-left: 0; }
+}
+
+@media print {
+  .quick-nav, .tool-card, .item-toggle, .favorite-btn, .edit-btn, .item-edit-controls { display: none !important; }
+  body { background: #fff; }
+  .container { max-width: none; padding: 0; }
+  .day-card, section { break-inside: avoid; box-shadow: none !important; }
+  .collapse-content, .spots-wrapper { max-height: none !important; }
+  .time-input, .cost-input { border: 0; appearance: none; }
+}
+
 </style>
 </head>
 <body>
@@ -952,6 +1127,9 @@ html {
 </div>
 
 <div class="container">
+
+<!-- 偏好、天气、质量检查、来源与本地工具 -->
+{{META_SECTIONS}}
 
 <!-- 交通信息 -->
 {{TRANSPORT_SECTION}}
@@ -986,16 +1164,22 @@ html {
 </div>
 
 <script>
+const GUIDE_DATA = {{GUIDE_DATA}};
+
 // ===== 快速导航生成 =====
 (function() {
   const sections = [];
   // 收集所有可导航区域
-  document.querySelectorAll('.highlights, .transport-card, .timeline-card, .day-card, .avoid-section, .budget-card, .tips-card, .hotel-section, .food-section').forEach((el, i) => {
+  document.querySelectorAll('.preferences-section, .weather-section, .quality-section, .transport-card, .timeline-card, .day-card, .avoid-section, .budget-card, .tips-card, .hotel-section, .food-section, .sources-section').forEach((el, i) => {
     const id = el.id || ('section-' + i);
     el.id = id;
     let label = '';
-    if (el.classList.contains('highlights')) {
-      label = '亮点';
+    if (el.classList.contains('preferences-section')) {
+      label = '偏好';
+    } else if (el.classList.contains('weather-section')) {
+      label = '天气';
+    } else if (el.classList.contains('quality-section')) {
+      label = '检查';
     } else if (el.classList.contains('transport-card')) {
       label = '交通';
     } else if (el.classList.contains('timeline-card')) {
@@ -1013,10 +1197,12 @@ html {
       label = '酒店';
     } else if (el.classList.contains('food-section')) {
       label = '美食';
+    } else if (el.classList.contains('sources-section')) {
+      label = '来源';
     }
     sections.push({ id, label, el });
   });
-  
+
   // 生成导航项
   const nav = document.getElementById('quickNav');
   sections.forEach(s => {
@@ -1028,7 +1214,7 @@ html {
     };
     nav.appendChild(item);
   });
-  
+
   // 滚动时高亮当前区域
   const items = nav.querySelectorAll('.nav-item');
   window.addEventListener('scroll', () => {
@@ -1056,14 +1242,14 @@ html {
     }
     card.appendChild(wrapper);
   });
-  
+
   document.querySelectorAll('.day-card .day-header').forEach(header => {
     header.addEventListener('click', function() {
       const card = this.closest('.day-card');
       card.classList.toggle('collapsed');
     });
   });
-  
+
   // 时间表折叠 - 动态包装内容
   document.querySelectorAll('.timeline-card').forEach(card => {
     const header = card.querySelector('h2');
@@ -1080,14 +1266,14 @@ html {
       card.appendChild(wrapper);
     }
   });
-  
+
   document.querySelectorAll('.timeline-card .timeline-header').forEach(header => {
     header.addEventListener('click', function() {
       const card = this.closest('.timeline-card');
       card.classList.toggle('collapsed');
     });
   });
-  
+
   // 其他模块折叠（点击标题）
   document.querySelectorAll('.avoid-section h2, .budget-card h2, .tips-card h2, .hotel-section h2, .food-section h2').forEach(h2 => {
     h2.classList.add('collapsible');
@@ -1099,6 +1285,162 @@ html {
         this.classList.toggle('collapsed');
       }
     });
+  });
+})();
+
+// ===== 本地编辑、时间顺延、预算与导出 =====
+(function() {
+  const destination = (GUIDE_DATA.meta && GUIDE_DATA.meta.destination) || 'trip';
+  const startDate = (GUIDE_DATA.meta && GUIDE_DATA.meta.start_date) || '';
+  const storageKey = 'travel-guide-state:' + destination + ':' + startDate;
+  let state = { completed: {}, favorites: {}, times: {}, costs: {} };
+  const status = document.getElementById('saveStatus');
+
+  function loadState() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+      if (saved && typeof saved === 'object') state = Object.assign(state, saved);
+    } catch (error) {
+      if (status) status.textContent = '本地修改读取失败，已使用初始数据';
+    }
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(state));
+      if (status) status.textContent = '已自动保存到本浏览器';
+    } catch (error) {
+      if (status) status.textContent = '浏览器禁止本地保存';
+    }
+  }
+
+  function timeToMinutes(value) {
+    const parts = String(value || '').split(':').map(Number);
+    return parts.length === 2 ? parts[0] * 60 + parts[1] : 0;
+  }
+
+  function minutesToTime(value) {
+    const minutes = ((value % 1440) + 1440) % 1440;
+    return String(Math.floor(minutes / 60)).padStart(2, '0') + ':' + String(minutes % 60).padStart(2, '0');
+  }
+
+  function updateBudget() {
+    const total = Array.from(document.querySelectorAll('.cost-input')).reduce((sum, input) => sum + (Number(input.value) || 0), 0);
+    const target = document.getElementById('liveBudget');
+    if (target) target.textContent = total.toLocaleString();
+  }
+
+  function updateScheduleDisplay(item) {
+    const start = item.querySelector('.start-time');
+    const end = item.querySelector('.end-time');
+    const display = item.querySelector('.schedule-display');
+    if (start && end && display) display.textContent = start.value + '–' + end.value;
+  }
+
+  function restoreElements() {
+    document.querySelectorAll('.item-check').forEach(input => {
+      input.checked = Boolean(state.completed[input.dataset.key]);
+      input.closest('.itinerary-item').classList.toggle('completed', input.checked);
+    });
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+      const active = Boolean(state.favorites[button.dataset.key]);
+      button.classList.toggle('active', active);
+      button.textContent = active ? '♥' : '♡';
+    });
+    document.querySelectorAll('.time-input').forEach(input => {
+      input.dataset.original = input.value;
+      const saved = state.times[input.dataset.key];
+      if (saved) input.value = input.classList.contains('start-time') ? saved.start : saved.end;
+    });
+    document.querySelectorAll('.cost-input').forEach(input => {
+      if (Object.prototype.hasOwnProperty.call(state.costs, input.dataset.key)) input.value = state.costs[input.dataset.key];
+    });
+    document.querySelectorAll('.itinerary-item').forEach(updateScheduleDisplay);
+    updateBudget();
+  }
+
+  function shiftFollowingItems(input) {
+    if (!input.classList.contains('start-time')) return;
+    const day = input.closest('.day-card');
+    const items = Array.from(day.querySelectorAll('.itinerary-item'));
+    const current = input.closest('.itinerary-item');
+    const currentIndex = items.indexOf(current);
+    const previousValue = input.dataset.previous || input.dataset.original;
+    const delta = timeToMinutes(input.value) - timeToMinutes(previousValue);
+    input.dataset.previous = input.value;
+    if (!delta) return;
+    items.slice(currentIndex + 1).forEach(item => {
+      item.querySelectorAll('.time-input').forEach(timeInput => {
+        timeInput.value = minutesToTime(timeToMinutes(timeInput.value) + delta);
+        const key = timeInput.dataset.key;
+        state.times[key] = state.times[key] || {};
+        state.times[key][timeInput.classList.contains('start-time') ? 'start' : 'end'] = timeInput.value;
+      });
+      updateScheduleDisplay(item);
+    });
+  }
+
+  loadState();
+  restoreElements();
+
+  document.querySelectorAll('.item-check').forEach(input => input.addEventListener('change', () => {
+    state.completed[input.dataset.key] = input.checked;
+    input.closest('.itinerary-item').classList.toggle('completed', input.checked);
+    saveState();
+  }));
+
+  document.querySelectorAll('.favorite-btn').forEach(button => button.addEventListener('click', () => {
+    state.favorites[button.dataset.key] = !state.favorites[button.dataset.key];
+    button.classList.toggle('active', state.favorites[button.dataset.key]);
+    button.textContent = state.favorites[button.dataset.key] ? '♥' : '♡';
+    saveState();
+  }));
+
+  document.querySelectorAll('.edit-btn').forEach(button => button.addEventListener('click', () => {
+    const item = button.closest('.itinerary-item');
+    const editing = !item.classList.contains('editing');
+    item.classList.toggle('editing', editing);
+    button.setAttribute('aria-expanded', String(editing));
+    button.textContent = editing ? '完成' : '编辑';
+    item.querySelectorAll('.item-edit-controls').forEach(control => { control.hidden = !editing; });
+    item.querySelector('.schedule-display').hidden = editing;
+    if (editing) item.querySelector('.start-time').focus();
+  }));
+
+  document.querySelectorAll('.time-input').forEach(input => input.addEventListener('change', () => {
+    shiftFollowingItems(input);
+    const key = input.dataset.key;
+    state.times[key] = state.times[key] || {};
+    state.times[key][input.classList.contains('start-time') ? 'start' : 'end'] = input.value;
+    updateScheduleDisplay(input.closest('.itinerary-item'));
+    saveState();
+  }));
+
+  document.querySelectorAll('.cost-input').forEach(input => input.addEventListener('input', () => {
+    state.costs[input.dataset.key] = Number(input.value) || 0;
+    updateBudget();
+    saveState();
+  }));
+
+  const printButton = document.getElementById('printGuide');
+  if (printButton) printButton.addEventListener('click', () => window.print());
+
+  const exportButton = document.getElementById('exportState');
+  if (exportButton) exportButton.addEventListener('click', () => {
+    const payload = JSON.stringify({ guide: GUIDE_DATA.meta, local_changes: state }, null, 2);
+    const blob = new Blob([payload], { type: 'application/json;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = destination + '-local-changes.json';
+    link.click();
+    URL.revokeObjectURL(link.href);
+  });
+
+  const resetButton = document.getElementById('resetState');
+  if (resetButton) resetButton.addEventListener('click', () => {
+    if (!window.confirm('确定清除这份攻略在本浏览器中的修改吗？')) return;
+    localStorage.removeItem(storageKey);
+    window.location.reload();
   });
 })();
 </script>

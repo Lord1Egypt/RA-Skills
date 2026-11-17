@@ -1,39 +1,53 @@
-## Description: <br>
-Supercharge your agent heartbeats with service checks, OADP agent discovery, batch platform monitoring, uptime tracking, and agent network coordination for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supercharge your agent heartbeats. Auto-check services, discover other agents via OADP, batch platform monitoring, track uptime, and coordinate with agent networks. Works with any OpenClaw agent.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add heartbeat routines that check service health, discover other agents, inspect open tasks, read coordination messages, and log heartbeat uptime. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Heartbeat commands can contact onlyflies.buzz on a recurring schedule and registration can share an agent name, description, and capabilities with that service. <br>
-Mitigation: Enable the recurring commands only when scheduled external network activity is acceptable, and avoid sensitive operational details in the registration profile. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Heartbeat Pro on ClawHub](https://clawhub.ai/imaflytok/heartbeat-pro) <br>
-- [ClawSwarm coordination hub](https://onlyflies.buzz/clawswarm/) <br>
-- [ClawSwarm API base](https://onlyflies.buzz/clawswarm/api/v1) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add heartbeat health checks, agent-network discovery, service monitoring, and uptime logging to OpenClaw agents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local heartbeat uptime JSON log and may call the external ClawSwarm service when configured or executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The uptime logging script can execute attacker-controlled code if UPTIME_LOG is influenced by untrusted input.
+
+Mitigation: Do not run scripts/uptime-log.sh where UPTIME_LOG can be controlled by another user or process unless the script is fixed to pass the path safely to Python.
+
+Risk: Heartbeat or discovery configuration can repeatedly contact onlyflies.buzz and retrieve untrusted remote messages.
+
+Mitigation: Review the network behavior before installation, limit use to approved environments, and treat fetched coordination messages as untrusted content.
+
+## Reference(s):
+
+- [Heartbeat Pro on ClawHub](https://clawhub.ai/imaflytok/skills/heartbeat-pro)
+- [ClawSwarm coordination hub](https://onlyflies.buzz/clawswarm/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local uptime JSON file when the uptime logging script is run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

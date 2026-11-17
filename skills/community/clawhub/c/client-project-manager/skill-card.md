@@ -1,40 +1,55 @@
-## Description: <br>
-Manage freelance clients, projects, invoices, and communications. Use when tracking client work, creating invoices, sending updates, managing deadlines, or organizing freelance business operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage freelance clients, projects, invoices, communications, deadlines, and freelance business operations.
 
-## Publisher: <br>
-[seanwyngaard](https://clawhub.ai/user/seanwyngaard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seanwyngaard](https://clawhub.ai/user/seanwyngaard)
 
-## Use Case: <br>
-Freelancers and small service teams use this skill to manage client records, project status, time entries, invoices, payment reminders, and weekly client updates from local files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent local files containing client, billing, invoice, and payment details. <br>
-Mitigation: Install it only in a private workspace and keep freelance-data out of shared folders and source control. <br>
-Risk: Generated invoices, payment reminders, and weekly updates may be sent to clients. <br>
-Mitigation: Review all generated business communications before sending them. <br>
-Risk: Payment configuration can include sensitive financial details. <br>
-Mitigation: Avoid storing raw bank details in config.json unless the local file is appropriately protected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Freelancers and small-service operators use this skill to maintain client and project records, track time and deliverables, generate invoices, prepare client updates, and review business status.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requests shell access that is not necessary for the documented freelance-management workflow.
+
+Mitigation: Review before installing and remove Bash from allowed tools unless a deployment-specific need is identified.
+
+Risk: Client, invoice, payment, and project details are stored as ordinary local files.
+
+Mitigation: Use only in a private, access-controlled workspace, keep freelance-data/ out of git and shared sync locations, and avoid storing bank account numbers, routing numbers, credentials, or tokens.
+
+Risk: Generated invoices, payment reminders, and client updates may contain errors or inappropriate wording.
+
+Mitigation: Review generated invoices and communications before sending them to clients.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-backed local files, with generated invoice and client-update text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local freelance-data JSON records plus Markdown and HTML invoice files.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, html, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown, HTML, JSON files, and plain-text dashboard or email content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local files under freelance-data/, including client records, project records, time logs, invoices, updates, and configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

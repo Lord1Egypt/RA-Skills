@@ -1,0 +1,25 @@
+{
+  "schema": "lingry.install.v1",
+  "name": "lingry",
+  "version": "2.1.0",
+  "type": "agent-skill",
+  "entry_skill": "SKILL.md",
+  "runtime": {
+    "name": "node",
+    "minimum_version": "18"
+  },
+  "verify": {
+    "command": ["node", "bin/lingry-agent.mjs", "verify-install"]
+  },
+  "source": {
+    "repository": "https://github.com/svetlyoh/web-wallet",
+    "path": "openclaw/skills/lingry"
+  },
+  "supported_install_modes": [
+    "openclaw-clawhub",
+    "muse-local-skill",
+    "generic-skill-directory",
+    "git-sparse-checkout",
+    "portable-archive"
+  ]
+}

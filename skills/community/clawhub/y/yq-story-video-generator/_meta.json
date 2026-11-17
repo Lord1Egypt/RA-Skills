@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7d289fg9rr68tv3e36nb5ajh84d2w5",
-  "slug": "yq-story-video-generator",
+  "id": 378623320145999,
   "version": "1.0.0",
-  "publishedAt": 1780189513443
+  "name": "yq-story-video-generator",
+  "updated_at": 1773990934227,
+  "platform": "minimax"
 }

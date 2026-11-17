@@ -1,48 +1,60 @@
-## Description: <br>
-Proactive Claw is a proactive calendar assistant for OpenClaw that learns from user feedback and suggests prep time, buffers, follow-ups, and schedule improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive Claw is a proactive OpenClaw assistant that learns from calendar and feedback signals to suggest prep blocks, buffers, follow-ups, and scheduling adjustments.
 
-## Publisher: <br>
-[googlarz](https://clawhub.ai/user/googlarz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[googlarz](https://clawhub.ai/user/googlarz)
 
-## Use Case: <br>
-Employees and external users use this skill to review upcoming calendar events, receive proactive scheduling suggestions, and apply approved prep, buffer, and follow-up actions. It is intended for users who want local-first productivity assistance while retaining confirmation control by default. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad calendar access can expose sensitive schedule data and OAuth tokens. <br>
-Mitigation: Use a dedicated calendar account where possible, review requested Google or Nextcloud access before setup, and revoke Google OAuth access when the skill is no longer needed. <br>
-Risk: Local productivity memory can retain meeting outcomes, policies, contacts, notification logs, and scoring data. <br>
-Mitigation: Review and delete the local skill state directory when needed, use the export and health-check commands for inspection, and tune retention settings such as memory decay and action cleanup. <br>
-Risk: Calendar action items may be written or deleted in paths where approval language is not fully enforced. <br>
-Mitigation: Start with dry-run or simulation commands, keep autonomy at confirm or advisory, and verify the Actions calendar before enabling daemon, policy, relationship memory, or calendar editor features. <br>
-Risk: Watched and ignored calendar filters may not be honored consistently by every scan path in this version. <br>
-Mitigation: Manually verify which calendars are being scanned and avoid using the skill with calendars that should never be processed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googlarz/proactive-claw) <br>
-- [Security and Privacy Reference](SECURITY.md) <br>
-- [Skill documentation](SKILL.md) <br>
-- [Example configuration](config.example.json) <br>
-- [Google Calendar API endpoint](https://www.googleapis.com/calendar/v3/) <br>
-- [Google Calendar OAuth scope](https://www.googleapis.com/auth/calendar) <br>
+## Use Case:
 
+OpenClaw users use this skill to review upcoming calendar events and receive locally driven suggestions for preparation time, buffers, follow-ups, and deep-work protection. It can run manually or in a local daemon loop, with approved changes applied to Google Calendar or Nextcloud.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Text and Markdown with inline shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create approved calendar action items and local state when configured by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.41 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Calendar credentials and tokens are stored locally and could expose calendar access if the skill workspace is readable by others.
+
+Mitigation: Keep the skill directory private to the local user account, and revoke Google OAuth access or rotate the Nextcloud app password after uninstalling or suspected exposure.
+
+Risk: Nextcloud calendar access can be configured insecurely.
+
+Mitigation: Use HTTPS-only Nextcloud URLs and prefer a dedicated low-privilege app password.
+
+Risk: Calendar suggestions and approved edits may be incorrect or disruptive.
+
+Mitigation: Use the default confirmation mode, review proposed prep blocks, buffers, and follow-ups before applying them, and start with a safe preview run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googlarz/skills/proactive-claw)
+- [Google Calendar API endpoint](https://www.googleapis.com/calendar/v3/)
+- [Google Calendar OAuth scope](https://www.googleapis.com/auth/calendar)
+- [Google OAuth token endpoint](https://oauth2.googleapis.com)
+- [Google account app permissions](https://myaccount.google.com/permissions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calendar changes are suggested by default and applied only after user approval; local state and credentials are stored in the skill workspace.]
+
+## Skill Version(s):
+
+1.2.41 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

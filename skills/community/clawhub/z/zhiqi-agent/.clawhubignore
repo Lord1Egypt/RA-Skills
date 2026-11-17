@@ -1,0 +1,17 @@
+# 绝不发布到公共注册表的东西。注册表按此文件排除；这是最后一道防线 ——
+# 一旦把 .zhiqi/device.key（设备私钥）或 .source（本机绝对路径）发上去，就是不可撤回的泄露。
+.venv/
+.zhiqi/
+.source
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.egg-info/
+# 本地身份与运行态（若被生成在技能目录内）
+device.key
+device.pub
+config.json
+ratelimit.json
+collab-state.json
+identity.json

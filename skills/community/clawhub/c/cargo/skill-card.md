@@ -1,48 +1,64 @@
-## Description: <br>
-Cargo routes agents across the Cargo CLI skill bundle, explaining capability selection, UUID flow, async polling, end-to-end GTM workflows, and common CLI pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes Cargo CLI tasks to the right Cargo skill and explains the shared setup, execution, and troubleshooting conventions.
 
-## Publisher: <br>
-[cargo-ai](https://clawhub.ai/user/cargo-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cargo-ai](https://clawhub.ai/user/cargo-ai)
 
-## Use Case: <br>
-External developers and GTM operators use Cargo to choose and chain Cargo CLI skills for workspace setup, enrichment, CRM sync, AI lead scoring, workflow monitoring, segment export, and GTM context authoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cargo CLI access can affect the active Cargo workspace. <br>
-Mitigation: Authenticate with OAuth when possible, confirm the active workspace before writes, and use workspace-scoped tokens stored in a secrets manager for non-interactive use. <br>
-Risk: Optional installer hooks can refresh skills and checkpoint Cargo session rows. <br>
-Mitigation: Review installer hooks and default-branch context updates before enabling them in a workspace. <br>
-Risk: Some Cargo commands require elevated workspace permissions. <br>
-Mitigation: Use admin tokens only for admin-only operations and re-issue commands with the minimum workspace role that can complete the task. <br>
+## Use Case:
 
+Developers and agents use this entry point to choose the right Cargo skill, set up the CLI, and follow shared conventions for runs, batches, polling, and common failure modes.
 
-## Reference(s): <br>
-- [Cargo Skill on ClawHub](https://clawhub.ai/cargo-ai/cargo) <br>
-- [Cargo Skills Repository](https://github.com/getcargohq/cargo-skills) <br>
-- [Prerequisites](references/prerequisites.md) <br>
-- [End-to-end use cases](references/use-cases.md) <br>
-- [UUID flow](references/uuid-flow.md) <br>
-- [Glossary](references/glossary.md) <br>
-- [Common gotchas](references/gotchas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cargo CLI commands generally return JSON on stdout; async operations may require polling or wait flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: frontmatter and release evidence) <br>
+Risk: The security assessment reports unpinned install and update paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and update path, and confirm the package version before installing or updating.
+
+Risk: Diagnostic reports may disclose sensitive information.
+
+Mitigation: Review diagnostic report contents and obtain approval before submission.
+
+Risk: Run, batch, account, or workflow actions may go beyond the skill's routing purpose.
+
+Mitigation: Inspect the proposed action and its scope, and require approval before running it.
+
+## Reference(s):
+
+- [Cargo prerequisites](references/prerequisites.md)
+- [Cargo use cases](references/use-cases.md)
+- [Interaction conventions](references/interaction.md)
+- [Common gotchas](references/gotchas.md)
+- [Glossary](references/glossary.md)
+- [UUID flow](references/uuid-flow.md)
+- [Cargo skills homepage](https://github.com/getcargohq/cargo-skills)
+- [Cargo ClawHub skill page](https://clawhub.ai/cargo-ai/skills/cargo)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.37.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Use KaspaCom Lending through the KaspaCom DeFi MCP/CLI for market discovery, position checks, and lending actions like supply, borrow, and repay on IGRA and Kasplex environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use KaspaCom Lending through the KaspaCom DeFi MCP/CLI for market discovery, position checks, and lending actions like supply, borrow, and repay on IGRA and Kasplex environments.
 
-## Publisher: <br>
-[marciano147](https://clawhub.ai/user/marciano147) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marciano147](https://clawhub.ai/user/marciano147)
 
-## Use Case: <br>
-Developers and external users use this skill to discover KaspaCom lending markets, inspect wallet lending positions, check health factors, and prepare supply, borrow, and repay commands for IGRA and Kasplex environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes real supply, borrow, and repay commands that can affect wallet balances and lending positions. <br>
-Mitigation: Confirm the wallet, network, token, amount, health-factor impact, and expected transaction result before signing, and prefer read-only market or position checks unless a transaction is explicitly intended. <br>
-Risk: The skill depends on the KaspaCom DeFi MCP/CLI package for lending operations. <br>
-Mitigation: Install and use the package only when the publisher and package source are trusted. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect KaspaCom lending markets and wallet positions, then prepare lending actions such as supply, borrow, and repay through the KaspaCom DeFi MCP/CLI.
 
-## Reference(s): <br>
-- [KaspaCom Lending MCP on ClawHub](https://clawhub.ai/marciano147/kaspacom-lending-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet, network, token, amount, collateral, borrow, repay, and health-factor guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can guide fund-affecting lending actions such as supply, borrow, and repay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review of wallet, network, token, amount, and transaction payload before executing any lending action.
+
+Risk: The skill installs and uses a global npm package for KaspaCom DeFi operations.
+
+Mitigation: Pin and verify the npm package before installation, and avoid installing or running it with elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marciano147/skills/kaspacom-lending-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for market discovery, wallet position checks, and human-reviewed lending transaction preparation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

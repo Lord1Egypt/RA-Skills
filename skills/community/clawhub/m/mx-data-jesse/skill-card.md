@@ -1,41 +1,58 @@
-## Description: <br>
-Queries Eastmoney financial data for market, financial, relationship, and business information using natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Eastmoney financial data for market prices, financial metrics, and entity relationships.
 
-## Publisher: <br>
-[jessecq1995](https://clawhub.ai/user/jessecq1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessecq1995](https://clawhub.ai/user/jessecq1995)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current Eastmoney financial datasets and convert API responses into readable previews plus local output files for further analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries and API credentials are sent to an external Eastmoney financial data API. <br>
-Mitigation: Install only if the Eastmoney/Miaoxiang provider is trusted, keep MX_APIKEY in a protected environment variable, and avoid sending secrets or sensitive internal financial questions unless sharing them with that provider is acceptable. <br>
-Risk: Raw financial query results are saved locally and may contain sensitive or proprietary data. <br>
-Mitigation: Protect the output directory, restrict access to generated Excel, text, and JSON files, and delete saved outputs when they are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to query timely financial market, company, and relationship data through natural-language requests and save structured results for analysis.
 
-## Reference(s): <br>
-- [Eastmoney Miaoxiang homepage](https://marketing.dfcfs.com/views/finskillshub/indexIoMv0EzE) <br>
-- [ClawHub skill page](https://clawhub.ai/jessecq1995/mx-data-jesse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files] <br>
-**Output Format:** [Terminal markdown preview plus Excel, text description, and raw JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MX_APIKEY, sends query text to the Eastmoney API, and saves results under the configured local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Query text is sent to Eastmoney's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the user trusts Eastmoney with the query and avoid submitting secrets or highly confidential research text.
+
+Risk: Generated Excel files are local data exports that may contain untrusted returned content.
+
+Mitigation: Treat generated spreadsheets as untrusted files and inspect or scan them before opening in spreadsheet software.
+
+Risk: Broad financial data requests can produce large local outputs and excessive context for downstream agents.
+
+Mitigation: Narrow queries by security, metric, and date range before requesting large historical datasets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jessecq1995/skills/mx-data-jesse)
+- [Eastmoney Mx homepage](https://marketing.dfcfs.com/views/finskillshub/indexIoMv0EzE)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, json, configuration]
+
+**Output Format:** [Markdown terminal preview plus Excel, text, and raw JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MX_APIKEY; writes query-named result files to a local output directory.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

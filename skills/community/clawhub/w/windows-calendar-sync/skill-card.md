@@ -1,43 +1,64 @@
-## Description: <br>
-将提醒同步到 Windows / Outlook 日历，支持 Microsoft Graph API 设备代码流认证，并可创建、查询、搜索和删除用户 Outlook 日历事件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将提醒同步到 Windows / Outlook 日历，支持通过 Microsoft Graph API 设备代码流认证并写入用户 Outlook 日历。
 
-## Publisher: <br>
-[jasonsyung-ctrl](https://clawhub.ai/user/jasonsyung-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasonsyung-ctrl](https://clawhub.ai/user/jasonsyung-ctrl)
 
-## Use Case: <br>
-External users and agents use this skill to turn reminder or scheduling requests into Microsoft Outlook calendar events, then list, search, or delete those events through command-line scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores long-lived Microsoft calendar credentials locally in token_store.json. <br>
-Mitigation: Protect access to the skill directory, delete token_store.json when it is no longer needed, and reauthenticate only when necessary. <br>
-Risk: The skill can read, create, and delete Microsoft Outlook calendar events through Calendars.ReadWrite access. <br>
-Mitigation: Install only when this access is acceptable, verify the tenant and client ID setup, and require explicit confirmation before deletes or recurring events. <br>
+## Use Case:
 
+External users and agents use this skill to create, list, search, and delete reminders or schedule items in a Microsoft Outlook calendar from natural-language calendar requests. It is intended for Windows/Outlook calendar synchronization after the user completes Microsoft OAuth setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jasonsyung-ctrl/windows-calendar-sync) <br>
-- [Publisher profile](https://clawhub.ai/user/jasonsyung-ctrl) <br>
-- [Microsoft Graph API endpoint](https://graph.microsoft.com/v1.0) <br>
-- [Microsoft device login](https://microsoft.com/devicelogin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline PowerShell commands and CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create, list, search, and delete Outlook calendar events after Microsoft OAuth authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Long-lived Microsoft calendar tokens are stored in plaintext in token_store.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted, non-shared machines; remove token_store.json and revoke the Microsoft app grant when the skill is no longer needed.
+
+Risk: The skill requests Calendars.ReadWrite and offline_access permissions for a Microsoft app.
+
+Mitigation: Verify the Azure tenant and client ID before authenticating, and grant access only if calendar read/write and refresh-token access are acceptable.
+
+Risk: Calendar events can be deleted without an additional confirmation step.
+
+Mitigation: List or search events first, confirm the event ID, and avoid automated deletion flows unless the target event is unambiguous.
+
+Risk: Calendar times may be wrong if the assumed timezone does not match the user expectation.
+
+Mitigation: Confirm the intended timezone and ISO 8601 start time before creating or modifying events.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jasonsyung-ctrl/skills/windows-calendar-sync)
+- [Microsoft Graph API endpoint](https://graph.microsoft.com/v1.0)
+- [Microsoft device login](https://microsoft.com/devicelogin)
+- [Azure app registrations](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown with PowerShell command examples and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, list, search, or delete Microsoft Outlook calendar events through Microsoft Graph after OAuth authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

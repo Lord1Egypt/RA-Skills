@@ -1,42 +1,57 @@
-## Description: <br>
-Generates documentation from code, including API docs, README updates, architecture diagrams, and documentation sync checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates documentation from code. Creates API docs, README updates, architecture diagrams, and keeps documentation in sync with code changes.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate and refresh project documentation from source code, including API references, README sections, diagrams, and sync reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation or README updates can modify repository files. <br>
-Mitigation: Run the skill on a branch or test copy first and review generated diffs before committing. <br>
-Risk: The CI example can push generated documentation changes if copied into automation. <br>
-Mitigation: Use the push workflow only when intentional, with limited credentials and normal code review controls. <br>
-Risk: Generated documentation can be incomplete or misleading if source parsing misses behavior. <br>
-Mitigation: Review generated docs against the source code before publishing or relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate API documentation, update README content, create simple architecture diagrams, and check whether project documentation is in sync with source code.
 
-## Reference(s): <br>
-- [OpenClaw Doc Generator on ClawHub](https://clawhub.ai/michealxie001/oc-docgen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, generated documentation files, Mermaid or DOT diagram text, configuration examples, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated docs or README updates to the target repository when invoked with output or update options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated documentation and README updates can introduce incorrect or unwanted repository changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in repositories approved for source scanning and documentation edits, then inspect diffs before committing generated files.
+
+Risk: C/C++ support can load an optional c_parser module from a sibling c-support/lib directory.
+
+Mitigation: Use the C/C++ path only when that sibling dependency is trusted, controlled, and reviewed.
+
+Risk: The documented CI example commits and pushes generated documentation from a push workflow.
+
+Mitigation: Use pull-request review, branch protection, or another approval gate before adopting automated documentation pushes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michealxie001/skills/oc-docgen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, Mermaid diagram text, status text, and repository file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write generated documentation files and update README content when invoked with output or README options.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

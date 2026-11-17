@@ -1,0 +1,16 @@
+interface:
+  display_name: "全球法律检索·小律同学AI"
+  short_description: "用 MCP 检索境内外法规、案例与合规依据"
+  brand_color: "#16A34A"
+  default_prompt: "Use $mcp-law-search to search authoritative legal sources for this legal question."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "search_law"
+      description: "aixllaw MCP legal search tool"
+      transport: "streamable_http"
+      url: "https://mcp.aixllaw.com/mcp"
+
+policy:
+  allow_implicit_invocation: true

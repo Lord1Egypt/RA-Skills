@@ -1,46 +1,56 @@
-## Description: <br>
-Enables an agent to read, create, and update Asana workspaces, projects, and tasks through the OOMOL Asana connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OOMOL-connected Asana account to read, create, update, and delete Asana data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Employees, external users, developers, and agents use this skill to operate Asana through an OOMOL-connected account, including workspace and project discovery, task reads, and controlled project or task creation and updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Asana account data through OOMOL-managed credentials. <br>
-Mitigation: Install only when OOMOL-connected tooling should access the user's Asana account, and review the Asana scopes before use. <br>
-Risk: Write actions can create or update Asana projects and tasks. <br>
-Mitigation: Confirm the exact target, payload, and intended effect with the user before running create or update actions. <br>
-Risk: The artifact includes a remote CLI install snippet. <br>
-Mitigation: Prefer installing the oo CLI from verified official instructions or a signed package instead of blindly piping a remote script into a shell. <br>
+## Use Case:
 
+Individuals and teams use the skill to retrieve and manage Asana work, including tasks, projects, comments, users, tags, and attachments, through a connected Asana account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-asana) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Asana homepage](https://asana.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector actions return JSON responses with data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The fallback setup uses mutable downloaded code, and the reviewed setup does not establish clear approval or limits for local changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup steps, verify the oo CLI release, and control automatic skill synchronization before installing.
+
+Risk: The connected account grants the workflow access to Asana data and may allow changes or deletions.
+
+Mitigation: Connect an appropriately limited Asana account and keep confirmation requirements for changes and deletions.
+
+## Reference(s):
+
+- [Asana](https://asana.com)
+- [Asana API documentation](https://developers.asana.com/reference/rest-api-reference)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Asana skill on ClawHub](https://clawhub.ai/oomol/skills/oo-asana)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON action requests and responses with concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions may read or change Asana data; write and destructive actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

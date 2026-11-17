@@ -1,41 +1,50 @@
-## Description: <br>
-ClawOpen provides a curated, community-maintained directory of OpenClaw resources, including docs, plugins, tools, and discussion platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawOpen provides a curated, community-maintained directory of OpenClaw resources, including documentation, plugins, tools, learning materials, and discussion platforms.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill as a concise entry point for finding ecosystem documentation, plugins, community resources, learning material, and developer tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to an external website and linked resources. <br>
-Mitigation: Verify the target domain before entering sensitive information, installing linked plugins, or following setup commands from linked pages. <br>
-Risk: The artifact does not include executable code, so behavior depends on the external resources it references. <br>
-Mitigation: Review linked resources independently before relying on them in a production workflow. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill as a quick navigation aid for finding official resources, community links, learning materials, and developer tools in the OpenClaw ecosystem.
 
-## Reference(s): <br>
-- [ClawOpen navigation site](https://openclaw123.xyz/) <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/clawopen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with links to external resources] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/package.json) <br>
+Risk: Users may open third-party resource links from the directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the public website and linked destinations before relying on them or sharing sensitive information.
+
+## Reference(s):
+
+- [ClawOpen Website](https://openclaw123.xyz/)
+- [ClawHub Skill Page](https://clawhub.ai/leocryptoflow/skills/clawopen)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown with resource links and navigation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or hidden agent behavior is included in the package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

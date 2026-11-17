@@ -1,40 +1,53 @@
-## Description: <br>
-个人AI能力测评工具 helps users assess AI knowledge, tool use, practical application, innovation thinking, and ethics awareness, then produces a level rating, radar-style capability summary, learning path, and improvement guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+个人AI能力测评工具 helps users assess AI knowledge, tool usage, practical application, innovation thinking, and ethics awareness, then produces level scoring, learning paths, and improvement guidance.
 
-## Publisher: <br>
-[nickyhu1699](https://clawhub.ai/user/nickyhu1699) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickyhu1699](https://clawhub.ai/user/nickyhu1699)
 
-## Use Case: <br>
-Individuals, trainers, and organizations use this skill to assess personal AI capability across five dimensions and generate learning-path guidance. It supports self-assessment, training needs analysis, candidate screening, and course planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter employer secrets, client data, or sensitive personal details into the local assessment workflow. <br>
-Mitigation: Avoid entering sensitive information and review generated reports before sharing them. <br>
-Risk: The skill writes Markdown and HTML reports to the local OpenClaw workspace. <br>
-Mitigation: Install only if local file output under the OpenClaw workspace is acceptable. <br>
+## Use Case:
 
+Individuals, trainers, and teams use this skill to evaluate personal AI capability across five dimensions and receive a scored report with strengths, gaps, and learning recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickyhu1699/personal-ai-assessment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and HTML assessment reports with console status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated assessment reports under the user's OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated reports may contain personal assessment information and fixed contact or branding text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review report contents before sharing and keep generated report files in a private workspace unless intentionally published.
+
+Risk: Untrusted report names or HTML report inputs could affect generated files or rendered content if exposed directly to external users.
+
+Mitigation: Validate filenames and escape untrusted values before using the report generator in shared or web-facing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickyhu1699/skills/personal-ai-assessment)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown reports, HTML reports, and plain-text assessment summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When the bundled script is run, it writes assessment report files under ~/.openclaw/workspace/ai_assessment_reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

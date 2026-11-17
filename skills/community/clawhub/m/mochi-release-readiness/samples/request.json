@@ -1,0 +1,10 @@
+{
+  "artifacts": [
+    {
+      "name": "demo",
+      "version": "1.0.0",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "testStatus": "passed"
+    }
+  ]
+}

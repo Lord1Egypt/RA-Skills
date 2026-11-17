@@ -1,45 +1,56 @@
-## Description: <br>
-市场罗盘是一套 A 股市场三维结构分析系统，通过趋势结构、估值和情绪三个维度评估市场健康状态，并生成仓位管理建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+虾皮股市罗盘 analyzes Chinese A-share market structure across trend, valuation, and sentiment indicators to produce a market-state assessment and position-management guidance.
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-External users and analysts use this skill to generate A-share market structure reports from market compass data, with emphasis on trend breadth, valuation, sentiment, and position-management guidance. It is intended for market-level analysis, not individual stock, sector, short-term timing, or bond-fund analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill retrieves data through an external daxiapi CLI/provider and the artifact examples use a latest package reference. <br>
-Mitigation: Confirm trust in the provider before installation and pin a known daxiapi package version for repeatable execution. <br>
-Risk: The skill may require a daxiapi token for data access. <br>
-Mitigation: Treat the token as a secret, store it only through the provider's configuration mechanism, and avoid pasting it into generated reports or shared logs. <br>
-Risk: Generated market reports can influence investment decisions and are based on historical market indicators. <br>
-Mitigation: Use reports as informational analysis only, keep the included investment-risk disclaimer, and require human review before acting on position guidance. <br>
+## Use Case:
 
+External users and analysts use this skill to turn daxiapi market compass data into a Chinese A-share market structure report. It helps assess whether the current market environment supports holding equities, identify trend repair or deterioration signals, and frame position-management guidance.
 
-## Reference(s): <br>
-- [字段说明](references/field-descriptions.md) <br>
-- [分析框架详解](references/analysis-framework.md) <br>
-- [报告模板](assets/report-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ksky521/xiapi-market-compass) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown market analysis report with optional shell commands for data retrieval and token configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are informational, use Chinese market metric names, avoid deterministic predictions, and include an investment-risk disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill instructs users to run an unpinned remote CLI package that can change over time and execute local code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin a trusted daxiapi-cli version, run it in a constrained environment, and expose only the required API token.
+
+Risk: Finance-oriented market guidance can be misleading if treated as investment advice or if generated from stale or incorrect data.
+
+Mitigation: Review generated reports against the source data, keep the disclaimer visible, and treat outputs as informational support rather than trading instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ksky521/skills/xiapi-market-compass)
+- [字段说明](references/field-descriptions.md)
+- [分析框架详解](references/analysis-framework.md)
+- [报告模板](assets/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with tables and concise Chinese prose; may include inline shell commands for retrieving market compass data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses daxiapi market compass data and is scoped to broad Chinese A-share market analysis, not individual stock, sector, short-term timing, or bond fund analysis.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,57 @@
 {
+  "name": "Hike Planner",
   "ownerId": "kn73h0b3vxspe7143ad7dk07xn822pwv",
   "slug": "hike-planner",
   "version": "3.3.5",
-  "publishedAt": 1782491466015
+  "description": "一站式徒步出行规划：生成含徒步路线/交通/住宿/人文/装备的完整行程计划。支持GPX/KML轨迹解析与地图渲染。",
+  "keywords": [
+    "hiking",
+    "trip",
+    "travel",
+    "planner",
+    "route",
+    "transportation",
+    "map",
+    "自驾游",
+    "旅行",
+    "旅游",
+    "路线"
+  ],
+  "permissions": {
+    "filesystem": {
+      "scope": "configurable_output_dir",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "description": "在用户指定的 outputDir 下读写行程状态文件和行程计划文件"
+    },
+    "network": {
+      "domains": [
+        "restapi.amap.com",
+        "is.autonavi.com",
+        "a.amap.com",
+        "wikipedia.org",
+        "2bulu.com",
+        "xiaohongshu.com",
+        "bilibili.com",
+        "unpkg.com"
+      ],
+      "description": "高德 API/瓦片/分享链接、Wikipedia、两步路、小红书、B站、Leaflet CDN"
+    },
+    "environment": {
+      "variables": [
+        "AMAP_WEBSERVICE_KEY"
+      ],
+      "description": "读取高德地图 API Key"
+    },
+    "execution": {
+      "commands": [
+        "curl",
+        "python3",
+        "node"
+      ],
+      "description": "执行地理编码脚本和路线渲染"
+    }
+  }
 }

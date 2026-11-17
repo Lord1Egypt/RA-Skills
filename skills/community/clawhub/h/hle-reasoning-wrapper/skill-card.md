@@ -1,37 +1,47 @@
-## Description: <br>
-Wraps HLE benchmark questions in a structured Chain-of-Thought (CoT) reasoning process. Use when answering HLE questions to ensure strict step-by-step logic and format compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wraps HLE benchmark questions in a structured Chain-of-Thought (CoT) reasoning process. Use when answering HLE questions to ensure strict step-by-step logic and format compliance.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and benchmark evaluators use this skill to format HLE questions with required reasoning and final-answer sections, then check whether model responses follow that structure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cached answers can be written to a local cache.json file in the skill directory. <br>
-Mitigation: Avoid caching private benchmark content or sensitive answers unless local persistence is acceptable, and delete the cache file when no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanng-ide/hle-reasoning-wrapper) <br>
+## Use Case:
+
+Developers and agents use this skill to format Humanity's Last Exam benchmark questions with a required reasoning and final-answer structure, then validate whether model outputs follow that structure.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The authoritative security summary reports an undeclared persistent answer cache that can save user questions or model answers to disk.
+
+Mitigation: Avoid using the cache with sensitive questions or answers unless it is removed, documented, or changed to an opt-in design with safer keying and retention controls.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Structured prompt text and boolean validation result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional local cache storage for answers] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+**Output Type(s):** [text, code, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text prompt template and JavaScript validation result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external dependencies are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

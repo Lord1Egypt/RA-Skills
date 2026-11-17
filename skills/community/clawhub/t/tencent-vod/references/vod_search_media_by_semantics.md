@@ -54,43 +54,43 @@
 
 ```bash
 # 基础语义搜索
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "包含夕阳的海边视频"
 
 # 通过应用名称搜索
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --app-name "测试应用" --text "有人在跑步的画面"
 
 # 按文件类型过滤
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "精彩进球" --categories Video
 
 # 按标签过滤
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "精彩进球" --tags "体育" "足球"
 
 # 按人物过滤
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "采访视频" --persons "张三"
 
 # 指定返回条数
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "会议视频" --limit 50
 
 # 指定搜索任务类型
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "产品介绍" --task-types AiAnalysis.DescriptionTask
 
 # JSON 格式输出
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "包含音乐的视频" --json
 
 # 详细模式
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "产品演示" --verbose
 
 # 预览请求参数（不实际执行）
-python scripts/vod_search_media_by_semantics.py \
+python3 scripts/vod_search_media_by_semantics.py \
     --sub-app-id 1500046806 --text "包含夕阳的海边视频" --dry-run
 ```
 

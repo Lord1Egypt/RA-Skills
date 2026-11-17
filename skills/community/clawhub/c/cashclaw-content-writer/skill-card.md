@@ -1,40 +1,59 @@
-## Description: <br>
-Writes professional blog posts, social media content, and email newsletters optimized for SEO and engagement. Follows proven content frameworks to deliver publish-ready copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes professional blog posts, social media content, and email newsletters optimized for SEO and engagement.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-External users and content teams use this skill to draft client-ready blog posts, email newsletters, social media packs, and product descriptions. It helps agents gather a brief, prepare SEO-oriented outlines, produce Markdown content, and package supporting metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing content can include unverified claims, statistics, or domain-specific advice. <br>
-Mitigation: Require source links for factual claims and review specialized topics with a subject matter expert before publication. <br>
-Risk: The optional CashClaw npm CLI installation can execute third-party package code outside the Markdown skill. <br>
-Mitigation: Verify the cashclaw npm package and apply normal dependency review before installing or running the CLI. <br>
+## Use Case:
 
+Marketing teams, content creators, and agents use this skill to draft publish-ready blog posts, email newsletters, social media packs, and product descriptions with SEO metadata, CTAs, and quality checks.
 
-## Reference(s): <br>
-- [Cashclaw Content Writer on ClawHub](https://clawhub.ai/andreataide86/cashclaw-content-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown content with optional JSON metadata and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces blog posts, newsletters, social posts, product descriptions, SEO metadata, brief summaries, and content quality checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The companion npm package cashclaw is mutable and not pinned to a reviewed version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the npm package and publisher, prefer a constrained environment, and pin an exact package version when reproducibility matters.
+
+Risk: Generated marketing content may include unverifiable claims or weak domain authority for specialized topics.
+
+Mitigation: Require source links for facts and statistics, and route specialized or high-stakes topics to a subject matter expert for review.
+
+Risk: Incomplete briefs can lead to generic, off-brand, or incorrectly targeted content.
+
+Mitigation: Collect the requested topic, keywords, audience, tone, CTA, word count, and references before drafting, then obtain outline approval before producing the final piece.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andreataide86/skills/cashclaw-content-writer)
+- [ClawHub publisher profile](https://clawhub.ai/user/andreataide86)
+- [npm package: cashclaw](https://www.npmjs.com/package/cashclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown content drafts with SEO frontmatter, optional JSON metadata, outlines, checklists, and brief summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SEO titles, meta descriptions, keywords, subject lines, CTAs, source-link prompts, image suggestions, and internal-link suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

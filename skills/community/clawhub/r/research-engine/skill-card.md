@@ -1,45 +1,58 @@
-## Description: <br>
-Automates multi-source research, trend analysis, structured report generation, and development plan suggestions for agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Engine helps agents collect information from web, GitHub, and Moltbook sources, analyze trends, and generate structured research reports with development plan suggestions.
 
-## Publisher: <br>
-[guogang1024](https://clawhub.ai/user/guogang1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guogang1024](https://clawhub.ai/user/guogang1024)
 
-## Use Case: <br>
-Developers and agent builders use this skill to gather information from web, GitHub, and Moltbook sources, summarize trends, and produce Markdown research reports with short-, mid-, and long-term development suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics and query results may be sent to external sources and stored locally in reports or browsing history. <br>
-Mitigation: Use the skill only for topics suitable for external search and local retention; avoid sensitive topics unless storage and sharing are acceptable. <br>
-Risk: Recurring or autonomous integrations can run searches and write files without fresh user review. <br>
-Mitigation: Enable scheduled use only with explicit limits on topics, frequency, storage location, and review expectations. <br>
-Risk: Report filenames are derived from the research topic and the security guidance calls out unsafe report file handling. <br>
-Mitigation: Sanitize topic-derived filenames and constrain report output to an approved research directory before deployment. <br>
-Risk: Generated trend summaries and development plans can be incomplete or misleading. <br>
-Mitigation: Treat generated reports as research drafts and review source quality, assumptions, and proposed actions before using them for planning. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run recurring or on-demand research on technical topics, consolidate external signals, and turn findings into Markdown reports and staged development-plan guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guogang1024/research-engine) <br>
-- [Moltbook profile referenced by artifact metadata](https://www.moltbook.com/u/guogangAgent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, Python return objects, command-line status text, and local Markdown history files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports and browsing history under RESEARCH_DIR, defaulting to /home/vken/.openclaw/workspace/research.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/package.json) <br>
+Risk: Research topics can cause local files to be written outside the intended folder when topic values contain slashes or path traversal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set RESEARCH_DIR to a controlled directory and avoid or sanitize topic values containing slashes or path traversal before running the skill.
+
+Risk: Browsing history is retained locally in browsing_history.md.
+
+Mitigation: Use the skill only where external web research is allowed, avoid confidential topics or secrets, and review or clear local research history according to policy.
+
+Risk: External web, GitHub, and Moltbook content may be incomplete, stale, or unreliable.
+
+Mitigation: Review generated research reports and development-plan suggestions before using them for decisions or downstream implementation.
+
+## Reference(s):
+
+- [Research-engine ClawHub skill page](https://clawhub.ai/guogang1024/skills/research-engine)
+- [Package repository link](https://www.moltbook.com/u/guogangAgent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown research reports with console status text and Python-callable result dictionaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes report files and browsing_history.md under RESEARCH_DIR; the artifact default is /home/vken/.openclaw/workspace/research.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Quick-reference card for all caveman modes, skills, and commands; one-shot display, not a persistent mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick-reference card for all caveman modes, skills, and commands.
 
-## Publisher: <br>
-[seanford](https://clawhub.ai/user/seanford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanford](https://clawhub.ai/user/seanford)
 
-## Use Case: <br>
-Developers and agent users use this skill to quickly display caveman mode triggers, related caveman skills, deactivation wording, and default-mode configuration options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ordinary phrases such as "normal mode" could be interpreted as mode-control wording in the broader caveman system. <br>
-Mitigation: Use explicit slash commands where possible, and confirm mode changes before relying on the surrounding caveman behavior. <br>
-Risk: The help card includes configuration examples for default mode selection. <br>
-Mitigation: Review the displayed environment variable or config-file change before applying it outside the one-shot help response. <br>
+## Use Case:
 
+External users and developers use this skill to display a concise one-shot reference for Caveman modes, related skill triggers, deactivation, and default-mode configuration.
 
-## Reference(s): <br>
-- [Caveman documentation](https://github.com/JuliusBrussee/caveman) <br>
-- [ClawHub skill page](https://clawhub.ai/seanford/caveman-help) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown reference card with tables and inline shell and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One-shot output; does not change mode, write flag files, or persist state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Ordinary phrases such as "caveman help" or "normal mode" may interact with Caveman-mode behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review expected trigger behavior before installation and explain the phrase-based interactions to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seanford/skills/caveman-help)
+- [Caveman documentation](https://github.com/JuliusBrussee/caveman)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown reference card with tables and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One-shot display; does not persist changes, change mode, or affect files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

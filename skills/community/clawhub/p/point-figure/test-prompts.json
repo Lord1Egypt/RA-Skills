@@ -1,0 +1,52 @@
+{
+  "skill": "point-figure",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "点数图到底怎么画，三点转向是什么意思？",
+      "expected_behavior": "激活 point-figure，讲无时间轴、X/O列、反转达阈值才换列的逻辑",
+      "notes": "点数图基础"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "用点数图怎么测算这波上涨的目标位？",
+      "expected_behavior": "激活 point-figure，讲横向数列法（数密集列数×格值投影目标）",
+      "notes": "横向数列法测目标"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "瑞士法郎用 9 天转行的日内点数图好不好用？",
+      "expected_behavior": "激活 point-figure，讲转行参数须依市场特性选择(c15)",
+      "notes": "转行参数选择"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "这根蜡烛图收了个十字星，支撑阻挡怎么看？",
+      "expected_behavior": "不应激活本 skill（K线/线图），应激活 ta-chart-basics",
+      "notes": "跨 skill 混淆：应触发 ta-chart-basics"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这条上升趋势线被跌破了，是不是要卖出？",
+      "expected_behavior": "不应激活本 skill（趋势线），应激活 trend-tools",
+      "notes": "诱饵：趋势线"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "点数图出了卖出信号，但我觉得只是小幅调整，能不能先不平多？",
+      "expected_behavior": "激活本 skill 并提示三点转向纪律(p43)：任何简单卖出信号即平多，不犹豫不摊平，信号简洁是该系统价值所在",
+      "notes": "边界：三点转向信号纪律"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 ta-chart-basics；should-not-trigger-02 指向 trend-tools。"
+}

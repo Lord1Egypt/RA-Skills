@@ -1,6 +1,6 @@
 # v16 引擎接入清单 + 双重注册检查
 
-**v16 实战教训**：6/2 给搜狗加 site:bing 代理时，复制 `weixin` 行忘加 HTTP 解析器，sogou 变成只注册 URL 没注册 parser。deep mode 触发 KeyError，stderr 一直刷。
+**v16 迭代教训**：6/2 给搜狗加 site:bing 代理时，复制 `weixin` 行忘加 HTTP 解析器，sogou 变成只注册 URL 没注册 parser。deep mode 触发 KeyError，stderr 一直刷。
 
 ## 4 个映射表必须**全**对齐
 

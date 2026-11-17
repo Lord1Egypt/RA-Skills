@@ -1,41 +1,53 @@
-## Description: <br>
-Provides a structured cybersecurity risk assessment framework for asset inventory, STRIDE threat modeling, vulnerability scoring, compliance mapping, incident response planning, and remediation roadmapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cybersecurity Risk Assessment gives an AI agent a structured framework for asset inventory, STRIDE threat modeling, vulnerability scoring, compliance mapping, incident response planning, and remediation roadmaps.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Security leaders, CTOs, IT managers, and managed service providers use this skill to guide cybersecurity assessments, map compliance gaps, generate incident response playbooks, and produce prioritized remediation plans. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may provide sensitive security details while using the skill. <br>
-Mitigation: Avoid sharing passwords, API keys, live credentials, or unnecessary internal details. <br>
-Risk: Generated cybersecurity reports may influence operational security decisions. <br>
-Mitigation: Treat generated reports as confidential documents and have qualified security staff review them before action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-cybersecurity) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Security leaders, CTOs, IT managers, and managed service providers use this skill to run repeatable cybersecurity risk assessments, map gaps against common frameworks, and produce incident response and 90-day remediation plans.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an executive summary, detailed findings, compliance gap matrix, incident response playbooks, and a 90-day remediation roadmap.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may share sensitive infrastructure, vendor, incident, or compliance details while completing the assessment.
+
+Mitigation: Limit prompts and uploaded context to information approved for the agent environment, and remove unnecessary secrets, credentials, customer data, and internal network details.
+
+Risk: Assessment output may be treated as a final audit or compliance determination.
+
+Mitigation: Have qualified security and compliance reviewers validate findings, control mappings, and remediation priorities before relying on the report for operational or regulatory decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-cybersecurity)
+- [AfrexAI AI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes executive summary, detailed findings, compliance gap matrix, incident response playbooks, and a 90-day remediation roadmap.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

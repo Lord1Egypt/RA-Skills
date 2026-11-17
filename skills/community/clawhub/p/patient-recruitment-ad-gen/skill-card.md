@@ -1,45 +1,56 @@
-## Description: <br>
-Generate ethical, compliant, and patient-friendly recruitment advertisements for clinical trials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate ethical, compliant, and patient-friendly recruitment advertisements for clinical trials.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, CROs, and medical institutions use this skill to draft patient recruitment advertisements for clinical trials from structured study parameters while keeping assumptions, compliance constraints, and IRB/EC review needs visible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated recruitment ads may be mistaken for regulatory approval or final IRB/EC-ready materials. <br>
-Mitigation: Treat outputs as drafting aids only and review generated ads with the appropriate IRB/EC before use. <br>
-Risk: Incorrect or incomplete study details could make recruitment language misleading. <br>
-Mitigation: Verify all disease, phase, intervention, eligibility, location, investigator, contact, and IRB/EC details against the approved protocol. <br>
-Risk: Clinical trial drafting can involve sensitive participant or health information. <br>
-Mitigation: Avoid entering participant identifiers or unnecessary personal health information. <br>
+## Use Case:
 
+Researchers, clinical operations teams, CROs, and medical institutions use this skill to draft patient-friendly clinical trial recruitment advertisements for IRB/EC review. It helps structure trial purpose, eligibility, procedures, rights, risks, compensation, and contact details while preserving explicit review caveats.
 
-## Reference(s): <br>
-- [FDA Guidance on Informed Consent and Recruitment](references/fda_guidance.md) <br>
-- [EMA Guidelines on Ethics and Recruitment](references/ema_guidelines.md) <br>
-- [ICH-GCP E6(R2) Recruitment and Consent Provisions](references/ich_gcp.md) <br>
-- [Template Examples](references/template_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with structured recruitment ad sections, assumptions, risks, and next checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated ads require protocol verification and IRB/EC review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated recruitment language may differ from the approved protocol or IRB/EC wording.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm every claim before public use, especially confidentiality, no-cost care, risks, compensation, contact details, and approval references.
+
+Risk: Recruitment ads can imply guaranteed benefit, excessive inducement, or therapeutic certainty if inputs are inaccurate or overbroad.
+
+Mitigation: Keep benefit language qualified, avoid undue emphasis on compensation, and submit the final advertisement for IRB/EC review before distribution.
+
+## Reference(s):
+
+- [EMA Guidelines on Ethics and Recruitment](references/ema_guidelines.md)
+- [FDA Guidance on Informed Consent and Recruitment](references/fda_guidance.md)
+- [ICH-GCP E6(R2) Recruitment and Consent Provisions](references/ich_gcp.md)
+- [Sample Recruitment Templates by Therapeutic Area](references/template_examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON recruitment advertisement content, with command-line usage guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include generated ad sections, compliance notes, assumptions, and review caveats for IRB/EC validation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

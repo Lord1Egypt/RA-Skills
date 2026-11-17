@@ -1,39 +1,53 @@
-## Description: <br>
-Yoga instruction, pose alignment, sequencing, breathwork, and modifications for different levels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yoga instruction, pose alignment, sequencing, breathwork, and modifications for different levels.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and wellness-oriented assistants use this skill to provide general yoga guidance on pose alignment, sequencing, breathwork, modifications, props, and safety considerations for different practice levels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general yoga guidance as medical advice or continue practice despite pain or unusual symptoms. <br>
-Mitigation: Present the guidance as general fitness information, advise users to stop if they feel pain, dizziness, numbness, or shortness of breath, and recommend consulting a qualified professional for medical concerns. <br>
-Risk: Certain yoga practices may be inappropriate for users with injuries, pregnancy, high blood pressure, glaucoma, recent surgery, or chronic conditions. <br>
-Mitigation: Encourage these users to consult a qualified professional before relying on the guidance and to choose modifications or avoid contraindicated poses. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Yoga on ClawHub](https://clawhub.ai/ivangdavila/yoga) <br>
+## Use Case:
 
+External practitioners and wellness-focused users can ask an agent for general yoga alignment, sequencing, breathwork, modifications, and safety considerations across experience levels.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tool use, or data access described in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Yoga pose guidance may be unsuitable for people who are pregnant, injured, have hypertension, glaucoma, limited mobility, or other medical concerns.
+
+Mitigation: Treat responses as general information, consult a qualified professional when medical concerns apply, and stop if pain, dizziness, numbness, or shortness of breath occurs.
+
+Risk: Alignment, sequencing, or intensity recommendations may exceed a user's current mobility, strength, or experience level.
+
+Mitigation: Favor conservative modifications, props, rest options, and lower-intensity alternatives when skill level or physical readiness is uncertain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/yoga)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown or plain text yoga guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [General fitness information; not medical advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

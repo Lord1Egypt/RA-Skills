@@ -1,42 +1,57 @@
-## Description: <br>
-Use when writing or editing prose humans will read: documentation, commit messages, error messages, READMEs, reports, UI text, and explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when writing or editing prose humans will read: documentation, commit messages, error messages, READMEs, reports, UI text, and explanations.
 
-## Publisher: <br>
-[poemswe](https://clawhub.ai/user/poemswe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[poemswe](https://clawhub.ai/user/poemswe)
 
-## Use Case: <br>
-Employees, developers, and external contributors use this skill to make human-facing prose clearer, more direct, and less formulaic. It helps agents edit drafts by applying classic prose stance, reader-cognition checks, grammar mechanics, and AI-voice pattern bans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential drafts may be exposed to another agent if context is tight and the skill's subagent copyediting path is used. <br>
-Mitigation: Tell the agent not to delegate sensitive text, or remove confidential material before requesting copyediting. <br>
+## Use Case:
 
+Writers, developers, and editors use this skill to draft and revise human-facing prose for clarity, concision, directness, and a more natural voice.
 
-## Reference(s): <br>
-- [Writing Skill](SKILL.md) <br>
-- [AI Slop Ban List](ai-slop.md) <br>
-- [The Sense of Style - Condensed](pinker-condensed.md) <br>
-- [Elements of Style - Composition Principles](strunk-condensed.md) <br>
-- [Style: Lessons in Clarity and Grace - Condensed](williams-condensed.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language prose, usually plain text or Markdown edits and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only writing guidance; no executable code, credentials, persistence, or hidden data movement is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uses strong, opinionated editing rules that may over-constrain a user's intended voice or domain style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggested edits against the audience, publication context, and any applicable house style before adopting them.
+
+Risk: The skill may activate for many writing tasks and may route drafts to a copyediting subagent when the runtime supports that workflow.
+
+Mitigation: Avoid providing sensitive drafts unless the runtime's subagent behavior and data handling are acceptable for the task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/poemswe/skills/clarity-and-grace)
+- [AI Slop Ban List](artifact/ai-slop.md)
+- [The Sense of Style - Condensed](artifact/pinker-condensed.md)
+- [Elements of Style - Composition Principles](artifact/strunk-condensed.md)
+- [Style: Lessons in Clarity and Grace - Condensed](artifact/williams-condensed.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text prose edits and writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

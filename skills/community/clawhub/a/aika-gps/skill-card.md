@@ -1,38 +1,58 @@
-## Description: <br>
-Retrieve and track technicians' real-time GPS location, find the nearest technician, calculate distance and ETA, and create geofences for job monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve and track technicians' real-time GPS locations, find the nearest technician, calculate distance and ETA, and support geofence-based job monitoring.
 
-## Publisher: <br>
-[comphone](https://clawhub.ai/user/comphone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[comphone](https://clawhub.ai/user/comphone)
 
-## Use Case: <br>
-Dispatch and operations staff use this skill to query technician vehicle locations, choose a nearby technician for a job, and estimate travel distance and arrival time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive technician location access and evidence.security reports bundled credentials, weak transport claims, and limited authorization guidance. <br>
-Mitigation: Install only with authorization to track technicians; rotate or remove bundled credentials, store secrets outside skill files, disable HTTP fallback URLs, and add access controls, consent or notice, audit logging, and limits on location precision and retention before use. <br>
+## Use Case:
 
+Dispatch teams and service operators use this skill to query technician locations, identify the closest qualified technician for a customer site, and estimate travel distance or arrival time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/comphone/aika-gps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON-style command results and Python integration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return technician location, distance, ETA, geofence, or error information depending on the command and available GPS data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Packaged live-location access includes plaintext AIKA credentials and device identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the packaged credentials and remove plaintext secrets and device identifiers before installation or use.
+
+Risk: The package includes insecure HTTP fallback endpoints for AIKA access.
+
+Mitigation: Disable HTTP endpoints and require HTTPS-only connections before deployment.
+
+Risk: Users can query technician location data without explicit authorization or privacy controls described in the release evidence.
+
+Mitigation: Add authorization, access logging, and privacy controls before allowing location queries in a real environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/comphone/skills/aika-gps)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with Python command examples and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include technician location, device status, distance, ETA, skills, and error messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

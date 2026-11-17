@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillmelody.dev/schemas/diagram-ir.schema.json",
+  "title": "Article HTML to PPT Diagram IR",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "diagram_id",
+    "diagram_type",
+    "audience_question",
+    "message",
+    "direction",
+    "nodes",
+    "groups",
+    "edges",
+    "main_paths",
+    "boundaries",
+    "layout_constraints",
+    "delivery_contract"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "diagram_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string"},
+    "diagram_type": {"$ref": "#/$defs/diagramType"},
+    "audience_question": {"type": "string", "minLength": 1},
+    "message": {"type": "string", "minLength": 1},
+    "direction": {"enum": ["left_to_right", "right_to_left", "top_to_bottom", "bottom_to_top", "clockwise", "counter_clockwise", "radial", "free"]},
+    "reading_order": {"enum": ["left_to_right", "top_to_bottom", "layer_then_left_to_right", "lane_then_sequence", "center_then_clockwise", "main_path_then_supporting"]},
+    "nodes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/node"}},
+    "groups": {"type": "array", "items": {"$ref": "#/$defs/group"}},
+    "edges": {"type": "array", "items": {"$ref": "#/$defs/edge"}},
+    "main_paths": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/mainPath"}},
+    "boundaries": {"type": "array", "items": {"$ref": "#/$defs/boundary"}},
+    "annotations": {"type": "array", "items": {"$ref": "#/$defs/annotation"}},
+    "layout_constraints": {"$ref": "#/$defs/layoutConstraints"},
+    "delivery_contract": {"$ref": "#/$defs/deliveryContract"},
+    "qa_expectations": {"type": "array", "items": {"type": "string"}},
+    "metadata": {"type": "object"}
+  },
+  "$defs": {
+    "diagramType": {
+      "enum": ["process_flow", "process_lane", "swimlane", "timeline", "layered_architecture", "issue_tree", "decision_tree", "causal_chain", "flywheel", "hub_spoke", "zoned_ecosystem", "capability_landscape", "dependency_graph", "data_flow", "state_transition"]
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "role", "node_type", "priority", "shape", "status"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "short_label": {"type": "string"},
+        "description": {"type": "string"},
+        "role": {"type": "string", "minLength": 1},
+        "node_type": {"enum": ["actor", "system", "service", "capability", "stage", "decision", "state", "event", "data", "artifact", "risk", "control", "outcome", "external"]},
+        "group_id": {"type": ["string", "null"]},
+        "priority": {"enum": ["primary", "secondary", "supporting", "background"]},
+        "sequence": {"type": "integer", "minimum": 0},
+        "shape": {"enum": ["rounded_rect", "rect", "pill", "circle", "ellipse", "diamond", "hexagon", "document", "database", "cloud", "container", "custom"]},
+        "custom_shape_ref": {"type": "string"},
+        "status": {"enum": ["normal", "highlighted", "warning", "error", "optional", "external", "disabled", "future"]},
+        "emphasis": {"enum": ["low", "medium", "high", "hero"]},
+        "icon_ref": {"type": ["string", "null"]},
+        "source_refs": {"type": "array", "items": {"type": "string"}},
+        "metadata": {"type": "object"}
+      }
+    },
+    "group": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "group_type", "node_ids", "priority", "visual_role", "layout"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "group_type": {"enum": ["layer", "lane", "phase", "domain", "organization", "system", "responsibility", "capability_cluster", "data_zone", "external_zone"]},
+        "node_ids": {"type": "array", "items": {"type": "string"}},
+        "priority": {"enum": ["primary", "secondary", "supporting", "background"]},
+        "visual_role": {"enum": ["region", "boundary", "background_band", "container", "lane", "header_group"]},
+        "layout": {"enum": ["horizontal", "vertical", "grid", "stack", "radial", "free"]},
+        "collapsible": {"type": "boolean"},
+        "source_refs": {"type": "array", "items": {"type": "string"}},
+        "metadata": {"type": "object"}
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source", "target", "relation", "priority", "direction", "style"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "source": {"type": "string", "minLength": 1},
+        "target": {"type": "string", "minLength": 1},
+        "relation": {"enum": ["sequence", "request", "response", "data_flow", "control", "dependency", "approval", "handoff", "feedback", "influence", "ownership", "fallback", "monitoring", "validation", "trigger", "produce", "consume", "contain", "transition"]},
+        "label": {"type": "string"},
+        "priority": {"enum": ["primary", "secondary", "supporting", "background"]},
+        "direction": {"enum": ["forward", "backward", "bidirectional", "none"]},
+        "style": {"enum": ["straight", "orthogonal", "curved", "dashed", "hidden", "auto"]},
+        "line_semantics": {"enum": ["solid", "dashed", "dotted", "double", "highlighted", "muted"]},
+        "optional": {"type": "boolean"},
+        "async": {"type": "boolean"},
+        "feedback": {"type": "boolean"},
+        "cross_boundary": {"type": "boolean"},
+        "self_loop": {"type": "boolean"},
+        "source_refs": {"type": "array", "items": {"type": "string"}},
+        "metadata": {"type": "object"}
+      }
+    },
+    "mainPath": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "node_ids", "priority"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "node_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "edge_ids": {"type": "array", "items": {"type": "string"}},
+        "priority": {"enum": ["primary", "secondary", "supporting"]},
+        "narrative": {"type": "string"}
+      }
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "boundary_type", "priority", "style_role"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "boundary_type": {"enum": ["ownership", "trust", "security", "failure", "data", "organization", "stage", "environment", "network", "permission"]},
+        "contains_group_ids": {"type": "array", "items": {"type": "string"}},
+        "contains_node_ids": {"type": "array", "items": {"type": "string"}},
+        "priority": {"enum": ["primary", "secondary", "supporting", "background"]},
+        "style_role": {"enum": ["default", "warning", "security", "muted", "highlight"]},
+        "description": {"type": "string"}
+      }
+    },
+    "annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "annotation_type", "target_type", "target_id", "label", "priority", "editable"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "annotation_type": {"enum": ["explanation", "risk", "constraint", "metric", "source", "note", "warning", "decision", "assumption"]},
+        "target_type": {"enum": ["node", "edge", "group", "boundary", "diagram"]},
+        "target_id": {"type": "string"},
+        "label": {"type": "string", "minLength": 1},
+        "content": {"type": "string"},
+        "priority": {"enum": ["low", "medium", "high"]},
+        "placement_hint": {"enum": ["left", "right", "top", "bottom", "inline", "auto"]},
+        "editable": {"type": "boolean"},
+        "source_refs": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "layoutConstraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preferred_layout", "allow_layout_change"],
+      "properties": {
+        "preferred_layout": {"enum": ["layered", "swimlane", "radial", "flywheel", "zoned_ecosystem", "capability_landscape", "timeline", "tree", "process", "free"]},
+        "allow_layout_change": {"type": "boolean"},
+        "alignment": {"enum": ["left", "center", "right", "top", "middle", "bottom"]},
+        "node_order_locked": {"type": "boolean"},
+        "group_order": {"type": "array", "items": {"type": "string"}},
+        "max_primary_nodes": {"type": "integer", "minimum": 1},
+        "max_total_nodes": {"type": "integer", "minimum": 1},
+        "max_primary_edges": {"type": "integer", "minimum": 0},
+        "max_total_edges": {"type": "integer", "minimum": 0},
+        "prefer_minimal_crossing": {"type": "boolean"},
+        "keep_main_path_straight": {"type": "boolean"},
+        "keep_groups_contiguous": {"type": "boolean"},
+        "avoid_connector_through_nodes": {"type": "boolean"},
+        "allow_curved_secondary_edges": {"type": "boolean"},
+        "allow_edge_bundling": {"type": "boolean"},
+        "allow_split_slide": {"type": "boolean"},
+        "minimum_node_width_in": {"type": "number", "minimum": 0},
+        "minimum_node_height_in": {"type": "number", "minimum": 0},
+        "minimum_gap_in": {"type": "number", "minimum": 0},
+        "label_max_lines": {"type": "integer", "minimum": 1}
+      }
+    },
+    "deliveryContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preferred_route", "allowed_fallbacks", "editable_core", "raster_policy"],
+      "properties": {
+        "preferred_route": {"enum": ["native_diagram", "hybrid_overlay", "svg_component", "raster_component", "unsupported"]},
+        "allowed_fallbacks": {"type": "array", "items": {"enum": ["native_diagram", "hybrid_overlay", "svg_component", "raster_component", "unsupported"]}},
+        "editable_core": {"type": "array", "items": {"type": "string"}},
+        "raster_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["allowed", "whole_slide_forbidden", "requires_native_overlay"],
+          "properties": {
+            "allowed": {"type": "boolean"},
+            "max_area_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+            "whole_slide_forbidden": {"type": "boolean"},
+            "requires_disclosure": {"type": "boolean"},
+            "requires_native_overlay": {"type": "boolean"}
+          }
+        }
+      }
+    }
+  }
+}

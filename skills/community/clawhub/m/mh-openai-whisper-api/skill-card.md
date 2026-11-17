@@ -1,41 +1,54 @@
-## Description: <br>
-Transcribe audio via OpenAI Audio Transcriptions API (Whisper). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe audio via OpenAI Audio Transcriptions API (Whisper).
 
-## Publisher: <br>
-[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe a selected local audio file through OpenAI's audio transcription API and save the result as text or JSON. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files are uploaded to OpenAI for transcription. <br>
-Mitigation: Use only audio that policy permits sending to OpenAI; avoid confidential, regulated, or third-party recordings unless that upload is allowed. <br>
-Risk: The skill requires an OPENAI_API_KEY for API access. <br>
-Mitigation: Provide the API key through the expected environment or configuration path and avoid exposing it in shared logs, commands, or artifacts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenAI Speech to Text Guide](https://platform.openai.com/docs/guides/speech-to-text) <br>
-- [OpenAI Audio Transcriptions API Endpoint](https://api.openai.com/v1/audio/transcriptions) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mohdalhashemi98-hue/mh-openai-whisper-api) <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe a selected local audio file through OpenAI's transcription API and save the transcript for downstream work.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Plain text transcript or JSON transcription file, with the output path printed by the shell command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, OPENAI_API_KEY, and a user-selected audio file; optional flags control model, language, prompt, response format, and output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected audio files are sent to OpenAI for transcription and may contain confidential, regulated, or non-consented speech.
+
+Mitigation: Use only with recordings that are appropriate to send to OpenAI under the user's account settings, permissions, and applicable policy.
+
+Risk: The script writes transcript files locally and may overwrite an explicitly provided output path.
+
+Mitigation: Choose an output location deliberately and review the saved transcript before sharing or using it in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mohdalhashemi98-hue/skills/mh-openai-whisper-api)
+- [OpenAI speech-to-text guide](https://platform.openai.com/docs/guides/speech-to-text)
+- [OpenAI audio transcriptions endpoint](https://api.openai.com/v1/audio/transcriptions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Plain text or JSON transcript files, with shell output containing the saved file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and OPENAI_API_KEY; the selected audio file is sent to OpenAI for transcription.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

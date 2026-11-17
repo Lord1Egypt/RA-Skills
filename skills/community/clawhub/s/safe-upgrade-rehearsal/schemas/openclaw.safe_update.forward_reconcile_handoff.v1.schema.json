@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.forward_reconcile_handoff.v1.schema.json",
+  "title": "OpenClaw Safe Update Forward Reconcile Handoff",
+  "type": "object",
+  "required": ["schema", "effect", "runtime_effect", "external_effect", "external_write_effect", "production_apply_allowed", "operator_approval", "authoritative", "candidate_root", "source_status_digest", "producer", "consumer", "handoff_status", "operational_approval", "activation_receipt_digest", "post_activation_e2e", "post_activation_e2e_digest", "forward_recovery_rule_digest", "rollback_or_containment_rule_digest"],
+  "properties": {
+    "schema": {"const": "openclaw.safe_update.forward_reconcile_handoff.v1"},
+    "effect": {"const": "read_only_phase_handoff"},
+    "runtime_effect": {"const": "none"},
+    "external_effect": {"const": "none"},
+    "external_write_effect": {"const": "none"},
+    "production_apply_allowed": {"const": false},
+    "operator_approval": {"const": false},
+    "authoritative": {"const": false},
+    "candidate_root": {"$ref": "#/$defs/digest"},
+    "source_status_digest": {"$ref": "#/$defs/digest"},
+    "producer": {"$ref": "#/$defs/actor"},
+    "consumer": {"$ref": "#/$defs/actor"},
+    "handoff_status": {"enum": ["ready", "blocked", "not_run", "verified"]},
+    "operational_approval": {"const": "external_explicit_required"},
+    "activation_receipt_digest": {"$ref": "#/$defs/digest"},
+    "post_activation_e2e": {"enum": ["not_run", "passed", "failed", "partial"]},
+    "post_activation_e2e_digest": {"$ref": "#/$defs/nullableDigest"},
+    "forward_recovery_rule_digest": {"$ref": "#/$defs/digest"},
+    "rollback_or_containment_rule_digest": {"$ref": "#/$defs/digest"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nullableDigest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "actor": {"type": "string", "minLength": 1, "maxLength": 128}
+  }
+}

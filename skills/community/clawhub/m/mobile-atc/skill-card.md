@@ -1,42 +1,58 @@
-## Description: <br>
-Diagnose mobile PDP and cart friction where the add-to-cart (ATC) control is hard to see or reach, simulate scroll paths and thumb zones, flag text-stacked dead zones and tap blind spots, and propose minimal UI refactors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose mobile PDP and cart friction where the add-to-cart control is hard to see or reach by simulating scroll paths and thumb zones, flagging text-stacked dead zones and tap blind spots, and proposing minimal UI refactors.
 
-## Publisher: <br>
-[rijoyai](https://clawhub.ai/user/rijoyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-E-commerce, UX, product, and conversion teams use this skill to diagnose mobile product-page add-to-cart visibility problems, especially when mobile conversion is roughly 50% or more below desktop. It produces structured recommendations for above-fold CTA visibility, button placement, copy density, scroll behavior, and tap blind spots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Illustrative visibility scores can be mistaken for measurements when no page evidence is supplied. <br>
-Mitigation: Label simulated or hypothetical scores clearly and request screenshots, URLs, viewport sizes, and mobile-vs-desktop conversion data for page-specific conclusions. <br>
-Risk: UX recommendations may be applied without validation against the actual storefront, device viewport, or conversion funnel. <br>
-Mitigation: Review proposed layout changes with product and engineering owners and test them on target mobile breakpoints before rollout. <br>
+## Use Case:
 
+External commerce teams, developers, and conversion specialists use this skill to diagnose mobile product-detail-page add-to-cart visibility problems, especially when mobile conversion trails desktop or the primary CTA is buried below dense content.
 
-## Reference(s): <br>
-- [Mobile ATC visibility playbook](artifact/references/mobile_atc_playbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/rijoyai/mobile-atc) <br>
-- [Publisher profile](https://clawhub.ai/user/rijoyai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with scores, tables, bullet lists, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include illustrative scoring when no screenshots, URLs, viewport sizes, or conversion data are supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Illustrative visibility scores or simulated scroll paths may be mistaken for measurements from real user behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label simulations clearly and validate recommendations with screenshots, breakpoint testing, analytics, or usability evidence before making production changes.
+
+Risk: The skill could be treated as a substitute for formal accessibility or legal review.
+
+Mitigation: Use it for UX triage only and route accessibility compliance or legal claims through qualified reviewers.
+
+Risk: Mobile conversion data, product performance, or customer behavior details may be commercially sensitive.
+
+Mitigation: Share only the funnel and layout details needed for analysis, and anonymize or aggregate sensitive business data where possible.
+
+## Reference(s):
+
+- [Mobile ATC visibility playbook](references/mobile_atc_playbook.md)
+- [ClawHub skill page](https://clawhub.ai/rijoyai/skills/mobile-atc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown analysis with scoring, recommendations, tables, and simulated scroll-path notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include illustrative scores when screenshots or URLs are unavailable; simulations should be labeled as simulated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

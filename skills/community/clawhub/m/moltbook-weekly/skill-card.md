@@ -1,44 +1,62 @@
-## Description: <br>
-Generates structured weekly reports from local project data and prepares Markdown output and WeCom publishing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates weekly project reports in Markdown and provides guidance for publishing them to WeCom documents.
 
-## Publisher: <br>
-[rf-ai-wh](https://clawhub.ai/user/rf-ai-wh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rf-ai-wh](https://clawhub.ai/user/rf-ai-wh)
 
-## Use Case: <br>
-Developers and teams use this skill to generate project or team weekly reports, summarize local status data, save Markdown, and prepare publication to WeCom documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may contain internal operational data. <br>
-Mitigation: Review the Markdown before sharing or publishing it. <br>
-Risk: WeCom commands can target the wrong document, workspace, or visibility setting. <br>
-Mitigation: Confirm the destination document, workspace, and visibility before running any WeCom command. <br>
-Risk: The auto-publish flow may prepare publishing guidance rather than complete publication. <br>
-Mitigation: Verify the final document exists and contains the intended content in WeCom. <br>
+## Use Case:
 
+Project teams and operators use this skill to assemble weekly status reports from documented project data sources and prepare Markdown content for WeCom document publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rf-ai-wh/moltbook-weekly) <br>
-- [Publisher profile](https://clawhub.ai/user/rf-ai-wh) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may include local operational data; review before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Generated reports may include business data from documented local project data sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review report contents before publishing and install only where access to those data sources is acceptable.
+
+Risk: Generated shell or WeCom command examples may include untrusted titles or report content.
+
+Mitigation: Inspect and sanitize generated commands before copying or executing them.
+
+Risk: Reports written under /tmp may be exposed to other local users.
+
+Mitigation: Use a controlled output path and remove temporary report files when they are no longer needed.
+
+Risk: Publishing depends on configured WeCom/OpenClaw authority and may require manual action despite automation-oriented documentation.
+
+Mitigation: Confirm the active WeCom/OpenClaw environment and user authority before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rf-ai-wh/skills/moltbook-weekly)
+- [ClawHub publisher profile](https://clawhub.ai/user/rf-ai-wh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report text with command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write generated reports to a local file path and print WeCom publishing steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

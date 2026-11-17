@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn72jmd20ws94jr0p8b3p24wyn82abgj",
-  "slug": "wanng-ide-auto-skill-hunter",
-  "version": "1.0.0",
-  "publishedAt": 1776632189303
+  "owner": "wanng-ide",
+  "slug": "auto-skill-hunter",
+  "displayName": "Auto Skill Hunter",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1771067342185,
+    "commit": "https://github.com/openclaw/skills/commit/79833f7130129d9914e17e91b7545a2790acdf5d"
+  },
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1771066443970,
+      "commit": "https://github.com/openclaw/skills/commit/e251ee077fa363f007abebd07c82388a92183e91"
+    }
+  ]
 }

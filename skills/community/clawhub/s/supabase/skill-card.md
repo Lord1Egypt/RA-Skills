@@ -1,41 +1,56 @@
-## Description: <br>
-Connects to Supabase for database operations, storage, SQL queries, table management, and vector similarity search with pgvector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to Supabase for database operations, vector search, and storage.
 
-## Publisher: <br>
-[lucassynnott](https://clawhub.ai/user/lucassynnott) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lucassynnott](https://clawhub.ai/user/lucassynnott)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate Supabase-backed databases from an agent workflow, including querying, CRUD operations, table inspection, RPC calls, and pgvector similarity search. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The required Supabase credentials can give the agent administrator-level database access. <br>
-Mitigation: Install only when administrator-level Supabase access is intended, and prefer a restricted project, restricted key, or test database where possible. <br>
-Risk: Write, delete, and raw SQL operations can change or remove database data. <br>
-Mitigation: Review every write, delete, and raw SQL action before running it. <br>
-Risk: Vector search may send query text to OpenAI for embeddings. <br>
-Mitigation: Do not use vector search with sensitive query text unless sending that text to OpenAI is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lucassynnott/supabase) <br>
+## Use Case:
 
+Developers and engineers use this skill to let an agent run Supabase database queries, table operations, RPC calls, storage-adjacent workflows, and pgvector similarity search against an authorized Supabase project.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUPABASE_URL and SUPABASE_SERVICE_KEY; vector search also requires OPENAI_API_KEY and pgvector setup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate with a Supabase service role key that may grant full database authority.
+
+Mitigation: Install only for projects where agent-level full database access is acceptable, and prefer a restricted credential or isolated Supabase project when possible.
+
+Risk: Raw SQL, update, and delete actions can modify or remove production data.
+
+Mitigation: Double-check every raw SQL, update, and delete request before execution, especially when filters or table names are agent-proposed.
+
+Risk: Vector-search queries may send sensitive text to an embedding provider when embeddings are generated externally.
+
+Mitigation: Avoid vector-search queries containing sensitive text unless sending that text to the configured embedding provider is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lucassynnott/skills/supabase)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, SQL examples, JSON payloads, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SUPABASE_URL and SUPABASE_SERVICE_KEY; OPENAI_API_KEY may be used for embedding-backed vector search.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/evidence-manifest.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "projectId",
+    "runId",
+    "timelineRevision",
+    "artifacts"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "runId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "timelineRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/revision"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidenceId",
+          "kind",
+          "targetRef",
+          "result",
+          "sensitive",
+          "checks"
+        ],
+        "properties": {
+          "evidenceId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "kind": {
+            "enum": [
+              "transcript-source",
+              "approval",
+              "timeline-readback",
+              "rendered-frame",
+              "audio-report",
+              "export-probe"
+            ]
+          },
+          "targetRef": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "oneOf": [
+              {
+                "$ref": "creator-os-common.schema.json#/$defs/relativePath"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sha256": {
+            "oneOf": [
+              {
+                "$ref": "creator-os-common.schema.json#/$defs/sha256"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "result": {
+            "enum": [
+              "passed",
+              "failed",
+              "unverified"
+            ]
+          },
+          "sensitive": {
+            "type": "boolean"
+          },
+          "checks": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z][A-Z0-9_]+$"
+            }
+          },
+          "dependencies": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            }
+          },
+          "invalidatedBy": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            }
+          }
+        }
+      }
+    }
+  }
+}

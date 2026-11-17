@@ -1,41 +1,53 @@
-## Description: <br>
-Helps an agent analyze Git changes, stage logical file groups, generate Conventional Commit messages, and create local commits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute git commits with Conventional Commit analysis, intelligent staging, and commit message generation.
 
-## Publisher: <br>
-[wangchencheng](https://clawhub.ai/user/wangchencheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangchencheng](https://clawhub.ai/user/wangchencheng)
 
-## Use Case: <br>
-Developers and engineers use this skill when they want an agent to inspect Git diffs, prepare coherent file staging, and produce Chinese Conventional Commit messages with an AI-GEN footer before creating a local commit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can stage files and create local commits, so unintended files or secrets could be included. <br>
-Mitigation: Review git status, diffs, and staged files before approval, and exclude secrets or credentials from the commit. <br>
-Risk: Generated Chinese commit messages and the AI-GEN footer may not match a repository's contribution conventions. <br>
-Mitigation: Confirm repository commit standards and edit the proposed message or footer before running git commit. <br>
+## Use Case:
 
+Developers use this skill to inspect git changes, stage logical groups of files, and create Conventional Commit messages, including Simplified Chinese descriptions and an AI-GEN footer.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/wangchencheng/git-commit-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/wangchencheng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and commit message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commit messages are expected to use Simplified Chinese and may include an AI-GEN footer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can stage files and create git commits, which can permanently record unintended changes if the diff is not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review git status, diffs, and staged files before committing; stage only the intended logical change.
+
+Risk: Generated commit conventions may not match every repository, especially Simplified Chinese messages or AI-GEN footers.
+
+Mitigation: Override the generated message, language, or footer to match the repository policy before running git commit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangchencheng/skills/git-commit-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with git shell commands and Conventional Commit message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commit messages are expected in Simplified Chinese and may include an AI-GEN footer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

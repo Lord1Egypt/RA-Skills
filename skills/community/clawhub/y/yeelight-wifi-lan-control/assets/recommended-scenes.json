@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "source": "yeelight-smart-home/references/scene-recipes.md",
+  "scenes": [
+    {"id":"return-home","name":"回家","objectiveRecipe":"return-home","provenance":"yeelight-smart-home/references/scene-recipes.md#回家","properties":{"power":true,"brightness":80,"colorTemperature":4000}},
+    {"id":"away","name":"离家","objectiveRecipe":"away","provenance":"yeelight-smart-home/references/scene-recipes.md#离家","properties":{"power":false}},
+    {"id":"daily","name":"日常","objectiveRecipe":"daily","provenance":"yeelight-smart-home/references/scene-recipes.md#日常","properties":{"power":true,"brightness":70,"colorTemperature":4000}},
+    {"id":"guests","name":"会客","objectiveRecipe":"guests","provenance":"yeelight-smart-home/references/scene-recipes.md#会客","properties":{"power":true,"brightness":85,"colorTemperature":4500}},
+    {"id":"cleaning","name":"清洁","objectiveRecipe":"cleaning","provenance":"yeelight-smart-home/references/scene-recipes.md#清洁","properties":{"power":true,"brightness":100,"colorTemperature":5500}},
+    {"id":"late-return","name":"深夜归家","objectiveRecipe":"late-return","provenance":"yeelight-smart-home/references/scene-recipes.md#深夜归家","properties":{"power":true,"brightness":20,"colorTemperature":2700}},
+    {"id":"reading","name":"阅读","objectiveRecipe":"reading","provenance":"yeelight-smart-home/references/scene-recipes.md#阅读","properties":{"power":true,"brightness":80,"colorTemperature":4500}},
+    {"id":"tea","name":"品茗","objectiveRecipe":"tea","provenance":"yeelight-smart-home/references/scene-recipes.md#品茗","properties":{"power":true,"brightness":70,"colorTemperature":3500}},
+    {"id":"movie","name":"观影","objectiveRecipe":"movie","provenance":"yeelight-smart-home/references/scene-recipes.md#观影","properties":{"power":true,"brightness":10,"colorTemperature":3000}},
+    {"id":"gathering","name":"聚会","objectiveRecipe":"gathering","provenance":"yeelight-smart-home/references/scene-recipes.md#聚会","properties":{"power":true,"brightness":85,"colorTemperature":4000}},
+    {"id":"night-light","name":"夜灯","objectiveRecipe":"night-light","provenance":"yeelight-smart-home/references/scene-recipes.md#夜灯","properties":{"power":true,"brightness":10,"colorTemperature":2700}},
+    {"id":"morning-light","name":"早安","objectiveRecipe":"morning-light","provenance":"yeelight-smart-home/references/scene-recipes.md#早安","properties":{"power":true,"brightness":65,"colorTemperature":3500}}
+  ]
+}

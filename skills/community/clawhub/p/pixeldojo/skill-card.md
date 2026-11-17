@@ -1,45 +1,62 @@
-## Description: <br>
-Access PixelDojo's API helpers for AI image and video generation, live model catalog inspection, async job status checks, and finished asset downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access PixelDojo's API for AI image and video generation. Use when an agent needs to create images or videos, choose a model from the live PixelDojo catalog, check async job status, or download finished assets.
 
-## Publisher: <br>
-[blovett80](https://clawhub.ai/user/blovett80) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blovett80](https://clawhub.ai/user/blovett80)
 
-## Use Case: <br>
-Developers and creative automation users use this skill to select PixelDojo image or video generation models, submit generation jobs, poll for completion, and download generated media assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, input image URLs, and generation requests are sent to PixelDojo under the user's API key. <br>
-Mitigation: Use the skill only for intended PixelDojo workflows and avoid submitting secrets, credentials, or sensitive personal content. <br>
-Risk: Changing PIXELDOJO_API_BASE can redirect requests to a non-default endpoint. <br>
-Mitigation: Keep PIXELDOJO_API_BASE at the default unless the alternate endpoint is trusted. <br>
-Risk: Generated media is downloaded to local output paths. <br>
-Mitigation: Choose output paths deliberately and review saved files before sharing or reusing them. <br>
+## Use Case:
 
+Developers and creative agents use this skill to submit PixelDojo image or video generation jobs, inspect the live model catalog, poll job status, and return downloaded asset paths.
 
-## Reference(s): <br>
-- [PixelDojo Skill Page](https://clawhub.ai/blovett80/pixeldojo) <br>
-- [PixelDojo](https://pixeldojo.ai) <br>
-- [PixelDojo API Base](https://pixeldojo.ai/api/v1) <br>
-- [PixelDojo Model Catalog](references/model-catalog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated assets are saved as image or video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PIXELDOJO_API_KEY, may call the PixelDojo API, and saves downloaded media to default or user-selected local output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release metadata and api.json) <br>
+Risk: The API key can be sent to a non-default API endpoint if PIXELDOJO_API_BASE is overridden.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default PixelDojo HTTPS API base unless a trusted PixelDojo-compatible endpoint has been reviewed.
+
+Risk: Prompts and input image URLs are submitted to the PixelDojo service.
+
+Mitigation: Avoid confidential prompts, private image URLs, and regulated data unless the service terms and data handling are acceptable.
+
+Risk: Generated assets are downloaded from service-provided URLs and saved to local disk.
+
+Mitigation: Choose output paths deliberately and review downloaded files before reuse or redistribution.
+
+## Reference(s):
+
+- [PixelDojo ClawHub Skill Page](https://clawhub.ai/blovett80/skills/pixeldojo)
+- [Publisher Profile](https://clawhub.ai/user/blovett80)
+- [PixelDojo Homepage](https://pixeldojo.ai)
+- [PixelDojo API Base](https://pixeldojo.ai/api/v1)
+- [PixelDojo Model Catalog](references/model-catalog.md)
+- [PixelDojo Live Models Endpoint](https://pixeldojo.ai/api/v1/models)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Files, Guidance]
+
+**Output Format:** [Markdown with shell commands, JSON status output, local file paths, and generated image or video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PIXELDOJO_API_KEY, optional PIXELDOJO_API_BASE, and curl, jq, and python3. Generated assets are saved persistently to user-selected or default output paths.]
+
+## Skill Version(s):
+
+1.3.3 (source: server release evidence and artifact/api.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

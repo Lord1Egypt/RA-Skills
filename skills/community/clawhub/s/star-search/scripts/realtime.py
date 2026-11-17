@@ -1,4 +1,4 @@
-"""实战 96: 实时财经报价 (mock) + 股票代码映射
+"""v20.96: 实时财经报价 (mock) + 股票代码映射
 - 真实数据需接东方财富/新浪 API (付费/反爬)
 - 我们提供 mock + 提示用户
 """
@@ -6,7 +6,7 @@ import re
 import time
 from typing import Dict, Optional
 
-# 实战 96: 常见股票/指数代码映射 (A 股 + 港股 + 美股 + 加密)
+# v20.96: 常见股票/指数代码映射 (A 股 + 港股 + 美股 + 加密)
 STOCK_MAP = {
     # A 股
     '比亚迪': ('002594', 'SZ', 'A 股'),
@@ -46,10 +46,10 @@ STOCK_MAP = {
     '道琼斯': ('DJI', 'US', '美股指数'),
 }
 
-# 实战 96: 实时报价查询 (mock 数据 + 真实 API 提示)
+# v20.96: 实时报价查询 (mock 数据 + 真实 API 提示)
 def get_quote(symbol_or_name: str) -> Dict:
     """获取股票/指数实时报价
-    实战 96: 先查 STOCK_MAP, 返回 mock 数据 + 真实 API 链接
+    v20.96: 先查 STOCK_MAP, 返回 mock 数据 + 真实 API 链接
     未来: 接东方财富/新浪 API
     """
     q = (symbol_or_name or '').strip()
@@ -87,7 +87,7 @@ def get_quote(symbol_or_name: str) -> Dict:
             'change': 'N/A',
             'change_pct': 'N/A',
             'volume': 'N/A',
-            'note': '实战 96: mock 数据, 真实价格请查询下方链接',
+            'note': 'v20.96: mock 数据, 真实价格请查询下方链接',
         },
         'realtime_links': [
             f'https://quote.eastmoney.com/{code}.html (东方财富)',

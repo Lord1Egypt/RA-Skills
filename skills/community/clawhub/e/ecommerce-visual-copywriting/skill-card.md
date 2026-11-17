@@ -1,42 +1,60 @@
-## Description: <br>
-Provides an e-commerce visual copywriting SOP that turns product information and draft main-image copy into concise, compliance-checked image, copy, and design briefs for product main images and detail pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+E-commerce visual copywriting SOP with compliance rules and self-review scoring.
 
-## Publisher: <br>
-[ahsbnb](https://clawhub.ai/user/ahsbnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahsbnb](https://clawhub.ai/user/ahsbnb)
 
-## Use Case: <br>
-E-commerce operators, marketers, and designers use this skill to convert product details, draft copy, SKUs, pricing, and supporting evidence into practical visual-copy plans for main images and product detail pages on major Chinese e-commerce platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated advertising or product claims may still be inaccurate, unsupported, or non-compliant for the target marketplace. <br>
-Mitigation: Review all generated claims, substantiation, disclaimers, and platform-specific requirements before publishing. <br>
-Risk: Product, competitor, or business data supplied to the agent may be sensitive. <br>
-Mitigation: Avoid sharing sensitive business or competitor data unless the agent environment is trusted. <br>
+## Use Case:
 
+External e-commerce operators, designers, and copywriters use this skill to turn product details and draft main-image copy into concise product-image and detail-page execution plans. It is focused on compliant copy for Taobao, Tmall, JD, Pinduoduo, Douyin Shop, and similar marketplace listings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ahsbnb/ecommerce-visual-copywriting) <br>
-- [Project Homepage](https://github.com/feichanggege/ecommerce-visual-copywriting-skill) <br>
-- [Compliance Rules](references/compliance-rules.md) <br>
+### Deployment Geography for Use:
 
+Global, with documented platform guidance focused on Chinese e-commerce marketplaces.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured as visual-copy execution plans with image content, in-image copy, design notes, and self-review scoring.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow requires user confirmation after the selling-reason summary and only outputs the final plan after the self-review score is at least 80.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may receive sensitive product plans, pricing, or competitor materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocation in appropriate workspaces and provide only product information that is approved for use in the copywriting workflow.
+
+Risk: Generated marketplace copy can still be inaccurate or non-compliant if product type, claims, approvals, or evidence are wrong.
+
+Mitigation: Verify product classifications, certificates, test report IDs, disclaimers, and platform requirements before publishing any output.
+
+Risk: Broad auto-loading keywords could apply the e-commerce SOP to unrelated conversations.
+
+Mitigation: Install the skill only where this SOP should apply, or require explicit user invocation for e-commerce copywriting tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahsbnb/skills/ecommerce-visual-copywriting)
+- [Publisher profile](https://clawhub.ai/user/ahsbnb)
+- [Project homepage](https://github.com/feichanggege/ecommerce-visual-copywriting-skill)
+- [Compliance rules reference](artifact/references/compliance-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown execution plan with image content, in-image copy, design notes, and compliance self-review.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires product details and user confirmation of compliant selling reasons before generating main-image and detail-page plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and README version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

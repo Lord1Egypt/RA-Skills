@@ -1,44 +1,62 @@
-## Description: <br>
-Structured PDF Export helps agents turn structured tables, comparisons, checklists, and visual data into polished local PDF files using an HTML-to-browser-to-PDF workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured PDF Export converts structured content such as tables, comparison lists, and data visualizations into styled local PDF files for delivery through OpenClaw.
 
-## Publisher: <br>
-[huchiyv](https://clawhub.ai/user/huchiyv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huchiyv](https://clawhub.ai/user/huchiyv)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill when a response would otherwise contain a large table, comparison, checklist, or visualization and should instead be delivered as a formatted PDF. It is intended for single-user or trusted environments that can run a local browser workflow and temporary HTTP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The temporary HTTP server can expose generated document content beyond the local machine if it binds to a non-local interface. <br>
-Mitigation: Bind the server to localhost, for example `python3 -m http.server --bind 127.0.0.1 8888`, and only open local URLs. <br>
-Risk: Generated HTML or PDFs may contain sensitive data because the skill does not provide automatic sensitive-data scanning. <br>
-Mitigation: Manually review the HTML in the browser and the final PDF before sending, and avoid including secrets, credentials, or regulated personal data. <br>
-Risk: Port and process management can conflict with unrelated processes in multi-user environments. <br>
-Mitigation: Use the skill only in single-user or trusted environments, manually verify any process using the configured port, or switch to a user-specific port. <br>
-Risk: Temporary files and the local server may remain after the workflow completes. <br>
-Mitigation: Confirm the server process is stopped and remove the `.pdf-export-tmp` directory after export. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill when they need to present structured information as a polished PDF instead of a plain markdown table. It is intended for single-user or fully trusted environments where local browser rendering, local file handling, and manual sensitive-data review are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huchiyv/structured-pdf-export) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated local HTML/PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local files through an OpenClaw browser and message workflow; users must review generated content before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: A local HTTP server can expose generated files beyond localhost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the server to 127.0.0.1 and use a unique per-run temporary directory with restrictive permissions.
+
+Risk: Generated PDFs may include confidential or sensitive data because automatic sensitive-data scanning is unavailable.
+
+Mitigation: Manually review source content, the rendered HTML, and the final PDF before sending the file.
+
+Risk: HTML title and subtitle fields may include unescaped content.
+
+Mitigation: Escape user-provided HTML fields before rendering and avoid inserting untrusted markup.
+
+Risk: Port 8888 conflicts can interrupt unrelated work on shared or multi-user systems.
+
+Mitigation: Use a user-specific or random port and manually verify process ownership before stopping any process.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huchiyv/skills/structured-pdf-export)
+- [Publisher Profile](https://clawhub.ai/user/huchiyv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash and Python-assisted local file generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local HTML/PDF workflow guidance and files; final PDF delivery depends on OpenClaw browser and message tools.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

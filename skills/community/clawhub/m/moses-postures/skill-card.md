@@ -1,40 +1,54 @@
-## Description: <br>
-Moses Postures gives agents posture-specific guidance for read-only assessment, protected execution, and operator-authorized execution within a companion governance mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moses Postures defines posture controls for agents, including read-only, protected confirmation, and execution modes for transaction and state-changing workflows.
 
-## Publisher: <br>
-[sunrisesillneversee](https://clawhub.ai/user/sunrisesillneversee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunrisesillneversee](https://clawhub.ai/user/sunrisesillneversee)
 
-## Use Case: <br>
-Developers and operators use this skill to keep agents aligned with an operator-selected transaction posture before file writes, state changes, external calls, or transaction execution. It is intended for environments that also trust and install the companion moses-governance skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OFFENSE and Unrestricted + OFFENSE postures can permit high-authority execution or transaction behavior. <br>
-Mitigation: Enable those postures only when the operator understands the transaction risk, and prefer SCOUT or DEFENSE when read-only analysis or explicit confirmation is required. <br>
-Risk: The posture guidance depends on the companion moses-governance skill and the governance state file being trusted and current. <br>
-Mitigation: Install the companion skill from a trusted source and confirm the active posture state before allowing state changes, external calls, or transactions. <br>
+## Use Case:
 
+Developers and operators use this skill to apply posture-based controls before an agent reads state, changes files, makes external calls, or executes transactions. It is intended for governance workflows that distinguish read-only analysis from confirmed protective actions and higher-autonomy execution.
 
-## Reference(s): <br>
-- [Moses Postures on ClawHub](https://clawhub.ai/sunrisesillneversee/moses-postures) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No secrets are required; behavior depends on the companion moses-governance skill and the operator-selected posture state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can influence broad agent execution and transaction behavior, including a full-autonomy posture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Permit installation only in environments where the moses-governance bundle is trusted, posture changes are controlled, and full-autonomy operation is explicitly approved or disabled.
+
+Risk: The skill depends on posture state stored under ~/.openclaw/governance, so unauthorized state changes could alter execution controls.
+
+Mitigation: Protect ~/.openclaw/governance/state.json with appropriate file permissions, audit posture changes, and require operator confirmation for outbound or state-changing actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunrisesillneversee/skills/moses-postures)
+- [ClawHub publisher profile](https://clawhub.ai/user/sunrisesillneversee)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the companion moses-governance bundle and reads posture state from ~/.openclaw/governance/state.json.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

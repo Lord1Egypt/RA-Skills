@@ -1,46 +1,59 @@
-## Description: <br>
-Generates NanobananaPro-ready image prompts, video storyboard prompts, platform parameters, and troubleshooting guidance from a bundled prompt-template knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language agent skill that helps create NanobananaPro-ready image prompts, video storyboard prompts, platform parameters, and prompt optimization guidance.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-Creators, designers, marketers, and agents use this skill to produce structured NanobananaPro image prompts, short-video storyboard prompts, negative prompts, and platform-specific parameter guidance for commercial and creative media workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad image-generation or prompt-writing requests. <br>
-Mitigation: Use it when the request is clearly NanobananaPro-related, or confirm the target platform before applying NanobananaPro-specific prompt structure and parameters. <br>
-Risk: The artifact claims official NanobananaPro certification, but the security evidence recommends independent verification before relying on that branding. <br>
-Mitigation: Verify the certification claim with the publisher or platform before presenting it as authoritative in a production workflow. <br>
+## Use Case:
 
+Creators, marketers, designers, and agent users use this skill to generate structured NanobananaPro prompts for images and short videos. It also provides storyboard formats, negative prompts, camera movement language, and platform parameter guidance for prompt iteration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rfdiosuao/nanobanana-pro-prompt-master) <br>
-- [Style Library](references/style-library.md) <br>
-- [Prompt Templates](references/prompt-templates.md) <br>
-- [Negative Prompts](references/negative-prompts.md) <br>
-- [Platform Specs](references/platform-specs.md) <br>
-- [Camera Movement Library](references/camera-movement-guide.md) <br>
-- [Storyboard Template](references/storyboard-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with copy-ready prompt blocks, parameter lists, storyboard tables, and troubleshooting notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces NanobananaPro-oriented prompt text and guidance only; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and target metadata) <br>
+Risk: Broad trigger words may activate the skill during unrelated image, prompt, or video-generation conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants NanobananaPro-specific prompt help before applying the skill's prompt templates or platform parameters.
+
+Risk: Generated prompts and storyboard guidance may not match the user's external platform constraints or content policy requirements.
+
+Mitigation: Review and adjust generated prompts, negative prompts, and publishing parameters before submitting them to an external generation platform.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rfdiosuao/skills/nanobanana-pro-prompt-master)
+- [Style Library](artifact/references/style-library.md)
+- [Prompt Templates](artifact/references/prompt-templates.md)
+- [Negative Prompts](artifact/references/negative-prompts.md)
+- [NanobananaPro Platform Specs](artifact/references/platform-specs.md)
+- [Camera Movement Library](artifact/references/camera-movement-guide.md)
+- [Storyboard Template](artifact/references/storyboard-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with structured prompt blocks, storyboard tables, parameter recommendations, and optimization notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language prompt guidance with copy-ready NanobananaPro prompt text and platform settings]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,41 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Skill data (user-specific, do not commit)
+config.json
+../config.json
+
+# Runtime data (generated, do not commit)
+../datasets/
+../processed/
+../uploads/
+../mongo-data/
+../logs/
+
+# Temp files
+*.tmp
+*.bak
+*.log
+test-output/
+
+# Docker
+docker-compose.override.yml

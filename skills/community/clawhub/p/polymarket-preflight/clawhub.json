@@ -1,0 +1,10 @@
+{
+  "slug": "ticktape",
+  "name": "TickTape - Polymarket preflight verdicts",
+  "version": "1.0.0",
+  "description": "Read-only pre-trade risk checks for Polymarket: OK/CAUTION/VETO on live orders (slippage, depth, taker fees at your size), COPY/WATCH/VETO on wallets (fee-inclusive copier ROI from an identity-tagged trade tape recorded since Dec 2025). Paid per call via x402 (USDC on Base, $0.02-$0.10) or prepaid credits; free unlimited sandbox. No custody, no execution. Pairs well with Polymarket trading skills: check before you trade.",
+  "tags": ["polymarket", "prediction-markets", "trading", "risk", "x402"],
+  "homepage": "https://ticktape.cc",
+  "repository": "https://github.com/padak/ticktape-skills",
+  "license": "MIT"
+}

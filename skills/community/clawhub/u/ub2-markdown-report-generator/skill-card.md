@@ -1,41 +1,49 @@
-## Description: <br>
-Generates well-structured Markdown reports from multiple sources with sections, tables, formatting, and optional PDF or HTML export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates well-structured Markdown reports from multiple sources with sections, tables, formatting, and optional PDF or HTML export.
 
-## Publisher: <br>
-[underbench2-gif](https://clawhub.ai/user/underbench2-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[underbench2-gif](https://clawhub.ai/user/underbench2-gif)
 
-## Use Case: <br>
-External users and developers use this skill to turn text, files, URLs, or conversation context into polished Markdown reports for status updates, comparisons, technical documentation, and summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Provided files, URLs, or conversation material may be incorporated into the generated report. <br>
-Mitigation: Confirm the intended source material before use and avoid including confidential information unless it is meant to appear in the report. <br>
-Risk: Generated reports may be saved to a user-specified location. <br>
-Mitigation: Specify the destination path clearly and review the generated report before sharing or publishing it. <br>
-Risk: Optional HTML or PDF conversion may rely on local conversion tooling. <br>
-Mitigation: Request HTML or PDF conversion only in environments where the conversion tools are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/underbench2-gif/ub2-markdown-report-generator) <br>
+## Use Case:
 
+Developers, documentation authors, analysts, and other ClawHub users can use this skill to turn provided text, files, URLs, or conversation context into organized Markdown reports for technical documentation, status reporting, comparisons, summaries, or publishing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown report content, with optional saved .md file and optional HTML or PDF export when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a table of contents, logical sections, Markdown tables, code blocks, conclusions, appendices, and configurable tone, length, sections, or branding.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-provided files, URLs, or conversation content may be incorporated into generated reports.
+
+Mitigation: Review source material and generated Markdown before sharing, publishing, or converting reports to another format.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/underbench2-gif/skills/ub2-markdown-report-generator)
+- [Publisher profile](https://clawhub.ai/user/underbench2-gif)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown report, with optional HTML or PDF conversion when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sections, tables, table of contents, executive summary, conclusions, appendices, and requested tone, length, section, or branding options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

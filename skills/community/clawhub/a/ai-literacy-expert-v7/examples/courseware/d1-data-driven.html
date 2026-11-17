@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI 通识课 · D1 数据分析侦探</title>
+<style>body{font-family:"Microsoft YaHei",sans-serif;margin:0;background:#f0fdfa;color:#0f172a}header{padding:14px 20px;background:#0f766e;color:#fff}h1{margin:0;font-size:18px}.wrap{display:flex;gap:16px;padding:16px 20px;flex-wrap:wrap}#c{background:#fff;border-radius:8px}.panel{background:#ccfbf1;padding:14px;border-radius:8px;min-width:240px}button{background:#0f766e;color:#fff;border:0;padding:8px 12px;border-radius:6px;margin:4px 6px 0 0;cursor:pointer}input[type=number]{width:80px;padding:6px;border-radius:6px;border:1px solid #94a3b8}.note{font-size:12px;color:#475569;margin-top:8px}</style></head>
+<body><header><h1>AI 通识课 · D1 数据分析与可视化 · 散点侦探</h1></header>
+<div class="wrap"><div id="c"></div>
+<div class="panel"><div><b>相关≠因果排查</b></div>
+<label>异常阈值 σ：<input type="number" id="thr" value="2" min="1" max="5"/></label>
+<button id="mark">标记异常点</button><button id="reset" style="background:#475569">重置</button>
+<div class="note" id="st">异常点数：0</div>
+<div class="note">核心：相关≠因果、单位/口径陷阱、p 值误读。</div></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.0.3/p5.min.js"></script>
+<script>if(typeof p5==='undefined'){document.write('<script src="https://cdn.jsdelivr.net/npm/p5@2.0.3/lib/p5.min.js"><\/script>')}</script>
+<script>const st={pts:[],thr:2,anom:0};
+function gen(){st.pts=[];for(let i=0;i<40;i++){st.pts.push({x:40+Math.random()*340,y:30+Math.random()*240,out:Math.random()<0.12})}}
+const sk=p=>{p.setup=()=>{const c=p.createCanvas(420,300);c.parent('c');p.textFont('sans-serif');gen()};
+p.draw=()=>{p.background(255);p.fill(30);p.noStroke();p.textSize(12);p.text('散点图：看似相关？',16,20);
+st.pts.forEach(pt=>{const isA=pt.out&&Math.abs(st.thr-2)<1.5;p.fill(pt.out?'#dc2626':'#0d9488');p.circle(pt.x,pt.y,8);});
+p.fill(30);p.text('红=疑似异常',16,285);}};
+new p5(sk);
+function mark(){st.anom=st.pts.filter(p=>p.out).length;document.getElementById('st').textContent='异常点数：'+st.anom+'（阈值σ='+st.thr+'）'}
+document.getElementById('thr').addEventListener('input',e=>{st.thr=Number(e.target.value)||2});
+document.getElementById('mark').onclick=mark;
+document.getElementById('reset').onclick=()=>{gen();st.anom=0;document.getElementById('st').textContent='异常点数：0'};</script></body></html>

@@ -1,45 +1,56 @@
-## Description: <br>
-Generate, store, and search vector embeddings with provider selection, chunking strategies, and similarity search optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, store, and search vector embeddings with provider selection, chunking strategies, and similarity search optimization.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose embedding providers, chunk source content, store vectors, and tune semantic retrieval workflows for applications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Documents, code, queries, and metadata may be sent to third-party embedding or reranking services. <br>
-Mitigation: Use local models for confidential or regulated data, and review provider data handling before sending sensitive content. <br>
-Risk: Vector stores can retain embedded sensitive content and associated metadata. <br>
-Mitigation: Apply retention, access control, and deletion policies to vector databases created from sensitive material. <br>
-Risk: API keys used for embedding providers or managed vector databases could be exposed during integration. <br>
-Mitigation: Protect credentials with environment secrets or a managed secret store, and avoid hard-coding keys in generated examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/embeddings) <br>
-- [Embedding Providers](artifact/providers.md) <br>
-- [Chunking Strategies](artifact/chunking.md) <br>
-- [Vector Storage](artifact/storage.md) <br>
-- [Search & Retrieval](artifact/search.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to choose embedding providers, chunk source content, store vectors, and tune semantic search or retrieval workflows for applications.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider recommendations, chunking plans, vector database patterns, and retrieval tuning advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Hosted embedding and reranking examples may send supplied text to third-party providers.
+
+Mitigation: Use local models or approved providers for sensitive data, and confirm provider data handling before submitting protected content.
+
+Risk: Persistent vector databases can retain sensitive source text, metadata, or derived embeddings.
+
+Mitigation: Choose storage locations deliberately, apply access controls, and avoid writing sensitive vectors to unmanaged stores.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/embeddings)
+- [Embedding Providers](providers.md)
+- [Chunking Strategies](chunking.md)
+- [Vector Storage](storage.md)
+- [Search & Retrieval](search.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code examples and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides provider, chunking, storage, and retrieval recommendations; does not execute tools on its own.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

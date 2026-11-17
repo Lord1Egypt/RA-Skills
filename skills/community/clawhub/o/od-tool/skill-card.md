@@ -1,40 +1,54 @@
-## Description: <br>
-Dump file contents in octal, decimal, hexadecimal, and ASCII formats for binary data inspection and low-level file analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dump file contents in octal, decimal, hexadecimal, and ASCII formats. Use for binary data inspection and low-level file analysis.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect raw file bytes, debug binary data, and compare octal, decimal, hexadecimal, and ASCII representations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can print raw contents from local files, which may expose secrets or sensitive binary data if used on the wrong path. <br>
-Mitigation: Run it only on files intended for inspection and review dump output before sharing it outside the local environment. <br>
-Risk: The skill documentation describes hexadecimal, decimal, ASCII, and address-base options, while the bundled script evidence only emits octal byte output. <br>
-Mitigation: Verify the command behavior in the target agent environment before relying on non-octal formats. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect local file bytes while debugging binary data, file encodings, or low-level content issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/od-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and plain-text dump output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a file or standard input and emits byte offsets with octal byte values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may print the contents of sensitive local files into the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on files whose contents are intended to be inspected and shared in the session.
+
+Risk: The documentation advertises hexadecimal, decimal, ASCII, and address-base options that scanner evidence says are not implemented.
+
+Mitigation: Rely on the skill only for octal byte dumps unless the publisher updates the implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/od-tool)
+- [ClawHub publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local file byte dumps; scanner evidence notes the implementation emits octal output and does not support all advertised format flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

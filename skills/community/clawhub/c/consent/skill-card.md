@@ -1,41 +1,54 @@
-## Description: <br>
-Build cookie consent banners and track opt-in compliance status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consent is a local command-line logging utility for consent, audit, policy, credential-rotation, report, search, and export workflows.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and operators can use this skill to create and inspect local consent, audit, policy, and export records. It is best treated as a lightweight plaintext local logging utility rather than a secure credential, token, or compliance system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores arbitrary and credential-like inputs as plaintext local logs and exports. <br>
-Mitigation: Do not enter real credentials, API keys, tokens, passwords, regulated personal data, or sensitive consent records unless plaintext storage under ~/.local/share/consent is acceptable. <br>
-Risk: The package presents consent and security-oriented commands but should not be treated as a secure consent-banner, password, token, or compliance system. <br>
-Mitigation: Use it only for lightweight local logging after review, and rely on purpose-built secure systems for production consent, credential, token, or compliance workflows. <br>
+## Use Case:
 
+Developers and compliance operators can use this skill to produce guidance and shell commands for local consent or audit log workflows. It should not be used for sensitive compliance records, regulated personal data, or real credentials without review and redesign.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain1/consent) <br>
-- [Publisher Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output and local log or export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command history and exports under ~/.local/share/consent in plaintext.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The server security summary says the release is advertised for cookie consent/GDPR work but mainly ships a local security-style logger.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the release before installing or using it as a consent-management workflow, and do not rely on it for compliance without redesign and validation.
+
+Risk: The server security guidance warns against credential-like or sensitive inputs, while artifact behavior stores entries in local plain-text logs.
+
+Mitigation: Do not provide real passwords, API keys, tokens, passphrases, regulated personal data, or confidential consent records to this skill.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [Consent on ClawHub](https://clawhub.ai/bytesagain1/skills/consent)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local plain-text logs and json, csv, or txt exports under ~/.local/share/consent/.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

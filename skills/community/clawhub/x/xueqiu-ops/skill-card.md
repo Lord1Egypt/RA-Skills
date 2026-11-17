@@ -1,43 +1,57 @@
-## Description: <br>
-通过 openclaw browser 在雪球网执行互动与创作类操作，包括点赞、收藏、评论、回复、转发、发布观点、发布长文。当用户要求"点个赞""收藏一下""评论""转发""发个观点""发个长文"时使用此技能。默认通过 openclaw browser 执行。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Xueqiu community interactions and publishing through OpenClaw browser, including likes, saves, comments, replies, reposts, short posts, and long-form articles.
 
-## Publisher: <br>
-[gumailianxin](https://clawhub.ai/user/gumailianxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gumailianxin](https://clawhub.ai/user/gumailianxin)
 
-## Use Case: <br>
-External users and agent operators use this skill to guide browser-based interaction with a Xueqiu account, including liking, favoriting, commenting, reposting, publishing short posts, and publishing long-form articles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit public actions through a Xueqiu account, including likes, favorites, comments, reposts, short posts, and long-form articles. <br>
-Mitigation: Require explicit confirmation of the platform, target post or page, action type, and final text before any publish, repost, comment, like, or favorite is submitted. <br>
-Risk: Broad natural-language triggers can cause an agent to act on the wrong Xueqiu content if the target is ambiguous. <br>
-Mitigation: Use browser snapshots to verify the exact target and closest matching control before clicking or entering text, and stop for user clarification when multiple plausible targets are present. <br>
+## Use Case:
 
+External users or agents operating on behalf of a Xueqiu account use this skill to perform social and publishing workflows on xueqiu.com. It is intended for account actions such as liking, saving, commenting, replying, reposting, posting short opinions, and drafting long-form articles.
 
-## Reference(s): <br>
-- [Xueqiu](https://xueqiu.com) <br>
-- [Xueqiu Search](https://xueqiu.com/search) <br>
-- [Xueqiu Long-form Editor](https://mp.xueqiu.com/write/) <br>
-- [Xueqiu Creator Center](https://mp.xueqiu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown or plain text with browser command guidance and a concise status report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports the action attempted, success or failure, where it stopped if unsuccessful, and any resulting URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can publish, comment, repost, like, or save content from a real Xueqiu account without requiring a final confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of the exact action, destination, and content before executing account-changing operations.
+
+Risk: Public Xueqiu interactions can affect account reputation or expose unintended investment-related statements.
+
+Mitigation: Review generated comments, repost text, short posts, and long-form articles for accuracy and appropriateness before posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gumailianxin/skills/xueqiu-ops)
+- [Xueqiu home](https://xueqiu.com)
+- [Xueqiu search](https://xueqiu.com/search)
+- [Xueqiu long-form editor](https://mp.xueqiu.com/write/)
+- [Xueqiu creator center](https://mp.xueqiu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown or concise text status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports the completed action, success or failure status, blocking step when relevant, and any resulting URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
 小饭卡 - 小红书探店搜索（使用 Serper API）
 用法:
@@ -10,74 +11,30 @@ import sys
 import json
 import argparse
 import re
-import os
-import subprocess
-
-SERPER_API_KEY = os.environ.get('SERPER_API_KEY', '')
+from serper_client import search_web
+from safe_http import is_allowed_https_url, quoted_search_term
 
 
 def search_xiaohongshu(query: str, max_results: int = 30) -> list:
-    """搜索小红书探店笔记（使用 search-hub）
+    """搜索小红书公开探店页面（直接使用 Serper API）。
     
     Args:
         query: 搜索关键词
         max_results: 最大结果数（默认 30 条笔记）
     """
-    search_query = f'site:xiaohongshu.com {query} 探店'
+    search_query = f'site:xiaohongshu.com {quoted_search_term(query)} 探店'
     
-    try:
-        # 调用 search-hub（用 python3.13）
-        result = subprocess.run(
-            ['python3.13', 'skills/search-hub/scripts/hub.py', 'search', search_query, '-t', 'text', '-l', str(max_results)],
-            cwd='/Users/mac/.openclaw/workspace',
-            capture_output=True,
-            text=True,
-            timeout=30
-        )
-        
-        if result.returncode != 0:
-            print(f"search-hub 出错：{result.stderr}", file=sys.stderr)
-            return []
-        
-        # 解析 JSON 输出
-        data = json.loads(result.stdout)
-        results = data.get('results', [])
-        
-        # 解析笔记
-        notes = []
-        for r in results:
-            parsed = parse_xhs_result(r)
-            if parsed:
-                notes.append(parsed)
-        
-        return notes
-        
-    except Exception as e:
-        print(f"搜索出错：{e}", file=sys.stderr)
-        return []
+    notes = []
+    for result in search_web(search_query, max_results, country='cn', language='zh-cn'):
+        parsed = parse_xhs_result(result)
+        if parsed:
+            notes.append(parsed)
+    return notes
 
 
 def serper_search(query: str, max_results: int = 25) -> list:
-    """使用 Serper API 搜索"""
-    url = "https://google.serper.dev/search"
-    
-    payload = {
-        "q": query,
-        "num": max_results,
-        "gl": "cn",
-        "hl": "zh-cn"
-    }
-    
-    headers = {
-        'X-API-TOKEN': SERPER_API_KEY,
-        'Content-Type': 'application/json'
-    }
-    
-    response = requests.post(url, json=payload, headers=headers, timeout=30)
-    response.raise_for_status()
-    
-    data = response.json()
-    return data.get('organic', [])
+    """Backward-compatible direct Serper search."""
+    return search_web(query, max_results, country='cn', language='zh-cn')
 
 
 def parse_xhs_result(result):
@@ -85,6 +42,8 @@ def parse_xhs_result(result):
     title = result.get('title', '')
     snippet = result.get('snippet', '')
     url = result.get('link', '')
+    if not is_allowed_https_url(url, ('xiaohongshu.com',)):
+        return None
     combined = f"{title} {snippet}"
 
     # 判断是否餐厅相关

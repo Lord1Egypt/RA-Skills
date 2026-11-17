@@ -1,42 +1,55 @@
-## Description: <br>
-Baidu Qianfan Tools integrates multiple Baidu Qianfan Platform APIs for search, hotword lookup, text generation, continuation, image generation, OCR, PPT generation, and academic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Qianfan Tools integrates Baidu Qianfan platform APIs for search, hotword lookup, text generation, continuation, image generation, OCR, PPT generation, academic search, and related agent workflows.
 
-## Publisher: <br>
-[yingyangdao](https://clawhub.ai/user/yingyangdao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yingyangdao](https://clawhub.ai/user/yingyangdao)
 
-## Use Case: <br>
-Developers and agent users use this skill to call Baidu Qianfan services from an agent workflow for web search summaries, hot topics, text and image generation, OCR, PPT generation, and academic search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User prompts, search queries, image URLs, and generated or extracted content are sent to Baidu Qianfan services for processing. <br>
-Mitigation: Do not submit secrets, regulated data, private documents, or sensitive image URLs unless this external processing is approved for the intended use. <br>
-Risk: The skill uses a Baidu API key and some API calls may consume quota or incur billing charges. <br>
-Mitigation: Use a dedicated API key with quota or billing limits, keep configuration and environment values private, and enable only the Baidu APIs needed for the deployment. <br>
+## Use Case:
 
+Developers and external agent users use this skill to call Baidu Qianfan services from an OpenClaw-compatible environment, including web search summaries, hot topics, chat, generation, OCR, PPT, and academic-search tasks.
 
-## Reference(s): <br>
-- [Baidu Qianfan Console](https://console.bce.baidu.com/qianfan/) <br>
-- [Baidu Qianfan API Documentation](https://cloud.baidu.com/doc/qianfan-api/s/3m9b5lqft) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yingyangdao/qianfan-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [JSON results and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIDU_API_KEY; some Baidu Qianfan APIs require activation and may incur usage charges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, _meta.json, package.json) <br>
+Risk: User prompts, search terms, document or image URLs, and generated-content requests are sent to Baidu Qianfan services using BAIDU_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill with secrets, regulated personal data, or confidential internal documents unless that external transfer is approved.
+
+Risk: Dependency reproducibility is weaker because axios is version-ranged and no lockfile is included in the release evidence.
+
+Mitigation: Pin axios and add a lockfile before controlled or high-assurance deployments.
+
+## Reference(s):
+
+- [Baidu Qianfan API Documentation](https://cloud.baidu.com/doc/qianfan-api/s/3m9b5lqft)
+- [Baidu Qianfan Console](https://console.bce.baidu.com/qianfan/)
+- [ClawHub Skill Page](https://clawhub.ai/yingyangdao/skills/qianfan-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses from command-line scripts, plus setup guidance in Markdown and shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY; several Baidu Qianfan APIs require separate activation and may be metered.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

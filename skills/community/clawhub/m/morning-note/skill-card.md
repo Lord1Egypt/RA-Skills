@@ -1,41 +1,54 @@
-## Description: <br>
-Generates a daily investment morning note that summarizes macro market moves, sector signals, portfolio or watchlist changes, and upcoming catalysts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily investment morning note that combines macro updates, sector changes, holding anomalies, watchlist signals, and upcoming market events.
 
-## Publisher: <br>
-[dzy11650](https://clawhub.ai/user/dzy11650) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dzy11650](https://clawhub.ai/user/dzy11650)
 
-## Use Case: <br>
-Investors and analysts use this skill to generate a concise daily market briefing in Markdown, combining macro indicators, sector rotation signals, portfolio or watchlist movement, and a seven-day catalyst calendar. The skill is designed for signal awareness and explicitly avoids individual stock buy or sell recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment summaries may expose sensitive holdings, proprietary watchlists, or strategy notes when saved in the workspace or archived to IMA. <br>
-Mitigation: Limit sensitive inputs, confirm who can access generated reports and IMA notes, and disable or explicitly confirm archive behavior for scheduled or ambiguous runs. <br>
-Risk: Readers may mistake generated market signals for personalized investment recommendations. <br>
-Mitigation: Keep the skill's no-buy-or-sell-recommendation constraint visible in outputs and require human review before acting on generated signals. <br>
+## Use Case:
 
+External ClawHub users and investment-focused agents use this skill to generate a concise daily market briefing from macro data, sector reports, holdings or watchlist changes, and near-term event calendars. The output is intended for signal review and morning planning, not individual stock buy or sell recommendations.
 
-## Reference(s): <br>
-- [Artifact README](artifact/README.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dzy11650/morning-note) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Analysis, Guidance] <br>
-**Output Format:** [Structured Markdown report saved to a dated file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report is constrained to 800-1200 Chinese characters or words as authored, includes a clear data cut-off time, and may optionally be archived to an IMA knowledge base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact README) <br>
+Risk: Portfolio, watchlist, or other finance-related workspace context may be included in generated reports or archived summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit investment-report prompts and review or disable IMA knowledge-base sync when those details should not be stored.
+
+Risk: Generated market signals may be incomplete, stale, or unsuitable as trading advice.
+
+Mitigation: Review the reported data cut-off time and underlying signals before acting, and preserve the skill's constraint against individual stock buy or sell recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dzy11650/skills/morning-note)
+- [Publisher profile](https://clawhub.ai/user/dzy11650)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Structured Markdown report saved to a dated morning-note file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [800-1200 words; includes an explicit data cut-off time; avoids individual stock buy or sell recommendations; may sync a summary to the IMA knowledge base.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

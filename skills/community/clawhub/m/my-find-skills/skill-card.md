@@ -1,40 +1,54 @@
-## Description: <br>
-My Find Skills helps agents discover, compare, and optionally install skills when users ask for skill discovery or installation, with a skillhub preference for Chinese users and clawhub fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents discover, compare, and install reusable skills when users ask for skill discovery or installation.
 
-## Publisher: <br>
-[liujiang817](https://clawhub.ai/user/liujiang817) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujiang817](https://clawhub.ai/user/liujiang817)
 
-## Use Case: <br>
-Developers and agents use this skill to search skill registries, present relevant candidates with source and install commands, and help install selected skills after summarizing source, version, and risk signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has an opinionated registry preference for Chinese users and CN networks. <br>
-Mitigation: Before approving an install, confirm the registry, slug, version, and risk summary, and specify clawhub or another source if skillhub should not be preferred. <br>
-Risk: Installing a discovered skill may add third-party agent instructions to the environment. <br>
-Mitigation: Review and scan the selected skill before deployment, and approve installation only after the source and notable risk signals are understood. <br>
+## Use Case:
 
+Developers and agent users use this skill to find relevant skills, compare available options, and prepare installation commands. It is especially oriented toward skill discovery and installation requests, including Chinese-language requests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liujiang817/my-find-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include registry source, candidate summaries, install commands, and risk-signal reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can steer users toward external skill catalogs and installation choices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the catalog, publisher, version, and risk signals before approving installation.
+
+Risk: Chinese or CN-network users may be directed to skillhub before clawhub.
+
+Mitigation: Ask the user which catalog they prefer when catalog choice affects trust, compliance, or availability.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liujiang817/skills/my-find-skills)
+- [Publisher profile](https://clawhub.ai/user/liujiang817)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with skill summaries and install commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source, version, and notable risk signals before installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

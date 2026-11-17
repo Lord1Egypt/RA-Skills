@@ -1,0 +1,26 @@
+========================================================================
+ vibegit EVIDENCE LOG (v1.0.3 - ClawHub install + related skills)
+========================================================================
+timestamp : 2026-11-15T06:16:35Z
+tool sha256: 66c79de8e6b85703813a5aa6c799a293ba734cf3c35fba6ad3a6fb6645bdfc49
+clawhub   : thiennhant95/vibegit
+
+---- TEST SUITE (11 tests) ----
+Synthetic repos: AI trailers/authors/messages, giant commits, short messages,
+test deletions, badge + gate, share line, Markdown/JSON contract, non-repo exit.
+Ran 11 tests: OK. CI matrix: ubuntu + windows, Python 3.10/3.12.
+
+---- SELF-REPORT (dogfood) ----
+vibegit repo: slop 10/100 (Clean), AI-assisted ~0% (1 commit)
+
+---- DOCS (v1.0.2) ----
+- README.md: canonical international English documentation
+- README.vi.md: Vietnamese documentation
+- README.en.md removed (redundant)
+- SKILL.md: English (unchanged content, version bump)
+
+---- DESIGN INVARIANTS ----
+- read-only: only git log and git rev-parse with fixed argv (shell=False)
+- never reads file contents, never touches secrets, no network, no uploads
+- deterministic reports (no timestamps)
+- AI figure is an estimate with a confidence band (confirmed vs likely)

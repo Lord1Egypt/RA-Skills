@@ -1,44 +1,63 @@
-## Description: <br>
-Local-first encrypted secret management with the tene CLI for safely handling secrets, API keys, credentials, tokens, .env files, and command execution that needs injected environment variables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first encrypted secret management with the tene CLI for agents handling secrets, API keys, credentials, tokens, .env files, environment variables, or commands that need secrets injected.
 
-## Publisher: <br>
-[tomo-kay](https://clawhub.ai/user/tomo-kay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomo-kay](https://clawhub.ai/user/tomo-kay)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide AI coding agents through Tene secret-management workflows while avoiding plaintext secret exposure in chat, logs, files, shell history, or process arguments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for secret-management workflows, so careless command approval could expose or alter sensitive project credentials. <br>
-Mitigation: Review exact commands before execution, especially imports, deletes, deploys, and production runs. <br>
-Risk: Pasting secret values, master passwords, or recovery phrases into chat would place sensitive material in the conversation context. <br>
-Mitigation: Enter secrets only through local Tene prompts or stdin workflows outside the chat transcript. <br>
-Risk: Migrating from plaintext .env files can cause data loss if the import is wrong and the file is deleted too early. <br>
-Mitigation: Verify imported key names and keep a temporary backup before deleting plaintext .env files. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide an agent through safe local secret management with tene, including initializing vaults, storing secrets without exposing values, migrating from .env files, and running development or deployment commands through `tene run --`.
 
-## Reference(s): <br>
-- [Tene homepage](https://tene.sh) <br>
-- [Tene installer metadata](https://tene.sh/install.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/tomo-kay/tene-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and concise safety guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is documentation-only and instructs agents to avoid printing, exporting, or reading plaintext secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Unverified remote installation can execute installer code for a tool that manages credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a pinned, verified release or package-manager install instead of `curl | sh`.
+
+Risk: Running installation steps in secret-bearing CI jobs can expose deployment credentials if the installer path is compromised.
+
+Mitigation: Do not run installation steps in CI jobs that already have TENE_MASTER_PASSWORD or deployment secrets; install a pinned, verified binary before secrets are available.
+
+Risk: Self-update commands can replace the credential-handling binary without enough review.
+
+Mitigation: Require explicit user approval before running `tene update`, and prefer `tene update --check` for discovery.
+
+Risk: Plaintext secret inspection commands can leak credentials into chat, logs, or process history.
+
+Mitigation: Use `tene list` for introspection, use encrypted exports for backups, avoid `tene get` in agent sessions, and never pass secret values as CLI arguments.
+
+## Reference(s):
+
+- [Tene homepage](https://tene.sh)
+- [Tene installer](https://tene.sh/install.sh)
+- [ClawHub skill page](https://clawhub.ai/tomo-kay/skills/tene-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance emphasizes not printing plaintext secrets, not reading .tene/ contents, and using `tene run --` for secret injection.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

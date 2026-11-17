@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn75zfd51df61ajdyqtgvrs1hx84s4q6",
-  "slug": "git-sync",
-  "version": "2.24.1",
-  "publishedAt": 1782992938844
+  "name": "git-sync",
+  "version": "2.48.0",
+  "description": "全平台发布工具。多仓库模型（skill→maby_skills, agent→maby_agent）、LLM 文件筛除不卡死、路径由 manifest 统一管理、Release 只打 tag 不传 ZIP、PyPI 版本自动归一化 PEP 440、敏感信息强制脱敏不可跳过。",
+  "author": "wUwproject",
+  "tags": [
+    "sync",
+    "git",
+    "gitee",
+    "github",
+    "deploy"
+  ],
+  "data_dir": "skills/.standardization/git-sync/data/",
+  "triggers": [
+    "同步/推送/发布/上传/打包/更新 READ ME"
+  ]
 }

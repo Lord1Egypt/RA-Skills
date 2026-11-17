@@ -1,36 +1,52 @@
-## Description: <br>
-Help students with assignments while building real understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help students with assignments while building real understanding.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Students use this skill for homework tutoring, exam preparation, and subject-specific study support while focusing on understanding rather than copying. It guides agents to provide hints, explanations, practice problems, outlines, and concise step-by-step help across math, writing, reading, science, history, and humanities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Direct homework answers can conflict with academic-integrity expectations. <br>
-Mitigation: Use the skill only where its homework-help posture is acceptable, and prefer learning or practice modes that ask what the student has tried and explain the method. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External learners use this skill for homework tutoring, assignment support, practice generation, exam preparation, and revision help focused on understanding rather than submitting copied work.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with numbered steps, bullets, and copyable plain-text math notation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise tutoring responses, hints, practice questions, outlines, and feedback; no code or shell commands are expected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A learner may use the skill to produce work that must be completed independently or submitted as their own.
+
+Mitigation: Keep use focused on hints, explanations, practice, revision support, and student-authored final work.
+
+Risk: Tutoring responses may be incorrect, incomplete, or mismatched to the learner's level.
+
+Mitigation: Ask the learner to show prior work, explain steps back, and verify results against course materials or instructor guidance.
+
+## Reference(s):
+
+- [ClawHub Homework skill page](https://clawhub.ai/ivangdavila/skills/homework)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with structured steps, bullets, practice questions, explanations, and copyable math notation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, persistence, or data access are identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -6,6 +6,7 @@ description: >
   anymore"; deciding whether to split a team, open a new office, or add a management layer.
   Do NOT activate when: group is well below 50 and problems are clearly interpersonal; core issue
   is incentive misalignment rather than group size (use principal-agent instead).
+  More: deciqai.com/c/dunbars-number
 ---
 
 # Dunbar's Number
@@ -14,7 +15,7 @@ description: >
 
 **Dunbar's number** (~150) is the cognitive limit on stable social groups the human neocortex can sustain, with nested layers at ~5, ~15, ~50, then outer bands at ~500 and ~1,500. Derived by Robin Dunbar (1992) from primate neocortex ratios. Key implication: **below ~150, informal trust coordinates behavior; above ~150, formal hierarchy becomes architecturally mandatory** — not a cultural choice.
 
-Composes with [`network-effects`](../network-effects/SKILL.md) (different coordination mechanisms below vs. above 150), [`principal-agent`](../principal-agent/SKILL.md) (exceeding 150 multiplies agency problems informal trust can no longer cover), [`founder-mindset`](../founder-mindset/SKILL.md) (founder relationship bandwidth peaks at ~150 — first breakpoint demanding shift from doing to delegating structure).
+Composes with `network-effects` (different coordination mechanisms below vs. above 150), `principal-agent` (exceeding 150 multiplies agency problems informal trust can no longer cover), `founder-mindset` (founder relationship bandwidth peaks at ~150 — first breakpoint demanding shift from doing to delegating structure).
 
 ## When to Use
 
@@ -23,8 +24,9 @@ Composes with [`network-effects`](../network-effects/SKILL.md) (different coordi
 - Deciding to split a team, open a new office, or create a sub-unit
 - Designing org structure for a scaling startup; evaluating acquisition integration plans
 - Diagnosing why informal culture "felt different" after a headcount milestone
+- AI-native startup hiring fast on abundant AI-era capital / AI-adoption demand — "we scaled from 20 to 150 in a year and coordination is breaking"
 
-**Not when:** group well below 50 and problems are interpersonal; constraint is incentive misalignment (use [`principal-agent`](../principal-agent/SKILL.md)); challenge is growing a network beyond 150 (use [`network-effects`](../network-effects/SKILL.md)).
+**Not when:** group well below 50 and problems are interpersonal; constraint is incentive misalignment (use `principal-agent`); challenge is growing a network beyond 150 (use `network-effects`).
 
 ## Coaching Novices (Adaptive Front Door)
 
@@ -66,6 +68,7 @@ Prescription: [split / formalize / layer] | Sub-unit targets: [≤150] | Trigger
 ```
 
 *→ Method in Action: [Dunbar 1992 + W.L. Gore & Associates](examples/dunbar-1992-wl-gore-associates.md)*
+*→ 2026 lens: [Scaling an AI-native startup team (2023–2026)](examples/ai-native-startup-scaling-2023-2026.md) — how AI capital compresses the timeline to the ~50 and ~150 breakpoints*
 
 ## Pack: Dunbar Number Across Domains
 
@@ -115,4 +118,6 @@ Prescription: [split / formalize / layer] | Sub-unit targets: [≤150] | Trigger
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/dunbars-number** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/dunbars-number.json*

@@ -1,0 +1,113 @@
+{
+  "launchers": {
+    "pcl2": {
+      "name_cn": "PCL2",
+      "platform": "pc",
+      "saves_path": ".minecraft/saves/",
+      "mods_path": ".minecraft/mods/",
+      "config_path": ".minecraft/versions/",
+      "install_detect": {
+        "type": "process",
+        "name": "Plain Craft Launcher 2"
+      },
+      "jvm_recommend": "-Xmx4G -Xms2G -XX:+UseG1GC"
+    },
+    "hmcl": {
+      "name_cn": "HMCL",
+      "platform": "pc",
+      "saves_path": ".minecraft/saves/",
+      "mods_path": ".minecraft/mods/",
+      "config_path": ".minecraft/versions/",
+      "install_detect": {
+        "type": "process",
+        "name": "HMCL"
+      },
+      "jvm_recommend": "-Xmx4G -Xms2G -XX:+UseG1GC"
+    },
+    "xmcl": {
+      "name_cn": "X Minecraft Launcher",
+      "platform": "pc",
+      "saves_path": "{instance}/.minecraft/saves/",
+      "mods_path": "{instance}/.minecraft/mods/",
+      "config_path": "{instance}/.minecraft/versions/",
+      "install_detect": {
+        "type": "process",
+        "name": "xmcl"
+      },
+      "jvm_recommend": "-Xmx4G -Xms2G -XX:+UseG1GC"
+    },
+    "prism": {
+      "name_cn": "Prism Launcher",
+      "platform": "pc",
+      "saves_path": "{instance}/.minecraft/saves/",
+      "mods_path": "{instance}/.minecraft/mods/",
+      "config_path": "{instance}/.minecraft/versions/",
+      "install_detect": {
+        "type": "process",
+        "name": "prismlauncher"
+      },
+      "jvm_recommend": "-Xmx4G -Xms2G -XX:+UseG1GC"
+    },
+    "bakaxl": {
+      "name_cn": "BakaXL",
+      "platform": "pc",
+      "saves_path": ".minecraft/saves/",
+      "mods_path": ".minecraft/mods/",
+      "config_path": ".minecraft/versions/",
+      "install_detect": {
+        "type": "process",
+        "name": "BakaXL"
+      },
+      "jvm_recommend": "-Xmx4G -Xms2G -XX:+UseG1GC"
+    },
+    "fcl": {
+      "name_cn": "FCL",
+      "platform": "mobile",
+      "saves_path": "/sdcard/FCL/saves/",
+      "mods_path": "/sdcard/FCL/mods/",
+      "config_path": "/sdcard/FCL/config/",
+      "install_detect": {
+        "type": "package",
+        "name": "com.fcl"
+      },
+      "jvm_recommend": "-Xmx2G -Xms1G -XX:+UseG1GC"
+    },
+    "pojav": {
+      "name_cn": "PojavLauncher",
+      "platform": "mobile",
+      "saves_path": "/sdcard/Pojav/saves/",
+      "mods_path": "/sdcard/Pojav/mods/",
+      "config_path": "/sdcard/Pojav/config/",
+      "install_detect": {
+        "type": "package",
+        "name": "net.kdt.pojavlaunch"
+      },
+      "jvm_recommend": "-Xmx2G -Xms1G -XX:+UseG1GC"
+    },
+    "ling_zalith": {
+      "name_cn": "Ling Zalith",
+      "platform": "mobile",
+      "saves_path": "/sdcard/LingZalith/saves/",
+      "mods_path": "/sdcard/LingZalith/mods/",
+      "config_path": "/sdcard/LingZalith/config/",
+      "install_detect": {
+        "type": "package",
+        "name": "com.ling.zalith"
+      },
+      "jvm_recommend": "-Xmx2G -Xms1G -XX:+UseG1GC"
+    },
+    "netease": {
+      "name_cn": "网易版",
+      "platform": "pc",
+      "saves_path": "MCLDownload/Game/saves/",
+      "mods_path": "MCLDownload/Game/mods/",
+      "config_path": "MCLDownload/Game/config/",
+      "install_detect": {
+        "type": "process",
+        "name": "MCLauncher"
+      },
+      "jvm_recommend": "-Xmx4G -Xms2G -XX:+UseG1GC",
+      "notes": "网易版客户端对模组有合规性限制，安装非官方审核模组需自行承担风险"
+    }
+  }
+}

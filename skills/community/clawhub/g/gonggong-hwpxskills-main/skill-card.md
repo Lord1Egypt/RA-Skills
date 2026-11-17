@@ -1,40 +1,56 @@
-## Description: <br>
-HWPX document skill that helps agents create, read, edit, and apply template substitutions for Korean HWPX files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HWPX 문서(.hwpx 파일)를 생성, 읽기, 편집, 템플릿 치환하는 스킬. 한글 HWPX 포맷을 다루며 양식 기반 템플릿 치환 워크플로우를 제공합니다.
 
-## Publisher: <br>
-[withakiss](https://clawhub.ai/user/withakiss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[withakiss](https://clawhub.ai/user/withakiss)
 
-## Use Case: <br>
-Developers and document automation users use this skill to inspect HWPX templates, map placeholders to structured data, and generate edited HWPX documents from templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Referenced requirements, install scripts, run.py, or helper scripts from a linked repository or another source may execute code outside the reviewed documentation-only package. <br>
-Mitigation: Inspect those files before execution and confirm they match the intended release before installing dependencies or running helper commands. <br>
-Risk: Incorrect placeholder mappings can produce inaccurate or incomplete HWPX documents. <br>
-Mitigation: Analyze template placeholders first and review generated HWPX output before relying on the document. <br>
+## Use Case:
 
+Developers and document-automation users can use this skill to analyze HWPX templates, replace placeholders from mapping data, and create edited .hwpx files for Korean document workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/withakiss/gonggong-hwpxskills-main) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON mapping instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of HWPX files in an outputs directory using user-provided templates and mappings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Installation guidance references missing runtime files and dependency instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the package as incomplete until the publisher provides the missing install.sh or requirements.txt instructions and confirms the supported runtime setup.
+
+Risk: The optional python-hwpx dependency is described without a canonical source or pinned version.
+
+Mitigation: Install python-hwpx only from a verified source with a pinned version or commit and publisher-provided verification details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/withakiss/skills/gonggong-hwpxskills-main)
+- [Publisher Profile](https://clawhub.ai/user/withakiss)
+- [Project Homepage](https://github.com/withakiss/hwpx_my)
+- [Release v0.1.0](https://github.com/withakiss/hwpx_my/releases/tag/v0.1.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON mapping examples; generated HWPX files may be written to an outputs directory.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Works with local HWPX template paths and mapping JSON inputs.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

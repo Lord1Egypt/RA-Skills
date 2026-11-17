@@ -1,40 +1,53 @@
-## Description: <br>
-提供翠溪山庄基础信息、预订服务及多平台适配的真实营销文案，支持客户咨询与度假推广需求。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+翠溪山庄 helps agents answer guest questions, support reservation workflows, and draft platform-specific marketing copy for a vacation villa using verified villa information.
 
-## Publisher: <br>
-[loveyadong](https://clawhub.ai/user/loveyadong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loveyadong](https://clawhub.ai/user/loveyadong)
 
-## Use Case: <br>
-Villa operators and service staff use this skill to answer guest questions about 翠溪山庄 and draft platform-specific promotional copy for vacation, family, couple, and team-building scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer replies or marketing posts may contain stale or unverified resort facts. <br>
-Mitigation: Verify prices, policies, availability, facilities, location details, and promotional claims before sending or publishing the output. <br>
-Risk: Future booking, payment, or messaging integrations could expose customer or transaction data. <br>
-Mitigation: Grant only narrow, user-controlled access and require human review before enabling external actions. <br>
+## Use Case:
 
+Hospitality operators and customer-facing agents use this skill to provide Chinese-language villa information, booking support, and promotional drafts for ClawHub users interested in 翠溪山庄.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/loveyadong/cuixishanzhuang-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese natural-language responses and marketing copy, usually as plain text or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no executable code or automated external actions are produced by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Villa facts, prices, booking policies, or platform-specific marketing rules may be inaccurate or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm current villa details, prices, policies, and platform rules before relying on generated answers or promotional copy.
+
+Risk: Draft booking support, customer communications, or promotional content could be used without appropriate human review.
+
+Mitigation: Treat generated customer-facing content as a draft unless a human explicitly approves reservation changes, customer messages, or publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loveyadong/skills/cuixishanzhuang-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft booking, customer-service, and marketing content should be reviewed before customer communication or publication.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

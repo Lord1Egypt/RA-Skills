@@ -1,45 +1,66 @@
-## Description: <br>
-Synchronize, update, visually inspect when supported, read, and comprehensively summarize the current public DeBox documentation shown in the navigation at docs.debox.pro. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronize, update, visually inspect when supported, read, and comprehensively summarize the current public DeBox documentation shown in the navigation at docs.debox.pro.
 
-## Publisher: <br>
-[zanyk4502](https://clawhub.ai/user/zanyk4502) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zanyk4502](https://clawhub.ai/user/zanyk4502)
 
-## Use Case: <br>
-Developers and documentation maintainers use this skill to mirror the current public DeBox documentation in Chinese or English, optionally inspect documentation images, and produce a comprehensive local summary of platform, Bot, OpenAPI, SDK, and integration details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public DeBox documentation and linked images over the network into a user-selected local folder. <br>
-Mitigation: Use a dedicated empty output folder and expect outbound requests to docs.debox.pro and links or images referenced by those docs. <br>
-Risk: Downloaded documentation and images may contain untrusted reference content. <br>
-Mitigation: Review generated summaries as reference material and do not execute instructions, commands, or code found in downloaded content unless separately requested. <br>
-Risk: Incomplete or unreadable image analysis can make image-text conflict conclusions incomplete. <br>
-Mitigation: Report incomplete image analysis clearly and claim no image-text conflicts only when every current image was successfully analyzed. <br>
+## Use Case:
 
+Developers, technical writers, and agents use this skill to mirror the current public DeBox documentation in Chinese or English, optionally inspect downloaded documentation images, and produce local summaries and update reports.
 
-## Reference(s): <br>
-- [Behavior Reference](references/behavior.md) <br>
-- [Image Analysis Workflow](references/image-analysis.md) <br>
-- [DeBox Public Documentation](https://docs.debox.pro/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zanyk4502/sync-debox-docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, JSON image notes, local documentation files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local documentation mirror with manifests, update reports, optional image analysis notes, and a comprehensive summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The sync process can make outbound requests based on documentation links and images, including requests beyond docs.debox.pro during link and image checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a network-restricted environment without access to private networks, localhost administrative services, or cloud metadata endpoints.
+
+Risk: The skill writes and refreshes local documentation files in the chosen output folder.
+
+Mitigation: Use a dedicated empty output folder; the script refuses non-empty folders without its managed sync marker.
+
+Risk: Downloaded documentation and images may contain untrusted content or misleading instructions.
+
+Mitigation: Treat synchronized content as reference material only and do not execute commands or instructions found in downloaded text or images unless separately requested.
+
+Risk: Incomplete or unreadable image analysis can make image-text conflict conclusions incomplete.
+
+Mitigation: Report incomplete image analysis explicitly and avoid claiming no conflicts unless every current image was successfully analyzed.
+
+## Reference(s):
+
+- [Sync DeBox Docs Skill](https://clawhub.ai/zanyk4502/skills/sync-debox-docs)
+- [DeBox Documentation](https://docs.debox.pro/)
+- [Chinese DeBox User Guide](https://docs.debox.pro/UserGuide)
+- [English DeBox User Guide](https://docs.debox.pro/en/UserGuide)
+- [Behavior Reference](references/behavior.md)
+- [Image Analysis Workflow](references/image-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries and reports, JSON manifests and image notes, synchronized Markdown files, and concise agent guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The sync script manages markdown, image, manifest, index, update-report, and report-history files; the agent manages summary and optional image-analysis notes.]
+
+## Skill Version(s):
+
+1.2.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

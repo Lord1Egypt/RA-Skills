@@ -1,40 +1,57 @@
-## Description: <br>
-Audits local OpenClaw security configuration and runtime exposure across proxy settings, sandbox configuration, Docker port mappings, gateway status, file permissions, workspace symlinks, and listening ports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits local OpenClaw security configuration and runtime exposure, covering proxy, sandbox, Docker ports, gateway, file permissions, workspace symlinks, listening ports, and overall local security posture.
 
-## Publisher: <br>
-[ASantsSec](https://clawhub.ai/user/ASantsSec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asantssec](https://clawhub.ai/user/asantssec)
 
-## Use Case: <br>
-Developers and security engineers use this skill to inspect local OpenClaw deployments and sandboxed development environments for common configuration, exposure, and permission risks. It helps choose focused checks or a full audit and summarizes findings with risk levels and remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit output can expose local paths, file permissions, command output, and sensitive proxy or configuration lines. <br>
-Mitigation: Review and redact audit results before sharing them outside the trusted environment. <br>
-Risk: The skill runs local read-only commands and file inspections that depend on installed tools, file access, and current user permissions. <br>
-Mitigation: Treat missing files, command failures, and permission errors as coverage limits rather than proof that the environment is secure. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect local OpenClaw deployments, sandbox environments, and development machines for configuration, network exposure, permissions, proxy, gateway, and symlink risks. It helps produce a prioritized audit report with evidence, risk levels, limitations, and remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ASantsSec/ants-openclaw-security-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown audit summaries with structured findings and JSON output from local helper checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local checks can include paths, permissions, command output, and proxy or configuration lines; review results before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads local OpenClaw-related configuration paths and reports host state, which may reveal sensitive local details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where local audit access is acceptable, and review reports before sharing them outside the trusted team.
+
+Risk: Proxy audit output may include live credentials or credential-bearing URLs.
+
+Mitigation: Redact tokens, gateway URLs, and other credentials from transcripts, logs, and audit reports before distribution.
+
+Risk: The workspace symlink check has a reliability weakness and should not be treated as definitive.
+
+Mitigation: Confirm symlink containment findings manually or with an independent path-containment check before making security decisions.
+
+## Reference(s):
+
+- [OpenClaw Security Audit on ClawHub](https://clawhub.ai/asantssec/skills/ants-openclaw-security-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown audit report with JSON tool outputs and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local paths, port bindings, file permissions, configuration snippets, and proxy findings that should be reviewed before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

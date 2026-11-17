@@ -1,45 +1,57 @@
-## Description: <br>
-Returns pre-extracted web content, including text, tables, code, and structured snippets, for grounding LLM and RAG workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides RAG and LLM grounding by returning pre-extracted, relevance-ranked web content through GET and POST API calls.
 
-## Publisher: <br>
-[sprintmint](https://clawhub.ai/user/sprintmint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sprintmint](https://clawhub.ai/user/sprintmint)
 
-## Use Case: <br>
-Developers and AI engineers use this skill to call a paid x402 web-grounding service that returns extracted page content for agents, RAG pipelines, fact checking, and question answering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid API requests may be triggered through x402 payment middleware. <br>
-Mitigation: Use a low-balance or capped payment wallet and require confirmation before paid calls. <br>
-Risk: Queries and optional precise location headers can expose sensitive user context to the provider. <br>
-Mitigation: Avoid private queries or precise location data unless the user explicitly agrees and trusts the provider. <br>
+## Use Case:
 
+Developers and AI builders use this skill to retrieve web-grounding context for agents, RAG pipelines, assistants, fact checking, and content research workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sprintmint/cpbox-llm-context) <br>
-- [Publisher Profile](https://clawhub.ai/user/sprintmint) <br>
-- [CPBox API Provider](https://www.cpbox.io) <br>
-- [CPPay x402 Facilitator](https://www.cppay.finance) <br>
-- [LLM Context GET Endpoint](https://www.cpbox.io/api/x402/llm-context) <br>
-- [LLM Context POST Endpoint](https://www.cpbox.io/api/x402/llm-context/post) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown instructions with HTTP examples and JSON response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for paid GET and POST API calls; service responses contain extracted grounding snippets and source metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic x402 payment execution through an unpinned payment client may make paid requests without enough guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and vet the x402 payment client, and use spending limits or explicit confirmation before paid calls.
+
+Risk: Location-aware recall can send precise coordinates when local headers are used.
+
+Mitigation: Avoid sending exact coordinates unless the user specifically requests location-aware results; prefer coarse location fields when sufficient.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sprintmint/skills/cpbox-llm-context)
+- [CPBox API provider](https://www.cpbox.io)
+- [CPPay x402 facilitator](https://www.cppay.finance)
+- [LLM Context GET endpoint](https://www.cpbox.io/api/x402/llm-context)
+- [LLM Context POST endpoint](https://www.cpbox.io/api/x402/llm-context/post)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTTP and bash examples; API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports token, URL, snippet, ranking, Goggles, and optional location parameters; paid requests use x402 payment middleware.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

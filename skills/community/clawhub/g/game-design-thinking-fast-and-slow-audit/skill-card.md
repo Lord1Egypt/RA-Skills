@@ -1,42 +1,55 @@
-## Description: <br>
-Audit a game, feature, combat system, economy loop, onboarding flow, puzzle, UI, or design proposal through the lens of fast versus slow thinking inspired by Thinking, Fast and Slow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits games, features, combat systems, economy loops, onboarding flows, puzzles, UIs, and design proposals through fast-versus-slow thinking to diagnose cognitive fit, overload, under-stimulation, and mode handoff problems.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product teams, narrative designers, and design reviewers use this skill to audit whether a game or feature asks players for fast intuitive thinking, slow analytical reasoning, or an awkward mix that harms pacing, fantasy, onboarding, or decision quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process confidential design documents, private analytics, or unreleased business material supplied by the user. <br>
-Mitigation: Use approved environments and share sensitive material only when the user is comfortable having it processed by their agent. <br>
-Risk: Game-design recommendations may be incomplete or mismatched when the input lacks concrete systems, player segment, or playtest evidence. <br>
-Mitigation: Anchor the audit to named mechanics, observed player behavior, and the intended audience before acting on recommendations. <br>
+## Use Case:
 
+External game designers, product teams, and developers use this skill to evaluate whether a game design asks players for intuitive or analytical thinking at the right moments, with enough support for the intended fantasy, pacing, and audience.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanestane/game-design-thinking-fast-and-slow-audit) <br>
-- [Family Conventions](references/family-conventions.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with tables, prioritized recommendations, and a minimal fix] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces design-facing diagnosis, cognitive risk mapping, and concrete design actions; it does not execute code or call external tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill's recommendations are subjective design critique and may be mistaken for objective security, commercial, or business guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as design advice, validate recommendations against playtest evidence, and keep human design review in the decision loop.
+
+Risk: Incomplete or one-sided input can lead the audit to overstate cognitive-fit problems or miss audience-specific tradeoffs.
+
+Mitigation: Provide concrete game moments, player segments, constraints, and observed playtest behavior, and require the audit to state assumptions when evidence is thin.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stanestane/skills/game-design-thinking-fast-and-slow-audit)
+- [Family Conventions](references/family-conventions.md)
+- [Output Patterns](references/output-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit with tables and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a thinking-mode profile, mode-fit diagnosis, transition diagnosis, cognitive risk map, design actions, and a minimal fix.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

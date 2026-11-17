@@ -1,40 +1,53 @@
-## Description: <br>
-SharpAgent Engineering Lifecycle defines a six-phase engineering workflow from specification through shipping, with planning, verification, review, calibration, content safety, and anti-rationalization practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SharpAgent Engineering Lifecycle is a 6-phase engineering pipeline for Spec, Plan, Build, Verify, Review, and Ship workflows, embedding five-factor review, calibration, content safety, and anti-rationalization practices for structured development.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to structure software work from specification through shipping, with explicit planning, verification, review, rollback, and documentation gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow-guided coding changes can still introduce incorrect, unsafe, or incomplete project edits. <br>
-Mitigation: Review agent diffs, keep version control or backups, and verify changes with tests, builds, and security checks before relying on them. <br>
-Risk: The skill text includes self-declared verification language that is not independent security validation. <br>
-Mitigation: Treat the provided security evidence as the authoritative scan signal and apply normal human review before deployment. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to run a structured software lifecycle from requirements and planning through implementation, verification, review, and release documentation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yezhaowang888-stack/sharpagent-engineering-lifecycle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with project artifact recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or modification of project files during lifecycle phases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The workflow may cause agents to create or update planning, review, verification, and release documents that affect a project record.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated documents and require evidence such as passing tests, build output, or runtime checks before accepting lifecycle progress.
+
+Risk: Applying the full lifecycle to very small changes may add unnecessary process overhead.
+
+Mitigation: Use the skill's fast-track guidance for tiny or single-line changes while still completing build, verify, review, and ship checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/sharpagent-engineering-lifecycle)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional code, shell command, configuration, planning, review, verification, and release artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs vary by lifecycle phase and may include specs, task plans, tests, verification reports, review notes, release notes, and retrospectives.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

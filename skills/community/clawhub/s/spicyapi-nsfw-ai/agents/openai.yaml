@@ -1,0 +1,8 @@
+interface:
+  display_name: "NSFW AI (SpicyAPI)"
+  short_description: "Generate adult images, image-to-video clips and uncensored edits via SpicyAPI"
+  default_prompt:
+    "Use $nsfw-ai to pick a Spicy model, write an adults-only prompt, show me the quote, and generate after I approve."
+
+policy:
+  allow_implicit_invocation: true

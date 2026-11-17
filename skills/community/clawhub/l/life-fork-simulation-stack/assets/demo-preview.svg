@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
-  <title id="title">人生岔路复盘 demo 预览</title>
+  <title id="title">人生岔路复盘报告预览</title>
   <desc id="desc">移动端报告预览，展示强判词、一次选择分出三种结果的分叉图，以及现实结果、假设结果、回补结果三张卡片。</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">

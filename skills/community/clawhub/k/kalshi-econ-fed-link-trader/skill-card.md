@@ -1,47 +1,61 @@
-## Description: <br>
-Cross-market strategy that uses CPI bin prices to estimate CPI level, then adjusts Fed rate market positions via a sensitivity model. High CPI means Fed less likely to cut. Requires SIMMER_API_KEY and simmer-sdk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-market strategy that uses CPI bin prices to estimate CPI level, then adjusts Fed rate market positions via a sensitivity model.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Developers and trading agents use this skill to inspect CPI-linked Kalshi markets, compare CPI-implied Fed probabilities against Fed rate market prices, and identify or execute bounded trading opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place and close real USDC positions automatically. <br>
-Mitigation: Test in dry-run first and pass --live only when intentional. <br>
-Risk: The skill requires trading credentials and a Solana private key for live execution. <br>
-Mitigation: Use a dedicated low-balance wallet and API key. <br>
-Risk: Recurring automation can repeatedly execute the trading strategy if enabled. <br>
-Mitigation: Keep cron disabled unless recurring execution is intended. <br>
-Risk: The simmer-sdk dependency receives live trading authority when credentials are provided. <br>
-Mitigation: Review or pin simmer-sdk before supplying live credentials. <br>
+## Use Case:
 
+External developers and trading agents use this skill to evaluate CPI-implied signals against Kalshi Fed rate markets and manage paper or explicitly enabled live trading runs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/kalshi-econ-fed-link-trader) <br>
-- [Simmer Skills](https://simmer.markets/skills) <br>
-- [simmer-sdk PyPI Package](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk Repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Console text with dry-run opportunity reports, position/config views, and optional live trading actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to dry-run; --live can place and close real USDC positions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can execute real financial trades when run with --live and configured credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run mode unless live trading is intended; cap position size, trades per run, slippage, and liquidity through tunables before enabling live runs.
+
+Risk: SIMMER_API_KEY and SOLANA_PRIVATE_KEY are high-value credentials.
+
+Mitigation: Use a dedicated low-balance wallet and scoped API key where possible; rotate credentials if they are exposed.
+
+Risk: The trading model uses a static CPI-to-Fed sensitivity table that may not match current market conditions.
+
+Mitigation: Review the model assumptions and compare signals against current macro data before relying on trade recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/kalshi-econ-fed-link-trader)
+- [Publisher profile](https://clawhub.ai/user/diagnostikon)
+- [Simmer skills homepage](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal output with optional JSON automaton status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry run by default; live trading requires --live and configured SIMMER_API_KEY and SOLANA_PRIVATE_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

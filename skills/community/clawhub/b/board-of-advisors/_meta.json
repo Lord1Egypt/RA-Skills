@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7aehnd61e24t4wv5zdd1f3fs81fcce",
+  "name": "Board of Advisors",
   "slug": "board-of-advisors",
   "version": "1.0.0",
-  "publishedAt": 1772762853818
+  "description": "15 strategic AI advisors for board-level decisions. Governance, exits, fundraising, M&A, international expansion, risk management, turnarounds, and more.",
+  "author": "ClawGeeks",
+  "homepage": "https://clawgeeks.com",
+  "tags": ["advisors", "board", "strategy", "governance", "M&A", "fundraising", "startup"],
+  "os": ["linux", "darwin", "win32"]
 }

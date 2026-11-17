@@ -1,7 +1,7 @@
 {
   "name": "notion-get-users",
   "title": "Get users and bots in workspace",
-  "description": "Retrieves a list of users in the current workspace. Shows workspace members and guests with their IDs, names, emails (if available), and types (person or bot).\nSupports cursor-based pagination to iterate through all users in the workspace.\n<examples>\n1. List all users (first page): {}\n2. Search for users by name or email: {\"query\": \"john\"}\n3. Get next page of results: {\"start_cursor\": \"abc123\"}\n4. Set custom page size: {\"page_size\": 20}\n5. Fetch a specific user by ID: {\"user_id\": \"00000000-0000-4000-8000-000000000000\"}\n6. Fetch the current user: {\"user_id\": \"self\"}\n</examples>",
+  "description": "Retrieves a list of users in the current workspace. Shows workspace members and guests with their IDs, names, emails (if available), and types (person or bot).\nSupports cursor-based pagination to iterate through all users in the workspace.\n<examples>\n1. List all users (first page): {}\n2. Search for users by name or email: {\"query\": \"john\"}\n3. Get next page of results: {\"start_cursor\": \"abc123\"}\n4. Set custom page size: {\"page_size\": 20}\n5. Fetch a specific user by ID: {\"user_id\": \"00000000-0000-4000-8000-000000000000\"}\n6. Fetch the current user: {\"user_id\": \"self\"}\n</examples>\n\nPRIVACY: responses may contain personal data — member and guest names, email addresses, and workspace membership. Enumerate the directory only when the task genuinely requires it, prefer looking up the specific person you need, and do not collect, store, or forward the wider member list or any email addresses beyond what answers the immediate request.",
   "inputSchema": {
     "type": "object",
     "properties": {

@@ -1,6 +1,57 @@
 {
-  "ownerId": "kn70kx16sq87yx2tf4e47exwqs83q422",
-  "slug": "slack-channel-context",
+  "name": "slack-channel-context",
   "version": "1.0.0",
-  "publishedAt": 1774574795403
+  "description": "Automatically loads Slack channel context files into session context for Slack channels and threads.",
+  "author": "Brian McGowan",
+  "license": "MIT",
+  "repository": "https://github.com/hirebrianm/slack-channel-context",
+  "keywords": [
+    "slack",
+    "context",
+    "channel",
+    "agent"
+  ],
+  "config": {
+    "environment": {
+      "SLACK_CONTEXT_ENABLED": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable/disable the skill (true/false)"
+      },
+      "SLACK_CONTEXT_LOAD_ON_THREADS": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to load context in threaded messages (true/false). Set to false to disable context loading in threads."
+      },
+      "SLACK_CONTEXT_LOAD_ON_THREAD_START": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to load context on thread/session start (true/false)"
+      },
+      "SLACK_CONTEXT_CACHE_TTL": {
+        "type": "number",
+        "default": 3600,
+        "description": "Cache duration in seconds (default: 3600 = 1 hour)"
+      },
+      "SLACK_CONTEXT_CONTEXTS_DIR": {
+        "type": "string",
+        "default": "~/.openclaw/workspace/slack-channel-contexts/",
+        "description": "Custom directory for context files"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "load_channel_context",
+      "description": "Load Slack channel context into the current session.",
+      "file": "scripts/skill.py",
+      "function": "load_channel_context"
+    }
+  ],
+  "channels": {
+    "required": [],
+    "optional": [
+      "slack"
+    ]
+  }
 }

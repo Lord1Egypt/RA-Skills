@@ -97,19 +97,13 @@ s1 search "attention mechanism explained" -s arxiv -n 10
 s1 search "LLM tutorial" -s youtube -n 5
 ```
 
-## 10. Deep reasoning
-
-```bash
-s1 reasoning "Analyze the pros and cons of microservices vs monolith for a startup"
-```
-
-## 11. Check remaining credits
+## 10. Check remaining credits
 
 ```bash
 s1 balance
 ```
 
-## 12. JSON output for scripting
+## 11. JSON output for scripting
 
 Any command supports `--json` for raw output:
 

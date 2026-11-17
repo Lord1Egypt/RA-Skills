@@ -1,6 +1,33 @@
 {
-  "ownerId": "kn7e4xdsnt66p6zxxrvewvmvf1841pwv",
-  "slug": "travel-guide",
-  "version": "1.0.0",
-  "publishedAt": 1775751310618
+  "name": "travel-guide",
+  "version": "0.1.0",
+  "author": "zhuqingsonga",
+  "description": "Comprehensive, practical, and trustworthy travel guide covering Chinese statutory holidays, major Western holidays, popular Chinese destinations, and major international tourist spots. 全面、实用、可信赖的旅游指南，覆盖中国全部法定节假日、欧美主要节假日、中国全部热门景点以及国外主流热门景点。",
+  "keywords": [
+    "travel guide",
+    "trip planning",
+    "holiday travel",
+    "destination recommendation",
+    "travel tips",
+    "avoid scams",
+    "itinerary",
+    "China travel",
+    "international travel",
+    "tourism",
+    "vacation",
+    "旅游指南",
+    "旅行攻略",
+    "旅游推荐",
+    "行程规划",
+    "节假日旅游",
+    "避坑指南",
+    "国内旅游",
+    "国外旅游",
+    "自由行",
+    "跟团游",
+    "美食旅游",
+    "摄影旅游"
+  ],
+  "license": "MIT",
+  "createdAt": "2026-04-09"
 }

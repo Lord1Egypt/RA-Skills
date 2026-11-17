@@ -1,39 +1,52 @@
-## Description: <br>
-Analyze Python type annotation coverage and quality across Python codebases, including mypy compliance, untyped functions, Protocol usage, Generic types, TypeVar constraints, and modern typing patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Python type annotation coverage and quality by checking mypy compliance, finding untyped functions, reviewing Protocol and Generic usage, TypeVar constraints, and modern typing patterns.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to audit Python type safety, prepare projects for stricter mypy settings, and prioritize fixes for weak or missing type annotations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill inspects local Python source files and may surface file paths or code snippets in its analysis.
+
+Mitigation: Run it only in the intended workspace and review generated findings before sharing them outside the project.
+
+Risk: Broad shell searches or optional type-checker runs can produce noisy results when run from the wrong directory or across vendored dependencies.
+
+Mitigation: Run commands from the project root and exclude virtual environments, build outputs, and third-party code where appropriate.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to audit Python repositories for type annotation coverage, mypy readiness, modern typing patterns, and risky escape hatches such as Any, cast(), and type: ignore. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill from too broad a directory can expose more local source code than intended to the agent's review. <br>
-Mitigation: Run it from the specific Python project directory to be audited and review proposed shell commands before execution. <br>
-Risk: The analysis relies on shell-search heuristics and may produce incomplete or misleading typing findings. <br>
-Mitigation: Validate findings with a project type checker such as mypy or pyright and review recommendations before applying changes. <br>
+**Output Format:** [Markdown report with inline shell commands and code recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include file paths, command output summaries, coverage counts, and recommended mypy settings.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with shell command snippets, findings, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only repository inspection; commands search the current working directory and exclude common virtual environment and cache paths where specified.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

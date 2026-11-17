@@ -1,45 +1,60 @@
-## Description: <br>
-Send Feishu (Lark) notifications via OpenClaw. Core only: send messages, queue, retry. No system modifications by default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send Feishu (Lark) notifications via OpenClaw, including message delivery, structured JSON output, and retry behavior without default system modifications.
 
-## Publisher: <br>
-[crayfish-ai](https://clawhub.ai/user/crayfish-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crayfish-ai](https://clawhub.ai/user/crayfish-ai)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to send Feishu or Lark notifications from local or self-hosted workflows with JSON output and retry handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu app credentials and recipient identifiers are required for delivery. <br>
-Mitigation: Use a least-privileged Feishu app, keep config.json private, prefer environment variables where appropriate, and restrict config file permissions. <br>
-Risk: Notification content is sent to Feishu/Lark over the network. <br>
-Mitigation: Install only when Feishu/Lark delivery is intended, verify the recipient before sending, and avoid sending secrets or sensitive payloads. <br>
-Risk: Optional discovery setup can create local links to notification scripts. <br>
-Mitigation: Review optional discovery or production setup before running it and keep default safe mode unless those capabilities are needed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to send Feishu or Lark notifications from local, shared-hosting, or self-hosted workflows. It is best suited for agent status updates, operational alerts, and scripted notification delivery where Feishu credentials and recipient IDs are already available.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/crayfish-ai/feishu-relay) <br>
-- [Feishu Open API endpoint](https://open.feishu.cn/open-apis) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, json, api calls, guidance] <br>
-**Output Format:** [JSON responses and Markdown instructions with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials and a target recipient identifier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server-resolved release metadata) <br>
+Risk: Message content is sent to Feishu/Lark through the Feishu Open API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content appropriate to send to Feishu and confirm the configured recipient before sending alerts or operational messages.
+
+Risk: Feishu app credentials can be exposed if environment variables or config.json are mishandled.
+
+Mitigation: Keep FEISHU_APP_SECRET private, restrict config.json permissions, and avoid logging or sharing credential-bearing configuration.
+
+Risk: The opt-in discovery script can link executable notify scripts from other OpenClaw workspaces or skills.
+
+Mitigation: Do not run scripts/install-discovery.sh unless every scanned workspace and skill has been reviewed and trusted.
+
+## Reference(s):
+
+- [Feishu Open APIs](https://open.feishu.cn/open-apis)
+- [ClawHub Skill Page](https://clawhub.ai/crayfish-ai/skills/feishu-relay)
+- [README](artifact/README.md)
+- [Skill Metadata](artifact/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Configuration]
+
+**Output Format:** [CLI output with optional structured JSON response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends message content to Feishu through open.feishu.cn and requires Feishu app credentials plus a recipient identifier.]
+
+## Skill Version(s):
+
+3.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

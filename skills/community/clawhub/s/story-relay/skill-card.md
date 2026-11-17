@@ -1,41 +1,55 @@
-## Description: <br>
-故事接龙 supports collaborative story writing, local story management, style selection, and template-based story continuation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+故事接龙 helps users create and manage relay-style fiction with story starts, manual continuations, template-based continuations, style selection, and local story storage.
 
-## Publisher: <br>
-[yansocool](https://clawhub.ai/user/yansocool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yansocool](https://clawhub.ai/user/yansocool)
 
-## Use Case: <br>
-External users and writers use this CLI skill to start, continue, view, switch, complete, and delete locally stored collaborative stories across several Chinese-language story styles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The delete command can permanently remove local story files without sufficient safeguards. <br>
-Mitigation: Keep separate backups, verify the exact story ID before deleting, and prefer a release that validates IDs and uses confirmation or soft-delete. <br>
-Risk: Important or sensitive drafts may be stored locally in the OpenClaw workspace. <br>
-Mitigation: Review storage location and access controls before use, and avoid storing sensitive drafts unless the local environment is appropriate. <br>
+## Use Case:
 
+External users and writers use this skill to start, continue, list, view, complete, delete, and style relay-fiction projects. The artifact stores stories locally and uses built-in templates for continuation behavior.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yansocool/story-relay) <br>
-- [Project Homepage](https://github.com/openclaw/story-relay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Console text and locally persisted JSON story files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores story state under the local OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release metadata) <br>
+Risk: Unsafe local file handling may allow unintended story-file access or deletion when path-like story IDs are supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only generated story IDs, run the skill in a contained non-sensitive workspace, and add story ID validation plus delete confirmation before broader deployment.
+
+Risk: The release advertises AI continuation, image generation, and collaboration capabilities that are not fully implemented in the artifact.
+
+Mitigation: Present current behavior as local story management with template-based continuation until real AI, image, and collaboration integrations are implemented and tested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yansocool/skills/story-relay)
+- [ClawHub publisher profile](https://clawhub.ai/user/yansocool)
+- [Project homepage from ClawHub metadata](https://github.com/openclaw/story-relay)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON files]
+
+**Output Format:** [Console text with locally stored JSON story records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and modifies story and configuration files under its local story workspace.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Regulates global agent parameters by sensing system state and dynamically adjusting working modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apollo Endo helps an agent monitor its operating state and dynamically tune global work-mode parameters.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Developers and agent users use this skill to monitor token usage, active tasks, and conversation turns, then receive global parameter adjustment guidance for Apollo-style OpenClaw workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent global parameter state can change future agent behavior beyond the current request. <br>
-Mitigation: Review the state file behavior before installation and require explicit confirmation for parameter changes. <br>
-Risk: Broad triggers and propagated state may affect multiple Apollo or OpenClaw skills without clear scope limits. <br>
-Mitigation: Limit which skills consume the propagated state and document rollback steps for restoring prior parameters. <br>
-Risk: The security verdict is suspicious due to unclear user control over persistent behavior changes. <br>
-Mitigation: Install only after reviewing the skill and adding clear confirmation, scoped parameters, rollback instructions, and propagation limits. <br>
+## Use Case:
 
+External users and developers use this skill to adjust an agent's global operating parameters, such as efficiency, context priority, creativity, confirmation level, and verbosity, based on explicit preference changes or detected system state.
 
-## Reference(s): <br>
-- [Apollo Endo ClawHub release](https://clawhub.ai/nic-yuan/apollo-endo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style terminal text and JSON state file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script prints a parameter report and persists status to an OpenClaw state JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may persistently influence global agent behavior across tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before persistent parameter changes and review or narrow the configured triggers before deployment.
+
+Risk: The skill can inspect OpenClaw memory and cross-skill task activity when its helper script is run.
+
+Mitigation: Run it only with the workspace access needed for the intended task and avoid exposing other skills' private state.
+
+Risk: Broad triggers can cause parameter guidance to activate in more conversations than intended.
+
+Mitigation: Limit triggers to explicit parameter, preference, and mode-change requests where possible.
+
+## Reference(s):
+
+- [Apollo Endo ClawHub skill page](https://clawhub.ai/nic-yuan/skills/apollo-endo)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text status reports with shell command output and JSON state data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script can write a local parameter-state report when executed.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

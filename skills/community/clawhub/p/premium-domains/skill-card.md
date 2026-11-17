@@ -1,41 +1,54 @@
-## Description: <br>
-Search for premium domains for sale across Afternic, Sedo, Atom, Dynadot, Namecheap, NameSilo, and Unstoppable Domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for premium domains for sale across Afternic, Sedo, Atom, Dynadot, Namecheap, NameSilo, and Unstoppable Domains.
 
-## Publisher: <br>
-[julianengel](https://clawhub.ai/user/julianengel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[julianengel](https://clawhub.ai/user/julianengel)
 
-## Use Case: <br>
-Developers, domain buyers, and marketplace researchers use this skill to query whether a candidate domain appears for sale across major domain marketplaces and inspect listing details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Domain searches are sent to a third-party API, which may expose confidential or unreleased domain ideas. <br>
-Mitigation: Avoid querying sensitive domain candidates when query privacy matters. <br>
-Risk: Formatted output depends on jq being available in the runtime environment. <br>
-Mitigation: Install jq for formatted JSON output or remove the jq pipe from the example command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/julianengel/premium-domains) <br>
-- [Publisher profile](https://clawhub.ai/user/julianengel) <br>
-- [DomainDetails marketplace search API example](https://api.domaindetails.com/api/marketplace/search?domain=example.com) <br>
+## Use Case:
 
+Developers, founders, domain investors, and other external users use this skill to check whether a domain is listed on major premium domain marketplaces and inspect listing details such as price, currency, URL, and sale type.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response field descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl to call an external domain marketplace API; jq is optional for formatted JSON output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Domain-search queries are sent to a third-party API.
+
+Mitigation: Use the skill only when sharing searched domain names with the documented API is acceptable.
+
+Risk: Marketplace listing details such as price or availability can become stale.
+
+Mitigation: Confirm purchase terms and current availability on the linked marketplace before making a domain-buying decision.
+
+## Reference(s):
+
+- [Premium Domain Search on ClawHub](https://clawhub.ai/julianengel/skills/premium-domains)
+- [julianengel ClawHub Profile](https://clawhub.ai/user/julianengel)
+- [DomainDetails Marketplace Search API Example](https://api.domaindetails.com/api/marketplace/search?domain=example.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON response field descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; sends domain-search queries to the documented third-party API with a stated unauthenticated rate limit of 100 requests per minute.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

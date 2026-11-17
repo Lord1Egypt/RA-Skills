@@ -1,44 +1,62 @@
-## Description: <br>
-Check that new files on Google Drive are present on OwnCloud and send an email report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check that new files on Google Drive are present on OwnCloud and send an email report.
 
-## Publisher: <br>
-[SydneyPhoenix26](https://clawhub.ai/user/SydneyPhoenix26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sydneyphoenix26](https://clawhub.ai/user/sydneyphoenix26)
 
-## Use Case: <br>
-Developers and operators use this skill to compare recently created or imported Google Drive files against an OwnCloud file inventory, then generate a daily email report showing files that are present, missing, or older on OwnCloud. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The helper file-inventory service can expose broad OwnCloud file metadata if reachable by untrusted clients. <br>
-Mitigation: Restrict the service to localhost or a trusted network and require reviewed credentials before enabling it. <br>
-Risk: Default credentials and example account values appear in configuration artifacts. <br>
-Mitigation: Replace all default credentials and placeholder account values before installation or execution. <br>
-Risk: The generated inventory and email report may disclose filenames, freshness, and endpoint details. <br>
-Mitigation: Store generated inventory files with restrictive permissions and confirm that emailing detailed file reports is acceptable for the deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to compare recently created or imported Google Drive files with an OwnCloud inventory service. It produces an emailed status report that identifies files as OK, MISSING, or NEED UPDATE.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SydneyPhoenix26/owncloudsync) <br>
-- [Publisher profile](https://clawhub.ai/user/SydneyPhoenix26) <br>
-- [Homebrew install formula for gog](https://github.com/steipete/homebrew-tap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for running the sync script, configuring owncloud.json, and reviewing generated email report statuses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill installs or depends on a persistent OwnCloud inventory web service that may expose file inventory metadata on port 8443.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit access to the service with firewall or network controls before enabling the sync workflow.
+
+Risk: The sample configuration and service definition include hardcoded default credentials.
+
+Mitigation: Replace all credentials before use and restrict permissions on configuration and service files.
+
+Risk: The OwnCloud inventory file is stored under /tmp, which the security evidence flags as unsafe temporary-file handling.
+
+Mitigation: Move the inventory file into a protected service directory with restricted ownership and permissions.
+
+Risk: Daily email reports can disclose filenames and sync status to the configured recipient.
+
+Mitigation: Confirm the report recipient and the exact metadata included in reports before scheduling automated email delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sydneyphoenix26/skills/owncloudsync)
+- [Allfiles service README](allfiles-service/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown with shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires owncloud.json, Google Drive access through gog, and access to the OwnCloud inventory service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-Knowledge and utilities for creating animated GIFs optimized for Slack, including constraints, validation tools, animation concepts, and local GIF-building helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge and utilities for creating animated GIFs optimized for Slack, including constraints, validation tools, and animation concepts for Slack GIF requests.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[pupuking723](https://clawhub.ai/user/pupuking723)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to create Slack-ready animated GIFs, validate dimensions and timing, and optimize generated frames for emoji or message use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads source images and writes GIF output paths on the local filesystem. <br>
-Mitigation: Use only image paths intended for processing and output paths intended for GIF creation or replacement. <br>
-Risk: Dependency behavior can vary over time because requirements specify version ranges. <br>
-Mitigation: Pin dependencies or use a lock file when reproducible builds matter. <br>
+## Use Case:
 
+External users and developers use this skill to create Slack-ready animated GIFs, including emoji-style animations, by following Slack constraints and using bundled Python helper utilities to build, optimize, and validate GIF files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pupuking723/slack-gif-creator-anthropic) <br>
-- [Skill usage guide](artifact/SKILL.md) <br>
-- [Runtime dependencies](artifact/requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with Python code blocks and generated GIF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated GIFs are local file outputs; validation returns text summaries and dictionaries with GIF properties.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dependency hygiene and image-parser exposure when installing Python packages or processing untrusted image files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated Python environment as a normal user, pin dependencies with hashes or a lockfile for higher-assurance use, and be cautious with untrusted image files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pupuking723/skills/slack-gif-creator-anthropic)
+- [Skill source](artifact/SKILL.md)
+- [Python dependencies](artifact/requirements.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local GIF files when the agent uses the bundled Python helpers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,977 @@
+{
+  "skill_name": "roundtable-forge",
+  "evals": [
+    {
+      "id": 1,
+      "category": "primary-path",
+      "prompt": "Use $roundtable-forge to discuss whether AI will replace human creativity. I want voices from art, philosophy, technology, and economics.",
+      "expected_output": "Selects a diverse initial roster covering art, philosophy, technology, and economics; initializes a Memory file; runs topic segments with dynamic speaker selection; and produces a synthesis with consensus, divergence, and open questions.",
+      "files": [
+        "references/character-selection-guide.md",
+        "references/roundtable-protocol.md",
+        "assets/memory-template.json",
+        "assets/roundtable-template.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_disclaimer is true",
+        "needs_memory is true",
+        "process_skills contains memory-init",
+        "process_skills contains character-selection",
+        "process_skills contains roundtable-protocol"
+      ],
+      "source": "doc:SKILL.md#workflow"
+    },
+    {
+      "id": 2,
+      "category": "cross-disciplinary",
+      "prompt": "召集一个跨学科圆桌，讨论城市交通拥堵问题。我想要城市规划、经济学、心理学、技术工程师的看法。",
+      "expected_output": "Recognizes the cross-disciplinary trigger, selects characters from urban planning, economics, psychology, and engineering, and frames the roundtable around the traffic congestion topic.",
+      "files": [],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_seat_expansion is true"
+      ],
+      "source": "doc:SKILL.md#trigger-cues"
+    },
+    {
+      "id": 3,
+      "category": "character-summoning",
+      "prompt": "让苏格拉底、马斯克和钢铁侠坐在一起，讨论人类是否应该殖民火星。",
+      "expected_output": "Accepts the explicitly named characters, documents them as real_historical / real_living / fictional, builds a roundtable on Mars colonization, and appends the disclaimer.",
+      "files": [
+        "references/disclaimer-template.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_disclaimer is true"
+      ],
+      "source": "doc:SKILL.md#character-summoning"
+    },
+    {
+      "id": 4,
+      "category": "continue-memory",
+      "prompt": "这是我上一次的圆桌讨论 Memory 文件。请继续深入，增加一位伦理学视角的角色，并讨论未解决的开放问题。",
+      "expected_output": "Loads the provided Memory file, identifies open questions, adds an ethics character as a seat expansion, and runs additional topic segments before updating Memory.",
+      "files": [
+        "references/memory-schema.md",
+        "references/roundtable-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is continue-memory",
+        "lead_agent is Roundtable Conductor",
+        "process_skills contains memory-loader",
+        "process_skills contains seat-expansion"
+      ],
+      "source": "doc:SKILL.md#continue-memory"
+    },
+    {
+      "id": 5,
+      "category": "roster-only",
+      "prompt": "帮我选几个适合讨论教育改革这个问题的人，但不要展开讨论。",
+      "expected_output": "Returns a proposed character roster with rationale without running a full roundtable.",
+      "files": [
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is roster-only",
+        "lead_agent is Roundtable Conductor",
+        "needs_memory is false"
+      ],
+      "source": "doc:references/routing-table.md#variant-route-character-only-roster"
+    },
+    {
+      "id": 6,
+      "category": "seat-expansion",
+      "prompt": "Use $roundtable-forge to discuss the future of work. Start with an economist, a sociologist, and a technologist, then expand if legal questions come up.",
+      "expected_output": "Starts with the requested three characters and expands with a legal perspective once labor-law or regulation topics emerge, documenting the expansion in Memory.",
+      "files": [
+        "references/roundtable-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_seat_expansion is true"
+      ],
+      "source": "doc:references/roundtable-protocol.md#seat-expansion-triggers"
+    },
+    {
+      "id": 7,
+      "category": "negative-factual",
+      "prompt": "What is the capital of France?",
+      "expected_output": "Does not activate the full roundtable; either answers directly or routes to a general Q&A workflow instead of summoning characters.",
+      "files": [
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is factual-fallback",
+        "lead_agent is General Assistant",
+        "needs_memory is false"
+      ],
+      "negative": true,
+      "source": "doc:references/routing-table.md#fallbacks"
+    },
+    {
+      "id": 8,
+      "category": "negative-single-perspective",
+      "prompt": "用马克思的视角分析一下当代贫富差距。",
+      "expected_output": "Does not run a roundtable; suggests a perspective skill or answers as a single-perspective analysis.",
+      "files": [
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is single-perspective-fallback",
+        "lead_agent is Perspective Lens",
+        "needs_memory is false"
+      ],
+      "negative": true,
+      "source": "doc:references/routing-table.md#fallbacks"
+    },
+    {
+      "id": 9,
+      "category": "boundary-sensitive-domain",
+      "prompt": "召集一个圆桌，让几位现任政治人物讨论当前国际冲突。",
+      "expected_output": "Adds the standard disclaimer, prefers historical figures or archetypes unless the user explicitly insists, and warns about misrepresentation risks.",
+      "files": [
+        "references/disclaimer-template.md",
+        "references/character-selection-guide.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "process_skills contains sensitive-domain-guard"
+      ],
+      "source": "doc:references/character-selection-guide.md#what-to-avoid"
+    },
+    {
+      "id": 10,
+      "category": "depth-expansion",
+      "prompt": "刚才的圆桌讨论很有意思，能不能再延伸一下，看看有没有被忽略的生物学视角？",
+      "expected_output": "Recognizes the depth-expansion trigger, adds a biology character to the existing or inferred roster, and continues the discussion.",
+      "files": [
+        "references/roundtable-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is continue-memory",
+        "lead_agent is Roundtable Conductor",
+        "process_skills contains seat-expansion"
+      ],
+      "source": "doc:references/roundtable-protocol.md#seat-expansion-triggers"
+    },
+    {
+      "id": 11,
+      "category": "user-interjection-question",
+      "prompt": "等一下，我想问一下，刚才那位工程师提到的碳捕获成本，他的假设是不是太乐观了？",
+      "expected_output": "Recognizes the user interjection during a round, surfaces it as a user-posed follow-up question in Memory, and lets the engineer respond in the same round before continuing.",
+      "files": [
+        "references/user-interjection-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is user-interjection",
+        "lead_agent is Roundtable Conductor",
+        "process_skills contains user-interjection-handler"
+      ],
+      "source": "doc:references/user-interjection-protocol.md#interjection-shape"
+    },
+    {
+      "id": 12,
+      "category": "user-interjection-injection",
+      "prompt": "打断一下，请加一位气候科学家进入圆桌，并继续讨论碳捕获的可行性。",
+      "expected_output": "Recognizes the user's interjection as a seat expansion request, adds a climate scientist, and continues the discussion with the expanded roster.",
+      "files": [
+        "references/user-interjection-protocol.md",
+        "references/roundtable-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is user-interjection",
+        "lead_agent is Roundtable Conductor",
+        "process_skills contains seat-expansion",
+        "process_skills contains user-interjection-handler"
+      ],
+      "source": "doc:references/user-interjection-protocol.md#interjection-as-seat-expansion"
+    },
+    {
+      "id": 13,
+      "category": "user-interjection-pivot",
+      "prompt": "先停一下，这个话题我想换到另一个问题：从教育公平角度看通才与专才。",
+      "expected_output": "Recognizes the topic-pivot interjection, freezes the current topic's open questions into Memory, and opens a new topic on the user-supplied question.",
+      "files": [
+        "references/user-interjection-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is user-interjection",
+        "lead_agent is Roundtable Conductor",
+        "process_skills contains topic-pivot"
+      ],
+      "source": "doc:references/user-interjection-protocol.md#interjection-as-topic-pivot"
+    },
+    {
+      "id": 14,
+      "category": "multi-agent-runtime",
+      "prompt": "Use $roundtable-forge to run a multi-agent roundtable where every character is an independent agent, discussing AI alignment.",
+      "expected_output": "Claims real_subagent_runtime, spawns each character as an independent subagent via the Task tool, builds agent_profile for each character, collects speaking_intent after each speech, and keeps the Conductor separate from the characters.",
+      "files": [
+        "references/multi-agent-runtime-protocol.md",
+        "references/character-selection-guide.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "runtime_claim is real_subagent_runtime",
+        "process_skills contains subagent-spawn",
+        "needs_disclaimer is true",
+        "needs_memory is true"
+      ],
+      "source": "doc:references/multi-agent-runtime-protocol.md#default-selection-rules"
+    },
+    {
+      "id": 15,
+      "category": "intra-round-continuity",
+      "prompt": "用 $roundtable-forge 召集一个圆桌讨论：在 AI 时代如何读书。希望角色之间能互相回应，而不是各说各话。",
+      "expected_output": "Uses single_backend_multi_session by default, runs topic segments instead of fixed rounds, collects speaking_intent after each speech, selects the next speaker dynamically, records action_type (extend/rebut/question/interrupt/independent) for each speech, and produces a synthesis that reflects genuine dialogue rather than parallel monologues.",
+      "files": [
+        "references/intra-round-speaking-protocol.md",
+        "references/roundtable-protocol.md",
+        "references/memory-schema.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "runtime_claim is single_backend_multi_session",
+        "needs_disclaimer is true",
+        "needs_memory is true"
+      ],
+      "source": "doc:references/intra-round-speaking-protocol.md#core-principle"
+    },
+    {
+      "id": 16,
+      "category": "conductor-invitation",
+      "prompt": "召集一个圆桌讨论 AI 对齐，当角色们出现不可调和的价值分歧时，主持人应主动问我倾向于哪种立场。",
+      "expected_output": "Recognizes the need for the Conductor to invite the user at a value fork, includes a conductor_invitation record in Memory, and routes the discussion using references/conductor-invitation-protocol.md.",
+      "files": [
+        "references/conductor-invitation-protocol.md",
+        "references/memory-schema.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "process_skills contains conductor-invitation-handler"
+      ],
+      "source": "doc:references/conductor-invitation-protocol.md"
+    },
+    {
+      "id": 17,
+      "category": "continuation",
+      "prompt": "这是我上一次的圆桌 Memory，想从 synthesis.next_steps 里选一个方向继续深入。",
+      "expected_output": "Loads the provided Memory, presents the next_steps, and prepares a continuation into a new focus question while recording a continuation interjection in Memory.",
+      "files": [
+        "references/continuation-protocol.md",
+        "references/memory-schema.md"
+      ],
+      "expectations": [
+        "workflow_bundle is continue-memory",
+        "lead_agent is Roundtable Conductor",
+        "process_skills contains memory-loader",
+        "process_skills contains continuation-handler"
+      ],
+      "source": "doc:references/continuation-protocol.md"
+    },
+    {
+      "id": 18,
+      "category": "fusion-thinker",
+      "prompt": "召集一个圆桌讨论：个人自由与社会秩序之间的张力。请加入一位融思者，从跨学科综合视角给出新立场，而不是让各派争论谁对谁错。",
+      "expected_output": "Selects a fusion thinker archetype, ensures its speech protocol includes cross-domain references, a synthesizable stance, and explicit residual tension.",
+      "files": [
+        "references/character-selection-guide.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "process_skills contains fusion-thinker-handler"
+      ],
+      "source": "doc:references/character-selection-guide.md#fusion-thinker"
+    },
+    {
+      "id": 19,
+      "category": "temporal-grounding",
+      "prompt": "在 2026 年当前时间点，召集一个圆桌讨论 AI Agent 大规模落地的真实障碍。请确保讨论基于最新工具形态，而不是 2024 年的旧例子。",
+      "expected_output": "Initializes Memory with metadata.current_date set to 2026-06-21, grounds character speeches in current AI tooling (Agentic UI, MCP, A2A), and labels historical examples with dates.",
+      "files": [
+        "references/temporal-grounding-protocol.md",
+        "references/memory-schema.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "process_skills contains temporal-grounding-handler"
+      ],
+      "source": "doc:references/temporal-grounding-protocol.md"
+    },
+    {
+      "id": 20,
+      "category": "conductor-invitation-multi-select",
+      "prompt": "召集一个圆桌讨论教育改革。当出现价值分叉时，主持人应让我同时选择多个选项，而不是只能单选。",
+      "expected_output": "Records a conductor_invitation with selection_mode: multiple and supports resolved_into like user-chose-options-A-B.",
+      "files": [
+        "references/conductor-invitation-protocol.md",
+        "references/memory-schema.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "process_skills contains conductor-invitation-handler"
+      ],
+      "source": "doc:references/conductor-invitation-protocol.md"
+    },
+    {
+      "id": 21,
+      "category": "podcast-output",
+      "prompt": "用 roundtable-forge 讨论一下：这个 skill 本身还有哪些优化空间和迭代方向？请把最终输出做成播客文字稿的形式，要像一集深度播客。",
+      "expected_output": "Selects podcast output format, adds a Host archetype, generates podcast-style dialogue with segment bridges and shownotes, and renders via render_memory_to_podcast_script.py.",
+      "files": [
+        "references/podcast-output-protocol.md",
+        "references/character-selection-guide.md",
+        "scripts/render_memory_to_podcast_script.py"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "metadata.output_format is podcast",
+        "process_skills contains podcast-output-handler",
+        "process_skills contains host-character"
+      ],
+      "source": "doc:references/podcast-output-protocol.md"
+    },
+    {
+      "id": 22,
+      "category": "six-hats-discussion-structure",
+      "prompt": "用六顶思考帽的方式，召集一个圆桌讨论：远程办公是否应该成为科技公司的默认模式。请从事实、情绪、价值、风险、创意、管控六个维度依次展开。",
+      "expected_output": "Selects discussion_structure six_hats, runs the hat sequence (blue_open, white, red, yellow, black, green, blue_close), records structure_context.current_hat per speech, and enforces hat-specific thinking mode constraints.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/six-hats-protocol.md",
+        "references/character-selection-guide.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "metadata.discussion_structure is six_hats",
+        "process_skills contains six-hats-handler"
+      ],
+      "source": "doc:references/six-hats-protocol.md"
+    },
+    {
+      "id": 23,
+      "category": "six-hats-podcast-combo",
+      "prompt": "用六顶思考帽讨论 AI Agent 在企业落地的最大障碍，然后把结果输出成一集深度播客。",
+      "expected_output": "Selects discussion_structure six_hats AND output_format podcast, producing a dense long-form podcast transcript driven by the six-hats sequence.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/six-hats-protocol.md",
+        "references/podcast-output-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "metadata.discussion_structure is six_hats",
+        "metadata.output_format is podcast",
+        "process_skills contains six-hats-handler",
+        "process_skills contains podcast-output-handler"
+      ],
+      "source": "doc:references/discussion-structure-protocol.md"
+    },
+    {
+      "id": 24,
+      "category": "six-hats-semantic-routing",
+      "prompt": "召集一个圆桌，全面分析远程办公的利弊，请权衡风险和价值，从多个维度给出结构化讨论。",
+      "expected_output": "Selects discussion_structure six_hats based on semantic cues (全面分析/权衡/风险和价值/结构化讨论) rather than the explicit method name.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/six-hats-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "metadata.discussion_structure is six_hats",
+        "process_skills contains six-hats-handler"
+      ],
+      "source": "doc:references/discussion-structure-protocol.md"
+    },
+    {
+      "id": 25,
+      "category": "delphi-discussion-structure",
+      "prompt": "用德尔菲法召集一个匿名圆桌，讨论我们公司是否应该全面转向远程优先工作模式。请进行多轮收敛。",
+      "expected_output": "Selects discussion_structure delphi, runs three phases (independent, feedback, convergence), records structure_context.delphi_phase per round and structure_context.anonymous_label per speech, hides real names in output.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/delphi-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "metadata.discussion_structure is delphi",
+        "process_skills contains delphi-handler"
+      ],
+      "source": "doc:references/delphi-protocol.md"
+    },
+    {
+      "id": 26,
+      "category": "delphi-semantic-routing",
+      "prompt": "召集一个圆桌讨论高管薪酬是否合理。这是一个敏感话题，请用匿名讨论的方式，确保每个人的论点被公正评价而不是被身份影响，通过多轮收敛达成共识。",
+      "expected_output": "Selects discussion_structure delphi based on semantic cues (匿名讨论/多轮收敛/共识) rather than the explicit method name.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/delphi-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "metadata.discussion_structure is delphi",
+        "process_skills contains delphi-handler"
+      ],
+      "source": "doc:references/discussion-structure-protocol.md"
+    },
+    {
+      "id": 27,
+      "category": "delphi-podcast-combo",
+      "prompt": "召集一个圆桌，用德尔菲法匿名讨论 AI 是否会取代创意工作者，然后把结果做成一集播客。",
+      "expected_output": "Selects discussion_structure delphi AND output_format podcast, producing an anonymized podcast transcript driven by the three-phase delphi sequence.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/delphi-protocol.md",
+        "references/podcast-output-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "metadata.discussion_structure is delphi",
+        "metadata.output_format is podcast",
+        "process_skills contains delphi-handler",
+        "process_skills contains podcast-output-handler"
+      ],
+      "source": "doc:references/discussion-structure-protocol.md"
+    },
+    {
+      "id": 28,
+      "category": "delphi-priority-over-six-hats",
+      "prompt": "召集一个圆桌，用六顶思考帽和德尔菲法匿名讨论这个敏感的裁员方案。",
+      "expected_output": "When both six_hats and delphi triggers fire, selects delphi (higher specificity for sensitive topics) and notes the conflict to the user.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/delphi-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "metadata.discussion_structure is delphi",
+        "process_skills contains delphi-handler"
+      ],
+      "source": "doc:references/discussion-structure-protocol.md"
+    },
+    {
+      "id": 29,
+      "category": "world-cafe-discussion-structure",
+      "prompt": "用世界咖啡馆方式召集一个圆桌，讨论如何在企业内部推广设计思维。希望参与者能跨桌轮换，碰撞出更多元的想法。",
+      "expected_output": "Selects discussion_structure world_cafe, runs five phases (setup, rotation_1, rotation_2, rotation_3, harvest), records structure_context.world_cafe_phase and table_count per round, and structure_context.table_id / is_host / host_summary per speech.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/world-cafe-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "metadata.discussion_structure is world_cafe",
+        "process_skills contains world-cafe-handler"
+      ],
+      "source": "doc:references/world-cafe-protocol.md"
+    },
+    {
+      "id": 30,
+      "category": "world-cafe-semantic-routing",
+      "prompt": "召集一个圆桌讨论社区治理创新。希望设置几个桌主，让成员在不同桌子之间轮换讨论，最后汇总各桌的洞察。",
+      "expected_output": "Selects discussion_structure world_cafe based on semantic cues (桌主/轮换/汇总各桌) rather than the explicit method name.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/world-cafe-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "metadata.discussion_structure is world_cafe",
+        "process_skills contains world-cafe-handler"
+      ],
+      "source": "doc:references/discussion-structure-protocol.md"
+    },
+    {
+      "id": 31,
+      "category": "fishbone-discussion-structure",
+      "prompt": "用鱼骨图分组方式召集一个圆桌，讨论如何降低 SaaS 产品的客户流失率。请把参与者分成几个独立子组，各自产出完整方案，然后交叉评审。",
+      "expected_output": "Selects discussion_structure fishbone, runs four phases (grouping, independent_proposal, cross_review, synthesis), records structure_context.fishbone_phase and group_count per round, and structure_context.group_id / reviewing_group_id per speech.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/fishbone-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "metadata.discussion_structure is fishbone",
+        "process_skills contains fishbone-handler"
+      ],
+      "source": "doc:references/fishbone-protocol.md"
+    },
+    {
+      "id": 32,
+      "category": "fishbone-semantic-routing",
+      "prompt": "召集一个圆桌讨论新产品定价策略。希望分成几个独立小组各自出完整方案，然后互相评审，最后综合出最优方案。",
+      "expected_output": "Selects discussion_structure fishbone based on semantic cues (独立小组/完整方案/互相评审/综合) rather than the explicit method name.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/fishbone-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "metadata.discussion_structure is fishbone",
+        "process_skills contains fishbone-handler"
+      ],
+      "source": "doc:references/discussion-structure-protocol.md"
+    },
+    {
+      "id": 33,
+      "category": "fishbone-priority-over-world-cafe",
+      "prompt": "召集一个圆桌，用世界咖啡馆的轮换方式讨论这个方案，但同时也希望分成独立子组各出完整方案再交叉评审。",
+      "expected_output": "When both world_cafe and fishbone triggers fire, selects fishbone (higher specificity for multi-plan cross-review scenarios) and notes the conflict to the user.",
+      "files": [
+        "references/discussion-structure-protocol.md",
+        "references/fishbone-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "metadata.discussion_structure is fishbone",
+        "process_skills contains fishbone-handler"
+      ],
+      "source": "doc:references/discussion-structure-protocol.md"
+    },
+    {
+      "id": 34,
+      "runner": "manual",
+      "category": "state-machine-initialization",
+      "prompt": "召集一个圆桌讨论 AI Agent 在企业研发流程中的落地节奏，请从初始化 Memory 开始一步步执行完整流程。",
+      "expected_output": "When initializing Memory, the Conductor writes state=init, seeds state_log with the memory_initialized entry, and transitions through init -> round_open -> handoff_pending -> round_open -> ... -> synthesizing -> completed, recording every transition in state_log.",
+      "files": [
+        "references/state-machine.md",
+        "references/memory-schema.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "metadata.top_level contains state",
+        "metadata.top_level contains state_log",
+        "metadata.state_log_starts_with_init"
+      ],
+      "source": "doc:references/state-machine.md"
+    },
+    {
+      "id": 35,
+      "runner": "manual",
+      "category": "handoff-card-generation",
+      "prompt": "召集一个跨学科圆桌讨论教育 AI 产品的可信度问题，分两个 round：第一轮谈技术风险，第二轮谈伦理与监管。希望两个 round 之间能传递上下文，不要让第二轮角色像没听见第一轮一样。",
+      "expected_output": "After the first round ends, the Conductor writes rounds[0].handoff_card with summary/key_takeaways/unresolved_questions, transitions state to handoff_pending, and includes the card in the second round's first speech context.",
+      "files": [
+        "references/handoff-card-protocol.md",
+        "references/state-machine.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "metadata.enforce_handoff_cards is true",
+        "metadata.has_handoff_card_on_round_0"
+      ],
+      "source": "doc:references/handoff-card-protocol.md"
+    },
+    {
+      "id": 36,
+      "runner": "fixture",
+      "category": "illegal-state-transition-rejected",
+      "prompt": "审查一个 Memory 文件，发现 state_log 中有 completed -> round_open 的转移。",
+      "expected_output": "lint_memory.py reports STATE_LOG_BAD_TRANSITION error on the illegal completed -> round_open entry and refuses to render the output.",
+      "files": [
+        "references/state-machine.md",
+        "scripts/lint_memory.py"
+      ],
+      "expectations": [
+        "fixture_json error_codes contains STATE_LOG_BAD_TRANSITION",
+        "fixture_json exit_code is 1"
+      ],
+      "source": "doc:references/state-machine.md"
+    },
+    {
+      "id": 37,
+      "runner": "fixture",
+      "category": "versioned-contract-divergence",
+      "prompt": "运行一个版本为 2.5.0 的圆桌，contract_version 故意标为 3.0.0（forward-compat 实验），contract_compat.min_compatible=2.5.0 / max_compatible=3.0.0。",
+      "expected_output": "lint_memory.py emits CONTRACT_VERSION_DIVERGED warning, treats contract_compat as valid (no CONTRACT_COMPAT_INVERTED), and the roundtable still renders because contract_version mismatch is a warning, not an error.",
+      "files": [
+        "references/state-machine.md",
+        "scripts/lint_memory.py"
+      ],
+      "expectations": [
+        "fixture_json warning_codes contains CONTRACT_VERSION_DIVERGED",
+        "fixture_json error_codes length is 0",
+        "fixture_json exit_code is 0"
+      ],
+      "source": "doc:references/state-machine.md"
+    },
+    {
+      "id": 38,
+      "category": "output-formats-plural",
+      "prompt": "用 roundtable-forge 讨论 AI 时代的劳动异化，输出要同时包含 minutes 报告和 podcast 脚本。",
+      "expected_output": "Reads `metadata.output_formats: [\"minutes\", \"podcast\"]`, falls back to output_format if plural is absent, and renders both formats in declared order via render_all.py or two consecutive renderer calls.",
+      "files": [
+        "references/glossary.md",
+        "references/memory-schema.md",
+        "scripts/render_all.py"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "metadata.output_formats length is 2",
+        "process_skills contains podcast-output-handler"
+      ],
+      "source": "doc:glossary.md#metadata.output_formats"
+    },
+    {
+      "id": 39,
+      "runner": "fixture",
+      "category": "defensive-host-prefix",
+      "prompt": "用 roundtable-forge 输出 podcast，并在 podcast_script.intro / transition / outro 中误写了 '**周衡**：' 前缀。",
+      "expected_output": "Renderer defensively strips the duplicated `**周衡**：` prefix via _strip_host_prefix() before adding it back, preventing the 双前缀 regression.",
+      "files": [
+        "scripts/render_memory_to_podcast_script.py"
+      ],
+      "expectations": [
+        "fixture_json duplicate_host_prefix is false",
+        "fixture_json renderer_exit_code is 0",
+        "fixture_json full_width_stripped is true",
+        "fixture_json half_width_stripped is true"
+      ],
+      "source": "doc:scripts/render_memory_to_podcast_script.py#_strip_host_prefix"
+    },
+    {
+      "id": 40,
+      "runner": "fixture",
+      "category": "format-coexistence",
+      "prompt": "Memory 里同时设了 metadata.output_format='minutes' 和 metadata.output_formats=['podcast']，哪个生效？",
+      "expected_output": "Plural `output_formats` wins; renderer treats effective formats as `['podcast']`. Coexistence rule documented in glossary.md.",
+      "files": [
+        "references/glossary.md"
+      ],
+      "expectations": [
+        "fixture_json plural_precedence is true",
+        "fixture_json effective_formats length is 1",
+        "fixture_json effective_formats contains podcast"
+      ],
+      "source": "doc:glossary.md#metadata.output_formats-coexistence"
+    },
+    {
+      "id": 41,
+      "runner": "fixture",
+      "category": "untransferable-checklist",
+      "prompt": "设计一个把'履历' token 化的产品功能，本清单能识别它的危险吗？",
+      "expected_output": "Checklist 命中 identity/credentials 项，识别出 credential_nft_market 和 credential_synthesis_service 两个 danger_signs，并标记 can_be_purchased_by_any_account 和 can_be_attached_to_arbitrary_identity 为 high_risk_signals。建议：不应上线。",
+      "files": [
+        "references/untransferable-value-inventory.md",
+        "assets/untransferable-checklist.json"
+      ],
+      "expectations": [
+        "fixture_json schema_version is 1.0.0",
+        "fixture_json category_count is 5",
+        "fixture_json credential_item_detected is true",
+        "fixture_json danger_signs contains credential_nft_market",
+        "fixture_json high_risk_signals contains can_be_purchased_by_any_account"
+      ],
+      "source": "doc:references/untransferable-value-inventory.md"
+    },
+    {
+      "id": 43,
+      "runner": "manual",
+      "category": "podcast-production-quality",
+      "prompt": "做一期中文播客，对标《无人知晓》《岩中花述》《天真不天真》三档头部节目。需要有：Host intro 三段式 / 精确时间戳 / 资源引用 / 主题曲 / 商务外延 / 免责声明。",
+      "expected_output": "Memory carries a complete podcast_script object with intro_narrative (3 segments), structure_mode, and shownotes with all 12 v2.7.0 fields populated: cast, team, about_show, timestamps (>=8 for a 60min episode), resources (>=20), theme_song, sponsor, social, mid_breaks (if >90min), cross_promotion, legal_disclaimer, ai_generated_disclaimer.",
+      "files": [
+        "references/podcast-output-protocol.md",
+        "references/glossary.md",
+        "scripts/render_memory_to_podcast_script.py"
+      ],
+      "expectations": [
+        "intro_narrative has context_entry / guest_intro / emotional_promise",
+        "timestamps use MM:SS format",
+        "resources have time/type/title/source",
+        "shownotes includes team and about_show",
+        "renderer emits all 12 sections"
+      ],
+      "source": "doc:references/podcast-output-protocol.md#production-quality-spec-v270"
+    },
+    {
+      "id": 44,
+      "runner": "fixture",
+      "category": "podcast-backward-compat",
+      "prompt": "我有一个 v2.5.0 时代的实例，只有 show_title / tagline / host_id / segments / outro / shownotes.{cast, resources, timestamps}，没有 v2.7.0 新字段。它还能正确渲染吗？",
+      "expected_output": "Renderer emits fallback placeholders for missing v2.7.0 fields (empty about_show, empty team, default legal_disclaimer, etc.). The transcript still includes 创作者们 / 关于本节目 / 免责声明 / AI 生成说明 sections with empty or generic content.",
+      "files": [
+        "scripts/render_memory_to_podcast_script.py"
+      ],
+      "expectations": [
+        "fixture_json renderer_exit_code is 0",
+        "fixture_json missing_sections length is 0",
+        "fixture_json all_required_sections is true"
+      ],
+      "source": "doc:references/podcast-output-protocol.md#production-quality-spec-v270"
+    },
+    {
+      "id": 45,
+      "category": "negative",
+      "prompt": "用 roundtable-forge 帮我写一个带表单校验的 React 登录组件，用 TypeScript。",
+      "expected_output": "应识别为越界请求：该 skill 是多角色圆桌讨论工具，不执行编程/代码编写任务。应拒绝执行并建议用户使用编程类 skill 或直接编码工具。",
+      "files": [
+        "references/roundtable-protocol.md",
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is not full-roundtable",
+        "lead_agent is not Roundtable Conductor",
+        "needs_memory is false"
+      ],
+      "negative": true
+    },
+    {
+      "id": 46,
+      "category": "negative",
+      "prompt": "召集一个圆桌讨论吧，让几个人聊聊，讨论什么都行。",
+      "expected_output": "应触发信息不足回退：讨论问题、讨论目的、参与者类型均缺失，无法进行角色选择或讨论结构设计。应要求用户明确要讨论的具体问题。",
+      "files": [
+        "references/roundtable-protocol.md",
+        "references/character-selection-guide.md"
+      ],
+      "expectations": [
+        "workflow_bundle is insufficient-context-fallback",
+        "needs_memory is false"
+      ],
+      "negative": true
+    },
+    {
+      "id": 47,
+      "category": "negative",
+      "prompt": "用 roundtable-forge 对 OpenAI 这家公司做一份完整的深度研究报告，包括财务、技术、竞争分析。",
+      "expected_output": "应识别为跨 skill 误路由：单一主体的系统性深度研究不属于圆桌讨论范畴。应拒绝执行并建议用户使用 deep-research-forge skill；如需多视角讨论可再调用本 skill。",
+      "files": [
+        "references/routing-table.md",
+        "references/roundtable-protocol.md"
+      ],
+      "expectations": [
+        "workflow_bundle is not full-roundtable",
+        "lead_agent is not Roundtable Conductor",
+        "needs_memory is false"
+      ],
+      "negative": true
+    },
+    {
+      "id": 48,
+      "category": "technology-topic-boundary",
+      "prompt": "用 roundtable-forge 召集教育者、语言设计者和工程师，讨论 Python 在教育中的作用。",
+      "expected_output": "Programming technology names may be discussion subjects. The request should run a full roundtable because it asks for multi-role analysis rather than code generation.",
+      "files": [
+        "scripts/route_request.py",
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_memory is true"
+      ]
+    },
+    {
+      "id": 49,
+      "category": "technology-topic-boundary",
+      "prompt": "用 roundtable-forge 召集开发者与教育者，讨论 React 在教学中的作用。",
+      "expected_output": "Role names such as 开发者 must not be treated as code-delivery verbs. The request should run a full roundtable about technology education.",
+      "files": [
+        "scripts/route_request.py",
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_memory is true"
+      ]
+    },
+    {
+      "id": 50,
+      "category": "technology-topic-boundary",
+      "prompt": "用 roundtable-forge 召集教育者、语言设计者和工程师，讨论如何构建 Python 教育生态。",
+      "expected_output": "A discussion about building an education ecosystem is not a code-delivery request merely because it names Python. The request should run a full roundtable.",
+      "files": [
+        "scripts/route_request.py",
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_memory is true"
+      ]
+    },
+    {
+      "id": 51,
+      "category": "technology-topic-boundary",
+      "prompt": "请用 roundtable-forge 召集专家讨论如何构建 Python 应用生态。",
+      "expected_output": "A sentence-initial courtesy marker must not turn the discussion predicate into an independent code-delivery clause.",
+      "files": [
+        "scripts/route_request.py",
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_memory is true"
+      ]
+    },
+    {
+      "id": 52,
+      "category": "technology-topic-boundary",
+      "prompt": "请用 roundtable-forge 召集教育者和工程师讨论如何构建面向学校的 Python 应用课程体系。",
+      "expected_output": "Discussing how to build a curriculum is not code delivery even when the topic contains Python and 应用.",
+      "files": [
+        "scripts/route_request.py",
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_memory is true"
+      ]
+    },
+    {
+      "id": 53,
+      "category": "technology-topic-boundary",
+      "prompt": "请用 roundtable-forge 召集专家讨论如何开发 API 人才培养体系。",
+      "expected_output": "Discussing API talent development is a roundtable topic, not an API implementation request.",
+      "files": [
+        "scripts/route_request.py",
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_memory is true"
+      ]
+    },
+    {
+      "id": 54,
+      "category": "technology-topic-boundary",
+      "prompt": "请用 roundtable-forge 召集专家，讨论如何构建 Python 应用生态。",
+      "expected_output": "Punctuation separating the roster request from its discussion predicate is not an independent code-delivery clause.",
+      "files": [
+        "scripts/route_request.py",
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_memory is true"
+      ]
+    },
+    {
+      "id": 55,
+      "category": "technology-topic-boundary",
+      "prompt": "用 roundtable-forge 召集教育者讨论 Python 入门，并且分析如何构建 API 人才培养体系。",
+      "expected_output": "A discussion connector followed by another analysis predicate is not a direct code-delivery clause.",
+      "files": [
+        "scripts/route_request.py",
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_memory is true"
+      ]
+    },
+    {
+      "id": 56,
+      "category": "technology-topic-boundary",
+      "prompt": "用 roundtable-forge 召集社会学家讨论后现代社会如何构建应用生态。",
+      "expected_output": "The word 后 in 后现代 must not be parsed as a post-discussion code-delivery connector.",
+      "files": [
+        "scripts/route_request.py",
+        "references/routing-table.md"
+      ],
+      "expectations": [
+        "workflow_bundle is full-roundtable",
+        "lead_agent is Roundtable Conductor",
+        "needs_memory is true"
+      ]
+    },
+    {
+      "id": 57,
+      "runner": "fixture",
+      "category": "argument-graph-artifact",
+      "prompt": "圆桌内容和 synthesis 已经完成，请生成一份能看到观点支持、反驳、限定与依赖关系的图谱，并能回看原始发言。",
+      "expected_output": "Stores a controlled, speech-traceable synthesis.argument_graph; keeps argument_graph separate from minutes/podcast formats; and renders a Mermaid artifact with node traceability and edge rationales.",
+      "files": [
+        "references/argument-graph-protocol.md",
+        "references/memory-schema.md",
+        "scripts/render_memory_to_argument_graph.py",
+        "scripts/render_all.py"
+      ],
+      "expectations": [
+        "fixture_json error_codes length is 0",
+        "fixture_json exit_code is 0",
+        "fixture_json resolved_artifacts contains argument_graph",
+        "fixture_json contains_mermaid is true",
+        "fixture_json contains_traceability is true",
+        "fixture_json contains_relation_basis is true"
+      ],
+      "source": "doc:references/argument-graph-protocol.md"
+    },
+    {
+      "id": 58,
+      "runner": "fixture",
+      "category": "argument-graph-traceability",
+      "prompt": "一个观点图的边指向不存在的节点，而且引用了不存在的 speech_id；这种图能交付吗？",
+      "expected_output": "lint_memory.py rejects the artifact with dangling target-node and dangling speech errors; render_all must not claim the graph as successfully delivered.",
+      "files": [
+        "references/argument-graph-protocol.md",
+        "scripts/lint_memory.py"
+      ],
+      "expectations": [
+        "fixture_json error_codes contains ARG_GRAPH_DANGLING_TARGET_NODE",
+        "fixture_json error_codes contains ARG_GRAPH_DANGLING_SPEECH",
+        "fixture_json exit_code is 1",
+        "fixture_json render_preflight_exit_code is 1"
+      ],
+      "source": "doc:references/argument-graph-protocol.md"
+    },
+    {
+      "id": 59,
+      "category": "memory-truth-source-humanization-boundary",
+      "prompt": "圆桌已经渲染成纪要。请直接把纪要里的关键结论和角色发言润色得更像真人，不用更新 Memory，也不用重新 lint/render。",
+      "expected_output": "Refuses untraceable post-render changes to substantive claims or speeches; treats Memory as the source of truth, writes authorized wording changes back to the owning Memory fields, runs lint_memory.py, and rerenders the declared formats and artifacts. Pure typographic cleanup may not change meaning.",
+      "files": [
+        "references/memory-schema.md",
+        "references/output-template-contract.md",
+        "scripts/lint_memory.py",
+        "scripts/render_all.py"
+      ],
+      "source": "regression:memory-human-writing-boundary-2026-08-05",
+      "runner": "manual",
+      "runtime_dependent": true
+    },
+    {
+      "id": 60,
+      "category": "roundtable-projection-form-exemption",
+      "prompt": "圆桌 podcast 里有追问、重复、短句、破折号和主持人过桥句。请去 AI 味，但不要把所有角色改成同一种简洁书面语。",
+      "expected_output": "Preserves character voice, conversational turns, questions, functional repetition, pauses and host navigation when they trace to Memory and serve the podcast; revises only low-information performance language through Memory writeback and rerendering, without a global punctuation or sentence-form ban.",
+      "files": [
+        "references/output-template-contract.md",
+        "references/podcast-output-protocol.md",
+        "references/memory-schema.md"
+      ],
+      "source": "regression:roundtable-projection-form-exemption-2026-08-05",
+      "runner": "manual",
+      "runtime_dependent": true
+    }
+  ]
+}

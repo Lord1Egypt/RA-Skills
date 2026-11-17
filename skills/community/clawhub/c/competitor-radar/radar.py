@@ -20,7 +20,7 @@ def llm_call(prompt: str, max_tokens: int = 600) -> str:
     url = "http://127.0.0.1:18790/anthropic/v1/messages"
     headers = {
         "Content-Type": "application/json",
-        "x-api-key": "sk-RPBUoe2SH7KigJ0SZn6IPDirZtJ2fUaWSukEx1FwxjhWFx0G",
+        "x-api-key": "REDACTED-SECRET",
         "anthropic-version": "2023-06-01",
     }
     data = json.dumps({

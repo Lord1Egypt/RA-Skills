@@ -13,7 +13,7 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 OBS_DIR = DATA_DIR / "observations"
 OBS_PATH = OBS_DIR / "observations.jsonl"
 
-API_KEY = "sk-kimi-Sgsy7YYJPrkwJbUu0EvyGCIOZLbkdvNDcGzN0GrxknUNmXwfLlxlzcyG3Ufs3xAI"
+API_KEY = "REDACTED-SECRET"
 BASE_URL = "https://api.kimi.com/coding/"
 MODEL = "k2p5"
 

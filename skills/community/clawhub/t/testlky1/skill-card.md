@@ -1,39 +1,50 @@
-## Description: <br>
-Converts XMind mind maps into Mermaid, PlantUML, Markdown, numbered, or styled flowchart representations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts XMind mind maps into Markdown-friendly Mermaid, PlantUML, and list-based flowchart formats.
 
-## Publisher: <br>
-[lky115](https://clawhub.ai/user/lky115) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lky115](https://clawhub.ai/user/lky115)
 
-## Use Case: <br>
-Developers, documentation authors, and agents use this skill to convert XMind mind maps into text-based diagrams or Markdown structures for documentation, analysis, and sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructions reference a converter script that is not included in the provided artifact. <br>
-Mitigation: Confirm that scripts/xmind2md.py is present and from a trusted source before running conversion commands. <br>
-Risk: Running a same-named script from an unrelated directory could execute untrusted code. <br>
-Mitigation: Run commands from the intended skill workspace and verify the script path before execution. <br>
+## Use Case:
 
+Developers and document authors use this skill to convert XMind files into embeddable Markdown diagrams or text outlines, and to inspect mind-map structure in text form.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with diagram code blocks and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports mermaid, plantuml, markdown, numbered, and styled output formats when the converter script is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact describes use of scripts/xmind2md.py, but the release evidence only includes the skill instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or using the skill, verify that scripts/xmind2md.py exists in the installed package and comes from a trusted source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lky115/skills/testlky1)
+- [Publisher profile](https://clawhub.ai/user/lky115)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and diagram code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports mermaid, plantuml, markdown, numbered, and styled output modes when the referenced converter script is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

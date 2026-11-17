@@ -1,0 +1,40 @@
+icon: icon-512.png
+schema_version: 1
+name: shop-product-detail-copy-cn
+display_name: 商品详情页文案
+slug: shop-product-detail-copy-cn
+version: 1.0.0
+short_description: 用真实商品资料生成可信的中文详情页模块、卖点证据与FAQ
+description: 根据商家确认的商品名称、规格、图片说明和目标客群，撰写中文详情页首屏、核心卖点、规格表、图片配文与FAQ，每条卖点附对应资料证据；已知事实、表达建议及待确认项分开，缺少图片或客群资料时先请求补充。
+repository: https://github.com/xxjrq/shop-product-detail-copy-cn
+license: MIT-0
+tags:
+  - ecommerce
+  - product-detail
+  - chinese-copywriting
+  - product-marketing
+  - marketplace
+triggers:
+  - 商品详情页文案
+  - 详情页卖点文案
+  - 商品FAQ
+trigger_words:
+  - 电商详情页
+  - 产品卖点
+  - 商品规格文案
+inputs:
+  - product_name
+  - specifications
+  - image_notes
+  - target_audience
+outputs:
+  - 详情页模块文案
+  - 卖点证据
+  - FAQ
+self_test: bash scripts/self-test.sh
+assets:
+  icon: "icon-512.png"
+  promo: assets/promo-1600x900.png
+sources:
+  - https://github.com/coreyhaines31/marketingskills
+  - https://github.com/coreyhaines31/marketingskills/blob/main/skills/copywriting/SKILL.md

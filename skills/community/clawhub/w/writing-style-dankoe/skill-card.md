@@ -1,40 +1,50 @@
-## Description: <br>
-Guides an agent to draft Chinese thought-piece and self-improvement writing using Dan Koe-inspired structures such as Micro Story, Pyramid Principle, and cross-domain synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to write reflective, framework-driven essays in a Dan Koe-inspired style, especially for Chinese output about identity, meaning, psychology, cybernetics, and creator-economy topics.
 
-## Publisher: <br>
-[shing19](https://clawhub.ai/user/shing19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shing19](https://clawhub.ai/user/shing19)
 
-## Use Case: <br>
-Writers, creators, and agents use this skill to structure Chinese essays or thought pieces around identity, meaning, life design, psychology, cybernetics, game design, and business ideas. It is best suited for framework-building prose that needs a clear core claim, layered argument, and concrete self-review checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated writing may imitate a named living creator too closely or imply endorsement. <br>
-Mitigation: Use the skill as structural inspiration, avoid impersonation claims, and revise generated text into an original voice. <br>
-Risk: Generated essays may include inaccurate quotes, attribution, or cross-domain claims. <br>
-Mitigation: Review generated text for factual accuracy, verify quotations and references, and add attribution where needed. <br>
+## Use Case:
 
+Writers, editors, and agents use this skill to draft or revise thought pieces with micro-story structure, pyramid-principle organization, cross-domain synthesis, identity-focused analysis, and natural Chinese expression.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shing19/writing-style-dankoe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or prose guidance for Chinese long-form essays and thought pieces] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs emphasize structure, tone, prohibited phrases, Chinese-language adaptation, and self-review steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated drafts may overfit to the referenced writing style or Chinese-expression guidance when another voice is required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs for originality, audience fit, and style fit before publication.
+
+## Reference(s):
+
+- [ClawHub skill page: Writing Style Dankoe](https://clawhub.ai/shing19/skills/writing-style-dankoe)
+- [ClawHub publisher profile: shing19](https://clawhub.ai/user/shing19)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or prose text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only style guidance; no executable output or tool calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-基于 Python 和 Playwright 的 OpenClaw skill，可按关键词抓取小红书笔记并将结果推送到飞书群。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Xiaohongshu by keyword with browser automation, manages login cookies, and sends retrieved note summaries to a Feishu group as card-style results.
 
-## Publisher: <br>
-[xie07418](https://clawhub.ai/user/xie07418) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xie07418](https://clawhub.ai/user/xie07418)
 
-## Use Case: <br>
-Developers and operators use this skill in OpenClaw and Feishu workflows to search Xiaohongshu by keyword, collect note metadata, and post a concise result summary to a configured Feishu group. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports exposed credentials and session data, including a bundled cookie and Feishu credentials. <br>
-Mitigation: Remove bundled cookies, rotate exposed Feishu credentials, configure a private destination, and store secrets outside the skill artifact before installation. <br>
-Risk: The security summary reports that chat input can reach shell execution and account-login flows too broadly. <br>
-Mitigation: Replace exec-style command invocation with argument-safe process APIs, validate the keyword input, and restrict login flows to an isolated runtime. <br>
-Risk: Saved browser profiles, cookie files, and QR login screenshots can function as account credentials. <br>
-Mitigation: Run the skill in an isolated environment, restrict filesystem permissions, and treat those files as sensitive credentials. <br>
+## Use Case:
 
+Developers and operators can use this OpenClaw skill to trigger Xiaohongshu keyword searches from Feishu and receive a short set of note titles, links, authors, and engagement signals in the target group.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/xie07418/xhs-crawler-xie) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Usage documentation](artifact/使用文档.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Text responses plus Feishu card-style markdown summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts up to five Xiaohongshu note summaries to a configured Feishu chat and may emit status or error text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The package ships sensitive Feishu credentials, hardcoded chat IDs, and a Xiaohongshu session cookie.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the exposed Feishu secret, revoke the bundled Xiaohongshu session, remove cookie.txt and hardcoded destination IDs from the release, and require deploy-time secrets configuration.
+
+Risk: Search text can reach shell execution through the skill wrapper.
+
+Mitigation: Replace shell string execution with argument-based process spawning and validate the keyword before invoking the Python crawler.
+
+Risk: The skill can post search results or login QR screenshots to a configured Feishu destination.
+
+Mitigation: Require an explicit, validated destination and restrict QR-code/login image posting to approved groups.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xie07418/skills/xhs-crawler-xie)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Artifact usage documentation](artifact/使用文档.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Plain text status messages, Markdown-style help text, Feishu card messages, and JSON-like result objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default search output is limited to five Xiaohongshu notes and may include note titles, links, authors, like counts, and execution status.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

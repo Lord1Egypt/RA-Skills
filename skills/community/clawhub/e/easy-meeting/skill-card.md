@@ -1,50 +1,64 @@
-## Description: <br>
-Schedules Feishu meetings by finding shared availability, sending interactive poll cards, and coordinating follow-up through webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Feishu scheduling service that helps an agent find shared free time, send interactive meeting-poll cards, and continue coordination through webhook callbacks.
 
-## Publisher: <br>
-[Lens-lzy](https://clawhub.ai/user/Lens-lzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lens-lzy](https://clawhub.ai/user/lens-lzy)
 
-## Use Case: <br>
-Agents and teams use this skill to coordinate meetings in Feishu by checking participant availability, proposing time slots, collecting poll responses, and retrying when conflicts appear. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The service can access calendar availability, send messages, create meetings, and track participant responses. <br>
-Mitigation: Install only in a controlled Feishu tenant, grant the minimum required app permissions, and review the requested capabilities before deployment. <br>
-Risk: The /api/claw routes may be reachable by callers outside the intended agent workflow. <br>
-Mitigation: Place an authenticated gateway in front of the /api/claw routes and restrict allowed callers. <br>
-Risk: Wake-up callbacks could be sent to unintended destinations if the endpoint is not constrained. <br>
-Mitigation: Restrict OPENCLAW_WAKE_ENDPOINT with ALLOWED_WAKE_DOMAINS. <br>
-Risk: Availability, poll choices, and response status are processed and temporarily stored during coordination. <br>
-Mitigation: Notify users about the processed data and retain session state only as long as needed for scheduling. <br>
-Risk: Webhook authenticity is weaker when FEISHU_ENCRYPT_KEY is not configured. <br>
-Mitigation: Configure FEISHU_ENCRYPT_KEY and verify Feishu webhook signatures before accepting card actions. <br>
+## Use Case:
 
+Developers and operations teams use this skill to connect an OpenClaw agent with Feishu calendar and messaging workflows for multi-person meeting scheduling. The agent can calculate common availability, send time-option cards, track participant responses, and trigger follow-up coordination when participants disagree.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Lens-lzy/easy-meeting) <br>
-- [Publisher profile](https://clawhub.ai/user/Lens-lzy) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app/) <br>
-- [OpenAPI contract](artifact/openapi.yaml) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance, Configuration] <br>
-**Output Format:** [JSON API responses with Feishu interactive card messages and webhook-driven status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials, a reachable service URL, and webhook configuration; stores meeting session state while coordination is in progress.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence; artifact package.json is 1.0.0) <br>
+Risk: The service exposes calendar lookup and Feishu messaging actions through APIs that can affect multiple users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only behind strong authentication or a private gateway, and add authorization checks that limit who may query or message each Feishu user.
+
+Risk: Webhook and wake-up flows can process external requests and trigger agent follow-up behavior.
+
+Mitigation: Configure the Feishu encrypt key, validate webhook tokens or signatures, and restrict OPENCLAW_WAKE_ENDPOINT with ALLOWED_WAKE_DOMAINS.
+
+Risk: Calendar availability, meeting votes, and user identifiers can reveal sensitive workplace scheduling data.
+
+Mitigation: Minimize Feishu app scopes, redact logs, and document consent, retention, and deletion practices for calendar and vote data.
+
+Risk: Dependency integrity cannot be fully reviewed without a lockfile.
+
+Mitigation: Add and review a package lockfile before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lens-lzy/skills/easy-meeting)
+- [Feishu Open Platform](https://open.feishu.cn/app/)
+- [OpenAPI specification](artifact/openapi.yaml)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response bodies plus setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Feishu calendar queries, interactive message card dispatches, session identifiers, and webhook-driven scheduling status updates.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

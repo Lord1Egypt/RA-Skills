@@ -1,42 +1,57 @@
-## Description: <br>
-Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.
 
-## Publisher: <br>
-[mskmz](https://clawhub.ai/user/mskmz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mskmz](https://clawhub.ai/user/mskmz)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate the mcporter CLI for direct MCP server inspection, authentication, configuration, tool calls, daemon control, and CLI or TypeScript client generation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can call remote MCP tools and arbitrary URLs. <br>
-Mitigation: Use it only with trusted MCP servers and review each tool call, target URL, and payload before execution. <br>
-Risk: The skill can authenticate accounts and modify mcporter configuration. <br>
-Mitigation: Confirm OAuth, login, logout, import, add, remove, and other config changes before running them, and avoid exposing secrets to untrusted endpoints. <br>
-Risk: The skill can run stdio commands and start or manage a daemon. <br>
-Mitigation: Review stdio command strings and daemon start, stop, restart, or status operations before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [mcporter homepage](http://mcporter.dev) <br>
-- [ClawHub skill page](https://clawhub.ai/mskmz/mcporter-1-0-0) <br>
+## Use Case:
 
+Developers and agents use this skill to operate MCP servers and tools from the mcporter CLI, including listing schemas, calling tools, managing auth and config, running a daemon, and generating CLI or TypeScript client artifacts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include machine-readable JSON output guidance when the mcporter CLI supports it.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can call arbitrary remote or stdio MCP servers and may run local commands through stdio launch strings.
+
+Mitigation: Use trusted MCP endpoints, inspect every --stdio command before execution, and run mcporter in a sandboxed or least-privileged environment.
+
+Risk: The skill can alter authentication and configuration and can invoke create, update, or delete tool calls.
+
+Mitigation: Avoid sending secrets to untrusted servers and require explicit confirmation before state-changing tool calls or auth/config changes.
+
+Risk: The install metadata references an unpinned npm package.
+
+Mitigation: Prefer a reviewed pinned mcporter version for controlled deployments.
+
+## Reference(s):
+
+- [mcporter homepage](http://mcporter.dev)
+- [ClawHub skill page](https://clawhub.ai/mskmz/skills/mcporter-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce mcporter command invocations, configuration guidance, and CLI or TypeScript client/type generation instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

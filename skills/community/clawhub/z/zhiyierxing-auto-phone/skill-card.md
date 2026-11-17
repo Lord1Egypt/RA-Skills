@@ -1,48 +1,68 @@
-## Description: <br>
-Deploys and runs Zhipu AutoGLM-Phone / Open-AutoGLM workflows that prepare local tooling, connect Android, HarmonyOS, or iPhone devices, configure model endpoints, verify setup, and execute natural-language phone tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents deploy, verify, operate, and troubleshoot a local Zhipu AutoGLM-Phone / Open-AutoGLM phone automation workflow for Android, HarmonyOS, and iPhone.
 
-## Publisher: <br>
-[zimuoo](https://clawhub.ai/user/zimuoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zimuoo](https://clawhub.ai/user/zimuoo)
 
-## Use Case: <br>
-Developers and advanced users use this skill to set up and operate local phone-agent workflows for real-device automation. It helps check host prerequisites, connect devices, configure model endpoints, verify deployment, and run natural-language phone tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform real phone actions, including actions in shopping or service apps. <br>
-Mitigation: Use it only when supervised on trusted devices and accounts, and pause for login, captcha, payment, biometrics, or platform security prompts. <br>
-Risk: The workflow uses model API keys and may remember device connection details. <br>
-Mitigation: Treat model credentials and remembered device targets as sensitive local data; avoid sharing logs that contain them and clear local device memory when reuse is no longer desired. <br>
-Risk: The skill can change the host setup by cloning repositories, creating virtual environments, and installing local tooling or dependencies. <br>
-Mitigation: Review the package and repository changes before first run, and prefer a trusted single-user machine or isolated workspace. <br>
+## Use Case:
 
+Developers and end users use this skill to set up a phone-agent environment, verify host, device, and model readiness, and run natural-language phone tasks. It also provides exact troubleshooting and takeover guidance when device, model, login, captcha, payment, biometric, or platform security blockers appear.
 
-## Reference(s): <br>
-- [Zhipu AutoGLM-Phone documentation](https://docs.bigmodel.cn/cn/guide/models/vlm/autoglm-phone) <br>
-- [Open-AutoGLM repository](https://github.com/zai-org/Open-AutoGLM) <br>
-- [ADB Keyboard repository](https://github.com/senzhk/ADBKeyBoard) <br>
-- [Deployment flow](artifact/references/deployment-flow.md) <br>
-- [ADB Keyboard](artifact/references/adb-keyboard.md) <br>
-- [Troubleshooting](artifact/references/troubleshooting.md) <br>
-- [Source notes](artifact/references/source-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include device-readiness diagnostics, model endpoint checks, and user takeover guidance when phone-side action is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can change local tooling and download or run upstream code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an environment where those changes are acceptable, and review the setup actions before using it on sensitive machines.
+
+Risk: The skill can control a connected phone and perform the requested phone task with limited final confirmation.
+
+Mitigation: Use a dedicated test phone or account where possible, and rely on takeover pauses for login, captcha, payment, biometric, or platform security prompts.
+
+Risk: Model endpoint credentials can be exposed through environment configuration or shared host access.
+
+Mitigation: Prefer HTTPS model endpoints, avoid shared machines for configured runs, and rotate any model API key that may have been exposed.
+
+Risk: Remembered device connection details can enable future device reuse.
+
+Mitigation: Clear ~/.openclaw/workspace/.device-memory/zhiyierxing-auto-phone.json when persistent device reuse is not desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zimuoo/skills/zhiyierxing-auto-phone)
+- [Zhipu AutoGLM-Phone Documentation](https://docs.bigmodel.cn/cn/guide/models/vlm/autoglm-phone)
+- [Open-AutoGLM Repository](https://github.com/zai-org/Open-AutoGLM)
+- [ADB Keyboard](references/adb-keyboard.md)
+- [Deployment Flow](references/deployment-flow.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Runbook](references/runbook.md)
+- [Source Notes](references/source-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline commands, configuration values, status labels, and exact next-step guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run local setup, readiness, verification, and phone-task scripts; pauses for takeover only when login, captcha, payment, biometrics, or platform security prompts require the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

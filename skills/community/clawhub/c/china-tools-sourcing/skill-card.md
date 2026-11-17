@@ -1,39 +1,54 @@
-## Description: <br>
-Provides international buyers with a China tools sourcing reference covering tool categories, manufacturing clusters, supply-chain structure, supplier evaluation, and industry trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive tools industry sourcing guide for international buyers that provides detailed information about China's hand tools, power tools, garden tools, measuring tools, industrial tool manufacturing clusters, supply-chain structure, regional specializations, and 2026 industry trends.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to research China's tools manufacturing regions, subsectors, supply chain, and supplier-evaluation practices before shortlisting vendors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market statistics, supplier examples, certifications, and sourcing advice may be outdated or incomplete for a specific purchase. <br>
-Mitigation: Independently verify current suppliers, regulations, certifications, and commercial terms before making purchasing decisions. <br>
+## Use Case:
 
+External buyers, sourcing teams, and agents use this skill to query structured China tools-industry intelligence, including manufacturing clusters, subsector coverage, supply-chain structure, and supplier-evaluation guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1970168137/china-tools-sourcing) <br>
-- [Publisher profile](https://clawhub.ai/user/1970168137) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or structured JSON-like data, depending on the agent invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are based on bundled cluster-level sourcing data and should be independently verified before purchasing decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Static sourcing data may be outdated, incomplete, or insufficient for business-critical supplier, certification, and market decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify supplier, certification, and market claims independently before relying on the skill for procurement decisions.
+
+Risk: The release evidence notes that manifest permissions could more clearly document the skill's narrow local-data behavior.
+
+Mitigation: Confirm at install or review time that the skill only needs to read its bundled data.json file and does not require network access or credentials.
+
+## Reference(s):
+
+- [China Tools Sourcing on ClawHub](https://clawhub.ai/1970168137/skills/china-tools-sourcing)
+- [ClawHub publisher profile](https://clawhub.ai/user/1970168137)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Code]
+
+**Output Format:** [Markdown responses or structured Python data from lookup helpers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a bundled static JSON dataset; no network access, persistence, credentials, or destructive behavior are reported in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

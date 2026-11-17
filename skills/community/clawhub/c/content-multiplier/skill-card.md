@@ -1,41 +1,50 @@
-## Description: <br>
-Transform one piece of content into multiple platform-optimized formats for LinkedIn, Twitter/X, WeChat, newsletters, Instagram, Xiaohongshu, and video outlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform one piece of content into platform-optimized versions for LinkedIn, Twitter/X, WeChat, newsletters, Instagram, Xiaohongshu, and video outlines.
 
-## Publisher: <br>
-[wulaosiji](https://clawhub.ai/user/wulaosiji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wulaosiji](https://clawhub.ai/user/wulaosiji)
 
-## Use Case: <br>
-Content creators, founders, and marketing teams use this skill to turn a source article, transcript, talk, or idea into platform-specific social posts, newsletter copy, and video outline drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated drafts may contain inaccurate, unsuitable, or platform-inappropriate content if published without review. <br>
-Mitigation: Review and edit all generated drafts before publishing. <br>
-Risk: The command-line script writes Markdown files to the selected output directory and may overwrite files that use the same generated names. <br>
-Mitigation: Use a dedicated output directory and check generated filenames before running the script on important content. <br>
+## Use Case:
 
+Content creators, founders, marketers, and agents use this skill to repurpose a blog post, transcript, talk, product update, or idea into channel-specific social and newsletter drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wulaosiji/content-multiplier) <br>
-- [UniqueClub](https://uniqueclub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown content drafts and command-line usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated Markdown files to a local output directory when the bundled command-line script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The included Python script can write output files outside the selected folder when given a crafted topic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the script only with trusted topic strings, avoid confidential source material unless authorized, and fix filename sanitization and output-directory containment before using untrusted inputs.
+
+## Reference(s):
+
+- [ClawHub Content Multiplier skill page](https://clawhub.ai/wulaosiji/skills/content-multiplier)
+- [UniqueClub](https://uniqueclub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown files and Markdown guidance with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate separate platform-specific Markdown files when the included Python script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

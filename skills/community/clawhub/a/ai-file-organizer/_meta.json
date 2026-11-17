@@ -1,6 +1,71 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
+  "name": "ai-file-organizer",
   "slug": "ai-file-organizer",
   "version": "3.0.0",
-  "publishedAt": 1773658986926
+  "description": "AI 智能文件整理 - 批量重命名、自动分类、智能归档（异步引擎 + 云同步）",
+  "author": "于金泽",
+  "installedAt": "2026-03-16T16:15:00Z",
+  "updatedAt": "2026-03-16T17:50:00Z",
+  "source": "local",
+  "vetted": false,
+  "vettingRequired": true,
+  "riskLevel": "MEDIUM",
+  "dependencies": [
+    "pathlib",
+    "hashlib",
+    "tqdm",
+    "aiofiles",
+    "aiomultiprocess",
+    "python>=3.8"
+  ],
+  "environmentVariables": [
+    "ALIYUN_ACCESS_KEY",
+    "ALIYUN_SECRET_KEY",
+    "BAIDU_ACCESS_TOKEN"
+  ],
+  "permissions": {
+    "network": true,
+    "networkEndpoints": [
+      "dashscope.aliyuncs.com",
+      "api.aliyundrive.com",
+      "pan.baidu.com"
+    ],
+    "fileRead": true,
+    "fileWrite": true,
+    "fileWriteScope": "user_directories"
+  },
+  "scripts": {
+    "main": "scripts/organizer.py",
+    "test": "python3 -m pytest tests/test_organizer.py -v --cov=scripts --cov-report=html",
+    "benchmark": "python3 tests/benchmark.py",
+    "migrate-config": "python3 scripts/migrate_config.py"
+  },
+  "tags": [
+    "file-management",
+    "automation",
+    "ai",
+    "organization",
+    "productivity",
+    "async",
+    "cloud-sync"
+  ],
+  "category": "productivity",
+  "features": [
+    "AI 内容分析和智能标签",
+    "异步并发处理引擎",
+    "智能缓存系统",
+    "云同步（阿里云盘/百度网盘/OneDrive）",
+    "交互式 CLI",
+    "文件版本管理",
+    "智能清理建议",
+    "增量整理模式",
+    "操作审计日志",
+    "还原点支持"
+  ],
+  "performance": {
+    "files_per_minute": 2000,
+    "memory_usage_mb": 128,
+    "cache_hit_rate": 0.7
+  },
+  "changelog": "CHANGELOG.md"
 }

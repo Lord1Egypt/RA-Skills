@@ -1,0 +1,12 @@
+{
+  "name": "体彩筛选",
+  "description": "中国体育彩票全玩法号码分析、条件筛选、预测推荐与历史数据查询的综合工具",
+  "version": "1.0.0",
+  "category": "数据分析",
+  "platforms": ["Claude Code", "Cursor", "Codex", "Gemini CLI"],
+  "license": "MIT",
+  "author": "gavin1024",
+  "tags": ["体彩", "彩票", "大乐透", "排列三", "排列五", "七星彩", "竞彩足球", "竞彩篮球", "传统足彩", "筛选", "预测", "历史数据", "杀号", "定胆"],
+  "icon": "",
+  "readme": "SKILL.md"
+}

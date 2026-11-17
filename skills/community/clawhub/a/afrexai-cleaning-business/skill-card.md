@@ -1,40 +1,51 @@
-## Description: <br>
-Provides residential and commercial cleaning business operations guidance for pricing, bidding, staffing, supply costs, insurance, compliance, quality control, and growth planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Commercial and residential cleaning business operations guidance covering pricing, bidding, staffing, supply costs, insurance, OSHA compliance, quality control, and growth from solo operator to multi-crew company.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Cleaning business owners, operators, property managers, and AI agents use this skill to plan pricing, estimate bids, structure crews, track supplies, prepare quality controls, and understand common insurance and compliance considerations. <br>
-
-### Deployment Geography for Use: <br>
-United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pricing, insurance, OSHA, and compliance guidance may become outdated or vary by location and business circumstances. <br>
-Mitigation: Verify important operational, legal, insurance, and compliance decisions against current local rules and qualified professionals before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cleaning Business Operations on ClawHub](https://clawhub.ai/1kalin/afrexai-cleaning-business) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI Industry Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AfrexAI Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+External operators, cleaning company owners, property managers, and AI agents use this skill for cleaning-business pricing, commercial bid preparation, staffing benchmarks, compliance reminders, quality control, KPI tracking, and growth planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, formulas, and operational benchmarks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; guidance should be verified before business, legal, insurance, or compliance decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Business pricing, wage, insurance, OSHA, legal, and penalty figures may vary by location and date.
+
+Mitigation: Verify market rates, insurance requirements, OSHA obligations, and legal compliance with current authoritative local sources before relying on the guidance operationally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-cleaning-business)
+- [AfrexAI Industry Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AfrexAI AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [AfrexAI Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, formulas, and operational benchmarks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes market and compliance figures that should be verified for the user's jurisdiction and date of use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

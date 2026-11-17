@@ -1,46 +1,59 @@
-## Description: <br>
-Helps agents configure ByteHouse multimodal vector storage and hybrid search for text, image, and video content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ByteHouse multimodal search guidance and Python helpers for vectorizing and retrieving text, image, and video content with ByteHouse and Volcengine Ark.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and data engineers use this skill to build ByteHouse-backed multimodal retrieval workflows, including vector search, hybrid search, text-to-image/video search, and image-to-image search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or write ByteHouse database content. <br>
-Mitigation: Use a dedicated least-privilege ByteHouse account and review the database authority granted before installation or execution. <br>
-Risk: SQL may be routed through an MCP client by default when available. <br>
-Mitigation: Disable or explicitly configure MCP use unless that routing is intended and reviewed. <br>
-Risk: Indexed text, media URLs, and metadata may be stored persistently in ByteHouse and sent to the Ark embedding API. <br>
-Mitigation: Avoid indexing sensitive inputs unless persistent database storage and external embedding API processing are approved. <br>
-Risk: Dependency versions are not pinned in the provided installation command. <br>
-Mitigation: Pin and review dependencies in sensitive or production environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure ByteHouse and Volcengine Ark embeddings for multimodal vector storage and hybrid retrieval across text, images, and video.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/byted-bytehouse-multimodal-search) <br>
-- [ByteHouse vector search SQL documentation](https://www.volcengine.com/docs/6464/1208707) <br>
-- [Volcengine multimodal embedding API documentation](https://www.volcengine.com/docs/82379/1409291) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python, SQL, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides integration guidance and example commands; runtime scripts can call the Ark embedding API and read or write ByteHouse data when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security evidence says the skill can build database SQL from caller-controlled inputs without safe validation or clear scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged ByteHouse credentials and validate or allowlist table names and filter conditions before execution.
+
+Risk: The skill may send text or media to Ark and store derived data in ByteHouse.
+
+Mitigation: Avoid sensitive or regulated content unless organizational policy approves that data flow.
+
+Risk: The security guidance calls for dependency review before production use.
+
+Mitigation: Pin and review Python dependencies in an isolated environment before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-bytehouse-multimodal-search)
+- [ByteHouse vector search SQL documentation](https://www.volcengine.com/docs/6464/1208707)
+- [Volcengine multimodal embeddings API documentation](https://www.volcengine.com/docs/82379/1409291)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, Python, and SQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes environment-variable setup guidance and Python helper usage examples; no fixed token cap is specified.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

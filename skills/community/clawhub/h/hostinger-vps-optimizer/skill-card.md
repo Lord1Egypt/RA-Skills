@@ -1,40 +1,53 @@
-## Description: <br>
-Apply Hostinger VPS optimization guidance for kernel tuning, web server configuration, security hardening, resource limits, and cost analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies Hostinger VPS optimization guidance and a bundled shell script for kernel tuning, web server setup, firewall hardening, and resource configuration.
 
-## Publisher: <br>
-[GBlockChainNetwork](https://clawhub.ai/user/GBlockChainNetwork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gblockchainnetwork](https://clawhub.ai/user/gblockchainnetwork)
 
-## Use Case: <br>
-Developers and server administrators use this skill to review and apply Hostinger VPS performance, security, and cost-optimization changes. It is intended for administrators who can evaluate live server impact before running root-level changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live root-level VPS changes that affect firewall rules, package installation, kernel settings, and service availability. <br>
-Mitigation: Review the script before use, confirm SSH and firewall access, ensure OS compatibility, and keep console or recovery access available before applying changes. <br>
-Risk: Performance and cost-saving claims are not verified by the provided evidence. <br>
-Mitigation: Benchmark current workloads and validate cost or performance changes in a staging environment before relying on the claimed improvements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GBlockChainNetwork/hostinger-vps-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/GBlockChainNetwork) <br>
+## Use Case:
 
+Developers, site operators, and VPS administrators use this skill to tune Hostinger KVM or Cloud VPS instances for performance, security hardening, and cost-aware resource use.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include server administration steps that require review before use on a production VPS.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled optimizer can immediately change kernel networking settings, install packages, and enable firewall rules on a VPS.
+
+Mitigation: Review each command before execution, take a backup or snapshot first, and apply changes step by step on production systems.
+
+Risk: Firewall changes may interrupt SSH or application access if required ports are not allowed.
+
+Mitigation: Confirm SSH and required application ports are permitted before enabling or modifying UFW.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gblockchainnetwork/skills/hostinger-vps-optimizer)
+- [Publisher profile](https://clawhub.ai/user/gblockchainnetwork)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend running the bundled optimizer script on a Hostinger VPS.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact heading)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

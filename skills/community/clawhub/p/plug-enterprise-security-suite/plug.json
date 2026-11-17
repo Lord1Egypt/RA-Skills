@@ -1,0 +1,63 @@
+{
+  "plug_slug": "plug-enterprise-security-suite",
+  "plug_display_name": "企业安全开发套件",
+  "plug_tagline": "认证、调试、反检测、密钥管理，4合1企业级安全工具箱",
+  "plug_description": "覆盖企业级安全开发全场景的技能组合包，从认证架构到密钥管理，从调试排障到浏览器反检测，一站式解决安全开发难题。",
+  "target_users": "企业安全团队、全栈开发者、DevSecOps工程师、SaaS产品团队",
+  "pricing": "月付￥499/月 | 年付￥4999/年 | 买断￥7999",
+  "marketing": {
+    "pain_points": [
+      "认证系统太复杂？OAuth/2FA/SSO全栈方案一键部署",
+      "Bug定位靠猜？4阶段科学调试法精准定位根因",
+      "浏览器自动化被封号？指纹隔离+崩溃自愈解决",
+      "密钥管理混乱？多保险箱+审计日志+轮换策略"
+    ],
+    "value_props": [
+      "4个技能覆盖安全开发全生命周期",
+      "基于Better Auth的企业级认证体系",
+      "科学调试法，不猜测不试错",
+      "企业级密钥管理，支持团队共享与审计"
+    ],
+    "use_case": "工作流程：\n1. 认证安全架构师 → 设计OAuth/2FA/SSO认证体系\n2. 密钥保险箱 → 管理API密钥、证书等敏感凭证\n3. 调试医生 → 4阶段科学调试法定位Bug根因\n4. 反检测浏览器助手 → 浏览器自动化不被封号"
+  },
+  "members": [
+    {
+      "slug": "auth-security-architect",
+      "name": "认证安全架构师",
+      "category": "Security",
+      "quality_score": 4.8,
+      "role": "primary"
+    },
+    {
+      "slug": "debug-doctor",
+      "name": "调试医生",
+      "category": "Security",
+      "quality_score": 4.9,
+      "role": "complementary"
+    },
+    {
+      "slug": "stealth-browser-assistant",
+      "name": "反检测浏览器助手",
+      "category": "Security",
+      "quality_score": 4.9,
+      "role": "supporting"
+    },
+    {
+      "slug": "key-vault-manager",
+      "name": "密钥保险箱(专业版)",
+      "category": "Security",
+      "quality_score": 4.7,
+      "role": "supporting"
+    }
+  ],
+  "plug_score": {
+    "overall_score": 68.4,
+    "quality_score": 95.3,
+    "complementarity_score": 50.0,
+    "coverage_score": 40.0,
+    "size_fit_score": 100.0,
+    "reason": "质量95(均衡) | 互补50 | 覆盖40(1分类) | 大小100(4个)"
+  },
+  "plug_type": "bundle",
+  "created_at": "2026-07-29T07:22:18.967457"
+}

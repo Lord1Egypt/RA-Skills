@@ -1,45 +1,59 @@
-## Description: <br>
-Use Cryptowerk to register documents and data, using hashes to maintain privacy, fetch seals, and verify proofs for files or append-only records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Cryptowerk to register document and data hashes, fetch seals, and verify proofs for files or append-only records while preserving source-data privacy.
 
-## Publisher: <br>
-[holgercw](https://clawhub.ai/user/holgercw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[holgercw](https://clawhub.ai/user/holgercw)
 
-## Use Case: <br>
-Developers and engineers use this skill to create deterministic proof-carrying data workflows for files, verifiable logs, and append-only records using Cryptowerk seals and local sidecar artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cryptowerk receives hashes of files selected for registration or verification. <br>
-Mitigation: Use the skill only when sharing stable hashes and proof timestamps with Cryptowerk is acceptable. <br>
-Risk: Local cwconfig.json and .cwseal files may expose credentials or proof metadata if committed or synced. <br>
-Mitigation: Keep these files out of public repositories, shared folders, and automated sync locations; restrict local file permissions. <br>
-Risk: Stable hashes and proof timestamps may reveal too much about highly sensitive files. <br>
-Mitigation: Avoid using the workflow on files where a persistent hash or timestamp would create unacceptable disclosure risk. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Cryptowerk-backed proof-of-existence workflows to files or append-only records. It helps an agent register hashes, retrieve seals, and verify proofs while keeping local sidecar artifacts for audit.
 
-## Reference(s): <br>
-- [Cryptowerk API Notes](references/cryptowerk-api-notes.md) <br>
-- [Storage and State](references/storage-and-state.md) <br>
-- [Cryptowerk homepage](https://www.cryptowerk.com) <br>
-- [ClawHub release page](https://clawhub.ai/holgercw/cryptowerk-verifiable-data) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local JSON sidecar files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Cryptowerk retrieval IDs, seals, and verification results stored in .cwseal sidecar files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release evidence) <br>
+Risk: The skill embeds and provisions service credentials, then stores issued credentials locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill directory private, use protected user-supplied credentials when available, and prefer a release that removes the embedded bootstrap credential.
+
+Risk: Credential and proof sidecar files can be written into local project trees.
+
+Mitigation: Exclude cwconfig.json and .cwseal files from commits and backups when appropriate, and store them outside watched data trees.
+
+Risk: The workflow sends hashes and proof requests to Cryptowerk APIs.
+
+Mitigation: Use the skill only when external Cryptowerk API calls are acceptable for the deployment environment.
+
+## Reference(s):
+
+- [Cryptowerk API Notes](references/cryptowerk-api-notes.md)
+- [Storage and State](references/storage-and-state.md)
+- [Cryptowerk](https://www.cryptowerk.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Files, Text, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local .cwseal sidecar files and may create local credential state in cwconfig.json.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

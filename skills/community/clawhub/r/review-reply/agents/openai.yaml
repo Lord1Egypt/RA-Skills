@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊差评回复助手 · AI生成回复话术"
+  short_description: "列出待处理差评，AI 逐条生成回复/申诉/改进建议"
+  default_prompt: "使用 $amazon-review-reply 列出我的待处理差评，并为最严重的一条生成回复建议。"

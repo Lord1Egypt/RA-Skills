@@ -1,0 +1,11 @@
+{
+  "doc": "enclosure.FCStd",
+  "new": true,
+  "steps": [
+    {"op": "box", "name": "Block", "length": 120, "width": 80, "height": 40},
+    {"op": "fillet", "name": "Rounded", "target": "Block", "radius": 8, "edges": "|Z"},
+    {"op": "shell", "name": "Enclosure", "target": "Rounded", "thickness": 2.5, "open_faces": ">Z",
+     "expect": {"bbox_size": [120, 80, 40], "solids": 1}},
+    {"op": "export", "filename": "enclosure.stl", "tolerance": 0.05}
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "ch-download-url",
+      "name": "视频号播放地址",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-download-url/videos/download-url",
+      "price": 0.05,
+      "params": [
+        "url",
+        "shortUri",
+        "exportId",
+        "objectId",
+        "objectNonceId"
+      ],
+      "purpose": "短期播放地址",
+      "param_types": {
+        "url": "string",
+        "shortUri": "string",
+        "exportId": "string",
+        "objectId": "string",
+        "objectNonceId": "string"
+      },
+      "product_slug": "wechat-native-channel-download-url"
+    },
+    {
+      "key": "audio-transcription",
+      "name": "音频转文字",
+      "cat": "ai",
+      "method": "POST",
+      "path": "/openapi/stepfun-audio-transcription/transcribe",
+      "price": 0.05,
+      "params": [
+        "file",
+        "audioUrl"
+      ],
+      "purpose": "音视频转写",
+      "param_types": {
+        "file": "string",
+        "audioUrl": "string"
+      },
+      "product_slug": "stepfun-audio-transcription"
+    }
+  ]
+}

@@ -1,45 +1,60 @@
-## Description: <br>
-Find night markets, food streets, and local culinary hotspots using flyai CLI results, then format evening food and booking options for the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find night markets, food streets, and local culinary hotspots. Discover street food, local specialties, and the best evening food experiences. Also supports: flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more — powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to find night markets, food streets, and street-food points of interest for a specified city. It collects the city and optional search filters, runs flyai CLI searches, and returns concise Markdown results with booking links when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs a global npm install of the flyai CLI, which can modify the agent environment. <br>
-Mitigation: Install only after trusting the flyai CLI provider, preferably in a controlled environment where the package and permissions can be reviewed. <br>
-Risk: The runbook describes persistent local logging of travel queries in .flyai-execution-log.json. <br>
-Mitigation: Avoid entering sensitive itinerary, passport, or payment details, and disable or delete the log file when local retention is not acceptable. <br>
-Risk: The skill can surface booking links and travel purchase paths. <br>
-Mitigation: Require user review and confirmation of all booking details before any purchase or payment step. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search FlyAI/Fliggy for night markets, food streets, and late-night food venues in a requested city, then present concise Markdown results with booking links.
 
-## Reference(s): <br>
-- [Templates - night-market](references/templates.md) <br>
-- [Playbooks - night-market](references/playbooks.md) <br>
-- [Fallbacks - Attraction Category](references/fallbacks.md) <br>
-- [Runbook - Execution Log Schema](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and short guidance with inline booking links and flyai CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel results; no raw JSON should be shown to users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires installing and running the FlyAI CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a version-pinned, user-approved CLI install in an isolated environment before allowing execution.
+
+Risk: Travel searches are sent through the FlyAI/Fliggy provider and results include provider-selected booking links.
+
+Mitigation: Tell users that live travel data and booking links come from provider output, and have them review destinations and URLs before booking.
+
+Risk: The skill can persist raw user queries in a local execution log when filesystem writes are available.
+
+Mitigation: Disable, redact, or regularly delete local logs that may contain sensitive travel queries.
+
+## Reference(s):
+
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links and inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FlyAI CLI output; does not expose raw JSON; includes provider-selected booking links when results are available.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

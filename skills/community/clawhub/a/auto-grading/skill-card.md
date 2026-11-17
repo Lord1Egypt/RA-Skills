@@ -1,41 +1,55 @@
-## Description: <br>
-智能批改作业 helps agents review graduation design and thesis archives by extracting doc, docx, pdf, and pptx content, scoring submissions, checking cross-document consistency, reviewing defense slides, and validating findings with source evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能批改作业 supports automated review of graduation design and thesis archives by extracting doc, docx, pdf, and pptx content, scoring documents, checking cross-document consistency, reviewing defense slides, and validating references against GB/T 7714.
 
-## Publisher: <br>
-[kingsunzhang2026-oss](https://clawhub.ai/user/kingsunzhang2026-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingsunzhang2026-oss](https://clawhub.ai/user/kingsunzhang2026-oss)
 
-## Use Case: <br>
-Teachers, advisors, and review assistants use this skill to audit graduation design or thesis archives, generate document scores, cross-check consistency across submitted files, review PPT defense materials, and produce evidence-linked revision reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill extracts student document text and path metadata locally, which can include student names, IDs, thesis content, or private project details. <br>
-Mitigation: Use it only on the intended archive or folder, avoid broad directories, and delete generated text files and manifests after review when they contain sensitive student or project data. <br>
-Risk: Grading findings can be misleading if extracted text is incomplete, from the wrong document version, or not backed by source evidence. <br>
-Mitigation: Review evidence-linked findings and run the bundled validation harness before relying on the final Markdown report. <br>
+## Use Case:
 
+Educators, reviewers, and academic staff use this skill to review student graduation design or thesis archives, produce evidence-backed scoring, and summarize required revisions across documents and defense slides.
 
-## Reference(s): <br>
-- [GB/T 7714-2015 Reference Format Quick Guide](references/gbt7714.md) <br>
-- [Thesis and Graduation Design Review Template](references/review_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [JSON issue data and Markdown review reports, with inline shell commands for document extraction and validation when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should include the source file, evidence text, and confidence; extracted text files and manifests may be written under /tmp/auto_grading.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can read sensitive student or institutional documents and writes extracted plaintext to local temporary storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a restricted workspace, review the archive contents before processing, and clean /tmp/auto_grading after use.
+
+Risk: The evidence guardrail may validate evidence against the wrong document when filenames or evidence overlap.
+
+Mitigation: Manually check source filenames and quoted evidence for high-impact findings, and treat automatically verified findings as review aids rather than final determinations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kingsunzhang2026-oss/skills/auto-grading)
+- [GB/T 7714-2015 Reference Guide](references/gbt7714.md)
+- [Review Template](references/review_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Structured JSON for harness validation followed by Markdown review reports with scoring tables and issue lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Issues are expected to include source file, evidence text, and confidence labels before final reporting.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

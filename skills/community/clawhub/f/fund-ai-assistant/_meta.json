@@ -1,6 +1,90 @@
 {
-  "ownerId": "kn7dwysm8myqam50scahgw8z9h83vg1p",
-  "slug": "fund-ai-assistant",
-  "version": "1.0.2",
-  "publishedAt": 1775408380658
+  "name": "fund-ai-assistant",
+  "display_name": "Fund AI Assistant",
+  "version": "1.0.0",
+  "description": "Fund portfolio tracker with AI analysis, multi-agent debate, technical indicators (VaR/Sortino/Calmar), macro monitoring, and rebalancing alerts. Data: East Money. Supports any OpenAI-compatible LLM.",
+  "source": "https://github.com/tempest-01/fund-ai-assistant",
+  "license": "MIT-0",
+  "primary_credential": {
+    "type": "api_key",
+    "env_vars": ["LLM_API_KEY"],
+    "description": "LLM API key is required. Fund data comes from East Money (no auth). Push endpoints are optional and user-configured."
+  },
+  "triggers": [
+    "基金", "基金分析", "Fund", "fund analysis", "portfolio",
+    "追踪基金", "建仓建议", "组合偏离", "rebalance", "技术指标"
+  ],
+  "env_vars": {
+    "LLM_MODEL": {
+      "required": true,
+      "description": "LLM model name, e.g. gpt-4o-mini. Any OpenAI-compatible API endpoint."
+    },
+    "LLM_API_KEY": {
+      "required": true,
+      "description": "API key for the LLM provider. Treat as a secret."
+    },
+    "LLM_API_BASE": {
+      "required": false,
+      "description": "Custom API base URL — if set to an untrusted host, your LLM_API_KEY and fund data will be sent there. Only use endpoints you control. Default: https://api.openai.com/v1"
+    },
+    "TAVILY_API_KEY": {
+      "required": false,
+      "description": "Tavily API key for real-time macro search."
+    },
+    "FUND_SCENE_DIR": {
+      "required": false,
+      "description": "Directory with optional .md scene templates. Do NOT point to sensitive directories — only .md files in that directory are read."
+    },
+    "PUSH_WEBHOOK_URL": {
+      "required": false,
+      "description": "HTTP POST URL for push notifications (WeCom/Feishu/Slack). Analysis output is sent to this URL if set — only use endpoints you control."
+    },
+    "BARK_PUSH_URL": {
+      "required": false,
+      "description": "Bark notification URL for iOS push alerts."
+    },
+    "PUSH_EMAIL": {
+      "required": false,
+      "description": "Target email for SMTP push. Requires SMTP_HOST/PORT/USER/PASS."
+    },
+    "SMTP_HOST": {
+      "required": false,
+      "description": "SMTP server hostname. Used with PUSH_EMAIL."
+    },
+    "SMTP_PORT": {
+      "required": false,
+      "description": "SMTP port. Default: 587."
+    },
+    "SMTP_USER": {
+      "required": false,
+      "description": "SMTP username."
+    },
+    "SMTP_PASS": {
+      "required": false,
+      "description": "SMTP password or auth token."
+    },
+    "QQ_WEBHOOK_URL": {
+      "required": false,
+      "description": "QQ bot HTTP interface URL (go-cqhttp / Lagrange). Analysis output is sent here if set."
+    }
+  },
+  "capabilities": {
+    "network": {
+      "description": "Calls East Money APIs (no auth) for fund data. Sends prompts and data to the LLM_API_BASE endpoint. Optionally calls Tavily and user-configured push endpoints. No other external network access."
+    },
+    "filesystem": {
+      "description": "Reads optional .md scene templates from the user-specified FUND_SCENE_DIR only. Does not access system or credential directories."
+    },
+    "notifications": {
+      "description": "Sends analysis summaries ONLY to endpoints explicitly configured by the user. No data sent without user configuration."
+    }
+  },
+  "security_notes": [
+    "LLM_MODEL and LLM_API_KEY are required — use a dedicated low-privilege key with quota limits.",
+    "LLM_API_BASE: If set to an untrusted or malicious endpoint, your API key and fund data will be sent there. Only use endpoints you control.",
+    "FUND_SCENE_DIR: Only .md files in that directory are read. Do NOT point it at system, home, or credential directories.",
+    "Push endpoints: Analysis output is transmitted externally — only configure endpoints you trust.",
+    "No credential exfiltration: API keys are used only for LLM and push calls, never written to logs.",
+    "Review llm.py and fund_api.py before first use to confirm network destinations."
+  ]
 }

@@ -1,44 +1,54 @@
-## Description: <br>
-Provides community group-buying marketing and promotion guidance covering campaign planning, hot-product launches, coupon systems, platform strategy comparisons, and supporting promotion tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+社区团购营销与促销全链路技能包，涵盖活动策划、爆品打造、优惠券体系、各平台营销策略对比及配套工具，适用于平台运营和营销负责人。
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-External platform operators and marketing managers use this skill to plan community group-buying promotions, design coupons, prepare launch SOPs, generate promotion copy, estimate ROI, and review campaign results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing templates may include pricing claims, urgency language, coupon rules, refund procedures, or anti-abuse actions that are unsuitable for a specific platform or jurisdiction. <br>
-Mitigation: Verify generated promotion materials against platform policy, actual inventory and pricing, refund procedures, and applicable consumer protection laws before publication. <br>
-Risk: ROI calculators and promotion benchmarks are planning aids and may not reflect current market conditions or the user's actual unit economics. <br>
-Mitigation: Validate assumptions such as subsidy rate, order volume, average order value, retention, acquisition cost, and supplier cost sharing with current business data before making spend decisions. <br>
-Risk: The artifact discusses overselling response, refunds, compensation, and anti-abuse actions that can affect customers and merchants. <br>
-Mitigation: Review incident handling, refund timing, compensation, and fraud controls with operations, customer support, and legal teams before use. <br>
+## Use Case:
 
+External platform operators and marketing managers use this skill to plan community group-buying promotions, design coupon systems, build hot-product launch plans, prepare promotional copy, estimate campaign ROI, and review promotion outcomes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/06-marketing-promotion) <br>
-- [Publisher profile](https://clawhub.ai/user/nic-yuan) <br>
-- [Continuation reference](references/continuation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with SOPs, checklists, Chinese promotional copy templates, Python calculator examples, and structured campaign analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pricing, scarcity, coupon, refund, anti-abuse, ROI, campaign calendar, and post-campaign reporting recommendations that should be checked against platform policy and local law.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, target metadata, and SKILL.md frontmatter) <br>
+Risk: Business recommendations for coupon abuse response, refunds, account restrictions, or escalation could affect real users if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have platform operations, legal, and customer support teams confirm that any operational response follows internal policy and local law before use.
+
+Risk: Promotion plans, ROI estimates, and example calculators may rely on assumptions that do not match a specific market, inventory position, or campaign budget.
+
+Mitigation: Validate inputs, financial assumptions, and campaign thresholds against current platform data before launching a promotion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/06-marketing-promotion)
+- [continuation.md](references/continuation.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, text]
+
+**Output Format:** [Chinese-language Markdown guidance with templates, SOPs, checklists, and embedded Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces business recommendations, promotional copy, ROI estimates, war-report text, and operational checklists for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -10,9 +10,13 @@ import {
   recallMemory,
   listMemories,
   deleteMemory as deleteMemoryFromService,
+  parseTags,  // P1-1: 向后兼容 tags 解析
 } from "../memory.js";
 import { auditLog, type AuthContext } from "../security.js";
-import { requireAuth, mcpFail, mcpError } from "../utils.js";
+import { requireAuth, authed, mcpFail, mcpError } from "../utils.js";
+import { fts5IntegrityCheck, db } from "../db.js";
+import { logger } from "../logger.js";
+import type { MemoryRow } from "../types.js";
 
 export function registerMemoryTools(server: McpServer, authContext?: AuthContext): void {
 
@@ -31,8 +35,7 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
       tags:    z.array(z.string()).optional().describe("标签列表，如 ['work', 'important']"),
       source_task_id: z.string().optional().describe("关联任务 ID（用于溯源追踪）"),
     },
-    async ({ content, title, scope, tags, source_task_id }) => {
-      const ctx = requireAuth(authContext, "store_memory");
+    authed(authContext, "store_memory", async (ctx, { content, title, scope, tags, source_task_id }) => {
 
       // Phase 2 Day 4: collective/group 写入自动记录 source_agent_id
       const sourceAgentId = scope === "collective" || scope === "group" ? ctx.agentId : undefined;
@@ -52,6 +55,17 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
       auditLog("tool_store_memory", ctx.agentId, result.memory.id,
         `scope=${scope}, source_agent=${sourceAgentId ?? "none"}, task=${source_task_id ?? "none"}, tags=${tags ? JSON.stringify(tags) : "none"}`);
 
+      // P0-1: FTS5 索引完整性守护
+      try {
+        const check = fts5IntegrityCheck();
+        if (!check.ok) {
+          logger.warn("fts5_integrity_check", { module: "memory", details: check.details });
+        }
+      } catch (e) {
+        // 守护不阻塞主流程
+        logger.warn("fts5_integrity_check_error", { module: "memory", error: String(e) });
+      }
+
       return {
         content: [{
           type: "text",
@@ -69,7 +83,7 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -86,8 +100,7 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
       limit: z.number().min(1).max(50).optional().default(10)
              .describe("最大返回数量"),
     },
-    async ({ query, scope, limit }) => {
-      const ctx = requireAuth(authContext, "recall_memory");
+    authed(authContext, "recall_memory", async (ctx, { query, scope, limit }) => {
 
       const results = recallMemory(query, ctx.agentId, { scope, limit });
 
@@ -102,11 +115,11 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
               title:             m.title,
               content:           m.content,
               scope:             m.scope,
-              tags:              m.tags ? JSON.parse(m.tags) : [],
+              tags:              m.tags ? parseTags(m.tags) : [],
               agent_id:          m.agent_id,
               source_agent_id:   m.source_agent_id,
               source_task_id:    m.source_task_id,
-              source_trust_score: (m as any).source_trust_score ?? null,
+              source_trust_score: (m as MemoryRow).source_trust_score ?? null,
               created_at:        m.created_at,
             })),
             count: results.length,
@@ -114,7 +127,7 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -132,8 +145,7 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
       offset: z.number().min(0).optional().default(0)
               .describe("分页偏移量"),
     },
-    async ({ scope, limit, offset }) => {
-      const ctx = requireAuth(authContext, "list_memories");
+    authed(authContext, "list_memories", async (ctx, { scope, limit, offset }) => {
 
       const results = listMemories(ctx.agentId, { scope, limit, offset });
 
@@ -146,11 +158,11 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
               title:             m.title,
               content:           m.content,
               scope:             m.scope,
-              tags:              m.tags ? JSON.parse(m.tags) : [],
+              tags:              m.tags ? parseTags(m.tags) : [],
               agent_id:          m.agent_id,
               source_agent_id:   m.source_agent_id,
               source_task_id:    m.source_task_id,
-              source_trust_score: (m as any).source_trust_score ?? null,
+              source_trust_score: (m as MemoryRow).source_trust_score ?? null,
               created_at:        m.created_at,
               updated_at:        m.updated_at,
             })),
@@ -159,7 +171,7 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -172,8 +184,7 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
     {
       memory_id: z.string().describe("要删除的记忆 ID"),
     },
-    async ({ memory_id }) => {
-      const ctx = requireAuth(authContext, "delete_memory");
+    authed(authContext, "delete_memory", async (ctx, { memory_id }) => {
 
       const result = deleteMemoryFromService(memory_id, ctx.agentId, ctx.role);
 
@@ -193,7 +204,7 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -208,24 +219,47 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
              .default("all").describe("可见范围筛选"),
       tags:  z.array(z.string()).optional().describe("标签筛选（如 ['work', 'important']）"),
       limit: z.number().min(1).max(50).optional().default(10).describe("最大返回数量"),
+      offline_window_days: z.number().min(0).max(30).optional().default(7)
+        .describe("离线回退窗口（天）。当 FTS5 命中不足 5 条时，回退到最近 N 天的 collective/group 全量记忆"),
     },
-    async ({ query, scope, tags, limit }) => {
-      const ctx = requireAuth(authContext, "search_memories");
+    authed(authContext, "search_memories", async (ctx, { query, scope, tags, limit, offline_window_days }) => {
 
       try {
         // 复用已有的 recallMemory（FTS5 引擎）
         let results = recallMemory(query, ctx.agentId, { scope, limit });
 
+        // P2-2: 离线回退 — FTS5 命中不足时，回退到最近 N 天 collective/group 记忆
+        if (results.length < 5 && offline_window_days > 0 && scope !== "private") {
+          const windowMs = offline_window_days * 86400_000;
+          const since = Date.now() - windowMs;
+          const fallbackScope = scope === "all" ? "(scope='collective' OR scope='group')" : `scope='${scope}'`;
+          // T5：离线回退 SQL 加 agent_id 过滤，防止泄露其他 Agent 的 private memories
+          const fallbackRows = db.prepare(
+            `SELECT id, agent_id, title, content, scope, tags, source_agent_id, source_task_id, created_at
+             FROM memories WHERE ${fallbackScope} AND agent_id = ? AND created_at > ?
+             ORDER BY created_at DESC LIMIT ?`
+          ).all(ctx.agentId, since, limit) as Array<{
+            id: string; agent_id: string; title: string | null; content: string;
+            scope: string; tags: string | null; source_agent_id: string | null;
+            source_task_id: string | null; created_at: number;
+          }>;
+          if (fallbackRows.length > 0) {
+            results = fallbackRows.map(r => ({
+              ...r,
+              title: r.title ?? "",
+              scope: r.scope as "private" | "group" | "collective",
+              source_trust_score: null as number | null,
+              updated_at: null as number | null,
+            })) as typeof results;
+          }
+        }
+
         // 按 tags 过滤（recallMemory 不直接支持 tags 参数）
         if (tags && tags.length > 0) {
           results = results.filter(m => {
             if (!m.tags) return false;
-            try {
-              const parsedTags: string[] = JSON.parse(m.tags);
-              return tags.some(t => parsedTags.includes(t));
-            } catch {
-              return false;
-            }
+            const parsedTags = parseTags(m.tags);
+            return tags.some(t => parsedTags.includes(t));
           });
         }
 
@@ -241,11 +275,11 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
                 title:             m.title,
                 content:           m.content,
                 scope:             m.scope,
-                tags:              m.tags ? JSON.parse(m.tags) : [],
+                tags:              m.tags ? parseTags(m.tags) : [],
                 agent_id:          m.agent_id,
                 source_agent_id:   m.source_agent_id,
                 source_task_id:    m.source_task_id,
-                source_trust_score: (m as any).source_trust_score ?? null,
+                source_trust_score: (m as MemoryRow).source_trust_score ?? null,
                 created_at:        m.created_at,
               })),
               count:      results.length,
@@ -256,7 +290,7 @@ export function registerMemoryTools(server: McpServer, authContext?: AuthContext
       } catch (err: unknown) {
         return mcpError(err, "search_memories");
       }
-    }
+    })
   );
 
 }

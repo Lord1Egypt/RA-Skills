@@ -1,40 +1,58 @@
-## Description: <br>
-TK Product Launch OS helps TikTok ecommerce operators plan an end-to-end product launch workflow covering product intelligence, viral-video research, creative production, shooting plans, digital asset organization, editing, publishing, and growth analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language TikTok ecommerce product-launch operating guide that helps agents produce product research, viral-video analysis, scripts, shooting plans, asset organization, editing guidance, publishing plans, and growth-analysis recommendations.
 
-## Publisher: <br>
-[web-seeker](https://clawhub.ai/user/web-seeker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[web-seeker](https://clawhub.ai/user/web-seeker)
 
-## Use Case: <br>
-External TikTok ecommerce operators and content teams use this skill to evaluate products, study high-performing videos, generate scripts and shot lists, organize production assets, plan publishing, and iterate from sales and engagement data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The activation keywords are broad and could trigger the skill outside a relevant TikTok ecommerce workflow. <br>
-Mitigation: Invoke the skill with a clear TikTok product-launch, product-selection, video-analysis, shooting, publishing, or growth-analysis request. <br>
-Risk: The workflow may involve sales data, account names, supplier details, and performance records. <br>
-Mitigation: Keep sensitive business data in systems you control and provide only the minimum context needed for planning. <br>
+## Use Case:
 
+External operators and content teams use this skill to plan TikTok product launches from product selection through video production, publishing, sales tracking, and iteration. It is intended for TikTok ecommerce workflows involving product research, short-video breakdowns, shooting plans, copy, editing, and performance analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/web-seeker/tk-product-launch-os) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured tables, checklists, templates, and decision rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance and reusable operating-system templates; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may be used with sensitive commercial information such as costs, supplier details, account names, video IDs, and sales records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive business data under user control, redact details when possible, and avoid sharing confidential records unless they are required for the task.
+
+Risk: Broad TikTok and TK routing language may make the skill activate for adjacent conversations.
+
+Mitigation: Confirm that the user is asking for TikTok ecommerce launch planning before applying the full operating workflow.
+
+Risk: Launch plans can involve music, video, image, or AI-generated assets with unclear commercial rights.
+
+Mitigation: Track commercial authorization for assets, document source and usage rights, and prefer licensed or owned materials for production releases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/web-seeker/skills/tk-product-launch-os)
+- [Publisher profile](https://clawhub.ai/user/web-seeker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with structured tables, checklists, templates, scripts, and decision rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning artifacts such as product cards, user demand maps, Go/No-Go recommendations, video breakdowns, shot lists, editing checklists, publishing records, and growth-analysis summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

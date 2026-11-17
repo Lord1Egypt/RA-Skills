@@ -1,42 +1,57 @@
-## Description: <br>
-Creates local SOUL.md persona and embodied-avatar prompt material with 5D role presets, behavioral directives, S2-EAM JSON, and S2-Visual SVG code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+S2硅基灵魂与具身架构师 is a Chinese-language local CLI that generates SOUL.md-style AI agent personality profiles with JSON avatar manifests and SVG visual code.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and agent builders use this local CLI to generate custom AI persona and embodied-avatar prompt material for SOUL.md or system-prompt workflows. The generated Markdown, JSON, and SVG are intended to be reviewed before being copied into long-term agent configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated persona or avatar text could be placed into long-term or system-level agent configuration without review. <br>
-Mitigation: Review the generated SOUL.md material before saving it and keep platform safety rules and operating policies authoritative over persona preferences. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create local, manually reviewed AI persona profiles and embodied avatar descriptions for SOUL.md or system-prompt workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/s2-soul-architect) <br>
-- [Publisher profile](https://clawhub.ai/user/spacesq) <br>
-- [Project homepage](https://taohuayuan.world) <br>
-- [Space2 EAM Protocol Whitepaper](docs/Space2_EAM_Protocol_Whitepaper_2026_CN.md) <br>
-- [S2-Visual SVG sample](sample/cat_companion_S2_Visual.svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Terminal text containing Markdown with embedded JSON and SVG code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and prints generated SOUL.md material for human review and manual use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and artifact changelog, released 2026-05-01) <br>
+Risk: Generated SOUL.md or system-prompt text may include style guidance that discourages normal safety or identity wording.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review and edit generated text before pasting it into an agent.
+
+Risk: Generated persona and avatar directives may alter an agent's behavior or presentation in ways unsuitable for a deployment.
+
+Mitigation: Test the generated profile in the target agent workflow and remove or adjust directives that conflict with policy or user expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-soul-architect)
+- [Publisher profile](https://clawhub.ai/user/spacesq)
+- [Project homepage](https://taohuayuan.world)
+- [Space2 EAM protocol whitepaper](docs/Space2_EAM_Protocol_Whitepaper_2026_CN.md)
+- [S2-Visual SVG sample](sample/cat_companion_S2_Visual.svg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown containing JSON and SVG/XML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated locally for manual copy into SOUL.md or a system prompt; no automatic file writes.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and CHANGELOG.md, released 2026-05-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Use when managing tasks with the agkan CLI tool - creating, listing, updating tasks, managing tags, blocking relationships, or tracking project progress with the kanban board. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing tasks with the agkan CLI tool - creating, listing, updating tasks, managing tags, blocking relationships, or tracking project progress with the kanban board.
 
-## Publisher: <br>
-[gendosu](https://clawhub.ai/user/gendosu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gendosu](https://clawhub.ai/user/gendosu)
 
-## Use Case: <br>
-Developers and agents use this skill to manage project work with the agkan CLI, including creating tasks, updating task state, organizing tags, tracking dependencies, and reading machine-processable task data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes a local task-management CLI that can persist project task data. <br>
-Mitigation: Install only if the agkan CLI is trusted, and avoid storing secrets in task bodies or metadata. <br>
-Risk: Task deletion or broad board changes could remove or disrupt project planning data. <br>
-Mitigation: Have the agent confirm before deleting tasks or making broad board changes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage project tasks with the agkan CLI, including task status, tags, blocking relationships, metadata, and kanban-style progress tracking.
 
-## Reference(s): <br>
-- [Agkan ClawHub Skill Page](https://clawhub.ai/gendosu/agkan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with bash, YAML, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes agkan CLI commands, task workflow guidance, priority conventions, and JSON output schemas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Agents can delete local agkan tasks when following documented delete commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer closing tasks for a reversible record and reserve deletion for cases where permanent removal is intended.
+
+Risk: Task and metadata updates can alter local project tracking state.
+
+Mitigation: Review planned agkan commands before execution and confirm the target task identifiers.
+
+## Reference(s):
+
+- [Agkan skill page](https://clawhub.ai/gendosu/skills/agkan)
+- [gendosu publisher profile](https://clawhub.ai/user/gendosu)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, YAML configuration, and JSON schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include agkan CLI command examples and JSON output schema guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

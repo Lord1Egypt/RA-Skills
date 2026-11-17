@@ -1,45 +1,58 @@
-## Description: <br>
-Helps an agent coach users through a self-paced speed-reading program focused on pacing, reducing passive reading habits, previewing, skimming, and flexible reading rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Abby Marks Beale's 10 Days to Faster Reading is a self-paced reading-coaching skill that helps users practice pacing, previewing, skimming, eye-span, and habit-reduction techniques to improve reading speed while maintaining comprehension.
 
-## Publisher: <br>
-[jaysonmeng](https://clawhub.ai/user/jaysonmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jaysonmeng](https://clawhub.ai/user/jaysonmeng)
 
-## Use Case: <br>
-Employees, external learners, and productivity-focused readers use this skill to receive speed-reading coaching, practice plans, and reading-strategy guidance. It is suited for users who want to improve reading speed while maintaining useful comprehension. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked for broad reading-related terms even when the user did not ask for speed-reading coaching. <br>
-Mitigation: Confirm the user's reading goal and keep guidance scoped to speed-reading or reading-strategy help. <br>
-Risk: Generated responses include a Heardly App watermark and link. <br>
-Mitigation: Review outputs before reuse in settings where third-party attribution or promotional links are not appropriate. <br>
+## Use Case:
 
+External learners and productivity-focused readers use this skill to run a self-paced 10-day faster-reading program, get targeted coaching for subvocalization, regression, and mind wandering, and choose reading strategies for nonfiction, online, or reference material.
 
-## Reference(s): <br>
-- [Core Framework](references/1-core-framework.md) <br>
-- [Principles](references/2-principles.md) <br>
-- [Techniques](references/3-techniques.md) <br>
-- [Anti-Patterns](references/4-anti-patterns.md) <br>
-- [Voice and Application](references/5-voice-and-app.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaysonmeng/10-days-to-faster-reading) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown coaching responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no tools, credentials, or shell commands are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The security review flags the skill as suspicious because it automatically presents onboarding while active.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the onboarding behavior before installation and constrain or disable the skill where unsolicited guidance is inappropriate.
+
+Risk: The skill requires a Heardly promotional attribution footer on every answer while active.
+
+Mitigation: Install only if the attribution requirement is acceptable for the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaysonmeng/skills/10-days-to-faster-reading)
+- [10-Day Program Overview](artifact/references/1-core-framework.md)
+- [Key Principles](artifact/references/2-principles.md)
+- [Speed Reading Toolbox](artifact/references/3-techniques.md)
+- [Anti-Patterns of Reading](artifact/references/4-anti-patterns.md)
+- [Author Voice and Common Scenarios](artifact/references/5-voice-and-app.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown coaching responses with an immediate action and attribution footer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are intended to match the user's language and include Heardly attribution while the skill is active.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a complete guide to AI freelancing, including niche analysis, pricing, client acquisition, proposal templates, and delivery workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language guide to AI freelancing, including niche analysis, pricing, client acquisition, proposal templates, and delivery workflows.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Freelancers and developers use this skill to plan AI service offerings, estimate project pricing, identify client-acquisition channels, and draft proposal and delivery workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scraping examples could be applied to sites where collection is unauthorized or rate limits prohibit automated access. <br>
-Mitigation: Only scrape sites the user is authorized to access, follow site terms, and respect rate limits. <br>
-Risk: Email notification and client-work examples may involve personal data or unsolicited messages. <br>
-Mitigation: Avoid collecting personal data unless permitted and send email notifications only to opted-in recipients. <br>
+## Use Case:
 
+Developers and freelancers use this skill to plan AI-assisted freelance services, estimate pricing, find suitable platforms, and draft client-facing proposals. It is intended for Chinese-language guidance and examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-freelancing-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with examples, tables, and proposal templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guide; no executable code in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.52 (source: server release evidence) <br>
+Risk: Pricing examples may not reflect current market rates or a specific client's budget.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the prices as general guidance and confirm quotes against current market conditions before sending proposals.
+
+Risk: The skill is written for Chinese-language freelancing workflows and may be less suitable for users who need another language or market context.
+
+Mitigation: Use it when Chinese-language guidance is appropriate, and localize platform choices, proposal wording, and expectations for other markets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-freelancing-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance with templates, examples, and pricing recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language content; no code execution or environment modification is described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.52 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

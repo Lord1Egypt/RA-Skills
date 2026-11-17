@@ -1,40 +1,57 @@
-## Description: <br>
-Speech-To-Text with MLX (Apple Silicon) and opensource models (default GLM-ASR-Nano-2512) locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Speech-To-Text with MLX (Apple Silicon) and opensource models (default GLM-ASR-Nano-2512) locally.
 
-## Publisher: <br>
-[guoqiao](https://clawhub.ai/user/guoqiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guoqiao](https://clawhub.ai/user/guoqiao)
 
-## Use Case: <br>
-Developers and end users on macOS with Apple Silicon use this skill to transcribe local audio files with MLX and open-source speech-to-text models without an API key or remote server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installation pulls or updates external command-line dependencies with Homebrew and uv, including mlx-audio. <br>
-Mitigation: Install only in environments where those local tool changes are acceptable and review dependency changes before use. <br>
-Risk: Transcripts are printed into the agent session and may contain sensitive audio content. <br>
-Mitigation: Use explicit audio paths and avoid transcribing files containing information that should not enter the agent context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MLX STT source homepage](https://github.com/guoqiao/skills/blob/main/mlx-stt/mlx-stt/SKILL.md) <br>
-- [MLX STT ClawHub listing](https://clawhub.ai/guoqiao/mlx-stt) <br>
+## Use Case:
 
+Developers and external users on Apple Silicon Macs use this skill to transcribe local audio files to text with MLX and open-source models, without an API key or remote server.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text transcript printed to stdout with shell command usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS on Apple Silicon, Homebrew, ffmpeg, uv, and mlx-audio; first run may download the model.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer force-installs mlx-audio with prerelease versions allowed, which can change installed behavior over time.
+
+Mitigation: Review the installer before use and prefer a pinned stable mlx-audio version for controlled deployments.
+
+Risk: Confidential audio may be converted into temporary files and transcript files during execution.
+
+Mitigation: Run the skill only in trusted local environments and clean temporary files after interrupted or failed runs.
+
+Risk: Broad natural-language triggers could activate transcription workflows when the user only intended discussion or review.
+
+Mitigation: Require explicit confirmation of the audio file path and intended transcription action before running shell commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guoqiao/skills/mlx-stt)
+- [Source homepage](https://github.com/guoqiao/skills/blob/main/mlx-stt/mlx-stt/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text transcript and Markdown guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcript is printed to stdout after local audio conversion and model execution.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

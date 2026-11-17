@@ -1,45 +1,63 @@
-## Description: <br>
-Audits locally installed AI Skills against skillguard.vip's public security database and reports blocked or high-risk skills with audit links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits locally installed AI skills against skillguard.vip's public security database and reports blocked, high-risk, medium, safe, unaudited, or errored results.
 
-## Publisher: <br>
-[yangyixxxx](https://clawhub.ai/user/yangyixxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangyixxxx](https://clawhub.ai/user/yangyixxxx)
 
-## Use Case: <br>
-Developers, agents, and security-conscious users use this skill to check locally installed AI Skills before invoking unfamiliar or newly installed skills. It helps surface blocked, high-risk, and unaudited skills so the user can decide what to review or uninstall. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installed skill names are sent to skillguard.vip or the configured replacement API during checks. <br>
-Mitigation: Install only if that disclosure is acceptable, or configure an API endpoint you trust. <br>
-Risk: Private, local, or unpublished skills may not appear in the public audit database. <br>
-Mitigation: Review unaudited results manually and treat them as not yet assessed rather than safe. <br>
-Risk: A public audit result can lag behind a republished or locally modified skill. <br>
-Mitigation: Prefer pinned or marketplace-installed copies and use the linked audit page to confirm the current scan context. <br>
+## Use Case:
 
+Developers and agent users use this skill to check installed skill bundles before invoking them or after installation. It helps surface blocked and high-risk audit results with links to canonical audit pages.
 
-## Reference(s): <br>
-- [Skillguard homepage](https://skillguard.vip) <br>
-- [skillguard-check public audit](https://skillguard.vip/skills/clawhub/skillguard-check) <br>
-- [ClawHub skill page](https://clawhub.ai/yangyixxxx/skillguard-check) <br>
-- [ClawHub audit report](https://skillguard.vip/report/clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [JSON report plus Markdown-style user summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes audit URLs, risk levels, finding counts, unaudited counts, and a nonzero exit code when blocked or high-risk skills are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends locally installed skill directory names to skillguard.vip for lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit checks when local skill names are sensitive, and understand this network lookup before installation.
+
+Risk: Mutable main-branch install commands can change after review.
+
+Mitigation: Prefer a reviewed ClawHub package or a pinned, verified commit for installation.
+
+Risk: Private, unpublished, or same-named skills may be unaudited or mismatched because lookup is based on skill slug.
+
+Mitigation: Treat unaudited or mismatched results as requiring manual review, and use the canonical audit page as the source of truth.
+
+Risk: The public audit verdict may lag behind a republished skill version.
+
+Mitigation: Check the audit page timestamp and rerun or request a fresh scan when the installed package may differ from the stored verdict.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangyixxxx/skills/skillguard-check)
+- [skillguard.vip homepage](https://skillguard.vip)
+- [skillguard-check audit page](https://skillguard.vip/skills/clawhub/skillguard-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON report with human-facing summary guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit code 1 indicates blocked or high-risk skills were found; no files are written.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

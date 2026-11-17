@@ -1,40 +1,48 @@
-## Description: <br>
-Improves X profile conversion when profile clicks are not becoming follows by helping optimize bio, pinned post, header, proof, and account promise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve X profile conversion. Use when profile clicks are not becoming follows, or when optimizing bio, pinned post, header, proof, and account promise.
 
-## Publisher: <br>
-[mikaelaldy](https://clawhub.ai/user/mikaelaldy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mikaelaldy](https://clawhub.ai/user/mikaelaldy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators and marketing operators use this skill to audit an X profile and produce bio options, pinned-post direction, header ideas, a follow promise, and aligned post ideas.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated X growth advice could be applied in ways that violate platform rules, create spam, or misrepresent credibility.
+
+Mitigation: Review advice before use, align changes with current platform rules, and avoid false proof claims or high-volume engagement tactics.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators and operators use this skill to audit an X profile and draft profile elements that convert profile visits into follows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested profile copy or content plans may be inaccurate, off-brand, or misleading if published without review. <br>
-Mitigation: Review the bio options, header idea, pinned post outline, follow promise, and content plan before publishing. <br>
-Risk: Over-optimizing for public algorithm signals can encourage low-quality engagement tactics. <br>
-Mitigation: Use the signals as a guide while prioritizing useful posts and replies and avoiding content that drives negative actions. <br>
+**Output Format:** [Markdown with structured profile-audit sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikaelaldy/x-profile-conversion) <br>
+**Other Properties Related to Output:** [Includes the main conversion leak, three bio options, pinned post outline, header idea, follow promise, and next five posts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Text] <br>
-**Output Format:** [Markdown with structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advice-only output; it does not access or modify X accounts.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

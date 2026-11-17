@@ -1,35 +1,13 @@
 {
   "name": "tech-manager-office",
-  "displayName": "OPC技术经理人事务所",
+  "displayName": "技术经理人事务所Agent",
   "version": "1.0.0",
-  "description": "OPC技术经理人事务所 - 成果转化全流程Agent。提供TRL技术成熟度评估、四层尽调法、成果转化路径设计服务。扮演猎手→评估师→经理人→创意师→所长五级角色体系。",
+  "description": "统筹5位专家角色，为已通过验证的技术成果完成技术交易全流程。覆盖技术评估、交易策略、尽调报告、合同草案与交割方案，帮助技术成果找到对的人、谈成对的价、签成对的约。",
   "author": "golngod",
   "license": "MIT",
   "pricing": {
     "model": "free"
   },
-  "tags": [
-    "技术经理人",
-    "TRL评估",
-    "成果转化",
-    "技术尽调",
-    "科技成果",
-    "产学研",
-    "OPC-SPARK"
-  ],
-  "minOpenClawVersion": "1.2.0",
-  "repository": "https://github.com/golngod/tech-manager-office",
-  "homepage": "https://www.opc-spark.com",
-  "keywords": [
-    "tech-manager",
-    "TRL",
-    "technology-transfer",
-    "due-diligence",
-    "innovation",
-    "research-commercialization"
-  ],
-  "compatibility": {
-    "platforms": ["coze", "claw"],
-    "cozeVersion": ">=1.0.0"
-  }
+  "tags": ["tech-transfer", "IP", "licensing", "innovation", "deal-making"],
+  "minOpenClawVersion": "1.2.0"
 }

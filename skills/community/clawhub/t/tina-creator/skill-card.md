@@ -1,47 +1,57 @@
-## Description: <br>
-Generates Xiaohongshu/小红书 notes with title options, body copy, tags, cover-image guidance, and a Research-Create-Grow workflow for reusable content strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu/RED post drafts with title options, body copy, tags, cover-image guidance, and a Research-Create-Grow content workflow.
 
-## Publisher: <br>
-[tina-zhang-coder](https://clawhub.ai/user/tina-zhang-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tina-zhang-coder](https://clawhub.ai/user/tina-zhang-coder)
 
-## Use Case: <br>
-Content creators, marketers, and social media operators use this skill to research Xiaohongshu topics, create platform-ready posts, and optionally save reusable creative strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social posts may contain inaccurate product claims or personal-story details. <br>
-Mitigation: Review generated posts before publishing, especially product claims and personal narratives. <br>
-Risk: Cover-image prompts may include private or sensitive information if supplied by the user. <br>
-Mitigation: Avoid putting private information into cover-image prompts. <br>
-Risk: Reusable strategy notes can preserve creative choices for later use. <br>
-Mitigation: Save strategy notes only after user approval and keep them limited to reusable creative guidance. <br>
+## Use Case:
 
+External creators, marketers, and social-media operators use this skill to research topics and create Xiaohongshu/RED notes with structured drafts, tags, cover guidance, and reusable content strategies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tina-zhang-coder/tina-creator) <br>
-- [Publisher profile](https://clawhub.ai/user/tina-zhang-coder) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Template library](artifact/templates.md) <br>
-- [Example notes](artifact/examples.md) <br>
-- [Strategy library](artifact/strategies/_index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, image prompts] <br>
-**Output Format:** [Markdown with Chinese note sections for title options, body copy, tags, and cover-image suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the user to choose a topic, note type, strategy reuse option, and whether to save a reusable strategy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can save user-approved strategy notes into its local strategy file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants to persist the strategy and review saved notes for sensitive, incorrect, or unwanted content.
+
+Risk: The skill may use an image-generation tool for cover images.
+
+Mitigation: Review generated cover prompts and images for brand, copyright, and platform suitability before publishing.
+
+## Reference(s):
+
+- [Skill definition](artifact/SKILL.md)
+- [Xiaohongshu note templates](artifact/templates.md)
+- [Example notes](artifact/examples.md)
+- [Strategy library](artifact/strategies/_index.md)
+- [ClawHub skill page](https://clawhub.ai/tina-zhang-coder/skills/tina-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown note drafts with structured title options, body copy, tags, and cover-image prompt guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose image-generation prompts and user-approved strategy-library updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

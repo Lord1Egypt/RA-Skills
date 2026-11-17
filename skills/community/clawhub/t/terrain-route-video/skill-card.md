@@ -1,44 +1,57 @@
-## Description: <br>
-Generates minimalist terrain-style MP4 route videos from stops or GPX/KML tracks using road-following geometry, terrain tiles, Matplotlib rendering, and FFmpeg encoding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a minimalist terrain-style animated driving route video (MP4) from a list of stops (cities/POIs) without Remotion.
 
-## Publisher: <br>
-[jack4world](https://clawhub.ai/user/jack4world) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jack4world](https://clawhub.ai/user/jack4world)
 
-## Use Case: <br>
-Developers, creators, and mapping-focused users use this skill to generate animated route-map videos for driving routes or existing GPX/KML tracks. It is suited to route visualization workflows that need an MP4 export with a fly-follow camera, route drawing, labels, and terrain basemap styling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Route coordinates and map tile areas can be sent to public OSRM and OpenTopoMap services during rendering. <br>
-Mitigation: Avoid sensitive home or work routes unless public service disclosure is acceptable, or adapt the workflow to approved private routing and tile services. <br>
-Risk: The FFmpeg encoding command overwrites the selected MP4 output path. <br>
-Mitigation: Choose output paths deliberately and run the skill in a fresh working folder before rendering. <br>
-Risk: The script creates local frame and tile-cache files in the current working folder. <br>
-Mitigation: Use an isolated project folder or virtual environment and clean generated `frames/` and `.tile-cache/` data after review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jack4world/terrain-route-video) <br>
-- [stops.schema.json](references/stops.schema.json) <br>
-- [OSRM route API](https://router.project-osrm.org/route/v1/driving/) <br>
-- [JSON Schema draft 2020-12](https://json-schema.org/draft/2020-12/schema) <br>
+## Use Case:
 
+External users, developers, and content producers use this skill to generate animated route-map videos from stop lists or existing GPX/KML tracks. It is useful when a route should follow roads where OSRM geometry is available, or use supplied track geometry directly.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown runbook with JSON input examples and shell commands; execution produces an MP4 video plus local frames and tile cache files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is a 1600x900, 30 FPS, 12-second MP4 with route animation, labels, and terrain basemap styling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Route coordinates may be sent to public OSRM routing and OpenTopoMap tile services.
+
+Mitigation: Avoid sensitive routes or use supplied GPX/KML track geometry when road-following is not required, and review map-service exposure before rendering.
+
+Risk: Unpinned Python dependencies and FFmpeg behavior can vary across environments.
+
+Mitigation: Install in a fresh virtual environment and pin dependencies for reproducible or higher-assurance use.
+
+Risk: Rendered frames and cached map tiles can leave local artifacts containing route imagery.
+
+Mitigation: Run the skill in a dedicated working folder and remove frames/ and .tile-cache/ after the MP4 is produced when the route is sensitive.
+
+## Reference(s):
+
+- [stops.schema.json](references/stops.schema.json)
+- [OSRM public route service endpoint](https://router.project-osrm.org/route/v1/driving/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown with JSON and bash examples; generated MP4 files when the script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script may also create local frames/ and .tile-cache/ directories during rendering.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

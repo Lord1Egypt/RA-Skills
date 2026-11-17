@@ -1,42 +1,56 @@
-## Description: <br>
-Structured reasoning protocol for Claude that forces step-by-step analysis, self-critique, and confidence scoring before answering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured reasoning protocol for Claude that prompts step-by-step analysis, self-critique, and confidence scoring before answering complex questions.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-Developers, engineers, and other agent users use Thinkdeep when complex technical questions, trade-off decisions, code review, root-cause analysis, or risk assessment benefit from structured reasoning and explicit confidence checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Structured reasoning mode can make answers longer or include visible reasoning summaries and confidence ratings where concise output is required. <br>
-Mitigation: Use Thinkdeep for complex questions and avoid activating it for simple transformations, factual lookups, or workflows that require minimal reasoning logs. <br>
-Risk: The README installation example uses deep-think while the skill metadata and release slug use thinkdeep. <br>
-Mitigation: Verify the ClawHub release slug before installation and prefer the server-resolved slug thinkdeep for this release. <br>
+## Use Case:
 
+Developers, engineers, and other agent users can use this skill to structure analysis for complex technical questions, trade-off decisions, code review, risk assessment, and root-cause analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiajiaoy/thinkdeep) <br>
-- [Skill homepage](https://clawhub.ai/skills/thinkdeep) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured reasoning summaries and answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include restatement, options, critiques, selected approach, confidence score, and uncertainty notes when the reasoning adds value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter remains 1.0.1) <br>
+Risk: The skill can make responses more verbose or slower for prompts where deep analysis is unnecessary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for complex decisions, debugging, reviews, risk analysis, and other high-cost answers; skip it for simple transformations or obvious factual answers.
+
+Risk: Broad activation keywords may cause the reasoning protocol to run more often than intended.
+
+Mitigation: Review activation behavior after installation and narrow trigger terms if the skill activates on routine prompts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiajiaoy/skills/thinkdeep)
+- [ClawHub Homepage Metadata](https://clawhub.ai/skills/thinkdeep)
+- [Publisher Profile](https://clawhub.ai/user/jiajiaoy)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with an optional structured thinking block followed by an answer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only skill; no files, credentials, network access, or tool execution are requested by the artifact.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence; artifact frontmatter shows 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

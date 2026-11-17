@@ -1,41 +1,59 @@
-## Description: <br>
-Recommends curated Nano Banana Pro image-generation prompts and prompt templates from a large community library based on a user's image or content needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends suitable prompts from a library of 14,000+ Nano Banana Pro image generation prompts and helps adapt selected prompts for user-specific image needs.
 
-## Publisher: <br>
-[DophinL](https://clawhub.ai/user/DophinL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dophinl](https://clawhub.ai/user/dophinl)
 
-## Use Case: <br>
-External creators, marketers, designers, and developers use this skill to find, preview, and adapt image-generation prompts for portraits, products, social media, posters, article illustrations, and other content needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill refreshes prompt data from a mutable live source, which can change recommendations over time. <br>
-Mitigation: Install only if you trust the YouMind-OpenLab source, scope network access and file writes where possible, and review downloaded references when reproducibility matters. <br>
-Risk: Prompt recommendations may include preview media loaded from external URLs. <br>
-Mitigation: Avoid fetching or sending preview media from unexpected domains, and use environments where outbound media access can be reviewed or restricted. <br>
+## Use Case:
 
+External users, developers, and content creators use this skill to find image generation prompt templates, preview sample images, and customize a chosen template for articles, videos, social media, product marketing, avatars, posters, and related visual content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DophinL/nano-banana-pro-prompts-recommend) <br>
-- [YouMind Nano Banana Pro prompt gallery](https://youmind.com/nano-banana-pro-prompts?utm_source=nano-banana-pro-prompts-recommend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with prompt previews, source links, optional image references, and setup commands for refreshing local prompt data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are capped at three prompts per request and include attribution to YouMind.com when presenting prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.9 (source: server release evidence and package.json) <br>
+Risk: The skill downloads prompt data from a mutable GitHub branch and persists it locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed version that pins or verifies downloaded manifests and prompt data, or review changed reference files before use.
+
+Risk: Automatic update checks can make network requests during normal skill use.
+
+Mitigation: Disable silent auto-update behavior where possible and run setup commands only in an environment where outbound network access is expected.
+
+Risk: Prompt recommendations can include remote sample image handling.
+
+Mitigation: Fetch or send media only from trusted URLs and avoid automatic media sending in sensitive workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dophinl/skills/nano-banana-pro-prompts-recommend)
+- [YouMind Nano Banana Pro prompt gallery](https://youmind.com/nano-banana-pro-prompts)
+- [Remote prompt reference files used by setup](https://github.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill/tree/main/references)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with prompt recommendations, links, optional image references, and setup command blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask clarifying questions, recommend up to three prompts, and generate a customized prompt after the user selects a template.]
+
+## Skill Version(s):
+
+1.5.9 (source: ClawHub release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

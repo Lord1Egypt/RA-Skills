@@ -1,49 +1,63 @@
-## Description: <br>
-Generate professional database structure documentation from PostgreSQL databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional database structure documentation from PostgreSQL databases, including Excel files with table schemas, column details, and formatting.
 
-## Publisher: <br>
-[gitoftom](https://clawhub.ai/user/gitoftom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitoftom](https://clawhub.ai/user/gitoftom)
 
-## Use Case: <br>
-Developers, database engineers, and operations teams use this skill to document PostgreSQL schemas, export table and column metadata, and create data dictionaries as formatted Excel files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database credentials may be exposed through prompts, shell history, committed configuration, or command-line arguments. <br>
-Mitigation: Use environment variables or a secret manager, avoid pasting real passwords into prompts or shell commands, and keep credential-bearing config files out of the skill directory. <br>
-Risk: The bundled credential cleanup script can make broad repository edits. <br>
-Mitigation: Review scripts/clean_credentials.py before use, run it only when repository-wide edits are intended, and keep backups or version-control checkpoints. <br>
-Risk: Generated Excel files can reveal database schema details. <br>
-Mitigation: Store generated workbooks in protected locations, apply restrictive file permissions, and delete sensitive output when no longer needed. <br>
-Risk: Database access can exceed the documentation use case if the account is overprivileged. <br>
-Mitigation: Connect with a read-only database account and use SSL/TLS or equivalent transport protection for remote PostgreSQL connections. <br>
+## Use Case:
 
+Developers and database engineers use this skill to inspect PostgreSQL schema metadata and generate data dictionaries or database structure documentation for selected tables or entire public schemas.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gitoftom/database-doc-generator) <br>
-- [SQL Queries](references/SQL_QUERIES.md) <br>
-- [Excel Formatting](references/EXCEL_FORMATTING.md) <br>
-- [Usage Examples](references/USAGE_EXAMPLES.md) <br>
-- [Security Guidelines](SECURITY.md) <br>
-- [Secure Installation Guide](INSTALLATION_SECURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Excel workbook plus Markdown and shell-command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates formatted .xlsx database schema documentation from PostgreSQL metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security verdict is suspicious because the package ships real-looking historical credential material and broad cleanup tooling that can rewrite or delete project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install it as-is in sensitive environments; ask the maintainer to redact historical credential material and isolate or remove credential-cleanup tooling before production use.
+
+Risk: Database credentials may be exposed through command-line arguments, JSON configuration, logs, or checked-in files.
+
+Mitigation: Use protected environment variables or a secrets manager, avoid passwords on the command line, and test only with a read-only database account.
+
+Risk: Generated Excel files can reveal table names, column names, comments, and other sensitive schema metadata.
+
+Mitigation: Write outputs to a private directory, restrict file permissions, and review or redact sensitive fields before sharing.
+
+Risk: Database connections may be unencrypted or broader than necessary.
+
+Mitigation: Require TLS settings, limit network access, and grant only the metadata permissions needed for schema documentation.
+
+## Reference(s):
+
+- [SQL Queries](references/SQL_QUERIES.md)
+- [Excel Formatting Guide](references/EXCEL_FORMATTING.md)
+- [Usage Examples](references/USAGE_EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples; generated output is a formatted Excel workbook.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PostgreSQL network access and Python dependencies; output workbooks may contain sensitive schema metadata.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

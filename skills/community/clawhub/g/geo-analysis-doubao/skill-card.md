@@ -1,43 +1,53 @@
-## Description: <br>
-Evaluates user-provided brand, product, article, FAQ, or sales copy for how easily Doubao can understand, summarize, quote, and recommend it, then returns a concise Chinese GEO audit report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates whether brand, product, or article copy is easy for Doubao to understand, quote, and recommend, then returns a concise Chinese GEO audit report.
 
-## Publisher: <br>
-[ljseeking](https://clawhub.ai/user/ljseeking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljseeking](https://clawhub.ai/user/ljseeking)
 
-## Use Case: <br>
-Marketing teams, brand owners, content creators, and agent developers use this skill to audit supplied Chinese-language content for Doubao-oriented generative engine optimization. It scores clarity, target audience, scenario fit, structure, quotability, and recommendation triggers, then suggests practical content improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill does not measure live Doubao rankings, crawl websites, store monitoring history, or support account-based workflows. <br>
-Mitigation: Use it as a lightweight audit of content supplied by the user, and use separate measurement or monitoring tools when live ranking or longitudinal tracking is required. <br>
-Risk: Sparse or vague source content can lead to low-confidence brand interpretation or incomplete recommendations. <br>
-Mitigation: Provide complete brand, audience, scenario, product, and FAQ material, and review the generated report before using it for customer-facing or strategic decisions. <br>
+## Use Case:
 
+Brand teams, marketers, content creators, and agent operators use this skill to audit supplied Chinese brand or product content for Doubao-oriented GEO readiness. It scores the content across clarity, structure, quoteability, and recommendation triggers, then suggests concise improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ljseeking/geo-analysis-doubao) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [doubao_geo_audit_report.md](artifact/templates/doubao_geo_audit_report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Chinese Markdown audit report with scored sections, tables, recommendations, and FAQ suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default compact mode limits repeated explanation, keeps major problems to three items, optimization suggestions to five items, and FAQ suggestions to five items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Sparse or vague source text can lead to low-confidence GEO scores or incomplete diagnosis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide complete brand, product, audience, scenario, and FAQ content, and review any "insufficient information" findings before acting on the report.
+
+Risk: The skill is oriented to Chinese Doubao GEO analysis and may not fit multilingual or non-Doubao review needs without adaptation.
+
+Mitigation: Confirm the target language and model context before use, and adapt prompts or report criteria when evaluating other generative engines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ljseeking/skills/geo-analysis-doubao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Compact mode by default; includes score, diagnosis, recommendations, FAQ suggestions, and a final conclusion based only on user-provided content.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

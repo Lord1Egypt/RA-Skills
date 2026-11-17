@@ -1,42 +1,55 @@
-## Description: <br>
-Measure GitHub Actions failure recovery latency and unresolved incident age by workflow group. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measure GitHub Actions failure recovery latency and unresolved incident age by workflow group.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and CI maintainers use this skill to audit GitHub Actions run exports, compare workflow recovery latency, identify unresolved failure incidents, and optionally gate CI when critical recovery thresholds are exceeded. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Limited server-resolved provenance may make upstream source review harder. <br>
-Mitigation: Review the publisher profile and release page before installing or promoting the skill. <br>
-Risk: GitHub Actions exports can contain repository and workflow information that should not be analyzed unintentionally. <br>
-Mitigation: Keep RUN_GLOB scoped only to the export files intended for the audit and handle generated reports according to the repository's data policy. <br>
-Risk: The documented gh run view collection command uses the currently authenticated GitHub CLI permissions. <br>
-Mitigation: Run collection commands from the intended GitHub account or automation identity and collect only the fields needed for the audit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/daniellummis/github-actions-recovery-latency-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/daniellummis) <br>
+## Use Case:
+
+Developers and engineering teams use this skill to audit GitHub Actions run exports, find slow recovery patterns, and identify workflow groups with unresolved failures for triage or CI gates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The script reads every file matched by RUN_GLOB, so an overly broad glob can process unintended local JSON exports.
+
+Mitigation: Review RUN_GLOB before running the skill and point it only at the intended GitHub Actions export files.
+
+Risk: The documented data collection command can rely on existing GitHub CLI authentication when the user manually exports run data.
+
+Mitigation: Use a GitHub CLI session and permissions appropriate for the repositories being audited.
+
+Risk: Using FAIL_ON_CRITICAL=1 can fail a CI job when configured thresholds classify groups as critical.
+
+Mitigation: Tune the warning and critical thresholds before enabling FAIL_ON_CRITICAL in an automated gate.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Text report or JSON report with summary, ranked recovery-risk groups, and critical groups.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can exit with status 1 when FAIL_ON_CRITICAL=1 and one or more groups are critical.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [text, json, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text report or JSON summary with ranked recovery-risk groups and optional shell commands for data collection and execution.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local GitHub Actions run JSON exports and can exit nonzero when FAIL_ON_CRITICAL=1 and critical groups are found.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

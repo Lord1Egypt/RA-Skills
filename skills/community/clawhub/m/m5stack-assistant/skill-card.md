@@ -1,45 +1,57 @@
-## Description: <br>
-M5Stack Assistant helps agents answer M5Stack product, hardware, integration, troubleshooting, and development questions by first querying the M5Stack MCP service and grounding responses in official documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+M5Stack official technical support and development assistant for answering product specifications, pinouts, compatibility, troubleshooting, and development questions using M5Stack official MCP evidence.
 
-## Publisher: <br>
-[yuyun2000](https://clawhub.ai/user/yuyun2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyun2000](https://clawhub.ai/user/yuyun2000)
 
-## Use Case: <br>
-Developers, engineers, and support agents use this skill to look up M5Stack specifications, pinouts, APIs, examples, compatibility notes, and troubleshooting guidance before producing actionable answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to M5Stack's remote MCP service for documentation search. <br>
-Mitigation: Do not include secrets, credentials, private logs, proprietary code, or sensitive device identifiers in search queries unless that disclosure is acceptable. <br>
-Risk: The skill may be unable to confirm product details if the MCP service times out or returns insufficient evidence. <br>
-Mitigation: State when official material does not confirm an answer and direct users to M5Stack documentation or GitHub for manual verification. <br>
+## Use Case:
 
+Developers and support engineers use this skill to answer M5Stack hardware, software, and integration questions from official MCP search or answer results, and to submit reproducible feedback when official material is missing, conflicting, or broken.
 
-## Reference(s): <br>
-- [M5Stack Documentation](https://docs.m5stack.com) <br>
-- [M5Stack GitHub](https://github.com/m5stack) <br>
-- [M5Stack MCP Service](https://mcp.m5stack.com) <br>
-- [M5Stack Arduino Programming Reference](references/quick-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuyun2000/m5stack-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/yuyun2000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounded in M5Stack MCP search results when the remote service is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence) <br>
+Risk: M5Stack support queries are sent to M5Stack's official MCP service, and search or answer usage may be logged for maintenance statistics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact credentials, Wi-Fi passwords, customer data, private logs, serial numbers, proprietary code, and other sensitive information before using MCP search or answer tools.
+
+Risk: Incomplete, incorrect, conflicting, or broken official material can lead to unsupported technical conclusions.
+
+Mitigation: Use MCP evidence before answering, state when official material does not confirm a claim, and submit reproducible feedback through knowledge_feedback for confirmed documentation or tool issues.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyun2000/skills/m5stack-assistant)
+- [M5Stack official documentation](https://docs.m5stack.com)
+- [M5Stack GitHub](https://github.com/m5stack)
+- [M5Stack MCP service](https://mcp.m5stack.com)
+- [M5Stack Arduino Programming Reference](references/quick-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline code and shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should be grounded in M5Stack official MCP results and should note when official material does not confirm a claim.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

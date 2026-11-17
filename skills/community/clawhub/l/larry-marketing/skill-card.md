@@ -1,50 +1,67 @@
-## Description: <br>
-Automates TikTok and Instagram slideshow marketing by guiding competitor research, image generation, text overlays, multi-platform posting, analytics tracking, and iterative optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a TikTok and Instagram slideshow marketing workflow for apps or products by guiding competitor research, AI image generation, text overlays, multi-platform posting, analytics tracking, and iterative optimization.
 
-## Publisher: <br>
-[sammy-the-bot](https://clawhub.ai/user/sammy-the-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sammy-the-bot](https://clawhub.ai/user/sammy-the-bot)
 
-## Use Case: <br>
-External users and developers use this skill to set up an agent-assisted social marketing workflow for an app or product, including slideshow creation, posting, analytics checks, and conversion-aware iteration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post to connected social accounts. <br>
-Mitigation: Use least-privilege API keys, restrict connected profiles and platforms, and review every generated post before publishing. <br>
-Risk: The workflow can persist business data and secrets locally. <br>
-Mitigation: Keep configuration files, reports, analytics snapshots, and API keys out of source control and store secrets with the user's normal secret-management process. <br>
-Risk: The skill can create recurring jobs for daily reporting or posting workflows. <br>
-Mitigation: Enable scheduled jobs only with explicit user approval and document how to disable or modify each schedule. <br>
-Risk: The artifact includes platform-detection evasion guidance. <br>
-Mitigation: Avoid detection-evasion behavior and require the user to follow each platform's terms, automation rules, and account-safety policies. <br>
+## Use Case:
 
+External developers, app founders, and growth marketers use this skill to set up an agent-assisted social marketing pipeline that creates slideshow content, posts it through Upload-Post, and reviews performance data. It is especially oriented toward app marketing workflows that need repeatable hook testing, creative iteration, and optional conversion tracking.
 
-## Reference(s): <br>
-- [Analytics & Feedback Loop](references/analytics-loop.md) <br>
-- [App Category Templates](references/app-categories.md) <br>
-- [Competitor Research Guide](references/competitor-research.md) <br>
-- [RevenueCat Integration](references/revenuecat-integration.md) <br>
-- [Slide Structure & Hook Writing](references/slide-structure.md) <br>
-- [Upload-Post](https://upload-post.com) <br>
-- [ClawHub skill page](https://clawhub.ai/sammy-the-bot/larry-marketing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples, JavaScript helper scripts, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local configuration, slideshow assets, post metadata, analytics summaries, and daily report files when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Posting credentials and platform API keys may be exposed or granted broader access than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege API keys, prefer environment variables or a secret manager, and keep config.json and generated reports out of source control.
+
+Risk: Social posting automation can publish public content or run recurring scheduled jobs without sufficient review.
+
+Mitigation: Require explicit user confirmation before public posting and before enabling recurring scheduled jobs.
+
+Risk: RevenueCat integration can expose subscriber, conversion, and revenue data.
+
+Mitigation: Review RevenueCat access carefully and limit credentials to the required project and reporting scope.
+
+Risk: Third-party dependency installation and API integrations can change behavior over time.
+
+Mitigation: Review install commands before execution and pin dependencies where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sammy-the-bot/skills/larry-marketing)
+- [Upload-Post](https://upload-post.com)
+- [Analytics & Feedback Loop](references/analytics-loop.md)
+- [App Category Templates](references/app-categories.md)
+- [Competitor Research Guide](references/competitor-research.md)
+- [RevenueCat Integration](references/revenuecat-integration.md)
+- [Slide Structure & Hook Writing](references/slide-structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with JSON configuration, JavaScript scripts, shell commands, generated image files, posting metadata, analytics snapshots, and daily reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local marketing workspace files and may call third-party posting, analytics, image generation, and conversion-tracking APIs when configured by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

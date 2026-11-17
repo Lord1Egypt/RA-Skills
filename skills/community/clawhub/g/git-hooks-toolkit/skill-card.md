@@ -1,42 +1,58 @@
-## Description: <br>
-Generate, install, and manage Git hooks with pre-built templates for linting staged files, enforcing commit conventions, blocking debug statements, preventing large file commits, formatting code, requiring ticket references, protecting branches, running tests, and installing dependencies after merge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, install, and manage Git hooks with pre-built templates for linting staged files, enforcing commit conventions, blocking debug statements, preventing large files, formatting code, protecting branches, running tests before push, and installing dependencies after merge.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and engineers use this skill to list, preview, install, check, and remove repository-local Git hook templates that enforce common commit, linting, formatting, testing, branch-protection, and dependency-update workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installed Git hooks run local tools automatically during repository workflows. <br>
-Mitigation: Preview each template before installing it and install hooks only in repositories where that automation is intended. <br>
-Risk: Using --force can replace an existing hook. <br>
-Mitigation: Avoid --force unless replacing the current hook is intentional, and review or back up the existing hook first. <br>
-Risk: The post-merge dependency template can run package-manager install commands after future merges. <br>
-Mitigation: Use the post-merge dependency hook only in trusted repositories and review dependency or lockfile changes before merging. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, preview, install, inspect, and remove repository Git hooks that enforce common commit, push, formatting, and dependency workflows.
 
-## Reference(s): <br>
-- [Git Hooks Toolkit on ClawHub](https://clawhub.ai/Johnnywang2001/git-hooks-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Git hook script content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates executable repository-local Git hook files under .git/hooks when installation commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, created 2026-03-21) <br>
+Risk: The scanner reports that the remove command can delete files outside normal Git hooks when given unsafe hook names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and do not run the remove command with anything other than a standard Git hook name until path validation is fixed.
+
+Risk: Installed hooks may persist in a repository and alter commit, push, merge, formatting, testing, and dependency workflows.
+
+Mitigation: Use only in repositories where persistent Git hook behavior is intended, and preview templates before installation.
+
+Risk: The post-merge dependency template can run package-manager commands after merges when lockfiles change.
+
+Mitigation: Avoid the install-deps template unless automatic package-manager execution is acceptable for the repository.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/johnnywang2001/skills/git-hooks-toolkit)
+- [Publisher Profile](https://clawhub.ai/user/johnnywang2001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated Git hook scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write executable Git hook files into a repository when the user runs the included script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

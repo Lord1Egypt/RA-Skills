@@ -1,39 +1,49 @@
-## Description: <br>
-Yq Video Motion Analyzer helps an agent extract key frames from sports teaching videos, analyze motion posture, and generate stick-figure diagrams with improvement feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video motion analysis assistant that extracts key frames from instructional videos, analyzes motion and posture, and generates stick-figure action diagrams for sports technique review.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-External users, coaches, athletes, and instructional video reviewers use this skill to break down sports teaching videos into key frames, posture analysis, strengths, issues, and targeted improvement guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided videos and extracted frames may contain sensitive visual content and may be processed by the host's configured video or image understanding tools. <br>
-Mitigation: Use only videos the user is authorized to analyze, and review the host environment's video and image tool data-handling settings before processing sensitive material. <br>
-Risk: Frame extraction writes local image files that can persist after the analysis is complete. <br>
-Mitigation: Choose the output directory deliberately, restrict access to generated frame and diagram folders, and delete generated images when they are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to break down sports teaching videos into key frames, posture analysis, coaching feedback, and visual stick-figure diagrams that highlight correct motion and areas for improvement.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON-style analysis summaries, shell commands, extracted frame images, and generated PNG diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates JPEG frames under output/frames and PNG stick-figure diagrams under output/stickman.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, _meta.json, release evidence) <br>
+Risk: The skill writes extracted frames and generated images from user-provided videos to local output directories, which may expose private media if retained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented output directories, process only videos suitable for local storage, and delete generated output folders after analysis when media is private.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/yq-video-motion-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON analysis examples, shell commands, JPEG key frames, and PNG stick-figure diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes extracted video frames to output/frames/ and generated stick-figure diagrams to output/stickman/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

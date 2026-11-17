@@ -1,0 +1,9 @@
+{
+  "name": "ardot-mobile-app-multi-screen",
+  "normalizedName": "ardot-mobile-app-multi-screen",
+  "description": "在 Ardot 画布上一次产出多个移动端 App 屏幕（如首页 / 列表 / 详情 / 编辑 / 第三方打通等），用于回答「怎么一次画一整套 App 页面」「多屏风格怎么统一」这类问题。统一使用 iPhone 尺寸、状态栏、底部胶囊标签栏与单一点缀色；按真实参照法以既定设计规格为唯一参照逐屏比对，不逐屏自由发挥，避免多屏之间尺寸 / 间距 / 配色漂移。适用移动端原型、App 界面草案、多屏交互串联等场景。触发词：Ardot 多屏、移动端 App 屏幕、一次画多个页面、App 原型、iPhone 尺寸稿、多屏统一风格、UI 原型图、mobile app screens、multi-screen mockup。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

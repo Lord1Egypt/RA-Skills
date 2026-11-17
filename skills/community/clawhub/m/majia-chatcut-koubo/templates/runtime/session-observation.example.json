@@ -1,0 +1,11 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/session-observation.schema.json",
+  "surface": "desktop",
+  "skillSource": "signed-desktop",
+  "skills": [],
+  "capabilities": ["project-read", "timeline-read", "timeline-write", "transcript-read", "speech-edit", "caption-read", "caption-write", "composed-preview"],
+  "observedAt": "2026-09-30T08:00:00Z",
+  "expiresAt": "2026-09-30T09:00:00Z",
+  "toolSchemaFingerprint": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "provenance": "simulation"
+}

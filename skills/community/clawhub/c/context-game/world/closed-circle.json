@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "name": "礁屿狱城",
+    "tone_family": "closed-circle",
+    "tone_variant": "囚笼共处",
+    "version": 1
+  },
+  "continents": [
+    {
+      "id": "continent_suo",
+      "name": "锁礁屿",
+      "summary": "四面环海的孤岛重刑监狱，唯一通向外界的通道是货栈帮经营的驳岸码头；狱规、放风、探视、配额在此构成一套自洽的封闭生态，礁屿狱署、号门会、耳房线、墙外盟、货栈帮并立，放风场是各方唯一都给面子的公共空间。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_yushu",
+      "name": "礁屿狱署",
+      "continent": "continent_suo",
+      "summary": "狱政当局，名义上掌握狱规与配额，实则被内线蛀空、被走私渗入；典狱长与狱警长对号门会的态度分裂为严打与绥靖两派。",
+      "tension_seeds": [
+        "狱署内部典狱长与狱警长争权，对号门会的态度在'严打'与'绥靖'之间摇摆",
+        "狱署账目亏空，监外采购全由货栈帮代运，官商勾结已成公开秘密"
+      ]
+    },
+    {
+      "id": "nation_haomen",
+      "name": "号门会",
+      "continent": "continent_suo",
+      "summary": "狱霸帮派，按号子划分地盘，用拳头立规矩，却最依赖狱警睁只眼闭只眼；头目厉彪暴毙后各房互猜，会务由渠五暂摄。",
+      "tension_seeds": [
+        "号门会五房头目因地盘与配额分配内讧，有人疑似私通狱署换好处",
+        "头目厉彪暴毙于放风场，毒杀疑云令各房互相猜忌"
+      ]
+    },
+    {
+      "id": "nation_erfang",
+      "name": "耳房线",
+      "continent": "continent_suo",
+      "summary": "狱中内线网络（黑警 + 囚犯线人），谁都以为它是自己人，其实它同时把同一份情报卖给狱署与号门会两边。",
+      "tension_seeds": [
+        "耳房线头目何笺的线人身份濒临暴露，狱署与号门会同时盯上它",
+        "耳房线掌握的狱署受贿账本被货栈帮盯上，对方欲收购封口"
+      ]
+    },
+    {
+      "id": "nation_qiangwai",
+      "name": "墙外盟",
+      "continent": "continent_suo",
+      "summary": "家属与律师的互助网络，在墙外奔走喊冤、递翻案卷宗，也在墙外被收买封口、被狱署以探视权要挟。",
+      "tension_seeds": [
+        "墙外盟律师谈梧手上的翻案卷宗缺关键一页，疑似被狱署抽走",
+        "墙外盟内部有人收了货栈帮的钱，把家属请愿路线卖给对方"
+      ]
+    },
+    {
+      "id": "nation_huozhan",
+      "name": "货栈帮",
+      "continent": "continent_suo",
+      "summary": "外来走私势力，靠往狱里运物资发财，与狱署官商勾结填补亏空，最怕狱里出乱子断了这条财路。",
+      "tension_seeds": [
+        "货栈帮新一批走私货被查扣，怀疑是耳房线出卖了运货路线",
+        "货栈帮欲扩大配额生意，与狱署的抽成谈判僵持不下"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_fangfeng",
+    "name": "放风场",
+    "continent": "continent_suo",
+    "summary": "唯一允许各色人等同处一片的公共院子，放风、交易、传话、搏杀都在此发生；谁在此动手谁犯众怒，但'意外'总在此发生。"
+  },
+  "faction_matrix": {
+    "nation_erfang|nation_haomen": { "relation": 38, "note": "耳房线向号门会供料换烟酒配额，纯买卖关系，双方互不信任但离不了对方。" },
+    "nation_erfang|nation_huozhan": { "relation": -45, "note": "货栈帮怀疑耳房线出卖了运货路线，查扣损失正在向对方追讨。" },
+    "nation_erfang|nation_qiangwai": { "relation": 52, "note": "耳房线替墙外盟向狱内递信传话、墙外盟付钱，表面合作无间；裂缝在于耳房线也把家属请愿内容转卖给狱署。" },
+    "nation_erfang|nation_yushu": { "relation": 66, "note": "耳房线本是狱署的线人体系、受其庇护，亲密度最高；裂缝在于它同时把狱署的动向卖给号门会，两边通吃。" },
+    "nation_erfang|port_fangfeng": { "relation": 12, "note": "放风场是耳房线接头与交货的最佳掩护地，哨声一响消息即散。" },
+    "nation_haomen|nation_huozhan": { "relation": 30, "note": "货栈帮给号门会供烟酒，号门会给货栈帮罩场子，利益交换顺畅但随时可翻脸。" },
+    "nation_haomen|nation_qiangwai": { "relation": -58, "note": "号门会扣押墙外盟家属送来的物资，以此为筹码勒索家属，双方势同水火。" },
+    "nation_haomen|nation_yushu": { "relation": -24, "note": "狱署严打派要压号门会立威，绥靖派要拉拢它维稳，狱警与狱霸的关系摇摆不定。" },
+    "nation_haomen|port_fangfeng": { "relation": 8, "note": "放风场是号门会立规矩的地盘延伸，谁站哪块砖都是他们说了算。" },
+    "nation_huozhan|nation_qiangwai": { "relation": -33, "note": "货栈帮收买墙外盟内部成员、把请愿路线商业化，墙外盟因此内部分裂。" },
+    "nation_huozhan|nation_yushu": { "relation": 20, "note": "货栈帮与狱署官商勾结，狱署亏空靠其走私分成填补，关系见不得光却牢不可破。" },
+    "nation_huozhan|port_fangfeng": { "relation": 15, "note": "货栈帮经放风场销货收货，最怕放风场出事断了流通。" },
+    "nation_qiangwai|nation_yushu": { "relation": -70, "note": "墙外盟喊冤翻案，狱署是最大的阻力来源，双方在探视权与卷宗上公开对抗。" },
+    "nation_qiangwai|port_fangfeng": { "relation": 6, "note": "家属探视必经放风场外墙，墙外盟在此与囚犯隔窗传话。" },
+    "nation_yushu|port_fangfeng": { "relation": -12, "note": "放风场是狱署的监管盲区，狱警最头疼的地方，哨塔盯防却总有死角。" }
+  }
+}

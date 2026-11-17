@@ -1,38 +1,49 @@
-## Description: <br>
-Record and manage daily work tasks, progress, issues, solutions, and summaries for personal or team use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record and manage daily work tasks, progress, issues, solutions, and summaries for personal or team use.
 
-## Publisher: <br>
-[wangqiuyan456](https://clawhub.ai/user/wangqiuyan456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangqiuyan456](https://clawhub.ai/user/wangqiuyan456)
 
-## Use Case: <br>
-Individuals and teams use this skill to maintain daily work records, track tasks, document issues and solutions, and prepare weekly summaries from plain-text notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daily work notes stored as plain text may contain passwords, secrets, regulated data, confidential client details, or sensitive performance and email content. <br>
-Mitigation: Only record information permitted by workplace policy, and avoid storing secrets or sensitive regulated data in these files. <br>
+## Use Case:
 
+Individuals and teams use this skill to keep daily work notes, track tasks and issues, preserve solutions, and prepare summaries such as weekly reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangqiuyan456/skill-bss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Plain text or Markdown notes and summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores daily work records as local plain-text files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version section) <br>
+Risk: Work logs may contain confidential company data, credentials, private emails, or sensitive performance details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive information out of notes unless the local skill directory is an approved storage location for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangqiuyan456/skills/skill-bss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance for creating and maintaining local work-log text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

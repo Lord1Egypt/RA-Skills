@@ -1,47 +1,62 @@
-## Description: <br>
-语义拆分与智能规划技能。将自然语言拆分为结构化需求块，基于5W2H维度提取与约束标注增强语义理解，双视角推理整合为单一执行步骤，支持自增强json沉淀机制。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+semantic-split turns natural-language requests into structured JSON planning blocks using regex structure analysis, BGE semantic matching, reranking, 5W2H extraction, constraint annotation, and gated planning steps.
 
-## Publisher: <br>
-[ldxs001](https://clawhub.ai/user/ldxs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ldxs001](https://clawhub.ai/user/ldxs001)
 
-## Use Case: <br>
-Agents use this skill to decompose user requests into structured semantic blocks, identify 5W2H details and constraint strength, and produce a single execution plan. It also guides agents in creating reusable JSON records for recurring task patterns when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist reusable JSON from prior tasks, which may capture sensitive, stale, or overly specific details. <br>
-Mitigation: Keep generated JSON inside the intended semantic-split data directory, review records before reuse, and avoid storing sensitive details from past conversations or tasks. <br>
-Risk: Scheduled or heavyweight automation can scan memory logs and write persistent JSON without a precise scope. <br>
-Mitigation: Enable automation only with explicit source paths, date range, output directory, review step, and deletion or redaction rules. <br>
+## Use Case:
 
+Developers and agents use this skill to split natural-language work requests into structured requirement blocks, planning steps, work-package decomposition, and reusable JSON templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ldxs001/semantic-split) <br>
-- [Publisher profile](https://clawhub.ai/user/ldxs001) <br>
-- [Split rules](references/split_rules.md) <br>
-- [Loading decision tree](references/loading_decision_tree.md) <br>
-- [Planning rules](references/planning_rules.md) <br>
-- [JSON schema](references/json_schema.md) <br>
-- [Constraint annotation](references/constraint_annotation.md) <br>
-- [Automation tasks](references/automation_tasks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured task plans, JSON schemas, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local reusable JSON records under the configured semantic-split data directory when the user confirms execution or automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: frontmatter, changelog, server release evidence) <br>
+Risk: Network installs and model downloads can introduce package and model supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependencies and model sources before running auto-install or model-download commands; install in an isolated environment with approved packages and model sources.
+
+Risk: Broad triggers, template scanning, and historical memory processing can expose sensitive or unrelated data.
+
+Mitigation: Select exact files and directories for scanning, apply redaction rules, and avoid granting access to broad memory paths.
+
+Risk: Persistent JSON template writes can preserve incorrect, sensitive, or low-quality plans.
+
+Mitigation: Review generated JSON before saving or reusing it and limit write access to the skill's data directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/semantic-split)
+- [FlagEmbedding project](https://github.com/FlagOpen/FlagEmbedding)
+- [Attribution](references/attribution.md)
+- [JSON schema](references/json_schema.md)
+- [Loading decision tree](references/loading_decision_tree.md)
+- [Planning rules](references/planning_rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON objects and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include structured requirement blocks, 5W2H fields, constraint annotations, step lists, work-package decomposition, hook status, and reusable template JSON.]
+
+## Skill Version(s):
+
+3.1.1 (source: frontmatter, _meta.json, release evidence, changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Search, compare, and shortlist Microsoft Dynamics 365 implementation partners by product, industry, and region. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches, compares, and shortlists Microsoft Dynamics 365 implementation partners by product, industry, and region using the Top Dynamics Partners MCP-backed directory.
 
-## Publisher: <br>
-[colingreig](https://clawhub.ai/user/colingreig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colingreig](https://clawhub.ai/user/colingreig)
 
-## Use Case: <br>
-External users, consultants, project managers, and agents use this skill to search Microsoft Dynamics 365 implementation partners, retrieve partner details, and generate ranked shortlists for ERP or CRM projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-North America <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the remote MCP endpoint may send project requirements, budgets, timelines, or vendor preferences to Top Dynamics Partners. <br>
-Mitigation: Only submit information appropriate for that provider; avoid secrets, regulated data, and confidential customer details unless the provider's data handling terms have been reviewed and accepted. <br>
+## Use Case:
 
+External users, consultants, project managers, and Dynamics buyers use this skill to find, compare, and shortlist Microsoft Dynamics 365 ERP and CRM implementation partners, including Business Central and Finance & Operations specialists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/colingreig/dynamics-partner-advisor) <br>
-- [Top Dynamics Partners](https://topdynamicspartners.com) <br>
-- [MCP server documentation](https://topdynamicspartners.com/resources/mcp-server) <br>
-- [Partner comparison tool](https://topdynamicspartners.com/compare) <br>
-- [GitHub repository](https://github.com/ignitemarketing/dynamics-partner-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses with JSON MCP configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces partner search results, partner profiles, and ranked shortlist recommendations from a remote MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup path can run an unpinned npm package locally through npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or locked installation of the MCP SSE bridge before deployment.
+
+Risk: Partner search and shortlist prompts may send project details to topdynamicspartners.com.
+
+Mitigation: Avoid confidential budget, timeline, or implementation details unless sharing them with that third-party service is approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/colingreig/skills/dynamics-partner-advisor)
+- [Top Dynamics Partners](https://topdynamicspartners.com)
+- [MCP Server Documentation](https://topdynamicspartners.com/resources/mcp-server)
+- [GitHub Repository](https://github.com/ignitemarketing/dynamics-partner-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include partner search results, detailed partner profiles, ranked shortlists, match reasoning, and MCP setup configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

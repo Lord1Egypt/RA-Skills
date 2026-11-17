@@ -1,41 +1,53 @@
-## Description: <br>
-Analyzes famous Chinese traders from dragon-tiger lists, provides win rates, investment recommendations, and trading style analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes famous Chinese traders from dragon-tiger lists, provides win rates, investment recommendations, and trading style analysis for trader-seat identification and follow-investment commentary.
 
-## Publisher: <br>
-[Bailaner](https://clawhub.ai/user/Bailaner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bailaner](https://clawhub.ai/user/bailaner)
 
-## Use Case: <br>
-External users and agents use this skill to identify Chinese dragon-tiger-list trader seats, summarize trading styles, compare claimed win rates, and discuss follow-investment considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents win rates and follow-investment recommendations that the security evidence describes as unsupported. <br>
-Mitigation: Treat outputs as general discussion, independently verify market data and trader-seat attribution, and avoid using the skill as personalized investment advice. <br>
-Risk: Financial-market conditions and dragon-tiger-list data can change quickly. <br>
-Mitigation: Use current, authoritative market data before relying on any trader pattern or claimed win-rate range. <br>
+## Use Case:
 
+External users can ask an agent to identify Chinese dragon-tiger-list trader seats, summarize reported trading styles, and produce follow-investment market commentary from the embedded trader profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Bailaner/celebrity-hot-money-tag) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Bailaner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown or plain text analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trader-seat identification, claimed win-rate ranges, trading-style summaries, and follow-investment guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill gives direct copy-trading recommendations with unsupported win-rate claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as unverified market commentary, verify data independently, and do not treat them as personalized investment advice.
+
+Risk: Users may rely on the skill for real trading decisions and could lose money.
+
+Mitigation: Require human review for trading use cases and consult a licensed professional before acting on any recommendation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bailaner/skills/celebrity-hot-money-tag)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with trader-seat analysis and follow-investment commentary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, code execution, or structured data output.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

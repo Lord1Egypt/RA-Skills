@@ -1,41 +1,53 @@
-## Description: <br>
-Generates SQL queries and table references for Guangdong medical-record statistics workflows, including outpatient, inpatient, ICD, reporting, quality-control, and custom-query tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and explains SQL queries for the Guangdong Medical Record Statistical Management System across outpatient, inpatient, emergency, surgery, ICD coding, and reporting scenarios.
 
-## Publisher: <br>
-[liangnan](https://clawhub.ai/user/liangnan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangnan](https://clawhub.ai/user/liangnan)
 
-## Use Case: <br>
-Hospital information-system analysts and medical-record administrators use this skill to draft SQL for statistics, audits, ICD lookups, workload reporting, and medical-record quality checks against the Guangdong 2012 medical-record database schema. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China (Guangdong medical-record system environments) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SQL produced with this skill may access patient-identifiable medical-record data. <br>
-Mitigation: Use the skill only when authorized, prefer aggregate or de-identified outputs, and avoid unnecessary patient identifiers. <br>
-Risk: Generated SQL may be incorrect or unsafe for a local database dialect, schema variant, or production environment. <br>
-Mitigation: Review generated SQL before running it and execute it through least-privilege database accounts with appropriate auditing. <br>
+## Use Case:
 
+Healthcare data analysts, hospital IT staff, and authorized database users can use this skill to draft SQL for Guangdong medical-record tables and build statistics for outpatient, inpatient, ICD, surgery, quality-control, and hospital report workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liangnan/guangdong-medical-record-sql) <br>
-- [Publisher profile](https://clawhub.ai/user/liangnan) <br>
+### Deployment Geography for Use:
 
+China (Guangdong Province)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with SQL code blocks and database table references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated SQL should be reviewed before execution, especially on systems containing patient data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The skill can generate queries against identifiable hospital and medical-record data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in authorized healthcare database environments; default to de-identified or aggregated outputs and mask direct identifiers unless specifically approved.
+
+Risk: Broad patient or interface-table queries can expose more data than is necessary for the task.
+
+Mitigation: Require minimum-necessary filters, approved time ranges, normal access controls, and audit logging before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liangnan/skills/guangdong-medical-record-sql)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with SQL code blocks, table references, and concise query guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SQL examples, schema lookup guidance, field naming notes, and query-safety constraints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

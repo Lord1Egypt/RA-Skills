@@ -1,0 +1,8 @@
+# Local or generated material is intentionally excluded from the public Skill source.
+output/
+tmp/
+references/disco-elysium-*/
+references/*official*/
+*.zip
+*.bak
+.DS_Store

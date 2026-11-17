@@ -1,46 +1,57 @@
-## Description: <br>
-Generate and transform music with Suno through RunAPI, using the RunAPI CLI for one-off agent tasks and SDKs for application integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and transform music, compose or blend lyrics, prepare voice validation phrases, and create reusable custom voices with Suno through RunAPI.
 
-## Publisher: <br>
-[runapi-ai](https://clawhub.ai/user/runapi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runapi-ai](https://clawhub.ai/user/runapi-ai)
 
-## Use Case: <br>
-Developers and agent users use this skill to create, extend, transform, and inspect music or audio through RunAPI's Suno service. It helps agents choose CLI commands for one-off work and SDK packages for app, backend, worker, or library integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, generated audio, and authentication are handled by RunAPI/Suno, a third-party service. <br>
-Mitigation: Avoid submitting private, regulated, proprietary, or copyrighted material unless authorized and comfortable with the provider's data handling and terms. <br>
-Risk: The skill can use sensitive RunAPI credentials through login state or RUNAPI_API_KEY. <br>
-Mitigation: Store credentials securely, avoid placing keys in prompts or committed files, and rotate credentials if exposure is suspected. <br>
-Risk: Music generation may involve provider billing, rate limits, and rights obligations. <br>
-Mitigation: Review RunAPI/Suno pricing, rate limits, and usage terms before running production or high-volume requests. <br>
+## Use Case:
 
+Developers and external users use this skill to drive Suno music, audio transformation, lyric, and custom voice workflows through RunAPI while checking current operation contracts before submission.
 
-## Reference(s): <br>
-- [RunAPI Suno model homepage](https://runapi.ai/models/suno) <br>
-- [RunAPI Suno model overview, pricing, and rate limits](https://runapi.ai/models/suno.md) <br>
-- [RunAPI Suno provider comparison](https://runapi.ai/providers/suno.md) <br>
-- [RunAPI model catalog](https://runapi.ai/models.md) <br>
-- [ClawHub skill page](https://clawhub.ai/runapi-ai/runapi-suno) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, package names, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference the runapi CLI, RunAPI SDK packages, optional RUNAPI_API_KEY authentication, and request JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release metadata) <br>
+Risk: RunAPI credentials and local media paths may expose sensitive account or content data if included in requests unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review request.json before execution, prefer RUNAPI_API_KEY or saved CLI authentication, and use browser login only when explicitly requested.
+
+Risk: Submitted Suno generation jobs may consume paid API credits or upload media to RunAPI/Suno.
+
+Mitigation: Submit each request once, retry only when evidence shows no task or billing was created, and require user authorization before replacing failed paid tasks.
+
+## Reference(s):
+
+- [RunAPI Suno model homepage](https://runapi.ai/models/suno)
+- [Suno model documentation](https://runapi.ai/models/suno.md)
+- [Suno provider overview](https://runapi.ai/providers/suno.md)
+- [RunAPI model catalog](https://runapi.ai/models.md)
+- [RunAPI Suno SDK](https://github.com/runapi-ai/suno-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, files]
+
+**Output Format:** [Markdown guidance with JSON request files, shell command blocks, and downloaded media file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include non-media result files in JSON, text, SRT, or VTT plus verified audio downloads when the selected RunAPI operation returns media.]
+
+## Skill Version(s):
+
+0.4.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

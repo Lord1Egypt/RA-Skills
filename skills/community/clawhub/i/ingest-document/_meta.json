@@ -1,6 +1,28 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "ingest-document",
-  "version": "1.1.2",
-  "publishedAt": 1782309441225
+  "name": "ingest_document",
+  "version": "3.0.0",
+  "description": "Ingest one daily document/link/message into personal or team KB.",
+  "author": "mayidan",
+  "language": "python3",
+  "entry": "SKILL.md",
+  "part_of": "paper-kb-v3",
+  "requires": {
+    "env": [
+      "GITEA_URL",
+      "GITEA_ADMIN_TOKEN"
+    ],
+    "context": [
+      "SenderId",
+      "ChatType",
+      "GroupSubject",
+      "MessageSid",
+      "MessageThreadId",
+      "AccountId",
+      "CardActionValue",
+      "CardFormValues",
+      "WasMentioned",
+      "MediaPath",
+      "MediaType"
+    ]
+  }
 }

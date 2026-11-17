@@ -1,42 +1,55 @@
-## Description: <br>
-Helps agents reduce paid API usage by discovering local LM Studio models and offloading suitable summarization, extraction, classification, rewriting, review, brainstorming, and privacy-sensitive tasks to them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Offloads suitable agent tasks to local LM Studio models for summarization, extraction, classification, rewriting, first-pass review, and brainstorming while reducing paid API usage.
 
-## Publisher: <br>
-[t-sinclair2500](https://clawhub.ai/user/t-sinclair2500) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[t-sinclair2500](https://clawhub.ai/user/t-sinclair2500)
 
-## Use Case: <br>
-Developers and agent users use this skill to route suitable tasks to a local LM Studio server, selecting models by availability and capability while keeping processing local when quality suffices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts to the configured LM Studio API endpoint, so a non-local or untrusted endpoint could receive private task content. <br>
-Mitigation: Confirm the API URL is localhost or another trusted endpoint before using the skill with private documents. <br>
-Risk: Stateful mode and request logging can retain task context or full prompt and response data locally. <br>
-Mitigation: Use stateful mode and --log only when needed, avoid unnecessary sensitive inputs, and review or delete local logs after use. <br>
+## Use Case:
 
+Developers and agents use this skill to discover local LM Studio models, select a model by task needs, and run suitable work through the LM Studio REST API. It is useful for reducing paid API usage and keeping selected processing local when model quality is sufficient.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/t-sinclair2500/lm-studio-subagents) <br>
-- [LM Studio](https://lmstudio.ai) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON responses from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include response_id, model_instance_id, token usage, and optional local logs when helper scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: Selected task text can be sent to a configurable LM Studio API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the API URL on localhost unless the user intentionally trusts a remote server, and avoid secrets or regulated data without a clear policy.
+
+Risk: Optional request and response logging can persist sensitive prompts or outputs.
+
+Mitigation: Do not enable logging for sensitive prompts, and review any log path before retaining or sharing generated files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/t-sinclair2500/skills/lm-studio-subagents)
+- [LM Studio](https://lmstudio.ai)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model output text, model_instance_id, response_id, token usage, and optional request or response logs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

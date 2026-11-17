@@ -1,0 +1,76 @@
+name: bidding-document-assistant
+display_name: 投标文件编制助手
+version: 1.0.4
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+emoji: "📑"
+description: >
+  通用投标文件格式排版技能：按招标文件格式自动生成投标文件骨架（docx）。
+  支持四种编号体系（阿拉伯级联/符号转换/政府格式/工程格式）；
+  支持解析招标文件 docx 提取章节结构与字体信息；
+  支持自定义封面【正本】标签、X/100 页脚格式、目录域。
+  仅生成格式骨架，不填充实质性内容；不支持 PDF 解析。
+metadata:
+  openclaw:
+    triggers:
+      - 按招标文件格式生成投标文件骨架
+      - 投标文件docx排版编号
+      - 生成标书格式框架
+      - 招标文件章节解析提取
+      - 标书多级编号设置
+      - 投标文件封面页脚目录
+      - 编制投标文档格式模板
+    tags:
+      - 招投标
+      - 投标文件
+      - 格式排版
+      - docx生成
+      - 标书骨架
+      - 编号体系
+    feedback:
+      channel: github
+      account: https://github.com/chesaram/my-skill-hub/issues
+      note: 使用问题、格式误报、实务建议，欢迎通过项目仓库提交 Issue 反馈
+linked_knowledge_bases:
+  - name: 招标文件、采购文件汇集
+    id: "7439473860155957"
+    role: 真实招标文件样本库，学习/验证章节结构与多级编号体系，按行业/货物/服务分类取样本做解析回归
+  - name: 招投标评标否决AI知识库
+    id: "7460608999968055"
+    role: 格式/签字/盖章/密封/页码被否决判例，反向约束生成骨架（目录页码、签字页、密封分册）
+  - name: 招投标实务与合规
+    id: "7463402595160740"
+    role: 投标文件构成实务规范，补商务标/技术标/资格标标准分章与保证金/授权书格式要求
+dependencies:
+  ima_mcp: 可选 · 检索联动库核实格式与范本
+  runtime: 备选 · Python 3.10+（python-docx）解析/修复；Node.js 18+（docx 9.6.1）生成
+platforms:
+  clawhub:
+    name: bidding-document-assistant
+    description: >-
+      Bid-document formatting skill: generates a correctly-structured .docx bid skeleton
+      from tender formatting requirements. Supports 4 numbering schemes, docx parsing for
+      chapter structure & fonts, customizable cover/footer/TOC. Outputs format-only skeleton;
+      does not fill substantive content; PDF not supported. Links IMA KBs for format validation.
+  skillhub:
+    name: 投标文件编制助手
+    description: 按招标文件格式自动生成投标文件骨架（docx）；支持四套编号体系、解析 docx 提取章节与字体、自定义封面/页脚/目录。仅生成格式骨架，不含实质内容；PDF 不支持解析。联动 IMA 三库学习真实样式、规避格式否决雷区。
+    triggers:
+      - 按招标文件格式生成投标文件骨架
+      - 投标文件docx排版编号
+      - 生成标书格式框架
+      - 标书多级编号设置
+  cocoloop:
+    name: 投标文件编制助手
+    description: 按招标文件格式自动生成投标文件骨架（docx）；支持四套编号体系、解析 docx 提取章节与字体、自定义封面/页脚/目录。仅生成格式骨架，不含实质内容；PDF 不支持解析。
+    triggers:
+      - 按招标文件格式生成投标文件骨架
+      - 投标文件docx排版编号
+      - 生成标书格式框架
+  coze:
+    name: 投标文件编制助手
+    description: 按招标文件格式自动生成投标文件骨架（docx）；支持四套编号体系、解析 docx 提取章节与字体、自定义封面/页脚/目录。仅生成格式骨架，不含实质内容；PDF 不支持解析。
+    triggers:
+      - 按招标文件格式生成投标文件骨架
+      - 投标文件docx排版编号
+      - 生成标书格式框架

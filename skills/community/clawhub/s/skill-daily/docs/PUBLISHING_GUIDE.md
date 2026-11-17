@@ -1,6 +1,10 @@
-﻿# 发布指南（Publishing Guide）
+# 发布指南（Publishing Guide）
 
 > 适用：clawhub-daily v1.0.0+ 维护者
+
+> **⚠️ 维护者文档说明**：本文档面向技能维护者，指导如何发布新版本到 GitHub/ClawHub/SkillHub。
+> 文档中提到的 `GH_TOKEN` 仅用于维护者发布新版本时调用 GitHub API，**技能运行时不读取 GH_TOKEN**。
+> 技能运行时的凭证和行为详见 SKILL.md 的"数据出口说明"和"权限声明"章节。
 
 ## 🎯 发布目标
 
@@ -13,8 +17,8 @@ clawhub-daily 同时发布到 **GitHub** 和 **ClawHub** 两个平台：
 ### 隐私审查
 
 ```bash
-# 搜索硬编码凭证
-grep -rE "cli_[0-9a-f]{16}|sk-[a-zA-Z0-9]{20,}|ou_[0-9a-f]{20,}|ghp_[a-zA-Z0-9]{20,}|x[A-Za-z0-9]{20,}" \
+# 搜索硬编码凭证（覆盖飞书/IMA/GitHub/SkillHub 全部 token 前缀）
+grep -rE "cli_[0-9a-f]{16}|sk-[a-zA-Z0-9]{20,}|ou_[0-9a-f]{20,}|ghp_[a-zA-Z0-9]{20,}|gho_[a-zA-Z0-9]{20,}|ghs_[a-zA-Z0-9]{20,}|skh_[a-zA-Z0-9]{20,}|x[A-Za-z0-9]{20,}" \
   --include="*.py" --include="*.md" --include="*.json" \
   --exclude-dir=data --exclude-dir=__pycache__
 ```

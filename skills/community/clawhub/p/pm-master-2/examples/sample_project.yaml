@@ -1,0 +1,151 @@
+project:
+  name: Payment Refactoring
+  phase: planning
+  start_date: 2024-01-01
+  target_end: 2024-04-30
+sprint:
+  num: 3
+wbs:
+  - id: w1
+    name: Requirements Research
+    level: 1
+    deliverable: Requirements Specification
+    owner: Product Manager
+    estimate: 10
+    duration: 10
+    start: 2024-01-01
+    end: 2024-01-12
+    dependsOn: ""
+  - id: w2
+    name: Solution Design
+    level: 1
+    deliverable: Architecture Plan
+    owner: Architect
+    estimate: 8
+    duration: 8
+    start: 2024-01-15
+    end: 2024-01-26
+    dependsOn: w1
+  - id: w3
+    name: Core Development
+    level: 1
+    deliverable: Runnable Build
+    owner: Dev Lead
+    estimate: 30
+    duration: 30
+    start: 2024-01-29
+    end: 2024-03-15
+    dependsOn: w2
+  - id: w4
+    name: Go-live Acceptance
+    level: 1
+    deliverable: Production Environment
+    owner: QA Manager
+    estimate: 12
+    duration: 12
+    start: 2024-03-18
+    end: 2024-04-05
+    dependsOn: w3
+tasks:
+  - id: t1
+    name: Requirements Review
+    duration: 3
+    deps: ""
+    start: 2024-01-01
+    end: 2024-01-04
+    milestone: false
+  - id: t2
+    name: Design Review
+    duration: 4
+    deps: t1
+    start: 2024-01-08
+    end: 2024-01-12
+    milestone: true
+  - id: t3
+    name: Iterative Development
+    duration: 20
+    deps: t2
+    start: 2024-01-15
+    end: 2024-02-09
+    milestone: false
+  - id: t4
+    name: Go-live
+    duration: 2
+    deps: t3
+    start: 2024-04-01
+    end: 2024-04-03
+    milestone: true
+burndown:
+  - day: 1
+    remaining: 24
+    ideal: 24
+  - day: 2
+    remaining: 22
+    ideal: 21
+  - day: 3
+    remaining: 19
+    ideal: 18
+  - day: 4
+    remaining: 20
+    ideal: 15
+  - day: 5
+    remaining: 14
+    ideal: 12
+  - day: 6
+    remaining: 10
+    ideal: 9
+  - day: 7
+    remaining: 6
+    ideal: 6
+  - day: 8
+    remaining: 3
+    ideal: 3
+  - day: 9
+    remaining: 1
+    ideal: 0
+dependencies:
+  - id: d1
+    from: Order Service
+    to: Payment Service
+    type: Interface
+    status: in progress
+    blocker: no
+  - id: d2
+    from: Payment Service
+    to: Risk Service
+    type: Decision
+    status: planning
+    blocker: yes
+  - id: d3
+    from: Risk Service
+    to: Accounting Service
+    type: Data
+    status: done
+    blocker: no
+governance:
+  parts:
+    - name: Core Trading
+      methodology: waterfall
+      gate: GA Review
+      decision_owner: CTO
+    - name: Merchant Portal
+      methodology: agile
+      gate: Sprint Review
+      decision_owner: Product VP
+    - name: Data Platform
+      methodology: hybrid
+      gate: Stage Gate
+      decision_owner: Data Lead
+  principles:
+    - No entry to the next phase until the gate is passed
+    - Hybrid parts are measured by their own methodology; health is reported in a unified way
+map:
+  - macro_milestone: M1 Trading Loop
+    micro_iteration: I1 Order Placement
+    alignment_status: aligned
+  - macro_milestone: M1 Trading Loop
+    micro_iteration: I2 Payment
+    alignment_status: aligned
+  - macro_milestone: M2 Risk Control Go-live
+    micro_iteration: I3 Risk Rules
+    alignment_status: drift

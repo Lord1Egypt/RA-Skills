@@ -1,48 +1,66 @@
-## Description: <br>
-Structured knowledge extraction MCP server for ClawHub/OpenClaw that converts remote media URLs into summaries, topics, action items, Q&A, flashcards, entities, confidence scores, and workflow traces through one task-oriented tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured knowledge extraction MCP server for ClawHub/OpenClaw. Converts remote media URLs into summary, topics, action items, Q&A, flashcards, entities, confidence scores, and workflow traces through one task-oriented tool.
 
-## Publisher: <br>
-[shuyuew1991](https://clawhub.ai/user/shuyuew1991) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuyuew1991](https://clawhub.ai/user/shuyuew1991)
 
-## Use Case: <br>
-Developers and automation builders use this MCP server to convert remote audio or video into structured knowledge artifacts for downstream products, search, education, meeting workflows, and content generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Media URLs, transcript text, chunk context, and optional knowledge-model prompts may be sent to configured external transcription and model services. <br>
-Mitigation: Audit and trust the configured endpoints before deployment, prefer HTTPS for non-local services, and document the data flow for users. <br>
-Risk: The server requires a sensitive videomp3word session cookie and can optionally use API keys for upstream and model services. <br>
-Mitigation: Use a dedicated upstream account, inject credentials only at runtime, and avoid committing secrets into packages or environment files. <br>
-Risk: Publicly exposed HTTP or MCP endpoints may process requests without the intended access controls if bearer keys are not configured. <br>
-Mitigation: Set MCP_ACCESS_KEYS, use NODE_ENV=production for exposed deployments, and prefer localhost or authenticated infrastructure. <br>
-Risk: Persistent MongoDB storage can retain media, transcript, workflow, and knowledge records beyond the immediate session. <br>
-Mitigation: Define retention controls before enabling MongoDB and align storage behavior with the deployment's data handling requirements. <br>
+## Use Case:
 
+Developers and agent builders use this MCP and HTTP server to convert remote audio or video URLs into structured knowledge artifacts for content production, support, education, meeting workflows, and downstream automations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuyuew1991/videomp3word-mcp) <br>
-- [README](README.md) <br>
-- [Sample output](examples/sample_output.json) <br>
-- [videomp3word service](https://videomp3word.com) <br>
-- [DashScope-compatible API endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Structured JSON responses with optional Markdown and Notion-ready exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include summary, topics, key points, action items, Q&A pairs, flashcards, entities, confidence scores, exports, and workflow trace data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release evidence and package.json) <br>
+Risk: The HTTP and MCP endpoints can be exposed publicly without authentication outside production.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure MCP_ACCESS_KEYS before exposure and bind HOST to 127.0.0.1 unless the service is behind an authenticated proxy.
+
+Risk: Credential-bearing requests send media URLs, transcript text, and chunk context to configured upstream transcription and knowledge-model services.
+
+Mitigation: Use HTTPS for all non-local endpoints, audit and trust the configured services, and use a dedicated upstream videomp3word account.
+
+Risk: Remote cleartext HTTP usage can expose credentials or request data.
+
+Mitigation: Avoid the Python SDK with remote http:// URLs and require HTTPS for non-local service URLs.
+
+Risk: Flagged dependencies may increase exposure if the service is internet-facing.
+
+Mitigation: Update or override flagged dependencies before exposing the service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuyuew1991/skills/videomp3word-mcp)
+- [README](README.md)
+- [Skill definition](SKILL.md)
+- [Sample output](examples/sample_output.json)
+- [videomp3word upstream service](https://videomp3word.com)
+- [DashScope-compatible model endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, configuration, guidance]
+
+**Output Format:** [Structured JSON responses with optional Markdown and Notion-ready exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include summaries, topics, key points, action items, Q&A pairs, flashcards, entities, confidence scores, exports, and workflow traces.]
+
+## Skill Version(s):
+
+2.0.3 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

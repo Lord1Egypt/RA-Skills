@@ -1,0 +1,20 @@
+{
+  "kind": "independent_host_synthetic_task",
+  "counts": {
+    "sources": 2,
+    "entities": 3,
+    "definitions": 2,
+    "assertions": 6,
+    "facts": 5
+  },
+  "query_statuses": {
+    "beacon-discontinued": "not_found",
+    "beacon-product-line": "found",
+    "q1-adjusted": "found",
+    "q1-statutory": "found",
+    "q1-unscoped": "needs_scope",
+    "q4-statutory": "conflict"
+  },
+  "blockers": [],
+  "live_omni_call": false
+}

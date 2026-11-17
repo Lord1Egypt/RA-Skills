@@ -1,38 +1,49 @@
-## Description: <br>
-A test echo skill for testing OpenClaw skill system with parameter passing. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+A test echo skill for testing OpenClaw skill system with parameter passing.
 
-## Publisher: <br>
-[pplx1104](https://clawhub.ai/user/pplx1104) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pplx1104](https://clawhub.ai/user/pplx1104)
 
-## Use Case: <br>
-Developers and skill reviewers use Test Echo to verify OpenClaw parameter passing by returning a greeting that includes the provided name. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill echoes the supplied name value in its output. <br>
-Mitigation: Avoid entering sensitive text as the name when the reflected output should not contain it. <br>
+## Use Case:
 
+Developers and testers use Test Echo to verify OpenClaw skill parameter passing by returning a greeting for a provided name.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pplx1104/test-echo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON string with status, message, and echoed input fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Echoes the provided name value in the response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: The skill reflects the provided name in its output, so sensitive values entered as the name could be returned to the caller.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive test names and avoid entering secrets or confidential data as the name parameter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pplx1104/skills/test-echo)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [JSON string containing status, message, and echoed input fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reflects the provided name in the response; no file, network, credential, persistence, or privilege behavior was identified in the authoritative security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+# 抖音评论采集 · 依赖
+# 必装（HTTP 评论抓取必需）：
+httpx>=0.27
+# 可选（仅 --analyze 词频分析时使用）：
+jieba>=0.42
+# 可选（仅 --browser 无头浏览器免登录模式需要）：
+#   playwright>=1.40
+#   装完后还需：playwright install chromium

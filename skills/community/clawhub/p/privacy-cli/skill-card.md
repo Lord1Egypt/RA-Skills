@@ -1,43 +1,61 @@
-## Description: <br>
-Use the Privacy CLI to create and manage Privacy Virtual Cards directly from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Privacy CLI to create and manage Privacy Virtual Cards directly from the terminal.
 
-## Publisher: <br>
-[eladrave](https://clawhub.ai/user/eladrave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eladrave](https://clawhub.ai/user/eladrave)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent propose and run Privacy.com CLI commands for virtual card lifecycle tasks and transaction lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, pause, unpause, reveal details for, or permanently close financial virtual cards. <br>
-Mitigation: Require explicit user confirmation before each card-changing or PAN-revealing command, and verify the exact card token or memo before running it. <br>
-Risk: The Privacy API key grants access to sensitive card and transaction data. <br>
-Mitigation: Keep PRIVACY_API_KEY out of files and logs, prefer environment-variable configuration, and avoid storing command output that contains sensitive card data. <br>
-Risk: The skill may install or rely on a global npm CLI package. <br>
-Mitigation: Have the user approve any global npm installation and confirm the installed privacy CLI before use. <br>
+## Use Case:
 
+Developers and agents use this skill to create, list, pause, update, close, and inspect Privacy.com virtual cards and transactions through the Privacy CLI.
 
-## Reference(s): <br>
-- [Privacy CLI documentation](https://developers.privacy.com/docs/privacy-cli) <br>
-- [ClawHub skill listing](https://clawhub.ai/eladrave/privacy-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses non-interactive Privacy CLI commands with --json output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill can perform high-impact financial actions against Privacy.com virtual cards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual user confirmation before creating, updating, pausing, unpausing, closing, or otherwise changing a card.
+
+Risk: The skill can retrieve full PAN, CVV, and expiry data.
+
+Mitigation: Avoid retrieving full card credentials through chat; when retrieval is necessary, require explicit user confirmation and do not log, save, or store the output.
+
+Risk: Using a global latest npm install can introduce unreviewed CLI changes.
+
+Mitigation: Install a pinned, reviewed Privacy CLI version in a contained environment.
+
+Risk: The Privacy API key grants access to the user's Privacy.com account.
+
+Mitigation: Use only a Privacy.com account and API key that the user intentionally allows the agent to access.
+
+## Reference(s):
+
+- [Privacy CLI documentation](https://developers.privacy.com/docs/privacy-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PRIVACY_API_KEY and the privacy CLI; CLI commands should use --json for machine-readable output.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

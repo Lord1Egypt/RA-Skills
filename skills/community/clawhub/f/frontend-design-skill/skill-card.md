@@ -1,42 +1,55 @@
-## Description: <br>
-Build polished, conversion-aware frontends with strong visual taste, clear hierarchy, and production-grade HTML/CSS/JS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build polished, conversion-aware frontends with strong visual taste, clear hierarchy, and production-grade HTML/CSS/JS. Landing pages, dashboards, components, emails, redesigns — all as working files. Avoids generic AI aesthetics. Every design has a point of view.
 
-## Publisher: <br>
-[jeffjhunter](https://clawhub.ai/user/jeffjhunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffjhunter](https://clawhub.ai/user/jeffjhunter)
 
-## Use Case: <br>
-Developers, designers, and operators use this skill to turn briefs, screenshots, brand context, or business goals into polished frontend pages, dashboards, components, emails, and redesigns. It emphasizes working browser-ready files, responsive layout, accessibility, clear hierarchy, and concise delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated contact or waitlist forms may use an external endpoint such as Formspree. <br>
-Mitigation: Review each form action and data flow before publishing or collecting user information. <br>
-Risk: The skill may read local brand notes and create design files in the workspace. <br>
-Mitigation: Confirm that local brand files are appropriate to use and review generated files before deployment. <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to turn rough design briefs, screenshots, business goals, or existing pages into polished frontend files for landing pages, dashboards, components, emails, and redesigns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jeffjhunter/frontend-design-skill) <br>
-- [AI Persona Method](https://aipersonamethod.com) <br>
-- [Jeff J Hunter](https://jeffjhunter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise text or Markdown with working HTML/CSS/JS files and occasional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically saves browser-ready frontend files in the workspace and reports the saved path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may read workspace brand context files such as SOUL.md or KNOWLEDGE.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep secrets and private agent notes out of those files before using the skill.
+
+Risk: The skill writes generated frontend files into ~/workspace/designs and can copy files to an outbound sharing path.
+
+Mitigation: Review generated files before publishing or sharing, and use the outbound path only when distribution is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeffjhunter/skills/frontend-design-skill)
+- [AI Persona Method](https://aipersonamethod.com)
+- [Jeff J Hunter](https://jeffjhunter.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Usually produces browser-ready frontend files and concise delivery notes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

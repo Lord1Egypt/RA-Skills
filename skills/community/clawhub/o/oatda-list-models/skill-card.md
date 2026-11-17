@@ -1,42 +1,55 @@
-## Description: <br>
-List available AI models from OATDA's providers with optional filtering by model type or provider name. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List available AI models from OATDA's providers with optional filtering by type (chat, image, video) or provider name, including supported parameters for image and video models.
 
-## Publisher: <br>
-[devcsde](https://clawhub.ai/user/devcsde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devcsde](https://clawhub.ai/user/devcsde)
 
-## Use Case: <br>
-Developers and agent users use this skill to query OATDA for available chat, image, and video models, inspect supported parameters, and choose model identifiers for related OATDA workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an OATDA API key from the environment or ~/.oatda/credentials.json. <br>
-Mitigation: Use an API key with only the required access, keep the credentials file protected, and do not print or share the full key. <br>
-Risk: The skill sends GET requests to OATDA to retrieve model metadata. <br>
-Mitigation: Review the requested endpoint and filters before execution and run the commands only when OATDA is trusted for the task. <br>
+## Use Case:
 
+Developers and agents use this skill to list OATDA model availability, filter models by type or provider, and inspect supported parameters before calling related OATDA generation or completion workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/devcsde/oatda-list-models) <br>
-- [OATDA homepage](https://oatda.com) <br>
-- [OATDA models API endpoint](https://oatda.com/api/v1/llm/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and jq with OATDA_API_KEY or ~/.oatda/credentials.json; results should be formatted from live API data rather than hardcoded model names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill reads an OATDA API key from the environment or ~/.oatda/credentials.json to authorize API requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where OATDA access is intended, keep the API key scoped appropriately, and do not print the full key in agent output.
+
+Risk: Model availability and supported parameters are specific to OATDA and may not reflect other providers' direct APIs.
+
+Mitigation: Use returned model data as OATDA-specific availability guidance and verify provider-specific requirements before using models outside OATDA.
+
+## Reference(s):
+
+- [OATDA Homepage](https://oatda.com)
+- [OATDA Models API](https://oatda.com/api/v1/llm/models)
+- [ClawHub Skill Page](https://clawhub.ai/devcsde/skills/oatda-list-models)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash commands and JSON response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GET requests to OATDA and may return model IDs, provider names, display names, and supported_params from the API response.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

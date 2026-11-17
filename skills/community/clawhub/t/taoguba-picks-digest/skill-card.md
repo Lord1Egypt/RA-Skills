@@ -1,41 +1,58 @@
-## Description: <br>
-自动抓取淘股吧“今日推荐”前N个帖子内容，并整理整体行情、板块表现、多数作者观点和焦点个股。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动抓取淘股吧“今日推荐”前N个帖子内容，并整理整体行情、板块表现与多数作者观点总结。
 
-## Publisher: <br>
-[guowei-xie](https://clawhub.ai/user/guowei-xie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guowei-xie](https://clawhub.ai/user/guowei-xie)
 
-## Use Case: <br>
-Investors, analysts, and market-watch agents use this skill to collect Taoguba 今日推荐 posts and produce a concise A-share market review. It helps summarize market conditions, sector strength, common author viewpoints, and repeatedly mentioned stocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use Taoguba credentials supplied through environment variables to sign in and fetch posts. <br>
-Mitigation: Use a dedicated or low-risk Taoguba account, avoid reusing important passwords, and remove TAOGUBA_USERNAME and TAOGUBA_PASSWORD after use if future automatic login is not desired. <br>
-Risk: The digest reflects viewpoints collected from Taoguba posts and may not be complete or investment advice. <br>
-Mitigation: Review the cited post content and treat the output as a summary of author opinions rather than an independent market recommendation. <br>
+## Use Case:
 
+Chinese-speaking users use this skill to collect and summarize Taoguba “今日推荐” posts into a readable A-share market review. It is intended for objective digestion of forum authors' stated views, not for adding independent investment recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guowei-xie/taoguba-picks-digest) <br>
-- [Taoguba website](https://www.tgb.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown market digest with optional tables and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes collected post content objectively and avoids storing Taoguba credentials in files or logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill may log in to Taoguba using user-provided credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or low-privilege account when possible, avoid password reuse, provide credentials only through environment variables, and clear them after use.
+
+Risk: Fetched posts may include account-gated or private material.
+
+Mitigation: Review generated URL and content files before sharing summaries or downstream artifacts.
+
+Risk: Forum post summaries about A-share markets can be mistaken for investment advice.
+
+Mitigation: Present the output as a digest of source authors' views and avoid adding independent trading recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guowei-xie/skills/taoguba-picks-digest)
+- [Taoguba](https://www.tgb.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with headings, tables, and concise narrative sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries should preserve source authors' views, avoid extra market judgment, and may include focus stocks mentioned across posts.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

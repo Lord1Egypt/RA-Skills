@@ -1,48 +1,60 @@
-## Description: <br>
-AI coding prompt optimizer and coach for improving programming prompts, reviewing coding instructions, and detecting common prompt-related failure patterns during active coding sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes AI coding prompts by diagnosing missing context, constraints, acceptance criteria, and failure patterns, then rewriting prompts or giving targeted coaching during active coding sessions.
 
-## Publisher: <br>
-[neuhanli](https://clawhub.ai/user/neuhanli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neuhanli](https://clawhub.ai/user/neuhanli)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn vague coding requests into clearer AI instructions with context, constraints, validation expectations, and output structure. It also helps monitor active coding sessions for high-priority issues such as placeholder implementations or hardcoded rule-based logic where LLM-native reasoning is more appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The update-skill flow can add incorrect, over-specific, or stale coding preferences to the learnings file. <br>
-Mitigation: Review every proposed learning before approving the update-skill flow, and keep accepted entries reusable and concise. <br>
-Risk: Session learnings could accidentally capture secrets, proprietary project details, or personal data. <br>
-Mitigation: Do not save sensitive details into learnings.md; abstract lessons into general coding-prompt guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill to improve prompts for coding agents before or during implementation, correction, review, and testing workflows. It is intended for explicit prompt review and for limited active-session coaching on high-priority failure signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neuhanli/coding-prompt) <br>
-- [Publisher profile](https://clawhub.ai/user/neuhanli) <br>
-- [Anti-Pattern Quick Reference](references/anti-patterns.md) <br>
-- [Prompt Diagnosis Checklist](references/checklist.md) <br>
-- [Coding Prompt Learnings](references/learnings.md) <br>
-- [Communication Patterns](references/patterns.md) <br>
-- [Core Principles](references/principles.md) <br>
-- [Structural Wisdom](references/structure.md) <br>
-- [Workflow Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with diagnostic bullets, rewritten prompts, alerts, and structured proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual Chinese and English prompt guidance when triggered by the user's language or examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can keep giving limited coaching alerts after activation during the same session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when prompt-coaching is desired, and treat alerts as additive guidance that should not override the user's active instruction.
+
+Risk: The skill can update its learnings file only when the user explicitly asks to update the skill and confirms the proposed entry.
+
+Mitigation: Review proposed learnings before confirmation and keep only reusable preferences or lessons that should persist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neuhanli/skills/coding-prompt)
+- [Prompt Diagnosis Checklist](references/checklist.md)
+- [Core Principles](references/principles.md)
+- [Communication Patterns](references/patterns.md)
+- [Workflow Templates](references/templates.md)
+- [Anti-Pattern Quick Reference](references/anti-patterns.md)
+- [Structural Wisdom](references/structure.md)
+- [Coding Prompt Learnings](references/learnings.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prompt diagnosis, rewritten prompts, and concise coaching alerts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual Chinese and English prompt text when triggered by Chinese activation phrases.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

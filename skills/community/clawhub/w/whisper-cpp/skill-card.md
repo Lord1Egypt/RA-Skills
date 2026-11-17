@@ -1,43 +1,58 @@
-## Description: <br>
-Install and use whisper.cpp for local, offline speech-to-text in OpenClaw, including ggml model download support and OpenClaw audio configuration for inbound voice notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and configures local whisper.cpp speech-to-text for OpenClaw, including ggml model downloads and an audio wrapper for inbound Telegram voice notes without paid provider APIs.
 
-## Publisher: <br>
-[TrueNight](https://clawhub.ai/user/TrueNight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[truenight](https://clawhub.ai/user/truenight)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install local whisper.cpp speech-to-text, download selected ggml Whisper models, and configure OpenClaw to transcribe inbound voice notes without a paid speech provider. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The install flow downloads and builds whisper.cpp and downloads speech models from external sources. <br>
-Mitigation: Review the scripts before running them, install from a trusted network, and consider pinning a known whisper.cpp release or verifying model sources before use. <br>
-Risk: The skill changes OpenClaw audio settings and restarts the gateway. <br>
-Mitigation: Confirm the wrapper path and intended OpenClaw audio configuration before applying the patch, then test with a known audio sample. <br>
-Risk: Local speech-to-text quality and latency depend on the selected ggml model, language, host CPU, and audio format. <br>
-Mitigation: Choose an appropriate model size, set the language explicitly when needed, and validate transcription behavior with representative voice notes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Local Whisper ClawHub release](https://clawhub.ai/TrueNight/whisper-cpp) <br>
-- [whisper.cpp upstream project](https://github.com/ggerganov/whisper.cpp) <br>
-- [whisper.cpp ggml model downloads](https://huggingface.co/ggerganov/whisper.cpp/resolve/main) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to add local offline speech-to-text for inbound Telegram voice notes and configure OpenClaw to invoke the installed wrapper.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and shell script artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup steps, wrapper behavior, model selection guidance, and OpenClaw audio configuration commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install workflow builds persistent local software from mutable external sources.
+
+Mitigation: Review the scripts before installing and pin whisper.cpp to a reviewed commit before deployment.
+
+Risk: Model downloads use external URLs without model hash verification.
+
+Mitigation: Download only approved models and verify model file hashes before use.
+
+Risk: The configuration patch changes OpenClaw's audio pipeline and restarts the gateway.
+
+Mitigation: Back up current OpenClaw audio configuration and test in a low-privilege environment before using real inbound voice notes.
+
+## Reference(s):
+
+- [whisper.cpp upstream repository](https://github.com/ggerganov/whisper.cpp)
+- [whisper.cpp ggml model downloads](https://huggingface.co/ggerganov/whisper.cpp/resolve/main)
+- [Local Whisper ClawHub release page](https://clawhub.ai/truenight/skills/whisper-cpp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local installation, model download, wrapper setup, OpenClaw configuration, cleanup, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

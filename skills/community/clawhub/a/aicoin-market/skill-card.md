@@ -1,44 +1,58 @@
-## Description: <br>
-Crypto market data from AiCoin Open API v3 across 200+ exchanges, including prices, K-lines, derivatives metrics, news, airdrops, treasuries, indices, market signals, and AI coin recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto market data from AiCoin Open API v3 across prices, K-lines, derivatives, news, signals, airdrops, treasuries, indices, and related market endpoints.
 
-## Publisher: <br>
-[procaross](https://clawhub.ai/user/procaross) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[procaross](https://clawhub.ai/user/procaross)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve live AiCoin market data and related crypto research signals through a Node.js command-line interface. It is intended for market lookup and analysis, not trading execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local environment files and can store an AiCoin API key in plaintext. <br>
-Mitigation: Use a low-privilege AiCoin market-data key, keep unrelated credentials out of readable environment files, and protect the local .env file. <br>
-Risk: The bundled public key and paid endpoints can create confusing access differences, including 403 responses for unavailable API tiers. <br>
-Mitigation: Check the returned JSON envelope before using results, treat 403 responses as plan or key limitations, and avoid retry loops. <br>
-Risk: The skill exposes broader analytics than ordinary price lookup, including liquidation, whale order, treasury, and market signal data. <br>
-Mitigation: Present analytics as market data rather than financial advice and avoid making trading recommendations from a single response. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to retrieve current cryptocurrency market data and related AiCoin Open API v3 analytics through a Node.js command interface.
 
-## Reference(s): <br>
-- [AiCoin Open Data](https://www.aicoin.com/opendata) <br>
-- [ClawHub skill page](https://clawhub.ai/procaross/aicoin-market) <br>
-- [Source metadata](https://github.com/aicoincom/coinos-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [API calls return a JSON envelope with ok, data, error, and meta fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: package.json and server release metadata) <br>
+Risk: API credentials may be stored in plaintext workspace .env files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer host-managed or scoped secret injection and avoid using set-key in shared workspaces.
+
+Risk: The skill can access broad AiCoin analytics endpoints beyond basic market lookups.
+
+Mitigation: Review endpoint usage before installation and limit credentials to the minimum AiCoin plan or permissions needed.
+
+Risk: Market data and analytics may be unavailable, delayed, quota-limited, or gated by AiCoin plan permissions.
+
+Mitigation: Check the ok and error fields in the returned JSON envelope and present failures or empty data without inventing values.
+
+## Reference(s):
+
+- [AiCoin Open Data](https://www.aicoin.com/opendata)
+- [ClawHub skill page](https://clawhub.ai/procaross/skills/aicoin-market)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API response envelopes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command output uses a JSON envelope with ok, data, error, and meta fields.]
+
+## Skill Version(s):
+
+4.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

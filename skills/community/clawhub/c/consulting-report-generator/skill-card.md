@@ -1,57 +1,70 @@
-## Description: <br>
-Generates professional consulting-style reports from uploaded PPT, text, PDF, image, and other source materials, with adaptive structure, research augmentation, and PPT, DOCX, PDF, or mind-map PDF outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured consulting-style reports from PPT, text, PDF, image, and other inputs, with adaptive templates and PPT, DOCX, PDF, or mind-map PDF outputs.
 
-## Publisher: <br>
-[ericshao2025](https://clawhub.ai/user/ericshao2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericshao2025](https://clawhub.ai/user/ericshao2025)
 
-## Use Case: <br>
-Employees, consultants, and analysts use this skill to turn project, manufacturing, market, technical, or business materials into structured professional reports and presentation-ready deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect uploaded documents and persist extracted content or logs. <br>
-Mitigation: Use it only with documents approved for the environment, and review or clear generated extraction and log files when handling sensitive material. <br>
-Risk: The skill can perform web research, use a local model endpoint, and send finished reports to external channels. <br>
-Mitigation: Disable web search, local model calls, and automatic delivery for sensitive documents unless each action and destination is explicitly approved. <br>
-Risk: The skill can scan installed local skills and rewrite its own skill files through self-evolution or self-repair behavior. <br>
-Mitigation: Disable self-evolution, self-repair, and local skill scanning unless change review is planned; inspect any proposed file changes before reuse. <br>
-Risk: Server security evidence marks this release as suspicious and recommends review before installation. <br>
-Mitigation: Install only in a controlled environment after reviewing the release, its generated files, and its security scan results. <br>
+## Use Case:
 
+Employees, external consultants, and developers use this skill to turn source material into professional reports for manufacturing, operations, project, market, technical, and general business scenarios. It is intended for workflows that need structured analysis, presentation-ready content, and optional document or mind-map outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericshao2025/consulting-report-generator) <br>
-- [requirements-summary.md](references/requirements-summary.md) <br>
-- [report-templates.md](references/report-templates.md) <br>
-- [consulting-phrases.md](references/consulting-phrases.md) <br>
-- [generate_pro.py](references/generate_pro.py) <br>
-- [generate_docx.py](references/generate_docx.py) <br>
-- [generate_pdf.py](references/generate_pdf.py) <br>
-- [generate_mindmap.py](references/generate_mindmap.py) <br>
-- [generate_offline_content.py](references/generate_offline_content.py) <br>
-- [extract_content.py](references/extract_content.py) <br>
-- [deep_research.py](references/deep_research.py) <br>
-- [self_evolution.py](references/self_evolution.py) <br>
-- [self_repair.py](references/self_repair.py) <br>
-- [repair_pptx.py](references/repair_pptx.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance plus generated report files such as PPTX, DOCX, PDF, or mind-map PDF.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is PPT; DOCX, PDF, and mind-map PDF are selected through user instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.1.1 (source: server release evidence) <br>
+Risk: Automatic third-party delivery could expose report contents or source documents outside the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with non-confidential inputs unless external delivery is disabled, reviewed, and approved for the deployment.
+
+Risk: Persistent logs and self-modification can retain sensitive context or change skill behavior over time.
+
+Mitigation: Run in an isolated workspace, disable or review logging and self-repair write-back, and inspect generated changes before reuse.
+
+Risk: The documented curl-to-sh installer path can install unpinned third-party software.
+
+Mitigation: Use verified, pinned dependencies installed through controlled package management instead of piping remote installer scripts to a shell.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericshao2025/skills/consulting-report-generator)
+- [requirements-summary.md](references/requirements-summary.md)
+- [report-templates.md](references/report-templates.md)
+- [consulting-phrases.md](references/consulting-phrases.md)
+- [extract_content.py](references/extract_content.py)
+- [deep_research.py](references/deep_research.py)
+- [generate_pro.py](references/generate_pro.py)
+- [generate_docx.py](references/generate_docx.py)
+- [generate_pdf.py](references/generate_pdf.py)
+- [generate_mindmap.py](references/generate_mindmap.py)
+- [generate_offline_content.py](references/generate_offline_content.py)
+- [repair_pptx.py](references/repair_pptx.py)
+- [self_repair.py](references/self_repair.py)
+- [self_evolution.py](references/self_evolution.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated Python and shell-command snippets for creating PPT, DOCX, PDF, and mind-map PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local report files and supporting extracted-content or repair artifacts during agent execution.]
+
+## Skill Version(s):
+
+6.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

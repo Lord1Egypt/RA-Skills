@@ -1,45 +1,57 @@
-## Description: <br>
-Finds and summarizes official Huawei Cloud API documentation from Huawei Cloud Help Center and Huawei Cloud developer properties for service API references, developer guides, endpoints, authentication, SDKs, API Explorer, error codes, and service-specific documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and summarize official Huawei Cloud API documentation from Huawei Cloud Help Center and Huawei Cloud developer properties for service APIs, references, guides, endpoints, authentication, SDKs, API Explorer, and error codes.
 
-## Publisher: <br>
-[stevetdp](https://clawhub.ai/user/stevetdp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevetdp](https://clawhub.ai/user/stevetdp)
 
-## Use Case: <br>
-Developers and engineers use this skill to locate, verify, and summarize official Huawei Cloud API documentation for cloud services such as OBS, ECS, VPC, RDS, CCE, ELB, IAM, and GaussDB. It supports documentation lookup, service identification, API Explorer navigation, and concise source-backed summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use web tools to search and open official Huawei Cloud documentation pages. <br>
-Mitigation: Do not paste private credentials, tokens, account identifiers, or other sensitive data into prompts when using the skill. <br>
-Risk: Documentation summaries can become incorrect if based on ambiguous service names, search snippets, unavailable pages, or outdated links. <br>
-Mitigation: Prefer opened official Huawei Cloud pages, verify service matches by title or breadcrumb, and label unverified or inferred details clearly. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to locate, verify, and summarize official Huawei Cloud API documentation for a named service. It supports documentation lookup for API references, developer guides, authentication, endpoints, SDKs, API Explorer, and error codes.
 
-## Reference(s): <br>
-- [Huawei Cloud Help Center](https://support.huaweicloud.com/intl/en-us/index.html) <br>
-- [Huawei Cloud Developer Center](https://developer.huaweicloud.com/eu/) <br>
-- [Huawei Cloud Developer Tools](https://developer.huaweicloud.com/tool.html) <br>
-- [Huawei Cloud API Explorer](https://console.huaweicloud.com/apiexplorer/) <br>
-- [Huawei Cloud Console (International)](https://console-intl.huaweicloud.com/console/?locale=en-us) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stevetdp/huaweicloud-api-docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Official source links are included when web-enabled retrieval succeeds; when web tools are unavailable, the skill returns official entry links and states that service-specific documentation was not verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: The skill may provide limited guidance when official Huawei Cloud pages cannot be searched or opened in the current agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the retrieval limitation and provide official Huawei Cloud entry links instead of guessing service-specific API details.
+
+Risk: Ambiguous service abbreviations can point to multiple Huawei Cloud products.
+
+Mitigation: List likely candidate services, ask the user to choose, and identify the normalized service name used for retrieval.
+
+## Reference(s):
+
+- [Huawei Cloud Help Center](https://support.huaweicloud.com/intl/en-us/index.html)
+- [Huawei Cloud Developer Center](https://developer.huaweicloud.com/eu/)
+- [Huawei Cloud Developer Tools](https://developer.huaweicloud.com/tool.html)
+- [Huawei Cloud API Explorer](https://console.huaweicloud.com/apiexplorer/)
+- [Huawei Cloud Console International](https://console-intl.huaweicloud.com/console/?locale=en-us)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with official source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include verified official Huawei Cloud links or no-web fallback entry links, depending on available retrieval tools.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

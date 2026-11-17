@@ -1,0 +1,51 @@
+# HVAC Quote Generator - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+customer:
+  name: ""
+  address: ""
+  city: ""
+  state: ""
+  zip: ""
+system:
+  existing_equipment: ""
+  existing_age_years: 0
+  system_type: ""
+  capacity_tons: 0
+  efficiency_rating: ""
+  seer_rating: 0
+scope:
+  - item: equipment
+    description: ""
+    quantity: 1
+    unit_price: 0
+  - item: labor
+    description: ""
+    quantity: 0
+    hours: 0
+    unit_price: 0
+  - item: protection and disposal
+    description: ""
+    quantity: 1
+    unit_price: 0
+  - item: electrical or disconnect
+    description: ""
+    quantity: 1
+    unit_price: 0
+exclusions:
+  - ""
+deposit_pct: 0
+sales_tax:
+  applies_to: parts and equipment
+  rate: 0
+  jurisdiction_checked: false
+permit:
+  required: false
+  authority: ""
+warranty:
+  parts_years: 0
+  labor_years: 0
+  issuer: ""
+license_number: ""
+quote_valid_days: 30
+prepared_by: ""
+prepared_on: ""

@@ -1,41 +1,57 @@
-## Description: <br>
-Guides agents through Openclast/Openclaw wallet setup, balances, transactions, approvals, and key export safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Openclast/Openclaw wallet setup, balance checks, transactions, approval flows, and key-export safety rules.
 
-## Publisher: <br>
-[fabriziogianni7](https://clawhub.ai/user/fabriziogianni7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fabriziogianni7](https://clawhub.ai/user/fabriziogianni7)
 
-## Use Case: <br>
-External users and developers use this skill to guide wallet setup, balance checks, transaction preparation, approvals, contract operations, and private-key export handling for Openclast/Openclaw wallets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Outgoing transactions, token approvals, and contract operations can move assets or grant permissions if the user approves the wrong recipient, chain, amount, contract, or scope. <br>
-Mitigation: Keep approval mode enabled and verify recipient, chain, amount, contract, and approval scope before broadcasting. <br>
-Risk: Private-key export can expose wallet credentials and lead to asset loss. <br>
-Mitigation: Avoid private-key export unless absolutely necessary; require explicit confirmation and use host-supported export gates when available. <br>
-Risk: The skill depends on separate wallet CLI or host wallet tools for execution. <br>
-Mitigation: Install and use only trusted wallet tooling, and treat this skill as guidance rather than a wallet implementation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fabriziogianni7/openclast-wallet) <br>
+## Use Case:
 
+External users and developers use this skill to have an agent help operate an Openclast/Openclaw wallet, including setup, balance queries, transaction preparation, user approvals, and safer handling of key export requests.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration keys] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; does not broadcast transactions itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide high-impact wallet actions such as sends, approvals, and contract calls.
+
+Mitigation: Keep notify/approval mode enabled, require explicit user approval before broadcast, and use strict per-transaction and daily spending limits.
+
+Risk: Automated sends or broad contract permissions could move funds without enough review if deliberately enabled.
+
+Mitigation: Restrict allowed recipients, chains, and verified contract addresses before enabling automation.
+
+Risk: Private key export can expose wallet credentials.
+
+Mitigation: Avoid exporting private keys unless necessary, require explicit confirmation, and prefer safer recovery or keychain-backed alternatives.
+
+## Reference(s):
+
+- [Openclast Wallet on ClawHub](https://clawhub.ai/fabriziogianni7/skills/openclast-wallet)
+- [Publisher profile](https://clawhub.ai/user/fabriziogianni7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline CLI commands, configuration keys, approval steps, and transaction reference links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance should preserve explicit approval for outgoing transactions unless the wallet configuration deliberately enables auto mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

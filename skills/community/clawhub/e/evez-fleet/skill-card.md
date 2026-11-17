@@ -1,44 +1,61 @@
-## Description: <br>
-Deploy and manage the EVEZ OpenClaw mesh across GCP and Vultr with scripts for provider integration, infrastructure setup, and health monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage the EVEZ OpenClaw mesh across GCP and Vultr with scripts for provider integration, infrastructure setup, and health monitoring.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and operators use this skill to configure OpenClaw provider access, provision GCP resources, and monitor an OpenClaw gateway in a small fleet that includes Vultr and planned GCP nodes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud setup commands can create persistent GCP resources and may lead to billing despite free-tier language. <br>
-Mitigation: Run only in a GCP project prepared for possible charges, review quotas and billing settings first, and remove created resources when they are no longer needed. <br>
-Risk: Provider API keys are passed as shell arguments and written into local OpenClaw configuration. <br>
-Mitigation: Treat provider keys as secrets, avoid leaving them in shell history or logs, restrict local config access, and rotate keys after testing. <br>
-Risk: The GCP setup script runs a remote OpenClaw installer. <br>
-Mitigation: Audit or pin the installer before execution and run the setup in an isolated project or test environment first. <br>
-Risk: The watchdog can kill and restart a local gateway process. <br>
-Mitigation: Review the process match, paths, and service user before enabling it on a shared or production host. <br>
+## Use Case:
 
+Developers and operators use this skill to configure OpenClaw provider integrations, set up a GCP free-tier node, and monitor an OpenClaw gateway in a small multi-cloud fleet.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/evez-fleet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents toward cloud provisioning commands, OpenClaw CLI configuration, and local watchdog setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The GCP setup script can create or modify cloud resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against a test or explicitly approved GCP project and review the planned resource changes before execution.
+
+Risk: The GCP installer path downloads and executes a remote OpenClaw installer.
+
+Mitigation: Avoid that path unless the installer source is pinned and verified.
+
+Risk: Provider API keys may be exposed if passed directly on the command line or stored insecurely.
+
+Mitigation: Do not pass real provider API keys on the command line; use an approved secret-handling process.
+
+Risk: The watchdog can restart gateway processes persistently.
+
+Mitigation: Run it only as an unprivileged OpenClaw service account and restrict it to the intended gateway process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/evez-fleet)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash scripts and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cloud setup and restart commands should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

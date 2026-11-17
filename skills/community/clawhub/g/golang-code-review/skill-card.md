@@ -1,46 +1,65 @@
-## Description: <br>
-Reviews Go source files for formatting, quality, error-handling, and maintainability issues, then produces a structured review report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Go code review support by checking formatting, quality, best practices, and security concerns, then producing Markdown review reports.
 
-## Publisher: <br>
-[knifeAn](https://clawhub.ai/user/knifeAn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[knifean](https://clawhub.ai/user/knifean)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review Go code before or during merge workflows, focusing on formatting, static-analysis signals, error handling, best-practice checks, and concise remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can suggest commands that modify local files, such as gofmt -w. <br>
-Mitigation: Run formatting commands intentionally and review source-control diffs before committing changes. <br>
-Risk: The security evidence describes this as a lightweight local review aid rather than a complete security audit. <br>
-Mitigation: Use it as a supplemental review signal and keep dedicated security review, testing, and static-analysis gates for higher-risk code. <br>
-Risk: External Go analysis tools may change behavior when installed at latest versions. <br>
-Mitigation: Pin tool versions in controlled or reproducible environments. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review Go changes for formatting, static-analysis findings, best-practice issues, security concerns, and actionable remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/knifeAn/golang-code-review) <br>
-- [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments) <br>
-- [Go Error Handling Best Practices](https://github.com/golang/go/wiki/ErrorHandlingBestPractices) <br>
-- [Effective Go](https://golang.org/doc/effective_go.html) <br>
-- [Staticcheck](https://staticcheck.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style review report with issue counts, severity labels, line references, metrics, remediation guidance, and optional shell commands for Go tooling.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest local formatting and analysis commands such as gofmt, goimports, go vet, staticcheck, errcheck, and golint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional setup commands install Go tools with @latest, which can change behavior over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin tool versions before installation when repeatable review behavior is required.
+
+Risk: Formatting commands such as gofmt -w can rewrite local files.
+
+Mitigation: Review diffs before committing formatter changes and run write-mode commands only in an intended workspace.
+
+Risk: The optional Git hook can run checks and formatting automatically on future commits.
+
+Mitigation: Install the hook only when automatic commit-time checks are desired and documented for the repository.
+
+Risk: Documentation and generated review messages are primarily Chinese-language.
+
+Mitigation: Install only where Chinese-language documentation and output are acceptable for reviewers.
+
+## Reference(s):
+
+- [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
+- [Go Error Handling Best Practices](https://github.com/golang/go/wiki/ErrorHandlingBestPractices)
+- [Effective Go](https://golang.org/doc/effective_go.html)
+- [Staticcheck](https://staticcheck.io)
+- [ClawHub Skill Page](https://clawhub.ai/knifean/skills/golang-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with issue summaries, severity labels, metrics, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Go tool commands and file-formatting recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

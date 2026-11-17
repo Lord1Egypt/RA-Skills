@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "sample": "v5.1 no-image Chinese policy overview",
+  "source_commit": "af4b1d2eb052920c38ea472bbc7714a22ffc06c0",
+  "build_id": "build-6bb1c937745a4e1588bc500a69aa56fc",
+  "input": {
+    "title": "人工智能中小企业创业支持计划（2026—2028年）",
+    "pages": 7,
+    "kind": "user-provided PDF",
+    "source_sha256": "d5e1ac2d199e7c8e477a1661a78852f6dc42acc0da685a4c1c79fec99b308e68"
+  },
+  "output": {
+    "file": "v5.1-no-image-policy-native.pptx",
+    "sha256": "56283415bada91eda032b7815db27b76ba7459bbda1e96b8fa7d6d288f7f919e",
+    "slides": 6,
+    "native_editable_objects": 120,
+    "objects": {
+      "native_text": 94,
+      "native_shape": 26,
+      "native_chart": 0,
+      "native_table": 0,
+      "image": 0,
+      "group": 0
+    },
+    "slides_with_speaker_notes": 6,
+    "image_generation_calls": 0
+  },
+  "counting_method": "Read the delivered PPTX using python-pptx; count slide text boxes and shapes once each. No chart data points, table cells, characters or speaker-note placeholders are counted. There are no groups in this sample.",
+  "pages": [
+    {
+      "slide": 1,
+      "topic": "政策导航",
+      "objects": {
+        "native_text": 13,
+        "native_shape": 6,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "total_objects": 19,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 2,
+      "topic": "三年目标",
+      "objects": {
+        "native_text": 16,
+        "native_shape": 3,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "total_objects": 19,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 3,
+      "topic": "要素供给",
+      "objects": {
+        "native_text": 15,
+        "native_shape": 4,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "total_objects": 19,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 4,
+      "topic": "主体培育",
+      "objects": {
+        "native_text": 12,
+        "native_shape": 3,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "total_objects": 15,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 5,
+      "topic": "开源与保障",
+      "objects": {
+        "native_text": 20,
+        "native_shape": 5,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "total_objects": 25,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 6,
+      "topic": "作者行动建议",
+      "objects": {
+        "native_text": 18,
+        "native_shape": 5,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "total_objects": 23,
+      "speaker_notes_present": true
+    }
+  ],
+  "previews": [
+    {
+      "slide": 1,
+      "file": "v5.1-no-image-policy-page-01.png",
+      "sha256": "f5954e7987776efa543a6051444065e81a9a40286dcd4b76a7cf4a7bd6de98a4",
+      "width": 1921,
+      "height": 1080,
+      "origin": "actual delivered PPTX -> LibreOffice PDF -> Poppler PNG; copied without image editing"
+    },
+    {
+      "slide": 2,
+      "file": "v5.1-no-image-policy-page-02.png",
+      "sha256": "b14a54a0195d754c05b85ebae3afd166ca0249bba0e285a894c9369c8bf78130",
+      "width": 1921,
+      "height": 1080,
+      "origin": "actual delivered PPTX -> LibreOffice PDF -> Poppler PNG; copied without image editing"
+    },
+    {
+      "slide": 6,
+      "file": "v5.1-no-image-policy-page-06.png",
+      "sha256": "fcc218e7daf83c501e1a17b97fafb9520f54be7c19d3b389c328daa3ed39c5a5",
+      "width": 1921,
+      "height": 1080,
+      "origin": "actual delivered PPTX -> LibreOffice PDF -> Poppler PNG; copied without image editing"
+    }
+  ],
+  "acceptance": {
+    "status": "final_delivery_ready",
+    "blockers": [],
+    "warnings": [],
+    "review_sha256": "3180fb1cd1503800eed7b33d4fe50ffb87573abfcbd094599f026a23b0d2dd2c",
+    "independent_review": "All six actual 1921x1080 previews and source content reviewed independently of the presentation author."
+  },
+  "application_edit_verification": {
+    "status": "passed",
+    "software": "LibreOffice 26.2.4.2",
+    "method": "LibreOffice Basic/UNO; edit native objects, save, close, reopen, export PDF",
+    "candidate_sha256": "56283415bada91eda032b7815db27b76ba7459bbda1e96b8fa7d6d288f7f919e",
+    "candidate_unchanged": true,
+    "actions": [
+      {
+        "node": "p1-kicker-node",
+        "type": "native_text",
+        "after": "EDIT VERIFIED",
+        "persisted": true
+      },
+      {
+        "node": "p2-n1-node",
+        "type": "native_numeric_text",
+        "after": "10001",
+        "persisted": true
+      },
+      {
+        "node": "p1-rule",
+        "type": "native_shape",
+        "after_fill": "FFBF00",
+        "persisted": true
+      }
+    ],
+    "all_speaker_notes_preserved": true,
+    "scope": "Representative native text and shape edits; charts/tables/images absent in this candidate; not tested in PowerPoint/WPS or Windows/Linux.",
+    "software_build_id": "0229ac93fcf0d7cbc6376066c6f35021cef002dc"
+  },
+  "efficiency": {
+    "scope": "JSON/UTF-8 bytes and lines, not actual model tokens or billing",
+    "skill_entry": {
+      "before_bytes": 14384,
+      "after_bytes": 6278
+    },
+    "same_six_slide_author_input": {
+      "case": "current_6_page",
+      "expanded_bytes": 69702,
+      "compact_bytes": 42808,
+      "semantic_roundtrip_identical": true
+    },
+    "same_six_slide_build_feedback": {
+      "build_id": "build-6bb1c937745a4e1588bc500a69aa56fc",
+      "full_json_bytes": 24550,
+      "summary_json_bytes": 631
+    },
+    "author_roundtrip": "canonical expanded task exactly matches original task",
+    "expanded_task_sha256": "11c26872ee72fc2fc94a4231dc9d304c425536037ec84e82c68172ab38aa59d2",
+    "compact_author_sha256": "0dae46ecb87dc79f1c0fb1376a1fa1a137beafcabd20ce7980ca50429b417d18"
+  },
+  "limits": [
+    "Actual application test was macOS + LibreOffice 26.2.4.2; PowerPoint/WPS and Windows/Linux were not tested with this sample.",
+    "Text and shape edits were sampled; no chart/table/image editing claim is made for this sample.",
+    "Arial Unicode MS was used; fonts are not embedded. Recheck fonts and layout on another device.",
+    "Byte sizes are not measured model token usage or billing.",
+    "The native preview demonstrates programmatic design; this sample is not an image-reconstruction fidelity benchmark."
+  ],
+  "sample_build_version": "5.1.0-dev.1",
+  "documented_release_version": "5.1.0"
+}

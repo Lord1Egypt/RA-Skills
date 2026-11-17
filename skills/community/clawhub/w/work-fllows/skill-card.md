@@ -1,39 +1,57 @@
-## Description: <br>
-Guides an agent to create NocoBase workflows, including triggers, conditions, data operations, SQL, and scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide AI to create NocoBase workflows - triggers, conditions, data operations, SQL, and scheduling.
 
-## Publisher: <br>
-[Alexander-lq](https://clawhub.ai/user/Alexander-lq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexander-lq](https://clawhub.ai/user/alexander-lq)
 
-## Use Case: <br>
-Developers and NocoBase administrators use this skill to plan, create, enable, inspect, and clean up automated workflows for collection events, schedules, conditional branches, SQL operations, and request nodes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide persistent or destructive NocoBase workflow administration, including enabling workflows and deleting workflows. <br>
-Mitigation: Use least-privilege NocoBase access, test in staging first, and require explicit approval before any enable or delete action. <br>
-Risk: Workflow nodes may modify data, run SQL, or send HTTP requests to external destinations. <br>
-Mitigation: Require the agent to show the target collection, trigger, SQL, webhook destination, workflow ID, and workflow title before execution. <br>
+## Use Case:
 
+Developers and operators use this skill to guide an agent through planning, creating, enabling, and verifying NocoBase workflows for data-change triggers, schedules, conditional branches, SQL nodes, updates, queries, and cleanup.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline NocoBase workflow tool-call examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Raw SQL workflow nodes can modify live business data if generated or enabled without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before running SQL or enabling SQL-backed workflows, prefer higher-level update nodes or parameterized SQL, and test in a non-production NocoBase environment first.
+
+Risk: Bulk deletion by prefix can remove workflows that the user did not intend to delete.
+
+Mitigation: Preview matched workflows with listing or inspection tools before deletion and require explicit confirmation of the exact prefix and affected workflow names.
+
+Risk: Automatically enabled workflows can trigger repeated or unintended data changes.
+
+Mitigation: Create all nodes before enabling, inspect the workflow definition, and verify trigger conditions, target collections, and idempotency before activation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexander-lq/skills/work-fllows)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code]
+
+**Output Format:** [Markdown with inline command, JSON, and SQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing instructions for constructing NocoBase workflow definitions and tool calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

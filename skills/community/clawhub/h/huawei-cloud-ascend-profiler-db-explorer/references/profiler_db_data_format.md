@@ -337,7 +337,7 @@ noCorrespondingopenrelated.
 
 taskData, presentappearallhaveHardwareExecuteofOperatorinformationinformation. 
 
-by--task-timeopenrelatedControl. 
+by--taREDACTED-SECRET. 
 
 **table 21**  formatformula
 
@@ -359,7 +359,7 @@ by--task-timeopenrelatedControl.
 
 CalculationOperatorDescriptioninformationinformation. 
 
-by--task-timeopenrelatedControl. 
+by--taREDACTED-SECRET. 
 
 **table 22**  formatformula
 
@@ -385,7 +385,7 @@ by--task-timeopenrelatedControl.
 
 DescriptionthroughinformationsmallOperatorinformationinformation. 
 
-by--task-time, --hccl, --ascendclopenrelatedControlCorrespondingDataofCollection. Configuration--task-timeasnonl0timeDatahavevalid. havethroughinformationDataofScenariosundersilentrecognizeGenerateoughttable. 
+by--task-time, --hccl, --ascendclopenrelatedControlCorrespondingDataofCollection. Configuration--taREDACTED-SECRET. havethroughinformationDataofScenariosundersilentrecognizeGenerateoughttable. 
 
 **table 23**  formatformula
 
@@ -594,7 +594,7 @@ CalculationOperatorofPMUData.
 
 Controlopenrelated: 
 
-- msprofcommandcommandof--ai-core, --aic-mode=task-basedopenrelatedControloughttableGenerate, --aic-metricsopenrelatedControltoolbodyDataCollection
+- msprofcommandcommandof--ai-core, --aic-mode=taREDACTED-SECRET, --aic-metricsopenrelatedControltoolbodyDataCollection
 - Ascend PyTorch Profilerofaic\_metrics
 - MindSpore Profilerofaic\_metrics
 
@@ -685,7 +685,7 @@ by--sys-hardware-mem, --sys-hardware-mem-freqopenrelatedControl.
 
 CANNOperatorMemoryoccupyuseData, onlyGEOperatorSupport. 
 
-by--task-memoryopenrelatedControl. 
+by--taREDACTED-SECRET. 
 
 **table 38**  formatformula
 

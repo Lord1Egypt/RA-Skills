@@ -1,45 +1,58 @@
-## Description: <br>
-Cross-Session Task Manager provides file-based task indexes and progress templates that help agents resume ongoing work across sessions, channels, or threads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a file-based task management pattern that helps an AI agent resume work across sessions, channels, or threads using active-task, closed-task, and per-project progress Markdown files.
 
-## Publisher: <br>
-[imchongliu](https://clawhub.ai/user/imchongliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imchongliu](https://clawhub.ai/user/imchongliu)
 
-## Use Case: <br>
-Developers and agent users use this skill to add a simple persistent task-memory workflow to an agent workspace, using active-task, closed-task, and per-project progress files to continue work after a session ends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task files may retain sensitive project details longer than intended. <br>
-Mitigation: Do not store secrets, credentials, customer data, or sensitive personal details in task files, and periodically review or delete old progress files. <br>
-Risk: Agents may continue using persistent task memory after the user no longer wants it. <br>
-Mitigation: Remove the AGENTS.md or HEARTBEAT.md rules and archive or delete the task files when persistent task memory is no longer desired. <br>
+## Use Case:
 
+Developers and agent users use this skill to set up Markdown task indexes and progress notes so agents can continue ongoing work after a session, channel, or thread changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/imchongliu/cross-session-tasks) <br>
-- [Publisher Profile](https://clawhub.ai/user/imchongliu) <br>
-- [ACTIVE-TASKS Template](artifact/templates/ACTIVE-TASKS.md) <br>
-- [CLOSED-TASKS Template](artifact/templates/CLOSED-TASKS.md) <br>
-- [Progress Template](artifact/templates/progress.md) <br>
-- [Example Progress File](artifact/examples/example-progress.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown templates with inline shell commands and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local task-state files; users control what information is stored.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Task notes can persist sensitive project details across sessions if users place them in ACTIVE-TASKS.md or project progress files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only necessary non-secret task context in the Markdown files, and avoid credentials, private personal data, or sensitive customer details.
+
+Risk: Adding recurring task-management rules to AGENTS.md changes how an agent checks and updates local workspace files across sessions.
+
+Mitigation: Review the AGENTS.md changes before installation and keep the persistence behavior limited to the intended workspace and task files.
+
+## Reference(s):
+
+- [Cross-Session Task Manager ClawHub Page](https://clawhub.ai/imchongliu/skills/cross-session-tasks)
+- [Skill Instructions](artifact/SKILL.md)
+- [ACTIVE-TASKS Template](artifact/templates/ACTIVE-TASKS.md)
+- [CLOSED-TASKS Template](artifact/templates/CLOSED-TASKS.md)
+- [Progress Template](artifact/templates/progress.md)
+- [Example Progress File](artifact/examples/example-progress.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets, task templates, and configuration rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local Markdown task files and AGENTS.md rule changes; server security evidence reports no network access, credential handling, hidden code, or destructive behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

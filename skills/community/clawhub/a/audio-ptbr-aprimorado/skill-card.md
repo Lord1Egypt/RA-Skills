@@ -1,45 +1,64 @@
-## Description: <br>
-Audio PTBR provides Brazilian Portuguese speech-to-text, AI response generation, and neural text-to-speech for OpenClaw voice replies with optional Claude API integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audio PTBR provides a Brazilian Portuguese voice interface that transcribes audio, generates responses through Claude API or OpenClaw fallback, and synthesizes replies with Piper TTS.
 
-## Publisher: <br>
-[henrique-simoes](https://clawhub.ai/user/henrique-simoes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[henrique-simoes](https://clawhub.ai/user/henrique-simoes)
 
-## Use Case: <br>
-External users and developers use this skill to add Portuguese-Brazilian audio interaction to OpenClaw or compatible environments, converting voice messages into spoken or text responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can modify the host environment and download large audio, ML, and TTS dependencies. <br>
-Mitigation: Review install.sh before use and run installation in a virtual environment or container; verify downloaded sources where practical. <br>
-Risk: When ANTHROPIC_API_KEY is set, transcribed voice content may be sent to Anthropic for response generation. <br>
-Mitigation: Leave ANTHROPIC_API_KEY unset unless external processing is acceptable, and use the OpenClaw fallback for deployments that require local handling. <br>
-Risk: The OpenClaw fallback hands transcribed content to the local OpenClaw agent with that environment's configured permissions. <br>
-Mitigation: Deploy only in OpenClaw environments whose agent permissions are understood, and validate behavior with health_check.py before production use. <br>
+## Use Case:
 
+External users and developers use this ClawHub skill to add Brazilian Portuguese voice interaction to OpenClaw, Claude Desktop, or standalone workflows by transcribing speech, generating a concise response, and returning speech or text.
 
-## Reference(s): <br>
-- [Audio PTBR ClawHub Release](https://clawhub.ai/henrique-simoes/audio-ptbr-aprimorado) <br>
-- [wav2vec2-large-xlsr-53-portuguese model card](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-portuguese) <br>
-- [Piper TTS](https://github.com/rhasspy/piper) <br>
-- [Anthropic Claude API](https://www.anthropic.com/claude) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, audio, shell commands, configuration, guidance] <br>
-**Output Format:** [Audio voice replies, text responses, JSON transcription results, and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default OpenClaw mode is designed for silent audio-in/audio-out; explicit text mode and CLI utilities can return text or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The installer and shell hook have broad execution authority on the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a container or dedicated virtual environment, and avoid elevated privileges unless host package changes are acceptable.
+
+Risk: Piper binaries and voice models are downloaded during setup without enough verification.
+
+Mitigation: Verify or pin downloaded Piper and model artifacts before deployment.
+
+Risk: The shell hook can pass user-controlled values into shell execution.
+
+Mitigation: Fix the hook to pass arguments without shell interpolation and keep input validation enabled.
+
+Risk: When ANTHROPIC_API_KEY is set, transcribed speech may be sent to Anthropic for response generation.
+
+Mitigation: Set ANTHROPIC_API_KEY only when external processing of transcripts is acceptable; otherwise use the OpenClaw fallback.
+
+## Reference(s):
+
+- [Audio PTBR ClawHub listing](https://clawhub.ai/henrique-simoes/skills/audio-ptbr-aprimorado)
+- [wav2vec2-large-xlsr-53-portuguese model card](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-portuguese)
+- [Piper TTS project](https://github.com/rhasspy/piper)
+- [Anthropic Claude](https://www.anthropic.com/claude)
+
+## Skill Output:
+
+**Output Type(s):** [Audio, Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [OGG/Opus audio, plain text, JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Silent audio-only replies are the default; explicit text mode can return text instead of audio.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,53 @@
-## Description: <br>
-Purchase travel eSIM data plans using USDC on Base Mainnet or Base Sepolia through x402, then deliver an eSIM installation page with QR-code setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Purchase travel eSIM data plans using USDC on Base Mainnet or Sepolia testnet via x402, with eSIM delivery via a QR code installation page.
 
-## Publisher: <br>
-[inthaiguy](https://clawhub.ai/user/inthaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[inthaiguy](https://clawhub.ai/user/inthaiguy)
 
-## Use Case: <br>
-External users and agents use this skill to search travel eSIM packages by country, quote prices, coordinate USDC payment, and return the resulting installation link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Mainnet purchases can spend real USDC and incur gas fees. <br>
-Mitigation: Confirm the network, package, USDC amount, token contract, recipient address, and gas fee before approving payment; use testnet or a limited-balance wallet for testing. <br>
-Risk: The flow depends on the external esimqr.link service and dynamically returned payment addresses. <br>
-Mitigation: Install only if the service is trusted and use payment details returned by the quote or 402 response rather than hardcoded addresses. <br>
-Risk: The API rate limit is 10 requests per minute per IP. <br>
-Mitigation: Handle HTTP 429 responses by respecting the Retry-After header before retrying. <br>
+## Use Case:
 
+External users and agents use this skill to search for travel eSIM data plans, quote USDC prices, complete an x402 payment flow, and return an eSIM installation link. Developers can use the included Python client and API documentation to integrate package search, quotes, purchases, and status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/inthaiguy/get-esim) <br>
-- [Mainnet agent API documentation](https://esimqr.link/api/agent/docs) <br>
-- [Testnet agent API documentation](https://esimqr.link/api/agent-testnet/docs) <br>
-- [Agent landing page](https://esimqr.link/agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API details, command examples, and Python client code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include eSIM package options, quote details, transaction status, and installation URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The payment flow relies on remote payment instructions for an irreversible USDC transfer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before approving payment, verify the exact USDC amount, recipient, token contract, and Base network in the wallet; prefer Base Sepolia testnet until payment-parameter validation is tightened.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/inthaiguy/skills/get-esim)
+- [Mainnet Agent API Documentation](https://esimqr.link/api/agent/docs)
+- [Testnet Agent API Documentation](https://esimqr.link/api/agent-testnet/docs)
+- [Agent Landing Page](https://esimqr.link/agents)
+- [Hackathon Submission](https://www.moltbook.com/m/usdc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON API responses, Python client objects, payment headers, and eSIM installation URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network-specific output may target Base Mainnet for real purchases or Base Sepolia for test purchases; purchase results include eSIM status and installation page URLs.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

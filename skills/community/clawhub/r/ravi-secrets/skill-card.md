@@ -1,42 +1,54 @@
-## Description: <br>
-Store and retrieve key-value secrets in Ravi for API keys, environment variables, and tokens, rather than website passwords or messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Store and retrieve key-value secrets in the Ravi encrypted secret store for API keys, environment variables, and tokens.
 
-## Publisher: <br>
-[raunaksingwi](https://clawhub.ai/user/raunaksingwi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raunaksingwi](https://clawhub.ai/user/raunaksingwi)
 
-## Use Case: <br>
-Developers and agents use this skill to manage Ravi CLI secrets: store, list, retrieve, and delete API keys, environment variables, or tokens at runtime. It is intended for key-value secrets, not website passwords or message retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally handles API keys and tokens, and Ravi returns plaintext values to the agent. <br>
-Mitigation: Install only if you trust the Ravi CLI and service, use least-privilege credentials, retrieve only specific secrets when needed, and avoid printing or logging secret values. <br>
-Risk: Deleting secrets by UUID can remove the wrong secret if the identifier is mistaken. <br>
-Mitigation: Carefully verify UUIDs before deleting secrets. <br>
-Risk: Secret key names are stored in plaintext for lookup and filtering. <br>
-Mitigation: Use descriptive but non-sensitive key names, and keep sensitive material in encrypted values or notes. <br>
+## Use Case:
 
+Developers and agents use this skill to store, list, retrieve, and delete key-value secrets such as API keys, environment variables, and service tokens through the Ravi secrets CLI. It is intended for secret values and notes, not website passwords or message access.
 
-## Reference(s): <br>
-- [Ravi Secrets API Reference](https://ravi.id/docs/schema/secrets.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown with bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May retrieve plaintext secret values; avoid logging or sharing returned values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: Secret values are sent to and returned from the Ravi secrets service as plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only where that service boundary is acceptable, and avoid sharing or logging retrieved values.
+
+Risk: Shell examples that pass tokens directly on the command line or list all secrets can expose sensitive values through shell history, process inspection, terminal scrollback, or logs.
+
+Mitigation: Prefer narrowly scoped retrieval, avoid bulk listing when possible, and avoid pasting real tokens directly into reusable shell commands.
+
+## Reference(s):
+
+- [Ravi Secrets API schema](https://ravi.id/docs/schema/secrets.json)
+- [ClawHub skill page](https://clawhub.ai/raunaksingwi/skills/ravi-secrets)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command output can include plaintext secret values and should be handled as sensitive data.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

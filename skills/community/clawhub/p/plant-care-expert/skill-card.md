@@ -1,44 +1,56 @@
-## Description: <br>
-Plant Care Expert helps agents identify plants from images or descriptions, assess care difficulty, provide care guidance, diagnose common plant problems, and suggest first-aid steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language plant identification, care, suitability assessment, troubleshooting, and first-aid guidance for indoor and outdoor plants, flowers, and succulents.
 
-## Publisher: <br>
-[slamw](https://clawhub.ai/user/slamw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slamw](https://clawhub.ai/user/slamw)
 
-## Use Case: <br>
-External users and plant-care agents use this skill to identify houseplants, flowers, succulents, and outdoor plants, then decide whether their environment is suitable for care. It also supports troubleshooting symptoms such as yellowing leaves, wilting, root rot, pest issues, and watering or fertilization problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plant identification and care recommendations may be wrong when photos, symptoms, or growing conditions are incomplete. <br>
-Mitigation: Ask for clear photos and relevant conditions such as light, watering, soil, humidity, and symptom timing; treat outputs as guidance and adjust based on observed plant response. <br>
-Risk: Chemical pest or disease advice may be incomplete or subject to local rules. <br>
-Mitigation: Follow product labels, use ventilation and protective gear, keep chemicals away from children, pets, and food areas, and consult local rules or an expert for severe infestations. <br>
+## Use Case:
 
+External plant owners and gardening users use this Chinese-language skill to identify plants from images or descriptions, evaluate whether their environment is suitable, and get care plans or troubleshooting steps for common plant health issues.
 
-## Reference(s): <br>
-- [Plant Care Expert on ClawHub](https://clawhub.ai/slamw/plant-care-expert) <br>
-- [README](README.md) <br>
-- [Common Indoor Plant Database](references/plant_database.md) <br>
-- [Extended Plant Database](references/plant_database_extended.md) <br>
-- [Plant Troubleshooting Manual](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask follow-up questions about photos, location, light, watering, soil, humidity, and symptom timing before giving advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Pesticide, fungicide, fertilizer, or toxic-plant guidance can be unsafe if applied without product-specific or local-rule context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify recommendations against product labels and local rules, use appropriate protection and ventilation, and keep chemicals and toxic plants away from children and pets.
+
+Risk: Plant-care guidance may not fit a user's exact species, environment, or plant health condition.
+
+Mitigation: Treat recommendations as general guidance, provide clear photos and environment details, and consult a professional gardener for severe disease, pest, or near-death plant conditions.
+
+## Reference(s):
+
+- [Plant Care Expert skill page](https://clawhub.ai/slamw/skills/plant-care-expert)
+- [Common Indoor Plant Database](artifact/references/plant_database.md)
+- [Indoor and Outdoor Plant Knowledge Base - Asia and North America](artifact/references/plant_database_extended.md)
+- [Plant Troubleshooting Manual](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with structured sections, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses; may ask follow-up questions before giving plant-care recommendations]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

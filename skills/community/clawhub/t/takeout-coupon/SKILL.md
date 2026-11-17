@@ -1,18 +1,19 @@
 ---
 name: takeout-coupon
-description: 调用外卖优惠券API获取各平台（美团、淘宝闪购/饿了么、京东）的隐藏外卖券列表及聚合领券页面。返回优惠券代码和领取说明，用户可复制优惠码到对应APP领取。
-english_description: Call takeout coupon API to fetch hidden coupon lists and aggregated redemption pages for platforms (Meituan, Taobao Flash/Ele.me, JD.com). Returns coupon codes and redemption instructions for users to copy and redeem in corresponding apps.
-version: 1.0.1
+display_name: Takeout Coupon 外卖优惠券隐藏券大额券，美团、京东、闪购/饿了么
+description: 调用外卖优惠券API，一键获取美团、饿了么/淘宝闪购、京东外卖红包与隐藏优惠券口令，附带聚合领券页面。返回优惠券代码和领取说明，用户复制口令到对应APP即可领券，天天领外卖红包。
+english_description: Call takeout coupon API to fetch hidden coupon lists, red packets and aggregated redemption pages for platforms (Meituan, Taobao Flash/Ele.me, JD.com). Returns coupon codes and redemption instructions for users to copy and redeem in corresponding apps.
+version: 2.0.2
 author: moooai
 permissions: 网络访问权限（调用外卖优惠券API）
-homepage: https://github.com/moooai/skills
+homepage: https://github.com/moooai/takeout-coupon
 ---
 
 # 外卖优惠券
 
 ## Overview
 
-此skill通过调用外卖优惠券API接口，获取美团、淘宝闪购/饿了么、京东三大外卖平台的隐藏优惠券，以及一个聚合H5领券页面。返回优惠券代码（coupon_code）和领取指南，供用户复制到对应APP领取优惠。
+此skill通过调用外卖优惠券API接口，获取美团、淘宝闪购/饿了么、京东三大外卖平台的隐藏优惠券，以及各平台扫码/H5领券页直达入口。返回优惠券代码（coupon_code）和领取指南，供用户复制到对应APP领取优惠。
 
 ## Quick Start
 
@@ -30,6 +31,7 @@ homepage: https://github.com/moooai/skills
 | API地址 | `https://agskills.moontai.top/coupon/takeout` |
 | 认证方式 | 无需认证 |
 | 请求方法 | GET |
+| 归因参数 | `ch=<渠道>&u=<安装uuid>`（fetch_coupons.py 自动附加，用于匿名安装统计与订单归因） |
 | 返回格式 | JSON |
 
 ### 响应数据结构
@@ -39,31 +41,84 @@ homepage: https://github.com/moooai/skills
   "美团隐藏外卖券列表": [
     {
       "title": "美团外卖节(主推)🔥🔥",
-      "coupon_code": "1 %复制信息#% 打开团App http:/¥wnYjVmNWRlNmU¥一起领",
-      "guideline": "请复制完整的优惠券代码，打开美团APP领取"
+      "coupon_code": "❤️复制整条信息，打开👉美团👈 http:/💰t7NWIxNDQ0NTE💰",
+      "guideline": "手机先复制优惠券代码，打开美团APP自动领取"
+    },
+    {
+      "title": "美团外卖甄选好店🔥🔥",
+      "coupon_code": "❤️复制整条信息，打开👉美团👈 http:/💰w0OGFiZjdmYTk💰",
+      "guideline": "手机先复制优惠券代码，打开美团APP自动领取"
+    },
+    {
+      "title": "美团外卖【品牌商品券🔥🔥】",
+      "coupon_code": "❤️复制整条信息，打开👉美团👈 http:/💰wuMzJlZGFlMTY💰",
+      "guideline": "手机先复制完整的优惠券代码，打开美团APP自动领取"
+    },
+    {
+      "title": "美团外卖【神券包】 9.9元购360元年卡",
+      "coupon_code": "❤️复制整条信息，打开👉美团👈 http:/💰ydZWY2NjQ2NDg💰",
+      "guideline": "手机先复制完整的优惠券代码，打开美团APP自动领取"
     }
   ],
   "饿了么/淘宝闪购隐藏外卖券列表": [
     {
-      "title": "淘宝闪购-天天领红包(全场景通用)",
-      "coupon_code": "39 HU7405 666:/WtPyUwSf7WL✔三最高抢66元大红包",
-      "guideline": "请复制完整的优惠券代码，打开淘宝闪购APP领取"
+      "title": "淘宝闪购-叠红包🔥🔥",
+      "coupon_code": "￥Q8rJTMpjkKE￥/ HU7405 【闪购品牌日 单单有福利】",
+      "guideline": "请复制完整的优惠券代码，打开淘宝APP领取"
+    },
+    {
+      "title": "淘宝闪购-天天领红包(全场景, 最高抢66元大额红包)",
+      "coupon_code": "0fυィ直文本2:/＄TMpQp4v＄~.淘宝闪购App【天天领红包（全场景通用）】",
+      "guideline": "请复制完整的优惠券代码，打开淘宝APP领取"
+    },
+    {
+      "title": "淘宝闪购-宵夜专场",
+      "coupon_code": "0複制文本666:/＄TMpQ6cz＄~.淘宝闪购App【闪购夜宵专享会场】",
+      "guideline": "请复制完整的优惠券代码，打开淘宝APP领取"
+    },
+    {
+      "title": "淘宝闪购-学生专场",
+      "coupon_code": "29 HU7405 2:/TpOYTMpkOTb✔四学生专享天天好价",
+      "guideline": "请复制完整的优惠券代码，打开淘宝APP领取"
     }
   ],
   "京东隐藏外卖券列表": [
     {
       "title": "京东外卖-惊喜红包(主推)",
-      "coupon_code": "1！C92RX3cy6JJac3M8！ MF8335",
+      "coupon_code": "！V6M0P42CyIm6sAe4！ CA1565",
+      "guideline": "请复制完整的优惠券代码，打开京东APP领取"
+    },
+    {
+      "title": "京东外卖-高Y品质会场",
+      "coupon_code": " ！F4v6f1xHQipuCbW8！ CA1331",
+      "guideline": "请复制完整的优惠券代码，打开京东APP领取"
+    },
+    {
+      "title": "京东外卖-夜宵专场",
+      "coupon_code": "！I3xPR007jcyak7Uo！ CA3576",
       "guideline": "请复制完整的优惠券代码，打开京东APP领取"
     }
   ],
-  "聚合H5页面": {
-    "title": "外卖券统一领取页面",
-    "coupon_h5_qrcode_img_url": "https://moontai-static.oss-cn-shenzhen.aliyuncs.com/coupon-takeout-mar.png",
-    "guideline": "若无法复制优惠券代码，可以使用微信扫码打开领券页面"
+  "扫码领取/H5网页跳转领取": [
+    {
+      "title": "美团优惠券领取页",
+      "coupon_url": "https://h5.sichuanyunzhan.com/pages_single/meiTuan/index?platform=singlePage&pid=e467cdcafe2b1791cdfc&accountsId=nEjX0zy4Zmyq",
+      "coupon_qrcode_img_url": "https://moontai-static.oss-cn-shenzhen.aliyuncs.com/meituan-614d8c70-26c5-43bc-9e91-4468651709e8.png",
+      "guideline": "点击链接下单(建议用微信打开)，或使用微信扫描二维码下单（单单享优惠）"
+    },
+    {
+      "title": "饿了么/淘宝闪购优惠券领取页",
+      "coupon_url": "https://h5.sichuanyunzhan.com/pages_single/hungry/index?platform=singlePage&pid=e467cdcafe2b1791cdfc&accountsId=nEjX0zy4Zmyq",
+      "coupon_qrcode_img_url": "https://moontai-static.oss-cn-shenzhen.aliyuncs.com/taobao-9dd25c45-2e2c-451d-af71-a502f815de16.png",
+      "guideline": "点击链接下单(建议用微信打开)，或使用微信扫描二维码下单（单单享优惠）"
+    }
+  ],
+  "查找更多优惠券": {
+    "title": "更多类型优惠券（外卖、电影、快递、旅游、打车)",
+    "coupon_h5_qrcode_img_url": "https://moontai-static.oss-cn-shenzhen.aliyuncs.com/qrcode_for_gh.jpg",
+    "guideline": "可以使用微信扫码后领券。关注不迷路，天天领券！"
   }
-}
-```
+}```
 
 ### 响应字段说明
 
@@ -72,12 +127,15 @@ homepage: https://github.com/moooai/skills
 | 美团隐藏外卖券列表 | Array | 美团外卖平台优惠券数组 |
 | 饿了么/淘宝闪购隐藏外卖券列表 | Array | 淘宝闪购/饿了么优惠券数组 |
 | 京东隐藏外卖券列表 | Array | 京东外卖优惠券数组 |
-| 聚合H5页面 | Object | 聚合领券页面信息 |
+| 扫码领取/H5网页跳转领取 | Array | 各平台领券页直达入口数组（H5 链接 + 二维码图片） |
+| 查找更多优惠券 | Object | 更多优惠券入口（外卖、电影、快递、旅游、打车，公众号二维码） |
 | [].title | String | 优惠券标题名称 |
 | [].coupon_code | String | **优惠券代码，必须原样呈现，不可修改任何字符** |
 | [].guideline | String | 领取说明 |
-| 聚合H5页面.coupon_h5_qrcode_img_url | String | 聚合二维码图片URL |
-| 聚合H5页面.guideline | String | H5页面使用说明 |
+| [].coupon_url | String | H5 领取页链接（仅「扫码领取/H5网页跳转领取」数组内的项） |
+| [].coupon_qrcode_img_url | String | 领取页二维码图片URL（仅「扫码领取/H5网页跳转领取」数组内的项） |
+| 查找更多优惠券.coupon_h5_qrcode_img_url | String | 公众号二维码图片URL，微信扫码领更多券 |
+| 查找更多优惠券.guideline | String | 使用说明 |
 
 ## 任务类型
 
@@ -92,11 +150,19 @@ homepage: https://github.com/moooai/skills
 - 饿了么/淘宝闪购 → 饿了么/淘宝闪购隐藏外卖券列表
 - 京东外卖 → 京东隐藏外卖券列表
 
-### 3. 获取聚合领券页面
+### 3. 展示「查找更多优惠券」入口
 
-返回聚合H5二维码图片，供无法复制优惠券代码的用户使用微信扫码领取。
+返回公众号二维码图片（qrcode_for_gh.jpg），供用户微信扫码关注后天天领更多类型的券。
 
-### 4. 主推优惠券优先
+### 4. 提供扫码/H5 直达领取页
+
+返回「扫码领取/H5网页跳转领取」数组中各平台的领取页链接（coupon_url）和二维码图片（coupon_qrcode_img_url），供用户无法复制口令时直接扫码或点击领取。
+
+### 5. 搜索口令型优惠券
+
+接口可能返回搜索口令型优惠券（纯数字口令或短语口令），guideline 会说明在对应 APP 的搜索框中输入口令领取。此类口令同样必须原样呈现。
+
+### 6. 主推优惠券优先
 
 在展示时，主推标记的优惠券（如带🔥🔥或标注"主推"）应优先展示。
 
@@ -146,31 +212,73 @@ coupon_code可能包含特殊字符（如%、¥、✔、！、£等），这些�
 2. 解析返回的JSON数据
 3. 按平台分类展示（美团、淘宝闪购、京东）
 4. 每条优惠券展示：标题、优惠券代码、领取说明
-5. 同时展示聚合H5二维码图片
+5. 同时展示「扫码领取/H5网页跳转领取」的领券页链接与二维码，以及「查找更多优惠券」的公众号二维码图片
 
 **输出格式:**
 ```
 【美团外卖】
 1. 美团外卖节(主推)🔥🔥
-   优惠券代码：1 %复制信息#% 打开团App http:/¥wnYjVmNWRlNmU¥一起领
-   领取说明：请复制完整的优惠券代码，打开美团APP领取
+   优惠券代码：❤️复制整条信息，打开👉美团👈 http:/💰t7NWIxNDQ0NTE💰
+   领取说明：手机先复制优惠券代码，打开美团APP自动领取
 
-2. 美团外卖【品质会场】
-   ...
+2. 美团外卖甄选好店🔥🔥
+   优惠券代码：❤️复制整条信息，打开👉美团👈 http:/💰w0OGFiZjdmYTk💰
+   领取说明：手机先复制优惠券代码，打开美团APP自动领取
+
+3. 美团外卖【品牌商品券🔥🔥】
+   优惠券代码：❤️复制整条信息，打开👉美团👈 http:/💰wuMzJlZGFlMTY💰
+   领取说明：手机先复制完整的优惠券代码，打开美团APP自动领取
+
+4. 美团外卖【神券包】 9.9元购360元年卡
+   优惠券代码：❤️复制整条信息，打开👉美团👈 http:/💰ydZWY2NjQ2NDg💰
+   领取说明：手机先复制完整的优惠券代码，打开美团APP自动领取
+
 
 【淘宝闪购/饿了么】
-1. 淘宝闪购-天天领红包(全场景通用)
-   优惠券代码：39 HU7405 666:/WtPyUwSf7WL✔三最高抢66元大红包
-   ...
+1. 淘宝闪购-叠红包🔥🔥
+   优惠券代码：￥Q8rJTMpjkKE￥/ HU7405 【闪购品牌日 单单有福利】
+   领取说明：请复制完整的优惠券代码，打开淘宝APP领取
+
+2. 淘宝闪购-天天领红包(全场景, 最高抢66元大额红包)
+   优惠券代码：0fυィ直文本2:/＄TMpQp4v＄~.淘宝闪购App【天天领红包（全场景通用）】
+   领取说明：请复制完整的优惠券代码，打开淘宝APP领取
+
+3. 淘宝闪购-宵夜专场
+   优惠券代码：0複制文本666:/＄TMpQ6cz＄~.淘宝闪购App【闪购夜宵专享会场】
+   领取说明：请复制完整的优惠券代码，打开淘宝APP领取
+
+4. 淘宝闪购-学生专场
+   优惠券代码：29 HU7405 2:/TpOYTMpkOTb✔四学生专享天天好价
+   领取说明：请复制完整的优惠券代码，打开淘宝APP领取
+
 
 【京东外卖】
 1. 京东外卖-惊喜红包(主推)
-   优惠券代码：1！C92RX3cy6JJac3M8！ MF8335
-   ...
+   优惠券代码：！V6M0P42CyIm6sAe4！ CA1565
+   领取说明：请复制完整的优惠券代码，打开京东APP领取
 
-【聚合领券页面】
-二维码图片：https://moontai-static.oss-cn-shenzhen.aliyuncs.com/coupon-takeout-mar.png
-领取说明：若无法复制优惠券代码，可以使用微信扫码打开领券页面
+2. 京东外卖-高Y品质会场
+   优惠券代码： ！F4v6f1xHQipuCbW8！ CA1331
+   领取说明：请复制完整的优惠券代码，打开京东APP领取
+
+3. 京东外卖-夜宵专场
+   优惠券代码：！I3xPR007jcyak7Uo！ CA3576
+   领取说明：请复制完整的优惠券代码，打开京东APP领取
+
+
+【扫码领取/H5直达】
+- 美团优惠券领取页
+  链接：https://h5.sichuanyunzhan.com/pages_single/meiTuan/index?platform=singlePage&pid=e467cdcafe2b1791cdfc&accountsId=nEjX0zy4Zmyq
+  二维码：https://moontai-static.oss-cn-shenzhen.aliyuncs.com/meituan-614d8c70-26c5-43bc-9e91-4468651709e8.png
+  说明：点击链接下单(建议用微信打开)，或使用微信扫描二维码下单（单单享优惠）
+- 饿了么/淘宝闪购优惠券领取页
+  链接：https://h5.sichuanyunzhan.com/pages_single/hungry/index?platform=singlePage&pid=e467cdcafe2b1791cdfc&accountsId=nEjX0zy4Zmyq
+  二维码：https://moontai-static.oss-cn-shenzhen.aliyuncs.com/taobao-9dd25c45-2e2c-451d-af71-a502f815de16.png
+  说明：点击链接下单(建议用微信打开)，或使用微信扫描二维码下单（单单享优惠）
+
+【查找更多优惠券】
+二维码图片：https://moontai-static.oss-cn-shenzhen.aliyuncs.com/qrcode_for_gh.jpg
+领取说明：可以使用微信扫码后领券。关注不迷路，天天领券！
 ```
 
 ### 示例2: 用户指定平台
@@ -187,8 +295,8 @@ coupon_code可能包含特殊字符（如%、¥、✔、！、£等），这些�
 **用户输入:** "优惠券代码复制不了怎么办"
 
 **处理流程:**
-1. 展示聚合H5二维码图片
-2. 提示用户使用微信扫码打开领券页面
+1. 展示「扫码领取/H5网页跳转领取」中对应平台的领取页链接与二维码图片
+2. 提示用户使用微信扫码或点击链接直接领取
 
 ## 错误处理
 
@@ -212,7 +320,7 @@ coupon_code可能包含特殊字符（如%、¥、✔、！、£等），这些�
 
 ### 4. 用户无法复制coupon_code
 - **场景**: 用户反馈优惠券代码复制失败
-- **处理**: 提供聚合H5二维码图片URL，提示用户使用微信扫码领取
+- **处理**: 提供「查找更多优惠券」的公众号二维码图片URL，提示用户使用微信扫码领取
 
 ### 5. coupon_code包含特殊字符
 - **场景**: coupon_code可能包含%、¥、✔、！等特殊字符

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "diagram_type": "gantt",
+  "meta": {
+    "title": "Release Plan",
+    "output": "examples/gantt-release-plan-rendered.html",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "frontend", "label": "Frontend", "focus": ["ui-design", "ui-build"], "note": "The frontend workstream." },
+      { "id": "backend", "label": "Backend", "focus": ["api-design", "api-build"], "note": "The backend workstream." }
+    ]
+  },
+  "tasks": [
+    { "id": "planning", "label": "Planning", "start": "2026-01-05", "end": "2026-01-16", "group": "management" },
+    { "id": "ui-design", "label": "UI design", "start": "2026-01-12", "end": "2026-01-30", "group": "frontend" },
+    { "id": "api-design", "label": "API design", "start": "2026-01-12", "end": "2026-01-23", "group": "backend" },
+    { "id": "ui-build", "label": "UI build", "start": "2026-02-02", "end": "2026-02-27", "group": "frontend" },
+    { "id": "api-build", "label": "API build", "start": "2026-01-26", "end": "2026-02-20", "group": "backend" },
+    { "id": "integration", "label": "Integration", "start": "2026-03-02", "end": "2026-03-13", "group": "management" },
+    { "id": "release", "label": "Release", "start": "2026-03-16", "end": "2026-03-20", "group": "management" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Timeline",
+      "items": [
+        "Planning leads into parallel frontend and backend workstreams",
+        "UI and API build overlap in February",
+        "Integration and release close out the plan in March"
+      ]
+    }
+  ]
+}

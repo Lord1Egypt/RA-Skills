@@ -1,38 +1,49 @@
-## Description: <br>
-Helps agents identify, analyze, and engage project stakeholders to align interests, reduce resistance, and improve project outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert in identifying, analyzing, and engaging stakeholders to align interests, reduce resistance, and ensure successful project outcomes.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Employees, consultants, and project leaders use this skill to map stakeholders, assess influence and resistance, design engagement plans, and prepare governance or escalation materials for initiatives and organizational change. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may enter or generate sensitive workplace assessments about individuals, including influence, trust, resistance, and relationship strength. <br>
-Mitigation: Avoid unnecessary personal details, keep subjective assessments in approved project records, and review outputs before sharing them with colleagues, customers, or leadership. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-stakeholder-management) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent create stakeholder registers, power and interest analyses, communication plans, engagement playbooks, governance dashboards, and escalation paths for projects or organizational change.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML templates, tables, checklists, and command-style prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stakeholder registers, engagement plans, health dashboards, communication plans, and escalation recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated stakeholder plans may contain sensitive organizational opinions or personal contact details.
+
+Mitigation: Review stakeholder plans before sharing them and remove sensitive details that are not necessary for the intended audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-stakeholder-management)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured templates and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stakeholder registers, communication plans, health dashboards, scoring rubrics, and escalation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

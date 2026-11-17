@@ -1,44 +1,58 @@
-## Description: <br>
-Adaptive-language stock-analysis skill that interprets macro and political news, fuses it with retail/social sentiment, applies quantified value fallback rules, and outputs machine-readable stock ideas with valuation and technical plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adaptive-language stock-analysis skill that interprets macro and political news, fuses it with retail/social sentiment, applies quantified value fallback rules, and outputs machine-readable stock ideas with valuation and technical plans.
 
-## Publisher: <br>
-[yellowzijian](https://clawhub.ai/user/yellowzijian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yellowzijian](https://clawhub.ai/user/yellowzijian)
 
-## Use Case: <br>
-External users and agent developers use this skill to produce structured equity research that combines macro and political catalysts, retail sentiment, value screening, and technical trade planning. It is intended for analysis workflows that need a human-readable report plus strict JSON for downstream processing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce stock analysis and trade-planning ideas that may influence investment decisions. <br>
-Mitigation: Verify prices, financial metrics, catalysts, and risk levels independently before using the output in any financial decision. <br>
-Risk: Market, news, and sentiment inputs are time-dependent and can become stale quickly. <br>
-Mitigation: Use current external data sources and preserve the skill's confidence gates when data is incomplete or stale. <br>
-Risk: Retail sentiment sources can be noisy, duplicated, or speculative. <br>
-Mitigation: Treat partial sentiment as attention-only, apply duplicate filtering where available, and reduce conviction when source quality or polarity data is incomplete. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yellowzijian/market-signal-fusion) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Homepage](https://clawhub.com) <br>
+## Use Case:
 
+External users and developers use this skill to produce structured stock-market analysis that combines macro catalysts, retail sentiment, valuation fallback screening, confidence gates, and technical trade planning. It is intended for agent workflows that need both human-readable finance commentary and machine-readable JSON outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown report with a strict JSON block when structured output is appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts the user-facing language to the prompt and uses stable English keys for machine-readable JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Market outputs may be mistaken for personalized financial advice.
+
+Mitigation: Treat outputs as market analysis only and independently verify prices, metrics, catalysts, and suitability before acting.
+
+Risk: Configured web, market-data, or social-data tools may send tickers and related context to external services.
+
+Mitigation: Review connected tool providers and avoid submitting sensitive account, portfolio, or personal information unless the deployment permits it.
+
+Risk: Incomplete or stale market, sentiment, valuation, or technical data can reduce decision quality.
+
+Mitigation: Use the skill's confidence gates, reason codes, and unavailable-data disclosures to downgrade conviction or skip unsupported picks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yellowzijian/skills/market-signal-fusion)
+- [Publisher profile](https://clawhub.ai/user/yellowzijian)
+- [ClawHub homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Human-readable Markdown report plus an optional strict JSON block for downstream processing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts output language to the user's prompt and preserves stable English keys for structured JSON.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

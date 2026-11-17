@@ -1,51 +1,77 @@
-## Description: <br>
-Topview lets an agent generate videos, images, talking avatars, and TTS audio through the Topview API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official Topview AI client. Generate videos, images, avatars, and TTS audio via the Topview API. All network calls go to *.topview.ai only.
 
-## Publisher: <br>
-[topviewai](https://clawhub.ai/user/topviewai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[topviewai](https://clawhub.ai/user/topviewai)
 
-## Use Case: <br>
-External users, creators, marketers, and developers use this skill to have an agent create Topview videos, images, talking avatars, voice audio, and organized board results from natural-language requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Topview credentials and stores them locally. <br>
-Mitigation: Install only when comfortable linking a Topview account, and protect or remove the local credential file when access is no longer needed. <br>
-Risk: Generation workflows may upload user media, voice samples, or other creative inputs to Topview or its storage providers. <br>
-Mitigation: Use only media the user is allowed to upload, avoid sensitive or third-party biometric content without consent, and review inputs before submission. <br>
-Risk: Tasks can spend Topview credits and some modules can delete boards or custom voices. <br>
-Mitigation: Confirm credit-consuming tasks and destructive board or voice actions explicitly before running them. <br>
-Risk: The security summary says network disclosures are not fully accurate. <br>
-Mitigation: Review and accept Topview network access before installation, and use webhook URLs only when they are controlled by the user or organization. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent create Topview media assets from natural-language requests, including AI images, video clips, talking avatars, text-to-speech audio, voice cloning, background removal, product showcase images, and board organization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/topviewai/topview) <br>
-- [Topview homepage](https://www.topview.ai) <br>
-- [Authentication reference](artifact/references/auth.md) <br>
-- [Video generation reference](artifact/references/video_gen.md) <br>
-- [AI image reference](artifact/references/ai_image.md) <br>
-- [Avatar reference](artifact/references/avatar4.md) <br>
-- [Voice reference](artifact/references/voice.md) <br>
-- [Board reference](artifact/references/board.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Media links] <br>
-**Output Format:** [Markdown guidance with command invocations, generated media links, and board URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Topview account, local credentials, available credits, and selected user media or prompts for generation tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release evidence) <br>
+Risk: The skill handles account credentials and user files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing for sensitive media or account data, use a Topview account you are comfortable connecting, and prefer an isolated environment.
+
+Risk: Local files may be uploaded during generation workflows.
+
+Mitigation: Pass only files intended for Topview processing and avoid using the skill with confidential media unless that transfer is acceptable.
+
+Risk: Credentials are saved under the user's home directory.
+
+Mitigation: Protect the local environment and remove saved credentials when the skill no longer needs account access.
+
+Risk: Network destinations may be less restricted than the documentation claims.
+
+Mitigation: Review the skill before deployment and run it in an environment whose outbound network access is appropriate for the data being processed.
+
+Risk: Webhook URLs can expose generated task events or results to external destinations.
+
+Mitigation: Use only webhook URLs that you control.
+
+## Reference(s):
+
+- [Topview homepage](https://www.topview.ai)
+- [ClawHub skill page](https://clawhub.ai/topviewai/skills/topview)
+- [AI Image module](references/ai_image.md)
+- [Auth module](references/auth.md)
+- [Avatar4 module](references/avatar4.md)
+- [Board module](references/board.md)
+- [Error handling guide](references/error_handling.md)
+- [Product Avatar module](references/product_avatar.md)
+- [Remove Background module](references/remove_bg.md)
+- [Text-to-Voice module](references/text2voice.md)
+- [User module](references/user.md)
+- [Video Generation module](references/video_gen.md)
+- [Voice module](references/voice.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, task identifiers, media URLs, and generated file references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Topview account and local credentials or TOPVIEW_UID plus TOPVIEW_API_KEY.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

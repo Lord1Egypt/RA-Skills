@@ -1,43 +1,59 @@
-## Description: <br>
-短视频一键生成器 v3.0。输入主题+要点，AI自动完成分镜、生图、配音、字幕、渲染，输出1080×1920竖屏MP4。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+短视频一键生成器 v3.0。输入主题+要点，AI自动完成分镜、生图、配音、字幕、渲染，输出1080×1920竖屏MP4。
 
-## Publisher: <br>
-[hyjaixiao](https://clawhub.ai/user/hyjaixiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyjaixiao](https://clawhub.ai/user/hyjaixiao)
 
-## Use Case: <br>
-Content creators, marketers, and developers use this skill to generate short vertical videos from a topic and structured talking points. It produces storyboard data, generated scene images, TTS audio, subtitles, and an MP4 suitable for short-video platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The normal video-generation path can run unsafe local shell commands from user-supplied text or paths. <br>
-Mitigation: Review or sandbox the Python script before installation, avoid untrusted topics, scripts, titles, subtitles, and output paths, and fix shell command construction before broader use. <br>
-Risk: The skill requires sensitive provider credentials and may send video prompts, scripts, or audio text to selected AI providers. <br>
-Mitigation: Use limited-scope provider keys, keep OPENAI_BASE pointed at a trusted host, and avoid submitting confidential content unless the selected provider is approved for that data. <br>
+## Use Case:
 
+External creators and developers use this skill to generate short vertical videos from a topic and structured talking points, including storyboard JSON, images, TTS audio, subtitles, and MP4 render outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hyjaixiao/video-producer-v3) <br>
-- [Publisher profile](https://clawhub.ai/user/hyjaixiao) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions] <br>
-**Output Format:** [Directory of generated media files, JSON storyboard, SRT subtitles, and MP4 video output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, FFmpeg, and provider credentials for full MiniMax or OpenAI-backed media generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports product version 3.0.0) <br>
+Risk: User-provided video text or output paths can reach shell command execution during media generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a sandboxed working directory and avoid untrusted video text or output paths.
+
+Risk: API credentials and generated content can be sent to configurable external MiniMax, OpenAI, or Edge services.
+
+Mitigation: Use trusted API hosts only, do not set OPENAI_BASE to an untrusted proxy, and document what content and credentials are sent to each backend.
+
+Risk: The security verdict is suspicious and calls for review before installation.
+
+Mitigation: Review before installing and prefer a version that removes shell=True and validates API hosts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyjaixiao/skills/video-producer-v3)
+- [MiniMax API base](https://api.minimaxi.com/v1)
+- [OpenAI API base](https://api.openai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, files]
+
+**Output Format:** [Python script behavior with JSON storyboard, generated media files, MP4 video, and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python, FFmpeg, and optional MiniMax, OpenAI, or Edge TTS credentials depending on selected backends.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact files self-identify as 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

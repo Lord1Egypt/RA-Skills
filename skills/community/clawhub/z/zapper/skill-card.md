@@ -1,44 +1,61 @@
-## Description: <br>
-Query DeFi portfolio data across 50+ chains via Zapper's GraphQL API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query DeFi portfolio data across 50+ chains via Zapper's GraphQL API.
 
-## Publisher: <br>
-[spirosrap](https://clawhub.ai/user/spirosrap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spirosrap](https://clawhub.ai/user/spirosrap)
 
-## Use Case: <br>
-External users and developers use this skill to query wallet balances, DeFi positions, NFT holdings, token prices, transaction history, and unclaimed rewards through Zapper's GraphQL API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queried wallet addresses and portfolio-related requests are sent to Zapper. <br>
-Mitigation: Use the skill only for wallet addresses and portfolio queries you are comfortable sharing with Zapper. <br>
-Risk: The skill stores a Zapper API key in a local configuration file. <br>
-Mitigation: Use a dedicated, revocable API key and restrict permissions on the local config file. <br>
-Risk: Placing wallet private keys or seed phrases in the skill configuration would expose sensitive credentials. <br>
-Mitigation: Store only the Zapper API key in the config and never add private keys or seed phrases. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Zapper API Reference](references/api.md) <br>
-- [Zapper](https://zapper.xyz) <br>
-- [Zapper API Docs](https://build.zapper.xyz/docs/api) <br>
-- [Zapper Dashboard](https://dashboard.zapper.xyz) <br>
+## Use Case:
 
+External users and developers use this skill to inspect wallet balances, DeFi positions, NFT holdings, token prices, transaction history, and unclaimed rewards through Zapper.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Zapper API key configuration and sends wallet-address queries to Zapper.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet addresses and related DeFi, NFT, and transaction data are sent to Zapper.
+
+Mitigation: Use the skill only when that data sharing is acceptable for the wallet and workflow.
+
+Risk: The skill stores and uses a Zapper API key.
+
+Mitigation: Store the API key with restrictive file permissions and avoid shared machines.
+
+Risk: Untrusted address or symbol strings may increase command and request handling risk.
+
+Mitigation: Avoid passing untrusted address or symbol strings until JSON construction and config-path handling are fixed.
+
+## Reference(s):
+
+- [Zapper API Reference](references/api.md)
+- [Zapper API Docs](https://build.zapper.xyz/docs/api)
+- [Zapper Dashboard](https://dashboard.zapper.xyz)
+- [Zapper Homepage](https://zapper.xyz)
+- [ClawHub Skill Page](https://clawhub.ai/spirosrap/skills/zapper)
+- [Publisher Profile](https://clawhub.ai/user/spirosrap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell command guidance with tabular command output from the Zapper API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, python3, and a Zapper API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

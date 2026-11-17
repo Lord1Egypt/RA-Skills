@@ -1,43 +1,59 @@
-## Description: <br>
-Monitor Kimi K2.5 API usage and quota from the Kimi console so agents can check remaining quota, reset timers, rate-limit status, and usage patterns for resource planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Kimi K2.5 API usage and quota from the Kimi console so agents can check remaining usage, reset timers, rate-limit status, and usage patterns for resource planning.
 
-## Publisher: <br>
-[xD4O](https://clawhub.ai/user/xD4O) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xd4o](https://clawhub.ai/user/xd4o)
 
-## Use Case: <br>
-Developers and autonomous coding agents use this skill to inspect Kimi K2.5 quota and rate-limit information before intensive work, subagent spawning, or long-running planning. It supports console checks, JSON automation output, and capacity-aware task decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can inspect broader authenticated browser content than the Kimi console. <br>
-Mitigation: Keep the attached browser context limited to the Kimi console and select the exact Kimi console tab before taking snapshots. <br>
-Risk: The subagent guard allows spawning when quota checks fail. <br>
-Mitigation: For autonomous use, change quota checks and subagent spawning controls to fail closed when usage cannot be verified. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect Kimi K2.5 usage and quota state before starting intensive tasks, spawning subagents, or planning work around reset windows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xD4O/kimi-usage-monitor) <br>
-- [Kimi console](https://www.kimi.com/code/console) <br>
-- [Platform compatibility](PLATFORM_SUPPORT.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Console text and JSON, with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output includes usage percentages, reset timing, rate-limit information, timestamps, and subagent/preflight decisions when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: The skill can read authenticated browser tab snapshots while checking the Kimi console.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a Chrome context you are comfortable exposing to OpenClaw, and keep unrelated sensitive tabs out of that browser context.
+
+Risk: The subagent guard allows spawning when its usage check fails.
+
+Mitigation: Treat the guard as advisory unless the fail-open behavior is changed, and manually review quota before high-cost tasks when checks fail.
+
+Risk: Scheduled monitoring may create usage logs before storage and retention expectations are clear.
+
+Mitigation: Avoid cron or background monitoring until logging location, retention, and access expectations are defined.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xd4o/skills/kimi-usage-monitor)
+- [Kimi console](https://www.kimi.com/code/console)
+- [Kimi console membership view](https://www.kimi.com/code/console?from=membership)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Console text and JSON with usage percentages, reset timing, rate-limit status, and capacity guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated Kimi console session in Chrome with OpenClaw browser control enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

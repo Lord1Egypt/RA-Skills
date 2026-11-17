@@ -1,0 +1,143 @@
+{
+  "name": "LI Emergency Response MOD",
+  "slug": "li-emergency-response-mod",
+  "version": "1.0.0",
+  "description": "Enterprise Incident Response Guidance Skill with Multi-Agent Architecture - Supports Linux/Windows/Database/AI Infrastructure scenarios",
+  "long_description": "A comprehensive incident response guidance skill featuring both single-agent and multi-agent collaboration modes. Supports traditional IT infrastructure (mining/ransomware/brute-force/phishing/tunneling) and AI infrastructure (model poisoning/GPU mining/MLOps breaches/AI agent compromise). Implements WAL (Write-Ahead Logging), VBR (Verify Before Reporting), HITL (Human-in-the-Loop), and automatic pattern evolution.",
+  "author": {
+    "name": "北京老李（Beijing）",
+    "email": "li-beijing@example.com"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/your-org/corporate-emergency-response-guidance-skill",
+  "homepage": "https://github.com/your-org/corporate-emergency-response-guidance-skill#readme",
+  "keywords": [
+    "incident-response",
+    "security",
+    "emergency",
+    "forensics",
+    "malware-analysis",
+    "enterprise",
+    "multi-agent",
+    "ai-security",
+    "ctf",
+    "ir"
+  ],
+  "categories": [
+    "security",
+    "incident-response",
+    "automation"
+  ],
+  "topics": [
+    "Cybersecurity",
+    "Incident Response",
+    "Malware Analysis",
+    "Digital Forensics",
+    "AI Security",
+    "Multi-Agent Systems"
+  ],
+  "entry_point": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "使用指南与提示词示例.md",
+    "playbooks/*.md",
+    "scripts/*.py",
+    "multi_agent/**/*.py",
+    "multi_agent/**/*.yaml",
+    "multi_agent/**/*.md",
+    "templates/*.md",
+    ".opencode/opencode.json"
+  ],
+  "requirements": {
+    "python": ">=3.8",
+    "dependencies": [
+      "pyyaml"
+    ]
+  },
+  "capabilities": [
+    "Single-Agent Mode: Traditional AI assistant for individual use",
+    "Multi-Agent Mode: Collaborative multi-role system for complex incidents",
+    "WAL (Write-Ahead Logging) for audit trail",
+    "VBR (Verify Before Reporting) for evidence-driven decisions",
+    "HITL (Human-in-the-Loop) for high-risk operations",
+    "Automatic pattern evolution and knowledge sharing",
+    "Parallel analysis for efficiency improvement",
+    "Cross-platform compatibility (OpenCode/Cursor/Trae/Hermes/OpenClaw)"
+  ],
+  "use_cases": [
+    "Enterprise security incident response",
+    "Malware analysis and forensics",
+    "CTF incident response challenges",
+    "Team collaboration in complex incidents",
+    "AI infrastructure security events",
+    "Training and simulation exercises"
+  ],
+  "platforms": [
+    "OpenCode",
+    "Cursor",
+    "Trae",
+    "Hermes Agent",
+    "OpenClaw"
+  ],
+  "languages": [
+    "Chinese (Simplified)",
+    "English",
+    "Japanese",
+    "Korean",
+    "French",
+    "German",
+    "Spanish",
+    "Portuguese"
+  ],
+  "min_opencode_version": "0.1.0",
+  "max_opencode_version": "*",
+  "deprecated": false,
+  "unstable": false,
+  "screenshots": [],
+  "changelog": {
+    "1.0.0": {
+      "date": "2026-07-24",
+      "changes": [
+        "Initial release with single-agent mode",
+        "Added multi-agent architecture support",
+        "Included AI infrastructure incident response",
+        "Cross-platform compatibility",
+        "8-language documentation"
+      ]
+    }
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/your-org"
+  },
+  "badges": [
+    {
+      "name": "License",
+      "value": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    {
+      "name": "Python",
+      "value": "3.8+",
+      "url": "https://www.python.org/"
+    },
+    {
+      "name": "Multi-Agent",
+      "value": "Yes",
+      "url": "https://github.com/your-org/corporate-emergency-response-guidance-skill"
+    }
+  ],
+  "permissions": {
+    "read": ["filesystem"],
+    "write": ["filesystem"],
+    "execute": ["python"],
+    "network": false
+  },
+  "security": {
+    "no_personal_data": true,
+    "no_api_keys": true,
+    "no_external_calls": true,
+    "sandboxed": false
+  }
+}

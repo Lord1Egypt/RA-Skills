@@ -1,43 +1,58 @@
-## Description: <br>
-Aggregates Chinese web search by fetching parseable DuckDuckGo HTML results with the cn-zh locale and generating direct links for Bing China, Baidu, Sogou, and 360 Search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates Chinese-language web search by fetching DuckDuckGo HTML results with the cn-zh locale and generating direct links to Bing China, Baidu, Sogou, and 360 search pages.
 
-## Publisher: <br>
-[ScottLiu007](https://clawhub.ai/user/ScottLiu007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottliu007](https://clawhub.ai/user/scottliu007)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill when they need Chinese web search assistance, domestic search-engine deep links, or an API-key-free fallback when Brave or Google search is unavailable. It returns DuckDuckGo parsed results when available and direct search URLs for manual browser follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Default searches send query terms to DuckDuckGo. <br>
-Mitigation: Avoid confidential or sensitive search terms in default mode; use --urls-only when local link generation is sufficient. <br>
-Risk: Search-engine HTML parsing can fail because of rate limits, network controls, page changes, JavaScript, or captcha protections. <br>
-Mitigation: Report failures clearly and provide direct engine links for browser-based follow-up instead of claiming full search-engine crawling. <br>
-Risk: High-frequency automated use may violate search-engine expectations or terms. <br>
-Mitigation: Keep request rates low and review applicable search-engine robots and service terms before automation. <br>
+## Use Case:
 
+Developers, agents, and external users can use this skill to retrieve Chinese-locale search results and fallback direct search links when domestic search coverage or Chinese-language web discovery is needed.
 
-## Reference(s): <br>
-- [Multi-Search-CN reference](reference.md) <br>
-- [ClawHub release page](https://clawhub.ai/ScottLiu007/multi-search-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown-style search results and direct search links, with optional JSON output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default mode sends the query to DuckDuckGo HTML; --urls-only generates search-engine links without making a network request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search terms may be sent to DuckDuckGo during parsed-result mode and may be embedded in links for Chinese search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or private queries unless that disclosure is acceptable; use urls-only mode when only generated links are needed.
+
+Risk: Parsed web results may fail or be incomplete because search providers can rate limit, change page structure, or require browser-side checks.
+
+Mitigation: Disclose fetch failures or empty results and provide direct search links so users can verify results in a browser.
+
+Risk: High-frequency automated queries may violate provider terms or trigger abuse protections.
+
+Mitigation: Keep query frequency low and follow the search providers' robots and service terms.
+
+## Reference(s):
+
+- [Multi-Search-CN Reference](reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/scottliu007/skills/multi-search-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown search results or JSON, with direct search URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [DuckDuckGo parsed results default to a limit of 8; urls-only mode emits search links without fetching result pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

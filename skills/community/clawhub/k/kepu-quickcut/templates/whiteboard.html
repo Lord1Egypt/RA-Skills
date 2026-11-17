@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html data-page-node-id="TwT2N4HjeAqGEtnaOMe7od" lang="zh-CN">
+<head data-page-node-id="rqMBPiyWjoGP7Y92QP5xlS">
+<script data-page-node-id="rwl2mW2ctLvhUCDNANGn8m" src="/page/page_comm/inject.js"></script>
+<meta data-page-node-id="L6fF7HHPeV3hXa3LerqYgX" charset="UTF-8">
+<title data-page-node-id="VBb6cQqAHi72bGYoEEEhkh" data-pnid-children="Xv6E3Elf8OPPHoSc4g8IMg">每天15分钟 vs 周末3小时 · 白板手绘</title>
+<style data-page-node-id="yXROpE7jOqmLkHPOiyLFjY" data-pnid-children="Dalj4Y9ayYqmw5NdTgvgoJ">
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1080px; height:1920px; overflow:hidden; background:#fbfaf5; }
+  svg#board { position:absolute; inset:0; }
+  .txt { position:absolute; font-family:"HanziPen SC","Hannotate SC","Kaiti SC","STKaiti",serif; color:#26241f; opacity:0; }
+  #title { left:0; right:0; top:200px; text-align:center; font-size:74px; letter-spacing:2px; white-space:nowrap; }
+  #lbA { left:70px; top:760px; width:450px; text-align:center; font-size:46px; }
+  #lbB { left:560px; top:760px; width:450px; text-align:center; font-size:46px; }
+  #punch { left:0; right:0; top:1480px; text-align:center; font-size:74px; letter-spacing:2px; white-space:nowrap; }
+  #punch em { font-style:normal; position:relative; }
+</style>
+</head>
+<body data-page-node-id="tZJizjoI5QqBUjIyjzgBNX">
+<svg data-page-node-id="iIC0UHS1pLkQTVZIQJuCVe" height="1920" id="board" viewBox="0 0 1080 1920" width="1080"></svg>
+<div data-page-node-id="tbqnn3NjE0p6c9bH55HzqD" class="txt" id="title"><!--pnid:cJIJHWw621XYGsuHlzxcVy-->每天15分钟 vs 周末3小时</div>
+<div data-page-node-id="soFlILoAr6AiLGdp2r7XbY" class="txt" id="lbA"><!--pnid:EWERDoFmBFiVx9AuBhiESi-->周末突击型</div>
+<div data-page-node-id="xqwrgqEXOL68Sh2JCvIG3y" class="txt" id="lbB"><!--pnid:hMLjYfagi5EkbvRSKBRhvK-->每天 15 分钟</div>
+<div data-page-node-id="49NhIk8F6CzeBB9vuYhfXS" class="txt" id="punch"><!--pnid:3dKJE6FdzIxwNoiKb5HOWt-->每天15分钟，<em data-page-node-id="ATyUul1tlZZLytfptJwJAi"><!--pnid:cQ6d0OgLEgHrdKmPA0EA78-->赢在不用重来</em></div>
+
+<script data-page-node-id="D2TZBGhsMjiskICD4404Ig" src="rough.min.js"></script>
+<script data-page-node-id="IHQqSn1DLepXpXPWYiDJm7" data-pnid-children="gNzEptBH3tMCyaQwwrdF5P">
+  const svg = document.getElementById('board');
+  const rc = rough.svg(svg);
+  const BLACK = '#26241f', RED = '#d4553f';
+  const draws = [];   // {el, start, dur}
+
+  function reg(g, start, dur, stagger){
+    svg.appendChild(g);   // 挂进 DOM（此前柱子/曲线漏了这步）
+    const paths = [...g.querySelectorAll('path')];
+    paths.forEach((p, i) => {
+      p.setAttribute('pathLength', '1');
+      p.style.strokeDasharray = '1';
+      p.style.strokeDashoffset = '1';
+      draws.push({ el: p, start: start + i * stagger, dur: dur });
+    });
+  }
+
+  const o = { roughness: 1.6, bowing: 1.4, stroke: BLACK, strokeWidth: 7, seed: 11 };
+  const oR = { roughness: 2.0, bowing: 1.6, stroke: RED, strokeWidth: 8, seed: 29 };
+
+  // ── 标题红笔划线 ──
+  reg(rc.linearPath([[250,352],[540,342],[830,350]], { ...oR, strokeWidth: 9 }), 1.15, 0.5, 0.12);
+
+  // ── 火柴人 A（突击型：抱头懊恼）──
+  (function () {
+    const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    const cx = 295;
+    g.appendChild(rc.circle(cx, 500, 76, o));                        // 头
+    g.appendChild(rc.linearPath([[cx,538],[cx,660]], o));            // 身体
+    g.appendChild(rc.linearPath([[cx-52,590],[cx,552],[cx+52,590]], o)); // 手举到头
+    g.appendChild(rc.linearPath([[cx,660],[cx-46,748]], o));         // 左腿
+    g.appendChild(rc.linearPath([[cx,660],[cx+46,748]], o));         // 右腿
+    svg.appendChild(g);
+    reg(g, 1.7, 0.32, 0.09);
+  })();
+
+  // ── A 的柱子：暴冲后断崖 ──
+  const hA = [330, 70, 40, 25, 15];
+  hA.forEach((h, i) => {
+    reg(rc.rectangle(70 + i*90, 1250 - h, 70, h, { ...o, fill:'#8a8676', fillStyle:'hachure', fillWeight:1.6 }), 2.6 + i*0.28, 0.34, 0.1);
+  });
+
+  // ── A 的记忆曲线：断崖下跌（红虚线感用两段折线）──
+  reg(rc.curve([[105,915],[205,1180],[295,1208],[385,1222],[475,1232]], { ...oR, strokeWidth: 9, roughness: 1.2 }), 4.1, 0.6, 0.15);
+
+  // ── 火柴人 B（稳定型：叉腰）──
+  (function () {
+    const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    const cx = 785;
+    g.appendChild(rc.circle(cx, 500, 76, o));
+    g.appendChild(rc.linearPath([[cx,538],[cx,660]], o));
+    g.appendChild(rc.linearPath([[cx-50,575],[cx-78,625]], o));
+    g.appendChild(rc.linearPath([[cx+50,575],[cx+78,625]], o));
+    g.appendChild(rc.linearPath([[cx,660],[cx-46,748]], o));
+    g.appendChild(rc.linearPath([[cx,660],[cx+46,748]], o));
+    svg.appendChild(g);
+    reg(g, 4.75, 0.3, 0.08);
+  })();
+
+  // ── B 的柱子：矮而稳 ──
+  const hB = [165, 160, 162, 158, 160];
+  hB.forEach((h, i) => {
+    reg(rc.rectangle(560 + i*90, 1250 - h, 70, h, { ...o, fill:RED, fillStyle:'hachure', fillWeight:1.4 }), 5.65 + i*0.26, 0.32, 0.1);
+  });
+
+  // ── B 的记忆曲线：几乎不掉 ──
+  reg(rc.curve([[595,1082],[685,1078],[775,1080],[865,1074],[955,1077]], { ...oR, strokeWidth: 9, roughness: 1.2 }), 7.1, 0.6, 0.15);
+
+  // ── 点破：红笔圈住「赢在不用重来」──
+  reg(rc.ellipse(766, 1518, 500, 140, { ...oR, strokeWidth: 10, roughness: 2.4 }), 8.9, 0.7, 0.15);
+
+  // ── 渲染循环入口：seek(t) ──
+  const title = document.getElementById('title');
+  const lbA = document.getElementById('lbA'), lbB = document.getElementById('lbB');
+  const punch = document.getElementById('punch');
+  const emEl = punch.querySelector('em');
+
+  function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+  function seg(t,a,b){ return clamp((t-a)/(b-a), 0, 1); }
+  function ease(x){ return x<0.5 ? 2*x*x : 1 - Math.pow(-2*x+2, 2)/2; }
+
+  window.seek = function(t){
+    // 笔画生长
+    for (const d of draws) {
+      d.el.style.strokeDashoffset = (1 - ease(seg(t, d.start, d.start + d.dur))).toFixed(4);
+    }
+    // 文字：手写感用从左到右擦除显出（标题）
+    const tw = ease(seg(t, 0.25, 1.35));
+    title.style.opacity = (tw > 0.02 ? 1 : 0);
+    title.style.clipPath = 'inset(0 ' + ((1 - tw) * 100).toFixed(2) + '% 0 0)';
+    // 标签
+    const la = ease(seg(t, 2.3, 2.75)); lbA.style.opacity = la.toFixed(3); lbA.style.transform = 'translateY(' + ((1-la)*24).toFixed(1) + 'px)';
+    const lb = ease(seg(t, 5.35, 5.8)); lbB.style.opacity = lb.toFixed(3); lbB.style.transform = 'translateY(' + ((1-lb)*24).toFixed(1) + 'px)';
+    // 点破句
+    const pp = ease(seg(t, 8.0, 8.7)); punch.style.opacity = pp.toFixed(3); punch.style.transform = 'translateY(' + ((1-pp)*30).toFixed(1) + 'px)';
+  };
+  window.seek(0);
+</script>
+</body>
+</html>

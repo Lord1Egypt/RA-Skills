@@ -1,40 +1,52 @@
-## Description: <br>
-Claw Talk helps users prepare talking points, practice conversations, improve public speaking, script presentations, and get conversation coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Talk helps users prepare talking points, practice conversations, improve public speaking, script presentations, and get conversation coaching.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and employees use this skill to draft talking points, rehearse difficult conversations, tighten presentations, prepare interviews, and improve spoken responses.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad speaking-related trigger phrases may invoke the skill when the user only intended a general conversation request.
+
+Mitigation: Confirm the user wants speaking, presentation, pitch, or conversation-coaching help before applying the skill's frameworks.
+
+Risk: Generated talking points or scripts may be incomplete or mismatched to a sensitive workplace, investor, interview, or public-speaking context.
+
+Mitigation: Ask for the audience, goal, constraints, and desired tone, then have the user review and adapt the final wording before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and presenters use this skill to prepare and rehearse conversations, pitches, interviews, presentations, and spoken responses. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill during ordinary public-speaking or presentation requests. <br>
-Mitigation: Review whether Claw Talk is the intended skill before relying on its coaching output. <br>
-Risk: Conversation coaching may involve sensitive personal or workplace details. <br>
-Mitigation: Avoid sharing sensitive details unless they are intentionally needed for the coaching response. <br>
+**Output Format:** [Markdown and structured coaching prose]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Claw Talk on ClawHub](https://clawhub.ai/jiwenbing/claw-talk) <br>
+**Other Properties Related to Output:** [Produces conversation frameworks, scripts, talking points, rehearsal prompts, and feedback-oriented guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational coaching, outlines, scripts, practice prompts, and feedback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no executable code, privileged access, or tool calls are included in the artifact.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

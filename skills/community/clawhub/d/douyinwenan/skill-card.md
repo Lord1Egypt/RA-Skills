@@ -1,47 +1,54 @@
-## Description: <br>
-高中教育内容生产工厂（增强版），用于围绕教育热点生成带有人机协作、数据增强、事实校验和去 AI 味风格约束的抖音口播文案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成教育类抖音口播文案，使用黄金6段式结构、8种钩子模板、教育方法论、数据核验和质量门禁来产出可人工复核的发布包。
 
-## Publisher: <br>
-[century0327](https://clawhub.ai/user/century0327) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[century0327](https://clawhub.ai/user/century0327)
 
-## Use Case: <br>
-Content creators, education marketers, and editorial operators use this skill to produce short-video scripts about high school and education topics. It guides topic selection, data enrichment, hook selection, draft writing, fact-check checkpoints, compliance warnings, and publishing support copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Education policy, admissions, employment, or exam statistics may be outdated or inaccurate when generated from web search. <br>
-Mitigation: Require source review for each cited number, year, policy name, and case detail before publication. <br>
-Risk: Short-video copy may include platform-sensitive claims, superlatives, or monetization language. <br>
-Mitigation: Run the planned compliance check and have a human editor remove unsupported absolutes, prohibited terms, and misleading claims. <br>
-Risk: The strong persona and rhetorical style can overstate advice for students or families. <br>
-Mitigation: Keep a human approval step for topic selection, hook choice, final wording, and audience-impact review. <br>
-Risk: The workflow references running local commands during review. <br>
-Mitigation: Review command behavior before execution and run only the intended tone-check script on user-provided draft text. <br>
+## Use Case:
 
+External content creators, education marketers, and agents producing Chinese-language Douyin education content use this skill to draft short-video scripts, source checklists, storyboards, titles, and comment prompts. It is intended for human-reviewed publishing workflows where facts and platform compliance are checked before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/century0327/douyinwenan) <br>
-- [Publisher profile](https://clawhub.ai/user/century0327) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Chinese short-video script drafts, hooks, verification notes, compliance warnings, visual suggestions, comment prompts, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human selection at multiple interrupt points and may use web search plus a local tone-check script before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated education claims, statistics, policy references, or platform-rule citations may be inaccurate or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated claims and citations manually before publishing, and remove or soften claims that cannot be sourced from official or authoritative references.
+
+Risk: The local quality scripts flag AI tone, fact points, and compliance terms but do not prove factual accuracy or current platform compliance.
+
+Mitigation: Run the quality gate before publication, treat its fact output as a review checklist, and compare compliance-sensitive wording against current Douyin platform rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/century0327/skills/douyinwenan)
+- [ClawHub skill format](https://docs2.openclaw.ai/clawhub/skill-format)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown release package with structured sections and optional JSON quality reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes title options, a six-part oral script, source checklist, quality gate report, storyboard suggestions, and comment prompts.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

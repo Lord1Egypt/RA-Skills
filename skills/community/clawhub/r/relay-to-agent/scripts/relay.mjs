@@ -139,8 +139,21 @@ if (!baseURL) {
 }
 
 // --- Session management ---
+// Constrain session file names to the advertised cache dir.
+// Only allow safe chars; reject anything that could traverse paths.
+function sanitizeSegment(value, label) {
+  const str = String(value);
+  if (!/^[A-Za-z0-9._-]+$/.test(str) || str === '.' || str === '..') {
+    console.error(`Error: invalid ${label} "${str}" (allowed: letters, digits, . _ -)`);
+    process.exit(1);
+  }
+  return str;
+}
+
 function getSessionPath(agentId, sessionId) {
-  return join(SESSIONS_DIR, `${agentId}_${sessionId}.json`);
+  const safeAgent = sanitizeSegment(agentId, 'agent id');
+  const safeSession = sanitizeSegment(sessionId, 'session id');
+  return join(SESSIONS_DIR, `${safeAgent}_${safeSession}.json`);
 }
 
 function loadSession(agentId, sessionId) {

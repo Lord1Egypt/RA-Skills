@@ -1,42 +1,64 @@
-## Description: <br>
-Parses Douyin share links and returns watermark-free video download URLs with quota checking and license activation tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses Douyin share links and returns watermark-free video download information while managing free and paid usage quotas.
 
-## Publisher: <br>
-[fuss228](https://clawhub.ai/user/fuss228) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuss228](https://clawhub.ai/user/fuss228)
 
-## Use Case: <br>
-Developers and agent users use this MCP/CLI skill to extract Douyin video metadata and downloadable no-watermark links, and to check or activate usage quotas for the tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports exposed remote database credentials and direct updates to a payment database from the user-installed package. <br>
-Mitigation: Rotate and remove the embedded credentials, and replace direct MySQL activation with a narrow HTTPS backend API before broad deployment. <br>
-Risk: The skill performs no-watermark Douyin extraction and uses local quota state plus remote activation behavior. <br>
-Mitigation: Install only when the publisher is trusted, use it only where rights and platform terms permit, and review the local state and activation behavior before deployment. <br>
+## Use Case:
 
+Developers and agent users use this MCP server and CLI to parse Douyin video links, retrieve title/author/cover/download URL data, check quota, and activate paid access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fuss228/douyindownload) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [MCP text responses containing JSON or status text, plus Markdown documentation with shell commands and MCP configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include video metadata, cover URLs, downloadable video URLs, quota status, plan status, and activation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and package.json) <br>
+Risk: The tool ships privileged database credentials and performs paid-license activation against an external MySQL database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove embedded credentials, rotate exposed secrets, and replace direct database access with a scoped HTTPS activation API before broad deployment.
+
+Risk: License and device data are stored locally and sent to an external activation service.
+
+Mitigation: Document what device and license data is stored or transmitted, and require user/operator approval before installation in managed environments.
+
+Risk: Unsafe URL handling may allow requests beyond the intended Douyin parsing flow.
+
+Mitigation: Harden URL validation to allow only expected Douyin hosts and URL patterns before making network requests.
+
+Risk: The scanner guidance calls for vulnerable dependency updates before broad use.
+
+Mitigation: Update dependencies and rerun security scanning before production rollout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuss228/skills/douyindownload)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Purchase and activation page](https://mcppay.fushangsong.cc/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [MCP text responses containing formatted JSON for video parsing, plus plain-text quota and activation status messages; CLI output is terminal text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parse output can include success, title, author, coverUrl, videoUrl, platform, remaining quota, plan, and error fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

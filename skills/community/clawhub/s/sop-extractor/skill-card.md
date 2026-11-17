@@ -1,49 +1,64 @@
-## Description: <br>
-Sop Extractor helps users turn SOP documents or structured interviews into reusable AI skill workflow documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sop Extractor helps agents turn repeatable business procedures into reusable AI skills through structured dialogue or SOP document parsing.
 
-## Publisher: <br>
-[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255)
 
-## Use Case: <br>
-Employees and business teams use Sop Extractor to capture repeatable finance, HR, operations, or project workflows through document parsing or guided questions and turn them into reusable AI skill instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skills may persist workflow instructions that include credential handling or business-system actions. <br>
-Mitigation: Review each generated skill before saving or running it, and require explicit approval before credential writes, package installs, or business-system actions. <br>
-Risk: Users may be asked for sensitive credentials while configuring generated workflows. <br>
-Mitigation: Avoid real passwords, broad database credentials, and webhook URLs unless clearly needed; prefer scoped app tokens or read-only accounts. <br>
-Risk: Broad or ambiguous trigger phrases could cause a generated workflow to run in the wrong context. <br>
-Mitigation: Keep generated trigger phrases narrow and unambiguous, and require human confirmation for approval or amount-related actions. <br>
+## Use Case:
 
+Employees in operations, finance, HR, and similar business roles use this skill to extract repeatable work procedures from documents or guided interviews, then review and save them as reusable AI skill workflows.
 
-## Reference(s): <br>
-- [Dialogue Examples](references/dialogue-examples.md) <br>
-- [Questioning Guide](references/questioning-guide.md) <br>
-- [SOP Parsing Guide](references/sop-parsing-guide.md) <br>
-- [Tool Discovery Guide](references/tool-discovery-guide.md) <br>
-- [Skill Template](references/skill-template.md) <br>
-- [Credential Setup Guide](references/credential-setup-guide.md) <br>
-- [Expense Approval Skill Example](references/examples/expense-approval-skill.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/andyrenxu7255/sop-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Natural-language dialogue plus generated Markdown skill documents with optional shell commands or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated workflow documents should be reviewed and confirmed by the user before saving, running, or configuring dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated skills may create persistent automations that install software, inspect local agent configuration, or store credentials with insufficient scoping and consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan generated skills before installation, require explicit user confirmation before saving or running them, and use scoped tokens or a secret manager instead of shell profiles or plaintext environment files.
+
+Risk: Workflows for finance, HR, approvals, or business systems may affect sensitive records or decisions if run without human oversight.
+
+Mitigation: Require human confirmation before any generated workflow takes action in approval, payment, personnel, or other business-critical systems.
+
+Risk: Source SOPs, screenshots, or examples may contain confidential business details that could be copied into generated skill text.
+
+Mitigation: Redact sensitive documents and screenshots before extraction, and review generated Markdown for confidential data before sharing or publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/skills/sop-extractor)
+- [Dialogue examples](references/dialogue-examples.md)
+- [Questioning guide](references/questioning-guide.md)
+- [SOP parsing guide](references/sop-parsing-guide.md)
+- [Tool discovery guide](references/tool-discovery-guide.md)
+- [Generated skill template](references/skill-template.md)
+- [Credential setup guide](references/credential-setup-guide.md)
+- [Expense approval example](references/examples/expense-approval-skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and natural-language text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workflow documents can include frontmatter, checklists, tool dependency notes, human handoff steps, and credential setup guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

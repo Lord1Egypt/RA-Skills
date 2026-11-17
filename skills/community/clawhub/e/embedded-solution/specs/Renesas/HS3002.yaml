@@ -1,0 +1,110 @@
+part: HS3002
+aliases:
+- R5F572N
+source_pdf: ../../embedded_dev/renesas/datasheet/RX72N_datasheet.pdf
+datasheet_revision: "Rev.1.20 \u2014 Nov 15, 2023"
+datasheet_doc_id: R01DS0343EJ0120
+extracted_at: '2026-06-20T17:05:00+08:00'
+extracted_from_pages:
+- 1
+- 2
+extraction_method: pdfplumber Key Features
+verified_by_human: false
+product_status: Active (per renesas.com product page, longevity 2041)
+specs:
+  function: "RX family flagship 32-bit MCU \u2014 highest performance, with FPU and DSP"
+  cores:
+  - 32-bit RXv3 CPU core @ up to 240 MHz
+  - 1396 CoreMark @ 240 MHz
+  - Double-precision 64-bit IEEE-754 FPU
+  - Trigonometric function arithmetic unit
+  - Memory Protection Unit (MPU)
+  - Register bank save function (16 banks, fast collective save/restore)
+  - 'Address space: 4 GB linear'
+  - "On-chip 32-bit multiplier (32\xD732 \u2192 64-bit) + divider (32/32 \u2192 32-bit) + 32-bit barrel shifter"
+  flash:
+    code_flash: up to 4 MB (dual-bank structure for firmware swap)
+    data_flash: 32 KB (reprogrammable up to 100,000 times)
+    rom_cache_performance: no wait @ up to 120 MHz, 1 wait above 120 MHz
+    background_operation: true
+  ram: 1 MB SRAM
+  operating_voltage_v: 2.7 to 3.6 (single supply)
+  low_power_modes: 4
+  peripherals:
+    ethernet_mac: 2 channels, IEEE 1588 compliant
+    usb: USB 2.0 full-speed host/function/OTG (1 channel with PHY layer)
+    can: 32 mailboxes, up to 3 channels (ISO11898-1 compliant)
+    sci: up to 8 channels (SCIj + SCIh with async/clock-sync/smart-card/SPI/I2C modes)
+    spi: QSPI supported
+    sd_host: true
+    adc12: 12-bit A/D converter
+    rtc: true
+    ssi: Serial sound interface
+    camera_if: CMOS camera interface
+    glcd_controller: Graphic-LCD controller
+    drawing_engine: 2D drawing engine
+    encryption: Encryption functions (optional)
+  packages:
+  - type: LQFP
+    pin_count: 176
+    size_mm: "24 \xD7 24"
+    pitch_mm: 0.5
+    code: PLQP0176KB-C
+  - type: LQFP
+    pin_count: 144
+    size_mm: "20 \xD7 20"
+    pitch_mm: 0.5
+    code: PLQP0144KA-B
+  - type: LQFP
+    pin_count: 100
+    size_mm: "14 \xD7 14"
+    pitch_mm: 0.5
+    code: PLQP0100KB-B
+  - type: TFLGA
+    pin_count: 145
+    size_mm: "7 \xD7 7"
+    pitch_mm: 0.5
+    code: PTLG0145KA-A
+  - type: BGA
+    pin_count: 224
+    size_mm: "13 \xD7 13"
+    pitch_mm: 0.8
+    code: PLBG0224GA-A
+  - type: BGA
+    pin_count: 176
+    size_mm: "13 \xD7 13"
+    pitch_mm: 0.8
+    code: PLBG0176GA-A
+unverified:
+- exact_gpio_count_per_package
+- exact_peripheral_counts_per_package
+notes:
+- "Partial extraction from front page only on 2026-06-28 \u2014 8 spec fields captured. 2 fields not in front page (deeper\
+  \ in Electrical Characteristics / Package / Peripheral sections); these would require a per-page extraction pass to fully\
+  \ verify."
+- "RX72N is the RX family flagship \u2014 preferred for real-time control, IoT gateways, HMI/GUI."
+- Dual-bank flash enables in-field firmware updates without downtime.
+- 1396 CoreMark places it in the high-end 32-bit MCU tier.
+- "Datasheet R01DS0343EJ0120, 179 pages \u2014 verify counts against Table 1.2 for specific package."
+- '2026-07-01 search via Tavily: no accessible datasheet PDF found for DA14531 (renesas.com myPortal login required for vendor-direct;
+  no public mirror found in Tavily web search). Legacy partial_verified_2026-06-28 status preserved. Re-verify when datasheet
+  PDF becomes publicly accessible.'
+- '2026-07-01 search via Tavily: no accessible datasheet PDF found for DA14592 (renesas.com myPortal login required for vendor-direct;
+  no public mirror found in Tavily web search). Legacy partial_verified_2026-06-28 status preserved. Re-verify when datasheet
+  PDF becomes publicly accessible.'
+- '2026-07-01 search via Tavily: no accessible datasheet PDF found for DA14594 (renesas.com myPortal login required for vendor-direct;
+  no public mirror found in Tavily web search). Legacy partial_verified_2026-06-28 status preserved. Re-verify when datasheet
+  PDF becomes publicly accessible.'
+- '2026-07-01 search via Tavily: no accessible datasheet PDF found for DA14697 (renesas.com myPortal login required for vendor-direct;
+  no public mirror found in Tavily web search). Legacy partial_verified_2026-06-28 status preserved. Re-verify when datasheet
+  PDF becomes publicly accessible.'
+- '2026-07-01 search via Tavily: no accessible datasheet PDF found for HS3001 (renesas.com myPortal login required for vendor-direct;
+  no public mirror found in Tavily web search). Legacy partial_verified_2026-06-28 status preserved. Re-verify when datasheet
+  PDF becomes publicly accessible.'
+- '2026-07-01 search via Tavily: no accessible datasheet PDF found for HS3002 (renesas.com myPortal login required for vendor-direct;
+  no public mirror found in Tavily web search). Legacy partial_verified_2026-06-28 status preserved. Re-verify when datasheet
+  PDF becomes publicly accessible.'
+link_status: needs-re-extraction-factory-error-2026-07-05
+
+notes:
+  - '2026-07-05 phase1-recovery: part field was RX72N (mislabeled); now corrected to HS3002 but spec contents are still RX72N data. Full re-extraction from the correct datasheet (embedded_dev/renesas/datasheet/HS3002_datasheet.pdf) is required.'

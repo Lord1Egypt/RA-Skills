@@ -1,44 +1,60 @@
-## Description: <br>
-AI-powered minimal diary with smart auto-tagging and optional cloud sync. Perfect for daily journaling, work logs, or project tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mini Diary helps agents keep a minimal Markdown diary with keyword-based auto-tagging, search, statistics, and optional NextCloud sync.
 
-## Publisher: <br>
-[PrintXDreams](https://clawhub.ai/user/PrintXDreams) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[printxdreams](https://clawhub.ai/user/printxdreams)
 
-## Use Case: <br>
-External users and developers use Mini Diary to maintain a local Markdown journal, add auto-tagged notes, search entries by tag, date, or content, and optionally configure NextCloud sync. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Diary entries are stored in local Markdown files and may contain personal or sensitive information. <br>
-Mitigation: Install only if local Markdown storage is acceptable for the intended diary content. <br>
-Risk: Optional NextCloud sync can expose diary files through cloud sharing, backups, or server-side access. <br>
-Mitigation: Leave NEXTCLOUD_SYNC_DIR unset unless cloud sync is intentional, and review NextCloud sharing, backup, and access settings before enabling it. <br>
-Risk: Documented sudo chown and docker permission commands can affect file ownership if run against the wrong path. <br>
-Mitigation: Verify the exact target path and permission impact before running any administrative command. <br>
+## Use Case:
 
+External users and developers use Mini Diary to add daily notes and todos to a local Markdown diary, auto-tag entries, search by tag, date, or content, and optionally sync the diary through NextCloud.
 
-## Reference(s): <br>
-- [Mini Diary ClawHub page](https://clawhub.ai/PrintXDreams/mini-diary) <br>
-- [Mini Diary Usage Guide](docs/usage_guide.md) <br>
-- [Mini Diary README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown diary entries with terminal command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes diary content to local Markdown files and can optionally sync to a user-configured NextCloud directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: CHANGELOG, package.json, server release) <br>
+Risk: Diary entries may contain sensitive personal or work data and can be copied to a configured NextCloud sync directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave NEXTCLOUD_SYNC_DIR unset unless sync is intentional, and verify the target sync location and permissions before enabling it.
+
+Risk: DIARY_FILE can direct writes to broad user-scoped paths, which could alter important non-diary files if misconfigured.
+
+Mitigation: Use a dedicated .md diary file and do not point DIARY_FILE at shell profiles, application configuration, or other important files.
+
+Risk: NextCloud administration examples include sudo, docker chown, recursive chown, and cron commands that can affect system files or scheduled jobs if paths are wrong.
+
+Mitigation: Avoid those examples unless the exact target paths are verified and the operator understands the system impact.
+
+## Reference(s):
+
+- [Mini Diary ClawHub Page](https://clawhub.ai/printxdreams/skills/mini-diary)
+- [Mini Diary Usage Guide](docs/usage_guide.md)
+- [Diary Template](templates/diary_template.md)
+- [Sample Diary](examples/sample_diary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown diary entries, command-line search output, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and searches a user-selected Markdown diary file; optional NextCloud sync copies the diary to a configured sync directory.]
+
+## Skill Version(s):
+
+0.1.2 (source: release metadata, CHANGELOG, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

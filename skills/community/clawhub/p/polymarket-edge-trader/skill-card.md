@@ -1,42 +1,62 @@
-## Description: <br>
-Trades the highest-edge active AION Polymarket market matching a query using a user-supplied fair probability, AION context safeguards, and Kelly-style sizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades the highest-edge active AION Polymarket market matching a query using a user-supplied fair probability, AION context safeguards, and Kelly-style sizing.
 
-## Publisher: <br>
-[fivegive249-ship-it](https://clawhub.ai/user/fivegive249-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fivegive249-ship-it](https://clawhub.ai/user/fivegive249-ship-it)
 
-## Use Case: <br>
-External developers and trading operators use this skill to evaluate active Polymarket markets with a user-supplied fair probability signal, apply AION context safeguards and Kelly-style sizing, and run dry-run or explicitly enabled live order workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring financial automation can affect a Polymarket account, including auto-redeeming resolved positions even when live trading is disabled. <br>
-Mitigation: Start in dry-run with a controlled account, use limited balances and scoped credentials, and require separate explicit opt-in for auto-redeem and live trading before scheduling recurring runs. <br>
-Risk: Live trading requires wallet-related inputs and signed order data. <br>
-Mitigation: Avoid private keys where possible, keep wallet credentials out of shared environments, and use signed order JSON only for intentional live executions. <br>
+## Use Case:
 
+Developers and trading operators use this skill to scan active Polymarket markets, compare prices against a supplied fair probability, and produce dry-run or explicitly authorized live trade decisions with AION safeguards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fivegive249-ship-it/polymarket-edge-trader) <br>
-- [AION agent portal](https://pm-t1.bxingupdate.com/agents) <br>
-- [AION API base URL](https://pm-t1.bxingupdate.com/bvapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and Python script output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AION_API_KEY; live trading requires explicit --live mode plus wallet address and signed order JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: The skill can submit signed Polymarket orders when live mode and signed order data are provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run mode unless live trading is intended, scope AION credentials narrowly, and provide signed orders only for reviewed trades.
+
+Risk: A custom AION_BASE_URL changes the endpoint that handles credentials, market data, and order-related payloads.
+
+Mitigation: Use the default or another fully trusted endpoint, and review endpoint changes before deployment.
+
+Risk: Scheduled or daemon execution can repeatedly evaluate markets and auto-redeem positions.
+
+Mitigation: Run in an isolated environment, monitor operator summaries, and keep stake, slippage, Kelly multiplier, and polling settings conservative.
+
+Risk: The SDK dependency is unpinned while handling credentials and signed orders.
+
+Mitigation: Pin and review dependency versions in deployment environments before enabling live trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fivegive249-ship-it/skills/polymarket-edge-trader)
+- [AION agents portal](https://pm-t1.bxingupdate.com/agents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain-text operator summaries with command examples and environment configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run by default; live trading requires explicit --live execution with wallet and signed-order inputs.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-cloudlayer.io lets an agent operate a user's OOMOL-connected cloudlayer.io account to create PDF jobs and read account, asset, and job data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the connected cloudlayer.io account to create PDF jobs and read account, job, and asset data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to operate cloudlayer.io through an OOMOL-connected account, including asynchronous PDF generation from HTML, templates, or public URLs and retrieval of account, job, and asset data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates an OOMOL-connected cloudlayer.io account and may require sensitive account credentials. <br>
-Mitigation: Install only when the user intends to operate that cloudlayer.io account, and rely on OOMOL-managed credentials rather than handling raw tokens. <br>
-Risk: PDF job creation actions can change cloudlayer.io account state or affect account usage and cost. <br>
-Mitigation: Confirm the exact payload and expected cost or effect with the user before running write actions. <br>
-Risk: First-time setup may require installing the oo CLI with a shell installer command. <br>
-Mitigation: Review the installer command before execution and run setup only after an actual CLI, authentication, connection, or billing error. <br>
+## Use Case:
 
+Developers use this skill to create HTML, template, or public URL PDF jobs and inspect cloudlayer.io account usage, jobs, and generated assets through their connected account.
 
-## Reference(s): <br>
-- [cloudlayer.io homepage](https://cloudlayer.io) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-cloudlayer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Local setup may run unverified downloaded code and make broader changes to the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup scripts, install a verified fixed CLI release, and decide whether to allow its bundled skill synchronization.
+
+Risk: Connected-account credentials and submitted document data are handled by OOMOL, and PDF job creation submits data to the provider.
+
+Mitigation: Use an account appropriate for the data and confirm the exact payload and effect before creating a PDF job.
+
+## Reference(s):
+
+- [cloudlayer.io](https://cloudlayer.io)
+- [cloudlayer.io API documentation](https://docs.cloudlayer.io/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON service responses with concise task guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns job status and account, job, or asset details; PDF creation returns an asynchronous job status.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

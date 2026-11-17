@@ -1,0 +1,37 @@
+# medical-device-data-privacy-compliance
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+Data-compliance companion for medical devices sold across borders: it maps how patient and device data flows through apps, cloud backends and service partners, then checks each flow against GDPR, HIPAA, China's PIPL and cross-border transfer rules. Outputs a data-flow inventory, privacy impact assessment (PIA/DPIA) notes and a list of compliance actions before launch. Use when a connected device or companion app will collect, store or transfer data outside its home market.
+
+医疗器械出海数据合规：GDPR / HIPAA / 中国个保法（PIPL）、数据出境安全评估、隐私影响评估（PIA/DPIA）。输出数据流映射清单与合规要点，降低联网器械出海的数据合规风险。
+
+## When to use / 什么时候用
+
+- 客户健康数据能不能传到海外服务器
+- 联网设备采集的数据要出境，怎么报
+- 欧洲客户问我们符不符合GDPR
+- 美国医院要我们签BAA，怎么弄
+- 用户数据给第三方云厂商，风险在哪
+- App收集哪些字段才算必要
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

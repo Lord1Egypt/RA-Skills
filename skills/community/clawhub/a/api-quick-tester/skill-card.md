@@ -1,42 +1,58 @@
-## Description: <br>
-Api Quick Tester helps developers test REST and GraphQL APIs, generate lightweight test reports, and create mock data from command-line workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Api Quick Tester helps developers send single HTTP API requests and generate simple mock JSON data from Node.js command-line scripts.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Frontend and backend developers use this skill to send quick API requests, check responses, generate mock data, and produce lightweight reports during API development and validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authentication tokens, API keys, or basic-auth credentials may be exposed through command history, terminal output, CI logs, or shared sessions. <br>
-Mitigation: Use test credentials or short-lived tokens, avoid placing real secrets directly in command lines, and review logs before sharing them. <br>
-Risk: Requests to production endpoints can modify data when using POST, PUT, PATCH, or DELETE. <br>
-Mitigation: Confirm the URL and method before executing mutating requests, and prefer test or staging endpoints for validation. <br>
-Risk: API response bodies may contain sensitive data that is printed to the terminal. <br>
-Mitigation: Treat response output as sensitive and avoid running the tool in shared terminals or persistent logs when testing protected APIs. <br>
+## Use Case:
 
+Developers use this skill to quickly exercise API endpoints from the command line, inspect status codes and response bodies, and create sample mock payloads during API development. Review the shipped files before relying on advertised batch, GraphQL, or report-generation behavior.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/api-quick-tester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, JSON mock data, Markdown reports, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can issue HTTP requests to user-specified endpoints and print response bodies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The release advertises batch testing, GraphQL testing, and report features that are not fully represented by the shipped artifact files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the installed files and rely only on documented behavior that is present in the package, or update the package before using those features.
+
+Risk: API credentials passed on the command line can be exposed through shell history, process listings, logs, or copied reports.
+
+Mitigation: Use only test credentials, avoid placing real secrets directly in commands, and redact sensitive headers and response data before sharing output.
+
+Risk: User-supplied endpoints and unpinned installer commands can create network and supply-chain exposure.
+
+Mitigation: Prefer HTTPS test endpoints, restrict testing to systems you are authorized to call, and pin and verify installer versions where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/api-quick-tester)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, JSON, Markdown, Guidance]
+
+**Output Format:** [Command-line text, JSON payloads, and Markdown-style API test reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include outbound HTTP responses, status details, timing data, generated mock data, and authentication headers supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

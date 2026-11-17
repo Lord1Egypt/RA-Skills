@@ -1,6 +1,34 @@
 {
-  "ownerId": "kn7eend9symff6j9fx56j70ry584e3wg",
+  "name": "agent-timezone-lock",
   "slug": "agent-timezone-lock",
-  "version": "1.0.0",
-  "publishedAt": 1775670091714
+  "version": "1.1.0",
+  "description": "Stops an OpenClaw agent from reporting the wrong time. Prevents the UTC-as-local mistake. Detects user timezone from USER.md or system, provides now.py for accurate local time, and /timezone command. AGENTS.md is only patched with explicit user opt-in (--patch-agents flag). Does NOT auto-trigger on every message — only when time accuracy is explicitly at issue.",
+  "author": "Caddy Crew (Pods + Rex + Sloane)",
+  "authorUrl": "https://myfamilybrief.com",
+  "license": "MIT",
+  "tags": ["timezone", "time", "UTC", "scheduling", "accuracy", "agent-setup"],
+  "minOpenClawVersion": "1.0.0",
+  "keywords": [
+    "timezone",
+    "wrong time",
+    "UTC",
+    "local time",
+    "scheduling",
+    "time accuracy",
+    "datetime",
+    "DST"
+  ],
+  "files": [
+    "SKILL.md",
+    "_meta.json",
+    "scripts/now.py",
+    "scripts/timezone_setup.py",
+    "references/timezone_rules.md",
+    "tz_config.example.json"
+  ],
+  "excludes": [
+    "tz_config.json",
+    "*.bak",
+    "__pycache__/"
+  ]
 }

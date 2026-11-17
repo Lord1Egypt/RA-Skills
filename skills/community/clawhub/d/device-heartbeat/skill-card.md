@@ -1,44 +1,55 @@
-## Description: <br>
-Monitors macOS device online status by sending scheduled heartbeat pings to healthchecks.io and checking local or remote heartbeat state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors remote device online status with periodic heartbeat pings to Healthchecks.io and status checks through local state or the Healthchecks API.
 
-## Publisher: <br>
-[houziershi](https://clawhub.ai/user/houziershi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[houziershi](https://clawhub.ai/user/houziershi)
 
-## Use Case: <br>
-Device owners and operators use this skill to install a lightweight heartbeat monitor, inspect local heartbeat status, or query healthchecks.io for remote device availability. It is useful when a device appears unreachable or a user wants ongoing online/offline alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The healthchecks.io ping URL can act like a secret and may create false heartbeat pings if shared in chats or logs. <br>
-Mitigation: Treat the full ping URL as sensitive, share only the UUID when possible, and avoid pasting it into shared shells, tickets, or messaging tools. <br>
-Risk: The setup script installs a persistent user-level macOS LaunchAgent that continues sending heartbeat pings in the background. <br>
-Mitigation: Install it only on devices intended to be monitored, review the LaunchAgent behavior before use, and run the provided uninstall script when monitoring is no longer needed. <br>
-Risk: Remote status checks require a healthchecks.io API key. <br>
-Mitigation: Use a read-only API key, keep it out of shared logs and command history where practical, and rotate it if exposed. <br>
+## Use Case:
 
+Developers and device operators use this skill to install and query heartbeat monitoring for macOS devices, including local service status, recent heartbeat state, and remote Healthchecks.io check status.
 
-## Reference(s): <br>
-- [Healthchecks Setup Guide](references/healthchecks-setup.md) <br>
-- [healthchecks.io](https://healthchecks.io/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/houziershi/device-heartbeat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install a user-level macOS LaunchAgent, write local heartbeat logs and state, and call healthchecks.io APIs when the user provides credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs a persistent macOS LaunchAgent that keeps running after login and repeatedly sends network heartbeat requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only on devices where continuous heartbeat monitoring is intended, verify the ping URL before setup, and uninstall the LaunchAgent when monitoring is no longer needed.
+
+Risk: Healthchecks.io ping URLs and API keys can act as monitoring secrets and may be exposed through logs, chat, shell history, or command transcripts.
+
+Mitigation: Share only UUID portions when possible, avoid posting full ping URLs or API keys in chat, and rotate exposed URLs or keys promptly.
+
+## Reference(s):
+
+- [Healthchecks Setup Guide](artifact/references/healthchecks-setup.md)
+- [Healthchecks.io](https://healthchecks.io/)
+- [Healthchecks API Checks Endpoint](https://healthchecks.io/api/v3/checks/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and JSON status snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include macOS LaunchAgent setup, Healthchecks.io ping/API parameters, local log paths, and state-file status fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,17 @@
+{
+  "skill": "ocas-fellow",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-fellow",
+  "evals": [
+    {
+      "input": "Run an experiment comparing two prompt variants",
+      "expected_output": "Executes benchmark-driven experiment and returns best variant with lineage",
+      "description": "Prompt comparison experiment"
+    },
+    {
+      "input": "Evaluate the quality improvement of a skill modification",
+      "expected_output": "Runs before/after comparison and reports results",
+      "description": "Quality evaluation"
+    }
+  ]
+}

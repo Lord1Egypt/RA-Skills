@@ -1,42 +1,54 @@
-## Description: <br>
-This skill helps agents use BrowserAct's YouTube Channel API template to extract structured YouTube channel search results from keywords and optional upload-date filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users automatically extract structured YouTube channel data from keyword-based YouTube search results through the BrowserAct API.
 
-## Publisher: <br>
-[ccmagia2-gif](https://clawhub.ai/user/ccmagia2-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ccmagia2-gif](https://clawhub.ai/user/ccmagia2-gif)
 
-## Use Case: <br>
-External users and agents use this skill to discover YouTube channels, collect creator metadata, compare competitors, and build channel datasets for market research or outreach workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: BrowserAct API keys can be exposed if pasted into chat or logs. <br>
-Mitigation: Set BROWSERACT_API_KEY as an environment variable and avoid sharing the key in conversation. <br>
-Risk: Search terms and workflow inputs are sent to BrowserAct. <br>
-Mitigation: Avoid confidential or sensitive search terms unless sharing them with BrowserAct is acceptable. <br>
-Risk: Long-running polling can consume quota or appear stuck. <br>
-Mitigation: Monitor status logs, retry at most once after failure, and stop the process manually if polling appears stuck. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [BrowserAct Console integrations](https://www.browseract.com/reception/integrations) <br>
-- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow) <br>
+## Use Case:
 
+Developers, analysts, and go-to-market teams can use this skill to find YouTube channels by topic or upload-date filter and collect structured channel information for creator discovery, influencer sourcing, competitor tracking, and market research.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Terminal output containing status logs and structured channel result data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BROWSERACT_API_KEY and accepts keywords plus an optional upload-date filter.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: YouTube search keywords and filters are sent to BrowserAct under the user's BrowserAct account.
+
+Mitigation: Avoid sensitive private or competitive research terms unless BrowserAct processing is acceptable, and use an appropriately scoped and managed API key.
+
+Risk: The skill cannot run without a valid BROWSERACT_API_KEY.
+
+Mitigation: Confirm the environment variable is configured before execution and stop rather than retrying when authorization is invalid.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ccmagia2-gif/skills/youtube-channel-api-skill)
+- [BrowserAct Console](https://www.browseract.com/reception/integrations)
+- [BrowserAct Workflow API](https://api.browseract.com/v2/workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and text or JSON-like API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BROWSERACT_API_KEY and accepts keywords plus an optional upload-date filter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

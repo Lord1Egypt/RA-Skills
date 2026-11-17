@@ -1,39 +1,54 @@
-## Description: <br>
-Tvs Architect helps agents analyze software architecture, diagnose complex bugs, and compare technical options using concrete code and project evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tvs Architect guides architecture analysis, complex bug root-cause diagnosis, and technical option evaluation using evidence from code, configuration, dependencies, logs, or user-provided context.
 
-## Publisher: <br>
-[inksnowhailong](https://clawhub.ai/user/inksnowhailong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inksnowhailong](https://clawhub.ai/user/inksnowhailong)
 
-## Use Case: <br>
-Developers and engineering teams use this skill for architecture review, root-cause analysis, complex debugging, and evaluating implementation tradeoffs from repository evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture or debugging advice may be incomplete or misleading when the available code, logs, configuration, or tests are insufficient. <br>
-Mitigation: Require conclusions to cite concrete project evidence and clearly state missing evidence or uncertainty before recommending changes. <br>
-Risk: Repository evidence, logs, or configuration shared for analysis may contain unrelated secrets or sensitive operational details. <br>
-Mitigation: Review and limit the materials shared with the agent, and avoid exposing unrelated credentials or sensitive data. <br>
+## Use Case:
 
+Developers and engineers use this skill to review architecture, diagnose complex bugs, compare implementation options, and make maintainability recommendations grounded in repository evidence. It is most useful when the user needs concrete tradeoffs, root-cause analysis, or prioritized technical guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Evidence-grounded analysis with summaries, root causes, recommendations, tradeoffs, and cited project evidence when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Architecture or debugging recommendations can affect implementation decisions if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require cited code, configuration, log, or repository evidence and review recommendations before making production changes.
+
+Risk: The skill artifact is written in Chinese, which may be a usability or review issue for teams expecting another language.
+
+Mitigation: Confirm language expectations before adoption and translate outputs or instructions when needed for team review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/inksnowhailong/skills/tvs-architect)
+- [Publisher profile](https://clawhub.ai/user/inksnowhailong)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with structured analysis, recommendations, tradeoffs, and evidence references when the issue is complex]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are expected to cite concrete code, configuration, log, or repository evidence and avoid unsupported architecture recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

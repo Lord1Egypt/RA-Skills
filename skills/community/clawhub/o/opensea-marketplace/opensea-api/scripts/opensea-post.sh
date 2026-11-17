@@ -19,10 +19,19 @@ if [[ "$path" != /* ]]; then
 fi
 base="${OPENSEA_BASE_URL:-https://api.opensea.io}"
 key="${OPENSEA_API_KEY:-}"
+key_file="${OPENSEA_CONFIG_DIR:-${HOME:-}/.opensea}/api_key"
+if [ -z "$key" ] && [ -r "$key_file" ]; then
+  key=$(tr -d '[:space:]' <"$key_file")
+fi
 
 if [ -z "$key" ]; then
-  echo "OPENSEA_API_KEY is required" >&2
+  echo "OPENSEA_API_KEY is required (or a key cached in ~/.opensea/api_key)" >&2
   exit 1
+fi
+
+auth_args=()
+if [ -n "${OPENSEA_AUTH_TOKEN:-}" ]; then
+  auth_args=(-H "Authorization: Bearer $OPENSEA_AUTH_TOKEN")
 fi
 
 url="$base$path"
@@ -32,6 +41,7 @@ trap 'rm -f "$tmp_body"' EXIT
 
 http_code=$(curl -sS --connect-timeout 10 --max-time 30 -X POST \
   -H "x-api-key: $key" \
+  ${auth_args[@]+"${auth_args[@]}"} \
   -H "User-Agent: opensea-skill/1.0" \
   -H "Content-Type: application/json" \
   -d "$body" \

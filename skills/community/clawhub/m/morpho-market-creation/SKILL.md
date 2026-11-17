@@ -2,7 +2,7 @@
 name: morpho-market-creation
 description: Deploys Morpho markets backed by Api3 oracles.
 metadata:
-  version: 0.1.0
+  version: 0.6.0
   clawdis:
     requires:
       bins:

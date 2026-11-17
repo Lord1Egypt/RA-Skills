@@ -1,41 +1,48 @@
-## Description: <br>
-Workflow-driven skill that autonomously manages stale items in Google Tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workflow-driven skill that autonomously manages stale items in Google Tasks.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zvirb](https://clawhub.ai/user/zvirb)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and users with Google Tasks backlogs use this skill to trigger a backing backlog-grooming workflow that reviews stale tasks and returns a grooming summary.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The backing grooming plugin can automatically change Google Tasks without a clear preview or confirmation step.
+
+Mitigation: Use only with clearly defined grooming rules, limited task-list scope, and a way to preview or recover task changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents use this skill on a schedule or by user request to trigger backlog grooming for stale Google Tasks items and report the resulting task summary. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, API Calls]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger unscoped automated changes to Google Tasks through an external grooming plugin. <br>
-Mitigation: Before installation or scheduled use, confirm what the plugin does, which Google account and task lists it can access, and whether it can delete or complete tasks. <br>
-Risk: Scheduled backlog grooming may apply changes without a human preview. <br>
-Mitigation: Require a preview or explicit confirmation for scheduled runs when task changes could affect production workflows. <br>
+**Output Format:** [JSON summary returned by the backing grooming plugin, with agent-facing status or error text when retries fail.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zvirb/backlog-grooming) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/zvirb) <br>
+**Other Properties Related to Output:** [The skill expects an empty JSON input object and retries failed or invalid plugin responses up to three times before notifying the user.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON] <br>
-**Output Format:** [JSON summary returned by the backlog grooming plugin] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Retries tool errors up to three times before notifying the user.] <br>
+1.0.2 (source: server evidence release.version)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

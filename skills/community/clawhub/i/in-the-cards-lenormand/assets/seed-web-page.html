@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} — Lenormand Reading</title>
+<style>
+
+  :root {
+    --bg: #faf9f5;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #6b6a64;
+    --brand: #1B365D;
+    --border: #e8e6dc;
+    --serif: "Chiron Sung HK", "Chiron Sung HK WS", "Source Han Serif SC", "Noto Serif CJK SC", serif;
+    --sans: "Chiron Hei HK", "Chiron Hei HK WS", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  header {
+    text-align: center;
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+  header .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--brand);
+    margin-bottom: 1rem;
+    font-family: var(--sans);
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  header .date {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 350;
+  }
+
+  /* SVG card row */
+  .card-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1rem;
+    margin: 2.5rem 0;
+  }
+  .card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-svg { border-radius: 6px; }
+  .card-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .card-pos {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 350;
+  }
+
+  .summary {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 450;
+    color: var(--brand);
+    padding: 2rem;
+    margin: 2rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .chapter {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .chapter h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--brand);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .chapter p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.85;
+    text-align: justify;
+    font-weight: 400;
+  }
+  .combo {
+    margin: 1.2rem 0;
+    padding: 1rem 1.2rem;
+    background: #f7f6f0;
+    border-left: 3px solid var(--brand);
+    border-radius: 0 6px 6px 0;
+  }
+  .combo .combo-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--brand);
+    margin-bottom: 0.4rem;
+  }
+  .combo .combo-text {
+    font-weight: 400;
+    line-height: 1.8;
+  }
+  .takeaway {
+    margin-top: 1.5rem;
+    padding: 1rem 1.2rem;
+    background: var(--brand);
+    color: #f5f4ed;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  footer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--sans);
+    font-weight: 350;
+  }
+
+  /* Mobile */
+  @media (max-width: 520px) {
+    body { padding: 1.5rem 1rem 3rem; }
+    header { padding: 2.5rem 0 2rem; }
+    header h1 { font-size: 1.3rem; }
+    .card-row { gap: 0.4rem; }
+    .card-svg { width: 90px !important; height: 135px !important; }
+    .card-label { font-size: 0.72rem; }
+    .card-pos { font-size: 0.6rem; }
+    .chapter { padding: 1.25rem; margin: 2rem 0; }
+    .chapter h2 { font-size: 1.1rem; }
+    .chapter p { text-align: left; font-size: 0.92rem; }
+    .summary { font-size: 1rem; padding: 1.25rem; }
+    .combo { padding: 0.8rem 1rem; }
+  }
+</style>
+<!-- Fonts: Google Fonts primary, CN mirror fallback -->
+<link id="font-css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&display=swap">
+<script>
+(function(){var t=setTimeout(function(){var l=document.getElementById('font-css');if(l)l.href=l.href.replace('fonts.googleapis.com','fonts.loli.net');},2500);document.fonts.ready.then(function(){clearTimeout(t);});})();
+</script>
+</head>
+<body>
+  <!--
+    SEED: Web Page — In the Cards v3.1
+
+    Usage:
+      1. Copy to output/lenormand-web-{topic}-{date}.html
+      2. Replace {{PLACEHOLDER}} markers. Use .split(k).join(v) since some
+         placeholders (e.g. {{TITLE}}) appear in multiple locations.
+      3. Read SVGs from cards/card-NN-slug.svg, strip <defs>, inline in card-wrap blocks
+      4. Self-contained — no rendering step needed
+  -->
+  <!-- Global SVG defs for all inline cards -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <pattern id="g" width="72" height="72" patternUnits="userSpaceOnUse">
+        <path d="M72 0L72 72M0 72L72 72" fill="none" stroke="#7A8B7A" stroke-width="0.3" opacity=".12"/>
+      </pattern>
+      <pattern id="sg" width="18" height="18" patternUnits="userSpaceOnUse">
+        <path d="M18 0L18 18M0 18L18 18" fill="none" stroke="#7A8B7A" stroke-width="0.2" opacity=".06"/>
+      </pattern>
+    </defs>
+  </svg>
+
+  <header>
+    <div class="label">{{SPREAD_LABEL}}</div>
+    <h1>{{TITLE}}</h1>
+    <div class="date">{{DATE}}</div>
+  </header>
+
+  <!-- SVG card row: 140×210px per card for 3-card spread -->
+  <div class="card-row">
+    <!-- CARD_LOOP_START -->
+    <div class="card-wrap">
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="140" height="210">
+        {{CARD_SVG}}
+      </svg>
+      <span class="card-label">{{CARD_NAME}}</span>
+      <span class="card-pos">{{CARD_POS}}</span>
+    </div>
+    <!-- CARD_LOOP_END -->
+  </div>
+
+  <div class="summary">{{SUMMARY}}</div>
+
+  <!-- CHAPTER_LOOP_START -->
+  <div class="chapter">
+    <h2>{{CHAPTER_TITLE}}</h2>
+    {{CHAPTER_CONTENT}}
+  </div>
+  <!-- CHAPTER_LOOP_END -->
+
+  <footer>
+    Lenormand Reading · In the Cards · {{DATE}}
+  </footer>
+</body>
+</html>

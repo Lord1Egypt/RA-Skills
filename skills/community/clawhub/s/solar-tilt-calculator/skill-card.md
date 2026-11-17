@@ -1,43 +1,54 @@
-## Description: <br>
-Calculate solar radiation on tilted surfaces based on NASA POWER data with user-defined tilt and azimuth angles, producing structured Excel output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate solar radiation on tilted surfaces based on NASA POWER data, user-provided tilt and azimuth angles, and structured Excel inputs.
 
-## Publisher: <br>
-[yuepeng1985-web](https://clawhub.ai/user/yuepeng1985-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuepeng1985-web](https://clawhub.ai/user/yuepeng1985-web)
 
-## Use Case: <br>
-Developers, engineers, and energy analysts use this skill to calculate monthly mean daily radiation on tilted solar surfaces from NASA POWER-derived Excel inputs and compare horizontal versus tilted-surface radiation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a user-selected Excel workbook. <br>
-Mitigation: Run it only on Excel files you intend to process. <br>
-Risk: The skill writes a calculated output workbook. <br>
-Mitigation: Choose an explicit output path and review the generated workbook before using its results. <br>
-Risk: The metadata lists curl and pandas although the included script does not appear to use them. <br>
-Mitigation: Review environment requirements during installation and avoid granting unnecessary tooling access. <br>
+## Use Case:
 
+Developers and energy analysts use this skill to calculate monthly mean daily solar radiation on tilted surfaces from NASA POWER-style Excel workbooks and compare tilted-surface results with horizontal-surface radiation.
 
-## Reference(s): <br>
-- [NASA POWER](https://power.larc.nasa.gov) <br>
-- [ClawHub skill page](https://clawhub.ai/yuepeng1985-web/solar-tilt-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [Excel workbook with three sheets, plus a concise text summary of annual radiation, best month, and gain or loss percentage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-provided Excel workbook and writes a calculated output workbook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill runs a local Python script against user-provided Excel files and writes an Excel report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted input workbooks and review the generated output path before execution, especially when no explicit --output value is supplied.
+
+Risk: Solar-radiation results depend on the workbook structure, latitude field, and model assumptions documented by the artifact.
+
+Mitigation: Confirm the input workbook uses the expected NASA POWER-style sheets and columns, then review the generated workbook before relying on results.
+
+## Reference(s):
+
+- [NASA POWER](https://power.larc.nasa.gov)
+- [ClawHub skill page](https://clawhub.ai/yuepeng1985-web/skills/solar-tilt-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated Excel workbook output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese-labeled Excel sheets for basic information, tilted-surface radiation data, and parameter notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

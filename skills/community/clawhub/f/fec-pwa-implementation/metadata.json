@@ -1,6 +1,6 @@
 {
   "id": "fec-pwa-implementation",
-  "name": "PWA 实现",
+  "name": "PWA implementation",
   "category": "implementation-capability",
   "tags": [
     "pwa",
@@ -9,8 +9,8 @@
     "workbox",
     "installable"
   ],
-  "summary": "Frontend Craft skill for PWA 实现.",
-  "version": "2.6.0",
+  "summary": "Add installability, service workers, offline caching, and update behavior to a web app.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -32,7 +32,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when adding or reviewing Progressive Web App capabilities such as installability, manifest metadata, Service Worker registration, Workbox caching, offline fallback, app update prompts, maskable icons, or iOS PWA compatibility. Do not use for general API caching or non-installable performance tuning; Chinese triggers include PWA, 离线, Service Worker.",
+  "description": "Use when adding or reviewing Progressive Web App capabilities such as installability, manifest metadata, Service Worker registration, Workbox caching, offline fallback, app update prompts, maskable icons, or iOS PWA compatibility. Do not use for general API caching or non-installable performance tuning; Chinese triggers include PWA, offline, Service Worker.",
   "source": "skills/fec-pwa-implementation",
   "references": [
     "references/manifest-and-icons.md",

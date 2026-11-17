@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "data-pipeline-toolkit",
+  "schema_version": "1",
+  "name": "data-pipeline-toolkit",
   "version": "1.0.0",
-  "publishedAt": 1772647778247
+  "description": "Build ETL and data pipelines - extract from APIs, databases, files; transform; load to any destination",
+  "homepage": "",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["etl", "data-pipeline", "extract", "transform", "load", "automation"],
+  "license": "MIT"
 }

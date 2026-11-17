@@ -1,44 +1,64 @@
-## Description: <br>
-Automates Binance Futures signal scanning, position monitoring, risk controls, and Telegram notifications for futures trading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Binance Futures signal detection, leveraged order entry, stop-loss/take-profit monitoring, Telegram notifications, and a local trading dashboard for an agent.
 
-## Publisher: <br>
-[lukmanc405](https://clawhub.ai/user/lukmanc405) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lukmanc405](https://clawhub.ai/user/lukmanc405)
 
-## Use Case: <br>
-External users and developers use this skill to run an automated Binance Futures trading bot that scans markets, opens or manages positions, applies stop loss and take profit rules, and reports status through Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run as an autonomous Binance Futures trading bot and place live orders in the background. <br>
-Mitigation: Use a Binance testnet or isolated low-balance account first, review the trading configuration, and remove or disable background startup behavior unless live autonomous trading is intended. <br>
-Risk: Binance and Telegram credentials can expose funds, account data, or notification channels if mishandled. <br>
-Mitigation: Disable withdrawals on API keys, restrict keys by IP, keep credentials out of logs and prompts, and never print `.env`. <br>
-Risk: The dashboard can expose sensitive account data or workspace files if served publicly. <br>
-Mitigation: Bind the dashboard to localhost or protect it with authentication, TLS, and firewall rules before use. <br>
+## Use Case:
 
+External developers or agents use this skill to run and inspect an automated Binance Futures trading workflow, including signal scanning, position monitoring, Telegram alerts, and dashboard status checks. It is intended for users who understand leveraged trading and can manage exchange credentials securely.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lukmanc405/neko-futures-trader) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lukmanc405) <br>
-- [Binance Futures](https://www.binance.com/en/futures) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration values, and Python runtime output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Binance and Telegram credentials; execution may start background processes and place live futures trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.27 (source: server release metadata) <br>
+Risk: The skill can execute automated leveraged Binance Futures trades with real funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only test or tightly scoped, IP-restricted Binance keys and fix order-management issues before using real funds.
+
+Risk: The dashboard can expose account and position data if reachable from a public network.
+
+Mitigation: Do not expose the dashboard publicly; keep it on a private interface or behind strong access controls.
+
+Risk: Credential handling depends on local environment files and the artifact includes a command that prints part of .env.
+
+Mitigation: Remove any instruction that prints .env contents and rotate Binance or Telegram credentials if the code or dashboard has run on an exposed host.
+
+Risk: Server security review flagged serious issues around secret handling, public dashboard exposure, and automatic order execution.
+
+Mitigation: Review before installing and resolve the security guidance before production or real-funds use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lukmanc405/skills/neko-futures-trader)
+- [ClawHub publisher profile](https://clawhub.ai/user/lukmanc405)
+- [Binance Futures](https://www.binance.com/en/futures)
+- [TradingView chart link used in alerts](https://www.tradingview.com/chart/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Text, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, environment variable requirements, status text, Telegram message templates, and JSON dashboard responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus Binance and Telegram credentials; may issue live Binance Futures API calls when executed.]
+
+## Skill Version(s):
+
+1.0.27 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

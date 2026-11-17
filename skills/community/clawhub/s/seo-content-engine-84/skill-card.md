@@ -1,40 +1,53 @@
-## Description: <br>
-End-to-end SEO content creation workflow that researches keywords, analyzes search intent, generates optimized outlines, and produces draft content with on-page SEO best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seo Content Engine guides end-to-end SEO content creation by researching keywords, analyzing search intent, generating optimized outlines, and producing draft content with on-page SEO best practices.
 
-## Publisher: <br>
-[dahuangfortoby](https://clawhub.ai/user/dahuangfortoby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dahuangfortoby](https://clawhub.ai/user/dahuangfortoby)
 
-## Use Case: <br>
-Content marketers, SEO practitioners, and business teams use this skill to plan, refresh, and draft search-optimized blog posts, landing pages, cornerstone content, and content calendars. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SEO drafts may contain outdated, inaccurate, or unsupported claims. <br>
-Mitigation: Review generated content before publishing and independently verify SEO statistics, examples, and factual claims. <br>
-Risk: Publisher provenance is limited because server-resolved GitHub import provenance is unavailable. <br>
-Mitigation: Check the ClawHub publisher profile and confirm that the third-party publisher is acceptable for the intended use. <br>
+## Use Case:
 
+Content creators, marketers, and SEO practitioners use this skill to plan, refresh, and draft search-optimized blog posts, landing pages, cornerstone content, and content calendars.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dahuangfortoby/seo-content-engine-84) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, outlines, checklists, calendars, and draft content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; no code execution, credential use, persistence, or hidden data handling reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Users may share confidential drafts, business data, or campaign details with external SEO tools while following the workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted services only, follow internal data-handling policies, and avoid entering confidential information into third-party tools unless approved.
+
+Risk: Keyword metrics, SERP details, and cited statistics can become outdated or inaccurate before publication.
+
+Mitigation: Verify current search data, rankings, and statistics against reliable sources before publishing or refreshing content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dahuangfortoby/skills/seo-content-engine-84)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown with structured outlines, checklists, tables, templates, and draft content guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include keyword priorities, SERP analysis notes, content outlines, SEO checklists, meta title and description options, FAQ sections, and content calendar recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

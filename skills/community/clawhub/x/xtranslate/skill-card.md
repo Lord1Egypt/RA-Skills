@@ -1,46 +1,60 @@
-## Description: <br>
-Xtranslate helps agents translate PDF, Word, Excel, PowerPoint, TXT, and RTF documents while preserving document structure and supporting cloud, local Ollama, and built-in Python translation engines. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Xtranslate translates PDF, Word, Excel, PowerPoint, TXT, and RTF documents with format preservation, layout optimization, batch processing, and selectable cloud, Ollama, or Python translation engines.
 
-## Publisher: <br>
-[GuoTao1980](https://clawhub.ai/user/GuoTao1980) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guotao1980](https://clawhub.ai/user/guotao1980)
 
-## Use Case: <br>
-External users and developers use this skill to translate individual documents or batches of documents across common office formats, choosing between cloud translation quality and local/offline processing for more sensitive files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud translation mode can send document contents to external or custom API endpoints. <br>
-Mitigation: Use Ollama or another trusted local mode for confidential, legal, customer, or business-sensitive documents, and only configure custom endpoints that are explicitly trusted. <br>
-Risk: Saved API-key encryption is not enough to protect valuable credentials on its own. <br>
-Mitigation: Prefer environment variables or scoped, revocable keys, and run the skill in an isolated environment with least-privilege credentials. <br>
-Risk: Batch folder translation can process more files than intended. <br>
-Mitigation: Scope batch runs to narrow folders and review input and output paths before execution. <br>
-Risk: Unpinned dependencies may change behavior or security posture over time. <br>
-Mitigation: Install in an isolated environment and pin dependency versions before production or sensitive use. <br>
+## Use Case:
 
+Developers and document-workflow users use this skill to translate individual files or folders across common office formats while preserving structure where supported. It is suited to research and development workflows because the artifact states the tool is for personal learning and research.
 
-## Reference(s): <br>
-- [Xtranslate ClawHub release page](https://clawhub.ai/GuoTao1980/xtranslate) <br>
-- [Project Structure](artifact/references/project-structure.md) <br>
-- [Naming Convention](artifact/references/naming-convention.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces translated documents in output folders and may create temporary conversion files and translation monitoring records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release metadata) <br>
+Risk: Cloud translation mode can send extracted document text to configured external providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local Ollama mode for sensitive documents or confirm that the selected provider, endpoint, and data-handling terms are approved before using cloud mode.
+
+Risk: Translation monitor, summary, output, and temporary conversion files can retain local document paths, timing data, or translated content.
+
+Mitigation: Run the skill in an isolated workspace, review generated files before sharing, avoid committing monitor or summary files, and delete temporary conversion files after use.
+
+Risk: Bundled API-key encryption uses a fixed local derivation and should not be treated as strong credential protection.
+
+Mitigation: Prefer environment variables or a managed secret store for API keys, and rotate any key that may have been stored or shared in generated configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guotao1980/skills/xtranslate)
+- [Publisher profile](https://clawhub.ai/user/guotao1980)
+- [Project structure reference](artifact/references/project-structure.md)
+- [Naming convention reference](artifact/references/naming-convention.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Translated document files, plain text or JSON monitor records, and Markdown or shell-command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write translated_* output files, tmp conversion files, translation_monitor.json, and periodic performance summary text files.]
+
+## Skill Version(s):
+
+3.2.0 (source: ClawHub release metadata; artifact frontmatter lists 3.2 and config lists V3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

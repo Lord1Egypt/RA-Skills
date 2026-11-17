@@ -1,40 +1,53 @@
-## Description: <br>
-Generate professional, customizable business documents including proposals, quotes, invoices, contracts, and letters tailored to the user's industry and needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional, customizable business documents including proposals, quotes, invoices, contracts, NDAs, statements of work, reports, and follow-up emails.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
 
-## Use Case: <br>
-Business users, consultants, and service providers use this skill to draft proposals, quotes, invoices, service agreements, NDAs, statements of work, follow-up emails, and related business documents from customizable templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated contracts, invoices, tax lines, payment terms, or legal clauses may be inaccurate or unsuitable for a specific transaction. <br>
-Mitigation: Review all generated business, financial, and legal content before use, and obtain professional legal or financial review for binding or high-value documents. <br>
-Risk: Generated documents can contain client, financial, and contract details that may be saved in the workspace. <br>
-Mitigation: Only save generated documents when the user is comfortable storing those details, and avoid including unnecessary sensitive information. <br>
+## Use Case:
 
+Business users and agents use this skill to draft polished client-facing documents such as service proposals, quotes, invoices, service agreements, NDAs, statements of work, reports, and follow-up emails from user-provided details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/di5cip1e/the-director-business-doc-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown business document drafts and template-based guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated documents may include client, financial, payment-term, jurisdiction, signature, and contract details supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact body) <br>
+Risk: Generated business documents may contain incorrect financial figures, payment terms, dates, or legal language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm important figures and terms with the user before finalizing; recommend professional legal review for legally binding contracts.
+
+Risk: Drafted documents may include sensitive client names, addresses, prices, payment terms, or business details.
+
+Mitigation: Only save generated documents in the workspace when local retention is appropriate for the user's data-handling needs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/di5cip1e/skills/the-director-business-doc-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown business documents and editable text templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include client details, pricing, payment terms, dates, signature blocks, and legal-language placeholders or user-provided values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-PDF to Markdown converter - extract text, tables and formulas from PDF files to clean Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF to Markdown converter - extract text, tables and formulas from PDF files to clean Markdown.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-Developers, researchers, and other users use this skill to convert local PDFs or PDF URLs into Markdown for reading, extraction, summarization, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected PDF files or PDF links are sent to MinerU for conversion and may contain sensitive content. <br>
-Mitigation: Use only documents appropriate for third-party processing; avoid confidential, regulated, or sensitive business documents unless MinerU's privacy and retention practices meet requirements. <br>
-Risk: Images, tables, formulas, or larger documents may be incomplete or replaced with placeholders in the Markdown output. <br>
-Mitigation: Review the generated Markdown against the source PDF before relying on it, and use the authenticated extraction flow only when higher-fidelity processing is approved. <br>
+## Use Case:
 
+External users and developers use this skill to convert local PDFs or PDF URLs into Markdown for extraction, summarization, parsing, and analysis workflows.
 
-## Reference(s): <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
-- [MinerU CLI](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with CLI command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MinerU Open API through the mineru-open-api CLI; flash extraction is limited to 10 MB or 20 pages per document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Selected PDFs or PDF URLs are sent to MinerU for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm before uploading sensitive documents and use this skill only when third-party processing is acceptable.
+
+Risk: The skill depends on installing and running the mineru-open-api CLI.
+
+Mitigation: Prefer a reviewed pinned CLI version or verified artifact for stronger supply-chain control.
+
+Risk: The larger authenticated extraction workflow changes the data-handling posture.
+
+Mitigation: Avoid `mineru-open-api auth` unless the authenticated workflow is required and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanis90/skills/academic-reader)
+- [MinerU homepage](https://mineru.net)
+- [MinerU CLI download page](https://mineru.net/ecosystem?tab=cli)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+- [mineru-open-api Go package](https://github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI returns Markdown from selected local PDFs or PDF URLs and supports page ranges and language hints; no-auth extraction is documented as limited to 10MB or 20 pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

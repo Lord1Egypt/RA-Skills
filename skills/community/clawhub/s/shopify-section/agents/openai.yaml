@@ -1,0 +1,4 @@
+interface:
+  display_name: "Website to Shopify section"
+  short_description: "Turn any website section into a Shopify Liquid theme section"
+  brand_color: "#6366F1"

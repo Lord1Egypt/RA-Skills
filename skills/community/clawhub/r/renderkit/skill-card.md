@@ -1,44 +1,55 @@
-## Description: <br>
-Render structured data as hosted web pages and create hosted forms for surveys, RSVPs, feedback, and other structured data using the RenderKit API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render structured data as beautiful hosted web pages, and create hosted forms for data collection, using the RenderKit API.
 
-## Publisher: <br>
-[antoinedc](https://clawhub.ai/user/antoinedc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[antoinedc](https://clawhub.ai/user/antoinedc)
 
-## Use Case: <br>
-Developers and external users use this skill to generate hosted visual pages from structured content and create hosted forms for collecting responses through RenderKit. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may send selected page content, form definitions, and submissions to RenderKit. <br>
-Mitigation: Avoid collecting secrets or sensitive personal data unless provider terms, consent, and data handling requirements have been reviewed. <br>
-Risk: The skill requires a RenderKit API key in the agent environment. <br>
-Mitigation: Store the API key only in the intended environment variable and avoid exposing it in prompts, shared logs, or rendered content. <br>
-Risk: Closing a live form can affect ongoing data collection. <br>
-Mitigation: Confirm form IDs before issuing close or delete requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [RenderKit homepage](https://renderkit.live) <br>
-- [RenderKit API documentation](https://renderkit.live/docs.md) <br>
-- [ClawHub skill page](https://clawhub.ai/antoinedc/renderkit) <br>
-- [Publisher profile](https://clawhub.ai/user/antoinedc) <br>
+## Use Case:
 
+Developers and agents use this skill to create hosted visual pages for structured content and hosted forms for surveys, RSVPs, signups, feedback, and other data collection workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl command examples and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and the RENDERKIT_API_KEY environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Rendered page content, form definitions, and respondent submissions are sent to RenderKit.
+
+Mitigation: Avoid sending secrets, regulated personal data, or sensitive respondent data unless RenderKit privacy, retention, and compliance terms have been reviewed.
+
+Risk: The form-close example uses DELETE and the artifact does not state whether closing a form is reversible.
+
+Mitigation: Confirm intent and preserve needed responses before using the close-form command.
+
+## Reference(s):
+
+- [RenderKit Homepage](https://renderkit.live)
+- [RenderKit API Docs](https://renderkit.live/docs.md)
+- [ClawHub Skill Page](https://clawhub.ai/antoinedc/skills/renderkit)
+- [Publisher Profile](https://clawhub.ai/user/antoinedc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl command examples and API usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RENDERKIT_API_KEY and curl; generated pages, forms, and form responses are hosted by RenderKit.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

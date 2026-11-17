@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 竞品变化监控"
+  short_description: "按已支持周期摘要竞品商品快照变化"
+  default_prompt: "使用 $amazon-competitor-change-monitor 查看已授权竞品在已支持周期内的商品字段变化摘要。"

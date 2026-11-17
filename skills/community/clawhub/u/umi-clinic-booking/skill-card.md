@@ -1,43 +1,63 @@
-## Description: <br>
-Umi helps users view booking guidance, open clinic pages, submit appointment requests, consult customer service, query prices, and access app download links for UMI Clinic in Myeongdong, Seoul. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Umi helps users view booking information, submit appointment requests, consult customer service, check prices, and access app download links for UMI Skin Clinic in Myeongdong, Seoul.
 
-## Publisher: <br>
-[beautsgo](https://clawhub.ai/user/beautsgo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beautsgo](https://clawhub.ai/user/beautsgo)
 
-## Use Case: <br>
-External users use this skill to get UMI Clinic booking guidance, submit appointment details, contact BeautsGO support, and check clinic pricing or app access links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Appointment timing, party size, and any phone number provided by the user may be sent to the BeautsGO or clinic booking service. <br>
-Mitigation: Install and use the skill only when this data sharing is acceptable, and add a clear confirmation step before submitting appointment details. <br>
-Risk: The security review notes hardcoded API tokens. <br>
-Mitigation: Replace hardcoded tokens with scoped, revocable credentials before relying on the skill in production. <br>
+## Use Case:
 
+External users use this skill to get UMI Skin Clinic booking guidance, submit appointment requests through BeautsGO, consult customer service, and check treatment prices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/beautsgo/umi-clinic-booking) <br>
-- [BeautsGO publisher profile](https://clawhub.ai/user/beautsgo) <br>
-- [UMI Clinic booking page](https://i.beautsgo.com/cn/hospital/umi-skin-clinic/skill) <br>
-- [UMI Clinic details page](https://i.beautsgo.com/cn/hospital/umi-skin-clinic?from=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown text responses with booking status, guidance, links, and price information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open allowed BeautsGO clinic pages and submit appointment or price queries through configured external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json, and skill.json) <br>
+Risk: Privacy-sensitive booking details may be sent to BeautsGO during the booking flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation immediately before submission and show the destination service and fields being sent.
+
+Risk: The package contains hard-coded API tokens.
+
+Mitigation: Move tokens to managed secrets or configuration, rotate exposed tokens, and avoid shipping credentials in the skill artifact.
+
+Risk: Browser opening uses shell execution for URLs.
+
+Mitigation: Replace shell execution with a safer URL-opening library or platform API and keep strict HTTPS host allowlisting.
+
+Risk: The Android APK link is not verified by the evidence.
+
+Mitigation: Prefer official app-store links and clearly label any direct APK download as requiring publisher verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beautsgo/skills/umi-clinic-booking)
+- [BeautsGO UMI Skin Clinic booking page](https://i.beautsgo.com/cn/hospital/umi-skin-clinic/skill)
+- [BeautsGO UMI Skin Clinic detail page](https://i.beautsgo.com/cn/hospital/umi-skin-clinic?from=skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user-facing links, booking submission status, price results, or clinic guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, package.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

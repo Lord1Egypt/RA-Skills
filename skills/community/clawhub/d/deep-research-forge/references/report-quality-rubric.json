@@ -1,0 +1,91 @@
+{
+  "name": "deep-research-forge-report-quality-rubric",
+  "scale": "0-10",
+  "dimensions": [
+    {
+      "id": "question_fit",
+      "label": "Question fit",
+      "weight": 1.2,
+      "checks": [
+        "Research question is explicit.",
+        "Output answers the user's actual decision or understanding need.",
+        "Scope, geography, time window, and object type are bounded when needed."
+      ]
+    },
+    {
+      "id": "method_fit",
+      "label": "Method fit",
+      "weight": 1.0,
+      "checks": [
+        "Method stack is selected before template shape.",
+        "Methods match object type and stakes.",
+        "Methods not used are omitted deliberately."
+      ]
+    },
+    {
+      "id": "evidence_traceability",
+      "label": "Evidence traceability",
+      "weight": 1.4,
+      "checks": [
+        "Load-bearing claims map to evidence IDs.",
+        "Evidence entries preserve source title, URL, source type, dates, reliability, and citation strength.",
+        "Repeated secondary reports are not counted as independent confirmation."
+      ]
+    },
+    {
+      "id": "formal_status",
+      "label": "Formal status clarity",
+      "weight": 1.1,
+      "checks": [
+        "Official, draft, political-agreement, pilot, voluntary, and third-party statuses are separated when relevant.",
+        "Effective and application dates are not conflated.",
+        "Institution-specific rules are not generalized."
+      ]
+    },
+    {
+      "id": "mechanism_depth",
+      "label": "Mechanism depth",
+      "weight": 1.1,
+      "checks": [
+        "Timeline explains causal transitions, not only dates.",
+        "Current strengths, weaknesses, risks, or adoption patterns are tied to mechanisms.",
+        "Alternative explanations are considered."
+      ]
+    },
+    {
+      "id": "dissent_and_gaps",
+      "label": "Dissent and gaps",
+      "weight": 1.0,
+      "checks": [
+        "Contradictions and negative evidence are named.",
+        "Gaps are marked instead of guessed.",
+        "Reversal conditions are specific."
+      ]
+    },
+    {
+      "id": "actionability",
+      "label": "Actionability",
+      "weight": 0.9,
+      "checks": [
+        "Recommendations match confidence and stakes.",
+        "Next actions are smaller than irreversible decisions when uncertainty is high.",
+        "Monitoring or recheck tasks are concrete."
+      ]
+    },
+    {
+      "id": "composition_quality",
+      "label": "Composition quality",
+      "weight": 0.8,
+      "checks": [
+        "Output blocks are selected because they change the answer.",
+        "The answer is synthesized rather than a source dump.",
+        "Parallel findings are integrated into one lead judgment when used."
+      ]
+    }
+  ],
+  "decision_thresholds": {
+    "ship": "8.5+ with no critical evidence or formal-status gap",
+    "revise": "7.0-8.4 or any moderate traceability gap",
+    "rerun": "below 7.0 or any critical unsupported load-bearing claim"
+  }
+}

@@ -23,7 +23,7 @@ Parameters:
 | `body_html` | `string` | no | HTML email body. Can be used instead of or in addition to body_text. |
 | `body_text` | `string` | no | Plain text email body. Required unless body_html is provided. |
 | `cc` | `array` | no | CC recipients. |
-| `from_email` | `string` | no | From address override. Only works if the Gmail account has a configured send-as alias. |
+| `from_email` | `string` | no | Configured, verified Gmail send-as address. Call list_send_as_addresses first when the exact address is not already known. Use the returned email value for an entry with can_send: true. Omit to use Gmail's default From address. |
 | `subject` | `string` | yes | Email subject line. |
 | `thread_id` | `string` | no | Thread ID to associate the draft with an existing conversation. |
 | `to` | `array` | yes | Recipient email addresses. |
@@ -110,7 +110,7 @@ Generated JSON parameter schema:
     "type": "array"
   },
   "from_email": {
-    "description": "From address override. Only works if the Gmail account has a configured send-as alias.",
+    "description": "Configured, verified Gmail send-as address. Call list_send_as_addresses first when the exact address is not already known. Use the returned email value for an entry with can_send: true. Omit to use Gmail's default From address.",
     "required": false,
     "type": "string"
   },
@@ -185,6 +185,7 @@ Parameters:
 | `bcc` | `array` | no | BCC recipients. |
 | `body_text` | `string` | no | Optional text to add above the forwarded content. |
 | `cc` | `array` | no | CC recipients. |
+| `from_email` | `string` | no | Configured, verified Gmail send-as address. Call list_send_as_addresses first when the exact address is not already known. Use the returned email value for an entry with can_send: true. Omit to use Gmail's default From address. |
 | `message_id` | `string` | yes | Gmail message ID of the email to forward. |
 | `to` | `array` | yes | Recipient email addresses to forward to. |
 
@@ -206,6 +207,7 @@ Sample parameters:
   "cc": [
     "example cc"
   ],
+  "from_email": "user@example.com",
   "message_id": "example message id",
   "to": [
     "example to"
@@ -263,6 +265,11 @@ Generated JSON parameter schema:
     },
     "required": false,
     "type": "array"
+  },
+  "from_email": {
+    "description": "Configured, verified Gmail send-as address. Call list_send_as_addresses first when the exact address is not already known. Use the returned email value for an entry with can_send: true. Omit to use Gmail's default From address.",
+    "required": false,
+    "type": "string"
   },
   "message_id": {
     "description": "Gmail message ID of the email to forward.",
@@ -415,6 +422,7 @@ Parameters:
 | `message_format` | `string` | no | Preferred read format. minimal returns IDs/labels only; metadata returns headers/snippet/signals with no body fields; text returns capped text only; full returns metadata plus selected body fields. |
 | `message_id` | `string` | yes | Gmail message ID. |
 | `metadata_headers` | `array` | no | Headers to request and return in metadata modes. |
+| `verify_attachments` | `boolean` | no | Read-only verification: fetch received attachment bytes and return SHA-256 hashes and verified sizes. Maximum 10 files and 25 MB total; file contents are never returned. |
 
 Sample parameters:
 
@@ -427,7 +435,8 @@ Sample parameters:
   "message_id": "example message id",
   "metadata_headers": [
     "example metadata header"
-  ]
+  ],
+  "verify_attachments": false
 }
 ```
 
@@ -486,6 +495,12 @@ Generated JSON parameter schema:
     },
     "required": false,
     "type": "array"
+  },
+  "verify_attachments": {
+    "default": false,
+    "description": "Read-only verification: fetch received attachment bytes and return SHA-256 hashes and verified sizes. Maximum 10 files and 25 MB total; file contents are never returned.",
+    "required": false,
+    "type": "boolean"
   }
 }
 ```
@@ -766,6 +781,30 @@ Generated JSON parameter schema:
 }
 ```
 
+## `list_send_as_addresses`
+
+Action slug: `list-send-as-addresses`
+
+Price: `5` credits
+
+List configured Gmail From addresses, including the default address and whether each alias is verified and usable for sending.
+
+Parameters:
+
+This action does not require parameters.
+
+Sample parameters:
+
+```json
+{}
+```
+
+Generated JSON parameter schema:
+
+```json
+{}
+```
+
 ## `modify_labels`
 
 Action slug: `modify-labels`
@@ -841,6 +880,7 @@ Parameters:
 | `body_html` | `string` | no | HTML reply body. Can be used instead of or in addition to body_text. |
 | `body_text` | `string` | no | Plain text reply body. Required unless body_html is provided. |
 | `cc` | `array` | no | CC recipients. |
+| `from_email` | `string` | no | Configured, verified Gmail send-as address. Call list_send_as_addresses first when the exact address is not already known. Use the returned email value for an entry with can_send: true. Omit to use Gmail's default From address. |
 | `message_id` | `string` | yes | Gmail message ID of the email to reply to. |
 
 Sample parameters:
@@ -862,6 +902,7 @@ Sample parameters:
   "cc": [
     "example cc"
   ],
+  "from_email": "user@example.com",
   "message_id": "example message id"
 }
 ```
@@ -922,6 +963,11 @@ Generated JSON parameter schema:
     "required": false,
     "type": "array"
   },
+  "from_email": {
+    "description": "Configured, verified Gmail send-as address. Call list_send_as_addresses first when the exact address is not already known. Use the returned email value for an entry with can_send: true. Omit to use Gmail's default From address.",
+    "required": false,
+    "type": "string"
+  },
   "message_id": {
     "description": "Gmail message ID of the email to reply to.",
     "required": true,
@@ -981,7 +1027,7 @@ Parameters:
 | `body_html` | `string` | no | HTML email body. Can be used instead of or in addition to body_text. |
 | `body_text` | `string` | no | Plain text email body. Required unless body_html is provided. |
 | `cc` | `array` | no | CC recipients. |
-| `from_email` | `string` | no | From address override. Only works if the Gmail account has a configured send-as alias. |
+| `from_email` | `string` | no | Configured, verified Gmail send-as address. Call list_send_as_addresses first when the exact address is not already known. Use the returned email value for an entry with can_send: true. Omit to use Gmail's default From address. |
 | `subject` | `string` | yes | Email subject line. |
 | `thread_id` | `string` | no | Thread ID to add this message to an existing conversation thread. |
 | `to` | `array` | yes | Recipient email addresses. |
@@ -1068,7 +1114,7 @@ Generated JSON parameter schema:
     "type": "array"
   },
   "from_email": {
-    "description": "From address override. Only works if the Gmail account has a configured send-as alias.",
+    "description": "Configured, verified Gmail send-as address. Call list_send_as_addresses first when the exact address is not already known. Use the returned email value for an entry with can_send: true. Omit to use Gmail's default From address.",
     "required": false,
     "type": "string"
   },

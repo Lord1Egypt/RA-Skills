@@ -1,41 +1,59 @@
-## Description: <br>
-AI-powered HR Operating System for Southeast Asia. Full payroll with PH/SG/LK compliance, 9 AI agents (payroll specialist, compliance officer, leave advisor...), attendance with GPS geofencing, leave/OT/expense workflows, org intelligence with flight risk & burnout detection. Zero-setup via OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered HR Operating System for Southeast Asia with payroll, PH/SG/LK compliance, specialized HR agents, attendance, leave, overtime, expense workflows, and organization intelligence.
 
-## Publisher: <br>
-[tonypk](https://clawhub.ai/user/tonypk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonypk](https://clawhub.ai/user/tonypk)
 
-## Use Case: <br>
-HR teams, managers, and employees use this skill to answer Southeast Asia HR compliance questions, manage local HR records, generate HR documents, calculate payroll contributions, and connect to HalaOS cloud APIs for employee, attendance, leave, payroll, approval, and analytics workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Southeast Asia (Philippines, Singapore, and Sri Lanka) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive employee, attendance, payroll, and HR analytics data when connected to HalaOS. <br>
-Mitigation: Use a least-privilege or read-only HalaOS API key where possible, test first with non-production data, and store local HR records only in approved secured systems. <br>
-Risk: Payroll, approvals, attendance changes, government filings, and employee-impacting analytics can materially affect employees. <br>
-Mitigation: Require explicit human review and approval before acting on payroll, approvals, attendance updates, government filings, or flight-risk and burnout-risk analysis. <br>
+## Use Case:
 
+HR operators, managers, and employees use this skill to answer HR questions, calculate payroll and statutory contributions, generate HR documents, manage local team records, and connect to HalaOS for live employee, payroll, attendance, compliance, and analytics workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tonypk/halaos-hr) <br>
-- [HalaOS website](https://halaos.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown responses with tables, JSON examples, configuration paths, and API endpoint references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses HALAOS_API_KEY for cloud access and ~/.openclaw/skills/halaos-hr/config.json for local skill configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can access or modify sensitive employee, payroll, attendance, and compliance data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review in real HR environments, use authorized HalaOS accounts, and scope API keys to the least privilege required.
+
+Risk: Payroll, approval, attendance, or compliance-form actions may affect employees or official filings.
+
+Mitigation: Require explicit human confirmation before executing payroll, approval, attendance, or compliance-form actions.
+
+Risk: Native-mode local storage and user-provided HR data may include personal or payroll information.
+
+Mitigation: Do not enter real employee or payroll data unless the selected storage location and privacy controls are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tonypk/skills/halaos-hr)
+- [HalaOS website](https://halaos.com)
+- [Artifact GitHub link](https://github.com/tonypk/aigonhr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, structured summaries, inline commands, JSON examples, and HR document drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use HALAOS_API_KEY and local configuration for cloud-backed HR workflows; native mode can produce local calculations and documents without registration.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

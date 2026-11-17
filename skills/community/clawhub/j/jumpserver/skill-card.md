@@ -1,52 +1,66 @@
-## Description: <br>
-JumpServer Skills helps agents query and analyze JumpServer V4.10 assets, accounts, users, permissions, audit logs, governance signals, and usage reports through formal read-oriented workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JumpServer V4.10 query and analysis skill for assets, accounts, users, organizations, permissions, audit activity, diagnostics, governance inspection, and usage reports.
 
-## Publisher: <br>
-[ibuler](https://clawhub.ai/user/ibuler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ibuler](https://clawhub.ai/user/ibuler)
 
-## Use Case: <br>
-Developers, operators, and security administrators use this skill to investigate JumpServer inventory, permissions, access paths, audit activity, and usage trends. It is intended for read-oriented operations, diagnostics, and HTML usage reports rather than business-object or permission changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles JumpServer credentials and sensitive audit or administrative data. <br>
-Mitigation: Use a dedicated least-privilege JumpServer account, prefer scoped AK/SK credentials, and protect or delete generated .env and report files. <br>
-Risk: TLS verification is documented as disabled by default. <br>
-Mitigation: Set JMS_VERIFY_TLS=true unless connecting only to a reviewed and controlled endpoint. <br>
-Risk: The runtime may install Python dependencies automatically. <br>
-Mitigation: Install dependencies yourself in a controlled virtual environment before deployment. <br>
-Risk: Reports and queries can run against the wrong organization if scope is unclear. <br>
-Mitigation: Specify the target organization for reports and block execution when candidate organizations or objects remain ambiguous. <br>
+## Use Case:
 
+Developers, JumpServer administrators, and auditors use this skill to query JumpServer inventory, permissions, and audit data, run configuration diagnostics, inspect governance posture, and generate daily or time-range usage reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ibuler/jumpserver) <br>
-- [README.en.md](README.en.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Routing Playbook](references/routing-playbook.md) <br>
-- [Report Template Playbook](references/report-template-playbook.md) <br>
-- [Runtime](references/runtime.md) <br>
-- [Safety Rules](references/safety-rules.md) <br>
-- [Capability Metadata](references/metadata/capabilities.json) <br>
-- [Daily Usage Report Template Fields](references/metadata/daily_usage_report_template_fields.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, HTML files, guidance] <br>
-**Output Format:** [Markdown responses with command summaries, JSON-backed diagnostics, configuration guidance, and generated HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are written as HTML files for date or time-range usage analysis; normal queries return summaries and blocking guidance when inputs are ambiguous.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Credentials and privileged JumpServer audit data may be exposed if the skill is installed for unauthorized users or used with overly broad query scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for authorized JumpServer administrators or auditors, and limit queries and reports to the minimum organization, time range, and fields needed.
+
+Risk: Insecure transport defaults can weaken protection for credentials and audit data.
+
+Mitigation: Require HTTPS, enable TLS verification, and avoid password authentication over insecure transport.
+
+Risk: Automatic dependency installation and persistent local configuration writes can change the runtime environment or store sensitive settings locally.
+
+Mitigation: Pin and preinstall dependencies, store secrets outside the repository when possible, and review .env writes and organization changes before confirming.
+
+## Reference(s):
+
+- [README.en.md](README.en.md)
+- [Routing Playbook](references/routing-playbook.md)
+- [Runtime](references/runtime.md)
+- [Safety Rules](references/safety-rules.md)
+- [Report Template Playbook](references/report-template-playbook.md)
+- [Capabilities](references/capabilities.md)
+- [Permissions](references/permissions.md)
+- [Audit](references/audit.md)
+- [Diagnose](references/diagnose.md)
+- [Daily Usage Report Template Fields](references/metadata/daily_usage_report_template_fields.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, HTML files, guidance]
+
+**Output Format:** [Markdown responses with command summaries, JSON-like query results, configuration guidance, and generated HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local .env, organization context, and reports/JumpServer-YYYY-MM-DD.html when confirmed by the workflow.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

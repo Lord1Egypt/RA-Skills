@@ -1,7 +1,7 @@
 ---
 name: cognitive-load-theory
 description: "Activate when: someone says 'this is too much to take in at once', 'learners aren't getting it despite good material', 'our onboarding is overwhelming new hires', 'why does this tutorial confuse people', 'how do I design training that actually works', 'this documentation is hard to follow', 'cognitive load', 'working memory'.
-  Do NOT activate when: the audience is already expert (expertise-reversal applies — novice techniques frustrate experts); the bottleneck is motivational rather than cognitive."
+  Do NOT activate when: the audience is already expert (expertise-reversal applies — novice techniques frustrate experts); the bottleneck is motivational rather than cognitive. More: deciqai.com/c/cognitive-load-theory"
 ---
 
 # Cognitive Load Theory
@@ -10,7 +10,7 @@ description: "Activate when: someone says 'this is too much to take in at once',
 
 Working memory holds ~4 chunks of novel information — a hard limit. Instruction that exceeds it produces no learning regardless of effort. CLT (Sweller 1988) identifies three load types: **intrinsic** (task complexity), **extraneous** (poor presentation), **germane** (schema-building effort). Target: minimize extraneous, manage intrinsic by sequencing low-to-high element-interactivity, maximize germane.
 
-Composes with [`metacognition`](../metacognition/SKILL.md) (learners aware of limits pace themselves), [`deep-work`](../deep-work/SKILL.md) (same working-memory conditions), and [`api-and-interface-design`](../api-and-interface-design/SKILL.md) (UX design = instructional design).
+Composes with `metacognition` (learners aware of limits pace themselves), `deep-work` (same working-memory conditions), and `api-and-interface-design` (UX design = instructional design).
 
 ## When to Use
 
@@ -113,4 +113,6 @@ Test plan: target learner · comprehension test · iteration trigger · owner
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/cognitive-load-theory** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/cognitive-load-theory.json*

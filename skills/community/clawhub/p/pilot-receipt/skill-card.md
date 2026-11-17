@@ -1,43 +1,53 @@
-## Description: <br>
-Delivery and read receipts for messages over the Pilot Protocol network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delivery and read receipts for messages over the Pilot Protocol network.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to send Pilot Protocol messages with delivery or read receipts, inspect inbox receipt metadata, and publish read confirmations when auditability is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a separate pilotctl binary and Pilot Protocol daemon. <br>
-Mitigation: Install and use it only in environments where that binary and daemon are already trusted. <br>
-Risk: Read receipts can reduce privacy by recording delivery or read status. <br>
-Mitigation: Use receipt tracking only where participants expect delivery or read-state auditing. <br>
-Risk: The inbox-clearing command can remove message contents before they are processed or archived. <br>
-Mitigation: Run `pilotctl --json inbox --clear` only after confirming that required inbox contents have been handled. <br>
+## Use Case:
 
+Developers and agent operators using Pilot Protocol use this skill to send messages with receipt metadata, check inbox receipts, subscribe to receipt channels, and publish read confirmations for audit trails.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-receipt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses pilotctl JSON-mode commands and requires pilotctl, jq, and a running Pilot Protocol daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Clearing the inbox can remove received messages needed for later audit or troubleshooting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and preserve relevant messages before using pilotctl --json inbox --clear.
+
+Risk: Agents may issue pilotctl commands that send messages or publish receipts on the Pilot Protocol network.
+
+Mitigation: Review generated commands, hostnames, message data, and receipt payloads before execution.
+
+## Reference(s):
+
+- [Pilot Protocol Network](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require pilotctl on PATH and a running Pilot Protocol daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

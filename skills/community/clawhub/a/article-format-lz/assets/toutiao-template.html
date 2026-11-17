@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日头条排版参考模板 · 纯语义HTML</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f0f0f3;
+    padding: 40px 16px;
+  }
+  .page-wrap { max-width: 680px; margin: 0 auto; }
+  .toolbar {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .toolbar h1 { font-size: 18px; color: #1a1a2e; margin-bottom: 6px; }
+  .toolbar p { font-size: 13px; color: #888; line-height: 1.6; }
+  .toolbar .legend {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: #fff5f5;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #8a4a4a;
+    line-height: 1.8;
+  }
+  .toolbar .legend strong { color: #F04142; }
+  .copy-btn {
+    display: inline-block; margin-top: 12px;
+    padding: 10px 24px; background: #F04142; color: #fff;
+    border: none; border-radius: 8px; font-size: 14px; cursor: pointer;
+  }
+  .copy-btn:hover { background: #d03536; }
+  .view-tabs {
+    display: flex; gap: 0; margin-bottom: 0;
+    border-radius: 12px 12px 0 0; overflow: hidden;
+  }
+  .view-tab {
+    flex: 1; padding: 10px 16px; text-align: center;
+    font-size: 13px; font-weight: 600; cursor: pointer;
+    background: #e8e8e8; color: #888; border: none;
+  }
+  .view-tab.active { background: #fff; color: #F04142; }
+  .preview-label {
+    font-size: 12px; color: #aaa; text-transform: uppercase;
+    letter-spacing: 2px; margin-bottom: 12px; padding-left: 4px;
+  }
+
+  /* 美化预览样式（仅浏览器渲染，不会被复制） */
+  .toutiao-content {
+    background: #fff; border-radius: 0 0 12px 12px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 28px 20px;
+  }
+  .toutiao-content h1 { font-size: 22px; font-weight: 700; color: #222; line-height: 1.5; margin: 0 0 12px; }
+  .toutiao-content h2 { font-size: 18px; font-weight: 700; color: #222; line-height: 1.6; margin: 24px 0 12px; }
+  .toutiao-content h3 { font-size: 16px; font-weight: 600; color: #333; line-height: 1.6; margin: 16px 0 8px; }
+  .toutiao-content p { font-size: 17px; color: #505050; line-height: 2; margin: 0 0 12px; letter-spacing: 1px; }
+  .toutiao-content strong { font-weight: 700; color: #222; }
+  .toutiao-content em { font-style: italic; color: #777; }
+  .toutiao-content blockquote { border-left: 3px solid #ddd; padding: 8px 0 8px 16px; margin: 12px 0; }
+  .toutiao-content blockquote p { font-size: 16px; color: #666; line-height: 1.9; margin: 0 0 4px; }
+  .toutiao-content hr { border: none; height: 1px; background: #eee; margin: 16px 0; }
+  .toutiao-content ul, .toutiao-content ol { padding-left: 24px; margin: 0 0 12px; }
+  .toutiao-content li { font-size: 17px; color: #505050; line-height: 2; margin-bottom: 6px; letter-spacing: 1px; }
+  .toutiao-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .toutiao-content th { background: #f7f7f7; font-size: 14px; font-weight: 700; color: #222; padding: 10px 12px; border: 1px solid #e8e8e8; text-align: center; }
+  .toutiao-content td { font-size: 14px; color: #666; padding: 10px 12px; border: 1px solid #e8e8e8; text-align: center; }
+  .toutiao-content pre { background: #f5f5f5; border-radius: 8px; padding: 14px 16px; font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace; font-size: 14px; color: #333; line-height: 1.7; overflow-x: auto; margin: 12px 0; }
+
+  /* 头条实际效果模拟 */
+  .toutiao-raw { background: #fff; border-radius: 0 0 12px 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 28px 20px; }
+  .toutiao-raw h1 { font-size: 20px; font-weight: bold; color: #222; margin: 0 0 10px; }
+  .toutiao-raw h2 { font-size: 17px; font-weight: bold; color: #222; margin: 20px 0 10px; }
+  .toutiao-raw p { font-size: 16px; color: #333; line-height: 1.8; margin: 0 0 10px; }
+  .toutiao-raw strong { font-weight: bold; }
+  .toutiao-raw em { font-style: italic; }
+  .toutiao-raw blockquote { border-left: 3px solid #ccc; padding-left: 12px; margin: 10px 0; color: #666; }
+  .toutiao-raw hr { border: none; border-top: 1px solid #eee; margin: 12px 0; }
+  .toutiao-raw ul, .toutiao-raw ol { padding-left: 20px; margin: 0 0 10px; }
+  .toutiao-raw li { font-size: 16px; color: #333; line-height: 1.8; margin-bottom: 4px; }
+  .toutiao-raw table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+  .toutiao-raw th, .toutiao-raw td { border: 1px solid #ddd; padding: 6px 10px; font-size: 14px; }
+  .toutiao-raw pre { background: #f5f5f5; padding: 10px; font-size: 13px; font-family: monospace; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- 工具栏 -->
+  <div class="toolbar">
+    <h1>今日头条排版参考模板</h1>
+    <p>纯语义HTML · ProseMirror兼容 · 本模板展示全部17个组件的占位示例，替换文字即可复用</p>
+    <div class="legend">
+      <strong>使用说明：</strong>本模板不含具体文章内容，每个组件用占位文字标注用途。<br>
+      点击「美化预览」查看理想效果，点击「头条实际效果」查看粘贴后的真实渲染。<br>
+      复制预览区内容 → 粘贴到头条编辑器 → 替换文字为你自己的内容即可。
+    </div>
+    <button class="copy-btn" onclick="copyContent()">一键复制排版内容</button>
+  </div>
+
+  <!-- 视图切换 -->
+  <div class="view-tabs">
+    <button class="view-tab active" onclick="switchView('styled')">美化预览</button>
+    <button class="view-tab" onclick="switchView('raw')">头条实际效果</button>
+  </div>
+
+  <div class="preview-label">— 预览区 —</div>
+
+  <!-- ===== 美化预览（纯语义HTML，零inline style） ===== -->
+  <div class="toutiao-content" id="styled-view">
+
+    <!-- T1. 主标题 -->
+    <h1>【深度解析】文章主标题写在这里</h1>
+
+    <!-- T2. 摘要引导 -->
+    <p><em>一句话摘要，引导读者继续往下看。保持简短，不超过两行。</em></p>
+
+    <!-- T3. 分割线 -->
+    <hr>
+
+    <!-- T4. 正文段落 -->
+    <p>正文段落内容。每段控制在3-4行以内，段与段之间留空行，让页面有呼吸感。头条正文字号17px，行高2，字间距1px，由编辑器控制。</p>
+
+    <!-- T5. 行内加粗强调 -->
+    <p>关键数据和结论要<strong>单独成段并加粗</strong>，这是头条算法偏好的排版方式。加粗不是为了好看，而是为了突出信息密度。</p>
+
+    <!-- T6. 章节标题 -->
+    <h2>◆ 章节小标题</h2>
+
+    <p>小标题下方正文。每300字左右插入一个小标题，帮助读者理清逻辑。头条读者的注意力衰减很快，小标题是留住读者的关键锚点。</p>
+
+    <!-- T8. 核心结论（整段加粗） -->
+    <p><strong>核心结论：重要的数据和观点单独成段加粗，让读者即使只扫读也能抓住重点。</strong></p>
+
+    <!-- T7. 子标题 -->
+    <h3>▶ 子标题</h3>
+
+    <p>子标题用于章节内的进一步分层，用▶符号引导。</p>
+
+    <!-- T6. 章节标题 -->
+    <h2>◆ 列表与要点</h2>
+
+    <p>头条排版中列表项用语义 <strong>ul</strong> 标签，li内用 strong 加粗关键词，不依赖CSS圆点。保持列表风格统一，一篇文章内只用一种列表形式。</p>
+
+    <!-- T9. 无序列表 -->
+    <ul>
+      <li><strong>要点一：</strong>用语义列表标签，简洁有力</li>
+      <li><strong>要点二：</strong>每项之间间距由编辑器控制</li>
+      <li><strong>要点三：</strong>关键数据加粗，一眼可见</li>
+      <li><strong>要点四：</strong>整篇最多2种emoji，不连续出现</li>
+    </ul>
+
+    <!-- T6. 章节标题 -->
+    <h2>◆ 引用与数据</h2>
+
+    <p>引用名人语句或报告数据时，用简洁的引用样式。头条不适合花哨的引用块，保持克制。</p>
+
+    <!-- T11. 引用块 -->
+    <blockquote>
+      <p>"引用文字内容。用于名人名言或报告引用。"</p>
+      <p>—— 来源署名</p>
+    </blockquote>
+
+    <!-- T12. 数据高亮 -->
+    <p><strong>87.3%</strong></p>
+    <p><em>数据说明文字，描述这个数字的含义</em></p>
+
+    <!-- T6. 章节标题 -->
+    <h2>◆ 操作步骤</h2>
+
+    <!-- T10. 有序列表 -->
+    <ol>
+      <li>第一步：写完文章内容，理清逻辑结构</li>
+      <li>第二步：每300字插入小标题，分段不超过4行</li>
+      <li>第三步：关键数据加粗单独成段，配图加图注</li>
+      <li>第四步：手机端预览确认，再发布</li>
+    </ol>
+
+    <!-- T6. 章节标题 -->
+    <h2>◆ 对比分析</h2>
+
+    <!-- T13. 表格 -->
+    <table>
+      <tr>
+        <th>维度</th>
+        <th>方式A</th>
+        <th>方式B</th>
+      </tr>
+      <tr>
+        <td>特点一</td>
+        <td>描述A1</td>
+        <td>描述B1</td>
+      </tr>
+      <tr>
+        <td>特点二</td>
+        <td>描述A2</td>
+        <td>描述B2</td>
+      </tr>
+      <tr>
+        <td>特点三</td>
+        <td>描述A3</td>
+        <td>描述B3</td>
+      </tr>
+    </table>
+
+    <!-- T6. 章节标题 -->
+    <h2>◆ 代码示例</h2>
+
+    <!-- T14. 代码块 -->
+    <pre>const example = "hello";
+console.log(example);</pre>
+
+    <!-- T6. 章节标题 -->
+    <h2>◆ 宽表替代形态</h2>
+
+    <p>当表格列数过多（≥5列）或含长文本列时，用 blockquote 卡片形态替代，每行一卡，信息更清晰。</p>
+
+    <!-- T16. 信息卡片（每行一卡，宽表替代） -->
+    <blockquote>
+      <p><strong>行标题/关键列</strong> 评价标签</p>
+      <p>列名A：值A</p>
+      <p>列名B：值B</p>
+    </blockquote>
+    <blockquote>
+      <p><strong>行标题/关键列</strong> 评价标签</p>
+      <p>列名A：值A</p>
+      <p>列名B：值B</p>
+    </blockquote>
+
+    <!-- T17. 键值列表（2~3列文字表替代） -->
+    <blockquote>
+      <p><strong>条目标题</strong></p>
+      <p>说明文字内容</p>
+      <p>方法：补充信息</p>
+    </blockquote>
+    <blockquote>
+      <p><strong>条目标题</strong></p>
+      <p>说明文字内容</p>
+      <p>方法：补充信息</p>
+    </blockquote>
+
+    <!-- T6. 章节标题 -->
+    <h2>◆ 总结</h2>
+
+    <p>头条排版的核心理念是<strong>克制</strong>。用符号建立层级，加粗突出重点，短段落保持节奏。</p>
+
+    <p><strong>记住三个数字：17px字号、4行分段、300字小标题。</strong></p>
+
+    <!-- T3. 分割线 -->
+    <hr>
+
+    <!-- T15. 底部签名 -->
+    <p>关注我，获取更多实用干货</p>
+    <p><em>每周更新，欢迎转发分享</em></p>
+
+  </div>
+
+  <!-- ===== 头条实际效果模拟（无CSS，模拟ProseMirror渲染） ===== -->
+  <div class="toutiao-raw" id="raw-view" style="display:none">
+    <p style="font-size:13px;color:#aaa;text-align:center;margin-bottom:16px">↓ 以下模拟头条编辑器实际渲染效果（仅语义标签，无自定义样式） ↓</p>
+    <div id="raw-content"></div>
+  </div>
+
+</div>
+
+<script>
+function copyContent() {
+  var content = document.getElementById('styled-view');
+  var range = document.createRange();
+  range.selectNodeContents(content);
+  var selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+  try {
+    document.execCommand('copy');
+    var btn = document.querySelector('.copy-btn');
+    var originalText = btn.textContent;
+    btn.textContent = '✓ 已复制，可粘贴到头条编辑器';
+    btn.style.background = '#00a663';
+    setTimeout(function() {
+      btn.textContent = originalText;
+      btn.style.background = '#F04142';
+    }, 3000);
+  } catch (err) {
+    alert('复制失败，请手动选中预览区内容复制');
+  }
+  selection.removeAllRanges();
+}
+
+function switchView(view) {
+  var tabs = document.querySelectorAll('.view-tab');
+  var styledView = document.getElementById('styled-view');
+  var rawView = document.getElementById('raw-view');
+  if (view === 'styled') {
+    tabs[0].classList.add('active');
+    tabs[1].classList.remove('active');
+    styledView.style.display = '';
+    rawView.style.display = 'none';
+  } else {
+    tabs[0].classList.remove('active');
+    tabs[1].classList.add('active');
+    styledView.style.display = 'none';
+    rawView.style.display = '';
+    if (!document.getElementById('raw-content').innerHTML) {
+      var clone = styledView.cloneNode(true);
+      var all = clone.querySelectorAll('*');
+      for (var i = 0; i < all.length; i++) {
+        all[i].removeAttribute('class');
+        all[i].removeAttribute('style');
+      }
+      var walker = document.createTreeWalker(clone, NodeFilter.SHOW_COMMENT, null, null);
+      var comments = [];
+      while (walker.nextNode()) comments.push(walker.currentNode);
+      comments.forEach(function(c) { c.parentNode.removeChild(c); });
+      document.getElementById('raw-content').innerHTML = clone.innerHTML;
+    }
+  }
+}
+</script>
+</body>
+</html>

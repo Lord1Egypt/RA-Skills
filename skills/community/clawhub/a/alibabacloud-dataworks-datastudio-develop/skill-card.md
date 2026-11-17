@@ -1,52 +1,68 @@
-## Description: <br>
-DataWorks data development skill for creating, configuring, validating, deploying, updating, moving, and renaming DataWorks nodes and workflows while managing components, resources, UDF functions, scheduling, and Data Integration pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DataWorks data development skill for creating, configuring, validating, deploying, updating, moving, and renaming DataWorks nodes, workflows, components, file resources, and UDF functions.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and data engineers use this skill to build and operate Alibaba Cloud DataWorks data development assets, including FlowSpec node definitions, workflows, scheduling configuration, deployment pipeline commands, and verification steps. It is intended for agents working with Aliyun CLI or Python SDK workflows that require validated specs, least-privilege credentials, and explicit confirmation for high-impact production actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact DataWorks production deployments, offline actions, pipeline cancellation, and mutating project operations. <br>
-Mitigation: Require explicit human approval before Online or Offline deployments, cancellation, move, rename, or other mutating operations; verify deployment status from DataWorks responses before reporting success. <br>
-Risk: The skill requires access to sensitive Alibaba Cloud credentials and DataWorks projects. <br>
-Mitigation: Use least-privilege, non-root, preferably temporary credentials, avoid printing secrets, and restrict permissions to the target project and required DataWorks APIs. <br>
-Risk: Generated SQL, shell nodes, DI jobs, preSql/postSql hooks, and DROP/DELETE/TRUNCATE statements may modify or destroy data. <br>
-Mitigation: Review generated specs and code before execution, use non-production projects first, and keep backups or rollback plans for data-changing operations. <br>
+## Use Case:
 
+External developers and data engineers use this skill to manage Alibaba Cloud DataWorks DataStudio development workflows. It helps produce and validate FlowSpec definitions, CLI commands, Python SDK examples, scheduling settings, deployment steps, and Data Integration task guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-dataworks-datastudio-develop) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [FlowSpec Format Reference](artifact/references/flowspec-guide.md) <br>
-- [Workflow Development Guide](artifact/references/workflow-guide.md) <br>
-- [Deployment Guide](artifact/references/deploy-guide.md) <br>
-- [DataWorks Data Development API Call Templates](artifact/references/api-recipes.md) <br>
-- [DI Data Synchronization Development Guide](artifact/references/di-guide.md) <br>
-- [Scheduling Configuration Guide](artifact/references/scheduling-guide.md) <br>
-- [DataWorks Data Development RAM Permission List](artifact/references/ram-policies.md) <br>
-- [DataWorks Data Development Verification Methods](artifact/references/verification-method.md) <br>
-- [Troubleshooting Guide](artifact/references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown guidance with JSON, shell command, Python SDK, SQL, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce DataWorks FlowSpec JSON, node directories, deployment commands, validation steps, and operational checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: The skill may ask the agent to run an unverified remote Aliyun CLI installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or update Aliyun CLI through a pinned, trusted, verifiable method before using the skill, and avoid the curl-to-shell path when possible.
+
+Risk: The skill may make persistent Aliyun CLI and plugin changes.
+
+Mitigation: Review plugin installation and update steps before approval, and use a controlled CLI profile for the target DataWorks project.
+
+Risk: The skill can guide broad cloud mutations in Alibaba Cloud DataWorks resources.
+
+Mitigation: Use least-privilege RAM credentials scoped to the target project and require explicit review before update, move, rename, publish, or other mutating operations.
+
+## Reference(s):
+
+- [Skill Source](artifact/SKILL.md)
+- [CLI Installation and Configuration Guide](artifact/references/cli-installation-guide.md)
+- [FlowSpec Field Reference](artifact/references/flowspec-guide.md)
+- [Workflow Development Guide](artifact/references/workflow-guide.md)
+- [Scheduling Guide](artifact/references/scheduling-guide.md)
+- [Publishing and Deployment Guide](artifact/references/deploy-guide.md)
+- [Data Integration Guide](artifact/references/di-guide.md)
+- [RAM Policies](artifact/references/ram-policies.md)
+- [Acceptance Criteria](artifact/references/acceptance-criteria.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [Related Commands](artifact/references/related-commands.md)
+- [Alibaba Cloud DataWorks API Metadata](https://api.aliyun.com/meta/v1/products/dataworks-public/versions/2024-05-18/apis/{APIName}/api.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON FlowSpec/spec examples, configuration snippets, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are proposals for DataWorks resource operations and should be reviewed before execution.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

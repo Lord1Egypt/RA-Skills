@@ -1,0 +1,49 @@
+{
+  "title": "AI-UXD Data",
+  "description": "Per-project data shape for AI-UXD (UX Design).",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema": {"type":"string"},
+    "$schemaVersion": {"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy": {"type":"string","const":"AI-DFE"},
+    "$generatedOn": {"type":"string","format":"date-time"},
+    "$family": {"type":"string"},
+    "$package": {"type":"string","const":"ai-uxd"},
+    "data": {
+      "type":"object","required":["projectId","status"],
+      "properties": {
+        "projectId":{"type":["string","null"]},
+        "projectHandle":{"type":["string","null"]},
+        "outputRoot":{"type":["string","null"]},
+        "created":{"type":["string","null"]},
+        "lastUpdated":{"type":["string","null"]},
+        "mode":{"type":["string","null"]},
+        "depth":{"type":["string","null"]},
+        "currentPhase":{"type":["string","null"]},
+        "currentStage":{"type":["integer","null"]},
+        "status":{"type":["string","null"]},
+        "progress":{"type":"array","items":{"type":"object","properties":{"stage":{"type":"integer"},"name":{"type":"string"},"status":{"type":"string"},"completed":{"type":["string","null"]},"artifacts":{"type":["string","null"]}}}},
+        "enabledExtensions":{"type":"array","items":{"type":"string"}},
+        "downstreamSignals":{"type":["object","null"]},
+        "keyMetrics":{"type":["object","null"]},
+        "accessibility":{"type":["object","null"],"properties":{"wcagTarget":{"type":["string","null"]},"status":{"type":["string","null"]}}},
+        "ux":{"type":["object","null"],"description":"UX pane for the dashboard UX tab (BUILD_GUIDE §2.1.5). Assembled by AI-DFE into dashboard-data.json projects[].ux.","properties":{
+          "status":{"type":["string","null"]},
+          "phase":{"type":["string","null"]},
+          "stage":{"type":["string","null"]},
+          "personas":{"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"status":{"type":["string","null"]},"path":{"type":["string","null"]}}}},
+          "journeys":{"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"status":{"type":["string","null"]},"persona":{"type":["string","null"]},"path":{"type":["string","null"]},"steps":{"type":["integer","null"]},"goal":{"type":["string","null"]},"trigger":{"type":["string","null"]},"endStateSuccess":{"type":["string","null"]},"endStateFailure":{"type":["string","null"]},"duration":{"type":["string","null"]},"frequency":{"type":["string","null"]}}}},
+          "flows":{"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"status":{"type":["string","null"]},"path":{"type":["string","null"]},"persona":{"type":["string","null"]},"journey":{"type":["string","null"]},"mermaid":{"type":["string","null"]}}}},
+          "userFlows":{"type":["object","null"],"properties":{"total":{"type":["integer","null"]},"mapped":{"type":["integer","null"]}}},
+          "wireframes":{"type":["object","null"],"properties":{"total":{"type":["integer","null"]},"approved":{"type":["integer","null"]},"inReview":{"type":["integer","null"]},"pending":{"type":["integer","null"]},"path":{"type":["string","null"]},"experiences":{"type":"array"},"screens":{"type":"array"}}},
+          "designSystem":{"type":["object","null"],"properties":{"tokens":{"type":["object","null"],"properties":{"total":{"type":["integer","null"]},"defined":{"type":["integer","null"]}}},"components":{"type":["object","null"],"properties":{"total":{"type":["integer","null"]},"specified":{"type":["integer","null"]}}}}},
+          "designSystemFiles":{"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"path":{"type":["string","null"]},"status":{"type":["string","null"]},"description":{"type":["string","null"]}}}},
+          "componentLibrary":{"type":["object","null"],"properties":{"path":{"type":["string","null"]},"total":{"type":["integer","null"]},"atoms":{"type":["integer","null"]},"molecules":{"type":["integer","null"]},"organisms":{"type":["integer","null"]},"components":{"type":"array"}}},
+          "informationArchitecture":{"type":["object","null"],"properties":{"status":{"type":["string","null"]},"pages":{"type":["integer","null"]}}},
+          "accessibility":{"type":["object","null"],"properties":{"target":{"type":["string","null"]},"wcagLevel":{"type":["string","null"]},"criteria":{"type":["integer","null"]},"met":{"type":["integer","null"]},"baselineDefined":{"type":["boolean","null"]}}}
+        }}
+      }
+    }
+  }
+}

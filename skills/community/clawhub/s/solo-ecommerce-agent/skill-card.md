@@ -1,43 +1,58 @@
-## Description: <br>
-Automates multi-platform e-commerce operations including product discovery, listing preparation, customer-service replies, order handling, and daily reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates multi-platform ecommerce operations including product opportunity scanning, listing support, customer replies, order handling, and daily operations reports.
 
-## Publisher: <br>
-[hnc87](https://clawhub.ai/user/hnc87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hnc87](https://clawhub.ai/user/hnc87)
 
-## Use Case: <br>
-E-commerce operators and developers use this skill to configure an agent that scans product opportunities, prepares listings, drafts customer replies, processes order records, and summarizes store activity across platforms such as Douyin, Taobao, Pinduoduo, and JD. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be configured for unattended publishing, customer replies, shipping, refunds, and order handling in live stores. <br>
-Mitigation: Start with a test store or narrowly permissioned account, and keep publishing, shipping, refunds, and customer replies behind human approval until safeguards are verified. <br>
-Risk: The skill stores customer, order, product, recommendation, and operational log data on the local filesystem. <br>
-Mitigation: Protect the data directory, limit access to credentials and customer records, and regularly delete or rotate local operational data that is no longer needed. <br>
-Risk: Frequent cron execution can repeatedly act on store backends without sufficient review. <br>
-Mitigation: Avoid unattended cron schedules in production until each module has been tested, platform permissions are scoped, and exception handling or manual escalation is in place. <br>
+## Use Case:
 
+Store operators and ecommerce automation developers use this skill to coordinate recurring storefront tasks across platforms such as Douyin, Taobao/Tmall, Pinduoduo, and JD. It can prepare local configuration and data files, run scheduled operational scripts, and generate markdown daily reports from store data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hnc87/solo-ecommerce-agent) <br>
-- [Platform operation guide](artifact/references/platform_guides.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code, markdown] <br>
-**Output Format:** [Markdown instructions, JSON configuration, Python scripts, shell commands, and generated text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local JSON records and daily log/report files under the configured e-commerce data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata.json) <br>
+Risk: The security review flags unattended live-store automation that can publish products, message customers, and process shipments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run testing, explicit approval gates, audit logs, scoped credentials, and a documented way to disable each scheduled task before connecting real store accounts.
+
+Risk: Cron-based automation can repeatedly perform customer replies, product publishing, shipping, refunds, browser automation, or API-key-backed actions without review.
+
+Mitigation: Keep live publishing, auto replies, auto shipping, refunds, browser automation, and API keys disabled until the operator has reviewed and approved the configured workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hnc87/skills/solo-ecommerce-agent)
+- [Platform operation guide](references/platform_guides.md)
+- [Taobao seller console](https://myseller.taobao.com)
+- [Douyin store console](https://fxg.jinritemai.com)
+- [Pinduoduo merchant console](https://mms.pinduoduo.com)
+- [JD shop console](https://shop.jd.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance, Python scripts, JSON configuration, cron schedules, logs, and markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local JSON data and log/report files under the configured ecommerce data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

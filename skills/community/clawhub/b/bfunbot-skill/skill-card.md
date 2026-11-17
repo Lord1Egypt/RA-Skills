@@ -1,47 +1,63 @@
-## Description: <br>
-Create tokens on BSC, check fee earnings, check BFun.bot Credits balance, trigger agent credit reload, and interact with BFunBot's Agent API and BFun LLM Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BFunbot Skill lets agents create BSC tokens, check fee earnings and balances, reload BFun.bot Credits, and use BFunBot's Agent API and LLM Gateway.
 
-## Publisher: <br>
-[bfunbot](https://clawhub.ai/user/bfunbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bfunbot](https://clawhub.ai/user/bfunbot)
 
-## Use Case: <br>
-External developers and agent users use this skill to interact with BFunBot services from natural language: create BSC tokens, inspect token and fee information, manage BFun.bot Credits, and route LLM calls through BFunBot's gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a BFunBot API key to access wallet/account metadata, BFun.bot Credits data, and prompts routed through the LLM gateway. <br>
-Mitigation: Install only when the user trusts BFunBot, store the API key carefully, and grant only the permissions needed for the intended workflow. <br>
-Risk: Agent-triggered credit reloads and reload-disable actions can affect billing-related settings and available funds. <br>
-Mitigation: Keep Agent Reload disabled unless required, set low daily limits, and require explicit user confirmation before reload or reload-disable requests. <br>
-Risk: Token creation on BSC is financially sensitive and can create on-chain assets or consume quota and wallet balance. <br>
-Mitigation: Require explicit user confirmation before token creation and verify token name, symbol, chain, platform, image/source URL, and cost or quota impact before calling the API. <br>
+## Use Case:
 
+External developers and BFunBot users use this skill to create and monitor BSC tokens, review fee earnings and wallet or credit balances, reload credits from a trading wallet, and route LLM calls through BFunBot.
 
-## Reference(s): <br>
-- [BFunBot Agent API Quick Reference](references/api.md) <br>
-- [BFunBot](https://bfun.bot) <br>
-- [BFunBot Agent API](https://api.bfun.bot/agent/v1) <br>
-- [BFunBot LLM Gateway](https://llm.bfun.bot) <br>
-- [ClawHub skill page](https://clawhub.ai/bfunbot/bfunbot-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/bfunbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose authenticated API calls and configuration changes that require user-provided BFunBot API key permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can trigger financially impactful token launches and wallet-funded credit reloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege BFunBot API key and require explicit confirmation for token launches, reload amounts, funding source, chain, and irreversible disable actions.
+
+Risk: Agent Reload can move funds from a trading wallet into BFun.bot Credits.
+
+Mitigation: Enable Agent Reload only when wallet-funded reloads are acceptable and keep daily reload limits low enough for the account's risk tolerance.
+
+Risk: The LLM gateway routes prompts, secrets, or business data through a third-party service.
+
+Mitigation: Do not send secrets or sensitive personal or business data through the BFunBot LLM Gateway unless third-party processing is approved.
+
+## Reference(s):
+
+- [BFunBot Agent API Quick Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/bfunbot/skills/bfunbot-skill)
+- [BFunBot](https://bfun.bot)
+- [BFunBot Agent API](https://bfun.bot/agent)
+- [BFunBot API Keys](https://bfun.bot/settings/api-keys)
+- [BFun LLM Gateway](https://bfun.bot/llm)
+- [BFunBot Credits](https://bfun.bot/credits)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, code]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose authenticated API calls and state-changing actions that require user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md and evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

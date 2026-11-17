@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "batch-image-processor-pro",
+  "name": "batch-image-processor",
+  "displayName": "批量图片处理工具",
   "version": "1.0.0",
-  "publishedAt": 1774767937738
+  "slug": "batch-image-processor-pro",
+  "description": "批量图片处理工具，支持压缩、裁剪、水印、格式转换",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["image", "batch", "compress", "watermark", "convert", "resize", "photo"],
+  "pricing": {
+    "type": "paid",
+    "amount": 25,
+    "currency": "CNY"
+  },
+  "requirements": ["pillow", "opencv-python"],
+  "category": "media"
 }

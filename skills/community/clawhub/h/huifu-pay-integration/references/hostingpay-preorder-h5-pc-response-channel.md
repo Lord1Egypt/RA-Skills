@@ -23,8 +23,8 @@
 | `openid` | 用户标识 | String | 128 | Y | 用户在商户 `appid` 下的唯一标识 |
 | `sub_openid` | 子商户用户标识 | String | 128 | N | 用户在子商户 `appid` 下的唯一标识 |
 | `bank_type` | 付款银行 | String | 16 | Y | 微信银行类型标识 |
-| `cash_fee` | 现金支付金额 | Int | 100 | N | 官方类型列为 `Int`，但金额语义明显按金额字符串理解 |
-| `coupon_fee` | 代金券金额 | Int | 100 | N | 代金券或立减优惠金额 |
+| `cash_fee` | 现金支付金额 | String | 12 | N | 订单现金支付金额，金额字符串 |
+| `coupon_fee` | 代金券金额 | String | 12 | N | 代金券或立减优惠金额 |
 | `attach` | 商家数据包 | String | 128 | N | 原样返回 |
 | `promotion_detail` | 营销详情列表 | Array | 6000 | N | JSON 数组 |
 
@@ -206,6 +206,6 @@
 
 ## 实现备注
 
-- `dy_response` 在官方表中既被写成字符串，又展开了子字段；这里按“字符串承载 JSON 数组/对象”的方式理解。
-- `wx_response.cash_fee`、`coupon_fee` 的类型列不可信，建议业务侧统一按金额字段兼容解析。
+- `dy_response` 正式为 String(JSON Object)，先解码字符串再读取子字段；原生对象与JSON字符串需要分别建模。
+- 2026-10-10官网 `wx_response.cash_fee/coupon_fee` 明确为 String(12)，保留金额字符串并按十进制处理；旧Int/示例冲突已关闭。
 - 如果要落库保存渠道扩展返回，推荐保留原始 JSON，同时抽取少量检索字段，如 `openid`、`buyer_id`、`bank_type`。

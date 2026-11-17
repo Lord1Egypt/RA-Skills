@@ -1,0 +1,14 @@
+{
+  "scope": "personal-tools",
+  "goal": "选择一个可独立维护的个人工具实现方式（合成演示）",
+  "mode": "assist",
+  "context": {"synthetic_example": true},
+  "options": [
+    {"id": "A", "label": "本地单进程", "facts": "本地进程，单一数据文件，升级前备份；预计两天开发。", "eligibility": "pass", "reason": "演示设定：两天投入在本次预算内", "evidence_refs": ["合成案例：A 方案说明"]},
+    {"id": "B", "label": "多服务部署", "facts": "需要独立维护 API、数据库与队列，分别监控和升级；使用现成模板，首次半天完成。", "eligibility": "pass", "reason": "演示设定：资源与预算满足", "evidence_refs": ["合成案例：B 方案说明"]}
+  ],
+  "dimensions": [
+    {"id": "maintenance", "type": "score", "instructions": "评价持续维护负担，不包括首次开发与学习。", "criteria": ["单一组件内完成升级与恢复", "额外维护一个服务并分别恢复", "协调多个独立服务的监控升级与恢复"], "direction": "min"},
+    {"id": "first_effort", "type": "score", "instructions": "评价首次交付投入，不包括后续维护。", "criteria": ["可在半天内交付", "需要一到两天开发", "需要超过两天开发"], "direction": "min"}
+  ]
+}

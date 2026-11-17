@@ -1,45 +1,73 @@
-## Description: <br>
-AssetClaw 资产管理系统 helps agents use AssetHub APIs for asset lifecycle workflows, including asset lookup, repair requests, maintenance work orders, transfers, inventory, depreciation, procurement, retirement, quality control, documents, spare parts, labels, alerts, IoT monitoring, compliance, safety checks, and barcode management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AssetClaw helps agents work with AssetHub asset lifecycle workflows, including asset lookup, maintenance requests, approvals, inventory, procurement, retirement, compliance, IoT monitoring, documents, spare parts, labels, alerts, and related API operations.
 
-## Publisher: <br>
-[cmu4hlee](https://clawhub.ai/user/cmu4hlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cmu4hlee](https://clawhub.ai/user/cmu4hlee)
 
-## Use Case: <br>
-Asset, maintenance, procurement, inventory, compliance, and operations teams use this skill to let an agent query AssetHub data and prepare or execute authenticated asset-management workflows. It is intended for users who have valid AssetHub credentials and appropriate tenant permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad production and administrative authority over AssetHub workflows. <br>
-Mitigation: Use a least-privilege AssetHub account and manually confirm admin, restore, delete, approval, and other destructive actions before execution. <br>
-Risk: Credential and session handling may expose sensitive AssetHub credentials or tokens through local temporary files. <br>
-Mitigation: Avoid storing passwords in the documented /tmp credential file, prefer secure environment handling, and clear token and temporary credential files after use. <br>
-Risk: The documented default API URL may use plain HTTP. <br>
-Mitigation: Override the API URL to an HTTPS endpoint before using the skill with real credentials or production data. <br>
+## Use Case:
 
+AssetHub users and asset operations teams use this skill to query asset records, prepare or execute authorized AssetHub API calls, and manage operational workflows such as repair, transfer, procurement, inspection, compliance, labels, and IoT monitoring. It is intended for environments with an existing AssetHub deployment and authorized credentials.
 
-## Reference(s): <br>
-- [AssetClaw ClawHub Listing](https://clawhub.ai/cmu4hlee/assetclaw) <br>
-- [AssetClaw Official Site](http://www.medfix.cn) <br>
-- [Authentication and Workflow Reference](references/auth-and-workflows.md) <br>
-- [AssetHub API Endpoint Quick Reference](references/endpoint-quick-ref.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses authenticated HTTP requests against AssetHub and may cache session state during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.9 (source: server release metadata) <br>
+Risk: The helper can handle credentials and session data in local temporary files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege AssetHub account, prefer environment or managed secret injection over prompt-supplied passwords, and remove session files on logout or after use.
+
+Risk: The skill covers high-impact administrative and write operations such as asset deletion, role changes, backup or restore, service-token, and system configuration actions.
+
+Mitigation: Review the exact endpoint and payload before execution, query the target object before writes, require explicit confirmation for high-risk replays, and route sensitive changes through normal administrative approval where possible.
+
+Risk: Reusing an idempotency key with a different payload can create conflicts or unsafe retry behavior.
+
+Mitigation: Use a stable idempotency key only for one intended request body and generate a new key for different payloads.
+
+Risk: Cross-tenant AssetHub operations can affect the wrong tenant when elevated accounts are used.
+
+Mitigation: Use the tenant returned by the authorized session unless a verified administrative workflow explicitly requires another tenant, and confirm tenant context before writes.
+
+Risk: Non-HTTPS or unreviewed endpoints can expose credentials or operational data.
+
+Mitigation: Prefer HTTPS AssetHub endpoints and review the configured API URL before login or write operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cmu4hlee/skills/assetclaw)
+- [AssetHub website](http://www.medfix.cn)
+- [AssetClaw skill documentation](artifact/SKILL.md)
+- [AssetHub API Top 40 quick reference](artifact/references/endpoint-quick-ref.md)
+- [Authentication and workflow reference](artifact/references/auth-and-workflows.md)
+- [AssetHub API modules overview](artifact/references/api-modules-overview.md)
+- [AssetHub API domain map](artifact/references/api-domain-map.md)
+- [Asset state machine](artifact/references/asset-state-machine.md)
+- [API conventions](artifact/references/api-conventions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, JSON payloads]
+
+**Output Format:** [Markdown guidance with bash or curl commands and JSON request or response examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Execution requires an AssetHub API endpoint and authorized credentials; outputs should not expose passwords, tokens, or tenant secrets.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release evidence and artifact changelog, released 2026-07-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

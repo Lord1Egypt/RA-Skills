@@ -1,43 +1,56 @@
-## Description: <br>
-OWASP Top 10 AI provides agent-readable OWASP LLM Top 10 (2025) guardrails for OpenClaw agents, with deny, warn, and audit rules for common LLM security risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RAIGO OWASP LLM Top 10 provides agent-readable enforcement rules for the OWASP Top 10 for Large Language Model Applications 2025, covering prompt injection, sensitive information disclosure, supply chain vulnerabilities, excessive agency, and related LLM application risks.
 
-## Publisher: <br>
-[musharsec](https://clawhub.ai/user/musharsec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[musharsec](https://clawhub.ai/user/musharsec)
 
-## Use Case: <br>
-Developers and teams use this skill to add OWASP LLM Top 10-aligned security guardrails to OpenClaw agents. It helps agents identify and respond to prompt injection, sensitive information disclosure, insecure output handling, excessive agency, and related LLM application risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guardrails can produce conservative refusals or confirmation prompts around sensitive data, external tools, generated code execution, system prompt requests, and broad tasks. <br>
-Mitigation: Review blocked or warned actions with the user and confirm trusted components, data flow, and task scope before proceeding. <br>
-Risk: Separately downloaded organization-specific replacement skills may contain different embedded rules. <br>
-Mitigation: Review and scan any replacement skill before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add OWASP LLM Top 10 aligned deny, warn, and audit rules to OpenClaw agents. It is intended as advisory guardrail text for compliance alignment, not as a complete security product.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/musharsec/raigo-owasp-top-10-llm) <br>
-- [RAIGO OWASP LLM documentation](https://raigo.ai/docs/owasp-llm) <br>
-- [OWASP Top 10 for LLM Applications 2025](https://owasp.org/www-project-top-10-for-large-language-model-applications/) <br>
-- [OWASP LLM Prompt Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown guidance with deny, warn, and audit response patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guardrail skill; no executable code or hidden access found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill's protection claims may be read as guaranteed enforcement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as advisory guardrail text and confirm the host agent applies the rules as intended.
+
+Risk: Broad refusal language may block legitimate workflows involving sensitive data, tool calls, or multilingual requests.
+
+Mitigation: Review and tune the rule language before deployment in workflows that require those capabilities.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/musharsec/skills/raigo-owasp-top-10-llm)
+- [RAIGO OWASP LLM documentation](https://raigo.ai/docs/owasp-llm)
+- [OWASP Top 10 for LLM Applications 2025](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [OWASP LLM Prompt Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown security policy rules with deny, warn, and audit response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only advisory guardrail text; no hidden execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

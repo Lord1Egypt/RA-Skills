@@ -1,53 +1,67 @@
-## Description: <br>
-Detect prompt injection, jailbreak, role-hijack, and system extraction attempts. Applies multi-layer defense with semantic analysis and penalty scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect prompt injection, jailbreak, role-hijack, and system extraction attempts using layered pattern, semantic, evasion, and penalty scoring defenses.
 
-## Publisher: <br>
-[georges91560](https://clawhub.ai/user/georges91560) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[georges91560](https://clawhub.ai/user/georges91560)
 
-## Use Case: <br>
-Developers and agent operators use this skill to screen user input and tool output for prompt injection, jailbreak, role hijack, system extraction, multilingual evasion, memory persistence, and credential exfiltration attempts before agent logic proceeds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad control over agent behavior, including pre-execution checks and lockdown behavior. <br>
-Mitigation: Require human approval before enabling lockdown, tool disabling, or sensitive-file monitoring behavior, and review the configuration before deployment. <br>
-Risk: The optional installer downloads files from a mutable GitHub main branch. <br>
-Mitigation: Prefer ClawHub or manual installation from reviewed artifacts, and avoid running install.sh unless the downloaded content has been inspected. <br>
-Risk: Audit logging and outbound alerting can expose sensitive prompt, tool, or incident details. <br>
-Mitigation: Keep webhook, translation API, and threat-feed features disabled unless needed, and redact or limit audit logs before storing or forwarding them. <br>
+## Use Case:
 
+Developers and operators use this skill as a security gate for autonomous agents to screen user inputs and tool outputs for prompt injection, jailbreak, system extraction, and credential exfiltration attempts before normal agent execution proceeds.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/georges91560/security-sentinel-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/georges91560) <br>
-- [README](README.md) <br>
-- [Security Policy and Transparency](SECURITY.md) <br>
-- [Configuration Guide](CONFIGURATION.md) <br>
-- [Blacklist Patterns](blacklist-patterns.md) <br>
-- [Semantic Scoring](semantic-scoring.md) <br>
-- [Multilingual Evasion](multilingual-evasion.md) <br>
-- [Advanced Threats 2026](advanced-threats-2026.md) <br>
-- [Memory Persistence Attacks](memory-persistence-attacks.md) <br>
-- [Credential Exfiltration Defense](credential-exfiltration-defense.md) <br>
-- [Advanced Jailbreak Techniques](advanced-jailbreak-techniques.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON status examples, code snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes allow/block decision examples, scoring thresholds, logging guidance, and optional alerting configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill is intended to serve as a high-trust security gateway and can affect agent-wide input, tool-output, and blocking behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, prefer a pinned ClawHub package or reviewed commit, and enforce blocking through host-managed policy.
+
+Risk: The optional install script performs mutable remote installation and may attempt Python dependency installation with --break-system-packages.
+
+Mitigation: Prefer ClawHub or manual installation from reviewed files, review install.sh before use, and avoid --break-system-packages in managed environments.
+
+Risk: Persistent audit logging and optional external alerts may expose sensitive event metadata if configured too broadly.
+
+Mitigation: Disable raw prompt logging and external alerts unless explicitly needed, set retention for audit logs, and restrict alert destinations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/georges91560/skills/security-sentinel-skill)
+- [Publisher Profile](https://clawhub.ai/user/georges91560)
+- [Security Policy and Transparency](artifact/SECURITY.md)
+- [Configuration Guide](artifact/CONFIGURATION.md)
+- [Blacklist Patterns](artifact/blacklist-patterns.md)
+- [Semantic Scoring](artifact/semantic-scoring.md)
+- [Multilingual Evasion](artifact/multilingual-evasion.md)
+- [Advanced Threats 2026](artifact/advanced-threats-2026.md)
+- [Memory Persistence Attacks](artifact/memory-persistence-attacks.md)
+- [Credential Exfiltration Defense](artifact/credential-exfiltration-defense.md)
+- [Advanced Jailbreak Techniques](artifact/advanced-jailbreak-techniques.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-like security decision objects, Python and shell snippets, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce BLOCKED or ALLOWED decisions, audit log guidance, alert guidance, threshold configuration, and detection pattern updates.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

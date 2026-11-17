@@ -1,7 +1,7 @@
 # truenas-aiops CLI reference
 
-> Preview / mock-only. Endpoint paths are modelled against the documented
-> TrueNAS SCALE REST v2.0 API and need live verification.
+> Exercised against live TrueNAS SCALE 25.04 and 26 appliances over both the
+> REST and WebSocket transports; see docs/VERIFICATION.md for the gaps.
 
 ## Setup & diagnostics
 
@@ -26,6 +26,8 @@ truenas-aiops secret rotate-password                 # re-encrypt under a new ma
 ```bash
 truenas-aiops overview [--target <t>]    # pools (capacity/health), alerts by level, running services
 truenas-aiops system [--target <t>]      # version / hostname / memory / cores / uptime
+truenas-aiops diagnose pool-health       # RCA: pool state / error counters / capacity (worst first)
+truenas-aiops diagnose alerts            # RCA: active alerts by level + datasets near full
 truenas-aiops pool list
 truenas-aiops pool get <pool_id>
 truenas-aiops pool status <pool_id>      # health + scan + topology summary
@@ -33,7 +35,7 @@ truenas-aiops pool scrub-status <pool_id>
 truenas-aiops pool capacity              # size / allocated / free / used% per pool
 truenas-aiops dataset list
 truenas-aiops dataset get <dataset_id>   # e.g. tank/data
-truenas-aiops snapshot list [--dataset <tank/data>]
+truenas-aiops snapshot list [--dataset <tank/data>] [--limit 200]
 truenas-aiops disk list
 truenas-aiops disk smart                 # S.M.A.R.T. self-test results per disk
 truenas-aiops alert list

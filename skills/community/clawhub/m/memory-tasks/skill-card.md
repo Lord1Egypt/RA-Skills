@@ -1,39 +1,53 @@
-## Description: <br>
-Task management via Basic Memory schemas: create, track, and resume structured tasks that survive context compaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task management via Basic Memory schemas: create, track, and resume structured tasks that survive context compaction. Uses BM's schema system for uniform notes queryable through the knowledge graph.
 
-## Publisher: <br>
-[phernandez](https://clawhub.ai/user/phernandez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phernandez](https://clawhub.ai/user/phernandez)
 
-## Use Case: <br>
-Agent users and developers use this skill to create, update, query, and resume Basic Memory task notes for multi-step work, especially across context compaction or restart. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task notes intentionally persist context and may retain sensitive information longer than the active session. <br>
-Mitigation: Avoid storing secrets, tokens, sensitive customer data, or private details that are not needed to resume the work. <br>
-Risk: Stale task status or incomplete context can mislead future task resumption. <br>
-Mitigation: Update current step, blockers, context, and completion status before compaction and when work changes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, track, query, update, and close persistent task notes for multi-step work that may need to resume after context compaction.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with YAML and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to create and maintain persistent Basic Memory task notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Persistent task notes may retain sensitive or private details across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep task notes concise, avoid secrets and private customer data, and install only when persistent Basic Memory task state is desired.
+
+Risk: Outdated active tasks can mislead future resumption work.
+
+Mitigation: Update progress before compaction and periodically close or remove tasks that no longer need to be retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phernandez/skills/memory-tasks)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown task notes with YAML frontmatter, structured checklist content, and concise operational guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to be stored as Basic Memory task records and kept current as work progresses.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

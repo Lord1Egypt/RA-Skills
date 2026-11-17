@@ -1,46 +1,61 @@
-## Description: <br>
-Replicate the visual style of any website and apply it to your existing codebase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Replicate a public website's visual style and apply its colors, typography, spacing, layout rhythm, and component treatment to an existing frontend codebase.
 
-## Publisher: <br>
-[meirk-brd](https://clawhub.ai/user/meirk-brd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meirk-brd](https://clawhub.ai/user/meirk-brd)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to capture publicly visible design language from a website and translate the resulting colors, typography, spacing, and component styling into an existing codebase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send arbitrary target URLs and page captures through Bright Data. <br>
-Mitigation: Use it only for public website design analysis; do not target internal dashboards, authenticated pages, customer data, private URLs, or URLs containing tokens. <br>
-Risk: The bundled shell scripts disable TLS verification while using a Bright Data API key. <br>
-Mitigation: Remove curl -k before production use, keep the API key in environment variables only, and review external requests before execution. <br>
-Risk: The skill depends on sensitive Bright Data credentials. <br>
-Mitigation: Install it only where Bright Data use is intended and restrict credential access to the agent sessions that need it. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to capture a public reference site's design language, convert it into a design token map, and apply those visual choices to an existing application while preserving functionality.
 
-## Reference(s): <br>
-- [Apply Guide](references/apply-guide.md) <br>
-- [Capture Guide](references/capture-guide.md) <br>
-- [CSS Extraction Playbook](references/css-extraction.md) <br>
-- [Bright Data account settings](https://brightdata.com/cp) <br>
-- [ClawHub skill page](https://clawhub.ai/meirk-brd/brightdata-design-mirror) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, design token maps, and code or configuration edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create screenshots and scraped HTML files when Bright Data credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can send reference URLs and fetched page content to Bright Data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with public reference sites, and avoid private dashboards, localhost, intranet sites, authenticated pages, and confidential customer or prototype URLs.
+
+Risk: The capture scripts disable TLS certificate verification with curl -k.
+
+Mitigation: Remove curl -k before operational use so HTTPS certificate validation remains enabled.
+
+Risk: The scripts construct JSON request bodies through shell string interpolation.
+
+Mitigation: Validate that target URLs are public HTTPS URLs and construct request JSON with a proper encoder before using untrusted input.
+
+## Reference(s):
+
+- [Design Mirror Skill Page](https://clawhub.ai/meirk-brd/skills/brightdata-design-mirror)
+- [Apply Guide](references/apply-guide.md)
+- [Capture Guide](references/capture-guide.md)
+- [CSS Extraction Playbook](references/css-extraction.md)
+- [Bright Data Control Panel](https://brightdata.com/cp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with design token maps, shell commands, and code or configuration edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate screenshots and scraped HTML files during capture, then propose or apply frontend style changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

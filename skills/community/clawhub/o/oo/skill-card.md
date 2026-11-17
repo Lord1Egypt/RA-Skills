@@ -1,42 +1,58 @@
-## Description: <br>
-Connects to remote ConnectOnion agents so users can delegate tasks by agent address and handle one-shot or multi-turn responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to remote ConnectOnion agents by address, delegates user tasks, and supports ConnectOnion environment setup for agent networking.
 
-## Publisher: <br>
-[openonion](https://clawhub.ai/user/openonion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openonion](https://clawhub.ai/user/openonion)
 
-## Use Case: <br>
-Developers and agent operators use oo to connect a local agent identity to a trusted remote ConnectOnion agent, send a task by address, and relay responses or follow-up questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install ConnectOnion and create a persistent local agent identity. <br>
-Mitigation: Review and approve installation and identity-creation steps before running them. <br>
-Risk: Remote delegation can send task text or local context to another agent. <br>
-Mitigation: Use only trusted ConnectOnion agent addresses and avoid sending secrets or private file contents. <br>
-Risk: The artifact does not define a clear confirmation step before every remote connection. <br>
-Mitigation: Prefer explicit user confirmation before connecting to a remote agent or sending task content. <br>
+## Use Case:
 
+Developers and external users use oo to connect to ConnectOnion agents by 0x address, delegate tasks, and handle follow-up turns through direct or relay networking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openonion/oo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and Python code; remote agent responses are returned as text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Parses CO_* marker lines from command output and may continue multi-turn exchanges until completion or a 10-round limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may execute local setup commands, install packages, initialize an agent identity, and open remote network connections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a sandbox or trusted environment, and require explicit user approval before package installation, identity creation, or remote connection attempts.
+
+Risk: Delegated tasks can disclose prompts or sensitive context to remote agents.
+
+Mitigation: Avoid sending secrets, credentials, private files, or confidential business context in delegated prompts.
+
+Risk: Remote-agent networking can interact with private-network endpoints through direct connection attempts.
+
+Mitigation: Review the target address and connection path before use, and restrict network access where private-network probing is not acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openonion/skills/oo)
+- [openonion publisher profile](https://clawhub.ai/user/openonion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command blocks; remote-agent responses are returned as text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parses CO_ marker lines from delegated-agent runs and may continue for multi-turn tasks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "床垫内容策划中文版"
+  short_description: "生成床垫品牌文章问答选题短视频脚本和场景化推荐内容"
+  default_prompt: "Use $mattress-content-planner-cn to create Chinese mattress brand content planning assets from my brand configuration."

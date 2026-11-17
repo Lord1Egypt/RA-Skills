@@ -1,41 +1,58 @@
-## Description: <br>
-Configure Feishu as an OpenClaw messaging channel in 15 minutes, enabling single and group chat with event subscription and secure API integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure Feishu as an OpenClaw messaging channel in about 15 minutes, including app creation, permissions, event subscription, and secure API integration.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a Feishu bot as an OpenClaw message channel, including app creation, permissions, event subscription, gateway startup, and group-chat options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu App Secret, verification token, encryption key, and OpenClaw config values can expose account or workspace access if shared or committed. <br>
-Mitigation: Use a dedicated Feishu app, protect ~/.openclaw/config.yaml, avoid committing secrets, grant only the listed permissions, and rotate the App Secret if exposure is suspected. <br>
-Risk: Public webhook or tunnel endpoints used for event subscription can expose the OpenClaw gateway beyond the local network. <br>
-Mitigation: Enable verification and encryption values where available, restrict the app availability scope, monitor public tunnels, and close tunnel sessions when setup or testing is complete. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to configure a Feishu bot as an OpenClaw message channel for single-chat and group-chat workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/openclaw-feishu-setup) <br>
-- [Feishu Open Platform app console](https://open.feishu.cn/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, markdown] <br>
-**Output Format:** [Markdown with YAML configuration examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only setup guidance for configuring Feishu credentials, event subscriptions, OpenClaw gateway startup, and optional tunnel choices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact package.json, artifact SKILL.md) <br>
+Risk: A public Feishu callback endpoint can receive unwanted traffic or be misused if callback verification and message encryption are not configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure callback verification, enable Feishu message encryption where supported, and avoid unrestricted public tunnels for production use.
+
+Risk: Leaking the Feishu App Secret can allow unauthorized access to the app integration.
+
+Mitigation: Keep the app secret out of shared files, restrict configuration file permissions, and rotate credentials regularly.
+
+Risk: Overbroad Feishu app permissions or availability can expose more workspace data or users than intended.
+
+Mitigation: Limit Feishu app permissions and app availability to the minimum scope needed for the OpenClaw integration.
+
+## Reference(s):
+
+- [Openclaw Feishu Setup on ClawHub](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-feishu-setup)
+- [Feishu Open Platform App Console](https://open.feishu.cn/app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML configuration snippets and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language setup guidance with placeholder credential values]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact/package.json, and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

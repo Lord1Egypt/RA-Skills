@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*~
+
+# Never commit source book files
+*.pdf
+*.epub
+*.mobi
+*.azw3

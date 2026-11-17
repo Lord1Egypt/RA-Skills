@@ -1,0 +1,23 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_app_group_create",
+    "description": "Create a new application group in the company. Application groups are used to categorize team applications for display.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Group name (must be unique within the company).",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "rowNumber": {
+          "type": "number",
+          "description": "Display order number (optional). Lower numbers appear first."
+        }
+      },
+      "required": ["name"]
+    }
+  }
+}

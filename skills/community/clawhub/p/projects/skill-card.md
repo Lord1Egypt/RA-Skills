@@ -1,40 +1,54 @@
-## Description: <br>
-Build a personal project management system that scales from simple lists to structured planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal project management system that scales from simple lists to structured planning.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Individuals and teams use this skill to organize projects in local files, define done criteria, capture tasks and notes, review stalled work, and archive completed projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update local project files under ~/projects if used too casually. <br>
-Mitigation: Confirm before creating, deleting, or archiving folders and review proposed file changes before execution. <br>
-Risk: Project notes may include secrets or sensitive client details in plain local files. <br>
-Mitigation: Avoid storing secrets or sensitive client details unless local storage is protected. <br>
+## Use Case:
 
+External users use this skill to organize personal, client, learning, and creative projects as local notes, including project scope, next actions, tasks, milestones, reviews, and archives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/projects) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain-language guidance with suggested local folder and file structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose creating or updating project folders, README files, task lists, notes, templates, and archive locations under ~/projects/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Ordinary project discussion may be captured as local project data, including client names, rates, contacts, or deadlines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clear commands for project capture and ask the agent to confirm before saving sensitive project details.
+
+Risk: The skill writes project notes to local project folders.
+
+Mitigation: Review the named write or deletion summary the skill provides and keep sensitive projects in appropriately protected local storage.
+
+## Reference(s):
+
+- [ClawHub Projects Skill](https://clawhub.ai/ivangdavila/skills/projects)
+- [Projects Skill Homepage](https://clawic.com/skills/projects)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with local file paths, checklists, structured notes, and occasional shell command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, update, archive, or remove plain local project notes under disclosed project folders when directed by the user.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

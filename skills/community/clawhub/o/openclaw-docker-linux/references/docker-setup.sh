@@ -137,9 +137,23 @@ stop() {
     
     docker-compose down
     
-    # Stop Tailscale serve if running
+    # Stop Tailscale Serve if running.
+    # The documented form is `tailscale serve --bg <target> off` — "off" is a
+    # trailing argument on the same target, not a standalone port argument.
+    # Do not suppress the error: if the route is still up, say so, because a
+    # leftover Serve route keeps forwarding to a port that is no longer
+    # serving the gateway.
     if command -v tailscale &> /dev/null; then
-        tailscale serve --bg off 18789 2>/dev/null || true
+        if tailscale serve --bg http://localhost:18789 off; then
+            print_success "Tailscale Serve forwarding removed"
+        else
+            print_warning "Could not remove Tailscale Serve forwarding."
+            echo ""
+            echo "A Serve route may still be pointing at localhost:18789."
+            echo "Check and remove it manually:"
+            echo "  tailscale serve status"
+            echo "  tailscale serve --bg http://localhost:18789 off"
+        fi
     fi
     
     print_success "OpenClaw stopped"
@@ -167,13 +181,18 @@ logs() {
 
 # Show status and access info
 show_info() {
-    # Get token from .env (masked for display)
+    # Get token from .env. Mask it to reveal only the first 4 characters —
+    # never print the token itself or enough of it to reconstruct.
     TOKEN=$(grep OPENCLAW_GATEWAY_TOKEN .env | cut -d '=' -f2)
-    MASKED_TOKEN="${TOKEN:0:8}...${TOKEN: -4}"
+    MASKED_TOKEN="${TOKEN:0:4}..."
     
-    # Get Tailscale IP if available
+    # Get the Tailscale serve hostname if available. The serve hostname is
+    # the remote access point; the raw tailnet IP is not serving the proxy.
+    SERVE_HOST=""
     if command -v tailscale &> /dev/null; then
-        TAILSCALE_IP=$(tailscale ip -4 2>/dev/null || echo "")
+        SERVE_HOST=$(tailscale serve status --json 2>/dev/null \
+        | grep -o '"DNSName"[[:space:]]*:[[:space:]]*"[^"]*"' \
+        | head -1 | sed 's/.*"\([^"]*\)"/\1/')
     fi
     
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -181,13 +200,13 @@ show_info() {
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
     echo "  Local Access:"
-    echo "    http://localhost:18789?token=$MASKED_TOKEN"
-    echo "    (token masked — full token in .env)"
+    echo "    http://localhost:18789"
+    echo "    (token masked — read it from .env: grep OPENCLAW_GATEWAY_TOKEN .env)"
     echo ""
     
-    if [ -n "$TAILSCALE_IP" ]; then
+    if [ -n "$SERVE_HOST" ]; then
         echo "  Tailscale Access:"
-        echo "    http://$TAILSCALE_IP:18789?token=$MASKED_TOKEN"
+        echo "    https://$SERVE_HOST"
         echo ""
     fi
     
@@ -271,19 +290,32 @@ setup_tailscale() {
     fi
     
     print_info "Starting Tailscale serve on port 18789..."
-    tailscale serve --bg http://localhost:18789
-    
-    print_success "Tailscale serve started"
+    if ! tailscale serve --bg http://localhost:18789; then
+        print_error "Failed to start Tailscale Serve."
+        echo ""
+        echo "The gateway is still reachable on localhost:18789."
+        echo "To retry: sudo tailscale serve --bg http://localhost:18789"
+        echo "To check state: tailscale serve status"
+        exit 1
+    fi
+
+    print_success "Tailscale Serve started"
     echo ""
-    
-    TAILSCALE_IP=$(tailscale ip -4)
-    TOKEN=$(grep OPENCLAW_GATEWAY_TOKEN .env | cut -d '=' -f2)
-    
-    MASKED_TOKEN="${TOKEN:0:4}...[redacted]"
+
+    # Tailscale Serve proxies the gateway over HTTPS on the tailnet. The
+    # serve hostname is the correct remote URL — the raw tailnet IP is not
+    # serving the proxy and should not be advertised as the access point.
+    SERVE_HOST=$(tailscale serve status --json 2>/dev/null \
+        | grep -o '"DNSName"[[:space:]]*:[[:space:]]*"[^"]*"' \
+        | head -1 | sed 's/.*"\([^"]*\)"/\1/')
 
     echo "Access from other devices:"
-    echo "  http://$TAILSCALE_IP:18789?token=$MASKED_TOKEN"
-    echo "  (token masked — full token in .env)"
+    if [ -n "$SERVE_HOST" ]; then
+        echo "  https://$SERVE_HOST"
+    else
+        echo "  (run 'tailscale serve status' to see your serve hostname)"
+    fi
+    echo "  (token not printed — read it from .env: grep OPENCLAW_GATEWAY_TOKEN .env)"
 }
 
 # Show help

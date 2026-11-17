@@ -1,39 +1,52 @@
-## Description: <br>
-Review code changes for security vulnerabilities. Checks for OWASP Top 10, secrets exposure, injection flaws, auth issues, and insecure defaults. Use when reviewing PRs, commits, or code diffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review code changes for security vulnerabilities, including OWASP Top 10 issues, secrets exposure, injection flaws, authentication issues, and insecure defaults.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[solomonneas](https://clawhub.ai/user/solomonneas)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and security reviewers use this skill to review PRs, commits, or code diffs for common security vulnerabilities and receive prioritized findings with concrete fixes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may cause an agent to inspect source files that contain secrets or sensitive code.
+
+Mitigation: Use normal repository-sharing controls and avoid exposing repositories or files the reviewing agent should not read.
+
+Risk: Security fix examples may need project-specific validation before they are applied.
+
+Mitigation: Have a qualified reviewer confirm findings and proposed fixes against the application's authentication, authorization, and business-logic requirements.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to review pull requests, commits, and code diffs for high-impact security issues such as OWASP Top 10 weaknesses, exposed secrets, injection flaws, authentication and authorization problems, and insecure configuration. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Security review requires the agent to read code, diffs, or repositories that may contain secrets or sensitive implementation details. <br>
-Mitigation: Only provide code that is intended for review, and redact secrets, credentials, tokens, and sensitive personal data unless sharing them is explicitly required. <br>
-Risk: Generated security findings and fix examples may miss context-specific business logic or authentication flow requirements. <br>
-Mitigation: Have a qualified reviewer validate findings, fixes, and any manual-review areas before relying on the output. <br>
+**Output Format:** [Markdown findings with severity, file location, problematic code, issue explanation, fix guidance, and OWASP category.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Prioritizes high and critical findings, includes working fix examples, and calls out manual review areas when needed.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, guidance] <br>
-**Output Format:** [Markdown findings with severity, file location, issue explanation, fix guidance, code examples, and OWASP category references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes high and critical findings first and calls out areas needing manual review.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

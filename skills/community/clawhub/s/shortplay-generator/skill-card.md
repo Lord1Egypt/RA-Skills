@@ -1,39 +1,53 @@
-## Description: <br>
-Generates short-drama scripts and scene-level video prompt packages when the user asks for a short play or script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese short-drama scripts and scene-level AI video prompt packs when users ask for a short drama or script.
 
-## Publisher: <br>
-[kdm-bigmodel](https://clawhub.ai/user/kdm-bigmodel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kdm-bigmodel](https://clawhub.ai/user/kdm-bigmodel)
 
-## Use Case: <br>
-External users and creators use this skill to turn short-drama requests into a structured script with characters, scenes, dialogue, reversals, hooks, and video-generation prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrasing may cause the skill to answer general script-writing requests with the short-drama format. <br>
-Mitigation: Clarify the desired script type and output format before relying on the generated result. <br>
-Risk: Generated scripts and video prompts may include private details or content that is unsuitable for third-party video tools. <br>
-Mitigation: Review and edit generated scripts and prompts before sharing them with external services. <br>
+## Use Case:
 
+Content creators and agents use this skill to draft short-drama concepts into structured scripts with roles, scenes, hooks, reversals, and video-generation prompts for key scenes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured text with script sections and video prompt sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scene descriptions, dialogue, action notes, and prompts intended for AI video tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The broad Chinese trigger phrase for script writing may activate this skill when the user wants a different kind of script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask a short clarification question before applying the skill to generic script-writing requests.
+
+Risk: Generated short-drama scripts and video prompts may include unsuitable, misleading, or low-quality creative content.
+
+Mitigation: Review generated scripts and prompts before publishing or using them in downstream video tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kdm-bigmodel/skills/shortplay-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown-like text with script and video prompt sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role descriptions, scene dialogue, action notes, and AI video prompts; no code execution or data access is requested by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

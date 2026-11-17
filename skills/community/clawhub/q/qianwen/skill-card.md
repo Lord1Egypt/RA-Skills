@@ -1,39 +1,55 @@
-## Description: <br>
-Summarizes and organizes public information on Alibaba's Qianwen model, including features, pricing, and documentation from official product pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes and organizes public information on Alibaba's Qianwen model, including features, pricing, and documentation from official product pages.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers, researchers, and product teams use this skill to gather concise summaries and link lists for Qianwen model capabilities, pricing, quotas, and documentation from public Alibaba pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public pricing, quota, and service-availability details can change after the skill summarizes them. <br>
-Mitigation: Verify important details against official Alibaba pages before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to gather concise summaries of public Alibaba Qianwen product pages, documentation, pricing, quotas, and model capability information.
 
-## Reference(s): <br>
-- [Qianwen Homepage](https://qianwen.aliyun.com/) <br>
-- [Alibaba Cloud Help Center](https://help.aliyun.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public pages only; does not perform API calls or account operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The skill is intended for public Qianwen and Alibaba Cloud pages only.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use limited to public documentation and product pages, and do not provide account credentials or authorize account actions.
+
+Risk: Summaries of pricing, quotas, model capabilities, and service status can become outdated.
+
+Mitigation: Review generated summaries against the cited official pages before using them for decisions.
+
+## Reference(s):
+
+- [Qianwen product page](https://qianwen.aliyun.com/)
+- [Alibaba Cloud documentation center](https://help.aliyun.com/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/qianwen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries with links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limited to public page lookup and lightweight information organization; no account operations or API calls.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

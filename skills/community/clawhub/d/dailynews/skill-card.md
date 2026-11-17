@@ -1,44 +1,58 @@
-## Description: <br>
-每日新闻获取技能。通过 API 获取每日新闻摘要和详情，支持按日期查询、热点新闻排行、新闻详情阅读。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日新闻获取技能，通过 API 获取每日新闻摘要和详情，支持按日期查询、热点新闻排行和新闻详情阅读。
 
-## Publisher: <br>
-[vic240821](https://clawhub.ai/user/vic240821) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vic240821](https://clawhub.ai/user/vic240821)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve daily Chinese news summaries, ranked hot news, category-filtered news, and article details for a requested date. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts api.cjiot.cc to retrieve news lists and article details. <br>
-Mitigation: Use it only when external news API access is acceptable for the environment. <br>
-Risk: Broad news-related phrases may trigger the skill more often than expected. <br>
-Mitigation: Confirm user intent before fetching news when the request is ambiguous. <br>
-Risk: News queries may reveal user interests or requested dates to the external API. <br>
-Mitigation: Avoid including personal information or sensitive context in news requests. <br>
+## Use Case:
 
+External users can use this skill to request Chinese daily news summaries, ranked headlines, category-filtered news, and article details for a current or specified date.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vic240821/dailynews) <br>
-- [每日新闻 API](https://api.cjiot.cc) <br>
-- [Publisher profile](https://clawhub.ai/user/vic240821) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted news summaries and article details, with optional shell commands for local script execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dates, article IDs, heat scores, categories, summaries, and HTML-stripped article content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: User-requested dates and article IDs are sent to api.cjiot.cc when retrieving news lists or article details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only where outbound requests to this news API are acceptable, and avoid placing sensitive personal context in news queries.
+
+Risk: The broad Chinese news trigger terms may activate the skill for ambiguous requests.
+
+Mitigation: Confirm the user's news intent before calling the API when a request containing news-related keywords is ambiguous.
+
+Risk: The skill depends on availability and responses from an external API.
+
+Mitigation: Handle API errors, missing dates, and non-200 responses by telling the user that news data is unavailable rather than fabricating results.
+
+## Reference(s):
+
+- [Daily News API](https://api.cjiot.cc)
+- [ClawHub Skill Page](https://clawhub.ai/vic240821/skills/dailynews)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style Chinese news summaries and article details, with optional Node shell commands for direct API retrieval.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include article IDs, heat scores, publication timestamps, summaries, and HTML-stripped article content returned by the remote API.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

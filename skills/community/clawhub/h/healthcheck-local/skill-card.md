@@ -1,41 +1,54 @@
-## Description: <br>
-Track water and sleep with JSON file storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track water and sleep with JSON file storage.
 
-## Publisher: <br>
-[larry-at](https://clawhub.ai/user/larry-at) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larry-at](https://clawhub.ai/user/larry-at)
 
-## Use Case: <br>
-External users and developers use this skill to record local water intake and sleep/wake events, review simple statistics, and edit the most recent water entry in a local JSON file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Water and sleep history is stored in a local health-data.json file. <br>
-Mitigation: Install only if local storage of this health history is acceptable, and review the file location before use. <br>
-Risk: Update and delete commands overwrite or remove the last water entry without an undo step. <br>
-Mitigation: Review update and delete actions before execution and keep a backup if the records need to be recoverable. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent record water intake, sleep, wake events, and simple health statistics in a local JSON file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/larry-at/healthcheck-local) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/larry-at) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local health-data.json file for water and sleep history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Water-count commands can insert user input into executable JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, validate cup counts as bounded numbers, and pass values as arguments instead of interpolating them into source code.
+
+Risk: Update and delete commands modify local health history.
+
+Mitigation: Review command behavior before use and keep backups or recovery controls for {baseDir}/health-data.json when records matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/larry-at/skills/healthcheck-local)
+- [Publisher profile](https://clawhub.ai/user/larry-at)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and local JSON file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Node.js built-in modules and writes health records to {baseDir}/health-data.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

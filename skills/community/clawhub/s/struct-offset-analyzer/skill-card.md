@@ -1,40 +1,55 @@
-## Description: <br>
-Statically analyze C struct member offsets through code reading to calculate memory layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Statically analyze C struct member offsets through code reading to calculate memory layouts.
 
-## Publisher: <br>
-[LittleEnough](https://clawhub.ai/user/LittleEnough) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[littleenough](https://clawhub.ai/user/littleenough)
 
-## Use Case: <br>
-Developers, reverse engineers, debuggers, and security researchers use this skill to inspect C header files, resolve type sizes and alignment rules, and calculate struct member offsets without running code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires inspecting local C/C++ source headers, which may contain proprietary or sensitive implementation details. <br>
-Mitigation: Use it only in workspaces where the agent is permitted to read the target headers and related source files. <br>
-Risk: Manual struct offset calculations can be wrong when platform width, packing pragmas, unions, or conditional compilation are missed. <br>
-Mitigation: Confirm target platform assumptions, compiler packing behavior, and relevant preprocessor conditions before relying on an offset table. <br>
+## Use Case:
 
+Developers and security engineers use this skill to calculate C struct member offsets from source code when reverse engineering, debugging, or analyzing binary layouts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/LittleEnough/struct-offset-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with grep-style search commands and struct offset tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs typically include type-size reasoning, padding notes, platform assumptions, and hexadecimal member-offset tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Offset calculations can be wrong when the target platform, compiler ABI, packing pragmas, or conditional compilation differ from the assumptions used during analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target platform, compiler, packing directives, and active conditional compilation before relying on calculated offsets.
+
+Risk: Manual layout analysis can miss nested structs, typedef aliases, enum sizes, constants, or union behavior that affects member offsets.
+
+Mitigation: Collect definitions for nested types, aliases, constants, enums, and unions before producing the final offset table.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/littleenough/skills/struct-offset-analyzer)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with offset tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces manual analysis guidance; no hidden execution, persistence, credentials, or network behavior is identified by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

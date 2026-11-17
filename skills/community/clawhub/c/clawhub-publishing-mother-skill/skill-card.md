@@ -1,43 +1,61 @@
-## Description: <br>
-A ClawHub publishing and promotion skill that helps publish skills, add consistent personality, track impact, and engage the community. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The ultimate OpenClaw publishing skill with personality baked in. Publishes skills, tracks impact, engages community, and does it all with recognizable Stef Ferreira style.
 
-## Publisher: <br>
-[stefanferreira](https://clawhub.ai/user/stefanferreira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stefanferreira](https://clawhub.ai/user/stefanferreira)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to prepare, publish, promote, and monitor ClawHub or OpenClaw skills with reusable personality guidance and community engagement workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing, promotion, and tracking workflows may use accounts, API tokens, or public posting channels without clearly scoped privacy or user confirmation. <br>
-Mitigation: Review the skill before installing, use dry-run or preview modes first, and confirm what data it tracks, where it sends it, and how to disable monitoring or scheduled outreach. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to prepare, publish, promote, track, and refine OpenClaw or ClawHub skills with consistent personality metadata and community engagement workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stefanferreira/clawhub-publishing-mother-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/stefanferreira) <br>
-- [Repository listed in metadata](https://github.com/stef-ferreira/clawhub-publishing-mother) <br>
-- [Quick Start](references/QUICK_START.md) <br>
-- [Canine Personas System](references/canine_personas.md) <br>
-- [Example publishing workflow](examples/data-analyzer-publishing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public posting, promotion, and tracking workflow suggestions that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Publishing and promotion workflows can create or post public content externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or preview modes and verify exactly what will be published or posted before connecting publishing or social credentials.
+
+Risk: Tracking, scheduling, monitoring, and apply-learnings workflows may run ongoing or mutable external commands.
+
+Mitigation: Pin and review the external Hermes package version and permissions before enabling scheduled monitoring or apply-learnings commands.
+
+Risk: Broad publishing or social credentials could expand the impact of an incorrect action.
+
+Mitigation: Use narrowly scoped credentials and review the skill before installing or deploying it.
+
+## Reference(s):
+
+- [Quick Start: ClawHub Publishing Mother Skill](references/QUICK_START.md)
+- [Canine Personas System](references/canine_personas.md)
+- [Example: Publishing data-analyzer-pro Skill](examples/data-analyzer-publishing.md)
+- [ClawHub Skill Page](https://clawhub.ai/stefanferreira/skills/clawhub-publishing-mother-skill)
+- [Project Repository](https://github.com/stef-ferreira/clawhub-publishing-mother)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include publishing, promotion, tracking, reporting, and engagement workflow guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Provides structured opposition to a user's viewpoint, plan, proposal, or argument by identifying logical flaws, data gaps, assumption risks, implementation blind spots, and systemic weaknesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Debate opposition agent that activates when a user wants a critical challenge to a viewpoint, plan, proposal, or argument by identifying logical fallacies, data gaps, assumption risks, implementation blind spots, and systemic weaknesses.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users use this skill to stress-test proposals, plans, and arguments before acting on them. It is useful when a user wants a concise opposing view that surfaces weak assumptions, missing evidence, and practical risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blunt adversarial critique can be over-weighted as final advice, especially for sensitive personal, legal, medical, or business decisions. <br>
-Mitigation: Treat the output as one critique lens, verify important claims independently, and consult qualified experts for high-stakes decisions. <br>
-Risk: The skill intentionally emphasizes weaknesses and may omit benefits or balanced tradeoffs unless the user requests them separately. <br>
-Mitigation: Pair its critique with a separate supporting or neutral review before making a final decision. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to stress-test arguments, plans, and proposals by receiving structured opposition focused on logic, evidence, assumptions, implementation risks, counterexamples, and opportunity cost.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown rebuttal with hierarchical sections and pointed follow-up questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's language and keeps responses concise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may produce blunt opposition-style feedback that is inappropriate for emotional support or collaborative planning contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when a deliberately critical debate partner is desired, and choose a collaborative or supportive skill for sensitive personal support or joint planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goog/skills/con)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured rebuttal with key points, point-by-point critique, and follow-up questions; matches the user's language.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

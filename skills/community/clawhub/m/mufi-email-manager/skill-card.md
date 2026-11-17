@@ -1,45 +1,57 @@
-## Description: <br>
-Mufi Email Manager integrates Gmail, Naver, Daum, and Kakao mail over IMAP/SMTP for unread-mail summaries, keyword filtering, template replies, and daily digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mufi Email Manager helps agents manage Gmail, Naver, Daum, and Kakao mail over IMAP/SMTP with unread-mail checks, keyword filtering, mailbox summaries, and template-based replies.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-External users and developers use this skill to manage Korean email accounts from an agent workflow, including checking unread mail, summarizing messages, filtering important mail, and drafting or sending template-based replies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real mailbox credentials and configured mailbox contents. <br>
-Mitigation: Use app passwords where available, keep the .env file private, and install only when mailbox access is acceptable. <br>
-Risk: Reply and send commands can transmit email from configured accounts. <br>
-Mitigation: Review any reply before invoking a send command. <br>
-Risk: Cron jobs can create recurring mailbox access. <br>
-Mitigation: Avoid adding cron jobs unless recurring mailbox checks or digests are intended. <br>
-Risk: Dependencies may need updates before regular use. <br>
-Mitigation: Update dependencies before deploying or using the skill regularly. <br>
+## Use Case:
 
+External users and developers use this skill to configure a Korean email management helper, review unread messages, identify important mail, summarize mailbox activity, and prepare template replies.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mupengi-bot/mufi-email-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/mupengi-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and text, HTML email, or JSON reports from the provided scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May access configured mailboxes and can send replies when the user invokes sending commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill requires email account credentials and mailbox access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use app-specific passwords where available, configure only the accounts needed, and avoid storing reusable passwords outside protected environment configuration.
+
+Risk: Reply and scheduled examples can affect real recipients.
+
+Mitigation: Review generated replies and cron jobs before use, and avoid unattended sending until operational controls are in place.
+
+Risk: The documentation overstates some available commands and features.
+
+Mitigation: Confirm that referenced scripts exist and run successfully before relying on documented digest, send, search, or notification workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/mufi-email-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured email account credentials and network access to IMAP/SMTP servers.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

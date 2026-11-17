@@ -1,43 +1,56 @@
-## Description: <br>
-Guides users through a Socratic, first-principles dialogue to design new agent skills from an initial idea into a SKILL.md draft, file structure, and publishing description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Builder guides an agent through Socratic questioning, first-principles analysis, complexity assessment, and packaging steps to help users design complete new skills.
 
-## Publisher: <br>
-[dead1ine](https://clawhub.ai/user/dead1ine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dead1ine](https://clawhub.ai/user/dead1ine)
 
-## Use Case: <br>
-Developers and skill authors use this skill to turn a rough skill idea into a structured implementation plan and draft skill package through guided questions about purpose, triggers, dependencies, outputs, and failure modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill drafts may contain incomplete requirements, weak failure handling, or misleading implementation guidance if accepted without review. <br>
-Mitigation: Review the generated SKILL.md, file list, and behavior boundaries before installation or publishing. <br>
-Risk: Optional installation or publishing steps can expose credentials or publish unintended content. <br>
-Mitigation: Use scoped, revocable ClawHub tokens and avoid sharing broad long-lived credentials in chat. <br>
+## Use Case:
 
+Developers and skill authors use this skill to turn an initial skill idea into a structured SKILL.md draft, supporting folder layout, publishing description, and follow-up guidance through a guided multi-turn design process.
 
-## Reference(s): <br>
-- [Socratic Questions](references/socratic-questions.md) <br>
-- [First Principles Framework](references/first-principles.md) <br>
-- [Complexity Assessment Matrix](references/complexity-matrix.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dead1ine/socratic-skill-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with structured drafts and file lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SKILL.md drafts, folder structures, publishing descriptions, and next-step instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may ask users to provide a ClawHub token in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secret manager or environment variable with a narrow, short-lived token instead of pasting secrets into chat.
+
+Risk: Generated skills may be installed or published without enough review.
+
+Mitigation: Review and scan generated skills before deployment, and require explicit confirmation before workspace install or publish actions.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/dead1ine/skills/socratic-skill-builder)
+- [Complexity assessment matrix](references/complexity-matrix.md)
+- [First-principles analysis framework](references/first-principles.md)
+- [Socratic question library](references/socratic-questions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with SKILL.md drafts, folder structures, publishing descriptions, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include candidate skill names, implementation boundaries, and review steps for generated skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

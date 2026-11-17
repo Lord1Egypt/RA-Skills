@@ -1,39 +1,59 @@
-## Description: <br>
-Enable fast, free real-time web search and access premium data from trusted media brands, including news, financial markets, sports, entertainment, weather, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enable fast, free real-time web search and access premium data from trusted media brands-news, financial markets, sports, entertainment, weather, and more.
 
-## Publisher: <br>
-[amaan-ai20](https://clawhub.ai/user/amaan-ai20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amaan-ai20](https://clawhub.ai/user/amaan-ai20)
 
-## Use Case: <br>
-Developers and agent builders use this skill to query Dappier for real-time web search, news, financial, sports, lifestyle, research, and solar or roof analysis results from Node.js CLI tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends chosen prompts, financial, news, research, and solar-analysis queries, including optional residential addresses, to Dappier under the user's API key. <br>
-Mitigation: Do not submit secrets, regulated data, or another person's home address unless there is a clear reason and permission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dappier](https://dappier.com) <br>
-- [Dappier API keys](https://platform.dappier.com/profile/api-keys) <br>
-- [ClawHub skill page](https://clawhub.ai/amaan-ai20/dappier-search) <br>
+## Use Case:
 
+Developers and external agent builders use this skill to let agents call Dappier for real-time search, news, stock market, sports, lifestyle, research paper, and residential solar analysis results.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-friendly CLI output with result sections, summaries, article metadata, URLs, or analysis text depending on the selected Dappier tool.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js with global fetch support and DAPPIER_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-entered queries, ticker searches, research terms, and residential addresses are sent to Dappier.
+
+Mitigation: Avoid submitting secrets, private customer data, account details, or sensitive personal information in skill queries.
+
+Risk: The Stellar AI workflow can include residential address data.
+
+Mitigation: Use it only when a specific address is necessary for the requested solar or roof analysis and the user is comfortable sharing that address with Dappier.
+
+Risk: Real-time search, market, news, sports, lifestyle, and research results may change or be incomplete.
+
+Mitigation: Treat returned content as external Dappier data and verify important financial, legal, medical, safety, or time-sensitive decisions against authoritative sources.
+
+## Reference(s):
+
+- [ClawHub Dappier skill release](https://clawhub.ai/amaan-ai20/skills/dappier-search)
+- [Dappier homepage](https://dappier.com)
+- [Dappier platform](https://platform.dappier.com)
+- [Dappier API keys](https://platform.dappier.com/profile/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-friendly command output and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js with global fetch and a DAPPIER_API_KEY environment variable.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

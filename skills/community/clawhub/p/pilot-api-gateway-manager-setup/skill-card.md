@@ -1,43 +1,62 @@
-## Description: <br>
-Deploys an API gateway management setup with four Pilot agents for service discovery, request routing, authentication, and monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy an API gateway management system with four agents for service discovery, routing, authentication, and monitoring.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to configure a Pilot-based API gateway across discovery, router, auth, and monitor agents. It helps set hostnames, install role-specific skills, write role manifests, and establish trusted peer handshakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup handles peer trust, API authentication examples, access logs, and role manifests that may contain sensitive operational details. <br>
-Mitigation: Review ~/.pilot/setups/api-gateway-manager.json before writing it, use test or redacted credentials in examples, and confirm every peer hostname is controlled by the operator. <br>
-Risk: The workflow installs downstream pilot-* skills and depends on pilotctl and clawhub binaries. <br>
-Mitigation: Vet the downstream skills and required binaries before enabling the gateway setup in an operational environment. <br>
-Risk: The monitor role can send API alerts to external dashboards or Slack. <br>
-Mitigation: Enable external alerting only after confirming destinations, credentials, and shared alert contents are approved for the deployment. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to set up a Pilot API gateway deployment with separate discovery, router, auth, and monitor agents. It helps coordinate service registry updates, request routing, credential checks, rate limiting, access logs, health feedback, and alerts.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-api-gateway-manager-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command blocks and JSON manifest templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Role-specific setup guidance for four Pilot API gateway agents; requires pilotctl, clawhub, Pilot Protocol skills, and a running daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad setup commands can install dependent skills and write Pilot setup manifests in the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, pin and verify each installed skill, and inspect the generated manifest before writing it.
+
+Risk: Deployment prefixes are used to form hostnames and handshake targets.
+
+Mitigation: Validate the prefix as a simple hostname label before running hostname or handshake commands.
+
+Risk: Example API keys, bearer tokens, customer identifiers, and access logs may be copied into demo or Slack flows.
+
+Mitigation: Use only test credentials and redacted operational data when exercising publish, logging, dashboard, or Slack alert flows.
+
+Risk: The skill coordinates multiple agents across a Pilot API gateway setup.
+
+Mitigation: Use it only in a controlled Pilot environment with expected peers and verified trust handshakes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-api-gateway-manager-setup)
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Role-specific setup manifests, hostname commands, skill installation commands, and peer handshake guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

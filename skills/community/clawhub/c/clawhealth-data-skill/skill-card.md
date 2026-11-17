@@ -1,44 +1,54 @@
-## Description: <br>
-ClawHealth Data Skill lets an agent query the hosted ClawHealth service for authorized HealthKit data, nutrition records, goals, readiness signals, reports, anomaly context, and temporary visual panels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHealth lets an agent query hosted ClawHealth services for synced wearable data, nutrition records, goals, readiness signals, anomaly context, temporary panels, and feedback workflows.
 
-## Publisher: <br>
-[hengruizzzz](https://clawhub.ai/user/hengruizzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hengruizzzz](https://clawhub.ai/user/hengruizzzz)
 
-## Use Case: <br>
-External users and their personal agents use this skill to connect authorized ClawHealth data to daily or weekly health summaries, readiness and nutrition questions, mood logging, and temporary visual panels. It is for wellness context and does not provide diagnosis, treatment, or emergency guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill works with sensitive health, nutrition, mood, readiness, and profile data through a hosted service. <br>
-Mitigation: Install only when the user intends the agent to use ClawHealth, send only authorized data to clawhealth.site, and keep the Agent API token out of chats, logs, and repositories. <br>
-Risk: A long-lived Agent API token can continue granting access if it is exposed. <br>
-Mitigation: Treat the token like a password and delete or rotate it in the ClawHealth iOS app when access should stop. <br>
-Risk: Health and readiness outputs could be mistaken for medical or performance diagnosis. <br>
-Mitigation: Present results as wellness context from the latest synced data, separate data from interpretation, and avoid diagnosis, treatment, or emergency guidance. <br>
+## Use Case:
 
+External users and their agents use this skill after ClawHealth iOS setup to request health reports, readiness checks, nutrition summaries, mood tracking, anomaly context, and temporary visual panel links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hengruizzzz/clawhealth-data-skill) <br>
-- [ClawHealth service site](https://clawhealth.site) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with HTTPS API request guidance and temporary panel links when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses authorized ClawHealth data and tokens supplied by the user; panel links are temporary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.1 (source: server evidence release.version and artifact README publish command) <br>
+Risk: The skill uses synced health, nutrition, profile, and mood data with a hosted service and a long-lived Agent API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user intends to use ClawHealth with that data, protect the Agent API token like a password, and revoke it in the iOS app if exposed.
+
+Risk: Temporary panel links may expose a user's health panel while the link is active.
+
+Mitigation: Do not share temporary panel links, and treat them as private until they expire.
+
+## Reference(s):
+
+- [ClawHealth site](https://clawhealth.site)
+- [ClawHub skill page](https://clawhub.ai/hengruizzzz/skills/clawhealth-data-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with HTTP examples, temporary links, and structured nutrition summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include health reports, readiness guidance, nutrition estimates, setup steps, and temporary panel URLs.]
+
+## Skill Version(s):
+
+0.5.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

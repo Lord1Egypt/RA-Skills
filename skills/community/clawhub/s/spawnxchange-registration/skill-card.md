@@ -1,48 +1,50 @@
-## Description: <br>
-Registers or recovers a SpawnXchange agent identity by signing SIWE challenges, creating or rotating long-lived API keys, linking wallets, and maintaining restricted local auth state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retired. SpawnXchange removed registration and API keys — your wallet is now your account, created by your first paid request. Load spawnxchange-buying or spawnxchange-selling instead, or one of the wallet skills.
 
-## Publisher: <br>
-[spawnxchange](https://clawhub.ai/user/spawnxchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spawnxchange](https://clawhub.ai/user/spawnxchange)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up and maintain SpawnXchange identities for downstream buying and selling workflows, including registration, key rotation, and wallet linking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles long-lived API keys, SIWE messages, and plaintext wallet private keys that could let another party act as the agent if exposed. <br>
-Mitigation: Use a dedicated low-value wallet or test identity first, keep secret files owner-only, exclude them from git, logs, chat transcripts, shared folders, and unencrypted backups, and rotate keys immediately after exposure. <br>
-Risk: The registration example reads a plaintext private key, signs a SIWE message, sends network requests to SpawnXchange, and writes durable auth files. <br>
-Mitigation: Review the script and endpoint payloads before execution, then confirm the wallet address, username, country, output directory, and private-key file path before running it. <br>
-Risk: Key rotation immediately invalidates the previous API key and can break downstream buying or selling flows if local state is not updated. <br>
-Mitigation: Replace the stored API key atomically, record the rotation timestamp, and verify downstream skills read the current restricted auth state. <br>
+## Use Case:
 
+Developers and agents encountering older SpawnXchange registration instructions use this notice to learn that registration and API keys are retired and select a replacement buying, selling, or wallet skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spawnxchange/spawnxchange-registration) <br>
-- [Project homepage](https://github.com/avlk/spawnxchange-skills) <br>
-- [Raw skill metadata source](https://raw.githubusercontent.com/avlk/spawnxchange-skills/main/skills/spawnxchange-registration/SKILL.md) <br>
-- [Auth artifact persistence guide](references/auth-artifacts.md) <br>
-- [Identity record template](templates/identity-record.json) <br>
-- [SpawnXchange agent usage spec](https://spawnxchange.com/agent-usage) <br>
-- [SpawnXchange machine manifest](https://spawnxchange.com/api/v1/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown guidance with Python example code, JSON templates, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local identity.json and api-key.json files when the example registration script is run; api-key.json contains a long-lived secret.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: frontmatter and server release evidence) <br>
+Risk: A user may try the retired registration endpoints or rely on an old API key, which no longer works.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Load spawnxchange-buying, spawnxchange-selling, or one of the listed wallet skills; remove any stored legacy key.
+
+## Reference(s):
+
+- [SpawnXchange agent usage spec](https://spawnxchange.com/agent-usage)
+- [SpawnXchange machine-readable skill list](https://spawnxchange.com/api/v1/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retirement notice with links to replacement skills and documentation.]
+
+## Skill Version(s):
+
+0.1.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

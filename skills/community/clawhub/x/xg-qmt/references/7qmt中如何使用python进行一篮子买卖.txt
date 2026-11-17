@@ -1,0 +1,81 @@
+[python分享7]qmt中如何使用python进行一篮子买卖 
+55523
+发表于 2023-12-21 18:59:24
+|
+只看该作者
+只看大图
+阅读模式
+|
+本帖最后由 rzp 于 2023-12-22 11:20 编辑
+
+
+qmt中主要使用set_basket和passorder实现一篮子买卖，具体代码如下:
+#coding:gbk
+import time
+def init(C):
+   
+    table=[
+            {'stock':'600000.SH','weight':0.11,'quantity':100,'optType':23},  # 买600000
+            {'stock':'600028.SH','weight':0.11,'quantity':200,'optType':24},  # 卖600028
+        ]  
+    basket={'name':'basket1','stocks':table}
+    set_basket(basket)
+    # 按篮子数量下单， 下2份 # 即下两倍篮子
+    pice = 2
+    # passorder(35,  #一键买卖
+            # 2101,  # 表示按股票数量下单 即篮子的quantity 参数
+            # account,
+            # 'basket1',  # 篮子名称
+            # 5, # 最新价下单
+            # 1,  # 价格，最新价时 该参数无效，需要填任意数占位
+            # pice, # 篮子份数
+            # '',2,'strReMark',C)
+    # # 或者下算法
+    # userparam={
+    # 'OrderType':1,  #表示要下算法
+    # 'PriceType':4, # 0表示 卖5价下单
+    # 'MaxOrderCount':12, # 最大委托次数
+    # 'SuperPriceType':0,  # 超价类型，0表示按比例
+    # 'SuperPriceRate':0,  # 超价2%下单
+    # 'VolumeRate':1,  # 单笔下单比率 每次拆10%
+    # 'VolumeType': 10,  # 单笔基准量类型
+    # 'SingleNumMax':1000000,  # 单笔拆单最大值
+    # 'PriceRangeType':0,  # 波动区间类型
+    # 'PriceRangeRate':1,  # 波动区间值
+    # 'ValidTimeType':1,  # 有效时间类型 1 表示按执行时间
+    # 'ValidTimeStart':int(time.time()),  # 算法开始时间
+    # 'ValidTimeEnd':int(time.time()+60*60),  # 算法结束时间
+    # 'PlaceOrderInterval':10, # 报撤间隔
+    # 'UndealtEntrustRule':5, # 未成委托处理数值 用卖5加挂单
+    # }
+    # algo_passorder(35, 2101, account, 'basket1', -1, -1, pice, '', 2, '普通算法', userparam, C)
+   
+    # 按篮子权重下单
+    table=[
+            {'stock':'600000.SH','weight':0.4,'quantity':0,'optType':23}, # 40%
+            {'stock':'002339.SZ','weight':0.6,'quantity':0,'optType':24}, # 60%
+        ]
+    basket={'name':'basket2','stocks':table}
+    set_basket(basket)
+    # 按组合权重 总额10000元
+    money = 10000
+    # passorder(35,2102,account,'basket2',5,1,money,'',2,'strReMark',C)
+    # # 或者下算法
+    # userparam={
+    # 'OrderType':1,  #表示要下算法
+    # 'PriceType':4, # 0表示 卖5价下单
+    # 'MaxOrderCount':12, # 最大委托次数
+    # 'SuperPriceType':0,  # 超价类型，0表示按比例
+    # 'SuperPriceRate':0,  # 超价2%下单
+    # 'VolumeRate':1,  # 单笔下单比率 每次拆10%
+    # 'VolumeType': 10,  # 单笔基准量类型
+    # 'SingleNumMax':1000000,  # 单笔拆单最大值
+    # 'PriceRangeType':0,  # 波动区间类型
+    # 'PriceRangeRate':1,  # 波动区间值
+    # 'ValidTimeType':1,  # 有效时间类型 1 表示按执行时间
+    # 'ValidTimeStart':int(time.time()),  # 算法开始时间
+    # 'ValidTimeEnd':int(time.time()+60*60),  # 算法结束时间
+    # 'PlaceOrderInterval':10, # 报撤间隔
+    # 'UndealtEntrustRule':5, # 未成委托处理数值 用卖5加挂单
+    # }
+    # algo_passorder(35, 2102, account, 'basket2', -1, -1, money, '', 2, '组合算法', userparam, C)

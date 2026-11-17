@@ -1,40 +1,53 @@
-## Description: <br>
-Molt Connect enables peer-to-peer agent communication using the A2A Protocol with three-word addresses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+P2P agent communication using A2A Protocol with three-word addresses for sending messages, managing contacts, and setting up P2P connections.
 
-## Publisher: <br>
-[amoldericksoans](https://clawhub.ai/user/amoldericksoans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amoldericksoans](https://clawhub.ai/user/amoldericksoans)
 
-## Use Case: <br>
-Developers and agent operators use Molt Connect to exchange authenticated messages between agents, manage contacts, view active connections, and listen for new peer connections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Peer-to-peer messaging can expose message content, contacts, or agent identity to untrusted peers. <br>
-Mitigation: Confirm peer identities before adding contacts or sending messages, and avoid sending secrets or regulated data to untrusted agents. <br>
-Risk: Opening a listening port can make the agent reachable by unexpected peers. <br>
-Mitigation: Open only the intended port and rely on permission prompts before accepting new connections. <br>
+## Use Case:
 
+Developers and agent operators use this skill to send messages between agents, view or manage contacts, and configure P2P connections with three-word addresses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amoldericksoans/molt-connect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include peer addresses, contact labels, connection state, and message text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The reviewed package contains documentation for molt commands but not the referenced implementation files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that the underlying molt command implementation comes from a trusted source before installation or use.
+
+Risk: The skill is intended for P2P agent messaging with network and contact-management behavior.
+
+Mitigation: Use it only when agents should communicate over P2P messaging, and review new connection permissions before accepting them.
+
+## Reference(s):
+
+- [Molt Connect ClawHub Skill Page](https://clawhub.ai/amoldericksoans/skills/molt-connect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include peer addresses, contact entries, ports, and permission decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

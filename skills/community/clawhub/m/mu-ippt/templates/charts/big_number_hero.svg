@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+    <!--
+    Big Number Hero 模板
+    用途: 数字大字报——用一个超大数字+说明文字占满整页，强调单一核心KPI
+    适用场景: 开场震撼页、核心指标突出展示、成绩汇报、里程碑庆祝
+    布局: 深色背景 + 超大数字居中 + 顶部小标签 + 底部来源
+    -->
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1A2A3A;stop-opacity:1" />
+            <stop offset="60%" style="stop-color:#0F1E2E;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#0A1520;stop-opacity:1" />
+        </linearGradient>
+        <filter id="numberGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="20"/>
+            <feOffset dx="0" dy="0" result="blurOut"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.3"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#FFE066;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#FFD100;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- 背景 -->
+    <rect width="1280" height="720" fill="url(#bgGrad)"/>
+
+    <!-- 装饰圆圈（右上） -->
+    <circle cx="1100" cy="120" r="280" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.04"/>
+    <circle cx="1100" cy="120" r="200" fill="none" stroke="#FFD100" stroke-width="1" stroke-opacity="0.06"/>
+    <!-- 装饰圆圈（左下） -->
+    <circle cx="180" cy="620" r="200" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.04"/>
+
+    <!-- 顶部标签 — 居中 -->
+    <rect x="540" y="80" width="200" height="32" rx="4" fill="#FFFFFF" fill-opacity="0.08"/>
+    <text x="640" y="101" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="13" font-weight="600" fill="#FFD100" letter-spacing="2">
+        <tspan>CORE METRIC</tspan>
+    </text>
+
+    <!-- 指标名称 — 居中 -->
+    <text x="640" y="175" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="28" font-weight="400" fill="#FFFFFF" fill-opacity="0.9">
+        <tspan>年度总交易额</tspan>
+    </text>
+    <text x="640" y="208" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="16" fill="#7A9AB8">
+        <tspan>Gross Transaction Value · FY 2025</tspan>
+    </text>
+
+    <!-- 超大数字 — 绝对居中 -->
+    <text x="640" y="420" text-anchor="middle" filter="url(#numberGlow)"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="200" font-weight="700" fill="url(#goldGrad)" letter-spacing="-4">
+        <tspan>2,450</tspan>
+    </text>
+
+    <!-- 单位 + 增长率 — 居中 -->
+    <text x="530" y="490" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="24" fill="#FFFFFF" fill-opacity="0.85">
+        <tspan>亿元人民币</tspan>
+    </text>
+    <rect x="670" y="462" width="160" height="38" rx="19" fill="#FFD100" fill-opacity="0.15" stroke="#FFD100" stroke-width="1" stroke-opacity="0.5"/>
+    <text x="750" y="486" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="16" font-weight="600" fill="#FFD100">
+        <tspan>↑ +38.5% YoY</tspan>
+    </text>
+
+    <!-- 分隔线 -->
+    <line x1="480" y1="520" x2="800" y2="520" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.12"/>
+
+    <!-- 说明文字 — 居中 -->
+    <text x="640" y="558" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="16" fill="#7A9AB8">
+        <tspan>连续第三年保持30%以上复合增长 · 超额完成全年目标</tspan>
+    </text>
+
+    <!-- 底部来源 -->
+    <text x="1220" y="700" text-anchor="end"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="13" fill="#3A5A7A">
+        <tspan>数据来源：财务部 · 截至 2025年12月31日</tspan>
+    </text>
+
+    <!-- 点阵装饰 -->
+    <circle cx="1050" cy="380" r="3" fill="#FFFFFF" fill-opacity="0.06"/>
+    <circle cx="1080" cy="380" r="3" fill="#FFFFFF" fill-opacity="0.06"/>
+    <circle cx="1110" cy="380" r="3" fill="#FFFFFF" fill-opacity="0.06"/>
+    <circle cx="1050" cy="415" r="3" fill="#FFFFFF" fill-opacity="0.06"/>
+    <circle cx="1080" cy="415" r="3" fill="#FFFFFF" fill-opacity="0.06"/>
+    <circle cx="1110" cy="415" r="3" fill="#FFFFFF" fill-opacity="0.06"/>
+    <circle cx="1050" cy="450" r="3" fill="#FFFFFF" fill-opacity="0.06"/>
+    <circle cx="1080" cy="450" r="3" fill="#FFFFFF" fill-opacity="0.06"/>
+    <circle cx="1110" cy="450" r="3" fill="#FFFFFF" fill-opacity="0.06"/>
+</svg>

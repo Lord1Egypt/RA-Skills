@@ -1,0 +1,339 @@
+# Ontology Agent · Semantic layer template semantic.yaml (thick version)
+# Bilingual note: the Chinese counterpart of this file is `semantic.zh.yaml`.
+# ───────────────────────────────────────────────────────────
+# Source: A1 (1mancompany/onemancompany) Entity primitive + 8 built-in entities + relation
+#         cardinality + pre-write constraint validation
+# Extended: Weishu common entities (Department / Expert / Invoice / Customer / Policy)
+# Thickened: (1) every entity gets full property fields (A1 real fields + Weishu extensions)
+#            (2) new relation_types library
+#            (3) new global_constraints library (A1 Credential secret ban / Task state machine /
+#                circular dependency + PII guardrails)
+# Nature: template — contains no user data; user instances are generated in instance.yaml
+# Industry-specific entities (e-commerce Product/Order/Shop, etc.) live in references/packs/*.yaml
+# Terminology: see references/glossary.yaml
+
+meta:
+  layer: semantic_layer
+  base: A1 Entity primitive
+  principle: "Start with a small ontology; template and instance are strictly separated; PII never enters the graph in plain text"
+  convention: "Every entity must have id + type; type is constrained by the entity_types enum below"
+
+# ── Entity type definitions (13 categories, thickened fields) ─────────────────────────
+entity_types:
+
+  # ===== A1 built-in 8 categories (original semantics preserved + A1 real fields + English desc) =====
+  Person:
+    desc: Natural person (owner / employee / customer contact)
+    properties:
+      name:        {type: string, required: true, desc: "Full name"}
+      email:       {type: string, desc: "Email"}
+      phone:       {type: string, pii: true, desc: "Phone number — PII, store masked"}
+      organization: {type: string, desc: "Organization id the person belongs to"}
+      id_card:     {type: string, pii: true, desc: "National ID number — strong PII guardrail"}
+      title:       {type: string, desc: "Job title"}
+      role:        {type: string, desc: "Functional role"}
+      notes:       {type: text, desc: "Notes"}
+      tags:        {type: list, desc: "Tags"}
+    relations:
+      - {to: Organization, type: employs,      cardinality: many-to-one}
+      - {to: Department,   type: belongs_to,   cardinality: many-to-one}
+
+  Organization:
+    desc: Organization / company (root node of the ontology)
+    properties:
+      name:        {type: string, required: true, desc: "Company name"}
+      legal_form:  {type: enum, values: [opc, ecommerce, sme, other], required: true, desc: "Enterprise type, corresponds to industry_pack"}
+      credit_code: {type: string, pii: true, desc: "Unified Social Credit Code — PII"}
+      region:      {type: string, desc: "Registration region, e.g. Tianjin"}
+      tax_status:  {type: enum, values: [unregistered, registered, normal, abnormal], desc: "Tax registration status"}
+      founded_on:  {type: date, desc: "Date of establishment"}
+      owner_id:    {type: string, desc: "Legal representative / actual controller Person id"}
+      description: {type: text, desc: "Company profile"}
+      address:     {type: string, desc: "Registered / operating address"}
+    relations:
+      - {to: Department, type: has,         cardinality: one-to-many}
+      - {to: Account,   type: holds,       cardinality: one-to-many}
+
+  Project:
+    desc: Project (temporary or long-term goal container spanning departments)
+    properties:
+      name:        {type: string, required: true, desc: "Project name"}
+      status:      {type: enum, values: [planning, active, done, archived], required: true, desc: "Status"}
+      description: {type: text, desc: "Project description"}
+      owner:       {type: string, desc: "Owner Person/Expert id"}
+      start_date:  {type: date, desc: "Start"}
+      end_date:    {type: date, desc: "End"}
+      progress:    {type: number, desc: "Progress 0-100"}
+    relations:
+      - {to: Organization, type: owned_by,   cardinality: many-to-one}
+      - {to: Task,        type: contains,   cardinality: one-to-many}
+
+  Task:
+    desc: Task (smallest executable unit)
+    properties:
+      title:         {type: string, required: true, desc: "Title"}
+      status:        {type: enum, values: [todo, doing, blocked, done], required: true, desc: "Status (constrained by the state machine, see global_constraints)"}
+      priority:      {type: enum, values: [low, medium, high, urgent], desc: "Priority"}
+      assignee:      {type: string, desc: "Assignee Expert/Person id"}
+      due:           {type: date, desc: "Due date"}
+      estimate_hours: {type: number, desc: "Estimated hours"}
+      blockers:      {type: list, desc: "Blockers (references to other Task ids)"}
+      description:   {type: text, desc: "Description"}
+      created_at:    {type: datetime, desc: "Creation time"}
+    relations:
+      - {to: Project,  type: part_of,      cardinality: many-to-one}
+      - {to: Expert,  type: assigned_to,  cardinality: many-to-one}
+      - {to: Invoice, type: billed_by,    cardinality: many-to-one, desc: "A task can be linked to an invoice"}
+
+  Goal:
+    desc: Goal (quantified intent, writable back by the decision layer)
+    properties:
+      title:       {type: string, required: true, desc: "Goal description"}
+      metric:      {type: string, desc: "Measurement metric"}
+      target:      {type: number, desc: "Target value"}
+      current:     {type: number, desc: "Current value"}
+      deadline:    {type: date, desc: "Deadline"}
+    relations:
+      - {to: Organization, type: set_by, cardinality: many-to-one}
+
+  Event:
+    desc: Event (time anchor, e.g. meeting / filing / delivery)
+    properties:
+      title:       {type: string, required: true, desc: "Event title"}
+      at:          {type: datetime, required: true, desc: "Occurrence time (must not be earlier than created_at, see constraints)"}
+      type:        {type: string, desc: "Event type"}
+      attendees:   {type: list, desc: "Attendees"}
+      notes:       {type: text, desc: "Minutes"}
+      created_at:  {type: datetime, desc: "Creation time"}
+    relations:
+      - {to: Organization, type: occurs_at, cardinality: many-to-one}
+
+  Document:
+    desc: Document (contract / report / material)
+    properties:
+      title:       {type: string, required: true, desc: "Title"}
+      kind:        {type: string, desc: "Kind: contract / report / material"}
+      uri:         {type: string, desc: "Storage location"}
+      content_ref: {type: string, desc: "External content reference (large text is not stored, only referenced)"}
+      tags:        {type: list, desc: "Tags"}
+      created_at:  {type: datetime, desc: "Creation"}
+    relations:
+      - {to: Organization, type: belongs_to, cardinality: many-to-one}
+
+  Account:
+    desc: Account (bank / platform / software account)
+    properties:
+      name:        {type: string, required: true, desc: "Account name"}
+      type:        {type: enum, values: [bank, platform, saas, other], desc: "Account type"}
+      bank_no:     {type: string, pii: true, desc: "Bank card number — PII"}
+      balance:     {type: number, desc: "Balance"}
+      currency:    {type: string, desc: "Currency, defaults to CNY"}
+    relations:
+      - {to: Organization, type: held_by, cardinality: many-to-one}
+
+  # ===== Weishu extension entities (cross-industry common) =====
+  Department:
+    desc: Department (OPC defaults to 12 departments; enterprises may add or remove)
+    properties:
+      name:        {type: string, required: true, desc: "Department name"}
+      code:        {type: string, desc: "Department code, e.g. finance"}
+      description: {type: text, desc: "Responsibility description"}
+      lead_id:     {type: string, desc: "Department head Expert id"}
+    relations:
+      - {to: Organization, type: part_of,      cardinality: many-to-one}
+      - {to: Expert,      type: staffed_by,   cardinality: one-to-many}
+
+  Expert:
+    desc: AI employee / expert (mapped to a department, member of the WorkBuddy expert team)
+    properties:
+      name:        {type: string, required: true, desc: "Expert name"}
+      domain:      {type: string, desc: "Functional domain, e.g. finance / legal"}
+      skill_ref:   {type: string, desc: "Template slug under experts-template/"}
+      dept_code:   {type: string, desc: "Department code"}
+      status:      {type: enum, values: [active, idle], desc: "Status"}
+    relations:
+      - {to: Department, type: serves,       cardinality: many-to-one}
+      - {to: Task,      type: executes,     cardinality: many-to-many}
+
+  Invoice:
+    desc: Invoice / receipt (fapiao / receipt image) — high PII risk, strong guardrail
+    properties:
+      invoice_no:  {type: string, required: true, desc: "Invoice / receipt number"}
+      amount:      {type: number, desc: "Amount"}
+      issued_on:   {type: date, desc: "Issue date"}
+      payer:       {type: string, desc: "Payer"}
+      payee:       {type: string, desc: "Payee"}
+      tax_no:      {type: string, pii: true, desc: "Tax ID — PII"}
+      image_ref:   {type: string, pii: true, desc: "External reference to the image (never stored in plain text)"}
+      status:      {type: enum, values: [draft, issued, paid], desc: "Status"}
+    relations:
+      - {to: Organization, type: issued_by,   cardinality: many-to-one}
+      - {to: Task,        type: related_to,   cardinality: many-to-one}
+    pii_guard: strict
+
+  Customer:
+    desc: Customer (individual or enterprise)
+    properties:
+      name:        {type: string, required: true, desc: "Customer name"}
+      id_card:     {type: string, pii: true, desc: "National ID number — PII (individual customers)"}
+      tier:        {type: enum, values: [lead, active, vip, churned], desc: "Customer tier"}
+      contact:     {type: string, pii: true, desc: "Contact information"}
+      company:     {type: string, desc: "Company (enterprise customers)"}
+    relations:
+      - {to: Organization, type: patronizes,  cardinality: many-to-one}
+
+  Policy:
+    desc: Policy (Tianjin tax / social insurance / OPC support / e-commerce law, etc.)
+    properties:
+      title:         {type: string, required: true, desc: "Policy title"}
+      category:      {type: enum, values: [tax, social_security, company_reg, ecommerce_law, opc_support, other], desc: "Category"}
+      scope:         {type: string, desc: "Applicable region / industry"}
+      effective_date: {type: date, desc: "Effective date"}
+      source:        {type: string, desc: "Source link / document number"}
+      summary:       {type: text, desc: "Key points summary"}
+    relations:
+      - {to: Organization, type: applies_to,  cardinality: many-to-many}
+
+  # ── Weishu supplementary base entities (added 2026-08-15; referenced by the 24-department
+  #    extended actions and the manufacturing pack; all base layer) ──
+  Contract:
+    desc: Contract / agreement (procurement / investment / customer, etc.)
+    properties:
+      title:       {type: string, required: true, desc: "Contract title"}
+      party_a:     {type: string, desc: "Party A (organization id)"}
+      party_b:     {type: string, desc: "Party B (organization id)"}
+      amount:      {type: number, desc: "Contract amount"}
+      status:      {type: enum, values: [draft, pending_signature, effective, performing, terminated], desc: "Status"}
+      signed_on:   {type: date, desc: "Signature date"}
+    relations:
+      - {to: Organization, type: issued_by, cardinality: many-to-one}
+  Asset:
+    desc: Asset (IT / equipment / materials, etc.)
+    properties:
+      name:        {type: string, required: true, desc: "Asset name"}
+      category:    {type: string, desc: "Category"}
+      owner_id:    {type: string, desc: "Owning organization / department id"}
+    relations:
+      - {to: Organization, type: held_by, cardinality: many-to-one}
+  Metric:
+    desc: Metric / measure (yield / OEE / energy consumption, etc.)
+    properties:
+      name:        {type: string, required: true, desc: "Metric name"}
+      value:       {type: number, desc: "Value"}
+      unit:        {type: string, desc: "Unit"}
+    relations: []
+  Supplier:
+    desc: Supplier
+    properties:
+      name:        {type: string, required: true, desc: "Supplier name"}
+      lead_time:   {type: integer, desc: "Supply lead time (days)"}
+      credit_code: {type: string, pii: true, desc: "Unified Social Credit Code"}
+    relations:
+      - {to: Organization, type: sourced_from, cardinality: many-to-one}
+  Product:
+    desc: Product (physical / digital)
+    properties:
+      name:        {type: string, required: true, desc: "Product name"}
+      sku:         {type: string, desc: "SKU"}
+      category:    {type: string, desc: "Category"}
+    relations:
+      - {to: Organization, type: produced_by, cardinality: many-to-one}
+
+# ── Relation type library (full A1 set + Weishu extensions; centrally defines from/to/
+#    cardinality / whether cycles are allowed) ────────────
+relation_types:
+  # A1 original relations
+  - {type: owns,          from: Person,      to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: has_owner,     from: Organization,to: Person,       cardinality: one-to-many, cyclic: false}
+  - {type: assigned_to,   from: Task,        to: Expert,       cardinality: many-to-one, cyclic: false}
+  - {type: has_task,      from: Expert,      to: Task,         cardinality: one-to-many, cyclic: false}
+  - {type: member_of,     from: Person,      to: Department,   cardinality: many-to-one, cyclic: false}
+  - {type: blocks,        from: Task,        to: Task,         cardinality: many-to-many, cyclic: false, desc: "Blocking; cycles forbidden"}
+  - {type: depends_on,    from: Task,        to: Task,         cardinality: many-to-many, cyclic: false, desc: "Dependency; cycles forbidden"}
+  - {type: mentions,      from: Document,    to: Organization, cardinality: many-to-many, cyclic: false}
+  # Weishu extension relations
+  - {type: employs,       from: Organization,to: Person,       cardinality: one-to-many, cyclic: false}
+  - {type: belongs_to,    from: Person,      to: Department,   cardinality: many-to-one, cyclic: false}
+  - {type: has,           from: Organization,to: Department,   cardinality: one-to-many, cyclic: false}
+  - {type: holds,         from: Organization,to: Account,      cardinality: one-to-many, cyclic: false}
+  - {type: owned_by,      from: Project,     to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: contains,      from: Project,     to: Task,         cardinality: one-to-many, cyclic: false}
+  - {type: part_of,       from: Task,        to: Project,      cardinality: many-to-one, cyclic: false}
+  - {type: set_by,        from: Goal,        to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: occurs_at,     from: Event,       to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: belongs_to_org,from: Document,    to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: held_by,       from: Account,     to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: staffed_by,    from: Department,  to: Expert,       cardinality: one-to-many, cyclic: false}
+  - {type: serves,        from: Expert,      to: Department,   cardinality: many-to-one, cyclic: false}
+  - {type: executes,      from: Expert,      to: Task,         cardinality: many-to-many, cyclic: false}
+  - {type: billed_by,     from: Task,        to: Invoice,      cardinality: many-to-one, cyclic: false}
+  - {type: issued_by,     from: Invoice,     to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: related_to,    from: Invoice,     to: Task,         cardinality: many-to-one, cyclic: false}
+  - {type: patronizes,    from: Customer,    to: Organization, cardinality: many-to-one, cyclic: false}
+  - {type: applies_to,    from: Policy,      to: Organization, cardinality: many-to-many, cyclic: false}
+  - {type: owns_company,  from: Person,      to: Organization, cardinality: one-to-one,  cyclic: false, desc: "Actual control relationship"}
+  - {type: manages,       from: Expert,      to: Department,   cardinality: many-to-one, cyclic: false, desc: "Department management"}
+
+# ── Global constraint library (A1 mode: intercept before write; merges PII guardrails) ──────────
+global_constraints:
+  - id: no_plaintext_credential
+    desc: "Credential / password fields must never be stored in plain text; store an external encrypted reference only"
+    action: block
+    applies_to: [Account.password, Document.secret]
+  - id: task_status_machine
+    desc: "Task.status only allows the legal transitions todo→doing→blocked→done; done cannot roll back"
+    action: block
+    applies_to: [Task.status]
+    transitions:
+      todo:   [doing, blocked]
+      doing:  [blocked, done]
+      blocked: [doing, done]
+      done:   []
+  - id: event_time_order
+    desc: "Event.at must not be earlier than its created_at"
+    action: block
+    applies_to: [Event.at]
+  - id: no_circular_dependency
+    desc: "Task.blocks / Task.depends_on must not form cycles"
+    action: block
+    applies_to: [Task.blocks, Task.depends_on]
+  - id: no_pii_plaintext
+    desc: "PII such as national ID, bank card, invoice images and tax IDs must not be stored in plain text; keep an external encrypted reference index only"
+    action: block
+    applies_to: [Customer.id_card, Account.bank_no, Customer.contact, Invoice.image_ref, Invoice.tax_no, Person.id_card, Person.phone]
+  - id: no_circular_department
+    desc: "Department part_of ownership must not form cycles"
+    action: block
+    applies_to: [Department.part_of]
+  - id: required_fields
+    desc: "Writes are rejected when required entity fields are missing"
+    action: block
+  - id: legal_form_enum
+    desc: "Organization.legal_form must be one of the enum values"
+    action: block
+    applies_to: [Organization.legal_form]
+
+# ── Pre-write constraint validation entry (semantic layer → reused by scripts/init.py and write paths) ──────────
+validation:
+  rules:
+    - {id: no_pii_plaintext,        action: block}
+    - {id: required_fields,         action: block}
+    - {id: no_circular_department,  action: block}
+    - {id: legal_form_enum,         action: block}
+    - {id: no_plaintext_credential, action: block}
+    - {id: task_status_machine,     action: block}
+    - {id: event_time_order,        action: block}
+    - {id: no_circular_dependency,  action: block}
+  cardinality:
+    - {from: Department, to: Organization, type: part_of,    max: 1}
+    - {from: Expert,    to: Department,   type: serves,     max: 1}
+    - {from: Task,      to: Project,      type: part_of,    max: 1}
+
+# ── Interface contract with packs ───────────────────────────────
+# packs/*.yaml may add industry-specific entities (e.g. ecommerce: Product/Order/Shop)
+# and reference this template's entities (e.g. Invoice/Customer) to extend relations,
+# but must not redefine entities that already exist in this template
+extension_contract:
+  allow_extra_entity_types: true
+  must_reference_base: [Organization, Department, Expert, Invoice, Customer]
+  forbid_override: [Person, Organization, Account]

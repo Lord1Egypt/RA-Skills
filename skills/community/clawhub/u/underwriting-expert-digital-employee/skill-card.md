@@ -1,41 +1,57 @@
-## Description: <br>
-Covers health review, medical assessment, underwriting conclusion interpretation, follow-up, and dual-recording quality checks to help underwriting personnel evaluate health risk more accurately and efficiently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides reference workflows for health review, medical assessment, underwriting outcome interpretation, follow-up preparation, and recorded-sales quality checks.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Insurance underwriting staff use this skill to structure health reviews, medical risk assessments, underwriting decision explanations, customer follow-up, and dual-recording quality checks. Outputs are advisory and require qualified human review before operational use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill addresses regulated insurance operations and may handle sensitive customer, health, financial, audio, or identity data. <br>
-Mitigation: Use only in explicitly permissioned environments; minimize and mask sensitive data, enforce access controls, and retain encrypted audit logs according to policy. <br>
-Risk: The artifact declares no tools, storage, network access, or PII handling while its workflows describe MCP tools, customer contact, OCR/ASR processing, and audit logging. <br>
-Mitigation: Treat all tool use and customer contact as disabled unless separately configured, approved, logged, and reviewed by authorized personnel. <br>
-Risk: Underwriting conclusions, notices, and quality findings may affect customers if used without expert oversight. <br>
-Mitigation: Require qualified human approval before applying outputs to underwriting decisions, customer communications, compliance findings, or follow-up actions. <br>
+## Use Case:
 
+Underwriting and quality staff can use this workflow reference to organize health and medical review, explain draft underwriting outcomes, prepare follow-up materials, and review recorded sales conversations. Outputs are drafts for qualified staff to assess; authorized professionals make and carry out business decisions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown reports, structured checklists, risk assessments, decision explanations, and customer-facing notice drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory outputs for regulated insurance workflows; human review is required before use with customers or policy decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The security review was incomplete because two local references were missing and their contents were not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Locate and review the missing references before relying on material that may depend on them.
+
+Risk: The workflow may involve sensitive health and identity information.
+
+Mitigation: Provide only the minimum necessary information and de-identify personal details before use.
+
+Risk: Draft underwriting assessments could be mistaken for official decisions.
+
+Mitigation: Have an appropriately qualified, authorized professional review source evidence and make the final decision.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/underwriting-expert-digital-employee)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Structured Markdown drafts, checklists, and explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts require qualified human review; the skill does not contact customers or perform system actions.]
+
+## Skill Version(s):
+
+2.0.10 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

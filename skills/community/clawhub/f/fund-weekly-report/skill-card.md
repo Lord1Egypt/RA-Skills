@@ -1,48 +1,62 @@
-## Description: <br>
-Generates Chinese fund weekly report Word documents from user-provided Excel data for active equity, fixed income, index funds, FOF, QDII, REITs, fund issuance, and related weekly performance analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fund Weekly Report generates Chinese fund weekly report Word documents from Excel data, covering active equity, fixed income, index funds, FOFs, QDII, REITs, and related weekly performance analysis.
 
-## Publisher: <br>
-[Yujing2013](https://clawhub.ai/user/Yujing2013) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yujing2013](https://clawhub.ai/user/yujing2013)
 
-## Use Case: <br>
-Analysts and agents use this skill to turn fund weekly return spreadsheets, optional ETF flow spreadsheets, and reporting templates into structured Chinese weekly fund reports. It is intended for local document generation from files the user provides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes a generated Word document to a user-selected path, which could overwrite an existing file if the same output name is reused. <br>
-Mitigation: Choose an output filename inside the working directory and check for existing files before running report generation. <br>
-Risk: Report content depends on the accuracy and intended scope of the Excel spreadsheets and optional template or news files supplied by the user. <br>
-Mitigation: Provide only the spreadsheet, template, and news files intended for analysis, and review the generated report before relying on it. <br>
-Risk: Spreadsheet parsing and report wording may produce misleading analysis if the input workbook layout differs from the documented sheet and column mappings. <br>
-Mitigation: Validate input workbooks against the documented data mapping and spot-check generated statistics, date ranges, and fund names. <br>
+## Use Case:
 
+External users and fund analysts use this skill to transform provided weekly fund return workbooks, and optionally ETF flow workbooks, into a structured Chinese weekly fund report. It is intended for report drafting and data-driven narrative generation from trusted local inputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Yujing2013/fund-weekly-report) <br>
-- [Chapter Breakdown](references/chapter_breakdown.md) <br>
-- [Data Mapping](references/data_mapping.md) <br>
-- [Data Processing Logic](references/data_processing_logic.md) <br>
-- [ETF Flow Usage](references/etf_flow_usage.md) <br>
-- [Template Usage](references/template_usage.md) <br>
-- [Writing Templates V3 Learned](references/writing_templates_v3_learned.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance and Python scripts that generate Word .docx reports from Excel inputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided .xlsx or .xls inputs and writes a Word report to the selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.3 (source: server release metadata; artifact frontmatter says 1.8.2) <br>
+Risk: The server security summary says the skill's file access and output behavior exceed the safety limits claimed in its documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only trusted local inputs, avoid arbitrary local paths, constrain reads to uploaded files or an approved workspace, and prevent report overwrites.
+
+Risk: The server guidance warns against running legacy generator scripts against untrusted requests.
+
+Mitigation: Run only reviewed scripts in a controlled workspace and pin dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yujing2013/skills/fund-weekly-report)
+- [Fund Weekly Report skill definition](artifact/SKILL.md)
+- [Chapter breakdown](artifact/references/chapter_breakdown.md)
+- [Excel data mapping rules](artifact/references/data_mapping.md)
+- [Data processing logic](artifact/references/data_processing_logic.md)
+- [ETF flow data usage](artifact/references/etf_flow_usage.md)
+- [Word template usage](artifact/references/template_usage.md)
+- [Writing templates](artifact/references/writing_templates.md)
+- [Improved writing templates](artifact/references/writing_templates_v2.md)
+- [Learned report writing templates](artifact/references/writing_templates_v3_learned.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Microsoft Word document with agent-facing text, Markdown, code, and shell-command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Excel input files and writes the generated report to the user's working directory.]
+
+## Skill Version(s):
+
+1.8.3 (source: server release metadata; artifact frontmatter reports 1.8.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

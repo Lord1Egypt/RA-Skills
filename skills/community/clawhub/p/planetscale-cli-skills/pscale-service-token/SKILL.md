@@ -1,11 +1,21 @@
 ---
 name: pscale-service-token
-description: Create, list, and manage service tokens for CI/CD authentication. Use when setting up automated deployments, configuring CI/CD pipelines (GitHub Actions, GitLab CI, CircleCI, etc.), creating non-interactive authentication, or rotating CI/CD credentials. Preferred over passwords for production automation. Triggers on service token, CI/CD auth, automation token, pipeline authentication.
+description: Create, show, list, and manage service tokens for CI/CD authentication. Use when setting up automated deployments, configuring CI/CD pipelines (GitHub Actions, GitLab CI, CircleCI, etc.), creating non-interactive authentication, inspecting service token metadata, or rotating CI/CD credentials. Preferred over passwords for production automation. Triggers on service token, service-token show, CI/CD auth, automation token, pipeline authentication.
 ---
 
 # pscale service-token
 
 Create, list, and manage service tokens for CI/CD and automation.
+
+## Destructive-operation safety
+
+These gates apply to every destructive example here, including deletion, demotion, protection removal, connection/transaction termination, deploy-request closure/revert, and cleanup. Command examples and CLI confirmation prompts are not authorization.
+
+1. Inspect fresh state and confirm support for the target engine and installed CLI. Obtain explicit approval for the exact organization and, where applicable, database, branch, and resource ID/name, plus the operation and flags; use an explicit `--org` on every operation. Stop on unsupported operations or uncertain identity.
+2. Check dependencies and availability: applications, active users, child resources, routing, pending changes, and the maintenance window. Do not infer that a stale, merged, or unused-looking resource is disposable.
+3. Require a verified recovery path that survives the operation: confirm backup/export usability and retention, or tested replacement/recreation instructions, ownership, and recovery time. A backup name alone is not verification; stop if recovery cannot be established.
+4. Execute only the approved action. Force flags, descendant deletion, demotion, and disabling protection require separate explicit approval; never add them to work around a refusal. For a known headless session, obtain approval for the required force flag up front, before attempting the operation; stop if that approval is absent or any attempt is refused.
+5. Perform read-back verification of the exact target and dependent service health. Inspect pending/asynchronous outcomes before claiming completion. Authentication/network errors are not proof of absence; an ambiguous result requires investigation, not an automatic retry.
 
 ## Common Commands
 
@@ -15,6 +25,9 @@ pscale service-token create --org <org>
 
 # List service tokens
 pscale service-token list --org <org>
+
+# Show safe metadata for one service token
+pscale service-token show <token-id> --org <org> --format json
 
 # Delete service token
 pscale service-token delete <token-id> --org <org>
@@ -72,9 +85,22 @@ pscale service-token create --org my-org
 
 # 3. Update CI/CD secrets
 
-# 4. Delete old token
+# 4. Review cleanup under the safety gates; verify replacement access and obtain approval
 pscale service-token delete <old-token-id> --org my-org
 ```
+
+### Inspect a service token
+
+`pscale service-token show` returns safe service-token metadata such as ID, name, creation time, expiry, last-used time, last-used IP, and last-used network organization. It does not print the token secret and does not include access grants; use `show-access` when grants are needed.
+
+```bash
+pscale service-token show <token-id> --org <org> --format json
+pscale service-token show-access <token-id> --org <org> --format json
+```
+
+List/show human and CSV output uses `last_used_ip` and `last_used_organization` columns. JSON uses nullable `last_used_ip` and `last_used_asn_organization`; the latter identifies the IP's network/ASN organization, not the PlanetScale organization or an access grant. Missing values display as empty strings in the table; JSON retains nulls. Do not infer misuse, current permissions, or safety to delete from last-use metadata alone. Protect IP/network metadata in incident evidence and avoid publishing it.
+
+Treat token IDs and grant details as sensitive operational metadata. Never ask the user to paste a service token secret into chat; use environment variables or a secrets manager.
 
 ## Troubleshooting
 
@@ -105,7 +131,7 @@ pscale service-token list --org <correct-org>
 
 1. **Rotate tokens regularly** (every 90 days recommended)
 2. **Use separate tokens** for different CI/CD systems
-3. **Delete unused tokens** immediately
+3. **Review tokens for cleanup under the safety gates**; verify CI/CD dependencies before approving deletion
 4. **Never commit tokens** to version control
 5. **Use secrets management** (GitHub Secrets, environment variables, vault systems)
 6. **Limit token scope** if possible (coming in future PlanetScale updates)

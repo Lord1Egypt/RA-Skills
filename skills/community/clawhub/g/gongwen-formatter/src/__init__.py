@@ -9,5 +9,5 @@
 
 from .md2docx import md_to_docx
 
-__version__ = "1.1.0"
+__version__ = "1.1.9"
 __all__ = ["md_to_docx"]

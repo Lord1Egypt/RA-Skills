@@ -1,43 +1,55 @@
-## Description: <br>
-Register this AI agent on Clawl, generate a clawl.json discovery file, and ping Clawl for indexing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register this AI agent on Clawl, the agent search engine; generates a clawl.json discovery file and pings clawl.co.uk for indexing.
 
-## Publisher: <br>
-[wlshlad85](https://clawhub.ai/user/wlshlad85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wlshlad85](https://clawhub.ai/user/wlshlad85)
 
-## Use Case: <br>
-External developers and agent maintainers use this skill to publish an agent discovery manifest and register public-facing agent metadata with Clawl. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may send public agent metadata to a default service that differs from the documented Clawl URLs. <br>
-Mitigation: Set CLAWL_API explicitly to the intended Clawl-controlled host or run the script with --json to generate clawl.json without network registration. <br>
-Risk: The script writes clawl.json in the current workspace and may overwrite an existing file. <br>
-Mitigation: Run it only in the intended directory, inspect any existing clawl.json first, and review the generated manifest before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wlshlad85/clawl-register) <br>
-- [Clawl](https://clawl.co.uk) <br>
-- [Clawl Protocol](https://clawl.co.uk/protocol) <br>
-- [Clawl schema v0.1](https://clawl.co.uk/schema/v0.1.json) <br>
-- [Clawl registration](https://clawl.co.uk/register) <br>
+## Use Case:
 
+External agents and developers use this skill to generate a Clawl discovery manifest and submit public agent metadata so the agent can be indexed and discovered.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, API calls] <br>
-**Output Format:** [Markdown guidance with command examples and generated clawl.json configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes clawl.json in the current workspace and may send public agent metadata to the configured Clawl API unless run in JSON-only mode.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The registration flow can send auto-detected public agent metadata to the configured API host.
+
+Mitigation: Run with --json first, inspect the generated manifest, and verify the registration endpoint before allowing network registration.
+
+Risk: The script can overwrite an existing clawl.json in the workspace.
+
+Mitigation: Back up any existing clawl.json before running the script and review the generated file before publishing it.
+
+## Reference(s):
+
+- [Clawl](https://clawl.co.uk)
+- [Clawl Protocol](https://clawl.co.uk/protocol)
+- [clawl.json Schema](https://clawl.co.uk/schema/v0.1.json)
+- [Clawl Register on ClawHub](https://clawhub.ai/wlshlad85/skills/clawl-register)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with CLI examples; generated clawl.json when the registration script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write clawl.json in the workspace and may send public agent metadata to the configured Clawl API unless --json is used.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

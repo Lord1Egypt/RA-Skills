@@ -1,43 +1,60 @@
-## Description: <br>
-Detect and redact PII from text files, including credit cards, SSNs, emails, API keys, addresses, and other supported categories, with no external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and redact PII from text files. Supports 15 categories including credit cards, SSNs, emails, API keys, addresses, and more -- with zero dependencies.
 
-## Publisher: <br>
-[agentward-ai](https://clawhub.ai/user/agentward-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[agentward-ai](https://clawhub.ai/user/agentward-ai)
 
-## Use Case: <br>
-Developers, security teams, and agents use this skill to create sanitized copies of local text files before reviewing or sharing content that may contain PII. It can also preview detected PII categories and produce JSON summaries without printing raw PII values to stdout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The optional entity-map sidecar can contain original PII values. <br>
-Mitigation: Treat any *.entity-map.json file as highly sensitive; do not read or share it unless required, store it carefully, and delete it when no longer needed. <br>
-Risk: Raw input files may contain sensitive PII. <br>
-Mitigation: Use --output to create a sanitized copy, inspect only the sanitized output, and avoid displaying raw input content in agent context. <br>
+## Use Case:
 
+Developers, security teams, and agent operators use this skill to detect and redact sensitive personal data in local text files before sharing or inspecting the content.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentward-ai/sanitize) <br>
-- [AgentWard Project Homepage](https://github.com/agentward-ai/agentward) <br>
-- [Supported PII Categories](references/SUPPORTED_PII.md) <br>
-- [AgentWard Website](https://agentward.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; sanitized text files or JSON summaries when the local script is executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preview and JSON modes avoid printing raw PII values. When --output is used, the optional *.entity-map.json sidecar can contain original PII and should be protected or deleted when no longer needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, clawhub.json, server release metadata) <br>
+Risk: The JSON plus --output workflow can write raw sensitive values to a predictable *.entity-map.json sidecar file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use JSON plus --output only when the raw entity map is explicitly needed; treat the sidecar as highly sensitive and delete it after use.
+
+Risk: Input, sanitized output, or entity-map files may be exposed through shared, synced, indexed, or backed-up directories.
+
+Mitigation: Run the skill only on trusted local paths and write outputs to locations that are not shared, synced, indexed, or broadly backed up.
+
+Risk: Reading raw input files or entity-map files can expose PII to an agent or reviewer.
+
+Mitigation: Inspect only sanitized output or safe preview/JSON summaries; do not open raw inputs or *.entity-map.json files during agent workflows.
+
+## Reference(s):
+
+- [Supported PII Categories](references/SUPPORTED_PII.md)
+- [AgentWard repository](https://github.com/agentward-ai/agentward)
+- [AgentWard support](https://github.com/agentward-ai/agentward/issues)
+- [AgentWard](https://agentward.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; sanitized text files, safe preview text, and JSON summaries when the script is run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sanitized output replaces detected values with numbered placeholders; JSON and preview modes omit raw PII from stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, clawhub.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

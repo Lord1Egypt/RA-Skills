@@ -1,39 +1,49 @@
-## Description: <br>
-UI Design provides guidance on layout, typography, color, spacing, accessibility, motion, and component design for building and reviewing web interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive UI design skill covering fundamentals, patterns, and anti-patterns for layout, typography, color, spacing, accessibility, motion, and component design.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and designers use this skill to plan, implement, or review web interfaces with attention to visual hierarchy, responsive layout, accessibility, and polished component behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad activation language may add design guidance to frontend tasks where the user expected tighter control. <br>
-Mitigation: Invoke the skill deliberately or narrow local triggers when a project needs strict control over design guidance. <br>
-Risk: Design recommendations may be unsuitable for a product's brand, accessibility obligations, or implementation constraints. <br>
-Mitigation: Review generated UI changes before deployment and validate accessibility, responsive behavior, and brand fit in the target application. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/ui-design) <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to design, review, and refine web interfaces, including components, pages, dashboards, landing pages, accessibility, responsive behavior, and visual hierarchy.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented installer command uses an unpinned executable installer and mutable remote source.
+
+Mitigation: Review the installer and source before execution, prefer a pinned package version or immutable commit, and run installation without elevated privileges or unrelated credentials.
+
+## Reference(s):
+
+- [UI Design Skill Page](https://clawhub.ai/wpank/skills/ui-design)
+- [Publisher Profile](https://clawhub.ai/user/wpank)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with prose, tables, checklists, and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include UI design recommendations, CSS examples, implementation checklists, and installation commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

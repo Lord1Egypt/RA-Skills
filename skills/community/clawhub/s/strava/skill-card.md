@@ -1,43 +1,56 @@
-## Description: <br>
-Load and analyze Strava activities, stats, and workouts using the Strava API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Load and analyze Strava activities, stats, and workouts using the Strava API.
 
-## Publisher: <br>
-[bohdanpodvirnyi](https://clawhub.ai/user/bohdanpodvirnyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bohdanpodvirnyi](https://clawhub.ai/user/bohdanpodvirnyi)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve Strava activities, athlete profile data, workout statistics, and token refresh commands for fitness analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Strava OAuth access and handles access tokens, refresh tokens, client IDs, and client secrets. <br>
-Mitigation: Treat all Strava credentials and tokens as secrets, restrict configuration file permissions, and rotate or revoke Strava credentials if token output is exposed. <br>
-Risk: Token refresh commands can print live token values, which may be captured in shell history, logs, or shared terminal output. <br>
-Mitigation: Avoid running refresh commands in logged environments and do not commit, paste, or share generated token values. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent retrieve Strava activities, athlete profile data, workout details, and aggregate stats for fitness analysis.
 
-## Reference(s): <br>
-- [ClawHub Strava Skill](https://clawhub.ai/bohdanpodvirnyi/strava) <br>
-- [Strava Developers](https://developers.strava.com/) <br>
-- [Strava API Reference](https://developers.strava.com/docs/reference/) <br>
-- [Create Strava API Application](https://www.strava.com/settings/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl against the Strava API and requires STRAVA_ACCESS_TOKEN; token refresh also requires STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, and STRAVA_REFRESH_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Strava account data may include private workouts, routes, timestamps, and heart-rate metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the Strava scopes needed for the task and keep access tokens in a protected secret store or restricted-permission configuration file.
+
+Risk: The token refresh helper can expose full account access credentials in normal command output.
+
+Mitigation: Avoid running the refresh helper in logged terminals or shared agent sessions unless it is fixed to avoid printing full tokens.
+
+## Reference(s):
+
+- [Strava Developers](https://developers.strava.com/)
+- [Strava API Reference](https://developers.strava.com/docs/reference/)
+- [Create a Strava API Application](https://www.strava.com/settings/api)
+- [ClawHub Strava Skill](https://clawhub.ai/bohdanpodvirnyi/skills/strava)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, curl examples, configuration snippets, and summarized Strava API results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and Strava OAuth credentials, including STRAVA_ACCESS_TOKEN for read access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

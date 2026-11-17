@@ -1,39 +1,47 @@
-## Description: <br>
-Context Pruner helps agents manage long-running threads by summarizing redundant history, filtering low-value messages, distilling facts, and chunking transcripts into searchable summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent context window management by summarizing and removing redundant history. Helps agents maintain high performance in long-running threads.
 
-## Publisher: <br>
-[balkanblbn](https://clawhub.ai/user/balkanblbn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[balkanblbn](https://clawhub.ai/user/balkanblbn)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep long-running conversations focused by reducing redundant context into concise, searchable summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pruned summaries can omit exact wording or nuance from important conversations. <br>
-Mitigation: Review generated summaries before relying on them, especially for legal, financial, or other high-stakes work. <br>
-Risk: Over-filtering can remove details that later become relevant. <br>
-Mitigation: Keep source conversation history available when decisions depend on complete context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/balkanblbn/context-pruner) <br>
+## Use Case:
+
+Developers and agent users use this skill to compress long-running conversation history into focused summaries while retaining important facts and searchable chunks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may guide an agent to compress or omit parts of long conversations, which can lose exact wording or important historical context.
+
+Mitigation: Keep critical requirements explicit and review generated summaries before relying on them for tasks where full context matters.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries filter low-value messages, distill facts, and organize long transcripts into searchable chunks.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance and summarized text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May omit redundant conversation history and preserve important requirements as concise summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

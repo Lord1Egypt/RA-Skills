@@ -1,248 +1,128 @@
 # Routing — NextJS
 
-## File-Based Routing
-
-```
-app/
-├── page.tsx                    # /
-├── about/
-│   └── page.tsx               # /about
-├── blog/
-│   ├── page.tsx               # /blog
-│   └── [slug]/
-│       └── page.tsx           # /blog/hello-world
-└── [...catchAll]/
-    └── page.tsx               # /anything/else/here
-```
-
 ## Special Files
 
-| File | Purpose |
-|------|---------|
-| `page.tsx` | Unique UI for route, makes route accessible |
-| `layout.tsx` | Shared UI, wraps pages and nested layouts |
-| `loading.tsx` | Loading UI (Suspense boundary) |
-| `error.tsx` | Error UI (Error boundary) |
-| `not-found.tsx` | 404 UI for route |
-| `template.tsx` | Like layout but re-mounts on navigation |
-| `default.tsx` | Fallback for parallel routes |
-| `route.tsx` | API endpoint |
+| File | Purpose | Gotcha |
+|------|---------|--------|
+| `page.tsx` | Route UI; makes the route public | A folder without one is just a path segment |
+| `layout.tsx` | Shared UI, preserves state across navigation | Does NOT re-render on navigation within it — never put auth or per-page data here |
+| `template.tsx` | Like layout but remounts per navigation | Use for enter animations or state that must reset per page |
+| `loading.tsx` | Suspense fallback for the whole segment | Coarse — prefer explicit `<Suspense>` around slow parts (`data-fetching.md`) |
+| `error.tsx` | Error boundary (must be `'use client'`) | Doesn't catch errors in the layout of the SAME segment — that needs the parent's boundary |
+| `not-found.tsx` | 404 UI; triggered by `notFound()` | `notFound()` throws, like `redirect()` — don't catch it |
+| `default.tsx` | Parallel-route fallback | Missing one → hard navigation 404s the whole page |
+| `route.ts` | API endpoint | Cannot coexist with `page.tsx` in the same folder |
 
 ## Dynamic Routes
 
 ```typescript
-// app/blog/[slug]/page.tsx
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+// app/blog/[slug]/page.tsx — params is a Promise since next 15
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   return <h1>Post: {slug}</h1>
 }
 
-// Generate static params
 export async function generateStaticParams() {
   const posts = await getPosts()
-  return posts.map((post) => ({
-    slug: post.slug,
-  }))
+  return posts.map((post) => ({ slug: post.slug }))
 }
 
-// Control dynamic behavior
-export const dynamicParams = true  // Allow unlisted params (default)
-export const dynamicParams = false // 404 for unlisted params
+export const dynamicParams = true   // unlisted slugs render on demand, then cache (default)
+// dynamicParams = false → unlisted slugs 404
 ```
 
-## Catch-All Routes
+Without `generateStaticParams`, every slug renders on first request. With it, listed slugs build ahead of time — for large catalogs, return only the top N (best-sellers, recent posts) and let the long tail generate on demand.
 
-```typescript
-// app/shop/[...categories]/page.tsx
-// Matches: /shop/clothes, /shop/clothes/tops, /shop/clothes/tops/shirts
-
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ categories: string[] }>
-}) {
-  const { categories } = await params
-  // categories = ['clothes', 'tops', 'shirts']
-  return <h1>{categories.join(' > ')}</h1>
-}
-
-// Optional catch-all: [[...categories]]
-// Also matches: /shop (categories = undefined)
-```
+Catch-all: `[...categories]` matches `/shop/a`, `/shop/a/b`, … (`categories: string[]`). Optional catch-all `[[...categories]]` also matches `/shop` (undefined).
 
 ## Route Groups
 
 ```
 app/
-├── (marketing)/          # Group - no URL impact
+├── (marketing)/         # No URL impact — layout separation only
 │   ├── page.tsx         # /
-│   ├── about/page.tsx   # /about
-│   └── layout.tsx       # Marketing layout
+│   └── layout.tsx
 ├── (shop)/
-│   ├── products/page.tsx # /products
-│   └── layout.tsx       # Shop layout
-└── layout.tsx           # Root layout
+│   ├── products/page.tsx  # /products
+│   └── layout.tsx
+└── layout.tsx           # Root
 ```
+
+Traps:
+- Two pages resolving to the same URL across groups (`(a)/about` and `(b)/about`) → build error.
+- Putting separate root layouts inside groups (no top-level `layout.tsx`) works, but navigating between groups becomes a full page load.
 
 ## Parallel Routes
 
+Slots (`@name`) render simultaneously in the parent layout — each gets its own loading and error boundary, which is the actual reason to use them (independent failure/streaming per dashboard panel):
+
 ```
 app/
-├── @analytics/
-│   ├── page.tsx
-│   └── default.tsx      # Fallback when no match
-├── @team/
-│   ├── page.tsx
-│   └── default.tsx
-├── layout.tsx           # Receives slots as props
+├── @analytics/page.tsx
+├── @analytics/default.tsx    # REQUIRED: fallback on hard navigation
+├── @team/page.tsx
+├── @team/default.tsx
+├── layout.tsx                # receives slots as props
 └── page.tsx
 ```
 
 ```typescript
-// app/layout.tsx
-export default function Layout({
-  children,
-  analytics,
-  team,
-}: {
+export default function Layout({ children, analytics, team }: {
   children: React.ReactNode
   analytics: React.ReactNode
   team: React.ReactNode
 }) {
-  return (
-    <>
-      {children}
-      <aside>
-        {analytics}
-        {team}
-      </aside>
-    </>
-  )
+  return (<>{children}<aside>{analytics}{team}</aside></>)
 }
 ```
 
-## Intercepting Routes
+Second use: conditional slots — `return session ? dashboard : login` in the layout swaps entire subtrees without URL change.
 
-| Convention | Matches |
-|------------|---------|
+## Intercepting Routes (the Modal Pattern)
+
+| Convention | Intercepts from |
+|------------|-----------------|
 | `(.)folder` | Same level |
 | `(..)folder` | One level up |
-| `(..)(..)folder` | Two levels up |
-| `(...)folder` | From root |
+| `(...)folder` | Root |
 
 ```
 app/
-├── feed/
-│   └── page.tsx
-├── photo/[id]/
-│   └── page.tsx          # Full page /photo/123
-└── @modal/
-    └── (.)photo/[id]/
-        └── page.tsx      # Intercepts as modal
+├── feed/page.tsx
+├── photo/[id]/page.tsx           # Full page: direct visit, refresh, shared link
+├── @modal/(.)photo/[id]/page.tsx # Modal: soft navigation from the feed
+└── @modal/default.tsx            # return null — or every other route 404s
 ```
+
+Why it works: soft navigation renders the interceptor (modal over the feed); hard navigation (refresh, external link) renders the real page. Both must exist and both must render the content — the modal is not a substitute for the page. Close the modal with `router.back()`.
 
 ## Navigation
 
 ```typescript
-// Link component - client-side navigation
 import Link from 'next/link'
-
-<Link href="/about">About</Link>
-<Link href={`/blog/${post.slug}`}>Read More</Link>
 <Link href="/dashboard" prefetch={false}>Dashboard</Link>
 
-// useRouter - programmatic navigation (Client Component)
-'use client'
-import { useRouter } from 'next/navigation'
+// Client Components only
+const router = useRouter()   // from 'next/navigation', NOT 'next/router'
+router.push('/x')  router.replace('/x')  router.refresh()  router.back()
 
-function Component() {
-  const router = useRouter()
-  
-  router.push('/dashboard')        // Navigate
-  router.replace('/login')         // Replace history
-  router.refresh()                 // Refresh server components
-  router.prefetch('/about')        // Prefetch route
-  router.back()                    // Go back
-  router.forward()                 // Go forward
-}
-
-// redirect - Server Component/Action
-import { redirect } from 'next/navigation'
-
-export default async function Page() {
-  const session = await getSession()
-  if (!session) redirect('/login')
-  return <Dashboard />
-}
-
-// permanentRedirect - 308 redirect
-import { permanentRedirect } from 'next/navigation'
-permanentRedirect('/new-url')
+// Server Components / Actions / Route Handlers
+redirect('/login')            // 307; 303 when called in a Server Action — throws, keep out of try/catch
+permanentRedirect('/new-url') // 308
 ```
 
-## Route Configuration
+Prefetch behavior in production: static routes prefetch fully on viewport entry; dynamic routes prefetch only down to the nearest `loading.tsx`. A list of hundreds of `<Link>`s to dynamic pages = hundreds of prefetch requests — `prefetch={false}` for long lists.
+
+`useRouter` from `next/router` in App Router code is the classic migration error — the import path is `next/navigation`.
+
+## Route Segment Config
+
+Common per-route exports (cache-related ones are canonical in `caching.md`):
 
 ```typescript
-// Per-route configuration
-export const dynamic = 'auto' // default
-export const dynamic = 'force-dynamic' // always dynamic
-export const dynamic = 'force-static' // always static
-export const dynamic = 'error' // error if dynamic
-
-export const revalidate = false // no revalidation (default for static)
-export const revalidate = 0 // always revalidate
-export const revalidate = 60 // revalidate every 60 seconds
-
-export const fetchCache = 'auto' // default
-export const fetchCache = 'default-cache' // cache unless opt-out
-export const fetchCache = 'default-no-store' // no cache unless opt-in
-export const fetchCache = 'force-cache' // cache all
-export const fetchCache = 'force-no-store' // no cache
-export const fetchCache = 'only-cache' // error on no-cache
-export const fetchCache = 'only-no-store' // error on cache
-
-export const runtime = 'nodejs' // default
-export const runtime = 'edge' // edge runtime
-
-export const preferredRegion = 'auto' // default
-export const preferredRegion = 'iad1' // specific region
-export const preferredRegion = ['iad1', 'sfo1'] // multiple regions
-
-export const maxDuration = 5 // max execution time in seconds
+export const runtime = 'nodejs'        // or 'edge' — see SKILL.md, Where Experts Disagree
+export const maxDuration = 30          // seconds; platform caps still apply
+export const preferredRegion = 'iad1'  // pin near your database, not near users
 ```
 
-## Active Link
-
-```typescript
-'use client'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-
-export function NavLinks() {
-  const pathname = usePathname()
-  
-  const links = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/blog', label: 'Blog' },
-  ]
-  
-  return (
-    <nav>
-      {links.map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          className={pathname === link.href ? 'active' : ''}
-        >
-          {link.label}
-        </Link>
-      ))}
-    </nav>
-  )
-}
-```
+Pin compute near the database: a page making 5 sequential queries at 80ms cross-region RTT spends 400ms on network alone; same region ≈ under 10ms total.

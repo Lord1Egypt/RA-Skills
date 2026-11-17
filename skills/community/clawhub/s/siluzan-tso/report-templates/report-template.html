@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <!--
   siluzan-ads 报告 HTML 样式参考（供 AI / 脚本生成成品 HTML 时对齐版式）
 
@@ -25,7 +25,7 @@
   技术栈（均支持 CDN，单文件可离线打开需网络加载资源）：
   - Tailwind CSS (cdn.tailwindcss.com)：布局、间距、响应式、打印友好浅色底
   - Font Awesome 6 (cdnjs.cloudflare.com)：列表与状态图标（类名稳定，便于 AI 输出）
-  - ECharts 5 (staticpn.siluzan.com/homeCDN/echarts.js)：时序、构成、对比（与广告报表 JSON 数组结构天然契合）
+  - ECharts 5 (staticpn.siluzan.com/homeCDN/echarts.min.js)：时序、构成、对比（与广告报表 JSON 数组结构天然契合）
 
   ⚠ 外部网络声明：在浏览器中打开本 HTML 文件时，会向上述 CDN 域名发出网络请求加载样式/脚本。
   如需离线使用，请将对应资源下载到本地并替换下方 <script>/<link> 的 src/href。
@@ -76,7 +76,7 @@
       referrerpolicy="no-referrer"
     />
     <!-- ECharts 5：图表 -->
-    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.js"></script>
+    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.min.js"></script>
     <style>
       /* 打印时尽量白底；与 Tailwind Play CDN 并存 */
       @media print {
@@ -87,8 +87,6 @@
           display: none !important;
         }
       }
-
-
 
       /* 移动端原生适配（≤768px，内联） */
       @supports (padding: env(safe-area-inset-bottom)) {

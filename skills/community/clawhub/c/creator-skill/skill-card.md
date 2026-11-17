@@ -1,49 +1,63 @@
-## Description: <br>
-Creator SKILL helps agents search TikTok, Instagram, and YouTube influencers through the Deinai MCP tools searchInfluencers and get_location_ids. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creator SKILL searches TikTok, Instagram, and YouTube influencers through the Deinai MCP using natural-language criteria, structured filters, and location resolution.
 
-## Publisher: <br>
-[dachengxiaoai](https://clawhub.ai/user/dachengxiaoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deinai](https://clawhub.ai/user/deinai)
 
-## Use Case: <br>
-External users and agent developers use this skill to discover influencers or creators by platform, niche, audience, follower range, language, email availability, and location. It is intended for search and discovery, not creator negotiation, outreach, payments, or campaign management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Deinai MCP token, which is a sensitive credential. <br>
-Mitigation: Store the token only in the OpenClaw MCP server configuration, do not place it in skill files or screenshots, and revoke or rotate it if exposed. <br>
-Risk: Influencer searches consume Deinai team credits for each influencer record returned. <br>
-Mitigation: Use smaller page sizes while testing and confirm the intended platform, query, filters, and location IDs before running broad searches. <br>
-Risk: A missing or invalid platform or location can produce irrelevant or failed searches. <br>
-Mitigation: Ask the user to choose tiktok, instagram, or youtube when platform is missing, and resolve location names with get_location_ids before calling searchInfluencers. <br>
+## Use Case:
 
+External users and agents use this skill to discover creators, KOLs, and influencers on TikTok, Instagram, and YouTube by niche, platform, follower range, language, location, public email availability, or creator handle.
 
-## Reference(s): <br>
-- [Creator SKILL on ClawHub](https://clawhub.ai/dachengxiaoai/creator-skill) <br>
-- [Deinai](https://deinai.ai) <br>
-- [Deinai MCP endpoint](https://deinai.ai/mcp) <br>
-- [MCP token endpoint](https://deinai.ai/api/v1/mcp/tokens) <br>
-- [Install and authentication](references/install.md) <br>
-- [MCP tools](references/tools.md) <br>
-- [Errors and handling](references/errors.md) <br>
-- [Tool contract](tool_specs.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with MCP tool calls, JSON-like tool responses, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results depend on the connected Deinai account, valid MCP token, available team credits, selected platform, query, filters, and page size.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: MCP bearer tokens can be exposed through command-line configuration, shell history, logs, or screenshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the shortest practical token expiry, avoid exposing the token in visible commands or screenshots, and rotate the token immediately if it may have been exposed.
+
+Risk: Influencer searches consume team credits based on the number of records returned.
+
+Mitigation: Confirm broad or large searches before running searchInfluencers, use specific filters, and choose a practical page_size.
+
+Risk: A normal user login JWT may be confused with the required MCP token.
+
+Mitigation: Create and configure the dedicated MCP bearer token from the Deinai token endpoint before connecting the MCP server.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deinai/skills/creator-skill)
+- [Deinai production API](https://deinai.ai)
+- [Deinai MCP endpoint](https://deinai.ai/mcp)
+- [Installation and authentication](references/install.md)
+- [MCP tools](references/tools.md)
+- [Errors and handling](references/errors.md)
+- [Tool contract](tool_specs.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with MCP tool calls, JSON configuration snippets, and plain-text search results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Deinai account, MCP bearer token, and team search credits; searchInfluencers returns up to 50 records per page.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

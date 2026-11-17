@@ -1,42 +1,54 @@
-## Description: <br>
-Teach OpenClaw how to work in Feishu (Lark) group chats: recognize who is talking, behave properly in groups vs DMs, respect multi-user privacy, and format messages for the platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach OpenClaw how to work in Feishu (Lark) group chats by recognizing speakers, behaving appropriately in groups and DMs, respecting multi-user privacy, and formatting messages for the platform.
 
-## Publisher: <br>
-[4ier](https://clawhub.ai/user/4ier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[4ier](https://clawhub.ai/user/4ier)
 
-## Use Case: <br>
-Developers and operators connecting OpenClaw to Feishu use this skill to make an agent a competent group-chat and DM participant. It provides sender-identification setup, Feishu contact-sync guidance, group etiquette, privacy expectations, and platform formatting rules. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The sync script can bulk-copy Feishu organization contacts into persistent agent context. <br>
-Mitigation: Run it only with authorization for Feishu contact-read access, keep USER.md private, and avoid committing or sharing the generated contacts table. <br>
-Risk: Scheduled contact sync can repeatedly refresh sensitive employee identifiers without further review. <br>
-Mitigation: Review any cron setup before enabling it and prefer narrower on-demand lookup or limited contact export when that is sufficient. <br>
-Risk: The sync script reads Feishu app credentials from the OpenClaw configuration at runtime. <br>
-Mitigation: Protect the OpenClaw configuration file and grant the Feishu app only the permissions needed for the intended contact lookup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu contact user lookup API endpoint](https://open.feishu.cn/open-apis/contact/v3/users/find_by_department?department_id=0&page_size=50) <br>
+## Use Case:
 
+Developers and operators connecting OpenClaw to Feishu use this skill to configure group-chat etiquette, sender identification, DM privacy behavior, Feishu-safe formatting, and optional contact syncing.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, and a Python helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update USER.md with a Feishu contacts table when the bundled sync script is run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Organization contacts may be bulk-synced into prompt-loaded memory without sanitizing names.
+
+Mitigation: Use a least-privileged Feishu app, sync only needed users where possible, keep USER.md out of version control, and inspect or sanitize generated contact names before restarting the gateway.
+
+Risk: The optional cron setup can persistently refresh contact mappings.
+
+Mitigation: Avoid automatic sync unless it is necessary, and review scheduled jobs and generated contact mappings regularly.
+
+## Reference(s):
+
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu contact users API](https://open.feishu.cn/open-apis/contact/v3/users/find_by_department?department_id=0&page_size=50)
+- [ClawHub skill page](https://clawhub.ai/4ier/skills/feishu-group)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with plain-text snippets, bash commands, and Python script behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Feishu-specific etiquette, privacy, formatting guidance, and an optional contact-sync command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

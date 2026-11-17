@@ -1,44 +1,54 @@
-## Description: <br>
-Launches the Kairoa desktop app and provides deep-link, command, and helper-script guidance for developer tools including encoding, formatting, cryptography, QR codes, mock data, and network diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launches the Kairoa desktop app and helps agents open developer utilities for encoding, formatting, cryptography, QR codes, mock data, network diagnostics, and related tasks.
 
-## Publisher: <br>
-[luduoxin](https://clawhub.ai/user/luduoxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luduoxin](https://clawhub.ai/user/luduoxin)
 
-## Use Case: <br>
-Developers use this skill to open Kairoa and route common utility tasks into its desktop tools through app launch commands, deep links, and short helper scripts. It is most useful for formatting data, encoding or decoding text, generating identifiers or QR codes, checking hashes, and running authorized network diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deep-link URLs can expose secrets through command history, logs, browser handlers, or screenshots if passwords, API keys, private keys, seed phrases, or tokens are embedded in kairoa:// parameters. <br>
-Mitigation: Do not place sensitive values in kairoa:// URLs; enter secrets only through trusted secure app flows after verifying the installed Kairoa app. <br>
-Risk: Network tools such as port scanning, traceroute, TLS checks, DNS lookup, WebSocket testing, and API requests may affect systems outside the user's authorization. <br>
-Mitigation: Use network diagnostics only on systems the user owns or is explicitly authorized to test. <br>
-Risk: The skill launches a local desktop application and assumes a trusted Kairoa installation is present. <br>
-Mitigation: Install Kairoa only from a trusted source and confirm the app path before launching or following helper commands. <br>
+## Use Case:
 
+Developers and technical agents use this skill to launch Kairoa and access desktop developer tools for common transformation, validation, diagnostic, and generation tasks. It is most useful when the Kairoa desktop app is already trusted and installed on the user's machine.
 
-## Reference(s): <br>
-- [Kairoa Toolkit on ClawHub](https://clawhub.ai/luduoxin/kairoa-toolkit) <br>
-- [Skill source description](artifact/SKILL.md) <br>
-- [Artifact manifest](artifact/clawhub.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, markdown] <br>
-**Output Format:** [Markdown with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes macOS app launch commands, kairoa:// deep-link examples, and optional Python helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact manifest) <br>
+Risk: Deep-link URLs can expose sensitive input through URL strings or command history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use kairoa:// links only with harmless sample data; do not include passwords, API keys, tokens, private keys, seed phrases, or personal data.
+
+Risk: The skill opens and relies on the locally installed Kairoa desktop app.
+
+Mitigation: Install and use the skill only when the Kairoa desktop app is already trusted.
+
+## Reference(s):
+
+- [Kairoa Toolkit on ClawHub](https://clawhub.ai/luduoxin/skills/kairoa-toolkit)
+- [Publisher profile: luduoxin](https://clawhub.ai/user/luduoxin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May launch an installed desktop application or construct kairoa:// deep links when the user asks for a Kairoa tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

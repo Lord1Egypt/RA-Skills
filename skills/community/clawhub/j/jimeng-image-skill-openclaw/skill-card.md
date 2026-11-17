@@ -1,42 +1,53 @@
-## Description: <br>
-Generate images from text prompts using the Jimeng API with customizable size, scale, seed, and output path via Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images from text prompts using the Jimeng API with configurable size, scale, seed, and output path.
 
-## Publisher: <br>
-[gkhcsc](https://clawhub.ai/user/gkhcsc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gkhcsc](https://clawhub.ai/user/gkhcsc)
 
-## Use Case: <br>
-Developers and OpenClaw agents use this skill to call the Jimeng/Volcengine image generation API from a text prompt and save the returned PNG locally for delivery to a user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Jimeng/Volcengine API credentials. <br>
-Mitigation: Use a dedicated API key where possible and manage credentials through environment variables or the configured local environment file. <br>
-Risk: Prompts are sent to an external image generation provider. <br>
-Mitigation: Avoid confidential or sensitive prompt content unless that provider and account setup are approved for the use case. <br>
-Risk: Generated PNG files are saved locally and may contain sensitive content. <br>
-Mitigation: Review, protect, or delete files in the output directory according to local data-handling requirements. <br>
+## Use Case:
 
+Developers and agent operators use this skill to call the Jimeng image-generation API from Python, save generated PNG files, and return the resulting image through the agent's user channel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gkhcsc/jimeng-image-skill-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and Python script parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script saves generated PNG files to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill uses unpinned dependency installation guidance for an external image API client.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in an isolated environment and pin volcengine-python-sdk to a reviewed version before use.
+
+Risk: The skill requires Jimeng API credentials and submits prompt text to an external service.
+
+Mitigation: Use credentials scoped for image generation and avoid submitting sensitive prompts or confidential content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gkhcsc/skills/jimeng-image-skill-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved to the configured output path, defaulting to ~/.openclaw/workspace/images.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Migrate settings from EasyClaw into OpenClaw by locating EasyClaw desktop and runtime config files, comparing them with the active OpenClaw config, and generating a conservative selective merge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Migrate settings from EasyClaw into OpenClaw by locating EasyClaw desktop and runtime configuration files, comparing them with ~/.openclaw/openclaw.json, and generating a backup-aware selective merge.
 
-## Publisher: <br>
-[sjingh](https://clawhub.ai/user/sjingh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjingh](https://clawhub.ai/user/sjingh)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect EasyClaw configuration files, identify settings with clear OpenClaw equivalents, and optionally apply a backed-up selective merge into ~/.openclaw/openclaw.json. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The migration can copy sensitive fields, including authentication tokens, from EasyClaw configuration into the OpenClaw config. <br>
-Mitigation: Run the report and dry-run merge first, review the mapped fields, and remove token mappings before applying if token migration is not intended. <br>
-Risk: Applying the merge changes ~/.openclaw/openclaw.json. <br>
-Mitigation: Use the default backup behavior, review the changed paths after the merge, and keep the timestamped backup until the migrated configuration is validated. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect EasyClaw configuration sources, identify settings with OpenClaw equivalents, and perform a selective, backup-aware migration into ~/.openclaw/openclaw.json.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/sjingh/easyclaw-config-migration) <br>
-- [EasyClaw product site](https://easyclaw.com/) <br>
-- [MIT-0 license](https://spdx.org/licenses/MIT-0.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and redacted configuration summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a dry-run report, changed-path summary, and backup path when the merge script is applied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub metadata) <br>
+Risk: Gateway tokens can appear in merge output or dry-run logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the merge script so token values are redacted before running it, avoid sharing logs, and rotate any token that may already have been exposed.
+
+Risk: Applying the migration modifies OpenClaw configuration and creates additional plaintext backup files.
+
+Mitigation: Run a dry run first, review planned changes, create backups with owner-only permissions, and confirm backup storage is acceptable before using --apply.
+
+## Reference(s):
+
+- [Migration Mapping](references/mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and JSON configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local EasyClaw and OpenClaw JSON configuration files and, with --apply, update ~/.openclaw/openclaw.json after writing a backup.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

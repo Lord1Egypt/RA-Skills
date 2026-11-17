@@ -1,41 +1,55 @@
-## Description: <br>
-Pg Jobs helps agents interact with the ProxyGate job marketplace and bounty board by listing jobs, creating bounties, claiming work, submitting results, and managing the job lifecycle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when interacting with the ProxyGate job marketplace and bounty board to list jobs, create bounties, claim work, submit results, or manage job lifecycle.
 
-## Publisher: <br>
-[jwelten](https://clawhub.ai/user/jwelten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jwelten](https://clawhub.ai/user/jwelten)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to manage ProxyGate bounty workflows, from browsing and creating escrow-backed jobs through claiming, submitting, accepting, rejecting, canceling, or refunding work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ProxyGate job and escrow commands may create, claim, submit, accept, reject, cancel, deposit, withdraw, lock, release, or refund funds as real account actions. <br>
-Mitigation: Confirm the job ID, reward amount, deadline, wallet or account, and escrow action before running commands that change job state or move funds. <br>
-Risk: Broad trigger wording such as gigs, freelance tasks, bounty, or job board can cause the skill to activate for ambiguous marketplace requests. <br>
-Mitigation: Confirm the user intends to use ProxyGate job-marketplace workflows before producing create, claim, submit, accept, reject, cancel, deposit, withdraw, or listing-management commands. <br>
+## Use Case:
 
+External developers and operators use this skill to work with ProxyGate marketplace jobs, including browsing listings, creating escrow-backed bounties, claiming tasks, submitting work, and reviewing submissions.
 
-## Reference(s): <br>
-- [ProxyGate CLI Command Reference](references/commands.md) <br>
-- [Pg Jobs on ClawHub](https://clawhub.ai/jwelten/pg-jobs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ProxyGate CLI commands that perform account, wallet, job, and escrow actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: The skill can guide agents through real ProxyGate escrow and marketplace actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation of the active account, job or listing ID, USDC amount, and exact action before creating, claiming, accepting, rejecting, canceling, depositing, withdrawing, proxying requests, or exposing services.
+
+Risk: Casual job-search requests could unintentionally trigger marketplace workflows.
+
+Mitigation: Use this skill only when the user intentionally asks for ProxyGate marketplace help.
+
+## Reference(s):
+
+- [ProxyGate CLI Command Reference](references/commands.md)
+- [ProxyGate gateway docs](https://gateway.proxygate.ai/docs)
+- [ClawHub skill page](https://clawhub.ai/jwelten/skills/pg-jobs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ProxyGate CLI commands, SDK examples, account or job identifiers, USDC amounts, and marketplace lifecycle guidance.]
+
+## Skill Version(s):
+
+0.2.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

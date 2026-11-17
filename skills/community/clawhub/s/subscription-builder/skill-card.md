@@ -1,45 +1,52 @@
-## Description: <br>
-Design a subscription or auto-replenishment program for consumable products including pricing tiers, frequency options, churn-reduction tactics, and the onboarding flow that maximizes trial-to-paid conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design a subscription or auto-replenishment program for consumable products including pricing tiers, frequency options, churn-reduction tactics, and the onboarding flow that maximizes trial-to-paid conversion.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Business operators, ecommerce teams, and subscription program strategists use this skill to design subscribe-and-save or auto-replenishment programs for consumable products. It helps produce launch plans covering SKU selection, pricing, shipment cadence, onboarding, retention, win-back, dunning, and KPI targets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated subscription plans may include pricing, cancellation, SMS/email, dunning, or legal-compliance decisions that are unsuitable for a specific business or jurisdiction. <br>
-Mitigation: Use the output as planning support and require human review before deploying recommendations to customers. <br>
-Risk: Prompts for subscription planning could include raw customer PII, payment details, credentials, or private analytics exports. <br>
-Mitigation: Sanitize or aggregate sensitive data before use and omit credentials, payment details, and unnecessary customer identifiers. <br>
-Risk: The skill can guide business decisions involving payment recovery and customer retention flows. <br>
-Mitigation: Review dunning, cancellation, and win-back flows for customer experience, platform capability, and legal compliance before launch. <br>
+## Use Case:
 
+External ecommerce operators and growth teams use this skill to design subscription or auto-replenishment programs for consumable products, including SKU fit, pricing, delivery cadence, onboarding, retention, and win-back plans.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [Pricing Strategy Guide](references/pricing-strategy-guide.md) <br>
-- [Churn Reduction Playbook](references/churn-reduction-playbook.md) <br>
-- [Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown subscription program plan with tables, checklists, and recommended operating targets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include pricing tiers, frequency options, onboarding flows, churn-reduction tactics, win-back sequences, dunning guidance, and KPI targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: Subscription programs can harm customers when recurring billing terms, pricing, purchase alternatives, or cancellation paths are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear customer consent, plainly disclose recurring price and billing frequency, keep one-time purchase easy to choose, and preserve immediate cancellation without coercive save steps.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [Pricing Strategy Guide](references/pricing-strategy-guide.md)
+- [Churn Reduction Playbook](references/churn-reduction-playbook.md)
+- [Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured subscription program recommendations and templates; no code execution or API calls.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

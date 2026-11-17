@@ -1,39 +1,54 @@
-## Description: <br>
-Automates planning and management of digital product, affiliate marketing, subscription, marketplace sales, payment, pricing, and reporting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated system for generating passive income through digital products, affiliate campaigns, subscription services, marketplace posting, payment links, billing, analytics, and reporting.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-Freelancers, indie hackers, and digital product creators use this skill to coordinate product listings, affiliate campaigns, subscription offers, payment links, email funnels, pricing updates, and earnings reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for broad automated control over public listings, pricing, purchases, payment links, recurring billing, email campaigns, and crypto-related actions. <br>
-Mitigation: Require explicit human approval for each public listing, pricing change, purchase, payment-link creation, recurring-billing setup, email campaign, and crypto-related action. <br>
-Risk: Revenue, conversion, billing, and campaign data may be sensitive or business-critical. <br>
-Mitigation: Use test or least-privilege accounts where possible, limit platform permissions, and define clear rules for storing and deleting revenue and conversion data. <br>
+## Use Case:
 
+Freelancers, indie hackers, and digital product creators use this skill to direct an agent in building and managing online income workflows across digital products, affiliate marketing, subscriptions, marketplaces, email funnels, payments, analytics, and reporting.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include marketplace listing plans, pricing recommendations, campaign copy, payment setup guidance, dashboards, and reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can steer an agent toward posting products, changing prices, creating payment links, and setting up recurring billing across real accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit per-action review, previews, connected-account limits, and confirmation before publishing, billing, pricing, or payment-link changes.
+
+Risk: Broad marketplace and payment automation can exceed the user's intended scope if account permissions are too permissive.
+
+Mitigation: Use least-privilege connected accounts and disable unattended execution for marketplace, payment, subscription, and email-funnel actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssidharhubble/skills/passive-income-generator)
+- [Publisher profile](https://clawhub.ai/user/ssidharhubble)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with possible commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose marketplace, payment, pricing, email marketing, and reporting actions that require human review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

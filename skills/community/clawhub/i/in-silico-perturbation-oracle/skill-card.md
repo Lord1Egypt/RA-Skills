@@ -1,46 +1,57 @@
-## Description: <br>
-Provides a Python-based workflow for simulating virtual gene knockouts, differential expression, pathway enrichment, target scoring, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virtual gene knockout simulation using foundation models to predict transcriptional changes.
 
-## Publisher: <br>
-[ewankeynes](https://clawhub.ai/user/ewankeynes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ewankeynes](https://clawhub.ai/user/ewankeynes)
 
-## Use Case: <br>
-Developers and computational biology practitioners use this skill to run or adapt a virtual perturbation analysis workflow for gene knockout screening, pathway review, and target ranking. Generated biological outputs require independent validation before any research, experimental, or clinical decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Biomedical prediction claims may be misleading because the security evidence says the code generates simulated results while presenting them as actionable model-backed outputs. <br>
-Mitigation: Treat outputs as exploratory or demo data unless real model integration, validated inputs, data provenance, and wet-lab validation are independently confirmed. <br>
-Risk: Target rankings and wet-lab guidance could be misused for research, experimental, or clinical decisions. <br>
-Mitigation: Require expert review and do not use generated rankings or protocols for clinical, wet-lab, or drug discovery decisions without independent validation. <br>
-Risk: The workflow installs and runs Python scientific dependencies and writes files to the local filesystem. <br>
-Mitigation: Install in an isolated Python environment and restrict inputs and output paths to an intended workspace. <br>
+## Use Case:
 
+External developers and computational biology users can use this skill to run virtual gene knockout analyses, compare predicted differential expression, inspect pathway enrichment, rank target genes, and export validation guidance. Results should be treated as exploratory decision support until model integrations and biological validation are independently verified.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ewankeynes/in-silico-perturbation-oracle) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Main analysis script](artifact/scripts/main.py) <br>
-- [Geneformer configuration](artifact/configs/geneformer_config.yaml) <br>
-- [scGPT configuration](artifact/configs/scgpt_config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; generated analysis files may include CSV, JSON, PNG, and text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes results to a user-selected output directory; biological outputs are simulated unless real model integration, validated inputs, and provenance are independently verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill can overstate production-grade biological foundation-model predictions while the implementation includes simulated or random placeholder behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as exploratory only and do not use them for experimental, therapeutic, clinical, or business decisions unless model integrations and validation claims are independently verified.
+
+Risk: The skill runs Python code with substantial scientific dependencies and writes generated files.
+
+Mitigation: Install and run it in an isolated environment, pin and audit dependencies first, and keep outputs confined to a workspace directory.
+
+Risk: Remote model or API use is not clearly documented and may involve sensitive biological data handling.
+
+Mitigation: Assume any remote model use is sensitive until documented; avoid sending protected or confidential biological data without an approved data-handling review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ewankeynes/skills/in-silico-perturbation-oracle)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; generated analysis artifacts include CSV, JSON, PNG, and text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes results to a user-selected output directory, including differential expression results, target scores, pathway enrichment, plots, combinatorial results, and optional validation guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

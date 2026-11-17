@@ -1,42 +1,58 @@
-## Description: <br>
-Guides agents through the OpenClaw message send workflow for sending text, media, and structured payloads to WhatsApp, Telegram, Discord, Slack, and other chat channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Portuguese workflow for using `openclaw message send` to send text, media, buttons, cards, and other payloads across chat channels such as WhatsApp, Telegram, Discord, and Slack.
 
-## Publisher: <br>
-[RaphaCastelloes](https://clawhub.ai/user/RaphaCastelloes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raphacastelloes](https://clawhub.ai/user/raphacastelloes)
 
-## Use Case: <br>
-Developers and operators use this skill to help an agent prepare OpenClaw commands for selecting a chat channel, finding a recipient or group, and sending text, media, buttons, cards, or other supported message payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Messages, media, and structured payloads may be sent to external chat services or unintended recipients. <br>
-Mitigation: Verify the channel, account, recipient or group ID, and message contents before sending; use dry-run mode for complex payloads. <br>
-Risk: Shared message content can expose secrets, credentials, personal data, or confidential files. <br>
-Mitigation: Avoid sending sensitive data unless the user has intentionally approved sharing it through the selected chat service. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare and verify OpenClaw chat-send commands, choose channel and target identifiers, and send messages or structured payloads to supported chat services.
 
-## Reference(s): <br>
-- [Canais Suportados pelo OpenClaw](references/channels.md) <br>
-- [Exemplos de Payloads JSON para Mensagens](references/payloads.md) <br>
-- [Adaptive Cards JSON Schema](http://adaptivecards.io/schemas/adaptive-card.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes channel-specific target formats and dry-run guidance for complex payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Messages may be sent to the wrong channel, account, or recipient if identifiers are not confirmed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm channel, account, and recipient IDs with OpenClaw channel and directory commands before sending.
+
+Risk: Complex JSON payloads may be malformed or differ across channel implementations.
+
+Mitigation: Use `--dry-run` for complex payloads before sending.
+
+Risk: Chat messages can expose secrets or sensitive personal data.
+
+Mitigation: Avoid sending secrets or sensitive personal data unless that is intentional and authorized.
+
+## Reference(s):
+
+- [Canais Suportados pelo OpenClaw](references/channels.md)
+- [Exemplos de Payloads JSON para Mensagens](references/payloads.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command examples and JSON payload snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional dry-run guidance for complex payloads; no files or code are generated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

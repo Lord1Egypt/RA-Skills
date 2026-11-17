@@ -1,40 +1,48 @@
-## Description: <br>
-Multi-source research synthesizer that takes a question, runs 3-5 parallel web searches with varied phrasings, deduplicates results, and returns a concise cited answer, searching in Hebrew and English for Hebrew questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-source research synthesizer. Takes a question, runs 3-5 parallel web searches with varied phrasings, deduplicates, and returns a cited, concise answer. For Hebrew questions, searches in both Hebrew and English. Output is always under ~400 words.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and developers use this skill to turn a research question into a concise, cited web-research synthesis. It is suited to quick factual lookups, topic overviews, and scoped competitive or company research.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Important research summaries may be saved into contact-scoped memory without clear consent or retention controls.
+
+Mitigation: Require explicit user consent before saving research summaries, show exactly what will be stored, avoid phone-derived identifiers, and define retention and deletion controls.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, researchers, analysts, and developers use this skill to turn open-ended research questions into concise, source-cited summaries. It is especially oriented toward multi-source web research, competitor or company checks, and bilingual Hebrew-English research when the user asks in Hebrew. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run web searches and synthesize from sources that can be incomplete, stale, biased, or conflicting. <br>
-Mitigation: Prefer high-credibility sources, cite the sources used, flag conflicts or stale information, and keep factual claims tied to retrieved evidence. <br>
-Risk: The skill includes behavior to save important research summaries into contact-linked local memory without clear opt-in or retention controls. <br>
-Mitigation: Disable the memory-write rule or require explicit user confirmation before storing summaries, especially for sensitive business, personal, health, legal, financial, or political topics. <br>
+**Output Format:** [Concise Markdown answer with source URLs]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/research-synthesizer) <br>
+**Other Properties Related to Output:** [Under about 400 words; Hebrew questions are answered in Hebrew when applicable.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with key points and cited source URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise human-facing answer, generally under about 400 words.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

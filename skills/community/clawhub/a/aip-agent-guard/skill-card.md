@@ -1,42 +1,56 @@
-## Description: <br>
-Verify skill authorship, enforce capability manifests, and audit tool usage to secure and control OpenClaw skills with identity and access management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify skill authorship, enforce capability manifests, and audit tool usage to secure and control OpenClaw skills with identity and access management.
 
-## Publisher: <br>
-[sunilp](https://clawhub.ai/user/sunilp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunilp](https://clawhub.ai/user/sunilp)
 
-## Use Case: <br>
-Developers and engineers use this skill to verify installed skill signatures, inspect capability manifests, review audit logs, and manage trusted author keys in an OpenClaw setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the external npm package aip-openclaw for installation and operation. <br>
-Mitigation: Confirm that aip-openclaw is the intended package, prefer a pinned version, and review where it stores trusted author keys and audit logs before installing. <br>
-Risk: Adding a trusted author key can affect future skill trust decisions. <br>
-Mitigation: Only trust author keys from verified sources and review trust-list changes as part of normal skill governance. <br>
+## Use Case:
 
+Developers and security engineers use this skill to verify OpenClaw skill signatures and manifests, inspect audit logs, view security status, and manage trusted authors before relying on installed skills.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sunilp/aip-agent-guard) <br>
-- [AIP Protocol](https://sunilprakash.com/aip/) <br>
-- [AIP Paper](https://arxiv.org/abs/2603.24775) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include commands for installing aip-openclaw, checking skill status, viewing audit logs, and managing trusted author keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The reviewed artifact delegates core behavior to an unpinned third-party npm package installed globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the aip-openclaw npm package and source before installing, avoid elevated privileges, and prefer a pinned reviewed version if available.
+
+Risk: Trust decisions and audit logs may be stored outside the reviewed skill artifact.
+
+Mitigation: Confirm where aip-openclaw stores trust decisions and audit logs before using it to enforce security policy.
+
+## Reference(s):
+
+- [AIP Protocol](https://sunilprakash.com/aip/)
+- [AIP Paper](https://arxiv.org/abs/2603.24775)
+- [aip-openclaw GitHub Repository](https://github.com/sunilp/aip-openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/sunilp/skills/aip-agent-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local trust decisions, capability manifests, and audit-log checks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

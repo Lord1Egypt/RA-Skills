@@ -1,40 +1,48 @@
-## Description: <br>
-Plan and design garden layouts with companion planting, spacing, sun requirements, crop rotation, and exportable layout management for small gardens and farms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and design garden layouts with companion planting, spacing, sun requirements, crop rotation, and exportable layout management for small gardens and farms.
 
-## Publisher: <br>
-[johstracke](https://clawhub.ai/user/johstracke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johstracke](https://clawhub.ai/user/johstracke)
 
-## Use Case: <br>
-Home gardeners, small farmers, and garden planners use this skill to design bed layouts, check companion planting relationships, review spacing and sun requirements, and export garden plans for reference. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Garden bed and plant entries are stored locally and may include personal details if users put them in layout names. <br>
-Mitigation: Avoid sensitive personal information in garden names, bed names, plant notes, and exported layout files. <br>
-Risk: The export command can overwrite the output file path selected by the user. <br>
-Mitigation: Export only to intended files and review the destination path before running the command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Garden Layout Planner ClawHub Release](https://clawhub.ai/johstracke/garden-layout-planner) <br>
-- [johstracke Publisher Profile](https://clawhub.ai/user/johstracke) <br>
+## Use Case:
 
+Home gardeners and small farm planners use this skill to design garden beds, place crops, check companion planting guidance, review spacing and sun requirements, plan rotations, and export garden layouts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and local markdown exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores garden bed and plant entries locally and exports a markdown layout file when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The export feature can overwrite too many user-writable files for the stated garden-planning purpose.
+
+Mitigation: Use exports only in a dedicated garden-planning folder, review output paths before execution, and avoid overwriting existing files until export validation is narrowed.
+
+## Reference(s):
+
+- [Garden Layout Planner on ClawHub](https://clawhub.ai/johstracke/skills/garden-layout-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with command examples and generated garden layout exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local JSON garden database and Markdown layout exports when the provided script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

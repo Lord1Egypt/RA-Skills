@@ -1,46 +1,68 @@
-## Description: <br>
-Avenger Initiative guides an OpenClaw agent through encrypted backup and restore workflows that push OpenClaw configuration, memories, cron jobs, and custom skills to a user-controlled private GitHub vault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avenger Initiative helps OpenClaw users configure encrypted GitHub-based backups and restore OpenClaw configuration, memories, cron jobs, workspaces, and custom skills from a private vault.
 
-## Publisher: <br>
-[Asif2BD](https://clawhub.ai/user/Asif2BD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asif2bd](https://clawhub.ai/user/asif2bd)
 
-## Use Case: <br>
-Developers and operators use this skill to set up, run, monitor, and restore OpenClaw backups in a private GitHub vault. It is intended for agent-system continuity when OpenClaw state, memories, skills, and configuration need recoverable snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically upload broad OpenClaw agent state to a GitHub vault, and most backed-up data remains plaintext. <br>
-Mitigation: Use only a dedicated private vault, review backup contents before the first upload, and disable nightly cron or silent config-change backups if ongoing uploads are not desired. <br>
-Risk: The encrypted OpenClaw configuration cannot be restored if the user loses the encryption key. <br>
-Mitigation: Store the key outside chat logs in a password manager or similarly protected location before relying on the backup. <br>
-Risk: Vault compromise or misconfiguration can expose plaintext memories, identity files, cron definitions, and custom skills. <br>
-Mitigation: Protect the GitHub account and vault repository with private visibility, strong authentication, and repository security controls such as secret scanning. <br>
+## Use Case:
 
+External OpenClaw users, developers, and operators use this skill to set up, run, monitor, and restore backups of an OpenClaw agent system. It is intended for private vault workflows where the user controls the destination repository and encryption key.
 
-## Reference(s): <br>
-- [Avenger Initiative README](artifact/README.md) <br>
-- [Security Reference](artifact/references/security.md) <br>
-- [Security Analysis](artifact/SECURITY.md) <br>
-- [MissionDeck.ai](https://missiondeck.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Asif2BD/avenger-initiative) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline bash commands and configuration prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing setup, backup, restore, and status instructions; may trigger local shell scripts when the user confirms the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence, SKILL.md frontmatter, CHANGELOG) <br>
+Risk: The skill moves broad OpenClaw state into a GitHub vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a private, dedicated vault repository with tightly limited access, and review what will be included before first backup.
+
+Risk: Memories, prompts, custom skills, and cron definitions may be stored in plaintext.
+
+Mitigation: Treat the vault as sensitive, avoid storing secrets in plaintext-backed files, and enable repository protections such as secret scanning and restricted collaborators.
+
+Risk: Restore can reintroduce active cron definitions and skill files from a vault branch.
+
+Mitigation: Restore only from branches whose contents you trust, inspect the manifest and changed files before confirming, and avoid using unreviewed vault branches.
+
+Risk: Evidence guidance says setup token handling and restore behavior should be fixed before use in sensitive environments.
+
+Mitigation: Do not deploy this skill in sensitive environments until those behaviors are reviewed and corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asif2bd/skills/avenger-initiative)
+- [Publisher profile](https://clawhub.ai/user/asif2bd)
+- [MissionDeck.ai](https://missiondeck.ai)
+- [Security Reference](references/security.md)
+- [Changelog](CHANGELOG.md)
+- [OpenClaw](https://openclaw.ai)
+- [GitHub CLI](https://cli.github.com)
+- [ProSkills skill page](https://proskills.md/skills/avenger-initiative)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides setup, backup, status, and restore flows for OpenClaw using a user-provided private GitHub vault.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release, frontmatter, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

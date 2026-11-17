@@ -1,41 +1,56 @@
-## Description: <br>
-Call GET /api/bilibili/get-video-caption/v2 for Bilibili Video Captions through JustOneAPI with aid, bvid, and cid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/bilibili/get-video-caption/v2 for Bilibili Video Captions through JustOneAPI with aid, bvid, and cid.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch Bilibili video caption data through JustOneAPI for transcript extraction and multilingual content analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent as a query parameter and may appear in full URLs, logs, errors, or screenshots. <br>
-Mitigation: Use a scoped or disposable token when available, avoid sharing request URLs or error payloads, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Bilibili video caption data through JustOneAPI when they have the required aid, bvid, cid, and API token. It supports transcript extraction and multilingual content analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-bilibili-get-video-caption) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_get_video_caption&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_get_video_caption&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Markdown summary followed by raw JSON API response data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, JUST_ONE_API_TOKEN, and Bilibili aid, bvid, and cid query values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The required JustOneAPI token can be exposed through process arguments or URL logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege, revocable token; avoid shared machines and verbose process monitoring; rotate the token if it may appear in process listings, diagnostics, proxy logs, or API access logs.
+
+Risk: The skill depends on a live third-party API and user-supplied Bilibili identifiers.
+
+Mitigation: Confirm aid, bvid, and cid before calling the endpoint, and review backend error payloads before acting on failed or unexpected responses.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_get_video_caption&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_get_video_caption&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-bilibili-get-video-caption)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a JUST_ONE_API_TOKEN; the endpoint requires aid, bvid, and cid query parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Check EV charger availability (favorites, nearby search) via Google Places. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check EV charger availability (favorites, nearby search) via Google Places.
 
-## Publisher: <br>
-[Borahm](https://clawhub.ai/user/Borahm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[borahm](https://clawhub.ai/user/borahm)
 
-## Use Case: <br>
-External users and operators use this skill to check EV charger availability for saved favorites, place IDs, or nearby locations and to receive a notification when a charger becomes available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release evidence notes that the referenced charger CLI is missing from the artifact. <br>
-Mitigation: Confirm the trusted charger CLI source and install it before relying on scheduled availability checks. <br>
-Risk: Google Places requests require an API key and may reveal location queries to the API provider. <br>
-Mitigation: Use a restricted, quota-limited GOOGLE_PLACES_API_KEY and only check locations you intend to share with Google Places. <br>
-Risk: Cron or Telegram notifications can expose charger locations and availability details through the notification channel. <br>
-Mitigation: Enable notifications only for locations you are comfortable sending through that channel and configure scheduling or quiet hours as needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Borahm/charger) <br>
+## Use Case:
 
+External users and operators use this skill to check EV charger availability by favorite, place ID, query, or nearby location, and optionally trigger scheduled notifications when a charger becomes available.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and one-line shell notification output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GOOGLE_PLACES_API_KEY and stores notification state under ~/.cache/charger-notify.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a Google Places API key and may reveal charger lookup usage to the API provider and skill publisher.
+
+Mitigation: Provide GOOGLE_PLACES_API_KEY only when you trust the publisher and are comfortable with the charger lookup usage.
+
+Risk: Optional recurring notifications store last-seen charger availability state in the user's local cache.
+
+Mitigation: Enable cron-based notifications only when recurring checks are desired, and review or clear ~/.cache/charger-notify state as needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/borahm/skills/charger)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and plain text notification output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GOOGLE_PLACES_API_KEY; optional notification state is stored under the user's local cache.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

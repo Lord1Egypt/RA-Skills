@@ -1,45 +1,54 @@
-## Description: <br>
-Use when a user search Bing Shopping, find product or shopping results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Bing Shopping for products and shopping results.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to turn natural-language shopping searches into confirmed Dataify Bing Shopping API calls and return the API response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends shopping queries to Dataify and requires a Dataify API token. <br>
-Mitigation: Use the skill only when sending the query to Dataify is acceptable, and provide tokens through a secure secret mechanism or temporary environment variable. <br>
-Risk: Passing an API token with the documented --token command-line pattern can expose the token in shell history or process listings. <br>
-Mitigation: Avoid command-line token arguments; prefer DATAIFY_API_TOKEN or a managed secret store. <br>
-Risk: A live API call may use unintended request fields if parameters are inferred incorrectly. <br>
-Mitigation: Review the generated parameter table and confirm it before any live API call. <br>
+## Use Case:
 
+External users and developers use this skill to turn product-shopping requests into Bing Shopping searches through Dataify and receive concise product result summaries with source links.
 
-## Reference(s): <br>
-- [Dataify Bing Shopping API Reference](references/api.md) <br>
-- [Dataify API endpoint](https://scraperapi.dataify.com/request) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-bing-shopping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown parameter tables, shell commands, and direct API response text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill requires user confirmation before live API calls and returns the script output directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Shopping queries are sent to Dataify for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing the query with Dataify is acceptable, and avoid submitting sensitive product-search details.
+
+Risk: The Dataify API token can be exposed through shell history, project files, chat, or persistent environment configuration.
+
+Mitigation: Prefer a session-scoped DATAIFY_API_TOKEN or a secret manager, never paste the token into chat or project files, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [Dataify Bing Shopping API Reference](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-bing-shopping)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with optional JSON or HTML when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product titles, links, shopping-specific fields, result counts, truncation notes, and token setup guidance when authentication is missing or invalid.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

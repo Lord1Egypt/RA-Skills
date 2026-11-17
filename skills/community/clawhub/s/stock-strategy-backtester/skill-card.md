@@ -1,40 +1,57 @@
-## Description: <br>
-Backtest stock trading strategies on historical OHLCV data and report win rate, return, CAGR, drawdown, Sharpe ratio, and trade logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backtest stock trading strategies on historical OHLCV CSV data and report returns, CAGR, drawdown, Sharpe ratio, win rate, and trade logs.
 
-## Publisher: <br>
-[taylen](https://clawhub.ai/user/taylen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[taylen](https://clawhub.ai/user/taylen)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to run repeatable long-only stock strategy backtests from OHLCV CSV files, compare SMA crossover, RSI reversion, and breakout rules, and summarize performance with return, drawdown, Sharpe ratio, win rate, and trade logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Backtest output may be mistaken for financial advice or a reliable prediction of future performance. <br>
-Mitigation: Treat results as research support, include drawdown, trade count, transaction costs, and assumptions in summaries, and avoid framing results as investment advice. <br>
-Risk: The skill reads local market-price CSV files selected by the user. <br>
-Mitigation: Run it only on CSV files intended for analysis and review input paths before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Backtest Metrics Reference](references/backtest-metrics.md) <br>
-- [ClawHub skill page](https://clawhub.ai/taylen/stock-strategy-backtester) <br>
+## Use Case:
 
+Developers, analysts, and investors use this skill to run local long-only backtests for SMA crossover, RSI reversion, and breakout strategies, compare parameter variants, and summarize risk-adjusted performance from OHLCV CSV data.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Analysis, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON backtest results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided OHLCV CSV files and prints performance metrics, configuration, and trades.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Backtest results may be mistaken for financial advice or future performance guarantees.
+
+Mitigation: Present results as research, include date range, transaction costs, drawdown, and trade count, and state that backtests are not guarantees.
+
+Risk: Broad trigger wording may activate the skill for general return or strategy questions.
+
+Mitigation: Confirm the user wants a local CSV-based backtest before running commands or interpreting results.
+
+Risk: Poor data quality or one-shot parameter tuning can produce misleading strategy performance.
+
+Mitigation: Validate required Date and Close columns, compare variants on the same date range and cost model, and prefer walk-forward or out-of-sample checks.
+
+## Reference(s):
+
+- [Backtest Metrics Reference](references/backtest-metrics.md)
+- [ClawHub Skill Page](https://clawhub.ai/taylen/skills/stock-strategy-backtester)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash examples and JSON backtest result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local CSV inputs and reports strategy period, metrics, configuration, and trades.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,7 +2,7 @@
 name: bricklink
 description: "BrickLink Store API helper/CLI (OAuth 1.0 request signing). Covers orders, store inventory (read + write), catalog, categories, colors, feedback, and push notifications."
 summary: "BrickLink Store API CLI: orders, inventory, catalog, pricing, feedback."
-version: 1.4.3
+version: 1.4.4
 homepage: https://github.com/odrobnik/bricklink-skill
 metadata:
   openclaw:
@@ -24,7 +24,7 @@ See [SETUP.md](SETUP.md) for prerequisites and setup instructions.
 
 ### Read-only
 
-- `bricklink.py get-orders [--direction in|out] [--status ...] [--include-status ...] [--exclude-status ...] [--filed true|false]` - Lists orders you received or placed.
+- `bricklink.py get-orders [--direction in|out] [--status ...] [--include-status ...] [--exclude-status ...] [--filed true|false]` - Lists orders you received or placed. Include/exclude flags are repeatable and accept comma-separated lists (e.g. `--exclude-status purged,completed`).
 - `bricklink.py get-order <order_id>` - Fetches details for a specific order.
 - `bricklink.py get-order-items <order_id>` - Fetches the item batches for a specific order.
 - `bricklink.py get-order-messages <order_id>` - Fetches messages associated with a specific order.

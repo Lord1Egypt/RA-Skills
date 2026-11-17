@@ -1,41 +1,58 @@
-## Description: <br>
-Deploys a four-agent energy grid optimization setup for sensor aggregation, demand forecasting, load optimization, and device control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy an energy grid optimization system with four coordinated agents for sensor aggregation, demand forecasting, grid optimization, and device control.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and energy-system operators use this skill to configure coordinated Pilot agents for smart-grid, microgrid, or distributed energy resource workflows involving monitoring, forecasting, optimization, and device-control messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow includes live-looking device-control instructions for energy equipment. <br>
-Mitigation: Test in a simulator or isolated staging network first, and do not connect it to real grid equipment without formal authorization, safety interlocks, audit logging, and a rollback plan. <br>
-Risk: Dispatch and sensor messages rely on trusted peers and transport security. <br>
-Mitigation: Verify peer identities, use authenticated and encrypted transport, and review downstream Pilot skills before deployment. <br>
+## Use Case:
 
+Developers and energy-systems engineers use this skill to configure a four-agent smart grid or microgrid workflow for monitoring, forecasting, optimization, and controlled dispatch.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-energy-grid-optimizer-setup) <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell commands and JSON manifest examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific setup steps, manifest templates, peer handshake guidance, and connectivity checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can guide setup for workflows that issue physical device-control dispatch commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simulation or staging first, restrict controller credentials to authorized devices and approved setpoint ranges, and require human approval before dispatch actions.
+
+Risk: Peer trust and handshakes could be established with the wrong agents or environments.
+
+Mitigation: Require human review for new peers, verify hostnames and setup prefixes before handshakes, and audit trust state with pilotctl before use.
+
+Risk: Dependency and setup integrity are not fully scoped by the artifact.
+
+Mitigation: Pin and verify required dependencies, install only in authorized environments, and document how to remove or rotate the ~/.pilot setup manifest.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-energy-grid-optimizer-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-specific setup steps, peer handshake guidance, manifest templates, and verification commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,5 @@
+id,date,currency,category,amount,kind
+001,2026-10-01,USD,Software,9.90,sale
+002,2026-10-02,USD,Software,1.00,refund
+003,2026-09-02,USD,Software,7.00,sale
+004,2026-10-03,CNY,Services,20.00,sale

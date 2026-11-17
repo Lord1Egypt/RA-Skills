@@ -6,7 +6,7 @@ description: >-
   giving agent-bom long-lived Azure credentials. Use when a user asks to
   inventory Azure OpenAI, Container Apps, AKS, Functions, ML, or agentic Azure
   infrastructure as canonical inventory.
-version: 0.91.0
+version: 0.115.3
 license: Apache-2.0
 compatibility: >-
   Requires Python 3.11+, agent-bom installed from this repository or PyPI, and
@@ -14,8 +14,8 @@ compatibility: >-
   identity, managed identity, or service principal.
 metadata:
   author: msaad00
-  homepage: https://github.com/msaad00/agent-bom
-  source: https://github.com/msaad00/agent-bom
+  homepage: https://github.com/koda-ai-studio/agent-bom
+  source: https://github.com/koda-ai-studio/agent-bom
   pypi: https://pypi.org/project/agent-bom/
   openclaw:
     requires:
@@ -33,8 +33,8 @@ metadata:
     optional_bins:
       - az
     emoji: "search"
-    homepage: https://github.com/msaad00/agent-bom
-    source: https://github.com/msaad00/agent-bom
+    homepage: https://github.com/koda-ai-studio/agent-bom
+    source: https://github.com/koda-ai-studio/agent-bom
     license: Apache-2.0
     os:
       - darwin
@@ -94,7 +94,7 @@ python examples/operator_pull/azure_inventory_adapter.py \
 Scan only when the operator asks for findings:
 
 ```bash
-agent-bom agents --inventory azure-inventory.json --format json --output agent-bom-azure-findings.json
+agent-bom scan --inventory azure-inventory.json --format json --output agent-bom-azure-findings.json
 ```
 
 ## Evidence Contract

@@ -1,43 +1,51 @@
-## Description: <br>
-AI-powered code review assistant for OpenClaw agent developers that analyzes code quality, detects security and performance issues, and provides actionable improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered code review assistant for OpenClaw agent developers that analyzes code quality, detects security and performance issues, and provides actionable improvement guidance.
 
-## Publisher: <br>
-[supermario11](https://clawhub.ai/user/supermario11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supermario11](https://clawhub.ai/user/supermario11)
 
-## Use Case: <br>
-Developers and agent builders use this skill to review local codebases for security vulnerabilities, performance bottlenecks, code smells, best-practice gaps, and documentation quality. It is especially aimed at OpenClaw agent and skill projects where review findings are turned into terminal summaries or Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the local files or directories selected for review. <br>
-Mitigation: Install and run it only when local code access is acceptable for the intended review scope. <br>
-Risk: Generated review reports may expose secrets, vulnerable code snippets, or other sensitive implementation details. <br>
-Mitigation: Keep reports private until they have been reviewed and redacted for secrets or sensitive code. <br>
-Risk: Team-sharing examples such as Slack, email, GitHub, cron, pre-commit, or API server workflows can broaden access to review output. <br>
-Mitigation: Use those integrations only with explicit team approval and appropriate redaction and security controls. <br>
+## Use Case:
 
+Developers and engineers use this skill to review OpenClaw agent code for security vulnerabilities, performance issues, code quality problems, and best-practice gaps before committing or sharing changes.
 
-## Reference(s): <br>
-- [Cuihua Code Reviewer ClawHub page](https://clawhub.ai/supermario11/cuihua-code-reviewer) <br>
-- [Publisher profile](https://clawhub.ai/user/supermario11) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, terminal summaries, code snippets, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may include sensitive code findings and should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill frontmatter) <br>
+Risk: Generated reports may copy detected passwords or API keys into plain Markdown files or shared summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact reports before sharing or committing them, and add redaction, access controls, cleanup, and pinned dependencies before using the Slack, email, CI summary, cron, or API server examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supermario11/skills/cuihua-code-reviewer)
+- [README](artifact/README.md)
+- [Examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal summaries, Markdown reports, JSON reports, and code or shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write a local code-review-report.md for detailed findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

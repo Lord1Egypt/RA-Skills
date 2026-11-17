@@ -1,46 +1,63 @@
-## Description: <br>
-Guide an existing OpenClaw operator through the SprintX handoff proof packet with the minimum safe steps: verify prerequisites, connect with sx auth, select the project, send the first event and artifact, then confirm read-back with sx status and sx brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide an existing OpenClaw operator through the SprintX handoff proof packet with the minimum safe steps: verify prerequisites, connect with sx auth, select the project, send the first event and artifact, then confirm read-back with sx status and sx brief.
 
-## Publisher: <br>
-[terry3838](https://clawhub.ai/user/terry3838) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terry3838](https://clawhub.ai/user/terry3838)
 
-## Use Case: <br>
-OpenClaw operators use this skill to connect an existing SprintX account and project, send the first verifiable event and artifact, and confirm read-back with the SprintX CLI. It is for narrow handoff setup, not project creation, task management, or review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires the SprintX CLI and a browser-approved SprintX authentication flow, so users could install or authenticate the wrong CLI package if they do not verify the package source. <br>
-Mitigation: Before installing, confirm that @sprint-x/cli is the intended SprintX CLI package and prefer the default browser-approved sx auth path. <br>
-Risk: Access tokens or sensitive local data could be exposed if users paste credentials into chat or attach the wrong file or URI as an artifact. <br>
-Mitigation: Do not paste tokens into chat, keep token override behavior advanced-only, and review the file or URI passed to sx artifact add before submission. <br>
+## Use Case:
 
+External developers and OpenClaw operators use this skill to connect an existing OpenClaw runtime to an existing SprintX account and project through a narrow, verifiable handoff flow. It helps them authenticate, select project context, send a first event and artifact, and confirm read-back with SprintX CLI status commands.
 
-## Reference(s): <br>
-- [Source Of Truth](references/source-of-truth.md) <br>
-- [SprintX OpenClaw Handoff Quickstart](https://www.sprintx.co.kr/docs/getting-started/openclaw-handoff-quickstart) <br>
-- [SprintX CLI Quickstart](https://www.sprintx.co.kr/docs/getting-started/cli-quickstart) <br>
-- [SprintX CLI Quickstart (Korean)](https://www.sprintx.co.kr/docs/getting-started/cli-quickstart.ko) <br>
-- [ClawHub Skill Page](https://clawhub.ai/terry3838/sprintx-openclaw-handoff) <br>
-- [ClawHub Skill Format](https://raw.githubusercontent.com/openclaw/clawhub/main/docs/skill-format.md) <br>
-- [ClawHub CLI Docs](https://raw.githubusercontent.com/openclaw/clawhub/main/docs/cli.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and checklist-style pass/fail guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of the sx CLI; does not execute SprintX tasks itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: frontmatter, package.json, CHANGELOG, released 2026-04-13) <br>
+Risk: The flow may install an unpinned external SprintX CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin @sprint-x/cli before global installation in controlled environments, and run sx --help before using the handoff flow.
+
+Risk: The proof packet sends handoff metadata and artifact references to SprintX.
+
+Mitigation: Review the SprintX project ID before sending commands and avoid using secrets or sensitive files as artifact references.
+
+Risk: Token-based authentication can expose credentials if handled through chat.
+
+Mitigation: Use browser-approved sx auth by default and do not paste access tokens into chat.
+
+## Reference(s):
+
+- [Source Of Truth](references/source-of-truth.md)
+- [SprintX OpenClaw Handoff Quickstart](https://www.sprintx.co.kr/docs/getting-started/openclaw-handoff-quickstart)
+- [SprintX CLI Quickstart](https://www.sprintx.co.kr/docs/getting-started/cli-quickstart)
+- [SprintX CLI Quickstart Korean](https://www.sprintx.co.kr/docs/getting-started/cli-quickstart.ko)
+- [SprintX CLI Auth Boundary](https://github.com/terry3838/SprintX/blob/main/docs/engineering/SX_AUTH_V1.md)
+- [SprintX Product Boundary And Runtime Contract](https://github.com/terry3838/SprintX/blob/main/docs/engineering/TECH_SPEC.md)
+- [ClawHub Skill Page](https://clawhub.ai/terry3838/skills/sprintx-openclaw-handoff)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Checklist-style operator guidance with pass/fail signals and recovery steps.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter, package.json, CHANGELOG, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

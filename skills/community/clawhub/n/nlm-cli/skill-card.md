@@ -1,42 +1,58 @@
-## Description: <br>
-NLM CLI helps agents operate NotebookLM through Jacob Brown's `notebooklm-mcp-cli`, covering notebooks, sources, Studio generation, research, sharing, MCP setup, and content downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nlm Cli helps agents use Jacob Brown's notebooklm-mcp-cli (nlm) to automate NotebookLM notebooks, sources, Studio generation, research, sharing, MCP setup, and artifact downloads.
 
-## Publisher: <br>
-[FelixHsp](https://clawhub.ai/user/FelixHsp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felixhsp](https://clawhub.ai/user/felixhsp)
 
-## Use Case: <br>
-Developers and agent users use this skill when they need NotebookLM automation through the `nlm` command, including notebook and source management, Studio artifact generation, sharing, MCP setup, and downloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The wrapped NotebookLM CLI can change or share notebook content through the user's active NotebookLM or Google session. <br>
-Mitigation: Verify the active profile, target notebook, recipients, and sharing status before running share, invite, delete, source import or sync, download, MCP setup, or skill install commands. <br>
-Risk: The skill depends on the external `notebooklm-mcp-cli` package and the local `nlm` executable resolved by the wrapper. <br>
-Mitigation: Install only if the package is trusted in the target environment, and confirm `NLM_BIN`, local virtual environment, or PATH resolution before use. <br>
+## Use Case:
 
+Developers and AI agents use this skill to install, authenticate, and run nlm commands for NotebookLM workflows, including adding sources, querying notebooks, generating Studio artifacts, and downloading outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FelixHsp/nlm-cli) <br>
-- [CLI command reference](references/cli-commands.md) <br>
-- [Install and authentication guide](references/install-and-auth.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide execution of NotebookLM CLI commands that create, modify, share, delete, or download notebook content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill relies on an unpinned third-party CLI package that can affect NotebookLM workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install notebooklm-mcp-cli only from a trusted package source, review the package/version before use, and prefer an isolated environment.
+
+Risk: NotebookLM operations depend on the active Google account or profile.
+
+Mitigation: Run login checks and confirm the active profile before reading, modifying, sharing, or deleting notebook content.
+
+Risk: Share, delete, setup, and skill install commands can change notebook visibility, remove content, or modify AI-tool configuration.
+
+Mitigation: Confirm the target notebook, recipients, public/private state, destination tool, and reversibility before executing those commands.
+
+## Reference(s):
+
+- [CLI command reference](references/cli-commands.md)
+- [Install and authentication guide](references/install-and-auth.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke a local Node wrapper that forwards commands to the nlm CLI.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

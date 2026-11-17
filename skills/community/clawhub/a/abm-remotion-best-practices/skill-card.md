@@ -1,44 +1,58 @@
-## Description: <br>
-Helps users create videos programmatically with React and Remotion by covering project setup, composition structure, animation patterns, and rendering workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating programmatic videos with React and Remotion, covering project setup, composition structure, animation patterns, and rendering workflows.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold or extend Remotion projects, build React-based video compositions, apply animation best practices, and generate preview and render commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lambda rendering guidance requires AWS credentials and can create cloud resources with associated costs. <br>
-Mitigation: Use least-privilege or temporary/profile-based AWS authentication, review resources before creating them, and avoid storing secrets in committed files, logs, or shared shell history. <br>
-Risk: Generated project changes and render commands may introduce incorrect video behavior if used without review. <br>
-Mitigation: Review generated files and commands, preview the composition locally, and scan the project before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold or extend Remotion projects, build React video compositions, implement deterministic animations, and produce preview and render commands for final video output.
 
-## Reference(s): <br>
-- [Remotion Animation Patterns](references/animations.md) <br>
-- [Remotion Lambda Rendering](references/lambda.md) <br>
-- [Remotion Rendering Reference](references/rendering.md) <br>
-- [Remotion Project Setup](references/setup.md) <br>
-- [Remotion Lambda documentation](https://www.remotion.dev/docs/lambda) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript/TSX snippets and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project files or file diffs, scene component code, composition registration, and exact preview/render commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Unpinned npm or npx commands can change behavior as upstream packages change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pinned Remotion versions, a project-local locked CLI, and reviewed lockfiles, especially in CI.
+
+Risk: The optional Lambda workflow uses AWS credentials and can create cloud resources.
+
+Mitigation: Use scoped or short-lived AWS credentials, avoid exposing secrets in prompts or logs, and review AWS permissions before running Lambda commands.
+
+## Reference(s):
+
+- [Remotion Project Setup](references/setup.md)
+- [Remotion Animation Patterns](references/animations.md)
+- [Remotion Rendering Reference](references/rendering.md)
+- [Remotion Lambda Rendering](references/lambda.md)
+- [Remotion Lambda Documentation](https://www.remotion.dev/docs/lambda)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-remotion-best-practices)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance, markdown]
+
+**Output Format:** [Markdown guidance with TSX code blocks and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include project files such as src/Root.tsx and scene components, plus exact preview and render commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill frontmatter metadata.version and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

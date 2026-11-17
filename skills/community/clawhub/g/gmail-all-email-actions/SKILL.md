@@ -1,7 +1,7 @@
 ---
 name: gmail-all-email-actions
 description: "Gmail - All Email Actions: Gmail integration: send, read, search, reply, forward emails. Manage labels, drafts, trash. Supports attachments and custom from addresses. Use when an agent needs gmail all email actions, gmail all email actions, automated email notifications and alerts, customer inquiry response and follow up, email search and retrieval for information gathering, inbox management and organization with labels, create draft, to through AgentPMT-hosted remote tool calls."
-version: 1.0.0
+version: 1.0.2
 homepage: https://www.agentpmt.com/marketplace/gmail-all-email-actions
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/gmail-all-email-actions"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # Gmail - All Email Actions
 
 ## Freshness
-Last updated: `2026-06-24`.
+Last updated: `2026-10-11`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -23,11 +23,24 @@ Complete Gmail management: send, reply, forward, search, read, trash, label, and
 
 #### Actions
 
+##### list_send_as_addresses
+List the Gmail account's configured From addresses and their sendability. Call this before composing when a non-default sender is requested or the exact alias is unknown.
+
+**Required:** none
+
+Only select an entry with `can_send: true`, then pass its exact `email` value as `from_email`. Omit `from_email` to use Gmail's default sender.
+
+```json
+{
+  "action": "list_send_as_addresses"
+}
+```
+
 ##### send_message
 Send a new email.
 
 **Required:** `to` (array of email addresses), `subject`, `body_text` or `body_html`
-**Optional:** `cc`, `bcc`, `from_email` (requires send-as alias configured in Gmail), `body_html`, `attachments`, `thread_id`
+**Optional:** `cc`, `bcc`, `from_email`, `body_html`, `attachments`, `thread_id`
 
 ```json
 {
@@ -60,7 +73,7 @@ Send a new email.
 Reply to an existing email. The reply stays in the same thread and automatically uses the original subject and recipient.
 
 **Required:** `message_id`, `body_text` or `body_html`
-**Optional:** `cc`, `bcc`, `attachments`
+**Optional:** `cc`, `bcc`, `from_email`, `attachments`
 
 ```json
 {
@@ -74,7 +87,7 @@ Reply to an existing email. The reply stays in the same thread and automatically
 Forward an email to new recipients. The original message content is included automatically.
 
 **Required:** `message_id`, `to`
-**Optional:** `body_text` (added above the forwarded content), `cc`, `bcc`, `attachments`
+**Optional:** `body_text` (added above the forwarded content), `cc`, `bcc`, `from_email`, `attachments`
 
 ```json
 {
@@ -271,14 +284,17 @@ Get the authenticated user's Gmail profile including email address and message c
 - **HTML emails:** You can send both `body_text` and `body_html` together. Recipients who support HTML will see the rich version; others see plain text.
 - **Search syntax:** The `q` parameter uses standard Gmail search operators. Combine multiple operators for precise filtering (e.g., `from:alice@example.com newer_than:7d has:attachment`).
 - **Pagination:** When `list_messages` returns a `next_page_token`, pass it as `page_token` in the next request to get more results.
-- **From address:** The `from_email` field only works if you have configured a send-as alias in Gmail settings.
+- **From address:** Use `list_send_as_addresses` whenever a non-default sender is requested or the exact alias is unknown. Pass the exact returned `email` for an entry with `can_send: true`; omit `from_email` to use the default. Unconfigured and unverified aliases are rejected before sending.
 - **Thread management:** Use `thread_id` with `send_message` or `create_draft` to add a message to an existing conversation thread.
+
+#### Received attachment verification
+For get_message, verify_attachments=true fetches the actual received file bytes and returns sha256 and verified_size_bytes per named attachment (maximum 10 files and 25 MB total). No file contents are returned. This read-only option does not mark messages read and defaults false. Compare hashes with the selected original artifact; other read actions remain unchanged.
 
 ## When To Use
 - Use this skill for `Gmail - All Email Actions` on AgentPMT.
 - Use it when an agent needs this specific tool's behavior, schema, inputs, outputs, and invocation shape.
 - Search and activation keywords: gmail   all email actions, gmail all email actions, automated email notifications and alerts, customer inquiry response and follow up, email search and retrieval for information gathering, inbox management and organization with labels, create draft, to.
-- Supported action names: `create_draft`, `delete_draft`, `forward_message`, `get_draft`, `get_instructions`, `get_message`, `get_profile`, `get_thread`, `list_labels`, `list_messages`, `modify_labels`, `reply_message`, `send_draft`, `send_message`, `trash_message`, `untrash_message`.
+- Supported action names: `create_draft`, `delete_draft`, `forward_message`, `get_draft`, `get_instructions`, `get_message`, `get_profile`, `get_thread`, `list_labels`, `list_messages`, `list_send_as_addresses`, `modify_labels`, `reply_message`, `send_draft`, `send_message`, `trash_message`, `untrash_message`.
 
 ## Use Cases
 - Automated email notifications and alerts
@@ -297,21 +313,22 @@ No categories or industry tags are published for this tool.
 
 ## Actions And Schema
 Complete generated action schema: `./schema.md`.
-Supported action count: `16`.
+Supported action count: `17`.
 x402 availability: not enabled for this product.
 
 - `create_draft` (action slug: `create-draft`): Create a draft email that can be edited or sent later. Price: `5` credits. Parameters: `attachments`, `bcc`, `body_html`, `body_text`, `cc`, `from_email`, `subject`, `thread_id`, plus 1 more.
 - `delete_draft` (action slug: `delete-draft`): Permanently delete a Gmail draft. Price: `5` credits. Parameters: `draft_id`.
-- `forward_message` (action slug: `forward-message`): Forward an email to new recipients. The source message content is included automatically. Price: `5` credits. Parameters: `attachments`, `bcc`, `body_text`, `cc`, `message_id`, `to`.
+- `forward_message` (action slug: `forward-message`): Forward an email to new recipients. The source message content is included automatically. Price: `5` credits. Parameters: `attachments`, `bcc`, `body_text`, `cc`, `from_email`, `message_id`, `to`.
 - `get_draft` (action slug: `get-draft`): Retrieve draft email content with safe body and metadata controls. Price: `5` credits. Parameters: `body_format`, `draft_id`, `format`, `max_body_chars`, `message_format`, `metadata_headers`.
 - `get_instructions` (action slug: `get-instructions`): Return Gmail tool usage instructions and examples. Price: `5` credits. Parameters: none.
-- `get_message` (action slug: `get-message`): Read a Gmail message with safe body and metadata controls. Price: `5` credits. Parameters: `body_format`, `format`, `max_body_chars`, `message_format`, `message_id`, `metadata_headers`.
+- `get_message` (action slug: `get-message`): Read a Gmail message with safe body and metadata controls. Price: `5` credits. Parameters: `body_format`, `format`, `max_body_chars`, `message_format`, `message_id`, `metadata_headers`, `verify_attachments`.
 - `get_profile` (action slug: `get-profile`): Get the authenticated Gmail profile including email address and message/thread counts. Price: `5` credits. Parameters: none.
 - `get_thread` (action slug: `get-thread`): Read Gmail thread messages with safe body and metadata controls. Price: `5` credits. Parameters: `body_format`, `format`, `include_html`, `max_body_chars`, `max_messages`, `message_format`, `metadata_headers`, `thread_id`.
 - `list_labels` (action slug: `list-labels`): List all available Gmail labels, including system and user-created labels. Price: `5` credits. Parameters: none.
 - `list_messages` (action slug: `list-messages`): Search and list Gmail messages for triage. The tool requests a Gmail message page, fetches compact metadata for each listed message, then applies post-fetch date/category/label filters and optional thread dedupe. Returns messages plus result_size_estimate, next_page_token, fetched_count, and returned_count; returned_count can be lower than fetched_count. Price: `5` credits. Parameters: `dedupe_by_thread`, `exclude_categories`, `exclude_label_ids`, `include_spam_trash`, `label_ids`, `max_internal_date_ms`, `max_results`, `min_internal_date_ms`, plus 2 more.
+- `list_send_as_addresses` (action slug: `list-send-as-addresses`): List configured Gmail From addresses, including the default address and whether each alias is verified and usable for sending. Price: `5` credits. Parameters: none.
 - `modify_labels` (action slug: `modify-labels`): Add or remove labels from an email. Common uses: mark as read, star, or archive. Price: `5` credits. Parameters: `add_label_ids`, `message_id`, `remove_label_ids`.
-- `reply_message` (action slug: `reply-message`): Reply to an existing email. The reply stays in the same thread and automatically uses the original subject and recipient context. Price: `5` credits. Parameters: `attachments`, `bcc`, `body_html`, `body_text`, `cc`, `message_id`.
+- `reply_message` (action slug: `reply-message`): Reply to an existing email. The reply stays in the same thread and automatically uses the original subject and recipient context. Price: `5` credits. Parameters: `attachments`, `bcc`, `body_html`, `body_text`, `cc`, `from_email`, `message_id`.
 - `send_draft` (action slug: `send-draft`): Send a previously created Gmail draft. Price: `5` credits. Parameters: `draft_id`.
 - `send_message` (action slug: `send-message`): Send a new email. Supports plain text, HTML, attachments, CC/BCC, custom from address, and optional thread continuation. Price: `5` credits. Parameters: `attachments`, `bcc`, `body_html`, `body_text`, `cc`, `from_email`, `subject`, `thread_id`, plus 1 more.
 - `trash_message` (action slug: `trash-message`): Move an email message to trash. Price: `5` credits. Parameters: `message_id`.

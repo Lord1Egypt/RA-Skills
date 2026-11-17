@@ -1,0 +1,210 @@
+---
+name: bestax-custom-component
+description: Build a custom React component in the bestax/Bulma style. In an app using @allxsmith/bestax-bulma — compose existing components, helper props, public hooks (useBulmaClasses, usePrefixedClassNames), and --bulma-* CSS variables. In the bestax monorepo — the full component pipeline (SCSS partial, stories, tests, docs, wiring). Use when creating a component beyond stock Bulma or extending one.
+---
+
+# Building a custom component the bestax way
+
+This skill teaches how to build a component that isn't in the library — composed from bestax
+pieces in an app, or as a full library "extra" inside the bestax monorepo.
+
+## Which context are you in?
+
+- **The bestax monorepo** (the repo contains `bulma-ui/src/`) → follow
+  `references/library-contributor.md` instead of this file: five-file layout, SCSS partial,
+  stories, jest tests, docs page, wiring.
+- **An app depending on `@allxsmith/bestax-bulma`** (e.g. scaffolded by `npm create bestax`) →
+  continue here. Everything below assumes public package imports and a plain Vite app.
+
+For **form** components (Field/Control/Input/etc.) use the `bestax-form` skill instead.
+
+## Check for an existing component first
+
+Before building anything, **search the library for a component that already does this — or a
+close synonym** — and tell the user what you found. Many requests are covered by an existing
+element, or are best built by composing existing ones. Building a near-duplicate (a "label" when
+`Tag` exists, a "banner" when `Notification` exists) fragments the API and is usually the wrong
+call.
+
+Where to look:
+
+- `references/component-catalog.md` — **start here.** Every documented component with a one-line
+  purpose, grouped by category. Scan it for the name and its synonyms before anything else.
+- https://bestax.io/docs/api — one doc page per shipped component (full props).
+
+Then decide, and **surface the decision to the user**:
+
+- **Exact / synonym match exists** → recommend using it. Don't build a duplicate. (E.g. a small
+  colored label/badge/chip → `Tag` / `Tags` already exist.)
+- **Partial overlap** → prefer **composing** the existing pieces inside your new component
+  rather than re-implementing them. (E.g. a "profile card" → there's no `ProfileCard`, but
+  `Card`, `Image`, `Title`, `SubTitle`, and `Content` exist; build `ProfileCard` to compose them.)
+- **Genuine gap** → build the new component using the pattern below.
+
+State plainly which case applies before writing code, e.g. _"`Tag` already covers a colored
+label — use that instead"_ or _"No `ProfileCard` exists; I'll build one composing the existing
+`Card`/`Image`/`Title` elements."_
+
+## Composition first
+
+Build from existing components before writing any CSS: `Box`, `Card`, `Title`, `SubTitle`,
+`Icon`, `Block`, `Content`, `Tag`, plus the shared Bulma helper props (spacing, color,
+typography, flexbox). Some compound sub-parts are the exception — `Modal.Card`, `Tabs.Tab`,
+`Message.Body` take **no Bulma helper props**, just `className` + HTML attributes
+plus their own few (`Tabs.Tab` requires `index={i}` and has built-in `disabled` and
+`icon`/`iconLibrary`/`iconVariant`/`iconSize`/`iconFeatures` — don't nest an `<Icon>` there) —
+so put helper props on the parent or on an element inside them, never invent them there.
+(`Card.*` sub-parts do take helper props, like `Table.*`/`Menu.*`/`Hero.*`.) Most "custom components" are a composition function — zero new styles.
+See `examples/stat-card.tsx` for a complete worked example.
+
+Rendering something only the browser knows (the reader's time zone, a `localStorage` value)?
+Wrap it in the library's `ClientOnly` rather than checking `typeof window`: it renders a fallback
+until the page has hydrated, so the server and client markup match. `references/api.md` has the
+details.
+
+Building something that floats (a panel opened from a button, a command palette)? Render it
+through the library's `Portal` rather than `createPortal`: it renders nothing on the server and
+during hydration, so the server and client markup match. `references/api.md` has the details.
+
+Building a panel that holds focus until it is dismissed (a filter panel opened from a button, a
+command palette)? Use the library's `useFocusTrap` rather than a hand-rolled Tab handler: it finds
+the tab stops the browser visits and hands focus back on close. `references/api.md` has the
+signature and a worked panel.
+
+## The component spine
+
+Same shape the library itself uses, with all imports from the package. Every reusable
+component gets it — including pure compositions with zero CSS (a heading block, a labeled
+wrapper): extend `BulmaClassesProps`, run your props through `useBulmaClasses`, merge its
+`bulmaHelperClasses` into `className`, and spread the `rest` **it** returns — spreading the raw
+props instead leaks helper props onto the DOM and emits none of their classes. The
+`usePrefixedClassNames` root class is needed only when component-scoped CSS (or a variant
+class) targets it — a zero-CSS composition may omit that call. File at
+`src/components/MyComponent.tsx`:
+
+```tsx
+import type React from 'react';
+import {
+  classNames,
+  usePrefixedClassNames,
+  useBulmaClasses,
+  type BulmaClassesProps,
+} from '@allxsmith/bestax-bulma';
+
+export interface MyComponentProps
+  extends
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>,
+    Omit<BulmaClassesProps, 'color'> {
+  color?: 'primary' | 'link' | 'info' | 'success' | 'warning' | 'danger';
+}
+
+export function MyComponent({
+  color,
+  className,
+  children,
+  ...props
+}: MyComponentProps) {
+  const { bulmaHelperClasses, rest } = useBulmaClasses(props);
+  const mainClasses = usePrefixedClassNames('mycomponent', {
+    [`is-${color}`]: !!color,
+  });
+  return (
+    <div
+      className={classNames(mainClasses, bulmaHelperClasses, className)}
+      {...rest}
+    >
+      {children}
+    </div>
+  );
+}
+```
+
+This gives your component the full Bulma helper-prop surface (`m`, `p`, `textAlign`, …) for
+free. `references/api.md` documents the helpers.
+
+## Styling ladder — use the lowest rung that works
+
+**Rung 1 — helper props only (default).** House rules: never `style={{}}`. Layout with
+`Block`/`Box` and `display="flex"`, `flexDirection`, `alignItems`, `justifyContent`. Flex
+layouts have **no `gap` helper** — space children with `m*`/`p*` margins instead (`Grid` and
+`Columns` take a `gap` prop). Before writing `style={{ … }}` anywhere, translate each
+declaration:
+
+| Inline style you're about to write       | Helper props instead                                                                                                                                           |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `marginTop: '1rem'` (any margin/padding) | `mt="4"` — `m`/`mt`/`mx`/`p`/`py`/… scale: `1`=0.25rem, `2`=0.5rem, `3`=0.75rem, `4`=1rem, `5`=1.5rem, `6`=3rem (nearest step)                                 |
+| `textAlign: 'center'`                    | `textAlign="centered"` (also `left`, `right`, `justified`)                                                                                                     |
+| `color: '#…'`                            | `textColor` with the nearest Bulma color: `primary`, `link`, `info`, `success`, `warning`, `danger`, `white`, `black`, `grey` (+ `grey-light`, `grey-dark`, …) |
+| `backgroundColor: '#…'`                  | `bgColor` (same palette)                                                                                                                                       |
+| `fontSize: …`                            | `textSize="1"`…`"7"` (`1` largest) — for headings use `Title`/`SubTitle` `size`                                                                                |
+| `fontWeight: …`                          | `textWeight`: `light`, `normal`, `medium`, `semibold`, `bold`                                                                                                  |
+| `textTransform`, italics                 | `textTransform`: `uppercase`, `lowercase`, `capitalized`, `italic`                                                                                             |
+| `display: 'flex'` + flex properties      | same-named props: `display="flex"`, `flexDirection`, `justifyContent`, `alignItems`, `flexWrap`                                                                |
+| `height: '100%'` on a flex child         | `flexGrow="1"`                                                                                                                                                 |
+| `display: 'none'`                        | `visibility="hidden"`, or responsive `display*` props (`displayMobile`, `displayTablet`, …)                                                                    |
+
+Spacing, typography, and flex helpers are on every component; `textColor`/`bgColor` are on
+the content components you'll compose with (`Box`, `Block`, `Title`, `Content`, `Card`, …) —
+the ones with a semantic `color` variant (`Tag`, `Tabs`, `Panel`) take `color` instead.
+`Notification` is the mixed case: it takes `textColor`, but its background comes from the
+semantic `color` prop, not `bgColor`.
+
+A value with no helper equivalent (`maxWidth: 720`, a one-off gradient) moves you to rung 2 —
+a named class in a stylesheet — never to inline `style`.
+
+**Rung 2 — a plain CSS file**, scoped under the component's class, consuming `--bulma-*`
+variables — never literal colors, so `Theme` and dark mode keep working:
+
+```css
+/* src/components/MyComponent.css — import from the .tsx file */
+.mycomponent {
+  /* component-scoped custom props, initialized from Bulma tokens:
+     any ancestor (or Theme) can re-theme by overriding them */
+  --mycomponent-radius: var(--bulma-radius);
+  --mycomponent-accent: var(--bulma-primary);
+  border-radius: var(--mycomponent-radius);
+  border: 1px solid var(--bulma-border);
+  background: var(--bulma-scheme-main);
+  color: var(--bulma-text);
+}
+.mycomponent .mycomponent-value {
+  color: var(--mycomponent-accent);
+}
+```
+
+Caveat: with the prefixed CSS flavor / `ConfigProvider classPrefix`, `usePrefixedClassNames`
+prefixes your classes too — your CSS selectors must match (or build them with plain
+`classNames` instead).
+
+**Rung 3 — real Sass (optional).** `npm i -D sass` — nothing else; Vite compiles imported
+`.scss` zero-config, and `bulma` is resolvable because it's a runtime dependency of
+bestax-bulma. Then the full `register-vars`/`getVar` pattern from
+`references/library-contributor.md` works in-app. Prefixed flavor:
+`@use 'bulma/sass/utilities/initial-variables' with ($class-prefix: 'bestax-')`.
+
+## Verify in the browser
+
+Types don't see layout. Run `npm run dev`, render the component, and actually look at it:
+vertical centering of inline text (use `display="flex" alignItems="center"`, not line-height
+hacks), balanced padding, nothing clipping, every color/size variant, and **dark mode**
+legibility. Fix what you see, then re-check. No browser available (headless)? Fall back to
+`npm run build` plus a Node `renderToString` smoke render, grep the emitted HTML for the
+expected classes, and flag the visual pass as not done.
+
+## Tests and stories in an app
+
+The scaffolded app has **no test runner and no Storybook** — do not install or scaffold them
+unasked. If the app already has vitest/jest + Testing Library, write the four test shapes:
+render, prop→class mapping, helper-prop passthrough (`m="3"` → `m-3`), and the
+`ConfigProvider classPrefix` case if the app uses a prefix.
+
+## Checklist
+
+- [ ] Inventory checked (catalog + bestax.io/docs/api) and the decision surfaced to the user.
+- [ ] All imports from `@allxsmith/bestax-bulma` (no deep/internal paths).
+- [ ] Composition first — existing components + helper props before any CSS; every reusable component gets the spine.
+- [ ] No inline `style={{}}` anywhere — translate via the rung-1 mapping table; values with
+      no helper equivalent get a named class (rung 2).
+- [ ] Lowest sufficient ladder rung (helper props → scoped CSS vars → Sass).
+- [ ] All colors/radii derived from `--bulma-*` variables — no literals.
+- [ ] Renders correctly via `npm run dev`, including dark mode.

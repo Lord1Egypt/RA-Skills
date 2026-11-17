@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7asmvryqycathxsgmqa6ht6581f5eq",
-  "slug": "zvukogram",
+  "name": "zvukogram",
   "version": "1.1.6",
-  "publishedAt": 1774803582275
+  "description": "Text-to-Speech via Zvukogram API with SSML support. Optimized for Russian language with stress marks and transcription. Service supports multiple languages.",
+  "requires": {
+    "env": ["ZVUKOGRAM_TOKEN", "ZVUKOGRAM_EMAIL"],
+    "credentials": ["zvukogram_api"]
+  },
+  "tags": ["tts", "audio", "voice", "ssml", "podcast", "russian", "multilingual"]
 }

@@ -1,0 +1,16 @@
+# Subscription Renewal Notices - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+customer_name: ""
+account_id: ""
+plan_name: ""
+current_price_usd: ""
+renewal_date: ""
+new_price_usd: ""
+price_change_reason: ""
+auto_renews: ""
+notice_window_days: ""
+cancellation_method: ""
+cancellation_deadline: ""
+support_email: ""
+sender_physical_address: ""
+sender_state: ""

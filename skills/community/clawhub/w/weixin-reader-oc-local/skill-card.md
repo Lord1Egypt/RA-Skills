@@ -1,39 +1,49 @@
-## Description: <br>
-Reads WeChat Official Account article links from mp.weixin.qq.com and extracts the full article text, including title, author, publication date, and cleaned body content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts readable article text, title, author, and publication date from user-provided WeChat public account article links.
 
-## Publisher: <br>
-[reknottycat](https://clawhub.ai/user/reknottycat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reknottycat](https://clawhub.ai/user/reknottycat)
 
-## Use Case: <br>
-External users and agents use this skill to read user-provided public WeChat Official Account article URLs and return the article's title, author, publication date, and cleaned body text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes user-provided article URLs and returns page content, which may include private, paywalled, or account-restricted material if such URLs are supplied. <br>
-Mitigation: Use it with explicit public mp.weixin.qq.com URLs and avoid sending private, paywalled, or account-restricted content unless the user is comfortable with the agent processing that page. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent retrieve and summarize or extract clean text from WeChat public account article URLs they provide.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reknottycat/weixin-reader-oc-local) <br>
-- [Publisher profile](https://clawhub.ai/user/reknottycat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text containing extracted article metadata and body content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns cleaned text from a user-provided mp.weixin.qq.com article URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: User-provided WeChat article URLs may identify private or access-restricted content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only submit URLs to the extraction tool when the user is comfortable having that URL processed by the configured extraction service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reknottycat/skills/weixin-reader-oc-local)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text containing extracted article metadata and body content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include article title, author, publication date, and cleaned article body.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.mp4
+*.wav
+*.ogg
+*.mp3
+outputs/
+renderer/node_modules/
+renderer/out/
+renderer/public/assets/generated/
+renderer/public/assets/posters/
+renderer/public/audio/
+.venv/

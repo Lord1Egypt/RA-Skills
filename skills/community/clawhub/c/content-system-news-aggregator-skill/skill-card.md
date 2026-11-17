@@ -1,47 +1,58 @@
-## Description: <br>
-Comprehensive news aggregator that fetches, filters, and analyzes real-time content from 28 sources including Hacker News, GitHub Trending, Hugging Face Papers, AI newsletters, WallStreetCN, Weibo, essays, and podcasts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches, filters, and analyzes real-time news from 28 technology, finance, AI, social, podcast, and essay sources, then prepares Simplified Chinese briefings and deep-dive reports.
 
-## Publisher: <br>
-[abigale-cyber](https://clawhub.ai/user/abigale-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abigale-cyber](https://clawhub.ai/user/abigale-cyber)
 
-## Use Case: <br>
-Developers and agent users use this skill to fetch current news, run preconfigured daily briefing profiles, and produce Simplified Chinese Markdown reports with links, timing, heat signals, summaries, and deeper analysis from the fetched JSON data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags anti-bot scraping behavior and unsafe network defaults. <br>
-Mitigation: Install and run in an isolated environment; review or disable Playwright and deep-fetch paths before use. <br>
-Risk: Automated scraping reaches many third-party sites and can run concurrent fetches. <br>
-Mitigation: Limit sources and item counts, respect site policies, and review fetched URLs before enabling broad or repeated scans. <br>
-Risk: Saved reports can persist local records of user interests and fetched content. <br>
-Mitigation: Use --no-save when persistence is not needed, choose a controlled output directory, and periodically remove reports/YYYY-MM-DD/ files. <br>
-Risk: Artifact planning material references cron/background scheduling for unattended recurring runs. <br>
-Mitigation: Do not approve cron or background scheduling unless recurring unattended scans are intended, and verify installed schedules afterward. <br>
+## Use Case:
 
+External users and developers use this skill to run daily scans, topic-specific news searches, and multi-source briefings. It produces Simplified Chinese Markdown reports with source links, timestamps, heat signals, summaries, and optional deeper analysis from fetched article text.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/abigale-cyber/content-system-news-aggregator-skill) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [templates.md](artifact/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Simplified Chinese Markdown reports, JSON source data, and shell commands for local Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may be saved under reports/YYYY-MM-DD/ unless --no-save or a custom output directory is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad outbound scraping and browser automation can visit untrusted third-party pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a restricted network environment and disable deep-fetch mode for untrusted or unnecessary sources.
+
+Risk: Generated reports are derived from untrusted web content and may contain inaccurate or misleading claims.
+
+Mitigation: Treat reports as untrusted summaries and verify important claims against the original source links before acting on them.
+
+Risk: Dependency or browser automation behavior may change how external pages are fetched.
+
+Mitigation: Pin dependencies, review updates before deployment, and keep generated report files out of sensitive directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abigale-cyber/skills/content-system-news-aggregator-skill)
+- [Publisher profile](https://clawhub.ai/user/abigale-cyber)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Simplified Chinese Markdown reports with source links and inline command examples; fetch scripts may emit JSON as intermediate data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are saved under reports/YYYY-MM-DD/; deep-fetch mode can add downloaded third-party article text for richer summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

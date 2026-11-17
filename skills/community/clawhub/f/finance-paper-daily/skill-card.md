@@ -1,46 +1,56 @@
-## Description: <br>
-Finance Paper Daily fetches recent finance paper metadata from arXiv, Semantic Scholar, OpenAlex, and Google Scholar and writes a formatted daily Excel workbook to the user's Desktop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finance Paper Daily fetches recent finance research papers from arXiv, Semantic Scholar, OpenAlex, and Google Scholar, then creates a formatted Excel report on the user's Desktop.
 
-## Publisher: <br>
-[snow-seamless](https://clawhub.ai/user/snow-seamless) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snow-seamless](https://clawhub.ai/user/snow-seamless)
 
-## Use Case: <br>
-Researchers, analysts, and agents can run this skill to collect recent finance paper metadata from public academic services and generate a formatted daily Excel report on the user's Desktop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install Python dependencies at runtime, which may alter the active Python environment. <br>
-Mitigation: Run it in a virtual environment and preinstall pinned dependencies instead of relying on runtime installation or --break-system-packages. <br>
-Risk: The skill contacts public academic services to fetch paper metadata. <br>
-Mitigation: Run it only where outbound requests to arXiv, Semantic Scholar, OpenAlex, and Google Scholar are allowed by policy. <br>
-Risk: The skill creates or overwrites the same-day Excel report on the user's Desktop. <br>
-Mitigation: Rename or back up an existing same-day report before rerunning if the previous output must be preserved. <br>
+## Use Case:
 
+Researchers, analysts, and finance practitioners use this skill to collect recent finance literature and produce a daily spreadsheet report for review and tracking.
 
-## Reference(s): <br>
-- [Finance Paper Daily on ClawHub](https://clawhub.ai/snow-seamless/finance-paper-daily) <br>
-- [Publisher Profile](https://clawhub.ai/user/snow-seamless) <br>
-- [arXiv API endpoint](http://export.arxiv.org/api/query) <br>
-- [Semantic Scholar Graph API paper search](https://api.semanticscholar.org/graph/v1/paper/search) <br>
-- [OpenAlex Works API](https://api.openalex.org/works) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, API Calls] <br>
-**Output Format:** [Excel workbook (.xlsx) plus console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or overwrites ~/Desktop/YYYY-MM-DD_finance_papers.xlsx with a daily papers sheet and source statistics sheet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may install unpinned Python packages into the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated virtual environment, avoid --break-system-packages, and preinstall reviewed dependency versions.
+
+Risk: The generated spreadsheet is populated from remote paper metadata.
+
+Mitigation: Treat the workbook contents and links as untrusted until reviewed.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/snow-seamless/skills/finance-paper-daily)
+- [arXiv API query endpoint](http://export.arxiv.org/api/query)
+- [Semantic Scholar paper search API](https://api.semanticscholar.org/graph/v1/paper/search)
+- [OpenAlex works API](https://api.openalex.org/works)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Text]
+
+**Output Format:** [Excel workbook (.xlsx) plus terminal status text and setup/run commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes ~/Desktop/YYYY-MM-DD_finance_papers.xlsx and overwrites the same-day file on rerun.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

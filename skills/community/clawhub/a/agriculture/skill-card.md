@@ -1,38 +1,57 @@
-## Description: <br>
-Agriculture supports farm operations management across crop planning, inventory, equipment, livestock, weather, and financials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Farm operations management - crop planning, inventory, equipment, livestock, weather, and financials.
 
-## Publisher: <br>
-[rithythul](https://clawhub.ai/user/rithythul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rithythul](https://clawhub.ai/user/rithythul)
 
-## Use Case: <br>
-Farm operators and agricultural teams use this skill to plan seasonal work, monitor field, inventory, equipment, labor, livestock, weather, market, and financial signals, and produce operational alerts, reports, and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Farm operations recommendations can affect finances, purchases, market actions, pesticide or veterinary choices, and safety-critical equipment or labor decisions. <br>
-Mitigation: Use the skill as planning support and require human approval before taking consequential actions. <br>
+## Use Case:
 
+Farm operators, agricultural managers, and operations teams use this skill to organize crop plans, weather alerts, inventories, equipment maintenance, labor, livestock records, irrigation decisions, harvest tracking, and farm financials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rithythul/agriculture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, alerts, task lists, and recommendation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human review before acting on financial, purchase, market, pesticide, veterinary, safety-critical equipment, or labor decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Generated reorder, sale, chemical, livestock, or financial recommendations may be incorrect or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against farm records, product labels, veterinary guidance, market data, and qualified operator judgment before acting.
+
+Risk: Weather alerts and market movement context depend on current, reliable external data.
+
+Mitigation: Verify weather forecasts, commodity prices, and local operating conditions before scheduling field work or making commercial decisions.
+
+Risk: Farm records may include sensitive financial, labor, inventory, livestock, and equipment information.
+
+Mitigation: Share only the data needed for the task and apply the operation's normal access control and record-handling practices.
+
+## Reference(s):
+
+- [Agriculture skill release page](https://clawhub.ai/rithythul/skills/agriculture)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown reports, alerts, recommendations, and structured tracking tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational alerts, reorder recommendations, sell/hold context, task priorities, and farm record templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

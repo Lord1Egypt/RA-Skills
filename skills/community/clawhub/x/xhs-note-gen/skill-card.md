@@ -1,44 +1,56 @@
-## Description: <br>
-小红书笔记生成服务，当用户要求"生成小红书笔记/小红书文案/笔记"并希望通过 小念AI来 生成结果而不是手动编写时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书笔记生成服务，当用户要求"生成小红书笔记/小红书文案/笔记"并希望通过 小念AI来 生成结果而不是手动编写时使用。
 
-## Publisher: <br>
-[yc556600](https://clawhub.ai/user/yc556600) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yc556600](https://clawhub.ai/user/yc556600)
 
-## Use Case: <br>
-External users and agents use this skill to turn a Xiaohongshu note request, brand prompt, or content brief into generated note copy, hashtags, note type, and optional image URLs through the XiaoNian API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the note topic, brand details, and prompt text to xiaonian.cc for generation. <br>
-Mitigation: Avoid including confidential business information, personal data, credentials, or regulated content unless that third-party processing is acceptable. <br>
-Risk: Generated Xiaohongshu marketing copy may be inaccurate, off-brand, or unsuitable for publication without review. <br>
-Mitigation: Review titles, claims, hashtags, image URLs, and note content before publishing or using them in a campaign. <br>
-Risk: The API call is unauthenticated and depends on the availability and behavior of the external XiaoNian service. <br>
-Mitigation: Treat failures or unexpected responses as external service issues, surface the returned error message, and avoid relying on the skill for time-critical publishing workflows. <br>
+## Use Case:
 
+External users and content marketers use this skill to generate XiaoHongShu note drafts, hashtags, and optional image URLs from a prompt, target audience, tone, persona, note type, and image settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yc556600/xhs-note-gen) <br>
-- [content-marketing-dashboard API reference](references/content-marketing-dashboard-api.md) <br>
-- [XiaoNian content-marketing-dashboard API](https://xiaonian.cc/employee-console/dashboard/v2/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [JSON from the helper script, typically returned to the user as readable Markdown notes with titles, content, hashtags, note type, and image URLs when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper can generate multiple note variants and optionally request 1 to 10 images per note.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: Prompts, audience, tone, persona, note type, and image settings are sent to the xiaonian.cc external generation API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive marketing inputs unless the user is comfortable with that external service handling the data; avoid secrets, confidential plans, regulated data, and private personal information.
+
+Risk: Generated marketing copy and image URLs may be unsuitable, inaccurate, or off-brand without review.
+
+Mitigation: Review generated titles, content, hashtags, note type, and image URLs before publishing or using them in a campaign.
+
+## Reference(s):
+
+- [content-marketing-dashboard API](artifact/references/content-marketing-dashboard-api.md)
+- [XiaoNian quick-note API base](https://xiaonian.cc/employee-console/dashboard/v2/api)
+- [ClawHub skill page](https://clawhub.ai/yc556600/skills/xhs-note-gen)
+- [Publisher profile](https://clawhub.ai/user/yc556600)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary of generated notes, backed by JSON from the API script containing notes with title, content, tags, image_urls, and note_type.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multiple note variants and optional generated image URLs; the external API returns success, message, timestamp, title, content, tags, image_urls, and note_type fields.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

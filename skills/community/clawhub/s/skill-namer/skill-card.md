@@ -1,43 +1,66 @@
-## Description: <br>
-Generates short, pronounceable names for skills, ENS domains, and agent-economy primitives, then filters candidates for clarity, accessibility, and harm-aware language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short, pronounceable names for skills, ENS domains, and agent-economy primitives, then filters candidates for clarity, constraints, and availability-check readiness.
 
-## Publisher: <br>
-[OtherPowers](https://clawhub.ai/user/OtherPowers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[otherpowers](https://clawhub.ai/user/otherpowers)
 
-## Use Case: <br>
-External users and developers use this skill to brainstorm high-traction names for skills, products, ENS names, domains, and agent-economy primitives, especially when obvious names are taken. It helps generate candidate sets, apply naming constraints, and provide manual availability-check links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved TLD and provider preferences may be reused in later naming sessions. <br>
-Mitigation: Review or clear remembered naming preferences before switching projects, clients, or confidentiality contexts. <br>
-Risk: Availability-check links may disclose candidate names to external registrars or naming services when opened. <br>
-Mitigation: Use manual checking only for candidates that are safe to disclose, or delay external checks until the shortlist is approved for exposure. <br>
-Risk: Generated names can still be confusing, unavailable, or socially inappropriate without review. <br>
-Mitigation: Run the skill's clarity, accessibility, and harm-aware filters, then have a human review finalists before claiming domains or publishing a skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/OtherPowers/skill-namer) <br>
-- [Portmanteau Forge - Building Blocks](artifact/blocks.md) <br>
-- [Root-words guidance](artifact/root-words.md) <br>
+## Use Case:
 
+Developers, product teams, and agents use Skill Namer to generate concise candidate names for skills, domains, products, protocols, and agent-economy primitives, then narrow them with constraints, accessibility checks, and manual availability links.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown lists with candidate names, short rationale, TLD tags, and optional provider search URLs; helper scripts print plain-text name lists or URL batches.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include top candidates, alternates, mutation ladders, set-builder naming families, and manual availability-check links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may remember naming preferences for later sessions.
+
+Mitigation: Avoid storing sensitive preferences and review any remembered TLD, provider, or checking-mode defaults before reuse.
+
+Risk: API-based availability checking may require external service credentials.
+
+Mitigation: Use the default manual link mode unless API checks are explicitly needed, and provide API keys only to intended official services.
+
+Risk: Availability guidance can be incomplete when checks are manual, blocked, or provider-specific.
+
+Mitigation: Treat unchecked names as unknown and verify domain or ENS status directly with the provider before claiming or purchasing.
+
+Risk: Generated names can still create trademark, brand-confusion, or social-harm concerns.
+
+Mitigation: Perform legal, brand, accessibility, and harm-aware review before adopting a finalist name.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/otherpowers/skills/skill-namer)
+- [Portmanteau Forge Building Blocks](artifact/blocks.md)
+- [Root-Words Guidance](artifact/root-words.md)
+- [ENS Manager](https://app.ens.domains/)
+- [Unstoppable Domains Search](https://unstoppabledomains.com/search)
+- [GoDaddy Domain Search](https://www.godaddy.com/domainsearch/find)
+- [Namecheap Domain Search](https://www.namecheap.com/domains/registration/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with candidate lists, caveats, manual availability links, and optional shell command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include remembered naming preferences such as favorite TLDs, availability-check mode, and preferred providers when the user sets them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Generates Reveal.js-based HTML presentation decks from a topic, visual references, and target-audience context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates downloadable single-file HTML presentation decks from a user's topic, style references, uploaded materials, and target audience.
 
-## Publisher: <br>
-[flyyue5](https://clawhub.ai/user/flyyue5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyyue5](https://clawhub.ai/user/flyyue5)
 
-## Use Case: <br>
-Presentation creators use this skill to turn a subject, style references, and audience details into a downloadable HTML slide deck. It is suited to web-shareable or offline presentations that need a cover, agenda, content slides, summary, and closing slide. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded reference images or files may be used while constructing the presentation. <br>
-Mitigation: Use only approved, non-sensitive reference materials and review the generated deck before sharing it. <br>
-Risk: Generated HTML decks may rely on external CDN assets such as Font Awesome, which can be inappropriate for sensitive or offline presentations. <br>
-Mitigation: Ask the agent to avoid external CDN assets and keep the HTML self-contained when offline or sensitive use is required. <br>
+## Use Case:
 
+External users and creators use this skill to turn presentation topics, style references, and audience details into shareable or offline HTML slide decks. The skill is useful when users ask for HTML PPT, web-based presentation, or online PPT output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flyyue5/mia-ppt-generator) <br>
-- [Font Awesome CSS](https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.css) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, files, guidance] <br>
-**Output Format:** [Single-file HTML presentation with inline CSS and scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated decks can include visual assets, icons, keyboard navigation, and transition behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Uploaded reference images or files may contain confidential material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved platform and tooling for sensitive data, and avoid uploading confidential material unless that environment is approved for it.
+
+Risk: Generated HTML decks may include externally referenced icons, images, or scripts.
+
+Mitigation: Review generated HTML and external asset references before sharing or deploying the presentation.
+
+Risk: Generated slide content may need factual, audience, and visual review before use.
+
+Mitigation: Review the completed deck for accuracy, tone, attribution, and suitability for the intended audience.
+
+## Reference(s):
+
+- [PPT Generator on ClawHub](https://clawhub.ai/flyyue5/skills/mia-ppt-generator)
+- [Font Awesome Free 6.4.0 CSS](https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.css)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Guidance]
+
+**Output Format:** [Single-file HTML with inline CSS and scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for downloadable Reveal.js slide decks with keyboard navigation and transition effects.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

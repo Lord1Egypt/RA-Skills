@@ -1,46 +1,65 @@
-## Description: <br>
-AI video production workflow using Remotion for creating videos, short films, commercials, motion graphics, promotional videos, product demos, social media videos, and animated explainers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Generator guides agents through creating polished Remotion motion graphics videos, including product promos, demos, short films, and social clips, with Firecrawl-based brand scraping when needed.
 
-## Publisher: <br>
-[cohnen](https://clawhub.ai/user/cohnen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cohnen](https://clawhub.ai/user/cohnen)
 
-## Use Case: <br>
-Developers and content-producing agents use this skill to scaffold Remotion projects, gather brand assets, compose motion graphics scenes, preview videos, and render final exports when requested. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow may scrape target websites and download external brand assets. <br>
-Mitigation: Use only approved public URLs, avoid internal or sensitive sites, and review downloaded assets before including them in generated video projects. <br>
-Risk: The workflow requires a Firecrawl API key and may read environment files. <br>
-Mitigation: Provide only the required API key, keep credentials out of prompts and generated assets, and avoid using the skill in projects that contain unrelated secrets. <br>
-Risk: The workflow may expose a local Remotion preview server through a public tunnel. <br>
-Mitigation: Require explicit approval before opening a tunnel, share the URL only with intended reviewers, and stop the tunnel immediately after preview. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cohnen/shellbot-video-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/cohnen) <br>
-- [Homepage](https://getshell.ai) <br>
-- [Reusable Components](references/components.md) <br>
-- [Remotion Composition Patterns](references/composition-patterns.md) <br>
-- [Remotion Configuration Documentation](https://remotion.dev/docs/config) <br>
+## Use Case:
 
+Developers and content creators use this skill to scaffold Remotion video projects, collect brand assets, compose animated scenes, preview work in Remotion Studio, and render final videos when requested.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline bash commands and generated Remotion project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local video project source files, downloaded visual assets, preview-server instructions, and rendered video files when export is explicitly requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local Remotion previews may be exposed through a public tunnel.
+
+Mitigation: Require manual approval before opening a tunnel, avoid sensitive preview content, and stop the tunnel when review is complete.
+
+Risk: The workflow can scrape public websites and download remote assets.
+
+Mitigation: Scrape only approved public URLs and review downloaded assets for relevance, safety, and usage rights before including them in a project.
+
+Risk: The skill runs npm and npx commands while scaffolding, previewing, and rendering projects.
+
+Mitigation: Run generated projects in an isolated working directory and review dependency changes before execution in sensitive environments.
+
+Risk: Environment files may be loaded to obtain FIRECRAWL_API_KEY.
+
+Mitigation: Avoid using the skill in directories with untrusted .env files and scope credentials to the minimum access needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cohnen/skills/shellbot-video-generator)
+- [Shell homepage](https://getshell.ai)
+- [Reusable Components](references/components.md)
+- [Remotion Composition Patterns](references/composition-patterns.md)
+- [Remotion configuration documentation](https://remotion.dev/docs/config)
+- [Firecrawl scrape API](https://api.firecrawl.dev/v1/scrape)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline bash and TypeScript/TSX code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Remotion project files and downloaded visual assets; Firecrawl scraping requires FIRECRAWL_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Provides cross-border trade compliance reference guidance for certification checklists, tariff estimates, labeling requirements, and marketplace rule checks through Yufluent's cloud compliance service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-border compliance and trade reference assistant for certification checklists (CE/FCC/GPSR), tariff estimates, labeling requirements, and platform rule checks, returning structured JSON suggestions that require human verification.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External sellers, compliance teams, and ecommerce operators use this skill to gather structured reference guidance for export certifications, HS code and tariff estimates, labeling requirements, and platform restrictions before human review against official sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends product, market, tariff, and compliance details to Yufluent's cloud service using TOKENAPI_KEY. <br>
-Mitigation: Install and run it only when that data sharing is acceptable, keep TOKENAPI_KEY secret, and use only trusted endpoints. <br>
-Risk: Compliance, certification, tariff, and platform-rule outputs are reference guidance and may be incomplete or out of date. <br>
-Mitigation: Verify results with official rules, current regulations, and qualified legal, tax, customs, or certification professionals before acting. <br>
+## Use Case:
 
+External commerce teams, cross-border sellers, and developers use this skill to gather product and market context and request reference guidance for certifications, tariffs, labeling, and marketplace restrictions before expert review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluent-clawhub-publish-yufluentcn-compliance-guard) <br>
-- [Yufluent homepage](https://claw.changzhiai.com) <br>
-- [Yufluent OpenClaw](https://claw.changzhiai.com/app/openclaw) <br>
-- [Yufluent API key registration](https://claw.changzhiai.com/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, Shell commands] <br>
-**Output Format:** [Structured JSON or formatted text/Markdown printed by the CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOKENAPI_KEY; optional TOKENAPI_BASE_URL should be left unset or set only to a trusted endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: A configured API endpoint can receive the user's API token and business data, including if TOKENAPI_BASE_URL points to a non-HTTPS or untrusted URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS endpoints, control TOKENAPI_BASE_URL centrally, and keep TOKENAPI_KEY scoped, revocable, and out of shared environments.
+
+Risk: Compliance, customs, tax, certification, and marketplace outputs may be incomplete, outdated, or unsuitable for a specific product or jurisdiction.
+
+Mitigation: Treat outputs as references and verify them with official sources or qualified legal, tax, customs, or certification professionals before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metahuan/skills/yufluent-clawhub-publish-yufluentcn-compliance-guard)
+- [Yufluent homepage](https://claw.changzhiai.com)
+- [Yufluent OpenClaw](https://claw.changzhiai.com/app/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal text with structured JSON guidance from the cloud skill endpoint]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are compliance references only and require human verification against official sources and current regulations.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,56 @@
+{
+  "_instrucciones": "PLANTILLA ROBUSTA con el ritmo de 7 días + arco mensual de 4 semanas de la metodología F100K (ver referencias/dinamicas-y-eventos.md). Es el calendario 'cargado' de ejemplo: úsalo como base para una comunidad con energía para sostenerlo, o RECORTA según las reglas de oro (mínimo: conserva Q&A en vivo + Viernes de wins). Cambia 'comunidad', 'tema', 'mes', 'anio' y adapta las sesiones/eventos al nicho. Las llaves de rutinaSemanal: 0=Domingo, 1=Lunes ... 6=Sábado. Los 'eventos' siguen el arco S1 Fundamentos → S2 Ejecución → S3 Optimización → S4 Celebración+Reto (ajusta las fechas a tu mes real).",
+
+  "comunidad": "Tu Comunidad",
+  "mesLabel": "MES",
+  "tema": "minimalista-claro",
+  "mes": 7,
+  "anio": 2026,
+  "logo": "",
+
+  "catalogoTipos": {
+    "ritual":        { "bg": "#22c55e", "fg": "#0a2e12" },
+    "qa":            { "bg": "#1e3a8a", "fg": "#ffffff" },
+    "clase":         { "bg": "#7c3aed", "fg": "#ffffff" },
+    "participacion": { "bg": "#f97316", "fg": "#ffffff" },
+    "reconocimiento":{ "bg": "#F4C84B", "fg": "#1a1a1a" },
+    "gamificacion":  { "bg": "#ec4899", "fg": "#3a0a23" },
+    "cocreacion":    { "bg": "#06b6d4", "fg": "#06283a" },
+    "planeacion":    { "bg": "#0a0a0a", "fg": "#ffffff" }
+  },
+
+  "rutinaSemanal": {
+    "0": [{ "sesion": "Domingo de planeación", "tipo": "planeacion", "icono": "🧭" }],
+    "1": [{ "sesion": "Lunes de metas", "tipo": "ritual", "icono": "🎯" }],
+    "2": [
+      { "sesion": "Q&A en vivo (ancla)", "tipo": "qa", "icono": "💬" },
+      { "sesion": "Co-working / body-doubling", "tipo": "ritual", "icono": "🤝" }
+    ],
+    "3": [{ "sesion": "Recurso / mini-clase de la semana", "tipo": "clase", "icono": "📚" }],
+    "4": [{ "sesion": "Hot seat / auditoría", "tipo": "participacion", "icono": "🔥" }],
+    "5": [{ "sesion": "Viernes de Wins (ancla)", "tipo": "reconocimiento", "icono": "🏆" }],
+    "6": [{ "sesion": "Reto relámpago / pregunta del día", "tipo": "gamificacion", "icono": "⚡" }]
+  },
+
+  "horarios": {
+    "1": "9AM",
+    "2": "7PM · co-working 10AM",
+    "3": "10AM",
+    "4": "7PM",
+    "5": "10AM",
+    "6": "11AM"
+  },
+
+  "eventos": [
+    { "fecha": "2026-07-01", "titulo": "Arranca el mes: tema del mes + onboarding de nuevas", "icono": "🌱", "atento": false },
+    { "fecha": "2026-07-01", "titulo": "Alumna del mes + Muro de la fama", "icono": "🌟", "atento": false },
+    { "fecha": "2026-07-06", "titulo": "INICIO del reto mensual", "icono": "🚀", "fechaLabel": "Semana 1" },
+    { "fecha": "2026-07-15", "titulo": "Masterclass mensual con invitado", "icono": "🎓", "fechaLabel": "Semana 2" },
+    { "fecha": "2026-07-18", "titulo": "Reto relámpago 48h", "icono": "⚡", "atento": false },
+    { "fecha": "2026-07-20", "titulo": "Construyamos juntas (recurso colaborativo)", "icono": "🧩", "atento": false },
+    { "fecha": "2026-07-23", "titulo": "Encuesta: vota el tema del próximo mes", "icono": "🗳️", "atento": false },
+    { "fecha": "2026-07-24", "titulo": "Ceremonia de cierre del reto (podio)", "icono": "🏁", "fechaLabel": "Semana 4" },
+    { "fecha": "2026-07-27", "titulo": "Regalo del mes: entrega + sorteo", "icono": "🎁", "fechaLabel": "Semana 4" },
+    { "fecha": "2026-07-31", "titulo": "Recap de Wins del mes + caso de estudio", "icono": "🏆", "atento": false }
+  ]
+}

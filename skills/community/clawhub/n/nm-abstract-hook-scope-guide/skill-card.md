@@ -1,41 +1,51 @@
-## Description: <br>
-Select hook scope (plugin, project, global) by audience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Select hook scope (plugin, project, global) by audience
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and teams use this skill to decide whether Claude Code hooks belong in a plugin, a shared project configuration, or a personal global configuration. It helps authors account for audience, version control, persistence, and hook security implications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hook examples that write logs, read tool input, or apply globally can run with the user's account permissions across projects if copied without review. <br>
-Mitigation: Review each hook before use, prefer the narrowest appropriate scope, and test global hooks carefully before enabling them broadly. <br>
+## Use Case:
 
+Developers use this guide to choose plugin, project, or global scope for Claude Code hooks based on audience, version control, and persistence needs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-abstract-hook-scope-guide) <br>
-- [OpenClaw Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
-- [Claude Code Hooks Documentation](https://docs.anthropic.com/en/docs/claude-code/hooks) <br>
-- [Claude Code Settings Configuration](https://docs.anthropic.com/en/docs/claude-code/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tool calls or commands are executed by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: The supplied artifact omits some referenced local scope guidance, and global hooks can apply across all Claude sessions on the machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the relevant hook and settings guidance and confirm the intended scope before installing; take particular care with global hooks.
+
+## Reference(s):
+
+- [Claude Code Hooks Documentation](https://docs.anthropic.com/en/docs/claude-code/hooks)
+- [Claude Code Settings Configuration](https://docs.anthropic.com/en/docs/claude-code/settings)
+- [Claude Night Market Abstract plugin information](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration instructions]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scope recommendations, rationale, and configuration file paths.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

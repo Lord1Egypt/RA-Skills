@@ -1,0 +1,8 @@
+{
+  "instruction": {"_type": "Value", "dtype": "string"},
+  "input":       {"_type": "Value", "dtype": "string"},
+  "output":      {"_type": "Value", "dtype": "string"},
+  "system":      {"_type": "Value", "dtype": "string"},
+  "id":          {"_type": "Value", "dtype": "string"},
+  "source":      {"_type": "Value", "dtype": "string"}
+}

@@ -1,46 +1,61 @@
-## Description: <br>
-Fully automated collaborative code development pipeline for complex code development tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fully automated collaborative code development pipeline for complex code development tasks.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate complex coding work to a staged pipeline covering requirements, architecture, implementation, testing, review, documentation, and delivery. It is intended for larger or quality-sensitive tasks where automated handoffs and final artifact delivery are useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can run hands-off and create or modify multiple project files. <br>
-Mitigation: Use it in a clean or dedicated workspace, avoid placing secrets in prompts or source files, and request explicit checkpoints or overwrite confirmation when automatic execution is not desired. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate multi-phase code development across requirements analysis, architecture, implementation, testing, review, documentation, and final delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/auto-collaboration-dev-pipeline) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Requirements analyst role prompt](artifact/references/requirements-analyst.md) <br>
-- [Architect role prompt](artifact/references/architect.md) <br>
-- [Backend developer role prompt](artifact/references/backend-developer.md) <br>
-- [Frontend developer role prompt](artifact/references/frontend-developer.md) <br>
-- [QA engineer role prompt](artifact/references/qa-engineer.md) <br>
-- [Code reviewer role prompt](artifact/references/code-reviewer.md) <br>
-- [Documentation engineer role prompt](artifact/references/documentation-engineer.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with generated project files, code blocks, reports, and delivery summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create multiple files under a project workspace and pass context between sub-agent roles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can spawn sub-agents and write project files without interim confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended hands-off development workflows, run it in a clean or disposable workspace, and review generated files before merging.
+
+Risk: Repository context may be passed through multiple sub-agent prompts.
+
+Mitigation: Avoid using it on repositories containing secrets unless that context sharing is approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/auto-collaboration-dev-pipeline)
+- [Publisher Profile](https://clawhub.ai/user/openlark)
+- [Architect Prompt](references/architect.md)
+- [Backend Developer Prompt](references/backend-developer.md)
+- [Frontend/UI Developer Prompt](references/frontend-developer.md)
+- [QA Engineer Prompt](references/qa-engineer.md)
+- [Code Reviewer Prompt](references/code-reviewer.md)
+- [Documentation Engineer Prompt](references/documentation-engineer.md)
+- [Requirements Analyst Prompt](references/requirements-analyst.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports and code blocks, with generated project files written to the workspace]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce specifications, architecture notes, implementation files, test reports, review notes, README content, and delivery summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

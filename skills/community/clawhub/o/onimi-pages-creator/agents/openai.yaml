@@ -1,0 +1,4 @@
+interface:
+  display_name: "Onimi Creator"
+  short_description: "Create guided Pages or editable Onimi Slides."
+  default_prompt: "Use $onimi-pages-creator to create and verify the requested Onimi Page or editable Onimi Slides artifact in my workspace."

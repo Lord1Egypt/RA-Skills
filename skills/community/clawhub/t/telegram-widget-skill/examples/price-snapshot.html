@@ -1,0 +1,58 @@
+<style>
+body{margin:0;padding:12px 14px max(10px,env(safe-area-inset-bottom))}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.name{font-weight:600}
+.sym,.meta{color:var(--tg-theme-hint-color);font-size:.85em}
+.price{font-size:1.9em;font-weight:700;font-variant-numeric:tabular-nums;margin:4px 0 2px}
+.chg{font-weight:600;font-variant-numeric:tabular-nums}
+.up{color:light-dark(#1a8d3f,#4cd47a)}
+.down{color:var(--tg-theme-destructive-text-color)}
+svg{display:block;width:100%;height:56px;margin:8px 0 4px}
+polyline{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.up-l{stroke:light-dark(#1a8d3f,#4cd47a)}
+.down-l{stroke:var(--tg-theme-destructive-text-color)}
+</style>
+<div class="top"><span class="name" id="name">-</span><span class="sym" id="sym"></span></div>
+<div class="price" id="price">No data yet</div>
+<div><span class="chg" id="chg"></span> <span class="meta" id="span"></span></div>
+<svg viewBox="0 0 300 56" preserveAspectRatio="none"><polyline id="line" points=""/></svg>
+<div class="meta" id="at"></div>
+<script>
+const TW = window.TelegramWidget;
+const $ = (id) => document.getElementById(id);
+function state() {
+  try { return JSON.parse(TW && TW.chatData) || null; } catch (e) { return null; }
+}
+function money(v, cur) {
+  const digits = v >= 1000 ? 2 : v >= 1 ? 4 : 6;
+  try {
+    return new Intl.NumberFormat(navigator.language, {style: 'currency', currency: cur || 'USD',
+      currencyDisplay: 'narrowSymbol', maximumFractionDigits: digits}).format(v);
+  } catch (e) { return v.toFixed(digits); }
+}
+function draw() {
+  const s = state();
+  if (!s || typeof s.p !== 'number') return;
+  const up = (s.c || 0) >= 0;
+  $('name').textContent = s.n || s.s;
+  $('sym').textContent = s.n ? s.s : '';
+  $('price').textContent = money(s.p, s.cur);
+  $('chg').textContent = (up ? '▲ ' : '▼ ') + Math.abs(s.c || 0).toFixed(2) + '%';
+  $('chg').className = 'chg ' + (up ? 'up' : 'down');
+  $('span').textContent = s.w || '24h';
+  const h = Array.isArray(s.h) ? s.h : [];
+  if (h.length > 1) {
+    const lo = Math.min(...h), hi = Math.max(...h), r = hi - lo || 1;
+    $('line').setAttribute('points', h.map((v, i) =>
+      (i / (h.length - 1) * 300).toFixed(1) + ',' + (53 - (v - lo) / r * 50).toFixed(1)).join(' '));
+    $('line').setAttribute('class', up ? 'up-l' : 'down-l');
+  }
+  if (s.t) {
+    const d = new Date(s.t);
+    $('at').textContent = 'As of ' + d.toLocaleString(navigator.language,
+      {month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+  }
+}
+if (TW) TW.onEvent('chatDataChanged', draw);
+draw();
+</script>

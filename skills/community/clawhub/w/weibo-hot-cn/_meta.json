@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "weibo-hot-cn",
-  "version": "1.0.1",
-  "publishedAt": 1771668695692
+  "name": "weibo-hot-cn",
+  "version": "1.0.0",
+  "description": "微博热榜监控 | Weibo Hot Topics Monitor",
+  "author": "guohongbin-git",
+  "tags": ["weibo", "hot", "trending", "china", "social-media", "chinese"]
 }

@@ -1,42 +1,53 @@
-## Description: <br>
-Removes fixed or segmented moving video watermarks by helping an agent identify delogo regions, run FFmpeg processing commands, and verify the edited result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remove watermarks from videos using ffmpeg delogo filter for fixed-position or dynamically moving overlays while noting that transparent or complex AI-generated watermarks require a different pipeline.
 
-## Publisher: <br>
-[ozzylennon](https://clawhub.ai/user/ozzylennon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ozzylennon](https://clawhub.ai/user/ozzylennon)
 
-## Use Case: <br>
-Developers, content operators, and agents use this skill to process videos they own or are authorized to edit by locating watermark regions and applying FFmpeg delogo filters. It supports fixed-position watermarks and segmented processing for watermarks that move between distinct positions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Watermark removal can be misused to remove third-party attribution, creator marks, platform watermarks, or provenance indicators. <br>
-Mitigation: Install and use only for videos the user owns or is clearly authorized to edit; do not use it to remove third-party attribution or provenance marks. <br>
-Risk: The helper scripts and FFmpeg examples use overwrite behavior, so careless output paths can replace existing files. <br>
-Mitigation: Use unique output paths, review destination filenames before execution, and keep backups of source media. <br>
-Risk: The FFmpeg delogo filter fills regions with blurred or averaged pixels and may leave visible traces on complex, transparent, or textured watermarks. <br>
-Mitigation: Inspect sample frames and verify the output before delivery; use a different inpainting workflow when delogo quality is not acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to remove visible logo, text, or watermark overlays from videos by locating the overlay in sample frames and applying FFmpeg delogo processing. It supports a single fixed region or segmented processing when the watermark moves between distinct positions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ozzylennon/ffmpeg-video-watermark-remover) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce edited video files, sample frames, temporary segment files, and concat manifests when executed by an agent with FFmpeg available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Video-processing helper scripts use predictable or reusable temporary paths that could overwrite local files in some environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a contained workspace or under an unprivileged account, and update the helpers to use private unpredictable temporary directories with no preexisting-path reuse before broader deployment.
+
+Risk: The skill uses FFmpeg delogo, which blurs or averages the selected region and may leave traces on transparent, complex, or textured watermarks.
+
+Mitigation: Verify output frames before delivery and route unsuitable cases to a content-aware inpainting workflow when delogo quality is insufficient.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ozzylennon/skills/ffmpeg-video-watermark-remover)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional generated video-processing files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce extracted sample frames and processed video files through FFmpeg helper scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

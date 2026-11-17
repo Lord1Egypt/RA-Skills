@@ -1,41 +1,54 @@
-## Description: <br>
-Sleep-time memory reflection: review recent conversations and daily notes, extract insights, and consolidate into long-term memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Reflect reviews recent conversations and daily notes, extracts durable insights, and consolidates them into long-term memory when triggered by cron, heartbeat, or explicit request.
 
-## Publisher: <br>
-[phernandez](https://clawhub.ai/user/phernandez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phernandez](https://clawhub.ai/user/phernandez)
 
-## Use Case: <br>
-Agents use this skill during scheduled, heartbeat, post-compaction, or explicit reflection runs to review recent notes and conversations, identify durable decisions and preferences, and consolidate them into long-term memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can consolidate sensitive or personal material from recent notes into long-term memory. <br>
-Mitigation: Install it only when long-term memory maintenance is desired, avoid storing highly sensitive material in notes that may be reviewed, and review diffs to MEMORY.md. <br>
-Risk: Automated reflection may preserve incorrect, outdated, or duplicative information. <br>
-Mitigation: Keep backups, review proposed memory changes, and prefer merging or updating existing entries instead of appending duplicates. <br>
+## Use Case:
 
+External agent users use this skill to periodically or manually distill recent activity into durable memory, update MEMORY.md, and append a reflection log to the daily note.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phernandez/memory-reflect) <br>
-- [Publisher profile](https://clawhub.ai/user/phernandez) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown notes and concise memory updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update MEMORY.md and append a reflection entry to a daily note when the agent has appropriate filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can read private recent activity and update long-term memory during background runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where that behavior is expected, and require explicit confirmation or a reviewable diff before MEMORY.md is changed.
+
+Risk: Unreviewed reflection can preserve inaccurate, stale, or duplicate information in long-term memory.
+
+Mitigation: Review MEMORY.md changes and the daily-note reflection log after runs, especially when the skill flags uncertainty.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/phernandez/skills/memory-reflect)
+- [ClawHub publisher profile](https://clawhub.ai/user/phernandez)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code-style tool call examples and file update instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update MEMORY.md and append a daily-note reflection log when executed by an agent.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Consultoria IA helps agents structure AI consulting engagements for small and medium businesses, including business diagnosis, solution design, implementation planning, and ROI follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI consulting support for SMBs that structures McKinsey-style diagnostics, custom AI solution design, and ROI tracking.
 
-## Publisher: <br>
-[bustosmg](https://clawhub.ai/user/bustosmg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bustosmg](https://clawhub.ai/user/bustosmg)
 
-## Use Case: <br>
-External consultants and business operators use this skill to run structured AI consulting workflows for PYMES, especially diagnostics, proposal development, technical planning, and ROI reporting. It is aimed at Spanish-language consulting engagements with practical templates and agent roles for diagnosis, development, and analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Argentina <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad command, file, memory, and external-system authority while handling sensitive client data. <br>
-Mitigation: Install and run it in a constrained workspace, gate exec/write access where possible, and avoid giving it secrets or production access by default. <br>
-Risk: The workflow may store memory, sync external project systems, upload recordings, analyze raw transcripts, or perform deployment or migration work. <br>
-Mitigation: Require explicit approval before those actions and review client consent, data handling, and access boundaries before using live client materials. <br>
+## Use Case:
 
+Consultants and SMB operators use this skill to run structured AI opportunity discovery, produce technical proposals and implementation roadmaps, and monitor ROI for Spanish-speaking small and midsize businesses. The artifact is especially tailored to Argentine retail, healthcare, logistics, and service contexts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bustosmg/consultoria-ia) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bustosmg) <br>
-- [README.md](README.md) <br>
-- [RESUMEN-EJECUTIVO.md](RESUMEN-EJECUTIVO.md) <br>
-- [flujo-entrevistas-mckinsey.md](flujo-entrevistas-mckinsey.md) <br>
-- [flujo-desarrollo-soluciones.md](flujo-desarrollo-soluciones.md) <br>
+### Deployment Geography for Use:
 
+Argentina
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with templates, checklists, configuration snippets, shell commands, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Spanish-language consulting outputs for AI diagnostics, proposals, implementation plans, and ROI reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, SKILL.md) <br>
+Risk: Broad command execution, file-writing, memory, and automation capabilities can affect client workspaces or operational systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or tightly sandbox exec and write access, disable scheduled runs by default, and require explicit confirmation before external updates or deployments.
+
+Risk: Consulting workflows can process transcripts, recordings, customer data, financial or tax integrations, and production migration data.
+
+Mitigation: Segregate each client workspace and memory store, minimize retained sensitive data, and apply privacy controls before using transcripts, recordings, financial, tax, or migration records.
+
+Risk: ROI estimates and implementation recommendations may influence client commercial decisions.
+
+Mitigation: Have a qualified human reviewer validate assumptions, budgets, legal constraints, data readiness, and client expectations before presenting recommendations as actionable plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bustosmg/skills/consultoria-ia)
+- [README](artifact/README.md)
+- [Executive summary](artifact/RESUMEN-EJECUTIVO.md)
+- [McKinsey interview workflow](artifact/flujo-entrevistas-mckinsey.md)
+- [AI solution development workflow](artifact/flujo-desarrollo-soluciones.md)
+- [Hardware store example](artifact/EJEMPLO-FERRETERIA.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, YAML and JSON configuration snippets, checklists, ROI calculations, and code-oriented prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Spanish-language consulting artifacts such as diagnostic memos, opportunity matrices, technical proposals, implementation plans, dashboards, and follow-up reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

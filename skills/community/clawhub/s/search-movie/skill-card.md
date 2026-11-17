@@ -1,43 +1,55 @@
-## Description: <br>
-Search Movie helps agents search for movie and TV resources through a XiaoBenYang MCP API and validate whether candidate playback links are playable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个基于 Model Context Protocol (MCP) 构建的智能电影和电视剧资源搜索工具，支持多源搜索和链接验证。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-External users and agents use this skill to find candidate movie or TV playback resources, validate playable links, and present the returned API results to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores the user-provided API key in a local plaintext .env file. <br>
-Mitigation: Use a dedicated key for this service, avoid entering unrelated credentials, and remove or rotate the key when it is no longer needed. <br>
-Risk: Search and link-validation requests are sent to the remote XiaoBenYang provider. <br>
-Mitigation: Install and use the skill only if the remote provider is acceptable for the user's environment and avoid submitting sensitive or unnecessary data. <br>
-Risk: Initial movie or TV search results may be unverified candidate links. <br>
-Mitigation: Use the validation tool before recommending a playable link and do not fabricate results when the API key or API response is unavailable. <br>
+## Use Case:
 
+External users can use this skill to search for movie or TV resources, inspect candidate titles and links, and validate whether selected playback pages are reachable. The skill requires a xiaobenyang.com API key before it can call the upstream service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/search-movie) <br>
-- [XiaoBenYang provider site](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Markdown or plain text summarizing JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided XBY API key; candidate search results should be validated before presenting playable links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requires a xiaobenyang.com API key and stores it in a local plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a throwaway or restricted API key, keep .env private and out of version control, and rotate or remove the key after use.
+
+Risk: Server security evidence reports stale mismatched gaokao and school-search references in the artifact.
+
+Mitigation: Correct stale documentation and examples before broad distribution so users do not route requests to unrelated workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cainingnk/skills/search-movie)
+- [XiaoBenYang API Key Provider](https://xiaobenyang.com)
+- [XiaoBenYang MCP API Endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, guidance]
+
+**Output Format:** [Markdown or plain text summarizing JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured XBY_APIKEY value; search results should be treated as unverified until validated by the URL validation tool.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

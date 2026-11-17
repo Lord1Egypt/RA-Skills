@@ -1,39 +1,50 @@
-## Description: <br>
-Access detailed information on Rick and Morty characters, locations, and episodes across all show seasons using specific IDs or searches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access detailed information on Rick and Morty characters, locations, and episodes across all show seasons using specific IDs or searches.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agent users use this skill to query Rick and Morty characters, locations, and episodes through the Pipeworx MCP endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup requests are sent to the third-party endpoint gateway.pipeworx.io. <br>
-Mitigation: Avoid sending secrets, private notes, or personal data in queries, and use the skill only when that endpoint is acceptable for the intended data. <br>
+## Use Case:
 
+Developers and agent users can configure a Rick and Morty lookup helper to search characters or retrieve character, location, and episode details by ID.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-rickmorty) <br>
-- [Publisher profile](https://clawhub.ai/user/brucegutman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown with JSON configuration and API call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses depend on queries sent to the third-party Pipeworx MCP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Queries are sent to a third-party Pipeworx gateway endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for public Rick and Morty lookups and avoid sending sensitive or private data in tool arguments unless the service has been independently trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-rickmorty)
+- [Pipeworx Rick and Morty MCP endpoint](https://gateway.pipeworx.io/rickmorty/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries are sent to a third-party Pipeworx gateway endpoint for Rick and Morty lookup results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

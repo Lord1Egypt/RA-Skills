@@ -1,44 +1,59 @@
-## Description: <br>
-Participate in the Tokamak Network Vault Breach Challenge - an AI security Capture The Flag (CTF) game where you interact with a secured AI agent to extract secret information. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Participate in the Tokamak Network Vault Breach Challenge, an AI security Capture The Flag game where an agent interacts with a secured AI service to extract secret information.
 
-## Publisher: <br>
-[0xHammerr](https://clawhub.ai/user/0xHammerr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xhammerr](https://clawhub.ai/user/0xhammerr)
 
-## Use Case: <br>
-External CTF participants and security learners use this skill for guided participation in the Tokamak Vault Breach Challenge, including API discovery, challenge-status checks, and example prompts for the authorized target service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides actionable guidance for extracting a protected secret from an external AI agent. <br>
-Mitigation: Use it only for the specifically authorized Tokamak Vault CTF, verify the challenge through trusted Tokamak channels, and keep activity limited to the listed challenge endpoint. <br>
-Risk: Prompt-injection and social-engineering tactics from the CTF could be misapplied to unrelated systems. <br>
-Mitigation: Do not reuse these tactics outside authorized security exercises or systems where you have explicit permission to test. <br>
-Risk: Users may expose sensitive wallet, credential, personal, or proprietary information while interacting with the challenge service. <br>
-Mitigation: Do not send wallet secrets, credentials, private keys, personal data, or proprietary prompts to the external service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xHammerr/tokamak-vault-breach) <br>
-- [Tokamak Vault challenge dashboard](https://tokamak-network-openfang-vault-production.up.railway.app/) <br>
-- [Tokamak Vault API discovery endpoint](https://tokamak-network-openfang-vault-production.up.railway.app/api) <br>
-- [Etherscan vault contract](https://etherscan.io/address/0xa66b9316B5968dAD2507143143C5b8b28614b88E) <br>
+## Use Case:
 
+External security challenge participants use this skill to understand and interact with the Tokamak Vault CTF through its dashboard, API discovery endpoint, and challenge workflow. It provides guidance for authorized prompt-injection, social-engineering, and file-exploration attempts against the named CTF agent.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, markdown] <br>
-**Output Format:** [Markdown with inline bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No bundled executable scripts; outputs instructions and examples for user-reviewed API interaction with the challenge service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is framed as a CTF helper but directs an agent to extract secrets from a live remote AI service and claim a real token reward.
+
+Mitigation: Install and use it only for the named Tokamak Vault challenge when authorized, and review the skill before execution.
+
+Risk: Prompt-injection, social-engineering, and file-exploration tactics could be reused against systems outside the challenge.
+
+Mitigation: Keep all use limited to the documented challenge endpoint and do not apply the tactics to other services or accounts.
+
+Risk: Interactions with the challenge API or dashboard could expose sensitive user information if supplied during prompts or requests.
+
+Mitigation: Do not send personal data, wallet secrets, API keys, private files, or other credentials through the challenge API or dashboard.
+
+## Reference(s):
+
+- [Tokamak Vault Breach Dashboard](https://tokamak-network-openfang-vault-production.up.railway.app/)
+- [Tokamak Vault API Discovery](https://tokamak-network-openfang-vault-production.up.railway.app/api)
+- [Tokamak Vault Contract on Etherscan](https://etherscan.io/address/0xa66b9316B5968dAD2507143143C5b8b28614b88E)
+- [ClawHub Skill Page](https://clawhub.ai/0xhammerr/skills/tokamak-vault-breach)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, API Calls, Markdown]
+
+**Output Format:** [Markdown with inline shell commands, HTTP examples, Python snippets, and challenge guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to call a live challenge API and produce prompts for authorized CTF interaction.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

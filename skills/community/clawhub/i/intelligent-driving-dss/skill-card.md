@@ -1,50 +1,61 @@
-## Description: <br>
-智能驾驶决策支持系统 - 基于 L2 到 L5 级别的自动化和主动风险预测模型，提供实时路况下的情景压力测试、多传感器融合分析及高精度风险预警。集成中国道路交通安全法核心规则与新能源车型数据库。使用场景：自动驾驶算法设计、交通工程模拟、高级辅助驾驶功能评估、极端天气工况决策等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent Driving DSS provides China-focused decision support for L2-L5 automated-driving scenarios by combining traffic-law checks, NEV system modeling, scenario stress testing, and risk alerts.
 
-## Publisher: <br>
-[mikewongonline](https://clawhub.ai/user/mikewongonline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikewongonline](https://clawhub.ai/user/mikewongonline)
 
-## Use Case: <br>
-Developers, simulation teams, traffic-engineering reviewers, and NEV analysts use this skill to generate decision-support guidance for Chinese driving scenarios, traffic-law checks, NEV energy and safety analysis, and market comparisons. Outputs should be treated as reference material that requires expert review before safety, legal, investment, or purchase decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Driving or crash-response guidance could be mistaken for operational vehicle-control logic. <br>
-Mitigation: Use the skill only as a static reference or simulation aid, keep it disconnected from vehicle control paths, and require qualified safety review before applying outputs. <br>
-Risk: Legal and compliance outputs may be incomplete, outdated, or nonbinding. <br>
-Mitigation: Verify cited regulations against official sources and require legal or compliance expert review before making decisions. <br>
-Risk: Market ranking and investment-oriented language could influence purchases or investments. <br>
-Mitigation: Treat market outputs as reference analysis only and do not authorize purchases, investments, or paid services without explicit human approval and independent review. <br>
-Risk: Automatic update or external data language may imply unconfirmed network access or file changes. <br>
-Mitigation: Confirm any external data access, refresh process, or file update explicitly before enabling it, and preserve source dates in generated reports. <br>
+## Use Case:
 
+External users, developers, and automotive engineers use this skill to analyze Chinese traffic-law scenarios, compare NEV models, estimate energy consumption, and generate compliance-oriented decision reports. Outputs are reference guidance and should be reviewed before use in legal, safety, or driving decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikewongonline/intelligent-driving-dss) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Compliance review guide](artifact/compliance-review-guide.md) <br>
-- [Core traffic rules overview](artifact/core-traffic-rules/README.md) <br>
-- [NEV system module overview](artifact/nev-system-module/README.md) <br>
-- [NEV data structure](artifact/nev-system-module/data-structure.json) <br>
-- [Market rankings overview](artifact/market-rankings/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance, structured JSON data, and occasional code or shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes legal, safety, market, and energy-analysis reference outputs with source and uncertainty notes when the skill follows its documented self-check flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill provides high-stakes driving, vehicle safety, and legal reference guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review against current official sources before relying on generated analysis for legal, safety, purchasing, or driving decisions.
+
+Risk: Evidence security guidance flags under-scoped automatic document downloads and skill-file updates.
+
+Mitigation: Do not allow automatic downloads or skill-file updates; require explicit approval, HTTPS-only sources, staging, checksums, and review before reuse.
+
+Risk: The security verdict is suspicious despite no visible malicious behavior.
+
+Mitigation: Install only when a China-focused automotive and legal reference skill is needed, and review generated reports before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikewongonline/skills/intelligent-driving-dss)
+- [Compliance review guide](artifact/compliance-review-guide.md)
+- [Core traffic rules](artifact/core-traffic-rules/README.md)
+- [NEV system module](artifact/nev-system-module/README.md)
+- [Market rankings](artifact/market-rankings/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown narrative with structured checklists, decision reports, matrices, and JSON-backed analysis where applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include legal, vehicle-safety, energy-consumption, market-comparison, and uncertainty notes derived from bundled reference material.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,53 +1,66 @@
-## Description: <br>
-PixelLab AI helps agents plan and run PixelLab asset workflows for pixel-art images, conversions, rotations, animations, layered sprites, tilesets, UI assets, prompt enhancement, and consistent game-art packs using the user's own PixelLab API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PixelLab AI helps agents plan and run PixelLab asset workflows for pixel-art images, conversions, rotations, animations, layered sprites, modular outfits and equipment, tilesets, UI assets, prompt enhancement, and consistent game-art packs using a user-provided PixelLab API key.
 
-## Publisher: <br>
-[uncmatteth](https://clawhub.ai/user/uncmatteth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uncmatteth](https://clawhub.ai/user/uncmatteth)
 
-## Use Case: <br>
-Developers, game artists, and agent users use this skill to turn PixelLab-named asset requests into scoped visual briefs, manifests, API payloads, live PixelLab runs, downloaded candidates, approval galleries, and validation reports for game-ready pixel art. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PixelLab API requests can send prompts, payload JSON, and optional user-provided reference images to PixelLab. <br>
-Mitigation: Install only when intending to use PixelLab, review payloads before live runs, and avoid including sensitive or unapproved inputs in prompts, payloads, or reference images. <br>
-Risk: PIXELLAB_API_KEY grants access to the user's PixelLab account for live generation. <br>
-Mitigation: Keep the key in a local environment variable or secret manager, do not paste it into chat or commit it, and use only the official PixelLab API base unless testing a trusted endpoint explicitly. <br>
-Risk: Live runs with explicit approval can spend PixelLab credits. <br>
-Mitigation: Use manifest planning, linting, budget checks, and balance preflight before running commands with --yes. <br>
-Risk: Generated and downloaded assets are written to local output folders. <br>
-Mitigation: Use a dedicated output folder, inspect candidates and approval galleries, and validate sprites before treating assets as game-ready. <br>
+## Use Case:
 
+Developers, game creators, and technical artists use this skill to turn asset briefs into PixelLab payloads, manifests, live API runs, downloaded candidates, galleries, approvals, and sprite validation reports.
 
-## Reference(s): <br>
-- [PixelLab AI ClawHub Release](https://clawhub.ai/uncmatteth/skills/pixellab-ai) <br>
-- [PixelLab Account](https://www.pixellab.ai/) <br>
-- [PixelLab API Token Page](https://api.pixellab.ai/mcp) <br>
-- [PixelLab MCP/API Documentation](https://api.pixellab.ai/mcp/docs) <br>
-- [Endpoint Mapping](artifact/references/endpoint-mapping.md) <br>
-- [API Coverage Matrix](artifact/references/api-coverage-matrix.md) <br>
-- [Install And Secrets](artifact/references/install-and-secrets.md) <br>
-- [Prompt Cheatsheet](artifact/references/prompt-cheatsheet.md) <br>
-- [Sprite Animation Layering](artifact/references/sprite-animation-layering.md) <br>
-- [YouTube Workflow Playbook](artifact/references/youtube-workflow-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API Calls, Files] <br>
-**Output Format:** [Markdown guidance with JSON manifests, shell commands, configuration snippets, and local file paths or result summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live runs require PIXELLAB_API_KEY and write manifests, payloads, results, logs, downloads, galleries, approvals, and reports under the selected output folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.5 (source: server release metadata) <br>
+Risk: Automatic asset downloads can fetch unvalidated URLs returned by the PixelLab service and may exceed the declared network scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use the default PixelLab API endpoint, and do not enable automatic downloads from untrusted or custom PixelLab endpoints until asset URL validation is added.
+
+Risk: Live generation requires a PixelLab API key and can send prompts, payload JSON, and optional user-provided reference images to PixelLab.
+
+Mitigation: Use only a PixelLab API key you control, keep it in local environment or secret configuration, and avoid pasting or packaging the key.
+
+Risk: Live runs can spend PixelLab credits.
+
+Mitigation: Review generated manifests, payloads, and budget output before using run commands that require explicit generation approval.
+
+## Reference(s):
+
+- [PixelLab AI ClawHub Skill](https://clawhub.ai/uncmatteth/skills/pixellab-ai)
+- [PixelLab Account](https://www.pixellab.ai/)
+- [PixelLab API Token and MCP](https://api.pixellab.ai/mcp)
+- [PixelLab MCP Documentation](https://api.pixellab.ai/mcp/docs)
+- [API Coverage Matrix](references/api-coverage-matrix.md)
+- [Endpoint Mapping](references/endpoint-mapping.md)
+- [Install And Secrets](references/install-and-secrets.md)
+- [Prompt Cheatsheet](references/prompt-cheatsheet.md)
+- [Sprite Animation Layering](references/sprite-animation-layering.md)
+- [YouTube Workflow Playbook](references/youtube-workflow-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON manifests and payload files, compact JSON results, image asset files, and HTML or PNG galleries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live generation requires PIXELLAB_API_KEY; dry-run planning can produce manifests without spending PixelLab credits.]
+
+## Skill Version(s):
+
+1.5.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

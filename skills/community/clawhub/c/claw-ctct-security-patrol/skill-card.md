@@ -1,41 +1,59 @@
-## Description: <br>
-OpenClaw security patrol tool that runs one-click system security scans and generates easy-to-understand reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Ctct Security Patrol guides an OpenClaw agent through host security checks, optional scheduled audits, and concise report interpretation.
 
-## Publisher: <br>
-[williamwang-wh](https://clawhub.ai/user/williamwang-wh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwang-wh](https://clawhub.ai/user/williamwang-wh)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to run local or full security audits, optionally schedule daily patrols, and receive concise scan summaries that the agent can explain in plain language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full and scheduled audit modes can repeatedly send host-identifying audit metadata to a remote CTCT service. <br>
-Mitigation: Prefer local-only mode on privacy-sensitive machines, and enable scheduled --push runs only after reviewing the disclosed data sharing. <br>
-Risk: Scheduled patrols may continue running after initial setup. <br>
-Mitigation: Review OpenClaw cron jobs after setup and use the documented OpenClaw cron commands to list, modify, or remove the scheduled audit. <br>
+## Use Case:
 
+OpenClaw users use this skill to run local or network-assisted security patrols, generate audit reports, configure recurring checks, and receive plain-language interpretation of scan results.
 
-## Reference(s): <br>
-- [OpenClaw Cron Setup Guide](references/cron-setup.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/williamwang-wh/claw-ctct-security-patrol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, shell commands, and local text/JSON audit reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The audit script writes reports under ~/.openclaw/security-reports and the skill asks before providing detailed report interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill performs broad host inspection during security audits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when host-wide inspection is intended, prefer local-only mode first, and avoid running it as root.
+
+Risk: The network-assisted mode can send device identifiers, installed-skill metadata, and summarized findings to a remote service.
+
+Mitigation: Use the local scan mode unless remote threat intelligence and reporting are explicitly acceptable.
+
+Risk: Scheduled audits can repeatedly run the network-assisted command if automation is enabled.
+
+Mitigation: Review the OpenClaw cron command, recipient, timeout, and push setting before enabling recurring audits.
+
+## Reference(s):
+
+- [OpenClaw Security Patrol Cron Setup Guide](references/cron-setup.md)
+- [ClawHub Skill Page](https://clawhub.ai/williamwang-wh/skills/claw-ctct-security-patrol)
+- [Publisher Profile](https://clawhub.ai/user/williamwang-wh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and concise text with shell commands and report paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes scan counts, security score, report location, and optional report interpretation instead of returning full audit logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

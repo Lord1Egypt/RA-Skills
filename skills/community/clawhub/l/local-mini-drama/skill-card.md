@@ -1,45 +1,55 @@
-## Description: <br>
-LocalMiniDrama短剧助手 lets an agent control a LocalMiniDrama backend through natural language to create scripts, characters, scenes, props, storyboards, images, videos, completed episodes, and project imports or exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LocalMiniDrama 本地短剧助手通过自然语言控制短剧项目全流程，包括剧本、角色、场景、道具、分镜、图片、视频、剧集合成、小说导入和工程导入导出。
 
-## Publisher: <br>
-[xuanyustudio](https://clawhub.ai/user/xuanyustudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuanyustudio](https://clawhub.ai/user/xuanyustudio)
 
-## Use Case: <br>
-Creators and developers use this skill to operate LocalMiniDrama projects from an agent chat, including project creation, script and asset generation, storyboard management, media generation, video composition, and import/export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send scripts, media, and API keys to the configured LocalMiniDrama backend. <br>
-Mitigation: Use only localhost or controlled infrastructure, and install the skill only when the configured backend is trusted. <br>
-Risk: Delete, import/export, bulk generation, and API-key update actions can materially change projects or expose private content. <br>
-Mitigation: Require manual confirmation before allowing the agent to execute those actions. <br>
-Risk: Public tunnels can expose private content or credentials when connecting to a local backend. <br>
-Mitigation: Avoid public tunnels for private projects or keys unless the operator has reviewed and accepted the exposure. <br>
+## Use Case:
 
+Creators and developers use this skill to operate a LocalMiniDrama backend from an agent conversation, generating and managing short-drama projects from story setup through storyboard, image/video generation, composition, and project import/export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuanyustudio/local-mini-drama) <br>
-- [LocalMiniDrama project homepage](https://github.com/xuanyustudio/LocalMiniDrama) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, Shell commands, Markdown] <br>
-**Output Format:** [Markdown guidance with HTTP API actions and configuration commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include LocalMiniDrama project identifiers, task polling instructions, generated-content workflow steps, and import/export actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact files report 1.1.0) <br>
+Risk: API keys and private project content may be sent to the configured backend over plain HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a backend you control, prefer HTTPS for any non-local backend, and avoid entering high-value API keys over plain HTTP.
+
+Risk: Powerful actions such as delete, import/export, upload, bulk generation, and key updates may affect the wrong project if context is stale or ambiguous.
+
+Mitigation: Confirm the exact project, episode, and requested action before delete, import/export, upload, bulk generation, or key-update operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuanyustudio/skills/local-mini-drama)
+- [Publisher profile](https://clawhub.ai/user/xuanyustudio)
+- [Project homepage](https://github.com/xuanyustudio/LocalMiniDrama)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP endpoint descriptions, JSON request examples, configuration commands, and workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a configured backend URL and remembers current drama and episode identifiers during a session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

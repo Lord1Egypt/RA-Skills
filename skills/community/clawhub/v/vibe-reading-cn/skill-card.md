@@ -1,43 +1,55 @@
-## Description: <br>
-Openclaw helps an agent process EPUB or TXT books into chapter-aware Simplified Chinese summaries and a static interactive HTML reader. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw analyzes EPUB or TXT books by splitting them into chapters, producing Chinese chapter summaries, and generating an interactive static HTML reader.
 
-## Publisher: <br>
-[drbillwang](https://clawhub.ai/user/drbillwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drbillwang](https://clawhub.ai/user/drbillwang)
 
-## Use Case: <br>
-Readers, knowledge workers, and developers use this skill with an OpenClaw-compatible agent to clean EPUB or TXT books, split them into chapters, and generate high-fidelity chapter summaries in Simplified Chinese. It also produces a static interactive HTML reader for navigating the generated summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install Python packages while preprocessing EPUB files. <br>
-Mitigation: Run it in a project folder or virtual environment and review package installation before execution. <br>
-Risk: The generated HTML reader may fetch marked.js from a CDN when opened. <br>
-Mitigation: Use it only where CDN loading is acceptable, or replace the CDN dependency with a locally reviewed copy before sharing. <br>
-Risk: Embedding API keys or AI service calls in generated HTML would expose secrets. <br>
-Mitigation: Keep the HTML static and ask the OpenClaw agent for follow-up questions instead of adding keys or external AI calls. <br>
+## Use Case:
 
+External users and developers use this skill to process long EPUB or TXT books into structured chapter files, high-detail Chinese Markdown summaries, and a static interactive reader for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drbillwang/vibe-reading-cn) <br>
-- [Homepage](https://github.com/drbillwang/vibe-reading-skill-CN) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown summaries, JSON chapter plans, plain text chapter files, and static HTML] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML may fetch marked.js from a CDN; EPUB preprocessing may require installing ebooklib and beautifulsoup4.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill may install unpinned Python packages while processing EPUB files, which can change the Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandbox and preinstall reviewed, pinned dependencies before use.
+
+Risk: The generated HTML reader loads third-party JavaScript from a CDN.
+
+Mitigation: Replace the CDN script with a reviewed local pinned copy before opening generated readers with network access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drbillwang/skills/vibe-reading-cn)
+- [Project homepage](https://github.com/drbillwang/vibe-reading-skill-CN)
+- [Publisher profile](https://clawhub.ai/user/drbillwang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown summaries, JSON chapter lists, text files, and static HTML]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Simplified Chinese analysis and may create input, chapters, summaries, and html directories.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

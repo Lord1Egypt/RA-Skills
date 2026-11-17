@@ -1,44 +1,60 @@
-## Description: <br>
-Monitor, analyze, and trade on Kalshi and Polymarket prediction markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor, analyze, and trade on Kalshi and Polymarket prediction markets.
 
-## Publisher: <br>
-[m-lwatcher](https://clawhub.ai/user/m-lwatcher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m-lwatcher](https://clawhub.ai/user/m-lwatcher)
 
-## Use Case: <br>
-External users and developers use this skill to review prediction-market positions, scan Kalshi markets for candidate opportunities, place Kalshi orders, and monitor settlement-related status. It also provides Polymarket read-only reference material for comparing active markets and prices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live Kalshi credentials can be used to place real-money bets automatically without a clear confirmation gate. <br>
-Mitigation: Use demo or scan-only mode first, and run live automated betting only with explicit intent plus independent confirmation and spending controls. <br>
-Risk: Kalshi private-key material is required for authenticated trading. <br>
-Mitigation: Store the private key outside shared workspaces, restrict file permissions, and rotate credentials if exposure is suspected. <br>
-Risk: Market scoring and settlement checks can be wrong or stale. <br>
-Mitigation: Review the market rules, liquidity, current price source, and settlement basis before acting on recommendations. <br>
+## Use Case:
 
+Prediction market users and agents use this skill to review Kalshi portfolios, scan markets, check settlement status, and prepare or place trades. It also provides read-only Polymarket reference material for comparing related markets.
 
-## Reference(s): <br>
-- [Kalshi API Reference](references/kalshi-api.md) <br>
-- [Polymarket API Reference](references/polymarket-api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/m-lwatcher/prediction-market-watcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call prediction-market APIs and may create local risk-state files when run by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can use Kalshi credentials to place real-money trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the workflow in demo or read-only mode unless explicit human trade confirmation and credential scoping are added.
+
+Risk: Settlement reminders and external messaging can disclose position or market status to unintended recipients.
+
+Mitigation: Review any cron or messaging setup, verify recipients, and remove reminder behavior that is not required.
+
+Risk: Local risk_state.json limits are not a complete spending control.
+
+Mitigation: Use platform or account-level limits and review orders before submission; treat local limits as supplemental.
+
+## Reference(s):
+
+- [Kalshi API Reference](references/kalshi-api.md)
+- [Polymarket API Reference](references/polymarket-api.md)
+- [Prediction Market Watcher on ClawHub](https://clawhub.ai/m-lwatcher/skills/prediction-market-watcher)
+- [m-lwatcher Publisher Profile](https://clawhub.ai/user/m-lwatcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets, plus text or JSON responses from helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Kalshi credentials and local configuration for authenticated portfolio or order workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,56 @@
-## Description: <br>
-Analyzes pre-classified client accounting folders, reconciles invoices with bank transactions, validates VAT, and produces follow-up, reminder, anomaly, and consolidated report JSON for accountants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A script-driven skill for French accounting firms that reconciles invoices with bank-statement transactions, validates VAT, and summarizes follow-up, reminder, anomaly, and batch-report JSON files for accountant review.
 
-## Publisher: <br>
-[trendex](https://clawhub.ai/user/trendex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trendex](https://clawhub.ai/user/trendex)
 
-## Use Case: <br>
-Accounting firm staff use this skill to run a deterministic reconciliation batch over client folders, then review payment status, overdue invoices, reminders, VAT issues, and blocking anomalies before taking accounting or follow-up action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads sensitive invoices and bank statements from client accounting folders. <br>
-Mitigation: Install it only in an accounting workspace where the agent is authorized to access those documents and run it only against the intended clients directory. <br>
-Risk: Generated reconciliation, VAT, anomaly, and reminder outputs may be incomplete or incorrect if source documents are missing, malformed, or poorly extracted. <br>
-Mitigation: Review followup.json, relances.json, anomalies.json, and the consolidated report before relying on reminders or accounting decisions. <br>
-Risk: PDF extraction depends on the pdftotext runtime dependency. <br>
-Mitigation: Install poppler-utils from a trusted package source and surface the exact script error if extraction or batch execution fails. <br>
+## Use Case:
 
+French accounting firms and accountants use this skill to run daily reconciliation over already organized client folders and review paid, unpaid, partial, and overdue invoices, VAT issues, reminder candidates, and blocking anomalies.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/trendex/rapprochement-bancaire) <br>
-- [Companion organisation-documents skill](https://github.com/developers-trendex/organisation-documents) <br>
-- [CSV schema reference](references/csv-schema.md) <br>
-- [Matching rules reference](references/matching-rules.md) <br>
-- [Target folder structure reference](references/structure-cible.md) <br>
+### Deployment Geography for Use:
 
+France
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON files, Guidance] <br>
-**Output Format:** [Markdown summary with shell command context and JSON report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The batch writes followup.json, relances.json, anomalies.json, per-period lock files, and a consolidated compta_batch_report_<date>.json; the agent relays a concise accountant-facing summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The matching code can incorrectly mark invoices as paid, which may affect closing, reminders, or client decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the generated paid, unpaid, partial, and overdue results only after human accountant review, and do not rely on them for closing or reminders until the matching issues are fixed.
+
+Risk: Running the skill against the wrong or unreviewed client root can produce misleading accounting reports.
+
+Mitigation: Install it only for the intended French accounting workflow and first run it on a test copy or a reviewed client root.
+
+## Reference(s):
+
+- [CSV reconciliation schema](references/csv-schema.md)
+- [Transaction-to-invoice matching rules](references/matching-rules.md)
+- [Target folder structure and naming conventions](references/structure-cible.md)
+- [organisation-documents companion skill](https://github.com/developers-trendex/organisation-documents)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown summary with generated JSON reconciliation reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-client followup.json, relances.json, anomalies.json, and a consolidated compta_batch_report_<date>.json for accountant review.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

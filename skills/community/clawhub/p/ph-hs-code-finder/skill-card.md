@@ -1,43 +1,58 @@
-## Description: <br>
-Query Philippines customs HS codes for products exported to the Philippines using product descriptions and the official Tariff Commission tariff book. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Philippines customs HS codes for products exported to the Philippines using product text or image-derived product descriptions and the official Tariff Commission tariff book.
 
-## Publisher: <br>
-[wumaohua233](https://clawhub.ai/user/wumaohua233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wumaohua233](https://clawhub.ai/user/wumaohua233)
 
-## Use Case: <br>
-External users, exporters, and trade-support developers use this skill to identify likely Philippines HS classifications for products, download chapter PDFs, and search the tariff text for candidate codes with source pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts the Philippines Tariff Commission and Google Drive, opens Chromium, and saves downloaded PDFs locally. <br>
-Mitigation: Run it only in environments where browser automation, outbound access to those services, and local PDF storage are acceptable. <br>
-Risk: A fallback download path may weaken TLS verification when retrieving large Google Drive files. <br>
-Mitigation: Prefer verified downloads and review the downloaded PDF source URL before relying on results. <br>
-Risk: HS code results are search candidates from tariff PDFs and may not be a final customs classification. <br>
-Mitigation: Review the returned source URL, page number, and product description before using the code for trade or customs decisions. <br>
+## Use Case:
 
+External users, exporters, and trade operations teams use this skill to identify candidate Philippines HS codes for goods and collect the matching tariff-book description, source URL, and PDF page number. Developers and agents can also run the bundled scripts to suggest likely chapters, download chapter PDFs, and search them for product keywords.
 
-## Reference(s): <br>
-- [Philippines Tariff Commission 2022 Tariff Book](https://www.tariffcommission.gov.ph/tariff-book-2022) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wumaohua233/ph-hs-code-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown and terminal text with HS code tables, source URLs, page numbers, and recommended candidate codes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download public chapter PDFs locally and may open Chromium through Playwright to resolve Google Drive-hosted tariff files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: HS-code results are heuristic and may be incorrect for shipment-critical classification decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify candidate codes against the official tariff book and consult a customs professional for important shipments.
+
+Risk: The large-file download fallback can retrieve Google Drive PDFs with TLS certificate checking disabled.
+
+Mitigation: Prefer verified official downloads or manually validate downloaded PDFs until the fallback is changed to enforce TLS verification.
+
+Risk: Runtime dependencies such as Playwright and pdfplumber expand the local execution environment.
+
+Mitigation: Install dependencies in an isolated environment and pin versions before operational use.
+
+## Reference(s):
+
+- [Philippines Tariff Commission Tariff Book 2022](https://www.tariffcommission.gov.ph/tariff-book-2022)
+- [ClawHub skill page](https://clawhub.ai/wumaohua233/skills/ph-hs-code-finder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables and command-line text, with optional JSON output from the PDF search script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results should include HS code, tariff-book product description, source URL, and PDF page number when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

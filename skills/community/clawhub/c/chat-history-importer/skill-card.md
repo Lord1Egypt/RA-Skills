@@ -1,44 +1,55 @@
-## Description: <br>
-Imports OpenAI ChatGPT and Anthropic Claude conversation exports into agent episodic memory, writing dated summaries and deduplicating repeat imports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Import AI conversation exports (OpenAI ChatGPT and Anthropic Claude) into your agent's episodic memory. Parses export files, writes daily memory summaries, and deduplicates on re-runs. Trigger phrases: import chat history, ingest conversation export, import chatgpt export, import claude export, load AI conversation history.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and agent users use this skill to import ChatGPT or Claude export files into searchable daily episodic memory for onboarding, recall, and preserving important conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation exports may contain private conversations, secrets, client data, or regulated information. <br>
-Mitigation: Run a dry run first, redact sensitive chats, and import only the files and dates that should be written into persistent memory. <br>
-Risk: Imports can be written into the wrong agent workspace if the workspace target is misconfigured. <br>
-Mitigation: Confirm OPENCLAW_WORKSPACE points to the intended workspace before running a write import. <br>
-Risk: Historical conversations may create more persistent memory than intended. <br>
-Mitigation: Use date filtering such as --since and review dry-run output before committing imported summaries. <br>
+## Use Case:
 
+Developers and agent operators use this skill to import selected ChatGPT and Claude conversation exports into dated episodic memory files that an agent can search later.
 
-## Reference(s): <br>
-- [Supported Export Formats](references/export-formats.md) <br>
-- [ClawHub listing](https://clawhub.com/djc00p/chat-history-importer) <br>
-- [Related chat-learnings-extractor skill](https://clawhub.ai/djc00p/chat-learnings-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily memory summaries to memory/episodic/YYYY-MM-DD.md and tracks imported chat IDs for deduplication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata, released 2026-05-30) <br>
+Risk: Chat exports may contain credentials, client details, or other sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive content first, restrict the import folder and date range, and set OPENCLAW_WORKSPACE explicitly.
+
+Risk: Unreviewed imported text can affect what the agent recalls later.
+
+Mitigation: Run a dry run first, then inspect the generated daily memory files before relying on them.
+
+## Reference(s):
+
+- [Export Formats](references/export-formats.md)
+- [ClawHub Skill Page](https://clawhub.ai/djc00p/skills/chat-history-importer)
+- [Chat Learnings Extractor](https://clawhub.ai/djc00p/chat-learnings-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown]
+
+**Output Format:** [Dated Markdown memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily files organized by date; repeated imports are deduplicated by chat ID.]
+
+## Skill Version(s):
+
+1.1.4 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

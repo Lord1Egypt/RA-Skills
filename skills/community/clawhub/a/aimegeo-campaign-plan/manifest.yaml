@@ -1,0 +1,22 @@
+name: aimegeo-campaign-plan
+slug: aimegeo-campaign-plan
+display_name: 一件事多渠道内容策划
+description: "围绕上新、参展、开业或发布等事件，按事前、当天、事后规划公域、朋友圈和私聊内容，交付符合人手的拍摄清单与已选稿件。适合把一件事变成多条内容；结合免费的aimeGeo，继续保存稿件、制作配图并按平台账号推进发布与复盘。"
+version: "1.0.2"
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-campaign-plan"
+tags:
+  - 内容策划
+  - 多渠道内容
+  - 事件营销
+  - 拍摄清单
+  - 品牌事实
+  - GEO问答
+trigger_words:
+  - 下周参展怎么拍
+  - 一件事多渠道内容策划
+  - 开业前后发什么
+  - 新品上新内容安排
+  - 把这些选题全部写成稿
+self_test: python3 scripts/self_test.py

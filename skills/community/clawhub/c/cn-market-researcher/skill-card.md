@@ -1,41 +1,58 @@
-## Description: <br>
-市场调研助手 - 快速行业分析、竞品调研、市场趋势洞察。适合创业前调研、产品立项分析、竞争格局梳理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+市场调研助手可帮助用户快速完成行业分析、竞品调研和市场趋势洞察，并输出结构化市场研究报告。
 
-## Publisher: <br>
-[wwfqls3w-cmd](https://clawhub.ai/user/wwfqls3w-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwfqls3w-cmd](https://clawhub.ai/user/wwfqls3w-cmd)
 
-## Use Case: <br>
-External users and business teams use this skill to scope market research, gather public information, compare competitors, identify trends, run SWOT analysis, and produce structured Markdown research reports for product planning, startup research, and competitive review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market research based on public web sources can contain outdated or incomplete figures. <br>
-Mitigation: Cross-check important market size, growth, pricing, and competitor claims before using the report for business decisions. <br>
-Risk: Research queries may expose confidential business plans or strategy if entered directly into public search workflows. <br>
-Mitigation: Confirm scope before browsing and avoid including confidential plans, customer details, or sensitive strategy in search queries. <br>
+## Use Case:
 
+创业者、产品团队、商业分析师和外部开发者可使用此技能调研行业格局、竞品定位、市场趋势、SWOT因素和进入机会。它适合在产品立项、商业计划、投资分析或市场监测前生成结构化的初步研究报告。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwfqls3w-cmd/cn-market-researcher) <br>
-- [OpenClaw homepage metadata](https://clawhub.ai/skills/market-researcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Structured Markdown report with tables and source notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use curl or fetch to collect public web information before summarizing findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Public market data can be stale, incomplete, or inconsistent across sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important business claims against current primary sources and preserve source notes in the report.
+
+Risk: Competitive analysis based on public information can miss internal metrics, private pricing, or non-public strategy.
+
+Mitigation: Treat conclusions as preliminary and validate major decisions with first-party research, interviews, or surveys.
+
+Risk: Market research prompts may include confidential company plans or sensitive commercial assumptions.
+
+Mitigation: Avoid supplying confidential company data unless the execution environment and sharing policy are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwfqls3w-cmd/skills/cn-market-researcher)
+- [ClawHub metadata homepage](https://clawhub.ai/skills/market-researcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown market research report with narrative findings, comparison tables, SWOT analysis, source notes, and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user-selected research scope and depth; relies on public information sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

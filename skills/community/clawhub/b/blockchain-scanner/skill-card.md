@@ -1,45 +1,62 @@
-## Description: <br>
-Blockchain Scanner helps agents query EVM blockchain data through AgentPMT-hosted remote tool calls, including balances, token balances, transaction history, gas prices, and verified contract ABIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blockchain Scanner queries EVM blockchain data, including native balances, ERC-20 token balances, transaction history, gas prices, and verified contract ABIs across supported networks through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and external agents use this skill to inspect supported EVM networks for wallet balances, ERC-20 token balances, transaction activity, gas estimates, and verified smart contract ABIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses, chain selections, and blockchain lookup parameters are sent to AgentPMT-hosted endpoints. <br>
-Mitigation: Use the skill only for explicit blockchain lookup tasks and keep requests scoped to the minimum required addresses and parameters. <br>
-Risk: Users may accidentally expose private keys, seed phrases, signatures, payment headers, or unrelated account data. <br>
-Mitigation: Do not provide secrets or unrelated personal data in prompts, logs, or tool inputs; use setup guidance for credential handling. <br>
-Risk: Blockchain balances, gas estimates, and transaction data can change quickly. <br>
-Mitigation: Treat returned JSON as point-in-time data and refresh live schema or instructions before production integrations when parameters or outputs are unclear. <br>
+## Use Case:
 
+External developers and agents use this skill to query balances, token balances, transaction history, gas estimates, and verified contract ABIs across supported EVM networks through AgentPMT.
 
-## Reference(s): <br>
-- [Blockchain Scanner Schema](./schema.md) <br>
-- [Blockchain Scanner Marketplace](https://www.agentpmt.com/marketplace/blockchain-scanner) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What Is AgentPMT](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, JSON, shell commands] <br>
-**Output Format:** [Markdown instructions with JSON request examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote calls return blockchain lookup JSON from AgentPMT-hosted endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Remote tool instructions or setup dependencies may change after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the AgentPMT setup skills and current schema before production use, especially before running any npx install command.
+
+Risk: Wallet addresses and transaction queries are sent to AgentPMT and may consume credits.
+
+Mitigation: Send only the addresses and chain parameters required for the task, and confirm credit usage expectations before high-volume lookups.
+
+Risk: Secrets such as private keys, mnemonics, signatures, account credentials, or payment headers could be exposed if included in prompts or logs.
+
+Mitigation: Do not include secrets in tool inputs, prompts, examples, or logs; use the setup skills for credential handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/blockchain-scanner)
+- [AgentPMT publisher profile](https://clawhub.ai/user/agentpmt)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/blockchain-scanner)
+- [Blockchain Scanner schema](artifact/schema.md)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON request examples and schema references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing guidance for invoking remote AgentPMT blockchain lookup actions; tool responses are expected as JSON from the remote service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

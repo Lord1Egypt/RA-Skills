@@ -1,44 +1,56 @@
-## Description: <br>
-Find and analyze arbitrage opportunities across prediction markets like Polymarket and Kalshi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and analyze arbitrage opportunities across prediction markets like Polymarket and Kalshi.
 
-## Publisher: <br>
-[chaimengphp](https://clawhub.ai/user/chaimengphp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaimengphp](https://clawhub.ai/user/chaimengphp)
 
-## Use Case: <br>
-External users, developers, and autonomous agents use this skill to match prediction-market events across Polymarket and Kalshi, compare prices, calculate arbitrage spreads, and inspect orderbook liquidity before acting on an opportunity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled client includes wallet portfolio, activity, orders, and P&L lookups that send supplied Polymarket wallet identifiers to AIsa. <br>
-Mitigation: Use wallet commands only for addresses the user is comfortable sharing with AIsa, and keep arbitrage-only workflows focused on market, price, matching, and orderbook endpoints. <br>
-Risk: AIsa API requests may consume paid credits and expose query details to the API provider. <br>
-Mitigation: Set AISA_API_KEY only in trusted environments, review commands before execution, and monitor usage.cost and credits_remaining in responses. <br>
-Risk: The cURL examples use placeholder values that can fail or be misinterpreted if executed literally. <br>
-Mitigation: Replace every placeholder such as {token_id}, {market_ticker}, {sport}, and {date} with concrete values before running curl, and fail fast if placeholders remain. <br>
+## Use Case:
 
+Agents, developers, and market analysts use this skill to match prediction markets across Polymarket and Kalshi, compare prices, calculate spreads, and check orderbook depth before evaluating a possible arbitrage trade.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaimengphp/openclaw-aisa-prediction-market-arbitrage) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [AIsa API Reference](https://docs.aisa.one/reference/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown guidance with cURL and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; market identifiers should be looked up before downstream price or orderbook calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Market IDs, search parameters, and optional wallet addresses are sent to AIsa under the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for market or wallet data you intend to share with AIsa, and avoid optional wallet, positions, and P&L lookups unless that disclosure is acceptable.
+
+Risk: Arbitrage results may be stale or non-actionable if prices move, fees apply, or orderbook depth is insufficient.
+
+Mitigation: Check current prices and orderbook liquidity immediately before acting, and account for fees and slippage outside the skill output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaimengphp/skills/openclaw-aisa-prediction-market-arbitrage)
+- [OpenClaw](https://openclaw.ai)
+- [AIsa](https://aisa.one)
+- [AIsa API Reference](https://docs.aisa.one/reference/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python examples, plus optional JSON from bundled CLI scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and sends prediction-market query parameters to the AIsa API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

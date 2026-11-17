@@ -1,42 +1,51 @@
-## Description: <br>
-循古黄历 helps agents retrieve Chinese perpetual-calendar and almanac information, including solar terms, lunar dates, auspicious activities, taboos, and day-quality details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+循古黄历获取中国万年历信息，包括二十四节气、农历日期、宜忌、吉凶和黄道吉日等内容。
 
-## Publisher: <br>
-[cnyouker](https://clawhub.ai/user/cnyouker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnyouker](https://clawhub.ai/user/cnyouker)
 
-## Use Case: <br>
-External users and agents use this skill to answer Chinese almanac questions by querying xungufa.com for dates, lunar calendar details, solar terms, auspicious activities, taboos, and related traditional calendar fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a xungufa.com API token and sends date lookup requests to that third-party service. <br>
-Mitigation: Keep HUANGLI_API_TOKEN private, store only the needed token in the relevant .env or agent configuration location, and use the service only when those requests are acceptable. <br>
-Risk: Almanac responses are third-party informational content and may be inappropriate for security-sensitive or high-impact decisions. <br>
-Mitigation: Treat results as informational calendar guidance and review important decisions against appropriate domain-specific sources. <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese almanac questions about solar terms, lunar dates, auspicious activities, inauspicious activities, lucky hours, ganzhi calendar details, moon phases, Taoist calendar dates, and Buddhist calendar dates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnyouker/xungu-huangli) <br>
-- [循古排盘](https://xungufa.com) <br>
-- [循古黄历 calendar API](https://xungufa.com/huangli/api/calendar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown text with formatted Chinese almanac fields and setup guidance when configuration is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided HUANGLI_API_TOKEN for xungufa.com API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The sample runtime code may expose unrelated secrets by loading key-value pairs from .env files into the agent process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated OpenClaw secret or environment variable for HUANGLI_API_TOKEN, avoid colocating unrelated secrets in the same .env files, and prefer code that loads only HUANGLI_API_TOKEN.
+
+## Reference(s):
+
+- [循古排盘](https://xungufa.com)
+- [循古黄历 Calendar API](https://xungufa.com/huangli/api/calendar)
+- [ClawHub skill page](https://clawhub.ai/cnyouker/skills/xungu-huangli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, API Calls, Configuration]
+
+**Output Format:** [Formatted Chinese almanac text with supporting Python code and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HUANGLI_API_TOKEN for live API calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,320 @@
+{
+  "skill": "medical-device-cybersecurity",
+  "version": "1.0.0",
+  "note": "本地闭环验证：零网络、零扫描、零数据采集、可重复",
+  "dimensions": [
+    {
+      "key": "regulatory_timeliness",
+      "label": "法规时效性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "FDA SBOM 强制 + RTA",
+          "pass": true
+        },
+        {
+          "name": "FDA 渗透测试强制",
+          "pass": true
+        },
+        {
+          "name": "FDA 2026 强化点",
+          "pass": true
+        },
+        {
+          "name": "EU MDR 17.2",
+          "pass": true
+        },
+        {
+          "name": "EU CRA 2027",
+          "pass": true
+        },
+        {
+          "name": "EU NIS2",
+          "pass": true
+        },
+        {
+          "name": "NMPA 注册审查指导原则",
+          "pass": true
+        },
+        {
+          "name": "三地核对基准日",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "coverage_completeness",
+      "label": "覆盖完整性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "references 模块数=8（实际 8）",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 01-网络安全全景与监管.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 02-美国FDA网络安全要求.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 03-欧盟网络安全要求.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 04-中国NMPA网络安全要求.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 05-SBOM实操.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 06-漏洞管理与协调披露.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 07-网络安全体系与文档.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 08-FAQ.md",
+          "pass": true
+        },
+        {
+          "name": "FAQ",
+          "pass": true
+        },
+        {
+          "name": "能力边界",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "template_usability",
+      "label": "工具可用性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "reg 命令执行",
+          "pass": true
+        },
+        {
+          "name": "checklist 命令执行",
+          "pass": true
+        },
+        {
+          "name": "sbom 命令执行",
+          "pass": true
+        },
+        {
+          "name": "vuln 命令执行",
+          "pass": true
+        },
+        {
+          "name": "standard 命令执行",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "risk_accuracy",
+      "label": "判定准确性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "vuln「远程可被利用执行任意代码…」→严重",
+          "pass": true
+        },
+        {
+          "name": "vuln「本地低权限信息泄露…」→中",
+          "pass": true
+        },
+        {
+          "name": "vuln「漏洞可远程利用读取敏感数据…」→高",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "structure_compliance",
+      "label": "结构规范性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "frontmatter 含 name:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 slug:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 display_name:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 displayName:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 title:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 version:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 category:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 platforms:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 author:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 license:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 description:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 description_en:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 tags:",
+          "pass": true
+        },
+        {
+          "name": "版权段",
+          "pass": true
+        },
+        {
+          "name": "知识版权声明",
+          "pass": true
+        },
+        {
+          "name": "免责声明 AS IS",
+          "pass": true
+        },
+        {
+          "name": "LICENSE.md",
+          "pass": true
+        },
+        {
+          "name": "工具实现 reg",
+          "pass": true
+        },
+        {
+          "name": "工具实现 checklist",
+          "pass": true
+        },
+        {
+          "name": "工具实现 sbom",
+          "pass": true
+        },
+        {
+          "name": "工具实现 vuln",
+          "pass": true
+        },
+        {
+          "name": "工具实现 standard",
+          "pass": true
+        },
+        {
+          "name": "工具实现 --help",
+          "pass": true
+        },
+        {
+          "name": "工具参数 --region",
+          "pass": true
+        },
+        {
+          "name": "工具参数 --phase",
+          "pass": true
+        },
+        {
+          "name": "工具参数 --desc",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "security_cleanliness",
+      "label": "安全净度",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "敏感模式「邮箱」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「手机号」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「本地路径(Win)」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「本地路径(Unix)」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「密钥前缀」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「token 字样」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「私钥头」0 命中",
+          "pass": true
+        },
+        {
+          "name": "全包 0 命中",
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "regulatory_timeliness": 5.0,
+    "coverage_completeness": 5.0,
+    "template_usability": 5.0,
+    "risk_accuracy": 5.0,
+    "structure_compliance": 5.0,
+    "security_cleanliness": 5.0,
+    "average": 5.0
+  },
+  "benchmarks": {
+    "industry_baseline": {
+      "regulatory_timeliness": 2.5,
+      "coverage_completeness": 3.0,
+      "template_usability": 2.0,
+      "risk_accuracy": 2.5,
+      "structure_compliance": 3.0,
+      "security_cleanliness": 3.0
+    },
+    "enterprise_standard": {
+      "regulatory_timeliness": 4.5,
+      "coverage_completeness": 4.5,
+      "template_usability": 4.0,
+      "risk_accuracy": 4.5,
+      "structure_compliance": 5.0,
+      "security_cleanliness": 5.0
+    }
+  }
+}

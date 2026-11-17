@@ -1,51 +1,64 @@
-## Description: <br>
-Local-first hybrid memory skill for OpenClaw agents that helps find, recall, search, and reuse past knowledge across episodic, semantic, procedural, and learning memory while surfacing host health and degraded-mode guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first hybrid memory skill for OpenClaw agents that helps find, recall, search, and reuse past episodic, semantic, procedural, and learning memory while reporting degraded host state.
 
-## Publisher: <br>
-[ciklopentan](https://clawhub.ai/user/ciklopentan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ciklopentan](https://clawhub.ai/user/ciklopentan)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to query, write, index, audit, and maintain local agent memory while keeping semantic readiness, degraded retrieval, and rollback expectations explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write durable local memory files. <br>
-Mitigation: Review memory-write intent before using memorize or maintenance commands, and keep destructive auto-actions disabled unless an operator explicitly chooses otherwise. <br>
-Risk: Maintenance behavior can inventory parts of the local workspace or cache. <br>
-Mitigation: Review hygiene scan roots and maintenance commands before installation or scheduled use, especially on shared or sensitive hosts. <br>
-Risk: Semantic retrieval depends on a local loopback semantic helper and Qdrant configuration. <br>
-Mitigation: Verify the Qdrant URL and keep it local unless the operator intentionally wants memory content sent elsewhere. <br>
-Risk: Host state can be degraded even when the packaged skill version is current. <br>
-Mitigation: Run health-check.sh --json and honor the returned status, degraded flags, warnings, and authority fields before trusting retrieval or write operations. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to give agents a local memory workflow for querying prior work, saving reusable lessons, refreshing indexes, and checking memory health before relying on results.
 
-## Reference(s): <br>
-- [Super Memori ClawHub listing](https://clawhub.ai/ciklopentan/super-memori) <br>
-- [Architecture](references/architecture.md) <br>
-- [Command Contracts](references/command-contracts.md) <br>
-- [Retrieval Pipeline](references/retrieval-pipeline.md) <br>
-- [Health Model](references/health-model.md) <br>
-- [Maintenance Reference](references/maintenance.md) <br>
-- [Verification Evidence](references/verification-evidence.md) <br>
-- [OpenClaw Hooks Documentation](https://docs.openclaw.ai/automation/hooks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-producing command surfaces] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include health, retrieval, indexing, audit, and maintenance guidance; runtime commands may emit JSON status and warning fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.23 (source: server release evidence and artifact changelog, released 2026-04-27) <br>
+Risk: The skill can persist sensitive agent history and index memory into local services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where local memory persistence is acceptable, and keep Qdrant and the semantic daemon bound to loopback.
+
+Risk: Remote SUPER_MEMORI_* endpoint settings could expose memory data if configured without separate protection.
+
+Mitigation: Avoid remote endpoint settings unless the transport, authentication, and host controls are separately secured.
+
+Risk: The startup hook and maintenance workflows can run local checks and host metadata scans.
+
+Mitigation: Review hook configuration before enabling it, and treat auto-learning and system-hygiene features as opt-in workflows for sensitive environments.
+
+## Reference(s):
+
+- [Architecture](references/architecture.md)
+- [Command Contracts](references/command-contracts.md)
+- [Retrieval Pipeline](references/retrieval-pipeline.md)
+- [Health Model](references/health-model.md)
+- [Maintenance Reference](references/maintenance.md)
+- [Verification Evidence](references/verification-evidence.md)
+- [Release Status](references/release-status.md)
+- [OpenClaw Hooks Documentation](https://docs.openclaw.ai/automation/hooks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-aware command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Host state must be read from live command JSON; semantic and hybrid paths may degrade to lexical mode when local prerequisites are unavailable.]
+
+## Skill Version(s):
+
+4.0.23 (source: server evidence, _meta.json, CHANGELOG 2026-04-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

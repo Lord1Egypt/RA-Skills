@@ -1,6 +1,6 @@
 ---
 name: deep-work
-description: "Activate when: user says 'I can never find time for focused work', 'I feel busy but produce nothing', 'I keep getting interrupted', 'I want to protect my focus time', 'flow state', 'deliberate practice', 'Cal Newport', or asks how to make progress on hard cognitive work (research, writing, engineering, strategy). Do NOT activate when: the role is genuinely high-coordination with no discrete focus windows (ER medicine, real-time trading desk), or user is in a short-term emergency where availability must dominate."
+description: "Activate when: user says 'I can never find time for focused work', 'I feel busy but produce nothing', 'I keep getting interrupted', 'I want to protect my focus time', 'flow state', 'deliberate practice', 'Cal Newport', or asks how to make progress on hard cognitive work (research, writing, engineering, strategy). Do NOT activate when: the role is genuinely high-coordination with no discrete focus windows (ER medicine, real-time trading desk), or user is in a short-term emergency where availability must dominate. More: deciqai.com/c/deep-work"
 ---
 
 # Deep Work
@@ -9,13 +9,14 @@ description: "Activate when: user says 'I can never find time for focused work',
 
 Cal Newport's framework (2016): **deep work** = undistracted, cognitively demanding activity that creates hard-to-replicate value; **shallow work** = logistical, responsive, easy-to-replicate work that fills modern calendars. The most valuable knowledge work is disproportionately the product of deep work; shallow work is increasingly automatable. Three foundations: attention research shows 15-25 min recovery cost per interruption; expert performance requires deliberate practice (structurally a form of deep work); the opportunity cost of shallow work is invisible — no one tracks which deep work didn't happen this week.
 
-Composes with [`wu-wei`](../wu-wei/SKILL.md) (flow as the felt experience), [`metacognition`](../metacognition/SKILL.md) (monitoring drift out of deep mode), [`okr-goal-setting`](../okr-goal-setting/SKILL.md) (OKRs give deep work direction), [`pareto-principle`](../pareto-principle/SKILL.md) (the 20% producing 80% of value is almost always deep work).
+Composes with `wu-wei` (flow as the felt experience), `metacognition` (monitoring drift out of deep mode), `okr-goal-setting` (OKRs give deep work direction), `pareto-principle` (the 20% producing 80% of value is almost always deep work).
 
 ## When to Use
 
 - Output depends on hard-to-replicate cognitive work (research, engineering, writing, design, strategy)
 - Calendar fragmentation prevents the work that actually matters; weeks feel busy but produce nothing
 - High-stakes project requires extended concentration; career advancement depends on skill development
+- AI copilots / assistants have become another interruption stream ("is AI helping my focus or fragmenting it?", "AI adoption vs deep work", "AI hype and staying focused")
 
 **Not when:** genuinely high-coordination roles where deep work is structurally impossible; already done with deep work and shallow follow-through is now required; short-term emergency where availability dominates.
 
@@ -62,7 +63,8 @@ Shallow budget — %: | specific reductions:
 Defense — calendar mark: | comms norms: | output evidence to track:
 ```
 
-*→ Method in Action: [Donald Knuth and the No-Email Policy, 1990](examples/donald-knuth-no-email-policy-1990.md)*
+*→ Method in Action: [Donald Knuth and the No-Email Policy, 1990](examples/donald-knuth-no-email-policy-1990.md) · [Carl Jung's Bollingen Tower Retreats](examples/carl-jung-bollingen-tower-retreats.md)*
+*→ 2026 lens: [Protecting Deep Work Amid AI Copilots (2024–2026)](examples/deep-work-amid-ai-copilots-2024-2026.md)*
 
 ## Pack: Deep Work by Role
 
@@ -111,4 +113,6 @@ Protect the morning block first — cognitive freshness depletes with shallow wo
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/deep-work** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/deep-work.json*

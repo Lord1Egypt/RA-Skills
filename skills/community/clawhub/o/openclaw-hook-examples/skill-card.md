@@ -1,39 +1,59 @@
-## Description: <br>
-Provides example hooks for OpenClaw to intercept, modify, block tool calls, switch models, log actions, and handle subagent events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides example OpenClaw hooks for intercepting, modifying, blocking, logging, model switching, and subagent event handling.
 
-## Publisher: <br>
-[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot)
 
-## Use Case: <br>
-Developers and plugin authors use this skill as reference material for implementing OpenClaw hooks that audit, block, validate, route, or modify agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tool-audit logging examples can expose raw tool arguments, outputs, or session identifiers if reused without filtering. <br>
-Mitigation: Use allowlisted fields, redaction, restricted log access, and clear retention rules before converting the examples into a real plugin. <br>
+## Use Case:
 
+Developers and engineers use this skill as example guidance for OpenClaw plugin hooks that audit tool calls, block selected actions, validate parameters, switch models, and route subagent results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanxiao-bot/openclaw-hook-examples) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference material; examples should be reviewed and adapted before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Example snippets log tool parameters and session identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive tool parameters and session identifiers before adapting any logging example.
+
+Risk: Substring command checks can miss dangerous variants or block benign commands.
+
+Mitigation: Replace illustrative substring checks with scoped allowlists, sandboxing, and explicit approval for dangerous operations.
+
+Risk: Hook examples that block tools or switch models can change agent behavior if copied into a plugin.
+
+Mitigation: Review and test adapted hooks in a controlled environment before deployment.
+
+## Reference(s):
+
+- [OpenClaw Hook Examples on ClawHub](https://clawhub.ai/hanxiao-bot/skills/openclaw-hook-examples)
+- [hanxiao-bot publisher profile](https://clawhub.ai/user/hanxiao-bot)
+- [Artifact skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with JavaScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only examples; snippets require review and adaptation before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

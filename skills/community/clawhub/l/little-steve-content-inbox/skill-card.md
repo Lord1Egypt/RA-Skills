@@ -1,40 +1,58 @@
-## Description: <br>
-Little Steve Content Inbox helps agents save user-requested links, notes, and image paths into a local chat-oriented inbox, then list, view, star, mark, or delete entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archive, browse, and manage chat content including links, notes, and images with read/star status and pagination in an IM-native inbox.
 
-## Publisher: <br>
-[EchoOfZion](https://clawhub.ai/user/EchoOfZion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[echoofzion](https://clawhub.ai/user/echoofzion)
 
-## Use Case: <br>
-Chat users and their agents use this skill to explicitly archive links, notes, and image paths from conversation into a lightweight local inbox, then manage review status and pagination from the same chat workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved notes, links, tags, and local image paths are stored in the skill's local JSON data and may contain sensitive information if the user archives it. <br>
-Mitigation: Only save content after clear user intent, avoid secrets or private local paths, and review or clear bundled inbox items before sharing or deployment. <br>
-Risk: The skill runs local Bash scripts and depends on jq. <br>
-Mitigation: Inspect the scripts before installation and run them only in a trusted local environment with jq installed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/EchoOfZion/little-steve-content-inbox) <br>
-- [Publisher profile](https://clawhub.ai/user/EchoOfZion) <br>
+## Use Case:
 
+External users and agent operators use this skill to save explicitly requested links, notes, and image paths from chat into a local inbox, then browse, view, mark, star, or delete saved items.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output with local JSON-backed inbox state] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq; stores user-approved links, notes, tags, statuses, and image paths in local JSON data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saved inbox content is stored locally in the skill's data files and may include sensitive links, notes, or image paths.
+
+Mitigation: Avoid saving secrets or highly sensitive notes unless local JSON storage is acceptable for the deployment environment.
+
+Risk: Delete commands remove records without an undo flow or confirmation prompt.
+
+Mitigation: Review item IDs before deletion and keep separate backups if retained content matters.
+
+Risk: The skill can archive normal chat content if an agent ignores the explicit-intent rule.
+
+Mitigation: Only run add/archive actions after clear user keywords such as archive, save, bookmark, 收录, 归档, 保存, or 记录.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/echoofzion/skills/little-steve-content-inbox)
+- [ClawHub publisher profile](https://clawhub.ai/user/echoofzion)
+- [Declared project homepage](https://github.com/EchoOfZion/little-steve-content-inbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists saved inbox records in local JSON data files and depends on jq.]
+
+## Skill Version(s):
+
+0.1.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

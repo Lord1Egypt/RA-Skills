@@ -1,40 +1,59 @@
-## Description: <br>
-A flower-ordering agent that helps users browse bouquets, view product details, get occasion-based recommendations, place flower delivery orders, and confirm order results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+跳舞兰订花技能帮助用户从固定鲜花目录中浏览、筛选、推荐花束，并完成配送信息收集、订单提交和支付引导。
 
-## Publisher: <br>
-[piaoleaf](https://clawhub.ai/user/piaoleaf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[piaoleaf](https://clawhub.ai/user/piaoleaf)
 
-## Use Case: <br>
-External users use this skill to choose flowers for delivery, provide recipient and delivery details, submit an order, and receive payment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create real flower delivery orders and send recipient name, phone number, address, card text, and delivery time to an external order API. <br>
-Mitigation: Before submitting, confirm the product, price, recipient details, delivery time, external data sharing, and permission to use the recipient information. <br>
-Risk: The security review notes no clear final privacy or consent step before personal details are sent. <br>
-Mitigation: Add an explicit final confirmation that lists the personal data and destination service before any order submission. <br>
+## Use Case:
 
+Flower shoppers use this agent skill to browse a fixed catalog, get recommendations by occasion, recipient, or budget, collect delivery details, submit an order, and guide payment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/piaoleaf/tiaowulan-flower-shop) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown product cards, order summaries, and inline curl command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit recipient and order details to an external flower-ordering service and return payment guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill collects recipient delivery personal data, including name, phone number, address, card message, and delivery time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted flower-shop operator, obtain explicit user confirmation before submission, and disclose that delivery details are sent to piaoleaf.tiaowulan.com.
+
+Risk: The order flow instructs the agent to execute a generated raw shell curl command containing user input.
+
+Mitigation: Replace the shell command with a scoped HTTP integration that validates fields and serializes JSON or form data safely.
+
+Risk: The authoritative scanner verdict for this release is suspicious.
+
+Mitigation: Review the skill before installing and scan it again in the target deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/piaoleaf/skills/tiaowulan-flower-shop)
+- [Publisher profile](https://clawhub.ai/user/piaoleaf)
+- [Order submission endpoint](https://piaoleaf.tiaowulan.com/api/trade/CreateOrder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style product cards, conversational text, and a curl command for order submission]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Collects recipient name, phone number, delivery address, card message, and delivery time before order submission.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.release.version; target metadata agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

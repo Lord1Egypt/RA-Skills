@@ -1,43 +1,54 @@
-## Description: <br>
-Fetch and format Wenxuecity News rankings from https://www.wenxuecity.com/news/, specifically the two 24-hour lists: hot ranking and discussion ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and formats the two Wenxuecity News 24-hour ranking lists, hot ranking and discussion ranking, as Markdown or JSON for daily digests, monitoring, diffing, or automation.
 
-## Publisher: <br>
-[tonyguo2010](https://clawhub.ai/user/tonyguo2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonyguo2010](https://clawhub.ai/user/tonyguo2010)
 
-## Use Case: <br>
-External users, developers, and automation builders use this skill to collect, summarize, monitor, or diff Wenxuecity 24-hour hot and discussion ranking entries for daily digests or downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Wenxuecity when rankings are requested. <br>
-Mitigation: Use the default source URL unless you intentionally want the agent to fetch another page. <br>
-Risk: The optional output path can create or overwrite a local file. <br>
-Mitigation: Choose the --output destination deliberately and review it before running the script in automated workflows. <br>
-Risk: Ranking extraction depends on Wenxuecity page structure and may return fewer or missing entries if the site changes. <br>
-Mitigation: Validate results against the live source page when ranking completeness matters. <br>
+## Use Case:
 
+Developers and automation users can fetch Wenxuecity News 24-hour hot and discussion rankings and turn them into Markdown or JSON for daily digests, monitoring, storage, or comparison workflows.
 
-## Reference(s): <br>
-- [Wenxuecity News source page](https://www.wenxuecity.com/news/) <br>
-- [ClawHub skill page](https://clawhub.ai/tonyguo2010/wenxuecity-news-rankings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON ranking output, optionally written to a file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes fetched timestamp, source URL, requested top count, hot_24h and discussion_24h groups, rank, title, URL, and optional image_url.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The fetch script can be pointed at arbitrary URLs, creating broader outbound HTTP access than the Wenxuecity ranking use case requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in environments where arbitrary outbound HTTP GET requests are acceptable, or restrict the source URL to the intended Wenxuecity HTTPS host before deployment.
+
+Risk: Ranking extraction depends on the live Wenxuecity page structure, so site changes can produce missing or partial results.
+
+Mitigation: Validate the parser against the live source page after page layout changes and review partial outputs before relying on them in automation.
+
+## Reference(s):
+
+- [Wenxuecity News source page](https://www.wenxuecity.com/news/)
+- [ClawHub skill page](https://clawhub.ai/tonyguo2010/skills/wenxuecity-news-rankings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands]
+
+**Output Format:** [Markdown or JSON ranking data, optionally written to a file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes fetched timestamp, source URL, requested top count, hot_24h and discussion_24h groups, and optional image URLs.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

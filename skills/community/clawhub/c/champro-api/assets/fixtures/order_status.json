@@ -1,0 +1,18 @@
+{
+  "OrderNumber": 1079914,
+  "PO": "DFRANK051523",
+  "SalesID": "SO-2000712",
+  "Lines": [
+    {
+      "TrackingNumber": "772307173547",
+      "ShippingCarrier": "FedEx",
+      "ShippingService": "FedEx, Ground",
+      "SKUs": [
+        {"SKU": "HXMCBLS", "Quantity": 1},
+        {"SKU": "HXMGOS", "Quantity": 1}
+      ]
+    }
+  ],
+  "Status": "Invoiced",
+  "Error": null
+}

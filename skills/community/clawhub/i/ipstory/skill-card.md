@@ -1,39 +1,54 @@
-## Description: <br>
-Generate compelling personal brand stories following the proven "5-Step Story Structure" framework for personal introductions, biographies, origin stories, about pages, and social media narratives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate authentic, structured personal brand stories using a five-step framework for origin stories, biographies, introductions, about pages, and social media narratives.
 
-## Publisher: <br>
-[fengbabao0929](https://clawhub.ai/user/fengbabao0929) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengbabao0929](https://clawhub.ai/user/fengbabao0929)
 
-## Use Case: <br>
-External users, creators, entrepreneurs, and professionals use this skill to turn personal experience into concise brand stories with a clear pain point, turning point, conflict, philosophy, and result. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Personal brand stories can expose sensitive personal, financial, health, family, address, or third-party details. <br>
-Mitigation: Use approximate or anonymized details for public drafts and include third-party names only when necessary and consented. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Reference: Wanying's Personal Brand Story](references/reference.md) <br>
-- [Personal Brand Story Templates](references/templates.md) <br>
-- [从大厂程序员到独立开发者：我是如何找到时间自由的](assets/example-story.md) <br>
+## Use Case:
 
+External creators, entrepreneurs, professionals, and other individuals use this skill to shape personal details into credible personal brand stories for public-facing bios, introductions, website about pages, and social media narratives.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown narrative drafts, outlines, interview questions, and reusable story templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content depends on user-provided personal details and should be reviewed before public use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may prompt for personal career, family, financial, and achievement details to make public-facing copy more specific.
+
+Mitigation: Share only information suitable for public use and remove private details before publishing.
+
+Risk: Generated stories may include numbers, testimonials, or success claims that affect professional credibility.
+
+Mitigation: Verify all quantitative claims, named references, testimonials, and outcomes before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fengbabao0929/skills/ipstory)
+- [Reference: Wanying's Personal Brand Story](references/reference.md)
+- [Personal Brand Story Templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose, outlines, templates, and revision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user-supplied personal, career, financial, family, testimonial, and achievement details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Provides AntV documentation context and code examples for AI development and QA workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为AI开发和QA设计的模型上下文协议服务器，提供AntV文档上下文和代码示例。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-Developers and QA practitioners use this skill to route AntV visualization questions, extract topic and intent details, and retrieve relevant documentation, best practices, and code examples from the xiaobenyang MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AntV questions and related project details are sent to a third-party MCP service. <br>
-Mitigation: Avoid including proprietary code, secrets, sensitive architecture details, or regulated data in queries. <br>
-Risk: The required service API key may be stored in a local plaintext .env file. <br>
-Mitigation: Use a dedicated low-privilege API key, review the .env file after use, and remove or rotate the key when it is no longer needed. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to route AntV-related questions, extract topics and intent, and retrieve AntV documentation context and code examples from the XiaoBenYang MCP service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/extract-antv-topic) <br>
-- [XiaoBenYang API key portal](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP service endpoint](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown summary of API-returned JSON, including code examples when returned by the service] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY value and sends AntV-related queries to the xiaobenyang MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: AntV-related prompts, code snippets, errors, and derived task data are sent to the XiaoBenYang MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved data with this skill and do not send secrets or proprietary code unless that sharing is approved.
+
+Risk: The API key can be persisted in a local .env file in the workspace.
+
+Mitigation: Prefer a scoped environment secret, avoid shared or committed workspaces, and remove saved keys after use.
+
+Risk: The security summary reports copied or mismatched project content.
+
+Mitigation: Review the artifact behavior, service dependency, and publisher ownership before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/extract-antv-topic)
+- [XiaoBenYang service](https://xiaobenyang.com)
+- [XiaoBenYang MCP service endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown summary of retrieved JSON results and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AntV library names, topic keywords, intent, subtasks, and token-limited documentation excerpts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

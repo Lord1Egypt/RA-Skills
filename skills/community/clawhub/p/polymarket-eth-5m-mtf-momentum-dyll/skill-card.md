@@ -1,45 +1,60 @@
-## Description: <br>
-Runs a multi-timeframe ETH/USDT momentum strategy that can place simulated or live trades on Polymarket five-minute fast markets through Simmer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configurable Simmer trading bot that aligns 1m/3m/5m Binance ETH/USDT returns to trade directional Polymarket five-minute fast markets.
 
-## Publisher: <br>
-[djdyll](https://clawhub.ai/user/djdyll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[djdyll](https://clawhub.ai/user/djdyll)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External traders and developers use this skill as a configurable Simmer trading bot for ETH 5-minute fast markets, using Binance ETH/USDT momentum across 1-minute, 3-minute, and 5-minute windows to decide whether to place directional trades. It supports paper runs, live runs, position checks, configuration updates, and scheduled execution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can place live trades when run with --live or scheduled after configuration.
+
+Mitigation: Run in paper mode first, tune confidence and timing thresholds, review active safeguards, and enable live trading only with an accepted loss limit.
+
+Risk: The trading API key is sent to a configurable Simmer endpoint.
+
+Mitigation: Use a dedicated low-scope Simmer key and set SIMMER_API_URL only to a trusted HTTPS Simmer endpoint.
+
+Risk: Evidence flags an ETH versus BTC description mismatch that could confuse market selection or user expectations.
+
+Mitigation: Confirm the target asset and market wording before deployment; treat the current implementation as ETH-focused unless the code and docs are corrected together.
+
+Risk: The skill depends on the external simmer-sdk package for trading behavior.
+
+Mitigation: Pin and review the simmer-sdk version before production use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External traders and agent operators use this skill as a configurable automated trading template for testing and running ETH five-minute momentum strategies on Simmer/Polymarket fast markets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, code, API calls]
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary identifies a BTC/ETH mismatch and a live-trading path that could cause unintended trades. <br>
-Mitigation: Verify the intended asset and market before use, run in paper mode first, and enable live mode only after adding limits, confirmation, and monitoring. <br>
-Risk: The skill requires SIMMER_API_KEY and supports configurable SIMMER_API_URL and TRADING_VENUE values. <br>
-Mitigation: Limit and monitor the API key, and avoid untrusted API URLs or trading venues. <br>
-Risk: Cron or managed automaton execution can repeatedly evaluate markets and attempt trades. <br>
-Mitigation: Enable scheduled or managed execution only after validating thresholds, trade size, max trades per run, and operational alerts. <br>
+**Output Format:** [Console text with optional JSON automaton report and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/djdyll/polymarket-eth-5m-mtf-momentum-dyll) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/djdyll) <br>
-- [Simmer Markets API endpoint](https://api.simmer.markets) <br>
-- [Binance kline API endpoint](https://api.binance.com/api/v3/klines) <br>
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY, simmer-sdk, and review before live trading or scheduled execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API Calls, JSON] <br>
-**Output Format:** [CLI text with optional JSON automaton status reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; dry run is the default, and live trading requires --live.] <br>
+1.1.0 (source: SKILL.md frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

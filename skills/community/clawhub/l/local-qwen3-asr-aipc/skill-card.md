@@ -1,46 +1,59 @@
-## Description: <br>
-Provides local offline speech-to-text for Windows audio and video files using Qwen3-ASR with Intel OpenVINO, with network required only for first-time setup and model download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes audio and video locally on Windows using Qwen3-ASR 0.6B with Intel OpenVINO, requiring network access only for first-time setup and model download.
 
-## Publisher: <br>
-[juan-oy](https://clawhub.ai/user/juan-oy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juan-oy](https://clawhub.ai/user/juan-oy)
 
-## Use Case: <br>
-Agents, developers, and Windows users use this skill to transcribe local audio or video files, process folders in batch or watch mode, and optionally archive transcripts as text or JSON. It is intended for local ASR workflows where inference runs offline after first-time setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First-time setup may install Python or Git, modify PATH or shell integrations, install packages, clone code, and download about 2 GB of model files. <br>
-Mitigation: Review setup actions before installation, prefer manual setup when possible, and run only on Windows systems where those changes are acceptable. <br>
-Risk: Transcript archives are kept on local disk and may contain sensitive spoken content. <br>
-Mitigation: Treat transcript folders as sensitive data, choose archive locations deliberately, and delete or protect transcript files according to the user's retention needs. <br>
-Risk: Broad watch folders can process more local files than intended. <br>
-Mitigation: Use narrow input folders for watch mode and confirm the target directory before starting continuous transcription. <br>
-Risk: The security summary flags broad Windows setup changes and over-trust in auto-discovered local runtime paths. <br>
-Mitigation: Run the pre-flight environment check, avoid using untrusted runtime directories, and verify resolved paths before inference. <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe local audio or video files on Windows, including single files, batch folders, and watched folders, while keeping inference local after initial setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juan-oy/local-qwen3-asr-aipc) <br>
-- [Qwen3-ASR repository](https://github.com/QwenLM/Qwen3-ASR.git) <br>
-- [Qwen3-ASR OpenVINO model files](https://modelscope.cn/models/snake7gun/Qwen3-ASR-0.6B-fp16-ov/files) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON transcription results, optional text or JSON transcript archive files, and setup or runtime command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include transcript text, detected language, source file metadata, recoverable error summaries, and local archive file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata, SKILL.md) <br>
+Risk: Setup can create a persistent local ASR environment, install Python packages, clone code, and download about 2 GB of model data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run setup manually from a known skill directory, review installers and dependencies, and verify model files before use.
+
+Risk: Runtime discovery scans local drives for *_openvino ASR state and could select an unexpected existing runtime.
+
+Mitigation: Inspect any existing *_openvino/asr/state.json before use and avoid broad auto-discovery when a known runtime directory can be supplied.
+
+Risk: Transcript archiving and video-audio extraction can write files beside the source media or in a configured archive directory.
+
+Mitigation: Use trusted input paths and archive directories, then review generated transcript and extracted-audio files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/juan-oy/skills/local-qwen3-asr-aipc)
+- [Qwen3-ASR repository](https://github.com/QwenLM/Qwen3-ASR.git)
+- [Qwen3-ASR OpenVINO model files](https://modelscope.cn/models/snake7gun/Qwen3-ASR-0.6B-fp16-ov/files)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell commands and JSON or text transcription results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can optionally archive transcripts as .txt and/or .json files; inference depends on a local Windows OpenVINO environment and downloaded model.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md SKILL_VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Control global smart home devices via Home Assistant as the preferred platform and Tuya Smart as a fallback, with fuzzy name matching and local device caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control global smart home devices via Home Assistant as the preferred path and Tuya Smart as a fallback, with fuzzy name matching and local device caching.
 
-## Publisher: <br>
-[airoom-ai](https://clawhub.ai/user/airoom-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airoom-ai](https://clawhub.ai/user/airoom-ai)
 
-## Use Case: <br>
-Developers and smart-home users use this skill to discover and control configured Home Assistant and Tuya devices from an agent workflow. It is suited for convenience automation where the operator can review device names and avoid safety-critical devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control real smart-home devices with durable credentials. <br>
-Mitigation: Install only for trusted environments, use least-privilege or revocable tokens, and protect the local config file with strict file permissions. <br>
-Risk: Fuzzy device-name matching can select the wrong device. <br>
-Mitigation: Use exact device names for control actions and review the local device cache after discovery. <br>
-Risk: Accidental control of safety-critical devices could create physical-world harm. <br>
-Mitigation: Avoid using the skill with locks, heaters, appliances, or other safety-critical devices. <br>
+## Use Case:
 
+Smart home users and developers use this skill to let an agent discover and control Home Assistant and Tuya-connected devices from local configuration and CLI commands.
 
-## Reference(s): <br>
-- [Home Assistant REST API](https://developers.home-assistant.io/docs/api/rest/) <br>
-- [Tuya Cloud API Reference](https://developer.tuya.com/en/docs/iot/api-reference/list) <br>
-- [ClawHub skill page](https://clawhub.ai/airoom-ai/smarthome) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local smart-home control commands when configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json reports 1.2.0) <br>
+Risk: The skill can operate physical smart-home devices, including potentially sensitive devices if configured credentials allow it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured devices before use, avoid high-impact devices such as locks, heaters, cameras, outlets, and appliances, and require user confirmation for sensitive actions.
+
+Risk: The skill handles long-lived Home Assistant and Tuya credentials.
+
+Mitigation: Use narrowly scoped accounts, restrict the local config file to owner-only access, and rotate credentials if endpoints or configuration were ever untrusted.
+
+Risk: Fuzzy name matching can select an unintended device.
+
+Mitigation: Prefer exact device names or IDs for control commands and avoid broad fuzzy commands until exact matching, confirmation, and platform-specific routing are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/airoom-ai/skills/smarthome)
+- [Home Assistant REST API](https://developers.home-assistant.io/docs/api/rest/)
+- [Tuya Cloud API Reference](https://developer.tuya.com/en/docs/iot/api-reference/list)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can operate configured smart home devices through Home Assistant or Tuya credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact _meta.json reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

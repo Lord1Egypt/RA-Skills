@@ -1,11 +1,11 @@
 # IDMT\_PcbItem interface
 
-PCB 属性
+PCB property
 
 ## Signature
 
 ```typescript
-interface IDMT_PcbItem 
+interface IDMT_PcbItem
 ```
 
 ## Properties
@@ -14,118 +14,94 @@ interface IDMT_PcbItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [itemType](./IDMT_PcbItem.md)
 
-
 </td><td>
 
 `readonly`
-
 
 </td><td>
 
 [EDMT\_ItemType.PCB](../enums/EDMT_ItemType.md) \| [EDMT\_ItemType.CBB\_PCB](../enums/EDMT_ItemType.md)
 
-
 </td><td>
 
-项目类型
-
+Project type
 
 </td></tr>
 <tr><td>
 
 [name](./IDMT_PcbItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-PCB 名称
-
+PCB name
 
 </td></tr>
 <tr><td>
 
 [parentBoardName?](./IDMT_PcbItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 所属板子名称
-
+_(Optional)_ Name of the board it belongs to
 
 </td></tr>
 <tr><td>
 
 [parentProjectUuid](./IDMT_PcbItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属工程 UUID
-
+UUID of the project it belongs to
 
 </td></tr>
 <tr><td>
 
 [uuid](./IDMT_PcbItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
 PCB UUID
-
 
 </td></tr>
 </tbody></table>
@@ -138,7 +114,7 @@ PCB UUID
 
 # IDMT\_PcbItem.itemType property
 
-项目类型
+Project type
 
 ## Signature
 
@@ -150,7 +126,7 @@ readonly itemType: EDMT_ItemType.PCB | EDMT_ItemType.CBB_PCB;
 
 # IDMT\_PcbItem.name property
 
-PCB 名称
+PCB name
 
 ## Signature
 
@@ -162,7 +138,7 @@ name: string;
 
 # IDMT\_PcbItem.parentBoardName property
 
-所属板子名称
+Name of the board it belongs to
 
 ## Signature
 
@@ -174,7 +150,7 @@ parentBoardName?: string;
 
 # IDMT\_PcbItem.parentProjectUuid property
 
-所属工程 UUID
+UUID of the project it belongs to
 
 ## Signature
 

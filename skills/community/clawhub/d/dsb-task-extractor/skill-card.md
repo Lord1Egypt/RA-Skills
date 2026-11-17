@@ -1,38 +1,52 @@
-## Description: <br>
-Extract, track, and verify completion of multiple tasks from a single user message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts, tracks, and verifies multiple actionable tasks from compound user messages so agents can avoid silently dropping requests.
 
-## Publisher: <br>
-[dodge1218](https://clawhub.ai/user/dodge1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dodge1218](https://clawhub.ai/user/dodge1218)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to decompose messages with several actionable asks, track status and evidence for each task, and reconcile completion before ending a run.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The agent could propose or execute tasks that need approval or affect external systems.
+
+Mitigation: Review individual tasks before execution and require explicit human approval for gated actions.
+
+Risk: A task inventory can still include incorrect, extra, or misleading items if the original request is ambiguous.
+
+Mitigation: Compare the extracted task list against the user message during reconciliation and surface dropped or blocked tasks clearly.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents and developers use this skill to break compound user requests into numbered tasks, track status and evidence, and reconcile completion so actionable items are not silently dropped. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages an agent to work through every extracted task, including tasks that could have external side effects. <br>
-Mitigation: Keep normal approval controls enabled for emails, deployments, payments, account changes, deletions, and other side-effecting actions. <br>
+**Output Format:** [Markdown task lists and status tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dodge1218/dsb-task-extractor) <br>
+**Other Properties Related to Output:** [May include task status markers, evidence notes, dropped-task summaries, and approval gates for tasks that require human confirmation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown task index and status summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code, tools, credentials, or persistence behavior are included in the artifact.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

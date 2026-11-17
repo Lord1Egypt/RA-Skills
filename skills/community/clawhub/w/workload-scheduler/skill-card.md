@@ -1,37 +1,56 @@
-## Description: <br>
-Selects appropriate workload templates from the pool based on available system capacity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Selects appropriate workload templates from the pool based on available system capacity.
 
-## Publisher: <br>
-[ink5725](https://clawhub.ai/user/ink5725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ink5725](https://clawhub.ai/user/ink5725)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and system administrators use this skill to select workload templates that fit available CPU and memory capacity and produce a JSON scheduling plan for resource optimization.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Local capacity reports and workload templates may contain sensitive operational details.
+
+Mitigation: Confirm that reading the capacity report and /etc/compute/templates JSON files is appropriate, and keep template contents limited to non-sensitive scheduling specifications.
+
+Risk: Unreviewed or inaccurate workload templates can produce unsuitable scheduling recommendations.
+
+Mitigation: Restrict template write access to trusted administrators and review generated schedules before using them to drive operational changes.
+
+Risk: The source documentation is primarily in Chinese, which may reduce reviewer understanding for non-Chinese readers.
+
+Mitigation: Provide translated documentation or require review by someone who can accurately read the source documentation before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and system operators use this skill to choose workload templates that fit current spare CPU and memory capacity and produce a schedule plan for auxiliary tasks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text]
 
-## Known Risks and Mitigations: <br>
-Risk: The scheduler reads workload template JSON files from a fixed system path, so stale or untrusted templates could produce inappropriate scheduling recommendations. <br>
-Mitigation: Review and control the template directory contents before use, and verify the generated schedule plan before acting on it. <br>
+**Output Format:** [JSON]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Schedule output includes timestamp, capacity values, selected task metadata, total scheduled count, and completion status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON schedule plan with concise explanatory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes schedule timestamp, input capacity, selected tasks, total scheduled count, and completion status.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

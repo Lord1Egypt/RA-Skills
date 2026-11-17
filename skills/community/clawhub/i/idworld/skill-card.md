@@ -1,42 +1,55 @@
-## Description: <br>
-Plans Japanese X/Twitter content for IDworld merchandise, including content matrices, visual direction, post copy, posting cadence, and review signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when planning IDworld social media content for Japanese X/Twitter from product information, especially turning original goods merchandise details into a content matrix, image and video direction, natural Japanese tweet copy, posting cadence, data review points, and repeatable social content ideas.
 
-## Publisher: <br>
-[aolio516125-spec](https://clawhub.ai/user/aolio516125-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aolio516125-spec](https://clawhub.ai/user/aolio516125-spec)
 
-## Use Case: <br>
-Marketing and social media teammates use this skill to turn IDworld product details into Japanese X/Twitter launch plans, copy drafts, visual guidance, posting cadence, and performance review signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may contain incorrect product facts, campaign terms, prices, lead times, or order details if the input is incomplete. <br>
-Mitigation: Review generated Japanese posts before publication and verify product facts, campaign terms, links, and any commercial claims against approved source material. <br>
-Risk: Sensitive launch details could be included in social planning if they are provided as input. <br>
-Mitigation: Avoid providing confidential launch information unless it is already approved for social content planning or publication. <br>
+## Use Case:
 
+External social media and marketing teammates use this skill to turn IDworld product details into Japanese X/Twitter content plans for original goods campaigns. It produces campaign angles, audience psychology notes, content matrices, visual and video direction, draft Japanese posts, posting cadence, review signals, and repeatable content ideas.
 
-## Reference(s): <br>
-- [IDworld Planning Framework](references/planning-framework.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aolio516125-spec/idworld) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/aolio516125-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Text] <br>
-**Output Format:** [Markdown with structured tables, Japanese post drafts, and concise planning sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include Japanese X/Twitter copy, Chinese planning notes, image and video direction, 7-14 day posting cadence, and review signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated marketing content may include incorrect product claims, prices, lead times, campaign details, or ordering assumptions if the input facts are incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review product facts, prices, lead times, campaign terms, and links before using the generated plan or copy.
+
+Risk: Japanese X/Twitter copy may need brand, legal, or localization review before publication.
+
+Mitigation: Have a human reviewer check tone, claims, hashtags, and market fit before posting.
+
+## Reference(s):
+
+- [IDworld Planning Framework](references/planning-framework.md)
+- [ClawHub skill page](https://clawhub.ai/aolio516125-spec/skills/idworld)
+- [Publisher profile](https://clawhub.ai/user/aolio516125-spec)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured planning text with tables, lists, and Japanese X/Twitter copy drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not execute code, access credentials, or publish content automatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

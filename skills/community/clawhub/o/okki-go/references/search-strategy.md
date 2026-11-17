@@ -74,4 +74,4 @@ Mentor claims can come from:
 - confirmed Merchant Profile fields
 - explicit external sources only when the user explicitly asks for independent external research
 
-External research is not a recovery path for ordinary OKKI prospecting, low-yield results, API errors, or system busy responses. It cannot authorize unlock, contact search, or email send, and it must not mutate OKKI search payloads without user confirmation.
+External research is not a recovery path for ordinary OKKI prospecting, low-yield results, API errors, or system busy responses. It cannot authorize unlock or email send, cross-company contact search is retired, and it must not mutate OKKI search payloads without user confirmation.

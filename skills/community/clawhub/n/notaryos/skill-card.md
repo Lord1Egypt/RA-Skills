@@ -1,50 +1,62 @@
-## Description: <br>
-Seal AI agent actions with Ed25519 cryptographic receipts. Verify what your agent did and prove what it chose not to do. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NotaryOS seals AI agent actions and declined actions with Ed25519 cryptographic receipts for later verification.
 
-## Publisher: <br>
-[hellothere012](https://clawhub.ai/user/hellothere012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-BSL-1.1 <br>
+## Publisher:
 
+[hellothere012](https://clawhub.ai/user/hellothere012)
 
-## Use Case: <br>
-Developers and agent operators use this skill to seal, verify, and look up tamper-evident receipts for AI agent actions, including counterfactual records of actions the agent declined to take. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Action metadata and payload hashes are sent to a third-party signing service. <br>
-Mitigation: Confirm this data flow is acceptable, send only minimal payloads, and review tier-specific retention settings before production use. <br>
-Risk: Payloads can contain sensitive fields if callers skip sanitization. <br>
-Mitigation: Run the included sanitize_payload helper before sealing user or operational data, and extend its blocked fields for local policy requirements. <br>
-Risk: Production API credentials can be exposed through agent configuration or logs. <br>
-Mitigation: Protect NOTARY_API_KEY as a secret, avoid logging it, and rotate it if disclosure is suspected. <br>
-Risk: The external SDK package is installed at runtime from a package registry. <br>
-Mitigation: Pin or verify the notaryos package version when higher supply-chain assurance is required. <br>
+## Use Case:
 
+Developers and agent builders use NotaryOS to issue, verify, look up, and chain cryptographic receipts for agent actions, file changes, commands, configuration changes, API calls, and declined actions.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/hellothere012/notaryos) <br>
-- [NotaryOS homepage](https://github.com/hellothere012/notaryos) <br>
-- [NotaryOS documentation](https://notaryos.org/docs) <br>
-- [NotaryOS API docs](https://notaryos.org/api-docs) <br>
-- [NotaryOS PyPI package](https://pypi.org/project/notaryos/) <br>
-- [NotaryOS npm package](https://www.npmjs.com/package/notaryos) <br>
-- [NotaryOS privacy policy](https://notaryos.org/privacy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces receipt-sealing and verification guidance for use with the NotaryOS SDK and included payload sanitizer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can send selected action payloads and metadata to an external NotaryOS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when external receipt issuance is acceptable, and manually allowlist safe receipt fields before sealing actions.
+
+Risk: The included sanitizer does not provide complete privacy protection for all sensitive data.
+
+Mitigation: Avoid sending raw message bodies, file contents, credentials, authentication headers, health data, financial data, or other sensitive fields.
+
+Risk: The installed notaryos SDK is an external dependency used to contact the receipt service.
+
+Mitigation: Pin and audit the SDK version before use in production workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hellothere012/skills/notaryos)
+- [NotaryOS GitHub Repository](https://github.com/hellothere012/notaryos)
+- [NotaryOS Documentation](https://notaryos.org/docs)
+- [NotaryOS API Documentation](https://notaryos.org/api-docs)
+- [notaryos on PyPI](https://pypi.org/project/notaryos/)
+- [notaryos on npm](https://www.npmjs.com/package/notaryos)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sanitized payload examples, receipt verification guidance, and SDK configuration notes.]
+
+## Skill Version(s):
+
+2.4.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

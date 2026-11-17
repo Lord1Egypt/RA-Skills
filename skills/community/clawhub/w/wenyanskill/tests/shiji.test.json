@@ -1,0 +1,27 @@
+{
+  "style": "shiji",
+  "cases": [
+    {
+      "name": "史记风-叙事开头",
+      "input": "帮我写个故事",
+      "style": "shiji",
+      "intensity": 2,
+      "expected_output": "太史公曰：余读之，慨然太息。夫事之始末，不可不察也。",
+      "expect_contains": ["太史公", "余", "曰"],
+      "expect_not_contains": ["互联网", "AI", "APP", "好的", "收到"],
+      "max_length_per_sentence": 20,
+      "min_score": 70
+    },
+    {
+      "name": "史记风-点评事件",
+      "input": "评价一下这件事",
+      "style": "shiji",
+      "intensity": 2,
+      "expected_output": "太史公曰：悲夫！此事之成败，常在于迟速之间。迟则失机，速则有望。",
+      "expect_contains": ["太史公曰", "悲夫"],
+      "expect_not_contains": ["互联网", "AI", "好的"],
+      "max_length_per_sentence": 20,
+      "min_score": 70
+    }
+  ]
+}

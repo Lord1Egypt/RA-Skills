@@ -1,45 +1,67 @@
-## Description: <br>
-AI 行业资讯专家 + 小红书内容创作。检索 24 小时内最新 AI 资讯，生成小红书文案 + 3:4 比例 HTML 封面。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 行业资讯专家 + 小红书内容创作。检索 24 小时内最新 AI 资讯，生成小红书文案 + 3:4 比例 HTML 封面。使用场景：(1) 每日 AI 资讯汇总，(2) 小红书图文笔记创作，(3) 大模型发布/融资/技术突破等资讯整理。
 
-## Publisher: <br>
-[javastarboy](https://clawhub.ai/user/javastarboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[javastarboy](https://clawhub.ai/user/javastarboy)
 
-## Use Case: <br>
-External creators, content operators, and agent users use this skill to collect recent AI industry news, summarize source links, and produce Xiaohongshu-ready copy plus a mobile 3:4 HTML cover. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated content can be based on untrusted, stale, or synthetic news data. <br>
-Mitigation: Use trusted or sanitized search results, verify source freshness, and treat demo output as synthetic test content rather than current news. <br>
-Risk: Documentation examples interpolate JSON into shell commands. <br>
-Mitigation: Avoid copying unsafe shell-interpolation patterns; pass structured data through safer argument or file-based workflows where possible. <br>
-Risk: The script can automatically open generated HTML and output directories. <br>
-Mitigation: Review before running and disable or remove automatic browser and file-manager opening in managed environments. <br>
+## Use Case:
 
+Content creators, marketers, and AI-news operators use this skill to turn recent AI industry news into Xiaohongshu-ready posts, mobile HTML cover pages, source lists, and summary tables. It supports demo data for testing and accepts externally searched news data for normal publishing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/javastarboy/ai-news-xiaohongshu) <br>
-- [OpenClaw integration guide](references/openclaw-integration.md) <br>
-- [Search query reference](references/search-queries.md) <br>
-- [User configuration](references/user-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, HTML, and source-summary files with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes xiaohongshu-copy.md, cover.html, news-summary.md, and sources.md under output/<date>; falls back to demo data when real news JSON is not provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review marks the release as suspicious because the real-data workflow handles web-search results unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and modify the workflow before installation; escape search-result fields before generating HTML or Markdown and inspect generated copy and sources before publishing.
+
+Risk: Shell-string execution and automatic browser or directory opening can create avoidable execution and environment risks.
+
+Mitigation: Replace shell-string examples with argument-array execution, disable automatic opening unless explicitly requested, and avoid unpinned npx search commands.
+
+Risk: Author-controlled promotional contact text can appear in generated outputs.
+
+Mitigation: Review and replace default call-to-action and contact text in the user configuration before using the skill in a public workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/javastarboy/skills/ai-news-xiaohongshu)
+- [OpenClaw integration guide](references/openclaw-integration.md)
+- [Search query reference](references/search-queries.md)
+- [User configuration](references/user-config.md)
+- [HTML pagination notes](references/HTML分页修复说明.md)
+- [UI optimization notes](references/UI 优化说明.md)
+- [Issue fix notes](references/问题修复说明.md)
+- [OpenAI blog](https://openai.com/blog)
+- [Anthropic news](https://www.anthropic.com/news)
+- [Google DeepMind](https://deepmind.google/)
+- [Hugging Face blog](https://huggingface.co/blog)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, HTML, source-link lists, summary tables, JSON-compatible news inputs, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files are written under an output date directory and may include Xiaohongshu copy, a 3:4 mobile HTML cover, a news summary, and source links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

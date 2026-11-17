@@ -1,43 +1,58 @@
-## Description: <br>
-Provides latest news summaries with titles, sources, and brief overviews for user-supplied topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides brief latest-news summaries for a user-specified topic, including item titles, sources where available, and short overviews.
 
-## Publisher: <br>
-[loverun321](https://clawhub.ai/user/loverun321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loverun321](https://clawhub.ai/user/loverun321)
 
-## Use Case: <br>
-External users and agents use this skill to request recent news summaries for a topic and receive a small set of summarized results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a live-looking payment key and possible paid billing without clear per-call user control. <br>
-Mitigation: Rotate and remove the exposed payment key, store credentials outside the skill artifact, and require explicit user consent and spending controls before each paid call. <br>
-Risk: The release evidence advises correcting the news-provider disclosure before users rely on the skill. <br>
-Mitigation: Update the public description and artifact behavior so the disclosed news source matches the actual provider used for retrieval. <br>
-Risk: The security verdict is suspicious despite ordinary news functionality. <br>
-Mitigation: Review the skill before installation and publish clear billing, data-sharing, and provider disclosures for users. <br>
+## Use Case:
 
+External users and agents use this skill to request concise current-news summaries for a topic, such as AI, Bitcoin, or technology.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loverun321/news-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/loverun321) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON-like response containing topic, news items, item count, and payment status or error fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [News results are limited to a small list of items with truncated titles and summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The release evidence reports an exposed payment API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the key from the artifact, rotate the exposed credential, and require secure runtime configuration before release.
+
+Risk: The release evidence reports automatic per-call billing and broken billing or loading behavior.
+
+Mitigation: Fail closed on billing errors, repair load-time issues, and clearly disclose billing and consent behavior before the skill is used.
+
+Risk: The release evidence reports that user and query data are sent to external services.
+
+Mitigation: Disclose the external news and billing service paths and obtain appropriate user consent before sending requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loverun321/skills/news-skill)
+- [Publisher profile](https://clawhub.ai/user/loverun321)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object containing the requested topic, news item titles and summaries, item count, payment status, or error fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to five news items and may include payment-required or fetch-error responses.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

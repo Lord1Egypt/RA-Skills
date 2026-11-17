@@ -1,39 +1,53 @@
-## Description: <br>
-Dependency Autopsy helps agents examine dependency trees for maintenance activity, maintainer health, bloat, replacement difficulty, version drift, license concerns, and dependency depth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep health analysis of your dependency tree that helps assess abandonment risk, maintainer activity, unused package weight, replacement difficulty, version health, license compatibility, and dependency depth.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineering teams use this skill before adding dependencies, during dependency health checks, before security or compliance reviews, and when investigating bundle size or dependency risk. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce incomplete or incorrect dependency health, license, or security conclusions. <br>
-Mitigation: Independently verify license and security conclusions before making production dependency decisions. <br>
-Risk: Using the skill may lead an agent to inspect dependency files and source imports in a repository. <br>
-Mitigation: Use it only in repositories where that review is acceptable and avoid exposing sensitive private code unnecessarily. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcools1977/dependency-autopsy) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review package manifests and dependency trees for supply-chain health, maintainability risk, license concerns, bloat, and upgrade or replacement planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown dependency health report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API calls or executable code; report quality depends on available manifests, lockfiles, source imports, and registry or project metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may inspect dependency manifests and package-health signals from a project.
+
+Mitigation: Use it only in projects where dependency metadata may be reviewed by the agent, and review the generated report before acting on recommendations.
+
+Risk: Dependency health recommendations can be incomplete or misleading if package metadata is stale or project usage is unusual.
+
+Mitigation: Validate critical replacement, upgrade, and license decisions against authoritative package, repository, and legal sources before making production changes.
+
+## Reference(s):
+
+- [Dependency Autopsy ClawHub skill page](https://clawhub.ai/jcools1977/skills/dependency-autopsy)
+- [jcools1977 ClawHub publisher profile](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown dependency health report with scores, findings, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls or credential requirements are indicated by the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

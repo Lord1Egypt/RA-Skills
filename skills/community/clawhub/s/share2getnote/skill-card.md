@@ -1,44 +1,59 @@
-## Description: <br>
-Parse ChatGPT or Gemini shared conversation links and save Q&A pairs as notes to GetNote (biji.com). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse ChatGPT or Gemini shared conversation links and save Q&A pairs as notes to GetNote (biji.com).
 
-## Publisher: <br>
-[silentforce](https://clawhub.ai/user/silentforce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silentforce](https://clawhub.ai/user/silentforce)
 
-## Use Case: <br>
-External users and developers use this skill to import public ChatGPT or Gemini shared conversations into GetNote as individual markdown notes after reviewing extracted titles and content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install Playwright browser automation dependencies locally when parsing a shared conversation link. <br>
-Mitigation: Install only in environments where local browser automation dependencies are acceptable, and review setup prompts or dependency changes before running the parser. <br>
-Risk: Shared conversation content may include private or sensitive information that would be saved into the user's GetNote account. <br>
-Mitigation: Review extracted note titles and markdown content before confirming the save step, especially for private conversations. <br>
-Risk: Parsing depends on ChatGPT and Gemini share-page structure, which can change and cause incomplete or failed extraction. <br>
-Mitigation: Check the extracted note count and content before saving, and fall back to manual extraction if the parser reports missing conversation data. <br>
+## Use Case:
 
+External users and developers use this skill to extract Q&A turns from public ChatGPT or Gemini shared conversations, review the extracted note titles, and save selected notes to GetNote.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/silentforce/share2getnote) <br>
-- [GetNote Skill](https://clawhub.ai/iswalle/getnote) <br>
-- [uv Installation Guide](https://docs.astral.sh/uv/getting-started/installation/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON note objects containing title and markdown content fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided ChatGPT or Gemini share URL and user confirmation before saving notes to GetNote.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; SKILL.md frontmatter still lists 1.0.0) <br>
+Risk: Weak URL validation could allow the browser automation to open unintended or internal URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a constrained environment and prefer a release that strictly validates HTTPS hostnames and share-link paths before browser navigation.
+
+Risk: Runtime installation of mutable browser dependencies can change behavior between runs.
+
+Mitigation: Review before installing and prefer a release that pins Playwright and requires explicit consent before downloading browser artifacts.
+
+Risk: Imported shared conversations may contain sensitive user or business information.
+
+Mitigation: Avoid links from untrusted people, review extracted notes before saving, and treat imported conversations as potentially sensitive.
+
+## Reference(s):
+
+- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/)
+- [GetNote skill](https://clawhub.ai/iswalle/getnote)
+- [Share to GetNote on ClawHub](https://clawhub.ai/silentforce/skills/share2getnote)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON note objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The parsing script emits a JSON array of note objects with title and markdown content fields.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

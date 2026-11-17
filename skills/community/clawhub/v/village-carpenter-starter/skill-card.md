@@ -1,39 +1,57 @@
-## Description: <br>
-Build a basic portable carpenter bench from village scrap, master the core hand-tool techniques, and start repairing furniture, doors, windows, farm gates, and simple wooden tools to earn steady cash or barter in any rural village. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a basic portable carpenter bench from village scrap, master the core hand-tool techniques, and start repairing furniture, doors, windows, farm gates, and simple wooden tools to earn steady cash or barter in any rural village.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users in rural settings use this skill to learn a practical carpentry starter workflow, including a basic bench setup, minimum hand tools, safe practice, and first paid or bartered repair jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives practical woodworking advice that could lead to physical injury if users handle tools carelessly. <br>
-Mitigation: Follow the artifact's safety rules: secure the workpiece, keep hands behind blades, wear closed shoes, avoid rushed cuts, keep sharp tools away from children, and stop work to clean and bandage cuts. <br>
-Risk: The artifact declares filesystem tool access even though the scanner notes no visible need for that permission in the skill text. <br>
-Mitigation: Review the requested filesystem permission before installation and grant only the access needed for the local agent environment. <br>
+## Use Case:
 
+External users and agents supporting rural self-employment planning use this skill to set up a basic hand-tool carpentry workflow, practice common village repairs, and begin paid or bartered non-load-bearing woodworking jobs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown instructional guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides practical woodworking steps and safety reminders; it does not produce executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package requests filesystem access that the security evidence says is unnecessary for the current woodworking guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and deny or remove filesystem access unless a reviewed future version clearly needs it.
+
+Risk: The installer is a mutable npx command that may resolve differently over time.
+
+Mitigation: Install only from a trusted, pinned package/version and recheck the release hash before use.
+
+Risk: The skill gives practical carpentry and tool-safety guidance that could be misapplied to structural or hazardous work.
+
+Mitigation: Begin with non-load-bearing repairs, follow the stated safety rules, and seek qualified local help for structural work or injuries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/village-carpenter-starter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown instructions with step-by-step action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Practical safety and trade guidance; no code or command execution required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

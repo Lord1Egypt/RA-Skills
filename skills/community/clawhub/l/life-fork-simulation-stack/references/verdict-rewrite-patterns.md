@@ -1,5 +1,7 @@
 # Verdict Rewrite Patterns / 判词重写规则
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：生成或修复首屏判词。读取 `life-archetype-library.md` 和 `archetype-tension-axes.md` 后，用本文件把普通总结改成能命名隐秘遗憾的判词。
 
 ## 判词四件套

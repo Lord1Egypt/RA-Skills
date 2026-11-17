@@ -58,4 +58,4 @@ After a confirmed branch search:
 - label the branch used
 - add priority/observe/not-recommended guidance only when the user asked for analysis or the route is guided
 
-Before unlock, contact search, or email send, use `paid-actions.md`.
+Before unlock or email send, use `paid-actions.md`. Cross-company contact search is retired.

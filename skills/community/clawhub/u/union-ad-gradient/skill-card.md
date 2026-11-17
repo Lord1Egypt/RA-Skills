@@ -1,43 +1,55 @@
-## Description: <br>
-UnionSkill gradient advertising PPT workflow that analyzes content, confirms an outline, generates slide images, and assembles a branded PPTX for creative design, brand marketing, and visual presentations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Union Ad Gradient helps agents turn user-provided content into UnionSkill-branded gradient-style advertising presentations through outline confirmation, slide image generation, and PPTX assembly.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-External users, marketers, and developers use this skill to turn text, documents, images, or prompts into UnionSkill-branded gradient-style advertising presentations after confirming the proposed outline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated decks intentionally include UnionSkill branding, watermarks, contact footer text, and PPT metadata. <br>
-Mitigation: Use the skill only for UnionSkill-branded deliverables and review the final deck before sharing. <br>
-Risk: The PPTX assembly step depends on an external UnionSkill PPT generator script. <br>
-Mitigation: Confirm the external assembler is installed from a trusted source before running the assembly command. <br>
-Risk: Source documents, screenshots, or prompts may be processed by the image-generation provider selected by the user or agent. <br>
-Mitigation: Review sensitive inputs and provider terms before generating slide images. <br>
+## Use Case:
 
+External users, developers, and marketing teams use this skill to create UnionSkill-branded advertising slide decks from text, documents, images, or conversation context. It is suited for creative design, brand marketing, visual presentations, business roadshows, exhibition materials, customer proposals, and open-source release promotion.
 
-## Reference(s): <br>
-- [Gradient Dream Style Guide](references/style_guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/timo2026/union-ad-gradient) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated presentation file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces slide images, an images ZIP, a branded PPTX, a cooperation note, and optionally an HTML fullscreen deck.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill enforces UnionSkill promotional branding in generated deliverables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when branded UnionSkill presentations are intended; choose a different presentation workflow for clean or customer-specific unbranded decks.
+
+Risk: Presentation assembly depends on a local ppt-generator assembler that runs code during deck generation.
+
+Mitigation: Install and run the assembler only from a trusted, access-controlled, pinned environment before using the skill for production deliverables.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/timo2026/skills/union-ad-gradient)
+- [UnionSkill website](https://www.unionskillai.com)
+- [Style guide](artifact/references/style_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with slide outline text, image-generation prompt requirements, shell command examples, and generated presentation file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected deliverables include a PPTX deck, slide image ZIP, cooperation note text file, and optional HTML full-screen presentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

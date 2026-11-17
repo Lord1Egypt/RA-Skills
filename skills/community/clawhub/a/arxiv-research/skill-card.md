@@ -1,39 +1,57 @@
-## Description: <br>
-Search and download research papers from arXiv.org - Research skill for OpenClaw agents <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and download research papers from arXiv.org for OpenClaw agents.
 
-## Publisher: <br>
-[nantes](https://clawhub.ai/user/nantes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nantes](https://clawhub.ai/user/nantes)
 
-## Use Case: <br>
-Developers, researchers, and research-focused agents use this skill to search arXiv, filter papers by category, retrieve paper metadata, and download selected PDFs for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external arxiv Python package. <br>
-Mitigation: Install dependencies from trusted package indexes and review dependency provenance before use in controlled environments. <br>
-Risk: Downloaded PDFs are files from the internet and are saved locally by default. <br>
-Mitigation: Review downloaded PDFs with normal file-safety practices and change the download location when local storage policy requires it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [arXiv](https://arxiv.org) <br>
+## Use Case:
 
+External users and developers use this skill to search arXiv papers by query or category, inspect paper metadata, and download selected PDFs for research workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and Python examples; command output is plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches rely on the external arxiv Python package, and downloads save PDFs under ~/Downloads/arxiv by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on the third-party arxiv Python package.
+
+Mitigation: Install the dependency in a virtual environment and review the package source and version before use.
+
+Risk: The download command contacts arXiv and writes PDF files to the local Downloads/arxiv folder.
+
+Mitigation: Run the skill in an approved environment and confirm the intended arXiv ID before downloading.
+
+Risk: arXiv papers may be preprints that have not been peer reviewed.
+
+Mitigation: Validate important claims against authoritative or peer-reviewed sources before relying on them.
+
+## Reference(s):
+
+- [arXiv](https://arxiv.org)
+- [ClawHub Skill Page](https://clawhub.ai/nantes/skills/arxiv-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files]
+
+**Output Format:** [Markdown text with inline shell commands and Python snippets; PDF files may be downloaded when the skill is invoked.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output includes titles, summaries, authors, publication dates, categories, PDF URLs, and arXiv IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter; artifact _meta.json lists 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

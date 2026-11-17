@@ -1,0 +1,22 @@
+{
+  "name": "pm-requirement-review-simulator",
+  "version": "1.2.8",
+  "tagline": "Stress-test your PRD with 5-role simulated review meetings / PM 需求评审模拟器：五角色攻防推演，输出存活率报告",
+  "description": "PRD review stress-test simulator for product managers. Five cross-functional roles (engineering, operations, design, executive, legal) challenge your product requirements with realistic pushback under one consistent review standard. Outputs a scored HTML or Markdown survival report with 5-dimension radar chart, counterargument playbook, RACI matrix, meeting script, and action checklist. PM 需求评审模拟器。技术/运营/设计/老板/法务五角色按统一标准评审，确定性评分引擎逐子项打分，输出带雷达图的 HTML 或 Markdown 存活率报告、神回复话术、RACI 协作包和会议脚本。",
+  "category": "productivity",
+  "tags": [
+    "product-management",
+    "prd-review",
+    "requirement-analysis",
+    "meeting-simulation",
+    "html-report",
+    "stress-test",
+    "chinese"
+  ],
+  "license": "MIT",
+  "author": "Chris1Wang3",
+  "pricing": "free",
+  "entry": "SKILL.md",
+  "support_url": "https://github.com/Chris1Wang3/HammerRoom-Skills/issues",
+  "homepage": "https://github.com/Chris1Wang3/HammerRoom-Skills/tree/master/pm-requirement-review-simulator"
+}

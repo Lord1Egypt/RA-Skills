@@ -1,44 +1,57 @@
-## Description: <br>
-中文学术论文写作助手 supports Chinese academic paper workflows, including topic development, outlines, proposals, literature reviews, chapter drafting, citation formatting, polishing, and submission checks for humanities writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文学术论文写作全流程助手，支持选题构思、大纲规划、开题报告、文献综述、正文写作、引用管理、语言润色和投稿自检，并要求只处理用户提供的真实资料。
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Students, researchers, and academic writers use this skill to draft and revise Chinese humanities papers, theses, proposals, and journal submissions while keeping citation and academic-integrity checks visible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic writing and citation guidance can still contain incorrect citation details, unsupported claims, or plagiarism-sensitive phrasing. <br>
-Mitigation: Manually verify citations, bibliography fields, source boundaries, and final wording before academic submission. <br>
-Risk: The skill references a companion cwphil-citation-style integration that is not included in this artifact. <br>
-Mitigation: Review and install the companion skill separately before relying on automated citation formatting or citation self-checks. <br>
+## Use Case:
 
+Students, researchers, and academic writers use this skill to draft, revise, structure, and format Chinese academic papers, theses, literature reviews, proposals, and journal submissions. It is especially oriented toward Chinese humanities fields such as literature, history, philosophy, and related disciplines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michealxie001/chinese-academic-writing) <br>
-- [citation-guide.md](references/citation-guide.md) <br>
-- [literature-review-guide.md](references/literature-review-guide.md) <br>
-- [paper-structure.md](references/paper-structure.md) <br>
-- [proposal-template.md](references/proposal-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain academic Chinese text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include outlines, draft sections, revision suggestions, citation checklists, and placeholders for missing bibliographic details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill may activate for broad academic-writing requests and apply Chinese academic style or bundled citation conventions when another style is intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the target language, discipline, institution, journal, and citation style before asking for drafting or formatting help.
+
+Risk: Academic drafting and citation assistance can introduce inaccurate claims if source materials are incomplete or ambiguous.
+
+Mitigation: Provide real source materials and verify generated citations, claims, quotations, and missing-field markers before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michealxie001/skills/chinese-academic-writing)
+- [《中國文哲研究集刊》撰稿格式規範](artifact/references/citation-guide.md)
+- [文献综述写作指南](artifact/references/literature-review-guide.md)
+- [论文章节结构与写作要点](artifact/references/paper-structure.md)
+- [开题报告/研究计划模板](artifact/references/proposal-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text Chinese academic writing guidance, outlines, drafts, revisions, checklists, citations, and formatting notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill emphasizes academic Chinese style, citation boundaries, missing-field markers for incomplete bibliography data, and no fabricated sources or research data.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

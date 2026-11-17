@@ -1,39 +1,51 @@
-## Description: <br>
-Draw and search all 78 Rider-Waite tarot cards with upright and reversed meanings, including single or multiple card spreads and detailed lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draw and search all 78 Rider-Waite tarot cards with upright and reversed meanings, including single or multiple card spreads and detailed lookups.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Agents and users can draw tarot cards, search the Rider-Waite deck, and look up card meanings for spreads, interpretations, and card-specific references through the Pipeworx tarot MCP gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tarot-related queries are sent to the third-party Pipeworx gateway. <br>
-Mitigation: Install and use this skill only when sharing those queries with the Pipeworx gateway is acceptable for the user's environment. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent draw tarot cards, search the Rider-Waite deck, and retrieve upright and reversed meanings through the documented MCP endpoint.
 
-## Reference(s): <br>
-- [Pipeworx tarot skill page](https://clawhub.ai/brucegutman/pipeworx-tarot) <br>
-- [Pipeworx tarot MCP endpoint](https://gateway.pipeworx.io/tarot/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tarot card responses include card name, suit, type, upright meaning, reversed meaning, and description.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Tarot requests are sent to a documented third-party MCP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending private or sensitive information in tarot queries unless the user trusts that service.
+
+## Reference(s):
+
+- [Pipeworx tarot ClawHub page](https://clawhub.ai/brucegutman/skills/pipeworx-tarot)
+- [brucegutman publisher profile](https://clawhub.ai/user/brucegutman)
+- [Tarot MCP endpoint](https://gateway.pipeworx.io/tarot/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON examples; MCP tool results return card text and structured card details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requests are sent to a third-party MCP endpoint documented by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

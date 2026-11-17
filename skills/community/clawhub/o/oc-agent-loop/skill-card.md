@@ -1,42 +1,58 @@
-## Description: <br>
-Keep OpenClaw maintenance tight: diagnose one issue, change one thing, validate it, then keep or revert with evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keep OpenClaw maintenance tight: diagnose one issue, change one thing, validate it, then keep or revert with evidence.
 
-## Publisher: <br>
-[jiepu110](https://clawhub.ai/user/jiepu110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiepu110](https://clawhub.ai/user/jiepu110)
 
-## Use Case: <br>
-Developers and maintainers use this skill to keep local OpenClaw maintenance work bounded, evidence-backed, and reviewable while diagnosing issues, making small candidate changes, validating them, and deciding whether to keep, revise, or revert. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Specialized maintainer workflows can affect production systems when used outside a trusted maintainer environment. <br>
-Mitigation: Use the skill only in a trusted ClawHub maintainer environment and review changes carefully before installing or applying them. <br>
-Risk: Autoreview workflows may grant nested Codex more filesystem and command authority than routine review requires. <br>
-Mitigation: Prefer running autoreview with --no-yolo or AUTOREVIEW_YOLO=0 unless full authority is intentional. <br>
-Risk: Agent-assisted maintenance can drift into broad or unvalidated changes. <br>
-Mitigation: Keep work to one narrow issue, cap iterations, run targeted validation, and revert candidate changes when validation is missing or failing. <br>
+## Use Case:
 
+Developers and maintainers use this skill to keep local OpenClaw maintenance tasks bounded: diagnose one issue, make a small candidate change, validate it, and decide whether to keep, revise, or revert.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiepu110/oc-agent-loop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with concise change summaries, validation summaries, decisions, and follow-up items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bounded local maintenance loop with an explicit keep, revise, or revert decision.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill may guide an agent to edit local files and run validation commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep changes scoped to one narrow issue, disclose touched files and commands, and require maintainer review before keeping changes.
+
+Risk: A candidate change could be kept without reliable validation.
+
+Mitigation: Run syntax checks, targeted tests, and project-specific validation; revise or revert if validation is missing or failing.
+
+Risk: Maintenance work could affect secrets, deployment targets, or production state.
+
+Mitigation: Do not change credentials, deployment targets, production state, or environment-specific configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiepu110/skills/oc-agent-loop)
+- [OpenClaw Gateway Guardian GitHub repository](https://github.com/Star-Ring-Protocol/openclaw-gateway-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text summaries with optional code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include a candidate change summary, validation output summary, keep/revise/revert decision, and deliberately scoped follow-up items.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

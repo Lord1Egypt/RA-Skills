@@ -1,0 +1,23 @@
+{
+  "$schema": "../schemas/compatibility.schema.json",
+  "$comment": "每个 ChatCut/工具版本单独记录。只有 status=validated 且 requiredProbes 全部 passed，才可使用对应宿主公式。",
+  "schemaVersion": "1.0.0",
+  "host": "chatcut",
+  "status": "unverified",
+  "observedAt": null,
+  "toolSchemaHash": "REPLACE-with-current-tool-schema-hash",
+  "capabilities": {
+    "maskCoordinateOriginY": "unknown",
+    "circleRadiusSemantic": "unknown",
+    "propertyOverridesMode": "unknown",
+    "fxLaneExecutionOrder": "unknown",
+    "exportFpsBehavior": "unknown"
+  },
+  "requiredProbes": [
+    {"id": "mask-origin", "status": "not-run", "evidence": ""},
+    {"id": "circle-radius", "status": "not-run", "evidence": ""},
+    {"id": "effect-order", "status": "not-run", "evidence": ""},
+    {"id": "property-override-mode", "status": "not-run", "evidence": ""},
+    {"id": "export-fps", "status": "not-run", "evidence": ""}
+  ]
+}

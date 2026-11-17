@@ -1,43 +1,58 @@
-## Description: <br>
-Intelligent skill matcher that searches multiple skill marketplaces (ClawHub & Skills.sh) in real-time. Supports ANY language for user input, multi-step skill chaining, and one-click installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skills Finder searches ClawHub and Skills.sh in real time to recommend, list, and install agent skills across multilingual queries and multi-step tasks.
 
-## Publisher: <br>
-[welliu](https://clawhub.ai/user/welliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[welliu](https://clawhub.ai/user/welliu)
 
-## Use Case: <br>
-Developers and agent users use this skill to search ClawHub and Skills.sh for relevant skills, compare recommendations, install selected packages, and identify multi-skill chains for complex tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing a recommended result can modify the user's agent environment and affect future behavior. <br>
-Mitigation: Verify the exact package name, source marketplace, publisher, and permissions before running install commands. <br>
-Risk: Search and install commands depend on external marketplace CLIs and may return unavailable, rate-limited, or unexpected results. <br>
-Mitigation: Review the raw command output and prefer source-qualified installs from ClawHub or Skills.sh. <br>
+## Use Case:
 
+Developers and agent users use this skill to find, compare, list, and install skills from ClawHub and Skills.sh for multilingual requests and chained tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/welliu/skills-finder) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Skill Finder Script](artifact/scripts/skill-finder.sh) <br>
-- [Evaluation Prompts](artifact/evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text with marketplace search output, status messages, and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke npx-based marketplace CLIs and can install persistent skills when the install command is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can run mutable npm tools through npx and install agent skills without strong version pinning or confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a restricted workspace, avoid exposing secrets to the process environment, and prefer pinned or preinstalled marketplace CLIs before search, list, or install operations.
+
+Risk: The install workflow can add skills from external marketplaces.
+
+Mitigation: Review and scan selected skills before deployment, especially when installing from live marketplace results.
+
+Risk: Search and list results depend on external marketplace availability and rate limits.
+
+Mitigation: Treat marketplace failures or rate-limit messages as expected operational conditions and retry or narrow the source when needed.
+
+## Reference(s):
+
+- [ClawHub Skills Finder listing](https://clawhub.ai/welliu/skills/skills-finder)
+- [Evaluation prompts](artifact/evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Terminal text and Markdown guidance with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on live marketplace CLIs, network access, and rate limits.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

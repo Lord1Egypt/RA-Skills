@@ -1,38 +1,49 @@
-## Description: <br>
-Query Île-de-France Mobilités (IDFM) PRIM/Navitia for place resolution, journey planning, and disruptions or incident checks when the user has an IDFM PRIM API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Île-de-France Mobilités (IDFM) PRIM/Navitia for place resolution, journey planning, and disruptions/incident checks.
 
-## Publisher: <br>
-[anthonymq](https://clawhub.ai/user/anthonymq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anthonymq](https://clawhub.ai/user/anthonymq)
 
-## Use Case: <br>
-Developers and transit-focused agents use this skill to resolve Île-de-France locations, plan PRIM/Navitia journeys, and check disruptions or incidents from an IDFM API key. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an IDFM PRIM API key and includes an option that can send that key to a non-default API host. <br>
-Mitigation: Use the default official PRIM/Navitia endpoint, avoid overriding --base-url unless the destination is trusted, and prefer a dedicated or revocable API key. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [IDFM PRIM / Navitia quick notes](references/idfm-prim.md) <br>
-- [IDFM PRIM/Navitia API endpoint](https://prim.iledefrance-mobilites.fr/marketplace/v2/navitia) <br>
+## Use Case:
 
+External users, transit-focused agents, and developers use this skill to resolve stops, plan journeys, and check disruptions for Île-de-France routes through IDFM PRIM/Navitia when an IDFM PRIM API key is available.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Plain text summaries or raw JSON from PRIM/Navitia API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IDFM_PRIM_API_KEY; supports place lookup, journey planning, disruption filters, and an optional raw JSON mode.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The --base-url option can send the IDFM_PRIM_API_KEY to an arbitrary destination.
+
+Mitigation: Use a limited-scope IDFM PRIM API key and do not pass --base-url unless the destination has been audited and trusted; prefer the official prim.iledefrance-mobilites.fr Navitia endpoint.
+
+## Reference(s):
+
+- [IDFM PRIM / Navitia quick notes](references/idfm-prim.md)
+- [IDFM PRIM/Navitia endpoint](https://prim.iledefrance-mobilites.fr/marketplace/v2/navitia)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON API output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IDFM_PRIM_API_KEY; --json can return raw PRIM/Navitia responses.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

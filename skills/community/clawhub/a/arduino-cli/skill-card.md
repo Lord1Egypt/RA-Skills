@@ -1,38 +1,53 @@
-## Description: <br>
-Provides commands and workflows for Arduino CLI, including creating, compiling, and uploading sketches, managing boards, installing or listing cores and libraries, and configuring Arduino CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides commands and workflows for Arduino CLI so users can create, compile, and upload Arduino sketches, manage boards, install cores and libraries, and configure Arduino CLI.
 
-## Publisher: <br>
-[547895019](https://clawhub.ai/user/547895019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[547895019](https://clawhub.ai/user/547895019)
 
-## Use Case: <br>
-Developers and engineers use this skill to work with Arduino CLI commands for board discovery, core and library management, sketch creation, compilation, and upload workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Arduino CLI commands can install board packages from configured URLs or upload firmware to connected hardware. <br>
-Mitigation: Install Arduino CLI and board packages from trusted sources, use trusted board-manager URLs, and confirm the connected board, serial port, FQBN, and sketch path before upload commands. <br>
+## Use Case:
 
+Developers, engineers, and makers use this skill for Arduino CLI command guidance when setting up projects, managing boards and cores, compiling sketches, uploading firmware, and managing libraries.
 
-## Reference(s): <br>
-- [ESP8266 Arduino core package index](https://arduino.esp8266.com/stable/package_esp8266com_index.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Arduino CLI upload commands can modify firmware on a connected device if the wrong board, port, or FQBN is selected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before running upload commands, confirm the connected board, serial port, and FQBN with `arduino-cli board list`.
+
+Risk: Core and library installation commands can add third-party components to the local Arduino environment.
+
+Mitigation: Review the requested core, library, and additional package index URL before executing install or update commands.
+
+## Reference(s):
+
+- [ESP8266 Arduino Core Package Index](https://arduino.esp8266.com/stable/package_esp8266com_index.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command templates that may install Arduino cores or libraries and upload firmware when executed by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

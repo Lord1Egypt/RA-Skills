@@ -1,45 +1,53 @@
-## Description: <br>
-Verifies factual claims from text or URLs, traces claims to original or official sources, and returns structured credibility reports with authoritative links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alon Fact Check verifies factual claims from text or URLs by extracting explicit claims, checking authoritative sources, and returning structured credibility reports or source traces with links.
 
-## Publisher: <br>
-[alondotsh](https://clawhub.ai/user/alondotsh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alondotsh](https://clawhub.ai/user/alondotsh)
 
-## Use Case: <br>
-External users and analysts use this skill to verify factual claims from text or URLs, classify them as true, misleading, false, or unverified, and trace claims to authoritative source URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private text or authenticated/internal URLs may be exposed if the host agent browses or searches them externally. <br>
-Mitigation: Use the skill for public or non-sensitive fact-checking, and avoid submitting confidential material unless external browsing is acceptable. <br>
-Risk: A claim may remain unresolved when sources are inaccessible, ambiguous, or only weak secondary mentions are found. <br>
-Mitigation: Use the skill's unverified verdicts, trace confidence, and notes to preserve uncertainty instead of forcing a conclusion. <br>
-Risk: High-stakes factual checks can be mistaken for personalized medical, legal, financial, or safety advice. <br>
-Mitigation: Treat outputs as evidence summaries about claims, not personalized advice, and rely on qualified professionals for decisions. <br>
+## Use Case:
 
+External users and developers use this skill to check factual claims from URLs or pasted text, trace original or official sources, and receive structured reports with verdicts, credibility scores, source links, and key qualifiers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alondotsh/alon-fact-check) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/alondotsh) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Runtime skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown fact-check report or source trace with links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source summaries, verdicts, credibility scores, source links, trace confidence, and notes on missing or ambiguous evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The quick install command uses a floating npx package/source, which may change between installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the installer package/source before installation.
+
+Risk: Fact-check reports can be incomplete or misleading if sources are inaccessible, stale, or not directly tied to the exact claim.
+
+Mitigation: Review the cited links and claim-source alignment, especially for high-stakes medical, legal, financial, public safety, or civic topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alondotsh/skills/alon-fact-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with source links, verdicts, credibility ratings, and source-trace sections when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches the user's language and keeps claim sections concise with direct source URLs.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

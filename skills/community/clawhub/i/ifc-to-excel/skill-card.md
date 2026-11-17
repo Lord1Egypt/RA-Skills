@@ -1,42 +1,54 @@
-## Description: <br>
-Convert IFC files (2x3, 4x1, 4x3) to Excel databases using IfcExporter CLI. Extract BIM data, properties, and geometry without proprietary software. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert IFC files (2x3, 4x1, 4x3) to Excel databases using IfcExporter CLI.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Developers, BIM engineers, and construction data teams use this skill to convert IFC models into Excel workbooks and optional Collada geometry for validation, quantity takeoff, material schedules, and analytics workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs filesystem access to read IFC files and write conversion outputs. <br>
-Mitigation: Run it only on folders and model files the user chooses, and review generated Excel or geometry files before sharing them. <br>
-Risk: The workflow depends on a local IfcExporter or IfcOpenShell installation. <br>
-Mitigation: Use a trusted converter installation and verify converter and input paths before running single-file or batch jobs. <br>
+## Use Case:
 
+Developers, BIM engineers, and construction data teams use this skill to convert IFC model files into Excel workbooks for validation, quantity takeoff, reporting, and downstream analytics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/ifc-to-excel) <br>
-- [cad2data Pipeline](https://github.com/datadrivenconstruction/cad2data-Revit-IFC-DWG-DGN-pipeline-with-conversion-validation-qto) <br>
-- [buildingSMART Industry Foundation Classes](https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of Excel workbooks and Collada geometry files from user-selected IFC files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact/claw.json) <br>
+Risk: The skill requires filesystem access to read IFC models and write converted output files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only to intended model and output folders, and use a trusted IfcExporter or IfcOpenShell installation.
+
+Risk: Generated spreadsheets may expose detailed building or project metadata.
+
+Mitigation: Review generated Excel files before sharing and apply the same access controls used for the source BIM models.
+
+## Reference(s):
+
+- [Ifc To Excel on ClawHub](https://clawhub.ai/datadrivenconstruction/skills/ifc-to-excel)
+- [buildingSMART Industry Foundation Classes](https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce instructions for filesystem reads of IFC files and writes of Excel or Collada outputs.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

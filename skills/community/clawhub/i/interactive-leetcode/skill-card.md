@@ -1,44 +1,53 @@
-## Description: <br>
-Use when the user wants to practice LeetCode problems, submit solutions, or set up LeetCode integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to practice LeetCode problems, submit solutions, or set up LeetCode integration.
 
-## Publisher: <br>
-[SPerekrestova](https://clawhub.ai/user/SPerekrestova) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sperekrestova](https://clawhub.ai/user/sperekrestova)
 
-## Use Case: <br>
-Developers, interview candidates, and learners use this skill to connect a pinned LeetCode MCP server, practice problems with progressive hints, set up coding workspaces, submit solutions, and optionally authenticate for account-specific LeetCode actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Running the MCP server through npx downloads and executes third-party npm code. <br>
-Mitigation: Ask for user consent before installation, use the pinned @sperekrestova/interactive-leetcode-mcp@3.1.1 package version, and review changelogs before updating. <br>
-Risk: Saved LeetCode session cookies can authorize account-specific actions. <br>
-Mitigation: Authenticate only when needed and with user consent, store credentials at ~/.leetcode-mcp/credentials.json with owner-only permissions, and delete the file when access is no longer needed. <br>
-Risk: Full community solutions can bypass the intended learning flow. <br>
-Mitigation: Use progressive hint levels before showing complete solutions, and fetch full solutions only at Level 4 or after an explicit user request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SPerekrestova/interactive-leetcode) <br>
-- [Linked GitHub repository](https://github.com/SPerekrestova/interactive-leetcode-mcp) <br>
-- [npm package](https://www.npmjs.com/package/@sperekrestova/interactive-leetcode-mcp) <br>
-- [Linked GitHub releases](https://github.com/SPerekrestova/interactive-leetcode-mcp/releases) <br>
+## Use Case:
 
+Developers and coding-practice users use this skill to connect a LeetCode MCP server, follow a learning-guided practice flow, retrieve problems and hints, and submit solutions.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user consent before installing the MCP server or saving LeetCode credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and runs a third-party npm MCP server via npx.
+
+Mitigation: Ask for user consent before installation, pin a reviewed package version, and install only if the named npm package and publisher are trusted.
+
+Risk: LeetCode authentication stores session cookies locally.
+
+Mitigation: Treat saved cookies as account credentials, use trusted machines, keep owner-only file permissions, and revoke or rotate the LeetCode session if compromise is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sperekrestova/skills/interactive-leetcode)
+- [npm package: @sperekrestova/interactive-leetcode-mcp](https://www.npmjs.com/package/@sperekrestova/interactive-leetcode-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide MCP prompt invocation, local workspace setup, LeetCode authentication, and solution submission workflows.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

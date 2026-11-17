@@ -1,48 +1,59 @@
-## Description: <br>
-Layered Memory Sys provides a six-layer memory management system for AI agents, with TTL-based memory tiers, dream-cycle consolidation, TF-IDF search, import/export, backups, a management panel, and Docker deployment support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Layered Memory Sys provides a six-layer memory management system for AI agents, with TTL-based retention, scheduled consolidation, TF-IDF search, import/export, backup, Docker deployment, and a web/API management surface.
 
-## Publisher: <br>
-[141553](https://clawhub.ai/user/141553) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[141553](https://clawhub.ai/user/141553)
 
-## Use Case: <br>
-Developers and AI agent operators use this skill to add persistent, searchable, tiered long-term memory to OpenClaw-style agent workflows. It is intended for agents that need memory retention, automatic forgetting, knowledge extraction, session-log recall, and memory import/export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read recent OpenClaw session logs and persist long-term memory data. <br>
-Mitigation: Review SESSION_DIR and MEMORY_DIR before enabling the skill, and use it only with conversation logs and memory locations intended for retention. <br>
-Risk: The skill can persist, import, export, delete, and back up memory data. <br>
-Mitigation: Make backups before bulk import, deletion, dream-cycle, or archive operations, and review configured backup retention. <br>
-Risk: The local REST API and WebSocket services may be exposed without authentication. <br>
-Mitigation: Bind API and WebSocket services to localhost or add authentication before exposing them beyond the local machine. <br>
-Risk: Auto-write behavior and optional remote providers can process sensitive conversation content or credentials. <br>
-Mitigation: Disable auto-write and remote providers unless needed, and review DOUBAO_API_KEY and DASHSCOPE_API_KEY handling before use. <br>
-Risk: The installer can create a persistent service when run with elevated privileges. <br>
-Mitigation: Avoid running the installer as root unless a persistent system service is intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent, searchable, tiered memory to AI agents, including automatic forgetting, consolidation, archival, backup, and memory import/export workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/141553/layered-memory-sys) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, REST API responses, and memory export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist memory data, read recent session logs, expose local REST and WebSocket services, and create backups when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.1 (source: server release metadata and package.json) <br>
+Risk: Sensitive long-term memory can be exposed through unauthenticated local API or WebSocket services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted local environment and do not expose ports 3456 or 3457 without authentication, loopback binding, and CORS or origin restrictions.
+
+Risk: Installer choices can create persistent background components with broad access to local session and memory data.
+
+Mitigation: Avoid running the installer as root unless a persistent service is intentional, and review service configuration, data paths, and backup locations before deployment.
+
+Risk: Cloud embedding or summarization settings may send memory and session text to third-party providers.
+
+Mitigation: Review provider configuration and API key settings before use, and prefer local processing or disabled cloud providers for sensitive memory content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/141553/skills/layered-memory-sys)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, JavaScript entry points, and HTTP API examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May start local API and WebSocket services, create SQLite memory data, write backup files, and manage local memory records.]
+
+## Skill Version(s):
+
+2.4.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Generates a printable three-section exam rescue checklist HTML from knowledge_map.json, covering core formulas, high-frequency points, and common mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a printable three-section exam rescue checklist HTML from knowledge_map.json, covering core formulas, high-frequency points, and common mistakes.
 
-## Publisher: <br>
-[zhoucha833-lang](https://clawhub.ai/user/zhoucha833-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoucha833-lang](https://clawhub.ai/user/zhoucha833-lang)
 
-## Use Case: <br>
-Students and exam-prep users use this skill after exam-question-generator analysis to turn a knowledge map into a concise last-minute review checklist. It creates formula, hotspot, and mistake cards as printable HTML plus brief completion guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically writes local output files and may overwrite prior generated review material. <br>
-Mitigation: Install and run it only in the intended exam workspace, and preserve any generated HTML that should not be replaced before regenerating. <br>
-Risk: Generated study guidance can be incomplete or misleading if the source knowledge map or retrieved notes are weak. <br>
-Mitigation: Review the generated HTML before relying on it for exam preparation. <br>
-Risk: Opening the generated HTML may contact unpkg.com to load KaTeX for math rendering. <br>
-Mitigation: Use the generated HTML only in environments where loading the KaTeX CDN is acceptable, or review the template before opening it. <br>
+## Use Case:
 
+External learners and exam-preparation agents use this skill to turn an existing exam knowledge map into a compact printable review sheet before a test. It is designed for Chinese-language study workflows that need formula, hotspot, and mistake cards generated into HTML.
 
-## Reference(s): <br>
-- [Content Rules](references/content-rules.md) <br>
-- [HTML Template](assets/template.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhoucha833-lang/exam-rescue-html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [HTML file, JSON notes record, and short text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes exam-rescue-YYYYMMDD.html in the workspace root and records rescue_notes.json when possible.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill suppresses confirmations and errors during generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated HTML and rescue notes before relying on them, especially when the input knowledge map may be incomplete or malformed.
+
+Risk: The generated HTML may include unescaped study content.
+
+Mitigation: Use trusted knowledge_map.json content or ensure fields are escaped before opening or sharing the generated HTML.
+
+Risk: Opening the generated HTML can load and execute JavaScript from unpkg.com.
+
+Mitigation: Open the file only in environments where CDN access and client-side KaTeX rendering are acceptable.
+
+Risk: The workflow writes and may overwrite files in the workspace.
+
+Mitigation: Run the skill in a workspace where exam-rescue-YYYYMMDD.html and .exam-session/rescue_notes.json writes are expected.
+
+## Reference(s):
+
+- [Content Rules](references/content-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/zhoucha833-lang/skills/exam-rescue-html)
+- [Publisher Profile](https://clawhub.ai/user/zhoucha833-lang)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration]
+
+**Output Format:** [JSON study notes plus generated HTML file and a concise completion message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes .exam-session/rescue_notes.json when possible and creates exam-rescue-YYYYMMDD.html in the workspace root.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

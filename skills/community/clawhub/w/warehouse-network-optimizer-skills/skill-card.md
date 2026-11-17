@@ -1,42 +1,53 @@
-## Description: <br>
-基于整数规划（MILP）的仓配网络优化系统，支持时效计算（含等待时间）、中转链路、供应关系到区县等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于整数规划（MILP）的仓配网络优化系统，支持时效计算（含等待时间）、中转链路、供应关系到区县等。
 
-## Publisher: <br>
-[jinqianfei](https://clawhub.ai/user/jinqianfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinqianfei](https://clawhub.ai/user/jinqianfei)
 
-## Use Case: <br>
-Operations analysts, logistics planners, and developers use this skill to convert warehouse, trunk-line, and distribution-cycle spreadsheets into optimization inputs, run MILP-based RDC network optimization, and generate Excel reports for warehouse selection, supply relationships, transfer paths, and weighted delivery-time metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated JSON and Excel reports may expose sensitive business or logistics data. <br>
-Mitigation: Run the skill only on spreadsheets intended for processing and protect generated files according to the user's data-handling requirements. <br>
-Risk: Reports or converted data may overwrite existing files when output paths are reused. <br>
-Mitigation: Use an empty working folder or explicit unique output filenames for each run. <br>
-Risk: Large optimization datasets can consume significant solver time and local compute resources. <br>
-Mitigation: Install dependencies in a virtual environment and test large runs with appropriate local resource limits. <br>
+## Use Case:
 
+External logistics planners, operations teams, and developers use this skill to convert warehouse trunk-line and distribution-cycle spreadsheets into JSON, configure RDC constraints, and run MILP warehouse network optimization. It produces local reports for RDC selection, supply relationships, transfer paths, regional assignment, and weighted delivery-time analysis.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/jinqianfei/warehouse-network-optimizer-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with command examples; generated JSON data and Excel reports when scripts are run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local Excel and JSON logistics data, writes converted JSON files, and produces an .xlsx optimization report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server release metadata and skill version history) <br>
+Risk: Optimization reports can be misleading if source logistics workbooks, bundled JSON data, or planning assumptions are incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate source workbooks and converted JSON, confirm RDC count plus required or forbidden warehouse constraints, and review outputs before making warehouse or financial decisions.
+
+Risk: Local workbook processing and generated Excel files can carry file-handling and dependency risks when inputs come from others.
+
+Mitigation: Run the scripts in an isolated virtual environment, pin dependencies for production use, and treat generated Excel reports as untrusted until reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinqianfei/skills/warehouse-network-optimizer-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash and Python examples; local JSON conversion outputs and Excel optimization reports from the included scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Excel inputs and Python dependencies including PuLP, pandas, and openpyxl.]
+
+## Skill Version(s):
+
+2.7.0 (source: server release metadata and SKILL.md status)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Create professional HTML/PDF resumes from any input format (md/pdf/word/txt). Extracts resume data, converts to structured YAML, generates styled HTML with multiple theme options, and exports to PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Frontend Cv creates professional HTML and PDF-ready resumes from PDF, Word, Markdown, text, YAML, or JSON inputs, with structured resume data and selectable themes.
 
-## Publisher: <br>
-[VintLin](https://clawhub.ai/user/VintLin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vintlin](https://clawhub.ai/user/vintlin)
 
-## Use Case: <br>
-Developers, job seekers, and resume writers use this skill to turn existing resume files or structured resume data into print-ready HTML resumes with selectable professional themes and PDF export guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive resume content, including personal contact details and employment history. <br>
-Mitigation: Work in a private local folder, review generated YAML and HTML before sharing, and avoid committing resume outputs. <br>
-Risk: Generated previews or final HTML may load external fonts. <br>
-Mitigation: Remove or replace external font links when offline operation or privacy-sensitive handling is required. <br>
-Risk: Preview cleanup can delete generated local preview files. <br>
-Mitigation: Confirm the preview directory and preserve any needed files before cleanup. <br>
+## Use Case:
 
+External users and developers use this skill to convert, redesign, or build resumes into print-ready HTML and browser-exported PDFs with theme previews.
 
-## Reference(s): <br>
-- [Frontend Cv ClawHub Page](https://clawhub.ai/VintLin/frontend-cv) <br>
-- [README](artifact/README.md) <br>
-- [HTML Shell](artifact/references/html-template.md) <br>
-- [RenderCV Theme Presets](artifact/references/theme-presets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML resume data, shell commands, and generated HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local preview HTML files and a final self-contained resume HTML file for browser PDF export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated resume data, previews, and HTML files may contain personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review where generated files are stored before opening or sharing them, and remove temporary previews or extracted text when they are no longer needed.
+
+Risk: Untrusted resume or YAML inputs may be processed by local extraction and rendering scripts.
+
+Mitigation: Use a virtual environment and review inputs before running the bundled scripts, especially for documents from untrusted sources.
+
+Risk: Some themes reference remote font URLs that may be loaded by the browser.
+
+Mitigation: Work offline or remove remote font links when handling sensitive resumes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vintlin/skills/frontend-cv)
+- [HTML Shell](references/html-template.md)
+- [RenderCV Theme Presets](references/theme-presets.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [YAML resume data, self-contained HTML resume files, Markdown guidance, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML may contain personal resume data and remote font links depending on the selected theme.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

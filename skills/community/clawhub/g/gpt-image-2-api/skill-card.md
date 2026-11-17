@@ -1,43 +1,63 @@
-## Description: <br>
-Generate and edit images via OpenAI gpt-image-2 with an agent-agnostic CLI that supports configurable API endpoints and credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit images via OpenAI gpt-image-2 model. Agent-agnostic CLI that supports configurable base_url/api_key, text-to-image generation, and image-to-image editing.
 
-## Publisher: <br>
-[jancong](https://clawhub.ai/user/jancong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jancong](https://clawhub.ai/user/jancong)
 
-## Use Case: <br>
-Developers and agent users can call the bundled CLI to generate new images from prompts or edit existing images through an OpenAI-compatible image API. The skill is useful when an agent needs a repeatable shell workflow for image generation, image editing, and credential-aware configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured custom or relay API endpoints may receive prompts, source images, generated images, and bearer tokens. <br>
-Mitigation: Use the default OpenAI endpoint or only configure a relay endpoint whose operator you trust. <br>
-Risk: API credentials can be exposed through plaintext config files, shell history, process listings, or loose file permissions. <br>
-Mitigation: Prefer environment-variable based configuration, keep config files owner-readable only, avoid the --api-key flag for routine use, and rotate keys if exposure is suspected. <br>
-Risk: Prompts and input images may contain sensitive or regulated content that is sent to the configured image API. <br>
-Mitigation: Review prompts and source images before use and follow the user's or organization's data handling requirements. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add command-line image generation and editing workflows through the OpenAI gpt-image-2 API. It helps agents create image files, edit existing images, and manage API configuration without adding Python package dependencies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jancong/gpt-image-2-api) <br>
-- [OpenAI API base URL](https://api.openai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [CLI stdout, generated image files, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.8+, curl, and an OpenAI-compatible image API key; generated image count and output format are controlled by CLI options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can send API keys, prompts, and uploaded images to a configured API base URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default OpenAI API base URL unless the configured relay is trusted with credentials and image content.
+
+Risk: Inline API keys passed through command-line arguments may be exposed through shell history or process listings.
+
+Mitigation: Prefer configuration that references an environment variable, such as OPENAI_API_KEY or GPT_IMAGE2_API_KEY, and review file permissions on config files.
+
+Risk: The bundled Node.js execSync example is unsafe for untrusted prompts.
+
+Mitigation: Use argument-array subprocess APIs or otherwise avoid shell interpolation when integrating this skill with untrusted input.
+
+Risk: The skill writes generated or edited image files to paths selected by the agent or user.
+
+Mitigation: Review output paths before execution and run the skill with filesystem permissions appropriate for the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jancong/skills/gpt-image-2-api)
+- [Publisher profile](https://clawhub.ai/user/jancong)
+- [Default OpenAI API base URL](https://api.openai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI prints status text and saved image paths; image outputs are written to the configured filesystem path.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

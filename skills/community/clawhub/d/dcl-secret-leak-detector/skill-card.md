@@ -1,42 +1,55 @@
-## Description: <br>
-Instruction-only runtime secret and credential leak detector for AI agents and LLM pipelines that scans text in the agent context and returns redacted findings with a deterministic DCL audit proof. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans AI agent outputs, tool results, and pipeline data for exposed secrets and credentials before they reach users, logs, or downstream systems, either through a free checklist or an optional paid live MCP regex scan with audit proof.
 
-## Publisher: <br>
-[daririnch](https://clawhub.ai/user/daririnch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daririnch](https://clawhub.ai/user/daririnch)
 
-## Use Case: <br>
-Developers, security engineers, and AI pipeline operators use this skill to check model outputs, tool results, generated code, retrieved documents, and other agent-visible text for exposed credentials before content reaches users, logs, or downstream systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release advertises capabilities such as wallet, purchase, OAuth, crypto, filesystem, or network access that are not needed for an instruction-only scanner. <br>
-Mitigation: Install and run the skill without wallet, purchase, OAuth, filesystem, or network permissions unless a separate review establishes a concrete need. <br>
-Risk: Scanning real secrets places those secret values inside the agent context and may expose them to runtime logging or tools. <br>
-Mitigation: Use a trusted runtime, limit tool access during scans, avoid persistent logging of scanned content, and keep output limited to redacted samples. <br>
+## Use Case:
 
+Developers, DevSecOps engineers, and agent operators use this skill to check generated outputs, tool results, and pipeline content for exposed API keys, tokens, private keys, database URLs, and .env-style secrets before release or logging.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/daririnch/dcl-secret-leak-detector) <br>
-- [Fronesis Labs privacy policy](https://fronesislabs.com/#privacy) <br>
-- [DCL Security Suite](https://hub.fronesislabs.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured JSON with verdict, hashes, DCL fingerprint, category status, and redacted detections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Raw credential values should not be reproduced; findings use redacted samples and include severity, provider when identifiable, and approximate position.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Live MCP mode sends scanned text to a third-party service and uses an x402 payment flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the free checklist for highly sensitive material or when network transmission is not acceptable; use live mode only after accepting the Fronesis Labs service and payment flow.
+
+Risk: Live scan audit records include input hashes and finding metadata on-chain.
+
+Mitigation: Treat scan results as security-sensitive records and avoid placing raw secret values in prompts, logs, or downstream reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daririnch/skills/dcl-secret-leak-detector)
+- [DCL Trust Oracle MCP endpoint](https://mcp.fronesislabs.com/mcp)
+- [Fronesis Labs privacy policy](https://fronesislabs.com/#privacy)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with checklist results; optional live MCP scan returns JSON-style findings, verdict, redacted samples, transaction hash, and verification URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Free mode stays in-agent; live mode transmits text to the DCL Trust Oracle MCP server and records input hash and finding metadata on-chain.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

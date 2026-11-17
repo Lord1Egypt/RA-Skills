@@ -1,43 +1,54 @@
-## Description: <br>
-Searches Gitee for open source repositories that match a user's criteria, compares candidates, and forks the selected repository through the configured Gitee MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search And Fork helps an agent search Gitee for open source repositories, compare candidates, and fork the selected repository to the user's Gitee account.
 
-## Publisher: <br>
-[oschina](https://clawhub.ai/user/oschina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oschina](https://clawhub.ai/user/oschina)
 
-## Use Case: <br>
-Developers and maintainers use this skill to discover relevant open source projects on Gitee, compare repository quality and activity, and fork a selected project into their Gitee account for evaluation or contribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can fork a repository into the user's Gitee account after a selection is made. <br>
-Mitigation: Confirm the exact source repository and destination account or organization before invoking the fork operation. <br>
-Risk: Repository search results may include unsuitable licenses or unmaintained projects. <br>
-Mitigation: Compare activity, maintenance signals, documentation, and license terms before recommending or forking a candidate. <br>
-Risk: The skill depends on credentials available through the configured Gitee MCP account. <br>
-Mitigation: Use least-privileged Gitee credentials appropriate for repository discovery and forking. <br>
+## Use Case:
 
+Developers use this skill to find Gitee repositories that match their language, license, activity, and project requirements, then fork the chosen repository for contribution or reuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oschina/gitee-search-and-fork) <br>
-- [Publisher profile](https://clawhub.ai/user/oschina) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance, API Calls] <br>
-**Output Format:** [Markdown with repository recommendations, rationale, fork results, and suggested shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Gitee MCP server and user confirmation before forking a repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill depends on a configured Gitee MCP server to search repositories and fork the selected project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a trusted Gitee MCP server configuration and review requested actions before approval.
+
+Risk: Approving a fork creates a repository in the user's Gitee account.
+
+Mitigation: Confirm the selected source repository and destination account before allowing the fork action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oschina/skills/gitee-search-and-fork)
+- [Publisher profile](https://clawhub.ai/user/oschina)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with repository recommendations, fork results, and suggested next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Gitee MCP tools when configured and requires user selection before forking.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

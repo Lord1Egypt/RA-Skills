@@ -1,39 +1,54 @@
-## Description: <br>
-Start and review web form autofill workflow with human approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start and review web form autofill workflow with human approval.
 
-## Publisher: <br>
-[wanghong5233](https://clawhub.ai/user/wanghong5233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanghong5233](https://clawhub.ai/user/wanghong5233)
 
-## Use Case: <br>
-Applicants and their agents use this skill to start a preview-first web application form autofill workflow, approve or reject pending fill threads, and review results before manual submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends profile data to a local service at 127.0.0.1:8010 for form preview and filling. <br>
-Mitigation: Install only when the local service is trusted and provide the smallest necessary profile data. <br>
-Risk: Autofill can place incorrect or stale information into external application forms. <br>
-Mitigation: Review the preview before approving, reject stale or unexpected pending threads, and manually inspect the completed form before submitting it yourself. <br>
+## Use Case:
 
+External users and agents use this skill to start a local web form autofill preview, route an approve or reject decision, and summarize filled or failed fields before manual submission.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown summaries with inline curl command templates and local API response details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit human approval before executing fill actions and manual review before form submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The documented curl templates can create unsafe command-execution exposure if untrusted form URLs or profile values are interpolated literally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a safe HTTP client or JSON serialization path instead of shell command templates, and only connect to a trusted local service.
+
+Risk: The workflow handles application profile data and may fill incorrect or sensitive fields.
+
+Mitigation: Avoid sensitive profile data until command construction is fixed, require explicit approve or reject decisions, and manually review any filled form before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanghong5233/skills/application-tracker)
+- [ClawHub publisher profile](https://clawhub.ai/user/wanghong5233)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before fill execution; external forms are never submitted automatically.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

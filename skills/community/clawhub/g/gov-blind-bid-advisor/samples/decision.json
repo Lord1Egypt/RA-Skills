@@ -1,0 +1,62 @@
+{
+  "project": {
+    "id": "demo_001",
+    "name": "某市级政务大模型运维服务项目",
+    "purchaser": "某市大数据管理局",
+    "budget": 180,
+    "bid_deadline": "2026-08-20",
+    "evaluation_method": "综合评分法"
+  },
+  "enterprise": "广东智言科技有限公司",
+  "qualification": {
+    "required_count": 2,
+    "matched_count": 2,
+    "missing_count": 0,
+    "compliance_rate": 1.0,
+    "missing_items": [],
+    "fatal_missing": []
+  },
+  "competitor_analysis": [],
+  "price_strategy": {
+    "method": "综合评分法（无竞对数据）",
+    "suggested_range": [
+      144.0,
+      153.0
+    ],
+    "estimated_cost": 0,
+    "profit_margin": 0.15,
+    "rationale": "无竞对历史报价数据，建议预算的80%~85%（保守策略）"
+  },
+  "swot": {
+    "strengths": [
+      "具备 3 项资质证书",
+      "有类似项目经验（2个业绩）"
+    ],
+    "weaknesses": [
+      "暂无明显劣势（需进一步核实）"
+    ],
+    "opportunities": [
+      "该项目属于 C05 领域，与企业发展方向一致",
+      "未发现明显强力竞争对手，中标机会较大"
+    ],
+    "threats": [
+      "暂未发现明显威胁"
+    ]
+  },
+  "overall_score": 90.3,
+  "recommendation": "强烈建议",
+  "confidence": "高",
+  "risk_level": "低",
+  "key_actions": [
+    "📋 下载招标文件，逐条分析评分标准",
+    "📊 收集竞对历史中标数据，分析报价规律",
+    "💰 根据报价策略模型计算最优报价区间",
+    "📝 启动技术方案编制，突出差异化优势",
+    "✅ 投标前逐项自检评分达标情况"
+  ],
+  "risk_mitigation": [
+    "正常准备投标文件，注意细节和时效"
+  ],
+  "conclusion": "综合得分 90.33333333333333 分，具备明显竞争优势，强烈建议投标。",
+  "disclaimer": "本报告基于公开数据和统计模型，仅供参考，不构成法律或投资建议。"
+}

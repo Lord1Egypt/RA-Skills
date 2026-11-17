@@ -1,45 +1,56 @@
-## Description: <br>
-Clawdbot documentation expert with decision tree navigation, search scripts, doc fetching, version tracking, and config snippets for all Clawdbot features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawdbot documentation expert with decision tree navigation, search scripts, doc fetching, version tracking, and config snippets for all Clawdbot features.
 
-## Publisher: <br>
-[tigertamvip](https://clawhub.ai/user/tigertamvip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tigertamvip](https://clawhub.ai/user/tigertamvip)
 
-## Use Case: <br>
-Developers and operators use this skill to navigate Clawdbot documentation, find relevant setup and troubleshooting pages, and produce configuration guidance for Clawdbot providers, gateway settings, automation, tools, platforms, and related workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Release metadata and artifact metadata disagree on version and license, which can make publisher review or dependency tracking ambiguous. <br>
-Mitigation: Use the server-resolved release metadata for this card, and verify the publisher, release version, and license before deployment. <br>
-Risk: Configuration examples involve bot tokens and session paths, which could expose credentials if users paste real secrets into prompts. <br>
-Mitigation: Keep real bot tokens and session data in environment variables or a secret manager, and use placeholders in agent-visible examples. <br>
-Risk: Included shell scripts are documentation helpers and may change in future releases. <br>
-Mitigation: Review script contents after updates before running them in a production workspace. <br>
+## Use Case:
 
+Developers and support agents use this skill to find Clawdbot documentation, choose the right documentation category, retrieve relevant pages, and provide configuration guidance for Clawdbot features.
 
-## Reference(s): <br>
-- [Clawddocs 1 ClawHub page](https://clawhub.ai/tigertamvip/clawddocs-1) <br>
-- [Clawdbot documentation](https://docs.clawd.bot/) <br>
-- [Clawdbot Discord provider documentation](https://docs.clawd.bot/providers/discord) <br>
-- [Common configuration snippets](snippets/common-configs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite Clawdbot documentation pages and provide configuration snippets using environment-variable placeholders for secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Configuration examples can expose credentials, session folders, or unauthenticated network services if copied directly into production.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep real tokens out of commits, protect WhatsApp session folders, and use localhost binding or add authentication, TLS, and firewall controls before exposing a gateway.
+
+Risk: The included shell scripts are minimal documentation shortcuts and may not return complete or current documentation content.
+
+Mitigation: Verify generated answers and configuration guidance against the official Clawdbot documentation before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tigertamvip/skills/clawddocs-1)
+- [Clawdbot documentation](https://docs.clawd.bot/)
+- [Clawdbot Discord provider documentation](https://docs.clawd.bot/providers/discord)
+- [Common Config Snippets](snippets/common-configs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source documentation links and JSON configuration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact package metadata reports 1.2.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

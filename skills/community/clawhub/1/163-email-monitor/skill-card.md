@@ -1,42 +1,52 @@
-## Description: <br>
-Connects to 163/126/yeah.net (Coremail) email via IMAP and SMTP to read inboxes, search messages, and send email while handling the Coremail IMAP ID command requirement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to 163/126/yeah.net (Coremail) email via IMAP, read inbox, search emails, and send emails via SMTP.
 
-## Publisher: <br>
-[hanyuhh](https://clawhub.ai/user/hanyuhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hanyuhh](https://clawhub.ai/user/hanyuhh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and email users use this skill to let an agent check, search, and send mail for 163.com, 126.com, and yeah.net accounts that require the Coremail IMAP ID command.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can use stored mailbox authorization credentials to read mailbox contents and send messages.
+
+Mitigation: Install and configure it only for accounts where agent access is intended, and store only the required mailbox authorization code in the configured environment file.
+
+Risk: The send command can email arbitrary local attachments without a built-in confirmation step.
+
+Mitigation: Before using send or --attach, manually verify the recipient, message body, and each attachment path, and avoid attaching secrets or private files unless that disclosure is intended.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to 163, 126, or yeah.net mailboxes for mailbox review, message search, inbox monitoring, and outbound email through the bundled client. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private mailbox contents. <br>
-Mitigation: Install only when the configured mailbox is trusted for agent access, and limit use to the intended 163/126/yeah.net account. <br>
-Risk: The skill can send messages and attachments through the configured mailbox. <br>
-Mitigation: Review the recipient, subject, body, CC list, and every attachment path before allowing any send command. <br>
-Risk: Mailbox credentials stored in the environment file can expose account access if mishandled. <br>
-Mitigation: Use a revocable mail authorization code instead of the login password and protect the .env file. <br>
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [163 Email Monitor on ClawHub](https://clawhub.ai/hanyuhh/163-email-monitor) <br>
+**Other Properties Related to Output:** [Email read and search commands may include message metadata, body previews, or JSON-formatted results; send commands produce status text.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; command output can be plain text or JSON for read and search operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads configuration from an environment file and can include limited message body previews when requested.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

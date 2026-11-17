@@ -1,43 +1,69 @@
-## Description: <br>
-Pincer is a security-first wrapper for installing agent skills that scans for malware, prompt injection, and suspicious patterns before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first wrapper for installing agent skills. Scans for malware, prompt injection, and suspicious patterns before installation. Use instead of `clawhub install` for safer skill management.
 
-## Publisher: <br>
-[panzacoder](https://clawhub.ai/user/panzacoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[panzacoder](https://clawhub.ai/user/panzacoder)
 
-## Use Case: <br>
-Developers and agent users use Pincer to scan ClawHub skills before installing them, audit installed skills, and manage trusted or blocked publishers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security review found that install workflows may run installation actions before scanning in fallback cases and may auto-install clean results more broadly than documented. <br>
-Mitigation: Set autoApprove to never, review ~/.config/pincer/config.json before use, and do not rely on Pincer as a strict pre-install barrier until the fallback install behavior is removed or explicitly confirmed. <br>
-Risk: Pincer runs an unpinned external scanner, so scanner behavior can change between executions. <br>
-Mitigation: Use it only where external scanner updates are acceptable, review scan output before installation, and pin or separately vet scanner dependencies for controlled environments. <br>
+## Use Case:
 
+Developers and engineers use Pincer to scan ClawHub skills before installation, audit installed skills, and manage trusted or blocked publishers. It is intended as a command-line safety layer for agent skill management.
 
-## Reference(s): <br>
-- [Pincer on ClawHub](https://clawhub.ai/panzacoder/pincer) <br>
-- [mcp-scan](https://github.com/invariantlabs-ai/mcp-scan) <br>
-- [1Password Security Research: OpenClaw Agent Skills attack surface](https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface) <br>
-- [Snyk ToxicSkills Report](https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Analysis, Configuration] <br>
-**Output Format:** [Terminal text with optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local configuration and installation history files when its commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The scanner dependency is invoked without a pinned mcp-scan version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-scan to a reviewed version and update it through an explicit review process.
+
+Risk: Scanner errors may weaken the security gate.
+
+Mitigation: Fail closed when scanner execution or parsing fails, and block or prompt before installation.
+
+Risk: Fetched filenames could escape the intended temporary scan directory.
+
+Mitigation: Normalize and validate fetched paths so downloaded files remain confined to the temporary scan directory.
+
+Risk: The install fallback can fetch or install untrusted skill code before the intended checks complete.
+
+Mitigation: Remove the install fallback or make it a non-executing fetch path that preserves pre-install scanning.
+
+Risk: Auto-approval may not require an explicit trusted-publisher check.
+
+Mitigation: Disable auto-approval by default or require a confirmed trusted publisher before clean scans proceed automatically.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/panzacoder/skills/pincer)
+- [Pincer Repository](https://github.com/panzacoder/pincer)
+- [mcp-scan](https://github.com/invariantlabs-ai/mcp-scan)
+- [1Password Security Research](https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface)
+- [Snyk ToxicSkills Report](https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text and optional JSON summaries, with shell commands and configuration guidance in Markdown documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires clawhub, jq, uvx, and the pincer command-line wrapper installed on PATH.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

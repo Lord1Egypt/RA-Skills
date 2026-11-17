@@ -1,46 +1,66 @@
-## Description: <br>
-Professional-grade Polymarket prediction market trading system with Kelly Criterion position sizing, expected-value scoring, Bayesian probability updating, cross-platform arbitrage scanning, and Brier-score strategy optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional-grade Polymarket prediction market trading system with Kelly Criterion position sizing, expected-value analysis, Bayesian probability updates, Brier-score strategy optimization, and cross-platform arbitrage detection.
 
-## Publisher: <br>
-[Henry6262](https://clawhub.ai/user/Henry6262) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[henry6262](https://clawhub.ai/user/henry6262)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate Polymarket prediction-market opportunities, size positions with quantitative risk controls, scan cross-platform price spreads, and tune trading strategies against calibration metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support real-money trading and depends on wallet or exchange credentials. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid broad API permissions, keep secrets out of chat and logs, and require explicit manual approval before any live trade. <br>
-Risk: The trading behavior depends on external bot code and dependencies that are not fully reviewed in the packaged skill evidence. <br>
-Mitigation: Independently audit the external bot repository, dependency tree, and live trading controls before installation or deployment. <br>
-Risk: Model calibration or Brier-score implementation errors can lead to poor position sizing and trading losses. <br>
-Mitigation: Verify the Brier-score implementation, paper trade with DRY_RUN enabled, and enforce strict exposure and stop-loss limits. <br>
+## Use Case:
 
+External developers and traders use this skill to build or review Polymarket prediction-market workflows for EV signal scoring, Kelly-sized positions, Brier-score strategy iteration, and cross-platform arbitrage checks.
 
-## Reference(s): <br>
-- [Kelly Criterion Deep Dive for Prediction Markets](references/kelly-criterion-guide.md) <br>
-- [Brier Score: Measuring Prediction Calibration](references/brier-score-explained.md) <br>
-- [Cross-Platform Arbitrage: Polymarket x 1WIN](references/arb-mechanics.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Henry6262/polymarket-quant-trader) <br>
-- [Publisher Profile](https://clawhub.ai/user/Henry6262) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript examples, shell commands, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require external trading bot code, wallet configuration, market data APIs, and manual approval before live trading.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and skill frontmatter) <br>
+Risk: The skill directs users toward unaudited external bot code and dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit the separate bot repository and dependencies before running npm install or executing workflows.
+
+Risk: Live trading setup can involve wallet private keys and exchange API keys.
+
+Mitigation: Use a dedicated low-balance wallet, avoid storing raw private keys in the repository, and restrict exchange API key permissions.
+
+Risk: Automated trading workflows or strategy changes can create financial exposure.
+
+Mitigation: Keep DRY_RUN enabled until verified, apply risk limits, and manually review every live trade or strategy change.
+
+Risk: Cross-platform arbitrage signals may depend on loose title matching, stale prices, or one-sided execution.
+
+Mitigation: Manually confirm event matches and live prices on both platforms, and do not treat detected spreads as risk-free arbitrage.
+
+## Reference(s):
+
+- [Kelly Criterion Deep Dive for Prediction Markets](references/kelly-criterion-guide.md)
+- [Brier Score: Measuring Prediction Calibration](references/brier-score-explained.md)
+- [Cross-Platform Arbitrage: Polymarket x 1WIN](references/arb-mechanics.md)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+- [Polymarket CLOB API](https://clob.polymarket.com)
+- [ClawHub Skill Page](https://clawhub.ai/henry6262/skills/polymarket-quant-trader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript examples, shell commands, and environment configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference external bot code, market APIs, wallet configuration, and dry-run or live-trading modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

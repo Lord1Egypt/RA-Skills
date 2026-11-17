@@ -1,41 +1,54 @@
-## Description: <br>
-Guides agents through safe, minimal code changes in large repositories using repo access checks, visible progress, resumable indexing, validation, and recovery steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through safe, minimal, production-quality code changes in existing repositories using staged understanding, planning, implementation, validation, review, and recovery practices.
 
-## Publisher: <br>
-[xinyue-wang](https://clawhub.ai/user/xinyue-wang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinyue-wang](https://clawhub.ai/user/xinyue-wang)
 
-## Use Case: <br>
-Developers and coding agents use this skill for complex brownfield code changes that need repository understanding, small scoped edits, validation, and explicit progress tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended to read and modify target repositories and run validation commands. <br>
-Mitigation: Install it only where the agent is authorized to access the repository, edit files, and run tests. <br>
-Risk: The skill records local progress, indexes, and failure logs that may contain private code context. <br>
-Mitigation: Keep local run and index directories private, and clean retained indexes or failure logs when they are no longer needed. <br>
+## Use Case:
 
+Developers and engineering agents use this skill for complex code changes in large existing repositories where repo access checks, incremental understanding, minimal edits, tests, and visible progress are required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xinyue-wang/xinywacodinghelper) <br>
-- [Publisher profile](https://clawhub.ai/user/xinyue-wang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured status blocks and inline code or shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce progress logs, implementation notes, test results, confidence summaries, and recovery messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The workflow retains local repository indexes and run logs under /home/vibe/aksclaw-data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where retaining local metadata is acceptable, and review or clean those files according to local data-handling requirements.
+
+Risk: The skill is intended for complex repository changes and can be inappropriate for simple code tasks.
+
+Mitigation: Apply the routing rule before use and reserve the workflow for multi-file, debugging, or production-safe code changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xinyue-wang/skills/xinywacodinghelper)
+- [Publisher profile](https://clawhub.ai/user/xinyue-wang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured progress, error, recovery, confidence, and final output sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local index and run-log files under /home/vibe/aksclaw-data when followed by an agent.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

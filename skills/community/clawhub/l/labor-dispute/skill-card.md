@@ -1,45 +1,59 @@
-## Description: <br>
-劳动法维权技能库（8卡套装）帮助劳动者按场景获取合同签订、离职补偿、违法解除、劳动仲裁、举证、竞业限制、社保和工伤赔偿的维权指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向中国劳动争议场景的劳动者维权技能库，覆盖合同签订、离职补偿、违法解除、劳动仲裁、举证、竞业限制、社保和工伤赔偿等8个常见场景。
 
-## Publisher: <br>
-[jingyu525](https://clawhub.ai/user/jingyu525) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingyu525](https://clawhub.ai/user/jingyu525)
 
-## Use Case: <br>
-Employees and labor-rights support agents use this skill to identify the relevant Chinese labor-dispute scenario and produce practical checklists, calculations, evidence plans, and arbitration or complaint steps. It is legal-adjacent assistance and should not replace advice from a qualified labor lawyer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat legal-adjacent labor guidance as a substitute for professional legal advice. <br>
-Mitigation: Present outputs as informational assistance, recommend review by a qualified labor lawyer for high-stakes disputes, and require human confirmation before relying on contract-signing or arbitration advice. <br>
-Risk: Broad activation may cause the skill to answer loosely related employment conversations. <br>
-Mitigation: Narrow activation to explicit labor-contract, compensation, dismissal, arbitration, social-insurance, non-compete, or work-injury requests. <br>
-Risk: Labor-law outcomes depend on jurisdiction, local standards, dates, facts, and updated rules. <br>
-Mitigation: Ask for location, dates, employment facts, wage records, and current local standards before giving calculations or procedural next steps. <br>
+## Use Case:
 
+External users and agents use this skill to identify the relevant Chinese labor-dispute sub-skill, estimate compensation, prepare evidence, and follow complaint, arbitration, or litigation steps. It is intended as jurisdiction-specific legal information and should be checked against current local rules before action.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jingyu525/labor-dispute) <br>
-- [Publisher profile](https://clawhub.ai/user/jingyu525) <br>
-- [Artifact index](artifact/INDEX.md) <br>
-- [Skill root](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, analysis] <br>
-**Output Format:** [Markdown with checklists, tables, calculations, and step-by-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scenario-specific labor-dispute guidance in Chinese; no tool, API, MCP, shell, or credential use was detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Legal guidance may be outdated or may not match local Chinese rules, deadlines, court practice, or administrative handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current local rules or consult a qualified professional before acting on deadlines, compensation calculations, complaints, arbitration, or litigation steps.
+
+Risk: Compensation estimates and procedural choices depend on user-specific facts, local wage standards, evidence quality, and forum decisions.
+
+Mitigation: Treat formulas and examples as planning aids, confirm inputs with official records, and review calculations before relying on them.
+
+Risk: Using the skill may involve sensitive employment, medical, wage, identity, or case documents.
+
+Mitigation: Share only information needed for the task and avoid providing sensitive case documents unless the user is comfortable with agent processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jingyu525/skills/labor-dispute)
+- [Artifact index](artifact/INDEX.md)
+- [Main skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, formulas, and procedural steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, jurisdiction-specific labor-dispute information; no code execution, credential access, persistence, or hidden automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release/version and artifact SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

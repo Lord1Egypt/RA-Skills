@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify API Best Practices"
+  short_description: "Audit Dataify integrations for safe production patterns"
+  default_prompt: "Review this Dataify integration for authentication, retries, tasks, errors and output correctness."

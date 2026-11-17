@@ -1,42 +1,53 @@
-## Description: <br>
-Execute hledger CLI commands to query balances, registers, reports, and journals, returning structured output from local ledger files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute hledger CLI commands to query balances, registers, reports, and journals, returning structured output from local ledger files.
 
-## Publisher: <br>
-[bisbeebucky](https://clawhub.ai/user/bisbeebucky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bisbeebucky](https://clawhub.ai/user/bisbeebucky)
 
-## Use Case: <br>
-Personal finance users and automation developers use this skill inside OpenClaw to run hledger balance, register, report, and journal queries against local ledger files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted input can cause unintended local shell commands to run through the hledger wrapper. <br>
-Mitigation: Use only in a trusted local environment and prefer a fixed version that invokes hledger with validated arguments through spawn or execFile. <br>
-Risk: Command output may expose sensitive personal finance data from local ledger files. <br>
-Mitigation: Limit file access to intended ledgers and review outputs before sharing them outside the local environment. <br>
+## Use Case:
 
+Developers and agents use this skill to run hledger reports for personal finance automation, ledger querying, and financial reporting workflows from local journal files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bisbeebucky/hledger) <br>
-- [Publisher profile](https://clawhub.ai/user/bisbeebucky) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text command output from hledger stdout or stderr.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires hledger on PATH and read access to the user's local ledger files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata, artifact package.json, artifact/SKILL.md) <br>
+Risk: The skill can execute unintended shell commands from skill input despite stating that only hledger commands are run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in a tightly sandboxed environment, and change the implementation to call hledger without a shell and validate arguments before broader use.
+
+Risk: The skill can access local ledger files available to the process.
+
+Mitigation: Use non-sensitive test ledgers unless file paths are restricted and the skill accurately documents which local commands and files it can access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bisbeebucky/skills/hledger)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Text output from hledger stdout or stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires hledger in PATH and read access to the target ledger files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

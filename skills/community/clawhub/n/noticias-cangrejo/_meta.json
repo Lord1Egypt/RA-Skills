@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn78sn547sfrb36s8vv348sgnn814hg4",
   "slug": "noticias-cangrejo",
-  "version": "1.0.4",
-  "publishedAt": 1771121962677
+  "version": "1.0.1",
+  "run": {
+    "command": "python3",
+    "args": [
+      "scripts/fetch_news.py",
+      "{topic}"
+    ]
+  }
 }

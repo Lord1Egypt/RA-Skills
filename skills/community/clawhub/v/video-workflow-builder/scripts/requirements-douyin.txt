@@ -1,0 +1,11 @@
+﻿# 抖音模块依赖 —— 两个用途分别需要：
+#   1) scrape_douyin.py（账号数据/竞品指标抓取）: playwright
+#   2) douyin_transcript.py（视频口播稿流水线 ASR）: httpx / aliyun / oss2 / openai
+# 安装: pip install -r scripts/requirements-douyin.txt
+#   playwright 还需: playwright install chromium
+#   douyin_transcript 还需系统安装 ffmpeg，以及外部 TikTokDownloader（GPL，单独 clone）
+playwright
+httpx[socks]
+aliyun-python-sdk-core==2.16.0
+oss2
+openai

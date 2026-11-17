@@ -1,46 +1,55 @@
-## Description: <br>
-Full HubSpot platform CLI for CRM contacts, companies, deals, tickets, CMS blog posts and pages, marketing emails, forms, lists, conversations, and automation workflows using Private App token or OAuth 2.0 authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full HubSpot platform CLI for CRM contacts, companies, deals, tickets, CMS blog posts and pages, marketing emails, forms, lists, conversations, and automation workflows using a Private App token or OAuth 2.0.
 
-## Publisher: <br>
-[Abdelkrim](https://clawhub.ai/user/Abdelkrim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdelkrim](https://clawhub.ai/user/abdelkrim)
 
-## Use Case: <br>
-Developers, operators, and business automation teams use this skill to let an agent inspect and manage HubSpot CRM, CMS, marketing, conversations, and workflow resources through a Node.js command-line interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify HubSpot CRM, CMS, marketing, conversations, and workflow data when granted broad app scopes. <br>
-Mitigation: Use a dedicated HubSpot Private App or OAuth app with the least scopes needed for the intended workflow. <br>
-Risk: Write and delete commands can change or remove business records. <br>
-Mitigation: Review agent-proposed write and delete commands before execution; delete commands require an explicit --confirm flag. <br>
-Risk: HubSpot credentials in environment files or OAuth token cache files can expose account access. <br>
-Mitigation: Protect .env files, avoid sharing logs or workspaces containing secrets, and secure or remove ~/.cache/openclaw/hubspot-token.json when OAuth mode is used. <br>
+## Use Case:
 
+Developers, operators, and CRM administrators use this skill to inspect and manage HubSpot CRM, CMS, marketing, conversations, and workflow resources from an agent-assisted CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Abdelkrim/hubspot-by-altf1be) <br>
-- [HubSpot Developers](https://developers.hubspot.com/) <br>
-- [Command reference](SKILL.md) <br>
-- [HubSpot API coverage and limitations](docs/API-COVERAGE.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, JSON, Guidance] <br>
-**Output Format:** [CLI text and JSON responses with Markdown command examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js >= 18 and HubSpot credentials; command result sizes can be limited with HUBSPOT_MAX_RESULTS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can create, update, or delete sensitive HubSpot CRM and business records when granted write scopes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege HubSpot Private App token, grant write scopes only for required workflows, and require human review before running destructive or bulk-changing commands.
+
+Risk: OAuth mode caches a temporary access token locally in plaintext.
+
+Mitigation: Prefer Private App token mode when practical, restrict local machine access, and remove ~/.cache/openclaw/hubspot-token.json when OAuth access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdelkrim/skills/hubspot-by-altf1be)
+- [HubSpot developer documentation](https://developers.hubspot.com/)
+- [HubSpot API coverage and limitations](docs/API-COVERAGE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and CLI output from HubSpot API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require HubSpot credentials and may read or modify CRM, CMS, marketing, conversations, and workflow records.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

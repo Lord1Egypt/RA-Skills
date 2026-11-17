@@ -1,41 +1,50 @@
-## Description: <br>
-Archives older daily memory notes into month folders to keep active memory lean and reduce prompt token usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archives older daily memory notes into month folders to keep active memory lean and reduce prompt token usage.
 
-## Publisher: <br>
-[x3r081](https://clawhub.ai/user/x3r081) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x3r081](https://clawhub.ai/user/x3r081)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to archive older local memory notes into month-based folders, reducing active memory clutter and prompt token overhead while keeping archived notes accessible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A real run moves matching local memory notes out of the active memory directory. <br>
-Mitigation: Run with --dry-run first and confirm the memory directory, cutoff month, and proposed moves before executing changes. <br>
-Risk: An existing archived file with the same name can be replaced during archiving. <br>
-Mitigation: Back up important notes or inspect the archive folder before a real run when filename collisions are possible. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to archive older daily memory files into month-based folders, reducing active memory clutter and prompt token overhead while preserving local notes.
 
-## Reference(s): <br>
-- [Agent Memory Optimizer on ClawHub](https://clawhub.ai/x3r081/agent-memory-optimizer) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; script output is JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file operations only; dry-run preview available] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The archiving script may replace an existing archived memory file with the same name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with --dry-run first, inspect proposed moves for name collisions, and keep backups or verify archive contents before applying changes to important memory stores.
+
+## Reference(s):
+
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills)
+- [ClawHub Skill Page](https://clawhub.ai/x3r081/skills/agent-memory-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON command output from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script operates on local Markdown files and supports dry-run previews before moving files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

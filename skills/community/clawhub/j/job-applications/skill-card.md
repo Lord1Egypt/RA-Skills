@@ -1,45 +1,64 @@
-## Description: <br>
-Automates job search on Indeed, analyzes fit, tailors resumes, and applies through supported ATS platforms while logging results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates job search on Indeed, analyzes fit, tailors resumes, applies through supported ATS platforms, and logs application outcomes.
 
-## Publisher: <br>
-[AbedMir31](https://clawhub.ai/user/AbedMir31) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abedmir31](https://clawhub.ai/user/abedmir31)
 
-## Use Case: <br>
-Job seekers or authorized agents use this skill to search for matching roles, tailor a resume from existing source data, submit applications through job platforms, and track application outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit job applications using a named person's personal data and job-site accounts. <br>
-Mitigation: Install or run it only for Abed Mir or with explicit permission, and require approval before every submission or disable auto-apply. <br>
-Risk: Scheduled runs can continue submitting applications without active oversight. <br>
-Mitigation: Make scheduled execution opt-in, provide a clear stop path, and review the run summary and application log after each run. <br>
-Risk: Credential or one-time-code requests over Discord could expose account access. <br>
-Mitigation: Never send passwords or one-time codes through Discord; complete authentication through secure account flows. <br>
-Risk: Sharing the artifact as-is can expose hard-coded personal data. <br>
-Mitigation: Remove or replace personal data before sharing, publishing, or adapting the skill for another person. <br>
+## Use Case:
 
+Job seekers and their agents use this skill to search for matching roles, evaluate fit, tailor an existing resume without adding unsupported claims, submit applications through supported job platforms, and track results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AbedMir31/job-applications) <br>
-- [Publisher profile](https://clawhub.ai/user/AbedMir31) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance, JSON logs, LaTeX source, and generated resume files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create tailored resume artifacts and application tracking records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can auto-submit personal data to third-party job platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in review-only mode or require per-application approval, and limit submissions to intended companies and roles.
+
+Risk: The skill text asks the agent to request passwords or verification codes through Discord when sessions expire.
+
+Mitigation: Complete authentication only on the official job platform sites and do not share passwords or verification codes in Discord.
+
+Risk: Local resume, configuration, and tracking files contain personal contact details and job-search history.
+
+Mitigation: Restrict filesystem access to these files and remove unnecessary personal data before sharing or installing the skill.
+
+Risk: Resume PDF generation compiles LaTeX from resume content.
+
+Mitigation: Harden or sandbox the LaTeX pipeline before using untrusted or agent-generated resume content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abedmir31/skills/job-applications)
+- [Publisher profile](https://clawhub.ai/user/abedmir31)
+- [Resumake Template 1](https://resumake.io)
+- [ShareLaTeX](https://sharelatex.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, JSON tracking records, LaTeX source, and generated resume PDFs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce tailored resume files and application logs based on local candidate configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

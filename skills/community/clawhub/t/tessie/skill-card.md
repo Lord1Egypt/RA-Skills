@@ -1,43 +1,58 @@
-## Description: <br>
-Control and monitor Tesla vehicles through the Tessie API for battery, range, location, climate, charging, drive history, and vehicle-state tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control and monitor Tesla vehicles through the Tessie API for battery, climate, charging, drives, location, and vehicle state management.
 
-## Publisher: <br>
-[baanish](https://clawhub.ai/user/baanish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[baanish](https://clawhub.ai/user/baanish)
 
-## Use Case: <br>
-External users with Tessie-linked Tesla accounts use this skill through an agent to retrieve vehicle status, location, drive history, and charging details, and to issue remote vehicle commands such as climate and charging actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Tessie API key can expose sensitive vehicle data and enable remote vehicle commands if mishandled. <br>
-Mitigation: Store the key as a secret or environment variable, avoid sharing logs or screenshots that may include vehicle data, and rotate the key if it is exposed. <br>
-Risk: Vehicle location and drive history are sensitive personal data. <br>
-Mitigation: Return location or trip details only when the user asks for them and keep those outputs within trusted conversations. <br>
-Risk: Remote actions such as climate and charging commands can change the vehicle state. <br>
-Mitigation: Review the requested action and target vehicle context before allowing an agent to run control commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baanish/tessie) <br>
-- [Tessie developer credentials](https://tessie.com/developers) <br>
-- [Tessie developer documentation](https://developer.tessie.com) <br>
+## Use Case:
 
+Tesla owners with Tessie accounts use this skill to ask an agent to check vehicle telemetry and manage common vehicle workflows such as climate, charging, location, drive history, vehicle status, and FSD statistics.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text command output with concise Markdown setup and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Tessie API key and a Tesla account linked to Tessie.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata, created 2026-01-14) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access sensitive Tessie account and vehicle telemetry, including location-related data.
+
+Mitigation: Install only for trusted agent contexts, limit access to the vehicle owner, and avoid sharing telemetry output unless it has been reviewed.
+
+Risk: The skill can issue real vehicle-control commands.
+
+Mitigation: Review commands before execution and avoid shared or fully automated contexts for actions that affect the vehicle.
+
+Risk: A custom TESSIE_API_URL endpoint can expose the Tessie bearer key.
+
+Mitigation: Use the default Tessie API endpoint unless the alternative endpoint is fully trusted, and prefer the narrowest available Tessie API key permissions.
+
+## Reference(s):
+
+- [Tessie Skill Listing](https://clawhub.ai/baanish/skills/tessie)
+- [Tessie Developer Portal](https://tessie.com/developers)
+- [Tessie API Documentation](https://developer.tessie.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls]
+
+**Output Format:** [Plain text command output with shell and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Tessie API key and may read vehicle telemetry or issue vehicle-control requests.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

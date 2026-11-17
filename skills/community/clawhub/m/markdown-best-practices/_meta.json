@@ -1,0 +1,9 @@
+{
+  "name": "markdown-best-practices",
+  "version": "1.0.0",
+  "description": "Markdown 最佳实践速查指南 - 涵盖常见语法、排版规范与协作约定，适合日常文档写作快速参考",
+  "author": "terrycarter1985",
+  "created": "2026-08-28",
+  "tags": ["guide", "markdown", "best-practices", "writing"],
+  "license": "MIT"
+}

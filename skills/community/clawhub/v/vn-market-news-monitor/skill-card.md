@@ -1,45 +1,61 @@
-## Description: <br>
-Tracks Vietnam market and sector narratives from major domestic financial media; used when users ask for market stories, sector heat, and most-mentioned Vietnamese tickers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Vietnam market and sector narratives from major domestic financial media; used when users ask for market stories, sector heat, and most-mentioned Vietnamese tickers.
 
-## Publisher: <br>
-[ndtchan](https://clawhub.ai/user/ndtchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teahann](https://clawhub.ai/user/teahann)
 
-## Use Case: <br>
-External users and analysts use this skill to monitor Vietnamese financial media for current market narratives, sector intensity, ticker mentions, and narrative shifts. It supports signal monitoring only, not buy or sell recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Limited or stale source coverage can distort market narrative rankings. <br>
-Mitigation: Report the collection window, last update per source, source coverage table, and downgrade confidence when fewer than three domestic sources are available. <br>
-Risk: Headline noise, duplicate coverage, or one-source concentration can overstate a sector or ticker narrative. <br>
-Mitigation: Deduplicate by normalized title and publisher domain, flag concentration above 50 percent from one source, and label major claims as Fact or Inference. <br>
-Risk: Users could mistake media-monitoring signals for investment advice. <br>
-Mitigation: Do not issue buy or sell commands; present outputs as monitoring signals and recommend cross-checking with quantitative metrics before investment action. <br>
+## Use Case:
 
+External users and market analysts use this skill to monitor Vietnamese financial media narratives, rank sector and ticker mention intensity, and flag freshness, source coverage, bias, and validation concerns before any investment action.
 
-## Reference(s): <br>
-- [CafeF](https://cafef.vn/) <br>
-- [VnEconomy](https://vneconomy.vn/) <br>
-- [VietnamFinance](https://vietnamfinance.vn/) <br>
-- [Vietstock](https://vietstock.vn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with source coverage, freshness, sector intensity, ticker mentions, narrative shifts, risks, and validation checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes confidence labels, source links for major statements, Fact versus Inference tags, and optional watchlist impact mapping.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: Financial headlines and ticker mentions can be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as media-signal monitoring only, do not issue buy or sell commands, and verify cited headlines and quantitative data before acting.
+
+Risk: Weak source coverage, stale headlines, duplicate stories, or concentration in one publisher can distort narrative rankings.
+
+Mitigation: Report source coverage, collection window in ICT, last update per source, de-duplication status, confidence rating, and the major noise or bias factor.
+
+Risk: Public web pages and search results may be unavailable or incomplete.
+
+Mitigation: Prefer direct source pages, fall back to search results when needed, list inaccessible sources, and downgrade confidence to Low when fewer than three domestic sources are available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teahann/skills/vn-market-news-monitor)
+- [CafeF](https://cafef.vn/)
+- [VnEconomy](https://vneconomy.vn/)
+- [VietnamFinance](https://vietnamfinance.vn/)
+- [Vietstock](https://vietstock.vn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with source links, coverage table, freshness window, confidence rating, sector and ticker narrative sections, and validation checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an optional watchlist impact map when the user provides tickers.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

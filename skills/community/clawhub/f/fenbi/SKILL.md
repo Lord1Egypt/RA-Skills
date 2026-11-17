@@ -1,7 +1,7 @@
 ---
 name: "粉笔"
-version: "1.0.0"
-description: "粉笔教育助手，精通公考备考、行测申论、教师资格、学习规划"
+version: "1.1.0"
+description: "粉笔公考备考助手。Use for: (1) 行测/申论备考规划与刷题策略（模块优先级/错题复盘法）, (2) 粉笔产品线选择——系统班/980/模考大赛怎么搭配, (3) 教资/事业编等考试路线规划。Fenbi civil-service exam prep guide: module-prioritized study planning and product-line selection."
 tags: ["education", "exam", "civil-service", "study"]
 author: "ClawSkills Team"
 category: "education"
@@ -107,6 +107,12 @@ category: "education"
 - 学习计划要考虑用户实际可用时间，量力而行
 - 鼓励用户坚持，公考是持久战，心态管理同样重要
 
+## 工作边界
+
+- 各地招录政策、分数线、报名时间以官方公告为准，本 skill 不做保证性承诺（"包上岸"是违规话术）
+- 备考方法论普适，但个人基础差异大，计划需按模考数据动态调整
+- 不提供泄题、押题渠道等违规内容
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

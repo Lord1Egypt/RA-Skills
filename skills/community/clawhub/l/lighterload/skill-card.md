@@ -1,45 +1,52 @@
-## Description: <br>
-Proactive relationship and family care assistant that reduces the invisible cognitive labor of managing a household and maintaining important relationships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LighterLoad is a proactive relationship and family care assistant that helps reduce the invisible cognitive labor of managing a household and maintaining important relationships.
 
-## Publisher: <br>
-[Devlines](https://clawhub.ai/user/Devlines) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[devlines](https://clawhub.ai/user/devlines)
 
-## Use Case: <br>
-External users use LighterLoad to onboard their family and social circle, maintain local notes about important people, and receive periodic care nudges for birthdays, milestones, relationships, holidays, parenting, and household planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally maintains local notes about family, friends, household details, and reminders. <br>
-Mitigation: Keep stored details minimal and avoid addresses, full birth dates, account details, sensitive medical information, credentials, and other high-risk identifiers. <br>
-Risk: Calendar and messaging access could expose private relationship or household context if granted too broadly. <br>
-Mitigation: Grant calendar and messaging access narrowly, require user consent for recurring reminders, and review generated email or .ics content before use. <br>
-Risk: Local `memory/people/` notes and recurring jobs can outlive the user's need for the skill. <br>
-Mitigation: When stopping use, delete `memory/people/` and remove the associated cron job. <br>
+## Use Case:
 
+External users use this skill to onboard family and social relationships, maintain local notes about important people, and receive periodic care nudges for birthdays, milestones, holidays, health check-ins, and household planning.
 
-## Reference(s): <br>
-- [Care Domains](references/care-domains.md) <br>
-- [Holidays, School Terms & Leave Optimisation](references/holidays-and-leave.md) <br>
-- [The Mental Load - Research Summary](references/mental-load-research.md) <br>
-- [Onboarding Flow](references/onboarding-flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, local Markdown notes, and plain-text iCalendar (.ics) content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create recurring reminder configuration and local memory files when the user consents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill can store sensitive household notes about family, friends, children, dates, preferences, and reminders in local memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if local storage of these notes is acceptable; keep memory/people/ out of Git, shared folders, and cloud sync, avoid storing school names, detailed health history, financial details, addresses, or full birth dates, and delete memory/people/ when stopping use.
+
+## Reference(s):
+
+- [Care Domains](references/care-domains.md)
+- [Holidays, School Terms & Leave Optimisation](references/holidays-and-leave.md)
+- [The Mental Load - Research Summary](references/mental-load-research.md)
+- [Onboarding Flow](references/onboarding-flow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown or plain-text care nudges, local Markdown memory files, iCalendar (.ics) files, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only skill; outputs may include recurring reminders and local notes in memory/people/.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+{
+  "id": "t3-code",
+  "version": "0.1.3",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh t3-code"
+  ],
+  "trust_level": "public"
+}

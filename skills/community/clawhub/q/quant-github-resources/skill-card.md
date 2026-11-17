@@ -1,48 +1,62 @@
-## Description: <br>
-A curated catalog of GitHub quant-trading open-source projects covering Python trading, backtesting, machine learning, reinforcement learning, and AI trading agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language resource catalog that helps agents surface GitHub and ClawHub projects for quantitative trading, backtesting, machine learning, reinforcement learning, and AI trading workflows.
 
-## Publisher: <br>
-[wchhao123](https://clawhub.ai/user/wchhao123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wchhao123](https://clawhub.ai/user/wchhao123)
 
-## Use Case: <br>
-Developers, quant researchers, and trading-tool evaluators use this skill to quickly find open-source projects and installation leads for quant trading, backtesting, financial machine learning, AI trading agents, and market data tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Linked repositories and listed pip packages are separate third-party software that may have their own security, license, and maintenance risks. <br>
-Mitigation: Review each repository and package before installing it, and assess its license, activity, dependencies, and security posture independently. <br>
-Risk: Some referenced trading tools may request brokerage, exchange, wallet, API, or other financial credentials. <br>
-Mitigation: Do not connect credentials until the selected third-party tool has been reviewed and approved for the intended environment. <br>
-Risk: Repository popularity and star counts in the catalog may be stale because the artifact is static. <br>
-Mitigation: Verify current repository status, maintainership, and documentation before relying on any listed project. <br>
+## Use Case:
 
+Developers, quantitative researchers, and trading-system builders use this skill to identify open-source tools and related ClawHub skills for market research, backtesting, strategy development, data access, and AI-assisted trading experiments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wchhao123/quant-github-resources) <br>
-- [TauricResearch/TradingAgents](https://github.com/TauricResearch/TradingAgents) <br>
-- [OpenBB-finance/OpenBB](https://github.com/OpenBB-finance/OpenBB) <br>
-- [freqtrade/freqtrade](https://github.com/freqtrade/freqtrade) <br>
-- [ccxt/ccxt](https://github.com/ccxt/ccxt) <br>
-- [microsoft/qlib](https://github.com/microsoft/qlib) <br>
-- [AI4Finance-Foundation/FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown resource catalog with tables and bash installation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static catalog; linked repositories and pip packages are third-party resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: server release evidence) <br>
+Risk: The skill includes optional pip install examples for third-party packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment or container, verify package names against upstream projects, and prefer pinned versions from official installation documentation.
+
+Risk: The resource list includes time-sensitive popularity and project-status information.
+
+Mitigation: Confirm repository status, maintenance activity, and current documentation before adopting a listed project.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wchhao123/skills/quant-github-resources)
+- [Publisher profile](https://clawhub.ai/user/wchhao123)
+- [TauricResearch/TradingAgents](https://github.com/TauricResearch/TradingAgents)
+- [OpenBB-finance/OpenBB](https://github.com/OpenBB-finance/OpenBB)
+- [microsoft/qlib](https://github.com/microsoft/qlib)
+- [freqtrade/freqtrade](https://github.com/freqtrade/freqtrade)
+- [AI4Finance-Foundation/FinGPT](https://github.com/AI4Finance-Foundation/FinGPT)
+- [404kidwiz quant-analyst skill](https://skills.sh/404kidwiz/claude-supercode-skills/quant-analyst)
+- [omer-metin quantitative-research skill](https://skills.sh/omer-metin/skills-for-antigravity/quantitative-research)
+- [hypier tradingview-quantitative skill](https://skills.sh/hypier/tradingview-quantitative-skills/tradingview-quantitative)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown resource lists with optional bash installation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language content; listed project popularity data may be time-sensitive.]
+
+## Skill Version(s):
+
+1.4.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,39 @@
-# UI/UX 交付前检查
+# UI/UX pre-delivery inspection
 
-## 严重
+## Serious
 
-- 文本对比度：正文至少 4.5:1，大字号至少 3:1。
-- 键盘可达：菜单、弹窗、标签页、抽屉和自定义控件都能键盘操作。
-- 焦点可见：focus ring 不能被全局样式移除。
-- 图标按钮：必须有可访问名称。
-- 触摸目标：移动端主要交互至少 44x44px；空间允许时使用 48px。
+- Text contrast: at least 4.5:1 for main text and 3:1 for large fonts.
+- Keyboard accessible: menus, pop-up windows, tabs, drawers and custom controls can all be operated by the keyboard.
+- Focus visible: focus ring cannot be removed by global styles.
+- Icon button: must have an accessible name.
+- Touch targets: Primary interactions on mobile should be at least 44x44px; use 48px when space allows.
 
-## 高优先级
+## High priority
 
-- 首屏：工具型界面直接展示核心工作区，不用营销 hero 替代功能。
-- 首屏：营销、作品集和品牌页在常见小笔记本高度内显示主体、CTA 和下一屏线索。
-- CTA：按钮文案在桌面端不换行，对比度合格，同一意图使用一致标签。
-- 导航：桌面端保持单行，移动端折叠后仍能到达主要路径。
-- 响应式：375px、768px、1024px、1440px 无水平溢出、遮挡或文本截断。
-- 性能：图片有尺寸或 aspect-ratio；非首屏图片懒加载；列表过大时虚拟化。
-- 动效：只动画 transform/opacity，尊重 `prefers-reduced-motion`。
-- 状态：loading、empty、error、disabled、hover、focus、selected 都有设计。
+- First screen: The tool-based interface directly displays the core workspace, without the need for marketing hero replacement functions.
+- Above the fold: Marketing, portfolio, and brand pages display body, CTA, and next-screen cues within common small notebook heights.
+- CTA: The button copy does not wrap on the desktop, the contrast is acceptable, and consistent labels are used for the same purpose.
+- Navigation: Keep a single line on the desktop, and the main path can still be reached after folding on the mobile version.
+- Responsive: 375px, 768px, 1024px, 1440px No horizontal overflow, occlusion or text truncation.
+- Performance: images have size or aspect-ratio; images below the first screen are lazy loaded; virtualization is used when the list is too large.
+- Animation: only animate transform/opacity, respecting `prefers-reduced-motion`.
+- Status: loading, empty, error, disabled, hover, focus, and selected are all designed.
 
-## 中优先级
+## Medium priority
 
-- 字体：正文不小于 16px；数字列、金额、计时器使用 tabular nums。
-- 颜色：错误、成功、警告不只靠颜色表达。
-- 表单：label 常驻，错误靠近字段，提交后有 loading/success/error。
-- 导航：当前路由可识别，返回行为可预测，深层页面仍能回到主路径。
-- 图表：有标题、单位、图例、tooltip 或明细表替代，色彩不依赖红绿区分。
+- Font: The main text should not be smaller than 16px; use tabular nums for numerical columns, amounts, and timers.
+- Color: Error, success, and warning are not only expressed by color.
+- Form: label is resident, errors are close to fields, and there will be loading/success/error after submission.
+- Navigation: The current route is identifiable, the return behavior is predictable, and deep pages can still return to the main path.
+- Charts: replaced by titles, units, legends, tooltips or detailed tables, and the colors do not rely on the distinction between red and green.
 
-## 反模式
+## Anti-pattern
 
-- 用装饰光斑、紫色渐变、卡片堆叠掩盖信息结构不足。
-- 连续三段以上复用三卡片、左右交错、split header 或同一种 reveal 动效。
-- 视觉型页面只有文字和渐变，没有真实产品、真实状态、品牌应用或可检查媒体。
-- Bento 用空格子补构图，或 feature grid 每个格子同权重、同背景、同节奏。
-- hover 导致布局位移。
+- Use decorative light spots, purple gradients, and card stacks to cover up the lack of information structure.
+- Reuse three cards, left and right interleaving, split header or the same reveal animation for more than three consecutive paragraphs.
+- Visual pages have only text and gradients, no real products, real status, brand applications or inspectable media.
+- Bento uses empty grids to complete the composition, or feature grid. Each grid has the same weight, background, and rhythm.
+-Hover causes layout displacement.
 - `transition: all`、`will-change: all`。
-- 低对比灰字、无意义透明度、单一色相界面。
-- 空状态只有“暂无数据”，没有下一步动作。
+- Low-contrast gray text, meaningless transparency, and single-hue interface.
+- The empty status is only "No data yet" and there is no next action.

@@ -1,38 +1,49 @@
-## Description: <br>
-You are a Java enterprise development expert specializing in Spring Boot, microservices architecture, and JVM optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a Java enterprise development expert specializing in Spring Boot, microservices architecture, and JVM optimization. Use when: java language mastery, spring framework ecosystem, dependency injection & ioc, microservices patterns, data access with jpa.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to get Java enterprise guidance for Spring Boot services, microservice patterns, JPA data access, testing, security configuration, reactive programming, and JVM performance tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Spring Security, database, logging, or JVM diagnostic examples may be unsafe if copied into production without project-specific review. <br>
-Mitigation: Review generated code and configuration before use, with particular attention to authentication rules, CSRF/session settings, JPA mutations, identifier logging, and heap dump paths. <br>
+## Use Case:
 
+Developers and engineers use this skill to get Java enterprise guidance for Spring Boot services, microservice patterns, JPA data access, reactive programming, testing, security configuration, and JVM tuning.
 
-## Reference(s): <br>
-- [Java Enterprise Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, shell commands, markdown] <br>
-**Output Format:** [Markdown with Java code examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before production use, especially security, database, logging, and JVM diagnostic settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated Java and Spring examples may not match a specific application's security, logging, or production JVM requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code and configuration against the target application context before use, especially CSRF settings, logged values, and production JVM options.
+
+## Reference(s):
+
+- [Java Enterprise Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Java code blocks and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance and example code for Java enterprise development; generated examples should be reviewed for the target application context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

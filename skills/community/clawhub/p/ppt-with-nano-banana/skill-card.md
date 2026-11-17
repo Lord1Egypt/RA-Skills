@@ -1,42 +1,58 @@
-## Description: <br>
-Guides agents to create whiteboard-style presentation slides with Nano Banana Pro images and assemble them into 16:9 PPTX files with PptxGenJS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate whiteboard-style presentations with Chinese-first slide content by using Nano Banana Pro images and PptxGenJS-based PPT assembly.
 
-## Publisher: <br>
-[dreamsky](https://clawhub.ai/user/dreamsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dreamsky](https://clawhub.ai/user/dreamsky)
 
-## Use Case: <br>
-Presentation creators, developers, and agents use this skill to generate Chinese-first, whiteboard-style slide images and package them into professional PPTX decks. It is suited for workflows that need repeatable prompt templates, slide assembly code, and practical troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill defaults to Chinese presentation content, which may be wrong for users expecting another language. <br>
-Mitigation: State the desired output language explicitly when invoking the skill. <br>
-Risk: Generated slide images may contain unclear, incorrect, or inconsistent text. <br>
-Mitigation: Review each generated image and the final PPTX before using the presentation. <br>
-Risk: The workflow may ask the agent to install dependencies or run generated JavaScript that writes files. <br>
-Mitigation: Review commands, dependency choices, and output paths before execution. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to plan and generate professional whiteboard-style PPT decks with Chinese primary text, generated slide images, and a 16:9 PowerPoint output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dreamsky/ppt-with-nano-banana) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates, JavaScript examples, shell commands, and generated PPTX file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are oriented toward Chinese presentation content by default and may include generated slide images and PPTX files when the agent executes the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill installs an unpinned npm dependency for PPT generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin pptxgenjs in package.json and use a lockfile for repeatable builds.
+
+Risk: The skill is designed for Chinese-first slide content, which may not match every audience or locale.
+
+Mitigation: Override the language requirement in the user request when another primary language is needed.
+
+Risk: Generated slide images may contain unclear text or inconsistent whiteboard styling.
+
+Mitigation: Review generated images before PPT assembly and regenerate slides with explicit resolution, readability, and style constraints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dreamsky/skills/ppt-with-nano-banana)
+- [Publisher profile](https://clawhub.ai/user/dreamsky)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with prompt templates, JavaScript code blocks, shell commands, and file-organization guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for generated slide images and PPT assembly; final presentation files depend on the user's local image generation and PptxGenJS workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

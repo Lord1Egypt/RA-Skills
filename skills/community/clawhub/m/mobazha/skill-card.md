@@ -1,43 +1,58 @@
-## Description: <br>
-Entry point for Mobazha skills. Provides an overview of available skills and guides the AI agent to load the right one based on user intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Entry point for Mobazha skills. Provides an overview of available skills and guides the AI agent to load the right one based on user intent.
 
-## Publisher: <br>
-[fengzie](https://clawhub.ai/user/fengzie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengzie](https://clawhub.ai/user/fengzie)
 
-## Use Case: <br>
-Agents use this index skill to identify and load the appropriate Mobazha companion skill for deployment, setup, store operations, marketing, or MCP connection workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Companion Mobazha skills may involve shell commands, MCP connections, or store credentials. <br>
-Mitigation: Review each companion skill separately and require explicit approval before running commands, connecting MCP tools, or providing credentials. <br>
-Risk: Users may treat this index skill as sufficient review for the broader Mobazha skill collection. <br>
-Mitigation: Treat this skill as routing guidance only; evaluate referenced companion skills before deployment or store access. <br>
+## Use Case:
 
+Developers and agents use this index skill to identify the appropriate Mobazha companion skill for deployment, onboarding, store connection, operations, content, or marketing tasks.
 
-## Reference(s): <br>
-- [Mobazha Website](https://mobazha.org) <br>
-- [Mobazha Self-Host Guide](https://mobazha.org/self-host) <br>
-- [Mobazha Download Page](https://mobazha.org/download) <br>
-- [Mobazha SaaS Platform](https://app.mobazha.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Index-only; does not execute commands or access credentials by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: ClawHub release metadata) <br>
+Risk: The index can route an agent toward companion skills that may involve server access, credentials, MCP store-management authority, install scripts, or external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each companion skill separately before use and require explicit user confirmation for high-impact actions.
+
+Risk: Workflows connected to Mobazha stores may require user-provided credentials or service access.
+
+Mitigation: Keep credentials within the active session, avoid logging or transmitting secrets, and confirm the intended connection before proceeding.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fengzie/skills/mobazha)
+- [Mobazha Website](https://mobazha.org)
+- [Mobazha Self-Host Guide](https://mobazha.org/self-host)
+- [Mobazha Download Page](https://mobazha.org/download)
+- [Mobazha SaaS Platform](https://app.mobazha.org)
+- [Mobazha GitHub Organization](https://github.com/mobazha)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown guidance and routing instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [This index skill does not itself execute commands, access credentials, or persist data; higher-impact actions are delegated to separately reviewed companion skills.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

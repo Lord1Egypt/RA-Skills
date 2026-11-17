@@ -1,43 +1,55 @@
-## Description: <br>
-Excel Master helps an agent open user-named Excel workbooks, inspect sheet data, filter rows, compute basic column statistics, summarize table dimensions, and save explicit workbook changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Excel Master helps an agent open, inspect, filter, summarize, analyze, and save spreadsheet workbooks across multiple sheets.
 
-## Publisher: <br>
-[zywss](https://clawhub.ai/user/zywss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zywss](https://clawhub.ai/user/zywss)
 
-## Use Case: <br>
-Agent users working with spreadsheets can use this skill to inspect Excel data, run simple filters and statistics, and write changes back only after an explicit save command. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can display spreadsheet contents in the agent conversation. <br>
-Mitigation: Open only spreadsheets whose contents are appropriate to share in the current agent session. <br>
-Risk: The save command writes changes back to the opened workbook. <br>
-Mitigation: Confirm the target file before saving and keep a backup for important workbooks. <br>
-Risk: Advertised chart, PDF export, sheet switching, and AI-analysis capabilities are not supported by the reviewed behavior. <br>
-Mitigation: Rely only on documented read, filter, statistic, simple analysis, and save behavior until the publisher implements and documents additional features. <br>
+## Use Case:
 
+Spreadsheet users and developers use this skill to let an agent work with Excel files: opening workbooks, viewing data, switching sheets, filtering rows, computing basic statistics, saving changes, and summarizing table structure.
 
-## Reference(s): <br>
-- [Artifact README](README.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zywss/excel-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, structured data summaries, spreadsheet file writes, guidance] <br>
-**Output Format:** [Plain text responses with JSON-formatted table excerpts and summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads spreadsheet files named by the user and writes back to the opened workbook only when save is explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and package.json) <br>
+Risk: The skill can read spreadsheet files named by the user and overwrite the currently opened workbook when asked to save.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with intended workbook paths, keep backups of important spreadsheets, and review save requests before allowing overwrite behavior.
+
+Risk: The package claims dependency-free operation but requires the xlsx runtime package while declaring no dependencies.
+
+Mitigation: Declare and pin the xlsx dependency before deployment, then retest workbook read and write behavior in the target runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zywss/skills/excel-master)
+- [Artifact README](README.md)
+- [Artifact skill definition](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [Agent-facing text responses with JSON-formatted table previews and statistics when data is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read named spreadsheet files and save changes back to the currently opened workbook when requested]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

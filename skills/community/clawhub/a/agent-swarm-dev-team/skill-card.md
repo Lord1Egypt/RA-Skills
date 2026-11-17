@@ -1,42 +1,58 @@
-## Description: <br>
-Agent Swarm Dev Team helps orchestrate multiple AI coding agents, including Codex and Claude Code, to work on development tasks across isolated worktrees and tmux sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Swarm Dev Team coordinates multiple AI coding agents, including Codex, Claude Code, and Gemini, to work on development tasks in isolated worktrees and tmux sessions.
 
-## Publisher: <br>
-[sunnyhot](https://clawhub.ai/user/sunnyhot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnyhot](https://clawhub.ai/user/sunnyhot)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate AI coding agents for implementation, review, monitoring, and follow-up work across branches, worktrees, and pull requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marks this skill suspicious because it defaults to elevated, approval-bypassing agent execution. <br>
-Mitigation: Remove or override the dangerous default agent arguments before use and require explicit per-task approval for privileged actions. <br>
-Risk: The release references runtime scripts for launching and checking agents that are not included in the artifact. <br>
-Mitigation: Inspect, provide, and review the missing run-agent.sh and check-agents.sh scripts before relying on the workflow. <br>
-Risk: The initialization script uses a hardcoded local install path and writes local files and permissions. <br>
-Mitigation: Change the install path for the target environment and run the setup only in a reviewed, disposable workspace. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate multiple coding agents across feature branches, code review, monitoring loops, and completion checks for software development tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunnyhot/agent-swarm-dev-team) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and Node.js initialization code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup guidance for tmux, git worktrees, agent review workflows, and monitoring scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and package.json also specify 1.0.0) <br>
+Risk: Default agent arguments can bypass approval and sandbox boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the dangerous default agent arguments and run the skill only in an isolated workspace or container.
+
+Risk: The initializer writes to a hard-coded /Users/xufan65 install path.
+
+Mitigation: Change the install path to the intended workspace before running the initializer.
+
+Risk: Long-running coding agents can continue changing branches, files, or pull requests after launch.
+
+Mitigation: Monitor tmux sessions, pull request status, CI status, and review outputs before merging any changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunnyhot/skills/agent-swarm-dev-team)
+- [ClawHub publisher profile](https://clawhub.ai/user/sunnyhot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The initializer may create local workflow folders, logs, helper scripts, and a README for agent orchestration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,6 +2,8 @@
 
 这份文档覆盖聚合支付退款申请和退款查询。
 
+本页用于退款流程、定位键和高风险字段解释，不是完整 DTO。请求、同步响应、异步通知及所有嵌套字段的类型、长度、Y/N/C 必须读取 `references/payment-complete-field-catalog.md` 的“交易退款”；退款查询联读目录中的“交易退款查询”。
+
 ## 目录
 
 - 什么时候读这里
@@ -53,21 +55,21 @@
 
 ## 退款申请 data 请求字段
 
-| 参数 | 必填 | 说明 |
-| --- | --- | --- |
-| `req_date` | Y | 本次退款请求日期，格式 `yyyyMMdd` |
-| `req_seq_id` | Y | 本次退款请求流水号，同一 `huifu_id` 下当天唯一 |
-| `huifu_id` | Y | 商户号 |
-| `ord_amt` | Y | 申请退款金额，单位元，保留两位小数；延时交易退款金额必须小于等于待确认金额 |
-| `org_req_date` | Y | 原交易请求日期，格式 `yyyyMMdd` |
-| `org_hf_seq_id` | C | 原交易全局流水号；与 `org_party_order_id`、`org_req_seq_id` 三选一 |
-| `org_party_order_id` | C | 原交易微信/支付宝用户账单上的商户单号；与另外两项三选一 |
-| `org_req_seq_id` | C | 原交易请求流水号；与另外两项三选一 |
-| `remark` | N | 备注，最长 84，原样返回 |
-| `notify_url` | N | 退款异步通知地址，最长 512 |
-| `acct_split_bunch` | N | 分账退款对象，JSON Object 字符串 |
-| `combinedpay_data` | N | 补贴支付退款信息，JSON Array 字符串 |
-| `terminal_device_data` | N | 设备信息，JSON Object 字符串 |
+| 参数 | 类型 | 长度 | 必填 | 说明 |
+| --- | --- | --- | --- | --- |
+| `req_date` | String | 8 | Y | 本次退款请求日期，格式 `yyyyMMdd` |
+| `req_seq_id` | String | 128 | Y | 本次退款请求流水号，同一 `huifu_id` 下当天唯一 |
+| `huifu_id` | String | 32 | Y | 商户号 |
+| `ord_amt` | String | 14 | Y | 申请退款金额，单位元，保留两位小数；延时交易退款金额必须小于等于待确认金额 |
+| `org_req_date` | String | 8 | Y | 原交易请求日期，格式 `yyyyMMdd` |
+| `org_hf_seq_id` | String | 128 | N | 官网标记 N；条件上与 `org_party_order_id`、`org_req_seq_id` 三选一 |
+| `org_party_order_id` | String | 64 | N | 官网标记 N；条件上与另外两项三选一 |
+| `org_req_seq_id` | String | 128 | N | 官网标记 N；条件上与另外两项三选一 |
+| `remark` | String | 84 | N | 备注，原样返回 |
+| `notify_url` | String | 512 | N | 退款异步通知地址 |
+| `acct_split_bunch` | String(JSON Object) | 2048 | N | 分账退款对象 |
+| `combinedpay_data` | String(JSON Array) | 官方未给定 | N | 补贴支付退款信息 |
+| `terminal_device_data` | String(JSON Object) | 2048 | N | 设备信息 |
 
 ### 交易能力扩展字段
 
@@ -168,16 +170,82 @@
 | `huifu_id` | Y | 分账接收方 ID |
 | `confirm_refund_status` | N | 交易确认退款状态，`P` 处理中，`S` 成功，`F` 失败；为空代表不走交易确认退款 |
 
+### `wx_response`
+
+| 字段路径 | 类型 | 长度 | 必填 | 说明 |
+| --- | --- | --- | --- | --- |
+| `sub_appid` | String | 32 | N | 子商户公众账号 ID |
+| `sub_mch_id` | String | 32 | N | 子商户号 |
+| `org_out_trans_id` | String | 32 | N | 微信订单号 |
+| `out_trans_id` | String | 32 | N | 微信退款单号 |
+| `cash_fee` | String | 12 | N | 现金支付金额，单位元 |
+| `cash_refund_fee` | String | 12 | N | 现金退款金额，单位元 |
+| `coupon_refund_fee` | String | 12 | N | 代金券退款总金额 |
+| `coupon_refund_count` | Integer | 12 | N | 退款代金券使用数量 |
+| `refund_coupon_info[]` | Array | 1024 | N | 退款代金券信息 |
+| `promotion_detail[]` | Array | 官方未给定 | N | 优惠详情 |
+| `user_received_account` | String | 64 | N | 退款入账账户 |
+
+`wx_response.refund_coupon_info[]`：
+
+| 字段路径 | 类型 | 长度 | 必填 | 说明 |
+| --- | --- | --- | --- | --- |
+| `coupon_type` | String | 8 | N | `CASH` 充值代金券、`NO_CASH` 非充值代金券 |
+| `coupon_refund_id` | String | 20 | N | 退款代金券 ID |
+| `coupon_refund_fee` | String | 11 | N | 单个退款代金券金额 |
+
+`wx_response.promotion_detail[]`：
+
+| 字段路径 | 类型 | 长度 | 必填 | 说明 |
+| --- | --- | --- | --- | --- |
+| `promotion_id` | String | 32 | Y | 券或立减优惠 ID |
+| `scope` | String | 32 | N | `GLOBAL` 全场、`SINGLE` 单品 |
+| `type` | String | 32 | N | `COUPON` 代金券、`DISCOUNT` 优惠券 |
+| `refund_amount` | String | 32 | N | 代金券退款金额 |
+| `amount` | String | 32 | N | 券面额 |
+| `goods_detail[]` | Array | 官方未给定 | N | 单品优惠退款商品明细 |
+
+`wx_response.promotion_detail[].goods_detail[]`：
+
+| 字段路径 | 类型 | 长度 | 必填 | 说明 |
+| --- | --- | --- | --- | --- |
+| `goods_id` | String | 32 | Y | 商户商品编码 |
+| `wxpay_goods_id` | String | 32 | N | 微信支付商品编码 |
+| `goods_name` | String | 14 | N | 商品名称 |
+| `refund_amt` | String | 11 | Y | 商品退款金额 |
+| `refund_quantity` | Integer | 11 | Y | 商品退款数量 |
+| `price` | String | 11 | Y | 商品优惠后单价 |
+
+### `dc_response`
+
+| 字段路径 | 类型 | 长度 | 必填 | 说明 |
+| --- | --- | --- | --- | --- |
+| `merchant_id` | String | 35 | N | 商户号 |
+| `sub_merchant_id` | String | 35 | N | 子商户号 |
+| `openid` | String | 64 | N | 用户标识 |
+| `sub_openid` | String | 64 | N | 用户子标识 |
+| `custom_bank_code` | String | 14 | N | 客户所属运营机构代码 |
+| `custom_bank_name` | String | 70 | N | 客户所属运营机构名称 |
+| `coupon_refund_count` | String | 3 | N | 退款代金券数量；注意此处官方类型为 String，与微信对象不同 |
+| `coupon_refund_list[]` | Array | 2048 | N | 退款代金券集合 |
+| `refund_recv_wallet_id` | String | 22 | N | 退款入账钱包 ID |
+
+`dc_response.coupon_refund_list[]`：
+
+| 字段路径 | 类型 | 长度 | 必填 | 说明 |
+| --- | --- | --- | --- | --- |
+| `id` | String | 40 | N | 退款代金券 ID |
+| `type` | String | 8 | N | 退款代金券类型 |
+| `amount` | String | 14 | N | 单个退款代金券金额 |
+
 ### 其他扩展返回对象
 
-| 对象 | 说明 |
-| --- | --- |
-| `combinedpay_data` | 补贴支付退款信息 |
-| `combinedpay_data_fee_info` | 补贴支付手续费承担方信息，含 `huifu_id`、`acct_id`、`combinedpay_fee_amt` |
-| `trans_fee_ref_allowance_info` | 手续费补贴返还信息，含 `receivable_ref_fee_amt`、`actual_ref_fee_amt`、`allowance_ref_fee_amt` |
-| `wx_response` | 微信退款响应，可能含现金退款、代金券退款、退款入账账户、商品优惠明细 |
-| `dc_response` | 数字人民币退款响应，可能含客户运营机构、钱包、代金券退款集合 |
-| `unionpay_response` | 银联退款响应，可能含银联优惠退款信息 |
+| 对象 | 类型/长度 | 说明 |
+| --- | --- | --- |
+| `combinedpay_data` | Array / 官方未给定 | 补贴支付退款信息 |
+| `combinedpay_data_fee_info` | Object / 官方未给定 | 含 `huifu_id`、`acct_id`、`combinedpay_fee_amt` |
+| `trans_fee_ref_allowance_info` | Object / 官方未给定 | 含 `receivable_ref_fee_amt`、`actual_ref_fee_amt`、`allowance_ref_fee_amt` |
+| `unionpay_response` | Object / 官方未给定 | 银联优惠退款信息 |
 
 ## 退款异步返回参数
 
@@ -265,6 +333,16 @@
 ```
 
 ## 当前语言边界
+
+| 方面 | 聚合支付退款当前文档链路 | 托管支付退款 |
+|------|---------------------|-----------|
+| SDK | dg-lightning-sdk | dg-java-sdk |
+| org_req_seq_id | 有独立 setter，直接调用 | **无 setter**，必须 extendInfoMap |
+| remark/notify_url | **无 setter**，通过 `client.optional()` | 通过 extendInfoMap |
+| 交易能力扩展字段 | 请求侧不传 `tx_metadata` 包装层；不要传 `tx_metadata`；按能力名直接传 `acct_split_bunch` / `combinedpay_data` / `terminal_device_data` | 通过 extendInfoMap / setter |
+| 调用方式 | `client.refund(req)` | `BasePayClient.request(req, false)` |
+
+
 
 - Java 提供完整路径
 - 聚合支付 PHP 已支持 `Payment::refund()` 与 `Payment::refundQuery()`；示例入口见 `references/aggregation-query-php-scenarios.md`

@@ -1,37 +1,53 @@
-## Description: <br>
-Guides an agent to write responses, explanations, stories, instructions, and other prose in iambic pentameter while preserving meaning, accuracy, and clarity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent write responses, explanations, stories, instructions, and prose in iambic pentameter while preserving accuracy, clarity, and meaning.
 
-## Publisher: <br>
-[adamkessler](https://clawhub.ai/user/adamkessler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamkessler](https://clawhub.ai/user/adamkessler)
 
-## Use Case: <br>
-External users and agents use this skill when they want answers, explanations, stories, or instructions shaped as blank verse or Shakespeare-like metered prose without losing factual accuracy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The metered style can reduce precision or disrupt strict formatting in legal, medical, coding, JSON, or procedural tasks. <br>
-Mitigation: Use plain language for precision-heavy work and keep code, JSON, file paths, and other structured outputs outside the meter. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to answer in a Shakespearean or metered poetic style. It is suited to creative, explanatory, instructional, and conversational prose, while keeping structured technical outputs unmetered.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with verse lines; technical blocks remain unmetered when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes blank verse and preserves exact formatting for code, JSON, file paths, and other structured data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Verse constraints can reduce precision or clarity in safety-critical, legal, medical, financial, or precision technical answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to prioritize plain accuracy over verse for high-stakes or precision-sensitive tasks.
+
+Risk: Forcing meter can alter structured outputs such as code, JSON, file paths, or shell commands.
+
+Mitigation: Keep technical blocks unmetered and use metered framing only, as the skill directs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adamkessler/skills/iambic-pentameter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text with metered verse lines; fenced technical blocks remain unmetered when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Blank verse is preferred; rhyme is optional and should not be forced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

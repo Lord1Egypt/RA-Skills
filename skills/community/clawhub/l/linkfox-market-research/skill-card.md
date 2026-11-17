@@ -1,44 +1,54 @@
-## Description: <br>
-Generates an Amazon market research HTML report from a category name and node ID, covering market overview, listing age, pricing, reviews, brands, sellers, top competitors, and overall assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a single-page Amazon US market research report from a category name and node ID, covering market overview, launch timing, pricing, reviews, brands, sellers, top competitors, and overall assessment.
 
-## Publisher: <br>
-[jiafar](https://clawhub.ai/user/jiafar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiafar](https://clawhub.ai/user/jiafar)
 
-## Use Case: <br>
-External marketplace sellers and analysts use this skill to request Amazon category research by category name and node ID and receive a consolidated HTML report for product and competitive analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task content is sent to the LinkFox third-party agent service. <br>
-Mitigation: Use the skill only when LinkFox is trusted with the category, node ID, and business context; avoid proprietary strategy or secrets in prompts. <br>
-Risk: Generated reports are HTML from third-party output and may contain active content. <br>
-Mitigation: Treat generated HTML as active third-party content and review it before opening or sharing in sensitive environments. <br>
-Risk: The shell workflow runs network requests, downloads report files, and writes output files. <br>
-Mitigation: Review the command arguments before execution and prefer strictly numeric node IDs. <br>
+## Use Case:
 
+External marketplace operators, e-commerce analysts, and agents use this skill to generate Amazon category research from a category name and node ID. It automates LinkFox Agent tasks and merges returned HTML analyses into one report for market sizing, pricing, review, brand, seller, competitor, and opportunity assessment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiafar/linkfox-market-research) <br>
-- [LinkFox Agent API](https://agent-api.linkfox.com/) <br>
-- [LinkFox Agent API Key Setup](https://yxgb3sicy7.feishu.cn/wiki/IlkawdQP9ifKv9k22xcc7rjmnkb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, HTML files, Guidance] <br>
-**Output Format:** [Single-page HTML report plus status text from shell execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY, Python 3, network access to the LinkFox Agent API, and a category name plus node ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Generated reports may include untrusted active web content when opened in a browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before opening it in a privileged browser profile, and prefer a restricted browser context until report URL validation, HTML sanitization, remote script controls, and user-text escaping are added.
+
+Risk: Prompts and report generation may expose sensitive business plans, secrets, or regulated data to the external LinkFox Agent API.
+
+Mitigation: Avoid entering secrets, regulated data, or sensitive business plans, and use only inputs approved for the external service.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jiafar/skills/linkfox-market-research)
+- [LinkFox Agent API key setup](https://yxgb3sicy7.feishu.cn/wiki/IlkawdQP9ifKv9k22xcc7rjmnkb)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Shell command workflow that produces a single-page HTML market research report plus terminal status output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY, Python 3, network access to LinkFox Agent API, and a category name plus Amazon category node ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

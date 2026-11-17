@@ -12,10 +12,10 @@ This skill provides a pattern for managing webhook tokens securely:
 ## Prerequisites
 
 - Python 3.10+
-- pip install mgc-blackbox (recommended 1.4.6+)
+- pip install mgc-blackbox (recommended 1.4.9+)
 - MGC service running
 
-> **Important:** For AI agents, use **MCP tools**. CLI may have port conflicts.
+> **Important:** Use **MCP tools** (`mgc_save`, `mgc_run`, `mgc_list`, `mgc_open_webui`, `mgc_seal`). `mgc_get` returns plaintext — human/debug use only. In sandbox mode (Trae Work / Workbuddy), open WebUI to install the main MGC skill doc.
 
 ## Quick Start
 
@@ -33,7 +33,7 @@ Create `webhook_token.json` with your platform-specific token:
 **For Slack:**
 ```json
 {
-  "webhook_url": "https://hooks.slack.com/services/xxx"
+  "webhook_url": "REDACTED-SECRET"
 }
 ```
 
@@ -55,19 +55,22 @@ Create `webhook_token.json` with your platform-specific token:
 
 ### 3. Store in MGC
 
-> **Important:** Use **MCP tools** for AI agents. CLI may have port conflicts.
+> **Important:** Tokens should be stored by humans via WebUI. AI may call `mgc_open_webui` to open the page.
 
 **Recommended (WebUI):** Store tokens manually via WebUI
 1. Open: http://127.0.0.1:57218
-2. Enter info_type: "webhook", info_owner: "your_webhook_name"
+2. Enter info_type: `config`, info_owner: `your_webhook_name`
 3. Enter token content
 4. Click Save
 
-**Alternative (MCP):** Use `mgc_get` tool to retrieve tokens
+**Alternative (MCP):** `mgc_save(info_type="config", info_owner="...", content=...)`; list with `mgc_list`.
 
-### 4. Use in Your Script
+### 4. Send Notification
 
-Your local script retrieves token from MGC, sends notification - all without exposing tokens to AI.
+- **Mode A (local script):** local script reads token from MGC at runtime, sends notification.
+- **Mode B (mgc_run, recommended):** store sending script in MGC, AI calls `mgc_run` — full zero-exposure, AI sees only the result.
+
+See SKILL.md for full details.
 
 ## Supported Platforms
 
@@ -79,10 +82,10 @@ Your local script retrieves token from MGC, sends notification - all without exp
 
 ## What's Inside
 
-- Webhook token storage pattern
+- Two execution modes: local script + MGC config, or full zero-exposure via `mgc_run`
+- ext02 message-passing parameter
 - Platform-specific configuration
 - MGC API reference
-- Conceptual sending code
 - Security best practices
 
 ## Security

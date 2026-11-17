@@ -1,41 +1,55 @@
-## Description: <br>
-Generates high-converting headline options for blogs, social posts, videos, email subjects, and ad copy using copywriting formulas and marketing psychology principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates headline options for blogs, social posts, videos, email subjects, and advertising copy using copywriting formulas and marketing psychology principles.
 
-## Publisher: <br>
-[limingdev-tech-2024](https://clawhub.ai/user/limingdev-tech-2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[limingdev-tech-2024](https://clawhub.ai/user/limingdev-tech-2024)
 
-## Use Case: <br>
-Content creators, marketers, and operators use this skill to generate multiple headline candidates tailored to a topic, audience, content type, and publishing platform. It also provides scoring, optimization advice, and A/B testing suggestions for headline selection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated headlines may include misleading numbers, popularity claims, authority references, urgency, scarcity, or promises of results. <br>
-Mitigation: Review each headline against the underlying content and verify claims before publishing. <br>
-Risk: Persuasive headline patterns can become clickbait if the headline overstates what the content delivers. <br>
-Mitigation: Keep the selected headline aligned with the actual content and revise exaggerated wording before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/limingdev-tech-2024/content-headline-generator) <br>
-- [README.md](artifact/README.md) <br>
-- [EXAMPLES.md](artifact/EXAMPLES.md) <br>
+## Use Case:
 
+External content creators, marketers, and operators use this skill to generate, compare, score, and refine headlines for platform-specific publishing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections containing headline options, ratings, rationale, optimization suggestions, and A/B testing recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are persuasive writing suggestions and should be reviewed before publication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated headlines may overstate results, imply unsupported metrics, or use persuasive claims that go beyond the source content.
+
+Mitigation: Review generated titles for factual support and remove unverifiable numbers, superlatives, or guarantees before publication.
+
+Risk: Platform-specific persuasive patterns may conflict with content, advertising, or anti-clickbait policies.
+
+Mitigation: Check each selected headline against the target platform's current policy and the underlying article, video, email, or ad content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/limingdev-tech-2024/skills/content-headline-generator)
+- [Skill Definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Usage Examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with headline options, scores, strengths, optimization notes, and A/B testing suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tool use, credential access, or external data access is described by the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

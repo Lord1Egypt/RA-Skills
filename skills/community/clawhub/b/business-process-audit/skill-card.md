@@ -1,39 +1,52 @@
-## Description: <br>
-Identifies automation opportunities across business workflows, estimates time and cost savings, and prioritizes processes for automation based on ROI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business Process Audit helps evaluate workflows across common business functions, estimate time and cost savings, and prioritize automation opportunities by ROI.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business operators, transformation teams, and developers use this skill to audit workflows, quantify manual work, and build an automation roadmap with estimated savings and ROI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Savings and ROI estimates may be treated as precise business advice even though they depend on assumptions and user-provided inputs. <br>
-Mitigation: Validate workload, cost, implementation effort, and automation percentage assumptions with business stakeholders before making investment decisions. <br>
-Risk: Auditing business workflows can expose confidential customer, HR, financial, security, or proprietary process details in the agent conversation. <br>
-Mitigation: Redact sensitive details and avoid sharing confidential information unless the conversation environment is approved for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/business-process-audit) <br>
+## Use Case:
 
+Business operators, consultants, and operations teams use this skill to audit repetitive workflows, identify automation candidates, and build a quantified business case for process improvement.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown audit report with tables, prioritized roadmap, savings estimates, and ROI summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided business context, workload assumptions, hourly cost, automation percentage, and implementation effort estimates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The audit may involve sensitive company, employee, customer, or financial details.
+
+Mitigation: Share only the business details needed for the audit and omit unnecessary sensitive information.
+
+Risk: Savings, cost, and ROI estimates can be misleading if the inputs or assumptions do not match the business.
+
+Mitigation: Validate the salary, hourly cost, task volume, automation percentage, and implementation effort assumptions before using the report for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/business-process-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown audit report with tables, calculations, prioritized recommendations, and an automation roadmap.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory estimates based on user-provided business context and the skill's stated calculation assumptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

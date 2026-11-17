@@ -1,37 +1,49 @@
-## Description: <br>
-Reviews Prometheus instrumentation in Go code for proper metric types, labels, and patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Prometheus instrumentation in Go code for proper metric types, labels, and patterns. Use when reviewing code with prometheus/client_golang metrics.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to review Go services that use prometheus/client_golang metrics, with attention to metric semantics, label cardinality, naming, histogram buckets, registration lifecycle, and /metrics exposure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review comments could be misleading if Prometheus findings are made without checking the concrete files, labels, and metric registration lifecycle. <br>
-Mitigation: Require findings to cite the reviewed file or symbol, explain the failed label cardinality or registration gate, and tie the concern to observed code before acting on the recommendation. <br>
+## Use Case:
 
+Developers and reviewers use this skill to review Go code that uses prometheus/client_golang instrumentation, focusing on metric types, label cardinality, metric naming, histogram buckets, registration lifecycle, and /metrics exposure.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown review guidance with checklist items and Go code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it does not run commands or access external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: server release metadata) <br>
+Risk: Review findings may be incomplete or incorrect because the skill provides guidance rather than automated verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm findings against the referenced Go code and require concrete file or symbol evidence before acting on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/prometheus-go-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review guidance with checklist items and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts the agent to cite concrete files or symbols before recording findings.]
+
+## Skill Version(s):
+
+2.3.1 (source: evidence release version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

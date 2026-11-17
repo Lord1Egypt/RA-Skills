@@ -1,0 +1,72 @@
+{
+  "plug_slug": "plug-bundle-free-weather-skill-3",
+  "bundle_slug": "bundle-free-weather-skill-3",
+  "bundle_name": "Lifestyle Bundle: free-weather-skill-tool-pro",
+  "members": [
+    {
+      "slug": "free-weather-skill-3",
+      "name": "free-weather-skill-tool-pro",
+      "category": "Lifestyle",
+      "role": "primary"
+    },
+    {
+      "slug": "game-builder",
+      "name": "game-builder-tool-pro",
+      "category": "Lifestyle",
+      "role": "primary"
+    },
+    {
+      "slug": "text-game-arcade-universe-v3",
+      "name": "text-game-arcade-universe-v3",
+      "category": "Lifestyle",
+      "role": "primary"
+    },
+    {
+      "slug": "apple-health-2",
+      "name": "apple-health-tool-free",
+      "category": "Lifestyle",
+      "role": "primary"
+    }
+  ],
+  "pain_points": [
+    "生活事务分散难以高效管理"
+  ],
+  "value_props": {
+    "individual_prices": [
+      {
+        "slug": "free-weather-skill-3",
+        "name": "free-weather-skill-tool-pro",
+        "price": 29.0,
+        "tier": "premium"
+      },
+      {
+        "slug": "game-builder",
+        "name": "game-builder-tool-pro",
+        "price": 12.0,
+        "tier": "business"
+      },
+      {
+        "slug": "text-game-arcade-universe-v3",
+        "name": "text-game-arcade-universe-v3",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "apple-health-2",
+        "name": "apple-health-tool-free",
+        "price": 0.0,
+        "tier": "free"
+      }
+    ],
+    "total_individual": 41.0,
+    "bundle_price": 32.8,
+    "savings": 8.2,
+    "savings_percent": 20.0,
+    "discount_rate": 0.2,
+    "value_statement": "4个skill单买总价41.0元，Plug捆绑价32.8元，节省8.2元 (20.0% off)"
+  },
+  "use_case": "本Plug整合4个互补skill，提供一站式解决方案：\n\n- free-weather-skill-tool-pro (Lifestyle): 提供 read、exec、write\n- game-builder-tool-pro (Lifestyle): 提供 read、exec、write\n- text-game-arcade-universe-v3 (Lifestyle): 提供 通用工具\n- apple-health-tool-free (Lifestyle): 提供 read、exec、write\n\n组合工具集: read, exec, write\n\n典型工作流:\n  1. 使用 free-weather-skill-tool-pro 的 read、exec、write 完成相关任务\n  2. 使用 game-builder-tool-pro 的 read、exec、write 完成相关任务\n  3. 使用 text-game-arcade-universe-v3 的 数据处理 完成相关任务\n  4. 使用 apple-health-tool-free 的 read、exec、write 完成相关任务\n  5. 整合各skill输出，形成完整解决方案",
+  "overall_score": 81.1,
+  "combination_reason": "4个skill组合 | 覆盖1个分类 | 0个互补 | 整体评分81.1/100",
+  "generated_at": "2026-07-31T18:18:41.603798"
+}

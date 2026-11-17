@@ -1,41 +1,58 @@
-## Description: <br>
-Helps ecommerce teams, TikTok Shop operators, and creators plan TikTok content pillars, video angles, testing priorities, and weekly posting plans tied to commerce outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides TikTok Shop ecommerce teams, operators, and creators with commerce-focused content strategy, video angle ideas, testing priorities, and weekly posting plans.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce teams, TikTok Shop operators, brands, and creators use this skill to turn product and audience context into practical TikTok Shop content strategy, testing priorities, and weekly posting plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive unreleased product plans, private sales data, or confidential creator strategy while seeking content recommendations. <br>
-Mitigation: Avoid providing confidential business data unless the user is comfortable using that information for TikTok content planning. <br>
-Risk: The skill can produce commerce-focused content advice that sounds more certain than the available account or product signals support. <br>
-Mitigation: Treat recommendations as planning hypotheses, ask for missing product and audience context, and test ideas before scaling them. <br>
+## Use Case:
 
+External ecommerce teams, TikTok Shop operators, and creators use this skill to turn product, audience, offer, and account context into practical TikTok content pillars, video angles, hook tests, and weekly posting priorities tied to commerce outcomes.
 
-## Reference(s): <br>
-- [TikTok Shop Growth on ClawHub](https://clawhub.ai/Leooooooow/tiktok-shop-growth) <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown strategy plan with content pillars, video angles, hook directions, reach-versus-conversion guidance, and a weekly plan or priority matrix.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only planning aid; does not execute code, access accounts, automate posting, store credentials, or persist data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat content strategy suggestions as guaranteed sales or virality outcomes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations as planning guidance, test them incrementally, and avoid overpromising performance claims.
+
+Risk: The skill may request product, audience, offer, and prior performance context from the user.
+
+Mitigation: Share only business context needed for planning and avoid disclosing unnecessary sensitive customer, account, or proprietary data.
+
+Risk: The skill does not perform real-time trend scraping, posting, account access, or automation.
+
+Mitigation: Use separate reviewed tools for platform automation or live analytics, and verify trends or account-specific performance before acting.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/tiktok-shop-growth)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown strategy plan with structured sections and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include content pillars, video angles, hook directions, reach-versus-conversion balance, weekly post plans, priority matrices, and watchouts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

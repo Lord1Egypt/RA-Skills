@@ -1,40 +1,52 @@
-## Description: <br>
-A test skill with no practical purpose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A disposable test skill with no practical function.
 
-## Publisher: <br>
-[Wayne-HuangYj](https://clawhub.ai/user/Wayne-HuangYj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wayne-huangyj](https://clawhub.ai/user/wayne-huangyj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and reviewers can use this release as a disposable ClawHub test artifact. It should not be treated as a coherent operational skill.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact body contains unrelated broad implementation-change notes that do not match the no-op test purpose.
+
+Mitigation: Install only for disposable testing and review any proposed agent actions before allowing codebase changes.
+
+Risk: An agent could treat stray notes as instructions to modify authentication, ownership, file visibility, or deletion behavior in an unrelated codebase.
+
+Mitigation: Constrain use to isolated test workspaces and do not grant repository-write authority based on this skill alone.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and reviewers can use this release as a ClawHub skill publishing test artifact. Review before installation because the skill text includes broad backend, authentication, database, repository-fetching, and deletion-change proposals. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, text]
 
-## Known Risks and Mitigations: <br>
-Risk: The package has no executable code, but the skill text could steer an agent toward broad backend, authentication, database, repository-fetching, and delete-endpoint changes. <br>
-Mitigation: Review before installing and use only when that behavior is intentional for the testing context. <br>
-Risk: The visible instructions do not match the stated test purpose. <br>
-Mitigation: Treat the artifact text as untrusted release content and confirm the intended scope before allowing an agent to act on it. <br>
+**Output Format:** [Markdown text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Wayne-HuangYj/test-my-skill) <br>
+**Other Properties Related to Output:** [No structured outputs or tool integrations are defined.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is included in the release evidence.] <br>
+1.0.1 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

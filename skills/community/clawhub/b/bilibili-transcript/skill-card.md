@@ -1,39 +1,50 @@
-## Description: <br>
-This retired skill redirects users to the replacement bilibili-auto-transcript skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This deprecated redirect tells agents that bilibili-transcript has been superseded by bilibili-auto-transcript and provides the ClawHub install command for the replacement.
 
-## Publisher: <br>
-[54lynnn](https://clawhub.ai/user/54lynnn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[54lynnn](https://clawhub.ai/user/54lynnn)
 
-## Use Case: <br>
-External users and developers who encounter the retired Bilibili transcript skill use it to identify and install the maintained replacement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The replacement skill may have broader behavior than this retired redirect notice. <br>
-Mitigation: Review the replacement skill before running the migration command. <br>
+## Use Case:
 
+External users and developers use this redirect to migrate from the deprecated Bilibili transcript skill to the replacement ClawHub package.
 
-## Reference(s): <br>
-- [Bilibili Transcript Redirect on ClawHub](https://clawhub.ai/54lynnn/bilibili-transcript) <br>
-- [Replacement skill: bilibili-auto-transcript](https://clawhub.ai/54lynnn/bilibili-auto-transcript) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with an inline shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Redirect notice only; no executable behavior is included in this skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may install an unintended or untrusted replacement package when following the migration instruction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that bilibili-auto-transcript is the intended package from publisher handle 54lynnn, and prefer a pinned or verified release when available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/54lynnn/skills/bilibili-transcript)
+- [Replacement Skill](https://clawhub.ai/54lynnn/bilibili-auto-transcript)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecation and migration guidance only; no bundled code or automatic behavior.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

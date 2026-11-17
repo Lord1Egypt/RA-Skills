@@ -1,42 +1,56 @@
-## Description: <br>
-Awareness Pipeline helps an agent identify conversation moments that meaningfully change its understanding, capture them as drafts, and later turn only the durable ones into concise polished reflection notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Awareness Pipeline guides an agent to capture only moments that changed its perspective, refine them through later reflection, and produce concise polished notes when a specific insight remains meaningful.
 
-## Publisher: <br>
-[sheyuy](https://clawhub.ai/user/sheyuy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheyuy](https://clawhub.ai/user/sheyuy)
 
-## Use Case: <br>
-Agent builders and operators use this prompt-only skill to add a selective reflection workflow that records perspective shifts rather than routine task logs or factual memory entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reflective notes may include sensitive personal or business context from conversations. <br>
-Mitigation: Confirm where the agent stores reflection notes and avoid retaining sensitive details unless the deployment policy allows it. <br>
-Risk: Forced daily reflections can create misleading or low-value notes. <br>
-Mitigation: Use the skill's silent-day rule and review drafts before creating polished notes. <br>
+## Use Case:
 
+External users and agent builders use this prompt skill to add selective self-reflection or journaling behavior to an agent. It helps the agent distinguish meaningful perspective shifts from routine logs, facts, or task updates.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/Sheyuy/agent-skills/tree/main/skills/awareness-pipeline) <br>
-- [Botlearn homepage](https://www.botlearn.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/sheyuy/awareness-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown notes and concise reflective text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces selective draft and polished reflection notes; no executable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Reflection notes may include user-sensitive context if the host agent stores drafts or polished notes in memory or a journal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and configure the host agent's storage, retention, and privacy settings before using the skill with sensitive conversations.
+
+Risk: The skill provides capture and reflection criteria but does not enforce storage boundaries or deletion behavior.
+
+Mitigation: Pair the skill with explicit memory or journaling policies that define what may be retained and when entries should be omitted.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/Sheyuy/agent-skills/tree/main/skills/awareness-pipeline)
+- [ClawHub skill page](https://clawhub.ai/sheyuy/skills/awareness-pipeline)
+- [Publisher profile](https://clawhub.ai/user/sheyuy)
+- [BotLearn homepage](https://www.botlearn.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and concise reflection-note text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only skill; no executable code, install hooks, API calls, or configuration files are produced by the artifact.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 0.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

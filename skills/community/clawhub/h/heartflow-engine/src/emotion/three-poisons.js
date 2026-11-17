@@ -62,6 +62,17 @@ const ThreePoisons = {
   },
 
   // ============================================================
+  // 0. [v5.14.1] 共享认知桥接
+  // ============================================================
+  get _bridge() {
+    if (!this.__bridge) {
+      const { getCognitiveBridge } = require('../formula/cognitive-bridge.js');
+      this.__bridge = getCognitiveBridge();
+    }
+    return this.__bridge;
+  },
+
+  // ============================================================
   // 1. analyzeGreed - 贪欲分析
   // ============================================================
   /**
@@ -210,6 +221,8 @@ const ThreePoisons = {
    * @param {number} [person.delusion.confirmation_bias] - 确认偏误 (1-10)
    * @param {number} [person.delusion.belief_persistence] - 信念固着 (1-10)
    * @param {number} [person.delusion.self_deception] - 自我欺骗 (1-10)
+   * @param {Object} [person.delusion.evidence] - [FORMULA] 贝叶斯证据更新
+   *         { priorA: 先验P(A), pBA: P(B|A)似然, pB: P(B)边际 }，用于量化"信念是否随证据更新"
    * @returns {Object} 愚痴分析结果
    */
   analyzeDelusion(person) {
@@ -222,6 +235,24 @@ const ThreePoisons = {
       belief_persistence: clamp(d.belief_persistence ?? defaults.belief_persistence, 1, 10),
       self_deception: clamp(d.self_deception ?? defaults.self_deception, 1, 10)
     };
+
+    // [FORMULA] 贝叶斯信念更新度：痴的本质是"信念不随证据更新"
+    // 公式引自心虫公式库 bayes_theorem: P(A|B) = P(B|A)·P(A) / P(B)
+    // 理性主体面对证据应更新信念；belief_persistence 高却几乎不更新 → 认知扭曲（痴）
+    let bayesUpdate = null;
+    let bayesResistance = false;
+    const ev = d.evidence;
+    if (ev && typeof ev.priorA === 'number' && typeof ev.pBA === 'number' && typeof ev.pB === 'number') {
+      const bridge = this._bridge;
+      if (bridge) {
+        const posterior = bridge.bayesUpdate(ev.pBA, ev.priorA, ev.pB);
+        bayesUpdate = Math.abs(posterior - ev.priorA); // 信念更新幅度
+        // 高信念固着 + 证据本应带来明显更新却几乎不变 → 拒绝贝叶斯更新（痴的标志）
+        if (scores.belief_persistence >= 7 && bayesUpdate < 0.1) {
+          bayesResistance = true;
+        }
+      }
+    }
 
     // 痴总分 = 元认知反向（越低越痴）+ 确认偏误 + 信念固着 + 自我欺骗
     // metacognition_level 越高越好 → 用 (11 - value) 转为越高越痴
@@ -256,11 +287,23 @@ const ThreePoisons = {
 
     const severity = this._getSeverity(delusionScore);
 
+    // [FORMULA] 贝叶斯阻抗：高信念固着却拒绝证据更新 → 痴的客观标志，强化评分
+    let delusionScoreAdjusted = delusionScore;
+    let bayesNote = null;
+    if (bayesResistance) {
+      delusionScoreAdjusted = Math.min(10, delusionScore + 1.0);
+      bayesNote = '检测到贝叶斯阻抗：高信念固着且面对证据几乎不更新信念，符合"痴"的认知扭曲特征';
+    }
+
     return {
       poison: 'delusion',
       label: '痴 (Moha)',
       scores,
-      delusionScore: round(delusionScore, 2),
+      delusionScore: round(delusionScoreAdjusted, 2),
+      delusionScoreBase: round(delusionScore, 2),
+      bayesUpdate: bayesUpdate !== null ? round(bayesUpdate, 4) : null,
+      bayesResistance,
+      bayesNote,
       dmnOveractivity: round(dmnOveractivity, 2),
       metacognitionAssessment,
       dunningKruger,
@@ -313,6 +356,8 @@ const ThreePoisons = {
     return {
       scores,
       totalToxicity,
+      // [v5.17.12] Dukkha方程: 苦 = 贪(Craving) × 嗔(Resistance)
+      dukkha: round((scores.greed * scores.hatred) / 10, 2),
       dominantPoison: dominant[0],
       dominantLabel,
       dominantScore: round(dominant[1], 2),

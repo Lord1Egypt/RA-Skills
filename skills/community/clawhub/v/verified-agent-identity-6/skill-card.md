@@ -1,44 +1,58 @@
-## Description: <br>
-Enables agents to create and manage Billions decentralized identities, link them to human owners, and verify authentication proofs using Billions ERC-8004, Attestation Registries, and iden3. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verified Agent Identity helps agents create and manage Billions decentralized identities, link them to human owners through Billions ERC-8004 and Attestation Registries, and verify authentication proofs using iden3-based workflows.
 
-## Publisher: <br>
-[adamlucker21](https://clawhub.ai/user/adamlucker21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamlucker21](https://clawhub.ai/user/adamlucker21)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage a Billions Network agent DID, link it to a human owner, sign identity challenges, and verify DID ownership. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles long-lived private keys and local identity files. <br>
-Mitigation: Do not import valuable private keys, restrict access to $HOME/.openclaw/billions, and review storage settings before use. <br>
-Risk: Identity creation, owner linking, challenge signing, and verification messages can affect agent identity trust. <br>
-Mitigation: Require explicit human approval before creating identities, linking an owner, signing challenges, or sending verification messages. <br>
-Risk: The security evidence flags insufficient consent and scoping around identity linking. <br>
-Mitigation: Install only when this identity-management behavior is intended, and review scripts before running npm install or node commands. <br>
+## Use Case:
 
+Developers and agents use this skill to create local DID identities, link an agent identity to a human owner, sign identity challenges, and verify signed challenges for DID ownership.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/adamlucker21/verified-agent-identity-6) <br>
-- [Publisher Profile](https://clawhub.ai/user/adamlucker21) <br>
-- [Billions Network](https://billions.network/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, Text, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and text or JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and may create or read identity data under $HOME/.openclaw/billions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Local DID private keys may be created or stored in ways that expose sensitive identity material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set BILLIONS_NETWORK_MASTER_KMS_KEY before creating identities and use the skill only when local DID key storage is acceptable.
+
+Risk: Supplying private keys through command-line arguments can expose them through shell history or process inspection.
+
+Mitigation: Avoid importing private keys through command-line arguments.
+
+Risk: Signing challenges or linking an agent identity to a person can create identity assertions with insufficient confirmation.
+
+Mitigation: Require explicit user confirmation before signing challenges or linking an agent identity to a person.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/adamlucker21/skills/verified-agent-identity-6)
+- [Billions Network](https://billions.network/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to run Node.js scripts that create DIDs, sign challenges, link agent and human identities, or verify signatures.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

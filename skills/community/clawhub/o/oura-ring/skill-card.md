@@ -1,44 +1,60 @@
-## Description: <br>
-Syncs daily health and fitness data from Oura Ring into markdown files. Provides sleep, readiness, activity, heart rate, stress, SpO2, and workout data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Syncs daily health and fitness data from Oura Ring into markdown files, including sleep, readiness, activity, heart rate, stress, SpO2, and workout data.
 
-## Publisher: <br>
-[freakyflow](https://clawhub.ai/user/freakyflow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[freakyflow](https://clawhub.ai/user/freakyflow)
 
-## Use Case: <br>
-External users and agents use this skill to sync Oura Ring health data into local daily markdown files so sleep, readiness, activity, stress, heart rate, SpO2, and workout data can be referenced later. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Oura Ring health data is written as local plaintext markdown. <br>
-Mitigation: Keep the output directory private and avoid committing or syncing generated health files unintentionally. <br>
-Risk: The OURA_TOKEN secret could expose access to Oura data if leaked. <br>
-Mitigation: Store OURA_TOKEN as a protected secret and revoke the token if it is exposed. <br>
-Risk: Scheduled syncs can continue collecting fresh health data automatically. <br>
-Mitigation: Enable cron only when ongoing automatic syncing is desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freakyflow/oura-ring) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
-- [Oura personal access tokens](https://cloud.ouraring.com/personal-access-tokens) <br>
+## Use Case:
 
+External users and developers use this skill to sync their Oura Ring health and fitness data into local markdown files that an agent can read for health, recovery, activity, and workout context.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files with concise setup and sync commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes one local health markdown file per synced day when data is available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill writes sensitive Oura health records to local markdown files.
+
+Mitigation: Use a private output directory and keep generated health files out of shared workspaces, backups, cloud sync, and version control unless that exposure is intended.
+
+Risk: Scheduled sync can expose the Oura token if it is embedded directly in a crontab or shared configuration.
+
+Mitigation: Store the Oura token through OpenClaw secret handling and avoid placing the token directly in scheduled command text.
+
+Risk: The inline oura-ring dependency may change behavior when scheduled sync is enabled.
+
+Mitigation: Pin or lock the oura-ring dependency before relying on unattended scheduled sync.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freakyflow/skills/oura-ring)
+- [Publisher Profile](https://clawhub.ai/user/freakyflow)
+- [OpenClaw](https://openclaw.ai)
+- [uv Documentation](https://docs.astral.sh/uv/)
+- [Oura Personal Access Tokens](https://cloud.ouraring.com/personal-access-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown files and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes one local health/YYYY-MM-DD.md file per synced day when data is available.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

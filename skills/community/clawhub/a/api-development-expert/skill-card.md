@@ -1,39 +1,52 @@
-## Description: <br>
-Provides API development guidance for designing and implementing efficient, stable, secure, and well-documented RESTful APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers design, implement, test, document, and refine efficient, secure RESTful APIs aligned to business and user requirements.
 
-## Publisher: <br>
-[WesLon1987](https://clawhub.ai/user/WesLon1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[weslon1987](https://clawhub.ai/user/weslon1987)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill for API design and implementation support, including requirements analysis, interface design, coding, testing, documentation, feedback review, and optimization.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The source instructions are written in Chinese, which may reduce clarity for non-Chinese users.
+
+Mitigation: Ask the agent to respond in the user's preferred language and confirm API requirements before applying guidance.
+
+Risk: API development guidance may affect production-facing services where security, performance, and maintainability requirements are project-specific.
+
+Mitigation: Have engineers review generated designs, code, tests, and documentation against project requirements before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to gather API requirements, design endpoints, implement API logic, test behavior, write documentation, and iterate from user feedback. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: API implementation guidance can omit production security requirements such as authentication, authorization, input validation, or error handling. <br>
-Mitigation: Review generated API designs and code against the application's security, privacy, reliability, and deployment requirements before production use. <br>
+**Output Format:** [Markdown text with API design guidance, code examples, shell commands, and configuration snippets when relevant.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WesLon1987/api-development-expert) <br>
-- [Publisher profile](https://clawhub.ai/user/WesLon1987) <br>
+**Other Properties Related to Output:** [The source skill is written in Chinese and contains no executable code, install actions, credential access, or persistence behavior.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with optional code and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files are included in the release artifact.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

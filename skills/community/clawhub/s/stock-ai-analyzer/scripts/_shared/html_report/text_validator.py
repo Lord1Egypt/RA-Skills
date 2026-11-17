@@ -9,7 +9,7 @@ import re
 from html.parser import HTMLParser
 from typing import Iterable, List, Optional, Tuple
 
-from .markdown_engine import is_table_separator
+from .markdown_engine import is_table_separator, strip_front_matter
 
 
 class VisibleTextParser(HTMLParser):
@@ -40,7 +40,7 @@ def normalize_text(text: str) -> str:
 
 def markdown_fragments(markdown_text: str) -> Iterable[str]:
     in_code = False
-    for raw_line in markdown_text.splitlines():
+    for raw_line in strip_front_matter(markdown_text).splitlines():
         line = raw_line.strip()
         if line.startswith("```"):
             in_code = not in_code
@@ -64,6 +64,7 @@ def clean_markdown_text(text: str) -> str:
     cleaned = re.sub(r"^#{1,6}\s+", "", cleaned)
     cleaned = re.sub(r"^>\s*", "", cleaned)
     cleaned = re.sub(r"^[-*]\s+", "", cleaned)
+    cleaned = re.sub(r"==([^=\n]+)==", r"\1", cleaned)  # inline highlight → <mark> (before strip, so paired == survive)
     cleaned = cleaned.strip("= ")
     cleaned = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", cleaned)
     cleaned = cleaned.replace("**", "").replace("*", "").replace("`", "")

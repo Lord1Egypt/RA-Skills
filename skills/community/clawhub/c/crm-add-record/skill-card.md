@@ -1,40 +1,52 @@
-## Description: <br>
-Automates adding new records to the Fractal CRM system by navigating the CRM, handling login, mapping natural language input to fields, and submitting the form. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates adding new CRM records to the Fractal CRM system by parsing customer or lead details from natural language and preparing browser-based form entry.
 
-## Publisher: <br>
-[zhangli123456](https://clawhub.ai/user/zhangli123456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhangli123456](https://clawhub.ai/user/zhangli123456)
 
-## Use Case: <br>
-CRM users and automation agents use this skill to convert free-form customer or sales lead details into Fractal CRM record fields and add a new CRM entry. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes shared CRM login credentials. <br>
-Mitigation: Remove and rotate the exposed credentials before use, and require user-owned or managed secrets for authentication. <br>
-Risk: The skill can create CRM records without a clear final approval step. <br>
-Mitigation: Require confirmation of the exact fields and destination record before saving or submitting any CRM entry. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhangli123456/crm-add-record) <br>
-- [Fractal CRM Modify Page](https://niw26kl7.fractaltest.cn/Crm/Backend/modify.html) <br>
+## Use Case:
 
+External users and CRM operators use this skill to turn natural-language customer or sales lead details into CRM record fields and browser actions for adding a record.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands, plus JSON from parser scripts and text CRM record summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May operate browser automation against a CRM page and may print standardized CRM fields for manual entry.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact exposes a CRM username and password.
+
+Mitigation: Revoke or rotate the exposed credentials, remove secrets from files and command output, and use a dedicated least-privilege account for CRM automation.
+
+Risk: The skill can submit records to an external CRM without clear safeguards.
+
+Mitigation: Require a preview of the parsed CRM fields and explicit user confirmation before saving records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangli123456/skills/crm-add-record)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON parser output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces CRM field mappings such as phone, contact, region, and basic information from a single user input string.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

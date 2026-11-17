@@ -1,42 +1,54 @@
-## Description: <br>
-Publishes Sanity CMS drafts, documents, image assets, and schema-matched content through the Sanity Content API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish content to any Sanity CMS instance by creating Sanity drafts, pushing documents, uploading image assets, or converting content into Sanity-formatted documents for any document type and schema.
 
-## Publisher: <br>
-[squidpunch](https://clawhub.ai/user/squidpunch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squidpunch](https://clawhub.ai/user/squidpunch)
 
-## Use Case: <br>
-Developers and content engineers use this skill to prepare Sanity-formatted documents, inspect schemas, upload optional image assets, and create draft CMS records through the Sanity Content API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated Sanity mutations can change CMS data, including production content if live publication is enabled. <br>
-Mitigation: Review before installing or running, use a least-privilege Sanity token, prefer a staging dataset, and keep draft mode enabled unless live publication is explicitly intended. <br>
-Risk: Incorrect project, dataset, document type, document ID, or asset selection can publish content to the wrong CMS target. <br>
-Mitigation: Confirm the project, dataset, document type, document ID, and asset upload before each run. <br>
+## Use Case:
 
+Developers and content operators use this skill to prepare Sanity-compatible document JSON, resolve schema and reference details, optionally upload image assets, and create Sanity CMS drafts or published documents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/squidpunch/sanity-cms) <br>
-- [Sanity Content API Reference](references/api.md) <br>
-- [Portable Text Reference](references/portable-text.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON document examples and bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Sanity-formatted JSON documents and invoke a shell script that uploads image assets or mutates CMS documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can modify live Sanity CMS data when used with a write-enabled token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Sanity token, prefer a staging dataset, keep draft mode enabled, and review generated document JSON before pushing changes.
+
+Risk: The security evidence reports a serious script-safety flaw involving untrusted filenames or environment overrides.
+
+Mitigation: Avoid untrusted filenames and environment overrides until the publish script passes values as data instead of interpolating them into Python source.
+
+## Reference(s):
+
+- [Sanity Content API Reference](references/api.md)
+- [Portable Text Reference](references/portable-text.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON document examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Sanity document JSON, API request guidance, draft IDs, and manual follow-up notes for Sanity Studio.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,64 @@
-## Description: <br>
-TrustMyAgent monitors security posture for AI agents by running stateless checks, calculating a trust score, and supporting dry-run and local-only modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TrustMyAgent monitors AI agent security posture by running read-only checks across local security, identity, network, secrets, code, logs, skill, integrity, node, media, gateway, and subagent domains, then reporting a trust score and findings.
 
-## Publisher: <br>
-[Anecdotes-Yair](https://clawhub.ai/user/Anecdotes-Yair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anecdotes-yair](https://clawhub.ai/user/anecdotes-yair)
 
-## Use Case: <br>
-Developers and security operators use this skill to assess an AI agent host, review local security check results, and decide whether to publish posture telemetry to a Trust Center dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner inspects broad local security signals and may reveal sensitive posture details. <br>
-Mitigation: Run the dry-run mode first and review the exact JSON payload before allowing any results to leave the machine. <br>
-Risk: Default telemetry can publish detailed posture results to an external Trust Center. <br>
-Mitigation: Use local-only mode when external reporting is not desired, and only send telemetry after explicit user consent. <br>
-Risk: Some enrichment or notification behavior may still involve network activity or an npx fallback in certain modes. <br>
-Mitigation: Use --no-notify to avoid notification fallback behavior and review network-related options before running in sensitive environments. <br>
-Risk: Recurring cron-based scans can repeatedly inspect and report agent posture. <br>
-Mitigation: Enable scheduled scans only after confirming the desired interval, telemetry setting, and operational owner. <br>
+## Use Case:
 
+Developers, operators, and security reviewers use this skill to assess an AI agent host for common security posture gaps and produce actionable trust-score findings. It can run locally for private review or send telemetry to a Trust Center when the user explicitly chooses that mode.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Anecdotes-Yair/trust-my-agent-ai) <br>
-- [TrustMyAgent Website](https://www.trustmyagent.ai) <br>
-- [Trust Center](https://www.trustmyagent.ai/trust-center.html) <br>
-- [Source Repository](https://github.com/Anecdotes-Yair/trust-my-agent-ai) <br>
-- [Trust Center Server Repository](https://github.com/Anecdotes-Yair/trust-my-agent-ai-website) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured scan or telemetry output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local assessment results, trust scores, dry-run telemetry previews, notification status, and optional scheduling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends broad local security and identity telemetry by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run `python3 run.py --dry-run` first to inspect the payload, and use `python3 run.py --local-only` when telemetry should not leave the host.
+
+Risk: The skill scans local transcripts and credential-adjacent locations while assessing posture.
+
+Mitigation: Run it only on systems where that inspection is authorized, and review the dry-run output before enabling telemetry.
+
+Risk: Notification handling can execute an unpinned OpenClaw package through the local npm path.
+
+Mitigation: Use `--no-notify` unless the OpenClaw notification path and npm registry configuration are trusted.
+
+Risk: Running the assessment with elevated privileges could expose more host context than intended.
+
+Mitigation: Run the skill as a normal user rather than root.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anecdotes-yair/skills/trust-my-agent-ai)
+- [TrustMyAgent Website](https://www.trustmyagent.ai)
+- [Trust Center](https://www.trustmyagent.ai/trust-center.html)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, local terminal output, and optional JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce local-only or dry-run output before telemetry is sent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter: 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

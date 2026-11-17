@@ -1,47 +1,61 @@
-## Description: <br>
-OpenClaw Web Browser helps agents fetch web pages, extract structured data, monitor changes, and use aviation-focused collection presets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Web Browser helps agents collect web content, extract structured data, monitor page changes, and recommend related official documents, with presets for aviation sources.
 
-## Publisher: <br>
-[parkbeomjun-gkgkgk](https://clawhub.ai/user/parkbeomjun-gkgkgk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkbeomjun-gkgkgk](https://clawhub.ai/user/parkbeomjun-gkgkgk)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to collect web content, extract page data into structured JSON, monitor pages for changes, and recommend related official documents for aviation and regulatory research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch external web pages and save collected content locally. <br>
-Mitigation: Use dedicated output directories and avoid sensitive logged-in pages unless local artifacts are acceptable. <br>
-Risk: Monitoring can be scheduled to run continuously. <br>
-Mitigation: Enable cron or recurring monitors only for specific targets you intend to check continuously. <br>
-Risk: Web collection may be inappropriate for some target sites or content. <br>
-Mitigation: Review target-site rules and scope collection to sites and pages you are permitted to access. <br>
+## Use Case:
 
+Developers and external users use this skill to gather web pages, extract selected content into structured JSON, monitor changes over time, and find relevant official documents for a topic.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkbeomjun-gkgkgk/web-browser-toolkit) <br>
-- [README](README.md) <br>
-- [Aviation presets](references/aviation_presets.json) <br>
-- [CSS selector guide](references/selector_guide.md) <br>
-- [Official document recommender knowledge base](sub-skills/doc-recommender/references/doc_knowledge_base.json) <br>
-- [Official document recommender keyword mapping](sub-skills/doc-recommender/references/keyword_mapping.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus JSON collection, monitoring, diff, and recommendation outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local collection outputs, monitor snapshots, diffs, alerts, and recommendation files when the included scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Network fetching and browser automation can access URLs selected by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only explicit public URLs and run the skill from a constrained directory or sandbox.
+
+Risk: Scheduled monitoring can repeatedly fetch sites and write local JSON state.
+
+Mitigation: Review stored monitors before enabling cron or other recurring runs.
+
+Risk: The skill documents an SSL diagnostic path that can bypass certificate checks.
+
+Mitigation: Do not use --insecure except for isolated diagnostics.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/parkbeomjun-gkgkgk/skills/web-browser-toolkit)
+- [Aviation Presets](references/aviation_presets.json)
+- [CSS Selector Guide](references/selector_guide.md)
+- [Official Document Knowledge Base](sub-skills/doc-recommender/references/doc_knowledge_base.json)
+- [Document Recommender Keyword Mapping](sub-skills/doc-recommender/references/keyword_mapping.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON collections, monitor snapshots, diffs, alerts, reports, and document recommendation files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

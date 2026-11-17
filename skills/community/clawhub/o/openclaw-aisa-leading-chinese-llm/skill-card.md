@@ -1,48 +1,59 @@
-## Description: <br>
-Configure AIsa as a first-class model provider for OpenClaw, enabling production access to major Chinese AI models including Qwen, DeepSeek, Kimi K2.5, and Doubao. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure AIsa as an OpenClaw provider for production access to Chinese LLMs including Qwen, DeepSeek, Kimi K2.5, and Doubao.
 
-## Publisher: <br>
-[AIsaDocs](https://clawhub.ai/user/AIsaDocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure AIsa API access, select Chinese LLMs, compare provider pricing, and troubleshoot AIsa model-provider setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API keys can be exposed if pasted directly into shell history, logs, or shared configuration. <br>
-Mitigation: Use interactive onboarding, environment-variable indirection, or a secure secret store, and avoid placing real AIsa API keys directly in command history. <br>
-Risk: Changing the default OpenClaw model to AIsa may route future prompts through AIsa and create usage charges. <br>
-Mitigation: Confirm the intended provider and model before making AIsa the default, and verify current pricing before sustained use. <br>
-Risk: Pricing, privacy, and Zero Data Retention terms for model access can change over time. <br>
-Mitigation: Check the current AIsa pricing and provider terms before relying on quoted rates or privacy claims for production workloads. <br>
-Risk: Kimi K2.5 rejects temperature settings other than 1.0. <br>
-Mitigation: Use the model default or set temperature to 1.0 when selecting Kimi K2.5. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIsaDocs/openclaw-aisa-leading-chinese-llm) <br>
-- [AIsa marketplace](https://marketplace.aisa.one) <br>
-- [AIsa pricing](https://marketplace.aisa.one/pricing) <br>
-- [AIsa models endpoint](https://api.aisa.one/v1/models) <br>
-- [Pricing reference](artifact/pricing.md) <br>
-- [Chinese usage guide](artifact/guide-zh-CN.md) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure AIsa API access, select supported Chinese model IDs, compare model pricing, and troubleshoot provider setup. It is intended for production-oriented model provider onboarding when the user has an AISA_API_KEY.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API key setup steps, provider configuration, pricing comparisons, model selection guidance, and troubleshooting notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API keys can be exposed through command arguments, shell history, screenshots, terminal recordings, logs, or support transcripts.
+
+Mitigation: Use the environment-variable or masked interactive onboarding flow, avoid commands that place the key directly in arguments, avoid printing the full key during troubleshooting, and rotate any exposed key.
+
+Risk: Model pricing, availability, and versioned model IDs may change after the artifact's published reference data.
+
+Mitigation: Confirm current pricing and available model IDs through AIsa's marketplace pricing page or models endpoint before relying on quoted rates or IDs.
+
+Risk: Kimi K2.5 requests fail when callers set a temperature other than 1.0.
+
+Mitigation: Use the model default or explicitly set temperature to 1.0 for Kimi K2.5.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/aisadocs/skills/openclaw-aisa-leading-chinese-llm)
+- [AIsa Marketplace](https://marketplace.aisa.one)
+- [AIsa Pricing](https://marketplace.aisa.one/pricing)
+- [AIsa Models Endpoint](https://api.aisa.one/v1/models)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes model IDs, pricing notes, provider setup commands, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

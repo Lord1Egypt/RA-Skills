@@ -1,40 +1,56 @@
-## Description: <br>
-Build structured company intelligence for interview preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build structured company intelligence for interview preparation.
 
-## Publisher: <br>
-[wanghong5233](https://clawhub.ai/user/wanghong5233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wanghong5233](https://clawhub.ai/user/wanghong5233)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to gather structured company research for interview preparation, including business direction, likely technology stack, funding or team-stage signals, interview style, risks, and preparation suggestions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill sends company names, role titles, job descriptions, and focus keywords to a local service.
+
+Mitigation: Use it only with a trusted service on 127.0.0.1:8010, and avoid confidential hiring context unless storage and retention behavior are understood.
+
+Risk: The include_search option may cause the local service to perform external searches.
+
+Mitigation: Disable external search or review the service policy before using sensitive or internal company research inputs.
+
+Risk: Company intelligence can be incomplete or uncertain.
+
+Mitigation: Preserve confidence and uncertainty in the final summary and do not present inferred facts as certain.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Job candidates, recruiters, and interview-preparation agents use this skill to request structured company intelligence for a target company and optional role or job description. It returns company summaries, business direction, technology stack, funding or team-stage signals, interview style, risks, and preparation suggestions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Company names, job descriptions, and interview-preparation details may be sent to the local service at 127.0.0.1:8010. <br>
-Mitigation: Use the skill only when the local service is trusted, and avoid submitting confidential recruiting material or personal career details unless that service is approved to process them. <br>
-Risk: Company intelligence can be incomplete or uncertain. <br>
-Mitigation: Preserve confidence and uncertainty in the response, and avoid presenting unsupported company facts as certain. <br>
+**Output Format:** [Markdown summary with optional curl command template]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Company Intel on ClawHub](https://clawhub.ai/wanghong5233/company-intel) <br>
+**Other Properties Related to Output:** [May call a local company-intelligence service and summarize its response with confidence and uncertainty noted.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured fields and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calls a local HTTP service when company intelligence is requested; asks for the company name when missing and reports API errors without fabricating facts.] <br>
+1.0.1 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

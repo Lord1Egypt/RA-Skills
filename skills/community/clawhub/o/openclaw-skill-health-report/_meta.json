@@ -1,6 +1,101 @@
 {
-  "ownerId": "kn791bxpmse6nv4nqy8skgg2n182b5t2",
-  "slug": "openclaw-skill-health-report",
-  "version": "1.0.10",
-  "publishedAt": 1773481669374
+    "name": "health_report",
+    "display_name": "健康报告",
+    "type": "python",
+    "version": "1.0.9",
+    "description": "专业健康报告生成插件，支持多种病理条件的饮食分析与评分。注意：本插件必须配置 MEMORY_DIR 等环境变量方可运行。",
+    "author": "tankeito",
+    "email": "tqd354@gmail.com",
+    "license": "MIT",
+    "homepage": "https://github.com/tankeito/openclaw-skill-health-report",
+    "repository": "https://github.com/tankeito/openclaw-skill-health-report.git",
+    "openclaw_version": ">=2024.1.0",
+    "python_version": ">=3.8",
+    "install": "pip install -r requirements.txt",
+    "dependencies": [
+        "reportlab>=4.0.0",
+        "pillow>=10.0.0"
+    ],
+    "capabilities": [
+        "file_read",
+        "pdf_generation",
+        "http_request"
+    ],
+    "env": {
+        "MEMORY_DIR": {
+            "required": true,
+            "description": "OpenClaw 记忆文件目录路径（必填，用于读取用户的 Markdown 健康记录）"
+        },
+        "TAVILY_API_KEY": {
+            "required": false,
+            "description": "Tavily 搜索 API 密钥（用于大模型动态搜索食谱）"
+        },
+        "DINGTALK_WEBHOOK": {
+            "required": false,
+            "description": "钉钉群机器人 Webhook 地址"
+        },
+        "FEISHU_WEBHOOK": {
+            "required": false,
+            "description": "飞书群机器人 Webhook 地址"
+        },
+        "TELEGRAM_BOT_TOKEN": {
+            "required": false,
+            "description": "Telegram Bot API Token"
+        },
+        "TELEGRAM_CHAT_ID": {
+            "required": false,
+            "description": "Telegram 接收者 Chat ID"
+        },
+        "REPORT_WEB_DIR": {
+            "required": false,
+            "description": "生成的 PDF 报告复制到的 Web 本地目录路径"
+        },
+        "REPORT_BASE_URL": {
+            "required": false,
+            "description": "PDF 报告对外提供下载的基础域名 URL"
+        }
+    },
+    "commands": [
+        {
+            "trigger": "/health",
+            "description": "生成今日健康报告",
+            "usage": "/health [date]",
+            "example": "/health 2026-03-14"
+        },
+        {
+            "trigger": "/health summary",
+            "description": "查看本周健康总结",
+            "usage": "/health summary [week]",
+            "example": "/health summary 2026-W11"
+        },
+        {
+            "trigger": "/health score",
+            "description": "查看今日评分详情",
+            "usage": "/health score",
+            "example": "/health score"
+        },
+        {
+            "trigger": "/health config",
+            "description": "查看/修改健康配置",
+            "usage": "/health config [key] [value]",
+            "example": "/health config target_weight_kg 85"
+        }
+    ],
+    "triggers": [
+        {
+            "type": "cron",
+            "schedule": "0 22 * * *",
+            "action": "daily_report",
+            "description": "每日晚间健康报告（22:00）"
+        }
+    ],
+    "features": [
+        "多维度健康评分（饮食/饮水/体重/运动）",
+        "支持多种病理条件（胆结石/糖尿病/高血压/健身减脂）",
+        "自定义评分权重配置",
+        "智能食物识别与营养估算",
+        "多通道推送（钉钉/飞书/Telegram）",
+        "PDF 报告导出"
+    ],
+    "tags": ["health", "fitness", "diet", "report", "wellness"]
 }

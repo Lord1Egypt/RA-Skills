@@ -1,7 +1,7 @@
 ---
 name: skill-graph-audit
 description: Audit Skill() refs; detect hubs, isolates, and dangling targets
-version: 1.9.8
+version: 1.10.3
 triggers:
   - auditing skills
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/abstract", "emoji": "\ud83e\udd9e"}}
@@ -9,7 +9,7 @@ source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Skill Graph Audit
@@ -35,13 +35,18 @@ hand-curated.
 
 ## When NOT To Use
 
-- For per-skill quality scoring -- use `Skill(abstract:skills-eval)` instead
-- For frontmatter/structure validation -- use `Skill(abstract:plugin-review)`
-- For hook-specific audits -- use `Skill(abstract:hooks-eval)`
+- For per-skill quality scoring, use `Skill(abstract:skills-eval)` instead
+- For frontmatter/structure validation, use `Skill(abstract:plugin-review)`
+- For hook-specific audits, use `Skill(abstract:hooks-eval)`
 
 ## Quick Start
 
 ```bash
+# Positive control first. The fixture tree has a known answer (1
+# bug-class dangling ref, 1 isolate, 2 edges); a regex that stopped
+# matching would report plugins/ as clean, and this catches it.
+uv run pytest -o addopts= -q plugins/abstract/tests/scripts/test_skill_graph.py -k Planted
+
 python3 plugins/abstract/scripts/skill_graph.py \
   --plugins-root plugins --top-n 10
 ```
@@ -62,9 +67,9 @@ See `modules/usage.md` for full CLI reference and example workflows.
 | Hubs | Most-referenced skills | Treat as core API; retire with extreme care |
 | Orchestrators | Skills that call many others | Verify each ref still resolves |
 | Isolates | Zero in / zero out | Check role: library? entrypoint? typo? |
-| Dangling -- bugs | Missing internal target | Fix immediately (typo or retired skill) |
-| Dangling -- external | Reference to external plugin | Document plugin dependency |
-| Dangling -- placeholders | Template text like `-NAME` | Verify intentional |
+| Dangling: bugs | Missing internal target | Fix immediately (typo or retired skill) |
+| Dangling: external | Reference to external plugin | Document plugin dependency |
+| Dangling: placeholders | Template text like `-NAME` | Verify intentional |
 
 See `modules/interpretation.md` for false-positive guidance and
 isolation taxonomy.
@@ -99,12 +104,27 @@ Two ways to validate the audit output is trustworthy:
    does not move, the report is stale or the regex missed a syntax
    variant.
 
+## Exit Criteria
+
+- [ ] The planted fixture test passed before the audit ran; a clean
+  report on `plugins/` is not reportable without it
+- [ ] The graph builds: `skill_graph.py` runs against `plugins/`
+      without error and emits a node/edge count.
+- [ ] Dangling references are classified into bugs, external, and
+      placeholders (the three `Core Outputs` rows resolve).
+- [ ] Every `Dangling: bugs` entry is either fixed in the same
+      session or filed as a tracked issue.
+- [ ] `pytest -o addopts= plugins/abstract/tests/scripts/test_skill_graph.py`
+      passes.
+- [ ] The round-trip smoke check shows the dangling-ref count drops
+      by at least the number of references fixed.
+
 ## Related Skills
 
-- `Skill(abstract:skills-eval)` -- per-skill quality scoring
-- `Skill(abstract:plugin-review)` -- plugin manifest + structure
-- `Skill(abstract:hooks-eval)` -- hook-specific validation
-- `Skill(abstract:rules-eval)` -- rules directory validation
+- `Skill(abstract:skills-eval)`: per-skill quality scoring
+- `Skill(abstract:plugin-review)`: plugin manifest and structure
+- `Skill(abstract:hooks-eval)`: hook-specific validation
+- `Skill(abstract:rules-eval)`: rules directory validation
 
 ## References
 

@@ -66,7 +66,7 @@ npm install
 └── references/
     ├── dependency-impact-analyzer.md
     ├── runtime-exception-detector.md
-    ├── risk-backtracking-validator.md
+    ├── riREDACTED-SECRET.md
     └── unit-testing.md
 ```
 

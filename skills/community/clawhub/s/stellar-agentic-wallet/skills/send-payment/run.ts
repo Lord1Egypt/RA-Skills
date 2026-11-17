@@ -9,7 +9,7 @@
  *   5. Print Stellar tx hash; point at status.ts for polling
  *
  * Usage:
- *   npx tsx skills/send-payment/run.ts \
+ *   ./node_modules/.bin/tsx skills/send-payment/run.ts \
  *     --to <address> --chain <chain> [--token USDC|USDT] --amount <decimal> \
  *     [base flags]
  *
@@ -296,7 +296,7 @@ async function runSendFlow(inputs: RunInputs): Promise<void> {
     `   View:            https://stellar.expert/explorer/public/tx/${result.hash}`,
   );
   console.log("");
-  console.log(`Poll status: npx tsx skills/send-payment/status.ts ${intent.id}`);
+  console.log(`Poll status: ./node_modules/.bin/tsx skills/send-payment/status.ts ${intent.id}`);
 }
 
 /**

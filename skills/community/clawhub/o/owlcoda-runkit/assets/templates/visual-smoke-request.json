@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "OwlCodaRunKitVisualSmokeRequestV1",
+  "smokeId": "replace-with-smoke-id",
+  "mode": "project",
+  "targetRoot": "/absolute/project/path",
+  "cwd": ".",
+  "executable": "/absolute/path/to/automation-runner",
+  "argv": ["--result", "/absolute/project/path/.owlcoda/runkit/executions/replace-with-run-id/visual-smoke-evidence/replace-with-smoke-id/result.json"],
+  "launcherVersion": "replace-with-version",
+  "toolVersions": [],
+  "selectedPaths": ["replace-with-source-path"],
+  "statusMode": "porcelain-v1-z-untracked-all-runkit-excluded",
+  "verificationContext": {
+    "schemaVersion": "OwlCodaRunKitVerificationContextV1",
+    "reusePolicy": "portable",
+    "platform": null,
+    "toolchains": [],
+    "lockfiles": [],
+    "fixtures": [],
+    "services": [],
+    "environment": []
+  },
+  "resultPath": ".owlcoda/runkit/executions/replace-with-run-id/visual-smoke-evidence/replace-with-smoke-id/result.json",
+  "automationManifest": {
+    "schemaVersion": "OwlCodaRunKitVisualAutomationManifestV1",
+    "surface": "browser",
+    "viewport": { "width": 1280, "height": 720 },
+    "assertionIds": ["replace-with-assertion-id"],
+    "consolePolicy": { "maxErrors": 0, "maxWarnings": 0, "maxExceptions": 0 },
+    "externalNavigationPolicy": "deny"
+  }
+}

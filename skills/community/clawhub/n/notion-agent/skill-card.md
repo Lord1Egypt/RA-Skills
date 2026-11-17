@@ -1,44 +1,58 @@
-## Description: <br>
-Notion integration for OpenClaw. Manage pages, databases, and blocks via AI agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notion integration for OpenClaw. Manage pages, databases, and blocks via AI agent.
 
-## Publisher: <br>
-[ChloePark85](https://clawhub.ai/user/ChloePark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers and external users use this skill to let agents manage Notion workspaces through CLI commands for pages, databases, blocks, and search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify or archive Notion workspace content. <br>
-Mitigation: Use a dedicated least-privilege Notion integration shared only with the pages or databases needed, and require explicit user confirmation before archive or delete actions. <br>
-Risk: The NOTION_TOKEN credential can expose workspace access if logged or shared. <br>
-Mitigation: Keep NOTION_TOKEN out of logs and shell history, and rotate the token if exposure is suspected. <br>
-Risk: The setup documentation includes a remote uv install command. <br>
-Mitigation: Install uv through a trusted package manager or a verified installer instead of piping remote installer output directly to sh. <br>
+## Use Case:
 
+Developers and external users can use this skill to let an OpenClaw agent manage Notion workspace content, including pages, databases, blocks, and search. It is suited for workflows where Notion resources are intentionally shared with a dedicated integration token.
 
-## Reference(s): <br>
-- [Notion API Reference](https://developers.notion.com/reference/intro) <br>
-- [Notion Integrations](https://www.notion.so/my-integrations) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ChloePark85/notion-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses NOTION_TOKEN and uv; operations return Notion API response JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can create, update, and archive Notion pages and add database entries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege Notion integration token shared only with the specific pages and databases this skill should access, and require explicit confirmation before archive/delete or bulk update actions.
+
+Risk: The README recommends installing uv with a curl-to-shell command.
+
+Mitigation: Install uv through a trusted package manager, or inspect and verify the installer before running it.
+
+Risk: The Notion token grants access to workspace content that has been shared with the integration.
+
+Mitigation: Store NOTION_TOKEN securely, avoid exposing it in logs or shell history, and rotate or revoke it if it may have been exposed.
+
+## Reference(s):
+
+- [Notion API Reference](https://developers.notion.com/reference/intro)
+- [Notion Integrations](https://www.notion.so/my-integrations)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown instructions with CLI commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and NOTION_TOKEN; command output depends on Notion API permissions and shared workspace resources.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

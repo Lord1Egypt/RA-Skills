@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "terraform",
-  "version": "1.0.0",
-  "publishedAt": 1770683465588
+  "displayName": "Terraform",
+  "latest": {
+    "version": "1.0.4",
+    "publishedAt": 1785068764924
+  },
+  "history": [
+    {
+      "version": "1.0.3",
+      "publishedAt": 1784974784136
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784846321338
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1784815682068
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770683465588
+    }
+  ]
 }

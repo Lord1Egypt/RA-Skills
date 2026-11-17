@@ -1,39 +1,53 @@
-## Description: <br>
-Guides creation, parsing, formatting, validation, comparison, and derived-address helpers for AccountAddress in @aptos-labs/ts-sdk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+How to create and use AccountAddress in @aptos-labs/ts-sdk, including AIP-40 address formats, relaxed and strict parsing, special addresses, string output forms, and derived address helpers.
 
-## Publisher: <br>
-[iskysun96](https://clawhub.ai/user/iskysun96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskysun96](https://clawhub.ai/user/iskysun96)
 
-## Use Case: <br>
-Developers and engineers use this skill when writing Aptos TypeScript SDK code that creates, validates, compares, serializes, or derives account addresses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Address-handling guidance can become inaccurate if the Aptos TypeScript SDK or AIP-40 behavior changes. <br>
-Mitigation: Verify examples against the SDK version in use before relying on generated code. <br>
+## Use Case:
 
+Developers use this skill for concise guidance on creating, validating, comparing, formatting, and deriving Aptos account addresses with @aptos-labs/ts-sdk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iskysun96/ts-sdk-address) <br>
-- [AIP-40 address format](https://github.com/aptos-foundation/AIPs/blob/main/aips/aip-40.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code] <br>
-**Output Format:** [Markdown with TypeScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no commands, credentials, or external services requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Address strings may be compared or normalized incorrectly when used directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use AccountAddress.from() for normalization and equals() for comparisons, as described by the skill.
+
+Risk: Manually deriving object, resource, token, or user-derived addresses can produce incorrect Aptos addresses.
+
+Mitigation: Use the SDK helper functions covered by the skill instead of hand-rolled hashing.
+
+## Reference(s):
+
+- [AIP-40 address format](https://github.com/aptos-foundation/AIPs/blob/main/aips/aip-40.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code]
+
+**Output Format:** [Markdown with TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only SDK usage guidance; no executable behavior is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; SKILL.md frontmatter version is 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Feishu Task Workbench lets an agent manage multiple Feishu/OpenClaw task workstreams from one chat, with separate task sessions and a local task registry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Task Workbench lets a Feishu/OpenClaw chat manage multiple named tasks with separate sessions, task switching, summaries, closing, and archival.
 
-## Publisher: <br>
-[shawnhan98](https://clawhub.ai/user/shawnhan98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawnhan98](https://clawhub.ai/user/shawnhan98)
 
-## Use Case: <br>
-External users and developers use this skill to run a task workbench inside Feishu/OpenClaw, creating, switching, continuing, summarizing, closing, and archiving task-specific workstreams without mixing their context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task titles, summaries, and session keys are stored in a local registry and may expose sensitive work context. <br>
-Mitigation: Avoid putting highly sensitive information in task titles or summaries, and keep registries isolated per Feishu account and contact. <br>
-Risk: Cross-session task routing depends on host session tools and can fail or mix work if those tools are missing or misconfigured. <br>
-Mitigation: Review host settings before use and keep the documented capability gate for sessions_spawn, sessions_send, and sessions_history before creating or updating tasks. <br>
+## Use Case:
 
+Feishu/OpenClaw users use this skill to manage several independent workstreams from one chat window while keeping task state, routing, and summaries separate. It is intended for operational task control in environments that can grant the required cross-session capabilities.
 
-## Reference(s): <br>
-- [Feishu Task Workbench Implementation](references/implementation.md) <br>
-- [Single-Entry Multi-Task Workbench Protocol](references/protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown task replies with shell commands and configuration snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Task replies should include the active task header when routed to a concrete task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires cross-session messaging and history access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in hosts where cross-session tools are intentionally allowed and scoped to the current user or workbench.
+
+Risk: Task registry files store session routing identifiers and may expose them during status or summary operations.
+
+Mitigation: Redact session keys and registry paths from normal user-facing replies, and reveal them only for explicit debugging.
+
+Risk: Registry commands write local JSON task state.
+
+Mitigation: Invoke the bundled registry helper with structured arguments and avoid shell interpolation of user-provided task titles or summaries.
+
+## Reference(s):
+
+- [Feishu Task Workbench](https://clawhub.ai/shawnhan98/skills/feishu-task-workbench)
+- [Implementation Reference](artifact/references/implementation.md)
+- [Single-Entry Multi-Task Workbench Protocol](artifact/references/protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Task replies should include a visible task header when routed to a concrete task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

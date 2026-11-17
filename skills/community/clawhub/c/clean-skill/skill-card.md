@@ -1,44 +1,61 @@
-## Description: <br>
-Cross-references restaurant recommendations from Xiaohongshu and Dianping by location and cuisine, comparing ratings, review counts, engagement, sentiment, and cross-platform consistency to produce confidence-scored recommendations. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Cross-reference restaurant recommendations from Xiaohongshu and Dianping to validate restaurant quality and consistency by location and cuisine, producing confidence-scored recommendations.
 
-## Publisher: <br>
-[zhongrenfei1-hub](https://clawhub.ai/user/zhongrenfei1-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhongrenfei1-hub](https://clawhub.ai/user/zhongrenfei1-hub)
 
-## Use Case: <br>
-Developers and researchers use this skill to compare restaurant signals across Dianping and Xiaohongshu for location- and cuisine-specific recommendation research. It is most appropriate when outputs will be reviewed against platform terms and source data before use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse saved logged-in browser sessions for scraping Dianping and Xiaohongshu. <br>
-Mitigation: Use isolated accounts where possible, inspect and clean saved sessions before and after runs, and avoid sharing session artifacts. <br>
-Risk: Default output may appear validated even when generated from mock or simulated data. <br>
-Mitigation: Treat recommendations as simulated unless the real scraper is explicitly run, and verify source data before relying on results. <br>
-Risk: Scraping and proxy-based access may conflict with platform terms or trigger account and IP controls. <br>
-Mitigation: Review platform terms before use, apply conservative rate limits, and avoid storing personal user data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Data schema documentation](artifact/references/data_schema.md) <br>
-- [Sentiment analysis guide](artifact/references/sentiment_analysis.md) <br>
-- [API and data source limitations](artifact/references/api_limitations.md) <br>
-- [SnowNLP documentation](https://github.com/isnowfy/snownlp) <br>
+## Use Case:
 
+External users and developers use this skill to compare restaurant signals from Dianping and Xiaohongshu for a requested location and cuisine. It helps identify higher-confidence restaurant recommendations and flags low-consistency matches for review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style restaurant recommendation report with ranked results, scores, platform comparisons, and warnings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces up to 5-10 ranked restaurant recommendations with consistency levels, confidence scores, and discrepancy notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can store logged-in browser session data locally.
+
+Mitigation: Run it in an isolated environment, keep the sessions directory private, and never share or commit saved session data.
+
+Risk: The skill relies on scraping Dianping and Xiaohongshu for real data paths.
+
+Mitigation: Review applicable platform terms before use and prefer approved data access methods for production or commercial workflows.
+
+Risk: Default fetchers may return mock data while appearing to perform live collection.
+
+Mitigation: Treat default results as synthetic unless the real scraper path is explicitly used and validated.
+
+## Reference(s):
+
+- [Data schema documentation](references/data_schema.md)
+- [Sentiment analysis guide](references/sentiment_analysis.md)
+- [API and data source limitations](references/api_limitations.md)
+- [Dianping](https://www.dianping.com)
+- [Xiaohongshu](https://www.xiaohongshu.com)
+- [SnowNLP documentation](https://github.com/isnowfy/snownlp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style restaurant recommendation text with ranked results, scores, platform comparisons, warnings, and optional shell commands or configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendation scores use a 0-10 scale; consistency levels are high, medium, or low.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,54 +1,70 @@
-## Description: <br>
-Uses the mma-bridge command-line tool to interact with Meteor Master AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for using the mma-bridge command-line tool to interact with Meteor Master AI.
 
-## Publisher: <br>
-[mordom0404](https://clawhub.ai/user/mordom0404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mordom0404](https://clawhub.ai/user/mordom0404)
 
-## Use Case: <br>
-Developers and advanced Meteor Master AI users use this skill to check or start the desktop app, discover local MMA Bridge instances, and send supported API requests for meteor-analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: State-changing API methods can delete meteor detection groups or change favorites. <br>
-Mitigation: Review the mma post method and item IDs before execution, especially for bulk operations, and use lookup methods such as getDataList or getDataDetail to confirm the target records. <br>
-Risk: Request payload files can include local paths or record identifiers that affect the wrong media, export, or result set. <br>
-Mitigation: Use temporary payload filenames with only the needed JSON fields, verify paths and IDs before running commands, and remove temporary payload files when finished. <br>
-Risk: Multiple local Meteor Master AI instances can be running on different ports. <br>
-Mitigation: Run mma list first and pass the intended port explicitly when there is more than one active instance. <br>
+## Use Case:
 
+External users and developers use this skill to control Meteor Master AI through mma-bridge commands, inspect running instances, query meteor detection results, start analyses, export outputs, and manage saved detections.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mordom0404/mma-bridge) <br>
-- [MMA Bridge API Specification](references/api_spec.md) <br>
-- [Current Information API](references/getCurrentInfo.md) <br>
-- [Data List API](references/getDataList.md) <br>
-- [Data Detail API](references/getDataDetail.md) <br>
-- [Delete Group API](references/deleteGroup.md) <br>
-- [Collect API](references/collect.md) <br>
-- [Uncollect API](references/incollect.md) <br>
-- [Analyze Video File API](references/analyzeVideoFile.md) <br>
-- [Analyze Image Folder API](references/analyzeImageFolder.md) <br>
-- [Analyze Live Stream API](references/analyzeLiveStream.md) <br>
-- [Microsoft Store Listing for Meteor Master AI](https://apps.microsoft.com/detail/9pksmkz7c10n) <br>
-- [Apple App Store Listing for Meteor Master AI](https://apps.apple.com/cn/app/meteor-master-ai-%E5%BF%AB%E9%80%9F%E6%89%BE%E5%87%BA%E6%B5%81%E6%98%9F/id6458742068?mt=12) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target a local Meteor Master AI instance through mma-bridge and may include request payload files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can expose sensitive stream URLs, local file paths, proxy settings, coordinates, and device metadata through Meteor Master AI API responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat getCurrentInfo and getDataDetail output as sensitive, avoid sharing raw responses, and redact stream credentials, paths, coordinates, and device metadata before reuse.
+
+Risk: The skill supports irreversible or state-changing operations such as delete, collect, uncollect, analyze, and export actions.
+
+Mitigation: Require explicit user confirmation before issuing state-changing commands, especially bulk delete requests, and confirm selected IDs and target port before execution.
+
+Risk: The skill depends on a locally installed mma-bridge npm package and a reachable Meteor Master AI MMABridge instance.
+
+Mitigation: Install only from a trusted mma-bridge package source, pin or verify the package where possible, avoid administrator installs, and use the list command to target the intended running instance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mordom0404/skills/mma-bridge)
+- [MMA Bridge API specification](references/api_spec.md)
+- [getCurrentInfo API](references/getCurrentInfo.md)
+- [getDataList API](references/getDataList.md)
+- [getDataDetail API](references/getDataDetail.md)
+- [deleteGroup API](references/deleteGroup.md)
+- [collect API](references/collect.md)
+- [incollect API](references/incollect.md)
+- [exportTrackImg API](references/exportTrackImg.md)
+- [exportGroupVideo API](references/exportGroupVideo.md)
+- [analyzeVideoFile API](references/analyzeVideoFile.md)
+- [analyzeImageFolder API](references/analyzeImageFolder.md)
+- [analyzeLiveStream API](references/analyzeLiveStream.md)
+- [stopAnalyze API](references/stopAnalyze.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, JSON, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request or response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target a local Meteor Master AI MMABridge instance, commonly on port 9000.]
+
+## Skill Version(s):
+
+1.2.7 (source: server-resolved release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

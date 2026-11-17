@@ -1,40 +1,54 @@
-## Description: <br>
-Draw tarot cards, cast I Ching hexagrams, and check daily fortunes for fun when pulling spreads, casting hexagrams, or playing fortune games. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draw tarot cards, cast I Ching hexagrams, and check daily fortunes for fun.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-External users can use this skill for entertainment-oriented fortune readings such as tarot, I Ching, daily luck, zodiac, numerology, and palmistry prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports suspicious behavior because the runtime includes broader local data-management behavior with persistent logging and export features. <br>
-Mitigation: Review the skill before installing, run it in a constrained environment, and avoid entering sensitive personal information. <br>
-Risk: Artifact behavior can store command history and user-provided entries on disk. <br>
-Mitigation: Set FORTUNE_TELLER_DIR to a disposable directory and delete that directory after testing if persistence is not desired. <br>
+## Use Case:
 
+External users can use this skill for entertainment-oriented fortune-telling workflows such as daily fortunes, I Ching-style readings, zodiac checks, and related command-line fortune games.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command behavior may write local history or exported data under FORTUNE_TELLER_DIR or ~/.local/share/fortune-teller/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package includes local storage, search, export, and history logging that are not clearly disclosed in the advertised fortune-telling use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installation and avoid entering sensitive personal information until the publisher clarifies storage behavior and narrows commands to the advertised use.
+
+Risk: Stored local text and command history could expose user-provided content if the local data directory is shared, backed up, or inspected.
+
+Mitigation: Use a dedicated non-sensitive data directory through FORTUNE_TELLER_DIR and remove local history or exported data after testing.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-fortune-teller)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown guidance with command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are printed to stdout. The skill may use FORTUNE_TELLER_DIR to choose a local data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.0] - 2026-10-04
+
+### Changed
+
+- Rename `brainforge-autoresearch` to `brainharness-autoresearch` and align repository links and installation names with BrainHarness.
+- Update distribution metadata and documentation; preserve skill behavior and historical release notes.
+
 ## [0.2.5] - 2026-04-23
 
 ### Changed

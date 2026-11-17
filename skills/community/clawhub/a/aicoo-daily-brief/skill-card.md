@@ -1,43 +1,54 @@
-## Description: <br>
-Generates an executive daily brief from Aicoo context, then derives top strategies and an Eisenhower matrix view. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates an executive daily brief from Aicoo context, then derives top COO strategies and an Eisenhower matrix view.
 
-## Publisher: <br>
-[xisen-w](https://clawhub.ai/user/xisen-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xisen-w](https://clawhub.ai/user/xisen-w)
 
-## Use Case: <br>
-Employees, operators, and assistants use this skill to generate a concise Aicoo daily briefing, identify top strategic priorities, and present Eisenhower matrix highlights for follow-up action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive calendar, note, task, and email-summary data through Aicoo. <br>
-Mitigation: Install only for Aicoo daily briefing workflows and confirm users are comfortable with Aicoo processing those summaries. <br>
-Risk: Recurring runs or saved briefing notes can repeatedly process or retain sensitive briefing context. <br>
-Mitigation: Enable cron, /loop, /routine, or PULSE_BRIEF_SAVE_NOTE only when recurring execution or saved notes are intended. <br>
-Risk: The skill requires the AICOO_API_KEY credential. <br>
-Mitigation: Provide the credential only in trusted environments and review commands before execution. <br>
+## Use Case:
 
+External users and operators use this skill to request a concise daily briefing from Aicoo, identify top strategic priorities, and organize urgent and important work into an Eisenhower matrix.
 
-## Reference(s): <br>
-- [Aicoo API Base URL](https://www.aicoo.io/api/v1) <br>
-- [Aicoo Daily Brief on ClawHub](https://clawhub.ai/xisen-w/aicoo-daily-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Concise Markdown with optional bash command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AICOO_API_KEY and may use recurring automation or saved notes when the user enables those options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Daily briefing content may include notes, calendar, tasks, or email-derived summaries sent to Aicoo as a third-party processor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with approved Aicoo data sharing, avoid sensitive content unless authorized, and review generated summaries before acting on them.
+
+Risk: Recurring /loop, /routine, or cron setup can trigger automatic repeated API calls.
+
+Mitigation: Enable scheduling only intentionally, review cadence and logging, and disable recurring jobs when no longer needed.
+
+## Reference(s):
+
+- [Aicoo API base URL](https://www.aicoo.io/api/v1)
+- [Aicoo Daily Brief ClawHub page](https://clawhub.ai/xisen-w/skills/aicoo-daily-brief)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with concise bullets and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AICOO_API_KEY; can be run manually or on a recurring schedule with /loop, /routine, or cron.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

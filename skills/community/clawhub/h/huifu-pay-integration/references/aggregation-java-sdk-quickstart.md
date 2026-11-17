@@ -14,7 +14,7 @@
 | 属性 | 值 |
 |-----|-----|
 | SDK 名称 | dg-lightning-sdk |
-| 当前版本 | 1.0.5 |
+| 当前版本 | 1.0.6 |
 | GroupId | com.huifu.dg.lightning.sdk |
 | ArtifactId | dg-lightning-sdk |
 
@@ -28,7 +28,7 @@
 <dependency>
     <groupId>com.huifu.dg.lightning.sdk</groupId>
     <artifactId>dg-lightning-sdk</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
 </dependency>
 ```
 
@@ -38,7 +38,7 @@
 <dependency>
     <groupId>com.huifu.bspay.sdk</groupId>
     <artifactId>dg-java-sdk</artifactId>
-    <version>3.0.38</version>
+    <version>3.0.41</version>
 </dependency>
 ```
 
@@ -57,7 +57,9 @@ mvn clean install
 | 2.x | `javax.annotation.PostConstruct` |
 | 3.x (JDK 17/21) | `jakarta.annotation.PostConstruct` |
 
-> **[产品号方法名]** Lightning SDK 和当前 `dg-java-sdk 3.0.38` 的 `MerConfig` 产品号方法名都使用 `setProductId(...)`。
+> **[产品号方法名]** Lightning SDK 和当前 `dg-java-sdk 3.0.41` 的 `MerConfig` 产品号方法名都使用 `setProductId(...)`。
+
+> **官方 SDK-only**：2026-10-08源码核验：Lightning1.0.6仍有空证书检查/无条件主机名通过，作为非阻断开发提醒，不声称已修复。下方初始化可用于官方 SDK 调用；不得改写 `HttpClient`、OkHttp 或自实现 HTTP+签名客户端。
 
 ```java
 package com.yourcompany.huifu.config;
@@ -86,7 +88,7 @@ public class HuifuLightningConfig {
     @Value("${huifu.rsa-public-key}")
     private String rsaPublicKey;
 
-    @Value("${huifu.skill-source:hfps/1.3.0}")
+    @Value("${huifu.skill-source:hfps/1.6.0}")
     private String skillSource;
 
     @Value("${huifu.mode:prod}")
@@ -94,6 +96,10 @@ public class HuifuLightningConfig {
 
     @PostConstruct
     public void initSdk() throws Exception {
+        // SDK 1.0.6 默认 debug=true，会输出私钥、签名和请求数据。
+        // 必须在任何初始化或请求之前全局关闭，且不得按请求临时切换。
+        BasePay.debug = false;
+
         // 设置环境模式
         if ("test".equals(mode)) {
             BasePay.prodMode = BasePay.MODE_TEST;
@@ -124,17 +130,20 @@ public class HuifuLightningConfig {
 ```java
 Map<String, MerConfig> configs = new HashMap<>();
 
+// 多商户初始化同样必须先全局关闭调试输出。
+BasePay.debug = false;
+
 MerConfig config1 = new MerConfig();
 config1.setProductId("MYPAY");
 config1.setSysId("6666000123120001");
 config1.setRsaPrivateKey("...");
 config1.setRsaPublicKey("...");
-config1.setSkillSource("hfps/1.3.0");
+config1.setSkillSource("hfps/1.6.0");
 configs.put("merchant1", config1);
 
 MerConfig config2 = new MerConfig();
 config2.setSysId("6666000123120002");
-config2.setSkillSource("hfps/1.3.0");
+config2.setSkillSource("hfps/1.6.0");
 // ... 配置第二个商户
 configs.put("merchant2", config2);
 
@@ -149,7 +158,7 @@ MerConfig merConfig = new MerConfig();
 merConfig.setCustomConnectTimeout("30000");              // 连接超时 30s（默认 20s），注意是 String 类型
 merConfig.setCustomSocketTimeout("30000");               // 读取超时 30s（默认 20s）
 merConfig.setCustomConnectionRequestTimeout("40000");    // 请求超时 40s（默认 30s）
-merConfig.setSkillSource("hfps/1.3.0");
+merConfig.setSkillSource("hfps/1.6.0");
 ```
 
 ## 步骤 3：验证核心类导入

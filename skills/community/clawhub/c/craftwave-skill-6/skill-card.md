@@ -1,44 +1,57 @@
-## Description: <br>
-为公司团体或组织提供邮轮旅行方案，适合团队出行的需求，制定专属的邮轮产品。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为公司团体或组织提供邮轮旅行方案，适合团队出行的需求，制定专属的邮轮产品。
 
-## Publisher: <br>
-[309441738](https://clawhub.ai/user/309441738) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[309441738](https://clawhub.ai/user/309441738)
 
-## Use Case: <br>
-External travel planners, company administrators, and agents use this MCP skill to request group cruise travel options and filter cruise products for corporate or organizational trips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Requests are sent to an external MCP gateway. <br>
-Mitigation: Use the skill only when the publisher and remote service are trusted, and avoid sending confidential traveler, employee, or payment data. <br>
-Risk: Documentation is thin and contains template-style placeholder content. <br>
-Mitigation: Review the MCP tool behavior and remote configuration before deployment, especially for workflows that affect travel purchasing or employee data. <br>
+## Use Case:
 
+External travel planners and organization teams use this MCP skill to request cruise product options and group cruise travel plans for company or organizational trips.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/309441738/skills/craftwave-skill-6) <br>
-- [Publisher profile](https://clawhub.ai/user/309441738) <br>
-- [MCP Server 接入](references/mcp.md) <br>
-- [CruiseSkillBridge](https://cruiseskillbridge.com) <br>
-- [MCP gateway remote](https://cruise-mcp.olavacations.com/api/gw/mcp/c3c56c15-63d5-472c-907b-cddb5d809871) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JSON request examples and MCP remote configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an external streamable HTTP MCP gateway for cruise product filtering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and server.json state 0.1.0) <br>
+Risk: Group cruise planning requests may include company plans, participant details, budgets, travel dates, or other confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive details and obtain consent before sending requests through the MCP remote.
+
+Risk: The skill text includes an unrelated httpbin.org POST endpoint without clear privacy or data-handling disclosure.
+
+Mitigation: Use only the documented CruiseSkillBridge gateway after publisher confirmation, or replace the endpoint with a reviewed service that states what data is sent and retained.
+
+## Reference(s):
+
+- [MCP Server 接入](references/mcp.md)
+- [ClawHub skill page](https://clawhub.ai/309441738/skills/craftwave-skill-6)
+- [CruiseSkillBridge](https://cruiseskillbridge.com)
+- [CruiseSkillBridge MCP gateway](https://cruise-mcp.olavacations.com/api/gw/mcp/c3c56c15-63d5-472c-907b-cddb5d809871)
+- [MCP server schema](https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, API calls]
+
+**Output Format:** [Markdown guidance with JSON request examples and MCP remote configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route inputs through the documented CruiseSkillBridge MCP gateway; review privacy handling before sending sensitive data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and server.json report 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

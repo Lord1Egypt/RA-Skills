@@ -1,49 +1,66 @@
-## Description: <br>
-Automates WEEX futures and spot trading workflows, including order placement, cancellation, order lookup, market data retrieval, and account data retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated trading tool for WEEX API, supporting futures and spot trading, including natural language order placement, order cancellation, order query, market data and account data retrieval.
 
-## Publisher: <br>
-[iiiiicooper](https://clawhub.ai/user/iiiiicooper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iiiiicooper](https://clawhub.ai/user/iiiiicooper)
 
-## Use Case: <br>
-Developers and trading operators use this skill in agent coding environments to query WEEX market and account data and to prepare or execute structured futures and spot order actions through the included REST helpers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send live authenticated WEEX trading requests, including mutating order actions. <br>
-Mitigation: Use read-only or narrowly scoped API keys when possible, keep withdrawal permissions disabled, and require explicit human confirmation before using commands with --confirm-live. <br>
-Risk: Generic endpoint calls and bundled endpoint definitions expose sensitive actions such as affiliate, rebate, internal withdrawal, cancel-all, close-all, leverage, and margin changes. <br>
-Mitigation: Avoid the generic caller for those endpoint groups unless the user explicitly requests the exact action and the request parameters have been reviewed. <br>
-Risk: Environment variables for WEEX credentials can grant account access if shared, committed, or stored too broadly. <br>
-Mitigation: Store credentials only in the needed shell environment, never commit them, rotate exposed keys immediately, and prefer temporary or least-privilege keys. <br>
+## Use Case:
 
+Developers and trading operators use this skill to retrieve WEEX spot and futures market/account data and to place, cancel, and query orders through deterministic API helper scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iiiiicooper/weex) <br>
-- [Auth and Signing](references/auth-and-signing.md) <br>
-- [WEEX Spot Endpoint Summary](references/spot-endpoints.md) <br>
-- [WEEX Contract Endpoint Summary](references/contract-endpoints.md) <br>
-- [WEEX Spot API Definitions](references/spot-api-definitions.md) <br>
-- [WEEX Contract API Definitions](references/contract-api-definitions.md) <br>
-- [WEEX Signature Documentation](https://www.weex.com/api-doc/spot/QuickStart/Signature) <br>
-- [WEEX Contract Place Order Documentation](https://www.weex.com/api-doc/contract/Transaction_API/PlaceOrder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Private endpoints require WEEX_API_KEY, WEEX_API_SECRET, and WEEX_API_PASSPHRASE environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version) <br>
+Risk: The skill can perform live financial actions including trades, cancellations, margin or leverage changes, position closes, and similar account-impacting operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege WEEX API keys, avoid withdrawal or affiliate permissions unless required, and require an explicit dry-run plus user confirmation before any mutating action.
+
+Risk: Credential-bearing requests may be sent to configurable API destinations.
+
+Mitigation: Keep base URLs pinned to official WEEX HTTPS hosts and review any WEEX_API_BASE override before using private endpoints.
+
+Risk: WEEX API keys, secrets, and passphrases can control account activity if exposed.
+
+Mitigation: Store credentials only where needed, avoid broad shell profiles for production keys, never commit credentials, and rotate keys immediately if exposed.
+
+## Reference(s):
+
+- [Auth and Signing](references/auth-and-signing.md)
+- [WEEX Spot Endpoints](references/spot-endpoints.md)
+- [WEEX Spot API Definitions](references/spot-api-definitions.md)
+- [WEEX Contract Endpoints](references/contract-endpoints.md)
+- [WEEX Contract API Definitions](references/contract-api-definitions.md)
+- [WEEX WebSocket](references/websocket.md)
+- [WEEX API Updates](references/updates.md)
+- [WEEX Signature Documentation](https://www.weex.com/api-doc/spot/QuickStart/Signature)
+- [WEEX Contract Place Order API](https://www.weex.com/api-doc/contract/Transaction_API/PlaceOrder)
+- [WEEX Contract API Changelog](https://www.weex.com/api-doc/contract/log/changelog)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON or text API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Private actions require WEEX API credentials; mutating requests require explicit live confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

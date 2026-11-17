@@ -1,41 +1,56 @@
-## Description: <br>
-Ceo Assistant helps CEOs and executives plan, execute, review, and complete tasks and projects through goal clarification, strategic planning, decision support, task decomposition, execution guidance, and progress review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A prompt-only executive assistant skill that helps CEOs and executives clarify goals, plan strategy, decompose work, guide execution, support decisions, and review progress.
 
-## Publisher: <br>
-[nemo-ryanniddel](https://clawhub.ai/user/nemo-ryanniddel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nemo-ryanniddel](https://clawhub.ai/user/nemo-ryanniddel)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Executives, founders, operators, and supporting staff use this skill to turn objectives into milestones, tasks, and next actions, while receiving concise planning, decision-support, execution guidance, and review outputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger keywords and executive-assistant framing may cause this prompt to activate in many planning, project, strategy, or decision contexts.
+
+Mitigation: Install only where broad executive workflow behavior is desired, and override or disable the skill for narrower specialist workflows.
+
+Risk: Autonomous-execution language could encourage an agent with connected tools to act on messages, records, files, or commitments too readily.
+
+Mitigation: Require explicit user confirmation before sending messages, changing business records, accessing private files, making commitments, or taking externally visible actions.
+
+Risk: Decision-support guidance can be incomplete, outdated, or inappropriate for regulated legal, medical, financial, or business-critical contexts.
+
+Mitigation: Treat outputs as planning assistance, verify important facts, and route regulated or high-impact decisions to qualified human review.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Executives, operators, and employees use this skill to organize goals into milestones, tasks, and immediate next actions, while receiving structured planning, decision support, execution guidance, and review feedback. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words may activate the skill in routine planning or decision conversations where an executive-assistant posture is not intended. <br>
-Mitigation: Narrow the trigger wording or enable the skill only for explicit CEO, strategy, project, milestone, goal, decision, prioritize, or roadmap work. <br>
-Risk: The skill may guide high-impact actions involving money, accounts, public communications, staff, or external systems. <br>
-Mitigation: Keep user confirmations enabled and review proposed actions before execution in those contexts. <br>
+**Output Format:** [Markdown with structured bullets, checklists, numbered plans, and review sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Ceo Assistant ClawHub release page](https://clawhub.ai/nemo-ryanniddel/ceo-assistant) <br>
-- [nemo-ryanniddel publisher profile](https://clawhub.ai/user/nemo-ryanniddel) <br>
+**Other Properties Related to Output:** [Responses are intended to be concise and to end with one concrete next recommended action.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown responses with bullet lists, checklists, tables, and next-action recommendations when helpful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no code, tool calls, hidden data access, or generated files in the artifact] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Configure OpenClaw to use Google Vertex AI Gemini models so normal OpenClaw startup, Gateway service startup, and TUI usage all work without manual shell setup, and keep the Gateway service aligned with the globally installed npm OpenClaw binary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure OpenClaw to use Google Vertex AI Gemini models so normal OpenClaw startup, Gateway service startup, and TUI usage all work without manual shell setup, and keep the Gateway service aligned with the globally installed npm OpenClaw binary.
 
-## Publisher: <br>
-[bhrum](https://clawhub.ai/user/bhrum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhrum](https://clawhub.ai/user/bhrum)
 
-## Use Case: <br>
-Developers and operators use this skill to configure or repair OpenClaw so Vertex AI Gemini models work through normal CLI, Gateway service, and TUI startup paths. It guides Google Cloud ADC setup, OpenClaw model defaults, shared environment wiring, auth profile repair, Gateway reinstall hygiene, and end-to-end verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to modify local OpenClaw config, shared environment, auth profile, and Gateway service files. <br>
-Mitigation: Back up ~/.openclaw before applying changes and review proposed edits before execution. <br>
-Risk: Credential setup can expose secrets if a real API key is written into local configuration. <br>
-Mitigation: Prefer gcloud ADC and keep the <authenticated> placeholder instead of storing a plaintext secret unless the storage risk is understood. <br>
-Risk: A Gateway service installed from a different OpenClaw binary can cause confusing TUI or service failures. <br>
-Mitigation: Verify the active openclaw binary and reinstall or restart the Gateway service from that same binary. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure or repair OpenClaw so Google Vertex AI Gemini models work through normal CLI, Gateway, and TUI startup paths. It is intended for setups that need repeatable Vertex ADC authentication, shared environment wiring, Gateway service alignment, and end-to-end verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bhrum/openclaw-vertex-setup) <br>
-- [Google Vertex AI generateContent endpoint](https://aiplatform.googleapis.com/v1/projects/{project}/locations/global/publishers/google/models/{model}:generateContent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, dotenv, and YAML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to local OpenClaw config, shared environment files, auth profile files, and Gateway service configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Shared environment files and broad shell environment import can increase credential exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep OpenClaw environment files and Google ADC credentials readable only by the user, and avoid broad shell environment import unless exported secrets are understood.
+
+Risk: Refreshing a persistent Gateway service can leave OpenClaw using a stale or mismatched binary if the active CLI path is not verified.
+
+Mitigation: Verify the active openclaw binary before reinstalling the Gateway and prefer a pinned OpenClaw npm version for repeatable service behavior.
+
+Risk: Repair steps can disrupt existing OpenClaw service or configuration files.
+
+Mitigation: Back up existing service and configuration files before applying changes, then verify model status, Gateway health, and TUI behavior after the update.
+
+## Reference(s):
+
+- [OpenClaw Vertex Setup on ClawHub](https://clawhub.ai/bhrum/skills/openclaw-vertex-setup)
+- [Vertex AI generateContent endpoint pattern](https://aiplatform.googleapis.com/v1/projects/{project}/locations/global/publishers/google/models/{model}:generateContent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline JSON, dotenv, and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose edits to local OpenClaw configuration, environment files, auth profile files, and Gateway service setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

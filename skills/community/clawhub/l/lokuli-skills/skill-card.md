@@ -1,40 +1,57 @@
-## Description: <br>
-Lokuli Booking helps agents search, check availability, and book real-world local services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book real-world services through Lokuli MCP by helping an agent find providers, check availability, estimate pricing, and create confirmed local-service bookings.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to find nearby service providers, compare service details and pricing, check availability, and create confirmed bookings with payment handled through Stripe checkout links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help create real service bookings and payment checkout links. <br>
-Mitigation: Confirm the provider, service, price, appointment time, and contact details with the user before creating a booking or cart. <br>
-Risk: Booking workflows may share personal, contact, location, and booking details with Lokuli and payment details with Stripe. <br>
-Mitigation: Proceed only after the user is comfortable sharing the required name, email, phone, ZIP or location, and booking details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Lokuli Booking listing](https://clawhub.ai/edwardrodriguez703-design/lokuli-skills) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and agents use this skill to search local service providers, compare pricing and availability, and create bookings only after explicit user confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON-RPC request examples and service, availability, booking, or checkout results from MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before booking or cart creation; booking completion may return a Stripe checkout URL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A booking or payment link could be created for the wrong provider, price, time, or contact details.
+
+Mitigation: Confirm provider, price, time, and customer contact details with the user before creating any booking or payment link.
+
+Risk: The skill could be invoked for generic service advice when the user does not intend to search for or schedule a real service.
+
+Mitigation: Use the skill only for local service searches and bookings, and answer generic advice requests without initiating Lokuli booking actions.
+
+Risk: A requested ZIP code or location may not be serviceable.
+
+Mitigation: Validate the location before presenting booking options or attempting to create a booking.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/lokuli-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Text]
+
+**Output Format:** [Markdown/text with JSON-RPC tool call examples and checkout URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before booking; payment is completed through a Stripe checkout URL.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

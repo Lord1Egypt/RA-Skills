@@ -1,40 +1,53 @@
-## Description: <br>
-Coordinates multiple specialized agents using dynamic team formation, parallel execution management, result synthesis, and adaptive routing patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates specialized agents for complex tasks by planning team formation, execution order, progress tracking, and synthesis across parallel, sequential, hybrid, or adaptive workflows.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to plan, route, coordinate, monitor, and synthesize work across multiple specialist agents for complex tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose broad delegation plans for confidential or high-impact work. <br>
-Mitigation: Review the proposed agent team before delegation and require explicit approval before downstream agents change files, deploy systems, access accounts, or publish content. <br>
-Risk: Synthesized outputs from multiple agents may contain incorrect, conflicting, or misleading guidance. <br>
-Mitigation: Review the final synthesis and resolve contradictions before acting on implementation, operational, or publication recommendations. <br>
+## Use Case:
 
+Developers and agent operators use this skill to plan, coordinate, monitor, and synthesize work across multiple specialized agents for complex tasks.
 
-## Reference(s): <br>
-- [Multi-Agent Coordinator Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coordination plans, execution summaries, and final synthesis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed agent teams, dependency ordering, progress status, risk notes, quality metrics, and recommended next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad multi-agent activation may be unnecessary for simple tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the coordination plan and limit execution to the agents and phases that are justified by the task.
+
+Risk: Selected agents may receive shared task context during coordination.
+
+Mitigation: Check the plan before execution and avoid routing sensitive context to agents that do not need it.
+
+## Reference(s):
+
+- [Multi-Agent Coordinator Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown coordination plans, execution summaries, and final synthesis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed agent roles, execution phases, quality metrics, outstanding items, and recommended next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

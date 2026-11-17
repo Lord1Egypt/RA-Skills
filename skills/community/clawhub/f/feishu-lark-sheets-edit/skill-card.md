@@ -1,44 +1,59 @@
-## Description: <br>
-This skill lets an agent read, write, and manage Lark/Feishu Sheets and download Lark/Feishu Drive files through the official OpenAPI, including local PDF text and image extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, write, and manage Lark/Feishu Sheets and download cloud files through the Lark/Feishu OpenAPI, including CSV/JSON export, sheet updates, tab operations, file download, and PDF text/image extraction.
 
-## Publisher: <br>
-[mli-cj](https://clawhub.ai/user/mli-cj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mli-cj](https://clawhub.ai/user/mli-cj)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to let an agent export or update Lark/Feishu spreadsheet data, add or clone sheet tabs, download cloud files, and extract PDF content for summaries, reports, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses local Feishu/Lark app credentials to access spreadsheets and cloud files. <br>
-Mitigation: Install only when this credential access is intended, configure least-privilege app scopes, and share only the intended sheets or files with the app. <br>
-Risk: Sheet write operations can change cloud data. <br>
-Mitigation: Confirm spreadsheet tokens, target ranges, and values before writes; use the documented dry-run flow when previewing changes. <br>
-Risk: PDF extraction may install runtime Python dependencies. <br>
-Mitigation: Preinstall reviewed PDF libraries in managed environments instead of relying on runtime package installation. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent fetch, export, update, and organize Lark/Feishu spreadsheet data or download shared cloud files for local analysis. It is also useful when downloaded PDFs need text, embedded images, or rendered page images extracted for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mli-cj/feishu-lark-sheets-edit) <br>
-- [Lark/Feishu Sheets and Drive OpenAPI reference](artifact/references/lark-sheets-api.md) <br>
-- [Skill README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; helper scripts can produce CSV, JSON, downloaded files, extracted text, and extracted images.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and local Feishu/Lark app credentials in ~/.openclaw/openclaw.json; PDF helpers may install Python packages at runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: Stored Feishu/Lark app credentials can be used to read, write, or manage spreadsheets and download files available to the app identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly permissioned Feishu/Lark app, share only intended sheets or files with the app identity, and avoid broad drive permissions unless they are required.
+
+Risk: Sheet write, add-tab, clone-tab, export, and download operations can change remote content or overwrite local output files.
+
+Mitigation: Confirm the spreadsheet token, sheet ID, range, subcommand, and output path before execution, and use dry-run for mutations before applying changes.
+
+Risk: PDF extraction may install Python packages at runtime.
+
+Mitigation: Run the skill in an isolated environment or preinstall and review the required PDF extraction dependencies before use.
+
+## Reference(s):
+
+- [Lark/Feishu Sheets & Drive OpenAPI Reference](references/lark-sheets-api.md)
+- [ClawHub skill page](https://clawhub.ai/mli-cj/skills/feishu-lark-sheets-edit)
+- [Publisher profile](https://clawhub.ai/user/mli-cj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated local files such as CSV, JSON, downloaded documents, extracted text, and images]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses python3 scripts that read local Lark/Feishu app credentials, call Lark/Feishu OpenAPI endpoints, and may write or overwrite user-specified output paths.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

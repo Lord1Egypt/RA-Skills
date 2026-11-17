@@ -1,43 +1,60 @@
-## Description: <br>
-Guides users through creating, reviewing, improving, and publishing OpenClaw skills using structured workflows, best practices, and quality checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users through creating, reviewing, and improving OpenClaw skills following proven best practices.
 
-## Publisher: <br>
-[jau123](https://clawhub.ai/user/jau123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jau123](https://clawhub.ai/user/jau123)
 
-## Use Case: <br>
-External developers and skill maintainers use this skill to create new OpenClaw skills, review existing SKILL.md files, retrofit older skills, and add documented API-integration patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skills could obscure external transfers, credential use, command execution, or publishing behavior if scanner-avoidance wording is applied too broadly. <br>
-Mitigation: Review generated skill text before publishing and require it to describe external transfers, credentials, commands, and publishing behavior accurately. <br>
-Risk: Generated API-wrapper or shell-script examples could be treated as ready to run without user review. <br>
-Mitigation: Present generated scripts and commands for user review and confirmation before execution, and declare required binaries and environment variables in metadata. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create, review, retrofit, and publish OpenClaw or ClawHub skills with stronger triggering, structure, metadata, and security review habits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jau123/skills-creator) <br>
-- [Best Practices for OpenClaw Skills](references/best-practices.md) <br>
-- [Quality Checklist](references/quality-checklist.md) <br>
-- [Skill Template](assets/skill-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML frontmatter examples, Markdown tables, and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce skill files, review tables, suggested shell commands, and configuration snippets for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Generated wording may make security-relevant behavior less transparent to reviewers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated security language against the actual uploads, public links, API calls, and execution behavior before publication.
+
+Risk: Generated API wrapper scripts may handle API keys, paid services, or external requests incorrectly if used without review.
+
+Mitigation: Require human code review, declare required environment variables and binaries, pin package versions, and test scripts before use.
+
+Risk: Generated shell commands or scripts could be executed before the user has confirmed they are appropriate.
+
+Mitigation: Present generated scripts and commands for user approval and avoid running newly created scripts without explicit confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jau123/skills/skills-creator)
+- [Best Practices for OpenClaw Skills](references/best-practices.md)
+- [Quality Checklist](references/quality-checklist.md)
+- [Skill Template](assets/skill-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, code blocks, and generated skill file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated scripts and security wording require human review before execution or publication.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Read-only diagnostics for TP-Link Omada SDN controllers via the Open API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Omada Viewer provides read-only diagnostics for TP-Link Omada SDN controllers via the Open API, covering devices, clients, VLANs, LAN networks, WAN status, router and switch ports, DHCP ranges, port forwards, and controller health.
 
-## Publisher: <br>
-[imjuff](https://clawhub.ai/user/imjuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imjuff](https://clawhub.ai/user/imjuff)
 
-## Use Case: <br>
-Network administrators and support engineers use this skill to inspect Omada controller health, devices, clients, VLANs, WAN status, ports, DHCP ranges, and port forwards for troubleshooting and inventory without making configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is described as a read-only diagnostics helper, but the bundled all-endpoints catalog includes broad write and admin API routes. <br>
-Mitigation: Use only the documented read-only diagnostics commands with a dedicated Viewer-scoped Omada Open API app, and remove or separately gate write, delete, reboot, and admin routes before normal viewer use. <br>
-Risk: Omada API credentials and relaxed SSL verification can expose controller access if handled carelessly. <br>
-Mitigation: Keep secrets out of chat and logs, store them locally, and leave SSL verification enabled unless the local controller setup is fully trusted. <br>
+## Use Case:
 
+Developers, network administrators, and support engineers use Omada Viewer to inspect Omada inventory and network health during troubleshooting without making configuration changes.
 
-## Reference(s): <br>
-- [Omada Northbound API Endpoints Reference](references/api-endpoints.md) <br>
-- [Practical Omada Endpoints](references/discovered-endpoints.md) <br>
-- [Omada Controller API Endpoints](references/all-endpoints.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and text or JSON diagnostic output from the Omada query script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Omada Open API credentials and HTTPS access to the user's controller.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill handles Omada Open API credentials and can expose network inventory and client metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Viewer-only Open API application, store credentials locally, and do not paste secrets into chat.
+
+Risk: Disabling TLS certificate verification can expose credentials or controller data to interception.
+
+Mitigation: Keep certificate verification enabled and do not set OMADA_VERIFY_SSL=false unless the environment has been separately secured.
+
+Risk: The bundled endpoint catalog includes write-capable Omada API references even though the skill is framed for read-only diagnostics.
+
+Mitigation: Limit use to read-only diagnostic commands and do not use the broad endpoint catalog for write or administrator operations.
+
+## Reference(s):
+
+- [Omada Viewer release page](https://clawhub.ai/imjuff/skills/omada-viewer)
+- [Omada Northbound API Endpoints Reference](references/api-endpoints.md)
+- [Practical Omada Endpoints](references/discovered-endpoints.md)
+- [Omada Controller API Endpoints](references/all-endpoints.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional table or JSON command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query a user-configured Omada controller using supplied Open API credentials for read-only diagnostics.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

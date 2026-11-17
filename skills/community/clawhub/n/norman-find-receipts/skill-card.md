@@ -1,41 +1,54 @@
-## Description: <br>
-Find and attach missing receipts for business transactions. Search Gmail, email, or other sources for invoices and receipts, then upload them to Norman. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and attach missing receipts for business transactions. Search Gmail, email, or other sources for invoices and receipts, then upload them to Norman.
 
-## Publisher: <br>
-[stanlee000](https://clawhub.ai/user/stanlee000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stanlee000](https://clawhub.ai/user/stanlee000)
 
-## Use Case: <br>
-External users and finance operators use this skill to identify Norman Finance transactions missing receipts, locate matching invoices or receipts from email, vendor portals, cloud storage, or photo libraries, and attach them for verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent could upload or link an incorrect receipt to a transaction. <br>
-Mitigation: Summarize each receipt-to-transaction match before upload, linking, or verification so the user can confirm it. <br>
-Risk: Broad email or cloud access can expose unrelated personal or business documents. <br>
-Mitigation: Prefer manually provided receipt files or grant only narrow access to trusted connected tools. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Norman Finance](https://norman.finance) <br>
-- [ClawHub skill page](https://clawhub.ai/stanlee000/norman-find-receipts) <br>
-- [Publisher profile](https://clawhub.ai/user/stanlee000) <br>
+## Use Case:
 
+Business users who manage Norman Finance transactions use this skill to identify transactions missing receipts, locate matching invoice or receipt files, attach them, and verify the completed records.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance with transaction, receipt, attachment, and verification summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the Norman Finance MCP integration and should summarize receipt-to-transaction matches before upload, linking, or verification.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may guide searches across sensitive email, cloud storage, or photo-library sources.
+
+Mitigation: Keep searches narrowly scoped to the relevant vendor, date, amount, and transaction before sharing or uploading files.
+
+Risk: The skill may propose uploading receipts, linking attachments, or changing transaction verification status in Norman.
+
+Mitigation: Review the receipt file, vendor, amount, date, and matched transaction before allowing upload, link, or verification changes.
+
+## Reference(s):
+
+- [Norman Finance](https://norman.finance)
+- [ClawHub skill page](https://clawhub.ai/stanlee000/skills/norman-find-receipts)
+- [Publisher profile](https://clawhub.ai/user/stanlee000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown guidance with structured transaction, search, upload, attachment, and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Norman Finance MCP actions for searching transactions, managing attachments, linking receipts, and changing transaction verification status.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

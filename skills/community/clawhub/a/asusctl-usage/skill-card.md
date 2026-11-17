@@ -1,41 +1,53 @@
-## Description: <br>
-Use when controlling ASUS ROG laptop hardware after asusctl / asusd / rog-control-center have been compiled and installed. Covers the asusctl CLI command tree, common tasks (profiles, fan curves, aura LEDs, battery charge limit, armoury BIOS settings), GUI, user-daemon custom effects, keybinds, verification, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when controlling ASUS ROG laptop hardware after asusctl, asusd, and rog-control-center have been compiled and installed, covering runtime CLI commands, GUI usage, keybinds, verification, and troubleshooting.
 
-## Publisher: <br>
-[alex-ht](https://clawhub.ai/user/alex-ht) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex-ht](https://clawhub.ai/user/alex-ht)
 
-## Use Case: <br>
-Developers, Linux users, and support agents use this skill to guide post-install runtime control of compatible ASUS ROG, TUF, and Zephyrus laptop hardware. It helps users discover supported features, choose safe asusctl commands, configure profiles, fan curves, lighting, battery limits, and troubleshoot daemon or feature availability issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hardware control commands can change fan curves, charge limits, lighting behavior, or firmware-style Armoury settings on compatible ASUS laptops. <br>
-Mitigation: Run discovery commands first, avoid applying fan curves or Armoury settings blindly, save work before GPU or firmware-style changes, and keep reset or default commands available. <br>
-Risk: The guide contains user-run shell commands for system and user daemons. <br>
-Mitigation: Review commands before execution and confirm the installed asusctl tools, daemon status, D-Bus policy, and hardware support match the target machine. <br>
+## Use Case:
 
+Developers, Linux users, and support agents use this skill to operate supported ASUS ROG, TUF, and Zephyrus laptop hardware after asusctl is installed. It helps agents provide safe runtime commands for profiles, fan curves, RGB/AniMe features, battery charge limits, Armoury settings, health checks, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub release: Asusctl Usage](https://clawhub.ai/alex-ht/asusctl-usage) <br>
-- [Publisher profile: alex-ht](https://clawhub.ai/user/alex-ht) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; commands are visible and intended for review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release metadata) <br>
+Risk: Hardware-control commands can affect thermals, battery life, display routing, or require a reboot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check current values and supported features with the listed info, list, and get commands before applying set commands.
+
+Risk: Fan curves, charge limits, and Armoury/GPU MUX settings may be unsupported or inappropriate for a specific laptop model.
+
+Mitigation: Use asusctl info --show-supported and model-specific list commands first, then apply only supported changes and keep reset/default commands available.
+
+## Reference(s):
+
+- [ClawHub Asusctl Usage skill page](https://clawhub.ai/alex-ht/skills/asusctl-usage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should be checked against the laptop's supported features before execution.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Manage Tencent Cloud CVM instances with the TCCLI command-line tool, including instance creation, querying, deletion, launch template management, price inquiry, and related resource cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Tencent Cloud CVM instances with the TCCLI command-line tool. Covers instance creation, querying, deletion, launch template management, price inquiry, and related resource cleanup.
 
-## Publisher: <br>
-[agilebuilder](https://clawhub.ai/user/agilebuilder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agilebuilder](https://clawhub.ai/user/agilebuilder)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Tencent Cloud CVM instances through TCCLI, including provisioning, querying, operating, pricing, and cleanup workflows. It is also useful when an agent needs to prepare directly executable shell commands and workspace-local default configuration for repeated CVM operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer Tencent Cloud CVM resources and run shell commands on instances. <br>
-Mitigation: Install it only for intended Tencent Cloud administration, use a least-privilege Tencent Cloud role, avoid broad production credentials, and confirm every remote command before it runs. <br>
-Risk: Workspace defaults may store passwords in plaintext in .claude/tccli-cvm-defaults.json. <br>
-Mitigation: Prefer environment variables or runtime input for passwords, exclude the defaults file from Git, and delete it when persistent defaults are no longer needed. <br>
-Risk: Destructive operations can terminate instances or release related EIPs and disks, affecting availability or billing. <br>
-Mitigation: Confirm destructive actions with the user, query attached resources before termination, and verify cleanup results after releasing resources. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Tencent Cloud CVM instances through TCCLI, including creation, inspection, lifecycle operations, price checks, launch templates, and cleanup of related resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agilebuilder/skills/tccli-cvm) <br>
-- [Server-resolved GitHub source](https://github.com/agilebuilder/dev-skills/tree/master/skills/tccli-cvm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce TCCLI commands, JSON parameter examples, workspace-local defaults, confirmation prompts, and operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill can guide agents to manage billable Tencent Cloud CVM resources, including instance creation and cleanup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user confirmation for cost-incurring and destructive operations, show price checks before creation, and verify resource release after cleanup.
+
+Risk: Workspace-local defaults may store instance login passwords in plaintext.
+
+Mitigation: Prefer SSH keys, environment variables, runtime entry, or a secrets manager; do not commit the defaults file.
+
+Risk: TAT guidance can enable broad remote shell command execution on cloud instances.
+
+Mitigation: Use narrowly scoped Tencent Cloud permissions, confirm commands before execution, and prefer direct SSH for simple single-machine maintenance.
+
+## Reference(s):
+
+- [Server-resolved GitHub source](https://github.com/agilebuilder/dev-skills/tree/master/skills/tccli-cvm)
+- [ClawHub skill page](https://clawhub.ai/agilebuilder/skills/tccli-cvm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, JSON snippets, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that create, modify, delete, or inspect Tencent Cloud resources.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

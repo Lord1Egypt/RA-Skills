@@ -1,49 +1,62 @@
-## Description: <br>
-Skill Discoverer scans the ClawHub Skill marketplace, recommends relevant skills from user context, classifies candidates by installation risk, and can set scheduled digest scans after confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Discoverer helps OpenClaw agents discover newly published skills, recommend relevant additions, assess installation risk, and create scheduled skill-scan digests after user confirmation.
 
-## Publisher: <br>
-[dr23334444](https://clawhub.ai/user/dr23334444) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dr23334444](https://clawhub.ai/user/dr23334444)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to discover newly released marketplace skills, evaluate whether they fit current work, and decide whether to install, transform, or skip each candidate. It also supports scheduled marketplace scans and digest-style reporting when the user confirms automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read USER.md and recent memory to personalize recommendations. <br>
-Mitigation: Use manual keyword searches when personal context should not be used, and review the inferred search terms before continuing. <br>
-Risk: The skill can save chat routing identifiers and maintain local scan configuration, logs, and known-skill caches. <br>
-Mitigation: Review the generated configuration and delete or disable stored config and logs when scheduled digests are no longer desired. <br>
-Risk: The skill can propose scheduled scans, skill installations, and persistent agent-rule changes. <br>
-Mitigation: Require explicit confirmation before installation, cron creation, or MEMORY.md and SOUL.md changes, and review each proposed change before applying it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to monitor the skill marketplace, find skills that match their current work, evaluate installation impact, and schedule recurring discovery reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dr23334444/skill-discoverer) <br>
-- [README](README.md) <br>
-- [Changelog](CHANGELOG.md) <br>
-- [ClawhHub Safety Rules](references/clawhhub-safety.md) <br>
-- [Example Dialogues](references/examples.md) <br>
-- [Install Decision Rules](references/install-decision.md) <br>
-- [Search Commands](references/search-commands.md) <br>
-- [Learn and Transform Flow](references/step6b-learn-transform.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with structured options, risk notes, and inline command or configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local configuration files, scan logs, known-skill caches, scheduled scan jobs, and skill installation choices that require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata, changelog released 2026-03-29) <br>
+Risk: The skill reads profile and recent-memory context to personalize skill recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that context access is acceptable for the workspace and review recommendation reports before acting on them.
+
+Risk: The skill stores chat routing identifiers and can create recurring scan jobs.
+
+Mitigation: Confirm the saved channel configuration and scheduled scan cadence before enabling recurring reports.
+
+Risk: Learning and transformation mode can propose persistent changes to core agent behavior files.
+
+Mitigation: Inspect each proposed rule and destination file individually, and decline self-preference or behavior-changing rules unless they are intended.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/dr23334444/skills/skill-discoverer)
+- [Search command guidance](references/search-commands.md)
+- [Installation decision rules](references/install-decision.md)
+- [ClawHub fallback safety rules](references/clawhhub-safety.md)
+- [Learning and transformation workflow](references/step6b-learn-transform.md)
+- [Example conversations](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with inline command and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before installation, learning, or persistent scheduling actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata, changelog released 2026-03-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

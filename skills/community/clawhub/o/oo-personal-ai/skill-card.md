@@ -1,42 +1,54 @@
-## Description: <br>
-Personal AI (personal.ai) lets agents read, create, and update data through an OOMOL-connected Personal AI account instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal AI (personal.ai). Use this skill for ANY Personal AI request — reading, creating, and updating data. Whenever a task involves Personal AI, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent operate Personal AI personas, send messages or instructions, and upload memories, text documents, or public URLs through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and write Personal AI data through a connected account, including content that may persist in memories or document libraries. <br>
-Mitigation: Install it only for intended Personal AI account use, and review proposed write payloads before approving state-changing actions. <br>
-Risk: Incorrect payloads could send unintended persona messages, instructions, memories, documents, or URL uploads. <br>
-Mitigation: Inspect the live connector schema before constructing payloads and confirm the exact effect with the user for write actions. <br>
+## Use Case:
 
+Developers and Personal AI users use this agent to read, create, and update Personal AI data through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-personal-ai) <br>
-- [Personal AI homepage](https://personal.ai) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector actions may return JSON responses containing data and meta.executionId; write actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence and skill metadata) <br>
+Risk: The fallback setup asks the user to run a remote installer that was not inspected; its local changes are uncertain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the fallback installation before enabling it, or preinstall a reviewed, version-pinned CLI.
+
+Risk: Messages, instructions, and uploaded content can change or add data in the connected Personal AI account.
+
+Mitigation: Approve the exact message or document before each write.
+
+## Reference(s):
+
+- [Personal AI homepage](https://personal.ai)
+- [Personal AI API documentation](https://docs.personal.ai/api-reference/endpoint/ai-message)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Text, Guidance]
+
+**Output Format:** [Shell commands with JSON request payloads; JSON responses and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write actions require confirmation of the exact payload and effect.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

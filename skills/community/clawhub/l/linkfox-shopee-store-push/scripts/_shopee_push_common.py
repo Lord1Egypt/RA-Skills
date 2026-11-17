@@ -53,10 +53,14 @@ def ensure_auth_skill_available(caller: str = "push script") -> None:
 
 
 def get_api_key() -> str:
+    """
+    获取配置在环境变量的API Key。
+    如果获取不到，按 SKILL.md 的 **## 解决认证和积分问题** 处理。
+    """
     key = os.environ.get("LINKFOX_AGENT_API_KEY") or os.environ.get("LINKFOXAGENT_API_KEY")
     if not key:
         print(
-            "API Key not configured. Set:\n  export LINKFOXAGENT_API_KEY=<your-key>",
+            "API Key 未配置",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -77,7 +81,7 @@ def call_api(endpoint: str, params: dict) -> dict:
         method="POST",
     )
     try:
-        with urlopen(req, timeout=120) as response:
+        with urlopen(req, timeout=150) as response:
             return json.loads(response.read().decode("utf-8"))
     except HTTPError as e:
         body = e.read().decode("utf-8") if e.fp else ""
@@ -101,7 +105,6 @@ def resolve_store_tokens(params: dict) -> dict:
 
 
 def developer_proxy_call(
-    access_token: str,
     path: str,
     method: str,
     shop_id: Optional[str] = None,
@@ -109,25 +112,32 @@ def developer_proxy_call(
     query_string: Optional[str] = None,
     body: Optional[str] = None,
     content_type: str = "application/json",
+    access_token: Optional[str] = None,
 ) -> dict:
     if not path.startswith("api/v2"):
         print(f"Error: path must start with 'api/v2', got {path!r}", file=sys.stderr)
         sys.exit(1)
+    if not shop_id and not merchant_id:
+        print("Missing required field: shopId OR merchantId", file=sys.stderr)
+        sys.exit(1)
     proxy: dict[str, Any] = {
         "path": path,
         "method": method,
-        "accessToken": access_token,
     }
     if shop_id:
         proxy["shopId"] = str(shop_id)
     if merchant_id:
         proxy["merchantId"] = str(merchant_id)
+    if access_token:
+        proxy["accessToken"] = access_token
     if query_string:
         proxy["queryString"] = query_string
     if body is not None:
         proxy["body"] = body
         proxy["contentType"] = content_type
     return call_api(DEVELOPER_PROXY_ENDPOINT, proxy)
+
+
 
 
 def qs_add(parts: list[str], key: str, value: str) -> None:

@@ -1,42 +1,52 @@
-## Description: <br>
-Generate HIPAA compliance checklists, risk assessments, and audit frameworks for healthcare organizations deploying AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate HIPAA compliance checklists, risk assessments, and audit frameworks for healthcare AI deployments to support data security and regulatory review.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Compliance officers, CISOs, and healthcare IT teams use this skill to draft HIPAA planning materials for AI agent deployments, including pre-deployment gates, safeguard checklists, risk matrices, breach timelines, and use-case risk ratings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: HIPAA guidance, legal requirements, and penalty figures may become outdated or may not fit a specific healthcare deployment. <br>
-Mitigation: Use the skill output as drafting and compliance-planning guidance, then verify legal requirements and figures against current official sources or qualified counsel. <br>
-Risk: External promotional links may lead to third-party resources outside the skill artifact. <br>
-Mitigation: Review external links before relying on them or sharing them in an enterprise workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-hipaa-compliance) <br>
-- [Healthcare AI Context Pack](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [AI Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Compliance officers, CISOs, and healthcare IT teams use this skill to draft HIPAA-oriented checklists, AI risk assessments, safeguard reviews, breach response timelines, and deployment-specific compliance summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown checklists, risk matrices, timeline tables, and compliance cards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafting and compliance-planning guidance; legal and regulatory details should be verified against current official sources or counsel.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated HIPAA compliance materials may be outdated or insufficient for operational legal compliance.
+
+Mitigation: Verify outputs against current official HIPAA guidance and qualified counsel before using them for production compliance decisions.
+
+Risk: The artifact includes optional external commercial links.
+
+Mitigation: Review linked resources under the organization's security, procurement, and compliance policies before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-hipaa-compliance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklists, risk matrices, timeline tables, and compliance cards]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include status columns, impact and likelihood scoring, breach response milestones, and department-specific compliance summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

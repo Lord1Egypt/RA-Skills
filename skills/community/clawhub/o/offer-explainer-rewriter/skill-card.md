@@ -1,41 +1,53 @@
-## Description: <br>
-Clarifies and rewrites confusing or jargon-heavy offer explanations into clear, value-focused language for sales and marketing contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clarifies and rewrites confusing or jargon-heavy offer explanations into clear, value-focused language for sales and marketing contexts.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing teams, founders, creators, and ecommerce operators use this skill to turn unclear offer, bundle, promotion, subscription, or product explanations into plain-language copy that buyers can understand quickly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential pricing strategy, unreleased product details, or legally sensitive claims into the agent conversation. <br>
-Mitigation: Redact sensitive details or use approved public-safe summaries before requesting rewrites. <br>
-Risk: Rewritten copy may accidentally alter offer mechanics, pricing clarity, or compliance-sensitive terms. <br>
-Mitigation: Review final copy against the original offer terms, required constraints, and any applicable legal or platform rules before publication. <br>
+## Use Case:
 
+Marketers, founders, ecommerce teams, and creators use this skill to turn unclear offer, bundle, promotion, subscription, or product explanations into plain-language copy that buyers can understand quickly.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/offer-explainer-rewriter) <br>
-- [Output template](artifact/references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown response with diagnosis, rewritten offer copy, alternate versions, and a recommended best version.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an optional one-line version and objection-handling phrasing when useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated sales copy may contain inaccurate pricing, offer terms, or compliance-sensitive claims if the user provides incomplete or imprecise inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review rewritten copy against the actual offer mechanics, pricing, constraints, and compliance limits before publishing.
+
+Risk: Conversion-focused rewrites can make an offer sound stronger than its real terms support.
+
+Mitigation: Preserve the economics and key terms of the offer, and remove or revise language that overstates what the buyer receives.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections for diagnosis, rewritten offer copy, variants, rationale, and next tests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include alternate versions by context or tone, a one-line version, objection-handling phrasing, and a recommended best version.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

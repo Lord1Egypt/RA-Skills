@@ -1,38 +1,58 @@
-## Description: <br>
-Sniplink is an OpenClaw skill for saving URLs from X, GitHub, and other sites by extracting metadata, categorizing and tagging the link, and storing an approved record. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sniplink saves user-submitted URLs for tools and services by extracting metadata, categorizing and tagging entries, and storing approved records as Obsidian notes.
 
-## Publisher: <br>
-[almohalhel1408](https://clawhub.ai/user/almohalhel1408) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[almohalhel1408](https://clawhub.ai/user/almohalhel1408)
 
-## Use Case: <br>
-External users use Sniplink to quickly save URLs for tools and services, extract useful metadata, categorize and tag entries, and retrieve saved links from an Obsidian vault. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches metadata for user-provided URLs and stores approved records persistently in an Obsidian vault path that was published with a personal Google Drive location. <br>
-Mitigation: Replace the published vault path with the user's chosen folder, confirm each write destination, and avoid submitting private or sensitive URLs unless their metadata should be fetched and stored. <br>
+## Use Case:
 
+External users and developers use Sniplink to quickly save, organize, and retrieve URLs for tools and services without filling out multi-step forms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/almohalhel1408/sniplink) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, summaries, approval prompts, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes approved saved-link records as Obsidian markdown notes and updates an index when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence) <br>
+Risk: The skill writes persistent notes to a hardcoded Google Drive-backed Obsidian path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure a user-controlled storage location and require confirmation of the destination and final filename before saving.
+
+Risk: The X/Twitter workflow can send tweet URLs to FxTwitter.
+
+Mitigation: Use that path only when the user is comfortable sharing the tweet URL with the third-party service, or ask the user to paste tweet text instead.
+
+Risk: Metadata collected from saved pages is untrusted and may be written into Markdown or YAML.
+
+Mitigation: Review extracted metadata and sanitize filenames, Markdown, and YAML frontmatter before persisting notes.
+
+## Reference(s):
+
+- [Sniplink on ClawHub](https://clawhub.ai/almohalhel1408/skills/sniplink)
+- [FxTwitter API endpoint used by the skill](https://api.fxtwitter.com/{user}/status/{id})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries and Obsidian note content with YAML frontmatter, plus inline shell commands when querying URLs or GitHub repositories.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user approval before saving; stored records may include source URLs, tags, categories, pricing notes, and social links.]
+
+## Skill Version(s):
+
+3.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

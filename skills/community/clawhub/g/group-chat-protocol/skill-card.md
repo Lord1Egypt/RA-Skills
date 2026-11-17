@@ -1,40 +1,57 @@
-## Description: <br>
-Governs Loki's behaviour in Telegram group chats - when to speak, when to stay silent, how to react, and platform formatting rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Loki's participation in Telegram group chats, including when to respond, react, stay silent, and preserve group privacy.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-External users and developers can use this skill to guide an agent's behavior in Telegram group chats, including when to respond, react, stay silent, and preserve private context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The clean security verdict is low confidence because deeper artifact confirmation was not available to the scan. <br>
-Mitigation: Install only when the marketplace page and included SKILL.md match the expected group chat protocol, and review the skill before deployment. <br>
-Risk: Group chat replies may expose private context if the agent treats private memory as shareable. <br>
-Mitigation: Keep private memory, direct-message history, and personal context out of group replies, as the skill directs. <br>
+## Use Case:
 
+External users can apply this skill to govern an assistant's behavior in group chats, especially Telegram conversations where the assistant receives every message. It helps the assistant decide when to contribute, react, stay silent, and avoid exposing private context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/group-chat-protocol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance for agent behavior and messaging rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No outbound network requirement is declared in the release metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The assistant may participate or react in a group chat where members do not expect automated involvement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the group wants the assistant to participate and react before enabling the skill.
+
+Risk: The quiet-hours behavior assumes 23:00-08:00 AEST, which may not match the group's timezone.
+
+Mitigation: Adjust the quiet-hours assumption to the group's actual timezone before use.
+
+Risk: Private memory, DM history, or personal context could be disclosed in a group conversation if the host agent ignores the privacy rule.
+
+Mitigation: Configure the host agent to keep private memory, DM history, and personal context out of group replies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/group-chat-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance for chat participation and platform formatting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; provides behavioral guidance for group-chat replies, reactions, silence, formatting, and privacy.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

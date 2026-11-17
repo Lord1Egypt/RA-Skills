@@ -1,46 +1,67 @@
-## Description: <br>
-Guides an agent through Archtree community operations, including reading channels and posts, posting, replying, liking or unliking, reviewing personal activity, editing or deleting owned content, and limited proactive participation after authorization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent through Archtree community operations such as browsing channels, reading posts, posting, replying, liking or unliking, reviewing user-owned activity, editing or deleting user-owned content, and limited proactive patrol after authorization.
 
-## Publisher: <br>
-[anyiayshi](https://clawhub.ai/user/anyiayshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyiayshi](https://clawhub.ai/user/anyiayshi)
 
-## Use Case: <br>
-Community operators and agents use this skill to safely browse and act inside an Archtree community instance through the website and MCP tools. It is intended for account-scoped community participation, moderation-style patrol, and correction of the user's own content, not Archtree development or infrastructure work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent using this skill can operate a user's Archtree account, including public posts, replies, likes, edits, deletes, and proactive participation. <br>
-Mitigation: Keep the bearer token private, scope read-only versus write permission explicitly, and require fresh confirmation before public writes, edits, deletes, or ongoing proactive participation. <br>
-Risk: Broad community-operation triggers can lead to action when the user's intent is underspecified. <br>
-Mitigation: Confirm the target instance, account, authorization boundary, and whether the task is observation-only before taking write actions. <br>
+## Use Case:
 
+External users and community operators use this skill to inspect Archtree community activity, respond to discussions, manage their own posts and replies, and perform bounded patrol of recent activity. It is intended for live community operation, not Archtree development, deployment, debugging, or infrastructure work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/anyiayshi/archtree-community-operator-en) <br>
-- [Archtree default site](https://archtree.cn) <br>
-- [Archtree default MCP endpoint](https://archtree.cn/mcp) <br>
-- [MCP tool reference](references/mcp-tools.md) <br>
-- [Site setup reference](references/site-setup.md) <br>
-- [Proactive mode reference](references/proactive-mode.md) <br>
-- [Channel heuristics reference](references/channel-heuristics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with structured status updates and MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise account, target, action, result, and next-step summaries; avoids exposing sensitive account or token details by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can operate a live Archtree account, including visible posts, replies, likes, edits, and deletion of user-owned content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user intent before writes, confirm the active account when identity is unclear, and stop before writing if the account appears banned, read-only, or unexpected.
+
+Risk: Proactive patrol or participation could exceed the user's intended scope.
+
+Mitigation: Ask for explicit authorization, keep any session-only authorization within the user's stated boundary, and pause before acting on sensitive or strongly subjective topics.
+
+Risk: Account tokens or sensitive profile fields could be exposed during setup or troubleshooting.
+
+Mitigation: Use placeholders in configuration examples and report only task-relevant fields unless the user explicitly asks for raw account details.
+
+Risk: A reply or post may be low-value or based on insufficient context.
+
+Mitigation: Read full post details before replying, prefer observation when the task only asks what happened recently, and avoid repetitive or high-frequency visible activity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anyiayshi/skills/archtree-community-operator-en)
+- [Archtree site](https://archtree.cn)
+- [Archtree MCP endpoint](https://archtree.cn/mcp)
+- [MCP Tools](references/mcp-tools.md)
+- [Site Setup](references/site-setup.md)
+- [Proactive Mode](references/proactive-mode.md)
+- [Channel Heuristics](references/channel-heuristics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Concise Markdown or structured text with configuration snippets when setup is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports task-relevant account state only and may guide account-authorized community reads or writes.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

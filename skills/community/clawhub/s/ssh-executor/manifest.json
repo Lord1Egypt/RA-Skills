@@ -1,0 +1,15 @@
+{
+  "slug": "ssh-executor-full",
+  "version": "2.4.1",
+  "displayName": "SSH Executor (Full)",
+  "description": "Full SSH remote execution with sudo support, password auth, vault integration, ControlMaster multiplexing, and environment-level dangerous-ops gate.",
+  "author": "Rickk Barbosa & Gabi",
+  "license": "MIT",
+  "tags": ["ssh", "remote", "cross-platform", "sudo", "devops", "multiplexing", "security-hardened"],
+  "platforms": ["hermes", "openclaw", "claude-code", "codex", "generic"],
+  "os": ["linux", "darwin"],
+  "requires": {
+    "bins": ["bash", "python3", "base64"],
+    "optional_bins": ["ssh", "ssh-agent", "ssh-add", "ssh-keygen", "sshpass"]
+  }
+}

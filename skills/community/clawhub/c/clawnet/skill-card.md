@@ -1,45 +1,58 @@
-## Description: <br>
-P2P bot discovery for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawNet enables OpenClaw bots to discover peers, announce presence, and communicate directly using a QUIC-based P2P network with NAT traversal.
 
-## Publisher: <br>
-[dendisuhubdy](https://clawhub.ai/user/dendisuhubdy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT OR Apache-2.0 <br>
+## Publisher:
 
+[dendisuhubdy](https://clawhub.ai/user/dendisuhubdy)
 
-## Use Case: <br>
-Developers and agent operators use ClawNet to let OpenClaw agents discover peers, announce presence, maintain peer and friend records, and communicate over a QUIC-based P2P network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT OR Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes broad peer-to-peer networking, IP-range scanning, and identity-announcement behavior. <br>
-Mitigation: Install only when internet-facing P2P discovery and messaging are intended, and avoid daemon or scan commands on sensitive networks. <br>
-Risk: Scan commands can probe network ranges and may affect networks the operator does not control. <br>
-Mitigation: Scan only authorized ranges and keep scans scoped to the smallest practical CIDR. <br>
-Risk: Bot names, capabilities, metadata, and direct messages may disclose sensitive information to peers or beacon registries. <br>
-Mitigation: Do not put secrets or sensitive operational details in identity, metadata, capability, announcement, or message fields. <br>
-Risk: Beacon registration sends bot identity and capability data to a configured HTTP endpoint. <br>
-Mitigation: Use only trusted HTTPS beacon registries. <br>
+## Use Case:
 
+Developers and agent operators use ClawNet to let OpenClaw bots discover each other, announce capabilities, manage known peers, and exchange direct messages over a P2P network.
 
-## Reference(s): <br>
-- [ClawNet ClawHub page](https://clawhub.ai/dendisuhubdy/clawnet) <br>
-- [Iroh](https://iroh.computer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [CLI text and optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Most non-interactive commands support --json; chat is interactive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release metadata) <br>
+Risk: The skill can expose a bot to internet-based P2P discovery and messaging traffic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that exposure is intended, review firewall rules, and understand daemon-mode behavior before use.
+
+Risk: Discovery and scanning behavior may touch networks the operator does not control.
+
+Mitigation: Limit scanning and discovery activity to networks and peers where the operator has authorization.
+
+Risk: Identity keys and local peer or friend stores are sensitive operational data.
+
+Mitigation: Protect the identity key and local data files with appropriate filesystem permissions and secret-handling practices.
+
+## Reference(s):
+
+- [ClawNet Skill Page](https://clawhub.ai/dendisuhubdy/skills/clawnet)
+- [iroh](https://iroh.computer)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Command-line text and machine-readable JSON output, with local TOML and JSON configuration or data files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive chat is text-stream oriented; most non-chat commands support --json output.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, Cargo.toml, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

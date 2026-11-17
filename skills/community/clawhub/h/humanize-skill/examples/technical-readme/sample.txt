@@ -1,0 +1,3 @@
+Keep README copy boring in the good way.
+
+Say what the command does. Show the files it accepts. Name the limits. I do not trust tools that promise perfect accuracy, especially around facts.

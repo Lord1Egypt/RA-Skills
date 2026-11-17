@@ -1,41 +1,52 @@
-## Description: <br>
-Determine unified vs separated business entities. Use for portfolio management, strategic planning, and restructuring decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Determines whether business entities should be unified or separated for portfolio management, strategic planning, and restructuring decisions.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business strategists, portfolio managers, and restructuring teams use this skill to analyze business units, compare unified and separated structures, and draft transition, governance, risk, and value-capture recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may provide unnecessary confidential business, portfolio, or restructuring details while asking for analysis.
+
+Mitigation: Limit prompts to the information needed for the decision framework and avoid sharing sensitive details unless the agent is expected to analyze them.
+
+Risk: Organizational structure recommendations may be incomplete or misleading if treated as final business advice.
+
+Mitigation: Have qualified stakeholders review recommendations, assumptions, value estimates, governance changes, and transition plans before operational use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business strategy and portfolio planning users apply this skill to evaluate whether business units should operate as one unified business or as separate entities, then outline proposed structures, transition plans, and value capture considerations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Organizational restructuring recommendations may be incomplete or unsuitable for a real business context. <br>
-Mitigation: Treat outputs as advisory analysis and require review by qualified leadership, finance, legal, and HR stakeholders before action. <br>
-Risk: The framework can produce confident business judgments from incomplete user-provided facts. <br>
-Mitigation: Validate assumptions, financial estimates, governance impacts, and transition costs against current business data before using the analysis. <br>
+**Output Format:** [Markdown analysis with tables, recommendations, transition planning, and risk assessment sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Business Definition on ClawHub](https://clawhub.ai/linuszz/business-definition) <br>
-- [Publisher profile: linuszz](https://clawhub.ai/user/linuszz) <br>
+**Other Properties Related to Output:** [No code execution, external access, persistence, or credential handling is indicated by the security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured business definition analysis with tables for definition-test results, proposed structure, transition planning, value capture, risk assessment, strategic implications, and governance recommendations.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,58 @@
-## Description: <br>
-Scrape Bluesky social posts via AT Protocol using an Apify Actor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes Bluesky social posts via AT Protocol using an Apify Actor REST API and requires an APIFY_TOKEN environment variable.
 
-## Publisher: <br>
-[MarcinDudekDev](https://clawhub.ai/user/MarcinDudekDev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcindudekdev](https://clawhub.ai/user/marcindudekdev)
 
-## Use Case: <br>
-Developers and analysts use this skill to search Bluesky posts, monitor discussions, and extract post data through Apify for review or export. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms and returned metadata are sent to Apify when the skill runs. <br>
-Mitigation: Avoid sensitive private search topics unless necessary and use an Apify token limited to the access required for this actor. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MarcinDudekDev/apify-bluesky-scraper) <br>
+## Use Case:
 
+Developers and analysts use this skill to run Apify-backed Bluesky searches from an agent, fetch post data, and summarize counts, engagement, themes, or exportable results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIFY_TOKEN plus curl and jq; results can be summarized or offered as JSON/CSV export.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Apify credentials are placed in request URLs, which can expose them through shell tracing, logs, or command history.
+
+Mitigation: Use a minimally scoped APIFY_TOKEN, avoid shell tracing and logging full commands, and revise the skill to use Authorization headers before deployment.
+
+Risk: Bluesky search terms and requested limits are sent to Apify under the user's Apify account.
+
+Mitigation: Confirm users are comfortable sharing those search parameters with Apify and avoid sending sensitive terms.
+
+Risk: The authoritative security verdict is suspicious because the skill does not clearly warn users about third-party data sharing and credential handling.
+
+Mitigation: Review the skill before execution and add clear user-facing warnings before broad deployment.
+
+## Reference(s):
+
+- [Apify Bluesky Scraper on ClawHub](https://clawhub.ai/marcindudekdev/skills/apify-bluesky-scraper)
+- [Publisher profile on ClawHub](https://clawhub.ai/user/marcindudekdev)
+- [Apify Actor API endpoint](https://api.apify.com/v2/acts/WAJfBnZBYR9mJrk5d)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command examples and JSON result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can summarize Bluesky post counts, engagement, common themes, and JSON or CSV export options.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

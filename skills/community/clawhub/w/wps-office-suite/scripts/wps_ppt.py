@@ -1,5 +1,5 @@
 """
-WPS PPT CLI v2.0 - 三引擎自动调用
+WPS PPT CLI v4.1 - 四引擎自动调用 + 智能生成
 """
 import subprocess
 import json
@@ -61,6 +61,24 @@ def main():
 
     p = sub.add_parser("engine-info")
 
+    p = sub.add_parser("docx-to-ppt", help="Word → PPT 一键生成")
+    p.add_argument("--input", required=True, help="输入 .docx 文件路径")
+    p.add_argument("--output", default="", help="输出 .pptx 文件路径")
+    p.add_argument("--title", default="", help="PPT 标题")
+    p.add_argument("--theme", choices=["business", "tech", "minimal"], default="business")
+
+    p = sub.add_parser("generate", help="智能生成 PPT（多源输入 + 增强）")
+    p.add_argument("--input", required=True, help="输入文件路径（Word/Markdown/思维导图/纯文本）")
+    p.add_argument("--output", default="", help="输出 PPT 路径")
+    p.add_argument("--type", choices=["auto", "word", "markdown", "mindmap", "text"], default="auto")
+    p.add_argument("--title", default="", help="PPT 标题")
+    p.add_argument("--theme", choices=["business", "tech", "minimal"], default="business")
+    p.add_argument("--brand-color", default="", help="企业品牌色（HEX 格式，如 #1A73E8）")
+    p.add_argument("--scheme-type", choices=["complementary", "analogous", "triadic"], default="complementary")
+    p.add_argument("--no-notes", action="store_true", help="不生成演讲者备注")
+    p.add_argument("--no-animations", action="store_true", help="不生成动画建议")
+    p.add_argument("--no-rehearsal", action="store_true", help="不生成排练报告")
+
     args = parser.parse_args()
 
     if args.command == "create":
@@ -84,6 +102,24 @@ def main():
         r = call_worker("info_ppt", {"filepath": args.file})
     elif args.command == "engine-info":
         r = call_worker("engine_info", {})
+    elif args.command == "docx-to-ppt":
+        r = call_worker("docx_to_ppt", {
+            "input": args.input, "output": args.output,
+            "title": args.title, "theme": args.theme
+        })
+    elif args.command == "generate":
+        r = call_worker("ppt_generate", {
+            "input": args.input,
+            "output": args.output,
+            "type": args.type,
+            "title": args.title,
+            "theme": args.theme,
+            "brand_color": args.brand_color,
+            "scheme_type": args.scheme_type,
+            "no_notes": args.no_notes,
+            "no_animations": args.no_animations,
+            "no_rehearsal": args.no_rehearsal,
+        })
     else:
         r = {"ok": False, "error": "未知命令"}
 

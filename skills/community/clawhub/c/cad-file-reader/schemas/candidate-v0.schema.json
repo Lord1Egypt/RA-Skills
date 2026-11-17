@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/cad-file-reader/schemas/candidate-v0.schema.json",
+  "title": "cad-file-reader v0 contract",
+  "type": "object",
+  "required": [
+    "contract"
+  ],
+  "properties": {
+    "contract": {
+      "type": "object",
+      "required": [
+        "schema",
+        "source",
+        "origin_schema",
+        "summary",
+        "review_reasons",
+        "candidates",
+        "review_candidates",
+        "boundary"
+      ],
+      "properties": {
+        "schema": {
+          "const": "cad-file-reader/v0"
+        },
+        "origin_schema": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "object"
+        },
+        "review_reasons": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "missing_scale",
+              "missing_unit",
+              "missing_layer",
+              "missing_block_definition",
+              "ambiguous_text_binding",
+              "geometry_conflict",
+              "duplicate_candidate",
+              "outside_viewport",
+              "incomplete_geometry",
+              "low_confidence_inference"
+            ]
+          }
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/candidate"
+          }
+        },
+        "review_candidates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/candidate"
+          }
+        },
+        "boundary": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "candidate": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "value",
+        "unit",
+        "layer",
+        "block_name",
+        "text",
+        "bbox",
+        "evidence",
+        "method",
+        "confidence",
+        "confidence_tier",
+        "review_reasons",
+        "review_notes",
+        "source_schema",
+        "source_id",
+        "final_quantity"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "text",
+            "block",
+            "line",
+            "polyline",
+            "route",
+            "room",
+            "device",
+            "measurement"
+          ]
+        },
+        "value": {
+          "type": [
+            "number",
+            "string",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "layer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "block_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "text": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bbox": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4,
+              "maxItems": 4
+            }
+          ]
+        },
+        "rotation": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "discipline_refs": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "跨专业视角引用，可选"
+        },
+        "confidence_scores": {
+          "type": "object",
+          "description": "证据子项强度，可选"
+        },
+        "evidence": {
+          "type": "array"
+        },
+        "method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "主置信度分数（与 confidence 同值，供下游自定义阈值）"
+        },
+        "confidence_tier": {
+          "enum": [
+            "confirmed_evidence",
+            "inferred_candidate",
+            "review_required"
+          ]
+        },
+        "review_reasons": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "missing_scale",
+              "missing_unit",
+              "missing_layer",
+              "missing_block_definition",
+              "ambiguous_text_binding",
+              "geometry_conflict",
+              "duplicate_candidate",
+              "outside_viewport",
+              "incomplete_geometry",
+              "low_confidence_inference"
+            ]
+          }
+        },
+        "review_notes": {
+          "type": "string"
+        },
+        "source_schema": {
+          "const": "cad-file-reader/v0"
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "final_quantity": {
+          "const": false
+        },
+        "page_index": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "page_bbox": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4,
+              "maxItems": 4
+            }
+          ]
+        },
+        "source_format": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,45 +1,56 @@
-## Description: <br>
-通过华银康集团 PathClaw 服务对 .svs 病理切片进行 AI 辅助诊断。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PathClaw 病理助手 helps agents submit user-selected .svs pathology slides to 华银康集团 PathClaw for AI-assisted analysis after confirming the slide path and supported analysis type.
 
-## Publisher: <br>
-[t-programmer](https://clawhub.ai/user/t-programmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[t-programmer](https://clawhub.ai/user/t-programmer)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and clinical support teams can use this skill to validate a readable .svs pathology slide, choose one supported PathClaw analysis category, submit the slide, and receive returned analysis status and results. The skill is intended for AI-assisted pathology workflow support, not standalone medical diagnosis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Pathology slide files may contain patient data and are uploaded to the PathClaw service.
+
+Mitigation: Confirm authorization, consent, retention, and compliance requirements before submitting any .svs file.
+
+Risk: The workflow and prompts are primarily in Chinese, which can cause misunderstanding for non-Chinese readers.
+
+Mitigation: Have the prompts reviewed or translated before relying on the workflow.
+
+Risk: AI-assisted pathology output could be mistaken for a final diagnosis.
+
+Mitigation: Use the returned result as reference only and require qualified physician review with clinical context and other examinations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and clinicians use this skill to submit authorized .svs pathology slide files to the PathClaw service for AI-assisted diagnostic analysis and result polling. The skill guides the user through supported pathology category selection, file validation, upload, and result reporting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive pathology slide files may be uploaded to an external PathClaw service without clear pre-upload consent or privacy disclosure. <br>
-Mitigation: Require explicit user confirmation before upload and use the skill only when the organization has approved the vendor, privacy terms, retention policy, and clinical-use limits. <br>
-Risk: Pathology slides may contain regulated or identifying health information. <br>
-Mitigation: Prefer de-identified or non-regulated samples unless the user is authorized to send the files and the deployment has appropriate privacy controls. <br>
-Risk: AI-assisted pathology output could be mistaken for a final clinical diagnosis. <br>
-Mitigation: Present results as AI-assisted reference output and require review by qualified medical professionals before clinical use. <br>
+**Output Format:** [Markdown text with tables, status summaries, diagnostic result summaries, and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [PathClaw skill page](https://clawhub.ai/t-programmer/skills/pathclaw) <br>
-- [PathClaw login API](https://pathclaw.pathologyunion.com/api/user/login) <br>
-- [PathClaw diagnosis submission API](https://pathclaw.pathologyunion.com/api/v1/diagnosis/run) <br>
-- [PathClaw diagnosis result API](https://pathclaw.pathologyunion.com/api/v1/diagnosis/<slide_id>/result) <br>
+**Other Properties Related to Output:** [Requires a readable non-empty .svs file and one supported PathClaw pathology category; successful results may include slide_id, diagnostic text, and a heatmap link.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with status summaries, result text, links, and inline curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes supported pathology category mapping, .svs file validation guidance, polling status summaries, and token redaction expectations.] <br>
+1.0.6 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

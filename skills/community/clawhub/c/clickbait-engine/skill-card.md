@@ -1,36 +1,51 @@
-## Description: <br>
-Generate provocative, engaging titles, hooks, and captions that maximize click-through for social media, YouTube, and tweets using proven clickbait strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate sensational, engagement-maximizing titles, hooks, and clip captions for social media posts, YouTube videos, and tweets.
 
-## Publisher: <br>
-[honeybee1130](https://clawhub.ai/user/honeybee1130) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[honeybee1130](https://clawhub.ai/user/honeybee1130)
 
-## Use Case: <br>
-Creators, social media managers, and agents use this skill to draft high-engagement headlines, hooks, tweet copy, and clip captions for social and video content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Clickbait-style drafting can produce misleading or reputationally sensitive framing. <br>
-Mitigation: Review outputs for truthfulness before publishing and avoid factual, legal, medical, financial, reputationally sensitive, or brand-sensitive communications where misleading framing could cause harm. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External creators and marketing-oriented agents use this skill to draft provocative title options, social hooks, tweet copy, and clip captions intended to increase engagement.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can push ordinary title and caption work toward sensational or misleading engagement bait.
+
+Mitigation: Enable it only for workflows where clickbait-style promotional copy is explicitly desired.
+
+Risk: Generated hooks may overstate facts or imply unsupported claims to create curiosity gaps.
+
+Mitigation: Manually verify factual claims and revise outputs before publishing.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with ranked title, hook, and caption options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include engagement scoring and concise rationale for suggested options.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text title, hook, and caption options with short scoring notes when requested by the skill behavior.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

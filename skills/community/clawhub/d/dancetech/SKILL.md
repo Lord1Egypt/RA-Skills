@@ -121,7 +121,7 @@ This skill includes a **Security Railcard** system to prevent API key exposure i
 
 2. Test the hook:
    ```bash
-   echo "const key = 'sk-or-v1-fakekey1234567890abcdefghijklmnopqrstuvwxyz';" > test_secret.js
+   echo "const key = 'REDACTED-SECRET';" > test_secret.js
    git add test_secret.js
    git commit -m "test"  # Should be blocked
    ```

@@ -1,41 +1,59 @@
-## Description: <br>
-AI 视频剪辑器 helps agents send selected MP4 videos to Sparki, create AI editing jobs from style tips and natural-language prompts, and return a temporary download link for the edited result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 视频剪辑器 helps an agent submit MP4 videos to Sparki for AI-assisted editing, captions, commentary, aspect-ratio changes, highlights, vlogs, montages, and short-form clips, then return a time-limited download link.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External users and content teams use this skill to automate short-form video editing, highlight extraction, captions or commentary, aspect-ratio conversion, vlogs, montages, and talking-head clips from MP4 source footage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected MP4 files, prompts, and style settings are sent to Sparki for remote processing. <br>
-Mitigation: Use only footage approved for that transfer, and avoid confidential, regulated, copyrighted, or non-consented material unless your organization has approved the workflow. <br>
-Risk: The skill requires SPARKI_API_KEY and returns temporary result links that may provide access to processed videos. <br>
-Mitigation: Keep the API key private, avoid logging or sharing it, and treat returned download links as sensitive until they expire. <br>
+## Use Case:
 
+External users and developers use this skill to route video-editing requests through Sparki, including long-to-short conversion, highlight generation, subtitles, commentary, and platform-specific aspect ratios. It is intended for workflows where uploading the source video to the Sparki/aicoding.live service is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fischerlam/ai-video-editor-zh) <br>
-- [Sparki](https://sparki.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and plain-text result URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SPARKI_API_KEY, curl, and jq; accepts MP4 input up to 3 GB; result links are temporary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can upload local videos to a cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for videos that are acceptable to share with the Sparki/aicoding.live service.
+
+Risk: The security review flags unsafe API-key handling guidance, including a documented key-status command.
+
+Mitigation: Use a dedicated low-privilege SPARKI_API_KEY from a managed secret store, avoid the key-status command, and do not persist secrets in shell profiles or .env files.
+
+Risk: The install command and API endpoint affect where videos and credentials are sent.
+
+Mitigation: Verify the ClawHub install target and Sparki/aicoding.live API endpoint before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fischerlam/skills/ai-video-editor-zh)
+- [Publisher profile](https://clawhub.ai/user/fischerlam)
+- [Sparki homepage](https://sparki.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and plain-text result identifiers or download URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads local MP4 files up to 3 GB, polls asynchronous processing, and returns a result URL documented as valid for 24 hours.]
+
+## Skill Version(s):
+
+1.0.6 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

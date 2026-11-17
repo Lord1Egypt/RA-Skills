@@ -251,6 +251,14 @@ class TraderGateway:
         elif evt == EVT_RSP_LOGIN:
             if data.get("error_id", 0) == 0:
                 self.logged_in = True
+                try:
+                    self._order_ref = max(
+                        self._order_ref,
+                        int(str(data.get("max_order_ref") or "0").strip() or "0"),
+                    )
+                except (TypeError, ValueError):
+                    logger.warning("登录返回的 max_order_ref 无法解析: %r",
+                                   data.get("max_order_ref"))
                 logger.info("交易登录成功，交易日 %s，确认结算单",
                             data.get("trading_day"))
                 _B.td_settle_confirm(

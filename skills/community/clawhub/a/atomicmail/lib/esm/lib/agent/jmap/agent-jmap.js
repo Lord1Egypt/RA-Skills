@@ -1,15 +1,17 @@
 // JMAP envelope parsing, preset paths, $VAR substitution, and HTTP helpers.
 import { readFile } from "node:fs/promises";
 import { dirname, isAbsolute, resolve as resolvePath } from "node:path";
-import { cwd } from "node:process";
+import { cwd, env } from "node:process";
 import { fileURLToPath } from "node:url";
 import { tryReadSharedJson } from "../../core/shared-assets.js";
 import { readCredentials } from "../session/agent-credentials-store.js";
-import { inboxIdToMailboxEmail } from "../session/inbox-id-to-mailbox-email.js";
+import { resolveInboxMailboxEmail } from "../session/inbox-id-to-mailbox-email.js";
 import { assertBlobUploadEnvelopeWithinLimits, } from "./agent-jmap-blob-limits.js";
 import { buildVarsFromAttachmentFiles, } from "./agent-jmap-blob-upload.js";
 import { ensureTextCharsetOnEmailSetBlobParts } from "./agent-jmap-email-charset.js";
 import { substituteVars } from "./agent-vars.js";
+import { fetchForwardContext, forwardContextResolvers, } from "./forward-context.js";
+import { fetchReplyContext, replyContextResolvers } from "./reply-context.js";
 export const DEFAULT_JMAP_USING = [
     "urn:ietf:params:jmap:core",
     "urn:ietf:params:jmap:mail",
@@ -18,8 +20,19 @@ export const DEFAULT_JMAP_USING = [
 const sharedManifest = tryReadSharedJson("manifest.json");
 const sharedHints = tryReadSharedJson("messages/hints.json");
 export const BUNDLED_OPS_PRESET_NAMES = [
+    "create_draft.json",
+    "delete.json",
+    "download_attachment.json",
+    "forward.json",
+    "get_thread.json",
+    "label.json",
     "list_inbox.json",
+    "list_mailboxes.json",
+    "list_sent.json",
+    "mark_read.json",
+    "move.json",
     "reply.json",
+    "search.json",
     "send_mail.json",
     "send_mail_attachment.json",
     "send_mail_blob_attachment.json",
@@ -210,17 +223,36 @@ export async function runJmapRequest(input) {
         autoResolvers: {
             ACCOUNT_ID: () => input.session.getPrimaryMailAccountId(),
             INBOX: async () => {
-                const raw = input.session.currentInboxId ??
+                const inboxId = input.session.currentInboxId ??
                     (input.session.files
                         ? (await readCredentials(input.session.files.credentialsFile))
                             .inboxId
                         : undefined);
-                if (!raw) {
+                // The JMAP primary mail accountId resolves to the inbox's REAL address
+                // (including custom domains), so prefer it over appending a domain.
+                let accountId;
+                try {
+                    accountId = await input.session.getPrimaryMailAccountId();
+                }
+                catch {
+                    accountId = undefined;
+                }
+                const email = resolveInboxMailboxEmail({
+                    inboxId,
+                    accountId,
+                    inboxDomain: input.inboxDomain ?? env.ATOMIC_MAIL_INBOX_DOMAIN,
+                });
+                if (!email) {
                     throw new Error("No inbox in session; run register first.");
                 }
-                return inboxIdToMailboxEmail(raw);
+                return email;
             },
             INBOX_MAILBOX_ID: () => fetchInboxMailboxId(input.session),
+            SENT_MAILBOX_ID: () => fetchSentMailboxId(input.session),
+            DRAFTS_MAILBOX_ID: () => fetchRoleMailboxId(input.session, "drafts"),
+            TRASH_MAILBOX_ID: () => fetchRoleMailboxId(input.session, "trash"),
+            ...replyContextResolvers(async () => fetchReplyContext(async (envelope) => postJmap(await input.session.getJmapPostUrl(), await input.session.getCapabilityToken(), envelope), await input.session.getPrimaryMailAccountId(), mergedVars.MAIL_ID)),
+            ...forwardContextResolvers(async () => fetchForwardContext(async (envelope) => postJmap(await input.session.getJmapPostUrl(), await input.session.getCapabilityToken(), envelope), await input.session.getPrimaryMailAccountId(), mergedVars.MAIL_ID)),
             UPLOAD_URL: async () => {
                 if (input.session.currentUploadUrl) {
                     return input.session.currentUploadUrl;
@@ -265,12 +297,8 @@ export async function runJmapRequest(input) {
     }
     return { ok, status, bodyText: attachJmapNextHints(bodyText) };
 }
-/**
- * Resolves the JMAP `Mailbox` id for the account inbox (`role: "inbox"`).
- * Used for `$INBOX_MAILBOX_ID` substitution (distinct from `$INBOX`, which is
- * the mailbox *email address* — see `inboxIdToMailboxEmail` for normalization).
- */
-export async function fetchInboxMailboxId(port) {
+/** First `Mailbox` id with the given RFC 8621 role, or undefined if none. */
+async function fetchMailboxIdByRole(port, role) {
     const accountId = await port.getPrimaryMailAccountId();
     const capabilityJwt = await port.getCapabilityToken();
     const envelope = {
@@ -281,7 +309,7 @@ export async function fetchInboxMailboxId(port) {
         methodCalls: [
             [
                 "Mailbox/query",
-                { accountId, filter: { role: "inbox" } },
+                { accountId, filter: { role } },
                 "mq0",
             ],
         ],
@@ -309,8 +337,38 @@ export async function fetchInboxMailboxId(port) {
     }
     const payload = first[1];
     const id = payload.ids?.[0];
-    if (typeof id !== "string" || id.length === 0) {
+    return typeof id === "string" && id.length > 0 ? id : undefined;
+}
+/**
+ * Resolves the JMAP `Mailbox` id for the account inbox (`role: "inbox"`).
+ * Used for `$INBOX_MAILBOX_ID` substitution (distinct from `$INBOX`, which is
+ * the mailbox *email address* — see `inboxIdToMailboxEmail` for normalization).
+ */
+export async function fetchInboxMailboxId(port) {
+    const id = await fetchMailboxIdByRole(port, "inbox");
+    if (!id) {
         throw new Error("Mailbox/query returned no inbox mailbox id.");
+    }
+    return id;
+}
+/**
+ * Resolves `$SENT_MAILBOX_ID`: the `role: "sent"` mailbox, where the send
+ * presets file the sender's copy. Falls back to the inbox for accounts that
+ * have no Sent folder (never provisioned with the standard mailboxes), so a
+ * send never fails over where its copy is kept.
+ */
+export async function fetchSentMailboxId(port) {
+    return (await fetchMailboxIdByRole(port, "sent")) ??
+        await fetchInboxMailboxId(port);
+}
+/**
+ * Resolves `$DRAFTS_MAILBOX_ID` / `$TRASH_MAILBOX_ID`. No fallback: a draft or a
+ * deleted message filed in the inbox would read as newly received mail.
+ */
+export async function fetchRoleMailboxId(port, role) {
+    const id = await fetchMailboxIdByRole(port, role);
+    if (!id) {
+        throw new Error(`This inbox has no mailbox with role "${role}". See list_mailboxes.json.`);
     }
     return id;
 }
@@ -355,7 +413,7 @@ export async function postJmap(jmapPostUrl, capabilityJwt, envelope) {
 }
 const JMAP_NEXT_HINTS = sharedHints?.jmap_next_hints ?? [
     "Use jmap_request with Mailbox/get or Email/query to work with mail data.",
-    "Use presets with $VAR placeholders — $ACCOUNT_ID, $INBOX, and $INBOX_MAILBOX_ID come from the session; pass others via vars / --vars.",
+    "Use presets with $VAR placeholders — $ACCOUNT_ID, $INBOX, $INBOX_MAILBOX_ID, and $SENT_MAILBOX_ID come from the session; pass others via vars / --vars.",
     "Call help for the JMAP cheatsheet and troubleshooting.",
 ];
 /** Attach _next hints to a successful JMAP JSON object when parseable. */

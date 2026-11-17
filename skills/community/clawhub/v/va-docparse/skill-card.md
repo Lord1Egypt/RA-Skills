@@ -1,44 +1,60 @@
-## Description: <br>
-vaDocparse extracts text, tables, and formulas from PDFs and supported image files using a configured document parsing service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses PDF and image documents through a remote document parsing service and returns extracted text, tables, and formulas as Markdown or JSON.
 
-## Publisher: <br>
-[va-ais](https://clawhub.ai/user/va-ais) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[va-ais](https://clawhub.ai/user/va-ais)
 
-## Use Case: <br>
-Employees, external users, developers, and engineers use this skill to extract readable Markdown or JSON content from PDFs and supported image documents. It is intended for OCR-style document parsing, not audio, video, general photos, source code, or Office files that have not been converted to PDF. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload complete local PDFs or images to a configured remote document parsing service. <br>
-Mitigation: Install only with a trusted service endpoint, prefer HTTPS, and avoid highly sensitive documents unless the service retention and logging policy is acceptable. <br>
-Risk: Service credentials and endpoint configuration may be stored in plaintext configuration files. <br>
-Mitigation: Replace bundled fallback values, store credentials in a protected environment or managed configuration, and rotate any exposed API key. <br>
-Risk: The configured parsing service determines the fidelity and privacy properties of the extracted content. <br>
-Mitigation: Review the service provider, validate outputs before downstream use, and preserve the original response without unsupported rewriting. <br>
+## Use Case:
 
+Developers and OpenClaw users use vaDocparse to extract text, tables, and formulas from PDFs and supported image files through a configured document parsing MCP service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/va-ais/va-docparse) <br>
-- [Publisher profile](https://clawhub.ai/user/va-ais) <br>
-- [Artifact origin](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON document extraction output with status and error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes parsed content to a local output file and can return a summary, file path, output size, and error codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact _meta.json) <br>
+Risk: Readable local documents may be uploaded to a remote parsing service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an approved service endpoint, prefer HTTPS, and avoid sensitive documents unless retention and network handling are understood.
+
+Risk: Service credentials may be stored in local configuration.
+
+Mitigation: Keep real API keys out of command lines, logs, dry-run output, and broadly readable .env or OpenClaw configuration files.
+
+Risk: The parsing service and network path are required for successful operation.
+
+Mitigation: Deploy only where the remote parsing service is trusted and reachable, and surface coded failures without exposing backend service details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/va-ais/skills/va-docparse)
+- [Publisher profile](https://clawhub.ai/user/va-ais)
+- [Skill documentation](artifact/SKILL.md)
+- [MCP client source](artifact/mcp/docparse.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files]
+
+**Output Format:** [Markdown or JSON document parsing results, plus concise status or coded error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports PDF and image inputs; successful parses are saved to a local output file and should expose a download path.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.json release.version and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

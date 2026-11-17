@@ -1,46 +1,61 @@
-## Description: <br>
-Fetches and analyzes Alibaba Cloud DataWorks task instance logs to diagnose failures and recommend next steps using an instance ID and Alibaba Cloud credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and analyzes Alibaba Cloud DataWorks task instance logs to diagnose failures and recommend next steps.
 
-## Publisher: <br>
-[ljw-git-dw](https://clawhub.ai/user/ljw-git-dw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljw-git-dw](https://clawhub.ai/user/ljw-git-dw)
 
-## Use Case: <br>
-Developers and data engineers use this skill to fetch failed DataWorks task instance logs, analyze known error patterns such as ODPS, DataX, Java, resource, network, and permission failures, and generate actionable diagnosis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Alibaba Cloud credentials are required to fetch DataWorks logs. <br>
-Mitigation: Use least-privilege RAM AccessKeys limited to documented read operations, prefer environment variables or protected Aliyun profiles over command-line secrets, and restrict permissions on credential files. <br>
-Risk: Fetched logs and saved reports may contain SQL, endpoints, stack traces, or secrets. <br>
-Mitigation: Treat logs and reports as sensitive, avoid sharing them broadly, and redact sensitive values before storing or forwarding diagnostic output. <br>
-Risk: Automated diagnosis can miss context or provide incomplete remediation guidance. <br>
-Mitigation: Review the generated diagnosis against the DataWorks console, task configuration, and relevant Alibaba Cloud documentation before acting on recommendations. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to fetch DataWorks task logs, identify common ODPS, DataX, Java, resource, network, permission, and data quality failures, and produce actionable diagnostic reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ljw-git-dw/dataworks-diagnoser) <br>
-- [DataWorks error code reference](references/error_codes.md) <br>
-- [Alibaba Cloud DataWorks documentation](https://help.aliyun.com/product/27728.html) <br>
-- [DataWorks public API reference](https://api.aliyun.com/api/dataworks-public) <br>
-- [GetTaskInstanceLog API reference](https://api.aliyun.com/api/dataworks-public/2024-05-18/GetTaskInstanceLog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain-text diagnostic reports, optional JSON output, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch logs through Alibaba Cloud APIs and may save raw logs or diagnosis reports when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill handles Alibaba Cloud credentials and supports passing secrets through command-line arguments or local credential files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privileged RAM role or short-lived credentials, prefer environment or managed credential stores over command-line secrets, and keep credential files outside project directories with restrictive permissions.
+
+Risk: Saved task logs and diagnostic reports may contain sensitive operational data.
+
+Mitigation: Redact sensitive task details before sharing reports and avoid storing raw logs longer than needed.
+
+Risk: The server security verdict is suspicious because the skill asks for broader permissions than its code appears to need.
+
+Mitigation: Review requested permissions before installation and grant only the DataWorks log access required for the intended workflow.
+
+## Reference(s):
+
+- [DataWorks error code reference](references/error_codes.md)
+- [Alibaba Cloud DataWorks documentation](https://help.aliyun.com/product/27728.html)
+- [Alibaba Cloud DataWorks API reference](https://api.aliyun.com/api/dataworks-public)
+- [GetTaskInstanceLog API](https://api.aliyun.com/api/dataworks-public/2024-05-18/GetTaskInstanceLog)
+- [ClawHub skill page](https://clawhub.ai/ljw-git-dw/skills/dataworks-diagnoser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, files, guidance]
+
+**Output Format:** [Plain text or JSON diagnostic reports, with optional saved log and report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Alibaba Cloud DataWorks APIs and can save raw task logs or diagnostic reports when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

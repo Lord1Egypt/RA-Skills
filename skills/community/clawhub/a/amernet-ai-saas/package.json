@@ -1,6 +1,6 @@
 {
   "name": "amernet-ai-saas",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Connect your Amernet AI SaaS intelligent agent to any messaging channel via OpenClaw",
   "keywords": ["openclaw", "skill", "amernet", "ai-saas", "chatbot", "voice-agent"],
   "homepage": "https://saas.salesbay.ai",
@@ -9,7 +9,7 @@
     "openclaw": {
       "primaryEnv": "AI_SAAS_API_KEY",
       "requires": {
-        "env": ["AI_SAAS_API_KEY", "AI_SAAS_CHATBOT_ID"]
+        "env": ["AI_SAAS_API_KEY", "AI_SAAS_AGENT_ID"]
       }
     }
   }

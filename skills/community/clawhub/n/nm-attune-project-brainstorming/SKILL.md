@@ -2,7 +2,7 @@
 name: project-brainstorming
 description: |
   Guides project ideation via Socratic questioning to produce a validated brief. Use before specification when requirements are unclear
-version: 1.9.8
+version: 1.10.3
 triggers:
   - brainstorming
   - ideation
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: attune
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 ## When To Use
@@ -36,7 +36,8 @@ source_plugin: attune
 ## Integration
 
 **With superpowers**:
-- Delegates to `Skill(superpowers:brainstorming)` for Socratic method
+- Delegates to `Skill(superpowers:brainstorming)`, which asks why
+  first, sizes the work, and runs a builder check on the design
 - Augments with project-specific patterns
 - Uses project brainstorm templates
 
@@ -55,12 +56,29 @@ source_plugin: attune
 
 ### Phase 1: Problem Definition
 
+If the request does not say why the person wants the thing, ask why
+first, openly and with no example answers, before any approach. Ask a
+question only when its answer changes what gets built and nothing in
+the request or the project already answers it. When a choice has
+options you can name, present the options with a recommendation rather
+than a bare "which one?".
+
 **Socratic Questions**:
 1. What problem are you solving?
 2. Who experiences this problem?
 3. What makes this problem worth solving now?
 4. What happens if this problem isn't solved?
 5. What existing solutions have been tried?
+6. Who reads what this project produces, and what do they
+   already know? Name a role specific enough to point at
+   someone who holds it.
+
+Question 6 sets the audience tier that every document this
+project generates inherits: `newcomer`, `practitioner`, `expert`,
+or a one-line `persona`. Ask it here rather than at drafting
+time, where the answer gets guessed to keep the draft moving.
+Tier table and follow-up questions: `scribe:slop-detector` module
+`audience-targeting.md`.
 
 **Output**: Problem statement in docs/project-brief.md
 
@@ -74,6 +92,7 @@ source_plugin: attune
 **When**: [Frequency/timing of problem]
 **Why**: [Impact of the problem]
 **Current State**: [Existing solutions and limitations]
+**Doc audience**: [newcomer | practitioner | expert | persona: <one line>]
 ```
 **Verification:** Run the command with `--help` flag to verify availability.
 
@@ -176,7 +195,7 @@ isolation tests:
 **File size as design signal**: Files exceeding 500 lines
 (Python/Go) or 300 lines (JavaScript/TypeScript) often
 indicate a unit is doing too much. This is a design
-smell, not just a style issue. When flagging large files,
+smell. When flagging large files,
 suggest extracting specific concerns (e.g., "Extract
 validation logic into a separate module to improve
 testability").
@@ -259,6 +278,25 @@ Key decision factors:
 - **Approach Y**: Rejected because [reason]
 ```
 **Verification:** Run the command with `--help` flag to verify availability.
+
+### Phase 5.5: Record the Tradeoff (decision journal)
+
+Persist the Phase 5 selection to `docs/tradeoffs.md` now, while the reasoning
+is live. This is the entry that survives past the session: the decision, the
+alternatives weighed, and what was given up. Draft and confirm:
+
+- If leyline is installed, invoke `Skill(leyline:decision-journal)` and follow
+  it to append a tradeoff entry. The Phase 5 fields map directly: Selected
+  Approach to `decision`, the rationale to a Y-statement, Trade-offs Accepted
+  to `consequences_negative`, and Rejected Approaches to `options`. Set
+  `phase` to `brainstorm`. Show the drafted entry and append it on user
+  confirmation (status starts `proposed`).
+- Fallback (leyline absent): append an entry to `docs/tradeoffs.md` by hand
+  using the in-file ENTRY TEMPLATE. Assign the next `TR-NNN` id and add an
+  active-index row.
+
+Skip only when there was genuinely one obvious approach with no meaningful
+trade-off (the same condition that bypasses War Room).
 
 ## Output: Project Brief
 
@@ -407,7 +445,7 @@ Save session to `.attune/brainstorm-session.json`:
 - `docs/project-brief.md` does not exist or is empty (phase failed)
 - User explicitly requests to stop after brainstorming
 
-**Do NOT prompt the user for confirmation** — this is a lightweight checkpoint, not an interactive gate. The user can always interrupt if needed.
+**Do NOT prompt the user for confirmation**: this is a lightweight checkpoint that continues without waiting. The user can always interrupt if needed.
 
 
 ### Phase 6.5: Spec Review Gate
@@ -422,13 +460,24 @@ review loop.
 2. Dispatch haiku-model subagent with the spec content
 3. If ISSUES FOUND: fix issues, re-dispatch (max 3
    iterations)
-4. If APPROVED or 3 iterations exhausted: proceed to
-   Phase 6 continuation
+4. If APPROVED or 3 iterations exhausted: sort the last
+   review's builder questions as the module describes,
+   bring the human the ones only they can answer in one
+   message, then proceed to Phase 6 continuation
 
 **Bypass Conditions**:
 - `--standalone` flag was provided
 - `--skip-review` flag was provided
 - Spec document is under 200 words (too small to review)
+
+## Exit Criteria
+
+- [ ] 3-5 distinct approaches were generated and compared.
+- [ ] One approach is selected with explicit rationale, accepted trade-offs,
+  and rejected alternatives.
+- [ ] The selection is recorded to `docs/tradeoffs.md` as a `proposed` entry
+  (or the single-obvious-approach bypass condition is documented).
+- [ ] A project brief capturing the decision is produced.
 
 ## Related Skills
 

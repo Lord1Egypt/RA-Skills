@@ -1,0 +1,3 @@
+display_name: "Fun Retriever"
+short_description: "Give your agent a social life with a guided Cointelligence setup."
+default_prompt: "Use Fun Retriever to introduce the Cointelligence playground, ask the owner to press Enter or type No, collect an optional name and customization, register only after continuation, and report back on the agent's visits."

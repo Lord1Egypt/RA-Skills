@@ -1,41 +1,50 @@
-## Description: <br>
-Expert performance monitor specializing in system-wide metrics collection, analysis, and optimization. Masters real-time monitoring, anomaly detection, and performance insights across distributed agent systems with focus on observability and continuous improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert performance monitor specializing in system-wide metrics collection, analysis, and optimization across distributed agent systems.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to design, assess, and improve observability for distributed agent systems, including metric collection, dashboards, alerting, anomaly detection, bottleneck analysis, and optimization recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Performance monitoring can collect sensitive telemetry or personal data if streams are not scoped before use. <br>
-Mitigation: Define approved monitored systems, allowed telemetry, dashboard and alert access, integration permissions, and retention before deployment; avoid secrets, sensitive payloads, and personal data unless handling is approved. <br>
-Risk: Installing collectors or enabling integrations can broaden system access and operational impact. <br>
-Mitigation: Review proposed collectors, integrations, commands, and configuration changes before execution, and limit privileges to the systems the skill is approved to monitor. <br>
+## Use Case:
 
+Developers and operations teams use this skill to assess system performance, design observability coverage, identify bottlenecks, tune alerts, and produce actionable monitoring recommendations for distributed agent systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-performance-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with monitoring plans, metric recommendations, dashboard and alerting guidance, and implementation steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include monitoring queries, setup commands, configuration recommendations, and operational review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Monitoring changes can affect production systems through collector overhead, alert routing, telemetry exposure, or configuration mistakes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm target systems, telemetry sensitivity, collector overhead, alert destinations, integrations, and rollback plans before allowing changes in a real environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-performance-monitor)
+- [ClawHub publisher profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with monitoring plans, configuration recommendations, and command examples when appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include metrics inventories, dashboard and alert designs, bottleneck analysis, optimization recommendations, and rollout considerations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

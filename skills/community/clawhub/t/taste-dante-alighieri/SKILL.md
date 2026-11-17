@@ -1,107 +1,113 @@
----
-name: taste-dante-alighieri
-version: 1.0.0
-description: Aesthetic skill for AI agents — Dante Alighieri's literary voice and moral architecture. Style tokens and creative direction distilled from 38 works including the complete Divine Comedy.
-author: InspiredHub
-tags: [literature, aesthetics, dante, medieval, literary, divine-comedy, allegory, taste, ai-agents]
----
-
 # Dante Alighieri — Literary Voice
 
-> A journey through moral landscapes, where every physical detail carries spiritual weight and the architecture of the cosmos mirrors the architecture of the soul.
+> A journey through moral landscapes, marked by vivid allegories, detailed suffering, and a relentless pursuit of divine order.
 
-**Type:** Literary | **Domain:** Literature | **Era:** Medieval | **Period:** 1265–1321 | **Origin:** Italian
+> **Try it first →** [Live Demo — no account needed](https://inspiredhub.ai/demo)
 
-**Works in archive:** 38
 
----
+## Overview
+
+| Property | Value |
+|----------|-------|
+| **Type** | Literary Voice Skill |
+| **Domain** | Literature |
+| **Author** | Dante Alighieri |
+| **Era** | Medieval |
+| **Period** | 1265–1321 |
+| **Origin** | Italian |
+| **Movements** | Dolce Stil Novo, Allegory |
+| **Works in Collection** | 38 |
 
 ## Style Tokens
 
-Use these tokens to guide AI-generated content toward Dante's literary aesthetic. Each token was distilled from analysis of the complete *Divine Comedy* and 37 additional works:
+These aesthetic signatures were distilled from analysis of Dante Alighieri's actual prose:
 
-- **Terza Rima** — The interlocking three-line rhyme scheme (ABA BCB CDC) that propels the narrative forward with the inevitability of a chain; each tercet reaches back to the previous and forward to the next, embodying the Trinitarian structure that governs Dante's cosmos
-- **Contrapasso** — The principle that punishment mirrors sin: the wrathful tear each other apart, the flatterers wade in filth, the fortune-tellers walk with heads twisted backward; poetic justice as structural law, not mere retribution but revelation of sin's true nature
-- **Allegorical Landscape** — Physical geography as moral topography: Hell is an inverted cone narrowing toward absolute evil, Purgatory a mountain ascending toward grace, Paradise a series of concentric celestial spheres; every spatial detail carries doctrinal meaning
-- **Visceral Sensory Detail** — Unflinching, precise descriptions that make the abstract physically present: the exact temperature of blood, the specific sound of weeping, the texture of ice, the quality of light at each level of Paradise; Dante never generalizes when he can specify
-- **Moral Hierarchical Structuring** — A systematic ordering of human experience into graduated categories: nine circles of Hell, seven terraces of Purgatory, nine spheres of Paradise; taxonomy as a form of moral understanding
-- **Classical Allusion Integration** — Virgil as literal guide and literary ancestor; Greek and Roman mythology woven seamlessly into Christian cosmology; Ulysses, Francesca, Farinata, and Ugolino inhabit the same moral universe as saints and angels
-- **Journey-as-Metaphor** — Physical descent and ascent as spiritual transformation: the pilgrim who enters the dark wood is not the poet who beholds the Empyrean; movement through space is movement through understanding
-- **Personalized Encounter** — Historical and contemporary figures encountered as individual souls whose specific stories illuminate universal moral principles; each encounter is a miniature drama with its own emotional arc
-- **Architectural Cosmology** — The universe as a built structure with precise dimensions, levels, and thresholds; doorways that demand passwords, rivers that mark boundaries, walls that separate degrees of damnation or grace
-- **Transcendent Culmination** — A sustained movement from darkness to light, despair to love, confusion to clarity; the final line of each canticle ends with the word *stelle* (stars), and the entire poem resolves into "the Love that moves the sun and the other stars"
+- `Allegorical Landscape Descriptions`
+- `Moral Hierarchical Structuring`
+- `Visceral Sensory Detail`
+- `Personalized Existential Dread`
+- `Didactic Categorization`
+- `Classical Allusion Integration`
+- `Journey-as-Metaphor Narrative`
+- `Repetitive Structural Canto`
+- `Specific Sinful Exemplars`
+- `Divine Retribution Logic`
 
-## Anti-Tokens (What to Avoid)
+## Anti-Tokens
 
-Dante's aesthetic resists:
+Aesthetic patterns this literary voice explicitly rejects:
 
-- **Moral Relativism** — Ambiguity about right and wrong; Dante's universe has a precise moral architecture where every action has its exact place and consequence; there is no "it depends"
-- **Abstract Philosophy Without Embodiment** — Pure ideas unanchored to sensory experience; Dante never argues a theological point without giving it a face, a voice, and a body in pain or joy
-- **Whimsical Lightheartedness** — Casual humor or playful irony that undermines the gravity of moral consequence; Dante has wit, but it cuts rather than tickles
-- **Unstructured Narrative Flow** — Meandering, formless storytelling without architectural logic; every canto has its precise place in the larger structure, every encounter its function in the moral argument
-- **Subjective Emotional Indulgence** — Feeling without moral framework; Dante weeps for Francesca but places her in Hell; compassion and judgment coexist without contradiction
+- `Ambiguous Moral Relativism`
+- `Purely Abstract Philosophy`
+- `Whimsical Lightheartedness`
+- `Unstructured Narrative Flow`
+- `Subjective Emotional Indulgence`
 
 ## Signature Passages
 
-### Passage 1 — Inferno, Canto I (Opening)
+### Passage 1
 
-> "Nel mezzo del cammin di nostra vita / mi ritrovai per una selva oscura, / che la diritta via era smarrita."
->
-> ("Midway upon the journey of our life / I found myself within a forest dark, / for the straightforward pathway had been lost.")
+> "In the midway of this our mortal life, I found me in a gloomy wood, astray Gone from the path direct: and e’en to tell It were no easy task, how savage wild That forest, how robust and rough its growth, Which to remember only, my dismay Renews, in bitterness not far from death."
 
-*The most famous opening in Western literature after Genesis. Three lines that establish the entire poem's method: personal crisis as universal condition, physical space as moral state, the journey as the only possible response to being lost. "Our life" — not "my life" — makes every reader a pilgrim.*
+*This passage immediately establishes the allegorical journey, the sense of personal spiritual crisis, and the vivid, almost oppressive description of a symbolic landscape, all central to Dante's style.*
 
-### Passage 2 — Inferno, Canto III (The Gate of Hell)
+### Passage 2
 
-> "Per me si va ne la citta dolente, / per me si va ne l'etterno dolore, / per me si va tra la perduta gente... / Lasciate ogne speranza, voi ch'intrate."
->
-> ("Through me the way to the suffering city, / through me the way to eternal pain, / through me the way among the lost people... / Abandon all hope, ye who enter here.")
+> "Then was a little respite to the fear, That in my heart’s recesses deep had lain, All of that night, so pitifully pass’d: And as a man, with difficult short breath, Forespent with toiling, ’scap’d from sea to shore, Turns to the perilous wide waste, and stands At gaze; e’en so my spirit, that yet fail’d Struggling with terror, turn’d to view the straits, That none hath pass’d and liv’d."
 
-*The gate speaks in its own voice — architecture becomes character. The triple anaphora ("per me") hammers the point with ritual insistence. The final line has escaped the poem entirely to become a proverb of Western culture. This is Dante's power: to create language so precise it becomes permanent.*
+*It showcases the profound internal struggle, the use of extended simile to ground abstract fear in a concrete, relatable image, and the overwhelming sense of dread and peril that pervades the work.*
 
-### Passage 3 — Paradiso, Canto XXXIII (Final Lines)
+### Passage 3
 
-> "A l'alta fantasia qui mancò possa; / ma già volgeva il mio disio e 'l velle, / si come rota ch'igualmente e mossa, / l'amor che move il sole e l'altre stelle."
->
-> ("Here power failed the lofty phantasy; / but already my desire and will were moved — / like a wheel that is evenly turned — / by the Love that moves the sun and the other stars.")
+> "The Eighth Circle, Malebolge: The Fraudulent and the Malicious. The First Bolgia: Seducers and Panders. Venedico Caccianimico. Jason. The Second Bolgia: Flatterers. Allessio Interminelli. Thais."
 
-*The poem ends where language fails and love begins. After 14,233 lines of the most precisely structured verse in any language, Dante confesses that the final vision exceeds the capacity of imagination itself. The last word is "stelle" — stars — completing the pattern where each canticle ends by looking upward.*
+*This excerpt demonstrates Dante's meticulous, hierarchical categorization of sins and sinners, his didactic approach to moral order, and the specific naming of individuals to exemplify categories, a hallmark of his infernal architecture.*
 
 ## Application Rules
 
 ### Writing
-Build prose with architectural precision: every section should have its exact place in a larger structure. Use specific, sensory detail to embody abstract ideas — never state a principle without giving it a physical form. Create moral clarity without simplification: characters can be sympathetic and wrong simultaneously. Structure narratives as journeys with clear thresholds, descents, and ascents.
+Construct narratives as a structured journey through distinct, morally defined stages. Employ vivid, often unsettling, sensory details to convey profound spiritual states. Categorize characters and events according to clear ethical frameworks, using classical references to deepen meaning. Maintain a serious, reflective tone with moments of intense personal struggle.
 
 ### UI Design
-Design with hierarchical clarity and a sense of structured descent or ascent through information. Use progressive disclosure that rewards deeper exploration — each level reveals more. Employ thresholds (gates, transitions, loading states) that mark meaningful boundaries. Typography should be authoritative and precise: strong serifs, clear hierarchy, generous margins that frame text as Dante framed his tercets.
+Utilize a dark, high-contrast palette with deep reds, grays, and blacks, punctuated by stark light. Employ strong, classic serif typography for titles and a legible, structured sans-serif for body text. Layouts should be highly organized, often grid-based, with clear divisions and hierarchical information presentation, evoking a sense of monumental architecture or a detailed map. Visuals should be symbolic and allegorical, not purely decorative.
 
 ### Branding
-Construct brand narratives around transformation through ordeal: the journey that changes the traveler. Use language that is precise, weighted, and morally serious without being preachy. Visual identity should convey depth and structure — layered compositions, architectural elements, the sense of a cosmos with a center. Avoid casual or ironic registers; speak with the conviction of someone who has seen the bottom and the top.
+Brand identity should convey gravitas, profound purpose, and an ordered, almost educational authority. Messaging should be direct, often admonitory, and focused on moral or existential truths. Visuals should be rich in symbolism, with a classical influence, suggesting depth and enduring significance rather than fleeting trends. Emphasize transformation and consequence.
 
 ### Conversation
-Speak with moral seriousness and intellectual precision. Use concrete imagery to illuminate abstract points. Structure responses as guided journeys — lead the user from confusion toward clarity. Reference specific examples rather than general principles. Acknowledge complexity while maintaining conviction. The Dantean voice is a teacher who has walked the path and returned to describe it.
+Speak with a formal, authoritative, and often grave tone. Structure responses logically, often categorizing information or drawing clear distinctions. Use evocative, sometimes archaic, language. Be prepared to explain moral implications or allegorical meanings. Avoid casual slang or overly emotional expressions, maintaining a sense of profound purpose.
 
-## Example Applications
+## Exemplar Works
 
-**Copywriting:** "Every great journey begins in a dark wood. We built this for the ones who refuse to stay lost."
+- **The divine comedy** (19,397 downloads)
+- **Divine Comedy, Longfellow's Translation, Hell** (8,464 downloads)
+- **The Divine Comedy of Dante Alighieri: The Inferno** (5,351 downloads)
 
-**Brand voice:** Speak with the authority of experience and the precision of someone who has mapped the territory. Every word should carry weight; every claim should have a foundation.
+## Evaluation Criteria
 
-**Creative writing:** Structure narrative as moral architecture — let the physical world of the story embody its ethical landscape. Give every character their specific sin or grace, and let the consequences be exact.
+- **Must Include**: Allegorical Landscape Descriptions, Moral Hierarchical Structuring, Visceral Sensory Detail
+- **Must Avoid**: Ambiguous Moral Relativism, Whimsical Lightheartedness, Unstructured Narrative Flow
+- **Confidence Threshold**: 0.75
 
-## Get the Full Skill
-
-This is a **preview** of the Dante Alighieri Taste Skill. The full version includes:
-
-- **Color palette** — Yes, even literary voices have visual palettes for cross-domain application
-- **Evaluation criteria** to score how well content matches this aesthetic
-- **Exemplar works** with analysis (the complete *Divine Comedy*, *La Vita Nuova*, and more)
-- **Full markdown** for direct agent ingestion
-
-**Unlock the complete skill at [InspiredHub](https://inspiredhub.ai/taste/dante-alighieri-literary)**
-
-Explore 86 aesthetic skills for AI agents at [inspiredhub.ai/taste](https://inspiredhub.ai/taste)
+---
+*Distilled by InspiredHub Taste Engine from 3 primary texts in the InspiredHub Library. Each style token is grounded in actual prose analysis.*
 
 ---
 
-_Distilled by [InspiredHub](https://inspiredhub.ai) from real Gutenberg texts — style tokens grounded in actual verse and prose analysis of the Divine Comedy and 37 additional works._
+---
+
+## Explore on InspiredHub
+
+- **[See this public Taste Skill in practice](https://inspiredhub.ai/demo)** — a source-aware comparison using the public Skill.
+- **[Use this public Skill as an optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-dante-alighieri)** — add it only if you choose, then edit or remove it in your own working Brief.
+
+A public cultural Skill is not a diagnosis of your taste. Opening the Brief does not create a profile, save a draft, synchronize an agent, or send ClawHub account, installation, or download data to InspiredHub.
+
+*Powered by [InspiredHub](https://inspiredhub.ai/) — public cultural references and private, user-controlled working Briefs.*
+
+
+---
+
+Using this in a real project?
+We'd love to see what you're building.
+Drop us a note: contact@inspiredhub.ai

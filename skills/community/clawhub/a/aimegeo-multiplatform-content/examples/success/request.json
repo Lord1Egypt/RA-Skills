@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "task": "用青禾演示资料新写知乎解释文、CSDN教程和小红书笔记，事实一致、角度各有用途。只交接，不发布。",
+  "articles": [
+    {"file": "zhihu.md", "platform": "zhihu", "content_type": "explainer", "operation": "new"},
+    {"file": "csdn.md", "platform": "csdn", "content_type": "tutorial", "operation": "new"},
+    {"file": "xiaohongshu.md", "platform": "xiaohongshu", "content_type": "note", "operation": "new"}
+  ]
+}

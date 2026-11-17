@@ -1,47 +1,60 @@
-## Description: <br>
-Lead Gen Pipeline helps web design agencies find local businesses with missing or weak websites, create demo HTML sites, deploy them, send personalized pitch emails, and track leads in leads.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full automated lead generation pipeline for web design agencies that finds local businesses without websites or with broken sites, builds demo HTML sites for them, sends personalized cold pitch emails, and tracks leads in leads.md.
 
-## Publisher: <br>
-[michelle447](https://clawhub.ai/user/michelle447) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michelle447](https://clawhub.ai/user/michelle447)
 
-## Use Case: <br>
-Web design agencies and sales operators use this skill to identify local website leads, build demo pages, deploy previews, prepare cold outreach, and maintain lead status tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle real lead and contact data for business outreach. <br>
-Mitigation: Confirm recipients, data handling, and outreach compliance obligations before collecting, storing, or emailing leads. <br>
-Risk: Automated pitch sending and follow-ups can create unwanted or non-compliant outreach if used without review. <br>
-Mitigation: Keep manual review enabled unless the operator accepts automated sending, and respect the documented daily email limit. <br>
-Risk: SMTP or Gmail credentials could be exposed if pasted into chat or committed to configuration files. <br>
-Mitigation: Store credentials in environment variables or a secrets manager and avoid placing passwords in prompts, lead files, or repo files. <br>
-Risk: Generated demo sites and pitch text may contain inaccurate claims about a business. <br>
-Mitigation: Review business details, demo content, and email copy before deployment or sending. <br>
+## Use Case:
 
+External web design agencies and operators use this skill to find local business prospects, generate demo websites, deploy previews, send personalized outreach, and track lead status through the sales pipeline.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/michelle447/mjw-lead-gen-pipeline) <br>
-- [Demo Site HTML Template](references/demo-site-template.md) <br>
-- [leads.md Schema](references/leads-schema.md) <br>
-- [Cold Pitch Email Template](references/pitch-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with generated HTML/CSS snippets, lead tables, email drafts, deployment commands, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update leads.md and demo site files when executed by an agent with filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically publish demo websites based on scraped business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each demo page before publication, use private or noindex previews, validate and escape scraped data, and remove unsupported claims.
+
+Risk: The skill can send cold pitch emails from a Gmail account.
+
+Mitigation: Confirm every recipient, sender identity, subject, message body, and demo URL before sending, and comply with applicable outreach and consent requirements.
+
+Risk: Lead records may include business contact details and outreach status.
+
+Mitigation: Keep clear deletion and retention controls for leads.md and deployed demos.
+
+## Reference(s):
+
+- [Lead Gen Pipeline Skill](https://clawhub.ai/michelle447/skills/mjw-lead-gen-pipeline)
+- [Demo Site HTML Template](references/demo-site-template.md)
+- [leads.md Schema](references/leads-schema.md)
+- [Cold Pitch Email Template](references/pitch-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated HTML, lead-tracking tables, deployment commands, and email copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce demo site files, lead records, deployment URLs, and cold outreach drafts or send instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,43 @@
+{
+  "ss": {
+    "apiKey": "19vLWeRmwTBscpES",
+    "projectId": "b87x3n",
+    "tags": [
+      {"name": "AI记需求", "id": "26192"}
+    ],
+    "customFieldKey": "项目ID"
+  },
+  "tb": {
+    "projectId": "6959d07f4991ad9a71ca2afa",
+    "sfcId": "6959d080d242a000e6f0de59",
+    "stageId": "69fed981a6333372a4b12b72",
+    "customfields": {
+      "需求类型": {
+        "cfId": "69df253e95d7ece67f2d6e94",
+        "valueId": "69df253e95d7ece67f2d6e95",
+        "valueTitle": "需求"
+      },
+      "会话ID": {
+        "cfId": "69df25e800b8437a49b4840e"
+      },
+      "客户名称": {
+        "cfId": "6a1422a4f4593ff6edd1ee63"
+      }
+    }
+  },
+  "analysis": {
+    "goal": "从客服对话中提取客户需求，判断优先级，生成 TB 任务",
+    "dimensions": [
+      "客户遇到了什么问题",
+      "客户的期望方案是什么",
+      "问题的最终结论（已解决/待跟进/需开发）",
+      "紧急程度（高/中/低）"
+    ],
+    "taskTitleFormat": "[{ss_project_id}] {summary}"
+  },
+  "schedule": {
+    "cron": "0 10 * * *",
+    "timezone": "Asia/Shanghai",
+    "skipHolidays": true
+  }
+}

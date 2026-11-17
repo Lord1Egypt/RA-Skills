@@ -150,7 +150,7 @@ python3 /home/claw/.openclaw/workspace/skills/yahoo-fantasy-baseball/yahoo-fanta
 
 Three analysis categories:
 1. **Lineup changes** — optimal batter assignment via constraint solver (position-aware, fills restrictive slots before UTIL). Outputs grouped swap instructions showing who starts (from bench), who gets benched, and any intermediate position reshuffles needed within that chain (e.g., a UTIL player sliding to 1B to make room). Pure position shuffles among active slots (without bench involvement) are omitted. Also checks confirmed MLB batting lineups — players confirmed not in their team's lineup are treated as unavailable (score 0) and will be moved to bench. Players whose games have already started are locked in place (Yahoo locks roster slots at first pitch) and excluded from the solver.
-2. **Pitcher rotation** — priority-based pitcher slot optimization with swap suggestions. Relief pitchers whose teams are playing today are prioritized over non-starting SPs or pitchers whose teams are off. Probable starters get highest priority. Outputs grouped swap instructions (same format as batter swaps). Locked games are excluded.
+2. **Pitcher rotation** — priority-based pitcher slot optimization with swap suggestions. Probable starters get highest priority, then relief pitchers whose teams are playing. A starter-only arm who is **not** today's probable starter is treated as worth nothing — his team having a game is irrelevant, because he won't take the mound — so he ranks alongside pitchers whose teams are off. When nobody in contention can appear today, the pitcher already holding the slot keeps it rather than being swapped for another idle arm with better season numbers. Outputs grouped swap instructions (same format as batter swaps). Locked games are excluded.
 3. **IL management** — players with IL designations (IL, IL10, IL15, IL60) not in IL slots, cleared players still in IL. DTD players are excluded since Yahoo does not allow moving them to IL.
 
 Each move includes team, opponent, score, and (when set) Yahoo injury status (e.g. `DTD`, `IL10`) inline in the parenthetical. If a player suggested to *start* is `DTD`, a `⚠️ Day-to-day — confirm in lineup before locking.` caution is rendered beneath the line — the optimizer scores ignore status, so a higher-scoring DTD player can still surface as a swap recommendation. Moves to BN may include a `reason` indicator:
@@ -158,10 +158,20 @@ Each move includes team, opponent, score, and (when set) Yahoo injury status (e.
 - `🔒` — player's game has already started (locked by Yahoo)
 - `📅` — player's team is off today
 
-In `--format json`, every entry in `swap_groups[].start`, `swap_groups[].bench`, `swap_groups[].reshuffle` (and the pitcher equivalents) carries a `status` field — empty string when the player has no Yahoo status. The flat `moves[]` and `pitcher_moves[]` arrays mirror the text view: they include every move that is part of a swap group (each tagged with a `swap_group` index), including pure active↔active reshuffles (e.g. moving a player from UTIL into an open position slot with no bench involved) — these appear as a `reshuffle`-only group with an empty `start`/`bench`.
+In `--format json`, every entry in `swap_groups[].start`, `swap_groups[].bench`, `swap_groups[].reshuffle` (and the pitcher equivalents) carries a `status` field — empty string when the player has no Yahoo status. The flat `moves[]` and `pitcher_moves[]` arrays mirror the text view: they include every move that is part of a swap group, each tagged with a `swap_group` index. A group always moves at least one player to or from the bench. Pure active↔active shuffles (e.g. UTIL → SS with no bench involvement) leave the same set of players in the lineup and therefore cannot change scoring, so they are dropped from both the groups and the flat arrays rather than reported as busywork. A `reshuffle` leg still appears when it is part of a real bench swap — a UTIL player sliding to 1B to make room for an incoming bench bat.
+
+### How players are scored
+
+Scores run 0–100 and are derived from **the league's own scoring categories**, read from `league.stat_categories()` — not a fixed formula. Each category is min-max normalized across the roster pool and the results averaged, so every category carries equal weight, which is how category leagues actually settle. A stat your league does not score contributes nothing.
+
+Two stat windows feed the score:
+- **Baseline** — Yahoo's `average_season` window, which is already per-game (or a true rate for OBP/ERA/WHIP). Using rates rather than totals means accumulated playing time cannot inflate a score: a part-time or recently-injured star is compared on quality, not on how many at-bats he has banked.
+- **Recent form** — the `lastmonth` window, weighted at `_RECENCY_WEIGHT` (default 0.35). Counting stats in this window are divided by AB (batters) or IP (pitchers) to keep them rate-based.
+
+Batters and pitchers are normalized within their own pools, since their categories aren't comparable. Categories where lower is better (ERA, WHIP, BB/9) are inverted. A player with less than 15 AB (or 5 IP) in the recent window falls back to his season rate for that component rather than being penalized for a small sample — this keeps a player just back from the IL from being buried. If the league's categories can't be read at all, scoring falls back to the legacy composite formula.
 
 **Early-season preseason rank blending:** The optimizer blends Yahoo's preseason overall rank (OR) into player scores during the first weeks of the season, when current-year stats are too small a sample to be reliable. The blending schedule:
-- **Weeks 1–2**: Full weight — preseason rank contributes up to 15 bonus points (rank 1 gets the max, last-ranked gets 0)
+- **Weeks 1–2**: Full weight — preseason rank contributes up to 15 bonus points on the 0–100 scale (rank 1 gets the max, last-ranked gets 0)
 - **Weeks 3–6**: Linear taper — preseason influence decreases by ~20% per week
 - **Week 7+**: Zero weight — scoring is based entirely on current-season stats
 

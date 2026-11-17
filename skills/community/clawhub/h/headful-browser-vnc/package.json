@@ -1,0 +1,13 @@
+{
+  "name": "headful-browser-vnc",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Persistent headful browser sessions with operator handoff and CDP capture",
+  "license": "MIT-0",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test tests/export.test.js",
+    "test:browser": "node --test tests/browser.integration.test.js"
+  },
+  "dependencies": { "playwright": "1.65.0" }
+}

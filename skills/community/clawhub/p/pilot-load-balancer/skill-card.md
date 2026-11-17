@@ -1,40 +1,54 @@
-## Description: <br>
-Distribute tasks across worker pools with health-aware load balancing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distribute tasks across worker pools with health-aware load balancing.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and engineers use this skill to distribute tasks across worker agents, choose round-robin or least-connections routing, and avoid overloading worker pools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task assignments are sent to discovered worker addresses, so stale status data or broad search filters can route work to unintended or overloaded workers. <br>
-Mitigation: Review worker filters and status inputs before use, verify the target pool, and start with a small batch before scaling assignment volume. <br>
-Risk: The workflow depends on local command-line tools and a running daemon; missing prerequisites can cause failed or inconsistent load balancing. <br>
-Mitigation: Confirm pilotctl, jq, uuidgen, the pilot-protocol skill, and daemon health before running the command sequence. <br>
+## Use Case:
 
+Developers and engineers use this skill to distribute tasks across Pilot Protocol worker agents with round-robin, least-connections, or health-aware routing while tracking worker capacity.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the pilot-protocol skill, pilotctl, jq, uuidgen, and a running pilotctl daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends task-assignment messages to worker pools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for Pilot Protocol worker pools where this message flow is expected and acceptable.
+
+Risk: The shell examples use a /tmp state file and string-built JSON payloads.
+
+Mitigation: Before production use, replace the /tmp state file with a private locked state location and build JSON payloads with a JSON-aware encoder.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-load-balancer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, jq, uuidgen, the pilot-protocol skill, and a running pilotctl daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-04-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Helps an agent save, list, and restore Aicoo note snapshots using Aicoo OS API endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aicoo Snapshots helps an agent save, list, and restore note versions through Aicoo OS snapshot endpoints.
 
-## Publisher: <br>
-[xisen-w](https://clawhub.ai/user/xisen-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xisen-w](https://clawhub.ai/user/xisen-w)
 
-## Use Case: <br>
-Developers and note-management users can use this skill to have an agent create backups before edits, inspect note version history, restore earlier versions, and run folder-wide snapshot routines for Aicoo notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent with AICOO_API_KEY can restore or modify notes and create bulk backups without built-in confirmation guardrails. <br>
-Mitigation: Require explicit user confirmation before restores, direct edits, and folder-wide backups, including the target note ID, version ID, and folder scope. <br>
-Risk: The skill depends on a sensitive Aicoo API key. <br>
-Mitigation: Install only from a trusted publisher and keep AICOO_API_KEY in the runtime environment rather than embedding it in prompts, commands, or files. <br>
+## Use Case:
 
+Developers and external users working with Aicoo notes use this skill to create pre-edit backups, inspect snapshot history, restore a specific note version, and schedule folder-level backups.
 
-## Reference(s): <br>
-- [Aicoo API base URL](https://www.aicoo.io/api/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/xisen-w/aicoo-snapshots) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and API endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AICOO_API_KEY for authenticated Aicoo API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: An Aicoo API key could be sent through an unvalidated base URL in examples that use PULSE_BASE.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Aicoo API key and run PULSE_BASE examples only after fixing and verifying the official Aicoo API endpoint.
+
+Risk: Restore, edit, and bulk backup operations can modify notes or affect many notes when the target is ambiguous.
+
+Mitigation: Require explicit note IDs, version IDs, and folder scope before executing restore, undo, edit, or scheduled backup commands.
+
+## Reference(s):
+
+- [Aicoo API base URL](https://www.aicoo.io/api/v1)
+- [Aicoo Snapshots ClawHub skill page](https://clawhub.ai/xisen-w/skills/aicoo-snapshots)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides curl examples for Aicoo OS snapshot and note endpoints.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter metadata.version is 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

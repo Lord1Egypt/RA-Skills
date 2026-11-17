@@ -1,11 +1,11 @@
 # IDMT\_FolderItem interface
 
-文件夹属性
+Folder property
 
 ## Signature
 
 ```typescript
-interface IDMT_FolderItem 
+interface IDMT_FolderItem
 ```
 
 ## Properties
@@ -14,156 +14,124 @@ interface IDMT_FolderItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [childrenFoldersUuid?](./IDMT_FolderItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 子文件夹 UUID 列表
-
+_(Optional)_ List of child folder UUIDs
 
 </td></tr>
 <tr><td>
 
 [description?](./IDMT_FolderItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 文件夹描述
-
+_(Optional)_ Folder description
 
 </td></tr>
 <tr><td>
 
 [itemType](./IDMT_FolderItem.md)
 
-
 </td><td>
 
 `readonly`
-
 
 </td><td>
 
 [EDMT\_ItemType.FOLDER](../enums/EDMT_ItemType.md)
 
-
 </td><td>
 
-项目类型
-
+Project type
 
 </td></tr>
 <tr><td>
 
 [name](./IDMT_FolderItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-文件夹名称
-
+Folder name
 
 </td></tr>
 <tr><td>
 
 [parentFolderUuid](./IDMT_FolderItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-父文件夹 UUID
-
+Parent folder UUID
 
 </td></tr>
 <tr><td>
 
 [teamUuid](./IDMT_FolderItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属团队 UUID
-
+UUID of the team it belongs to
 
 </td></tr>
 <tr><td>
 
 [uuid](./IDMT_FolderItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-文件夹 UUID
-
+Folder UUID
 
 </td></tr>
 </tbody></table>
@@ -176,7 +144,7 @@ string
 
 # IDMT\_FolderItem.childrenFoldersUuid property
 
-子文件夹 UUID 列表
+List of child folder UUIDs
 
 ## Signature
 
@@ -188,7 +156,7 @@ childrenFoldersUuid?: Array<string>;
 
 # IDMT\_FolderItem.description property
 
-文件夹描述
+Folder description
 
 ## Signature
 
@@ -200,7 +168,7 @@ description?: string;
 
 # IDMT\_FolderItem.itemType property
 
-项目类型
+Project type
 
 ## Signature
 
@@ -212,7 +180,7 @@ readonly itemType: EDMT_ItemType.FOLDER;
 
 # IDMT\_FolderItem.name property
 
-文件夹名称
+Folder name
 
 ## Signature
 
@@ -224,7 +192,7 @@ name: string;
 
 # IDMT\_FolderItem.parentFolderUuid property
 
-父文件夹 UUID
+Parent folder UUID
 
 ## Signature
 
@@ -236,7 +204,7 @@ parentFolderUuid: string;
 
 # IDMT\_FolderItem.teamUuid property
 
-所属团队 UUID
+UUID of the team it belongs to
 
 ## Signature
 
@@ -248,7 +216,7 @@ teamUuid: string;
 
 # IDMT\_FolderItem.uuid property
 
-文件夹 UUID
+Folder UUID
 
 ## Signature
 

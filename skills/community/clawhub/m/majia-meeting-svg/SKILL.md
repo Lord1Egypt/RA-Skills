@@ -3,12 +3,12 @@ name: majia-meeting-svg
 description: "将会议逐字稿或录音转写文本转化为手机端可直接转发的 SVG 会议纪要卡片，并自动转为 PNG 方便分享。产出双方/多方都能用的结构化可视摘要。当用户提供会议录音转写、逐字稿、会议记录并要求生成会议纪要、会议摘要、meeting minutes、会议框架图、SVG 纪要时使用此技能。即使用户只是说「帮我整理一下这个会议」「把这段对话做个纪要」「会议总结一下」，也应触发。"
 license: MIT
 metadata:
-  version: 1.1.11
+  version: 1.1.13
   openclaw:
     homepage: https://github.com/maojiebc/majia-meeting-svg
 ---
 
-# SVG 会议纪要卡片 · 马甲实战版
+# 会议纪要卡片 · 马甲实战版
 
 将多方会议的逐字稿提炼为一张手机端可直接转发的 SVG 卡片——所有参会方拿到同一张图，对齐结论、明确待办。生成 SVG 后自动转 PNG，方便微信/钉钉/飞书直接发送。
 
@@ -211,6 +211,14 @@ width="100%" style="max-width: 440px;"
 - 特殊字符转义：`&` → `&amp;`，`<` → `&lt;`，`>` → `&gt;`
 - 心算一遍 Y 坐标——任何元素不能重叠
 
+## 📋 版本记录
+
+- **v1.1.13**（2026-07-28）：修复 SkillHub 历史显示名，统一为「会议纪要卡片 · 马甲实战版」；功能、slug 与安装命令不变。
+- **v1.1.12**（2026-07-23）：对外展示名去掉「SVG」技术词前缀，统一品牌标题。
+- **v1.1.11**（2026-05-21）：效果预览换成完整 PNG，并补充功能说明与示例入口。
+
+完整变更历史见 [GitHub Releases](https://github.com/maojiebc/majia-meeting-svg/releases)。
+
 ## 👤 作者 / 联系
 
 **马甲（@maojiebc）** · 超级马甲
@@ -224,6 +232,6 @@ width="100%" style="max-width: 440px;"
 | 🪝 ClawHub | [clawhub.ai/p/maojiebc](https://clawhub.ai/p/maojiebc) |
 | 🐦 X | [@maojiebc](https://x.com/maojiebc) |
 | 📕 小红书 | [超级马甲](https://xhslink.com/m/4fQMJeHHWKC) |
-| 📰 微信公众号 | **超级马甲** |
+| 📰 微信公众号 | [超级马甲](https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzY5NzIzODk2NA==#wechat_redirect) |
 
 > 这份 skill 是 14 年用户运营 + 一线协同实战沉淀出来的，问题/合作随时聊。

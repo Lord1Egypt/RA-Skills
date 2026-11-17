@@ -1,41 +1,54 @@
-## Description: <br>
-Reads WeChat public account article links, extracts article metadata, and returns a concise summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads WeChat Official Account article links, extracts article metadata and content, and returns a concise summary.
 
-## Publisher: <br>
-[shianaixuexi-cell](https://clawhub.ai/user/shianaixuexi-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shianaixuexi-cell](https://clawhub.ai/user/shianaixuexi-cell)
 
-## Use Case: <br>
-External users and developers use this skill to process supported WeChat public account article URLs, extract title, author, account, publication date, and summarize the article content for messaging or agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound network requests to article URLs provided by the user. <br>
-Mitigation: Use it only with public WeChat article links and avoid private, access-controlled, or sensitive URLs. <br>
-Risk: The release relies on externally maintained Python dependencies with version ranges rather than pinned reviewed versions. <br>
-Mitigation: Review and pin dependencies in the deployment environment before production use. <br>
+## Use Case:
 
+OpenClaw users and workspace operators use this skill to process mp.weixin.qq.com article links and receive the article title, author, account, publish time, extracted content, and summary.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shianaixuexi-cell/wechat-article-reader-0) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [Plain text message with structured JSON status and article data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include extracted title, author, account, publication time, URL, content, and generated summary when parsing succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, and skill.json) <br>
+Risk: Network fetching could reach unintended web services if redirects, host validation, response size, or retry behavior are not constrained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Strictly validate HTTPS mp.weixin.qq.com hosts, disable or revalidate redirects, and bound response sizes and retry settings before use in environments with internal network access.
+
+Risk: Sensitive article links and extracted content may be processed by the skill and the surrounding summarization flow.
+
+Mitigation: Avoid sensitive or private article links unless the deployment owner has reviewed and accepted the data handling path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shianaixuexi-cell/skills/wechat-article-reader-0)
+- [Publisher profile](https://clawhub.ai/user/shianaixuexi-cell)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Structured text with article metadata, a summary, and optional JSON data from the handler.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network access is required to fetch supported WeChat article pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

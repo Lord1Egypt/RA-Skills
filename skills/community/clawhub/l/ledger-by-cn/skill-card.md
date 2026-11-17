@@ -1,43 +1,58 @@
-## Description: <br>
-A Chinese-language personal ledger and bookkeeping skill for managing multiple SQLite-backed ledgers, recording transactions, reviewing balances, producing summaries, and generating charts or Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-localized personal ledger and account management skill for recording transactions, managing multiple ledgers, summarizing balances, generating charts, and producing Markdown-friendly reports.
 
-## Publisher: <br>
-[victor233k](https://clawhub.ai/user/victor233k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[victor233k](https://clawhub.ai/user/victor233k)
 
-## Use Case: <br>
-External users and agents use this skill to keep local personal financial records, add or batch-add transactions, inspect monthly summaries and balance trends, and prepare Markdown, chart, or CSV-style reporting outputs for review or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores personal financial records locally and its scanner verdict is suspicious because broad activation and unsafe path handling could expose or write finance data outside the intended scope. <br>
-Mitigation: Install only when local storage of personal finance data is acceptable, use simple ledger names without slashes or path-like text, and review ledger and output paths before saving files. <br>
-Risk: Chart output and any cloud or Feishu sharing workflow can disclose ledger details if the destination is wrong. <br>
-Mitigation: Confirm chart paths and any cloud or Feishu upload destination explicitly before writing or sharing files. <br>
-Risk: Broad activation around ledger, balance, charting, sync, or Feishu terms may invoke the skill outside a clear bookkeeping request. <br>
-Mitigation: Prefer explicit bookkeeping prompts and review agent actions before execution, especially when a request mentions upload, sync, chart output, or ledger names. <br>
+## Use Case:
 
+External users and agents use this skill to create local SQLite-backed personal ledgers, add income and expense transactions, inspect monthly summaries and trends, and produce command-line or Markdown reports for Chinese-language bookkeeping workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/victor233k/ledger-by-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/victor233k) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Chinese prose with CLI commands, terminal tables, Markdown summaries, SQLite-backed local files, and chart image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores personal finance records locally under the user's OpenClaw skill data directory and may save charts to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata; artifact frontmatter reports 1.3.0) <br>
+Risk: The security review flags unsafe ledger-name path handling that could expose or modify financial data unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted ledger names, avoid path-like ledger names, and prefer a release that validates ledger paths before writing files.
+
+Risk: The security review notes broad triggers and overstated export or sync claims.
+
+Mitigation: Review requested ledger actions before execution and do not rely on Feishu or CSV sync behavior unless the implementation and consent controls are confirmed.
+
+Risk: The skill stores financial records on local disk.
+
+Mitigation: Install only where local storage of personal financial data is acceptable and restrict access to the ledger data directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/victor233k/skills/ledger-by-cn)
+- [SQLite ledger architecture outline](src/OUTLINE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown and command-line text with SQLite-backed file outputs such as charts or ledger databases]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local ledger data under ~/.openclaw/skills_data/ledger/ and chart files when requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

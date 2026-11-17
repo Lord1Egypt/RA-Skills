@@ -1,40 +1,53 @@
-## Description: <br>
-Tool Registry is a token-based tool registration and discovery system for routing tool queries through weighted matching, permission filtering, and agent-type allowlists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tool Registry helps agents register, discover, filter, and execute tools using token-based matching, permission levels, and agent-type allowlists.
 
-## Publisher: <br>
-[xhmqq616](https://clawhub.ai/user/xhmqq616) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xhmqq616](https://clawhub.ai/user/xhmqq616)
 
-## Use Case: <br>
-Developers and agent builders use this skill to register, discover, filter, and execute local tools by token match, permission level, and allowed agent type. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Built-in file-writing and shell-command tools can modify files or run commands if invoked by an untrusted caller. <br>
-Mitigation: Disable or remove write_file and bash unless they are required, and enforce permission checks, path limits, command allowlists, and explicit confirmation before writes or shell actions. <br>
-Risk: Token-based routing can select a more capable tool than intended when aliases, keywords, or descriptions are broad. <br>
-Mitigation: Constrain tools by agent type and permission level, and require callers to inspect the selected tool and permission before execution. <br>
+## Use Case:
 
+Developers and agent builders use this skill to route tool-related requests, search registered tools, filter tools by permission or agent type, and execute selected tools through a registry API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xhmqq616/tool-registry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and CLI text or JSON results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a JavaScript module that can return registry matches, tool metadata, execution results, and tool statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled execution API can read files, write files, and run shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in controlled workspaces and require explicit authorization, workspace path restrictions, confirmations, and command limits before exposing execution.
+
+Risk: Documented permission and agent filters do not by themselves enforce all execution controls.
+
+Mitigation: Apply enforced permission checks around registry execution and review registered tools before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xhmqq616/skills/tool-registry)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript snippets, shell command examples, and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Registry operations may return JavaScript objects containing tool metadata, match scores, execution status, stdout, stderr, and errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

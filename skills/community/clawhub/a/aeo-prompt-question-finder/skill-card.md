@@ -1,43 +1,57 @@
-## Description: <br>
-Finds question-based Google Autocomplete suggestions for a seed topic by prepending question modifiers, supporting AEO prompt research, content ideation, and topic question discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find question-based Google Autocomplete suggestions for any topic by prepending question modifiers such as what, how, and why to a seed topic.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-External users, marketers, SEO/AEO researchers, and content teams use this skill to discover question-style search suggestions for a topic and optionally enrich the suggestions with search volume. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search topics are sent to Google Autocomplete when the skill is run. <br>
-Mitigation: Use the skill only with topics that are appropriate to share with Google Autocomplete. <br>
-Risk: The optional --volume mode reads DataForSEO credentials and sends keyword lists to DataForSEO. <br>
-Mitigation: Enable --volume only intentionally, prefer dedicated DataForSEO credentials, and avoid sending sensitive keyword lists. <br>
-Risk: High-volume or parallel autocomplete requests may trigger temporary IP blocks. <br>
-Mitigation: Use the documented --delay option, especially for batch runs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/psyduckler/aeo-prompt-question-finder) <br>
-- [Google Autocomplete endpoint](https://suggestqueries.google.com/complete/search) <br>
-- [DataForSEO Google Ads search volume endpoint](https://api.dataforseo.com/v3/keywords_data/google_ads/search_volume/live) <br>
+## Use Case:
 
+Content strategists, SEO researchers, and agent builders use this skill to discover real question-style search suggestions for a topic and generate prompt or content angles. It can also enrich suggestions with monthly search volume when DataForSEO credentials are available.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown-style console output or JSON keyed by question modifier.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional DataForSEO enrichment can add monthly search volume values when credentials are configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Keyword queries are sent to Google Autocomplete during normal use, and optionally to DataForSEO when search volume is requested.
+
+Mitigation: Avoid sensitive client, legal, medical, or confidential research terms unless sharing them with those third-party services is acceptable.
+
+Risk: The optional DataForSEO volume lookup can read credentials from environment variables or macOS Keychain.
+
+Mitigation: Use --volume only in environments where those credentials are intentionally configured and authorized for the research task.
+
+Risk: Running many keyword queries quickly can trigger temporary IP blocks from the unofficial Google Autocomplete endpoint.
+
+Mitigation: Use the documented --delay option, especially for batch or parallel research runs.
+
+## Reference(s):
+
+- [Google Autocomplete suggest endpoint](https://suggestqueries.google.com/complete/search)
+- [DataForSEO Google Ads search volume API endpoint](https://api.dataforseo.com/v3/keywords_data/google_ads/search_volume/live)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown-style text with headings and bullets, or JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional search-volume enrichment adds monthly volume values when DataForSEO credentials are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

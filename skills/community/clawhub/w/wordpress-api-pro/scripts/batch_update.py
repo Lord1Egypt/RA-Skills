@@ -26,7 +26,7 @@ from base64 import b64encode
 import importlib.util as _ilu, pathlib as _pl
 if not _ilu.find_spec("security"):
     sys.path.insert(0, str(_pl.Path(__file__).parent))
-from security import warn_insecure_wp_url
+from security import check_wp_url_schemes, require_secure_wp_url, require_secure_wp_urls, urlopen_authenticated
 
 def load_config(config_path=None):
     """Load sites configuration"""
@@ -51,7 +51,7 @@ def update_post(site, post_id, updates, dry_run=False):
         print(f"  [DRY RUN] Would update post {post_id}: {updates}")
         return True
 
-    warn_insecure_wp_url(site['url'])
+    require_secure_wp_url(site['url'])
     credentials = f"{site['username']}:{site['app_password']}".encode('utf-8')
     auth_header = b64encode(credentials).decode('ascii')
     
@@ -64,7 +64,7 @@ def update_post(site, post_id, updates, dry_run=False):
     request.add_header('Content-Type', 'application/json')
     
     try:
-        with urllib.request.urlopen(request) as response:
+        with urlopen_authenticated(request) as response:
             result = json.loads(response.read().decode('utf-8'))
             print(f"  ✓ Updated post {post_id}")
             return True
@@ -137,6 +137,18 @@ def main():
         sys.exit(1)
     
     effective_dry_run = not args.execute or args.dry_run
+
+    # Every selected site is checked BEFORE the first write. Refusing inside the
+    # loop would leave the earlier sites modified and print no summary. The dry
+    # run reports the same problems without exiting, so planning still surfaces
+    # them - it makes no requests, so there is nothing to refuse.
+    selected = [(name, config['sites'][name]['url'])
+                for name in site_names if name in config['sites']]
+    if effective_dry_run:
+        for label, message in check_wp_url_schemes(selected):
+            print(f"WARNING: {label}: {message}", file=sys.stderr)
+    else:
+        require_secure_wp_urls(selected)
 
     # Execute
     print(f"Batch update: {len(site_names)} sites, {len(post_ids)} posts")

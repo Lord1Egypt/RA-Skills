@@ -16,6 +16,8 @@ Exception: in small sessions with only a few claims, read however is natural.
 
 Agreement shows as multiple KEEP/CORE reactions on the same claim. Disagreement shows as CHALLENGE reactions. Isolated claims have few or no reactions.
 
+Reactions are visible to you and the user, not to the other participants — each model sees only its own prior reactions (as private notes to weave into its next response) plus everyone's prose. The claim map is your privileged view of the full ledger; see the kernel's "Reactions are in the ledger, responses are on the record" section for how to steer with it.
+
 ## Continuation signals
 
 The claim map is your primary signal for whether to continue.

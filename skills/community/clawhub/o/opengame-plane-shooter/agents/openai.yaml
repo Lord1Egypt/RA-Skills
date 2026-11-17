@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenGame Plane Shooter"
+  short_description: "Design original browser plane-shooter games"
+  default_prompt: "Use $opengame-plane-shooter to design an original 2D browser shooter with a route-and-resource decision."

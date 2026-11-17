@@ -1,39 +1,54 @@
-## Description: <br>
-Generate SOC2 evidence collection checklists, automate evidence gathering scripts, and produce audit-ready evidence packages for SOC2 Type I and Type II audits across the five Trust Service Criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate SOC2 evidence collection checklists, automate evidence gathering scripts, and produce audit-ready evidence packages across the SOC2 Trust Service Criteria.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Engineering, security, compliance, and audit teams use this skill to prepare SOC2 evidence matrices, collection scripts, gap analyses, and collection schedules for Type I or Type II audits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated collection scripts can gather sensitive security, access, infrastructure, and audit evidence. <br>
-Mitigation: Review each command before running it, use least-privilege read-only credentials, restrict collection to approved accounts and audit periods, protect the evidence directory, and redact sensitive values before sharing. <br>
+## Use Case:
 
+Engineering, compliance, and audit teams use this skill to prepare SOC2 Type I and Type II evidence packages, generate collection scripts, identify gaps, and plan recurring evidence collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afrexai-cto/afrexai-soc2-evidence-collector) <br>
-- [AfrexAI](https://afrexai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell script and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce SOC2 evidence matrices, collection scripts, gap analyses, and collection schedules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated evidence packages may contain sensitive security, identity, infrastructure, or audit data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store evidence output securely, use least-privilege read-only credentials for collection, and redact sensitive values before sharing with auditors or vendors.
+
+Risk: Generated scripts can query production cloud, source control, or identity systems.
+
+Mitigation: Review scripts before execution and run them only in approved environments with scoped credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afrexai-cto/skills/afrexai-soc2-evidence-collector)
+- [AfrexAI](https://afrexai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell script and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include evidence matrices, gap analyses, collection schedules, and generated scripts for cloud, source control, and identity platforms.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

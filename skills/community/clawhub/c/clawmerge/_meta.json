@@ -2,5 +2,6 @@
   "ownerId": "kn75j1gn2h0kzncm5aykxyde39823cs6",
   "slug": "clawmerge",
   "version": "4.0.2",
-  "publishedAt": 1777902906432
+  "publishedAt": 1774234819130,
+  "changelog": "v4.0.2: 补充手动备份/恢复模式说明，以及通过 OpenClaw 调用 clawmerge 技能的使用说明。\nv4.0.1: 安全恢复默认不覆盖 live 配置/cron/sessions；新增 --unsafe-overwrite 危险模式；补充 ClawHub 发布无 dry-run 的发布检查清单；移除技能包临时 .bak 文件。\nv4.0.0: 新增灾难备份（--disaster/full-backup）包含系统配置+workspace+sessions；新增one-click-full-restore.sh实现重装系统后一键恢复；sessions默认包含（--no-sessions排除）；工作区备份和灾难备份完全独立\nv3.0.9: 修复restore安全问题（跳过auth-profiles.json等机器级凭证）；修复backup路径bug；新增版本检查防止降级覆盖；cron merge支持--merge-auth填充token\nv3.0.8: 修复--with-sessions排除bug"
 }

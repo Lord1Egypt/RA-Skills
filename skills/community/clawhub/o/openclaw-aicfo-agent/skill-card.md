@@ -1,42 +1,61 @@
-## Description: <br>
-Use when OpenClaw needs to access AICFO through one bearer API key for session introspection, company selection, connector actions, Company-DB reads, document workflows, and the local adapter bridge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use AICFO through one bearer API key for session introspection, company selection, connector actions, Company-DB entity and file reads, document workflows, and the included OpenClaw adapter.
 
-## Publisher: <br>
-[elvismusli](https://clawhub.ai/user/elvismusli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elvismusli](https://clawhub.ai/user/elvismusli)
 
-## Use Case: <br>
-Developers and agents use this skill to operate AICFO through a scoped API key, resolve company access, read company data, inspect documents, and run bounded connector actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A single AICFO API key can read company data and trigger connector or document workflow changes. <br>
-Mitigation: Use a least-privilege API key, set an explicit company scope, and require manual approval before connector actions or write-like document operations. <br>
-Risk: Connector actions, imports, deletes, clarification submissions, reprocessing, or saved templates may change external systems or business workflows. <br>
-Mitigation: Review the planned action, confirm the target company and provider scope, and approve only bounded operations with clear input payloads. <br>
+## Use Case:
 
+External agents and developers use this skill to connect OpenClaw to AICFO, inspect API-key session scope, choose an authorized company, and run bounded business operations through the packaged adapter.
 
-## Reference(s): <br>
-- [AICFO Homepage](https://aiceo.city) <br>
-- [ClawHub Skill Page](https://clawhub.ai/elvismusli/openclaw-aicfo-agent) <br>
-- [Operations Reference](references/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and JSON command payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node and an AICFO_API_KEY; company scope should be selected from session results when no implicit company is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release evidence) <br>
+Risk: The skill uses a sensitive AICFO bearer key that may authorize broad company-data actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped API key, inspect session scopes before operating, and avoid actions not granted by the key.
+
+Risk: The adapter can send the bearer key to a caller-configured AICFO endpoint.
+
+Mitigation: Set AICFO_APP_URL explicitly to the intended HTTPS origin and avoid passing keys on the command line.
+
+Risk: Connector and document operations can access raw files or trigger writes, imports, deletes, reprocessing, or clarifications.
+
+Mitigation: Review connector and document actions before execution, and require the documented document scopes before writes or reprocessing.
+
+## Reference(s):
+
+- [AICFO homepage](https://aiceo.city)
+- [ClawHub skill page](https://clawhub.ai/elvismusli/skills/openclaw-aicfo-agent)
+- [Operations reference](references/operations.md)
+- [OpenClaw quickstart](docs/contracts/openclaw-quickstart.md)
+- [External agent access](docs/contracts/external-agent-access.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command inputs or responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Company-scoped operations require a company_id unless the session provides an implicit company.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

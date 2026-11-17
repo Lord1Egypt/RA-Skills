@@ -5,6 +5,7 @@ import json
 import os
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 
 
@@ -48,9 +49,22 @@ def build_payload(args: argparse.Namespace) -> dict:
     }
 
 
+def normalize_url(value: str) -> str:
+    url = value.strip()
+    parsed = urllib.parse.urlsplit(url)
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+        raise ValueError("Invalid URL. Please provide a complete URL starting with https://.")
+    return url
+
+
 def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
+
+    try:
+        args.url = normalize_url(args.url)
+    except ValueError as exc:
+        parser.error(str(exc))
 
     token = os.environ.get("DATAIFY_API_TOKEN", "").strip()
     payload = build_payload(args)
@@ -66,7 +80,7 @@ def main() -> int:
 
     if not token:
         print(
-            "DATAIFY_API_TOKEN is not set. Sign in at https://dashboard.dataify.com?utm_source=skill to obtain it, then export it as an environment variable.",
+            "DATAIFY_API_TOKEN is not set. Sign in at https://dashboard.dataify.com?utm_source=skill to obtain it. New accounts get 50 free credits, enough for about 6,000 trial results, valid for 7 days, and only successful requests are billed. Then export it as an environment variable.",
             file=sys.stderr,
         )
         return 1
@@ -104,5 +118,17 @@ def main() -> int:
         return 1
 
 
+
+
+def _configure_utf8_output():
+    import sys
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(encoding="utf-8", errors="replace")
+            except (AttributeError, ValueError):
+                pass
+
 if __name__ == "__main__":
+    _configure_utf8_output()
     raise SystemExit(main())

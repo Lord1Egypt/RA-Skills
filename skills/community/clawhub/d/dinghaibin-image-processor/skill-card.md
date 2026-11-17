@@ -1,40 +1,57 @@
-## Description: <br>
-Process and convert images with resizing, cropping, compression, thumbnail generation, filters, and format conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process and convert images with resize, crop, compress, and format conversion.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and content operators use this skill to process local image files, including resizing batches, converting formats, compressing images for web use, making thumbnails, and applying simple filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image processing can overwrite the input file when no separate output path is supplied. <br>
-Mitigation: Pass --output for each operation or work on copies of source images. <br>
-Risk: Fallback mode without Pillow may copy and rename a file instead of performing real format conversion. <br>
-Mitigation: Install Pillow for conversion workflows and do not rely on fallback mode for format changes. <br>
+## Use Case:
 
+Developers and agents use this skill to run local image processing tasks such as resizing, cropping, compressing, converting formats, creating thumbnails, and applying simple filters.
 
-## Reference(s): <br>
-- [Image Processor ClawHub Release](https://clawhub.ai/dinghaibin/dinghaibin-image-processor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke a local Python script that writes processed image files to the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Image processing can overwrite an input file when no explicit output path is provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass an explicit --output path and keep backups of important source images before processing.
+
+Risk: Unpinned or untrusted Pillow installations can add dependency and supply-chain risk.
+
+Mitigation: Install Pillow from a trusted, pinned dependency source where possible.
+
+Risk: Extreme resize, crop, blur, or quality values may produce unusable outputs or unexpected resource use.
+
+Mitigation: Review parameters before batch operations and test on a copy before processing large directories.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/skills/dinghaibin-image-processor)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write processed image files locally; Pillow is required for full functionality.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

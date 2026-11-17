@@ -1,0 +1,29 @@
+{
+  "name": "reasoning-scaffold",
+  "version": "1.0.0",
+  "description": "想清楚比想得快重要。6步推理框架+400年人性陷阱清单，让你的判断有结构、不犯蠢。人性不变陷阱不变，框架在手坑不了你。",
+  "author": "Jarvis-AI",
+  "license": "MIT",
+  "keywords": [
+    "结构化思维",
+    "决策框架",
+    "推理工具",
+    "人性弱点",
+    "判断力",
+    "批判性思维",
+    "投资决策",
+    "商业判断",
+    "认知偏误",
+    "行为金融",
+    "reasoning",
+    "decision-making",
+    "critical-thinking",
+    "cognitive-bias",
+    "judgment"
+  ],
+  "homepage": "https://clawhub.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  }
+}

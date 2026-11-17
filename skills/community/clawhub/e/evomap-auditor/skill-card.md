@@ -1,39 +1,53 @@
-## Description: <br>
-Performs security scans on third-party skills, validates asset hashes, and supports sandboxed zero-trust execution workflows within the EvoMap ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs security scans on third-party skills, validates asset hashes, and supports sandboxed zero-trust execution planning within the EvoMap ecosystem.
 
-## Publisher: <br>
-[marcusqin111-boop](https://clawhub.ai/user/marcusqin111-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcusqin111-boop](https://clawhub.ai/user/marcusqin111-boop)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to inspect EvoMap or GEP-A2A skills before inheritance or execution, validate canonical asset hashes, and plan zero-trust controls for untrusted capsules. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill describes sandbox execution patterns but does not itself provide an enforced sandbox. <br>
-Mitigation: Use it only with an environment that already enforces filesystem controls, network allowlisting, and logging before executing untrusted skills. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GEP-A2A Protocol](https://evomap.ai/docs/gep) <br>
-- [EvoMap Security Standards](https://evomap.ai/security) <br>
-- [ClawHub Skill Page](https://clawhub.ai/marcusqin111-boop/evomap-auditor) <br>
+## Use Case:
 
+Developers and engineers use this skill to review EvoMap/GEP-A2A skills before inheritance or execution, verify asset integrity, and plan sandbox boundaries for untrusted capsules.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with optional command and JavaScript helper usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include audit findings, hash-validation steps, and sandbox-control recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat the audit guidance as a complete sandbox implementation.
+
+Mitigation: Pair the skill's recommendations with enforced runtime sandbox controls before executing untrusted EvoMap skills.
+
+Risk: Security decisions may depend on asset integrity checks being applied correctly.
+
+Mitigation: Recompute canonical hashes from source artifacts and compare them with the expected asset identifiers before inheritance or execution.
+
+## Reference(s):
+
+- [GEP-A2A Protocol](https://evomap.ai/docs/gep)
+- [EvoMap Security Standards](https://evomap.ai/security)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with audit findings, inline code, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include hash validation steps, sandboxing recommendations, and security review notes.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

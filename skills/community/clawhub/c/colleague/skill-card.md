@@ -1,45 +1,61 @@
-## Description: <br>
-Distill colleagues' work styles, thinking patterns, and institutional knowledge into local profiles that support collaboration and continuity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distill colleagues' work styles, thinking patterns, and institutional knowledge into local profiles that deepen with each user-provided observation.
 
-## Publisher: <br>
-[realteamprinz](https://clawhub.ai/user/realteamprinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realteamprinz](https://clawhub.ai/user/realteamprinz)
 
-## Use Case: <br>
-Employees and teams use this skill to structure their own observations about colleagues into work-style profiles, meeting preparation guidance, team-dynamics analysis, and institutional memory for knowledge transfer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create long-lived coworker behavior profiles that may include sensitive or reputation-harming information. <br>
-Mitigation: Keep entries limited to necessary work facts, avoid health, family, protected-class, speculative, or reputation-harming notes, and regularly review or delete stale profiles. <br>
-Risk: Colleague documentation may require consent, organizational authorization, or policy review in some workplaces. <br>
-Mitigation: Install and use only where workplace policy permits this kind of documentation, and get consent or organizational authorization where required. <br>
-Risk: Local profile files may expose sensitive workplace observations if the user's machine or home directory is accessible to others. <br>
-Mitigation: Treat ~/.colleague-skill as sensitive local data, restrict access to the directory, and avoid syncing it to external services. <br>
+## Use Case:
 
+Employees and teams use this skill to turn their own observations about colleagues into structured work-style profiles, collaboration guidance, and institutional-memory notes. It supports active collaboration, onboarding, team-dynamics questions, and continuity after colleagues leave.
 
-## Reference(s): <br>
-- [Work Style Dimensions](references/work-style-dimensions.md) <br>
-- [Colleague Profile Template](templates/COLLEAGUE-PROFILE.md) <br>
-- [Interaction Log Template](templates/INTERACTION-LOG.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/realteamprinz/colleague) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown profiles, JSONL interaction logs, and plain-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-supplied observations locally under ~/.colleague-skill/ as plain text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill creates persistent profiles about coworkers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Record only work-relevant observations with reasonable consent, follow workplace policy, and delete stale profiles periodically.
+
+Risk: Profiles may capture sensitive or speculative personal information.
+
+Mitigation: Avoid health, stress, financial, relationship, rumor, and HR-like judgments; use confidence levels and factual observations.
+
+Risk: Local profile files may expose colleague information if shared or synced unintentionally.
+
+Mitigation: Use safe profile identifiers instead of raw names when appropriate and keep the ~/.colleague-skill directory out of shared or synced locations.
+
+## Reference(s):
+
+- [Colleague.skill ClawHub listing](https://clawhub.ai/realteamprinz/skills/colleague)
+- [README](artifact/README.md)
+- [Work Style Dimensions Reference Guide](artifact/references/work-style-dimensions.md)
+- [Colleague Profile Template](artifact/templates/COLLEAGUE-PROFILE.md)
+- [Interaction Log Template](artifact/templates/INTERACTION-LOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown profiles, JSONL interaction logs, and natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores human-readable colleague profiles and observation logs locally under ~/.colleague-skill/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

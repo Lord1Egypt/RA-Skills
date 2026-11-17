@@ -1,40 +1,58 @@
-## Description: <br>
-Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, or automating any browser task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, or automating any browser task.
 
-## Publisher: <br>
-[handongpu16](https://clawhub.ai/user/handongpu16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[handongpu16](https://clawhub.ai/user/handongpu16)
 
-## Use Case: <br>
-Developers and agents use this skill to control a browser from the command line for navigation, form entry, clicking, screenshots, content extraction, downloads, tabs, dialogs, and page state checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents receive broad browser control and can perform sensitive or state-changing actions. <br>
-Mitigation: Use explicit instructions and review before submitting forms, logging in, accepting dialogs, downloading files, taking screenshots, or extracting content from private or account pages. <br>
-Risk: Page element indices can become stale after navigation, form submissions, or dynamic content loading. <br>
-Mitigation: Take a fresh browser snapshot after page changes before clicking, filling, or selecting indexed elements. <br>
+## Use Case:
 
+Agents and developers use this skill to automate browser workflows such as navigating pages, filling forms, clicking controls, capturing screenshots, and extracting page data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/handongpu16/my-browser-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with command examples and browser state text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser commands can return page snapshots, element indices, screenshots, downloaded file paths, page metadata, element state, or task completion status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can perform broad browser actions, including clicks, form entry, downloads, tab changes, and dialog handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandboxed or low-privilege environment and require explicit confirmation before downloads, form submissions, payments, account changes, or handling private page content.
+
+Risk: Installation requires external executable components and a Chromium download.
+
+Mitigation: Prefer a pinned, verified release with documented source and Chromium provenance before using it in sensitive workflows.
+
+Risk: Browser element indices become stale after navigation, form submissions, or dynamic page updates.
+
+Mitigation: Refresh the page snapshot after page changes and act only on current element indices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/handongpu16/skills/my-browser-bot)
+- [ClawHub publisher profile](https://clawhub.ai/user/handongpu16)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and browser automation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command output may include page snapshots, element indices, screenshots, temporary file paths, page text, HTML, URLs, titles, values, attributes, counts, boxes, styles, and task-completion status.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

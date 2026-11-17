@@ -2,5 +2,13 @@
   "ownerId": "kn75k53tcdhqwka2fra5x817p9821zpb",
   "slug": "bilibili-messager",
   "version": "1.4.8",
-  "publishedAt": 1777918396239
+  "publishedAt": 1777474069000,
+  "changelog": [
+    {
+      "version": "1.4.8",
+      "changes": [
+        "Fixed: _meta.json version consistency with registry. 修复：_meta.json 版本号与 registry 一致。"
+      ]
+    }
+  ]
 }

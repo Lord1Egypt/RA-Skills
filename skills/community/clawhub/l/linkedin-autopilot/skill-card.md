@@ -1,43 +1,57 @@
-## Description: <br>
-Your agent builds your LinkedIn presence while you sleep. Schedule posts, auto-engage with target accounts, run personalized DM sequences, and never miss an engagement opportunity. Handles connection requests, profile visiting campaigns, post engagement, and follow-up sequences with safety throttling and human-like behavior patterns. Configure your targets, define engagement rules, and let your agent network 24/7. Use when setting up LinkedIn automation, managing posting schedules, running engagement campaigns, or building agent-driven LinkedIn lead generation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkedIn Autopilot helps an agent run LinkedIn posting, engagement, connection outreach, DM follow-up sequences, and reporting with configurable rate limits and dry-run workflows.
 
-## Publisher: <br>
-[audsmith28](https://clawhub.ai/user/audsmith28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[audsmith28](https://clawhub.ai/user/audsmith28)
 
-## Use Case: <br>
-External users and developers use this skill to configure and run agent-assisted LinkedIn posting, engagement, connection-request, DM-sequence, and reporting workflows. It is intended for users who want browser-based LinkedIn automation with dry-run testing, rate limits, and review-oriented operation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for LinkedIn account credentials and gives an agent practical control over account activity. <br>
-Mitigation: Store credentials carefully, avoid plaintext where possible, and keep workflows in dry-run or human-review mode unless the user intentionally enables live actions. <br>
-Risk: The skill can automate posts, comments, DMs, and connection requests without enforced approval gates. <br>
-Mitigation: Disable auto-DM, auto-comment, auto-connect, and unattended schedules by default; require human review for public posts, private outreach, and sensitive engagement. <br>
-Risk: Unattended LinkedIn outreach can create account, compliance, or reputation risk. <br>
-Mitigation: Use conservative rate limits, monitor for account warnings, and pause automation when security checks or rate-limit warnings appear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LinkedIn Autopilot on ClawHub](https://clawhub.ai/audsmith28/linkedin-autopilot) <br>
-- [Publisher profile: audsmith28](https://clawhub.ai/user/audsmith28) <br>
-- [LinkedIn](https://www.linkedin.com/) <br>
+## Use Case:
 
+External users and developers use this skill to configure an agent to manage LinkedIn posting, target engagement, connection requests, DM follow-up sequences, and analytics reporting for personal networking or lead-generation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dry-run oriented workflows and writes local configuration and activity state files when setup or automation scripts are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks for raw LinkedIn credentials.
+
+Mitigation: Avoid plaintext password storage where possible and lock down secrets and configuration files before use.
+
+Risk: Automated posting, messaging, engagement, and connection activity can expose the account to automation-related restrictions.
+
+Mitigation: Use only with an account you are willing to expose to automation risk, keep dry-run enabled until actions are reviewed, and monitor for warnings or security checks.
+
+Risk: Automated comments, DMs, and connection notes may send unwanted or inaccurate content.
+
+Mitigation: Review queued recipients and message or post content before enabling send actions, with human oversight for sensitive interactions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/audsmith28/skills/linkedin-autopilot)
+- [Publisher Profile](https://clawhub.ai/user/audsmith28)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command invocations and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dry-run workflows and file-based activity, sequence, connection, analytics, and report outputs under the configured LinkedIn Autopilot directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

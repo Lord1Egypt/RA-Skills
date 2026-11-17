@@ -1,52 +1,67 @@
-## Description: <br>
-The essential first skill for every OpenClaw agent. Installs battle-tested workspace files, memory architecture, expert personas, sub-agent templates, heartbeat patterns, and automation scaffolding. Use when setting up a new OpenClaw instance, optimising an existing workspace, improving agent memory/context management, spawning better sub-agents, or building your first automations. Covers: workspace setup, memory systems, context management, sub-agent orchestration, cron/heartbeat patterns, API integrations checklist, and progressive skill building. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kickstart helps an OpenClaw agent set up workspace memory, core instruction files, sub-agent templates, heartbeat patterns, automation scaffolding, and API setup guidance.
 
-## Publisher: <br>
-[jordymaui](https://clawhub.ai/user/jordymaui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jordymaui](https://clawhub.ai/user/jordymaui)
 
-## Use Case: <br>
-Developers and OpenClaw users use Kickstart to bootstrap a new or existing agent workspace with persistent memory files, operating instructions, persona templates, sub-agent context patterns, heartbeat checks, and automation guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages persistent storage of personal and operational context in workspace memory files. <br>
-Mitigation: Keep personal profile fields minimal, avoid committing generated memory files, and review stored memory regularly. <br>
-Risk: Automation and heartbeat guidance can lead agents toward external posting or shared-channel actions. <br>
-Mitigation: Require explicit confirmation before email, Discord, Telegram, social, or other shared-channel posting. <br>
-Risk: Setup guidance may touch API and integration configuration. <br>
-Mitigation: Remove any guidance to store raw API keys or secrets and follow secure credential handling for each integration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kickstart on ClawHub](https://clawhub.ai/jordymaui/kickstart) <br>
-- [Publisher profile](https://clawhub.ai/user/jordymaui) <br>
-- [API & Integration Checklist](references/api-checklist.md) <br>
-- [Automation Patterns](references/automation-patterns.md) <br>
-- [Compaction Survival Guide](references/compaction-survival.md) <br>
-- [Context Bundle Protocol](references/context-bundle-protocol.md) <br>
-- [Memory Architecture](references/memory-architecture.md) <br>
-- [Model Strategy](references/model-strategy.md) <br>
-- [Next Steps](references/next-steps.md) <br>
-- [Kickstart Setup Guide](references/setup-guide.md) <br>
-- [Soul Library](references/soul-library.md) <br>
-- [Publisher launch link](https://x.com/jordymaui) <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to bootstrap or improve an agent workspace with persistent memory, safety rules, personas, sub-agent context templates, heartbeat checks, and automation setup patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, and workspace file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup instructions and templates for persistent memory, agent instructions, heartbeat checks, automations, and sub-agent prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent memory can retain personal or sensitive workspace context.
+
+Mitigation: Review and customize the copied memory files before use, keep sensitive values out of memory, and follow the included rule to load long-term memory only in direct sessions.
+
+Risk: Heartbeat and cron-style automation can perform recurring background checks or notifications.
+
+Mitigation: Enable automation only when desired, set quiet hours and rotation limits, and require explicit approval for external messages, public posts, and file edits.
+
+Risk: Companion skills and integrations can expand the agent's authority.
+
+Mitigation: Pin or separately review companion skills before installation, and review API configuration files for secret-handling requirements.
+
+## Reference(s):
+
+- [ClawHub Kickstart Skill Page](https://clawhub.ai/jordymaui/skills/kickstart)
+- [Publisher Profile](https://clawhub.ai/user/jordymaui)
+- [Kickstart Setup Guide](references/setup-guide.md)
+- [Compaction Survival Guide](references/compaction-survival.md)
+- [Memory Architecture](references/memory-architecture.md)
+- [Context Bundle Protocol](references/context-bundle-protocol.md)
+- [Automation Patterns](references/automation-patterns.md)
+- [API & Integration Checklist](references/api-checklist.md)
+- [Model Strategy](references/model-strategy.md)
+- [Soul Library](references/soul-library.md)
+- [Next Steps](references/next-steps.md)
+- [Publisher Launch Link](https://x.com/jordymaui)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace file templates, setup walkthroughs, and automation patterns for an OpenClaw agent.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

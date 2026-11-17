@@ -1,40 +1,48 @@
-## Description: <br>
-Helps agents read, write, clean, calculate, and operate on Excel and spreadsheet files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent handle Excel files for spreadsheet reading, writing, data cleaning, formula calculation, and multi-sheet operations.
 
-## Publisher: <br>
-[fhbillwer](https://clawhub.ai/user/fhbillwer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fhbillwer](https://clawhub.ai/user/fhbillwer)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and developers can use this skill to ask an agent to inspect, clean, summarize, update, or calculate values in Excel workbooks and related tabular files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Spreadsheet write operations could overwrite or change business or financial workbook data in place.
+
+Mitigation: Give explicit instructions about whether workbook changes should be saved in place or written to a new file, and review important outputs before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to inspect, clean, summarize, calculate formulas for, and make intentional edits to Excel, CSV, or XLSX spreadsheet files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Files, Code]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write Excel files, so accidental or unwanted changes could affect important workbooks. <br>
-Mitigation: Use copies of important spreadsheets and confirm requested edits before relying on modified files. <br>
-Risk: Broad spreadsheet triggers can activate the skill for general Excel, CSV, or XLSX requests. <br>
-Mitigation: Give explicit instructions when asking for analysis or edits, and review the resulting workbook or summary before use. <br>
+**Output Format:** [Markdown or text responses, with generated or modified spreadsheet files when requested]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fhbillwer/ws-excel) <br>
+**Other Properties Related to Output:** [May read and write workbook data located under /workspace/data/analytics/.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown responses and spreadsheet file edits when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read from and write to /workspace/data/analytics/ as described by the skill.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

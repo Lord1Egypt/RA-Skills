@@ -1,40 +1,57 @@
-## Description: <br>
-Date Utils helps agents get current dates and times, convert timestamps, compute relative dates, format dates, check weekdays, calculate ISO weeks, and compare date ranges using local Python datetime logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides JSON date and time utilities for current Asia/Shanghai time, Unix timestamp conversion, relative dates, date formatting, workday checks, ISO week calculations, and date differences without external APIs.
 
-## Publisher: <br>
-[weidongkl](https://clawhub.ai/user/weidongkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weidongkl](https://clawhub.ai/user/weidongkl)
 
-## Use Case: <br>
-Developers and agents use this skill when a workflow needs reliable current time, date arithmetic, timestamp conversion, date formatting, weekday checks, ISO week information, or date differences without relying on model memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default Asia/Shanghai (UTC+8) timezone can produce misleading results for workflows that require another local timezone or are near date boundaries. <br>
-Mitigation: Confirm the required timezone before using outputs for deadlines, payroll, compliance, scheduling, or records near day boundaries. <br>
-Risk: Weekday checks treat Monday through Friday as workdays and do not account for holidays or region-specific calendars. <br>
-Mitigation: Verify business-calendar requirements separately before relying on workday output for operational decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to obtain current time and perform date calculations for logs, reports, deadlines, timestamps, relative dates, workday checks, and week ranges. It is most appropriate when Asia/Shanghai date boundaries and Chinese output labels are expected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weidongkl/date-utils) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON command output interpreted by the agent as text or markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the system clock with an Asia/Shanghai (UTC+8) default and Python standard library date/time calculations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Date calculations use Asia/Shanghai (UTC+8) boundaries and Chinese output labels, which can be wrong for local dates, deadlines, logs, or policy-sensitive timing in other locales.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the required timezone before relying on results, or use a configurable timezone utility for the target locale.
+
+Risk: Workday checks treat Monday through Friday as workdays and do not account for holidays or organization-specific calendars.
+
+Mitigation: Confirm business-calendar requirements separately before using workday results for scheduling, payroll, compliance, or operational commitments.
+
+Risk: Current-time answers depend on the host system clock.
+
+Mitigation: Run the utility in an environment with a synchronized and trusted system clock when precise timing matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weidongkl/skills/date-utils)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Asia/Shanghai (UTC+8), Chinese labels, and Python standard-library datetime calculations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

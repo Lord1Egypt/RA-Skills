@@ -1,0 +1,37 @@
+{
+  "name": "xiaohongshu-social-media-search",
+  "version": "1.1.4",
+  "description": "实时搜索国内社媒之小红书的公开内容，快速返回笔记的内容信息、互动数量、趋势和评论等数据。当用户要查品牌、话题、事件或内容在小红书社媒上的公开表现时使用。",
+  "keywords": [
+    "小红书",
+    "爆款笔记",
+    "数据分析",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长",
+    "用户画像"
+  ],
+  "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
+  "bugs": {
+    "url": "https://github.com/um-why/xiaohongshu-openclaw-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/xiaohongshu-openclaw-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "engines": {
+    "node": ">=16"
+  },
+  "main": "src/xiaohongshu/search-cli.js",
+  "scripts": {
+    "search": "node src/xiaohongshu/search-cli.js",
+    "detail": "node src/xiaohongshu/detail-cli.js",
+    "post": "node src/xiaohongshu/post-cli.js",
+    "comment": "node src/xiaohongshu/comment-cli.js"
+  }
+}

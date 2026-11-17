@@ -1,41 +1,57 @@
-## Description: <br>
-Aggregates recent China and Guangdong computing power and AI policy updates, including large models, intelligent computing centers, data centers, and public bond support, into briefing-style summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates recent China and Guangdong computing power and artificial intelligence policy updates, including large AI models, intelligent computing centers, data centers, and bond-supported computing infrastructure, into brief policy summaries.
 
-## Publisher: <br>
-[wwrry](https://clawhub.ai/user/wwrry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwrry](https://clawhub.ai/user/wwrry)
 
-## Use Case: <br>
-Policy researchers, business teams, and public-sector analysts use this skill to find and summarize recent Guangdong, Guangzhou, Shenzhen, and China national policy updates related to computing infrastructure, AI models, intelligent computing centers, data centers, and government bond support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill searches and fetches public government or media pages, which may expose outbound queries to configured search providers. <br>
-Mitigation: Review the agent environment's search and fetch providers before deployment when query logging, network routing, or compliance requirements matter. <br>
-Risk: Policy briefings may omit recent items if search providers fail or if public sources are delayed. <br>
-Mitigation: Prefer official government source links in the generated briefing and manually confirm critical policy decisions against the cited source pages. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to collect and summarize recent computing power and AI policy updates from national, Guangdong provincial, Guangzhou, Shenzhen, and related official or authoritative media sources.
 
-## Reference(s): <br>
-- [Guangdong computing policy source list](references/policy_sources.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wwrry/guangdong-computing-policy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown briefing with source links, publication dates, and grouped policy summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches recent public government and authoritative media sources and reports when no matching recent policy is found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Search and fetch results may miss newly published or recently changed policy pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer official government sources, include publication dates and links, and make clear when no matching recent policy is found.
+
+Risk: The skill is designed around Chinese-language Guangdong and China policy sources, which may be less useful for users expecting another language or jurisdiction.
+
+Mitigation: Ask for another output language or expanded scope when needed, and keep the covered source geography explicit in the briefing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwrry/skills/guangdong-computing-policy)
+- [Policy sources reference](references/policy_sources.md)
+- [State Council policy database](https://www.gov.cn/zhengce/zhengceku/)
+- [National Development and Reform Commission policy releases](https://www.ndrc.gov.cn/xxgk/zcfb/)
+- [Guangdong Provincial Government policy documents](https://www.gd.gov.cn/zwgk/zcwj/zcjd/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown policy brief with source links, publication dates, and categorized bullet summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language briefings focused on policies from the most recent 30-day window unless the user requests a different scope.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

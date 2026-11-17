@@ -1,0 +1,18 @@
+{
+  "deck_id": "deck-v1",
+  "title": "Migrated Example",
+  "source_type": "article",
+  "source_title": "Old Source",
+  "slides": [
+    {
+      "id": "S01",
+      "slide_role": "judgment",
+      "judgment_title": "Old judgment title",
+      "message": "Old message",
+      "expression_mode": "hybrid_panel",
+      "expression_mode_reason": "Old mixed panel",
+      "visual_component_plan": "chart and commentary",
+      "source_labels": ["section-1"]
+    }
+  ]
+}

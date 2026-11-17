@@ -1,44 +1,56 @@
-## Description: <br>
-Soulprint helps agents use decentralized identity verification, local ZK proof checks, validator nodes, and API or MCP middleware for human and bot reputation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soulprint helps agents verify that a real human is behind a bot using local zero-knowledge identity proofs, on-chain registration, and reputation checks.
 
-## Publisher: <br>
-[ManuelFelipeArias](https://clawhub.ai/user/ManuelFelipeArias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[manuelfelipearias](https://clawhub.ai/user/manuelfelipearias)
 
-## Use Case: <br>
-Developers and agent operators use Soulprint to verify that a human is behind an AI bot, issue or verify identity proofs, run validator nodes, add identity checks to APIs or MCP servers, and check bot reputation scores. Full identity-document verification is described for Colombian cedula workflows. <br>
-
-### Deployment Geography for Use: <br>
-Colombia for full identity-document verification; global for blockchain, validator, and middleware integration where legally appropriate. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles government ID values, birth dates, document images, face data, biometric-derived proofs, SPT tokens, validator credentials, and private keys. <br>
-Mitigation: Treat those values as sensitive, avoid logging or sharing them, use low-value testnet keys for testing, and confirm what is stored on-chain or sent to validators before use. <br>
-Risk: The release depends on external npm identity-verification tools and validator services. <br>
-Mitigation: Review package provenance, pin versions where possible, scan dependencies, and run in an isolated environment before using it with real identity data. <br>
-Risk: The security verdict flags unclear privacy and control boundaries for identity, biometric, blockchain, and validator workflows. <br>
-Mitigation: Perform a privacy and security review, document consent and retention expectations, and verify local processing claims against the exact installed package version. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Soulprint page](https://clawhub.ai/ManuelFelipeArias/soulprint) <br>
-- [Soulprint documentation](https://soulprint.digital) <br>
-- [soulprint-network npm package](https://www.npmjs.com/package/soulprint-network) <br>
-- [Soulprint live validator](https://soulprint-node-production.up.railway.app) <br>
+## Use Case:
 
+External developers and agent operators use Soulprint to add identity verification, validator-node workflows, and reputation checks to AI bots, APIs, and MCP servers. Identity and face-match workflows should be run only in trusted environments because the release processes sensitive identity and biometric data.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with command and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference npm packages, validator endpoints, smart-contract addresses, and local identity-verification commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.25 (source: server release metadata; artifact describes Soulprint v0.6.4) <br>
+Global, with documented full identity-document support for Colombia.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned npm commands may install changing code while the skill processes sensitive identity and biometric data.
+
+Mitigation: Review package provenance before installing, prefer exact pinned versions or a lockfile, and run identity verification only on a trusted machine.
+
+Risk: Identity verification workflows may expose cedula or face-match data if storage, deletion, or network behavior is not understood.
+
+Mitigation: Confirm what data is stored, deleted, or sent over the network before using the cedula or face-match workflow, and isolate wallets and API tokens from the process.
+
+## Reference(s):
+
+- [Soulprint documentation](https://soulprint.digital)
+- [Soulprint ClawHub skill page](https://clawhub.ai/manuelfelipearias/skills/soulprint)
+- [manuelfelipearias ClawHub publisher profile](https://clawhub.ai/user/manuelfelipearias)
+- [soulprint npm package](https://www.npmjs.com/package/soulprint)
+- [soulprint-network npm package](https://www.npmjs.com/package/soulprint-network)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with command, configuration, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes npm and npx commands plus TypeScript integration examples for MCP, Express, and Fastify.]
+
+## Skill Version(s):
+
+1.0.25 (source: server release metadata; artifact documentation describes Soulprint v0.6.4 behavior)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

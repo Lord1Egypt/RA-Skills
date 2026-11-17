@@ -1,42 +1,57 @@
-## Description: <br>
-Generate PDFs and images from HTML using the AgentGen CLI and API, with a free tier and optional authenticated usage through AGENTGEN_API_KEY. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate PDFs and images from HTML through AgentGen, with a no-sign-up free tier and optional AGENTGEN_API_KEY authentication for higher volume and watermark-free output.
 
-## Publisher: <br>
-[lyair1](https://clawhub.ai/user/lyair1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lyair1](https://clawhub.ai/user/lyair1)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate screenshots, PDFs, reports, slides, invoices, and other rendered assets from HTML via AgentGen shell commands. It supports unauthenticated free-tier output and authenticated workflows for higher-volume or multi-page PDF generation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: HTML content and rendering inputs are sent to the AgentGen hosted service. <br>
-Mitigation: Use the skill only for content approved for third-party processing, and do not include secrets, regulated data, confidential documents, or sensitive brand assets. <br>
-Risk: Uploaded assets are publicly accessible temporary URLs for 24 hours. <br>
-Mitigation: Upload only assets that can be public during the retention window, and remove or rotate any sensitive source material before rendering. <br>
-Risk: The workflow depends on a third-party CLI and hosted rendering provider. <br>
-Mitigation: Install the CLI from the documented source, keep credentials in AGENTGEN_API_KEY, and review generated files before using them in customer-facing workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentGen homepage](https://www.agent-gen.com) <br>
-- [ClawHub skill page](https://clawhub.ai/lyair1/agentgen) <br>
+## Use Case:
 
+Developers and agents use this skill to convert HTML documents, reports, invoices, web pages, and social images into PDFs or raster image files through the AgentGen CLI/API.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands that produce PDF and image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated outputs may be PNG, JPEG, WebP, or PDF files; authenticated usage can remove watermarks and enable multi-page PDFs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: HTML submitted for rendering is sent to AgentGen's service.
+
+Mitigation: Review submitted HTML and avoid including secrets, private content, or sensitive metadata.
+
+Risk: Uploaded assets are publicly accessible for 24 hours.
+
+Mitigation: Do not upload private images, documents, fonts, or files with sensitive metadata unless that exposure is acceptable.
+
+Risk: Authenticated use requires trusting the installed CLI with AGENTGEN_API_KEY.
+
+Mitigation: Install the CLI from the documented source, keep AGENTGEN_API_KEY out of committed files, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [AgentGen homepage](https://www.agent-gen.com)
+- [ClawHub skill page](https://clawhub.ai/lyair1/skills/agentgen)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create local PNG, JPEG, WebP, or PDF files when executed with the AgentGen CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,3 @@
+display_name: Influencer Realtime Enrichment
+short_description: Pull fresh creator and content data and highlight decision-relevant deltas.
+default_prompt: Enrich these creators or posts with realtime data, compare against baseline assumptions, and summarize material deltas, impact, and immediate next actions.

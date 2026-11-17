@@ -1,42 +1,57 @@
-## Description: <br>
-Collects weekly reports from Lark Reports, summarizes them into Lark Docs, and supports notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect weekly reports from Lark Reports (oa.larksuite.com), summarize into Lark Docs, and notify.
 
-## Publisher: <br>
-[Pengxiao-Wang](https://clawhub.ai/user/Pengxiao-Wang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pengxiao-wang](https://clawhub.ai/user/pengxiao-wang)
 
-## Use Case: <br>
-Employees and operations teams use this skill to collect weekly Lark report submissions for selected teams or templates, identify missing submissions, create summary documents, and send follow-up notifications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate through a logged-in Lark session and access employee report data. <br>
-Mitigation: Before use, specify the exact Lark account, team or template, reporting week, output document location, and whether local report files may be created. <br>
-Risk: Generated summaries or notification recipients may be incorrect or broader than intended. <br>
-Mitigation: Review the generated summary, document link, and recipient list before any notification is sent. <br>
-Risk: Temporary extraction files may contain sensitive report data. <br>
-Mitigation: Delete or protect any temporary extraction files after the collection workflow is complete. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lark Reports entry page](https://oa.larksuite.com/report/record/entry) <br>
-- [ClawHub skill page](https://clawhub.ai/Pengxiao-Wang/lark-report-collector) <br>
+## Use Case:
 
+Employees, managers, and operations teams use this skill to collect weekly reports for specific Lark teams or templates, identify missing submissions, summarize submitted reports into Lark Docs, and notify recipients.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with browser automation steps, JavaScript snippets, API usage notes, and generated document or notification content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an active Lark browser session and user review before sending notifications.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles employee report data from Lark workplace reports.
+
+Mitigation: Use it only after confirming the exact team, report template, and week to collect.
+
+Risk: The skill may write report data to an unspecified temporary local file.
+
+Mitigation: Confirm the local file path before use and delete temporary report data after the summary workflow is complete.
+
+Risk: Generated Lark Docs and notifications may expose report summaries to unintended recipients.
+
+Mitigation: Confirm the Lark Doc audience and notification recipients before creating or sending outputs.
+
+## Reference(s):
+
+- [Lark Reports entry page](https://oa.larksuite.com/report/record/entry)
+- [ClawHub skill page](https://clawhub.ai/pengxiao-wang/skills/lark-report-collector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with browser automation commands, JavaScript snippets, API instructions, and report-summary content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local report data file and Lark Docs output before notification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

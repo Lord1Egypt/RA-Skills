@@ -1,47 +1,65 @@
-## Description: <br>
-Diataxis documentation framework practice guide that provides diagnosis, classification, templates, and quality assessment for four documentation types: Tutorial, How-to Guide, Reference, and Explanation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diataxis documentation framework practice guide. Provides diagnosis, classification, templates, and quality assessment for four documentation types (Tutorial/How-to/Reference/Explanation).
 
-## Publisher: <br>
-[amumulam](https://clawhub.ai/user/amumulam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amumulam](https://clawhub.ai/user/amumulam)
 
-## Use Case: <br>
-Developers, technical writers, and documentation maintainers use this skill to classify documentation needs, draft Diataxis-aligned tutorials, how-to guides, reference material, and explanations, and assess documentation quality before publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation may be saved locally or published to external services without enough destination clarity. <br>
-Mitigation: Confirm the target platform, destination path or repository, document visibility, and permissions before using any non-chat output method. <br>
-Risk: Sensitive or private content may persist outside the conversation when sent to Feishu, GitHub, Notion, Google Docs, or local files. <br>
-Mitigation: Prefer chat output for sensitive content, and review the generated document before allowing any persistent or external output. <br>
-Risk: External publishing paths depend on MCP, mcporter, git, and configured service credentials. <br>
-Mitigation: Run the tool availability check first and verify that configured credentials and integrations match the intended workspace or account. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amumulam/diataxis-writing) <br>
-- [Diataxis official documentation](https://diataxis.fr) <br>
-- [Diataxis documentation framework repository](https://github.com/evildmp/diataxis-documentation-framework) <br>
-- [Diataxis Compass](references/compass.md) <br>
-- [Four Documentation Types](references/four-types.md) <br>
-- [Quality Framework](references/quality-framework.md) <br>
-- [Output Platform Reference](references/output-platforms.md) <br>
+## Use Case:
 
+Developers, technical writers, and documentation maintainers use this skill to classify documentation needs, draft Diataxis-aligned tutorials, how-to guides, references, and explanations, and assess documentation quality before publication.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with prose, checklists, templates, and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce chat responses, local Markdown files, or externally published documents when the user selects and confirms an available output method.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence and CHANGELOG, released 2026-02-25) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide agents toward local Markdown file writes.
+
+Mitigation: Prefer chat-only output unless local files are explicitly needed, and review filenames and destination paths before writing.
+
+Risk: The skill supports external publishing destinations such as Feishu and GitHub.
+
+Mitigation: Confirm the selected destination, repository visibility, and content sensitivity before export or publication.
+
+Risk: The documentation includes unpinned npx-style mcporter examples.
+
+Mitigation: Use a reviewed, pinned, locally installed mcporter version or an approved MCP configuration before invoking external publishing commands.
+
+## Reference(s):
+
+- [Diataxis Official Documentation](https://diataxis.fr)
+- [Diataxis GitHub Repository](https://github.com/evildmp/diataxis-documentation-framework)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [The Diataxis Compass](references/compass.md)
+- [Diataxis Four Documentation Types](references/four-types.md)
+- [The Diataxis Map Model](references/map.md)
+- [Diataxis Quality Assessment Framework](references/quality-framework.md)
+- [Language Style for Four Documentation Types](references/writing-language.md)
+- [Diataxis Common Mistake Patterns](references/common-mistakes.md)
+- [Output Platform Reference](references/output-platforms.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with optional code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or prepare documentation for chat, local Markdown, Feishu, GitHub, Notion, or Google Docs when the user explicitly selects an output method and required tools are available.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and CHANGELOG, released 2026-02-25)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

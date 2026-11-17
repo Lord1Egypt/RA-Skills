@@ -1,0 +1,33 @@
+{
+  "manifestVersion": 1,
+  "slug": "yotta-memory",
+  "name": "元忆",
+  "package": "@yottameta/yotta-memory",
+  "version": "0.24.3",
+  "trust": "yottameta",
+  "install": {
+    "idempotent": true
+  },
+  "permissions": {
+    "filesystem": "user-skills-dir",
+    "network": "none",
+    "process": "child-process",
+    "note": "只调用本包内 Node 引擎读写本地记忆库；默认不联网；仅在用户显式配置扩展提供方（provider.json）时按其配置调用本地子进程。"
+  },
+  "auto_apply": {
+    "mode": "hook",
+    "note": "关键里程碑完成后写入长期记忆，并保留本地文件证据。"
+  },
+  "hooks": [
+    {
+      "event": "after_milestone",
+      "require_tool": "remember_commit",
+      "condition": "里程碑完成并进入下一步之前",
+      "on_fail": "block",
+      "fallback": "explicit-unverified",
+      "evidence": [
+        "file_path"
+      ]
+    }
+  ]
+}

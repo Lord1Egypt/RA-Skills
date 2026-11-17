@@ -1,45 +1,61 @@
-## Description: <br>
-Provides offline guidance on recurring Argentine ARCA tax and social-security deadlines for small businesses, self-employed taxpayers, monotributistas, and employers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an offline Argentina fiscal calendar assistant for ARCA tax and social-security deadlines across PyMEs, self-employed workers, monotributistas, and employers.
 
-## Publisher: <br>
-[centriqs](https://clawhub.ai/user/centriqs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[centriqs](https://clawhub.ai/user/centriqs)
 
-## Use Case: <br>
-External users in Argentina use this skill to ask an agent about ARCA fiscal deadlines, CUIT-dependent due-date rules, holiday shifts, and weekly reminders. It is intended as practical calendar guidance, not as a substitute for official ARCA publications or professional tax advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Argentina <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fiscal deadlines can change and only official ARCA publications have legal authority. <br>
-Mitigation: Treat responses as planning guidance and verify binding deadlines on ARCA before filing or paying. <br>
-Risk: Optional local configuration or history files may contain personal tax identifiers or payment notes. <br>
-Mitigation: Store only the minimum needed, avoid credentials and full sensitive records, and review local notes before sharing a workspace or backup. <br>
-Risk: Month-specific calendar details may be incomplete when ARCA publishes updated schedules. <br>
-Mitigation: Use the skill for recurring patterns and reminders, then check the current ARCA schedule for exact dates. <br>
+## Use Case:
 
+External users and business operators in Argentina use this skill to ask an agent about recurring ARCA fiscal deadlines, CUIT-dependent due dates, holiday shifts, and reminder-style summaries. It is an offline reference aid and should not be treated as legal tax advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/centriqs/argentina-fiscal-calendar) <br>
-- [Centriqs](https://centriqs.io) <br>
-- [ARCA official due dates](https://arca.gob.ar/vencimientos) <br>
-- [ARCA Monotributo](https://arca.gob.ar/monotributo) <br>
+### Deployment Geography for Use:
 
+Argentina
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with date tables, short reminders, and optional local configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operates offline; user-specific filtering may depend on local CUIT-ending and regime configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Fiscal deadlines or holiday-shift guidance may be incomplete, outdated, or not legally binding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as reminders and verify legally binding due dates directly with ARCA or a qualified accountant before acting.
+
+Risk: Local personalization could expose sensitive taxpayer, banking, credential, or third-party personal data if users overfill configuration files.
+
+Mitigation: Store only the minimum local settings needed for reminders, and avoid entering full CUITs, credentials, banking details, or third-party personal data.
+
+Risk: Manual installation from a moving source branch can introduce unreviewed changes.
+
+Mitigation: Pin a specific reviewed commit or install through the reviewed ClawHub release.
+
+## Reference(s):
+
+- [Argentina Fiscal Calendar (ARCA) on ClawHub](https://clawhub.ai/centriqs/skills/argentina-fiscal-calendar)
+- [Centriqs Publisher Homepage](https://centriqs.io)
+- [ARCA Official Due Dates](https://arca.gob.ar/vencimientos)
+- [ARCA Monotributo](https://arca.gob.ar/monotributo)
+- [Argentina National Holidays](https://argentina.gob.ar/feriados)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with fiscal-calendar summaries, tables, and inline shell or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline reminder and reference aid; no external API calls or credential collection are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

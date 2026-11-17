@@ -1,0 +1,11 @@
+{
+  "name": "sluice",
+  "tagline": "Egress guard: catch leaked secrets before an agent sends them.",
+  "description": "Scans every outbound agent message — email, social draft, chat reply, a write to a public site — for leaked API keys, tokens, private keys and internal identifiers, then refuses or redacts in place. Catches Anthropic/OpenAI/OpenRouter keys, GitLab/GitHub PATs, AWS keys, Slack/Stripe/Telegram tokens, JWTs/Supabase keys, PEM blocks, entropy-gated key=value assignments and private IPs. Precision-tuned; previews never echo the secret. Pure Python standard library.",
+  "category": "security",
+  "tags": ["secrets", "egress", "dlp", "agents", "security", "redaction", "python"],
+  "version": "0.1.0",
+  "license": "MIT",
+  "homepage": "https://workloft.ai/labs",
+  "support_url": "https://workloft.ai"
+}

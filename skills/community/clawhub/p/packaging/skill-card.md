@@ -1,41 +1,52 @@
-## Description: <br>
-Provides practical packaging optimization guidance and SOPs for packaging optimization work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides actionable packaging optimization guidance and SOPs for packaging optimization work.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codekungfu](https://clawhub.ai/user/codekungfu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and external operators use this skill to structure packaging optimization work, including goals, SOPs, metrics, pilot rollout, compliance checks, and reusable templates.
+
+### Deployment Geography for Use:
+
+China
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate broadly for packaging optimization discussions.
+
+Mitigation: Use a more specific trigger or confirm whether the user needs SOP creation, KPI design, or packaging pilot planning.
+
+Risk: Packaging optimization work may involve local regulatory, platform-rule, or personal-data considerations.
+
+Mitigation: Apply China-local compliance review and data minimization before using the generated guidance operationally.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business, operations, and packaging teams use this skill to structure packaging optimization work, including goals, SOPs, resource planning, pilot testing, metrics, reporting, and knowledge-base updates. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Applying packaging optimization guidance to real operations may involve company data or personal information. <br>
-Mitigation: Use data minimization, access controls, and normal compliance review before sharing or processing operational data. <br>
-Risk: Packaging SOPs may need adjustment for local regulations and platform rules, including Chinese regulatory and personal information protection requirements named by the artifact. <br>
-Mitigation: Review SOPs, dashboards, reports, and pilots against applicable local regulations and platform policies before operational use. <br>
+**Output Format:** [Markdown or structured text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/packaging) <br>
-- [Publisher profile](https://clawhub.ai/user/CodeKungfu) <br>
+**Other Properties Related to Output:** [May include SOP steps, metric definitions, checklists, and report structures.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style operational guidance with SOP steps, checklists, metrics, and reporting structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, install steps, credentials, API calls, or system access.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Fetch MLB game schedules, live game status, box scores, player search, and season statistics via the MLB Stats API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch MLB game schedules, live game status, box scores, player search, and season statistics via the MLB Stats API.
 
-## Publisher: <br>
-[khaney64](https://clawhub.ai/user/khaney64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[khaney64](https://clawhub.ai/user/khaney64)
 
-## Use Case: <br>
-External users and agents use this skill to answer baseball schedule, score, live game, player lookup, and season-stat questions from public MLB data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public MLB Stats API endpoints, so availability, latency, and returned data are outside the skill's control. <br>
-Mitigation: Handle failed or empty lookups gracefully and confirm important game or player facts against the source data before relying on them. <br>
-Risk: Excessive polling or bulk requests may trigger blocking by the upstream MLB service. <br>
-Mitigation: Limit live-game polling to the documented interval and avoid bulk scraping workflows. <br>
+## Use Case:
 
+External users and developers use this skill to answer MLB schedule, score, live game, player lookup, and season statistics questions from public MLB API data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/khaney64/baseball) <br>
-- [MLB Stats API schedule endpoint](https://statsapi.mlb.com/api/v1/schedule/games) <br>
-- [MLB Stats API live game endpoint](https://statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live) <br>
-- [MLB Stats API player search endpoint](https://statsapi.mlb.com/api/v1/people/search) <br>
-- [MLB copyright notice](http://gdx.mlb.com/components/copyright.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text tables or JSON from Python command-line scripts, with Markdown command examples in the skill documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and network access to public MLB Stats API endpoints; no API key is documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill needs outbound network access for MLB lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allow only the MLB Stats API access required for schedule, score, live game, player, and stat queries.
+
+Risk: The package does not declare a tight domain permission scope.
+
+Mitigation: Review future updates for any expansion beyond public MLB data fetching before deployment.
+
+Risk: Excessive live-game polling may cause the upstream API to block requests from the caller's IP address.
+
+Mitigation: Follow the skill documentation's guidance to poll live games no more than once every 15 seconds.
+
+## Reference(s):
+
+- [ClawHub Baseball skill page](https://clawhub.ai/khaney64/skills/baseball)
+- [MLB Stats API schedule endpoint](https://statsapi.mlb.com/api/v1/schedule/games)
+- [MLB Stats API live game feed endpoint](https://statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live)
+- [MLB Stats API player search endpoint](https://statsapi.mlb.com/api/v1/people/search)
+- [MLB Stats API player stats endpoint](https://statsapi.mlb.com/api/v1/people/{player_id}/stats)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands]
+
+**Output Format:** [Plain text tables or JSON from Python CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and outbound network access to the public MLB Stats API; no API key is required.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

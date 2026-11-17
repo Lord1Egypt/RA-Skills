@@ -1,0 +1,299 @@
+# GKN-Phantom v3.0 — LOW Tier Detection Rules
+# =============================================
+# All rules at the LOW tier: information disclosure, misconfiguration,
+# open redirects, CSRF, and other low-severity findings.
+#
+# Total: 8 rules (6 original + 2 v3 additions)
+
+- id: "info-leak-backup"
+  type: "info_leak"
+  severity: "low"
+  tier: "low"
+  risk_level: "L1"
+  target_param_hints:
+    - "id"
+    - "file"
+    - "page"
+  probe_description: >-
+    GET /<path>.bak, .old, .swp, .map; grep responses for AKIA/ghp_/BEGIN
+    PRIVATE KEY/email patterns
+  detection_signal: "200 on backup path OR sensitive pattern in response body"
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Remove all backup files (.bak, .old, .swp, .map) from the web root.
+    Configure the web server to deny access to hidden files and backup
+    extensions. Add rules to .htaccess or nginx.conf to block requests
+    for patterns like *.bak, *.old, *.swp, *.map, *~, and files
+    beginning with a dot. Use version control (git) instead of file-copy
+    backups. Scan the deployment pipeline for editor temporary files.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/530.html"
+    - "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/04-Review_Old_Backup_and_Unreferenced_Files_for_Sensitive_Information"
+  tags:
+    - "backup"
+    - "source-code"
+    - "information-disclosure"
+    - "misconfiguration"
+
+- id: "open-redirect-params"
+  type: "open_redirect"
+  severity: "low"
+  tier: "low"
+  risk_level: "L2"
+  target_param_hints:
+    - "next"
+    - "url"
+    - "redirect"
+    - "return"
+    - "returnUrl"
+    - "goto"
+    - "target"
+    - "dest"
+    - "continue"
+  probe_description: >-
+    Set redirect param to https://oob.authorized.test/PTSKILLTEST (and //,
+    /\ variants)
+  detection_signal: "3xx Location or meta-refresh/JS redirect points to the authorized sink"
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Implement a server-side allowlist of permitted redirect destinations.
+    Never pass user-controlled input directly into Location headers or
+    redirect functions. If dynamic redirects are required, validate the
+    target against a whitelist of trusted URLs or use an indirection
+    page that warns the user. Prefer relative-path redirects and reject
+    absolute URLs. Use the OWASP ESAPI redirect validation pattern.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/601.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
+  tags:
+    - "redirect"
+    - "phishing"
+    - "open-redirect"
+
+- id: "csrf-state-changing"
+  type: "csrf"
+  severity: "low"
+  tier: "low"
+  risk_level: "L2"
+  target_param_hints:
+    - "<state-changing POST/PUT/DELETE endpoints>"
+  probe_description: >-
+    Replay state-changing request with CSRF token removed and blanked;
+    check SameSite cookie attr
+  detection_signal: "Request succeeds (200/302) without valid token AND cookie lacks SameSite=Strict/Lax"
+  safe_poc: true
+  requires_credentials: true
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Implement anti-CSRF tokens on all state-changing endpoints (POST, PUT,
+    DELETE, PATCH). Use the synchronizer token pattern tied to the user's
+    session. Set cookies with SameSite=Lax (or Strict for sensitive
+    operations). Validate the Origin and Referer headers on
+    state-changing requests. Framework-specific: Django's {% csrf_token %},
+    Spring Security's csrf() filter, Express's csurf middleware.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/352.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+  tags:
+    - "csrf"
+    - "session"
+    - "state-changing"
+
+- id: "misconfig-security-headers"
+  type: "misconfig"
+  severity: "low"
+  tier: "low"
+  risk_level: "L1"
+  target_param_hints:
+    - "<root of each endpoint>"
+  probe_description: >-
+    Inspect headers: missing HSTS/CSP/X-Frame-Options/X-Content-Type-Options;
+    present X-Powered-By/Server version
+  detection_signal: "Any required security header absent OR verbose version header present"
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Add the following security headers to all responses: Strict-Transport-
+    Security (max-age=31536000; includeSubDomains), Content-Security-Policy
+    (default-src 'self'), X-Frame-Options (DENY or SAMEORIGIN),
+    X-Content-Type-Options (nosniff), Referrer-Policy (strict-origin-
+    when-cross-origin), Permissions-Policy. Remove or suppress verbose
+    server headers (Server, X-Powered-By, X-AspNet-Version) via web
+    server configuration: ServerTokens Prod / server_tokens off (nginx),
+    ServerSignature Off (Apache).
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  references:
+    - "https://owasp.org/www-project-secure-headers/"
+    - "https://cwe.mitre.org/data/definitions/693.html"
+  tags:
+    - "headers"
+    - "misconfiguration"
+    - "hsts"
+    - "csp"
+    - "clickjacking"
+
+- id: "component-exposure-actuator"
+  type: "component_exposure"
+  severity: "low"
+  tier: "low"
+  risk_level: "L1"
+  target_param_hints:
+    - "<root of each target>"
+  probe_description: >-
+    Probe known component admin/leak paths at low rate:
+    /actuator, /actuator/env, /actuator/heapdump, /actuator/mappings,
+    /actuator/configprops, /actuator/jolokia; /druid/index.html,
+    /druid/login.html, /druid/sql.html; /swagger-ui.html,
+    /swagger-ui/index.html, /v2/api-docs, /v3/api-docs,
+    /swagger-resources; /controller.ashx?action=catchimage (UEditor);
+    /api-docs
+  detection_signal: >-
+    200 on /actuator/env (env vars) OR /actuator/heapdump (binary dump) OR
+    /druid/index.html (monitor page) OR /swagger-ui.html (API docs) OR
+    response contains swagger JSON / actuator JSON / druid SQL monitor
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Restrict access to management endpoints (/actuator, /druid, /swagger)
+    to internal networks only (e.g., 127.0.0.1, 10.0.0.0/8). Use Spring
+    Security to secure Actuator endpoints with authentication and role-
+    based access. Move Swagger/OpenAPI docs behind authentication in
+    production or disable them entirely. For Druid, set
+    druid.monitor.password and restrict the monitor servlet. For UEditor,
+    update to the latest version and disable catchimage if not needed.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/200.html"
+    - "https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html"
+  tags:
+    - "actuator"
+    - "swagger"
+    - "druid"
+    - "component-exposure"
+    - "management-endpoint"
+
+- id: "info-leak-source-paths"
+  type: "info_leak"
+  severity: "low"
+  tier: "low"
+  risk_level: "L1"
+  target_param_hints:
+    - "<root of each target>"
+  probe_description: >-
+    Probe source-leak paths: /.git/config, /.svn/entries, /.DS_Store,
+    /.env, /WEB-INF/web.xml, /WEB-INF/classes/, /crossdomain.xml,
+    /phpinfo.php
+  detection_signal: >-
+    200 on git/svn config path OR .env content OR WEB-INF web.xml OR
+    phpinfo page
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Configure the web server to deny access to all dot-files and VCS
+    directories (.git, .svn, .hg, .bzr). For nginx: location ~ /\. { deny
+    all; }. For Apache: <DirectoryMatch "^\.|\/\."> Require all denied
+    </DirectoryMatch>. Move .env files outside the document root — use
+    environment variables or a secure secrets manager instead. Block
+    access to WEB-INF via servlet mapping or web server rules. Disable
+    phpinfo() in production php.ini (expose_php = Off). Remove
+    crossdomain.xml if not using Flash.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/538.html"
+    - "https://cwe.mitre.org/data/definitions/527.html"
+  tags:
+    - "source-code"
+    - "git"
+    - "env"
+    - "information-disclosure"
+    - "vcs"
+
+- id: "graphql-introspection"
+  type: "graphql_introspection"
+  severity: "low"
+  tier: "low"
+  risk_level: "L1"
+  target_param_hints:
+    - "/graphql"
+    - "/gql"
+    - "/api/graphql"
+    - "/v1/graphql"
+  probe_description: >-
+    Send GraphQL introspection query to discover full API schema:
+    POST with {__schema{types{name,fields{name,args{name,type{name}}}}}}
+    OR GET /graphql?sdl for schema SDL
+  detection_signal: >-
+    200 response with JSON containing __schema/types introspection data
+    OR schema SDL with type definitions
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Disable GraphQL introspection in production. For Apollo Server, set
+    introspection: false. For GraphQL Yoga, use the disableIntrospection
+    option. For express-graphql, set graphiql: false and conditionally
+    enable introspection based on NODE_ENV. Consider using query depth
+    limiting, query complexity analysis, and persisted queries to further
+    harden the GraphQL endpoint. Never expose the SDL endpoint in
+    production.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/200.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html"
+  tags:
+    - "graphql"
+    - "introspection"
+    - "information-disclosure"
+    - "schema-leak"
+
+- id: "directory-listing"
+  type: "directory_listing"
+  severity: "low"
+  tier: "low"
+  risk_level: "L1"
+  target_param_hints:
+    - "/uploads/"
+    - "/static/"
+    - "/backup/"
+    - "/logs/"
+    - "/temp/"
+  probe_description: >-
+    GET common directories; check for Index of / and directory listing
+    patterns
+  detection_signal: "Response contains 'Index of /' or 'Parent Directory' or lists file/dir entries"
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Disable directory listing in the web server configuration. For Apache:
+    Options -Indexes in the <Directory> block or .htaccess. For nginx:
+    ensure 'autoindex off;' is set (it defaults to off). For IIS:
+    disable Directory Browsing in the IIS Manager or via web.config
+    (<directoryBrowse enabled="false" />). Add a default index file
+    (index.html, index.php) to directories that must remain accessible.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/548.html"
+    - "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/03-Test_File_Extensions_Handling_for_Sensitive_Information"
+  tags:
+    - "directory-listing"
+    - "information-disclosure"
+    - "misconfiguration"

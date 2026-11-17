@@ -1,41 +1,57 @@
-## Description: <br>
-Zworker lets an agent control a local Zworker automation app to list and run tasks, manage schedules, sync user identifiers, and retrieve notifications through a localhost HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zworker lets an agent control a local zworker AI automation app for task management, schedule control, user synchronization, and notification forwarding.
 
-## Publisher: <br>
-[peterpan0630](https://clawhub.ai/user/peterpan0630) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peterpan0630](https://clawhub.ai/user/peterpan0630)
 
-## Use Case: <br>
-Developers and automation operators use this skill to connect an agent to a locally running Zworker app for task execution, schedule control, user information synchronization, and notification forwarding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect and synchronize user identifiers and route notifications. <br>
-Mitigation: Restrict user-ID collection to approved OpenClaw sources, require explicit confirmation before synchronization or forwarding, and block notification sending when userid is missing. <br>
-Risk: The skill can execute tasks and change schedules through an unauthenticated local API. <br>
-Mitigation: Install only when the local Zworker app is trusted, keep the service bound to the local environment, and require explicit confirmation before task execution or schedule changes. <br>
+## Use Case:
 
+External developers and operators use this skill to inspect and trigger local zworker tasks, manage schedules, sync OpenClaw user routing data, and forward zworker notifications.
 
-## Reference(s): <br>
-- [Zworker HTTP API endpoints](references/api_endpoints.md) <br>
-- [ClawHub Zworker skill page](https://clawhub.ai/peterpan0630/zworker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown or JSON responses with command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include task and schedule lists, success or failure messages, notification payloads, and user synchronization results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence and version.json) <br>
+Risk: The skill can trigger local zworker tasks and change schedule state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted local Zworker instance and require explicit confirmation before task execution or schedule changes.
+
+Risk: Identity sync and notification forwarding can misroute or expose user messages if user IDs or channels are wrong.
+
+Mitigation: Confirm which OpenClaw user IDs and channels may be synced, and avoid fallback notification routing when a user ID is missing.
+
+Risk: The local zworker HTTP service is documented as unauthenticated.
+
+Mitigation: Keep the service limited to trusted local access and review network exposure before installing or using the skill.
+
+## Reference(s):
+
+- [Zworker HTTP API endpoints](references/api_endpoints.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown or plain text status messages, with JSON available from helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [UTF-8 text; paginated task and schedule list outputs default to 24 items.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and artifact/version.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

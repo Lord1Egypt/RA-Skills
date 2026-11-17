@@ -1,42 +1,61 @@
-## Description: <br>
-Helps agents use the X/Twitter API to read tweets, post tweets or threads, reply, send DMs, search, and view analytics with user-provided credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X/Twitter messaging management via API for reading tweets, posting tweets and threads, replying, sending DMs, searching tweets and users, and viewing analytics.
 
-## Publisher: <br>
-[klemenska](https://clawhub.ai/user/klemenska) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[klemenska](https://clawhub.ai/user/klemenska)
 
-## Use Case: <br>
-Developers, creators, and account operators use this skill to let an agent prepare and run X/Twitter API actions such as posting, replying, direct messaging, searching, and checking engagement analytics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can post tweets, replies, media, and direct messages through the user's X/Twitter account. <br>
-Mitigation: Require explicit review of the exact tweet, reply, media, recipient, or DM text before allowing write commands. <br>
-Risk: Credentials used by the skill can authorize account actions. <br>
-Mitigation: Use the least-privileged tokens possible and prefer environment variables or a secret manager over a plaintext credentials file. <br>
-Risk: X API tier limits and rate limits can block reads, searches, analytics, or repeated actions. <br>
-Mitigation: Confirm the API tier before use and monitor rate-limit responses for timeline, mentions, search, analytics, and posting workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Twitter API v2 Rate Limits](references/api-limits.md) <br>
-- [Twitter Search Operators](references/search-operators.md) <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent manage an authenticated X/Twitter account through API-backed CLI workflows for posting, replies, DMs, search, timelines, mentions, user lookup, tweet lookup, and public engagement analytics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with CLI commands and plain-text API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided X/Twitter API credentials; write actions should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate an authenticated Twitter/X account, including posting tweets, replies, threads, and DMs.
+
+Mitigation: Review every post, reply, thread, and DM command before execution, and install the skill only when account operation is intended.
+
+Risk: Twitter/X API credentials grant account access and may be exposed if stored insecurely.
+
+Mitigation: Prefer environment variables or a secret manager, restrict credentials to the minimum API scopes needed, and avoid plaintext credential files when possible.
+
+Risk: API tier limits and rate limits can block timeline, mention, DM, search, or analytics workflows.
+
+Mitigation: Confirm the account's API tier supports the intended endpoints and monitor rate limit headers before repeated operations.
+
+Risk: Dependency installation affects the local Python environment.
+
+Mitigation: Install Tweepy in a virtual environment before running the CLI.
+
+## Reference(s):
+
+- [Twitter API v2 Rate Limits](references/api-limits.md)
+- [Twitter Search Operators](references/search-operators.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Twitter/X API credentials and Tweepy; API tier and rate limits affect available operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

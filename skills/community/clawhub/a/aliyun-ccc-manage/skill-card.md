@@ -1,45 +1,56 @@
-## Description: <br>
-Use when managing Alibaba Cloud Cloud Call Center (CCC) via OpenAPI/SDK, including instance/resource management, configuration updates, status checks, and troubleshooting call-center API workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Alibaba Cloud Cloud Call Center (CCC) through Alibaba Cloud OpenAPI/SDK workflows, including resource operations, configuration updates, status checks, and troubleshooting.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud Cloud Call Center resources and troubleshoot CCC API workflows through Alibaba Cloud OpenAPI, SDK, and metadata-first discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Alibaba Cloud credentials for CCC workflows. <br>
-Mitigation: Use a dedicated least-privilege AccessKey and prefer environment variables or the shared Alibaba Cloud credentials file. <br>
-Risk: Create, Update, Modify, and Set operations can change live Alibaba Cloud CCC resources. <br>
-Mitigation: Verify the region and resource identifiers, then require explicit approval before running any mutating operation. <br>
-Risk: Saved outputs may contain operational details from cloud API responses. <br>
-Mitigation: Review generated files and response summaries before sharing them outside the intended operational context. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to discover Alibaba Cloud CCC APIs, prepare SDK or OpenAPI Explorer calls, and manage call-center resources. It emphasizes confirming regions, resource IDs, and credentials before live operations.
 
-## Reference(s): <br>
-- [Alibaba Cloud CCC OpenAPI product page](https://api.aliyun.com/product/CCC) <br>
-- [Alibaba Cloud CCC API metadata](https://api.aliyun.com/meta/v1/products/CCC/versions/2020-07-01/api-docs.json) <br>
-- [Alibaba Cloud CCC single API definition](https://api.aliyun.com/meta/v1/products/CCC/versions/2020-07-01/apis/{ApiName}/api.json) <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/aliyun-ccc-manage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Text and Markdown with inline shell commands plus generated JSON or Markdown API inventory artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated artifacts and API response summaries are intended to be saved under output/aliyun-ccc-manage/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide live Alibaba Cloud CCC configuration changes using Alibaba credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials and review the region, resource IDs, and intended action before every write operation.
+
+Risk: Saved output artifacts may contain operational resource details.
+
+Mitigation: Store outputs only in the designated output/aliyun-ccc-manage/ directory and treat them as access-controlled operational evidence.
+
+## Reference(s):
+
+- [Alibaba Cloud OpenAPI CCC product page](https://api.aliyun.com/product/CCC)
+- [CCC 2020-07-01 API metadata list](https://api.aliyun.com/meta/v1/products/CCC/versions/2020-07-01/api-docs.json)
+- [CCC single API metadata endpoint](https://api.aliyun.com/meta/v1/products/CCC/versions/2020-07-01/apis/{ApiName}/api.json)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-ccc-manage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated JSON or Markdown evidence files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write API inventory and evidence artifacts under output/aliyun-ccc-manage/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

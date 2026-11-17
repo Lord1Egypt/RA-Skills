@@ -1,41 +1,60 @@
-## Description: <br>
-Plans outings by searching venues with Google Places API inputs and generating timed itineraries with venue details, walking information, warnings, and Google Maps links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan events (night out, weekend, date night, team outing, meals, trips) by searching venues via Google Places API. Auto-selects best restaurants, bars, activities based on location, budget, party size, and preferences. Generates detailed itinerary with timing and Google Maps link. Use when asked to plan an outing, create an itinerary, find places for events, or organize activities.
 
-## Publisher: <br>
-[udiedrichsen](https://clawhub.ai/user/udiedrichsen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[udiedrichsen](https://clawhub.ai/user/udiedrichsen)
 
-## Use Case: <br>
-External users and agents use this skill to plan nights out, meals, date nights, team outings, weekend days, and trips based on location, budget, party size, duration, and preferences. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Google API key and sends event locations and preferences to Google services. <br>
-Mitigation: Use a restricted Google API key with quota and billing controls, and avoid sensitive home, hotel, or private meetup addresses unless sharing them with Google APIs is acceptable. <br>
-Risk: Venue hours, availability, travel times, and budget estimates may be incomplete or approximate. <br>
-Mitigation: Review itinerary warnings and confirm venues, hours, routes, and prices before relying on the plan. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/udiedrichsen/event-planner) <br>
-- [Google Places API endpoint](https://places.googleapis.com/v1) <br>
-- [Google Directions API endpoint](https://maps.googleapis.com/maps/api/directions/json) <br>
+## Use Case:
 
+External users and agents use this skill to plan outings and itineraries by finding venues near a location, selecting restaurants, bars, or activities, and producing route-aware schedules with Google Maps links.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown itinerary by default, with optional structured JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes timeline, venue details, walking distance and time, cost estimates, warnings, and a Google Maps route link.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Event locations, venue searches, route details, and the configured Google API key are sent to Google services and may incur API billing.
+
+Mitigation: Use a scoped Google API key, monitor Google Cloud billing and quotas, and install only when this data sharing is acceptable.
+
+Risk: Generated venue hours, availability, budgets, and routes may be inaccurate or incomplete.
+
+Mitigation: Treat generated itineraries as planning suggestions and verify venue availability, costs, and route details before relying on them.
+
+Risk: Some advertised trip, preference, date, or duration handling is not implemented accurately.
+
+Mitigation: Avoid relying on those options until the skill is fixed or documented more accurately.
+
+## Reference(s):
+
+- [Event Planner ClawHub page](https://clawhub.ai/udiedrichsen/skills/event-planner)
+- [udiedrichsen publisher profile](https://clawhub.ai/user/udiedrichsen)
+- [Declared homepage](https://github.com/clawdbot/clawdbot)
+- [Google Places API endpoint](https://places.googleapis.com/v1)
+- [Google Directions API endpoint](https://maps.googleapis.com/maps/api/directions/json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown itinerary by default, or structured JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes venue details, timing, walking distance or travel estimates, warnings, and a Google Maps route link.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

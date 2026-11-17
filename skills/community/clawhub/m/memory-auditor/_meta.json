@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn72f76wazjp7rqahdhnhkyzb1841mep",
-  "slug": "memory-auditor",
+  "name": "memory-auditor",
+  "displayName": "Memory Auditor",
+  "description": "A2A Memory Auditor - Detect performed vs genuine memory. $0.20 per audit.",
   "version": "1.0.0",
-  "publishedAt": 1775371552791
+  "triggers": ["audit memory", "verify memory", "check memory integrity", "genuine vs performed"],
+  "author": "agentkilox",
+  "license": "MIT-0",
+  "tags": ["memory,audit,a2a,paid"],
+  "stats": {
+    "downloads": 0,
+    "stars": 0
+  }
 }

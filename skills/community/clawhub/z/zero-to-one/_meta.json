@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "zero-to-one",
+  "name": "zero-to-one",
+  "title": "Zero to One: Notes on Startups, or How to Build the Future",
+  "author": "Peter Thiel with Blake Masters",
   "version": "1.0.0",
-  "publishedAt": 1780928041288
+  "license": "MIT",
+  "tags": ["startups", "entrepreneurship", "innovation", "technology", "thiel"],
+  "description": "Peter Thiel's Zero to One — an executable toolkit for building startups that create new things, from contrarian thinking to monopoly strategy to founding teams.",
+  "homepage": "https://github.com/jaysonmeng/book-skills/tree/main/skills/zero-to-one",
+  "clawhub": {
+    "slug": "zero-to-one",
+    "owner": "jaysonmeng"
+  }
 }

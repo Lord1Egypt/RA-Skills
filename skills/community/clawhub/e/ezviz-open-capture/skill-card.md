@@ -1,48 +1,67 @@
-## Description: <br>
-Captures snapshots from Ezviz cameras, analyzes them for phone-use behavior, and plays a voice alert on configured devices when phone use is detected. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects phone use from Ezviz camera snapshots and, when detected, generates and sends a voice alert for playback on the configured device.
 
-## Publisher: <br>
-[Ezviz-Open](https://clawhub.ai/user/Ezviz-Open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezviz-open](https://clawhub.ai/user/ezviz-open)
 
-## Use Case: <br>
-External users and operators use this skill to monitor authorized Ezviz camera feeds for phone-use behavior and trigger device audio alerts. It is intended for controlled environments such as classrooms, exam rooms, or meeting rooms where camera monitoring is lawful and disclosed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles surveillance images and can trigger device audio alerts. <br>
-Mitigation: Use only with cameras and spaces the operator is authorized to monitor, disclose monitoring as required, and review alert behavior before deployment. <br>
-Risk: Ezviz app credentials and device identifiers are required for operation. <br>
-Mitigation: Prefer environment variables or a secret manager over command-line credentials, use least-privilege credentials, restrict access where supported, and rotate credentials regularly. <br>
-Risk: The security review reports unsafe edges around a remote sound fallback and duplicate alert path. <br>
-Mitigation: Remove the remote sound fallback and fix the duplicate alert path before relying on unattended automated alerts. <br>
+## Use Case:
 
+External users and developers use this skill to monitor authorized classroom, exam-room, meeting-room, or similar camera feeds for phone-use behavior and trigger an automatic voice warning through Ezviz devices.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Ezviz-Open/ezviz-open-capture) <br>
-- [Ezviz API documentation bundled with the skill](references/ezviz-api-docs.md) <br>
-- [Ezviz access token API](https://open.ys7.com/help/81) <br>
-- [Ezviz device capture API](https://open.ys7.com/help/687) <br>
-- [Ezviz phone detection analysis API](https://open.ys7.com/help/3956) <br>
-- [Ezviz voice upload API](https://open.ys7.com/help/1241) <br>
-- [Ezviz voice send API](https://open.ys7.com/help/1253) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Console text with setup commands, environment configuration, API status messages, and detection summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate a temporary local audio file and send camera snapshots, credentials, device identifiers, and audio files to configured third-party services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: ClawHub release evidence) <br>
+Risk: The skill processes surveillance images and can issue device playback alerts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit authorization for the monitored area and confirm local privacy, notice, and retention requirements before deployment.
+
+Risk: The skill requires Ezviz app credentials and device identifiers.
+
+Mitigation: Create restricted Ezviz credentials limited to the required APIs and devices, avoid main account credentials, restrict access where supported, and rotate credentials regularly.
+
+Risk: The security evidence reports realistic credential examples and a suspicious verdict.
+
+Mitigation: Review before installing and rotate any exposed-looking sample credentials if they were ever real.
+
+Risk: The script includes a duplicate alert path and fallback sample-audio download behavior.
+
+Mitigation: Remove or patch the duplicate alert block and undisclosed fallback download before production use.
+
+## Reference(s):
+
+- [Ezviz API docs](references/ezviz-api-docs.md)
+- [ClawHub skill page](https://clawhub.ai/ezviz-open/skills/ezviz-open-capture)
+- [Ezviz access token API](https://open.ys7.com/help/81)
+- [Ezviz device capture API](https://open.ys7.com/help/687)
+- [Ezviz phone detection API](https://open.ys7.com/help/3956)
+- [Ezviz voice upload API](https://open.ys7.com/help/1241)
+- [Ezviz voice send API](https://open.ys7.com/help/1253)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and console output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Ezviz app credentials, device serial numbers, network access to Ezviz services, and TTS dependencies.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

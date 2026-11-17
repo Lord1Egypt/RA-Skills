@@ -13,7 +13,6 @@
  */
 import { db } from "./db.js";
 import { buildFtsTokens, buildSearchQuery } from "./tokenizer.js";
-import { getCount, getRow } from "./utils.js";
 import { auditLog } from "./security.js";
 import { logError } from "./logger.js";
 import { getErrorMessage } from "./types.js";
@@ -175,6 +174,15 @@ export function proposeStrategy(
   const now = Date.now();
   const trustScore = getAgentTrustScore(proposerId);
 
+  // P1-2 fix: UNIQUE(title, proposer_id, proposed_at) 因 timestamp 不同导致
+  // 重复检测失效。改为显式前置检查，确保同一 proposer 不能重复提交相同标题。
+  const dupCheck = db.prepare(
+    "SELECT COUNT(*) as cnt FROM strategies WHERE title = ? AND proposer_id = ?"
+  ).get(title.trim(), proposerId) as { cnt: number } | undefined;
+  if (dupCheck && dupCheck.cnt > 0) {
+    return { ok: false, error: "Duplicate title: strategy with this title already exists for this proposer" };
+  }
+
   try {
     const result = db.prepare(
       `INSERT INTO strategies (title, content, category, sensitivity, proposer_id, status, proposed_at, task_id, source_trust)
@@ -321,24 +329,41 @@ export function feedbackStrategy(
   const applied = options?.applied ? 1 : 0;
 
   try {
-    const result = db.prepare(
-      `INSERT INTO strategy_feedback (strategy_id, agent_id, feedback, comment, applied, created_at)
-       VALUES (?, ?, ?, ?, ?, ?)`
-    ).run(strategyId, agentId, feedback, options?.comment ?? null, applied, now);
+    // T7：UPSERT（与 provideFeedback 一致），允许更新 apply_strategy 自动建的 neutral 占位，
+    // 而非因 UNIQUE(strategy_id, agent_id) 冲突被拒绝。
+    const prevRow = db.prepare(
+      `SELECT feedback FROM strategy_feedback WHERE strategy_id = ? AND agent_id = ?`
+    ).get(strategyId, agentId) as { feedback: string } | undefined;
 
-    // 更新计数器
+    db.prepare(`
+      INSERT INTO strategy_feedback (strategy_id, agent_id, feedback, comment, applied, created_at)
+      VALUES (?, ?, ?, ?, ?, ?)
+      ON CONFLICT(strategy_id, agent_id) DO UPDATE SET
+        feedback = excluded.feedback,
+        comment = excluded.comment,
+        applied = excluded.applied,
+        created_at = excluded.created_at
+    `).run(strategyId, agentId, feedback, options?.comment ?? null, applied, now);
+
+    // 计数器修正：先回退旧值（若已存在），再累加新值，避免重复计数
+    if (prevRow) {
+      db.prepare(`UPDATE strategies SET feedback_count = feedback_count - 1 WHERE id = ?`).run(strategyId);
+      if (prevRow.feedback === "positive") {
+        db.prepare(`UPDATE strategies SET positive_count = positive_count - 1 WHERE id = ?`).run(strategyId);
+      }
+    }
     db.prepare(
       `UPDATE strategies SET feedback_count = feedback_count + 1,
        positive_count = positive_count + CASE WHEN ? = 'positive' THEN 1 ELSE 0 END
        WHERE id = ?`
     ).run(feedback, strategyId);
 
-    return { ok: true, feedback_id: result.lastInsertRowid as number };
+    const row = db.prepare(
+      `SELECT id FROM strategy_feedback WHERE strategy_id = ? AND agent_id = ?`
+    ).get(strategyId, agentId) as { id: number };
+
+    return { ok: true, feedback_id: row.id };
   } catch (err: unknown) {
-    // UNIQUE 约束冲突 = 重复反馈
-    if (err instanceof Error && err.message.includes("UNIQUE")) {
-      return { ok: false, error: "You have already provided feedback for this strategy" };
-    }
     return { ok: false, error: `Failed to submit feedback: ${getErrorMessage(err)}` };
   }
 }
@@ -392,37 +417,37 @@ export function approveStrategy(
  */
 export function getEvolutionStatus(): EvolutionStats {
   try {
-    const totalExperiences = getCount(
-      db.prepare(`SELECT COUNT(*) as cnt FROM strategies WHERE category = 'experience'`)
-    );
+    const totalExperiences = (db.prepare(
+      `SELECT COUNT(*) as cnt FROM strategies WHERE category = 'experience'`
+    ).get() as any)?.cnt ?? 0;
 
-    const totalStrategies = getCount(
-      db.prepare(`SELECT COUNT(*) as cnt FROM strategies WHERE category != 'experience'`)
-    );
+    const totalStrategies = (db.prepare(
+      `SELECT COUNT(*) as cnt FROM strategies WHERE category != 'experience'`
+    ).get() as any)?.cnt ?? 0;
 
-    const pendingApproval = getCount(
-      db.prepare(`SELECT COUNT(*) as cnt FROM strategies WHERE status = 'pending'`)
-    );
+    const pendingApproval = (db.prepare(
+      `SELECT COUNT(*) as cnt FROM strategies WHERE status = 'pending'`
+    ).get() as any)?.cnt ?? 0;
 
-    const approvedCount = getCount(
-      db.prepare(`SELECT COUNT(*) as cnt FROM strategies WHERE status = 'approved'`)
-    );
+    const approvedCount = (db.prepare(
+      `SELECT COUNT(*) as cnt FROM strategies WHERE status = 'approved'`
+    ).get() as any)?.cnt ?? 0;
 
-    const rejectedCount = getCount(
-      db.prepare(`SELECT COUNT(*) as cnt FROM strategies WHERE status = 'rejected'`)
-    );
+    const rejectedCount = (db.prepare(
+      `SELECT COUNT(*) as cnt FROM strategies WHERE status = 'rejected'`
+    ).get() as any)?.cnt ?? 0;
 
-    const totalApplications = getCount(
-      db.prepare(`SELECT COUNT(*) as cnt FROM strategy_applications`)
-    );
+    const totalApplications = (db.prepare(
+      `SELECT COUNT(*) as cnt FROM strategy_applications`
+    ).get() as any)?.cnt ?? 0;
 
-    const totalFeedback = getCount(
-      db.prepare(`SELECT COUNT(*) as cnt FROM strategy_feedback`)
-    );
+    const totalFeedback = (db.prepare(
+      `SELECT COUNT(*) as cnt FROM strategy_feedback`
+    ).get() as any)?.cnt ?? 0;
 
-    const positiveFeedback = getCount(
-      db.prepare(`SELECT COUNT(*) as cnt FROM strategy_feedback WHERE feedback = 'positive'`)
-    );
+    const positiveFeedback = (db.prepare(
+      `SELECT COUNT(*) as cnt FROM strategy_feedback WHERE feedback = 'positive'`
+    ).get() as any)?.cnt ?? 0;
 
     const total = totalExperiences + totalStrategies;
     const approvedRate = total > 0 ? Math.round((approvedCount / total) * 10000) / 100 : 0;
@@ -661,16 +686,10 @@ export function checkVetoWindow(
   veto_deadline: number | null;
   observation_start: number | null;
 } {
-  const strategy = getRow<{
-    veto_deadline: number | null;
-    observation_start: number | null;
-    positive_count: number | null;
-    feedback_count: number | null;
-  }>(
-    db.prepare(`SELECT veto_deadline, observation_start, positive_count, feedback_count
-     FROM strategies WHERE id=?`),
-    strategyId
-  );
+  const strategy = db.prepare(
+    `SELECT veto_deadline, observation_start, positive_count, feedback_count
+     FROM strategies WHERE id=?`
+  ).get(strategyId) as any;
 
   if (!strategy) {
     return {
@@ -684,7 +703,7 @@ export function checkVetoWindow(
   const negativeCount = (strategy.feedback_count ?? 0) - (strategy.positive_count ?? 0);
 
   // 否决窗口判断
-  const inWindow = strategy.veto_deadline ? now < strategy.veto_deadline : false;
+  const inWindow = strategy.veto_deadline && now < strategy.veto_deadline;
 
   // 否决条件：负面超过正面的 50%
   const positiveCount = strategy.positive_count ?? 0;
@@ -827,19 +846,19 @@ export function proposeStrategyTiered(
 // ─── 内部辅助函数 ────────────────────────────────────────
 
 function getStrategyById(id: number): Strategy | undefined {
-  return getRow<Strategy>(db.prepare(`SELECT * FROM strategies WHERE id = ?`), id);
+  return db.prepare(`SELECT * FROM strategies WHERE id = ?`).get(id) as Strategy | undefined;
 }
 
 function getStrategyWithTier(id: number): TieredStrategy | undefined {
-  return getRow<TieredStrategy>(db.prepare(`SELECT * FROM strategies WHERE id = ?`), id);
+  return db.prepare(`SELECT * FROM strategies WHERE id = ?`).get(id) as TieredStrategy | undefined;
 }
 
 function getStrategyHistoryCount(proposerId: string): number {
   try {
-    return getCount(
-      db.prepare(`SELECT COUNT(*) as cnt FROM strategies WHERE proposer_id = ? AND status = 'approved'`),
-      proposerId
-    );
+    const row = db.prepare(
+      `SELECT COUNT(*) as cnt FROM strategies WHERE proposer_id = ? AND status = 'approved'`
+    ).get(proposerId) as any;
+    return row?.cnt ?? 0;
   } catch {
     return 0;
   }
@@ -847,7 +866,7 @@ function getStrategyHistoryCount(proposerId: string): number {
 
 function getAgentTrustScore(agentId: string): number {
   try {
-    const row = db.prepare(`SELECT trust_score FROM agents WHERE agent_id = ?`).get(agentId) as { trust_score: number } | undefined;
+    const row = db.prepare(`SELECT trust_score FROM agents WHERE agent_id = ?`).get(agentId) as any;
     return row?.trust_score ?? 50;
   } catch {
     return 50;
@@ -912,14 +931,16 @@ export function scoreAppliedStrategies(): {
 } {
   const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
 
-  // 查找 7 天前创建的 neutral 反馈
+  // 查找 7 天前创建、且已实际采纳（sf.applied=1）的 neutral 反馈（T7 修复：原 s.approved 列不存在，
+  // 改用 s.status='approved'，并加 sf.applied=1 约束——未验证已应用的反馈不降分）
   const staleFeedbacks = db.prepare(`
     SELECT sf.strategy_id, sf.agent_id, sf.id as feedback_id, s.title
     FROM strategy_feedback sf
     JOIN strategies s ON s.id = sf.strategy_id
     WHERE sf.feedback = 'neutral'
       AND sf.created_at < ?
-      AND s.approved = 1
+      AND s.status = 'approved'
+      AND sf.applied = 1
   `).all(sevenDaysAgo) as Array<{
     strategy_id: number;
     agent_id: string;
@@ -958,4 +979,41 @@ export function scoreAppliedStrategies(): {
   }
 
   return { scored, details };
+}
+
+// ─── FTS 索引重建 ────────────────────────────────────────
+
+/**
+ * 为所有已有 strategies 重建 FTS 索引
+ * 在 db.ts 模块初始化时调用，确保 stdio.js 等入口也不会漏掉
+ */
+export function rebuildStrategiesFts(): void {
+  try {
+    const stratCount = (db.prepare(`SELECT COUNT(*) as cnt FROM strategies`).get() as any)?.cnt ?? 0;
+    if (stratCount === 0) {
+      return; // 无数据无需重建
+    }
+    // 全量重建：先清空 fts5，再按 strategies 重新填充，保证两者完全一致。
+    // 原逻辑不清空就全量重插，在「fts 部分恢复」场景下会因 rowid 重复触发
+    // SQLITE_CONSTRAINT（constraint failed）。DELETE 后重插是幂等的。
+    db.prepare(`DELETE FROM strategies_fts`).run();
+
+    const strategies = db.prepare(
+      `SELECT id, title, content, category FROM strategies`
+    ).all() as { id: number; title: string; content: string; category: string }[];
+
+    const insertFts = db.prepare(
+      `INSERT INTO strategies_fts (rowid, title, content, category) VALUES (?, ?, ?, ?)`
+    );
+
+    const rebuildBatch = db.transaction((strats: { id: number; title: string; content: string; category: string }[]) => {
+      for (const s of strats) {
+        insertFts.run(s.id, s.title, s.content, s.category);
+      }
+    });
+
+    rebuildBatch(strategies);
+  } catch (err: unknown) {
+    logError("evolution_rebuildStrategiesFts_error", err);
+  }
 }

@@ -1,40 +1,53 @@
-## Description: <br>
-Records OpenClaw tool calls before and after execution for auditing, debugging, usage statistics, and error tracking with sensitive data redaction guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records OpenClaw tool calls before and after execution for audit logging, debugging, usage statistics, and error tracking.
 
-## Publisher: <br>
-[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot)
 
-## Use Case: <br>
-Developers and operators use this skill to add audit logging around OpenClaw tool calls so they can investigate tool usage, failures, sessions, and usage patterns. It is most relevant where tool-call logs are intentionally collected and handled as sensitive operational data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit logs can record sensitive tool inputs, outputs, session IDs, and user IDs. <br>
-Mitigation: Treat audit logs as sensitive data, restrict read access, define retention and cleanup, and redact or avoid logging parameters, results, session identifiers, and user identifiers by default. <br>
-Risk: Broad tool-call auditing can collect more operational data than intended. <br>
-Mitigation: Install only when broad auditing is intentional, review logged fields before deployment, and keep the hook scoped to the minimum information needed for auditing. <br>
+## Use Case:
 
+Developers and operators use this skill to add audit logging around OpenClaw tool execution so they can investigate tool usage, failures, and session-level activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanxiao-bot/openclaw-audit-log-hook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript, JSON, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces hook implementation guidance and log-analysis commands; it does not create log files unless the user implements the hook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Audit logs may record sensitive tool inputs, outputs, and user or session identifiers without effective redaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, add mandatory recursive redaction, minimize logged fields, pseudonymize identifiers, and define log retention and access controls.
+
+Risk: Using the sample as-is with credentials, private files, user messages, or production tools could expose sensitive information.
+
+Mitigation: Use only in environments where complete tool-call auditing is intended and logs are tightly controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanxiao-bot/skills/openclaw-audit-log-hook)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript, JSON, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes audit log record examples and commands for basic log statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

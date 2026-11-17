@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "minimumNodeMajor": 22,
+  "credentialEnvironmentVariable": "AI_GATEWAY_API_KEY",
+  "image": {
+    "model": "openai/gpt-image-2",
+    "maxReferences": 4,
+    "maxReferenceBytes": 52428800,
+    "timeoutSeconds": 300
+  },
+  "video": {
+    "models": {
+      "standard": "bytedance/seedance-2.0-fast",
+      "high": "bytedance/seedance-2.0"
+    },
+    "maxReferences": 1,
+    "maxReferenceBytes": 31457280,
+    "timeoutSeconds": 600,
+    "defaultDurationSeconds": 8,
+    "minimumDurationSeconds": 4,
+    "maximumDurationSeconds": 15,
+    "defaultResolution": "1280x720"
+  }
+}

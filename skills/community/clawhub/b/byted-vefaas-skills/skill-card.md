@@ -1,48 +1,71 @@
-## Description: <br>
-Deploy and manage serverless applications on Volcengine veFaaS. Use when the user wants to deploy web apps, manage functions, configure environment variables, or work with veFaaS services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage serverless applications on Volcengine veFaaS. Use when the user wants to deploy web apps, manage functions (pull code, upload and deploy), configure environment variables, or work with veFaaS services.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate the vefaas CLI for deploying web applications, managing functions, configuring environment variables, and troubleshooting Volcengine veFaaS services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to run commands that create, update, deploy, or redeploy live Volcengine veFaaS cloud resources. <br>
-Mitigation: Review target account, region, application, function, gateway, and environment before execution; remove automatic confirmation from copied deploy commands unless automation is intentional. <br>
-Risk: The skill covers authentication and environment variable workflows that can involve cloud credentials, API keys, and secrets. <br>
-Mitigation: Use least-privilege or short-lived credentials, avoid passing secrets directly on command lines, protect local credential files, and redact environment values and debug logs before sharing. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy web applications, manage veFaaS functions, configure environment variables, authenticate the veFaaS CLI, and troubleshoot Volcengine serverless deployments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/volcengine-skills/byted-vefaas-skills) <br>
-- [vefaas CLI package](https://vefaas-cli.tos-cn-beijing.volces.com/volcengine-vefaas-latest.tgz) <br>
-- [Volcengine Console](https://console.volcengine.com) <br>
-- [API Gateway console](https://console.volcengine.com/veapig) <br>
-- [Authentication Reference](artifact/references/authentication.md) <br>
-- [Configuration Reference](artifact/references/configuration.md) <br>
-- [Environment Variables Reference](artifact/references/environment-variables.md) <br>
-- [Framework Detection Reference](artifact/references/framework-detection.md) <br>
-- [Troubleshooting Reference](artifact/references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that affect live cloud resources and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide installation and use of a powerful cloud CLI that changes live Volcengine resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution and confirm the target app, region, gateway, and expected impact before using non-interactive deployment flags.
+
+Risk: Authentication examples include access keys, secret keys, tokens, and environment variables that can expose credentials if handled carelessly.
+
+Mitigation: Prefer SSO or protected CI secrets, avoid pasting credentials into shared prompts or shell history, and redact credentials from command output and logs.
+
+Risk: Debug logs may contain API request or response data related to deployments and authentication failures.
+
+Mitigation: Inspect and redact debug logs before sharing them outside the trusted deployment team.
+
+Risk: The global CLI install command downloads a package from a remote tarball URL.
+
+Mitigation: Pin or verify the CLI package source before global installation, especially in production or CI environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-vefaas-skills)
+- [Volcengine Console](https://console.volcengine.com)
+- [API Gateway Console](https://console.volcengine.com/veapig)
+- [Authentication Reference](references/authentication.md)
+- [Configuration Reference](references/configuration.md)
+- [Environment Variables Reference](references/environment-variables.md)
+- [Framework Detection Reference](references/framework-detection.md)
+- [Troubleshooting Reference](references/troubleshooting.md)
+- [Template Quickstart](cookbooks/template-quickstart.md)
+- [Deploy Existing Code](cookbooks/deploy-existing-code.md)
+- [Manage Functions](cookbooks/manage-functions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that install a cloud CLI, authenticate with Volcengine, deploy applications, update function configuration, set environment variables, and inspect logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

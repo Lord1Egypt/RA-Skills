@@ -1,6 +1,6 @@
 ---
 name: fulcra-dashboard
-description: "Builds a highly customizable, interactive HTML dashboard using Alpine.js, modern Vanilla CSS, and a Python backend to display private data from the user's Fulcra data store locally. Includes workflows to securely export a sanitized, non-interactive version for public sharing."
+description: "Builds a highly customizable, interactive HTML dashboard using Alpine.js, modern Vanilla CSS, and a Python backend to display private data from the user's Fulcra data store locally. Includes workflows to export a specific, previewable directory for public sharing."
 homepage: "https://github.com/fulcradynamics/agent-skills"
 license: "MIT"
 user-invocable: true
@@ -11,15 +11,28 @@ metadata: { "openclaw": { "emoji": "📊" } }
 
 This skill provides the automated setup for a lightweight, build-less web dashboard. It relies entirely on **Alpine.js** for state management and **Vanilla CSS** for styling. It eschews complex frameworks (like SvelteKit) and utility-class libraries in favor of a "Single-Scroll Artifact" or a "Static Triad".
 
-## Local First & Secure Exports
+## View Locally or Publish Publicly
 
-This dashboard is designed fundamentally as a **local, private interface**. By default, it runs on localhost using a Python server, granting it safe access to the user's private data, local agent memory (`memory.gz`), and enabling interactive features like a Chat Envoy that triggers local agent shell commands, as well as a local-only File Browser for exploring the Fulcra file store.
+This dashboard is designed to present the user's Fulcra data, which can be viewed locally or published publicly. By default, it runs on localhost using a simple Python static server. Please note that the dashboard includes and relies on scripts fetched from public CDNs (such as Alpine.js, D3.js, Plotly, etc.) for visualizing and presenting the data.
 
-**Crucially:** The local application and its sensitive capabilities must NEVER be published to the public internet directly. If the user wishes to share a dashboard, you must generate a separate, sanitized **export** that strips out the Python backend, interactive agent features, and unapproved private data.
+Important: The local working application root must never be published to the public internet directly, as it often contains intermediate files and full datasets. If the user wishes to share a dashboard, you must deploy only the isolated `public/` directory that contains only the specific data and files intended for publication.
+
+## Reliable Delivery & Intent
+
+The primary and preferred method for delivering this view is generating a robust HTML application locally (via the static triad) and optionally publishing it (e.g., via Surge). Our goal is to make something impressive. 
+
+However, you must be aware of the user's intent:
+- **High-Fidelity Goal:** If the user is specifically trying to build a high-quality dashboard, you should spend more time troubleshooting and trying to make the static triad, localhost server, or public deployment work.
+- **Fast Visibility (e.g., Onboarding):** If the user is just trying to view things for the first time (such as during the `fulcra-get-started` flow), give faster delivery more weight.
+
+If the primary static triad and deployment routes are truly not viable in the current environment, you must gracefully fall back to alternative delivery mechanisms. Alternative options include (but are not limited to):
+- **Prefab (`https://gofastmcp.com/apps/prefab`):** Using an external rapid-UI generator if configured.
+- **Custom HTML/Image Generation:** Generating a simpler bespoke HTML file or using Python (e.g., `matplotlib`) to render a static image chart summarizing the data.
+- **ASCII Charts & Markdown:** As a last resort, or for extremely fast inline updates, render the data directly in the chat using Markdown tables and ASCII visualizations.
 
 ## Architecture Decrees
 
-When constructing this dashboard, you **MUST** follow these strict architectural rules to prevent the file from becoming a tangled, unmaintainable monolith:
+When constructing this dashboard, you **must** follow these strict architectural rules to prevent the file from becoming a tangled, unmaintainable monolith:
 
 1. **Monumental Landmarks (Banner Comments):** Divide the HTML file into distinct provinces using highly visible comments. This ensures you (the agent) can navigate and edit surgical blocks safely.
    ```html
@@ -47,9 +60,39 @@ When constructing this dashboard, you **MUST** follow these strict architectural
    - `styles.css` (Custom overriding aesthetics)
    No build step is allowed.
 
+## Adding Advanced Visualizations
+
+When the user requests more complex or varied visualizations, you have two primary avenues:
+
+### 1. Frontend: Multi-Dimensional & Interactive Charts (D3.js, Plotly, etc.)
+The default template includes basic charts, but the "Static Triad" architecture gracefully supports highly advanced, multi-dimensional visualizations—including interactive 3D WebGL scenes—without ever needing a build step.
+- **Workflow:** Include the required CDN library (e.g., `d3.js`, `plotly.js`, `d3-cloud`) in `index.html`. Add a new rendering method inside the `Alpine.data()` block (or the script tag) to bind the `.jsonl` timeline data to the DOM.
+- **Supported Paradigms & Chart Types:** You can expand the dashboard with various chart types tailored to the user's data. **Do not restrict yourself to these examples; you are encouraged to pull in any chart type or lightweight CDN library that best fits the specific data.** Examples include:
+  - **Temporal & Milestones:** Implement Timeline or Gantt charts using D3 or Plotly to visualize spans of time, project milestones, or overlapping events.
+  - **Textual & Frequency:** Use Word Clouds (via `d3-cloud` or similar lightweight libraries) or Tag Clouds to show the frequency of text terms, keywords, or activity logs natively in the browser.
+  - **Progress & Completion:** Build Gauges, Progress Bars, or Burn-down charts to track completion status, quotas, or project progression against a defined goal.
+  - **Advanced Correlations:** Heatmaps for daily frequency, 2D D3 scatter plots, or fully interactive 3D WebGL scatter plots (e.g., mapping Sleep on X, Focus on Y, and Steps on Z) to explore complex relationships.
+- **Styling Integration:** Ensure advanced charting libraries blend seamlessly with the user's chosen theme. Explicitly configure library backgrounds and grid lines to be `transparent` or translucent so the CSS glassmorphism, gradients, and custom themes shine through. Increase container dimensions (e.g., `.chart-tall { height: 400px; }`) to give 3D scenes enough physical space to be comfortably rotated by the user.
+- **Constraint:** Keep the rendering code clean and modular. Isolate chart rendering functions so they can be easily re-rendered on window resize or data updates.
+
+### 2. Backend: Python-Generated Visualizations
+For highly complex, compute-intensive, or specialized visual outputs (like word clouds, network graphs, or composite rasterized images), leverage the Python backend.
+- **Workflow:** Modify `server.py` (or create a secondary Python worker script) to read the local Fulcra `.jsonl` data, process it using libraries like `matplotlib`, `seaborn`, or `networkx`, and output a static image (e.g., `.png`, `.svg`) or pre-calculated JSON structure into the dashboard directory.
+- **Integration:** Update `index.html` to reference the generated image (e.g., `<img src="/generated-network.png">`) or have the Alpine state fetch the advanced JSON artifact.
+- **Constraint:** Ensure the Python generation step can be run independently or triggered reliably, so the dashboard always reflects the latest data without breaking the simple local server paradigm.
+
+## Permissions & Consent
+
+Before proceeding with the **initial** dashboard generation, you must explicitly declare your intentions and request the user's permission for the following actions:
+1. **Fetch Fulcra Data:** Permission to query the Fulcra API to download their personal data.
+2. **Use Third-Party Scripts:** Permission to include and rely on external scripts fetched from public CDNs (such as Alpine.js, D3.js, Plotly, etc.) to visualize the data.
+3. **Use Other Data Sources:** Permission to use other external tools (like image generation) to enhance the dashboard's theme.
+
+Wait for the user's explicit consent before proceeding with data ingestion or dashboard scaffolding. Once consent is granted for a specific project or workspace, you do not need to ask again for subsequent data updates or regenerations.
+
 ## Usage
 
-When a user requests to "set up the web app" or "create a dashboard for the Fulcra skills" (or if they are transitioning from the `fulcra-onboarding` skill), you should execute the setup script provided by this skill. 
+When a user requests to "set up the web app" or "create a dashboard for the Fulcra skills" (or if they are transitioning from the `fulcradynamics/agent-skills/fulcra-get-started` skill), you should execute the setup script provided by this skill. 
 
 ```bash
 # Run the setup script to scaffold the Alpine dashboard
@@ -61,29 +104,28 @@ If no `<target-directory>` is provided, it defaults to creating a `fulcra-dashbo
 ## Workflow
 
 **Contextual Awareness (Standalone vs. Post-Onboarding):** 
-Do not assume this skill is always run immediately after `fulcra-onboarding`. 
+Do not assume this skill is always run immediately after `fulcra-get-started`. 
 - **If transitioning from Onboarding:** The user has likely just seen a static HTML preview of their data. Acknowledge this transition and frame this step as *building out* and *upgrading* their existing preview into a live, interactive web app. Leverage the context of the annotations they just built, skip redundant discovery, and carry over their preferred theme.
 - **If running Standalone:** You must first discover what data the user wants to visualize (run `uv tool run fulcra-api catalog` to check for user annotations and discuss options before proceeding).
 
 1. **Scaffold:** The script copies a clean, un-styled Alpine.js dashboard template into the target directory.
-2. **Data Ingestion (Requires Consent):** Automatically fetch the user's relevant Fulcra data using the `fulcra-api` CLI. 
-   - **Important:** Always ask the user for permission to query the Fulcra API to build the dashboard before fetching records.
-   - Run `uv tool run fulcra-api catalog` to discover available data. **CRITICAL:** Prioritize user-configured data over passive metrics (like step count). Explicitly filter for items where `categories` includes `"user_configured"`, or where the `id` follows the format `*Annotation/<UUID>` (e.g., `ScaleAnnotation/1234-abcd...`).
+2. **Data Ingestion:** Automatically fetch the user's relevant Fulcra data using the `fulcra-api` CLI (after securing the permissions mentioned above). 
+   - Run `uv tool run fulcra-api catalog` to discover available data. Note: Prioritize user-configured data over passive metrics (like step count). Explicitly filter for items where `categories` includes `"user_configured"`, or where the `id` follows the format `*Annotation/<UUID>` (e.g., `ScaleAnnotation/1234-abcd...`).
    - Fetch records for the user's custom annotations (e.g., `uv tool run fulcra-api get-records "ScaleAnnotation/<UUID>" "30 days" > timeline_name.jsonl`).
-   - **Agent Visibility Package:** If the user previously enabled the Universal Agent Visibility Package (or if you see "Agent Tasks Completed" and "Current Agent Work" in their catalog), you MUST fetch these agent annotations as well and explicitly include them in the `data.json` timelines array so your background work is visualized alongside their personal data.
-   - **Records Processed:** You MUST fetch the `RecordsProcessed` metric for the timeline (e.g., `uv tool run fulcra-api get-records "RecordsProcessed" "30 days" > records_processed.jsonl`) to populate the Data Velocity chart. Do not skip this step or set it to null.
-   - Keep the files as raw JSONL in the dashboard directory.
-   - The `data.json` config file acts as a manifest. It should map your layout to the `.jsonl` files you downloaded, and you **must** include the annotation `description` in the timeline block, like this: `{"summary": "A concise overview of the current data and recent activity...", "timelines": [{"id": "...", "title": "...", "description": "The description from the catalog...", "icon": "...", "color": "...", "data": "timeline_name.jsonl"}], "recordsProcessed": "records_processed.jsonl"}`. **Crucial:** For the `"summary"` field, you MUST read the downloaded `.jsonl` data and write a short, personalized text summary of the actual real-world activity shown in the data (e.g., "You've been consistently tracking your mood, with a slight dip this week"). Do not write meta-descriptions like "This is a retro dashboard."
+   - **Agent Visibility Package:** If the user previously enabled the Universal Agent Visibility Package (or if you see "Agent Tasks Completed" and "Current Agent Work" in their catalog), you must fetch these agent annotations as well and explicitly include them in the `data.json` timelines array so your background work is visualized alongside their personal data.
+   - **Data Updates:** You must run the `data-updates` CLI command for the timeline (e.g., `uv tool run fulcra-api data-updates "30 days" > data_updates.json`), explicitly move it to `public/data_updates.json`, and link it as `"recordsProcessed": "data_updates.json"` in your config to populate the "Your data" chart. Do not skip this step.
+   - Keep the raw dumps in the root directory, and move ONLY the approved, final `.jsonl` and `.json` files to the `public/` directory so the frontend can read them.
+   - The `public/data.json` config file acts as a manifest. It should map your layout to the `.jsonl` files in the `public/` directory, and you **must** include the annotation `description` in the timeline block, like this: `{"summary": "An entertaining, thematic overview of the current data...", "timelines": [{"id": "...", "title": "...", "description": "The description from the catalog...", "icon": "...", "color": "...", "data": "timeline_name.jsonl"}], "recordsProcessed": "records_processed.jsonl"}`. **Crucial:** For the `"summary"` field, you must read the downloaded `.jsonl` data and write an interesting, entertaining, and highly thematic text summary of the actual real-world activity. Adopt the persona of the dashboard's theme (e.g., an observatory log, a captain's entry, a baker's notes) to make the data narrative fun and engaging. Do not write boring meta-descriptions or dry analytical text.
    - You do not need to write an aggregation script; the dashboard will automatically parse `.jsonl` files and aggregate records for the charts natively on `init()`.
 3. **Theming & Visualization:**
    - **Theme Discovery:** Ask the user what "theme" or "vibe" they want (e.g., minimalist dark mode, cyberpunk, a retro diner, a space station, a cozy bakery). 
-   - **Embrace the Theme (HTML & Copy):** Do not leave default boilerplate intact! Modify `index.html` directly to rewrite the main title, subtitle, and all component headers to fit the theme (e.g., change "Fulcra Dashboard" to "The Cybernetic Core", "Records Processed" to "Baguettes Baked", and "Relay" to something thematically appropriate for the chat interface like "The Oracle's Ear" or "Comms Link"). Replace all default emojis (like 📊 or 🛰️) with theme-appropriate icons.
-   - **Preserve the Bento Layout (CRITICAL):** The base HTML and CSS files use a `.dashboard-bento-grid` layout that features a sticky left column and a flexible right column. **Do not rewrite or remove the core structural HTML** (e.g. `.layout-container`, `.dashboard-bento-grid`, `.bento-col-left`, `.bento-col-right`). When you edit the CSS, you must leave the structural grid properties (`grid-template-columns`, `sticky` positioning, `flex` directions) intact to prevent breaking the layout. Limit your CSS edits to colors (by updating the root variables), fonts, borders, box-shadows, and backgrounds.
+   - **Embrace the Theme (HTML & Copy):** Do not leave default boilerplate intact! Modify `index.html` directly to rewrite the main title, subtitle, and all component headers to fit the theme (e.g., change "Fulcra Dashboard" to "The Cybernetic Core" and "Records Processed" to "Baguettes Baked"). Replace all default emojis (like 📊 or 🛰️) with theme-appropriate icons.
+   - **Preserve the Layout Container:** The base HTML and CSS files use a `.layout-container` for spacing. Keep this structure intact. Limit your CSS edits to colors (by updating the root variables), fonts, borders, box-shadows, and backgrounds.
    - **Original Art (Required):** Generate one piece of highly creative thematic art using the `image_generate` tool. Save it to the folder and reference it via an `<img>` tag in the dashboard header. **Style Directive:** The image must be extremely high-quality and perfectly cohesive with the user's chosen theme. Whether the vibe calls for retro 2D pixel art, a minimalist vector illustration, or a sleek 3D render, ensure the specific art style, color palette, and lighting strictly match the CSS variables and overall aesthetic you are building.
-   - **Hero Text Legibility & Scale:** When styling the hero header, ensure the text overlaid on the image is highly legible. Adapt the technique to fit the theme (e.g., use a frosted glass `backdrop-filter: blur()` block for tech/modern themes, an ambient `radial-gradient` vignette for dark/moody themes). Additionally, the hero must not dominate the viewport. Keep it compact (e.g., `min-height: 250px`) so the core telemetry data is visible "above the fold."
-   - **Dynamic Animated Elements:** Inject at least one CSS animation (using standard CSS `@keyframes` in `theme.css`) that fits the theme (e.g., a floating asteroid, a blinking cursor, a buzzing fly) and attach it to the `.animation-layer` or other suitable elements.
+   - **Hero Image Prominence & Legibility:** Ensure the generated thematic art does not get lost behind the dashboard title. Instead of blindly overlaying text across the entire image, use creative layouts like a split-panel hero (text on one side, unobstructed art on the other), a bento-style hero block, or a targeted gradient mask that leaves the primary subject of the art perfectly visible. Keep the overall header compact enough (e.g., `min-height: 250px` to `350px`) so the core telemetry data remains visible "above the fold."
+   - **Dynamic Animated Elements:** Do not settle for a simple moving dot or static icon. Create highly engaging, fun, and thematic animations. You are encouraged to pull in lightweight CDN libraries (e.g., `tsparticles` for rich particle systems like starfields or embers) or author complex, multi-layered CSS/SVG animations that genuinely delight the user.
 4. **Git Repository Initialization:**
-   - Once scaffolded, **you MUST prompt the user to initialize a git repository**.
+   - Once scaffolded, **you must prompt the user to initialize a git repository**.
    - Check if `git` is installed. Suggest 1 or 2 fun repository names based on their theme.
    - Initialize locally (`git init && git add . && git commit -m "Initial commit"`). *Do not push to GitHub yet.*
 5. **Run & Verify:**
@@ -95,46 +137,29 @@ Do not assume this skill is always run immediately after `fulcra-onboarding`.
    - Provide the user with the localhost link.
 6. **Public Publication (Requires Consent & Preview):**
    - The user may wish to publish a version of their dashboard to the public internet.
-   - **MANDATORY ISOLATION & SCRATCH BUILD:** The local dashboard is private. You MUST NOT copy the local dashboard files to the public internet. Instead, you must build the public dashboard from scratch as a separate entity:
-     1. Ask the user explicitly which specific data timelines and metrics they want to make public.
-     2. Create a separate `public-export` directory.
-     3. Scaffold a fresh HTML structure into `public-export` by copying the necessary components from the `template-dashboard` directory. **CRITICAL:** Do NOT include the Chat Envoy or the File Browser in the public HTML structure. The public dashboard must be strictly read-only.
-     4. Copy ONLY the explicitly approved data files (e.g., specific `.jsonl` files) into `public-export`, and create a new, sanitized `data.json` referencing only those files. Copy over the `app.js`, `theme.css`, and required images, ensuring they do not contain sensitive local state.
-     5. Start a new local server on a different port (e.g., 8082) serving ONLY the `public-export` directory.
-     6. Provide the user with this new localhost link and explicitly ask them to verify that the data shown is safe for public consumption.
+   - **The built-in `public` directory:** Because the dashboard is already structured with a `public/` directory that only contains the UI and explicitly copied data files, you do not need to create a new folder from scratch.
+     1. Ask the user to verify in the local preview that the data shown is exactly what they want to share.
+     2. Ensure that `public/` contains *only* the specific data files needed by the frontend, and that any raw data dumps, `dev.log`, or python scripts remain safely outside it in the root directory.
+   - **Crucial Warning & Confirmation:** Directly at the point of publishing (before running any deployment tools), you must present a clear warning to the user. State exactly which data files are inside the `public/` directory and will be made public, and explicitly ask for their final confirmation to proceed with the deployment.
    - Wait for their explicit confirmation before proceeding.
    - If they agree, offer them three deployment options, ordered by ease of use:
-     - **Option 1: Surge (Easiest, No Git Required)**
+     - **Option 1: Surge (Secure & Easiest, No Git Required)**
        - Installation: `npm install -g surge`
-       - Deployment: Run `surge` inside the `public-export` directory.
-       - UX: The user will be prompted in the terminal for an email/password to create a free account on the fly, and then an auto-generated domain will be provided. Instantly deploys the folder.
+       - Security Prep: Before deploying, ensure you insert `<meta name="robots" content="noindex, nofollow">` into the `<head>` of `public/index.html` to prevent search engine indexing. (Surge subdomains are not publicly indexed or discoverable by default, so this combination provides security through obscurity and explicit opt-out).
+       - Deployment: Generate a random 6-character alphanumeric suffix and run `surge . <project-name>-<random-suffix>.surge.sh` inside the `public/` directory.
+       - UX: The user will be prompted in the terminal for an email/password to create a free account on the fly (if not already authenticated). The folder will instantly deploy to the unguessable subdomain. You must present the final link to the user explicitly as an `https://` URL.
      - **Option 2: GitHub Pages (Best for Version Control)**
        - Installation: Ensure `gh` (GitHub CLI) is installed and authenticated (`gh auth status`).
-       - Deployment: Navigate into the `public-export` directory, initialize git, create the repository, and push (`git init && git add . && git commit -m "Initial public export" && gh repo create <name> --public --source=. --remote=origin --push`).
+       - Deployment: Navigate into the `public/` directory, initialize git, create the repository, and push (`git init && git add . && git commit -m "Initial public export" && gh repo create <name> --public --source=. --remote=origin --push`).
        - Enable Pages: `gh api repos/{owner}/{repo}/pages -X POST -f "source[branch]=main" -f "source[path]=/"`.
        - UX: Creates a standard GitHub repository and publishes to `https://<username>.github.io/<repo>/`.
      - **Option 3: Vercel (No Git Required, Professional Hosting)**
        - Installation: `npm i -g vercel`
-       - Deployment: Run `vercel deploy --prod` inside the `public-export` directory.
+       - Deployment: Run `vercel deploy --prod` inside the `public/` directory.
        - UX: Opens a browser for authentication if needed, then asks a few interactive setup questions in the terminal before uploading the folder directly to Vercel's edge network.
    - Execute the chosen deployment path and provide the user with the final public URL.
 7. **Handoff & Next Steps:**
    - Once the user has seen the live local dashboard, do not just stop. Outline possible next directions to keep the momentum going:
      - **Enrich the Data:** Pull in passive data from the Fulcra Context app (e.g., location, heart rate) or ingest data from other external sources to correlate with their custom annotations.
-     - **Connect the Chat Envoy:** Work on wiring up the Chat Envoy so they can chat with you directly from within the dashboard itself.
      - **Advanced Visualizations:** Build more complex D3.js charts or specific data rollups.
      - **Python Data Analysis:** Set up scripts on the Python backend (`server.py`) to analyze their data before sending it to the frontend.
-
-## Advanced Modifications
-
-**Connecting the Chat Envoy:**
-If the user asks you to "connect the chat envoy" (as prompted by the default placeholder error message in the dashboard), you must edit `server.py` to route messages and set up a polling mechanism.
-
-**🚨 SECURITY CONSIDERATION:** We avoid having the web server execute shell commands directly (like triggering OpenClaw via subprocess) to prevent security audit flags and reduce RCE risks. Instead, the backend acts as a passive queue, and the agent polls it.
-
-1. Modify `server.py` to use a persistent `chat.json` file rather than an in-memory `chat_history` list.
-2. Update the `do_POST` handler for `/api/chat` to simply record the new user message into `chat.json` and mark it as "unread".
-3. Add a new endpoint to `server.py` (e.g., `GET /api/chat/unread`) that returns any unread messages from `chat.json` and simultaneously marks them as read.
-4. Set up a polling mechanism (e.g., a background bash script or an OpenClaw native cron job, pending user approval) that checks the `/api/chat/unread` endpoint periodically.
-   - *Note on token usage:* If using OpenClaw's native `cron` tool, the model is invoked every time the cron triggers. To avoid burning tokens every 5 seconds, either use a longer interval (e.g., checking via `HEARTBEAT.md` every 30 minutes) or write an external bash script that loops every 5 seconds, checks the endpoint via `curl`, and ONLY invokes the agent via `openclaw agent --to main --message ...` when unread messages are found. Discuss these tradeoffs with the user before setting up the schedule.
-5. When the agent receives an unread message, it should read the local `chat.json` file for context, respond to the user's latest message, and append the response to `chat.json` as role 'assistant' with a timestamp.

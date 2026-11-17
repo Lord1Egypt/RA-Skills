@@ -1,40 +1,58 @@
-## Description: <br>
-Task Killer helps an agent recognize explicit stop or cancel requests, interrupt the current task, and clean up related subagents, processes, or temporary state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快速识别并立即中断当前执行任务，清理相关资源，节省 token 和时间，准备执行新任务。
 
-## Publisher: <br>
-[shiker1996](https://clawhub.ai/user/shiker1996) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiker1996](https://clawhub.ai/user/shiker1996)
 
-## Use Case: <br>
-Agent users and developers use this skill to stop misdirected or obsolete work quickly, provide interruption feedback, and prepare the agent for a new instruction. It is intended for workflows where saving time, tokens, and active resources matters more than continuing the current task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can terminate running agents and process sessions too broadly when common stop phrases trigger it. <br>
-Mitigation: Limit activation to explicit commands, require confirmation before killing processes or subagents, and restrict cleanup to resources created by the current task or session. <br>
+## Use Case:
 
+Agent users and developers use this skill to stop an active task when the direction is wrong, requirements change, or continued execution would waste time and tokens. It provides interruption language, cleanup expectations, and examples for resuming with a new task.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shiker1996/task-killer) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with status text, code snippets, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include counts of terminated subagents, killed process sessions, and cleaned temporary files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: Broad trigger phrases can stop active work unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit slash commands for destructive interruption, and confirm ambiguous stop requests before killing sessions.
+
+Risk: Cleanup behavior can terminate visible subagents and process sessions without reliable scoping.
+
+Mitigation: Limit cleanup to resources created by the current task and show a preview of affected sessions before termination.
+
+Risk: Temporary-file cleanup may remove useful in-progress work.
+
+Mitigation: Keep temporary-file cleanup opt-in and preserve an interruption record so the user can restart with context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shiker1996/skills/task-killer)
+- [Publisher profile](https://clawhub.ai/user/shiker1996)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown guidance with command examples and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cleanup summaries for stopped subagents, background processes, and temporary files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

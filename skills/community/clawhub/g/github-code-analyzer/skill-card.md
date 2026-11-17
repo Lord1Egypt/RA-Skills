@@ -1,42 +1,57 @@
-## Description: <br>
-Clone and analyze GitHub project code quality using DeepSeek AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clone and analyze GitHub project code quality using DeepSeek AI.
 
-## Publisher: <br>
-[woaim65](https://clawhub.ai/user/woaim65) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woaim65](https://clawhub.ai/user/woaim65)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect public GitHub repositories for project structure, code quality, possible bugs, security issues, and improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a user-supplied repository URL through a shell command. <br>
-Mitigation: Use only trusted public repository URLs in a disposable environment, and revise the skill to use argument-based git execution with strict GitHub URL validation. <br>
-Risk: Sampled source code and project structure may be sent to an external AI endpoint. <br>
-Mitigation: Confirm user consent before remote AI submission, redact secrets before analysis, and disclose the external provider clearly to users. <br>
-Risk: The security review verdict is suspicious. <br>
-Mitigation: Review before installing and apply the security guidance before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze public GitHub repositories for project structure, code quality, potential bugs, security issues, and improvement suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/woaim65/github-code-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown analysis with repository structure, code quality notes, possible bug and security findings, and improvement suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a public GitHub repository URL and optional model name; samples repository files and can fall back to structure-only output if AI analysis fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs an unsafe shell clone command on a repository URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, non-sensitive repositories in a sandbox with no valuable local files or credentials; fix the implementation to use spawn or execFile with strict GitHub URL validation.
+
+Risk: Sampled repository code is sent to an external API without precise disclosure or consent.
+
+Mitigation: Disclose the external API recipient and transmitted data, and require user consent before sending code to any third party.
+
+Risk: A credential-like value is embedded in the artifact.
+
+Mitigation: Remove the embedded value and use managed secrets or user-provided credentials instead.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/woaim65/skills/github-code-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style text report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns repository structure, code quality observations, bug and security issue identification, and improvement suggestions; may fall back to structure-only analysis if the external analysis API fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

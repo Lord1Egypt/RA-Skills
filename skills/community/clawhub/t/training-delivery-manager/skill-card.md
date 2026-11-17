@@ -1,43 +1,57 @@
-## Description: <br>
-A comprehensive skill for managing corporate training delivery, including contract generation, travel booking, materials preparation, venue setup, and post-training communications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive skill for managing corporate training delivery, including contract generation, travel booking, materials preparation, venue setup, and post-training communications.
 
-## Publisher: <br>
-[brandon-zhanghaodong](https://clawhub.ai/user/brandon-zhanghaodong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brandon-zhanghaodong](https://clawhub.ai/user/brandon-zhanghaodong)
 
-## Use Case: <br>
-Employees and training operations teams use this skill to coordinate corporate training delivery tasks, including contracts, trainer travel, materials preparation, venue setup, and post-training communications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Travel booking workflows may involve personal identity, contact, itinerary, or payment-related details. <br>
-Mitigation: Share only the minimum personal information needed and use approved secure booking, payment, and communication channels. <br>
-Risk: Contract and poster workflows reference templates that may be missing from the artifact. <br>
-Mitigation: Verify required templates are available and approved before relying on generated contracts, articles, or design briefs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Communications Guide](artifact/references/communications_guide.md) <br>
-- [Materials Checklist](artifact/references/materials_checklist.md) <br>
-- [Travel Booking Guide](artifact/references/travel_booking_guide.md) <br>
-- [Venue Setup Guide](artifact/references/venue_setup_guide.md) <br>
-- [Promotional Article Template](artifact/templates/promotional_article_template.md) <br>
+## Use Case:
 
+Training operations teams and corporate training coordinators use this skill to manage end-to-end training delivery workflows, including contracts, trainer travel, materials preparation, venue setup, and post-training communications.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown checklists, narrative guidance, promotional article drafts, poster design briefs, and generated document files when required templates are available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May handle personal travel details and may depend on external document or image templates that are referenced by the workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may handle personal and business-sensitive data for contracts and travel, including identity numbers, phone numbers, invoices, itineraries, client logos, and photos.
+
+Mitigation: Use approved secure business channels for sensitive data and review generated materials before sharing or storing them.
+
+Risk: Generated contracts or files could overwrite existing documents or be saved to unintended locations.
+
+Mitigation: Confirm output filenames and locations before file creation and keep reviewable copies of important business documents.
+
+## Reference(s):
+
+- [Training Delivery Manager on ClawHub](https://clawhub.ai/brandon-zhanghaodong/skills/training-delivery-manager)
+- [Materials Checklist](references/materials_checklist.md)
+- [Communications Guide](references/communications_guide.md)
+- [Travel Booking Guide](references/travel_booking_guide.md)
+- [Venue Setup Guide](references/venue_setup_guide.md)
+- [Promotional Article Template](templates/promotional_article_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, checklists, generated document guidance, and structured design briefs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate or guide creation of training contracts, travel and venue checklists, promotional articles, and poster briefs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

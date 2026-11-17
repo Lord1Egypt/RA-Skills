@@ -1,42 +1,56 @@
-## Description: <br>
-Autonomous freelance job monitoring agent. Scans Hacker News Who is Hiring, YC jobs board, and remote job aggregators for high-value automation and AI gigs, scores them by relevance and payout, and flags actionable leads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous freelance job monitoring agent for finding and ranking AI and automation freelance leads, with the included script currently focused on Hacker News Who is Hiring results.
 
-## Publisher: <br>
-[lanxevo3](https://clawhub.ai/user/lanxevo3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lanxevo3](https://clawhub.ai/user/lanxevo3)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and freelancers use this skill to generate a prioritized Markdown digest of potential AI and automation freelance leads. It is useful for lead triage, keyword filtering, and experimenting with a lightweight command-line job scanner.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release description claims broader job-board coverage than the included script demonstrates, so results may be incomplete or empty.
+
+Mitigation: Treat the scanner as a rough HN-focused prototype and verify important leads against their original sources before acting.
+
+Risk: The script invokes the authenticated gh CLI and depends on local command availability and credentials.
+
+Mitigation: Review the script before running it in an authenticated environment and run it with credentials limited to the intended read-only discovery workflow.
+
+Risk: The output option writes to a user-supplied path, which could overwrite an existing local file.
+
+Mitigation: Use a dedicated report path and avoid sensitive or important files when passing --output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and freelance operators can use this skill to scan for AI, automation, and scraping-related job leads and produce a prioritized digest for follow-up. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, shell commands, files, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation claims coverage of YC Jobs, RemoteOK, and WeWorkRemotely, while the security evidence says those scanners are missing or undocumented. <br>
-Mitigation: Treat the generated digest as partial coverage until the missing scanners are added or the documentation is corrected. <br>
-Risk: The script uses the current authenticated GitHub CLI session for API requests. <br>
-Mitigation: Run it only with a low-scope GitHub account or token that is acceptable for this workflow. <br>
-Risk: The security verdict is suspicious due to overstated source coverage and a mismatched authenticated data source. <br>
-Mitigation: Review the skill before installation and verify its data sources before using results for business decisions. <br>
+**Output Format:** [Markdown digest printed to stdout, with optional Markdown file output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Freelance Job Scraper ClawHub page](https://clawhub.ai/lanxevo3/freelance-job-scraper) <br>
+**Other Properties Related to Output:** [Supports keyword, minimum-pay, and output-file command-line options.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown digest with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print a scored job-lead report and accepts keyword, minimum pay, and output-file options.] <br>
+1.0.0 (source: SKILL.md frontmatter and ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

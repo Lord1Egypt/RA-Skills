@@ -1,43 +1,58 @@
-## Description: <br>
-Autoresearch.Bak guides an agent through setup, iterative experiments, metric tracking, and analysis for optimization tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autoresearch.Bak guides an agent through setup, iterative one-variable experiments, metric extraction, git-backed result tracking, and analysis for measurable optimization tasks.
 
-## Publisher: <br>
-[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao)
 
-## Use Case: <br>
-Developers and engineers use this skill to run disciplined one-variable-at-a-time experiments, optimize a defined metric, keep useful changes, discard regressions, and summarize results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous experiment runs can edit code, execute project commands, and change git history, including hard resets. <br>
-Mitigation: Run only in a clean disposable branch, worktree, or clone; inspect autoresearch.config.md; approve exact target files and commands; require a clean git status before running. <br>
-Risk: The experiment loop is designed to continue until the user stops it. <br>
-Mitigation: Set a hard time or experiment limit before starting and monitor the run against that limit. <br>
-Risk: Poorly scoped target files or metrics can let experiments modify evaluation logic or optimize the wrong behavior. <br>
-Mitigation: Keep evaluation, data preparation, and metric extraction files read-only, and define one clear success metric with explicit constraints during setup. <br>
+## Use Case:
 
+Developers and agent users use this skill to run systematic optimization experiments where a single metric determines whether each code or configuration change is kept, discarded, or treated as a crash.
 
-## Reference(s): <br>
-- [Autoresearch Reference](artifact/reference.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/lean-zhouchao/autoresearch-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, configuration files, TSV experiment logs, git commits, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify target files and repository history during experiment runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can run an autonomous experiment loop indefinitely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set explicit experiment limits, time budgets, and stop conditions before running it.
+
+Risk: The skill can edit code, run configured shell commands, create commits, and use destructive git resets.
+
+Mitigation: Run it only in a disposable branch or worktree with a clean working tree, constrained target files, and reviewed run and extract commands.
+
+Risk: Unrelated uncommitted work could be lost during experiment rollback.
+
+Mitigation: Commit, stash, or move unrelated work before starting an autoresearch session.
+
+## Reference(s):
+
+- [Autoresearch Reference](artifact/reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/lean-zhouchao/skills/autoresearch-bak)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration templates, and analysis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When followed by an agent, the skill may create autoresearch.config.md, results.tsv, a git branch, commits, run logs, and code or configuration edits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

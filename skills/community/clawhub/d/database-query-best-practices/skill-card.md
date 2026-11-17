@@ -1,40 +1,49 @@
-## Description: <br>
-Provides guidance for avoiding Railway PostgreSQL connection pool exhaustion by checking pool status, using short-lived connections, closing connections promptly, and handling "too many clients" errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prevent Railway PostgreSQL connection pool exhaustion by checking connection usage, closing database connections promptly, using short-lived queries, and preferring Railway CLI for ad hoc SQL when appropriate.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers and engineers use this skill when running local scripts or diagnostics against Railway PostgreSQL databases to avoid exhausting connection pools and recover from "too many clients" errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad process-kill commands may terminate unrelated local work or development services. <br>
-Mitigation: Verify the exact process before stopping it and prefer graceful shutdowns before force-kill commands. <br>
-Risk: Database session termination commands may disrupt production service or another user's active work. <br>
-Mitigation: Verify the Railway project, database, and session target; prefer read-only connection checks and reserve session termination for reviewed emergency use. <br>
+## Use Case:
 
+Developers and engineering agents use this skill when querying Railway PostgreSQL databases from local scripts, diagnosing connection-pool exhaustion, or preparing safer short-lived database queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/urbantech/database-query-best-practices) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash, SQL, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory database-safety guidance; commands should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill includes broad process and database session termination examples that can stop unrelated local processes or interrupt production database sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require scoped, preview-first procedures and explicit approval before running commands such as pkill -9 or pg_terminate_backend.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/urbantech/skills/database-query-best-practices)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Python, SQL, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

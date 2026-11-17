@@ -1,12 +1,12 @@
 ---
 name: zhongguo-nongli-huangli-jixiong
 summary: >
-  Chinese Almanac (黄历) · Lunar Calendar (农历) · Auspicious / Inauspicious Days (吉凶查询) · Huangli Inquiry · Nongli Date Converter · Lucky Day Selector — comprehensive tool for Huangli (黄历查询), Nongli (农历查询), Jixiong (吉凶判断), auspicious day picking (择日择吉), wedding/moving/business date selection (搬家结婚开业开工择日), daily forbidden items (每日宜忌), Huangdao Jiri (黄道吉日), batch date-range screening, and keyword-filtered searches (甲子日等关键词搜索). 黄历查询、老黄历、今日黄历宜忌、吉凶查询、农历查询全能工具。查今天黄历怎么样、今天宜忌什么、农历几号、公历转农历、搬家结婚开业开工择日、吉日凶日筛选、每日宜忌、黄道吉日。支持单日查询、区间批量筛选、甲子日等关键词搜索。免费额度，429手动重置不限次。
+  农历黄历吉凶查询 · 中国老黄历每日宜忌择日。查今日农历几号、今日黄历宜忌、今天宜忌什么、老黄历、黄道吉日、某一天是吉日还是凶日，一套工具全搞定。支持农历查询、黄历查询、老黄历查询、农历日历、公历转农历、每日宜忌、吉神凶煞、冲煞、时辰吉凶、择日择吉（搬家吉日、结婚吉日、开业吉日、开工吉日）、区间批量吉日凶日筛选、甲子日等关键词检索。免费额度，429 手动重置不限次。Chinese Almanac (黄历) · Lunar Calendar (农历) · Auspicious & Inauspicious Days (吉凶) · Huangli / Nongli / Jixiong date converter and lucky-day picker.
 license: MIT
 homepage: https://nongli.skill.4glz.com
 repository: https://github.com/Leocdchina/huangli-agent-skills
 publisher: Leocdchina
-version: 2.0.0
+version: 2.0.1
 compatibility: Requires Python 3.9+ or bash with curl. Requires HTTPS outbound access to api.nongli.skill.4glz.com.
 required_env:
   - HUANGLI_TOKEN (required)
@@ -95,16 +95,17 @@ tags:
   - fortune telling
   - chinese calendar
 description: |
-  Chinese Almanac (黄历) · Lunar Calendar (农历) · Auspicious / Inauspicious Days (吉凶查询) — A comprehensive Huangli Inquiry, Nongli Date Converter, and Jixiong Fortune Day tool. Query today's Chinese almanac (今天黄历怎么样), check daily forbidden and recommended activities (今日宜忌), convert Gregorian to Chinese lunar calendar (公历转农历), select auspicious dates for weddings (结婚吉日), moving houses (搬家吉日), business openings (开业吉日), and construction starts (开工吉日). Filter good vs bad days (吉日凶日筛选) across date ranges with keyword matching (甲子日等关键词搜索). Includes detailed auspicious deities (吉神), inauspicious spirits (凶煞), directional taboos (冲煞), hourly fortune (时辰吉凶), and the complete Huangdao-Heidao twelve deities system. Free tier with manual reset on 429 rate limit. 黄历查询、老黄历、今日黄历宜忌、吉凶查询、农历查询全能工具。查今天黄历怎么样、今天宜忌什么、农历几号、公历转农历、搬家结婚开业开工择日、吉日凶日筛选、每日宜忌、黄道吉日。支持单日查询、区间批量筛选、甲子日等关键词搜索。免费额度，429手动重置不限次。
+  农历黄历吉凶查询 · 中国老黄历每日宜忌择日。查今日农历几号、今日黄历宜忌、今天宜忌什么、老黄历、黄道吉日、某一天是吉日还是凶日。支持农历查询、黄历查询、老黄历查询、农历日历、公历转农历、每日宜忌、吉神凶煞、冲煞、时辰吉凶、择日择吉（搬家吉日、结婚吉日、开业吉日、开工吉日）、区间批量吉日凶日筛选、甲子日等关键词检索。免费额度，429 手动重置不限次。
+  Chinese Almanac (黄历) · Lunar Calendar (农历) · Auspicious / Inauspicious Days (吉凶查询) — Huangli Inquiry, Nongli Date Converter, Jixiong lucky-day picker, daily 黄历宜忌, and 择日 date selection for weddings, moving houses, business openings, and construction starts. Free tier with manual reset on 429 rate limit.
 ---
 
 # 黄历查询 / 农历查询 / 吉凶查询 · 中国农历黄历吉凶查询
 
+查今天黄历怎么样、今日黄历宜忌、老黄历、农历几号、公历转农历、吉凶判断、择日——一套覆盖 **黄历查询 + 农历查询 + 吉凶查询** 的全能工具。
+
 ## Chinese Almanac (黄历) · Lunar Calendar (农历) · Auspicious & Inauspicious Days (吉凶查询)
 
 Chinese almanac inquiry, lunar calendar date conversion, and good/bad day fortune checking — all in one tool. Supports daily Huangli queries, Gregorian-to-lunar conversion, wedding/moving/business date selection, batch screening of auspicious vs inauspicious days, and keyword-filtered searches. Free tier available with manual rate-limit reset.
-
-查今天黄历怎么样、今日黄历宜忌、老黄历、农历几号、公历转农历、吉凶判断、择日——一套覆盖 **黄历查询 + 农历查询 + 吉凶查询** 的全能工具。
 
 ## 一、黄历查询（今日黄历 / 老黄历 / 黄历宜忌 / 择日）
 

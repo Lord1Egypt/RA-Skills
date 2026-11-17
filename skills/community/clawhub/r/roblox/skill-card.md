@@ -1,37 +1,47 @@
-## Description: <br>
-Avoid common Roblox mistakes in server/client security, DataStore usage, memory management, and replication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avoid common Roblox mistakes - server/client security, DataStore pitfalls, memory leaks, and replication gotchas.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Roblox developers use this skill as a compact reference for safer gameplay scripting, including server-side validation, DataStore reliability, replication behavior, lifecycle cleanup, and common Luau API pitfalls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Roblox production code can still mishandle player data, permissions, or server-side validation if the reference guidance is applied without project-specific review. <br>
-Mitigation: Review the advice against the game's DataStore behavior, permission model, and RemoteEvent or RemoteFunction validation before using it in live player experiences. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/roblox) <br>
+## Use Case:
+
+Developers and engineers use this skill as a Roblox development reference for server/client boundaries, RemoteEvent validation, DataStore reliability, cleanup patterns, replication behavior, and common Luau API mistakes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Roblox platform limits, APIs, and security behavior may change after release.
+
+Mitigation: Verify Roblox-specific limits and APIs against current Roblox documentation before implementing production systems.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown reference guidance with inline Luau API names and code-oriented recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reference material; no executable scripts or tool calls are included.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, code]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with Roblox and Luau implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential handling, or hidden behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

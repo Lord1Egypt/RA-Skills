@@ -1,0 +1,17 @@
+{
+  "name": "framework",
+  "caption": "图 2  三组处理的均值与标准差。误差棒为 SD，n = 5。",
+  "type": "chart",
+  "journal": "plos",
+  "width": "single",
+  "width_mm": 66.8,
+  "height_mm": 50,
+  "dpi": 150,
+  "font": "Arial",
+  "font_size_pt": 8,
+  "palette": "okabe-ito",
+  "panels": [],
+  "layout": { "direction": "left-right", "gap_mm": 6, "node_w_mm": 20, "node_h_mm": 12 },
+  "data": { "file": "data/main.csv", "kind": "bar", "x": "group", "y": ["value"], "error": "sd", "xlabel": "", "ylabel": "响应值", "legend": false },
+  "notes": "只有一个问题：dpi 写了 150，PLOS 要 300。其余（栏宽 66.8mm、字号 8pt、字体 Arial）都是合规的 —— 用来验证检查器只报这一条。"
+}

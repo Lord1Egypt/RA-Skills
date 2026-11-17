@@ -1,0 +1,670 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-cnki-net",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:05:41.916Z",
+  "entry": {
+    "url": "https://cnki.net",
+    "final_url": "https://kns.cnki.net/kns8s/AdvSearch",
+    "title": "高级检索-中国知网",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:05:41.916Z",
+    "identity": {
+      "declared_name": "CNKI AI（知网AI）",
+      "hostname": "kns.cnki.net",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "检索",
+        "href": "https://kns.cnki.net/kns8s/search",
+        "target": "_blank"
+      },
+      {
+        "text": "帮助中心",
+        "href": "http://service.cnki.net/helpcenter/",
+        "target": "_blank"
+      },
+      {
+        "text": "help@cnki.net",
+        "href": "mailto:help@cnki.net",
+        "target": "_blank"
+      }
+    ],
+    "frames": [
+      {
+        "src": "",
+        "id": "Ecp_top_login_realNameFrame",
+        "name": "",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "text": "OA出版",
+      "label": "OA出版",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "OA出版",
+      "id": "",
+      "css": "input[name=\"OA出版\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[name=\"OA出版\"]"
+      },
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "text": "网络首发",
+      "label": "网络首发",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "网络首发",
+      "id": "",
+      "css": "input[name=\"网络首发\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[name=\"网络首发\"]"
+      },
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "text": "增强出版",
+      "label": "增强出版",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "增强出版"
+      },
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "text": "基金文献",
+      "label": "基金文献",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "基金文献"
+      },
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "text": "中英文扩展",
+      "label": "中英文扩展",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "onlyChecked",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "中英文扩展"
+      },
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "text": "同义词扩展",
+      "label": "同义词扩展",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "onlyChecked",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "同义词扩展"
+      },
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "datebox0",
+      "css": "#datebox0",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#datebox0"
+      },
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "datebox1",
+      "css": "#datebox1",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#datebox1"
+      },
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    },
+    {
+      "tag": "input",
+      "type": "button",
+      "text": "检索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "observed_at": "2026-10-09T09:05:41.772Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-cnki-net:product-capability",
+      "source_id": "quiz-cnki-net",
+      "task_kind": "product-capability",
+      "status": "entry_observed",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "OA出版",
+          "label": "OA出版",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "OA出版",
+          "id": "",
+          "css": "input[name=\"OA出版\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[name=\"OA出版\"]"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "网络首发",
+          "label": "网络首发",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "网络首发",
+          "id": "",
+          "css": "input[name=\"网络首发\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[name=\"网络首发\"]"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "增强出版",
+          "label": "增强出版",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "增强出版"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "基金文献",
+          "label": "基金文献",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "基金文献"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "中英文扩展",
+          "label": "中英文扩展",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "onlyChecked",
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "中英文扩展"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "同义词扩展",
+          "label": "同义词扩展",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "onlyChecked",
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "同义词扩展"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "datebox0",
+          "css": "#datebox0",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#datebox0"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "datebox1",
+          "css": "#datebox1",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#datebox1"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "quiz-cnki-net:official-guidance",
+      "source_id": "quiz-cnki-net",
+      "task_kind": "official-guidance",
+      "status": "entry_observed",
+      "parameters": [
+        "topic",
+        "official_publisher",
+        "version",
+        "target_statement"
+      ],
+      "instructions": [
+        "优先发布机构的当前原文/官方帮助，核查完整陈述及版本，不引用题库答案作为依据。"
+      ],
+      "transitions": {},
+      "entry_url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "OA出版",
+          "label": "OA出版",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "OA出版",
+          "id": "",
+          "css": "input[name=\"OA出版\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[name=\"OA出版\"]"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "网络首发",
+          "label": "网络首发",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "网络首发",
+          "id": "",
+          "css": "input[name=\"网络首发\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[name=\"网络首发\"]"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "增强出版",
+          "label": "增强出版",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "增强出版"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "基金文献",
+          "label": "基金文献",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "基金文献"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "中英文扩展",
+          "label": "中英文扩展",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "onlyChecked",
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "中英文扩展"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "text": "同义词扩展",
+          "label": "同义词扩展",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "onlyChecked",
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "同义词扩展"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "datebox0",
+          "css": "#datebox0",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#datebox0"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "datebox1",
+          "css": "#datebox1",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#datebox1"
+          },
+          "observed_url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "observed_at": "2026-10-09T09:05:41.772Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-084"
+    ],
+    "example_ids": [
+      "2026-M05-Q3",
+      "KH-Q041",
+      "KH-Q086"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:05:41.916Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-cnki-net-search-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-cnki-net-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

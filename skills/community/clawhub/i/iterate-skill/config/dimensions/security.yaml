@@ -1,0 +1,8 @@
+# Security review dimension
+name: "安全"
+name_en: "Security"
+priority: critical
+focus: |
+  Command/SQL injection, path traversal, hardcoded secrets/tokens/API keys.
+  Missing input validation, unsafe deserialization, privilege escalation.
+  Sensitive data in logs, insecure file permissions, SSRF.

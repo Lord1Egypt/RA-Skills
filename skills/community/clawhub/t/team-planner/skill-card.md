@@ -1,41 +1,54 @@
-## Description: <br>
-Team Planner helps users plan multi-agent AI teams for complex tasks by analyzing requirements, designing team structures, defining roles, and planning collaboration workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Team Planner helps users design multi-agent teams by analyzing task requirements, defining roles and responsibilities, and planning collaboration workflows.
 
-## Publisher: <br>
-[Ghost0118](https://clawhub.ai/user/Ghost0118) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghost0118](https://clawhub.ai/user/ghost0118)
 
-## Use Case: <br>
-Developers, technical leads, and agent operators use this skill to decide whether a complex task needs one agent or a multi-agent team, then define roles, responsibilities, dependencies, communication patterns, startup prompts, and success criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad team-planning language and may recommend unnecessary multi-agent coordination. <br>
-Mitigation: Review the single-agent versus multi-agent recommendation before launching agents, and use the smallest team that covers the task. <br>
-Risk: Generated roles and startup prompts may spread sensitive or unnecessary context across multiple agents. <br>
-Mitigation: Keep each agent narrowly scoped, review startup prompts before use, and avoid including secrets or unrelated private data in shared context. <br>
+## Use Case:
 
+Developers, project leads, and agent operators use this skill to decide whether a task needs one agent or a multi-agent team, then produce role assignments, collaboration phases, startup prompts, and success criteria.
 
-## Reference(s): <br>
-- [Team Planner ClawHub Page](https://clawhub.ai/Ghost0118/team-planner) <br>
-- [Usage Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plan with structured sections, role definitions, prompt templates, collaboration phases, and success criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ordered startup sequences and example agent prompts; the skill itself does not execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Team plans may assign agents to handle sensitive customer or company data without sufficient privacy or access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed plans before launching agents and add explicit privacy, access-control, and confirmation steps for sensitive data.
+
+Risk: Generated coordination plans may over-scope multi-agent work or introduce unnecessary operational complexity.
+
+Mitigation: Validate the single-agent versus multi-agent recommendation and adjust team size, dependencies, and handoffs before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ghost0118/skills/team-planner)
+- [Team Planner examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown team architecture plan with role sections, phase lists, and startup prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a single-agent versus multi-agent recommendation, team roles, collaboration workflow, communication strategy, startup sequence, and success criteria.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

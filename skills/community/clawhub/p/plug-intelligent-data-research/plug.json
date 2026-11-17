@@ -1,0 +1,63 @@
+{
+  "plug_slug": "plug-intelligent-data-research",
+  "plug_display_name": "智能数据研究工作站",
+  "plug_tagline": "搜索、聚合、抓取、分析，4合1AI驱动数据研究平台",
+  "plug_description": "面向研究者和分析师的智能数据研究工具包，覆盖多引擎搜索、网页抓取、数据聚合与分析，让数据研究效率提升5倍。",
+  "target_users": "市场研究员、数据分析师、投资研究员、学术研究者",
+  "pricing": "月付￥399/月 | 年付￥3999/年 | 买断￥5999",
+  "marketing": {
+    "pain_points": [
+      "信息分散找不到？多引擎聚合搜索一步到位",
+      "搜索结果不够精准？AI优化的搜索查询与摘要",
+      "需要批量抓取数据？增量同步+SQL分析一体化",
+      "研究效率低？从搜索到分析全链路覆盖"
+    ],
+    "value_props": [
+      "4个搜索/抓取技能协同工作",
+      "支持Google、Bing、DuckDuckGo等多引擎",
+      "SearXNG聚合搜索，覆盖更多数据源",
+      "增量同步+SQL分析，数据不遗漏"
+    ],
+    "use_case": "工作流程：\n1. 联网搜索助手 → AI优化的多源联网搜索\n2. 谷歌搜索工具 → Google CSE精准搜索\n3. 免费网页搜索 → Bing+DuckDuckGo双引擎路由\n4. 网页抓取引擎 → 增量同步+SQL分析+批量调度"
+  },
+  "members": [
+    {
+      "slug": "internet-search-pro-2",
+      "name": "联网搜索助手",
+      "category": "Research",
+      "quality_score": 4.9,
+      "role": "primary"
+    },
+    {
+      "slug": "google-search-4",
+      "name": "谷歌搜索工具",
+      "category": "Research",
+      "quality_score": 4.8,
+      "role": "complementary"
+    },
+    {
+      "slug": "free-web-search-4",
+      "name": "免费网页搜索工具",
+      "category": "Research",
+      "quality_score": 4.8,
+      "role": "supporting"
+    },
+    {
+      "slug": "web-crawler-engine",
+      "name": "网页抓取引擎(专业版)",
+      "category": "Research",
+      "quality_score": 4.7,
+      "role": "supporting"
+    }
+  ],
+  "plug_score": {
+    "overall_score": 68.2,
+    "quality_score": 95.0,
+    "complementarity_score": 50.0,
+    "coverage_score": 40.0,
+    "size_fit_score": 100.0,
+    "reason": "质量95(均衡) | 互补50 | 覆盖40(1分类) | 大小100(4个)"
+  },
+  "plug_type": "bundle",
+  "created_at": "2026-07-29T07:22:18.970895"
+}

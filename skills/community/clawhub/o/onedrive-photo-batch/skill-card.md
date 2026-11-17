@@ -1,43 +1,58 @@
-## Description: <br>
-OneDrive Photo Batch helps agents filter, index, OCR, semantically search, move, upload, delete, restore, and export OneDrive photo collections while keeping temporary downloads short-lived. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch process and index OneDrive photos by name, date, size, format, and album; run OCR or multimodal recognition; support full indexing, hash-based incremental skipping, semantic search, move, upload, delete, restore, and recycle-bin governance.
 
-## Publisher: <br>
-[lanqeur](https://clawhub.ai/user/lanqeur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanqeur](https://clawhub.ai/user/lanqeur)
 
-## Use Case: <br>
-Developers and personal productivity users use this skill to manage OneDrive photo libraries through filtered search, OCR and multimodal indexing, semantic lookup, export, and controlled write operations. It is intended for agents that can prepare configuration, run the bundled Python runtime, and review JSON or file outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and change OneDrive photos, including delete, restore, move, and upload operations when write mode is enabled. <br>
-Mitigation: Keep mode.read_only=true for inspection and indexing, use Files.Read scopes where possible, and enable write actions only with narrow filters, limits, and explicit user confirmation. <br>
-Risk: The runtime can reuse cached Microsoft credentials from the configured token cache path. <br>
-Mitigation: Store the token cache in a protected workspace path, verify the Microsoft account before running, and revoke or rotate access if the cache is exposed. <br>
-Risk: Selected photos, OCR text, summaries, or embeddings may be sent to the configured OCR and embedding providers. <br>
-Mitigation: Use approved provider endpoints and API keys, disable embeddings or external OCR for sensitive albums, and avoid processing confidential photo sets without review. <br>
+## Use Case:
 
+Developers and operators use this skill to search, OCR, index, semantically retrieve, organize, export, and recover OneDrive photo collections. It is useful when an agent needs guided shell commands and configuration for batch photo workflows against Microsoft OneDrive.
 
-## Reference(s): <br>
-- [OneDrive Photo Batch ClawHub Release](https://clawhub.ai/lanqeur/onedrive-photo-batch) <br>
-- [Configuration Template](artifact/references/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, CSV files] <br>
-**Output Format:** [Markdown guidance with bash commands; runtime commands return JSON status and can export JSON or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a JSON configuration file, local token cache, SQLite index, temporary download directory, and optional local recycle directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and target metadata) <br>
+Risk: Bulk indexing can disclose private photos, extracted OCR text, embeddings, and semantic-search queries to the configured OCR or embedding provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured provider and endpoint, use trusted HTTPS endpoints, limit batches and filters to intended photos, and treat extracted text and queries as sensitive data.
+
+Risk: The skill persists Microsoft authentication tokens and uses API keys for OCR and embedding services.
+
+Mitigation: Protect the config file and token cache, avoid sharing the workspace, grant only the scopes required for the intended workflow, and rotate credentials if they may have been exposed.
+
+Risk: Write-capable workflows can delete, move, restore, upload, or empty recovery copies, and local recovery copies older than 15 days may be removed automatically.
+
+Mitigation: Keep the default read-only mode and Files.Read scope unless write actions are intentional, test with small limits before bulk changes, avoid hard delete unless required, and restore needed files within the retention window.
+
+## Reference(s):
+
+- [Config Example](references/config.example.json)
+- [ClawHub Skill Page](https://clawhub.ai/lanqeur/skills/onedrive-photo-batch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; runtime commands emit JSON and can export JSON or CSV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes configuration guidance for Microsoft authentication, OCR and embedding providers, concurrency, download rate limits, read-only mode, and recycle-bin behavior.]
+
+## Skill Version(s):
+
+0.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

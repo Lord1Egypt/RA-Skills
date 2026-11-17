@@ -1,43 +1,61 @@
-## Description: <br>
-Converts 1688 product information into Ozon marketplace listing data, uploads listings through Ozon APIs, and checks upload status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts 1688 product information into Ozon listing data, uploads listings through Ozon APIs, and checks upload status.
 
-## Publisher: <br>
-[1688AiInfra](https://clawhub.ai/user/1688AiInfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-Marketplace operators and commerce developers use this skill to convert 1688 product data into Ozon listing payloads, translate listing text and images into Russian, upload listings, and review upload status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload marketplace listings using seller credentials without a clearly documented final approval step. <br>
-Mitigation: Require a manual review of generated product JSON, translated text and images, prices, and target Ozon account before running the upload step. <br>
-Risk: The workflow sends product images and listing metadata to AlphaShop and Ozon services. <br>
-Mitigation: Use it only for products and seller accounts where sharing that data with those services is intended and authorized. <br>
+## Use Case:
 
+External sellers and ecommerce operators use this skill to convert 1688 product data into Ozon-compatible listings, translate product imagery to Russian, upload products, and review upload status.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1688AiInfra/1688-product-to-ozon) <br>
-- [Offer description template](references/offer_description.json) <br>
-- [Ozon seller portal](https://seller.ozon.ru/) <br>
-- [AlphaShop API key management](https://www.alphashop.cn/seller-center/apikey-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON product data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update temporary product JSON before Ozon upload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence and skill metadata) <br>
+Risk: The skill can make live marketplace listing changes through Ozon APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated product data before upload and require explicit confirmation or a dry run before making live changes.
+
+Risk: Image translation can send product images to AlphaShop and may consume paid API quota.
+
+Mitigation: Use only credentials and product images approved for AlphaShop processing, and guard batch translation so it cannot run unexpectedly.
+
+Risk: The security evidence flags the release for review because batch_translate.py can perform paid requests and write files without clear user control.
+
+Mitigation: Remove the batch script or add explicit user-controlled execution, quota limits, and output path controls before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/1688-product-to-ozon)
+- [README](README.md)
+- [Offer description template](references/offer_description.json)
+- [Ozon Seller Portal](https://seller.ozon.ru/)
+- [AlphaShop API key management](https://www.alphashop.cn/seller-center/apikey-management)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON product data and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create temporary product JSON and report Ozon upload task status.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and skill metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Helps an agent use olares-cli cluster to inspect and manage Olares ControlHub cluster resources such as pods, workloads, applications, jobs, cronjobs, nodes, namespaces, and middleware. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent in using olares-cli cluster to inspect and operate the per-user Kubernetes runtime view for Olares pods, workloads, application spaces, jobs, cronjobs, nodes, and middleware.
 
-## Publisher: <br>
-[olares](https://clawhub.ai/user/olares) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olares](https://clawhub.ai/user/olares)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Olares cluster runtime state, tail logs, review Kubernetes-style resource YAML, and perform confirmed maintenance actions through olares-cli cluster. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide destructive cluster actions such as deleting pods, restarting workloads, scaling workloads to zero, suspending cronjobs, or rerunning jobs. <br>
-Mitigation: Confirm user intent before destructive actions, review generated commands before execution, and avoid --yes unless deliberately scripting. <br>
-Risk: Middleware inventory can expose sensitive credentials when --show-passwords is used. <br>
-Mitigation: Use the redacted default output and only request --show-passwords when the destination will not be logged, stored, or shared. <br>
-Risk: The active Olares profile determines what the agent can see and change. <br>
-Mitigation: Check the active profile and surface server authorization errors rather than assuming local cached context is authoritative. <br>
+## Use Case:
 
+Developers and operators use this skill to translate Olares cluster-runtime questions into safe olares-cli cluster reads, log inspection, status checks, and confirmed mutations on pods, workloads, jobs, and cronjobs.
 
-## Reference(s): <br>
-- [cluster pod](references/olares-cluster-pod.md) <br>
-- [cluster workload](references/olares-cluster-workload.md) <br>
-- [cluster application](references/olares-cluster-application.md) <br>
-- [cluster job](references/olares-cluster-job.md) <br>
-- [cluster cronjob](references/olares-cluster-cronjob.md) <br>
-- [cluster middleware](references/olares-cluster-middleware.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI output interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include table, JSON, YAML, or log-output interpretation from olares-cli cluster commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Middleware password output can expose administrator credentials when password display is explicitly requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep redaction defaults, require clear user intent before showing passwords, and avoid shared terminals, transcripts, logs, CI jobs, or files for password output.
+
+Risk: Cluster mutation commands can change runtime state, and scripted confirmation bypasses can make those changes easier to trigger.
+
+Mitigation: Confirm user intent before destructive verbs and treat server authorization responses as authoritative.
+
+## Reference(s):
+
+- [Olares Cluster Skill Definition](SKILL.md)
+- [Olares Cluster Application Reference](references/olares-cluster-application.md)
+- [Olares Cluster CronJob Reference](references/olares-cluster-cronjob.md)
+- [Olares Cluster Job Reference](references/olares-cluster-job.md)
+- [Olares Cluster Middleware Reference](references/olares-cluster-middleware.md)
+- [Olares Cluster Pod Reference](references/olares-cluster-pod.md)
+- [Olares Cluster Workload Reference](references/olares-cluster-workload.md)
+- [ClawHub Skill Page](https://clawhub.ai/olares/skills/olares-cluster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include table, JSON, or YAML command-output handling guidance depending on the olares-cli cluster verb.]
+
+## Skill Version(s):
+
+4.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

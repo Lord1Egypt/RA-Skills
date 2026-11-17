@@ -1,45 +1,57 @@
-## Description: <br>
-Codified expertise for production scheduling, job sequencing, line balancing, changeover optimisation, bottleneck resolution, disruption response, and ERP/MES interaction patterns in discrete and batch manufacturing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codified expertise for production scheduling, job sequencing, line balancing, changeover optimisation, bottleneck resolution, disruption response, and ERP/MES interaction patterns in discrete and batch manufacturing.
 
-## Publisher: <br>
-[nocodemf](https://clawhub.ai/user/nocodemf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[nocodemf](https://clawhub.ai/user/nocodemf)
 
-## Use Case: <br>
-Manufacturing schedulers, planners, production managers, and agents supporting them use this skill to reason about work-order sequencing, finite-capacity constraints, changeovers, bottlenecks, disruptions, labour qualifications, and schedule communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may influence production, customer, compliance, overtime, ERP, or MES decisions. <br>
-Mitigation: Treat generated schedules and system-update recommendations as drafts and review them through normal plant approval processes before execution. <br>
-Risk: Evaluation artifacts show weaker performance on some job-sequencing scenarios. <br>
-Mitigation: Verify dispatching-rule choice, due-date priority, capacity math, and deferred-work impacts before using a proposed sequence on the shop floor. <br>
+## Use Case:
 
+Production schedulers, manufacturing operations teams, and agents supporting them use this skill to draft job sequences, line-balancing plans, changeover strategies, bottleneck responses, and disruption communications for discrete and batch manufacturing environments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nocodemf/production-scheduling) <br>
-- [Communication Templates - Production Scheduling](references/communication-templates.md) <br>
-- [Decision Frameworks - Production Scheduling](references/decision-frameworks.md) <br>
-- [Production Scheduling - Edge Cases Reference](references/edge-cases.md) <br>
-- [Production Scheduling Evaluation Rubric](evals/rubric.md) <br>
-- [Evaluation Results](evals/results/eval_results.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, analysis, markdown] <br>
-**Output Format:** [Markdown prose with structured recommendations, calculations, schedules, and communication drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include schedule sequences, capacity and OEE calculations, escalation guidance, and ERP/MES coordination language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: Generated schedules, overtime plans, subcontracting recommendations, ERP changes, and customer messages may be wrong if they are not reconciled with current plant data, contracts, labor rules, and regulatory requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafts; have qualified operations, quality, labor, and commercial stakeholders review them before execution or customer communication.
+
+Risk: The bundled evaluation runner imports a shared evaluation framework path that may not be trusted in every environment.
+
+Mitigation: Run the evaluation script only in a trusted, isolated environment after verifying the shared framework path.
+
+## Reference(s):
+
+- [Communication Templates - Production Scheduling](references/communication-templates.md)
+- [Decision Frameworks - Production Scheduling](references/decision-frameworks.md)
+- [Production Scheduling - Edge Cases Reference](references/edge-cases.md)
+- [Production Scheduling Evaluation Rubric](evals/rubric.md)
+- [Production Scheduling Eval Results](evals/results/eval_results.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with schedules, tables, calculations, decision frameworks, and communication drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory drafts and should be checked against current plant data, contracts, labor rules, regulatory requirements, and ERP/MES state before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

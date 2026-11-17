@@ -1,45 +1,60 @@
-## Description: <br>
-Requires agents to classify memory operations and get explicit approval before storing, reusing, editing, importing, exporting, or deleting user memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AANA Agent Memory Gate Skill provides instruction-only guardrails for storing, reusing, editing, importing, exporting, and deleting user memory with explicit approval and data minimization.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a review gate around agent memory so memory use is relevant, minimized, sensitivity-aware, and explicitly approved when required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace capability tags include crypto and purchase-related capabilities that are unrelated to this instruction-only memory skill. <br>
-Mitigation: Before enabling platform permissions, verify that those tags do not grant real crypto or purchase authority. <br>
-Risk: A configured external AANA checker could receive sensitive memory context if payloads are not minimized. <br>
-Mitigation: Use only trusted checker interfaces and send redacted review payloads instead of raw secrets, private records, full logs, or unrelated private data. <br>
-Risk: Agents may store, reuse, edit, delete, import, or export memory without clear user consent. <br>
-Mitigation: Require explicit approval for persistent memory changes, import/export, and sensitive reuse; do not treat silence as approval. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make agent memory operations deliberate, relevant, user-approved, and reversible where possible. It is useful when an agent may store, reuse, edit, delete, import, or export user memory, especially sensitive or inferred memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-agent-memory-gate) <br>
-- [Publisher profile](https://clawhub.ai/user/mindbomber) <br>
-- [schemas/agent-memory-gate.schema.json](artifact/schemas/agent-memory-gate.schema.json) <br>
-- [examples/redacted-agent-memory-gate.json](artifact/examples/redacted-agent-memory-gate.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown instructions with optional JSON review payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no bundled code, dependencies, command execution, file writes, service calls, or memory persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents may store or reuse sensitive, stale, inferred, or unrelated memory without the user's expectation if memory operations are not gated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require relevance, source, sensitivity, approval, and lifecycle checks before memory use, and ask before sensitive reuse or persistent changes.
+
+Risk: Raw secrets, private records, logs, transcripts, or speculative sensitive inferences could be retained unnecessarily.
+
+Mitigation: Prefer temporary context and redacted summaries, apply data minimization, and forbid storage of credentials, raw private records, and speculative sensitive inferences.
+
+Risk: The skill changes agent behavior around memory decisions and may prompt users more often before using or changing memories.
+
+Mitigation: Disclose the approval behavior to installers and use it where explicit user control over memory is expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-agent-memory-gate)
+- [README](README.md)
+- [Agent memory gate schema](schemas/agent-memory-gate.schema.json)
+- [Redacted memory gate example](examples/redacted-agent-memory-gate.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown instructions with optional JSON review payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; does not execute commands, install dependencies, persist memory, or call services by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

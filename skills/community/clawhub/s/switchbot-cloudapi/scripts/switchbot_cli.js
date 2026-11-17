@@ -7,6 +7,13 @@
 //   node switchbot_cli.js cmd <deviceId> <command> [--param=...] [--pos=50] [--commandType=customize]
 //   node switchbot_cli.js scenes
 //   node switchbot_cli.js scene <sceneId>
+//   node switchbot_cli.js mindclip recordings <deviceId> [--pageNum=1] [--pageSize=20]
+//   node switchbot_cli.js mindclip recording <recordingId>
+//   node switchbot_cli.js mindclip summary <recordingId>
+//   node switchbot_cli.js mindclip todos [--completedNum=1] [--pageNum=1] [--pageSize=20]
+//   node switchbot_cli.js mindclip daily <date>       (e.g. 2026-06-05)
+//   node switchbot_cli.js mindclip weekly <week>      (e.g. 2026-W23)
+//   node switchbot_cli.js mindclip urgent <date>      (e.g. 2026-06-04)
 
 const crypto = require('crypto');
 const https = require('https');
@@ -96,6 +103,13 @@ Commands:
   cmd <deviceId> <command> [opts]   Send a command
   scenes                            List all scenes
   scene <sceneId>                   Execute a scene
+  mindclip recordings <deviceId>    List MindClip recordings
+  mindclip recording <recordingId>  Get single recording detail
+  mindclip summary <recordingId>    Get transcription + AI summary
+  mindclip todos                    List todos
+  mindclip daily <date>             Get daily memory
+  mindclip weekly <week>            Get weekly summary
+  mindclip urgent <date>            Get urgent todos
 
 Command options:
   --param=<value>         Parameter (string or JSON)
@@ -143,6 +157,58 @@ Examples:
     if (!a1) { console.error('Usage: scene <sceneId>'); process.exit(2); }
     try { printJson(await request('POST', `/v1.1/scenes/${a1}/execute`)); }
     catch (e) { console.error('Error:', e.message); process.exit(1); }
+    return;
+  }
+
+  // === MINDCLIP (AI MindClip / 录音笔) ===
+  if (cmd === 'mindclip') {
+    const sub = a1;
+    const arg = a2;
+    const pageNum = args.pageNum || '1';
+    const pageSize = args.pageSize || '20';
+    const completedNum = args.completedNum || '1';
+
+    if (!sub) {
+      console.log(`MindClip subcommands:
+  recordings <deviceId>   List recordings
+  recording <recordingId> Get single recording detail
+  summary <recordingId>   Get transcription + AI summary
+  todos                   List todos
+  daily <date>            Get daily memory (YYYY-MM-DD)
+  weekly <week>           Get weekly summary (YYYY-Wxx)
+  urgent <date>           Get urgent todos (YYYY-MM-DD)`);
+      process.exit(0);
+    }
+
+    try {
+      if (sub === 'recordings') {
+        if (!arg) { console.error('Usage: mindclip recordings <deviceId>'); process.exit(2); }
+        printJson(await request('GET', `/v1.1/mindclip/recordings?deviceID=${arg}&pageNum=${pageNum}&pageSize=${pageSize}`));
+      } else if (sub === 'recording') {
+        if (!arg) { console.error('Usage: mindclip recording <recordingId>'); process.exit(2); }
+        printJson(await request('GET', `/v1.1/mindclip/recordings/${arg}`));
+      } else if (sub === 'summary') {
+        if (!arg) { console.error('Usage: mindclip summary <recordingId>'); process.exit(2); }
+        printJson(await request('GET', `/v1.1/mindclip/summaries/${arg}`));
+      } else if (sub === 'todos') {
+        printJson(await request('GET', `/v1.1/mindclip/todos?completedNum=${completedNum}&pageNum=${pageNum}&pageSize=${pageSize}`));
+      } else if (sub === 'daily') {
+        if (!arg) { console.error('Usage: mindclip daily <date>  (e.g. 2026-06-05)'); process.exit(2); }
+        printJson(await request('GET', `/v1.1/mindclip/assistant/daily?date=${arg}`));
+      } else if (sub === 'weekly') {
+        if (!arg) { console.error('Usage: mindclip weekly <week>  (e.g. 2026-W23)'); process.exit(2); }
+        printJson(await request('GET', `/v1.1/mindclip/assistant/weekly?week=${arg}`));
+      } else if (sub === 'urgent') {
+        if (!arg) { console.error('Usage: mindclip urgent <date>  (e.g. 2026-06-04)'); process.exit(2); }
+        printJson(await request('GET', `/v1.1/mindclip/assistant/urgent-todos?date=${arg}`));
+      } else {
+        console.error(`Unknown mindclip subcommand: ${sub}`);
+        process.exit(2);
+      }
+    } catch (e) {
+      console.error('Error:', e.message);
+      process.exit(1);
+    }
     return;
   }
 

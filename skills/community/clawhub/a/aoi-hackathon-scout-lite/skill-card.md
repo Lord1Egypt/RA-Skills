@@ -1,44 +1,55 @@
-## Description: <br>
-Public-safe hackathon source registry + filtering output (no crawling, no submissions). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Public-safe hackathon source registry and filtering output for hackathons, builder programs, and grants, with no crawling or submissions.
 
-## Publisher: <br>
-[edmonddantesj](https://clawhub.ai/user/edmonddantesj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[edmonddantesj](https://clawhub.ai/user/edmonddantesj)
 
-## Use Case: <br>
-Developers, builders, and operations users use this skill to inspect local hackathon, builder program, and grant source lists, filter likely online opportunities, generate shortlist recommendations, and print a paste-ready summary template. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local registry or shortlist files may contain stale deadlines, links, or opportunity details. <br>
-Mitigation: Verify deadlines and links directly with the source before relying on recommendations. <br>
-Risk: Generated output may reflect local context files that are not intended for sharing. <br>
-Mitigation: Review local context files and command output before distributing summaries. <br>
-Risk: Optional Brave Search setup requires an API key when intentionally enabled. <br>
-Mitigation: Configure the Brave Search API key only when web search is desired, and disable it when not needed. <br>
+## Use Case:
 
+Developers, builders, and operators use this skill to list, filter, and shortlist public hackathon or funding sources from local registry files, then generate paste-ready planning text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edmonddantesj/aoi-hackathon-scout-lite) <br>
-- [Devpost AI category](https://devpost.com/c/artificial-intelligence) <br>
-- [Brave Search API](https://brave.com/search/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command output and Markdown template text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Best-effort local parsing of registry and shortlist markdown files; no crawling, login, form-fill, submission automation, or default API-key requirement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+Risk: Optional Brave Search setup stores a search API key in OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether Brave Search is needed, use a scoped key if enabled, and disable web search again when it is no longer required.
+
+Risk: Recommendations are best-effort and depend on locally maintained registry and shortlist files.
+
+Mitigation: Confirm deadlines, eligibility, and application details on the source site before making submission decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edmonddantesj/skills/aoi-hackathon-scout-lite)
+- [Devpost Artificial Intelligence Hackathons](https://devpost.com/c/artificial-intelligence)
+- [Brave Search API](https://brave.com/search/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command output and Markdown text with shell-command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local context registry and shortlist files; optional Brave Search setup can be disabled.]
+
+## Skill Version(s):
+
+0.1.6 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

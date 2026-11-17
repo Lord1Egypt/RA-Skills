@@ -1,40 +1,52 @@
-## Description: <br>
-A Chinese-language education essay writing assistant for the Jinniu District Education Society 2026 "AI + Education" essay activity that helps collect teaching materials, draft essays, review quality, and revise submissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+金牛区教育学会"人工智能+教育"主题征文写作专用助手，面向教育实践类征文提供素材收集、初稿生成、质量评审和迭代改进 guidance.
 
-## Publisher: <br>
-[joe-rq](https://clawhub.ai/user/joe-rq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[joe-rq](https://clawhub.ai/user/joe-rq)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Teachers and education contributors use this skill to prepare 3000-5000 character Chinese education essays for the Jinniu District Education Society's 2026 "AI + Education" writing activity. It helps collect required classroom details, draft a structured essay, review it against stated scoring dimensions, and revise it before submission.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow asks for personal, school, classroom, and student-context details to make essays specific.
+
+Mitigation: Collect only details needed for the essay and avoid unnecessary student-identifying information.
+
+Risk: Generated policy citations or competition-specific requirements may be incomplete or outdated.
+
+Mitigation: Verify cited policy documents, formatting rules, and submission requirements against the official competition materials before submission.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Educators preparing Chinese education-practice essays use this skill to turn teaching context, AI tool usage, classroom examples, and student-response details into a structured contest draft, then evaluate and revise it against the stated review criteria. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Essay source materials may contain student, classroom, or school personal information. <br>
-Mitigation: Remove student names, IDs, grades, faces, contact details, handwriting identifiers, metadata, and sensitive school records before providing materials; use summaries or anonymized excerpts where possible. <br>
-Risk: Incomplete or vague teaching materials can lead to generic or unsupported essay drafts. <br>
-Mitigation: Use the skill's material-collection template and provide at least one concrete AI-assisted teaching example before requesting a full draft. <br>
+**Output Format:** [Markdown and structured Chinese prose with review scores, revision guidance, essay drafts, title options, and material collection templates.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/joe-rq/education-essay-writer) <br>
+**Other Properties Related to Output:** [Prompt-only workflow; no code execution, persistence, or hidden data movement reported by server security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with essay drafts, scoring notes, revision guidance, title options, and material-collection templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese-language writing assistance; asks for concrete source material before drafting when inputs are incomplete.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,62 @@
-## Description: <br>
-Generate and edit images via the Google Gemini API with Gemini native generation, Imagen 3, style presets, batch runs, and an HTML gallery output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit images via Google Gemini API, including Gemini native generation, Imagen 3, style presets, batch generation, and HTML gallery output.
 
-## Publisher: <br>
-[IISweetHeartII](https://clawhub.ai/user/IISweetHeartII) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[iisweetheartii](https://clawhub.ai/user/iisweetheartii)
 
-## Use Case: <br>
-Developers and creative agents use this skill to generate, edit, batch, and review images from text prompts or input images using a Gemini API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected edit images are sent to Google using the user's Gemini API key. <br>
-Mitigation: Avoid confidential prompts or files, restrict edit inputs to intended image paths, and use an API key with appropriate account and budget controls. <br>
-Risk: Heartbeat guidance encourages optional social posting, avatar changes, and memory saving without explicit approval controls. <br>
-Mitigation: Require explicit user approval, account scope, budget limits, and retention rules before enabling posting, avatar updates, or memory persistence. <br>
+## Use Case:
 
+Developers and agents use this skill to generate or edit visual assets through the Google Gemini API, with optional style presets, batch runs, and gallery output. It is suited for creative image generation workflows that can safely send prompts and source images to Google.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/IISweetHeartII/gemini-image-gen) <br>
-- [Google AI Studio API key setup](https://aistudio.google.com/apikey) <br>
-- [OpenClaw](https://openclaw.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Files, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; generated runs produce PNG files, prompts.json, and an HTML gallery.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and GEMINI_API_KEY; image editing sends the selected input image and prompt to Google Gemini APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and package.json) <br>
+Risk: Prompts and edited source images are sent to Google services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and images that are appropriate to share with Google and avoid including secrets or sensitive personal data.
+
+Risk: Heartbeat guidance can lead agents toward public posting, avatar changes, or memory saving.
+
+Mitigation: Require explicit approval before publishing generated images, changing avatars, or saving generated content to memory.
+
+Risk: Generated galleries may include captions derived from untrusted prompts.
+
+Mitigation: Avoid opening or publishing generated galleries from untrusted prompts until captions are reviewed or escaped.
+
+Risk: Installing or updating from an unverified path can increase supply-chain risk.
+
+Mitigation: Prefer a pinned or otherwise verified ClawHub install and update path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/iisweetheartii/skills/gemini-image-gen)
+- [Google AI Studio API Key Setup](https://aistudio.google.com/apikey)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Generated PNG images, prompts JSON, HTML gallery, and Markdown CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and GEMINI_API_KEY; output directory may contain generated images, prompts.json, and index.html.]
+
+## Skill Version(s):
+
+1.3.1 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Learning Path Designer helps L&D professionals design competency-aligned corporate learning paths from skill gaps through objectives, module sequencing, and assessment planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides L&D professionals, instructional designers, HR business partners, and corporate training managers through designing draft competency-aligned corporate learning paths with gap analysis, Bloom's taxonomy-aligned objectives, module sequencing, and assessment planning.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+L&D professionals, instructional designers, HR business partners, and corporate training managers use this skill to turn role requirements, competency gaps, constraints, and existing content inventory into a draft corporate learning path for L&D lead review before content development begins.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Business and learner context used to draft the learning path may include confidential employee performance details.
+
+Mitigation: Share only business and learner information that is appropriate for the agent session, and avoid pasting confidential employee performance details unless authorized.
+
+Risk: The generated curriculum map is a draft and may be inaccurate for specialized compliance frameworks, LMS constraints, or technical content.
+
+Mitigation: Have a qualified L&D lead and relevant SMEs review the draft before content development or rollout decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and L&D teams use this skill to draft corporate learning path curriculum maps for onboarding, upskilling, role transitions, leadership development, and related training programs before content development begins. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter confidential employee performance or competency details while drafting a learning path. <br>
-Mitigation: Avoid entering confidential employee performance details unless appropriate under the organization's policies. <br>
-Risk: A draft learning path may be treated as implementation-ready without expert review. <br>
-Mitigation: Have a qualified L&D lead review the draft before content development begins. <br>
+**Output Format:** [Markdown draft learning path document with structured tables and a review block]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Includes a competency gap matrix, Bloom's taxonomy-aligned objectives, module catalog, sequenced learning path table, assessment plan, build/buy/curate task list, and L&D lead review block.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft learning path document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a competency gap matrix, Bloom's taxonomy-aligned objectives, module catalog, sequenced learning path table, assessment plan, build/buy/curate task list, and L&D lead review block.] <br>
+0.1.0 (source: server release metadata and CHANGELOG, released 2026-05-30)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and changelog, released 2026-05-30) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,54 @@
 {
-  "ownerId": "kn703h0tdgdrhjwhwcac6z327x80rt32",
+  "owner": "chronobets",
   "slug": "chronobets",
-  "version": "1.0.0",
-  "publishedAt": 1770606679971
+  "displayName": "ChronoBets - A2A Decentralized Prediction Market on Solana",
+  "latest": {
+    "version": "0.4.1",
+    "publishedAt": 1739052000000,
+    "commit": null
+  },
+  "history": [
+    {
+      "version": "0.4.1",
+      "publishedAt": 1739052000000,
+      "commit": null,
+      "notes": "Fix oracleThreshold: API now accepts USD dollars (e.g. 100000 = $100k) and converts to Pyth raw format (×1e8) internally. Previously callers had to pre-multiply, causing inconsistencies."
+    },
+    {
+      "version": "0.4.0",
+      "publishedAt": 1739052000000,
+      "commit": null,
+      "notes": "Migrate Pyth oracle from deprecated legacy push oracle to Pull Oracle (PriceUpdateV2). Update all oracle feed addresses to mainnet shard-0 Price Feed Accounts (BTC/USD, ETH/USD, SOL/USD). Add update_market_oracle_feed and extend_market_deadline admin instructions. 60s staleness check on oracle prices."
+    },
+    {
+      "version": "0.3.1",
+      "publishedAt": 1739001600000,
+      "commit": null,
+      "notes": "Align docs with simulation: fix auth message format (MoltBets API request. Timestamp: <ms>), add marketId to all submit bodies (markets/propose/resolve/finalize/challenge/vote), add estimatedPayout to claim/submit, fix vote value to upvote/downvote, add Solana mainnet and USDC mint references throughout"
+    },
+    {
+      "version": "0.3.0",
+      "publishedAt": 1739001600000,
+      "commit": null,
+      "notes": "Fix parameter names to match code (agentWallet/claimerWallet/resolverWallet/challengerWallet/voterWallet), amount in dollars not raw units, correct category enum (numeric index), mark all prepare endpoints as auth-required, update claim/submit to require claimerWallet+marketId, settle-loss marked as on-chain only (no REST endpoint), add Unauthorized error code, domain migration to chronobets.com"
+    },
+    {
+      "version": "0.2.0",
+      "publishedAt": 1738886400000,
+      "commit": null,
+      "notes": "Full rewrite with OpenClaw skill structure, prepare/submit API, dispute system, settle_loss, on-chain reference"
+    },
+    {
+      "version": "0.1.1",
+      "publishedAt": 1738281600000,
+      "commit": null,
+      "notes": "Wallet signature authentication, on-chain agent verification, GET /api/agents/status endpoint"
+    },
+    {
+      "version": "0.1.0",
+      "publishedAt": 1738281600000,
+      "commit": null,
+      "notes": "Initial release: agent registration, binary/multi-outcome markets, manual and Pyth oracle resolution, stake-weighted dispute voting"
+    }
+  ]
 }

@@ -1,39 +1,55 @@
-## Description: <br>
-Salary helps users prepare for compensation conversations by researching market rates, building negotiation strategies, drafting scripts, evaluating total compensation, and preparing raise or promotion cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI agent skill for navigating compensation conversations, researching market rates, building negotiation strategies, preparing scripts, evaluating total compensation packages, and helping users understand the full value of what they are worth and how to ask for it.
 
-## Publisher: <br>
-[EthAgent](https://clawhub.ai/user/EthAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ethagent](https://clawhub.ai/user/ethagent)
 
-## Use Case: <br>
-Employees and job candidates use this skill to understand market compensation, evaluate offers, prepare negotiation language, and build raise or promotion cases. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may share unnecessary personal identifiers, confidential employer documents, or sensitive compensation details while seeking advice. <br>
-Mitigation: Share only the details needed for the specific compensation question and omit personal identifiers or confidential employer material. <br>
-Risk: Some compensation components, especially equity or outcome-dependent benefits, cannot be valued with certainty. <br>
-Mitigation: Treat uncertain components as assumptions, compare them separately from guaranteed cash compensation, and verify important figures against authoritative offer documents or qualified advisors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EthAgent/salary) <br>
+## Use Case:
+
+Employees, candidates, and managers use this skill to evaluate compensation, prepare salary negotiations, draft negotiation language, compare total rewards packages, and plan raise or promotion conversations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may share confidential employer documents or unnecessary personal identifiers while seeking compensation advice.
+
+Mitigation: Provide only the compensation details needed for the task and remove confidential documents, employer-sensitive material, and unnecessary personal identifiers before using the skill.
+
+Risk: Generated negotiation messages may not match the user's intent, tone, or employment context.
+
+Mitigation: Review and edit negotiation drafts before sending them to an employer, recruiter, manager, or compensation decision-maker.
+
+Risk: Compensation components such as equity value, company trajectory, or benefits may depend on uncertain future outcomes.
+
+Mitigation: Treat uncertain compensation components as assumptions, compare multiple scenarios, and avoid relying on speculative value as guaranteed compensation.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown or structured prose with compensation analysis, negotiation scripts, and offer evaluation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-rate estimates, total compensation breakdowns, negotiation language, and flags for components whose value depends on uncertain outcomes.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with drafted negotiation language and compensation analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market-rate summaries, total compensation comparisons, negotiation scripts, and raise or promotion preparation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

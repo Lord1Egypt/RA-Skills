@@ -1,40 +1,53 @@
-## Description: <br>
-Generates likely thesis, dissertation, undergraduate paper, or graduation-project defense questions and evidence-based reference answers from user-provided thesis, proposal, abstract, chapter draft, or defense materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates likely thesis, dissertation, undergraduate paper, or graduation-project defense questions and strong reference answers from user-provided thesis, proposal, abstract, chapter draft, or defense materials.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students, researchers, and academic advisors use this skill to prepare oral defense practice materials from existing thesis or proposal content while preserving the user's chosen language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided thesis or proposal material may contain confidential participant details, advisor comments, unpublished research, or institution-restricted content. <br>
-Mitigation: Redact sensitive or restricted material before use and follow the user's institution, advisor, and data-handling requirements. <br>
-Risk: Generated defense answers may be incomplete, inaccurate, or misaligned with academic integrity expectations if the source thesis material is incomplete or misunderstood. <br>
-Mitigation: Verify every answer against the actual thesis and applicable defense rules, and treat provisional answers as drafts requiring student review. <br>
+## Use Case:
 
+Students, researchers, and academic advisors use this skill to prepare for proposal, thesis, dissertation, undergraduate, master's, or doctoral defenses by generating grounded practice questions, reference answers, and response strategies from supplied defense materials.
 
-## Reference(s): <br>
-- [Thesis Defense Q&A Guide](references/defense-qa-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with grouped questions, reference answers, thesis evidence notes, and preparation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the dominant thesis language unless the user requests another language; marks missing evidence as provisional instead of fabricating details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided thesis materials may contain private research data, participant information, or unpublished work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide private research data, participant identifiers, or confidential material unless sharing it with the agent environment is acceptable.
+
+Risk: Generated defense answers may overstate conclusions when the supplied thesis material is incomplete.
+
+Mitigation: Ground answers in the supplied document and mark missing methods, findings, citations, or sample details for user verification.
+
+## Reference(s):
+
+- [Thesis Defense Q&A Guide](references/defense-qa-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches the user's requested language or the thesis's dominant language; may include grouped Q&A, compact tables, or mock defense dialogue.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Analyzes Zernio.com profiles, posts, companies, jobs, and trends to extract structures, networks, engagement, and career insights from URLs and content requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Zernio.com profiles, posts, companies, jobs, and trends to extract structures, networks, engagement, and career insights from URLs and content requests.
 
-## Publisher: <br>
-[igorganapolsky](https://clawhub.ai/user/igorganapolsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igorganapolsky](https://clawhub.ai/user/igorganapolsky)
 
-## Use Case: <br>
-Developers and agents use this skill to recognize Zernio-related requests, fetch public Zernio profile, job, company, and post information, and produce concise structure, network, engagement, and career insights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports hidden activation and opaque fetching of public Zernio profile and engagement data. <br>
-Mitigation: Use only for explicit user-requested Zernio targets, disclose when external web requests occur, and ask before broad profile, engagement, or network analysis. <br>
-Risk: Fetched public profile, job, company, or post information may be incomplete, stale, or sensitive in context. <br>
-Mitigation: Limit analysis to public data and user-provided targets, verify important claims against the source page, and avoid unsupported personal or career conclusions. <br>
-Risk: Deep-dive behavior can expand the scope of analysis beyond the user's immediate request. <br>
-Mitigation: Require explicit approval and a narrow target scope before spawning subagents or conducting broader job, network, or engagement analysis. <br>
+## Use Case:
 
+External users and developers use this skill to fetch and analyze public Zernio profile, post, company, job, and trend pages for structured summaries, network context, engagement signals, and career insights.
 
-## Reference(s): <br>
-- [Zernio patterns reference](references/zernio_patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON-style analysis with optional command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise profile, network, engagement, and career insights for user-requested Zernio targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may fetch and analyze profile or network information without making that retrieval clear to the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose when public Zernio content is being retrieved and analyzed, especially for profile and network requests.
+
+Risk: Weak URL scoping could cause the agent to fetch ambiguous or unintended Zernio-related URLs.
+
+Mitigation: Validate requested URLs against public Zernio profile, post, company, and job patterns before retrieval.
+
+Risk: Hidden activation for ambiguous requests could surprise users or analyze content outside their intent.
+
+Mitigation: Ask for clarification when a request is ambiguous instead of silently activating the skill.
+
+## Reference(s):
+
+- [OpenClaw Zernio Analyzer on ClawHub](https://clawhub.ai/igorganapolsky/skills/openclaw-zernio-analyzer)
+- [Publisher Profile](https://clawhub.ai/user/igorganapolsky)
+- [Zernio Patterns Reference](artifact/references/zernio_patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON-style structured analysis, with optional shell command examples for fetching public Zernio URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may summarize profile folders, network hierarchy, insights, engagement, and fetched public Zernio content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

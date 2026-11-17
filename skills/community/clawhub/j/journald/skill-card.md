@@ -1,39 +1,54 @@
-## Description: <br>
-Journald reference tool. Use when working with journald in sysops contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Journald reference tool. Use when working with journald in sysops contexts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, operators, and sysops teams use this skill as a quick journald reference for concepts, troubleshooting, performance, security, migration, and command-oriented guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides generic journald guidance that may omit environment-specific systemd details. <br>
-Mitigation: Verify operational details against official systemd documentation and test changes before applying them on production systems. <br>
+## Use Case:
 
+Developers and operations engineers use this skill as a quick journald-oriented sysops reference for setup, troubleshooting, performance, security, migration, and checklist-style tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/journald) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reference text with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content selected by command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The journald material is mostly generic sysops boilerplate and may be mistaken for authoritative journald documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a quick reference only, and verify operational decisions against trusted journald and distribution-specific documentation.
+
+Risk: Static troubleshooting or security guidance may be incomplete for a specific production environment.
+
+Mitigation: Have an experienced operator review recommendations before applying them to live systems.
+
+## Reference(s):
+
+- [Journald ClawHub skill page](https://clawhub.ai/xueyetianya/skills/journald)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-like text printed by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output selected by command name; no credentials, network calls, or system changes are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

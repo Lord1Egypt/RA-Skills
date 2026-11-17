@@ -1,53 +1,68 @@
-## Description: <br>
-Pulse Skills helps agents sync workspace context with Aicoo/Pulse, manage notes and share links, automate briefings and inbox monitoring, and communicate with other agents through Pulse APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pulse Skills helps agents share and maintain Aicoo/Pulse workspace context through API-guided syncing, note operations, snapshots, share links, agent-to-agent messaging, daily briefings, and inbox monitoring.
 
-## Publisher: <br>
-[xisen-w](https://clawhub.ai/user/xisen-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xisen-w](https://clawhub.ai/user/xisen-w)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect Codex, Claude Code, OpenClaw, or cron workflows to Aicoo/Pulse for context sync, controlled agent sharing, workspace note management, daily briefs, inbox monitoring, and agent-to-agent messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sync local files, notes, and workspace context to Aicoo/Pulse. <br>
-Mitigation: Restrict synced folders, review selected files for secrets or private data, and approve bulk sync operations deliberately. <br>
-Risk: Share links and guest permissions can expose agent or note context beyond the owner. <br>
-Mitigation: Prefer folder-scoped, read-only links with expiration, validate scope before sharing, and revoke links that are no longer needed. <br>
-Risk: Recurring hooks, loops, routines, or cron jobs may continue sending updates or checking inbox data in the background. <br>
-Mitigation: Enable automation only after reviewing scripts and schedules, keep logs and state files private, and disable recurring jobs when they are no longer required. <br>
-Risk: The skill depends on sensitive credentials such as PULSE_API_KEY and may use OAuth or MCP integrations. <br>
-Mitigation: Store credentials as environment secrets, never print tokens in outputs or logs, and connect only trusted OAuth and MCP providers. <br>
-Risk: Automated note edits can overwrite or duplicate workspace knowledge. <br>
-Mitigation: Search existing notes first, create snapshots before major edits, and prefer patching canonical notes over creating near-duplicates. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect AI agents with Aicoo/Pulse workspaces, sync and manage knowledge, create scoped share links, monitor inbox activity, and coordinate agent-to-agent workflows.
 
-## Reference(s): <br>
-- [Pulse Skills on ClawHub](https://clawhub.ai/xisen-w/pulse-skills) <br>
-- [Aicoo API Documentation](https://www.aicoo.io/docs/api) <br>
-- [Aicoo API Key Settings](https://www.aicoo.io/settings/api-keys) <br>
-- [Verified MCP Integrations](artifact/assets/integrations/verified-mcps.md) <br>
-- [Context Sync API Reference](artifact/skills/context-sync/reference/API.md) <br>
-- [Share Agent API Reference](artifact/skills/share-agent/reference/API.md) <br>
-- [Examine Sandbox API Reference](artifact/skills/examine-sandbox/reference/API.md) <br>
-- [Notion MCP Official Guide](https://developers.notion.com/guides/mcp/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce curl commands, cron entries, hook configuration, and concise operational guidance for Aicoo/Pulse workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.1.0) <br>
+Risk: Authenticated workspace access can expose Aicoo/Pulse notes, files, messages, and sharing state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the agent should have authenticated workspace access, keep PULSE_API_KEY private, and review intended API actions before execution.
+
+Risk: Hooks, loops, routines, and cron jobs can sync project or conversation data without enough scoping or confirmation.
+
+Mitigation: Limit automation to explicit Pulse tasks and review which files or messages will be sent before enabling scheduled or event-driven sync.
+
+Risk: All-workspace share scopes can expose more context than intended.
+
+Mitigation: Prefer folder-scoped, read-only, expiring links; audit active links and revoke or narrow broad links when they are not deliberate.
+
+Risk: MCP and integration changes may affect connected external tools.
+
+Mitigation: Treat MCP and OAuth integration changes as admin-level actions and require deliberate review before authorizing, refreshing, disconnecting, or removing integrations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xisen-w/skills/pulse-skills)
+- [Aicoo API Documentation](https://www.aicoo.io/docs/api)
+- [Aicoo API Keys](https://www.aicoo.io/settings/api-keys)
+- [Context Sync API Reference](skills/context-sync/reference/API.md)
+- [Share Agent API Reference](skills/share-agent/reference/API.md)
+- [Examine Sandbox API Reference](skills/examine-sandbox/reference/API.md)
+- [Verified MCP Integrations](assets/integrations/verified-mcps.md)
+- [Notion MCP Guide](https://developers.notion.com/guides/mcp/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with REST API examples, JSON payloads, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose authenticated Aicoo/Pulse API calls that require PULSE_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

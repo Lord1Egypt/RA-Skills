@@ -1,42 +1,55 @@
-## Description: <br>
-Self-improving agent system that analyzes conversation quality, identifies improvement opportunities, and continuously optimizes response strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-improving agent system that analyzes conversation quality, identifies improvement opportunities, and continuously optimizes response strategies.
 
-## Publisher: <br>
-[blueworldmarketing](https://clawhub.ai/user/blueworldmarketing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blueworldmarketing](https://clawhub.ai/user/blueworldmarketing)
 
-## Use Case: <br>
-Developers and agent operators use this skill to analyze conversation quality, log improvement insights, generate weekly reports, and suggest response-strategy or personality updates for OpenClaw agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Improvement logs or reports may capture sensitive conversation excerpts or personal data in local workspace files. <br>
-Mitigation: Avoid logging secrets, personal data, or sensitive excerpts, and review stored improvement notes before sharing or committing them. <br>
-Risk: Suggested personality or SOUL.md updates may be inaccurate or inappropriate for the intended agent behavior. <br>
-Mitigation: Manually review suggested updates before applying them to an agent configuration. <br>
+## Use Case:
 
+Developers and agent operators use this skill to analyze conversation quality, log improvement insights, generate weekly reports, and suggest updates to agent behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blueworldmarketing/xiucheng-self-improving-bwm) <br>
-- [Publisher profile](https://clawhub.ai/user/blueworldmarketing) <br>
-- [Project homepage](https://github.com/xiucheng/self-improving-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, JSON statistics, Python API calls, and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local improvement notes and reads local workspace files when used by the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact frontmatter, skill.yaml, _meta.json) <br>
+Risk: The skill can automatically analyze sensitive conversations and persist improvement logs without clear retention limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit user consent, restrict it to a dedicated workspace, and periodically inspect or delete improvement_log.md.
+
+Risk: Generated improvement suggestions can influence future agent behavior.
+
+Mitigation: Review SOUL.md recommendations before applying them and gate automatic analysis where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blueworldmarketing/skills/xiucheng-self-improving-bwm)
+- [Publisher profile](https://clawhub.ai/user/blueworldmarketing)
+- [Project homepage](https://github.com/xiucheng/self-improving-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON statistics, Python API results, and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent improvement logs and reads optional SOUL.md guidance in the configured workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

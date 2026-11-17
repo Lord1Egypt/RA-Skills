@@ -1,45 +1,58 @@
-## Description: <br>
-帮助用户监控 BTC、ETH、SOL 等加密货币价格，设置价格突破或跌破告警，并生成市场概览和单币分析报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents query cryptocurrency prices, store local price alert settings, and generate concise market reports from public market-data APIs.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-External users and developers use this skill to check cryptocurrency prices, configure monitoring alerts, and produce informational market reports. It is not intended for trade execution, wallet management, DeFi operations, or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market reports and risk-style analysis can be mistaken for financial advice. <br>
-Mitigation: Treat generated reports and suggestions as informational only, and independently verify market data before making financial decisions. <br>
-Risk: Users may act on alerts or risk scores without confirmation. <br>
-Mitigation: Confirm alert settings, target prices, and any risk score before taking action outside the skill. <br>
-Risk: External market APIs can be unavailable, delayed, or inconsistent. <br>
-Mitigation: Check the displayed data source and timestamp, and compare critical values against another trusted source. <br>
+## Use Case:
 
+External users and agents use this skill to check BTC, ETH, SOL, and other cryptocurrency prices, create local price-threshold alert records, and produce informational market summaries. It is not for trade execution, DeFi operations, wallet management, or investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/qqyougit-crypto-monitor) <br>
-- [加密货币监控与告警 - 详细内容](references/details.md) <br>
-- [CoinGecko markets API](https://api.coingecko.com/api/v3/coins/markets) <br>
-- [CoinCap assets API](https://api.coincap.io/v2/assets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown-style text with command examples and alert configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include current price data, 24-hour changes, market report summaries, alert IDs, and data-source labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Users may expect dependable continuous alert delivery, but the release evidence says the skill saves alert settings without shipping a working continuous monitor or notification sender.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use alert records as configuration only unless a separate monitored scheduler and notification path are reviewed and deployed.
+
+Risk: Market reports can sound action-oriented even though the skill is not intended to provide investment advice.
+
+Mitigation: Treat generated reports as informational market summaries and require independent financial review before acting on them.
+
+Risk: Price checks and reports depend on third-party market-data APIs and may fail, lag, or return incomplete data.
+
+Mitigation: Check timestamps and data source labels, and confirm material decisions against another trusted source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/qqyougit-crypto-monitor)
+- [加密货币监控与告警 - 详细内容](references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown or terminal text with price data, alert confirmations, report summaries, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include locally saved alert settings under the user's OpenClaw workspace; market data is informational and depends on third-party API availability.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

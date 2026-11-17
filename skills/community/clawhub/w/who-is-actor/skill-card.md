@@ -1,41 +1,57 @@
-## Description: <br>
-Who Is Actor generates repository-level Git collaboration-pattern reports from read-only local Git history, focusing on aggregate commit cadence, churn, rework, conventional-commit compliance, and bus-factor signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Who Is Actor is a zero-install Git repository collaboration-pattern analysis skill that produces aggregate repository-level reports on commit cadence, churn, rework, conventional-commit compliance, and bus-factor risk without personnel evaluation.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to inspect aggregate repository workflow patterns for a specific Git repository they are authorized to analyze. It is intended for repository-level process discussion, not contributor ranking or personnel decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes Git history that may include other contributors' metadata and sensitive commit text. <br>
-Mitigation: Use it only on repositories you are authorized to analyze, prefer dry-run first, and keep raw commit messages, full paths, and contributor display names local-only. <br>
-Risk: Aggregate repository metrics could be misused as personnel or performance signals. <br>
-Mitigation: Do not use the report for performance reviews, rankings, compensation, hiring, firing, layoffs, or other personnel decisions; keep interpretation at the repository workflow level. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review aggregate Git repository collaboration patterns for repositories they are authorized to analyze. It supports workflow retrospectives and repository-level risk review, not performance management or individual contributor evaluation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wscats/who-is-actor) <br>
-- [Project repository](https://github.com/wscats/who-is-actor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with aggregate metrics and optional dry-run command preview] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Repository-level only; contributor display names and raw commit metadata are local-only intermediate values and are not included in model-bound prompts or the final report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: server release metadata and skill.yaml) <br>
+Risk: Repository analysis can expose raw repository paths and Git history during local collection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, analyze only repositories you are authorized to inspect, and require aggregation or hashing before file-path-derived data reaches the model.
+
+Risk: Command-scoping gaps can make unsafe paths or branch names risky.
+
+Mitigation: Reject commands with unquoted paths or branch names beginning with `-`, and keep execution limited to reviewed, read-only Git commands.
+
+Risk: Sensitive repositories may contain confidential commit subjects, paths, ticket IDs, or internal references.
+
+Mitigation: Avoid sensitive repositories unless raw commit text and paths remain local-only and only aggregate metrics are used in model-bound context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/who-is-actor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with optional dry-run command preview]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Repository-level aggregate metrics only; no contributor display names, per-contributor scores, rankings, or personnel recommendations.]
+
+## Skill Version(s):
+
+1.0.15 (source: server release metadata, skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

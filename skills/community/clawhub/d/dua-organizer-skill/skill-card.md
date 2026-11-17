@@ -1,37 +1,57 @@
-## Description: <br>
-Guides structured help for Dua Organizer using clear templates, checks, and safe defaults (category: Faith & Lifestyle). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Dua Organizer using clear templates, checks, and safe defaults (category: Faith & Lifestyle).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External users can use this skill to organize dua-related planning into concise plans, reusable checklists, next actions, and editable draft copy while minimizing unnecessary private information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Faith and lifestyle notes may include private personal information. <br>
-Mitigation: Avoid pasting passwords, secrets, or unnecessary personal information, and keep optional pasted notes limited to material the user has rights to share. <br>
+## Use Case:
 
+External users use this skill to structure dua-related faith and lifestyle planning into concise plans, reusable checklists, next actions, and editable draft copy while avoiding secrets and unnecessary data collection.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise plans, numbered checklists, short next-actions lists, and optional editable draft copy blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, metadata, release evidence) <br>
+Risk: Users may paste private personal details or secrets while asking for faith and lifestyle planning help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for goals and constraints without secrets, keep personal details minimal, and do not collect passwords, OTPs, private keys, wallets, seeds, or session secrets.
+
+Risk: The donation link could be mistaken for a required part of the skill workflow.
+
+Mitigation: Treat donation as optional support and keep the skill's core output focused on text-only planning guidance.
+
+Risk: Generated planning guidance may be incomplete or unsuitable for a user's personal context.
+
+Mitigation: Keep outputs editable and reversible, favor checklists over irreversible actions, and have users review draft wording before relying on it.
+
+## Reference(s):
+
+- [Dua Organizer Skill on ClawHub](https://clawhub.ai/abdullah944/skills/dua-organizer-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise plans, numbered checklists, next actions, and optional editable draft copy blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only planning helper; no code execution or external scraping is requested by the skill.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, metadata.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

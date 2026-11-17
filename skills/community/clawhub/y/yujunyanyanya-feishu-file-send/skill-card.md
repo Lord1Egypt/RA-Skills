@@ -1,43 +1,55 @@
-## Description: <br>
-Reliable Feishu file sending workflow for avoiding missing attachments, mediaLocalRoots path issues, and combined text plus file delivery failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reliable Feishu file sending workflow for delivering attachments separately from explanatory text and avoiding mediaLocalRoots path issues.
 
-## Publisher: <br>
-[yujunyanyanya](https://clawhub.ai/user/yujunyanyanya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yujunyanyanya](https://clawhub.ai/user/yujunyanyanya)
 
-## Use Case: <br>
-Agents and developers use this skill to send generated or edited files to Feishu users reliably, especially when diagnosing missing attachments or Feishu file delivery failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Files outside allowed mediaLocalRoots may fail to send or may not appear to the recipient. <br>
-Mitigation: Place files under the default workspace or another allowed mediaLocalRoots directory before sending. <br>
-Risk: Adding broad directories such as /tmp to mediaLocalRoots can expand which local files the messaging system may send. <br>
-Mitigation: Only whitelist directories that are intended for sharing and send files the user explicitly wants delivered. <br>
-Risk: Combining explanatory text and an attachment in one Feishu outbound message can make attachments unreliable. <br>
-Mitigation: Send any text first, then send the file as a separate attachment-only message. <br>
+## Use Case:
 
+Developers and agents use this skill when sending generated or edited files to Feishu users, especially when diagnosing missing attachments or file delivery failures. It guides the agent to keep explanatory text and attachments in separate outbound messages and to use paths allowed by mediaLocalRoots.
 
-## Reference(s): <br>
-- [Feishu file sending notes](references/feishu-file-sending-notes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yujunyanyanya/yujunyanyanya-feishu-file-send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with tool usage patterns and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to send Feishu text and attachments as separate messages and to keep file paths inside allowed mediaLocalRoots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A broad persistent upload allowlist such as the entire /tmp directory could expose unintended local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated outbound directory with restrictive permissions instead of broadly whitelisting temporary directories.
+
+Risk: Gateway configuration changes and local file sends may disclose files without enough user intent checking.
+
+Mitigation: Require explicit user approval before changing Feishu gateway configuration or sending local files.
+
+## Reference(s):
+
+- [Feishu file sending notes](references/feishu-file-sending-notes.md)
+- [ClawHub skill page](https://clawhub.ai/yujunyanyanya/skills/yujunyanyanya-feishu-file-send)
+- [Publisher profile](https://clawhub.ai/user/yujunyanyanya)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with command and configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English operational guidance for Feishu attachment delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-Onboard new users into conscious participation; explain $NEURONS without hype and provide safe next actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Onboard new users into conscious participation; explain $NEURONS without hype and provide safe next actions.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-External community operators and support agents use this skill to welcome new members, tailor explanations to a user's experience level, explain $NEURONS conservatively, and provide safe next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad onboarding and getting-started triggers may route unrelated community support requests to this skill. <br>
-Mitigation: Narrow the trigger phrases or route the skill manually in agents with many support workflows. <br>
-Risk: Onboarding language about $NEURONS could be misunderstood as hype, pressure, or a financial promise. <br>
-Mitigation: Keep explanations conservative, avoid financial promises, preserve user autonomy, and include a concrete comprehension check. <br>
+## Use Case:
 
+Community moderators, project contributors, and onboarding agents use this skill to answer getting-started questions, explain $NEURONS in plain language, and guide users toward one safe next action.
 
-## Reference(s): <br>
-- [Community Onboarding ClawHub page](https://clawhub.ai/mzfshark/community-onboarding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text containing an onboarding message, 1-3 next actions, and a short comprehension check question.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user_profile input covering experience level, goals, available time, and risk tolerance when known.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact files declare 2.0.0) <br>
+Risk: Broad onboarding and getting-started triggers may steer general introduction requests toward $NEURONS community guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user is seeking $NEURONS or community onboarding help, and preserve the documented no-pressure, no-financial-promises constraints.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mzfshark/skills/community-onboarding)
+- [Publisher Profile](https://clawhub.ai/user/mzfshark)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text with an onboarding message, 1-3 next actions, and a check question]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user_profile input describing experience level, goals, available time, and risk tolerance when known.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

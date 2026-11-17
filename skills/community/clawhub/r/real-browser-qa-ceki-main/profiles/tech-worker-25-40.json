@@ -1,0 +1,41 @@
+{
+  "id": "tech-worker-25-40",
+  "label": "Tech Worker 25-40",
+  "emoji": "👨‍💻",
+  "demographics": {
+    "gender": "any",
+    "age_range": [25, 40],
+    "tier": "millennial-gen-x"
+  },
+  "active_hours": {
+    "description": "Erratic — deep work sprints, late coding sessions",
+    "peak": [9, 12, 14, 17, 22, 3],
+    "off_peak_min": 3
+  },
+  "typing": {
+    "description": "Fast, high accuracy, programmer-optimised, low think pauses",
+    "wpm": { "min": 100, "max": 145 },
+    "profile": "fast",
+    "think_prob": 0.004,
+    "think_ms": [100, 500],
+    "backspace_freq": 0.02
+  },
+  "scroll": {
+    "passes": 1,
+    "description": "Minimal — knows what they're looking for",
+    "speed_px_per_ms": { "min": 40, "max": 100 },
+    "pause_between_passes_ms": { "min": 100, "max": 400 },
+    "depth_per_pass": { "min": 0.1, "max": 0.4 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 200, "max": 1000 },
+    "pre_click_pause_ms": { "min": 50, "max": 200 },
+    "inter_action_pause_ms": { "min": 80, "max": 300 }
+  },
+  "mouse": {
+    "speed": 1.3,
+    "curvature": 0.1,
+    "jitter": 0.25,
+    "description": "Fast, direct — efficiency over naturalness"
+  }
+}

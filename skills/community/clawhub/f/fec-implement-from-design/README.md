@@ -1,17 +1,17 @@
-# 设计稿实现
+# Implementation of design draft
 
-Frontend Craft skill for 设计稿实现.
+Production design-to-code workflow for design tools, screenshots, and section-level visual references with token mapping and accessibility safeguards.
 
 ## Skill
 
 - ID: `fec-implement-from-design`
 - Category: `design-ui`
-- Version: `2.5.0`
+- Version: `2.9.0`
 - Source: `skills/fec-implement-from-design/SKILL.md`
 
 ## Description
 
-Use when implementing UI from Figma, Sketch, MasterGo, Pixso, Modao, MockingBot, screenshots, design selections, design tokens, or design-to-code tasks for production frontend components/pages; Chinese triggers include 设计稿, 按设计实现.
+Use when implementing UI from Figma, Sketch, MasterGo, Pixso, Modao, MockingBot, screenshots, design selections, design tokens, or design-to-code tasks for production frontend components/pages; Chinese triggers include design draft, implementation by design.
 
 ## Usage
 

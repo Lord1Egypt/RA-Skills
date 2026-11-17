@@ -1,43 +1,57 @@
-## Description: <br>
-Helps an agent create Stardew Valley Content Patcher or SMAPI mods, including project structure, JSON content, NPC/event/dialogue additions, validation, and SMAPI build steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents scaffold and validate Stardew Valley Content Patcher or SMAPI mod projects, including JSON content packs, NPC, dialogue, event data, and C# SMAPI project files.
 
-## Publisher: <br>
-[YizeGe](https://clawhub.ai/user/YizeGe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yizege](https://clawhub.ai/user/yizege)
 
-## Use Case: <br>
-External developers and mod authors use this skill to scaffold and validate Stardew Valley Content Patcher and SMAPI mod projects. It is intended for creating mod files, JSON data, C# entry points, and shell commands for local tool checks or builds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe mod or author names may cause generated files to be written outside the intended project folder. <br>
-Mitigation: Use only trusted simple names without slashes, path segments, or markup, and review the target path before allowing files to be created or overwritten. <br>
-Risk: Generated build and project files may include unescaped user input. <br>
-Mitigation: Inspect generated JSON, C# project files, and source files before running dotnet build or installing the mod. <br>
+## Use Case:
 
+Developers and mod authors use this skill to create Stardew Valley mod project structures, draft Content Patcher JSON, add NPC, event, dialogue, and schedule data, and prepare SMAPI C# projects for local builds.
 
-## Reference(s): <br>
-- [Stardew Modding Quick Reference](references/quickref.md) <br>
-- [Stardew Valley Modding Wiki](https://stardewvalleywiki.com/Modding:Index) <br>
-- [SMAPI](https://smapi.io/) <br>
-- [Content Patcher](https://smapi.io/mods/1915) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON, C#, Python, and shell command snippets; helper scripts may create files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate Stardew Valley mod project files for Content Patcher or SMAPI workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The project generator can write outside the intended folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a controlled workspace, avoid overwriting existing folders, and confirm generated paths before building or moving files.
+
+Risk: Untrusted mod names or author names can be embedded into generated build and source files.
+
+Mitigation: Use simple identifier-style names from trusted input only, then inspect generated .csproj and .cs files before running dotnet build.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yizege/skills/stardewvalley-modding)
+- [Quick reference](references/quickref.md)
+- [Stardew Valley modding wiki](https://stardewvalleywiki.com/Modding:Index)
+- [SMAPI](https://smapi.io/)
+- [Content Patcher](https://smapi.io/mods/1915)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated JSON, C# project files, shell commands, and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts may create Stardew Valley Content Patcher or SMAPI project files when run by the agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

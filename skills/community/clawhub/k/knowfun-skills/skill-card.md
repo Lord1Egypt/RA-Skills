@@ -1,46 +1,63 @@
-## Description: <br>
-Generates educational content with the Knowfun.io API, including courses, posters, games, and films. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate educational content using Knowfun.io API - create courses, posters, games, and films with AI.
 
-## Publisher: <br>
-[duguyixiaono1](https://clawhub.ai/user/duguyixiaono1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duguyixiaono1](https://clawhub.ai/user/duguyixiaono1)
 
-## Use Case: <br>
-Developers, educators, trainers, and content creators use this skill to create and manage Knowfun.io content-generation tasks from text or URLs. It helps agents check task status, retrieve results, inspect schemas, list tasks, and report credit usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Knowfun.io API key and sends prompts, URLs, and task data to the external Knowfun.io service. <br>
-Mitigation: Use a temporary environment variable or protected secret manager, review data before submission, and install only when this external data sharing is acceptable. <br>
-Risk: Creating tasks through remote chat or natural-language prompts may consume Knowfun.io credits. <br>
-Mitigation: Use approval gates before task creation and check credit balance with the skill before running high-volume or ambiguous requests. <br>
-Risk: Setup guidance may encourage storing API keys in shell startup files or using manual installs that are harder to audit. <br>
-Mitigation: Prefer scoped session secrets or a managed secret store, and review the downloaded files before sudo, symlink, or manual installation steps. <br>
+## Use Case:
 
+Developers, educators, trainers, content creators, and learners use this skill to create and manage Knowfun.io tasks that turn text, URLs, and documents into courses, posters, learning games, and educational films.
 
-## Reference(s): <br>
-- [Knowfun ClawHub Skill Page](https://clawhub.ai/duguyixiaono1/knowfun-skills) <br>
-- [Knowfun API Platform](https://www.knowfun.io/api-platform) <br>
-- [API Reference](api-reference.md) <br>
-- [Usage Examples](examples.md) <br>
-- [Skill Instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and JSON API response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task IDs, status values, credit balance details, schema fields, and generated-content URLs returned by Knowfun.io.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: server release metadata, package.json, CHANGELOG) <br>
+Risk: The skill sends prompts, URLs, document references, and task metadata to the Knowfun.io API under the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with content appropriate for Knowfun.io processing and avoid submitting sensitive data unless that matches the user's data handling requirements.
+
+Risk: Server security evidence reports broader local and network authority than the skill purpose requires and under-disclosed security weaknesses.
+
+Mitigation: Install only from a trusted, version-pinned release, review commands before execution, and keep API keys in a safer secret mechanism when possible.
+
+Risk: Creating tasks may consume paid Knowfun.io credits.
+
+Mitigation: Confirm task type and input before creation, monitor credit balance, and review task creation requests from remote chat or assistant interfaces.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/duguyixiaono1/skills/knowfun-skills)
+- [Knowfun API Platform](https://www.knowfun.io/api-platform)
+- [Knowfun API Base](https://api.knowfun.io)
+- [README](README.md)
+- [API Reference](api-reference.md)
+- [Examples](examples.md)
+- [Security Policy](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-oriented agent responses with shell commands, JSON API response summaries, status details, and generated content links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the knowfun command and KNOWFUN_API_KEY; generated tasks may consume Knowfun.io credits.]
+
+## Skill Version(s):
+
+1.0.15 (source: server release evidence, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

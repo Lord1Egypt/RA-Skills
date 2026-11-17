@@ -1,42 +1,58 @@
-## Description: <br>
-Structured task snapshot and automatic post-compaction recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Big Memory helps OpenClaw agents capture structured task snapshots before context compaction and recover exact working state afterward.
 
-## Publisher: <br>
-[obekt](https://clawhub.ai/user/obekt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[obekt](https://clawhub.ai/user/obekt)
 
-## Use Case: <br>
-Developers and coding agents use Big Memory to capture structured task state before context compaction and recover the latest task snapshot afterward. It is intended for long multi-step sessions where exact files, decisions, code context, blockers, and next steps need to survive context loss. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Durable task snapshots can retain sensitive project context, secrets, or personal data if users include them. <br>
-Mitigation: Review memory files periodically and avoid storing secrets or personal data in snapshots. <br>
-Risk: Automatic or broad memory indexing can expand the amount of session context retained or searched. <br>
-Mitigation: Prefer explicit /big-memory commands for control and use caution before enabling session transcript indexing or cloud embedding search. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Task Snapshot Template](references/TASK-SNAPSHOT.md) <br>
-- [Recommended OpenClaw Configuration](references/openclaw-config.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/obekt/big-memory) <br>
-- [Homepage](https://github.com/obekt/big-memory) <br>
+## Use Case:
 
+Developers and agent users use Big Memory to preserve task state across context compaction during long, multi-step coding or project sessions and to restore the latest saved snapshot when context is lost.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown task snapshots, concise recovery summaries, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured local task snapshots and recovery guidance without external dependencies.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist detailed project context, including file paths, decisions, code snippets, and task state.
+
+Mitigation: Review the skill before installation when working with secrets, private customer data, proprietary code, or regulated information.
+
+Risk: Automatic compaction capture may save sensitive or untrusted content before redaction rules are in place.
+
+Mitigation: Prefer explicit save and recall commands, and avoid automatic compaction capture until appropriate redaction rules are added.
+
+Risk: Optional session transcript indexing or cloud embeddings can make conversation content searchable or provider-processed.
+
+Mitigation: Do not enable session transcript indexing or cloud embeddings unless that processing is acceptable for the workspace.
+
+## Reference(s):
+
+- [Big Memory Homepage](https://github.com/obekt/big-memory)
+- [Task Snapshot Template](references/TASK-SNAPSHOT.md)
+- [Recommended OpenClaw Configuration](references/openclaw-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown task snapshots with optional JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes append-only task snapshots to memory/YYYY-MM-DD.md when capture is triggered.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

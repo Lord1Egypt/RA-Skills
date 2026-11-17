@@ -1,38 +1,49 @@
-## Description: <br>
-健康追踪技能 - 追踪饮水、睡眠、步数等健康数据，JSON存储。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+健康追踪 tracks water intake, sleep, steps, weight, and basic health statistics in local JSON records.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Individuals and agents use this skill to record water intake, sleep, steps, and related health metrics, then summarize daily and weekly activity from locally stored JSON data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Water, sleep, step, weight, and similar health records may be saved in a local plaintext JSON file. <br>
-Mitigation: Use the skill only in access-controlled local workspaces, avoid shared or synced directories, and delete the JSON file when the retained history is no longer needed. <br>
+## Use Case:
 
+External users can ask an agent to record daily water intake, sleep, steps, and weight, then summarize current-day and weekly health statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown summaries with Python code examples and JSON data records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-entered health records in a local plaintext JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Personal health logs may be saved locally as plaintext JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill from a private, non-synced workspace; avoid shared folders; delete health_data.json when records should no longer be retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-health)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Guidance]
+
+**Output Format:** [Markdown summaries with JSON-backed record examples and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores health records in a local plaintext JSON file when the provided code is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

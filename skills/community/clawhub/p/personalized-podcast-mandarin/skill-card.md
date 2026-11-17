@@ -1,48 +1,70 @@
-## Description: <br>
-Generates Mandarin two-host podcast scripts from topics, URLs, or PDFs, with optional persona styling and stereo TTS audio output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Mandarin dual-host podcast scripts from topics, URLs, or PDFs, with optional persona styling and stereo TTS audio.
 
-## Publisher: <br>
-[liaozicen666-tech](https://clawhub.ai/user/liaozicen666-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liaozicen666-tech](https://clawhub.ai/user/liaozicen666-tech)
 
-## Use Case: <br>
-External users and developers use this skill to turn Mandarin topics, web pages, or PDFs into structured two-person podcast dialogue, Markdown transcripts, JSON session data, and optional TTS audio. It supports persona-based hosting styles and externally supplied research packages when the parent agent has web research capability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled live tests may include reusable-looking credentials. <br>
-Mitigation: Do not run bundled live tests with embedded credentials; use rotated credentials supplied through environment variables. <br>
-Risk: PDFs, private URLs, personal documents, and derived script text may be sent to external model or TTS providers. <br>
-Mitigation: Avoid confidential inputs unless the user accepts external processing, and document which providers receive content. <br>
-Risk: Persona and memory data are persisted with weak scoping safeguards. <br>
-Mitigation: Add path validation and provide clear procedures to view, manage, and delete saved personas and memory files. <br>
-Risk: Proxy-clearing behavior may bypass expected network routing in managed environments. <br>
-Mitigation: Patch or review proxy handling before use in work, sensitive, or policy-controlled environments. <br>
+## Use Case:
 
+Developers and external users use this skill to turn articles, PDFs, or free-form topics into Mandarin two-host podcast content. It supports configurable dialogue styles, persona selection or extraction, and optional text-to-speech audio generation.
 
-## Reference(s): <br>
-- [Skill Instructions](SKILL.md) <br>
-- [README](README.md) <br>
-- [Development Guide](DEVELOPMENT.md) <br>
-- [External Research Agent](agents/external-research-agent.md) <br>
-- [TTS Voice Configuration](config/tts_voices.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Audio, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown podcast dialogue, JSON session data, optional MP3 audio files, and usage guidance with Python or shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can skip audio when TTS credentials are unavailable; generated files are written under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unsafe URL fetching can expose the runtime to untrusted web content or unintended network destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated local environment, avoid internal network access, and do not pass untrusted URLs.
+
+Risk: Broad local file writes can create or overwrite generated podcast outputs in user-selected directories.
+
+Mitigation: Use a dedicated output directory with least-privilege filesystem access and review generated files before sharing or deploying them.
+
+Risk: Plaintext credential handling can expose API or TTS credentials if they are stored in local files.
+
+Mitigation: Prefer environment variables or a credential manager, rotate or remove embedded TTS credentials, and avoid saving private secrets in the skill directory.
+
+Risk: Hidden process-wide proxy changes can affect network behavior for the running agent process.
+
+Mitigation: Run in an isolated process and review network configuration before use in production or shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liaozicen666-tech/skills/personalized-podcast-mandarin)
+- [README](README.md)
+- [Development guide](DEVELOPMENT.md)
+- [External research agent](agents/external-research-agent.md)
+- [Research package example](examples/research_package_example.py)
+- [High-efficiency delivery style](references/¸ßÐ§´«´ï.md)
+- [Divergent conversation style](references/·¢É¢ÂþÌ¸.md)
+- [Deep dialogue style](references/Éî¶È¶ÔÌ¸.md)
+- [Viewpoint debate style](references/¹Ûµã½»·æ.md)
+- [Comedy style](references/Ï²¾ç·ç¸ñ.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, audio files]
+
+**Output Format:** [Markdown, JSON, and optional MP3 files, with command-line and Python API guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include podcast session metadata, research summaries, dialogue scripts, and optional stereo TTS audio when credentials are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

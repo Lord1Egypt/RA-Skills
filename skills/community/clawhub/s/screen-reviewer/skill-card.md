@@ -1,45 +1,60 @@
-## Description: <br>
-Monitors computer activity with periodic screenshots and OCR, then generates daily review reports with ROI analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor computer activities via periodic screenshots, extract text with OCR, and generate daily review reports with ROI analysis.
 
-## Publisher: <br>
-[drpris](https://clawhub.ai/user/drpris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drpris](https://clawhub.ai/user/drpris)
 
-## Use Case: <br>
-Individuals and knowledge workers use this skill to run local screen activity monitoring, extract screen text, review time allocation, and generate daily productivity reports. It is useful when a user wants time tracking, activity logs, ROI analysis, or a Chinese-language daily review workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill captures and OCRs full-screen activity, which can include passwords, private messages, regulated work, or other sensitive content. <br>
-Mitigation: Review ~/.screen-reviewer/config.yaml before starting, expand the app blacklist, grant screen permissions only intentionally, and pause or stop monitoring during sensitive work. <br>
-Risk: Screen-derived summaries may be sent to configured cloud AI providers when reports are generated. <br>
-Mitigation: Use a local provider such as Ollama when possible, or avoid configuring cloud API keys unless off-device processing is acceptable. <br>
-Risk: Screenshots, logs, and reports are retained locally and the service can persist at login. <br>
-Mitigation: Use the provided cleanup, stop, and uninstall commands when monitoring is not needed, and manually delete retained logs or reports when required. <br>
+## Use Case:
 
+External users and agent operators use this skill to monitor macOS screen activity, extract text from captured screenshots, and generate daily productivity review reports with time allocation, ROI analysis, and suggested next actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drpris/screen-reviewer) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Daily review prompt](artifact/templates/review_prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, command guidance, configuration notes, and local log/report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local screenshots, JSONL activity logs, and daily review reports under ~/.screen-reviewer when the monitoring service is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Continuous screenshot capture and OCR can collect sensitive screen content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when continuous monitoring is intended, grant macOS permissions deliberately, expand the app blacklist, use pause/resume for sensitive sessions, and disable OCR when text capture is unnecessary.
+
+Risk: Logs and reports can preserve window titles, OCR samples, and derived activity history indefinitely.
+
+Mitigation: Review the ~/.screen-reviewer directory regularly and delete logs or reports that are no longer needed; screenshot cleanup does not remove all retained history.
+
+Risk: Cloud AI report generation may send derived activity summaries, window titles, and OCR samples to external providers.
+
+Mitigation: Use local Ollama for sensitive work or only configure cloud API keys after accepting the data-sharing implications.
+
+## Reference(s):
+
+- [Screen Reviewer ClawHub page](https://clawhub.ai/drpris/skills/screen-reviewer)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Daily review prompt template](artifact/templates/review_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, terminal command output, JSONL activity logs, YAML configuration, and operational guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can create local screenshots, logs, reports, configuration files, and launchd service definitions under user-controlled paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

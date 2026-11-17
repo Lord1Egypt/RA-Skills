@@ -1,46 +1,61 @@
-## Description: <br>
-Run marketing campaigns with AI automation. Covers content generation, workflow automation, copy that sounds human, and rapid testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run marketing campaigns with AI automation. Covers content generation, workflow automation, copy that sounds human, and rapid testing.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Marketing teams, founders, creators, and agencies use this skill to draft campaign content, design automation workflows, make AI-generated copy sound more human, and run rapid campaign tests with human review checkpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AI-generated marketing content can include incorrect claims, unsupported metrics, fabricated quotes, or misleading customer stories. <br>
-Mitigation: Verify all claims, metrics, quotes, and customer stories before publishing. <br>
-Risk: Automated posts, customer responses, ad uploads, or budget-impacting actions can create brand, customer, or spend risk if released without review. <br>
-Mitigation: Keep human approval for public posts, customer responses, ad uploads, and budget-impacting automation. <br>
-Risk: Sensitive use cases such as crisis communications, legal or compliance-heavy content, deeply personal storytelling, and sensitive customer issues require judgment beyond rapid AI drafting. <br>
-Mitigation: Route these cases to human-led review instead of treating the skill output as publication-ready. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vibe Marketing ClawHub Page](https://clawhub.ai/ivangdavila/vibe-marketing) <br>
-- [Content Generation Patterns](artifact/content.md) <br>
-- [Workflow Automation](artifact/automation.md) <br>
-- [Making AI Content Sound Human](artifact/humanize.md) <br>
-- [Campaign Testing Framework](artifact/testing.md) <br>
-- [Vibe Marketing Tools](artifact/tools.md) <br>
+## Use Case:
 
+External marketers, founders, and growth teams use this skill to prompt AI systems for campaign content, workflow automation patterns, human-sounding copy edits, and rapid campaign tests.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with prompt templates, workflow patterns, checklists, and tool recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code or hidden access requests were identified in the server security summary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Private customer data or proprietary brand strategy could be exposed when used in external AI or automation tools.
+
+Mitigation: Remove sensitive data before prompting external tools, or use approved internal systems for confidential campaign and customer information.
+
+Risk: Automated public posts, complaint responses, sensitive-topic messaging, or paid ads can create brand, compliance, or spend risk if published without review.
+
+Mitigation: Keep human approval checkpoints for public publishing, negative feedback, sensitive topics, brand voice changes, and high-budget ad decisions.
+
+Risk: Rapid campaign tests can produce misleading conclusions when too many variables change or results are stopped before enough evidence is collected.
+
+Mitigation: Test one major variable at a time, document assumptions and outcomes, and treat low-confidence early signals as provisional.
+
+## Reference(s):
+
+- [Content Generation Patterns](content.md)
+- [Workflow Automation](automation.md)
+- [Making AI Content Sound Human](humanize.md)
+- [Campaign Testing Framework](testing.md)
+- [Vibe Marketing Tools](tools.md)
+- [Vibe Marketing ClawHub Release](https://clawhub.ai/ivangdavila/skills/vibe-marketing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with prompt templates, workflow examples, checklists, and tool recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory marketing content and workflow suggestions; it does not include executable code or require command-line tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,7 +2,22 @@
 
 Advanced music generation for OpenClaw, using the MiniMax Music 2.6 token plan.
 
-Current release: v1.5.0.
+Current release: v1.7.1 (end of life).
+
+> ## ⛔ End of life — MiniMax music generation no longer works (checked 2026-11-08)
+>
+> - MiniMax closed its paid **Music Generation** and **Lyrics Generation** APIs to new users on **2026-08-20**. In practice existing subscribers are cut off too: a request from a paying Token Plan Plus account returned **HTTP 410** ("no longer available") in September 2026.
+> - The free music models (`music-3.0-free`, `music-2.6-free`, `music-cover-free`) are being discontinued.
+> - The current `mmx` CLI (1.0.28) **no longer has a `music` command**, so the `mmx music generate` / `mmx music cover` calls in this skill fail with a current `mmx`.
+> - MiniMax now points to the MiniMax Audio web app and to its open-weights **MiniMax Music 3** model on Hugging Face (`MiniMaxAI/MiniMax-Music3`, custom license). This skill does not support that model.
+>
+> **What to do instead:** use [`music-craft`](../music-craft/) with local ACE-Step for songs, exact-duration vocals, and cover/repaint experiments.
+>
+> **What still works here without MiniMax:** the local analysis and lint scripts (`analyze_audio.py`, `analysis_orchestrator.py`, `emotion_to_prompt.py`, `extract_stems.py`, `lint_music_request.py`, `lint_lyrics.py`, and similar). They need `python3` and `ffmpeg`, not a MiniMax account.
+>
+> **Do not attempt MiniMax generation.** There is no working MiniMax music path, paid or free. Tell the user, and do not retry, ask for a new API key, or suggest a different subscription. This skill is no longer maintained; the cover, mashup, lyrics API and `mmx` flag sections below are kept for reference only.
+
+
 
 This is the **power-user upgrade** of [`music-craft`](../music-craft/). It does everything that skill does, plus the features that require MiniMax:
 
@@ -21,6 +36,19 @@ ACE-Step when exact duration matters.
 ## Data and consent
 
 This skill may send prompts, lyrics, reference audio, and cover/mashup inputs to MiniMax when the user chooses cloud generation. Audio input must be a **local file path** — URLs are not accepted in v1.5.0+. Use the private `music-source-fetch` skill to fetch audio by title first. There is no image, face, OCR, or VLM pipeline.
+
+## Licensing and commercial use
+
+ClawHub publishes this skill bundle under MIT-0, so the skill instructions and
+bundled helper code may be used, modified, and redistributed commercially
+without attribution. That does not grant MiniMax rights or rights to the
+inputs or outputs. Each operator must use their own MiniMax account/API key
+and accept the current terms for the exact API/Token Plan product. The API/Open Platform and
+consumer web/app terms are separate; a subscription or third-party claim of
+“commercial use” is not enough to establish the rights for this CLI/API
+workflow. Verify the applicable terms before commercial release. Inputs must
+be owned or properly licensed, and generated audio is not guaranteed to have
+exclusive copyright protection in every jurisdiction.
 
 ## When to use
 

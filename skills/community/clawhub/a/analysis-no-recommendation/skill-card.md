@@ -1,38 +1,52 @@
-## Description: <br>
-Analysis compares options thoroughly but doesn't pick one — the decision is punted to the reader without guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analysis compares options thoroughly but doesn't pick one; the skill guides the agent to make a clear recommendation when the evidence supports one.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mvogt99](https://clawhub.ai/user/mvogt99)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents use this skill when drafting comparative analysis so the response names a recommended option, explains the deciding reason, and identifies the uncertainty that could change the recommendation. It is useful for employee, external, and developer-facing writing where a side-by-side comparison should lead to actionable guidance instead of a non-answer.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may cause the agent to state a recommendation more often, including cases where uncertainty should remain explicit.
+
+Mitigation: Keep the key uncertainty visible and ask for missing context when the right answer genuinely depends on information the agent does not have.
+
+Risk: A decisive recommendation can be wrong if the stated criteria are incomplete or misapplied.
+
+Mitigation: Tie the recommendation to the stated criteria and include the condition that would change the choice.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, reviewers, and writing agents use this skill to turn option comparisons into clear recommendations with the key reason and uncertainty that could change the decision. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can push an agent toward firmer recommendations when the available context is incomplete. <br>
-Mitigation: Review the final recommendation and preserve explicit uncertainty or ask for missing context when the evidence does not support a clear decision. <br>
+**Output Format:** [Markdown or prose guidance in the agent response]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mvogt99/analysis-no-recommendation) <br>
+**Other Properties Related to Output:** [No code execution, file access, shell commands, or external services are requested by the skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or plain text recommendations and critique guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only writing guidance; no tool, credential, file, or external-service access requested.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

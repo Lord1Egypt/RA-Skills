@@ -1,41 +1,52 @@
-## Description: <br>
-Creative Inspiration Hub helps creative workers break through blocks by generating cross-domain idea combinations, inspiration prompts, idea evaluations, and mind-map style structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creative Inspiration Hub / 创意灵感孵化器 helps creative workers break through creative blocks by using local rule-based cross-domain combinations, inspiration triggers, idea evaluation, and mind map generation.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and creative professionals use this skill to generate structured creative directions, combine ideas across domains, evaluate early concepts, and sketch mind map-style development paths. It is best suited for brainstorming and first-pass ideation, not validated market or business analysis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill's novelty, feasibility, value, and originality scores are rule-based suggestions rather than validated market or business findings.
+
+Mitigation: Review outputs before professional use and validate promising ideas with user research, domain experts, or market evidence.
+
+Risk: Generated creative directions may be rough or culturally context-dependent.
+
+Mitigation: Adapt wording and references for the target audience before using them in client-facing work.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators, marketers, product teams, and designers use this skill to generate creative directions, combine ideas across domains, evaluate rough concepts, and organize early-stage thinking. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate for broad creative brainstorming prompts. <br>
-Mitigation: Use it when structured ideation or evaluation is desired, and route unrelated creative requests explicitly. <br>
-Risk: Heuristic idea scores may be mistaken for market validation or a prediction of business success. <br>
-Mitigation: Treat scores as an ideation aid and validate promising concepts with user research, feasibility review, and market evidence. <br>
+**Output Format:** [Structured JSON-like reports and human-facing Markdown or text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/creative-inspiration-hub) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+**Other Properties Related to Output:** [Produces rule-based ideas, scores, implementation notes, cross-domain combinations, trigger words, evaluations, and mind map structures.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown narrative with structured sections and JSON-compatible idea, evaluation, and mind-map objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local rule-based outputs may include heuristic novelty, feasibility, value, and originality scores.] <br>
+1.2.0 (source: frontmatter, package.json, server release evidence)
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

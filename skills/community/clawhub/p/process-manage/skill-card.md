@@ -1,41 +1,56 @@
-## Description: <br>
-Provides process management commands for listing, finding, inspecting, and terminating local system processes across Windows, Linux, and macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process Manage lets an agent list, search, inspect, and terminate local operating-system processes.
 
-## Publisher: <br>
-[moxin1044](https://clawhub.ai/user/moxin1044) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[moxin1044](https://clawhub.ai/user/moxin1044)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to inspect local process state, find processes by name or command line, view detailed process metadata, and terminate selected processes when maintaining a workstation or runtime environment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can terminate local processes, including forcefully by PID.
+
+Mitigation: Use it from a least-privileged account, avoid administrator/root execution unless required, and manually verify the PID before kill actions.
+
+Risk: Name-based termination can affect multiple matching processes without a separate confirmation step.
+
+Mitigation: Prefer PID-based termination and use find or info actions first to narrow targets before kill_name.
+
+Risk: Forceful termination can cause unsaved data loss or local system instability.
+
+Mitigation: Try graceful termination first and reserve force:true for known, non-critical processes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local processes, search by name, retrieve details by PID, and terminate specified processes during troubleshooting or environment cleanup. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Terminating a process can close applications or lose unsaved work, especially when force is true. <br>
-Mitigation: Confirm the target PID or process name first, prefer graceful termination, and reserve forceful termination for processes that do not respond. <br>
-Risk: Killing by name can affect multiple matching processes when the name is broad. <br>
-Mitigation: Use find or info before kill_name, narrow the process name, and terminate by explicit PID when precision matters. <br>
-Risk: Terminating system-critical processes can destabilize the host. <br>
-Mitigation: Respect the skill's protected-process safeguards and avoid elevated execution unless it is necessary for the user's intended task. <br>
+**Output Format:** [Plain text process tables, detail reports, error messages, and termination status messages]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include process identifiers, usernames, command lines, paths, resource usage, and termination results.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text process reports and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts JSON parameters for action, pid, name, sort, limit, and force.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Read, send, search, and manage Slack messages and DMs via the slk CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slk lets an agent read, send, search, and manage Slack channels, DMs, threads, drafts, saved items, pins, reactions, and unread activity through the macOS-only slk CLI.
 
-## Publisher: <br>
-[therohitdas](https://clawhub.ai/user/therohitdas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[therohitdas](https://clawhub.ai/user/therohitdas)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent check Slack activity, read channels and DMs, search messages, manage drafts, and send or react to Slack messages through the local slk CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses and caches sensitive Slack session credentials from the logged-in desktop session. <br>
-Mitigation: Install only when this access is intended, prefer one-time Keychain Allow over Always Allow, and delete ~/.local/slk/token-cache.json to clear the cached Slack token. <br>
-Risk: The skill can read private Slack channels and DMs and can post as the logged-in user. <br>
-Mitigation: Use it only in workspaces where agent access is appropriate, review outbound messages or drafts before sending, and limit use on sensitive conversations. <br>
-Risk: Shared or managed machines increase the chance that another local process can trigger Slack credential extraction. <br>
-Mitigation: Avoid installing or using the skill on shared or managed machines unless local credential access is acceptable. <br>
+## Use Case:
 
+Developers and agent users can use this skill to let an agent check Slack context, summarize relevant workspace activity, draft messages for review, or send messages when explicitly requested.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/therohitdas/slack-personal) <br>
-- [slkcli npm Package](https://www.npmjs.com/package/slkcli) <br>
-- [Slack API](https://slack.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Slack CLI output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Slack channel names, message excerpts, timestamps, draft instructions, or send/react commands depending on the user request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release metadata) <br>
+Risk: The skill extracts and caches desktop Slack session credentials, allowing an agent to read Slack data and act as the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on a personal macOS machine, prefer one-time Keychain Allow over Always Allow, and remove the token cache when not needed.
+
+Risk: The skill can send Slack messages and react to messages as the user.
+
+Mitigation: Use drafts for messages that need human review and approve send actions separately before execution.
+
+Risk: Development guidance in the artifact includes publishing and token-handling steps.
+
+Mitigation: Do not allow agents to follow publish, push, or npm-token steps without separate explicit approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/therohitdas/skills/slack-personal)
+- [slkcli npm package](https://www.npmjs.com/package/slkcli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and Slack message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Slack channel, DM, thread, search, unread, saved-item, draft, reaction, and send-command outputs.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

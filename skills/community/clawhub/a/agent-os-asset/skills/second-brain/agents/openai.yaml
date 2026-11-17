@@ -1,0 +1,6 @@
+interface:
+  display_name: "Second Brain / 第二大脑"
+  short_description: "Local vault retrieval with PII-safe indexing / 本地知识库检索与 PII 安全索引"
+  default_prompt: "Use $second-brain to retrieve relevant non-PII context from my Obsidian second brain. / 使用 $second-brain 从我的 Obsidian 第二大脑检索相关的非 PII context。"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Character Card</title>
+  <link rel="stylesheet" href="../css/character-card.css" />
+</head>
+<body>
+  <main class="card">
+    <header class="header">
+      <h1>Chinese Character Card</h1>
+      <p>Learn one character at a time!</p>
+    </header>
+
+    <section class="hero">
+      <div class="character">{{character}}</div>
+      <div class="meta">
+        <div class="box">
+          <label>Pinyin</label>
+          <strong>{{pinyin}}</strong>
+        </div>
+        <div class="box">
+          <label>Meaning</label>
+          <strong>{{meaning_en}}</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Common Words</h2>
+        {{common_words}}
+      </div>
+      <div class="panel">
+        <h2>Example Sentence</h2>
+        <p class="zh">{{example_sentence_zh}}</p>
+        <p class="py">{{example_sentence_pinyin}}</p>
+        <p class="en">{{example_sentence_en}}</p>
+      </div>
+      <div class="panel">
+        <h2>Useful Phrase</h2>
+        <p class="zh">{{useful_phrase_zh}}</p>
+        <p class="py">{{useful_phrase_pinyin}}</p>
+        <p class="en">{{useful_phrase_en}}</p>
+      </div>
+      <div class="panel">
+        <h2>Memory Tip</h2>
+        <p>{{memory_tip_en}}</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

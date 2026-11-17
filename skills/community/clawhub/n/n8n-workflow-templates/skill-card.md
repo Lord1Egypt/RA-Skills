@@ -1,47 +1,61 @@
-## Description: <br>
-Production-ready n8n workflow templates for AI agents that deploy pre-built automations for webhooks, RSS monitoring, health checks, social metrics, and data backup with workflow management utilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-ready n8n workflow templates for AI agents that deploy pre-built automations for webhooks, RSS monitoring, health checks, social metrics, and data backup.
 
-## Publisher: <br>
-[yoder-bawt](https://clawhub.ai/user/yoder-bawt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yoder-bawt](https://clawhub.ai/user/yoder-bawt)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to deploy reusable n8n workflow templates and manage workflows through the n8n API. It supports common automation scenarios such as webhooks, RSS monitoring, health checks, social metrics collection, and data backup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a command-injection weakness in the deploy helper when untrusted template paths or workflow names are used. <br>
-Mitigation: Use only trusted local template files and workflow names, review deploy inputs before execution, and avoid passing untrusted values to deploy.sh. <br>
-Risk: The skill uses an n8n API key with broad workflow-management authority. <br>
-Mitigation: Use a least-privilege n8n API key where possible, keep it out of logs and shell history, and rotate it if exposure is suspected. <br>
-Risk: Workflow activation, deletion, backup, and deployment operations can affect production automations or data. <br>
-Mitigation: Review each workflow before activation and test backup, delete, and deployment operations outside production first. <br>
+## Use Case:
 
+Developers and automation teams use this skill to deploy and manage n8n workflow templates for notifications, monitoring, metrics collection, and backups through an n8n instance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yoder-bawt/n8n-workflow-templates) <br>
-- [Publisher profile](https://clawhub.ai/user/yoder-bawt) <br>
-- [Publisher homepage](https://github.com/yoder-bawt) <br>
-- [n8n Documentation](https://docs.n8n.io/) <br>
-- [n8n API Reference](https://docs.n8n.io/api/) <br>
-- [n8n Workflow Examples](https://n8n.io/workflows/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and n8n workflow JSON templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, N8N_HOST, and N8N_API_KEY; generated workflows should be reviewed before activation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, release evidence) <br>
+Risk: The server security review reports a local code-injection flaw in deploy.sh.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and patch deploy.sh before use, especially handling of template path and workflow name values passed into Python.
+
+Risk: The server security review reports an unauthenticated Telegram-forwarding webhook template.
+
+Mitigation: Add webhook authentication and payload validation before exposing or activating the webhook workflow.
+
+Risk: The workflows require n8n API, Telegram, social API, backup, and execution-history configuration that may affect sensitive systems or credentials.
+
+Mitigation: Use a minimally privileged n8n API key and review each workflow's credentials, destinations, and retention settings before activation.
+
+## Reference(s):
+
+- [n8n Documentation](https://docs.n8n.io/)
+- [n8n API Reference](https://docs.n8n.io/api/)
+- [n8n Workflow Examples](https://n8n.io/workflows/)
+- [ClawHub Skill Page](https://clawhub.ai/yoder-bawt/skills/n8n-workflow-templates)
+- [Publisher Profile](https://clawhub.ai/user/yoder-bawt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and workflow JSON references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, bash, N8N_HOST, and N8N_API_KEY; workflows must be customized with service credentials before activation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

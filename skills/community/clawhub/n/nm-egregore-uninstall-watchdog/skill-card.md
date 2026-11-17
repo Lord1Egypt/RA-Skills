@@ -1,39 +1,50 @@
-## Description: <br>
-Removes the egregore watchdog daemon and its associated files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes the egregore watchdog daemon and its associated files
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and operators use this skill to stop automatic egregore session relaunching and remove the watchdog service when retiring or switching away from daemon mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The uninstall guidance removes launchd or systemd units and local watchdog files, so running commands against the wrong paths could remove unintended files or leave automation partially configured. <br>
-Mitigation: Review the listed paths before execution and run the included verification commands for the local operating system after removal. <br>
+## Use Case:
 
+Developers and project maintainers use this skill when removing the egregore watchdog or ending automatic session relaunching. It guides them through platform-specific service cleanup and verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-egregore-uninstall-watchdog) <br>
-- [Egregore homepage](https://github.com/athola/claude-night-market/tree/master/plugins/egregore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OS-specific macOS launchd and Linux systemd removal and verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
+Risk: The security review rates this release suspicious: the uninstall guidance may leave the watchdog running, and scan coverage is partial with disagreement about whether the removal commands match the described behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cleanup steps against the installed service before use, then verify removal with the documented launchd or systemd checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-egregore-uninstall-watchdog)
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/egregore)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and platform-specific cleanup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS launchd and Linux systemd cleanup steps with verification commands]
+
+## Skill Version(s):
+
+1.10.3 (source: artifact frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -23,6 +23,15 @@ This skill is for routing Veo 3.1 questions to the right APIDot docs, examples, 
 
 This ClawHub package contains `SKILL.md`, non-executable notes in `references/api.md`, and one optional script at `scripts/submit_veo_3_1.sh`. The package includes no install-time automation, review automation helpers, background jobs, bundled API clients, automatic network calls, or stored credentials. The script runs only when a user explicitly invokes it with a reviewed JSON payload and a server-side `APIDOT_API_KEY` environment variable.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Veo 3.1 model page: https://apidot.ai/models/veo-3-1
+- Read Veo 3.1 API docs: https://apidot.ai/docs/veo-3-1
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use runnable Veo 3.1 examples: https://github.com/APIDotAI/veo-3.1-api
+
 ## When To Use
 
 Use this skill when the user asks to:

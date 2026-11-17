@@ -1,40 +1,58 @@
-## Description: <br>
-Turn a stuck problem into one tiny actionable 5% change. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a stuck problem into one tiny actionable 5% change.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to turn stuck goals, procrastination, or habit-change problems into one small action with a clear completion standard and a follow-up reflection question. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could treat general self-help guidance as a substitute for qualified support in mental health crisis situations or medical, legal, or financial decisions. <br>
-Mitigation: Use the skill only for lightweight habit-change coaching and seek qualified professional support for crisis or high-stakes decisions. <br>
-Risk: The skill may oversimplify complex personal or operational problems into a small next step. <br>
-Mitigation: Treat outputs as low-risk starting points and review whether the suggested action is appropriate before acting on it. <br>
+## Use Case:
 
+External users use this skill to turn stalled habits, productivity blocks, or oversized personal goals into one small next action with a completion standard, timing cue, and feedback question.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/micro-change-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with concise action steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a small action, completion standard, suggested execution timing, and one feedback question.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Habit or productivity suggestions may be poorly suited to a user's situation if applied without judgment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the suggested action before acting and keep it limited to low-risk personal productivity or habit contexts.
+
+Risk: The skill may suggest mailbox cleanup or third-party check-in practices that could expose personal information if followed carelessly.
+
+Mitigation: Review mailbox changes before applying them and avoid sharing personal details with check-in groups or services unless intentionally chosen.
+
+Risk: The skill is not intended for medical, legal, financial, or psychological crisis decisions.
+
+Mitigation: Do not use it as a substitute for professional or emergency support in high-risk situations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/micro-change-helper)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown text with a micro-action, completion standard, suggested timing, and feedback question]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No binaries, environment variables, code execution, persistence, or credential access are required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

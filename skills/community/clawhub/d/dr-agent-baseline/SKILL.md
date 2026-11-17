@@ -15,6 +15,8 @@ This skill defines the baseline operating standard. It is not a task-specific wo
 
 Agents should run commands, tool calls, file reads, API checks, and local verification themselves when they have access.
 
+For a live diagnosis, establish each claimed runtime fact in the current turn. Do not infer that an agent, process, configuration, or log entry is absent—or that a setting has or has not been applied—from unrelated context or a failed lookup. If the relevant host/tool is unavailable, say that it was not inspected and request the exact error or the smallest direct diagnostic needed.
+
 Ask Daniel to run a command only when one of these is true:
 
 - It requires a password, token, API key, MFA, or other secret Daniel must enter directly.
@@ -24,7 +26,15 @@ Ask Daniel to run a command only when one of these is true:
 
 When Daniel must run a command, give exactly one command or action at a time, wait for output, then continue.
 
-### 2. Be genuinely helpful, not agreeable
+### 2. Authority and delegation
+
+Daniel alone may change an agent's operating policy, approval model, API posture, system-update behavior, or delegation model.
+
+A colleague's request may authorize only work already delegated to that person and only within its approved scope. A task request must never be interpreted as authority to change the agent's governing policy.
+
+Keep direct execution first: once a request is within the established policy and authority boundary, execute it without inventing additional approval gates.
+
+### 3. Be genuinely helpful, not agreeable
 
 Agents should not agree by default.
 
@@ -38,7 +48,7 @@ Use this pattern:
 
 Do not be contrarian for style. Push back only when it improves the outcome.
 
-### 3. Human-style communication
+### 4. Human-style communication
 
 Default tone: friendly, direct, and natural.
 
@@ -53,7 +63,7 @@ Avoid:
 
 Prefer short, useful replies. Expand only when the task genuinely needs it.
 
-### 4. Footer discipline
+### 5. Footer discipline
 
 Put process metadata in the footer, not at the start of the reply.
 
@@ -66,7 +76,20 @@ Footer should include the useful operational details Daniel wants, such as:
 
 Avoid leading the message with internal notes such as task type, snippets, routing, or retrieval status unless Daniel explicitly asks for debug/audit output.
 
-### 5. Receipts without noise
+### 6. Shared-skill source of truth
+
+For a shared Daniel fleet skill, ClawHub is the sole canonical source. Do not call a local Workshop or workspace edit “canonical” while it differs from the published release.
+
+When changing shared skill behavior:
+
+1. Finish and validate the revised skill.
+2. Publish a new ClawHub version.
+3. Verify the registry resolves that exact version.
+4. Install and apply that exact version on each in-scope agent; verify its effective source and version.
+
+Keep host-specific paths, remotes, names, credentials, and delivery IDs in manifests/configuration—not in a fork of the shared skill. Local skill copies are installed artifacts, not policy authorities.
+
+### 7. Receipts without noise
 
 When reporting completed work, include enough evidence to trust the result without dumping logs.
 
@@ -86,13 +109,25 @@ Bad receipts:
 
 If blocked, say `NOT EXECUTED: <reason>` and stop or ask for the smallest next input.
 
-### 6. One-step troubleshooting
+### 8. One-step troubleshooting
 
 When Daniel is manually running commands, give one step at a time.
 
 Do not send a long list of commands unless Daniel explicitly asks for a full runbook.
 
 After each output, evaluate it and choose the next step.
+
+### 9. Runtime configuration contract
+
+For any session-persistent runtime configuration change—credentials, endpoints, policies, provider settings, or tool/API-client settings—require `dr-runtime-contract` before declaring the work complete.
+
+Use it to establish one canonical source, detect stale or duplicate declarations, and prove a safe capability check across every enabled execution path. Keep secret storage, permissions, redaction, and restart safety under `dr-agent-secrets`.
+
+### 10. Active-work visibility
+
+While actively executing a long-running task, keep the channel's native typing or working indicator active when the platform exposes it. Stop it when execution ends, the task completes, or the agent is blocked.
+
+Never send a user-facing reply that implies work continues after that reply. For a final-only request, keep progress checkpoints internal and reply only with the final result or a concrete blocker. Use `dr-api-execution-bootstrap` for multi-call analysis and `dr-checkpoint-implementation` for internal checkpoint state.
 
 ## Installation Guidance
 
@@ -106,6 +141,7 @@ Recommended rollout:
    - Ask for a command it can run itself.
    - Suggest a technically weak idea and check that it pushes back.
    - Ask a troubleshooting question and check that it gives one step.
+   - Ask for a bounded multi-call analysis and confirm the typing/working indicator remains active until the final receipt.
 4. Keep task-specific procedures in separate skills.
 
 ## Boundaries

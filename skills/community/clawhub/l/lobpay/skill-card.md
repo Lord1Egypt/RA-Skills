@@ -1,47 +1,62 @@
-## Description: <br>
-LobPay helps agents retrieve checkout details, execute X402-based purchases on Base, view purchase history, and submit merchant feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LobPay Agent Skill - Purchase items via X402 protocol on Base network.
 
-## Publisher: <br>
-[web3senior](https://clawhub.ai/user/web3senior) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[web3senior](https://clawhub.ai/user/web3senior)
 
-## Use Case: <br>
-External developers and agent operators use LobPay to configure a wallet-backed commerce agent that can inspect products, make purchases through LobPay API endpoints, record transaction history, and submit merchant ratings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet private keys and API keys are stored locally in ~/.lobpay/config.json and can be supplied on the command line during registration. <br>
-Mitigation: Use a dedicated low-balance or testnet wallet, avoid passing long-lived private keys on the command line, and protect or delete ~/.lobpay/config.json after use. <br>
-Risk: buy.js and purchase.js can execute blockchain-backed purchases without enough built-in confirmation safeguards. <br>
-Mitigation: Manually confirm the merchant, amount, token, network, quantity, and product before running purchase commands. <br>
-Risk: The configured LOBPAY_API_URL controls the checkout and purchase endpoints used by the scripts. <br>
-Mitigation: Verify LOBPAY_API_URL before every use and only send API keys or payment headers to trusted LobPay endpoints. <br>
+## Use Case:
 
+External agents and developers use LobPay to retrieve checkout information, initiate X402 payment flows on the Base network, record purchases, view transaction history, and leave merchant feedback.
 
-## Reference(s): <br>
-- [LobPay Skill Page](https://clawhub.ai/web3senior/lobpay) <br>
-- [LobPay API Reference](references/api.md) <br>
-- [Database Schemas](references/schemas.md) <br>
-- [X402 Protocol Integration](references/x402.md) <br>
-- [X402 Spec](https://github.com/coinbase/x402) <br>
-- [Base Docs](https://docs.base.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide API calls and local file updates performed by LobPay scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and scripts/package.json) <br>
+Risk: The skill performs blockchain-backed purchase flows and can spend funds through wallet-based X402 payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, prefer testnet, and require explicit confirmation of item, amount, merchant, network, and endpoint before running purchase commands.
+
+Risk: The skill stores wallet private keys and API keys in local LobPay configuration.
+
+Mitigation: Avoid entering private keys in shared shells or CI logs, restrict file access to the local configuration, and rotate credentials if exposure is suspected.
+
+Risk: The API endpoint is configurable, so a wrong or untrusted endpoint could receive API credentials or payment requests.
+
+Mitigation: Verify the LobPay API URL before use and send API keys only to trusted LobPay endpoints.
+
+## Reference(s):
+
+- [LobPay Skill Page](https://clawhub.ai/web3senior/skills/lobpay)
+- [LobPay API Reference](references/api.md)
+- [Database Schemas](references/schemas.md)
+- [X402 Protocol Integration](references/x402.md)
+- [X402 Spec](https://github.com/coinbase/x402)
+- [Base Docs](https://docs.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JavaScript CLI behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing purchase, checkout, feedback, history, and configuration workflows that may call LobPay API endpoints and create local configuration or history files.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Financial market intelligence from TinkClaw for real-time BUY, SELL, and HOLD trading signals, market regime detection, Signal Market bot competition data, and natural language market analysis across crypto, stocks, forex, and commodities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial market intelligence from TinkClaw, including BUY/SELL/HOLD trading signals, market regime detection, Signal Market bot competition data, proof-chain verification, and natural-language market analysis across crypto, stocks, forex, and commodities.
 
-## Publisher: <br>
-[dieub](https://clawhub.ai/user/dieub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dieub](https://clawhub.ai/user/dieub)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for TinkClaw market signals, regime summaries, Signal Market bot data, proof verification, and multi-symbol scans through the bundled helper script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can send the user's API key and market questions to an environment-selected TinkClaw API server. <br>
-Mitigation: Leave TINKCLAW_API_URL unset unless the alternate endpoint is intentionally trusted, use limited-scope keys, and avoid sending private account or portfolio details in prompts. <br>
-Risk: The API reference describes account, staking, subscription, webhook, payment, and bot-mutation endpoints. <br>
-Mitigation: Require explicit user confirmation before using endpoints that mutate account, bot, staking, subscription, webhook, or payment state. <br>
-Risk: Market signals and natural language analysis may be mistaken for financial advice. <br>
-Mitigation: Present outputs as TinkClaw AI data, include the not-financial-advice notice, and encourage independent verification before trading decisions. <br>
+## Use Case:
 
+External users and developers use this skill to query TinkClaw market intelligence, inspect bot leaderboard and proof-chain data, and format returned signals or analysis for end users. The skill is intended for informational market analysis, not financial advice.
 
-## Reference(s): <br>
-- [TinkClaw API Reference](references/api.md) <br>
-- [TinkClaw Documentation](https://tinkclaw.com/docs) <br>
-- [TinkClaw Signal Market Challenge](https://tinkclaw.com/signal-market/challenge) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dieub/tinkclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-shaped API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include TinkClaw's not-financial-advice notice when presenting market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: API credentials and user prompts may be sent to an arbitrary destination if TINKCLAW_API_URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave TINKCLAW_API_URL unset or restrict it to a trusted TinkClaw endpoint, and avoid sharing secrets, account details, or confidential trading strategies in prompts.
+
+Risk: Market outputs could be treated as financial advice.
+
+Mitigation: Present TinkClaw data as informational analysis and include the skill's not-financial-advice disclaimer.
+
+## Reference(s):
+
+- [TinkClaw Documentation](https://tinkclaw.com/docs)
+- [TinkClaw Signal Market Challenge](https://tinkclaw.com/signal-market/challenge)
+- [TinkClaw Skill on ClawHub](https://clawhub.ai/dieub/skills/tinkclaw)
+- [TinkClaw Signal Market API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and plain-text API results from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include the source attribution and not-financial-advice disclaimer described by the skill.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

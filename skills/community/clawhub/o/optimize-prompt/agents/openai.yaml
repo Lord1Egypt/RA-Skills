@@ -1,0 +1,4 @@
+interface:
+  display_name: "Optimize Prompt"
+  short_description: "优化、压缩与审计 AI Prompt · Optimize prompts"
+  default_prompt: "Use $optimize-prompt to safely optimize and score this prompt without executing it."

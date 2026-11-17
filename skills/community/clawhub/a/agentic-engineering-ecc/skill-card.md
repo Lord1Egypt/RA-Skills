@@ -1,41 +1,52 @@
-## Description: <br>
-Agentic Engineering provides a workflow pattern for AI-assisted engineering using eval-first execution, task decomposition, and cost-aware model routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workflow pattern for AI-assisted engineering using eval-first execution, task decomposition, and cost-aware model routing.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure AI-assisted software work around explicit completion criteria, baseline evals, small verifiable tasks, cost-aware model routing, and focused code review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cost can increase if model-tier routing is applied without budget limits or escalation criteria. <br>
-Mitigation: Track model tier, token estimates, retries, wall-clock time, and escalation reasons for each task. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and execute AI-assisted engineering work with clear acceptance criteria, baseline evals, 15-minute task decomposition, cost-aware model routing, and focused post-implementation review.
 
-## Reference(s): <br>
-- [Eval-First Loop Patterns](references/eval-patterns.md) <br>
-- [Task Decomposition: 15-Minute Unit Principle](references/decomposition-rules.md) <br>
-- [Code Review Focus for AI-Generated Code](references/review-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/djc00p/agentic-engineering-ecc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with checklists and workflow examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only guidance; no code execution, credential requests, or hidden persistence identified by the security scan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may influence task planning, review focus, or model-routing choices in ways that conflict with local project policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as engineering process guidance and require project-specific policy, security, and review requirements to remain authoritative.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/djc00p/skills/agentic-engineering-ecc)
+- [Eval-First Loop Patterns](references/eval-patterns.md)
+- [Task Decomposition: 15-Minute Unit Principle](references/decomposition-rules.md)
+- [Code Review Focus for AI-Generated Code](references/review-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external tools, binaries, environment variables, or network services are required by the skill evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,51 @@
 {
-  "ownerId": "kn73rjsd61kjdxp8s6k7ryn8x184h9xs",
-  "slug": "greg-abel-investing",
-  "version": "1.0.0",
-  "publishedAt": 1775867515861
+  "name": "greg-abel",
+  "version": "2.1.0",
+  "description": "Greg Abel's operational and investment philosophy — successor to Warren Buffett at Berkshire Hathaway",
+  "author": "Leo Lee",
+  "tags": [
+    "berkshire-hathaway",
+    "warren-buffett",
+    "successor",
+    "investment",
+    "capital-allocation",
+    "business-philosophy",
+    "operational-excellence"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Talentedleo/celebrity_skills",
+  "issues": "https://github.com/Talentedleo/celebrity_skills/issues",
+  "minimumOpenClawVersion": "1.0.0",
+  "skillSpecVersion": "1.0.0",
+  "triggers": [
+    "Greg Abel",
+    "Berkshire Hathaway CEO",
+    "Abel will",
+    "who is Berkshire's new CEO",
+    "Greg Abel capital allocation",
+    "Abel succession",
+    "Berkshire successor",
+    "Greg Abel management style",
+    "Abel operational philosophy"
+  ],
+  "sources": [
+    {
+      "name": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Greg_Abel"
+    },
+    {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com"
+    },
+    {
+      "name": "BBC News",
+      "url": "https://www.bbc.com/news/articles/cqj4nev7p70o"
+    },
+    {
+      "name": "Berkshire Hathaway",
+      "url": "https://www.berkshirehathaway.com"
+    }
+  ],
+  "lastUpdated": "2026-04-10",
+  "language": "en"
 }

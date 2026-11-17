@@ -1,0 +1,72 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "AI内容标识实操",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T16:09:25.628310+00:00",
+  "timestamp_local": "2026-08-28T00:09:25.628319",
+  "package_fingerprint_sha256": "26138db2bacc0a9276ccbe8ba1463970a498a94350147e73b06ae7a95378d2e1",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "e8a66e30b55e997de5fca2cb78bbf2bdabd1a50bc739145dcac48e08b748843d"
+    },
+    {
+      "path": "SECURITY_AUDIT.md",
+      "sha256": "ca06a6fd310ab5e154225a440e73b54a129f985f1abd0663fed216f28572da9b"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "e8b6b757298664c87f72b37b03b1479621373a4004e872c6b9a3fbbf72799ac9"
+    },
+    {
+      "path": "references/01-标识义务与范围.md",
+      "sha256": "82553808142b67fbf286dd22a7f0a9f35ce622072579e15643d8f7ffec0106b4"
+    },
+    {
+      "path": "references/02-中国标识要求.md",
+      "sha256": "a99a0e97dcc5d396b8132edf9d62a209fae63e08e2d18f751f63ef1b35e6e0c0"
+    },
+    {
+      "path": "references/03-欧盟透明度要求.md",
+      "sha256": "f4c4303945d57cb9884bd5c3599795a9ae312112f2205da1e4785423f8cda4d1"
+    },
+    {
+      "path": "references/04-各类内容标识做法.md",
+      "sha256": "ce4bba7e677d73a5bed3fe0ad83b61807307e75af9163f2a1820663044e33121"
+    },
+    {
+      "path": "references/05-隐式标识技术方案.md",
+      "sha256": "52005e7b4c931ab042fd22a15a6c8ca2e8f58178f73354e6361229dc7890e426"
+    },
+    {
+      "path": "references/06-平台与上架义务.md",
+      "sha256": "b8a526cd9511b8ec31869ede4ad59a89acf5f1079de5fb33bfec5815326bcf75"
+    },
+    {
+      "path": "references/07-合规整改与FAQ.md",
+      "sha256": "4a8d09ceb24ceb9ce98493fbd961fed3cab8069723e5508ac5f0337d8629f133"
+    },
+    {
+      "path": "tools/content_label_toolkit.py",
+      "sha256": "24a687ea61cd565454c60f6d9c25f3d4a749a6b3ae6cf2794ddd925e24b380db"
+    },
+    {
+      "path": "verify/content_label_quality_test.py",
+      "sha256": "43752b950cc6809ccda918b4feacdcb2027cbb83cfd15349e2b6fda89a4c9c28"
+    },
+    {
+      "path": "verify/gen_security_radar.py",
+      "sha256": "8ec101c205e81d85ec6c573e156aa7163a2831ed5f4b4ca407d3de430d6e3e84"
+    },
+    {
+      "path": "verify/security-radar.svg",
+      "sha256": "ae4b6f8267e26b76e917932977ceaaac766e95f457eaf465963a3ea8ed6c4384"
+    },
+    {
+      "path": "verify/security_results.json",
+      "sha256": "bf95fec34643e4952d72b7d2fe3b9150aafb3141d44d07196a6468af42ce2cfd"
+    }
+  ]
+}

@@ -1,47 +1,62 @@
-## Description: <br>
-Diagnoses Huawei Cloud CCE and Kubernetes storage failures such as PVC Pending, mount failures, EVS disk issues, CSI driver errors, and capacity or binding problems using a Python SDK dispatcher. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses Huawei Cloud CCE Kubernetes storage failures across PVC provisioning, binding, attach and mount, runtime I/O, capacity, permission, and teardown stages, producing Markdown diagnosis reports from collected evidence.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to diagnose Huawei Cloud CCE storage incidents, collect Kubernetes and cloud-side storage evidence, and produce a Markdown report with findings, confidence, and remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The dispatcher exposes broad Huawei Cloud and Kubernetes administration actions beyond the advertised storage-diagnosis workflow. <br>
-Mitigation: Deploy only with tightly scoped read-only credentials and restrict execution to the documented storage-diagnosis actions. <br>
-Risk: Credentials with delete or write permissions could allow destructive or credential-sensitive operations through the shipped dispatcher. <br>
-Mitigation: Avoid granting delete or write permissions, rotate credentials after testing, and review requested actions before execution. <br>
-Risk: Unlisted dispatcher actions may remain available attack surface until the package is split or allowlisted. <br>
-Mitigation: Treat undocumented actions as unavailable in production and enforce an external allowlist for approved read-only diagnostic commands. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to investigate Huawei Cloud CCE storage incidents such as PVC Pending, FailedMount, FailedAttachVolume, EVS attach issues, SFS/SFS Turbo NFS timeouts, OBS credential failures, capacity exhaustion, and PVC termination protection. It collects read-oriented Kubernetes and cloud evidence and turns it into a concise diagnosis with confidence and remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pintudeyudi/huawei-cloud-cce-storage-failure-diagnoser) <br>
-- [Workflow reference](references/workflow.md) <br>
-- [Output schema](references/output-schema.md) <br>
-- [Risk rules](references/risk-rules.md) <br>
-- [Huawei Cloud Python SDK Documentation](https://doc.huihua.com/api/sdk/python.html) <br>
-- [Huawei Cloud API Explorer](https://support.huaweicloud.com/apiexplorer/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON with an embedded Markdown diagnosis report, evidence summary, findings, confidence, and remediation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Huawei Cloud and Kubernetes evidence collected through the dispatcher; credentials and permissions should be scoped read-only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The scanner reports that the shipped dispatcher exposes broad cloud and Kubernetes administration actions beyond the storage diagnosis behavior users would expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only with tightly scoped read-only Huawei IAM and Kubernetes RBAC credentials, and restrict available dispatcher actions to storage diagnosis and read-only evidence collection.
+
+Risk: The scanner guidance identifies secret data return, kubeconfig export, and mutation handlers as actions that could increase credential exposure or operational impact.
+
+Mitigation: Hard-block secret-reading, kubeconfig export, cluster or workload mutation, node drain, ECS/EIP/AOM management, and any delete or patch handlers before production use.
+
+Risk: Storage remediation advice can affect data consistency when incidents involve EVS residual mounts, read-only filesystems, PVC finalizers, or database workloads.
+
+Mitigation: Treat remediation as a reviewed plan with impact scope, rollback method, and verification standards; do not force detach, force mount, remove finalizers, or restart stateful workloads without explicit operator approval and filesystem consistency checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pintudeyudi/skills/huawei-cloud-cce-storage-failure-diagnoser)
+- [Workflow](references/workflow.md)
+- [Output schema](references/output-schema.md)
+- [Risk rules](references/risk-rules.md)
+- [Huawei Cloud Python SDK Documentation](https://doc.huihua.com/api/sdk/python.html)
+- [Huawei Cloud API Explorer](https://support.huaweicloud.com/apiexplorer/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured JSON with an embedded Markdown diagnosis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include findings, evidence snapshots, top causes, confidence, conclusions, and recommended verification steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

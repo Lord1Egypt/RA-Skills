@@ -1,41 +1,55 @@
-## Description: <br>
-Executes SSH commands on remote servers using password or key-based authentication, with error handling and logging for command execution results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill to execute SSH commands on remote servers, supporting both password and key-based authentication.
 
-## Publisher: <br>
-[xlbbb-cn](https://clawhub.ai/user/xlbbb-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xlbbb-cn](https://clawhub.ai/user/xlbbb-cn)
 
-## Use Case: <br>
-Developers and operators use this skill to run a single command on an authorized SSH-accessible server for remote administration, troubleshooting, or maintenance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad remote command execution capability on SSH-accessible systems. <br>
-Mitigation: Use least-privilege SSH accounts and require explicit human approval for commands that change files, services, permissions, deployments, or data. <br>
-Risk: Weak default host verification can allow connection to an untrusted host. <br>
-Mitigation: Enable --strict-host-key and maintain known_hosts entries for approved servers. <br>
-Risk: Passwords, private-key passphrases, command text, or command output may expose sensitive information in command lines or logs. <br>
-Mitigation: Prefer key-based authentication, avoid passing secrets on the command line, and protect logs that contain commands or remote output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xlbbb-cn/sshexec) <br>
+## Use Case:
+
+Developers and operators use this skill to run a single approved command on a remote server over SSH and review the resulting stdout, stderr, and exit status.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Arbitrary remote command execution can affect systems outside the local agent environment.
+
+Mitigation: Run only explicit user-approved commands against intended hosts, and use least-privilege SSH accounts.
+
+Risk: Unsafe SSH defaults and credential handling can expose systems or secrets.
+
+Mitigation: Use verified host keys with --strict-host-key, avoid passing passwords or key passphrases on the command line, and avoid sensitive command output.
+
+Risk: Command logs may expose secrets or operational data.
+
+Mitigation: Review logged output before sharing or storing it, and avoid commands that print credentials or sensitive configuration.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Console text with stdout, stderr, logs, and remote exit status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Executes one remote command per invocation and returns the remote command exit code.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+**Output Type(s):** [Shell commands, Text, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Command-line execution output with logged stdout, stderr, and exit status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SSH host, username, command, and either password or private-key authentication.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

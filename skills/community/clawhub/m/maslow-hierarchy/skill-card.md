@@ -1,42 +1,55 @@
-## Description: <br>
-Helps agents use Maslow's Hierarchy as a motivation diagnostic for incentives, product needs, and teams blocked by unmet lower-level needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Maslow's hierarchy as a coaching heuristic to diagnose unmet needs behind ineffective motivation strategies and suggest matched interventions.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees and external users use this skill to diagnose why a motivation strategy or incentive is not working and to choose an intervention matched to the operative need level. It is intended as a heuristic and directs users to verify conclusions through direct conversation and use Self-Determination Theory for high-stakes motivation design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a lightweight heuristic and should not be treated as validated scientific authority for high-stakes personnel, mental health, or cross-cultural decisions. <br>
-Mitigation: Use it for preliminary diagnosis, verify conclusions through direct conversation, and consult stronger motivational frameworks such as Self-Determination Theory for high-stakes design. <br>
-Risk: Model-based inference about another person's needs can be biased or inaccurate. <br>
-Mitigation: Ask the person what they want, compare their answer to the framework prediction, and update the intervention when direct evidence contradicts the model. <br>
+## Use Case:
 
+Managers, product teams, and coaches use this skill to diagnose why incentives or strategies are failing, map the needs they address, and choose a matched intervention. It recommends verifying assumptions through direct conversation and consulting Self-Determination Theory for high-stakes or formal motivational analysis.
 
-## Reference(s): <br>
-- [Sources - maslow-hierarchy](references/sources.md) <br>
-- [Maslow 1943 and the Subsequent Refinements](examples/maslow-1943-and-the-subsequent-refinements.md) <br>
-- [deciqAI](https://deciqai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown needs-hierarchy diagnosis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a concise diagnosis covering the person or group, situation, need-state across five levels, incentive target, mismatch, intervention owner, and verification date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: A needs assessment based on the hierarchy can misread an individual's motivation or oversimplify formal or cross-cultural situations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the framework as a coaching heuristic, verify assumptions with the people involved, and consult Self-Determination Theory when formal motivational science is required.
+
+Risk: Reusable coaching examples could expose identifying employee details.
+
+Mitigation: Avoid recording identifying employee details in reusable examples.
+
+## Reference(s):
+
+- [Primary and related sources](artifact/references/sources.md)
+- [Maslow Hierarchy skill guide](https://www.deciqai.com/c/maslow-hierarchy)
+- [ClawHub release page](https://clawhub.ai/deciqai/skills/maslow-hierarchy)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown with a structured needs-hierarchy diagnosis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes need states, incentive level, mismatch diagnosis, intervention, and a verification step.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

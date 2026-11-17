@@ -1,40 +1,52 @@
-## Description: <br>
-Generates Chinese placeholder text for design and layout testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese placeholder text for design and layout testing.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, designers, and content teams use this skill to generate Chinese placeholder paragraphs for UI mockups, layout testing, document templates, and educational materials.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The README includes promotional external links that may not be relevant to downstream users.
+
+Mitigation: Review external links before redistribution and remove or replace links that do not fit the deployment context.
+
+Risk: Generated placeholder text is randomly selected from a small fixed set and may be repeated or unsuitable as final copy.
+
+Mitigation: Use the output only as placeholder content and review any generated text before publishing it in production materials.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Designers, developers, and content authors use this skill to generate realistic Chinese placeholder paragraphs for UI mockups, layout tests, document templates, and educational materials. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: The security review could not directly match all artifact text during scanning. <br>
-Mitigation: Read the skill instructions before installation and confirm any requested file, credential, or network access is consistent with generating placeholder Chinese text. <br>
+**Output Format:** [JSON object with Chinese paragraph strings and a count value]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-lorem-zh) <br>
-- [AISoBrand](https://aisobrand.com) <br>
-- [AISoBrand free diagnosis](https://aisobrand.com/free-diagnosis.html) <br>
+**Other Properties Related to Output:** [The bundled script runs locally with Python standard-library modules and prints JSON containing paragraphs and count.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled Python script emits JSON containing a paragraphs array and count value.] <br>
+1.1.1 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.1.1 (source: server evidence release; artifact frontmatter lists 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

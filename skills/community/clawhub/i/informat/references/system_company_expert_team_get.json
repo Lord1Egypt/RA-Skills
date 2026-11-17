@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_expert_team_get",
+    "description": "Get the complete team expert team configuration by ID, including expertTeam, memberList, and stageList. Always call this method before editing an expert team so fields the user did not ask to change are not overwritten.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Expert team ID. Required."
+        }
+      },
+      "required": ["id"]
+    }
+  }
+}

@@ -1,45 +1,65 @@
-## Description: <br>
-Paimon.skill is a Genshin Impact-focused OpenClaw game companion that captures the game window, analyzes UI state, gives play guidance, and can perform simple clicks or key presses when asked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+派蒙.skill lets an OpenClaw agent inspect Genshin Impact screenshots, answer gameplay questions, and optionally perform simple UI actions such as clicks, key presses, and button lookup.
 
-## Publisher: <br>
-[cgandgameenginelearner](https://clawhub.ai/user/cgandgameenginelearner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cgandgameenginelearner](https://clawhub.ai/user/cgandgameenginelearner)
 
-## Use Case: <br>
-External users and game-assistant developers use this skill to let OpenClaw inspect Genshin Impact screens, answer gameplay questions, locate UI elements, and perform simple user-requested interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture visible game windows and save screenshots locally. <br>
-Mitigation: Keep unrelated or sensitive windows closed before use and review saved screenshots before sharing logs or artifacts. <br>
-Risk: The click_text workflow can send screenshots to Aliyun/DashScope for multimodal UI analysis. <br>
-Mitigation: Use click_text only when cloud analysis is acceptable, and prefer the DASHSCOPE_API_KEY environment variable instead of storing the key in a config file. <br>
-Risk: The skill can inject mouse and keyboard actions into the game, including background clicks. <br>
-Mitigation: Use foreground interaction or dry-run analysis when possible, and avoid background clicking unless the operator understands the behavior and risk. <br>
+## Use Case:
 
+External players and agent users use this skill with OpenClaw for Genshin Impact guidance, screen analysis, and supervised UI assistance when they are stuck on tasks, menus, combat, exploration, or character development.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cgandgameenginelearner/paimon-skill) <br>
-- [BetterGI click analysis](artifact/references/better-gi-click-analysis.md) <br>
-- [Game patterns reference](artifact/references/game-patterns.md) <br>
-- [Aliyun GUI-Plus API documentation](https://bailian.console.aliyun.com/cn-beijing?tab=api#/api/?type=model&url=2997660) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results from the local CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI can return screenshot paths, detected UI coordinates, action metadata, and post-action screenshot paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can capture and save screenshots, and click_text can send screenshots to Alibaba Cloud/DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with non-sensitive windows visible, keep notifications hidden, and limit use to game sessions where cloud image processing is acceptable.
+
+Risk: The skill can control mouse and keyboard input, including a global click fallback when the target window is not found.
+
+Mitigation: Run click_text with --dry-run first, supervise execution, and stop use if the target game window is not clearly active and scoped.
+
+Risk: The skill can store an API key in a local config file.
+
+Mitigation: Prefer the DASHSCOPE_API_KEY environment variable over saved keys, use a restricted key where possible, and rotate the key after testing.
+
+Risk: The dependency list uses minimum versions rather than pinned exact versions.
+
+Mitigation: Install in an isolated Python environment and review or pin dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/cgandgameenginelearner/skills/paimon-skill)
+- [BetterGI click implementation analysis](references/better-gi-click-analysis.md)
+- [Game automation pattern reference](references/game-patterns.md)
+- [Alibaba Cloud GUI-Plus API documentation](https://bailian.console.aliyun.com/cn-beijing?tab=api#/api/?type=model&url=2997660)
+- [DashScope OpenAI-compatible endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, files]
+
+**Output Format:** [JSON command results, screenshot file paths, shell commands, and agent-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may save local screenshots and may return post-action screenshot paths for feedback loops.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+{
+  "name": "web-search-digest",
+  "version": "1.0.0",
+  "description": "Search the web and produce a structured markdown digest with sources",
+  "main": "SKILL.md",
+  "keywords": ["web-search", "digest", "research", "summarization"],
+  "license": "MIT"
+}

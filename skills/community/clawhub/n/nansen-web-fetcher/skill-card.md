@@ -1,44 +1,50 @@
-## Description: <br>
-Fetches and analyzes content from one or more URLs using Gemini 2.5 Flash so agents can answer questions about retrieved web pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and analyze content from one or more URLs using AI (Gemini 2.5 Flash). Use when you have specific URLs and need to extract or summarize their content. Pairs well with `nansen web search` results.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-Developers and analysts use this skill to fetch up to 20 specific web pages with nansen-cli and get AI-generated answers to questions about their contents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URLs and questions are processed through Nansen and Gemini, which may expose private or access-controlled information if used with sensitive inputs. <br>
-Mitigation: Use only with URLs and questions that are acceptable under the user's data policy, and avoid private or confidential content unless external processing is approved. <br>
-Risk: The workflow requires a Nansen API key and broad access to the nansen CLI. <br>
-Mitigation: Install only if the nansen-cli package is trusted, scope the API key to the intended use, and review generated nansen commands before execution. <br>
-Risk: Paywalled, blocked, or unreachable pages can fail or return incomplete coverage. <br>
-Mitigation: Check failed_urls and retrieved_urls before relying on the generated analysis. <br>
+## Use Case:
 
+Developers and researchers use this skill to retrieve content from specified URLs and get an AI-generated answer or summary tailored to a question.
 
-## Reference(s): <br>
-- [Nansen Web Fetcher on ClawHub](https://clawhub.ai/nansen-devops/nansen-web-fetcher) <br>
-- [Nansen](https://nansen.ai) <br>
-- [nansen-cli package](https://www.npmjs.com/package/nansen-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON containing analysis, retrieved_urls, and failed_urls; optionally human-readable JSON with --pretty] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NANSEN_API_KEY and the nansen CLI; accepts up to 20 URLs and a required question; CLI timeout is 30 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Submitted URLs or questions may contain credentials or confidential information sent for external processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review URLs and questions before submitting them, and remove credentials and confidential details.
+
+## Reference(s):
+
+- [Nansen Web Fetcher on ClawHub](https://clawhub.ai/nansen-devops/skills/nansen-web-fetcher)
+- [Browser Login Platform Scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON]
+
+**Output Format:** [JSON with an AI-generated analysis and retrieved and failed URL lists; optionally pretty-printed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts up to 20 URLs per request; requests have a 30-second timeout.]
+
+## Skill Version(s):
+
+0.1.3 (source: server-resolved ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

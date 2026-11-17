@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "fixture-evidence-pack-001",
+  "fixture_only": true,
+  "input_sha256": "5fb68f786f6260995d95ca5cb290f8a648d4e513f04ce306bb690f81942dd056",
+  "sources": [
+    {
+      "source_id": "S1",
+      "url": "https://fixture.invalid/aster-v2",
+      "title": "Aster API v2.0 synthetic fixture",
+      "version": "2.0",
+      "retrieved_at": null,
+      "provenance": "SYNTHETIC_FIXTURE",
+      "snapshot_sha256": "c48da1b7a2af2a184f5350a173e2ebaf01459d1d4838f97b8bc46c5865ac2cad",
+      "locator": "fixture-source.txt, lines 3–5",
+      "excerpt": "Responses use JSON. The service accepts no more than 100 items in a batch. No retention period or service-level guarantee is specified in this fixture."
+    }
+  ],
+  "limitations": [
+    "Synthetic demonstration only. The missing retention value is null, not guessed."
+  ],
+  "cells": [
+    {
+      "entity_id": "aster-v2",
+      "field_id": "response_format",
+      "status": "FOUND",
+      "value": "JSON",
+      "evidence_ids": [
+        "S1"
+      ],
+      "alternatives": [],
+      "explanation": "Explicit in the supplied fixture.",
+      "effort": [
+        {
+          "location": "https://fixture.invalid/aster-v2",
+          "outcome": "INSPECTED_PROVIDED",
+          "note": "Read the entire supplied synthetic fixture; no network retrieval occurred."
+        }
+      ]
+    },
+    {
+      "entity_id": "aster-v2",
+      "field_id": "max_batch_items",
+      "status": "FOUND",
+      "value": 100,
+      "evidence_ids": [
+        "S1"
+      ],
+      "alternatives": [],
+      "explanation": "Explicit maximum in the supplied fixture.",
+      "effort": [
+        {
+          "location": "https://fixture.invalid/aster-v2",
+          "outcome": "INSPECTED_PROVIDED",
+          "note": "Read the entire supplied synthetic fixture; no network retrieval occurred."
+        }
+      ]
+    },
+    {
+      "entity_id": "aster-v2",
+      "field_id": "retention_days",
+      "status": "UNRESOLVED",
+      "value": null,
+      "evidence_ids": [
+        "S1"
+      ],
+      "alternatives": [],
+      "explanation": "The approved source does not state a duration.",
+      "effort": [
+        {
+          "location": "https://fixture.invalid/aster-v2",
+          "outcome": "INSPECTED_PROVIDED",
+          "note": "Read the entire supplied synthetic fixture; no network retrieval occurred."
+        }
+      ]
+    }
+  ]
+}

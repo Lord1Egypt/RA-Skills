@@ -29,7 +29,6 @@ const os = require('os');
 const https = require('https');
 const http = require('http');
 const { execFileSync } = require('child_process');
-const { ensureWenyanReady } = require('./wenyan_runner');
 const {
     DEFAULT_THEME_ID,
     buildPublishArgs,
@@ -40,11 +39,11 @@ const {
 
 // ─── 配置 ─────────────────────────────────────────────────────
 const TOOLS_MD_PATHS = [
-    path.join(os.homedir(), '.openclaw', 'workspace-writer-test', 'TOOLS.md'),
     path.join(os.homedir(), '.openclaw', 'workspace-xina-gongzhonghao', 'TOOLS.md'),
     path.join(os.homedir(), '.openclaw', 'workspace', 'TOOLS.md'),
 ];
 const WENYAN_TOKEN_CACHE = path.join(os.homedir(), '.config', 'wenyan-md', 'token.json');
+
 // ─── 工具函数 ─────────────────────────────────────────────────
 
 function loadCredentials() {
@@ -323,11 +322,10 @@ async function processVideos(content, articleDir, token) {
 
 function publishWithWenyan(mdPath, themeConfig, appId, secret) {
     const env = { ...process.env, WECHAT_APP_ID: appId, WECHAT_APP_SECRET: secret };
-    const runner = ensureWenyanReady();
 
     let stdout;
     try {
-        stdout = execFileSync(runner.command, [...runner.prefixArgs, ...buildPublishArgs(mdPath, themeConfig)], {
+        stdout = execFileSync('wenyan', buildPublishArgs(mdPath, themeConfig), {
             env,
             encoding: 'utf-8',
             timeout: 120000,

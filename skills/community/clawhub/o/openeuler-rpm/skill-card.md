@@ -1,40 +1,50 @@
-## Description: <br>
-Provides openEuler-specific RPM packaging guidance for spec files, package splitting, changelog entries, macros, review checks, and upgrades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides openEuler-specific RPM packaging guidance for spec files, five-package splitting, changelog formatting, openEuler macros, and package review practices.
 
-## Publisher: <br>
-[weidongkl](https://clawhub.ai/user/weidongkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weidongkl](https://clawhub.ai/user/weidongkl)
 
-## Use Case: <br>
-Developers and packaging engineers use this skill when creating, modifying, reviewing, or upgrading openEuler RPM specs that need openEuler-specific package splits, changelog format, macros, and review checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Destructive-looking command examples may remove files if adapted outside the intended RPM buildroot context. <br>
-Mitigation: Run packaging snippets only in an RPM build environment, verify variables such as RPM_BUILD_ROOT before execution, and review generated spec changes before use. <br>
-Risk: openEuler packaging rules can diverge from generic RPM conventions. <br>
-Mitigation: Cross-check official openEuler policy when exact compliance matters, especially for changelog format, package splitting, and openEuler-specific macros. <br>
+## Use Case:
 
+Developers and release engineers use this skill when creating, updating, or reviewing RPM packaging for openEuler. It helps agents apply openEuler-specific package splitting, changelog, macro, dependency, architecture, and review conventions instead of relying on generic RPM guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/weidongkl/openeuler-rpm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with RPM spec snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the rpm skill for baseline RPM packaging guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata; artifact frontmatter reports 2.1.0) <br>
+Risk: Generated or edited openEuler spec files and changelogs may contain packaging mistakes even when the skill guidance is clean.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated spec files and changelogs before running packaging commands, with particular attention to openEuler-specific changelog format, package splitting, macros, dependencies, architecture handling, and license fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weidongkl/skills/openeuler-rpm)
+- [Publisher profile](https://clawhub.ai/user/weidongkl)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with spec snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is primarily Chinese and recommends English content for generated spec files.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata; artifact frontmatter reports 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

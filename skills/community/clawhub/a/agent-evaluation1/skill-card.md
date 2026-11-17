@@ -1,39 +1,52 @@
-## Description: <br>
-Guides testing and benchmarking LLM agents with behavioral testing, capability assessment, reliability metrics, regression testing, adversarial testing, and production monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers test and benchmark LLM agents through behavioral testing, capability assessment, reliability metrics, regression testing, and production monitoring.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and quality engineers use this skill to design agent evaluation workflows, compare benchmark behavior with production reliability, and identify regressions or risky evaluation practices.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Evaluation messages may include customer data, production traces, proprietary prompts, benchmark sets, credentials, or regulated information sent to SkillBoss/heybossai.
+
+Mitigation: Use only data approved for SkillBoss/heybossai processing; redact sensitive material or use a local or otherwise approved endpoint for sensitive evaluations.
+
+Risk: The skill routes evaluation messages to a fixed third-party API without enough privacy or consent guidance.
+
+Mitigation: Review the API integration, privacy expectations, and consent requirements before installation or production evaluation use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, QA engineers, and agent teams use this skill to design evaluation workflows for LLM agents, including behavioral contracts, statistical test runs, adversarial checks, reliability analysis, and production monitoring. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluation data may be sent to SkillBoss API Hub when users choose to run the disclosed API example. <br>
-Mitigation: Confirm the provider is approved for the data, use a dedicated environment-stored API key, and do not send secrets, regulated data, customer prompts, or confidential benchmark sets unless approved. <br>
+**Output Format:** [Markdown guidance with inline Python examples and configuration notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/agent-evaluation1) <br>
-- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot) <br>
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY when using the documented SkillBoss API Hub integration.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with inline Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an optional external API example requiring SKILLBOSS_API_KEY.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, created 2026-04-13) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

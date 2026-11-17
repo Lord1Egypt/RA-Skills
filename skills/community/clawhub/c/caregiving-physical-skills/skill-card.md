@@ -1,48 +1,63 @@
-## Description: <br>
-Physical caregiving techniques for assisting elderly, disabled, or recovering family members. Use when someone is caring for an aging parent, disabled family member, or recovering patient and needs hands-on physical care skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Physical caregiving techniques for assisting elderly, disabled, or recovering family members with safe transfers, bathing, fall prevention, medication management, emergency recognition, and pressure sore prevention.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Family caregivers and support agents use this skill to provide step-by-step guidance for safe transfers, fall prevention, bathing assistance, medication organization, emergency recognition, and pressure sore prevention for elderly, disabled, or recovering people. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Physical transfers, bathing assistance, and pressure sore care can cause injury if treated as a substitute for hands-on training or professional assessment. <br>
-Mitigation: Treat the skill as educational support; get help from a doctor, PT/OT, home health aide, or emergency services when transfers are unsafe, symptoms are urgent, or wound care is needed. <br>
-Risk: Medication and medical warning-sign guidance may be misapplied to high-risk situations. <br>
-Mitigation: Confirm medication changes and pill handling with a doctor or pharmacist, and use emergency services for stroke, severe confusion, loss of consciousness, head injury on blood thinners, or suspected heart attack. <br>
-Risk: Caregiving reminders may retain sensitive health and family context in the agent environment. <br>
-Mitigation: Share only the caregiving details needed for the task and review or clear stored context according to the user's privacy expectations. <br>
+## Use Case:
 
+External family caregivers use this skill when they need practical, hands-on guidance for safely helping an aging, disabled, or recovering person move, bathe, avoid falls, manage medications, and recognize urgent warning signs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/caregiving-physical-skills) <br>
-- [American Red Cross home health aide training](https://www.redcross.org/take-a-class/home-health-aide) <br>
-- [National Institute on Aging caregiving resources](https://www.nia.nih.gov/health/caregiving) <br>
-- [Family Caregiver Alliance](https://www.caregiver.org/) <br>
-- [AARP caregiving resources](https://www.aarp.org/caregiving/) <br>
-- [CDC fall prevention resources](https://www.cdc.gov/falls/) <br>
-- [Anthropic labor market impacts of AI](https://www.anthropic.com/research/labor-market-impacts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, step-by-step procedures, and YAML state/reminder suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include localized healthcare-system caveats, emergency escalation guidance, and caregiving reminder suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may store or use sensitive caregiving and health context for reminders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in a host setup that restricts filesystem access to a skill-specific state directory and avoid storing unnecessary personal health details.
+
+Risk: Physical-care and medication guidance could be mistaken for medical judgment.
+
+Mitigation: Use the guidance as educational support and rely on clinicians, pharmacists, emergency services, or trained in-person help for medication changes, acute symptoms, serious falls, wounds, or unsafe transfers.
+
+Risk: Caregivers may attempt transfers or wound care beyond their physical ability or training.
+
+Mitigation: Seek professional assessment or additional help when transfers require more than standby assistance, caregiver pain occurs, mobility declines, or stage 3 or 4 pressure sores are suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/caregiving-physical-skills)
+- [American Red Cross home health aide training](https://www.redcross.org/take-a-class/home-health-aide)
+- [National Institute on Aging caregiving resources](https://www.nia.nih.gov/health/caregiving)
+- [Family Caregiver Alliance](https://www.caregiver.org/)
+- [AARP caregiving resources](https://www.aarp.org/caregiving/)
+- [CDC fall prevention resources](https://www.cdc.gov/falls/)
+- [Anthropic labor market impacts of AI](https://www.anthropic.com/research/labor-market-impacts)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, step-by-step care instructions, and YAML agent state and reminder triggers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use sensitive caregiving context for reminders; OpenClaw metadata requires filesystem access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

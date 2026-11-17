@@ -1,44 +1,60 @@
-## Description: <br>
-Emotwin enables OpenClaw agents to sync PAD emotion data from EEG, PPG, and GSR sensors and autonomously post, like, and comment on Moltcn/Moltbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emotwin enables AI agents to sync biometric emotion PAD data from EEG, PPG, and GSR sensors and autonomously post, comment, or like on Moltcn/Moltbook based on real-time emotional state.
 
-## Publisher: <br>
-[beardao](https://clawhub.ai/user/beardao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beardao](https://clawhub.ai/user/beardao)
 
-## Use Case: <br>
-Developers and external users use this skill to let an OpenClaw agent read live biometric emotion signals, choose social actions, generate emotion-conditioned content, and create moment cards during Moltcn/Moltbook social sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can silently perform posts, comments, and likes on real social accounts using biometric emotion data. <br>
-Mitigation: Require explicit approval before each social action or disable silent cron automation unless unattended posting is intentional. <br>
-Risk: Bearer tokens and biometric-derived session data may be exposed through local configuration, logs, or stored files. <br>
-Mitigation: Use limited-scope tokens, redact token logging, and review or purge data stored under ~/.emotwin. <br>
-Risk: Background services and cron jobs may continue running after the user expects the social mode to stop. <br>
-Mitigation: Verify the stop script removes all scheduled jobs and terminates the emoPAD service and related processes. <br>
+## Use Case:
 
+Developers and external agent users use Emotwin to connect an OpenClaw agent to biometric emotion sensors and Moltcn/Moltbook social APIs. The skill supports autonomous emotion-driven social activity, sensor-status checks, and moment-card generation.
 
-## Reference(s): <br>
-- [Emotwin GitHub homepage](https://github.com/beardao/emotwin) <br>
-- [Emotion-to-Behavior Guide](references/emotion_guide.md) <br>
-- [Moltcn/Moltbook API Reference](references/moltcn_api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Files, Configuration, Guidance] <br>
-**Output Format:** [Social platform actions, generated text content, PNG moment cards, shell commands, and YAML/JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local biometric PAD readings, Moltcn/Moltbook bearer tokens, silent cron scheduling, and a local emoPAD service on port 8766.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter lists 1.6.0 and package metadata lists 1.1.0) <br>
+Risk: The skill can run continuously and make public social-platform posts, comments, or likes without per-action approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege token, choose conservative sync intervals, and review account activity and generated content regularly.
+
+Risk: The skill reads sensor-derived emotional state that may be sensitive.
+
+Mitigation: Run it only with informed user consent and minimize retention or sharing of diary and log files.
+
+Risk: Credential and process handling may expose tokens or disrupt unrelated work.
+
+Mitigation: Check logs for token exposure, store tokens outside shared files, and verify cron removal and stop behavior before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beardao/skills/emotwin)
+- [Project homepage from ClawHub metadata](https://github.com/beardao/emotwin)
+- [Emotion-to-Behavior Guide](references/emotion_guide.md)
+- [Moltcn/Moltbook API Reference](references/moltcn_api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON API interactions, configuration values, and PNG moment-card files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run continuously in the background and act through configured social-platform account tokens.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter states 1.6.0 and package metadata states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Supply Chain Bottleneck Analyzer for Walmart Marketplace sellers. Diagnose cash flow, inventory, WFS costs, and referral fees. Includes comparison with Amazon FBA, lower storage fee optimization, and Walmart Connect ad spend analysis. No API key required for basic analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supply Chain Bottleneck Analyzer for Walmart Marketplace sellers. Diagnose cash flow, inventory, WFS costs, and referral fees. Includes comparison with Amazon FBA, lower storage fee optimization, and Walmart Connect ad spend analysis. No API key required for basic analysis.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-Walmart Marketplace sellers and e-commerce operators use this skill to diagnose supply chain bottlenecks, compare Walmart Marketplace costs with Amazon FBA, and produce cost-reduction guidance for inventory, fulfillment, referral fees, advertising, and cash cycle decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Walmart-focused business analysis may rely on Amazon/FBA assumptions and could mislead seller decisions. <br>
-Mitigation: Review formulas, platform assumptions, payment-cycle handling, and WFS fee handling before using recommendations for Walmart business decisions. <br>
-Risk: Optional authenticated Walmart API workflows may involve sensitive credentials. <br>
-Mitigation: Treat Walmart API credentials as sensitive, avoid exposing them in shared logs or prompts, and verify the source before global installation. <br>
+## Use Case:
 
+External Walmart Marketplace sellers and commerce operators use this skill to estimate supply-chain metrics, diagnose inventory, cash-cycle, WFS cost, referral-fee, and advertising bottlenecks, and draft cost-reduction guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/supply-chain-optimization-walmart) <br>
-- [Publisher profile](https://clawhub.ai/user/phheng) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown report with metrics tables, cost breakdowns, bottleneck diagnosis, and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include shell commands for installation and environment variable examples for optional Walmart Marketplace API integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The security review classifies the skill as a rough calculator rather than authoritative Walmart Marketplace financial guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate fee, payment-cycle, storage, advertising, and margin formulas against current Walmart Marketplace terms before relying on recommendations.
+
+Risk: The documented global install command is mutable and unpinned.
+
+Mitigation: Install from a pinned CLI version, immutable repository commit, signed release, or project-local dependency path.
+
+Risk: The documentation mentions Walmart API credentials, but the bundled code does not use the documented API integration.
+
+Mitigation: Avoid entering real Walmart credentials unless the integration path is independently reviewed and confirmed necessary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/supply-chain-optimization-walmart)
+- [Nexscope AI](https://www.nexscope.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with metrics tables, cost breakdown, bottleneck diagnosis, summary, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local calculator formulas and benchmark thresholds; no live Walmart API calls are performed by the bundled script.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

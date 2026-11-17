@@ -1,37 +1,58 @@
-## Description: <br>
-QR code generation and reading for text, URLs, WiFi credentials, vCard contacts, image decoding, and batch generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QR code generation and reading for text, URLs, WiFi credentials, vCard contacts, image decoding, and batch generation.
 
-## Publisher: <br>
-[yushimohuang](https://clawhub.ai/user/yushimohuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yushimohuang](https://clawhub.ai/user/yushimohuang)
 
-## Use Case: <br>
-Developers and other users can use this skill to ask an agent to create QR code images, decode QR codes from image files, or prepare QR codes for WiFi and contact sharing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QR images and decoded terminal output can expose sensitive content such as WiFi passwords, contact details, tokens, or private URLs. <br>
-Mitigation: Use guest or temporary credentials when sharing WiFi QR codes, avoid encoding secrets unless necessary, and delete or protect generated QR images that contain private data. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate QR code PNGs for text, URLs, WiFi credentials, and vCard contacts, or to decode QR content from image files. It also supports batch generation from a text list.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text, Guidance] <br>
-**Output Format:** [Markdown with bash commands and generated PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local qrencode and zbar-tools utilities when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: WiFi QR generation can expose passwords in command output, shell history, logs, and generated PNG files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid real passwords in shell commands when possible, store generated PNGs in controlled locations, and delete sensitive QR files after use.
+
+Risk: A filename handling issue may write WiFi QR images outside the intended default output folder.
+
+Mitigation: Review generated output paths before sharing or retaining files, and use explicit controlled output locations.
+
+Risk: Decoded QR content or contact QR data can contain sensitive personal information.
+
+Mitigation: Treat decoded content and vCard QR images as sensitive and avoid logging or sharing them unnecessarily.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yushimohuang/skills/qr-code-toolkit)
+- [Publisher profile](https://clawhub.ai/user/yushimohuang)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated PNG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated QR images are written to the default qrcodes folder or a caller-provided output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and script header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

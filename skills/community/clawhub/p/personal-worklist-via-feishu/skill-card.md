@@ -1,46 +1,58 @@
-## Description: <br>
-Helps an agent create and manage a personal Feishu Bitable worklist, add and update tasks, configure reminders, and run worklist reviews or health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an OpenClaw workflow for creating and maintaining a personal Feishu Bitable worklist, including task capture, status updates, reminders, reviews, and diagnostics.
 
-## Publisher: <br>
-[13929110463](https://clawhub.ai/user/13929110463) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13929110463](https://clawhub.ai/user/13929110463)
 
-## Use Case: <br>
-Employees and individual operators use this skill to maintain a Feishu-based personal work ledger, capture tasks with required fields, track status, and receive recurring work reminders. Developers or workspace administrators may use its scripts to initialize Bitable structure, configure Feishu credentials, and diagnose integration health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Feishu worklist data, Feishu/OpenClaw credentials, and recurring reminder configuration. <br>
-Mitigation: Install only in trusted workspaces, confirm the Feishu app and Bitable scope before first use, and limit stored tasks to information appropriate for that workspace. <br>
-Risk: The security summary says the skill can create persistent reminders and modify task, schema, or configuration state with insufficient user control. <br>
-Mitigation: Review or disable automatic reminder setup before deployment, require explicit approval before running configuration-changing scripts, and audit scheduled cron entries after setup. <br>
-Risk: Sensitive task details or credentials may be exposed through shared logs, examples, or configuration output. <br>
-Mitigation: Avoid placing secrets or sensitive task content in shared logs and review generated examples or diagnostics before sharing them. <br>
+## Use Case:
 
+Employees and individual users use this skill to set up a Feishu Bitable worklist, add tasks after required field confirmation, update task status, receive reminders, and review progress.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/13929110463/personal-worklist-via-feishu) <br>
-- [Publisher profile](https://clawhub.ai/user/13929110463) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [Artifact examples README](examples/README.md) <br>
-- [Artifact test prompts](examples/test-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured task-management guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local Node.js helper scripts that call Feishu APIs, update local configuration, and create recurring OpenClaw cron reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can create persistent OpenClaw reminders automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reminder setup before installing and verify created reminders are scoped to the intended Feishu recipient.
+
+Risk: The skill requires Feishu Bitable read/write authority, Feishu app credentials, permission-management ability, and access to a user's open_id.
+
+Mitigation: Use a least-privilege Feishu app, restrict table access to the intended worklist, and provide credentials only through the expected configuration path.
+
+Risk: Evidence flags unsafe command and credential configuration handling.
+
+Mitigation: Fix the open_id/config handling before normal use and run the skill only in a trusted OpenClaw workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/13929110463/skills/personal-worklist-via-feishu)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute bundled Node.js scripts to read or write Feishu Bitable records, configure table permissions, and create OpenClaw reminders.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact/package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

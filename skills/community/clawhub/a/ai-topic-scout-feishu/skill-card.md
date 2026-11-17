@@ -1,44 +1,61 @@
-## Description: <br>
-AI Topic Scout Feishu collects configured YouTube and Twitter/X content, analyzes AI topic trends and heat, and writes topic recommendations to Feishu Bitable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Topic Scout Feishu helps an agent collect public YouTube and Twitter/X content, analyze cross-platform AI topic trends, score topic heat, and write reports into Feishu Bitable.
 
-## Publisher: <br>
-[xdimtech](https://clawhub.ai/user/xdimtech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xdimtech](https://clawhub.ai/user/xdimtech)
 
-## Use Case: <br>
-Content creators, operators, and developers use this skill to track configured AI-topic sources, aggregate cross-platform trends, score topic heat, and maintain a Feishu Bitable topic pipeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes analysis results to Feishu tables. <br>
-Mitigation: Use a dedicated Feishu workspace or table, grant only the needed write access, and review sharing settings before recurring use. <br>
-Risk: Configured YouTube, Twitter/X, and API-token sources can expose sensitive or unintended data if shared. <br>
-Mitigation: Review configured sources, avoid private or sensitive accounts, and keep API keys and bearer tokens out of shared configuration files. <br>
-Risk: Optional cron automation can repeatedly fetch external content and write new table records. <br>
-Mitigation: Enable cron only when recurring fetches are intended, set conservative schedules, and periodically inspect the generated records. <br>
+## Use Case:
 
+Content creators, analysts, and agent operators use this skill to monitor configured AI-focused YouTube channels and Twitter/X accounts, identify recurring topics, and maintain a Feishu Bitable with raw content and topic-analysis records. The agent can also initialize tables, manage data sources, run scheduled collection, and return ranked topic summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xdimtech/ai-topic-scout-feishu) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries, YAML configuration examples, shell command examples, and Feishu Bitable records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write records to Feishu Bitable and invoke local fetch scripts when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Configured sources, fetched posts, generated analysis, and Feishu records may pass through YouTube, Nitter mirrors, the configured LLM provider, web search, and Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated environment, review Feishu OAuth permissions, avoid private or sensitive accounts, and restrict access to the target Feishu tables.
+
+Risk: The helper scripts execute external tools and contact public content platforms, which can be affected by tool version changes, platform limits, or unstable mirrors.
+
+Mitigation: Pin or review yt-dlp versions, avoid sudo where possible, configure official API tokens when appropriate, and reduce fetch frequency when limits are encountered.
+
+Risk: Scheduled runs can repeatedly update the wrong table or source list if automation is enabled before setup is verified.
+
+Mitigation: Enable cron only after confirming the Feishu Bitable target, source records, and fetch settings are correct.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/xdimtech/skills/ai-topic-scout-feishu)
+- [Publisher profile](https://clawhub.ai/user/xdimtech)
+- [README](README.md)
+- [Skill definition](SKILL.md)
+- [Configuration example](config.example.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style conversational summaries, JSON from helper scripts, YAML configuration, and Feishu Bitable records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates Feishu Bitable apps, tables, fields, and records; helper scripts fetch bounded public content for configured sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

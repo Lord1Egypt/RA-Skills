@@ -1,41 +1,55 @@
-## Description: <br>
-LinkedIn go-to-market strategy skill that helps founders and product builders plan content for DTC operators, B2B decision makers, and investors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkedIn go-to-market strategy for founders and product builders.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Founders, product builders, and go-to-market teams use this skill to research LinkedIn content patterns and draft posts, carousels, CTAs, self-comments, reply templates, hashtags, and posting recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated LinkedIn posts may include incorrect claims, inappropriate metrics, client names, or sensitive business details. <br>
-Mitigation: Review and edit generated content for factual accuracy, tone, permissions, and confidential information before publishing. <br>
-Risk: The skill is instruction-only and may suggest public-facing content workflows, but it should not receive LinkedIn credentials or post automatically. <br>
-Mitigation: Keep account credentials out of prompts and require separate, explicit approval for any publishing action. <br>
+## Use Case:
 
+Founders, product builders, and go-to-market teams use this skill to plan LinkedIn content for DTC operators, B2B decision makers, and investors. It guides research, pattern extraction, post drafting, carousel planning, self-comments, reply templates, hashtags, and posting-time recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-linkedin-gtm) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured content drafts, checklists, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include LinkedIn post copy, carousel slide text, CTAs, self-comments, reply templates, hashtags, and posting-time guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may ask an agent to browse or search LinkedIn-related public content for inspiration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat browsed content as reference material only and have the user review generated posts before publishing.
+
+Risk: Generated multilingual posts may use an unintended language or tone if the request is ambiguous.
+
+Mitigation: Ask for or confirm the preferred language and voice before drafting multilingual content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-linkedin-gtm)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured post drafts, carousel outlines, self-comments, reply templates, hashtags, and posting recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated LinkedIn content should be reviewed before publishing, and multilingual drafting should follow the user's requested language.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

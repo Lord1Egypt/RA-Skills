@@ -1,48 +1,60 @@
-## Description: <br>
-Skill Cortex helps OpenClaw agents find, install, use, learn from, and discard short-term skills from ClawHub or GitHub when installed skills cannot handle a task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Cortex helps an OpenClaw agent find, install, use, and remove short-term skills from ClawHub or GitHub while learning routing patterns for future tasks.
 
-## Publisher: <br>
-[ankwu001](https://clawhub.ai/user/ankwu001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ankwu001](https://clawhub.ai/user/ankwu001)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill when the current installed skill set cannot complete a task and the agent needs to locate, install, execute, learn from, and then remove a short-term capability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent find, install, execute, remember, and remove other skills at runtime. <br>
-Mitigation: Use it only when that level of runtime skill management is acceptable, and require explicit approval for installation and execution. <br>
-Risk: Reflex behavior can reduce the normal execution-plan confirmation flow for frequently successful read-only tasks. <br>
-Mitigation: Keep reflex behavior disabled or require explicit approval for every install and execution unless the candidate is reviewed and version-locked. <br>
-Risk: GitHub candidates may be unreviewed sources when ClawHub results are insufficient. <br>
-Mitigation: Inspect unreviewed GitHub candidates before installation or restrict use to reviewed ClawHub skills. <br>
-Risk: The local cortex memory file records routing history and lessons about prior skill use. <br>
-Mitigation: Periodically review or delete the local cortex memory file and avoid storing concrete personal, project, location, or file identifiers. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an OpenClaw agent lacks a needed capability and should search for, install, execute, and clean up an appropriate skill with user approval.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/ankwu001/skill-cortex-ank) <br>
-- [README](artifact/README.md) <br>
-- [Design document](artifact/DESIGN.md) <br>
-- [OpenClaw](https://github.com/openclaw) <br>
-- [ClawHub](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes candidate summaries, execution plans, side-effect warnings, failure reports, and local cortex memory updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0) <br>
+Risk: The skill can acquire and run other skills on demand, including broad third-party candidates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted ClawHub sources where possible, avoid unreviewed GitHub candidates, and require explicit user approval before each install or candidate switch.
+
+Risk: Reflex execution can reduce review for learned read-only workflows.
+
+Mitigation: Do not allow reflex mode for skills that read credentials, local sensitive data, or use the network; require normal review when versions change or failures occur.
+
+Risk: Persistent routing memory can affect future skill choices and may need cleanup.
+
+Mitigation: Periodically inspect or reset ~/.openclaw/skill-cortex/cortex.json and rely on entity filtering for stored signal words.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ankwu001/skills/skill-cortex-ank)
+- [Publisher Profile](https://clawhub.ai/user/ankwu001)
+- [OpenClaw](https://github.com/openclaw)
+- [ClawHub](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the clawhub CLI and may update local short-term routing memory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

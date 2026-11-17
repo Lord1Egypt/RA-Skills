@@ -1,0 +1,44 @@
+part: SGM8902
+link_status: verified_2026-06-30 (family-page-extract, NOT-RECOMMENDED-FOR-NEW-DESIGN)
+expected_family: "SGMicro SGM8902 \u2014 2Vrms stereo line driver with capless design"
+main_page: https://www.sg-micro.com/product/sgm8902
+datasheet_path_expected: ../../embedded_dev/sgmicro/datasheet/SGM8902_datasheet.pdf
+datasheet_source_note: "SGM8902 datasheet PDF not in catalog. Family page reachable via Firecrawl; specs extracted from product\
+  \ page markdown. **NOT RECOMMENDED FOR NEW DESIGN** per SGMicro product page \u2014 replacement parts to be considered for\
+  \ new designs."
+specs:
+  function: Stereo audio line driver (2Vrms / 3Vrms selectable)
+  specs_performance:
+    output_amplitude: 2Vrms or 3Vrms (selectable)
+    output_load_min_ohm: "600 (typical 2.5 k\u03A9)"
+    supply_voltage_v: 3.3
+    design_topology: Capless (DC-blocking capacitors not required at output)
+    shutdown_control: yes (pop/click-free on/off)
+    gain_range: "\xB11 to \xB110 V/V (external gain setting)"
+    input: Differential
+    charge_pump: integrated (for negative rail generation, no separate supply needed)
+  temperature_range_c: -40 to +85
+  package: TSSOP-14
+  pricing_usd: "Not listed on product page \u2014 discontinued status"
+unverified:
+- exact_thd_plus_n_pct
+- exact_snr_db
+- exact_channel_separation_db
+- exact_output_voltage_ripple_mv
+- exact_quiescent_current_ma
+- shutdown_current_na
+notes:
+- "Promoted from \"missing yaml\" to verified_2026-06-30 \u2014 extracted from sg-micro.com SGM8902 product page via Firecrawl\
+  \ (8.5KB raw \u2192 7.9KB clean). Note: page explicitly states \"Not Recommended for New Design\" \u2014 this is documented\
+  \ in link_status so future catalog agents flag it."
+- 'Use case: legacy / EOL designs that need a stereo line driver. For new designs, look at SGM8903 (LDO) or SGM6601 (boost)
+  instead.'
+- 'Key feature: capless design eliminates 2 output DC-blocking caps per channel, saving BOM cost and PCB area.'
+- 'Lifecycle note: production may be limited. Verify availability with SGMicro sales before recommending for new designs.'
+- '2026-07-01 search via Tavily: no accessible datasheet PDF found for SGM8902. Vendor PDF returns 404/myPortal login or only
+  summary. Status kept as legacy; re-verify when vendor publishes accessible datasheet.'
+extracted_at: '2026-06-30T01:00:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract of sg-micro.com product page markdown
+extraction_source: references/semiconductor-vendor/SGMicro/firecrawl-snapshots/SGM8902_clean.md
+extraction_credits_used: 1

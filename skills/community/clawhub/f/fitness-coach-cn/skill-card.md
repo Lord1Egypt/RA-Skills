@@ -1,42 +1,55 @@
-## Description: <br>
-Creates personalized Chinese fitness training plans based on goals, fitness level, available equipment, and schedule, with exercise instructions, weekly schedules, nutrition and recovery suggestions, and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create personalized Chinese fitness training plans based on goals, fitness level, available equipment, and schedule, including exercise instructions, weekly schedules, progress tracking, nutrition, and recovery guidance.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-External Chinese-speaking users use this skill to have an agent collect goals, fitness level, available equipment, schedule, and physical limitations, then draft structured workout programs with exercise cues, nutrition, recovery, and tracking guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workout and nutrition suggestions may be inappropriate for users with injuries, medical conditions, pregnancy, cardiovascular risk, balance limitations, or pain during exercise. <br>
-Mitigation: Treat plans as general fitness guidance; ask about limitations, choose lower-impact alternatives when risk factors are present, and refer users to qualified professionals for medical concerns. <br>
-Risk: Intense HIIT, jumping movements, or rapid workload increases can raise injury risk if followed blindly. <br>
-Mitigation: Scale intensity to the stated fitness level, include warm-up and recovery guidance, progress gradually, and stop or modify movements that cause pain. <br>
+## Use Case:
 
+External Chinese-speaking users and agent operators use this skill to collect fitness goals, training level, equipment, schedule, and constraints, then produce structured workout plans for weight loss, muscle building, endurance, or general fitness. The skill also supports exercise-form guidance, basic nutrition suggestions, recovery planning, and progress tracking.
 
-## Reference(s): <br>
-- [居家无器械动作库](references/home-workout-library.md) <br>
-- [运动伤病预防与营养指南](references/injury-prevention-nutrition.md) <br>
-- [健身计划分化方案参考](references/split-programs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables, lists, and structured training-plan sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language workout, nutrition, recovery, and progress-tracking guidance; no tool calls or shell commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Workout or nutrition guidance may be inappropriate for users with injuries, medical conditions, pregnancy, medication constraints, or limited training experience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask about limitations before planning, keep loads conservative, and advise users in these groups to consult a qualified clinician or trainer.
+
+Risk: High-intensity, heavy strength, or rapidly progressed plans can increase injury risk when user details are incomplete.
+
+Mitigation: Use the skill's intake questions, warm-up and recovery guidance, and progressive overload recommendations before increasing volume, intensity, or complexity.
+
+## Reference(s):
+
+- [居家无器械动作库](artifact/references/home-workout-library.md)
+- [运动伤病预防与营养指南](artifact/references/injury-prevention-nutrition.md)
+- [健身计划分化方案参考](artifact/references/split-programs.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown fitness plans, tables, checklists, and exercise guidance in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include personalized weekly schedules, exercise sets and repetitions, nutrition notes, recovery guidance, and progress logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

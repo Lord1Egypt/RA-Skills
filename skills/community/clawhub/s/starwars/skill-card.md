@@ -1,43 +1,55 @@
-## Description: <br>
-Starwars is a CLI skill that lets agents look up Star Wars characters, planets, films, species, and starships using SWAPI without authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI for AI agents to look up Star Wars universe information using SWAPI with no authentication required.
 
-## Publisher: <br>
-[jeffaf](https://clawhub.ai/user/jeffaf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeffaf](https://clawhub.ai/user/jeffaf)
 
-## Use Case: <br>
-Agents and external users use Starwars to answer routine Star Wars universe lookup questions from SWAPI, including lookups for people, planets, films, species, and starships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup terms may be sent to swapi.dev. <br>
-Mitigation: Use Star Wars entity names or film terms as queries, and avoid submitting private or sensitive text. <br>
-Risk: Manual installation instructions reference cloning an external repository, changing script permissions, and creating a /usr/local/bin symlink. <br>
-Mitigation: Prefer the ClawHub install path for this release, or inspect the external repository and script before following manual clone, chmod, or symlink commands. <br>
-Risk: SWAPI coverage is limited to the original and prequel films and does not cover sequel trilogy, TV shows, or extended universe material. <br>
-Mitigation: Use the skill for Episodes 1-6 lookups and verify answers against another source when users ask about material outside that coverage. <br>
+## Use Case:
 
+External users and agents use this skill to look up Star Wars characters, planets, films, species, and starships through SWAPI-backed CLI queries.
 
-## Reference(s): <br>
-- [Starwars on ClawHub](https://clawhub.ai/jeffaf/starwars) <br>
-- [SWAPI](https://swapi.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text CLI output with entity summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, and jq; uses SWAPI and no API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The package appears to document a CLI that is not included in the inspected artifact, so commands may not work as described.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the CLI wrapper or script is present in the installed package before relying on command examples.
+
+Risk: The skill depends on public SWAPI data and is limited to the coverage described by the artifact.
+
+Mitigation: Use it for the documented character, planet, film, species, and starship lookups, and verify answers outside Episodes 1-6 with another source.
+
+## Reference(s):
+
+- [SWAPI](https://swapi.dev)
+- [ClawHub skill page](https://clawhub.ai/jeffaf/skills/starwars)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text command output and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, curl, and jq; uses public SWAPI queries and does not require credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

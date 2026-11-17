@@ -1,43 +1,59 @@
-## Description: <br>
-查询旺小美系统中的客户、录音、接访/接诊和租户项目信息，帮助已授权用户快速查看业务数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps authorized users query Wangxiaobao customer, recording, visit, tenant, and project data through the 旺小美 system.
 
-## Publisher: <br>
-[156554395](https://clawhub.ai/user/156554395) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[156554395](https://clawhub.ai/user/156554395)
 
-## Use Case: <br>
-Authorized sales consultants, managers, and operators use this skill to query Wangxiaomei customer records, recordings, visit data, and tenant/project context without manually opening the app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent access sensitive customer, recording, visit, account, and tenant/project data after authorization. <br>
-Mitigation: Install only for trusted Wangxiaomei/Wangxiaobao use, make prompts explicit, and review returned data before sharing it. <br>
-Risk: A persisted ~/.wangke-auth-token can continue granting access on the local machine. <br>
-Mitigation: Do not expose the raw token, avoid shared machines, and clear ~/.wangke-auth-token when access is no longer needed. <br>
-Risk: Queries may run against the wrong tenant or project context. <br>
-Mitigation: Verify the active tenant or project before data queries and after any switch operation. <br>
+## Use Case:
 
+Sales consultants, managers, and other authorized business users use this skill to retrieve customer records, recording lists and details, visit records, tenant/project context, and structured summaries from Wangxiaobao data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/156554395/wxm-assistant) <br>
-- [Wangxiaobao service](https://www.wangxiaobao.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with optional shell command snippets and API-derived records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authorized Wangxiaomei token stored locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can access sensitive business and personal information, including customer, recording, visit, tenant, project, and user data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only for users authorized for the relevant Wangxiaobao tenants and projects, and avoid broad or ambiguous data requests.
+
+Risk: Reusable authentication tokens are persisted locally and may be exposed in logged or shared environments.
+
+Mitigation: Avoid running authorization commands in shared or logged environments until token printing and token-file permission handling have been reviewed and fixed.
+
+Risk: Tenant or project switches can change the data context for later queries.
+
+Mitigation: Confirm tenant and project switches before retrieving records or generating summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/156554395/skills/wxm-assistant)
+- [README](artifact/README.md)
+- [Evaluation cases](artifact/evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown or plain text summaries with command guidance and API-derived records when authorized]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include sensitive customer, recording, visit, tenant, project, and user information returned from Wangxiaobao services.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

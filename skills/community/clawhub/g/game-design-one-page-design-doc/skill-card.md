@@ -1,43 +1,55 @@
-## Description: <br>
-Create a concise one-page game design document and export it as both markdown and PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a concise one-page game design document and export it as both markdown and PDF.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, developers, and creative teams use this skill to compress game concept notes into a one-page design document that is easy to review, share, and refine. It helps produce a structured source JSON file, an editable Markdown version, and a polished PDF one-pager. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The renderer writes JSON, Markdown, and PDF files to the paths it is given. <br>
-Mitigation: Use a project-specific output folder and review filenames before rendering, especially in important project directories. <br>
-Risk: PDF rendering depends on the ReportLab package and available system fonts. <br>
-Mitigation: Install ReportLab and confirm Poppins, Liberation Sans, or DejaVu fonts are available before relying on PDF output. <br>
+## Use Case:
 
+Game designers, developers, and product teams use this skill to turn compact or messy game concept notes into a one-page design document suitable for quick review, pitching, and production alignment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stanestane/game-design-one-page-design-doc) <br>
-- [Source Notes](references/source-notes.md) <br>
-- [Family Conventions](references/family-conventions.md) <br>
-- [Example Input](references/example-input.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with JSON source data, shell commands, and generated Markdown and PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local JSON, Markdown, and PDF outputs using filenames or folders selected by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence.json release.version) <br>
+Risk: Dependency versions may affect PDF rendering reproducibility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a virtual environment and pin ReportLab when reproducible output matters.
+
+Risk: The renderer writes output files and may overwrite files with the same names.
+
+Mitigation: Review output paths before running the renderer.
+
+## Reference(s):
+
+- [Source Notes](references/source-notes.md)
+- [Family Conventions](references/family-conventions.md)
+- [Example Input](references/example-input.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON, Markdown, and PDF files with concise implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The renderer writes requested JSON, Markdown, and PDF files and may overwrite same-named outputs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

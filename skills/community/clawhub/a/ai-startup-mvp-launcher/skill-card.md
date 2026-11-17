@@ -1,44 +1,60 @@
-## Description: <br>
-AI创业MVP快造工厂 — 从需求分析到小程序上线的全链路自动化，每周即可完成一个MVP验证 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI创业MVP快造工厂 turns a startup idea into a WeChat mini-program MVP workflow covering product planning, task breakdown, branding assets, competitor analysis, and operations planning.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-External founders, product managers, students, side-project builders, and internal innovation teams use this skill to turn a startup idea into a WeChat mini-program MVP plan, code framework, brand assets, competitor analysis, and operations plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation terms may trigger the workflow during general startup, MVP, or product-ideation conversations. <br>
-Mitigation: Confirm the user wants the MVP-launch workflow before coordinating downstream planning, research, rendering, or publishing actions. <br>
-Risk: Generated plans, market analysis, and code frameworks may be incomplete, inaccurate, or unsuitable for deployment. <br>
-Mitigation: Review generated outputs before acting on them, and perform manual code review before using generated code. <br>
-Risk: Some mini-program capabilities, such as payments or maps, require separately managed API access. <br>
-Mitigation: Configure required third-party services explicitly and keep credentials outside generated artifacts. <br>
+## Use Case:
 
+External entrepreneurs, product managers, students, and internal innovation teams use this skill to rapidly shape a startup idea into an MVP plan, mini-program code scaffold, brand materials, competitor analysis, and operating plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/ai-startup-mvp-launcher) <br>
-- [README](artifact/README.md) <br>
-- [Workflow configuration](artifact/workflow.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Guidance, Analysis] <br>
-**Output Format:** [Markdown, structured plans, generated code framework, visual asset briefs, and analysis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include product requirements, mini-program project structure, task lists, brand materials, competitor analysis, and operations planning; generated code and plans require human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and workflow.json) <br>
+Risk: Generated code scaffolds or MVP recommendations may be incomplete, incorrect, or unsuitable for production use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code and product plans before implementation, testing, or release.
+
+Risk: Broad startup prompts may trigger a multi-step workflow that produces plans, code, visuals, and market analysis beyond the user's immediate intent.
+
+Mitigation: Confirm user intent before running the full workflow from broad startup-related requests.
+
+Risk: MVPs that need payment, maps, or similar platform capabilities may require independently obtained API access.
+
+Mitigation: Verify required platform APIs and credentials before treating the generated mini-program scaffold as deployable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/ai-startup-mvp-launcher)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Workflow manifest](artifact/workflow.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown documents, code scaffolds, configuration-oriented plans, and generated asset guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate related skills for product planning, project planning, brand materials, competitor analysis, and operations planning; generated code should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, workflow.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

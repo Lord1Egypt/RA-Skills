@@ -1,38 +1,58 @@
-## Description: <br>
-Rebuilds the TradingAgents Python environment in ~/TradingAgents, installs dependencies, summarizes repository changes, and prepares a pushed branch when explicitly requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rebuilds a TradingAgents Python environment under ~/TradingAgents by recreating the virtual environment, installing the local package, and committing and pushing workspace changes to a remote Git repository.
 
-## Publisher: <br>
-[canonxu](https://clawhub.ai/user/canonxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canonxu](https://clawhub.ai/user/canonxu)
 
-## Use Case: <br>
-Developers and maintainers use this skill to rebuild the TradingAgents development environment and prepare related repository changes after an explicit rebuild request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically stage, commit, and push all repository changes without a review step. <br>
-Mitigation: Before any commit or push, require the agent to show git status and git diff, verify the remote and branch, check for secrets or unrelated files, and obtain explicit approval. <br>
+## Use Case:
 
+Developers and engineers use this skill when they need an agent to rebuild a local TradingAgents development environment, reinstall the package, summarize repository changes, and publish those changes to a configured remote.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/canonxu/my-stock-tradeagents-rebuild-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and a concise change summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that recreate a virtual environment, install dependencies, inspect git changes, commit, and push a branch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill deletes ~/TradingAgents/venv while rebuilding the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target workspace and back up any needed virtual environment state before running the rebuild.
+
+Risk: The skill installs local package code into the rebuilt Python environment.
+
+Mitigation: Review the local package and dependency changes before installation.
+
+Risk: The skill automatically stages, commits, creates a branch, and pushes all unignored workspace changes.
+
+Mitigation: Inspect git status, remove secrets or unrelated files, verify the remote origin, and require explicit approval before commit or push.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/canonxu/skills/my-stock-tradeagents-rebuild-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/canonxu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs operational guidance for local shell execution; no structured API response is defined.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Manage ProductBoard releases and roadmap planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage ProductBoard releases and roadmap planning.
 
-## Publisher: <br>
-[robertoamoreno](https://clawhub.ai/user/robertoamoreno) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[robertoamoreno](https://clawhub.ai/user/robertoamoreno)
 
-## Use Case: <br>
-Product managers, release managers, and product operations teams use this skill to plan ProductBoard releases, organize features, assign owners, set timeframes, and track status through release workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide creates, updates, owner assignments, date changes, and archival actions in ProductBoard business data. <br>
-Mitigation: Install only if the ProductBoard tool integration is trusted, use an account with limited appropriate permissions, and review planned changes before saving them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Productboard Release on ClawHub](https://clawhub.ai/robertoamoreno/productboard-release) <br>
-- [Skill homepage](https://github.com/robertoamoreno/openclaw-productboard) <br>
+## Use Case:
 
+Product managers, product operations teams, and developers use this skill to review Productboard product hierarchy, organize features, assign owners, set planning dates, and update release status across sprint, release, and quarterly planning workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls] <br>
-**Output Format:** [Markdown guidance with ProductBoard tool call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose ProductBoard feature creates, updates, owner assignments, status changes, planning dates, and archival actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can change live Productboard roadmap records, including feature creation, status updates, owner assignment, date changes, and archiving.
+
+Mitigation: Install only for users authorized to modify Productboard roadmap data and confirm the target workspace, product, record identifiers, and intended changes before write actions.
+
+Risk: Planning actions may be applied to the wrong feature or product if the current roadmap state is not reviewed first.
+
+Mitigation: Prefer read-only review with product hierarchy, feature listing, and feature detail tools before creating or updating records.
+
+## Reference(s):
+
+- [Productboard Release on ClawHub](https://clawhub.ai/robertoamoreno/skills/productboard-release)
+- [openclaw-productboard homepage](https://github.com/robertoamoreno/openclaw-productboard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown guidance with tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning workflows and Productboard tool-use guidance; changes to live roadmap records should be confirmed before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

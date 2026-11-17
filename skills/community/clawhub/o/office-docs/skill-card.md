@@ -1,41 +1,58 @@
-## Description: <br>
-Comprehensive document processing for Microsoft Word (.docx) and WPS Office files, including document creation, editing, conversion, text extraction, metadata extraction, troubleshooting, and batch processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Codex work with Microsoft Word (.docx) and WPS Office documents for creation, editing, conversion, text and metadata extraction, analysis, troubleshooting, and batch processing.
 
-## Publisher: <br>
-[baiyunrei2025](https://clawhub.ai/user/baiyunrei2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baiyunrei2025](https://clawhub.ai/user/baiyunrei2025)
 
-## Use Case: <br>
-Developers and document automation users use this skill to guide agents through creating, editing, converting, extracting text from, analyzing, troubleshooting, and batch-processing Microsoft Word and WPS Office documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to read, write, convert, and batch-process local Office documents, which may alter important or sensitive files. <br>
-Mitigation: Give explicit input and output paths, confirm before edits, conversions, or batch jobs, and keep backups of important or sensitive documents. <br>
-Risk: Optional external document tools and libraries may affect document fidelity or introduce supply-chain risk if installed from untrusted sources. <br>
-Mitigation: Install optional tools only from trusted sources and verify converted or generated documents before relying on them. <br>
+## Use Case:
 
+Developers and document-automation users can use this skill to generate, edit, inspect, convert, repair, and batch process Office documents while preserving content and formatting where possible.
 
-## Reference(s): <br>
-- [Office Docs ClawHub page](https://clawhub.ai/baiyunrei2025/office-docs) <br>
-- [Text Extraction from Office Documents](references/TEXT_EXTRACTION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions, Markdown] <br>
-**Output Format:** [Markdown with inline Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include file paths, backup steps, conversion commands, and document-processing code snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Office document operations can overwrite, corrupt, or unexpectedly change important files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill on copies or backups of source documents and validate output in the target Office application.
+
+Risk: Untrusted Office documents may contain unsafe content or trigger risky tooling behavior during extraction or conversion.
+
+Mitigation: Process untrusted documents in a constrained environment and review proposed commands before execution.
+
+Risk: The package references helper files and scripts that are not included in the artifact.
+
+Mitigation: Treat missing referenced helpers as unavailable and rely only on packaged guidance or locally verified tools.
+
+## Reference(s):
+
+- [Text Extraction from Office Documents](references/TEXT_EXTRACTION.md)
+- [ClawHub Office Docs Skill Page](https://clawhub.ai/baiyunrei2025/skills/office-docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose file edits or generated Office document workflows; users should run document operations on copies of important files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

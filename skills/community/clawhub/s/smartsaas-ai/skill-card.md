@@ -1,46 +1,69 @@
-## Description: <br>
-SmartSaaS lets an agent manage SmartSaaS datasets, projects, tasks, team members, integrations, knowledge, campaigns, templates, events, and cron workflows through authenticated shell scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SmartSaaS helps agents manage SmartSaaS datasets, projects, tasks, knowledge, campaigns, templates, integrations, events, and cron workflows through bundled shell scripts.
 
-## Publisher: <br>
-[smartsaas](https://clawhub.ai/user/smartsaas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smartsaas](https://clawhub.ai/user/smartsaas)
 
-## Use Case: <br>
-SmartSaaS users and operators use this skill to automate administrative workflows in SmartSaaS, including dataset management, project and task operations, integrations, knowledge and research content, campaigns, templates, webhooks, and scheduled events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes broad SmartSaaS administrative powers beyond dataset-only workflows. <br>
-Mitigation: Install it only when that broad access is intended, and use a least-privilege API key scoped to the actions the agent should perform. <br>
-Risk: Write, integration, campaign, team, webhook, and cron actions can change SmartSaaS state. <br>
-Mitigation: Require explicit user confirmation before executing these actions, especially in production environments. <br>
-Risk: The skill relies on SmartSaaS API credentials from the execution environment. <br>
-Mitigation: Keep SMARTSAAS_BASE_URL and SMARTSAAS_API_KEY in configuration or environment variables, and do not paste or log the API key in chat. <br>
-Risk: Incorrect request shapes can create bad records or fail against SmartSaaS schemas. <br>
-Mitigation: Run the schema lookup flow before create or post operations, then build request bodies that match the returned schema. <br>
+## Use Case:
 
+Developers and operators use this skill to run SmartSaaS administrative workflows from an agent, including creating datasets, adding dataset items, managing projects and tasks, working with knowledge articles, templates, campaigns, integrations, webhooks, and cron jobs.
 
-## Reference(s): <br>
-- [SmartSaaS ClawHub release page](https://clawhub.ai/smartsaas/smartsaas-ai) <br>
-- [SMARTSAAS.md](artifact/SMARTSAAS.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell command invocations, and JSON responses from scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SMARTSAAS_BASE_URL and SMARTSAAS_API_KEY in the environment; write actions should be explicitly requested by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill is a broad SmartSaaS admin connector with account mutation rights.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only with a least-privilege SmartSaaS API key and review requested actions before execution.
+
+Risk: Unsafe script behavior could expose the API key or run unintended local code.
+
+Mitigation: Review the bundled scripts before installation and avoid passing untrusted values to script arguments.
+
+Risk: Name-based dataset lookup can target the wrong dataset.
+
+Mitigation: Use dataset folder IDs whenever adding items and avoid name-based dataset lookup until it is fixed.
+
+Risk: Production HTTPS requests need normal TLS verification.
+
+Mitigation: Require normal TLS verification for production URLs and avoid workflows that disable certificate checks outside local development.
+
+Risk: Integration removal, campaign start, email send, webhook, and cron operations can cause external side effects.
+
+Mitigation: Require explicit user confirmation before running those operations.
+
+## Reference(s):
+
+- [SmartSaaS ClawHub release](https://clawhub.ai/smartsaas/skills/smartsaas-ai)
+- [SmartSaaS artifact documentation](artifact/SMARTSAAS.md)
+- [Dataset schema](artifact/schemas/dataset.json)
+- [Task schema](artifact/schemas/task.json)
+- [Campaign schema](artifact/schemas/campaign.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text guidance with shell command invocations and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute bundled shell scripts that call the SmartSaaS API when the required environment variables are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

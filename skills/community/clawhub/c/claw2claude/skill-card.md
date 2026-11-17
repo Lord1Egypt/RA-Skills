@@ -1,43 +1,58 @@
-## Description: <br>
-Delegates tasks from OpenClaw to the local Claude Code CLI for discussion, execution, continuation, or background work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridges OpenClaw to the local Claude Code CLI so an OpenClaw agent can delegate tasks to Claude Code and return results to the user's channel.
 
-## Publisher: <br>
-[is-xins-xiaobai](https://clawhub.ai/user/is-xins-xiaobai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[is-xins-xiaobai](https://clawhub.ai/user/is-xins-xiaobai)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to hand complex work to a local Claude Code session while keeping session state, result delivery, and project context coordinated through OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs Claude Code unattended with skipped permission prompts. <br>
-Mitigation: Install only for trusted project directories, review generated changes and logs, and use direct Claude Code sessions when interactive permission prompts are required. <br>
-Risk: Background helper processes can deliver results across OpenClaw sessions when the required gateway settings are enabled. <br>
-Mitigation: Enable the required OpenClaw settings only in environments where cross-session delivery is intended and avoid highly sensitive or multi-user deployments without tighter scoping. <br>
-Risk: Prompts, logs, and generated files may expose sensitive project context. <br>
-Mitigation: Avoid secrets in prompts and review `.claude-last-run.log`, `.claude-notify.json`, and monthly skill logs according to local retention and access policies. <br>
+## Use Case:
 
+External users and developers use this skill to route multi-step work from OpenClaw into local Claude Code sessions, then receive summarized results back in their chat channel.
 
-## Reference(s): <br>
-- [Claw2Claude ClawHub release](https://clawhub.ai/is-xins-xiaobai/claw2claude) <br>
-- [Claude Code](https://claude.ai/code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses and generated project files produced through a delegated Claude Code session] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write project files, session state, logs, and result notification files in the configured project and skill directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Delegated Claude runs without interactive permission prompts under the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in trusted, single-user OpenClaw setups and trusted project directories; review delegated tasks before launch.
+
+Risk: Cross-session messaging and broad message-tool access can be unsafe in shared deployments.
+
+Mitigation: Avoid enabling global session visibility on shared deployments and restrict gateway message access to trusted local use.
+
+Risk: Generated session files and logs may retain task context or sensitive output.
+
+Mitigation: Avoid sending secrets in prompts, and inspect or clear generated logs and session files after use.
+
+## Reference(s):
+
+- [Claw2Claude ClawHub skill page](https://clawhub.ai/is-xins-xiaobai/skills/claw2claude)
+- [Claude Code](https://claude.ai/code)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown chat summaries with optional code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Delegated Claude output is summarized and chunked for chat delivery; project session state and logs may be written locally.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

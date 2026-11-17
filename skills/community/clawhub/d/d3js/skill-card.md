@@ -1,43 +1,58 @@
-## Description: <br>
-D3.js (Data-Driven Documents) is a JavaScript library reference for building custom SVG and Canvas data visualizations with selections, data binding, scales, shapes, axes, transitions, data loading, and framework integration guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+D3.js (Data-Driven Documents) - A JavaScript library for data visualization that covers installation, selections, data binding, scales, shapes, transitions, module references, chart templates, React/Svelte integration, and custom SVG/Canvas visualizations.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise D3.js reference for implementing custom web data visualizations, including chart scaffolds, D3 module usage, data parsing, animation, and React or Svelte integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may use npm, CDN imports, or D3 data loading helpers that retrieve external packages or data. <br>
-Mitigation: Use trusted package sources, pinned dependency versions where appropriate, and trusted data URLs before running generated visualization code. <br>
+## Use Case:
 
+Developers and engineers use this skill for D3.js coding guidance, including installation choices, reusable chart patterns, module lookups, and integration advice for SVG, Canvas, React, and Svelte visualizations.
 
-## Reference(s): <br>
-- [D3 Core Essentials](references/essentials.md) <br>
-- [D3 Data Processing](references/data.md) <br>
-- [D3 Advanced Modules](references/advanced.md) <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/d3js) <br>
-- [D3 v7 ESM CDN import](https://cdn.jsdelivr.net/npm/d3@7/+esm) <br>
-- [D3 v7 UMD CDN import](https://cdn.jsdelivr.net/npm/d3@7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JavaScript, HTML, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides reference guidance and examples; it does not generate files by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated project code may introduce npm or CDN dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated imports and package choices against the consuming project's dependency policy before use.
+
+Risk: Visualization guidance may be incomplete or inappropriate for large datasets or specific application constraints.
+
+Mitigation: Validate generated charts with representative data and use Canvas-oriented approaches where the artifact advises doing so for larger point counts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/d3js)
+- [D3 core essentials](references/essentials.md)
+- [D3 data processing](references/data.md)
+- [D3 advanced modules](references/advanced.md)
+- [D3 v7 ESM package on jsDelivr](https://cdn.jsdelivr.net/npm/d3@7/+esm)
+- [D3 v7 UMD package on jsDelivr](https://cdn.jsdelivr.net/npm/d3@7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JavaScript, HTML, shell command, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; review generated project code that adds npm or CDN imports according to the consuming project's dependency policy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

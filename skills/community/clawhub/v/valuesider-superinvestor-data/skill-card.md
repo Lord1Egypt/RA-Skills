@@ -1,45 +1,60 @@
-## Description: <br>
-Fetches Superinvestors' 13F portfolio holdings and buy/sell activity from ValueSider for guru portfolio, holdings, and trading-activity questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Superinvestors' 13F portfolio holdings and buy/sell activity from ValueSider.
 
-## Publisher: <br>
-[laimiaohua](https://clawhub.ai/user/laimiaohua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[laimiaohua](https://clawhub.ai/user/laimiaohua)
 
-## Use Case: <br>
-External users, developers, and financial researchers use this skill to fetch and summarize public ValueSider 13F portfolio holdings and buy/sell activity for named superinvestors or funds. Results should be treated as public financial data, not financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public ValueSider pages for manager or fund lookups. <br>
-Mitigation: Avoid including confidential research notes or private investment context in lookup text. <br>
-Risk: The skill returns public financial portfolio data that may be stale, incomplete, or unsuitable for investment decisions. <br>
-Mitigation: Present results as public data from ValueSider and do not treat them as financial advice. <br>
-Risk: Optional local parsing can require installing Python dependencies. <br>
-Mitigation: Review the dependency list before installation and run parsing in an appropriate local environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laimiaohua/valuesider-superinvestor-data) <br>
-- [ValueSider](https://valuesider.com) <br>
-- [ValueSider value investors](https://valuesider.com/value-investors) <br>
-- [ValueSider guru portfolio](https://valuesider.com/guru/{guru_slug}/portfolio) <br>
-- [ValueSider guru portfolio activity](https://valuesider.com/guru/{guru_slug}/portfolio-activity) <br>
+## Use Case:
 
+External users and finance-focused agents use this skill to retrieve ValueSider superinvestor 13F holdings and buy/sell activity, then summarize parsed portfolio and activity JSON for research-oriented questions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with optional JSON parsed from ValueSider page content and inline shell commands for local parsing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require web fetching public ValueSider pages and optional Python dependencies for local parsing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Runtime dependency versions may change behavior over time.
+
+Mitigation: Install the skill in a locked virtual environment and pin requests and beautifulsoup4 versions before deployment.
+
+Risk: Fetched public ValueSider pages can be unavailable, blocked, stale, or parsed incompletely.
+
+Mitigation: Use the documented web-fetch-then-parse flow, show source URLs and filing period or update date when presenting results, and inspect parser output for missing fields.
+
+Risk: Portfolio holdings and trading activity may be mistaken for investment advice.
+
+Mitigation: Present results as sourced 13F portfolio data from ValueSider and avoid recommending buy or sell decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laimiaohua/skills/valuesider-superinvestor-data)
+- [ValueSider](https://valuesider.com)
+- [ValueSider Value Investors](https://valuesider.com/value-investors)
+- [ValueSider Portfolio URL Pattern](https://valuesider.com/guru/{guru_slug}/portfolio)
+- [ValueSider Activity URL Pattern](https://valuesider.com/guru/{guru_slug}/portfolio-activity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with JSON parser output and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parsed portfolio output includes summary and holdings; activity output includes recent buy/sell activity. Results depend on ValueSider page availability and parser coverage.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

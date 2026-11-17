@@ -1,43 +1,57 @@
-## Description: <br>
-Create tokens on-chain, check fee earnings, check Kibi Credit balance, trigger agent credit reload, and interact with KibiBot's Agent API and Kibi LLM Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create tokens on-chain, check fee earnings, check Kibi Credit balance, trigger agent credit reload, and interact with KibiBot's Agent API and Kibi LLM Gateway.
 
-## Publisher: <br>
-[kibiagent](https://clawhub.ai/user/kibiagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kibiagent](https://clawhub.ai/user/kibiagent)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent work with KibiBot account data, token creation, fee and portfolio lookup, credit balance checks, optional credit reloads, and LLM gateway configuration or calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent create tokens and trigger wallet-funded Kibi Credit reloads through KibiBot. <br>
-Mitigation: Use a dedicated least-privilege API key, leave Agent Reload disabled unless needed, and require explicit review before each token creation or reload. <br>
-Risk: Credit reloads can spend configured trading-wallet funds when Agent Reload is enabled. <br>
-Mitigation: Set low reload limits and require the agent to show the amount, source wallet, quota impact, and remaining daily limit before triggering a reload. <br>
+## Use Case:
 
+External users and developers use this skill to manage KibiBot token creation, account balances, fee earnings, credit reloads, and LLM Gateway configuration from an agent workflow.
 
-## Reference(s): <br>
-- [KibiBot Agent API reference](references/api.md) <br>
-- [KibiBot website](https://kibi.bot) <br>
-- [KibiBot Agent API](https://api.kibi.bot/agent/v1) <br>
-- [Kibi LLM Gateway](https://llm.kibi.bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets, API request examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authenticated KibiBot API actions when the user provides an API key and has enabled the relevant permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: server release evidence and skill documentation) <br>
+Risk: The skill can guide an agent through financially consequential token creation and credit reload actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before token creation, manual credit reload, or reload-disable actions.
+
+Risk: Agent Reload can move USDC or USDT from a configured trading wallet when enabled.
+
+Mitigation: Use the least-privilege API key available and leave Agent Reload disabled unless the user intentionally wants agent-triggered reloads.
+
+## Reference(s):
+
+- [KibiBot Agent API Quick Reference](artifact/references/api.md)
+- [KibiBot Skill Page](https://clawhub.ai/kibiagent/skills/kibibot-skill)
+- [KibiBot](https://kibi.bot)
+- [KibiBot Agent API](https://api.kibi.bot/agent/v1)
+- [Kibi LLM Gateway](https://llm.kibi.bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets, API request examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide authenticated API calls that create tokens, query balances, reload credits, disable reload, or configure LLM Gateway access.]
+
+## Skill Version(s):
+
+1.5.2 (source: server release metadata and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

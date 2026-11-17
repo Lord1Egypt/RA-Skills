@@ -1,41 +1,55 @@
-## Description: <br>
-FeliciaOS Market Scanner produces AI-assisted crypto market intelligence reports covering market sentiment, technical levels, pre-pump signals, risk management, and token watchlists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous crypto market intelligence skill for macro reads, technical analysis, pre-pump on-chain signals, risk management, and token watchlists.
 
-## Publisher: <br>
-[leodera](https://clawhub.ai/user/leodera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leodera](https://clawhub.ai/user/leodera)
 
-## Use Case: <br>
-External users and agents use this skill to generate AI-assisted crypto market scans and token watchlists after configuring GROQ_API_KEY. The output should be treated as market commentary, not professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Groq API key. <br>
-Mitigation: Use a scoped, revocable API key and rotate it if it is exposed. <br>
-Risk: Generated watchlists, stop-losses, and position sizing may be inaccurate or inappropriate for a user's financial situation. <br>
-Mitigation: Treat outputs as AI-generated market commentary and verify decisions independently before acting. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for structured cryptocurrency market reports covering sentiment, technical levels, possible on-chain signals, risk management, and token watchlists.
 
-## Reference(s): <br>
-- [FeliciaOS homepage](https://github.com/leodera-creator/feliciaos) <br>
-- [ClawHub skill page](https://clawhub.ai/leodera/feliciaos-market-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown market intelligence report with token watchlist and NFA disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GROQ_API_KEY for LLaMA 3.3 70B inference.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Market prompts may be sent to Groq under the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an approved Groq account and avoid submitting confidential information unless that data handling is acceptable.
+
+Risk: The skill can produce financial-style crypto analysis that may be incomplete or incorrect.
+
+Mitigation: Treat outputs as informational, verify market data independently, and do not rely on them as investment advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leodera/skills/feliciaos-market-scanner)
+- [FeliciaOS Homepage](https://github.com/leodera-creator/feliciaos)
+- [Publisher Profile](https://clawhub.ai/user/leodera)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured market intelligence report in Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GROQ_API_KEY and states that outputs are not financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

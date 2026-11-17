@@ -10,7 +10,9 @@ const {
   notionRequest,
   extractPropertyValue,
   stripTokenArg,
+  parsePageSizeLimit,
   hasJsonFlag,
+  hasHelpFlag,
   log,
 } = require('./notion-utils.js');
 
@@ -56,7 +58,7 @@ async function queryDatabase(databaseId, filter = null, sorts = null, pageSize =
 async function main() {
   const args = stripTokenArg(process.argv.slice(2));
 
-  if (args.length === 0 || args[0] === '--help') {
+  if (args.length === 0 || hasHelpFlag()) {
     console.log('Usage: query-database.js <database-id> [options]');
     console.log('');
     console.log('Options:');
@@ -72,18 +74,36 @@ async function main() {
     process.exit(0);
   }
 
-  const databaseId = args[0];
-  let filter = null;
-  let sorts = null;
-  let limit = 10;
-
-  for (let i = 1; i < args.length; i++) {
-    if (args[i] === '--filter' && args[i + 1]) { filter = JSON.parse(args[++i]); }
-    else if (args[i] === '--sort' && args[i + 1]) { sorts = JSON.parse(args[++i]); }
-    else if (args[i] === '--limit' && args[i + 1]) { limit = parseInt(args[++i]); }
-  }
-
   try {
+    const databaseId = args[0];
+    let filter = null;
+    let sorts = null;
+    let limit = 10;
+
+    for (let i = 1; i < args.length; i++) {
+      if (args[i] === '--filter') {
+        if (!args[i + 1]) throw new Error('--filter requires a JSON value');
+        try {
+          filter = JSON.parse(args[++i]);
+        } catch (err) {
+          throw new Error(`Invalid JSON for --filter: ${err.message}`);
+        }
+      } else if (args[i] === '--sort') {
+        if (!args[i + 1]) throw new Error('--sort requires a JSON value');
+        try {
+          sorts = JSON.parse(args[++i]);
+        } catch (err) {
+          throw new Error(`Invalid JSON for --sort: ${err.message}`);
+        }
+      } else if (args[i] === '--limit') {
+        limit = parsePageSizeLimit(args[++i]);
+      } else if (args[i].startsWith('-')) {
+        throw new Error(`Unknown option: ${args[i]}`);
+      } else {
+        throw new Error(`Unexpected argument: ${args[i]}`);
+      }
+    }
+
     const results = await queryDatabase(databaseId, filter, sorts, limit);
     console.log(JSON.stringify(results, null, 2));
     log(`\n✓ Found ${results.length} result(s)`);

@@ -1,0 +1,30 @@
+{
+  "name": "outer-ratio-monitor",
+  "version": "1.0.0",
+  "description": "K线骗人，数据不骗。主力进场，你第一个知道。每30分钟自动扫自选股，飞书立刻告警。外内比是中国散户对抗主力的秘密武器。",
+  "author": "Jarvis-AI",
+  "license": "MIT",
+  "keywords": [
+    "a股",
+    "外内比",
+    "主力资金监控",
+    "飞书告警",
+    "盘中异动",
+    "短线交易工具",
+    "量化选股",
+    "庄家监控",
+    "股票预警",
+    "实时行情",
+    "a-share",
+    "china-stock",
+    "主力",
+    "外盘内盘",
+    "trading-alert",
+    "stock-monitor"
+  ],
+  "homepage": "https://clawhub.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  }
+}

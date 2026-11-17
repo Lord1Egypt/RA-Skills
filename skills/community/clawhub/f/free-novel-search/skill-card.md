@@ -1,44 +1,62 @@
-## Description: <br>
-Search and find free, legally available novels from public domain, open license, and legitimate free-to-read platforms worldwide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and recommends free, legally available novel resources from public domain, open-license, and legitimate free-to-read platforms.
 
-## Publisher: <br>
-[xinyuqq](https://clawhub.ai/user/xinyuqq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinyuqq](https://clawhub.ai/user/xinyuqq)
 
-## Use Case: <br>
-Readers, researchers, and agents use this skill to find public domain, open-licensed, or otherwise free-to-read novel sources and to produce search guidance or result links for manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommended platforms or individual works may not be legally free for a user's intended access or reuse. <br>
-Mitigation: Manually verify each platform and work against the source site's licensing, copyright status, and authorization before recommending or using it. <br>
-Risk: The license checker is advisory and should not be treated as proof that a platform or work is legal to use. <br>
-Mitigation: Use the checker only as a triage aid and confirm licensing with authoritative platform, publisher, author, or public-domain records. <br>
-Risk: Network search results are advisory because the artifact disables HTTPS verification for some API calls. <br>
-Mitigation: Avoid sensitive search queries, prefer direct browser verification on known sites, and validate returned links before relying on them. <br>
+## Use Case:
 
+External readers, researchers, and agents use this skill to find legitimate free novel platforms, public domain works, and open-access repositories while avoiding unauthorized sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xinyuqq/free-novel-search) <br>
-- [Free Novel Platform Database](references/novel_platforms.md) <br>
-- [Chinese Novel Resources](references/chinese_novels.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with optional JSON search results and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search utilities can call external novel databases and can write JSON results when an output file is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search and license-checking helpers can mislead users about whether a platform or work is legally available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as convenience pointers and manually verify copyright and licensing on the source site before recommending or using a work.
+
+Risk: Bundled network searches disable TLS certificate verification, which can expose or allow tampering with search traffic.
+
+Mitigation: Avoid private search terms or sensitive URLs, and enable TLS verification before operational use.
+
+Risk: URL validation and platform legitimacy checks are limited and may not catch unauthorized sources.
+
+Mitigation: Prefer known legitimate platforms and independently review unknown sites before sharing them with users.
+
+## Reference(s):
+
+- [Free Novel Platform Database](references/novel_platforms.md)
+- [Chinese Novel Resources](references/chinese_novels.md)
+- [Project Gutenberg](https://www.gutenberg.org)
+- [Gutendex API](https://gutendex.com)
+- [Open Library](https://openlibrary.org)
+- [ClawHub skill page](https://clawhub.ai/xinyuqq/skills/free-novel-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search scripts may write JSON results to a user-selected output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

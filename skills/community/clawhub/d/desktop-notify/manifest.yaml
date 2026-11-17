@@ -1,0 +1,11 @@
+﻿name: desktop-notify
+version: 1.0.0
+description: "跨平台桌面任务完成通知：系统提示音 + 原生气泡（Windows Toast / macOS 通知中心 / Linux notify-send）。装完运行一次 setup 即可全局自动通知。"
+category: productivity
+author: jiale-gao
+tags:
+  - 通知
+  - 效率
+  - 跨平台
+  - 自动化
+license: MIT

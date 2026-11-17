@@ -1,0 +1,81 @@
+---
+provider: anthropic
+category: llm
+last-reviewed: 2026-08-20
+---
+
+# anthropic (Anthropic)
+
+Claude through a single `instruct` action — the **default judgment-tier LLM of the pack**: the prompt library ([`../references/prompt-library/index.md`](../references/prompt-library/index.md)) is written against it. Billed per **1,000-token package** per model tier. Provider routing in one line: anthropic Sonnet for judgment-heavy steps (positioning, scoring against soft ICPs, salience), `openAi` nano-tier (0.006) for cheapest bulk, `gemini` Flash (0.01–0.05) for cheap high-throughput, `perplexity` when the answer must come from the live web.
+
+## Credits-based actions
+
+| Action | Cost | Inputs | Use for |
+|---|---|---|---|
+| `instruct` | 0.05–4 / 1,000-token package (per-model tiers below) | `model` + `prompt` (required); `advancedSettings.{systemPrompt, maxTokens, temperature, withWebSearch}` | Personalization, scoring, extraction, classification steps inside enrichment pipelines. |
+
+### Per-model cost tiers
+
+| Tier | Model ids | Credits / 1,000 tokens |
+|---|---|---|
+| Haiku | `claude-3-5-haiku-latest` | **0.05** |
+| Sonnet | `claude-sonnet-5`, `claude-sonnet-4-6`, `claude-sonnet-4-5-20250929`, `claude-sonnet-4-20250514` (schema default), `claude-3-7-sonnet-latest`, `claude-3-5-sonnet-latest` (deprecated) | 0.2 |
+| Opus 5.5 | `claude-opus-5-5` | 1.6 |
+| Opus | `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6`, `claude-opus-4-1-20250805`, `claude-opus-4-20250514` | 2 |
+| Fable | `claude-fable-5-1`, `claude-fable-5` | 4 |
+
+`advancedSettings.withWebSearch: true` adds a **fixed 0.4 credits per call** on top of the token rate, at any tier. Rate limit: 4,000 calls/min per model. (`claude-3-opus-latest` is in the model enum but has no published credit rule — avoid it.)
+
+## What it's for
+
+- ✅ **Judgment-heavy steps** — positioning summaries, soft-criteria ICP scoring, long-document salience: Sonnet at 0.2/1k is the pack default (see [`../recipes/icp-discovery.md`](../recipes/icp-discovery.md)).
+- ✅ **Extraction and classification with prompt-enforced JSON** — the whole prompt library runs through `anthropic.instruct` with `temperature: 0`.
+- ✅ **Personalized outreach lines** — `temperature: 0.3`, see [`../recipes/outreach-activation.md`](../recipes/outreach-activation.md) step 5.
+- ⚠️ **Bulk inside anthropic** — Haiku 3.5 is **0.05**, a quarter of Sonnet. That makes it the right rung for high-volume classification where the prompt library's Sonnet phrasing still holds. It is still 8× `openAi` nano (0.006) and 5× `gemini` Flash (0.01), so for pure-volume transforms with no judgement in them, leave the provider.
+- ❌ **Web-grounded research answers** — `withWebSearch` exists (+0.4/call fixed), but `perplexity` is purpose-built for cited web answers.
+
+## Pattern — batch personalization / extraction
+
+```bash
+cargo-ai orchestration action execute-batch \
+  --action '{"kind":"connector","integrationSlug":"anthropic","actionSlug":"instruct"}' \
+  --records '[{"model":"claude-sonnet-4-6","prompt":"<substituted prompt for row 1>","advancedSettings":{"maxTokens":4096,"temperature":0}},{"model":"claude-sonnet-4-6","prompt":"<row 2>"}, ...]' \
+  --wait-until-finished
+```
+
+**`model`, `prompt`, and `advancedSettings` are all *inputs*** — they go in each record (`model` and `prompt` are required), never in the action's `config`. A top-level action carries no `config` at all. `config` is stripped without an error that names it, so moving `model` or `prompt` there gets the call refused before it runs on the missing field, and an `advancedSettings` placed there is **silently dropped** (the call runs, and bills, at default settings). Take the prompt text from the prompt library rather than authoring from scratch.
+
+## Input quirks
+
+- **Temperature range is 0–1** — not 0–2 like openAi/gemini/perplexity. A pipeline-wide `temperature: 1.5` that works elsewhere is out of range here.
+- **`temperature` is dropped (not sent) on `claude-sonnet-5`, `claude-fable-5-1`, `claude-fable-5`, `claude-opus-5-5`, `claude-opus-5`, `claude-opus-4-8` and `claude-opus-4-7`**: those models reject sampling parameters, so `temperature: 0` does not make their output deterministic.
+- **`advancedSettings.maxTokens` is required whenever `advancedSettings` is present** (default 4096). Include it any time you set `temperature` or `systemPrompt`.
+- **No structured-output config.** Unlike openAi/gemini/perplexity, `instruct` has no `output.responseFormat` — JSON shape is enforced in the prompt ("emit ONLY the JSON object"), which is exactly how the prompt-library extraction prompts are written.
+- Model ids must match the enum verbatim — copy them from the tier table above.
+
+## Cost traps
+
+- **500-row batch math** (≈1 package per short call): Haiku ≈ **25 credits**; Sonnet ≈ **100**; Opus ≈ **1,000**; Fable 5 ≈ **2,000**. Opus/Fable are 10–20× Sonnet — never use them for bulk extraction or personalization; reserve them for a handful of high-stakes judgment calls.
+- **`withWebSearch` on a batch** adds 0.4 × rows of fixed cost (+200 credits on 500 rows) before any tokens — route research needs to `perplexity` or a scrape + extract instead.
+- **Token-metered, not call-metered.** Stuffing a whole scraped page into every prompt multiplies packages — truncate inputs (~3,000 words max, per the prompt-library guidance).
+
+## Position in the LLM stack
+
+- **Default for judgment** — the "quality" rung of [`../references/stage-action-map.md`](../references/stage-action-map.md) LLM section.
+- For bulk-cheap transforms, demote to `openAi` nano-tier or `gemini` Flash after validating the prompt on a Sonnet pilot (pilot gate: [`../references/cost-discipline.md`](../references/cost-discipline.md)).
+
+## Action shape
+
+`{"kind":"connector","integrationSlug":"anthropic","actionSlug":"instruct"}`, with `model` (required), `prompt` (required), and `advancedSettings` per record in `--records` / `--data`. **No `connectorUuid` in `config`** — and no model settings there either; inside a workflow **node** those same fields are the node's `config`. Costs above are the Cargo-credits rules; a workspace can instead attach its own Anthropic key (connector config takes a single required `apiKey`) and bill the provider directly.
+
+## Pairs with
+
+- [`../references/prompt-library/index.md`](../references/prompt-library/index.md) — the prompt source for every `instruct` call (extraction, qualification, scoring, personalization, research, signal analysis).
+- [`../recipes/outreach-activation.md`](../recipes/outreach-activation.md) — personalize stage; [`../recipes/icp-discovery.md`](../recipes/icp-discovery.md) — pattern analysis; [`../recipes/tech-intent.md`](../recipes/tech-intent.md) — scrape → LLM extract.
+
+## Recurring use
+
+No scheduled fit — `instruct` is a transform, not a data source; it belongs **inside** plays and tools, never on its own timer.
+
+- **In-play gate:** run only where the column the prompt fills (score, personalization line, extracted JSON) is still empty — at `temperature: 0` a re-run reproduces the same output for the same token spend, so ungated re-evaluation is pure re-billing.
+- **Prompt or model changes:** to redo rows after revising the prompt or tier, clear the target column deliberately for just those rows rather than dropping the gate — the 500-row batch math above compounds on every ungated pass.

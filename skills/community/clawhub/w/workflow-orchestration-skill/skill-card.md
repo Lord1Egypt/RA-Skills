@@ -1,45 +1,57 @@
-## Description: <br>
-Compiles complex business goals into statically validated workflow execution plans (Plan IR). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compiles complex business goals into statically validated workflow execution plans (Plan IR).
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Developers and agent builders use this skill to break a multi-step business goal into a structured DAG plan, bind planned nodes to an allowed skill manifest, and validate the resulting Plan IR before a separate workflow engine executes it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Validation scripts update the plan file in place, which can change hashes, signatures, or the original audit artifact. <br>
-Mitigation: Run validators on a working copy of plan.json when the original artifact must be preserved. <br>
-Risk: Workflow plans can be mistaken for execution authority even though the skill only drafts and validates plans. <br>
-Mitigation: Require downstream workflow-engine approval and human review for high-risk plans before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to break complex business goals into DAG-based workflow plans, bind steps to approved skills, and produce validation reports before a downstream workflow engine executes anything.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tuobadaidai/workflow-orchestration-skill) <br>
-- [Orchestration Rules](references/orchestration_rules.md) <br>
-- [DAG Patterns](references/dag_patterns.md) <br>
-- [Scope Rules](references/scope_rules.md) <br>
-- [Security Guardrails](references/security_guardrails.md) <br>
-- [Plan IR Output Schema](assets/output_schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Structured Plan IR JSON with validation reports and supporting Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces plans only; actual workflow execution is handled by a separate engine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Validation results are structural checks and should not be treated as a complete authorization boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enforce permissions, tenant boundaries, condition-expression parsing, and human review separately before executing high-impact workflow actions.
+
+Risk: A valid plan can still encode incorrect, overbroad, or risky business steps.
+
+Mitigation: Review generated plans before execution, especially for financial, personnel, or other high-impact workflows.
+
+## Reference(s):
+
+- [Orchestration Rules](references/orchestration_rules.md)
+- [DAG Patterns](references/dag_patterns.md)
+- [Scope Rules](references/scope_rules.md)
+- [Security Guardrails](references/security_guardrails.md)
+- [Plan IR Output Schema](assets/output_schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON Plan IR and validation report, with Markdown guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces plans and validation reports only; business action execution is delegated to a separate workflow engine.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

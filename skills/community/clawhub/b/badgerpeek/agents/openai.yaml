@@ -1,0 +1,4 @@
+interface:
+  display_name: "BadgerPeek"
+  short_description: "Safely inspect Honeybadger errors without MCP"
+  default_prompt: "Use $badgerpeek to inspect recent Honeybadger faults and their occurrences."

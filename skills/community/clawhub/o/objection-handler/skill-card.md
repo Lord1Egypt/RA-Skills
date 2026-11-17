@@ -1,39 +1,53 @@
-## Description: <br>
-Handles sales objections with proven response frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles sales objections with proven response frameworks.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Salespeople and sales teams use this skill to understand prospect objections and draft ethical follow-up questions, response options, and next steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated sales copy may include unsupported claims about pricing, ROI, competitors, guarantees, testimonials, or deadlines. <br>
-Mitigation: Review generated copy before sending and verify factual claims against approved sales, legal, and product materials. <br>
-Risk: Objection handling can become pressure-oriented if used to override a clear refusal. <br>
-Mitigation: Use the skill to understand concerns, respect repeated refusals, and walk away when the prospect is not a fit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Sales teams and revenue-facing users use this skill to turn prospect objections into ethical follow-up questions, response options, and next steps based on the LAER framework.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces objection analysis, follow-up questions, response options, and suggested next steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can provide generic sales-response guidance when prompted with prospect-objection language outside the intended workflow.
+
+Mitigation: Invoke it explicitly for sales-objection coaching and review suggested responses before using them with prospects.
+
+Risk: Sales objection handling can become overly forceful if responses are used without judgment.
+
+Mitigation: Follow the skill's stated rules to understand the concern, ask before answering, and respect a prospect who declines twice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/objection-handler)
+- [Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with objection analysis, follow-up questions, response options, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, code execution, credential access, or persistent behavior are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Build and run a Polymarket politics-market trading skill with the AION SDK that searches active political markets on Polymarket, randomly chooses one market, and places a 1 USD trade through Aionmarket when live execution is enabled. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and run a Polymarket politics-market trading skill with the AION SDK that searches active political markets on Polymarket, randomly chooses one market, and places a 1 USD trade through Aionmarket using an API key and optionally a wallet private key for self-custody live trading.
 
-## Publisher: <br>
-[fivegive249-ship-it](https://clawhub.ai/user/fivegive249-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fivegive249-ship-it](https://clawhub.ai/user/fivegive249-ship-it)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill as an AION SDK template for finding active Polymarket politics markets and preparing a random 1 USD trade that remains dry-run unless live execution is explicitly enabled.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can submit recurring real-money trades if live execution is enabled, especially when scheduled.
+
+Mitigation: Keep dry-run mode for normal use, avoid RUN_LIVE for scheduled runs, and set strict external account limits before any live testing.
+
+Risk: The artifact requests sensitive wallet access for optional self-custody live trading.
+
+Mitigation: Do not provide a raw wallet private key unless the operator fully understands the custody model; prefer managed wallet setup or tightly limited accounts.
+
+Risk: The random-entry strategy has weak trading limits and is not a production-quality decision process.
+
+Mitigation: Review selected markets before live execution and add explicit sizing, filter, and risk checks before adapting the template for ongoing trading.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill as an AION SDK template for searching active Polymarket politics markets, selecting one candidate at random, and preparing a 1 USD YES or NO trade. It defaults to dry-run mode and requires explicit live execution before submitting a real-money trade. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place repeated real-money random trades if live mode is enabled, especially when scheduled automation is active. <br>
-Mitigation: Keep dry-run mode enabled by default, avoid setting RUN_LIVE in scheduled environments, disable the cron unless automation is intentional, and set strict spending limits before live runs. <br>
-Risk: The skill requires sensitive AION and optional wallet credentials for live trading. <br>
-Mitigation: Use tightly controlled credentials and never write API keys or private keys into repository files. <br>
-Risk: Random market selection is not a production trading strategy. <br>
-Mitigation: Review market context warnings, customize the market filter and risk checks, and require operator approval before live execution. <br>
+**Output Format:** [Markdown instructions with Python code and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fivegive249-ship-it/polymarket-politics-random-1u) <br>
-- [Publisher profile](https://clawhub.ai/user/fivegive249-ship-it) <br>
+**Other Properties Related to Output:** [The runnable script prints a Python dictionary containing the selected market, warnings, proposed trade, and dry-run or submitted status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, API calls, JSON-like run summaries] <br>
-**Output Format:** [Markdown instructions and Python script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AION_API_KEY for market reads and trade execution; optional live trading uses wallet-related environment variables.] <br>
+1.0.0 (source: artifact metadata and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

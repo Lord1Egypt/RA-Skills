@@ -1,44 +1,55 @@
-## Description: <br>
-Build and execute skills.video image generation REST requests from OpenAPI specs. Use when user needs to create, debug, or document image generation calls on open.skills.video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and executes skills.video image generation REST requests from OpenAPI specs for creating, debugging, and documenting image model calls on open.skills.video.
 
-## Publisher: <br>
-[chuyun](https://clawhub.ai/user/chuyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chuyun](https://clawhub.ai/user/chuyun)
 
-## Use Case: <br>
-Developers and agents use this skill to build, execute, debug, and document skills.video image generation requests from OpenAPI contracts, with SSE-first execution and polling fallback until terminal status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A helper can send SKILLS_VIDEO_API_KEY to an arbitrary URL if misused. <br>
-Mitigation: Keep calls restricted to relative /generation/... paths or the official open.skills.video host, and avoid full URLs from untrusted prompts or documents. <br>
-Risk: Using the skill can spend skills.video credits. <br>
-Mitigation: Install and run it only when the user accepts SKILLS_VIDEO_API_KEY access and possible credit usage; stop retries for insufficient-credit errors until the user recharges. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect skills.video OpenAPI specs, build schema-conformant image generation payloads, execute SSE-first generation requests, and wait for terminal results with polling fallback.
 
-## Reference(s): <br>
-- [Ai Image Skills on ClawHub](https://clawhub.ai/chuyun/ai-image-skills) <br>
-- [skills.video Open Platform API Contract](references/open-platform-api.md) <br>
-- [Image Model Endpoints Snapshot](references/image-model-endpoints.md) <br>
-- [skills.video Open Platform API](https://open.skills.video/api/v1) <br>
-- [skills.video Developer Dashboard](https://skills.video/dashboard/developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns only terminal generation results and avoids reporting non-terminal IN_QUEUE or IN_PROGRESS states as final.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Unsafe endpoint options could send the user's skills.video API key to arbitrary URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use relative open.skills.video endpoints only, avoid arbitrary --base-url or full --sse-endpoint values, and rotate the API key if it may have been exposed.
+
+Risk: The skill can trigger paid image generation with SKILLS_VIDEO_API_KEY.
+
+Mitigation: Use the skill only with authorized paid-generation access, prefer a secrets manager or session-only environment variable for the key, and monitor credit use.
+
+## Reference(s):
+
+- [skills.video Open Platform API Contract](artifact/references/open-platform-api.md)
+- [Image Model Endpoints Snapshot](artifact/references/image-model-endpoints.md)
+- [ClawHub Skill Page](https://clawhub.ai/chuyun/skills/ai-image-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON terminal results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [SSE-first image generation flow with polling fallback until terminal status.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

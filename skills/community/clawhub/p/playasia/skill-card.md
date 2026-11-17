@@ -1,46 +1,59 @@
-## Description: <br>
-Search Play-Asia digital products, check prices, make wallet or Lightning purchases, retrieve orders and digital codes, and manage customer-service enquiries through an MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and buy digital game codes, eShop cards, PSN vouchers, Roblox, and related products from Play-Asia.com through HTTP or MCP.
 
-## Publisher: <br>
-[tom-playasia](https://clawhub.ai/user/tom-playasia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tom-playasia](https://clawhub.ai/user/tom-playasia)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent browse Play-Asia products, compare live prices, purchase digital codes, inspect wallet and order data, and manage support tickets when the required token or payment flow is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make purchases or trigger paid Lightning flows. <br>
-Mitigation: Require explicit user confirmation before wallet purchases or Lightning payments, prefer info-only tokens for non-purchase tasks, and configure daily or weekly spending limits. <br>
-Risk: The skill can access wallet, order, support-ticket, and purchased digital-code data when PA_TOKEN is configured. <br>
-Mitigation: Use the least-privileged PA_TOKEN scope, keep the token out of chat and logs, and require confirmation before revealing digital codes or account details. <br>
-Risk: The skill can send support messages and attachments through the connected Play-Asia account. <br>
-Mitigation: Preview support text and attachments before submission and require user approval for each outbound support action. <br>
-Risk: Capability labels and safety disclosures are reported as inconsistent by the provided security evidence. <br>
-Mitigation: Review the skill configuration and disclosures before deployment, especially purchase, wallet, credential, and crypto capability labels. <br>
+## Use Case:
 
+External users and developers use this skill to search Play-Asia's catalog, check product prices and stock, buy digital products, retrieve order details and codes, and manage customer service tickets from an agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tom-playasia/playasia) <br>
-- [Play-Asia L402 API](https://www.play-asia.com/l402) <br>
-- [Play-Asia access tokens](https://www.play-asia.com/account/access-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON tool responses and concise Markdown guidance with configuration or shell command examples when setup or manual payment is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live product data, wallet balances, order details, Lightning invoices, support-ticket data, or digital-code delivery fields returned by Play-Asia APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server-resolved release metadata) <br>
+Risk: The skill can spend wallet funds, expose order codes, and mutate customer service tickets when configured with a purchase-capable PA_TOKEN.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a read-only PA_TOKEN by default, enable purchase scope only intentionally, and require explicit itemized user confirmation before purchases or support-ticket actions.
+
+Risk: Changing PA_BASE_URL while using real credentials could send account tokens to an unintended origin.
+
+Mitigation: Keep PA_BASE_URL pointed at the official Play-Asia origin when real credentials are configured.
+
+Risk: Unpinned npx execution can run a package version the user has not reviewed.
+
+Mitigation: Verify the package and version before installation or run a pinned, reviewed package version.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/tom-playasia/skills/playasia)
+- [Play-Asia L402 API](https://www.play-asia.com/l402)
+- [Play-Asia access tokens](https://www.play-asia.com/account/access-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON tool responses and Markdown guidance with inline shell and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool responses can include live product data, payment invoices, order details, digital delivery codes, wallet information, and customer service ticket data.]
+
+## Skill Version(s):
+
+0.3.0 (source: SKILL.md frontmatter and ClawHub release metadata; package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

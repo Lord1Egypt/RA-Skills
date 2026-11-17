@@ -1,43 +1,57 @@
-## Description: <br>
-Manage HR operations with hiring pipelines, compliance frameworks, compensation strategy, and workforce analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage HR operations with hiring pipelines, compliance frameworks, compensation strategy, and workforce analytics.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-HR leaders, founders, managers, and people-operations teams use this skill for hiring, onboarding, compensation, compliance, workforce analytics, and HR operations guidance. Human review is required for terminations, senior hiring, compensation exceptions, restructures, settlement decisions, legal exposure, and sensitive employee-data use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: HR guidance may affect high-impact employment decisions such as terminations, compensation changes, immigration or compliance matters, and performance-risk scoring. <br>
-Mitigation: Require qualified HR, legal, or management review before acting on recommendations, especially for adverse actions or legally sensitive matters. <br>
-Risk: The skill may be used with sensitive employee data or personnel-file information. <br>
-Mitigation: Provide only the minimum necessary data, avoid broad HRIS access, restrict outputs to need-to-know HR or legal users, and preserve privacy controls. <br>
-Risk: Jurisdiction-specific employment rules may change or vary by employee location. <br>
-Mitigation: Confirm local labor-law requirements and apply qualified legal review when jurisdictional exposure is unclear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/chro) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill homepage](https://clawic.com/skills/chro) <br>
+## Use Case:
 
+Company operators, founders, and HR teams use this skill to structure HR decisions around hiring, onboarding, compliance, compensation, performance management, offboarding, and workforce analytics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance, checklists, risk flags, and HR decision-support summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; no API, MCP, shell, or credential requirements were detected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may surface or process sensitive HR information such as employee analytics, compensation, manager notes, immigration or work-authorization dates, and termination data.
+
+Mitigation: Limit use and access to authorized HR, legal, and security personnel and treat personnel data as confidential.
+
+Risk: Employment decisions based only on automated HR guidance can create legal, compliance, or employee-relations risk.
+
+Mitigation: Require human review and approval for employment decisions, especially terminations, compensation exceptions, restructures, accommodations, and legal escalations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/chro)
+- [Skill Homepage](https://clawic.com/skills/chro)
+- [Hiring & Onboarding Guide](artifact/hiring.md)
+- [Legal Compliance](artifact/compliance.md)
+- [HR Operations Guide](artifact/operations.md)
+- [Workforce Analytics & Reporting](artifact/analytics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with checklists, tables, and decision frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only HR leadership guidance; no API calls, shell commands, or hidden execution behavior.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

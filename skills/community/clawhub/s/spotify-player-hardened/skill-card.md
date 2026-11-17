@@ -1,46 +1,59 @@
-## Description: <br>
-Terminal Spotify playback/search via spogo (preferred) or spotify_player. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Terminal Spotify playback/search via spogo (preferred) or spotify_player.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-External users and developers use this skill to control Spotify playback, search tracks, select devices, and manage basic player actions from a terminal through spogo or spotify_player. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authentication import, local config access, or terminal output can expose Spotify tokens, cookies, client IDs, device IDs, or playback data. <br>
-Mitigation: Require explicit user approval before authentication or config-file access, never display credentials, and avoid piping Spotify CLI output to network-transmitting commands. <br>
-Risk: Spotify account state can be changed by destructive actions such as deleting playlists, removing saved tracks, or unfollowing artists. <br>
-Mitigation: Confirm destructive Spotify actions with the user before execution and summarize the account change being approved. <br>
-Risk: The preferred spogo install path uses a third-party Homebrew tap. <br>
-Mitigation: Verify the third-party Homebrew tap before installing spogo and use spotify_player as a fallback when appropriate. <br>
-Risk: Repeated automated playback or polling commands can exceed the user's intended level of Spotify automation. <br>
-Mitigation: Avoid loops, background polling, and rapid repeated spogo or spotify_player commands unless the user explicitly requests bounded automation. <br>
+## Use Case:
 
+External users and developers use this skill to control Spotify playback and search from a terminal through spogo, with spotify_player as a fallback. It is intended for local Spotify Premium workflows that need clear confirmation around authentication and account-changing actions.
 
-## Reference(s): <br>
-- [Spotify](https://www.spotify.com) <br>
-- [Faberlens Safety Evaluation](https://faberlens.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/spotify-player-hardened) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Spotify Premium account and either spogo or spotify_player installed locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill relies on third-party Spotify command-line tools that may handle Spotify session cookies during authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and pin dependencies through a trusted package workflow, confirm authentication imports, and select the browser explicitly before importing a session.
+
+Risk: Spotify credentials or client identifiers could be exposed in chat, logs, or terminal output.
+
+Mitigation: Do not share, print, log, or return Spotify tokens, cookies, client IDs, or refresh tokens.
+
+Risk: Spotify account state can be changed by destructive actions such as deleting playlists, removing saved tracks, or unfollowing artists.
+
+Mitigation: Require explicit user confirmation before destructive or credential-related commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/spotify-player-hardened)
+- [Spotify](https://www.spotify.com)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/spotify-player)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Spotify Premium and either spogo or spotify_player.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

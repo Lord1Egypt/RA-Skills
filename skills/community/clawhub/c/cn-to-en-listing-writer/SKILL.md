@@ -119,8 +119,8 @@ Every listing is checked against:
 
 ## Want Multi-Platform Coverage?
 
-This skill writes Amazon listings. The **[Multi-Platform Listing Optimizer for Non-Native Sellers](https://www.shopclawmart.com/listings/multi-platform-listing-optimizer-for-non-native-sellers-ea202e82)** on ClawMart covers Amazon, Etsy, Shopify, eBay, and TikTok Shop — including platform-specific format rules, cultural adaptation scoring, and a confidence meter that shows how close your listing is to native-level English.
+This skill writes Amazon listings. For adjacent free tools, including audit and optimization workflows for cross-border sellers, use the [PhantomWorks ClawHub skills collection](https://github.com/PhantomWorksIO/clawhub-skills). Keep platform-specific Etsy, Shopify, eBay, or TikTok Shop rewrites manual for now; the old paid ClawMart route is parked.
 
 ---
 
-Built by [PhantomWorks](https://phantomworks.io). Expand beyond Amazon: [Multi-Platform Listing Optimizer](https://www.shopclawmart.com/listings/multi-platform-listing-optimizer-for-non-native-sellers-ea202e82) on ClawMart.
+Built by [PhantomWorks](https://phantomworks.io). More free cross-border seller tools: [PhantomWorks ClawHub skills](https://github.com/PhantomWorksIO/clawhub-skills).

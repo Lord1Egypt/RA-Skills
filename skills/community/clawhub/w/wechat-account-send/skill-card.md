@@ -1,40 +1,58 @@
-## Description: <br>
-This skill helps an OpenClaw agent use a configured WeChat account to inspect active sessions, send text messages, and send named local files to specified WeChat contacts or groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends text messages and local files to specified WeChat contacts or groups through OpenClaw's WeChat integration.
 
-## Publisher: <br>
-[lianghaoxun](https://clawhub.ai/user/lianghaoxun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lianghaoxun](https://clawhub.ai/user/lianghaoxun)
 
-## Use Case: <br>
-OpenClaw users and automation builders use this skill to route generated messages, screenshots, reports, media, or documents through an existing WeChat/OpenClaw account. It is intended for user-directed communication workflows where the operator can confirm the recipient account and file path before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a stored WeChat/OpenClaw login to send messages and upload specified local files without an in-script confirmation step. <br>
-Mitigation: Install only from a trusted publisher, verify the account_id, destination context, and exact file path before each run, and avoid using the skill on sensitive files or shared machines. <br>
-Risk: A wrong account_id or stale context token could send content to an unintended WeChat recipient. <br>
-Mitigation: Query and confirm the active WeChat session immediately before sending and require user confirmation for ambiguous recipient names or account identifiers. <br>
+## Use Case:
 
+Developers and automation users can use this skill to query WeChat account/session context and send user-approved text messages or selected local files to WeChat contacts, groups, or bot accounts through OpenClaw.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lianghaoxun/wechat-account-send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with Python command examples and runtime console output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an existing OpenClaw WeChat account configuration and a target account_id; file sending also requires an exact local file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can use stored WeChat credentials and account state to send selected messages or files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it only when that access is intended, and review the recipient, message content, and file path before execution.
+
+Risk: The security evidence reports no clear confirmation gate before message or file sending.
+
+Mitigation: Require explicit user confirmation for the target account, recipient, and payload in the calling workflow before running the send scripts.
+
+Risk: Tokens, upload parameters, or key material can be exposed in execution logs.
+
+Mitigation: Avoid running it where logs are shared, persisted, or visible to others, and redact sensitive values before sharing logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lianghaoxun/skills/wechat-account-send)
+- [Publisher profile](https://clawhub.ai/user/lianghaoxun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with command examples and console status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke Python scripts that read local OpenClaw WeChat account state and send messages or files through WeChat APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

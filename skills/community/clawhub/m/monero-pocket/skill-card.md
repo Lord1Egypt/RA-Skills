@@ -1,42 +1,59 @@
-## Description: <br>
-Ripley Pocket For Monero helps agents use the Ripley Pocket API to register accounts, check XMR balances, send agent payments, withdraw Monero, perform cross-chain swaps, and handle XMR402 payment challenges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ripley Pocket For Monero helps agents use the Ripley Pocket API to register accounts, check XMR balances, make Monero and XMR402 payments, withdraw XMR, and manage cross-chain swaps.
 
-## Publisher: <br>
-[xbtoshi](https://clawhub.ai/user/xbtoshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbtoshi](https://clawhub.ai/user/xbtoshi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect AI agents to Ripley Pocket for custodial Monero balances, agent-to-agent payments, withdrawals, deposits, swaps, and XMR402 payment flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can initiate payments, withdrawals, swaps, deposits, or XMR402 payments with broad funds-moving authority. <br>
-Mitigation: Use a dedicated low-balance account and require manual confirmation of recipient, amount, network, fees, and irreversibility before every funds-moving call. <br>
-Risk: The API key controls account access and payment capability. <br>
-Mitigation: Protect and rotate the API key; avoid exposing it in prompts, logs, generated code, or shared transcripts. <br>
+## Use Case:
 
+Developers and external agent operators use this skill to integrate AI agents with Ripley Pocket for API-key authenticated crypto payments, Monero balance checks, transaction history, withdrawals, swaps, and XMR402 payment flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xbtoshi/monero-pocket) <br>
-- [Ripley Pocket API gateway](https://pocket.ripley.run) <br>
-- [XMR402 protocol](https://xmr402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with REST API examples, curl commands, and Python or TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an API_KEY credential and uses RIPLEY_URL, defaulting to https://pocket.ripley.run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill includes broad activation language and payment helper examples that could cause an agent to spend funds without clear user approval or limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit manual approval before every payment, withdrawal, swap, or XMR402 payment, and enforce spend limits outside the skill.
+
+Risk: Misuse or exposure of the Ripley Pocket API key could allow unauthorized balance access or payment actions.
+
+Mitigation: Keep API_KEY scoped and protected, avoid exposing it in prompts or logs, and rotate it if compromise is suspected.
+
+Risk: Crypto payments, withdrawals, and swaps may be irreversible after submission.
+
+Mitigation: Verify destination addresses, currencies, networks, amounts, and trusted-domain allowlists before authorizing transactions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/xbtoshi/skills/monero-pocket)
+- [Ripley Pocket API gateway](https://pocket.ripley.run)
+- [XMR402 protocol](https://xmr402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl, Python, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API requests that require RIPLEY_URL and API_KEY configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Turn scattered notes, chat logs, meeting fragments, issue updates, or calendar context into a concise daily brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn scattered notes, chat logs, meeting fragments, issue updates, or calendar context into a concise daily brief.
 
-## Publisher: <br>
-[wuweikang](https://clawhub.ai/user/wuweikang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuweikang](https://clawhub.ai/user/wuweikang)
 
-## Use Case: <br>
-Employees, managers, and developers use this skill to convert raw daily notes, chat logs, issue updates, meeting fragments, and calendar context into a concise status brief with priorities, blockers, and next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive notes, calendar details, chat logs, or meeting fragments supplied by a user. <br>
-Mitigation: Only provide source material that is appropriate for the active AI assistant to process, and remove confidential details that are not needed for the brief. <br>
-Risk: A generated brief could imply commitments, owners, dates, or metrics that were not present in the source material. <br>
-Mitigation: Keep facts traceable to the provided notes and mark missing or inferred context explicitly before sharing the brief. <br>
+## Use Case:
 
+Employees, managers, and individual contributors use this skill to turn messy notes, chat logs, meeting fragments, issue updates, or calendar context into a concise daily status brief with priorities, blockers, and next actions.
 
-## Reference(s): <br>
-- [Daily Brief Format](references/brief-format.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wuweikang/daily-brief-writer) <br>
-- [Publisher Profile](https://clawhub.ai/user/wuweikang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown daily brief with optional Slack/chat or email-ready variants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to a headline plus Done today, In progress, Blockers / risks, and Next actions sections; shorter channel-specific variants may omit empty sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Input notes may include sensitive workplace context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when a daily brief or status digest is intended, and review the generated summary before sharing it.
+
+Risk: Missing or inferred context could be mistaken for confirmed facts.
+
+Mitigation: Keep the user's notes as the source of truth and mark missing or inferred context explicitly.
+
+## Reference(s):
+
+- [Daily Brief Format](references/brief-format.md)
+- [ClawHub Skill Page](https://clawhub.ai/wuweikang/skills/daily-brief-writer)
+- [Publisher Profile](https://clawhub.ai/user/wuweikang)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown daily brief with concise sections for headline, completed work, in-progress work, blockers or risks, and next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can shorten for Slack or chat, add email framing on request, and match the main language of the source material.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

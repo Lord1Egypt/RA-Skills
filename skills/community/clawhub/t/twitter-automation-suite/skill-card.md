@@ -1,38 +1,56 @@
-## Description: <br>
-Automates Twitter/X operations including posting tweets, monitoring keywords, configuring automated replies, generating tweet content with AI, and reviewing account analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitter/X automation guidance for posting tweets, monitoring keywords, configuring automated replies, generating content with AI, and reviewing account analytics.
 
-## Publisher: <br>
-[cjstate](https://clawhub.ai/user/cjstate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cjstate](https://clawhub.ai/user/cjstate)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Social media operators, developers, and account-growth teams use this skill to prepare Twitter/X posting workflows, keyword monitoring, automatic reply rules, and basic account analytics.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can use direct Twitter/X login credentials and post publicly from an account.
+
+Mitigation: Use a dedicated low-privilege account when possible, avoid exposing unrelated secrets in the same environment, and review posts before sending.
+
+Risk: The browser automation launches with sandboxing disabled.
+
+Mitigation: Run browser automation only in an isolated environment and do not disable sandboxing on shared or sensitive systems.
+
+Risk: The install process depends on mutable npm packages without a lockfile.
+
+Mitigation: Pin dependencies with a lockfile and review dependency changes before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Social media operators and growth teams use this skill to draft and publish Twitter/X content, monitor keywords or hashtags, configure automated replies, and inspect basic account engagement signals. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Twitter/X account credentials and can publish live posts without a final confirmation safeguard. <br>
-Mitigation: Review carefully before installation, use a dedicated automation account where possible, protect the .env file, and prefer a version with OAuth or scoped tokens, dry-run or preview mode, and explicit confirmation before posting or scheduling automation. <br>
+**Output Format:** [Markdown guidance with command examples and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjstate/twitter-automation-suite) <br>
+**Other Properties Related to Output:** [May include environment variable names, cron-style schedules, and Node.js command examples.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger live Twitter/X posting when the underlying automation command is run.] <br>
+1.0.0 (source: server release metadata and artifact/package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

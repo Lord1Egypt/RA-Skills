@@ -1,41 +1,58 @@
-## Description: <br>
-Phoenix Shield helps agents plan backup, update, health monitoring, and rollback workflows for critical system maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phoenix Shield provides agent guidance for guarded backups, monitored system updates, canary checks, and rollback workflows.
 
-## Publisher: <br>
-[yiqiezhenxi](https://clawhub.ai/user/yiqiezhenxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yiqiezhenxi](https://clawhub.ai/user/yiqiezhenxi)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to prepare protected system updates, create backups, monitor service health, and plan rollback commands for production services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad authority to propose production updates, backups, monitoring, and rollback actions. <br>
-Mitigation: Supervise use as a production administration workflow, review every command before execution, test in staging first, and limit privileges and target hosts. <br>
-Risk: Automatic rollback can make disruptive changes if enabled before the workflow is proven in the target environment. <br>
-Mitigation: Avoid unattended auto-rollback until the workflow has been tested and approved for the specific service. <br>
-Risk: Backups created through these workflows may contain secrets or sensitive operational data. <br>
-Mitigation: Protect backup storage with appropriate access controls and retention practices. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to plan safer production updates with preflight checks, snapshots, health monitoring, canary deployment, and rollback steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yiqiezhenxi/phoenix-sheld) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands and configuration should be reviewed and adapted before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live package upgrade and deployment commands may affect production services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package versions, test in a sandbox or canary environment, require explicit human approval, and take verified backups before execution.
+
+Risk: Automatic rollback can cause data loss or service instability if recovery boundaries are unclear.
+
+Mitigation: Validate backup integrity, use rollback dry runs where available, document recovery scope, and keep an operator in the loop for critical systems.
+
+Risk: Unattended upgrades or rollbacks on critical systems may hide failures or trigger unsafe recovery behavior.
+
+Mitigation: Use monitoring and alerting with manual gates until the actual Phoenix Shield implementation and recovery limits are independently verified.
+
+## Reference(s):
+
+- [Phoenix Shield on ClawHub](https://clawhub.ai/yiqiezhenxi/skills/phoenix-sheld)
+- [Publisher profile](https://clawhub.ai/user/yiqiezhenxi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment, backup, monitoring, and rollback command patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

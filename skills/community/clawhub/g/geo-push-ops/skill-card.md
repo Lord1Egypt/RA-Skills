@@ -1,40 +1,54 @@
-## Description: <br>
-Handles Feishu message construction, sending with retries, rate-limit detection, delivery diagnostics, and dead-letter queue management for geo alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles Feishu message construction, sending with retries, rate-limit detection, delivery diagnostics, and dead-letter queue management for geo alerts.
 
-## Publisher: <br>
-[liweijie0709-cmyk](https://clawhub.ai/user/liweijie0709-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liweijie0709-cmyk](https://clawhub.ai/user/liweijie0709-cmyk)
 
-## Use Case: <br>
-Developers and operations teams use Geo Push Ops to build and send Feishu geo-alert messages, apply retry and rate-limit handling, and diagnose delivery failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Geo-alert content may be sent to a built-in Feishu webhook that users did not explicitly configure. <br>
-Mitigation: Replace or remove the built-in webhook, rotate it if it belongs to you, and require an explicit user-configured webhook before sending messages. <br>
-Risk: Webhook delivery can expose message content to the configured Feishu destination. <br>
-Mitigation: Review message content and the destination webhook before sending operational or sensitive alerts. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to build and send Feishu notifications for geopolitical market alerts, then inspect delivery outcomes and retry or rate-limit handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liweijie0709-cmyk/geo-push-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Plain text Feishu message content with Python delivery result and diagnostic data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes retry counts, HTTP status, Feishu business code, business message, delivery status, error text, and duration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact VERSION) <br>
+Risk: A hardcoded default Feishu webhook can send messages to a fixed external destination when no configuration is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or rotate the embedded webhook, require explicit webhook configuration, and limit outbound destinations to the intended Feishu endpoint before use.
+
+Risk: Messages passed to the skill may be transmitted outside the user's environment through Feishu delivery.
+
+Mitigation: Review and minimize message content before sending, and treat supplied alert text as externally transmitted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liweijie0709-cmyk/skills/geo-push-ops)
+- [Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Plain text Feishu messages, Python API objects, and Markdown/code guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can send outbound HTTPS messages to Feishu when used with a webhook configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

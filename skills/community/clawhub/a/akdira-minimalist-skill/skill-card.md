@@ -1,40 +1,54 @@
-## Description: <br>
-Minimalist Skill guides frontend agents toward clean editorial-style interfaces with warm monochrome palettes, typographic contrast, flat bento grids, muted pastels, and no gradients or heavy shadows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clean editorial-style interfaces with a warm monochrome palette, typographic contrast, flat bento grids, muted pastels, no gradients, and no heavy shadows.
 
-## Publisher: <br>
-[akdira](https://clawhub.ai/user/akdira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akdira](https://clawhub.ai/user/akdira)
 
-## Use Case: <br>
-Developers and frontend-focused agents use this skill to produce minimalist editorial UI guidance and code with strict typography, palette, spacing, component, imagery, and motion constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's strong visual constraints may conflict with an existing product design system, brand, or accessibility standard. <br>
-Mitigation: Review the constraints against project standards before applying them and override style rules that conflict with approved design or accessibility requirements. <br>
-Risk: The skill permits external placeholder images when real assets are unavailable. <br>
-Mitigation: Approve or replace placeholder images before release and confirm that final assets meet licensing, privacy, and brand requirements. <br>
+## Use Case:
 
+Frontend developers and design-focused agents use this skill to produce minimalist editorial web interfaces with strict typography, spacing, palette, component, iconography, imagery, and motion guidance.
 
-## Reference(s): <br>
-- [Minimalist Skill on ClawHub](https://clawhub.ai/akdira/akdira-minimalist-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with frontend code or configuration snippets when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Applies strict visual-design constraints and does not request sensitive access, persistence, or unsafe actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is highly opinionated and may conflict with an application's existing design system, typography, localization, or brand rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated UI changes against project design requirements and override the skill's strict visual or wording conventions when they do not fit.
+
+Risk: The artifact contains minor style inconsistencies, including restrictive guidance alongside a later allowance for subtle background depth effects.
+
+Mitigation: Prefer project-level design decisions when interpreting conflicting style guidance, especially around gradients, badges, typography, and imagery.
+
+## Reference(s):
+
+- [Minimalist Skill on ClawHub](https://clawhub.ai/akdira/skills/akdira-minimalist-skill)
+- [Publisher profile](https://clawhub.ai/user/akdira)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Natural-language design guidance with code-oriented implementation constraints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden execution, persistence, credential use, or data access identified by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

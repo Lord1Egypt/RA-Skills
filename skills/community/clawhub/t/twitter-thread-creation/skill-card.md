@@ -1,42 +1,58 @@
-## Description: <br>
-Twitter/X thread writing with hook tweets, thread structure, and engagement optimization, covering tweet formatting, character limits, media attachments, and posting strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitter/X thread writing with hook tweets, thread structure, and engagement optimization, including tweet formatting, character limits, media attachments, and posting strategies.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Content creators, social media teams, and agents use this skill to draft, structure, format, and optionally publish Twitter/X threads with hooks, numbered posts, media guidance, and calls to action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to publish live Twitter/X posts through x/post-create commands. <br>
-Mitigation: Require a separate human review and approval step before any posting command is run. <br>
-Risk: External search, screenshot, or rendering inputs could expose private URLs or confidential draft content. <br>
-Mitigation: Avoid private URLs and confidential material in tool inputs, and use low-risk or limited credentials where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Twitter Thread Creation Skill Page](https://clawhub.ai/okaris/twitter-thread-creation) <br>
-- [Inference.sh](https://inference.sh) <br>
-- [Inference.sh CLI Install](https://cli.inference.sh) <br>
-- [Inference.sh CLI Checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+External creators, marketers, and social media operators use this skill to draft, structure, format, and optionally post Twitter/X threads with hooks, media guidance, and engagement tactics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include draft tweet text, thread outlines, posting commands, media guidance, and review recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The quick start asks users to install a CLI through a mutable remote shell script.
+
+Mitigation: Prefer a manual, version-pinned installation path and verify downloaded binaries against published checksums before use.
+
+Risk: The skill can generate commands that post content through an authenticated X account.
+
+Mitigation: Review generated tweet text, account context, and command inputs before executing any posting command.
+
+Risk: Related-skill examples use npx commands that install separate packages outside this skill.
+
+Mitigation: Treat each related-skill install as a separate dependency requiring its own source, version, and security review.
+
+## Reference(s):
+
+- [Inference.sh](https://inference.sh)
+- [Inference.sh CLI installer](https://cli.inference.sh)
+- [Inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tweet text examples and inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Twitter/X post text, thread structure, media suggestions, and infsh CLI commands.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

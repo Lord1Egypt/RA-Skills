@@ -8,6 +8,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task
+
 
 BUILDER_URL = "https://scraperapi.dataify.com/builder?platform=1"
 DASHBOARD_URL = "https://dashboard.dataify.com?utm_source=skill"
@@ -151,14 +156,14 @@ def normalize_file_name(value):
 def normalize_group(group, mode):
     if mode == MODE_URL:
         return {
-            "url": validate_youtube_url(group.get("url", DEFAULT_URL)),
+            "url": validate_youtube_url(group.get("url")),
             "order_by": normalize_choice(group.get("order_by", DEFAULT_ORDER_BY), ORDER_BY_VALUES, "order_by"),
             "start_index": validate_non_negative_integer(group.get("start_index", DEFAULT_START_INDEX), "start_index"),
             "num_of_posts": validate_non_negative_integer(group.get("num_of_posts", DEFAULT_NUM_OF_POSTS_URL), "num_of_posts"),
         }
     if mode == MODE_SEARCH_FILTERS:
         return {
-            "keyword_search": normalize_text(group.get("keyword_search", DEFAULT_KEYWORD_SEARCH), "keyword_search"),
+            "keyword_search": normalize_text(group.get("keyword_search"), "keyword_search"),
             "features": normalize_choice(group.get("features", DEFAULT_FEATURES), FEATURES_VALUES, "features"),
             "type": normalize_choice(group.get("type", DEFAULT_TYPE), TYPE_VALUES, "type"),
             "duration": normalize_duration(group.get("duration", DEFAULT_DURATION)),
@@ -167,21 +172,21 @@ def normalize_group(group, mode):
         }
     if mode == MODE_HASHTAG:
         return {
-            "hashtag": normalize_hashtag(group.get("hashtag", DEFAULT_HASHTAG)),
+            "hashtag": normalize_hashtag(group.get("hashtag")),
             "num_of_posts": validate_non_negative_integer(group.get("num_of_posts", DEFAULT_NUM_OF_POSTS), "num_of_posts"),
         }
     if mode == MODE_PODCAST_URL:
         return {
-            "url": validate_youtube_url(group.get("url", DEFAULT_PODCAST_URL)),
+            "url": validate_youtube_url(group.get("url")),
             "num_of_posts": validate_non_negative_integer(group.get("num_of_posts", DEFAULT_NUM_OF_POSTS), "num_of_posts"),
         }
     if mode == MODE_KEYWORD:
         return {
-            "keyword": normalize_text(group.get("keyword", DEFAULT_KEYWORD), "keyword"),
+            "keyword": normalize_text(group.get("keyword"), "keyword"),
             "num_of_posts": validate_non_negative_integer(group.get("num_of_posts", DEFAULT_NUM_OF_POSTS), "num_of_posts"),
         }
     return {
-        "url": validate_youtube_url(group.get("url", DEFAULT_EXPLORE_URL)),
+        "url": validate_youtube_url(group.get("url")),
         "all_tabs": normalize_all_tabs(group.get("all_tabs", DEFAULT_ALL_TABS)),
     }
 
@@ -204,7 +209,7 @@ def load_groups_from_json(raw, mode):
 def build_default_group(args, mode):
     if mode == MODE_URL:
         return {
-            "url": args.url or DEFAULT_URL,
+            "url": args.url,
             "order_by": args.order_by,
             "start_index": args.start_index,
             "num_of_posts": args.num_of_posts if args.num_of_posts is not None else DEFAULT_NUM_OF_POSTS_URL,
@@ -225,7 +230,7 @@ def build_default_group(args, mode):
         }
     if mode == MODE_PODCAST_URL:
         return {
-            "url": args.url or DEFAULT_PODCAST_URL,
+            "url": args.url,
             "num_of_posts": args.num_of_posts if args.num_of_posts is not None else DEFAULT_NUM_OF_POSTS,
         }
     if mode == MODE_KEYWORD:
@@ -234,7 +239,7 @@ def build_default_group(args, mode):
             "num_of_posts": args.num_of_posts if args.num_of_posts is not None else DEFAULT_NUM_OF_POSTS,
         }
     return {
-        "url": args.url or DEFAULT_EXPLORE_URL,
+        "url": args.url,
         "all_tabs": args.all_tabs,
     }
 
@@ -296,25 +301,27 @@ def main():
     parser = argparse.ArgumentParser(description="Submit a guided Dataify YouTube Video Post Builder task.")
     parser.add_argument("--mode", required=True, help="Allowed values: url, search_filters, hashtag, podcast_url, keyword, explore.")
     parser.add_argument("--url", help="URL-based modes only.")
-    parser.add_argument("--order-by", default=DEFAULT_ORDER_BY, help="URL mode only. Allowed values: 最新, 热门, 最早.")
-    parser.add_argument("--start-index", default=DEFAULT_START_INDEX, help="URL mode only. Integer >= 0.")
-    parser.add_argument("--keyword-search", default=DEFAULT_KEYWORD_SEARCH, help="Search filters mode only.")
-    parser.add_argument("--features", default=DEFAULT_FEATURES, help="Search filters mode only.")
-    parser.add_argument("--type", default=DEFAULT_TYPE, help="Search filters mode only.")
-    parser.add_argument("--duration", default=DEFAULT_DURATION, help="Search filters mode only.")
-    parser.add_argument("--upload-date", default=DEFAULT_UPLOAD_DATE, help="Search filters mode only.")
-    parser.add_argument("--hashtag", default=DEFAULT_HASHTAG, help="Hashtag mode only.")
-    parser.add_argument("--keyword", default=DEFAULT_KEYWORD, help="Keyword mode only.")
-    parser.add_argument("--all-tabs", default=DEFAULT_ALL_TABS, help="Explore mode only. Allowed values: true, false.")
+    parser.add_argument("--order-by", help="URL mode only. Allowed values: 最新, 热门, 最早.")
+    parser.add_argument("--start-index", help="URL mode only. Integer >= 0.")
+    parser.add_argument("--keyword-search", help="Search filters mode only.")
+    parser.add_argument("--features", help="Search filters mode only.")
+    parser.add_argument("--type", help="Search filters mode only.")
+    parser.add_argument("--duration", help="Search filters mode only.")
+    parser.add_argument("--upload-date", help="Search filters mode only.")
+    parser.add_argument("--hashtag", help="Hashtag mode only.")
+    parser.add_argument("--keyword", help="Keyword mode only.")
+    parser.add_argument("--all-tabs", help="Explore mode only. Allowed values: true, false.")
     parser.add_argument("--num-of-posts", help="Mode-specific post count. Integer >= 0.")
     parser.add_argument("--file-name", default=DEFAULT_FILE_NAME, help="Builder file_name field. Default: {{TasksID}}.")
     parser.add_argument("--params-json", help="JSON array of parameter objects for the selected mode.")
-    parser.add_argument("--api-token", default=os.environ.get("DATAIFY_API_TOKEN"), help="Dataify token. Defaults to DATAIFY_API_TOKEN.")
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=600, help="Maximum final-result wait in seconds.")
     args = parser.parse_args()
+    api_token = os.environ.get("DATAIFY_API_TOKEN", "").strip()
 
-    if not args.api_token:
+    if not api_token:
         print(
-            "Missing Dataify API TOKEN. Get one from {}.".format(DATAIFY_URL),
+            "Missing Dataify API TOKEN. Get one from {}. New accounts receive 50 free credits.".format(DATAIFY_URL),
             file=sys.stderr,
         )
         return 2
@@ -322,13 +329,15 @@ def main():
     try:
         mode = normalize_mode(args.mode)
         groups = build_groups(args, mode)
+        if not groups:
+            raise ValueError("At least one business target is required.")
         file_name = normalize_file_name(args.file_name)
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2
 
     try:
-        spider_id, task_id, status = submit_builder(args.api_token, mode, groups, file_name)
+        spider_id, task_id, status = submit_builder(api_token, mode, groups, file_name)
     except RuntimeError as exc:
         print(str(exc), file=sys.stderr)
         return 1
@@ -341,12 +350,19 @@ def main():
             "status": status,
             "parameters": groups,
             "file_name": file_name,
-            "dashboard_url": DASHBOARD_URL,
-            "message": "Task submitted. Visit {} to view results.".format(DASHBOARD_URL),
+            "message": "Task submitted. Continue monitoring the returned task_id.",
         },
         ensure_ascii=False,
         indent=2,
     ))
+    if not args.no_wait:
+        try:
+            final_result = complete_task(task_id, api_token, args.wait_timeout)
+        except RuntimeError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        print(json.dumps(final_result, ensure_ascii=False, indent=2))
+
     return 0
 
 

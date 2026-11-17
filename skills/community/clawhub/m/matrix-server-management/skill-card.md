@@ -1,39 +1,57 @@
-## Description: <br>
-Manage the Tuwunel Matrix Homeserver by registering users, creating rooms, managing room membership, uploading files to the media server, and sending files to the admin when explicitly requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage the Tuwunel Matrix Homeserver for explicit administrative tasks such as registering users, creating rooms, managing room membership, sending messages, and uploading files through the media API.
 
-## Publisher: <br>
-[MontyCN](https://clawhub.ai/user/MontyCN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[montycn](https://clawhub.ai/user/montycn)
 
-## Use Case: <br>
-Administrators and operators use this skill for explicit Matrix homeserver administration in a Hiclaw/Tuwunel environment, including user registration, room creation, room messaging, and media upload tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create Matrix users, rooms, messages, and permanent media uploads. <br>
-Mitigation: Install and use it only in the intended Hiclaw/Tuwunel admin environment with trusted administrators. <br>
-Risk: Messages or uploaded files may expose secrets, credentials, private configs, or personal data to room members. <br>
-Mitigation: Before sending messages or uploading files, confirm the target server, room membership, recipient, and file contents, and only share sensitive data when every room member is authorized. <br>
+## Use Case:
 
+Developers and operators use this skill when an agent is explicitly asked to administer a local Tuwunel Matrix homeserver, including user registration, room setup, membership management, Matrix messaging, and file delivery to the admin.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured Matrix admin environment variables and access to the intended local Tuwunel server endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill gives an agent broad authority over Matrix users, rooms, messages, and file sharing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after explicit user approval for registration, room creation, membership changes, messaging, and file uploads.
+
+Risk: Messages or uploaded files could reach the wrong room members.
+
+Mitigation: Verify the target room, recipients, user IDs, and file path before sending a message or uploading media.
+
+Risk: Matrix registration tokens, passwords, access tokens, logs, or config exports could be exposed.
+
+Mitigation: Redact sensitive content from logs and files, and never reveal tokens or passwords in chat or uploaded artifacts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/montycn/skills/matrix-server-management)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Matrix media URIs for uploaded files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

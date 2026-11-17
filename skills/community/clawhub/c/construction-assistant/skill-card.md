@@ -1,45 +1,59 @@
-## Description: <br>
-Helps agents manage construction schedules, materials, safety checks, daily and weekly reports, quantity calculations, and cost estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+施工项目管理助手。支持施工进度跟踪、材料清单管理、安全检查记录、施工日志生成、工程量计算。使用场景：(1) 创建/更新施工进度计划，(2) 管理材料和设备清单，(3) 记录安全检查和整改，(4) 生成施工日志和报告，(5) 计算工程量和成本估算。
 
-## Publisher: <br>
-[jinhuawang658-gif](https://clawhub.ai/user/jinhuawang658-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinhuawang658-gif](https://clawhub.ai/user/jinhuawang658-gif)
 
-## Use Case: <br>
-Construction project teams and external users can use this skill through an agent to draft schedules, update progress, summarize material needs, record safety checks, generate site logs and reports, and estimate quantities. Outputs should be reviewed before use as project records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated safety, quality, daily log, and weekly report outputs may read like final project records even when they are incomplete or misleading. <br>
-Mitigation: Treat these outputs as drafts and require review by qualified project staff before they are used as official construction records. <br>
-Risk: Date-sensitive progress, material, safety, and report outputs may be wrong if the schedule, reference date, or generated 'no issue' statements are not checked. <br>
-Mitigation: Verify all dates, schedule status, material quantities, and any 'no issue' statements against current site records before acting on the output. <br>
-Risk: The progress update workflow can modify schedule files. <br>
-Mitigation: Keep backups or use version control before allowing the progress script to update project schedule data. <br>
+## Use Case:
 
+Construction project staff and external project teams use this skill to create and update schedules, track work progress, estimate materials, record safety checks, generate daily or weekly reports, and calculate common quantities for construction management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinhuawang658-gif/construction-assistant) <br>
-- [Quantity formulas](references/quantity_formulas.md) <br>
-- [Report templates](references/report_templates.md) <br>
-- [Safety checklist](references/safety_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON schedule and record files, and shell commands for local Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or update local project files such as schedule JSON and report Markdown when the user supplies output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Local schedules and reports can be created or updated, and evidence.security notes overwrite-related bugs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use version control or backups before running the file-based scripts and review output paths before execution.
+
+Risk: Generated dates, progress records, safety checks, and compliance records may be inaccurate.
+
+Mitigation: Have qualified project staff manually verify dates, progress status, quantities, and safety or compliance records before relying on them.
+
+Risk: Material reporting behavior can create paired report files and evidence.security advises choosing Markdown output names.
+
+Mitigation: Use explicit .md output paths for material reports and inspect generated companion files before sharing or archiving them.
+
+## Reference(s):
+
+- [Construction report templates](references/report_templates.md)
+- [Safety inspection checklist](references/safety_checklist.md)
+- [Quantity calculation formulas](references/quantity_formulas.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON files, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local schedule, progress, report, material, quantity, and safety record files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

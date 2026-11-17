@@ -1,42 +1,54 @@
-## Description: <br>
-Convert times across world timezones and compare availability. Use when converting meetings, checking offsets, comparing zones, generating tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert times across world timezones and compare availability. Use when converting meetings, checking offsets, comparing zones, generating tables.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and terminal users can invoke this skill for timezone-related command-line workflows, including recording convert, compare, analyze, and export actions. Review outputs carefully because the security scan says the script mainly stores user input in local logs instead of performing timezone calculations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as a timezone converter, but server security evidence says the script mainly logs user input instead of performing timezone calculations. <br>
-Mitigation: Do not rely on it for scheduling decisions without independently verifying any timezone results with a trusted source. <br>
-Risk: Meeting details, travel plans, names, client information, or private schedules entered into the tool may be stored locally under ~/.local/share/timezone. <br>
-Mitigation: Avoid entering sensitive details unless local storage is acceptable, and review or remove the local history files when needed. <br>
+## Use Case:
 
+Developers and other users can ask an agent for timezone-related command-line actions such as conversions, comparisons, exports, and local status checks. Security evidence notes that the executable mainly logs arbitrary user input locally rather than performing full timezone conversion.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/timezone) <br>
-- [Publisher Profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files] <br>
-**Output Format:** [Terminal text with local log files and JSON, CSV, or TXT exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores action history under ~/.local/share/timezone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill is advertised as a timezone converter, but its executable behavior is mainly a local logger for arbitrary user input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before installing or running the skill, and verify timezone outputs independently when accuracy matters.
+
+Risk: Meeting details, names, locations, or business context entered into the tool may be saved under ~/.local/share/timezone and later searched or exported.
+
+Mitigation: Avoid entering confidential information unless local history storage is acceptable, and clear the local data directory when retained history is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/timezone)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local CLI actions that write history files under ~/.local/share/timezone.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

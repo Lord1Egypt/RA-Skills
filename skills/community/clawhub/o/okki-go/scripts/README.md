@@ -1,6 +1,6 @@
-# Okki Go Update Notification Scripts
+# OKKI Go Update Notification Scripts
 
-These scripts manage automatic update notifications for the Okki Go skill.
+These scripts manage automatic update notifications for OKKI Go.
 
 ## Compact Output Contract
 
@@ -104,21 +104,13 @@ Details Markdown artifact path order is `--markdown-file`, then `--artifact-dir`
 
 `--mark-unlocked` is local viewed-state bookkeeping for `${XDG_CONFIG_HOME:-$HOME/.config}/okki-go/viewed.json`; it is not part of the paid unlock transaction. In restricted sandboxes, callers can preflight that file or its parent directory and request file_system write permission before running a confirmed unlock. If the local state write fails after the unlock API succeeds, `unlock-companies.js` still exits 0, preserves `charged_count`, `charged`, `balance`, and the saved raw file, and emits `state_update_failed` plus a warning. Do not retry `/companies/unlock` to repair local viewed state.
 
-Cross-company contact search after first-session paid confirmation:
-
-```bash
-node scripts/search-contacts.js \
-  --json '{"title":"Procurement Manager","country_codes":"DE","has_email":1,"size":20}' \
-  --save-batch /private/tmp/okki-go-batches/contacts-de-procurement-20260604.json \
-  --compact
-```
-
-Default visible size is 20; requested contact search size may be up to 100. Internal contact IDs are saved in the raw file, not stdout. Phone numbers are hidden unless `--include-phone` is used because the user requested phone/contact details.
+Cross-company contact search is retired. The legacy `search-contacts.js` wrapper remains only to fail fast locally with `contact_search_retired`; it does not call the API or charge credits. Use company unlock plus `profileEmails` to retrieve available contacts for selected companies.
 
 Email status:
 
 ```bash
 node scripts/email-status.js tasks --json '{"page":1,"page_size":20}' --compact
+node scripts/email-status.js tasks --json '{"task_subject":"Germany Expo","page":1,"page_size":20}' --compact
 node scripts/email-status.js task --task-id 1001 --compact
 node scripts/email-status.js mails --json '{"statuses":"failed","page":1,"page_size":20}' --compact
 node scripts/email-status.js mail --mail-id 2001 --compact
@@ -132,6 +124,8 @@ Email send after explicit recipient and content confirmation:
 node scripts/send-email.js batch --json '<payload>' --mapping-file /private/tmp/okki-go-batches/email-send.json --compact
 node scripts/send-email.js personalized --file /private/tmp/personalized-send.json --compact
 ```
+
+Send payloads may include optional `task_subject` (max 255 characters) to label the task for later task-list or dashboard search.
 
 Post-send output summarizes task IDs/counts and mapping path. It does not echo full email bodies or all recipient variables.
 
@@ -308,5 +302,5 @@ openclaw cron add \
 ## Support
 
 For issues, visit:
-- Project homepage: https://go.okki.ai
+- Project homepage: https://go.okki.ai/
 - Documentation: https://docs.openclaw.ai

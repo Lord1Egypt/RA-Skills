@@ -1,41 +1,55 @@
-## Description: <br>
-Use the Warden App agentic wallet through browser automation for swaps, bridges, deposits and withdrawals, perps, portfolio review, research, and repeatable workflow documentation with explicit confirmation gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through safe browser automation for Warden App wallet tasks including portfolio review, swaps, deposits and withdrawals, perps, and repeatable workflow documentation.
 
-## Publisher: <br>
-[deiu](https://clawhub.ai/user/deiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deiu](https://clawhub.ai/user/deiu)
 
-## Use Case: <br>
-External users and developers use this skill to operate Warden wallet workflows in a browser, inspect balances or positions, and prepare transactions that require explicit user approval before execution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact crypto wallet actions such as swaps, bridges, deposits, withdrawals, and perps. <br>
-Mitigation: Verify the Warden URL independently, review chain, token, amount, slippage, fees, leverage, and liquidation risk, and only approve execution when the user explicitly intends the transaction. <br>
-Risk: Wallet workflows may expose sensitive secrets or private account data if handled carelessly. <br>
-Mitigation: Never request or store seed phrases or private keys, avoid revealing local files, credentials, IPs, or internal logs, and prefer read-only actions until execution is explicitly authorized. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Warden App UI Notes](references/warden-ui-notes.md) <br>
-- [Warden App](https://app.wardenprotocol.org/) <br>
-- [ClawHub release page](https://clawhub.ai/deiu/warden-app) <br>
+## Use Case:
 
+External users and developers use this skill to navigate a logged-in Warden App wallet session, inspect balances or positions, and carry out explicitly approved crypto actions with confirmation safeguards.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with browser automation steps, confirmation checklists, and optional code or shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve explicit transaction approval gates and avoid requesting or exposing seed phrases, private keys, credentials, or local private data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent through a logged-in crypto wallet UI where mistakes may move assets or change positions.
+
+Mitigation: Keep final signing or confirmation under user control and verify token, amount, chain, slippage, fees, leverage, and destination before every transaction.
+
+Risk: Wallet secrets or private information could be exposed if requested, stored, or repeated in conversation.
+
+Mitigation: Never request seed phrases or private keys, and avoid revealing local files, credentials, IPs, internal logs, or other private information.
+
+## Reference(s):
+
+- [Warden App](https://app.wardenprotocol.org/)
+- [Warden App UI Notes](references/warden-ui-notes.md)
+- [ClawHub Skill Page](https://clawhub.ai/deiu/skills/warden-app)
+- [Publisher Profile](https://clawhub.ai/user/deiu)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with checklists and browser automation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transaction summaries, approval prompts, post-action verification notes, and repeatable workflow documentation.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

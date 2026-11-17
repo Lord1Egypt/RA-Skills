@@ -1,43 +1,60 @@
-## Description: <br>
-Read data from Feishu Sheets via the Feishu API, including specific ranges, entire sheets, and sheet metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read data from Feishu Sheets by parsing shared sheet links, fetching specific ranges or entire sheets, and listing sheet metadata.
 
-## Publisher: <br>
-[jack-xun](https://clawhub.ai/user/jack-xun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-xun](https://clawhub.ai/user/jack-xun)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to fetch rows or metadata from Feishu spreadsheet links for review, analysis, or reformatting inside an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses local Feishu app credentials to access spreadsheet data. <br>
-Mitigation: Install it only with trusted Feishu credentials and grant the app the least privileges needed for the sheets being read. <br>
-Risk: A missing or broad range can cause the skill to read more sheet data than intended. <br>
-Mitigation: Confirm the spreadsheet link, sheet ID, and range before execution, and avoid full-sheet reads when sensitive data may be present. <br>
+## Use Case:
 
+Developers and agents use this skill to read Feishu spreadsheet data supplied by a user, inspect a selected sheet or range, and return tab-separated data for downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jack-xun/feishu-sheet-reader) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu sheet values API](https://open.feishu.cn/open-apis/sheets/v2/spreadsheets/{spreadsheetToken}/values/{range}) <br>
-- [Feishu sheet metadata API](https://open.feishu.cn/open-apis/sheets/v2/spreadsheets/{spreadsheetToken}/sheets/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Tab-separated text plus Markdown guidance with inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Feishu app credentials; when no sheet ID or range is supplied, it may select the first sheet and read the whole sheet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can use configured Feishu app credentials to read spreadsheet contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged Feishu app credentials and confirm that each requested sheet is approved for access before running the reader.
+
+Risk: Feishu app secrets and bearer tokens may be exposed through curl command arguments during HTTP requests.
+
+Mitigation: Prefer safer HTTP handling that avoids putting secrets in process arguments, and avoid running the script on shared systems where process details may be visible.
+
+Risk: Reading an entire sheet or the first detected sheet may retrieve more data than the user intended.
+
+Mitigation: Request an explicit sheet ID and range when possible, and review the target URL, sheet, and range before execution.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/jack-xun/skills/feishu-sheet-reader)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu sheet values API](https://open.feishu.cn/open-apis/sheets/v2/spreadsheets/{spreadsheetToken}/values/{range})
+- [Feishu sheet metadata API](https://open.feishu.cn/open-apis/sheets/v2/spreadsheets/{spreadsheetToken}/sheets/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and tab-separated sheet data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu app credentials and network access to the Feishu Open API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

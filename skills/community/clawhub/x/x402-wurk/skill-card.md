@@ -1,47 +1,66 @@
-## Description: <br>
-Hire humans for microjobs and buy social growth services paid with USDC through x402 on Solana or Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hire humans for microjobs such as feedback, opinions, and small tasks, and buy social growth services paid with USDC via x402 on Solana or Base.
 
-## Publisher: <br>
-[STATIKHEADZ](https://clawhub.ai/user/STATIKHEADZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[statikheadz](https://clawhub.ai/user/statikheadz)
 
-## Use Case: <br>
-Agents and developers use this skill to create paid human-feedback jobs, retrieve submissions, and call WURK social-growth endpoints after explicit user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend real USDC through paid x402 requests. <br>
-Mitigation: Use a dedicated low-balance wallet, set clear budget limits, and require explicit approval before each paid request. <br>
-Risk: Social-growth and vote-buying services may violate platform rules or mislead others. <br>
-Mitigation: Use these features only with authorization, compliance review, and confidence that the requested activity is allowed. <br>
-Risk: WURK job secrets act as bearer tokens, and task descriptions may be visible to human workers. <br>
-Mitigation: Keep secrets confidential and avoid putting private keys, passwords, API keys, or sensitive data in task descriptions, logs, or chats. <br>
+## Use Case:
 
+External users and developers use this skill to create paid agent-to-human microjobs, retrieve human submissions, and purchase social growth services through x402 payment flows. Use requires explicit approval for paid actions and careful handling of job secrets.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/STATIKHEADZ/x402-wurk) <br>
-- [WURK website](https://wurk.fun) <br>
-- [WURK API](https://wurkapi.fun) <br>
-- [WURK x402 discovery](https://wurkapi.fun/.well-known/x402) <br>
-- [Skill source](https://wurkapi.fun/skill.md) <br>
-- [Skill metadata](https://wurkapi.fun/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, API URLs, and JSON response examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide paid x402 API calls that spend USDC and return job IDs, secrets, status URLs, or human submissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can trigger paid USDC transactions for microjobs and social growth services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for explicit, user-approved paid tasks and verify the service, destination URL or handle, network, amount, and total USDC cost before signing.
+
+Risk: Social growth and vote services may violate platform rules or user expectations.
+
+Mitigation: Avoid social-growth, engagement, or vote-buying uses unless the user has approved the action and the use is permitted by the relevant platform.
+
+Risk: The artifact documents curl-based installation from remote URLs.
+
+Mitigation: Do not install with remote curl commands unless the downloaded files are independently verified against trusted release evidence.
+
+Risk: Returned job secrets act as bearer tokens for retrieving submissions.
+
+Mitigation: Treat secrets like passwords and avoid exposing them in shared URLs, logs, shell history, or plaintext state files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/statikheadz/skills/x402-wurk)
+- [WURK website](https://wurk.fun)
+- [WURK API](https://wurkapi.fun)
+- [WURK x402 discovery](https://wurkapi.fun/.well-known/x402)
+- [WURK X/Twitter](https://x.com/WURKDOTFUN)
+- [WURK Telegram](https://t.me/WURKCREATORS)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, API calls]
+
+**Output Format:** [Markdown with inline bash, TypeScript, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes x402 payment workflow examples, endpoint guidance, and secret-handling instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release; artifact frontmatter, package.json, and CHANGELOG report 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

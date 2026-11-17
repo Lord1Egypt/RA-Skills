@@ -1,5 +1,6 @@
 ---
 name: basicops-mcp-setup
+version: 0.1.2
 description: Install, configure, authenticate, or verify a BasicOps MCP connection in an MCP-capable environment. Use when the user wants to add BasicOps MCP, when a BasicOps operator skill reports that BasicOps MCP is missing or unauthorized, or when the user asks to connect BasicOps to OpenClaw, Codex, Claude, Cursor, or another MCP client. Prefer MCP-native configuration over raw API setup, verify the connection after configuration, and hand off to the BasicOps operator skill once the MCP surface is ready.
 ---
 
@@ -8,6 +9,8 @@ description: Install, configure, authenticate, or verify a BasicOps MCP connecti
 Connect BasicOps to OpenClaw and other MCP-capable agent environments.
 
 This skill is the setup half of the BasicOps MCP pair. It focuses on connection, authentication, verification, and clean handoff to `basicops-mcp-operator` once the MCP surface is ready.
+
+To learn more about using agents with [BasicOps](https://basicops.com), visit [basicops.com/agent-users](https://basicops.com/agent-users).
 
 ## Best for
 

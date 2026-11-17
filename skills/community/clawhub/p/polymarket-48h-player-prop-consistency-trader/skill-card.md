@@ -1,42 +1,63 @@
-## Description: <br>
-Trades NBA player prop mispricings on Polymarket by detecting cross-stat consistency or divergence for the same player (Points, Rebounds, Assists O/U) and identifying outlier stats that disagree with the consensus direction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades NBA player prop mispricings on Polymarket by detecting cross-stat consistency or divergence for the same player (Points, Rebounds, Assists O/U) and identifying outlier stats that disagree with the consensus direction.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Agents and developers use this skill to discover NBA player prop markets, compare a player's points, rebounds, and assists lines for consistency, and place paper trades by default through the Simmer SDK. It can place live Polymarket trades only when explicitly run with the live flag. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place live Polymarket trades with real USDC when run with the live flag. <br>
-Mitigation: Start in paper mode, keep position limits low, and use --live only when prepared to accept real financial risk. <br>
-Risk: The required SIMMER_API_KEY grants access to trading functionality. <br>
-Mitigation: Store the API key securely, limit its permissions where possible, and review Simmer SDK behavior before deployment. <br>
+## Use Case:
 
+External developers and trading agents use this skill to identify and optionally trade Polymarket NBA player prop markets whose points, rebounds, and assists prices diverge from same-player consensus. It defaults to paper trading and requires explicit live mode for real USDC trades.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-48h-player-prop-consistency-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console logs, command-line flags, and environment-based configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to simulated trading unless run with --live.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live mode can place real USDC trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the default paper mode unless live trading risk is accepted, and cap account exposure independently of the skill.
+
+Risk: The required trading API key can authorize market activity.
+
+Mitigation: Use a dedicated, least-privilege Simmer/Polymarket key and protect it as a high-value credential.
+
+Risk: Some stated financial safeguards are not fully enforced.
+
+Mitigation: Do not rely on the documented minimum-volume or maximum-open-position safeguards until the implementation is fixed.
+
+Risk: The trading SDK dependency is unpinned.
+
+Mitigation: Prefer a pinned, reviewed version of simmer-sdk before installation or live execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-48h-player-prop-consistency-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Console text with market analysis, trade status, and Simmer/Polymarket API trade requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to simulated trading; live trading requires the --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata; artifact frontmatter 1.0.0 and clawhub.json 0.0.2 differ)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

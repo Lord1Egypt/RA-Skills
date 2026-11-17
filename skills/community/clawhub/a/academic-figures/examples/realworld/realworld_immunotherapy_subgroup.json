@@ -1,0 +1,104 @@
+{
+ "_chart_type": "subgroup",
+ "_command": "python3 scripts/gen_figure.py -t subgroup -d examples/realworld/realworld_immunotherapy_subgroup.json -o subgroup_io.png --cjk --pub-ready",
+ "_note": "场景：晚期非小细胞肺癌免疫治疗 PFS 亚组森林图（模拟，n=460 训练文献常见量级）。五个亚组变量（年龄/性别/ECOG/组织学/吸烟状态）+Overall；交互检验 P 全部>0.05=疗效在各亚组方向一致（阳性试验常见结论写法）。与 RCS/预测模型四件套同属临床回归管线。",
+ "subgroups": [
+  {
+   "name": "年龄",
+   "p_interaction": 0.62,
+   "levels": [
+    {
+     "name": "<65 岁",
+     "n": 254,
+     "est": 0.63,
+     "ci_low": 0.49,
+     "ci_high": 0.81,
+     "p": 0.0003
+    },
+    {
+     "name": "≥65 岁",
+     "n": 206,
+     "est": 0.7,
+     "ci_low": 0.54,
+     "ci_high": 0.91,
+     "p": 0.008
+    }
+   ]
+  },
+  {
+   "name": "ECOG 评分",
+   "p_interaction": 0.44,
+   "levels": [
+    {
+     "name": "0 分",
+     "n": 198,
+     "est": 0.61,
+     "ci_low": 0.46,
+     "ci_high": 0.8,
+     "p": 0.0004
+    },
+    {
+     "name": "1 分",
+     "n": 262,
+     "est": 0.71,
+     "ci_low": 0.56,
+     "ci_high": 0.9,
+     "p": 0.004
+    }
+   ]
+  },
+  {
+   "name": "组织学",
+   "p_interaction": 0.38,
+   "levels": [
+    {
+     "name": "鳞癌",
+     "n": 152,
+     "est": 0.72,
+     "ci_low": 0.53,
+     "ci_high": 0.98,
+     "p": 0.034
+    },
+    {
+     "name": "腺癌",
+     "n": 308,
+     "est": 0.63,
+     "ci_low": 0.51,
+     "ci_high": 0.78,
+     "p": 0.0001
+    }
+   ]
+  },
+  {
+   "name": "吸烟状态",
+   "p_interaction": 0.55,
+   "levels": [
+    {
+     "name": "吸烟者",
+     "n": 289,
+     "est": 0.64,
+     "ci_low": 0.51,
+     "ci_high": 0.8,
+     "p": 0.0001
+    },
+    {
+     "name": "从不吸烟",
+     "n": 171,
+     "est": 0.74,
+     "ci_low": 0.53,
+     "ci_high": 1.03,
+     "p": 0.075
+    }
+   ]
+  }
+ ],
+ "overall": {
+  "n": 460,
+  "est": 0.66,
+  "ci_low": 0.56,
+  "ci_high": 0.78,
+  "p": 1e-06
+ },
+ "est_label": "HR",
+ "x_label": "PFS HR（免疫治疗 vs 化疗）"
+}

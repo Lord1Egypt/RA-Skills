@@ -1,11 +1,14 @@
 #!/bin/bash
 # Analytics Self-Improvement Error Detector Hook
+# Inspects CLAUDE_TOOL_OUTPUT in-process only. Never writes tool output, secrets, or transcripts to disk.
 # Triggers on PostToolUse for Bash to detect pipeline errors, data quality issues, and query failures
 # Reads CLAUDE_TOOL_OUTPUT environment variable
 
 set -e
 
 OUTPUT="${CLAUDE_TOOL_OUTPUT:-}"
+# Scan a bounded prefix in memory only. Never print, store, or forward command output.
+OUTPUT="${OUTPUT:0:2000}"
 
 ERROR_PATTERNS=(
     "ETL"

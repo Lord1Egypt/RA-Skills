@@ -1,42 +1,60 @@
-## Description: <br>
-Provides China A-share realtime quote lookup, intraday volume analysis, main-force activity signals, limit-up observations, and local portfolio profit and loss tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides A-share real-time quote lookup, minute-level volume analysis, main-capital movement signals, limit-up context, and local portfolio profit/loss tracking.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-External users and developers use this skill to query A-share market data, inspect intraday volume patterns, and maintain a local portfolio record for profit and loss analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and edits a local portfolio file, and the remove command deletes a holding from that record. <br>
-Mitigation: Back up the portfolio JSON when records matter and run remove only when the holding should be deleted. <br>
-Risk: Market data and signal labels may be delayed, unavailable outside trading hours, or unsuitable as investment advice. <br>
-Mitigation: Use the output as analysis support only and verify trading decisions against authoritative market and financial sources. <br>
+## Use Case:
 
+Developers and external users can use this skill to query Chinese A-share market data, inspect minute-volume patterns, evaluate position profit and loss, and manage a local portfolio record.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/a-stock-analysis-litiao) <br>
-- [Sina Finance](https://finance.sina.com.cn) <br>
-- [Sina realtime quote endpoint](https://hq.sinajs.cn/list={codes_str}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local portfolio JSON file under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Portfolio commands store stock codes, costs, quantities, and timestamps in a local JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the saved data before use on shared machines and tighten local file permissions when needed.
+
+Risk: Removing or updating a portfolio entry changes the saved local portfolio file immediately.
+
+Mitigation: Confirm the target stock code and keep backups before running update or remove commands.
+
+Risk: Market analysis depends on external Sina Finance endpoints and may return stale or unavailable data outside normal trading conditions.
+
+Mitigation: Treat outputs as informational and verify important trading decisions against authoritative market sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/a-stock-analysis-litiao)
+- [Publisher profile](https://clawhub.ai/user/litiao1224)
+- [Sina Finance](https://finance.sina.com.cn)
+- [Sina realtime quote endpoint](https://hq.sinajs.cn/list={codes_str})
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Analysis, Files]
+
+**Output Format:** [Console text or JSON from Python command-line scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portfolio commands read and write local JSON at ~/.clawdbot/skills/a-stock-analysis/portfolio.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Generate AI-powered presentations, documents, and social posts using SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI-powered presentations, documents, and social posts using SkillBoss API Hub.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External users and developers use this skill to generate presentations, pitch decks, documents, and social media carousels from prompts or source content through a command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user prompts, document content, and the SkillBoss API key to a third-party API endpoint. <br>
-Mitigation: Use a revocable, limited API key and avoid sensitive, regulated, or confidential content unless the provider and data handling terms have been verified. <br>
-Risk: The documented API domain differs from the domain used by the script. <br>
-Mitigation: Review the endpoint before installation and confirm the intended provider domain before executing the script. <br>
+## Use Case:
 
+External users and developers use this skill to generate presentations, documents, and social media carousels from prompts or markdown content through SkillBoss API Hub.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/tobeyrebecca/toby-gamma) <br>
-- [Documented SkillBoss API endpoint](https://api.skillbossai.com/v1/pilot) <br>
-- [Script API endpoint](https://api.heybossai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated service URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; sends prompt or document content to a third-party API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security summary says the skill sends the API key and user content to a different hostname than the documentation discloses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the SkillBoss service and the api.heybossai.com destination before installing; avoid confidential, personal, or regulated data unless the publisher explains the domain relationship and data handling.
+
+Risk: The skill requires an API key for an external service.
+
+Mitigation: Use a narrowly scoped, revocable SKILLBOSS_API_KEY and rotate or revoke it if misuse is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-gamma)
+- [Documented SkillBoss API endpoint](https://api.skillbossai.com/v1/pilot)
+- [Runtime API endpoint used by script](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash commands; script output is plain text containing a generated Gamma URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends user-provided content to an external API service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

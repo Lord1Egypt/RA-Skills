@@ -1,42 +1,62 @@
-## Description: <br>
-Downloads Douyin videos from single links or batches, with duplicate handling, no-watermark download paths, and fallback download backends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads Douyin videos individually or in batches, with duplicate handling, watermark-free retrieval, and automatic backend selection through yt-dlp or Playwright.
 
-## Publisher: <br>
-[franklu0819-lang](https://clawhub.ai/user/franklu0819-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[franklu0819-lang](https://clawhub.ai/user/franklu0819-lang)
 
-## Use Case: <br>
-External users and developers use this skill to download public Douyin videos individually or from a link list, with options for output directory, filename, concurrency, and timeout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary says the skill under-discloses behavior and recommends a risky privileged installer for yt-dlp. <br>
-Mitigation: Review before installing; avoid one-line sudo curl installation and install yt-dlp through a trusted package manager or verified download. <br>
-Risk: The skill downloads media from external Douyin URLs using browser automation and downloader backends. <br>
-Mitigation: Run only with trusted Douyin URLs in a low-privilege environment and review output paths before batch downloads. <br>
+## Use Case:
 
+Developers and agents use this skill to download public Douyin videos from single URLs or batch link files into a local output directory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/franklu0819-lang/douyin-video-download) <br>
-- [Publisher profile](https://clawhub.ai/user/franklu0819-lang) <br>
-- [yt-dlp releases](https://github.com/yt-dlp/yt-dlp/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands and downloaded media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local video files in a configured output directory when the commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release and SKILL.md frontmatter) <br>
+Risk: Unrestricted or malformed URLs may be passed to the browser or downloader tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Accept only real Douyin HTTPS URLs and reject non-Douyin or non-HTTPS inputs before execution.
+
+Risk: Custom output directories or filenames may create unsafe file paths.
+
+Mitigation: Use a dedicated output directory and reject filenames containing path separators or .. components.
+
+Risk: The browser is launched with sandboxing disabled.
+
+Mitigation: Run the skill only in an isolated, unprivileged environment and avoid elevated privileges.
+
+Risk: Privileged installation guidance for yt-dlp can install an unverified binary.
+
+Mitigation: Install yt-dlp through a trusted package manager or verify the downloaded binary before placing it on PATH.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/franklu0819-lang/skills/douyin-video-download)
+- [yt-dlp releases](https://github.com/yt-dlp/yt-dlp/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration instructions, Guidance]
+
+**Output Format:** [CLI console text and local MP4 files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads depend on network access, Douyin page availability, Playwright Chromium, and optional yt-dlp.]
+
+## Skill Version(s):
+
+1.1.2 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

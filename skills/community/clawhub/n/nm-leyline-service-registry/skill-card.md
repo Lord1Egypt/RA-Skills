@@ -1,43 +1,58 @@
-## Description: <br>
-Registers external services with health checks, central config, and unified execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Registers external services with health checks, quotas, and a usage logger for per-call cost and sessions.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate multiple external service CLIs behind a registry pattern with shared configuration, health checks, execution results, retries, and failover. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured service commands can invoke external CLIs that may transmit prompts, files, or outputs to third-party providers. <br>
-Mitigation: Review configured commands before use and avoid sending secrets, private files, or sensitive prompts unless the provider and its data-handling policies are trusted. <br>
-Risk: Service integrations commonly require API keys or tokens. <br>
-Mitigation: Keep credentials in environment variables or managed secret storage and avoid embedding keys in skill files, prompts, or shared configuration. <br>
+## Use Case:
 
+Developers managing several external services use this skill for configuration, health checks, quota tracking, failover patterns, and session-aware usage logging.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-leyline-service-registry) <br>
-- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [Service configuration patterns](artifact/modules/service-config.md) <br>
-- [Execution patterns](artifact/modules/execution-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no bundled executable files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence; artifact frontmatter lists 1.9.8) <br>
+Risk: The security assessment flags undeclared local command execution and access to agent configuration logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review command construction and local file access before use; restrict execution and log access to what the integration needs.
+
+Risk: Session data and selected files may be handled by external service providers.
+
+Mitigation: Review provider data handling and avoid sending sensitive files or session data unless authorized.
+
+Risk: The security scan was partial because a referenced local path was missing.
+
+Mitigation: Review the missing path and rerun a complete security scan before relying on the assessment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-leyline-service-registry)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions, Shell commands, JSON]
+
+**Output Format:** [Markdown with Python, YAML, JSON, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples and templates may require adaptation to the target service CLI and environment.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

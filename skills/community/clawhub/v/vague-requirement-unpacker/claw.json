@@ -1,0 +1,21 @@
+{
+  "name": "vague-requirement-unpacker",
+  "version": "1.0.3",
+  "tagline": "From vague ask to PM alignment pack / 模糊需求接招器：模糊指令到可对齐的产品行动包",
+  "description": "A cold-start requirement unpacker for product managers facing vague boss or business asks, oral tasks, chat screenshots, or one-line meeting notes. It is not a PRD generator: it reconstructs intent, identifies confirmation questions, narrows scenarios, builds a capability skeleton, outlines core flows and states, scores readiness, flags risks, and prepares stakeholder-facing responses or a handoff to requirement review simulation. 不是 PRD 生成器，而是 PM 面对信息不完整但必须推进时的冷启动拆解器。",
+  "category": "productivity",
+  "tags": [
+    "product-management",
+    "requirement-analysis",
+    "prd",
+    "stakeholder-alignment",
+    "meeting-prep",
+    "chinese"
+  ],
+  "license": "MIT",
+  "author": "Chris1Wang3",
+  "pricing": "free",
+  "entry": "SKILL.md",
+  "support_url": "https://github.com/Chris1Wang3/HammerRoom-Skills/issues",
+  "homepage": "https://github.com/Chris1Wang3/HammerRoom-Skills/tree/master/vague-requirement-unpacker"
+}

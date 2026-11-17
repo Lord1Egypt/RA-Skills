@@ -1,40 +1,54 @@
-## Description: <br>
-Spec Coach interviews users about vague app, feature, automation, workflow, integration, or system ideas and turns approved answers into an implementation-ready SPEC.md for coding agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spec Coach is a build-ready specification interviewer for coding agents that clarifies vague app, feature, automation, product, workflow, integration, or system ideas into a precise SPEC.md before implementation.
 
-## Publisher: <br>
-[brasco05](https://clawhub.ai/user/brasco05) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brasco05](https://clawhub.ai/user/brasco05)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to clarify unclear build ideas before implementation. It guides an interview, controls scope, records assumptions, and produces an approved build-ready SPEC.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SPEC.md could be written to an unintended path or replace an existing file. <br>
-Mitigation: Confirm the output path and whether an existing SPEC.md may be replaced before approving the final output. <br>
-Risk: An incomplete or vague build brief could lead a coding agent to implement the wrong behavior. <br>
-Mitigation: Review the build brief summary, acceptance criteria, scope boundaries, risks, and assumptions before approving SPEC.md generation. <br>
+## Use Case:
 
+Developers and coding-agent users use Spec Coach to turn vague app, feature, automation, product, workflow, integration, or system ideas into an approved implementation-ready SPEC.md before implementation begins.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brasco05/spec-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown SPEC.md with interview prompts and approval summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes SPEC.md only after user approval; no scripts, credentials, network access, or hidden install behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may activate during broad planning or clarification requests where the user did not intend to enter a structured specification interview.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a build-ready SPEC.md is desired, and confirm the build brief before approving file creation.
+
+Risk: If answers remain vague after clarification attempts, the resulting SPEC.md may include explicit assumptions that need review before implementation.
+
+Mitigation: Review the summary and any assumptions before approval, then revise unclear requirements before using the SPEC.md for implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brasco05/skills/spec-coach)
+- [Publisher profile](https://clawhub.ai/user/brasco05)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown SPEC.md after user approval]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asks adaptive one-at-a-time questions, summarizes the build brief, and writes SPEC.md only after approval.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

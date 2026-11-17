@@ -1,49 +1,59 @@
-## Description: <br>
-Use when the user wants to query the Codex Supergraph and the server returns a 402 challenge; it pays per query via the MPP 402 challenge flow and only supports queries, not mutations or subscriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent query the Codex Supergraph through the MPP 402 payment challenge flow for query operations.
 
-## Publisher: <br>
-[nealo](https://clawhub.ai/user/nealo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nealo](https://clawhub.ai/user/nealo)
 
-## Use Case: <br>
-Developers and agents use this skill to make paid Codex Supergraph GraphQL queries when the service returns an MPP 402 payment challenge. It guides wallet preflight, Tempo request handling, and query-only constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent into wallet login, payment credential signing, and paid USDC-backed requests. <br>
-Mitigation: Use it only for intended paid Codex Supergraph queries, keep wallet balances limited, and require explicit user confirmation before login, signing, or retrying a paid request. <br>
-Risk: Payment credentials, wallet state, and request headers are sensitive. <br>
-Mitigation: Do not print raw credentials or private keys; rely on Tempo CLI wallet handling and run a wallet preflight check before paid requests. <br>
-Risk: MPP mode supports queries only; mutation or subscription attempts fail or require a different authentication path. <br>
-Mitigation: Use MPP only for GraphQL query operations and use API key or bearer authentication for non-query operations. <br>
+## Use Case:
 
+Developers and agents use this skill to query the Codex Supergraph when a 402 Payment Required MPP challenge must be solved with a funded Tempo wallet. It is limited to GraphQL query operations and does not support mutations or subscriptions.
 
-## Reference(s): <br>
-- [Codex Agentic Gateway on ClawHub](https://clawhub.ai/nealo/codex-gateway) <br>
-- [Publisher Profile](https://clawhub.ai/user/nealo) <br>
-- [Codex Website](https://www.codex.io) <br>
-- [Codex Documentation](https://docs.codex.io) <br>
-- [Codex API Key Signup](https://dashboard.codex.io/signup) <br>
-- [Codex MPP Gotchas](references/gotchas.md) <br>
-- [MPP Auth Flow Reference](references/mpp-flow.md) <br>
-- [Wallet Reference](rules/wallets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to run Tempo wallet and paid request commands for query-only Codex Supergraph access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Paid Codex Supergraph queries can trigger wallet authentication and automatic payments without enough per-transaction user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set wallet and session spending limits before use, review payment challenges where possible, and require explicit confirmation before wallet login, authentication recovery, or any paid request.
+
+Risk: Payment credentials or wallet-sensitive details could be exposed if an agent prints or logs them.
+
+Mitigation: Do not print raw credentials or private keys; rely on the Tempo CLI wallet and request extensions for signing and payment handling.
+
+## Reference(s):
+
+- [Codex Website](https://www.codex.io)
+- [Codex Documentation](https://docs.codex.io)
+- [Codex API Key Signup](https://dashboard.codex.io/signup)
+- [Codex GraphQL Endpoint](https://graph.codex.io/graphql)
+- [Codex MPP Gotchas](references/gotchas.md)
+- [MPP Auth Flow Reference](references/mpp-flow.md)
+- [Wallet Reference](rules/wallets.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and GraphQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include paid-request guidance and wallet preflight checks before executing Codex Supergraph queries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

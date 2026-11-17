@@ -1,46 +1,58 @@
-## Description: <br>
-FlowSwarm helps developers coordinate multi-agent coding swarms with RuFlo, Claude Code, MCP tooling, prompt templates, setup checks, and persistent memory for test generation, feature work, refactors, security audits, and quality loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FlowSwarm helps agents coordinate multi-agent coding workflows with RuFlo and Claude Code for test generation, feature builds, refactors, security audits, and quality loops.
 
-## Publisher: <br>
-[windseeker1111](https://clawhub.ai/user/windseeker1111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windseeker1111](https://clawhub.ai/user/windseeker1111)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan and launch coordinated Claude Code swarm sessions for implementation, test generation, refactoring, security audit, and quality-loop tasks. It is intended for substantial coding work where multiple specialist roles, persistent memory, and MCP coordination can improve execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad persistent tooling and MCP auto-start can expand the actions available during agent runs. <br>
-Mitigation: Install and run the skill only in trusted, version-controlled projects, and review `.mcp.json` before enabling autoStart. <br>
-Risk: The artifact includes examples using permission bypass for Claude Code execution. <br>
-Mitigation: Avoid `bypassPermissions` outside an isolated workspace and review generated changes before committing or deploying. <br>
-Risk: Persistent swarm memory can retain sensitive or proprietary context supplied during coding sessions. <br>
-Mitigation: Do not feed unsanitized secrets, logs, production data, or proprietary details into persistent memory. <br>
-Risk: The setup flow uses `ruflo@latest`, which can change behavior between installations. <br>
-Mitigation: Prefer pinned RuFlo versions when installing or registering MCP tooling. <br>
+## Use Case:
 
+Developers and engineering teams use FlowSwarm to plan and run multi-agent coding sessions for larger coding tasks such as generating tests, building features, refactoring, auditing security, and iterating on quality. It is intended for context-rich work where generated commands, code, and configuration changes can be reviewed before use.
 
-## Reference(s): <br>
-- [FlowSwarm ClawHub Listing](https://clawhub.ai/windseeker1111/flow-swarm) <br>
-- [Template Examples](references/template-examples.md) <br>
-- [Setup Script](scripts/setup-flow-swarm.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates, inline shell commands, code snippets, and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup and verification instructions, prompt templates, target-selection guidance, and execution cautions for background Claude Code swarm runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The setup flow can grant broad Claude/MCP authority and persist project-level coordination state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a disposable or well-isolated development environment and review generated code, commands, and configuration before applying them.
+
+Risk: The setup script installs RuFlo globally, registers an MCP server, edits `.mcp.json`, and may start a background daemon.
+
+Mitigation: Pin the RuFlo package version, inspect `.mcp.json` before and after setup, and start persistent background services only when explicitly intended.
+
+Risk: Example launch commands use `--permission-mode bypassPermissions`, which reduces execution safeguards during coding runs.
+
+Mitigation: Avoid bypassing permissions unless the workspace is disposable and the task has been reviewed for expected file and command access.
+
+## Reference(s):
+
+- [FlowSwarm Template Library](references/template-examples.md)
+- [ClawHub skill page](https://clawhub.ai/windseeker1111/skills/flow-swarm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with prompt templates, shell commands, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup and verification instructions; users should review generated commands, code, and configuration before execution.]
+
+## Skill Version(s):
+
+2.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

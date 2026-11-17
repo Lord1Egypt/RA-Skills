@@ -1,47 +1,61 @@
-## Description: <br>
-Generate NEAR-focused content (threads, market updates, ecosystem news, tutorials). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate NEAR-focused content (threads, market updates, ecosystem news, tutorials).
 
-## Publisher: <br>
-[mastrophot](https://clawhub.ai/user/mastrophot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mastrophot](https://clawhub.ai/user/mastrophot)
 
-## Use Case: <br>
-Content creators, ecosystem teams, and developers use this skill to draft NEAR educational threads, daily market updates, curated news digests, and practical tutorials for review before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Market updates and news digests depend on third-party public data sources that may be unavailable, incomplete, stale, or unsuitable for publication without review. <br>
-Mitigation: Review generated market and news content before publishing or relying on it, and check the included data-quality or source details. <br>
-Risk: Generated market commentary could be mistaken for financial advice. <br>
-Mitigation: Keep the informational disclaimer in published market updates and have a qualified reviewer approve externally shared content. <br>
-Risk: Installing from an unexpected package source could introduce unreviewed code or dependency changes. <br>
-Mitigation: Install from the expected source and use the provided lockfile when building or testing the skill. <br>
+## Use Case:
 
+External creators, developers, and ecosystem teams use this skill to draft NEAR educational threads, market updates, ecosystem news digests, and practical tutorials for publication or review.
 
-## Reference(s): <br>
-- [NEAR Content Creator repository](https://github.com/mastrophot/near-content-creator) <br>
-- [NEAR Blog](https://near.org/blog) <br>
-- [NEAR Foundation](https://near.foundation) <br>
-- [nearcore releases](https://github.com/near/nearcore/releases) <br>
-- [near-api-js releases](https://github.com/near/near-api-js/releases) <br>
-- [CoinGecko NEAR market data endpoint](https://api.coingecko.com/api/v3/simple/price?ids=near&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Plain text, string arrays, structured news items, and Markdown tutorials with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Thread output is normalized to eight posts, news is deduplicated and ranked, and market updates include a data-quality line.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, package.json, release evidence) <br>
+Risk: Generated market and news content depends on public endpoints and may be incomplete, unavailable, or stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content, source links, timestamps, and the data-quality line before publication; do not treat market updates as financial advice.
+
+Risk: The package entrypoint points to dist/index.js while the artifact ships source that must be built.
+
+Mitigation: Run npm install and npm run build before use, then confirm the dist output exists in the deployment artifact.
+
+Risk: Dependency hygiene notes apply before development or CI use.
+
+Mitigation: Update flagged dev dependencies and rerun tests and security checks before using the package in development automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mastrophot/skills/near-content-creator)
+- [Project homepage](https://github.com/mastrophot/near-content-creator)
+- [NEAR Blog](https://near.org/blog)
+- [nearcore releases](https://github.com/near/nearcore/releases)
+- [near-api-js releases](https://github.com/near/near-api-js/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Strings, string arrays, structured news items, and Markdown with bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Thread output is normalized to eight posts; market updates include a data-quality line.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md metadata, package.json, molthub.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

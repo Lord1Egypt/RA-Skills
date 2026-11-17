@@ -1,42 +1,58 @@
-## Description: <br>
-Provides a Chinese-language tender and bid knowledge framework for interpreting tender documents, preparing bid materials, analyzing evaluation criteria, and organizing recurring learning reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tender Knowledge Framework helps agents organize tender-analysis knowledge for interpreting bid documents, preparing proposals, analyzing evaluation methods, identifying contract risks, and maintaining industry case notes.
 
-## Publisher: <br>
-[ylbwjf](https://clawhub.ai/user/ylbwjf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ylbwjf](https://clawhub.ai/user/ylbwjf)
 
-## Use Case: <br>
-Agents use this skill to help bid teams and business users structure tender analysis, bid preparation, evaluation-method review, contract-risk checks, and periodic markdown learning summaries. It is most useful when users need practical guidance and reusable report structure for Chinese procurement and bidding workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact describes proactive internet research and periodic reporting, which can produce outdated or weakly sourced procurement guidance if sources are not checked. <br>
-Mitigation: Use current, authoritative procurement sources and cite or record the source basis for tender-law, policy, and bidding recommendations. <br>
-Risk: Bid strategy, pricing, contract, and disqualification guidance can affect commercial decisions. <br>
-Mitigation: Treat generated guidance as decision support and have qualified procurement, legal, or bid-management staff review final submissions. <br>
-Risk: The security guidance recommends reviewing commands before execution for any developer or integration skill. <br>
-Mitigation: Inspect any generated commands before running them, especially commands that use authenticated services or write access. <br>
+## Use Case:
 
+Developers, procurement teams, and bidding specialists use this skill to guide agents that summarize tender requirements, structure bid-preparation checklists, compare scoring methods, and produce recurring learning reports for tender strategy work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ylbwjf/tender-knowledge-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown reports, checklists, structured bid-analysis guidance, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language tender-analysis knowledge base with recurring learning-report structure] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Recurring internet-learning tasks may run on a schedule without clear user control or stop conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a user-triggered workflow or require confirmation before each internet-learning run.
+
+Risk: The skill may persist local knowledge files in memory/tender-learning/ and tender-knowledge-framework/ directories.
+
+Mitigation: Require confirmation before writes to those directories and review generated files before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ylbwjf/skills/tender-knowledge-framework)
+- [Publisher profile](https://clawhub.ai/user/ylbwjf)
+- [Tender document interpretation knowledge](artifact/knowledge/01-招标文件解读.md)
+- [Bid document preparation knowledge](artifact/knowledge/02-投标文件编制.md)
+- [Evaluation method analysis knowledge](artifact/knowledge/03-评标办法分析.md)
+- [Learning report template](artifact/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance, report templates, checklists, and structured knowledge notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask an agent to perform recurring internet-learning tasks and write local tender-learning files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

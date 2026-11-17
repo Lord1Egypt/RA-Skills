@@ -1,43 +1,61 @@
-## Description: <br>
-Extracts structured fields from car-insurance PDFs for supported Chinese insurers and writes the results to an Excel workbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts key data from Meiguang car insurance PDF policies across supported Chinese insurers and outputs the results as an Excel workbook.
 
-## Publisher: <br>
-[cc19960203cc](https://clawhub.ai/user/cc19960203cc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cc19960203cc](https://clawhub.ai/user/cc19960203cc)
 
-## Use Case: <br>
-External operators and agents use this skill to extract policy, vehicle, insured-person, premium, tax, and coverage-start data from car-insurance PDFs into a spreadsheet for review and downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The source PDFs and generated Excel workbook can contain sensitive insurance, vehicle, and personal data. <br>
-Mitigation: Run the skill only when authorized, store inputs and outputs in access-controlled locations, and delete generated files when they are no longer needed. <br>
-Risk: Filename fallback and same-car field completion can misattribute extracted fields. <br>
-Mitigation: Review the workbook before using it for business decisions or record updates. <br>
-Risk: Optimization scripts modify the local extractor code. <br>
-Mitigation: Run optimize_patch.py or optimize_v2.py only after reviewing the changes and confirming that code modification is intended. <br>
+## Use Case:
 
+Developers and operations users handling authorized vehicle-insurance policy PDFs use this skill to extract policy, insured-person, vehicle, premium, and coverage-start fields into a spreadsheet for review or downstream processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cc19960203cc/meiguang-car-insurance) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands and Python configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The described extractor produces a local Excel workbook from local PDF inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.7.5 (source: release evidence and artifact documentation) <br>
+Risk: Insurance PDFs can contain sensitive personal, vehicle, and policy data that is exported into an unprotected spreadsheet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only authorized PDFs, write the workbook to a protected location, restrict access to the output, and delete generated files when they are no longer needed.
+
+Risk: Source PDFs are untrusted inputs and may trigger parser or dependency issues during extraction.
+
+Mitigation: Run the extraction in a least-privileged environment with current PDF-processing dependencies and keep source files isolated from unrelated data.
+
+Risk: The optimize_*.py helper scripts rewrite run_extract.py when executed.
+
+Mitigation: Do not run optimization scripts unless code rewriting is intentional; keep a backup or version-controlled copy before using them.
+
+Risk: Known PDF text-extraction limitations may leave some fields empty or inaccurate for specific insurers or document encodings.
+
+Mitigation: Review the generated spreadsheet against source PDFs before relying on extracted values for operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cc19960203cc/skills/meiguang-car-insurance)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, files]
+
+**Output Format:** [Markdown guidance with Python command examples; the extraction script writes an .xlsx workbook.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default input and output paths are configured in scripts/run_extract.py and should be changed before use.]
+
+## Skill Version(s):
+
+5.7.5 (source: server evidence and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

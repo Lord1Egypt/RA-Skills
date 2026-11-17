@@ -1,44 +1,57 @@
-## Description: <br>
-Use the local invoice service script to initialize app keys, query quota and packages, verify invoice text or images, batch-verify local folders, and create or query recharge orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the local invoice service script to initialize app keys, query quota and packages, verify invoice text or images, batch-verify local folders, and create or query recharge orders.
 
-## Publisher: <br>
-[fenghaozhe-git](https://clawhub.ai/user/fenghaozhe-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fenghaozhe-git](https://clawhub.ai/user/fenghaozhe-git)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run a Node.js helper for invoice verification workflows, including quota checks, package lookup, invoice text or image verification, batch folder verification, and recharge order management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload sensitive invoice text, invoice images, extracted identifiers, and local file metadata to the configured invoice API endpoint. <br>
-Mitigation: Review the configured API base URL before real invoice use, install only when the endpoint is trusted, and avoid unattended or implicit verification of sensitive invoices. <br>
-Risk: The helper can create recharge orders, which is a payment-related action. <br>
-Mitigation: Require explicit user approval before order creation and confirm amount and payment destination before following any payment URL. <br>
-Risk: The helper persists app keys, configuration, and batch verification result files on disk. <br>
-Mitigation: Periodically inspect or delete ~/.openclaw/invoice-skill/config.json and generated *.verify.json or invoice-verify-results-* files when they are no longer needed. <br>
+## Use Case:
 
+Developers, operators, and external users can use this skill to run a Node.js helper for invoice quota checks, package lookup, invoice verification, batch image verification, and recharge order management against a configured invoice API backend.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fenghaozhe-git/invoice-verification-service) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; script actions return JSON and batch verification may write JSON result files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js. Invoice image verification accepts PNG or JPEG payloads up to 2 MB, and directory verification writes per-image result JSON plus a summary for multi-file batches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.4 (source: ClawHub release evidence) <br>
+Risk: Invoice text, invoice images, extracted invoice fields, API keys, and account or order data may be sent to the configured backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the backend is trusted and configure an HTTPS endpoint before processing sensitive invoices.
+
+Risk: Implicit or ambiguous invocation could submit invoice data or create backend requests unexpectedly.
+
+Mitigation: Use explicit user confirmation for verification and payment-related actions, especially before creating recharge orders.
+
+Risk: Batch verification uploads images from local folders and writes JSON result files beside the source directory.
+
+Mitigation: Review the target folder before upload and handle generated result files as sensitive invoice records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fenghaozhe-git/skills/invoice-verification-service)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, API Calls, JSON, Files, Guidance]
+
+**Output Format:** [JSON responses and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batch directory verification can write per-image JSON files and a summary.json file next to the source directory.]
+
+## Skill Version(s):
+
+0.4.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

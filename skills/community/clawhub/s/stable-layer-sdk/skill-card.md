@@ -1,38 +1,55 @@
-## Description: <br>
-A TypeScript SDK for interacting with Stable Layer on the Sui blockchain, supporting minting, burning stablecoins, claiming yield rewards, and querying supply. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A TypeScript SDK guide for interacting with the Stable Layer protocol on Sui, including minting and burning stablecoins, claiming yield rewards, and querying supply.
 
-## Publisher: <br>
-[k66inthesky](https://clawhub.ai/user/k66inthesky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[k66inthesky](https://clawhub.ai/user/k66inthesky)
 
-## Use Case: <br>
-Developers use this skill for guidance on installing and using the Stable Layer TypeScript SDK to build Sui blockchain transactions for minting, burning, reward claiming, and supply queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may involve signing high-impact Sui blockchain transactions with real funds. <br>
-Mitigation: Verify the npm package publisher and version, use testnet first, never paste private keys into chat or committed files, and review the network, coin type, amount, and full transaction contents before signing mainnet transactions. <br>
+## Use Case:
 
+Developers and agents use this skill to install the Stable Layer SDK and draft TypeScript code for Stable Layer transactions and supply queries on Sui. It is most relevant when building workflows that mint or burn stablecoins, claim rewards, or inspect stablecoin supply.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/k66inthesky/stable-layer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown with TypeScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include transaction-building examples that require user-side review before signing or executing blockchain transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes examples for mainnet Sui transactions that can affect funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test on Sui testnet first and require explicit human confirmation of contract addresses, token types, amounts, and network before any transaction is signed or submitted.
+
+Risk: The examples show private-key signing patterns.
+
+Mitigation: Keep private keys out of source code and chat context, and use pinned, verified package versions where possible.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [Stable Layer SDK Skill Source](artifact/SKILL.md)
+- [ClawHub Skill Page](https://clawhub.ai/k66inthesky/skills/stable-layer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Sui transaction examples and network, address, token, and amount parameters that require human confirmation before signing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

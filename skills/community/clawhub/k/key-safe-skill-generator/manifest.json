@@ -1,11 +1,13 @@
 {
+  "spec": "usk/3.0",
   "id": "key_safe_skill_generator",
-  "version": "1.0.0",
-  "name": "Key‑Safe Skill Generator (Zero‑Exposure Edition)",
-  "description": "A documentation‑only meta‑skill that teaches AI agents how to generate secure, zero‑exposure skills using MGC Blackbox for credential management. Contains no executable code.",
+  "version": "2.0.0",
+  "name": "Key‑Safe Skill Generator (Zero-Exposure Edition)",
+  "description": "A documentation‑only meta‑skill that teaches AI agents how to design, generate and validate zero‑exposure skills on MGC Blackbox 1.5.4. Provides the generation specification (credential layer, script layer, workflow package layer, sealed delivery layer), a selectable acceptance checklist, and corrected templates. Credentials are stored encrypted; local scripts read them via the localhost REST API at runtime, while AI agents never touch plaintext. Covers 1.5.4 dual-mode sealing, link authorization, capsule import, folder workflows with auto-recognised cross-script call graphs, and credential rotation and deletion.",
   "author": "MirginCipher Team",
   "license": "MIT",
   "category": "Developer Tools",
+  "source": "local",
   "tags": [
     "zero-exposure",
     "key-safe",
@@ -13,28 +15,192 @@
     "security",
     "credential-management",
     "skill-generator",
-    "meta-skill"
+    "meta-skill",
+    "mgc_run",
+    "mgc_find",
+    "mgc_seal",
+    "mgc_delete"
   ],
-  "platform_compatibility": ["windows", "macos", "linux"],
-  "source": "local",
+  "keywords": [
+    "zero exposure skill",
+    "skill generator",
+    "meta skill",
+    "credential protection",
+    "secret management",
+    "token vault",
+    "password storage",
+    "acceptance checklist",
+    "generation specification",
+    "script template",
+    "workflow package",
+    "sealed delivery",
+    "cross-node delegation",
+    "free mode sealing",
+    "link authorization",
+    "runtime dependency advisory"
+  ],
+  "platform_compatibility": [
+    "windows",
+    "macos",
+    "linux"
+  ],
+  "requirements": {
+    "mgc_version": ">=1.5.4",
+    "python": ">=3.10",
+    "optional": [
+      "requests"
+    ]
+  },
+  "install": {
+    "pip": [
+      "mgc-blackbox>=1.5.4"
+    ],
+    "mcp": [
+      "mgc"
+    ]
+  },
+  "runtime": "mgc",
+  "port": 57219,
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "manifest.json"
+  ],
   "skills": [
     {
-      "name": "skill_builder",
-      "description": "Provides conceptual guidance for generating zero-exposure skills using MGC Blackbox",
-      "parameters": {}
+      "name": "credential_layer_spec",
+      "layer": "credential",
+      "description": "Specification for the credential record of a generated skill: naming convention, content shape, runtime retrieval contract, rotation and revocation",
+      "parameters": {
+        "info_type": "config",
+        "info_owner": "<service>_<environment>"
+      }
+    },
+    {
+      "name": "script_layer_spec",
+      "layer": "script",
+      "description": "Specification for the single-script shape of a generated skill: literal argparse defaults, ext02 runtime args, result-file contract, addressing rules and banned patterns",
+      "parameters": {
+        "info_type": "script",
+        "info_owner": "<script location>",
+        "ext01": "python"
+      }
+    },
+    {
+      "name": "workflow_package_spec",
+      "layer": "workflow_package",
+      "description": "Specification for the workflow package shape of a generated skill: folder structure, recognised cross-script call forms, diff_2 and diff_3 addressing, run-compatibility badge",
+      "parameters": {
+        "info_owner": "<pipeline owner>",
+        "diff_2": "<folder name>",
+        "diff_3": "<relative POSIX path including the file extension>"
+      }
+    },
+    {
+      "name": "sealed_delivery_spec",
+      "layer": "sealed_delivery",
+      "description": "Specification for delivering a generated skill to another node: local, p2p and free mode selection, output_dir requirement, capsule import, link authorization and receiver version floor",
+      "parameters": {
+        "info_owner": "<script or package owner>",
+        "diff_2": "<folder name, for packages>",
+        "output_dir": "<absolute directory>"
+      }
     }
   ],
-  "mcp_tools": ["mgc_save", "mgc_get", "mgc_list"],
-  "install": {
-    "pip": ["mgc-blackbox"],
-    "mcp": ["mgc"]
+  "mcp_tools": [
+    "mgc_save",
+    "mgc_save_file",
+    "mgc_skill",
+    "mgc_get",
+    "mgc_run",
+    "mgc_seal",
+    "mgc_seal_package",
+    "mgc_package",
+    "mgc_list",
+    "mgc_find",
+    "mgc_delete",
+    "mgc_open_webui"
+  ],
+  "links": {
+    "spec": "mgc/docs/skill_spec.md",
+    "upstream_skill": "MGC Blackbox skill document, loadable live via the mgc_skill tool",
+    "contact": "mirgincipher@outlook.com"
   },
   "security": {
     "zero_exposure": true,
     "no_plaintext": true,
-    "no_executable_code": true
+    "no_executable_code": true,
+    "storage": "MGC Blackbox (encrypted at rest)",
+    "link_authorization": true,
+    "sealing_modes": [
+      "p2p mode",
+      "free mode"
+    ],
+    "provides": [
+      "The generation specification for building zero-exposure skills on MGC Blackbox",
+      "Layer-level rules for credentials, scripts, workflow packages and sealed delivery",
+      "An acceptance checklist that makes a generated skill objectively verifiable",
+      "Templates whose runtime behaviour matches MGC 1.5.4"
+    ],
+    "does_not_provide": [
+      "Executable code of its own — this skill generates skills, it does not run them",
+      "Script generation on behalf of the user without review",
+      "Automated data access",
+      "Automated cleaning or analysis",
+      "Automated transport",
+      "Credential values — those stay in MGC, always"
+    ],
+    "note": "AI agents must NEVER call mgc_get on a credential entry. The only permitted mgc_get is the node public key lookup (info_type='__NODE_PUB__', info_owner='__NODE_PUB__'). Credentials are read by local scripts inside MGC blackbox execution via the localhost REST API; the AI only sees the operation result. Credentials are never sealed into a capsule and are removed with mgc_delete when revoked. MGC protects content confidentiality; after unsealing, a script runs with the permissions of the user running it and its runtime behaviour is outside MGC's control."
   },
   "changelog": [
+    {
+      "version": "2.0.0",
+      "changes": [
+        "Repositioned the skill as a generation specification with an acceptance checklist, instead of restating the MGC feature set",
+        "Removed the duplicated MCP tool table, error code table and sealing mechanism walkthrough — these are now delegated to the upstream spec loaded via mgc_skill",
+        "Corrected the credential read contract in the script template: data is the plaintext string, there is no data_field key",
+        "Corrected the script template: the credential read must not carry action run, which only applies to info_type script",
+        "Corrected the script template: mgc_run requires only info_owner, diff_1 is not schema-required",
+        "Corrected the sealing example: 1.5.4 ext keys carry no underscore, and the capsule is imported as a whole file via mgc_save_file",
+        "Corrected the sealing example: output_dir is required since 1.5.4, with no desktop fallback",
+        "Corrected the deletion guidance: mgc_delete exists since 1.5.4 with a string confirmation flag",
+        "Added the three production shapes of a generated skill: single script, workflow package, sealed delivery package",
+        "Added the layer specifications: credential, script, workflow package and sealed delivery",
+        "Added a selectable acceptance checklist for validating a generated skill before delivery",
+        "Added the delivery shape decision table: local, cross-node p2p and public free mode",
+        "Documented the fatal path check as a banned pattern in generated scripts",
+        "Documented the folder diff_3 addressing rule: the relative POSIX path including the file extension",
+        "Unified all version statements to MGC Blackbox 1.5.4"
+      ]
+    },
+    {
+      "version": "1.3.0",
+      "changes": [
+        "Upgraded to adapt to MGC 1.4.10",
+        "Refactored zero-exposure flow: AI calls mgc_run, local script reads config via HTTP API; credentials never enter AI context",
+        "Replaced mgc_get with mgc_run for executing sealed scripts (1.4.7+ blackbox)",
+        "Added mgc_find (1.4.10 fuzzy search) and mgc_open_webui to mcp_tools; removed mgc_get",
+        "Documented mgc_seal returning {content, ext_01, ext_02, ext_03} dict, ext02 auto-parse, multi-line PEM requirement for ext04",
+        "Added update_if_exists=true for credential updates",
+        "Fixed Invalid key format troubleshooting (was incorrectly saying single-line, must be multi-line PEM)",
+        "Added 1.4.9 sandbox mode note",
+        "Updated MGC main skill doc reference to WebUI MGC Skills button (1.4.7+) and mgc --status",
+        "Templates updated with parse_known_args and HTTP API pattern",
+        "Added two anti-patterns (AI calling mgc_get, password as ext02)"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "changes": [
+        "Added complete example section with copy-and-paste templates",
+        "Added comprehensive FAQ section",
+        "Added anti-patterns section with correct practices",
+        "Added troubleshooting section",
+        "Added when to use / when not to use sections",
+        "Restructured to recommended format",
+        "Added mgc_seal to mcp_tools"
+      ]
+    },
     {
       "version": "1.0.1",
       "changes": [

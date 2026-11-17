@@ -1,43 +1,56 @@
-## Description: <br>
-Helps teachers design assessment workflows using exam goals, two-dimensional blueprints, difficulty gradients, scoring rubrics, post-exam analysis, and feedback into student analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助教师按双向细目表设计练习和试卷，调整难度配比、改编题目并编写评分标准。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Teachers and education teams use this skill to design or review exams, unit tests, grading criteria, difficulty balance, and post-exam analysis workflows. It guides structure and quality checks rather than automatically selecting copyrighted questions or performing automated grading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad education-related Chinese trigger phrases may activate the skill in contexts where a formal assessment workflow is not intended. <br>
-Mitigation: Review or narrow trigger phrases during installation when stricter activation control is needed, especially alongside other teaching or tutoring skills. <br>
-Risk: Exam design guidance can become misleading if users treat generated plans as automatically validated assessments. <br>
-Mitigation: Require teacher review of goals, knowledge-point coverage, difficulty estimates, scoring rubrics, and item sources before use with students. <br>
-Risk: Question copyright issues may arise if users supply unauthorized textbook or test-prep items. <br>
-Mitigation: Use the skill's copyrightStatus workflow and prefer teacher-owned, adapted, or publicly reusable question sources. <br>
+## Use Case:
 
+面向中小学教师，用于设计随堂练习和试卷、规划知识点与认知层级的覆盖、调整难度梯度，并编写评分标准。生成的题目作为草稿，教师逐题核验后再用于正式测评。
 
-## Reference(s): <br>
-- [Exam blueprint and two-dimensional table template](references/exam-blueprint.md) <br>
-- [ClawHub release page](https://clawhub.ai/qizhitang/xiaozhi-teach-exam-designer) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, structured templates, checklists, and analysis text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include exam blueprints, two-dimensional specification tables, difficulty guidance, scoring rubrics, quality checks, and post-exam analysis suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Some references cited by the skill were unavailable to the security review, leaving its coverage incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review relevant referenced materials before installation and treat the benign result as limited to the completed checks.
+
+Risk: Generated questions, answers, or scoring guidance may contain errors or misalign with the curriculum.
+
+Mitigation: Have a teacher solve each generated question and verify its answer and points before using it in a formal assessment.
+
+## Reference(s):
+
+- [Exam blueprint reference](references/exam-blueprint.md)
+- [High school subject standards](references/hs-subject-standards.md)
+- [ClawHub skill release](https://clawhub.ai/qizhitang/skills/xiaozhi-teach-exam-designer)
+- [Publisher profile](https://clawhub.ai/user/qizhitang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [中文 Markdown 文本，包含双向细目表、练习或试卷草稿、评分标准和讲评错题清单。]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [AI 生成的题目须由教师逐题验算答案与分值后，方可用于正式试卷。]
+
+## Skill Version(s):
+
+2.12.7 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

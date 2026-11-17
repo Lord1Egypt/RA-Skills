@@ -1,41 +1,56 @@
-## Description: <br>
-Extract multilingual document content and language learning notes from PDFs using multimodal vision with Qwen-VL-Max, converting pages into structured Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal PDF Vision Parser extracts multilingual document content and language learning notes from PDFs by converting pages into high-resolution images and using Qwen-VL-Max vision to produce structured Markdown.
 
-## Publisher: <br>
-[MingEnsiie](https://clawhub.ai/user/MingEnsiie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mingensiie](https://clawhub.ai/user/mingensiie)
 
-## Use Case: <br>
-Developers and agents use this skill to convert language-learning PDFs, bilingual notes, and complex document layouts into readable Markdown using a vision model. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PDF page images are sent to Alibaba Cloud DashScope/Qwen for analysis. <br>
-Mitigation: Use the skill only with documents approved for that provider and avoid sensitive, regulated, or confidential PDFs unless provider use is acceptable. <br>
-Risk: API keys may be exposed if passed directly on the command line. <br>
-Mitigation: Prefer the DASHSCOPE_API_KEY environment variable and run the skill from an isolated shell or Python environment. <br>
-Risk: Installing runtime dependencies changes the local Python environment. <br>
-Mitigation: Install pymupdf and dashscope in a dedicated virtual environment before running the parser. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MingEnsiie/universal-pdf-vision-parse) <br>
+## Use Case:
 
+Developers, educators, and language learners use this skill to convert multilingual PDFs, language notes, and complex document layouts into readable Markdown when standard OCR is insufficient.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown file generated from PDF page images, with shell commands and setup guidance for agent use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DashScope API key and processes PDF pages through Qwen-VL-Max; default processing is limited to two pages unless configured otherwise.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: PDF pages are converted to images and sent to DashScope/Qwen for processing.
+
+Mitigation: Avoid sensitive PDFs unless external processing by DashScope/Qwen is acceptable for the intended use case.
+
+Risk: API keys can be exposed if supplied directly on the command line.
+
+Mitigation: Use DASHSCOPE_API_KEY or a secret manager, and install the skill only in a controlled Python environment.
+
+Risk: The output path can overwrite an existing file.
+
+Mitigation: Choose a dedicated output path and review generated Markdown before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingensiie/skills/universal-pdf-vision-parse)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown file generated from PDF page images, with shell commands for invocation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to processing two pages; can process all pages with --max-pages -1. Requires DashScope/Qwen-VL-Max access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact SKILL.md states 0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

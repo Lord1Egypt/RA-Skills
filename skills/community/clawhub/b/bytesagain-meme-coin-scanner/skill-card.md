@@ -1,43 +1,56 @@
-## Description: <br>
-Scan meme coins for scam signals, rug-pull risk, and on-chain audit flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans meme coins for scam signals, rug-pull risk, on-chain audit flags, liquidity status, new listings, and trending-token context.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-External users and developers use this skill to inspect meme token addresses, review new or trending token listings, and generate safety checklists before doing manual verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes an unrelated, undocumented local security utility that stores command history locally. <br>
-Mitigation: Use the documented scripts/meme.sh for meme-coin scanning. Avoid scripts/script.sh unless intentionally using that separate utility. <br>
-Risk: Token addresses scanned by scripts/meme.sh are sent to DexScreener public endpoints. <br>
-Mitigation: Do not scan sensitive investigation targets unless sharing those token addresses with DexScreener is acceptable. <br>
-Risk: Command arguments passed to scripts/script.sh can be saved on disk. <br>
-Mitigation: Do not pass secrets, seed phrases, API tokens, or sensitive investigation details to scripts/script.sh. <br>
+## Use Case:
 
+External users and agents use this skill to inspect meme-token addresses, review new or trending token listings, and produce cautionary checklist guidance before making token decisions. Outputs are informational and should be verified with independent scanners.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/loutai0307-prog/bytesagain-meme-coin-scanner) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text with command examples, risk flags, external-check links, and checklist output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No structured JSON output is documented; scanner results depend on public DexScreener responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact frontmatter reports 2.0.0) <br>
+Risk: The package includes an undisclosed utility script unrelated to the advertised meme-coin scanner and evidence reports it can persist user-supplied arguments locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation, use only the advertised scanner workflow when appropriate, and do not pass secrets or sensitive values to the hash, encrypt, or password utility commands.
+
+Risk: Scanner results and token listings can be incomplete, delayed, rate-limited, or misleading if used as the sole basis for a financial decision.
+
+Mitigation: Verify findings with multiple independent scanners, contract explorers, liquidity-lock checks, and small test transactions before committing funds.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-meme-coin-scanner)
+- [Publisher profile](https://clawhub.ai/user/loutai0307-prog)
+- [BytesAgain homepage](https://bytesagain.com)
+- [DexScreener token API](https://api.dexscreener.com/latest/dex/tokens/{})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Terminal text and Markdown-style guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scanner output may include externally fetched market data and manual follow-up links; outputs are not financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

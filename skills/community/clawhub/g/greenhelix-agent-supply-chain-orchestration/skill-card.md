@@ -1,44 +1,59 @@
-## Description: <br>
-Build multi-agent supplier networks that self-heal through supplier discovery, real-time SLA monitoring, disruption detection with automated rerouting, demand aggregation, cross-border compliance, and Python code examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents and developers through building multi-agent supply chain orchestration workflows for supplier discovery, SLA monitoring, disruption rerouting, demand aggregation, and cross-border compliance using GreenHelix examples.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-External developers and supply-chain engineers use this guide to design multi-agent procurement orchestration with supplier discovery, SLA monitoring, disruption rerouting, demand forecasting, compliance checks, and escrow-protected coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide covers autonomous procurement, escrow, payment, and order-change workflows with under-scoped safety controls. <br>
-Mitigation: Require human approval for escrow, payment, and order changes before connecting examples to real procurement systems. <br>
-Risk: Examples require a GreenHelix API key with read/write access to purchased API tools. <br>
-Mitigation: Store GREENHELIX_API_KEY in a secrets manager, scope it least-privilege, and run the guide in a sandbox first. <br>
-Risk: Automated rerouting and recursive multi-agent workflows can create cost, compliance, or operational runaway behavior. <br>
-Mitigation: Add enforceable budget caps, reroute-depth limits, cooldowns, compliance gates, audit logs, and kill-switch controls. <br>
+## Use Case:
 
+External developers, procurement automation teams, and agent builders use this guide to plan and implement multi-agent supply chain networks that coordinate supplier discovery, monitoring, rerouting, demand planning, compliance checks, and escrow-protected transactions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mirni/greenhelix-agent-supply-chain-orchestration) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix A2A Commerce Gateway](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guide with Python code examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guide; examples require GREENHELIX_API_KEY for full GreenHelix gateway access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and artifact frontmatter) <br>
+Risk: Copying the guide's examples into production can automate supplier changes and escrow or payment actions without sufficient approval controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep workflows in sandbox mode until explicit approvals, spend limits, compliance gates, rollback paths, and dispute procedures are added.
+
+Risk: Using broad production credentials can increase the impact of erroneous supplier or payment actions.
+
+Mitigation: Use least-privilege API keys, separate sandbox and production credentials, and audit every financial or supplier-routing action.
+
+Risk: Automated rerouting can rely on incomplete delivery or compliance evidence.
+
+Mitigation: Require trusted delivery evidence, idempotency controls, and audit logging before escrow, payment, or supplier migration steps proceed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mirni/skills/greenhelix-agent-supply-chain-orchestration)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API](https://api.greenhelix.net/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guide with Python code examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing guide content; examples reference GREENHELIX_API_KEY for full API access.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

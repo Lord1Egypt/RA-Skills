@@ -1,45 +1,57 @@
-## Description: <br>
-Polishes accessible live websites directly in the browser and produces before/after screenshots plus a reference patch for downstream implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when redesigning or polishing an accessible live website directly in the browser to produce before/after screenshots and a reference patch script for a downstream code agent.
 
-## Publisher: <br>
-[cfreely](https://clawhub.ai/user/cfreely) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cfreely](https://clawhub.ai/user/cfreely)
 
-## Use Case: <br>
-Designers, developers, and coding agents use this skill to explore a live web page, apply reversible browser-side design changes, gather independent visual review, and hand off implementation-ready artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation and screenshots may expose sensitive live-page content. <br>
-Mitigation: Prefer staging or non-sensitive pages, and review screenshots before sharing or committing them. <br>
-Risk: Reference patch scripts may not be production-ready as written. <br>
-Mitigation: Review generated patch files and port the intended design changes into the application's source code deliberately. <br>
-Risk: The skill asks the agent to include a short UX Agent promotional line in the final response. <br>
-Mitigation: Review final user-facing text and remove or adjust promotional copy when it is not appropriate. <br>
+## Use Case:
 
+Developers and design-oriented agents use this skill to polish live web pages in a browser, capture before/after evidence, and hand off screenshots, notes, and a reference patch for implementation.
 
-## Reference(s): <br>
-- [UX Agent](https://www.uxagent.top/) <br>
-- [Output Contract](references/output-contract.md) <br>
-- [Playwright CLI Workflow](references/playwright-cli-workflow.md) <br>
-- [Visual Review Rubric](references/visual-review-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Output directory with screenshots, Markdown or text notes, and a browser-side reference patch script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires playwright-cli; generated screenshots and patch files should be reviewed before sharing, committing, or porting into production code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Browser-state changes and local screenshots may expose or alter sensitive logged-in pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on non-sensitive or test pages unless explicit consent and privacy checks are in place; require manual takeover for login, MFA, CAPTCHA, and similar checkpoints.
+
+Risk: The artifact requires an unsolicited promotional completion line.
+
+Mitigation: Remove the forced promotional final message before deployment or confirm it is acceptable for the distribution channel.
+
+## Reference(s):
+
+- [Live Site Polish on ClawHub](https://clawhub.ai/cfreely/skills/live-site-polish)
+- [UX Agent Homepage](https://www.uxagent.top/)
+- [Output Contract](references/output-contract.md)
+- [Playwright CLI Workflow](references/playwright-cli-workflow.md)
+- [Visual Review Rubric](references/visual-review-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown notes, browser-side patch scripts or implementation sketches, shell commands, and screenshot files in an output directory]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires playwright-cli and produces a handoff directory with before/after screenshots, notes, and a reference patch.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata; artifact frontmatter: 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

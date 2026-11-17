@@ -28,7 +28,7 @@ def search_merchants(params: dict, cursor: str = None) -> dict:
         request_params['cursor'] = cursor
 
     # 向 /map/search 端点发起请求
-    response = make_request('/map/search', request_params)
+    response = make_request('/agent/map/search', request_params)
     return response
 
 
@@ -109,6 +109,7 @@ def main():
     # 游标查询循环
     total_retrieved = 0
     error_message = None
+    last_request_id = None
 
     # 显示查询目标
     print(f"开始查询：目标获取 {args.query_count} 条数据...")
@@ -121,10 +122,12 @@ def main():
             # 检查API响应
             if response.get('code') != 0:
                 error_message = response.get('msg', '未知错误')
+                last_request_id = response.get('requestId')
                 break
 
             # 提取数据
             data = response.get('data', {})
+            last_request_id = response.get('requestId')
             merchants_list = data.get('list') or []
             current_cursor = data.get('cursor')  # 获取新的游标
 
@@ -175,6 +178,7 @@ def main():
         'status': 'fail' if error_message else 'success',
         'total_hits': total_retrieved,
         'error_msg': error_message,
+        'requestId': last_request_id,
         'file_url': get_task_result_file(task_id)
     }
 

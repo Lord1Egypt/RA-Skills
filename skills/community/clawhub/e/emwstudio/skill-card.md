@@ -1,43 +1,65 @@
-## Description: <br>
-Runs selected RunningHub-hosted ComfyUI workflows for multilingual sauce duck videos, "Do Not Be Afraid" videos, and "Miaojiao 2026" advertising voiceover generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs selected RunningHub-hosted ComfyUI workflows for generating multilingual video, short-form video, and advertising voiceover outputs.
 
-## Publisher: <br>
-[emwstudio](https://clawhub.ai/user/emwstudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emwstudio](https://clawhub.ai/user/emwstudio)
 
-## Use Case: <br>
-External users and creators use this skill to configure RunningHub access, choose one of the bundled ComfyUI workflow presets, provide workflow inputs, and receive task status or generated media results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a RunningHub API key in plaintext and may save or print it through local configuration and script arguments. <br>
-Mitigation: Install only if the author and RunningHub are trusted, avoid exposing command output in logs or screenshots, and rotate or remove the key if it may have been exposed. <br>
-Risk: Workflow inputs and API credentials are sent to RunningHub-hosted endpoints to create and query generation tasks. <br>
-Mitigation: Do not submit sensitive inputs unless RunningHub is approved for the intended data, account, and workflow use. <br>
+## Use Case:
 
+External users and creators use this skill to configure a RunningHub host and API key, select an emwstudio workflow, provide workflow inputs, launch the task, and receive the generated result URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emwstudio/emwstudio) <br>
-- [Publisher profile](https://clawhub.ai/user/emwstudio) <br>
-- [RunningHub China service](https://www.runninghub.cn/?inviteCode=6bfdf1c0) <br>
-- [RunningHub international service](https://www.runninghub.ai/?inviteCode=6bfdf1c0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown messages with JSON command results and generated media URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a RunningHub API key; may run background polling for up to 20 minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: RunningHub API keys may be stored in local agent configuration, sent to the configured host, and exposed in output or process arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, use a dedicated RunningHub key with limited exposure, avoid sharing logs that may contain arguments or tool output, and rotate the key if it is exposed.
+
+Risk: The skill runs shell and network helper scripts as part of normal workflow execution.
+
+Mitigation: Run it in a least-privilege environment, review the scripts before enabling execution tools, and allow network access only to trusted RunningHub hosts.
+
+Risk: A configurable host can redirect API-key-bearing requests if set to an untrusted value.
+
+Mitigation: Validate the configured host before use and restrict it to www.runninghub.cn or www.runninghub.ai.
+
+Risk: The artifact includes referral-oriented registration and credit guidance.
+
+Mitigation: Review public-facing prompts and remove mandatory referral promotion before commercial deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emwstudio/skills/emwstudio)
+- [ClawHub publisher profile](https://clawhub.ai/user/emwstudio)
+- [RunningHub China service](https://www.runninghub.cn/)
+- [RunningHub international service](https://www.runninghub.ai/)
+- [Workflow catalog](artifact/data/workflows.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown messages with JSON tool calls and generated media result URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a RunningHub API key for the configured RunningHub host.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

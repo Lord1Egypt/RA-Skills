@@ -1,41 +1,54 @@
-## Description: <br>
-MiniMax music generation skill that helps agents generate lyrics, create MP3 music with MiniMax, query task status, and save results locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates MiniMax music and lyrics, supports structured lyric sections, and can save generated MP3 audio locally.
 
-## Publisher: <br>
-[silingyuan0](https://clawhub.ai/user/silingyuan0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silingyuan0](https://clawhub.ai/user/silingyuan0)
 
-## Use Case: <br>
-Developers and agents use this skill to generate song lyrics, create MiniMax MP3 music from lyrics and style descriptions, check generation status, and save music outputs to local files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The download helper can fetch arbitrary URLs and write to a caller-selected local path. <br>
-Mitigation: Use the download command only with trusted MiniMax music URLs and save outputs inside a safe working directory with filenames that may be created or overwritten. <br>
-Risk: The skill requires a MiniMax API key for remote API calls. <br>
-Mitigation: Use a dedicated MiniMax API key and avoid exposing it in prompts, logs, command history, or shared configuration. <br>
+## Use Case:
 
+Developers and external users use this skill to generate song lyrics, create music from lyrics and style descriptions, check generation status, and save MP3 output from the MiniMax API.
 
-## Reference(s): <br>
-- [MiniMax Music API Reference](references/api.md) <br>
-- [ClawHub skill release](https://clawhub.ai/silingyuan0/minimax-music-generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance, command-line output, JSON status data, generated lyrics text, and MP3 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and optional MINIMAX_REGION environment configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The downloader can fetch arbitrary URLs and overwrite local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a low-permission workspace, save output under a dedicated folder, and avoid untrusted download URLs until downloads are restricted to MiniMax-generated media and overwrite protection is confirmed.
+
+Risk: The skill requires a MiniMax API key.
+
+Mitigation: Use only a MiniMax API key intended for this skill and avoid exposing broader credentials in the environment.
+
+## Reference(s):
+
+- [MiniMax Music API Reference](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/silingyuan0/skills/minimax-music-generate)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline commands, generated lyric text, JSON task status, and MP3 files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and supports MINIMAX_REGION for China or international API endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

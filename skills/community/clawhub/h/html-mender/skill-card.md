@@ -1,43 +1,58 @@
-## Description: <br>
-HTML Mender helps agents create a browser-editable copy of a local or saved HTML slide deck, then export clean source HTML with text, image, background, and layout edits applied. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTML Mender turns local or saved HTML deck pages into browser-editable copies for visual text, image, and layout fixes, then exports clean HTML patches back to the source baseline.
 
-## Publisher: <br>
-[wuhaoyupku](https://clawhub.ai/user/wuhaoyupku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuhaoyupku](https://clawhub.ai/user/wuhaoyupku)
 
-## Use Case: <br>
-Developers, designers, and content creators use this skill to turn local HTML presentations or generated slide pages into editable browser files for small visual edits, then download a clean HTML result without modifying the original file by default. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated .editable.html file contains the original HTML content plus the editor runtime, creating a local editable copy of the source document. <br>
-Mitigation: Use it only for local files that are acceptable to open in a browser and duplicate locally; avoid authenticated pages or sensitive documents unless that local copy is acceptable. <br>
-Risk: Unsaved browser edits can be lost because local draft saving is disabled. <br>
-Mitigation: Download the edited HTML before refreshing, closing, or navigating away from the editable page. <br>
-Risk: Relative CSS or image assets may not resolve if generated files are moved away from the original document location. <br>
-Mitigation: Keep editable and exported HTML next to the original assets, and review the downloaded HTML before relying on it. <br>
+## Use Case:
 
+Developers, designers, and presentation authors use this skill to make small visual edits to local or saved HTML presentations without regenerating the entire page. It helps an agent prepare an editable HTML copy, guide browser-based edits, and preserve the clean source-oriented export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuhaoyupku/skills/html-mender) <br>
-- [HTML Mender homepage](https://github.com/wuhaoyupku/html-mender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a .editable.html file next to the input unless --out is provided; requires local Node.js.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.15 (source: server release evidence and SKILL.md version notes) <br>
+Risk: Using the skill on live or authenticated webpages is outside its intended local-file scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with local or saved HTML files that the user chooses; ask for a saved local HTML copy for live or authenticated content.
+
+Risk: Generated editable or exported HTML can lose styling or media references if separated from relative assets.
+
+Mitigation: Keep editable and exported HTML next to the original asset folders when the source uses relative CSS, images, or other files.
+
+Risk: Unsaved browser edits can be lost because local draft saving is disabled.
+
+Mitigation: Use the editor download action to save the clean HTML result before refreshing or closing the page.
+
+## Reference(s):
+
+- [HTML Mender ClawHub Listing](https://clawhub.ai/wuhaoyupku/skills/html-mender)
+- [HTML Mender Homepage](https://github.com/wuhaoyupku/html-mender)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated HTML file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; the generated editable HTML should stay next to the original HTML assets.]
+
+## Skill Version(s):
+
+0.1.17 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

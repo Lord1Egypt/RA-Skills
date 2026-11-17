@@ -1,44 +1,59 @@
-## Description: <br>
-Session Compactor helps an agent reduce long conversation history into a structured summary while preserving recent messages, tool-call context, and key facts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Compactor compresses older long-session history into structured summaries while preserving recent messages, tool-call context, and selected facts to reduce token use.
 
-## Publisher: <br>
-[fangbb-coder](https://clawhub.ai/user/fangbb-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangbb-coder](https://clawhub.ai/user/fangbb-coder)
 
-## Use Case: <br>
-Developers and agent operators use this skill to compact long OpenClaw sessions when conversation history approaches token limits. It can be invoked manually or configured for automatic compaction while retaining recent context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included deploy.sh script can publish the local directory to a hardcoded GitHub repository. <br>
-Mitigation: Review the artifact before installation and do not run deploy.sh unless that publishing behavior is intended. <br>
-Risk: Session compaction is irreversible and can discard early-message detail. <br>
-Mitigation: Use conservative token thresholds, keep enough recent messages, and avoid automatic compaction for sessions that require exact historical detail. <br>
-Risk: The current summary generation uses heuristic extraction rather than model-quality summarization. <br>
-Mitigation: Review compacted summaries for important decisions, tool results, and facts before relying on them as the only retained context. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to reduce token pressure in long conversations by replacing older messages with a structured summary while retaining recent context.
 
-## Reference(s): <br>
-- [Session Compactor architecture](references/architecture.md) <br>
-- [ClawHub skill page](https://clawhub.ai/fangbb-coder/session-compactor) <br>
-- [claw-code reference project](https://github.com/instructkr/claw-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON result objects and Markdown session summaries, with setup guidance in Markdown and shell-command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js. Compaction is irreversible and token counts are heuristic estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Session compaction can weaken instruction boundaries if user-derived summaries are promoted to system authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep trusted system instructions separate from generated summaries, and review the compaction behavior before using the skill in security-sensitive sessions.
+
+Risk: The artifact includes an unrelated GitHub publishing script.
+
+Mitigation: Remove or ignore deploy.sh before installation unless repository publishing is explicitly intended.
+
+Risk: Compaction is irreversible and may lose early-session details.
+
+Mitigation: Use conservative token thresholds, keep recent messages intact, and back up important sessions before automatic compaction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangbb-coder/skills/session-compactor)
+- [Session Compactor architecture](references/architecture.md)
+- [claw-code project design reference](https://github.com/instructkr/claw-code)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [JSON result containing compression status, saved-token estimates, compressed messages, and a Markdown session summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; token counts are heuristic estimates and compaction is irreversible.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog; artifact package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

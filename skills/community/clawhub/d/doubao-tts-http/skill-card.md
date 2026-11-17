@@ -1,44 +1,63 @@
-## Description: <br>
-Converts text to speech with Volcengine Doubao TTS, including voice, emotion, speed, volume, and pitch options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text to speech with Volcengine Doubao TTS, including voice, emotion, speed, volume, and pitch options.
 
-## Publisher: <br>
-[shandingdonren](https://clawhub.ai/user/shandingdonren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shandingdonren](https://clawhub.ai/user/shandingdonren)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure Volcengine credentials and convert prompted text into spoken MP3 audio with selectable voices and playback behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for speech generation and service credentials are sent to Volcengine/Bytedance. <br>
-Mitigation: Use the skill only for text appropriate for that service, protect the access token as a secret, restrict config file permissions, and keep credentials out of repositories and backups. <br>
-Risk: Broad read-aloud triggers could cause unintended TTS requests. <br>
-Mitigation: Add confirmation or tighter command scoping before sending confidential or sensitive text to the external TTS API. <br>
-Risk: Cloud TTS usage depends on network access, valid credentials, provider availability, and account billing limits. <br>
-Mitigation: Verify token freshness and service entitlement before use, handle API failures explicitly, and monitor provider usage or quotas. <br>
+## Use Case:
 
+Developers and external users use this skill to configure Volcengine credentials, send text to Doubao TTS, and receive playable or saved speech audio with selectable voices and emotion handling.
 
-## Reference(s): <br>
-- [Volcengine](https://www.volcengine.com/) <br>
-- [Volcengine Text-to-Speech Documentation](https://www.volcengine.com/docs/6561/97465) <br>
-- [ClawHub Release Page](https://clawhub.ai/shandingdonren/doubao-tts-http) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance with JSON configuration and bash snippets; generated audio is MP3.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the Volcengine/Bytedance TTS API over HTTPS and save audio to /tmp or a user-specified path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: User text is sent to an external Volcengine/ByteDance text-to-speech service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with text that is appropriate to send to the external provider.
+
+Risk: The access token configuration file can expose service credentials if it is broadly readable.
+
+Mitigation: Store credentials with restrictive file permissions or in a secret manager.
+
+Risk: The documented global install flow is unpinned.
+
+Mitigation: Install from a trusted, pinned release and review the artifact hashes before deployment.
+
+Risk: Unsafe save-path and PowerShell playback handling can become command execution.
+
+Mitigation: Avoid arbitrary save paths and Windows PowerShell playback until temporary-file and playback handling are fixed.
+
+## Reference(s):
+
+- [Volcengine](https://www.volcengine.com/)
+- [Volcengine Speech Synthesis Documentation](https://www.volcengine.com/docs/6561/97465)
+- [ByteDance TTS API Endpoint](https://openspeech.bytedance.com/api/v1/tts)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, API calls, Files]
+
+**Output Format:** [Markdown guidance with JSON configuration, bash command examples, HTTP requests, and MP3 audio file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local credentials, jq, curl, base64, and an available audio playback command for automatic playback.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

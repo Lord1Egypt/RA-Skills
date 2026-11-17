@@ -1,38 +1,49 @@
-## Description: <br>
-Claude Certified Architect (CCA) learning overview and navigation for users studying CCA, Claude Architect topics, or related Claude certification material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claude Certified Architect (CCA) 学习总览与导航。当用户说"CCA"、"学CCA"、"Claude架构师"、"CCA学习"时使用。
 
-## Publisher: <br>
-[sawzhang](https://clawhub.ai/user/sawzhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sawzhang](https://clawhub.ai/user/sawzhang)
 
-## Use Case: <br>
-External learners and developers use this skill as a Chinese-language study navigator for Claude Certified Architect preparation, including exam overview, recommended learning paths, technical topic quick reference, and links to related domain-study or quiz skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests local file-read and shell-command access even though the study-navigation behavior does not require those permissions. <br>
-Mitigation: Review before installing and prefer a release that removes Read and Bash permissions unless the publisher provides a clear need for them. <br>
+## Use Case:
 
+Developers and learners use this skill as a Chinese-language study guide for Claude Certified Architect preparation, including exam overview, learning path selection, domain navigation, and quick reference topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sawzhang/cca) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown study guidance and navigation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference related CCA domain and quiz skill commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad Read and Bash tool access that is not necessary for a study-guide tutoring workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a version with tool permissions removed or tightly scoped.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sawzhang/skills/cca)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown study guidance and navigation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language CCA preparation guidance; no structured output contract.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

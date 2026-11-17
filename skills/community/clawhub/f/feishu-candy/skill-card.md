@@ -1,40 +1,53 @@
-## Description: <br>
-Converts ICS calendar files to structured JSON for Feishu calendar integration, including merged event exports or per-file JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts local iCalendar (ICS) files into structured JSON for Feishu calendar integration and AI-agent processing.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-Developers and AI agents use this skill to convert locally synced ICS calendar files into JSON for Feishu calendar workflows, event import or export, and downstream calendar processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar exports may contain private event details such as titles, organizers, times, and reminders. <br>
-Mitigation: Run the converter only on intended local calendar folders and review generated JSON before sharing or importing it. <br>
-Risk: Split output writes JSON files beside matching ICS files, which can place generated calendar data in the source directory tree. <br>
-Mitigation: Use a narrow input directory and confirm generated files are stored only where calendar data is expected. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to convert local calendar exports into JSON for Feishu calendar workflows. It supports merging events from multiple ICS files into one JSON file or splitting output by source file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/feishu-candy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [JSON files with Markdown guidance and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can merge all parsed events into one JSON file or split output into one JSON file per ICS file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Generated JSON can expose private calendar details such as event titles, organizers, times, reminders, and identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated JSON private, redact sensitive events before sharing, and point the converter only at intended calendar export directories.
+
+Risk: Calendar synchronization setup can access unintended calendars, credentials, or local files if configured too broadly.
+
+Mitigation: Use trusted package sources, scoped calendar credentials, and reviewed sync paths before running any synchronization workflow.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/goog/skills/feishu-candy)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The converter emits structured event JSON containing event identifiers, summaries, status, organizer, start and end times, and alarms.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

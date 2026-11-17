@@ -1,39 +1,53 @@
-## Description: <br>
-Alias of air-train-ev. Unified travel + mobility skill: (1) flight pricing with Amadeus (flight offers), (2) public transport/train journey planning with Navitia (journeys, departures), and (3) find nearby EV charge points using Open Charge Map. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides flight prices, public transport and train journeys, and nearby EV charge points using Amadeus, Navitia, and Open Charge Map APIs.
 
-## Publisher: <br>
-[aaureli](https://clawhub.ai/user/aaureli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aaureli](https://clawhub.ai/user/aaureli)
 
-## Use Case: <br>
-External users and agents use this skill to look up flight prices, public transport or train journeys, and nearby EV charge points through the aliased air-train-ev tooling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The alias runs scripts from the canonical air-train-ev skill, so the effective API behavior is controlled by that local implementation. <br>
-Mitigation: Review and trust the canonical air-train-ev skill before installing or executing this alias. <br>
-Risk: Live travel and EV charging lookups require third-party API credentials. <br>
-Mitigation: Use scoped, revocable API keys for Amadeus, Navitia, and Open Charge Map and rotate them if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaureli/air-train-ev-alias) <br>
+## Use Case:
 
+External users and agents use this skill to request flight pricing, train or public transport itineraries, and nearby EV charging station information through the referenced travel APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text responses with script-backed lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured Amadeus, Navitia, and Open Charge Map credentials for live lookup behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Alias wrapper scripts can execute another local Python file from the current working directory.
+
+Mitigation: Install only when the canonical air-train-ev skill at the expected path is intentional and trusted.
+
+Risk: API credentials may be exposed to code reached through the canonical skill path.
+
+Mitigation: Review the canonical skill before use and prefer wrappers that resolve paths relative to a trusted install location before using credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaureli/skills/air-train-ev-alias)
+- [Publisher profile](https://clawhub.ai/user/aaureli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or text guidance with script-backed travel and charging results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Amadeus, Navitia, and Open Charge Map credentials; alias wrappers route to the canonical air-train-ev skill.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Search PubMed for article abstracts and metadata, with automatic PMC open-access full-text retrieval when available and no API key requirement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search PubMed for abstracts, with automatic full-text retrieval for PMC open-access articles, covering both open-access and non-open-access biomedical literature without requiring an API key.
 
-## Publisher: <br>
-[steve33-doc](https://clawhub.ai/user/steve33-doc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steve33-doc](https://clawhub.ai/user/steve33-doc)
 
-## Use Case: <br>
-Researchers, clinicians, and developers use this skill to search biomedical literature, retrieve PubMed metadata and abstracts, and fetch PMC open-access full text when available for literature review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and PMIDs are sent to public NCBI/PMC services. <br>
-Mitigation: Avoid sensitive or confidential queries and follow organizational data-handling rules before using the skill. <br>
-Risk: Full text is available only for PMC open-access articles; other records provide abstracts and metadata only. <br>
-Mitigation: Verify whether publisher or institutional access is needed for non-open-access articles. <br>
+## Use Case:
 
+Developers, researchers, and agents use this skill to search PubMed, retrieve article metadata and abstracts, and fetch available PMC open-access full text for literature review workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/steve33-doc/skills/pubmed-search) <br>
-- [Server-resolved source repository](https://github.com/Steve33-doc/pubmed-search) <br>
-- [NCBI E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK25501/) <br>
-- [NCBI E-utilities API](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
-- [NCBI PMID-PMCID Converter](https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/) <br>
-- [PMC OAI-PMH GetRecord API](https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/GetRecord) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, terminal text output, and JavaScript API objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and network access to public NCBI/PMC services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Search terms, PMIDs, and related parameters are sent to external NCBI and PMC services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential patient information, proprietary drug targets, or sensitive unpublished research topics unless that disclosure is acceptable.
+
+Risk: Non-open-access articles return abstracts and metadata only, which can make literature review output incomplete if treated as full text.
+
+Mitigation: Check the open-access/full-text status in the skill output and use publisher or institutional access when full text is unavailable.
+
+Risk: Large query batches can run into public NCBI service rate limits or recommended usage windows.
+
+Mitigation: Keep batching conservative and rely on the skill's built-in delay when querying public NCBI endpoints.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/Steve33-doc/pubmed-search)
+- [ClawHub skill page](https://clawhub.ai/steve33-doc/skills/pubmed-search)
+- [NCBI E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK25501/)
+- [NCBI E-utilities API base](https://eutils.ncbi.nlm.nih.gov/entrez/eutils)
+- [NCBI PMC ID Converter](https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/)
+- [PMC OAI-PMH GetRecord API](https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/GetRecord)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown and terminal text containing PubMed query results, article metadata, abstracts, open-access full-text availability, and JavaScript API usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include PMIDs, DOI values, author lists, journal metadata, abstracts, and PMC open-access full-text status.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

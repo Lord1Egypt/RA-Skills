@@ -1,45 +1,65 @@
-## Description: <br>
-帮助地球人做人生选择的 AI 判断技能 - 你只管 do it，判断交给滚滚 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助地球人做人生选择的 AI 判断技能 - 你只管 do it，判断交给滚滚
 
-## Publisher: <br>
-[alsoforever](https://clawhub.ai/user/alsoforever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alsoforever](https://clawhub.ai/user/alsoforever)
 
-## Use Case: <br>
-External users use this skill to structure difficult life decisions such as career moves, relationships, investments, and housing choices. The agent returns a recommendation with reasoning, an execution plan, risk notes, and supportive follow-up language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter sensitive financial, relationship, employment, or family details while seeking a decision recommendation. <br>
-Mitigation: Use anonymized or minimal details, review where the web/API version sends and stores data, and avoid submitting highly sensitive personal information. <br>
-Risk: The web demo stores decision history in browser local storage and the API logs submitted problem titles. <br>
-Mitigation: Clear browser history storage after use, avoid real names or identifying facts, and review local server logs before sharing the environment. <br>
-Risk: Recommendations can appear decisive even though the bundled datasets and heuristics are not verified live professional advice. <br>
-Mitigation: Treat results as informal brainstorming, validate important facts independently, and consult qualified professionals for legal, medical, financial, or high-impact personal decisions. <br>
+## Use Case:
 
+External users use this skill to frame personal decisions such as career, relationship, investment, and life choices, compare available options, and receive a recommended choice with reasons, action steps, risks, and follow-up prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alsoforever/do-it-gungun) <br>
-- [Gungun Family 2.0 multi-agent workflow](GUNGUN-FAMILY-2.0.md) <br>
-- [Usage Guide](USAGE-GUIDE.md) <br>
-- [Database schema](references/database-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, analysis, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with optional JSON or HTML from the local API/web demo] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informal decision-support recommendations and may include action plans, risk warnings, and follow-up prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill asks users to provide sensitive personal, financial, employment, or relationship details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid entering sensitive details unless data handling, storage, and retention are understood.
+
+Risk: The security summary reports unsafe network exposure and weak privacy controls.
+
+Mitigation: Bind any API service to localhost, add authentication before wider exposure, and document privacy and retention controls.
+
+Risk: Bundled case records may contain personal or sensitive decision examples.
+
+Mitigation: Remove, anonymize, or replace bundled case records before distribution or production use.
+
+Risk: Plaintext or mutable external resources can change or expose data unexpectedly.
+
+Mitigation: Replace mutable external resources with reviewed, pinned, or locally controlled alternatives where practical.
+
+## Reference(s):
+
+- [Skill README](README.md)
+- [Usage Guide](USAGE-GUIDE.md)
+- [Multi-agent Decision Workflow](GUNGUN-FAMILY-2.0.md)
+- [Decision Database Schema](references/database-schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/alsoforever/skills/do-it-gungun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown decision recommendation with optional JSON API response examples and local-use shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a recommendation, reasoning, action plan, risk warnings, emotional support text, and feedback prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

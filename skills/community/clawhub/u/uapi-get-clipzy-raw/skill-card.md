@@ -1,44 +1,61 @@
-## Description: <br>
-Helps an agent use UAPI's GET /api/raw/{id} endpoint to retrieve decrypted Clipzy clipboard text when an ID and decryption key are provided. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent call UAPI's Clipzy GET /api/raw/{id} endpoint to retrieve plaintext from a Clipzy item when the required ID and decryption key are available.
 
-## Publisher: <br>
-[shuakami](https://clawhub.ai/user/shuakami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuakami](https://clawhub.ai/user/shuakami)
 
-## Use Case: <br>
-Developers and agents use this skill when a user explicitly needs the final plaintext from a Clipzy clipboard item through the UAPI raw-text endpoint. It guides parameter checks, key handling, endpoint selection, and response-code interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Retrieval may send a Clipzy decryption key to the UAPI service and return plaintext content. <br>
-Mitigation: Confirm each retrieval explicitly, treat Clipzy IDs, keys, and plaintext as sensitive, and avoid secrets or private content unless the user trusts the service. <br>
-Risk: The skill is under-scoped for a sensitive decryption flow and may not warn enough about key handling. <br>
-Mitigation: Before calling the endpoint, restate that the key is required for server-assisted decryption and proceed only after the user provides the intended ID and key. <br>
+## Use Case:
 
+Developers and external users use this skill when they need an agent to prepare or perform the Clipzy raw-text retrieval step through UAPI. It is focused on confirming required parameters, calling the single endpoint, and interpreting documented response codes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuakami/uapi-get-clipzy-raw) <br>
-- [Operation reference: get-clipzy-raw](references/operations/get-clipzy-raw.md) <br>
-- [Quick start](references/quick-start.md) <br>
-- [Clipzy 在线剪贴板 category reference](references/resources/Clipzy-在线剪贴板.md) <br>
-- [UAPI service](https://uapis.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Shell commands] <br>
-**Output Format:** [Markdown with endpoint details, parameters, and response-code guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Clipzy item ID and Base64-encoded AES decryption key before retrieving plaintext.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can send a Clipzy decryption key to the third-party UAPI service for server-side decryption.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that data flow is intended, and avoid using it for secrets unless the user accepts sending the key to uapis.cn.
+
+Risk: Broad automatic triggers such as raw can cause the skill to be selected ambiguously.
+
+Mitigation: Invoke it explicitly with the UAPI Clipzy raw-text endpoint or full Clipzy context before providing retrieval credentials.
+
+Risk: Successful calls may return plaintext clipboard contents.
+
+Mitigation: Treat returned plaintext as sensitive user data and avoid exposing it beyond the active task.
+
+## Reference(s):
+
+- [Server-resolved ClawHub skill page](https://clawhub.ai/shuakami/skills/uapi-get-clipzy-raw)
+- [Clipzy raw-text operation reference](references/operations/get-clipzy-raw.md)
+- [Quick start](references/quick-start.md)
+- [Clipzy online clipboard resource reference](references/resources/Clipzy-在线剪贴板.md)
+- [UAPI service](https://uapis.cn)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, shell commands, configuration]
+
+**Output Format:** [Markdown with endpoint details and optional command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include plaintext returned by the third-party Clipzy raw-text endpoint when the user provides valid retrieval credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

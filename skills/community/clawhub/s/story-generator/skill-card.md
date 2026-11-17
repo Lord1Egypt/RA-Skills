@@ -1,40 +1,57 @@
-## Description: <br>
-This skill helps an agent generate multi-episode story scripts with graph-backed continuity, AI quality review, and human confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Story generation pipeline skill that supports multi-episode continuous generation, graph management, AI quality checks, human confirmation, and relationship tracking for characters, scenes, and hooks.
 
-## Publisher: <br>
-[hexidyg](https://clawhub.ai/user/hexidyg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hexidyg](https://clawhub.ai/user/hexidyg)
 
-## Use Case: <br>
-External creators and developers use this skill to run a structured episode-generation workflow for short-form story or video scripts, including continuity prompts, review prompts, state tracking, and approval checkpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Graph storage can read, write, or delete local JSON files too broadly if a crafted pipeline ID is supplied. <br>
-Mitigation: Review before installing, use only non-sensitive story content, avoid path-like pipeline IDs, and prefer a release that validates pipeline IDs and confines graph files to the skill data directory. <br>
-Risk: Deletion and state-changing operations may affect stored story graph data without a clear recovery path. <br>
-Mitigation: Back up generated story state before use and require explicit confirmation before deleting or ending pipelines. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hexidyg/story-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/hexidyg) <br>
+## Use Case:
 
+External creators and developers use this skill to run a multi-episode story pipeline that drafts episode content, reviews quality, tracks narrative state, and waits for human approval before continuing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-compatible workflow responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces generation prompts, review prompts, pipeline status objects, and local story graph/state files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crafted pipeline IDs can make the skill read, write, or delete JSON files outside its intended storage area.
+
+Mitigation: Use only in a constrained workspace until pipeline_id path validation is fixed and destructive graph deletion is removed or explicitly scoped.
+
+Risk: Story inputs and generated episode content are persisted locally in pipeline and graph state files.
+
+Mitigation: Avoid sensitive story material unless local retention is acceptable, and define clear retention and cleanup controls before deployment.
+
+Risk: AI review results drive retry and approval flow.
+
+Mitigation: Require stricter review-result validation and keep human confirmation in the loop before storing graph state or continuing generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hexidyg/skills/story-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/hexidyg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-like structured text for episode prompts, review prompts, status results, and pipeline state.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are designed for iterative episode generation with AI review and human confirmation checkpoints.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

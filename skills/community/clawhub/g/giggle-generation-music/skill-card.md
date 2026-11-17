@@ -1,44 +1,58 @@
-## Description: <br>
-Creates AI-generated music from text descriptions, custom lyrics, or instrumental background-music requests using Giggle.pro. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI music through giggle.pro from text descriptions, custom lyrics, or instrumental requests.
 
-## Publisher: <br>
-[patches429](https://clawhub.ai/user/patches429) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patches429](https://clawhub.ai/user/patches429)
 
-## Use Case: <br>
-External users and developers use this skill to submit music-generation requests to Giggle.pro from descriptions, lyrics, or instrumental prompts, then query for generated audio links when the asynchronous task completes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, lyrics, song titles, and style notes are sent to Giggle.pro. <br>
-Mitigation: Avoid submitting confidential material or copyrighted material unless you have permission to use it with the service. <br>
-Risk: The skill uses GIGGLE_API_KEY and can return signed audio URLs. <br>
-Mitigation: Keep the API key in the system environment, do not expose it in command parameters, and keep generated signed audio links private. <br>
-Risk: One localized artifact file names a different repository/source than the current server-resolved release evidence. <br>
-Mitigation: Verify the publisher profile and source before installation, and do not treat artifact GitHub links as server-resolved provenance. <br>
+## Use Case:
 
+External users and agents use this skill to submit music descriptions, lyrics, or instrumental requests to giggle.pro and later check generation status. It helps create AI-generated music and return generated audio links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/patches429/giggle-generation-music) <br>
-- [Publisher profile](https://clawhub.ai/user/patches429) <br>
-- [Giggle.pro](https://giggle.pro/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with shell commands and JSON task-status snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GIGGLE_API_KEY and returns task identifiers or signed audio links from Giggle.pro.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.10 (source: server release metadata and skill frontmatter) <br>
+Risk: Prompts, lyrics, titles, and style instructions are sent to giggle.pro.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content appropriate for that third-party service and avoid submitting confidential material.
+
+Risk: Generated audio may be returned through signed URLs that can grant access to anyone with the full link.
+
+Mitigation: Treat generated audio links as private download links and share them only with intended recipients.
+
+Risk: Runtime use depends on GIGGLE_API_KEY and the requests Python package.
+
+Mitigation: Run the skill in a restricted environment that exposes only the required API key, and pin dependencies before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patches429/skills/giggle-generation-music)
+- [Giggle.pro](https://giggle.pro/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Markdown, Text, Guidance]
+
+**Output Format:** [Markdown and JSON status messages with generated audio links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GIGGLE_API_KEY and may return signed audio URLs for generated music.]
+
+## Skill Version(s):
+
+0.0.10 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

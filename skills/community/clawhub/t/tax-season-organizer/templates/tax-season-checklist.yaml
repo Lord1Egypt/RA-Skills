@@ -1,0 +1,53 @@
+# Tax Season Organizer - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+tax_year: 0
+entity_type: ""
+prepared_by: ""
+prepared_on: ""
+document_folders:
+  - name: income records
+    status: missing
+    owner: ""
+    due_date: ""
+  - name: expense records
+    status: missing
+    owner: ""
+    due_date: ""
+  - name: bank and card statements
+    status: missing
+    owner: ""
+    due_date: ""
+  - name: payroll records and 941s
+    status: missing
+    owner: ""
+    due_date: ""
+  - name: prior year return
+    status: missing
+    owner: ""
+    due_date: ""
+vendors:
+  - name: ""
+    total_paid_usd: 0
+    w9_on_file: false
+    tin_last_four: ""
+    form_1099_required: false
+    copy_mailed_date: ""
+    notes: ""
+tasks:
+  - date: ""
+    task: request missing W-9 forms
+    owner: ""
+    status: open
+  - date: ""
+    task: mail 1099-NEC recipient copies
+    owner: ""
+    status: open
+  - date: ""
+    task: deliver records to the preparer
+    owner: ""
+    status: open
+mask_identifiers: true
+preparer:
+  name: ""
+  firm: ""
+  due_date: ""

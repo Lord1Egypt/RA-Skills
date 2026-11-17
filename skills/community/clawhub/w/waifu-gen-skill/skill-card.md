@@ -1,38 +1,55 @@
-## Description: <br>
-Generate waifu generator AI images from text descriptions via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate waifu generator AI images from text descriptions via the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-Developers and external users can use this skill to generate anime-style character images from text prompts and optionally apply style inheritance from a reference image UUID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference UUIDs, and the Neta API token are sent to a third-party image generation service. <br>
-Mitigation: Avoid sensitive prompts, review third-party service terms before use, and prefer passing the token through an environment variable or secret store instead of shell history. <br>
+## Use Case:
 
+External users and developers use this skill to generate anime-style image URLs from text prompts through the Neta AI API, with optional size selection and reference-image style inheritance.
 
-## Reference(s): <br>
-- [Neta API token and trial page](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Direct image URL with CLI status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token, a text prompt, and optional size or reference UUID arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Prompts, optional reference UUIDs, and the Neta API token are sent to api.talesofai.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing that data with Neta is acceptable, and avoid sending sensitive prompt content or private reference identifiers.
+
+Risk: Passing real API tokens on the command line can expose them through shell history or logs.
+
+Mitigation: Use a disposable or least-privileged Neta token where possible, avoid pasting tokens into shared logs, and rotate the token if it has already been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/waifu-gen-skill)
+- [Neta API token portal](https://www.neta.art/open/)
+- [Neta image creation endpoint](https://api.talesofai.com/v3/make_image)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text image URL with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; supports portrait, landscape, square, and tall image sizes plus an optional reference image UUID.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,50 @@
+name: 创意策源引擎
+version: 2.0.1
+description: |
+  多Agent并行辩论式创意决策引擎。
+  输入模糊创意→三独立视角(建构/解构/数据锚定)并行分析
+  →Critic+Defender交叉验证→20分制量化评分
+  →可执行策划案+Skill双格式输出。
+  5阶段流水线·3Agent并行·内置质量闭环·跨项目知识积累。
+category: content-creation
+author:
+  name: vane
+  email: vane1981@users.noreply.github.com
+platforms:
+  - WorkBuddy
+  - CodeBuddy
+triggers:
+  - 策划
+  - 创意
+  - 方案
+  - 头脑风暴
+  - 商业模式
+  - IP孵化
+  - 可行性分析
+  - 创业验证
+  - 帮我想想
+  - 值不值得做
+  - creative-origin-engine
+keywords:
+  - 策划
+  - 创意
+  - 创业
+  - 商业模式
+  - IP孵化
+  - 头脑风暴
+  - AI Agent
+  - 多Agent
+  - 辩论
+  - 决策引擎
+homepage: https://github.com/Vane1981-2011/creative-origin-engine
+repository: https://github.com/Vane1981-2011/creative-origin-engine
+license: MIT
+icon: 🧠
+tags:
+  - 内容创作
+  - AI Agent
+  - 创意决策
+  - 多Agent
+  - content-creation
+requires_api_key: false
+api_key_description: 不需要额外API密钥，使用WorkBuddy内置模型

@@ -1,44 +1,61 @@
-## Description: <br>
-Create and send professional invoices with automatic numbering, tax calculation, templates, and payment tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and send professional invoices with automatic numbering, tax calculation, templates, and payment tracking.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Freelancers and small businesses use this skill to draft, review, finalize, optionally send, and track outgoing invoices while keeping client data, numbering, tax calculation, templates, and payment status organized. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive billing information, including client billing data, tax IDs, invoice PDFs, and payment details. <br>
-Mitigation: Keep billing records protected, limit access to ~/billing, and delete old records when they are no longer needed. <br>
-Risk: Incorrect invoice numbers, amounts, tax treatment, client data, or email recipients could create business or compliance problems. <br>
-Mitigation: Review invoice numbers, totals, tax handling, stored client data, and recipients before finalizing or sending invoices. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/invoice) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [Invoice creation phases](artifact/phases.md) <br>
-- [Client database guidance](artifact/clients.md) <br>
-- [Invoice templates](artifact/templates.md) <br>
-- [Invoice types](artifact/types.md) <br>
+## Use Case:
 
+Freelancers and small business operators use this skill to prepare client invoices, calculate taxes, generate invoice PDFs, optionally send them, and track payment status.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with invoice drafts, client records, configuration examples, template code, and optional shell commands for PDF generation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local billing files, invoice PDFs, client records, numbering state, and payment status notes under ~/billing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive billing records including tax IDs, addresses, email addresses, invoice PDFs, and payment details.
+
+Mitigation: Keep billing data in the intended local billing directory and install only when comfortable storing those records there.
+
+Risk: Incorrect client details, invoice numbers, totals, or recipients can create billing, tax, or delivery errors.
+
+Mitigation: Review client records, invoice numbers, totals, taxes, due dates, and email recipients before finalizing or sending invoices.
+
+Risk: Finalized invoice numbers may be difficult to correct by simple deletion.
+
+Mitigation: Use credit notes or correction workflows when an already finalized invoice needs correction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/invoice)
+- [Invoice Creation Phases](artifact/phases.md)
+- [Client Database](artifact/clients.md)
+- [Invoice Legal Requirements](artifact/legal.md)
+- [Invoice Templates](artifact/templates.md)
+- [Invoice Types](artifact/types.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown, JSON records, invoice PDFs, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft invoice files, finalized PDF invoices, client records, series counters, configuration guidance, and optional email-ready invoice content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

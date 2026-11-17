@@ -1,44 +1,58 @@
-## Description: <br>
-SEO automated content pipeline skill. Automates the entire workflow from competitor research and keyword mining to article generation and publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEO automated content pipeline skill. Automates the entire workflow from competitor research and keyword mining to article generation and publishing.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-SEO content strategists use this skill to run competitor analysis, keyword research, topic selection, content drafting, template selection, and CMS publishing for product-focused content workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated content may be published to a CMS before it is reviewed for accuracy, brand fit, legal suitability, or SEO quality. <br>
-Mitigation: Use draft-only publishing by default and require human review before any page goes live. <br>
-Risk: Broad CMS credentials could allow unintended edits, publication, or deletion across a website. <br>
-Mitigation: Provide scoped CMS credentials with the minimum permissions needed for drafts and maintain a clear rollback or deletion process. <br>
-Risk: High-volume or low-quality publishing could be perceived as spam or create misleading pages. <br>
-Mitigation: Set article count and frequency limits, avoid keyword stuffing, and review factual claims and source links before publication. <br>
+## Use Case:
 
+External SEO content strategists use this skill to move from product and audience inputs through competitor analysis, keyword research, topic planning, article drafting, and CMS publishing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/seo-content-pipeline) <br>
-- [SEO Content Template Reference](references/templates.md) <br>
-- [SEO Data Models and Output Formats](references/schemas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown prose with JSON topic lists and content templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated article drafts, topic plans, SEO structures, internal and external linking guidance, and CMS publishing steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated SEO content may contain factual errors, misleading claims, or off-brand language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review article drafts for accuracy, brand fit, and source quality before publishing.
+
+Risk: The workflow can auto-publish to a CMS without a clear approval gate.
+
+Mitigation: Run in draft-only mode or require explicit approval before CMS writes, and use scoped CMS credentials.
+
+Risk: High publishing frequency or keyword stuffing may create spam risk.
+
+Mitigation: Control daily publishing volume and keep keyword usage natural according to the artifact's SEO guidance.
+
+## Reference(s):
+
+- [SEO Data Models and Output Formats](references/schemas.md)
+- [SEO Content Template Reference](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [JSON topic lists and Markdown article drafts, with CMS publishing guidance or actions when configured]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires product and target customer inputs; generated content should be reviewed before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

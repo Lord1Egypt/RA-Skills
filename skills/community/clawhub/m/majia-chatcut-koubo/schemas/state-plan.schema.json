@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/state-plan.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "projectId",
+    "timelineId",
+    "timelineRevision",
+    "compositionStates",
+    "privacyOverlays",
+    "approval"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "timelineId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "timelineRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/revision"
+    },
+    "compositionStates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "stateInstanceId",
+          "stateType",
+          "range",
+          "layoutId",
+          "reason"
+        ],
+        "properties": {
+          "stateInstanceId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "stateType": {
+            "enum": [
+              "A",
+              "B-R",
+              "B-L",
+              "C1",
+              "C2",
+              "S"
+            ]
+          },
+          "range": {
+            "$ref": "creator-os-common.schema.json#/$defs/timeRange"
+          },
+          "layoutId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "privacyOverlays": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "privacyInstanceId",
+          "range",
+          "sourceAssetId",
+          "sourceRange",
+          "method",
+          "fallback"
+        ],
+        "properties": {
+          "privacyInstanceId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "range": {
+            "$ref": "creator-os-common.schema.json#/$defs/timeRange"
+          },
+          "sourceAssetId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "sourceRange": {
+            "$ref": "creator-os-common.schema.json#/$defs/timeRange"
+          },
+          "method": {
+            "enum": [
+              "safe-source-substitution",
+              "source-reframe",
+              "opaque-redaction"
+            ]
+          },
+          "fallback": {
+            "const": "block"
+          }
+        }
+      }
+    },
+    "approval": {
+      "$ref": "creator-os-common.schema.json#/$defs/approval"
+    }
+  }
+}

@@ -24,6 +24,11 @@ Stable (reviewed configs in `assets/workflows/*.config.json`):
 - `ltx_23_i2v_distilled` (image-to-video)
 - `ace_step_15_music` (music/audio)
 - `qwen_image_2512_4step` (text-to-image)
+- `anima_turbo` (anime/illustration text-to-image)
+- `krea2_turbo` (artistic/painterly realism, concept art, product visualization)
+- `sam3_mat_image` (text-driven matting)
+- `liveportrait` (face/expression transfer)
+- `qwen3_tts_clone` (voice cloning)
 
 Source of truth: the runtime registry is derived from `assets/workflows/*.config.json` (and the corresponding `assets/workflows/*.json` workflow files). If this list drifts, trust the configs and `python -m comfyui generate --help` output.
 
@@ -92,6 +97,112 @@ In tool-install mode, workflows/references are read from the installed package, 
 - Linux: `$XDG_DATA_HOME/comfyui-skill` or `~/.local/share/comfyui-skill`
 
 Short alias also available: `comfyui-skill`
+
+## End-to-End Example (User input → decision → workflow → result)
+
+This project is designed for agent-first workflow selection:
+
+- The Agent makes the primary workflow decision using [SKILL.md](SKILL.md), workflow capability metadata, and [references/workflows.md](references/workflows.md).
+- The CLI only provides a low-risk fallback when no explicit `--workflow` is chosen.
+
+### 1) User input (natural language)
+
+> "帮我做一张海报，标题写「夏日促销」，风格现代简洁，主色调蓝白。"
+
+### 2) Decision (what gets chosen and why)
+
+- Task type: text-to-image
+- Strong cue: poster / embedded text requirement ("海报", "标题写…")
+- Prefer a stronger match over the general fallback T2I workflow
+- Selected workflow: `qwen_image_2512_4step`
+- Size choice: `704x1280` (HD portrait preset for posters)
+
+### 3) CLI command (agent explicitly chooses the workflow)
+
+In this example, the agent explicitly chooses `qwen_image_2512_4step`; the CLI fallback selector is only a convenience when no explicit workflow is passed.
+
+```bash
+comfyui-skill generate \
+  --workflow qwen_image_2512_4step \
+  --width 704 --height 1280 \
+  -p "Modern minimalist marketing poster, blue and white palette, bold Chinese title text '夏日促销', clean layout, high contrast, product-focused composition"
+```
+
+### 4) Example JSON result (stdout)
+
+```json
+{
+  "success": true,
+  "workflow_id": "qwen_image_2512_4step",
+  "status": "completed",
+  "outputs": [
+    {
+      "path": "C:\\\\Users\\\\<you>\\\\AppData\\\\Roaming\\\\comfyui-skill\\\\results\\\\20260504\\\\120301_<job_id>\\\\output.png",
+      "filename": "output.png",
+      "size_bytes": 1234567
+    }
+  ],
+  "error": null,
+  "job_id": "<prompt_id>",
+  "metadata": {
+    "seed": 123456789,
+    "prompt_id": "<prompt_id>",
+    "prompt": "Modern minimalist marketing poster ...",
+    "width": 704,
+    "height": 1280
+  }
+}
+```
+
+## Adding Your Own Workflow (User Extension Example)
+
+If you want to add your own ComfyUI workflow and make it available to the skill, treat it as “connecting a proven ComfyUI graph as a reviewed capability”.
+
+### 1) Export a working workflow from ComfyUI
+
+First make sure the workflow runs inside ComfyUI, then export it as API-format JSON.
+
+### 2) Import into your per-user workflow registry
+
+Run:
+
+```powershell
+python -m comfyui import-workflow .\my_workflow.json --id my_custom_workflow
+```
+
+This writes files under your per-user skill data directory (not the packaged built-in workflow registry), for example:
+
+```text
+<user_data_root>/custom_workflows/my_custom_workflow/
+  workflow.json
+  workflow.source.json
+  workflow.config.template.json
+```
+
+### 3) Review and activate the config
+
+- Open `workflow.config.template.json`
+- Confirm the minimal required fields:
+  - `description`, `capability`, `output_kind`, and the exposed inputs in `node_mapping`
+- Optional: improve agent choice by adding selection metadata:
+  - `intent_categories`, `input_modes`, `priority`, `keywords_any`, `selection_guidance`
+- Rename the reviewed file to:
+
+```text
+workflow.config.json
+```
+
+Only `workflow.config.json` is treated as an activated registered workflow. The template is not loaded.
+
+User-added workflows are stored in the per-user skill data directory, not in the packaged built-in workflow registry, so upgrading the skill will not overwrite them.
+
+### 4) Run using your custom workflow
+
+```powershell
+comfyui-skill generate --workflow my_custom_workflow -p "test prompt"
+```
+
+If you omit `--workflow`, the CLI may apply low-risk fallback selection (for example, poster-like keywords) but it will not attempt to fully “understand” arbitrary user workflows. Agent-first selection remains the intended model.
 
 ## Upgrade
 

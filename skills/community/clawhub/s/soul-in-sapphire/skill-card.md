@@ -1,44 +1,54 @@
-## Description: <br>
-Long-term memory, state tracking, continuity review, and identity-change support for OpenClaw, including durable memory writes and search in Notion, emotion and state ticks, journal writes, continuity checks, identity diffs, inner-conflict tracking, and preserving a stable sense of self across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains an OpenClaw agent’s emotion-linked memories, self-state, journals, and identity continuity using Notion storage and local workspace files.
 
-## Publisher: <br>
-[nextaltair](https://clawhub.ai/user/nextaltair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nextaltair](https://clawhub.ai/user/nextaltair)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to store and recall durable Notion-backed memory, update emotion and state snapshots, write journal entries, and inspect continuity or identity changes across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive emotional, conversation, and user-profile data to Notion. <br>
-Mitigation: Use a least-privilege Notion integration, review what is written, and avoid storing secrets or intimate details. <br>
-Risk: Cron or heartbeat automation can create unattended journal or state records. <br>
-Mitigation: Enable automation only when unattended journaling is desired and periodically review generated records. <br>
-Risk: An overridden NOTIONCTL_PATH can direct execution to an unexpected local script. <br>
-Mitigation: Keep NOTIONCTL_PATH unset unless the target script is trusted. <br>
+## Use Case:
 
+OpenClaw users and developers use it to preserve emotion-linked experiences, track self-state, write subjective journals, and maintain identity continuity across sessions.
 
-## Reference(s): <br>
-- [Soul In Sapphire ClawHub release](https://clawhub.ai/nextaltair/soul-in-sapphire) <br>
-- [Publisher profile: nextaltair](https://clawhub.ai/user/nextaltair) <br>
-- [Notion integrations setup](https://www.notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or search Notion-backed memory, state, and journal records when configured with the required Notion credentials and database identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release evidence) <br>
+Risk: ClawScan marks the skill suspicious because it can persistently edit core context based on changed self-understanding; many referenced scripts were only partially analyzed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review how core-context edits are authorized and inspect the partially analyzed scripts before installation or use.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/nextaltair/skills/soul-in-sapphire)
+- [Emotion scale and migration](references/emotion-scale.md)
+- [Experience recall](references/experience-recall.md)
+- [Heartbeat sensing](references/heartbeat-sensing.md)
+- [Memory transition](references/memory-transition.md)
+- [Vent journal](references/vent-journal.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Notion records, Workspace files]
+
+**Output Format:** [Markdown guidance, JSON records and receipts, and local state and journal files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update five Notion databases and write local memory, state, journal, or explicitly authorized core-context files.]
+
+## Skill Version(s):
+
+2.1.7 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

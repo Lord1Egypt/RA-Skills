@@ -1,0 +1,4 @@
+pillow>=10
+openpyxl>=3.1
+# необязательно: cryptography (зашифрованные PDF), fonttools (PDF без ToUnicode),
+#   PyMuPDF / pdftoppm / Ghostscript (картинки страниц PDF), LibreOffice (точная проверка страниц, рендер слайдов)

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "prompt": "把 /absolute/path/demo.mp4 转写成带时间戳的 TXT",
+    "expected": "按单视频流程调用脚本，默认中文 zh，输出同目录 demo_整理版.txt，并汇报输出路径、有效段落数、视频时长、处理耗时和 SUMMARY_JSON 摘要。"
+  },
+  {
+    "id": 2,
+    "prompt": "把 /absolute/path/a.mp4 和 /absolute/path/b.mp4 都转写成 TXT，处理完告诉我总时长",
+    "expected": "识别为多视频任务，先做批量预检查，再按并发上限启动多个子 agent 或降级串行；每个视频生成独立 TXT；最终汇报成功/失败、总视频时长和实际处理总耗时。"
+  },
+  {
+    "id": 3,
+    "prompt": "这 5 个视频都转文字，尽量快一点",
+    "expected": "分批并行处理，默认最多同时处理 2 个视频，资源充足且视频较短时最多 3 个；不要一次性无限制启动 agent；最终聚合所有结果和耗时。"
+  },
+  {
+    "id": 4,
+    "prompt": "转写 /absolute/path/demo.mp4，已经有结果就不要覆盖",
+    "expected": "如果输出已存在则停止该视频处理并提示原因，不传 --force；不删除、不移动、不修改源视频。"
+  },
+  {
+    "id": 5,
+    "prompt": "转写 /absolute/path/demo.mp4，允许覆盖已有 TXT",
+    "expected": "在用户明确允许覆盖时传 --force，仍只生成最终 TXT，不保留 WAV、JSON、SRT、VTT、TSV 或原始 ASR TXT。"
+  },
+  {
+    "id": 6,
+    "prompt": "把这几个视频转成英文转写，并告诉我总共处理了多久",
+    "expected": "使用用户指定语言参数；总时长默认同时说明总视频时长和实际处理总耗时，并说明并行时实际处理总耗时不是各单视频耗时的简单相加。"
+  }
+]

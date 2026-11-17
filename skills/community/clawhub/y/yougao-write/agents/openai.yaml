@@ -1,0 +1,4 @@
+interface:
+  display_name: "优稿文章生成"
+  short_description: "文章生成，交付真实结果、可用文件和网页接续入口，复用优稿账户点数。"
+  default_prompt: "使用 $yougao-write 完成我的任务，先检查费用，再交付结果文件和继续编辑链接。"

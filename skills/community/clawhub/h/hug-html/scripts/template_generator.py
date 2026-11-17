@@ -5,6 +5,7 @@
 #   python template_generator.py --list-types
 #   python template_generator.py --spec <grid_spec.json> -o <输出HTML>
 
+from _paths import SKILL_DIR
 import argparse
 import json
 import sys
@@ -23,7 +24,6 @@ from grid_builder import (
 # R-12 审计锚点：数据目录字面量声明
 DEFAULT_DATA_DIR_RAW = "skills/.standardization/hug-html/data/"
 
-SKILL_DIR = Path(__file__).resolve().parent.parent
 # 运行时绝对路径
 DATA_DIR = SKILL_DIR.parent / ".standardization" / "hug-html" / "data"
 

@@ -1,0 +1,218 @@
+{
+  "card_id": "WQ-EXP-018",
+  "source_type": "clinical_experience",
+  "source_file": "王琦教授基于“辨体论治”的三辨诊疗模式临床应用探析_李东.pdf",
+  "title": "王琦教授基于“辨体论治”的三辨诊疗模式临床应用探析",
+  "authors": [
+    "李东"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨证相结合，进行综合运用，广泛应用于多种临床复杂疾病的治疗中，取得了很好的治疗效果，发挥着中医治疗优势。"
+  },
+  "treatment_approach": {
+    "main_formula": "玉屏风散",
+    "related_formulas": [
+      "玉屏风散"
+    ],
+    "principle": "",
+    "herbs": [
+      "黄芪",
+      "白术",
+      "防风",
+      "柴胡",
+      "茯苓",
+      "甘草",
+      "陈皮",
+      "半夏",
+      "熟地",
+      "山茱萸"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "体质学说的创始人，其创建的“辨体—辨病—辨证诊疗模式”将辨体、辨病、辨证相结合，进行综合运用，广泛应用于多种临床复杂疾病的治疗中，取得了很好的治疗效果，发挥着中医治疗优势。 体病相关”和“体质可调”理论对于预防和治疗疾病发挥着重要的指导作用。 体论治为基础和根本，以“体病相关”和“体质可调”理论为依据，以拓展临床思维空间，更好的适应多元复杂的临床要求。在其临床诊疗中处处体现出疾病与体质之间的密切关系以及调整偏颇体质对于治疗疾病的重要作用，现尝试从其临床诊疗病例加以探析。",
+  "knowledge_points": [
+    {
+      "category": "diagnosis",
+      "content": "西医诊断为抑郁症；中医诊断属于郁证，辨体以气郁体质为主",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "考虑病人辨体属于气郁之外，辨证还兼加血瘀和痰湿阻滞，改用王氏癫狂梦醒汤加味，调整处方如下：桃仁20g，赤芍15g，柴胡 10g，香附10g，青皮10g，陈皮10g，桑白皮20g，石菖蒲 • 2333 • 中华中医药杂志(原中国医药学报)2012年9月第27卷第9期 CJTCMP , September 2012, Vol",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "因该患者有减肥需求，此前即因减肥不当引发病症，且形体确实偏胖，属于痰湿体质，改用王琦教授自拟的化痰祛湿方：黄芪30g，冬瓜皮30g，制苍术20g，荷叶30g，生山楂20g，川芎10g，紫丹参15g，炒山栀10g，昆布20g，海藻20g，法半夏10g，陈皮10g，枳实10g，肉桂3g",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨证相结合，进行综合运用，广泛应用于多种临床复杂疾病的治疗中，取得了很好的治疗效果，发挥着中医治疗优势。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为玉屏风散。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、白术、防风、柴胡、茯苓、甘草、陈皮、半夏。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "体质学说的创始人，其创建的“辨体—辨病—辨证诊疗模式”将辨体、辨病、辨证相结合，进行综合运用，广泛应用于多种临床复杂疾病的治疗中，取得了很好的治疗效果，发挥着中医治疗优势",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "体病相关”和“体质可调”理论对于预防和治疗疾病发挥着重要的指导作用",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "阳虚质",
+    "血瘀质",
+    "气郁质",
+    "特禀质"
+  ],
+  "related_diseases": [
+    "肥胖",
+    "过敏性鼻炎",
+    "糖尿病",
+    "抑郁症"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "西医诊断为抑郁症；中医诊断属于郁证，辨体以气郁体质为主",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "考虑病人辨体属于气郁之外，辨证还兼加血瘀和痰湿阻滞，改用王氏癫狂梦醒汤加味，调整处方如下：桃仁20g，赤芍15g，柴胡 10g，香附10g，青皮10g，陈皮10g，桑白皮20g，石菖蒲 • 2333 • 中华中医药杂志(原中国医药学报)2012年9月第27卷第9期 CJTCMP , September 2012, Vol",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "因该患者有减肥需求，此前即因减肥不当引发病症，且形体确实偏胖，属于痰湿体质，改用王琦教授自拟的化痰祛湿方：黄芪30g，冬瓜皮30g，制苍术20g，荷叶30g，生山楂20g，川芎10g，紫丹参15g，炒山栀10g，昆布20g，海藻20g，法半夏10g，陈皮10g，枳实10g，肉桂3g",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "阳虚质",
+      "血瘀质",
+      "气郁质",
+      "特禀质"
+    ],
+    "disease": [
+      "肥胖",
+      "过敏性鼻炎",
+      "糖尿病",
+      "抑郁症"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 3,
+    "sections": {}
+  },
+  "created_at": "2026-04-22T15:38:13.758068",
+  "methods": {},
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.550453",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.550461"
+  }
+}

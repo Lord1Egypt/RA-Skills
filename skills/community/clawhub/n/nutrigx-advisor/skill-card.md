@@ -1,45 +1,63 @@
-## Description: <br>
-Generates a personalized nutrition report from consumer genetic data by analyzing nutritionally relevant SNPs and producing dietary and supplementation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a personalized nutrition report from consumer genetic data by analyzing nutritionally relevant SNPs and producing educational dietary and supplementation guidance.
 
-## Publisher: <br>
-[manuelcorpas](https://clawhub.ai/user/manuelcorpas) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[manuelcorpas](https://clawhub.ai/user/manuelcorpas)
 
-## Use Case: <br>
-External users and developers use this skill to run local nutrigenomics analysis on consumer genetic data and generate a readable nutrition report with risk scores, recommendations, figures, and reproducibility files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill processes genetic data and writes derived health and genotype reports to disk. <br>
-Mitigation: Use a private, non-synced output folder and review generated files before sharing them. <br>
-Risk: Generated nutrition recommendations could be mistaken for medical advice. <br>
-Mitigation: Treat the report as educational guidance and consult qualified health professionals before making medical, supplement, or major diet decisions. <br>
-Risk: The reproducibility bundle writes commands.sh for rerunning analysis. <br>
-Mitigation: Review or fix shell quoting for all paths and arguments before running commands.sh. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/manuelcorpas/nutrigx-advisor) <br>
-- [NutriGx Advisor skill documentation](artifact/SKILL.md) <br>
-- [Curated SNP panel](artifact/data/snp_panel.json) <br>
-- [Example NutriGx report](artifact/examples/output/nutrigx_report.md) <br>
-- [David de Lorenzo GitHub profile](https://github.com/drdaviddelorenzo) <br>
+## Use Case:
 
+Developers, bioinformatics practitioners, and health-adjacent users use this skill to analyze consumer genetic files locally and generate educational nutrition risk summaries, recommendations, charts, and reproducibility files. It should be used only with the user's own DNA data or data they have clear consent to analyze.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with generated image files and reproducibility artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports, figures, checksums, environment.yml, commands.sh, and provenance.json to a local output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: ClawHub release metadata; artifact files reference 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive genetic information and outputs report artifacts that may reveal genotype-derived findings.
+
+Mitigation: Use only DNA data the user owns or has consent to analyze, keep the output directory private, and treat reports, charts, and reproducibility files as sensitive.
+
+Risk: Security evidence says the skill stores exact genotype data despite claiming it will not.
+
+Mitigation: Review generated outputs before sharing, update privacy claims before release, and avoid retaining genotype tables longer than necessary.
+
+Risk: Security evidence flags unsafe shell quoting in the generated commands.sh reproducibility script.
+
+Mitigation: Do not run commands.sh with untrusted or unusual file paths until quoting is fixed; inspect and safely quote command arguments first.
+
+Risk: Nutrition and supplement recommendations may be mistaken for clinical advice.
+
+Mitigation: Present recommendations as educational and advise users to discuss significant diet, supplement, or health changes with a qualified clinician.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/manuelcorpas/skills/nutrigx-advisor)
+- [Skill documentation](artifact/SKILL.md)
+- [Curated SNP panel](artifact/data/snp_panel.json)
+- [Example generated report](artifact/examples/output/nutrigx_report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown report with optional PNG charts and reproducibility files including commands.sh, environment.yml, checksums.txt, and provenance.json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally on supported genetic data files and may write sensitive genotype-derived outputs to the selected output directory.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

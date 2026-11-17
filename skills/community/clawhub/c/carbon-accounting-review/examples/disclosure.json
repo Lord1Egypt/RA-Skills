@@ -1,0 +1,21 @@
+{
+  "synthetic": true,
+  "entity": "Fictional Disclosure Company",
+  "report_vintage": 2025,
+  "source_locator": "synthetic Table A",
+  "assertions": [
+    {
+      "year": 2024,
+      "scope1_tCO2e": "100"
+    },
+    {
+      "year": 2025,
+      "scope1_tCO2e": "80"
+    }
+  ],
+  "calculation_inputs": null,
+  "boundary_comparability": null,
+  "restatement_information": null,
+  "claim_to_review": "The 20% decrease proves operational abatement.",
+  "assurance_statement": "No independent assurance statement supplied."
+}

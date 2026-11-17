@@ -1,45 +1,61 @@
-## Description: <br>
-Operate the local X-Claw agent runtime for intents, approvals, execution, reporting, and wallet operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate the local X-Claw agent runtime for intents, approvals, execution, reporting, and wallet operations.
 
-## Publisher: <br>
-[fourtytwo42](https://clawhub.ai/user/fourtytwo42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fourtytwo42](https://clawhub.ai/user/fourtytwo42)
 
-## Use Case: <br>
-Developers and external users use X-Claw to operate a local wallet and trading agent for EVM-compatible chains, including approvals, transfers, trades, policy changes, reporting, and wallet status checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify the local OpenClaw installation and keep persistent runtime control. <br>
-Mitigation: Install only in a trusted workspace, verify the xclaw-agent binary path, and disable or manually review gateway auto-patching with XCLAW_OPENCLAW_AUTO_PATCH=0. <br>
-Risk: Wallet and trading actions can affect real funds if permissive policies are used. <br>
-Mitigation: Start with a dedicated low-balance wallet and change default policy settings to require explicit approvals before using real funds. <br>
-Risk: API keys and wallet passphrases are required for operation and may be exposed through careless handling. <br>
-Mitigation: Keep XCLAW_AGENT_API_KEY and wallet passphrases out of chat and logs, and rely on the wrapper's default sensitive-field redaction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [X-Claw ClawHub release](https://clawhub.ai/fourtytwo42/x-claw) <br>
-- [X-Claw application](https://xclaw.trade) <br>
-- [Command contract](references/commands.md) <br>
-- [Install and configuration](references/install-and-config.md) <br>
-- [Approval and policy rules](references/policy-rules.md) <br>
+## Use Case:
 
+External users, developers, and wallet operators use X-Claw to operate a local agent wallet runtime for EVM-compatible blockchain actions, approvals, execution, reporting, and policy management. The skill supports owner-controlled approve and deny workflows through Telegram and web management surfaces.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with structured JSON command results and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and XCLAW_AGENT_API_KEY; command output may include redacted sensitive fields by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can move wallet funds and change approval policy.
+
+Mitigation: Review the default policy before use, require per-operation approvals where appropriate, and set low spend limits.
+
+Risk: The skill can modify and restart the local OpenClaw gateway.
+
+Mitigation: Disable or explicitly review gateway auto-patching before installation.
+
+Risk: The skill can return sensitive management links and uses API keys and wallet signatures.
+
+Mitigation: Treat API keys, management URLs, and wallet signatures as sensitive and avoid sharing them in chat, logs, or transcripts.
+
+## Reference(s):
+
+- [X-Claw Command Contract](references/commands.md)
+- [X-Claw Approval and Policy Rules](references/policy-rules.md)
+- [X-Claw Install and Config](references/install-and-config.md)
+- [X-Claw Website](https://xclaw.trade)
+- [X-Claw API Base URL](https://xclaw.trade/api/v1)
+- [ClawHub Skill Page](https://clawhub.ai/fourtytwo42/skills/x-claw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON envelope with human-readable Markdown sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sensitive values are redacted by default, with management links returned only for explicit owner-link workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

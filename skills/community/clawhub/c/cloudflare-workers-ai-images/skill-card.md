@@ -1,42 +1,59 @@
-## Description: <br>
-Generates new images and transforms source images through Cloudflare Workers AI text-to-image and image-to-image models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit images through Cloudflare Workers AI using text-to-image and image-to-image workflows.
 
-## Publisher: <br>
-[slippersheepig](https://clawhub.ai/user/slippersheepig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slippersheepig](https://clawhub.ai/user/slippersheepig)
 
-## Use Case: <br>
-Developers and agents use this skill to run Cloudflare Workers AI image generation or image-to-image transformations, then return the generated PNG to the current chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and img2img source images are sent to Cloudflare Workers AI. <br>
-Mitigation: Confirm the user is comfortable sending that content to Cloudflare and avoid sensitive prompts or images. <br>
-Risk: Cloudflare API credentials are required for inference. <br>
-Mitigation: Use a least-privilege API token and keep credentials out of checked-in compose files and chat logs. <br>
-Risk: Generated image files can remain on disk when saved outside temporary paths. <br>
-Mitigation: Prefer temporary output paths and delete generated files after delivery unless the user explicitly asks to keep them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate new images or transform source images through Cloudflare Workers AI, then return the resulting image files through the active chat provider.
 
-## Reference(s): <br>
-- [Docker Compose environment example](references/docker-compose-env-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, configuration, guidance] <br>
-**Output Format:** [PNG image files with stdout file paths and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CF_ACCOUNT_ID and CF_API_TOKEN; img2img sends source images to Cloudflare Workers AI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Cloudflare API tokens can be exposed if credential verification prints environment variable values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a presence-only credential check, and keep CF_API_TOKEN out of logs, shell history, and source control.
+
+Risk: Prompts and selected source images are sent to Cloudflare Workers AI for inference.
+
+Mitigation: Use the skill only with data appropriate for Cloudflare Workers AI and the user's organizational data-handling rules.
+
+Risk: An overbroad Cloudflare API token increases impact if the token is exposed.
+
+Mitigation: Use a least-privilege Cloudflare token limited to the Workers AI inference permission needed for the target account.
+
+## Reference(s):
+
+- [Cloudflare Workers AI Images on ClawHub](https://clawhub.ai/slippersheepig/skills/cloudflare-workers-ai-images)
+- [Docker Compose environment example](references/docker-compose-env-example.md)
+- [Cloudflare Workers AI API endpoint](https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run/{model})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and local PNG file paths printed to stdout.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated or edited images are saved as local PNG files for chat handoff; normal use relies on temporary file storage unless the user asks to keep a copy.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

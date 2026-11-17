@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn78r3qsta7jx6qhehtvxk741n82pxr2",
-  "slug": "auto-model-router-hmchenggh",
+  "name": "auto-model-router",
   "version": "1.0.0",
-  "publishedAt": 1775384715314
+  "description": "Auto Model Router - Automatically select the best model based on task complexity for OpenClaw agents. Supports Plan A (International) and Plan B (China) model configurations with 8 task categories.",
+  "requires": {
+    "env": [],
+    "credentials": []
+  },
+  "tags": ["latest"]
 }

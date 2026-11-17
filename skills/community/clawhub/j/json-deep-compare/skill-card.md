@@ -1,42 +1,58 @@
-## Description: <br>
-Compares two JSON files or objects deeply, supports unordered list comparison and ignored fields, and produces a structured Excel difference report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares two JSON files deeply, supports unordered list matching and ignored fields, and produces a structured Excel difference report.
 
-## Publisher: <br>
-[hanw2039](https://clawhub.ai/user/hanw2039) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanw2039](https://clawhub.ai/user/hanw2039)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to validate API responses, compare configuration files, and check data migration results by finding field-level JSON differences and exporting them to Excel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input JSON values may include personal data, credentials, tokens, or business data that are copied into the generated Excel report. <br>
-Mitigation: Treat generated reports as sensitive files, review them before sharing, and avoid comparing secret-bearing JSON unless the report is stored and handled securely. <br>
-Risk: The skill reads local JSON files and writes a local Excel file, so incorrect paths can expose or overwrite local data. <br>
-Mitigation: Run it from a controlled working directory, pass explicit input and output paths, and review the output location before execution. <br>
-Risk: Large JSON files can take a long time to process. <br>
-Mitigation: Follow the artifact guidance to keep files at manageable sizes, around 100MB or less, or split very large comparisons into smaller units. <br>
+## Use Case:
 
+Developers and test engineers use this skill to compare expected and actual JSON payloads, configuration files, or migration outputs and review differences in an Excel report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanw2039/json-deep-compare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and shell commands; generated runtime output is a structured Excel report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts two JSON inputs, optional ignored fields, optional strict array ordering, and an optional Excel output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated Excel reports from untrusted JSON may carry spreadsheet-related risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not open generated reports from untrusted JSON in a spreadsheet app unless formula-like values have been neutralized.
+
+Risk: Installing dependencies from an untrusted source may introduce package supply-chain risk.
+
+Mitigation: Install only from a trusted Python package index and consider pinning openpyxl.
+
+Risk: The generated .xlsx output path could overwrite an important existing file.
+
+Mitigation: Choose output paths deliberately and avoid overwriting important .xlsx files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanw2039/skills/json-deep-compare)
+- [Publisher profile](https://clawhub.ai/user/hanw2039)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate an .xlsx comparison report when the provided code is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

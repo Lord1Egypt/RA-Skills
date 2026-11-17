@@ -1,0 +1,7 @@
+interface:
+  display_name: "SkillHub 管家"
+  short_description: "配置赢麻了 API 凭证、浏览官方技能与 Role 目录，或安装/更新其它官方技能与 Role 时使用"
+  default_prompt: "Use $wm-skillhub to help with: 配置赢麻了 API 凭证、浏览官方技能与 Role 目录，或安装/更新其它官方技能与 Role 时使用"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,42 +1,52 @@
-## Description: <br>
-Build persuasive sales proposals and close plans for ad services spanning Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and Shopify Ads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build persuasive sales proposals and close plans for ad services spanning Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and Shopify Ads.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Sales, growth, and advertising practitioners use this skill to draft close-ready ad service proposals with positioning, scope, KPI ranges, objection handling, and next steps for major ad platforms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Proposal drafts may include KPI, ROI, or performance claims that are unsupported or misleading if copied directly to clients. <br>
-Mitigation: Review all KPI and ROI claims against client data, separate observed facts from assumptions, and keep measurable rollback or stop-loss conditions in the proposal. <br>
-Risk: The skill can produce sales-oriented guidance that is not suitable as neutral analytics or general marketing strategy. <br>
-Mitigation: Use it as a proposal-writing aid and choose a less sales-oriented workflow when the task requires independent analysis or neutral strategy. <br>
-Risk: High-risk ad issues such as policy, billing, or tracking breakage may require specialist review before action. <br>
-Mitigation: Escalate high-risk issues with a structured handoff and avoid using the output as an automated ad-platform operating instruction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/sales-proposal-simulator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+## Use Case:
 
+External advertising sales and growth teams use this skill to draft close-ready ad services proposals, objection responses, ROI logic, and next-step plans across major ad platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown proposal structure with scripts, KPI logic, risk controls, and close-plan sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, account access, or data storage behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated proposals could include incorrect assumptions, misleading sales guidance, or inappropriate KPI commitments.
+
+Mitigation: Review assumptions, KPI ranges, and platform recommendations before use; keep observed facts separate from assumptions and validate low-confidence claims.
+
+Risk: Client margin, budget, billing, or tracking details may be sensitive.
+
+Mitigation: Avoid entering sensitive client data unless it is approved for proposal drafting, and escalate policy, billing, or tracking-breakage issues with a structured handoff.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/danyangliu-sandwichlab/skills/sales-proposal-simulator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown proposal and close plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes proposal positioning, scope and deliverables, ROI logic, objection handling, and close-plan next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

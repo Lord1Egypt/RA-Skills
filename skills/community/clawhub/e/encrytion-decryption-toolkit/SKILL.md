@@ -1,15 +1,15 @@
 ---
 name: encrytion-decryption-toolkit
-description: "Encrytion Decryption Toolkit: Cryptographic toolkit: generate secure randoms, compute hashes (MD5, SHA, SHA3). Use when an agent needs encrytion decryption toolkit, generating secure api keys or access tokens for authentication systems, creating unique uuids for database record identifiers, computing file checksums to verify data integrity during transfers, validating webhook payloads by computing and comparing hmac signatures, decrypt, value, key through AgentPMT-hosted remote tool calls."
-version: 1.0.0
+description: "Encryption Decryption Toolkit: Cryptographic toolkit: generate secure randoms, compute. Use when an agent needs encryption decryption toolkit, encrytion decryption toolkit, generating secure api keys or access tokens for authentication systems, creating unique uuids for database record identifiers, computing file checksums to verify data integrity during transfers, validating webhook payloads by computing and comparing hmac signatures, decrypt, value through AgentPMT-hosted remote tool calls."
+version: 1.0.1
 homepage: https://www.agentpmt.com/marketplace/encrytion-decryption-toolkit
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/encrytion-decryption-toolkit"}}
 ---
-# Encrytion Decryption Toolkit
+# Encryption Decryption Toolkit
 
 ## Freshness
-Last updated: `2026-06-23`.
+Last updated: `2026-07-04`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -171,7 +171,7 @@ Create a digital signature using a private key.
   "action": "sign",
   "value": "data to sign",
   "algorithm": "RS256",
-  "private_key": "-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----",
+  "private_key": "REDACTED-SECRET",
   "encoding": "base64"
 }
 ```
@@ -182,7 +182,7 @@ Create a digital signature using a private key.
   "action": "sign",
   "value": "data to sign",
   "algorithm": "ES256",
-  "private_key": "-----BEGIN EC PRIVATE KEY-----\n...\n-----END EC PRIVATE KEY-----"
+  "private_key": "REDACTED-SECRET"
 }
 ```
 
@@ -278,9 +278,9 @@ Decrypt AES-256-GCM ciphertext back to plaintext.
 - **property_name**: Controls the key name in the response JSON where the result appears. Useful for chaining outputs in workflows.
 
 ## When To Use
-- Use this skill for `Encrytion Decryption Toolkit` on AgentPMT.
+- Use this skill for `Encryption Decryption Toolkit` on AgentPMT.
 - Use it when an agent needs this specific tool's behavior, schema, inputs, outputs, and invocation shape.
-- Search and activation keywords: encrytion decryption toolkit, generating secure api keys or access tokens for authentication systems, creating unique uuids for database record identifiers, computing file checksums to verify data integrity during transfers, validating webhook payloads by computing and comparing hmac signatures, decrypt, value, key.
+- Search and activation keywords: encryption decryption toolkit, encrytion decryption toolkit, generating secure api keys or access tokens for authentication systems, creating unique uuids for database record identifiers, computing file checksums to verify data integrity during transfers, validating webhook payloads by computing and comparing hmac signatures, decrypt, value.
 - Supported action names: `decrypt`, `encrypt`, `generate`, `hash`, `hmac`, `sign`.
 
 ## Use Cases
@@ -399,7 +399,7 @@ MCP call shape after the main AgentPMT MCP server is connected:
 {
   "method": "tools/call",
   "params": {
-    "name": "Encrytion-Decryption-Toolkit",
+    "name": "Encryption-Decryption-Toolkit",
     "arguments": {
       "aad": "example aad",
       "action": "decrypt",

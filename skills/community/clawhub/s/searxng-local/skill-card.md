@@ -1,41 +1,52 @@
-## Description: <br>
-Search the web using a self-hosted SearXNG instance. Privacy-respecting metasearch that aggregates results from multiple engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using a self-hosted SearXNG instance with a privacy-respecting metasearch interface that aggregates results from multiple engines.
 
-## Publisher: <br>
-[clockworksquirrel](https://clawhub.ai/user/clockworksquirrel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clockworksquirrel](https://clawhub.ai/user/clockworksquirrel)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and query a local or self-hosted SearXNG service for privacy-respecting web search results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Docker setup can expose a persistent SearXNG service on port 8080. <br>
-Mitigation: Restrict access to port 8080 when the host is reachable by others and review the service before deployment. <br>
-Risk: The sample SearXNG configuration uses a placeholder secret key and safe_search set to 0. <br>
-Mitigation: Change the example secret key before use and raise safe_search if unfiltered results are not appropriate. <br>
-Risk: The Docker image tag is not pinned in the example compose file. <br>
-Mitigation: Pin the Docker image version when reproducibility or change control is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/clockworksquirrel/searxng-local) <br>
+## Use Case:
 
+Developers and agents use this skill to configure and query a self-hosted SearXNG instance for web, image, news, video, technical, and science search results through JSON responses.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the optional SEARXNG_URL environment variable and SearXNG JSON responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The example setup can expose a persistent unauthenticated SearXNG service on the network.
+
+Mitigation: Review before installing on untrusted or internet-reachable machines; prefer binding Docker to 127.0.0.1 and add TLS, authentication, firewalling, and rate limits before remote access.
+
+Risk: The example configuration includes a placeholder secret and an unpinned container image.
+
+Mitigation: Generate a real random secret and pin the SearXNG container image before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clockworksquirrel/skills/searxng-local)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON response descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the optional SEARXNG_URL environment variable and returns SearXNG result fields such as title, url, content, engines, score, and category.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

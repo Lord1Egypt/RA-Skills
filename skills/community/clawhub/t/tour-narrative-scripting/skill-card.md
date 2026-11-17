@@ -1,38 +1,53 @@
-## Description: <br>
-Write narration scripts for product tour videos, producing dual-audience narration and concise captions timed to screen segments with hooks and calls to action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates product tour captions and TTS narration from a tour spec, with audience tags, timing checks, hooks, and CTAs.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Content creators and product teams use this skill to turn a product tour spec into paired screen captions and TTS narration for dual-audience product tour videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated narration may include inaccurate unreleased product details, regulated claims, or crypto-related statements from the tour spec. <br>
-Mitigation: Review generated captions and narration before publishing, with legal or compliance review for regulated or crypto-related claims. <br>
+## Use Case:
 
+Content creators, product marketers, and developer advocates use this skill to turn product tour specs into concise slide captions and spoken narration. It is suited for dual-audience tours that need coherent copy across technical and non-technical viewers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/tour-narrative-scripting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown step blocks with caption and narration fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Captions target 12 words or fewer; narration targets 8-15 seconds per step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Generated narration may make incorrect or overstated product claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review captions and voiceover text against current product facts before publishing.
+
+Risk: Dual-audience scripts can accidentally use audience-specific framing in shared steps.
+
+Mitigation: Check every [All] step for neutral pronouns and wording before handoff.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/tour-narrative-scripting)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown step blocks with caption and narration lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Captions are capped at 12 words; narration targets 8-15 seconds per step.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

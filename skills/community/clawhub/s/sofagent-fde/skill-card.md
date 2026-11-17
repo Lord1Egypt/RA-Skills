@@ -1,46 +1,63 @@
-## Description: <br>
-FDE helps an agent guide Forward Deployed Engineers through a 12-step enterprise AI deployment workflow for mapping business processes, identifying AI nodes, producing a deployment plan, and building a knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FDE Skill guides agents through enterprise AI discovery, assessment, delivery, and follow-up, with practices for constraining agent behavior, auditing changes, and retaining lessons.
 
-## Publisher: <br>
-[kongfangxun](https://clawhub.ai/user/kongfangxun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongfangxun](https://clawhub.ai/user/kongfangxun)
 
-## Use Case: <br>
-Forward Deployed Engineers, enterprise IT staff, and CIO teams use this skill to guide an agent through enterprise AI deployment discovery, planning, handoff, and post-deployment checks. The skill helps capture enterprise context, classify workflow nodes, generate workflow configuration, and package deployment and knowledge-base deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installer scripts can change local agent configuration and target-device setup. <br>
-Mitigation: Review the installer scripts before execution, verify file writes and overwrites, confirm whether persistent services are installed, and document uninstall or rollback steps. <br>
-Risk: The deployment workflow can produce inaccurate plans if enterprise context or workflow-node details are incomplete. <br>
-Mitigation: Require human confirmation of the enterprise profile, technical environment, five workflow-node elements, cost assumptions, and handoff checklist before deploying AI nodes. <br>
-Risk: Knowledge-base and audit outputs may store or publish enterprise operational details. <br>
-Mitigation: Confirm what data is stored in the knowledge base and webhook/audit outputs, restrict access to the enterprise-approved platform, and review sensitive content before sharing. <br>
+## Use Case:
 
+Front-line deployment engineers and developers use it to assess enterprise AI workflows, identify and quantify suitable AI tasks, and guide delivery and follow-up of tailored skills and governance practices.
 
-## Reference(s): <br>
-- [FDE deployment manual](artifact/FDE.md) <br>
-- [FDE toolkit README](artifact/README.md) <br>
-- [12-step workflow template](artifact/workflow/template.yaml) <br>
-- [FDE agent role templates](artifact/agents/templates.md) <br>
-- [n8n-workflows reference](https://github.com/Zie619/n8n-workflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML configuration examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce deployment plans, workflow.yaml configuration, knowledge-base documents, checklists, and operational handoff guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.99.4 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The security review flags possible external model data sharing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the data-sharing path and destinations before installation; avoid sending sensitive data unless the path is approved.
+
+Risk: The security review flags an unpinned package execution path.
+
+Mitigation: Review installation behavior and package sources before installing, and use a controlled environment.
+
+Risk: Some testing guidance could touch operational knowledge data.
+
+Mitigation: Review test steps first and use non-production or sanitized knowledge data where practical.
+
+Risk: The scan was incomplete because a referenced path was missing.
+
+Mitigation: Resolve the missing path and repeat the review before treating the scan as comprehensive.
+
+## Reference(s):
+
+- [FDE Skill on ClawHub](https://clawhub.ai/kongfangxun/skills/sofagent)
+- [SKILL.state execution protocol paper](https://arxiv.org/abs/2608.26263)
+- [DeepAgentsJS](https://github.com/langchain-ai/deepagentsjs)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown, Configuration instructions, Shell commands]
+
+**Output Format:** [Markdown with tables, checklists, audit summaries, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Task-specific structured guidance; no fixed output schema.]
+
+## Skill Version(s):
+
+1.9.0 (source: artifact/SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

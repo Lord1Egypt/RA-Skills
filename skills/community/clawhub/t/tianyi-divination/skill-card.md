@@ -1,41 +1,54 @@
-## Description: <br>
-提供小六壬占卜、梅花易数、八字命理、祝由术、风水布局与面相解读的实战指导。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language practical guidance for traditional Chinese divination and cultural interpretation methods, including Xiao Liu Ren, Plum Blossom numerology, Ba Zi, Zhu You, feng shui, and face reading.
 
-## Publisher: <br>
-[songxiansheng1234](https://clawhub.ai/user/songxiansheng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songxiansheng1234](https://clawhub.ai/user/songxiansheng1234)
 
-## Use Case: <br>
-External users can ask for Chinese traditional divination and cultural guidance around daily decisions, trend interpretation, self-reflection, space layout, and face-reading. Treat outputs as cultural or divination-style guidance, not professional medical, legal, financial, or emergency advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat divination, 祝由术, or self-healing content as medical advice. <br>
-Mitigation: Present responses as cultural or divination-style guidance and direct users to qualified professional care for diagnosis, treatment, emergencies, mental health support, pain, persistent symptoms, or medical decisions. <br>
-Risk: Traditional divination outputs can be over-applied to high-stakes decisions. <br>
-Mitigation: Frame readings as non-deterministic support for reflection and encourage users to consider practical evidence, applicable law, ethics, and professional advice. <br>
+## Use Case:
 
+External users can ask for culturally framed, Chinese-language interpretations and practice guidance for traditional divination, feng shui, fortune-telling, and related self-reflection scenarios. Outputs should be treated as cultural or entertainment content, not as reliable advice for high-stakes decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/songxiansheng1234/tianyi-divination) <br>
-- [Author site from artifact metadata](https://seeimg.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown guidance in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution or system access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Users may treat face-reading, fortune-telling, feng shui, or healing-style outputs as reliable predictions or advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as cultural or entertainment-oriented guidance and avoid relying on them for medical, legal, financial, employment, education, law enforcement, relationship, or other high-stakes decisions.
+
+Risk: Face-reading content could be used to judge a person's character, honesty, competence, or risk.
+
+Mitigation: Do not use face-reading outputs to make assessments or decisions about people.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/songxiansheng1234/skills/tianyi-divination)
+- [Publisher profile](https://clawhub.ai/user/songxiansheng1234)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown or plain text responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only guidance; no executable behavior is described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

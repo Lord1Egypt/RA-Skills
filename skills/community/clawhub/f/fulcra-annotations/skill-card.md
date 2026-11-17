@@ -1,44 +1,63 @@
-## Description: <br>
-Fulcra Annotations lets an agent create, list, update, delete, record, and verify Fulcra annotation definitions and events through the Fulcra Life API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, list, record, and verify Fulcra annotation definitions and events through the Fulcra Life API.
 
-## Publisher: <br>
-[arc-claw-bot](https://clawhub.ai/user/arc-claw-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arc-claw-bot](https://clawhub.ai/user/arc-claw-bot)
 
-## Use Case: <br>
-Use this skill when a user wants an agent to set up reusable Fulcra annotation definitions, log approved moment, boolean, numeric, or scale annotation records, inspect annotation identifiers, or build a workflow that writes and verifies Fulcra annotations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Fulcra account availability, network access to https://api.fulcradynamics.com, and the user's local privacy and compliance requirements. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Annotation values and notes may become persistent personal data in the user's Fulcra account. <br>
-Mitigation: Install only for user-directed Fulcra annotation work, review write prompts before approval, and avoid real private data in public demos. <br>
-Risk: Deletion or changes to existing annotation definitions could alter a user's tracking setup. <br>
-Mitigation: Ask for explicit user approval before update or delete operations and use dry-run mode before risky writes. <br>
-Risk: Fulcra credentials or private records could be exposed through chat or logs if handled carelessly. <br>
-Mitigation: Do not print tokens, credential files, direct capability URLs, or raw private records; use the trusted CLI or secret-manager token flow. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create Fulcra annotation definitions, record approved moment or metric annotations, and verify writes through readback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arc-claw-bot/skills/fulcra-annotations) <br>
-- [Fulcra API OpenAPI document](https://api.fulcradynamics.com/openapi.json) <br>
-- [Publisher profile](https://clawhub.ai/user/arc-claw-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Agent guidance plus JSON-producing command-line helper operations for Fulcra annotation definitions and records.] <br>
-**Output Parameters:** [Annotation type, name or ID, value when required, note, tags, timestamps, source metadata, dry-run mode, and Fulcra authentication environment settings.] <br>
-**Other Properties Related to Output:** [The bundled helper uses Python and uv, pins authenticated API calls to the Fulcra API host, supports dry-run writes, and treats a write as confirmed only after readback verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 <br>
+Risk: Authentication depends on local Fulcra CLI execution and account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a trusted Fulcra account, API endpoint, and CLI supply chain; prefer a pinned reviewed CLI version or vetted local binary.
+
+Risk: Broad FULCRA_CLI_COMMAND overrides could route authentication through an unintended executable.
+
+Mitigation: Keep the default Fulcra CLI invocation when possible and avoid overrides unless the executable path has been reviewed.
+
+Risk: Update, delete, bulk, or backfill workflows can change existing annotation state or create many records.
+
+Mitigation: Require explicit user confirmation, use dry-run mode before writes, and use a reviewed admin or ledger-backed workflow for broad changes.
+
+Risk: Fulcra records and tokens may contain private user data.
+
+Mitigation: Do not print access tokens, credential files, capability URLs, or raw private records in chat or logs; share device authorization details only through the trusted user channel.
+
+## Reference(s):
+
+- [Fulcra Annotation API Notes](references/api-notes.md)
+- [Fulcra API OpenAPI document](https://api.fulcradynamics.com/openapi.json)
+- [ClawHub skill page](https://clawhub.ai/arc-claw-bot/skills/fulcra-annotations)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Fulcra authentication and readback verification for confirmed writes.]
+
+## Skill Version(s):
+
+1.0.16 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

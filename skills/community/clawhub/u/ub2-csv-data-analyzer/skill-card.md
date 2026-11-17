@@ -1,40 +1,52 @@
-## Description: <br>
-Load, explore, clean, analyze, and visualize CSV datasets to produce statistical summaries, correlations, filtered views, charts, and plain-language insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Load, explore, clean, analyze, and visualize CSV data to provide statistical summaries, correlations, filtered views, and charts for insights.
 
-## Publisher: <br>
-[underbench2-gif](https://clawhub.ai/user/underbench2-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[underbench2-gif](https://clawhub.ai/user/underbench2-gif)
 
-## Use Case: <br>
-External users and developers use this skill to inspect user-provided CSV files, clean common data quality issues, compute descriptive statistics and correlations, generate charts, and summarize findings in plain language. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: CSV files can contain sensitive or confidential data that may be exposed through analysis summaries, charts, or cleaned exports. <br>
-Mitigation: Provide only CSV files you are comfortable analyzing in the Claw environment, and review generated summaries before sharing them. <br>
-Risk: Generated cleaned CSV files or PNG charts may contain derived values, outliers, labels, or other dataset details that should not be distributed unchanged. <br>
-Mitigation: Review generated cleaned datasets and charts before sharing or publishing them elsewhere. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/underbench2-gif/ub2-csv-data-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/underbench2-gif) <br>
+## Use Case:
 
+Developers, analysts, and business users use this skill to have an agent inspect CSV datasets, clean data, compute descriptive statistics and correlations, create charts, and summarize findings in plain language.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Plain-language analysis, Markdown tables or summaries, optional Python or shell commands, PNG chart files, and cleaned CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided CSV files and may write expected analysis artifacts such as charts or cleaned datasets when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: CSV files may contain private or sensitive data that could appear in summaries, charts, or exported cleaned datasets.
+
+Mitigation: Use approved datasets, review generated outputs before sharing, and avoid retaining unnecessary derived files.
+
+Risk: Generated charts or cleaned CSV exports may be written to the workspace.
+
+Mitigation: Confirm output locations, inspect generated files, and remove exports that are not needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/underbench2-gif/skills/ub2-csv-data-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown summaries with optional code or shell commands, plus generated PNG charts and cleaned CSV files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a valid CSV input; Python with pandas and matplotlib should be available for analysis and visualization workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

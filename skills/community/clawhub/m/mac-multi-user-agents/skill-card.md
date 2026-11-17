@@ -1,40 +1,58 @@
-## Description: <br>
-Configure a powerful macOS machine to host multiple dedicated OpenClaw agent users with Fast User Switching, a shared Homebrew toolchain, per-user OpenClaw homes, per-user SSH trust, and auditable rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure a powerful macOS machine to host multiple dedicated OpenClaw agent users with Fast User Switching, a shared Homebrew toolchain, per-user OpenClaw homes, per-user SSH trust, and auditable rollback.
 
-## Publisher: <br>
-[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy)
 
-## Use Case: <br>
-Developers and operators use this skill to plan and configure a Mac as a multi-user OpenClaw agent host. It helps inspect host capacity, render or execute repeatable macOS account setup commands, verify shared Homebrew/OpenClaw access, and leave rollout receipts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent macOS user accounts and change local account state. <br>
-Mitigation: Run it only on a Mac you administer, render commands for review first, and prefer non-admin agent accounts unless admin access is specifically required. <br>
-Risk: Account passwords can be exposed when passed through environment variables, command arguments, or dry-run output. <br>
-Mitigation: Use placeholder passwords when rendering commands, avoid dry-running with real passwords, and rotate any password used through the environment or command line immediately after account creation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fast User Switching](references/fast-user-switching.md) <br>
-- [Shared Homebrew](references/shared-homebrew.md) <br>
+## Use Case:
 
+Developers and operators use this skill to plan and configure a macOS host for multiple dedicated OpenClaw agent users, including shared Homebrew tooling, per-user state, shell verification, and rollout receipts.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and optional JSONL receipt output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for administrator-reviewed macOS account setup and per-user OpenClaw environment verification.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Account-creation scripts handle passwords and dry-run or transcript output may expose account credentials.
+
+Mitigation: Review and fix password handling before running account-creation scripts on a real Mac; treat generated transcripts as sensitive.
+
+Risk: Generated privileged admin commands may be unsafe if inputs are not validated or safely quoted.
+
+Mitigation: Validate user-provided account names and command parameters, prefer reviewed command rendering, and require explicit administrator confirmation before privileged execution.
+
+Risk: The skill changes macOS user accounts, shell startup files, SSH directories, and shared toolchain access.
+
+Mitigation: Run dry-runs first, keep one macOS user per agent, avoid unnecessary admin grants, keep SSH keys and OpenClaw state private per user, and preserve shared Homebrew during rollback.
+
+## Reference(s):
+
+- [Fast User Switching](references/fast-user-switching.md)
+- [Shared Homebrew](references/shared-homebrew.md)
+- [ClawHub Skill Page](https://clawhub.ai/matthewxmurphy/skills/mac-multi-user-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Text]
+
+**Output Format:** [Markdown guidance with shell commands, configuration checks, and JSONL receipt output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dry-run command rendering, host inspection output, per-user shell verification output, and optional JSONL rollout receipts.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

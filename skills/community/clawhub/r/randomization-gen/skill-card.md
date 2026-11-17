@@ -1,41 +1,53 @@
-## Description: <br>
-Generates block randomization lists for randomized controlled trials, clinical studies, and animal studies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate block randomization lists for RCTs.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, study teams, and research operations staff use this skill to generate ready-to-use block randomization tables with configurable subject counts, groups, and block sizes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local Python script can overwrite the CSV file path selected by the user. <br>
-Mitigation: Use a workspace-local output filename, check whether the file already exists, and confirm overwrite intent before running the skill. <br>
-Risk: Generated randomization outputs may be used in regulated clinical or study workflows without independent validation. <br>
-Mitigation: Validate the randomization method and generated allocation table before using the output for regulated or high-stakes study work. <br>
+## Use Case:
 
+Clinical trial designers, preclinical study teams, and supporting developers use this skill to generate block randomization schedules for RCT or animal study allocation workflows.
 
-## Reference(s): <br>
-- [Randomization Gen on ClawHub](https://clawhub.ai/aipoch-ai/randomization-gen) <br>
-- [AIpoch publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, CSV, Shell commands, Guidance] <br>
-**Output Format:** [CSV randomization table with concise execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or overwrites a CSV at the selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can overwrite arbitrary writable files through its output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandbox or controlled workspace, choose an output path inside the project, and check for existing files before execution.
+
+Risk: The skill makes an unsupported clinical allocation-concealment claim.
+
+Mitigation: Do not rely on it for regulated or high-stakes clinical allocation concealment without a validated randomization process and appropriate access controls.
+
+## Reference(s):
+
+- [Randomization Gen on ClawHub](https://clawhub.ai/aipoch-ai/skills/randomization-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, configuration]
+
+**Output Format:** [CSV file with console text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the full randomization schedule to the configured output path and prints a short allocation preview.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

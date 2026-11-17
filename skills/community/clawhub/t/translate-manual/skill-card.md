@@ -1,43 +1,58 @@
-## Description: <br>
-Translates DOCX manuals into a target language while preserving document structure and supporting screenshot-oriented localization workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate DOCX manuals into target languages while preserving document structure; screenshot replacement is described as planned rather than implemented in this version.
 
-## Publisher: <br>
-[QianziTech](https://clawhub.ai/user/QianziTech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qianzitech](https://clawhub.ai/user/qianzitech)
 
-## Use Case: <br>
-External users and developers use this skill to localize product manuals by translating DOCX content, tables, and related document assets into a requested target language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Manual text may be sent to DeepLX or another configured translation service. <br>
-Mitigation: Use only approved documents and a limited API key, and avoid confidential or regulated content unless third-party translation is authorized. <br>
-Risk: The skill writes translated DOCX files to user-provided output paths. <br>
-Mitigation: Choose explicit output paths and review generated files before replacing source manuals. <br>
-Risk: Screenshot replacement workflows may require starting local or web applications. <br>
-Mitigation: Only run or capture applications from trusted projects and environments. <br>
+## Use Case:
 
+Developers, document owners, and localization reviewers use this skill to translate DOCX product manuals into target languages while preserving paragraphs, tables, image placeholders, and overall structure for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QianziTech/translate-manual) <br>
-- [DeepLX translation endpoint](https://api.deeplx.org/{API_KEY}/translate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [DOCX output files with Markdown guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a configured translation API key and writes translated output paths selected by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Document text may be sent to the hardcoded api.deeplx.org translation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents whose contents are approved for that external service, especially when manuals contain confidential or customer information.
+
+Risk: Supplying API keys through command-line arguments can expose credentials in process history or logs.
+
+Mitigation: Prefer the documented environment variables or a secret manager for API keys.
+
+Risk: Screenshot replacement is described by the skill but is not actually implemented in this version.
+
+Mitigation: Treat translated DOCX output as requiring manual screenshot review and replacement before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qianzitech/skills/translate-manual)
+- [DeepLX translation API endpoint](https://api.deeplx.org/{API_KEY}/translate)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell command examples, and translated DOCX file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a target language and source DOCX path; API key may be supplied by environment variable or command-line argument.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

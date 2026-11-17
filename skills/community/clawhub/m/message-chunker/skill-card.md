@@ -1,44 +1,53 @@
-## Description: <br>
-Message Chunker helps an agent split long outgoing messages into platform-sized chunks, especially to avoid Feishu message length limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Message Chunker helps agents split long outbound messages into multiple parts to avoid platform message length limits.
 
-## Publisher: <br>
-[As9530272755](https://clawhub.ai/user/As9530272755) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[as9530272755](https://clawhub.ai/user/as9530272755)
 
-## Use Case: <br>
-Agents and workflow developers use this skill to keep long reports, plans, logs, tables, and other multi-section replies within chat platform message limits. It guides chunking by headings, tables, paragraphs, and explicit chunk markers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A single response may be sent as several messages, which can increase exposure in sensitive or public chats. <br>
-Mitigation: Review the full response before sending and avoid using the skill for sensitive chats unless multi-message delivery is acceptable. <br>
-Risk: Failed chunks may be retried or queued by the host environment. <br>
-Mitigation: Check the send status after chunking and remove or reconcile failed queued chunks before retrying. <br>
-Risk: Chunking can separate context across messages, especially around tables or section boundaries. <br>
-Mitigation: Prefer heading, table, or paragraph boundaries and include continuation markers when a message is split. <br>
+## Use Case:
 
+Agents, developers, and operators use this skill when long reports, plans, logs, or messages need to be sent through Feishu, Telegram, Discord, WhatsApp, or similar channels without exceeding single-message limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/As9530272755/message-chunker) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Chunked plain text or Markdown messages with optional continuation markers and configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses platform character limits and prefers splitting at headings, tables, paragraph boundaries, or explicit chunk markers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact config.yaml) <br>
+Risk: Automatic chunking can create repeated, out-of-order, or duplicated outbound messages, especially after send-failure retries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm channel behavior before deployment and consider approval or tighter retry triggers for public or high-volume messaging channels.
+
+Risk: Splitting structured content can reduce readability or break context if sections, tables, or continuation markers are mishandled.
+
+Mitigation: Prefer heading, table, and paragraph boundaries, and review generated chunks before sending important reports or logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/as9530272755/skills/message-chunker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Segmented plain text or Markdown messages with optional continuation markers and manual chunk markers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default maximum chunk size is 4000 characters; configured to split on headings and tables and include continuation markers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact config.yaml, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

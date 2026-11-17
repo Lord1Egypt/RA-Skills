@@ -1,43 +1,56 @@
-## Description: <br>
-Writes formatted HTML or Markdown content to Apple Notes on macOS, with support for folders, updates, and simple note lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apple Notes Writer helps agents create, update, read, and list Apple Notes on macOS from HTML or converted Markdown content.
 
-## Publisher: <br>
-[johnmuin](https://clawhub.ai/user/johnmuin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnmuin](https://clawhub.ai/user/johnmuin)
 
-## Use Case: <br>
-Developers and agent users on macOS use this skill to create, update, read, list, and organize Apple Notes from formatted content. It is useful when an agent needs to save meeting notes, imported Markdown, or structured text into Apple Notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify persistent Apple Notes data through AppleScript. <br>
-Mitigation: Confirm each create, read, list, folder-create, and update request before execution, and avoid granting access to sensitive Notes folders unless the task requires it. <br>
-Risk: Dynamic AppleScript construction with weak scoping can target unintended notes or folders if supplied with untrusted titles, folder names, note IDs, or content. <br>
-Mitigation: Use trusted inputs, specify the intended account and folder, review the target note before updates, and avoid passing untrusted note metadata or content until argument handling is improved. <br>
+## Use Case:
 
+External users and developers use this skill to automate Apple Notes workflows on macOS, including creating or updating formatted notes from HTML or Markdown and managing note folders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnmuin/apple-notes-writer) <br>
-- [Skill usage guide](artifact/SKILL.md) <br>
-- [Apple Notes automation reference](artifact/REFERENCE.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or HTML note content with Python API calls and CLI commands; command results are plain text status messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, Python 3.7+, Apple Notes.app, and user-granted automation access to Notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read, list, create, and overwrite Apple Notes, including notes that may contain sensitive personal or business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local Apple Notes automation access is acceptable, and require explicit confirmation before writes or updates.
+
+Risk: Unsafe AppleScript construction could execute unintended local automation when untrusted titles, folder names, account names, or note IDs are used.
+
+Mitigation: Avoid untrusted values for AppleScript-interpolated inputs until interpolation is fixed, and review proposed actions before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnmuin/skills/apple-notes-writer)
+- [Skill instructions](artifact/SKILL.md)
+- [Reference guide](artifact/REFERENCE.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python snippets; executed actions return text status messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Apple Notes.app, and local automation permissions; supports create, update, read, list, and folder creation operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Provides a config-driven wrapper around gcalcli plus optional CalDAV integration to generate JSON reminder plans for scheduling one-shot OpenClaw reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a config-driven wrapper around gcalcli with optional CalDAV integration to generate JSON reminder plans for one-shot OpenClaw reminders.
 
-## Publisher: <br>
-[adorostkar](https://clawhub.ai/user/adorostkar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adorostkar](https://clawhub.ai/user/adorostkar)
 
-## Use Case: <br>
-Developers and agent operators use this skill to read configured Google Calendar and optional CalDAV calendars, produce a reminder plan, and wire one-shot OpenClaw reminders through their own scheduler or agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Calendar tools can access configured calendar data and may expose private event metadata in reminder plans. <br>
-Mitigation: Keep calendar configuration private and install only when comfortable letting trusted local gcalcli, khal, and vdirsyncer binaries read the configured calendars. <br>
-Risk: Configurable binary paths or scheduler wiring could run unintended local commands if pointed at untrusted executables or shell strings. <br>
-Mitigation: Prefer absolute paths to trusted binaries and review cron or agent wiring before enabling automatic reminder creation. <br>
-Risk: Automatic reminder scheduling can create duplicates or stale reminders if state handling is not wired correctly. <br>
-Mitigation: Use the planner state file and review the generated JSON plan before enabling recurring unattended scheduling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw calendar example configuration](references/openclaw-calendar.example.json) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to read Google Calendar and optional CalDAV events, plan upcoming reminders, and pass the resulting schedule to cron or an agent workflow that creates one-shot OpenClaw reminders.
 
-## Skill Output: <br>
-**Output Type(s):** [json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON reminder plan with Markdown setup guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planner output includes reminder times, event metadata, skip counts, config path, and state path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Calendar integrations can expose calendar data and OAuth sessions through gcalcli or khal.
+
+Mitigation: Install only when calendar access is acceptable, keep OAuth/session material private, and review reminder JSON before sharing because it can include calendar titles, IDs, labels, and reminder times.
+
+Risk: Configured external binaries or scheduler wiring could execute untrusted commands if paths or cron jobs are not reviewed.
+
+Mitigation: Use trusted, preferably absolute binary paths, keep scheduler commands as argv lists, and review any cron job before enabling it.
+
+## Reference(s):
+
+- [openclaw-calendar.example.json](references/openclaw-calendar.example.json)
+- [ClawHub skill page](https://clawhub.ai/adorostkar/skills/calendar-reminders)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON reminder plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reminder plans include calendar labels, event IDs, reminder times, messages, and skipped-event counts.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

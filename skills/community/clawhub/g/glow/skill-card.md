@@ -1,45 +1,66 @@
-## Description: <br>
-Glow helps agents support a human in finding meaningful connections through private introductions across dating, friendship, activities, and professional networking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help your human find meaningful connections through private introductions, including dating, friendships, activity partners, and professional networking.
 
-## Publisher: <br>
-[robmeadows](https://clawhub.ai/user/robmeadows) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robmeadows](https://clawhub.ai/user/robmeadows)
 
-## Use Case: <br>
-External users and their agents use Glow to register with human authorization, manage profile and preference information, create connection intents, review introductions, exchange messages, manage photos and privacy settings, and configure heartbeat or webhook notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate on sensitive social account data, including messages, profile details, photos, introductions, settings, and webhooks. <br>
-Mitigation: Use MCP/OAuth when possible, restrict GLOW_API_KEY to agents.talktoglow.com, and require explicit human confirmation before profile updates, photo changes, messages, intro decisions, intent deletion, privacy setting changes, heartbeat polling, or webhook registration. <br>
-Risk: Heartbeat polling can repeatedly surface private introductions and messages. <br>
-Mitigation: Enable polling only after human approval, store minimal state such as last check time or last seen message ID, and notify the human before acting on new items. <br>
+## Use Case:
 
+External users and their agents use Glow to register a human user, set up profiles and connection intents, review introductions, exchange intro messages, manage photos and settings, and keep up with new matches or messages.
 
-## Reference(s): <br>
-- [ClawHub Glow Listing](https://clawhub.ai/robmeadows/glow) <br>
-- [Glow Agent API Base](https://agents.talktoglow.com) <br>
-- [Glow Skill Documentation](https://agents.talktoglow.com/skill.md) <br>
-- [Glow Heartbeat Guide](https://agents.talktoglow.com/heartbeat.md) <br>
-- [Glow OpenAPI Specification](https://agents.talktoglow.com/openapi.json) <br>
-- [Glow Privacy Policy](https://talktoglow.com/privacy-policy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline JSON and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GLOW_API_KEY for REST use; MCP/OAuth is preferred when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: skill frontmatter, skill.json, OpenAPI info, release evidence) <br>
+Risk: Recurring heartbeat checks can access sensitive messages, introductions, and profile summaries more often than the user expects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable heartbeat behavior only with explicit user approval, keep polling frequency limited, and make each notification visible to the user.
+
+Risk: Remote-updated heartbeat instructions could change after installation.
+
+Mitigation: Review heartbeat instructions before use and avoid setups that automatically fetch and follow remote instructions without inspection.
+
+Risk: The bearer API key grants access to a specific agent-human relationship and could expose private account data if sent to the wrong host.
+
+Mitigation: Send the key only to agents.talktoglow.com, store it as a scoped secret, and revoke or rotate it if exposure is suspected.
+
+Risk: Profiles, messages, introductions, photos, and webhook payloads can contain personal or sensitive social information.
+
+Mitigation: Use restrictive photo privacy settings, register webhooks only to callback URLs controlled by the user or developer, and rely on user revocation for unwanted agent access.
+
+## Reference(s):
+
+- [Glow agent API home](https://agents.talktoglow.com)
+- [Glow OpenAPI specification](https://agents.talktoglow.com/openapi.json)
+- [Glow heartbeat guidance](https://agents.talktoglow.com/heartbeat.md)
+- [Glow skill documentation](https://agents.talktoglow.com/skill.md)
+- [Glow privacy policy](https://talktoglow.com/privacy-policy)
+- [ClawHub skill page](https://clawhub.ai/robmeadows/skills/glow)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with REST and MCP tool names, JSON request examples, and curl commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Glow authorization; REST usage uses a GLOW_API_KEY bearer token and curl, while MCP clients use OAuth.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter, skill.json, OpenAPI info, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

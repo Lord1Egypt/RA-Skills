@@ -1,46 +1,52 @@
-## Description: <br>
-Runs bioinformatics analysis with Lobster AI for omics data, literature and dataset discovery, drug discovery, machine learning, and visualization workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs bioinformatics analysis with Lobster AI across single-cell RNA-seq, bulk RNA-seq, genomics, proteomics, metabolomics, machine learning, drug discovery, literature search, dataset discovery, and visualization workflows.
 
-## Publisher: <br>
-[cewinharhar](https://clawhub.ai/user/cewinharhar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cewinharhar](https://clawhub.ai/user/cewinharhar)
 
-## Use Case: <br>
-Developers, bioinformatics practitioners, and analysts use this skill to guide Lobster AI CLI setup and execution for single-cell RNA-seq, bulk RNA-seq, genomics, proteomics, metabolomics, literature search, dataset discovery, and visualization tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Configured LLM provider keys and optional NCBI keys may be exposed through command-line arguments, logs, or global configuration files. <br>
-Mitigation: Pass credentials through environment variables, prefer workspace-scoped configuration, and avoid global configuration unless it is required. <br>
-Risk: Biological or clinical datasets may contain regulated or confidential information. <br>
-Mitigation: Use only approved LLM providers and environments before processing confidential or regulated biological or clinical data. <br>
-Risk: The skill invokes an external Lobster AI runtime that can access provider APIs and public biological databases. <br>
-Mitigation: Install only when the Lobster AI runtime is trusted, use a dedicated workspace, and review network and file-write behavior before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lobster AI Usage Guide](artifact/SKILL.md) <br>
-- [Agent Orchestration Patterns](artifact/references/agent-patterns.md) <br>
-- [CLI Reference](artifact/references/cli-reference.md) <br>
-- [Lobster source repository](https://github.com/the-omics-os/lobster) <br>
-- [lobster-ai on PyPI](https://pypi.org/project/lobster-ai/) <br>
-- [Lobster CLI commands documentation](https://docs.omics-os.com/raw/docs/guides/cli-commands.md) <br>
+## Use Case:
 
+Developers, analysts, and bioinformatics practitioners use this skill to guide or orchestrate Lobster AI analyses for omics datasets, public database searches, quality control, statistical analysis, and visualization.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Lobster workspace files and structured JSON responses from the Lobster CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.406 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install mutable third-party code, persist provider credentials, and send analysis work to external LLM providers and public bioinformatics services.
+
+Mitigation: Review before installing, use an isolated environment, prefer a pinned Lobster version and only the needed domain extra, avoid global config unless necessary, and do not provide patient data, regulated identifiers, unpublished sensitive research details, or high-value API keys unless the documented network access is acceptable.
+
+## Reference(s):
+
+- [Agent Orchestration Patterns](references/agent-patterns.md)
+- [CLI Reference](references/cli-reference.md)
+- [Lobster AI PyPI Package](https://pypi.org/project/lobster-ai/)
+- [Lobster CLI Documentation](https://docs.omics-os.com/raw/docs/guides/cli-commands.md)
+- [Lobster Documentation Raw Page Pattern](https://docs.omics-os.com/raw/docs/{slug}.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, markdown]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to invoke Lobster CLI commands that produce JSON responses, analysis files, visualizations, and workspace configuration.]
+
+## Skill Version(s):
+
+1.1.406 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

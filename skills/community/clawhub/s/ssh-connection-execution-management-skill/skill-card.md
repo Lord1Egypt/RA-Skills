@@ -1,42 +1,54 @@
-## Description: <br>
-Manage persistent SSH connections, execute async non-blocking commands, handle concurrent bulk executions across fleets, and manage SSH keys and client assignments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage persistent SSH connections, execute async non-blocking commands, handle concurrent bulk executions across fleets, and manage SSH keys and client assignments.
 
-## Publisher: <br>
-[cyber-bye](https://clawhub.ai/user/cyber-bye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyber-bye](https://clawhub.ai/user/cyber-bye)
 
-## Use Case: <br>
-Developers, operators, and infrastructure teams use this skill to manage SSH connection lifecycles, run remote commands, monitor asynchronous execution, and coordinate bulk operations across server fleets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can administer remote servers, including fleet-level commands that may cause downtime or broad configuration changes. <br>
-Mitigation: Use approved host scopes, least-privilege deploy accounts, and require explicit confirmation before upgrades, restarts, or other disruptive commands. <br>
-Risk: The skill handles SSH keys and sensitive remote-access credentials. <br>
-Mitigation: Use passphrase-protected keys, restricted file permissions, approved key storage, and avoid placing plaintext private keys in connection files or scripts. <br>
-Risk: The security scan summary reports insufficient built-in safeguards for SSH keys and fleet-level disruptive commands. <br>
-Mitigation: Install only when the publisher is trusted and review planned remote actions before execution. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to manage SSH connection lifecycles, run remote commands, inspect logs, organize client fleets, and coordinate bulk administrative tasks across Linux servers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyber-bye/ssh-connection-execution-management-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with JSON tool-call examples and shell command strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the ssh_mcp MCP server and the listed SSH MCP tools to be available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill can guide an agent through powerful SSH actions, including upgrades, restarts, file changes, key imports, and bulk execution across fleets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before those actions and verify the target client, host list, maintenance window, health checks, and rollback plan.
+
+Risk: The skill depends on the referenced ssh_mcp server to manage real SSH targets.
+
+Mitigation: Install and use the skill only when the ssh_mcp server is trusted, registered with the MCP host, and appropriate for the target environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyber-bye/skills/ssh-connection-execution-management-skill)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON tool-call examples and inline command references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance depends on the ssh_mcp MCP server and node binary being available.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

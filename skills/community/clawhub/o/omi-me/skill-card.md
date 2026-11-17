@@ -1,46 +1,58 @@
-## Description: <br>
-Complete Omi.me integration for memories, action items (tasks), and conversations with CRUD and sync capabilities for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Omi.me integration for memories, action items (tasks), and conversations with full CRUD and sync capabilities for OpenClaw.
 
-## Publisher: <br>
-[CaioIsCoding](https://clawhub.ai/user/CaioIsCoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[caioiscoding](https://clawhub.ai/user/caioiscoding)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure an Omi.me API token and manage memories, action items, conversations, and sync flows from the command line. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Credential handling could expose an Omi API token. <br>
-Mitigation: Do not use a real Omi API token until the API_URL versus OMI_API_URL bug is fixed; use a limited or disposable token for testing and set chmod 600 on ~/.config/omi-me/token. <br>
-Risk: Endpoint scoping flaws could route requests incorrectly when API_URL or OMI_API_URL is set unexpectedly. <br>
-Mitigation: Clear any API_URL environment variable before testing and verify the endpoint behavior before using the skill with live data. <br>
-Risk: Update and delete commands operate on live Omi.me memories, tasks, and conversations. <br>
-Mitigation: Review command arguments carefully and test against disposable data before running delete, update, or sync operations on an active account. <br>
-Risk: Token printing can leak credentials in logs or shared terminals. <br>
-Mitigation: Avoid omi-token.sh get in logged, recorded, or shared terminal sessions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CaioIsCoding/omi-me) <br>
-- [Publisher profile](https://clawhub.ai/user/CaioIsCoding) <br>
-- [Omi.me](https://omi.me) <br>
-- [Omi developer API overview](https://docs.omi.me/doc/developer/api/overview) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure Omi.me API access and manage memories, action items, conversations, and sync operations from shell commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Bash commands and JSON or text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires omi, omi-token, and OMI_API_TOKEN; commands may read, create, update, delete, or sync live Omi.me account data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The shell scripts handle Omi.me API tokens and include a command that can print the configured token.
+
+Mitigation: Avoid printing tokens, review token-handling code before installation, and ensure ~/.config/omi-me is mode 700 and the token file is mode 600 on every write path.
+
+Risk: Request destination handling needs review before use.
+
+Mitigation: Replace API_URL with OMI_API_URL where needed and verify the Omi.me API endpoint before running commands.
+
+Risk: Delete and sync commands operate on Omi.me memories, tasks, and conversations.
+
+Mitigation: Treat delete and sync operations as sensitive actions and review intended data impact before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caioiscoding/skills/omi-me)
+- [Omi.me](https://omi.me)
+- [Omi.me developer API overview](https://docs.omi.me/doc/developer/api/overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OMI_API_TOKEN and the omi and omi-token shell commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

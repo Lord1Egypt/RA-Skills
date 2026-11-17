@@ -1,45 +1,56 @@
-## Description: <br>
-AI-powered personal secretary for task management and goal tracking that gives a Top 3 daily brief, captures ideas, tracks momentum, adapts to available time and energy, works with any model, and keeps data local. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered personal secretary for task management and goal tracking. Gives you a Top 3 daily brief, captures ideas, tracks momentum, adapts to your available time and energy. Works with any model. Local-first, no data leaves your machine.
 
-## Publisher: <br>
-[yanglin14](https://clawhub.ai/user/yanglin14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanglin14](https://clawhub.ai/user/yanglin14)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill as a local-first personal secretary for prioritizing daily work, capturing goals and ideas, tracking completion momentum, and turning natural-language requests into task-management CLI actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores tasks, calendar-derived event details, action logs, and long-term personal preferences in a local SQLite database. <br>
-Mitigation: Install only when local storage of this personal context is acceptable, set GTI_DB_DIR deliberately when needed, and use list-ltm, clear-ltm, list-calendars, and disconnect-calendar to audit or remove stored data. <br>
-Risk: Connected iCal calendar URLs may contain private tokens and morning briefs may fetch connected calendars automatically. <br>
-Mitigation: Connect only trusted calendar URLs or local files, avoid displaying private calendar URLs, and disconnect calendars that should no longer be synced. <br>
-Risk: The skill can silently store lasting preferences, constraints, insights, or context when users disclose them. <br>
-Mitigation: Review long-term memory periodically and delete entries that should not remain available to future briefings. <br>
+## Use Case:
 
+External users use this agent skill as a personal productivity secretary that turns natural-language updates into local task, goal, idea, calendar, memory, and review commands. It helps the user choose a daily Top 3, track completion and skips, capture ideas, and adapt task suggestions to available time and momentum.
 
-## Reference(s): <br>
-- [Publisher profile](https://clawhub.ai/user/yanglin14) <br>
-- [ClawHub skill page](https://clawhub.ai/yanglin14/get-to-it) <br>
-- [Project homepage](https://github.com/yanglin/get-to-it) <br>
-- [Persona guide](references/persona.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style assistant responses with CLI command invocations and JSON-backed task summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Python CLI and local SQLite database for tasks, calendar metadata, action logs, and long-term preferences.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill stores tasks, goals, mood, timing data, calendar events, and inferred personal preferences in a persistent local database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review stored data periodically with the memory and long-term memory listing commands, clear sensitive entries when needed, and avoid sharing sensitive personal details unless memory behavior is changed to require consent.
+
+Risk: Calendar integration can fetch external iCal URLs and cache event details locally, so the local-first privacy claim is qualified.
+
+Mitigation: Only connect calendar URLs or files the user is comfortable fetching and storing locally, and disconnect calendars that should no longer be used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yanglin14/skills/get-to-it)
+- [Publisher profile](https://clawhub.ai/user/yanglin14)
+- [Skill homepage](https://github.com/yanglin/get-to-it)
+- [Persona reference](references/persona.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON-derived summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The agent invokes a local Python CLI that returns JSON for most commands, while morning briefs may also be emitted as Telegram Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

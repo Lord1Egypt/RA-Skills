@@ -1,41 +1,58 @@
-## Description: <br>
-Operate Electron desktop applications on macOS via Puppeteer CDP. Open an app, find a UI element by text, click it, and take a screenshot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Electron desktop applications on macOS via Puppeteer CDP. Open an app, find a UI element by text, click it, and take a screenshot.
 
-## Publisher: <br>
-[bondli](https://clawhub.ai/user/bondli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bondli](https://clawhub.ai/user/bondli)
 
-## Use Case: <br>
-Developers and operators use this skill to automate local macOS Electron apps by launching an installed application, selecting a visible text target, and returning a screenshot for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture the whole desktop, which may include sensitive windows outside the target application. <br>
-Mitigation: Install only when local Electron desktop automation is needed, close sensitive windows before use, and prefer a revised version that captures only the target app and asks before saving screenshots. <br>
-Risk: The skill may close processes more broadly than users expect after automation finishes. <br>
-Mitigation: Run it only against trusted, non-production or non-account-sensitive apps unless the risk is accepted, and prefer a revision that terminates only the process it launched. <br>
+## Use Case:
 
+Developers and operators use this skill to automate local Electron desktop applications on macOS by opening an installed app, clicking a visible text target, and capturing a screenshot.
 
-## Reference(s): <br>
-- [README.md](artifact/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bondli/desktop-operator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files] <br>
-**Output Format:** [JSON object containing a screenshot file path; screenshot saved as a PNG file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, a local Electron app installed under /Applications, and accessibility permission for Terminal or Node.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can capture the whole desktop and may include sensitive visible information in screenshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with apps and data that are appropriate to automate and capture; close unrelated windows and review stored screenshots before sharing.
+
+Risk: The skill saves screenshot images on disk in the user's home folder.
+
+Mitigation: Review, retain, or delete generated screenshots according to the data sensitivity of the automated session.
+
+Risk: The skill enables local debugging for the target Electron app and can force-close processes with matching app names.
+
+Mitigation: Run it only on trusted local sessions, save work before execution, and verify the app name before starting automation.
+
+## Reference(s):
+
+- [README.md](README.md)
+- [ClawHub skill page](https://clawhub.ai/bondli/skills/desktop-operator)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON]
+
+**Output Format:** [JSON containing a screenshot path, plus a PNG screenshot file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Screenshot files are saved under the user's home directory in openclaw-skill-data/desktop-oprator.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

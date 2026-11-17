@@ -1,46 +1,64 @@
-## Description: <br>
-Understand website goals and user journeys first, then analyze GSC/GA4 data and audit the live site to validate whether users behave as intended. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes website goals, user journeys, GSC and GA4 data, and live-site audit evidence to produce actionable, goal-aligned improvement plans.
 
-## Publisher: <br>
-[morvanzhou](https://clawhub.ai/user/morvanzhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morvanzhou](https://clawhub.ai/user/morvanzhou)
 
-## Use Case: <br>
-Developers, site owners, and marketing teams use this skill to diagnose website performance, SEO, GEO readiness, analytics behavior, and conversion gaps, then produce prioritized improvement plans grounded in available site and analytics data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may handle Google service account keys, API keys, analytics exports, screenshots, and audience reports. <br>
-Mitigation: Use only authorized sites and analytics properties, store credentials and outputs in the private data directory, avoid committing .env or JSON keys, and rotate exposed credentials. <br>
-Risk: Persona reports, screenshots, and analytics exports can reveal private user or administrator data, especially for small cohorts. <br>
-Mitigation: Minimize exported data, avoid identifying small groups, and review reports before sharing outside the authorized team. <br>
+## Use Case:
 
+Developers, site owners, and marketing analysts use this skill to diagnose website performance, SEO, GEO, analytics, conversion, and user journey gaps. It helps collect or process GSC, GA4, Bing Webmaster, PageSpeed, browser audit, and source-code evidence into prioritized improvement reports.
 
-## Reference(s): <br>
-- [Data Collection Reference](references/data-collection-reference.md) <br>
-- [Metrics Glossary](references/metrics-glossary.md) <br>
-- [SEO and GEO Optimization Checklist](references/SEO-GEO-Optimization-Checklist.md) <br>
-- [Data Visualization Guide](references/data-visualization-guide.md) <br>
-- [Website Reconnaissance Reference](references/website-reconnaissance-reference.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [User Persona Analysis Reference](references/user-persona-analysis-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with generated charts, JSON audit outputs, Python analysis code, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include raw API data, processed analysis files, chart images, screenshots, logs, and final improvement or persona reports under the configured data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: The skill can access website analytics, search console data, and local credential files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege read-only accounts, restrict data directory permissions, and store service account keys only in the configured local configs directory.
+
+Risk: Live-site and sitemap audits can fetch many URLs from the configured target site.
+
+Mitigation: Review the configured SITE_URL and sitemap scope before running audit scripts, and limit page counts when auditing unfamiliar sites.
+
+Risk: Dependency drift can change script behavior over time.
+
+Mitigation: Prefer pinned dependencies or a lockfile before production use.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/morvanzhou/skills/improve-skill-with-best-practices)
+- [Website Reconnaissance Reference](references/website-reconnaissance-reference.md)
+- [Data Collection Reference](references/data-collection-reference.md)
+- [SEO & GEO Optimization Checklist](references/SEO-GEO-Optimization-Checklist.md)
+- [Data Visualization Guide](references/data-visualization-guide.md)
+- [Key Metrics & Analysis Dimensions](references/metrics-glossary.md)
+- [User Persona Analysis Reference](references/user-persona-analysis-reference.md)
+- [Final Report Template](references/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON audit outputs, generated chart files, Python analysis scripts, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores runtime data, credentials, raw API exports, analysis outputs, charts, logs, cache, and temporary screenshots under a local .skills-data directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Build agent-facing web experiences with ATXP-based authentication, following the ClawDirect pattern. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build agent-facing web experiences with ATXP-based authentication, following the ClawDirect pattern.
 
-## Publisher: <br>
-[napoleond](https://clawhub.ai/user/napoleond) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[napoleond](https://clawhub.ai/user/napoleond)
 
-## Use Case: <br>
-Developers and engineers use this skill to build agent-facing web applications with ATXP authentication, MCP tools, cookie-based browser access, and optional payment-enabled actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The sample auth-cookie bootstrap pattern needs production hardening before deployment. <br>
-Mitigation: Prefer a short-lived one-time exchange code; otherwise use HTTPS, immediate redirects, strict query logging controls, Secure/HttpOnly/SameSite cookies, token expiry, revocation, hashed token storage, and pinned npm dependencies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/napoleond/clawdirect-dev) <br>
-- [ClawDirect reference implementation](https://github.com/napoleond/clawdirect) <br>
-- [ATXP documentation](https://skills.sh/atxp-dev/cli/atxp) <br>
-- [ClawDirect directory](https://claw.direct) <br>
+## Use Case:
 
+Developers and engineers use this skill to build agent-facing web applications that support browser interaction, MCP tools, ATXP authentication, optional payments, and cookie-based access patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, JSON, environment variable, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation templates and setup guidance for agent-facing web applications.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented browser authentication pattern can expose reusable session credentials when cookie values are passed through URLs.
+
+Mitigation: Use one-time, short-lived bootstrap tokens or direct cookie-setting support instead of reusable URL-carried cookies.
+
+Risk: The template stores server-side sessions without clear expiration or revocation behavior.
+
+Mitigation: Add explicit session expiration and revocation before adapting the pattern for production.
+
+Risk: Unpinned dependency and CLI versions can change behavior across installs.
+
+Mitigation: Pin dependency and CLI versions before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/napoleond/skills/clawdirect-dev)
+- [ClawDirect Reference Implementation](https://github.com/napoleond/clawdirect)
+- [ATXP CLI Documentation](https://skills.sh/atxp-dev/cli/atxp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell command, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces templates and implementation guidance for Node.js, Express, SQLite, MCP, and ATXP-based web apps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

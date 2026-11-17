@@ -1,44 +1,61 @@
-## Description: <br>
-Generates UI/UX concept proposal templates and design specification documents from historical project materials and optional Figma design inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates concept proposal and design description documents from historical UI/UX project materials, local design images, and optional Figma inputs.
 
-## Publisher: <br>
-[shaco223](https://clawhub.ai/user/shaco223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shaco223](https://clawhub.ai/user/shaco223)
 
-## Use Case: <br>
-Designers, product teams, and implementation agents use this skill to match relevant historical projects, draft concept proposal content, and generate structured design descriptions for local image or Figma-based UI/UX work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup guidance discusses weakening Figma HTTPS verification while handling Figma tokens and design data. <br>
-Mitigation: Use proper certificate or proxy configuration instead of disabling SSL/TLS verification; keep the Figma token read-only and protect any .env file. <br>
-Risk: Generated project indexes and design documents may contain sensitive project or design information. <br>
-Mitigation: Point the skill only at deliberately scoped project folders, use it only for materials you are authorized to process, and treat generated indexes and output documents as sensitive. <br>
+## Use Case:
 
+Designers, product teams, and developers use this skill to match relevant historical projects, draft concept proposals, and produce structured design descriptions for UI/UX projects. It is intended for normal ClawHub release use with human review before generated documents are relied on.
 
-## Reference(s): <br>
-- [Concept plan schema](references/concept_plan_schema.md) <br>
-- [Design description schema](references/design_desc_schema.md) <br>
-- [Examples](references/examples.md) <br>
-- [Quick start](references/quick-start.md) <br>
-- [Figma](https://www.figma.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated document content intended for Word document output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local project indexes and configured output paths; Figma support depends on a separately configured Figma skill and token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: The setup guide includes Figma configuration guidance that weakens HTTPS certificate verification while handling design data and tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not set verify=False or suppress HTTPS warnings; use a trusted CA or approved proxy configuration, keep Figma tokens read-only, and store tokens securely.
+
+Risk: Historical project folders may contain confidential, regulated, or credential-bearing files.
+
+Mitigation: Use only approved and sanitized historical-project folders, and exclude secrets, personal data, and regulated data before indexing or generation.
+
+Risk: Generated proposals and design descriptions may be incomplete, incorrect, or misaligned with the source design.
+
+Mitigation: Have a qualified reviewer compare generated documents with the original requirements, design assets, and organization-approved design standards before use.
+
+## Reference(s):
+
+- [Quick Start](references/quick-start.md)
+- [Concept Plan Schema](references/concept_plan_schema.md)
+- [Design Description Schema](references/design_desc_schema.md)
+- [Examples](references/examples.md)
+- [Figma](https://www.figma.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and structured document drafts; host agents may render final proposal or design-description files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content should be reviewed against source designs, project requirements, and approved design standards before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

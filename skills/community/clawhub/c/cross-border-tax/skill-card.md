@@ -1,42 +1,58 @@
-## Description: <br>
-跨境多国税务速查 helps users query VAT, GST, sales tax, filing cadence, registration thresholds, and EU OSS/IOSS information for major cross-border ecommerce markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+跨境多国税务速查支持用国家名或自然语言查询30多个国家和地区的税率、申报周期、注册门槛、特殊规则以及EU OSS/IOSS方案，并生成交互式HTML税务速查报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Cross-border ecommerce sellers, operators, and advisors use this skill to quickly compare tax rates, registration thresholds, filing cycles, and OSS/IOSS considerations across supported countries and regions. It is an informational lookup helper, not a substitute for official tax authority guidance or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax rates, thresholds, filing deadlines, and cross-border rules can change or vary by transaction details. <br>
-Mitigation: Treat generated reports as informational and verify material decisions with official tax authorities or a qualified tax professional before acting. <br>
-Risk: Broad tax-related triggers may invoke the skill more often than intended. <br>
-Mitigation: Review whether the skill was intentionally invoked before relying on its output in tax or ecommerce workflows. <br>
-Risk: Generated reports are saved with query-derived filenames and may overwrite an existing report with the same name. <br>
-Mitigation: Use distinct queries or preserve important generated reports outside the skill output folder before rerunning similar lookups. <br>
+## Use Case:
 
+External cross-border ecommerce sellers, operators, and tax or compliance staff use this skill to quickly compare VAT, GST, sales-tax rates, registration thresholds, filing cycles, and EU OSS/IOSS considerations across major markets. Its output should be treated as reference material rather than tax or legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/cross-border-tax) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, html, shell commands, guidance] <br>
-**Output Format:** [Console text plus generated interactive HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are written to the skill output folder using query-derived filenames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Tax data may be incorrect or outdated and does not constitute tax or legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use generated reports only as reference material and verify decisions against official tax authorities or a qualified adviser.
+
+Risk: The skill may activate on broad tax terms and write persistent HTML reports in the user's home directory.
+
+Mitigation: Review trigger terms before deployment and run the script only for intentional tax lookup tasks.
+
+Risk: HTML reports can contain unescaped user-supplied query text.
+
+Mitigation: Avoid untrusted queries until output escaping is fixed, or sanitize query text before rendering HTML.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/cross-border-tax)
+- [bettermen publisher profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Interactive HTML report files with console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent HTML reports under ~/.workbuddy/skills/cross-border-tax/output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

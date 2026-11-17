@@ -1,41 +1,53 @@
-## Description: <br>
-Automate ActiveCampaign tasks via Rube MCP (Composio): manage contacts, tags, list subscriptions, automation enrollment, and tasks. Always search tools first for current schemas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate ActiveCampaign tasks via Rube MCP (Composio), including contact management, tag changes, list subscriptions, automation enrollment, and task creation while prompting agents to search current tool schemas first.
 
-## Publisher: <br>
-[sohamganatra](https://clawhub.ai/user/sohamganatra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sohamganatra](https://clawhub.ai/user/sohamganatra)
 
-## Use Case: <br>
-Developers and operators use this skill to guide agents through ActiveCampaign CRM and marketing workflows, including contact management, tagging, list subscription changes, automation enrollment, and contact task creation through Rube MCP. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real changes to ActiveCampaign contacts, tags, list subscriptions, automations, and tasks. <br>
-Mitigation: Confirm exact contacts, list IDs, tags, automation IDs, and marketing consent before mutating actions; use a limited or test account where practical. <br>
-Risk: Tool schemas or ActiveCampaign IDs may be stale or account-specific. <br>
-Mitigation: Call RUBE_SEARCH_TOOLS first for current schemas and verify IDs in ActiveCampaign before executing workflows. <br>
-Risk: Bulk changes may hit ActiveCampaign account rate limits. <br>
-Mitigation: Batch operations with reasonable delays and backoff on rate-limit responses. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Rube MCP](https://rube.app/mcp) <br>
+## Use Case:
 
+Developers and operators use this skill to guide ActiveCampaign CRM workflows through Rube MCP, including contact lookup and creation, tag changes, list subscription changes, automation enrollment, and contact task creation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with MCP tool names, parameter notes, and workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agent use of Rube MCP tools for ActiveCampaign workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live ActiveCampaign operations can change customer records, list subscriptions, tags, automation enrollment, and tasks.
+
+Mitigation: Use a least-privilege ActiveCampaign account and require explicit confirmation before any mutation or bulk operation.
+
+Risk: Incorrect contact, list, automation, or task IDs can apply changes to the wrong record or workflow.
+
+Mitigation: Verify contacts and IDs before mutation, and search current tool schemas before running workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sohamganatra/skills/activecampaign-automation)
+- [Rube MCP Server](https://rube.app/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with inline tool names, parameters, and workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Rube MCP and an active ActiveCampaign connection.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

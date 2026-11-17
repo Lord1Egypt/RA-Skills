@@ -220,7 +220,7 @@ PRIVATE_KEY: 你的邮箱钱包私钥。你需要从官方导出页面获取。
 PRIVATE_KEY=0xsk_your_private_key_here_64_hex_chars
 PROXY_WALLET=0x1234567890123456789012345678901234567890
 POLY_API_KEY=pk_live_xxxxxxxxxxxxxxxxxxxx
-POLY_API_SECRET=sk_live_xxxxxxxxxxxxxxxxxxxx
+POLY_API_SECRET=REDACTED-SECRET
 POLY_API_PASSPHRASE=your_passphrase_here
 SIGNER_TYPE=1  # 1=邮箱账户, 2=metamask注册的polymarket账户
 

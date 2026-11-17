@@ -1,42 +1,53 @@
-## Description: <br>
-Feishu Cli Chat helps agents browse Feishu chats, retrieve group or direct-message history, inspect message details, add reactions, pin or unpin messages, delete messages, and manage group chat information and members through feishu-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu CLI Chat helps agents use feishu-cli to browse Feishu chat history, search conversations, inspect message details, add reactions, pin or delete messages, and manage group chat information and members.
 
-## Publisher: <br>
-[GISwilson](https://clawhub.ai/user/GISwilson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[giswilson](https://clawhub.ai/user/giswilson)
 
-## Use Case: <br>
-Agents assisting authorized Feishu users use this skill to inspect recent chat context, search conversations, summarize group activity, and perform chat-management actions through feishu-cli. It is intended for workflows where the user can provide explicit chat names, chat IDs, message IDs, keywords, or time ranges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a logged-in Feishu account to access private chats and broad chat history. <br>
-Mitigation: Use explicit chat names, chat IDs, message IDs, keywords, and time ranges; avoid broad exports of chat history. <br>
-Risk: The skill includes message and group-management actions such as delete, update, pin, unpin, reactions, and member changes. <br>
-Mitigation: Require manual confirmation before performing destructive or state-changing actions. <br>
-Risk: Chat history may be saved temporarily as JSON during pagination or analysis. <br>
-Mitigation: Remove temporary JSON files when they are no longer needed. <br>
+## Use Case:
 
+Employees, developers, and authorized operators use this skill when they need an agent to retrieve and summarize Feishu chat or group history, search conversations, inspect message details, and perform scoped group or message management with a logged-in user token.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GISwilson/feishu-cli-chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON-oriented outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Feishu CLI user token for core chat browsing and management commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can expose private Feishu chat and group history through broad user-level access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for authorized Feishu workspaces and accounts, use the narrowest practical Feishu scopes, and avoid accessing third-party private conversations without clear authorization.
+
+Risk: The skill supports high-impact group and message actions such as member changes, pinning, deletion, and group dissolution.
+
+Mitigation: Require manual review before executing management actions that alter membership, message state, or group availability.
+
+## Reference(s):
+
+- [Feishu Cli Chat on ClawHub](https://clawhub.ai/giswilson/skills/feishu-cli-chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Feishu user token for the main read and management workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

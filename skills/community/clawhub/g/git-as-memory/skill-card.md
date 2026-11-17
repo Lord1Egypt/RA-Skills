@@ -1,39 +1,53 @@
-## Description: <br>
-Provides a Git-backed memory policy and CLI workflow for agents to remember durable preferences, project decisions, conventions, lessons learned, and audit Git-native memory with gam. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git-backed memory policy and CLI workflow for OpenClaw, Hermes, Claude Code, Codex, and other agents.
 
-## Publisher: <br>
-[femto](https://clawhub.ai/user/femto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[femto](https://clawhub.ai/user/femto)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add durable, auditable project memory to Git repositories and guide agents on when to search, write, update, delete, and audit memory with gam. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may persist secrets or noisy one-off data as memory. <br>
-Mitigation: Follow the documented memory policy, avoid secrets and credentials, search before writing, and store only stable, reusable information. <br>
-Risk: Global installation of the external npm or pip package may introduce dependency provenance risk. <br>
-Mitigation: Review the external package provenance before global installation and use the skill only in repositories where Git-ref memory storage is appropriate. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure agents to store, search, update, and audit durable user preferences, project decisions, conventions, and lessons in a dedicated Git ref.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May report memory keys after writes; otherwise provides concise operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: External CLI install examples do not pin package versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the git-as-memory package source and publisher, prefer an exact pinned version, and use a project-local invocation when it fits the workflow.
+
+Risk: Durable memory entries could accidentally capture secrets, credentials, or noisy one-off data.
+
+Mitigation: Follow the documented write policy: search before writing, keep entries concise and reusable, include a source, and do not store secrets or private authentication material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/femto/skills/git-as-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

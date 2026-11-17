@@ -1,41 +1,54 @@
-## Description: <br>
-AI 知识类海报/封面图设计生成器，根据用户提供的主题内容生成 1200x1800 像素竖版海报和封面图，并使用统一的深色科技感视觉风格与六种模板布局。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design Ads generates vertical AI knowledge posters and cover images as 1200x1800 PNGs from user-provided topics, content, and template choices.
 
-## Publisher: <br>
-[bozoyan](https://clawhub.ai/user/bozoyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bozoyan](https://clawhub.ai/user/bozoyan)
 
-## Use Case: <br>
-Creators, marketers, and agents use this skill to turn AI knowledge topics into vertical poster or cover artwork for platforms such as Xiaohongshu, WeChat, and promotional content. The skill guides content selection, template choice, HTML construction, and PNG rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML and PNG files are copied to a local Downloads folder and may persist after the session. <br>
-Mitigation: Use non-sensitive poster content, review the generated files, and delete the timestamped design-ads Downloads folder when persistence is not desired. <br>
-Risk: Rendering untrusted or sensitive HTML can expose local content through saved artifacts or browser rendering behavior. <br>
-Mitigation: Review generated HTML before rendering and avoid using untrusted HTML inputs or confidential content. <br>
+## Use Case:
 
+Creators, marketers, educators, and knowledge workers use this skill to turn topic outlines or educational content into mobile-friendly poster and cover images for social, newsletter, and learning materials.
 
-## Reference(s): <br>
-- [Design system specification](references/design-system.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bozoyan/design-ads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with HTML/CSS code and shell commands that render PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 1200x1800 PNG poster images and saves local HTML/PNG copies to a timestamped Downloads folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The security summary says the renderer runs active HTML in an unsandboxed browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated or user-supplied HTML before rendering and run the skill in a low-privilege, isolated environment with Chromium sandboxing enabled where possible.
+
+Risk: The security guidance notes dependency and file-copying risks.
+
+Mitigation: Pin and review dependencies, block unexpected network requests, and avoid sensitive data in poster HTML because source HTML and PNG outputs may be copied to a downloads folder.
+
+## Reference(s):
+
+- [Design Ads design system](references/design-system.md)
+- [ClawHub skill page](https://clawhub.ai/bozoyan/skills/design-ads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with HTML/CSS source and rendered PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates 1200x1800 PNG posters; longer content may be split into multiple numbered images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

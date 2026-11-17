@@ -1,42 +1,58 @@
-## Description: <br>
-Uses Asana through mcporter-backed remote MCP tools for tasks, projects, portfolios, goals, and team workspaces via the hosted Asana MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Asana through mcporter-backed remote MCP tools for tasks, projects, portfolios, goals, and team workspaces via the hosted mcp.asana.com server.
 
-## Publisher: <br>
-[dam1k](https://clawhub.ai/user/dam1k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dam1k](https://clawhub.ai/user/dam1k)
 
-## Use Case: <br>
-Employees and teams use this skill to search, read, create, and update Asana tasks, projects, and workspace data through a connected Asana OAuth account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connected OAuth account allows the agent to read and change Asana workspace data. <br>
-Mitigation: Install only when this access is intended, confirm impactful changes before execution, and disconnect OAuth access when it is no longer needed. <br>
-Risk: Task, project, due date, completion, and follower updates can affect shared work tracking. <br>
-Mitigation: Review proposed changes before allowing create, update, move, complete, or follower-management actions. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to let an agent search Asana workspaces, inspect projects and tasks, and create or update Asana work items through an OAuth-scoped MCP connection.
 
-## Reference(s): <br>
-- [Asana MCP server](https://mcp.asana.com/v2/mcp) <br>
-- [ClawHub skill listing](https://clawhub.ai/dam1k/asana-remote-mcp) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dam1k) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with tool names, parameter guidance, and operational instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected Asana MCP OAuth token; tool calls may read or modify Asana workspace data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read Asana work data and perform requested updates through the connected account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when agent access to the connected Asana account is intended, and review confirmations before task creation, movement, completion, or other significant updates.
+
+Risk: Incorrect task or project identifiers could target the wrong Asana object.
+
+Mitigation: Resolve workspace, project, and task GIDs before detail or update calls, and fetch current task details before changing fields.
+
+Risk: Large or overly broad list operations can consume Asana API quota.
+
+Mitigation: Use opt_fields to limit returned data and avoid unnecessarily large list operations.
+
+## Reference(s):
+
+- [Asana MCP server](https://mcp.asana.com/v2/mcp)
+- [ClawHub skill page](https://clawhub.ai/dam1k/skills/asana-remote-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline commands and MCP tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses OAuth-scoped Asana MCP access; significant task changes should be confirmed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

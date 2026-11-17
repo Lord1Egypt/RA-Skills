@@ -1,40 +1,54 @@
-## Description: <br>
-Molecular docking workflows across Gnina, AutoDock Vina, PackDock, SurfDock, and DiffDock through SciMiner, with Gnina as the default engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run and diagnose expert-grade protein-ligand molecular docking through SciMiner using Gnina, AutoDock Vina, PackDock, SurfDock, DiffDock, and fpocket for focused docking, engine selection, ensemble sampling, pose-pool analysis, clustering, physics checks, confidence grading, and multi-engine comparisons.
 
-## Publisher: <br>
-[sciminer](https://clawhub.ai/user/sciminer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sciminer](https://clawhub.ai/user/sciminer)
 
-## Use Case: <br>
-Developers, computational chemists, and research teams use this skill to run SciMiner molecular docking workflows, select an appropriate docking engine, upload required molecular files, and return shareable task results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires a SciMiner API key and uploads user-provided molecular files to SciMiner. <br>
-Mitigation: Install only when SciMiner use is acceptable, keep the API key in the configured credential file, and avoid uploading proprietary or regulated molecular data unless approved for the use case. <br>
+## Use Case:
 
+External scientists, drug discovery researchers, and computational chemistry developers use this skill to run structured SciMiner docking workflows and produce auditable docking hypotheses rather than one-shot score rankings.
 
-## Reference(s): <br>
-- [SciMiner API key utility](https://sciminer.tech/utility) <br>
-- [SciMiner tool API Markdown documentation](https://sciminer.tech/tool_api_files/) <br>
-- [ClawHub skill page](https://clawhub.ai/sciminer/molecular-docking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, API calls, text] <br>
-**Output Format:** [Markdown summaries with API invocation guidance, task status, task IDs, and SciMiner share URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SciMiner Markdown API docs as the authoritative source for payload construction and returns share URLs for successful or long-running tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Authenticated receptor and ligand uploads are sent according to mutable remote SciMiner API documentation, and the local artifact does not define a fixed destination allowlist or integrity check.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when SciMiner's documentation hosting and credential controls are trusted, confirm that uploaded molecular data may leave the environment, and enforce destination/origin checks outside the skill when possible.
+
+Risk: SciMiner credentials may be exposed or over-scoped if handled outside the skill's runtime contract.
+
+Mitigation: Use short-lived, narrowly scoped SciMiner credentials and do not print, persist, derive, or search for the injected SCIMINER_API_KEY.
+
+## Reference(s):
+
+- [ClawHub molecular-docking skill page](https://clawhub.ai/sciminer/skills/molecular-docking)
+- [SciMiner tool API documentation](https://sciminer.tech/tool_api_files/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured audit summaries, tables, file/API provenance, and inline shell/API guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include representative coordinate artifacts, pose/score provenance tables, SciMiner task IDs, and history URLs when jobs are run.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

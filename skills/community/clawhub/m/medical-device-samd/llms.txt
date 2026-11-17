@@ -1,0 +1,37 @@
+# medical-device-samd
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+SaMD (Software as a Medical Device) skill — IMDRF N12 risk classification (I-IV), IEC 62304 software lifecycle (A/B/C), FDA level of concern (Major/Moderate/Minor), MDR Rule 11, cybersecurity (MDCG 2019-16, FDA guidance, SBOM) checklists with official references.
+
+SaMD软件医疗器械专题——IMDRF N12 分类（I-IV）、IEC 62304 软件生命周期、FDA 三级关注、MDR 规则 11、网络安全（MDCG 2019-16/SBOM）评估清单与官方入口直达。
+
+## When to use / 什么时候用
+
+- 我们这个 App 算不算医疗器械软件
+- 软件安全性级别 A B C 怎么定
+- IEC 62304 的文档要写到什么程度
+- 网络安全资料清单从哪开始准备
+- SBOM 必须提供吗，里面放什么
+- FDA 说我们的软件是重大关注级别
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

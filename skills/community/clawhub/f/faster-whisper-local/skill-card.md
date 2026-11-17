@@ -1,41 +1,51 @@
-## Description: <br>
-Local speech-to-text using faster-whisper with GPU acceleration support, word-level timestamps, and distilled model options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local speech-to-text using faster-whisper with GPU acceleration support, word-level timestamps, and distilled model options.
 
-## Publisher: <br>
-[Damirikys](https://clawhub.ai/user/Damirikys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jeminay](https://clawhub.ai/user/jeminay)
 
-## Use Case: <br>
-Developers and agent users use this skill to transcribe local audio files into text or structured JSON, with options for model choice, language, word timestamps, voice activity detection, and CPU or CUDA execution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup script downloads Python packages and may download speech models on first use. <br>
-Mitigation: Review setup.sh before installation, run it without elevated privileges, and install only in environments where those package and model downloads are acceptable. <br>
-Risk: Audio files and generated transcripts can contain private or sensitive information. <br>
-Mitigation: Keep audio and transcript files in approved local storage and apply the user's normal data handling requirements before sharing or retaining outputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Damirikys/faster-whisper-local) <br>
-- [PyTorch CUDA wheel index](https://download.pytorch.org/whl/cu121) <br>
-- [PyTorch package index](https://download.pytorch.org) <br>
+## Use Case:
+
+Developers and agents use this skill to transcribe local audio files into plain text or JSON, with optional model selection, language selection, word timestamps, and voice activity detection.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Setup downloads current Python packages and Whisper model assets into a local virtual environment.
+
+Mitigation: Install in a controlled environment and pin and hash dependencies before setup when higher assurance is required.
+
+Risk: Local audio transcription may process sensitive audio content.
+
+Mitigation: Review local data handling requirements before processing audio files and keep generated transcripts within the approved environment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands] <br>
-**Output Format:** [Plain text transcript or JSON containing transcript text, detected language, duration, segments, and optional word timestamps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write output to a file; supports model, language, beam size, voice activity detection, device, compute type, quiet mode, and first-run model downloads.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text transcript or JSON transcript metadata, with shell commands and configuration guidance for setup and execution.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write transcript output to a local file when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

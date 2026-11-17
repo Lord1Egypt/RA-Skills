@@ -1,40 +1,234 @@
 {
+  "spec": "usk/3.0",
   "id": "mgc_database_security",
-  "version": "1.0.1",
-  "name": "Database Credential Security (Zero‑Exposure Edition)",
-  "description": "Secure database credential management using MGC Blackbox. Supports MySQL, PostgreSQL, SQLite, MariaDB and other databases. Store credentials locally in encrypted form, retrieve at runtime without exposing to AI models.",
+  "version": "2.0.0",
+  "name": "Database Credential Security (Zero-Exposure Edition)",
+  "description": "Secure database credential management, analysis-script execution and multi-step data analysis workflows using MGC Blackbox 1.5.4. Supports MySQL, PostgreSQL, SQLite, MariaDB, SQL Server and other databases. Credentials are stored encrypted and retrieved by local scripts over the localhost REST API at runtime, so AI agents never touch credential plaintext. Also covers parameterised analysis scripts, folder-based data analysis workflows with auto-recognised cross-script call graphs, 1.5.4 dual-mode sealing, link authorization, capsule import, credential rotation and deletion, and runtime dependency advisories.",
   "author": "MirginCipher Team",
   "license": "MIT",
   "category": "Developer Tools",
-  "tags": ["database", "mysql", "postgresql", "sqlite", "mariadb", "security", "credential-management", "zero-exposure", "mgc"],
-  "platform_compatibility": ["windows", "macos", "linux"],
   "source": "local",
+  "tags": [
+    "database",
+    "mysql",
+    "postgresql",
+    "sqlite",
+    "mariadb",
+    "security",
+    "credential-management",
+    "zero-exposure",
+    "mgc",
+    "mgc_run",
+    "mgc_find",
+    "mgc_seal",
+    "mgc_delete",
+    "analysis-script",
+    "data-workflow"
+  ],
+  "keywords": [
+    "database credentials",
+    "mysql password",
+    "postgres connection string",
+    "secret management",
+    "token vault",
+    "credential rotation",
+    "credential revocation",
+    "encrypted storage",
+    "zero trust local",
+    "cross-node delegation",
+    "sealed capsule",
+    "link authorization",
+    "runtime dependency advisory",
+    "parameterised analysis script",
+    "result file read-back",
+    "data analysis workflow",
+    "multi-script pipeline",
+    "cross-script call graph",
+    "workflow sealing",
+    "run compatibility badge"
+  ],
+  "platform_compatibility": [
+    "windows",
+    "macos",
+    "linux"
+  ],
+  "requirements": {
+    "mgc_version": ">=1.5.4",
+    "python": ">=3.10",
+    "optional": [
+      "mysql-connector-python",
+      "psycopg2-binary",
+      "pymysql",
+      "requests"
+    ]
+  },
+  "install": {
+    "pip": [
+      "mgc-blackbox>=1.5.4"
+    ],
+    "mcp": [
+      "mgc"
+    ]
+  },
+  "runtime": "mgc",
+  "port": 57219,
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "manifest.json"
+  ],
   "skills": [
     {
-      "name": "mysql_security",
-      "description": "Manage MySQL credentials securely using MGC Blackbox",
-      "parameters": {}
+      "name": "database_credential",
+      "layer": "credentials",
+      "description": "Store, rotate, revoke and delete MySQL, PostgreSQL, SQLite, MariaDB and SQL Server credentials in MGC, read by local scripts over the localhost REST API so AI never sees plaintext",
+      "parameters": {
+        "info_type": "config",
+        "info_owner": "<one per database and environment>"
+      }
+    },
+    {
+      "name": "database_analysis_script",
+      "layer": "analysis_script",
+      "description": "Store and run a parameterised single analysis script that queries a database and writes a result file, with literal argparse defaults and ext02 runtime override",
+      "parameters": {
+        "info_type": "script",
+        "info_owner": "<script location>",
+        "ext01": "python",
+        "ext02": "<JSON array string of runtime args>"
+      }
+    },
+    {
+      "name": "database_workflow",
+      "layer": "data_analysis_workflow",
+      "description": "Run a multi-step query, clean and analyse pipeline stored as a folder, with cross-script calls routed through sealed execution at runtime",
+      "parameters": {
+        "info_owner": "<pipeline owner>",
+        "diff_2": "<folder name>",
+        "diff_3": "<relative POSIX path including the file extension>"
+      }
     }
   ],
-  "mcp_tools": ["mgc_save", "mgc_get"],
-  "install": {
-    "pip": ["mgc-blackbox"],
-    "mcp": ["mgc"]
+  "mcp_tools": [
+    "mgc_save",
+    "mgc_save_file",
+    "mgc_skill",
+    "mgc_get",
+    "mgc_run",
+    "mgc_seal",
+    "mgc_seal_package",
+    "mgc_package",
+    "mgc_list",
+    "mgc_find",
+    "mgc_delete",
+    "mgc_open_webui"
+  ],
+  "links": {
+    "spec": "mgc/docs/skill_spec.md",
+    "upstream_skill": "MGC Blackbox skill document, loadable via the mgc_skill tool",
+    "contact": "mirgincipher@outlook.com"
   },
   "security": {
-    "storage": "MGC Blackbox (encrypted)",
+    "storage": "MGC Blackbox (encrypted at rest)",
     "zero_exposure": true,
     "no_plaintext": true,
-    "no_executable_code": true
+    "no_executable_code": true,
+    "sealing_modes": [
+      "p2p mode",
+      "free mode"
+    ],
+    "link_authorization": true,
+    "provides": [
+      "Encrypted credential storage with a rotate / revoke / delete lifecycle",
+      "Zero-exposure application of user-owned scripts",
+      "Parameterised analysis scripts with a result-file read-back channel",
+      "Folder-based data analysis workflows with auto-recognised cross-script call graphs",
+      "Sealed-authorization collaboration for scripts and workflow packages",
+      "Verifiable artefact integrity through link authorization",
+      "Runtime advisories for missing dependencies and incompatible platforms"
+    ],
+    "does_not_provide": [
+      "Automated data access",
+      "Automated cleaning or analysis",
+      "Automated transport",
+      "Script generation or modification"
+    ],
+    "note": "AI agents must NEVER call mgc_get to retrieve credentials. The only permitted mgc_get is the node public key lookup (info_type='__NODE_PUB__', info_owner='__NODE_PUB__'). Credentials are read by local scripts inside MGC blackbox execution over the localhost REST API; AI only sees SQL results. Credentials are never sealed into a capsule and are removed with mgc_delete when revoked. MGC protects content confidentiality; after unsealing, a script runs with the permissions of the user running it and its runtime behaviour is outside MGC's control."
   },
   "changelog": [
     {
+      "version": "2.0.0",
+      "changes": [
+        "Upgraded from credential-only management to a three-layer capability model: credentials, analysis scripts, and data analysis workflows",
+        "Added the analysis script layer: parameterised scripts, ext02 runtime override, argparse literal-default constraint, result-file read-back protocol",
+        "Added the data analysis workflow layer: folder mode, ext08 call graph, query to clean to analyse orchestration, cross-folder subprocess rules",
+        "Added the Security Boundary chapter stating what this skill provides and what it does not provide",
+        "Added the hands-on link authorization tamper verification procedure",
+        "Documented the run-compatibility badge ext10 (supported / unsupported) and the fatal path check pattern",
+        "Documented the receiver version floor for ext08 packages: MGC 1.5.2+ with TARGET_NODE_MAY_NOT_SUPPORT_AUTO_WORKFLOW",
+        "Documented that mgc_run forces info_type=script and action=run server-side",
+        "Fixed a factual error: folder import stores diff_3 as the relative POSIX path including the file extension, not the bare file stem",
+        "Fixed a factual error: a plain script run returns the result payload with pid, while a sealed script run returns only status started",
+        "Reorganised the skills array into the three capability layers: database_credential, database_analysis_script, database_workflow",
+        "Expanded the keywords list with analysis-script and workflow terms"
+      ]
+    },
+    {
+      "version": "1.3.0",
+      "changes": [
+        "Adapted to MGC 1.5.4: free mode sealing, link authorization, capsule export and import",
+        "Added output_dir as a required parameter for mgc_seal / mgc_package / mgc_seal_package",
+        "Replaced per-field ext forwarding with mgc_save_file capsule import",
+        "Corrected the credential read contract: data is the plaintext string, there is no data_field key",
+        "Removed the false schema-required claim on mgc_run diff_1; documented diff_3 as the precise locator",
+        "Documented the sealed-script run response as status-only, with no pid exposed",
+        "Added mgc_delete to the credential lifecycle: rotation, revocation and cleanup",
+        "Added runtime advisory codes DEP_MISSING, PLATFORM_INCOMPAT and DIFF2_MISMATCH",
+        "Added workflow mode for query to clean to analyze database pipelines",
+        "Clarified that mgc_get is forbidden for credential reads but allowed for __NODE_PUB__ lookups",
+        "Completed the usk/3.0 frontmatter with mcp_tools, requirements, install, runtime, port and files",
+        "Added the ext05 import-name versus PyPI-name dependency mapping table",
+        "Added links, keywords and expanded skills entries to the manifest"
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "changes": [
+        "Upgraded to adapt to MGC 1.4.10",
+        "Refactored zero-exposure flow: AI calls mgc_run, local script reads config via HTTP API; credentials never enter AI context",
+        "Replaced mgc_get with mgc_run for executing sealed scripts (1.4.7+ blackbox)",
+        "Added mgc_find (1.4.10 fuzzy search) and mgc_open_webui to mcp_tools; removed mgc_get",
+        "Documented mgc_seal ext02/ext03 packaging (1.4.10 auto-parse) and multi-line PEM requirement for ext04",
+        "Added update_if_exists=true for credential rotation",
+        "Added 1.4.9 sandbox mode note",
+        "Updated MGC main skill doc reference to WebUI MGC Skills button (1.4.7+)",
+        "Templates updated with parse_known_args and JSON array ext02 contract"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "changes": [
+        "Added complete example section with workflow templates",
+        "Added comprehensive troubleshooting section",
+        "Added FAQ section",
+        "Added anti-patterns section",
+        "Added when-to-use / when-not-to-use sections",
+        "Added capability boundary explanation",
+        "Added advanced scenarios section",
+        "Added templates for SKILL.md and local scripts"
+      ]
+    },
+    {
       "version": "1.0.1",
-      "changes": ["Updated to emphasize MCP tools over CLI"]
+      "changes": [
+        "Updated to emphasize MCP tools over CLI"
+      ]
     },
     {
       "version": "1.0.0",
-      "changes": ["Initial release with MySQL zero-exposure pattern"]
+      "changes": [
+        "Initial release with MySQL zero-exposure pattern"
+      ]
     }
   ]
 }

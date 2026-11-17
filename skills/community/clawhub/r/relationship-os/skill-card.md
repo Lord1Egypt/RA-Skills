@@ -1,47 +1,70 @@
-## Description: <br>
-Relationship OS enables AI agents to maintain relationship memory through event capture, open threads, exclusive memories, agent stances, and relationship growth stages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Relationship OS enables AI agents to build human-like relationships with users through event memory, open threads, exclusive memories, agent stances, and relationship growth stages.
 
-## Publisher: <br>
-[chenhab03](https://clawhub.ai/user/chenhab03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chenhab03](https://clawhub.ai/user/chenhab03)
 
-## Use Case: <br>
-Developers and OpenClaw users install this skill to give an agent persistent relationship context, local event memory, pending follow-up threads, shared memories, stance tracking, and stage-based interaction behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses sensitive emotional and relationship history in local .relationship files. <br>
-Mitigation: Review the stored .relationship data, limit access to the workspace, and remove records that should not persist. <br>
-Risk: Heartbeat and cron workflows can enable proactive outreach, including Telegram delivery. <br>
-Mitigation: Enable scheduled delivery only when intentional, review pending threads before sending, and disable or tightly scope heartbeat delivery in sensitive environments. <br>
-Risk: Debug logging and optional image generation can expose personal context or rely on ambient API credentials. <br>
-Mitigation: Reduce verbose debug logging, protect generated logs, and review any image-generation setup and API key handling before use. <br>
-Risk: The README includes advice about working around moderation boundaries for roleplay. <br>
-Mitigation: Do not use moderation-workaround guidance; keep agent behavior within the model provider's safety policies and the deployment environment's requirements. <br>
+## Use Case:
 
+External users and developers use this OpenClaw skill to add relationship memory, follow-up threads, persistent stances, and stage-based interaction style to an agent. It is intended for companionship-style agent experiences that remember relationship-changing moments across sessions.
 
-## Reference(s): <br>
-- [Event Memory Format Specification](references/event-schema.md) <br>
-- [Relationship Stage Behavior Matrix](references/stage-matrix.md) <br>
-- [Proactive Trigger Rules](references/motivation-rules.md) <br>
-- [Selfie Module Rules](references/selfie-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and JSON relationship state files, shell commands for scheduled follow-ups, and text guidance for agent behavior.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local .relationship state, can inject bootstrap context, and can trigger proactive follow-up workflows when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, _meta.json, server release metadata) <br>
+Risk: The skill stores personal events, preferences, inside jokes, emotional context, and follow-up threads in local .relationship files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a private workspace, treat .relationship as sensitive private data, and review retention and access controls before use.
+
+Risk: Relationship context is re-injected into later sessions and may affect future agent behavior.
+
+Mitigation: Review captured memories periodically and remove stale, inaccurate, or overly sensitive entries before they are reused.
+
+Risk: Scheduled cron or Telegram follow-ups can send proactive outbound messages.
+
+Mitigation: Require explicit user approval before enabling scheduled or delivered follow-ups, and keep proactive messages traceable to a thread or milestone.
+
+Risk: Debug logs may expose sensitive relationship state or personal context.
+
+Mitigation: Disable debug logging or redact logs before sharing, support access, or deployment outside a private workspace.
+
+Risk: The artifact includes moderation-workaround guidance for roleplay framing.
+
+Mitigation: Remove that guidance before deployment and require the agent to follow the applicable model and platform safety policies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chenhab03/skills/relationship-os)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Event Memory Format Specification](references/event-schema.md)
+- [Proactive Trigger Rules](references/motivation-rules.md)
+- [Selfie Module Rules](references/selfie-rules.md)
+- [Relationship Stage Behavior Matrix](references/stage-matrix.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON state files, shell commands, and short agent-facing context snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read local .relationship state files and may emit scheduled follow-up commands when enabled.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, _meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

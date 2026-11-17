@@ -1,0 +1,8 @@
+{
+  "name": "qiguo-strategy-game",
+  "version": "1.5.0",
+  "displayName": "七国群雄传",
+  "description": "单文件 HTML5 等距战棋《七国群雄传》。战国七雄主题回合制策略游戏：战役+遭遇战双模式、人机/双人Hotseat/联机对战。15 兵种专属剪影、兵种图鉴、完整克制网、Combo 连击、合击必杀、武将图鉴。零依赖即开即玩。",
+  "keywords": ["game", "strategy", "战棋", "战国", "history", "rpg", "canvas"],
+  "license": "MIT"
+}

@@ -1,6 +1,30 @@
 {
-  "ownerId": "kn7e4xdsnt66p6zxxrvewvmvf1841pwv",
-  "slug": "socratic-business-model-canvas",
-  "version": "1.0.0",
-  "publishedAt": 1775746883277
+  "name": "socratic-business-model-canvas",
+  "version": "0.1.0",
+  "author": "zhuqingsonga",
+  "description": "Socratic Business Model Canvas - Guide product managers, founders, and executives to systematically explore and build a complete Business Model Canvas through Socratic deep questioning. 苏格拉底式商业模式画布 - 用苏格拉底式深度追问的方式，引导产品经理、创业者和企业高管系统地探索和构建完整的商业模式画布。",
+  "keywords": [
+    "Business Model Canvas",
+    "BMC",
+    "Socratic",
+    "Questioning",
+    "Deep Thinking",
+    "Product Manager",
+    "Founder",
+    "Executive",
+    "Business Plan",
+    "Product Strategy",
+    "商业模式画布",
+    "商业模式",
+    "苏格拉底",
+    "追问",
+    "深度思考",
+    "产品经理",
+    "创业者",
+    "企业高管",
+    "商业计划",
+    "产品战略"
+  ],
+  "license": "MIT",
+  "createdAt": "2026-04-09"
 }

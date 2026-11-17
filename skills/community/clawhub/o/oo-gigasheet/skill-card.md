@@ -1,43 +1,51 @@
-## Description: <br>
-Gigasheet (gigasheet.com). Use this skill for Gigasheet requests involving searching and reading data through the OOMOL connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Gigasheet data through the user's OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Gigasheet datasets, library metadata, exports, account usage, and storage details through an OOMOL-connected Gigasheet account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Gigasheet account and OOMOL credential handling. <br>
-Mitigation: Install only for environments where the agent is allowed to access that connected account, and treat credentials and account sessions as sensitive. <br>
-Risk: Connector actions depend on live schemas and account state, so stale assumptions can produce incorrect payloads or failed commands. <br>
-Mitigation: Fetch the action schema with `oo connector schema` before constructing payloads and retry setup only when authentication or connection errors occur. <br>
+## Use Case:
 
+Gigasheet users can search library metadata and retrieve dataset, export, storage, enrichment-credit, and folder-path details from their connected account.
 
-## Reference(s): <br>
-- [Gigasheet Skill on ClawHub](https://clawhub.ai/oomol/oo-gigasheet) <br>
-- [Gigasheet Homepage](https://www.gigasheet.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; command results may include JSON data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: Automatic setup executes unverified remote code without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup instructions, prefer a verified oo CLI release installed under your control, check automatic skill synchronization settings, and connect only the Gigasheet permissions you need.
+
+## Reference(s):
+
+- [Gigasheet](https://www.gigasheet.com)
+- [Gigasheet API documentation](https://gigasheet.readme.io/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Text summaries and structured JSON connector results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Account-specific results depend on the requested read action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

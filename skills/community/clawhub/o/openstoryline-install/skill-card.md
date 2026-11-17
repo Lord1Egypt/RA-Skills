@@ -1,46 +1,55 @@
-## Description: <br>
-Installs, configures, verifies, and starts FireRed-OpenStoryline from source on macOS, Linux, or WSL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, and start FireRed-OpenStoryline from source on a local machine.
 
-## Publisher: <br>
-[Anlittledy](https://clawhub.ai/user/Anlittledy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anlittledy](https://clawhub.ai/user/anlittledy)
 
-## Use Case: <br>
-Developers and technical users use this skill to set up or repair a local FireRed-OpenStoryline checkout, including prerequisites, Python environment setup, resource downloads, config.toml API key settings, and MCP and web service startup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing dependencies and running download.sh executes upstream project setup behavior. <br>
-Mitigation: Install only when the upstream FireRed-OpenStoryline project is trusted, and review requirements.txt and download.sh before running them. <br>
-Risk: Setup may require package-manager or sudo commands for missing system dependencies. <br>
-Mitigation: Require explicit approval before running privileged or package-manager commands. <br>
-Risk: API keys written to config.toml can be exposed if committed, shared, or logged. <br>
-Mitigation: Treat config.toml credentials as secrets and avoid committing, sharing, or logging them. <br>
-Risk: Starting MCP or web services on externally reachable interfaces can expose local services unintentionally. <br>
-Mitigation: Keep services bound to 127.0.0.1 unless external access is intentional. <br>
+## Use Case:
 
+Developers and engineers use this skill to install or repair a local FireRed-OpenStoryline source checkout, configure model settings and API keys, download required resources, verify the setup, and start the MCP and web services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Anlittledy/openstoryline-install) <br>
-- [Publisher profile](https://clawhub.ai/user/Anlittledy) <br>
-- [FireRed-OpenStoryline repository](https://github.com/FireRedTeam/FireRed-OpenStoryline.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local prerequisite checks, install commands, configuration updates, and service startup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release metadata) <br>
+Risk: Running upstream installation scripts and dependency files can execute behavior that changes after this skill release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requirements.txt and download.sh before execution, install only from a trusted upstream state, and consider pinning a known commit.
+
+Risk: API keys entered directly in shell commands or config.toml can be exposed through shell history, file permissions, or version control.
+
+Mitigation: Avoid putting real API keys directly in shell commands when possible; clean shell history if used, restrict config.toml permissions, and keep config.toml out of version control.
+
+## Reference(s):
+
+- [FireRed-OpenStoryline GitHub Repository](https://github.com/FireRedTeam/FireRed-OpenStoryline.git)
+- [OpenStoryline Install on ClawHub](https://clawhub.ai/anlittledy/skills/openstoryline-install)
+- [Publisher Profile](https://clawhub.ai/user/anlittledy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include status reporting for installed components, downloads, missing configuration, and local service addresses.]
+
+## Skill Version(s):
+
+0.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

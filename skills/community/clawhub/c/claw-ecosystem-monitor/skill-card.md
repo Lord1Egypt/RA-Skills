@@ -1,46 +1,61 @@
-## Description: <br>
-Monitor public OpenClaw ecosystem sources with source-quality checks, metadata-only collection, and trust-first reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor public OpenClaw ecosystem sources with source-quality checks, metadata-only collection, and trust-first reporting.
 
-## Publisher: <br>
-[marsloting](https://clawhub.ai/user/marsloting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marsloting](https://clawhub.ai/user/marsloting)
 
-## Use Case: <br>
-Developers and maintainers use this skill to monitor public OpenClaw ecosystem metadata, check source freshness, and produce source-linked local reports for manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthenticated public requests can encounter rate limits, access denials, robots changes, or platform warnings. <br>
-Mitigation: Use official APIs where available, keep collection low-frequency, and pause affected sources on 403, 429, robots disallow, DMCA, abuse, or platform warning signals. <br>
-Risk: Reports could accidentally mirror source content or expose unnecessary data. <br>
-Mitigation: Store metadata, hashes, timestamps, short summaries, and canonical source URLs only; avoid full issue bodies, README bodies, docs pages, package tarballs, cookies, secrets, and payment data. <br>
-Risk: Candidate contribution signals could lead to premature public action. <br>
-Mitigation: Treat candidate lists as manual-review inputs and require human review before any public contribution or posting. <br>
+## Use Case:
 
+Developers and maintainers use this skill to monitor public OpenClaw ecosystem freshness, package metadata, documentation availability, and trust signals. It produces local source-linked summaries for human review before any public contribution or release action.
 
-## Reference(s): <br>
-- [OpenClaw Ecosystem Monitor on ClawHub](https://clawhub.ai/marsloting/claw-ecosystem-monitor) <br>
-- [GitHub REST API documentation](https://docs.github.com/en/rest) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/) <br>
-- [ClawHub public site](https://clawhub.ai/) <br>
-- [npm registry search endpoint](https://registry.npmjs.org/-/v1/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Local JSON snapshots and Markdown reports, with source links and warning summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local files under dated data and reports directories; uses public metadata only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, release evidence) <br>
+Risk: Unauthenticated requests to public services may encounter rate limits, access denials, robots changes, or platform warnings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use official APIs where available and pause the affected source on HTTP 403, HTTP 429, robots disallow, DMCA or abuse notices, platform warnings, or authentication requests.
+
+Risk: Generated reports may include unsanitized public metadata or commentary that is not fully verified from the snapshot.
+
+Mitigation: Treat reports as drafts for human review and keep canonical source links, timestamps, and request status fields with every signal.
+
+Risk: Ecosystem monitoring could accidentally mirror source content or expose sensitive local data if expanded carelessly.
+
+Mitigation: Store only normalized metadata, hashes, timestamps, short summaries, and source URLs; do not read .env files, persist request headers, store cookies, or copy full issue bodies, README files, docs pages, or package tarballs.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/marsloting/skills/claw-ecosystem-monitor)
+- [GitHub REST API Documentation](https://docs.github.com/en/rest)
+- [OpenClaw Skill Creation Docs](https://docs.openclaw.ai/tools/creating-skills)
+- [OpenClaw ClawHub Docs](https://docs.openclaw.ai/tools/clawhub)
+- [OpenClaw Docs Sitemap](https://docs.openclaw.ai/sitemap.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON snapshots and Markdown reports with source links, timestamps, status fields, warnings, and short summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local outputs are metadata-only and intended for human review before publication or contribution.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

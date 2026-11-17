@@ -1,44 +1,55 @@
-## Description: <br>
-Turn any news article or long-form post URL into a 30-60 second 9:16 short with stock visuals, narration, and captions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn any news article or long-form post URL into a 30-60 second 9:16 short with stock visuals, narration, and captions.
 
-## Publisher: <br>
-[api00](https://clawhub.ai/user/api00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[api00](https://clawhub.ai/user/api00)
 
-## Use Case: <br>
-Developers and agents use this skill to convert a supplied article, blog post, press release, or essay URL into a short vertical video summary through Revid. It is intended for edited summaries with narration, stock visuals, music, and captions rather than talking-head videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article URLs and generated video content are sent to Revid as a third-party processor. <br>
-Mitigation: Avoid private, internal, authenticated, sensitive, or paywalled URLs unless the user has permission and has reviewed Revid's privacy and retention terms. <br>
-Risk: The skill requires a sensitive REVID_API_KEY credential. <br>
-Mitigation: Provide the key only through runtime configuration and avoid exposing it in prompts, logs, examples, or shared outputs. <br>
+## Use Case:
 
+Developers and content teams use this skill to turn article URLs into edited vertical summary videos through Revid. It is suited to public news articles, long-form posts, press releases, and essays where the desired result is narration, stock visuals, captions, and a returned video URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/api00/revid-article-to-short) <br>
-- [Revid render API endpoint](https://www.revid.ai/api/public/v3/render) <br>
-- [Revid status API endpoint](https://www.revid.ai/api/public/v3/status) <br>
-- [Example payload](examples/article-techreview.json) <br>
-- [Example shell runner](examples/run.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command snippets plus a returned video URL or render-status JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVID_API_KEY and a public article URL; default output target is a 30-60 second 9:16 video.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence) <br>
+Risk: Article URLs are sent to Revid for rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use internal, private, paywalled, or sensitive links unless that sharing is acceptable for the deployment environment.
+
+Risk: The skill requires a Revid API key.
+
+Mitigation: Keep REVID_API_KEY scoped to Revid, store it in configuration rather than skill text, and rotate it if exposed.
+
+## Reference(s):
+
+- [Article to Short ClawHub page](https://clawhub.ai/api00/skills/revid-article-to-short)
+- [Revid render endpoint](https://www.revid.ai/api/public/v3/render)
+- [Revid status endpoint](https://www.revid.ai/api/public/v3/status?pid=$PID)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and bash examples, ending with a video URL when rendering succeeds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REVID_API_KEY and sends the supplied article URL to Revid.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Score and optimize content for search engines using SERP-based analysis. Check word count, keyword usage, headings, readability, entity coverage, and get actionable recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Score and optimize content for search engines using SERP-based analysis. Check word count, keyword usage, headings, readability, entity coverage, and get actionable recommendations.
 
-## Publisher: <br>
-[sharozdawa](https://clawhub.ai/user/sharozdawa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sharozdawa](https://clawhub.ai/user/sharozdawa)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and content teams use this skill to score draft content against SEO-focused criteria and receive recommendations for keyword usage, headings, readability, entity coverage, and topic gaps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unpublished or sensitive business content may be processed by the agent or by search and analysis tools used for SERP comparisons.
+
+Mitigation: Avoid providing sensitive unpublished content unless the user is comfortable with that processing path.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content marketers, SEO practitioners, and developers use this skill to evaluate draft content against target keywords and SERP competitor patterns, then produce scoring breakdowns and optimization recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prompt an agent to use external AI or search queries for competitive and content analysis. <br>
-Mitigation: Avoid submitting confidential launch plans, customer data, credentials, or sensitive competitive strategy unless that use is approved. <br>
-Risk: SERP-based recommendations may be incomplete, stale, or misleading for a specific market. <br>
-Mitigation: Review optimization recommendations against current search results, brand requirements, and editorial judgment before publishing. <br>
+**Output Format:** [Markdown with scoring breakdowns and actionable recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sharozdawa/content-optimizer) <br>
+**Other Properties Related to Output:** [May compare provided content and target keywords against SERP-derived expectations when the agent has access to search or analysis tools.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with scores, category breakdowns, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SERP comparison summaries, readability metrics, heading suggestions, and missing-topic recommendations.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

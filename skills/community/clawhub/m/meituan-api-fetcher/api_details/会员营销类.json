@@ -1,0 +1,1117 @@
+[
+  {
+    "method": "POST",
+    "path": "",
+    "request_params": [],
+    "response_params": [],
+    "response_example": "",
+    "title": "美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/chain/cards/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-chain-cards-query"
+  },
+  {
+    "method": "POST",
+    "path": "",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "总部ID"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": true,
+        "description": "分页页码，从1开始"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页大小，建议最大不超过"
+      },
+      {
+        "name": "startTime",
+        "type": "long",
+        "required": true,
+        "description": "创建时间范围查询开始时间戳，毫秒"
+      },
+      {
+        "name": "operateTypeList",
+        "type": "array<int>",
+        "required": false,
+        "description": "操作类型，支持多个：1-开卡、2-充值、3-消费、4-挂失、5-退卡、6-补卡（换卡）、7-消费撤销（退款）、8-充值撤销、9-积分兑换、10-会员导入、11-密码修改、12-卡有效期修改（卡延期）、13-换绑手机号、14-解挂、15-预结、16-撤销预结、17-积分清零、18-余额补录、19-余额扣减、20-权益包售卖、21-卡等级升级、22-卡等级降级、23-活动扣减积分、24-撤销活动扣减积分、25-礼品卡售卖、26-礼品卡退款、27-活动赠积分、29-商城购买、30-商城退款、31-储值失效、33-卡启用、34-卡停用、35-退款、36-积分手动补录、37-积分手动扣减、38-权益包退款、39-卡等级有效期延期、40-卡等级有效期扣减、41-活动赠积分、42-活动赠余额、43-撤销活动赠余额、44-修改开卡/招募门店、47-券包售卖、48-券包退款、49-成长值补录、50-成长值扣减、52-付费权益卡售卖、53-付费权益卡退款、54-储值兑换、55-卡资产转入、56-卡资产转出、59-付费权益卡赠送、63-积分兑换退款"
+      },
+      {
+        "name": "cardNo",
+        "type": "string",
+        "required": false,
+        "description": "会员卡卡号"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"code\": 0,\n    \"message\": \"example\",\n    \"totalRecords\": 1,\n    \"data\": [\n      {\n        \"operateType\": 1,\n        \"operateName\": \"example\",\n        \"poiId\": 1000,\n        \"poiName\": \"example\",\n        \"issuePoiId\": 1000,\n        \"issuePoiName\": \"example\",\n        \"memberId\": 1000,\n        \"cardId\": 1000,\n        \"cardNo\": \"example\",\n        \"kindCode\": 1,\n        \"cardStatus\": 1,\n        \"gradeId\": 1000,\n        \"gradeName\": \"example\",\n        \"cardTypeId\": 1000,\n        \"cardTypeName\": \"example\",\n        \"payTypeName\": \"example\",\n        \"orderId\": \"example\",\n        \"orderNo\": \"example\",\n        \"ctime\": 1646809611242,\n        \"orderMoney\": 1000,\n        \"receiveMoney\": 1000,\n        \"operateMoney\": 1000,\n        \"giftPointsNum\": 1000,\n        \"usePointsNum\": 1000,\n        \"pointsNum\": 1000,\n        \"pointsActMoney\": 1000,\n        \"mainOperateMoney\": 1000,\n        \"giftOperateMoney\": 1000,\n        \"mainBalance\": 1000,\n        \"giftBalance\": {},\n        \"deposit\": {},\n        \"payType\": {},\n        \"payMethodName\": {},\n        \"payStatus\": {},\n        \"cardState\": \"example\",\n        \"payTypeList\": \"example\",\n        \"billTime\": 1000,\n        \"operatorId\": 1646809611242,\n        \"operatorName\": \"系统\",\n        \"commissionId\": 20020,\n        \"commissionName\": \"服务员\",\n        \"opSource\": 1,\n        \"opSourceDesc\": \"POS端\",\n        \"remark\": \"消费金额累计满95.0元\"\n      }\n    ],\n    \"pageCursor\": {\n      \"firstCursor\": [\n        {\n          \"name\": \"example\",\n          \"value\": \"example\",\n          \"sortOrder\": \"example\",\n          \"fieldOrder\": 1\n        }\n      ],\n      \"lastCursor\": [\n        {\n          \"name\": \"example\",\n          \"value\": \"example\",\n          \"sortOrder\": \"example\",\n          \"fieldOrder\": 1\n        }\n      ]\n    },\n    \"totalCardOperation\": {\n      \"totalReceiveMoney\": 1000,\n      \"totalMainOperateMoney\": 1000,\n      \"totalGiftOperateMoney\": 1000,\n      \"totalMainBalance\": 1000,\n      \"totalGiftBalance\": 1000,\n      \"totalDeposit\": 1000,\n      \"totalGiftPointsNum\": 1000,\n      \"totalUsePointsNum\": 1000,\n      \"totalPointsNum\": 1000,\n      \"totalPointsActMoney\": 1000,\n      \"totalOperateMoney\": 1000\n    }\n  }\n}",
+    "title": "总部-查询卡交易列表-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/chain/cards/transactions/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-chain-cards-transactions-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/chain/cloudmall/order/list",
+    "request_params": [
+      {
+        "name": "needLog",
+        "type": "boolean",
+        "required": false,
+        "description": "是否需要订单操作日志false"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"merchantOrderDetailListRtn\": {\n      \"data\": [\n        {\n          \"orderId\": 1605843659872301088,\n          \"orderNo\": \"12221605843638800117833\",\n          \"cloudMallName\": \"在线商城\",\n          \"summary\": {\n            \"payAmount\": 2000,\n            \"payPoint\": 1000\n          },\n          \"status\": 5,\n          \"remark\": \"快点发货\",\n          \"merchantRemark\": \"加急单\",\n          \"userInfo\": {\n            \"name\": \"张三\",\n            \"mobile\": \"13213131313\",\n            \"cardNo\": \"c0001\"\n          },\n          \"deliveryType\": 1,\n          \"receiverInfo\": {\n            \"name\": \"张三\",\n            \"mobile\": \"13212121212\",\n            \"address\": \"上海市长宁区XX路xx号\",\n            \"expressCompany\": \"顺丰快递\",\n            \"expressNO\": \"999887734534524\"\n          },\n          \"skuList\": [\n            {\n              \"spuId\": \"554674369\",\n              \"spuName\": \"牛排\",\n              \"skuId\": \"554674368\",\n              \"skuName\": \"牛排\",\n              \"skuPic\": \"http://p0.meituan.net/rmscashier/*******.jpg\",\n              \"quantity\": 1,\n              \"itemType\": 10,\n              \"price\": 3000,\n              \"point\": 1000,\n              \"id\": 76725\n            }\n          ],\n          \"payInfo\": {\n            \"payAmount\": 2000,\n            \"memberCardPayAmount\": 1200,\n            \"memberCardPayPoint\": 1000,\n            \"payPlatform\": 0\n          },\n          \"refundInfo\": {\n            \"refundPoint\": 1000,\n            \"refundBalance\": 1200,\n            \"includeFee\": 0,\n            \"refundAmount\": 2000\n          },\n          \"payTime\": 1671697942000,\n          \"deliveryAmount\": 0,\n          \"refundStatus\": 0,\n          \"orderTime\": 1671697933000,\n          \"logList\": [\n            {\n              \"time\": 1671697532308,\n              \"operatorType\": \"支付订单\",\n              \"operatorName\": \"用户\",\n              \"remark\": \"会员积分,微信支付:42000000142022122216252019012181\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+    "title": "总部根据订单id列表获取订单信息-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/chain/cloudmall/order/list",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-chain-cloudmall-order-list"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/chain/cloudmall/order/page",
+    "request_params": [
+      {
+        "name": "cloudMallIds",
+        "type": "array<long>",
+        "required": false,
+        "description": "积分商城id列表，可选参数，不传默认返回租户下所有积分商城的订单"
+      },
+      {
+        "name": "startOrderDate",
+        "type": "long",
+        "required": false,
+        "description": "起始时间的时间戳，单位：毫秒"
+      },
+      {
+        "name": "endOrderDate",
+        "type": "long",
+        "required": false,
+        "description": "截止时间的时间戳，单位：毫秒pageNoint数值大于0.0并且是页码，必填字段，从1开始pageSizeint数值大于0.0并且小于等于100.0是分页大小，默认为10，最大值为"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"data\": {\n      \"orderList\": [\n        {\n          \"id\": 1605843659872301088,\n          \"orderNo\": \"12221605843638800117833\",\n          \"orderTime\": 1671697933000\n        }\n      ]\n    }\n  }\n}",
+    "title": "总部分页查询积分商城订单-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/chain/cloudmall/order/page",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-chain-cloudmall-order-page"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/chain/coupon/detail/query",
+    "request_params": [
+      {
+        "name": "templateId",
+        "type": "long",
+        "required": true,
+        "description": "券模板"
+      },
+      {
+        "name": "idmemberId",
+        "type": "long",
+        "required": false,
+        "description": "会员"
+      },
+      {
+        "name": "idcardId",
+        "type": "long",
+        "required": false,
+        "description": "会员卡"
+      },
+      {
+        "name": "idcouponStatus",
+        "type": "int",
+        "required": false,
+        "description": "券状态 0-未使用，1-已使用，3-已过期, 不传则查询所有状态"
+      },
+      {
+        "name": "couponCode",
+        "type": "string",
+        "required": false,
+        "description": "券码"
+      },
+      {
+        "name": "codemodifyTimeStart",
+        "type": "long",
+        "required": true,
+        "description": "券修改的开始时间"
+      },
+      {
+        "name": "modifyTimeEnd",
+        "type": "long",
+        "required": true,
+        "description": "券修改的截止时间"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"dataList\": [\n      {\n        \"couponTemplateId\": 34465632,\n        \"couponId\": 294277588,\n        \"couponCode\": \"673313473016\",\n        \"title\": \"代金券\",\n        \"type\": 1,\n        \"price\": 1000,\n        \"sendTime\": 1641539108000,\n        \"sentChannelName\": \"给会员发券\",\n        \"sentChannel\": 12,\n        \"memberName\": \"李李李\",\n        \"telephone\": \"13200000009\",\n        \"giftable\": 1,\n        \"startTime\": 1641484800000,\n        \"endTime\": 1641494800000,\n        \"status\": 1,\n        \"consumeDetail\": {\n          \"orderId\": \"1479348464302170161\",\n          \"orderAmount\": 18501,\n          \"consumeTime\": 1641539129000,\n          \"consumedValue\": 1000,\n          \"consumePoiId\": 600285141,\n          \"consumePoiName\": \"嘤嘤\",\n          \"consumeOrgId\": 600285141\n        },\n        \"unionId\": \"example\"\n      }\n    ],\n    \"paged\": {\n      \"pageNo\": 1,\n      \"pageSize\": 10,\n      \"totalCount\": 11,\n      \"totalPageCount\": 2\n    },\n    \"pageCursor\": {\n      \"firstCursor\": [\n        {\n          \"name\": \"couponId\",\n          \"value\": \"294277588\",\n          \"sortOrder\": \"desc\",\n          \"fieldOrder\": 2\n        }\n      ],\n      \"lastCursor\": [\n        {\n          \"name\": \"couponId\",\n          \"value\": \"294277579\",\n          \"sortOrder\": \"desc\",\n          \"fieldOrder\": 2\n        }\n      ]\n    }\n  }\n}",
+    "title": "总部-根据券模版ID查询优惠券列表-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/chain/coupon/detail/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-chain-coupon-detail-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/chain/coupon/transfer/detail/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构"
+      },
+      {
+        "name": "idpageNo",
+        "type": "int",
+        "required": true,
+        "description": "页码"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页条数，建议不超过"
+      },
+      {
+        "name": "memberId",
+        "type": "long",
+        "required": false,
+        "description": "会员"
+      },
+      {
+        "name": "idcardId",
+        "type": "long",
+        "required": false,
+        "description": "会员卡"
+      },
+      {
+        "name": "idcouponCode",
+        "type": "string",
+        "required": false,
+        "description": "券码code"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "dataList",
+        "type": "array<CouponTransferDetailTO>",
+        "description": "券转赠明细"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"paged\": {\n      \"pageNo\": 1,\n      \"pageSize\": 20,\n      \"totalCount\": 1,\n      \"totalPageCount\": 1\n    },\n    \"dataList\": [\n      {\n        \"couponId\": 280773921,\n        \"couponCode\": \"136724538961\",\n        \"title\": \"满N件打折最低\",\n        \"type\": 3,\n        \"price\": 1000,\n        \"transferTime\": \"2022-01-07 16:58:07\",\n        \"transferStatus\": 2,\n        \"sendTransferUser\": {\n          \"id\": \"106712665\",\n          \"type\": 4\n        },\n        \"receTransferUser\": {\n          \"id\": \"104371170\",\n          \"type\": 4\n        },\n        \"status\": 1\n      }\n    ]\n  }\n}",
+    "title": "总部-查询优惠券转赠列表-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/chain/coupon/transfer/detail/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-chain-coupon-transfer-detail-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/chain/member/asset/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "memberId",
+        "type": "string",
+        "required": false,
+        "description": "会员ID"
+      },
+      {
+        "name": "cardId",
+        "type": "long",
+        "required": false,
+        "description": "卡Id"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "cards",
+        "type": "array<Cards>",
+        "description": "会员卡"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"memberId\": \"121313141\",\n    \"cards\": [\n      {\n        \"cardId\": \"123113141\",\n        \"cardNo\": \"1231\",\n        \"cardName\": \"权益卡\",\n        \"gradeName\": \"黄金\",\n        \"balance\": 100,\n        \"rechargeBalance\": 50,\n        \"giftBalance\": 50,\n        \"point\": 100,\n        \"couponNum\": 1,\n        \"status\": 4\n      }\n    ]\n  }\n}",
+    "title": "总部-查询会员资产列表-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/chain/member/asset/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-chain-member-asset-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/chain/member/search",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "memberIdentity",
+        "type": "string",
+        "required": true,
+        "description": "会员认证信息"
+      },
+      {
+        "name": "identityType",
+        "type": "int",
+        "required": true,
+        "description": "认证类型。1-会员ID，2-手机号"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "data",
+        "type": "array<MemberInfo>",
+        "description": "会员列表"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"data\": [\n      {\n        \"memberId\": \"121141231\",\n        \"name\": \"test\",\n        \"mobile\": \"152****5810\",\n        \"sex\": 1,\n        \"birthdayType\": 1,\n        \"birthday\": 1595575131000,\n        \"status\": 1,\n        \"ctime\": 1695575131000,\n        \"poiId\": 100156789,\n        \"poiName\": \"测试门店\",\n        \"source\": 1,\n        \"nickName\": \"test\"\n      }\n    ]\n  }\n}",
+    "title": "总部-根据会员ID查询会员详情-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/chain/member/search",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-chain-member-search"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/chain/page/query/members",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "机构ID（总部接口传总部的ID）"
+      },
+      {
+        "name": "startTime",
+        "type": "long",
+        "required": false,
+        "description": "会员注册开始时间，时间戳，开始与结束要么都传，要么都不传"
+      },
+      {
+        "name": "endTime",
+        "type": "long",
+        "required": false,
+        "description": "会员注册结束时间，时间戳，开始与结束要么都传，要么都不传"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": true,
+        "description": "分页开始编号"
+      },
+      {
+        "name": "condition",
+        "type": "string",
+        "required": false,
+        "description": "手机号"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"code\": 1,\n    \"message\": \"example\",\n    \"totalRecords\": 1,\n    \"data\": [\n      {\n        \"id\": 121141231,\n        \"name\": \"test\",\n        \"mobile\": \"example\",\n        \"ctime\": 1695575131000,\n        \"poiId\": 100156789,\n        \"poiName\": \"测试门店\",\n        \"source\": 1,\n        \"agencyId\": 1000,\n        \"orgId\": 1000,\n        \"type\": 1,\n        \"cardQuantity\": 1000,\n        \"consumeCount\": 1000,\n        \"consumeMoney\": 1000,\n        \"balance\": 1000,\n        \"points\": 1000,\n        \"couponValidQuantity\": 1000,\n        \"cardIds\": [\n          1000\n        ]\n      }\n    ],\n    \"pageCursor\": {\n      \"firstCursor\": [\n        {\n          \"name\": \"example\",\n          \"value\": \"example\",\n          \"sortOrder\": \"example\",\n          \"fieldOrder\": 1\n        }\n      ],\n      \"lastCursor\": [\n        {\n          \"name\": \"example\",\n          \"value\": \"example\",\n          \"sortOrder\": \"example\",\n          \"fieldOrder\": 1\n        }\n      ]\n    }\n  }\n}",
+    "title": "总部-查询会员列表-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/chain/page/query/members",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-chain-page-query-members"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/poi/card/rights/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "cardId",
+        "type": "string",
+        "required": true,
+        "description": "卡ID"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "isVipPrice",
+        "type": "boolean",
+        "description": "是否享受会员价trueisVipDiscountboolean是否享受会员折扣truediscountRateint会员折扣值（1-100）"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123456789\",\n\"data\":{\n  \"discountRate\": 80,\n  \"isVipDiscount\": true,\n  \"isVipPrice\": true\n}",
+    "title": "门店-查询卡权益-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/card/rights/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-card-rights-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/poi/cards/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "总部ID"
+      },
+      {
+        "name": "pageStart",
+        "type": "int",
+        "required": true,
+        "description": "分页开始偏移量，需要通过当前查询的页面计算偏移量"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页大小，建议最大不超过"
+      },
+      {
+        "name": "memberId",
+        "type": "long",
+        "required": false,
+        "description": "会员ID"
+      },
+      {
+        "name": "cardId",
+        "type": "long",
+        "required": false,
+        "description": "会员卡ID"
+      },
+      {
+        "name": "startTime",
+        "type": "long",
+        "required": false,
+        "description": "开卡时间的开始时间，使用时间戳(开始与结束时间要么都传，要么都不传)"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"code\": 0,\n    \"message\": \"success\",\n    \"totalRecords\": 10,\n    \"data\": {\n      \"id\": 100105346,\n      \"memberId\": 100090108,\n      \"cardNo\": \"10110\",\n      \"cardTypeId\": 30048057,\n      \"cardTypeName\": \"巴黎春天_门店_会员_01\",\n      \"gradeId\": 872412,\n      \"gradeName\": \"普通等级\",\n      \"poiId\": 60000226,\n      \"poiName\": \"巴黎春天咖啡show\",\n      \"status\": 1,\n      \"utime\": 1580978925577,\n      \"deposit\": 100,\n      \"totalBalance\": 200,\n      \"mainBalance\": 100,\n      \"giftBalance\": 100,\n      \"limitDeposit\": 300,\n      \"limitGrant\": 300,\n      \"pointsNumLong\": 10,\n      \"avaiableTime\": 1640758623478,\n      \"gradeValidity\": 1640758623478,\n      \"startDate\": 1640758623478,\n      \"writeCardStatus\": 1,\n      \"firstRechargeTime\": 1640758623478,\n      \"ctime\": 1640758623478\n    }\n  }\n}",
+    "title": "美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/cards/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-cards-query"
+  },
+  {
+    "method": "POST",
+    "path": "",
+    "request_params": [],
+    "response_params": [],
+    "response_example": "",
+    "title": "美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/cards/transactions/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-cards-transactions-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/poi/coupon/detail/query",
+    "request_params": [
+      {
+        "name": "templateId",
+        "type": "long",
+        "required": true,
+        "description": "券模板"
+      },
+      {
+        "name": "idmemberId",
+        "type": "long",
+        "required": false,
+        "description": "会员"
+      },
+      {
+        "name": "idcardId",
+        "type": "long",
+        "required": false,
+        "description": "会员卡"
+      },
+      {
+        "name": "idcouponStatus",
+        "type": "int",
+        "required": false,
+        "description": "券状态 0-未使用，1-已使用，3-已过期, 不传则查询所有状态"
+      },
+      {
+        "name": "couponCode",
+        "type": "string",
+        "required": false,
+        "description": "券码code"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"dataList\": [\n      {\n        \"couponTemplateId\": 34465632,\n        \"couponId\": 294277588,\n        \"couponCode\": \"673313473016\",\n        \"title\": \"代金券\",\n        \"type\": 1,\n        \"price\": 1000,\n        \"sendTime\": 1641539108000,\n        \"sentChannelName\": \"给会员发券\",\n        \"sentChannel\": 12,\n        \"memberName\": \"李李李\",\n        \"telephone\": \"13200000009\",\n        \"giftable\": 1,\n        \"startTime\": 1641484800000,\n        \"endTime\": 1641494800000,\n        \"status\": 1,\n        \"consumeDetail\": {\n          \"orderId\": \"1479348464302170161\",\n          \"orderAmount\": 18501,\n          \"consumeTime\": 1641539129000,\n          \"consumedValue\": 1000,\n          \"consumePoiId\": 600285141,\n          \"consumePoiName\": \"嘤嘤\"\n        },\n        \"sentEntityId\": 12301230\n      }\n    ],\n    \"paged\": {\n      \"pageNo\": 1,\n      \"pageSize\": 10,\n      \"totalCount\": 11,\n      \"totalPageCount\": 2\n    },\n    \"pageCursor\": {\n      \"firstCursor\": [\n        {\n          \"name\": \"couponId\",\n          \"value\": \"294277588\",\n          \"sortOrder\": \"desc\",\n          \"fieldOrder\": 2\n        }\n      ],\n      \"lastCursor\": [\n        {\n          \"name\": \"couponId\",\n          \"value\": \"294277579\",\n          \"sortOrder\": \"desc\",\n          \"fieldOrder\": 2\n        }\n      ]\n    }\n  }\n}",
+    "title": "门店-根据券模版ID查询优惠券列表-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/coupon/detail/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-coupon-detail-query"
+  },
+  {
+    "method": "POST",
+    "path": "",
+    "request_params": [],
+    "response_params": [],
+    "response_example": "",
+    "title": "美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/coupon/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-coupon-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/poi/coupon/send",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "memberId",
+        "type": "string",
+        "required": true,
+        "description": "会员ID"
+      },
+      {
+        "name": "cardId",
+        "type": "string",
+        "required": true,
+        "description": "卡ID"
+      },
+      {
+        "name": "templateId",
+        "type": "string",
+        "required": true,
+        "description": "券模板ID"
+      },
+      {
+        "name": "num",
+        "type": "int",
+        "required": true,
+        "description": "券张数"
+      },
+      {
+        "name": "sendNotice",
+        "type": "boolean",
+        "required": false,
+        "description": "是否发送到账提醒"
+      },
+      {
+        "name": "trueexpireNotice",
+        "type": "boolean",
+        "required": false,
+        "description": "是否发送过期提醒"
+      },
+      {
+        "name": "falseexpireDays",
+        "type": "int",
+        "required": false,
+        "description": "过期提前提醒天数"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123\",\n\"data\":{}\n}",
+    "title": "门店-发券-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/coupon/send",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-coupon-send"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/poi/coupon/template/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "couponType",
+        "type": "int",
+        "required": false,
+        "description": "券类型。10-代金券；20-折扣券；30-商品券"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "totalCount",
+        "type": "string",
+        "description": "总数1dataListarray券模板明细"
+      }
+    ],
+    "response_example": "{\n    \"code\": \"OP_SUCCESS\",\n    \"msg\": \"成功\",\n    \"traceId\": \"-8876618361050486282\",\n    \"data\": {\n        \"totalCount\": 2,\n        \"dataList\": [\n            {\n                \"title\": \"20元优惠券\",\n                \"couponType\": 10,\n                \"couponValue\": \"20\",\n                \"createTime\": \"2021-09-02 24:29:23\",\n                \"sharedUse\": false,\n                \"overlayNum\": 999,\n                \"useHoliday\": false,\n                \"useShopIds\": \"6001577\",\n                \"status\": 0,\n                \"id\": \"1571568\"\n            },\n            {\n                \"title\": \"西夏王钻石黑比诺\",\n                \"couponType\": 30,\n                \"createTime\": \"2021-09-02 17:28:36\",\n                \"sharedUse\": false,\n                \"overlayNum\": 1,\n                \"useHoliday\": false,\n                \"useShopIds\": \"6001577\",\n                \"skuDiscounts\": [\n                    {\n                        \"itemType\": 1,\n                        \"itemIds\": [\n                            \"1094649933\"\n                        ],\n                        \"strategy\": 1\n                    }\n                ],\n                \"status\": 0,\n                \"id\": \"1571568\"\n            }\n        ]\n    }\n}",
+    "title": "门店-查询优惠券模板-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/coupon/template/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-coupon-template-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/poi/coupon/transfer/detail/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构"
+      },
+      {
+        "name": "idpageNo",
+        "type": "int",
+        "required": true,
+        "description": "页码"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页条数，建议不超过"
+      },
+      {
+        "name": "memberId",
+        "type": "long",
+        "required": false,
+        "description": "会员"
+      },
+      {
+        "name": "idcardId",
+        "type": "long",
+        "required": false,
+        "description": "会员卡"
+      },
+      {
+        "name": "idcouponCode",
+        "type": "string",
+        "required": false,
+        "description": "券码code"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "dataList",
+        "type": "array<CouponTransferDetailTO>",
+        "description": "券转赠明细"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"paged\": {\n      \"pageNo\": 1,\n      \"pageSize\": 20,\n      \"totalCount\": 1,\n      \"totalPageCount\": 1\n    },\n    \"dataList\": [\n      {\n        \"couponId\": 280773921,\n        \"couponCode\": \"136724538961\",\n        \"title\": \"满N件打折最低\",\n        \"type\": 3,\n        \"price\": 1000,\n        \"transferTime\": \"2022-01-07 16:58:07\",\n        \"transferStatus\": 2,\n        \"sendTransferUser\": {\n          \"id\": \"106712665\",\n          \"type\": 4\n        },\n        \"receTransferUser\": {\n          \"id\": \"104371170\",\n          \"type\": 4\n        },\n        \"status\": 1\n      }\n    ]\n  }\n}",
+    "title": "门店-查询优惠券转赠列表-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/coupon/transfer/detail/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-coupon-transfer-detail-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/poi/member/asset/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "memberId",
+        "type": "string",
+        "required": false,
+        "description": "会员ID"
+      },
+      {
+        "name": "cardId",
+        "type": "long",
+        "required": false,
+        "description": "卡Id"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "cards",
+        "type": "array<Cards>",
+        "description": "会员卡"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"memberId\": \"121313141\",\n    \"cards\": [\n      {\n        \"cardId\": \"123113141\",\n        \"cardNo\": \"1231\",\n        \"cardName\": \"权益卡\",\n        \"gradeName\": \"黄金\",\n        \"balance\": 100,\n        \"rechargeBalance\": 50,\n        \"giftBalance\": 50,\n        \"point\": 100,\n        \"couponNum\": 1,\n        \"status\": 4\n      }\n    ]\n  }\n}",
+    "title": "门店-查询会员资产列表-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/member/asset/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-member-asset-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/poi/member/create",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "mobile",
+        "type": "string",
+        "required": true,
+        "description": "手机号"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": "昵称"
+      },
+      {
+        "name": "birthday",
+        "type": "long",
+        "required": false,
+        "description": "生日"
+      },
+      {
+        "name": "openId",
+        "type": "string",
+        "required": false,
+        "description": "公众号openId"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123\",\n\"data\":{}\n}",
+    "title": "门店-创建会员 -美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/member/create",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-member-create"
+  },
+  {
+    "method": "POST",
+    "path": "",
+    "request_params": [],
+    "response_params": [],
+    "response_example": "",
+    "title": "美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/member/search",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-member-search"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/poi/member/update",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "memberId",
+        "type": "string",
+        "required": true,
+        "description": "会员ID"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": "会员昵称"
+      },
+      {
+        "name": "test2mobile",
+        "type": "string",
+        "required": false,
+        "description": "手机号"
+      },
+      {
+        "name": "birthday",
+        "type": "string",
+        "required": false,
+        "description": "生日"
+      },
+      {
+        "name": "openId",
+        "type": "string",
+        "required": false,
+        "description": "公众号openId"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123\",\n\"data\":{}\n}",
+    "title": "门店-更新会员-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/member/update",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-member-update"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/poi/member/wx/bindinfo",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "memberId",
+        "type": "string",
+        "required": true,
+        "description": "会员ID"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123\",\n\"data\":{\n  \"data\": [\n    {\n      \"openId\": \"asdada\",\n      \"appId\": \"gsdsda\",\n      \"memberId\": \"121141231\"\n    }\n  ]\n}",
+    "title": "门店-查询微会员绑定详情-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/member/wx/bindinfo",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-member-wx-bindinfo"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v1/poi/point/deduct",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "memberId",
+        "type": "string",
+        "required": true,
+        "description": "会员ID"
+      },
+      {
+        "name": "cardId",
+        "type": "string",
+        "required": true,
+        "description": "卡ID"
+      },
+      {
+        "name": "num",
+        "type": "int",
+        "required": true,
+        "description": "扣减积分数量"
+      },
+      {
+        "name": "serialNo",
+        "type": "string",
+        "required": true,
+        "description": "流水号。接入方需保证流水号的唯一性，服务端会根据流水号做幂等处理"
+      },
+      {
+        "name": "remark",
+        "type": "string",
+        "required": false,
+        "description": "扣减备注"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123\",\n\"data\":{}\n}",
+    "title": "门店-扣减积分-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v1/poi/point/deduct",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v1-poi-point-deduct"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v2/chain/coupon/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": true,
+        "description": "页码"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页条数，建议不超过"
+      },
+      {
+        "name": "cardId",
+        "type": "long",
+        "required": false,
+        "description": "会员卡"
+      },
+      {
+        "name": "idstatusList",
+        "type": "array<int>",
+        "required": false,
+        "description": "券状态 0-未使用，1-已使用，2-已锁定，3-已过期"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "dataList",
+        "type": "array<CertifyCouponVO>",
+        "description": "券明细"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"totalCount\": 1,\n    \"dataList\": [\n      {\n        \"couponId\": 280773977,\n        \"couponCode\": \"95950400984\",\n        \"title\": \"满N件打折最低\",\n        \"type\": 3,\n        \"price\": 1000,\n        \"sendTime\": 1638434616000,\n        \"startTime\": 1638374400000,\n        \"endTime\": 1643471999000,\n        \"status\": 0,\n        \"shared\": true,\n        \"poiIdList\": [\n          600028280\n        ],\n        \"overlayNum\": 1,\n        \"multiGoodsCouponRule\": {\n          \"itemType\": 1,\n          \"itemIdList\": [\n            1000\n          ],\n          \"comboIdList\": [\n            1000\n          ],\n          \"exchangeType\": 1\n        }\n      }\n    ]\n  }\n}",
+    "title": "总部-查询会员优惠券列表V2-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v2/chain/coupon/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v2-chain-coupon-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v2/chain/coupon/template/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "p"
+      },
+      {
+        "name": "ageNo",
+        "type": "int",
+        "required": true,
+        "description": "p"
+      },
+      {
+        "name": "ageSize",
+        "type": "int",
+        "required": true,
+        "description": "t"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "dataList",
+        "type": "array<CouponTemplateVO>",
+        "description": "券模板明细"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"totalCount\": 1,\n    \"dataList\": [\n      {\n        \"templateId\": 32425344,\n        \"type\": 1,\n        \"price\": 200,\n        \"periodType\": 1,\n        \"delayedDays\": 1,\n        \"efficientDays\": 2,\n        \"startTime\": 1642488039000,\n        \"endTime\": 1642491639000,\n        \"shared\": true,\n        \"poiIdList\": [\n          12434234\n        ],\n        \"overlayNum\": 2,\n        \"multiGoodsCouponRule\": {\n          \"itemType\": 1,\n          \"itemIdList\": [\n            1\n          ],\n          \"comboIdList\": [\n            1\n          ],\n          \"exchangeType\": 1\n        },\n        \"status\": 0,\n        \"overlay\": true,\n        \"giftable\": 0,\n        \"channelScope\": 1,\n        \"channelIdList\": [\n          1\n        ],\n        \"notifyRule\": {\n          \"publicName\": \"example\",\n          \"appId\": \"example\",\n          \"authPublicStatus\": 1\n        },\n        \"timeLimit\": {\n          \"holidayDenied\": true,\n          \"unavailableWeekdayList\": [\n            1\n          ],\n          \"unavailableTimeList\": [\n            \"example\"\n          ],\n          \"unavailableDate\": [\n            \"example\"\n          ]\n        },\n        \"note\": \"example\"\n      }\n    ]\n  }\n}",
+    "title": "总部-查询优惠券模版列表V2-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v2/chain/coupon/template/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v2-chain-coupon-template-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v2/poi/cards/transactions/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "门店"
+      },
+      {
+        "name": "orgId639209pageNo",
+        "type": "int",
+        "required": true,
+        "description": "分页页码，从1开始"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页大小，建议最大不超过"
+      },
+      {
+        "name": "startTime",
+        "type": "long",
+        "required": true,
+        "description": "创建时间范围查询开始时间戳，毫秒"
+      },
+      {
+        "name": "operateTypeList",
+        "type": "array<int>",
+        "required": false,
+        "description": "操作类型，支持多个：1-开卡、2-充值、3-消费、4-挂失、5-退卡、6-补卡（换卡）、7-消费撤销（退款）、8-充值撤销、9-积分兑换、10-会员导入、11-密码修改、12-卡有效期修改（卡延期）、13-换绑手机号、14-解挂、15-预结、16-撤销预结、17-积分清零、18-余额补录、19-余额扣减、20-权益包售卖、21-卡等级升级、22-卡等级降级、23-活动扣减积分、24-撤销活动扣减积分、25-礼品卡售卖、26-礼品卡退款、27-活动赠积分、29-商城购买、30-商城退款、31-储值失效、33-卡启用、34-卡停用、35-退款、36-积分手动补录、37-积分手动扣减、38-权益包退款、39-卡等级有效期延期、40-卡等级有效期扣减、41-活动赠积分、42-活动赠余额、43-撤销活动赠余额、44-修改开卡/招募门店、47-券包售卖、48-券包退款、49-成长值补录、50-成长值扣减、52-付费权益卡售卖、53-付费权益卡退款、54-储值兑换、55-卡资产转入、56-卡资产转出、59-付费权益卡赠送、63-积分兑换退款"
+      },
+      {
+        "name": "cardNo",
+        "type": "string",
+        "required": false,
+        "description": "会员卡卡号"
+      },
+      {
+        "name": "id",
+        "type": "long",
+        "required": false,
+        "description": "会员流水号"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"code\": 0,\n    \"message\": \"success\",\n    \"totalRecords\": 4,\n    \"data\": {\n      \"id\": 1402572188166393900,\n      \"operateType\": 3,\n      \"operateName\": \"消费\",\n      \"poiId\": 600265280,\n      \"poiName\": \"test\",\n      \"issuePoiId\": 600265280,\n      \"issuePoiName\": \"test\",\n      \"memberId\": 103354530,\n      \"cardId\": 104462982,\n      \"cardNo\": \"177*****178\",\n      \"kindCode\": 1,\n      \"cardStatus\": 1,\n      \"gradeId\": 938978,\n      \"gradeName\": \"普通等级\",\n      \"cardTypeId\": 30088021,\n      \"cardTypeName\": \"管控UAT\",\n      \"payTypeName\": \"现金-人民币\",\n      \"orderId\": \"20724a072ce248fead9d03dad002b323\",\n      \"orderNo\": \"30128062106090001\",\n      \"ctime\": 1623234242861,\n      \"orderMoney\": 1000,\n      \"receiveMoney\": 1000,\n      \"operateMoney\": 1000,\n      \"giftPointsNum\": 0,\n      \"usePointsNum\": 0,\n      \"pointsNum\": 0,\n      \"pointsActMoney\": 0,\n      \"mainOperateMoney\": 0,\n      \"giftOperateMoney\": 0,\n      \"mainBalance\": 0,\n      \"giftBalance\": 0,\n      \"deposit\": 0,\n      \"payStatus\": 2,\n      \"cardState\": 2,\n      \"payTypeList\": \"[1,2]\",\n      \"billTime\": 1623234242861,\n      \"operatorId\": 10010,\n      \"operatorName\": \"系统\",\n      \"commissionId\": 20020,\n      \"commissionName\": \"服务员\",\n      \"opSource\": 1,\n      \"opSourceDesc\": \"POS端\",\n      \"remark\": \"消费金额累计满95.0元\"\n    }\n  }\n}",
+    "title": "门店-查询卡交易列表-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v2/poi/cards/transactions/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v2-poi-cards-transactions-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v2/poi/coupon/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": true,
+        "description": "页码"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页条数，建议不超过"
+      },
+      {
+        "name": "cardId",
+        "type": "long",
+        "required": false,
+        "description": "会员卡"
+      },
+      {
+        "name": "idstatusList",
+        "type": "array<int>",
+        "required": false,
+        "description": "券状态 0-未使用，1-已使用，2-已锁定，3-已过期"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "dataList",
+        "type": "array<CertifyCouponVO>",
+        "description": "券明细"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"totalCount\": 1,\n    \"dataList\": [\n      {\n        \"couponId\": 280773977,\n        \"couponCode\": \"95950400984\",\n        \"title\": \"满N件打折最低\",\n        \"type\": 3,\n        \"price\": 1000,\n        \"sendTime\": 1638434616000,\n        \"startTime\": 1638374400000,\n        \"endTime\": 1643471999000,\n        \"status\": 0,\n        \"shared\": true,\n        \"poiIdList\": [\n          600028280\n        ],\n        \"overlayNum\": 1,\n        \"multiGoodsCouponRule\": {\n          \"itemType\": 1,\n          \"itemIdList\": [\n            1000\n          ],\n          \"comboIdList\": [\n            1000\n          ],\n          \"exchangeType\": 1\n        }\n      }\n    ]\n  }\n}",
+    "title": "门店-查询优惠券列表V2-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v2/poi/coupon/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v2-poi-coupon-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v2/poi/coupon/template/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "p"
+      },
+      {
+        "name": "ageNo",
+        "type": "int",
+        "required": true,
+        "description": "p"
+      },
+      {
+        "name": "ageSize",
+        "type": "int",
+        "required": true,
+        "description": "t"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "dataList",
+        "type": "array<CouponTemplateVO>",
+        "description": "券模板明细"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"totalCount\": 1,\n    \"dataList\": [\n      {\n        \"templateId\": 32425344,\n        \"type\": 1,\n        \"price\": 200,\n        \"periodType\": 1,\n        \"delayedDays\": 1,\n        \"efficientDays\": 2,\n        \"startTime\": 1642488039000,\n        \"endTime\": 1642491639000,\n        \"shared\": true,\n        \"poiIdList\": [\n          12434234\n        ],\n        \"overlayNum\": 2,\n        \"multiGoodsCouponRule\": {\n          \"itemType\": 1,\n          \"itemIdList\": [\n            1\n          ],\n          \"comboIdList\": [\n            1\n          ],\n          \"exchangeType\": 1\n        },\n        \"status\": 0,\n        \"overlay\": true,\n        \"giftable\": 0,\n        \"channelScope\": 1,\n        \"channelIdList\": [\n          1\n        ],\n        \"notifyRule\": {\n          \"publicName\": \"example\",\n          \"appId\": \"example\",\n          \"authPublicStatus\": 1\n        },\n        \"timeLimit\": {\n          \"holidayDenied\": true,\n          \"unavailableWeekdayList\": [\n            1\n          ],\n          \"unavailableTimeList\": [\n            \"example\"\n          ],\n          \"unavailableDate\": [\n            \"example\"\n          ]\n        },\n        \"note\": \"example\"\n      }\n    ]\n  }\n}",
+    "title": "门店-查询优惠券模版列表V2-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v2/poi/coupon/template/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v2-poi-coupon-template-query"
+  },
+  {
+    "method": "POST",
+    "path": "",
+    "request_params": [],
+    "response_params": [],
+    "response_example": "",
+    "title": "美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v2/poi/member/search",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v2-poi-member-search"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/crm/api/v3/poi/member/search",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "memberIdentity",
+        "type": "string",
+        "required": true,
+        "description": "会员认证信息"
+      },
+      {
+        "name": "identityType",
+        "type": "int",
+        "required": true,
+        "description": "认证类型。1-会员ID，2-手机号"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "data",
+        "type": "array<MemberInfo>",
+        "description": "会员列表"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"data\": [\n      {\n        \"memberId\": \"121141231\",\n        \"name\": \"test\",\n        \"mobile\": \"152****5810\",\n        \"sex\": 1,\n        \"birthdayType\": 1,\n        \"birthday\": 1595575131000,\n        \"status\": 1,\n        \"ctime\": 1695575131000,\n        \"poiId\": 100156789,\n        \"poiName\": \"测试门店\",\n        \"source\": 1,\n        \"wxMiniAppUnionId\": \"example\"\n      }\n    ]\n  }\n}",
+    "title": "门店-查询会员信息-美团技术服务合作中心",
+    "api_path": "/rms/crm/api/v3/poi/member/search",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-crm-api-v3-poi-member-search"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v2/chain/promotions/campaigns/query",
+    "request_params": [
+      {
+        "name": "bizLine",
+        "type": "int",
+        "required": true,
+        "description": "业务线id：600-智能版"
+      },
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构id"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"queryCampaignOpenResp\": {\n      \"data\": {\n        \"campaignList\": [\n          {\n            \"sourceId\": 1000,\n            \"date\": \"default\",\n            \"modifiedTime\": 1000,\n            \"discountRate\": 0,\n            \"campaignId\": 1000,\n            \"goodsSkuList\": [\n              {\n                \"discountRate\": 0,\n                \"name\": \"default\",\n                \"id\": 1000\n              }\n            ],\n            \"title\": \"default\",\n            \"type\": 0,\n            \"orgId\": 0,\n            \"availableWeekdays\": [\n              {\n                \"value\": 0\n              }\n            ],\n            \"availableTime\": [\n              {}\n            ],\n            \"categoryList\": [\n              {\n                \"discountRate\": 0,\n                \"name\": \"default\",\n                \"id\": 1000\n              }\n            ],\n            \"status\": 0\n          }\n        ],\n        \"page\": {\n          \"pageNo\": 0,\n          \"pageSize\": 0,\n          \"totalPageCount\": 0,\n          \"totalCount\": 0\n        }\n      }\n    }\n  }\n}",
+    "title": "总部-查询活动列表V2-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v2/chain/promotions/campaigns/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v2-chain-promotions-campaigns-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v2/poi/promotions/campaigns/query",
+    "request_params": [
+      {
+        "name": "bizLine",
+        "type": "int",
+        "required": true,
+        "description": "业务线id：600-智能版"
+      },
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构id"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "discountRate",
+        "type": "int",
+        "description": "整单折扣率（50表示5折, 88表示8.8折）90categoryListarray菜品分类(分类id、分类名称、折扣）goodsSkuListarray"
+      }
+    ],
+    "response_example": "",
+    "title": "门店-查询活动列表V2-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v2/poi/promotions/campaigns/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v2-poi-promotions-campaigns-query"
+  }
+]

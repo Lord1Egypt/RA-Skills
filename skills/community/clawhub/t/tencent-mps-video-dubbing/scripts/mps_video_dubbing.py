@@ -134,7 +134,11 @@ def create_client(region: str) -> "mps_client.MpsClient":
 
     cred = credential.Credential(secret_id, secret_key)
     http_profile = HttpProfile()
-    http_profile.endpoint = "mps.tencentcloudapi.com"
+    # 接入点可通过 TENCENTCLOUD_MPS_ENDPOINT 覆盖（国际站为 mps.intl.tencentcloudapi.com），
+    # 未设置时默认国内站；该变量在 mps_load_env.py 中登记为可选变量。
+    http_profile.endpoint = os.environ.get(
+        "TENCENTCLOUD_MPS_ENDPOINT", "mps.tencentcloudapi.com"
+    )
     client_profile = ClientProfile()
     client_profile.httpProfile = http_profile
     return mps_client.MpsClient(cred, region, client_profile)

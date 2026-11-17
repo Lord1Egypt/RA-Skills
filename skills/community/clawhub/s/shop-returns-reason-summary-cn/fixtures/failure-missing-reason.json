@@ -1,0 +1,16 @@
+{
+  "input_records": [
+    {"order_id":"B-001","product":"月光手账本","spec":"A5","note":"需要退款"}
+  ],
+  "expected_workflow_output": {
+    "status":"input_error",
+    "missing_fields":["退款/退货原因"],
+    "affected_records":["B-001"],
+    "cannot_complete":["原因分类","原因计数","商品维度统计","基于原因的商品页改进建议"],
+    "required_action":"请为订单 B-001 补充原始退款/退货原因后再汇总；不得根据“需要退款”、商品名或规格编造原因。",
+    "reason_classification_facts":[],
+    "product_dimension_facts":[],
+    "product_page_recommendations":[]
+  },
+  "expected_markdown_sections":["数据完整性","缺失字段","无法完成的部分","待确认项"]
+}

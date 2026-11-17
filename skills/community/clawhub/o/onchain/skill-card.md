@@ -1,48 +1,59 @@
-## Description: <br>
-CLI for crypto portfolio tracking, market data, CEX history, and transaction lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Onchain CLI helps agents retrieve crypto market data, wallet balances, portfolio values, centralized exchange history, prediction market information, and transaction details.
 
-## Publisher: <br>
-[arein](https://clawhub.ai/user/arein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arein](https://clawhub.ai/user/arein)
 
-## Use Case: <br>
-Agents and users use this skill to answer crypto market, wallet balance, exchange account, prediction market, and transaction lookup questions through the onchain CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the external @cyberdrk/onchain npm package. <br>
-Mitigation: Install only if the package publisher and release are trusted. <br>
-Risk: Exchange integrations require sensitive Coinbase or Binance API credentials. <br>
-Mitigation: Use newly created read-only keys with trading and withdrawals disabled, and protect the local configuration file. <br>
-Risk: Wallet, transaction, balance, and trade-history lookups may be sent to third-party providers. <br>
-Mitigation: Avoid sharing raw balances or trade history in logs and assume configured providers can receive lookup data. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to run the Onchain CLI for crypto portfolio tracking, market data checks, CEX account history, prediction market review, and blockchain transaction lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arein/onchain) <br>
-- [DeBank Cloud](https://cloud.debank.com/) <br>
-- [Helius](https://helius.xyz/) <br>
-- [Coinbase API settings](https://www.coinbase.com/settings/api) <br>
-- [Binance API management](https://www.binance.com/en/my/settings/api-management) <br>
-- [CoinGecko API](https://www.coingecko.com/en/api) <br>
-- [CoinMarketCap API](https://coinmarketcap.com/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [CLI text or JSON output with Markdown guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports --json for structured agent workflows and --plain for colorless output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: The skill asks users to run an external npm CLI that is not pinned in the artifact evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed package version for sensitive workflows and avoid npx when package freshness has not been reviewed.
+
+Risk: The CLI may handle financial API keys, wallet addresses, transaction hashes, balances, and exchange history.
+
+Mitigation: Configure only read-only or least-privilege API keys and treat wallet, transaction, balance, and exchange-history data as sensitive financial information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arein/skills/onchain)
+- [DeBank Cloud](https://cloud.debank.com/)
+- [Helius](https://helius.xyz/)
+- [Coinbase CDP](https://portal.cdp.coinbase.com/)
+- [Binance API management](https://www.binance.com/en/my/settings/api-management)
+- [CoinGecko API](https://www.coingecko.com/en/api)
+- [CoinMarketCap API](https://coinmarketcap.com/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI responses may be plain text or JSON when --json is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured third-party API providers and recommends --json output for agent parsing.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

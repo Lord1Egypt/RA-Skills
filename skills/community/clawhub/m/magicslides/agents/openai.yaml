@@ -1,0 +1,14 @@
+interface:
+  display_name: "MagicSlides: AI Presentation Maker (PPTX & PDF)"
+  short_description: "Let your AI agent make designed presentations: pitch decks, lecture slides, PDF to PPT. 161 templates, with a live link plus PPTX and PDF downloads."
+  icon_small: ./assets/icon.png
+  icon_large: ./assets/icon.png
+  brand_color: "#E8603C"
+  default_prompt: Make me a 7-slide pitch deck for my startup
+dependencies:
+  tools:
+    - type: mcp
+      value: magicslides
+      description: MagicSlides hosted MCP server (OAuth or x-api-key)
+      transport: streamable_http
+      url: https://www.magicslides.app/api/mcp/mcp

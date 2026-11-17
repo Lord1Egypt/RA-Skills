@@ -1,42 +1,54 @@
-## Description: <br>
-Análise de métricas SaaS para planejamento de monetização: ARR, NDR, LTV:CAC, Magic Number, cohort analysis, GTM efficiency, em português para a comunidade brasileira. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Análise de métricas SaaS para planejamento de monetização: ARR, NDR, LTV:CAC, Magic Number, cohort analysis, GTM efficiency. Tudo em português para a comunidade brasileira.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Developers and agent builders use this skill to plan monetization for AI agents by estimating SaaS revenue metrics such as projected ARR, NDR, LTV:CAC, Magic Number, cohort retention, and go-to-market efficiency. The guidance is written in Portuguese for Brazilian users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide business planning guidance that users could mistake for legal, tax, investment, or accounting advice. <br>
-Mitigation: Treat outputs as planning support and have qualified professionals review legal, tax, investment, and accounting decisions. <br>
-Risk: The broad monetization trigger may activate for general monetization-related requests. <br>
-Mitigation: Confirm the user wants SaaS monetization metrics and tailor the analysis to the stated business context before relying on recommendations. <br>
+## Use Case:
 
+Developers and founders building AI agents for Brazilian Portuguese users use this skill to plan SaaS monetization with ARR, NDR, LTV:CAC, Magic Number, cohort analysis, and GTM efficiency metrics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/engsathiago/gerador-receitas) <br>
-- [Project Homepage](https://github.com/eve-agent/gerador-receitas) <br>
-- [Support Issues](https://github.com/eve-agent/gerador-receitas/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Portuguese-language business planning guidance; outputs should be treated as planning support, not legal, tax, investment, or accounting advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, and clawhub.json) <br>
+Risk: Financial metric estimates or benchmarks may be mistaken for professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as planning aids and review assumptions with qualified business or financial advisors before making commercial decisions.
+
+Risk: Users may provide sensitive business revenue, churn, or customer acquisition data to the agent.
+
+Mitigation: Share only business data appropriate for the agent environment and remove confidential details when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/engsathiago/skills/gerador-receitas)
+- [Project homepage](https://github.com/eve-agent/gerador-receitas)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown narrative with metric calculations and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-language SaaS monetization planning output; financial metrics should be reviewed as planning aids.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release, artifact frontmatter, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

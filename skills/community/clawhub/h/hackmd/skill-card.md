@@ -1,43 +1,54 @@
-## Description: <br>
-Work with HackMD documents by reading, creating, updating, deleting, and tracking changes across personal and team workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with HackMD documents, including reading, creating, updating, deleting, and tracking changes for personal and team notes.
 
-## Publisher: <br>
-[nulltea](https://clawhub.ai/user/nulltea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nulltea](https://clawhub.ai/user/nulltea)
 
-## Use Case: <br>
-Developers, editors, and content operators use this skill to manage HackMD notes and detect document changes from an agent workflow. It supports personal and team notes when the required HackMD CLI and API token are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, or delete HackMD notes using the configured HackMD account. <br>
-Mitigation: Supervise write and delete actions, verify note IDs and team paths before execution, and export important notes before deletion. <br>
-Risk: The HackMD API token grants account access and may expose personal or team content if mishandled. <br>
-Mitigation: Protect HMD_API_ACCESS_TOKEN, avoid logging or committing it, and install the skill only where that account access is acceptable. <br>
-Risk: The local tracking state can contain note IDs, titles, timestamps, and related metadata. <br>
-Mitigation: Treat ./.hackmd/tracked-notes.json as sensitive when note metadata is private and avoid committing it. <br>
+## Use Case:
 
+Developers and agents use this skill to manage HackMD notes and team workspaces from the command line. It is also useful for checking whether tracked notes changed since the last review.
 
-## Reference(s): <br>
-- [ClawHub HackMD skill page](https://clawhub.ai/nulltea/hackmd) <br>
-- [HackMD API endpoint](https://api.hackmd.io/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; tracking commands can return JSON or note content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires hackmd-cli and HMD_API_ACCESS_TOKEN; change tracking stores note metadata in ./.hackmd/tracked-notes.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can guide create, update, and delete operations on personal or team HackMD notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before any create, update, or delete operation.
+
+Risk: The tracking script can send the HackMD API token to the endpoint configured by HMD_API_ENDPOINT_URL.
+
+Mitigation: Use a least-privileged HackMD token and leave HMD_API_ENDPOINT_URL unset unless using a trusted HackMD-compatible deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nulltea/skills/hackmd)
+- [HackMD API endpoint](https://api.hackmd.io/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, note content, and optional JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires hackmd-cli, Node.js for change tracking, and HMD_API_ACCESS_TOKEN for authenticated HackMD access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

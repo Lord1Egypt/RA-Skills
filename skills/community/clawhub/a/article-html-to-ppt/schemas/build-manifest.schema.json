@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclaw.local/article-html-to-ppt/build-manifest.schema.json",
+  "title": "article-html-to-ppt Build Manifest v2",
+  "type": "object",
+  "required": ["schema_version", "build_id", "deck_id", "profile", "builder", "builder_profile", "status", "contract_refs", "stages", "outputs", "metrics", "warnings", "errors"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "build_id": {"type": "string"},
+    "deck_id": {"type": "string"},
+    "benchmark_case_id": {"type": "string"},
+    "profile": {"enum": ["fast", "standard", "premium"]},
+    "builder": {
+      "oneOf": [
+        {"type": "string"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["requested", "selected", "version", "selection_score", "selection_reasons"],
+          "properties": {
+            "requested": {"type": "string"},
+            "selected": {"type": "string"},
+            "version": {"type": ["string", "null"]},
+            "selection_score": {"type": "number", "minimum": 0},
+            "selection_reasons": {"type": "array", "items": {"type": "string"}},
+            "candidates": {"type": "array", "items": {"type": "object"}},
+            "warnings": {"type": "array", "items": {"type": "string"}},
+            "errors": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "builder_profile": {"type": "string"},
+    "status": {"enum": ["planned", "created", "rendered", "read_back", "verified", "final", "failed"]},
+    "production_profile_ref": {"type": ["string", "null"]},
+    "resume_from": {"type": ["string", "null"]},
+    "last_successful_stage": {"type": ["string", "null"]},
+    "failed_stage": {"type": ["string", "null"]},
+    "contract_refs": {
+      "type": "object",
+      "required": ["ppt_ir", "style_contract", "asset_manifest"],
+      "properties": {
+        "ppt_ir": {"type": "string"},
+        "style_contract": {"type": "string"},
+        "asset_manifest": {"type": "string"},
+        "delivery_plan": {"type": ["string", "null"]},
+        "production_profile": {"type": ["string", "null"]},
+        "capability_report": {"type": ["string", "null"]},
+        "qa_report": {"type": ["string", "null"]}
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "capability_report": {"type": ["string", "null"]}
+      }
+    },
+    "stages": {"type": "object"},
+    "outputs": {
+      "type": "object",
+      "properties": {
+        "deck": {"type": "string"},
+        "preview_pdf": {"type": "string"},
+        "rendered_pages": {"type": "array", "items": {"type": "string"}},
+        "contact_sheet": {"type": "string"},
+        "verification_report": {"type": "string"},
+        "qa_report": {"type": "string"},
+        "delivery_manifest": {"type": "string"},
+        "assets": {"type": "string"},
+        "source_package": {"type": "string"}
+      }
+    },
+    "metrics": {"type": "object"},
+    "fallbacks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slide_id", "object_id", "component_type", "planned_route", "actual_route", "reason_codes", "editable_core_preserved"],
+        "properties": {
+          "slide_id": {"type": "string"},
+          "object_id": {"type": "string"},
+          "component_type": {"type": "string"},
+          "planned_route": {"$ref": "#/$defs/deliveryRoute"},
+          "actual_route": {"$ref": "#/$defs/deliveryRoute"},
+          "reason_codes": {"type": "array", "items": {"type": "string"}},
+          "editable_core_preserved": {"type": "boolean"}
+        }
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "errors": {"type": "array", "items": {"type": "object"}}
+  },
+  "$defs": {
+    "deliveryRoute": {
+      "enum": ["native_ppt", "native_chart", "native_table", "native_diagram", "svg_component", "raster_component", "generated_image", "background_image", "hybrid_overlay", "unsupported"]
+    }
+  }
+}

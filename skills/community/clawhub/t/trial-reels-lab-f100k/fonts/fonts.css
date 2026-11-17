@@ -1,0 +1,24 @@
+/* Pack tipográfico F100K — generado por build_font_pack.py.
+   Familias canónicas: 'F100K Display' (Anton), 'F100K Sans' (Inter),
+   'F100K Serif' (Fraunces italic), + Alt (Archivo Black / Montserrat).
+   woff2 latin locales (incluye español). font-display:block evita FOUT. */
+@font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:block;src:url('./f100k-display-400-normal.woff2') format('woff2');}
+@font-face{font-family:'F100K Display';font-style:normal;font-weight:400;font-display:block;src:url('./f100k-display-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Archivo Black';font-style:normal;font-weight:400;font-display:block;src:url('./f100k-display-alt-400-normal.woff2') format('woff2');}
+@font-face{font-family:'F100K Display Alt';font-style:normal;font-weight:400;font-display:block;src:url('./f100k-display-alt-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:600;font-display:block;src:url('./f100k-serif-600-italic.woff2') format('woff2');}
+@font-face{font-family:'F100K Serif';font-style:italic;font-weight:600;font-display:block;src:url('./f100k-serif-600-italic.woff2') format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:700;font-display:block;src:url('./f100k-serif-700-italic.woff2') format('woff2');}
+@font-face{font-family:'F100K Serif';font-style:italic;font-weight:700;font-display:block;src:url('./f100k-serif-700-italic.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:block;src:url('./f100k-sans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'F100K Sans';font-style:normal;font-weight:500;font-display:block;src:url('./f100k-sans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:block;src:url('./f100k-sans-700-normal.woff2') format('woff2');}
+@font-face{font-family:'F100K Sans';font-style:normal;font-weight:700;font-display:block;src:url('./f100k-sans-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:block;src:url('./f100k-sans-800-normal.woff2') format('woff2');}
+@font-face{font-family:'F100K Sans';font-style:normal;font-weight:800;font-display:block;src:url('./f100k-sans-800-normal.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:900;font-display:block;src:url('./f100k-sans-900-normal.woff2') format('woff2');}
+@font-face{font-family:'F100K Sans';font-style:normal;font-weight:900;font-display:block;src:url('./f100k-sans-900-normal.woff2') format('woff2');}
+@font-face{font-family:'F100K Sans Alt';font-style:normal;font-weight:800;font-display:block;src:url('./f100k-sans-alt-800-normal.woff2') format('woff2');}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:800;font-display:block;src:url('./f100k-sans-alt-800-normal.woff2') format('woff2');}
+@font-face{font-family:'F100K Sans Alt';font-style:normal;font-weight:900;font-display:block;src:url('./f100k-sans-alt-900-normal.woff2') format('woff2');}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:900;font-display:block;src:url('./f100k-sans-alt-900-normal.woff2') format('woff2');}

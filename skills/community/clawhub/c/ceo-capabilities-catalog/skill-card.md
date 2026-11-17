@@ -1,40 +1,53 @@
-## Description: <br>
-Catalog the current OpenClaw instance's installed skills, custom skills, and coordination-oriented capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Catalogs the current OpenClaw instance's installed skills, custom skills, and coordination-oriented capabilities.
 
-## Publisher: <br>
-[xingfan0828](https://clawhub.ai/user/xingfan0828) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xingfan0828](https://clawhub.ai/user/xingfan0828)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to inventory installed builtin and user skills, custom capabilities, and coordination roles when answering capability questions or creating backup documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Capability summaries may expose sensitive details from local workspace memory or installed skill descriptions. <br>
-Mitigation: Run the skill only in workspaces where those files are appropriate to summarize, and review output before sharing it. <br>
-Risk: Unverified capability claims could overstate available channels, API keys, or connected workflows. <br>
-Mitigation: Verify channels, credentials, and workflow connections before presenting them as available. <br>
+## Use Case:
 
+External users and developers use this skill to inventory an OpenClaw instance's installed skills and summarize coordination capabilities. It helps answer what the agent can do while avoiding claims about unverified channels, API keys, or integrations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xingfan0828/ceo-capabilities-catalog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text capability summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries may include installed skill names, capability inventory details, coordination roles, and verification caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to read local workspace memory, which may include private project, customer, workflow, or personal context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in sensitive workspaces, and narrow use to explicit allowed files and fields when private context may be present.
+
+Risk: Capability summaries could disclose secrets or imply that unavailable channels or API keys are working.
+
+Mitigation: Follow the artifact guidance to avoid exposing secrets and to verify channels or credentials before claiming they are available.
+
+## Reference(s):
+
+- [CEO Capabilities Catalog on ClawHub](https://clawhub.ai/xingfan0828/skills/ceo-capabilities-catalog)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text capability summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries should omit secrets and avoid unsupported claims about unavailable channels or credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

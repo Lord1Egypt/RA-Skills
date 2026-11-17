@@ -1,43 +1,56 @@
-## Description: <br>
-Rendshot helps agents render HTML/CSS to images, capture URL screenshots, fill templates, and generate visual content programmatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image generation and screenshot tool using Rendshot for HTML/CSS rendering, website screenshots, reusable templates, social graphics, Open Graph images, thumbnails, and other programmatic visual content.
 
-## Publisher: <br>
-[zoohero500](https://clawhub.ai/user/zoohero500) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoohero500](https://clawhub.ai/user/zoohero500)
 
-## Use Case: <br>
-Developers and content-producing agents use this skill to create social images, thumbnails, Open Graph images, rendered HTML cards, and website screenshots through Rendshot tools, API, CLI, or SDKs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Render inputs, prompts, template variables, screenshot target URLs, and the Rendshot API key may be sent to Rendshot or a configured endpoint. <br>
-Mitigation: Use the skill only with approved endpoints and avoid sending sensitive HTML, secrets, authenticated pages, or regulated data unless authorized controls are in place. <br>
-Risk: Screenshot requests can expose internal, localhost, cloud metadata, or authenticated URLs if a user supplies them. <br>
-Mitigation: Do not target localhost, internal services, cloud metadata endpoints, or authenticated pages unless explicitly authorized and reviewed. <br>
+## Use Case:
 
+Developers, designers, and content teams use this skill to generate images from prompts, templates, or raw HTML/CSS and to capture webpage screenshots through Rendshot tools, API, CLI, or SDKs.
 
-## Reference(s): <br>
-- [Rendshot MCP Tools Reference](references/mcp-tools.md) <br>
-- [Rendshot API & CLI Reference](references/api-endpoints.md) <br>
-- [Rendshot API](https://api.rendshot.com) <br>
-- [ClawHub Rendshot Release Page](https://clawhub.ai/zoohero500/rendshot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON, shell, TypeScript, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to call Rendshot MCP tools or use the Rendshot API, CLI, and SDKs; generated images and screenshots are produced by Rendshot or the configured endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive prompts, HTML, screenshots, internal URLs, account pages, secrets, or customer data may be sent to Rendshot or another configured rendering endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content intended for that service, avoid submitting secrets or private data, and prefer private or self-hosted deployments for sensitive rendering workloads.
+
+Risk: CLI or SDK installation may pull changing package versions over time.
+
+Mitigation: Pin CLI and SDK package versions when using Rendshot in repeatable or production workflows.
+
+## Reference(s):
+
+- [Rendshot API & CLI Reference](references/api-endpoints.md)
+- [Rendshot MCP Tools Reference](references/mcp-tools.md)
+- [Rendshot API](https://api.rendshot.com)
+- [ClawHub Rendshot Skill Page](https://clawhub.ai/zoohero500/skills/rendshot)
+
+## Skill Output:
+
+**Output Type(s):** [Files, API Calls, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with JSON tool-call examples, bash commands, SDK code snippets, and generated image or screenshot outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce PNG or JPG images, image URLs, rendered HTML, template variables, or saved reusable templates depending on the selected Rendshot workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

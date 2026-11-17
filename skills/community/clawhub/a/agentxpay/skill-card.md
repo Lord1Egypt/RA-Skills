@@ -1,45 +1,62 @@
-## Description: <br>
-AgentXPay lets AI agents discover, pay for, subscribe to, and escrow AI services on Monad using the x402 payment protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentXPay enables AI agents to discover AI services on Monad, make x402 on-chain payments, manage wallets, manage subscriptions, and create escrow-backed tasks.
 
-## Publisher: <br>
-[JasonRUAN](https://clawhub.ai/user/JasonRUAN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jasonruan](https://clawhub.ai/user/jasonruan)
 
-## Use Case: <br>
-Developers and agent operators use AgentXPay to let agents discover and pay for Monad-hosted AI services, manage funded wallets, subscribe to services, and create escrow-backed jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend funds from a configured blockchain wallet. <br>
-Mitigation: Use a testnet or low-balance wallet first, set strict spend limits, and require human confirmation before payment, transfer, subscription, escrow, or authorization changes. <br>
-Risk: The skill can call external service URLs and may send prompts, headers, or request bodies to providers. <br>
-Mitigation: Restrict allowed service endpoints and do not send sensitive prompts, secrets, or headers to untrusted provider URLs. <br>
-Risk: Security review found broad spending and external-call capability without strong built-in approval or allowlist controls. <br>
-Mitigation: Deploy with external approval gates, endpoint allowlists, and budget controls appropriate to the funded wallet. <br>
+## Use Case:
 
+Developers and external agent builders use this skill to let an agent discover paid AI services, complete x402 payment flows on Monad, and manage agent wallets, subscriptions, and escrow for service access.
 
-## Reference(s): <br>
-- [AgentXPay SDK API reference](references/sdk-api.md) <br>
-- [x402 protocol reference](references/x402-protocol.md) <br>
-- [AgentXPay project homepage](https://github.com/AgentXPay) <br>
-- [x402 protocol website](https://www.x402.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON tool results and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include service listings, external AI service responses, wallet addresses, payment amounts, service identifiers, and blockchain transaction hashes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release metadata) <br>
+Risk: The skill can spend or lock blockchain funds through payments, subscriptions, escrow creation, wallet funding, spending-limit changes, and agent authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test wallets or tightly limited wallets, configure spending caps outside the agent, and require separate human approval before any fund-moving or authorization action.
+
+Risk: The skill can call arbitrary external service URLs during x402 payment flows.
+
+Mitigation: Restrict allowed service endpoints and review target service details, price, chain ID, and payment recipient before payment.
+
+Risk: The skill requires private-key based wallet access.
+
+Mitigation: Avoid production private keys and provide only keys for wallets with limited balances and constrained permissions.
+
+## Reference(s):
+
+- [AgentXPay ClawHub skill page](https://clawhub.ai/jasonruan/skills/agentxpay)
+- [AgentXPay publisher profile](https://clawhub.ai/user/jasonruan)
+- [AgentXPay homepage](https://github.com/AgentXPay)
+- [x402 protocol](https://www.x402.org/)
+- [AgentXPay SDK API reference](references/sdk-api.md)
+- [x402 protocol reference](references/x402-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON tool results and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool results may include service metadata, external service responses, wallet balances, transaction hashes, subscription identifiers, and escrow identifiers.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

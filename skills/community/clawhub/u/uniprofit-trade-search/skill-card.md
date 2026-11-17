@@ -1,45 +1,56 @@
-## Description: <br>
-Searches UniProfit trade intelligence data through the OpenClaw-compatible UniProfit API for importer lookup, exhibition lead search, and purchase requirement search with a user-created trade_search API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search UniProfit trade intelligence data through the OpenClaw-compatible UniProfit API when Codex or OpenClaw needs importer lookup, exhibition lead search, or purchase requirement search with a user-created trade_search API key.
 
-## Publisher: <br>
-[xieziqing](https://clawhub.ai/user/xieziqing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xieziqing](https://clawhub.ai/user/xieziqing)
 
-## Use Case: <br>
-External users and developers use this skill to plan and execute scoped UniProfit trade-data searches for buyer or importer leads, exhibition contacts, and procurement demand, then summarize actionable result windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a scoped UniProfit API key and search filters to the configured UniProfit API. <br>
-Mitigation: Confirm UNIPROFIT_API_BASE_URL points to the legitimate UniProfit service, use a scoped trade_search key, and rotate the key if it is exposed. <br>
-Risk: Search filters may reveal confidential business strategy or unnecessary personal data. <br>
-Mitigation: Avoid putting confidential strategy or unnecessary personal data in filters, and review planned queries before execution. <br>
-Risk: Unsupported or overly broad filters can fail or spend limited search quota without useful results. <br>
-Mitigation: Use the supported filters for the chosen source, ask one clarifying question when the plan is weak, and narrow filters before retrying or paging. <br>
+## Use Case:
 
+External users and agent operators use this skill to query UniProfit-owned importer, exhibition lead, and procurement requirement datasets with a configured trade_search API key. It helps plan structured searches, execute supported UniProfit API queries, and summarize actionable trade leads without dumping raw payloads by default.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xieziqing/uniprofit-trade-search) <br>
-- [API Reference](references/api.md) <br>
-- [Query Patterns](references/query-patterns.md) <br>
-- [Error Handling](references/error-handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with optional shell commands and structured result details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a scoped UniProfit trade_search API key and summarizes current result windows rather than full database counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and artifact _meta.json) <br>
+Risk: The helper scripts can send the API key and search queries to a non-HTTPS or misconfigured API base URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fixed, trusted HTTPS UniProfit API base URL and rotate the API key if it may have been used with HTTP.
+
+Risk: Trade searches may consume paid quota or expose commercially sensitive search filters to the configured UniProfit service.
+
+Mitigation: Validate the credential and query plan before execution, and treat search filters and returned leads as commercially sensitive.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xieziqing/skills/uniprofit-trade-search)
+- [API Reference](references/api.md)
+- [Query Patterns](references/query-patterns.md)
+- [Error Handling](references/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with optional shell command examples and structured search details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries describe the current result window, filters used, whether more results may exist, and suggested query refinements.]
+
+## Skill Version(s):
+
+1.0.6 (source: evidence.release.version and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

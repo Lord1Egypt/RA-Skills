@@ -1,41 +1,51 @@
-## Description: <br>
-Professional Backend Development Career Roadmap Platform that generates personalized learning paths based on experience, skills, and career goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Backend Development Career Roadmap Platform that generates personalized learning paths based on experience, skills, and career goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers use this skill to call an external roadmap API that turns backend experience, current skills, and career goals into a structured learning plan with phases, milestones, and recommended resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests may send career history, current skills, goals, session identifiers, and optional user IDs to an external provider API. <br>
-Mitigation: Use pseudonymous session values and avoid sensitive employer, compensation, or private project details unless the provider's privacy and retention terms are acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to submit backend-career assessment data and receive a structured learning roadmap with phases, milestones, and recommended resources.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-backend-developer) <br>
-- [Backend Developer Roadmap API route](https://api.mkkpro.com/career/backend-developer) <br>
-- [Backend Developer Roadmap API docs](https://api.mkkpro.com:8085/docs) <br>
-- [OpenAPI specification](artifact/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON roadmap data with phases, milestones, and recommended resources] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires session and timestamp values; optional user identifiers and career assessment details may be included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Roadmap requests may send career assessment details, goals, session identifiers, and optional user IDs to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only information needed for roadmap generation, and avoid sensitive employer, proprietary project, or unnecessary identifying details unless the service privacy terms are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-backend-developer)
+- [Backend Developer Roadmap API docs](https://api.mkkpro.com:8085/docs)
+- [Backend Developer Roadmap API route](https://api.mkkpro.com/career/backend-developer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Text]
+
+**Output Format:** [JSON roadmap response with supporting text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roadmap output can include phases, milestones, recommended resources, session identifiers, and optional user identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

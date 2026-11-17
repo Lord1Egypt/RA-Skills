@@ -1,45 +1,55 @@
-## Description: <br>
-Qordinate gives OpenClaw agents durable chat-native memory for long-term facts, tasks, lists, and reminders over WhatsApp, Telegram, or Slack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qordinate is a chat-native assistant that acts as structured memory for OpenClaw agents.
 
-## Publisher: <br>
-[SinghCoder](https://clawhub.ai/user/SinghCoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[singhcoder](https://clawhub.ai/user/singhcoder)
 
-## Use Case: <br>
-External users and OpenClaw agent builders use this skill to offload selected facts, tasks, contacts, leads, resources, and reminders into Qordinate rather than maintaining a custom database. The user must connect a Qordinate account to WhatsApp, Telegram, or Slack before an agent can send or retrieve memory through that channel. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected facts, tasks, contacts, leads, resources, and reminders may be stored in Qordinate through WhatsApp, Telegram, or Slack. <br>
-Mitigation: Set clear user-approved rules for what the agent may save, and avoid secrets, credentials, tokens, health or financial details, and private internal material. <br>
-Risk: The skill depends on the user's connected Qordinate account and chosen chat platform. <br>
-Mitigation: Confirm the account and channel are connected before relying on Qordinate as durable agent memory. <br>
-Risk: Incorrect or overly broad memory writes can persist stale or unwanted information. <br>
-Mitigation: Have the agent include explicit list names and structured fields, and review important writes or updates before sending them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/SinghCoder/agents-structured-memory) <br>
-- [Qordinate](https://qordinate.ai) <br>
-- [Qordinate WhatsApp Setup](https://qordinate.ai/whatsapp) <br>
-- [Qordinate Telegram Setup](https://qordinate.ai/telegram) <br>
-- [Qordinate Slack Setup](https://qordinate.ai/slack) <br>
+## Use Case:
 
+Developers and OpenClaw agent builders use this skill to offload long-term facts, tasks, lists, contacts, leads, resources, and reminders to Qordinate over WhatsApp, Telegram, or Slack.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and natural-language structured text messages for chat platforms] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the user to connect a Qordinate account to WhatsApp, Telegram, or Slack before agent use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 0.1) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents may send durable user or agent context to Qordinate and connected WhatsApp, Telegram, or Slack accounts without clear limits.
+
+Mitigation: Define strict storage rules before use, keep secrets and sensitive personal data out of memory records, and require confirmation before writing private information.
+
+Risk: Stored facts, lists, contacts, leads, resources, and reminders can persist beyond the current agent session.
+
+Mitigation: Store only information the user expects to keep long term, and prefer minimal summaries over full source excerpts or private documents.
+
+## Reference(s):
+
+- [Qordinate](https://qordinate.ai)
+- [Qordinate WhatsApp setup](https://qordinate.ai/whatsapp)
+- [Qordinate Telegram setup](https://qordinate.ai/telegram)
+- [Qordinate Slack setup](https://qordinate.ai/slack)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with structured message examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces plain-language instructions for storing and retrieving durable memory through third-party chat channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

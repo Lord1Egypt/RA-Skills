@@ -1,46 +1,61 @@
-## Description: <br>
-爽文体验馆 is a Chinese text-game launcher that gives agents a menu for entering cultivation, wuxia, Republican-era, and campus story worlds with separate save paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+爽文体验馆是一个中文文字冒险游戏入口，为代理提供修仙、武侠、民国和校园四类剧情世界的选择界面、启动引导和独立存档说明。
 
-## Publisher: <br>
-[heaven-ll](https://clawhub.ai/user/heaven-ll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heaven-ll](https://clawhub.ai/user/heaven-ll)
 
-## Use Case: <br>
-External users and interactive-fiction agents use this skill to present a unified game hub, check or install named child game skills, and route a selected world into a text adventure with independent saves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The launcher may prompt users to add other game skills, and each child skill is a separate trust decision. <br>
-Mitigation: Review the requested child skill, publisher, license, and security evidence before installing or running it. <br>
-Risk: The release description mentions four game worlds while the included launcher files mostly cover two. <br>
-Mitigation: Treat the two-world launcher behavior as the implemented baseline and verify four-world support before relying on the full public description. <br>
-Risk: Game saves may contain personal or sensitive roleplay details. <br>
-Mitigation: Avoid entering sensitive personal information into game saves and review saved files before sharing a workspace. <br>
+## Use Case:
 
+External users and agent operators use this skill to launch and navigate a Chinese-language text adventure hub with separate game worlds and save files. The skill helps the agent present menu options, check/install dependent game skills, and guide world-specific play.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heaven-ll/shuangwen-tiyanguan) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Core logic](references/core_logic.md) <br>
-- [Save system](references/save_system.md) <br>
-- [UI templates](references/ui_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text prompts with occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces interactive menu text and launcher guidance for separate child game skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may guide the agent to install additional OpenClaw skills, including through broad or unpinned commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify package names, publisher handles, versions, and sources before approving installation, and avoid global unpinned npx commands.
+
+Risk: Saved game text may persist user choices and story state beyond a single session.
+
+Mitigation: Use dedicated save files for each game world and avoid relying on shared agent memory for game state.
+
+Risk: Install and save behavior is broader and less clearly bounded than users may expect.
+
+Mitigation: Review the launcher behavior and security evidence before deployment, then scan dependent skills separately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/heaven-ll/skills/shuangwen-tiyanguan)
+- [Core logic](references/core_logic.md)
+- [Save system](references/save_system.md)
+- [UI templates](references/ui_templates.md)
+- [Welcome launcher](references/welcome.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese-language interactive text with markdown-style menus and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May refer to independent save files for each game world and installation commands for dependent OpenClaw skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

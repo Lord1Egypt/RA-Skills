@@ -1,45 +1,62 @@
-## Description: <br>
-Clawmerge helps OpenClaw users back up, restore, and merge workspaces, including disaster backups for workspace data, system configuration, cron tasks, agent authentication, and sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+clawmerge helps OpenClaw users back up, restore, and safely merge workspace files, disaster backups, cron configuration, sessions, and exported configuration.
 
-## Publisher: <br>
-[sinoslug](https://clawhub.ai/user/sinoslug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sinoslug](https://clawhub.ai/user/sinoslug)
 
-## Use Case: <br>
-External OpenClaw users and operators use this skill to create workspace or disaster backups, preview restores, and safely merge restored files when migrating devices or recovering an OpenClaw environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups can contain credentials, sessions, cron definitions, environment files, and other sensitive OpenClaw configuration. <br>
-Mitigation: Treat backup archives as sensitive credential archives: store them encrypted, avoid sharing them, and use --no-sessions unless session recovery is required. <br>
-Risk: Restoring untrusted or unreviewed backups can alter configuration, authentication, cron jobs, dependencies, scripts, or live sessions. <br>
-Mitigation: Prefer --dry-run first, avoid restoring untrusted backups, and review cron, .env, auth, session, requirements.txt, and script inventory changes before applying them. <br>
-Risk: Destructive restore behavior can overwrite live OpenClaw state when explicitly requested. <br>
-Mitigation: Use the default safe restore mode for normal recovery and reserve --unsafe-overwrite only for cases where overwriting the current environment is intentional. <br>
+## Use Case:
 
+Developers and OpenClaw operators use clawmerge to migrate, back up, inspect, and safely restore OpenClaw workspaces, sessions, cron definitions, and system configuration. It is intended for routine backups, device migration, disaster recovery, and merge-style restoration that avoids overwriting existing workspace files by default.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sinoslug/clawmerge) <br>
-- [Usage guide](artifact/USAGE.md) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Configuration tools guide](artifact/scripts/INSTALL-CONFIG-TOOLS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and backup or restore file artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce tar.gz backup archives, manifests, restore reports, candidate configuration files, and dry-run summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.2 (source: frontmatter and release evidence) <br>
+Risk: Backup archives can contain secrets, sessions, and agent or system configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat every backup archive as secret and executable, keep disaster backups encrypted and private, and avoid sharing archives with untrusted parties.
+
+Risk: Restoring from an untrusted archive can reintroduce persistent executable content such as skills, cron definitions, scripts, or dependencies.
+
+Mitigation: Prefer dry-run first, inspect the archive contents, and review restored memory, skills, cron entries, and dependencies before activation.
+
+Risk: Unsafe restore mode can overwrite live OpenClaw configuration, cron jobs, workspace files, sessions, or credentials.
+
+Mitigation: Use the default safe merge and restore-candidate flow unless explicit overwrite is required, and create a current snapshot before using --unsafe-overwrite.
+
+Risk: restore-task-scripts.sh can change cron configuration and install packages.
+
+Mitigation: Avoid restore-task-scripts.sh unless the operator intentionally wants those persistent changes and has reviewed the restored scripts and dependency list.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sinoslug/skills/clawmerge)
+- [Usage documentation](USAGE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend dry-run checks, archive inspection, staged restore candidates, and explicit confirmation before high-risk restore actions.]
+
+## Skill Version(s):
+
+4.0.2 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

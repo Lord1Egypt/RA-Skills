@@ -1,40 +1,54 @@
-## Description: <br>
-Analyzes parsed document text, classifies document types, and converts key information into structured JSON for downstream document pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc Structurer classifies parsed Korean business documents and converts key fields into structured JSON for downstream document workflows.
 
-## Publisher: <br>
-[parkbeomjun-gkgkgk](https://clawhub.ai/user/parkbeomjun-gkgkgk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkbeomjun-gkgkgk](https://clawhub.ai/user/parkbeomjun-gkgkgk)
 
-## Use Case: <br>
-Developers and operators working with parsed document batches use this skill to classify business documents and extract titles, dates, parties, priorities, financial fields, related documents, and action-oriented metadata into a JSON structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Structured output may contain sensitive information from contracts, invoices, personal records, or confidential business documents. <br>
-Mitigation: Review structured_results.json before passing it to Notion, Apple Calendar, or any other sync skill. <br>
-Risk: Document classification and extracted fields may be incomplete or low confidence for ambiguous inputs. <br>
-Mitigation: Check the processing summary and review records with low classification confidence or missing fields before downstream use. <br>
+## Use Case:
 
+Developers and workflow operators use this skill after document parsing to classify documents, extract dates, entities, financial fields, action items, and summaries, and prepare a JSON array for Notion or calendar follow-up workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkbeomjun-gkgkgk/doc-structurer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands] <br>
-**Output Format:** [JSON file plus brief text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads parsed_results.json and writes structured_results.json by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Structured output can contain document metadata, dates, financial fields, summaries, and other sensitive business content that may later be sent to external tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review structured_results.json before passing the output to Notion, calendar sync, or any other external service.
+
+Risk: Keyword-based classification and field extraction may produce low-confidence document types or missing fields.
+
+Mitigation: Check the processing summary for low-confidence classifications and missing fields, then correct important records before using them operationally.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/parkbeomjun-gkgkgk/skills/doc-structurer)
+- [Publisher Profile](https://clawhub.ai/user/parkbeomjun-gkgkgk)
+
+## Skill Output:
+
+**Output Type(s):** [json, text, shell commands]
+
+**Output Format:** [JSON file plus a concise text processing summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes structured_results.json by default when an output path is not provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

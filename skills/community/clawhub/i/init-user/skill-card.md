@@ -1,43 +1,66 @@
-## Description: <br>
-Initializes paper-kb users by checking Feishu registration, guiding Gitea signup, and creating a private Gitea knowledge-base repository plus a Feishu Bitable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Initializes paper-kb users by checking Feishu registration status, guiding first-time registration, creating a private Gitea knowledge-base repository, and coordinating Feishu Bitable setup.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myd2002](https://clawhub.ai/user/myd2002)
 
-## Use Case: <br>
-Developers and operators of paper-kb use this skill to onboard Feishu users, bind them to a Gitea account and research direction, create required Gitea state, and set up Feishu Bitable tracking for later ingest and query workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to the operator's Gitea and Feishu deployment. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a site-admin Gitea token to create private repositories and persist user mappings for supplied Gitea usernames. <br>
-Mitigation: Install only against a controlled Gitea instance, verify the configured server addresses, protect and rotate the token, and replace the admin token with the least-privilege account possible. <br>
-Risk: A Feishu user can claim a Gitea username without evidence that they control that Gitea account. <br>
-Mitigation: Add an account-control proof before binding, such as a one-time code committed to the target Gitea account or confirmed through an authenticated Gitea session. <br>
-Risk: The workflow handles Feishu identifiers, table IDs, repository URLs, and sensitive credentials. <br>
-Mitigation: Avoid logging Feishu identifiers or credentials unnecessarily, keep environment files out of shared storage, and restrict access to generated user records. <br>
+## Use Case:
 
+Paper-kb operators and developers use this skill to onboard Feishu users into a personal research knowledge-base workflow. It checks registration state, collects a Gitea username and research direction, creates the user's private repository structure, and records Feishu Bitable identifiers when available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/myd2002/init-user) <br>
-- [Configured Gitea registration endpoint](http://43.134.182.170:3000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with bash-style script invocations and single-line JSON responses from Python scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Feishu user open_id, Gitea server configuration, a Gitea admin token, and optional Feishu Bitable tool access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill depends on broad Gitea administrator access for user repository creation and shared configuration updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, avoid a site-wide administrator token where possible, and restrict deployment to a controlled paper-kb environment.
+
+Risk: The default Gitea endpoint is HTTP, which can expose tokens or user data on an untrusted network.
+
+Mitigation: Move Gitea to HTTPS before configuring any production token or user workflow.
+
+Risk: The account-linking flow accepts a Feishu user and requested Gitea account without built-in proof that the Feishu user controls that Gitea account.
+
+Mitigation: Add an ownership proof step before binding a Feishu identity to a Gitea username.
+
+Risk: Feishu table tokens and user mappings may be stored in users.json.
+
+Mitigation: Protect or avoid storing Feishu tokens in users.json, and limit access to the system-config repository.
+
+Risk: The setup script may install dependencies into the system Python environment.
+
+Mitigation: Install dependencies in a dedicated virtual environment for deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/myd2002/skills/init-user)
+- [Publisher profile](https://clawhub.ai/user/myd2002)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions, shell commands, configuration guidance, and single-line JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the current Feishu open_id, Gitea username, research direction, and optional Feishu Bitable identifiers.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

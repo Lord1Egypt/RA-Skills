@@ -1,41 +1,57 @@
-## Description: <br>
-部署故障分析及解决助手 — 接收日志/报错文本，优先查询 MySQL 故障知识库；未命中时检索 /data/scripts/ 脚本库；支持交互式单条更新故障库并生成 Word 分析报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes deployment logs and error text, checks a MySQL fault knowledge base before drawing conclusions, falls back to deployment script search when needed, supports fault-record updates, and generates Word analysis reports.
 
-## Publisher: <br>
-[bounding-elk](https://clawhub.ai/user/bounding-elk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bounding-elk](https://clawhub.ai/user/bounding-elk)
 
-## Use Case: <br>
-Deployment and operations engineers use this skill to analyze deployment logs or pasted error text, compare issues with a MySQL fault knowledge base, search deployment scripts when no matching case is found, and produce a troubleshooting summary and Word report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment logs, generated reports, Excel records, and MySQL inserts may preserve secrets, hostnames, customer data, credentials, tokens, or personal identifiers. <br>
-Mitigation: Use the skill only in an approved environment, redact sensitive values before analysis or storage, and review or delete raw archives, reports, Excel records, and MySQL inserts after use. <br>
-Risk: Troubleshooting findings or knowledge-base updates may republish inaccurate or sensitive operational details. <br>
-Mitigation: Review the generated summary, Word report, JSON draft, and dry-run output before sharing or committing any new fault record. <br>
+## Use Case:
 
+Deployment engineers use this skill to triage deployment failures from JSON logs, log files, or pasted error text. It compares incidents with known fault records, searches deployment scripts when no high-confidence case is found, and prepares structured remediation reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bounding-elk/skills/deploy-fault-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/bounding-elk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown troubleshooting summary with generated DOCX reports, JSON drafts, Excel records, and shell command blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve raw logs and produce Word reports, Excel knowledge-base rows, and MySQL insert drafts in the configured skill workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter and server release metadata) <br>
+Risk: Embedded database passwords could expose the fault knowledge base if copied into an uncontrolled environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded passwords, rotate any exposed credentials, and use environment-scoped secrets or controlled wrapper scripts before installation.
+
+Risk: Raw logs and incident records may contain sensitive operational data that the skill stores in local files, Excel records, or MySQL.
+
+Mitigation: Make retention explicit opt-in, redact secrets before storage, and define retention and access controls for raw logs and fault records.
+
+Risk: Docker, database, and /data/scripts access can affect deployment infrastructure if granted too broadly.
+
+Mitigation: Run the skill only in a controlled deployment-support environment with least-privilege access to Docker, MySQL, and deployment script paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bounding-elk/skills/deploy-fault-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown analysis with inline shell commands, generated DOCX reports, and optional Excel or MySQL fault-record updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist raw logs and incident records in the configured deployment-support environment.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

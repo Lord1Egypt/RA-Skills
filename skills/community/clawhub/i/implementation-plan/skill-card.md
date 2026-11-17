@@ -1,37 +1,53 @@
-## Description: <br>
-Create detailed implementation plans for software projects, breaking features into steps, files, tasks, and executable code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create detailed implementation plans for software projects — break down features into steps, files, tasks, and executable code.
 
-## Publisher: <br>
-[NightVibes3](https://clawhub.ai/user/NightVibes3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nightvibes3](https://clawhub.ai/user/nightvibes3)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn software project ideas, feature requests, or architecture questions into quick or detailed implementation plans with files, steps, dependencies, tests, risks, and running instructions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad build or problem-solving requests when the user expected direct coding or debugging. <br>
-Mitigation: Ask the user to choose a quick or detailed plan before planning, and follow explicit requests for direct coding, debugging, or another workflow when provided. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NightVibes3/implementation-plan) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to turn software requests into quick or detailed implementation plans with architecture, file lists, dependencies, tests, risks, and running instructions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown implementation plan with structured sections, tables, lists, and optional code or shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill asks whether the user wants a quick or detailed plan before producing the plan.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad activation language may cause the skill to influence general software problem-solving when a structured plan was not requested.
+
+Mitigation: Use explicit invocation or narrow trigger wording when deploying the skill in environments where automatic planning is undesirable.
+
+Risk: Implementation plans can contain incorrect assumptions about platform, stack, project scope, or execution steps.
+
+Mitigation: Review plans before implementation, answer the skill's clarifying questions, and validate generated steps against the target codebase and requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nightvibes3/skills/implementation-plan)
+- [Publisher profile](https://clawhub.ai/user/nightvibes3)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with optional code blocks, shell commands, tables, and step-by-step task lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plans may be quick or detailed depending on user choice and available project context.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

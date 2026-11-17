@@ -1,40 +1,52 @@
-## Description: <br>
-OptimoClaw analyzes OpenClaw configuration and session usage data to recommend cost-effective token usage and model tuning changes with clear trade-offs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze OpenClaw configs and session data to recommend specific, cost-effective token usage and model tuning changes with clear trade-offs and explanations.
 
-## Publisher: <br>
-[marc4211](https://clawhub.ai/user/marc4211) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[marc4211](https://clawhub.ai/user/marc4211)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw operators use OptimoClaw to inspect actual OpenClaw configuration and session usage, estimate token costs, and choose reviewed configuration changes that reduce spend while preserving needed quality.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: OpenClaw configuration and usage outputs can reveal operational details such as profile names, model identifiers, gateway connection details, and session usage.
+
+Mitigation: Review gathered CLI output before sharing it outside trusted channels and exclude unrelated sensitive context from analysis requests.
+
+Risk: Suggested OpenClaw configuration commands can change model routing, heartbeat frequency, concurrency, or context behavior if executed.
+
+Mitigation: Treat commands as proposals and review cost, quality, rate-limit, and context trade-offs before running them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect OpenClaw agent configuration and session usage, estimate token costs, and prepare user-reviewed configuration changes that reduce spend while preserving needed capability. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to inspect OpenClaw configuration and usage output that may include profile names, model identifiers, gateway connection details, token counts, and session metadata. <br>
-Mitigation: Use it only where sharing that operational data with the agent is acceptable, and avoid including unrelated secrets or credentials. <br>
-Risk: Suggested openclaw config set commands can change agent cost, quality, or behavior if executed without review. <br>
-Mitigation: Review each command and trade-off before running it, especially in shared or production OpenClaw environments. <br>
+**Output Format:** [Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [OptimoClaw on ClawHub](https://clawhub.ai/marc4211/optimoclaw-skill) <br>
+**Other Properties Related to Output:** [Cost estimates are based on user-provided OpenClaw CLI JSON outputs and embedded rate card values; configuration commands are recommendations for user review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with cost analysis, trade-offs, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are advisory and require user review before execution.] <br>
+1.0.4 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence, released 2026-04-02) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

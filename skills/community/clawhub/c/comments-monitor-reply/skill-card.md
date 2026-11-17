@@ -1,41 +1,58 @@
-## Description: <br>
-Monitors comments across major social platforms, analyzes sentiment and public opinion, generates personalized replies, sends negative-comment alerts, and produces reports for social media operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors comments across major Chinese social platforms, classifies sentiment, generates personalized replies, alerts operators to negative public-opinion signals, and stores credentials locally.
 
-## Publisher: <br>
-[xikal](https://clawhub.ai/user/xikal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xikal](https://clawhub.ai/user/xikal)
 
-## Use Case: <br>
-Social media operations teams use this skill to monitor comments across configured platforms, draft or send replies, identify negative sentiment, and generate public-opinion reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use account cookies or platform API tokens to automatically post public replies. <br>
-Mitigation: Use least-privilege platform tokens where possible, avoid main-account cookies, test with a low-risk account, and enable human approval before replies are posted. <br>
-Risk: Comment data, reply history, exports, webhook payloads, and credentials may contain sensitive operational or account information. <br>
-Mitigation: Limit enabled platforms and webhook destinations, confirm how credentials and logs are stored and deleted, and review the external repository before running dependency installation. <br>
+## Use Case:
 
+External social-media operations teams use this skill to monitor brand-account comments, draft or send replies, detect negative sentiment, trigger alerts, and produce comment-analysis reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xikal/comments-monitor-reply) <br>
-- [Homepage](https://github.com/openclaw-skills/comments-monitor-reply#readme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command examples, generated reply text, alerts, and report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require configured platform credentials and webhook URLs before producing live monitoring or reply outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The release asks users to install mutable, unreviewed code from a referenced repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned release or reviewed commit with a lockfile, and review the repository before installation.
+
+Risk: The skill handles account cookies or API tokens for social platforms.
+
+Mitigation: Use least-privileged platform tokens, avoid main-account cookies, store credentials securely, and rotate credentials regularly.
+
+Risk: Automated replies can affect public accounts or publish unsuitable responses.
+
+Mitigation: Enable human review before replies are posted, especially for complaints, negative sentiment, or other high-risk comments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xikal/skills/comments-monitor-reply)
+- [Homepage](https://github.com/openclaw-skills/comments-monitor-reply#readme)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with slash-command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce reply templates, alert settings, monitoring commands, and periodic public-opinion reports.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

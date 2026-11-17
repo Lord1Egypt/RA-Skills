@@ -1,56 +1,67 @@
-## Description: <br>
-A Chinese-language travel helper that guides users through arrival card and visa-application forms for Malaysia, Thailand, Singapore, Indonesia, Vietnam, the Philippines, Japan, and South Korea, including materials checklists, field guidance, exception handling, and automation suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides travelers through arrival card, visa, and travel declaration preparation for Malaysia, Thailand, Singapore, Indonesia, Vietnam, the Philippines, Japan, Korea, and other destinations via current official-source lookup.
 
-## Publisher: <br>
-[ivy-ting](https://clawhub.ai/user/ivy-ting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivy-ting](https://clawhub.ai/user/ivy-ting)
 
-## Use Case: <br>
-External travelers and travel-support agents use this skill to prepare required materials, understand official arrival-card workflows, and draft accurate form-filling guidance for supported Asian destinations. It can also provide optional document-recognition guidance and automation pseudocode that must be reviewed before use on official portals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for travelers preparing entry forms for supported Asian destinations. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle passport-level data, travel documents, and booking details. <br>
-Mitigation: Collect only the fields needed for the destination form, redact unnecessary details, avoid uploading passport or booking images unless necessary, and do not share portal passwords or mailbox access. <br>
-Risk: Automation suggestions for official entry forms could submit incorrect or outdated information. <br>
-Mitigation: Treat automation as a draft workflow only and require manual review before any form is submitted or any confirmation is saved. <br>
-Risk: Arrival-card requirements and portal behavior can change by country. <br>
-Mitigation: Use official government sites directly when possible and verify current requirements before relying on generated guidance. <br>
+## Use Case:
 
+Travelers and travel assistants use this skill to prepare required materials, extract passport, flight, and hotel details from provided documents, and generate step-by-step guidance for official arrival-card or entry declaration forms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivy-ting/asia-arrival-card) <br>
-- [Materials checklist](reference/materials-checklist.md) <br>
-- [Country guides](reference/country-guides-new.md) <br>
-- [Country comparison](reference/country-comparison.md) <br>
-- [Smart document recognition](reference/smart-document-recognition.md) <br>
-- [Automation framework](reference/automation-framework.md) <br>
-- [FAQ](reference/faq.md) <br>
-- [Malaysia Digital Arrival Card](https://imigresen-online.imi.gov.my/mdac/main) <br>
-- [Thailand TDAC/TM6 portal](https://extranet.immigration.go.th/fn/TM6/) <br>
-- [Singapore SG Arrival Card](https://eservices.ica.gov.sg/sgarrivalcard/) <br>
-- [All Indonesia arrival portal](https://allindonesia.imigrasi.go.id/) <br>
-- [Vietnam public service portal](https://dichvucong.bocongan.gov.vn/) <br>
-- [Philippines eTravel](https://etravel.gov.ph/) <br>
-- [Visit Japan Web](https://www.vjw.digital.go.jp/) <br>
-- [Korea K-ETA](https://www.k-eta.go.kr/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, structured field instructions, official portal links, and optional code or pseudocode blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include extracted document fields for user confirmation, country-specific timing constraints, and manual-review checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Sensitive passport, itinerary, hotel, and contact details may be exposed while preparing entry forms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only fields needed for the task, redact unnecessary scans, avoid passwords, payment details, and email codes, and verify extracted fields before use.
+
+Risk: Automation guidance for official government forms could cause incorrect entries or actions outside the user's control.
+
+Mitigation: Keep official submissions manual, treat automation snippets as examples, and review every field on the government website before submitting.
+
+Risk: Entry requirements, timing windows, fees, and official URLs may change.
+
+Mitigation: Confirm requirements on current official government websites before travel and before relying on generated guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivy-ting/skills/asia-arrival-card)
+- [Materials checklist](reference/materials-checklist.md)
+- [Country guides](reference/country-guides.md)
+- [Country comparison](reference/country-comparison.md)
+- [Smart document recognition](reference/smart-document-recognition.md)
+- [Automation framework](reference/automation-framework.md)
+- [Malaysia Digital Arrival Card](https://imigresen-online.imi.gov.my/mdac/main)
+- [Singapore SG Arrival Card](https://eservices.ica.gov.sg/sgarrivalcard/)
+- [Philippines eTravel](https://etravel.gov.ph/)
+- [Visit Japan Web](https://www.vjw.digital.go.jp/)
+- [Korea K-ETA](https://www.k-eta.go.kr/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, extracted-field summaries, and pseudocode when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask follow-up questions and require user confirmation before using extracted document data.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

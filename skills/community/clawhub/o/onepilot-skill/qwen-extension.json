@@ -1,0 +1,36 @@
+{
+  "name": "onepilot-skill",
+  "version": "0.1.24",
+  "displayName": "OnePilot CLI",
+  "description": "Connect Qwen Code or another local agent to OnePilot for event recommendations, consent-based memory and feedback, application help, and organizer-only event management or registration export. Official website: https://onepilot.zeabur.app",
+  "publisher": "OnePilot",
+  "homepage": "https://onepilot.zeabur.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/y09749204-gif/onepilot-skill.git"
+  },
+  "contextFileName": "SKILL.md",
+  "skills": ".",
+  "commands": [
+    {
+      "name": "onepilot.status",
+      "description": "Check OnePilot binding status.",
+      "command": "node scripts/onepilot-agent.mjs status"
+    },
+    {
+      "name": "onepilot.recommend",
+      "description": "Request OnePilot event recommendations.",
+      "command": "node scripts/onepilot-agent.mjs recommend --limit 3"
+    },
+    {
+      "name": "onepilot.organizer.status",
+      "description": "Check OnePilot organizer workbench status for the bound account.",
+      "command": "node scripts/onepilot-agent.mjs organizer status"
+    },
+    {
+      "name": "onepilot.organizer.events",
+      "description": "List manageable organizer events for the bound account.",
+      "command": "node scripts/onepilot-agent.mjs organizer events list"
+    }
+  ]
+}

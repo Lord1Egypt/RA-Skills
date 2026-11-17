@@ -1,50 +1,64 @@
-## Description: <br>
-Parses bid, project, and research announcements from PDF, HWP/HWPX, DOCX, and web pages, extracts proposal requirements, stores searchable vectors, and builds Notion project pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bid Proposal Manager parses bid, business, and research announcement files or URLs, extracts deadlines and submission requirements, stores searchable vectors in PostgreSQL with pgvector, and can create structured Notion project pages.
 
-## Publisher: <br>
-[parkbeomjun-gkgkgk](https://clawhub.ai/user/parkbeomjun-gkgkgk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkbeomjun-gkgkgk](https://clawhub.ai/user/parkbeomjun-gkgkgk)
 
-## Use Case: <br>
-Proposal, bid, and research administration teams use this skill to turn announcement documents into structured project records, requirement checklists, semantic-search data, and Notion workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive proposal or bid text may be stored in PostgreSQL, sent to Notion, or sent to an external embedding provider. <br>
-Mitigation: Use a dedicated database, least-privilege Notion integration, and local embeddings for confidential documents unless external processing is approved. <br>
-Risk: Web URL parsing may fetch untrusted pages from sensitive networks. <br>
-Mitigation: Review source URLs before parsing and avoid fetching untrusted URLs from restricted or internal network environments. <br>
-Risk: API keys and database credentials are configured through environment variables. <br>
-Mitigation: Keep secrets out of shared shell profiles and rotate credentials if they are exposed. <br>
-Risk: The vectorizer includes a delete command that can permanently remove project data. <br>
-Mitigation: Back up the database and add operational confirmation controls before using deletion in a shared or production environment. <br>
+## Use Case:
 
+Proposal teams, business development staff, researchers, and developers use this skill to turn bid, RFP, grant, and research announcements into structured project records, checklists, and searchable context for proposal preparation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/parkbeomjun-gkgkgk/bid-proposal-manager) <br>
-- [Setup guide](artifact/references/setup_guide.md) <br>
-- [Database schema](artifact/references/db_schema.sql) <br>
-- [Field taxonomy](artifact/references/field_taxonomy.json) <br>
-- [Notion page template](artifact/templates/notion_template.json) <br>
-- [pgvector Windows setup reference](https://github.com/pgvector/pgvector#windows) <br>
-- [Notion integrations](https://www.notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, JSON analysis files, shell commands, database records, and Notion page content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update PostgreSQL records and Notion pages when configured; embedding can be local or API-backed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Sensitive proposal, contact, and requirement content may be persisted in PostgreSQL, embedded, or transmitted to Notion or remote embedding providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data flows before use, bind PostgreSQL to localhost with a unique password, disable remote embedding providers unless explicitly intended, and confirm before storing proposal content or creating/updating Notion pages.
+
+Risk: URL fetching can ingest untrusted or unexpected web content into the proposal workflow.
+
+Mitigation: Restrict URL fetching to trusted public announcement domains and review parsed content before using it for downstream checklists, embeddings, or Notion updates.
+
+Risk: Broad package installation can alter the host Python environment.
+
+Mitigation: Use a virtual environment, pin dependencies, and avoid --break-system-packages during installation.
+
+## Reference(s):
+
+- [Setup Guide](artifact/references/setup_guide.md)
+- [Database Schema](artifact/references/db_schema.sql)
+- [Field Taxonomy](artifact/references/field_taxonomy.json)
+- [Notion Template](artifact/templates/notion_template.json)
+- [pgvector Windows Setup](https://github.com/pgvector/pgvector#windows)
+- [PostgreSQL Windows Downloads](https://www.postgresql.org/download/windows/)
+- [Notion Integrations](https://www.notion.so/my-integrations)
+- [Ollama](https://ollama.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with shell command examples, JSON analysis artifacts, checklist text, and Notion page updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local documents or URLs, write JSON artifacts, store embeddings in PostgreSQL/pgvector, and create or update Notion pages when credentials are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Deprecated Cloud Zhi Lian IoT device management skill for reading soil temperature, soil humidity, and liquid-level data and sending remote valve control commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+yzl-iot-api is a deprecated YZL IoT device management skill that reads soil and liquid-level sensor data and sends remote water-valve control commands.
 
-## Publisher: <br>
-[yzlkj](https://clawhub.ai/user/yzlkj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzlkj](https://clawhub.ai/user/yzlkj)
 
-## Use Case: <br>
-External users and operators use this skill to query supported Cloud Zhi Lian IoT sensors and control supported remote water valves through natural-language requests or explicit shell commands. The release is deprecated and directs users to migrate to YZL-AIoT. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can actuate remote water valves from loose natural-language or generic commands without an evident confirmation step. <br>
-Mitigation: Use it only where the YZL API key is intentionally allowed to control the target devices, avoid unattended automation, and require explicit operator review before valve commands. <br>
-Risk: Valve commands are real-world physical actions and may affect connected equipment or environments. <br>
-Mitigation: Test with noncritical devices first and prefer manual commands or a replacement skill with confirmations and tighter command scoping. <br>
-Risk: The skill requires a sensitive YZLIOT_API_KEY credential. <br>
-Mitigation: Store the key only in the intended runtime environment and avoid exposing it to broad or ambiguous agent workflows. <br>
-Risk: The release is deprecated and no longer maintained. <br>
-Mitigation: Plan migration to YZL-AIoT for ongoing support before relying on this skill in normal operations. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent query YZL IoT devices for sensor readings, device status, and recent history, or issue explicit commands to supported remote water valves.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yzlkj/yzl-iot-api) <br>
-- [Publisher profile](https://clawhub.ai/user/yzlkj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the YZLIOT_API_KEY environment variable; may perform real IoT device queries and valve-control actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata, _meta.json, and artifact changelog) <br>
+Risk: The skill can open or close real-world water valves from broad natural-language commands without an explicit confirmation or device-specific selection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where valve commands are deliberate, prefer explicit manual commands with device IDs, and require human confirmation before sending control commands.
+
+Risk: The skill requires access to YZLIOT_API_KEY, which can authorize IoT device reads and control actions.
+
+Mitigation: Limit access to the environment variable, rotate the key when exposure is suspected, and run the skill only in trusted workspaces.
+
+Risk: Each run may check ClawHub for version information.
+
+Mitigation: Use it in environments where periodic version-check network access to ClawHub is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yzlkj/skills/yzl-iot-api)
+- [ClawHub publisher profile](https://clawhub.ai/user/yzlkj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text command output with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the YZLIOT_API_KEY environment variable; tool output may include device status, sensor values, command results, errors, and migration notices.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata, artifact _meta.json, and local tool version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

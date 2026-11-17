@@ -1,45 +1,54 @@
-## Description: <br>
-Drive product strategy with roadmap prioritization, team leadership, board communication, and competitive intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive product strategy with roadmap prioritization, team leadership, board communication, and competitive intelligence.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, founders, executives, product leaders, and investors use this skill for product strategy, roadmap prioritization, product organization design, CPO hiring, readiness assessment, and board-facing product evaluation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives business and product leadership recommendations that may be incomplete, context-sensitive, or unsuitable for a specific company. <br>
-Mitigation: Treat recommendations as advisory and require human review for major pivots, product kills, pricing changes, team restructuring, and board-level commitments. <br>
-Risk: Users may paste confidential board, HR, customer, product, or financial information into the agent while seeking advice. <br>
-Mitigation: Avoid sharing sensitive company data unless the user is comfortable exposing that context to the agent environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/cpo) <br>
-- [Skill homepage](https://clawic.com/skills/cpo) <br>
-- [CPO Operational Excellence](artifact/operations.md) <br>
-- [Hiring Your First CPO](artifact/hiring.md) <br>
-- [Growing from PM to CPO](artifact/growth.md) <br>
-- [Do You Need a CPO?](artifact/readiness.md) <br>
-- [CPO Evaluation](artifact/evaluation.md) <br>
+## Use Case:
 
+External users, founders, executives, and product leaders use this skill for CPO-level product strategy, roadmap prioritization, product organization design, hiring guidance, board communication, and readiness assessment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, templates, scorecards, frameworks, and advisory recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no executable tools, API calls, or hidden access behavior are indicated by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Hiring, onboarding, or CPO transition advice may involve access to customer data and strategic company information.
+
+Mitigation: Apply least-privilege access controls, approvals, audit logging, and role-scoped data sharing before following the guidance.
+
+Risk: Strategic recommendations can affect product direction, pricing, team structure, or board-level commitments.
+
+Mitigation: Require human executive review for major pivots, product kills, pricing changes, restructures, and board commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/cpo)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Skill homepage](https://clawic.com/skills/cpo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces product leadership recommendations, templates, scorecards, and decision frameworks; no executable behavior is indicated.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

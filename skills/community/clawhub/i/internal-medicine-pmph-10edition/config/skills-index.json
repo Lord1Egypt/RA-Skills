@@ -320,13 +320,13 @@
   {
     "name": "ASCVD危险因素分类与干预靶点",
     "description": "当个体已确诊或疑似动脉粥样硬化性心血管疾病（ASCVD），或属于高危人群且存在至少一项可改变危险因素时，使用本技能对危险因素进行分类，并根据危险分层确定LDL-C目标值，制定生活方式与药物联合干预方案。",
-    "folder": "ascvd-risk-factor-classification-and-intervention",
+    "folder": "ascvd-riREDACTED-SECRET",
     "id": "41"
   },
   {
     "name": "评估烟草暴露相关的肺癌风险",
     "description": "根据个体的主动吸烟史（包·年、开始吸烟年龄、戒烟时长）或二手烟暴露情况，评估其肺癌风险等级并发出相应预警。当用户需要对吸烟者、戒烟者或长期接触二手烟的非吸烟者进行肺癌风险分层时使用此技能。",
-    "folder": "assess-lung-cancer-risk-from-tobacco-exposure",
+    "folder": "assess-lung-cancer-riREDACTED-SECRET",
     "id": "42"
   },
   {
@@ -620,7 +620,7 @@
   {
     "name": "CKD急性加重的危险因素识别与处理原则",
     "description": "本技能用于识别慢性肾脏病（CKD）患者发生急性加重的常见危险因素，并提供初步处理原则。当用户提及CKD患者出现肾功能短期内恶化、诱因排查或急性管理策略时触发。",
-    "folder": "ckd-acute-exacerbation-risk-assessment-and-management",
+    "folder": "ckd-acute-exacerbation-riREDACTED-SECRET",
     "id": "79"
   },
   {
@@ -674,7 +674,7 @@
   {
     "name": "结直肠高危腺瘤识别",
     "description": "当用户需要根据结肠镜或病理结果判断结直肠腺瘤是否属于高危进展性腺瘤时使用本技能。适用于已确诊为结直肠腺瘤的患者或结肠镜检查发现息肉者，用于评估癌变风险并指导后续干预。",
-    "folder": "colorectal-high-risk-adenoma-identification",
+    "folder": "colorectal-high-riREDACTED-SECRET",
     "id": "88"
   },
   {
@@ -974,7 +974,7 @@
   {
     "name": "胆囊结石相关胆囊癌风险判定",
     "description": "本技能用于评估胆囊结石、胆囊息肉或慢性胆囊炎患者的胆囊癌风险，并据此决定是否建议预防性胆囊切除术或定期影像学随访。当用户提及胆囊结石直径>3cm、病史>10年、瓷性胆囊、胆囊息肉≥10mm、胆囊壁钙化或其他高危因素时，应触发此技能。",
-    "folder": "gallbladder-cancer-risk-assessment-for-gallstone-patients",
+    "folder": "gallbladder-cancer-riREDACTED-SECRET",
     "id": "132"
   },
   {
@@ -1034,7 +1034,7 @@
   {
     "name": "GRACE风险评分分层及治疗策略",
     "description": "基于入院24小时内完成的GRACE评分，对UA/NSTEMI住院患者进行院内死亡风险分层，并结合综合临床标准确定侵入性治疗时机。当用户需要为确诊或疑似UA/NSTEMI的住院患者制定早期干预策略时使用本技能。",
-    "folder": "grace-risk-stratification-and-treatment-strategy",
+    "folder": "grace-riREDACTED-SECRET",
     "id": "142"
   },
   {
@@ -1804,7 +1804,7 @@
   {
     "name": "胰腺癌高危人群识别与营养支持原则",
     "description": "识别胰腺癌高危个体并提供针对性营养支持方案。当用户需评估个体是否属于胰腺癌高危人群，或为已确诊胰腺癌且存在严重营养不良/肠黏膜损伤的患者制定营养干预措施时使用此技能。",
-    "folder": "pancreatic-cancer-risk-assessment-and-nutrition-support",
+    "folder": "pancreatic-cancer-riREDACTED-SECRET",
     "id": "247"
   },
   {

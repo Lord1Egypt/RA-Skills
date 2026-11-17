@@ -1,40 +1,54 @@
-## Description: <br>
-Generate cryptographically secure random passwords with customizable character sets, controllable length, optional character exclusions, and no external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate cryptographically secure random passwords with customizable character sets and configurable length, count, and character classes.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and external users use this skill to generate strong random passwords, API keys, or tokens with configurable length, count, and character sets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan summary flags this release as suspicious because review tooling may run with broad local authority. <br>
-Mitigation: Review before installing, prefer no-yolo review settings unless elevated authority is intentional, and run in a workspace without unrelated secrets. <br>
-Risk: Disabling every character class can produce empty password values. <br>
-Mitigation: Keep at least one character class enabled and check generated output before using it as a secret. <br>
+## Use Case:
 
+Developers and operators can use this skill to generate random passwords, API keys, or tokens from a local Python script with selectable uppercase, lowercase, digit, and symbol character classes. It is intended for straightforward command-line password generation without external services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-password-generator-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON object with generated passwords and length metadata; Markdown may include command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Password length, count, and included character classes are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: Invalid options can silently produce empty passwords, including when no character classes are enabled or a non-positive length is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate length and enabled character classes before relying on generated values, and reject empty password output in automation.
+
+Risk: Excessive password counts or lengths could cause avoidable local resource use in automated workflows.
+
+Mitigation: Set reasonable maximums for count and length when wrapping this script in tooling or CI jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-password-generator-v2)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [JSON from the password generator script, with Markdown usage examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one or more generated password strings and reports the requested password length.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

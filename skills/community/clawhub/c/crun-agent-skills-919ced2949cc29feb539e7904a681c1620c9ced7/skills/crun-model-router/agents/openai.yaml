@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crun Model Router"
+  short_description: "Choose the best Crun model for a media request"
+  default_prompt: "Use $crun-model-router to select the best Crun model for this media request."

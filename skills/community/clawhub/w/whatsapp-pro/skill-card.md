@@ -1,45 +1,56 @@
-## Description: <br>
-Automated customer support for Indian small businesses using WhatsApp Business API. Categorizes incoming customer messages (orders, complaints, bookings, price queries), auto-responds with configured templates, and flags complex queries for human review. Ideal for coaching institutes, D2C brands, and local service businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates WhatsApp Business API customer support for Indian small businesses by classifying messages, sending configured responses, and escalating complex or sensitive issues for human review.
 
-## Publisher: <br>
-[pratilsudra](https://clawhub.ai/user/pratilsudra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratilsudra](https://clawhub.ai/user/pratilsudra)
 
-## Use Case: <br>
-External small-business operators use this agent to automate WhatsApp customer support, classify customer messages, send templated replies, and escalate complaints or complex queries for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-India <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent handles customer contact details and WhatsApp Business messaging credentials. <br>
-Mitigation: Use a dedicated revocable Meta token, protect WABA_ACCESS_TOKEN and WABA_PHONE_NUMBER_ID, and define how long ticket and contact data is retained. <br>
-Risk: Misconfigured escalation or owner commands could expose customer conversations or allow unintended administrative actions. <br>
-Mitigation: Verify the owner phone and escalation destination before deployment, and restrict owner-only commands such as template updates, pause/resume, and ticket resolution. <br>
-Risk: Automated customer messaging may create privacy or consent concerns for the business using the skill. <br>
-Mitigation: Publish a customer privacy notice and deploy the skill only for a business that intentionally automates WhatsApp support. <br>
+## Use Case:
 
+External small-business operators and support teams use this skill to handle common WhatsApp customer messages for orders, pricing, hours, bookings, and complaints. It is intended to reduce routine response work while escalating unresolved or higher-risk conversations to the business owner.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pratilsudra/whatsapp-pro) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/pratilsudra) <br>
-- [Meta Cloud API messages endpoint](https://graph.facebook.com/v18.0/{WABA_PHONE_NUMBER_ID}/messages) <br>
-- [Skill homepage](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+India
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and WhatsApp message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces customer replies, ticket summaries, owner commands, setup guidance, and configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill frontmatter) <br>
+Risk: Owner commands can change business responses and expose ticket data without explicit sender authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure strict admin sender checks before enabling owner commands, and review commands that list tickets, resolve tickets, update templates, pause responses, or change fees.
+
+Risk: Forwarding full customer conversations and storing ticket memory can expose customer content beyond the original WhatsApp exchange.
+
+Mitigation: Minimize forwarded customer content, define retention and deletion rules for ticket memory, and disclose that WhatsApp messages are processed through Meta and may be escalated to the business owner.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pratilsudra/skills/whatsapp-pro)
+- [ClawHub publisher profile](https://clawhub.ai/user/pratilsudra)
+- [Meta Cloud API messages endpoint](https://graph.facebook.com/v18.0/{WABA_PHONE_NUMBER_ID}/messages)
+- [OpenClaw homepage](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and WhatsApp message templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses WABA_ACCESS_TOKEN and WABA_PHONE_NUMBER_ID environment variables for WhatsApp Business API access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

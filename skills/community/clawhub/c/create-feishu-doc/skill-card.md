@@ -1,41 +1,54 @@
-## Description: <br>
-Creates and populates Feishu documents by structuring user-provided content, splitting long text into API-sized segments, appending each segment, retrying failures, and verifying the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents structure content and create Feishu documents for technical documentation, plans, reports, notes, articles, novels, and similar document workflows.
 
-## Publisher: <br>
-[tc1993](https://clawhub.ai/user/tc1993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tc1993](https://clawhub.ai/user/tc1993)
 
-## Use Case: <br>
-Employees, external collaborators, developers, and agents use this skill to turn supplied content into complete Feishu documents such as technical documentation, PRDs, project plans, reports, notes, articles, or long-form drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update remote Feishu documents, which may send sensitive, regulated, or confidential content outside the local agent environment. <br>
-Mitigation: Confirm the target document, account or workspace, and content before use; avoid sending secrets or regulated data unless Feishu permissions and retention policies allow it. <br>
-Risk: Long or complex document content may fail to append cleanly because Feishu document operations can reject oversized or unsupported formatting. <br>
-Mitigation: Use the skill's segmentation, retry, and format simplification workflow, then verify the final document content after creation. <br>
+## Use Case:
 
+Developers and document authors use this skill when an agent needs to turn user-provided content into a structured Feishu document, including long-form documents that require segmentation, retries, and completion reporting.
 
-## Reference(s): <br>
-- [Feishu API Guide](references/feishu_api_guide.md) <br>
-- [Create Feishu Doc ClawHub Page](https://clawhub.ai/tc1993/create-feishu-doc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, Markdown, Guidance] <br>
-**Output Format:** [Feishu document content and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Segments long content into smaller append operations, retries failed writes, and returns document identifiers, links, and write status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata, package.json, CHANGELOG) <br>
+Risk: The skill advertises real Feishu document creation, but the packaged script only simulates success and returns a Feishu-looking link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that the installed version calls a real authenticated Feishu API or approved Feishu tool and fails clearly when document creation cannot be verified.
+
+Risk: Using the skill may send document content to Feishu, which can expose sensitive information if destination, permissions, or verification behavior are unclear.
+
+Mitigation: Use it only for content intended for Feishu and avoid sensitive documents until the destination, access permissions, and post-creation verification are confirmed.
+
+## Reference(s):
+
+- [Feishu API Guide](references/feishu_api_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/tc1993/skills/create-feishu-doc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python snippets and JSON-style status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a Feishu document identifier, document link, append results, and verification status when backed by a real authenticated Feishu integration.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

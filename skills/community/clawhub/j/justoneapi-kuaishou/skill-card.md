@@ -1,44 +1,56 @@
-## Description: <br>
-Analyze Kuaishou workflows with JustOneAPI, including user Search, user Published Videos, and video Details across 7 operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Kuaishou workflows with JustOneAPI, including user Search, user Published Videos, and video Details across 7 operations.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to make authenticated JustOneAPI requests for Kuaishou user search, profile lookup, published video lookup, video details, comments, video search, and share-link resolution. It is suited to creator research, account monitoring, content performance analysis, and market or keyword tracking when the user provides the required identifiers or filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is passed in request URLs, which can expose it through logs, traces, browser history, or shared command output. <br>
-Mitigation: Use a scoped, revocable token where possible, keep JUST_ONE_API_TOKEN out of chat and screenshots, and avoid logging full request URLs. <br>
-Risk: Kuaishou profile, video, and comment responses may contain personal or platform-governed data. <br>
-Mitigation: Handle returned data according to Kuaishou and JustOneAPI terms and applicable privacy expectations. <br>
+## Use Case:
 
+Developers and analysts use this skill to query Kuaishou user, video, comment, and share-link endpoints through JustOneAPI when they need API-backed creator research, content monitoring, or video analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-kuaishou) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou&utm_content=project_link) <br>
-- [Kuaishou operations](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API-backed response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selected response fields or raw backend JSON when needed for troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: The JustOneAPI token can be exposed through process arguments or request URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited-scope, low-quota token, avoid logging full commands or request URLs, and rotate the token if it may have appeared in shell history, process telemetry, or API logs.
+
+Risk: Kuaishou query parameters and the JustOneAPI token are sent to api.justoneapi.com.
+
+Mitigation: Install and run the skill only when that data flow is acceptable, and provide only the identifiers or filters needed for the selected operation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-kuaishou)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with summarized API results and selected JSON payload fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and operation-specific Kuaishou parameters such as keyword, page, pcursor, userId, videoId, or shareUrl.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

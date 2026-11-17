@@ -1,44 +1,59 @@
-## Description: <br>
-Manage Ghost CMS blog posts through the Ghost Admin API, including creating, updating, deleting, listing, uploading images, and setting feature images using a user-provided JSON credential config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Ghost CMS blog posts via Admin API, including creating, updating, deleting, listing, image uploads, and feature images using a JSON configuration file with API credentials.
 
-## Publisher: <br>
-[manifoldor](https://clawhub.ai/user/manifoldor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manifoldor](https://clawhub.ai/user/manifoldor)
 
-## Use Case: <br>
-Developers, site operators, and content teams use this skill to let an agent manage Ghost blog content through authenticated Admin API calls. It supports draft or published post workflows, tag updates, image uploads, and listing existing posts for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user-provided Ghost Admin API key can allow live blog publishing, updates, image uploads, and deletion. <br>
-Mitigation: Keep the JSON config file private, use credentials only for Ghost sites you control, and rotate the Admin API key if the config is exposed. <br>
-Risk: Create, update, publish, and delete operations can change public content. <br>
-Mitigation: Require explicit confirmation before publishing or deleting live content, and review post IDs, titles, statuses, and target site configuration before write operations. <br>
-Risk: Image upload and feature-image workflows can use local files or remote URLs. <br>
-Mitigation: Use trusted local image files or trusted URLs and verify the resulting image URL before associating it with a post. <br>
+## Use Case:
 
+Developers and content operators use this skill to let an agent manage Ghost CMS posts through the Ghost Admin API. It is suited for credential-backed blog administration tasks such as drafting, publishing, updating, deleting, listing posts, and uploading images.
 
-## Reference(s): <br>
-- [Ghost Admin API Reference](references/api.md) <br>
-- [Ghost Official Admin API Docs](https://ghost.org/docs/admin-api/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/manifoldor/ghost) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with inline Python and shell examples, plus Ghost Admin API responses and command-line status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JSON config file containing api_url and admin_api_key; operations may create, publish, update, delete, list, or upload content on the configured Ghost site.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill can publish, update, and delete live Ghost CMS content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before publishing or deleting content, and use drafts when possible.
+
+Risk: The skill depends on a configuration file containing Ghost Admin API credentials.
+
+Mitigation: Use a dedicated low-privilege Ghost integration, keep the config file out of version control, and restrict file permissions.
+
+Risk: Misconfigured API destinations or untrusted remote feature-image URLs can affect where requests are sent or what content is fetched.
+
+Mitigation: Use only HTTPS Ghost API URLs, verify the configured API URL before use, and avoid untrusted remote feature-image URLs.
+
+## Reference(s):
+
+- [Ghost Admin API Reference](references/api.md)
+- [Ghost Official Admin API Docs](https://ghost.org/docs/admin-api/)
+- [ClawHub Skill Page](https://clawhub.ai/manifoldor/skills/ghost)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python snippets, shell commands, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the Ghost Admin API when the user supplies a configuration file containing credentials.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

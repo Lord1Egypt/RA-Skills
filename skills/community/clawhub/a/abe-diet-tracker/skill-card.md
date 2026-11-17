@@ -1,43 +1,59 @@
-## Description: <br>
-Tracks daily diet and calculates nutrition information to help achieve weight loss goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks daily diet and calculates nutrition information to help achieve weight loss goals when users provide meal information, ask about calorie intake, request remaining calorie budget, or need meal logging reminders.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-External users use this skill to log meals, calculate calories and macronutrients, check remaining daily nutrition budgets, and receive lunch or dinner logging reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local body, activity, calorie, and macronutrient profile data. <br>
-Mitigation: Install only when that local profile access is acceptable, and keep USER.md limited to data needed for diet tracking. <br>
-Risk: Meal queries may be sent to SkillBoss when the local nutrition database does not contain a food item. <br>
-Mitigation: Provide only meal details you are comfortable sending to the external nutrition lookup service, or rely on local nutrition data where possible. <br>
-Risk: Diet logs are stored locally and may be copied to an Obsidian vault and pushed with local Git credentials. <br>
-Mitigation: Disable or remove Obsidian/GitHub sync unless you explicitly want those logs and vault changes committed and pushed. <br>
+## Use Case:
 
+External users use this skill to log meals, estimate calories and macronutrients, track remaining daily nutrition budgets, and receive lunch or dinner logging reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/abe-diet-tracker) <br>
-- [Food database reference](references/food_database.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown diet logs, nutrition summaries, reminder text, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include calorie and macronutrient estimates, remaining budget calculations, and local log updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Meal queries and nutrition context can be sent to SkillBoss during lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when this data sharing is acceptable and ensure SKILLBOSS_API_KEY is configured for the intended account.
+
+Risk: Diet logs and profile-derived nutrition data are stored locally.
+
+Mitigation: Keep USER.md and memory files in an appropriate private workspace and review stored logs for sensitive health or personal data.
+
+Risk: The artifact can synchronize an Obsidian vault and push Git changes, which may upload unrelated private notes.
+
+Mitigation: Remove or explicitly configure the Obsidian and Git synchronization path before use, and review staged files before any push.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/abe-diet-tracker)
+- [Food database](references/food_database.json)
+- [SkillBoss API Hub](https://api.heybossai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with nutrition totals, remaining budgets, meal log entries, reminders, and command-oriented script usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read user profile data, call SkillBoss for nutrition estimates, and write daily diet logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

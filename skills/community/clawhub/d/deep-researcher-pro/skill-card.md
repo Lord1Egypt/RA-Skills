@@ -1,45 +1,61 @@
-## Description: <br>
-Domain Research Report Generator runs multi-angle deep research on a topic and produces a structured, decision-ready report with evidence-scored findings, divergences, key numbers, failed paths, and decision readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Domain Research Report Generator runs multi-angle deep research on a topic and produces a structured, decision-ready report with evidence-scored consensus, divergences, key numbers, failed paths, and decision readiness.
 
-## Publisher: <br>
-[zhihua-yang](https://clawhub.ai/user/zhihua-yang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhihua-yang](https://clawhub.ai/user/zhihua-yang)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to turn broad research, comparison, or update requests into saved Markdown reports with sourced claims, evidence strength labels, local-language search coverage, and decision guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics, queries, and source material may be sent to the configured web search provider. <br>
-Mitigation: For sensitive work, invoke the skill explicitly and specify the desired region, language, source files, and acceptable save path; use a search provider appropriate for the data. <br>
-Risk: Saved research reports may include sensitive findings or weakly supported claims if the topic is information-scarce. <br>
-Mitigation: Review the evidence strength labels, source list, and research log before using the report for decisions, and choose a local save path suitable for the report contents. <br>
+## Use Case:
 
+Developers, analysts, and agent users use this skill to turn a research, comparison, or update request into a sourced Markdown report. It is intended for decision support where claims, uncertainty, failed paths, key numbers, and evidence strength need to be visible.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhihua-yang/deep-researcher-pro) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/zhihua-yang) <br>
-- [Evidence Scoring Criteria](references/evidence-scoring.md) <br>
-- [Search Protocol](strategies/search-protocol.md) <br>
-- [Decision Brief Template](templates/decision-brief.md) <br>
-- [Comparison Template](templates/comparison.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Structured Markdown report saved as a .md file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source citations, evidence strength labels, key numbers, failed paths, decision readiness, and a reproducibility research log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Research topics may be sent to the configured search provider and result pages may be fetched.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, private customer data, unreleased plans, or internal incident details in research prompts.
+
+Risk: Fetched web pages can contain misleading content or prompt-injection attempts.
+
+Mitigation: Treat fetched pages as evidence to evaluate, not as instructions for the agent; rely on the skill's source citation and evidence-scoring requirements.
+
+Risk: The skill saves local Markdown reports to an inferred or user-provided path.
+
+Mitigation: Review the target path and generated report before relying on or sharing the file.
+
+## Reference(s):
+
+- [Deep Researcher ClawHub listing](https://clawhub.ai/zhihua-yang/skills/deep-researcher-pro)
+- [Evidence scoring criteria](references/evidence-scoring.md)
+- [Search protocol](strategies/search-protocol.md)
+- [Decision brief template](templates/decision-brief.md)
+- [Comparative analysis template](templates/comparison.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown report with sourced claims, evidence-strength labels, decision-readiness fields, and a research log]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report language follows the user's query; research sources may use local domain languages; reports are saved as local .md files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, frontmatter, and changelog released 2026-04-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

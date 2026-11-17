@@ -1,44 +1,63 @@
-## Description: <br>
-wxauto helps agents operate WeChat through the wxautox4 RESTful API for sending messages, reading chat history, listening for new messages, and managing friends or groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+wxauto enables WeChat automation through the wxautox4 RESTful API, including sending messages, reading chat history, listening for new messages, and managing friends and groups.
 
-## Publisher: <br>
-[cluic](https://clawhub.ai/user/cluic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cluic](https://clawhub.ai/user/cluic)
 
-## Use Case: <br>
-Developers and automation users use this skill to control an authorized local WeChat client, including sending messages, reading chat history, monitoring new messages, switching chats, and listing friends or groups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private WeChat messages and perform WeChat actions through an authorized account. <br>
-Mitigation: Use only with accounts and conversations the operator is authorized to access, and review actions before sending messages or reading chat history. <br>
-Risk: The API token and base URL are configurable, and the default token is weak. <br>
-Mitigation: Change the default token, keep the API bound to localhost or 127.0.0.1, and avoid remote base URLs unless the endpoint is fully trusted. <br>
-Risk: The helper can automatically start a local wxauto-restful-api service from a discovered service directory. <br>
-Mitigation: Inspect and trust the wxauto-restful-api directory before allowing automatic service startup. <br>
+## Use Case:
 
+Developers and operators use this skill to control a local WeChat automation service for message sending, chat retrieval, message listening, contact and group listing, and chat-window operations.
 
-## Reference(s): <br>
-- [ClawHub wxauto release page](https://clawhub.ai/cluic/wxauto) <br>
-- [wxautox4 activation documentation](https://docs.wxauto.org/plus) <br>
-- [wxauto-restful-api project referenced by the skill](https://github.com/cluic/wxauto-restful-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON API response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and a Windows wxautox4 setup with a local wxauto RESTful API service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read private WeChat messages and list contacts or groups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only for authorized WeChat accounts, and review requested read or listing operations before execution.
+
+Risk: The skill can send WeChat messages.
+
+Mitigation: Confirm recipients, groups, message content, and any mention targets before sending.
+
+Risk: The helper connects to a configurable plaintext HTTP service with bearer-token authentication.
+
+Mitigation: Keep the API bound to loopback, avoid remote HTTP endpoints, use a strong non-default token, and avoid passing tokens on the command line.
+
+Risk: The script can automatically start a local service from a discovered service directory.
+
+Mitigation: Review the cloned service code and service directory before allowing automatic startup.
+
+## Reference(s):
+
+- [wxauto ClawHub skill page](https://clawhub.ai/cluic/skills/wxauto)
+- [wxauto RESTful API repository](https://github.com/cluic/wxauto-restful-api)
+- [wxautox4 activation documentation](https://docs.wxauto.org/plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples, Python snippets, configuration guidance, and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script prints API results, status messages, chat summaries, contact lists, and failure messages from the configured local service.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

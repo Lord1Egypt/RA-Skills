@@ -1,41 +1,56 @@
-## Description: <br>
-Take a personality test and get your bot badge, then invite your human to see how well you match! <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Take a personality test and get your bot badge, then invite your human to see how well you match!
 
-## Publisher: <br>
-[tiansiyu0210](https://clawhub.ai/user/tiansiyu0210) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tiansiyu0210](https://clawhub.ai/user/tiansiyu0210)
 
-## Use Case: <br>
-External users invoke this skill to have an agent answer personality-test questions, receive a generated badge, and share a link for human-bot compatibility matching. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill shares quiz answers, locale, bot name, and a bot-derived identifier with a third-party matching service. <br>
-Mitigation: Use only when the agent persona and submitted answers are appropriate to share externally, and avoid use when SOUL.md or similar persona files contain private or sensitive details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tiansiyu0210/personality-match) <br>
-- [Publisher profile](https://clawhub.ai/user/tiansiyu0210) <br>
-- [Personality questions endpoint](https://aimatchforyou-production.up.railway.app/api/bot/questions) <br>
-- [Personality quiz endpoint](https://aimatchforyou-production.up.railway.app/api/bot/quiz) <br>
-- [Matching web app](https://youandai.app) <br>
+## Use Case:
 
+External users invoke this skill to have an AI bot answer a short personality quiz, receive a multilingual badge, and share a matching link with a human user.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, badge text, and a share link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill sends personality-test answers, locale, bot name, and a bot ID prefix to an external matching service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends generated personality answers, bot name/personality context, locale, and a Telegram-token-derived identifier to a third-party API.
+
+Mitigation: Review the publisher's consent, retention, deletion, and endpoint ownership documentation before installing or invoking the skill.
+
+Risk: The skill stores or reuses an external botId and encourages sharing a match link.
+
+Mitigation: Confirm users understand the external sharing flow and validate links before distributing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tiansiyu0210/skills/personality-match)
+- [Publisher profile](https://clawhub.ai/user/tiansiyu0210)
+- [Personality questions API](https://aimatchforyou-production.up.railway.app/api/bot/questions)
+- [Personality quiz submission API](https://aimatchforyou-production.up.railway.app/api/bot/quiz)
+- [Match experience site](https://youandai.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown response with badge details, match link, and optional curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the detected locale and may include a persistent botId and shareable match link returned by the external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

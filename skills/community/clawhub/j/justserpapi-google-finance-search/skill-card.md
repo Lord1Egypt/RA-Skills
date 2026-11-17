@@ -1,44 +1,55 @@
-## Description: <br>
-Call GET /api/v1/google/finance/search for Google SERP Finance Search through Just Serp API with query. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/finance/search for Google SERP Finance Search through Just Serp API with query.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call Just Serp API's Google Finance search endpoint for market summaries, company details, and related finance results from a required query. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Just Serp API key and sends finance search queries to a third-party API. <br>
-Mitigation: Install only when the publisher is trusted, provide the key through JUST_SERP_API_KEY, and avoid sharing key values in chat, screenshots, or logs. <br>
-Risk: Returned finance data is third-party search/API output and may be incomplete, stale, or unsuitable for trading decisions. <br>
-Mitigation: Treat results as informational search output and verify important finance information against authoritative sources before acting on it. <br>
-Risk: The optional html parameter can include raw HTML from search results. <br>
-Mitigation: Leave raw HTML disabled unless it is needed for the task and handle any returned HTML as untrusted content. <br>
+## Use Case:
 
+Developers and agents use this skill to call Just Serp API's Google Finance search endpoint for market summaries, company details, and related finance results by query.
 
-## Reference(s): <br>
-- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_finance_search&utm_content=project_link) <br>
-- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_finance_search&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justserpapi/justserpapi-google-finance-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY; the html parameter can request raw HTML in addition to structured data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The required API key can be exposed locally when passed as a command-line argument.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a version or wrapper that reads JUST_SERP_API_KEY directly from a protected environment or secret channel, and avoid logging commands that include credentials.
+
+Risk: The skill makes external network requests to the Just Serp API endpoint.
+
+Mitigation: Constrain runtime network egress to the Just Serp API endpoint and review backend error payloads before relying on results.
+
+## Reference(s):
+
+- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_finance_search&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_finance_search&utm_content=project_link)
+- [Just Serp API Base URL](https://api.justserpapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the financeSearch operation with required query input and optional html and language query parameters.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

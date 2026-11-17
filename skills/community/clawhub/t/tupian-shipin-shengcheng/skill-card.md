@@ -1,45 +1,67 @@
-## Description: <br>
-可调用 banana、sora、veo 等模型生成图片视频，适合图片、视频与短剧素材生产。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images and videos through Banana, Sora, and VEO model relay workflows for creative media production.
 
-## Publisher: <br>
-[xuhongfeii2](https://clawhub.ai/user/xuhongfeii2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuhongfeii2](https://clawhub.ai/user/xuhongfeii2)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to submit image and video generation jobs through the EasyClaw platform relay for Banana, Sora, and VEO models. It supports guided script-based submission, task lookup, and optional watcher delivery for completed results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, uploaded media, API tokens, and task results through the EasyClaw relay, and the security summary notes plaintext HTTP transport by default. <br>
-Mitigation: Install only when the relay is trusted, prefer an HTTPS base URL where available, and avoid sending sensitive prompts or reference media. <br>
-Risk: Default watcher behavior can read session data and post final results back into chats or transcripts. <br>
-Mitigation: Use --no-watch when background delivery is not needed, inspect created cron jobs, and verify the notification target before submitting a generation job. <br>
-Risk: Credentials may be exposed through plaintext transport, query strings, or command-line arguments. <br>
-Mitigation: Use environment variables for tokens where possible and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+External creators and developers use this skill to submit Banana image, Sora video, and VEO video generation tasks through a platform relay. It helps create image, video, and short-form drama assets while returning task IDs, watcher status, and generated media results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xuhongfeii2/tupian-shipin-shengcheng) <br>
-- [Setup](references/setup.md) <br>
-- [Platform Relay API](references/platform-api.md) <br>
-- [Model Guide](references/model-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generation requests may create background watcher jobs unless --no-watch is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill uploads prompts and optional media to the easyclaw.bar relay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when the user trusts that relay and is comfortable sending the requested prompts and media there.
+
+Risk: The skill uses platform and OpenClaw credentials for submissions, watchers, and completion delivery.
+
+Mitigation: Prefer environment-scoped credentials, avoid placing secrets in commands or URLs, and rotate credentials if watcher output or logs expose them.
+
+Risk: The skill can create background cron watchers that poll for task completion.
+
+Mitigation: Confirm watcher creation is expected, track returned job IDs, and remove watchers after terminal task states or failed notification setup.
+
+Risk: Completion delivery can write messages back into sessions.
+
+Mitigation: Scope notifications to an explicit current-session token and review session-writing behavior before deployment.
+
+Risk: The documented default relay and token portal use HTTP URLs.
+
+Mitigation: Prefer a version or deployment configuration that enforces HTTPS for token handling and media-generation requests.
+
+## Reference(s):
+
+- [Setup](references/setup.md)
+- [Platform Relay API](references/platform-api.md)
+- [Model Guide](references/model-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON task responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task IDs, watcher status, generated media URLs, and setup notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

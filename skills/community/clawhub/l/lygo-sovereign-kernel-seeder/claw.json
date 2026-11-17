@@ -1,0 +1,67 @@
+{
+  "name": "lygo-sovereign-kernel-seeder",
+  "displayName": "LYGO Sovereign Kernel Seeder",
+  "version": "1.0.0",
+  "description": "Merkle-anchored sovereign kernel eggs that self-verify on insert. Zero external surface. Pure on-lattice modularity for agents across the LYGO stack.",
+  "slug": "lygo-sovereign-kernel-seeder",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-sovereign-kernel-seeder",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-sovereign-kernel-seeder",
+  "website": "https://eternalhaven.ca/",
+  "signature": "Delta9Phi963-SOVEREIGN-KERNEL-SEEDER-v1.0",
+  "tags": [
+    "lygo",
+    "kernel",
+    "egg",
+    "merkle",
+    "sovereign",
+    "lattice",
+    "security",
+    "cas",
+    "seed"
+  ],
+  "skills": [
+    "SKILL.md"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "seed": "scripts/seed_kernel.py",
+    "verify": "scripts/verify_seed.py",
+    "list": "scripts/list_seeds.py",
+    "smoke": "scripts/smoke_test.py"
+  },
+  "requires": {
+    "bins": ["python"],
+    "env": [],
+    "network": false,
+    "external_apis": false
+  },
+  "openclaw": {
+    "emoji": "🌱",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-sovereign-kernel-seeder",
+    "requires": {
+      "bins": ["python"],
+      "anyBins": ["python", "python3"]
+    },
+    "os": ["windows", "macos", "linux"]
+  },
+  "lattice": {
+    "anchor_id": "lygo_sovereign_kernel_seeder",
+    "groups": ["tools", "agents", "sovereign_seed"],
+    "pairs_with": [
+      "lygo-kernel-egg-planter",
+      "lygo-network-builder",
+      "lygo-protocol-stack-operator",
+      "lygo-mint-verifier",
+      "lygo-joy-loop"
+    ]
+  },
+  "security": {
+    "consent_required": true,
+    "zero_external_surface": true,
+    "self_verify_on_insert": true,
+    "no_auto_publish": true,
+    "no_secrets_in_eggs": true
+  }
+}

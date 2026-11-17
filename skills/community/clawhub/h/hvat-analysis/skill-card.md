@@ -1,39 +1,49 @@
-## Description: <br>
-横纵分析法 guides agents to produce Chinese-language research reports by combining longitudinal history, current cross-sectional comparison, and cross-axis insights for literature reviews and industry analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to analyze a topic through historical depth and current cross-sectional comparison, surfacing structured insights for literature reviews, industry reports, market analysis, and product research.
 
-## Publisher: <br>
-[zihaowyt5525-max](https://clawhub.ai/user/zihaowyt5525-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zihaowyt5525-max](https://clawhub.ai/user/zihaowyt5525-max)
 
-## Use Case: <br>
-Developers and external users can invoke this skill when they need an agent to structure Chinese-language literature reviews, industry research, market analysis, or product research around historical evolution, current competitive context, and cross-axis findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may save Word reports to the Desktop or another local path. <br>
-Mitigation: Ask the agent to confirm the destination before writing files and to avoid overwriting existing documents. <br>
+## Use Case:
 
+Researchers, analysts, product teams, and business decision-makers use this skill to study how a topic evolved over time and how it compares with peers or competing ideas today. It helps produce evidence-driven literature reviews, industry research reports, market analyses, and product research summaries.
 
-## Reference(s): <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zihaowyt5525-max/hvat-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Chinese-language Markdown preview and Word document report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to save a .docx report, typically after confirming the destination path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact notes v1.0) <br>
+Risk: The skill may write a Word report to the user's Desktop when completing formal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to confirm the output filename and location before it writes the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zihaowyt5525-max/skills/hvat-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown preview and DOCX report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Formal report output is described as a Word document written to the user's Desktop with a task-specific filename.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

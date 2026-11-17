@@ -1,45 +1,59 @@
-## Description: <br>
-Provides agent-facing guidance for checking Tempo token balances, transferring pathUSD, and preparing Uniswap swaps on Tempo mainnet with quoting, approvals, simulation, and broadcast steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tempo stablecoin and token swap operations for agents. Use when working with pathUSD/USDC.e balances, swapping between USDC.e and pathUSD, or executing any-token swaps via Uniswap on Tempo with quote, Permit2 approvals, simulation, and broadcast.
 
-## Publisher: <br>
-[aviclaw](https://clawhub.ai/user/aviclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aviclaw](https://clawhub.ai/user/aviclaw)
 
-## Use Case: <br>
-Developers and operators use this skill when they need an agent to prepare Tempo mainnet token balance checks, pathUSD transfers, and Uniswap swap workflows. It is intended for wallet-aware execution where a human reviews transaction targets, allowances, calldata, gas terms, and simulation results before broadcast. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide live Tempo mainnet wallet-signing commands that move real funds. <br>
-Mitigation: Use a dedicated low-balance wallet and review every token, recipient, spender, calldata target, gas term, and simulation result before broadcasting. <br>
-Risk: The approval examples include broad token and Permit2 allowances. <br>
-Mitigation: Prefer finite approvals sized to the intended swap and revoke token or Permit2 allowances after use. <br>
-Risk: A stale quote or incorrect transaction field can cause failed swaps or unintended execution. <br>
-Mitigation: Refresh quotes, confirm spender and swap target values, and require a successful simulation before sending any transaction. <br>
+## Use Case:
 
+Developers and agents use this skill to check Tempo stablecoin balances, transfer pathUSD, quote swaps, prepare Permit2 approvals, simulate transactions, and broadcast Uniswap swaps on Tempo mainnet.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aviclaw/tempo-stable-uniswap-swaps) <br>
-- [Tempo RPC endpoint](https://rpc.presto.tempo.xyz) <br>
-- [Uniswap Trade API quote endpoint](https://trade-api.gateway.uniswap.org/v1/quote) <br>
-- [Foundry installer](https://foundry.paradigm.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human review before signing or broadcasting transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: High-impact wallet transactions and private key handling can move funds or expose credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, avoid shared shells for private keys, and require explicit confirmation before any cast send command.
+
+Risk: Broad token approvals or incorrect spender/router addresses can create unintended token access.
+
+Mitigation: Approve exact amounts for short durations, verify spender and router addresses, and decode calldata before signing.
+
+Risk: The skill installs Foundry through a remote installer.
+
+Mitigation: Install Foundry through a verified channel and review the installer source before use.
+
+## Reference(s):
+
+- [Tempo RPC Endpoint](https://rpc.presto.tempo.xyz)
+- [Foundry Installer](https://foundry.paradigm.xyz)
+- [Uniswap Trade API Quote Endpoint](https://trade-api.gateway.uniswap.org/v1/quote)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with shell commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied PRIVATE_KEY and UNISWAP_API_KEY; transaction commands require explicit review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

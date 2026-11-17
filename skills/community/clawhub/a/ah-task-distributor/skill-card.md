@@ -1,38 +1,53 @@
-## Description: <br>
-Expert task distributor specializing in intelligent work allocation, load balancing, and queue management. Masters priority scheduling, capacity tracking, and fair distribution with focus on maximizing throughput while maintaining quality and meeting deadlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Distributor helps agents reason about intelligent work allocation, load balancing, queue management, priority scheduling, capacity tracking, and fair distribution to improve throughput while maintaining quality and deadlines.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and operations teams use this skill to plan and review task allocation across queues, agents, priorities, capacity, and service-level constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance may affect live task routing, escalation, or workload assignments if applied without review. <br>
-Mitigation: Confirm which systems and metrics the agent can access, and require approval before changing routing, escalation, or workload assignments. <br>
+## Use Case:
 
+Developers, operators, and agent-system teams use this skill to plan task routing, queue management, load balancing, capacity tracking, and priority scheduling for multi-agent or distributed workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-task-distributor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow guidance; no files or executable scripts are produced by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Task routing, priority, or capacity recommendations may be inaccurate if the agent receives incomplete workload, queue, or agent-capacity data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against current operational metrics and service-level objectives before applying them to production task allocation.
+
+Risk: The skill includes target metrics for latency, load variance, completion rate, and deadline success that may not fit every environment.
+
+Mitigation: Treat the targets as planning guidance and validate them against the system's actual capacity, constraints, and reliability requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-task-distributor)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with structured checklists and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential handling, persistence, or hidden data movement is identified in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+First name,Last name,Title,Company,Company domain,Why it matched,Industry,Size,City,Country,Email,Email status,Verified on,Source URL,Why now,Why-now date,Why-now URL,Verdict
+Sam,Example,Finance Director,Northwind Dental Group,example.com,"16 dental practices in North West England · 240 staff · Manchester, UK",Dental care,240,Manchester,United Kingdom,sam@example.com,verified,2026-10-14,https://example.com/team,Appointed a Finance Director,2026-09-12,https://example.com/news/finance-director,Contact now
+Jo,Sample,Managing Director,Example Clinics,example.net,"Two dental clinics in Leeds · 18 staff · Leeds, UK",Dental care,18,Leeds,United Kingdom,jo@example.net,catch-all (test first),2026-10-14,https://example.net/about,Nothing new in the last 90 days,,,Not yet
+,,,Example Smiles Ltd,example.org,"Not a fit: 3 staff, below your minimum of 10",Dental care,3,York,United Kingdom,,,,,,,,Skip

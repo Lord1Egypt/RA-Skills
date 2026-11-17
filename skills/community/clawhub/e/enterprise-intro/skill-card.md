@@ -1,45 +1,60 @@
-## Description: <br>
-Generates professional Chinese-language enterprise insight reports from multidimensional company data for credit analysis, business research, investment due diligence, and quick company understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise Intro generates professional Chinese-language enterprise insight reports from multi-dimensional company data.
 
-## Publisher: <br>
-[Royyyyor](https://clawhub.ai/user/Royyyyor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[royyyyor](https://clawhub.ai/user/royyyyor)
 
-## Use Case: <br>
-External users, analysts, finance and banking professionals, legal professionals, and business counterparties use this skill to generate enterprise profile, credit, business research, and investment due diligence reports for mainland China entities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global use with mainland China entity data scope. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried company names and related legal-representative identifiers are sent to the configured Qibook/CHINADAAS API using user credentials. <br>
-Mitigation: Confirm the data-sharing posture before use, protect API credentials, and avoid querying sensitive or confidential entities unless approved. <br>
-Risk: Generated reports may be used for credit, investment, legal, or counterparty decisions. <br>
-Mitigation: Require human review and verify source data freshness before using reports for external delivery or high-impact decisions. <br>
-Risk: Several templates instruct the agent to hide that reports are AI-generated. <br>
-Mitigation: Remove or override that template language and disclose AI assistance where appropriate before production or external use. <br>
+## Use Case:
 
+External analysts, finance teams, legal professionals, transaction counterparties, and public readers use this skill to produce concise enterprise credit analysis, business research, investment diligence, and organization profile reports for mainland China entities.
 
-## Reference(s): <br>
-- [Enterprise Intro ClawHub listing](https://clawhub.ai/Royyyyor/enterprise-intro) <br>
-- [Qibook API provider homepage](https://qibook.com) <br>
-- [Sample company report](artifact/examples/sample_company_report.md) <br>
-- [Company report template](artifact/templates/company.md) <br>
+### Deployment Geography for Use:
 
+Mainland China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with optional Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CHINADAAS_UID, CHINADAAS_KEY, and CHINADAAS_BASE_URL; report length is capped by input size.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill sends signed API requests containing queried enterprise names to a user-configured third-party endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after verifying CHINADAAS_BASE_URL is the official HTTPS Qibook endpoint, trusting the provider, and avoiding confidential enterprise queries.
+
+Risk: The templates include wording intended to conceal AI involvement in generated reports.
+
+Mitigation: Review and remove AI-concealment language before using generated reports in customer-facing or governed workflows.
+
+Risk: API credentials are required for operation.
+
+Mitigation: Store CHINADAAS_UID and CHINADAAS_KEY securely, restrict access to the runtime environment, and rotate credentials if exposure is suspected.
+
+## Reference(s):
+
+- [Qibook/企百科 homepage](https://qibook.com)
+- [ClawHub skill page](https://clawhub.ai/royyyyor/skills/enterprise-intro)
+- [Sample company report](artifact/examples/sample_company_report.md)
+- [Company report template](artifact/templates/company.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, API Calls, Configuration]
+
+**Output Format:** [Chinese-language Markdown enterprise or organization report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CHINADAAS_UID, CHINADAAS_KEY, and CHINADAAS_BASE_URL; report length is capped by input data size.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

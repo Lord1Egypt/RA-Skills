@@ -1,41 +1,57 @@
-## Description: <br>
-Guides agents and developers through a disciplined seven-phase workflow for diagnosing and fixing complex, intermittent, cross-system bugs with verified user input and data-backed conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A structured 7-phase workflow for collaborative human and AI debugging of complex, intermittent, multi-layered, or cross-system bugs.
 
-## Publisher: <br>
-[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to coordinate AI-assisted debugging of hard-to-reproduce or multi-layer production issues. It structures the investigation around flow alignment, symptom collection, boundary experiments, human decision points, verification, escalation, and post-fix documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debugging complex incidents can require SSH, Kubernetes, database, log, or network access. <br>
-Mitigation: Grant only the access needed for the specific incident and approve production-impacting commands before execution. <br>
-Risk: Restart, deploy, data-change, or production-impacting commands may affect live systems during incident response. <br>
-Mitigation: Require explicit user approval for those actions and verify results with before-and-after evidence. <br>
+## Use Case:
 
+Developers and engineers use this skill to structure difficult debugging sessions where symptoms are intermittent, contradictory, long-running, or span multiple services and systems. It guides the agent and user through flow alignment, symptom structuring, boundary probing, solution selection, verification, escalation, and documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/complex-bug-debugging-with-ai-en) <br>
-- [Publisher profile](https://clawhub.ai/user/hgvgfgvh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, scripts, and command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; generated documentation may be produced during the final documentation phase when the user chooses to document the resolved bug.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The workflow can lead an agent toward broad debugging and fix actions in live systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before Kubernetes, SSH, database, network, restart, configuration, data-changing, or documentation-writing actions.
+
+Risk: The skill may operate with sensitive infrastructure or production context during debugging.
+
+Mitigation: Use read-only credentials where possible and grant only the narrow environment access needed for the investigation.
+
+Risk: The artifact states a preferred model requirement that may not match the runtime environment.
+
+Mitigation: Treat the model requirement as advisory and validate conclusions against observed data, code, logs, and user-confirmed facts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hgvgfgvh/skills/complex-bug-debugging-with-ai-en)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, code]
+
+**Output Format:** [Markdown guidance with checklists, diagrams, decision tables, and inline command or code examples when the debugging task requires them.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are evidence-led and gated by user confirmation before higher-impact actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Query-Skills helps agents search and discover OpenClaw skills with bilingual keyword search, multi-source lookup, filters, recommendations, and skill detail views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query-Skills helps agents search, inspect, and recommend OpenClaw and ClawHub skills across bilingual and multi-source queries.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-Developers and agent users use this skill to find OpenClaw skills by keyword, tag, author, popularity, relevance, or related-skill recommendations, then inspect details before installation or use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms may be sent to ClawHub and, on fallback, to skills.volces.com. <br>
-Mitigation: Avoid entering secrets, private project names, customer identifiers, or other sensitive terms as queries. <br>
-Risk: The security guidance flags raw query logging and dependency hygiene concerns. <br>
-Mitigation: Prefer an updated release that removes raw query logging and upgrades or pins axios before sensitive or managed use. <br>
+## Use Case:
 
+Developers and agent users use this skill to find relevant OpenClaw skills, inspect skill details, discover popular or related skills, and get install commands from search results.
 
-## Reference(s): <br>
-- [Query-Skills ClawHub release page](https://clawhub.ai/hgta23/query-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/hgta23) <br>
-- [ClawHub](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style command-line text with search results, skill details, recommendations, and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call ClawHub and fallback skill-search services using the user's query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Search queries may include private project names, customer data, vulnerability details, or internal technology names and may be sent to ClawHub and an undisclosed mirror.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive, generalized search terms and avoid confidential identifiers when running searches.
+
+Risk: Mirror results may be displayed as verified even though the artifact does not verify them.
+
+Mitigation: Treat verification flags on mirror-derived results as untrusted and confirm the skill publisher, source page, and package contents before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgta23/skills/query-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [CLI text and Markdown guidance with skill result lists, details, recommendations, source labels, and install commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include translated query text, source labels, quality scores, verification flags, and source URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact package.json and SKILL.md list 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

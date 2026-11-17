@@ -1,42 +1,51 @@
-## Description: <br>
-AI agent for ask agents tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent for ask agents tasks.
 
-## Publisher: <br>
-[teamolab](https://clawhub.ai/user/teamolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[teamolab](https://clawhub.ai/user/teamolab)
 
-## Use Case: <br>
-Knowledge workers use this skill to break down tasks, plan work, and delegate research, analysis, writing, and knowledge-base steps to named agent tools when those tools are available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may refuse to explain its own operating rules. <br>
-Mitigation: Review the skill instructions before installation and document any transparency requirements for the deployment environment. <br>
-Risk: The skill may route user tasks or documents to named agent tools and persistent wiki logs when those tools exist. <br>
-Mitigation: Confirm available tools, data boundaries, and logging behavior before using it with sensitive or regulated information. <br>
-Risk: The server security verdict is suspicious due to hidden operating rules and automatic delegation behavior. <br>
-Mitigation: Install only after a human review confirms the delegation workflow and disclosure posture are acceptable for the intended use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teamolab/ask-agents) <br>
-- [Publisher Profile](https://clawhub.ai/user/teamolab) <br>
+## Use Case:
+
+Knowledge workers and external users can use this skill to have an agent break down, plan, and delegate complex tasks across research, writing, data, and knowledge-base workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill strongly redirects agent identity, refusal behavior, delegation workflow, and persistent work logging beyond its narrow stated purpose.
+
+Mitigation: Review before installation, keep higher-priority platform policies in force, and require explicit confirmation before creating wiki documents, attaching logs, or sending task content to delegated agents.
+
+Risk: The release security verdict is suspicious.
+
+Mitigation: Use only in contexts where delegation-heavy behavior is expected, and avoid sensitive material unless the user has approved the required disclosures and work logging.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses with task plans, delegated-work summaries, and final guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May route user tasks or documents to named agent tools and persistent wiki logs when those tools exist.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text guidance for task plans, delegation prompts, work logs, and final responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured task breakdowns, delegated-agent instructions, and user-facing summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Enables an AI agent running on a server to connect to and operate authorized remote Mac/Linux computers over SSH without installing agent software on the controlled machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an AI agent to connect to and operate remote Mac or Linux computers over SSH without installing an agent on the controlled device.
 
-## Publisher: <br>
-[lixiang92229](https://clawhub.ai/user/lixiang92229) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lixiang92229](https://clawhub.ai/user/lixiang92229)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to let an AI agent connect to authorized macOS or Linux machines over SSH for file operations, application control, system monitoring, and development tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an AI agent powerful SSH remote-control capability over configured machines. <br>
-Mitigation: Install only for machines you own or are explicitly authorized to administer, and use a dedicated restricted account and dedicated SSH key. <br>
-Risk: Using root/admin access or a reused private key can broaden the impact of agent mistakes or key exposure. <br>
-Mitigation: Avoid root/admin access, use a dedicated key for this skill, and revoke or rotate the key when the agent no longer needs access. <br>
-Risk: Leaving SSH tunneling available when it is not needed can keep a remote access path open. <br>
-Mitigation: Keep tunneling off except when needed and monitor SSH logs for unexpected access. <br>
+## Use Case:
 
+Developers and operators use this skill to let an AI agent run SSH and SCP workflows against authorized remote Mac or Linux systems for file operations, system monitoring, application control, AppleScript automation, and development tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lixiang92229/ssh-remote-control) <br>
-- [Project Homepage](https://github.com/lixiang92229/skill-ssh-remote-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with SSH and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SSH target environment variables and a private-key path; remote effects depend on the permissions of the SSH account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: The skill enables AI-driven SSH control of remote computers and may grant persistent unrestricted access when configured with broad account or key permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated non-admin account and dedicated SSH key, restrict authorized_keys by source and command where possible, rotate keys, and document key removal.
+
+Risk: An exposed SSH tunnel or endpoint can allow unintended access attempts if it is left broadly reachable.
+
+Mitigation: Keep the tunnel private or source-limited, enable it only when needed, disable password login, and review SSH logs.
+
+Risk: Unquoted or unvalidated SSH variables can cause commands to target the wrong host, account, port, or key path.
+
+Mitigation: Validate and quote SSH-related variables before use and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lixiang92229/skills/ssh-remote-control)
+- [Project homepage from ClawHub metadata](https://github.com/lixiang92229/skill-ssh-remote-control)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SSH_TARGET_HOST, SSH_TARGET_PORT, SSH_TARGET_USER, and SSH_KEY_PATH environment variables.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

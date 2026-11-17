@@ -1,0 +1,30 @@
+[Unit]
+Description=Buzz Agent - Marvin (OpenClaw)
+Documentation=https://github.com/darrenjrobinson/buzz-acp
+After=network.target buzz-relay.service
+Requires=buzz-relay.service
+
+[Service]
+Type=simple
+User=marvin
+WorkingDirectory=/home/marvin/.openclaw/workspace
+EnvironmentFile=/home/marvin/.openclaw/secrets/buzz-marvin.env
+ExecStart=/home/marvin/.local/bin/buzz-acp \
+  --agent-command python3 \
+  --agent-args /home/marvin/.openclaw/workspace/bin/buzz-acp.py \
+  --subscribe mentions
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=buzz-marvin
+
+# Hardening — relax (e.g. add ReadWritePaths=) if this breaks the agent's
+# access to its WorkingDirectory.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

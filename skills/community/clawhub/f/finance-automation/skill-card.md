@@ -1,47 +1,66 @@
-## Description: <br>
-Automates payments, invoices, expenses, financial reports, and real-time finance notifications using Stripe, Lemon Squeezy, Telegram, email, and a Node.js API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates payments, invoices, expenses, and financial reports with Stripe webhooks and real-time Telegram notifications for streamlined finance management.
 
-## Publisher: <br>
-[ChloePark85](https://clawhub.ai/user/ChloePark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers and finance operators use this skill to run a finance automation service that records payment webhooks, manages invoices and expenses, and generates revenue, MRR, and profit reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Finance-changing API routes are exposed without implemented authentication or role-based authorization. <br>
-Mitigation: Add authentication and role-based authorization to all /api routes before installation or production use. <br>
-Risk: Payment, customer, invoice, and notification data may include sensitive financial or personal information. <br>
-Mitigation: Protect the .env file and database, use sandbox payment keys first, and review exactly what customer and payment details are sent to Telegram or email. <br>
-Risk: Webhook tunnel exposure can broaden access during testing. <br>
-Mitigation: Keep Stripe CLI or ngrok tunnels limited to webhook testing and disable them when they are no longer needed. <br>
+## Use Case:
 
+Developers and finance operators use this skill to run a Node.js service that records Stripe and Lemon Squeezy payments, manages invoices and expenses, generates finance reports, and sends real-time notifications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ChloePark85/finance-automation) <br>
-- [README.md](artifact/README.md) <br>
-- [QUICKSTART.md](artifact/QUICKSTART.md) <br>
-- [ARCHITECTURE.md](artifact/ARCHITECTURE.md) <br>
-- [Stripe API Documentation](https://stripe.com/docs/api) <br>
-- [Lemon Squeezy Documentation](https://docs.lemonsqueezy.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Markdown documentation and Node.js/SQL project files with JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an Express service, database schema, API routes, webhook handlers, setup commands, and operational documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: ClawHub release metadata; package.json lists 0.1.0) <br>
+Risk: Sensitive financial read/write APIs may be exposed without implemented authentication or role-based authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add authentication and role-based authorization before deployment, keep the service on a trusted network until then, and use only test data during review.
+
+Risk: Webhook tunnels or public endpoints may expose more of the server than intended during setup.
+
+Mitigation: Expose only the webhook path, verify provider webhook signatures, and avoid sharing temporary tunnel URLs beyond the payment provider configuration.
+
+Risk: Secrets for Stripe, Lemon Squeezy, Telegram, OpenClaw, SMTP, and the database can grant access to financial data or notifications.
+
+Mitigation: Store secrets in protected environment configuration, rotate them after testing, and avoid committing .env files or credentials.
+
+Risk: Invoices, receipts, logs, notifications, and financial records may contain sensitive business or customer data.
+
+Mitigation: Verify retention, encryption, and notification content policies before storing records or sending Telegram/OpenClaw alerts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chloepark85/skills/finance-automation)
+- [README.md](artifact/README.md)
+- [ARCHITECTURE.md](artifact/ARCHITECTURE.md)
+- [QUICKSTART.md](artifact/QUICKSTART.md)
+- [Stripe API Docs](https://stripe.com/docs/api)
+- [Lemon Squeezy Docs](https://docs.lemonsqueezy.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Notifications]
+
+**Output Format:** [Markdown guidance with inline shell and JavaScript examples, JSON API responses, generated invoice files, and notification messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured payment, database, email, Telegram, and OpenClaw services; webhook behavior depends on external provider credentials.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

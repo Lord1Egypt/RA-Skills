@@ -1,44 +1,54 @@
-## Description: <br>
-Backtest and deploy trading strategies on Superior Trade's managed cloud. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backtest and deploy trading strategies on Superior Trade's managed cloud.
 
-## Publisher: <br>
-[mmmmssss8899](https://clawhub.ai/user/mmmmssss8899) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mmmmssss8899](https://clawhub.ai/user/mmmmssss8899)
 
-## Use Case: <br>
-External developers and trading users use this skill to turn trading ideas into backtests, review results, and create user-confirmed live deployments on Superior Trade for Hyperliquid. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required API key can create and manage backtests and deployments, including deployments that execute live trades. <br>
-Mitigation: Store SUPERIOR_TRADE_API_KEY only in an environment or credential manager, keep .env files out of git, and require explicit user confirmation before creating or starting live deployments. <br>
-Risk: Automated crypto trading can lose money even when configured correctly. <br>
-Mitigation: Backtest strategies first, review the resulting metrics, start with conservative stake sizes, and avoid treating backtest performance as a guarantee. <br>
-Risk: Wallet or exchange credential misuse could expose funds or sensitive account access. <br>
-Mitigation: Never request, log, store, or transmit private keys or seed phrases, and never enable withdrawal permissions on exchange API keys. <br>
+## Use Case:
 
+External users and developers use this skill to create, backtest, and manage DEX trading strategies through Superior Trade. It can create and start live trading deployments only after explicit user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mmmmssss8899/ai-agent-trading-on-dex) <br>
-- [Superior Trade account homepage](https://account.superior.trade) <br>
-- [Superior Trade API documentation](https://api.superior.trade/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with API request guidance, JSON configuration snippets, and Python strategy code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUPERIOR_TRADE_API_KEY; live deployment actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.10 (source: server release metadata) <br>
+Risk: The Superior Trade API key can create and manage deployments that may trade real funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key securely, keep it scoped to the intended account, and require explicit review of every live deployment summary before approval.
+
+Risk: Deployment deletion or cleanup actions can close positions and orders.
+
+Mitigation: Confirm cleanup actions with the user before deleting deployments or changing live trading status.
+
+## Reference(s):
+
+- [Superior Trade Account Portal](https://account.superior.trade)
+- [ClawHub Skill Page](https://clawhub.ai/mmmmssss8899/skills/ai-agent-trading-on-dex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API request examples, strategy code, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live deployment summaries requiring explicit user confirmation before execution.]
+
+## Skill Version(s):
+
+3.0.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

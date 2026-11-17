@@ -1,43 +1,52 @@
-## Description: <br>
-Comprehensive platform for evaluating organizational data governance maturity across multiple domains with actionable recommendations and improvement roadmaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive platform for evaluating organizational data governance maturity across multiple domains with actionable recommendations and improvement roadmaps.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Compliance officers, data governance teams, enterprise architects, and information security professionals use this skill to submit governance assessment responses and receive maturity scores, domain findings, prioritized recommendations, and an improvement roadmap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment requests may send organizational governance details, identifiers, or internal weaknesses to an external API provider. <br>
-Mitigation: Confirm trust in ToolWeb and avoid submitting secrets, unnecessary personal identifiers, or sensitive internal details unless the organization accepts that data sharing. <br>
+## Use Case:
 
+Compliance officers, data governance teams, enterprise architects, and information security professionals use this skill to assess organizational data governance maturity, identify gaps, and generate prioritized recommendations and improvement roadmaps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-data-governance-maturity) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb portal](https://portal.toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
-- [Kong route](https://api.mkkpro.com/compliance/data-governance) <br>
-- [API docs](https://api.mkkpro.com:8112/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses with scores, maturity levels, recommendations, and roadmap text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assessment requests include user, session, timestamp, and governance response data; responses include overall and domain-specific maturity results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Governance assessment answers, user identifiers, session identifiers, and related business context are sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm organizational approval before use and avoid submitting confidential production details unless that use is explicitly approved.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-data-governance-maturity)
+- [API Documentation](https://api.mkkpro.com:8112/docs)
+- [Kong Route](https://api.mkkpro.com/compliance/data-governance)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [json, text, guidance]
+
+**Output Format:** [JSON API responses with optional Markdown or text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Assessment responses include maturity scores, domain assessments, prioritized recommendations, and an improvement roadmap.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

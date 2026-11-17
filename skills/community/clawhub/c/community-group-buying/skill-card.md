@@ -1,40 +1,52 @@
-## Description: <br>
-该技能介绍如何通过社区团购实现变现；当你计划从事或优化社区团购时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+该技能介绍如何通过社区团购实现变现；当你计划从事或优化社区团购时调用。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External operators, small teams, and business planners use this skill to structure a community group-buying monetization plan, from MVP setup and channel testing to delivery, metrics, compliance, and a 30-day execution checklist.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Community group-buying plans can create legal, tax, platform-policy, advertising, or consumer-protection exposure if applied without local review.
+
+Mitigation: Users should apply their own legal, tax, platform-policy, advertising, and consumer-protection review before acting on a monetization plan.
+
+Risk: Business guidance may be misapplied if users overstate offers, ignore delivery obligations, or rely on unverified channel tactics.
+
+Mitigation: Review proposed claims, contracts, invoices, platform practices, and delivery terms before launch, and track metrics during execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-创业者、运营人员和本地商业团队可用该技能规划社区团购变现路径，包括定位、MVP验证、流量获取、交付复盘和30日执行计划。 <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Business guidance may not reflect local laws, platform rules, contracts, tax obligations, or consumer-protection requirements. <br>
-Mitigation: Verify plans against applicable local requirements, platform policies, advertising rules, supplier contracts, and tax obligations before acting. <br>
-Risk: Community group buying execution can create misleading promotion, infringement, poor delivery quality, or platform-dependence risks. <br>
-Mitigation: Use clear claims, respect copyright, document delivery terms, keep quality-control checklists, track operating data, and avoid over-reliance on a single platform. <br>
+**Output Format:** [Markdown-style business guidance and checklist]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/community-group-buying) <br>
+**Other Properties Related to Output:** [Does not produce code or execute shell commands.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklists and execution steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes business planning steps, compliance reminders, common risks, a 30-day execution plan, and practical checklists.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

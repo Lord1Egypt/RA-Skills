@@ -1,38 +1,48 @@
-## Description: <br>
-User-facing change logs: categories, clarity, links. Use when maintaining CHANGELOG or release notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+User-facing change logs: categories, clarity, links. Use when maintaining CHANGELOG or release notes.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, release managers, and product teams use this skill to structure and refine user-facing release notes or CHANGELOG entries for reviews, rollouts, and stakeholder communication.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated release notes may contain inaccurate links, migration guidance, security wording, or operational follow-through.
+
+Mitigation: Review generated release notes against the shipped changes, issue or PR links, migration requirements, and operational owners before publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, release managers, and product teams use this skill to structure user-facing changelogs and release notes. It helps clarify audience and cadence, group changes, draft concise entries, and verify rollout follow-through before publication. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated release notes may misstate product behavior, rollout status, or impact if the source context is incomplete. <br>
-Mitigation: Review generated text for product accuracy, audience fit, and publication readiness before shipping. <br>
+**Output Format:** [Markdown guidance with checklists and examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/release-notes) <br>
+**Other Properties Related to Output:** [Produces procedural drafting guidance rather than executable code.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with checklists and drafted release-note bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; generated release text should be reviewed for product accuracy before publishing.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

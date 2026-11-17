@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-claude-opus-4-7
 description: Claude Opus 4.7 Messages API on PoYo / poyo.ai via `https://api.poyo.ai/v1/messages`; use for `claude-opus-4-7`, Claude-compatible messages, system prompts, multi-turn conversations, tools, structured output, prompt cache settings, vision content blocks, streaming, and server-side integration.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/chat-series/claude-messages","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/claude-opus-4-7","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Claude Opus 4.7 Messages
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/claude-opus-4-7>
+- API docs: <https://docs.poyo.ai/api-manual/chat-series/claude-messages>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Claude Opus 4.7 requests on PoYo. It helps agents prepare Claude-compatible Messages API payloads, streaming calls, tool definitions, structured output settings, and server-side integration notes.
 

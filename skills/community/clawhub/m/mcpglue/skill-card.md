@@ -1,42 +1,60 @@
-## Description: <br>
-MCPGlue helps agents connect to external Model Context Protocol servers over standard transports so they can list tools, call tools, access resources, and handle streamed responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCPGlue is an OpenClaw MCP bridge framework that connects agents to external services through Model Context Protocol server processes.
 
-## Publisher: <br>
-[lxr-666](https://clawhub.ai/user/lxr-666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxr-666](https://clawhub.ai/user/lxr-666)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect OpenClaw agents to MCP servers for database access, GitHub operations, file system workflows, and custom API integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marks this release suspicious because MCP calls can expose broad workspace or account access through powerful tokens and raw tool execution. <br>
-Mitigation: Install only if you trust the publisher, use dedicated and revocable MCP credentials, keep tokens out of chat, and review write or delete operations before allowing the agent to run them. <br>
-Risk: Tool results and side effects depend on the external MCP server selected at runtime. <br>
-Mitigation: Use trusted MCP servers, prefer least-privilege credentials and parameters, and inspect tool calls before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to list and call tools exposed by trusted MCP servers, supporting workflows such as database access, GitHub API operations, file system interactions, and custom API integration.
 
-## Reference(s): <br>
-- [Model Context Protocol documentation](https://modelcontextprotocol.io) <br>
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) <br>
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js for MCP server execution; runtime behavior depends on the selected MCP server and tool parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can launch user-specified local MCP server commands that run with the local user's privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with MCP servers and command arguments that have already been reviewed and trusted.
+
+Risk: The documentation overstates capabilities and gives inconsistent installation instructions.
+
+Mitigation: Align the documentation with the Python implementation and verify dependency installation steps before release.
+
+Risk: Unpinned MCP dependencies can change behavior across installations.
+
+Mitigation: Pin runtime dependencies and review updates before treating the skill as a low-friction install.
+
+## Reference(s):
+
+- [MCP official documentation](https://modelcontextprotocol.io)
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
+- [ClawHub skill page](https://clawhub.ai/lxr-666/skills/mcpglue)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP tool results are emitted as text from the invoked server process.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

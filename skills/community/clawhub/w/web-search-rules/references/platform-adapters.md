@@ -1,6 +1,6 @@
 # Platform Adapters
 
-Use this file before operating any knowledge-base platform.
+Use this file before operating any knowledge-base platform. Documentation describes a capability model, not guaranteed host integrations. Verify the required tool or connector is actually available before declaring an operation possible.
 
 ## Common adapter contract
 
@@ -13,7 +13,7 @@ Every adapter must declare:
 - `auth`: none, manual-login, connector, oauth, api-key-env, or user-provided.
 - `confirmation`: highest confirmation level required by this adapter.
 
-Unlisted capabilities are denied.
+Unlisted or unobserved capabilities are denied.
 
 ## Adapter matrix
 

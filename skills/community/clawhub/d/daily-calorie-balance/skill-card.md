@@ -1,42 +1,54 @@
-## Description: <br>
-Daily Calorie Balance combines Calorie Visualizer food intake with clawhealth-garmin calorie expenditure data to calculate a daily net calorie balance summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combines food intake records with Garmin calorie expenditure data to summarize daily calorie balance and practical health guidance.
 
-## Publisher: <br>
-[lvzaiyi-afk](https://clawhub.ai/user/lvzaiyi-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvzaiyi-afk](https://clawhub.ai/user/lvzaiyi-afk)
 
-## Use Case: <br>
-External users who track diet and Garmin activity use this skill to combine food intake and calorie expenditure into a daily net calorie balance summary, either on demand or through a scheduled run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes private food intake and Garmin activity data and can automatically send daily summaries to a fixed QQ recipient. <br>
-Mitigation: Install only if you recognize and control the recipient, change the recipient before enabling scheduled auto mode, or avoid auto mode. <br>
-Risk: Summaries and health-oriented advice can be misleading when food records are missing or Garmin data has not been synced. <br>
-Mitigation: Confirm calorie records and Garmin data are current before relying on the generated balance or advice. <br>
-Risk: Garmin data access depends on the configured account region. <br>
-Mitigation: Confirm the Garmin region setting matches the user's account before using the skill. <br>
+## Use Case:
 
+External users use this skill to compare food intake with Garmin calorie expenditure for today, yesterday, or a specified date, and to receive a daily summary on a schedule when explicitly configured.
 
-## Reference(s): <br>
-- [Daily Calorie Balance on ClawHub](https://clawhub.ai/lvzaiyi-afk/daily-calorie-balance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style daily summary with optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print a manual summary or send an automatic summary to a configured messaging recipient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Automatic mode can send sensitive diet and Garmin health summaries to a fixed QQBot recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enable the cron job or use --auto unless the recipient is user-owned and the user has explicitly opted in.
+
+Risk: Daily calorie summaries may expose personal health and diet patterns outside the local workspace.
+
+Mitigation: Preview output locally first, then configure a user-controlled destination before external delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lvzaiyi-afk/skills/daily-calorie-balance)
+- [Publisher profile](https://clawhub.ai/user/lvzaiyi-afk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style daily calorie summary with optional shell commands for manual runs and cron setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send the generated summary to a configured chat channel when run in automatic mode.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

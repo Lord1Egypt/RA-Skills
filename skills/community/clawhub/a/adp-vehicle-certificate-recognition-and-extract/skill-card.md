@@ -1,48 +1,65 @@
-## Description: <br>
-基于来也科技 ADP 平台的机动车整车出厂合格证智能识别与信息抽取 Skill，可从车辆合格证图片或扫描件中抽取 30+ 个关键字段并输出结构化 JSON。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于来也科技ADP平台的机动车整车出厂合格证智能识别与信息抽取Skill，支持合格证编号、发证日期、制造企业、车辆品牌、车辆型号、VIN、发动机信息、燃料种类、排放标准、外廓尺寸、总质量等30+关键字段抽取，并输出结构化JSON。
 
-## Publisher: <br>
-[laiye-adp](https://clawhub.ai/user/laiye-adp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial License Agreement <br>
+## Publisher:
 
+[laiye-adp](https://clawhub.ai/user/laiye-adp)
 
-## Use Case: <br>
-External users and developers use this skill to run Laiye ADP vehicle-certificate extraction from local files, URLs, Base64 content, folders, or async tasks. It is intended for workflows such as vehicle registration, used-car transactions, vehicle asset management, and structured certificate data entry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial License Agreement
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Laiye ADP API key and sends vehicle-certificate files to a cloud document-processing service. <br>
-Mitigation: Use only approved ADP accounts and endpoints, keep API keys out of prompts and logs, and confirm that uploaded documents are permitted for cloud processing. <br>
-Risk: The installation guidance includes one-line remote installer scripts as alternatives to package or release installation. <br>
-Mitigation: Prefer npm installation or verified release binaries, and review any remote installer script before execution. <br>
-Risk: The underlying CLI supports broader document-processing and custom-app commands beyond this vehicle-certificate workflow. <br>
-Mitigation: Limit agent access to the vehicle-certificate extraction app_id and avoid granting broad filesystem or arbitrary URL access unless needed. <br>
+## Use Case:
 
+External users, developers, and operations teams use this skill to extract structured fields from Chinese motor vehicle factory certificates for registration, used-car transactions, vehicle asset management, and downstream business-system integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laiye-adp/adp-vehicle-certificate-recognition-and-extract) <br>
-- [ADP China portal](https://adp.laiye.com/?utm_source=clawhub) <br>
-- [ADP global portal](https://adp-global.laiye.com/?utm_source=clawhub) <br>
-- [ADP CLI releases](https://github.com/laiye-ai/adp-cli/releases) <br>
-- [ADP CLI user guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc) <br>
-- [ADP Open API guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc) <br>
-- [ADP public cloud manual](https://laiye-tech.feishu.cn/wiki/UDYIwG42pisBbFkJI39ctpeKnWh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, json] <br>
-**Output Format:** [Markdown guidance with inline shell commands; ADP extraction results are structured JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Laiye ADP API key, ADP service endpoint, and the account-specific vehicle-certificate app_id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Vehicle-certificate data is processed through Laiye ADP's cloud service using API-key based access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when cloud processing is acceptable for the data, protect the API key, and confirm the configured ADP region matches the user's data-handling requirements.
+
+Risk: The documented install paths include curl-to-bash, PowerShell invoke-expression, and an unpinned global npm install.
+
+Mitigation: Prefer a pinned, verified release or reviewed local installer before allowing an agent to install or execute the CLI.
+
+Risk: The security scan warns against letting an agent use broader custom-app management commands unless that administration is intended.
+
+Mitigation: Limit agent execution to the vehicle-certificate extraction workflow and require explicit approval before custom application administration commands are used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laiye-adp/skills/adp-vehicle-certificate-recognition-and-extract)
+- [Laiye ADP China portal](https://adp.laiye.com/?utm_source=clawhub)
+- [Laiye ADP global portal](https://adp-global.laiye.com/?utm_source=clawhub)
+- [ADP CLI usage guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc)
+- [ADP Open API guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc)
+- [ADP public cloud manual](https://laiye-tech.feishu.cn/wiki/UDYIwG42pisBbFkJI39ctpeKnWh)
+- [ADP CLI releases](https://github.com/laiye-ai/adp-cli/releases)
+- [ADP CLI issues](https://github.com/laiye-ai/adp-cli/issues)
+- [Example extraction result](artifact/examples/extraction-result.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and structured JSON extraction results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Extraction results follow a field_key, field_name, field_values JSON structure and the bundled example contains 35 fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Helps an agent search for discounted online products, compare prices, recommend deals, and generate promotional purchase links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users search for discounted shopping products, compare prices, generate shopping recommendations, and create discount links.
 
-## Publisher: <br>
-[skyfile](https://clawhub.ai/user/skyfile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skyfile](https://clawhub.ai/user/skyfile)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to find discounted products, compare Taobao and JD options, summarize pricing and promotion details, and generate a purchase link after the user chooses a product. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send shopping queries, generated link requests, credential-derived user IDs, and possibly a device UUID to the configured service. <br>
-Mitigation: Use a custom username, avoid sensitive searches, review the configured service endpoint before use, and clear scripts/.credential_cache when finished. <br>
-Risk: The registration flow can cache credential-linked identifiers locally. <br>
-Mitigation: Keep the credential cache private, remove it after use on shared systems, and prefer a release that separates credentials from user IDs. <br>
+## Use Case:
 
+External users and shopping assistants use this skill to find discounted products, compare marketplace results, summarize price and promotion details, and generate a discount link after the user selects a product.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skyfile/online-shopping-discount) <br>
-- [Publisher profile](https://clawhub.ai/user/skyfile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown recommendations with inline shell command usage and generated shopping link details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product images, prices, promotion tags, platform labels, generated URLs or codes, and link expiration details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can send a stable device identifier or machine-id to a remote shopping service during registration when no username is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit throwaway username and install only if sharing shopping queries and account identifiers with the remote service is acceptable.
+
+Risk: Credentials are cached locally and may be exposed if the cache is printed or mishandled.
+
+Mitigation: Avoid printing the credential cache, keep the cache private, and clear or rotate cached credentials when they are no longer needed.
+
+Risk: Generated product prices, discounts, and promotion links can change or expire.
+
+Mitigation: Confirm final pricing and link validity on the merchant page before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skyfile/skills/online-shopping-discount)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with product summaries, price comparisons, promotion details, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product image URLs, generated promotion URLs or codes, expiration times, and error guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-Kling AI helps agents run Kling video generation, image generation, subject management, and account quota workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Kling AI videos and images, manage reusable subjects and voices, and check account quotas through Kling's API.
 
-## Publisher: <br>
-[klingai-dev](https://clawhub.ai/user/klingai-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[klingai-dev](https://clawhub.ai/user/klingai-dev)
 
-## Use Case: <br>
-Developers and external users use this skill to route agent requests to Kling AI for video generation, image generation, reusable subject management, and read-only account quota checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use account credentials to access a Kling account. <br>
-Mitigation: Install only when account connection is intended, use a trusted machine, and protect or revoke stored credentials when needed. <br>
-Risk: The skill can upload selected media to Kling AI. <br>
-Mitigation: Review media inputs before submission and avoid providing sensitive files unless the upload is intended. <br>
-Risk: Generation requests can spend Kling quota. <br>
-Mitigation: Confirm generation intent before running costly jobs and avoid speculative retries. <br>
-Risk: Subject management can delete Kling subjects. <br>
-Mitigation: List and confirm subject IDs before deletion. <br>
+## Use Case:
 
+Developers and creative teams use this agent skill to generate videos and images with Kling AI, manage reusable subjects and voices, and review account quotas.
 
-## Reference(s): <br>
-- [Kling AI Skill on ClawHub](https://clawhub.ai/klingai-dev/klingai) <br>
-- [Kling AI Developer Docs (CN)](https://app.klingai.com/cn/dev/document-api) <br>
-- [Kling AI Developer Docs (Global)](https://kling.ai/document-api/quickStart/productIntroduction/overview) <br>
-- [API Reference](reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown and CLI output with local file paths, task IDs, and links when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit API calls that return generated media files after polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad activation wording may lead the skill to be selected for loosely related requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when the user clearly requests a Kling task, and clarify ambiguous requests before acting.
+
+Risk: The security guidance notes that device metadata may be stored during account binding without clear disclosure.
+
+Mitigation: Review Kling's binding and privacy terms before binding, and avoid binding from shared devices.
+
+Risk: Generation tasks incur charges and send prompts and reference media to Kling AI.
+
+Mitigation: Submit only when the user has clearly requested generation and understands the charges and media transfer.
+
+## Reference(s):
+
+- [Kling AI API documentation](https://klingai.com/document-api/)
+- [Kling AI API authentication](https://klingai.com/document-api/api/get-started/authentication.md)
+- [ClawHub skill release](https://clawhub.ai/klingai-dev/skills/klingai)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Video, Images, Text, Configuration instructions]
+
+**Output Format:** [Generated media files, quota and task responses, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation tasks are billable; media outputs can be downloaded locally.]
+
+## Skill Version(s):
+
+2.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

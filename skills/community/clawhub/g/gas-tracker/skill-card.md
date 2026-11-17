@@ -1,44 +1,57 @@
-## Description: <br>
-Monitor current Ethereum gas prices (Slow/Standard/Fast/Instant tiers) with Gwei values and estimated confirmation times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor current Ethereum gas prices across Slow, Standard, Fast, and Instant tiers with Gwei values, estimated confirmation times, gas alerts, JSON output, and public API fallbacks.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers, operators, and external users use this skill to check current Ethereum gas prices, assess network congestion, and configure simple threshold alerts before transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes live network requests to public Ethereum gas APIs. <br>
-Mitigation: Run it only where outbound network access to the disclosed endpoints is acceptable, and use endpoint allowlisting in locked-down environments. <br>
-Risk: Automation that depends on alert results may behave incorrectly if the alert threshold or exit-code behavior is misunderstood. <br>
-Mitigation: Test the alert threshold and exit-code behavior before relying on the skill in cron jobs or transaction workflows. <br>
+## Use Case:
 
+External users and developers use this skill to check Ethereum network gas conditions, compare fee tiers, request machine-readable gas data, or script gas threshold checks before non-urgent transaction workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fuzzyb33s/skills/gas-tracker) <br>
-- [Ethereum PublicNode RPC](https://ethereum.publicnode.com) <br>
-- [Blockscout Gas Oracle API](https://api.blockscout.com/api/v1/gasOracle) <br>
-- [EthGas Info API](https://ethgas.info/api/ethgas) <br>
-- [EthGas Watch API](https://api.ethgas.watch/api/gas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [CLI text report or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports Slow, Standard, Fast, and Instant gas tiers with Gwei values, estimated confirmation times, source, block number, timestamp, base fee, status, and alert messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Alert mode can report success even when standard gas is above the configured threshold, which may mislead scripts that depend on process exit status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the alert exit status for trading, swapping, or transaction submission decisions until the alert behavior is fixed; inspect the printed gas value or JSON output instead.
+
+Risk: Gas tiers and estimated confirmation times are derived from public API data and local tier heuristics, so they may be stale, unavailable, or only approximate.
+
+Mitigation: Treat results as informational and cross-check current network conditions before submitting time-sensitive or high-value transactions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fuzzyb33s/skills/gas-tracker)
+- [Ethereum PublicNode RPC](https://ethereum.publicnode.com)
+- [Blockscout Gas Oracle API](https://api.blockscout.com/api/v1/gasOracle)
+- [ethgas.info API](https://ethgas.info/api/ethgas)
+- [ethgas.watch API](https://api.ethgas.watch/api/gas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [CLI text report or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports gas tiers, estimated confirmation times, source, timestamp, block number, base fee when available, and threshold alert messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

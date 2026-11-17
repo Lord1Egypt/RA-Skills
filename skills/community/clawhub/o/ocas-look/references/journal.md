@@ -2,7 +2,7 @@
 
 Look produces journals per spec-ocas-journal.md v1.3. Write a journal at the end of every run. Runs missing journals are invalid.
 
-Journal path: `~/openclaw/journals/ocas-look/YYYY-MM-DD/{run_id}.json`
+Journal path: `{agent_root}/commons/journals/ocas-look/YYYY-MM-DD/{run_id}.json`
 
 Written atomically (write to `.tmp`, then rename). Never edit after writing.
 

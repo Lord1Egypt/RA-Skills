@@ -1,40 +1,48 @@
-## Description: <br>
-Free basic version that extracts actionable tasks from meeting minutes and reserves premium upgrade hooks for deeper action decomposition and project tracker export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free basic version that extracts actionable tasks from meeting minutes. Reserves premium upgrade hooks for deeper action decomposition and project tracker export.
 
-## Publisher: <br>
-[wingogx](https://clawhub.ai/user/wingogx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wingogx](https://clawhub.ai/user/wingogx)
 
-## Use Case: <br>
-Developers and productivity-focused users can use this skill to turn meeting notes into a small structured task list with assignee, due-date, and priority hints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill output can include a paid-upgrade link containing the supplied user_id. <br>
-Mitigation: Treat payment links as untrusted unless the destination is recognized, and review the configured payment URL before use. <br>
-Risk: Meeting notes may contain sensitive business or personal information. <br>
-Mitigation: Use the skill only with notes you are comfortable sharing with the local skill publisher's code and review inputs before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SkillPay API Contract](references/skillpay-api-contract.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wingogx/meeting-minutes-task-extractor) <br>
+## Use Case:
 
+External users and teams use this skill to turn meeting notes into a short task list with assignee and due-date hints, while preserving reserved upgrade hooks for deeper task decomposition and tracker export.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON object printed by a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 5 free-tier tasks with assignee, due-date, and priority fields, plus an upgrade object.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Task output includes a premium-upgrade payment link that can contain the provided user_id.
+
+Mitigation: Review SkillPay payment URL environment configuration before use, especially in shared deployments.
+
+## Reference(s):
+
+- [SkillPay API Contract](references/skillpay-api-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [JSON from a Python command-line script, with task fields and premium-upgrade metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Free tier returns up to 5 extracted tasks with assignee, due-date, and priority fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

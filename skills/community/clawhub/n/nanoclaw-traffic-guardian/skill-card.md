@@ -1,45 +1,62 @@
-## Description: <br>
-NanoClaw runtime traffic monitoring baseline for host-side proxy inspection with container-safe MCP and IPC status surfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NanoClaw runtime traffic monitoring baseline for host-side proxy inspection with container-safe MCP and IPC status surfaces.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0-or-later <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Developers and security engineers use this skill as a NanoClaw specification baseline for opt-in host-side traffic monitoring, redacted findings, and container-safe MCP or IPC status surfaces. This release documents the intended architecture and safety contract rather than shipping an active monitor. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future implementations could expose raw traffic, secrets, or CA private key material through logs, containers, or MCP responses. <br>
-Mitigation: Keep CA private keys on the host, redact snippets before persistence or MCP responses, and return only bounded findings and status. <br>
-Risk: HTTPS inspection and proxying can affect operator trust boundaries if enabled implicitly. <br>
-Mitigation: Make monitoring opt-in, require deliberate per-runtime trust configuration, and avoid automatic system CA installation. <br>
-Risk: This version is a specification scaffold and may be mistaken for an active traffic monitor. <br>
-Mitigation: Verify release artifacts before installation and treat the package as implementation guidance until active monitor code is added and tested. <br>
+## Use Case:
 
+Developers and security engineers use this scaffold to implement opt-in NanoClaw runtime traffic monitoring for host-managed proxy inspection, redacted findings, and container-safe MCP status surfaces.
 
-## Reference(s): <br>
-- [NanoClaw Traffic Guardian README](artifact/README.md) <br>
-- [NanoClaw Traffic Guardian Specification](artifact/SPEC.md) <br>
-- [ClawSec homepage](https://clawsec.prompt.security) <br>
-- [ClawHub skill page](https://clawhub.ai/davida-ps/nanoclaw-traffic-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON schema examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Specification scaffold; no active runtime monitoring code is shipped in this version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1-beta2 (source: frontmatter, skill.json, CHANGELOG, server release evidence) <br>
+Risk: Readers may mistake this scaffold for a finished runtime monitor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a specification baseline until proxy, MCP, IPC, tests, and release controls are implemented and reviewed.
+
+Risk: Future HTTPS inspection could expose CA private key material or raw traffic to containers.
+
+Mitigation: Keep CA keys host-side, require explicit per-runtime trust configuration, and expose only redacted status and findings through container-facing surfaces.
+
+Risk: Future monitoring could persist sensitive request or response snippets.
+
+Mitigation: Redact secrets before writing JSONL findings or returning MCP responses, and keep scan byte limits bounded and configurable.
+
+Risk: Automatic trust-store changes or blocking behavior could disrupt operator environments.
+
+Mitigation: Keep monitoring opt-in, detect-and-log by default, avoid automatic system CA installation, and leave blocking out of the first implementation.
+
+## Reference(s):
+
+- [ClawSec homepage](https://clawsec.prompt.security)
+- [NanoClaw Traffic Guardian page](https://clawhub.ai/davida-ps/skills/nanoclaw-traffic-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Spec scaffold only; this release does not include active proxy, persistence, or runtime enforcement code.]
+
+## Skill Version(s):
+
+0.0.1-beta2 (source: frontmatter, skill.json, changelog, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

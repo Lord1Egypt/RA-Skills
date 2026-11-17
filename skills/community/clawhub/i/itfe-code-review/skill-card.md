@@ -1,41 +1,57 @@
-## Description: <br>
-Expert code review of current git changes with a senior engineer lens. Detects SOLID violations, security risks, and proposes actionable improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert code review of current git changes with a senior engineer lens. Detects SOLID violations, security risks, and proposes actionable improvements.
 
-## Publisher: <br>
-[yorickshan](https://clawhub.ai/user/yorickshan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yorickshan](https://clawhub.ai/user/yorickshan)
 
-## Use Case: <br>
-Developers and engineers use this skill to review current git changes before merge, focusing on SOLID principles, architecture, removal candidates, security, reliability, performance, error handling, and boundary conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Simplified Chinese output, which may be unsuitable for multilingual teams or tasks where source-language preservation matters. <br>
-Mitigation: Install only when Simplified Chinese review output fits the workflow, or revise the skill to treat Chinese as a default preference rather than an absolute rule. <br>
+## Use Case:
 
+Developers and engineers use this skill to review current git changes for SOLID, architecture, security, reliability, performance, error handling, and boundary-condition issues. It produces a review-first report in Simplified Chinese and waits for explicit confirmation before implementing changes.
 
-## Reference(s): <br>
-- [Code Quality Checklist](references/code-quality-checklist.md) <br>
-- [Removal and Iteration Plan Template](references/removal-plan.md) <br>
-- [Security and Reliability Checklist](references/security-checklist.md) <br>
-- [SOLID Smell Prompts](references/solid-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown review report with optional inline code comments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to be in Simplified Chinese and include severity-ranked findings plus next-step options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill forces review reports and follow-up prompts to Simplified Chinese.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when Simplified Chinese output fits the review workflow.
+
+Risk: Code review findings may be incomplete or need project-specific validation.
+
+Mitigation: Review suggested findings before acting and run the relevant tests, security checks, and deployment validation for the changed code.
+
+## Reference(s):
+
+- [Code Quality Checklist](references/code-quality-checklist.md)
+- [Removal and Iteration Plan Template](references/removal-plan.md)
+- [Security and Reliability Checklist](references/security-checklist.md)
+- [SOLID Smell Prompts](references/solid-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/yorickshan/skills/itfe-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown review report in Simplified Chinese with optional inline code-comment blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review-only by default; implementation requires explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

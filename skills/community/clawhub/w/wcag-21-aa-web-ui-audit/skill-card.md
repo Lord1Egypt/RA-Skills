@@ -1,47 +1,61 @@
-## Description: <br>
-Audit web UI for WCAG 2.1 Level AA and produce a remediation backlog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits web UI for WCAG 2.1 Level AA and produces accessibility findings, conformance guidance, and a remediation backlog.
 
-## Publisher: <br>
-[nicolas-m-design](https://clawhub.ai/user/nicolas-m-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nicolas-m-design](https://clawhub.ai/user/nicolas-m-design)
 
-## Use Case: <br>
-Developers, designers, QA teams, and accessibility reviewers use this skill to scope WCAG 2.1 Level A and AA web UI audits, find accessibility gaps, and turn findings into an engineering remediation backlog. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The optional scanner can be pointed at arbitrary user-provided URLs. <br>
-Mitigation: Run it only against sites the user owns or is authorized to test. <br>
-Risk: Generated accessibility reports and axe output can include DOM snippets from private or authenticated pages. <br>
-Mitigation: Protect generated reports as sensitive project artifacts and avoid sharing them outside the authorized review group. <br>
-Risk: Automated axe results are only a baseline and may miss manual WCAG conformance issues. <br>
-Mitigation: Use the manual keyboard, visual, zoom/reflow, forms, semantics, ARIA, and status-message checks before making conformance decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicolas-m-design/wcag-21-aa-web-ui-audit) <br>
-- [WCAG 2.1 Level A + AA Success Criteria](docs/wcag21-aa-success-criteria.md) <br>
-- [UI Component Checklists](docs/ui-component-checklists.md) <br>
-- [Audit Report Template](templates/audit-report-template.md) <br>
-- [Finding Template](templates/finding-template.md) <br>
-- [Remediation Backlog Template](templates/remediation-backlog-template.md) <br>
-- [Optional axe + Playwright runner](scripts/run_axe_playwright.js) <br>
+## Use Case:
 
+Developers, designers, QA teams, and accessibility reviewers use this skill to audit web UI flows against WCAG 2.1 Level A and AA, distinguish confirmed implementation issues from design-time risks, and prepare remediation work with acceptance criteria and verification steps.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown audit reports and remediation backlogs, with optional JSON and Markdown axe baseline outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses explicit scope assumptions, WCAG success-criteria mapping, severity labels, acceptance criteria, and verification steps; optional automation writes outputs/axe-results.json and outputs/axe-summary.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional automation script can run a local browser against user-provided URLs.
+
+Mitigation: Use trusted target URLs, avoid attacker-supplied URL lists, and avoid scanning from privileged internal networks unless that access is intended.
+
+Risk: Optional npm dependencies are required for axe and Playwright scanning.
+
+Mitigation: Review and pin playwright and @axe-core/playwright dependencies before installing them in the audit environment.
+
+Risk: Automated axe output is only a baseline and can miss manual WCAG issues.
+
+Mitigation: Treat automated results as supporting evidence and complete the skill's keyboard, visual, reflow, forms, semantics, and status-message review steps before reporting findings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicolas-m-design/skills/wcag-21-aa-web-ui-audit)
+- [UI Component Checklists](docs/ui-component-checklists.md)
+- [WCAG 2.1 Level A + AA Success Criteria](docs/wcag21-aa-success-criteria.md)
+- [Audit Report Template](templates/audit-report-template.md)
+- [Finding Template](templates/finding-template.md)
+- [Remediation Backlog Template](templates/remediation-backlog-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown audit reports and remediation backlog content, with optional JSON and Markdown axe baseline files when the local Playwright script is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The optional automation path writes outputs/axe-results.json and outputs/axe-summary.md; manual WCAG review remains required for conformance guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

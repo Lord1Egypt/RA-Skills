@@ -1,46 +1,61 @@
-## Description: <br>
-A design-language assistant for learning, applying, critiquing, and theming Ant Design UIs with its design values, principles, visual language, v5 tokens, and supporting design-science rationale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A design-language assistant for Ant Design (antd) that helps agents teach, apply, critique, compare, and theme enterprise UIs using Ant Design values, principles, visual specs, v5 tokens, and design-science rationale.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill to explain Ant Design rules, apply them to UI or theme work, critique screens, and compare Ant Design with related design systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Version-sensitive Ant Design guidance may become inaccurate as Ant Design evolves. <br>
-Mitigation: Verify exact component, token, and design-system facts against current Ant Design documentation when version accuracy matters. <br>
-Risk: The included TypeScript theme is sample code that may not match a project's production requirements. <br>
-Mitigation: Review and adapt the theme tokens and component overrides before copying them into an application. <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to answer Ant Design design-language questions, review UIs, generate or adjust Ant Design themes, and compare antd choices with other design systems.
 
-## Reference(s): <br>
-- [Ant Design Values & Principles](references/design-values-principles.md) <br>
-- [Ant Design Visual Language](references/visual-language.md) <br>
-- [Ant Design v5 Design Tokens & Theming](references/design-tokens.md) <br>
-- [Psychology & Design Science](references/psychology-design-science.md) <br>
-- [Ant Design vs Other Design Languages](references/comparison.md) <br>
-- [Ant Design UI Review Checklist](assets/review-checklist.md) <br>
-- [Ant Design v5 Theme Example](assets/theme.example.ts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with optional TypeScript and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include UI review findings, design-system rationale, comparison guidance, and Ant Design theme examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be invoked for generic UI critique or design-system requests even when the user did not intend to apply Ant Design.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask whether Ant Design guidance should govern the answer when the user is working across multiple design systems or has not named antd.
+
+Risk: Theme examples and design recommendations may not fit a product's accessibility, brand, or implementation constraints without review.
+
+Mitigation: Review generated themes and UI critiques against project accessibility requirements, brand standards, and the target Ant Design version before adoption.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/junwugit/skills/antd-design-language)
+- [Ant Design design spec](https://ant.design/docs/spec)
+- [Ant Design - Values & Principles](references/design-values-principles.md)
+- [Ant Design - Visual Language](references/visual-language.md)
+- [Ant Design v5 - Design Tokens & Theming](references/design-tokens.md)
+- [Design-Science & Psychology Behind the Rules](references/psychology-design-science.md)
+- [Ant Design vs Other Design Languages](references/comparison.md)
+- [Ant Design UI Review Checklist](assets/review-checklist.md)
+- [Ant Design v5 Theme Example](assets/theme.example.ts)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown prose with TypeScript and TSX code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include UI critique findings in issue -> principle -> psychological cost -> fix format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

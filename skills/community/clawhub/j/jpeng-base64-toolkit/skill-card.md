@@ -1,39 +1,54 @@
-## Description: <br>
-Provides base64 encoding, decoding, validation, URL-safe conversion, buffer support, and file encode/decode utilities for data handling workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides base64 encoding, decoding, and validation utilities for data handling and transformation.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and agents use this skill to encode, decode, validate, detect, and transform base64 data in local data handling workflows, including URL-safe strings, JSON payloads, buffers, data URIs, and files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: File encode and decode helpers can read from or write to paths supplied by an agent. <br>
-Mitigation: Only allow file operations on intended inputs and destinations; do not point the skill at secrets, system files, or important output paths unless that access is explicitly intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to encode, decode, validate, and detect Base64 or URL-safe Base64 data in transformation workflows. It can also help convert buffers, JSON objects, data URIs, and trusted local files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-base64-toolkit) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Code] <br>
-**Output Format:** [JavaScript module exports and CLI text or JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [File helpers can read from or write to local paths supplied by the caller.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: File decode helpers can overwrite an existing local file when given its path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide explicit trusted paths and avoid decodeToFile targets that point to important existing files unless overwrite is intended.
+
+Risk: File encode helpers can read any local path supplied by the caller.
+
+Mitigation: Use only trusted, intended input paths when encoding files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-base64-toolkit)
+- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, files]
+
+**Output Format:** [Plain text, JSON, JavaScript module exports, and file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [File helpers read from and write to caller-provided local paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

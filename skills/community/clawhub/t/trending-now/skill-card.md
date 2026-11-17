@@ -1,44 +1,62 @@
-## Description: <br>
-Monitor internet and social media trends with heartbeat topic watchlists, freshness scoring, and concise alerts on what changed and why it matters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor internet and social media trends with heartbeat topic watchlists, freshness scoring, and concise alerts on what changed and why it matters.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and teams use this skill to monitor chosen topics across public internet and social sources, validate trend signals, and receive concise alerts only when meaningful changes occur. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recurring public web lookups can expose monitored topic keywords to external services. <br>
-Mitigation: Use explicit-only mode when proactive monitoring is not wanted, keep watchlists narrow, and avoid secrets, private credentials, or highly sensitive topics in ~/trending-now. <br>
-Risk: Single-source spikes or stale public posts can produce misleading trend alerts. <br>
-Mitigation: Require timestamped evidence from at least two independent source families and record uncertainty before sending an alert. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/trending-now) <br>
-- [Setup](setup.md) <br>
-- [Heartbeat Template](HEARTBEAT.md) <br>
-- [Research Protocol](research-protocol.md) <br>
-- [Source Map](source-map.md) <br>
-- [Message Format](message-format.md) <br>
+## Use Case:
 
+External users and teams use this skill to monitor selected topics across public internet and social sources, score emerging signals, and receive concise alerts only when there is decision-relevant movement.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and concise text alerts with optional inline shell commands for local setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return HEARTBEAT_OK when no actionable trend change is detected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Topic keywords are sent to public trend and social sources during live monitoring.
+
+Mitigation: Set explicit topics, source boundaries, geographies, languages, active hours, and avoid sensitive or confidential query terms.
+
+Risk: Local Markdown memory under ~/trending-now may be used to store monitoring preferences and run history.
+
+Mitigation: Do not store credentials or secrets in the memory files, and keep local file permissions restricted.
+
+Risk: Trend alerts can be misleading when based on stale stories, repost loops, or a single source family.
+
+Mitigation: Require timestamped evidence, cross-source confirmation, freshness scoring, and explicit uncertainty before alerting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/trending-now)
+- [Skill Homepage](https://clawic.com/skills/trending-now)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+- [X](https://x.com)
+- [Reddit](https://www.reddit.com)
+- [Google News](https://news.google.com)
+- [Google Trends](https://trends.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown alerts, setup guidance, local file templates, and occasional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return HEARTBEAT_OK exactly when no actionable change is detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

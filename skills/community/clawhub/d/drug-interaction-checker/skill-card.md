@@ -1,45 +1,60 @@
-## Description: <br>
-Checks drug-drug interactions across multiple medications and reports severity, mechanisms, effects, recommendations, summaries, and warnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks multiple medications for drug-drug interactions and reports severity, mechanisms, effects, warnings, and management guidance.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers use this skill to screen medication lists for known or class-based drug interaction signals before confirming any concern with a pharmacist or clinician. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce specific medication-change guidance that may be mistaken for medical advice. <br>
-Mitigation: Treat results as educational screening only and confirm interaction concerns with a pharmacist or clinician before changing, stopping, starting, or combining medications. <br>
-Risk: The local interaction data may be incomplete or not account for patient-specific factors. <br>
-Mitigation: Use the output as a prompt for professional review, especially for renal or hepatic impairment, pregnancy, age-related risk, comorbidities, and complex medication lists. <br>
-Risk: The installation path includes a pip dependency step. <br>
-Mitigation: Install and run the skill in a virtual environment before use. <br>
+## Use Case:
 
+External users, clinicians, pharmacists, and developers can use this skill to screen medication lists for known drug-drug interactions and receive severity-ranked educational guidance. Medication decisions should be verified with a licensed clinician or pharmacist.
 
-## Reference(s): <br>
-- [Drug Interaction Checker ClawHub release](https://clawhub.ai/AIPOCH-AI/drug-interaction-checker) <br>
-- [interactions_db.json](artifact/references/interactions_db.json) <br>
-- [cyp450_substrates.json](artifact/references/cyp450_substrates.json) <br>
-- [Drug Interaction Severity Classification Criteria](artifact/references/severity_criteria.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Text or JSON interaction reports; documentation also describes markdown output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports checked drugs, pairwise interactions, severity counts, warnings, mechanisms, effects, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can produce actionable medication guidance from a limited local database and does not account for patient-specific factors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as an educational screening aid and verify every medication decision with a pharmacist or clinician.
+
+Risk: The documented dependency install introduces avoidable install-time risk.
+
+Mitigation: Install only in an isolated environment and avoid the documented dependency install unless the package is revised to remove or pin unnecessary requirements.
+
+Risk: Documented output options differ from the implemented command-line options.
+
+Mitigation: Validate the desired output mode before operational use and rely on supported text or JSON output unless the package is updated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/drug-interaction-checker)
+- [Drug Interaction Database](artifact/references/interactions_db.json)
+- [Severity Classification Criteria](artifact/references/severity_criteria.md)
+- [CYP450 Substrate Data](artifact/references/cyp450_substrates.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON command output with severity summaries, interaction details, warnings, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script exits with nonzero status when major or critical interactions are detected.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; skill frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Inspect, explain, validate, and convert ESRI Shapefile datasets, including sidecar files, CRS metadata, DBF encoding, schema limits, multipart geometry issues, and migration guidance to GeoPackage or GeoJSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect, explain, validate, and convert ESRI Shapefile datasets, including `.shp/.shx/.dbf/.prj` sidecar requirements, CRS detection, field-name/type limits, encoding problems, multipart geometry issues, and migration guidance to GeoPackage or GeoJSON.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-GIS developers, data engineers, and analysts use this skill to troubleshoot Shapefile packaging, CRS metadata, DBF encoding, schema limits, multipart geometry issues, and migration choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversion or repair steps can overwrite or separate required Shapefile sidecar files. <br>
-Mitigation: Confirm input and output paths, keep the original .shp, .shx, .dbf, and .prj files together, and write changed outputs to a new path unless the user explicitly asks otherwise. <br>
-Risk: Missing CRS or encoding metadata can produce misplaced geometries or garbled attributes. <br>
-Mitigation: Treat missing .prj and .cpg files as uncertainty, confirm CRS and encoding with the data source when accuracy matters, and document assumptions before conversion. <br>
+## Use Case:
 
+Developers, GIS practitioners, and data engineers use this skill to inspect Shapefile sidecar completeness, diagnose CRS, DBF encoding, schema, and geometry issues, and plan safer migration to GeoPackage or GeoJSON.
 
-## Reference(s): <br>
-- [Shapefile Patterns](artifact/references/patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jvy/shp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with checklists and optional command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend safe QGIS handoff commands and favors writing outputs to a new path instead of mutating originals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Suggested qgis commands for conversion or repair could alter real datasets or produce incorrect outputs if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution and prefer writing to new output paths instead of mutating source files in place.
+
+Risk: Missing CRS or encoding metadata can lead to misplaced features or garbled attribute text if guessed incorrectly.
+
+Mitigation: Confirm sidecar files, CRS source, and encoding evidence before assigning CRS values or converting datasets.
+
+## Reference(s):
+
+- [Shapefile Patterns](references/patterns.md)
+- [ClawHub skill page](https://clawhub.ai/jvy/skills/shp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route deterministic conversion or repair execution to qgis and should prefer new output paths for dataset safety.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

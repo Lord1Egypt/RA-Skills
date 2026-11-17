@@ -1,46 +1,61 @@
-## Description: <br>
-Install Alibaba Cloud Agent Toolkit end-to-end by verifying and setting up uv, Alibaba Cloud CLI, authentication, CLI plugins, MCP Server Core, bearer token exchange, and the openplugin toolkit install. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs the Alibaba Cloud Agent Toolkit end to end by checking prerequisites, authentication, CLI plugins, MCP Server Core, bearer-token exchange, and then using the current client's supported plugin mechanism.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare an Alibaba Cloud environment for the Alibaba Cloud Agent Toolkit. It guides prerequisite checks, user-approved local installs, Alibaba Cloud authentication, MCP Server Core setup, bearer-token verification, and final toolkit installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill configures Alibaba Cloud tooling and can create or verify cloud-side resources using the user's existing credentials. <br>
-Mitigation: Install and run it only when Alibaba Cloud Agent Toolkit setup is expected, and review each proposed install or cloud write command before approving execution. <br>
-Risk: The bearer-token check uses a non-standard hardcoded RamOAuth GenerateAccessToken command with an internal scope. <br>
-Mitigation: Review the command exactly as presented before allowing it to run, verify it matches the intended Alibaba Cloud setup flow, and confirm the active RAM identity with sts get-caller-identity. <br>
-Risk: Some prerequisite installers use pipe-to-shell style commands. <br>
-Mitigation: Prefer vendor-documented installers where possible and require explicit user approval before executing any local install command. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare Alibaba Cloud CLI and MCP prerequisites, verify authentication and token exchange, and install the Alibaba Cloud Agent Toolkit for their local agent client.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-agent-toolkit-install) <br>
-- [uv installer](https://astral.sh/uv/install.sh) <br>
-- [Alibaba Cloud CLI installer](https://aliyuncli.alicdn.com/install.sh) <br>
-- [Alibaba Cloud RAM console](https://ram.console.aliyun.com/) <br>
-- [Alibaba Cloud RAM applications console](https://ram.console.aliyun.com/applications?activeTab=ThirdParty) <br>
+### Deployment Geography for Use:
 
+Global; one cloud-resource check/create step targets Alibaba Cloud region cn-hangzhou.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user approval before local installs, CLI plugin installs, cloud-side writes, and final toolkit installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill installs persistent local CLI tools and agent plugins from remote sources that may change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before install steps and prefer version-pinned releases with published checksums or signatures.
+
+Risk: Some setup steps can modify Alibaba Cloud account resources or depend on RAM permissions.
+
+Mitigation: Explain the affected cloud resource before execution, verify the active identity, and use the documented RAM policy guidance when permission errors occur.
+
+Risk: Running installer commands from an elevated shell can increase local system impact.
+
+Mitigation: Avoid elevated shells unless required and review each installer command before approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-agent-toolkit-install)
+- [Publisher profile](https://clawhub.ai/user/sdk-team)
+- [RAM Policies](references/ram-policies.md)
+- [Alibaba Cloud Agent Toolkit repository](https://github.com/aliyun/alibabacloud-agent-toolkit.git)
+- [RAM Applications Console](https://ram.console.aliyun.com/applications?activeTab=ThirdParty)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confirmation-gated local install, cloud-resource creation, and plugin installation steps.]
+
+## Skill Version(s):
+
+0.0.2 (source: evidence release version and references/manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

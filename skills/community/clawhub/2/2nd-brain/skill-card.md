@@ -1,39 +1,53 @@
-## Description: <br>
-Personal knowledge base for capturing and retrieving information about people, places, restaurants, games, technology, events, media, ideas, and organizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal knowledge base for capturing and retrieving information about people, places, restaurants, games, tech, events, media, ideas, and organizations.
 
-## Publisher: <br>
-[coderaven](https://clawhub.ai/user/coderaven) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[coderaven](https://clawhub.ai/user/coderaven)
 
-## Use Case: <br>
-External users and agent operators use this skill to maintain a durable personal knowledge base of named entities, preferences, interactions, notes, and related attachments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can preserve personal notes and original media attachments in a durable brain workspace. <br>
-Mitigation: Install only when durable retention is desired, review saved entries and attachments periodically, and avoid storing sensitive IDs, financial records, private third-party media, or confidential PDFs unless retention is intentional. <br>
-Risk: The optional QMD backend requires installing software from an external repository. <br>
-Mitigation: Use the built-in OpenClaw memory tools by default, and enable QMD only after independently trusting that repository and install path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QMD optional search backend](https://github.com/tobi/qmd) <br>
+## Use Case:
 
+External users and agents use this skill to maintain a persistent personal knowledge base for named entities, preferences, interactions, and related attachments. It guides agents to search existing memory, create or update Markdown entries, and preserve original media when users provide supporting files.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown entries, attachment indexes, file operations, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update durable memory files and save original attachments under the configured brain workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist personal details and original media files in a local knowledge base.
+
+Mitigation: Install only when a persistent local brain is intended, use explicit save and delete instructions, avoid storing sensitive third-party information without consent, and periodically clean the brain and attachments folders.
+
+Risk: The optional QMD backend setup includes an unpinned global install step.
+
+Mitigation: Skip the optional QMD install unless the dependency can be pinned, verified, and installed in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coderaven/skills/2nd-brain)
+- [QMD optional backend](https://github.com/tobi/qmd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, concise text guidance, and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent brain entries and attachment indexes under the configured OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

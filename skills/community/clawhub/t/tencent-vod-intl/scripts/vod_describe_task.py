@@ -121,7 +121,7 @@ except ImportError:
 
 
 def get_credential():
-    """Retrieve Tencent Cloud credentials"""
+    """Get Tencent Cloud credentials. Falls back to loading from dotenv files when environment variables are missing."""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
     if not secret_id or not secret_key:

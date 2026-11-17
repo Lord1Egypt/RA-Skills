@@ -1,41 +1,54 @@
-## Description: <br>
-Print, scan, copy, and job control for the Epson WF-2250 and other network-attached Epson inkjets via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Print, scan, copy, and job control for the Epson WF-2250 and other network-attached Epson inkjets via MCP.
 
-## Publisher: <br>
-[earlvanze](https://clawhub.ai/user/earlvanze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earlvanze](https://clawhub.ai/user/earlvanze)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent diagnose a network-attached Epson printer, submit text, file, or raw print jobs, and manage Windows spooler jobs through an MCP endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent access can control a real printer, including raw print payloads and job cancellation. <br>
-Mitigation: Install only for trusted users, require explicit confirmation before printing or canceling jobs, and restrict cancellation to exact user-provided job IDs. <br>
-Risk: The MCP endpoint grants printer-control authority wherever it is configured. <br>
-Mitigation: Keep the endpoint private, use the bearer-token environment variable described by the skill, and limit access to intended Tailnet users. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an agent to an Epson printer MCP server for printing, diagnostics, printer status, and spooler job management.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/earlvanze/epson-mcp) <br>
-- [Epson MCP Endpoint](https://cyber.talpa-stargazer.ts.net/epson/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, shell commands, configuration] <br>
-**Output Format:** [MCP tool responses and Markdown setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return printer diagnostics, status summaries, job lists, and action results from the configured MCP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server-resolved release metadata) <br>
+Risk: The configured MCP endpoint could receive documents, raw print payloads, and printer job commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a server you control, verify the MCP server source and Docker Compose configuration, and avoid sending sensitive documents unless the endpoint operator and access controls are understood.
+
+Risk: Raw printing and spooler controls can cause unintended printer output or job cancellation.
+
+Mitigation: Use a rotatable bearer token, limit access to trusted users, and review requests before enabling raw printing or job-control operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earlvanze/skills/epson-mcp)
+- [Configured MCP endpoint](https://cyber.talpa-stargazer.ts.net/epson/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and MCP tool guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger printer actions or return printer diagnostics, status summaries, and job-control results through the configured MCP server.]
+
+## Skill Version(s):
+
+0.2.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

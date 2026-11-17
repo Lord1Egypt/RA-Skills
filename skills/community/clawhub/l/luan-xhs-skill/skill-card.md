@@ -1,47 +1,65 @@
-## Description: <br>
-End-to-end Xiaohongshu operations including positioning, topic research, content production, publish execution, and post-incident recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end Xiaohongshu operations including positioning, topic research, content production, publish execution, and post-incident recovery.
 
-## Publisher: <br>
-[zarflan](https://clawhub.ai/user/zarflan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zarflan](https://clawhub.ai/user/zarflan)
 
-## Use Case: <br>
-External creators and operators use this skill to plan Xiaohongshu account positioning, generate post ideas and copy, prepare or publish Xiaohongshu notes, manage comments, and recover from common publishing failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a reusable Xiaohongshu creator-session file and perform live posting actions. <br>
-Mitigation: Prefer dry-run or draft flows, and confirm the target account, media path, visibility, and post content before allowing publication. <br>
-Risk: Stored Xiaohongshu session data and displayed OpenClaw gateway tokens are sensitive. <br>
-Mitigation: Treat ~/.openclaw/workspace/xhs_user_info.json and gateway tokens as secrets, and avoid using the skill from shared workspaces. <br>
-Risk: The included OpenClaw gateway setup material can expose a token during setup or troubleshooting. <br>
-Mitigation: Only install when that setup is needed, restrict access to the local workspace, and avoid sharing logs or screenshots that include tokens. <br>
+## Use Case:
 
+External users, creators, and operations teams use this skill to plan, draft, publish, and review Xiaohongshu content across reusable account workflows. It also supports creator-platform login recovery, comment handling, visibility controls, scheduled publishing, and failure recovery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zarflan/luan-xhs-skill) <br>
-- [XHS Publish Flows](references/xhs-publish-flows.md) <br>
-- [XHS Runtime Rules](references/xhs-runtime-rules.md) <br>
-- [XHS Comment Ops](references/xhs-comment-ops.md) <br>
-- [XHS Evaluation Patterns](references/xhs-eval-patterns.md) <br>
-- [Xiaohongshu Creator Platform](https://creator.xiaohongshu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline commands and script-driven workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use saved Xiaohongshu creator sessions and browser automation scripts when the user authorizes publish or login flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5 (source: server release evidence and artifact/_meta.json) <br>
+Risk: The skill can publish content to a live Xiaohongshu creator account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or private visibility first, require explicit user intent before publishing, and confirm publication through the note manager rather than relying on a single success flag.
+
+Risk: Reusable Xiaohongshu login state is saved in plaintext.
+
+Mitigation: Treat ~/.openclaw/workspace/xhs_user_info.json as a credential, restrict file sharing, and avoid exposing logs or screenshots that include session paths, account state, or tokens.
+
+Risk: OpenClaw gateway setup may expose local tokens or broaden local automation access.
+
+Mitigation: Use the gateway only on trusted machines, protect gateway tokens, and review device or pairing prompts before approving access.
+
+Risk: Fallback publishing scripts may behave differently from the primary validated flow.
+
+Mitigation: Prefer the primary saved-session publish scripts and review the current creator-platform page state before using hard or draft fallback publishers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zarflan/skills/luan-xhs-skill)
+- [XHS Publish Flows](artifact/references/xhs-publish-flows.md)
+- [XHS Comment Ops](artifact/references/xhs-comment-ops.md)
+- [XHS Runtime Rules](artifact/references/xhs-runtime-rules.md)
+- [XHS Evaluation Patterns](artifact/references/xhs-eval-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with publish-ready copy, reply text, command examples, and script usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Xiaohongshu titles, body copy, comment replies, operational SOPs, browser automation commands, visibility settings, schedule settings, and generated cover image paths.]
+
+## Skill Version(s):
+
+0.2.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

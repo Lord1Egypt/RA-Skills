@@ -1,90 +1,34 @@
 # Troubleshooting
 
-## 1) No ISBN extracted
+## No ISBN extracted from a photo
 
-Symptoms:
-- `extract_isbn.py` returns `ok=false` with `no valid ISBN found`
+`extract_isbn.py` returns `ok=false` with `no valid ISBN found`.
 
-Checks:
-- Ensure barcode is visible and in focus.
-- Confirm at least one extraction path is installed:
-  - `zbarimg` or `pyzbar`
-  - OCR fallback (`pytesseract` + `tesseract` binary)
-- Run self-check:
+- Check the barcode is sharp and fills a good part of the frame; a photo of the back cover works best.
+- Run `PY {baseDir}/scripts/extract_isbn.py --diagnose-deps` to see which of `zbarimg`, `pyzbar`, `pytesseract` and `tesseract` are available. Install `zbar-tools` (Debian/Ubuntu) or `zbar` (Homebrew) for barcodes, `tesseract-ocr` for OCR.
+- If OCR times out, raise `BOOK_CAPTURE_TESSERACT_TIMEOUT_SECONDS`.
+- Otherwise ask the user for the ISBN or title and use `resolve_metadata.py`.
 
-```bash
-python skill/book-capture-obsidian/scripts/extract_isbn.py --self-check
-```
+## Metadata not found, or notes without a description
 
-## 2) Metadata not found
+- `warnings` lists each provider's answer. `openlibrary returned no entry` and `google books returned no items` are real misses; try a title lookup.
+- `cooling down` or `per-run request budget reached`: the guard paused Google. Keep the cache; resume after the reported wait and actual quota reset. Only selected providers may fill gaps; Google-only can leave metadata missing.
+- `google books quota limit (403)`: check the project's Books quota. Ordinary 400/403 can instead mean a bad request, disabled API or incompatible key restriction; inspect the Cloud console without logging the key. See [API requirements](configuration.md#metadata-providers-and-api-requirements).
+- `found no close title/author match`: candidates did not match; request an ISBN rather than choosing another book.
+- For stale/wrong cached metadata, verify the source then clear the cache only if needed. This also removes cooldown state: wait out any active quota pause first.
 
-Symptoms:
-- `resolve_metadata.py` returns `ok=false`
+## A note did not update
 
-Checks:
-- Verify ISBN is valid.
-- Confirm internet access for API requests.
-- Increase timeout if needed:
+- Check `created`, `updated` and `note_path` in the JSON.
+- Notes are matched by `isbn_13`, then `goodreads_book_id`. A note created by hand without either field is not matched; add `isbn_13` to its frontmatter.
+- Everything above `## User Notes` is regenerated on each run; write personal notes below that heading.
 
-```bash
-export BOOK_CAPTURE_HTTP_TIMEOUT_SECONDS=20
-```
+## The dashboard shows zero books
 
-- Change provider order:
+- `--notes-dir` (or `BOOK_CAPTURE_NOTES_DIR`) must point at the folder that holds the notes.
+- Status counts come from the `shelf` property. Custom shelf names can be mapped with `BOOK_CAPTURE_SHELVES_TO_READ`, `BOOK_CAPTURE_SHELVES_READING` and `BOOK_CAPTURE_SHELVES_READ`.
+- The tables need the Dataview community plugin in Obsidian.
 
-```bash
-export BOOK_CAPTURE_METADATA_PROVIDER_ORDER="openlibrary,google_books"
-```
+## The Goodreads import skips rows
 
-## 3) Notes not updating as expected
-
-Symptoms:
-- metadata changed but note content looks stale
-
-Checks:
-- Confirm write target (`BOOK_CAPTURE_VAULT_PATH`, `BOOK_CAPTURE_NOTES_DIR`).
-- Check script result fields `created`, `updated`, `preserved_user_content`.
-- Ensure auto-managed markers exist:
-  - `<!-- BOOK_CAPTURE:BEGIN AUTO -->`
-  - `<!-- BOOK_CAPTURE:END AUTO -->`
-
-## 4) CI fails on clean machine
-
-Symptoms:
-- `scripts/run_ci_local.sh` fails with `No module named pytest`
-
-Fix:
-
-```bash
-pip install -r requirements-dev.txt
-```
-
-Then rerun:
-
-```bash
-sh scripts/run_ci_local.sh
-```
-
-## 5) Security scan fails
-
-Symptoms:
-- `scripts/security_scan_no_pii.sh` finds secrets or personal data
-
-Fix:
-- Remove leaked values and replace with placeholders.
-- Remove hardcoded local paths.
-- Re-run scan until clean.
-
-## 6) Migration skips many rows
-
-Symptoms:
-- `migrate_goodreads_csv.py` reports high `skipped`
-
-Most common causes:
-- missing title
-- invalid or missing ISBN
-- malformed CSV columns
-
-Fix:
-- Validate CSV header names.
-- Keep dry-run enabled until row-level errors are under control.
+`errors` names the line and reason. A row without a title is always skipped. Encoding errors usually mean the file was re-saved in another program; export again from Goodreads.

@@ -1,45 +1,63 @@
-## Description: <br>
-Evaluate betting opportunities with line shopping, bankroll discipline, market checks, and risk filters before any stake is placed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate betting opportunities with line shopping, bankroll discipline, market checks, and risk filters before any stake is placed.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to evaluate betting tickets, compare prices, apply bankroll discipline, and decide whether to proceed, reduce size, wait, or pass. It is intended for informational betting analysis and local note tracking, not for placing wagers or bypassing legal, operator, or responsible-use controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Betting analysis may be mistaken for legal, financial, gambling-compliance, or personalized suitability advice. <br>
-Mitigation: Keep responses informational, avoid certainty or profit claims, and require the user to follow local law, operator rules, age restrictions, and responsible-use limits. <br>
-Risk: Local tracking under ~/betting/ could contain sensitive credentials or financial identity details if the user stores the wrong information there. <br>
-Mitigation: Use the local notes only for preferences, tickets, and market observations; keep credentials, account balances, payment details, KYC data, and recovery information out of the folder. <br>
-Risk: Stale odds, live-market latency, mismatched settlement rules, or unclear limits can make an edge estimate misleading. <br>
-Mitigation: Require current price, timestamp, exact line, settlement and void rules, limit or liquidity checks, and downgrade unclear tickets to wait or pass. <br>
-Risk: The skill could be misused for underage betting, self-exclusion workarounds, prohibited jurisdictions, loss chasing, or compliance evasion. <br>
-Mitigation: Refuse evasion or prohibited-use requests and stop at general information when legality, jurisdiction, age, or operator compliance is unclear. <br>
+## Use Case:
 
+External users use this skill to evaluate sports bets, props, parlays, exchanges, and prediction-style tickets with price math, market checks, bankroll discipline, and responsible-use boundaries before deciding whether to pass, wait, reduce size, or proceed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/betting) <br>
-- [Skill Homepage](https://clawic.com/skills/betting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown betting analysis memo with pricing, market checks, decision labels, and setup notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local notes under ~/betting/ when the user wants tracking; no extra binaries are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: The skill can produce betting analysis that users may mistake for legal, financial, gambling-compliance, or personalized suitability advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs informational, avoid certainty or income framing, and stop at general information when legality, age, jurisdiction, or operator compliance is unclear.
+
+Risk: Local betting notes under ~/betting/ may accumulate sensitive account, financial, or personal details if used carelessly.
+
+Mitigation: Store only practical betting preferences and ticket notes, review the files periodically, and avoid credentials, account balances, payment details, wallet recovery phrases, and KYC data.
+
+Risk: Stale odds, unmatched settlement rules, poor liquidity, correlation, or latency can make a ticket memo misleading.
+
+Mitigation: Require exact market details, timestamps, settlement rules, limits or liquidity, and kill conditions before producing any analytical sizing guidance.
+
+## Reference(s):
+
+- [ClawHub Betting skill page](https://clawhub.ai/ivangdavila/skills/betting)
+- [Skill homepage](https://clawic.com/skills/betting)
+- [Clean Ticket Protocol](artifact/workflow.md)
+- [Sizing and Price Math](artifact/sizing.md)
+- [Market Checks](artifact/market-checks.md)
+- [Red Flags](artifact/red-flags.md)
+- [Ticket Memo Template](artifact/ticket-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown betting analysis memo with probability math, market checks, decision labels, and setup guidance when local notes are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local user preferences, ticket notes, market observations, and archives under ~/betting/ when the user wants tracking]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

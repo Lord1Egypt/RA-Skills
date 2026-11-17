@@ -1,0 +1,96 @@
+name: gov-procurement-doc-assistant
+slug: gov-procurement-doc-assistant
+version: 1.1.0
+version_stage: GA
+display_name: 政府采购文件解读助手
+description: '政府采购/企业招标文件解读与深度分析助手。解读招标文件 6 大模块（项目信息/资格性/符合性/商务红黄预警/技术要求/废标项），提供价格分真实计算、Excel 6-Sheet 交付物、投标框架与研判摘要。疑似违规/差别待遇/废标条款调用 IMA 知识库（政府采购实务与合规，knowledge_base_id: 7463496212028405）引用具体法条做合规溯源（87/94/74 号令、财库〔2020〕46 号、国办发〔2025〕34 号）。不适用于合同审查、投标文件代写、围标串标建议。'
+author: "一线评标专家&ChesaraM"
+emoji: 📑
+license: MIT-0
+agent_created: true
+feedback:
+  channel: GitHub Issues
+  account: chesaram/my-skill-hub
+  note: 使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈。
+changelog:
+  - "1.0.0：初版发布，提供 6 大模块解读框架与红黄预警"
+  - "1.0.1：补齐模块三（符合性）和模块五（技术要求），价格分计算规范化"
+  - "1.1.0：新增功能速览与新手引导（A 适用性补强）；价格分计算改为'预检+真实计算'两段式交互（R 可靠性补强）；拆分 references 子文件，ima-kb 调用策略精细化（E 有效性补强）；自检清单与边界声明精炼（C 规范性补强）"
+metadata:
+  openclaw:
+    homepage: https://github.com/chesaram/my-skill-hub
+    triggers:
+      - pattern: 解读招标 / 拆解招标文件
+        description: 用户上传招标文件要求按 6 模块系统解读
+      - pattern: 标书解读 / 分析这份标书
+        description: 用户要求对单份或多份招标文件做结构化拆解
+      - pattern: 算价格分 / 价格分测算
+        description: 用户要求按公式做价格分情景测算与报价建议
+      - pattern: 提取废标条款 / 废标项清单
+        description: 用户要求列出标书中的废标/无效投标条款
+      - pattern: 出风险清单 / 出Excel清单
+        description: 用户要求导出结构化风险清单或 6-Sheet Excel
+      - pattern: 生成投标框架
+        description: 用户要求生成投标文件目录结构
+      - pattern: 投标研判 / 投标建议
+        description: 用户要求综合判断是否建议投标
+platforms:
+  clawhub:
+    name: gov-procurement-doc-assistant
+    displayName: 政府采购文件解读助手
+    slug: gov-procurement-doc-assistant
+    version: 1.1.0
+    description: Interpret government procurement / enterprise tender documents with a 6-module structured analysis (project info / qualification / compliance / commercial red-yellow warnings / technical requirements / rejection clauses). Provides price-score calculation, 6-Sheet Excel deliverable, bidding framework and decision summary. Calls IMA KB for compliance tracing.
+    triggers:
+      - Tender document interpretation
+      - Bid price calculation
+      - Rejection clause extraction
+      - Compliance red-yellow warning
+    emoji: 📑
+    tags:
+      - government-procurement
+      - tender-document
+      - bid-rejection
+      - price-score
+  skillhub:
+    name: gov-procurement-doc-assistant
+    displayName: 政府采购文件解读助手
+    description: 政府采购/企业招标文件解读助手。6 大模块结构化拆解，红黄预警，价格分真实计算，Excel 6-Sheet 交付物，投标研判摘要。IMA 知识库合规溯源。不代写投标文件。
+    version: 1.1.0
+    emoji: 📑
+    tags:
+      - 政府采购
+      - 招标文件解读
+      - 价格分测算
+  cocoloop:
+    name: gov-procurement-doc-assistant
+    displayName: 政府采购文件解读助手
+    description: 政府采购/企业招标文件解读助手。6 大模块结构化拆解，红黄预警，价格分真实计算，Excel 6-Sheet 交付物，投标研判摘要。IMA 知识库合规溯源。不代写投标文件。
+    version: 1.1.0
+    emoji: 📑
+    tags:
+      - 政府采购
+      - 招标文件解读
+      - 价格分测算
+  coze:
+    name: gov-procurement-doc-assistant
+    displayName: 政府采购文件解读助手
+    description: 政府采购/企业招标文件解读与深度分析助手。当用户上传招标文件或说"解读这份标书/算价格分/出Excel清单/生成投标框架"时触发，输出 6 大模块结构化解读与红黄预警。疑似违规/差别待遇/废标条款调用 IMA 知识库（政府采购实务与合规）引用具体法条做合规溯源。区别于 bid-compliance-due-diligence（企业黑历史尽调）、bid-lightning-rod（废标雷区扫描）、bid-related-party-expert（关联关系识别），本技能专注"招标文件本身"的拆解。不适用于合同审查、投标文件代写、围标串标建议。
+    version: 1.1.0
+    emoji: 📑
+    triggers:
+      - 解读招标
+      - 拆解招标文件
+      - 标书解读
+      - 算价格分
+      - 提取废标条款
+      - 出风险清单
+      - 出Excel清单
+      - 生成投标框架
+      - 投标建议
+    tags:
+      - 政府采购
+      - 招标文件解读
+      - 价格分测算
+      - 红黄预警
+      - 合规溯源

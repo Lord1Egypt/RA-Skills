@@ -1,40 +1,56 @@
-## Description: <br>
-Implement UCP AP2 Mandates for cryptographic payment authorization in autonomous agent commerce using SD-JWT credentials, merchant authorization signatures, and the Agent Payments Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement UCP AP2 Mandates extension for cryptographic payment mandates in autonomous agent commerce using SD-JWT credentials, merchant authorization signatures, and the Agent Payments Protocol.
 
-## Publisher: <br>
-[ichiorca](https://clawhub.ai/user/ichiorca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ichiorca](https://clawhub.ai/user/ichiorca)
 
-## Use Case: <br>
-Developers building UCP/AP2 autonomous checkout flows use this skill for guidance on mandate artifacts, merchant authorization signatures, verification flow, and AP2-specific error handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill supports autonomous payment flows and is associated with crypto and purchase capabilities, so misuse or overbroad credentials could enable unintended spending. <br>
-Mitigation: Install only for agents that are intentionally allowed to spend from a dedicated, limited wallet; enforce external spending limits and recipient or network restrictions, fund only acceptable loss amounts, monitor transaction history, and rotate wallet secrets if exposure is suspected. <br>
+## Use Case:
 
+Developers and payment engineers use this skill to design UCP AP2 mandate flows for autonomous checkout, including mandate artifacts, merchant authorization, verification, downgrade protection, and AP2-specific error handling.
 
-## Reference(s): <br>
-- [UCP and AP2 documentation](https://ucp.dev/2026-01-23/documentation/ucp-and-ap2/) <br>
-- [Agent Payments Protocol](https://ap2-protocol.org) <br>
-- [Universal Commerce Protocol conformance suite](https://github.com/Universal-Commerce-Protocol/conformance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with implementation notes and protocol references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to fetch current external protocol specifications before implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Autonomous payment mandate implementations can authorize financial transactions without real-time human approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user opt-in, narrow spending and validity limits, audit logs, revocation handling, and human review for high-risk transactions.
+
+Risk: Incorrect mandate or merchant authorization handling can weaken payment authorization and verification.
+
+Mitigation: Fetch the current UCP and AP2 specifications before implementation and validate against the referenced conformance tests.
+
+## Reference(s):
+
+- [UCP and AP2 documentation](https://ucp.dev/2026-01-23/documentation/ucp-and-ap2/)
+- [Agent Payments Protocol](https://ap2-protocol.org)
+- [Universal Commerce Protocol conformance tests](https://github.com/Universal-Commerce-Protocol/conformance)
+- [ClawHub skill page](https://clawhub.ai/ichiorca/skills/ucp-ap2-mandates)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with implementation notes, command suggestions, and code-oriented requirements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled code or hidden execution behavior is reported in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

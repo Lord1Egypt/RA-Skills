@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+"""/archmap 调用包装脚本。
+
+用法：
+    /archmap <项目路径>                          # 零参自动分流：无基线→full 完整初始化；有基线→lite 极简增量
+    /archmap <项目路径> full                      # 强制全量（已有基线但大重构需重生成完整图谱）
+    /archmap <项目路径> lite [修改内容备注]        # 强制增量（局部重解析+台账，不重生 01~09 全量报告）
+    /archmap <项目路径>/archmap <需求文本>        # 增量影响面分析，基于已有 archmap 基线
+    /archmap <项目路径> <需求文本>                # 增量影响面分析（项目根目录写法，与上等价）
+    /archmap <项目路径>/archmap sync              # 同步模式：检测代码变更，更新变更模块并重生成全套报告
+    /archmap <项目路径> sync                      # 同步模式（项目根目录写法，与上等价）
+    /archmap <项目路径> diff [修改内容备注]        # diff 影响面：快照比对+导入闭包+测试选择+变更台账（只读基线，不改报告）
+"""
+
+import argparse
+import json
+import os
+import sys
+from pathlib import Path
+
+# 优先离线模式：若本地已缓存 sentence-transformers 模型则直接使用；
+# 未缓存时让加载快速失败，触发 VectorRecognizer 的本地哈希回退。
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
+os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+
+# 引擎包与包装脚本同目录（技能自包含打包，2026-08-14 从 magic 流水线迁入）
+SKILL_ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(SKILL_ROOT))
+
+from archmap_agent.config_loader import ConfigLoader
+from archmap_agent.cli import run_full, run_incremental, run_lite, run_sync, run_diff
+
+
+def main():
+    parser = argparse.ArgumentParser(description="/archmap 架构测绘Agent")
+    parser.add_argument("project_path", help="项目根目录路径")
+    parser.add_argument("requirement", nargs="*", help="增量需求文本（可选）")
+    args = parser.parse_args()
+
+    input_path = Path(args.project_path).resolve()
+    if not input_path.exists():
+        print(json.dumps({"error": f"路径不存在: {input_path}"}, ensure_ascii=False))
+        sys.exit(1)
+    if not input_path.is_dir():
+        print(json.dumps({"error": f"路径必须是目录: {input_path}"}, ensure_ascii=False))
+        sys.exit(1)
+
+    # 兼容两种入参：项目根目录，或项目根目录下的 archmap 基线文件夹
+    if input_path.name == "archmap" and input_path.is_dir():
+        baseline_root = input_path
+        project_path = input_path.parent
+    else:
+        project_path = input_path
+        baseline_root = project_path / "archmap"
+
+    baseline_root.mkdir(parents=True, exist_ok=True)
+    project_name = project_path.name
+
+    # 空配置目录即可，ConfigLoader 内嵌默认值
+    config_root = SKILL_ROOT / "archmap_agent" / "templates"
+    loader = ConfigLoader(config_root)
+    config = loader.load_all()
+    config["global_config"]["project_name"] = project_name
+    config["global_config"]["source_root"] = str(project_path)
+    config["global_config"]["baseline_root"] = str(baseline_root)
+    config["baseline_config"]["baseline_dir"] = str(baseline_root)
+
+    has_baseline = (baseline_root / "full_index.json").exists()
+    if args.requirement:
+        first_token = args.requirement[0].lower()
+        if first_token == "full":
+            # 强制全量：大重构重生成完整图谱，无需删基线目录
+            result = run_full(config)
+            result["mode"] = "full(forced)"
+        elif first_token == "lite":
+            # 强制增量：变更检测+局部重解析+台账，跳过重生成全量报告
+            result = run_lite(config, note=" ".join(args.requirement[1:]).strip() or None)
+            result["mode"] = "lite(forced)"
+        elif not has_baseline:
+            print(json.dumps({
+                "error": "未找到已有基线，请先执行全量分析",
+                "baseline_dir": str(baseline_root),
+            }, ensure_ascii=False))
+            sys.exit(1)
+        elif first_token in ("sync", "update", "同步"):
+            # 同步模式：根据代码变更更新基线并重生成 01~09 报告
+            result = run_sync(config)
+            result["mode"] = "sync"
+        elif first_token == "diff":
+            # diff 影响面模式：行级快照比对 + 导入图闭包 + 测试选择；剩余 token 作为修改内容备注记入变更历史
+            result = run_diff(config, note=" ".join(args.requirement[1:]).strip() or None)
+            result["mode"] = "diff"
+        else:
+            # 增量影响面分析
+            requirement_text = " ".join(args.requirement)
+            result = run_incremental(config, requirement_text)
+            result["mode"] = "incremental"
+            # 将模块内精准定位结果持久化到基线目录
+            precise_path = baseline_root / "precise_analysis.json"
+            precise_path.write_text(
+                json.dumps(result.get("precise_analysis", []), ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+            result["precise_analysis_path"] = str(precise_path)
+    else:
+        # 零参自动分流：无基线 → full 完整初始化；有基线 → lite 极简增量
+        if has_baseline:
+            result = run_lite(config)
+            result["mode"] = "lite(auto)"
+        else:
+            result = run_full(config)
+            result["mode"] = "full(auto)"
+
+    result["project_path"] = str(project_path)
+    result["baseline_root"] = str(baseline_root)
+    result["baseline_dir"] = str(baseline_root)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()

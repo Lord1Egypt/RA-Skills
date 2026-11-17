@@ -1,42 +1,55 @@
-## Description: <br>
-Helps agents use the Wolai Open API to read and write Wolai notes, blocks, pages, and databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operates Wolai notes, pages, blocks, and databases through Wolai's REST API using PowerShell-oriented workflows.
 
-## Publisher: <br>
-[cizixiu](https://clawhub.ai/user/cizixiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cizixiu](https://clawhub.ai/user/cizixiu)
 
-## Use Case: <br>
-Developers and Wolai workspace users can use this skill to guide an agent through Wolai REST API operations for pages, blocks, databases, and token handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A permanent Wolai token can grant ongoing read/write access if it is exposed or over-permissioned. <br>
-Mitigation: Use a dedicated Wolai app with minimum permissions, grant it only to intended pages or databases, store WOLAI_TOKEN in a secure credential mechanism, and rotate the token if exposed. <br>
-Risk: Agent-guided API calls can modify Wolai pages or database rows. <br>
-Mitigation: Review target page, block, and database IDs before write operations and keep the app scoped to the smallest required Wolai workspace resources. <br>
+## Use Case:
 
+Developers and external users use this skill to read, create, and update Wolai page content and database rows from an agent using Wolai API calls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cizixiu/wolai-api-skill) <br>
-- [Wolai Developer Center](https://www.wolai.com/dev) <br>
-- [Wolai Open API Base URL](https://openapi.wolai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell examples and REST API request patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses WOLAI_TOKEN for Wolai API authorization and targets Windows PowerShell examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: A permanent Wolai app token could expose pages and databases granted to the app if pasted into chat, logs, or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store WOLAI_TOKEN in a secure credential or environment mechanism, avoid printing it, and rotate it immediately if exposure is suspected.
+
+Risk: The skill can act on Wolai content within the app's granted permissions.
+
+Mitigation: Grant the Wolai app only the minimum page and database permissions required for the intended workflow.
+
+## Reference(s):
+
+- [Wolai API base URL](https://openapi.wolai.com/v1)
+- [Wolai developer center](https://www.wolai.com/dev)
+- [ClawHub skill page](https://clawhub.ai/cizixiu/skills/wolai-api-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with PowerShell code blocks and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Wolai app token supplied through WOLAI_TOKEN and access only to Wolai pages and databases granted to that app.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release evidence; artifact frontmatter reports 1.0.6)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

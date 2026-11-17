@@ -1,40 +1,52 @@
-## Description: <br>
-Quantitative trading strategy bundle - Contains multiple verified A-stock quantitative trading strategy frameworks. Includes momentum strategies, reversal strategies, and trend strategies, with backtesting and signal generation support. Ideal for quantitative trading beginners and strategy development reference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quantitative trading strategy bundle with momentum, reversal, and trend strategy frameworks for A-stock backtesting and signal-generation reference.
 
-## Publisher: <br>
-[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and quantitative-trading learners use this skill as a reference for constructing A-stock momentum, reversal, and trend strategy workflows with dependency setup, signal generation, backtesting, and configuration notes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Dependency installation and market-data token configuration can expose users to unreviewed packages or accidental credential disclosure.
+
+Mitigation: Install dependencies in a virtual environment, pin reviewed package versions, and keep the Tushare token out of shared files and repositories.
+
+Risk: The artifact provides strategy examples and API-shape snippets without bundled implementation code.
+
+Mitigation: Treat the strategy material as educational until actual implementation code, backtests, and configuration are added and reviewed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, quantitative trading learners, and strategy researchers use this skill as a reference for A-stock momentum, reversal, and trend strategy frameworks, including dependency setup, signal generation, backtesting, and configuration points. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact references trading strategy classes and a config file but does not include a complete strategy implementation. <br>
-Mitigation: Review or supply the missing implementation before relying on generated signals, backtests, or configuration examples. <br>
-Risk: The usage example depends on external Python packages and may require a private Tushare token. <br>
-Mitigation: Install dependencies from trusted sources, pin versions where practical, and keep any Tushare token private. <br>
+**Output Format:** [Markdown with inline bash and Python code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jason-aka-chen/quant-strategy-bundle-chen) <br>
+**Other Properties Related to Output:** [Educational strategy-reference output; no executable source files are bundled in the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only artifact; users must supply or review any external strategy implementation before use.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

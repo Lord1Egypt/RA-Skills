@@ -1,42 +1,53 @@
-## Description: <br>
-ResearchMate helps agents collect, verify, score, and package public-source materials for long-form articles, reports, and video scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ResearchMate helps Chinese-language content creators gather public source material for long-form articles, reports, and video scripts through guided scoping, multi-source collection, anti-hallucination checks, quality scoring, and structured outputs.
 
-## Publisher: <br>
-[yitao2027](https://clawhub.ai/user/yitao2027) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yitao2027](https://clawhub.ai/user/yitao2027)
 
-## Use Case: <br>
-Writers, analysts, researchers, and content teams use this skill to gather public source material for business, technology, finance, policy, academic, event, and international topics before drafting long-form work. It guides the agent through topic clarification, source routing, anti-hallucination checks, quality scoring, and structured source-pack creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics and keywords may be sent to public web search and saved in generated workspace files. <br>
-Mitigation: Use non-confidential topics unless the user is comfortable with those keywords being searched and the resulting files remaining in the workspace. <br>
-Risk: Collected source material may still be stale, incomplete, or unsuitable for publication even after automated checks. <br>
-Mitigation: Review source URLs, publication dates, verification labels, and quality scores before citing or publishing any material. <br>
-Risk: The README describes a separate GitHub/Python command-line project that is outside the scanned Skill files. <br>
-Mitigation: Review that project, its dependencies, and its install path separately before using the command-line workflow. <br>
+## Use Case:
 
+External writers, analysts, researchers, and content teams use this skill to collect, verify, score, and organize public materials before drafting business, technology, financial, policy, academic, people, or event-focused content.
 
-## Reference(s): <br>
-- [ResearchMate on ClawHub](https://clawhub.ai/yitao2027/research-mate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, CSV, Files, Guidance] <br>
-**Output Format:** [Markdown source pack with a CSV evaluation table and structured citation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create workspace files containing collected public-source material, source URLs, timestamps, verification notes, quality scores, and adoption guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill searches and reads public web pages and can be misapplied to private, paid, login-only, or sensitive internal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with public, non-sensitive sources and avoid entering confidential topics, credentials, or internal URLs.
+
+Risk: Research material can still be incomplete, outdated, or lower confidence despite scoring and anti-hallucination checks.
+
+Mitigation: Review source URLs, publication dates, entities, numbers, and low-confidence labels before quoting material in final work.
+
+## Reference(s):
+
+- [ResearchMate ClawHub skill page](https://clawhub.ai/yitao2027/skills/research-mate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown material library, CSV-style assessment table, and optional DOCX/PDF report guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs emphasize source URLs, publication dates, quality scores, verification status, and citation suggestions.]
+
+## Skill Version(s):
+
+2.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,49 @@
-## Description: <br>
-Navigate Venice as visitor or resident with neighborhoods, transport by water, costs, local insights, and authentic experiences beyond tourist traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Venice as visitor or resident with neighborhoods, transport by water, costs, local insights, and authentic experiences beyond tourist traps.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to answer Venice travel and city-life questions, plan visits, compare neighborhoods, navigate water transport, avoid tourist traps, and keep ordinary trip notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The memory template contains a password-like field that could encourage users to store secrets in agent memory. <br>
-Mitigation: Use memory only for ordinary trip notes such as dates, preferences, itinerary items, and non-secret reminders; do not store passwords, tokens, booking-account credentials, one-time codes, or sensitive personal details. <br>
-Risk: Travel prices, fees, schedules, and local rules can become stale after publication. <br>
-Mitigation: Treat the skill as planning guidance and verify time-sensitive costs, entry fees, transport schedules, and booking requirements against current official sources before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/venice) <br>
-- [Skill homepage](https://clawic.com/skills/venice) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Memory template](artifact/memory-template.md) <br>
+## Use Case:
 
+External users and agents use this skill to answer Venice travel and local-living questions, including neighborhoods, transportation, costs, dining, attractions, timing, mobility considerations, and responsible visiting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, markdown] <br>
-**Output Format:** [Markdown conversational guidance and structured trip notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No required binaries; artifact metadata lists linux, darwin, and win32 support.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports a persistent memory template field for a password, which is unnecessary for trip planning.
+
+Mitigation: Do not store passwords, booking portal credentials, Wi-Fi passwords, API keys, or other secrets in memory; keep saved trip memory limited to non-sensitive travel preferences and confirmations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/venice)
+- [Skill Homepage](https://clawic.com/skills/venice)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with lists, tables, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external binaries or API credentials are required by the skill metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

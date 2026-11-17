@@ -1,43 +1,56 @@
-## Description: <br>
-Provides a compatibility entry point for academic literature search across OpenAlex, Semantic Scholar, and arXiv with deduplication, citation-based ranking, and local caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Literature Search Pro provides a compatibility layer for academic literature search across OpenAlex, Semantic Scholar, and arXiv with deduplication, citation-based sorting, and caching.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Researchers, students, and developer agents use this skill to find relevant academic papers from multiple scholarly sources, remove duplicate records, and review ranked results with citation counts and identifiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A crafted search input could cause unintended local shell command execution. <br>
-Mitigation: Install only when inputs are trusted; replace shell command execution with argument-array process execution and validate query, numeric, and source fields before use. <br>
-Risk: Search queries are sent to third-party academic services and results are cached locally. <br>
-Mitigation: Avoid submitting confidential queries, disclose external API use to users, and provide cache controls or cache-clearing guidance. <br>
+## Use Case:
 
+Developers, researchers, and agent users can use this skill to retrieve academic literature from multiple scholarly indexes and receive deduplicated, citation-ranked paper summaries. It also preserves legacy scholar usage while directing users toward the unified search scholar entry point.
 
-## Reference(s): <br>
-- [Literature Search Pro release page](https://clawhub.ai/jirboy/literature-search-pro) <br>
-- [OpenAlex Works API](https://api.openalex.org/works) <br>
-- [Semantic Scholar Paper Search API](https://api.semanticscholar.org/graph/v1/paper/search) <br>
-- [arXiv API query endpoint](http://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [JSON results plus Markdown-formatted search summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include titles, authors, venues, years, abstracts, citation counts, DOI values, arXiv IDs, source labels, and cached timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The Node entry point can turn search inputs into shell commands, creating an execution risk if exposed to untrusted inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running; replace shell command construction with argument-array process execution and validate runtime inputs before exposing the skill to untrusted users.
+
+Risk: The skill depends on external academic APIs and a Python requests runtime dependency.
+
+Mitigation: Use HTTPS endpoints where available, pin the Python requests dependency, and account for third-party API availability and rate limits during deployment.
+
+## Reference(s):
+
+- [Literature Search Pro on ClawHub](https://clawhub.ai/jirboy/skills/literature-search-pro)
+- [OpenAlex Works API](https://api.openalex.org/works)
+- [Semantic Scholar Paper Search API](https://api.semanticscholar.org/graph/v1/paper/search)
+- [arXiv API](http://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [JSON object with a Markdown-formatted results message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include paper metadata such as title, authors, year, venue, citation count, DOI, arXiv ID, abstract, source, and cache timestamp when returned by the Python searcher.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

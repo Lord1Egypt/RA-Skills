@@ -1,43 +1,63 @@
-## Description: <br>
-Automatically fetches Nansen on-chain data, drafts a Binance Square daily report, and can publish the approved content to Binance Square. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches multi-dimensional on-chain data with Nansen CLI, drafts daily crypto reports, and can publish approved content to Binance Square.
 
-## Publisher: <br>
-[0xcii](https://clawhub.ai/user/0xcii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcii](https://clawhub.ai/user/0xcii)
 
-## Use Case: <br>
-Crypto analysts and Binance Square creators use this skill to turn Nansen on-chain data into recurring market reports and optionally publish them from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Binance Square publishing key to post public content automatically or on a schedule. <br>
-Mitigation: Prefer /nansen with preview and approval; use /nansen_auto and cron only when unattended public posting is intentional. <br>
-Risk: Publishing and data-fetching credentials are required for normal operation. <br>
-Mitigation: Store keys in secure environment variables or a secret manager, and keep a revocation path for the Binance publishing key. <br>
+## Use Case:
 
+External Web3 content creators and crypto analysts use this skill to generate daily on-chain market commentary from Nansen data and publish the reviewed result to Binance Square.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/0xcii/nansen-binance-publisher) <br>
-- [Nansen API key signup](https://nsn.ai/7LOuQVx1Jvh) <br>
-- [Binance account setup](https://accounts.binance.com/zh-CN/register?ref=35266688) <br>
-- [Publisher X profile](https://x.com/AntCaveClub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text reports and concise setup guidance, with shell commands for CLI installation or cron scheduling when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NANSEN_API_KEY and X_SQUARE_OPENAPI_KEY; /nansen previews content before posting, while /nansen_auto is intended for explicit unattended publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release metadata) <br>
+Risk: Unattended public posting can publish content to Binance Square without a final manual review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the manual `/nansen` approval flow unless unattended publishing is intentionally enabled and monitored.
+
+Risk: Cron-based automation may rely on long-lived API keys in the execution environment.
+
+Mitigation: Use scoped, revocable keys, store them securely, and avoid enabling scheduled posting until key handling has been reviewed.
+
+Risk: Dependency installation and CLI execution can introduce supply-chain or execution risk.
+
+Mitigation: Pin or verify dependencies where possible and review requested installs before approving them.
+
+Risk: Mandatory referral links could be mistaken for official setup paths.
+
+Mitigation: Treat referral links as optional and verify account setup through official provider channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xcii/skills/nansen-binance-publisher)
+- [Binance Square publishing API endpoint](https://www.binance.com/bapi/composite/v1/public/pgc/openApi/content/add)
+- [Nansen registration link from skill metadata](https://nsn.ai/7LOuQVx1Jvh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text reports, Markdown guidance, shell commands, and JSON API request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated Binance Square post content should be reviewed before publishing; automatic posting mode requires intentionally scoped API keys.]
+
+## Skill Version(s):
+
+0.1.8 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

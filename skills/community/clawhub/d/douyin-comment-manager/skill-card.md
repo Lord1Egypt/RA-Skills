@@ -1,45 +1,59 @@
-## Description: <br>
-抖音创作者中心评论管理助手。通过 Playwright 浏览器自动化抓取评论并批量回复，支持智能模板匹配和交互式可视化报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音创作者中心评论管理助手。通过 Playwright 浏览器自动化抓取评论并批量回复，支持智能模板匹配和交互式可视化报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Douyin creators, MCN teams, ecommerce operators, and social media staff use this skill to fetch unreplied comments, prepare template-based replies, execute approved replies, and generate HTML reports for comment operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs account-authorized browser automation that can post replies from the user's Douyin account. <br>
-Mitigation: Run dry-run first, review the planned replies, keep conservative reply limits, and use the built-in delay controls before executing batch replies. <br>
-Risk: Playwright profile data and output files may contain account session data or scraped user comments. <br>
-Mitigation: Keep .playwright/douyin-profile and output files private, avoid sharing them, and remove them when no longer needed. <br>
-Risk: Reply templates or generated replies may include content that conflicts with platform or account policies. <br>
-Mitigation: Review reply templates and blocked keywords before use, avoid external links or sensitive contact prompts, and stop for manual handling when captcha or risk-control pages appear. <br>
+## Use Case:
 
+Creators, MCN operators, e-commerce account managers, and operations staff use this skill to collect Douyin Creator Center comments, prepare or execute template-based replies, and generate HTML comment-analysis reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bettermen/douyin-comment-manager) <br>
-- [Douyin API reference](references/douyin-api.md) <br>
-- [Douyin Creator Center](https://creator.douyin.com/) <br>
-- [Douyin comment reply API](https://open.douyin.com/video/comment/reply/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; workflow artifacts may include JSON data files and HTML reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Playwright session data under .playwright/douyin-profile and comment or reply outputs under output/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can post bulk replies from a live Douyin creator account with weak confirmation and unsafe targeting safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run first, manually verify the target comments and reply plan, keep per-run limits low, and avoid live batch reply until targeting and confirmation safeguards are fixed.
+
+Risk: The skill reuses a persistent Douyin login profile.
+
+Mitigation: Keep the .playwright profile private, exclude it from source control and backups, and run the skill only in a workspace intended for that account.
+
+Risk: Generated reports and live workflows may expose or act on creator-account comment data.
+
+Mitigation: Review generated JSON and HTML locally before sharing, avoid sensitive workspaces, and do not rely on the HTML report for untrusted content until escaping protections are fixed.
+
+## Reference(s):
+
+- [抖音开放平台 - 评论管理 API 参考](references/douyin-api.md)
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/douyin-comment-manager)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON, HTML reports]
+
+**Output Format:** [Markdown guidance with shell commands; generated workflow artifacts are JSON files and an HTML report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Playwright browser automation, reply templates, dry-run previews, per-run reply limits, and persistent local Douyin session state.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

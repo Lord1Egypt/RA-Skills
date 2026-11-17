@@ -2,11 +2,11 @@
 
 **{{PAPER_TITLE_EN}}**
 
-> 作者：{{AUTHORS}}
->
-> 机构：{{AFFILIATIONS}}
->
-> 来源：{{VENUE}} · {{YEAR}}
+*作者：{{AUTHORS}}*
+
+*机构：{{AFFILIATIONS}}*
+
+*来源：{{VENUE}} · {{YEAR}}*
 
 ---
 

@@ -1,44 +1,54 @@
-## Description: <br>
-Fetches live webpages through AgentPMT-hosted remote calls and returns webpage content as HTML, Markdown, or screenshots for real-time extraction and visual capture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch live webpages and return HTML, Markdown, structured data, links, screenshots, PDFs, or crawl results through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to access live webpages through AgentPMT for research, content verification, competitive monitoring, RAG data extraction, and screenshot-based documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote browsing may expose private URLs, authenticated pages, account secrets, payment headers, or sensitive screenshots to the service. <br>
-Mitigation: Use the skill only for approved browsing targets and do not submit sensitive URLs, authenticated pages, credentials, wallet keys, payment headers, or sensitive screenshots unless that processing is explicitly approved. <br>
-Risk: Live web content can change or return unclear response shapes during production integrations. <br>
-Mitigation: Fetch live schema or instructions before new production integrations and retry failed invocations only after correcting schema, authentication, or payment issues. <br>
+## Use Case:
 
+Developers and AI agents use this skill to retrieve and inspect live webpages for research, content verification, and visual documentation.
 
-## Reference(s): <br>
-- [Live Web Page Browser ClawHub Page](https://clawhub.ai/agentpmt/skills/live-web-page-browser) <br>
-- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/live-web-page-browser) <br>
-- [Generated Action Schema](schema.md) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT Is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples; remote tool responses can include HTML, Markdown, or screenshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The product action has no declared input parameters in the generated schema.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill's seven-day freshness rule may lead to replacing installed instructions without a clear user review step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require approval before installing dependencies or replacing the skill, and review fixed versions of the installer and downloaded instructions.
+
+Risk: URLs and extraction prompts may contain confidential information, and unbounded crawl activity may increase usage.
+
+Mitigation: Set an AgentPMT spending limit, bound crawl size, and avoid confidential URLs or extraction prompts unless provider processing is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/live-web-page-browser)
+- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/live-web-page-browser)
+
+## Skill Output:
+
+**Output Type(s):** [HTML, Markdown, JSON, Links, Screenshots, PDFs, Crawl results]
+
+**Output Format:** [HTML, Markdown, JSON, links, screenshots, PDFs, and structured crawl results, depending on the selected action]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Crawl actions return job identifiers and results are retrieved asynchronously.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter; confirmed by server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

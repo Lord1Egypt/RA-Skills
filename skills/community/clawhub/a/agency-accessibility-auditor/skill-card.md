@@ -1,41 +1,49 @@
-## Description: <br>
-Accessibility Auditor helps agents evaluate digital interfaces against WCAG 2.2, combine automated scans with manual assistive-technology checks, and produce actionable remediation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in accessibility auditor. From The Agency (github.com/msitarzewski/agency-agents).
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Developers, designers, QA teams, and accessibility reviewers use this agent to audit products or features for WCAG conformance, assistive-technology behavior, keyboard access, and inclusive design issues. It returns issue findings with severity, user impact, standards references, and remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested audit commands such as npx-based tooling may fetch packages at runtime. <br>
-Mitigation: Review commands before execution and run them in an approved, controlled environment. <br>
-Risk: Claims about screen-reader, keyboard, zoom, high-contrast, or reduced-motion behavior depend on a correctly provisioned test environment and real user-flow coverage. <br>
-Mitigation: Verify findings with the named assistive technologies, browsers, operating systems, and manual interaction paths before relying on conformance conclusions. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to audit digital interfaces against WCAG 2.2, test assistive technology and keyboard workflows, and produce actionable remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill release: Accessibility Auditor](https://clawhub.ai/zhouqkt/agency-accessibility-auditor) <br>
-- [ClawHub publisher profile: zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown accessibility audit reports, testing protocols, remediation examples, and optional shell commands for audit tooling.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference automated tools such as axe-core or Lighthouse and may require human verification with screen readers, keyboard navigation, zoom, high contrast, and reduced-motion settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Suggested unpinned npx accessibility tools can introduce supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted registry, prefer pinned local dependencies with a lockfile, and run audits in a project or sandbox without unnecessary access to secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-accessibility-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports, testing protocols, remediation guidance, code examples, and optional shell commands for accessibility tools.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference WCAG criteria, severity ratings, assistive technology observations, and verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

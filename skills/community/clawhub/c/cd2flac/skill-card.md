@@ -1,44 +1,56 @@
-## Description: <br>
-Convert CD audio archives and WAV+CUE pairs into organized FLAC tracks, with support for RAR extraction, CUE-based splitting, Chinese filename encoding fixes, multi-CD organization, and optional synced lyric lookup from Netease Cloud Music with Kugou fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts CD audio archives and WAV/CUE pairs into organized per-track FLAC files, with optional synced lyric lookup and embedding.
 
-## Publisher: <br>
-[hanshojin](https://clawhub.ai/user/hanshojin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanshojin](https://clawhub.ai/user/hanshojin)
 
-## Use Case: <br>
-Developers, engineers, and audio library maintainers use this skill to convert CD-quality archive releases into per-track FLAC files, organize multi-disc albums, and optionally enrich FLAC or DSF files with synced lyrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversion cleanup can delete source WAV and CUE files, and --delete-rar can remove archive files. <br>
-Mitigation: Run with --dry-run first, use --keep-wav and --keep-cue when preservation matters, and enable --delete-rar only when backups exist. <br>
-Risk: Lyric lookup sends track metadata to Netease Cloud Music or Kugou. <br>
-Mitigation: Avoid --lyrics and --lyrics-only for private libraries when sharing track metadata with those services is unacceptable. <br>
-Risk: The skill runs local audio conversion tools over user-selected folders and modifies media tags or writes lyric files. <br>
-Mitigation: Install and run it only in trusted local music directories, review the target path before execution, and keep source files until conversion results are verified. <br>
+## Use Case:
 
+Developers and audio library maintainers use this skill to prepare and run conversion workflows for RAR archives or WAV/CUE album sources, split tracks into FLAC files, organize multi-disc albums, and optionally add synced lyrics.
 
-## Reference(s): <br>
-- [ClawHub Cd2flac release page](https://clawhub.ai/hanshojin/cd2flac) <br>
-- [Netease Cloud Music Linux API endpoint](https://music.163.com/api/linux/forward) <br>
-- [Kugou mobile lyric endpoint](http://m.kugou.com/app/i/krc.php?cmd=100&hash={song_hash}&timelength=999999) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Code] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that create, rename, convert, tag, or delete local audio files depending on selected options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence) <br>
+Risk: The conversion workflow can modify music files and delete source WAV, CUE, or RAR files when cleanup options are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run on backed-up copies first, use --dry-run before conversion, keep source WAV/CUE files with --keep-wav --keep-cue, and avoid --delete-rar until outputs are verified.
+
+Risk: Lyric lookup can send track metadata to Netease and Kugou, and the Kugou fallback uses insecure HTTP endpoints.
+
+Mitigation: Use --lyrics or lyric.py only when sharing track metadata with those services is acceptable; skip lyric lookup for private libraries or sensitive metadata.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanshojin/skills/cd2flac)
+- [Netease Cloud Music lyric endpoint](https://music.163.com/api/linux/forward)
+- [Kugou mobile search endpoint](http://mobilecdn.kugou.com/api/v3/search/song?format=json&keyword={encoded}&page=1&pagesize=5)
+- [Kugou lyric endpoint](http://m.kugou.com/app/i/krc.php?cmd=100&hash={song_hash}&timelength=999999)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown with inline bash commands; generated FLAC and lyric files when the scripts are run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow can modify local music libraries and can call external lyric services when lyric lookup is enabled.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

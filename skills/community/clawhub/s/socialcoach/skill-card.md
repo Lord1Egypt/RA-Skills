@@ -1,42 +1,55 @@
-## Description: <br>
-SocialCoach is an AI social skills coach for handling boundaries, confrontation, awkward small talk, family pressure, money requests, polite refusal, networking, and conflict repair in the user's language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SocialCoach provides social-situation coaching, boundary-setting guidance, conflict repair advice, and ready-to-send replies for awkward, emotional, family, friendship, and money-related conversations.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use this skill to get socially aware coaching and ready-to-send wording for sensitive interpersonal situations, including family pressure, polite refusal, comforting someone, conflict repair, and cross-cultural etiquette. It is especially oriented toward bilingual English and Chinese social contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive personal conversation details while seeking coaching. <br>
-Mitigation: Review the visible skill instructions before use and avoid sharing unnecessary sensitive details, especially with any linked service that offers memory or pattern tracking. <br>
-Risk: Marketplace capability tags indicate crypto, wallet, and sensitive-credential requirements that do not match the security summary for this plain prompt skill. <br>
-Mitigation: Validate or correct the marketplace capability tags before using them for install decisions, policy checks, or user expectations. <br>
+## Use Case:
 
+External users use this skill to understand social dynamics and draft tactful messages for boundaries, family pressure, borrowing-money requests, comforting others, small talk, and conflict resolution. It supports English and Chinese social contexts, including催婚 and family-comparison scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imwyvern/socialcoach) <br>
-- [Publisher profile](https://clawhub.ai/user/imwyvern) <br>
-- [ReplyHer pro-service link](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted coaching with assessments, suggested replies, and do-not guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language; may provide multiple tone options for message drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: The skill can add an unsolicited external promotional link during some conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated replies before use and remove or disclose external-service promotions where they are not expected.
+
+Risk: Users may share sensitive relationship, family, or social-conflict details while using the skill.
+
+Mitigation: Avoid entering private or identifying information unless the deployment has appropriate privacy handling.
+
+## Reference(s):
+
+- [SocialCoach ClawHub release](https://clawhub.ai/imwyvern/skills/socialcoach)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style coaching responses with assessments and ready-to-send message drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language and may provide multiple suggested reply styles.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

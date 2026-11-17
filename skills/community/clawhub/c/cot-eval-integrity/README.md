@@ -1,0 +1,35 @@
+# eval-integrity
+
+![eval-integrity demo](docs/demo.gif)
+
+Canonical home is now [eval-integrity](https://github.com/conorbronsdon/eval-integrity) — standalone with the methodology split into 36 scoreable sub-checks, a JSON result schema, and three audit fixtures. This compact copy tracks it.
+
+Audit an LLM evaluation or benchmark repo for the integrity practices that make a published score mean what it appears to mean. Run with `/eval-integrity` pointed at a benchmark repo. It greps the repo for evidence across seven dimensions, spawns one auditor subagent per dimension in parallel (or runs the briefs inline sequentially when no subagent tool exists), and emits a scored report: per-dimension PRESENT / PARTIAL / ABSENT, with `file:line` evidence, a severity tag, and a concrete fix for every gap.
+
+The seven dimensions:
+
+1. **Pre-registration** — corpus hash, judge panel, seeds, and temps fixed on disk before results exist, so runs can't be cherry-picked.
+2. **Contamination** — corpus authors (and their model family) barred as contestants; per-scenario authorship recorded; private holdout with a published public-vs-holdout gap.
+3. **Holdout hygiene** — no holdout leak via CI logs, workflow artifacts, committed transcripts, or error messages.
+4. **Judge validity** — judge pinned to the model actually served; chance-corrected multi-judge agreement; same-lab, length-bias, and halo controls.
+5. **Statistical honesty** — confidence intervals on headline numbers; micro vs macro stated; pass@k vs pass^k disambiguated; seeds fixed; multiple-comparison risk acknowledged.
+6. **Reproducibility** — deterministic re-run path, cost caps / resume for expensive runs, pinned environment.
+7. **Leaderboard exclusions & publish mechanics** — null-agent baselines, holdout rows, and non-default configs kept out of public aggregates, enforced by tripwire tests rather than intent; the publish step's paths actually commit, and every surface the docs promise is one the pipeline writes.
+
+Each gap is rated **INVALIDATING** (a reviewer can throw out the published number) or **HARDENING** (weakens credibility, doesn't invalidate). The report leads with the invalidating gaps.
+
+Auditing is read-only. The skill never edits the benchmark, re-runs an eval, or touches a leaderboard. It offers fixes; applying them is the author's call.
+
+The checks were extracted from hardening a real agent benchmark, cot-bench (a private podcast-evals repo), for external grant review. cot-bench file names appear in the dimension briefs as examples of what good looks like, not as paths the skill expects to find in your repo.
+
+## Setup
+
+Copy the skill directory into your project — that's the whole installation:
+
+```bash
+cp -r eval-integrity your-project/.claude/skills/eval-integrity
+```
+
+Then run `/eval-integrity` from (or pointed at) a benchmark repo. The directory name becomes the command; `patterns/dimension-prompts.md` rides along and loads only when the skill runs.
+
+See [SKILL.md](SKILL.md) for the full audit workflow and [patterns/dimension-prompts.md](patterns/dimension-prompts.md) for the paste-ready per-dimension audit briefs.

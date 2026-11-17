@@ -1,42 +1,59 @@
-## Description: <br>
-X platform skill for SurfAgent, covering route-aware workflows, proof rules, blockers, and when to use the X adapter over raw browser control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X platform skill for SurfAgent, covering route-aware workflows, proof rules, blockers, and when to use the X adapter over raw browser control.
 
-## Publisher: <br>
-[surfagentapp](https://clawhub.ai/user/surfagentapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[surfagentapp](https://clawhub.ai/user/surfagentapp)
 
-## Use Case: <br>
-External users and developers use this skill to guide SurfAgent through X navigation, posting, replies, likes, account switching, community posting, and route-aware verification while avoiding unsupported assumptions about X UI state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent following this skill may post, reply, like, repost, follow, or switch X accounts in a logged-in browser session. <br>
-Mitigation: Review intended public actions before execution, verify the active account and target surface, and require visible result confirmation before claiming success. <br>
-Risk: X UI state can be ambiguous or stale, including disabled composers, delayed route settlement, and partial account switcher extraction. <br>
-Mitigation: Prefer X adapter state checks, route-aware verification, and screenshot or visual confirmation when account, composer, or community state is unclear. <br>
+## Use Case:
 
+Developers and agents use SurfAgent X to operate X/Twitter workflows with route-aware checks, account verification, posting and reply safeguards, engagement verification, and recovery guidance.
 
-## Reference(s): <br>
-- [SurfAgent homepage](https://surfagent.app) <br>
-- [ClawHub skill page](https://clawhub.ai/surfagentapp/surfagent-x) <br>
-- [X state map](X_STATE_MAP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code or package installation is produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence release and skill frontmatter) <br>
+Risk: The skill can guide an agent through public X actions such as posts, replies, follows, reposts, likes, and community joins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with accounts the agent is intended to control, and review user-facing actions when their content or audience matters.
+
+Risk: X UI state can be ambiguous, delayed, or tied to the wrong logged-in account.
+
+Mitigation: Verify the active account, route, target surface, and visible post-action result before treating an action as complete.
+
+Risk: Composer text may appear visually present while X has not accepted it as real input.
+
+Mitigation: Inspect composer state and use real keyboard-style input recovery before submitting when the Post or Reply button remains disabled.
+
+## Reference(s):
+
+- [SurfAgent homepage](https://surfagent.app)
+- [ClawHub SurfAgent X listing](https://clawhub.ai/surfagentapp/skills/surfagent-x)
+- [X State Map](artifact/X_STATE_MAP.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown guidance for agent workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance emphasizes visible verification before claiming X account actions succeeded.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

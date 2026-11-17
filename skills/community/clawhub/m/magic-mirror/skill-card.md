@@ -1,46 +1,58 @@
-## Description: <br>
-Scans a user's logged-in social media accounts across Douyin, Xiaohongshu, Weibo, Douban, and Bilibili, compares public presentation with likes, favorites, saves, follows, comments, and history, and generates a humorous Mirror Report about gaps between public persona and observed preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans a user's logged-in social media accounts across Douyin, Xiaohongshu, Weibo, Douban, and Bilibili to compare public activity with likes, favorites, follows, ratings, and other activity, then generates a humorous Mirror Report about persona gaps.
 
-## Publisher: <br>
-[sophie-xin9](https://clawhub.ai/user/sophie-xin9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sophie-xin9](https://clawhub.ai/user/sophie-xin9)
 
-## Use Case: <br>
-External users use this agent skill for self-analysis and entertainment by letting an agent collect data from their own logged-in social media accounts and generate a shareable Markdown Mirror Report. The skill is intended for voluntary personal insight, not assessment of other people. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect logged-in social account activity including likes, favorites, saves, follows, comments, and history. <br>
-Mitigation: Use a separate browser profile and approve each platform and data category before collection. <br>
-Risk: Collected raw data and Mirror Reports may remain on disk after use. <br>
-Mitigation: Delete mirror-reports/ after use if the user does not want retained local data. <br>
-Risk: The workflow may download an unpinned ManoBrowser dependency automatically when it is missing. <br>
-Mitigation: Review and pin the dependency source before allowing automatic downloads in managed environments. <br>
+## Use Case:
 
+External users and agents use this skill for opt-in self-analysis of the user's own social media accounts. It gathers account activity from supported platforms, contrasts public presentation with private preference signals, and produces a shareable Markdown report with data-backed observations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sophie-xin9/magic-mirror) <br>
-- [Publisher Profile](https://clawhub.ai/user/sophie-xin9) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Main Skill Definition](artifact/SKILL.md) <br>
-- [ManoBrowser Dependency](https://github.com/ClawCap/ManoBrowser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with supporting JSON data files and browser automation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write raw collected data and generated reports under mirror-reports/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Logged-in browser automation can access private preference and social-graph data from connected social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and require explicit user consent for each platform and data type before collection.
+
+Risk: Raw local exports may contain posts, likes, favorites, follows, ratings, comments, and activity history.
+
+Mitigation: Save only the final report unless raw export is explicitly requested, keep files local, and delete raw data after use.
+
+Risk: The dependency workflow may fetch ManoBrowser during setup without a pinned release.
+
+Mitigation: Pin and review the browser automation dependency before enabling collection on logged-in accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sophie-xin9/skills/magic-mirror)
+- [ManoBrowser dependency](https://github.com/ClawCap/ManoBrowser)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, JSON, guidance]
+
+**Output Format:** [Markdown Mirror Report with optional local JSON raw-data export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save report and raw collection data under mirror-reports/ during execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

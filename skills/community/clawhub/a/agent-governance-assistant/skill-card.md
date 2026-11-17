@@ -1,41 +1,57 @@
-## Description: <br>
-Helps IT risk managers, compliance officers, and enterprise AI leaders audit AI agent behavior, define governance policies, detect shadow AI, and produce compliance-oriented governance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a bilingual, text-based framework for enterprise AI agent inventory, risk assessment, governance policies, shadow AI review, maturity assessment, and audit report drafting.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Enterprise IT, risk, and compliance teams use this skill to structure AI agent inventories, risk classifications, policy gap analysis, shadow AI findings, and governance reports for regulated environments such as financial institutions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive enterprise governance details such as agent inventories, data access levels, endpoints, and compliance gaps while using the skill. <br>
-Mitigation: Limit shared inputs to the minimum necessary information, remove secrets and sensitive identifiers where possible, and handle generated reports under the organization's normal data classification rules. <br>
-Risk: Generated regulatory or policy guidance may become inaccurate as governance requirements change. <br>
-Mitigation: Verify regulatory claims against official sources and qualified counsel before relying on outputs for legal, regulatory, or external filing purposes. <br>
+## Use Case:
 
+IT risk managers, compliance teams, and enterprise AI leaders can use the skill to draft agent inventories, risk assessments, governance checklists, policy templates, and audit reports. It provides reference text and does not scan systems, make formal compliance determinations, or execute controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/agent-governance-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
+### Deployment Geography for Use:
 
+Global, with China-focused financial-sector examples
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown reports, policy tables, compliance checklists, and recommended governance controls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior or hidden data access was identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: artifact frontmatter and server release metadata) <br>
+Risk: Regulatory and industry guidance in the skill may become outdated or may not fit a specific jurisdiction or institution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current requirements against official sources and have qualified internal reviewers assess applicability before relying on the drafts.
+
+Risk: Draft assessments could be mistaken for verified system findings or formal compliance conclusions, although the skill has no system access and does not perform those tasks.
+
+Mitigation: Treat outputs as working drafts, validate findings in the institution's own evidence sources, and obtain the required professional review before making decisions or external submissions.
+
+Risk: Security scan coverage was partial because one local reference was unresolved.
+
+Mitigation: Review the skill instructions and resolve the missing local reference before installation if it affects your use.
+
+## Reference(s):
+
+- [Agent Governance Assistant on ClawHub](https://clawhub.ai/gechengling/skills/agent-governance-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Bilingual text and Markdown checklists, tables, policy templates, and report drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference drafts only; no system scanning or control execution.]
+
+## Skill Version(s):
+
+5.0.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

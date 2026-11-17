@@ -1,44 +1,59 @@
-## Description: <br>
-Scholar Report generates asynchronous AI-powered academic literature review reports through the Scholar API, with inline citations, paper evidence, and downloadable Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI-powered academic research reports via the Scholar API with literature review summaries, inline citations, paper evidence, and downloadable Markdown.
 
-## Publisher: <br>
-[wahahaaaa123](https://clawhub.ai/user/wahahaaaa123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wahahaaaa123](https://clawhub.ai/user/wahahaaaa123)
 
-## Use Case: <br>
-External users, developers, and researchers use this skill to create, poll, and download structured literature review reports for research questions, with optional filters for language, publication years, and paper types. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research questions and report topics are sent to the third-party Scholar API at scholar.x49.ai. <br>
-Mitigation: Use only topics suitable for third-party processing, and avoid confidential or unpublished research unless the service's data handling is understood. <br>
-Risk: The skill includes a shared built-in bearer token. <br>
-Mitigation: Prefer setting SCHOLAR_API_KEY to a user-controlled key before use. <br>
-Risk: Downloaded reports can persist generated research content in the workspace. <br>
-Mitigation: Save Markdown reports only when persistence is intended, and review generated citations before relying on them. <br>
+## Use Case:
 
+External users, developers, and researchers use this skill to generate academic literature review reports, surveys, and state-of-the-art summaries from a research question or topic. The skill supports report creation, progress polling, and Markdown download with optional paper-level evidence.
 
-## Reference(s): <br>
-- [Scholar API documentation](https://scholar.x49.ai/docs?section=api-keys) <br>
-- [Scholar API base URL](https://scholar.x49.ai/api/v1) <br>
-- [ClawHub skill release page](https://clawhub.ai/wahahaaaa123/scholar-report-x49) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples; downloaded reports are raw Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCHOLAR_API_KEY or a built-in free bearer token; report generation is asynchronous and uses polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Research topics, filters, and generated report data are sent to scholar.x49.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential or regulated research content and review data-sharing expectations before use.
+
+Risk: The skill includes a shared fallback API bearer token.
+
+Mitigation: Prefer setting SCHOLAR_API_KEY with a user-controlled key instead of relying on the built-in shared key.
+
+Risk: Generated Markdown may be saved into a project directory.
+
+Mitigation: Confirm the save location and review generated content before adding it to a repository or workflow.
+
+## Reference(s):
+
+- [Scholar API key documentation](https://scholar.x49.ai/docs?section=api-keys)
+- [Scholar API](https://scholar.x49.ai/api/v1)
+- [ClawHub skill listing](https://clawhub.ai/wahahaaaa123/skills/scholar-report-x49)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with inline citations, command examples, and progress summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include paper evidence, references, research directions, and downloadable Markdown.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

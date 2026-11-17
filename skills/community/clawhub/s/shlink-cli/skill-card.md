@@ -1,43 +1,59 @@
-## Description: <br>
-Use this skill when the user wants to install, configure, or troubleshoot the Shlink CLI from GitHub and manage short URLs, tags, visits, domains, and health checks through Shlink REST API v3. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to install, configure, or troubleshoot the Shlink CLI from GitHub and manage short URLs, tags, visits, domains, and health checks through Shlink REST API v3.
 
-## Publisher: <br>
-[ParinLL](https://clawhub.ai/user/ParinLL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parinll](https://clawhub.ai/user/parinll)
 
-## Use Case: <br>
-Developers and operators use this skill to install and configure the Shlink CLI, then manage short URLs, tags, visits, domains, and health checks for a Shlink instance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses SHLINK_API_KEY to manage a Shlink instance. <br>
-Mitigation: Keep the API key private and prefer a least-privileged key where possible. <br>
-Risk: Update or delete commands can change short URLs and related Shlink data. <br>
-Mitigation: Review commands before running them, especially operations that modify or remove resources. <br>
-Risk: Optional global installation uses sudo and installs a locally built binary. <br>
-Mitigation: Use sudo install only after trusting the source or pinning a known commit. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, configure, and troubleshoot the Shlink CLI for managing short URLs, tags, visits, domains, and service health through the Shlink REST API.
 
-## Reference(s): <br>
-- [Shlink CLI GitHub repository](https://github.com/ParinLL/shlink-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/ParinLL/shlink-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHLINK_BASE_URL and SHLINK_API_KEY for Shlink access; building from source also requires Go.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security summary identifies avoidable risk from installing unverified code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, verified release or commit and review the skill carefully before installing.
+
+Risk: The security guidance warns that SHLINK_API_KEY exposure can compromise access to the Shlink instance.
+
+Mitigation: Never print or paste the full API key; use a least-privilege key and revoke it if it may have been shared.
+
+Risk: The installation instructions include optional global installation with sudo.
+
+Mitigation: Avoid sudo or global installation until provenance has been checked.
+
+## Reference(s):
+
+- [Shlink CLI GitHub repository](https://github.com/ParinLL/shlink-cli)
+- [ClawHub skill page](https://clawhub.ai/parinll/skills/shlink-cli)
+- [Publisher profile](https://clawhub.ai/user/parinll)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command examples, environment variable guidance, troubleshooting steps, and security cautions for Shlink API credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

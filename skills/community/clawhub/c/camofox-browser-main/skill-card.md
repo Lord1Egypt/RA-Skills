@@ -1,38 +1,50 @@
-## Description: <br>
-Use the main local camofox-browser service for standard browser automation in this workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the main local camofox-browser service for standard browser automation in this workspace.
 
-## Publisher: <br>
-[lotfinity](https://clawhub.ai/user/lotfinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lotfinity](https://clawhub.ai/user/lotfinity)
 
-## Use Case: <br>
-Developers and automation agents use this skill to route standard browser automation work to the main local Camofox browser service and follow its snapshot-after-action workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs browser automation through a local service that may receive userId and sessionKey values. <br>
-Mitigation: Confirm that 127.0.0.1:9377 is the intended local Camofox browser service before use and only share session values with trusted local services. <br>
+## Use Case:
 
+Developers and workspace agents use this skill to route browser automation tasks to the main local Camofox service at 127.0.0.1:9377, including health checks, tab reuse, actions, and post-action snapshots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lotfinity/camofox-browser-main) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets a local Camofox service at http://127.0.0.1:9377; userId is required and sessionKey is preferred.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser automation can click, type, navigate, and affect active browser sessions through the local service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use this skill only where user-directed browser actions through 127.0.0.1:9377 are acceptable; check /health, send userId, prefer sessionKey, and re-snapshot after state-changing actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lotfinity/skills/camofox-browser-main)
+- [Local Camofox browser service endpoint](http://127.0.0.1:9377)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls]
+
+**Output Format:** [Markdown guidance with ordered steps and routing rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires userId on requests, prefers sessionKey when creating or reusing tabs, and calls for a fresh snapshot after state-changing browser actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

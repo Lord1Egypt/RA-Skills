@@ -1,0 +1,7 @@
+PCBClaw 0.2.0-beta.1 — 2026-09-21
+Native quick_validate: PASS
+Six offline helper test groups: PASS
+Installed Workshop/repository main and reference byte parity: PASS
+Explicit backticked resource links: PASS
+New supplier/execution/GitHub scenarios: static contract review only
+No live browser transactions, board design, physical tests or fresh-machine bootstrap performed for this release.

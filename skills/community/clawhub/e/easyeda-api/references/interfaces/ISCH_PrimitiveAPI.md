@@ -1,11 +1,11 @@
 # ISCH\_PrimitiveAPI interface
 
-原理图图元接口
+Schematic primitive API
 
 ## Signature
 
 ```typescript
-interface ISCH_PrimitiveAPI 
+interface ISCH_PrimitiveAPI
 ```
 
 ## Properties
@@ -14,123 +14,95 @@ interface ISCH_PrimitiveAPI
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [create](./ISCH_PrimitiveAPI.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (...args: any\[\]) =&gt; [ISCH\_Primitive](./ISCH_Primitive.md) \| undefined \| Promise&lt;[ISCH\_Primitive](./ISCH_Primitive.md)<!-- -->&gt; \| Promise&lt;[ISCH\_Primitive](./ISCH_Primitive.md) \| undefined&gt;
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 [delete](./ISCH_PrimitiveAPI.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (primitiveIds: string \| any \| Array&lt;string&gt; \| Array&lt;any&gt;) =&gt; boolean \| Promise&lt;boolean&gt;
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 [get](./ISCH_PrimitiveAPI.md)
 
+</td><td>
 
 </td><td>
 
+{ (primitiveIds: string): [ISCH\_Primitive](./ISCH_Primitive.md) \| undefined \| Promise&lt;[ISCH\_Primitive](./ISCH_Primitive.md) \| undefined&gt;; (primitiveIds: Array&lt;string&gt;): Array&lt;[ISCH\_Primitive](./ISCH_Primitive.md)<!-- -->&gt; \| Promise&lt;Array&lt;[ISCH\_Primitive](./ISCH_Primitive.md)<!-- -->&gt;&gt; }
 
 </td><td>
-
-{ (primitiveIds: string): [ISCH\_Primitive](./ISCH_Primitive.md) \| undefined \| Promise&lt;[ISCH\_Primitive](./ISCH_Primitive.md) \| undefined&gt;; (primitiveIds: Array&lt;string&gt;): Array&lt;[ISCH\_Primitive](./ISCH_Primitive.md)<!-- -->&gt; \| Promise&lt;Array&lt;[ISCH\_Primitive](./ISCH_Primitive.md)<!-- -->&gt;&gt;; }
-
-
-</td><td>
-
 
 </td></tr>
 <tr><td>
 
 [getAll](./ISCH_PrimitiveAPI.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (...args: any\[\]) =&gt; Array&lt;[ISCH\_Primitive](./ISCH_Primitive.md)<!-- -->&gt; \| Promise&lt;Array&lt;[ISCH\_Primitive](./ISCH_Primitive.md)<!-- -->&gt;&gt;
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 [getAllPrimitiveId](./ISCH_PrimitiveAPI.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (...args: any\[\]) =&gt; Array&lt;string&gt; \| Promise&lt;Array&lt;string&gt;&gt;
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 [modify](./ISCH_PrimitiveAPI.md)
 
-
 </td><td>
-
 
 </td><td>
 
 (primitiveId: string \| any, ...args: any\[\]) =&gt; [ISCH\_Primitive](./ISCH_Primitive.md) \| undefined \| Promise&lt;[ISCH\_Primitive](./ISCH_Primitive.md)<!-- -->&gt; \| Promise&lt;[ISCH\_Primitive](./ISCH_Primitive.md) \| undefined&gt;
 
-
 </td><td>
-
 
 </td></tr>
 </tbody></table>
@@ -146,7 +118,8 @@ Description
 ## Signature
 
 ```typescript
-create: (...args: any[]) => ISCH_Primitive | undefined | Promise<ISCH_Primitive> | Promise<ISCH_Primitive | undefined>;
+create: (...args: any[]) =>
+	ISCH_Primitive | undefined | Promise<ISCH_Primitive> | Promise<ISCH_Primitive | undefined>;
 ```
 
 ### delete
@@ -166,10 +139,7 @@ delete: (primitiveIds: string | any | Array<string> | Array<any>) => boolean | P
 ## Signature
 
 ```typescript
-get: {
-        (primitiveIds: string): ISCH_Primitive | undefined | Promise<ISCH_Primitive | undefined>;
-        (primitiveIds: Array<string>): Array<ISCH_Primitive> | Promise<Array<ISCH_Primitive>>;
-    };
+get: { (primitiveIds: string): ISCH_Primitive | undefined | Promise<ISCH_Primitive | undefined>; (primitiveIds: Array<string>): Array<ISCH_Primitive> | Promise<Array<ISCH_Primitive>> };
 ```
 
 ### getall
@@ -199,5 +169,6 @@ getAllPrimitiveId: (...args: any[]) => Array<string> | Promise<Array<string>>;
 ## Signature
 
 ```typescript
-modify: (primitiveId: string | any, ...args: any[]) => ISCH_Primitive | undefined | Promise<ISCH_Primitive> | Promise<ISCH_Primitive | undefined>;
+modify: (primitiveId: string | any, ...args: any[]) =>
+	ISCH_Primitive | undefined | Promise<ISCH_Primitive> | Promise<ISCH_Primitive | undefined>;
 ```

@@ -1,40 +1,56 @@
-## Description: <br>
-A daily gacha skill - draw a random activity each morning, check in at night, and get a weekly summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A daily gacha skill -- draw a random activity each morning, check in at night, and get a weekly summary.
 
-## Publisher: <br>
-[luoruikun0531](https://clawhub.ai/user/luoruikun0531) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[luoruikun0531](https://clawhub.ai/user/luoruikun0531)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this agent skill to add a lightweight daily activity ritual: draw one or more configured activities, record an evening check-in, and generate a weekly markdown summary.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill stores daily activity notes locally, which may include personal reflections or routine information.
+
+Mitigation: Confirm the local data directory is acceptable before use, and avoid entering sensitive information in daily check-ins.
+
+Risk: The skill sets up recurring daily and weekly reminders or scheduled tasks.
+
+Mitigation: Approve scheduling only when the draw, check-in, and review cadence is desired, and review or remove scheduled tasks if the routine changes.
+
+Risk: The default card pool may not match a user's preferences, availability, or safety constraints.
+
+Mitigation: Review and customize config.yaml during onboarding before relying on automated daily draws.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to set up a recurring personal activity prompt, record evening check-ins, and generate weekly markdown summaries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates recurring scheduled tasks and local journal files. <br>
-Mitigation: Confirm the scheduled task times, how to disable them, and where local notes are stored before enabling the workflow. <br>
-Risk: Evening check-ins may include personal details stored in local markdown files. <br>
-Mitigation: Avoid recording sensitive details unless the user is comfortable keeping them in local files. <br>
+**Output Format:** [Conversational text and markdown journal entries, with shell command invocations for draw, check-in, and review actions.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/luoruikun0531/life-gacha) <br>
+**Other Properties Related to Output:** [Writes local journal files under the skill data directory and can update config.yaml during onboarding.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes and conversational text with shell commands for local scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local daily and weekly markdown journal files under the skill data directory.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

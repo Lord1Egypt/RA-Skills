@@ -1,45 +1,61 @@
-## Description: <br>
-Generates China A-share market reports for pre-market briefings, intraday snapshots, and post-market reviews using Tushare, AKShare, and search fallback data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates China A-share pre-market, intraday, and post-market review reports using market data from Tushare, AKShare, Sina Finance, and fallback web search.
 
-## Publisher: <br>
-[kooui](https://clawhub.ai/user/kooui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kooui](https://clawhub.ai/user/kooui)
 
-## Use Case: <br>
-External users who follow China A-share markets use this skill to generate daily market briefings, intraday checks, post-market recaps, and next-session watchpoints. It is intended for market overview reporting, not individual stock picking or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled outbound report delivery is enabled by default and may send reports to linked messaging accounts. <br>
-Mitigation: Review or disable the scheduled auto-push tasks before use, and confirm the intended messaging destination. <br>
-Risk: The Tushare token may be stored in a local plaintext file. <br>
-Mitigation: Protect the token file with restrictive local permissions, avoid sharing it, and rotate or remove the token if exposure is suspected. <br>
-Risk: Generated financial commentary may include hardcoded or synthesized elements that are not fully sourced from live data. <br>
-Mitigation: Verify market data and claims against live sources, and treat the report as informational rather than investment advice. <br>
+## Use Case:
 
+External users and agents use this skill to prepare recurring China A-share market briefings, intraday snapshots, and post-market review reports. It is intended for market summarization and strategy framing, not individual stock recommendations or investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kooui/china-a-stocks-daily-review) <br>
-- [README.md](artifact/README.md) <br>
-- [Tushare Pro API](http://api.tushare.pro) <br>
-- [Tushare token page](https://tushare.pro/user/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain-text market reports and Markdown report files, with setup guidance and shell commands where needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save local report_YYYYMMDD_*.md files and send reports to linked messaging channels when scheduled automation is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter and changelog mention 2.0.0) <br>
+Risk: Recurring report pushes may be enabled by default and sent to linked messaging destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when recurring financial reports are desired, review each destination, and disable or require approval for scheduled pushes before use.
+
+Risk: The Tushare token flow may expose credentials because the documented API endpoint uses HTTP.
+
+Mitigation: Do not store a valuable Tushare token for this version unless the endpoint is changed to HTTPS and the credential-handling flow is reviewed.
+
+Risk: Generated reports may appear current even when some data is missing or replaced by hard-coded claims.
+
+Mitigation: Treat reports as unverified, check source data before acting, and remove or clearly label hard-coded market claims in production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kooui/skills/china-a-stocks-daily-review)
+- [Tushare Pro API](http://api.tushare.pro)
+- [Tushare token page](https://tushare.pro/user/token)
+- [README.md](artifact/README.md)
+- [report_template.md](artifact/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, Python scripts, and concise setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write generated report files and an intermediate JSON data file during local execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

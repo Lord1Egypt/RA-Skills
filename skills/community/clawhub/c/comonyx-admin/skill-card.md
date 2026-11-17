@@ -1,44 +1,55 @@
-## Description: <br>
-Admin skill to sign into Cosmonyx, fetch companies, filter/export (PDF or Excel), optionally email the export, or send reminder emails to filtered companies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Admin skill to sign into Cosmonyx, fetch companies, filter/export records as PDF or Excel, optionally email the export, or send reminder emails to filtered companies.
 
-## Publisher: <br>
-[waqas-orcalo](https://clawhub.ai/user/waqas-orcalo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[waqas-orcalo](https://clawhub.ai/user/waqas-orcalo)
 
-## Use Case: <br>
-Cosmonyx administrators use this skill to sign in, retrieve company records, filter compliance or risk subsets, export selected records, and send export or reminder emails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can email sensitive company exports or local attachments. <br>
-Mitigation: Use it only in a controlled admin environment and manually verify recipients, attachment paths, and export contents before sending. <br>
-Risk: Attachment paths are not strongly scoped by the skill. <br>
-Mitigation: Restrict attachments to a dedicated export directory and avoid arbitrary local file paths. <br>
-Risk: The skill handles Cosmonyx admin credentials and access tokens. <br>
-Mitigation: Keep credentials and tokens out of replies and logs, and stop the workflow if authentication fails or a token is missing. <br>
+## Use Case:
 
+Administrators use this skill to authenticate to Cosmonyx, retrieve company records, filter by compliance, risk, KYC, or expiry criteria, and export or email the selected records.
 
-## Reference(s): <br>
-- [Comonyx Admin ClawHub page](https://clawhub.ai/waqas-orcalo/comonyx-admin) <br>
-- [Cosmonyx admin sign-in endpoint](https://gateway-dev.cosmonyx.co/auth/signin) <br>
-- [Cosmonyx companies endpoint](https://gateway-dev.cosmonyx.co/companies) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown responses with generated PDF or Excel exports and optional shell commands for email sending] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create files in the user's Downloads folder and send email through SMTP when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The documented email workflow can expose sensitive company data or turn recipient and file path text into shell execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled admin environment; use structured execution, validate recipients and attachment paths, and require explicit confirmation before exporting or emailing data.
+
+Risk: SMTP authentication may use credentials while sending exports or reminder emails.
+
+Mitigation: Store SMTP credentials carefully and require encrypted SMTP transport before authentication.
+
+## Reference(s):
+
+- [Comonyx Admin ClawHub Page](https://clawhub.ai/waqas-orcalo/skills/comonyx-admin)
+- [Cosmonyx Admin Sign-In Endpoint](https://gateway-dev.cosmonyx.co/auth/signin)
+- [Cosmonyx Companies Endpoint](https://gateway-dev.cosmonyx.co/companies)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown responses with generated PDF or Excel files and shell commands for optional email delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Handles admin credentials, company records, SMTP settings, recipient addresses, and optional export attachments.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

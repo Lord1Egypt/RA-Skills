@@ -1,40 +1,58 @@
-## Description: <br>
-Bailian KnowledgeBase Retrieve queries a configured Alibaba Bailian/DashScope hosted knowledge base and returns concise multi-document retrieval results for LLM-powered agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves concise, multi-document results from a hosted Alibaba Bailian knowledge base for use by AI agents and chatbots.
 
-## Publisher: <br>
-[krisyejh](https://clawhub.ai/user/krisyejh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[krisyejh](https://clawhub.ai/user/krisyejh)
 
-## Use Case: <br>
-Developers and agent builders use this skill to let an agent retrieve relevant documents from a configured Bailian/DashScope knowledge base containing proprietary vectorized data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Retrieved knowledge-base text may contain untrusted content that conflicts with agent instructions. <br>
-Mitigation: Treat retrieved text as context only, and keep system and developer instructions authoritative. <br>
-Risk: Overbroad API credentials or connected knowledge bases may expose data the agent should not access. <br>
-Mitigation: Use a narrowly scoped DASHSCOPE_API_KEY and connect only approved knowledge bases that do not contain secrets the agent should not see. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/krisyejh/bailian-knowledge-retrieve) <br>
-- [Bailian KnowledgeBase console](https://bailian.console.aliyun.com/cn-beijing?tab=app#/knowledge-base) <br>
+## Use Case:
 
+Developers and agent builders use this skill to let an agent query an approved Alibaba Bailian knowledge base and return vector-retrieved proprietary content for downstream LLM responses.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON retrieval response from the command-line helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, DASHSCOPE_API_KEY, KNOWLEDGEBASE_ID, and network access to DashScope; result count defaults to 5 and is limited to 1-20.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can retrieve proprietary knowledge-base content and make it available to agent conversations.
+
+Mitigation: Use only knowledge bases whose contents the agent is allowed to disclose, and review access policy before enabling the skill.
+
+Risk: Queries are sent to the hosted Alibaba Bailian/DashScope service using a DashScope API key.
+
+Mitigation: Scope the DASHSCOPE_API_KEY appropriately, store it as a secret, and inform users that their retrieval queries leave the local agent environment.
+
+Risk: The skill depends on KNOWLEDGEBASE_ID to select the backing data source.
+
+Mitigation: Set KNOWLEDGEBASE_ID to the intended knowledge base and verify the configured data source before deployment.
+
+## Reference(s):
+
+- [Bailian Knowledge Base Console](https://bailian.console.aliyun.com/cn-beijing?tab=app#/knowledge-base)
+- [DashScope Knowledge Base Retrieve Endpoint](https://dashscope.aliyuncs.com/api/v1/indices/pipeline/{knowledgebase_id}/retrieve)
+- [ClawHub Skill Page](https://clawhub.ai/krisyejh/skills/bailian-knowledge-retrieve)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [JSON response printed to standard output, with setup and invocation guidance in Markdown shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus DASHSCOPE_API_KEY and KNOWLEDGEBASE_ID environment variables; accepts a query string and optional result count from 1 to 20.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

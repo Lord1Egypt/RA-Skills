@@ -1,43 +1,56 @@
-## Description: <br>
-A newspaper and magazine PDF download skill that uses CLI commands to query collected issues, locate specific issues, and return PDF download links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Newspaper/magazine PDF download skill that lets an agent query collected publication updates, locate specific issues, and return PDF download links when an Import Token is configured.
 
-## Publisher: <br>
-[1787812757](https://clawhub.ai/user/1787812757) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1787812757](https://clawhub.ai/user/1787812757)
 
-## Use Case: <br>
-External users and developers use this skill to check recent newspaper and magazine updates, resolve a requested publication issue, and obtain JSON results containing issue metadata and, when configured with an Import Token, PDF download links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Import tokens and generated download links may function like credentials if exposed in chat logs, command history, saved files, or shared outputs. <br>
-Mitigation: Keep config.json private, prefer environment or private configuration for tokens, use --no-save for routine queries, and do not share generated links publicly. <br>
-Risk: The skill connects to pick-read.vip and the evidence security verdict is suspicious because token handling requires review before installation. <br>
-Mitigation: Install only if the publisher and pick-read.vip service are trusted, review the security guidance before use, and validate network behavior in the target environment. <br>
-Risk: The artifact script disables normal HTTPS certificate verification while retrying API requests. <br>
-Mitigation: Review this behavior before deployment and consider restoring standard HTTPS verification where the runtime environment supports it. <br>
+## Use Case:
 
+Developers and users on supported agent platforms use this skill to check recent newspaper and magazine updates, resolve named issues by date, and retrieve PDF download links from pick-read.vip when an Import Token is available.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1787812757/newspaper-download-skill) <br>
-- [pick-read.vip](https://pick-read.vip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON returned by CLI commands, with Markdown guidance for command usage and token setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Query commands can run without authentication; download links require an Import Token and should be treated as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Configured Import Tokens can appear in returned download links, logs, and saved result files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated download URLs as secrets, avoid sharing outputs, use --no-save where possible, and rotate any token that may have been exposed.
+
+Risk: The runtime uses insecure TLS behavior for outbound requests.
+
+Mitigation: Use only in trusted environments and prefer a version that redacts tokens and uses normal verified HTTPS before broad deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1787812757/skills/newspaper-download-skill)
+- [Publisher profile](https://clawhub.ai/user/1787812757)
+- [pick-read.vip](https://pick-read.vip)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, download links]
+
+**Output Format:** [Markdown or plain text with CLI JSON results and PDF download URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save JSON result files unless --no-save is used; generated download URLs can include Import Tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

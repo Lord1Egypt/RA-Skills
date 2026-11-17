@@ -1,46 +1,64 @@
-## Description: <br>
-自动生成结构化的全球市场、政经和 AI 新闻情报汇总报告，并支持定向深度分析、情报分级和相关事件检测。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global Intel Summary helps an agent generate structured Chinese-language global market, political, geopolitical, and AI news intelligence reports with source attribution and freshness checks.
 
-## Publisher: <br>
-[gmsx000-cloud](https://clawhub.ai/user/gmsx000-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gmsx000-cloud](https://clawhub.ai/user/gmsx000-cloud)
 
-## Use Case: <br>
-External users and analysts use this skill to generate Chinese-language markdown briefings about markets, geopolitics, macroeconomic events, and AI news. It is intended to help an agent gather current public information, classify significant events, and produce timestamped summaries with source attribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated financial or geopolitical analysis may be incomplete, outdated, or unsuitable for direct decision-making. <br>
-Mitigation: Treat generated analysis as informational, check timestamps and cited sources, and verify important claims before acting. <br>
-Risk: Running the helper script contacts external CoinGecko and Yahoo Finance APIs. <br>
-Mitigation: Run the script only in environments where public external API calls are permitted. <br>
-Risk: The skill may browse public news and RSS sources that contain rapidly changing or unverified claims. <br>
-Mitigation: Prefer source-attributed summaries and cross-check high-impact claims before use. <br>
+## Use Case:
 
+External users and analysts can use this skill to ask an agent for current Chinese-language summaries of markets, public news, geopolitical events, AI developments, and near-term risk signals. The skill is intended for structured reporting and triage, with important financial or geopolitical claims verified independently.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gmsx000-cloud/global-intel-summary) <br>
-- [Sample output](examples/sample-output.md) <br>
-- [CoinGecko simple price API](https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true) <br>
-- [Yahoo Finance Nasdaq chart endpoint](https://query1.finance.yahoo.com/v8/finance/chart/^IXIC) <br>
-- [Yahoo Finance Dow chart endpoint](https://query1.finance.yahoo.com/v8/finance/chart/^DJI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Chinese-language Markdown reports; helper script output is JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should include timestamps and source attribution; financial and geopolitical analysis should be treated as informational.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and package.json; artifact frontmatter describes internal content version 3.3.0) <br>
+Risk: Live public web, RSS, and market-data lookups can return stale, incomplete, or conflicting information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require timestamps and source labels in the report, and independently verify important financial or geopolitical claims with authoritative sources.
+
+Risk: The package gives broad reporting instructions, while the included helper script covers only a narrow subset of market data.
+
+Mitigation: Treat unsupported sections as agent-generated summaries that require source review, not as guaranteed outputs from the helper script.
+
+Risk: Financial and geopolitical summaries may be misused as decision-ready advice.
+
+Mitigation: Use the report for triage and situational awareness, and require human review before acting on market, policy, or security-sensitive claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gmsx000-cloud/skills/global-intel-summary)
+- [BBC World RSS](https://feeds.bbci.co.uk/news/world/rss.xml)
+- [Yahoo Finance RSS](https://finance.yahoo.com/news/rssindex)
+- [Federal Reserve press feed](https://www.federalreserve.gov/feeds/press_all.xml)
+- [CSIS analysis feed](https://www.csis.org/analysis/feed)
+- [CISA alerts feed](https://www.cisa.gov/uscert/ncas/alerts.xml)
+- [CoinGecko simple price API](https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true)
+- [Yahoo Finance Nasdaq chart API](https://query1.finance.yahoo.com/v8/finance/chart/^IXIC)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report in zh-CN, with source labels and timestamps for data points]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include alert labels, region tags, narrative tracking, and risk notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json; skill frontmatter and changelog describe content version 3.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

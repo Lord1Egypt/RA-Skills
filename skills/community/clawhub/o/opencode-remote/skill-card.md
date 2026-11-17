@@ -1,44 +1,57 @@
-## Description: <br>
-OpenCode Remote uses the OpenCode HTTP API to manage remote sessions, send prompts, monitor progress, and select agents for new sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenCode Remote helps an agent manage remote OpenCode sessions over HTTP, including session tracking, message sending, status monitoring, and task execution.
 
-## Publisher: <br>
-[Entropy-xcy](https://clawhub.ai/user/Entropy-xcy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[entropy-xcy](https://clawhub.ai/user/entropy-xcy)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate remote OpenCode servers by listing sessions, sending prompts, monitoring work progress, creating sessions, and checking task state through the OpenCode API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remote OpenCode endpoints and local SOCKS proxies can expose prompts, session data, or command traffic to untrusted infrastructure. <br>
-Mitigation: Use only trusted endpoints and network paths, prefer HTTPS or a trusted private network, and verify the endpoint before each action. <br>
-Risk: Shell, delete, abort, and fork operations can materially alter remote sessions or systems. <br>
-Mitigation: Treat these operations as privileged actions and require explicit user confirmation before invoking them. <br>
-Risk: Automatic monitoring can continue polling remote sessions after it is no longer needed. <br>
-Mitigation: Disable monitoring once the task is complete or when continued session observation is no longer required. <br>
-Risk: Prompts sent to remote sessions may contain secrets or sensitive project details. <br>
-Mitigation: Avoid sending secrets and repeat prompt content back to the user for confirmation before or immediately after transmission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenCode API Reference](references/api_reference.md) <br>
-- [ClawHub release page](https://clawhub.ai/Entropy-xcy/opencode-remote) <br>
+## Use Case:
 
+Developers and engineers use this skill to operate remote OpenCode servers, continue work in existing sessions, create new sessions, send prompts, and monitor task progress.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline API examples, shell commands, JSON responses, and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include remote session identifiers, endpoint-specific command examples, monitoring summaries, and confirmation text for prompts sent to OpenCode sessions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can control remote OpenCode servers and includes high-impact operations such as remote shell execution, destructive session actions, configuration changes, PTY access, and file-content access.
+
+Mitigation: Use it only with OpenCode servers you control, preferably behind HTTPS or a trusted private network with real authentication, and avoid high-impact endpoints unless that authority is explicitly intended.
+
+Risk: Prompts, session outputs, and monitoring summaries may contain sensitive information.
+
+Mitigation: Review prompts before sending, limit what is repeated or stored, and avoid sending secrets or private data to remote sessions.
+
+Risk: The skill may store session identifiers locally and create ongoing monitoring.
+
+Mitigation: Treat session IDs as sensitive, periodically remove stale local session records, and cancel monitoring when tasks complete.
+
+## Reference(s):
+
+- [OpenCode API Reference](references/api_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/entropy-xcy/skills/opencode-remote)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, API examples, and helper-script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local session records and monitoring workflows when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

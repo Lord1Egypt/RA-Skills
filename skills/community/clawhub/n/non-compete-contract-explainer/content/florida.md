@@ -2,20 +2,22 @@
 jurisdiction: "Florida"
 slug: florida
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-06-03"
-canonicalUrl: https://openagreements.org/legal/non-compete/florida
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-06-03"
+human_reviewed_at: null
+next_review_due: "2026-11-30"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/florida
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/florida · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/florida · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Non-Competes in Florida[^about]
 
@@ -36,13 +38,13 @@ Florida enforces non-competes by statute and is among the most employer-friendly
 | **Maximum length set by law** | No hard cap; over 2 years presumed unreasonable for employees |
 | **Must the employer pay to enforce?** | Only on the optional paid track |
 
-## Are employee non-compete agreements enforceable in Florida? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in Florida? {#employee-non-compete-enforceability}
 
 **Short answer.** Yes. Florida is one of the most employer-friendly non-compete states in the country. Every restraint of trade is unlawful as a baseline, but section 542.335 of the Florida Statutes creates a broad statutory exception: a restrictive covenant is enforceable when it is in a signed writing, justified by a legitimate business interest, and reasonably necessary to protect that interest in time, area, and line of business [^q1-542018-baseline][^q1-542335-intro][^q1-542335-writing][^q1-542335-necessary].
 
 Florida courts treat section 542.335 as a comprehensive statutory framework for restrictive covenants. As the Fifth District put it, the statute is built on an unfair-competition approach, rather than the older common-law hostility to restraints [^q1-henao-framework].
 
-Since July 2025, Florida has run two parallel tracks. Most agreements are governed by the traditional section 542.335 standard described throughout this note. A second, even more employer-favorable track — the CHOICE Act, sections 542.41 through 542.45 — applies only to defined high-earning *covered employees*; covenants that do not fit the CHOICE Act definitions fall back to section 542.335 [^q1-choice-fallback].
+Since July 2025, Florida has run two parallel tracks. Most agreements are governed by the traditional section 542.335 standard described throughout this note. A second, even more employer-favorable track — the CHOICE Act, sections 542.41 through 542.45 — applies only to defined high-earning *covered employees*; covenants that do not fit the CHOICE Act definitions fall back to section 542.335 [^q1-choice-fallback]. Reviewers working through a specific draft can apply this framework clause by clause with the [Florida non-compete reviewer checklist](/checklists/non-compete/us/florida).
 
 > [!NOTE]
 > **Practice note.**
@@ -62,7 +64,7 @@ The Florida Supreme Court confirmed in *White v. Mederi Caretenders* that the st
 >
 > A naked interest in avoiding ordinary competition is not protectable. Plead and prove a specific interest from the statutory categories — or an analogous one supported by evidence — because a restraint not tied to a legitimate business interest is void and unenforceable [^q2-542335-void].
 
-## How long can a Florida non-compete last? {#duration-reasonableness}
+## How long can a Florida non-compete last? {#duration-limits}
 
 **Short answer.** Under section 542.335, duration is governed by rebuttable presumptions that vary by context. Against a former employee, a restraint of six months or less is presumed reasonable and one longer than two years is presumed unreasonable. The window widens for the sale of a business and for covenants predicated on trade secrets, where five years or less is presumed reasonable [^q3-542335-employee-presumption][^q3-542335-tradesecret-presumption].
 
@@ -70,7 +72,14 @@ These are presumptions, not caps — either side can rebut them with evidence. F
 
 The presumptions vary by the relationship between the parties; for distributors, dealers, franchisees, or licensees of a mark, a restraint of one year or less is presumed reasonable [^q3-542335-distributor-presumption].
 
-## Will a Florida court rewrite an overbroad non-compete instead of voiding it? {#blue-pencil-reformation}
+| Relationship / context | Presumed reasonable | Presumed unreasonable |
+| --- | --- | --- |
+| Former employee, agent, or independent contractor | 6 months or less | More than 2 years |
+| Distributor, dealer, franchisee, or licensee of a trademark or service mark | 1 year or less | More than 3 years |
+| Sale of a business or equity interest | 3 years or less | More than 7 years |
+| Trade-secret–predicated covenant | 5 years or less | More than 10 years |
+
+## Will a Florida court rewrite an overbroad non-compete instead of voiding it? {#court-narrowing}
 
 **Short answer.** Yes — reformation is mandatory. If a restraint is overbroad, overlong, or otherwise broader than necessary, section 542.335 directs the court to *modify the restraint and grant only the relief reasonably necessary* to protect the legitimate business interest, rather than strike the covenant entirely [^q4-542335-modify].
 
@@ -131,7 +140,7 @@ In *Open Magnetic Imaging v. Nieves-Garcia*, the Third District found no Florida
 
 "In fact, we have located no Florida decision to date which has declined to enforce a non-compete agreement by virtue of the fact that an employee has been required to execute it after employment has commenced."[^q9-omi-consideration]
 
-## Does a Florida non-compete period pause or extend if the employee breaches or litigates? {#tolling-extension}
+## Does a Florida non-compete period pause or extend if the employee breaches or litigates? {#extended-for-breach}
 
 **Short answer.** Section 542.335 does not expressly address tolling — it neither requires nor forbids extending the restricted period for the time a former employee was in breach. What the statute does provide is a strong enforcement remedy: a violation creates a presumption of irreparable injury, and courts enforce covenants by injunction [^q10-542335-injunction].
 
@@ -170,7 +179,7 @@ The Federal Register notice records that a federal court held the rule unlawful 
 
 "In the third case, the court held that the Non-Compete Rule was unlawful and set it aside."[^q14-fr-removal]
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Florida. This article synthesizes Florida primary law and is not legal advice from a Florida-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Florida. This article synthesizes Florida primary law and is not legal advice from a Florida-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Non-Competes in Florida*, OpenAgreements (last updated June 3, 2026), https://openagreements.org/practice-guides/non-compete/us/florida.
 
 [^q1-542018-baseline]: **Fla. Stat. § 542.18** — "Every contract, combination, or conspiracy in restraint of trade or commerce in this state is unlawful." *Fla. Stat. § 542.18 (2025).* <https://www.flsenate.gov/Laws/Statutes/2025/542.18>
 

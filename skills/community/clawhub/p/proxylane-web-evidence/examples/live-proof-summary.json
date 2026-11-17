@@ -1,0 +1,135 @@
+{
+  "not_executed_live": [
+    "google-citations reviewed current DOM contract unavailable",
+    "xiaohongshu authenticated existing MCP endpoint unavailable"
+  ],
+  "raw_live_content_in_package": false,
+  "raw_live_evidence_stored_privately": true,
+  "recorded_on": "2026-10-07",
+  "schema_version": "1.0",
+  "scope": "Three narrowly bounded actual public-source collections through a supplied HTTP proxy input; no general reliability, authentication, regional or universal coverage claim",
+  "sources": [
+    {
+      "attempts": 1,
+      "auth_or_cookie_values_in_receipt": false,
+      "coverage": {
+        "complete_track": false,
+        "limit": 3,
+        "returned": 3
+      },
+      "diagnostic_codes": [
+        "limit_reached"
+      ],
+      "missing_or_unverified_typed_fields": [],
+      "mode": "youtube-transcript",
+      "observation_field_names": [
+        "duration_seconds",
+        "is_generated",
+        "language",
+        "segment_id",
+        "source_url",
+        "start_seconds",
+        "text",
+        "video_id"
+      ],
+      "observations_count": 3,
+      "observed_at": "2026-10-07T07:18:54.475527Z",
+      "proof_mode": "live",
+      "region_verified": false,
+      "requested_limit": 3,
+      "semantic_fields_verified": [
+        "video_id",
+        "text",
+        "start_seconds",
+        "duration_seconds",
+        "language"
+      ],
+      "status": "partial",
+      "target": "https://www.youtube.com/watch?v=aircAruvnKk",
+      "target_request_exit_ip_verified": false
+    },
+    {
+      "attempts": 1,
+      "auth_or_cookie_values_in_receipt": false,
+      "coverage": {
+        "complete": false,
+        "limit": 3,
+        "returned": 3,
+        "sort": "top"
+      },
+      "diagnostic_codes": [
+        "bounded_sample"
+      ],
+      "missing_or_unverified_typed_fields": [],
+      "mode": "youtube-comments",
+      "observation_field_names": [
+        "comment_id",
+        "likes",
+        "parent",
+        "source_url",
+        "text",
+        "timestamp",
+        "video_id"
+      ],
+      "observations_count": 3,
+      "observed_at": "2026-10-07T07:19:08.452679Z",
+      "proof_mode": "live",
+      "region_verified": false,
+      "requested_limit": 3,
+      "semantic_fields_verified": [
+        "video_id",
+        "comment_id",
+        "text",
+        "source_url"
+      ],
+      "status": "partial",
+      "target": "https://www.youtube.com/watch?v=aircAruvnKk",
+      "target_request_exit_ip_verified": false
+    },
+    {
+      "attempts": 1,
+      "auth_or_cookie_values_in_receipt": false,
+      "coverage": {
+        "checkout_verified": false,
+        "delivery_location_verified": false,
+        "pages": 1,
+        "pagination": false
+      },
+      "diagnostic_codes": [
+        "currency_not_inferred"
+      ],
+      "missing_or_unverified_typed_fields": [
+        "price",
+        "currency"
+      ],
+      "mode": "price",
+      "observation_field_names": [
+        "availability_text",
+        "currency",
+        "offer_identity",
+        "price",
+        "price_text",
+        "product_id",
+        "shipping_tax_included",
+        "source_url",
+        "title",
+        "variant_text"
+      ],
+      "observations_count": 1,
+      "observed_at": "2026-10-07T07:19:51.370651Z",
+      "proof_mode": "live",
+      "region_verified": false,
+      "requested_limit": null,
+      "requested_variant_verified": false,
+      "semantic_fields_verified": [
+        "product_id",
+        "title",
+        "price_text",
+        "availability_text"
+      ],
+      "status": "partial",
+      "target": "https://www.amazon.com/dp/B09B8V1LZ3",
+      "target_request_exit_ip_verified": false
+    }
+  ]
+}

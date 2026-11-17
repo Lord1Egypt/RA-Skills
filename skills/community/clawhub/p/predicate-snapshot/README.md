@@ -409,10 +409,10 @@ cp .env.example .env
 2. Edit `.env` and add your OpenAI API key:
 ```bash
 # .env
-OPENAI_API_KEY=sk-your-openai-api-key-here
+OPENAI_API_KEY=REDACTED-SECRET
 
 # Optional: for ML-ranked snapshots
-PREDICATE_API_KEY=sk-your-predicate-api-key-here
+PREDICATE_API_KEY=REDACTED-SECRET
 ```
 
 3. Run the demo with visible browser and element overlay:

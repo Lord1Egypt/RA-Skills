@@ -1,42 +1,54 @@
-## Description: <br>
-基于七大哲学理论，提供多维度评分和实时数据的智能股票诊断和操作建议系统。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+天枢股票分析系统 uses Tencent Finance quote data and a seven-theory framework to produce informational stock diagnostic reports with scores, ratings, and action suggestions.
 
-## Publisher: <br>
-[horizoncove](https://clawhub.ai/user/horizoncove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horizoncove](https://clawhub.ai/user/horizoncove)
 
-## Use Case: <br>
-投资研究人员和个人投资者可用该技能按股票代码生成结构化诊断报告，结合实时行情、基本面、技术面、行业面、消息面、资金面和估值面进行评分。输出可辅助研究和决策准备，但不应替代专业金融建议。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send stock symbols and query timing to Tencent Finance. <br>
-Mitigation: Use it only when that data sharing is acceptable and avoid including sensitive portfolio details unless necessary. <br>
-Risk: The artifact includes sample code that disables TLS certificate and hostname verification. <br>
-Mitigation: Keep normal HTTPS certificate and hostname verification enabled when implementing data requests. <br>
+## Use Case:
 
+External users and agents use this skill to fetch live stock quote data and generate an informational stock diagnosis, including multi-factor scores, short- and long-term ratings, and suggested actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/horizoncove/tianshu-stock) <br>
-- [Tencent Finance quote API example](https://qt.gtimg.cn/q=sh603127) <br>
-- [Source skill artifact](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown diagnostic report with real-time stock data, theory-by-theory analysis, numeric scores, ratings, and operating guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a stock code and depends on Tencent Finance API availability for live market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact instructs agents to disable TLS checks while fetching live financial data, which could allow quote data or resulting advice to be tampered with.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep TLS certificate validation enabled and remove the TLS-disabling instructions before routine financial-analysis use.
+
+Risk: The skill produces ratings and operation suggestions for stocks.
+
+Mitigation: Treat outputs as informational only and require independent financial review before making trading decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/horizoncove/skills/tianshu-stock)
+- [Tencent Finance quote endpoint example](https://qt.gtimg.cn/q=sh603127)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown diagnostic report with quote fields, theory-by-theory analysis, scores, ratings, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live market data from Tencent Finance when network access is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

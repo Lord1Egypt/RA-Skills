@@ -1,43 +1,56 @@
-## Description: <br>
-Audit code for "vibe coding sins" — patterns that indicate AI-generated code was accepted without proper review, producing a scored report card with fix suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit code for "vibe coding sins" - patterns that indicate AI-generated code was accepted without proper review - and produce a scored report card with fix suggestions.
 
-## Publisher: <br>
-[tkuehnl](https://clawhub.ai/user/tkuehnl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tkuehnl](https://clawhub.ai/user/tkuehnl)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit Python, TypeScript, and JavaScript files or git diffs for code-quality, maintainability, and security patterns associated with insufficiently reviewed AI-generated code. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Analyzed files may be sent to configured LLM providers when API keys are available. <br>
-Mitigation: Avoid running on repositories containing secrets, proprietary code, or regulated data unless provider use is permitted; scope each run to the specific files or diff that need review. <br>
-Risk: Generated fix suggestions could be incorrect or inappropriate if applied without review. <br>
-Mitigation: Treat fixes as reviewable unified diff suggestions; inspect and test changes before applying them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tkuehnl/vibe-check) <br>
-- [README](README.md) <br>
-- [Security model](SECURITY.md) <br>
-- [Testing plan](TESTING.md) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to audit Python, TypeScript, and JavaScript files, directories, or git diffs for review gaps, code quality issues, and security patterns associated with insufficiently reviewed AI-generated code.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with scorecards, findings, and optional unified diff suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write the report to a user-specified Markdown file when --output is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Source files can be sent to configured LLM providers during analysis.
+
+Mitigation: Use heuristic mode by running without ANTHROPIC_API_KEY, OPENAI_API_KEY, or openclaw llm for sensitive code, and scope scans to paths that are safe to share.
+
+Risk: Generated findings and fix diffs may be incorrect, incomplete, or unsafe.
+
+Mitigation: Treat reports and patches as untrusted suggestions that require human review before any code changes are applied.
+
+Risk: Reports may directly include untrusted model output.
+
+Mitigation: Review rendered reports before redistributing them and avoid treating report text as executable instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tkuehnl/skills/vibe-check)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown report with score tables, category breakdowns, findings, optional unified diff patches, and optional README badge Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write the report to a user-specified output file; fix suggestions are proposed diffs only and are not applied automatically.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

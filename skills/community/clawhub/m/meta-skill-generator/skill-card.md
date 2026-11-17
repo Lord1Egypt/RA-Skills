@@ -1,45 +1,59 @@
-## Description: <br>
-Skills creator is an AI skill generation framework that scans, registers, retrieves, generates, evaluates, tests, and optimizes agent skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates, scans, retrieves, evaluates, tests, and optimizes agent skills as part of an automated skill-generation framework.
 
-## Publisher: <br>
-[xjxjdnsnak-cell](https://clawhub.ai/user/xjxjdnsnak-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xjxjdnsnak-cell](https://clawhub.ai/user/xjxjdnsnak-cell)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create and maintain skill libraries by finding existing skills, generating new skill files or code, testing candidates, scoring results, and applying optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or newly tested skill code may execute locally with insufficient isolation. <br>
-Mitigation: Run testers only inside Docker or a VM with no host mounts and no network, and review generated code before execution. <br>
-Risk: Generated skill files may be written outside the intended workspace if paths are not constrained. <br>
-Mitigation: Verify path containment before saving generated skills or optimization output. <br>
-Risk: Configured DeepSeek or other LLM calls may send proprietary code, secrets, or sensitive task text to an external service. <br>
-Mitigation: Redact sensitive content and obtain consent before using external LLM providers. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create, register, search, test, evaluate, and improve reusable agent skills. It is intended for skill factory and skill-management workflows where generated outputs are reviewed before use.
 
-## Reference(s): <br>
-- [API Reference](references/api_reference.md) <br>
-- [Meta-Skill Generator Architecture](references/architecture.md) <br>
-- [Usage Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xjxjdnsnak-cell/meta-skill-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, YAML, and Python code depending on the requested generation, evaluation, or optimization task] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local skill files, databases, scores, generated skill drafts, tests, and optimization notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated skills can be tested through local execution paths and may run code with access to the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated development environment, and replace local runners with a real sandbox before testing untrusted generated skills.
+
+Risk: The framework can write generated skill files, which may make unsafe or incorrect generated content loadable.
+
+Mitigation: Review generated SKILL.md and Python files before enabling them, and constrain skill names to safe identifiers.
+
+Risk: LLM/API use and model downloads may send data to or fetch data from external providers.
+
+Mitigation: Review configured providers and avoid sending sensitive inputs unless the provider, model, and data handling posture are approved.
+
+## Reference(s):
+
+- [API Reference](references/api_reference.md)
+- [Architecture](references/architecture.md)
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, Python code, configuration snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update skill files and local JSON stores; generated outputs should be reviewed before being made loadable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

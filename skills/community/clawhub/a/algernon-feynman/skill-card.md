@@ -1,39 +1,53 @@
-## Description: <br>
-Runs a Feynman Technique study session for OpenAlgernon by asking the user to teach concepts back, probing gaps with Socratic questions, and revealing reference answers only after repeated attempts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a Feynman Technique study session for OpenAlgernon that prompts users to teach concepts in their own words, identifies gaps with Socratic follow-ups, and reveals reference answers only after repeated unsuccessful attempts.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
 
-## Use Case: <br>
-OpenAlgernon users use this skill to consolidate study material by explaining selected concepts in their own words. The agent selects study cards, evaluates accuracy, depth, and transfer, asks targeted follow-up questions, and summarizes the session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local OpenAlgernon study data and persist study-session summaries. <br>
-Mitigation: Use it only with study data you are comfortable exposing to the agent, and review saved summaries for sensitive content. <br>
-Risk: Optional Notion integration can send session summaries to a configured Notion page. <br>
-Mitigation: Enable Notion only with a trusted CLI, account, and page ID, and avoid routing sensitive study material to Notion unless that storage is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to run guided OpenAlgernon study sessions that test understanding of material through self-explanation, Socratic follow-up questions, and concise session summaries.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Conversational text and Markdown summaries with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read an OpenAlgernon SQLite study database and optionally append session summaries to Notion or local memory when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Unsafe database and shell command patterns could mishandle untrusted material names or card content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted material names and card content, validate slugs, prefer parameterized SQLite queries, and review proposed commands before use.
+
+Risk: Study summaries may be saved locally or exported to Notion without clear per-run consent.
+
+Mitigation: Ask before sending summaries to Notion or saving learning-history notes, and write summaries safely.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antoniovfranco/skills/algernon-feynman)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with prompts, evaluation guidance, summary text, and optional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a 3-5 concept study flow, per-concept feedback, optional Notion export content, and optional local learning-history notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

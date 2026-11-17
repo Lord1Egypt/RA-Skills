@@ -1,41 +1,53 @@
-## Description: <br>
-Create a Linkfuse affiliate short link from any URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a Linkfuse affiliate short link from any URL.
 
-## Publisher: <br>
-[oliverw](https://clawhub.ai/user/oliverw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oliverw](https://clawhub.ai/user/oliverw)
 
-## Use Case: <br>
-External users and developers use this skill to create Linkfuse affiliate short links from supplied URLs through the Linkfuse REST API. It is intended for workflows where an agent should validate token availability, call the helper script, and return the created short URL and title. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Linkfuse API token and sends user-provided URLs to Linkfuse. <br>
-Mitigation: Install only when this data sharing is acceptable, keep LINKFUSE_TOKEN in the environment, and avoid shortening secret-bearing private URLs. <br>
-Risk: Unescaped URLs or unintended clipboard copy commands could expose or mishandle sensitive link data. <br>
-Mitigation: Use proper shell quoting for URLs and copy the generated short URL to the clipboard only after explicit user approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Linkfuse Skill Page](https://clawhub.ai/oliverw/linkfuse) <br>
-- [Linkfuse](https://www.linkfuse.net) <br>
-- [Linkfuse External Token Page](https://app.linkfuse.net/user/external-token) <br>
+## Use Case:
 
+External users and developers use this skill to create or recycle Linkfuse affiliate short links from provided URLs through the Linkfuse API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON helper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, network access, and LINKFUSE_TOKEN. The helper returns JSON with url and title on success.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A returned short URL could make the documented clipboard shell command unsafe if the URL contains shell syntax.
+
+Mitigation: Avoid running the clipboard command as written; copy the displayed short URL manually or use a shell-safe clipboard helper that validates the URL first.
+
+Risk: The skill submits destination URLs to Linkfuse and requires a bearer token.
+
+Mitigation: Use this skill only when Linkfuse is trusted with the submitted URLs and the LINKFUSE_TOKEN can be stored and handled securely.
+
+## Reference(s):
+
+- [Linkfuse](https://www.linkfuse.net)
+- [Linkfuse external token page](https://app.linkfuse.net/user/external-token)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and Linkfuse short-link result text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, network access, and a LINKFUSE_TOKEN environment variable.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

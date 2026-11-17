@@ -1,43 +1,55 @@
-## Description: <br>
-Polymarket prediction markets: analytics, trading, hot markets, price movements, top traders, and market search. Powered by prob.trade. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polymarket prediction markets: analytics, trading, hot markets, price movements, top traders, and market search. Powered by prob.trade.
 
-## Publisher: <br>
-[vlprosvirkin](https://clawhub.ai/user/vlprosvirkin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vlprosvirkin](https://clawhub.ai/user/vlprosvirkin)
 
-## Use Case: <br>
-External users and developers use this skill in OpenClaw agents to inspect Polymarket prediction-market data, monitor market movement and trader activity, and place or manage trades through prob.trade API credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can place or cancel real Polymarket trades using configured API credentials without built-in confirmation or spending limits. <br>
-Mitigation: Require explicit confirmation outside the skill for every buy, sell, or cancel action, and avoid enabling credentials in unattended or broad automation workflows. <br>
-Risk: Configured prob.trade credentials can expose account data and trading capability if mishandled. <br>
-Mitigation: Use revocable or least-privilege API keys when available and keep ~/.openclaw/skills/probtrade/config.yaml and related environment variables private. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vlprosvirkin/prob-trade-polymarket-analytics) <br>
-- [prob.trade dashboard](https://app.prob.trade) <br>
-- [prob.trade public API overview](https://api.prob.trade/api/public/overview) <br>
-- [prob.trade public API documentation](https://prob.trade/docs/public-api) <br>
-- [prob.trade trading API reference](https://github.com/vlprosvirkin/probtrade-openclaw-skill/blob/main/docs/trading-api-reference.md) <br>
+## Use Case:
 
+External users and developers use this skill to query prob.trade market analytics, search Polymarket prediction markets, inspect trader activity, and place or manage trades through an OpenClaw agent.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and prob.trade API credentials via environment variables or ~/.openclaw/skills/probtrade/config.yaml.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.5 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place or cancel live financial orders without an explicit confirmation or dry-run safeguard.
+
+Mitigation: Use a restricted or low-balance prob.trade key, require an external confirmation workflow before trading actions, and revoke keys when finished.
+
+Risk: API credentials may be stored in a plaintext config file.
+
+Mitigation: Prefer environment variables or protected secret storage for PROBTRADE_API_KEY and PROBTRADE_API_SECRET.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vlprosvirkin/skills/prob-trade-polymarket-analytics)
+- [prob.trade Dashboard](https://app.prob.trade)
+- [Public API Reference](https://prob.trade/docs/public-api)
+- [Trading API Reference](https://github.com/vlprosvirkin/probtrade-openclaw-skill/blob/main/docs/trading-api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require Python 3 and prob.trade API credentials supplied through environment variables or configuration.]
+
+## Skill Version(s):
+
+2.0.5 (source: server release metadata; artifact frontmatter lists 2.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

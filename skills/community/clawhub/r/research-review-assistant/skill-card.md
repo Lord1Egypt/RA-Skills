@@ -1,44 +1,59 @@
-## Description: <br>
-Research Review Assistant helps an agent retrieve research papers, summarize methods and findings, score relevance, support iterative refinement, and draft literature reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Review Assistant helps agents retrieve academic papers, summarize methods and findings, rank relevance, iterate with user feedback, and draft literature review reports.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-External users and researchers use this skill to gather recent literature, compare papers, identify research gaps, and produce structured review drafts for academic writing or grant support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency metadata was flagged by the security evidence as a supply-chain concern. <br>
-Mitigation: Audit and correct package dependency entries before installation or deployment. <br>
-Risk: The skill can be triggered automatically through a scheduled literature-review command. <br>
-Mitigation: Enable scheduled runs only when the user intends recurring literature-review execution. <br>
-Risk: Research summaries and relevance scores may be incomplete or misleading if retrieval results are sparse or low quality. <br>
-Mitigation: Review generated literature summaries against source papers before using them in manuscripts, grant materials, or decisions. <br>
+## Use Case:
 
+Developers, researchers, and research-support agents use this skill to gather recent literature for a topic, produce structured paper summaries, identify trends and gaps, and generate review drafts that can be revised through feedback.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jirboy/research-review-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/jirboy) <br>
-- [arXiv API Endpoint](http://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown review reports with tables, paper summaries, trend analysis, references, optional saved files, and command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports max_papers, summary_length, and iteration_rounds parameters; the artifact also documents optional scheduled review generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Installation metadata can pull unrelated unpinned npm packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package metadata before installation and remove the npm dependencies or replace them with properly pinned Python requirements.
+
+Risk: Paper retrieval uses plaintext HTTP for arXiv access.
+
+Mitigation: Change arXiv requests to HTTPS before relying on generated review content.
+
+Risk: Generated literature summaries may contain incomplete or misleading interpretations of retrieved papers.
+
+Mitigation: Have a qualified reviewer check source papers, relevance scores, and citations before using the review in research, publication, or grant materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/research-review-assistant)
+- [Artifact README](artifact/README.md)
+- [arXiv API endpoint used by artifact](http://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown literature review reports, optional LaTeX or grant-reference formatting, command examples, and saved Markdown files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports max_papers, summary_length, iteration_rounds, and command-line field, paper-count, version, and save options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

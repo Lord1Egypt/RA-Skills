@@ -1,41 +1,56 @@
-## Description: <br>
-Generate videos via Google Cloud Vertex AI predictLongRunning (Veo) using Application Default Credentials (ADC). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos via Google Cloud Vertex AI predictLongRunning (Veo) using Application Default Credentials (ADC).
 
-## Publisher: <br>
-[neogeosnk](https://clawhub.ai/user/neogeosnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neogeosnk](https://clawhub.ai/user/neogeosnk)
 
-## Use Case: <br>
-Developers and automation agents use this skill to generate text-to-video or image-to-video outputs through Google Cloud Vertex AI using local Google Cloud credentials and curl. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Raw Google Vertex AI responses may be saved to predictable files in the shared temp directory, which can expose sensitive prompts, source-image data, response data, or generated-video details on shared machines. <br>
-Mitigation: Use the skill only in trusted environments for sensitive work, remove temporary debug files after use, or modify the script to disable debug persistence or write debug files to private per-run locations with restrictive permissions. <br>
+## Use Case:
 
+Developers and automation builders use this skill to generate text-to-video or image-to-video outputs through Google Cloud Vertex AI Veo using local Google Cloud credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neogeosnk/vertex-video-adc) <br>
-- [Publisher profile](https://clawhub.ai/user/neogeosnk) <br>
-- [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown usage guidance, JSON status responses, and generated video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gcloud and curl, Google Cloud authentication, a project ID, and prompt input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, optional images, and API responses are sent to Google Cloud Vertex AI using the user's project credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is acceptable for the project and account being used.
+
+Risk: Raw response JSON can be written to predictable temporary files during operation.
+
+Mitigation: Review or patch the script before use so raw response JSON is not left in shared temporary paths unless explicitly needed for debugging.
+
+## Reference(s):
+
+- [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ClawHub skill page](https://clawhub.ai/neogeosnk/skills/vertex-video-adc)
+- [Publisher profile](https://clawhub.ai/user/neogeosnk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated videos are written as MP4 files when the Vertex AI response contains video bytes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

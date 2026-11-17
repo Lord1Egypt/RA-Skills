@@ -14,7 +14,8 @@ Amazon Ads 的授权（LWA OAuth）、profile 发现、访问令牌管理。**�
 - **授权流程**：生成 URL → 用户浏览器授权 → 系统存 token + 同步 profile
 - **一次授权多 profile**：每个 marketplace（US/UK/JP…）一个 profileId；下游调用必须带 profileId
 - **accountName 必填**：调 `authorize_url.py` 前必须问用户要一个非空账号名
-- **accessToken 1 小时有效**；过期后下游返回 HTTP 401，可用 `refresh_token.py` 续签
+- **下游选店**：业务 skill 经 `developerProxy` 传 **`profileId`**（+ `region`），服务端注入 token；**勿**先 `storeTokens` 取 raw token
+- **accessToken 1 小时有效**；过期后下游返回 HTTP 401，可用 `refresh_token.py` 续签（刷新后重试 proxy，仍只需 `profileId`）
 
 ## 可用脚本
 
@@ -24,7 +25,7 @@ Amazon Ads 的授权（LWA OAuth）、profile 发现、访问令牌管理。**�
 | `authorized_stores.py` | 列出已授权的账号 × 站点（按 profileId 聚合） |
 | `profiles.py` | 列 profile 列表（`refresh=true` 穿透上游刷新） |
 | `refresh_token.py` | 刷新 accessToken |
-| `store_tokens.py` | 查 token（供下游使用） |
+| `store_tokens.py` | 查授权/令牌**状态**（非下游 token 来源） |
 
 入参、响应字段、错误码见 `references/api.md`。
 
@@ -41,6 +42,14 @@ Amazon Ads 的授权（LWA OAuth）、profile 发现、访问令牌管理。**�
 - 加 `--inline` 强制全量打印到 stdout（同样落盘）
 
 **读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## 解决认证和积分问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示积分或余额不足**：消息含"积分余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
 
 ## 支持区域
 
@@ -60,16 +69,20 @@ Amazon Ads 的授权（LWA OAuth）、profile 发现、访问令牌管理。**�
 ### 3. 刷新过期令牌
 下游返回 HTTP 401 或含 `expired` / `unauthorized` 时，调 `refresh_token.py`（传 `profileId` 或 `authRecordId`）。
 
-### 4. 给下游解析 profileId（高频）
+### 4. 给下游准备 profileId（高频）
 
 用户只说自然语言（"美国站"、"我的店铺"），**不要让用户报 profileId 数字**。
 
+下游 **`linkfox-amazon-ads-manager`** / **`linkfox-amazon-ads-report`** 调用 `developerProxy` 时传入解析到的 **`profileId`** 即可；**不要**先调 `store_tokens.py` 取 `accessToken`。
+
 | 用户上下文 | Agent 动作 |
 |---|---|
-| 只授权 1 个账号 | 按 `countryCode` 直接定位，不问 |
-| 授权 ≥ 2 个账号 + 只说站点 | 按 `accountName` 向用户澄清 |
-| 同时给出 accountName + 站点 | 直接定位 |
+| 只授权 1 个账号 | 按 `countryCode` 直接定位 `profileId`，不问 |
+| 授权 ≥ 2 个账号 + 只说站点 | 按 `accountName` 向用户澄清后定位 `profileId` |
+| 同时给出 accountName + 站点 | 直接定位 `profileId` |
 | 显式给出 profileId 数字 | 直接用 |
+
+`store_tokens.py` **仅用于**确认授权/令牌状态（`status`、`expiresIn`、`message` 等），或在用户明确要查状态时调用。
 
 站点关键词映射参考（以 `authorized_stores` 真实 `countryCode` 兜底）：
 - 美国 / US → `US`；英国 / UK → `UK`；日本 / JP → `JP`；德国 / DE → `DE`
@@ -79,7 +92,7 @@ Amazon Ads 的授权（LWA OAuth）、profile 发现、访问令牌管理。**�
 ## 调用原则
 
 - 先问 `accountName` 再调 `authorize_url.py`
-- 不输出完整 accessToken / refreshToken；脚本已做掩码，不要在摘要里还原
+- 不假设 `storeTokens`/`refreshToken` 响应含 raw token；展示 `status`、过期时间等元数据即可
 - 授权失败按错误码解释原因；不擅自重试
 
 ## 常见问题
@@ -102,6 +115,10 @@ Amazon Ads 的授权（LWA OAuth）、profile 发现、访问令牌管理。**�
 - 拉广告报告（含指标） → `linkfox-amazon-ads-report`
 - 修改 / 创建 / 删除广告 → 本系列为只读
 - 店铺订单 / 库存 / 财务 → `linkfox-amazon-store-*`
+
+## 积分消耗规则
+
+不消耗积分。
 
 **Feedback:**
 

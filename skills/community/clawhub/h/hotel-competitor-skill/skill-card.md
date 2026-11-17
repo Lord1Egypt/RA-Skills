@@ -1,39 +1,58 @@
-## Description: <br>
-酒店竞争分析 SKILL - 自动搜索周边酒店，生成竞争分析报告. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates basic hotel competitor analysis reports from manual or Excel-supplied competitor data; the packaged script does not implement the advertised automatic competitor discovery.
 
-## Publisher: <br>
-[chaoliuzhu65-tech](https://clawhub.ai/user/chaoliuzhu65-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu65-tech](https://clawhub.ai/user/chaoliuzhu65-tech)
 
-## Use Case: <br>
-Hotel operators, revenue managers, and regional hotel teams use this skill to create competitor analysis reports from manually entered or Excel-imported nearby hotel data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaoliuzhu65-tech/hotel-competitor-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/chaoliuzhu65-tech) <br>
-- [AMap API documentation](https://lbs.amap.com/) <br>
+Hotel operators, regional managers, and hotel groups can use this skill to produce basic competitor reports from supplied competitor names or Excel data, including counts, ratings, price ranges, and nearby-competitor indicators.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report file with console status text and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The current script supports manual competitor entry and Excel import; security evidence describes it as a basic/manual report generator with no hidden data theft, destructive behavior, persistence, or unsafe automatic execution.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill advertises automatic competitor discovery, but the packaged script only performs basic reporting from supplied data.
+
+Mitigation: Use it only for manual or Excel-based competitor reporting unless automatic discovery is separately reviewed and implemented.
+
+Risk: Excel input and generated Markdown may contain untrusted or misleading content.
+
+Mitigation: Run the skill only on trusted Excel files or manually entered data, and review generated Markdown before sharing.
+
+Risk: Dependency constraints are broad and may install newer package versions than originally tested.
+
+Mitigation: Pin or review dependencies before installation in production environments.
+
+## Reference(s):
+
+- [Amap developer documentation](https://lbs.amap.com/)
+- [ClawHub skill listing](https://clawhub.ai/chaoliuzhu65-tech/skills/hotel-competitor-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report files with command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are generated from manually entered or Excel-imported competitor data; automatic fetching is skipped unless separately implemented and configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

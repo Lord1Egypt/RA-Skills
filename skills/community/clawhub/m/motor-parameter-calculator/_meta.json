@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn71h18yq7ayrcsa39r02ht4dd82pyc9",
-  "slug": "motor-parameter-calculator",
-  "version": "1.2.0",
-  "publishedAt": 1774373215253
+  "name": "motor-parameter-calculator",
+  "version": "1.0.0",
+  "description": "电机设计参数计算助手 - 计算极槽配合、匝数、磁密、反电动势等核心参数",
+  "tags": ["电机", "设计", "计算", "FOC", "极槽配合"],
+  "author": "永杰团队",
+  "license": "MIT",
+  "language": "中文"
 }

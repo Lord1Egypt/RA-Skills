@@ -1,42 +1,57 @@
-## Description: <br>
-Builds and deploys an automated job hunting system with a Telegram bot that scrapes LinkedIn jobs, scores candidate fit, and sends job notifications with action buttons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Job Hunter helps agents build and deploy a Telegram-based job search bot that scrapes LinkedIn job listings, scores matches against a candidate profile, and sends actionable job alerts.
 
-## Publisher: <br>
-[barleviatias](https://clawhub.ai/user/barleviatias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[barleviatias](https://clawhub.ai/user/barleviatias)
 
-## Use Case: <br>
-Developers and job seekers use this skill to set up a Telegram-based job alert workflow that searches LinkedIn, stores matches locally, scores roles against a candidate profile, and notifies selected users about relevant openings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow stores a Telegram bot token, Telegram user IDs, candidate profile details, and a local jobs database. <br>
-Mitigation: Keep config.json and jobs.db out of version control, restrict local file permissions, and use environment variables or a secret manager for the Telegram token when extending the deployment. <br>
-Risk: The bot and scheduled scraper continue contacting LinkedIn and Telegram until stopped. <br>
-Mitigation: Review scheduled jobs and running bot processes during deployment, and stop the cron job or bot process when notifications should no longer run. <br>
-Risk: LinkedIn scraping may be brittle or conflict with service terms. <br>
-Mitigation: Review LinkedIn terms and test the scraper behavior before operational use; expect selectors or guest API behavior to change. <br>
+## Use Case:
 
+External users and developers use this skill to set up a job search automation workflow that collects candidate preferences, configures a Telegram bot, scrapes public LinkedIn job listings, scores matches, and sends job notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/barleviatias/job-hunter-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, Python scripts, and SQL schema snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployable local scripts for a job-search bot; users provide candidate profile data and Telegram configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Plaintext Telegram bot tokens and candidate profile data in config.json can expose credentials and personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Telegram bot token, keep config.json out of source control and backups, restrict file permissions, and remove unused personal fields unless they are required.
+
+Risk: Persistent bot and cron operation can run without enough supervision or an obvious stop path.
+
+Mitigation: Run the bot and daily search under a supervised process with logs, single-instance control, and a documented stop procedure.
+
+Risk: Telegram messages are rendered with HTML parse mode while including externally sourced job content.
+
+Mitigation: Treat Telegram messages as externally rendered content and escape HTML before sending job titles, companies, locations, or descriptions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/barleviatias/skills/job-hunter-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and Python script files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local job-search automation assets that require user-provided Telegram credentials, candidate profile data, and external network access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

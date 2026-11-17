@@ -1,42 +1,52 @@
-## Description: <br>
-Interact with GitHub using Personal Access Tokens for repository listing, cloning, branching, pushing, pull requests, issues, and repository information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with GitHub using Personal Access Tokens for user-controlled repository access, including clone, push, branch, pull request, issue, and repository information workflows.
 
-## Publisher: <br>
-[dannyshmueli](https://clawhub.ai/user/dannyshmueli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dannyshmueli](https://clawhub.ai/user/dannyshmueli)
 
-## Use Case: <br>
-Developers and agents use this skill to perform GitHub repository operations with a user-provided Personal Access Token instead of OAuth-based account authorization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A GitHub Personal Access Token can grant broad repository read or write access within its scopes. <br>
-Mitigation: Use a fine-grained, short-lived token limited to the specific repository and revoke it when the task is complete. <br>
-Risk: Persisting the token in TOOLS.md can expose a high-value credential to future agent sessions or workspace readers. <br>
-Mitigation: Prefer passing the token at runtime or through a temporary environment variable, and avoid storing it in durable workspace files. <br>
-Risk: The push workflow can stage and publish all local changes without an explicit diff review step. <br>
-Mitigation: Manually review git status and diffs before allowing commit or push operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub GitHub Token skill page](https://clawhub.ai/dannyshmueli/github-token) <br>
-- [GitHub Personal Access Tokens](https://github.com/settings/tokens) <br>
+## Use Case:
 
+Developers and engineers use this skill to work with GitHub repositories through a personal access token that they create and scope themselves. It supports common repository tasks such as listing repositories, cloning, creating branches, committing and pushing changes, opening pull requests, creating issues, and viewing repository information.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke GitHub API requests and git commands using a user-provided token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Personal access tokens can be exposed through workspace files, command lines, logs, or authenticated Git remote URLs.
+
+Mitigation: Use narrowly scoped fine-grained PATs, prefer environment-based token handling, avoid storing tokens in workspace files, and do not pass tokens directly on command lines.
+
+Risk: Push workflows can publish unintended files because the command stages all changes.
+
+Mitigation: Inspect git status and diffs before pushing, and verify the Git remote hostname and repository target before any push.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dannyshmueli/skills/github-token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the GitHub API and local git commands when the user supplies a token and repository context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

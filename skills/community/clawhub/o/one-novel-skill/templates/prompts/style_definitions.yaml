@@ -1,0 +1,10 @@
+# Style definitions — one-novel-skill
+# loaded by engine.generator.get_style_guide() and get_style_prompt()
+default: 标准叙事风格，客观中带情绪
+快节奏: 短句为主，段落紧凑，对话占比高
+细腻: 环境描写丰富，心理活动详实，节奏舒缓
+冷峻: 简练，少修辞，对话干练，留白多
+热血: 感叹号高频，动作描写密集，情绪渲染强
+悬疑: 信息分批释放，多用省略号和短句制造紧迫感
+幽默: 口语化，反讽，吐槽式内心独白
+文艺: 比喻丰富，句式优美，意象化描写

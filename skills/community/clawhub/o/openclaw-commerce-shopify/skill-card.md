@@ -1,42 +1,60 @@
-## Description: <br>
-Shopify store management through OpenClaw Commerce API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shopify store management through OpenClaw Commerce API.
 
-## Publisher: <br>
-[DevKrutik](https://clawhub.ai/user/DevKrutik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[devkrutik](https://clawhub.ai/user/devkrutik)
 
-## Use Case: <br>
-Shopify merchants and operators use this skill to manage store orders, products, customers, collections, catalogs, and discounts through OpenClaw Commerce. It can read and change live store data when supplied with a valid OpenClaw Commerce API key. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change live Shopify store data through an API key. <br>
-Mitigation: Use a dedicated, revocable, least-privilege API key; test on a non-production store first; and review proposed create, update, delete, email, payment, discount, or bulk actions before confirming. <br>
-Risk: Store operations may expose customer, order, billing, tax, or credential data. <br>
-Mitigation: Avoid sending or logging unnecessary sensitive store data and keep API keys out of transcripts and persistent logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/DevKrutik/openclaw-commerce-shopify) <br>
-- [OpenClaw Commerce](https://openclawcommerce.com) <br>
-- [OpenClaw Commerce API](https://app.openclawcommerce.com/api/v1) <br>
-- [Shopify Admin GraphQL API](https://shopify.dev/docs/api/admin-graphql/latest) <br>
+## Use Case:
 
+Shopify merchants and their agents use this skill to manage store data through OpenClaw Commerce, including orders, products, customers, collections, catalogs, and discounts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and GraphQL request templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENCLAW_COMMERCE_API_KEY for authenticated OpenClaw Commerce requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a powerful OpenClaw Commerce API key for live Shopify administration.
+
+Mitigation: Use a revocable, least-privilege key stored through a protected secret mechanism, and do not paste credentials into chat.
+
+Risk: Create, update, delete, retry, or bulk operations can change live store records.
+
+Mitigation: Confirm exact records, counts, and intended business impact before execution; avoid bulk actions unless they are tightly scoped.
+
+Risk: Customer data and customer secrets may be exposed through unsafe workflows.
+
+Mitigation: Minimize customer data shared with the agent and never provide customer passwords.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/devkrutik/skills/openclaw-commerce-shopify)
+- [OpenClaw Commerce](https://openclawcommerce.com)
+- [OpenClaw Commerce API Base](https://app.openclawcommerce.com/api/v1)
+- [Shopify Admin GraphQL API](https://shopify.dev/docs/api/admin-graphql)
+- [Shopify GraphQL Admin API Rate Limits](https://shopify.dev/docs/api/usage/rate-limits)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl examples, GraphQL request templates, and business-facing text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENCLAW_COMMERCE_API_KEY and confirmation before create, update, or delete operations.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

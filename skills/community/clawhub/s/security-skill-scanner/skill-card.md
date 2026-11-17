@@ -1,43 +1,57 @@
-## Description: <br>
-Scans OpenClaw skills for security vulnerabilities and suspicious patterns before installation <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans OpenClaw skill instructions for suspicious patterns and reports findings for manual review before installation.
 
-## Publisher: <br>
-[anikrahman0](https://clawhub.ai/user/anikrahman0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anikrahman0](https://clawhub.ai/user/anikrahman0)
 
-## Use Case: <br>
-Developers and skill reviewers use this skill to inspect OpenClaw skill files or directories for suspicious instruction patterns before installation. It produces findings that support manual security review rather than a definitive security verdict. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner can report false positives because it uses pattern matching on skill text. <br>
-Mitigation: Review each finding in context and confirm whether the flagged instruction is actually unsafe before acting on the recommendation. <br>
-Risk: A clean scan is not a definitive security verdict. <br>
-Mitigation: Use the report as one input to manual review, especially for skills that request system access, credentials, downloads, or network activity. <br>
-Risk: Recursive scans read markdown, JavaScript, and TypeScript files under the path provided. <br>
-Mitigation: Scan specific skill files or narrow directories when possible, and avoid pointing the scanner at unrelated broad paths. <br>
+## Use Case:
 
+Developers and OpenClaw users assess prospective or installed skills for suspicious instructions and review reported risks before deciding whether to install or retain them.
 
-## Reference(s): <br>
-- [Security Skill Scanner on ClawHub](https://clawhub.ai/anikrahman0/security-skill-scanner) <br>
-- [Publisher profile](https://clawhub.ai/user/anikrahman0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style security report with risk levels, findings, summaries, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional whitelist configuration guidance and command-line usage examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter, package.json, CHANGELOG, released 2026-02-16) <br>
+Risk: A scan may incorrectly classify a dangerous skill as safe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually inspect every skill before installation; do not use a SAFE result as proof of safety or the current whitelist logic as a security gate.
+
+Risk: Scanning an overly broad path may read files outside the skill package under review.
+
+Mitigation: Limit scan paths to the intended skill package.
+
+Risk: Pattern matches may flag harmless skill instructions.
+
+Mitigation: Review each finding in context before acting on it.
+
+## Reference(s):
+
+- [Security Skill Scanner on ClawHub](https://clawhub.ai/anikrahman0/skills/security-skill-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown assessment or plain-text scan report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pattern findings and risk levels are advisory, not a safety guarantee.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, package.json, changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

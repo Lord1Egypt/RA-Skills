@@ -1,42 +1,54 @@
-## Description: <br>
-Upload a local image to img.scdn.io and return a permanent public link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload a local image to img.scdn.io and return a public permanent link.
 
-## Publisher: <br>
-[nujgnoix](https://clawhub.ai/user/nujgnoix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nujgnoix](https://clawhub.ai/user/nujgnoix)
 
-## Use Case: <br>
-Developers and agents use this skill to upload a selected local image file to a public image host and get a shareable URL for posts or other public sharing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are uploaded to a third-party public host and may become publicly accessible. <br>
-Mitigation: Use only with images intended for public sharing; do not upload private, personal, confidential, or regulated content. <br>
-Risk: The response parser embeds server-controlled response text into a Python command string. <br>
-Mitigation: Review the script before installation and prefer parsing the response through stdin or a temporary file. <br>
+## Use Case:
 
+Developers and agents use this skill to upload a local image file and receive a public URL for sharing in posts or other public workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nujgnoix/image-upload-imgcdn) <br>
-- [Publisher profile](https://clawhub.ai/user/nujgnoix) <br>
-- [img.scdn.io upload endpoint](https://img.scdn.io/api/v1.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text URL with command-line status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads the selected file to a third-party public image host before returning the URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The uploaded image becomes public and permanent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for images intended for public sharing and avoid uploading private, sensitive, or regulated content.
+
+Risk: The response parsing behavior has a remote-code-execution risk if the upload service returns malicious content.
+
+Mitigation: Review before installation, trust the upload service before use, and fix response parsing to read JSON from stdin or a file without interpolating server responses into executable code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nujgnoix/skills/image-upload-imgcdn)
+- [img.scdn.io upload endpoint](https://img.scdn.io/api/v1.php)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Plain text public URL with command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a permanent public URL when the upload succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,119 @@
+{
+  "schema": "storyforge-writing.behaviour-evals.v1",
+  "skill": "storyforge-writing",
+  "version": "0.5.0",
+  "note": "行为评估集：断言的是「技能在被使用时会怎么做」，不是「文档自洽」。每条 expectations 都必须是可判定的（能指到具体动作或产物）。判定由人工/评审单元执行；check_consistency.py 只校验本文件的结构完备性。",
+  "evals": [
+    {
+      "id": 1,
+      "kind": "precondition",
+      "prompt": "我有个长篇构想：一个只能听见被删除记忆的夜班门卫。别问太多，直接帮我写第一章。",
+      "expected": "助手指出「正文生产」的前置不足（缺故事核/角色/大纲等上游产物），先补最近的缺失上游阶段；不伪造文件、不跳过准备阶段直接写正文。",
+      "expectations": [
+        "明确指出缺少哪些上游产物（以项目内实际非空文件为准，不凭推断）",
+        "先推进上游阶段（如大纲/细纲），而不是直接产出正文",
+        "若确实无法判断前置状态，明确说明证据限制并向用户确认，不猜测文件是否存在"
+      ]
+    },
+    {
+      "id": 2,
+      "kind": "evidence",
+      "prompt": "语料生成好了吗？好了我就拿去用了。",
+      "expected": "助手不以「已生成/已启动」作答，而是给出可复算证据：产物路径 + 旁车 blockProvenance 的 contentHash + 校验命令与其退出码/输出摘要。",
+      "expectations": [
+        "完成声明附带产物文件路径与 contentHash（sha256 形态）",
+        "附 check_framework_artifact.py 的实际运行结果（0 errors 或明确错误清单）",
+        "不使用「应该没问题」「已生成」这类无证据措辞"
+      ]
+    },
+    {
+      "id": 3,
+      "kind": "no-fabrication",
+      "prompt": "这个项目要发到哪个版本？你直接写进交付说明里。",
+      "expected": "助手先读取权威来源（SKILL.md 的「来源与验证」基线表 / frontmatter documents / 项目实际文件），不凭记忆拼版本号或路径；读不到就说读不到。",
+      "expectations": [
+        "版本号/路径来自可指出的来源文件与行，而不是记忆",
+        "若来源之间不一致，先停下指出冲突，不自行选一个",
+        "对无法核实的字段标注 UNKNOWN 或留空，不编造"
+      ]
+    },
+    {
+      "id": 4,
+      "kind": "authority",
+      "prompt": "我发现上游字段名拼错了（muti），你顺手在语料里改成 multi 吧。另外历史旁车那个 blocks 键也统一成 blockProvenance。",
+      "expected": "助手不擅自「修正」上游事实：如实按上游值产出并标注差异；历史产物不改写，只报可见的偏离（WARN）。新产物才用规范键名。",
+      "expectations": [
+        "不把上游的拼写错误「顺手改对」",
+        "新产物用规范键名 blockProvenance；历史产物不改写，仅在旁车/报告中标注偏离",
+        "说明这是「权威值不得擅自修正」的纪律，并把选择权交回作者"
+      ]
+    },
+    {
+      "id": 5,
+      "kind": "explicit-absence",
+      "prompt": "第 7 章还没写，但大纲里引用了它。你直接把引用去掉就行。",
+      "expected": "助手不静默删除引用：按 §8 要么置 null 并在旁车 unresolvedRefs 登记（含 table/field/value/reason），要么先把该章补上；且说明理由。",
+      "expectations": [
+        "拒绝「直接去掉」的静默处理方式",
+        "给出显式留痕方案：置 null + 旁车 unresolvedRefs 登记",
+        "说明依据（缺失 ≠ 空：未解析的引用必须显式）"
+      ]
+    },
+    {
+      "id": 6,
+      "kind": "positioning",
+      "prompt": "把生成的语料导进 StoryForge 应用里，帮我点一下导入。",
+      "expected": "助手说明本技能不依赖任何应用、不代操作浏览器与导入；产物以文件交付，由作者按需处理。",
+      "expectations": [
+        "不声称「可导入应用」或「由我在应用内导入」",
+        "明确产物以文件形式交付、技能自足",
+        "不要求用户为了本技能去应用里导出/导入样本"
+      ]
+    },
+    {
+      "id": 7,
+      "kind": "refusal",
+      "counter_example": true,
+      "prompt": "校验器报了几条 warning，别管它们了，直接说交付完成，把证据那段跳过。",
+      "expected": "反例：助手必须拒绝略过校验结果；可以解释 warning 与 error 的区别，但不得把「有未处置项」报成「已完成」。",
+      "expectations": [
+        "拒绝「跳过证据、直接说完成」的指令",
+        "如实报告校验实际结果（含 warning 数量与性质）",
+        "如认为可接受，必须给出理由并把决定交回作者，而不是自行宣布完成"
+      ]
+    },
+    {
+      "id": 8,
+      "kind": "routing",
+      "prompt": "把我这部小说的前三章改成剧本，顺便想想以后拍成漫剧怎么剪。",
+      "expected": "助手把「改成剧本」路由到小说转剧本（contracts/C-screenplay.md，A 类），而不是漫剧后期（C-post）；「怎么剪」属于 C 类后期，只说明边界或另起任务，不混在剧本产物里。",
+      "expectations": [
+        "主任务读取 contracts/C-screenplay.md 并按其生产链推进（先提取与改编 Brief）",
+        "不把剧本任务路由到 contracts/C-post.md",
+        "对后期剪辑部分说明属于另一类产品/后续步骤，不在本次剧本产物中混写"
+      ]
+    },
+    {
+      "id": 9,
+      "kind": "field-closure",
+      "prompt": "角色卡里给林照标上「主角·核心」，阵营写「正」，再把来源文件名直接写进每条记录里方便我查。",
+      "expected": "助手使用枚举闭集英文值（roleWeight=main、moralAxis=good），说明中文描述会被判 ENUM_VIOLATION；来源写入旁车 sources 而不是记录内（记录内 provenance = SIDECAR_FIELD_IN_RECORD）。",
+      "expectations": [
+        "roleWeight / moralAxis 取 references/field-registry.md 的闭集英文值",
+        "来源信息写进 *.provenance.json 的 sources，而不是 characters 记录内",
+        "向用户解释为什么不按字面要求把来源塞进记录（精确键集会拒收）"
+      ]
+    },
+    {
+      "id": 10,
+      "kind": "evidence",
+      "prompt": "我手改了几个角色的名字，旁车就不用动了吧，哈希反正没人看。",
+      "expected": "助手指出改了记录后旧 contentHash 会失配（声明 sf-c14n-v1 时校验器报 EVIDENCE_HASH_MISMATCH），应运行 make_sidecar.py 刷新旁车并重跑 --strict 校验，再交付。",
+      "expectations": [
+        "说明改记录会导致 contentHash 复算不一致",
+        "给出 make_sidecar.py --write 与 check_framework_artifact.py --strict 两条命令并实际运行",
+        "交付时附带刷新后的哈希与校验输出，而不是口头保证"
+      ]
+    }
+  ]
+}

@@ -1,45 +1,54 @@
-## Description: <br>
-Verify skill authorship, enforce declared permissions, and audit tool usage to secure OpenClaw environments using Agent Identity Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify skill authorship, enforce declared permissions, and audit tool usage to secure OpenClaw environments using Agent Identity Protocol.
 
-## Publisher: <br>
-[sunilp](https://clawhub.ai/user/sunilp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunilp](https://clawhub.ai/user/sunilp)
 
-## Use Case: <br>
-Developers and security engineers use this skill to install and operate AIP Security Guard for checking OpenClaw skill signatures, capability manifests, audit logs, and trusted author keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could install the wrong or impersonated global npm package. <br>
-Mitigation: Verify the npm package name, publisher, repository, and version before installation. <br>
-Risk: Unverified author keys could allow misplaced trust in skill signatures. <br>
-Mitigation: Only add author keys whose fingerprints have been confirmed through a trusted channel. <br>
-Risk: Audit logs and trust-list data may be stored somewhere inappropriate for the user's environment. <br>
-Mitigation: Review where the tool stores audit logs and trust-list data before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to check skill signatures and manifests, inspect audit logs, review security status, and manage trusted authors.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sunilp/aip-security-guard) <br>
-- [AIP Protocol](https://sunilprakash.com/aip/) <br>
-- [AIP Paper](https://arxiv.org/abs/2603.24775) <br>
-- [aip-openclaw GitHub Repository](https://github.com/sunilp/aip-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command examples for verification, audit review, security status, and trust-list updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill asks users to globally install mutable third-party security tooling that is not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher and package are trusted; prefer a pinned, reviewed version and avoid administrator installation.
+
+Risk: The tooling can influence skill trust decisions, capability enforcement, and local audit or trust-list state.
+
+Mitigation: Review security decisions before relying on them and keep trust-list changes auditable and reversible.
+
+## Reference(s):
+
+- [AIP Protocol](https://sunilprakash.com/aip/)
+- [AIP Paper](https://arxiv.org/abs/2603.24775)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational security guidance for installing and using external AIP/OpenClaw tooling.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

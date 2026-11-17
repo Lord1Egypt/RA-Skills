@@ -1,45 +1,60 @@
-## Description: <br>
-Permanent memory layer for AI agents. Mint moments to the blockchain via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hekkova is a permanent memory layer for AI agents that mints moments to the blockchain via MCP.
 
-## Publisher: <br>
-[hekkova](https://clawhub.ai/user/hekkova) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hekkova](https://clawhub.ai/user/hekkova)
 
-## Use Case: <br>
-External users and developers use Hekkova to connect an agent to Hekkova's MCP service, mint text, image, video, and URL-based moments to Polygon/IPFS, manage privacy phases, check credits, and export archived moments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects an agent to a paid permanent-memory service where minting, URL minting, and phase changes may be billable and difficult to undo. <br>
-Mitigation: Check balance before paid actions, confirm user intent before minting or changing phases, and report remaining credits after successful mints. <br>
-Risk: Minted content may become permanent, public, or externally accessible when privacy phases or source URLs are chosen incorrectly. <br>
-Mitigation: Default to the encrypted owner-only phase, avoid minting secrets, credentials, regulated personal data, private URLs, or third-party content without permission, and require explicit confirmation before using public phases. <br>
-Risk: The connection uses a remote MCP bridge and a Hekkova API key. <br>
-Mitigation: Use a dedicated API key with limited credits, pass it only through the HEKKOVA_API_KEY environment variable, and do not store or print the key in agent outputs. <br>
+## Use Case:
 
+External users and developers use Hekkova to connect an AI agent to Hekkova's MCP endpoint, mint text, images, video, and public URLs as permanent moments, manage privacy phases, list or export archives, and check account balance.
 
-## Reference(s): <br>
-- [ClawHub Hekkova skill page](https://clawhub.ai/hekkova/hekkova) <br>
-- [Hekkova homepage](https://hekkova.com) <br>
-- [Hekkova app dashboard](https://app.hekkova.com) <br>
-- [Hekkova MCP endpoint](https://mcp.hekkova.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and MCP tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and HEKKOVA_API_KEY; minting, URL minting, and phase changes may consume Hekkova credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata.openclaw.version is 1.2.0) <br>
+Risk: The skill asks users to run an unpinned MCP bridge with a Hekkova API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, audited bridge version and a narrowly scoped, revocable API key; do not log or store the key.
+
+Risk: Selected content, URLs, and metadata are sent through the MCP bridge to Hekkova and can be minted permanently or publicly.
+
+Mitigation: Avoid secrets, personal or regulated data, private or signed URLs, and content that may need deletion; use full_moon only for intentionally public content.
+
+Risk: Minting and phase shifts consume paid credits, with higher cost for video.
+
+Mitigation: Check balance before minting, confirm user intent for paid actions, and report credits remaining after successful mints.
+
+## Reference(s):
+
+- [Hekkova homepage](https://hekkova.com)
+- [Hekkova dashboard](https://app.hekkova.com)
+- [Hekkova MCP endpoint](https://mcp.hekkova.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/hekkova/skills/hekkova)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and MCP tool usage instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Block IDs, Token IDs, privacy phase, credits remaining, account details, and JSON or CSV exports through the MCP service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

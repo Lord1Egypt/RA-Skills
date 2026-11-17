@@ -1,38 +1,58 @@
-## Description: <br>
-Automatically visualize CSV, Excel, or JSON data files with one command by selecting a suitable chart and writing a visualization artifact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically visualizes CSV, Excel, and JSON data files by analyzing tabular structure, selecting chart types, and generating PNG, SVG, HTML, or PDF outputs.
 
-## Publisher: <br>
-[Zaosusu](https://clawhub.ai/user/Zaosusu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zaosusu](https://clawhub.ai/user/zaosusu)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to inspect local tabular data and generate quick charts or data summaries without writing plotting code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated visualization files may reveal sensitive values or aggregates from the input dataset. <br>
-Mitigation: Use explicit input and output paths, review generated files before sharing, and avoid publishing charts created from sensitive datasets without approval. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to turn local CSV, Excel, or JSON files into static or interactive charts and to inspect basic data structure without writing plotting code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zaosusu/autoplot-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated artifacts are PNG, SVG, HTML, or PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-selected local CSV, Excel, or JSON files and writes visualization files to explicit or generated output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Interactive HTML chart files may contain source data needed for browser-based interaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated HTML outputs with the same confidentiality controls as the input dataset.
+
+Risk: The dependency ranges for pandas, plotly, and openpyxl are not pinned to exact reviewed versions.
+
+Mitigation: Install and run the skill in a locked environment with reviewed dependency versions.
+
+Risk: The skill reads user-selected local data files and writes chart outputs to local paths.
+
+Mitigation: Review input and output paths before execution, especially when working with confidential or regulated data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zaosusu/skills/autoplot-skill)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated chart files in PNG, SVG, HTML, or PDF.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally against user-specified CSV, Excel, or JSON files; interactive HTML outputs may include the data needed for browser-based interaction.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

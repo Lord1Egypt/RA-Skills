@@ -1,37 +1,52 @@
-## Description: <br>
-Engineering execution guardrails for coding, implementing features, fixing bugs, debugging failures, reviewing diffs, refactoring code, simplifying overbuilt solutions, and planning multi-step code changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Karpathy Guidelines provides engineering execution guardrails for coding, bug fixing, debugging, review, refactoring, planning, and verification.
 
-## Publisher: <br>
-[gmvp3](https://clawhub.ai/user/gmvp3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gmvp3](https://clawhub.ai/user/gmvp3)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and coding agents use this skill to keep non-trivial software changes focused, evidence-driven, and verifiable while avoiding unnecessary abstractions and unrelated edits.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can influence how an agent approaches substantive coding tasks and may add process to larger tasks.
+
+Mitigation: Apply it to non-trivial software engineering work and skip extra ceremony for trivial localized edits, as the skill directs.
+
+Risk: Engineering guidance can still lead to incorrect changes if assumptions, skipped checks, or verification gaps are not made visible.
+
+Mitigation: Require concrete local evidence before editing, keep changes scoped, and report verification results and remaining uncertainty.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill during non-trivial software work to choose small, verifiable implementation approaches, surface assumptions, keep changes scoped, and report verification clearly. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill influences agent planning and reporting, which may add process overhead to very small engineering tasks. <br>
-Mitigation: Apply the skill to non-trivial software work and use the artifact's stated judgment path for trivial edits such as typos, one-line renames, or obvious localized fixes. <br>
+**Output Format:** [Markdown guidance with implementation plans, review notes, code snippets, shell commands, configuration suggestions, and verification steps.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No executable code is included in the artifact; outputs are guidance for an agent's software engineering workflow.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with task-specific engineering instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no tool, API-key, MCP, persistence, or hidden access behavior was found in server security evidence.] <br>
+1.0.3 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

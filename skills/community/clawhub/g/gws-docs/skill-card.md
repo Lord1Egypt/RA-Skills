@@ -1,41 +1,53 @@
-## Description: <br>
-Read and write Google Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and write Google Docs.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Google Docs commands, read document content, create blank documents, and apply validated document updates through the gws CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to read or modify Google Docs through the external gws tool. <br>
-Mitigation: Confirm the Google account, scopes, target document ID, and requested parameters before running write or batch-update actions. <br>
-Risk: Document updates may affect shared or business-critical content. <br>
-Mitigation: Inspect method schemas with gws schema and review proposed params or JSON payloads before execution. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect Google Docs commands and call the gws CLI to get, create, or batch update Google Docs through configured Google Workspace credentials.
 
-## Reference(s): <br>
-- [Gws Docs on ClawHub](https://clawhub.ai/googleworkspace-bot/gws-docs) <br>
-- [gws docs CLI help](gws docs --help) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws binary and a Google account with the intended Docs scopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: release evidence; skill metadata version 0.22.5) <br>
+Risk: The skill can read and modify Google Docs through configured Google Workspace credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for agents that should have that account access, and review the generated gws shared authentication and security instructions before use.
+
+Risk: Incorrect command parameters can fail a Google Docs batch update or produce unintended document changes.
+
+Mitigation: Inspect each method with gws schema before building --params or --json arguments, as directed by the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and command reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and configured Google Workspace authentication before use.]
+
+## Skill Version(s):
+
+1.0.12 (source: ClawHub release evidence); artifact metadata version 0.22.5
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

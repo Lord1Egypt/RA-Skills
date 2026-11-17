@@ -1,41 +1,58 @@
-## Description: <br>
-Diagnose and fix Cursor IDE errors, crashes, and configuration issues across MCP connections, crashes, AI failures, proxy/network issues, environment problems, and sync issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cursor Doctor diagnoses Cursor IDE errors, crashes, AI failures, proxy and network issues, configuration problems, and sync errors, then suggests or applies targeted fixes.
 
-## Publisher: <br>
-[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose Cursor IDE health, match known error signatures, and receive repair guidance or commands for common Cursor failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repair commands can close Cursor and modify local Cursor cache, MCP data, or settings. <br>
-Mitigation: Run diagnosis first, save work, review the selected fix category, and use fix commands only when those local changes are acceptable. <br>
-Risk: Diagnostic output may include local paths, prompts, endpoints, or other sensitive context from Cursor logs. <br>
-Mitigation: Review and redact diagnostic output before sharing it outside the local environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose Cursor IDE installation, environment, and log problems, match error text to known signatures, and receive or run targeted repair commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/cursor-doctor) <br>
-- [cursor-doctor homepage](https://github.com/minirr890112-byte/cursor-doctor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text and Markdown-style guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include diagnostic summaries, matched error signatures, recommended fixes, and state-changing local repair commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Repair actions can close Cursor, delete caches, or reset settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run diagnosis first, save Cursor work, and apply fixes only after reviewing the intended category and expected local changes.
+
+Risk: Proxy environment values may appear in diagnostic or repair output.
+
+Mitigation: Redact HTTP_PROXY, HTTPS_PROXY, and related proxy values before sharing output.
+
+Risk: Installation source clarity is limited and the security verdict requires review.
+
+Mitigation: Install only from a verified, pinned source and review the skill before deployment.
+
+## Reference(s):
+
+- [Cursor Doctor GitHub homepage](https://github.com/minirr890112-byte/cursor-doctor)
+- [Cursor Doctor ClawHub skill page](https://clawhub.ai/minirr890112-byte/skills/cursor-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance, Guidance]
+
+**Output Format:** [Plain text and Markdown-style CLI guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local system, Cursor log, and proxy environment observations; repair commands can modify Cursor caches or settings.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and SKILL.md frontmatter; pyproject.toml and package __version__ list 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

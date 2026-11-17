@@ -1,0 +1,73 @@
+{
+  "skill": "token-concept-disambiguator",
+  "version": "0.1.0",
+  "source_book": "《价值互联网产业应用蓝皮书（2025 年）》 — 价值互联网产业应用蓝皮书编写组",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我们公司想做农产品上链溯源，销售非说这是'发币'，到底算通证化还是代币化？",
+      "expected_behavior": "应激活 S1，用 rwa01 分层表把'农产品上链溯源'定位为通证化（产业向、RDA/非金融），并澄清与代币化的边界",
+      "notes": "正面场景：概念被混淆（上链=发币），需分层定性"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "RWA 在国内能做吗？我听香港那个充电桩收益权案例能不能直接照搬境内？",
+      "expected_behavior": "应激活 S1，把'香港收益权案例'定位为 RWAT（金融向），并提示美式/港式叙事对境内非金融路径的遮蔽",
+      "notes": "正面场景：跨境概念对标，需识别概念所属层与监管口径差异"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "我们做的会员积分能不能对外叫'通证'？会不会被认定有金融属性？",
+      "expected_behavior": "应激活 S1，用 f11 三功能+五分类判断该积分是否具备记账+权利+结算三功能、落入哪类，给出金融属性 Y/N",
+      "notes": "正面场景：社区运营用语错配，需按功能界定而非译名"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "上链、发币、通证化到底有什么区别？我们项目方自己都搞混了，写白皮书要用",
+      "expected_behavior": "应激活 S1，做通证化/代币化/RWT/RWAT/RDA 的分层科普与定位",
+      "notes": "正面场景：内容创作前的概念澄清需求"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我这个项目到底算不算真 Web3？还是只是套了区块链壳的伪概念？",
+      "expected_behavior": "不应激活 S1，应转 S4（W-ABCD 真假 Web3 识别器）。S1 只做概念属于哪一层，不做项目真伪识别",
+      "notes": "诱饵：看似 Web3 概念问题，实为'真伪识别'，属于 S4 范畴；S1 的 description 已明确'不适用于真伪 Web3 项目识别'"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "我们想在境内做代币募资，这算不算非法金融活动？会不会踩红线？",
+      "expected_behavior": "不应激活 S1，应转 S2（合规边界红线检查）。用户问的是合规裁决而非概念分层",
+      "notes": "诱饵：虽然出现'代币'触发词，但意图是合规判读（踩红线），属 S2 生死闸门；S1 只分类不输出合规结论"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "RWA 具体要在哪条链落地、得向证监会提交哪些备案材料？",
+      "expected_behavior": "不应激活 S1，应转 S8（RWA 落地流程与路径设计器）。用户问的是工程/备案作业，不是概念层级",
+      "notes": "诱饵：出现'RWA'触发词，但意图是落地流程，属 S8；S1 是 S8 的前置分类步骤，不做十环节作业"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我们想参照香港案例做境内充电桩收益权融资，这到底属于通证化的哪一层？",
+      "expected_behavior": "先激活 S1 做层级定位（链改-资产支持型 / RWAT，金融属性=Y），判停后转 S2 合规红线，不在 S1 内给任何发行建议",
+      "notes": "边界：概念分层与合规判断交界。S1 负责定性到'金融向'即止步，交 S2 裁决，检验 S1 判停条件是否被遵守"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "你直接给我个术语表就行，把通证和代币的定义写清楚，不用分析我的项目",
+      "expected_behavior": "不激活完整辨析流程，直接给 glossary（术语表）。B 段明确'用户只是查术语定义、不需要分层判断→直接给术语表'",
+      "notes": "边界：纯术语查询。检验 S1 是否误把 glossary 需求当完整辨析触发"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "4 条 should_trigger + 3 条 should_not_trigger + 2 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0）。"
+}

@@ -1,0 +1,208 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "hunyuan_3d_v2.1.safetensors"
+    },
+    "class_type": "ImageOnlyCheckpointLoader",
+    "_meta": {
+      "title": "Load Checkpoint Image Only (Hunyuan 3D v2.1)"
+    }
+  },
+  "2": {
+    "inputs": {
+      "image": "character.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "3": {
+    "inputs": {
+      "shift": 1,
+      "sampling": "flow",
+      "model": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {
+      "title": "ModelSamplingAuraFlow"
+    }
+  },
+  "4": {
+    "inputs": {
+      "resolution": 4096,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentHunyuan3Dv2",
+    "_meta": {
+      "title": "Empty Hunyuan 3D v2 Latent"
+    }
+  },
+  "6": {
+    "inputs": {
+      "clip_vision_output": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "Hunyuan3Dv2Conditioning",
+    "_meta": {
+      "title": "Hunyuan3Dv2Conditioning"
+    }
+  },
+  "7": {
+    "inputs": {
+      "seed": 384326697438209,
+      "steps": 30,
+      "cfg": 5,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "3",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "6",
+        1
+      ],
+      "latent_image": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "8": {
+    "inputs": {
+      "num_chunks": 8000,
+      "octree_resolution": 256,
+      "samples": [
+        "19",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecodeHunyuan3D",
+    "_meta": {
+      "title": "Hunyuan 3D VAE Decode"
+    }
+  },
+  "9": {
+    "inputs": {
+      "algorithm": "surface net",
+      "threshold": 0.6,
+      "voxel": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "VoxelToMesh",
+    "_meta": {
+      "title": "Voxel to Mesh"
+    }
+  },
+  "10": {
+    "inputs": {
+      "filename_prefix": "mesh/hy21",
+      "mesh": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "SaveGLB",
+    "_meta": {
+      "title": "Save 3D Model"
+    }
+  },
+  "13": {
+    "inputs": {
+      "crop": "center",
+      "clip_vision": [
+        "1",
+        1
+      ],
+      "image": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "CLIPVisionEncode",
+    "_meta": {
+      "title": "CLIP Vision Encode"
+    }
+  },
+  "19": {
+    "inputs": {
+      "value": [
+        "7",
+        0
+      ],
+      "model": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "UnloadModel",
+    "_meta": {
+      "title": "UnloadModel"
+    }
+  },
+  "20": {
+    "inputs": {
+      "value": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "UnloadAllModels",
+    "_meta": {
+      "title": "UnloadAllModels"
+    }
+  },
+  "21": {
+    "inputs": {
+      "value": [
+        "8",
+        0
+      ],
+      "model": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "UnloadModel",
+    "_meta": {
+      "title": "UnloadModel"
+    }
+  },
+  "22": {
+    "inputs": {
+      "value": [
+        "13",
+        0
+      ],
+      "model": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "UnloadModel",
+    "_meta": {
+      "title": "UnloadModel"
+    }
+  }
+}

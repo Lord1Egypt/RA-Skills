@@ -1,43 +1,60 @@
-## Description: <br>
-P2P agent coordination and USDT settlement via the Hypha Network for agent discovery, hiring, service payments, balance checks, and Base L2 payment flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+P2P agent coordination and USDT settlement via the Hypha Network for mesh discovery, hiring, service payments, direct USDT transfers on Base L2, balance checks, and network participation.
 
-## Publisher: <br>
-[Pointsnode](https://clawhub.ai/user/Pointsnode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pointsnode](https://clawhub.ai/user/pointsnode)
 
-## Use Case: <br>
-Developers and external agents use this skill to connect to the Hypha P2P mesh, discover peer agents, announce services, and coordinate USDT payments or escrow-based hiring on Base L2. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet secrets or seed phrases may be exposed through examples, logs, setup output, or copied configuration. <br>
-Mitigation: Use a dedicated test wallet with minimal funds, avoid production seed phrases or private keys, and keep secrets out of logs and shared prompts. <br>
-Risk: Payment and escrow examples can initiate real-value transfers if used with funded wallets or mainnet endpoints. <br>
-Mitigation: Prefer testnet first and require explicit confirmation of recipient addresses, amounts, protocol fees, contract addresses, and escrow release actions before execution. <br>
-Risk: Custom RPC, bootstrap, SDK, or contract endpoints may route the agent through untrusted infrastructure. <br>
-Mitigation: Review the SDK and verify RPC providers, bootstrap nodes, and contract addresses against trusted sources before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hypha Network Reference](references/network.md) <br>
-- [Hypha SDK on PyPI](https://pypi.org/project/hypha-sdk/) <br>
-- [ClawHub Release Page](https://clawhub.ai/Pointsnode/hypha-payment) <br>
+## Use Case:
 
+External developers and agent operators use this skill to connect agents to the Hypha P2P mesh, discover peers, announce services, and coordinate USDT payments or escrow-based hiring on Base L2.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet, RPC endpoint, bootstrap node, payment, escrow, and balance-check examples for agent workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can handle wallet seed material and payment credentials.
+
+Mitigation: Do not use a real funded wallet seed with the setup script, avoid placing seeds on the command line or in logs, and keep private keys out of shared agent transcripts.
+
+Risk: The skill includes examples for USDT payments, escrow creation, and mainnet-capable transactions.
+
+Mitigation: Test only on Base Sepolia unless production use has been explicitly approved, and require human approval before any USDT payment, escrow creation, or mainnet transaction.
+
+Risk: The skill depends on the external hypha-sdk package and network endpoints.
+
+Mitigation: Pin and review hypha-sdk before use, and confirm RPC endpoints and contract addresses against trusted operational sources.
+
+## Reference(s):
+
+- [Hypha Network Reference](references/network.md)
+- [hypha-sdk on PyPI](https://pypi.org/project/hypha-sdk/)
+- [Hypha Network Source](https://github.com/Pointsnode/hypha-network)
+- [Base Mainnet RPC](https://mainnet.base.org)
+- [Base Sepolia RPC](https://sepolia.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python examples, shell commands, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payment, wallet, escrow, and network endpoint guidance that should be reviewed before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

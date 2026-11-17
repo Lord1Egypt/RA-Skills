@@ -1,43 +1,65 @@
-## Description: <br>
-Monitors A-share stock holdings for stop-loss, support-break, target-price, and abnormal-movement conditions, then reports alerts and suggested actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors configured A-share stock holdings for stop-loss, support breakdown, target price, abnormal daily movement, profit and loss, and moving-average deviation alerts.
 
-## Publisher: <br>
-[jdvrommel](https://clawhub.ai/user/jdvrommel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jdvrommel](https://clawhub.ai/user/jdvrommel)
 
-## Use Case: <br>
-Developers and investors use this skill to configure and run a local A-share holdings monitor that fetches market prices, calculates profit and loss, and flags configured alert conditions. It is intended for manual execution or scheduled cron checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured holdings and recent portfolio status may expose sensitive financial information, especially because the script writes status to /tmp/holding_check.json by default. <br>
-Mitigation: Use a private user-owned output path with restrictive permissions before running the monitor on a shared or multi-user machine. <br>
-Risk: Alert quality depends on the configured thresholds and availability of the external market-data source. <br>
-Mitigation: Review stop-loss, support, target, and anomaly thresholds for the user portfolio, and treat generated alerts as monitoring signals rather than financial advice. <br>
+## Use Case:
 
+External users and developers use this skill to configure and run a Python monitor for A-share holdings, producing status summaries and alerts when configured price or movement thresholds are reached. It is intended for informational monitoring and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jdvrommel/a-stock-holding-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/jdvrommel) <br>
-- [Sina Finance quote endpoint](http://hq.sinajs.cn/list={code}) <br>
-- [Sina Finance K-line data endpoint](http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python configuration snippets and shell commands; runtime output is console text plus JSON status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes recent holding status to a local JSON file when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Market data is fetched over unauthenticated HTTP, which can expose the monitor to tampered or unreliable price data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an authenticated HTTPS market-data source before relying on alerts for financial decisions.
+
+Risk: The script writes holding state to a predictable temporary file.
+
+Mitigation: Move state to a private user-owned path with restrictive permissions.
+
+Risk: Cron scheduling can repeatedly run the monitor with the permissions of the configured user.
+
+Mitigation: Run it as a non-root user and review the cron entry before enabling scheduled execution.
+
+Risk: Generated alerts can be mistaken for investment advice.
+
+Mitigation: Treat alerts as informational and verify holdings, market data, and risk thresholds independently.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jdvrommel/skills/a-stock-holding-monitor)
+- [Publisher profile](https://clawhub.ai/user/jdvrommel)
+- [Sina Finance](http://finance.sina.com.cn)
+- [Sina quote endpoint](http://hq.sinajs.cn/list={code})
+- [Sina K-line endpoint](http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text console summaries and alerts, plus a JSON state file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes latest holding status to /tmp/holding_check.json and returns a nonzero exit code when alert signals are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

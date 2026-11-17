@@ -6,18 +6,17 @@
  * 
  * Handles both:
  * - NPM install: Links from npm global to bot's skills directory
- * - ClawHub install: Links from workspace/skills to skills directory + creates CLI
+ * - ClawHub install: Links from workspace/skills to skills directory
  */
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
 
 console.log('🏛️  ClawTrial Post-Install');
 
 // Get package paths
 const packagePath = path.join(__dirname, '..');
-const cliSourcePath = path.join(packagePath, 'scripts', 'clawtrial.js');
+const cliPath = path.join(packagePath, 'scripts', 'clawtrial.js');
 
 // Detect which bot is installed
 const homeDir = process.env.HOME || process.env.USERPROFILE || '';
@@ -39,55 +38,17 @@ for (const bot of bots) {
   }
 }
 
-// Check if we're in ClawHub workspace or npm global
-const isClawHubInstall = packagePath.includes('workspace/skills') || 
-                         packagePath.includes('.openclaw/workspace');
-const isNpmInstall = packagePath.includes('node_modules');
-
-// Create CLI symlink in a location that's in PATH
-function createCliSymlink() {
-  const possiblePaths = [
-    path.join(homeDir, '.npm-global', 'bin', 'clawtrial'),
-    path.join(homeDir, '.local', 'bin', 'clawtrial'),
-    '/usr/local/bin/clawtrial'
-  ];
-  
-  // Find which directory exists and is writable
-  for (const cliPath of possiblePaths) {
-    try {
-      const dir = path.dirname(cliPath);
-      
-      // Create directory if needed
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-      }
-      
-      // Remove old link if exists
-      if (fs.existsSync(cliPath)) {
-        fs.unlinkSync(cliPath);
-      }
-      
-      // Create symlink
-      fs.symlinkSync(cliSourcePath, cliPath);
-      fs.chmodSync(cliSourcePath, 0o755);
-      
-      console.log(`✓ CLI installed: ${cliPath}`);
-      return true;
-    } catch (err) {
-      // Try next path
-      continue;
-    }
+// Try to create /usr/bin symlink (requires sudo, may fail)
+const usrBinPath = '/usr/bin/clawtrial';
+if (!fs.existsSync(usrBinPath)) {
+  try {
+    fs.symlinkSync(cliPath, usrBinPath);
+    fs.chmodSync(usrBinPath, 0o755);
+    console.log('✓ Created global CLI symlink');
+  } catch (err) {
+    // Silent fail - will show instructions at end
   }
-  
-  console.log('⚠️  Could not create global CLI symlink');
-  console.log('   You can still use: node ' + cliSourcePath);
-  return false;
 }
-
-// Create CLI symlink
-console.log('');
-console.log('🔗 Installing CLI...');
-createCliSymlink();
 
 // Auto-link skill if bot detected
 if (detectedBot) {
@@ -96,6 +57,11 @@ if (detectedBot) {
   const botDir = path.join(homeDir, detectedBot.dir);
   const skillsDir = path.join(botDir, 'skills');
   const skillLinkPath = path.join(skillsDir, 'clawtrial');
+  
+  // Check if we're in ClawHub workspace or npm global
+  const isClawHubInstall = packagePath.includes('workspace/skills') || 
+                           packagePath.includes('.openclaw/workspace');
+  const isNpmInstall = packagePath.includes('node_modules');
   
   try {
     // Create skills directory if needed
@@ -149,11 +115,13 @@ if (detectedBot) {
   }
 } else {
   console.log('ℹ️  No bot detected');
+  console.log('');
+  console.log('📋 Next Steps:');
+  console.log('  1. Run setup:');
+  console.log('     clawtrial setup');
+  console.log('');
+  console.log('  2. Check status:');
+  console.log('     clawtrial status');
 }
 
-console.log('');
-console.log('📋 CLI Commands:');
-console.log('  clawtrial status     - Check status');
-console.log('  clawtrial setup      - Run setup');
-console.log('  clawtrial diagnose   - Run diagnostics');
 console.log('');

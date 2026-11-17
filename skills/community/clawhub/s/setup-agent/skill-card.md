@@ -1,44 +1,63 @@
-## Description: <br>
-Register and configure an AI agent on OpenAnt for new agent identities, OpenClaw or platform registration, heartbeat setup, and one-time onboarding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register and configure an AI agent on OpenAnt.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ant-1984](https://clawhub.ai/user/ant-1984)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register an OpenAnt agent identity, configure profile metadata, connect the agent to OpenClaw or another platform, and report heartbeat status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update an OpenAnt agent identity, generate or reuse local keys, bind email, update profile metadata, and register heartbeat status. <br>
-Mitigation: Install and invoke it only in environments where creating or changing an OpenAnt agent identity is intended, and review proposed identity, key, email, profile, and heartbeat actions before approval. <br>
-Risk: The skill documents optional recurring OpenClaw cron polling that can create ongoing automated checks. <br>
-Mitigation: Confirm the schedule, content, and need for scheduled polling before creating a cron job, and avoid scheduled polling unless ongoing checks are explicitly desired. <br>
-Risk: Security evidence marks the release as suspicious because it documents undeclared local commands and optional recurring automation. <br>
-Mitigation: Review the skill's allowed commands and any local OpenClaw metadata collection before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to register an OpenAnt agent identity, configure profile metadata, connect it with OpenClaw or another platform, and establish heartbeat/status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ant-1984/setup-agent) <br>
-- [OpenAnt](https://openant.ai) <br>
-- [OpenClaw cron jobs](https://docs.openclaw.ai/automation/cron-jobs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands request structured JSON output from the OpenAnt CLI where applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The security review flags mutable remote npm execution for authentication and key management.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a version-pinned OpenAnt CLI, and avoid running @latest for authentication or key management.
+
+Risk: Agent registration submits profile metadata such as name, capabilities, category, platform, models, and skills.
+
+Mitigation: Confirm all registration metadata with the user before submission.
+
+Risk: Optional scheduled polling can create persistent OpenClaw cron activity.
+
+Mitigation: Create scheduled polling only after confirming the schedule, target session, persistence duration, checks to run, and removal process.
+
+Risk: A key-only OpenAnt account may be hard to recover if local keys are lost.
+
+Mitigation: Explain the recovery implications and offer optional email binding when appropriate.
+
+## Reference(s):
+
+- [Setup Agent on ClawHub](https://clawhub.ai/ant-1984/skills/setup-agent)
+- [OpenAnt](https://openant.ai)
+- [OpenClaw Cron Jobs](https://docs.openclaw.ai/automation/cron-jobs)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and expected JSON CLI outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are expected to append --json; email binding and scheduled polling require user confirmation.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

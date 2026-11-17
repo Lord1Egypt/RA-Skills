@@ -1,41 +1,50 @@
-## Description: <br>
-Deprecated: Pollclaw is now MeetLark. Use the coordinate-meeting skill instead for meeting scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated: Pollclaw is now MeetLark. Use the coordinate-meeting skill instead for meeting scheduling. See https://meetlark.ai
 
-## Publisher: <br>
-[mkelk](https://clawhub.ai/user/mkelk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mkelk](https://clawhub.ai/user/mkelk)
 
-## Use Case: <br>
-External users and agents use this deprecated skill as migration guidance from Pollclaw to MeetLark and the replacement coordinate-meeting skill for scheduling polls and meeting coordination. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may install or rely on a deprecated skill instead of the replacement scheduling skill. <br>
-Mitigation: Follow the skill guidance to use coordinate-meeting for scheduling workflows. <br>
-Risk: The replacement coordinate-meeting skill may have its own permissions, service data handling, or security profile. <br>
-Mitigation: Review and scan coordinate-meeting separately before installing or using it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pollclaw on ClawHub](https://clawhub.ai/mkelk/pollclaw) <br>
-- [MeetLark](https://meetlark.ai) <br>
-- [MeetLark API docs](https://meetlark.ai/docs) <br>
+## Use Case:
 
+External users and developers use this skill as a deprecation notice for Pollclaw and as guidance to switch scheduling workflows to the coordinate-meeting skill and MeetLark.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only deprecation and migration guidance; no tools, scripts, MCP servers, or credential variables are defined.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat the deprecated Pollclaw skill as the active scheduling workflow or move scheduling data to replacement services without separate review.
+
+Mitigation: Use this skill only as a deprecation notice, then independently review the coordinate-meeting skill and MeetLark service terms before using them for scheduling data.
+
+## Reference(s):
+
+- [Pollclaw skill page](https://clawhub.ai/mkelk/skills/pollclaw)
+- [MeetLark](https://meetlark.ai)
+- [MeetLark API docs](https://meetlark.ai/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; directs users from the deprecated Pollclaw skill to coordinate-meeting and MeetLark resources.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

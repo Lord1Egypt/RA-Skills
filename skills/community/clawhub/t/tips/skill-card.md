@@ -1,40 +1,48 @@
-## Description: <br>
-Tips helps an agent recognize tipping intent, collect and validate the tip amount, confirm the amount with the user, and hand off confirmed payments to a payment skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes tipping, appreciation, and gift-giving intent, collects and validates a tip amount, asks for user confirmation, and delegates payment creation to a payment skill.
 
-## Publisher: <br>
-[sayxxx](https://clawhub.ai/user/sayxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sayxxx](https://clawhub.ai/user/sayxxx)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External assistants and commerce agents use this skill to handle user requests to tip, appreciate, or send a gift by validating the amount, confirming intent, and passing a tip order to a payment flow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The payment flow does not itself bind or verify the intended recipient or payment provider, which can create under-scoped financial authorization.
+
+Mitigation: Install only with a surrounding payment system that supplies and verifies the recipient and provider; users should confirm the amount, recipient, and payment link domain before paying.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users or customer-facing agents use this skill to manage tipping flows: identify a tip request, ask for a missing amount, enforce amount limits, obtain confirmation, and pass the confirmed payment request to a payment skill. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A user may confirm an unintended tip amount or payment destination during the handoff to the payment skill. <br>
-Mitigation: Require explicit confirmation of the amount and review the downstream payment destination before completing any payment link. <br>
-Risk: The skill ignores payee information mentioned by the user, so recipient handling depends on the downstream payment skill. <br>
-Mitigation: Use it only with a payment skill whose destination behavior is known and acceptable for the deployment. <br>
+**Output Format:** [Markdown and structured payment-skill parameters]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sayxxx/tips) <br>
+**Other Properties Related to Output:** [Collects an amount greater than 0 and no more than 10000 yuan; passes amount, order_type, and description to a payment skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, API calls] <br>
-**Output Format:** [Conversational text with payment handoff parameters and returned payment details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Collects a numeric amount, requires user confirmation, passes amount, order_type, and description to a payment skill, and displays returned tradeCode and tradeLink values.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

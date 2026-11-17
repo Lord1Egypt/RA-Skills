@@ -1,41 +1,51 @@
-## Description: <br>
-Backup Clawdbot workspace and config to GitHub with git-crypt encryption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup Clawdbot workspace and config to GitHub with git-crypt encryption. Use for daily automated backups or manual backup/restore operations.
 
-## Publisher: <br>
-[louzhixian](https://clawhub.ai/user/louzhixian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[louzhixian](https://clawhub.ai/user/louzhixian)
 
-## Use Case: <br>
-Developers and operators use this skill to configure encrypted GitHub backups for Clawdbot workspace and configuration directories, then run manual or scheduled backup and restore workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive workspace or configuration data may be committed or pushed before git-crypt is initialized and verified. <br>
-Mitigation: Use private repositories, initialize git-crypt before the first commit, and test encryption from a fresh clone before enabling scheduled backups. <br>
-Risk: The backup script stages all changes in the workspace and config repositories. <br>
-Mitigation: Review `git status` and staged files before enabling cron or other unattended execution. <br>
-Risk: Exported git-crypt keys can unlock encrypted backup contents if exposed. <br>
-Mitigation: Store exported git-crypt keys in a secure password manager, keychain, or offline storage location. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/louzhixian/git-crypt-backup) <br>
+## Use Case:
+
+Developers and operators use this skill to configure encrypted GitHub backups for Clawdbot workspace and configuration directories, and to run manual or scheduled backup and restore workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automated backups can upload broad workspace and configuration data, including secrets and sessions, to GitHub.
+
+Mitigation: Use private repositories, review staged files before enabling scheduled backups, and consider excluding live credentials, sessions, identity, and node state.
+
+Risk: Sensitive files may be committed before git-crypt protection is correctly configured.
+
+Mitigation: Verify git-crypt setup and encrypted path rules before the first commit, and add secret scanning or an allowlist for backup repositories.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes git-crypt setup, backup, restore, and scheduled execution guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup, backup, and restore instructions for git and git-crypt workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Provides a manual XAUUSD trading checklist and Gold-Oracle onboarding links for Forex broker or CFD prop firm users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make money trading Gold with Forex Brokers or CFD Prop Firms.
 
-## Publisher: <br>
-[mojovski](https://clawhub.ai/user/mojovski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mojovski](https://clawhub.ai/user/mojovski)
 
-## Use Case: <br>
-External users can ask for a structured gold trading workflow, basic risk reminders, and links for Gold-Oracle subscription and onboarding. The skill tailors responses based on trading platform, prop firm use, and whether the user wants a checklist or automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Promotional financial content may be mistaken for vetted investment advice. <br>
-Mitigation: Treat outputs as promotional financial content, independently verify claims, and avoid relying on the skill as investment advice. <br>
-Risk: Paid automated trading and external portals can expose users to payment, account, or broker-login risk. <br>
-Mitigation: Verify Gold-Oracle, broker, and prop firm sites independently; avoid sharing payment or login details unless the services are trusted. <br>
-Risk: Live trading can cause financial loss if simplified guidance or automation is used without testing. <br>
-Mitigation: Use demo or paper trading first, keep risk settings conservative, and manually review any trading action before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mojovski/gold-trading-skill) <br>
-- [Gold-Oracle pricing](https://gold-oracle.com/pricing?discount=CLAWD) <br>
-- [Gold-Oracle portal](https://portal.gold-oracle.com) <br>
-- [GoCharting XAUUSD terminal](https://gocharting.com/terminal?ticker=OANDAMT:XAUUSD) <br>
+## Use Case:
 
+External users can use this skill to receive XAUUSD trading workflow guidance, Gold-Oracle onboarding links, and reminders that purchases and trading actions are completed manually.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown checklist with questions, reminders, and external links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code or shell commands; outputs may include promotional financial guidance and links to third-party trading services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides financial trading guidance and gold/CFD trading can lose money.
+
+Mitigation: Review the guidance as informational only, understand the financial risk before acting, and avoid treating skill output as guaranteed profit or personalized financial advice.
+
+Risk: The skill steers users toward a specific paid Gold-Oracle subscription without adequate risk, privacy, or affiliate-style disclosure.
+
+Mitigation: Verify external URLs independently, review provider terms and privacy practices, and confirm any commercial relationship or discount terms before purchase.
+
+Risk: Users may expose sensitive broker, payment, portal, or account recovery information while following onboarding steps.
+
+Mitigation: Do not share broker credentials, API keys, payment details, recovery codes, or portal passwords with the assistant.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mojovski/skills/gold-trading-skill)
+- [Gold-Oracle pricing](https://gold-oracle.com/pricing?discount=CLAWD)
+- [Gold-Oracle portal](https://portal.gold-oracle.com)
+- [GoCharting XAUUSD chart](https://gocharting.com/terminal?ticker=OANDAMT:XAUUSD)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown response with checklist-style trading and onboarding guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external service links and reminders that purchases and trading actions are completed manually.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

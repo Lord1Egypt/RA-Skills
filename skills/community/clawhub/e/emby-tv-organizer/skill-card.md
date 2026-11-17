@@ -1,41 +1,60 @@
-## Description: <br>
-Helps organize TV-series folders for Emby by scanning media files, proposing Emby-compatible names and season folders, preserving episode titles when detected, and generating an Excel rename table after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emby TV Organizer helps an agent scan a TV series folder, preview Emby-compatible season and episode organization, preserve episode titles where detected, handle specials, and generate an Excel rename mapping after user confirmation.
 
-## Publisher: <br>
-[851032763](https://clawhub.ai/user/851032763) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[851032763](https://clawhub.ai/user/851032763)
 
-## Use Case: <br>
-External users and media-library operators use this skill to review and apply Emby-compatible TV episode organization plans, including season and episode detection, special-episode handling, subtitle matching, and Excel audit output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Excel helper can install the openpyxl Python package during normal use if it is missing. <br>
-Mitigation: Install a trusted, pinned openpyxl dependency through the normal environment setup before using the Excel feature. <br>
-Risk: The skill proposes file move and rename operations that could affect a media library if approved without review. <br>
-Mitigation: Review the generated rename plan carefully before approving file operations; the skill is designed to preview first and avoid overwriting existing targets. <br>
+## Use Case:
 
+External users and media library maintainers use this skill to organize TV series folders for Emby by reviewing proposed renames, moves, season folders, subtitle matches, and special-episode handling before applying changes. After confirmation, the agent can generate an Excel mapping report for audit and manual review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/851032763/emby-tv-organizer) <br>
-- [Episode Pattern Reference](references/episode_patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown plans and tables with optional JSON input for an Excel-generation script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is designed to preview proposed file moves and renames before execution and to produce an Excel comparison table after confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The skill can rename or move media files after confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full proposed mapping before execution, keep backups of media folders, and rely on the documented no-overwrite conflict behavior.
+
+Risk: The Excel generation script can install an unpinned openpyxl dependency at runtime.
+
+Mitigation: Preinstall a pinned openpyxl version in the execution environment or disable runtime package installation before use.
+
+Risk: Generated spreadsheets may contain local paths and filenames from untrusted sources.
+
+Mitigation: Review generated Excel files before sharing them and treat filename-derived spreadsheet content as untrusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/851032763/skills/emby-tv-organizer)
+- [README.md](README.md)
+- [Episode pattern reference](references/episode_patterns.md)
+- [Excel generation script](scripts/generate_excel.py)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Files, Configuration guidance]
+
+**Output Format:** [Markdown plans and tables, JSON input for spreadsheet generation, shell commands, and generated .xlsx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is designed to preview changes first and generate the Excel report through the bundled Python script after user confirmation.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

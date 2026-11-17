@@ -5,14 +5,20 @@
 >
 > HTML 地图底图使用腾讯地图 JSAPI GL。底图 `<script>` 标签见下方「API Key」段，直接照抄即可。
 
+## ⚠️ 强制约束：底图 & 命名空间
+
+- **底图**：本 skill 全链路绑定腾讯位置服务——WebService API、GCJ-02 坐标系、Key 与额度体系均为腾讯地图。因此所有 HTML 可视化地图必须使用腾讯地图 JSAPI GL 作为底图，与数据层保持一致；换用其他地图 SDK 会导致坐标系、服务接口、样式体系不匹配。涉及中国区域的地图展示，也需符合国家地图合规要求，不使用未取得国内测绘资质的境外地图服务。
+- **命名空间**：JSAPI GL 挂在全局 **`TMap`** 上（大小写严格：**T** 大写、**M** 大写，其余小写）。所有 API 必须走 `TMap.xxx`：`new TMap.Map(container, opts)`、`new TMap.LatLng(lat, lng)`、`new TMap.MultiMarker(...)`、`new TMap.MultiPolyline(...)`、`new TMap.InfoWindow(...)`、`new TMap.MultiLabel(...)` 等。
+- ❌ 常见错误：把地图 API 写成非 `TMap` 的全局对象（如错误大小写 `TMAP.Map` / `Tmap.Map`、旧版 `qq.maps.Map`，或其他地图 SDK 的全局命名空间）——一律不允许，统一改用 `TMap.xxx`。
+
 ## 何时读这里
 
 当需要把行程 / POI / 路线渲染成 HTML 地图时，按以下顺序查阅：
 
 1. **底图 key 与 HTML 生成示例** → 下方「API Key」与「HTML 生成示例」段（照抄即可出图）
 2. **画路线** → 下方「画路线：polyline 解压」段
-3. **JSAPI 核心 API** → `jsapigl/docs/*.md`（下方有完整文件名清单）
-4. **可视化扩展库** → `visualization/docs/*.md`（下方有完整文件名清单）
+3. **JSAPI 核心 API（地图初始化 / marker / 路线连线 / 弹窗等基础能力）** → `jsapigl/docs/*.md`（下方有完整文件名清单）
+4. **可视化扩展库（热力图 / 轨迹 / 弧线 / 区域图等高级可视化）** → `visualization/docs/*.md`（下方有完整文件名清单）
 5. **demo 代码** → `*/demos/`
 
 ## jsapigl/docs/ 文件清单（21 个核心 API 文档）
@@ -41,7 +47,7 @@
 | `附加库：模型库.md` | model 库（3D GLTF/3DTiles） |
 | `附加库：矢量数据图层.md` | vector 库（GeoJSON/MVT） |
 
-## visualization/docs/ 文件清单（15 个可视化扩展）
+## visualization/docs/ 文件清单（14 个可视化扩展）
 
 | 文档 | 说明 / 何时读 |
 |------|--------------|
@@ -59,7 +65,7 @@
 | `区域图.md` | 多边形区域 |
 | `围墙面.md` | 立体围墙 |
 | `水晶体.md` | 立体水晶 |
-| `行政区划.md` | 省市区边界 |
+
 
 ## 目录结构
 
@@ -70,7 +76,7 @@ jsapi-guide/
 │   ├── docs/            核心 API 文档（上方 21 个 md）
 │   └── demos/           核心 API 的 demo HTML
 └── visualization/
-    ├── docs/            可视化扩展库文档（上方 15 个 md）
+    ├── docs/            可视化扩展库文档（上方 14 个 md）
     └── demos/           可视化扩展库的 demo HTML
 ```
 
@@ -83,6 +89,72 @@ HTML 地图底图使用 client 解析到的 Key（tempkey / 环境变量 `TMAP_K
 ```
 
 tempkey 生成的 Key 同时支持 JSAPI 底图加载和 WebService API 调用，放进 HTML `<head>` 即可显示底图。未配置 Key 时需先通过 tempkey 流程申请临时体验 Key。
+
+> ⚠️ **安全提示**：将 Key 明文写在 HTML `<script src="...gljs?key=XXX">` 中，任何访问该页面的人都能通过查看源码或抓包拿到 Key，从而盗用你的额度。**仅在本地开发/内部预览场景可用**。若要将网页发布到公网，请务必改用下方「Key 安全 / 代理服务转发」方案。生成 HTML 后必须按 SKILL.md「HTML Key 安全检查」条目主动提示用户。
+
+### HTML Key 安全检查 — 检测与提示
+
+每次生成 / 写入含腾讯地图 JSAPI GL 的 HTML 后（识别标记：URL 含 `map.qq.com/api/gljs`），在同一轮内执行：
+
+- **检测**：对文件内容执行正则 `gljs\?[^"']*[?&]key=[A-Z0-9-]{20,}`，判断是否含明文 Key。
+- **命中时**：在最终回复中原样输出下方「固定安全提示文案」整段，逐字复制，不改写、翻译、精简、合并、拆分、加 emoji、调换顺序或省略。唯一允许的替换：将 `<HTML_FILE>` 替换为实际文件路径；命中多个文件则按行列出所有路径。
+- **未命中时**：不输出安全提示，避免噪音。
+- 不在未告知用户的情况下将带明文 Key 的 HTML 发布 / 部署到公网。
+
+**固定安全提示文案（命中时原样输出，勿改动）：**
+
+> ⚠️ **HTML Key 安全提示**：检测到 `<HTML_FILE>` 中包含明文 Key（形如 `gljs?...&key=...`），任何人可通过查看源码或抓包获取，存在盗用风险；当前形式仅限本地/内网使用，若需公网发布请参考官方代理方案：https://lbs.qq.com/webApi/javascriptGL/glGuide/glKeyDelegate 。
+
+## Key 安全 / 代理服务转发
+
+**官方文档**：https://lbs.qq.com/webApi/javascriptGL/glGuide/glKeyDelegate
+
+将 Key 存到自有服务器，前端通过代理服务器请求腾讯 JSAPI，Key 完全不出现在 HTML 与网络请求中。核心两步：
+
+### 1. 服务器端配置代理（以 Nginx 为例）
+
+将下面配置里的 `XXXX-XXXX-XXXX-XXXX-XXXX-XXXX` 替换为你的正式 Key：
+
+```nginx
+server {
+  listen 8080;
+  server_name your.domain.com;   # 你的服务器域名或 IP
+
+  location /_TMapService {
+    set $args "$args&key=XXXX-XXXX-XXXX-XXXX-XXXX-XXXX";
+    proxy_pass https://pr.map.qq.com/pingd?appid=jsapi_v3;
+  }
+  location /_TMapService/checkKey {
+    set $args "$args&key=XXXX-XXXX-XXXX-XXXX-XXXX-XXXX";
+    proxy_pass https://apikey.map.qq.com/mkey/index.php/mkey/check;
+  }
+  location /_TMapService/oversea {
+    set $args "$args&apikey=XXXX-XXXX-XXXX-XXXX-XXXX-XXXX";
+    proxy_pass https://overseactrl.map.qq.com;
+  }
+  location /_TMapService/service {
+    set $args "$args&key=XXXX-XXXX-XXXX-XXXX-XXXX-XXXX";
+    proxy_pass https://apis.map.qq.com/ws;
+  }
+}
+```
+
+### 2. 前端 HTML 改造（去掉明文 key）
+
+在引入 JSAPI **之前**声明代理地址，`<script>` 引用去掉 `&key=` 参数：
+
+```html
+<!-- 必须写在 gljs <script> 之前 -->
+<script>
+  window._TMapSecurityConfig = {
+    serviceHost: "https://your.domain.com/_TMapService"
+  };
+</script>
+<!-- 注意：URL 不再包含 &key=... -->
+<script src="https://map.qq.com/api/gljs?v=1"></script>
+```
+
+改造后，前端源码与网络请求都不再含 Key，达到防泄露目的。
 
 ### 地图样式
 

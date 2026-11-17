@@ -1,39 +1,48 @@
-## Description: <br>
-Automates the four highest-ROI intelligence tasks for e-commerce sellers: competitor price monitoring, product research, profit margin analysis, and abandoned cart recovery copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates the four highest-ROI intelligence tasks for e-commerce sellers: competitor price monitoring, product research, profit margin analysis, and abandoned cart recovery copy.
 
-## Publisher: <br>
-[drew2operations](https://clawhub.ai/user/drew2operations) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[drew2operations](https://clawhub.ai/user/drew2operations)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External e-commerce sellers, Shopify store owners, Amazon FBA sellers, DTC brands, and dropshippers use this skill to monitor competitor pricing, evaluate product opportunities, calculate true margins, and draft abandoned cart recovery messages.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Exported reports may be saved locally in a predictable Documents folder and may include sensitive business data.
+
+Mitigation: Confirm file writes before creating persistent records, and use in-chat output when reports should not be stored on disk.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External e-commerce sellers use this skill to monitor competitor prices, evaluate product opportunities, calculate true margins, and draft abandoned-cart email and SMS recovery sequences. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Saved reports may contain commercially sensitive pricing, margin, supplier, or recovery-copy information. <br>
-Mitigation: Confirm the exact destination folder and filename before writing files, and use a private workspace appropriate for business data. <br>
-Risk: Competitor, product, and pricing reports depend on current web data and user-provided cost assumptions, which may be incomplete or stale. <br>
-Mitigation: Review sourced data and assumptions before changing prices, inventory, ad spend, or supplier decisions. <br>
+**Output Format:** [Markdown reports, calculations, email/SMS copy, and install command guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May save Markdown reports locally after user confirmation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, scored analyses, recommendations, email copy, and SMS copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save Markdown reports to a user-confirmed local folder.] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

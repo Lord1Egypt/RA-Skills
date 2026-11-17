@@ -1,45 +1,69 @@
-## Description: <br>
-A comprehensive skill enabling OpenClaw agents to manage Microsoft Intune through the Microsoft Graph API, including devices, apps, policies, compliance, users, groups, reporting, Autopilot, scripts, and remote actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Microsoft Intune and Entra ID device management through Microsoft Graph for devices, compliance, policies, apps, enrollment, reporting, audit, and related administration tasks.
 
-## Publisher: <br>
-[MattiaCirillo](https://clawhub.ai/user/MattiaCirillo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mattiacirillo](https://clawhub.ai/user/mattiacirillo)
 
-## Use Case: <br>
-IT administrators, MSPs, and automation engineers use this skill to let an OpenClaw-compatible agent query, report on, and administer Microsoft Intune environments through Microsoft Graph. It supports tenant device, app, policy, compliance, enrollment, user, group, and reporting workflows, including high-impact administrative actions that require human approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad Microsoft Intune and Microsoft Graph tenant administration capability. <br>
-Mitigation: Install only when agent-based Intune administration is intended, use a dedicated app registration, and grant only the permissions required for the workflows being used. <br>
-Risk: Client credentials and application permissions can enable unattended tenant changes if mishandled. <br>
-Mitigation: Protect and rotate the client secret, test outside production first, and require human approval before write actions. <br>
-Risk: High-impact operations include script upload, group and RBAC changes, Conditional Access changes, report exports, and destructive device actions. <br>
-Mitigation: Require explicit human approval for these operations and apply the skill's confirmation rules before execution. <br>
+## Use Case:
 
+IT administrators, managed service providers, and operations teams use this skill to query and manage Microsoft Intune and Entra ID device-management resources from an OpenClaw-compatible agent. It supports read-only reporting as well as confirmed administrative changes through Microsoft Graph.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MattiaCirillo/openclaw-intune-skill) <br>
-- [Kaffee & Code](https://kaffeeundcode.com) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Microsoft Graph Intune API documentation](https://learn.microsoft.com/en-us/graph/api/resources/intune-graph-overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown summaries and tables with Microsoft Graph API request guidance and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires INTUNE_TENANT_ID, INTUNE_CLIENT_ID, and INTUNE_CLIENT_SECRET; uses OAuth client credentials and Microsoft Graph application permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can perform high-impact tenant, policy, app, group, and device actions through Microsoft Graph.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use INTUNE_READ_ONLY=true and read-only Graph permissions unless writes are specifically required; when writes are enabled, grant only the minimum Graph permissions needed.
+
+Risk: Destructive Tier 3 actions depend partly on the agent following the typed-name confirmation process.
+
+Mitigation: Require an operator to verify the target object, consequences, and exact confirmed name before running wipe, retire, delete, Activation Lock bypass, or Conditional Access delete actions.
+
+Risk: The authoritative security verdict is suspicious because one documented safety gate is weaker than claimed.
+
+Mitigation: Review the release before installing in a production tenant and prefer read-only deployment for reporting use cases.
+
+## Reference(s):
+
+- [OpenClaw Intune Skill ClawHub Page](https://clawhub.ai/mattiacirillo/skills/openclaw-intune-skill)
+- [Kaffee & Code](https://kaffeeundcode.com)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Microsoft Graph API Docs](https://learn.microsoft.com/en-us/graph/api/resources/intune-graph-overview)
+- [Users, Groups, RBAC, Terms & Notifications](references/admin.md)
+- [Apps & App Protection (MAM)](references/apps.md)
+- [Devices, Remote Actions, Categories, Scripts](references/devices.md)
+- [Network Profiles & Windows Updates](references/network-updates.md)
+- [Platform: Autopilot, Enrollment, Apple, Android Enterprise](references/platform.md)
+- [Policies: Compliance, Configuration, Endpoint Security, Conditional Access, Filters](references/policies.md)
+- [Reporting, Audit Logs, Settings Catalog Search, GPO Analytics](references/reporting.md)
+- [Troubleshooting: Common Graph API Errors](references/troubleshooting.md)
+- [Multi-Step Workflows (MSP Recipes)](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and summarized Microsoft Graph results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Formats results as tables or short summaries and avoids raw JSON dumps unless needed for an administrative action.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter and changelog report 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

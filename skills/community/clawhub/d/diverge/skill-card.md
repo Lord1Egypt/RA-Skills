@@ -1,41 +1,53 @@
-## Description: <br>
-Spawn multiple perspectives to evaluate a problem before converging on a solution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spawn multiple perspectives to evaluate a problem before converging on a solution.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, writers, product teams, and other agent users use this skill to ask an agent to examine a problem from multiple relevant perspectives, surface conflicts, and synthesize a decision with documented trade-offs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may increase reasoning time by asking the agent to consider alternate viewpoints or simulated reviewer perspectives. <br>
-Mitigation: Use it for complex, high-stakes, or trade-off-heavy tasks, and skip it for simple or speed-critical requests. <br>
-Risk: Medical, legal, security, or safety perspectives are analytical aids and may not substitute for professional review. <br>
-Mitigation: Apply normal judgment for safety-critical outputs and route unresolved legal, compliance, medical, or safety concerns to qualified reviewers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/diverge) <br>
-- [Perspective Templates](artifact/personas.md) <br>
-- [Synthesizing Multiple Perspectives](artifact/synthesis.md) <br>
+## Use Case:
 
+External users and developers use this skill to deliberately compare multiple perspectives on complex product, technical, creative, safety, or legal trade-offs before making a recommendation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with perspective summaries, conflict analysis, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reasoning aid; no code execution, data access, or persistence is indicated by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can add unnecessary deliberation time for simple or speed-critical tasks.
+
+Mitigation: Use divergence for complex decisions where added perspective-taking is worth the time, and avoid it for simple tasks or when confidence is already high.
+
+Risk: High-stakes medical, legal, security, or compliance topics may require specialist judgment beyond synthesized perspectives.
+
+Mitigation: Escalate decisions with legal, compliance, significant cost, conflicting stakeholder, or unresolved safety implications to an appropriate human reviewer.
+
+## Reference(s):
+
+- [Perspective Templates](personas.md)
+- [Synthesizing Multiple Perspectives](synthesis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and structured synthesis notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, persistence, or external data flow is described in the server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

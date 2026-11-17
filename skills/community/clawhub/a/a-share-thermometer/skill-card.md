@@ -1,38 +1,53 @@
-## Description: <br>
-查询A股市场温度，当用户询问今日市场温度、今日A股温度、市场热度、大盘温度或类似问题时触发，并支持多个A股指数。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reports A-share index PE(TTM) market temperatures for configured Chinese equity indices and formats the daily result as a concise table.
 
-## Publisher: <br>
-[pandasky](https://clawhub.ai/user/pandasky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pandasky](https://clawhub.ai/user/pandasky)
 
-## Use Case: <br>
-External users and analysts use this skill to generate a concise A-share index temperature report with PE and status values for configured indices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data retrieval can fail or return incomplete results for a configured index. <br>
-Mitigation: Surface the script error in the report and review failed rows before relying on the output. <br>
+## Use Case:
 
+External users and market analysts use this skill to ask for current A-share market temperature readings and receive PE(TTM), percentile temperature, and status values for the configured indices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pandasky/a-share-thermometer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Fixed Chinese plain text report with index, PE, temperature, and status rows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the East 8 date and omits unrelated explanation, summaries, and advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata; artifact frontmatter says 1.0.7) <br>
+Risk: The documented supported-index list is broader than the default configured coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts/config.json before use and add only the indices the agent should report.
+
+Risk: Market valuation data retrieval depends on akshare and the availability of upstream market data.
+
+Mitigation: Treat retrieval failures or missing data as operational errors and surface the error text without adding unsupported interpretation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pandasky/skills/a-share-thermometer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown table with concise text status values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses East 8 timezone for the report date and produces only the requested report or error text.]
+
+## Skill Version(s):
+
+1.0.8 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

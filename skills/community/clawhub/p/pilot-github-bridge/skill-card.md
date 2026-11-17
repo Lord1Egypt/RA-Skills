@@ -1,42 +1,58 @@
-## Description: <br>
-Bridge GitHub webhook events as Pilot Protocol events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridge GitHub webhook events into Pilot Protocol so agents can react to repository events.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Pilot agents to receive GitHub webhook events and trigger agent actions from repository activity such as pushes and pull requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook-driven workflows can trigger agent actions from repository events. <br>
-Mitigation: Review webhook relay configuration, GitHub event filters, and generated pilotctl commands before enabling automated actions. <br>
-Risk: The skill depends on local prerequisites such as pilotctl, a running Pilot daemon, GitHub webhooks, gh CLI, and an HTTP relay server. <br>
-Mitigation: Confirm the required binaries and services are installed and running before using the workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure a GitHub webhook bridge that forwards repository events into Pilot Protocol, enabling Pilot agents to trigger CI/CD, review, or automation workflows from push and pull request events.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub release page](https://clawhub.ai/teoslayer/pilot-github-bridge) <br>
-- [Publisher profile](https://clawhub.ai/user/teoslayer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes pilotctl command examples and a webhook relay workflow example.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A public or unauthenticated GitHub webhook relay could let untrusted events reach Pilot agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy the relay privately or behind authentication and require GitHub webhook signature verification before forwarding events.
+
+Risk: Webhook payloads can trigger downstream build or review agents without sufficient validation.
+
+Mitigation: Validate event schema and source, use repository and branch allowlists, and route events only to least-privilege downstream agents.
+
+Risk: Repeated or replayed webhook deliveries could cause duplicate or excessive automation actions.
+
+Mitigation: Add replay protection, idempotency checks, and rate limiting before acting on received webhook events.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-github-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Code, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands assume pilotctl, a running Pilot daemon, GitHub webhooks, gh CLI, and an HTTP relay server are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

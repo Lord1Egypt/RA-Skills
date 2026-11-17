@@ -1,42 +1,58 @@
-## Description: <br>
-Injects local HTTP, HTTPS, and SOCKS proxy environment variables for selected outbound commands or the current shell session when developers need access to services such as GitHub, OpenAI, npm, PyPI, and Docker Hub from restricted networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proxy Cn helps agents run selected outbound commands through a user-managed local HTTP or SOCKS proxy by setting proxy environment variables for a single command or shell session.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-Developers and engineers use this skill to run network-dependent commands through an already-running local proxy without enabling a global proxy for all traffic. It is most useful for temporary access to external package registries, source hosts, APIs, and container registries from restricted network environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands that send tokens or credentials may route that traffic through the user's configured local proxy service. <br>
-Mitigation: Install and use the skill only with a trusted local proxy service, and avoid sending sensitive credentials through untrusted proxy endpoints. <br>
-Risk: Sourcing proxy-env.sh changes proxy environment variables for the current shell until they are unset or the shell is closed. <br>
-Mitigation: Use the single-command wrapper for temporary access when possible, or unset proxy variables after a session-level proxy is no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill in restricted network environments to temporarily route commands such as curl, git, npm, pip, or docker through a local proxy. It is intended for user-directed outbound access, not for permanent global proxy configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/proxy-cn) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command wrappers and environment-variable guidance; it does not install or run a proxy service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Commands run through the proxy may expose destination and traffic metadata to the user's local proxy software or upstream proxy provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the one-command wrapper for temporary use and route only commands the user intentionally wants to proxy.
+
+Risk: The artifact documents PowerShell entry points that are not present in the released files.
+
+Mitigation: Use the bundled bash scripts for macOS, Linux, WSL, Git Bash, or MSYS2 unless a release includes the documented PowerShell files.
+
+Risk: Long-lived proxy environment variables can unintentionally route local, internal, or company traffic through a proxy.
+
+Mitigation: Use the wrapper for single commands where possible, keep no_proxy configured for local networks, and clear proxy variables after session use.
+
+## Reference(s):
+
+- [Proxy Cn on ClawHub](https://clawhub.ai/clawkk/skills/proxy-cn)
+- [clawkk publisher profile](https://clawhub.ai/user/clawkk)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bash scripts to set http_proxy, https_proxy, ALL_PROXY, and no_proxy environment variables for user-selected commands or sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,7 +2,7 @@
   "type": "function",
   "function": {
     "name": "_company_app_create",
-    "description": "Create a team application. Must provide application name, optionally set color, icon, group, and create based on template.",
+    "description": "Create a team application,return appId. Must provide application name, optionally set color, icon, group, and create based on template.",
     "parameters": {
       "type": "object",
       "properties": {
@@ -24,14 +24,11 @@
         },
         "appDefineId": {
           "type": "string",
-          "description": "Format: 2~100 characters of English, numbers, underscores_ and.",
-          "examples": [
-            "com.mycompany.MyApp"
-          ]
+          "description": "Format: 2~100 characters of English, numbers, underscores_ and.If the ID already exists, a numeric suffix will be automatically appended to ensure uniqueness."
         }
       },
       "required": [
-        "name"
+        "name","appDefineId","icon"
       ]
     }
   }

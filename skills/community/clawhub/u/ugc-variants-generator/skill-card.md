@@ -1,42 +1,58 @@
-## Description: <br>
-Generate multiple UGC script variants from one base script while keeping key product facts and compliance boundaries. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Generate multiple UGC script variants from one base script while preserving key product facts and compliance boundaries.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External content teams and creators use this skill to turn a base UGC script, product facts, audience, style preference, and CTA goal into multiple script variants for creative testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may make unsupported product, legal, or platform-sensitive claims. <br>
-Mitigation: Review every variant for brand, legal, and platform compliance before publishing. <br>
-Risk: Creative variants may drift from the supplied product facts or imply guaranteed outcomes. <br>
-Mitigation: Keep approved facts as the review baseline and remove fabricated proof or guaranteed results. <br>
-Risk: The skill is licensed for non-commercial use unless a separate commercial license is obtained. <br>
-Mitigation: Confirm the intended use is covered by CC BY-NC-SA 4.0 or obtain the required commercial license from the rights holder. <br>
+## Use Case:
 
+External marketing teams, TikTok content teams, and creators use this skill to turn one base UGC script into diverse variants for creative testing while keeping product facts and compliance boundaries intact.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured sections, variant tables, hooks, CTAs, risk notes, and test order] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces at least 12 script variants while preserving product facts and flagging risky claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated scripts can include inaccurate product claims or content that conflicts with platform advertising policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated variant for product accuracy, substantiated claims, and applicable platform ad policy compliance before publishing.
+
+Risk: The artifact states a non-commercial license restriction unless a separate commercial license is in place.
+
+Mitigation: Confirm commercial licensing rights with the publisher before using generated outputs in commercial campaigns.
+
+Risk: Creative variants may drift from the base script or imply guaranteed outcomes.
+
+Mitigation: Keep approved product facts as fixed constraints and remove fabricated proof, exaggerated claims, or guaranteed results during review.
+
+## Reference(s):
+
+- [Output Template](artifact/references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/ugc-variants-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a core message check, at least 12 script variants, hook and CTA pairs, risk notes, and a recommended test order.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

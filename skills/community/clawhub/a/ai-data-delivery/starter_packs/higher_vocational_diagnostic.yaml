@@ -1,0 +1,59 @@
+# 高职院校内部质量保证体系诊改：可审阅的本体起点，不声明适用于所有院校。
+# 测试用例来源：用户提供的脱敏合成验证包及其描述；不含任何高校客户原始数据。
+# 政策版本、流程状态、指标算法均须由对应项目业务负责人另行确认。
+pack:
+  id: higher_vocational_diagnostic
+  name: 高职院校质量诊改（草案）
+  version: '0.1'
+  source: 高职诊改合成验证场景；用户资料中的诊改项目形态；非标准符合性声明
+  aligns:
+  - 诊改任务、目标、状态、预警及五类层面的建模起点
+  - 教职成司函〔2015〕168号及数字基座试行版次须由项目方核实适用性
+  usage: 结合本校组织层级、任务状态机和指标来源审阅后再建模
+ontology:
+  entities:
+  - uid: ent_hv_school
+    name: 学校
+    attributes: [{name: 学校标识, value_type: string}, {name: 学校名称, value_type: string}]
+    note: 学校级治理与目标主体；映射关系需要学校数据标准确认
+    evidence: {source: model_inferred}
+  - uid: ent_hv_major
+    name: 专业
+    attributes: [{name: 专业标识, value_type: string}, {name: 专业名称, value_type: string}]
+    note: 专业建设、人才培养与质量监测的业务对象
+    evidence: {source: model_inferred}
+  - uid: ent_hv_course
+    name: 课程
+    attributes: [{name: 课程标识, value_type: string}, {name: 课程名称, value_type: string}]
+    note: 课程建设、实施与评价对象
+    evidence: {source: model_inferred}
+  - uid: ent_hv_teacher
+    name: 教师
+    attributes: [{name: 教师标识, value_type: string}, {name: 教师发展信息, value_type: string}]
+    note: 不预设敏感人事属性；映射前由数据责任人审查字段范围
+    evidence: {source: model_inferred}
+  - uid: ent_hv_student
+    name: 学生
+    attributes: [{name: 学生标识, value_type: string}, {name: 学习发展信息, value_type: string}]
+    note: 不预设可识别个人的字段；分析用途须核实授权及最小必要范围
+    evidence: {source: model_inferred}
+  - uid: ent_hv_indicator_task
+    name: 诊改指标任务
+    attributes:
+    - {name: 指标名称, value_type: string}
+    - {name: 目标值, value_type: number}
+    - {name: 实际值, value_type: number}
+    - {name: 任务状态, value_type: string}
+    note: 任务粒度、数值口径、状态字典、标准来源和有效期须逐项目确认
+    evidence: {source: model_inferred}
+  - uid: ent_hv_warning
+    name: 诊改预警
+    attributes: [{name: 预警类型, value_type: string}, {name: 处理状态, value_type: string}]
+    note: 预警触发和办理状态来自实际平台与责任人确认
+    evidence: {source: model_inferred}
+  relations:
+  - {id: rel_hv_school_major, from: 学校, to: 专业, predicate: 设置, mapping: semantic_only, note: 示例关系；院校授权组织层级确认后再投影键}
+  - {id: rel_hv_major_course, from: 专业, to: 课程, predicate: 开设, mapping: semantic_only, note: 示例关系；课程共享或跨专业复用时需扩充基数和时效}
+  - {id: rel_hv_teacher_course, from: 教师, to: 课程, predicate: 授课, mapping: semantic_only, note: 授课关系须指定学期、班级等业务粒度后再接入数据}
+  - {id: rel_hv_student_major, from: 学生, to: 专业, predicate: 修读, mapping: semantic_only, note: 修读历史须保留起止时间，不能只连接当前专业}
+  - {id: rel_hv_task_warning, from: 诊改指标任务, to: 诊改预警, predicate: 触发, mapping: semantic_only, note: 有物理键并完成数据校验后改为可落地映射}

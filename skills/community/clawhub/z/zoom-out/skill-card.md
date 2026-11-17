@@ -1,41 +1,54 @@
-## Description: <br>
-Tell the agent to zoom out and give broader context or a higher-level perspective on a section of code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tell the agent to zoom out and give broader context or a higher-level perspective on a section of code.
 
-## Publisher: <br>
-[genortg](https://clawhub.ai/user/genortg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[genortg](https://clawhub.ai/user/genortg)
 
-## Use Case: <br>
-Developers and engineers use this skill when they need a higher-level map of an unfamiliar codebase, module, or public API before making changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may cause the agent to inspect multiple files in the active project while mapping architecture and callers. <br>
-Mitigation: Use it only in workspaces where codebase-wide reading is appropriate. <br>
-Risk: A high-level architecture summary can omit details or misstate how unfamiliar code paths connect. <br>
-Mitigation: Review the generated map against the cited files before using it to guide implementation decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to get a concise architecture-level map of an unfamiliar code area before making changes or diving into implementation details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/genortg/zoom-out) <br>
-- [Publisher profile](https://clawhub.ai/user/genortg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes module boundaries, dependencies, callers, architectural role, and project vocabulary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can produce an incomplete or misleading architecture map if relevant files, callers, or dependencies are missed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to identify the files and call relationships it inspected, and verify the map before relying on it for code changes.
+
+Risk: The skill is intended to inspect project files for architecture context.
+
+Mitigation: Use it only in workspaces where the agent is allowed to inspect the relevant project code and avoid including unrelated secrets or sensitive files in the review scope.
+
+## Reference(s):
+
+- [Zoom Out ClawHub Skill Page](https://clawhub.ai/genortg/skills/zoom-out)
+- [Publisher Profile](https://clawhub.ai/user/genortg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown architecture overview]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically includes module role, public API, dependencies, callers, and architectural context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

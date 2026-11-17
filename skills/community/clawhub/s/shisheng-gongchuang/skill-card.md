@@ -1,40 +1,54 @@
-## Description: <br>
-高校师生共创模式指导助手。当用户需要进行科技成果转化、组建师生共创团队、选择共创模式或解决共创过程中的问题时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+高校师生共创模式指导助手。当用户需要进行科技成果转化、组建师生共创团队、选择共创模式或解决共创过程中的问题时使用此技能。
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-External users at universities, labs, incubators, and startup teams use this skill to evaluate teacher-student co-creation models, define team roles, plan technology transfer, and address commercialization challenges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat legal, equity, intellectual-property, governance, or commercialization suggestions as final professional advice. <br>
-Mitigation: Use the skill as general planning guidance and consult qualified legal, financial, university policy, or commercialization experts before high-impact decisions. <br>
+## Use Case:
 
+External university faculty, students, entrepreneurship mentors, and technology-transfer teams use this skill to identify a teacher-student co-creation model, design roles, match technology with market needs, and plan commercialization steps.
 
-## Reference(s): <br>
-- [师生共创理论详解](references/shisheng-gongchuang-lilun.md) <br>
-- [Reference Documentation for Shisheng Gongchuang](references/api_reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/earthwalking/shisheng-gongchuang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Chinese-language Markdown responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include checklists, decision matrices, role recommendations, and implementation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat entrepreneurship, equity, intellectual-property, or commercialization guidance as definitive legal, financial, or business advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as planning support and review recommendations with qualified university technology-transfer, legal, financial, and business advisors before acting.
+
+Risk: Placeholder asset, reference, and script files may be mistaken for implemented tooling or authoritative documentation.
+
+Mitigation: Rely on the skill's guidance content and the detailed theory reference; do not treat placeholder files as functional automation or complete API documentation.
+
+## Reference(s):
+
+- [师生共创理论详解](references/shisheng-gongchuang-lilun.md)
+- [ClawHub skill page](https://clawhub.ai/earthwalking/skills/shisheng-gongchuang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown or plain-text advisory responses, checklists, decision matrices, and step-by-step recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory content only; the bundled asset and example script are placeholders rather than functional automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Swap or trade tokens on Base network using the Awal CLI, including buying, selling, or converting between USDC, ETH, WETH, and contract-address tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swap or trade tokens on the Base network between assets such as USDC, ETH, and WETH.
 
-## Publisher: <br>
-[0xRAG](https://clawhub.ai/user/0xRAG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrag](https://clawhub.ai/user/0xrag)
 
-## Use Case: <br>
-External users and agents use this skill to check authenticated wallet status and prepare token swaps on Base, including custom slippage and optional JSON command output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute real authenticated wallet swaps without a required final confirmation step. <br>
-Mitigation: Require explicit final approval before any swap and manually verify the active wallet, Base network, token addresses, amount, expected output, fees, and slippage. <br>
-Risk: The skill invokes an unpinned external CLI with `npx awal@latest`. <br>
-Mitigation: Prefer a pinned and reviewed version of the Awal CLI before allowing an agent to trade. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xRAG/trade) <br>
-- [Publisher profile](https://clawhub.ai/user/0xRAG) <br>
+## Use Case:
 
+External users use this skill to direct an agent to check wallet status and swap, buy, sell, or convert supported tokens on the Base network after authentication.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; command output may be JSON when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated wallet, sufficient source-token balance, Base network support, token selection, amount selection, and slippage settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can give an agent real authority to submit crypto token trades.
+
+Mitigation: Use a wallet with limited funds and permissions, and require manual confirmation showing exact trade details before any transaction is submitted.
+
+Risk: The skill invokes an unpinned npm command for the trading CLI.
+
+Mitigation: Use a pinned and trusted version of the trading CLI before enabling the skill.
+
+Risk: Trades may fail or execute incorrectly when token addresses, balances, slippage, approvals, or liquidity are unsuitable.
+
+Mitigation: Confirm wallet status, token pair, amount, slippage, balance, and expected trade details before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xrag/skills/trade)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline bash commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated wallet, sufficient source-token balance, supported token aliases or contract addresses, and optional slippage settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

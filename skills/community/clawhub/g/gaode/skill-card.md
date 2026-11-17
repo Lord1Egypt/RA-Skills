@@ -1,43 +1,55 @@
-## Description: <br>
-高德地图 LBS 开发助手，精通地理编码、路线规划、POI搜索等全套 Web API <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gaode helps agents use Amap/Gaode Web Services for geocoding, POI search, routing, weather, IP location, and China coordinate-system guidance.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and engineers use this skill to design and troubleshoot Amap/Gaode Web API integrations for geocoding, reverse geocoding, route planning, POI search, IP location, weather, static maps, administrative districts, and coordinate conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using Amap/Gaode services can send addresses, coordinates, routes, or IP-derived city data to Amap. <br>
-Mitigation: Avoid sending sensitive location or requester-IP data unless the user has clearly requested that lookup. <br>
-Risk: API keys used with generated examples could be exposed or overused if embedded directly in code. <br>
-Mitigation: Store keys outside source code, configure key allowlists, and use quota controls and caching where appropriate. <br>
+## Use Case:
 
+Developers and agents use this skill to run Amap/Gaode mapping workflows such as address geocoding, reverse geocoding, POI search, route planning, weather lookup, IP location, and China coordinate-system conversion guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/gaode) <br>
-- [Amap Web Service API v3 endpoint](https://restapi.amap.com/v3) <br>
-- [Amap Web Service API v5 endpoint](https://restapi.amap.com/v5) <br>
-- [Amap API key console](https://console.amap.com/dev/key/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with API request examples and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Amap request URLs, parameter guidance, quota handling notes, coordinate-system guidance, and key-management recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Mapping queries may send addresses, coordinates, IP addresses, and arbitrary call parameters to Amap's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data appropriate for Amap Web Services and avoid sending sensitive location or personal data unless approved.
+
+Risk: The CLI requires an AMAP_KEY and can make live network requests to restapi.amap.com.
+
+Mitigation: Provide the key through environment configuration, restrict key permissions where possible, and review commands before execution.
+
+## Reference(s):
+
+- [Gaode ClawHub Skill Page](https://clawhub.ai/zhangifonly/skills/gaode)
+- [Amap Web Service API Summary](https://lbs.amap.com/api/webservice/summary)
+- [Amap REST API Endpoint](https://restapi.amap.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AMAP_KEY; live calls may send addresses, coordinates, IP addresses, and arbitrary call parameters to Amap Web Services.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

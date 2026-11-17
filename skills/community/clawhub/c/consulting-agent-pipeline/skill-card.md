@@ -1,46 +1,62 @@
-## Description: <br>
-Coordinates consulting and research agents through a file-system workflow for research, framing, execution, audit, iteration, and delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates consulting deliverable projects through a file-based multi-agent workflow for research, framework development, execution, review, iteration, and final delivery.
 
-## Publisher: <br>
-[lorwaleroy](https://clawhub.ai/user/lorwaleroy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lorwaleroy](https://clawhub.ai/user/lorwaleroy)
 
-## Use Case: <br>
-Developers, consultants, and project leads use this skill to coordinate multi-agent consulting deliverables with shared project state, handoff documents, review gates, forbidden-term scans, and version snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow writes and coordinates shared local project files, which can expose or overwrite project information if used in an unsuitable directory. <br>
-Mitigation: Install it only for projects where shared local files are appropriate, and set project-specific output paths before use. <br>
-Risk: Optional notes or retrospective paths outside the project folder can leak confidential project context if synchronized or shared. <br>
-Mitigation: Remove or disable backup paths that sync to shared vaults, and keep client secrets or confidential retrospectives out of personal memory folders. <br>
-Risk: Automatic handoff routing can send work to the wrong receiver path if the agent registry is stale or misconfigured. <br>
-Mitigation: Review receiver paths in AGENT_REGISTRY.yaml before enabling automatic handoff routing. <br>
+## Use Case:
 
+Consulting teams and agent operators use this skill to coordinate Chinese-language, multi-agent consulting projects that move from parallel research into structured review and final delivery. It is most useful when shared files, handoff documents, human approval gates, forbidden-term checks, and version snapshots are needed across several agents or platforms.
 
-## Reference(s): <br>
-- [Agent Card Specification](references/agent-card-spec.md) <br>
-- [Forbidden Terms Specification](references/forbidden-terms-spec.md) <br>
-- [Handoff Specification](references/handoff-spec.md) <br>
-- [State Lifecycle](references/state-lifecycle.md) <br>
-- [Version Control Specification](references/version-control-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown templates, YAML configuration, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces file-based project protocols and validation workflows for agent handoffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow asks agents to preserve project lessons and research copies outside the active project, which can expose consulting context beyond the intended workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep retrospectives and research copies inside the project unless the user explicitly approves export to global OpenClaw memory or Obsidian.
+
+Risk: Project initialization accepts project names and project types that may be unsafe if they come from untrusted sources.
+
+Mitigation: Use trusted project inputs or constrain init-project.sh input handling before accepting untrusted project names or types.
+
+Risk: The skill relies on shared filesystem storage for project coordination, which is not appropriate for highly confidential project data without additional controls.
+
+Mitigation: Confirm the shared project path is approved for the data involved and avoid using this workflow for highly confidential projects unless access controls are established.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lorwaleroy/skills/consulting-agent-pipeline)
+- [Agent Card Spec](references/agent-card-spec.md)
+- [Forbidden Terms Spec](references/forbidden-terms-spec.md)
+- [Handoff Spec](references/handoff-spec.md)
+- [State Lifecycle](references/state-lifecycle.md)
+- [Version Control Spec](references/version-control-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown templates, YAML configuration, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project folders, handoff documents, validation reports, forbidden-term scan results, and version snapshots through a shared file workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

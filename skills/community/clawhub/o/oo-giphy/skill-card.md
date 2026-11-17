@@ -1,43 +1,52 @@
-## Description: <br>
-GIPHY (giphy.com). Use this skill for ANY GIPHY request - searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GIPHY (giphy.com). Use this skill for ANY GIPHY request — searching and reading data. Whenever a task involves GIPHY, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to search, fetch, translate, and inspect GIFs, stickers, categories, and tags through a connected GIPHY account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected GIPHY account and uses OOMOL as an intermediary for GIPHY operations. <br>
-Mitigation: Install only when that intermediary model is acceptable and connect the GIPHY API key or account through OOMOL intentionally. <br>
-Risk: Optional first-time setup commands install or authenticate the oo CLI. <br>
-Mitigation: Review the oo CLI installer separately and run setup commands only when the CLI, authentication, or connection is missing. <br>
-Risk: Billing or credential issues can stop connector execution. <br>
-Mitigation: Follow the documented recovery paths for expired credentials, missing scopes, missing app connections, or OOMOL billing errors before retrying. <br>
+## Use Case:
 
+Developers and agents use this skill to search GIPHY, retrieve GIFs and stickers, and read related tags and categories through a connected account.
 
-## Reference(s): <br>
-- [GIPHY homepage](https://giphy.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are returned as JSON data with execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: First-time setup may direct the agent to run a downloaded installer without separate review or integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a separately reviewed and verified oo CLI installation, and require user approval before running downloaded installers.
+
+## Reference(s):
+
+- [GIPHY API documentation](https://developers.giphy.com/docs/api/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [GIPHY](https://giphy.com)
+- [ClawHub skill listing](https://clawhub.ai/oomol/skills/oo-giphy)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON results that the agent can summarize as text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on GIPHY data and the user's connected account.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

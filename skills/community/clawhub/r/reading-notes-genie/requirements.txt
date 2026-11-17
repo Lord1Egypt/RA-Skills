@@ -1,0 +1,18 @@
+# Core
+requests
+# PDF
+pypdf>=4.0.0
+pdfplumber>=0.10.0
+# EPUB
+# (stdlib zipfile + xml.etree.ElementTree — no extra dependency)
+# AI
+openai>=1.0.0
+anthropic>=0.18.0
+# Anki export
+genanki>=0.0.35
+# PDF report
+reportlab>=4.0.0
+# Optional: OCR
+# tesseract (system-level, install via: brew install tesseract)
+# pytesseract>=0.3.10
+# Pillow>=10.0.0

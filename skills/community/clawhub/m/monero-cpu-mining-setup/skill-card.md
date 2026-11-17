@@ -1,41 +1,62 @@
-## Description: <br>
-A practical, step-by-step guide to setting up XMRig for Monero mining on Windows, Linux, and macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Step-by-step guide to safely download, configure, and run XMRig for low-impact Monero CPU mining on Windows, Linux, and macOS systems.
 
-## Publisher: <br>
-[liumaimiao](https://clawhub.ai/user/liumaimiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumaimiao](https://clawhub.ai/user/liumaimiao)
 
-## Use Case: <br>
-External developers and users who intentionally want to configure Monero CPU mining use this skill for download, configuration, execution, monitoring, and troubleshooting guidance on hardware they own. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cryptocurrency mining can increase electricity costs, CPU wear, and system heat. <br>
-Mitigation: Run only on hardware you own, use low-impact CPU settings, and monitor temperatures and profitability before continued use. <br>
-Risk: Mining software is commonly impersonated by malware or flagged by antivirus tools. <br>
-Mitigation: Download XMRig only from the official project, verify release checksums, and avoid antivirus exclusions unless the exact binary has been verified and the tradeoff is understood. <br>
+## Use Case:
 
+Developers and operators use this skill to generate setup guidance for running XMRig-based Monero CPU mining on authorized Windows, Linux, or macOS hardware.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liumaimiao/monero-cpu-mining-setup) <br>
-- [XMRig releases](https://github.com/xmrig/xmrig/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the user to provide their own Monero wallet address and choose appropriate CPU limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Mining on hardware without explicit authorization can violate policy or law.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for hardware you own or are explicitly allowed to operate for Monero mining.
+
+Risk: Unverified miner downloads may expose users to malware.
+
+Mitigation: Download XMRig from the official release source and verify checksums before running it.
+
+Risk: The sample pool configuration uses an unencrypted connection.
+
+Mitigation: Replace sample pool settings with a current TLS-enabled endpoint before mining.
+
+Risk: CPU mining can increase temperature, power consumption, and hardware wear.
+
+Mitigation: Use low-impact settings, monitor system temperature and electricity cost, and avoid unsuitable shared, workplace, cloud, or poorly cooled machines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liumaimiao/skills/monero-cpu-mining-setup)
+- [XMRig Releases](https://github.com/xmrig/xmrig/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes download verification, authorization, temperature monitoring, and pool configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

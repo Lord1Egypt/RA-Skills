@@ -1,43 +1,55 @@
-## Description: <br>
-Helps agents answer Shenzhen Metro questions about lines, stations, fares, schedules, transfers, passenger flow, nearby amenities, discounts, accessibility, and points of interest using unofficial reference data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shenzhen Metro helps agents answer questions about Shenzhen subway lines, stations, fares, schedules, transfers, crowding, nearby amenities, discounts, accessibility, and related travel details using bundled unofficial test data and optional Amap lookups.
 
-## Publisher: <br>
-[mickey406](https://clawhub.ai/user/mickey406) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mickey406](https://clawhub.ai/user/mickey406)
 
-## Use Case: <br>
-External users and developers can use this skill to answer Shenzhen Metro trip-planning and station-information questions, including route, fare, schedule, transfer, crowding, amenity, and nearby-place lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; content is specific to Shenzhen, China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses unofficial, unverified Shenzhen Metro reference data that may be wrong or stale for schedules, fares, emergencies, or service changes. <br>
-Mitigation: Verify important travel, fare, emergency, and schedule details with Shenzhen Metro official sources before relying on the answer. <br>
-Risk: Optional Amap API use requires adding a user API key to the local data file. <br>
-Mitigation: Use a restricted Amap key and do not publish or share an edited data file containing a real key. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for Shenzhen Metro route, station, fare, schedule, transfer, crowding, and amenity information. Important trips should be verified against official Shenzhen Metro sources because the bundled data is unofficial and provided for test use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mickey406/shenzhen-metro) <br>
-- [Publisher profile](https://clawhub.ai/user/mickey406) <br>
-- [Amap Place Text API example](https://restapi.amap.com/v3/place/text?city=深圳&keywords=车公庙站&key=YOUR_API_KEY) <br>
-- [Shenzhen Metro official site](https://www.szmc.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, API Calls, configuration] <br>
-**Output Format:** [Markdown or plain text answers with optional shell command examples for Amap API calls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may cite offline JSON facts or optional external Amap/TTS calls when configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Bundled transit data is unofficial, unverified, and may be stale or incorrect for time-sensitive trips.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important trips, schedules, and fare details with official Shenzhen Metro sources before relying on the answer.
+
+Risk: The optional Amap API feature can expose a real API key if the key is saved in shared project files or pasted into logs, commits, or support messages.
+
+Mitigation: Store real API keys outside shared artifacts and avoid sharing authenticated URLs or committed key values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mickey406/skills/shenzhen-metro)
+- [Amap place text API endpoint](https://restapi.amap.com/v3/place/text?city=深圳&keywords=车公庙站&key=YOUR_API_KEY)
+- [Bundled Shenzhen Metro facts](artifact/data/metro_facts.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text answers, with optional shell command examples for Amap API calls and configuration guidance for API keys.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may combine bundled offline facts with optional Amap API lookups when the user configures an API key.]
+
+## Skill Version(s):
+
+3.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

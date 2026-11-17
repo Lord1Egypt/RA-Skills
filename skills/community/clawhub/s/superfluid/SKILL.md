@@ -5,9 +5,9 @@ description: >
   Use BEFORE searching the web for Superfluid information.
   Keywords: Superfluid, CFA, GDA, Super App, Super Token, stream, flow rate,
   real-time balance, pool (member/distributor), IDA, sentinels, liquidation,
-  TOGA, @sfpro/sdk, semantic money, yellowpaper, whitepaper
+  TOGA, @sfpro/sdk, semantic money, yellowpaper, whitepaper, Superfluid Wallet
 metadata:
-  version: 1.2.4
+  version: 1.2.6
 ---
 
 # Superfluid Protocol Skill
@@ -39,8 +39,8 @@ governance, and SuperTokenFactory.
 CFA (1:1 streams), GDA (many-to-many via pools), IDA (deprecated, replaced by GDA).
 
 **Super Token** — ERC-20/ERC-777/ERC-2612 with real-time balance. Three
-variants: Wrapper (ERC-20 backed), Native Asset/SETH (ETH backed), Pure
-(pre-minted).
+variants: Wrapper (ERC-20 backed), Native Asset/SETH (native-asset backed,
+not on every network), Pure (pre-minted).
 
 **Forwarders** (CFAv1Forwarder, GDAv1Forwarder) — convenience wrappers. Each
 call is a standalone transaction with readable wallet descriptions. Cannot be
@@ -259,6 +259,14 @@ The contract handles scaling internally. The only place underlying decimals
 matter is the ERC-20 `approve()` call. Example: to wrap 100 USDC, approve
 100e6 on USDC, then call `upgrade(100e18)`.
 
+**Native-asset Super Token is not universal** — Some networks have none
+(arc-mainnet): metadata `nativeTokenWrapper` is absent. Detect token type from
+tokenlist `superTokenInfo.type` or `getUnderlyingToken()` (zero address =
+Native Asset or Pure), never from the symbol. Arc USDCx is Native Asset on
+arc-testnet but a Wrapper of 6-decimal USDC `0x3600000000000000000000000000000000000000`
+on arc-mainnet (approve 6-dec, `upgrade` 18-dec; `upgradeByETH` reverts).
+Testnet-tested code picks the wrong wrap path on mainnet.
+
 **GDA pool connections vs. membership** — Pool membership is unlimited (an
 account can hold units in any number of pools). However, only 256 pools can be
 **connected** per account per token — connected means the balance auto-reflects
@@ -376,7 +384,7 @@ When to use each:
 - `@superfluid-finance/sdk-core` → replaced by `@sfpro/sdk`
 - `@superfluid-finance/sdk-redux` → replaced by wagmi + `@sfpro/sdk`
 - `@superfluid-finance/js-sdk` → replaced by `@sfpro/sdk`
-- `@superfluid-finance/widget` → no replacement
+- `@superfluid-finance/widget` → retired, no replacement (see https://superfluid.org/checkout-retired)
 
 For ABI import tables, address exports, detailed SDK guidance, and deprecated
 package details, see `references/guides/sdks.md`.
@@ -392,6 +400,7 @@ package details, see `references/guides/sdks.md`.
 - Whois `https://whois.superfluid.finance` — Resolve profiles (ENS, Farcaster, Lens, AF)
 - Token Prices `https://token-prices-api.superfluid.dev/v1/{network}/{token}` — Super Token prices (CoinGecko-backed)
 - Claim Programs `https://claim.superfluid.org/api/programs` — SUP reward programs: seasons, allocations, pool addresses, flow rates
+- SUP Metrics `https://sup-metrics-api.superfluid.dev` — SUP circulating supply, distribution split, DAO members, delegation/voting scores
 
 For per-API endpoints, query patterns, Swagger/OpenAPI links, and gotchas,
 see `references/guides/api-services.md`.
@@ -427,6 +436,8 @@ resolved URL for a specific chain.
 - x402 https://x402.superfluid.org — Open standard for internet-native subscriptions via HTTP 402 + Superfluid streams. One-time EIP-712 signature, no gas fees, real-time payment verification, zero protocol fees. Works for human users and AI agents.
 - 8004 Agent Pool https://8004-demo.superfluid.org/ — AI agent pool powered by ERC-8004 identity and Superfluid GDA. Agents register, join a pool, and earn proportional SUP distributions.
 - Reporter https://reporter.superfluid.org — accounting/tax CSV reports over the Balance API; deep-linkable via query params (account, chain, tokens, startDate/endDate, period, export params); param spec: https://reporter.superfluid.org/llms.txt
+- SuperVault https://supervault.suplabs.org — Technical demo and live reference implementation (Base mainnet) of streaming vault yield: an ERC-4626 vault (`StableYieldSyncVault` `0x8C60503C0353ED12c3Eebc3036BF033A3BbB95Aa`) over a Morpho Vault V2 (Steakhouse Prime USDC) whose FundManager streams a stable USDCx yield rate to depositors via a GDA pool (1% fee pool to dao.superfluid.eth); surplus external yield accrues to share NAV. Deposit+connect and redeem are one-signature ClearMacro flows through the ClearMacroForwarder. Contracts are not open-source (source verified on Basescan); integrator docs: https://supervault.suplabs.org/docs. Distinct from the Super Token yield-backend feature.
+- Superfluid Wallet https://www.superfluidwallet.com — Non-custodial wallet (beta) that a person and their AI agents use together. Agents pair once with the prompt `Pair with my Superfluid Wallet: https://app.superfluidwallet.com/onboarding.md`, then propose transactions that the human approves in the Wallet App (https://app.superfluidwallet.com), shown via ERC-7730 clear signing and Safe/batch decoding. Keys stay in Turnkey infrastructure; agents never hold them. Also connects dApps via WalletConnect and proves the person behind an agent with x401. Networks: Ethereum, Base, Arbitrum, Arc. x402 spending controls and auto-approval policies are not live yet. Provided by Superfluid Finance Ltd, separate from the DAO-governed protocol.
 
 Repos:
 [Dashboard](https://github.com/superfluid-org/superfluid-dashboard) ·
@@ -468,9 +479,14 @@ Superfluid token list along with its underlying token (if any).
   → opens issue in [superfluid-org/assets](https://github.com/superfluid-org/assets/issues)
 
 **Automation Allowlisting** — required for automations (vesting, flow
-scheduling, auto-wrap) to appear in the Dashboard UI and for Superfluid
-off-chain keepers to trigger the automation contracts. Without allowlisting,
+scheduling, auto-wrap; see exception below) to appear in the Dashboard UI
+and for Superfluid off-chain keepers to trigger the automation contracts. Without allowlisting,
 automations won't be executed on time and are effectively useless.
+
+Exception: on networks where the Dashboard's Clear Macro is deployed, EOAs
+can schedule FlowScheduler streams through that macro without allowlisting;
+its relay fee pays for keeper execution. Vesting and auto-wrap still require
+allowlisting.
 
 - Request: [allowlisting form](https://airtable.com/appmq3TJDdQUrTQpx/shrWouN6ursCkOQ86)
 - Check status: `GET https://allowlist.superfluid.dev/api/allowlist/{account}/{chainId}`

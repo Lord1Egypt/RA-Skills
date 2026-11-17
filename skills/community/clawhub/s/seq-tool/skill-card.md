@@ -1,37 +1,54 @@
-## Description: <br>
-Generate sequences of numbers with configurable start, end, and increment values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate sequences of numbers with configurable start, end, and increment values.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and agent workflows use this skill to produce simple integer ranges for numbered lists, loop inputs, and range-based command examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation describes decimal, padding, separator, and printf-format options that the current implementation does not support. <br>
-Mitigation: Use the skill as a simple integer sequence helper unless the implementation is updated to support those options. <br>
+## Use Case:
 
+Developers and agents use this skill to generate simple numeric ranges for numbered lists, loop inputs, and range-based commands.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text integer sequence, with Markdown shell examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The implementation emits inclusive integer ranges using optional start, end, and step arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Documented options for formatting, separators, padding, and decimal sequences may not match the bundled script behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify required command forms before relying on them, and treat the bundled implementation as an integer-only start, end, and step sequence helper unless updated evidence proves broader support.
+
+Risk: Invalid or missing numeric arguments can cause command failures instead of producing a sequence.
+
+Mitigation: Validate integer arguments before invoking the skill in automated workflows.
+
+## Reference(s):
+
+- [Seq Tool release page](https://clawhub.ai/dinghaibin/skills/seq-tool)
+- [dinghaibin publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Integer sequence output from the bundled local script; documented formatting, separator, padding, and decimal options may require verification before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

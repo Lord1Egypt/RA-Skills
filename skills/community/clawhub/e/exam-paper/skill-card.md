@@ -1,41 +1,54 @@
-## Description: <br>
-Exam Paper helps an agent build exam papers from local question banks, manage questions, track wrong answers, and generate exam and answer-key PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exam Paper helps agents generate exam-paper and answer-key PDFs from question-bank JSON, manage question banks, and track wrong-answer review records.
 
-## Publisher: <br>
-[kreator666](https://clawhub.ai/user/kreator666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kreator666](https://clawhub.ai/user/kreator666)
 
-## Use Case: <br>
-Educators, students, and exam-preparation users can use this skill through an agent to assemble practice exams, maintain subject question banks, and review wrong-answer records. It is especially oriented toward informatics olympiad-style question formats while allowing other subjects to be added. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted subject names or imported question-bank JSON may cause reads or writes outside the advertised exam-data folder. <br>
-Mitigation: Use only trusted question files, avoid subject names containing slashes or '..', and review commands before creating, importing, exporting, or modifying local data. <br>
-Risk: The skill creates or modifies local question-bank, wrong-answer, JSON, and PDF files. <br>
-Mitigation: Run it in a controlled workspace and confirm output directories before allowing file-writing commands. <br>
+## Use Case:
 
+Educators, tutors, students, and agents use this skill to assemble practice exams, export printable papers with answer keys, maintain subject question banks, and record wrong answers for review.
 
-## Reference(s): <br>
-- [Exam Format Reference](references/exam-formats.md) <br>
-- [Informatics Topic Reference](references/informatics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown guidance with Python CLI commands; generated outputs can include JSON exam data and PDF exam files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Python execution and reportlab for PDF generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Crafted question-bank or exam JSON can escape intended file boundaries or affect PDF generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted JSON inputs, validate subject names and output paths, and run the skill in a constrained workspace.
+
+Risk: PDF generation depends on reportlab and local font handling.
+
+Mitigation: Install a pinned reportlab version in a virtual environment and verify generated PDFs before distributing them.
+
+## Reference(s):
+
+- [Exam Formats](references/exam-formats.md)
+- [Informatics Topics](references/informatics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON formats, and generated PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces exam and answer-key PDFs through local Python scripts; question and error data are stored as JSON files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

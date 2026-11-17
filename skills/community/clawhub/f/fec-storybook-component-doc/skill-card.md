@@ -1,43 +1,54 @@
-## Description: <br>
-Guides agents in setting up and reviewing Storybook component documentation, design-system presentation, isolated component state previews, MDX docs, decorators, interaction checks, and visual baselines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers document and preview UI component states in Storybook, with optional interaction checks and visual baselines.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Frontend developers and design-system maintainers use this skill to create or review Storybook stories, decorators, MDX documentation, interaction tests, accessibility addons, and component-scoped visual baselines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Storybook stories can drift from component props or design-system conventions and mislead consumers. <br>
-Mitigation: Review generated stories and docs with component API changes, and keep variant, state, and token coverage synchronized with the implementation. <br>
-Risk: Storybook visual baselines cover component states, not full cross-page user journeys. <br>
-Mitigation: Use dedicated testing strategy or E2E workflows for route-level behavior, production-page screenshots, and broader coverage planning. <br>
-Risk: Storybook and visual-regression commands may involve project tokens or generated static output. <br>
-Mitigation: Keep project tokens in secret management and avoid committing generated Storybook build artifacts. <br>
+## Use Case:
 
+Frontend developers use this skill to create and review Storybook stories, MDX documentation, isolated component previews, and component-level checks for design systems.
 
-## Reference(s): <br>
-- [Storybook configuration and examples](references/story-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-storybook-component-doc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, TSX, MDX, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Storybook configuration, stories, decorators, MDX documentation, interaction tests, accessibility checks, and visual baseline commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.0 (source: server release metadata, package.json, README, and metadata.json) <br>
+Risk: Running example setup commands may change project dependencies or configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands, pin package versions where practical, and run them only in the intended project.
+
+Risk: An inline Chromatic project token could be exposed in shell history.
+
+Mitigation: Keep Chromatic tokens in environment variables or CI secrets instead of inline commands.
+
+## Reference(s):
+
+- [Storybook component documentation examples](references/story-patterns.md)
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-storybook-component-doc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with Storybook configuration and story examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Component-level documentation and previews; cross-page testing requires a separate workflow.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

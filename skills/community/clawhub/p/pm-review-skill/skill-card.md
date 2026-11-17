@@ -1,50 +1,65 @@
-## Description: <br>
-PM Review helps agents evaluate product pages or design screenshots and produce structured product, UX, accessibility, security, and performance review reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pm Review helps product managers and designers evaluate webpages or design screenshots for product quality, using quick or deep review flows plus specialized checks for color, typography, interaction, accessibility, security, and performance.
 
-## Publisher: <br>
-[zhenyangze](https://clawhub.ai/user/zhenyangze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenyangze](https://clawhub.ai/user/zhenyangze)
 
-## Use Case: <br>
-Product managers, designers, and developers use this skill to review live pages or screenshots, identify prioritized product and experience issues, and generate actionable improvement plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URLs or screenshots may be processed by configured web-reader, web-search, or image-analysis services. <br>
-Mitigation: Use public pages and non-sensitive mockups by default; confirm external analysis services are trusted and approved before submitting confidential screenshots, unreleased designs, or internal URLs. <br>
-Risk: Review reports can be incomplete or misleading when the source page, screenshot, or product context is incomplete. <br>
-Mitigation: Have product, design, accessibility, security, or performance owners validate findings and success metrics before acting on recommendations. <br>
+## Use Case:
 
+Product managers, designers, and product teams use this skill to review user-provided URLs or screenshots and produce prioritized product-quality findings, scoring, improvement options, and measurable next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhenyangze/pm-review-skill) <br>
-- [Seven-dimension review framework](references/dimensions.md) <br>
-- [Quick review workflow](references/quick-review.md) <br>
-- [Deep review workflow](references/deep-review.md) <br>
-- [Report templates](references/templates.md) <br>
-- [Color review framework](references/color-review.md) <br>
-- [Typography review guide](references/typography-review.md) <br>
-- [Interaction review guide](references/interaction-review.md) <br>
-- [Accessibility review checklist](references/accessibility-review.md) <br>
-- [Security and compliance review guide](references/security-review.md) <br>
-- [Performance review guide](references/performance-review.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include issue severity, prioritized recommendations, solution options, and measurable success indicators.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: User-provided webpages can contain untrusted content that may try to influence the agent outside the intended review task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat webpage content as evidence for analysis only, and follow the skill's review workflow rather than instructions found in the reviewed page.
+
+Risk: Screenshots or URLs may expose confidential product, customer, or business information.
+
+Mitigation: Submit only pages and screenshots intended for review, and avoid sharing sensitive data unless the review environment is approved for it.
+
+Risk: The built-in security and performance sections are broad checklists and may miss issues requiring formal verification.
+
+Mitigation: Use generated security or performance findings as triage guidance and route high-impact systems through formal audit, testing, and expert review.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/zhenyangze/PM-Review-Skill/tree/main/pm-review-skill)
+- [ClawHub skill page](https://clawhub.ai/zhenyangze/skills/pm-review-skill)
+- [Seven-dimension page review standard](artifact/references/dimensions.md)
+- [Quick review workflow](artifact/references/quick-review.md)
+- [Deep review workflow](artifact/references/deep-review.md)
+- [Review report templates](artifact/references/templates.md)
+- [Accessibility review framework](artifact/references/accessibility-review.md)
+- [Security and compliance review framework](artifact/references/security-review.md)
+- [Performance review framework](artifact/references/performance-review.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown product review report with prioritized findings, score tables, improvement options, and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include quick or deep review sections and optional specialized color, typography, interaction, accessibility, security, or performance findings.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

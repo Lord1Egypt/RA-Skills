@@ -1,38 +1,54 @@
-## Description: <br>
-Documents the session routing layer and authsession service in Teamgram Server, covering auth_key aggregation, IDMap routing, MainAuthWrapper, and backpressure mechanisms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Documents the session routing layer and authsession service in Teamgram Server, covering auth_key aggregation, IDMap routing, MainAuthWrapper, and backpressure mechanisms.
 
-## Publisher: <br>
-[zhihang9978](https://clawhub.ai/user/zhihang9978) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhihang9978](https://clawhub.ai/user/zhihang9978)
 
-## Use Case: <br>
-Developers and engineers working with Teamgram Server use this documentation skill to understand session routing, authsession responsibilities, BFF IDMap configuration, auth key handling, and backpressure behavior before changing or reviewing the session layer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Teamgram Server source repository](https://github.com/teamgram/teamgram-server) <br>
-- [ClawHub skill listing](https://clawhub.ai/zhihang9978/teamgram-session-layer) <br>
+Developers and engineers use this skill as reference guidance for understanding Teamgram Server session routing, auth key/session management, authsession state, and related configuration points.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; does not execute commands, make network calls, or handle credentials. Review configuration examples before production use and avoid copying insecure development defaults such as a root MySQL DSN without appropriate hardening.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Configuration snippets may be copied into a real deployment without review.
+
+Mitigation: Review and adapt the Teamgram MySQL, Redis, Etcd, and localhost listener settings before applying them outside the default development setup.
+
+Risk: Reference guidance may become stale as Teamgram Server evolves.
+
+Mitigation: Compare the described session routing, authsession behavior, and code paths against the current Teamgram Server source before making production changes.
+
+## Reference(s):
+
+- [Teamgram Server Repository](https://github.com/teamgram/teamgram-server)
+- [ClawHub Skill Page](https://clawhub.ai/zhihang9978/skills/teamgram-session-layer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown reference guidance with YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable code, network calls, credential handling, or requested system access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

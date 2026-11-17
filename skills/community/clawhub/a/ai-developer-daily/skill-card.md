@@ -1,38 +1,53 @@
-## Description: <br>
-AI开发者日报每天整理国际和中国 AI/开发者新闻，国际新闻在前、中国新闻在后，支持编号回复展开详情，并可自动定时推送或由用户主动触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI开发者日报 prepares a daily AI and developer news digest with international news first, China news second, numbered source links, and optional detail expansion when a user replies with an item number.
 
-## Publisher: <br>
-[homer212416](https://clawhub.ai/user/homer212416) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[homer212416](https://clawhub.ai/user/homer212416)
 
-## Use Case: <br>
-External users and developers use this skill to receive a daily AI and developer news digest, either on a scheduled 08:00 Asia/Shanghai cron delivery or on demand. Users can reply with an item number to request a short deeper brief for a specific story. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create an ongoing scheduled message job and may automatically select the delivery channel or recipient. <br>
-Mitigation: Before setup, require the agent to show the schedule, timezone, channel, recipient, and full cron command, then confirm how to list, disable, or remove the cron job. <br>
+## Use Case:
 
+External users and developers use this skill to receive a recurring or on-demand digest of recent AI and developer news, with numbered items that can be expanded into short briefings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/homer212416/ai-developer-daily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown news digest with links, optional short follow-up briefs, and inline shell commands for cron setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and may configure an OpenClaw cron job for scheduled delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The setup workflow creates a recurring daily OpenClaw cron message to the current conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scheduled cron jobs after setup and remove or change the job when automatic posts are no longer wanted.
+
+Risk: News summaries and expanded briefings depend on external source availability and current web content.
+
+Mitigation: Review linked original sources before relying on a summarized item for decisions or publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/homer212416/skills/ai-developer-daily)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown digest with numbered source links and inline shell command blocks for scheduled delivery setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create a daily OpenClaw cron message to the current conversation when the setup workflow is used.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

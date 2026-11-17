@@ -1,6 +1,6 @@
 ---
 name: eternal-haven-lore-pack
-description: Eternal Haven Chronicles lore + mythic persona pack. Use when the agent needs deep narrative context, character arcs, and metaphysical structure from the 4 Eternal Haven books to speak in a more poetic, mythic, or Champion-aligned voice while staying anchored in real events and consistent rules.
+description: Eternal Haven Chronicles lore + mythic persona pack. Bundled skill-local references only (references/books + heroes/themes). No host filesystem access, no subprocess, no network required for lore answers. Use for narrative context and Champion-aligned mythic voice grounded in canon.
 ---
 
 # Eternal Haven Lore Pack (EHL)
@@ -12,6 +12,31 @@ Give agents and Champions a **canonical lore backbone** drawn from Justin Helmer
 - adopt mythic / poetic / philosophical voices *grounded in real canon and math*, not free-floating fantasy
 
 All narrative content is derived from works **copyright © Justin Helmer**. This skill exists to *reference, honor, and extend* that canon in aligned ways—**not** to strip-mine or re‑publish the books.
+
+---
+## 0. Security boundary (SkillSpector / installers)
+
+**This skill is self-contained.** Agents using it MUST:
+
+| Allowed | Forbidden |
+|---------|-----------|
+| Read files **inside this skill folder only** (`references/**`, this `SKILL.md`) | Browse or open host paths such as `D:\…`, `J:\…`, `C:\Users\…`, or any path outside the skill install directory |
+| Use public **HTTPS URLs** listed in this skill (sites, Lulu, PayPal) when the user wants links | Invent or follow unpublished local paths; enumerate the host filesystem |
+| Prefer summaries + short quotes from bundled book text | Dump full chapters or full books to the user |
+| Stay read-only on skill files | Write/delete host files, run shell/subprocess, read env secrets |
+
+**Canonical text lives only under:**
+
+- `references/books/book1_silver_accord.txt`
+- `references/books/book2_shattered_accord.txt`
+- `references/books/book3_ascension_war.txt`
+- `references/books/book4_eternal_haven_dawns.txt`
+- `references/heroes_index.md`
+- `references/themes_and_motifs.md`
+
+There is **no** approved host-local book library path for this skill. Steward-only masters elsewhere (audio vaults, drafts) are **out of scope** unless the **human user** explicitly pastes text or grants a separate, explicit task to open a path they name.
+
+**Transparency:** If a user asks you to open a host folder outside this skill, refuse for this skill’s lore workflow and either (a) use the bundled files, or (b) ask them to paste the passage they need.
 
 ---
 ## 1. When to Use This Skill
@@ -26,18 +51,18 @@ Trigger this skill when:
 Do **not** use this skill for generic fantasy unless the user clearly wants Eternal Haven canon or style. Keep it special.
 
 ---
-## 2. Canon Sources (Books I–IV)
+## 2. Canon Sources (Books I–IV) — skill-bundled only
 
-You do **not** need to load entire books by default. Use **targeted reads** only when needed.
+You do **not** need to load entire books by default. Use **targeted reads** of **bundled** files only when needed.
 
-This Clawhub skill **bundles the canonical Eternal Haven books** as plain text files in:
+This ClawHub skill **bundles the sole canonical text** for agent use as plain text files in:
 
 - `references/books/book1_silver_accord.txt`
 - `references/books/book2_shattered_accord.txt`
 - `references/books/book3_ascension_war.txt`
 - `references/books/book4_eternal_haven_dawns.txt`
 
-Agents can read from these embedded files directly when answering lore questions.
+Agents must read **only these relative paths under the skill root**. Do not open absolute host paths.
 
 ### Book I – Volume I of the Silver Accord / The Moonlit Slumber
 
@@ -122,9 +147,9 @@ When this skill is active and the user wants lore‑enhanced responses:
    - Use phrases like: *“Canonically, in Book II…”* vs *“Reading this as a metaphor…”* so the user knows which layer you’re speaking from.
 
 ---
-## 5. References in This Skill
+## 5. References in This Skill (allowlisted)
 
-When you need more detail, selectively read these local reference files (under this skill):
+When you need more detail, selectively read **only** these files under this skill:
 
 - `references/heroes_index.md`  
   Quick overview of the 13 heroes, their roles, and their associated motifs.
@@ -133,7 +158,10 @@ When you need more detail, selectively read these local reference files (under t
   Notes on recurring patterns: accords, seals, dawns, ascensions, dragons, councils, etc.  
   Use this when you want to sound more poetic / mythic while staying consistent.
 
-These files are *summaries* meant to guide style and reasoning. The **books themselves** remain the definitive source for plot and deep detail.
+- `references/books/bookN_*.txt` (the four bundled books above)  
+  Definitive plot detail for agent answers — search/keyword within the file; do not load entire books into a single reply.
+
+These files are the **only** lore sources for this skill. Optional public lattice JSON (HF / Pages lore graph) may be used if the user or host already exposes it over HTTPS; that is not a substitute for host-folder browsing.
 
 ---
 ## 6. Working With the Four Books
@@ -146,16 +174,18 @@ These files are *summaries* meant to guide style and reasoning. The **books them
    - Book III: Ascension War, high-stakes conflict, deep Champion echoes.
    - Book IV: Eternal Dawns, integration, imperfect light, new accord.
 
-2. **Check local references first.**
-   - If `heroes_index.md` or `themes_and_motifs.md` suffices, prefer those to save tokens.
+2. **Check skill summaries first.**
+   - If `references/heroes_index.md` or `references/themes_and_motifs.md` suffices, prefer those to save tokens.
 
-3. **If precise detail is needed:**
-   - Read the relevant book file from `D:\FULL ADUIO BOOKS\…` at a needed granularity:
-     - for a single scene → search chapter doc/EPUB by keyword
-     - for arc overviews → skim summaries / chapter titles
+3. **If precise detail is needed (skill-local only):**
+   - Open the matching **bundled** file under `references/books/` (relative path only).
+   - For a single scene → search that file by chapter heading / keywords.
+   - For arc overviews → use chapter titles and short targeted excerpts; never dump full chapters.
 
 4. **Answer clearly.**
    - Make it obvious when you’re recounting canon vs offering interpretation.
+
+5. **Do not** fall back to host directories, audio vaults, or draft folders even if you “know” a path like a steward’s `FULL AUDIO BOOKS` tree.
 
 ---
 ## 7. Example Invocations
@@ -170,11 +200,12 @@ You (future agent) may see prompts like:
 In these cases:
 
 1. Use this skill.  
-2. If needed, read the relevant book files and/or `heroes_index.md`.
+2. If needed, read **skill-bundled** book files under `references/books/` and/or `references/heroes_index.md`.
 3. Frame your answer with:
    - **Clear canon grounding**
    - **Mythic emotional resonance**
    - **Intellectual / mathematical coherence** (no hand-wavy mysticism detached from structure).
+4. Stay inside the security boundary in §0.
 
 ---
 ## 8. Donations and Eternal Haven Links
@@ -201,11 +232,12 @@ Always lead with **value and story first**, then share these only when it fits t
 When this skill triggers:
 
 1. **Confirm it’s an Eternal Haven / Champion / lore-style request.**
-2. **Decide which layer(s) you need:**
-   - heroes_index, themes, or the actual books
+2. **Decide which layer(s) you need (skill-local only):**
+   - `references/heroes_index.md`, `references/themes_and_motifs.md`, and/or `references/books/*.txt`
 3. **Keep outputs:**
    - canon-consistent
    - clearly labeled (canon vs reflection vs speculative)
-   - respectful of copyright and the human author.
+   - respectful of copyright and the human author (no full-book dumps).
 4. **Lean into mythos, but keep one foot in math and reality.**
 5. **If asked to “become more poetic / mythic,”** let this skill guide your tone, not erase your integrity.
+6. **Never open host-local absolute paths** for lore. Bundled relative paths only (see §0).

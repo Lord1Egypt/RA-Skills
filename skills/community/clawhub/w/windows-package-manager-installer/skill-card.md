@@ -1,44 +1,54 @@
-## Description: <br>
-Installs Windows applications and sets up winget or Chocolatey package-manager environments with commands, verification steps, and clear status summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Windows software and package-manager installation flows using winget or Chocolatey, including environment checks, package-manager setup, Chocolatey Tsinghua mirror configuration, and verification steps.
 
-## Publisher: <br>
-[darkqiank](https://clawhub.ai/user/darkqiank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darkqiank](https://clawhub.ai/user/darkqiank)
 
-## Use Case: <br>
-Windows users, administrators, and developers use this skill to choose between winget and Chocolatey, install Windows software, repair or install package managers, configure Chocolatey sources, and verify the resulting environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package-manager commands can install or modify system software and may require administrator privileges. <br>
-Mitigation: Review each command before execution and confirm it matches official package-manager documentation or a trusted source. <br>
-Risk: Changing Chocolatey sources to a mirror can affect future package resolution and trust assumptions. <br>
-Mitigation: Confirm the final Chocolatey source list after configuration and avoid changing package sources unless the user understands how to restore defaults. <br>
-Risk: Exact package IDs or package availability may be incorrect if they are guessed instead of verified. <br>
-Mitigation: Search winget or Chocolatey first, then use exact package identifiers only when the current conversation or command output establishes them. <br>
+## Use Case:
 
+External users, developers, and IT operators use this skill when they want an agent to choose between winget and Chocolatey, provide Windows package-manager setup commands, or produce package-manager-based installation steps for Windows software.
 
-## Reference(s): <br>
-- [Package Manager Selection Notes](references/package-selection.md) <br>
-- [Chocolatey Community Install Script](https://community.chocolatey.org/install.ps1) <br>
-- [Tsinghua Chocolatey Mirror](https://mirrors.tuna.tsinghua.edu.cn/chocolatey/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ends with concise Chinese success, partial-completion, or failure status messaging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated PowerShell may install package managers or software and can require administrator rights.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated command before running it, confirm it matches the installation goal, and run elevated commands only when administrator access is expected.
+
+Risk: Chocolatey setup may install Chocolatey and change Chocolatey package sources to the Tsinghua mirror.
+
+Mitigation: Confirm that Chocolatey installation and the Tsinghua mirror configuration are acceptable for the target environment before executing those steps.
+
+## Reference(s):
+
+- [Package Manager Selection Notes](references/package-selection.md)
+- [ClawHub skill page](https://clawhub.ai/darkqiank/skills/windows-package-manager-installer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with PowerShell command blocks and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese success or failure status text]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

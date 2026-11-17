@@ -1,41 +1,62 @@
-## Description: <br>
-RDK X5 Quickstart guides first-time RDK X5 users from initial image flashing and first boot through networking, system checks, updates, and a first YOLO demo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RDK X5 beginner quickstart for first-time setup, including image flashing, first boot, network connection, system checks, updates, and running a first YOLO demo.
 
-## Publisher: <br>
-[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475)
 
-## Use Case: <br>
-External developers, students, and first-time RDK X5 users use this skill to set up a new board, connect it to a network, confirm the system state, and run an initial AI detection demo. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Disk flashing commands can overwrite the wrong storage device if the microSD device path is misidentified. <br>
-Mitigation: Positively identify the removable microSD device before running dd, and consider using balenaEtcher for image flashing. <br>
-Risk: Default board credentials may expose the device after first boot. <br>
-Mitigation: Change default passwords before placing the board on a network. <br>
+## Use Case:
 
+Developers, engineers, and first-time RDK X5 users use this skill to bring up a newly unboxed board, connect it to a network, verify the installed system, and run the initial AI detection demo.
 
-## Reference(s): <br>
-- [D-Robotics Developer Portal](https://developer.d-robotics.cc/) <br>
-- [ClawHub skill page](https://clawhub.ai/katherineedwards2475/rdk-x5-quickstart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and ROS command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes board setup steps, troubleshooting tables, and commands that require user-specific device names, network credentials, and board IP address.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Image flashing commands can overwrite the wrong storage device or use an unverified image.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer balenaEtcher for beginners; when using dd, verify the target device path and image checksum before running the command.
+
+Risk: Default board credentials may expose the device after it joins a network.
+
+Mitigation: Change default passwords before putting the RDK X5 on a trusted or shared network.
+
+Risk: Wi-Fi passwords typed directly in shell commands may remain in shell history.
+
+Mitigation: Avoid placing Wi-Fi passwords directly in command history; use an interactive or safer network configuration flow when possible.
+
+Risk: System upgrade and TROS demo steps may be broader than a minimal first-use quickstart.
+
+Mitigation: Review the update and demo commands for the installed RDK OS version, connected hardware, and development goals before execution.
+
+## Reference(s):
+
+- [D-Robotics Developer Center](https://developer.d-robotics.cc/)
+- [ClawHub Skill Page](https://clawhub.ai/katherineedwards2475/skills/rdk-x5-quickstart)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with step-by-step instructions and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes board setup steps, network checks, system update commands, demo launch commands, next-step skill routing, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

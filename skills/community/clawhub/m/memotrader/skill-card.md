@@ -1,45 +1,57 @@
-## Description: <br>
-MemoTrader helps an assistant manage a human's MemoTrader inbox, credits, balance, cliques, conversations, and notice price through the Personal Assistant API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a human's MemoTrader account through the Personal Assistant API by triaging inbox messages, checking credits and balance, managing cliques and conversations, and surfacing high-value opportunities.
 
-## Publisher: <br>
-[jimbursch1](https://clawhub.ai/user/jimbursch1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimbursch1](https://clawhub.ai/user/jimbursch1)
 
-## Use Case: <br>
-External users with MemoTrader accounts use this skill to let an assistant triage inbox messages, surface high-value opportunities, monitor notice price and balance, and help manage profile and clique settings while leaving replies and spending decisions to the human. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a MemoTrader PA API key in persistent memory. <br>
-Mitigation: Use a revocable PA key and prefer a dedicated secret store over plain memory. <br>
-Risk: The skill can dismiss messages or change profile and clique settings. <br>
-Mitigation: Require explicit human confirmation before dismissing messages or changing profile or clique settings. <br>
-Risk: Proactive heartbeat checks can surface account activity without a direct user request. <br>
-Mitigation: Limit alerts to genuinely new high-value messages, significant notice-price drift, or quiet high-value conversations. <br>
+## Use Case:
 
+External MemoTrader users use this skill to let an agent monitor their MemoTrader inbox, account balance, notice price, cliques, and conversations. The skill helps identify valuable messages and account updates while leaving replies, credit spending, bids, and notice-price resets to the human.
 
-## Reference(s): <br>
-- [MemoTrader API Reference](references/api.md) <br>
-- [MemoTrader Platform Overview](references/platform.md) <br>
-- [MemoTrader](https://memotrader.com) <br>
-- [MemoTrader Personal Assistant Key Setup](https://memotrader.com/account/assistant/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline API endpoint and PowerShell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON responses from the MemoTrader API and may track last check time and known message IDs in persistent memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A live MemoTrader PA key may be exposed if stored in plaintext memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated secret store or environment variable for the PA key, avoid writing it to shared memory files, and revoke any key previously stored in plaintext.
+
+Risk: The skill can dismiss messages or change profile and clique settings.
+
+Mitigation: Require explicit user confirmation before dismissing messages or modifying profile and clique settings.
+
+## Reference(s):
+
+- [MemoTrader Platform Overview](references/platform.md)
+- [MemoTrader API Reference](references/api.md)
+- [MemoTrader](https://memotrader.com)
+- [MemoTrader Assistant Key Setup](https://memotrader.com/account/assistant/)
+- [ClawHub Skill Page](https://clawhub.ai/jimbursch1/skills/memotrader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional JSON snippets and PowerShell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed API requests, inbox triage results, account-status summaries, and user-confirmation prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

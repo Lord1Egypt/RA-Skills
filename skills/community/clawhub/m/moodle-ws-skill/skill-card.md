@@ -1,39 +1,52 @@
-## Description: <br>
-Integrates with Moodle 4.x REST Web Services to create courses, manage enrollments, update activities, submit grades, and list courses or students. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates with Moodle 4.x REST Web Services to help agents create courses, manage enrollments, update activities, send grades, and list courses or students.
 
-## Publisher: <br>
-[exeandino](https://clawhub.ai/user/exeandino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[exeandino](https://clawhub.ai/user/exeandino)
 
-## Use Case: <br>
-Developers, educators, and Moodle administrators use this skill to help an agent plan and carry out Moodle 4.x course, enrollment, activity, grade, and roster workflows through REST Web Services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to make real Moodle course, enrollment, activity, or grade changes. <br>
-Mitigation: Require the agent to list and confirm exact Moodle changes before applying them, and test workflows in a non-production Moodle instance first. <br>
-Risk: Moodle Web Service tokens can expose administrative capabilities if shared or over-scoped. <br>
-Mitigation: Use a dedicated least-privilege token and keep the Moodle URL and token out of chat and version control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/exeandino/moodle-ws-skill) <br>
+## Use Case:
 
+Developers, educators, and administrators use this skill to automate Moodle 4.x course, enrollment, activity, grading, and roster workflows through REST Web Services.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Moodle REST Web Services calls and configuration steps that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Moodle Web Service tokens can expose administrative access if pasted into chat, committed to version control, or reused broadly.
+
+Mitigation: Store tokens only in local unversioned configuration or environment-specific secret storage, and use least-privilege Moodle tokens for the requested tasks.
+
+Risk: Course, enrollment, activity, or grade changes can affect live Moodle users if executed against production without review.
+
+Mitigation: Test changes in a staging course first and require clear user confirmation before modifying grades, enrollments, courses, or activities.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/exeandino/skills/moodle-ws-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Moodle REST request guidance and local secret configuration recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

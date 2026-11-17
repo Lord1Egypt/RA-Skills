@@ -1,41 +1,56 @@
-## Description: <br>
-Captures learnings, errors, corrections, and feature requests in structured markdown logs so agents can improve future work and reduce repeated mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, corrections, and feature requests as markdown entries so agents can review recurring lessons and promote broadly useful guidance into project memory.
 
-## Publisher: <br>
-[dc-acronym](https://clawhub.ai/user/dc-acronym) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dc-acronym](https://clawhub.ai/user/dc-acronym)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture corrections, command failures, missing capabilities, knowledge gaps, and recurring best practices as structured project learning records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning logs can capture conversation-derived secrets, personal data, confidential information, or incorrect guidance. <br>
-Mitigation: Require confirmation before logging conversation-derived content, redact sensitive data, and review entries before sharing or committing them. <br>
-Risk: Promoting learnings into durable agent memory can preserve misleading or overbroad instructions. <br>
-Mitigation: Manually review proposed changes to CLAUDE.md or AGENTS.md before applying them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/dc-acronym/self-improving-agent-1-0-0) <br>
-- [LEARNINGS.md](artifact/LEARNINGS.md) <br>
-- [examples.md](artifact/examples.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to log command failures, user corrections, knowledge gaps, API or tool failures, and missing capabilities into project-local markdown files. Teams can then review, resolve, or promote recurring lessons into CLAUDE.md or AGENTS.md.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates .learnings markdown logs and may propose reviewed updates to persistent agent memory files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist conversation, command, and error details into project-local learning files.
+
+Mitigation: Require user confirmation before file writes and keep .learnings local unless the team intentionally decides to share it.
+
+Risk: Logged entries may contain secrets, personal data, or sensitive project details.
+
+Mitigation: Redact secrets and personal data before saving or sharing learning files.
+
+Risk: Promoted learnings can alter persistent agent guidance in CLAUDE.md or AGENTS.md.
+
+Mitigation: Review proposed memory-file changes as diffs before accepting them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dc-acronym/skills/self-improving-agent-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and reusable entry templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project-local learning, error, and feature-request entries under .learnings/ and may suggest updates to CLAUDE.md or AGENTS.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

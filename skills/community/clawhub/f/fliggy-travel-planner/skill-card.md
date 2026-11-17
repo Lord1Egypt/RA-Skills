@@ -1,50 +1,67 @@
-## Description: <br>
-Travel Planner helps agents research destinations, compare flight options, fetch weather, and produce a concise itinerary and budget report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel itinerary planning skill that automates end-to-end trip research and booking assistance by searching Xiaohongshu destination guides, extracting travel insights, querying Fliggy flight prices, fetching weather forecasts, and compiling a trip report with a budget breakdown.
 
-## Publisher: <br>
-[nodermachine](https://clawhub.ai/user/nodermachine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nodermachine](https://clawhub.ai/user/nodermachine)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to gather Xiaohongshu destination guidance, Fliggy flight options, weather forecasts, and budget details for trip planning. The resulting report is advisory and should be checked against live booking and weather sources before travel purchases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use browser automation against travel and social platforms, including reuse of logged-in sessions and sharing trip details with those services. <br>
-Mitigation: Review before installing and use only with accounts, sessions, and trip data that the user intentionally authorizes for these services. <br>
-Risk: Prices, itineraries, and weather can be advisory or estimated when live source data is unavailable. <br>
-Mitigation: Verify live source data, timestamps, and booking terms before relying on the report for purchases or travel decisions. <br>
-Risk: Persistent price monitoring is referenced without clear consent, stop conditions, or notification controls. <br>
-Mitigation: Do not enable price monitoring unless the workflow has explicit user consent, a stop condition, and notification controls. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to research destinations, compare travel options, estimate weather and budgets, and produce complete trip-planning reports. It is aimed at itinerary planning and booking assistance rather than autonomous purchase decisions.
 
-## Reference(s): <br>
-- [Skill README](artifact/README.md) <br>
-- [Browser Flow Reference](artifact/references/browser-flow.md) <br>
-- [Prompt Templates](artifact/references/prompts.md) <br>
-- [Usage Examples](artifact/references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nodermachine/fliggy-travel-planner) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com/) <br>
-- [Fliggy](https://www.fliggy.com/) <br>
-- [Ctrip](https://www.ctrip.com/) <br>
-- [Weather.com.cn](http://www.weather.com.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown travel report with optional JSON intermediate data and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include itinerary tables, budget estimates, source links, weather summaries, and flight-price guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: Browser and authenticated-session use may expose account context while researching travel or booking pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile or low-privilege accounts, and require user confirmation before authenticated browsing or booking-related actions.
+
+Risk: Scraped Xiaohongshu content, source links, and booking links may be stale, misleading, or unsafe.
+
+Mitigation: Treat scraped content and links as untrusted, verify important travel details manually, and avoid taking purchase actions without review.
+
+Risk: The documented price-monitor cron behavior could create recurring tasks without a clear stopping condition.
+
+Mitigation: Enable recurring monitoring only with an explicit expiry, cancellation path, and user-approved notification scope.
+
+Risk: Shell-based weather queries can be fragile when user-provided city values are not encoded.
+
+Mitigation: Prefer the bundled Python weather script or encoded HTTP requests over ad hoc shell curl commands.
+
+## Reference(s):
+
+- [Browser Automation Flow](references/browser-flow.md)
+- [Prompt Templates](references/prompts.md)
+- [Usage Examples](references/examples.md)
+- [Xiaohongshu](https://www.xiaohongshu.com/)
+- [Fliggy](https://www.fliggy.com/)
+- [Ctrip](https://www.ctrip.com/)
+- [Weather China](http://www.weather.com.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with optional JSON intermediate data and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include travel recommendations, weather tables, budget estimates, source links, and booking links.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

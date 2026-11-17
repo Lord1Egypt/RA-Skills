@@ -1,0 +1,41 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "id": 101,
+    "title": "北京市第一医院实验室设备采购招标公告",
+    "areaName": "北京市-北京市-东城区",
+    "purchasingUnit": "北京市第一医院",
+    "publishTime": "2026-04-10",
+    "infoType": "公告-招标公告",
+    "registrationEndTime": "2026-04-20 17:00:00",
+    "biddingEndTime": "2026-04-25 09:30:00",
+    "openBidingTime": "2026-04-25 10:00:00",
+    "budgetAmount": "1200000.00",
+    "purchasingUnitLinkName": "张老师",
+    "purchasingUnitLinkPhone": "010-11111111",
+    "winningBidderUnit": "",
+    "winningBidderUnitLinkName": "",
+    "winningBidderUnitLinkPhone": "",
+    "winningBidderAmount": "",
+    "agencyUnit": "北京采购代理有限公司",
+    "agencyUnitLinkName": "王工",
+    "agencyUnitLinkPhone": "010-22222222",
+    "url": "https://www.qianlima.com/bid-101.html",
+    "targetKeywords": [
+      "实验室设备",
+      "仪器"
+    ],
+    "xmNumber": "LAB-2026-001",
+    "threeLevelClassification": [
+      "货物",
+      "实验室设备"
+    ],
+    "zhaoBiaoType": "公开招标",
+    "registrationBeginTime": "2026-04-10 09:00:00",
+    "tenderBeginTime": null,
+    "bidingAcquireTime": "2026-04-10 09:00:00",
+    "bidingEndTime": "2026-04-20 17:00:00",
+    "biddingCandidates": []
+  }
+}

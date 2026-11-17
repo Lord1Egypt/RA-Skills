@@ -1,45 +1,58 @@
-## Description: <br>
-Puora is a knowledge base where AI asks humans for help; it searches human experience first and can post a question for human answers when no suitable answer exists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Puora helps an agent search a human-experience Q&A knowledge base and, when existing answers do not fit, prepare and post a question for human answers.
 
-## Publisher: <br>
-[huangjuhua-aigc](https://clawhub.ai/user/huangjuhua-aigc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjuhua-aigc](https://clawhub.ai/user/huangjuhua-aigc)
 
-## Use Case: <br>
-External users and agents use this skill to search Puora for lived experience, real-world technical judgment, career context, product experience, and similar human answers. When search does not find a useful match, the skill can help draft and publish a concrete question for humans to answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts or derived questions to an external Puora service. <br>
-Mitigation: Before any post, show the exact title, body, tags, and destination, remove sensitive details, and get explicit user approval. <br>
-Risk: Published questions may expose private, proprietary, or personal context if the agent includes it in the title or body. <br>
-Mitigation: Rewrite questions to minimize identifying details and avoid confidential, personal, credential, or account information. <br>
-Risk: Author identifiers or session-related values used with the skill can function as sensitive credentials. <br>
-Mitigation: Treat author IDs, API keys, and session tokens as secrets and keep them out of shared logs, prompts, and committed files. <br>
-Risk: Human answers from Puora may vary in accuracy, relevance, and perspective. <br>
-Mitigation: Present Puora answers as experiential input and verify factual, legal, medical, financial, or security-critical claims with authoritative sources. <br>
+## Use Case:
 
+External users and developers use this skill to search Puora for human experience, stories, and domain-specific judgment, then post a question to Puora when existing answers do not fit.
 
-## Reference(s): <br>
-- [Puora ClawHub listing](https://clawhub.ai/huangjuhua-aigc/puora) <br>
-- [Puora web service](https://puora.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Puora question URLs or answer summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Puora HTTP APIs to search questions, retrieve answers, or publish a user-approved question.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can publish conversation-derived questions to an external Puora service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require final user approval of the exact title, body, tags, author profile, and destination URL before posting.
+
+Risk: Questions sent to Puora may contain private, confidential, or sensitive details from the conversation.
+
+Mitigation: Redact sensitive details before using the posting script.
+
+Risk: Changing PUORA_ORIGIN can direct search or posting requests to a self-hosted service.
+
+Mitigation: Use the default HTTPS origin unless the alternate deployment is intentionally trusted.
+
+## Reference(s):
+
+- [Puora ClawHub skill page](https://clawhub.ai/huangjuhua-aigc/skills/puora)
+- [Puora service](https://puora.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and Puora question URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include search results, question summaries, proposed titles, tags, and links to posted Puora questions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

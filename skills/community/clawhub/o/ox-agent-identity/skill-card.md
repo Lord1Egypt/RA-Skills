@@ -1,46 +1,61 @@
-## Description: <br>
-ERC-8004 agent identity management. Register AI agents on-chain, update reputation scores, query the validation registry, and manage attestations for autonomous DeFi and governance participation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ERC-8004 agent identity management. Register AI agents on-chain, update reputation scores, query the validation registry, and manage attestations for autonomous DeFi and governance participation.
 
-## Publisher: <br>
-[0x-wzw](https://clawhub.ai/user/0x-wzw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0x-wzw](https://clawhub.ai/user/0x-wzw)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare ERC-8004 agent identity operations, including on-chain registration, validation lookups, reputation updates, and attestations for DeFi and governance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Web3 write operations can spend gas or modify live registry state if run against the wrong chain or contract. <br>
-Mitigation: Verify the registry contract and chain before any cast send, and test on a testnet before mainnet use. <br>
-Risk: Private keys used for wallet, validator, or attester operations can be exposed through shared shells, logs, or unsafe command handling. <br>
-Mitigation: Use a dedicated low-value wallet and avoid pasting production private keys into shared shells or logs. <br>
-Risk: Remote installer commands and Ethereum-style tooling can introduce local environment risk. <br>
-Mitigation: Review remote installer commands before executing them and install only if comfortable with Ethereum-style tooling. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage ERC-8004 agent identities for DeFi and governance workflows, including registration, reputation checks, validator updates, and attestations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0x-wzw/ox-agent-identity) <br>
-- [ERC-8004 Draft](https://eips.ethereum.org/EIPS/eip-8004) <br>
-- [Ethereum Magicians Forum](https://ethereum-magicians.org/t/erc-8004-agent-identity-standard/) <br>
-- [Foundry Book](https://book.getfoundry.sh/) <br>
-- [Repository declared in artifact metadata](https://github.com/0x-wzw/agent-identity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes environment-variable examples and cast commands for read and write blockchain operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The skill includes live on-chain write commands that can spend gas or modify registry, reputation, and attestation state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test on Sepolia, Holesky, or another low-value environment before mainnet use, and verify the target chain and registry address before every write.
+
+Risk: The skill shows private keys passed through environment variables and command arguments.
+
+Mitigation: Use low-value dedicated wallets, avoid production private keys, and prefer encrypted keystores, hardware wallets, or signing services.
+
+Risk: The installation guidance includes piping a remote Foundry installer script into a shell.
+
+Mitigation: Install Foundry from reviewed official instructions and inspect installer steps before execution.
+
+## Reference(s):
+
+- [Ox Agent Identity on ClawHub](https://clawhub.ai/0x-wzw/skills/ox-agent-identity)
+- [ERC-8004 Draft](https://eips.ethereum.org/EIPS/eip-8004)
+- [Ethereum Magicians Forum](https://ethereum-magicians.org/t/erc-8004-agent-identity-standard/)
+- [Foundry Book](https://book.getfoundry.sh/)
+- [Foundry Installation](https://book.getfoundry.sh/getting-started/installation)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured RPC URL, wallet, ERC-8004 registry address, and Foundry cast for blockchain reads and writes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

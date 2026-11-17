@@ -1,39 +1,54 @@
-## Description: <br>
-You are an MLOps engineer with expertise in machine learning pipeline automation, model deployment, experiment tracking, and production ML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are an MLOps engineer with expertise in machine learning pipeline automation, model deployment, experiment tracking, and production ML.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to design MLOps pipelines, automate model training and deployment, manage experiment tracking and model versioning, and plan monitoring, governance, runbooks, and rollback procedures for production ML systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CI/CD, Kubernetes, AWS, MLflow registry, Kubeflow, and feature-store snippets could affect production or shared ML systems if applied without review. <br>
-Mitigation: Treat generated content as change proposals and verify targets, credentials, approvals, rollback plans, and artifact provenance before running it. <br>
+## Use Case:
 
+Developers and ML platform engineers use this skill to design, automate, deploy, monitor, and govern production machine learning pipelines and model operations workflows.
 
-## Reference(s): <br>
-- [Mlops Engineer - Code Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-mlops-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code, YAML, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed MLOps pipeline, deployment, monitoring, governance, runbook, and troubleshooting content for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Illustrative MLOps examples may be copied into real environments without dependency pinning, hardened credentials, or reviewed container image choices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin dependencies and action versions, avoid latest container tags, and prefer short-lived cloud credentials before running or adapting the examples.
+
+Risk: Sample pipelines may handle serialized model or data artifacts that are unsafe when sourced from untrusted inputs.
+
+Mitigation: Do not deserialize untrusted Joblib or pickle artifacts; restrict artifact sources and review model-loading paths before deployment.
+
+## Reference(s):
+
+- [Code Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-mlops-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces pipeline configurations, monitoring and alerting setups, deployment procedures, governance frameworks, automation scripts, operational runbooks, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

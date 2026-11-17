@@ -1,40 +1,53 @@
-## Description: <br>
-Book physical-therapy services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents find physical-therapy providers, check availability, and create bookings through Lokuli's MCP service.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to find physical-therapy services, check provider availability, and create a booking through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A booking could be created with the wrong provider, service, time, or contact details. <br>
-Mitigation: Confirm the provider, service, appointment time, and exact contact details before calling create_booking. <br>
-Risk: Booking may require personal contact information and could invite unnecessary medical detail sharing. <br>
-Mitigation: Share only the minimum information needed to book, such as name, email, and phone, and avoid unnecessary medical details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-physical-therapy) <br>
+## Use Case:
 
+External users can use this skill to search for physical-therapy services, review available appointment slots, and request a booking through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Markdown with JSON-RPC request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP search, availability, and booking calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking requests may send contact details and selected appointment information to Lokuli.
+
+Mitigation: Confirm the provider, date, time, and personal information with the user before allowing a booking call.
+
+Risk: The skill can initiate a physical-therapy appointment booking through an external MCP service.
+
+Mitigation: Require explicit user approval before calling the booking tool.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-physical-therapy)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Configuration]
+
+**Output Format:** [Text and JSON-RPC tool call payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request contact details and appointment selections before booking through an external MCP service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

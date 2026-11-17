@@ -1,42 +1,60 @@
-## Description: <br>
-Liepin Assistant connects an agent to Liepin MCP so users can search jobs, view job descriptions, submit applications, and manage resume information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+猎聘求职助手封装 Liepin MCP 服务，帮助用户搜索职位、查看 JD、投递简历和管理简历。
 
-## Publisher: <br>
-[wangyapersonal](https://clawhub.ai/user/wangyapersonal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangyapersonal](https://clawhub.ai/user/wangyapersonal)
 
-## Use Case: <br>
-External job seekers use this skill to connect an agent to their Liepin account, search for roles, inspect job descriptions, update resume details, and submit applications after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a long-lived Liepin account token and can access account and resume data. <br>
-Mitigation: Prefer the LIEPIN_TOKEN environment variable, avoid sharing tokens in chats, and revoke or clear the token when finished. <br>
-Risk: The skill can update resume information or submit job applications through the connected Liepin account. <br>
-Mitigation: Preview every resume change and job application, and proceed only after explicit user approval. <br>
+## Use Case:
 
+External job seekers use this skill to interact with Liepin through an agent: configure a Liepin token, search job listings, inspect job details, submit applications after review, and view or update resume information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyapersonal/liepin-assistant) <br>
-- [Liepin MCP API reference](references/api.md) <br>
-- [Liepin MCP credential page](https://www.liepin.com/mcp/server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Liepin token and is subject to Liepin token lifetime and rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release evidence) <br>
+Risk: The skill handles a Liepin account token that can expose resume data and authorize account actions while valid.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set LIEPIN_TOKEN through a secure environment or secret manager, do not paste real tokens into chat, and revoke or rotate tokens when no longer needed.
+
+Risk: The fallback config.json path can store credentials in plaintext.
+
+Mitigation: Prefer the environment variable path and avoid writing tokens to config.json unless the storage location is reviewed and protected.
+
+Risk: Resume edits and job applications can change user account state.
+
+Mitigation: Require explicit user review and confirmation before any resume update or job application.
+
+## Reference(s):
+
+- [Liepin MCP API Reference](references/api.md)
+- [Liepin MCP Credential Page](https://www.liepin.com/mcp/server)
+- [Liepin MCP Endpoint](https://open-agent.liepin.com/mcp/user)
+- [ClawHub Skill Page](https://clawhub.ai/wangyapersonal/skills/liepin-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided Liepin token for authenticated job search, application, and resume actions.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

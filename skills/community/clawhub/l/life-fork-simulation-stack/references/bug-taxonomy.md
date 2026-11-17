@@ -1,8 +1,10 @@
 # 决策 Bug 类型
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 ## 路由规则：岔路复盘转主流程
 
-用户提出“如果当年……”“留学后如果……”“那年买房/没买房会怎样”“早点做 AI 会怎样”时，优先进入 Life Fork 主流程：
+仅当用户明确要求复盘自己的个人经历时，才按 Life Fork 主流程处理“如果当年……”等问题。单独短语、小说创作、历史讨论、代码排障和商业方案评审均按用户原任务处理；混合请求只处理其中已授权的人生复盘部分：
 
 - 读取 `references/life-fork-grammar.md`。
 - 识别岔路动作、系统切换、自我叙事断裂和可回收资产。

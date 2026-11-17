@@ -1,51 +1,67 @@
-## Description: <br>
-Distill Skill Builder guides agents through a pipeline for turning official documentation into structured knowledge skills, including source analysis, crawling or distillation, organization, evaluation, and iteration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distill Skill Builder guides agents through turning official documentation into structured knowledge skills, including source analysis, content collection or distillation, skill organization, evaluation, and quality iteration.
 
-## Publisher: <br>
-[yhongm](https://clawhub.ai/user/yhongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhongm](https://clawhub.ai/user/yhongm)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create, evaluate, and improve knowledge skills from documentation sources. It is intended to help agents produce skill files, reference material, evaluator runs, and iteration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes persistent cross-agent deployment and sync guidance that may copy files into multiple assistant directories. <br>
-Mitigation: Review planned file destinations before use and remove sync steps that are not needed for the target environment. <br>
-Risk: The skill can guide agents to patch the bundled evaluator, which may change scoring behavior for future skill reviews. <br>
-Mitigation: Review evaluator changes as code changes, keep patches scoped, and rerun evaluation after modification. <br>
-Risk: The skill includes crawling and anti-bot workflow guidance that can trigger network activity. <br>
-Mitigation: Use only approved documentation sources, respect site terms, and disable crawling steps when offline distillation is sufficient. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create, evaluate, improve, and package knowledge-focused agent skills from documentation sources. It is intended for workflows that need repeatable skill structure, reference material, scoring, and iteration guidance.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/yhongm/distill-skill-builder) <br>
-- [Skill distillation workflow](references/distillation-workflow.md) <br>
-- [Skill evaluator guide](references/evaluator-guide.md) <br>
-- [Skill iteration guide](references/iteration-guide.md) <br>
-- [Crawling guide](references/crawling-guide.md) <br>
-- [Metadata specification](references/metadata-spec.md) <br>
-- [Naming conventions](references/naming-conventions.md) <br>
-- [Quality standards](references/quality-standards.md) <br>
-- [Self-checklist](references/self-checklist.md) <br>
-- [SKILL.md structure](references/skillmd-structure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or revise skill files, reference documents, evaluator commands, and configuration snippets when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may direct an agent to fetch content from remote documentation sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve each URL before crawling, avoid untrusted or internal URLs, and perform collection in a staging workspace.
+
+Risk: Generated skills or copied files could introduce prompt-injection content into active assistant directories.
+
+Mitigation: Review and scan generated skill files before deployment, and only copy them into active assistant paths after approval.
+
+Risk: Evaluator patch suggestions could alter quality gates outside normal maintenance controls.
+
+Mitigation: Apply evaluator changes only when the evaluator is maintained under normal code review and test coverage.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yhongm/skills/distill-skill-builder)
+- [README](artifact/README.md)
+- [Skill Distillation Workflow](artifact/references/distillation-workflow.md)
+- [Data Crawling Methodology](artifact/references/crawling-guide.md)
+- [Skill Evaluator Guide](artifact/references/evaluator-guide.md)
+- [Skill Metadata Field Specification](artifact/references/metadata-spec.md)
+- [SKILL.md Structure Specification](artifact/references/skillmd-structure.md)
+- [Skill Naming and Classification](artifact/references/naming-conventions.md)
+- [Skill Quality Standards](artifact/references/quality-standards.md)
+- [Skill Iteration Playbook](artifact/references/iteration-guide.md)
+- [Skill Quality Checklist](artifact/references/self-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, checklists, and file-structure recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose crawling steps, generated skill files, evaluator runs, and deployment copy steps that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

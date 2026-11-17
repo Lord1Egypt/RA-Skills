@@ -1,0 +1,113 @@
+collection: SFC
+sort-by: 10
+shortname: sfc
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/snes9x2005_plus_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 俄罗斯方块与马里奥医生
+file: 俄罗斯方块与马里奥医生.sfc
+assets.box_front: Imgs/俄罗斯方块与马里奥医生.png
+description: 《俄罗斯方块与马里奥医生》，超级任天堂 SFC 平台。
+game: 口袋台球
+file: 口袋台球.sfc
+assets.box_front: Imgs/口袋台球.png
+description: 《口袋台球》，超级任天堂 SFC 平台。
+game: 大航海时代
+file: 大航海时代.smc
+assets.box_front: Imgs/大航海时代.png
+description: 《大航海时代》，超级任天堂 SFC 平台。
+game: 大航海时代2
+file: 大航海时代2.smc
+assets.box_front: Imgs/大航海时代2.png
+description: 《大航海时代2》，超级任天堂 SFC 平台。
+game: 大金刚国度
+file: 大金刚国度.smc
+assets.box_front: Imgs/大金刚国度.png
+description: 《大金刚国度》，超级任天堂 SFC 平台。
+game: 大金刚国度3：迪克西的双重麻烦
+file: 大金刚国度3：迪克西的双重麻烦.sfc
+assets.box_front: Imgs/大金刚国度3：迪克西的双重麻烦.png
+description: 《大金刚国度3：迪克西的双重麻烦》，超级任天堂 SFC 平台。
+game: 忍者神龟IV：时空之战
+file: 忍者神龟IV：时空之战.smc
+assets.box_front: Imgs/忍者神龟IV：时空之战.png
+description: 《忍者神龟IV：时空之战》，超级任天堂 SFC 平台。
+game: 快打旋风
+file: 快打旋风.smc
+assets.box_front: Imgs/快打旋风.png
+description: 《快打旋风》，超级任天堂 SFC 平台。
+game: 快打旋风2
+file: 快打旋风2.smc
+assets.box_front: Imgs/快打旋风2.png
+description: 《快打旋风2》，超级任天堂 SFC 平台。
+game: 快打旋风3
+file: 快打旋风3.smc
+assets.box_front: Imgs/快打旋风3.png
+description: 《快打旋风3》，超级任天堂 SFC 平台。
+game: 打砖块
+file: 打砖块.smc
+assets.box_front: Imgs/打砖块.png
+description: 《打砖块》，超级任天堂 SFC 平台。
+game: 时空之轮
+file: 时空之轮.smc
+assets.box_front: Imgs/时空之轮.png
+description: 《时空之轮》，超级任天堂 SFC 平台。
+game: 星之卡比3
+file: 星之卡比3.sfc
+assets.box_front: Imgs/星之卡比3.png
+description: 《星之卡比3》，超级任天堂 SFC 平台。
+game: 星之卡比：超级豪华版
+file: 星之卡比：超级豪华版.smc
+assets.box_front: Imgs/星之卡比：超级豪华版.png
+description: 《星之卡比：超级豪华版》，超级任天堂 SFC 平台。
+game: 星际火狐
+file: 星际火狐.sfc
+assets.box_front: Imgs/星际火狐.png
+description: 《星际火狐》，超级任天堂 SFC 平台。
+game: 浪漫沙加3
+file: 浪漫沙加3.smc
+assets.box_front: Imgs/浪漫沙加3.png
+description: 《浪漫沙加3》，超级任天堂 SFC 平台。
+game: 街头霸王II：世界战士
+file: 街头霸王II：世界战士.smc
+assets.box_front: Imgs/街头霸王II：世界战士.png
+description: 《街头霸王II：世界战士》，超级任天堂 SFC 平台。
+game: 街头霸王II：加速版
+file: 街头霸王II：加速版.smc
+assets.box_front: Imgs/街头霸王II：加速版.png
+description: 《街头霸王II：加速版》，超级任天堂 SFC 平台。
+game: 超级炸弹人4
+file: 超级炸弹人4.sfc
+assets.box_front: Imgs/超级炸弹人4.png
+description: 《超级炸弹人4》，超级任天堂 SFC 平台。
+game: 超级马里奥世界
+file: 超级马里奥世界.smc
+assets.box_front: Imgs/超级马里奥世界.png
+description: 《超级马里奥世界》，超级任天堂 SFC 平台。
+game: 超级马里奥世界2：耀西岛
+file: 超级马里奥世界2：耀西岛.sfc
+assets.box_front: Imgs/超级马里奥世界2：耀西岛.png
+description: 《超级马里奥世界2：耀西岛》，超级任天堂 SFC 平台。
+game: 超级马里奥兄弟：失落关卡
+file: 超级马里奥兄弟：失落关卡.smc
+assets.box_front: Imgs/超级马里奥兄弟：失落关卡.png
+description: 《超级马里奥兄弟：失落关卡》，超级任天堂 SFC 平台。
+game: 超级马里奥全明星
+file: 超级马里奥全明星.smc
+assets.box_front: Imgs/超级马里奥全明星.png
+description: 《超级马里奥全明星》，超级任天堂 SFC 平台。
+game: 超级魔界村
+file: 超级魔界村.sfc
+assets.box_front: Imgs/超级魔界村.png
+description: 《超级魔界村》，超级任天堂 SFC 平台。
+game: 马里奥画板
+file: 马里奥画板.sfc
+assets.box_front: Imgs/马里奥画板.png
+description: 《马里奥画板》，超级任天堂 SFC 平台。
+game: 魂斗罗III：异形战争
+file: 魂斗罗III：异形战争.smc
+assets.box_front: Imgs/魂斗罗III：异形战争.png
+description: 《魂斗罗III：异形战争》，超级任天堂 SFC 平台。
+game: 龙珠Z超悟空传：觉醒篇
+file: 龙珠Z超悟空传：觉醒篇.sfc
+assets.box_front: Imgs/龙珠Z超悟空传：觉醒篇.png
+description: 《龙珠Z超悟空传：觉醒篇》，超级任天堂 SFC 平台。

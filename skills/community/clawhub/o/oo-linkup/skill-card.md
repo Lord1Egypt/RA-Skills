@@ -1,45 +1,55 @@
-## Description: <br>
-Linkup (linkup.so) helps an agent search the web, fetch webpages, produce sourced answers, return grounded search results, normalize structured data, and check credits through the OOMOL oo connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linkup (linkup.so). Use this skill for ANY Linkup request — searching and reading data. Whenever a task involves Linkup, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill when an agent needs Linkup-backed web search, webpage extraction, sourced answers, structured search data, or credit-balance checks through an OOMOL-connected Linkup account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Linkup account and sensitive credentials managed through OOMOL. <br>
-Mitigation: Use the OOMOL connection flow and avoid exposing raw API keys in prompts, shell history, or files. <br>
-Risk: Web search and fetched webpage content can be incomplete, stale, or misleading. <br>
-Mitigation: Review returned sources and verify important claims before relying on them for consequential decisions. <br>
-Risk: First-time setup and billing errors may require user action before Linkup commands succeed. <br>
-Mitigation: Only run authentication, connection, or billing setup steps after a matching command failure and with appropriate user confirmation. <br>
+## Use Case:
 
+Developers and agents use this skill to search Linkup, retrieve webpages and structured data, and check credits through a connected OOMOL account.
 
-## Reference(s): <br>
-- [Linkup homepage](https://www.linkup.so) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-linkup) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Linkup search answers, grounded result data, webpage markdown, optional raw HTML or image data, structured JSON data, and credit-balance information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: Setup may execute unverified downloaded code with the agent's local permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup first, use a reviewed and version-pinned CLI, and require approval before running downloaded installers. Review automatic skill synchronization and disable it if unwanted.
+
+Risk: Queries and URLs pass through OOMOL to Linkup.
+
+Mitigation: Do not include secrets in queries or URLs.
+
+## Reference(s):
+
+- [Linkup documentation](https://docs.linkup.so/pages/documentation/get-started/quickstart)
+- [Linkup homepage](https://www.linkup.so)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Web search results]
+
+**Output Format:** [Provider responses as text, Markdown, or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected Linkup action and, for structured searches, the requested schema.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

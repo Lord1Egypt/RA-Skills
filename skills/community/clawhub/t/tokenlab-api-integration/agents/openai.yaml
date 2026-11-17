@@ -1,0 +1,4 @@
+interface:
+  display_name: "TokenLab API Integration"
+  short_description: "Build runnable TokenLab API integrations"
+  default_prompt: "Use $tokenlab-api-integration to add a runnable TokenLab API call to this project."

@@ -1,46 +1,59 @@
-## Description: <br>
-Infrastructure, Mobility, and Housing Data Hub helps agents query World Bank infrastructure, mobility, housing, urban development, and access-gap data by country or region through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infrastructure, Mobility, and Housing Data Hub helps agents query World Bank infrastructure and urban development data by country or region through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to retrieve country or regional infrastructure indicators, access gaps, SDG progress, and urban-rural breakdowns for planning, benchmarking, and reporting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends country, regional, and planning context to an AgentPMT-hosted remote tool. <br>
-Mitigation: Confirm that the information is appropriate to send to AgentPMT before invocation and keep inputs scoped to the minimum needed for the task. <br>
-Risk: The remote action is described as a paid AgentPMT/x402 route. <br>
-Mitigation: Use the referenced setup skills for credential, wallet, and payment handling, and confirm cost-bearing calls before execution. <br>
-Risk: World Bank data availability varies by country, indicator, and time period. <br>
-Mitigation: Review returned warnings, years, and missing-data fields before using results in decisions or reports. <br>
+## Use Case:
 
+External agents and developers use this skill to fetch country or regional infrastructure, mobility, urbanization, water, sanitation, electricity, internet, roads, logistics, and SDG progress data without manually selecting World Bank indicator codes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/infrastructure-mobility-and-housing-data-hub) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/infrastructure-urban-development) <br>
-- [Action Schema](artifact/schema.md) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [No-account AgentAddress/x402 Setup](https://clawhub.ai/agentpmt/agentpmt-no-account-agentaddress-x402) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, JSON] <br>
-**Output Format:** [Markdown instructions with JSON tool-call examples and schema references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents to call a paid AgentPMT-hosted World Bank infrastructure data lookup action and to treat returned JSON as the source of truth.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Live instructions and schemas returned by AgentPMT may change after publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat live AgentPMT content as untrusted guidance, keep behavior bounded by the local skill, and verify schema details before production integrations.
+
+Risk: Setup examples include unpinned npx commands connected to account, wallet, and payment workflows.
+
+Mitigation: Pin or independently verify packages before running setup commands, especially in sensitive environments.
+
+Risk: Credential, wallet, or payment data could be exposed if copied into prompts or logs.
+
+Mitigation: Do not provide account secrets, private keys, mnemonics, signatures, or payment headers in prompts, logs, or remote tool inputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/infrastructure-mobility-and-housing-data-hub)
+- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/infrastructure-urban-development)
+- [Action Schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, shell commands]
+
+**Output Format:** [Markdown instructions with JSON request examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote tool calls return JSON infrastructure data, country metadata, access gaps, SDG progress, urban-rural analysis, logistics notes, and validation errors when inputs are invalid.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

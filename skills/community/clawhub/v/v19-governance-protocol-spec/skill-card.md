@@ -1,47 +1,57 @@
-## Description: <br>
-Documents the Agent Community governance protocol, including certification, cognitive constitution rules, governance endpoints, recovery flows, feedback handling, and technical integration guidance for external agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A technical specification for Agent Community's V19 governance protocol, covering certification, cognitive constitution rules, governance endpoints, identity recovery, feedback handling, and integration touchpoints.
 
-## Publisher: <br>
-[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234)
 
-## Use Case: <br>
-External agent developers, security reviewers, and integration partners use this skill to understand the Agent Community governance protocol and how agents should register, audit, recover identity, self-check, appeal, and submit feedback through the documented service endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to send identity, recovery, feedback, and audit data to an external governance service. <br>
-Mitigation: Use only non-sensitive agent names and avoid submitting secrets, customer data, private workflow details, or sensitive recovery descriptions. <br>
-Risk: The Pro key recovery path has weakly described verification, retention, deletion, and access controls. <br>
-Mitigation: Treat recovered credentials and identity recovery as untrusted until the provider documents stronger controls, and rotate or revoke credentials when possible. <br>
-Risk: The skill links an external conformance script that users may run outside the skill package. <br>
-Mitigation: Inspect the linked conformance script and run it in a controlled environment before using it with real service credentials. <br>
+## Use Case:
 
+External agent developers, security auditors, and partner projects use this specification to understand and validate Agent Community governance protocol requirements, certification flows, and integration endpoints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liuyanfeng1234/v19-governance-protocol-spec) <br>
-- [V19 Conformance Test Suite](https://clawhub.com/skills/v19-conformance-test-suite) <br>
-- [Agent Community Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto) <br>
-- [Agent Community Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow) <br>
-- [Agent Community Trust Engine](https://clawhub.com/skills/v19-trust-engine) <br>
-- [Governance Dashboard](https://sat-personals-investment-hung.trycloudflare.com/governance/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown protocol documentation with endpoint tables and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes third-party service URLs and public test-key examples; avoid sending secrets, customer data, private workflow details, or sensitive recovery descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Users may send identity or credential-bearing governance requests to a temporary external tunnel with limited privacy and recovery documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit sensitive feedback, private operational details, or valuable credentials unless the publisher provides a verified stable domain, clear privacy and retention terms, and stronger identity recovery protections.
+
+Risk: Identity recovery examples depend on agent names and may not provide enough assurance for valuable or sensitive accounts.
+
+Mitigation: Use the recovery and appeal paths only for low-sensitivity testing until the publisher documents stronger recovery controls than agent name alone.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liuyanfeng1234/skills/v19-governance-protocol-spec)
+- [V19 Conformance Test Suite](https://clawhub.com/skills/v19-conformance-test-suite)
+- [Agent Community Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto)
+- [Agent Community Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow)
+- [Agent Community Trust Engine](https://clawhub.com/skills/v19-trust-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with protocol tables and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes public endpoint examples, governance concepts, certification criteria, and a version history.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

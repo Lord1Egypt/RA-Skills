@@ -1,41 +1,52 @@
-## Description: <br>
-Provides a practical guide and SOP for designing performance evaluation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides practical guidance and an SOP for designing performance evaluation workflows.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+HR, operations, and people managers use this skill to define evaluation goals, metrics, rollout steps, dashboards, and reusable templates while accounting for compliance and personal-information minimization.
+
+### Deployment Geography for Use:
+
+China
+
+## Known Risks and Mitigations:
+
+Risk: Performance-evaluation guidance can affect HR decisions and may not fit a specific organization's process or local compliance obligations.
+
+Mitigation: Review the guidance with HR, legal, and privacy stakeholders before use and adapt metrics, SOP steps, and reports to the organization.
+
+Risk: The skill discusses metrics, dashboards, and personal information, which can create privacy exposure if unnecessary employee data is collected.
+
+Mitigation: Apply data minimization, define metric and reporting access controls, and avoid collecting personal data not required for the evaluation process.
+
+## Reference(s):
 
 
-## Use Case: <br>
-HR, operations, and management teams use this skill to define performance evaluation scope, goals, KPI structures, reporting cadence, pilots, review loops, and reusable SOP materials. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Performance evaluation work can involve sensitive employee data and personally identifiable information. <br>
-Mitigation: Apply normal HR privacy controls, data minimization, and access controls before using the guidance with real employee records. <br>
-Risk: Performance criteria or KPI designs can create compliance or fairness concerns if applied without review. <br>
-Mitigation: Use the skill for explicit appraisal design or SOP work and review outputs against applicable HR policies, local law, and internal governance before adoption. <br>
+**Output Format:** [Markdown guidance with SOP steps, metric definitions, checklist items, report structure, and meeting-note structure]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/performance) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mikeclaw007) <br>
+**Other Properties Related to Output:** [No code, credentials, network calls, install behavior, or hidden authority identified in the security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with structured checklists, SOP steps, KPI definitions, and reporting outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, install scripts, credentials, or hidden behavior are included in the release artifact.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

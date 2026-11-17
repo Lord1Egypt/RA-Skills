@@ -31,12 +31,12 @@ try {
 // They only grant access to the demo avatars below and expire per-session.
 const DEMO_CONFIG = {
   zh: {
-    apiKey: "sk-ody1Xk9lw_vXkRWEPnaO8OwTFB9gbCnng2EWUl5jNbzolDSlFItc9DvWqrr6RLcL",
+    apiKey: "REDACTED-SECRET",
     avatarId: "2037840977565188097",
     userId: "81936",
   },
   en: {
-    apiKey: "sk-ody1Xk9lw_vXkRWEPnaO8OwTFB9gbCnng2EWUl5jNbzolDSlFItc9DvWqrr6RLcL",
+    apiKey: "REDACTED-SECRET",
     avatarId: "2037841603867942913",
     userId: "81936",
   },

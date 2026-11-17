@@ -1,40 +1,63 @@
-## Description: <br>
-Manage feature requests, votes, roadmaps, and changelogs with VoteShip. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage feature requests, votes, roadmaps, and changelogs with VoteShip.
 
-## Publisher: <br>
-[MattKilmer](https://clawhub.ai/user/MattKilmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mattkilmer](https://clawhub.ai/user/mattkilmer)
 
-## Use Case: <br>
-Developers, product teams, and support teams use this skill to administer VoteShip feedback boards, triage incoming requests, plan roadmaps, publish changelogs, and browse or submit public board feedback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An API-key-backed agent can change or delete VoteShip project data. <br>
-Mitigation: Use a least-privilege API key where possible and require explicit confirmation before update, sync, configuration, or delete actions. <br>
-Risk: Admin mode grants broad access to posts, votes, tags, users, analytics, AI tools, webhooks, and Stripe MRR sync through the same VoteShip API key. <br>
-Mitigation: Avoid giving the skill production authority by default and separate public read-only workflows from privileged admin workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [VoteShip Documentation](https://voteship.app/docs) <br>
-- [VoteShip Skill on ClawHub](https://clawhub.ai/MattKilmer/voteship) <br>
+## Use Case:
 
+Developers, product teams, and support teams use this skill to manage VoteShip feature requests, votes, roadmaps, changelogs, analytics, AI-assisted triage, and webhook configuration from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown and text responses with API-backed VoteShip project changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOTESHIP_PROJECT_SLUG for public board access and VOTESHIP_API_KEY for admin operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The external MCP server receives a VoteShip API key with broad project authority.
+
+Mitigation: Use the least-privileged key available and install only after trusting or auditing the VoteShip MCP package.
+
+Risk: Configured admin operations can make live writes, deletes, revenue updates, AI processing requests, and webhook changes.
+
+Mitigation: Confirm destructive or privileged actions before execution and use public read-only mode when admin access is not needed.
+
+Risk: AI ingestion may process sensitive customer, support, or credential data submitted through feedback workflows.
+
+Mitigation: Avoid sending raw sensitive customer or credential data into AI-assisted triage, extraction, planning, or summarization flows.
+
+Risk: The install metadata references an unpinned external Node package.
+
+Mitigation: Prefer a pinned and audited package version for production deployments.
+
+## Reference(s):
+
+- [VoteShip Documentation](https://voteship.app/docs)
+- [VoteShip App](https://voteship.app)
+- [ClawHub VoteShip Skill](https://clawhub.ai/mattkilmer/skills/voteship)
+- [mattkilmer ClawHub Profile](https://clawhub.ai/user/mattkilmer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline tool, API, and environment-variable guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform live VoteShip reads and writes through the external MCP server when configured with project credentials.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

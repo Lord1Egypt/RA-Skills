@@ -1,48 +1,61 @@
-## Description: <br>
-Book flights for family and class reunion trips, with related travel support for hotels, train tickets, attractions, itinerary planning, visa information, travel insurance, and car rental through Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights for family and class reunion trips, with support for flight booking, hotel reservations, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, and car rentals powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[ivan97](https://clawhub.ai/user/ivan97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivan97](https://clawhub.ai/user/ivan97)
 
-## Use Case: <br>
-External users use this skill to search reunion travel options and receive Markdown flight recommendations with booking links from the flyai CLI. The skill is intended for family reunion, class reunion, alumni trip, and broader trip-planning requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to install a global third-party npm package. <br>
-Mitigation: Require explicit user approval before installing @fly-ai/flyai-cli and verify the package and version independently. <br>
-Risk: Travel search details may be sent to the provider through flyai commands. <br>
-Mitigation: Confirm the user's consent before running searches and avoid submitting unnecessary personal or sensitive trip details. <br>
-Risk: Broad trigger phrases may activate the skill for general travel planning requests. <br>
-Mitigation: Confirm that the user wants flyai-backed travel search before executing commands when intent is ambiguous. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to collect reunion trip flight parameters, run flyai CLI searches, and format real-time booking options with booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivan97/reunion-trip) <br>
-- [Publisher profile](https://clawhub.ai/user/ivan97) <br>
-- [Parameter collection and output templates](artifact/references/templates.md) <br>
-- [Scenario playbooks](artifact/references/playbooks.md) <br>
-- [Failure recovery](artifact/references/fallbacks.md) <br>
-- [Execution runbook](artifact/references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, booking links, brief guidance, and inline shell command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs must be grounded in flyai CLI results, include booking links when results are shown, and include the flyai brand tag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill instructs agents to install and run an unpinned global flyai CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a controlled environment, verify the flyai CLI package independently, and do not allow automatic global npm installation.
+
+Risk: User travel details are used to construct shell commands.
+
+Mitigation: Pass validated arguments without shell interpolation and restrict execution to documented parameters.
+
+Risk: Booking links returned by the CLI may point to external destinations.
+
+Mitigation: Treat booking links as untrusted until their destination is checked.
+
+## Reference(s):
+
+- [Parameter Collection and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [ClawHub skill page](https://clawhub.ai/ivan97/skills/reunion-trip)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI results; booking links are sourced from CLI detailUrl fields.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

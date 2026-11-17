@@ -1,39 +1,54 @@
-## Description: <br>
-Splits large mechanical codebase migrations into independent work units with validation steps, parallel execution boundaries, and mergeable outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants a large, mechanical change split into many independent units and executed in parallel with isolated workers and PRs.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wimi321](https://clawhub.ai/user/wimi321)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan broad refactors, migrations, bulk renames, or repetitive codebase-wide edits as isolated units with clear verification and PR or patch rollup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Large migrations can produce overlapping edits or unreviewed generated changes when scope boundaries are imprecise. <br>
-Mitigation: Use precise migration boundaries, isolated branches or worktrees, explicit validation commands, and review generated patches or PRs before merging. <br>
-Risk: Parallelizing tightly coupled work can create conflicting or incomplete changes. <br>
-Mitigation: Only launch parallel workers when their write scopes do not overlap and require each unit to validate its own changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan broad, mechanical codebase migrations by decomposing work into isolated units with validation and mergeable outputs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown plans, worker prompts, status summaries, and PR or patch rollups.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable payload; outputs are planning and coordination guidance for an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can coordinate broad code changes across a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed work decomposition and write scopes before allowing workers to run.
+
+Risk: Parallel work can create conflicting edits or invalid migration units.
+
+Mitigation: Require isolated work scopes and per-unit validation before merging outputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wimi321/skills/batch-migration-orchestrator)
+- [Publisher Profile](https://clawhub.ai/user/wimi321)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured plans, worker prompts, status summaries, and PR or patch rollups.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for agent-led migration planning and parallel execution coordination.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

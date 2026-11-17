@@ -1,40 +1,53 @@
-## Description: <br>
-自动化工作流引擎。定时执行任务链：数据采集、处理、通知和存档，支持 cron 定时、webhook 触发和文件监控。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动化工作流引擎，用于定时执行数据采集、处理、通知和存档任务链，并支持 cron 定时、webhook 触发和文件监控。
 
-## Publisher: <br>
-[cjstate](https://clawhub.ai/user/cjstate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjstate](https://clawhub.ai/user/cjstate)
 
-## Use Case: <br>
-Developers and operations teams use this skill to define and run automated workflow chains for scheduled data collection, processing, notification, archival, file monitoring, webhook-triggered work, and queue-triggered work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes broad file, network, email, database, webhook, queue, and daemon-style automation capabilities with limited safety scope detail. <br>
-Mitigation: Review workflows before installing or running them, restrict file paths, use trusted webhook and queue sources, limit email and database credentials, and avoid daemon mode until trigger scope and shutdown behavior are understood. <br>
-Risk: Workflow dependencies and external services may introduce security or reliability exposure. <br>
-Mitigation: Use pinned patched dependencies and only run known, reviewed workflow code. <br>
+## Use Case:
 
+Developers and operators use this skill to define and run scheduled or event-triggered automation workflows for data collection, transformation, notification, file handling, and database operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjstate/xh-auto-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON workflow examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe daemon execution, workflow configuration, trigger setup, and operational commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Unattended workflows can make network calls, modify files or databases, and send email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a constrained environment, review each workflow definition before running it, and avoid broad filesystem or database credentials.
+
+Risk: Daemon mode can execute triggered workflows without active review.
+
+Mitigation: Use daemon mode only for approved workflows with explicit approvals, monitoring, and rollback plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjstate/skills/xh-auto-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workflow definitions and operational commands for immediate, daemon, or status modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

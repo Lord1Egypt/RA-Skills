@@ -1,42 +1,54 @@
-## Description: <br>
-Zero represents the origin, the blank slate, the reset button. This skill handles initialization, zero-state operations, default values, infinite loops, and the power of nothingness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero represents the origin, the blank slate, the reset button. This skill handles initialization, zero-state operations, default values, infinite loops, and the power of nothingness. Use when starting fresh, resetting systems, or working with mathematical zero concepts.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
 
-## Use Case: <br>
-Developers and agents use this skill as a broad reference for zero-state handling, initialization, reset workflows, default values, empty-value checks, loop behavior, and zero-related programming concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reset, wipe, clean, truncation, and fresh-start examples could cause destructive changes if copied or executed without context. <br>
-Mitigation: Require an explicit target, user confirmation, and a backup before allowing an agent to run destructive reset-style commands from this skill. <br>
-Risk: The single-character trigger can make accidental activation more likely. <br>
-Mitigation: Use the skill only when the user explicitly requests zero-state, reset, empty-value, or initialization guidance. <br>
-Risk: The artifact discusses zero-width characters, which can hide text in copied examples. <br>
-Mitigation: Review copied text in an editor or terminal mode that reveals invisible Unicode characters before reuse. <br>
+## Use Case:
 
+Developers and agents use this skill as a reference for starting from a blank state, resetting local project state, handling zero or empty values, and reasoning about loops, defaults, and zero-related programming concepts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/openlang-cn/0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and programming-language code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only reference material; examples should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may steer an agent toward reset, wipe, clean, or repository commands without enough scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation, show exact targets, prefer dry runs, and avoid production or shared environments before executing any reset or wipe operation.
+
+Risk: The skill includes tight-loop examples that can consume resources if run without bounds.
+
+Mitigation: Add clear exit conditions, delays, and runtime limits before running loop examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlang-cn/skills/0)
+- [ClawHub publisher profile](https://clawhub.ai/user/openlang-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reset, wipe, clean, and tight-loop command examples that require explicit confirmation and scoped targets before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

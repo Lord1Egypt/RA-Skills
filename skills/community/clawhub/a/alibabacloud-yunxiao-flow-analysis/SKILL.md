@@ -29,26 +29,27 @@ The websocket-client library is required.
 
 | Environment Variable | Description | Required |
 |---------------------|-------------|----------|
-| YUNXIAO_ACCESS_TOKEN | Yunxiao Personal Access Token | No (if not provided via --token parameter, it will be read from this environment variable) |
+| YUNXIAO_ACCESS_TOKEN | Yunxiao Personal Access Token (format: `pt-xxx`) | Yes |
 
 ## Authentication
 
-Before executing any commands, ensure you have a valid Yunxiao Personal Access Token. Token priority:
-1. Command-line argument `--token`
-2. Environment variable `YUNXIAO_ACCESS_TOKEN`
+Before executing any commands, ensure you have a valid Yunxiao Personal Access Token configured via environment variable.
 
 ```bash
-# Method 1: Configure via environment variable (recommended)
 export YUNXIAO_ACCESS_TOKEN="pt-xxxxxxxxxxxxx"
-
-# Method 2: Pass via script command-line argument
-# --token pt-xxxxxxxxxxxxx
 ```
 
+**Security Design:**
+- Token is read **exclusively** from environment variable `YUNXIAO_ACCESS_TOKEN` — CLI arguments are not supported to prevent exposure in process listings (`ps`/`top`), shell history, and `/proc/*/cmdline`
+- Token format is validated (`pt-` prefix) before any network transmission to prevent accidental credential leakage
+- All API communication uses HTTPS with TLS encryption
+- Scripts have built-in token masking in output, showing only the first 6 and last 6 characters
+
 **Security Rules:**
-- **NEVER** read, echo, or print the full token value (scripts have built-in masking, showing only the first 6 and last 6 characters)
+- **NEVER** read, echo, or print the full token value
 - **NEVER** ask the user to input the token directly in the conversation
 - **NEVER** hardcode token values in scripts
+- **NEVER** pass token via command-line arguments (use environment variable only)
 - Tokens should be obtained from Yunxiao Console > Personal Settings > Personal Access Tokens
 
 ## RAM Permissions
@@ -56,6 +57,13 @@ export YUNXIAO_ACCESS_TOKEN="pt-xxxxxxxxxxxxx"
 This skill uses token-based authentication for Yunxiao Flow API. Required permissions:
 
 - **Flow Pipeline all modules:** Read-only access
+
+For detailed permission requirements and failure handling, see [references/ram-policies.md](references/ram-policies.md).
+
+> **[MUST] Permission Failure Handling:** When any command or API call fails due to permission errors at any point during execution, follow this process:
+> 1. Read `references/ram-policies.md` to get the full list of permissions required by this SKILL
+> 2. Verify that the Yunxiao Personal Access Token has the necessary permissions
+> 3. Pause and wait until the user confirms that the required permissions have been granted
 
 ## Parameter Confirmation
 
@@ -67,19 +75,19 @@ This skill uses token-based authentication for Yunxiao Flow API. Required permis
 | org-id | Required | Organization ID (24 characters for central org, 32 characters for regional org) | None |
 | pipeline-id | Required | Pipeline ID | None |
 | pipeline-runid | Required | Pipeline Run ID | None |
-| token | Optional (environment variable recommended) | Personal Access Token (format: pt-xxx), can be provided via `--token` argument or environment variable `YUNXIAO_ACCESS_TOKEN` | None |
+| YUNXIAO_ACCESS_TOKEN | Required (environment variable) | Personal Access Token (format: pt-xxx), set via `export YUNXIAO_ACCESS_TOKEN="pt-xxx"` | None |
 | domain | Optional | API domain (default: openapi-rdc.aliyuncs.com) | openapi-rdc.aliyuncs.com |
 
 ## Core Workflow
 
 ### Step 1: Get Pipeline Run Status
 
-> **Note**: The `--token <token>` in the following commands can be provided via environment variable `YUNXIAO_ACCESS_TOKEN`. If the environment variable is set, the `--token` argument can be omitted.
+> **Note**: All scripts read the token from environment variable `YUNXIAO_ACCESS_TOKEN`. Ensure it is set before running any command.
 
 ```bash
 python3 scripts/yunxiao_flow_get_pipeline_runs.py \
   --org-id <org-id> --pipeline-id <pipeline-id> \
-  --pipeline-runid <pipeline-runid> --token <token> --domain <domain>
+  --pipeline-runid <pipeline-runid> --domain <domain>
 ```
 
 **Analyze the returned JSON:**
@@ -94,7 +102,7 @@ python3 scripts/yunxiao_flow_get_pipeline_runs.py \
 python3 scripts/yunxiao_flow_get_job_step_log.py \
   --org-id <org-id> --pipeline-id <pipeline-id> --pipeline-runid <pipeline-runid> \
   --job-id <job-id> --step-index <step-index> --build-id <build-id> \
-  --token <token> --domain <domain> --full-log
+  --domain <domain> --full-log
 ```
 
 ### Step 3: Get VM Deployment Logs (if applicable)
@@ -103,7 +111,7 @@ python3 scripts/yunxiao_flow_get_job_step_log.py \
 python3 scripts/yunxiao_flow_get_vm_deploy_machine_log.py \
   --org-id <org-id> --pipeline-id <pipeline-id> --pipeline-runid <pipeline-runid> \
   --deploy-order-id <deploy-order-id> --machine-sn <machine-sn> \
-  --token <token> --domain <domain>
+  --domain <domain>
 ```
 
 ### Step 4: Consult Reference Documents for Analysis
@@ -165,6 +173,7 @@ No resource cleanup required. This skill only performs read operations for analy
 | [flow_test_php.md](references/flow_test_php.md) | PHP unit test troubleshooting |
 | [flow_variables.md](references/flow_variables.md) | Pipeline variable configuration |
 | [flow_workspace_runtime.md](references/flow_workspace_runtime.md) | Workspace and runtime environment troubleshooting |
+| [ram-policies.md](references/ram-policies.md) | RAM permission requirements and authentication guide |
 | [related-commands.md](references/related-commands.md) | Complete list of all script commands |
 
 ## Tools

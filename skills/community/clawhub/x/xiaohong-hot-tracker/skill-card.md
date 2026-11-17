@@ -1,40 +1,53 @@
-## Description: <br>
-Tracks public hot topics across Weibo, Zhihu, Douyin, Xiaohongshu, and Bilibili, then analyzes trends and suggests content angles and title ideas for creators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Chinese-language trending topics across platforms such as Weibo, Zhihu, Douyin, Xiaohongshu, and Bilibili, then suggests content angles and title ideas for creators.
 
-## Publisher: <br>
-[crazypatient0](https://clawhub.ai/user/crazypatient0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crazypatient0](https://clawhub.ai/user/crazypatient0)
 
-## Use Case: <br>
-Content creators and social media operators use this skill to monitor public trend signals and turn them into topic angles, competitor observations, and title options for planned posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated hot-topic rankings and trend analysis may be incomplete or outdated because they rely on public search results. <br>
-Mitigation: Verify current platform trend pages or fresh search results before publishing or making decisions. <br>
-Risk: Competitor summaries and viral title ideas may be misleading, derivative, or inconsistent with platform policies. <br>
-Mitigation: Review outputs for factuality, originality, brand fit, and platform policy compliance before use. <br>
+## Use Case:
 
+Content creators and social media operators use this skill to research Chinese-language hot topics, identify timely content angles, compare popular competitor content, and draft title options.
 
-## Reference(s): <br>
-- [Content Hot Tracker on ClawHub](https://clawhub.ai/crazypatient0/xiaohong-hot-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown trend summaries with ranked topics, topic recommendations, competitor analysis notes, and title ideas.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public search results; recommendations require review for freshness, factuality, originality, and platform policy compliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Trend results depend on public web search and may not be fully real-time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat rankings as directional and verify time-sensitive topics against current platform hot lists before publishing.
+
+Risk: The skill is optimized for Chinese-language platforms and workflows.
+
+Mitigation: Confirm platform coverage and language fit before using it for non-Chinese content planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crazypatient0/skills/xiaohong-hot-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries with ranked topic lists, content recommendations, and title options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform, content-domain, and writing-style preferences supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

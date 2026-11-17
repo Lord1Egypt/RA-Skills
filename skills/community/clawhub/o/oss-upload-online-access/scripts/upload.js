@@ -430,13 +430,27 @@ function verifyUrlAccessible(url, redirectsLeft = 1) {
   });
 }
 
-function getBufferFromUrl(url) {
+function getBufferFromUrl(url, redirectsLeft = 5) {
   return new Promise((resolve, reject) => {
     const parsed = new URL(url);
     const client = parsed.protocol === 'https:' ? https : http;
     client.get(url, { timeout: 60000 }, (res) => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        return getBufferFromUrl(res.headers.location).then(resolve).catch(reject);
+        res.resume();
+        if (redirectsLeft <= 0) {
+          return reject(new Error(`重定向次数过多（${url}）`));
+        }
+        let next;
+        try {
+          next = new URL(res.headers.location, url).href;
+        } catch {
+          return reject(new Error(`重定向地址无效（${res.headers.location}）`));
+        }
+        return getBufferFromUrl(next, redirectsLeft - 1).then(resolve).catch(reject);
+      }
+      if (res.statusCode < 200 || res.statusCode >= 300) {
+        res.resume();
+        return reject(new Error(`HTTP ${res.statusCode}${res.statusMessage ? ' ' + res.statusMessage : ''}（${url}）`));
       }
       const chunks = [];
       let size = 0;

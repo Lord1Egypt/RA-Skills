@@ -1,40 +1,54 @@
-## Description: <br>
-Generates bilingual fictional life-restart simulations from a birth city and family background, with randomized life stages, talents, events, endings, scores, and replay prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates bilingual fictional life-restart simulations from a user's birth city and family conditions, with random talents, life-stage events, scoring, and multiple humorous endings.
 
-## Publisher: <br>
-[SwiftUIs](https://clawhub.ai/user/SwiftUIs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swiftuis](https://clawhub.ai/user/swiftuis)
 
-## Use Case: <br>
-External users use this skill for casual fictional roleplay, asking an agent to simulate an alternate life from supplied birth city, family conditions, and optional style preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad restart or life-simulation trigger phrases may activate the simulator when the user intended a different task. <br>
-Mitigation: Treat the output as casual fictional roleplay and ask for clarification when the user's intent is ambiguous. <br>
-Risk: The skill may offer to save generated stories if file tools are available. <br>
-Mitigation: Only save a local archive after the user explicitly approves file use for that story. <br>
+## Use Case:
 
+External users invoke this skill for lightweight entertainment: they provide a birthplace, family background, and optional preferences, and the agent produces a fictional life story with talents, events, an ending category, and scores.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SwiftUIs/life-restart-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Bilingual Markdown-style narrative with staged sections, score lines, ending labels, and replay prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure prompt output; optional local story saving only when the user approves file use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Ordinary phrases about restarting or alternate lives may unintentionally trigger the simulator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review invocation behavior before installation and disable or narrow activation if those phrases conflict with normal workflows.
+
+Risk: The skill can optionally save a simulation record if file access is allowed.
+
+Mitigation: Grant file access only when the user explicitly wants a saved simulation record.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swiftuis/skills/life-restart-pro)
+- [Publisher profile](https://clawhub.ai/user/swiftuis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style bilingual narrative text with lists, stage summaries, scores, and replay prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce fictional random events and optional save-file guidance only when the user permits file access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

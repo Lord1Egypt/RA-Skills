@@ -1,48 +1,56 @@
-## Description: <br>
-Claw Desktop Pet provides setup and usage guidance for an Electron-based desktop AI assistant with fault tolerance, auto-restart, performance monitoring, voice interaction, logging, and resource optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides setup and usage guidance for a Windows desktop AI assistant with fault tolerance, auto-restart, performance monitoring, voice output, logging, and resource cleanup.
 
-## Publisher: <br>
-[kk43994](https://clawhub.ai/user/kk43994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kk43994](https://clawhub.ai/user/kk43994)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install, configure, run, and test a desktop AI assistant with voice notifications and local health monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Desktop assistant setup can carry normal supply-chain risk through the referenced repository and dependency manifests. <br>
-Mitigation: Review the referenced repository and dependency manifests before installing or running setup commands. <br>
-Risk: An always-on desktop app with auto-restart may continue running longer than intended. <br>
-Mitigation: Confirm how to stop the app or disable auto-restart before deployment. <br>
-Risk: Local bridge exposure can expand risk if it is not limited to the local machine. <br>
-Mitigation: Keep the OpenClaw bridge bound to localhost and avoid running the app as administrator. <br>
-Risk: The artifact documentation is primarily Chinese, which can lead to setup mistakes for non-Chinese readers. <br>
-Mitigation: Translate the documentation before running setup commands. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and run a Windows desktop assistant that integrates with OpenClaw, provides voice notifications, and exposes health, log, and test workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kk43994/claw-desktop-pet) <br>
-- [Project README](https://github.com/kk43994/claw-desktop-pet#readme) <br>
-- [Release Notes v1.3.0](https://github.com/kk43994/claw-desktop-pet/blob/master/RELEASE-v1.3.0.md) <br>
-- [Technical Documentation](https://github.com/kk43994/claw-desktop-pet/tree/master/docs) <br>
-- [Issues](https://github.com/kk43994/claw-desktop-pet/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local setup commands, configuration values, usage examples, log inspection commands, and test commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and artifact changelog, released 2026-02-07) <br>
+Risk: The setup asks users to run unreviewed, unpinned code from GitHub and install npm and Python dependencies that were not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced repository, use a trusted commit or signed release, and inspect dependencies before running npm or pip installation commands.
+
+Risk: The app is intended to run continuously, write logs, use a local OpenClaw port, and interact with desktop and voice components.
+
+Mitigation: Run it as a normal user, avoid administrator privileges, prefer an isolated environment, restrict local port exposure, and monitor generated logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kk43994/skills/claw-desktop-pet)
+- [Project README](https://github.com/kk43994/claw-desktop-pet#readme)
+- [Technical Documentation](https://github.com/kk43994/claw-desktop-pet/tree/master/docs)
+- [Release Notes v1.3.0](https://github.com/kk43994/claw-desktop-pet/blob/master/RELEASE-v1.3.0.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup commands, configuration examples, health checks, log inspection commands, and test commands.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and artifact changelog, released 2026-02-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

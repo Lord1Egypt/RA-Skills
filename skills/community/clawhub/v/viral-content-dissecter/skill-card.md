@@ -1,44 +1,55 @@
-## Description: <br>
-Analyzes user-provided Douyin, Xiaohongshu, Bilibili, WeChat, or web content links to dissect viral mechanics and generate a publish-ready content package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes user-provided Chinese social and web content links, identifies viral-content mechanics, and drafts a publishable content package with SEO titles, a long-form article, image suggestions, hashtags, and optional Feishu delivery.
 
-## Publisher: <br>
-[hadderyes](https://clawhub.ai/user/hadderyes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hadderyes](https://clawhub.ai/user/hadderyes)
 
-## Use Case: <br>
-Content marketers, social media operators, and creators use this skill to turn public content links into structured viral-content analysis, SEO title options, platform-specific long-form copy, image directions, and hashtags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided links may expose sensitive or non-public material if submitted for analysis. <br>
-Mitigation: Use public, non-sensitive links and verify the destination before requesting analysis. <br>
-Risk: Optional Feishu delivery can share generated content into chats or documents beyond the current conversation. <br>
-Mitigation: Request Feishu output only for intended recipients and review generated content before pushing it. <br>
-Risk: Repurposed articles can become inaccurate, insufficiently original, or unsupported by the source material if published without review. <br>
-Mitigation: Review the generated article for originality, factual accuracy, and unsupported metrics before publication. <br>
+## Use Case:
 
+Content creators, marketers, and social media operators use this skill to turn a supplied Douyin, Xiaohongshu, Bilibili, WeChat, or web link into a structured viral-content analysis and derivative publishing package.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hadderyes/viral-content-dissecter) <br>
-- [爆款拆解框架](references/analysis-framework.md) <br>
-- [长文写作模板](references/writing-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style report with structured analysis, title options, long-form article copy, image suggestions, and hashtags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally send or package generated output through configured Feishu tools when requested by the user or when run from a Feishu context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill fetches user-provided links and can process Feishu documents, which may expose confidential or private content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with links and Feishu documents the user is comfortable having the agent fetch and analyze.
+
+Risk: Generated material can be sent through Feishu tools when requested or used in a Feishu context.
+
+Mitigation: Confirm the destination and content before sending generated material through Feishu.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hadderyes/skills/viral-content-dissecter)
+- [爆款拆解框架](references/analysis-framework.md)
+- [长文写作模板](references/writing-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown report with structured Chinese content-analysis sections and long-form draft copy.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include three SEO titles, an 800-1500 word article, five image suggestions, three hashtags, and optional Feishu delivery guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

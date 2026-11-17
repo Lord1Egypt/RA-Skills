@@ -1,42 +1,54 @@
-## Description: <br>
-Compares amortized debt, extra payments, chunking/basic acceleration, and advanced velocity banking for a real estate deal to help decide whether chunking or advanced VB makes sense for a property. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare amortized debt, extra payments, chunking/basic acceleration, and advanced velocity banking for a real estate deal.
 
-## Publisher: <br>
-[earlvanze](https://clawhub.ai/user/earlvanze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earlvanze](https://clawhub.ai/user/earlvanze)
 
-## Use Case: <br>
-Real estate deal analysts, operators, and agents use this skill to compare debt payoff strategies, estimate interest savings and payoff timing, and decide whether HELOC-based chunking or advanced velocity banking fits a property. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run unreviewed external Node/MCP code from a host-specific path and execute npm install/build scripts outside the packaged skill. <br>
-Mitigation: Install only after inspecting the referenced paragon-mls-mcp project, its npm dependencies, and its build scripts on the host. <br>
-Risk: The skill may process confidential income, expense, debt, HELOC, or other financial details. <br>
-Mitigation: Avoid entering sensitive financial data until the local MCP implementation and its data handling behavior are trusted. <br>
-Risk: Velocity banking and HELOC comparisons can be mistaken for lending advice or relied on with inaccurate assumptions. <br>
-Mitigation: Treat results as decision support, use actual property or operator budget numbers, and review recommendations before acting. <br>
+## Use Case:
 
+Real estate deal analysts and operators use this skill to compare standard amortization, extra payments, chunking/basic acceleration, and advanced velocity banking strategies before choosing a debt payoff approach. It supports decision-making only and is not lending advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earlvanze/paragon-mls-vb-calc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown comparison table with JSON details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include debt payoff comparisons, savings versus baseline, and a recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on local external Node.js MCP code and npm dependencies that are not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after separately reviewing the external paragon-mls-mcp workspace, lockfile, dependencies, and built dist/index.js.
+
+Risk: Debt strategy outputs can be misleading when based on incomplete or inaccurate property income, expense, interest rate, or HELOC assumptions.
+
+Mitigation: Use actual property or operator budget values and treat the result as decision support, not lending advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earlvanze/skills/paragon-mls-vb-calc)
+- [ClawHub publisher profile](https://clawhub.ai/user/earlvanze)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, comparison tables, and JSON-shaped calculator results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill expects numeric debt, income, expense, rate, limit, and chunking inputs for the MCP calculator.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

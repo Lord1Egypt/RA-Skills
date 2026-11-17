@@ -1,44 +1,55 @@
-## Description: <br>
-Analyzes thermal-imaging videos of multi-person gatherings to flag relative skin-temperature anomalies against the group average and recommend thermometer recheck without making a medical diagnosis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes multi-person thermal-camera footage for relative skin-temperature differences and suggests follow-up measurement.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External users and smart-home or facility operators use this skill to analyze thermal camera video from family, meeting, kindergarten, or nursing-home gathering areas and produce relative temperature anomaly alerts plus report history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send thermal or video footage and persistent identifiers to external services. <br>
-Mitigation: Use only with consent from recorded people, approved service endpoints, and documented upload, retention, deletion, and history-access controls. <br>
-Risk: The security review notes under-disclosed account creation, token storage, and persistent identifier handling. <br>
-Mitigation: Do not reuse an API key as a user identifier; review configuration and token storage before installation. <br>
-Risk: The security review reports broader remote analysis behavior than the fever-screening description suggests. <br>
-Mitigation: Limit use to the documented thermal fever-screening workflow and review generated reports before taking action. <br>
+## Use Case:
 
+Families and organizations can use the skill to review multi-person thermal-camera footage, flag relative surface-temperature differences, and receive a prompt to confirm readings with a thermometer. It provides screening cues rather than medical diagnoses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/smyx-thermal-fever-screening-analysis) <br>
-- [API interface documentation](references/api_doc.md) <br>
-- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown with JSON report output and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include report links and recommends calibrated thermometer recheck; requires thermal video input and open-id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The security summary reports unexpected identity and credential handling, external data transmission, and behavior beyond the stated screening purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review identity and credential handling, video processing destinations, and the reported export-only behavior before installation; avoid sending sensitive footage until these behaviors are understood.
+
+Risk: Thermal footage can contain sensitive health and personal information.
+
+Mitigation: Obtain participants' informed consent and protect footage and reports with appropriate access controls and encryption.
+
+## Reference(s):
+
+- [API documentation](references/api_doc.md)
+- [Skill demo](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-thermal-fever-screening-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text, Markdown]
+
+**Output Format:** [Structured analysis results, text alerts, and Markdown report lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Per-person surface-temperature estimates and group-relative differences; screening cues only, not diagnoses.]
+
+## Skill Version(s):
+
+1.0.12 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

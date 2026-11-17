@@ -1,0 +1,10 @@
+{
+  "name": "pm-desk-scripts",
+  "version": "1.0.18",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@hypelens/polymarket-place": "0.1.17",
+    "@hypelens/hypelens-agent-guard": "0.1.18"
+  }
+}

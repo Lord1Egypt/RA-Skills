@@ -1,41 +1,58 @@
-## Description: <br>
-Diagnose and govern hallucination risk in production RAG systems with practical controls for retrieval thresholds, refusal or human handoff, citation coverage, Top1 pollution, conflict detection, and observability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language RAG hallucination troubleshooting guidance from current metrics, symptoms, or retrieval log excerpts, producing root-cause diagnosis, threshold tuning advice, and governance recommendations.
 
-## Publisher: <br>
-[william202404](https://clawhub.ai/user/william202404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[william202404](https://clawhub.ai/user/william202404)
 
-## Use Case: <br>
-Developers, AI engineers, and production support teams use this skill to triage RAG reliability failures where answers look plausible but rely on weak, wrong, conflicting, or out-of-scope evidence. It helps select concrete retrieval, reranking, citation, scope, refusal, and handoff controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Retrieval logs, citation spans, or permission context may contain customer or private business information. <br>
-Mitigation: Use sanitized or appropriately authorized data when sharing logs or context with the skill. <br>
-Risk: Incomplete retrieval evidence can lead to incorrect or overconfident triage guidance. <br>
-Mitigation: Provide TopK chunks, scores, cited spans, scope fields, and handoff decisions when available; route unresolved conflicts or weak evidence to clarification or human review. <br>
+## Use Case:
 
+Delivery teams, product managers, and RAG system engineers use this skill to classify hallucination symptoms, diagnose retrieval and knowledge-base causes, tune thresholds, and plan practical governance steps for production RAG systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/william202404/rag-hallucination-governor) <br>
-- [Publisher profile](https://clawhub.ai/user/william202404) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown triage notes with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs identify trigger signals, production failure modes, control changes, metrics to watch, and refusal or human-handoff conditions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Retrieval logs may contain private customer or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive identifiers and confidential content before sharing logs with the skill.
+
+Risk: Operational tuning advice may be inappropriate for a specific production system without validation.
+
+Mitigation: Test threshold, retrieval, and routing changes in a staging or replay environment before production rollout.
+
+Risk: The skill can classify symptoms without logs, but root-cause analysis may be incomplete when evidence is missing.
+
+Mitigation: Provide representative metrics or retrieval-log excerpts when asking for diagnosis, and treat unsupported conclusions as hypotheses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/william202404/skills/rag-hallucination-governor)
+- [Server-resolved GitHub source](https://github.com/william202404/tob-skills/tree/main/rag-hallucination-governor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown diagnostic report with tables and prioritized repair steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language operational guidance; does not install code, change systems, or handle credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

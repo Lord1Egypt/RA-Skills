@@ -1,0 +1,11 @@
+{
+  "slug": "xhs-viral-note",
+  "name": "小红书爆款笔记生成器",
+  "version": "1.0.0",
+  "installedAt": 0,
+  "source": "skillhub",
+  "labels": {
+    "requires_api_key": "false",
+    "track": "短视频/社媒"
+  }
+}

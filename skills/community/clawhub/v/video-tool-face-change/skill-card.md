@@ -1,43 +1,58 @@
-## Description: <br>
-Swap the face in an existing HTTPS video using a reference face image via WeryAI (video-face-change). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swap the face in an existing HTTPS video using a reference face image via WeryAI (video-face-change). Use when the user wants face replacement on a video URL, not text-to-video.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Developers and creators use this skill to submit and monitor WeryAI face-change jobs for existing public HTTPS videos when they have a separate public HTTPS reference face image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WERYAI_API_KEY for paid API calls. <br>
-Mitigation: Install only from a trusted publisher, keep the key in the runtime environment, and run dry-run validation before submit or wait. <br>
-Risk: Face-change workflows can process a person's likeness and source video. <br>
-Mitigation: Confirm permission to use the face image and video, and verify the exact URLs with the user before submitting a job. <br>
-Risk: The helper accepts only public HTTPS media URLs and does not upload local files. <br>
-Mitigation: Use public HTTPS URLs only, avoid local file paths, and do not run unrelated sibling tools that have not been reviewed. <br>
+## Use Case:
 
+External users and developers use this skill to run WeryAI face replacement on an existing public HTTPS video with a public HTTPS reference face image. It helps an agent validate inputs, submit or poll the WeryAI job, and return generated video links.
 
-## Reference(s): <br>
-- [WeryAI llms.txt](https://docs.weryai.com/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/video-tool-face-change) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON CLI output from the WeryAI helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, network access, and public HTTPS video and image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unexpected extra JSON fields may be forwarded to the external WeryAI API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass only the documented video_url and image_url fields, inspect the spec output, and use dry-run before submitting a job.
+
+Risk: Paid submit or wait runs are documented as requiring confirmation, but that confirmation gate is not enforced by the script.
+
+Mitigation: Require explicit user confirmation of both URLs before any non-dry-run submit or wait command.
+
+Risk: The workflow sends provided media URLs to WeryAI for processing.
+
+Mitigation: Use only public HTTPS media URLs that the user intends to send to WeryAI, and keep WERYAI_API_KEY only in the runtime environment.
+
+## Reference(s):
+
+- [WeryAI llms.txt](https://docs.weryai.com/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/video-tool-face-change)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, public HTTPS video and image URLs, and explicit confirmation before paid submit or wait runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

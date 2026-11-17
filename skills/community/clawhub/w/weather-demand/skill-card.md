@@ -1,46 +1,57 @@
-## Description: <br>
-Weather-driven demand forecasting that correlates temperature with energy and commodity trade flows and provides Holt-Winters predictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weather-driven demand forecasting that correlates temperature with energy and commodity trade flows and returns Holt-Winters predictions.
 
-## Publisher: <br>
-[drivenbymyai-max](https://clawhub.ai/user/drivenbymyai-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenbymyai-max](https://clawhub.ai/user/drivenbymyai-max)
 
-## Use Case: <br>
-External agents and developers use this skill to forecast weather-driven energy or commodity demand, inspect temperature-trade seasonality, and plan inventory around expected demand changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends trade and forecasting parameters to a third-party service. <br>
-Mitigation: Confirm the provider is approved before sending sensitive proprietary demand, inventory, or forecasting assumptions. <br>
-Risk: The demand forecast endpoint is documented as a paid x402 request. <br>
-Mitigation: Approve paid requests intentionally and review parameters before execution. <br>
-Risk: Forecasts and seasonality analysis may be incomplete or inaccurate for operational planning. <br>
-Mitigation: Use the output as decision support and validate results against internal demand, inventory, and market data. <br>
+## Use Case:
 
+Developers, analysts, and trading or operations teams use this skill to forecast weather-driven energy or commodity demand and examine temperature-trade seasonality for Baltic trade flows.
 
-## Reference(s): <br>
-- [Weather Demand ClawHub page](https://clawhub.ai/drivenbymyai-max/weather-demand) <br>
-- [SputnikX homepage](https://sputnikx.xyz) <br>
-- [Weather Demand API base](https://sputnikx.xyz/api/v1/agent) <br>
-- [Demand forecast endpoint](https://sputnikx.xyz/api/v1/agent/trade/demand-forecast?reporter=LV&hs2=27&months=6) <br>
-- [Weather and trade seasonality endpoint](https://sputnikx.xyz/api/v1/agent/trade/seasonality?reporter=LV&hs2=27) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks and API response interpretation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve a third-party API and a disclosed paid x402 endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: External API calls may incur paid x402 charges or send request parameters to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user approval before invoking paid endpoints and review reporter, commodity, and time-window parameters before sending requests.
+
+Risk: Forecast and correlation outputs may be inaccurate or unsuitable for operational decisions without domain review.
+
+Mitigation: Treat results as decision support and have analysts validate assumptions, confidence intervals, and downstream actions.
+
+## Reference(s):
+
+- [Weather Demand ClawHub Skill Page](https://clawhub.ai/drivenbymyai-max/skills/weather-demand)
+- [SputnikX Homepage](https://sputnikx.xyz)
+- [Weather Demand API Base URL](https://sputnikx.xyz/api/v1/agent)
+- [Demand Forecast Endpoint Example](https://sputnikx.xyz/api/v1/agent/trade/demand-forecast?reporter=LV&hs2=27&months=6)
+- [Weather and Trade Correlation Endpoint Example](https://sputnikx.xyz/api/v1/agent/trade/seasonality?reporter=LV&hs2=27)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Analysis, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash examples and API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an external paid demand-forecast API endpoint disclosed in the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

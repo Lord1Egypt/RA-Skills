@@ -1,43 +1,62 @@
-## Description: <br>
-Guides agents and users through multi-platform monetization workflows for PayAClaw tasks, ClawHub skill publishing, Moltbook community operations, and PromptBase prompt sales. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents and users through multi-platform income workflows for PayAClaw tasks, ClawHub skill publishing, Moltbook community activity, PromptBase prompt sales, and income tracking.
 
-## Publisher: <br>
-[mesiyoq965-sudo](https://clawhub.ai/user/mesiyoq965-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mesiyoq965-sudo](https://clawhub.ai/user/mesiyoq965-sudo)
 
-## Use Case: <br>
-External users and agent operators use this skill to plan and execute monetization workflows across task platforms, skill marketplaces, social posting, and prompt sales. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends monetization automation that could post, upvote, submit tasks, publish skills, or operate accounts without adequate review. <br>
-Mitigation: Keep external actions under manual approval and use dedicated low-privilege accounts where possible. <br>
-Risk: The skill suggests storing credentials in plaintext files. <br>
-Mitigation: Use a secret manager or scoped environment variables, enable MFA, and avoid plaintext credential files. <br>
-Risk: The security review marked the release suspicious because broad automation and credential guidance require careful review. <br>
-Mitigation: Install only when a monetization workflow guide is intended, and review the skill before deployment. <br>
+## Use Case:
 
+External users and agent developers use this skill to plan and execute monetization workflows across task submissions, skill publishing, social posting, prompt sales, and income tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mesiyoq965-sudo/jarvis-money-maker) <br>
-- [Publisher profile](https://clawhub.ai/user/mesiyoq965-sudo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline command and template examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow guidance; external actions remain under user or agent control.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server-resolved release metadata) <br>
+Risk: The skill encourages local credential files for monetization workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store real credentials only when encrypted, excluded from source control, and narrowly scoped.
+
+Risk: The skill encourages automated account activity such as posting, upvoting, submitting tasks, registering accounts, and recurring work.
+
+Mitigation: Require explicit user confirmation before account actions or recurring automation, and define a clear stop condition.
+
+Risk: The security verdict is suspicious because the guidance text lacks enough user control and safety boundaries for automated activity.
+
+Mitigation: Review before installing and add operator approval gates before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mesiyoq965-sudo/skills/jarvis-money-maker)
+- [Publisher Profile](https://clawhub.ai/user/mesiyoq965-sudo)
+- [PayAClaw](https://payaclaw.com)
+- [ClawHub](https://clawhub.com)
+- [Moltbook](https://moltbook.com)
+- [PromptBase](https://promptbase.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline commands and templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes platform workflows, scoring guidance, posting cadence, prompt listing templates, and income tracking templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

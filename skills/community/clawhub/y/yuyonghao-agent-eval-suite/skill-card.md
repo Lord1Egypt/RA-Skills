@@ -1,43 +1,53 @@
-## Description: <br>
-Provides benchmark testing, A/B testing, performance regression detection, and simulation environment testing for agent evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides benchmark testing, A/B testing, performance regression detection, and simulation environment testing for agent evaluation.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and agent evaluators use this skill to benchmark agent behavior, compare prompt or implementation variants with A/B tests, detect performance regressions over time, and run simulated scenarios before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scenario files and local paths may be influenced by untrusted prompts or inputs. <br>
-Mitigation: Use trusted scenario files and avoid allowing untrusted prompts to choose local paths. <br>
-Risk: Benchmark or A/B callbacks could repeatedly act on real agents, services, or accounts. <br>
-Mitigation: Point callbacks at mocks, test agents, or test accounts unless repeated production actions are intentional. <br>
-Risk: Evaluation results may be mistaken for production readiness without human review. <br>
-Mitigation: Install and run the suite in development or test projects, then review benchmark, regression, and simulation results before deployment decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate agent behavior with repeatable benchmarks, A/B experiments, regression checks, simulations, and generated reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/yuyonghao-agent-eval-suite) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yuyonghao-123) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell examples; evaluation APIs return structured result objects and reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce benchmark summaries, A/B test outcomes, regression findings, simulation results, and Markdown or HTML reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: HTML report generation can include caller-provided titles, metric names, and result data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted report inputs or escape and sanitize fields before generating HTML output.
+
+Risk: Simulator scenario loading accepts caller-provided absolute paths.
+
+Mitigation: Pass only trusted scenario names or paths, and restrict scenario directories in agent workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-agent-eval-suite)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration instructions, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill package can produce JSON, Markdown, or HTML evaluation reports when used as a local Node.js library.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

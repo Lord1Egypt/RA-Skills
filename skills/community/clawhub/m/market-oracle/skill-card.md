@@ -1,39 +1,60 @@
-## Description: <br>
-Financial event impact analyzer that fetches breaking news, tracks metals, oil, crypto, and stock prices, and predicts short-, medium-, and long-term market ripple effects with three-layer impact analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial event impact analyzer that fetches breaking news, tracks metals, oil, crypto, and stock prices, and predicts short-, medium-, and long-term market ripple effects with three-layer impact analysis.
 
-## Publisher: <br>
-[stn0000](https://clawhub.ai/user/stn0000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stn0000](https://clawhub.ai/user/stn0000)
 
-## Use Case: <br>
-Market analysts, traders, and research users use this skill to gather public financial news and market prices, then generate structured event-impact analysis across immediate, 1-12 hour, and 12-24 hour horizons. Its outputs are informational analysis and should not be treated as investment advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper tools contact external news and market-data services. <br>
-Mitigation: Use public news URLs only and run setup in a virtual environment when installing dependencies. <br>
-Risk: Market-impact predictions can be wrong or misleading if treated as certainty. <br>
-Mitigation: Treat outputs as informational analysis, keep the included disclaimer, and avoid presenting results as investment advice. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stn0000/market-oracle) <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to collect public market news and price data, then generate structured financial event impact analysis across immediate, 1-12 hour, and 12-24 hour horizons. The skill is for informational and educational analysis and should not be treated as investment advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text analysis with optional JSON from helper tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes market snapshots, time-horizon predictions, correlation-chain analysis, and an investment-risk disclaimer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can fetch live public data and user-provided URLs, so private, local, internal, or authenticated URLs could expose sensitive content.
+
+Mitigation: Grant network access only when needed, prefer explicit event text or public HTTPS news links, and avoid private or authenticated URLs.
+
+Risk: Financial event predictions can be incorrect or misread as trading recommendations.
+
+Mitigation: Keep the informational disclaimer, present predictions as uncertain, include contrarian risk, and do not provide specific buy or sell instructions.
+
+Risk: Dependency installation uses Python package installation for yfinance.
+
+Mitigation: Install dependencies in an isolated virtual environment and pin dependency versions before operational use.
+
+## Reference(s):
+
+- [Market Oracle ClawHub skill page](https://clawhub.ai/stn0000/skills/market-oracle)
+- [Market Oracle project homepage](https://github.com/stn0000/market-oracle)
+- [Google News RSS search endpoint](https://news.google.com/rss/search)
+- [Yahoo Finance RSS endpoint](https://feeds.finance.yahoo.com/rss/2.0/headline)
+- [Finviz news RSS endpoint](https://finviz.com/news_export.ashx?v=3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Analysis, Guidance, Shell commands]
+
+**Output Format:** [Markdown-style text report or JSON context containing event details, market data, news context, global headlines, and predictions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include informational risk disclaimers and may depend on live public network data from news feeds and yfinance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

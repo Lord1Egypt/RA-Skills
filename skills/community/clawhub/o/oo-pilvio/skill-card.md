@@ -1,42 +1,53 @@
-## Description: <br>
-Pilvio helps an agent read Pilvio account, billing, location, and virtual machine data through an OOMOL-connected account using the oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pilvio (pilvio.com). Use this skill for ANY Pilvio request — searching and reading data. Whenever a task involves Pilvio, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers with OOMOL-connected Pilvio accounts use this skill to inspect Pilvio user profile, billing account, data center location, and virtual machine information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup guidance may ask the user to run remote installer scripts for the oo CLI. <br>
-Mitigation: Run installer commands only after intentional user approval and only from the documented OOMOL CLI install locations. <br>
-Risk: The skill reads Pilvio account data through the user's connected OOMOL account. <br>
-Mitigation: Use it only for intended read-only Pilvio profile, billing, location, and virtual machine queries, and handle returned account data as sensitive. <br>
+## Use Case:
 
+Developers and users with an OOMOL-connected Pilvio account can use the skill to search and read account, billing, location, and virtual-machine information through Pilvio actions.
 
-## Reference(s): <br>
-- [Pilvio homepage](https://pilvio.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-pilvio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector runs return JSON data with execution metadata when commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and artifact metadata) <br>
+Risk: First-time setup runs remote CLI installer scripts, whose installer and release behavior have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before enabling the skill; install a verified CLI release separately and explicitly approve installation and any added agent-skill changes.
+
+## Reference(s):
+
+- [Pilvio homepage](https://pilvio.com/)
+- [Pilvio API documentation](https://api.pilvio.com/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI install guide](https://cli.oomol.com/install-guide.md)
+- [Pilvio skill on ClawHub](https://clawhub.ai/oomol/skills/oo-pilvio)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Natural-language responses based on Pilvio read-action results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses JSON action inputs; output depends on the requested Pilvio data.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

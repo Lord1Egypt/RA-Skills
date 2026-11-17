@@ -1,39 +1,54 @@
-## Description: <br>
-Provides guidance for creating new skills, improving existing skills, and reviewing skill quality, including core design principles, common pitfalls, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Design Guide provides Chinese-language guidance for creating, improving, and reviewing agent skills, including core design principles, common pitfalls, and best practices.
 
-## Publisher: <br>
-[tttt-bjgs](https://clawhub.ai/user/tttt-bjgs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tttt-bjgs](https://clawhub.ai/user/tttt-bjgs)
 
-## Use Case: <br>
-Developers and agent builders use this skill to design, refine, and review AI agent skills with clearer metadata, scoped responsibilities, practical constraints, and iterative evaluation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future updates could add scripts, hooks, credential access, network calls, or automatic behavior changes that are not present in this instruction-only release. <br>
-Mitigation: Review and scan new versions before installing or enabling them, especially if they add executable or credential-related files. <br>
-Risk: Skill design advice may be incomplete or unsuitable for a specific domain if applied without review. <br>
-Mitigation: Have maintainers review generated or revised skill instructions and validate them with representative tasks before release. <br>
+## Use Case:
 
+Developers and skill authors use this skill for Chinese-language guidance when creating new agent skills, improving existing skills, or reviewing skill quality.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no scripts, hooks, credential use, or network calls in the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Non-Chinese users may misunderstand or miss important guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use translation or a localized version before relying on the guidance in non-Chinese workflows.
+
+Risk: Incorrect or overly broad skill guidance could affect downstream skill quality.
+
+Mitigation: Review generated or revised skills before deployment and scan them with the normal release checks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tttt-bjgs/skills/skill-design-guide)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/tttt-bjgs)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language static guidance; no scripts, tools, credentials, or external service calls are included.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

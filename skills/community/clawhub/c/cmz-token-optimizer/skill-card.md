@@ -1,44 +1,56 @@
-## Description: <br>
-智能模型路由 - 根据任务是否需要工具调用自动选择模型。需要工具(搜索/浏览器/文件/天气/股票等)使用百炼付费模型，纯聊天使用OpenRouter免费模型。V3.1.0新增route_by_tool_required()函数。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes OpenClaw prompts that require tools to paid Bailian models and plain chat to free OpenRouter models, while offering context, heartbeat, and token-budget optimization guidance.
 
-## Publisher: <br>
-[cmz666666](https://clawhub.ai/user/cmz666666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cmz666666](https://clawhub.ai/user/cmz666666)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to reduce token usage and model spend by routing tasks, recommending leaner context bundles, optimizing heartbeat intervals, and tracking budget usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is broader than a simple model router and can write persistent OpenClaw workspace state or agent-guidance files. <br>
-Mitigation: Review generated AGENTS and HEARTBEAT files before adopting them, and avoid running overwrite-style helper commands casually. <br>
-Risk: Local usage metadata may be stored under ~/.openclaw/workspace/memory. <br>
-Mitigation: Use the skill only where local budget and usage state is acceptable, and review workspace memory files according to local data-handling policy. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to reduce context-loading and API costs by classifying prompts, recommending model routes, generating optimized agent guidance, tuning heartbeat cadence, and checking token budgets.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/cmz666666/cmz-token-optimizer) <br>
-- [ClawDIS homepage](https://github.com/Asif2BD/OpenClaw-Token-Optimizer) <br>
-- [README](artifact/README.md) <br>
-- [Security documentation](artifact/SECURITY.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-style script outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some helper flows can generate local agent guidance files or store local usage metadata under the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated agent or heartbeat guidance may change context loading, routing, or scheduling behavior in ways that affect task quality or cost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review AGENTS.md.optimized and HEARTBEAT.md changes manually before replacing existing workspace files.
+
+Risk: Optional provider-routing examples and companion-skill or GitHub clone instructions can introduce provider, credential, privacy, cost, or dependency changes if followed without review.
+
+Mitigation: Confirm provider choices, model policies, credentials, privacy requirements, and install sources before applying optional configuration.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/cmz666666/skills/cmz-token-optimizer)
+- [Publisher profile](https://clawhub.ai/user/cmz666666)
+- [Clawdis homepage](https://github.com/Asif2BD/OpenClaw-Token-Optimizer)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON CLI results, shell commands, and generated local configuration files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local OpenClaw workspace state files and generated guidance such as AGENTS.md.optimized or HEARTBEAT.md when users run the scripts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Fetches public XHunt X/Twitter hot-tweet rankings and returns Chinese summaries with tweet links and engagement data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts XHunt X/Twitter hot-tweet rankings and returns Chinese summaries, engagement data, source links, and short trend observations.
 
-## Publisher: <br>
-[DoTheWorkNow](https://clawhub.ai/user/DoTheWorkNow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dotheworknow](https://clawhub.ai/user/dotheworknow)
 
-## Use Case: <br>
-External users and developers use this skill to inspect recent XHunt tweet rankings by region, time window, and tag, then receive shareable Chinese summaries with source links and interaction metrics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts trends.xhunt.ai and depends on public page availability and structure. <br>
-Mitigation: Run it only in environments where outbound access to XHunt is acceptable, and treat degraded or failed fetch notices as limits on result completeness. <br>
-Risk: Broad hot-tweet requests can include political or controversial content when filtering mode is all. <br>
-Mitigation: Use the ai-product-only mode when users need AI product, model, or tool updates without unrelated political or entertainment content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/DoTheWorkNow/xhunt-hot-tweets-skill) <br>
-- [XHunt trends](https://trends.xhunt.ai) <br>
+## Use Case:
 
+External users and content analysts use this skill to request current XHunt hot-tweet lists filtered by region, time window, tag, and AI-product relevance. The skill formats each result with a tweet link, a Chinese one-line summary, engagement statistics, and concise observations for recap or repost workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style text containing ranked tweet URLs, one-line Chinese summaries, engagement statistics, and brief observations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses group, hours, tag, limit, and filtering mode parameters; missing fields are reported as NA rather than fabricated.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence; artifact frontmatter and changelog list 2.0.1) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may browse XHunt public ranking pages when asked broadly for hot posts or tweet summaries.
+
+Mitigation: Use it only for intended XHunt trend-summary requests and review returned tweet links and engagement data before reuse.
+
+Risk: Browser extraction or web-fetch fallback can be incomplete if XHunt is unavailable or its page structure changes.
+
+Mitigation: Follow the skill behavior that marks degraded fetching, reports unavailable fields as NA, and returns an explicit failure instead of fabricating results.
+
+Risk: The README installation example uses rsync with --delete, which removes files inside the target skill directory.
+
+Mitigation: Confirm the destination path before running the install command.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dotheworknow/skills/xhunt-hot-tweets-skill)
+- [XHunt trends](https://trends.xhunt.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese text with tweet links, one-line summaries, engagement statistics, and observations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live access to XHunt; missing data fields are reported as NA and fallback fetching may be incomplete.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter and changelog report 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

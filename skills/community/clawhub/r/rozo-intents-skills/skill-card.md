@@ -1,44 +1,65 @@
-## Description: <br>
-Cross-chain crypto payments and bridging via Rozo for USDC and USDT across Ethereum, Base, BNB Chain, Solana, Stellar, Arbitrum, and Polygon, including balance checks, QR parsing, payment creation, and payment status lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ROZO Intents Pay & Bridge helps agents send and bridge USDC/USDT via Rozo, check supported wallet balances, parse crypto payment QR codes, and check Rozo payment status across supported EVM, Solana, and Stellar networks.
 
-## Publisher: <br>
-[shawnmuggle](https://clawhub.ai/user/shawnmuggle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawnmuggle](https://clawhub.ai/user/shawnmuggle)
 
-## Use Case: <br>
-External users and agent developers use this skill to route crypto payment intents, check wallet balances, parse payment QR codes, estimate fees, create Rozo payments after confirmation, and track payment status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT No Attribution
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto payment workflows send wallet addresses, balances, transaction hashes, QR payment contents, and payment setup details to external Rozo-operated services. <br>
-Mitigation: Install only if that data sharing is acceptable for the intended workflow, and avoid using the skill for unrelated blockchain questions or non-payment tasks. <br>
-Risk: Incorrect chain, token, amount, recipient, memo, fee, or total could cause an unintended payment outcome. <br>
-Mitigation: Verify all payment details before confirming, ask for the chain when an EVM address is ambiguous, and use the dry-run fee check before creating a payment. <br>
+## Use Case:
 
+External users and developers use this skill to send or bridge stablecoin payments via Rozo, check USDC/USDT balances, parse payment QR codes, and track Rozo payment status while confirming irreversible crypto transfer details before funding.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/shawnmuggle/rozo-intents-skills) <br>
-- [Rozo API Reference](references/api-reference.md) <br>
-- [Supported Chains](references/supported-chains.md) <br>
-- [Wallet Address Detection Rules](references/wallet-detection.md) <br>
-- [Rozo Payment API](https://intentapiv4.rozo.ai/functions/v1/payment-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured payment, balance, QR parsing, and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js for bundled scripts and expects explicit user confirmation before creating a payment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Crypto transfers are irreversible, and a wrong address, chain, token, memo, or amount can cause unrecoverable loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show the full payment details and require explicit user confirmation before funding; keep the shipped confirmation thresholds at 0 unless the user intentionally accepts no-confirmation payments.
+
+Risk: The skill sends wallet addresses, payment details, status identifiers, and Stellar trustline checks to external services.
+
+Mitigation: Run balance, payment, and status checks only when the user requests them, and disclose that financial metadata is sent to Rozo APIs and Horizon as part of the workflow.
+
+Risk: Untrusted QR, address, or memo text can be unsafe if interpolated into shell commands.
+
+Mitigation: Pass user-controlled values as safely quoted command arguments and avoid shell interpolation when invoking the documented Node.js scripts.
+
+Risk: The security review flags optional no-confirmation execution and an unaudited external wallet-funding command as review concerns.
+
+Mitigation: Review the funding path before deployment, require user verification of payment details, and leave no-confirmation execution disabled unless deliberately accepted.
+
+## Reference(s):
+
+- [ROZO Intents Pay & Bridge](https://clawhub.ai/shawnmuggle/skills/rozo-intents-skills)
+- [Rozo API Reference](artifact/references/api-reference.md)
+- [Supported Tokens and Chains](artifact/references/supported-chains.md)
+- [Wallet Address Detection Rules](artifact/references/wallet-detection.md)
+- [Rozo](https://rozo.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured payment, balance, QR parsing, and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; normal operation transmits wallet addresses, chain and token choices, amounts, memos, and payment IDs to Rozo APIs.]
+
+## Skill Version(s):
+
+1.0.9 (source: evidence release, artifact frontmatter, version.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

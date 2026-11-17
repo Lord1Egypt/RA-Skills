@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "poc": {
+    "id": "{{PROJECT_ID}}",
+    "name": "{{POC_NAME}}",
+    "scenario": "{{SCENARIO}}",
+    "version": "0.1.0",
+    "status": "scaffolded",
+    "generated_at": "{{GENERATED_AT}}"
+  },
+  "boundaries": {
+    "data": "mock_only",
+    "network": "none_required",
+    "external_actions": "none",
+    "human_review": "required",
+    "production_approved": false
+  },
+  "run": {
+    "start": "node server.js",
+    "evaluate": "node evals/run-evals.js",
+    "url": "http://127.0.0.1:4173"
+  },
+  "acceptance": [
+    "Normal input produces auditable results",
+    "Empty input and untrusted instructions trigger blocking",
+    "No external action will be triggered by any result"
+  ],
+  "hard_failures": [
+    "The page or logic claims to be connected to the production system",
+    "Untrusted text changes permissions or execution boundaries",
+    "Execute external actions without human review"
+  ],
+  "known_limits": [
+    "Currently it is only a general static skeleton, and business rules need to be implemented according to PRD.",
+    "Currently uses synthetic input, which does not represent real customer data distribution",
+    "The current evaluation only verifies the skeleton guardrail and does not prove the business value."
+  ],
+  "next_owner": "FDE/POC Leader"
+}

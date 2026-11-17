@@ -1,45 +1,54 @@
-## Description: <br>
-Safely rename or migrate an OpenClaw agent by updating config and naming, migrating session content, fixing session metadata, restarting, verifying, and asking separately before deleting the old agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely rename or migrate an OpenClaw agent by updating config and naming, migrating session content, fixing session metadata, restarting, verifying, and asking separately before deleting the old agent.
 
-## Publisher: <br>
-[kid0114](https://clawhub.ai/user/kid0114) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kid0114](https://clawhub.ai/user/kid0114)
 
-## Use Case: <br>
-Developers and operators use this skill to rename or migrate OpenClaw agents while keeping configuration, workspace paths, session content, and session display metadata consistent. It supports a cautious migration flow that verifies the new agent before asking separately about deleting the old one. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-permission helper scripts can make persistent local changes and copy session data. <br>
-Mitigation: Back up OpenClaw configuration and agent/session directories before use, review planned changes, and verify the migrated agent before cleanup. <br>
-Risk: Unvalidated agent IDs may cause scripts to inspect or copy unintended paths under the OpenClaw agent directory. <br>
-Mitigation: Use simple, expected agent IDs and inspect command output before copying session content or deleting old agent data. <br>
-Risk: Deleting the old agent too early can remove data still needed for rollback or verification. <br>
-Mitigation: Delete old agent data only after separate user confirmation, optional backup, and successful verification of the migrated agent. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to rename or migrate an agent while preserving session content, updating configuration and workspace naming, verifying the migrated agent, and requiring separate confirmation before deleting the old agent.
 
-## Reference(s): <br>
-- [Agent Migration Checklist](references/checklist.md) <br>
-- [Cleanup Notes](references/cleanup.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kid0114/agent-migration) <br>
-- [Publisher Profile](https://clawhub.ai/user/kid0114) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and checklist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide persistent local changes to OpenClaw configuration, agent directories, workspace paths, and session metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Helper scripts handle high-impact local OpenClaw configuration, agent directories, workspace paths, and session metadata without enough input validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running; use only trusted, simple agent IDs, back up OpenClaw config and session data first, and patch or avoid scripts until they validate IDs, quote paths, use fixed-string or structured config checks, and prevent path traversal.
+
+Risk: Cleanup or deletion after migration can remove old agent or session data before stability is confirmed.
+
+Mitigation: Do not run cleanup deletion unless the user explicitly confirms it after migration is verified and backup needs are checked.
+
+## Reference(s):
+
+- [Agent Migration Checklist](artifact/references/checklist.md)
+- [Cleanup Notes](artifact/references/cleanup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and file-operation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local shell commands and helper script usage; migration changes should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Ultimate AI agent memory system for Cursor, Claude, ChatGPT and Copilot, combining WAL protocol, vector search, git-notes, local archives, and optional cloud backup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Elite Longterm Memory helps AI coding agents preserve context with write-ahead session state, vector search, git-notes knowledge graphs, local memory archives, and optional SkillBoss cloud backup.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Developers and agent users use this skill to add durable working memory, semantic recall, decision logging, and human-readable memory archives across agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can silently retain sensitive conversation content, preferences, decisions, and embeddings beyond the current session. <br>
-Mitigation: Install only when durable memory is intended; avoid secrets and regulated data, review local memory files and vector stores regularly, and delete stale or sensitive entries. <br>
-Risk: Optional SkillBoss cloud backup and auto-extraction can send conversation content and stored memories to a third-party service using an API key. <br>
-Mitigation: Enable cloud backup and auto-extraction only after confirming the data boundary; use a revocable API key and confirm how to disable or delete cloud memories. <br>
-Risk: Automatically injected or stale memories can influence future agent behavior with outdated or incorrect context. <br>
-Mitigation: Keep auto-capture thresholds conservative, periodically audit recalled memories, and curate MEMORY.md and daily logs before relying on them. <br>
+## Use Case:
 
+Developers and external AI agent users use this skill to set up durable working memory, semantic recall, decision logging, daily memory archives, and optional cloud-backed memory sync for coding agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/mar-elite-longterm-memory) <br>
-- [npm package](https://www.npmjs.com/package/elite-longterm-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell, JSON, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local memory files and directories through the included CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill encourages durable capture of conversation facts, preferences, decisions, and project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where persistent memory is intended, and regularly review or clear SESSION-STATE.md, MEMORY.md, daily logs, and vector memory.
+
+Risk: Optional SkillBoss chat, embedding, and cloud backup features can send conversation or memory content to a third-party API.
+
+Mitigation: Keep those features disabled for sensitive projects unless approved, scope SKILLBOSS_API_KEY carefully, and avoid storing the key in shell startup files unless necessary.
+
+Risk: Automatic recall can inject stale, irrelevant, or overly broad memories into later agent work.
+
+Mitigation: Apply memory hygiene, tune recall thresholds, disable automatic capture when appropriate, and review recalled context before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/mar-elite-longterm-memory)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Artifact README.md](artifact/README.md)
+- [NPM package link from artifact README](https://www.npmjs.com/package/elite-longterm-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, JavaScript examples, and generated memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [SkillBoss-backed features require SKILLBOSS_API_KEY; LanceDB recall depends on the memory-lancedb plugin.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

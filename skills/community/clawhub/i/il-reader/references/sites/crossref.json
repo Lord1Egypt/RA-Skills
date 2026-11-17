@@ -1,0 +1,222 @@
+{
+  "version": "2.4.0",
+  "source_id": "crossref",
+  "status": "blocked",
+  "checked_at": "2026-10-09T08:59:44.844Z",
+  "entry": {
+    "url": "https://api.crossref.org/",
+    "final_url": "https://api.crossref.org/swagger-ui/index.html",
+    "title": "Swagger UI",
+    "status": "empty_or_loading_document",
+    "http_status": 200,
+    "checked_at": "2026-10-09T08:59:44.844Z",
+    "identity": {
+      "declared_name": "Crossref 官方 REST API",
+      "hostname": "api.crossref.org",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "/swagger-docs",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://api.crossref.org/swagger-ui/index.html",
+      "locator": null,
+      "observed_url": "https://api.crossref.org/swagger-ui/index.html",
+      "observed_at": "2026-10-09T08:59:44.032Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Explore",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://api.crossref.org/swagger-ui/index.html",
+      "locator": {
+        "role": "button",
+        "name": "Explore",
+        "exact": true
+      },
+      "observed_url": "https://api.crossref.org/swagger-ui/index.html",
+      "observed_at": "2026-10-09T08:59:44.032Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "crossref:record-lookup",
+      "source_id": "crossref",
+      "task_kind": "record-lookup",
+      "status": "blocked",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "先确认本题渠道适用；Crossref不收录所有DOI，没有记录时采用DOI官方解析/原发布方，不把失败写成文章不存在。已定位正确记录无需另查登记机构。",
+        "先按retrieval_channels选择覆盖本题缺口的官方API/指南；原status只描述浏览器。指南不能支持当前数量或排名，受阻渠道不重复预检；需要界面时再执行下列浏览器步骤。",
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://api.crossref.org/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Explore",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://api.crossref.org/swagger-ui/index.html",
+          "locator": {
+            "role": "button",
+            "name": "Explore",
+            "exact": true
+          },
+          "observed_url": "https://api.crossref.org/swagger-ui/index.html",
+          "observed_at": "2026-10-09T08:59:44.032Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      },
+      "status_scope": "browser",
+      "retrieval_channels": [
+        {
+          "id": "crossref-public-doi",
+          "kind": "official-api",
+          "method": "GET",
+          "url_template": "https://api.crossref.org/works/{doi}",
+          "response_format": "json",
+          "documentation": [
+            "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+            "https://www.crossref.org/documentation/retrieve-metadata/rest-api/access-and-authentication/",
+            "https://community.crossref.org/t/refining-rest-api-limits-for-improved-stability-and-reliability/16137",
+            "https://www.crossref.org/documentation/retrieve-metadata/rest-api/rest-api-filters/"
+          ],
+          "use_when": "已知Crossref DOI，题目需其登记题录且所问字段实际存在；不替代指定的其他数据库。",
+          "verification": {
+            "status": "sample_verified",
+            "checked_at": "2026-10-10T03:26:16.173Z",
+            "http_status": 200,
+            "scope": "一次公共单DOI请求及其题录字段，非所有检索条件"
+          },
+          "field_paths": [
+            "message.DOI",
+            "message.title[0]",
+            "message.author",
+            "message.container-title[0]",
+            "message.published-print.date-parts",
+            "message.ISSN",
+            "message.volume",
+            "message.issue",
+            "message.page",
+            "message.is-referenced-by-count"
+          ],
+          "constraints": [
+            "DOI编码并核对返回DOI、题名和作者；出版日期区分print/online。",
+            "机构、摘要及参考文献可能未存入；缺失不能证明原文没有。",
+            "is-referenced-by-count仅为Crossref口径的动态值。"
+          ],
+          "limits": {
+            "observed_pool": "public-single",
+            "observed_limit_per_second": 5,
+            "observed_concurrency": 1,
+            "public_list_limit_per_second": 1,
+            "policy": "按当前响应头和官方约束限流，单源串行，429冷却；不虚构mailto。"
+          },
+          "fallback": "字段不全读出版方官方记录/授权全文；不为Swagger根页加载状态重做DOI请求。"
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://api.crossref.org/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "empty_or_loading_document",
+      "detail": "观察时未加载可读正文或搜索控件，未确认检索可用。"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "crossref",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T08:59:44.844Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/crossref-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/crossref-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  },
+  "status_scope": "browser"
+}

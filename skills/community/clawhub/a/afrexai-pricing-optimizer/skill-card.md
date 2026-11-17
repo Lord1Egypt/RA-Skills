@@ -1,42 +1,55 @@
-## Description: <br>
-Analyzes and optimizes pricing strategy using proven frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes and optimizes pricing strategy using proven frameworks.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business operators, founders, product teams, and consultants use this skill to analyze current pricing, compare market positioning, and draft pricing recommendations with implementation and A/B testing plans. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pricing, revenue, conversion, churn, cost, and customer-segment inputs may be commercially sensitive. <br>
-Mitigation: Provide only business metrics appropriate for the agent environment and handle generated analysis as sensitive business advice. <br>
-Risk: Pricing recommendations may be incomplete or unsuitable without business review. <br>
-Mitigation: Review recommendations internally and use testing, such as A/B experiments, before applying pricing changes broadly. <br>
-Risk: Linked external resources are outside the skill artifact. <br>
-Mitigation: Review external resources separately before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Revenue calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Industry context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Business operators, product teams, and pricing advisors use this skill to evaluate pricing strategy, compare market positioning, and produce pricing recommendations with implementation and A/B test plans.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown pricing analysis with tables, recommendations, implementation steps, and A/B test suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided pricing, customer, competitor, conversion, churn, cost, and value-metric inputs to produce advisory recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional external links and the related skill install command may lead users to resources outside this skill.
+
+Mitigation: Review linked resources and only install related skills when the publisher and current contents are trusted.
+
+Risk: Pricing recommendations can affect revenue, conversion, churn, or customer trust if adopted without validation.
+
+Mitigation: Validate material pricing changes with A/B tests, margin checks, and business review before broad rollout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-pricing-optimizer)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+- [Revenue calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Industry context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance]
+
+**Output Format:** [Markdown pricing analysis with tables, recommendations, implementation steps, and A/B test suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current-state analysis, recommended tiers, expected impact estimates, and rollout guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

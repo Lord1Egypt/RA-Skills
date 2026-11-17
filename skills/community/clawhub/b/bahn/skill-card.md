@@ -1,36 +1,49 @@
-## Description: <br>
-Search Deutsche Bahn train connections using the bahn-cli tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Deutsche Bahn train connections using the bahn-cli tool.
 
-## Publisher: <br>
-[tobiasbischoff](https://clawhub.ai/user/tobiasbischoff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tobiasbischoff](https://clawhub.ai/user/tobiasbischoff)
 
-## Use Case: <br>
-External users and agents use this skill to find Deutsche Bahn train connections between German stations, including departure times, durations, platforms, changes, stops, and train numbers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to run a local Node.js bahn-cli project and install its dependencies if needed. <br>
-Mitigation: Install and run it only when ~/Code/bahn-cli is the intended train-search project, and review that project's package.json and dependencies before running npm install. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Travel planners and agent users use this skill to search Deutsche Bahn connections between German stations, including departure and arrival times, platforms, duration, changes, stops, and train numbers.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and summarized train-search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include departure and arrival times, platform numbers, duration, changes, intermediate stops, and train numbers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill instructs the agent to install and run code from an unspecified local project path outside the reviewed skill package.
+
+Mitigation: Use it only after verifying the local bahn-cli project and its dependencies; prefer a release that bundles the CLI or pins an official repository, commit, and lockfile.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobiasbischoff/skills/bahn)
+- [ClawHub publisher profile](https://clawhub.ai/user/tobiasbischoff)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and train connection text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Train connection details may include departure and arrival times, platforms, duration, changes, intermediate stops, and train numbers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

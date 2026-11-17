@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7bn8fv79mjtchs17087tdtsx82fc86",
-  "slug": "mediaio-vidu-video-generator",
-  "version": "1.0.1",
-  "publishedAt": 1773915094626
+  "name": "mediaio-vidu-video-generator",
+  "description": "Generate AI videos using Vidu via Media.io OpenAPI. Supports text-to-video and image-to-video with high-quality motion, smooth transitions.",
+  "requires": {
+    "env": ["API_KEY"]
+  },
+  "metadata": {
+    "mediaio": {
+      "emoji": "",
+      "priority": "P1",
+      "core_goal_keywords": ["text-to-video", "image-to-video"],
+      "trigger_keywords": ["Vidu", "Vidu AI", "Vidu video generator"]
+    },
+    "publisher": "Community Maintainer",
+    "source": "https://platform.media.io/docs/"
+  }
 }

@@ -1,42 +1,53 @@
-## Description: <br>
-Orchestrates an explicit stock-trading workflow that generates a trade decision, submits a Longbridge brokerage order, and archives the operation log. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates a stock trading workflow that runs decision analysis, places a Longbridge brokerage order, and records the result only when the user explicitly requests trading decision and execution or names the skill.
 
-## Publisher: <br>
-[canonxu](https://clawhub.ai/user/canonxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canonxu](https://clawhub.ai/user/canonxu)
 
-## Use Case: <br>
-External users and agent operators use this skill when they explicitly want an agent to run an end-to-end stock trading workflow: decide on an action, place a live brokerage order, and record the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to place live brokerage orders, but the security evidence says it does not require a hard final confirmation with exact order details before live execution. <br>
-Mitigation: Require explicit confirmation of ticker, side, order type, price, quantity, account, and maximum exposure immediately before submitting any order; use paper trading or dry-run mode first. <br>
-Risk: Incorrect decision extraction or incomplete parameter validation could submit an unintended order. <br>
-Mitigation: Validate all trading parameters against strict price, size, and order-type limits before invoking the Longbridge trading skill, and terminate the workflow if any required value is missing. <br>
-Risk: Trade logs may contain sensitive account, order, or strategy information. <br>
-Mitigation: Confirm where trade logs are stored, restrict access to authorized users, and avoid recording unnecessary secrets or credentials. <br>
+## Use Case:
 
+External users and developers use this skill to coordinate an end-to-end securities workflow from trading decision analysis through live order placement and operational logging. It is intended for explicit trading execution requests, not general market discussion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/canonxu/my-stock-decide-execute-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text status messages with trade parameters, order results, and log summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ticker, side, target price, target position or share count, order status, order identifier, failure reason, and log summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can proceed to live Longbridge brokerage orders without a separate final user approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require final confirmation immediately before order placement, use a dry-run default, and enforce order-size limits before connecting a live account.
+
+Risk: Incorrect or incomplete extracted trading parameters could result in unintended order details.
+
+Mitigation: Validate symbol, side, price, and quantity before execution, and stop the workflow if any required value is missing or invalid.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/canonxu/skills/my-stock-decide-execute-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown status report with decision details, order result, and log summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stock symbol, buy or sell direction, target price, target position or share count, order status, order ID or failure reason, and log record count.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

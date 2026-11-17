@@ -1,0 +1,7 @@
+{
+  "video_url": "https://example.com/source.mp4",
+  "sub_tasks": [
+    "asr",
+    "hot"
+  ]
+}

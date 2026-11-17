@@ -1,42 +1,55 @@
-## Description: <br>
-Work with Microsoft Dynamics 365 CRM records, accounts, contacts, leads, opportunities, and activities - powered by ClawLink. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Microsoft Dynamics 365 CRM records, accounts, contacts, leads, opportunities, and activities - powered by ClawLink.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Sales and operations users can ask an agent to find, create, and update Dynamics 365 CRM records such as accounts, contacts, leads, opportunities, cases, invoices, and sales orders through ClawLink. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update Dynamics 365 CRM records, which may affect customer, sales, invoice, case, or opportunity data. <br>
-Mitigation: Review proposed tool calls and parameters before approving write actions, and rely on Dynamics 365 roles and field-level permissions to limit access. <br>
-Risk: The workflow depends on ClawLink OAuth and credential handling for a connected Dynamics 365 account. <br>
-Mitigation: Connect only a trusted ClawLink account, review requested permissions during OAuth, and revoke or reconnect access if credentials or permissions change. <br>
+## Use Case:
 
+Developers, operators, and CRM users use this skill to connect OpenClaw to Microsoft Dynamics 365 through ClawLink, discover available CRM tools, and work with records such as accounts, contacts, leads, opportunities, cases, invoices, and sales orders.
 
-## Reference(s): <br>
-- [ClawHub Dynamics 365 skill page](https://clawhub.ai/hith3sh/dynamics-365-crm) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=dynamics-365-crm) <br>
-- [ClawLink Dynamics 365 connection dashboard](https://claw-link.dev/dashboard?add=dynamics-365) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ClawLink pairing and a connected Microsoft Dynamics 365 account before CRM tools are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill can access sensitive CRM data such as leads, invoices, opportunities, and sales orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when ClawLink and the OpenClaw package source are trusted, and use a least-privileged Dynamics 365 account.
+
+Risk: Create and update tools can modify Dynamics 365 CRM records.
+
+Mitigation: Review CRM writes before confirming them and ensure the connected account has only the roles needed for the intended workflow.
+
+## Reference(s):
+
+- [Dynamics 365 Skill Page](https://clawhub.ai/hith3sh/skills/dynamics-365)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=dynamics-365-crm)
+- [ClawLink Dynamics 365 Dashboard](https://claw-link.dev/dashboard?add=dynamics-365)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides account pairing, integration setup, tool discovery, CRM read operations, and confirmed CRM write operations.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

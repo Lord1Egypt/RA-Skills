@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>绘本</title>
+<style>
+  :root {
+    --paper: #faf6ee;
+    --paper-edge: #f1e9db;
+    --ink: #3d352b;
+    --ink-soft: #7a6f60;
+    --accent: #c9743f;
+    --accent-soft: #e9c9a8;
+    --shadow: rgba(61, 53, 43, 0.16);
+    --page-font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: var(--page-font);
+    background: radial-gradient(circle at 50% 0%, #fff 0%, var(--paper) 55%, var(--paper-edge) 100%);
+    color: var(--ink);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .book {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ---------- 每一屏（封面 / 内页 / 尾页） ---------- */
+  .screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(40px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    padding: clamp(20px, 4vw, 64px);
+  }
+  .screen.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    z-index: 2;
+  }
+  .screen.leaving {
+    opacity: 0;
+    visibility: visible;
+    transform: translateX(-40px);
+    z-index: 1;
+  }
+
+  /* ---------- 封面 ---------- */
+  .cover-inner {
+    position: relative;
+    width: min(92vw, 900px);
+    aspect-ratio: 4 / 3;
+    max-height: 88vh;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px -20px var(--shadow);
+  }
+  .cover-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .cover-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(28px, 5vw, 56px);
+    background: linear-gradient(to top, rgba(30, 24, 16, 0.72) 0%, rgba(30, 24, 16, 0.15) 45%, transparent 70%);
+    color: #fff;
+  }
+  .cover-overlay h1 {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.35);
+    line-height: 1.2;
+  }
+  .cover-overlay p {
+    margin-top: 12px;
+    font-size: clamp(15px, 2vw, 20px);
+    font-weight: 400;
+    opacity: 0.92;
+  }
+  .start-btn {
+    align-self: flex-start;
+    margin-top: 28px;
+    padding: 13px 30px;
+    border: none;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: clamp(15px, 2vw, 18px);
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 10px 24px -8px rgba(201, 116, 63, 0.8);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .start-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -8px rgba(201, 116, 63, 0.9); }
+  .start-btn:active { transform: translateY(0); }
+
+  /* ---------- 内页：左图右文 ---------- */
+  .spread {
+    width: min(96vw, 1180px);
+    height: min(84vh, 720px);
+    background: #fffdf9;
+    border-radius: 24px;
+    box-shadow: 0 24px 60px -24px var(--shadow);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+  .spread .art {
+    position: relative;
+    background: var(--paper-edge);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(18px, 3vw, 40px);
+  }
+  .spread .art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 14px 30px -14px var(--shadow);
+    aspect-ratio: 3 / 4;
+  }
+  .spread .story {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(28px, 5vw, 64px);
+  }
+  .spread .page-no {
+    position: absolute;
+    top: clamp(20px, 3vw, 36px);
+    right: clamp(24px, 4vw, 44px);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .spread .story p {
+    font-size: clamp(20px, 2.6vw, 30px);
+    line-height: 1.9;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .spread .story p + p { margin-top: 1em; }
+
+  /* ---------- 尾页 ---------- */
+  .end-inner { text-align: center; }
+  .end-inner .mark {
+    font-size: clamp(46px, 8vw, 84px);
+    line-height: 1;
+  }
+  .end-inner h2 {
+    margin-top: 20px;
+    font-size: clamp(24px, 4vw, 38px);
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .end-inner p {
+    margin-top: 12px;
+    font-size: clamp(15px, 2vw, 19px);
+    color: var(--ink-soft);
+  }
+  .replay-btn {
+    margin-top: 28px;
+    padding: 12px 28px;
+    border: 1.5px solid var(--accent);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .replay-btn:hover { background: var(--accent); color: #fff; }
+
+  /* ---------- 导航 ---------- */
+  .nav-arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 253, 249, 0.9);
+    box-shadow: 0 6px 18px -6px var(--shadow);
+    color: var(--ink);
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .nav-arrow:hover { transform: translateY(-50%) scale(1.08); }
+  .nav-arrow.prev { left: clamp(12px, 2vw, 28px); }
+  .nav-arrow.next { right: clamp(12px, 2vw, 28px); }
+  .nav-arrow.show { display: flex; }
+  .nav-arrow[disabled] { opacity: 0.3; cursor: default; }
+
+  .progress {
+    position: fixed;
+    bottom: clamp(16px, 3vh, 28px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    gap: 8px;
+    z-index: 20;
+    padding: 8px 14px;
+    background: rgba(255, 253, 249, 0.85);
+    border-radius: 999px;
+    box-shadow: 0 6px 16px -8px var(--shadow);
+  }
+  .progress.show { display: flex; }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .dot.active { background: var(--accent); transform: scale(1.35); }
+
+  /* ---------- 背景音乐 ---------- */
+  .music-btn {
+    position: fixed;
+    top: clamp(14px, 2.5vh, 24px);
+    right: clamp(14px, 2.5vw, 24px);
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 253, 249, 0.9);
+    box-shadow: 0 6px 16px -8px var(--shadow);
+    cursor: pointer;
+    z-index: 30;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+  }
+  .music-btn:hover { transform: scale(1.08); }
+  .music-btn.playing { animation: spin 6s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- 移动端：上图下文 ---------- */
+  @media (max-width: 720px) {
+    .spread {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr auto;
+      height: min(88vh, 760px);
+    }
+    .spread .art { padding: 16px 16px 8px; }
+    .spread .art img { aspect-ratio: 4 / 3; height: auto; max-height: 44vh; }
+    .spread .story { padding: 20px 26px 32px; justify-content: flex-start; }
+    .spread .story p { font-size: clamp(17px, 4.6vw, 21px); line-height: 1.75; }
+    .nav-arrow { width: 44px; height: 44px; }
+  }
+</style>
+</head>
+<body>
+  <div class="book" id="book"></div>
+
+  <button class="nav-arrow prev" id="prevBtn" aria-label="上一页">‹</button>
+  <button class="nav-arrow next" id="nextBtn" aria-label="下一页">›</button>
+  <div class="progress" id="progress"></div>
+  <button class="music-btn" id="musicBtn" aria-label="背景音乐" title="背景音乐">🎵</button>
+  <audio id="bgm" loop></audio>
+
+<script id="book-data" type="application/json">
+__BOOK_DATA_JSON__
+</script>
+
+<script>
+(function () {
+  // 默认示例数据：直接打开 template.html 即可预览效果；构建脚本会替换上方 JSON。
+  var FALLBACK = {
+    "title": "小熊找月亮",
+    "subtitle": "一个关于勇气与陪伴的睡前故事",
+    "cover_image": "",
+    "music": "",
+    "pages": [
+      { "image": "", "text": "夜色很静，小熊趴在窗台上，望着天上圆圆的月亮。" },
+      { "image": "", "text": "“月亮一定很软吧？”小熊想，“我要去摸一摸它。”" },
+      { "image": "", "text": "于是小熊背起小背包，踏着月光，走进了森林。" }
+    ]
+  };
+
+  var raw = document.getElementById('book-data').textContent.trim();
+  var data;
+  try { data = raw && raw.indexOf('__BOOK_DATA') === -1 ? JSON.parse(raw) : FALLBACK; }
+  catch (e) { data = FALLBACK; }
+
+  var book = document.getElementById('book');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var progress = document.getElementById('progress');
+  var musicBtn = document.getElementById('musicBtn');
+  var bgm = document.getElementById('bgm');
+
+  document.title = data.title || '绘本';
+
+  var screens = [];
+  var pages = data.pages || [];
+  // 屏索引：0 = 封面，1..N = 内页，N+1 = 尾页
+  var total = pages.length + 2;
+  var current = 0;
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function paragraphs(text) {
+    return String(text || '').split(/\n+/).filter(Boolean).map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
+  }
+
+  // 封面
+  var cover = document.createElement('div');
+  cover.className = 'screen';
+  cover.innerHTML =
+    '<div class="cover-inner">' +
+      (data.cover_image ? '<img src="' + esc(data.cover_image) + '" alt="封面" />' : '<div style="width:100%;height:100%;background:linear-gradient(135deg,#e9c9a8,#c9743f)"></div>') +
+      '<div class="cover-overlay">' +
+        '<h1>' + esc(data.title || '绘本') + '</h1>' +
+        (data.subtitle ? '<p>' + esc(data.subtitle) + '</p>' : '') +
+        '<button class="start-btn" id="startBtn">开始阅读 →</button>' +
+      '</div>' +
+    '</div>';
+  book.appendChild(cover);
+  screens.push(cover);
+
+  // 内页
+  pages.forEach(function (pg, i) {
+    var s = document.createElement('div');
+    s.className = 'screen';
+    s.innerHTML =
+      '<div class="spread">' +
+        '<div class="art">' +
+          (pg.image ? '<img src="' + esc(pg.image) + '" alt="第' + (i + 1) + '页插图" />' : '<div style="width:100%;height:100%;border-radius:16px;background:linear-gradient(135deg,#f1e9db,#e9c9a8)"></div>') +
+        '</div>' +
+        '<div class="story">' +
+          '<span class="page-no">' + (i + 1) + ' / ' + pages.length + '</span>' +
+          paragraphs(pg.text) +
+        '</div>' +
+      '</div>';
+    book.appendChild(s);
+    screens.push(s);
+  });
+
+  // 尾页
+  var end = document.createElement('div');
+  end.className = 'screen';
+  end.innerHTML =
+    '<div class="end-inner">' +
+      '<div class="mark">🌙</div>' +
+      '<h2>故事讲完啦</h2>' +
+      '<p>晚安，做个好梦～</p>' +
+      '<button class="replay-btn" id="replayBtn">再读一遍</button>' +
+    '</div>';
+  book.appendChild(end);
+  screens.push(end);
+
+  // 进度点（仅内页）
+  pages.forEach(function (_, i) {
+    var d = document.createElement('span');
+    d.className = 'dot';
+    d.addEventListener('click', function () { go(i + 1); });
+    progress.appendChild(d);
+  });
+  var dots = progress.querySelectorAll('.dot');
+
+  function go(idx) {
+    if (idx < 0 || idx >= total || idx === current) return;
+    var prev = screens[current];
+    prev.classList.add('leaving');
+    prev.classList.remove('active');
+    setTimeout(function () { prev.classList.remove('leaving'); }, 500);
+    current = idx;
+    screens[current].classList.add('active');
+    update();
+  }
+
+  function update() {
+    var isSpread = current >= 1 && current <= pages.length;
+    prevBtn.classList.toggle('show', current > 0);
+    nextBtn.classList.toggle('show', current < total - 1);
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+    progress.classList.toggle('show', isSpread);
+    if (isSpread) {
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === current - 1); });
+    }
+  }
+
+  prevBtn.addEventListener('click', function () { go(current - 1); });
+  nextBtn.addEventListener('click', function () { go(current + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') go(current + 1);
+    else if (e.key === 'ArrowLeft') go(current - 1);
+  });
+
+  book.addEventListener('click', function (e) {
+    if (e.target.closest('.start-btn') || e.target.closest('.replay-btn') || e.target.closest('button')) return;
+    var isSpread = current >= 1 && current <= pages.length;
+    if (!isSpread) return;
+    var x = e.clientX / window.innerWidth;
+    if (x > 0.6) go(current + 1);
+    else if (x < 0.4) go(current - 1);
+  });
+
+  cover.querySelector('#startBtn').addEventListener('click', function () { go(1); tryPlay(); });
+  end.querySelector('#replayBtn').addEventListener('click', function () { go(0); });
+
+  // 背景音乐
+  if (data.music) {
+    bgm.src = data.music;
+    var playing = false;
+    function setState(p) {
+      playing = p;
+      musicBtn.textContent = p ? '🎵' : '🔇';
+      musicBtn.classList.toggle('playing', p);
+    }
+    window.tryPlay = function () {
+      bgm.play().then(function () { setState(true); }).catch(function () {});
+    };
+    musicBtn.addEventListener('click', function () {
+      if (playing) { bgm.pause(); setState(false); }
+      else { tryPlay(); }
+    });
+    setState(false);
+  } else {
+    window.tryPlay = function () {};
+    musicBtn.style.display = 'none';
+  }
+
+  // 初始化：显示封面
+  screens[0].classList.add('active');
+  update();
+})();
+</script>
+</body>
+</html>

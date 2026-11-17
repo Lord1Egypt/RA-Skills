@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI 通识课 · A2 AI 是什么/不是什么</title>
+<style>body{font-family:"Microsoft YaHei",sans-serif;margin:0;background:#0f172a;color:#e2e8f0}header{padding:14px 20px;background:#334155}h1{margin:0;font-size:18px}.wrap{display:flex;gap:16px;padding:16px 20px;flex-wrap:wrap}#c{background:#fff;border-radius:8px}.panel{background:#1e293b;padding:14px;border-radius:8px;min-width:240px}button{background:#6366f1;color:#fff;border:0;padding:8px 12px;border-radius:6px;margin:4px 6px 0 0;cursor:pointer}.note{font-size:12px;color:#94a3b8;margin-top:8px}</style></head>
+<body><header><h1>AI 通识课 · A2 AI 是什么、不是什么 · Jagged Frontier</h1></header>
+<div class="wrap"><div id="c"></div>
+<div class="panel"><div><b>切换视角</b></div>
+<button id="can">显示「能做到」</button><button id="cannot">显示「不能做到」</button><button id="reset" style="background:#475569">重置</button>
+<div class="note" id="st">当前：全部</div>
+<div class="note">核心：Jagged Frontier（锯齿边界）、Hallucination 结构性。</div></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.0.3/p5.min.js"></script>
+<script>if(typeof p5==='undefined'){document.write('<script src="https://cdn.jsdelivr.net/npm/p5@2.0.3/lib/p5.min.js"><\/script>')}</script>
+<script>const s={mode:'all'};
+const sk=p=>{p.setup=()=>{const c=p.createCanvas(420,300);c.parent('c');p.textFont('sans-serif')};
+p.draw=()=>{p.background(245);p.fill(30);p.noStroke();p.textSize(13);p.text('Jagged Frontier：能力呈锯齿状分布',16,24);
+const ys=[80,120,160,200,240];ys.forEach((y,i)=>{const can=(i%2===0);const on=(s.mode==='all')||(s.mode==='can'&&can)||(s.mode==='cannot'&&!can);
+p.fill(on?(can?'#16a34a':'#dc2626'):'#cbd5e1');p.rect(40+i*70,y-14,56,28);p.fill(on?255:120);p.textSize(10);p.text(can?'能':'不能',52+i*70,y+4);});}};
+new p5(sk);
+const set=(m)=>{s.mode=m;document.getElementById('st').textContent='当前：'+(m==='all'?'全部':(m==='can'?'能做到':'不能做到'))};
+document.getElementById('can').onclick=()=>set('can');
+document.getElementById('cannot').onclick=()=>set('cannot');
+document.getElementById('reset').onclick=()=>set('all');</script></body></html>

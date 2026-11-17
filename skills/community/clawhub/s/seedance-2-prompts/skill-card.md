@@ -1,42 +1,59 @@
-## Description: <br>
-Searches a live YouMind library for community-curated Seedance 2.0 video generation prompts and helps an agent present concise prompt recommendations with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Seedance 2.0 video generation prompts curated from the community for cinematic, realistic, animated, and creative Seedance 2.0 videos.
 
-## Publisher: <br>
-[dophinl](https://clawhub.ai/user/dophinl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dophinl](https://clawhub.ai/user/dophinl)
 
-## Use Case: <br>
-External users and developers use this skill to find Seedance 2.0 prompt examples for cinematic scenes, product videos, character animation, nature footage, and other AI video concepts. The agent searches the YouMind prompt library and summarizes a small set of relevant results with links for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to YouMind when the prompt library is queried. <br>
-Mitigation: Use non-sensitive search terms and avoid submitting private, confidential, or regulated information. <br>
-Risk: Prompt results are community-curated and may include links to external source material. <br>
-Mitigation: Review prompt content and linked sources before reusing them in production workflows. <br>
+## Use Case:
 
+External users, developers, and creative teams use this skill to search a live YouMind library for Seedance 2.0 video-generation prompts, review concise prompt previews, and follow source or gallery links for attribution and examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dophinl/seedance-2-prompts) <br>
-- [YouMind Seedance 2.0 prompt gallery](https://youmind.com/seedance-2-0-prompts) <br>
-- [YouMind video prompts API](https://youmind.com/youhome-api/video-prompts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown prompt recommendations with source links and an attribution footer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Presents up to three prompt results per response; search terms are sent to YouMind.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Search queries are sent to the YouMind API and may disclose private information entered by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, credentials, confidential project details, or personal data in search queries.
+
+Risk: Returned prompt text and source links are third-party community content.
+
+Mitigation: Treat results as untrusted reference material, verify source links when needed, and adapt prompts before production use.
+
+Risk: Installing from an unverified source could introduce altered skill files.
+
+Mitigation: Install from ClawHub or another pinned, verified source and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dophinl/skills/seedance-2-prompts)
+- [YouMind Seedance 2.0 Gallery](https://youmind.com/seedance-2-0-prompts)
+- [YouMind Video Prompts API](https://youmind.com/youhome-api/video-prompts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with prompt previews, source links, gallery links, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Presents at most three prompt results per response and includes attribution when prompts are shown.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

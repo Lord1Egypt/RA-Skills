@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn70a7591x7zefmbzr5ppbvj4h80ttar",
-  "slug": "options-spread-conviction-engine",
+  "name": "options-spread-conviction-engine",
   "version": "2.2.1",
-  "publishedAt": 1771048728954
+  "description": "Multi-regime options spread analysis engine with Kelly Criterion Position Sizing, Multi-Leg Strategies (iron condor, butterfly, calendar), and Quantitative Scanning. Scores vertical spreads using Ichimoku, RSI, MACD, Bollinger Bands, and IV term structure with mathematically-optimal position sizing.",
+  "author": "Adam Naghavi & Leonardo Da Pinchy",
+  "homepage": "https://github.com/AdamNaghs/Options-Spread-Conviction-Engine",
+  "license": "MIT",
+  "keywords": ["options", "trading", "analysis", "ichimoku", "rsi", "macd", "bollinger", "black-scholes", "quantitative", "scanner", "position-sizing", "kelly-criterion", "multi-leg", "iron-condor", "butterfly", "calendar-spread"],
+  "openclaw": {
+    "emoji": "📊",
+    "category": "finance",
+    "requires": {
+      "bins": ["python3", "bash"]
+    },
+    "install": {
+      "steps": [
+        "Setup Python virtual environment",
+        "Install dependencies (pandas, pandas_ta, yfinance)",
+        "Link wrapper script to PATH"
+      ]
+    }
+  }
 }

@@ -2,7 +2,7 @@
 name: dorodango
 description: |
   Polishes working code through successive quality passes in fresh subagents. Use after tests pass when code needs multi-dimension refinement before release
-version: 1.9.8
+version: 1.10.3
 triggers:
   - polishing
   - iterative-refinement
@@ -13,7 +13,7 @@ source: claude-night-market
 source_plugin: attune
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Dorodango Polishing Workflow
@@ -54,10 +54,18 @@ of each pass type.
 ## Convergence Model
 
 - Each pass targets one dimension
-- A pass that finds `issues_found: 0` marks that
-  dimension as **converged**
-- Convergence is irreversible per run; a converged
-  dimension is not re-run
+- A dimension converges on a record, never on the
+  passing subagent's own count alone: correctness on the
+  test command's exit code, clarity and consistency on
+  the linter and formatter exit codes plus a reviewer
+  count of 0, polish on a reviewer count of 0 from a
+  fresh subagent that did not make the edits
+- A pass that reports `issues_found: 0` without the
+  matching exit code recorded in the state file has not
+  converged
+- Convergence is reversible: a later pass that finds a
+  regression in a converged dimension un-converges it,
+  and that dimension is re-run before the run completes
 - When all 4 dimensions converge, polishing is complete
 - Maximum 10 total passes (hard limit)
 - If not converged after 10 passes, surface state to
@@ -107,8 +115,8 @@ prevent context accumulation. The subagent receives:
 - Previous pass results (summary only, not full context)
 
 Subagent dispatch is optional for targets under 100
-lines of code; in-session review is sufficient for
-small files.
+lines of code. In-session review is enough for small
+files.
 
 ## Workflow
 
@@ -127,3 +135,22 @@ small files.
 - `conserve:code-quality-principles` - KISS/YAGNI/SOLID
 - `imbue:latent-space-engineering` - frame pass prompts
   with emotional framing for better results
+
+## Exit Criteria
+
+- [ ] `.attune/dorodango-state.json` exists with `"converged": true` and all four dimensions
+  (`correctness`, `clarity`, `consistency`, `polish`) listed under `converged_dimensions`.
+- [ ] Total `pass_count` in the state file is <= 10; if 10 passes complete without full
+  convergence, the skill surfaces the unconverged dimensions to the user with a recommendation
+  to split the target into smaller units.
+- [ ] The correctness dimension converges only after all tests pass (exit code 0). A
+  correctness pass that finds failing tests never marks the dimension as converged.
+- [ ] Clarity and consistency converge only with the linter and
+  formatter exit codes recorded as 0 in the state file beside the
+  reviewer's count. A `0 issues` claim with no exit code does not
+  converge a dimension.
+- [ ] A regression found in a later pass un-converges its dimension
+  in the state file (`converged_dimensions` shrinks), and the
+  dimension is re-run before `converged: true`.
+- [ ] Each pass is dispatched as a separate subagent for targets over 100 lines, confirmed by
+  the state file recording individual pass results rather than a single bulk entry.

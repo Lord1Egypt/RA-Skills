@@ -1,51 +1,68 @@
-## Description: <br>
-Guide for operating Ika network nodes, including validators, fullnodes, and notifiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through deploying, configuring, monitoring, and troubleshooting Ika validators, fullnodes, and notifiers.
 
-## Publisher: <br>
-[omersadika](https://clawhub.ai/user/omersadika) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omersadika](https://clawhub.ai/user/omersadika)
 
-## Use Case: <br>
-Developers, DevOps engineers, and Ika infrastructure operators use this skill to deploy, configure, monitor, and troubleshoot Ika validators, fullnodes, and notifiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Validator keys, especially the root seed, can be lost or exposed during setup or operations. <br>
-Mitigation: Back up validator keys immediately, keep root seed backups offline, and treat key material with the same caution as funds. <br>
-Risk: Incorrect binaries, contract IDs, staking URLs, or chain configuration can lead to failed or unsafe node operation. <br>
-Mitigation: Verify binaries, package and object IDs, staking links, and configuration values against official Ika sources before executing commands. <br>
-Risk: Database recovery commands can delete local node state. <br>
-Mitigation: Use deletion-based recovery only as a last resort after confirming the exact path and backup or resync plan. <br>
-Risk: Example object-store or metrics proxy configuration can be misused to store real secrets in files or repositories. <br>
-Mitigation: Do not commit real AWS credentials or other secrets; use secret management appropriate for the deployment environment. <br>
+## Use Case:
 
+External developers, infrastructure engineers, and validator operators use this skill to deploy, configure, monitor, recover, and troubleshoot Ika network nodes on Sui.
 
-## Reference(s): <br>
-- [Complete Configuration Reference](references/configuration.md) <br>
-- [Operations Reference](references/operations.md) <br>
-- [Mainnet Validator Setup](references/validator-setup.md) <br>
-- [Ika homepage](https://ika.xyz) <br>
-- [Ika releases](https://github.com/dwallet-labs/ika/releases) <br>
-- [Mainnet deployed contract addresses](https://github.com/dwallet-labs/ika/blob/main/deployed_contracts/mainnet/address.yaml) <br>
-- [Testnet deployed contract addresses](https://github.com/dwallet-labs/ika/blob/main/deployed_contracts/testnet/address.yaml) <br>
-- [Ika Operator ClawHub release](https://clawhub.ai/omersadika/ika-operator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only operational guidance; commands and configuration values require operator review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill provides high-value validator and staking guidance where incorrect release artifacts, package IDs, object IDs, staking portals, or signed transactions can put funds or validator participation at risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify official Ika sources, release artifacts, package/object IDs, staking portal authenticity, and every wallet transaction before signing.
+
+Risk: Validator key material, especially root-seed.key, is sensitive and may be irreplaceable if lost.
+
+Mitigation: Back up validator keys securely, store secrets in protected storage, and avoid exposing key files through logs, config sharing, or support requests.
+
+Risk: Metrics, admin, or monitoring endpoints can expose operational data or control surfaces if reachable from the public Internet.
+
+Mitigation: Keep admin endpoints bound to localhost, restrict metrics access, use HTTPS where applicable, and protect monitoring credentials.
+
+Risk: Recovery and database deletion procedures can discard local node state and require a resync.
+
+Mitigation: Run database deletion or recovery commands only when intentionally discarding local state, and confirm backups or resync plans before proceeding.
+
+## Reference(s):
+
+- [Configuration Reference](references/configuration.md)
+- [Operations Reference](references/operations.md)
+- [Mainnet Validator Setup](references/validator-setup.md)
+- [Ika Homepage](https://ika.xyz)
+- [Ika Releases](https://github.com/dwallet-labs/ika/releases)
+- [Mainnet Contract Addresses](https://github.com/dwallet-labs/ika/blob/main/deployed_contracts/mainnet/address.yaml)
+- [Testnet Contract Addresses](https://github.com/dwallet-labs/ika/blob/main/deployed_contracts/testnet/address.yaml)
+- [Ika Mainnet Validator Staking Portal](https://ika-mainnet-validators-staking.pages.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational checklists, configuration snippets, command examples, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

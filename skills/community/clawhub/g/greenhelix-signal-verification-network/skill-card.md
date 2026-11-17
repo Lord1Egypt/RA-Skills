@@ -1,44 +1,59 @@
-## Description: <br>
-Build a signal verification system where providers prove trading signals were issued before price moves using Ed25519 signatures, timestamp proofs, and Merkle claim chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through building a signal verification network where providers prove trading signals were issued before price moves using Ed25519 signatures, timestamp proofs, Merkle claim chains, performance metrics, escrow-linked subscriptions, rolling accuracy windows, and dispute workflows.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and trading-signal operators use this guide to design agent workflows that sign, timestamp, verify, score, and dispute trading signals with escrow-linked subscription examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Signing keys or API keys could be exposed or misused when adapting the examples. <br>
-Mitigation: Use sandbox credentials first, keep AGENT_SIGNING_KEY and API keys out of prompts and logs, prefer scoped or short-lived credentials, and require explicit approval before real signing operations. <br>
-Risk: Escrow release, payment, or dispute examples could affect real funds if adopted without review. <br>
-Mitigation: Add human approval gates before escrow release or dispute filing, validate the timestamp and evidence logic, and test payment flows with sandbox accounts before production use. <br>
-Risk: Webhook destinations or event integrations could leak data or trigger unintended actions. <br>
-Mitigation: Validate webhook destinations, restrict network access where possible, and review event-handling behavior before relying on it in a live trading workflow. <br>
+## Use Case:
 
+External developers and agent builders use this guide to design cryptographically verifiable trading-signal workflows with commit-reveal publication, independent verification, performance scoring, escrow-linked subscriptions, rolling monitoring, and dispute evidence packages.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mirni/greenhelix-signal-verification-network) <br>
-- [GreenHelix Sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API Documentation](https://api.greenhelix.net/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-managed AGENT_SIGNING_KEY for signing examples; no executable artifact is installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and frontmatter) <br>
+Risk: Production-framed escrow release, dispute, webhook, and scheduled monitor examples could affect funds or user outcomes if copied directly into a live workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add human approval gates, server-side verification of immutable records, and tests for failed verification cases before using these patterns with real funds.
+
+Risk: The guide references AGENT_SIGNING_KEY for Ed25519 request signing, creating key-management exposure if handled casually.
+
+Mitigation: Store signing keys in a managed secret system, limit access, rotate keys when needed, and avoid logging or embedding private key material.
+
+Risk: The examples depend on external APIs and dependencies but do not provide production hardening by themselves.
+
+Mitigation: Pin dependencies, verify API endpoints and responses server-side, and add failure-mode coverage before deployment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mirni/skills/greenhelix-signal-verification-network)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API documentation](https://api.greenhelix.net/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; examples reference AGENT_SIGNING_KEY and GreenHelix sandbox/API endpoints.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

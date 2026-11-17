@@ -1,46 +1,58 @@
-## Description: <br>
-OkraPDF — upload PDFs, read extracted content, ask questions, extract structured data, and manage collections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OkraPDF lets agents upload PDFs, read extracted content, ask questions, extract structured data, and manage collections through MCP, CLI, and HTTP workflows.
 
-## Publisher: <br>
-[steventsao](https://clawhub.ai/user/steventsao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steventsao](https://clawhub.ai/user/steventsao)
 
-## Use Case: <br>
-Developers and external users use OkraPDF to upload PDFs, inspect extracted content, ask document questions, extract structured JSON, manage collections, and script PDF workflows through MCP, CLI, HTTP, or SDK interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded PDFs, prompts, and exports are shared with an external PDF-processing service. <br>
-Mitigation: Use OkraPDF only for documents approved for that provider and avoid uploading secrets, regulated records, customer data, or proprietary documents unless the provider and retention policy are approved. <br>
-Risk: API keys can be exposed or reused unintentionally in local MCP, CLI, HTTP, or SDK workflows. <br>
-Mitigation: Use a dedicated OkraPDF API key, store it in approved secret storage, and rotate it if it appears in logs, shell history, or shared configuration. <br>
-Risk: Delete, export, sandbox, and large parallel collection operations can change data access patterns, produce broad exports, or increase service usage. <br>
-Mitigation: Require explicit confirmation before running destructive, export, sandbox, or high-volume parallel operations. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect agents to OkraPDF for PDF upload, extraction, question answering, structured JSON extraction, table/entity access, exports, and collection-level document workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/steventsao/okra) <br>
-- [OkraPDF Documentation](https://docs.okrapdf.com) <br>
-- [OkraPDF API Reference](https://api.okrapdf.com) <br>
-- [OkraPDF MCP Endpoint](https://api.okrapdf.com/mcp) <br>
-- [OkraPDF SDK](https://github.com/okrapdf/sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON snippets, shell commands, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include page citations, structured JSON extraction schemas, NDJSON collection query streams, and export commands depending on the workflow] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected PDFs, document text, questions, and extracted outputs are sent to OkraPDF.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with documents approved for that service, and avoid confidential, regulated, or proprietary content unless the organization has approved the workflow.
+
+Risk: The skill uses API-key authenticated MCP, CLI, and HTTP access to a remote service.
+
+Mitigation: Prefer a pinned or project-local CLI install, use a limited API key, and store credentials through approved secret-management practices.
+
+## Reference(s):
+
+- [OkraPDF Documentation](https://docs.okrapdf.com)
+- [OkraPDF API Reference](https://api.okrapdf.com)
+- [OkraPDF MCP Endpoint](https://api.okrapdf.com/mcp)
+- [OkraPDF SDK](https://github.com/okrapdf/sdk)
+- [ClawHub Skill Page](https://clawhub.ai/steventsao/skills/okra)
+- [Publisher Profile](https://clawhub.ai/user/steventsao)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API calls]
+
+**Output Format:** [Markdown with inline JSON, bash, TypeScript, MCP, and HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes examples for PDF upload, status polling, reading content, question answering, structured extraction, collections, exports, and scripting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

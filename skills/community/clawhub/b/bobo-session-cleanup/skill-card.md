@@ -1,42 +1,56 @@
-## Description: <br>
-Deprecated legacy OpenClaw session cleanup skill that scans for orphan .jsonl files and stale sessions, then guides user-confirmed cleanup while directing users to session-cleanup-pro. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated OpenClaw session cleanup helper for scanning orphan .jsonl files and stale sessions, with migration recommended to session-cleanup-pro.
 
-## Publisher: <br>
-[irideas](https://clawhub.ai/user/irideas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[irideas](https://clawhub.ai/user/irideas)
 
-## Use Case: <br>
-Developers and OpenClaw users use this deprecated compatibility skill to inspect local session storage, identify orphan session files and stale sessions, and prepare a cleanup plan that requires explicit user confirmation before removal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is deprecated and may guide removal of local OpenClaw session files. <br>
-Mitigation: Prefer the replacement skill session-cleanup-pro, run scan mode first, and proceed only after reviewing the generated orphan and stale session lists. <br>
-Risk: Cleanup actions can remove session data if the user approves the wrong files. <br>
-Mitigation: Prefer archive or move before hard delete, keep protected sessions intact, and require explicit confirmation before deletion. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/irideas/bobo-session-cleanup) <br>
-- [Publisher Profile](https://clawhub.ai/user/irideas) <br>
-- [Cleanup Policy](references/policy.md) <br>
-- [Scan Script](scripts/scan_sessions.sh) <br>
+## Use Case:
 
+Developers and OpenClaw users use this legacy skill to inspect local OpenClaw session storage, identify orphan session files and stale sessions, and prepare a cleanup plan that requires user confirmation before action.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON scan summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local bash and node; scan mode reads OpenClaw session state and cleanup requires user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server evidence release.version and artifact frontmatter metadata.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill inspects local OpenClaw session files and can lead to deleting session data after approval.
+
+Mitigation: Review the scan summary first, prefer archive or move operations, and proceed with deletion only after explicit confirmation.
+
+Risk: Hard-delete commands can remove the wrong file if filenames are not taken directly from trusted scan output or are not safely quoted.
+
+Mitigation: Use filenames from the scan output, quote paths carefully, and perform a second confirmation before permanent deletion.
+
+Risk: Recent or active sessions could be disrupted by overly broad cleanup.
+
+Mitigation: Keep the default 72-hour protection window and never delete the protected agent:main:main session.
+
+## Reference(s):
+
+- [Cleanup Policy](references/policy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON scan output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scan script emits JSON summarizing registered sessions, on-disk .jsonl files, orphan files, stale sessions, protected sessions, and estimated reclaimable bytes.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

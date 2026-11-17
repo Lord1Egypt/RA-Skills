@@ -1,43 +1,55 @@
-## Description: <br>
-Manage and monitor remote GPU servers via SSH with GPU, disk, process status, alerts, log tailing, file sync, and health diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and monitor remote GPU servers over SSH with GPU, disk, process status, alerts, log tailing, file sync, and health diagnostics.
 
-## Publisher: <br>
-[Enderfga](https://clawhub.ai/user/Enderfga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[enderfga](https://clawhub.ai/user/enderfga)
 
-## Use Case: <br>
-Developers, operators, and AI agents use this skill to inspect and administer GPU training servers over existing SSH configuration. It helps collect structured host status, run remote commands, compare hosts, manage alerts, tail logs, and transfer files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent SSH-based administrative reach over configured hosts. <br>
-Mitigation: Install only where that reach is intentional, scope SSH aliases to trusted hosts, and avoid broad 'all' commands unless needed. <br>
-Risk: Remote command execution, file sync, and status output may expose sensitive host, path, process, or command-line data. <br>
-Mitigation: Treat command and status output as sensitive, review it before sharing, and prefer dry-run mode before sync operations. <br>
-Risk: The security evidence identifies a local command-injection risk in host resolution. <br>
-Mitigation: Review host aliases for shell metacharacters and restrict aliases to trusted SSH configuration entries. <br>
+## Use Case:
 
+Developers and agent operators use ssh-lab to inspect GPU server health, run remote commands, tail logs, sync files, compare hosts, and manage alerts across SSH-accessible servers.
 
-## Reference(s): <br>
-- [ssh-lab ClawHub page](https://clawhub.ai/Enderfga/ssh-lab) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports summary, raw, and JSON output modes; remote status output can include host, process, path, and command-line data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata, skill.json, package.json) <br>
+Risk: A host-alias command-injection issue in src/ssh/config.ts can run local shell commands when untrusted host names are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, use trusted host names and prompts, and avoid untrusted host aliases.
+
+Risk: High-impact SSH operations such as run, sync, watch, tail, and all-host commands are broadly scoped.
+
+Mitigation: Require explicit approval before high-impact operations, prefer dry-run for sync, and pin the package version instead of using unpinned npx.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enderfga/skills/ssh-lab)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Human-readable summaries, structured JSON, raw CLI output, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports summary, json, raw, heartbeat, and quiet output modes; results may include live SSH and rsync command output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, skill.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

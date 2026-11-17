@@ -1,44 +1,55 @@
-## Description: <br>
-Web Search Hub helps agents search DuckDuckGo for web pages, news, images, and videos with filters and text, Markdown, JSON, or file outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches web pages, news, images, and videos through DuckDuckGo with filters for recency, region, safe search, media properties, result count, and text, Markdown, or JSON output.
 
-## Publisher: <br>
-[anisafifi](https://clawhub.ai/user/anisafifi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[anisafifi](https://clawhub.ai/user/anisafifi)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to gather current web, news, image, and video search results for research, fact-checking, market monitoring, and visual-resource discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: Returned web links and snippets may be untrusted, outdated, or misleading. <br>
-Mitigation: Verify important claims and links against trusted sources before relying on the results. <br>
-Risk: The output option can write search results to a local path selected by the user. <br>
-Mitigation: Use intended file paths, avoid overwriting important files, and review saved results before reuse. <br>
-Risk: The skill depends on installing the duckduckgo-search package. <br>
-Mitigation: Install dependencies from trusted sources, preferably inside a virtual environment. <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to gather current web, news, image, and video search results for research, fact-checking, market monitoring, and visual resource discovery.
 
-## Reference(s): <br>
-- [Web Search Hub on ClawHub](https://clawhub.ai/anisafifi/web-search-hub) <br>
-- [OpenClawCLI](https://clawhub.ai/) <br>
-- [duckduckgo-search Python package](https://pypi.org/project/duckduckgo-search/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, shell commands, guidance] <br>
-**Output Format:** [Plain text, Markdown, or JSON search results; optionally written to a local file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are returned from DuckDuckGo web, news, image, or video searches with options for result count, time range, region, safe search, and media filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill asks users to install an apparently unused external CLI and an unpinned Python dependency before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the prerequisite need before deployment, install dependencies in a virtual environment, and pin and verify duckduckgo-search where possible.
+
+Risk: Search queries may expose secrets, private project names, or sensitive personal data to an external search provider.
+
+Mitigation: Do not send secrets, confidential identifiers, or sensitive personal data as search queries.
+
+## Reference(s):
+
+- [Web Search Hub on ClawHub](https://clawhub.ai/anisafifi/skills/web-search-hub)
+- [OpenClawCLI](https://clawhub.ai/)
+- [duckduckgo-search Python package](https://pypi.org/project/duckduckgo-search/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text, Markdown, or JSON search results, with optional saved files and command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports web, news, image, and video result structures with optional region, time range, safe search, result count, image, and video filters.]
+
+## Skill Version(s):
+
+0.1.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

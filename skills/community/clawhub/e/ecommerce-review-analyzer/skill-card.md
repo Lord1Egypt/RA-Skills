@@ -1,44 +1,58 @@
-## Description: <br>
-Analyzes Taobao, JD, and Pinduoduo product reviews, compares products or stores, and generates Word/PDF reports with sentiment, negative review details, and improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Taobao, JD, and Pinduoduo ecommerce reviews, compares positive and negative feedback across products or stores, and produces review analysis reports.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External ecommerce operators and analysts use this skill to collect and analyze customer reviews from Taobao, JD, and Pinduoduo, compare products or stores, and produce review reports for operational decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a logged-in browser session for ecommerce review pages, which may expose account-visible details to the agent during collection. <br>
-Mitigation: Run it only in an intended logged-in session and confirm the exact product or store before collection begins. <br>
-Risk: Generated DOCX/PDF reports may contain customer review text and account-visible details. <br>
-Mitigation: Handle generated reports as privacy-sensitive files and share them only with appropriate recipients. <br>
+## Use Case:
 
+Ecommerce operators and analysts use this skill to gather product reviews from Taobao, JD, and Pinduoduo, summarize rating patterns and negative feedback, compare products or stores, and generate Word/PDF reports with improvement suggestions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobewin/ecommerce-review-analyzer) <br>
-- [Publisher Profile](https://clawhub.ai/user/tobewin) <br>
-- [Taobao Product Review Source Pattern](https://item.taobao.com/item.htm?id=PRODUCT_ID) <br>
-- [JD Product Review Source Pattern](https://item.jd.com/PRODUCT_ID.html) <br>
-- [Pinduoduo Product Review Source Pattern](https://mobile.yangkeduo.com/goods.html?goods_id=PRODUCT_ID) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Files, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance plus DOCX/PDF report files and browser/Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, OpenClaw v2026.3.22 or newer, OpenClaw browser automation, and logged-in ecommerce platform sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter and server release metadata) <br>
+Risk: The skill uses an authenticated browser session to gather ecommerce reviews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a scoped browser session and only with accounts and review data you are authorized to access.
+
+Risk: Generated reports may include usernames, dates, and full comment text from ecommerce reviews.
+
+Mitigation: Limit report distribution, remove unnecessary personal data, and store generated Word/PDF files according to your data handling policy.
+
+Risk: The workflow depends on Python packages used for segmentation and document generation.
+
+Mitigation: Install dependencies in a virtual environment and pin reviewed package versions before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/ecommerce-review-analyzer)
+- [Publisher profile](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with browser automation examples and generated Word/PDF report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include ecommerce review text, ratings, usernames, dates, platform names, store names, and product comparisons.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

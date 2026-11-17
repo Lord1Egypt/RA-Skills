@@ -1,0 +1,20 @@
+{
+  "id": "rascalagnt001-cinema-baseline",
+  "name": "Cinema Agent 基线影院",
+  "description": "全国基线影院数据 Skill（国资编码锚定 + 哈哈预对齐）—— 影院归一化身份基准。",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  },
+  "runtimeTargets": [
+    "openclaw",
+    "cinema-agent"
+  ],
+  "cinemaAgentPackageId": "bagbot.cinema-baseline",
+  "cinemaAgentPackageVersion": "1.0.0",
+  "cinemaBaseline": {
+    "dataVersion": "2026-13-15",
+    "cinemaCount": 13276,
+    "hahaMatched": 11454
+  }
+}

@@ -1,51 +1,62 @@
-## Description: <br>
-Real-time speech-to-text streaming with Gladia via WebSocket for live transcription, voice agents, meeting recorders, call center integrations, live subtitles, and other low-latency audio streaming applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in configuring Gladia live audio streaming for low-latency partial and final speech transcripts, using the official SDK where possible.
 
-## Publisher: <br>
-[gladiaio](https://clawhub.ai/user/gladiaio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gladiaio](https://clawhub.ai/user/gladiaio)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Gladia live transcription sessions, stream audio over the official SDK or WebSocket fallback, tune latency and language settings, and manage live session results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live audio and transcripts may contain sensitive participant data. <br>
-Mitigation: Obtain required consent before streaming or recording audio, minimize enabled analytics features, and delete retained sessions when they are no longer needed. <br>
-Risk: The skill requires a Gladia API key. <br>
-Mitigation: Store the API key in a secure secret manager or environment variable and avoid placing credentials in code, logs, transcripts, or shared prompts. <br>
-Risk: Callback URLs can expose live session events to external systems. <br>
-Mitigation: Use callback URLs only for trusted HTTPS endpoints that are authorized to receive transcription events. <br>
-Risk: Incorrect language or audio format settings can produce unreliable transcripts. <br>
-Mitigation: Match encoding, sample rate, bit depth, and channel count to the audio stream, and configure expected languages before starting a session. <br>
+## Use Case:
 
+Developers use this skill to build live transcription for voice agents, meetings, call centers, and captions, including session configuration, audio streaming, and transcript event handling.
 
-## Reference(s): <br>
-- [Recommended Parameters by Use Case](references/recommended-params.md) <br>
-- [Session Configuration Reference](references/session-config.md) <br>
-- [Managing Live Sessions](references/managing-sessions.md) <br>
-- [WebSocket Message Types](references/websocket-events.md) <br>
-- [Gladia live quickstart](https://docs.gladia.io/chapters/live-stt/quickstart) <br>
-- [Gladia partial transcripts](https://docs.gladia.io/chapters/live-stt/features/partial-transcripts) <br>
-- [Gladia endpointing](https://docs.gladia.io/chapters/live-stt/features/endpointing) <br>
-- [Gladia live init API reference](https://docs.gladia.io/api-reference/v2/live/init) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with inline TypeScript, Python, JSON, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include SDK-first implementation guidance, session configuration values, WebSocket event handling patterns, and session management steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Live audio and transcripts can contain sensitive or confidential information sent to Gladia.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain appropriate consent and choose retention and deletion settings before processing conversations.
+
+Risk: Configured callbacks may expose conversation data to another endpoint.
+
+Mitigation: Secure callback receivers and send data only to approved endpoints.
+
+Risk: Deleting a session can remove its associated recording and results.
+
+Mitigation: Require explicit confirmation before deleting sessions or recorded files.
+
+## Reference(s):
+
+- [Gladia Live Transcription on ClawHub](https://clawhub.ai/gladiaio/skills/gladia-live-transcription)
+- [Gladia live transcription quickstart](https://docs.gladia.io/chapters/live-stt/quickstart)
+- [Gladia live session API reference](https://docs.gladia.io/api-reference/v2/live/init)
+- [Session configuration reference](references/session-config.md)
+- [WebSocket events reference](references/websocket-events.md)
+- [Managing sessions reference](references/managing-sessions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with JavaScript/TypeScript and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers partial and final transcripts, session lifecycle, and optional post-processing.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

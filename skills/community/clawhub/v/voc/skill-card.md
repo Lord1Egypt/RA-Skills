@@ -1,41 +1,58 @@
-## Description: <br>
-Voc namespace for Netsnek e.U. vocabulary and language learning tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voc namespace for Netsnek e.U. vocabulary and language learning tools.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-External users and developers use Voc for vocabulary-learning assistance, currently focused on namespace reservation, brand information, command discovery, deck-status placeholders, and stats placeholders for future flashcard and spaced-repetition workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests exec permission and can run bundled shell scripts. <br>
-Mitigation: Review the bundled scripts before installation and re-review future versions for added file access, network calls, or mutations. <br>
-Risk: The skill may activate on broad vocabulary-learning requests while its current functionality is mostly placeholder behavior. <br>
-Mitigation: Set expectations that current commands provide brand, deck, and stats placeholders until a future release adds full learning features. <br>
+## Use Case:
 
+External learners and developers use Voc to reserve and invoke a vocabulary-learning namespace that currently returns brand, deck, and stats placeholder information while future flashcard and spaced-repetition functionality is planned.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kleberbaum/voc) <br>
-- [Netsnek](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Executable helper scripts currently emit informational placeholder output only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad routing language may cause the skill to be invoked for vocabulary-related requests when the user expected a general answer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke Voc explicitly or confirm before running its helper commands when tighter control is needed.
+
+Risk: The skill requires exec permission to run helper scripts.
+
+Mitigation: Review the helper script output and permissions before deployment; current evidence says the scripts only print placeholder information.
+
+Risk: License signals conflict between the manifest and script output.
+
+Mitigation: Confirm the authoritative release terms before publishing or redistributing the skill.
+
+## Reference(s):
+
+- [Voc ClawHub Page](https://clawhub.ai/kleberbaum/skills/voc)
+- [Netsnek Website](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text responses with optional shell command output and JSON from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts currently print brand, deck, and stats placeholder information.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, claw.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

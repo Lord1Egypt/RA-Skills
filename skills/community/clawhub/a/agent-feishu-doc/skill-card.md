@@ -1,44 +1,54 @@
-## Description: <br>
-Guide for OpenClaw agents to create, read, and edit Feishu/Lark documents through the Feishu Drive API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw agents through creating, reading, editing, and sharing Feishu/Lark documents with the Feishu API.
 
-## Publisher: <br>
-[jmin1113](https://clawhub.ai/user/jmin1113) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jmin1113](https://clawhub.ai/user/jmin1113)
 
-## Use Case: <br>
-Developers and OpenClaw agent operators use this skill to create Feishu/Lark documents, write block content, read existing documents by URL or ID, configure collaborator access, and troubleshoot cross-agent document workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill normalizes publicly editable Feishu documents and broad sharing settings. <br>
-Mitigation: Require explicit approval before making documents public or editable by anyone, and prefer named collaborators or read-only links. <br>
-Risk: Cross-agent session visibility can expose document workflows beyond the initiating agent. <br>
-Mitigation: Avoid global session visibility unless the operator understands and accepts the cross-agent exposure. <br>
-Risk: Feishu app secrets and tenant access tokens may be exposed through prompts, logs, or shared documents. <br>
-Mitigation: Keep app secrets and tokens out of prompts, logs, generated documents, and shared collaboration spaces. <br>
+## Use Case:
 
+Developers and agents use this skill to create, read, edit, and troubleshoot Feishu/Lark documents through Feishu APIs, including collaboration and sharing workflows.
 
-## Reference(s): <br>
-- [Agent Feishu Doc detailed guide](references/guide.md) <br>
-- [Feishu Drive document API endpoint](https://open.feishu.cn/open-apis/drive/v1/documents) <br>
-- [Feishu document URL pattern](https://feishu.cn/docx/{doc_id}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Feishu API examples, curl commands, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; outputs are intended for agent operators to adapt before calling Feishu APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Public-editable document sharing can expose or allow modification of Feishu documents beyond the intended collaborators.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer private documents, named collaborators, least-privilege roles, and temporary or read-only sharing unless an administrator explicitly approves broader access.
+
+Risk: Global cross-agent session visibility can broaden document and session access between agents.
+
+Mitigation: Do not enable global session visibility unless an administrator explicitly approves it; keep sharing scoped to the agents and documents that require collaboration.
+
+## Reference(s):
+
+- [Agent Feishu Doc ClawHub page](https://clawhub.ai/jmin1113/skills/agent-feishu-doc)
+- [Agent Feishu Doc Guide](references/guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON and shell/API command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Feishu API endpoint patterns, permission guidance, and OpenClaw configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

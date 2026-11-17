@@ -1,45 +1,65 @@
-## Description: <br>
-A股板块实时研报。全球新闻→A股映射、板块趋势研判、美股关联、利好利空、大事件提醒。零配置可用，输出兼容飞书/扣子/Markdown平台。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates real-time A-share sector research reports with market data, news summaries, U.S. stock correlations, catalysts, risks, and anomaly alerts.
 
-## Publisher: <br>
-[HarveyZzzz](https://clawhub.ai/user/HarveyZzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harveyzzzz](https://clawhub.ai/user/harveyzzzz)
 
-## Use Case: <br>
-External users and agents use this skill to generate concise A-share sector research reports, AI market briefings, and anomaly monitoring summaries from public market and news data. It is intended for informational market commentary and not investment advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to public market and news services. <br>
-Mitigation: Install and run it only in environments where those network requests are acceptable. <br>
-Risk: TAVILY_API_KEY can be supplied for enhanced news search. <br>
-Mitigation: Use a key intended for this tool and manage it as a normal secret. <br>
-Risk: Generated stock and sector commentary may be incomplete or unsuitable for financial decisions. <br>
-Mitigation: Treat outputs as informational commentary, verify important claims, and do not treat reports as investment advice. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/HarveyZzzz/stockselectionmodel) <br>
-- [AI 股票内参 — 研判 Prompt](artifact/references/analysis_prompt.md) <br>
-- [板块趋势研判 Prompt](artifact/references/sector_prompt.md) <br>
-- [数据源优先级](artifact/references/source_list.md) <br>
-- [AI 概念 A 股映射表](artifact/references/stock_mapping.md) <br>
+## Use Case:
 
+External users and agents use this skill to create market research briefings for supported A-share sectors, AI-related news, and stock movement alerts. It is informational only and does not provide investment advice.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown research reports with tables, short text summaries, and optional JSON from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include sector trend, news, gainers and losers, US-stock links, positive and negative factors, events, watch points, and risk notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated reports include Content Science branding by default.
+
+Mitigation: Review generated Markdown before sharing and remove or approve the branding for white-label or neutral deployments.
+
+Risk: Sector names, search terms, and market queries may be sent to external public financial or news services.
+
+Mitigation: Avoid submitting confidential watchlists or sensitive research terms, and review third-party data-source policies before use.
+
+Risk: The skill writes generated market and news snapshots under .local.
+
+Mitigation: Treat .local outputs as potentially sensitive research records and delete them when no longer needed.
+
+Risk: Financial analysis and stock mappings may be incomplete, stale, or misleading.
+
+Mitigation: Use outputs as informational research aids only, verify against authoritative market data, and keep the included investment disclaimer visible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harveyzzzz/skills/stockselectionmodel)
+- [Publisher profile](https://clawhub.ai/user/harveyzzzz)
+- [Data source notes](artifact/references/source_list.md)
+- [Sector analysis prompt](artifact/references/sector_prompt.md)
+- [AI news analysis prompt](artifact/references/analysis_prompt.md)
+- [A-share stock mapping](artifact/references/stock_mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown reports with JSON data snapshots and command-oriented workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated JSON snapshots under .local; optional TAVILY_API_KEY enables enhanced news search.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata; artifact frontmatter reports 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Provides a Chinese-language publishing guide for agents preparing and releasing SkillHub.cn skill packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an agent-facing publishing guide for preparing and publishing skills to SkillHub.cn while separating publishable packages from runtime credentials.
 
-## Publisher: <br>
-[clawhub-master](https://clawhub.ai/user/clawhub-master) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawhub-master](https://clawhub.ai/user/clawhub-master)
 
-## Use Case: <br>
-Developers and agent operators use this skill as a publishing checklist and command reference for preparing SkillHub.cn release packages while keeping runtime credentials separate from published files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release exposes real-looking SkillHub and IMA credentials and instructs agents to use them for authenticated publishing and remote note import operations. <br>
-Mitigation: Treat the credentials as compromised, rotate them, and replace all secrets with placeholders or secure runtime references before use. <br>
-Risk: The publishing and import workflow can upload local file content to external services. <br>
-Mitigation: Require explicit user confirmation before publishing a package or uploading local file content, and review the package for secrets before release. <br>
+## Use Case:
 
+Developers and agent operators use this skill as a checklist and command reference for packaging, publishing, and verifying SkillHub.cn skill releases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawhub-master/skills/skillhub-publish-guide) <br>
-- [SkillHub registry](https://skill.xfyun.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes publishing steps, package layout guidance, credential handling checks, and verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Embedded real-looking tokens and API keys can cause credential compromise if reused or copied into another release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install or use the skill as published; rotate exposed credentials and replace all credential values with placeholders before release.
+
+Risk: The artifact directs agents toward external login, publishing, memory access, and document upload actions.
+
+Mitigation: Require explicit user approval before any external login, publish, upload, or memory-access action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawhub-master/skills/skillhub-publish-guide)
+- [SkillHub.cn registry](https://skill.xfyun.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell command blocks, configuration examples, and checklist guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires credential replacement and explicit approval before any external login, publishing, upload, or memory-access action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Dundun-10agents helps agents review Chinese legal and business documents for contract risks, clause concerns, negotiation points, and practical next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dundun-10agents activates a Chinese-language legal-risk review persona for contracts, agreements, business legal questions, compliance, disputes, intellectual property, and corporate governance.
 
-## Publisher: <br>
-[lanxy32](https://clawhub.ai/user/lanxy32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanxy32](https://clawhub.ai/user/lanxy32)
 
-## Use Case: <br>
-External users and employees can use this skill to draft a structured Chinese legal-risk review of contracts, agreements, employment matters, intellectual property concerns, compliance questions, and related business legal issues. It is intended for risk spotting and drafting support, not as a substitute for advice from a licensed lawyer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce legal analysis that is incomplete or unsuitable for a specific jurisdiction or matter. <br>
-Mitigation: Use the output for drafting and risk spotting only, and consult a licensed lawyer for major legal decisions. <br>
-Risk: The skill has broad activation wording for legal terms and may run on legal-adjacent requests. <br>
-Mitigation: Confirm that the user wants Chinese legal-risk review before relying on the skill's recommendations. <br>
-Risk: Legal documents can contain sensitive business or personal information. <br>
-Mitigation: Avoid sharing highly sensitive legal documents unless the user is comfortable sending them to the model. <br>
+## Use Case:
 
+External users can ask the agent to review Chinese-language contracts, agreements, and business legal scenarios, identify legal risk levels, explain clause-level concerns, and suggest negotiation or revision strategies. The skill is intended for informational legal-risk review and should not replace advice from a licensed lawyer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanxy32/dundun-law) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown legal-risk report with risk labels, clause analysis, negotiation strategy, and signing recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language legal risk review; includes a disclaimer to consult a professional lawyer for major legal decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Legal guidance may be incomplete, jurisdiction-specific, or unsuitable for important business decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational, verify applicable law for the relevant jurisdiction, and consult a licensed lawyer before relying on the analysis.
+
+Risk: The skill uses broad activation language for legal topics and may provide confident analysis outside a licensed professional context.
+
+Mitigation: Review the generated report before acting on it and require professional review for contracts, disputes, compliance matters, or high-value decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanxy32/skills/dundun-law)
+- [Publisher profile](https://clawhub.ai/user/lanxy32)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown legal-risk review report in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes risk ratings, clause-level notes, negotiation strategy, signing recommendation, and legal disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

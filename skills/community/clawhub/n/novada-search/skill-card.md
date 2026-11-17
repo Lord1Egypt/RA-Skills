@@ -1,45 +1,60 @@
-## Description: <br>
-AI Agent search platform with 9 engines, Google 13 sub-types, vertical scene search, and intelligent auto/multi/extract modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent search platform with 9 engines, Google 13 sub-types, vertical scene search, and intelligent auto/multi/extract modes.
 
-## Publisher: <br>
-[goldentrii](https://clawhub.ai/user/goldentrii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldentrii](https://clawhub.ai/user/goldentrii)
 
-## Use Case: <br>
-External developers and agent builders use this skill to run multi-engine web search, URL extraction, and scene-specific queries, then consume structured results for planning, comparison, research, and downstream automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, URLs, and selected research-result URLs are sent to Novada services. <br>
-Mitigation: Avoid secrets, internal-only links, authenticated pages, regulated data, and proprietary identifiers in queries or extraction URLs. <br>
-Risk: The skill requires a Novada API key for search and extraction calls. <br>
-Mitigation: Use least-privilege environment setup and avoid logging or sharing the NOVADA_API_KEY value. <br>
-Risk: The action-links output format can print shell commands. <br>
-Mitigation: Review any generated command before running it. <br>
+## Use Case:
 
+External developers and agents use this skill to run multi-engine web search, vertical scene search, and URL content extraction through CLI, Python SDK, MCP, or LangChain interfaces. It is best suited for agent workflows that need structured search results such as agent-json, plus human-readable Markdown or table output when requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goldentrii/novada-search) <br>
-- [Novada project homepage](https://novada.com) <br>
-- [Novada Search repository](https://github.com/NovadaLabs/novada-search) <br>
-- [Novada Search README](https://github.com/NovadaLabs/novada-search#readme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration] <br>
-**Output Format:** [JSON, Markdown tables and lists, shell commands, or raw API responses depending on the selected output format.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOVADA_API_KEY for search and extraction calls; agent-json output includes structured search metadata and unified results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata, SKILL.md frontmatter, pyproject.toml) <br>
+Risk: Search terms, target URLs, and the Novada API key are sent to Novada services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using this skill with private documents, intranet URLs, regulated data, or secrets in URLs; keep network permissions constrained to the declared Novada endpoint.
+
+Risk: The action-links output format can produce shell command text from search results.
+
+Mitigation: Prefer agent-json or normal link output for agent workflows, and review and sanitize every generated URL before running any action-link command.
+
+Risk: Security evidence marks the release as suspicious because it performs real search/extraction calls and needs user review.
+
+Mitigation: Run an initial validation in a sandbox with least-privilege environment variables and review outputs before integrating the skill into automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goldentrii/skills/novada-search)
+- [Novada homepage](https://novada.com)
+- [Novada Scraper API endpoint](https://scraperapi.novada.com)
+- [PyPI package](https://pypi.org/project/novada-search/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON, Markdown, tables, raw API response, or shell command text depending on the selected output format]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NOVADA_API_KEY; agent-json includes unified_results, engine metadata, result counts, duplicate counts, and errors.]
+
+## Skill Version(s):
+
+1.0.8 (source: SKILL.md frontmatter, pyproject.toml, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

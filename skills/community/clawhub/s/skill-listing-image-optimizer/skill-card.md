@@ -1,40 +1,58 @@
-## Description: <br>
-Audit Amazon product listing images for non-square dimensions, auto-pad them to 2000x2000 white background, and push corrected images to live listings via SP-API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit Amazon product listing images for non-square dimensions, auto-pad them to 2000x2000 white background, and push corrected images to live listings via SP-API.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Marketplace operators and developers use this skill to audit Amazon listing image dimensions, generate square 2000x2000 image files, and submit corrected image URLs through SP-API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The push workflow can update live Amazon listings. <br>
-Mitigation: Review target SKUs and image slots before execution, use least-privilege or test SP-API credentials where possible, and avoid bulk live pushes without a rollback plan. <br>
-Risk: The image push script serves local files on a public interface with weak path containment. <br>
-Mitigation: Run it only in a controlled environment, keep credential files outside the served directory, and prefer an allowlisted hosted image store for internet-reachable pushes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Zero2Ai-hub/skill-listing-image-optimizer) <br>
-- [Related SP-API skill](https://github.com/Zero2Ai-hub/skill-amazon-spapi) <br>
+## Use Case:
 
+External Amazon sellers and marketplace operations teams use this skill to audit listing image dimensions, generate square replacement images, and update selected live listing image slots through Amazon SP-API.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow can create JSON audit reports and fixed JPEG image files, and can submit listing image updates through SP-API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The upload workflow can expose files from the chosen image directory through a public HTTP server.
+
+Mitigation: Run it only from a dedicated directory containing the exact fixed listing images, and prefer S3 or another presigned HTTPS hosting flow for production updates.
+
+Risk: The skill can modify live Amazon listings through SP-API.
+
+Mitigation: Require explicit human confirmation for each live listing update and review the SKU, slot, and generated image before pushing changes.
+
+Risk: Credentials and dependencies affect the safety of SP-API operations.
+
+Mitigation: Keep credential files outside working image directories, set AMAZON_SPAPI_PATH explicitly, and pin Node and Python dependencies before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zero2ai-hub/skills/skill-listing-image-optimizer)
+- [Publisher profile](https://clawhub.ai/user/zero2ai-hub)
+- [Related Amazon SP-API skill](https://github.com/Zero2Ai-hub/skill-amazon-spapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and generated report or image files from the scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and python3; runtime scripts may call Amazon SP-API and create local JPEG outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

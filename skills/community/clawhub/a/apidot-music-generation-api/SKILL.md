@@ -20,6 +20,15 @@ This skill is for routing music generation questions to the right APIDot docs, e
 
 This release contains only `SKILL.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Explore APIDot music models: https://apidot.ai/models/music
+- Read APIDot API docs: https://apidot.ai/docs
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use official APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

@@ -1,41 +1,57 @@
-## Description: <br>
-Tracks earnings, payouts, uptime, summaries, and exports across passive crypto income services such as Grass.io, Storj, Mysterium, Honeygain, EarnApp, Peer2Profit, and custom sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track earnings, payouts, uptime, and fiat estimates across multiple passive crypto income apps with summaries, alerts, and export options.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-Developers and operators running passive crypto income services use this skill to configure earnings tracking, payout monitoring, uptime correlation, daily or weekly summaries, and CSV or JSON exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive session tokens, API tokens, credentials, or node keys may leak if pasted into commands, shell history, logs, or chat summaries. <br>
-Mitigation: Use the skill only with a safer secret-handling method such as encrypted local storage, avoid pasting secrets directly into commands, and review any command before execution. <br>
-Risk: Earnings data may be sent to third-party chat services when WhatsApp or Telegram summaries are enabled. <br>
-Mitigation: Disable or limit messaging summaries unless sharing earnings data with those services is acceptable. <br>
+## Use Case:
 
+Developers, homelab operators, and crypto node operators use this skill to monitor passive income services, summarize earnings, track payout thresholds, and export history for reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariusfit/passive-income-tracker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mariusfit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include earnings summaries, payout status, alert setup steps, and export commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks users to handle sensitive account, session, API, or node credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated, revocable, read-only tokens where possible, avoid command-line exposure of session tokens or private node keys, and rotate credentials if they may have been exposed.
+
+Risk: Earnings data may be sent to WhatsApp or Telegram alerts.
+
+Mitigation: Confirm the destination accounts, message contents, and privacy expectations before enabling alerts.
+
+Risk: The security review could not confirm that token storage encryption and outbound network restrictions are implemented as described.
+
+Mitigation: Review the implementation before installation and verify encrypted local storage and expected outbound destinations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariusfit/skills/passive-income-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and tabular status examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local configuration, encrypted token storage, messaging alerts, fiat conversion, and CSV or JSON export workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

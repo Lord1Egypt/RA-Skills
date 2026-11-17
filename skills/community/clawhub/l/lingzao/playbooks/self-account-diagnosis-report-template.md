@@ -19,6 +19,11 @@ diagnosis should not only say what the account posts; it should say who will
 care, who will not click, and which audience/city/life-stage anchors should
 shape the next content tests.
 
+For standard or deep own-account reports, also apply
+`account-report-evidence-visual-contract.md`. That contract is the evidence,
+real-cover-audit, viral-asset-reuse, link, and visual-deliverable baseline for
+client-facing reports.
+
 ## Human Closing Principle
 
 The diagnosis can be sharp, but the ending must feel human. "人情味" is part of
@@ -124,10 +129,10 @@ Two levels:
 1. Light activation: no extra search needed if it only uses the existing
    diagnosis. Output one next note direction, 3 titles, 1 cover keyword, opening
    3 lines, and what to send back after publishing.
-2. Deep activation: may consume additional credits if it needs to find new
+2. Deep activation: may require additional online research if it needs to find new
    benchmark accounts, open note details, read comments, inspect backend
    screenshots with the note context, or build a 7-day/30-day content package.
-   Use `search-credit-notice.md` before expanding.
+   Use `research-scope-guard.md` before expanding.
 
 Good offer:
 
@@ -140,6 +145,24 @@ Default deliverable:
 1. Chat: one-page executive summary.
 2. Full report: Word / Feishu doc / HTML / PDF when available; Markdown fallback only when artifact tooling is unavailable.
 
+The first chat answer can stay concise. But when the user asks for a formal
+report, deep diagnosis, Word, HTML, Feishu doc, PDF, or shareable output, the
+report must follow `account-report-evidence-visual-contract.md`:
+
+- first page: account link, report date, sample boundary, one-sentence
+  diagnosis, visible public data, strongest asset, biggest bottleneck, and one
+  next action
+- evidence links: every representative note, high-performing note, reference
+  account, cover sample, or evolution sample should keep the original link
+  when available
+- real cover audit: show representative cover analysis as its own section when
+  images/screenshots are available; otherwise use visual notes plus links
+- viral asset reuse: judge whether old hits are becoming repeatable topic,
+  title, cover, scene, or column assets
+- no fake backend metrics: do not infer exposure, CTR, finish rate, follower
+  conversion, sales, or private-domain conversion unless the user provides
+  backend screenshots
+
 When both HTML and Word are generated, they must be two carriers of the same report, not two different reports. Generate them from the same section structure and keep the same section order, core conclusions, tables, metrics, follow-up question, and terminology.
 
 Treat Word as the official client-facing deliverable. It should be polished enough for the user to forward to a client, send to a friend, or screenshot for social proof. HTML is mainly a preview and browser-friendly reading format.
@@ -150,7 +173,7 @@ Use the following style benchmark:
 - Judgment tone: `阿甜报告`. It has stronger strategy language and sharper diagnosis, so use direct sentences that explain what is working, what is stuck, and why.
 - Clarity: `桃谷小仙` report. Keep the language easy to scan and avoid overcomplicated consulting language.
 
-Target result: a polished report product, not an internal analysis memo and not a plain Word table.
+Target result: a polished report product, not a private analysis memo and not a plain Word table.
 
 The report must be visual and sectioned:
 
@@ -171,7 +194,7 @@ Do not embed remote cover images inside plain text or Word reports unless the im
 
 Before writing an own-account diagnosis, check how many public notes are visible
 or included in the confirmed analysis sample. Do not pretend a small homepage
-can support a full paid-grade diagnosis.
+can support a full formal diagnosis.
 
 Use this routing:
 
@@ -182,8 +205,8 @@ Use this routing:
 | 3-5 | 起步号小诊断 | Judge whether the direction is scattered, whether any early signal is worth continuing, and give a 7-day publishing path. Avoid heavy conclusions. |
 | 6-9 | 轻量账号分析 | Analyze preliminary content mainline, update state, title/cover issues, and next 7-14 days. Mark user persona and viral mechanism as early hypotheses. |
 | 10-19 | 标准账号分析 v1 | Include user persona, content columns, early standout vs baseline, title/cover patterns, same-stage references, and 7/30-day actions. |
-| 20-39 | 标准账号诊断报告 | Use as the normal full-report range. Deep profile analysis can use `--limit 20` after credit confirmation. |
-| 40+ | 深度诊断 / 博主蒸馏 / 知识库沉淀 | Use `--limit 40` after credit confirmation when the user wants deeper report, creator distillation, or knowledge-base assets. |
+| 20-39 | 标准账号诊断报告 | Use as the normal full-report range. Deep profile analysis can use `--limit 20` after scope confirmation. |
+| 40+ | 深度诊断 / 博主蒸馏 / 知识库沉淀 | Use `--limit 40` after scope confirmation when the user wants deeper report, creator distillation, or knowledge-base assets. |
 
 If the account has fewer than 10 public notes, the chat must explicitly say the
 sample is still small and downgrade the deliverable. The tone should be
@@ -294,24 +317,27 @@ For a client-facing own-account diagnosis, include these sections by default:
 
 1. 封面：账号名 + 一句话诊断 + 报告日期
 2. 一页总览：账号阶段、最大卡点、最强资产、下一步主线
-3. 用户画像：谁会关注、为什么关注、为什么收藏、会问什么、可能付费什么。Also state who is unlikely to click and which life-stage, gender, city, or interest mismatch should be avoided.
-4. 头部作品热度条：show the gap between standout posts and normal posts using a simple bar chart or compact visual table
-5. 已验证内容资产：3-5 content assets, displayed as cards
-6. 爆款机制深拆：2-3 representative posts with title click reason, save/share/comment reason, what can be learned, what cannot be copied, and repeatable formula
-7. 核心卡点：P1-P4, each with evidence, consequence, and fix
-8. 内容主线重构：3 concrete columns, each with column name, content scope, fixed format, and sample title
-9. 未来 30 天内容动作表
-10. 可直接复用标题判断：3 strongest title options or title directions that fit
+3. 证据与样本边界：公开主页/近期作品/用户提供截图/后台数据分别来自哪里，哪些字段未获取
+4. 用户画像：谁会关注、为什么关注、为什么收藏、会问什么、可能付费什么。Also state who is unlikely to click and which life-stage, gender, city, or interest mismatch should be avoided.
+5. 头部作品热度条：show the gap between standout posts and normal posts using a simple bar chart or compact visual table
+6. 真实封面审计：representative covers with cover text, visual subject, click hook, trust evidence, learnable parts, and risks when images render reliably
+7. 已验证内容资产：3-5 content assets, displayed as cards
+8. 爆款资产复用：topic/title/cover/scene/column reuse, with first strong sample, later samples, changed variables, public signal, and judgment
+9. 爆款机制深拆：2-3 representative posts with title click reason, save/share/comment reason, what can be learned, what cannot be copied, and repeatable formula
+10. 核心卡点：P1-P4, each with evidence, consequence, and fix
+11. 内容主线重构：3 concrete columns, each with column name, content scope, fixed format, and sample title
+12. 未来 30 天内容动作表
+13. 可直接复用标题判断：3 strongest title options or title directions that fit
     the diagnosed columns, each with keyword anchor and click reason. Do not
     generate a large title library unless the user explicitly asks for one.
-11. 下次复盘指标
-12. 近期作品附录：10-20 representative posts with title, date, public metrics, tag, and one-line observation
-13. 商业/变现路径判断：if the user asks about monetization or the account already has clear product/service signals, use `monetization-path-judgment-library.md` to judge whether the account should prioritize ads, product sales, small courses, paid materials, community, consulting, precise lead generation, store conversion, or enterprise product conversion
-14. 下一步行动清单
-15. 超预期高光结论：一张可以截图分享的结论卡，包含结论、行动建议和心理按摩
-16. 诊断后温柔结论 / 继续分析入口
-17. 可选诊断后行动包：只在用户想继续时提供轻量版或深度版，并按
-    `search-credit-notice.md` 说明是否会新增积分消耗
+14. 下次复盘指标
+15. 近期作品附录：10-20 representative posts with title, date, public metrics, link, tag, and one-line observation
+16. 商业/变现路径判断：if the user asks about monetization or the account already has clear product/service signals, use `monetization-path-judgment-library.md` to judge whether the account should prioritize ads, product sales, small courses, paid materials, community, consulting, precise lead generation, store conversion, or enterprise product conversion
+17. 下一步行动清单
+18. 超预期高光结论：一张可以截图分享的结论卡，包含结论、行动建议和心理按摩
+19. 诊断后温柔结论 / 继续分析入口
+20. 可选诊断后行动包：只在用户想继续时提供轻量版或深度版，并按
+    `research-scope-guard.md` 说明是否会新增查询范围
 
 Only use the full structure above when the sample-size gate allows standard
 account analysis or above. For accounts below 10 public notes, use a lighter
@@ -389,6 +415,35 @@ For covers and titles, analyze:
 - whether cover text is clear enough
 - whether visual style is recognizable
 - which earlier viral covers/titles worked
+- whether a cover structure is a reusable account asset or only decoration
+- high-performing vs normal/low-performing visual differences, when enough
+  cover samples are available
+
+Use the cover-audit table from `account-report-evidence-visual-contract.md`
+when the report is formal or deep. Do not guess visual elements if the cover
+image was not actually viewed; use links and concise visual notes instead.
+
+## Detail Section 5A: Viral Asset Reuse
+
+Before calling repeated content "samey" or "template-like", check whether the
+account is reusing a proven asset:
+
+- topic asset: same user pain/desire with new case, scene, product, time, or
+  proof
+- title asset: same sentence pattern, identity hook, result promise, number,
+  contradiction, or keyword anchor
+- cover asset: same visual subject, room/scene, screenshot, split-screen, card
+  structure, face framing, product angle, or route/map structure
+
+Classify the result as:
+
+- effective reuse
+- structure iteration
+- mechanical copying
+- one-off emotional viral
+
+Then explain what this means for the user's next notes. The user should learn
+the verified demand and structure, not copy the original wording or image.
 
 For comments, analyze when comment data is available:
 
@@ -502,7 +557,7 @@ The order should be:
 3. 一个具体下一步: choose only one best next action, not a menu of everything.
 4. 回来复盘入口: tell the user exactly what to send back.
 5. Optional activation offer: if the user wants to turn the diagnosis into an
-   action package, offer the light/deep choice and explain credit scope before
+   action package, offer the light/deep choice and explain research scope before
    deeper search.
 6. Knowledge-base sync question if useful.
 
@@ -569,5 +624,6 @@ tags:
 <one concrete follow-up question>
 ```
 
-Never include internal implementation details, raw payloads, cache URLs, signed
-URLs, API keys, or internal error details in synchronized content.
+Synchronized content should contain only the user-approved report, public links,
+and useful conclusions. Leave out credentials and details the user does not
+need.

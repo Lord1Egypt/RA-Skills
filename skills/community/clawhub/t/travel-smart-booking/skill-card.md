@@ -1,46 +1,60 @@
-## Description: <br>
-A hotel aggregation skill that helps agents structure searches across Fenbeitong, Ctrip, Meituan, Tongcheng, Huazhu, and Jinjiang and present normalized hotel, room, price, and booking-source information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+酒店聚合助手，整合分贝通、携程、美团、同程、华住会、锦江等多个酒店数据源，提供统一的酒店搜索、房型查询、预订服务。
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-External users, travel assistants, and developers use this skill to organize multi-platform hotel searches, compare available prices by source, and format hotel aggregation results for review before booking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary says the skill is incomplete and overstates real hotel search and booking capability. <br>
-Mitigation: Treat it as a prototype until real provider integrations are added and verified; do not rely on it for prices, availability, room details, or reservations. <br>
-Risk: Travel booking can expose personal, itinerary, and payment-related information. <br>
-Mitigation: Add privacy disclosure, minimize collected user data, and require explicit confirmation before any booking or reservation action. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search hotel options across several Chinese travel and hotel platforms, compare prices, and present source-labeled hotel results. Developers can adapt the included Python interfaces when adding real provider integrations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-zry/travel-smart-booking) <br>
-- [Fenbeitong Open API endpoint](https://openapiv2.fenbeitong.com) <br>
-- [Ctrip API endpoint](https://api.ctrip.com) <br>
-- [Meituan API endpoint](https://api.meituan.com) <br>
-- [Tongcheng API endpoint](https://api.tongcheng.com) <br>
-- [Huazhu API endpoint](https://api.huazhu.com) <br>
-- [Jinjiang API endpoint](https://api.jinjiang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, API Calls, Guidance] <br>
-**Output Format:** [JSON responses and Markdown tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; hotel search and booking results must come from real provider integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The included provider search methods are placeholders, so the skill may return no real hotel inventory until integrations are completed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as a prototype and verify each provider integration before relying on search or booking results.
+
+Risk: Future real API integrations may send hotel search details to third-party travel providers.
+
+Mitigation: Confirm user consent, provider data-sharing terms, credential handling, and any booking or payment flow before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/travel-smart-booking)
+- [Publisher profile](https://clawhub.ai/user/ryan-zry)
+- [分贝通 API endpoint](https://openapiv2.fenbeitong.com)
+- [携程 API endpoint](https://api.ctrip.com)
+- [美团 API endpoint](https://api.meituan.com)
+- [同程 API endpoint](https://api.tongcheng.com)
+- [华住会 API endpoint](https://api.huazhu.com)
+- [锦江 API endpoint](https://api.jinjiang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables, JSON-compatible function results, Python code, and concise setup or integration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hotel results should preserve provider source labels and avoid fabricated prices, inventory, or booking details.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

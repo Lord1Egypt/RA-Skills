@@ -1,8 +1,8 @@
 {
   "name": "sciverse-academic-retrieval",
-  "version": "0.9.0",
+  "version": "1.0.1",
   "slug": "academic-retrieval",
-  "description": "Sciverse academic paper retrieval: structured metadata search, semantic chunk retrieval for RAG, and byte-range content reading. For agent workflows that need citation-grade scientific literature.",
+  "description": "Sciverse academic paper retrieval: metadata search across papers, authors, sources and patents, semantic chunk retrieval for RAG, and character-range content reading (offsets in Unicode code points). For agent workflows that need citation-grade scientific literature.",
   "runtime": "node>=18",
   "license": "Apache-2.0",
   "homepage": "https://sciverse.space",
@@ -21,71 +21,89 @@
   ],
   "tools": [
     {
-      "name": "search_papers",
-      "description": "Search academic papers by structured filters (title, authors, journal,\nyear, subjects, etc.).\nUse when: \"find Hinton's papers from 2020-2023\", \"Nature papers on\nCRISPR\".\nNot for: natural-language Q&A retrieval (use semantic_search) or\nfull-text snippets (use read_content).\nReturns: list of papers; each entry has unique_id (always present),\ndoc_id (only when full text exists), title, author, abstract,\npublication_venue_name_unified, publication_published_year.",
-      "script": "scripts/search_papers.mjs",
+      "name": "search_metadata",
+      "description": "Search metadata in one collection: papers, patents, authors or sources. Use list_catalog to discover authorized fields before choosing filters, sort and fields. Supports keywords, cursor pagination and facets; no implicit field sorting. Returns results, total_count and next_cursor with collection-specific fields. Use read_content for paper/patent text and semantic_search for paper semantic retrieval. Author/source IDs cannot be used to read content.",
+      "script": "scripts/search_metadata.mjs",
       "input_schema": {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
+          "fields": {
+            "type": "array",
+            "maxItems": 128,
+            "items": {
+              "type": "string"
+            },
+            "description": "返回字段，须为当前collection已授权且可投影字段；省略返回默认字段集与授权交集。",
+            "x-en-description": "Project authorized, projectable fields from this collection; omit for authorized defaults."
+          },
           "collection": {
             "type": "string",
             "enum": [
               "papers",
               "authors",
-              "sources"
+              "sources",
+              "patents"
             ],
             "default": "papers",
-            "description": "检索的实体集合。papers（默认，论文）/ authors（作者）/ sources（来源期刊）。 各 collection 字段集不同，用 list_catalog（collection=<name>）学习对应 schema。 注意：本工具的便捷字段（authors/journals/year_from/subjects 等）只对 papers 有意义； 查 authors/sources 时改用 filters_advanced + 该 collection 的字段名（如 authors 的 summary_stats.h_index / orcid，sources 的 issn / is_oa）。authors 用 orcid、 sources 用 issn 与论文检索结果关联。",
-            "x-en-description": "Entity collection to search. papers (default) / authors / sources. Each collection has its own field schema — call list_catalog(collection=<name>). The convenience fields (authors/journals/year_from/subjects) apply to papers only; for authors/sources use filters_advanced with that collection's field names."
+            "description": "实体集合；用 list_catalog 查看对应字段权限和能力。"
           },
           "query": {
             "type": "string",
-            "description": "BM25 全文关键词，匹配标题/摘要/期刊名/关键词字段。留空则纯靠结构化过滤。"
+            "description": "BM25 关键词，匹配当前实体已授权的可检索字段；专利包含 invention_title、abstract、claims.claim_text。留空则纯靠结构化过滤。\n普通关键词是宽松匹配（任一词命中、按相关性排序）。\n\n也支持布尔检索式：全大写 AND / OR / NOT、括号分组、引号短语；优先级\nNOT > AND > OR，相邻词隐式 AND。例如\n  (histopathology OR pathology) AND (\"deep learning\" OR \"machine learning\") AND (prognosis OR survival)\n布尔式里每个检索词都是硬条件、不做放宽——0 命中就是 0。\n- query 只放检索词：「检索式1（预后预测）」这类标签/说明也会变成必须命中的词。\n- 小写 and/or 是普通词；要检索字面量 OR（如比值比）加引号 \"OR\"。\n- 引号需与运算符同时出现才生效：只写 \"spread through air spaces\" 不带运算符时\n  按普通关键词处理；写成 \"spread through air spaces\" AND lung 才是短语精确匹配。\n- 最多 64 个检索词、括号嵌套 10 层，超限返回 400；复杂检索请拆成多次调用。\n",
+            "x-en-description": "BM25 keywords over authorized searchable fields in this collection; patents use invention_title, abstract and claims.claim_text. Leave empty for\npure structured filtering. Plain keywords match loosely (any word, ranked by\nrelevance).\n\nBoolean syntax is also supported: UPPERCASE AND / OR / NOT, ( ) grouping and\n\"quoted phrases\"; precedence NOT > AND > OR, adjacent words are implicitly AND.\nExample:\n  (histopathology OR pathology) AND (\"deep learning\" OR \"machine learning\") AND (prognosis OR survival)\nIn boolean mode every term is a hard requirement and nothing is relaxed —\n0 hits means 0.\n- Put only search terms in query: labels or instructions such as\n  \"检索式1（预后预测）\" become required terms too.\n- Lowercase and/or are ordinary words; quote \"OR\" to search the literal\n  (e.g. odds ratio).\n- Quotes only take effect alongside an operator: a query that is just\n  \"spread through air spaces\" is treated as plain keywords, whereas\n  \"spread through air spaces\" AND lung is an exact phrase match.\n- Max 64 terms and 10 nesting levels (400 otherwise); split complex searches\n  into several calls.\n",
+            "maxLength": 2048
           },
-          "title_contains": {
-            "type": "string",
-            "description": "标题中必须包含的词（仅匹配 title 字段）。"
-          },
-          "abstract_contains": {
-            "type": "string",
-            "description": "摘要中必须包含的词（仅匹配 abstract 字段）。"
-          },
-          "authors": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "作者名（任一命中即可）。SDK 内部映射到后端 `author` 字段（FILTER_OP_IN）。"
-          },
-          "year_from": {
+          "page": {
             "type": "integer",
-            "description": "起始发表年（含）。"
+            "default": 1,
+            "minimum": 1
           },
-          "year_to": {
+          "page_size": {
             "type": "integer",
-            "description": "结束发表年（含）。"
+            "default": 25,
+            "minimum": 1,
+            "maximum": 50,
+            "description": "每页条数。省略时为服务端默认 25（SDK / MCP 不注入默认值）；工具层上限 50。"
           },
-          "journals": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "期刊名（任一命中即可）。SDK 内部映射到后端 `publication_venue_name_unified` 字段（FILTER_OP_IN，规范化后的载体名）。"
+          "freshness_boost": {
+            "type": "string",
+            "enum": [
+              "NONE",
+              "MILD",
+              "STRONG"
+            ],
+            "default": "NONE",
+            "description": "模糊搜索新鲜度加权：结果偏向新文献（仅 query 非空时生效；传排序\n（sort_by_year 非 none / sort_advanced）时被忽略，硬排优先）。\nMILD: 近 10 年加权，适合日常查文献；STRONG: 近 3 年加权，适合跟踪\n研究方向 / 追最新进展。与 impact_boost / language_affinity 可叠加\n（均为乘法因子）。boost 生效时为浅翻页：不产 next_cursor、不支持\ncursor 深翻页。\n"
           },
-          "subjects": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "学科分类，如 \"computer science\"、\"biology\"。"
+          "impact_boost": {
+            "type": "string",
+            "enum": [
+              "NONE",
+              "MILD",
+              "STRONG"
+            ],
+            "default": "NONE",
+            "description": "模糊搜索影响力加权：高被引文献在保留相关性的前提下上浮（仅 query\n非空时生效；传排序时被忽略）。MILD: 轻度上浮，相关性仍主导；\nSTRONG: 明显偏向高被引。引用因子有界、零被引中性（不会归零）。\n与 freshness_boost / language_affinity 可叠加；boost 生效时为浅翻页。\n"
           },
-          "filters_advanced": {
+          "language_affinity": {
+            "type": "string",
+            "enum": [
+              "NONE",
+              "MILD",
+              "STRONG"
+            ],
+            "default": "NONE",
+            "description": "模糊搜索语言亲和加权：非 query 语言的结果降序、但不排除（仅 query\n非空时生效；传排序时被忽略）。目标语言由服务端从 query 文本判定\n（假名→ja / 谚文→ko / 汉字→zh / 拉丁→en，其他书写系统不生效）；\n语言未知的文献保持中性不降权。MILD: 非目标语言 ×0.5，跨语言强相关\n结果仍可上浮；STRONG: ×0.2，几乎只看目标语言。与 freshness_boost /\nimpact_boost 可叠加；boost 生效时为浅翻页。要硬排除某语言请改用\nfilters_advanced 的 language 字段（如 {\"field\":\"language\",\"value\":\"en\"}，\n软硬两层语义不同：本参数只调序，filter 直接排除）。\n"
+          },
+          "filters": {
             "type": "array",
-            "description": "高级过滤逃生舱（仅当上述字段不够用时使用）。",
+            "description": "按当前实体 catalog 的字段能力填写。",
             "items": {
               "type": "object",
               "required": [
                 "field",
+                "operator",
                 "value"
               ],
               "properties": {
@@ -111,12 +129,14 @@
                   "default": "FILTER_OP_EQ"
                 },
                 "value": {}
-              }
-            }
+              },
+              "additionalProperties": false
+            },
+            "maxItems": 128
           },
-          "sort_advanced": {
+          "sort": {
             "type": "array",
-            "description": "高级排序逃生舱（按任意可排序字段）。papers 用 sort_by_year 即可； authors/sources 想按 h-index / 被引 / works_count 排序时用本字段。 与 query 互斥（query 走相关性排序）。",
+            "description": "按当前实体 catalog 的字段能力填写。",
             "items": {
               "type": "object",
               "required": [
@@ -135,45 +155,43 @@
                   ],
                   "default": "SORT_ORDER_DESC"
                 }
+              },
+              "additionalProperties": false
+            },
+            "maxItems": 32
+          },
+          "cursor": {
+            "type": "string",
+            "description": "使用上页 next_cursor 原样续查，保持查询条件不变；不与 page>1 共用。"
+          },
+          "facets": {
+            "type": "array",
+            "maxItems": 5,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "field"
+              ],
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "size": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 50,
+                  "default": 10
+                }
               }
             }
-          },
-          "sort_by_year": {
-            "type": "string",
-            "enum": [
-              "desc",
-              "asc",
-              "none"
-            ],
-            "default": "desc"
-          },
-          "freshness_boost": {
-            "type": "string",
-            "enum": [
-              "NONE",
-              "MILD",
-              "STRONG"
-            ],
-            "default": "NONE",
-            "description": "模糊搜索新鲜度加权（仅 query 非空时生效；与 sort_by_year 互斥）。\nMILD: 近 10 年加权，适合日常查文献；STRONG: 近 3 年加权，适合跟踪\n研究方向 / 追最新进展。底层为 function_score + gauss decay over\npublication_published_date。\n"
-          },
-          "page": {
-            "type": "integer",
-            "default": 1,
-            "minimum": 1
-          },
-          "page_size": {
-            "type": "integer",
-            "default": 10,
-            "minimum": 1,
-            "maximum": 50
           }
         }
       }
     },
     {
       "name": "semantic_search",
-      "description": "Natural-language semantic search returning relevant paper chunks for\nRAG-style answering.\nUse when: \"How does Transformer attention work?\", \"What are recent\nmethods for protein structure prediction?\".\nNot for: precise field filtering (use search_papers) or fetching full\noriginal text (use read_content).\nReturns: list of chunks; each entry has chunk_id, doc_id, abstract,\nchunk, score, title, offset.\nTypical chain: semantic_search → pick chunk → read_content(doc_id,\noffset).",
+      "description": "Natural-language semantic search returning relevant paper chunks for\nRAG-style answering.\nUse when: \"How does Transformer attention work?\", \"What are recent\nmethods for protein structure prediction?\".\nNot for: precise field filtering (use search_metadata) or fetching full\noriginal text (use read_content).\nReturns: list of chunks; each entry has chunk_id, doc_id, abstract,\nchunk, score, title, offset.\nTypical chain: semantic_search → pick chunk → read_content(doc_id,\noffset).",
       "script": "scripts/semantic_search.mjs",
       "input_schema": {
         "type": "object",
@@ -191,7 +209,8 @@
             "type": "integer",
             "default": 10,
             "minimum": 1,
-            "maximum": 30
+            "maximum": 100,
+            "description": "返回命中条数上限，合法 1-100（服务端校验，超出报 400）。\n实际条数还受 mode 影响：balanced 单路混合召回在服务端固定截到约 50 条，\ntop_k 超过 50 时多出的部分不会返回；fast 与 quality 可取到 top_k。\n另外同一篇论文最多返回约 3 个 chunk，因此高 top_k 需要命中足够多的不同论文。\n"
           },
           "source_types": {
             "type": "array",
@@ -201,6 +220,48 @@
                 "web",
                 "pdf"
               ]
+            }
+          },
+          "filters": {
+            "type": "object",
+            "description": "结构化过滤（可选）。在召回阶段与语义检索同时生效（ES+Milvus 双引擎下推，\n不是结果后过滤）；多个字段之间 AND，同一字段传数组时数组内 OR。\n⚠️ 宽松（软）语义：chunk 侧元数据缺失的文档不会被排除——例如按年份过滤时，\n缺年份信息的 chunk 仍可能返回。需要严格范围保证时勿当硬约束使用，\n表述结论时注明范围为\"近似过滤\"。\n数值/日期字段支持区间：{\"gte\":2020,\"lte\":2025} 或 [min,max]（null 表示一侧不限）；\n日期接受 YYYY / YYYY-MM / YYYY-MM-DD。\n实际可用字段受账号字段权限约束；未知字段服务端返回 400。\n例：{\"author\":[\"Hinton\"],\"publication_published_year\":{\"gte\":2023},\n    \"topics\":{\"dimensions\":{\"primary_topic_domain\":\"Health Sciences\"}}}\n",
+            "properties": {
+              "lang": {
+                "description": "语言代码，如 \"en\"、\"zh\"；也接受别名 language。"
+              },
+              "metadata_type": {
+                "description": "资源类型，仅单值：\"paper\" 或 \"ebook\"。"
+              },
+              "author": {
+                "description": "作者名，string 或 string[]（数组=任一命中）。"
+              },
+              "publication_venue_name_unified": {
+                "description": "发表载体名称（期刊/会议，规范化名，适合精确匹配）。"
+              },
+              "publication_venue_type": {
+                "description": "载体类型：\"journal\"、\"conference\"、\"repository\"、\"book series\"、\"ebook platform\"、\"metadata\"、\"raidRegistry\"、\"igsnCatalog\"、\"other\"（不区分大小写）。"
+              },
+              "publication_published_year": {
+                "description": "发表年份，单值或区间（{\"gte\":..,\"lte\":..} / [min,max]）。"
+              },
+              "publication_published_date": {
+                "description": "发表日期，\"YYYY[-MM[-DD]]\" 单值或区间。"
+              },
+              "citation_count": {
+                "description": "被引次数，单值或区间。"
+              },
+              "influential_citation_count": {
+                "description": "高影响力被引次数，单值或区间。"
+              },
+              "title": {
+                "description": "标题精确匹配（标题检索一般更适合 search_papers）。"
+              },
+              "topics": {
+                "description": "主题组合过滤：{\"logic\":\"and|or\",\"dimensions\":{\"primary_topic\":\"...\",\"primary_topic_domain\":\"Physical Sciences|Social Sciences|Health Sciences|Life Sciences\"}}；logic 省略默认 or。"
+              },
+              "doc_id": {
+                "description": "唯一的硬约束字段（其余字段均为软语义）：命中绝不越出给定集合。\n值为 64 位小写 hex sha256（即 search_papers 返回的 doc_id；仅有全文的论文才有），\nstring 或 string[]，仅 eq/in。去重后上限默认 1000，超限返回 400 SCOPE_TOO_LARGE；\n显式传空数组返回 200 空 hits（候选集为空，不退化为全局检索）。\n典型用法：先 search_papers 圈定候选集合，再在集合内做受限语义检索。\n"
+              }
             }
           },
           "mode": {
@@ -218,7 +279,7 @@
     },
     {
       "name": "list_catalog",
-      "description": "Returns the schema catalog for search_papers: every field name, type,\nwhether it's filterable / sortable, default-return status, human\ndescription, and applicable FilterOperators.\nUse when: \"Which field do I filter by DOI?\", \"What values can\naccess_oa_status take?\", \"What's the right enum for metadata_type?\".\nNot for: actually searching papers (use search_papers / semantic_search).\nTypical pattern: call once when first encountering Sciverse or facing\nan ambiguous field need, then construct precise search_papers filters\nfrom the returned schema.\nPass include_sample_values=true to also fetch top-20 values for\nenum-like fields (OpenSearch terms aggregation, 24h cached).",
+      "description": "Returns the schema catalog for search_metadata: every field name, type,\nwhether it's filterable / sortable, default-return status, human\ndescription, and applicable FilterOperators.\nUse when: \"Which field do I filter by DOI?\", \"What values can\naccess_oa_status take?\", \"What's the right enum for metadata_type?\".\nNot for: actually searching papers (use search_metadata / semantic_search).\nTypical pattern: call once when first encountering Sciverse or facing\nan ambiguous field need, then construct precise search_metadata filters\nfrom the returned schema.\nPass include_sample_values=true to also fetch top-20 values for\nenum-like fields (OpenSearch terms aggregation, 24h cached).",
       "script": "scripts/list_catalog.mjs",
       "input_schema": {
         "type": "object",
@@ -228,10 +289,11 @@
             "enum": [
               "papers",
               "authors",
-              "sources"
+              "sources",
+              "patents"
             ],
             "default": "papers",
-            "description": "字段 catalog 所属实体集合。papers（默认）/ authors / sources，各 collection 字段不同。"
+            "description": "字段 catalog 所属实体集合。papers（默认）/ authors / sources / patents，各 collection 字段不同。"
           },
           "include_sample_values": {
             "type": "boolean",
@@ -249,7 +311,7 @@
     },
     {
       "name": "list_paper_relations",
-      "description": "Paginate the full relation list of a paper. citations/references/related_works\nare unbounded arrays (a highly-cited paper can have thousands); search_papers\nonly inlines a truncated few, so use this endpoint for the full list.\nUse when: \"What does paper X cite?\" (relation=REFERENCES), \"Which papers cite\npaper X?\" (relation=CITATIONS), \"Works related to paper X\" (relation=RELATED_WORKS).\nNote: CITATIONS (incoming: who cites me) and REFERENCES (outgoing: who I cite)\nare opposite directions.\nTypical chain: get unique_id from search_papers / semantic_search, then paginate\nhere by relation.",
+      "description": "Paginate the full relation list of a paper. citations/references/related_works\nare unbounded arrays (up to 340k entries for a single paper) and are NOT\nprojectable in search_metadata, so this endpoint is the only way to read them.\nUse when: \"What does paper X cite?\" (relation=REFERENCES), \"Which papers cite\npaper X?\" (relation=CITATIONS), \"Works related to paper X\" (relation=RELATED_WORKS).\nNote: CITATIONS (incoming: who cites me) and REFERENCES (outgoing: who I cite)\nare opposite directions.\nTypical chain: get unique_id from search_metadata / semantic_search, then paginate\nhere by relation.\nTwo limits (CITATIONS only; REFERENCES/RELATED_WORKS max out at 11833/20 in practice):\nmore than 10000 relations returns 429; page*page_size above 10000 returns 400.\nIn both cases switch to search_metadata with filters on\nreferences_unique_id — it supports deep paging and arbitrary sorting.\ntotal_count counts in-corpus matches only, so it can differ from the paper's own\ncitation_count by about 1%.",
       "script": "scripts/list_paper_relations.mjs",
       "input_schema": {
         "type": "object",
@@ -260,7 +322,7 @@
         "properties": {
           "unique_id": {
             "type": "string",
-            "description": "目标论文 unique_id（如 paper:10.1038/xxx），来自 search_papers / semantic_search；勿传 doc_id。"
+            "description": "目标论文 unique_id（如 paper:10.1038/xxx），来自 search_metadata / semantic_search；勿传 doc_id。"
           },
           "relation": {
             "type": "string",
@@ -287,25 +349,38 @@
     },
     {
       "name": "read_content",
-      "description": "Read a UTF-8 byte range of a paper's original text. Typically used with\na doc_id/offset returned by semantic_search to expand context (read\nmore bytes before or after a chunk).\nReturns: text fragment, bytes_returned, next_offset, more (boolean).",
+      "description": "Read a range of a paper or patent’s original text addressed in Unicode code\npoints (offset/limit count characters like Python len(), not bytes).\nTypically used with a doc_id/offset returned by semantic_search to\nexpand context (read more text before or after a chunk).\nReturns: text fragment, bytes_returned (UTF-8 byte length of text, for\nreference only), next_offset (code-point offset of the next fragment —\npage with it, never with bytes_returned), more (boolean).\nServer behaviour: limit above 524288 is silently clamped; omitting\noffset returns the whole document ignoring limit — the SDKs / MCP\nserver send offset=0 and limit=4096 by default, so pass offset\nexplicitly when calling the HTTP API directly.",
       "script": "scripts/read_content.mjs",
       "input_schema": {
         "type": "object",
         "properties": {
+          "collection": {
+            "type": "string",
+            "enum": [
+              "papers",
+              "patents"
+            ],
+            "default": "papers",
+            "description": "正文实体；专利必须传 patents，doc_id 来自元数据查询，不能用公开号。"
+          },
           "doc_id": {
             "type": "string",
-            "description": "文献 ID（来自 search_papers / semantic_search）。"
+            "description": "文献 ID（来自 search_metadata / semantic_search）。"
           },
           "offset": {
             "type": "integer",
             "format": "int64",
-            "default": 0
+            "default": 0,
+            "minimum": 0,
+            "description": "起始 Unicode 码点偏移，直接使用 semantic_search 返回的 offset。默认 0。"
           },
           "limit": {
             "type": "integer",
             "format": "int64",
             "default": 4096,
-            "maximum": 16384
+            "minimum": 1,
+            "maximum": 524288,
+            "description": "最多返回的 Unicode 码点数。默认 4096；服务端上限 524288（超出静默钳制）。LLM 场景建议 ≤ 16384，避免撑爆上下文。"
           }
         },
         "required": [

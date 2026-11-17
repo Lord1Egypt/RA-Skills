@@ -1,41 +1,53 @@
-## Description: <br>
-Calculates daily fortune readings from a birth date using Chinese lunar almanac signals, zodiac relationships, constellation scores, lucky elements, and practical advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates daily fortune readings from a birth date and calendar data, including love, career, wealth, health, lucky elements, and practical suggestions.
 
-## Publisher: <br>
-[zaferliu](https://clawhub.ai/user/zaferliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zaferliu](https://clawhub.ai/user/zaferliu)
 
-## Use Case: <br>
-Individuals or agents use this skill to request a daily fortune reading after supplying or saving a birthday. It returns love, career, wealth, health, and overall scores, along with lucky elements, almanac reminders, and concise advice for a selected date. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores the user's birthday locally for future calculations. <br>
-Mitigation: Install only if local birthday storage is acceptable, and delete ~/.openclaw/fortune_birthday.json to remove the saved data. <br>
-Risk: The skill depends on lunar-python for calendar calculations. <br>
-Mitigation: Review or pin the lunar-python dependency before use in managed environments. <br>
+## Use Case:
 
+Users ask an agent to calculate daily fortune readings from a saved or supplied birth date, including Chinese almanac, zodiac, constellation, category scores, lucky elements, and advice. The output is entertainment-style guidance and should not be treated as factual decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zaferliu/fortune-luck) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Plain text or JSON fortune result with scores, lucky elements, calendar details, and advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can reuse a locally saved birthday from ~/.openclaw/fortune_birthday.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill can store the user's birth date and calendar type locally at ~/.openclaw/fortune_birthday.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when local birthday storage is acceptable, delete the saved file when it is no longer needed, and run under a restricted local account where appropriate.
+
+Risk: Manual installation depends on lunar-python, which may change across versions.
+
+Mitigation: Pin lunar-python to a reviewed version before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zaferliu/skills/fortune-luck)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, markdown, guidance]
+
+**Output Format:** [Plain text, share-style markdown text, or JSON fortune result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a locally saved birthday and calendar type when the user has previously provided them.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

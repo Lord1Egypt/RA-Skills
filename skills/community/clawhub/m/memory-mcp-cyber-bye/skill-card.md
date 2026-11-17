@@ -1,45 +1,58 @@
-## Description: <br>
-Graph-based memory MCP server with 9 consolidated tools, 8-phase auto-linking, persona tracking, emotional memory, adaptive learning, and knowledge graph entities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to use a graph-based Memory MCP server for persistent memory, persona tracking, emotional memory, adaptive learning, and knowledge graph entities.
 
-## Publisher: <br>
-[cyber-bye](https://clawhub.ai/user/cyber-bye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyber-bye](https://clawhub.ai/user/cyber-bye)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide OpenClaw agents in storing, searching, and managing persistent memory, persona signals, knowledge graph entities, reminders, project context, and shared memories through a registered memory MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain personal conversation-derived memory across sessions. <br>
-Mitigation: Use it only when persistent memory is acceptable, and avoid storing secrets, credentials, or highly sensitive personal, medical, legal, or financial information. <br>
-Risk: Shared memory features may disclose stored content to another user or owner. <br>
-Mitigation: Review sharing operations before use and confirm that the intended recipient and content are appropriate. <br>
-Risk: The skill depends on an external memory MCP server and user-scoped identifiers. <br>
-Mitigation: Confirm the memory MCP server is registered and pass the correct userId for each operation to keep memory scoped to the intended owner. <br>
+## Use Case:
 
+Developers and external users use this skill to instruct an agent to store, retrieve, link, and share persistent user, project, conversation, persona, and relationship context through a configured Memory MCP server.
 
-## Reference(s): <br>
-- [Memory MCP ClawHub page](https://clawhub.ai/cyber-bye/memory-mcp-cyber-bye) <br>
-- [cyber-bye publisher profile](https://clawhub.ai/user/cyber-bye) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown instructions with JSON tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node and a registered memory MCP server exposing the documented memory, entity, relation, short-term, project, context, extract, share, and tool-search tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter and server release metadata) <br>
+Risk: Persistent memory can retain personal, emotional, relationship, project, and conversation data across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only with clear user consent and provide review, deletion, and retention controls before storing or reusing memories.
+
+Risk: Memory sharing can disclose remembered content to other users.
+
+Mitigation: Require explicit confirmation, recipient verification, and scope review before using sharing operations.
+
+Risk: The skill depends on a configured external Memory MCP server for storage and retrieval.
+
+Mitigation: Use only trusted Memory MCP server deployments with known access controls and data handling practices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyber-bye/skills/memory-mcp-cyber-bye)
+- [Publisher profile](https://clawhub.ai/user/cyber-bye)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Configuration]
+
+**Output Format:** [Markdown instructions with JSON MCP tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and a configured memory MCP server; tool calls require userId and op parameters.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

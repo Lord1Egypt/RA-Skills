@@ -1,46 +1,60 @@
-## Description: <br>
-Draft and fill Y Combinator SAFE templates for valuation cap, discount, MFN, and pro rata side letter fundraising documents, producing signable DOCX files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft and fill Y Combinator SAFE templates for valuation-cap, discount, MFN, and pro rata side-letter startup financing documents.
 
-## Publisher: <br>
-[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu)
 
-## Use Case: <br>
-External users, developers, and startup operators use this skill to collect SAFE template inputs, choose an appropriate Y Combinator SAFE variant, and generate a filled DOCX for review before signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote fills send financing terms and party information to the hosted Open Agreements service. <br>
-Mitigation: Confirm the user is comfortable sharing those values before using Remote MCP, and offer the local CLI path for confidential fundraising terms. <br>
-Risk: Generated SAFE documents can affect legal and financing outcomes. <br>
-Mitigation: Have the generated document reviewed by qualified counsel before signing. <br>
-Risk: The local CLI path uses shell commands and user-provided template values. <br>
-Mitigation: Pin the CLI version and enforce the documented filename, field-value, temp-file, and template-name sanitization rules before execution. <br>
+## Use Case:
 
+External users, founders, startup operators, and legal-support workflows use this skill to collect SAFE financing terms, choose a YC SAFE template, and generate a signable DOCX or preview for review before signing.
 
-## Reference(s): <br>
-- [ClawHub Safe Skill Page](https://clawhub.ai/stevenobiajulu/safe) <br>
-- [Open Agreements](https://openagreements.org) <br>
-- [Open Agreements Remote MCP](https://openagreements.org/api/mcp) <br>
-- [open-agreements npm package](https://www.npmjs.com/package/open-agreements) <br>
-- [Open Agreements local CLI setup](https://github.com/open-agreements/open-agreements#use-with-claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [DOCX files, Markdown previews, and inline shell commands or configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote MCP fills may return a temporary download URL; local CLI fills write a DOCX output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence and skill metadata) <br>
+Risk: SAFE field values may include sensitive financing data and can be sent to the hosted Open Agreements service when the remote MCP path is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that hosted processing is acceptable before using the remote MCP path, and offer the local CLI path for sensitive workflows.
+
+Risk: Local CLI usage depends on shell commands, template names, output filenames, and temporary JSON values files.
+
+Mitigation: Use a pinned open-agreements version, validate template names and output filenames, reject control characters and shell metacharacters in values, and use a unique restricted temporary file for each run.
+
+Risk: Generated SAFE documents may affect legal or financing obligations.
+
+Mitigation: Require counsel or other qualified review before signing or relying on generated documents.
+
+## Reference(s):
+
+- [Safe skill page](https://clawhub.ai/stevenobiajulu/skills/safe)
+- [Open Agreements](https://openagreements.org)
+- [Open Agreements Remote MCP](https://openagreements.org/api/mcp)
+- [open-agreements npm package](https://www.npmjs.com/package/open-agreements)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON values, shell commands, DOCX output paths, download URLs, or preview text depending on the available runtime.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote MCP rendering sends SAFE field values to openagreements.org; local CLI rendering requires Node.js 20 or newer and pinned open-agreements installation.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

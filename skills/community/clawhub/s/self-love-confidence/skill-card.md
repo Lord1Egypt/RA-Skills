@@ -1,38 +1,53 @@
-## Description: <br>
-Build self-love and confidence with affirmations, wins logging, and inner critic management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build self-love and confidence with affirmations, wins logging, and inner critic management.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill for wellness-oriented self-confidence support, including affirmations, daily wins logging, compassionate reframing of negative self-talk, and confidence check-ins. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate from broad wellness phrases such as affirmations or feeling insecure. <br>
-Mitigation: Review the triggers before installation and use the skill only when wellness-oriented self-confidence support is desired. <br>
-Risk: Self-help guidance may not fit users who need clinical, emergency, or professional mental health support. <br>
-Mitigation: Treat outputs as reflective wellness guidance and seek qualified professional or emergency support when appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users use this skill for self-confidence support through personalized affirmations, daily wins logging, compassionate reframing of negative self-talk, and confidence check-ins.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, persistence, data exfiltration, credential access, or destructive behavior was identified in the supplied security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad emotional triggers may activate during ordinary personal conversations about self-worth.
+
+Mitigation: Review trigger behavior before deployment and narrow or disable activation if the agent should not respond to personal confidence topics.
+
+Risk: Users may place crisis, medical, or highly sensitive details into reflection logs.
+
+Mitigation: Do not use the skill for crisis or medical support; keep logs minimal and confirm where the host agent stores local data before entering sensitive information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jhillin8/skills/self-love-confidence)
+- [Publisher Profile](https://clawhub.ai/user/jhillin8)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include affirmations, reflection prompts, reframed thoughts, confidence summaries, and progress review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

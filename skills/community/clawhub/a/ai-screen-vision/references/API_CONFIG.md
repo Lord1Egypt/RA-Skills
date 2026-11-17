@@ -66,7 +66,7 @@ export SV_VISION_PROVIDER=siliconflow   # 可选
   "vision": {
     "provider": "siliconflow",
     "baseUrl": "https://api.siliconflow.cn/v1",
-    "apiKey": "sk-your-siliconflow-key",
+    "apiKey": "REDACTED-SECRET",
     "model": "Qwen/Qwen3-VL-32B"
   }
 }

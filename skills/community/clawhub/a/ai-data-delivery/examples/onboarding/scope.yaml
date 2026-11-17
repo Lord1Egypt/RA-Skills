@@ -1,0 +1,6 @@
+id: paid_order_amount
+question: 统计当前已支付订单金额，并能按客户地域分析。
+datasets: [orders, customers]
+metrics: [gmv]
+time_requirement: current
+# Historical month-end questions would need event/snapshot evidence and as_of_field.

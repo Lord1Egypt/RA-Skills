@@ -15,6 +15,12 @@ class SkillError(Exception):
         self.code = code
         self.data = data or {}
 
+class AuthError(SkillError):
+    """认证/签名异常 (401)"""
+
+    def __init__(self, message: str = "认证失败"):
+        super().__init__(message, code=401)
+
 class ParamError(SkillError):
     """请求参数不合法 (400)"""
 
@@ -32,6 +38,12 @@ class ServiceError(SkillError):
 
     def __init__(self, message: str = "服务异常，请稍后重试"):
         super().__init__(message, code=500)
+
+class DeadlineExceededError(ServiceError):
+    """请求未能在调用方给定的 monotonic deadline 内完成。"""
+
+    def __init__(self, message: str = "请求超出时间预算，请稍后重试"):
+        super().__init__(message)
 
 class RateLimitError(SkillError):
     """请求被限流 (429)"""

@@ -1,0 +1,150 @@
+{
+  "platform": "美团餐饮系统(智能版)",
+  "scrape_date": "2026-04-28 16:17:23",
+  "solutions": [
+    {
+      "name": "堂食扫码点餐",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_e8a2bfb2-c855-40ff-8565-ee946a5cae2e",
+      "file": "堂食扫码点餐.md",
+      "len": 3654
+    },
+    {
+      "name": "自营外卖下单",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_37bd58c1-b817-4917-bd3f-2d4715b56dae",
+      "file": "自营外卖下单.md",
+      "len": 3167
+    },
+    {
+      "name": "第三方会员CRM对接",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_fe095c55-91a0-4621-b2e4-c44daa89cbe9",
+      "file": "第三方会员CRM对接.md",
+      "len": 3684
+    },
+    {
+      "name": "第三方财务对接",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_bcd88174-0dee-46ac-a027-a209a9cdcec2",
+      "file": "第三方财务对接.md",
+      "len": 7214
+    },
+    {
+      "name": "第三方数据中台",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_35c8fdc0-0cc7-4147-84cf-c15b075eb122",
+      "file": "第三方数据中台.md",
+      "len": 8080
+    },
+    {
+      "name": "第三方供应链对接",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_229ac94c-0982-4e9f-8ff4-77ea10aedac4",
+      "file": "第三方供应链对接.md",
+      "len": 8446
+    },
+    {
+      "name": "供应链旗舰版对接三方系统-说明文档",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_d1703953-aef2-401c-ae16-122f165a3bd7",
+      "file": "供应链旗舰版对接三方系统-说明文档.md",
+      "len": 2133
+    },
+    {
+      "name": "三方交易/三方交易接口白皮书",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_7ab191df-9e62-4c3e-829a-0831993d1945",
+      "file": "三方交易_三方交易接口白皮书.md",
+      "len": 2455
+    },
+    {
+      "name": "三方交易/接口对接流程",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_0e077fa0-07e2-4198-b361-40ce496c69eb",
+      "file": "三方交易_接口对接流程.md",
+      "len": 12488
+    },
+    {
+      "name": "三方交易/三方开台接口",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_4be69aed-bd16-471b-affa-07815589867d",
+      "file": "三方交易_三方开台接口.md",
+      "len": 1424
+    },
+    {
+      "name": "三方交易/查询桌台订单接口",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_0242f666-e9a5-431a-83e8-c95c333cfa5f",
+      "file": "三方交易_查询桌台订单接口.md",
+      "len": 1956
+    },
+    {
+      "name": "三方交易/三方下单接口",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_8398585a-c69d-4482-8a34-f363743815e7",
+      "file": "三方交易_三方下单接口.md",
+      "len": 2409
+    }
+  ],
+  "api_categories": [
+    {
+      "category": "基础档案类",
+      "type": "API列表",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_0ee2d760-3990-405b-9a2a-782d96324870",
+      "file": "基础档案类_API列表.md",
+      "len": 2600
+    },
+    {
+      "category": "基础档案类",
+      "type": "消息列表",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_d8a2e535-dd10-4f96-9bde-0bf6879104bb",
+      "file": "基础档案类_消息列表.md",
+      "len": 558
+    },
+    {
+      "category": "数据报表类",
+      "type": "API列表",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_3f70ece6-c15f-4e19-8e71-16a9f44a5c3c",
+      "file": "数据报表类_API列表.md",
+      "len": 1450
+    },
+    {
+      "category": "订单类",
+      "type": "API列表",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_1f1a0ce5-c1ca-4e5d-b6a5-1464c91c18f9",
+      "file": "订单类_API列表.md",
+      "len": 855
+    },
+    {
+      "category": "订单类",
+      "type": "消息列表",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_af89ebe0-453e-46c9-a137-329563e8b02c",
+      "file": "订单类_消息列表.md",
+      "len": 695
+    },
+    {
+      "category": "沽清类",
+      "type": "API列表",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_d91c9783-ce5c-4cb4-a339-c9be57caf1ed",
+      "file": "沽清类_API列表.md",
+      "len": 533
+    },
+    {
+      "category": "沽清类",
+      "type": "消息列表",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_01cd5674-3649-4add-b0fc-a221885f024f",
+      "file": "沽清类_消息列表.md",
+      "len": 487
+    },
+    {
+      "category": "会员营销类",
+      "type": "API列表",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_8c0bdaaf-d010-4519-abf6-d7e31029ff70",
+      "file": "会员营销类_API列表.md",
+      "len": 2078
+    },
+    {
+      "category": "供应链旗舰版",
+      "type": "API列表",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_710d29f6-74f8-4c91-a573-fefdec106acd",
+      "file": "供应链旗舰版_API列表.md",
+      "len": 15905
+    },
+    {
+      "category": "供应链旗舰版",
+      "type": "消息列表",
+      "url": "https://developer.meituan.com/docs/biz/biz_rms_71e970cb-a3a1-4abe-a8f4-550ed5c16f84",
+      "file": "供应链旗舰版_消息列表.md",
+      "len": 1034
+    }
+  ]
+}

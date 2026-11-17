@@ -1,42 +1,58 @@
-## Description: <br>
-Browser control guidance that wraps OpenClaw browser operations for web automation, screenshots, page snapshots, clicking, typing, tab management, file upload, download, and debugging workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser control helper that wraps OpenClaw browser operations for web automation, screenshots, clicking, typing, scrolling, tab management, uploads, downloads, and page snapshots.
 
-## Publisher: <br>
-[vlvwlw](https://clawhub.ai/user/vlvwlw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vlvwlw](https://clawhub.ai/user/vlvwlw)
 
-## Use Case: <br>
-Developers and automation-focused agents use this skill to control a browser for page navigation, screenshots, DOM snapshots, element interaction, form filling, downloads, uploads, and browser debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over a real browser session, including logged-in pages. <br>
-Mitigation: Use the default or a separate sandbox browser profile, and avoid personal Chrome profiles unless logged-in access is required. <br>
-Risk: Browser actions can submit forms, change account state, upload files, download sensitive content, or inspect network requests. <br>
-Mitigation: Require explicit confirmation before state-changing actions, file transfers, sensitive downloads, request inspection, or interactions with account settings. <br>
-Risk: Screenshots, snapshots, console output, traces, and network summaries may expose private data from pages the browser can access. <br>
-Mitigation: Review captured browser output before sharing it and avoid capturing logged-in or sensitive pages unless necessary for the task. <br>
+## Use Case:
 
+Developers and agent operators use this skill to drive browser workflows such as opening pages, collecting screenshots or snapshots, interacting with page elements, uploading and downloading files, and debugging page behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vlvwlw/oc-browser-automation-1-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline browser command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser-tool use may produce screenshots, page snapshots, console output, network request summaries, traces, uploads, and downloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and artifact _meta.json) <br>
+Risk: The skill can act through browser sessions, including sessions that may already be logged in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it deliberately, avoid connecting it to a personal Chrome profile unless needed, and review browser actions before using authenticated sessions.
+
+Risk: Screenshots and snapshots may expose sensitive data from logged-in pages.
+
+Mitigation: Check screenshots and snapshots for sensitive data before sharing or storing them outside the session.
+
+Risk: The skill supports file uploads and downloads.
+
+Mitigation: Confirm upload sources, download destinations, and file contents before transferring files through browser workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vlvwlw/skills/oc-browser-automation-1-0-0)
+- [Publisher profile](https://clawhub.ai/user/vlvwlw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline browser command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference browser snapshots, page screenshots, tabs, downloads, uploads, console output, network requests, trace recordings, and element refs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

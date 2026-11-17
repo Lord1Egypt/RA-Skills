@@ -1,0 +1,57 @@
+// wrangler.jsonc — Cloudflare Workers config consumed by Wrangler itself
+// (`wrangler deploy`, or Cloudflare Workers Builds' git-integrated CI/CD).
+// NuxtHub reads the d1_databases block to wire up hubDatabase() bindings,
+// but Wrangler — not NuxtHub — is what actually deploys the Worker.
+// Replace every <PLACEHOLDER> before deploying. Never invent a database_id —
+// it's produced by `wrangler d1 create <name>`.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "<app-name>",                     // must be globally unique on the Cloudflare account
+  "compatibility_date": "<today-YYYY-MM-DD>",
+  "compatibility_flags": [
+    "nodejs_compat", "nodejs_als"           // both required by NuxtHub's Nitro runtime
+  ],
+  "keep_vars": true,
+  "observability": {
+    "enabled": true
+  },
+
+  // --- Only include this block if the app has a database in scope ---
+  // "d1_databases": [
+  //   {
+  //     "binding": "DB",
+  //     "database_name": "<app-name>",
+  //     "database_id": "<provisioned-d1-database-id>",
+  //     "migrations_dir": "server/db/migrations/sqlite",
+  //     "remote": false
+  //   }
+  // ],
+
+  // --- Preview environment — see SKILL.md §7 "Preview environment" ---
+  // Set this up regardless of whether a DB is in scope, so preview deploys
+  // (`wrangler deploy --env preview` / `wrangler versions upload --env
+  // preview`) land on a SEPARATE Worker ("<app-name>-preview"), not
+  // production. Bindings are non-inheritable — a database_id different from
+  // the production one above (created via `wrangler d1 create
+  // <app-name>-preview`) is what actually keeps preview traffic off the
+  // production database; without it, an env.preview block with no
+  // d1_databases entry of its own would fail to resolve the DB binding at
+  // all, not silently fall back to production.
+  "env": {
+    "preview": {
+      "name": "<app-name>-preview",
+      "vars": {
+        "NUXT_PUBLIC_SITE_URL": "https://<app-name>-preview.<subdomain>.workers.dev"
+      }
+      // --- Only if the app has a database in scope ---
+      // "d1_databases": [
+      //   {
+      //     "binding": "DB",
+      //     "database_name": "<app-name>-preview",
+      //     "database_id": "<separate-preview-d1-database-id>",
+      //     "migrations_dir": "server/db/migrations/sqlite"
+      //   }
+      // ]
+    }
+  }
+}

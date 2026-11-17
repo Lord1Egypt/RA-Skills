@@ -1,41 +1,54 @@
-## Description: <br>
-Command-line tool for Kakao Local API keyword and category place search, geocoding, and reverse geocoding with JSON output and API key authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kakao Local API CLI: keyword/category search, geocode, reverse.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers and automation agents use this skill to perform Kakao Local API place searches, address-to-coordinate lookups, and coordinate-to-address lookups from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Kakao REST API key, so credentials or location queries could be exposed through shared logs or command output. <br>
-Mitigation: Store KAKAO_REST_API_KEY in a secret manager or local environment variable, use quota-limited credentials, and redact API keys and sensitive query data from logs. <br>
-Risk: Executable package code is not bundled in the skill artifact. <br>
-Mitigation: Inspect and pin the referenced repository or package revision before installing or running the CLI. <br>
+## Use Case:
 
+Developers and automation agents use this skill to install and run a Kakao Local API command-line tool for place search, geocoding, and reverse geocoding workflows with JSON output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chloepark85/kakao-local-cli) <br>
-- [Project homepage](https://github.com/ChloePark85/kakao-local-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with CLI examples and environment variable instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of a JSON-producing CLI and requires KAKAO_REST_API_KEY for authenticated Kakao Local API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs users to install executable code from an unpinned external repository that was not included for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository before installation, prefer a pinned release or commit, and install in an isolated environment such as pipx.
+
+Risk: Kakao Local API requests may send addresses, coordinates, search terms, and nearby-place queries to an external API provider.
+
+Mitigation: Treat location and query values as external API data and avoid submitting sensitive or restricted information unless that use is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chloepark85/skills/kakao-local-cli)
+- [Project homepage](https://github.com/ChloePark85/kakao-local-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KAKAO_REST_API_KEY for authenticated Kakao Local API calls.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

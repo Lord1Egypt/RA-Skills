@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — 找不到頁面 · Taipei Bus Skill</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚌</text></svg>">
+  <style>
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+    .not-found-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .not-found-page .hero-title { font-size: 72px; margin-bottom: 16px; }
+    .not-found-page h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+    .not-found-page p { color: var(--text-secondary); margin-bottom: 28px; max-width: 400px; }
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--accent-blue);
+      color: #fff;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 200ms ease;
+    }
+    .home-link:hover { background: #2563eb; transform: translateY(-1px); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="header-brand">
+      <span class="header-logo">🚌</span>
+      <span class="header-title">Taipei Bus Skill</span>
+    </a>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="切換主題">🌙</button>
+    </div>
+  </header>
+
+  <div class="not-found-page">
+    <div class="hero-title">🚌⁉️</div>
+    <h2>找不到頁面</h2>
+    <p>這個頁面可能已被移動、刪除，或網址輸入有誤。</p>
+    <a href="index.html" class="home-link">← 返回首頁</a>
+  </div>
+
+  <footer class="site-footer" style="margin-left:0;">
+    <span>🚌 taipei-bus Skill — v1.2.0</span>
+    <span>資料來源：臺北市交通局 · PTX（MOTC）</span>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

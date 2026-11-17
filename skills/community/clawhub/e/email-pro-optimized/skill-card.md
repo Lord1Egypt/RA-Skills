@@ -1,46 +1,64 @@
-## Description: <br>
-Email Pro Optimized is a high-performance mail management skill for QQ, Gmail, and Outlook that can list accounts, read, search, fetch, analyze, and send email with IMAP/SMTP, OAuth 2.0, and concurrent processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Pro Optimized helps agents manage QQ Mail, Gmail, and Outlook accounts through IMAP/SMTP and OAuth 2.0, including listing accounts, checking, searching, fetching, analyzing, and sending email.
 
-## Publisher: <br>
-[q012315](https://clawhub.ai/user/q012315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[q012315](https://clawhub.ai/user/q012315)
 
-## Use Case: <br>
-Developers and external users can use this skill to manage configured QQ, Gmail, and Outlook mailboxes, including checking recent or unread messages, searching and fetching message contents, sending messages with optional HTML or attachments, and automating email monitoring or backup workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles mailbox credentials and OAuth tokens. <br>
-Mitigation: Protect ~/.openclaw/credentials, verify requested mail permissions, and review credential file access before use. <br>
-Risk: The Outlook quick-authorization path includes bundled OAuth application credentials. <br>
-Mitigation: Use your own Gmail or Outlook OAuth application credentials instead of bundled quick-auth values. <br>
-Risk: Bundled developer scripts can push or synchronize local repository or workspace files if run. <br>
-Mitigation: Avoid running auto-push.py or sync-updates.py unless repository or workspace changes are intentional. <br>
-Risk: Sending commands can transmit messages or attachments to unintended recipients. <br>
-Mitigation: Confirm recipients, subject, body, HTML mode, and attachment paths before sending email. <br>
+## Use Case:
 
+Developers and agents use this skill to automate email workflows across QQ Mail, Gmail, and Outlook, including mailbox checks, search, message fetches, analysis, and outbound email with optional attachments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/q012315/email-pro-optimized) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Text, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime commands return JSON records and text status output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and requests; reads and writes mailbox credential and OAuth token files under ~/.openclaw/credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata; artifact package.json reports 1.0.0) <br>
+Risk: The release ships exposed Outlook OAuth credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled secret, use your own OAuth application credentials, and rotate or revoke any exposed credential before authorization.
+
+Risk: The skill can send email and attachments from configured accounts.
+
+Mitigation: Review OAuth scopes and verify every recipient, subject, body, and attachment before running send commands.
+
+Risk: Credential and OAuth token files under ~/.openclaw/credentials are sensitive.
+
+Mitigation: Limit access to credential files, keep token files out of shared workspaces, and review account entries before use.
+
+Risk: Developer scripts can publish code or copy files into another workspace.
+
+Mitigation: Avoid or delete auto-push.py and sync-updates.py unless their target paths and repository actions have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/q012315/skills/email-pro-optimized)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [Gmail API profile endpoint](https://www.googleapis.com/gmail/v1/users/me/profile)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, requests, and user-controlled mail or OAuth credentials; email query commands return structured JSON.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata; artifact/package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

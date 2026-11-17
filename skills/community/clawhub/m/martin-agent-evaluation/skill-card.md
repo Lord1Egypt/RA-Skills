@@ -1,41 +1,55 @@
-## Description: <br>
-Evaluate LLM agents through behavioral tests, capability assessments, reliability metrics, production monitoring, and benchmark design to identify real-world performance issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate LLM agents using behavioral tests, capability assessments, reliability metrics, and benchmarks to identify real-world performance issues.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Developers, quality engineers, and agent teams use this skill to design and run evaluations that expose reliability, behavioral, benchmark, and production-readiness issues in LLM agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluation prompts or test data may be sent to the SkillBoss third-party LLM API when following the integration example. <br>
-Mitigation: Use the SkillBoss integration only after organizational approval, and avoid sending secrets, customer data, regulated data, proprietary benchmark prompts, or other sensitive material. <br>
-Risk: The skill requires a sensitive API credential for the SkillBoss example. <br>
-Mitigation: Store SKILLBOSS_API_KEY in an approved secrets manager or environment variable and avoid committing it to source control or logs. <br>
+## Use Case:
 
+Developers and quality engineers use this skill to design and run evaluations for LLM agents, including behavioral regression tests, capability assessments, adversarial tests, reliability metrics, and benchmark analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/godferylindsay/martin-agent-evaluation) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include evaluation patterns, anti-patterns, API integration examples, and environment variable requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Evaluation messages, prompts, traces, user conversations, or benchmark data may be sent to SkillBoss when following the API integration example.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use synthetic or redacted test data unless the organization has approved sending production or confidential evaluation data to SkillBoss.
+
+Risk: Evaluation data can leak into prompts, training examples, or benchmark-tuned workflows and make results look stronger than real production behavior.
+
+Mitigation: Keep test sets separated from prompts and training data, and validate results with production-like behavioral and adversarial tests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/martin-agent-evaluation)
+- [ClawHub publisher profile](https://clawhub.ai/user/godferylindsay)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with evaluation patterns, risk notes, and Python API examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples that require SKILLBOSS_API_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

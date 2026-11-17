@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Amara"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["amara"]
   icon: "https://static.oomol.com/logo/third-party/Amara.svg"
 ---
@@ -64,8 +64,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_video_activity` — List activity items for a single Amara video with pagination controls.
 - `list_video_urls` — List all source URLs associated with a single Amara video.
 - `list_videos` — List Amara videos with optional filters, sorting, and pagination controls.
-- `make_video_url_primary` — Update a video URL entry and mark it as the primary URL when requested.
-- `perform_subtitle_action` — Perform a subtitle workflow action such as publish, approve, or reject.
+- `make_video_url_primary` — Update a video URL entry and mark it as the primary URL when requested. [write]
+- `perform_subtitle_action` — Perform a subtitle workflow action such as publish, approve, or reject. [destructive]
 - `send_message` — Send a message to an Amara user or team recipient. [write]
 - `update_subtitle_language` — Update subtitle language settings such as completion flags and soft limits. [write]
 - `update_video` — Update an existing Amara video's metadata, assignment, or language settings. [write]
@@ -100,11 +100,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Amara is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=amara
+  https://console.oomol.com/connections/amara
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Amara homepage: https://amara.org
+- API documentation: https://apidocs.amara.org/

@@ -1,9 +1,9 @@
 ---
 name: minara
-version: "3.0.2"
+version: "3.0.4"
 description: "Crypto trading & wallet, and AI market analysis via Minara CLI. Swap, perps, transfer, deposit (credit card/crypto), withdraw, AI chat, market discovery, x402 payment, autopilot, limit orders, premium. EVM + Solana + Hyperliquid. Use when: (1) crypto tokens/tickers (ETH, BTC, SOL, USDC, $TICKER, contract addresses), (2) chain names (Ethereum, Solana, Base, Arbitrum, Hyperliquid), (3) trading actions (swap, buy, sell, long, short, perps, leverage, limit order, autopilot), (4) wallet actions (balance, portfolio, deposit, withdraw, transfer, send, pay, credit card), (5) market data (trending, price, analysis, fear & greed, BTC metrics, Polymarket, DeFi), (6) stock tickers in crypto context (AAPL, TSLA), (7) Minara/x402/MoonPay explicitly, (8) subscription/premium/credits."
 homepage: https://minara.ai
-metadata: { "openclaw": { "always": false, "primaryEnv": "MINARA_API_KEY", "requires": { "bins": ["minara"], "config": ["skills.entries.minara.enabled"] }, "emoji": "👩", "homepage": "https://minara.ai", "install": [{ "id": "node", "kind": "node", "package": "minara@latest", "global": true, "bins": ["minara"], "label": "Install Minara CLI (npm)" }] }, "version": "3.0.0" }
+metadata: { "openclaw": { "always": false, "primaryEnv": "MINARA_API_KEY", "requires": { "bins": ["minara"], "config": ["skills.entries.minara.enabled"] }, "emoji": "👩", "homepage": "https://minara.ai", "install": [{ "id": "node", "kind": "node", "package": "minara@latest", "global": true, "bins": ["minara"], "label": "Install Minara CLI (npm)" }] }, "version": "3.0.4" }
 ---
 
 # Minara — Your Personal Crypto AI Financial Officer for Crypto Trading & Wallet Management
@@ -20,7 +20,7 @@ On first activation, read `{baseDir}/setup.md` and follow its instructions.
 bash {baseDir}/scripts/version-check.sh
 ```
 
-- `UP_TO_DATE` or `SNOOZED` → **continue to login check**.
+- `UP_TO_DATE` or `SNOOZED` → **continue without an activation-time login check**.
 - Contains `UPGRADE` → parse which components need updating, then **ask the user**:
 
 > "Minara update available — [cli: X→Y] [skill: X→Y]. What would you like to do?
@@ -41,16 +41,18 @@ rm -f ~/.minara/.last-update-check
 
 Only prompt for the components listed in the `UPGRADE` output (e.g. if only `cli:` is present, don't mention skill).
 
-### Login check (after version check)
+### Authentication is lazy (after version check)
 
-Run `minara account` to check login state:
-- **Success** → continue silently to the user's request.
-- **Failure** → user is not logged in. Automatically run `minara login --device` with `pty: true`. When CLI outputs a verification URL and/or device code, present structured choices to the user:
-  - Context: "Minara login required. Open this URL to complete login: {URL}\nDevice code: {code}"
-  - Options: A) I've completed browser verification / B) Cancel login
-  - After user confirms A → verify with `minara account`, then proceed.
+Do **not** run `minara account` when this skill is activated. Authentication is checked only
+when the requested Minara command actually needs account access.
 
-> This check runs automatically on every session. The user does not need to manually trigger login.
+- Start the requested command normally.
+- If it succeeds, continue without a separate account probe.
+- If it returns an authentication error, follow
+  [`references/auth-recovery.md`](references/auth-recovery.md), then retry the original command once.
+- Public discovery or other commands that work without an account must never trigger login.
+- Do not turn a network, Cloudflare, or upstream API error into a login prompt unless the CLI
+  explicitly reports an authentication failure.
 
 ## Activation triggers
 
@@ -71,7 +73,7 @@ Run `minara account` to check login state:
 ## Prerequisites
 
 - CLI: `minara` in PATH
-- Auth: `minara account` succeeds. If not → run `minara login --device` and relay URL/code to user
+- Auth: checked only when a requested command reports an authentication error; then follow `references/auth-recovery.md`
 - `MINARA_API_KEY` env var bypasses login
 
 ## Agent behavior (CRITICAL)
@@ -83,7 +85,7 @@ Run `minara account` to check login state:
 3. **If fund-moving** → follow the **Transaction confirmation** flow below. Message 1 = confirmation summary only. Message 2 (after user replies) = execute.
 4. Execute the command yourself (use `pty: true` for interactive commands)
 5. Read CLI output → decide next step autonomously
-6. If error → diagnose, retry or report
+6. If authentication fails → follow `references/auth-recovery.md`; otherwise diagnose, retry or report
 7. Return: **Task** → **Actions** → **Result** → **Follow-ups**
 
 **Never** show CLI commands and ask the user to run it themself.
@@ -96,6 +98,16 @@ Analysis (ask/research/chat) is read-only. **NEVER execute any fund-moving comma
 2. If the user expressed trade intent in the same message (e.g. "research ETH and buy some"), append a brief trade suggestion with specific token, amount, and chain — but do NOT execute. Example: "Based on the analysis, you could buy $100 of ETH on Ethereum. Reply to confirm."
 3. If the user did NOT express trade intent, do NOT suggest any trade.
 4. Wait for the user's explicit reply to start the confirmation flow.
+
+### ⚠ Anti-loop safeguard (MUST follow)
+
+Interactive CLI commands (pickers, multi-step prompts) can hang in agent environments. To prevent infinite retry loops:
+
+1. **Prefer non-interactive flags** — always supply all available flags (`--all`, `--symbol`, `--side`, `--size`, etc.) to skip interactive prompts. Read the reference doc to find the correct flags.
+2. **Max 1 retry** — if a command fails or hangs, retry at most once. After 2 failures, **STOP** and report the error to the user.
+3. **Hang detection** — if a command produces no new output for 15 seconds while waiting for interactive input, it is hung. Kill the process (do NOT keep waiting) and do NOT retry.
+4. **Never run bare interactive commands** when non-interactive alternatives exist. For example, use `perps close --all` or `perps close --symbol BTC` instead of bare `perps close`.
+5. **Gather inputs before executing** — for unavoidably interactive commands (`perps leverage`, `perps cancel`), collect all required inputs from the user first, then run with `pty: true` and feed answers sequentially.
 
 ## Transaction confirmation (CRITICAL — MUST follow exactly)
 
@@ -210,7 +222,7 @@ Match user intent → read the **Reference** for full execution flow. All CLI co
 | "short BTC", "go short on ETH", "short SOL with 10x" | `perps order` (interactive) or `perps order -S short -s SYM -z SIZE` (direct) | `{baseDir}/references/perps-order.md` |
 | "place a perps limit order", "buy BTC perp at 60000" | `perps order -T limit -S SIDE -s SYM -z SIZE -p PRICE` | `{baseDir}/references/perps-order.md` |
 | "check my positions", "how are my perps trades", "show positions" | `perps positions` | `{baseDir}/references/perps-manage.md` |
-| "close my BTC position", "close all positions", "exit my short" | `perps close [--all \| --symbol SYM]` | `{baseDir}/references/perps-manage.md` |
+| "close my BTC position", "close all positions", "exit my short" | `perps close --all` or `perps close --symbol SYM` (⚠ NEVER bare `perps close`) | `{baseDir}/references/perps-manage.md` |
 | "cancel my perps order" | `perps cancel` | `{baseDir}/references/perps-manage.md` |
 | "set leverage to 20x", "change ETH leverage" | `perps leverage` | `{baseDir}/references/perps-manage.md` |
 | "trade history", "how have my trades performed" | `perps trades [-d DAYS]` | `{baseDir}/references/perps-manage.md` |
@@ -245,7 +257,6 @@ Match user intent → read the **Reference** for full execution flow. All CLI co
 | "show perps deposit address" | `deposit perps --address` | `{baseDir}/references/deposit.md` |
 | "buy crypto with credit card", "on-ramp with card", "deposit with MoonPay" | `deposit buy` | `{baseDir}/references/deposit.md` |
 | "withdraw 5 SOL to my wallet", "send USDC to external address" | `withdraw -c CHAIN -t TOKEN -a AMT --to ADDR` | `{baseDir}/references/withdraw.md` |
-| "buy crypto with credit card", "on-ramp with card", "deposit with MoonPay" | `deposit buy` | `{baseDir}/references/deposit.md` |
 
 ### Account & premium
 
@@ -255,7 +266,7 @@ Match user intent → read the **Reference** for full execution flow. All CLI co
 | "logout", "sign out", "disconnect" | `logout` | `{baseDir}/references/auth.md` |
 | "my account", "wallet address", "who am I" | `account [--show-all]` | `{baseDir}/references/auth.md` |
 | "setup minara", "configure", "install" | read `{baseDir}/setup.md` | `{baseDir}/references/auth.md` |
-| "subscription plans", "upgrade to Pro", "buy credits", "cancel subscription" | `premium plans\|status\|subscribe\|buy-credits\|cancel` | `{baseDir}/references/premium.md` |
+| "subscription plans", "upgrade to Pro", "cancel subscription" | `premium plans\|status\|subscribe\|cancel` | `{baseDir}/references/premium.md` |
 
 ## UX rules
 
@@ -271,7 +282,7 @@ Match user intent → read the **Reference** for full execution flow. All CLI co
 
 - **Token input:** `'$BONK'` (quote `$`), ticker, address, or name
 - **JSON output:** `--json` on root command
-- **Interactive commands:** use `pty: true` — never use it to auto-confirm
+- **Interactive commands:** use `pty: true` — never use it to auto-confirm. Full bypass guide: `{baseDir}/references/interactive-commands.md`
 - **Non-interactive discover:** `--type tokens|stocks` skips category prompt
 - **Non-interactive perps order:** `-S SIDE -s SYMBOL -z SIZE` skips all prompts
 - **Supported chains:** ethereum, base, arbitrum, optimism, polygon, avalanche, solana, bsc, berachain, blast, manta, mode, sonic, conflux, merlin, monad, polymarket, xlayer

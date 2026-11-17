@@ -1,49 +1,70 @@
-## Description: <br>
-百度智能云VOD视频翻译工具，帮助代理通过 Baidu VOD 处理视频字幕翻译、语音翻译和配音，并支持批量处理、字幕样式配置、本地下载和可选网盘上传。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+百度智能云VOD视频翻译 helps an agent guide users through Baidu Cloud VOD subtitle translation, voice dubbing, subtitle styling, batch video handling, result downloads, and optional Baidu Netdisk transfer.
 
-## Publisher: <br>
-[lhx121619](https://clawhub.ai/user/lhx121619) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lhx121619](https://clawhub.ai/user/lhx121619)
 
-## Use Case: <br>
-Developers and external users use this skill to guide an agent through Baidu VOD video translation workflows, including collecting parameters, confirming execution, and running Python commands for subtitle translation, speech translation, task management, and result retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads selected videos, subtitles, and speech content to Baidu cloud services for paid VOD processing. <br>
-Mitigation: Use non-sensitive media for testing, confirm user consent before upload, and review Baidu pricing and data handling expectations before running translation tasks. <br>
-Risk: The scripts use Baidu Access Key and Secret Key credentials and can create, query, update, and delete VOD projects and tasks. <br>
-Mitigation: Use credentials with the least necessary Baidu permissions, keep credentials in environment variables only, and verify project and task IDs before management operations. <br>
-Risk: The artifact includes project deletion capability that can remove cloud VOD project resources. <br>
-Mitigation: Require an explicit user confirmation for deletion commands and inspect the exact project ID before execution. <br>
-Risk: Optional netdisk workflows move processed media through the bdpan CLI. <br>
-Mitigation: Confirm bdpan login state and destination paths before download or upload, and avoid using shared accounts for sensitive media. <br>
+## Use Case:
 
+External users and developers use this skill to translate video subtitles or speech with Baidu Cloud VOD, including user-supplied SRT subtitles, custom subtitle styling, batch processing, project and task lookup, and result export to local storage or Baidu Netdisk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lhx121619/skills/baidu-vod-translate) <br>
-- [Baidu VOD video translation pricing](https://cloud.baidu.com/doc/VOD/s/Zmheig5gv) <br>
-- [Baidu Intelligent VOD product](https://cloud.baidu.com/product/vod.html) <br>
-- [Baidu VOD project management API](https://cloud.baidu.com/doc/VOD/s/Dmh0j7ldd) <br>
-- [Baidu VOD task management API](https://cloud.baidu.com/doc/VOD/s/ymh0j93u8) <br>
-- [Baidu Cloud access key management](https://console.bce.baidu.com/iam/#/iam/accesslist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python script invocation patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Baidu VOD credentials via BAIDU_VOD_AK and BAIDU_VOD_SK; optional bdpan CLI is used for netdisk workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Video media may be uploaded to Baidu Cloud VOD and, when enabled, Baidu Netdisk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with media that may be sent to those services, and confirm whether netdisk upload or download is enabled before running commands.
+
+Risk: The workflow requires Baidu cloud access credentials.
+
+Mitigation: Use least-privileged Baidu credentials in environment variables and do not paste AK/SK values into chat transcripts or files.
+
+Risk: Baidu Cloud VOD video translation is a paid service and batch jobs can multiply processing charges.
+
+Mitigation: Review the official pricing documentation and confirm the video list, translation mode, and wait behavior before creating tasks.
+
+Risk: The scripts support project deletion and task update operations.
+
+Mitigation: Confirm project and task identifiers before delete-project or update-task commands, and avoid granting credentials broader authority than needed.
+
+Risk: Security evidence reports weak disclosure and URL scoping concerns.
+
+Mitigation: Review the skill before installation and verify network destinations and command effects before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lhx121619/skills/baidu-vod-translate)
+- [Baidu Cloud VOD pricing documentation](https://cloud.baidu.com/doc/VOD/s/Zmheig5gv)
+- [Baidu Cloud VOD product page](https://cloud.baidu.com/product/vod.html)
+- [Baidu Cloud VOD project management API](https://cloud.baidu.com/doc/VOD/s/Dmh0j7ldd)
+- [Baidu Cloud VOD task management API](https://cloud.baidu.com/doc/VOD/s/ymh0j93u8)
+- [Baidu Cloud IAM access key management](https://console.bce.baidu.com/iam/#/iam/accesslist)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local translated video files and remote Baidu Cloud VOD or Baidu Netdisk tasks; requires python3, Baidu VOD credentials, and optional bdpan for netdisk workflows.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

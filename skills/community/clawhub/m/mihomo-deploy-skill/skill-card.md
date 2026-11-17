@@ -1,46 +1,60 @@
-## Description: <br>
-Deploys the mihomo proxy kernel and Metacubexd web UI on a Linux server using systemd user services without requiring sudo for the main setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy mihomo proxy kernel + Metacubexd web UI on a Linux server without sudo by using systemd --user.
 
-## Publisher: <br>
-[rayneyael](https://clawhub.ai/user/rayneyael) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rayneyael](https://clawhub.ai/user/rayneyael)
 
-## Use Case: <br>
-Developers and system operators use this skill to set up a persistent mihomo proxy service and local web UI on a Linux server from an existing provider config.yaml. It guides architecture detection, downloads, config patching, service setup, SSH tunneling, and proxy environment configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill deploys a persistent proxy service on a Linux server. <br>
-Mitigation: Install it only when a persistent proxy service is intended, prefer the default 127.0.0.1 controller with SSH tunneling, and use a strong secret for the web UI. <br>
-Risk: The setup downloads binaries and web UI assets from upstream release locations. <br>
-Mitigation: Consider pinning versions or verifying upstream downloads before running them in a production or sensitive environment. <br>
-Risk: The helper script modifies config.yaml in place. <br>
-Mitigation: Back up config.yaml before patching and protect the provider configuration file because it may contain sensitive proxy subscription details. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy a user-scoped Mihomo proxy service and Metacubexd web UI on Linux, including config patching, systemd user service setup, SSH tunneling, and proxy environment setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rayneyael/mihomo-deploy-skill) <br>
-- [mihomo releases](https://github.com/MetaCubeX/mihomo/releases) <br>
-- [mihomo latest release API](https://api.github.com/repos/MetaCubeX/mihomo/releases/latest) <br>
-- [MetaCubeX geo database release](https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb) <br>
-- [Metacubexd web UI repository](https://github.com/MetaCubeX/Metacubexd.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands, configuration snippets, and a Python helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment guidance and in-place config patching commands; users should review generated settings before running them on a server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Mutable remote binaries and web UI assets may change after release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin Mihomo and Metacubexd to reviewed versions and verify checksums before execution.
+
+Risk: The external controller can be exposed if bound to 0.0.0.0.
+
+Mitigation: Keep the controller bound to 127.0.0.1 by default, use SSH tunneling, and require firewall controls plus a strong secret for any wider exposure.
+
+Risk: A persistent proxy daemon and shell startup changes can alter network routing.
+
+Mitigation: Review systemd user services, shell startup edits, proxy variables, and no_proxy values before enabling persistence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rayneyael/skills/mihomo-deploy-skill)
+- [MetaCubeX Mihomo releases](https://github.com/MetaCubeX/mihomo/releases)
+- [MetaCubeX Metacubexd](https://github.com/MetaCubeX/Metacubexd)
+- [MetaCubeX meta-rules-dat geo database](https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown with inline bash and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes in-place configuration patching guidance and persistent systemd user service setup.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

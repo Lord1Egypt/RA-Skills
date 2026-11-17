@@ -1,0 +1,22 @@
+[
+  {"query": "这事能不能更有野心一点：我本来只想让你修 tests/auth_test.py 里那个不稳定的登录测试，但它每个迭代都会冒出来。", "should_trigger": true},
+  {"query": "格局大一点。我要用 data/q3.csv 更新第三季度董事会 PPT，但我怀疑管理层真正需要的并不是这份 PPT。", "should_trigger": true},
+  {"query": "顶尖数据科学家拿到我们的流失数据会怎么做？别再做我平时那种数据透视表了，原始事件数据在这里。", "should_trigger": true},
+  {"query": "官网首页加载要 6 秒。目标定高点，不要只是“快一点”，认真去攻，并且拿出证据。", "should_trigger": true},
+  {"query": "别只做最小版本。我们要做定价页实验，我要有野心的方案，还要真正验证效果。", "should_trigger": true},
+  {"query": "把这份调研往深里做：给 5000 万文档的搜索选型向量数据库，从一手基准数据出发，别看博客文章。", "should_trigger": true},
+  {"query": "这件事目标背后的目标是什么？我正打算让你每周五手写平台组的周报邮件。", "should_trigger": true},
+  {"query": "这个分析再做透一点：我们以为注册量下降是改版导致的，我希望你用原始日志挑战这个假设。", "should_trigger": true},
+  {"query": "我给 agent 写了个提示词：“总结 Zendesk 里的客户反馈”。跑之前帮我拔高一下，越有野心越好。", "should_trigger": true},
+  {"query": "我看了 Felix Rieseberg 那篇讲高度、深度、广度的文章，用它来做我的任务：给我们 App 搭新用户引导邮件序列。", "should_trigger": true},
+  {"query": "把 docs/api.md 第 40 行的错别字“接受”改成“接收”。", "should_trigger": false},
+  {"query": "现在代码冻结，只给我 UserService.java 这个空指针的最小补丁，别的都别动。", "should_trigger": false},
+  {"query": "刚发版生产就挂了，马上回滚到 v2.3.1。", "should_trigger": false},
+  {"query": "帮我把这封邮件的语气改温和一点：“发票怎么还是错的？？”", "should_trigger": false},
+  {"query": "澳大利亚的首都是哪里？", "should_trigger": false},
+  {"query": "把这段话压缩到 50 字以内，发微博用。", "should_trigger": false},
+  {"query": "帮我写明年的个人职业目标，我想让自己的人生更有野心。", "should_trigger": false},
+  {"query": "给团队团建写一篇关于“野心”的励志演讲稿。", "should_trigger": false},
+  {"query": "把 src/utils.py 里的变量 tmp 全部重命名为 buffer。", "should_trigger": false},
+  {"query": "让我们的 App 更主动一点：加个推送，每天提醒用户登录。", "should_trigger": false}
+]

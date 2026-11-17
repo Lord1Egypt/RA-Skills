@@ -1,40 +1,53 @@
-## Description: <br>
-Guides structured help for Bug Report Formatter using clear templates, checks, and safe defaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Bug Report Formatter using clear templates, checks, and safe defaults (category: Software Quality).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-Developers, support teams, and project maintainers use this skill to turn bug notes into concise plans, reusable checklists, short next actions, and editable report draft text while avoiding unnecessary secrets or personal data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bug reports can accidentally include passwords, API keys, session cookies, private keys, or unnecessary personal information. <br>
-Mitigation: Do not paste secrets or unnecessary personal data into the source notes or generated report. <br>
-Risk: Formatted reports may include incorrect or misleading details when the user's notes are incomplete. <br>
-Mitigation: Review the generated checklist and draft text before sharing, and keep changes factual and reversible. <br>
+## Use Case:
 
+Developers, testers, and support teams use this skill to turn owned notes and constraints into concise bug-report-oriented plans, checklists, next actions, and editable draft copy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/bug-report-formatter-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with concise plans, numbered checklists, next actions, and optional editable draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or external tool calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and metadata.json) <br>
+Risk: Bug reports can accidentally include secrets or unnecessary personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove passwords, OTPs, private keys, wallets, seeds, session secrets, and avoid unnecessary personal data before using the skill output.
+
+Risk: The skill may be invoked broadly for software-quality planning outside a narrowly defined bug-report workflow.
+
+Mitigation: Review the generated plan, checklist, and draft copy for fit, factual accuracy, and reversible next actions before sharing or acting on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abdullah944/skills/bug-report-formatter-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with concise plans, numbered checklists, next actions, and optional draft copy blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential handling, or hidden high-impact behavior is described in the security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

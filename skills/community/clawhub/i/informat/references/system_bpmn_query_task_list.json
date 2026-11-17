@@ -1,0 +1,38 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_bpmn_query_task_list",
+		"description": "Query the list of workflow tasks assigned to the current user (to-do or completed).",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "The workflow module ID."
+				},
+				"status": {
+					"type": "string",
+					"enum": ["doing", "done"],
+					"description": "'doing' for pending tasks, 'done' for completed tasks."
+				},
+				"taskName": {
+					"type": "string",
+					"description": "Filter by task name (fuzzy match)."
+				},
+				"processInstanceName": {
+					"type": "string",
+					"description": "Filter by process instance name (fuzzy match)."
+				},
+				"pageIndex": {
+					"type": "integer",
+					"description": "Page index, starting from 1. Default is 1."
+				},
+				"pageSize": {
+					"type": "integer",
+					"description": "Page size. Maximum 50, default is 20."
+				}
+			},
+			"required": ["moduleId", "status"]
+		}
+	}
+}

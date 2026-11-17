@@ -1,39 +1,51 @@
-## Description: <br>
-Help with coursework. Use when taking notes, summarizing readings, formatting citations, outlining essays, or calculating GPA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help with coursework. Use when taking notes, summarizing readings, formatting citations, outlining essays, or calculating GPA.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Students and education-focused users use this skill to manage study notes, summarize readings, format citations, outline essays, run Pomodoro timers, and calculate GPA from course entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The note command can write outside the documented notes folder when given path-like subject names. <br>
-Mitigation: Use simple subject names without slashes or '..', summarize only intended files, and periodically review or delete ~/.student/notes/. <br>
+## Use Case:
 
+Students and learning-support agents use this skill to manage coursework notes, summarize readings, format citations, outline essays, run study timers, and calculate GPA.
 
-## Reference(s): <br>
-- [Student skill page](https://clawhub.ai/ckchzh/student) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown written to stdout or local note files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Notes are stored under ~/.student/notes/; other commands print directly to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.1 (source: server release evidence) <br>
+Risk: The note command may write outside the intended notes directory when given a crafted subject name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive coursework files and avoid subjects with slashes, dot-dot path components, or symlinked folders until note path handling is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/student)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Plain text to stdout and Markdown note files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Notes are stored under ~/.student/notes/<subject>/.]
+
+## Skill Version(s):
+
+3.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

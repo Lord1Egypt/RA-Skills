@@ -1,42 +1,54 @@
-## Description: <br>
-Search and get details for POI (points of interest) using Baidu Maps API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and get details for POI (points of interest) using Baidu Maps API. Use for searching places, restaurants, hotels, attractions, and retrieving detailed POI information by UID.
 
-## Publisher: <br>
-[archimondecy](https://clawhub.ai/user/archimondecy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archimondecy](https://clawhub.ai/user/archimondecy)
 
-## Use Case: <br>
-Developers and agents use this skill to search Baidu Maps for places, restaurants, hotels, attractions, and other points of interest, then retrieve detailed POI information for a specified region. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, regions, and optional coordinates are sent to Baidu Maps. <br>
-Mitigation: Use the skill only for searches that are appropriate to share with Baidu Maps, and avoid sensitive or precise home/work coordinates. <br>
-Risk: The request body is printed to stderr, which can expose sensitive location details or an API key if the 'ak' JSON field is used. <br>
-Mitigation: Set BAIDU_AK as an environment variable instead of passing an 'ak' field, and remove or redact request logging before sensitive use. <br>
+## Use Case:
 
+External users and developers use this skill to search Baidu Maps points of interest by name, address, category, or natural-language attributes, then retrieve POI details such as location, address, ratings, prices, hours, and tags.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archimondecy/baidu-maps-poi-ai-search) <br>
-- [Baidu Maps multidimensional place search documentation](https://api.map.baidu.com/place/v3/multidimensional) <br>
-- [Baidu Maps POI region API endpoint](https://api.map.baidu.com/api_place_pro/v1/region) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON responses from the Baidu Maps API with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a BAIDU_AK credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The script can expose the Baidu Maps API key and private search terms in request logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted Baidu Maps API key, prefer BAIDU_AK over passing keys in JSON, and redact or remove stderr request logging in shared terminals, CI, or agent environments.
+
+Risk: Location searches may include sensitive place queries.
+
+Mitigation: Avoid sensitive location queries and review query content before sending requests to the Baidu Maps API.
+
+## Reference(s):
+
+- [Baidu Maps POI Region Search API](https://api.map.baidu.com/api_place_pro/v1/region)
+- [Baidu Maps Multidimensional Place Search Documentation](https://api.map.baidu.com/place/v3/multidimensional)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON API results with Markdown usage guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a Baidu Maps API key supplied through BAIDU_AK or the request JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Guides agents through Rockflow's RockAlpha paper-trading competition HTTP gateway, including API key handling, market and account queries, order placement, cancellations, and public arena chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents using a user-provided Rockflow competition API key to participate in the Rockalpha Arena paper-trading contest through REST requests for arena data, market data, orders, positions, assets, and public arena chat.
 
-## Publisher: <br>
-[treepudding](https://clawhub.ai/user/treepudding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[treepudding](https://clawhub.ai/user/treepudding)
 
-## Use Case: <br>
-External developers and agent operators use this skill to connect an OpenClaw-style agent to the RockAlpha paper-trading competition, coordinate with the human account owner, inspect competition data, and submit simulated trading and chat actions through documented REST calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent API-key authority to trade, cancel orders, read account data, and post publicly in a paper-trading competition account. <br>
-Mitigation: Use a dedicated, revocable API key and set explicit limits for tickers, order size, loss exposure, order cancellation, and public chat posting. <br>
-Risk: Autonomous trade-modifying actions may diverge from the human account owner's expectations. <br>
-Mitigation: Agree on trading cadence, strategy style, and confirmation requirements before use; require human confirmation for trade-modifying actions unless autonomous trading is intentional. <br>
-Risk: Public arena chat posts may expose unintended strategy, account context, or sensitive information. <br>
-Mitigation: Review chat content before posting or constrain the agent to non-sensitive summaries that do not include credentials or private account details. <br>
+## Use Case:
 
+External users and agent developers use this skill to connect an agent to Rockflow's paper-trading arena, align trading cadence with a human user, and perform simulated trading, account review, ranking checks, and public arena chat actions through documented REST calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/treepudding/rockalpha-arena) <br>
-- [RockAlpha competition arena](https://rockalpha.rockflow.ai/arena/r1) <br>
-- [Rockflow paper trading HTTP gateway](https://paper-mcp.rockflow.tech/bot/api/http_gateway/v1/arena/detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with REST endpoint descriptions, JSON request bodies, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a human-provided X-API-Key and returns or acts on JSON HTTP responses from the competition gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version and skill_document_version) <br>
+Risk: A user-provided competition API key may allow the agent to place or cancel simulated trading orders and publish public arena messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Decide before use whether each order, cancellation, or public chat post needs human confirmation, and keep the API key out of public repositories, logs, screenshots, and untrusted chats.
+
+Risk: A remotely fetched copy of the skill may change trading paths, parameters, or operating guidance.
+
+Mitigation: Review the fetched skill version and relevant request examples before relying on an update.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/treepudding/skills/rockalpha-arena)
+- [RockAlpha Arena](https://rockalpha.rockflow.ai/arena/r1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with curl examples and JSON request/response snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided X-API-Key; the skill itself provides instructions and request examples.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill_document_version frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

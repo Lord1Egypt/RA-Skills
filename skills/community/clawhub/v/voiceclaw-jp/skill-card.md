@@ -1,47 +1,63 @@
-## Description: <br>
-Voice conversation interface for OpenClaw using wake word detection, streaming LLM responses, and text-to-speech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+voiceclaw provides a voice conversation interface for OpenClaw with wake word detection, streaming LLM responses, and VOICEVOX text-to-speech.
 
-## Publisher: <br>
-[kentoku24](https://clawhub.ai/user/kentoku24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kentoku24](https://clawhub.ai/user/kentoku24)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to set up a browser-based voice interface that listens for a wake word, sends spoken commands to OpenClaw, and returns streamed speech through VOICEVOX. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Browser microphone capture and speech transcripts may include sensitive spoken information. <br>
-Mitigation: Use the skill only in an environment where microphone access is expected, avoid speaking sensitive information until logging and retention behavior is reviewed, and confirm browser microphone permissions before use. <br>
-Risk: The local server processes conversation content and forwards requests to the local OpenClaw gateway. <br>
-Mitigation: Review where transcripts and responses flow before use, keep the server bound to localhost unless remote access is deliberately configured, and verify any HTTPS or reverse proxy setup. <br>
-Risk: The skill can auto-detect and use a local OpenClaw gateway token. <br>
-Mitigation: Prefer a scoped token, keep tokens outside the repository, and confirm the OpenClaw gateway token source before starting the server. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add a browser-based spoken interface for local OpenClaw agents. It supports configurable wake words, browser speech recognition, streaming chat responses, and sentence-level speech playback through VOICEVOX.
 
-## Reference(s): <br>
-- [voiceclaw architecture](docs/architecture.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [VOICEVOX](https://voicevox.hiroshiba.jp/) <br>
-- [Android wake word feasibility notes](docs/research/android-feasibility-2026-03-01.md) <br>
-- [Wake word and voice assistant OSS research notes](docs/research/oss-scan-2026-03-01.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include localhost service URLs, environment variable settings, and browser setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata and package.json) <br>
+Risk: The local service can expose OpenClaw access if port 8788 is made reachable without authentication or TLS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the service bound to 127.0.0.1; add authentication and TLS before using HOST=0.0.0.0 or exposing the service remotely.
+
+Risk: Configured OpenClaw or VOICEVOX endpoints may receive spoken commands and conversation history.
+
+Mitigation: Use trusted local backends and avoid pointing OPENCLAW_GATEWAY_URL or VOICEVOX_URL at untrusted remote services.
+
+Risk: The service may use an automatically discovered OpenClaw gateway token.
+
+Mitigation: Prefer an explicit least-privilege OpenClaw token for this voice assistant and review token access before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kentoku24/skills/voiceclaw-jp)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [VOICEVOX](https://voicevox.hiroshiba.jp/)
+- [Architecture](docs/architecture.md)
+- [OSS wake word research](docs/research/oss-scan-2026-03-01.md)
+- [Android wake word feasibility](docs/research/android-feasibility-2026-03-01.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration details, and Node.js/browser code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local setup guidance and a voice UI/server implementation that relays speech-derived prompts to OpenClaw and returns spoken responses.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

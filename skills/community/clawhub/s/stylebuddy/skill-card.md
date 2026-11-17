@@ -1,44 +1,59 @@
-## Description: <br>
-StyleBuddy is an OpenClaw wardrobe assistant that records clothing from photos or text, recommends outfits for weather and occasions, offers shopping advice, and analyzes wardrobe gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+StyleBuddy is a Chinese-language wardrobe assistant that helps users record clothing items, manage a local wardrobe, recommend outfits, evaluate shopping candidates, and generate wardrobe analysis.
 
-## Publisher: <br>
-[89kpjddmtb-ui](https://clawhub.ai/user/89kpjddmtb-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[89kpjddmtb-ui](https://clawhub.ai/user/89kpjddmtb-ui)
 
-## Use Case: <br>
-External OpenClaw users use StyleBuddy to manage a personal wardrobe, get outfit recommendations, evaluate prospective clothing purchases, and receive wardrobe analysis. The skill is aimed at everyday style planning rather than software development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores wardrobe records, outfit history, preferences, backups, and saved images locally. <br>
-Mitigation: Avoid adding photos with sensitive background details and review local saved images and backups periodically. <br>
-Risk: The skill may contact a weather service for outfit recommendations. <br>
-Mitigation: Disable weather integration or avoid sharing location-sensitive context if weather-based recommendations are not needed. <br>
-Risk: Optional image-search or image-generation providers may receive data if users enable those API keys. <br>
-Mitigation: Keep optional provider API keys disabled unless the user trusts the selected providers and their data handling. <br>
+## Use Case:
 
+External OpenClaw users can use StyleBuddy as a wardrobe and outfit assistant for clothing intake, outfit recommendations, shopping comparisons, wardrobe summaries, and local backup or restore workflows.
 
-## Reference(s): <br>
-- [StyleBuddy ClawHub page](https://clawhub.ai/89kpjddmtb-ui/stylebuddy) <br>
-- [StyleBuddy feature design document](https://feishu.cn/docx/KRdZdGqScopSdUxF7rHcAUyPn2f) <br>
-- [Open-Meteo forecast endpoint](https://api.open-meteo.com/v1/forecast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration, files] <br>
-**Output Format:** [Markdown-style conversational text, optional image paths, and local backup data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include outfit recommendations, wardrobe summaries, shopping advice, analysis reports, and references to locally stored images or backups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.4 (source: server release evidence) <br>
+Risk: The skill stores clothing photos, wardrobe records, preferences, wishlist data, and backups locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local storage of this personal wardrobe data is acceptable, and review where image, database, and backup files are written before use.
+
+Risk: The advertised automatic image recognition is stronger than the implemented placeholder and fallback behavior.
+
+Mitigation: Treat image-derived clothing details as unverified unless the publisher adds a real recognition implementation and clear privacy controls.
+
+Risk: Broad trigger phrases may activate the assistant in ordinary clothing or shopping conversations.
+
+Mitigation: Review and narrow the configured triggers before deployment if unintended activation would expose personal clothing or preference data.
+
+## Reference(s):
+
+- [ClawHub StyleBuddy release page](https://clawhub.ai/89kpjddmtb-ui/skills/stylebuddy)
+- [StyleBuddy feature design document](https://feishu.cn/docx/KRdZdGqScopSdUxF7rHcAUyPn2f)
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, images]
+
+**Output Format:** [Markdown-like Chinese text responses, optional image path lists, and local JSON backup data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated from local wardrobe records, bundled outfit templates, optional weather data, and saved local image files.]
+
+## Skill Version(s):
+
+0.4.4 (source: server release metadata and agent.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

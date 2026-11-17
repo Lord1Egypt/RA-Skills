@@ -1,55 +1,64 @@
-## Description: <br>
-Up-to-date documentation and code patterns for Solidity, Foundry, Hardhat, Viem, Wagmi, ethers.js, and OpenZeppelin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides current EVM development documentation and code patterns for Solidity, Foundry, Hardhat, Viem, Wagmi, ethers.js, OpenZeppelin, and ERC standards.
 
-## Publisher: <br>
-[old-greggyboy](https://clawhub.ai/user/old-greggyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[old-greggyboy](https://clawhub.ai/user/old-greggyboy)
 
-## Use Case: <br>
-Developers and engineers use this skill to get current EVM development guidance for smart contracts, testing, deployment, frontend wallet integration, ERC standards, gas optimization, and debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transaction, deployment, approval, transfer, sendTransaction, and writeContract examples may trigger irreversible financial actions if copied without review. <br>
-Mitigation: Before running snippets, confirm the network, chain ID, RPC URL, contract address, recipient, token decimals, amount, and intended account. <br>
-Risk: Private keys, RPC credentials, and API keys can be exposed through agent context, source control, logs, shell history, or shared environments. <br>
-Mitigation: Do not provide real private keys to the agent, and keep secrets in protected local environment variables or secret stores. <br>
+## Use Case:
 
+Developers and engineers use this skill for EVM development tasks including smart contract writing, Solidity debugging, Foundry or Hardhat project setup, frontend integration with Viem, Wagmi, or ethers.js, and ERC standard implementation guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/old-greggyboy/web3-docs) <br>
-- [Solidity 0.8.x Reference](references/solidity.md) <br>
-- [Foundry Reference](references/foundry.md) <br>
-- [Hardhat Reference](references/hardhat.md) <br>
-- [OpenZeppelin 5.x Reference](references/openzeppelin.md) <br>
-- [ERC-4626: Tokenized Vault Standard](references/erc4626.md) <br>
-- [Viem 2.x Reference](references/viem.md) <br>
-- [Wagmi 2.x Reference (React)](references/wagmi.md) <br>
-- [ethers.js v6 Reference](references/ethers.md) <br>
-- [Solidity Documentation](https://docs.soliditylang.org/en/latest/) <br>
-- [Foundry Book](https://book.getfoundry.sh/) <br>
-- [Hardhat Documentation](https://hardhat.org/hardhat-runner/docs/getting-started) <br>
-- [OpenZeppelin Contracts Documentation](https://docs.openzeppelin.com/contracts/5.x/) <br>
-- [Viem Documentation](https://viem.sh/docs/getting-started) <br>
-- [Wagmi Documentation](https://wagmi.sh/react/getting-started) <br>
-- [ethers.js Documentation](https://docs.ethers.org/v6/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch and summarize the first 4000 characters of selected official Web3 documentation pages when the bundled references may be stale.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Copyable installer, deployment, transfer, or private-key examples can execute remote code or move real blockchain assets if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution; prefer verified installers, pinned package versions, testnets or local chains, wallet confirmation flows, and checked recipient addresses, network IDs, and amounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/old-greggyboy/skills/web3-docs)
+- [Solidity 0.8.x Reference](references/solidity.md)
+- [Foundry Reference](references/foundry.md)
+- [Hardhat Reference](references/hardhat.md)
+- [OpenZeppelin 5.x Reference](references/openzeppelin.md)
+- [ERC-4626: Tokenized Vault Standard](references/erc4626.md)
+- [Viem 2.x Reference](references/viem.md)
+- [Wagmi 2.x Reference](references/wagmi.md)
+- [ethers.js v6 Reference](references/ethers.md)
+- [Solidity documentation](https://docs.soliditylang.org/en/latest/)
+- [Foundry Book](https://book.getfoundry.sh/)
+- [Viem documentation](https://viem.sh/docs/getting-started)
+- [Wagmi documentation](https://wagmi.sh/react/getting-started)
+- [OpenZeppelin Contracts documentation](https://docs.openzeppelin.com/contracts/5.x/)
+- [Hardhat documentation](https://hardhat.org/hardhat-runner/docs/getting-started)
+- [ethers.js documentation](https://docs.ethers.org/v6/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include copyable Web3 commands and transaction examples that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

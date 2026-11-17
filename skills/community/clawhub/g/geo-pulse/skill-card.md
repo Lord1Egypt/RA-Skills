@@ -1,41 +1,54 @@
-## Description: <br>
-GEO Pulse produces brand AI visibility reports that measure mention rate, link reference rate, sentiment, platform performance, competitor benchmarks, and historical trends across AI search-style outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO Pulse delivers client-ready GEO (Generative Engine Optimization) reports that measure brand visibility across AI search outputs, including mention rate, link reference rate, sentiment, platform breakdown, competitor benchmarking, and historical trends.
 
-## Publisher: <br>
-[SJinping](https://clawhub.ai/user/SJinping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjinping](https://clawhub.ai/user/sjinping)
 
-## Use Case: <br>
-Marketing, SEO, and brand strategy teams use GEO Pulse to create audit and trend reports that quantify how a brand appears in AI search answers and compare it with competitors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external GEO Pulse API endpoint for brand visibility analysis. <br>
-Mitigation: Use only trusted API endpoints, prefer HTTPS via GEO_PULSE_BASE_URL when available, and verify service availability before relying on realtime results. <br>
-Risk: Brand, client, launch, or competitor names sent for analysis may be confidential. <br>
-Mitigation: Use public brand and domain information by default and confirm with the user before onboarding sensitive clients, launch names, or competitive research topics. <br>
+## Use Case:
 
+Brand, marketing, and GEO/SEO analysts use this skill to generate client-ready AI visibility audit and trend reports for a named brand or domain. It helps compare brand mentions, link references, sentiment, platform performance, competitors, and historical changes across AI search outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SJinping/geo-pulse) <br>
-- [Publisher profile](https://clawhub.ai/user/SJinping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with tables, summaries, recommendations, and occasional shell command examples for API-backed retrieval.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include current snapshots, 7-365 day trend summaries, competitor comparisons, and fallback messaging when the external API is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Brand names, domains, metrics requests, and generated analysis may be sent to an external service at a default plaintext HTTP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure a trusted HTTPS GEO_PULSE_BASE_URL before use and avoid sending confidential or unreleased client information.
+
+Risk: Command examples can be unsafe if brand names are substituted directly into shell JSON payloads.
+
+Mitigation: Serialize JSON safely before running curl commands, and review generated commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sjinping/skills/geo-pulse)
+- [Publisher profile](https://clawhub.ai/user/sjinping)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell command examples and API-derived tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces GEO audit reports, historical trend summaries, fallback messages, and recommendations based on external service responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

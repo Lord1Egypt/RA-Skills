@@ -1,43 +1,55 @@
-## Description: <br>
-拉取并展示「新闻联播」热点数据，按 source_name 分组列出标题，并可在用户确认后提供每日定时推送的 cron 创建命令。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches current 新闻联播 hotspot data from the disclosed ClawHub hotspot API and shows titles grouped by source.
 
-## Publisher: <br>
-[xltang](https://clawhub.ai/user/xltang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xltang](https://clawhub.ai/user/xltang)
 
-## Use Case: <br>
-External users and agents use this skill to query 新闻联播 hotspot headlines, view them by source, and check hotspot service status. With explicit approval, it can also provide an OpenClaw cron command for daily scheduled updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requests to hotspot.api4claw.com when users ask for hotspot data or service status. <br>
-Mitigation: Confirm that the disclosed external service is acceptable before installing or running the skill. <br>
-Risk: Optional scheduling can create a recurring OpenClaw cron job if the user approves it. <br>
-Mitigation: Review the schedule, recipient, channel, and message before executing any cron registration command. <br>
-Risk: Network failures or malformed API responses can make hotspot results unavailable or incomplete. <br>
-Mitigation: Return an explicit failure or format-mismatch message and avoid fabricating hotspot content. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current 新闻联播 hotspot data, check service status, and display source-grouped titles without ranking or fabricating unavailable content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xltang/xwlb) <br>
-- [Hotspot API service](https://hotspot.api4claw.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with grouped headline lists, status text, and optional bash cron command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches current JSON data from the disclosed hotspot API when requested and does not persist identifiers by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill fetches live hotspot data from hotspot.api4claw.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when access to the disclosed external API is acceptable for the deployment environment.
+
+Risk: Optional cron setup can create scheduled updates that persist until removed.
+
+Mitigation: Review the cron command before approval and remove the scheduled task when recurring updates are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xltang/skills/xwlb)
+- [Hotspot API base URL](https://hotspot.api4claw.com)
+- [Hotspot API endpoint](https://hotspot.api4claw.com/hotspots/platform/新闻联播?timestamp=$TIME_STEMP)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with source-grouped text and optional bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API status counts and optional user-approved cron setup commands; does not display fetched_at or data_date.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

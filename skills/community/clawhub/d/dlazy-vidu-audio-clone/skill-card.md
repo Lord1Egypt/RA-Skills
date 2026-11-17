@@ -1,45 +1,55 @@
-## Description: <br>
-Clone voice and generate new text reading audio with Vidu Audio Clone through the dLazy CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clone voice and generate new text reading audio with one click using Vidu Audio Clone.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users and developers use this skill to invoke dLazy's Vidu Audio Clone workflow for voice cloning and text-to-speech generation from prompts and optional audio references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and stores or accepts credentials for CLI use. <br>
-Mitigation: Use per-invocation credentials when appropriate, keep the local config private, and rotate the dLazy API key if it is exposed. <br>
-Risk: Prompts and audio files provided to the skill are sent to dLazy-hosted endpoints for processing. <br>
-Mitigation: Avoid uploading confidential audio or audio you do not have rights to use, and review dLazy service terms before production use. <br>
-Risk: The workflow depends on a third-party npm CLI. <br>
-Mitigation: Use the documented npx invocation to avoid a persistent global install, or review the CLI package before installing it globally. <br>
+## Use Case:
 
+External users and developers can provide reference audio and text to request voice-cloned spoken audio through dLazy's Vidu Audio Clone service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-vidu-audio-clone) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return hosted generated media URLs or asynchronous task identifiers from the dLazy service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The security summary reports a mismatch between the voice-cloning description and a login-focused workflow, with incomplete scan coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the workflow and referenced materials before installation, and confirm the login-focused steps match the intended use.
+
+Risk: The documented workflow uploads local audio to dLazy media storage and sends prompts to its hosted API.
+
+Mitigation: Use only reference audio you are authorized to share, and avoid submitting sensitive audio or text unless the service's handling is acceptable.
+
+## Reference(s):
+
+- [CLI repository (listed in skill metadata)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI package on npm (listed in skill metadata)](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Audio, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [Generated audio and JSON task/result responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a dLazy API key; generation may run asynchronously.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Crypto Trading instructs an agent to run a recurring crypto trading decision loop that gathers market and account data, compares Dify AI and OpenClaw analyses, applies trading rules, records decisions, and executes market orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Trading guides an agent through an autonomous crypto trading loop that gathers market and account data, compares Dify AI and OpenClaw analyses, validates decisions with trading rules, executes market orders, and logs results.
 
-## Publisher: <br>
-[WuZiMaKi](https://clawhub.ai/user/WuZiMaKi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wuzimaki](https://clawhub.ai/user/wuzimaki)
 
-## Use Case: <br>
-External users and trading automation operators use this skill to have an agent evaluate BTC, ETH, and BNB markets, compare independent AI analyses, apply rule checks, and record buy, sell, or hold decisions before trade execution. It should be reviewed carefully before use with live exchange accounts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recurring automatic market-order trading can create financial exposure if user controls, position limits, or loss limits are missing or misconfigured. <br>
-Mitigation: Review carefully before live use, use trade-only keys with withdrawals disabled, and set strict position and loss limits. <br>
-Risk: The skill depends on external AI analysis providers and does not define clear data-sharing boundaries. <br>
-Mitigation: Confirm what market, account, and trading data is sent to external providers before enabling the workflow. <br>
-Risk: The artifact describes automation and stored trading state without a clearly documented stop or cleanup path. <br>
-Mitigation: Require an operator-visible stop mechanism and a process to remove stored trading state before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Crypto Trading Skill Source](artifact/SKILL.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/WuZiMaKi/crypto-trading) <br>
+## Use Case:
 
+Developers and trading operators use this skill to coordinate recurring BTC, ETH, and BNB trading decisions with AI market analysis, rule checks, position sizing, order execution, and decision logging.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with structured trading decisions and state or log updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces buy, sell, or hold decisions, rule-check rationale, execution records, and trading memory updates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes unattended crypto trading that can execute market orders.
+
+Mitigation: Confirm whether the workflow is paper or live trading before use, require explicit order limits and kill switches, and review account permissions before enabling execution.
+
+Risk: The workflow can share account, portfolio, or market context with external AI services.
+
+Mitigation: Review what data is sent to Dify AI and OpenClaw, remove unnecessary sensitive fields, and verify that data handling is acceptable for the intended account.
+
+Risk: Incorrect model analysis, rule validation, or position sizing can cause financial loss.
+
+Mitigation: Run the workflow in paper trading or dry-run mode first, review generated decisions before execution, and enforce conservative position limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuzimaki/skills/crypto-trading)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and command references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce trading decisions, execution notes, validation guidance, and log or configuration updates for an agent-managed workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

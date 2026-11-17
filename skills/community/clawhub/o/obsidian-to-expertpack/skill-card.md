@@ -1,44 +1,52 @@
-## Description: <br>
-Convert an existing Obsidian Vault into an agent-ready ExpertPack that restructures vault content for EK optimization, RAG retrieval, and OpenClaw integration while creating a copy and leaving the source vault unchanged. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert an existing Obsidian Vault into an agent-ready ExpertPack by copying Markdown content into a structured pack for retrieval and OpenClaw integration.
 
-## Publisher: <br>
-[brianhearn](https://clawhub.ai/user/brianhearn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianhearn](https://clawhub.ai/user/brianhearn)
 
-## Use Case: <br>
-Developers and agent users use this skill to convert Obsidian vaults into ExpertPack knowledge packs for RAG retrieval and OpenClaw memory search. It is suited for preparing copied vault content for validation, enhancement, and indexing without modifying the original vault. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Converted output may include the source vault's hidden `.obsidian/` configuration by default. <br>
-Mitigation: Run `--dry-run` first, inspect the generated pack, and remove the copied `.obsidian/` folder before using or sharing the pack if it is not needed. <br>
-Risk: Adding the converted pack to OpenClaw defaults can make its contents available to future memory searches. <br>
-Mitigation: Index only reviewed output paths and remove the pack path from OpenClaw configuration when the content should no longer be searchable. <br>
-Risk: Private or sensitive notes from an Obsidian vault may be copied into an agent-readable ExpertPack. <br>
-Mitigation: Review the copied markdown and generated metadata before validation, publishing, or persistent indexing. <br>
+## Use Case:
 
+Developers, engineers, and knowledge-base maintainers use this skill to convert trusted Obsidian vaults into ExpertPacks that can be validated, improved, and added to OpenClaw memory search.
 
-## Reference(s): <br>
-- [Obsidian Vault to ExpertPack Migration Guide](references/migration-guide.md) <br>
-- [ExpertPack homepage](https://expertpack.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/brianhearn/obsidian-to-expertpack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and JSON snippets plus a Python conversion script that writes ExpertPack files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a copied ExpertPack directory containing converted markdown files, generated manifest.yaml, overview.md, glossary.md, per-directory _index.md files, and copied .obsidian configuration when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The converter can copy Obsidian configuration, plugin data, workspace state, secrets, or symlinked files from outside the vault into the generated ExpertPack.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, inspect the source vault's .obsidian directory, convert only trusted vaults, and review the generated pack before sharing it or adding it to global memory search.
+
+## Reference(s):
+
+- [Obsidian To Expertpack ClawHub Page](https://clawhub.ai/brianhearn/skills/obsidian-to-expertpack)
+- [Publisher Profile](https://clawhub.ai/user/brianhearn)
+- [ExpertPack Homepage](https://expertpack.ai)
+- [Obsidian Vault to ExpertPack Migration Guide](references/migration-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON code blocks; the converter writes ExpertPack Markdown files and YAML configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and PyYAML. Supports dry-run previews before writing output files.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

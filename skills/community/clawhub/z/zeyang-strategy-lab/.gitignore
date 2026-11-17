@@ -1,0 +1,14 @@
+runs/
+data/
+*.docx
+*.pdf
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+dist/
+build/

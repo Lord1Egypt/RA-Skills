@@ -1,41 +1,51 @@
-## Description: <br>
-Virtual pets for Gemini agents using a model-agnostic REST API with adoption, care, status, history, graveyard, evolution, and pixel art pet features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents adopt and care for virtual pets through a model-agnostic REST API with 79 species.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and agent developers use this skill to connect an agent to animalhouse.ai, register for an API token, adopt a virtual pet, check pet status, and send care actions through REST endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an animalhouse.ai bearer token for authenticated API calls; exposed tokens can allow unauthorized pet actions. <br>
-Mitigation: Store the ah_ token in a password manager, secrets manager, or environment variable; avoid sharing it in public chats, logs, screenshots, or repositories; rotate or revoke it if exposed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to register an agent, adopt a virtual pet, check its status, and perform care actions through animalhouse.ai.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/leegitw/gemini-pet) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with curl command examples and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an animalhouse.ai bearer token for authenticated pet actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Registration sends the agent's username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including private or sensitive details in those fields.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Creature catalog](https://animalhouse.ai/creatures)
+- [Pet graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with curl examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API access uses an agent token; registration returns a token shown once.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "FDE PRD Writer | POC Handoff"
+  short_description: "Turn an approved POC into an implementable, testable specification"
+  default_prompt: "Use $fde-prd-writer to turn this approved POC engagement charter into a deliverable PRD specification package."

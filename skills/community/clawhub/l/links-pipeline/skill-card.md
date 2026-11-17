@@ -1,42 +1,63 @@
-## Description: <br>
-Automated link processing pipeline that detects supported video and article links, downloads or extracts content, transcribes or converts it to text, identifies topics, and routes results to a configured knowledge base inbox. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated link processing pipeline that detects Douyin, Xiaohongshu, Bilibili, WeChat, and web article links, downloads media or extracts text, transcribes video audio, identifies topics, and routes content to a knowledge base inbox.
 
-## Publisher: <br>
-[xings117](https://clawhub.ai/user/xings117) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xings117](https://clawhub.ai/user/xings117)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to turn incoming Douyin, Xiaohongshu, Bilibili, WeChat, or web article links into stored text artifacts and route them into a configured knowledge base workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch pasted links, save extracted article text or video transcripts locally, upload results through configured COS storage, and send transcript text to DeepSeek when configured. <br>
-Mitigation: Use it only for content approved for this workflow, review storage and credential configuration before deployment, and avoid private, regulated, proprietary, or copyrighted content unless explicit confirmation is added. <br>
-Risk: The security verdict is suspicious because the workflow can process and route content without a clear confirmation step. <br>
-Mitigation: Add an explicit user confirmation or review gate before downloading, uploading, or sending content to external services. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to process shared video and article links into transcripts, extracted Markdown text, topic routing decisions, and knowledge base inbox entries.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/packages/links-pipeline) <br>
-- [ClawHub skill page](https://clawhub.ai/xings117/links-pipeline) <br>
-- [DeepSeek API endpoint](https://api.deepseek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON status objects, extracted text, transcripts, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local files under /tmp/links-pipeline and may upload processed content through configured object storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill can fetch arbitrary links, including private or internal URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before processing links, validate destinations, and avoid private or internal URLs.
+
+Risk: Downloaded or processed files may be written or uploaded outside an intended storage boundary.
+
+Mitigation: Run in a constrained environment and confine saved or uploaded files to an approved storage root.
+
+Risk: The video pipeline disables certificate verification for downloads.
+
+Mitigation: Remove --no-check-certificate before use and review download destinations before execution.
+
+Risk: COS upload and DeepSeek processing may send sensitive content to external services.
+
+Mitigation: Do not enable COS or DeepSeek processing for sensitive content unless that data flow is approved.
+
+## Reference(s):
+
+- [Links Pipeline package page](https://clawhub.ai/packages/links-pipeline)
+- [Links Pipeline skill page](https://clawhub.ai/xings117/skills/links-pipeline)
+- [DeepSeek API endpoint](https://api.deepseek.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown and JSON status output with transcripts, extracted article content, routing decisions, and saved file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save downloaded media, transcripts, and processed text under /tmp/links-pipeline and may upload processed content when COS storage is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

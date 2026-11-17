@@ -1,37 +1,53 @@
-## Description: <br>
-提供新盘资讯、售楼处在线预约、购房政策及贷款计算指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供新盘资讯、售楼处在线预约、购房政策及贷款计算指引。
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-External users use this skill to ask an agent for localized new-home and sales-office visit guidance, including filtering options, appointment or queue details, purchase-policy pointers, and mortgage-calculation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Housing listings, sales-office appointments, purchase policies, mortgage calculations, queue status, and offers may be outdated or inaccurate. <br>
-Mitigation: Verify details with official property, government, lender, merchant, or booking sources before making decisions. <br>
+## Use Case:
 
+Home buyers and real-estate shoppers use this skill to request new-house information, sales-office appointment guidance, home-purchase policy context, and mortgage-calculation guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include listing, appointment, queue, navigation, policy, and mortgage-calculation pointers that users should verify against authoritative sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The security evidence flags a mismatch between the new-house real-estate purpose and venue or restaurant-style guidance in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill scope before installing or using it, and clarify whether responses should focus on real estate, venue visits, or both.
+
+Risk: Users may receive inaccurate or misrouted guidance because the artifact is a Markdown instruction file with mixed-domain content.
+
+Mitigation: Validate advice against authoritative real-estate, sales-office, policy, and financing sources before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/new-house)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text guidance only; no executable behavior is included in the artifact.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

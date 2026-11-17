@@ -1,39 +1,51 @@
-## Description: <br>
-Track intermittent fasting windows, extended fasts, and autophagy milestones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track intermittent fasting windows, extended fasts, and autophagy milestones.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to track intermittent or extended fasting sessions, log eating windows, review fasting history, and configure fasting schedules and reminders. It is suited to personal wellness tracking and should not be treated as medical advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Fasting guidance may be mistaken for medical advice, especially for extended fasts or users with medical risk factors. <br>
-Mitigation: Use the skill for tracking and reminders only; consult a qualified healthcare professional before extended fasting or if pregnant, diabetic, managing an eating disorder history, taking relevant medications, or facing other medical risks. <br>
-Risk: Fasting logs, schedules, and reminder settings can reveal sensitive personal wellness patterns. <br>
-Mitigation: Install only if comfortable with local storage, and confirm how to stop active tracking, disable reminders, and delete history. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jhillin8/fasting-tracker) <br>
+## Use Case:
+
+External users use this skill to start and stop fasting sessions, review fasting history, configure fasting protocols, and receive milestone and reminder guidance for intermittent or extended fasting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill gives health-related fasting guidance with overconfident milestone claims.
+
+Mitigation: Treat fasting milestones as general wellness information, avoid presenting them as medical advice, and seek qualified medical guidance for prolonged fasts or medical risk factors.
+
+Risk: The skill describes background tracking and reminders without enough user control detail.
+
+Mitigation: Confirm tracking and reminders are opt-in, visible to the user, disableable, and removable before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown status updates, fasting summaries, schedules, reminder settings, and milestone guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local fasting logs, schedules, elapsed-time calculations, history summaries, and milestone reminders.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text responses with timers, milestones, schedules, and history summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include fasting duration calculations, reminder configuration, milestone alerts, and local history summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

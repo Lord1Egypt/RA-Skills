@@ -1,45 +1,66 @@
-## Description: <br>
-Trade on Hyperliquid with commands for account status, market data, funding rates, order books, trading, HIP-3 assets, market scanning, sentiment analysis, Grok web/X search, and prediction market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on Hyperliquid. Supports 228+ perps, HIP-3 equity/commodity perps (TSLA, GOLD), market scanning, sentiment analysis, Grok web/X search, and prediction market data.
 
-## Publisher: <br>
-[zoan37](https://clawhub.ai/user/zoan37) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zoan37](https://clawhub.ai/user/zoan37)
 
-## Use Case: <br>
-External users and agents use HyperClaw to inspect Hyperliquid markets, monitor account and position health, place or manage trades, and gather market intelligence from Hyperliquid, Grok-powered web/X research, and Polymarket data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live financial authority over a Hyperliquid account. <br>
-Mitigation: Start on testnet, use a separate low-balance API wallet, and manually verify asset, side, size, leverage, collateral, and cancellation effects before any mutating command. <br>
-Risk: The skill requires wallet credentials for account and trading operations. <br>
-Mitigation: Keep the .env file private and use API wallet credentials rather than a main wallet private key. <br>
-Risk: The caching proxy may be reachable beyond the local machine if exposed on a network. <br>
-Mitigation: Run the proxy only on a trusted local network and do not point HL_PROXY_URL at untrusted services. <br>
+## Use Case:
 
+External users and agent developers use HyperClaw to retrieve Hyperliquid market and account data, scan trading opportunities, place or manage perpetual futures orders, and request optional Grok-powered market intelligence.
 
-## Reference(s): <br>
-- [HyperClaw on ClawHub](https://clawhub.ai/zoan37/hyperclaw) <br>
-- [Hyperliquid](https://hyperliquid.xyz) <br>
-- [Hyperliquid API](https://app.hyperliquid.xyz/API) <br>
-- [AgentSkills](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples; CLI commands return terminal text and optional raw JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only market commands can run without credentials; account and trading commands require Hyperliquid wallet credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.15 (source: server release metadata) <br>
+Risk: The skill can make live financial trades on Hyperliquid.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate low-privilege Hyperliquid API wallet with limited funds, test on testnet first, and review commands before execution.
+
+Risk: The skill runs an unauthenticated caching proxy with broader network exposure than users may expect.
+
+Mitigation: Bind or firewall the proxy to localhost and do not expose the proxy port to other machines or containers.
+
+Risk: The skill stores Hyperliquid credentials in a local .env file.
+
+Mitigation: Treat the .env file as a private key store and keep HL_ACCOUNT_ADDRESS and HL_SECRET_KEY out of shared logs, prompts, and repositories.
+
+Risk: Optional Grok intelligence commands may send user queries to xAI.
+
+Mitigation: Avoid enabling Grok features unless users are comfortable sending those queries to xAI.
+
+## Reference(s):
+
+- [HyperClaw on ClawHub](https://clawhub.ai/zoan37/skills/hyperclaw)
+- [Hyperliquid](https://hyperliquid.xyz)
+- [Hyperliquid API keys](https://app.hyperliquid.xyz/API)
+- [AgentSkills](https://agentskills.io)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, CLI output summaries, and JSON-like API data when commands request raw data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute account, market data, trading, proxy, and optional Grok-backed intelligence workflows through local scripts.]
+
+## Skill Version(s):
+
+0.1.15 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

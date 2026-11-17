@@ -1,43 +1,56 @@
-## Description: <br>
-Generate D&D 5e adventure modules across one-shot, short, medium, long, and sandbox structures using 25 narrative paradigms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete D&D 5e adventure modules across one-shot, short, medium, long, and sandbox structures using a library of narrative paradigms.
 
-## Publisher: <br>
-[dajiaohuang](https://clawhub.ai/user/dajiaohuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dajiaohuang](https://clawhub.ai/user/dajiaohuang)
 
-## Use Case: <br>
-Game masters, writers, and agent users use this skill to generate complete D&D 5e adventure modules with chapter structure, NPC details, foreshadowing, DC values, monster data, and import-ready files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated module files may collide with existing campaign files in the workspace modules folder. <br>
-Mitigation: Confirm target filenames before writing and avoid overwrites unless the user explicitly approves them. <br>
-Risk: Generated adventure content may include incorrect, inconsistent, or unsuitable game details. <br>
-Mitigation: Review generated chapters, NPCs, DC values, monster data, and scene indexes before importing or running the module. <br>
+## Use Case:
 
+External users and tabletop RPG creators use this skill to generate structured D&D 5e adventure modules, write them to Markdown files, and prepare them for campaign import and scene indexing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dajiaohuang/sagasmith-modulegen) <br>
-- [Publisher Profile](https://clawhub.ai/user/dajiaohuang) <br>
-- [SagaSmith Agent](https://github.com/dajiaohuang/SagaSmith-agent) <br>
-- [SagaSmith Skills](https://github.com/dajiaohuang/SagaSmith-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown adventure module files with optional JSON scene indexes and inline shell or tool commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files are written under a workspace modules folder; medium and long modules use staged generation with user review before proceeding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Generated module import, re-import, indexing, deletion, or scene export actions can affect an existing campaign database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated module file first and require explicit user confirmation before running those actions against an existing campaign.
+
+Risk: Installing from a mutable source can make later installs resolve to different skill content.
+
+Mitigation: Prefer a pinned ClawHub or package version, or an immutable source reference, before installation.
+
+## Reference(s):
+
+- [SagaSmith Module Generator on ClawHub](https://clawhub.ai/dajiaohuang/skills/sagasmith-modulegen)
+- [SagaSmith-agent runtime](https://github.com/dajiaohuang/SagaSmith-agent)
+- [SagaSmith skills package](https://github.com/dajiaohuang/SagaSmith-skills)
+- [D&D DM skill reference](https://github.com/ackiles/dnd-dm-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown adventure modules with optional JSON scene indexes and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes module files under modules/ and asks for review before multi-step generation or existing campaign import actions.]
+
+## Skill Version(s):
+
+1.1.2 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

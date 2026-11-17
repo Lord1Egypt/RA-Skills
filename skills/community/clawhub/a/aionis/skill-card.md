@@ -1,38 +1,57 @@
-## Description: <br>
-Connect OpenClaw to Aionis using write/context/policy/feedback memory loop APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect OpenClaw to Aionis using write/context/policy/feedback memory loop APIs.
 
-## Publisher: <br>
-[Cognary](https://clawhub.ai/user/Cognary) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cognary](https://clawhub.ai/user/cognary)
 
-## Use Case: <br>
-Developers and agents use this skill to connect OpenClaw workflows to Aionis for long-term memory, cited context retrieval, memory-based tool routing, and feedback-driven policy adaptation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installation can start a persistent local Docker service and store Aionis credentials in local runtime files. <br>
-Mitigation: Review the bootstrap before installing, keep runtime files private, avoid exposing admin tokens to routine agent tasks, and remove the container and volume when persistence is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Aionis OpenClaw integration documentation](https://doc.aionisos.com/public/en/integrations/04-openclaw) <br>
-- [ClawHub Aionis skill page](https://clawhub.ai/Cognary/aionis) <br>
+## Use Case:
 
+Developers and agents use Aionis to connect OpenClaw workflows to an Aionis memory service for long-term memory writes, contextual retrieval, policy-based tool routing, and feedback loops.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON request examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes request, commit, decision, and run IDs when present, plus the base URL and scope used for the run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and publish notes) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automatic bootstrap can start a persistent local Docker service from a container image.
+
+Mitigation: Install only when the Aionis container source is trusted, prefer digest-pinned images, review or disable automatic bootstrap, and stop or remove the container and volume when no longer needed.
+
+Risk: Runtime credential files can contain local API keys or tokens.
+
+Mitigation: Protect `.runtime` files with restrictive permissions, avoid sourcing untrusted environment files, and never print full secrets in responses.
+
+Risk: Memory workflows can retain sensitive or overly broad tool output.
+
+Mitigation: Keep scope fixed per project, store concise summaries instead of raw dumps, and set bounded limits for recall and context assembly.
+
+## Reference(s):
+
+- [Aionis OpenClaw integration documentation](https://doc.aionisos.com/public/en/integrations/04-openclaw)
+- [Aionis ClawHub skill page](https://clawhub.ai/cognary/skills/aionis)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with bash commands and JSON request templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should include relevant request, commit, decision, run, base URL, and scope identifiers when present.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and user-provided changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

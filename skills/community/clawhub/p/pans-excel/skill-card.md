@@ -1,41 +1,57 @@
-## Description: <br>
-Pans Excel helps agents create, analyze, clean, visualize, convert, and export Excel workbooks through a local Python command-line tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pans Excel helps agents create, format, analyze, convert, and export Excel workbooks with charts, report templates, data validation, data cleaning, and CSV, JSON, and PDF workflows.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to generate Excel workbooks, reports, charts, formulas, validations, data cleaning steps, and CSV/JSON/PDF conversions for tabular data workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports an unsafe data parser that can execute Python code from crafted command input. <br>
-Mitigation: Review or patch scripts/excel.py before installing by removing the eval() fallback and accepting only strict JSON or safe literal parsing with validation. <br>
-Risk: Some commands modify the original workbook or write output files. <br>
-Mitigation: Use copies of important spreadsheets, avoid untrusted --data values, and check output paths before running commands. <br>
+## Use Case:
 
+Developers, analysts, and agent users use this skill to generate and modify Excel workbooks, build business reports, add charts and validation, clean tabular data, and convert between XLSX, CSV, JSON, and PDF.
 
-## Reference(s): <br>
-- [Pans Excel on ClawHub](https://clawhub.ai/dashiming/pans-excel) <br>
-- [Publisher profile: dashiming](https://clawhub.ai/user/dashiming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and generated spreadsheet files from the tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local Excel, CSV, JSON, and PDF files depending on the selected command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The bundled Excel script can evaluate spreadsheet data input as Python code when JSON parsing fails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher is trusted, restrict how commands are invoked, and do not pass untrusted --data values.
+
+Risk: Imported CSV or JSON data may contain spreadsheet formulas or other attacker-controlled cell content.
+
+Mitigation: Avoid importing attacker-supplied CSV or JSON unless formula-like values are sanitized before conversion.
+
+Risk: Formatting, charting, cleaning, validation, and autofmt commands can overwrite an existing workbook when no output path is provided.
+
+Mitigation: Provide an explicit output path or work on a copy when modifying workbooks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dashiming/skills/pans-excel)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands plus JSON or text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create, modify, convert, or overwrite XLSX, CSV, JSON, and PDF files depending on output-path options.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

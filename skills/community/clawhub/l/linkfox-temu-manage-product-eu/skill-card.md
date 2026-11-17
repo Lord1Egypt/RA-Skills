@@ -1,46 +1,62 @@
-## Description: <br>
-Helps agents use LinkFox gateway scripts and references for Temu Partner EU product management APIs, including product queries, SKU queries, edits, deletion, stock and sale status changes, compliance edits, category checks, attributes, external codes, and video cover image workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents manage Temu Partner EU catalog products through LinkFox, including product and SKU lookup, stock edits, publish or sale status changes, partial or full product updates, deletion, compliance edits, category checks, property templates, external codes, and video cover retrieval.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External sellers, operators, and developers use this skill to manage live Temu EU product catalog data through LinkFox-mediated Partner EU APIs. It supports operational workflows such as finding products, reading details, updating listings, changing stock or sale status, deleting goods, and editing compliance information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Europe <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate on live Temu EU product data and perform destructive or business-impacting actions such as deletion, full product updates, stock changes, sale status changes, and compliance edits. <br>
-Mitigation: Require explicit human confirmation before executing those actions, and review the target goods IDs, request payloads, and intended site before running commands. <br>
-Risk: The skill handles sensitive LinkFox and Temu credentials, and locally saved tokens may be weakly protected. <br>
-Mitigation: Prefer short-lived tokens supplied only when needed, avoid local token storage on shared or unprotected machines, and rotate credentials after operational use. <br>
-Risk: Generic proxy and file-download helpers can be used beyond the narrow Manage Product workflow. <br>
-Mitigation: Use the specific EU product-management scripts where possible and avoid running proxy or file-download helpers for unrelated API types. <br>
+## Use Case:
 
+Ecommerce operators, developers, and external sellers use this skill with an agent to inspect and manage live Temu EU product catalog records through LinkFox and Temu access tokens. It is intended for product operations such as finding goods, editing inventory and listing details, changing sale status, and checking compliance or category data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linkfox-ai/linkfox-temu-manage-product-eu) <br>
-- [API reference](artifact/references/api.md) <br>
-- [Access token guide](artifact/references/access-token.md) <br>
-- [Partner EU catalog](artifact/references/partner-eu-catalog.md) <br>
-- [Manage Product API index](artifact/references/apis/README.md) <br>
+### Deployment Geography for Use:
 
+Europe (Temu Partner EU)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that call live LinkFox and Temu endpoints when the user supplies credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can mutate live Temu EU catalog data, including product content, inventory, sale status, compliance information, and deletion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the store, product IDs, SKU IDs, and intended operation before running mutation scripts; require deliberate approval for update, delete, stock, sale status, and compliance actions.
+
+Risk: The skill handles LinkFox API keys and Temu merchant access tokens, including optional local token persistence.
+
+Mitigation: Use minimally scoped Temu permissions, avoid printing or logging tokens, protect any local token file with owner-only permissions, and rotate expired or overbroad tokens.
+
+Risk: The server security evidence flags the release for review because credentials, billing concerns, and local persistence are broad for a live business workflow.
+
+Mitigation: Install only when LinkFox is trusted with Temu merchant data, review security guidance before use, and treat billing or payment-related flows as separate actions requiring explicit approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-temu-manage-product-eu)
+- [API reference](references/api.md)
+- [Partner EU manage product catalog](references/partner-eu-catalog.md)
+- [Temu access token authorization](references/access-token.md)
+- [Per-interface API documents](references/apis/README.md)
+- [Temu Partner EU documentation](https://partner-eu.temu.com/documentation?menu_code=7289390cfd724be4a196f11ebe45a896)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses printed to stdout or saved as local files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Large API responses are summarized in stdout while full JSON responses are saved under a local linkfox data directory.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

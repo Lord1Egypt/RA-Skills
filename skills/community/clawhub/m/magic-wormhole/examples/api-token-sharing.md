@@ -485,17 +485,17 @@ echo "New token code: $CODE"
 
 ### GitHub Personal Access Token
 ```
-ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+REDACTED-SECRET
 ```
 
 ### Stripe API Key
 ```
-sk_live_51xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+REDACTED-SECRET
 ```
 
 ### AWS Access Key
 ```
-AKIAIOSFODNN7EXAMPLE
+REDACTED-SECRET
 ```
 
 ### JWT Token
@@ -505,7 +505,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 ### Generic API Key
 ```
-sk-1234567890abcdefghijklmnopqrstuv
+REDACTED-SECRET
 ```
 
 ---

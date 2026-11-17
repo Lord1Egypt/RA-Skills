@@ -1,0 +1,22 @@
+# SaaS Pricing Tiers - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+product: ""
+prepared_by: ""
+prepared_on: ""
+currency: USD
+monthly_serve_cost_per_account: 0
+onboarding_cost_per_account: 0
+support_minutes_per_account: 0
+support_rate_usd_per_hour: 0
+infrastructure_cost_per_account: 0
+payment_fee_pct: 0
+payment_fee_fixed_usd: 0
+target_gross_margin_pct: 0
+tiers:
+  - name: ""
+    included_units: 0
+    overage_usd_per_unit: 0
+    support_level: ""
+    min_commitment_months: 0
+    annual_prepay_discount_pct: 0
+notes: ""

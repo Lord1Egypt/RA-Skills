@@ -1,39 +1,54 @@
-## Description: <br>
-Reads a user-selected resume pool to build a candidate profile, searches job sites and company career pages for matching roles, filters results by role, location, salary, and recency, and writes outcomes to a structured tracker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads your resume pool to build a candidate profile, then searches LinkedIn, Indeed, Glassdoor, ZipRecruiter, Google Jobs, and company career pages for matching roles.
 
-## Publisher: <br>
-[jerronl](https://clawhub.ai/user/jerronl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerronl](https://clawhub.ai/user/jerronl)
 
-## Use Case: <br>
-Job seekers and career automation users use this skill to search job boards and company career pages against a resume-derived profile, screen roles against configured constraints, and maintain tracker and handoff notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a configured resume folder and writes search history, job URLs, notes, and rejected roles to local tracker and handoff files. <br>
-Mitigation: Point RESUME_DIR only at resumes or job-search documents intended for agent access, and choose tracker and handoff paths where retaining that information is acceptable. <br>
+## Use Case:
 
+Job seekers and career-focused agents use this skill to search for roles that match a resume-derived candidate profile, configured keywords, location, salary, and listing recency. It records shortlisted, rejected, and errored results in a structured local tracker and carries search context forward through handoff notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerronl/jobautopilot-search) <br>
-- [Project homepage](https://github.com/jerronl/jobautopilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tracker rows, handoff notes, search queries, and concise screening notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires browser search access and configured local environment variables; reads resumes only from the configured RESUME_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill reads a local resume directory and may process personal employment history, contact details, salary targets, and role preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set RESUME_DIR to a dedicated folder containing only resumes the user wants the agent to inspect.
+
+Risk: The tracker and handoff files persist job-search history, rejected roles, shortlisted roles, salary targets, and contact notes on the local machine.
+
+Mitigation: Review those files periodically and delete or redact sensitive entries when they are no longer needed.
+
+## Reference(s):
+
+- [Jobautopilot Search on ClawHub](https://clawhub.ai/jerronl/skills/jobautopilot-search)
+- [Publisher profile: jerronl](https://clawhub.ai/user/jerronl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown tracker rows, Markdown handoff notes, plain-text candidate profile summaries, and shell configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a browser tool with the search profile and local environment variables for keywords, location, tracker, handoff, resume directory, salary, and listing age filters.]
+
+## Skill Version(s):
+
+1.3.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

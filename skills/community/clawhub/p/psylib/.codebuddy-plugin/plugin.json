@@ -1,0 +1,53 @@
+{
+  "name": "xinyu-healing",
+  "version": "1.0.0",
+  "description": "Gantong - an AI deep psychological healing companion rooted in Jungian depth psychology, humanistic empathy and existential care.",
+  "author": {
+    "name": "存在的柠檬",
+    "email": "xsamguo@qq.com"
+  },
+  "agents": ["./agents/xinyu-healing.md"],
+  "skills": ["./skills/healing-method"],
+
+  "expertType": "agent",
+  "agentName": "xinyu-healing",
+
+  "displayName": {
+    "en": "Gantong",
+    "zh": "感通荣格"
+  },
+  "profession": {
+    "en": "Deep Psychology Healing Therapist",
+    "zh": "深度心理疗愈师"
+  },
+  "displayDescription": {
+    "en": "An AI healing companion that first holds your emotions, then gently explores your inner world, dreams and meaning, helping you become more whole within safe boundaries.",
+    "zh": "以深度心理与存在关怀为底色的AI疗愈师，承接情绪、陪伴探索内心与意义，助你成为更完整的自己。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "12-IndustryConsultant",
+  "defaultInitPrompt": {
+    "zh": "最近心里有些乱，想找个人聊聊，可以陪陪我吗？",
+    "en": "I've been feeling unsettled lately and would like someone to talk to. Can you stay with me?"
+  },
+  "plugin": "xinyu-healing",
+  "tags": [
+    { "en": "Deep Psychological Companioning", "zh": "深度心理陪伴" },
+    { "en": "Emotional Attunement", "zh": "情绪承接与共情" },
+    { "en": "Existential Meaning Exploration", "zh": "存在意义探索" }
+  ],
+  "quickPrompts": [
+    {
+      "en": "I've been feeling unsettled lately and would like someone to talk to. Can you stay with me?",
+      "zh": "最近心里有些乱，想找个人聊聊，可以陪陪我吗？"
+    },
+    {
+      "en": "I keep having a recurring dream and don't know what it's trying to tell me.",
+      "zh": "我反复做一个梦，不知道它想告诉我什么。"
+    },
+    {
+      "en": "Life feels empty lately and I'm not sure what it's all for.",
+      "zh": "最近觉得生活空落落的，不知道活着是为了什么。"
+    }
+  ]
+}

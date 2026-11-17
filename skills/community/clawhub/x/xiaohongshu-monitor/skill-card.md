@@ -1,43 +1,58 @@
-## Description: <br>
-Monitors configured Xiaohongshu bloggers for new posts, keeps snapshots to avoid duplicate alerts, and sends Feishu notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors configured Xiaohongshu bloggers for new posts and sends Feishu notifications while maintaining local snapshots to avoid duplicate alerts.
 
-## Publisher: <br>
-[KMKNKK](https://clawhub.ai/user/KMKNKK) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kmknkk](https://clawhub.ai/user/kmknkk)
 
-## Use Case: <br>
-Individuals or operators use this skill to monitor configured Xiaohongshu profiles on a schedule and receive Feishu alerts when new posts appear. It is useful when repeated manual checking would be inefficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reuses a logged-in Xiaohongshu browser profile, so saved session data may remain on the machine after monitoring. <br>
-Mitigation: Use a dedicated Xiaohongshu/OpenClaw browser profile where possible, and remove saved browser session data when monitoring is no longer needed. <br>
-Risk: Alert contents are sent to a fixed Feishu recipient that users cannot configure in the release artifact. <br>
-Mitigation: Review the script before installing and replace the hard-coded Feishu target with the intended recipient or disable messaging. <br>
-Risk: Scheduled monitoring can continue after the user no longer wants notifications or data collection. <br>
-Mitigation: Review any cron schedule before use and know how to stop the cron job and remove generated logs and snapshots. <br>
+## Use Case:
 
+Users who monitor Xiaohongshu accounts use this skill to run recurring checks for new posts, compare snapshots, and receive Feishu notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KMKNKK/xiaohongshu-monitor) <br>
-- [Configured Xiaohongshu profile](https://www.xiaohongshu.com/user/profile/5b6150c56b58b741e26b8c7f) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; runtime logs, snapshot markdown files, and Feishu notification text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates workspace memory files and may send Feishu messages through OpenClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The security summary reports that notifications are sent to a hard-coded Feishu recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, replace, or remove the configured Feishu recipient before installing or running the monitor.
+
+Risk: The security guidance flags an overbroad cron removal command.
+
+Mitigation: Avoid using crontab -r unless all cron jobs for the current user should be deleted; prefer editing only the monitor's scheduled entries.
+
+Risk: The security guidance notes that the script uses the OpenClaw browser profile and saved Xiaohongshu login state.
+
+Mitigation: Run it only with an intended browser profile and account session, and review access implications before repeated monitoring.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kmknkk/skills/xiaohongshu-monitor)
+- [Configured Xiaohongshu profile](https://www.xiaohongshu.com/user/profile/5b6150c56b58b741e26b8c7f)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces monitoring guidance and uses local snapshots, logs, and Feishu notifications when the script is run.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

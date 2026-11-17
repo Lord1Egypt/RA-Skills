@@ -1,42 +1,54 @@
-## Description: <br>
-Invoice & Expense Tracker helps an agent parse natural-language invoice and expense statements into a local ledger, generate reports and spending summaries, and export CSV files for QuickBooks/Xero. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invoice & Expense Tracker helps an agent parse natural-language invoice and expense updates into a local ledger, reports, alerts, and accounting-ready CSV exports.
 
-## Publisher: <br>
-[PhilipStark](https://clawhub.ai/user/PhilipStark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philipstark](https://clawhub.ai/user/philipstark)
 
-## Use Case: <br>
-External users and small teams use this skill to record invoices, expenses, income, and payments from plain-language prompts, then review reports, spending alerts, and accounting-oriented exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and maintains local financial records that may contain sensitive business data. <br>
-Mitigation: Keep ledger and export files out of public repositories and apply local access controls appropriate for financial records. <br>
-Risk: Parsed entries, reports, and CSV exports may be incomplete or inaccurate for accounting, tax, or compliance use. <br>
-Mitigation: Review parsed entries and exports before relying on them, and apply independent accounting or tax controls when records are material. <br>
-Risk: Users may accidentally enter account numbers, card numbers, SSNs, or tax-critical records. <br>
-Mitigation: Avoid entering highly sensitive identifiers and decline to store them unless separate user controls are in place. <br>
+## Use Case:
 
+Founders, finance operators, and team assistants use this skill to log business spending in plain English, keep a local ledger, summarize expenses, detect duplicates or alerts, and export CSV files for accounting workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PhilipStark/fl-invoice-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, CSV, Files, Guidance] <br>
-**Output Format:** [Markdown responses with local JSON ledger updates and CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local financial records in the workspace; users should review entries and exports before relying on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release evidence) <br>
+Risk: Financial records are saved as plaintext files in the working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ./data and ./exports out of source control and shared folders, and avoid storing account numbers, tax identifiers, or other sensitive identifiers.
+
+Risk: Parsed entries and CSV exports may be incomplete or unsuitable for bookkeeping or accounting imports without review.
+
+Mitigation: Review ledger entries and generated CSV exports before relying on them or importing them into accounting tools.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/philipstark/skills/fl-invoice-tracker)
+- [Publisher Profile](https://clawhub.ai/user/philipstark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown summaries plus JSON ledger and CSV export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local plaintext data under ./data and generated CSV exports under ./exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

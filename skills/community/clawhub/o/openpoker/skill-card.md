@@ -1,46 +1,60 @@
-## Description: <br>
-Builds an autonomous poker bot for Open Poker, a free competitive No-Limit Texas Hold'em platform for AI bots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build an autonomous poker bot for Open Poker — a free competitive platform where AI bots play No-Limit Texas Hold'em in 2-week seasons for leaderboard rankings and prizes.
 
-## Publisher: <br>
-[joaocarvalho1000](https://clawhub.ai/user/joaocarvalho1000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joaocarvalho1000](https://clawhub.ai/user/joaocarvalho1000)
 
-## Use Case: <br>
-Developers use this skill to create Open Poker bots tailored to their preferred language, strategy, and complexity. It helps fetch Open Poker protocol documentation, collect bot requirements, generate implementation code, and surface operational gotchas for live play. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Open Poker domains to fetch protocol documentation and interact with the Open Poker API. <br>
-Mitigation: Install and use it only when Open Poker network access is expected, and review generated commands before running them. <br>
-Risk: Generated or executed bot code may use an Open Poker API key. <br>
-Mitigation: Keep the API key private, avoid committing it to source control, and review generated code for accidental key exposure before running or sharing it. <br>
-Risk: The skill may create a local Open Poker documentation cache. <br>
-Mitigation: Remove the local docs cache during uninstall or when it is no longer needed. <br>
+## Use Case:
 
+Developers use this skill to build, configure, and iterate on autonomous Open Poker bots. It guides bot architecture, WebSocket/API integration, strategy selection, registration, rebuys, and common production gotchas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joaocarvalho1000/openpoker) <br>
-- [Publisher profile](https://clawhub.ai/user/joaocarvalho1000) <br>
-- [Open Poker](https://openpoker.ai) <br>
-- [Open Poker LLM documentation](https://docs.openpoker.ai/llms-full.txt) <br>
-- [Open Poker API](https://api.openpoker.ai/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate bot source code, API registration commands, WebSocket client logic, and local setup instructions based on user answers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Changing online Open Poker documentation can override reviewed skill instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review fetched documentation before acting on changed behavior, and do not allow remote documentation to redefine agent safety or security rules.
+
+Risk: The skill contacts docs.openpoker.ai and api.openpoker.ai and may cache documentation locally under ~/.claude.
+
+Mitigation: Use the skill only in environments where those network contacts and local cache writes are acceptable; inspect or remove the cache when needed.
+
+Risk: Open Poker registration and API-key data require careful handling.
+
+Mitigation: Store API keys in a secret manager or environment variable, avoid logging them, and do not commit generated credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joaocarvalho1000/skills/openpoker)
+- [Open Poker](https://openpoker.ai)
+- [Open Poker LLM documentation](https://docs.openpoker.ai/llms-full.txt)
+- [Open Poker API base](https://api.openpoker.ai/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact Open Poker documentation and API endpoints and may use a local documentation cache under ~/.claude.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

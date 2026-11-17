@@ -1,46 +1,65 @@
-## Description: <br>
-Checks a Stremio library for unwatched TV episodes, shows upcoming release dates, downloads new episodes through Stremio or supported torrent clients, and can sync upcoming episodes to Google Calendar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check a Stremio library for unwatched TV episodes, view upcoming release calendars, sync a dedicated Google Calendar, and download new episodes through Stremio or supported torrent clients.
 
-## Publisher: <br>
-[PatFitzner](https://clawhub.ai/user/PatFitzner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[patfitzner](https://clawhub.ai/user/patfitzner)
 
-## Use Case: <br>
-External users and developers use this skill to inspect a Stremio TV library, identify aired episodes that are not watched, review upcoming episode calendars, and start or preview downloads. It is also useful for agents that need shell-command workflows around Stremio authentication, library queries, calendar sync, and download status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose a Stremio auth token or credentials through shared shells, logs, or local credential files. <br>
-Mitigation: Treat the Stremio auth key as a secret, avoid exposing credentials in shared shells or logs, and clear cached credentials when they are no longer needed. <br>
-Risk: Download commands can start real torrent downloads through Stremio or supported torrent clients. <br>
-Mitigation: Use --dry-run, --filter, and --limit before download commands, and review the selected episodes before starting downloads. <br>
-Risk: The Google Calendar clear flow can delete events from the dedicated Stremio TV calendar. <br>
-Mitigation: Run --gcal-clear only when intentionally removing events from the dedicated Stremio TV calendar. <br>
+## Use Case:
 
+External users and developers use this skill to inspect a Stremio account's TV library, identify aired but unwatched episodes, generate upcoming episode calendars, and initiate downloads or calendar syncs.
 
-## Reference(s): <br>
-- [Stremio API Reference](references/stremio_api.md) <br>
-- [Stremio](https://www.stremio.com) <br>
-- [Stremio Central API](https://api.strem.io/api) <br>
-- [gog CLI](https://gogcli.sh) <br>
-- [ClawHub Skill Page](https://clawhub.ai/PatFitzner/stremio-unwatched) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and node or bun; optional flows use gog and supported torrent clients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Download commands can start Stremio or torrent downloads without the advertised dry-run or confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run download commands with --dry-run or --magnets first, and avoid no-argument stremio_download.sh until the default behavior is fixed.
+
+Risk: The skill can access a Stremio account, local credential cache, installed Stremio addons, local Stremio clients, and torrent clients.
+
+Mitigation: Use it only in a trusted environment, protect ~/.openclaw/credentials/stremio.json, and run stremio_auth.sh --logout when access should be removed.
+
+Risk: Authentication commands can print Stremio auth keys for piping.
+
+Mitigation: Treat printed auth keys as secrets and avoid exposing terminal logs or command output that may contain them.
+
+Risk: Calendar commands can create or delete events in the dedicated Stremio TV Google Calendar.
+
+Mitigation: Review the dedicated calendar before mutation, limit sync windows with --days, and use --gcal-clear only when deletion is intended.
+
+## Reference(s):
+
+- [Stremio API Reference](artifact/references/stremio_api.md)
+- [ClawHub Skill Page](https://clawhub.ai/patfitzner/skills/stremio-unwatched)
+- [Stremio](https://www.stremio.com)
+- [gog CLI](https://gogcli.sh)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands; scripts can emit terminal tables or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may access local credentials, Stremio APIs, installed addons, torrent clients, and a dedicated Google Calendar when invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Brand Protection Walmart helps marketplace sellers detect unauthorized sellers, counterfeits, MAP violations, trademark abuse, and related complaint workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advertised as a Walmart brand protection toolkit for detecting unauthorized sellers, counterfeits, MAP violations, and generating complaint templates.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External brand owners and e-commerce operators use this skill to review marketplace listing data, identify likely seller or listing violations, and draft follow-up reports or complaint materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill is advertised for Walmart brand protection, but its templates and action plans repeatedly target Amazon, which could mislead seller enforcement workflows. <br>
-Mitigation: Verify the target marketplace, policy references, seller identifiers, evidence, and submission steps; rewrite Amazon-specific parts before using materials for Walmart. <br>
-Risk: Generated complaint and cease-and-desist text may be treated as ready-to-send legal or marketplace enforcement material. <br>
-Mitigation: Use generated text only as a draft and have the brand owner, marketplace specialist, or legal reviewer confirm the facts, policy citations, and wording before sending. <br>
+## Use Case:
 
+External brand owners and e-commerce operators can use this skill to draft marketplace monitoring reports and enforcement templates. Review marketplace-specific language before using generated guidance for Walmart cases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/brand-protection-walmart) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, plain-text templates, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required; generated complaint and legal-style text should be treated as draft guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Generated enforcement guidance may use Amazon workflows, ASIN identifiers, and Brand Registry links despite the skill being advertised for Walmart.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct marketplace-specific portal links, identifiers, complaint language, and workflows before using outputs for Walmart cases.
+
+Risk: The documented global unpinned npx install command can pull changing code at install time.
+
+Mitigation: Use a pinned local install and verify release hashes before execution.
+
+Risk: Complaint and cease-and-desist templates may be used without adequate evidence or legal review.
+
+Mitigation: Require human review, evidence validation, and legal approval before sending enforcement communications.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/phheng/skills/brand-protection-walmart)
+- [Publisher profile](https://clawhub.ai/user/phheng)
+- [Nexscope AI](https://www.nexscope.ai/)
+- [Amazon Brand Registry](https://brandregistry.amazon.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style reports, complaint templates, configuration examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is documented; generated guidance should be reviewed before operational use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

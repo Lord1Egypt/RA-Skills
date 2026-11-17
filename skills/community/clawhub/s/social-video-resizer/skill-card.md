@@ -1,41 +1,60 @@
-## Description: <br>
-Adapt one social video into platform-ready aspect ratios and dimensions for TikTok, Reels, Shorts, feeds, stories, and ads without awkward stretching or lost focal points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts one social video into platform-ready size variants by choosing crop, pad, or proportional scale strategies for 9:16, 1:1, 4:5, and 16:9 while protecting faces, products, subtitles, and platform safe zones.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Content teams, social media managers, editors, and advertisers use this skill to plan platform-ready video versions across vertical, square, portrait, and landscape placements while preserving faces, products, subtitles, and full-frame context where needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Source videos may contain private people, unreleased products, or confidential campaign material. <br>
-Mitigation: Only provide videos the user is comfortable letting an agent inspect or transform, and avoid confidential or sensitive source material unless the operating environment is approved for it. <br>
-Risk: Resize recommendations can crop or obscure faces, products, subtitles, or other important visual information if the requested aspect ratio conflicts with the source framing. <br>
-Mitigation: Review the proposed crop, pad, or scale strategy for each platform version and check the framing and subtitle safety notes before publishing. <br>
+## Use Case:
 
+Social media operators, marketers, and video production teams use this skill to plan platform-specific video resizing deliverables. It helps select crop, pad, or scale strategies, document tradeoffs, flag subtitle and safe-zone risks, and provide optional ffmpeg commands.
 
-## Reference(s): <br>
-- [Social Video Resizer Output Template](artifact/references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/social-video-resizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with tables and concise notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes target platform versions, resize strategy, dimensions, framing notes, subtitle safety notes, compatibility notes, and optional variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated ffmpeg commands may be incorrect for a specific source file or could affect important originals if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review command parameters, work on copies, and confirm crop coordinates, codecs, and output paths before execution.
+
+Risk: Platform dimensions, time limits, file-size limits, and safe zones can change after the bundled reference material is published.
+
+Mitigation: Verify current platform or ad-backend requirements before final export and publishing.
+
+Risk: The workflow is written in Chinese, which may lead to misapplication by users who cannot reliably read the guidance.
+
+Mitigation: Use the skill only with users or reviewers who can understand the source guidance, or translate and review the plan before acting.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [Platform Specification Sheet](references/platform-spec-sheet.md)
+- [Crop / Pad / Scale Guide](references/crop-pad-scale-guide.md)
+- [Resize Checklist](assets/resize-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown resizing plan with tables, risk notes, and optional ffmpeg command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands and platform limits require human review before publishing or execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,87 @@
+# Mode matrix — edit this to match YOUR machine, then it just works.
+#
+# Parsed by a small built-in subset reader (no PyYAML needed). Supported:
+#   key: value · nested maps by indentation · block lists ("- item") ·
+#   inline lists ([a, b]) · flat inline maps ({a: 1, b: x}) ·
+#   # comments (start of line, or preceded by a space)
+# Not supported: nested inline maps, anchors, multi-document, tabs for indentation.
+#
+# Relative paths resolve against THIS file's directory.
+
+state_file: ../modes_state.json   # written by the switcher; watchdogs read it
+log_file: ""                      # optional path for the switcher's own log
+watchdog_state_file: ""           # optional path for the watchdog's own counter file
+                                  # (repair budget + last_run_ts); default: watchdog_state.json
+                                  # next to state_file — one writer per file, leave it alone
+                                  # unless you want the counters elsewhere
+default_mode: light_work          # used when the state file is missing/corrupt
+
+# ---- VPN (optional: leave cmd as "" to let something else manage it) ----
+vpn:
+  cmd: ""                         # path to your VPN CLI, or an argv list:
+                                  # ["myvpn", "--profile", "work"]  (use a list for .py scripts)
+  status_args: [status]
+  connected_marker: Connected     # substring that means "up" in the status output
+  on_args: [connect]
+  off_args: [disconnect]
+  settle_s: 10                    # wait after connect before trusting reachability
+
+# ---- Background agent profiles: one subdirectory per agent, each may hold a pidfile ----
+profiles_dir: ../profiles
+gateway:
+  pidfile: gateway.pid            # JSON {"pid": ..., "start_time": ...} or a bare integer
+  start_argv: ["python", "-m", "your_cli", "gateway", "run"]   # launched with cwd=<profile dir>
+
+# ---- Local services: monitored by TCP port; start_argv optional (omit = monitor only) ----
+# start_argv is commented out on purpose: a template should not launch anything by surprise.
+# Uncomment and point it at your real service command, then the switcher can start it too.
+services:
+  - name: vector-db
+    port: 9001
+    # start_argv: ["your-vector-db", "--port", "9001"]
+  - name: llm
+    port: 9002
+    # start_argv: ["ollama", "serve"]
+  - name: notes-panel
+    port: 9003
+    # start_argv: ["your-panel", "serve"]
+
+# ---- Optional: flip a scheduled job's model tier with the mode ----
+# {model} / {provider} are filled from the per-mode "model" block below.
+model_job:
+  cmd: []                         # e.g. ["your_cli","cron","edit","JOBID","--model","{model}","--provider","{provider}"]
+
+# ---- Optional: where watchdog alerts go ({text} is filled in) ----
+alert:
+  cmd: []                         # e.g. ["your_cli","send","-t","<chat-id>","{text}"]
+  min_interval_s: 1800            # at most one alert per incident per half hour
+
+# ---- The matrix itself ----
+modes:
+  work:
+    name: Work
+    vpn: on                       # on | off | keep
+    profiles: [agent-a, agent-b]
+    services: [vector-db, llm, notes-panel]
+    model: {model: local-model, provider: local}
+
+  light_work:
+    name: Light work
+    vpn: on
+    profiles: [agent-a]
+    services: [vector-db, llm, notes-panel]
+    model: {model: local-model, provider: local}
+
+  light_game:
+    name: Light game
+    vpn: on
+    profiles: [agent-a, agent-b]
+    services: [vector-db, llm, notes-panel]
+    model: {model: cloud-model, provider: cloud}
+
+  game:
+    name: Game
+    vpn: off                      # direct connection while gaming
+    profiles: []
+    services: [vector-db, notes-panel]
+    model: {model: cloud-model, provider: cloud}

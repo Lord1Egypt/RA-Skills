@@ -1,44 +1,54 @@
-## Description: <br>
-Gigma Design Canvas lets agents create, edit, preview, and export social media graphics, thumbnails, banners, cards, and batch designs through a hosted editable design canvas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gigma Design Canvas lets agents create, edit, preview, and export canvas-based graphics through Gigma MCP tools.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-Developers, creators, and design teams use this skill to drive Gigma's cloud canvas from an agent, building or editing marketing graphics and exporting PNGs without manual design-tool steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP link contains an embedded authentication token that grants design access to Gigma projects. <br>
-Mitigation: Treat the MCP link like a password, keep it out of public logs or repositories, and regenerate it if it may have been exposed. <br>
-Risk: Design operations, provided image URLs, and PNG exports are processed by Gigma's hosted service. <br>
-Mitigation: Avoid confidential designs or images unless Gigma's cloud processing and 7-day signed export URLs fit the user's requirements. <br>
-Risk: The skill can create, edit, delete, and export project content within the connected Gigma account. <br>
-Mitigation: Preview with screenshots before export, confirm element IDs before destructive edits, and clone template projects for batch work when preserving originals matters. <br>
+## Use Case:
 
+Developers, designers, marketers, and external users can use this skill to create and revise social media graphics, thumbnails, banners, cards, and batch design variations through agent-controlled canvas operations.
 
-## Reference(s): <br>
-- [Gigma Documentation](https://gigma-doc.10xboost.org) <br>
-- [Gigma Service](https://gigma.10xboost.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/snoopyrain/gigma-design-canvas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, text] <br>
-**Output Format:** [Markdown guidance, MCP tool call arguments, and exported PNG links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated designs are managed in Gigma, and PNG export links are signed URLs valid for 7 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The MCP URL contains an embedded token that can grant broad create, edit, delete, preview, and export access to Gigma projects if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the full MCP URL as a secret, avoid sharing configs or screenshots that include it, and regenerate the link immediately if exposure is suspected.
+
+Risk: Design operations, exports, and provided image URLs are processed by the Gigma cloud service.
+
+Mitigation: Use the skill only for projects and image sources that are appropriate to process through the connected third-party cloud service.
+
+## Reference(s):
+
+- [Gigma Documentation](https://gigma-doc.10xboost.org)
+- [ClawHub Skill Page](https://clawhub.ai/snoopyrain/skills/gigma-design-canvas)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Files, Configuration instructions]
+
+**Output Format:** [Markdown guidance with MCP tool call examples, screenshot previews, and PNG export URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PNG exports may be generated at 1x, 2x, or 3x scale with signed URLs valid for 7 days.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

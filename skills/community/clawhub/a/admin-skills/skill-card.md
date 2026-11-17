@@ -1,47 +1,62 @@
-## Description: <br>
-HR Admin Assistant helps technology-company HR and administrative leaders draft policies, notices, contracts, HR documents, approval forms, reports, OKRs/KPIs, analyze requirements, organize documents, and design back-office workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HR Admin Assistant helps technology-company back-office teams draft HR and administrative documents, design workflows, analyze requirements, and prepare reports using bundled templates and policy references.
 
-## Publisher: <br>
-[sirutong](https://clawhub.ai/user/sirutong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sirutong](https://clawhub.ai/user/sirutong)
 
-## Use Case: <br>
-HR, administrative, legal-support, and finance-support staff in technology companies use this skill to turn back-office requests into draft documents, process designs, requirement analyses, policies, reports, meeting notes, and structured forms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive employee, policy, legal-support, and finance-support material. <br>
-Mitigation: Use it only in environments approved for that data, minimize sensitive inputs, and review generated materials before sharing or storing them. <br>
-Risk: The skill includes broad activation triggers and asks the agent to append new trigger words to SKILL.md after use. <br>
-Mitigation: Narrow or remove generic triggers and require explicit maintainer approval before any persistent trigger or skill-file change. <br>
-Risk: Legal, HR compliance, and employment-policy outputs may be incomplete or jurisdiction-specific. <br>
-Mitigation: Treat outputs as drafts and route employee-rights, contract, termination, payroll, and compliance content through qualified HR or legal review. <br>
+## Use Case:
 
+HR, administration, legal, and finance-support staff use this skill to turn back-office requests into structured documents, workflow descriptions, reports, forms, and requirement analyses for technology-company operations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sirutong/admin-skills) <br>
-- [HR Admin Assistant API Reference](references/api_reference.md) <br>
-- [Document Template Structure Guide](references/doc_templates.md) <br>
-- [HR Policy and Legal Compliance Baseline](references/hr_policies.md) <br>
-- [Standard Process Library](references/process_library.md) <br>
-- [Report Template Framework](references/report_templates.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, structured text, JSON from helper scripts, and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft HR, administrative, legal-support, and finance-support outputs should be reviewed before operational use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact includes an instruction to update its own trigger terms after use, which can create under-controlled persistent changes in shared or persistent agent environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove that self-modification behavior or require maintainer approval before any changes to skill instructions are made.
+
+Risk: The document-generation helper can write to a caller-provided output path, creating a risk of unintended overwrite.
+
+Mitigation: Constrain generated files to an approved output directory and avoid overwriting existing files by default.
+
+Risk: HR and legal templates may be mistaken for final legal advice.
+
+Mitigation: Treat generated HR/legal content as drafting support and require qualified legal or HR review before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sirutong/skills/admin-skills)
+- [HR policies and compliance baseline](references/hr_policies.md)
+- [Process library](references/process_library.md)
+- [Document templates](references/doc_templates.md)
+- [Report templates](references/report_templates.md)
+- [API reference](references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown documents, tables, workflow descriptions, and structured analysis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompts for missing business context and review notes for employee-rights or compliance-sensitive content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

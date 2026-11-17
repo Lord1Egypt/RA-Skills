@@ -1,44 +1,66 @@
-## Description: <br>
-Fetches BBC News and generates a Daily English News PDF with full articles, Chinese translations, and vocabulary for English learners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches BBC News articles and generates a Daily English News PDF for English learners with article text and vocabulary translations.
 
-## Publisher: <br>
-[effeceee](https://clawhub.ai/user/effeceee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[effeceee](https://clawhub.ai/user/effeceee)
 
-## Use Case: <br>
-External users and educators use this skill to fetch recent public news articles and create an English-learning PDF with article text and vocabulary support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to BBC News and Google Translate, so article text or vocabulary terms may be sent to external services. <br>
-Mitigation: Use it only with public or appropriately licensed text, and confirm that sending derived terms to Google Translate is acceptable for the deployment. <br>
-Risk: The generated PDF is copied to a fixed output path and may replace a previous file. <br>
-Mitigation: Review the configured output location before running the skill and preserve any existing files that should not be overwritten. <br>
-Risk: Python dependencies are declared without pinned versions. <br>
-Mitigation: Install dependencies in an isolated environment and pin reviewed versions before production use. <br>
+## Use Case:
 
+External users, educators, and English learners use this skill to collect current BBC News items into a Chinese-supported English learning PDF with vocabulary lists.
 
-## Reference(s): <br>
-- [Ket News Fetcher on ClawHub](https://clawhub.ai/effeceee/ket-news-fetcher) <br>
-- [BBC News RSS](https://feeds.bbci.co.uk/news/rss.xml) <br>
-- [BBC Learning English](https://www.bbc.co.uk/learningenglish/english/course/lower-intermediate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration, guidance] <br>
-**Output Format:** [PDF file with console status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a Daily English News PDF from recent public news articles; requires python3 and Python packages for HTML fetching, parsing, translation, and PDF generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.8.0 (source: release metadata and openclaw metadata) <br>
+Risk: The skill fetches public news pages and sends extracted vocabulary or text chunks to Google Translate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network and content-sharing policies before running it, especially if the source text is changed from public news content.
+
+Risk: The generated PDF is copied to a fixed workspace path.
+
+Mitigation: Run it only in a workspace where that destination is expected, or adjust the output path before deployment.
+
+Risk: Dependency versions are not pinned in the release metadata.
+
+Mitigation: Pin dependency versions for reproducible installs before operational use.
+
+Risk: The release has a quality gap around full article translation.
+
+Mitigation: Review generated PDFs before relying on them for full article translations, and update the implementation if complete translation is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/effeceee/skills/ket-news-fetcher)
+- [BBC News RSS feed](https://feeds.bbci.co.uk/news/rss.xml)
+- [BBC Learning English](https://www.bbc.co.uk/learningenglish/english/course/lower-intermediate)
+- [News in Levels](https://www.newsinlevels.com/level-1/)
+- [VOA Learning English](https://learningenglish.voanews.com/english/learning-english)
+- [Google Translate endpoint](https://translate.googleapis.com/translate_a/single)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands]
+
+**Output Format:** [PDF file with console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a daily English-learning PDF, writes an intermediate file under /tmp, and copies the PDF to a fixed workspace path.]
+
+## Skill Version(s):
+
+6.8.0 (source: server release, OpenClaw metadata, and artifact changelog dated 2026-03-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

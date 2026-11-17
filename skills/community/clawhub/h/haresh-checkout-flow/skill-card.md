@@ -1,40 +1,57 @@
-## Description: <br>
-Process e-commerce checkout via n8n webhook integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process e-commerce checkout via n8n webhook integration.
 
-## Publisher: <br>
-[haresh-sai06](https://clawhub.ai/user/haresh-sai06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[haresh-sai06](https://clawhub.ai/user/haresh-sai06)
 
-## Use Case: <br>
-Developers and commerce agents use this skill to validate carts, handle authentication and shipping collection, initiate payment through a local n8n checkout workflow, and present order confirmation to the user. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger payment or order processing through a local checkout webhook before final confirmation is clearly enforced. <br>
-Mitigation: Require the agent to show the full order summary and receive explicit user confirmation before calling the checkout-process webhook. <br>
-Risk: Checkout data may include sensitive payment or order information handled by a local n8n workflow. <br>
-Mitigation: Install only with trusted local n8n workflows and verify the webhook does not receive or log full payment details unnecessarily. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haresh-sai06/haresh-checkout-flow) <br>
-- [Publisher profile](https://clawhub.ai/user/haresh-sai06) <br>
+## Use Case:
 
+External commerce users and checkout agents use this skill to validate carts, handle authentication or guest checkout, collect shipping information, process payment options, and present order confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, API calls] <br>
-**Output Format:** [Markdown or plain text checkout status, prompts, summaries, and local webhook calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted local n8n checkout workflow and explicit user confirmation before payment/order processing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive checkout data may be sent to local n8n webhooks.
+
+Mitigation: Document what checkout data is sent, authenticate webhook requests, validate inputs, and avoid sending full payment details.
+
+Risk: Payment processing may occur before final user confirmation.
+
+Mitigation: Require the user to review and confirm the final order before calling any payment-processing or order-creation webhook.
+
+Risk: Payment information could be mishandled if raw payment details are collected or logged.
+
+Mitigation: Use only tokenized payment method identifiers and never store or log full payment details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haresh-sai06/skills/haresh-checkout-flow)
+- [ClawHub publisher profile](https://clawhub.ai/user/haresh-sai06)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, markdown]
+
+**Output Format:** [Markdown checkout guidance with webhook call instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces checkout flow steps, validation outcomes, payment retry guidance, and order confirmation summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

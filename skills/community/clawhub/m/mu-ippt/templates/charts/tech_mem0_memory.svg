@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    Mem0 记忆架构模板（泳道分层）
+    Input → Memory Manager → [VectorDB + GraphDB + KV Store] → Context Builder → Output
+    4 层泳道：Input / Manager / Storage / Output
+    占位符说明：
+      {{BG_COLOR}} {{TEXT_COLOR}} {{TITLE_COLOR}} {{SUBTITLE_COLOR}}
+      {{ACCENT_COLOR}} {{ACCENT2_COLOR}} {{ACCENT3_COLOR}} {{BORDER_COLOR}}
+      {{NODE_FILL}} {{NODE_STROKE}} {{ARROW_COLOR}} {{FONT_FAMILY}}
+
+    语义形状：Agent=六边形，Vector Store=带内环圆柱，Graph DB=三圆簇，
+    短期记忆=虚线边框圆角矩形，长期记忆=实线圆柱体
+    LLM 生成时参考此结构，自由增减节点。
+  -->
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+    <marker id="arrow-write" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ACCENT2_COLOR}}"/>
+    </marker>
+    <marker id="arrow-read" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ACCENT3_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="35" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- ====== 泳道 1: Input Layer ====== -->
+  <rect x="20" y="50" width="860" height="80" rx="8"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.04" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="70" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{ACCENT_COLOR}}" transform="rotate(-90,35,70)">{{LANE_1}}</text>
+
+  <!-- 用户（圆形+身体路径） -->
+  <circle cx="100" cy="90" r="16" fill="{{ACCENT_COLOR}}" fill-opacity="0.15"
+          stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <circle cx="100" cy="84" r="5" fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <path d="M 90 100 Q 100 108 110 100" fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="100" y="118" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{INPUT_USER}}</text>
+
+  <!-- 输入消息 -->
+  <rect x="180" y="72" width="150" height="36" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="255" y="95" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TEXT_COLOR}}">{{INPUT_MSG}}</text>
+
+  <!-- 对话历史（虚线边框 = 短期记忆） -->
+  <rect x="380" y="72" width="150" height="36" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="455" y="95" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TEXT_COLOR}}">{{INPUT_HISTORY}}</text>
+
+  <!-- 系统配置 -->
+  <rect x="580" y="72" width="140" height="36" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{BORDER_COLOR}}" stroke-width="1.5"/>
+  <text x="650" y="95" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TEXT_COLOR}}">{{INPUT_CONFIG}}</text>
+
+  <!-- User → Input -->
+  <line x1="116" y1="90" x2="178" y2="90" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ====== 泳道 2: Memory Manager Layer ====== -->
+  <rect x="20" y="140" width="860" height="100" rx="8"
+        fill="{{ACCENT2_COLOR}}" fill-opacity="0.04" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="172" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{ACCENT2_COLOR}}" transform="rotate(-90,35,172)">{{LANE_2}}</text>
+
+  <!-- Memory Manager（六边形 = Agent/编排器） -->
+  <polygon points="170,165 250,165 280,190 250,215 170,215 140,190"
+           fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="210" y="187" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{MANAGER}}</text>
+  <text x="210" y="205" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{MANAGER_DESC}}</text>
+
+  <!-- 决策节点（菱形） -->
+  <polygon points="400,190 440,170 480,190 440,210"
+           fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="440" y="194" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{TEXT_COLOR}}">{{DECISION}}</text>
+
+  <!-- Extractor（工具 ⚙） -->
+  <rect x="560" y="153" width="130" height="36" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="625" y="176" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TEXT_COLOR}}">⚙ {{EXTRACTOR}}</text>
+
+  <!-- Deduplicator -->
+  <rect x="560" y="198" width="130" height="36" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="625" y="221" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TEXT_COLOR}}">⚙ {{DEDUPLICATOR}}</text>
+
+  <!-- 箭头连接 -->
+  <line x1="255" y1="90" x2="255" y2="108" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+  <line x1="255" y1="108" x2="200" y2="108" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+  <line x1="200" y1="108" x2="200" y2="163" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="280" y1="190" x2="398" y2="190" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="480" y1="180" x2="558" y2="171" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="480" y1="200" x2="558" y2="216" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ====== 泳道 3: Storage Layer ====== -->
+  <rect x="20" y="250" width="860" height="110" rx="8"
+        fill="{{ACCENT3_COLOR}}" fill-opacity="0.04" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="290" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{ACCENT3_COLOR}}" transform="rotate(-90,35,290)">{{LANE_3}}</text>
+
+  <!-- Vector DB（带内环圆柱） -->
+  <ellipse cx="180" cy="272" rx="50" ry="12" fill="{{ACCENT_COLOR}}" fill-opacity="0.15"
+           stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <rect x="130" y="272" width="100" height="50" fill="{{NODE_FILL}}"
+        stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <ellipse cx="180" cy="322" rx="50" ry="12" fill="{{NODE_FILL}}"
+           stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <ellipse cx="180" cy="290" rx="28" ry="7" fill="none"
+           stroke="{{ACCENT_COLOR}}" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="180" y="310" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STORE_VECTOR}}</text>
+  <text x="180" y="348" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{STORE_VECTOR_DESC}}</text>
+
+  <!-- Graph DB（三圆簇） -->
+  <circle cx="420" cy="290" r="18" fill="{{ACCENT2_COLOR}}" fill-opacity="0.15"
+          stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <circle cx="450" cy="275" r="14" fill="{{ACCENT2_COLOR}}" fill-opacity="0.1"
+          stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <circle cx="455" cy="305" r="12" fill="{{ACCENT2_COLOR}}" fill-opacity="0.1"
+          stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <!-- 连线 -->
+  <line x1="435" y1="280" x2="423" y2="285" stroke="{{ACCENT2_COLOR}}" stroke-width="1"/>
+  <line x1="440" y1="288" x2="448" y2="298" stroke="{{ACCENT2_COLOR}}" stroke-width="1"/>
+  <line x1="430" y1="305" x2="443" y2="302" stroke="{{ACCENT2_COLOR}}" stroke-width="1"/>
+  <text x="440" y="340" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STORE_GRAPH}}</text>
+  <text x="440" y="355" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{STORE_GRAPH_DESC}}</text>
+
+  <!-- KV Store（实线圆柱体 = 长期记忆） -->
+  <ellipse cx="680" cy="272" rx="50" ry="12" fill="{{ACCENT3_COLOR}}" fill-opacity="0.15"
+           stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <rect x="630" y="272" width="100" height="50" fill="{{NODE_FILL}}"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <ellipse cx="680" cy="322" rx="50" ry="12" fill="{{NODE_FILL}}"
+           stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <text x="680" y="305" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STORE_KV}}</text>
+  <text x="680" y="348" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{STORE_KV_DESC}}</text>
+
+  <!-- Manager → Storage（记忆写入：虚线） -->
+  <line x1="210" y1="215" x2="180" y2="260" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="5,3" marker-end="url(#arrow-write)"/>
+  <line x1="625" y1="221" x2="440" y2="268" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="5,3" marker-end="url(#arrow-write)"/>
+  <line x1="690" y1="216" x2="680" y2="260" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="5,3" marker-end="url(#arrow-write)"/>
+  <text x="140" y="240" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{ACCENT2_COLOR}}">write</text>
+
+  <!-- ====== 泳道 4: Output Layer ====== -->
+  <rect x="20" y="370" width="860" height="80" rx="8"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.04" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="395" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{ACCENT_COLOR}}" transform="rotate(-90,35,395)">{{LANE_4}}</text>
+
+  <!-- Context Builder（六边形） -->
+  <polygon points="250,390 340,390 370,410 340,430 250,430 220,410"
+           fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="295" y="407" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{CONTEXT_BUILDER}}</text>
+  <text x="295" y="423" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{CONTEXT_BUILDER_DESC}}</text>
+
+  <!-- Storage → Context Builder（记忆读取：实线） -->
+  <line x1="180" y1="335" x2="260" y2="388" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5" marker-end="url(#arrow-read)"/>
+  <line x1="440" y1="340" x2="300" y2="388" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5" marker-end="url(#arrow-read)"/>
+  <line x1="680" y1="335" x2="340" y2="398" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5" marker-end="url(#arrow-read)"/>
+  <text x="390" y="368" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{ACCENT3_COLOR}}">read</text>
+
+  <!-- Output（双边框 LLM ⚡） -->
+  <rect x="480" y="390" width="140" height="50" rx="12"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="485" y="395" width="130" height="40" rx="9"
+        fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="550" y="413" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">⚡ {{OUTPUT_LLM}}</text>
+  <text x="550" y="430" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{OUTPUT_LLM_DESC}}</text>
+
+  <!-- Context → LLM -->
+  <line x1="370" y1="410" x2="478" y2="415" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Response -->
+  <rect x="680" y="395" width="120" height="40" rx="20"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <text x="740" y="420" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{OUTPUT_RESPONSE}}</text>
+
+  <!-- LLM → Response -->
+  <line x1="620" y1="415" x2="678" y2="415" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ====== 图例 ====== -->
+  <rect x="20" y="460" width="470" height="32" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="480" font-family="{{FONT_FAMILY}}"
+        font-size="9" font-weight="bold" fill="{{TITLE_COLOR}}">图例:</text>
+
+  <line x1="65" y1="477" x2="85" y2="477" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="93" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">数据流</text>
+
+  <line x1="135" y1="477" x2="155" y2="477" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="5,3" marker-end="url(#arrow-write)"/>
+  <text x="163" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">写入</text>
+
+  <line x1="195" y1="477" x2="215" y2="477" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5" marker-end="url(#arrow-read)"/>
+  <text x="223" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">读取</text>
+
+  <polygon points="268,477 278,472 288,477 278,482"
+           fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <text x="296" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">Agent</text>
+
+  <circle cx="340" cy="477" r="5" fill="{{ACCENT2_COLOR}}" fill-opacity="0.2"
+          stroke="{{ACCENT2_COLOR}}" stroke-width="1"/>
+  <text x="353" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">Graph</text>
+
+  <ellipse cx="403" cy="475" rx="14" ry="5" fill="none"
+           stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <text x="425" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">Vector/KV</text>
+</svg>

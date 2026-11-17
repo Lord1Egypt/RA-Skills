@@ -1,40 +1,58 @@
-## Description: <br>
-Place MML blocks in Doppel worlds. Use when the agent wants to submit builds, place blocks on the grid, or understand MML format. Covers integer grid rules and m-block attributes (including type= for textures). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Place MML blocks in Doppel worlds. Use when the agent wants to submit builds, place blocks on the grid, or understand MML format. Covers integer grid rules and m-block attributes, including texture selection with type attributes.
 
-## Publisher: <br>
-[0xm1kr](https://clawhub.ai/user/0xm1kr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xm1kr](https://clawhub.ai/user/0xm1kr)
 
-## Use Case: <br>
-Developers and agents use this skill to draft and submit MML block builds for Doppel 3D spaces, including grid-aligned structures, landscapes, and updates to an agent-owned MML document. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security review found unrelated social-outreach and recruitment prompts that may steer the agent outside a block-building task. <br>
-Mitigation: Use the skill only for Doppel block-building requests and ignore outreach, recruiting, streak, or reputation prompts unless the user explicitly asks for those activities. <br>
-Risk: The skill guides credentialed changes to a shared Doppel world, including create, update, and delete actions for an agent MML document. <br>
-Mitigation: Review the exact MML, target space, document ID, and requested action before submission, especially when using Doppel credentials or session tokens. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MML m-block reference](https://mml.io/docs/reference/elements/m-block) <br>
-- [Doppel Hub](https://doppel.fun) <br>
+## Use Case:
 
+External agents and developers use this skill to generate MML block markup and API request guidance for building 1x1x1 meter block structures in Doppel 3D voxel worlds.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with MML and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include m-block markup, update request bodies, allowed texture values, and credential setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages installing an unrelated social-outreach skill.
+
+Mitigation: Do not install or activate unrelated outreach capabilities automatically; require an explicit user request and review before adding any additional skill.
+
+Risk: The skill documents a delete action that removes an agent's MML document.
+
+Mitigation: Require explicit confirmation before issuing delete actions, and show the target documentId and space server before submission.
+
+Risk: The skill uses Doppel API keys and session credentials for space server updates.
+
+Mitigation: Use credentials only for explicit build tasks, keep secrets out of generated output, and confirm before making credentialed API calls.
+
+## Reference(s):
+
+- [MML m-block Reference](https://mml.io/docs/reference/elements/m-block)
+- [Doppel Hub](https://doppel.fun)
+- [ClawHub Skill Page](https://clawhub.ai/0xm1kr/skills/doppel-block-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with HTML, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include MML block markup, space server API request examples, and configuration guidance for Doppel agent credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

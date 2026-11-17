@@ -1,48 +1,62 @@
-## Description: <br>
-Generate images using AI providers (OpenAI gpt-image-1, Google Gemini, fal.ai). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using AI providers (OpenAI gpt-image-1, Google Gemini, fal.ai) when the user asks to create, generate, or make an image, picture, illustration, photo, artwork, or visual content.
 
-## Publisher: <br>
-[lumenclaw-cloud](https://clawhub.ai/user/lumenclaw-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lumenclaw-cloud](https://clawhub.ai/user/lumenclaw-cloud)
 
-## Use Case: <br>
-External users, developers, and creative teams use this skill to generate new images from prompts or edit existing images through OpenAI, Google Gemini, or fal.ai using their own provider API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected images or masks are sent to external AI providers. <br>
-Mitigation: Use only provider keys and inputs approved for those services, and avoid sensitive or regulated images unless the provider terms and internal policy allow them. <br>
-Risk: The fal.ai edit path disables a provider safety checker by default. <br>
-Mitigation: Review or patch that path before relying on fal.ai edits, especially for production or user-supplied inputs. <br>
-Risk: The scripts can write output to caller-selected paths. <br>
-Mitigation: Choose output paths deliberately and review generated files before using or publishing them. <br>
+## Use Case:
 
+Developers and external users can use this skill to generate and edit images through OpenAI, Gemini, or fal.ai using their own provider API keys. It is suited for creating visual content, editing existing images, and getting prompt-writing guidance.
 
-## Reference(s): <br>
-- [Filtrix prompt library](https://www.filtrix.ai/prompts) <br>
-- [OpenAI image generation reference](references/openai.md) <br>
-- [Gemini image generation reference](references/gemini.md) <br>
-- [fal.ai image generation reference](references/fal.md) <br>
-- [Prompt writing guide](references/prompts.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lumenclaw-cloud/filtrix-image-gen-v2) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lumenclaw-cloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated PNG image files from provider scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-supplied provider API keys and writes generated or edited images to a requested path or a default /tmp path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Provider API calls can spend user-supplied API key budget and send prompts or images to the selected provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only API keys approved for this workflow, monitor provider usage, and avoid private images or sensitive prompts unless the provider and account controls are trusted.
+
+Risk: fal.ai image editing disables a provider safety checker by default.
+
+Mitigation: Review fal.ai outputs before use and enable or enforce appropriate provider safety controls before sensitive or production workflows.
+
+Risk: The skill downloads provider-returned image URLs without URL validation.
+
+Mitigation: Use trusted providers and harden URL validation or network egress controls before running in sensitive or network-restricted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lumenclaw-cloud/skills/filtrix-image-gen-v2)
+- [Prompt Writing Guide](references/prompts.md)
+- [OpenAI Image Generation](references/openai.md)
+- [Gemini Image Generation](references/gemini.md)
+- [fal.ai Image Generation](references/fal.md)
+- [Filtrix AI Prompt Library](https://www.filtrix.ai/prompts)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG image files saved to disk with terminal status output and Markdown guidance when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied OpenAI, Gemini, or fal.ai API keys and may write generated or edited images to a requested output path or to /tmp by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

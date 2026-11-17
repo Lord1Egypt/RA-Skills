@@ -1,44 +1,53 @@
-## Description: <br>
-Design robust strategies for any domain with proven frameworks, cognitive bias protection, and constraint-aware recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design robust strategies for any domain with proven frameworks, cognitive bias protection, and constraint-aware recommendations.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and employees use this skill to structure strategy sessions across business, product, career, or other domains by clarifying objectives, constraints, trade-offs, scenarios, risks, and weekly actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Strategy memory can retain business or personal strategy context in ~/strategy/memory.md. <br>
-Mitigation: Avoid secrets and highly confidential details, and periodically review or delete ~/strategy/ when retained context is no longer needed. <br>
-Risk: Strategy advice can be misleading when objectives, constraints, stakeholders, or assumptions are incomplete. <br>
-Mitigation: Clarify the problem before recommending actions, state trade-offs and kill criteria, and review recommendations against the bias checklist before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Strategy Skill Page](https://clawhub.ai/ivangdavila/strategy) <br>
-- [Strategic Frameworks](artifact/frameworks.md) <br>
-- [Cognitive Biases That Destroy Strategies](artifact/biases.md) <br>
-- [Strategy Design Process](artifact/process.md) <br>
-- [Strategic Thinking Techniques](artifact/techniques.md) <br>
-- [Strategy Memory Setup](artifact/memory-template.md) <br>
+## Use Case:
 
+External users and teams use this skill to structure strategy work, clarify constraints, select appropriate strategic frameworks, check for cognitive biases, compare scenarios, and produce actionable recommendations with success metrics and kill criteria.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prose with checklists, tables, and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local strategy memory under ~/strategy/memory.md when the user opts to use memory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may create and reuse local markdown notes under ~/strategy for strategy context.
+
+Mitigation: Do not store secrets or highly sensitive business details in those notes unless local markdown storage is acceptable for the use case.
+
+Risk: Strategic recommendations can be incorrect, incomplete, or biased if the user provides limited context or weak assumptions.
+
+Mitigation: Use the skill's constraint mapping, scenario analysis, bias checks, success metrics, and kill criteria before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/strategy)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with optional shell commands and local markdown file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or reuse local markdown notes under ~/strategy when memory is needed. No external tools, network access, or credential access were identified in server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

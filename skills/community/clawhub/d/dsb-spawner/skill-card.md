@@ -1,43 +1,52 @@
-## Description: <br>
-Spawner helps agents delegate heavier file-editing, build, or long-running work to one scoped sub-agent with model routing and completion checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spawn sub-agents for independent work that needs file edits, builds, or long-running tasks.
 
-## Publisher: <br>
-[dodge1218](https://clawhub.ai/user/dodge1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dodge1218](https://clawhub.ai/user/dodge1218)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to delegate substantial independent tasks to a bounded sub-agent when file edits, builds, or long-running execution would be too heavy for inline work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sub-agent delegation can produce incorrect or incomplete changes, especially when file edits or builds are involved.
+
+Mitigation: Review sub-agent outputs before relying on them and verify that the expected output file, URL, or test result exists.
+
+Risk: Long-running delegated tasks can consume agent time or model capacity without reaching a useful result.
+
+Mitigation: Use one sub-agent at a time, require clear exit criteria, and stop after two failed attempts as directed by the workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use Spawner to delegate work that is too large for inline handling while keeping roles, context, exit criteria, and retries constrained. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Delegating work may send selected project context to external model providers. <br>
-Mitigation: Keep task scope narrow and include only the files needed for the sub-agent task; avoid sensitive files unless they are necessary. <br>
-Risk: A sub-agent may fail to produce the expected artifact or result. <br>
-Mitigation: Define concrete exit criteria, verify the output exists, and retry inline or with a fallback when the artifact is missing. <br>
-Risk: Broad delegation can consume context or create unnecessary long-running work. <br>
-Mitigation: Use the skill only for work that is too heavy for inline execution and run one sub-agent at a time. <br>
+**Output Format:** [Markdown workflow guidance with a reusable task prompt template]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dodge1218/dsb-spawner) <br>
-- [Publisher profile](https://clawhub.ai/user/dodge1218) <br>
+**Other Properties Related to Output:** [Directs use of one sub-agent at a time, requires explicit role, context, and exit criteria, and asks the operator to verify produced artifacts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown instructions with a reusable task template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates one sub-agent at a time and expects verification of the stated exit artifact.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

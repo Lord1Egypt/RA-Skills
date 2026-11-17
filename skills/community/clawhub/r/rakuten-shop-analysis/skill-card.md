@@ -1,44 +1,54 @@
-## Description: <br>
-Analyzes a Rakuten shop URL or shopCode by sending the shop input to a hosted analysis service and returning structured shop results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze a Rakuten shop from a shop URL or shop code via a hosted backend and generate a structured report.
 
-## Publisher: <br>
-[abca12a](https://clawhub.ai/user/abca12a) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abca12a](https://clawhub.ai/user/abca12a)
 
-## Use Case: <br>
-External users and analysts use this skill to evaluate Rakuten shops for competitor research, shop structure analysis, popular item review, and quick report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shop URLs or shopCodes are sent to the disclosed hosted service for analysis. <br>
-Mitigation: Use the skill only with Rakuten shop identifiers that are acceptable to send to that service, and avoid including unrelated confidential information. <br>
-Risk: Server-resolved GitHub import provenance is unavailable for this version. <br>
-Mitigation: Verify the publisher profile or repository separately when stronger provenance is required. <br>
-Risk: Hosted analysis can be rate-limited, time out, or return no final result during a single invocation. <br>
-Mitigation: Report incomplete runs clearly and ask the user to retry later instead of promising background monitoring or later proactive follow-up. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Rakuten shop URLs or shop codes for competitor research, shop structure review, popular-item sampling, and report generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abca12a/rakuten-shop-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/abca12a) <br>
-- [Disclosed hosted analysis service](https://rakuten.845817074.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Structured JSON from the runner, suitable for a human-facing analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns compact shop, catalog, bucket, degradation, summary, and bucket-detail fields for the requested shop input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.10 (source: server release evidence) <br>
+Risk: Shop links or shop codes, plus the fact that they are being analyzed, are sent to the hosted backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, and do not provide credentials or private data as shop input.
+
+Risk: A run may be incomplete if the hosted job times out, is interrupted, or is rate-limited.
+
+Mitigation: Wait for the skill to return final results before reporting; if it does not complete, tell the user the invocation did not finish and ask them to retry later.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abca12a/skills/rakuten-shop-analysis)
+- [Hosted analysis backend](https://rakuten.845817074.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Structured JSON payload that an agent can summarize as a Markdown report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes shop input, shop code, catalog size, degraded reason codes, available buckets, summary data, and bucket data when returned by the hosted backend.]
+
+## Skill Version(s):
+
+0.1.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

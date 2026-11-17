@@ -1,41 +1,57 @@
-## Description: <br>
-Creates scheduled reminders through cron jobs and delivers them to the current Telegram chat through system events, including multi-agent reminder routing through a main agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates scheduled reminders through cron jobs and delivers them to Telegram, including reminders routed through a main agent for multi-agent setups.
 
-## Publisher: <br>
-[alex3alex](https://clawhub.ai/user/alex3alex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alex3alex](https://clawhub.ai/user/alex3alex)
 
-## Use Case: <br>
-Agent users and operators use this skill to create one-time, recurring, or interval-based reminders that are delivered to Telegram chats. It is also intended for multi-agent setups where non-main agents route scheduled reminder messages through a main agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent scheduled jobs may continue sending reminders after they are no longer wanted. <br>
-Mitigation: Periodically review and remove old cron jobs, HEARTBEAT reminder rules, and stored chat IDs. <br>
-Risk: Broad Telegram message-sending authority can send reminders to unintended recipients or through unintended bot accounts. <br>
-Mitigation: Use verified recipient chat IDs, restrict allowed accountId and target values, and confirm reminders before creation. <br>
-Risk: Bot tokens, chat IDs, or routing details may be exposed through logs or memory. <br>
-Mitigation: Keep bot tokens out of logs and memory, and store only the minimum recipient and routing information required. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure scheduled reminders that deliver Telegram notifications at a specific time, on a cron schedule, or at an interval. It also documents how non-main agents can route reminders through a main agent when direct delivery is not available.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reminder setup instructions, cron job payload examples, heartbeat configuration guidance, and message-tool routing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence and package.json) <br>
+Risk: The skill modifies persistent agent behavior and can send Telegram messages through configured bot accounts from future scheduled events without validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after accepting that behavior, and add explicit recipient and account allowlists plus event validation before use.
+
+Risk: Reminder setup examples include a concrete Chat ID and recommend saving the working delivery approach, which can expose recipient identifiers if copied into general memory.
+
+Mitigation: Replace hardcoded Chat IDs, avoid storing Chat IDs in general memory, and keep recipient identifiers in protected configuration where possible.
+
+Risk: Suppressing all output after message delivery can reduce auditability for scheduled sends.
+
+Mitigation: Keep an auditable record of reminder creation and delivery decisions instead of suppressing all operational output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alex3alex/skills/channel-reminders)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reminder schedule patterns, Telegram delivery setup, post-install testing steps, and reminder management commands.]
+
+## Skill Version(s):
+
+1.3.0 (source: server-resolved release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

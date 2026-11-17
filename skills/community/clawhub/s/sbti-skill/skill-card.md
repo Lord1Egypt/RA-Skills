@@ -1,44 +1,62 @@
-## Description: <br>
-A Chinese-first SBTI novelty personality quiz that guides a user or an AI agent through 30 questions and returns one of 27 humorous personality results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language SBTI cyber personality-test skill that guides a user or AI agent through 30 questions and returns a formatted personality report across 27 outcomes.
 
-## Publisher: <br>
-[choksta](https://clawhub.ai/user/choksta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[choksta](https://clawhub.ai/user/choksta)
 
-## Use Case: <br>
-External users and agent developers use this skill to run a Chinese-language parody personality test for themselves or for an AI agent, then receive a formatted personality report with scoring details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad personality-test triggers may activate the skill during casual chat. <br>
-Mitigation: Use clear invocation rules or confirm the user's intent before starting the full quiz. <br>
-Risk: The quiz uses crude humor and fixed Chinese output that may not fit every audience. <br>
-Mitigation: Review audience expectations before enabling it in shared, professional, or multilingual environments. <br>
+## Use Case:
 
+External users and agents use this skill to run a Chinese SBTI personality test for themselves or an AI agent, including scoring, rarity lookup, radar-style dimension summaries, and a formatted result.
 
-## Reference(s): <br>
-- [SBTI personality database](references/personalities.md) <br>
-- [SBTI question bank](references/questions.md) <br>
-- [Original SBTI quiz](https://sbti.unun.dev/) <br>
-- [SBTI author Bilibili profile](https://space.bilibili.com/417038183) <br>
-- [SBTI reference video](https://www.bilibili.com/video/BV1LpDHByET6/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational text with quiz questions, scoring summaries, and a formatted personality report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first output; includes fixed quiz flow, personality descriptions, rarity labels, radar-style score bars, and top-three match summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad Chinese personality-test triggers may invoke this specific workflow for generic requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants the haojiyou SBTI experience before running the full 30-question flow.
+
+Risk: The result output includes branded text and asks users to share screenshots.
+
+Mitigation: Treat sharing as optional and avoid including private or sensitive content in shared screenshots.
+
+Risk: Non-Chinese users may not be well served by the default language and cultural framing.
+
+Mitigation: Use with Chinese-speaking users or translate prompts and results when serving non-Chinese users.
+
+## Reference(s):
+
+- [SBTI personality database](references/personalities.md)
+- [SBTI question bank](references/questions.md)
+- [Original SBTI site](https://sbti.unun.dev/)
+- [Original SBTI creator Bilibili profile](https://space.bilibili.com/417038183)
+- [SBTI reference video](https://www.bilibili.com/video/BV1LpDHByET6/)
+- [nexu-io SBTI skill repository](https://github.com/nexu-io/sbti-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style conversational prompts and final report with ASCII charts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive 30-question flow with a special DRUNK result path; no shell commands, code execution, or data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

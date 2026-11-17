@@ -1,6 +1,6 @@
 {
   "name": "free-model-router",
-  "version": "1.5.3",
+  "version": "2.2.0",
   "description": "Local AI model router with dual deployment modes (Skill + Standalone) — test trigger",
   "main": "core/server.js",
   "bin": {
@@ -12,7 +12,17 @@
     "start:standalone": "node core/server.js",
     "dev": "node scripts/router.js",
     "cli": "node scripts/free-model-cli.js",
-    "test": "node test/test.js",
+    "test": "node tests/test.js",
+    "test:mock": "node tests/test.js --depth mock",
+    "test:light": "node tests/test.js --depth light",
+    "test:l3": "node tests/test.js --run-l3",
+    "test:l3:a": "node tests/test.js --run-l3 --track=A",
+    "test:l3:b": "node tests/test.js --run-l3 --track=B",
+    "test:l3:c": "node tests/test.js --run-l3 --track=C",
+    "test:sync-l3": "node tests/test.js --sync-l3",
+    "test:delivery": "node tests/test.js --depth delivery",
+    "test:stability": "node tests/test.js --depth stability",
+    "test:check-levels": "node tests/test.js --check-levels",
     "deploy:skill": "node deploy/deploy-skill.js",
     "build:skill": "node deploy/deploy-skill.js",
     "build:standalone": "bash deploy/deploy.sh",
@@ -20,7 +30,10 @@
     "build:pkg:win": "node deploy/build-pkg.js",
     "build:pkg:win:test": "set MODEL_SERVER_URL=http://localhost:3002 && node deploy/build-pkg.js",
     "build:pkg:win:setup": "node deploy/build-iss.js",
-    "build:pkg:win:setup:test": "set MODEL_SERVER_URL=http://localhost:3002 && node deploy/build-iss.js"
+    "build:pkg:win:setup:test": "set MODEL_SERVER_URL=http://localhost:3002 && node deploy/build-iss.js",
+    "release:build": "node deploy/release.js build",
+    "release:preview": "node deploy/release.js preview",
+    "release:publish": "node deploy/release.js publish"
   },
   "pkg": {
     "scripts": [
@@ -49,17 +62,21 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {
-    "@foxt/js-srp": "^0.0.3-patch2"
-  },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.106.0",
     "esbuild": "^0.20.0",
+    "gray-matter": "^4.0.3",
+    "openai": "^6.45.0",
     "pkg": "^5.8.1",
     "postject": "^1.0.0-alpha.6",
+    "sharp": "^0.33.5",
     "terser": "^5.30.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/example/free-model-router"
+  },
+  "dependencies": {
+    "@foxt/js-srp": "^0.0.3-patch2"
   }
 }

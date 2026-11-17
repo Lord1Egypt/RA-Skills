@@ -56,12 +56,7 @@ All network calls are **read-only GET requests** with **no authentication** to p
 - **Health monitoring**: Files in `health/`
 - **Configuration backups**: `.backup.timestamp` files
 
-**Note on `data_dir`:** The `config.json` field `system.data_dir` controls where
-runtime data is stored (default: the skill directory itself). If a user changes
-`data_dir` to a different path, file operations will target that path instead.
-The skill only reads/writes its own data files (moods, logs, memory, etc.) — it
-never scans directories or accesses unrelated files. But users should be aware
-that `data_dir` determines the sandbox boundary.
+**No file access outside skill directory** - system is completely sandboxed.
 
 ## Subprocess Execution Audit
 
@@ -89,7 +84,7 @@ result = subprocess.run(['python3', str(get_data_dir() / 'analyze.py'), '--json'
 - ❌ **No `base64` decode** - No encoded payload execution
 - ❌ **No `sudo`** - No privilege escalation
 - ❌ **No external file access** - All operations within skill directory
-- ❌ **No cron/at creation in scripts** - No script calls `crontab`, `at`, or any system scheduler directly. Scheduling is done by the AI agent through OpenClaw's cron API at runtime, which the user can inspect via `openclaw cron list`
+- ❌ **No cron/at creation in scripts** - Scheduling handled by OpenClaw
 - ❌ **No remote code execution** - All code is local and user-controlled
 
 ### Unicode Control Characters
@@ -118,26 +113,11 @@ All autonomous prompts come from **user-controlled** sources:
    - Scheduled by user's configuration
    - No external prompt sources
 
-### Cron Job Creation — Important Distinction
+### Cron Job Creation
 
-**No script in this skill creates cron or at entries.** You can verify:
-```bash
-grep -rn 'crontab\|atq\|atrm\|\bat\b' *.sh *.py  # returns nothing relevant
-```
-
-Scheduling is handled by the **AI agent** through OpenClaw's built-in cron API
-(a tool available to all OpenClaw agents, not specific to this skill). The agent
-creates cron jobs by calling the `cron` tool during conversation — the same way
-it would call any other tool. These jobs are visible and manageable:
-```bash
-openclaw cron list          # see all scheduled jobs
-openclaw cron remove <id>   # remove any job
-```
-
-The SKILL.md describes the *intended* cron schedule (morning ritual, night
-workshop, pop-ins) as instructions for the agent to set up — not as something
-the install scripts do automatically. The user/agent is in control of what
-gets scheduled.
+- **Managed by OpenClaw**: All scheduling uses OpenClaw's cron tool
+- **No direct cron manipulation**: Scripts never create cron jobs themselves
+- **User-controlled timing**: Schedule defined in user's `config.json`
 
 ## Security Assessment
 
@@ -158,5 +138,5 @@ gets scheduled.
 
 ---
 
-*Last updated: 2026-02-14*  
+*Last updated: 2025-02-14*  
 *Audit scope: Full codebase scan for network calls, file operations, and subprocess execution*

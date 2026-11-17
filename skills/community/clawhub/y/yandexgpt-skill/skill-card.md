@@ -1,44 +1,62 @@
-## Description: <br>
-OpenAI-compatible translation proxy for Yandex Cloud Foundation Models (YandexGPT). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenAI-compatible translation proxy for Yandex Cloud Foundation Models (YandexGPT).
 
-## Publisher: <br>
-[smvlx](https://clawhub.ai/user/smvlx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[smvlx](https://clawhub.ai/user/smvlx)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run a local OpenAI-compatible proxy that routes chat completion requests to YandexGPT models. It helps configure credentials, start and stop the proxy, inspect status, and patch OpenClaw provider configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a Yandex API key and folder ID in a local environment file. <br>
-Mitigation: Keep the environment file private, avoid committing it, and rotate the Yandex API key if it may have been exposed. <br>
-Risk: Prompts sent through the proxy are forwarded to Yandex Cloud. <br>
-Mitigation: Use the proxy only with data that is allowed by the user's organization and Yandex Cloud account policies. <br>
-Risk: The patch script modifies the OpenClaw configuration file. <br>
-Mitigation: Back up and review ~/.openclaw/openclaw.json before running the patch script. <br>
-Risk: The proxy runs as a background localhost service on port 8444. <br>
-Mitigation: Use the status and stop scripts to confirm the proxy state and stop it when it is not needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smvlx/yandexgpt-skill) <br>
-- [Project homepage](https://github.com/smvlx/openclaw-ru-skills) <br>
+## Use Case:
 
+Developers and agents use this skill to run a local OpenAI-compatible endpoint that translates model-listing and chat-completion requests to Yandex Cloud Foundation Models.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and OpenAI-compatible JSON endpoint behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, curl, YANDEX_API_KEY, and YANDEX_FOLDER_ID; the local proxy listens on port 8444 by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter says 1.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill starts an unauthenticated local proxy that uses Yandex credentials.
+
+Mitigation: Use a dedicated least-privilege Yandex API key, run the proxy only on trusted machines, and add local authentication and request limits before use on shared systems.
+
+Risk: The setup flow stores Yandex credentials in a local environment file.
+
+Mitigation: Set ~/.openclaw/yandexgpt.env to owner-only permissions and rotate the key if the file may have been exposed.
+
+Risk: The configuration patch script modifies the OpenClaw configuration and can use OPENCLAW_CONFIG.
+
+Mitigation: Back up openclaw.json before running the patch script and avoid untrusted OPENCLAW_CONFIG values.
+
+Risk: The process scripts use shared temporary PID and log paths.
+
+Mitigation: Avoid running on shared machines unless private runtime files are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smvlx/skills/yandexgpt-skill)
+- [Project homepage](https://github.com/smvlx/openclaw-ru-skills)
+- [Publisher profile](https://clawhub.ai/user/smvlx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, curl, YANDEX_API_KEY, and YANDEX_FOLDER_ID; creates or updates local OpenClaw configuration and starts a local proxy process.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

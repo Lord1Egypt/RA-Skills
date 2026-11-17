@@ -1,41 +1,56 @@
-## Description: <br>
-Automatise la documentation des problèmes résolus et leur sauvegarde immédiate sur Git pour éviter les régressions lors de nouvelles installations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatise la documentation des problemes resolus et leur sauvegarde immediate sur Git pour eviter les regressions lors de nouvelles installations.
 
-## Publisher: <br>
-[rez0](https://clawhub.ai/user/rez0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[rez0](https://clawhub.ai/user/rez0)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and automation agents use this skill to document resolved issues, verify changed files, commit and push fixes, and report the resulting commit hash so fixes remain recoverable across reinstalls, migrations, or handoffs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to stage all repository changes, commit, and push to GitHub without explicit user approval.
+
+Mitigation: Require explicit confirmation, show the diff and remote target, and stage only approved files before committing or pushing.
+
+Risk: The skill directs credential retrieval through 1Password after a push failure.
+
+Mitigation: Stop on authentication failure and ask the user to handle or approve credential access before retrying.
+
+Risk: The skill may automatically edit documentation as part of declaring a fix complete.
+
+Mitigation: Review the generated documentation entry for accuracy before saving it to the repository.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to document resolved issues, record root causes and fixes, and persist the resulting notes and workspace changes to Git after a repair. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to automatically commit and push all workspace changes. <br>
-Mitigation: Use it only in a dedicated repository where automatic commits and pushes are acceptable, and confirm the exact files, branch, and remote destination before allowing Git operations. <br>
-Risk: The skill may attempt to recover GitHub credentials through 1Password if a push fails. <br>
-Mitigation: Do not grant access to password managers or GitHub tokens unless the credential request, target repository, and destination branch are explicitly approved. <br>
+**Output Format:** [Markdown guidance with inline shell commands and file paths]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rez0/auto-retex-backup) <br>
-- [Publisher profile](https://clawhub.ai/user/rez0) <br>
+**Other Properties Related to Output:** [Directs documentation updates, Git commit and push steps, and user-facing confirmation with a commit hash.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces documentation updates, Git commit and push commands, and a user confirmation that includes the resulting commit hash.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

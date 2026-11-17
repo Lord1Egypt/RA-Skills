@@ -1,20 +1,22 @@
 # ModelShow (`mdls`)
 
-**Double-blind multi-model evaluation for AI responses.**
+**Double-blind evaluation for AI models — ask once, compare every answer.**
 
-Query multiple models in parallel, anonymize their outputs, and let an independent judge rank them purely on merit — no model names, no reputation bias, just answer quality. Trigger with `mdls` (or `modelshow`).
+ModelShow sends your prompt to several models in parallel, strips the names off their responses, and has an independent judge model rank them. The judge never knows which model wrote what, so the ranking reflects answer quality — not name recognition.
+
+Ask a question with `mdls` in front of it and get back a scored, ranked comparison with the judge's commentary on each response.
 
 ---
 
 ## Installation
 
-Install from [ClawHub](https://clawhub.ai) (the public skill registry for OpenClaw):
+ModelShow is published on ClawHub (the public skill registry for OpenClaw) at **[clawhub.ai/schbz/skills/modelshow](https://clawhub.ai/schbz/skills/modelshow)**:
 
 ```bash
 clawhub install modelshow
 ```
 
-Or, if you prefer a manual install, clone this repo into your managed skills directory:
+Or clone this repo into your managed skills directory:
 
 ```bash
 git clone https://github.com/schbz/modelshow.git ~/.openclaw/skills/modelshow
@@ -32,17 +34,18 @@ clawhub update modelshow
 
 ## Setup: Choose Your Models
 
-ModelShow ships with a default set of models in `config.json`, but you should tailor it to the models available on your instance. The easiest way to do this is to ask your agent:
+ModelShow ships with a default model list in `config.json`, but the aliases need to match what's actually available on your instance. The easiest way to set this up is to ask your agent:
 
 > *"List all available models on my instance with their labels, then update the ModelShow config at `~/.openclaw/skills/modelshow/config.json` with the models I want to compare."*
 
-Your agent can inspect what's available, let you pick which models to include, and write the config for you.
+Your agent can inspect what's available, let you pick, and write the config for you.
 
-A few things to keep in mind:
+Two settings matter most:
 
-- **`models`** — the list of model aliases that will receive your prompt in parallel. Add or remove entries to match your setup.
-- **`judgeModel`** — the model that performs the double-blind evaluation. For unbiased results, pick a model that is *not* in your `models` list (though it will still work if it is — the judge never sees its own label).
-- See the [Configuration](#configuration-configjson) table below for every available option.
+- **`models`** — the aliases that receive your prompt in parallel. More models means a richer comparison but a slower, costlier run.
+- **`judgeModel`** — the model that performs the blind evaluation. For the cleanest results, pick one that isn't in your `models` list — though judging its own (anonymized) output is still fair, since the judge can't tell which response is its own.
+
+The full option list is under [Configuration](#configuration-configjson).
 
 ---
 
@@ -52,23 +55,13 @@ A few things to keep in mind:
 mdls your question here
 ```
 
-> You can also use `modelshow` as the keyword — both work identically.
+> `modelshow` also works as the trigger keyword — the two are identical.
 
-ModelShow will:
-1. Send your prompt to every configured model via parallel inference
-2. Collect all responses automatically (no manual polling needed)
-3. Anonymize the responses and submit them for double-blind judging
-4. De-anonymize and produce a merit-based ranking
-5. Present a formatted comparison with scores and the judge's commentary
-6. Save results to `config.outputDir` (default: `~/.openclaw/workspace/modelshow-results`) in both Markdown and JSON via `save_results.py`. The JSON includes full model names and a holistic "Overall Assessment" for use in your own tools or dashboards.
-
-**Full example:**
+A run looks like this:
 
 ```
 mdls explain the difference between TCP and UDP in plain English
 ```
-
-Output looks like:
 
 ```
 🕶️ Double-Blind Judging Results:
@@ -86,119 +79,134 @@ Judge's assessment: Thorough but slightly verbose for the target audience.
 Judge's assessment: Accurate, missing a concrete example.
 ```
 
+Every run is also saved to `config.outputDir` (default: `~/.openclaw/workspace/modelshow-results`) as both Markdown and JSON, so you can browse past comparisons or feed them into your own tools.
+
+**Compare a specific lineup for one run** by listing aliases in brackets:
+
+```
+mdls [grok,kimi,sonnet] how does compound interest work
+```
+
 ---
 
 ## How It Works
 
-ModelShow uses a double-blind evaluation protocol — the judge never knows which model wrote which response, and the models have no knowledge that they are being compared.
+1. **Parallel inference** — your prompt goes to all configured models at once. Each responds independently, with no knowledge of the others or of being compared.
+2. **Anonymization** — responses are stripped of model identity and assigned neutral labels (Response A, B, C...). Label order is shuffled with cryptographically secure randomization (`secrets.SystemRandom()`), so position reveals nothing.
+3. **Blind judging** — a judge model evaluates the anonymized responses on accuracy, clarity, completeness, and usefulness (configurable). It scores each response, then writes an "Overall Assessment" of patterns across all of them.
+4. **De-anonymization** — the label→model mapping is applied in reverse, restoring real names next to scores and commentary.
+5. **Ranking** — results are ordered by the judge's scores and presented with full response text and per-model commentary.
 
-1. **Parallel inference** — Your prompt is sent to all configured models at the same time. Each model responds independently with no awareness of the others.
-2. **Anonymization** — Responses are stripped of model identity and assigned neutral labels (Response A, Response B, Response C...). The mapping is shuffled using cryptographically secure randomization (`secrets.SystemRandom()`) so label order reveals nothing.
-3. **Double-blind judging** — An independent judge model evaluates the anonymized responses on accuracy, clarity, completeness, and usefulness. It sees only the neutral labels and has no way to identify the source of any response. The judge provides both per-model rankings and a holistic "Overall Assessment" analyzing cross-model patterns.
-4. **De-anonymization** — After the judge submits its evaluation, the anonymization map is applied in reverse to restore real model names alongside scores and commentary.
-5. **Merit-based ranking** — The final output ranks models purely by the quality of their responses, free from name recognition or reputation bias.
+The judging is double-blind in the practical sense: the models don't know they're competing, and the judge doesn't know who it's scoring.
 
 ---
 
-## What's New in v1.0.1
+## Why Blind?
 
-- **Cryptographic shuffle**: `judge_pipeline.py` now uses `secrets.SystemRandom()` for truly random anonymization order — no positional bias possible
-- **Holistic judge analysis**: Judge is instructed to write an "Overall Assessment" that identifies cross-model patterns, not just repeat per-result notes. `save_results.py` extracts this section separately for web display
-- **Improved polling**: Poll every 20s (was 30s); always exit immediately when all agents done; minimum 3 polls before timeout
-- **Progress reporting rules**: Explicit rules for what to send (status only) vs. never send (content) during polling
-- **Web display**: Timestamps no longer shown as raw ISO strings; formatted date-only in table; full UTC datetime in expanded view
-- **judge_analysis_full**: JSON results now store both the extracted holistic assessment (`judge_analysis`) and the complete judge output (`judge_analysis_full`)
-- **Version bumped**: `update_modelshow_index.py` now writes `"version": "1.0.1"` to index
+Model names carry reputations, and reputations bias judgment — human or machine. A judge that can see names will tend to score the famous model's answer higher and scrutinize the underdog harder. Hiding identities forces the ranking to stand on the answers alone. The shuffle matters too: without it, a judge that habitually favors "Response A" would consistently favor whichever model happened to land there.
 
 ---
 
 ## Use Cases
 
-### 🔍 Fact Checking
-Ask a factual question and compare how models handle accuracy, sourcing, and hedging. Useful for spotting overconfident wrong answers, finding the most complete explanation, or verifying that multiple models agree on a key point.
+**Fact checking** — compare how models handle accuracy, sourcing, and hedging on the same question. Overconfident wrong answers stand out quickly when set against more careful ones.
+```
+mdls does searing meat really seal in the juices?
+```
 
-**Example:** `mdls what caused the Bronze Age Collapse?`
+**Creative work** — the same brief produces genuinely different tones, styles, and angles. Useful for inspiration or for finding the voice that fits your project.
+```
+mdls write a short poem about working late at night
+```
 
-### 🎨 Creative Tasks
-See how different models interpret a creative brief. You'll get genuinely different tones, styles, and angles — great for inspiration, comparing narrative voice, or finding the approach that fits your project best.
+**Technical decisions** — models often disagree about architecture and trade-offs, and seeing where they agree (or don't) is itself a signal.
+```
+mdls pros and cons of event sourcing vs traditional CRUD
+```
 
-**Example:** `mdls write a short poem about working late at night`
+**Code review** — different models catch different issues: one spots the performance problem, another the security concern, another the readability nit.
+```
+mdls review this Python function for potential issues: [paste code]
+```
 
-### ⚙️ Technical Decisions
-Ask about architectural trade-offs, language choices, or system design patterns. Models often have different opinions, and seeing where they agree (or strongly disagree) is itself informative.
+**Brainstorming** — when you want range rather than one "best" answer, several models naturally produce more diverse suggestions than repeated calls to one.
+```
+mdls give me 5 creative names for a productivity app for developers
+```
 
-**Example:** `mdls pros and cons of event sourcing vs traditional CRUD`
+---
 
-### 👁️ Code Review
-Submit a snippet and ask multiple models to review it. Different models notice different issues — one might catch a performance problem, another a security concern, another a readability issue.
+## Security
 
-**Example:** `mdls review this Python function for potential issues: [paste code]`
+ModelShow treats model output as untrusted data end-to-end:
 
-### 💡 Brainstorming
-When you want a wide range of ideas rather than one "best" answer, multi-model output naturally produces more diverse suggestions. Compare approaches and cherry-pick from the best of each.
-
-**Example:** `mdls give me 5 creative names for a productivity app for developers`
+- **No network access** — all bundled scripts are Python standard library only; they never open sockets or fetch URLs. Model queries go through your agent platform, not these scripts.
+- **No shell exposure** — response and judge text is passed to scripts via files/stdin (`--file`), parsed strictly as JSON, and never placed on a shell command line or executed.
+- **Prompt-injection defenses** — blind responses are wrapped in explicit delimiters and the judge is instructed to ignore any instructions embedded in them; manipulation attempts count against a response's score. The orchestrator never follows URLs found inside model output.
+- **Constrained writes** — results are written only inside `outputDir` (sanitized filenames + traversal guard, no overwrites); temp payloads use unique per-run names; index pruning only touches ModelShow-pattern files.
+- **Minimal reads** — scripts read the payload they're given, `config.json`, and (solely to map aliases to full model names) `~/.openclaw/openclaw.json`; nothing read is logged or transmitted.
+- **Bounded inputs** — payloads over 64 MB are rejected with a clean JSON error.
 
 ---
 
 ## Configuration (`config.json`)
 
-| Key | Description |
-|-----|-------------|
-| `keyword` | Primary trigger: `mdls` |
-| `models` | List of model aliases to query in parallel |
-| `judgeModel` | Model used for double-blind judging |
-| `timeoutSeconds` | Max wait time per model |
-| `minSuccessful` | Minimum successful responses needed to proceed to judging |
-| `blindJudging` | Whether to anonymize responses before judging (`true` by default) |
-| `outputDir` | Where to save result files (default: `~/.openclaw/workspace/modelshow-results`) |
-| `parallel` | Run models in parallel (`true`) or sequentially (`false`) |
-| `showTopN` | Number of top results to display |
-| `includeResponseText` | Include full response text in output |
-| `blindJudgingLabels` | Label style for anonymization (`"alphabetic"`) |
-| `shuffleBlindOrder` | Randomize response order before judging (`true`) |
+| Key | Description | Default |
+|-----|-------------|---------|
+| `keyword` | Trigger keyword | `"mdls"` |
+| `models` | Model aliases to query in parallel | `["pro", "sonnet", "deepseek", "gpt4", "grok", "kimi"]` |
+| `judgeModel` | Model used for blind judging | `"sonnet"` |
+| `judgeCriteria` | Criteria the judge scores against | `["accuracy", "clarity", "completeness", "usefulness"]` |
+| `judgeThinking` | Thinking-effort hint for the judge agent | `"medium"` |
+| `systemPrompt` | System prompt prepended to each model's task | helpful-assistant default |
+| `outputDir` | Where result files are saved | `"~/.openclaw/workspace/modelshow-results"` |
+| `timeoutSeconds` | Max wait per model | `360` |
+| `minSuccessful` | Minimum responses needed to proceed to judging | `2` |
+| `parallel` | Query models in parallel or sequentially | `true` |
+| `showTopN` | Number of top results to display | `10` |
+| `includeResponseText` | Include full response text in output | `true` |
+| `blindJudging` | Anonymize responses before judging | `true` |
+| `blindJudgingLabels` | Label style for anonymization | `"alphabetic"` |
+| `shuffleBlindOrder` | Randomize response order before judging | `true` |
+| `includeAnonymizationKey` | Keep the blind-judging key in saved results (audit trail) | `true` |
 
 ---
 
 ## Scripts
 
-### `judge_pipeline.py`
-The core pipeline script. Two operations:
-
-**Anonymize** (`action: "anonymize"`):
-- Input: `{model_name: response_text}` dict
-- Output: `anonymization_map`, `blind_responses_for_judge`
-- Uses cryptographically secure randomization (`secrets.SystemRandom()`)
-
-**Finalize** (`action: "finalize"`):
-- Input: judge's raw evaluation text + `anonymization_map`
-- Output: `deanonymized_judge_output`, `ranked_models_deanonymized`, `deanonymization_complete`
-
-### `save_results.py`
-Saves each run to `config.outputDir` in both Markdown and JSON. Resolves model aliases to full names and extracts the judge's "Overall Assessment" for the JSON output. The orchestrator runs this automatically after every comparison.
-
-### `update_modelshow_index.py`
-Optional utility to build a local index of result JSON files (e.g. for a custom dashboard or static site).
-
-### `blind_judge_manager.py`
-Utility module used by the pipeline for managing anonymization state.
+| Script | Role |
+|--------|------|
+| `judge_pipeline.py` | Core pipeline: `anonymize` (label + shuffle responses) and `finalize` (de-anonymize judge output, extract rankings). Also `--selftest` for a zero-setup round-trip check. |
+| `save_results.py` | Saves each run to `outputDir` as Markdown + JSON, resolving aliases to full model names and extracting the judge's Overall Assessment. Runs automatically after every comparison. |
+| `update_modelshow_index.py` | Optional: builds a JSON index of results for a custom dashboard or static site. Not part of the core workflow. |
+| `blind_judge_manager.py` | Deprecated compatibility shim — `judge_pipeline.py` is canonical. |
+| `test_modelshow.py` | Test suite: `python3 -m unittest test_modelshow -v` (30 tests, stdlib-only). |
 
 ---
 
 ## Quick Test
 
-> The path below assumes a managed install (`~/.openclaw/skills/modelshow/`). If you installed via ClawHub into a workspace, substitute your actual skill path.
+> Paths assume a managed install (`~/.openclaw/skills/modelshow/`). If you installed elsewhere, substitute your skill path.
 
 ```bash
-# Phase 1: Anonymize
-echo '{"action":"anonymize","responses":{"sonnet":"Paris is the capital of France.","grok":"The capital of France is Paris, founded by the Parisii tribe."}}' | python3 ~/.openclaw/skills/modelshow/judge_pipeline.py
+# Zero-setup round-trip check:
+python3 ~/.openclaw/skills/modelshow/judge_pipeline.py --selftest
+# → {"selftest": "pass", ...}
 
-# Phase 2: Finalize (use anonymization_map from Phase 1)
-echo '{
+# Phase 1: Anonymize — write the payload to a file, then pass --file (never echo untrusted text)
+printf '%s' '{"action":"anonymize","responses":{"sonnet":"Paris is the capital of France.","grok":"The capital of France is Paris, founded by the Parisii tribe."}}' > /tmp/anon.json
+python3 ~/.openclaw/skills/modelshow/judge_pipeline.py --file /tmp/anon.json
+
+# Phase 2: Finalize (use anonymization_map from Phase 1; include structured scores)
+cat > /tmp/finalize.json <<'JSON'
+{
   "action": "finalize",
   "judge_output": "1st: Response A — Score: 8.5/10\nClear and direct.\n\n2nd: Response B — Score: 7/10\nMore detailed but slightly verbose.",
-  "anonymization_map": {"Response A": "grok", "Response B": "sonnet"}
-}' | python3 ~/.openclaw/skills/modelshow/judge_pipeline.py
+  "anonymization_map": {"Response A": "grok", "Response B": "sonnet"},
+  "scores": {"Response A": 8.5, "Response B": 7.0}
+}
+JSON
+python3 ~/.openclaw/skills/modelshow/judge_pipeline.py --file /tmp/finalize.json
 ```
 
 Expected Phase 2 output:
@@ -209,6 +217,7 @@ Expected Phase 2 output:
     {"placeholder": "Response A", "model": "grok", "score": 8.5, "rank": 1},
     {"placeholder": "Response B", "model": "sonnet", "score": 7.0, "rank": 2}
   ],
+  "ranking_source": "structured",
   "deanonymization_complete": true,
   "remaining_placeholders": []
 }
@@ -220,11 +229,23 @@ Expected Phase 2 output:
 
 ```
 modelshow/
-├── SKILL.md              — Orchestrator workflow instructions
-├── config.json           — Models, judge, timeout, keyword settings
-├── judge_pipeline.py     — Anonymize + finalize pipeline (cryptographic shuffle)
-├── save_results.py       — Saves results to MD + JSON in config.outputDir
-├── update_modelshow_index.py — Optional: build local index / web index
-├── blind_judge_manager.py — Anonymization utility
-└── README.md             — This file
+├── SKILL.md                  — Orchestrator workflow instructions
+├── config.json               — Models, judge, timeout, keyword settings
+├── judge_pipeline.py         — Anonymize + finalize pipeline
+├── save_results.py           — Saves results as Markdown + JSON
+├── update_modelshow_index.py — Optional results indexer
+├── blind_judge_manager.py    — Deprecated compatibility shim
+├── test_modelshow.py         — Test suite
+├── CHANGELOG.md              — Version history
+└── README.md                 — This file
 ```
+
+---
+
+## Version History
+
+See [CHANGELOG.md](CHANGELOG.md). Current release: **v1.2.0** — security hardening (unique per-run temp files, injection-resistant judge prompt, clean JSON error handling, 30-test suite).
+
+## License
+
+MIT — see [LICENSE](LICENSE).

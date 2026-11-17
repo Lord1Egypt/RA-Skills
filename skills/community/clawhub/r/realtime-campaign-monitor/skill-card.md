@@ -1,41 +1,56 @@
-## Description: <br>
-Monitor live campaign health and anomalies across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor live campaign health and anomalies across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Advertising operations teams and marketers use this skill to monitor live campaign health, triage anomalies, rank mitigation actions, and prepare escalation tickets across major ad platforms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Campaign guidance may be treated as confirmed platform state when data is stale, incomplete, or missing critical identifiers. <br>
-Mitigation: Require entity IDs, incident or audit scope, and a time window; validate data freshness before final judgement; separate observed facts from assumptions. <br>
-Risk: Recommendations can affect spend, billing, policy status, or tracking behavior. <br>
-Mitigation: Prioritize containment for high-severity risk, include rollback or stop-loss conditions, and escalate policy, billing, or tracking breakage with a structured handoff payload. <br>
-Risk: Requests may include campaign IDs, logs, thresholds, or owner contact details. <br>
-Mitigation: Provide only the operational data intended for the agent to use and avoid unnecessary sensitive logs or contact details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/realtime-campaign-monitor) <br>
+## Use Case:
 
+External teams and ad operations practitioners use this skill to monitor live advertising campaigns, triage anomalies, rank spend risks, and prepare owner-ready mitigation and escalation outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with structured summaries, findings, mitigation steps, ticket payloads, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should separate observed facts from assumptions, include measurable actions, and provide rollback or stop-loss conditions when spend risk exists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may share unnecessary sensitive campaign data or owner contact details while preparing monitoring inputs.
+
+Mitigation: Provide only the minimum campaign identifiers, incident scope, and time window needed for triage; redact owner contact details that are not needed for the handoff.
+
+Risk: Containment recommendations such as pausing or changing campaigns can affect spend, delivery, or revenue.
+
+Mitigation: Review proposed actions before applying them in an ad platform and use the skill's rollback or stop-loss conditions when spend risk exists.
+
+Risk: Stale or incomplete campaign data can lead to incorrect severity ranking or mitigation guidance.
+
+Mitigation: Validate data freshness and event completeness, and request a refresh timestamp before making a final judgment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/realtime-campaign-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with structured status summaries, severity-ranked findings, mitigation actions, escalation ticket payloads, and monitoring checklists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Separates observed facts from assumptions and includes rollback or stop-loss conditions when spend risk exists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

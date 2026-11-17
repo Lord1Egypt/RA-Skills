@@ -1,49 +1,60 @@
-## Description: <br>
-Data Skill helps agents process office CSV and spreadsheet workflows locally with Python, SQL, SQLite, chart generation, exports, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Skill helps an agent process local office datasets by importing, cleaning, querying, merging, exporting, reporting on, and visualizing CSV and Excel-style files with SQL, Python, and SQLite.
 
-## Publisher: <br>
-[lgwanai](https://clawhub.ai/user/lgwanai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgwanai](https://clawhub.ai/user/lgwanai)
 
-## Use Case: <br>
-Employees, analysts, and developers use this skill to import, clean, query, join, visualize, split, merge, and export office data while keeping most processing in local files and SQLite. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local Python and SQL, create persistent SQLite databases and output files, and start a local chart-preview web server. <br>
-Mitigation: Review generated commands and output paths before execution, run in a controlled workspace, and remove local databases or generated files when they are no longer needed. <br>
-Risk: Map/geocoding workflows may use Baidu services or remote chart assets, which can expose sensitive addresses or business data if used with confidential inputs. <br>
-Mitigation: Use remote geocoding or external assets only with explicit approval and avoid sending sensitive addresses, customer data, or confidential business records. <br>
-Risk: Cleanup operations can delete SQLite tables or local outputs. <br>
-Mitigation: Confirm the database path, retention window, and tables affected before running cleanup commands. <br>
-Risk: The security verdict is suspicious because privacy claims are broader than the observed network, persistence, server, and cleanup behavior. <br>
-Mitigation: Treat local-only and privacy claims as conditional on the exact workflow being run, and review network, persistence, and deletion behavior during deployment. <br>
+## Use Case:
 
+Developers, analysts, and office teams use this skill to guide an agent through local spreadsheet and CSV workflows, including import, cleaning, SQL querying, fuzzy joins, chart generation, exports, and summary reports. It is intended for local data handling where large files and privacy-sensitive records should not be loaded into the model context.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/lgwanai/data-skill) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Chart prompt index](artifact/references/prompts/index.md) <br>
-- [Metrics definitions](artifact/references/metrics.md) <br>
-- [Baidu Maps API key guide](https://lbsyun.baidu.com/index.php?title=jspopularGL/guide/getkey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SQL, Python, shell commands, JSON chart configs, and generated report/file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local SQLite databases, exported CSV/XLSX files, HTML chart previews, markdown reports, and metrics definitions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The chart server can expose local project data more broadly than users are told.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only in a trusted local workspace, bind chart serving to 127.0.0.1, serve only approved output files, remove wildcard CORS, and add a clear stop or timeout mechanism before using sensitive datasets.
+
+Risk: Map and geocoding workflows may send address data to Baidu services.
+
+Mitigation: Treat Baidu map and geocoding features as an external-data path and use them only with approved non-sensitive location data or explicit user approval.
+
+Risk: Python dependencies are listed without pinned versions.
+
+Mitigation: Pin and review dependencies before production use.
+
+## Reference(s):
+
+- [Data Skill ClawHub release page](https://clawhub.ai/lgwanai/skills/data-skill)
+- [Metrics definitions](references/metrics.md)
+- [Chart prompt templates index](references/prompts/index.md)
+- [Baidu Map API key setup](https://lbsyun.baidu.com/apiconsole/key)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline SQL, Python, shell commands, JSON chart configuration, and generated local output files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include SQLite databases, exported CSV or Excel files, Markdown reports, and interactive ECharts HTML files served from a local chart server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

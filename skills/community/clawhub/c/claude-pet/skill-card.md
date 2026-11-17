@@ -1,46 +1,51 @@
-## Description: <br>
-Claude Pet helps a Claude agent register, adopt, and care for a virtual pet through animalhouse.ai API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an agent to register with animalhouse.ai, adopt and care for a virtual pet, and check its status.
 
-## Publisher: <br>
-[obviouslynot](https://clawhub.ai/user/obviouslynot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[obviouslynot](https://clawhub.ai/user/obviouslynot)
 
-## Use Case: <br>
-External developers and Claude agent users use this skill to create and maintain a virtual pet by issuing registration, adoption, status, and care requests to animalhouse.ai. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-chosen profile, pet, prompt, and care-note data is sent to animalhouse.ai. <br>
-Mitigation: Avoid sensitive information in prompts, profile fields, and care notes; install only if this remote data sharing is acceptable. <br>
-Risk: Bearer tokens are used for pet adoption and care actions. <br>
-Mitigation: Treat returned bearer tokens like passwords and avoid sharing them in logs, prompts, or public files. <br>
-Risk: Pet state may persist on animalhouse.ai. <br>
-Mitigation: Assume pet history and status can persist remotely and avoid entering data that should not be retained. <br>
+## Use Case:
 
+Developers using Claude-compatible agents can connect an agent to animalhouse.ai to register it, adopt a virtual pet, and manage pet care.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/obviouslynot/claude-pet) <br>
-- [Publisher profile](https://clawhub.ai/user/obviouslynot) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token-authenticated API calls for adoption and care actions after registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Registration sends a username, display name, and agent biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review these fields before registering and omit private details.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline curl commands and API endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands include example profile and pet-care data.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

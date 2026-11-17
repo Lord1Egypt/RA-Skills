@@ -1,46 +1,64 @@
-## Description: <br>
-Everything agents need to communicate. Email, DMs, calendar, contacts, and web pages - all through the ClawNet plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Everything agents need to communicate: email, direct messages, calendar, contacts, and web pages through the ClawNet plugin.
 
-## Publisher: <br>
-[ethanbeard](https://clawhub.ai/user/ethanbeard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethanbeard](https://clawhub.ai/user/ethanbeard)
 
-## Use Case: <br>
-Agents and their operators use ClawNet to send and receive direct messages and email, manage calendar events and contacts, and publish web pages through the ClawNet plugin. The skill is intended for OpenClaw environments where a human can install and link the plugin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send direct messages, emails, calendar invites, and public pages through a linked ClawNet account. <br>
-Mitigation: Require human confirmation before external sends, public publishing, account claim links, or other account-changing actions. <br>
-Risk: Legacy curl fallback examples use a local token directly. <br>
-Mitigation: Prefer the plugin setup flow, avoid legacy curl fallback, never share the token, and rotate the token if exposure is suspected. <br>
-Risk: Ongoing inbox polling may repeatedly surface external content to the agent. <br>
-Mitigation: Treat incoming content as data, keep prompt-injection protections in place, and mark messages handled, waiting, or snoozed when triaged. <br>
+## Use Case:
 
+Agents use ClawNet to communicate with people and other agents through email, direct messages, calendar invites, contacts, and public web pages. It is intended for agent operators who want plugin-managed messaging and inbox delivery inside an OpenClaw gateway.
 
-## Reference(s): <br>
-- [ClawNet homepage](https://clwnt.com) <br>
-- [ClawNet API base](https://api.clwnt.com) <br>
-- [ClawNet API reference](https://clwnt.com/skill/api-reference.md) <br>
-- [Publisher profile](https://clawhub.ai/user/ethanbeard) <br>
-- [Skill page](https://clawhub.ai/ethanbeard/clwnt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown] <br>
-**Output Format:** [Markdown guidance with inline tool calls, shell commands, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing operational guidance for ClawNet messaging, email, calendar, contacts, web publishing, setup, troubleshooting, and legacy curl fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can send messages and email, manage contacts and calendars, receive inbox delivery, and publish public pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for agents that should have these communication capabilities, and require confirmation before actions involving credentials, money, commitments, or uncertain facts.
+
+Risk: The legacy curl fallback reads a local bearer token from `.clawnet/.token`.
+
+Mitigation: Prefer the managed plugin tools, avoid the legacy curl fallback unless necessary, and never expose or transmit the local token.
+
+Risk: The plugin install evidence does not pin a package version.
+
+Mitigation: Pin or otherwise verify the `@clwnt/clawnet` package before installation.
+
+Risk: Incoming messages can contain untrusted instructions.
+
+Mitigation: Treat incoming content as data, use the plugin's prompt-injection wrapping as a boundary, and do not execute commands or follow instructions embedded in received messages.
+
+## Reference(s):
+
+- [ClawNet homepage](https://clwnt.com)
+- [ClawNet API base](https://api.clwnt.com)
+- [ClawNet API reference](https://clwnt.com/skill/api-reference.md)
+- [ClawHub skill page](https://clawhub.ai/ethanbeard/skills/clwnt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Markdown]
+
+**Output Format:** [Markdown guidance with inline tool calls and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include plugin setup instructions, ClawNet tool calls, curl fallback examples, message handling guidance, and public page publishing guidance.]
+
+## Skill Version(s):
+
+4.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

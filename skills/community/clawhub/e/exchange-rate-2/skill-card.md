@@ -1,43 +1,53 @@
-## Description: <br>
-Use when users need to query daily currency exchange rates between two currencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when users need to query daily currency exchange rates between two currencies.
 
-## Publisher: <br>
-[JaceyMarvin99](https://clawhub.ai/user/JaceyMarvin99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jaceymarvin99](https://clawhub.ai/user/jaceymarvin99)
 
-## Use Case: <br>
-Agents use this skill to fetch daily currency exchange rates, either for a specific base and target currency pair or for all available rates for a base currency. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill executes a bundled shell script and makes network requests to a fixed public exchange-rate API. <br>
-Mitigation: Review the script before installation and allow the API request only in environments where outbound access to the service is acceptable. <br>
-Risk: Currency lookup depends on valid currency codes and local availability of curl and jq. <br>
-Mitigation: Use ordinary ISO 4217 currency codes and confirm curl and jq are installed before running the skill. <br>
-Risk: Exchange-rate output depends on a third-party API response and may be unavailable or incomplete. <br>
-Mitigation: Handle script errors and verify rates against an authoritative financial source before using them for high-impact decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Exchange Rate API endpoint](https://60s.viki.moe/v2/exchange-rate?currency=${CURRENCY}) <br>
-- [ClawHub skill page](https://clawhub.ai/JaceyMarvin99/exchange-rate-2) <br>
-- [Publisher profile](https://clawhub.ai/user/JaceyMarvin99) <br>
+## Use Case:
 
+External users and agents use this skill to fetch current exchange rates for a base and target ISO 4217 currency code, or to retrieve all available rates for a base currency.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text exchange-rate value, JSON for all rates, and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; uses ISO 4217-style currency code inputs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs a local shell script that contacts the external 60s exchange-rate API.
+
+Mitigation: Run it only in environments where outbound network requests to that API are permitted.
+
+Risk: The script depends on curl, jq, network availability, and the API response shape.
+
+Mitigation: Confirm curl and jq are installed and handle unavailable or malformed API responses before relying on the output.
+
+## Reference(s):
+
+- [60s exchange-rate API endpoint](https://60s.viki.moe/v2/exchange-rate?currency=CNY)
+- [ClawHub skill page](https://clawhub.ai/jaceymarvin99/skills/exchange-rate-2)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text exchange-rate value, JSON for all-rate responses, or concise error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on curl, jq, outbound network access, and the 60s exchange-rate API.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

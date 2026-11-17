@@ -1,45 +1,64 @@
-## Description: <br>
-Enables agents to upload media, create and manage drafts, publish articles, and query publishing status for WeChat Official Accounts through the WeChat MP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to upload media, manage drafts, publish articles, and query publishing status for WeChat Official Accounts through the WeChat MP API.
 
-## Publisher: <br>
-[ryan32382](https://clawhub.ai/user/ryan32382) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan32382](https://clawhub.ai/user/ryan32382)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent prepare WeChat Official Account content workflows, including media upload, draft creation, article publishing, draft deletion, and status checks. It is intended for accounts with valid WeChat MP API credentials and the required Official Account permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish articles to a WeChat Official Account. <br>
-Mitigation: Configure the agent to save drafts first and require explicit human approval before publishing. <br>
-Risk: The skill can delete WeChat Official Account drafts. <br>
-Mitigation: Require explicit confirmation for draft deletion and use dedicated credentials with the minimum permissions needed. <br>
-Risk: WeChat MP credentials and cached access tokens grant account access if exposed. <br>
-Mitigation: Protect config and token files, prefer dedicated credentials, and restrict file permissions to the account owner. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent prepare WeChat Official Account articles, upload cover or article media, save drafts, submit publications, and check draft or publication status.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ryan32382/wechat-mp-publisher-zhizi) <br>
-- [README](README.md) <br>
-- [Technical Specification](TECH_SPEC.md) <br>
-- [Skill Definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Text and JSON responses from OpenClaw tools, with Markdown and shell command guidance in documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WeChat MP AppID/AppSecret credentials and local configuration or environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: ClawHub server release evidence) <br>
+Risk: The skill can create, publish, or delete WeChat Official Account content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an account where the agent is authorized for those actions, prefer draft mode before publishing, and verify media_id targets before deletion.
+
+Risk: Local file uploads can expose unintended media files.
+
+Mitigation: Restrict uploads to a dedicated media folder and review file paths before invoking upload tools.
+
+Risk: WeChat AppID, AppSecret, and access-token cache files are sensitive credentials.
+
+Mitigation: Protect configuration and token cache files with owner-only permissions and avoid placing secrets in shared locations.
+
+Risk: Dependencies may need updates before production use.
+
+Mitigation: Run dependency review and update vulnerable packages before using the skill in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan32382/skills/wechat-mp-publisher-zhizi)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Technical specification](artifact/TECH_SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Configuration]
+
+**Output Format:** [JSON-style tool responses with success flags, status messages, media IDs, publish IDs, draft metadata, and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload local media files and create, publish, query, or delete WeChat Official Account content when invoked with valid credentials.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

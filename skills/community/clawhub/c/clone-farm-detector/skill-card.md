@@ -1,39 +1,53 @@
-## Description: <br>
-Helps detect clone farming and reputation gaming in AI agent marketplaces by identifying near-duplicate skills, batch publishing patterns, ID washing, cross-citation rings, and coordinated metadata templating. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps detect clone farming and reputation gaming in AI agent marketplaces by identifying near-duplicate skills, ID washing, batch publishing patterns, and artificial reputation inflation through coordinated uploads.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Marketplace trust and safety reviewers, maintainers, and developers use this skill to triage suspected clone farming and reputation gaming across agent marketplace listings. It produces evidence summaries, similarity clusters, timeline analysis, and risk ratings that support human review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may flag legitimate forks, templates, or educational variations as suspicious. <br>
-Mitigation: Treat similarity and FARMING or SUSPECT ratings as leads that require human review before enforcement or public reporting. <br>
-Risk: Marketplace data analysis may exceed a reviewer's authorization or privacy boundaries. <br>
-Mitigation: Use the skill only on marketplace data the reviewer is authorized to analyze. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clone Farm Detector ClawHub release](https://clawhub.ai/andyxinweiminicloud/clone-farm-detector) <br>
+## Use Case:
 
+Developers, marketplace operators, and trust-and-safety reviewers use this skill to examine marketplace skills, publishers, or search results for clone-farming indicators and produce evidence summaries for human review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with risk ratings, similarity clusters, publishing timeline analysis, and evidence summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Risk ratings are triage leads and require human review before reporting, penalizing, or taking public action against a publisher.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Clone-farming risk labels may be mistaken for definitive enforcement decisions.
+
+Mitigation: Use the generated labels and evidence summaries as inputs to human review before taking action against skills or publishers.
+
+Risk: Skill-guided marketplace analysis may produce incorrect or misleading conclusions if the input listings are incomplete or stale.
+
+Mitigation: Review the source listings, compare the reported evidence against current marketplace data, and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/clone-farm-detector)
+- [Publisher profile](https://clawhub.ai/user/andyxinweiminicloud)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text report with clone clusters, similarity scores, timeline analysis, risk ratings, and evidence summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Risk ratings are evidence for human review, not automatic enforcement decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

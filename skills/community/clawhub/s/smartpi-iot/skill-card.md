@@ -1,42 +1,59 @@
-## Description: <br>
-智能公元 IoT 设备控制插件。可控制灯光、加湿器、窗帘等设备，支持查询设备状态。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides SmartPi IoT device-control guidance for lights, humidifiers, curtains, and device status queries.
 
-## Publisher: <br>
-[namishisu](https://clawhub.ai/user/namishisu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[namishisu](https://clawhub.ai/user/namishisu)
 
-## Use Case: <br>
-External users and developers use this skill to query and control SmartPi IoT devices from an agent environment with curl-based commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing and using this skill can send credentialed requests that change real SmartPi device states. <br>
-Mitigation: Use it only with a trusted SmartPi/aimachip service account and require explicit confirmation before commands that turn devices on or off, change brightness, start the humidifier, or open curtains. <br>
-Risk: The skill depends on an API token and device key for SmartPi device access. <br>
-Mitigation: Store SMARTPI_TOKEN and SMARTPI_DEVICE_KEY in configuration or environment variables rather than prompts, command history, or version control. <br>
+## Use Case:
 
+Developers and operators use this skill to configure SmartPi credentials and generate curl-based commands for controlling and querying supported IoT devices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/namishisu/smartpi-iot) <br>
-- [SmartPi official website](https://smartpi.cn/) <br>
-- [SmartPi API base endpoint](https://mcp.aimachip.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl command examples, environment variable setup, and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl plus SMARTPI_TOKEN and SMARTPI_DEVICE_KEY environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: Commands may immediately control real SmartPi devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before running commands that turn devices on, change brightness, or open curtains.
+
+Risk: Credentials can be exposed through logs, shell history, or copied command examples.
+
+Mitigation: Use scoped credentials where possible and keep SMARTPI_TOKEN and device identifiers out of logs, history, and version control.
+
+Risk: The skill depends on a live SmartPi endpoint that must be trusted before use.
+
+Mitigation: Install only after confirming trust in the SmartPi endpoint and validating network access to mcp.aimachip.com.
+
+## Reference(s):
+
+- [SmartPi official website](https://smartpi.cn/)
+- [SmartPi API base endpoint](https://mcp.aimachip.com)
+- [ClawHub skill page](https://clawhub.ai/namishisu/skills/smartpi-iot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl plus SMARTPI_TOKEN and SMARTPI_DEVICE_KEY environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

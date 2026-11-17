@@ -1,40 +1,53 @@
-## Description: <br>
-n8n workflow bridge pack for exporting OpenClaw pipelines to n8n format and importing n8n workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+n8n workflow bridge pack for exporting OpenClaw pipelines to n8n format and importing n8n workflows.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Developers and engineers use this skill to bridge OpenClaw workflows with n8n by exporting OpenClaw pipelines to n8n JSON and importing n8n workflows with validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Imported n8n workflow JSON can contain secrets, unexpected automation steps, or changes that affect OpenClaw workflows. <br>
-Mitigation: Review workflow JSON before import and confirm the workflow content matches the intended automation. <br>
-Risk: The skill depends on mcp-openclaw-extensions >= 3.0.0. <br>
-Mitigation: Review and approve the referenced dependency before installing or running the bridge tools. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to move workflow definitions between OpenClaw and n8n, including exporting OpenClaw pipelines to n8n JSON and importing n8n workflow files with validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/firm-n8n-bridge-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Configuration, Guidance] <br>
-**Output Format:** [n8n workflow JSON, OpenClaw configuration references, and concise import/export status or validation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May operate on local OpenClaw configuration paths and n8n workflow JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Workflow export and import can move automation logic across systems, so unreviewed workflow JSON may encode actions that behave differently after conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review exported or imported workflow JSON before using it in automation, and confirm trust in the required mcp-openclaw-extensions provider before installation.
+
+Risk: The source includes a French AI-generated-content warning, which may be missed by English-only reviewers.
+
+Mitigation: Translate or duplicate the warning in English during release review so the need for human validation is clear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/skills/firm-n8n-bridge-pack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML usage examples, shell-style tool invocations, and JSON workflow file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or consumes OpenClaw and n8n workflow JSON through the required mcp-openclaw-extensions provider.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

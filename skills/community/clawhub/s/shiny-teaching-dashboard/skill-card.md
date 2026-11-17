@@ -1,46 +1,61 @@
-## Description: <br>
-Helps agents create single-file R Shiny classroom dashboards that replace slide decks with interactive lessons, component guidance, color schemes, and reusable teaching templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent create Chinese-language, single-file R Shiny classroom dashboards that replace static slide decks with interactive teaching apps.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Educators, instructional designers, and developers use this skill to turn course material into interactive R Shiny dashboards for classroom presentation and local distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad interactive-lesson requests may be steered toward R Shiny even when another stack would be preferable. <br>
-Mitigation: State the desired language, framework, or delivery format when Shiny is not the intended target. <br>
-Risk: Generated work may include local file creation plus package installation and run commands. <br>
-Mitigation: Review generated R code and package installation commands before running them in managed or shared environments. <br>
-Risk: The skill may default to Chinese phrasing. <br>
-Mitigation: Specify the desired output language when requesting teaching content or app text. <br>
+## Use Case:
 
+Educators, instructional developers, and agents assisting them use this skill to turn lesson material into runnable R Shiny teaching dashboards with templates for lectures, parameter exploration, data stories, concept comparison, stepwise reveals, and quizzes.
 
-## Reference(s): <br>
-- [Layout Patterns](references/layout-patterns.md) <br>
-- [Color Schemes](references/color-schemes.md) <br>
-- [Components](references/components.md) <br>
-- [Setup and Run](references/setup-and-run.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/junwugit/shiny-teaching-dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Single-file R Shiny app.R plus concise Markdown response with installation and run commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated source is expected to be written to disk rather than pasted in full in chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Generated app.R files may contain lesson-specific code that is run locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated app.R files before running them.
+
+Risk: The generated app may require installing R packages or deploying to hosted Shiny services.
+
+Mitigation: Install only the listed packages and deploy only when the project and account or network implications are trusted.
+
+Risk: Classroom apps that depend on live network resources can fail during instruction.
+
+Mitigation: Prefer local runApp execution and package required data with the app when preparing classroom materials.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/junwugit/skills/shiny-teaching-dashboard)
+- [Layout patterns](references/layout-patterns.md)
+- [Shiny components for teaching](references/components.md)
+- [Color schemes](references/color-schemes.md)
+- [Setup, run, deploy, and Chinese fonts](references/setup-and-run.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Single-file R Shiny app.R plus concise Markdown run instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated apps may require local R packages such as shiny, bslib, ggplot2, plotly, DT, thematic, showtext, bsicons, or shinydashboard depending on the selected template.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

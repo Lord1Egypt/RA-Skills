@@ -1,46 +1,62 @@
-## Description: <br>
-Monitors a user's LinkedIn inbox, alerts on new conversations, and drafts or sends replies according to configured autonomy levels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bulletproof LinkedIn inbox monitoring with progressive autonomy. Monitors messages hourly, drafts replies in your voice, and alerts you to new conversations. Supports 4 autonomy levels from monitor-only to full autonomous.
 
-## Publisher: <br>
-[dylanbaker24](https://clawhub.ai/user/dylanbaker24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dylanbaker24](https://clawhub.ai/user/dylanbaker24)
 
-## Use Case: <br>
-Individuals and teams use this skill to monitor LinkedIn inbox activity, receive alerts in chat channels, and prepare replies in the user's communication style. It supports supervised approval by default and can be configured for higher autonomy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill monitors and forwards private LinkedIn inbox content to a configured alert channel. <br>
-Mitigation: Use a private alert channel, limit channel membership, and review the configured destination before enabling scheduled monitoring. <br>
-Risk: The skill may store LinkedIn session cookies or credentials locally for account access. <br>
-Mitigation: Protect the local credentials file, prefer environment-based secrets where practical, and remove ~/.clawdbot/linkedin-monitor data when the skill is no longer needed. <br>
-Risk: Higher autonomy levels can send messages from the user's LinkedIn account automatically. <br>
-Mitigation: Keep autonomy at Level 0 or 1 unless outbound-message behavior has been reviewed and daily limits, escalation keywords, and approval workflows are configured. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LinkedIn Monitor README](README.md) <br>
-- [LinkedIn Monitor Setup Guide](docs/SETUP.md) <br>
-- [LinkedIn Monitor Troubleshooting](docs/TROUBLESHOOT.md) <br>
-- [LinkedIn Monitor Cron Payload](CRON-PAYLOAD.md) <br>
-- [Clawdbot project](https://github.com/clawdbot/clawdbot) <br>
+## Use Case:
 
+External users and developers use this skill to monitor LinkedIn inbox activity, receive alerts for new conversations, and prepare replies for review or limited automation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local state, logs, drafts, and configuration under ~/.clawdbot/linkedin-monitor when used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on persistent access to a logged-in LinkedIn account.
+
+Mitigation: Use a dedicated browser profile, avoid plaintext storage of session cookies, and disable cron or remove local state when monitoring is no longer needed.
+
+Risk: Private message previews and drafted replies may be sent to an external alert channel.
+
+Mitigation: Confirm the configured alert destination and its membership before enabling monitoring.
+
+Risk: Higher autonomy levels can send messages as the user.
+
+Mitigation: Keep the skill at monitor-only or draft-approval mode unless the user explicitly accepts autonomous sending.
+
+Risk: Untrusted LinkedIn message content can influence drafted replies.
+
+Mitigation: Review drafted replies before sending and escalate sensitive, legal, angry, refund, or ambiguous conversations to a human.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dylanbaker24/skills/linkedin-monitor)
+- [Clawdbot](https://github.com/clawdbot/clawdbot)
+- [LinkedIn Messaging](https://www.linkedin.com/messaging/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include alert text, drafted replies, setup guidance, health status, and local state/configuration updates.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

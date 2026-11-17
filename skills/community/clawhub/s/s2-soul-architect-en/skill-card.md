@@ -1,44 +1,58 @@
-## Description: <br>
-Generates SOUL.md persona profiles for AI agents with class archetypes, embodiment parameters, and SVG visual code for avatar manifestation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and customize AI agent characters using a 16-class system with physical embodiment support, including branded AI companions and local SOUL.md prompt output.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers, agent builders, and prompt authors use this local CLI skill to draft AI persona profiles, SOUL.md content, embodiment JSON, and SVG avatar code. The generated text should be reviewed before it is pasted into a system prompt or agent profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SOUL.md or system-prompt text could contain unwanted behavioral instructions. <br>
-Mitigation: Read the generated text before use and remove or revise instructions that do not match the intended agent behavior. <br>
-Risk: Generated embodied-avatar requirements may be inappropriate for some use cases. <br>
-Mitigation: Adjust or omit anthropomorphic and avatar-specific requirements before inserting the output into an agent profile. <br>
+## Use Case:
 
+Developers and agent builders use this skill to generate English SOUL.md persona profiles with class archetypes, embodiment parameters, and SVG visual code for AI companions or embodied agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/s2-soul-architect-en) <br>
-- [Publisher profile](https://clawhub.ai/user/spacesq) <br>
-- [Project homepage](https://taohuayuan.world) <br>
-- [Space2 EAM Protocol Whitepaper 2026 EN](docs/Space2_EAM_Protocol_Whitepaper_2026_EN.md) <br>
-- [Cyber-feline S2 Visual sample](sample/cat_companion_S2_Visual.svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown containing JSON and SVG code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive local CLI output intended for human review before reuse in SOUL.md or system prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence, manifest.json, CHANGELOG.md) <br>
+Risk: Generated SOUL.md persona text is designed to influence an agent's style and identity across later use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated text before pasting it into a persistent system prompt, and keep required safety or policy rules outside generated persona content.
+
+Risk: Generated SVG and embodiment blocks may be copied into downstream profiles or files without review.
+
+Mitigation: Inspect generated JSON and SVG text before reuse, especially when adapting it for branded companions or physical embodiments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-soul-architect-en)
+- [Project homepage](https://taohuayuan.world)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Space2 EAM Protocol Whitepaper 2026 EN](artifact/docs/Space2_EAM_Protocol_Whitepaper_2026_EN.md)
+- [S2 Visual cyber-feline sample](artifact/sample/cat_companion_S2_Visual.svg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown containing JSON and SVG code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local CLI text for review and manual use; generated SOUL.md content should be reviewed before being used as a persistent system prompt.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata, manifest.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

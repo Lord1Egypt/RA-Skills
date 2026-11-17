@@ -1,43 +1,55 @@
-## Description: <br>
-Provides a Python client for the 1inch API v5.2 to request DEX trade quotes and prepare token swap transaction data across supported chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Python client for the 1inch API v5.2 to request DEX quotes, token data, approval transaction data, and swap transaction payloads across multiple chains.
 
-## Publisher: <br>
-[eric1099281](https://clawhub.ai/user/eric1099281) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric1099281](https://clawhub.ai/user/eric1099281)
 
-## Use Case: <br>
-Developers and agents use this skill to call 1inch quote, token, spender, approval, and swap helpers when preparing DEX aggregation workflows. It is intended to return trade and transaction data for review and signing through a trusted wallet or signing flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approval and swap transaction data can authorize token movement or execute financially sensitive trades. <br>
-Mitigation: Before signing, independently verify the chain, token addresses, amount, spender or router address, slippage, expected output, and gas fees in a trusted wallet or signing flow. <br>
-Risk: Supplying private keys to an agent or script can expose wallet funds. <br>
-Mitigation: Do not provide private keys to the agent; use a trusted wallet, hardware signer, or controlled signing service. <br>
-Risk: The API client depends on a valid external 1inch API key and live service responses. <br>
-Mitigation: Configure the API key outside generated code, handle API errors and rate limits, and review returned transaction data before broadcasting. <br>
+## Use Case:
 
+Developers and agents use this skill to integrate 1inch DEX quote and swap-data workflows into blockchain tooling. It is suitable for preparing transaction data that must be independently verified before wallet signing or broadcast.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eric1099281/1inch) <br>
-- [1inch Developer Portal](https://portal.1inch.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and Python code examples that return JSON-like API response dictionaries and transaction-data objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a 1inch API key and user-supplied chain, token, amount, wallet, slippage, approval, and swap parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill prepares financial transaction data and the security evidence flags mishandled chain selection and token approval checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before signing, independently verify the chain, router contract, token addresses, amount, spender, slippage, and calldata in a wallet or separate verification layer.
+
+Risk: Using the skill sends a 1inch API key, wallet address, token selections, and trade amounts to 1inch.
+
+Mitigation: Use an API key with appropriate limits and avoid sending sensitive wallet or trading information unless this disclosure is acceptable for the deployment.
+
+## Reference(s):
+
+- [ClawHub 1inch Skill Page](https://clawhub.ai/eric1099281/skills/1inch)
+- [1inch Developer Portal](https://portal.1inch.dev/)
+- [1inch Swap API v5.2 Base URL](https://api.1inch.dev/swap/v5.2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and JSON-like API response structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces transaction data and API integration guidance; it does not itself complete wallet signing or blockchain broadcast.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

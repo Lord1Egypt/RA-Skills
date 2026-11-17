@@ -1,43 +1,58 @@
-## Description: <br>
-RFC Document Assistant helps agents look up, list, search, read, and summarize RFC documents for Internet protocol standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RFC Document Assistant helps agents look up, list, search, read, and summarize RFC documents for Internet protocol standards.
 
-## Publisher: <br>
-[lunrenyi](https://clawhub.ai/user/lunrenyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lunrenyi](https://clawhub.ai/user/lunrenyi)
 
-## Use Case: <br>
-Developers, engineers, and technical agents use this skill to find RFC documents, inspect protocol specifications by number, search RFC content, and request concise AI-assisted summaries for protocol research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external x-cmd CLI, so installation introduces third-party supply-chain exposure. <br>
-Mitigation: Prefer the Homebrew installation path or manually review the install script before execution. <br>
-Risk: The curl-to-shell installer executes remote code before the user can review it. <br>
-Mitigation: Avoid curl-to-shell on machines with sensitive data unless the user explicitly accepts that risk. <br>
+## Use Case:
 
+Developers, network engineers, and technical users use this skill to find RFCs by number or keyword, review protocol standards, and request AI-assisted summaries of RFC search results.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/lunrenyi/x-rfc) <br>
-- [x-cmd Skill Repository](https://github.com/x-cmd/skill) <br>
-- [x-cmd Installation Guide](data/install.md) <br>
-- [x-cmd Release Downloads](https://github.com/x-cmd/release) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return RFC lookup commands, search examples, document excerpts, or summary guidance depending on the user's request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The installation guide includes a remote installer path that can execute mutable code before manual review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Homebrew installation or a download-review-execute workflow, and avoid curl-pipe-shell installation on machines with credentials or sensitive files.
+
+Risk: The skill depends on the x-cmd framework being installed and trusted before its RFC commands can run.
+
+Mitigation: Confirm the installation method explicitly and verify the x-cmd loader and binary after installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lunrenyi/skills/x-rfc)
+- [Source Repository](https://github.com/x-cmd/skill)
+- [x-cmd Installation Guide](data/install.md)
+- [x-cmd Release Downloads](https://github.com/x-cmd/release)
+- [x-cmd Installer](https://get.x-cmd.com)
+- [Conda Package Source](https://conda.prefix.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires x-cmd to be installed and loaded before RFC commands can run.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

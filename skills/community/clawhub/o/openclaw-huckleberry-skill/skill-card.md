@@ -1,42 +1,54 @@
-## Description: <br>
-Track baby sleep, feeding, diapers, and growth via Huckleberry app API. Use for logging baby activities through natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track baby sleep, feeding, diapers, and growth via Huckleberry app API. Use for logging baby activities through natural language.
 
-## Publisher: <br>
-[aaronn](https://clawhub.ai/user/aaronn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aaronn](https://clawhub.ai/user/aaronn)
 
-## Use Case: <br>
-External caregivers and parents use this skill to log and review baby sleep, feeding, diaper, and growth activity in Huckleberry through natural-language requests and CLI commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill needs Huckleberry login credentials and can read or update sensitive baby-tracking records. <br>
-Mitigation: Use protected environment variables or a tightly permissioned credentials file, do not commit credentials, and install only when this access is acceptable. <br>
-Risk: The skill can create or change baby activity, growth, and history records. <br>
-Mitigation: Verify important entries in the Huckleberry app and keep AI attribution notes on logged or updated entries. <br>
-Risk: The skill depends on a third-party Python package and may use a GitHub dependency for feature coverage. <br>
-Mitigation: Review or pin the dependency before deployment, especially in managed or shared environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Huckleberry on ClawHub](https://clawhub.ai/aaronn/openclaw-huckleberry-skill) <br>
-- [py-huckleberry-api](https://github.com/Woyken/py-huckleberry-api) <br>
+## Use Case:
 
+External users and caregivers use this skill with an agent to log and review baby sleep, feeding, diaper, and growth activity through Huckleberry-compatible CLI commands. The skill can ask for missing details before recording entries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and CLI output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, huckleberry-api, and Huckleberry account credentials to execute live logging or history commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles live Huckleberry account credentials and child-health data.
+
+Mitigation: Use reviewed dependency versions, avoid plaintext password storage where possible, and keep any credentials file private with restrictive permissions.
+
+Risk: Write commands can change real Huckleberry records immediately.
+
+Mitigation: Review generated CLI commands and required details before execution, especially for logging or updating activity records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaronn/skills/openclaw-huckleberry-skill)
+- [Homepage listed in skill metadata](https://github.com/aaronn/openclaw-huckleberry-skill)
+- [py-huckleberry-api dependency](https://github.com/Woyken/py-huckleberry-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read or write live Huckleberry account records through a local Python CLI.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

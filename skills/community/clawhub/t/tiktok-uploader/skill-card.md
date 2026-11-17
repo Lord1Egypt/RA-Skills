@@ -1,41 +1,57 @@
-## Description: <br>
-Upload, schedule, and batch-manage TikTok videos via browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload, schedule, and batch-manage TikTok videos through Playwright-based browser automation.
 
-## Publisher: <br>
-[xmuweili](https://clawhub.ai/user/xmuweili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xmuweili](https://clawhub.ai/user/xmuweili)
 
-## Use Case: <br>
-Developers, creators, and content operators use this skill to prepare agent guidance and wrapper code for uploading, scheduling, and batch-managing TikTok videos through browser automation. It is not intended for TikTok analytics, video downloading, comment management, or follower management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill needs TikTok account session access and can upload or schedule posts on the user's behalf. <br>
-Mitigation: Prefer a local cookie-file path over raw session values, keep the cookie file private, rotate or revoke the session if exposed, and verify each video, caption, visibility setting, and schedule before upload. <br>
-Risk: Browser automation can be fragile when TikTok changes its web upload flow, and batch activity can be throttled. <br>
-Mitigation: Use small batches, space out uploads, retry with a visible browser for debugging, and update the tiktok-uploader and Playwright dependencies when selector or upload failures occur. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xmuweili/tiktok-uploader) <br>
-- [tiktok-uploader Project](https://github.com/wkaisertexas/tiktok-uploader) <br>
-- [Publisher Profile](https://clawhub.ai/user/xmuweili) <br>
+## Use Case:
 
+External creators, social media operators, and developers use this skill to prepare uploads, schedule posts, batch-submit videos, and scan directories for uploadable TikTok media.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes guidance for cookie-based authentication, upload options, scheduling limits, batch uploads, and local video scanning.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: TikTok cookies, cookie lists, and session IDs can grant account access if exposed.
+
+Mitigation: Treat them as passwords: keep them local, avoid pasting them into chats or logs, use an isolated virtual environment when possible, and refresh or revoke credentials after exposure.
+
+Risk: Batch operations can publish unintended videos, captions, visibility settings, or schedules.
+
+Mitigation: Review selected videos, descriptions, visibility, and scheduled times before upload, especially when using batch workflows.
+
+Risk: Browser automation can fail when TikTok changes its web upload flow or rate limits repeated uploads.
+
+Mitigation: Use visible browser mode for debugging, update the uploader package when selectors fail, and space out batch uploads if throttled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xmuweili/skills/tiktok-uploader)
+- [tiktok-uploader project homepage](https://github.com/wkaisertexas/tiktok-uploader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include TikTok upload settings such as video paths, captions, visibility, schedules, cookies or session authentication options, browser mode, and proxy settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Signalbot analyzes crypto and gold markets with technical indicators and produces structured market reports that an agent can turn into commentary, alerts, or trading-signal summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quantitative market-analysis skill for BTC, XAUUSD, and other supported assets that runs Signalbot to compute technical indicators and produce structured JSON reports for market commentary or trade-posture guidance.
 
-## Publisher: <br>
-[shanhuhai5739](https://clawhub.ai/user/shanhuhai5739) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shanhuhai5739](https://clawhub.ai/user/shanhuhai5739)
 
-## Use Case: <br>
-Developers, market analysts, and agent users use Signalbot to run command-line analysis for BTC, ETH, SOL, BNB, and XAUUSD across single or multiple timeframes. The skill interprets JSON indicator output into concise market analysis, reports, scheduled updates, and BUY/SELL/HOLD-style informational summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or update an unpinned remote Go package with no confirmation before running market analysis. <br>
-Mitigation: Prefer a reviewed or pinned signalbot installation, avoid automatic latest-version installs where possible, and review the binary before allowing agents to execute it. <br>
-Risk: The skill may produce BUY/SELL/HOLD market outputs that users could mistake for financial advice. <br>
-Mitigation: Present outputs as informational technical analysis and require human judgment before making trading or investment decisions. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for crypto and gold market analysis, multi-timeframe technical indicator reports, support and resistance levels, and concise Chinese market summaries or posts. The agent may run the Signalbot binary to collect JSON analysis before composing human-facing commentary.
 
-## Reference(s): <br>
-- [Signalbot ClawHub page](https://clawhub.ai/shanhuhai5739/signalbot) <br>
-- [Project homepage from ClawHub metadata](https://github.com/shanhuhai5739/signalbot) <br>
-- [OpenClaw usage guide](artifact/OPENCLAW_USAGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-derived market-analysis summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill runs or interprets the signalbot CLI, whose stdout is structured JSON. Treat BUY/SELL/HOLD outputs as informational analysis, not financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill may install or update an unpinned third-party Signalbot binary before analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned, verified release yourself and avoid automatic @latest updates.
+
+Risk: Scheduled analysis jobs can repeatedly run market analysis or generate posts without interactive review.
+
+Mitigation: Review cron jobs before enabling them and require human review before publishing generated market posts.
+
+Risk: Market indicators and generated trade-posture guidance can be incomplete or misleading.
+
+Mitigation: Use outputs as informational analysis, verify market data independently, and do not rely on the skill as the sole basis for financial decisions.
+
+## Reference(s):
+
+- [Signalbot GitHub repository](https://github.com/shanhuhai5739/signalbot)
+- [Signalbot ClawHub skill page](https://clawhub.ai/shanhuhai5739/skills/signalbot)
+- [OpenClaw usage guide](artifact/OPENCLAW_USAGE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON reports plus Chinese text or Markdown market summaries, with shell commands and configuration snippets when setup or scheduled analysis is needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Signalbot writes JSON to stdout or an optional output file; the skill also includes prompt templates for periodic OpenClaw cron analysis.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

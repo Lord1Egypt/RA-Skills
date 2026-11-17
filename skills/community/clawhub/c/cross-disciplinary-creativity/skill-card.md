@@ -1,46 +1,56 @@
-## Description: <br>
-Guides agents to import concrete mechanisms from distant domains and apply them structurally to problems where local approaches have been exhausted. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent to transfer a concrete mechanism from another domain into a home-domain problem.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users, developers, product strategists, and innovation teams use this skill to move beyond same-industry brainstorming by translating specific mechanisms from unrelated domains into testable new configurations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce attractive analogies that do not specify an implementable transferred mechanism. <br>
-Mitigation: Apply the documented stop-rule: reject metaphor-only outputs and require a concrete mechanism plus a translation proposal before proceeding. <br>
-Risk: A foreign-domain mechanism may be misunderstood or fail when adapted to the home domain. <br>
-Mitigation: Require enough source-domain understanding to describe what changes structurally, then run the smallest viable test before scaling. <br>
-Risk: The workflow is a poor fit for routine execution problems or urgent decisions. <br>
-Mitigation: Use it only after local search is genuinely exhausted and avoid activation when a known solution needs better execution or time pressure prevents incubation. <br>
+## Use Case:
 
+External teams use the skill to develop differentiated approaches when home-domain solutions have stalled or become repetitive. It helps them map structural equivalents in other fields and turn a specific foreign mechanism into a testable proposal.
 
-## Reference(s): <br>
-- [Sources - Cross-Disciplinary Creativity](references/sources.md) <br>
-- [Gutenberg's Printing Press Example](examples/gutenbergs-printing-press-c-1440.md) <br>
-- [The Act of Creation](https://archive.org/details/actofcreation0000koes) <br>
-- [Creativity: Flow and the Psychology of Discovery and Invention](https://www.harpercollins.com/products/creativity-mihaly-csikszentmihalyi) <br>
-- [The Printing Press as an Agent of Change](https://archive.org/details/printingpressasa0000eise) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with a structured Cross-Domain Synthesis Map] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes staged coaching prompts, stop-rules, verification checks, and a smallest-viable test recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A cross-domain proposal may be plausible but incorrect or poorly adapted to the problem.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat proposals as hypotheses, weigh feedback from relevant experts, and test assumptions with a small experiment before applying or scaling them.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/deciqai/skills/cross-disciplinary-creativity)
+- [Cross-Disciplinary Creativity method guide](https://www.deciqai.com/c/cross-disciplinary-creativity)
+- [Primary sources](artifact/references/sources.md)
+- [Koestler, The Act of Creation](https://archive.org/details/actofcreation0000koes)
+- [Csikszentmihalyi, Creativity: Flow and the Psychology of Discovery and Invention](https://www.harpercollins.com/products/creativity-mihaly-csikszentmihalyi)
+- [Eisenstein, The Printing Press as an Agent of Change](https://archive.org/details/printingpressasa0000eise)
+- [Gutenberg printing press example](artifact/examples/gutenbergs-printing-press-c-1440.md)
+- [Machine-readable skill information](https://www.deciqai.com/s/cross-disciplinary-creativity.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prompts and a Cross-Domain Synthesis Map]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stepwise coaching prompts or a structured synthesis of mechanisms, adaptations, and a first test.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

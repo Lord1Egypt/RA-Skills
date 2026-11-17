@@ -1,44 +1,56 @@
-## Description: <br>
-Designs Salesforce Agentforce agent personas, sample dialogs, scoring artifacts, and Agentforce encoding guidance from brand inputs, persona documents, URLs, or text descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs Salesforce Agentforce agent personas using an identity and 12-dimension framework, with optional scoring, sample dialog, and Agentforce encoding outputs.
 
-## Publisher: <br>
-[dsouza-anush](https://clawhub.ai/user/dsouza-anush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dsouza-anush](https://clawhub.ai/user/dsouza-anush)
 
-## Use Case: <br>
-Designers, admins, and developers use this skill to create consistent Agentforce personas, validate the voice through sample dialog, score persona quality, and produce Agentforce Builder or Agent Script encoding guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated persona, sample dialog, scorecard, and encoding files may persist locally under _local/generated. <br>
-Mitigation: Avoid confidential brand guides or internal prompts unless local persistence is acceptable, and review generated files before sharing or deploying them. <br>
-Risk: Voice or telephony work may rely on inferred voice attributes when the user does not specify them. <br>
-Mitigation: Explicitly choose or confirm voice attributes, including gender-related choices, during voice persona design. <br>
+## Use Case:
 
+Agent designers, conversation designers, and Salesforce Agentforce implementers use this skill to turn brand, audience, and use-case inputs into a structured agent persona. It can also produce sample dialog, scorecards, and Agentforce Builder or Agent Script persona-encoding guidance for downstream implementation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dsouza-anush/sf-ai-agentforce-persona) <br>
-- [Publisher profile](https://clawhub.ai/user/dsouza-anush) <br>
-- [Agent Persona Framework](artifact/references/persona-framework.md) <br>
-- [Persona Encoding Guide](artifact/references/persona-encoding-guide.md) <br>
-- [Voice Encoding Guide](artifact/references/persona-encoding-guide-voice.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown files and inline Agentforce configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write persona documents, sample dialogs, scorecards, and Agentforce encoding outputs under _local/generated when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata); source workflow 2.4.0 (source: SKILL.md frontmatter) <br>
+Risk: Generated persona and Agentforce instructions may not meet legal, disclosure, or brand requirements for a live customer-facing agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated persona documents and Agentforce instructions with the appropriate legal, disclosure, and brand stakeholders before pasting them into a live agent.
+
+Risk: The skill reads supplied brand or persona material and creates local Markdown outputs.
+
+Mitigation: Provide only material approved for agent-assisted processing and inspect generated files in _local/generated/ before sharing or deploying them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dsouza-anush/skills/sf-ai-agentforce-persona)
+- [Agent Persona Framework](artifact/references/persona-framework.md)
+- [Persona Encoding Guide](artifact/references/persona-encoding-guide.md)
+- [Voice Encoding Guide](artifact/references/persona-encoding-guide-voice.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown files and inline Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local Markdown artifacts under _local/generated/ for persona documents, sample dialogs, scorecards, and Agentforce encoding outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Multi-source deep research agent. Searches the web, synthesizes findings, and delivers cited reports. No API keys required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+110 Deep Research Pro is a multi-source research skill that searches the web, synthesizes findings, and delivers cited reports without requiring API keys.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to plan and run multi-source web research, deep-read selected pages, and produce cited reports for learning, decisions, or writing tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries, fetched URLs, and visited pages may disclose sensitive topics to external search or website services. <br>
-Mitigation: Avoid confidential topics unless external web access is acceptable, and review or narrow queries and URLs before running research. <br>
-Risk: Generated research reports may persist on local disk after the session. <br>
-Mitigation: Use non-sensitive output locations, review saved report contents, and remove local reports when they are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to run multi-source web research, evaluate source credibility and recency, and produce cited research reports.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/smallkeyboy/110-deep-research-pro) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [uv package manager](https://github.com/astral-sh/uv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with citations; optional JSON output for CLI-style research results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save reports under ~/clawd/research/[slug]/report.md and fetch external web pages during research.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill may make unrestricted external web requests and fetch arbitrary pages during research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandboxed environment where page fetches cannot reach internal services or sensitive metadata endpoints; add URL validation or a safer fetch helper before use.
+
+Risk: Research output can be incomplete or misleading when sources are weak, stale, or single-sourced.
+
+Mitigation: Review cited sources, prefer reputable and recent sources, and clearly flag unsupported or single-source claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smallkeyboy/skills/110-deep-research-pro)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [uv](https://github.com/astral-sh/uv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with citations, optional JSON, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local research reports; no paid API keys are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-可转债打新助手提供 A 股可转债申购日历、新债分析、上市溢价预测、中签率查询、强赎和下修提醒。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+可转债打新助手为 A 股可转债投资者提供申购日历、新债分析、上市溢价预测、中签率查询和强赎/下修提醒。
 
-## Publisher: <br>
-[zhaoteng-qd](https://clawhub.ai/user/zhaoteng-qd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaoteng-qd](https://clawhub.ai/user/zhaoteng-qd)
 
-## Use Case: <br>
-External A-share convertible-bond users and developers can use this skill as a demonstration aid for subscription calendars, basic bond analysis, premium estimates, and redemption or downward-revision alerts. It should not be treated as a trading assistant; dates, prices, alerts, and investment decisions need verification against official exchange, broker, or issuer sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China (A-share convertible-bond market) <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises actionable financial analysis while the security evidence reports mock data and broken code. <br>
-Mitigation: Treat outputs as demonstration material only, and verify all dates, prices, alerts, and investment decisions against official exchange, broker, or issuer sources. <br>
-Risk: Incomplete or broken data-source integrations may cause runtime failures or stale results. <br>
-Mitigation: Review and test the Python modules before installation or execution, especially the data-fetching and parsing paths. <br>
+## Use Case:
 
+External A-share convertible-bond investors use this skill to generate subscription calendars, bond analyses, listing premium estimates, and redemption or conversion-price revision alerts for review alongside official exchange or issuer sources.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhaoteng-qd/convertible-bond-assistant) <br>
-- [User Guide](references/USER_GUIDE.md) <br>
-- [Data Source API Documentation](references/API.md) <br>
-- [Eastmoney Convertible Bond Data](http://data.eastmoney.com/kzz/) <br>
-- [Sina Finance Market Data API](http://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php) <br>
-- [CNINFO Announcements](http://www.cninfo.com.cn/) <br>
-- [Jisilu Convertible Bond Data](https://www.jisilu.cn/data/cbnew/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Analysis, Guidance] <br>
-**Output Format:** [Plain text CLI output and Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include financial analysis, subscription calendars, premium estimates, and alerts based on mock or externally sourced data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill documentation) <br>
+Risk: Financial guidance could be misleading if demo, mock, delayed, or unofficial market data is treated as investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify outputs against official exchange, issuer, or data-provider sources and do not rely on the skill alone for investment decisions.
+
+Risk: The artifact includes insecure HTTP data-source examples and a syntax error that can prevent normal execution.
+
+Mitigation: Prefer a fixed release that passes syntax checks, pins dependencies, removes unused dependencies, and uses HTTPS-only data sources before deployment.
+
+Risk: Documentation may overstate live financial capability relative to the demo-quality implementation.
+
+Mitigation: Present outputs as informational assistance and disclose data-source and implementation limits to users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhaoteng-qd/skills/convertible-bond-assistant)
+- [User Guide](references/USER_GUIDE.md)
+- [Data Source API Notes](references/API.md)
+- [Eastmoney Convertible Bond Data](http://data.eastmoney.com/kzz/)
+- [Jisilu Convertible Bond Data](https://www.jisilu.cn/data/cbnew/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown-style Chinese summaries with CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are informational and may depend on mock, delayed, or unofficial financial data; users should verify results against official sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

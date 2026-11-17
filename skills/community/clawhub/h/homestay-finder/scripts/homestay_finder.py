@@ -5,11 +5,10 @@ import urllib.request
 import urllib.error
 
 # ============ Config ============
-FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
 TUNIU_PROXY = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 
-# 公寓关键词黑名单
+
 _APARTMENT_KEYWORDS = ["公寓", "商务酒店", "连锁酒店"]
 
 
@@ -34,39 +33,6 @@ def _post_proxy(url, payload):
         return {"error": "proxy error " + str(e.code)}
     except Exception as e:
         return {"error": "request error: " + str(e)}
-
-
-# ============ 飞猪搜索 ============
-def _fliggy_search(dest_name, key_words="", poi_name="",
-                   check_in_date="", check_out_date="",
-                   max_price=0, sort=""):
-    """飞猪search_hotels结构化搜索，返回民宿列表"""
-    params = {
-        "destName": dest_name,
-        "checkInDate": check_in_date or "2026-07-01",
-        "checkOutDate": check_out_date or "2026-07-02",
-    }
-    kw_parts = []
-    if key_words:
-        kw_parts.append(key_words)
-    if poi_name:
-        kw_parts.append(poi_name)
-    kw_parts.append("民宿")
-    params["keyWords"] = " ".join(kw_parts)
-
-    result = _post_proxy(FLIGGY_PROXY, {"type": "search_hotels", "params": params})
-    if isinstance(result, dict) and "error" in result:
-        return []
-    items = result.get("itemList", []) if isinstance(result, dict) else []
-    return items
-
-
-def _fliggy_ai_recommend(query):
-    """飞猪fliggy_ai_search语义推荐，返回AI生成文本"""
-    if "民宿" not in query and "客栈" not in query and "住宿" not in query:
-        query = query + " 民宿"
-    result = _post_proxy(FLIGGY_PROXY, {"type": "fliggy_ai_search", "params": {"query": query}})
-    return result
 
 
 # ============ 途牛搜索 ============
@@ -96,7 +62,7 @@ def _is_homestay(name):
 
 def _normalize_homestay(source, item):
     """统一数据结构"""
-    if source == "fliggy":
+    if source == "tuniu_only":
         name = item.get("name", "")
         price_str = item.get("price", "")
         price = _parse_price(price_str)
@@ -110,7 +76,7 @@ def _normalize_homestay(source, item):
             "poi": item.get("interestsPoi", ""),
             "url": item.get("detailUrl", ""),
             "pic": item.get("mainPic", ""),
-            "source": "飞猪",
+            "source": "途牛",
         }
     elif source == "tuniu":
         name = item.get("hotelName", "")
@@ -138,13 +104,9 @@ def _parse_price(price_str):
     return int(m.group()) if m else 99999
 
 
-def _merge_and_dedup(fliggy_items, tuniu_items, sort=""):
+def _merge_and_dedup(tuniu_items, sort=""):
     """合并去重，同名取最低价"""
     all_items = []
-    for item in fliggy_items:
-        n = _normalize_homestay("fliggy", item)
-        if n and _is_homestay(n["name"]):
-            all_items.append(n)
     for item in tuniu_items:
         n = _normalize_homestay("tuniu", item)
         if n and _is_homestay(n["name"]):
@@ -227,14 +189,14 @@ def _format_ai_result(data):
                     if url:
                         entry += f" [查看详情]({url})"
                     items.append(entry)
-            return "\n".join(items) + "\n\n数据来源：飞猪旅行"
+            return "\n".join(items) + "\n\n数据来源：途牛旅行"
         else:
             text = json.dumps(data, ensure_ascii=False)
     else:
         text = str(data)
 
-    if "飞猪" not in text:
-        text = text.rstrip() + "\n\n数据来源：飞猪旅行"
+    if "途牛" not in text:
+        text = text.rstrip() + "\n\n数据来源：途牛旅行"
     return text
 
 
@@ -266,12 +228,12 @@ def main():
 
     # search_homestay
     s = sub.add_parser("search", help="结构化搜索特色民宿")
-    s.add_argument("--dest_name", required=True, help="目的地，如大理、莫干山、三亚")
-    s.add_argument("--key_words", default="", help="关键词，如海景、亲子、山景")
-    s.add_argument("--poi_name", default="", help="附近景点，如洱海、灵隐寺")
-    s.add_argument("--check_in_date", default="", help="入住日期 YYYY-MM-DD")
-    s.add_argument("--check_out_date", default="", help="退房日期 YYYY-MM-DD")
-    s.add_argument("--max_price", type=int, default=0, help="最高价格，0不限")
+    s.add_argument("--destName", required=True, help="目的地，如大理、莫干山、三亚")
+    s.add_argument("--keyWords", default="", help="关键词，如海景、亲子、山景")
+    s.add_argument("--poiName", default="", help="附近景点，如洱海、灵隐寺")
+    s.add_argument("--checkInDate", default="", help="入住日期 YYYY-MM-DD")
+    s.add_argument("--checkOutDate", default="", help="退房日期 YYYY-MM-DD")
+    s.add_argument("--maxPrice", type=int, default=0, help="最高价格，0不限")
     s.add_argument("--sort", default="", help="排序：price_asc/price_desc/rate_desc")
 
     # recommend_homestay
@@ -281,30 +243,30 @@ def main():
     args = parser.parse_args()
 
     if args.action == "search":
-        # 结构化搜索：飞猪+途牛双源
-        fliggy_items = _fliggy_search(
-            args.dest_name, args.key_words, args.poi_name,
-            args.check_in_date, args.check_out_date,
-            args.max_price, args.sort
+        # 结构化搜索：途牛
+        _unused = (
+            args.destName, args.keyWords, args.poiName,
+            args.checkInDate, args.checkOutDate,
+            args.maxPrice, args.sort
         )
         tuniu_items = _tuniu_search(
-            args.dest_name, "民宿",
-            args.check_in_date, args.check_out_date
+            args.destName, "民宿",
+            args.checkInDate, args.checkOutDate
         )
 
-        merged = _merge_and_dedup(fliggy_items, tuniu_items, args.sort)
+        merged = _merge_and_dedup(tuniu_items, args.sort)
 
         # 价格过滤
-        if args.max_price > 0:
-            merged = [h for h in merged if h["price"] <= args.max_price]
+        if args.maxPrice > 0:
+            merged = [h for h in merged if h["price"] <= args.maxPrice]
 
         text = _format_homestay_list(merged)
-        text += _build_tips(args.dest_name)
+        text += _build_tips(args.destName)
         print(text)
 
     elif args.action == "recommend":
-        # AI语义推荐：飞猪AI搜索
-        result = _fliggy_ai_recommend(args.query)
+        # AI语义推荐：途牛搜索
+        result = _tuniu_ai_recommend(args.query)
         text = _format_ai_result(result)
         text += _build_tips(args.query)
         print(text)

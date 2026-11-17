@@ -1,40 +1,52 @@
-## Description: <br>
-Keeps a local personal diary for the user by saving meaningful text, photo, and voice-note memories and helping recall or reflect on them later. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keeps a local personal diary for the user by saving diary entries, photos, voice notes, and later retrieving or reflecting on them.
 
-## Publisher: <br>
-[bitmapasset](https://clawhub.ai/user/bitmapasset) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bitmapasset](https://clawhub.ai/user/bitmapasset)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill with an agent and the Dear Agent MCP server to capture personal life moments into a local diary and ask for recalls, summaries, and reflections over past entries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can persist sensitive personal conversations, photos, voice notes, moods, and relationship details into a local diary.
+
+Mitigation: Use explicit save commands or confirmation before saving sensitive entries, and make diary writes visible to the user.
+
+Risk: Diary entries are stored as plaintext markdown in DEAR_AGENT_DIR.
+
+Mitigation: Protect the local diary directory with appropriate filesystem permissions, backups, and device security.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and their agents use this skill to maintain a private, local life diary from ordinary conversation, then search, summarize, recall, and reflect on stored memories. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive diary material from ordinary conversations without a clear confirmation step. <br>
-Mitigation: Use it only when the user intends moments to become persistent records, set a clear local storage location, and periodically review the diary files. <br>
-Risk: Diary content may include private photos, voice notes, feelings, relationships, and commitments stored on the user's machine. <br>
-Mitigation: Avoid sharing sensitive media or private details unless they should be saved, and manage deletion or retention directly in the local diary storage. <br>
+**Output Format:** [Markdown diary entries and conversational responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bitmapasset/skills/dear-agent) <br>
+**Other Properties Related to Output:** [May request local diary tool calls for saving and retrieving entries; entries can include sensitive personal content.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown diary entries and conversational summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dates, moods, tags, captions, transcripts, and local diary references.] <br>
+0.2.4 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.2.4 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

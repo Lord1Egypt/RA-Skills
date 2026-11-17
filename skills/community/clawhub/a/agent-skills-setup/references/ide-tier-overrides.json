@@ -1,0 +1,13 @@
+{
+  "_comment": "Per-profile tier overrides for the generated compatibility matrix. Each key is a '<product>/<profile>' selector. The value is a per-object-type tier (E2E Verified, Adapter-Compatible, Manual / Rebuild, Not Applicable) or a per-(scope, object_type) override keyed by '<scope>:<object_type>'. Higher priority than registry policy + E2E detection; lower than direct edits to registry-v2.json.",
+  "tiers": {},
+  "examples": {
+    "<product>/<profile>": {
+      "skills": "E2E Verified",
+      "instructions": "Adapter-Compatible",
+      "mcp": "Not Applicable",
+      "user:skills": "E2E Verified",
+      "project:mcp": "Manual / Rebuild"
+    }
+  }
+}

@@ -1,48 +1,66 @@
-## Description: <br>
-Full token economy suite for OpenClaw agents that audits context-window usage across skills, history, and tool outputs, then applies token-reduction strategies without losing memory quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full token economy suite for OpenClaw agents. Audits context window usage (skills, history, tool outputs), then applies 5 creative strategies to reduce bloat without losing memory quality.
 
-## Publisher: <br>
-[legiovi](https://clawhub.ai/user/legiovi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[legiovi](https://clawhub.ai/user/legiovi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to audit token usage, identify context bloat, count or estimate prompt tokens, distill long conversations into JSON memory facts, and choose compression strategies for large prompts or documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversation-derived memory to disk. <br>
-Mitigation: Require explicit user approval before memory writes or context flushes, and review distilled facts before treating them as durable memory. <br>
-Risk: The orchestration layer can run configured local Python helper scripts. <br>
-Mitigation: Keep the tool registry narrow, review configured script paths before installation, and disable orchestration files if only token counting is needed. <br>
-Risk: Tokenizer or compression helpers may require remote package or model downloads. <br>
-Mitigation: Use estimate mode in sensitive environments, preinstall trusted tokenizer packages, or avoid remote tokenizer and model downloads. <br>
+## Use Case:
 
+Developers and agent operators use this skill to audit context-window usage, identify token bloat, run token-counting helper scripts, and apply token-reduction strategies such as memory distillation, skill lazy loading, model-specific prompt restructuring, and offline document compression.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/legiovi/token-optimizer-skills) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Memory persistence patterns](artifact/memory-persistence-patterns.md) <br>
-- [Gemma optimization guide](artifact/gemma-optimization.md) <br>
-- [Token audit reference](artifact/token_audit.md) <br>
-- [Token optimizer strategies](artifact/token_optimizer_strategies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON memory facts, shell command guidance, and local script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local skill metadata and conversation-history files, run local Python helper scripts, and write distilled memory files when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The release includes dispatcher and memory-agent files beyond SKILL.md, including configurable script execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all shipped Python and configuration files before installation, restrict script and file paths to trusted directories, and run the skill in a constrained workspace.
+
+Risk: Automatic memory distillation and flush behavior can persist incomplete or inaccurate facts.
+
+Mitigation: Disable automatic distillation and flush by default, and require user review before episodic-store writes or memory_write operations.
+
+Risk: Optional prompt compression can alter important content if used on live prompts, tool schemas, configuration, or code.
+
+Mitigation: Use prompt compression only for offline document experiments, require dry-run preview first, and avoid live system prompts, tool schemas, JSON configuration, and code.
+
+Risk: Dependency-backed tokenizer and compression behavior may change with installed package or model revisions.
+
+Mitigation: Pin dependencies and model revisions, and keep the zero-dependency estimate path available for basic budgeting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/legiovi/skills/token-optimizer-skills)
+- [README](README.md)
+- [Gemma Model Optimization Strategies](gemma-optimization.md)
+- [Memory Persistence Patterns](memory-persistence-patterns.md)
+- [Token Audit Skill](token_audit.md)
+- [Token Optimizer Skill](token_optimizer_strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSON memory facts, Python script output, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Token counts may use tokenizer libraries when installed or a zero-dependency estimate fallback; memory distillation output should be reviewed before use as authoritative memory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Controls Xiaomi Mi Home smart devices such as lights, air conditioners, and robot vacuums through Xiaomi IoT account access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Xiaomi Mi Home smart devices, including lights, air conditioners, robot vacuums, scenes, and device status checks, through assistant commands.
 
-## Publisher: <br>
-[lanlan314](https://clawhub.ai/user/lanlan314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanlan314](https://clawhub.ai/user/lanlan314)
 
-## Use Case: <br>
-Home automation users and agents use this skill to log in to a Xiaomi account, discover Mi Home devices, query device status, trigger scenes, and issue device control requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide Xiaomi account passwords and verification codes through chat or a Feishu workflow. <br>
-Mitigation: Use only if that credential flow is acceptable; prefer a dedicated low-privilege Xiaomi account and avoid accounts that protect sensitive home devices. <br>
-Risk: Reusable Xiaomi tokens are cached locally with weak safeguards. <br>
-Mitigation: Restrict access to the token cache, delete it when no longer needed, and keep the OpenClaw skill data directory permissions limited to the local user. <br>
+## Use Case:
 
+External users use this skill to sign in to a Xiaomi account and control supported Xiaomi Mi Home devices through natural-language smart-home commands. It can list devices, check status, trigger scenes, and issue device-control actions when the required Xiaomi and Feishu credentials are configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanlan314/xiaomi-miot-lan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text responses with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include device lists, login prompts, captcha prompts, status messages, and setup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: The skill requests full Xiaomi login credentials and can pass login or CAPTCHA flow data through the assistant or Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after security review, use dedicated least-privilege accounts where possible, and avoid entering credentials unless the deployment path is trusted.
+
+Risk: The skill caches Xiaomi bearer-token material locally.
+
+Mitigation: Store token files with restrictive permissions, rotate credentials after testing, and clear cached tokens when uninstalling or moving the environment.
+
+Risk: The security verdict is suspicious because token handling, hardcoded defaults, and login flow design require careful review.
+
+Mitigation: Prefer a release that uses official delegated login, removes hardcoded secrets, and scopes access to only the device-control operations needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanlan314/skills/xiaomi-miot-lan)
+- [ClawHub publisher profile](https://clawhub.ai/user/lanlan314)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, Python code, shell commands, and JSON-like device or card payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request Xiaomi credentials, CAPTCHA input, Feishu app credentials, and local environment-variable configuration.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,59 @@
-## Description: <br>
-Codifies a brand or person's prose mechanics, including lexicon, syntax, rhythm, structure, and signature moves, into reusable writing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codifies how someone or a brand writes through prose mechanics such as lexicon, syntax, rhythm, structure, and signature moves, producing a PROSE.md guide for build, adapt, and audit workflows.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Content teams, ghostwriters, and brand operators use this skill to build, adapt, or audit a PROSE.md guide that keeps writing mechanics consistent across channels. It supports prose codification and corpus analysis, not drafting finished marketing or editorial content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read brand files, client materials, or content corpora that contain sensitive information. <br>
-Mitigation: Use a narrow folder or curated sample for sensitive client, executive, political, legal, finance, health, or regulated material. <br>
-Risk: Generated prose guidance can encode incorrect brand assumptions or misleading writing rules. <br>
-Mitigation: Review any generated PROSE.md or audit memo before using it as guidance for downstream writers. <br>
+## Use Case:
 
+Brand, editorial, and content teams use this skill to codify a reproducible prose guide from brand inputs, tone guidance, discovery questions, or an existing content corpus. It helps agents produce or adapt PROSE.md guidance for multi-writer consistency across long-form, social, email, and marketing copy channels.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/samber/cc-skills) <br>
-- [ClawHub skill page](https://clawhub.ai/samber/copywriting-prose-creator) <br>
-- [Anti-Patterns and AI Tells](references/anti-patterns.md) <br>
-- [Audit Tools](references/audit-tools.md) <br>
-- [Brand Atlas](references/brand-atlas.md) <br>
-- [Category Playbooks](references/category-playbooks.md) <br>
-- [Channel Adaptation](references/channel-adaptation.md) <br>
-- [Discovery Questions](references/discovery-questions.md) <br>
-- [The Five Layers of Prose](references/five-layers.md) <br>
-- [Multilingual Prose](references/multilingual.md) <br>
-- [PROSE.md Template](references/prose-md-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance, shell commands] <br>
-**Output Format:** [Markdown guidance documents, audit memos, channel overrides, and occasional shell-command snippets for corpus analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primary file output is PROSE.md; AUDIT mode may produce AUDIT-MEMO.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and artifact metadata) <br>
+Risk: Audit workflows may expose private or unpublished writing samples to third-party readability or grammar tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive corpus analysis local unless the user explicitly approves the destination and exact text sample for external processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/copywriting-prose-creator)
+- [Project homepage](https://github.com/samber/cc-skills)
+- [Anti-patterns](references/anti-patterns.md)
+- [Audit tools](references/audit-tools.md)
+- [Brand atlas](references/brand-atlas.md)
+- [Category playbooks](references/category-playbooks.md)
+- [Channel adaptation](references/channel-adaptation.md)
+- [Discovery questions](references/discovery-questions.md)
+- [Five layers](references/five-layers.md)
+- [Multilingual](references/multilingual.md)
+- [PROSE.md template](references/prose-md-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose guide, audit memo, or channel override guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The primary documented artifact is PROSE.md; audit mode may produce AUDIT-MEMO.md.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

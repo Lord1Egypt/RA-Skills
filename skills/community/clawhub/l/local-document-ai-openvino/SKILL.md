@@ -1,6 +1,6 @@
 ---
 name: local-document-ai-openvino
-description: Private document AI for Intel hardware. Parse PDFs, invoices, screenshots, and diagrams locally with MinerU 2.5 on OpenVINO GenAI, then turn them into structured data or executable notebook/code scaffolds. Supports custom key-field extraction for invoice demos, with clear quick-start commands and example prompts.
+description: Private local document AI for Intel hardware. Parse PDFs, invoices, screenshots, and diagrams with MinerU 2.5 on OpenVINO GenAI, keep the model warm in a local service, and output structured JSON/Markdown with user-defined invoice fields.
 ---
 
 # Private Document AI with OpenVINO
@@ -11,6 +11,15 @@ Turn local PDFs, invoices, screenshots, and diagrams into one of two useful outc
 2. `to-code`: turn screenshots, forms, and architecture diagrams into code or Jupyter notebook scaffolds.
 
 Everything runs locally and is built for Intel CPU/GPU acceleration with OpenVINO GenAI.
+The default device is `CPU` for workshop stability. Set `MINERU_OPENVINO_DEVICE=GPU` or `AUTO` only after validating the target AI PC.
+
+The default user experience is app-like:
+
+- the first call auto-starts a local service
+- HTTP/FastAPI service is preferred when available
+- the standard-library IPC service is used as a fallback
+- direct CLI parsing remains available with `--no-server`
+- the model stays resident after warmup so later calls avoid repeat model loading
 
 The default runtime path in this release is:
 
@@ -45,7 +54,19 @@ Check the environment:
 python "{baseDir}/scripts/check_env.py"
 ```
 
-Or run directly from the CLI:
+Install with the fastest available local installer path:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File "{baseDir}/scripts/install.ps1"
+```
+
+Warm up the local document AI service:
+
+```bash
+python "{baseDir}/scripts/run_skill.py" --warmup-server
+```
+
+Or run directly from the CLI. Server mode is automatic by default:
 
 ```bash
 python "{baseDir}/scripts/run_skill.py" --mode to-data --file "/absolute/path/to/invoice.pdf" --out "/absolute/path/to/artifacts/invoice_data" --extract "tables,entities,kv_pairs"
@@ -55,6 +76,19 @@ For invoice demos with custom key fields:
 
 ```bash
 python "{baseDir}/scripts/run_skill.py" --mode to-data --file "/absolute/path/to/invoice.pdf" --out "/absolute/path/to/artifacts/invoice_data" --extract "tables,entities,kv_pairs" --fields "invoice_number,invoice_date,total_amount,vendor_name"
+```
+
+For repeated workshop demos, prefer the persistent local server mode:
+
+```bash
+python "{baseDir}/scripts/run_skill.py" --warmup-server
+python "{baseDir}/scripts/run_skill.py" --mode to-data --file "/absolute/path/to/invoice.pdf" --out "/absolute/path/to/artifacts/invoice_data" --extract "tables,entities,kv_pairs" --fields "invoice_number,invoice_date,total_amount,vendor_name"
+```
+
+One-command invoice demo:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File "{baseDir}/scripts/demo_invoice.ps1"
 ```
 
 ## Example prompts
@@ -107,11 +141,72 @@ Typical outputs include:
 
 If you are evaluating the skill for the first time, start here:
 
-1. `to-data` on an invoice PDF
-2. review `result_report.html`
-3. inspect `structured_record.json`
-4. rerun with `--fields` and inspect `requested_fields_record.json`
-5. then try `to-code` with a diagram image and target `jupyter-notebook`
+1. run `--warmup-server` once to start the persistent local parser and preload the model
+2. `to-data` on an invoice PDF; local service mode is automatic
+3. review `result_report.html`
+4. inspect `structured_record.json`
+5. rerun with `--fields` and inspect `requested_fields_record.json`
+6. then try `to-code` with a diagram image and target `jupyter-notebook`
+
+## Persistent local server mode
+
+Use server mode when the same machine will parse multiple PDFs/images. This is the default path.
+
+Why this helps:
+
+1. The first request loads and compiles the MinerU/OpenVINO GenAI runtime once.
+2. Later agent calls send lightweight local IPC requests to the resident process.
+3. Model weights stay in the process memory instead of being moved repeatedly.
+4. The HTTP service layer makes future Web UI, desktop UI, and multi-agent integrations easier.
+5. The standard-library IPC server remains as a fallback when HTTP dependencies are unavailable.
+6. The normal CLI path remains available for one-off runs and debugging with `--no-server`.
+
+Warm up the server before a hands-on session:
+
+```bash
+python "{baseDir}/scripts/run_skill.py" --warmup-server
+```
+
+Inspect the server:
+
+```bash
+python "{baseDir}/scripts/run_skill.py" --server-status
+```
+
+Run through the resident server:
+
+```bash
+python "{baseDir}/scripts/run_skill.py" --mode to-data --file "/absolute/path/to/invoice.pdf" --out "/absolute/path/to/artifacts/invoice_data" --extract "tables,entities,kv_pairs" --fields "invoice_number,invoice_date,total_amount,vendor_name"
+```
+
+Force a specific local service transport if needed:
+
+```bash
+python "{baseDir}/scripts/run_skill.py" --server-kind http --server-status
+python "{baseDir}/scripts/run_skill.py" --server-kind ipc --server-status
+```
+
+Disable service mode for debugging:
+
+```bash
+python "{baseDir}/scripts/run_skill.py" --no-server --mode parse --file "/absolute/path/to/file.pdf"
+```
+
+Release memory after the workshop:
+
+```bash
+python "{baseDir}/scripts/run_skill.py" --shutdown-server
+```
+
+Server mode uses these implementation files:
+
+- `{baseDir}/scripts/parse_client.py`
+- `{baseDir}/scripts/http_parse_server.py`
+- `{baseDir}/scripts/persistent_parse_server.py`
+
+The server listens only on `127.0.0.1` loopback by default and does not bind to external network interfaces.
+If the default port is occupied, set `LOCAL_DOCUMENT_AI_SERVER_PORT` before starting the server.
+For HTTP service mode, set `LOCAL_DOCUMENT_AI_HTTP_PORT` if port `47274` is occupied.
 
 ## Custom key-field extraction
 
@@ -183,10 +278,14 @@ Load these references when you need the schema or output contracts:
 Use this published entrypoint:
 
 - CLI orchestrator: `{baseDir}/scripts/run_skill.py`
+- recommended default path: `{baseDir}/scripts/run_skill.py --mode to-data --file ...`
+- one-command invoice demo: `{baseDir}/scripts/demo_invoice.ps1`
 
 Do not call these implementation scripts directly from the skill:
 
 - `parse_document.py`
+- `parse_client.py`
+- `persistent_parse_server.py`
 - `transform_doc_to_data.py`
 - `transform_doc_to_code.py`
 
@@ -199,7 +298,8 @@ python "{baseDir}/scripts/check_env.py"
 ```
 
 For workshops, the simplest setup is installing into a skill-local `.vendor` directory.
-The entry scripts auto-detect it, so you do not need to edit `PYTHONPATH`:
+The installer uses `uv pip` when `uv` is available and falls back to `pip`.
+The entry scripts auto-detect the skill-local `.vendor`, so you do not need to edit `PYTHONPATH`:
 
 ```bash
 python "{baseDir}/scripts/install_local_runtime.py"
@@ -215,6 +315,12 @@ Download the preconverted MinerU OpenVINO model bundle into the skill-local `mod
 
 ```bash
 set MINERU_OPENVINO_MODEL_DIR=C:\absolute\path\to\MinerU2.5-Pro-2604-1.2B-int4-ov
+```
+
+For the most stable hands-on setup, keep the default CPU path. To test acceleration on a validated Intel AI PC:
+
+```bash
+set MINERU_OPENVINO_DEVICE=GPU
 ```
 
 Recommended model bundle:

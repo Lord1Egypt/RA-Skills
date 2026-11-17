@@ -1,43 +1,58 @@
-## Description: <br>
-Publish and visualize output via the pubblue CLI, with live P2P browser sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish and visualize output via the pubblue CLI, with live P2P browser sessions.
 
-## Publisher: <br>
-[xmanatee](https://clawhub.ai/user/xmanatee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xmanatee](https://clawhub.ai/user/xmanatee)
 
-## Use Case: <br>
-Developers and agents use Pubblue to publish HTML, Markdown, and text output as shareable pages and to run live browser canvas/chat sessions for visualization and collaboration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run an externally sourced CLI daemon that can publish content, maintain live network sessions, and access an agent workspace. <br>
-Mitigation: Review before installing, verify the pubblue npm package and source provenance, avoid npx or @latest in sensitive environments, and use a sandboxed PUBBLUE_CONFIG_DIR. <br>
-Risk: The pubblue CLI stores an API key and may expose it through shared logs or workspaces if handled carelessly. <br>
-Mitigation: Keep the API key out of shared logs and workspaces, prefer stdin-based configuration where appropriate, and isolate configuration storage for sandboxed runs. <br>
-Risk: Public pubs and live sessions can expose content or peers beyond the intended audience. <br>
-Mitigation: Rely on private-by-default behavior unless sharing is intended, and only use --public or live sessions with content and peers the user intends to expose. <br>
+## Use Case:
 
+Developers and agents use this skill to create, update, list, and delete pub.blue pages for sharing HTML, Markdown, or text output, and to manage live browser canvas/chat sessions through the pubblue CLI.
 
-## Reference(s): <br>
-- [Pubblue ClawHub release](https://clawhub.ai/xmanatee/pubblue) <br>
-- [pub.blue dashboard](https://pub.blue/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or publish HTML, Markdown, and text content through the pubblue CLI; live sessions depend on browser and daemon state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.1.2 (source: evidence release, claw.json, and SKILL.md frontmatter) <br>
+Risk: Mutable npm execution or unreviewed CLI updates could change runtime behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed pubblue CLI version before installing or running commands.
+
+Risk: API-key configuration and persistent daemon behavior can expose credentials or leave live sessions active.
+
+Mitigation: Avoid placing real API keys in command history or shared transcripts, use a restricted config directory when possible, and stop the daemon when live sessions are no longer needed.
+
+Risk: Publishing and deletion commands can accidentally expose sensitive content or remove pubs unexpectedly.
+
+Mitigation: Confirm public/private settings and delete behavior before use, and avoid publishing sensitive content accidentally.
+
+## Reference(s):
+
+- [ClawHub Pubblue skill page](https://clawhub.ai/xmanatee/skills/pubblue)
+- [pub.blue dashboard](https://pub.blue/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce shareable pub.blue pages and live browser canvas/chat session content; pubs are private by default.]
+
+## Skill Version(s):
+
+5.1.2 (source: frontmatter, claw.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

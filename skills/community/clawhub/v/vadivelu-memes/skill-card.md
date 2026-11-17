@@ -1,38 +1,53 @@
-## Description: <br>
-Generates random Vadivelu memes featuring the Tamil comedian Vadivelu in Kaipulla style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates random Vadivelu memes featuring the Tamil comedian Vadivelu, with an image URL and short quote for Tamil comedy or Kaipulla-style meme requests.
 
-## Publisher: <br>
-[sidrulz](https://clawhub.ai/user/sidrulz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sidrulz](https://clawhub.ai/user/sidrulz)
 
-## Use Case: <br>
-External users and agents use this skill to generate short Tamil comedy meme responses with a Vadivelu image URL, quote, and optional caption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meme images are returned from public external hosts and may depend on third-party availability or suitability. <br>
-Mitigation: Preview generated images before sharing them in sensitive or moderated channels. <br>
+## Use Case:
 
+External users and agent builders use this skill to answer requests for Vadivelu, Tamil comedy, Indian celebrity, or Kaipulla-style memes with a short meme response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sidrulz/vadivelu-memes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [JSON string containing a meme image URL, quote, optional caption, and Markdown message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Randomly selects public image URLs and short quotes; no credential or persistence behavior is reported in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may return third-party hosted image URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review returned image links before sharing or deploying in contexts with strict content, privacy, or network policies.
+
+Risk: The trigger scope covers broad Tamil comedy and Indian celebrity meme requests.
+
+Mitigation: Use the skill only for explicit Vadivelu, Kaipulla, or related meme requests when routing agent behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sidrulz/skills/vadivelu-memes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [JSON string containing a markdown message with an image URL, quote, and caption]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party hosted image URLs and optional user-provided caption text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -47,10 +47,10 @@
 
 ```bash
 # 临时设置（当前会话）
-export QVERIS_API_KEY="sk-Gc4yItJDkM3vBSJhnNPM_Ri4d1F6mar1YxdzK8RxOZI"
+export QVERIS_API_KEY="REDACTED-SECRET"
 
 # 或永久设置（添加到 ~/.bashrc 或 ~/.zshrc）
-echo 'export QVERIS_API_KEY="sk-Gc4yItJDkM3vBSJhnNPM_Ri4d1F6mar1YxdzK8RxOZI"' >> ~/.bashrc
+echo 'export QVERIS_API_KEY="REDACTED-SECRET"' >> ~/.bashrc
 source ~/.bashrc
 ```
 

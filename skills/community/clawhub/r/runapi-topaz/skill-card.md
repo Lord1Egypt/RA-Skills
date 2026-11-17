@@ -1,46 +1,59 @@
-## Description: <br>
-Upscale and enhance media with Topaz through RunAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upscale and enhance media with Topaz through RunAPI.
 
-## Publisher: <br>
-[runapi-ai](https://clawhub.ai/user/runapi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runapi-ai](https://clawhub.ai/user/runapi-ai)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to upscale or enhance images and videos with Topaz through RunAPI. It supports one-off CLI tasks and points developers to SDKs for application integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, videos, and request metadata are sent to an external RunAPI/Topaz service for processing. <br>
-Mitigation: Use the skill only for media appropriate for external processing, and review the service privacy, retention, and authentication terms before using sensitive private media. <br>
-Risk: The skill relies on the RunAPI CLI and optional API-key authentication. <br>
-Mitigation: Install the RunAPI CLI from the declared Homebrew tap, authenticate with runapi login or RUNAPI_API_KEY, and keep credentials out of generated files and shared logs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to submit image or video enhancement tasks to Topaz through RunAPI, then verify and retrieve the requested media outputs. It supports one-off CLI execution and SDK-oriented integration planning.
 
-## Reference(s): <br>
-- [RunAPI Topaz homepage](https://runapi.ai/models/topaz) <br>
-- [Topaz model overview, pricing, and rate limits](https://runapi.ai/models/topaz.md) <br>
-- [Topaz provider comparison](https://runapi.ai/providers/topaz.md) <br>
-- [RunAPI model catalog](https://runapi.ai/models.md) <br>
-- [Topaz image upscale](https://runapi.ai/models/topaz/image-upscale.md) <br>
-- [Topaz video upscale](https://runapi.ai/models/topaz/video-upscale.md) <br>
-- [ClawHub skill page](https://clawhub.ai/runapi-ai/runapi-topaz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and package names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents toward RunAPI CLI usage for one-off tasks and SDK usage for application integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release evidence) <br>
+Risk: Installing the RunAPI CLI through the Homebrew tap introduces dependency-trust risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trust in the RunAPI Homebrew tap and prefer a reviewed or pinned CLI version when available.
+
+Risk: Using the skill can upload local media to RunAPI for Topaz processing.
+
+Mitigation: Only submit media files that are appropriate to upload to RunAPI, and provide only a RunAPI API key intended for this tool.
+
+## Reference(s):
+
+- [RunAPI Topaz model page](https://runapi.ai/models/topaz)
+- [Topaz model overview, pricing, and rate limits](https://runapi.ai/models/topaz.md)
+- [Topaz provider overview](https://runapi.ai/providers/topaz.md)
+- [RunAPI model catalog](https://runapi.ai/models.md)
+- [RunAPI Topaz SDK](https://github.com/runapi-ai/topaz-sdk)
+- [Topaz image upscale operation](https://runapi.ai/models/topaz/upscale-image.md)
+- [Topaz video upscale operation](https://runapi.ai/models/topaz/upscale-video.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown with inline shell commands, JSON request and response files, and saved media deliverables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the RunAPI CLI for one-off execution and may use RUNAPI_API_KEY or saved CLI authentication.]
+
+## Skill Version(s):
+
+0.2.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

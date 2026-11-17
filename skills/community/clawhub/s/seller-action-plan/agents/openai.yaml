@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 卖家行动计划"
+  short_description: "按证据和影响程度排列运营下一步"
+  default_prompt: "使用 $amazon-seller-action-plan 根据一个 Amazon ASIN 的商品详情和评论制定运营行动优先级。"

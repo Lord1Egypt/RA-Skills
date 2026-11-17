@@ -1,39 +1,54 @@
-## Description: <br>
-Fetches WeChat public account articles and converts them into offline Markdown, HTML, plain text, JSON, or Excel files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts public WeChat articles into offline Markdown, HTML, text, JSON, or Excel files after asking the user which export formats to produce.
 
-## Publisher: <br>
-[luojiangyong](https://clawhub.ai/user/luojiangyong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luojiangyong](https://clawhub.ai/user/luojiangyong)
 
-## Use Case: <br>
-External users and developers use this skill to archive or reformat WeChat article links into local files for reading, sharing, analysis, or batch processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes web requests to WeChat and saves converted article files locally, which can create many files during batch or HTML export. <br>
-Mitigation: Review the requested article links and output location before running batch or HTML exports. <br>
-Risk: The Python scripts rely on undeclared runtime dependencies for parsing, Markdown conversion, and Excel output. <br>
-Mitigation: Run the skill in a trusted Python environment and install only the dependencies needed for the selected export formats. <br>
+## Use Case:
 
+External users and developers use this skill to save single or multiple public WeChat articles for offline reading, archival, or downstream document processing. The skill is most useful when the user needs a chosen export format before the agent runs the included fetch scripts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with local file outputs in Markdown, HTML, text, JSON, or Excel formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save article files and localized HTML assets to the user's Desktop or a provided output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: HTML export can fetch attacker-controlled resource URLs and preserve active HTML content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Markdown, text, or JSON for lower-risk exports; review or constrain HTML export behavior before opening or sharing HTML generated from untrusted articles.
+
+Risk: Remote CSS and image assets are downloaded during HTML export.
+
+Mitigation: Run the skill with network and filesystem constraints appropriate for the article source, and add asset URL allowlisting before broad deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luojiangyong/skills/wechat-article-conversion)
+- [Publisher profile](https://clawhub.ai/user/luojiangyong)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Agent guidance plus generated Markdown, HTML, plain text, JSON, and Excel files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can process one or more WeChat article URLs; selected formats are produced as local files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

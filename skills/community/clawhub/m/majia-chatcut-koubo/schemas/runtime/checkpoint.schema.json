@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/checkpoint.schema.json",
+  "title": "Recoverable run checkpoint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "checkpointId", "runId", "stage", "projectRevision", "planFingerprint", "styleFingerprint", "verifiedEvidence", "completedOperations", "nextSafeAction", "blockedReason", "createdAt"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/checkpoint.schema.json"},
+    "schemaVersion": {"const": "majia.koubo.checkpoint.v1"},
+    "checkpointId": {"type": "string", "pattern": "^cp-[a-z0-9-]+$"},
+    "runId": {"type": "string", "pattern": "^run-[a-z0-9-]+$"},
+    "stage": {"$ref": "run-manifest.schema.json#/$defs/stage"},
+    "projectRevision": {"type": ["string", "null"], "pattern": "^rev[-_][A-Za-z0-9._-]+$"},
+    "planFingerprint": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "styleFingerprint": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "verifiedEvidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"}},
+    "completedOperations": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"}},
+    "nextSafeAction": {"type": "string", "minLength": 1, "maxLength": 120},
+    "blockedReason": {"type": ["string", "null"], "maxLength": 240},
+    "createdAt": {"type": "string", "format": "date-time"}
+  }
+}

@@ -1,42 +1,56 @@
-## Description: <br>
-Analyzes urban renewal or renovation photos across six site dimensions, scores observed conditions, recommends renovation strategies, and generates Gemini 3 image-to-image prompts in photorealistic, architectural visualization, and watercolor styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes urban renewal or renovation site photos across environment, structure, facade, hard landscaping, furniture and fixtures, and greenery, then produces scored findings, renovation guidance, and Gemini image-to-image prompts.
 
-## Publisher: <br>
-[innocencexy](https://clawhub.ai/user/innocencexy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[innocencexy](https://clawhub.ai/user/innocencexy)
 
-## Use Case: <br>
-Urban designers, planners, architects, and renovation teams use this skill to review site photos, identify visible renewal issues, prioritize interventions, and create prompt-ready design visualization directions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Site photos can contain sensitive location, property, or personal details. <br>
-Mitigation: Use only photos the user is comfortable having analyzed and avoid adding unnecessary personal or confidential context. <br>
-Risk: Photo-only structural, safety, or demolition recommendations can be incomplete or misleading. <br>
-Mitigation: Treat recommendations as preliminary observations and require qualified professional review before real-world decisions. <br>
+## Use Case:
 
+External users, planners, designers, and agents use this skill to turn site photos into structured Chinese-language urban-renewal assessments, priority-ranked renovation recommendations, and ready-to-use visual redesign prompts.
 
-## Reference(s): <br>
-- [Analysis framework](references/analysis_framework.md) <br>
-- [Gemini prompt templates](references/gemini_prompt_templates.md) <br>
-- [ClawHub release page](https://clawhub.ai/innocencexy/urban-renewal-analyst) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown report with scored sections and prompt blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes six 1-5 dimension scores, a 30-point composite score, renovation priority guidance, and three Gemini image-to-image prompt variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger phrases for prompt generation may activate the skill when another image or prompt skill was intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger phrase overlap before enabling it alongside other image-analysis or prompt-generation skills.
+
+Risk: Photo-only assessment can miss hidden structural, safety, accessibility, or regulatory issues.
+
+Mitigation: Treat renovation recommendations as planning support and obtain qualified site inspections before acting on safety-critical findings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/innocencexy/skills/urban-renewal-analyst)
+- [Publisher profile](https://clawhub.ai/user/innocencexy)
+- [analysis_framework.md](references/analysis_framework.md)
+- [gemini_prompt_templates.md](references/gemini_prompt_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese-language report with scored analysis sections, renovation recommendations, and image-to-image prompt blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs six dimension scores, a composite renovation level, staged mitigation recommendations, and three prompt styles: photorealistic, architectural visualization, and watercolor or hand-drawn.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,61 @@
-## Description: <br>
-Swiss-knife for AI agents. 50+ models for image generation, video generation, text-to-speech, speech-to-text, music, chat, web search, document parsing, email, and SMS, with smart routing for cost saving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swiss-knife for AI agents with 50+ models for image generation, video generation, text-to-speech, speech-to-text, music, chat, web search, document parsing, email, and SMS, with smart routing for cost saving.
 
-## Publisher: <br>
-[yshuolu](https://clawhub.ai/user/yshuolu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yshuolu](https://clawhub.ai/user/yshuolu)
 
-## Use Case: <br>
-Developers and agents use Skillboss to discover and call a broad remote API gateway for chat, image, video, audio, search, scraping, document processing, email, SMS, embeddings, and presentation generation. It provides cURL-based request patterns and model lists for direct model selection or smart routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad remote API access, including email, SMS, OTP, document, and audio-processing workflows. <br>
-Mitigation: Install only when SkillBoss is trusted as a remote gateway, use restricted or budget-limited credentials where possible, and require explicit human review before email, SMS, OTP, or batch communication is sent. <br>
-Risk: Documents, recordings, or generated content may be sent to remote services through the SkillBoss API. <br>
-Mitigation: Avoid confidential documents or recordings unless the user is authorized to process them through this service. <br>
-Risk: The skill depends on a live API key with access to paid or sensitive model providers. <br>
-Mitigation: Store SKILLBOSS_API_KEY securely, scope it where supported, and monitor usage for unexpected cost or access patterns. <br>
+## Use Case:
 
+Developers and agents use Skillboss to call third-party AI and utility APIs through a single SkillBoss API key for chat, media generation, search, document processing, messaging, and smart model routing.
 
-## Reference(s): <br>
-- [ClawHub Skillboss listing](https://clawhub.ai/yshuolu/skillboss-swissknife) <br>
-- [SkillBoss API base URL](https://api.heybossai.com/v1) <br>
-- [SkillBoss website](https://www.skillboss.co) <br>
-- [Audio Models](artifact/audio-models.md) <br>
-- [Chat Models](artifact/chat-models.md) <br>
-- [Image Models](artifact/image-models.md) <br>
-- [Search and Scraping Models](artifact/search-models.md) <br>
-- [Tool Models](artifact/tools-models.md) <br>
-- [Video Models](artifact/video-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with cURL commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for live API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill uses SkillBoss as a third-party cloud gateway for prompts, files, audio, images, documents, and generated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, regulated data, private documents, or personal data unless the user has authorization and the deployment policy permits it.
+
+Risk: The skill includes live email, SMS, and batch notification capabilities.
+
+Mitigation: Require explicit confirmation before any email, SMS, OTP, or batch notification action, and verify recipients, content, and authorization before sending.
+
+## Reference(s):
+
+- [ClawHub Skillboss release page](https://clawhub.ai/yshuolu/skills/skillboss-swissknife)
+- [SkillBoss API base URL](https://api.heybossai.com/v1)
+- [SkillBoss website](https://www.skillboss.co)
+- [Chat model reference](artifact/chat-models.md)
+- [Image model reference](artifact/image-models.md)
+- [Video model reference](artifact/video-models.md)
+- [Audio model reference](artifact/audio-models.md)
+- [Search and scraping model reference](artifact/search-models.md)
+- [Tool model reference](artifact/tools-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with cURL command examples and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and may return model-specific text, URLs, generated media, parsed documents, email/SMS action results, or search results.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

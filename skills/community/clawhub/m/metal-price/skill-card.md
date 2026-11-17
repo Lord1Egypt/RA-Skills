@@ -1,41 +1,53 @@
-## Description: <br>
-Metal Price queries qqthj.com for current metal price tables and exports the results to Excel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Metal Price automates login to qqthj.com, retrieves current metal price table data for selected ferroalloy categories, and exports the results to Excel.
 
-## Publisher: <br>
-[wangxiang2023](https://clawhub.ai/user/wangxiang2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangxiang2023](https://clawhub.ai/user/wangxiang2023)
 
-## Use Case: <br>
-External users and market analysts use this skill to automate qqthj.com login, navigate to selected metal categories, collect current price table data, and export the results for analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact exposes a website login credential. <br>
-Mitigation: Do not use the embedded account unless authorized; rotate the exposed password and provide credentials through a secure runtime input or secret store. <br>
-Risk: The artifact directs exports to a specific personal Windows desktop folder. <br>
-Mitigation: Confirm or choose an appropriate export directory before running the skill, and verify write permissions before saving files. <br>
-Risk: Scheduled or repeated runs could repeatedly log in and write files without fresh confirmation. <br>
-Mitigation: Avoid scheduled or repeated execution unless the login, destination path, and file-writing behavior are explicitly approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Global Ferroalloy Network](https://www.qqthj.com) <br>
+## Use Case:
 
+External users and market analysts use this skill to retrieve metal market price tables from qqthj.com for selected ferroalloy categories and export the data for spreadsheet review.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Excel .xlsx file with procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exports selected metal price data for the requested category and date; the artifact documents a fixed Windows export path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill documentation includes apparent account credentials.
+
+Mitigation: Remove distributed credentials, rotate the exposed password if real, and provide credentials securely at runtime.
+
+Risk: The skill mandates writing Excel exports to a fixed local Desktop path.
+
+Mitigation: Confirm the export destination and overwrite behavior before allowing the skill to write files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangxiang2023/skills/metal-price)
+- [qqthj.com](https://www.qqthj.com)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command use and Excel file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exports price table data to .xlsx files; the skill documentation specifies a fixed local Desktop export path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

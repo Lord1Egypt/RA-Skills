@@ -1,44 +1,60 @@
-## Description: <br>
-Advanced framework for exceptional AI agents that applies goal-driven closed loops, dynamic planning and decision making, and multi-tool collaborative execution to professional AI behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A professional-behavior framework for AI agents that supports goal-driven task closure, adaptive planning and decision making, multi-tool execution, memory management, communication, quality assurance, and ethical decision making.
 
-## Publisher: <br>
-[savior-li](https://clawhub.ai/user/savior-li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[savior-li](https://clawhub.ai/user/savior-li)
 
-## Use Case: <br>
-Employees, developers, and AI-agent builders use this skill to guide agents through complex professional workflows that require goal tracking, adaptive planning, tool coordination, memory practices, communication patterns, quality checks, and ethical review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages local memory files, which can retain sensitive or stale information if unmanaged. <br>
-Mitigation: Keep memory files in an approved workspace, avoid storing secrets or sensitive personal or business data unless explicitly approved, and periodically review or delete retained memory. <br>
+## Use Case:
 
+Employees, developers, and agents use this skill to structure complex workplace tasks with closed-loop planning, progress tracking, tool orchestration, clear communication, and quality checks. It is most relevant for multi-step, professional, sensitive, or high-stakes requests where persistent context and disciplined verification may improve continuity.
 
-## Reference(s): <br>
-- [Three Core Dimensions of Excellent AI Agents](artifact/references/core-dimensions.md) <br>
-- [Memory Management Patterns](artifact/references/memory-patterns.md) <br>
-- [Task Management Best Practices](artifact/references/task-management.md) <br>
-- [Professional Communication Templates](artifact/references/communication-templates.md) <br>
-- [Quality Assurance Checklists](artifact/references/quality-checklists.md) <br>
-- [Ethical Guidelines for AI Employees](artifact/references/ethical-guidelines.md) <br>
-- [ClawHub release page](https://clawhub.ai/savior-li/eaie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with optional code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend local memory files and workflow checklists; no external API credentials were detected in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill encourages agents to persist and reload workspace memory without enough consent, scoping, or retention controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where persistent notes are acceptable; configure the agent to ask before writing memory, avoid sensitive or third-party instruction text, treat old memory as untrusted context, and provide review and deletion paths.
+
+Risk: The packaging helper may include unintended files if run in directories containing private notes, caches, .env files, keys, or other non-distributable content.
+
+Mitigation: Run packaging only from a reviewed skill directory and exclude private, credential, cache, and environment files before distribution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/savior-li/skills/eaie)
+- [Core Dimensions](artifact/references/core-dimensions.md)
+- [Memory Patterns](artifact/references/memory-patterns.md)
+- [Task Management](artifact/references/task-management.md)
+- [Professional Communication Templates](artifact/references/communication-templates.md)
+- [Quality Assurance Checklists](artifact/references/quality-checklists.md)
+- [Ethical Guidelines for AI Employees](artifact/references/ethical-guidelines.md)
+- [AgentSkills Specification](https://github.com/openclaw/agentskills-spec)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Natural language guidance, usually Markdown, with task-dependent code or shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the user request and available agent tools; the skill provides behavior guidance, checklists, templates, and helper scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

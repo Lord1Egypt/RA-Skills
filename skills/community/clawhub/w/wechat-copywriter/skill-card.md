@@ -1,41 +1,54 @@
-## Description: <br>
-Generates concise WeChat Moments marketing copy for microbusinesses, ecommerce, and local stores using DeepSeek. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese WeChat Moments marketing copy for small businesses, e-commerce sellers, and local shop owners using selectable copywriting styles.
 
-## Publisher: <br>
-[duoduoks](https://clawhub.ai/user/duoduoks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duoduoks](https://clawhub.ai/user/duoduoks)
 
-## Use Case: <br>
-Small business owners, ecommerce operators, marketers, and agents use this skill to draft short WeChat Moments promotional posts in styles such as promotion, recommendation, emotional storytelling, educational tips, and interaction prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends product and campaign prompts to DeepSeek for generation. <br>
-Mitigation: Do not provide confidential customer data, unreleased campaign plans, or sensitive business details unless approved for DeepSeek processing. <br>
-Risk: The skill requires a DeepSeek API key and may consume paid API quota. <br>
-Mitigation: Use a key with appropriate billing limits and store it through environment or OpenClaw configuration with normal secret handling. <br>
+## Use Case:
 
+External users and agents use this skill to turn a product description and desired style into concise Chinese WeChat Moments promotional copy with calls to action and topic tags.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duoduoks/wechat-copywriter) <br>
-- [DeepSeek API endpoint used by artifact](https://api.deepseek.com/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text marketing copy, with usage examples shown in Markdown and CLI output printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated copy is short-form marketing text, typically 50-150 Chinese characters, and depends on a DeepSeek API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Product details entered into the skill are sent to DeepSeek for text generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential business plans, unreleased product details, and personal data unless third-party API processing is acceptable for the workflow.
+
+Risk: The skill depends on a DeepSeek API key supplied through the environment or OpenClaw configuration.
+
+Mitigation: Store the API key only in approved secret locations, limit who can access the runtime configuration, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duoduoks/skills/wechat-copywriter)
+- [Publisher profile](https://clawhub.ai/user/duoduoks)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text Chinese marketing copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is generated from a product description and optional style such as promotion, recommendation, emotional, educational, interactive, or new product.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

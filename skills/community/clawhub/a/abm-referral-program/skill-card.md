@@ -1,41 +1,59 @@
-## Description: <br>
-Helps agents create, optimize, and analyze referral, affiliate, and word-of-mouth programs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, optimize, and analyze customer referral, affiliate, and word-of-mouth growth programs.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing and growth teams use this skill to design referral or affiliate programs, choose incentive structures, diagnose participation and conversion issues, and measure referral ROI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may incorporate sensitive product marketing context into referral or affiliate recommendations. <br>
-Mitigation: Review local context files before use and avoid exposing confidential strategy, customer, or pricing details outside the intended agent session. <br>
-Risk: Referral or affiliate incentives can invite abuse if launched without controls. <br>
-Mitigation: Use verification, limits, delayed payouts, clawbacks, and manual review for suspicious activity before paying rewards. <br>
+## Use Case:
 
+External marketing and growth teams use this skill to design referral or affiliate programs, select incentive structures, plan launch and nurture messaging, diagnose participation or conversion issues, and define ROI metrics.
 
-## Reference(s): <br>
-- [Affiliate Program Design](references/affiliate-programs.md) <br>
-- [Referral Program Examples](references/program-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, formulas, and sample email copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use bounded local product marketing context when present; does not call external tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may be invoked for adjacent growth, launch, email, or analytics requests where referral or affiliate scope is unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify the requested program type and route broader launch, email sequence, analytics, or marketing psychology work to the related skill when appropriate.
+
+Risk: Referral incentives and affiliate payouts can create fraud, abuse, or compliance exposure if launched without controls.
+
+Mitigation: Use verification, payout delays, meaningful activity thresholds, referral limits, clear terms, clawbacks, and manual review for suspicious patterns.
+
+Risk: Benchmarks and incentive examples may not fit every business model or current acquisition economics.
+
+Mitigation: Compare recommendations against first-party CAC, LTV, gross margin, conversion, churn, and payback data before launch.
+
+## Reference(s):
+
+- [Affiliate Program Design](references/affiliate-programs.md)
+- [Referral Program Examples](references/program-examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-referral-program)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance, checklists, strategy recommendations, templates, and metric formulas.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for product, program type, LTV, CAC, incentives, tools, and budget before tailoring recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

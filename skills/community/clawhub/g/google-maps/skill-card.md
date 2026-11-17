@@ -1,43 +1,54 @@
-## Description: <br>
-Google Maps integration for OpenClaw with Routes API for travel time calculations, directions, distance matrices, geocoding, place search, place details, and transit planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Maps integration for OpenClaw with Routes API for travel-time estimates, turn-by-turn directions, distance matrices, geocoding, place search, place details, and transit planning.
 
-## Publisher: <br>
-[Shaharsha](https://clawhub.ai/user/Shaharsha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaharsha](https://clawhub.ai/user/shaharsha)
 
-## Use Case: <br>
-Developers and agent users use this skill to call Google Maps services from OpenClaw for routing, traffic-aware travel estimates, geocoding, place discovery, and transit planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Place search and details results can include photo URLs containing the Google API key. <br>
-Mitigation: Use a restricted Google Maps API key with quotas, and avoid sharing transcripts or logs containing place search or details results until the photo URL behavior is patched. <br>
-Risk: Map, route, geocoding, and place queries are sent to Google Maps services. <br>
-Mitigation: Avoid submitting sensitive locations or personal data unless that sharing is acceptable for the deployment context. <br>
+## Use Case:
 
+Developers and agent users use this skill to call Google Maps services for route planning, traffic-aware travel estimates, geocoding, reverse geocoding, distance matrices, place search, and place details from an OpenClaw workflow.
 
-## Reference(s): <br>
-- [ClawHub Google Maps skill page](https://clawhub.ai/Shaharsha/google-maps) <br>
-- [Google Maps Platform coverage](https://developers.google.com/maps/coverage) <br>
-- [Google Maps API endpoint](https://maps.googleapis.com/maps/api) <br>
-- [Google Routes API endpoint](https://routes.googleapis.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GOOGLE_API_KEY or GOOGLE_MAPS_API_KEY and the Python requests package; GOOGLE_MAPS_LANG is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: Search and details results can include photo_url values containing the Google API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted Google API key with quota and billing limits, avoid sharing raw outputs that contain photo_url fields, and rotate the key if such outputs have already been printed or stored.
+
+Risk: Location, route, place, and address queries are sent to Google Maps services.
+
+Mitigation: Avoid sensitive home, work, medical, legal, client, or otherwise confidential locations unless sending that data to Google is acceptable for the user's workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaharsha/skills/google-maps)
+- [Google Maps coverage](https://developers.google.com/maps/coverage)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [JSON responses from a Python command-line helper, with Markdown usage examples and configuration guidance in the skill documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Google Maps API key and the Python requests package; optional language configuration is available through GOOGLE_MAPS_LANG.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

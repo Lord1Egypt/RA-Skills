@@ -1,46 +1,58 @@
-## Description: <br>
-Use when designing new system architecture, reviewing existing designs, or making architectural decisions, including system design, architecture review, design patterns, ADRs, and scalability planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when designing new system architecture, reviewing existing designs, or making architectural decisions. Invoke for system design, architecture review, design patterns, ADRs, scalability planning.
 
-## Publisher: <br>
-[mrhenghu](https://clawhub.ai/user/mrhenghu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrhenghu](https://clawhub.ai/user/mrhenghu)
 
-## Use Case: <br>
-Developers and engineers use this skill to design or review system architecture, evaluate architectural patterns and technology choices, and document significant decisions with ADRs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture recommendations may contain incorrect cost, compliance, security, or operational assumptions. <br>
-Mitigation: Independently review assumptions before applying architecture decisions to production systems. <br>
-Risk: Design guidance can overfit incomplete requirements or omit stakeholder constraints. <br>
-Mitigation: Validate functional and non-functional requirements with stakeholders before finalizing the architecture. <br>
+## Use Case:
 
+Developers, engineers, and architecture reviewers use this skill to design systems, compare architecture patterns, document ADRs, evaluate technology choices, and plan scalability, reliability, security, and operational trade-offs.
 
-## Reference(s): <br>
-- [Architecture Patterns](references/architecture-patterns.md) <br>
-- [ADR Template](references/adr-template.md) <br>
-- [System Design Template](references/system-design.md) <br>
-- [Database Selection](references/database-selection.md) <br>
-- [Non-Functional Requirements Checklist](references/nfr-checklist.md) <br>
-- [PostgreSQL Documentation](https://www.postgresql.org/docs/current/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mrhenghu/architecture-designer-0-1-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown documents with architecture summaries, diagrams, ADRs, recommendations, and risk mitigations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only advisory output; no evidence of code execution, data access, persistence, or hidden behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata version 0.1.0) <br>
+Risk: The skill may activate during broad architecture or infrastructure discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when architecture design, review, ADR creation, scalability planning, or technology evaluation is intended.
+
+Risk: Architecture proposals can be incomplete or unsuitable if requirements, constraints, security needs, or operational costs are missing.
+
+Mitigation: Validate outputs against functional and non-functional requirements, review trade-offs with stakeholders, and perform security and operations review before implementation.
+
+## Reference(s):
+
+- [Architecture Patterns](references/architecture-patterns.md)
+- [ADR Template](references/adr-template.md)
+- [System Design Template](references/system-design.md)
+- [Database Selection](references/database-selection.md)
+- [Non-Functional Requirements Checklist](references/nfr-checklist.md)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/current/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown architecture guidance with diagrams, ADRs, recommendations, and risk mitigations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include requirements summaries, high-level architecture diagrams, trade-off analysis, ADR-formatted decisions, technology recommendations, and risk mitigations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata version 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

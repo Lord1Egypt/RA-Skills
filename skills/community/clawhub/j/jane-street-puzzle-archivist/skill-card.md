@@ -1,42 +1,50 @@
-## Description: <br>
-Use when solving, organizing, or reviewing Jane Street monthly puzzles, especially when bootstrapping a new puzzle month, comparing against prior public solutions, capturing reusable solving patterns, submitting answers, or updating the long-lived puzzle archive and knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents solve, organize, review, and archive Jane Street monthly puzzles using reproducible scripts, local notes, and reference comparisons.
 
-## Publisher: <br>
-[aznikline](https://clawhub.ai/user/aznikline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aznikline](https://clawhub.ai/user/aznikline)
 
-## Use Case: <br>
-Developers, puzzle solvers, and archive maintainers use this skill to organize Jane Street monthly puzzle work, compare against public reference repositories, create reproducible solver artifacts, and preserve reusable solving notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow instructs agents to run local repository scripts for current puzzle metadata and reference indexing. <br>
-Mitigation: Confirm the repository is trusted and review the referenced local scripts before execution. <br>
-Risk: The workflow may create or update puzzle folders, solver scripts, notes, README entries, submission metadata, and shared archive knowledge files. <br>
-Mitigation: Review proposed file changes and scan generated scripts before running, committing, or publishing them. <br>
+## Use Case:
 
+Developers, engineers, and puzzle-solving agents use this skill to bootstrap Jane Street monthly puzzle work, compare against prior public solutions, capture reusable solving patterns, and keep archive records reproducible.
 
-## Reference(s): <br>
-- [Reference Repositories](references/reference-repos.md) <br>
-- [Solving Patterns](references/solving-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aznikline/jane-street-puzzle-archivist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, generated solver code, archive files, and JSON submission metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update puzzle folders, solver scripts, notes, README entries, submission metadata, and shared archive knowledge files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can modify puzzle archive files and may update its own reusable knowledge when new techniques are learned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to the intended puzzle archive repository and review changes to SKILL.md, reference files, and published versions before accepting them.
+
+## Reference(s):
+
+- [Reference Repositories](references/reference-repos.md)
+- [Solving Patterns](references/solving-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, code references, and structured archive notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update puzzle archive files, monthly README files, submission records, solver scripts, and reusable knowledge files when appropriate.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

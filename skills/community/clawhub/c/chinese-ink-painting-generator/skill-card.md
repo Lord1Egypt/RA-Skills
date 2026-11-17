@@ -1,41 +1,58 @@
-## Description: <br>
-Generate traditional Chinese ink painting and sumi-e style images from text prompts using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate traditional Chinese ink paintings and sumi-e brushwork art from text prompts via the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to generate Chinese ink painting, sumi-e, and related East Asian brushwork images from short text descriptions. It is suited for creative assets such as wallpapers, prints, decor concepts, meditation art, cultural projects, and traditional aesthetic designs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference IDs, and the Neta API token are sent to api.talesofai.com. <br>
-Mitigation: Use a low-privilege or trial token and avoid sending private or confidential material unless the provider is trusted. <br>
-Risk: Putting reusable API tokens directly in shell commands can expose them through shell history or process listings. <br>
-Mitigation: Prefer expanding a token from a local environment variable at invocation time and rotate tokens if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to generate Chinese ink painting-style images from short text descriptions, with optional size selection and reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/chinese-ink-painting-generator) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text] <br>
-**Output Format:** [Plain text image URL with progress and error messages on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token, a prompt, optional size selection, and optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release, package.json) <br>
+Risk: Prompts, optional reference image IDs, and the Neta API token are sent to the TalesOfAI/Neta service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive prompts and reference IDs, and install only if the external service is acceptable for the intended use.
+
+Risk: The token is supplied through a command-line flag, which can expose it through shell history, logs, or process monitoring.
+
+Mitigation: Prefer expanding the token from a protected environment variable, avoid pasting real tokens into reusable commands, and rotate the token if exposure is suspected.
+
+Risk: Install examples use mutable package sources.
+
+Mitigation: Prefer a pinned or otherwise verified install source before using the skill in a production workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/chinese-ink-painting-generator)
+- [Neta API access page](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; accepts prompt text, image size, and optional reference image UUID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

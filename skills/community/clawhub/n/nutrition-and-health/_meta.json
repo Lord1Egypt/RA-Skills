@@ -1,6 +1,39 @@
 {
-  "ownerId": "kn7e4xdsnt66p6zxxrvewvmvf1841pwv",
-  "slug": "nutrition-and-health",
+  "name": "nutrition-and-health",
   "version": "1.0.0",
-  "publishedAt": 1775132933286
+  "description": "你的专属健康顾问 - 懂你，陪伴你，全方位照顾你的健康。覆盖饮食、饮品、养生、调理、减脂、健身、养胃、日常保健。",
+  "author": "zhuqingsonga",
+  "homepage": "https://github.com/zhuqingsonga/nutrition-and-health",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhuqingsonga/nutrition-and-health.git"
+  },
+  "keywords": [
+    "健康",
+    "健康饮食",
+    "营养",
+    "营养搭配",
+    "养生",
+    "调理",
+    "减脂",
+    "减肥",
+    "健身",
+    "增肌",
+    "养胃",
+    "保健",
+    "咖啡",
+    "奶茶",
+    "外卖",
+    "healthy eating",
+    "nutrition",
+    "weight loss",
+    "fitness"
+  ],
+  "categories": [
+    "健康",
+    "生活",
+    "效率"
+  ],
+  "languages": ["zh-CN", "en"],
+  "min_openclaw_version": "2026.1.0"
 }

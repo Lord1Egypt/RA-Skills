@@ -1,44 +1,57 @@
-## Description: <br>
-Unified web search skill with fallback from Brave web_search to DuckDuckGo to Claude.ai, with automatic search-result caching in memory/research/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified web search skill with fallback across Brave web_search, DuckDuckGo, and a claude.ai browser session, with automatic caching of search results.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and external agent users use this skill to retrieve current web information through Brave, DuckDuckGo, or Claude.ai fallback paths and to preserve search notes for later research. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries and results may be sent to Brave, DuckDuckGo, or Claude.ai. <br>
-Mitigation: Avoid sensitive queries unless using a trusted provider, and force a specific method when provider choice matters. <br>
-Risk: Search records may be saved locally under memory/research/. <br>
-Mitigation: Periodically review or delete cached research files, especially after sensitive or regulated work. <br>
-Risk: The Claude.ai browser fallback requires a logged-in browser session and may be slow or hit account limits. <br>
-Mitigation: Prefer Brave or DuckDuckGo for routine searches and use the browser fallback only when analysis-oriented search is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/mupeng-web-claude) <br>
-- [Publisher profile](https://clawhub.ai/user/mupengi-bot) <br>
-- [Claude.ai new chat](https://claude.ai/new) <br>
-- [Mupeng GitHub profile](https://github.com/mupeng) <br>
+## Use Case:
 
+Developers and agent users can use this skill to run web research through available search providers, falling back from Brave to DuckDuckGo and then to a claude.ai browser workflow when needed.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save search query, timestamp, method, links, summaries, and insights to memory/research/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms, result summaries, and extracted insights are automatically saved under memory/research/, which can expose secrets, personal data, confidential research, or regulated information.
+
+Mitigation: Avoid sensitive queries unless a no-cache mode, deletion or retention controls, and clear user confirmation are added before caching.
+
+Risk: The claude.ai fallback can use a logged-in browser session and submit research prompts through that account.
+
+Mitigation: Prefer Brave or DuckDuckGo for routine searches, require confirmation before the logged-in browser fallback, and disable the fallback where authenticated browser use is not acceptable.
+
+Risk: External search results and summarized web content can be stale, manipulated, incomplete, or wrong.
+
+Mitigation: Verify important claims against primary sources before relying on the generated research output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/mupeng-web-claude)
+- [claude.ai browser endpoint](https://claude.ai/new)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline commands and cached search-result notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may be saved under memory/research/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

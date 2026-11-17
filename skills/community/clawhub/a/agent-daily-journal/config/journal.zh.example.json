@@ -1,0 +1,11 @@
+{
+  "language": "zh",
+  "workspace": "/absolute/path/to/your/workspace",
+  "day_start_hour": 4,
+  "max_windows": 4,
+  "digest_chars": 2600,
+  "local_mode": "auto",
+  "labels": {
+    "footer": "每个窗口单独写一条，追加到 journal.md 末尾。每条末尾必须原样写这一行（HTML 注释）：<!-- window:YYYY-MM-DD -->，DATE 换成该窗口起始日。"
+  }
+}

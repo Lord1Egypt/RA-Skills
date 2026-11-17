@@ -1,49 +1,68 @@
-## Description: <br>
-Build original LangGraph agents for Warden Protocol and prepare them for publishing in Warden Studio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build original LangGraph agents for Warden Protocol and prepare them for publishing in Warden Studio.
 
-## Publisher: <br>
-[Kryptopaid](https://clawhub.ai/user/Kryptopaid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kryptopaid](https://clawhub.ai/user/kryptopaid)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold, test, deploy, and prepare original LangGraph-based crypto/Web3 agents for Warden Protocol and Warden Studio publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled initialization script writes scaffold files for a new agent project. <br>
-Mitigation: Run the script only in a project directory you control and review generated files before committing or deploying them. <br>
-Risk: The skill relies on API keys for OpenAI, LangSmith, and optional external data providers. <br>
-Mitigation: Keep real API keys out of Git and logs, use local environment files for development, and use deployment secret managers for production. <br>
-Risk: Deployed Warden agents expose HTTP endpoints that can receive external requests. <br>
-Mitigation: Protect public endpoints with authentication, rate limits, monitoring, and input validation before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/Kryptopaid/build-warden-agent) <br>
-- [Warden Protocol documentation](https://docs.wardenprotocol.org) <br>
-- [Warden community agents repository](https://github.com/warden-protocol/community-agents) <br>
-- [LangSmith](https://smith.langchain.com) <br>
-- [API Integration & Deployment Guide](references/deployment-guide.md) <br>
-- [LangGraph Agent Patterns for Warden](references/langgraph-patterns.md) <br>
-- [Warden Agent Builder - Quick Reference](references/quick-reference.md) <br>
-- [Installation Guide for OpenClaw](references/installation-guide.md) <br>
-- [Example Warden Agent Configurations](assets/example-configs.md) <br>
+## Use Case:
 
+Developers and agent builders use this skill to create original LangGraph-based Warden Protocol agents, test them, and prepare deployment or registration for Warden Studio, LangSmith Deployments, or custom infrastructure.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code blocks, shell commands, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can scaffold LangGraph TypeScript or Python project files and test HTTP agent endpoints when the bundled scripts are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Copy-ready testing and deployment examples can expose API keys if reused carelessly.
+
+Mitigation: Use HTTPS, inject secrets through environment variables or a secret manager, and use dedicated revocable keys for Warden Studio or LangSmith.
+
+Risk: Generated or example agent services can be exposed without adequate controls.
+
+Mitigation: Add authentication, rate limits, input validation, and restricted CORS before making an agent endpoint public.
+
+Risk: Example database or cache configurations can leave default credentials or public Redis ports in place.
+
+Mitigation: Replace default database/cache credentials, keep Redis private, and review service exposure before deployment.
+
+Risk: Generated agents may inherit unpinned dependencies or container images.
+
+Mitigation: Pin dependencies and container images, scan the generated agent, and harden it before production use.
+
+## Reference(s):
+
+- [Warden Agent Builder README](README.md)
+- [API Integration and Deployment Guide](references/deployment-guide.md)
+- [Installation Guide for OpenClaw](references/installation-guide.md)
+- [LangGraph Agent Patterns for Warden](references/langgraph-patterns.md)
+- [Warden Agent Builder Quick Reference](references/quick-reference.md)
+- [Example Warden Agent Configurations](assets/example-configs.md)
+- [Warden Protocol documentation](https://docs.wardenprotocol.org)
+- [Warden community agents repository](https://github.com/warden-protocol/community-agents)
+- [LangSmith](https://smith.langchain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, configuration examples, and generated project files when helper scripts are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce TypeScript or Python LangGraph project scaffolds and deployment/test commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

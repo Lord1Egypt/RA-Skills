@@ -1,0 +1,6 @@
+# ct-literature runtime dependencies
+# Fetch scripts use only the Python standard library (urllib) — no third-party dependency required.
+# `requests` is NOT a runtime dependency: it is an optional, currently-unused import reserved in
+# fetch_openalex.py for a future requests-path, and the R-bridge (r_libs.py) was removed in v0.5.1.
+# If you later enable the requests path, pin an upper bound, e.g. requests>=2.28,<3.
+# Optional: matplotlib (future trend charts) — also pin an upper bound if used, e.g. matplotlib>=3.5,<4.

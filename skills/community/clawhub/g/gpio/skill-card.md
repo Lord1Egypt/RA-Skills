@@ -1,38 +1,51 @@
-## Description: <br>
-gpio reference tool <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+gpio reference tool
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise GPIO reference notes, quickstart material, patterns, debugging tips, performance notes, security considerations, migration guidance, and a cheat sheet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill emits generic GPIO reference documentation that may not be verified for a specific hardware-control environment. <br>
-Mitigation: Review the guidance before applying it to real GPIO systems and rely on validated platform or hardware documentation for operational decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise GPIO reference material, including introductory, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc output; no external API calls, credentials, network access, file access, or system setting changes are described by the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The generated GPIO material is generic reference documentation and may not be authoritative for a specific hardware, operating system, or deployment environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as a starting point and verify credential, security, migration, and hardware-specific steps against authoritative project or vendor documentation before use.
+
+## Reference(s):
+
+- [Gpio on ClawHub](https://clawhub.ai/xueyetianya/skills/gpio)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected canned reference output; no network access, credentials, or persistent system state according to server security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

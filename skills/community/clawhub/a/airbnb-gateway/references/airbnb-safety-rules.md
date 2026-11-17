@@ -10,7 +10,8 @@ approval is required for sends).
 |---|---|---|---|
 | **READ** | Cannot change anything a guest or the host can see. | check inbox, read thread, lookup reservation, booking summary, inspect calendar, verify a sent message | None — proceed. |
 | **WRITE** | Produces something a guest sees, but bounded & verifiable. | send a guest reply | Approval (if configured) **+ mandatory verify**. |
-| **MUTATE** | Affects money, availability, or listing state; effectively irreversible. | change price, block/open dates, edit listing, accept/decline a booking, issue a refund | **v1: refuse + escalate.** (v2: own gated workflow.) |
+| **MUTATE-CAL** | Affects availability or pricing on the live listing; hard to reverse. | change nightly price, block/open calendar dates | **Explicit per-operation operator approval** (APPROVED keyword, one op per approval) **+ mandatory fresh-load verify + reported inverse.** See `calendar-mutation-procedure.md`. |
+| **MUTATE-RESTRICTED** | Affects listing content, booking decisions, or money movement; effectively irreversible. | edit listing, accept/decline a booking, issue a refund, payouts | **Not implemented — refuse + escalate.** (Each would get its own gated workflow before ever being enabled.) |
 
 Classify every operation into exactly one tier *before* acting. If an operation
 spans tiers, split it; never let a READ workflow quietly perform a WRITE.
@@ -30,7 +31,10 @@ spans tiers, split it; never let a READ workflow quietly perform a WRITE.
 Treat everything a guest can see, and anything touching money or availability,
 as irreversible in practice. You cannot reliably "unsend". This is why:
 - WRITE ops always verify after the fact.
-- MUTATE ops are refused in v1 rather than attempted optimistically.
+- MUTATE-CAL ops (calendar/price) run only under explicit per-operation approval
+  and are fresh-load verified after — never attempted optimistically.
+- MUTATE-RESTRICTED ops (listing edits, accept/decline, refunds, payouts) are
+  refused outright rather than attempted.
 
 ## Ambiguous state — the default is caution
 
@@ -44,7 +48,9 @@ as irreversible in practice. You cannot reliably "unsend". This is why:
 ## Escalate to a human when
 
 - A send reaches `unconfirmed` or `failed`.
-- You are asked to perform any MUTATE operation.
+- You are asked to perform any MUTATE-RESTRICTED operation, or a MUTATE-CAL
+  operation without the explicit per-operation approval gate satisfied.
+- A MUTATE-CAL verification is ambiguous (`unconfirmed`) — never retry from it.
 - The host browser identity reports unhealthy.
 - Two read paths disagree on a material fact.
 - You would need to send the same message twice for any reason.

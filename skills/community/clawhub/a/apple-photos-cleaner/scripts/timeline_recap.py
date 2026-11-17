@@ -6,16 +6,50 @@ Groups photos by day/event clusters and includes context like people, locations,
 
 import argparse
 import sys
-from datetime import datetime, timedelta
-from typing import Any, Optional
+from datetime import date, timedelta
+from typing import Any
 
-from _common import PhotosDB, coredata_to_datetime, datetime_to_coredata, detect_face_schema, format_date_range, output_json
+from _common import (
+    ExitCode,
+    PhotosDB,
+    add_common_args,
+    coredata_to_local,
+    detect_face_schema,
+    emit_result,
+    format_date_range,
+    format_degraded,
+    handle_cli_error,
+    has_timezone_offset,
+    local_datetime_sql,
+    setup_logging,
+    tz_offset_sql,
+)
+from _scenes import SEARCH_INDEX, IndexLabels, scene_source, search_index_available
+from _schema import FACES, SCENES, Degradation, get_schema
+
+# Schema contract (T1.4): see _schema. Missing required → exit 5; missing optional → `degraded`.
+REQUIRED_COLUMNS: tuple[str, ...] = (
+    "ZASSET.ZDATECREATED",
+    "ZASSET.ZFAVORITE",
+    "ZASSET.ZFILENAME",
+    "ZASSET.ZKIND",
+    "ZASSET.ZLATITUDE",
+    "ZASSET.ZLONGITUDE",
+    "ZASSET.ZTRASHEDSTATE",
+    "ZADDITIONALASSETATTRIBUTES.ZASSET",
+)
+OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {
+    "people": FACES,
+    "scenes": SCENES,
+}
+# A section whose columns are missing is still available when this source exists (doctor uses it).
+ALTERNATE_SOURCES = {"scenes": search_index_available}
 
 
 def generate_timeline(
-    db_path: Optional[str] = None,
-    start_date: Optional[str] = None,
-    end_date: Optional[str] = None,
+    db_path: str | None = None,
+    start_date: str | None = None,
+    end_date: str | None = None,
     cluster_hours: int = 4,
 ) -> dict[str, Any]:
     """
@@ -30,25 +64,31 @@ def generate_timeline(
     Returns:
         Timeline dictionary
     """
-    with PhotosDB(db_path) as conn:
+    with PhotosDB(db_path, require=REQUIRED_COLUMNS, operation="Timeline recap") as conn:
         cursor = conn.cursor()
         schema = detect_face_schema(cursor)
+        degraded = Degradation(get_schema(conn))
+        has_faces = degraded.check("people", *OPTIONAL_COLUMNS["people"])
+        # Scene names come from ZSCENECLASSIFICATION or, on macOS 26, Photos' search index (see _scenes).
+        scenes_from = scene_source(conn)
+        index_labels = IndexLabels(conn)  # filled in bulk below, only if the index is the source
+        has_scenes = scenes_from is not None
+        if scenes_from is None:
+            degraded.check("scenes", *OPTIONAL_COLUMNS["scenes"])
+        tz_available = has_timezone_offset(cursor)
+        local_dt = local_datetime_sql(tz_available)
 
-        # Build date filters
+        # Date filters compare local capture time as text ("YYYY-MM-DD HH:MM:SS")
         where_clauses = ["a.ZTRASHEDSTATE != 1"]
         params: list = []
 
         if start_date:
-            dt = datetime.fromisoformat(start_date)
-            timestamp = datetime_to_coredata(dt)
-            where_clauses.append("a.ZDATECREATED >= ?")
-            params.append(timestamp)
+            where_clauses.append(f"{local_dt} >= ?")
+            params.append(f"{date.fromisoformat(start_date).isoformat()} 00:00:00")
 
         if end_date:
-            dt = datetime.fromisoformat(end_date + " 23:59:59")
-            timestamp = datetime_to_coredata(dt)
-            where_clauses.append("a.ZDATECREATED <= ?")
-            params.append(timestamp)
+            where_clauses.append(f"{local_dt} <= ?")
+            params.append(f"{date.fromisoformat(end_date).isoformat()} 23:59:59")
 
         # Get photos with metadata
         query = f"""
@@ -59,8 +99,10 @@ def generate_timeline(
                 a.ZKIND,
                 a.ZLATITUDE,
                 a.ZLONGITUDE,
-                a.ZFAVORITE
+                a.ZFAVORITE,
+                {tz_offset_sql(tz_available)} AS tz_offset
             FROM ZASSET a
+            LEFT JOIN ZADDITIONALASSETATTRIBUTES aa ON a.Z_PK = aa.ZASSET
             WHERE {" AND ".join(where_clauses)}
             ORDER BY a.ZDATECREATED
         """
@@ -69,7 +111,7 @@ def generate_timeline(
         photos = []
 
         for row in cursor.fetchall():
-            created = coredata_to_datetime(row["ZDATECREATED"])
+            created = coredata_to_local(row["ZDATECREATED"], row["tz_offset"])
             if created:
                 photos.append(
                     {
@@ -83,8 +125,12 @@ def generate_timeline(
                     }
                 )
 
+        # SQL orders by UTC; photos from different time zones can be out of order in local time
+        photos.sort(key=lambda p: p["created"])
+
         if not photos:
             return {
+                "degraded": degraded.entries,
                 "timeline": [],
                 "summary": {
                     "total_photos": 0,
@@ -129,21 +175,24 @@ def generate_timeline(
             events.append(current_event)
 
         # Enrich events with additional data
+        if scenes_from == SEARCH_INDEX:  # one batch for every photo in the timeline
+            index_labels.preload(p["id"] for event in events for p in event["photos"])
         for event in events:
             photo_ids = [p["id"] for p in event["photos"]]
             event["photo_count"] = len(photo_ids)
             event["video_count"] = sum(1 for p in event["photos"] if p["kind"] == "video")
             event["favorites"] = sum(1 for p in event["photos"] if p["is_favorite"])
 
-            # Get people in this event
-            if photo_ids:
-                placeholders = ",".join("?" * len(photo_ids))
+            placeholders = ",".join("?" * len(photo_ids))
+
+            # Get people in this event (None when this library has no face data)
+            if photo_ids and has_faces:
                 cursor.execute(
                     f"""
-                    SELECT DISTINCT p.ZFULLNAME, COUNT(df.{schema['asset_fk']}) as count
+                    SELECT DISTINCT p.ZFULLNAME, COUNT(df.{schema["asset_fk"]}) as count
                     FROM ZPERSON p
-                    JOIN ZDETECTEDFACE df ON p.Z_PK = df.{schema['person_fk']}
-                    WHERE df.{schema['asset_fk']} IN ({placeholders})
+                    JOIN ZDETECTEDFACE df ON p.Z_PK = df.{schema["person_fk"]}
+                    WHERE df.{schema["asset_fk"]} IN ({placeholders})
                     GROUP BY p.Z_PK
                     ORDER BY count DESC
                 """,
@@ -152,10 +201,12 @@ def generate_timeline(
 
                 event["people"] = [{"name": row["ZFULLNAME"], "count": row["count"]} for row in cursor.fetchall()]
             else:
-                event["people"] = []
+                event["people"] = [] if has_faces else None
 
-            # Get scene classifications
-            if photo_ids:
+            # Get scene classifications (None when this library has none)
+            if photo_ids and scenes_from == SEARCH_INDEX:
+                event["scenes"] = index_labels.top(photo_ids)
+            elif photo_ids and has_scenes:
                 cursor.execute(
                     f"""
                     SELECT DISTINCT sc.ZSCENENAME, COUNT(*) as count
@@ -174,7 +225,7 @@ def generate_timeline(
                     if row["ZSCENENAME"]
                 ]
             else:
-                event["scenes"] = []
+                event["scenes"] = [] if has_scenes else None
 
             # Location summary
             locations = [(p["latitude"], p["longitude"]) for p in event["photos"] if p["latitude"] and p["longitude"]]
@@ -192,15 +243,15 @@ def generate_timeline(
 
         # Group events by day
         timeline = []
-        current_day = None
-        day_events = []
+        current_day: date | None = None
+        day_events: list[dict[str, Any]] = []
 
         for event in events:
             event_date = event["start_time"].date()
 
             if current_day is None or event_date != current_day:
                 # Save previous day
-                if day_events:
+                if current_day is not None and day_events:
                     timeline.append(
                         {
                             "date": current_day.isoformat(),
@@ -218,7 +269,7 @@ def generate_timeline(
                 day_events.append(format_event(event))
 
         # Add last day
-        if day_events:
+        if current_day is not None and day_events:
             timeline.append(
                 {
                     "date": current_day.isoformat(),
@@ -232,6 +283,7 @@ def generate_timeline(
         total_photos = sum(day["total_photos"] for day in timeline)
 
         return {
+            "degraded": degraded.entries,
             "timeline": timeline,
             "summary": {
                 "total_photos": total_photos,
@@ -320,17 +372,15 @@ Examples:
   %(prog)s --start-date 2025-03-01 --cluster-hours 8 --narrative
         """,
     )
-    parser.add_argument("--db-path", help="Path to Photos.sqlite database")
-    parser.add_argument("--library", help="Path to Photos library")
-    parser.add_argument("--start-date", help="Start date (YYYY-MM-DD)")
-    parser.add_argument("--end-date", help="End date (YYYY-MM-DD)")
+    add_common_args(parser, human_aliases=("--human", "--narrative"))
+    parser.add_argument("--start-date", help="Start date (YYYY-MM-DD, local capture time)")
+    parser.add_argument("--end-date", help="End date (YYYY-MM-DD, local capture time, inclusive)")
     parser.add_argument(
         "--cluster-hours", type=int, default=4, help="Hours between photos to consider separate events (default: 4)"
     )
-    parser.add_argument("--narrative", action="store_true", help="Output narrative text instead of JSON")
-    parser.add_argument("-o", "--output", help="Output file")
 
     args = parser.parse_args()
+    setup_logging(verbose=args.verbose, quiet=args.quiet)
 
     try:
         db_path = args.db_path or args.library
@@ -342,31 +392,28 @@ Examples:
             cluster_hours=args.cluster_hours,
         )
 
-        if args.narrative:
-            output_text = format_narrative(timeline)
+        if args.format == "human":
+            output_text = format_narrative(timeline) + format_degraded(timeline)
             if args.output:
                 with open(args.output, "w") as f:
                     f.write(output_text)
-                print(f"Written to: {args.output}", file=sys.stderr)
+                if not args.quiet:
+                    print(f"Written to: {args.output}", file=sys.stderr)
             else:
                 print(output_text)
         else:
-            output_json(timeline, args.output)
+            emit_result(timeline, args)
 
-            if not args.output:
-                print("\n" + format_narrative(timeline), file=sys.stderr)
+            if not args.output and not args.quiet:
+                print("\n" + (format_narrative(timeline) + format_degraded(timeline)), file=sys.stderr)
 
         return 0
 
-    except FileNotFoundError as e:
-        print(f"Error: {e}", file=sys.stderr)
-        return 1
+    except KeyboardInterrupt:
+        print("\nCancelled.", file=sys.stderr)
+        return ExitCode.USER_ABORTED
     except Exception as e:
-        print(f"Error generating timeline: {e}", file=sys.stderr)
-        import traceback
-
-        traceback.print_exc()
-        return 1
+        return handle_cli_error(e)
 
 
 if __name__ == "__main__":

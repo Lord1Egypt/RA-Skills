@@ -1,49 +1,66 @@
-## Description: <br>
-Global stock analysis for US, China, and EU markets, including technical, fundamental, macro, forex, crypto, and options workflows powered by Alpha Vantage market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global Stock Analysis helps agents research US, China, and EU markets using Alpha Vantage-powered terminal workflows for quotes, fundamentals, technical indicators, macro data, forex, crypto, and options.
 
-## Publisher: <br>
-[luohy15](https://clawhub.ai/user/luohy15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luohy15](https://clawhub.ai/user/luohy15)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to run terminal-based market research workflows for equities, fundamentals, technical indicators, macro conditions, forex, crypto, and US options chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an ALPHAVANTAGE_API_KEY, which is a sensitive credential. <br>
-Mitigation: Provide the key through an environment variable, a local .env file, or the CLI's explicit key flag; avoid committing it to source control or sharing it in prompts and logs. <br>
-Risk: Market data and generated analysis may be delayed, incomplete, or unsuitable as the sole basis for financial decisions. <br>
-Mitigation: Check source timestamps and compare important conclusions against authoritative market data and qualified financial review before acting. <br>
-Risk: The authoritative security evidence reports clean scan inputs but notes that artifact text was not available for a full independent review and VirusTotal was pending rather than conclusive. <br>
-Mitigation: Install only when the listing and files match expected behavior, review commands before running them, and deploy in an environment appropriate for external CLI and network access. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to guide market-data collection and analysis from the terminal. It supports company research, stock comparison, technical and fundamental analysis, macro monitoring, forex and crypto checks, and US options-chain review.
 
-## Reference(s): <br>
-- [Global Stock Analysis listing](https://clawhub.ai/luohy15/global-stock-analysis) <br>
-- [Alpha Vantage](https://www.alphavantage.co) <br>
-- [Fundamental Analysis](references/fundamentals.md) <br>
-- [Technical Analysis](references/technicals.md) <br>
-- [Macro & Market Overview](references/macro.md) <br>
-- [Sector / Multi-Stock Comparison](references/comparison.md) <br>
-- [Forex & Crypto](references/forex-crypto.md) <br>
-- [Options Chain](references/options.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires marketdata-cli and an ALPHAVANTAGE_API_KEY for live data workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.13 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill installs and runs an unpinned external CLI package, marketdata-cli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted package sources, pin a reviewed version in controlled environments, and avoid --force unless replacing an existing install is intended.
+
+Risk: The skill requires an Alpha Vantage API key.
+
+Mitigation: Expose only the ALPHAVANTAGE_API_KEY needed for the requested command and avoid placing keys in shared logs or outputs.
+
+Risk: Financial market outputs can be stale, incomplete, or misread as investment advice.
+
+Mitigation: Verify important results against authoritative sources and treat generated analysis as research support.
+
+## Reference(s):
+
+- [Fundamental Analysis](references/fundamentals.md)
+- [Technical Analysis](references/technicals.md)
+- [Macro & Market Overview](references/macro.md)
+- [Sector / Multi-Stock Comparison](references/comparison.md)
+- [Forex & Crypto](references/forex-crypto.md)
+- [Options Chain](references/options.md)
+- [Alpha Vantage](https://www.alphavantage.co)
+- [Alpha Vantage API Key](https://www.alphavantage.co/support/#api-key)
+- [Declared Skill Source](https://github.com/alphavantage/alpha_vantage_mcp)
+- [Installation Tutorial](https://www.youtube.com/watch?v=Z6DjYKN4uos)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and terminal command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires marketdata-cli and ALPHAVANTAGE_API_KEY; command results may be CSV or JSON depending on CLI flags.]
+
+## Skill Version(s):
+
+0.0.14 (source: release evidence and frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

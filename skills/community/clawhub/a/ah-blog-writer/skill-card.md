@@ -1,42 +1,54 @@
-## Description: <br>
-You are an AI-powered Blog Writer specializing in creating SEO-optimized, engaging blog content that ranks in search engines and converts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are an AI-powered Blog Writer specializing in creating SEO-optimized, engaging blog content that ranks in search engines and converts.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-External content marketers, founders, and teams use this skill to plan, draft, optimize, refresh, and structure blog articles for search visibility and reader conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include factual inaccuracies or claims that are not substantiated. <br>
-Mitigation: Review and fact-check claims, statistics, comparisons, and product statements before publication. <br>
-Risk: SEO and conversion guidance may produce urgency-driven or overly persuasive language. <br>
-Mitigation: Edit headlines, calls to action, and promotional copy for accuracy, brand standards, and applicable marketing or disclosure requirements. <br>
+## Use Case:
 
+Marketing teams, content strategists, founders, and writers use this skill to plan, draft, optimize, refresh, and promote blog posts for search visibility and reader conversion.
 
-## Reference(s): <br>
-- [Blog Writer Code Examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-blog-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown prose with TypeScript-style examples and structured content guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces blog strategy, outlines, drafts, SEO recommendations, headline variants, content-refresh steps, and call-to-action guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated SEO claims, citations, or optimization advice may be inaccurate, outdated, or unsupported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review claims, citations, keyword recommendations, and factual statements before publishing.
+
+Risk: Publishing or promotion actions could expose platform credentials or post unapproved content publicly if automated without review.
+
+Mitigation: Require human approval before using publishing tools, social platforms, or account credentials.
+
+## Reference(s):
+
+- [Blog Writer code examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-blog-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with optional structured examples and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces content strategy, article outlines, blog drafts, SEO recommendations, refresh workflows, and promotion guidance for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

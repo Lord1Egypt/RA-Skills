@@ -1,37 +1,41 @@
 ﻿---
 name: music-craft
-version: 1.5.0
-description: Generate music through a disciplined OpenClaw-native workflow. Use when producing songs, instrumentals, or lyrics-driven tracks with structure, anti-sparse prompt engineering, and quality verification. Provider-agnostic — works with any music backend the OpenClaw runtime exposes.
+version: 1.8.2
+description: Generate songs, instrumentals, or lyrics-driven tracks through a structured OpenClaw-native workflow with anti-sparse prompt engineering and quality verification. Provider-agnostic — works with any music backend the runtime exposes (ACE-Step, MusicGen, Stable Audio, or a cloud CLI). Includes local helpers for a loopback ACE-Step server (submit, wait, duration check, cache recovery), lyrics linting, and optional stem separation (Demucs) and stem remixing (ffmpeg) of the user's own local audio files.
 metadata: {"openclaw":{"requires":{"anyBins":["python3","python"]},"emoji":"\ud83c\udfb5","homepage":"https://github.com/LuisCharro/skills/tree/main/publish/music-craft","envVars":[{"name":"MUSIC_PROVIDER_API_KEY","required":false,"description":"Generic API key for any music provider."},{"name":"STABILITY_API_KEY","required":false,"description":"Stability AI API key. Only needed if using Stable Audio as backend."}]}}
 ---
-
 # Music Craft
 
-Treat music generation as a small, controlled iteration loop, not a single "press button, get song" call.
+## What is Music Craft?
 
-The required generation loop is:
+Music Craft is the **provider-agnostic entry point** for music generation in OpenClaw. It guides the model end-to-end — from intake, through a structured production-sheet prompt, to quality verification and delivery — so you get songs, instrumentals, or lyrics-driven tracks that sound complete (no sparse dropouts, no silent sections), in your chosen length, with vocals that match your lyrics.
 
-1. Clarify goal and source material.
-2. Analyze source audio if available, or accept user-provided analysis.
-3. Build a production-sheet prompt with genre, mood, BPM, key, instruments, structure, vocals/lyrics, and constraints.
-4. Select backend based on need: exact-duration vocals/lyrics -> ACE-Step; local melody-aware cover/repaint experiments -> ACE-Step if hardware and time budget allow; instrumental/local -> Stable Audio 3 or MusicGen; fast cloud cover, mashup, or MiniMax-specific flags -> `music-craft-minimax` / mmx.
-5. Validate prompt length, structure, backend-specific conflicts, and expected duration.
-6. Generate with the selected backend.
-7. Verify duration, loudness/peak, file size, audible completeness, lyrics alignment, and structure.
-8. Deliver files with a short analysis summary and caveats. If quality fails, adjust the prompt and retry; do not retry the same payload twice.
+**It picks the right backend for the job.** Local ACE-Step for exact-duration vocal tracks with lyrics. MusicGen for local instrumental experiments. Stable Audio for production-friendly instrumentals. Any other cloud backend the runtime exposes. You pick the outcome; the skill routes.
 
-For deep prompt engineering, lyrics structure, and the full user-preference decision table, see the linked references at the end.
+> **MiniMax music cloud status (checked 2026-11-08).** MiniMax closed its paid Music and Lyrics Generation APIs to new users on 2026-08-20 and is discontinuing the free music endpoints (`music-3.0-free`, `music-2.6-free`, `music-cover-free`). The current `mmx` CLI (1.0.28) no longer has a `music` command. Existing subscribers are cut off too (a paying account got HTTP 410 in September 2026), so there is no MiniMax music path any more. Use local ACE-Step for vocals, covers and exact duration. MiniMax now points to its open-weights MiniMax Music 3 model on Hugging Face (`MiniMaxAI/MiniMax-Music3`, custom license); see [`references/other-backends.md`](references/other-backends.md) for the researched, not yet verified, local setup.
 
-## Data, Consent, and Local Side Effects
 
-This skill may use local or cloud music backends depending on what the user asks for and what is installed. Keep the workflow user-visible:
+## Key Capabilities
 
-- **Cloud backends:** prompts, lyrics, reference URLs, and generated/derived music instructions may be sent to the selected provider.
-- **Local backends:** model downloads, local analysis, temporary files, and generated audio may be written on the user's machine.
-- **Reference material:** fetched webpages and lyrics pages are used only to enrich the music prompt unless the user explicitly chooses an audio/cover workflow.
-- **Output files:** ask where to save generated files and avoid overwriting user-visible outputs without explicit confirmation.
+- **Production-sheet prompt engineering** — every prompt is a structured brief with genre, mood, BPM, key, instruments, structure, vocals, and an avoid list.
+- **Anti-sparse guards by default** — instruments stay playing, no a cappella dropouts, no silent mid-sections.
+- **Exact-duration vocal tracks** — local ACE-Step returns requested length to the millisecond (verified 18/18 local jobs).
+- **Structure-tagged lyrics** — canonical `[Verse]`, `[Chorus]`, `[Break]`, etc., so the model sings the song you wrote.
+- **Pre-generation linting** — duration density, tag whitelist, prompt/flag conflicts caught before you spend a generation.
+- **Quality verification on every output** — duration, loudness, file size, audible completeness, lyrics alignment.
+- **Provider-agnostic** — local ACE-Step, MusicGen, Stable Audio, or a cloud backend; same workflow, same verification.
 
-Before uploading user-owned or third-party media to a cloud backend, state what will be sent and why, then wait for confirmation if the user has not already clearly requested that cloud workflow.
+## Why use this skill?
+
+Most music models treat "sparse" as "remove everything" or "3 minutes" as "however long the model wants". Music Craft encodes the rules once, so every generation runs through the same loop with the same anti-sparse guard, the same prompt validation, the same post-generation verification. You get coherent, full, audibly correct songs — not first-draft lottery tickets.
+
+## Quick Start
+
+1. Say what you want — e.g. _"Make a sad love song in Spanish, ~3 minutes."_
+2. The skill auto-detects language, genre, mood, duration, and asks only the 1-3 things that aren't recoverable from your message.
+3. It builds a production-sheet prompt and routes to the right backend.
+4. It lints the prompt + lyrics, generates, then verifies duration/loudness/completeness before delivering.
+5. If quality fails, it adjusts the prompt and retries once — never the same payload twice.
 
 ## When To Use
 
@@ -46,27 +50,25 @@ Use this skill when the task involves:
 - **needing a specific song length (e.g. 3:30)** — this skill's ACE-Step backend takes `audio_duration` as a parameter and is the exact-duration route. Verified field run: ACE-Step returned exact requested duration for 18/18 local jobs; MiniMax cloud returned 57-135% of requested duration.
 
 **Routing:**
+
 - Prefer this skill when exact duration matters more than generation speed.
 - Prefer this skill when the user wants a full-length local vocal track.
-- Redirect to `music-craft-minimax` only for MiniMax-native workflows or when the user explicitly wants the MiniMax path.
 
 ## When NOT To Use
 
 Do not use this skill when:
 
 - the user only needs lyrics as text with no audio — use a writing skill instead
-- the user wants a fast cloud cover, upload-based style transfer, emotion analysis, or a mashup — use `music-craft-minimax`
-- the user wants a local cover/repaint experiment but cannot accept ACE-Step's hardware, timeout, and queue constraints — use `music-craft-minimax` or a cloud backend instead
-- the user has specific BPM, key, or per-section structure requirements that need separate flags — use `music-craft-minimax`
+- the user wants a cover or style transfer but cannot accept ACE-Step's hardware, timeout, and queue constraints — say plainly that no fast cloud cover path is verified in this skill; do not promise one
 - a deterministic, single-shot generation with no iteration is sufficient and the user already has the right prompt
 - the user wants to mutate a specific existing audio file (pitch shift, time stretch, stem split) — that is post-production, not generation
 
 ## Decision Tree
 
-Use this skill unless the request explicitly needs a MiniMax-only path:
+Use this skill by default:
 
-1. If the user wants a fast cloud cover, advanced audio/emotion analysis, a mashup, or per-flag control for `--avoid`, `--bpm`, `--key`, or `--structure`, switch to `music-craft-minimax`.
-2. If the user wants a local source-audio restyle and accepts slower, experimental ACE-Step behavior, stay here and use the ACE-Step audio-conditioned guide.
+1. If the user asks for MiniMax, explain that MiniMax music generation is no longer available and offer local ACE-Step instead.
+2. If the user wants a cover or source-audio restyle, stay here and use the ACE-Step audio-conditioned guide; it is slower and experimental, so say so before starting.
 3. If the user wants a standard song, instrumental, jingle, or lyrics-driven track, stay here.
 4. If the request is vague but still about generation, stay here and infer defaults before asking anything.
 5. If the user is asking to edit or mutate an existing audio file, treat it as post-production, not base generation.
@@ -78,7 +80,7 @@ Use this skill unless the request explicitly needs a MiniMax-only path:
 
 ## Core Philosophy
 
-This skill is **provider-agnostic** by design. It works with whatever music backend is available: a native `music_generate` tool exposed by the runtime, or a CLI like `mmx` invoked via bash. It does not assume any specific provider, model, or API.
+This skill is **provider-agnostic** by design. It works with whatever music backend is available: a native `music_generate` tool exposed by the runtime, or a CLI invoked via bash. It does not assume any specific provider, model, or API.
 
 Three rules drive every generation:
 
@@ -93,18 +95,18 @@ This skill is agent-neutral. It uses whatever music backend is available — a n
 It does not require:
 
 - any specific music provider
-- any CLI (`mmx` or other)
+- any specific CLI
 - any external API key beyond what the runtime already needs
 - any audio analysis library (librosa, parselmouth, ffmpeg)
 
-If a more capable backend is installed, the `music-craft-minimax` skill unlocks fast cloud cover workflow, separate parameter flags, and emotion-driven mashups. This skill is the entry point; that one is the power-user upgrade.
+`music-craft-minimax` used to add MiniMax cloud cover, mashup, and per-flag control. MiniMax music generation no longer works (see the status note above), so that skill is end of life; its local analysis and lint scripts still work if it is installed.
 
 ## Free Tool Augmentation
 
 The OpenClaw runtime exposes several free tools that enrich the music generation workflow. None of these require user-side installation — they are part of the runtime, and the skill can call them directly to gather more context about the user's request before building the prompt.
 
 | Tool | Purpose | When to use |
-|---|---|---|
+| --- | --- | --- |
 | `web_fetch` | Fetch readable content from any URL | Lyrics pages, Wikipedia, artist bios, music blogs |
 | `web_search` | Search the web with a query | Find lyrics when only the title is known, find artist info, find genre descriptions |
 | `memory_search` / `memory_get` | Recall from the user's durable memory | Previous music preferences, prior generation issues, typical genres |
@@ -139,32 +141,40 @@ Non-negotiable rules that always apply:
 - When a required dependency is missing, ask the user — do not silently
   degrade or skip.
 
-### When to redirect to `music-craft-minimax`
+### Covers, mashups, and MiniMax requests
 
-If the user's request implies any of:
-
-- fast cloud cover or style transfer from a reference audio file
-- emotion analysis on input audio
-- two-song mashup
-- separate `--avoid`, `--bpm`, `--key`, or `--structure` flags
-
-Stop the pre-flight and tell the user: "That needs `<feature>`, which is in `music-craft-minimax`. Switch to that skill and I will run the same pre-flight with the extended check list." Do not try to fake these features with the tools this skill has.
-
-If the user specifically wants a local source-audio restyle and can accept a slow experimental path, stay in this skill and load [`references/acestep-generation.md`](references/acestep-generation.md). ACE-Step cover/repaint is local, melody-aware, and queue-bound; it is not the fast/default cloud cover path.
+MiniMax music generation is no longer available, so there is no skill to redirect to. For a cover or source-audio restyle, stay in this skill and load [`references/acestep-generation.md`](references/acestep-generation.md). ACE-Step cover/repaint is local, melody-aware, and queue-bound; tell the user it is slower and experimental. Two-song mashups and MiniMax emotion analysis are not available; say so instead of faking them.
 
 **Audio source:** the user must provide a local audio file path. URLs are not accepted in either music skill in v1.5.0+; if the user wants to fetch audio by title from the internet, point them at the private `music-source-fetch` skill (not published on ClawHub).
+
+## Local Models
+
+Three local music models are supported by this skill. **License must be named and accepted before any model is downloaded** — the skill never auto-downloads (inherited hard rule from `setup-and-preflight.md`). License decides whether the output is fit for monetized channels, paid work, or advertising; pick the model that matches the distribution intent before installing.
+
+| Model | License | Size | Commercial? | Purpose | Install guide |
+| --- | --- | ---: | --- | --- | --- |
+| **ACE-Step** (`acestep-v15-xl-base-diffusers`) | MIT | ~11 GB | ✅ Yes | Vocals + lyrics, local, exact-duration | [`§ 1`][acestep-install] |
+| **MusicGen** (`facebook/musicgen-large`) | CC-BY-NC 4.0 | ~3.3 GB | ❌ No | Instrumental only, non-commercial | [`§ 2`][musicgen-install] |
+| **Stable Audio Open** (`stabilityai/stable-audio-open-1.0`) | Stability AI Community | ~1.2 GB | ⚠️ Only if revenue < $1M/yr | Instrumental only, commercial-OK under cap | [`§ 3`][stable-audio-install] |
+
+Hardware floor: Apple Silicon MPS gives 5–10× speed-up (CPU works but ~15 min / 30 s). NVIDIA CUDA is the reference. Apple Silicon requires `ACESTEP_LM_BACKEND=mlx`; on macOS, XL DiTs need `PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0`, which removes PyTorch's MPS memory cap: explain the system-wide memory risk and get the user's OK before using it (details in [`references/mps-bf16-acceleration.md`](references/mps-bf16-acceleration.md)). Memory probe protocol and per-model ML-budget rules: [`references/setup-and-preflight.md`](references/setup-and-preflight.md).
+
+Full installation protocol (detection, environment setup, verify commands, license notes): [`references/setup-and-preflight.md`](references/setup-and-preflight.md).
+
+[acestep-install]: references/acestep-generation.md
+[musicgen-install]: references/setup-and-preflight.md
+[stable-audio-install]: references/other-backends.md
 
 ## Backend Generation
 
 Select the backend from the need, then load only that backend's reference:
 
 | Need | Backend | Reference |
-|---|---|---|
+| --- | --- | --- |
 | Vocals + lyrics, local, best local quality | ACE-Step 1.5 | [`references/acestep-generation.md`](references/acestep-generation.md) |
-| Instrumental, local, no API key | MusicGen | [`references/other-backends.md`](references/other-backends.md) |
-| Simple cloud generation (API key, no local model) | mmx CLI | [`references/other-backends.md`](references/other-backends.md) |
+| Instrumental, local, no API key, non-commercial | MusicGen | [`references/other-backends.md`](references/other-backends.md) |
+| Simple cloud generation (API key, no local model) | Stable Audio REST or another cloud backend the runtime exposes | [`references/other-backends.md`](references/other-backends.md) |
 | Local source-audio cover/repaint, experimental | ACE-Step 1.5 | [`references/acestep-generation.md`](references/acestep-generation.md) |
-| Fast cloud cover, style transfer, mashup, fine flag control | `music-craft-minimax` skill | switch skills — see **When to redirect to music-craft-minimax** above |
 | Instrumental via REST API | Stable Audio | [`references/other-backends.md`](references/other-backends.md) |
 | Anything else the runtime exposes | Generic CLI | [`references/other-backends.md`](references/other-backends.md) |
 
@@ -195,6 +205,12 @@ and the focused local references before submitting a local ACE-Step job:
 - For source-audio cover/repaint, use multipart upload and the `wait_for_acestep.py`
   helper when available. The local API can return empty `/query_result` data
   while work is still running, so cache-file detection is part of the workflow.
+- For audio-conditioned tasks beyond cover/repaint (`extract`, `lego`, `complete`),
+  the BASE-only DiT is required — load [`references/acestep-task-types.md`](references/acestep-task-types.md)
+  before submitting. For XL (4B) DiT checkpoints (`xl-base`, `xl-sft`, `xl-turbo`,
+  `xl-mixed`), the `num_inference_steps=50` (Diffusers path) / `inference_steps=50` (REST path) and `shift=3.0`
+  footguns apply — load [`references/acestep-xl-models.md`](references/acestep-xl-models.md) before
+  touching XL.
 
 Copy-pasteable local commands and collection workflow:
 [`references/local-ace-step-curl-template.md`](references/local-ace-step-curl-template.md)
@@ -314,7 +330,7 @@ If the user asks for any of these, translate them into the explicit-instrument f
 Every mood, energy, or emotion word in the prompt must be tied to at least one concrete production detail. A mood word with no grounding will be ignored — the model defaults to a "neutral pleasant" register.
 
 | Mood word | Required grounding (pick at least one) |
-|---|---|
+| --- | --- |
 | `sad` | minor key, slow BPM, breathy vocal, sparse chord pattern, low strings |
 | `energetic` | fast BPM, driving drums, sharp synth hits, strong rhythm guitar |
 | `romantic` | warm strings, soft vocal register, sustained pads, slow harmonic rhythm |
@@ -364,7 +380,7 @@ Per-provider behavior, the web lyrics lookup option, and handling user surprise 
 The skill does not start with a questionnaire. It starts by reading and inferring.
 
 | User says... | Skill does... |
-|---|---|
+| --- | --- |
 | "Make a sad love song in Spanish" | Auto-detect: ES, romantic, ~3 min. Ask: lyrics source and vocal register. |
 | "Instrumental lofi for studying" | Auto-detect: lofi, no vocals, ~3 min. Ask: nothing. Generate. |
 | "Here are the lyrics, make it pop" | Auto-detect: pop, user-lyrics. Ask: tempo and energy preference. |
@@ -388,10 +404,10 @@ in the per-song output folder.
 - [`references/setup-and-preflight.md`](references/setup-and-preflight.md) — pre-flight protocol: dependency consent, platform detection, user and hardware setup, required/optional dependencies, install details
 - [`references/windows-wsl-setup.md`](references/windows-wsl-setup.md) — Windows/WSL setup: certificate/proxy handling, WSL distro setup for local generation
 - [`references/acestep-generation.md`](references/acestep-generation.md) — complete ACE-Step 1.5 guide: API workflow, full-song generation, quality tiers and memory-safe selection, audio-conditioned generation (cover, repaint, reference audio)
-- [`references/local-ace-step-curl-template.md`](references/local-ace-step-curl-template.md) — JSON-safe `/release_task` curl template for direct ACE-Step submission
+- [`references/local-ace-step-curl-template.md`](references/local-ace-step-curl-template.md) — JSON-safe `/release_task` submission template for direct ACE-Step submission
 - [`references/wait-and-collect.md`](references/wait-and-collect.md) — M1 -> wait -> collect -> M2 local sequencing, log watching, cache collection, and duration verification
 - [`references/lyrics-cleanup.md`](references/lyrics-cleanup.md) — cleanup recipe for Whisper/ASR transcripts, canonical section tags, `info.txt`, and `lyrics_whisper_medium.json`
-- [`references/other-backends.md`](references/other-backends.md) — MusicGen, mmx CLI, Stable Audio, and generic CLI backend guides
+- [`references/other-backends.md`](references/other-backends.md) — MusicGen, Stable Audio, generic CLI backends, and the MiniMax Music 3 local notes
 - [`references/request-intake.md`](references/request-intake.md) — full intake protocol and per-song output layout (slugs, version prefixes)
 - [`references/prompt-formula.md`](references/prompt-formula.md) — full production-sheet formula, worked examples across genres, prompt lint, and the emotion quick reference
 - [`references/structure-tags.md`](references/structure-tags.md) — all section tags with rules, effects, and timing hints
@@ -405,8 +421,92 @@ in the per-song output folder.
 - [`music-craft-minimax/scripts/lint_music_request.py`](../music-craft-minimax/scripts/lint_music_request.py) — optional standard-library helper for routing, blockers, missing fields, prompt, and `mmx` flag linting. Run it before generating to catch missing required slots, conflicting language signals, and vague mood words without grounding.
 - [`scripts/lint_lyrics.py`](scripts/lint_lyrics.py) — standard-library lyrics preflight for section-tag whitelist checks and syllable/BPM duration estimates.
 - [`scripts/verify_lyrics_alignment.py`](scripts/verify_lyrics_alignment.py) — standard-library post-generation transcript-vs-lyrics overlap check for semantic delivery.
-- [`scripts/wait_for_acestep.py`](scripts/wait_for_acestep.py) — standard-library helper for ACE-Step task polling plus cache-file completion detection.
+- [`scripts/acestep_request.py`](scripts/acestep_request.py) — standard-library helper that sends one JSON or multipart request to a loopback ACE-Step server (`health`, `release_task`, `query_result`, `v1/init`).
+- [`scripts/wait_for_acestep.py`](scripts/wait_for_acestep.py) — standard-library helper for ACE-Step task polling plus cache-file completion detection; `--expected-seconds` rejects short intermediates and `--scan-only` recovers a finished take from the cache.
 - [`scripts/extract_stems.py`](scripts/extract_stems.py) — optional Demucs wrapper that writes normalized stem paths and `stems.json` for local arranger experiments.
 - [`scripts/remix_stems.py`](scripts/remix_stems.py) — preview-quality `ffmpeg amix` helper for recombining validated stems.
 - [`scripts/smoke_test.py`](scripts/smoke_test.py) — pure-Python smoke tests for local helper behavior.
 - For emotion-driven generation (vocal speed, intensity, pitch bends, emotion recipes, iteration loop), see the quick reference in [`references/prompt-formula.md`](references/prompt-formula.md) under "Mood" and the full shared emotion recipes in [`music-craft-minimax/references/emotion-delivery.md`](../music-craft-minimax/references/emotion-delivery.md)
+- [`references/acestep-task-types.md`](references/acestep-task-types.md) — per-task reference for the five ACE-Step audio-conditioned tasks (`cover`, `repaint`, `extract`, `lego`, `complete`): inputs, outputs, parameters, BASE-only footguns, and a routing tree
+- [`references/acestep-xl-models.md`](references/acestep-xl-models.md) — XL (4B) DiT family: `xl-base` vs `xl-mixed` deployment shapes, hardware floor (≥12 GB VRAM, 24 GB M3 reference, 32 GB+ for `xl-mixed`), the two silent-regression footguns (`num_inference_steps=50` MUST be explicit, `shift=3.0` default), and an XL-vs-standard decision tree
+- [`references/mps-bf16-acceleration.md`](references/mps-bf16-acceleration.md) — honest Apple Silicon (MPS) reference: which env vars actually work (`PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0`, `ACESTEP_LM_BACKEND=mlx`), and the verifiable fact that ACE-Step currently forces fp32 on MPS (no bf16 escape valve — `ACESTEP_USE_BF16` is NOT consumed)
+- [`references/lrc-generation.md`](references/lrc-generation.md) — backend-neutral LRC (synced lyrics) workflow: WhisperX/Whisper transcription → lyrics alignment → LRC format → validator
+- [`references/audition-rubric.md`](references/audition-rubric.md) — 5-dimension quality scoring (Musicality, Production, Prompt Adherence, Vocal, Technical) for accept/revise/regenerate/reject decisions
+- [`references/acestep-shift-schedule.md`](references/acestep-shift-schedule.md) — full `shift` parameter taxonomy (shift=1.0 turbo, shift=3.0 base/sft, continuous shift) with tier-to-shift mapping table and decision tree
+- [`references/audio-format-selection.md`](references/audio-format-selection.md) — when to use wav vs flac vs mp3 vs ogg
+- [`references/advanced-diffusion-controls.md`](references/advanced-diffusion-controls.md) — `guidance_scale`, `infer_method`, `scheduler`, and `eta` parameter reference
+
+## Tool Scope
+
+What this skill needs from the agent runtime, and nothing more:
+
+- **Read files:** the user's own lyrics, prompts, and local audio files they point to; the bundled references and scripts.
+- **Write files:** generated audio, prompts, lyrics, `.lrc` and `stems.json` files, only in the output folder the user chose. Never overwrite an existing file without the user's OK.
+- **Run commands:** the bundled Python helpers, `ffmpeg`/`ffprobe` for verification and mixing, and the user's local ACE-Step server. No package installs, model downloads, or environment changes without the user's explicit OK.
+- **Network:** the user's local ACE-Step server on the loopback interface; a cloud music provider only after the user agrees to send the prompt (and lyrics) there; web search only with generic terms and the user's OK.
+
+## Data, Consent, and Local Side Effects
+
+This skill may use local or cloud music backends depending on what the user asks for and what is installed. Keep the workflow user-visible:
+
+- **Cloud backends:** prompts, lyrics, reference URLs, and generated/derived music instructions may be sent to the selected provider.
+- **Local backends:** model downloads, local analysis, temporary files, and generated audio may be written on the user's machine.
+- **Reference material:** fetched webpages and lyrics pages are used only to enrich the music prompt unless the user explicitly chooses an audio/cover workflow.
+- **Output files:** ask where to save generated files and avoid overwriting user-visible outputs without explicit confirmation.
+
+Before uploading user-owned or third-party media to a cloud backend, state what will be sent and why, then wait for confirmation if the user has not already clearly requested that cloud workflow.
+
+**Bundled helpers and what they touch** (all optional, run only when the workflow calls for them):
+
+| Helper | Reads | Writes | Network | External programs |
+| --- | --- | --- | --- | --- |
+| `scripts/acestep_request.py` | the JSON body or local audio file you pass | nothing | loopback ACE-Step server only (`127.0.0.1`, `localhost`, `::1`); no proxies, no redirects | none |
+| `scripts/wait_for_acestep.py` | ACE-Step cache directory | nothing | loopback ACE-Step server only; no proxies, no redirects | `ffprobe`, when installed, to measure duration |
+| `scripts/lint_lyrics.py`, `scripts/verify_lyrics_alignment.py` | text files you pass | nothing | none | none |
+| `scripts/extract_stems.py` | a local audio file you pass | stem files and `stems.json` in the output folder you choose | none, unless `--allow-model-download` lets Demucs fetch its weights on first use (ask first) | `demucs`, on demand |
+| `scripts/remix_stems.py` | stem files listed in `stems.json` | one remixed file you name | none | `ffmpeg`, on demand |
+
+`ffmpeg`/`ffprobe` and `demucs` are optional and are not required to install the skill; the helpers report clearly when they are missing. Stem separation is for the user's own local audio (post-production on files they provide), not for fetching or extracting third-party content.
+
+## Licensing and commercial-use gate
+
+The published skill bundle is MIT-0 under ClawHub's publishing rules: it may
+be used, modified, and redistributed commercially without attribution. That
+license applies to these skill instructions and bundled helper code; it does
+not grant a license to any third-party model, software package, input audio,
+lyrics, voice, or generated output. Every operator must install the selected
+backend under its own applicable terms and keep the required notices. Terms
+and model cards can change, so check them before commercial release.
+
+- **ACE-Step 1.5 local:** the project and published model card currently state
+  an MIT license and commercial-ready use. Verify the exact model checkpoint
+  and its current license before shipping a commercial track.
+- **MusicGen local:** the code is MIT, but the MusicGen model weights are
+  CC-BY-NC 4.0. Do not use MusicGen-generated audio for commercial work,
+  monetized channels, client deliverables, paid products, or advertising.
+- **Provider-agnostic/runtime backends:** do not assume commercial rights.
+  Identify the actual provider, model, account/product tier, and output terms
+  before generating for commercial use. If these are unknown, stop and ask.
+- **Inputs:** the user must own or have permission for uploaded/reference
+  audio, lyrics, samples, and voices. A model license does not legalize a
+  copyrighted cover, lyric transcription, or unauthorized voice.
+
+Generated audio may also lack copyright protection or exclusivity under the
+law of the user's jurisdiction. Commercial permission from a provider is not
+the same as a guarantee of exclusive copyright or zero similarity risk.
+
+Treat music generation as a small, controlled iteration loop, not a single "press button, get song" call.
+
+The required generation loop is:
+
+1. Clarify goal and source material.
+2. Analyze source audio if available, or accept user-provided analysis.
+3. Build a production-sheet prompt with genre, mood, BPM, key, instruments, structure, vocals/lyrics, and constraints.
+4. Select backend based on need: exact-duration vocals/lyrics -> ACE-Step; local melody-aware cover/repaint experiments -> ACE-Step if hardware and time budget allow; instrumental/local -> Stable Audio 3 or MusicGen; fast cloud cover, mashup, or MiniMax-specific flags -> `music-craft-minimax` / mmx.
+5. Validate prompt length, structure, backend-specific conflicts, and expected duration.
+6. Generate with the selected backend.
+7. Verify duration, loudness/peak, file size, audible completeness, lyrics alignment, and structure.
+8. Deliver files with a short analysis summary and caveats. If quality fails, adjust the prompt and retry; do not retry the same payload twice.
+
+For deep prompt engineering, lyrics structure, and the full user-preference decision table, see the linked references at the end.
+

@@ -1,41 +1,52 @@
-## Description: <br>
-Checks a Mac laptop's battery percentage, charging state, and time remaining using the local pmset command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check Mac laptop battery status including percentage, charging state, and time remaining.
 
-## Publisher: <br>
-[airbai](https://clawhub.ai/user/airbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[airbai](https://clawhub.ai/user/airbai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to ask an agent for Mac laptop battery percentage, charging state, and remaining charge or discharge time.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is only useful on macOS laptops and may fail or provide no result on other systems.
+
+Mitigation: Use it only for local Mac battery-status questions and fall back to platform-specific battery tools elsewhere.
+
+Risk: The skill executes a local battery-status command, so output depends on pmset availability and current battery telemetry.
+
+Mitigation: Review command output before presenting it and state when battery status cannot be determined.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Mac users can ask an agent for laptop battery status, and the agent can run the standard local pmset command to report percentage, charging state, and remaining time. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is only useful on macOS systems where pmset is available. <br>
-Mitigation: Use it for Mac laptops only; on other systems, say battery status is unavailable instead of trying unrelated commands. <br>
-Risk: The skill asks the agent to run a local shell command. <br>
-Mitigation: Run only the documented read-only pmset battery-status command and do not change power settings. <br>
+**Output Format:** [Concise natural-language status text based on local shell command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/airbai/mac-battery) <br>
+**Other Properties Related to Output:** [Requires macOS laptop battery information from pmset; not useful on non-macOS systems or Macs without a battery.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Friendly text response with battery status values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses macOS pmset battery output; no files are created.] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

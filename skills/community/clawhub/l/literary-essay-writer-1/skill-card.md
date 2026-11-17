@@ -1,38 +1,48 @@
-## Description: <br>
-Literary Essay Writer 1 guides agents to draft Chinese literary essays and in-depth book reviews from personal, non-template perspectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+文学散文/深度书评公众号文章写作助手。核心能力：从一本书、一个现象中独立思考出3个以上不同角度，不套模板，用真正想说的话写文章。触发场景：写书评、读书感悟、生活哲思类公众号文章，或需要独特人文视角解读某个主题。
 
-## Publisher: <br>
-[hanxueda](https://clawhub.ai/user/hanxueda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hanxueda](https://clawhub.ai/user/hanxueda)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Writers, editors, and content creators use this skill to draft Chinese literary essays, in-depth book reviews, reading reflections, and humanistic commentary from personal, non-formulaic angles.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally steers responses toward a Chinese literary essay and book-review style, which may be inappropriate for non-Chinese or general-purpose writing tasks.
+
+Mitigation: Invoke it only for that writing style, or explicitly state a different language, tone, and format when using another skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and writing agents use this skill to brainstorm several angles and draft reflective Chinese essays, book reviews, and public-account style posts with a distinctive title and voice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic routing may apply this Chinese literary essay voice to broader writing prompts where it is not appropriate. <br>
-Mitigation: Route the skill intentionally for Chinese literary essays, deep book reviews, and reflective public-account style writing, and review generated prose for audience fit before use. <br>
+**Output Format:** [Markdown or prose text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanxueda/literary-essay-writer-1) <br>
+**Other Properties Related to Output:** [Produces a title and body text guided by reflective prompts, angle brainstorming, structure suggestions, and a post-writing checklist.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text prose with a title and essay body] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not run code, access data, request permissions, or call external services.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

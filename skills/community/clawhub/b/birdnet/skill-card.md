@@ -1,38 +1,53 @@
-## Description: <br>
-Query BirdNET-Go bird detections. View recent birds, search by species, get detection details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query BirdNET-Go bird detections, view recent birds, search by species, and get detection details.
 
-## Publisher: <br>
-[rappo](https://clawhub.ai/user/rappo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rappo](https://clawhub.ai/user/rappo)
 
-## Use Case: <br>
-External users and developers use this skill to query a BirdNET-Go instance for recent detections, species searches, detection details, species information, and daily bird activity summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Detection queries sent over plain HTTP can expose species, timestamps, weather, and query activity on the network path. <br>
-Mitigation: Configure the BirdNET-Go URL to a trusted endpoint you control, preferring localhost or HTTPS where available. <br>
-Risk: The skill reads bird detection records from the configured BirdNET-Go instance. <br>
-Mitigation: Install and enable it only when the agent should have access to that local detection history. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill to query a trusted BirdNET-Go server for recent detections, species searches, detailed detection records, species information, and same-day activity summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; reads BirdNET-Go URL from ~/.clawdbot/credentials/birdnet/config.json when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill queries the BirdNET-Go server URL configured on the local machine.
+
+Mitigation: Keep the configuration pointed at a trusted local BirdNET-Go instance before using the skill.
+
+Risk: The configuration file may be treated as a place for connection details.
+
+Mitigation: Do not store API keys or unrelated secrets in the BirdNET-Go config file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rappo/skills/birdnet)
+- [Publisher profile](https://clawhub.ai/user/rappo)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with shell command examples and BirdNET-Go API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; reads BirdNET-Go server URL from ~/.clawdbot/credentials/birdnet/config.json and does not require an API key for local access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

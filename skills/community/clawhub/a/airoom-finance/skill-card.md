@@ -1,41 +1,59 @@
-## Description: <br>
-Downloads structured financial data files from the airoom.ltd WordPress site for AI-agent market monitoring and strategy analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI agents with a Playwright-based downloader for airoom.ltd financial data files and documentation about simulated global market environment scores and strategy signals.
 
-## Publisher: <br>
-[airoom-ai](https://clawhub.ai/user/airoom-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airoom-ai](https://clawhub.ai/user/airoom-ai)
 
-## Use Case: <br>
-Agents and human-supervised operators use the skill to fetch airoom.ltd financial data files into a local directory, then inspect the downloaded data for global market monitoring and strategy analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used in workflows involving AI-directed trading or broad financial-market coordination. <br>
-Mitigation: Do not connect it to brokerage accounts or automated trading; require human review before any financial action. <br>
-Risk: The downloader may require credentials or retrieve files whose contents should not be trusted automatically. <br>
-Mitigation: Run it in an isolated environment, use only scoped credentials, cap downloads, and inspect downloaded files before opening or using them. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to fetch airoom.ltd financial data documents from a configured WordPress page and route the downloaded CSV, text, spreadsheet, document, JSON, or related files into agent workflows for market monitoring. The financial outputs are informational and should be manually reviewed before any trading or investment decision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/airoom-ai/airoom-finance) <br>
-- [airoom.ltd financial data page](http://airoom.ltd/index.php/airoom/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Configuration] <br>
-**Output Format:** [Downloaded data files plus plain-text console status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads are written to the configured output directory; users should cap file counts when reviewing the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial data, scores, and strategy signals may be mistaken for investment advice or used for autonomous trading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as informational data only and require human review before any trading or investment action.
+
+Risk: Optional WordPress credentials may be exposed or sent over an insecure connection when HTTPS is not enforced.
+
+Mitigation: Avoid providing WordPress credentials unless HTTPS is enforced and use least-privilege credentials when authentication is required.
+
+Risk: Downloaded files may contain unsafe or unexpected content even when executable extensions are blocked.
+
+Mitigation: Treat all downloaded files as untrusted, scan them before opening, and process them in a controlled directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/airoom-ai/skills/airoom-finance)
+- [airoom.ltd data page](http://airoom.ltd/index.php/airoom/)
+- [Publisher profile](https://clawhub.ai/user/airoom-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, Python command output, configuration values, and downloaded local data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Playwright and requests; downloaded files are saved to a configured local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: target metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

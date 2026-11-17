@@ -1,39 +1,50 @@
-## Description: <br>
-Convert units for length, weight, temperature, data, and speed. Use when switching measurement systems, sizing storage, or adjusting recipe quantities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert units for length, weight, temperature, data, and speed. Use when switching measurement systems, sizing storage, or adjusting recipe quantities.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, operators, and external users can use this skill to convert length, weight, temperature, speed, data storage, and time values from a shell-style unit converter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted input values can make the bundled shell script run local commands. <br>
-Mitigation: Review before installing. Only use trusted numeric inputs unless the script is fixed to validate numbers and pass values to awk safely, for example through awk variables rather than constructed awk source. <br>
+## Use Case:
 
+Developers, operators, and other users use Unitconv to convert common measurement units from the command line for sizing, recipes, storage, speed, temperature, and time calculations.
 
-## Reference(s): <br>
-- [Unitconv on ClawHub](https://clawhub.ai/xueyetianya/unitconv) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text with converted numeric values and units] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses awk-backed calculations; security evidence warns to use only trusted numeric inputs unless input validation is fixed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Crafted conversion values may run local shell commands through AWK when inputs come from untrusted users or automated workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install this version in untrusted-input workflows; validate numeric values and pass data to AWK with -v or fixed calculation functions before routine use.
+
+## Reference(s):
+
+- [Unitconv ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/unitconv)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Numeric conversion results with unit labels.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,118 @@
+{
+  "version": "v1",
+  "schema": "schemas/judgment.schema.json",
+  "cases": [
+    {
+      "id": "work_low_energy",
+      "input": "开工抽签，今天没劲。",
+      "judgment": {
+        "module": "work_charm",
+        "title": "先交60",
+        "verdict": "判了：今天靠完成感续命。",
+        "reason": "能量低，先保一个可交付。",
+        "action": "5分钟写最小可交付。",
+        "backup": "只回最急消息。",
+        "follow_up": "会议版 / ddl版",
+        "share_safe": true
+      }
+    },
+    {
+      "id": "work_review_day",
+      "input": "下午评审，上午先开工。",
+      "judgment": {
+        "module": "work_charm",
+        "title": "评审护航",
+        "verdict": "判了：先写会被追问的3点。",
+        "reason": "下午评审，开新坑会切碎上午。",
+        "action": "先列3个问题和1个结论。",
+        "backup": "发可讨论版。",
+        "follow_up": "更短 / 来张图",
+        "share_safe": true
+      }
+    },
+    {
+      "id": "lunch_no_candidate",
+      "input": "午饭吃什么，下午要开会。",
+      "judgment": {
+        "module": "lunch_oracle",
+        "title": "热饭上升",
+        "verdict": "判了：先找快稳热饭。",
+        "reason": "下午开会，别赌排队和冷食。",
+        "action": "筛10分钟内热饭方向。",
+        "backup": "汤面回血。",
+        "follow_up": "补位置 / 给候选",
+        "share_safe": true
+      }
+    },
+    {
+      "id": "lunch_five_candidates",
+      "input": "牛肉面、沙拉、便利热餐、茶餐厅、黄焖鸡，想热。",
+      "judgment": {
+        "module": "lunch_oracle",
+        "title": "牛肉面胜出",
+        "verdict": "判了：牛肉面当主选。",
+        "reason": "热、稳、排队短，下午负担小。",
+        "action": "11:35前出门。",
+        "backup": "黄焖鸡。",
+        "follow_up": "饭后回票 / 轻一点",
+        "share_safe": true
+      }
+    },
+    {
+      "id": "mood_low_battery",
+      "input": "今天阴天转摆烂，还要写东西。",
+      "judgment": {
+        "module": "mood_weather",
+        "title": "LOW-2",
+        "verdict": "判了：低空飞行，别硬凹高光。",
+        "reason": "想摆烂，但下午仍要产出。",
+        "action": "接水，再写下一句。",
+        "backup": "关一个通知源。",
+        "follow_up": "只给动作 / 来张图",
+        "share_safe": true
+      }
+    },
+    {
+      "id": "mood_rainy_buffer",
+      "input": "现在烦，消息很多。",
+      "judgment": {
+        "module": "mood_weather",
+        "title": "阵雨缓冲",
+        "verdict": "判了：先降噪，别立刻接客。",
+        "reason": "烦和消息多叠加，先收窄入口。",
+        "action": "关通知30分钟。",
+        "backup": "只处理一条。",
+        "follow_up": "稳一点 / 现实点",
+        "share_safe": true
+      }
+    },
+    {
+      "id": "afterwork_direct_home",
+      "input": "下班直接回家，体力2。",
+      "judgment": {
+        "module": "afterwork_pass",
+        "title": "直接回家",
+        "verdict": "判了：今晚别加新安排。",
+        "reason": "体力2，回家主线优先。",
+        "action": "到家后离屏20分钟。",
+        "backup": "楼下买水就走。",
+        "follow_up": "独处版 / 直接回家",
+        "share_safe": true
+      }
+    },
+    {
+      "id": "afterwork_quiet_detour",
+      "input": "下班想独处，少花钱。",
+      "judgment": {
+        "module": "afterwork_pass",
+        "title": "短撤退",
+        "verdict": "判了：只加10分钟安静缓冲。",
+        "reason": "想独处又少花钱，绕远不划算。",
+        "action": "回家主线不变。",
+        "backup": "小区附近走一圈。",
+        "follow_up": "补方向 / 见人版",
+        "share_safe": true
+      }
+    }
+  ]
+}

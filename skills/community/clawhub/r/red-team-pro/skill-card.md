@@ -1,43 +1,56 @@
-## Description: <br>
-Red Team Pro guides an agent through a Chinese adversarial review workflow that challenges plans, decisions, and arguments through logic, execution, and worst-case risk rounds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Red Team Pro is a Chinese adversarial plan review workflow that challenges plans, decisions, and arguments through rounds focused on logic flaws, execution risks, and worst-case scenarios.
 
-## Publisher: <br>
-[boboy-j](https://clawhub.ai/user/boboy-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boboy-j](https://clawhub.ai/user/boboy-j)
 
-## Use Case: <br>
-External users, developers, and decision makers use this skill to stress-test proposals before execution, surface blind spots, and decide which risks must be addressed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally produces direct adversarial critique, which may be too blunt for some planning or decision-review contexts. <br>
-Mitigation: Use it when aggressive challenge is desired, and review the output before sharing it with stakeholders. <br>
-Risk: The skill defaults to Chinese output. <br>
-Mitigation: Ask the agent for another output language when the review audience does not read Chinese. <br>
-Risk: The marketplace metadata and README install command do not use the same package name. <br>
-Mitigation: Install from the server-resolved ClawHub listing or verify the package name before deployment. <br>
+## Use Case:
 
+External users and decision makers use this skill to pressure-test plans, product ideas, strategy, technical proposals, and arguments before acting on them. It guides the agent through background intake, adversarial role selection, three rounds of critique, optional remediation, and a concise resilience assessment.
 
-## Reference(s): <br>
-- [Attacker role guide](references/attackers.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/boboy-j/red-team-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured critique with risk ratings, prioritized issues, and optional remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Chinese and uses a direct adversarial tone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: The README recommends an unpinned npx install command that can execute mutable remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a verified ClawHub release or pin the package and version before running installation commands.
+
+Risk: Broad activation wording may cause the skill to apply an adversarial critique style when a neutral review is expected.
+
+Mitigation: Confirm that the user wants a red-team critique before applying the workflow, and make any remediation step explicit and optional.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/boboy-j/skills/red-team-pro)
+- [Attackers Reference](references/attackers.md)
+- [Example Startup Plan](examples/example-startup-plan.md)
+- [Test Cases](tests/test-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured critique sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language adversarial review with optional targeted remediation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

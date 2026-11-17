@@ -1,0 +1,323 @@
+name: content_visual_forge
+version: "2.7.2"
+display_name: Content Visual Forge
+description: >
+  根据 PDF、网页、文章、截图、视频转写稿、单字或词表等多源内容，
+  生成公众号封面、系列知识卡、单字卡、创意微资产与 PixiJS 增强视觉等统一风格的视觉内容。
+default_output_mode: auto
+default_execution_mode: auto
+supported_output_modes:
+  - cover-card
+  - wechat-inline-image
+  - social-card
+  - knowledge-carousel
+  - character-card
+  - vocabulary-card
+  - grammar-card
+  - phrase-card
+supported_execution_modes:
+  - auto
+  - preview_image
+  - production_cover
+  - background_then_layout
+  - direct_image_preview
+  - prompt_package
+  - engineering_rendering
+risk_controls:
+  - source_lock_required
+  - output_mode_required
+  - execution_mode_required
+  - anti_plagiarism
+  - content_fidelity_check
+  - chinese_legibility_first
+  - no_unrequested_exam_labels
+  - post_generation_quality_gate
+  - painter_style_atlas_translation
+  - platform_specs_required
+  - wechat_cover_pair_not_cropping
+  - self_contained_design_enhancement
+  - visual_direction_routing
+  - illustration_grammar_blocked_mimicry
+  - creative_micro_assets_method_only
+  - pixijs_generated_visual_layer_static_export
+  - risk_action_blacklist_scan
+  - asset_source_policy_required
+
+production_closure_additions:
+  - wechat_inline_image_mode
+  - image_count_rules
+  - run_log_spec
+  - regression_case_suite
+  - engineering_rendering_skeleton
+  - painter_style_atlas_translation
+  - social_card_mode
+  - platform_specs
+  - content_compression_ladder
+  - design_enhancement_routing
+  - design_principles
+  - visual_direction_system
+  - illustration_grammar_routing
+  - creative_micro_assets_routing
+  - pixijs_generated_visual_layer
+  - risk_action_blacklist
+  - asset_source_policy
+  - render_asset_source_validation
+
+style_atlas_assets:
+  qiaomu_snapshot: assets/style-atlas/qiaomu-style-atlas.snapshot.json
+  qiaomu_snapshot_readme: assets/style-atlas/README.md
+  qiaomu_refresh_script: scripts/style-atlas/fetch_qiaomu_style_atlas.py
+  runtime_default: local_snapshot
+  refresh_policy: manual_maintenance_only
+
+prompt_assets:
+  shared:
+    content_source_brief: assets/templates/content-source-brief.md
+    source_lock_report: assets/templates/source-lock-report.md
+    image_prompt_template: assets/templates/image-prompt-template.md
+    risk_action_blacklist: references/config/risk-action-blacklist.md
+    asset_source_policy: references/config/asset-source-policy.md
+  visual_direction:
+    system: references/config/visual-direction-system.md
+  illustration_grammar:
+    rules: references/config/illustration-grammar.md
+    routing: references/workflows/04E-illustration-grammar-routing.md
+  creative_micro_assets:
+    routing: references/config/creative-micro-assets.md
+    quality_checklist: references/config/quality-checklist.md
+  pixijs_generated_visual_layer:
+    routing: references/config/pixijs-generated-visual-layer.md
+    render_engine: references/render-engine.md
+    quality_checklist: references/config/quality-checklist.md
+  cover_card:
+    system: assets/cover-engine/prompts/system.md
+    background_image_strict_no_text: assets/cover-engine/prompts/background_image_strict_no_text.md
+    direct_image_preview_safe: assets/cover-engine/prompts/direct_image_preview_safe.md
+    typography_overlay: assets/cover-engine/prompts/typography_overlay.md
+    prompt_package: assets/cover-engine/prompts/prompt_package.md
+    quality_checker: assets/cover-engine/prompts/quality_checker.md
+    editorial_design_system: references/cover-engine/rules/editorial-design-system.md
+    aesthetic_principles: references/cover-engine/rules/aesthetic_principles.md
+    style_taxonomy: references/cover-engine/rules/style_taxonomy.md
+    content_intent_analysis: references/cover-engine/tasks/content_intent_analysis.md
+    style_routing: references/cover-engine/tasks/style_routing.md
+    visual_concept: references/cover-engine/tasks/visual_concept.md
+    layout_typography: references/cover-engine/tasks/layout_typography.md
+    prompt_builder: references/cover-engine/tasks/prompt_builder.md
+    output_contract: references/cover-engine/tasks/output_contract.md
+    quality_gate: references/cover-engine/tasks/quality_gate.md
+    cover_concept_template: assets/templates/cover-card/cover-concept-template.md
+    single_cover_template: assets/templates/single-cover-template.md
+  wechat_inline_image:
+    template: assets/templates/wechat-inline-image-template.md
+  social_card:
+    platform_specs: references/config/platform-specs.md
+    content_compression_ladder: references/config/content-compression-ladder.md
+    template_family: references/template-families/social-card/README.md
+  design_enhancement:
+    principles: references/config/design-principles.md
+    routing: references/config/design-enhancement-routing.md
+    quality_checklist: references/config/quality-checklist.md
+    fallback_policy: default_design_rules
+    optional_enhancement_skills:
+      - frontend-design
+      - huashu-design
+      - notion-infographic
+  knowledge_carousel:
+    page_script: assets/templates/page-script.md
+    six_page_explainer: assets/templates/6-page-explainer-carousel.md
+    eight_page_knowledge: assets/templates/8-page-knowledge-carousel.md
+    nine_page_level: assets/templates/9-page-level-carousel.md
+    visual_style: references/config/visual-style.md
+    layout_system: references/config/layout-system.md
+  character_card:
+    prompt_template: assets/templates/character-card-prompt-template.md
+    data_template: assets/templates/character-card-template.md
+    style_spec: references/config/character-card-style.md
+  vocabulary_card:
+    data_template: assets/templates/learning-card-template.md
+    prompt_template: assets/templates/learning-card-prompt-template.md
+  grammar_card:
+    data_template: assets/templates/learning-card-template.md
+    prompt_template: assets/templates/learning-card-prompt-template.md
+  phrase_card:
+    data_template: assets/templates/learning-card-template.md
+    prompt_template: assets/templates/learning-card-prompt-template.md
+
+render_assets:
+  html_templates:
+    cover_card: assets/render-engine/html-templates/wechat-cover.html
+    wechat_inline_image: assets/render-engine/html-templates/wechat-inline-image.html
+    social_card: assets/render-engine/html-templates/social-card.html
+    character_card: assets/render-engine/html-templates/character-card.html
+  stylesheets:
+    cover_card: assets/render-engine/css/wechat-cover.css
+    wechat_inline_image: assets/render-engine/css/wechat-inline-image.css
+    social_card: assets/render-engine/css/social-card.css
+    character_card: assets/render-engine/css/character-card.css
+  sample_data:
+    cover_card: assets/render-engine/data/wechat-cover.sample.json
+    wechat_inline_image: assets/render-engine/data/wechat-inline.sample.json
+    social_card: assets/render-engine/data/social-card.sample.json
+    character_card: assets/render-engine/data/character-card.sample.json
+  renderer:
+    playwright: scripts/render-engine/render-with-playwright.js
+
+prompt_routing:
+  - route: cover_card_production
+    when:
+      output_mode: cover-card
+      execution_mode:
+        - production_cover
+        - background_then_layout
+    use:
+      - style_atlas_assets.qiaomu_snapshot
+      - prompt_assets.shared.content_source_brief
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy
+      - prompt_assets.cover_card.system
+      - prompt_assets.cover_card.aesthetic_principles
+      - prompt_assets.cover_card.style_taxonomy
+      - prompt_assets.cover_card.content_intent_analysis
+      - prompt_assets.cover_card.style_routing
+      - prompt_assets.cover_card.visual_concept
+      - prompt_assets.cover_card.layout_typography
+      - prompt_assets.cover_card.prompt_builder
+      - prompt_assets.cover_card.output_contract
+      - prompt_assets.cover_card.background_image_strict_no_text
+      - prompt_assets.cover_card.typography_overlay
+      - prompt_assets.cover_card.editorial_design_system
+      - prompt_assets.cover_card.quality_checker
+      - prompt_assets.cover_card.quality_gate
+  - route: cover_card_preview
+    when:
+      output_mode: cover-card
+      execution_mode:
+        - preview_image
+        - direct_image_preview
+    use:
+      - style_atlas_assets.qiaomu_snapshot
+      - prompt_assets.shared.content_source_brief
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy
+      - prompt_assets.cover_card.system
+      - prompt_assets.cover_card.aesthetic_principles
+      - prompt_assets.cover_card.style_taxonomy
+      - prompt_assets.cover_card.content_intent_analysis
+      - prompt_assets.cover_card.style_routing
+      - prompt_assets.cover_card.visual_concept
+      - prompt_assets.cover_card.layout_typography
+      - prompt_assets.cover_card.prompt_builder
+      - prompt_assets.cover_card.output_contract
+      - prompt_assets.cover_card.direct_image_preview_safe
+      - prompt_assets.cover_card.editorial_design_system
+      - prompt_assets.cover_card.quality_checker
+      - prompt_assets.cover_card.quality_gate
+  - route: prompt_package_only
+    when:
+      execution_mode: prompt_package
+    use:
+      - style_atlas_assets.qiaomu_snapshot
+      - prompt_assets.shared.source_lock_report
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy
+      - prompt_assets.shared.image_prompt_template
+      - prompt_assets.cover_card.prompt_package
+  - route: wechat_inline_image
+    when:
+      output_mode: wechat-inline-image
+    use:
+      - style_atlas_assets.qiaomu_snapshot
+      - prompt_assets.shared.content_source_brief
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy
+      - prompt_assets.wechat_inline_image.template
+      - prompt_assets.shared.image_prompt_template
+  - route: social_card
+    when:
+      output_mode: social-card
+    use:
+      - style_atlas_assets.qiaomu_snapshot
+      - prompt_assets.shared.content_source_brief
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy
+      - prompt_assets.social_card.platform_specs
+      - prompt_assets.social_card.content_compression_ladder
+      - prompt_assets.visual_direction.system
+      - prompt_assets.social_card.template_family
+      - prompt_assets.shared.image_prompt_template
+  - route: illustration_grammar
+    when:
+      optional_stage: illustration_grammar
+    use:
+      - prompt_assets.illustration_grammar.rules
+      - prompt_assets.illustration_grammar.routing
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy
+      - prompt_assets.shared.image_prompt_template
+  - route: design_enhancement
+    when:
+      optional_stage: design_enhancement
+    use:
+      - prompt_assets.design_enhancement.principles
+      - prompt_assets.design_enhancement.routing
+      - prompt_assets.visual_direction.system
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy
+      - prompt_assets.design_enhancement.quality_checklist
+  - route: knowledge_carousel
+    when:
+      output_mode: knowledge-carousel
+    use:
+      - style_atlas_assets.qiaomu_snapshot
+      - prompt_assets.shared.content_source_brief
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy
+      - prompt_assets.knowledge_carousel.page_script
+      - prompt_assets.knowledge_carousel.visual_style
+      - prompt_assets.knowledge_carousel.layout_system
+      - prompt_assets.shared.image_prompt_template
+  - route: character_card
+    when:
+      output_mode: character-card
+    use:
+      - style_atlas_assets.qiaomu_snapshot
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy
+      - prompt_assets.character_card.data_template
+      - prompt_assets.character_card.prompt_template
+      - prompt_assets.character_card.style_spec
+      - prompt_assets.shared.image_prompt_template
+  - route: learning_card
+    when:
+      output_mode:
+        - vocabulary-card
+        - grammar-card
+        - phrase-card
+    use:
+      - style_atlas_assets.qiaomu_snapshot
+      - prompt_assets.shared.content_source_brief
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy
+      - prompt_assets.vocabulary_card.data_template
+      - prompt_assets.vocabulary_card.prompt_template
+      - prompt_assets.shared.image_prompt_template
+  - route: engineering_rendering
+    when:
+      execution_mode: engineering_rendering
+    use:
+      - render_assets.html_templates
+      - render_assets.stylesheets
+      - render_assets.sample_data
+      - render_assets.renderer.playwright
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy
+  - route: pixijs_generated_visual_layer
+    when:
+      optional_stage: pixijs_generated_visual_layer
+    use:
+      - prompt_assets.pixijs_generated_visual_layer.routing
+      - prompt_assets.pixijs_generated_visual_layer.render_engine
+      - prompt_assets.pixijs_generated_visual_layer.quality_checklist
+      - prompt_assets.shared.risk_action_blacklist
+      - prompt_assets.shared.asset_source_policy

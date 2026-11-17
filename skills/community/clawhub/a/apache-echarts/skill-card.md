@@ -1,44 +1,58 @@
-## Description: <br>
-Apache ECharts charting skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apache ECharts charting skill.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and analysts use this skill to turn user-provided two-dimensional or time-series data into complete interactive Apache ECharts HTML chart pages with export support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chart files contain JavaScript and load Apache ECharts from a public CDN when opened. <br>
-Mitigation: Use trusted chart data and options, and prefer a local or organization-approved ECharts copy when offline operation or stricter supply-chain control is required. <br>
-Risk: Incorrect labels, data, or chart options can produce misleading visualizations. <br>
-Mitigation: Review the generated HTML, chart configuration, and rendered visualization before publishing or using it for decisions. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to turn two-dimensional or time-series data into interactive ECharts HTML chart files with chart-type selection and PNG export.
 
-## Reference(s): <br>
-- [ECharts API Reference](references/api.md) <br>
-- [Apache ECharts Homepage](https://echarts.apache.org/) <br>
-- [Apache ECharts Get Started](https://echarts.apache.org/handbook/en/get-started/) <br>
-- [Apache ECharts Configuration Manual](https://echarts.apache.org/en/option.html) <br>
-- [Apache ECharts Examples Gallery](https://echarts.apache.org/examples/en/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Complete HTML files with embedded JavaScript configuration and supporting Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated chart pages use ECharts 5.x from a CDN, include responsive resizing, and expose PNG export support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated HTML can embed untrusted chart content into executable browser code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before opening or sharing it, especially when chart data or titles came from an untrusted source; prefer safe serialization of chart options and escaped titles.
+
+Risk: Opened charts load ECharts from jsDelivr.
+
+Mitigation: Use the CDN only where external script loading is acceptable, or replace it with an approved local or pinned dependency source before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/apache-echarts)
+- [Apache ECharts Homepage](https://echarts.apache.org/)
+- [ECharts API Reference](references/api.md)
+- [Apache ECharts Getting Started](https://echarts.apache.org/handbook/en/get-started/)
+- [Apache ECharts Configuration Manual](https://echarts.apache.org/en/option.html)
+- [Apache ECharts Examples Gallery](https://echarts.apache.org/examples/en/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Guidance]
+
+**Output Format:** [Complete HTML file with embedded JavaScript and chart configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated charts load ECharts 5.x from jsDelivr and include responsive resizing, PNG export, and console export helpers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,117 +1,208 @@
 ---
-name: rollinggo-searchhotel
-description: 使用 RollingGo CLI 查询酒店信息、筛选结果、读取酒店标签和获取房型价格。当用户需要按目的地 / 日期 / 星级 / 预算 / 标签 / 距离搜索酒店、查看酒店详情与房型报价，或读取酒店标签库时触发本技能。触发短语——"搜索酒店"、"查酒店"、"酒店详情"、"房型价格"、"酒店标签"、"附近酒店"、"rollinggo"。
-homepage: https://mcp.agentichotel.cn
+name: rollinggo-hotel-booking
+version: "1.1.2"
+repository: "https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN"
+description: RollingGo 酒店搜索与预订助手，通过调用 RollingGo 酒店服务接口实现酒店查询到下单预订全流程。支持场景：① 按城市/景点/地铁站/机场等地点搜索酒店 ② 按星级、预算、标签（泳池/含早/亲子/宠物友好等）筛选 ③ 查询指定酒店的实时房型与价格 ④ 对比多家酒店 ⑤ 引导用户完成预订。触发词：找酒店、订酒店、搜酒店、酒店推荐、酒店查询、附近酒店、五星酒店、民宿、度假村、查房价、看房型、入住、住哪、住宿、rollinggo、旅游住宿、出差住宿、亲子酒店、带泳池的酒店、含早餐酒店。
 metadata:
   {
     "openclaw": {
       "emoji": "🏨",
-      "skillKey": "rollinggo-searchhotel",
-      "primaryEnv": "RollingGo_API_KEY",
+      "skillKey": "rollinggo-hotel-booking",
       "requires": {
-        "anyBins": ["rollinggo", "npx", "node", "uvx", "uv"],
-        "env": ["RollingGo_API_KEY"]
+        "anyBins": ["rgh", "npx", "node", "python", "python3", "curl", "wget"]
       },
       "install": [
         {
           "id": "node",
           "kind": "node",
-          "package": "rollinggo@latest",
-          "bins": ["rollinggo"],
-          "label": "Install rollinggo (npm)"
+          "package": "@rollinggo/hotel@latest",
+          "bins": ["rgh"],
+          "label": "Install @rollinggo/hotel (npm)"
+        },
+        {
+          "id": "python",
+          "kind": "exec",
+          "command": "python scripts/install.py",
+          "label": "Install rgh standalone binary (python)"
         }
       ]
     }
   }
 ---
 
-# RollingGo 酒店 CLI
+# RollingGo 酒店搜索与预订 Skill
 
-## 适用范围
+## 版本检查
+> - **每日检查**：若当前目录下的 `.version_check` 不存在或记录日期非今天，静默请求远端 `SKILL.md`（地址拼接规则：将元数据中的 `{repository}` 域名替换为 `raw.githubusercontent.com`，并在末尾追加 `/main/skills/{name}/SKILL.md`）对比 `version` 字段。若远端有更新，在回复开头提示用户更新。无论成败，均将今日日期 `YYYY-MM-DD` 写入 `.version_check`。
+> - **更新命令**：`请运行 npx skills update {name} 更新技能包`。
 
-✅ **在以下情况使用本技能：**
-- **查找候选酒店：** 用户需要按城市、地标、机场或具体地址搜索附近酒店（例如：“查找东京迪士尼附近的酒店”）。
-- **多条件精准筛选：** 用户需要在搜索时结合自然语言意图，并严格限制入离日期、入住人数、预算上限、星级区间或距离范围。
-- **基于标签与品牌匹配：** 用户想寻找包含特定设施或属于特定品牌的酒店（如“亲子友好”、“包含早餐”、“万豪”等），技能可先查询标签库以进行精准筛选。
-- **查询房型与实时报价：** 用户想深入了解某家具体酒店（通过 hotelId）的可用房型、实时价格、退款政策或具体配置。
-- **酒店对比与评估：** 用户需要基于真实的结构化数据和当前报价，在多个候选酒店中进行对比分析。
-- **酒店预订：** 用户选定酒店想要完成预订时。可提取并提供结果中的预订 URL 或酒店主页链接，引导用户直接点击完成购买。
+## 安装
 
-❌ **以下情况不适用：**
-- 用户询问非酒店类的旅游预订业务（如机票、火车票、接送机、租车等）。
+如果本地环境未安装 `rgh` 命令，可以通过以下三种方式之一进行安装：
 
-## API Key
-
-解析顺序：`--api-key` 参数 → `RollingGo_API_KEY` 环境变量。
-
-还没有 Key？前往申请：https://mcp.agentichotel.cn/apply
-
-## 运行环境
-
-默认加载 [references/rollinggo-npx.md](references/rollinggo-npx.md)；用户明确使用 `uv`/`uvx`/Python 时改加载 [references/rollinggo-uv.md](references/rollinggo-uv.md)。API Key 持久化配置见 [references/claw-host-env.md](references/claw-host-env.md)。
-
-## 版本新鲜度（始终使用最新版）
-
-本技能默认策略：每次执行都使用最新发布版本。
-
-- **npm/npx：** `npx --yes --package rollinggo@latest rollinggo ...`
-- **uvx：** `uvx --refresh --from rollinggo@latest rollinggo ...`
-
-如果使用已安装命令而不是临时执行，先升级再运行：
-
-- **npm 全局：** `npm install -g rollinggo@latest`
-- **uv 工具：** `uv tool upgrade rollinggo@latest`
-
-## 主要工作流
-
-除非用户已经把问题限定在某个具体步骤，否则按顺序执行：
-
-1. 明确需求：目的地、日期、晚数、入住人数、预算、星级、标签、距离
-2. 如果需要标签筛选 → 先执行 `hotel-tags` 获取有效标签字符串
-3. 执行 `search-hotels` → 解析 JSON → 提取 `hotelId`
-4. 执行 `hotel-detail --hotel-id <id>` 查询房型和价格
-5. 如果结果不理想 → 放宽筛选条件后重新搜索
-
-## 常用命令速查
-
+**方式一：通过 npm 安装（推荐）**
+如果环境中有 Node.js 和 npm，请执行：
 ```bash
-# 获取标签库
-rollinggo hotel-tags
-
-# 搜索酒店（最少必填参数）
-rollinggo search-hotels \
-  --origin-query "<用户的自然语言描述>" \
-  --place "<目的地>" \
-  --place-type "<查看 --help 获取合法值>"
-
-# 查询酒店详情与价格
-rollinggo hotel-detail \
-  --hotel-id <id> \
-  --check-in-date YYYY-MM-DD \
-  --check-out-date YYYY-MM-DD \
-  --adult-count 2 --room-count 1
-
-# 查看所有可用参数
-rollinggo search-hotels --help
-rollinggo hotel-detail --help
+npm install -g @rollinggo/hotel@latest
 ```
 
-## 关键规则
+**方式二：通过 Python 自动脚本安装（免 Node.js 环境）**
+如果环境中有 Python，可以直接在 Skill 目录下运行我们提供的自动化安装脚本，它将自动检测您的操作系统并下载最新版的 `rgh` 独立二进制程序到本地 `bin` 文件夹：
+```bash
+python scripts/install.py
+```
 
-- `--place-type` 必须使用 `rollinggo search-hotels --help` 里显示的精确值
-- `--star-ratings` 格式：`最小值,最大值`，如 `4.0,5.0`
-- `--format table` **只允许**用于 `search-hotels`；`hotel-detail` 和 `hotel-tags` 会拒绝该参数
-- `--child-count` 的数量必须与 `--child-age` 参数的个数一致
-- `--check-out-date` 必须晚于 `--check-in-date`
-- 有 `hotelId` 时优先使用 `--hotel-id`，不要依赖 `--name`
+**方式三：手动下载独立可执行文件（免 Node/Python 环境）**
+如果环境中既没有 npm 也没有 Python，请从以下 Release 页面下载对应的单文件程序（Windows: `rgh-win.exe` / `rgh-windows.exe`, Mac: `rgh-macos`, Linux: `rgh-linux`）：
+`https://github.com/RollingGo-AI/oauth-hotel-cli/releases/latest`
 
-## 输出说明
+下载后将其重命名为 `rgh`（Windows下为 `rgh.exe`），赋予执行权限，并放入系统环境变量 PATH 或技能目录的 `bin` 文件夹中。
 
-- stdout → 结果数据（默认 JSON）
-- stderr → 仅错误信息
-- 退出码 `0` 成功 · `1` HTTP/网络失败 · `2` CLI 参数校验失败
-- 结果中包含预订 URL 与酒店详情页链接，可供下游直接使用
+**⚠️ 自动升级拦截原则：**
+CLI 工具内置了版本检测。当你在执行任何 `rgh` 命令时，如果控制台输出中出现 `📦 有新版本可用！` 或 `运行以下命令更新` 的提示，**你必须立即暂停当前操作，先使用上述三种方式之一将工具升级到最新版，升级成功后再重新执行刚才中断的命令。** 这样可避免由于服务端接口过期而导致的预订失败。
 
-## 无结果时的放宽策略
+---
 
-按顺序尝试：移除 `--star-ratings` → 增大 `--size` → 增大 `--distance-in-meter` → 移除标签筛选 → 放宽日期或预算
+> ⚠️ **输出规范**：
+> 1. **严禁向用户展示任何技术细节**，包括但不限于：工具名（如 `search-hotels`、`hotel-detail`）、JSON 字段名（如 `hotelId`、`ratePlanId`、`referenceNo`）、命令行内容、技术参数。
+> 2. **只展示用户关心的信息**：酒店名称、星级、价格、距离、核心设施、标签、预订链接。
+> 3. **结果必须格式化展示**，每家酒店独占一个卡片，关键信息换行分隔，禁止堆砌在一行。
+> 4. **价格说明**：搜索结果中的价格为参考展示价，实际下单价以价格确认为准，展示时注明"参考价"。
+> 5. **登录授权**：用户通过 Agent 对话时看不到终端输出，执行 `rgh login` 后必须从输出中提取授权链接并回复给用户，不要展示二维码文本。
+
+## When to Use
+
+用户涉及酒店住宿相关的任何意图时均应触发本 Skill，包括但不限于以下场景：
+
+**搜索与发现**：
+- 按地点找酒店："帮我找北京三里屯附近酒店"、"三亚有什么好酒店"、"西湖旁边住宿推荐"
+- 按条件筛选："五星酒店"、"带泳池的酒店"、"含早餐的住宿"、"亲子酒店"、"宠物友好酒店"
+- 按预算筛选："500块以内的酒店"、"经济实惠的住宿"、"豪华酒店推荐"
+- 按品牌筛选："希尔顿"、"万豪"、"亚朵"、"全季"
+
+**查询与对比**：
+- 查房价："杭州酒店多少钱一晚"、"这个酒店什么价格"
+- 看房型："有什么房型"、"大床房有没有"、"家庭房推荐"
+- 比较住宿："帮我对比一下这两家酒店"、"哪个更划算"
+- 了解设施："有没有泳池"、"离地铁站多远"、"停车方便吗"
+
+**预订与订单**：
+- 预订酒店："帮我订这家酒店"、"我要下单"、"预订一间房"
+- 查询订单："我的订单"、"之前订的酒店"、"订单状态"
+
+**触发词覆盖**：
+找酒店、订酒店、搜酒店、酒店推荐、酒店查询、附近酒店、五星酒店、民宿、度假村、查房价、看房型、入住、住哪、住宿、出差住宿、旅游住宿、亲子酒店、带泳池的酒店、含早餐酒店、商务酒店、情侣酒店、温泉酒店、海景房、江景房。
+
+## When NOT to Use
+
+- 用户询问机票、火车票、租车、景点门票等非住宿类旅行需求
+- 用户只是闲聊旅游目的地，没有明确住宿意图
+- 用户已明确表示"不用订"、"只是问问"
+
+---
+
+## 安全门控
+
+> ⚠️ 酒店预订属于**真实消费操作**：
+> 1. **两步确认**：展示房型和价格后，须等用户明确选择方可锁价与下单。
+> 2. **信息完整性**：下单前须确认入住人姓名拼音与邮箱。
+> 3. **锁价时效**：锁定的价格凭证（`referenceNo`）有效期约 15-30 分钟，超时须重新锁价。
+
+---
+
+## 工作流程与动态 CLI 探知
+
+> 💡 **动态命令与参数自探知法则 (Self-Discovery Rule)**：
+> 1. **代理调用**：所有 CLI 命令统一通过代理脚本调用：`node scripts/rgh.js <子命令>`（无 Node 环境时使用 `python scripts/rgh.py <子命令>`），以确保自动完成环境解析与 `CLIENT_ID` (rollinggoskill) 的挂载。
+> 2. **动态参数探知**：执行任何子命令前，**先运行 `node scripts/rgh.js <子命令> --help` 获取实时命令行参数帮助**，并按最新的 `--help` 动态拼装命令参数！
+
+---
+
+### 业务步骤指南
+
+#### Step 0：登录授权检查
+- 执行 `node scripts/rgh.js whoami` 检查登录状态。
+- 若未登录，执行 `node scripts/rgh.js login`（⚠️ **必须以异步/后台模式运行**，如 `WaitMsBeforeAsync=2000`）。从输出提取授权链接（`https://rollinggo.store/s/xxx`），回复给用户完成授权。
+
+#### Step 1：信息收集
+- 确认目的地（必须）、入住日期（默认明天）、入住晚数（默认 1 晚）、人数（默认 2 人）。
+
+#### Step 2：获取标签字典（按需）
+- 遇特色需求（如泳池、早餐、亲子、宠物等），先执行 `node scripts/rgh.js hotel-tags` 精确匹配标签名称。
+
+#### Step 3：搜索酒店
+- 先运行 `node scripts/rgh.js search-hotels --help` 查看最新筛选参数，根据用户需求拼装命令。
+- **placeType 选择规则**（必须精确匹配）：`城市`、`机场`、`景点`、`火车站`、`地铁站`、`酒店`、`区/县`、`详细地址`。
+
+**搜索结果展示模板**（每家酒店一个卡片）：
+*(【极其重要】：你必须使用标准的 Markdown 图片语法 `![alt](url)` 来渲染 imageUrl，且必须将图片展示在模板末尾。若 imageUrl 中包含未编码的空格，需手动将空格替换为 `%20`，或使用尖括号将其包裹如 `![alt](<url>)`，否则会导致宿主平台无法渲染图片！绝对禁止使用 HTML `<img>` 标签，绝对禁止使用纯文本 URL！)*
+
+```markdown
+🏨 {酒店名称}
+⭐ {星级}星  *(仅当返回了 distanceInMeters 字段时展示：📍 距{搜索地点}{距离}米)*
+💰 参考价 ¥{最低价}/晚
+🏷️ {标签1} · {标签2} · {标签3}
+![{酒店名称}]({imageUrl})
+```
+
+返回 3-5 家酒店后，询问用户："想了解哪家的详细房型和价格？"
+
+#### Step 4：查询房型与实时价格
+- 先运行 `node scripts/rgh.js hotel-detail --help` 查看参数，传入选中的 `hotelId` 查询实时房态报价。
+
+**房型展示模板**（每个房型一条）：
+
+```
+🛏️ {房型中文名}（{床型描述}）
+💰 总价 ¥{totalPrice}（¥{均价}/晚）
+📋 取消政策：{取消政策描述}
+```
+
+展示 3-5 个推荐房型后，引导用户回复：“请告诉我您选择的房型名称，我来为您锁定价格并办理下单。”
+
+#### Step 5：价格确认与下单（安全门控）
+1. 运行 `node scripts/rgh.js price-confirm --help` 查看参数，锁定价格并获取凭证 `referenceNo`。
+2. 确认联系人拼音姓名与邮箱后，运行 `node scripts/rgh.js book --help` 查看参数，提交订单并提取支付链接。
+
+**待支付订单展示模板**：
+*(【极其重要】：绝不能臆造或编造支付方式（如“自动识别环境，支持支付宝或微信”）。必须严格按照以下模板输出，绝不允许自行添加任何关于支付环境或支付方式的说明！)*
+
+```
+📝 订单已生成，等待支付！
+确认号：**{orderNo}**
+酒店：{酒店名}
+房型：{房型名}
+入住：{入住日期} | 离店：{离店日期}
+总价：¥{价格}
+📋 取消政策：{取消政策描述}
+💳 请在30分钟内完成支付：{支付链接}
+```
+
+#### Step 6：查询订单与详情
+- 运行 `node scripts/rgh.js orders --help` 或 `node scripts/rgh.js order-detail --help` 查询用户历史订单或单条订单详情。
+
+---
+
+## 搜索结果不理想时的语义化降级策略
+
+若搜索 0 结果，按以下顺序静默放宽条件重试：
+1. 移除星级范围限制
+2. 扩大搜索半径/距离参数
+3. 将硬约束标签（Required Tag）降级为软偏好标签（Preferred Tag）
+4. 增大返回数量（Size）
+5. 仅保留目的地与入住日期
+
+---
+
+## 关键交互规则
+
+- **屏蔽技术细节**：严禁向用户暴露 `hotelId`、`ratePlanId`、`referenceNo`、JSON 响应或命令行。
+- **真实价格说明**：搜索展示价注明“参考价”，最终金额以价格确认锁价为准。
+- **支付链接真实可用**：生成的订单支付链接可直接提供给用户点击完成支付。
+- **多家对比**：用户要对比时，可同时展示多家的卡片，突出差异点（价格/距离/设施）。
+
+---
+
+## 详细参考文档
+
+- [references/cli-params.md](references/cli-params.md) — CLI 命令完整参数规范

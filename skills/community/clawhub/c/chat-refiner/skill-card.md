@@ -1,40 +1,53 @@
-## Description: <br>
-Refine conversation history by deleting useless/redundant/process exchanges while keeping explicit instructions, disciplines, important configs, skills learned, user "remember this" information, and concise MEMORY.md updates or summary files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refine conversation history by deleting useless, redundant, and process-only exchanges while preserving explicit instructions, disciplines, important configs, learned skills, user memory requests, and decisions.
 
-## Publisher: <br>
-[sslisen](https://clawhub.ai/user/sslisen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sslisen](https://clawhub.ai/user/sslisen)
 
-## Use Case: <br>
-Developers and agents use this skill to clean chat logs, session histories, and memory files into concise summaries that preserve durable instructions, decisions, configurations, and user preferences. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Private transcripts or memory files may be summarized into persistent records. <br>
-Mitigation: Require a preview or diff and explicit approval before writing summaries or MEMORY.md updates. <br>
-Risk: Sensitive configuration values, API keys, tokens, passwords, or unreviewed behavioral instructions may be retained. <br>
-Mitigation: Redact secrets and unreviewed instructions before persistence, and prefer dated append-only summary files over direct MEMORY.md edits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Refine Principles](artifact/references/principles.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sslisen/chat-refiner) <br>
+## Use Case:
 
+Developers and agent users use this skill to clean chat transcripts, session history, and memory files into concise Markdown summaries or MEMORY.md updates while retaining important instructions, decisions, preferences, and configuration context.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown summaries or MEMORY.md updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise item counts and source path or line citations when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist chat-derived instructions into long-lived memory files.
+
+Mitigation: Review the proposed memory update before writing it, and keep only instructions, decisions, preferences, and configuration details that should remain durable.
+
+Risk: Transcripts may contain API keys, credentials, or sensitive configuration values that could be copied into memory summaries.
+
+Mitigation: Use trusted transcripts, redact secrets before refinement, and require an explicit preview before any MEMORY.md or memory summary file is written.
+
+## Reference(s):
+
+- [Refine Principles](artifact/references/principles.md)
+- [ClawHub Skill Page](https://clawhub.ai/sslisen/skills/chat-refiner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown summaries or MEMORY.md updates, optionally with path:line citations and a concise kept-item count]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write memory/YYYY-MM-DD-summary.md, MEMORY.md, or another summary file after refining trusted transcript input.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

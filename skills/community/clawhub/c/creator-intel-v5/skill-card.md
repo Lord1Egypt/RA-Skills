@@ -1,48 +1,61 @@
-## Description: <br>
-Creator Intel V5 helps agents gather and summarize engineer-focused technology intelligence from GitHub, arXiv-style technical sources, hardware communities, and Chinese RSS feeds while filtering business-oriented coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creator Intel V5 generates engineer-focused technology intelligence briefs from international search results and Chinese technology RSS feeds, emphasizing concrete architectures, algorithms, parameters, and implementation details.
 
-## Publisher: <br>
-[uuoov](https://clawhub.ai/user/uuoov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[uuoov](https://clawhub.ai/user/uuoov)
 
-## Use Case: <br>
-Developers, engineers, and technical researchers use this skill to generate concise daily briefs on open-source projects, architecture and algorithm developments, and niche hardware while de-emphasizing financing and PR coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release ships with and uses a hardcoded Tavily API key. <br>
-Mitigation: Remove the embedded key, rotate it, and load Tavily credentials from user-controlled configuration before running the skill. <br>
-Risk: The documented run and cron commands do not match the shipped script name. <br>
-Mitigation: Verify and correct the exact command path before manual execution or scheduled delivery. <br>
-Risk: The Feishu cron setup can run automatically after installation. <br>
-Mitigation: Do not enable the scheduled job until the command has been verified and the operator knows how to disable it. <br>
-Risk: History retention behavior may differ from the documented retention limit. <br>
-Mitigation: Enforce the documented retention limit or update the documentation so users understand stored history behavior. <br>
+## Use Case:
 
+Developers, hardware-focused product managers, and technical researchers use this skill to generate concise daily briefs about open source projects, technical architecture advances, and innovative hardware without business or fundraising framing.
 
-## Reference(s): <br>
-- [Creator Intel V5 on ClawHub](https://clawhub.ai/uuoov/creator-intel-v5) <br>
-- [Tavily Search API](https://api.tavily.com/search) <br>
-- [Jiqizhixin RSS](https://www.jiqizhixin.com/rss) <br>
-- [QbitAI Feed](https://www.qbitai.com/feed) <br>
-- [OSChina News RSS](https://www.oschina.net/news/rss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-formatted technology brief with dated sections, linked items, and concise Chinese summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads RSS feeds and Tavily search results, keeps URL history for de-duplication, and requires user-controlled Tavily credentials before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact includes a real-looking Tavily API key in source code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke the bundled key and require users to supply their own Tavily credential from an environment variable or secret store before running the skill.
+
+Risk: The skill installs Python dependencies and performs outbound HTTP requests to search and RSS providers.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions and review the configured data sources before execution.
+
+Risk: The optional Feishu cron setup can create recurring external publication of generated briefs.
+
+Mitigation: Enable the cron workflow only after explicitly reviewing the target channel, schedule, and publication permissions.
+
+## Reference(s):
+
+- [Creator Intel V5 ClawHub Skill Page](https://clawhub.ai/uuoov/skills/creator-intel-v5)
+- [Tavily Search API Endpoint](https://api.tavily.com/search)
+- [Jiqizhixin RSS](https://www.jiqizhixin.com/rss)
+- [QbitAI RSS](https://www.qbitai.com/feed)
+- [OSChina News RSS](https://www.oschina.net/news/rss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style briefing text with dated heading, categorized entries, source URLs, and short technical summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local history to ~/.openclaw/creator-intel/history.json for URL deduplication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

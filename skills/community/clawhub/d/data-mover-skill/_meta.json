@@ -1,6 +1,44 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
+  "name": "data-mover-skill",
   "slug": "data-mover-skill",
-  "version": "1.0.0",
-  "publishedAt": 1773655022273
+  "version": "2.0.0",
+  "description": "跨系统数据自动搬运工 - OCR 识别 + 自动复制粘贴 + 多系统支持",
+  "author": "于金泽",
+  "installedAt": "2026-03-16T16:10:00Z",
+  "source": "local",
+  "vetted": false,
+  "vettingRequired": true,
+  "riskLevel": "HIGH",
+  "dependencies": [
+    "pyautogui",
+    "paddleocr",
+    "pandas",
+    "opencv-python",
+    "tqdm",
+    "python>=3.6"
+  ],
+  "environmentVariables": [],
+  "permissions": {
+    "network": false,
+    "fileRead": true,
+    "fileWrite": true,
+    "fileWriteScope": "current_directory_only",
+    "systemAutomation": true,
+    "screenCapture": true,
+    "clipboard": true
+  },
+  "scripts": {
+    "main": "scripts/mover.py",
+    "test": "python3 -m pytest tests/test_mover.py -v"
+  },
+  "tags": [
+    "data-entry",
+    "automation",
+    "ocr",
+    "rpa",
+    "copy-paste",
+    "productivity"
+  ],
+  "category": "productivity",
+  "changelog": "CHANGELOG.md"
 }

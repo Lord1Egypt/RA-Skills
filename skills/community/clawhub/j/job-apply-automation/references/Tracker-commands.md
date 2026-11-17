@@ -247,3 +247,12 @@ After every session, update the `stats` object:
   the email was sent, which is a historical fact.
 - If a write fails for any reason, log the failure in the session summary
   and alert the user. Do not silently lose data.
+
+## Data Retention & Minimization
+
+Applications.json contains sensitive personal data (CV, contact info, recruiter emails, interview details). Apply these controls:
+
+- **Archival:** After 180 days of final status (REJECTED, WITHDRAWN, or OFFER), move the entry to `applications_archive.json` and remove it from the main `applications` array.
+- **Minimization:** When summarizing applications externally (summaries, reports, chat output), never include raw CV contents, full recruiter contact info, or interview links. Use only: company name, role title, status, date.
+- **Access control:** Keep Applications.json, CONFIG.md, SMTP-SECRET.txt, and CV files local and never share them. Do not store in cloud-synced or publicly accessible directories.
+- **Redaction in output:** When sending summaries through notification channels (WhatsApp, etc.), redact email addresses to `user@****`, phone numbers to `+49*** *** ****`, and URLs to `[link]`.

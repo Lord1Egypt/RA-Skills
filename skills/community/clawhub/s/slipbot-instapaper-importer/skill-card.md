@@ -1,39 +1,48 @@
-## Description: <br>
-Import reading notes from Instapaper exports into the slipbox. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imports user-authored notes from Instapaper highlight exports into a SlipBot-managed slipbox.
 
-## Publisher: <br>
-[jrswab](https://clawhub.ai/user/jrswab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jrswab](https://clawhub.ai/user/jrswab)
 
-## Use Case: <br>
-External users and developers use this skill to parse pasted Instapaper highlight exports, skip quoted article highlights, preview the user's own notes, and create slipbox entries after confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Instapaper exports may include private URLs or sensitive personal notes. <br>
-Mitigation: Review the precheck before confirming import and only import notes that are appropriate to store in the slipbox. <br>
-Risk: The importer creates one slipbox entry for each parsed plain-text note. <br>
-Mitigation: Confirm the article title and note count before allowing slipbot to create entries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jrswab/slipbot-instapaper-importer) <br>
+## Use Case:
 
+Developers and knowledge-management users use this skill to import their own Instapaper reading notes into a slipbox while skipping quoted article highlights.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain-text slipbot commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs parsed note previews, confirmation prompts, per-note slipbot import commands, and a final import count.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Confirmed imports can create unwanted slipbox entries or include private Instapaper URLs.
+
+Mitigation: Review the precheck note count and article title before confirming an import.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jrswab/skills/slipbot-instapaper-importer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with confirmation prompts and slipbox note entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates one slipbox entry per confirmed user note and skips quoted Instapaper highlights.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

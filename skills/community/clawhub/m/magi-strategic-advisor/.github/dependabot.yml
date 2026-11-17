@@ -1,0 +1,20 @@
+version: 2
+
+updates:
+  # Keep GitHub Actions pinned to current maintained versions
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    labels:
+      - dependencies
+      - ci
+
+  # Track Python dependency advisories (the project is standard-library only
+  # today; this entry becomes active if a dependency manifest is introduced)
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+    labels:
+      - dependencies

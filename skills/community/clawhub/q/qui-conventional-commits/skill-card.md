@@ -1,39 +1,54 @@
-## Description: <br>
-Formats commit messages using the Conventional Commits specification for commits, git commit prompts, and commit-message drafting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Format commit messages using the Conventional Commits specification for automated tooling, changelog generation, and semantic versioning.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft and review commit messages that follow Conventional Commits, including type, scope, body, footer, breaking-change, and semantic-versioning guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence broad commit-related prompts and may produce commit messages that include inaccurate or sensitive details. <br>
-Mitigation: Review generated commit messages before use, especially for confidential details and correctness. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to draft, review, or normalize Git commit messages in Conventional Commits format, including scopes, breaking-change markers, and semantic-versioning signals.
 
-## Reference(s): <br>
-- [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) <br>
-- [ClawHub skill page](https://clawhub.ai/quincygunter/qui-conventional-commits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text commit-message guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, network access, or automatic git actions are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate during broad discussions about commits, not only explicit requests to draft a commit message.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it where commit-message guidance is expected, and review generated guidance before treating it as the intended task response.
+
+Risk: Incorrect or overly generic commit-message guidance could reduce changelog quality or semantic-versioning accuracy.
+
+Mitigation: Review proposed commit messages against the actual code change, especially type, scope, and breaking-change notation.
+
+## Reference(s):
+
+- [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/qui-conventional-commits)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text commit-message guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

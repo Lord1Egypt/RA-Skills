@@ -1,48 +1,63 @@
-## Description: <br>
-Monitors configured stocks during trading sessions and sends Feishu voice alerts for call-auction moves, limit-up or limit-down events, and 10-minute amplitude changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors configured stock symbols and sends Feishu voice alerts when price movement thresholds, limit-up or limit-down checks, or 10-minute amplitude rules trigger.
 
-## Publisher: <br>
-[Anightmare2](https://clawhub.ai/user/Anightmare2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anightmare2](https://clawhub.ai/user/anightmare2)
 
-## Use Case: <br>
-External users and developers configure a stock watchlist and alert thresholds so an agent can monitor market-session price movement and notify a Feishu chat when configured events occur. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Feishu and Noiz credentials for alert delivery. <br>
-Mitigation: Use dedicated low-privilege credentials and avoid placing secrets in shared shell history, logs, or reusable configuration. <br>
-Risk: The monitor can invoke a neighboring feishu-edge-tts voice-sending script when that directory is present. <br>
-Mitigation: Inspect or remove the neighboring voice-sending dependency before enabling voice alerts. <br>
-Risk: Cron examples can cause recurring Feishu stock-alert messages. <br>
-Mitigation: Enable scheduled execution only when recurring stock-alert messages are intended and review the configured cadence. <br>
-Risk: The server security verdict is suspicious because the skill mostly matches its purpose but can run an unreviewed neighboring voice-sending script while requiring alert credentials. <br>
-Mitigation: Review the skill before installation, scan the shell scripts, and test with non-production credentials before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to configure recurring stock monitoring for selected A-share, Hong Kong, or U.S. stock symbols and receive Feishu voice alerts when configured thresholds are reached.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Anightmare2/stock-monitor-siyou) <br>
-- [Publisher profile](https://clawhub.ai/user/Anightmare2) <br>
-- [Sina Finance quote endpoint](https://hq.sinajs.cn/list=$stock_code) <br>
-- [Tencent stock data endpoint](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=$market$code,day,,,1) <br>
-- [NetEase stock data endpoint](https://api.money.126.net/data/feed/${prefix}${code}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and stock-alert text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local shell execution, stock configuration, Feishu credentials, and a Noiz API key for voice-alert operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and clawhub.yaml; package.json reports 1.1.0) <br>
+Risk: The skill can run a neighboring Feishu voice notification script while Feishu and Noiz credentials are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the Feishu voice notifier dependency before enabling voice alerts, and use dedicated low-privilege Feishu and Noiz credentials.
+
+Risk: Cron execution with broad privileges can expose credentials and increase impact if the script or dependencies are compromised.
+
+Mitigation: Run scheduled monitoring as a dedicated non-root user with only the permissions needed for stock monitoring and notification.
+
+Risk: Cache and log state under shared /tmp paths can be read or modified by other local users on multi-user systems.
+
+Mitigation: Move cache and log files to a private per-user directory with restrictive filesystem permissions.
+
+Risk: Stock alerts depend on external market-data endpoints and simple threshold logic, so alerts can be delayed, missing, or based on unavailable data.
+
+Mitigation: Treat alerts as prompts for review, not financial advice, and verify market data before taking trading action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anightmare2/skills/stock-monitor-siyou)
+- [README](artifact/README.md)
+- [Skill source description](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime scripts may emit console text and trigger Feishu voice notifications using configured credentials.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and clawhub.yaml; package.json reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

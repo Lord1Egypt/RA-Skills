@@ -1,47 +1,60 @@
-## Description: <br>
-Agent Notebook provides a file-based memory system with daily notes, durable MEMORY.md context, cron inbox processing, heartbeat checks, and nightly extraction for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Notebook installs a file-based memory system for OpenClaw agents using MEMORY.md, daily notes, a cron inbox, heartbeat routines, and optional scheduled extraction.
 
-## Publisher: <br>
-[marc69-69](https://clawhub.ai/user/marc69-69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marc69-69](https://clawhub.ai/user/marc69-69)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give OpenClaw agents persistent workspace memory across sessions, including curated long-term notes, daily logs, and scheduled memory maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plaintext memory files can retain sensitive operator, customer, or project information longer than intended. <br>
-Mitigation: Use only in trusted workspaces, avoid secrets and regulated data, and review or prune retained memory regularly. <br>
-Risk: Optional scheduled jobs can repeatedly read, rewrite, and prune memory files in the background. <br>
-Mitigation: Inspect the exact cron or scheduled-task entries before enabling them, and only install recurring jobs when background processing is intended. <br>
-Risk: The bundled heartbeat guidance may encourage broad monitoring such as email, calendar, social, or catch-all checks. <br>
-Mitigation: Remove or narrow those monitoring routines unless the operator explicitly wants those integrations. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give OpenClaw workspaces persistent session context through local memory files, daily logs, inbox processing, and optional scheduled maintenance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/marc69-69/agent-notebook) <br>
-- [Publisher Profile](https://clawhub.ai/user/marc69-69) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Installation Scripts](artifact/scripts/) <br>
-- [Memory Templates](artifact/templates/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell and PowerShell commands plus generated workspace memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local memory files and can configure recurring scheduled jobs when explicitly run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent memory files can accumulate personal data, customer data, secrets, or API key locations that may be read in future sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep MEMORY.md and daily notes limited to non-sensitive operational context, avoid storing secrets or private data, and load memory only in trusted direct sessions.
+
+Risk: Optional cron and scheduled-task setup runs recurring scripts that modify local memory files.
+
+Mitigation: Review the scheduled commands and workspace path before enabling automation, and avoid enabling cron or scheduled tasks until the security guidance concerns are manually constrained or fixed.
+
+Risk: The cron inbox can move content from other sessions or agents into daily notes and longer-term memory.
+
+Mitigation: Review inbox entries before promotion and require approval for entries that contain sensitive, external, or untrusted content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marc69-69/skills/agent-notebook)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Tests README](artifact/tests/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and workspace file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and maintains workspace-local memory files when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

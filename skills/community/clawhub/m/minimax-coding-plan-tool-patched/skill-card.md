@@ -1,43 +1,54 @@
-## Description: <br>
-Use MiniMax Coding Plan API for real-time web search and image understanding (VLM). Based on yorch233/minimax-coding-plan-tool, patched to use api.minimax.io instead of api.minimax.chat. No external MCP servers needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use MiniMax Coding Plan API for real-time web search and image understanding with the api.minimax.io endpoint and no external MCP server requirement.
 
-## Publisher: <br>
-[jlin53882](https://clawhub.ai/user/jlin53882) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jlin53882](https://clawhub.ai/user/jlin53882)
 
-## Use Case: <br>
-Developers and engineers use this skill to let an agent perform MiniMax-backed web search and image understanding from shell commands or OpenClaw tool calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, image URLs, prompts, and selected local image files are sent to MiniMax for online processing. <br>
-Mitigation: Do not submit secrets, confidential documents, private screenshots, or internal-only URLs unless external MiniMax processing is approved. <br>
-Risk: Local image files passed to the image understanding command are read and converted to base64 before API submission. <br>
-Mitigation: Review image paths before execution and use only files intended for external analysis. <br>
+## Use Case:
 
+Developers and agents use this skill to run MiniMax-backed web searches and image-understanding requests from a Node.js command-line tool using a configured MINIMAX_API_KEY.
 
-## Reference(s): <br>
-- [MiniMax Platform](https://platform.minimaxi.com) <br>
-- [Original ClawHub Skill](https://clawhub.ai/yorch233/minimax-coding-plan-tool) <br>
-- [Publisher Profile](https://clawhub.ai/user/jlin53882) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jlin53882/minimax-coding-plan-tool-patched) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses and Markdown documentation with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Web search returns structured result objects; image understanding returns text analysis from a URL or supported local image file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries, prompts, image URLs, and selected local image files may be sent to MiniMax using the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive, regulated, or confidential prompts or images unless that external transmission is acceptable for the intended use case.
+
+Risk: Local image files are converted and submitted for image-understanding requests.
+
+Mitigation: Review the selected file path before invoking image understanding and use only supported image types that are appropriate to share externally.
+
+## Reference(s):
+
+- [MiniMax Platform](https://platform.minimaxi.com)
+- [ClawHub Skill Page](https://clawhub.ai/jlin53882/skills/minimax-coding-plan-tool-patched)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON objects containing web search results or image analysis text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search responses can include titles, URLs, snippets, dates, and related searches; image responses include the prompt, image source, and returned analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

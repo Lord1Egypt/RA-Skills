@@ -1,43 +1,57 @@
-## Description: <br>
-Professional Vulnerability Assessment & Penetration Testing Career Roadmap Platform that generates personalized learning paths for aspiring VAPT professionals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Vulnerability Assessment & Penetration Testing Career Roadmap Platform that generates personalized learning paths for aspiring VAPT professionals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Aspiring penetration testers, security training providers, hiring managers, and organizations use this skill to generate personalized VAPT learning roadmaps from experience, skill, and career-goal assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment requests can include career goals, skill levels, experience details, session identifiers, timestamps, and optional user IDs. <br>
-Mitigation: Avoid submitting employer-confidential, client, target-system, or real engagement details unless the provider's privacy and retention practices are acceptable. <br>
-Risk: Generated VAPT learning roadmaps may be incomplete or unsuitable for a specific hiring, training, or certification plan. <br>
-Mitigation: Have a qualified security practitioner or training owner review the roadmap before using it for curriculum, staffing, or readiness decisions. <br>
+## Use Case:
 
+External developers, security practitioners, training providers, and hiring managers use this skill to request personalized VAPT learning roadmaps from assessment data, skills, career goals, and timelines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/vapt-intern) <br>
-- [Kong route](https://api.mkkpro.com/career/vapt-intern) <br>
-- [API docs](https://api.mkkpro.com:8058/docs) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [JSON roadmap data suitable for agent summarization or Markdown presentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes roadmap identifiers, phases, durations, focus areas, resources, estimated hours, certification path, projected completion date, and key milestones.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Assessment details, session IDs, timestamps, and optional user IDs are submitted to the provider's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive personal, employment, or client data unless the provider's privacy and retention practices are acceptable for the intended use.
+
+Risk: Generated roadmaps may not reflect a learner's full background, local training requirements, or current certification objectives.
+
+Mitigation: Review generated plans before relying on them for curriculum design, hiring evaluation, or career planning.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/vapt-intern)
+- [Kong Route](https://api.mkkpro.com/career/vapt-intern)
+- [API Docs](https://api.mkkpro.com:8058/docs)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb RapidAPI Profile](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, guidance]
+
+**Output Format:** [JSON roadmap data with phased learning plans, certification paths, milestones, and estimated timelines.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include roadmap identifiers, session identifiers, optional user identifiers, generated timestamps, phase durations, focus areas, resources, estimated hours, and key milestones.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

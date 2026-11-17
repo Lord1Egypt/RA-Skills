@@ -1,40 +1,56 @@
-## Description: <br>
-小红书自动化运营工具，支持搜索笔记、查看笔记详情及评论，用于小红书、Xiaohongshu 或 RedNote 内容调研。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+只读检索小红书公开笔记、评论和博主数据，并以结构化 JSON 输出，支持内容选题、竞品分析、KOL 筛选和舆情分析。
 
-## Publisher: <br>
-[um-why](https://clawhub.ai/user/um-why) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[um-why](https://clawhub.ai/user/um-why)
 
-## Use Case: <br>
-Content operators, marketers, and analysts use this skill to search public Xiaohongshu notes, inspect note details and comments, compare engagement metrics, and export results for content planning or marketing reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Keywords, note URLs, and GUAIKEI_API_TOKEN are sent to the guaikei.com API. <br>
-Mitigation: Use the skill only when that third-party API use is acceptable, and keep the token in a protected environment variable. <br>
-Risk: Generated log files may contain sensitive content research records. <br>
-Mitigation: Review, protect, and delete local logs when they are no longer needed, especially on shared or backed-up machines. <br>
+## Use Case:
 
+创作者、运营人员、品牌团队和分析人员可用它搜索小红书公开笔记、查看笔记详情与评论，或获取博主作品及公开互动数据，以支持选题、竞品、KOL 和舆情分析。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/um-why/xhs-content-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text with JSON or Markdown result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GUAIKEI_API_TOKEN; writes local JSON logs under the skill logs directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and artifact metadata) <br>
+Risk: Keywords and links supplied for queries may be sent to the Guaikei service; the security assessment flags privacy and tool-scope concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive keywords and public links, and account for third-party processing before querying.
+
+Risk: The security assessment gives a suspicious verdict with medium confidence and reports incomplete component inspection (69%).
+
+Mitigation: If greater assurance is needed, wait for clearer tool-scope and data-sharing information, following the supplied security guidance.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/um-why/skills/xhs-content-analytics)
+- [Guaikei data service](https://www.guaikei.com)
+- [Usage contract](references/contract.md)
+- [Command options](references/options.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis]
+
+**Output Format:** [Structured JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only public data results for search, note details, comments, and blogger profiles or posts.]
+
+## Skill Version(s):
+
+1.2.2 (source: SKILL.md frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

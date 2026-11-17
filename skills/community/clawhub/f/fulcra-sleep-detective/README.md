@@ -1,69 +1,45 @@
 # Fulcra Sleep Detective
 
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![agent runtime](https://img.shields.io/badge/Built%20with-agent runtime-orange)](https://github.com/agent-runtime)
-[![Fulcra](https://img.shields.io/badge/Powered%20by-Fulcra-green)](https://fulcradynamics.com)
+**Status: retired.**
 
-**AI sleep detective that forms theories, asks questions, and tracks experiments**
+This repository used to package an experimental sleep-analysis skill. That work has been folded into the broader Fulcra skill family, especially `fulcra-context`. The old helper scripts and autonomous monitoring guidance have been removed so this package no longer encourages background collection or retention of sensitive health, calendar, or location data.
 
-## Overview
+## What to use instead
 
-The Fulcra Sleep Detective is an AI-powered sleep investigation engine that goes beyond simple tracking. Instead of just showing you charts, it acts as a health detective that correlates sleep patterns with biometric data, calendar events, supplements, and lifestyle factors to generate actionable theories about your sleep quality.
+- `fulcra-context` for user-consented sleep, biometric, activity, calendar, location, and metric-catalog reads.
+- `fulcra-annotations` for user-approved annotation writes.
+- `fulcra-agent-teams`, `fulcra-memory`, and `fulcra-tracking` for coordination, memory, and event-tracking workflows.
 
-## Features
+## Privacy model
 
-### 7 Theory Types
-- **Sleep Debt Theory**: Tracks cumulative sleep deficit and recovery patterns
-- **HRV Correlation Theory**: Connects heart rate variability with sleep quality
-- **Glucose Impact Theory**: Analyzes blood sugar patterns and sleep disruption
-- **Exercise Timing Theory**: Correlates workout timing with sleep onset and quality
-- **Calendar Stress Theory**: Links meeting density and stress with sleep metrics
-- **Supplement Efficacy Theory**: Tracks supplement timing and sleep improvements
-- **Environmental Theory**: Analyzes room conditions, temperature, and external factors
+Sleep data is sensitive. Calendar and location data can reveal private routines and relationships. Agents using Fulcra should:
 
-### Core Capabilities
-- **Multi-stream correlation**: Combines sleep, HRV, glucose, exercise, calendar, and supplement data
-- **Dynamic timezone support**: Automatically detects your timezone from Fulcra user profile — DST-aware via Python's `ZoneInfo`
-- **UTC-safe sleep parsing**: Handles timezone changes and travel accurately
-- **Proactive alerts**: Warns about conditions likely to impact tonight's sleep
-- **Annotation integration**: Learns from your manual notes and observations
-- **Conversation-as-data**: Treats your feedback as structured data for theory refinement
+1. Get consent for the current request.
+2. Read the smallest useful time window and metric set.
+3. Prefer summaries and trends over raw records.
+4. Avoid background polling, proactive alerts, exported files, screenshots, public examples, or durable storage unless the user explicitly approves that exact workflow.
+5. Use synthetic data for public demos and documentation by default.
 
-## Installation
+## Safe setup
+
+Follow the current `fulcra-context` onboarding path.
+
+CLI-first environments:
 
 ```bash
-pip install fulcra-api
+uv tool run fulcra-api --help
+uv tool run fulcra-api auth login --get-auth-url
+uv tool run fulcra-api user-info
 ```
 
-Configure Fulcra auth. Fulcra requires an authenticated account, not an API key. Accounts can be created through the CLI auth flow and include 5 GB of storage free forever:
-```bash
-uv tool run fulcra-api auth login
+Restricted environments:
+
+```text
+https://mcp.fulcradynamics.com/mcp
 ```
 
-For remote agents, keep the CLI running and surface the printed device authorization URL and code to the intended user in chat through the active trusted user channel. The user can open the link from any browser on any device, confirm the code, and approve access. Never send access tokens or credential files.
-
-Users who want biometrics, location, calendar, and other phone-collected context can install the Context iOS app and sign in with the same account. The app uses the same free storage and is no longer subscription gated. Android is coming soon.
-
-## Architecture
-
-```
-Fulcra API → Sleep Detective → Theory Engine → Alert System
-    ↓              ↓               ↓              ↓
-Raw Data → Correlation → Hypothesis → Action
-```
-
-The system continuously ingests biometric streams, applies statistical correlation analysis, generates testable hypotheses, and provides actionable recommendations.
-
-## Built with Fulcra
-
-This project showcases the power of combining [agent runtime](https://github.com/agent-runtime)'s AI agent framework with [Fulcra](https://fulcradynamics.com)'s comprehensive biometric API. agent runtime provides the conversational intelligence and automation capabilities, while Fulcra delivers the rich health data stream necessary for meaningful pattern detection.
-
-**Key Integration Points:**
-- agent runtime natural language processing for theory interpretation
-- Fulcra's unified API for multi-device biometric data
-- Real-time correlation analysis between behavioral and physiological markers
-- Proactive health coaching through intelligent alerting
+Never print, paste, log, or share access tokens, refresh tokens, credential files, raw private records, or direct capability URLs.
 
 ## License
 
-MIT License - Copyright 2026 Arc (arc-claw-bot)
+MIT License - Copyright 2026 Arc

@@ -1,40 +1,53 @@
-## Description: <br>
-Local-first agent storage for persisting SQLite data, virtual filesystem content, and memory in one local .db file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first agent storage — SQLite database, virtual filesystem, and memory in one .db file. Use when persisting agent state, querying CSV/JSONL/logs with SQL, or using fs_read/fs_write via the agt0 CLI or Node API.
 
-## Publisher: <br>
-[liuhao6741](https://clawhub.ai/user/liuhao6741) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuhao6741](https://clawhub.ai/user/liuhao6741)
 
-## Use Case: <br>
-Developers and agents use agt0 to persist local working state, query CSV, JSONL, logs, and stored files with SQL, and manage file-like memory through the agt0 CLI or Node API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: agt0 databases are persistent local storage and may contain sensitive data if an agent stores it there. <br>
-Mitigation: Avoid storing secrets unless intentional, keep backups of important .db files, and apply normal local file access controls. <br>
-Risk: The skill includes delete commands for files, branches, and databases. <br>
-Mitigation: Review destructive commands before execution and back up important .db files before deleting data. <br>
+## Use Case:
 
+Developers and agents use agt0 to persist local agent state, store files and memory in SQLite, and query CSV, JSONL, logs, and virtual filesystem content with SQL or the agt0 CLI.
 
-## Reference(s): <br>
-- [agt0 ClawHub page](https://clawhub.ai/liuhao6741/agt0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash and SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on local SQLite-backed storage and agt0 CLI or Node API usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Global npm CLI installation can alter the user's local environment or install an unexpected package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the @seekcontext/agt0 package version before installation and avoid elevated privileges.
+
+Risk: Deletion commands such as rm, delete, and --yes can remove stored local data.
+
+Mitigation: Require explicit confirmation before running destructive commands and keep backups of important .db files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuhao6741/skills/agt0)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with shell and SQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local CLI commands and SQL examples; deletion examples require user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "seller-action-plan",
+  "version": "1.5.3",
+  "workflow": "audit",
+  "focus": "action",
+  "outputTemplate": "ops_audit",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ],
+  "releaseWave": 1
+}

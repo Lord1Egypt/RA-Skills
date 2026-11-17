@@ -1,37 +1,52 @@
-## Description: <br>
-Generates structured summaries and transcript-grounded Q&A for YouTube videos, with English and Hindi responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured YouTube video summaries and transcript-grounded Q&A responses with English and Hindi support.
 
-## Publisher: <br>
-[Gangadharpadshetty](https://clawhub.ai/user/Gangadharpadshetty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gangadharpadshetty](https://clawhub.ai/user/gangadharpadshetty)
 
-## Use Case: <br>
-OpenClaw users use this skill to process YouTube links, create concise summaries, and answer follow-up questions using transcript chunks returned by a trusted local backend. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a localhost backend that retrieves transcripts, creates embeddings, and stores video-derived data. <br>
-Mitigation: Install and use it only when the localhost backend is trusted, and confirm its storage, retention, and deletion behavior before processing sensitive, private, or copyrighted videos. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Gangadharpadshetty/youtube-summerizer) <br>
+## Use Case:
 
+External users and developers can use this skill to summarize YouTube videos and ask follow-up questions using retrieved transcript context. It is suited for concise research workflows that need structured takeaways, timestamps, and multilingual responses.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured summaries, timestamps, takeaways, and transcript-grounded answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports English and Hindi responses; answers should remain grounded in retrieved transcript chunks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on a trusted local service that retrieves transcripts and may store transcript embeddings in a vector database.
+
+Mitigation: Confirm the localhost:8000 service is expected and trusted before installation or use, and review its transcript and embedding data handling.
+
+Risk: Answers may be misleading if transcript retrieval is unavailable or returns no relevant chunks.
+
+Mitigation: Require transcript-grounded tool responses before answering and use the documented fallback when the topic is not covered in the video.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gangadharpadshetty/skills/youtube-summerizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown summaries and transcript-grounded Q&A responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call local transcript processing and retrieval tools before answering; supports English and Hindi responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

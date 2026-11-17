@@ -1,0 +1,6 @@
+# 3D 演示：球面与可升降平面的截交圆（真机导出版）
+d = Slider(-2, 2, 0.1)
+SetValue(d, 1)
+S1 = Sphere((0, 0, 0), 2)
+P1 = Plane((0, 0, d), (1, 0, d), (0, 1, d))
+C1 = IntersectPath(P1, S1)

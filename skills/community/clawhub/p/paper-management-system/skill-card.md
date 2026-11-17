@@ -1,43 +1,61 @@
-## Description: <br>
-Automates PDF paper indexing, metadata extraction, search, renaming, full-text extraction, and optional AI summarization for research-paper collections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Management System helps agents index, search, rename, extract full text from, and optionally summarize local PDF research papers.
 
-## Publisher: <br>
-[crayfish-ai](https://clawhub.ai/user/crayfish-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crayfish-ai](https://clawhub.ai/user/crayfish-ai)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to organize local PDF paper collections, index metadata into SQLite, search papers by keyword or bibliographic fields, and optionally generate structured summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional notification feature can execute shell commands built from PDF-derived text. <br>
-Mitigation: Leave notifications disabled unless the PDFs and configured notification command are trusted; prefer a fixed, argument-based notification adapter instead of shell execution. <br>
-Risk: The SQLite database may contain extracted full text from private or unpublished papers. <br>
-Mitigation: Store the database in a dedicated protected workspace, back it up deliberately, and handle it as sensitive research data. <br>
-Risk: Indexing and renaming modify files in the configured papers and downloads directories. <br>
-Mitigation: Run the skill only in a dedicated papers/downloads workspace and keep backups before enabling automated cron processing. <br>
+## Use Case:
 
+Researchers and developers use this skill to manage local PDF paper collections by indexing metadata into SQLite, searching records, extracting full text, renaming files, and producing optional summaries or notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crayfish-ai/paper-management-system) <br>
-- [Publisher profile](https://clawhub.ai/user/crayfish-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, local file outputs, SQLite records, renamed PDF files, and optional structured summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operates on local PDF, downloads, data, and logs directories; optional AI summarization uses an OpenAI API key when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence) <br>
+Risk: Notification support can execute a configured shell command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave notifications disabled unless the command path is fixed, reviewed, and tightly controlled.
+
+Risk: The automated cron workflow can move, rename, and delete PDF files in configured directories.
+
+Mitigation: Use only dedicated paper-management directories and test manual commands before enabling cron.
+
+Risk: AI summarization behavior may not match OpenAI-related configuration and documentation in this release.
+
+Mitigation: Confirm the actual summarization behavior before relying on external AI processing or data-transfer assumptions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/crayfish-ai/skills/paper-management-system)
+- [README](README.md)
+- [Skill Definition](SKILL.md)
+- [Example Configuration](config.example.yaml)
+- [Skill Manifest](skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated artifacts include SQLite records, renamed PDF files, and optional text summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes to configured local paper, download, database, and log paths; optional notifications are disabled by default.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

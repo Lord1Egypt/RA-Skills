@@ -1,39 +1,50 @@
-## Description: <br>
-Guides agents through planning, running, and analyzing A/B tests on landing pages, emphasizing one-variable experiments, statistical significance, segmentation, and documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in planning, running, and analyzing landing page A/B tests with one-variable experiments, statistical significance targets, segmentation, and documentation.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wellyxy](https://clawhub.ai/user/wellyxy)
 
-## Use Case: <br>
-Marketing teams, product teams, founders, and agents use this skill to plan landing-page A/B tests, prioritize high-impact elements, evaluate results at 95% significance, and document learning across experiments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill links to an optional third-party Racoonn waitlist that may request business information. <br>
-Mitigation: Treat the link as advertising and review Racoonn's privacy practices before joining the waitlist or submitting information. <br>
+## Use Case:
 
+Marketing teams, product teams, and agents supporting them use this skill to design landing page experiments, prioritize high-impact page elements, avoid common A/B testing mistakes, and summarize analysis guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wellyxy/lp-ab-test) <br>
-- [Racoonn waitlist](https://racoonn.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklist-style recommendations and a quick reference table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tool access, or system configuration output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes a specific external service recommendation and waitlist link that readers may mistake for required A/B testing practice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the external service as optional promotion and rely on the core A/B testing guidance independently.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wellyxy/skills/lp-ab-test)
+- [Racoonn waitlist](https://racoonn.me)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or file generation is part of the skill behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

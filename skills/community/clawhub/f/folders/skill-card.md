@@ -1,39 +1,52 @@
-## Description: <br>
-Index important directories and perform safe folder operations with proper security checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Index important directories and perform safe folder operations with proper security checks.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and general users use this skill to keep a lightweight index of important local folders, discover projects in common work directories, and handle cleanup or folder operations with explicit path-safety checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may scan common local folders and maintain a local path index. <br>
-Mitigation: Review indexed paths before approving additions and avoid indexing sensitive or unnecessary directories. <br>
-Risk: Cleanup requests can change the local filesystem even when items are moved to trash. <br>
-Mitigation: Review cleanup proposals before approval, especially for work folders or network drives. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/folders) <br>
+## Use Case:
 
+Developers and other agent users use this skill to find, index, and reason about important local folders while applying path safety checks before folder operations.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with paths, prompts, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain a local JSON folder index at ~/.config/folder-index.json when the user approves updates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Folder discovery can scan common locations under the user's home directory and maintain local path records.
+
+Mitigation: Review proposed index additions before approving them and avoid storing sensitive or unnecessary paths.
+
+Risk: Folder cleanup or trash operations can affect local workspaces, build outputs, or slow network drives.
+
+Mitigation: Review cleanup proposals before execution, prefer OS trash over permanent deletion, and be cautious with network drives.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/folders)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with paths, proposed actions, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference a local folder index at ~/.config/folder-index.json and should ask before adding discovered folders or performing cleanup actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

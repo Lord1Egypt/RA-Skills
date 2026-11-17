@@ -1,45 +1,62 @@
-## Description: <br>
-Connects an OpenClaw memory directory and gbrain wiki to an Obsidian vault so users can inspect agent memory, entity notes, backlinks, and wikilink graph relationships in one local markdown workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents connect an OpenClaw memory directory and gbrain wiki to an Obsidian vault so users can inspect local notes, backlinks, and graph relationships.
 
-## Publisher: <br>
-[spikesubingrui-design](https://clawhub.ai/user/spikesubingrui-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spikesubingrui-design](https://clawhub.ai/user/spikesubingrui-design)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to wire a local gbrain wiki and OpenClaw memory notes into Obsidian for visual graph browsing, backlink review, and markdown-based editing without changing the existing sync and embedding loop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script overwrites Obsidian app.json and core-plugins.json in the target vault. <br>
-Mitigation: Review scripts/setup-vault.sh before running it and back up existing ~/wiki/.obsidian/app.json and core-plugins.json if they contain custom settings. <br>
-Risk: The setup links OpenClaw memory notes into the wiki vault, which may expose private daily memory content in Obsidian and local git workflows. <br>
-Mitigation: Confirm the memory symlink is acceptable for the user's privacy model and keep the memory path excluded from git with the scripted .gitignore entries. <br>
+## Use Case:
 
+Developers and agent users use this skill to wire an existing gbrain markdown wiki and OpenClaw memory notes into Obsidian for local graph browsing, backlink review, and manual note edits that continue through the existing sync workflow.
 
-## Reference(s): <br>
-- [Architecture - Obsidian x gbrain x OpenClaw memory](references/architecture.md) <br>
-- [Example vault layout](examples/vault-layout.md) <br>
-- [ClawHub skill page](https://clawhub.ai/spikesubingrui-design/gbrain-obsidian-vault) <br>
-- [Publisher profile](https://clawhub.ai/user/spikesubingrui-design) <br>
-- [Obsidian](https://obsidian.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup instructions and can direct the user to run an idempotent shell script that creates a memory symlink, updates gitignore entries, and writes Obsidian configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The setup script modifies the selected wiki vault, creates a `memory` symlink, appends `.gitignore` entries, and writes Obsidian configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up the vault's `.obsidian` directory, confirm `WIKI_DIR` and `MEMORY_DIR`, and inspect any existing `memory` path before running setup.
+
+Risk: Symlinking OpenClaw memory notes into the vault can expose private daily notes in Obsidian and adjacent local tooling.
+
+Mitigation: Install only when local memory visibility is acceptable, keep `memory` in `.gitignore`, and verify `git status` does not include memory note files.
+
+Risk: The artifact recommends `git add -A` after `gbrain export`, which can stage unrelated local changes.
+
+Mitigation: Inspect `git status` after export and stage only intended generated markdown or configuration paths.
+
+## Reference(s):
+
+- [Architecture](references/architecture.md)
+- [Example vault layout](examples/vault-layout.md)
+- [Gbrain Obsidian Vault on ClawHub](https://clawhub.ai/spikesubingrui-design/skills/gbrain-obsidian-vault)
+- [Obsidian](https://obsidian.md)
+- [OpenClaw](https://openclaw.ai)
+- [gbrain](https://github.com/spikesubingrui-design/gbrain)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local filesystem changes to a user-selected wiki vault and Obsidian configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

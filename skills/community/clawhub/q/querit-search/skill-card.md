@@ -1,44 +1,59 @@
-## Description: <br>
-Web search via Querit.ai API for documentation, current events, facts, and web content, returning structured results with titles, URLs, and snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search via Querit.ai API for documentation, current events, facts, and web content, returning structured results with titles, URLs, snippets, and optional extracted page content.
 
-## Publisher: <br>
-[interskh](https://clawhub.ai/user/interskh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[interskh](https://clawhub.ai/user/interskh)
 
-## Use Case: <br>
-Developers and agent users use this skill to search the web from an OpenClaw agent, filter results, and optionally extract readable page content as markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Querit.ai and may reveal sensitive topics or internal information. <br>
-Mitigation: Avoid secrets, internal URLs, regulated data, and confidential business information in search queries. <br>
-Risk: Optional page extraction fetches selected URLs from the user's machine. <br>
-Mitigation: Review URLs before extraction and avoid fetching private, internal, or untrusted pages unless the environment permits it. <br>
-Risk: The one-line installer downloads and runs code from the network. <br>
-Mitigation: Review or pin installer source before execution and install dependencies from trusted package sources. <br>
+## Use Case:
 
+Developers and agent users use this skill to search the web from OpenClaw, filter results by language, country, date, and domain, and optionally extract readable page content as markdown.
 
-## Reference(s): <br>
-- [Querit.ai](https://querit.ai) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [ClawHub release page](https://clawhub.ai/interskh/querit-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text search results, optional extracted markdown content, or raw JSON result objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QUERIT_API_KEY for search; page content extraction fetches selected URLs directly and may fail for non-HTML, protected, or very large pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The installer supports a one-line curl-to-bash path that downloads and executes files from a remote source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the source before installation, prefer a versioned release with hashes, and avoid the one-line installer for unattended environments.
+
+Risk: Search queries and fetched URLs are sent to external services or websites.
+
+Mitigation: Do not submit confidential queries, internal URLs, or sensitive page targets through the skill.
+
+Risk: The page content fetcher can request arbitrary URLs.
+
+Mitigation: Restrict use to public, non-sensitive URLs and avoid internal network or private-resource targets.
+
+## Reference(s):
+
+- [Querit Search on ClawHub](https://clawhub.ai/interskh/skills/querit-search)
+- [Querit.ai](https://querit.ai)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Plain-text search results, extracted Markdown content, or raw JSON arrays.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QUERIT_API_KEY for search. Queries are limited to 72 characters, search results are limited to 100 per query, and content extraction fetches the supplied URL directly.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

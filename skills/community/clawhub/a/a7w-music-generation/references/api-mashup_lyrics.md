@@ -1,0 +1,96 @@
+# 歌词混合 · mashup_lyrics
+
+> a7w 插件 `music_generation` 的接口 `mashup_lyrics` · 平台官方文档
+
+---
+
+`POST /api/v1/apps/music_generation/mashup_lyrics`
+
+# 音乐生成 · 歌词混合
+
+将两段歌词融合为新的混合版本。
+
+## 基本信息
+
+| 字段 | 内容 |
+| --- | --- |
+| 应用编码 | `music_generation` |
+| API 编码 | `mashup_lyrics` |
+| 请求方式 | `POST` |
+| 请求路径 | `/api/v1/apps/music_generation/mashup_lyrics` |
+| 调用模式 | 同步 |
+| 计费方式 | 固定价 12 点/次 |
+
+## 鉴权
+
+```http
+Authorization: Bearer <YOUR_API_KEY>
+Content-Type: application/json
+```
+
+## 业务参数
+
+| 参数 | 类型 | 必填 | 默认值 | 可选值 / 范围 | 示例 | 说明 |
+| --- | --- | --- | --- | --- | --- | --- |
+| `lyrics_a` | string | 是 | - | - | - | 第一段歌词文本。 |
+| `lyrics_b` | string | 是 | - | - | - | 第二段歌词文本。 |
+
+## 响应说明
+
+同步返回处理结果。媒体类结果可能包含 `audio_url`、`video_url`、`file_url`、`image_url`、`audio_id`、`persona_id` 等字段，具体以接口实际结果为准。
+
+### 成功示例
+
+```json
+{
+    "code": 1,
+    "msg": "success",
+    "data": {
+        "result": {
+            "status": "completed",
+            "title": "Lyrics Mashup",
+            "data": {
+                "text": "[singer A]\nMorning light on the road\n\n[transition]\n\n[singer B]\nDance through the midnight glare",
+                "title": "Lyrics Mashup",
+                "tags": [],
+                "status": "complete"
+            }
+        },
+        "usage": {
+            "points_cost": 12,
+            "actual_points": 12
+        }
+    }
+}
+```
+
+### 失败示例
+
+```json
+{
+    "code": 0,
+    "msg": "任务处理失败，请稍后重试",
+    "data": null
+}
+```
+
+## 参数（平台 schema 原文）
+
+```json
+{
+  "lyrics_a": {
+    "type": "string",
+    "description": "第一段歌词文本。"
+  },
+  "lyrics_b": {
+    "type": "string",
+    "description": "第二段歌词文本。"
+  }
+}
+```
+
+## 计费
+
+- 结算口径：按次固定价 12 点（租户价）
+- 标准价：`fixed_price=12.0000` / `input_price=0.000000`
+- 租户价：`tenant_fixed_points=12.00` / `tenant_points_per_1k_input=0.0000`

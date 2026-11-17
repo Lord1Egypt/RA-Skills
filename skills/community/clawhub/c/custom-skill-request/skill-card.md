@@ -1,38 +1,49 @@
-## Description: <br>
-Guides users to request a custom skill by email and helps structure their requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users to request a custom skill by email and helps structure their requirements. Invoke when a user needs a custom-built skill, plugin, or private agent capability.
 
-## Publisher: <br>
-[leosaang](https://clawhub.ai/user/leosaang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leosaang](https://clawhub.ai/user/leosaang)
 
-## Use Case: <br>
-Developers, teams, and agent users use this skill when they need a custom-built skill, plugin, private capability, or commercial agent workflow and want help structuring an email request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user may send sensitive credentials, customer data, private source code, or confidential business details in an email draft. <br>
-Mitigation: Verify the recipient email address and remove secrets or confidential information unless the user is authorized to share it. <br>
+## Use Case:
 
+External users and developers use this skill when they need a custom-built skill, plugin, private capability, or commercial agent capability and want help preparing a concise request for the publisher.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leosaang/custom-skill-request) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with optional email subject and email body draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a contact email, recommended requirement details, and an optional ready-to-send requirement summary when the user provides enough context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may send confidential requirements or sensitive operational details to the listed personal email address without confirming trust and authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify who controls the address before contacting it, and omit secrets, credentials, proprietary code, customer data, internal network details, and confidential business information unless an approved secure channel or agreement is in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leosaang/skills/custom-skill-request)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with a contact email, requirement checklist, and optional email draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a suggested email subject and ready-to-send request summary when the user provides enough context]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

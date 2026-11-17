@@ -1,7 +1,7 @@
 ---
 name: "smyx-hydroponic-nutrient-assessment-analysis"
 description: "Using fixed cameras on a hydroponic growing rack to capture high-resolution images of plant roots (in transparent containers) and leaves (young and old), AI vision analysis identifies root color (white = healthy, yellow = early stress, brown = severe stress, black = rotting) and leaf morphology (tip burn, leaf-margin scorch, yellowing, curling) to judge whether the nutrient solution is too concentrated or too dilute, and. | 通过水培种植架的固定摄像头拍摄植物根系（透明容器）和叶片（新叶、老叶）的高清图像，利用AI视觉分析技术识别根须颜色（白色健康、黄色初期胁迫、褐色严重胁迫、黑色腐烂）、叶片形态（叶尖灼伤、叶缘焦枯、叶片黄化、卷曲）等特征，判断营养液浓度是否过浓或过稀，并输出调整建议（增加清水稀释或补充浓缩营养液）。"
-version: "1.0.4"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

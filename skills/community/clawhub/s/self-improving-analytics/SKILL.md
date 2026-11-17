@@ -56,6 +56,8 @@ clawdhub install self-improving-analytics
 git clone https://github.com/jose-compu/self-improving-analytics.git ~/.openclaw/skills/self-improving-analytics
 ```
 
+Manual clone is optional. Check out a reviewed tag or commit before use. Do not install an unpinned default branch into a shared environment.
+
 ### Workspace Structure
 
 OpenClaw injects these files into every session:
@@ -100,11 +102,11 @@ When analytics learnings prove broadly applicable, promote them:
 
 ### Optional: Enable Hook
 
-For automatic reminders at session start:
+Opt-in and workspace-local. Do not copy this hook to `~/.openclaw/hooks/` (that path is user-global). Skip it unless you want reminders in this workspace:
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-analytics
-openclaw hooks enable self-improving-analytics
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-analytics
 ```
 
 See `references/openclaw-integration.md` for complete details.
@@ -402,7 +404,8 @@ When a learning is broadly applicable (not a one-off data fix), promote it to pe
 
 1. **Distill** the learning into a concise definition, rule, or procedure
 2. **Add** to appropriate target (data dictionary entry, runbook step, SLA threshold)
-3. **Update** original entry:
+3. **Show a reviewed diff and apply only after explicit user approval**
+4. **Update** original entry:
    - Change `**Status**: pending` → `**Status**: promoted`
    - Add `**Promoted**: data dictionary` (or `pipeline runbook`, `dashboard standard`, `data quality SLA`)
 
@@ -479,6 +482,8 @@ Targets: data dictionary entries, pipeline runbooks, dashboard standards, `CLAUD
 
 Enable automatic reminders through agent hooks. This is **opt-in**.
 
+Hooks persist across sessions once installed. Keep them **project-scoped**. Do **not** install user-level or global hooks. Never use an empty `matcher`. `PostToolUse` inspects command output in-process; do not log raw output, secrets, or transcripts.
+
 ### Quick Setup (Claude Code / Codex)
 
 Create `.claude/settings.json` in your project:
@@ -487,7 +492,7 @@ Create `.claude/settings.json` in your project:
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "ETL|pipeline|metric|dashboard|freshness|schema|lineage|warehouse",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-analytics/scripts/activator.sh"
@@ -497,7 +502,7 @@ Create `.claude/settings.json` in your project:
 }
 ```
 
-This injects an analytics-focused learning evaluation reminder after each prompt (~50-100 tokens overhead).
+This injects an analytics-focused learning evaluation reminder after matching prompts (~50-100 tokens overhead).
 
 ### Advanced Setup (With Error Detection)
 
@@ -505,24 +510,17 @@ This injects an analytics-focused learning evaluation reminder after each prompt
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "ETL|pipeline|metric|dashboard|freshness|schema|lineage|warehouse",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-analytics/scripts/activator.sh"
-      }]
-    }],
-    "PostToolUse": [{
-      "matcher": "Bash",
-      "hooks": [{
-        "type": "command",
-        "command": "./skills/self-improving-analytics/scripts/error-detector.sh"
       }]
     }]
   }
 }
 ```
 
-Enable `PostToolUse` only if you want the hook to inspect command output for pipeline errors, query failures, and data quality issues.
+Leave PostToolUse disabled. Do not attach error-detector.sh to every Bash call.
 
 ### Available Hook Scripts
 
@@ -534,6 +532,8 @@ Enable `PostToolUse` only if you want the hook to inspect command output for pip
 See `references/hooks-setup.md` for detailed configuration and troubleshooting.
 
 ## Automatic Skill Extraction
+
+Extracted skills are untrusted until a human reviews the generated `SKILL.md`. Do not keep or publish an extracted skill without explicit user approval.
 
 When an analytics learning is valuable enough to become a reusable skill, extract it.
 
@@ -633,4 +633,8 @@ When guidance conflicts, apply:
 
 ### Ownership Rules
 - This skill writes only to `.learnings/analytics/` in stackable mode.
-- It may read other skill folders for cross-linking, but should not rewrite their entries.
+- Do not read other skill folders, their SKILL.md files, or their log entries.
+- Standalone mode writes to this project's `.learnings/*.md` log files only.
+- Stackable mode writes only to the namespaced folder above and must not rewrite other skills' log entries.
+- Promotion into `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`, rules, hooks, or generated skills is not a logging write. Show a reviewed diff and apply only after explicit user approval.
+

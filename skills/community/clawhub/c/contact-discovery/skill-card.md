@@ -1,43 +1,58 @@
-## Description: <br>
-Find public contact details for a person or company using Prismfy-powered web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find public contact details for a person or company using Prismfy-powered web search before outreach.
 
-## Publisher: <br>
-[jernejcicorbin-hub](https://clawhub.ai/user/jernejcicorbin-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jernejcicorbin-hub](https://clawhub.ai/user/jernejcicorbin-hub)
 
-## Use Case: <br>
-Sales, recruiting, partnership, and support teams use this skill to find public contact emails, official contact pages, press or support paths, and company email-format clues before outreach. It is intended for public-evidence contact discovery, not private-data inference or guessed personal emails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms may include person names, company names, and other outreach targets that are sent to Prismfy. <br>
-Mitigation: Use the skill only when third-party processing by Prismfy is acceptable, and avoid confidential target lists or sensitive outreach research. <br>
-Risk: The skill requires a Prismfy API key. <br>
-Mitigation: Store PRISMFY_API_KEY in the agent environment, avoid pasting it into prompts or reports, and rotate it if exposure is suspected. <br>
-Risk: Email-format clues can be mistaken for confirmed personal contact details. <br>
-Mitigation: Treat pattern clues as weak evidence, require explicit public evidence before reporting an email as found, and keep human review before high-value outreach. <br>
+## Use Case:
 
+External users and agents use this skill to find public email addresses, contact pages, press or support paths, and company email-format clues before outreach. It is intended for source-backed public contact discovery, not private-data inference or guessed personal emails.
 
-## Reference(s): <br>
-- [Lead Contact Finder on ClawHub](https://clawhub.ai/jernejcicorbin-hub/contact-discovery) <br>
-- [Prismfy](https://prismfy.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Concise chat summary with a contact verdict, source-backed public evidence, optional shell command examples, and optional JSON report output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PRISMFY_API_KEY plus curl and jq; optional JSON reports include timestamp, skill version, entity status, contact verdict, public emails, contact paths, email-pattern clues, source URLs, and run failure code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: A Prismfy API key with meaningful quota, billing, or access can be exposed through persistent shell-profile setup or unsafe endpoint overrides.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secret manager or per-command environment injection, avoid storing the key in ~/.bashrc, and set endpoint override variables only for endpoints you control.
+
+Risk: Contact lookup queries are sent to Prismfy and may include person, company, domain, role, or outreach context.
+
+Mitigation: Submit only the public identifiers needed for the lookup and review whether the query content is appropriate for the account and workflow.
+
+Risk: Email-format clues or weak public evidence can be mistaken for a confirmed personal email address.
+
+Mitigation: Treat only explicitly published emails as found, label pattern-only results as clues, and require human review before high-value outreach.
+
+## Reference(s):
+
+- [Prismfy](https://prismfy.io)
+- [ClawHub skill page](https://clawhub.ai/jernejcicorbin-hub/skills/contact-discovery)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Concise chat text with source URLs, plus an optional JSON report when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PRISMFY_API_KEY, curl, and jq; contact lookup queries are sent to Prismfy.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

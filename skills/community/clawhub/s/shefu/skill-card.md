@@ -1,50 +1,66 @@
-## Description: <br>
-射覆是一个 I Ching-style divination skill that casts hexagrams and uses Zheng Yi Xin Fa-style line-structure analysis to suggest possible hidden objects or symbolic interpretations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shefu is a Chinese-language I Ching divination and symbolic-analysis skill that casts hexagrams and uses Zheng Yi Xin Fa line-structure methods to suggest possible hidden objects or symbolic readings without deterministic verdicts.
 
-## Publisher: <br>
-[henrryjoke](https://clawhub.ai/user/henrryjoke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[henrryjoke](https://clawhub.ai/user/henrryjoke)
 
-## Use Case: <br>
-External users can use this skill for entertainment-oriented Shefu object guessing and symbolic hexagram interpretation. It casts hexagrams locally and presents possible readings without deterministic or high-stakes advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases may invoke the skill unexpectedly. <br>
-Mitigation: Use explicit user intent and clarify the request before casting or interpreting a hexagram. <br>
-Risk: Divination-style outputs may be mistaken for factual, professional, or high-stakes advice. <br>
-Mitigation: Frame results as entertainment or symbolic interpretation and avoid medical, legal, financial, safety, or other high-stakes guidance. <br>
+## Use Case:
 
+External users and developers use this skill for Chinese-language hexagram casting, Shefu hidden-object guessing, and exploratory symbolic analysis. It is intended to unfold possibilities from hexagram structure, not to provide certainty or advice for consequential decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/henrryjoke/shefu) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [卦脉流动](artifact/references/卦脉流动.md) <br>
-- [反对体用](artifact/references/反对体用.md) <br>
-- [变复求义](artifact/references/变复求义.md) <br>
-- [月建与卦气旺衰](artifact/references/月建与卦气旺衰.md) <br>
-- [现代落处转译与联想过冷却](artifact/references/现代落处转译与联想过冷却.md) <br>
-- [符号观与卦画默观](artifact/references/符号观与卦画默观.md) <br>
-- [落处实用](artifact/references/落处实用.md) <br>
-- [说卦传卦脉解读](artifact/references/说卦传卦脉解读.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with symbolic analysis, candidate interpretations, and optional local command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be treated as entertainment or symbolic interpretation, not professional advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat divination or symbolic-analysis output as certain advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as exploratory possibilities and avoid using the skill for medical, legal, financial, or other consequential decisions.
+
+Risk: Broad trigger phrases may activate casting when the user's intent is not fully settled.
+
+Mitigation: Confirm that the user wants a hexagram reading before casting, especially when the request is ambiguous.
+
+Risk: Release license evidence and artifact documentation contain different license signals.
+
+Mitigation: Confirm the final code and data license terms before commercial redistribution or reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/henrryjoke/skills/shefu)
+- [Project homepage listed in artifact metadata](https://github.com/henrryjoke/shefu)
+- [卦脉流动](references/卦脉流动.md)
+- [反对体用](references/反对体用.md)
+- [变复求义](references/变复求义.md)
+- [月建与卦气旺衰](references/月建与卦气旺衰.md)
+- [现代落处转译与联想过冷却](references/现代落处转译与联想过冷却.md)
+- [符号观与卦画默观](references/符号观与卦画默观.md)
+- [落处实用](references/落处实用.md)
+- [说卦传卦脉解读](references/说卦传卦脉解读.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown-style symbolic analysis with hexagram summaries and candidate interpretations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include 2-3 candidate readings and a reminder that the result is not a deterministic conclusion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

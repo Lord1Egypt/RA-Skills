@@ -1,46 +1,62 @@
-## Description: <br>
-Explore Yunnan's diversity across Kunming, Lijiang, Dali, Shangri-La, and Xishuangbanna, and use flyai CLI data to support travel search, booking links, itinerary planning, and related travel tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore Yunnan helps agents answer Yunnan travel requests by using the flyai CLI for real-time flights, hotels, attractions, itineraries, and booking links.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers, travel planners, and agent operators use this skill to search Yunnan flights, hotels, attractions, and itinerary options with live flyai results and booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run a global npm CLI for travel searches. <br>
-Mitigation: Review the CLI package and run it in a controlled environment before using it for booking workflows. <br>
-Risk: Travel searches may send prompts and itinerary details to flyai or Fliggy services. <br>
-Mitigation: Avoid entering passport, payment, account, or other sensitive booking details in prompts. <br>
-Risk: The skill may persist raw travel queries in .flyai-execution-log.json. <br>
-Mitigation: Delete the local execution log if retained travel-query history is not desired. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search Yunnan flights, hotels, attractions, and itinerary options through flyai CLI output. It is intended to turn real-time CLI results into concise Markdown recommendations with booking links.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dingtom336-gif/explore-yunnan) <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Failure recovery fallbacks](references/fallbacks.md) <br>
-- [Execution runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live flyai CLI output; booking results should include detailUrl links and may write .flyai-execution-log.json when filesystem writes are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill instructs agents to install and execute an unpinned global @fly-ai/flyai-cli package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, pin and review the CLI version, and require approval before installing or upgrading packages.
+
+Risk: Travel queries and CLI activity may be stored in local logs.
+
+Mitigation: Disable persistent logging where possible, or redact personal travel details before retaining logs.
+
+Risk: Responses include third-party booking links from real-time CLI output.
+
+Mitigation: Check booking URLs and require user confirmation before opening booking flows or making purchases.
+
+## Reference(s):
+
+- [Explore Yunnan Skill Page](https://clawhub.ai/dingtom336-gif/skills/explore-yunnan)
+- [Parent flyai Skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for travel data; user-facing results should include booking links and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

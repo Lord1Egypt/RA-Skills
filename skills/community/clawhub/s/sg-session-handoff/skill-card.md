@@ -1,40 +1,53 @@
-## Description: <br>
-Summarizes the current session into a precise, file-saved handoff document covering goals, files changed, commands run, errors, decisions, and next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize the current session into a precise, file-saved handoff document covering goals, files changed, commands run, errors, decisions, and next steps.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Developers and AI agents use this skill mid-session or at the end of a session to create a structured Markdown handoff that preserves goals, changed files, commands, errors, decisions, current state, and next steps for another person or AI instance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated handoffs may include branch names, file paths, command results, errors, and conversation details that are sensitive in private or shared repositories. <br>
-Mitigation: Review generated handoff content before committing, sharing, or using it outside the local project workspace. <br>
-Risk: The skill writes local handoff files and may update active handoff pointers or indexes. <br>
-Mitigation: Install and run it only when local session handoff files are desired, and review the target handoff path when updating an existing handoff. <br>
+## Use Case:
 
+Developers and agents use this skill to create or update a concise handoff document that preserves session goals, changed files, commands run, errors, decisions, current state, and next steps for another person or AI instance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clarezoe/sg-session-handoff) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown handoff file with frontmatter, Markdown index, CURRENT pointer text, and concise chat confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or update local handoff, CURRENT, and INDEX.md files in the project workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release metadata) <br>
+Risk: The skill can persist detailed session history, including sensitive context if secrets or private details appeared earlier in the session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated handoffs before committing or sharing them, and avoid invoking the skill after secrets appeared in the session.
+
+Risk: The skill may update existing handoff routing files without redaction or path-safety checks.
+
+Mitigation: Check any CURRENT file before letting the skill update an existing handoff, and review modified handoff files before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clarezoe/skills/sg-session-handoff)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown file with optional pointer and index files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates a handoff file, and may maintain CURRENT and INDEX.md routing files when a handoff directory is used.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

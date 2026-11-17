@@ -1,44 +1,55 @@
-## Description: <br>
-Automated novel-writing assistant that helps create outlines, world-building, chapter drafts, quality checks, and final manuscripts through an OpenClaw or CLI workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fanfic Writer is an automated novel-writing assistant that plans, drafts, reviews, and assembles long-form fiction with state tracking, multi-perspective QC, atomic file writes, and human confirmation steps.
 
-## Publisher: <br>
-[tanson515](https://clawhub.ai/user/tanson515) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[tanson515](https://clawhub.ai/user/tanson515)
 
-## Use Case: <br>
-External users and writers use this skill to plan, draft, review, revise, and merge long-form fanfiction or web-novel manuscripts with staged checkpoints and local project state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Promised human approval gates may not be enforced before some file writes and state commits. <br>
-Mitigation: Review generated files and state changes before relying on them, and do not treat manual mode as a guaranteed approval gate for every internal step. <br>
-Risk: The skill writes prompts, outlines, drafts, manuscript text, logs, and state into local run directories. <br>
-Mitigation: Run it only in an isolated workspace you are comfortable letting the skill modify, and keep backups for important manuscripts. <br>
-Risk: Prompts and manuscript text may be sent to the configured OpenClaw model provider. <br>
-Mitigation: Keep run directories private and avoid including sensitive content unless the configured model provider and data-handling terms are acceptable. <br>
+## Use Case:
 
+Writers and agent users use this skill to create serialized fiction by generating outlines, world-building notes, chapter plans, draft chapters, QC feedback, backpatch plans, and final manuscript files with human review points.
 
-## Reference(s): <br>
-- [Fanfic Writer ClawHub listing](https://clawhub.ai/tanson515/fanfic-writer) <br>
-- [Prompt Templates for Fanfic Writer](artifact/references/prompts.md) <br>
-- [Installation Guide](artifact/INSTALL_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown, plain text manuscript files, JSON configuration/state files, and CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local run directories containing prompts, outlines, drafts, chapters, logs, state panels, and final manuscript outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Manual approval gates may not be enforced before model calls and persistent writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the code before installation, run it only in a dedicated novel workspace, avoid auto mode and large chapter ranges, and keep --run-dir away from sensitive directories.
+
+Risk: The skill writes generated drafts, state, logs, and final manuscript files to disk.
+
+Mitigation: Use a purpose-built workspace with limited contents and inspect generated files before reuse or publication.
+
+## Reference(s):
+
+- [Fanfic Writer ClawHub listing](https://clawhub.ai/tanson515/skills/fanfic-writer)
+- [Prompt reference](references/prompts.md)
+- [Installation guide](INSTALL_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, generated prose, JSON state files, text manuscript files, and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates a dedicated novel run directory; model selection is supplied by OpenClaw configuration.]
+
+## Skill Version(s):
+
+2.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

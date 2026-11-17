@@ -1,41 +1,57 @@
-## Description: <br>
-TeamArchitect guides requirement-gathering conversations, designs multi-agent team architectures, and recommends role-specific skills to install or create. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TeamArchitect gathers project requirements through dialogue, designs multi-agent team architectures, and recommends role-specific skills for installation and configuration.
 
-## Publisher: <br>
-[MarsHong-86](https://clawhub.ai/user/MarsHong-86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marshong-86](https://clawhub.ai/user/marshong-86)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn project requirements into a proposed multi-agent team design, with suggested skills for each role and installation or creation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommended skill installation or creation can change the local agent setup. <br>
-Mitigation: Review each recommended skill individually, confirm permissions and changed files, and keep an uninstall or rollback path before approving installation. <br>
-Risk: Marketplace, GitHub, or newly created skill suggestions may introduce untrusted third-party code. <br>
-Mitigation: Prefer trusted and pinned sources, verify the publisher, and treat suggested sources as untrusted until reviewed. <br>
+## Use Case:
 
+Developers, AI operators, and agent-team builders use this skill to translate project requirements into a multi-agent team design, map each role to required or optional skills, and receive installation and configuration guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MarsHong-86/teamarchitect-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/MarsHong-86) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with role maps, recommendation lists, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend installing or creating additional skills after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Recommended skills may come from marketplace or GitHub sources without pinned provenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the exact source, publisher, version or commit, permissions, and expected file changes before approving installation.
+
+Risk: Batch installation or on-demand skill creation can modify the local agent skills environment.
+
+Mitigation: Review each proposed skill individually, prefer trusted pinned packages, and scan new or generated skills before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marshong-86/skills/teamarchitect-skill)
+- [Publisher profile](https://clawhub.ai/user/marshong-86)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [skills-index.md](artifact/skills-index.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style conversational guidance with role mappings, checklists, architecture diagrams, and installation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend local, marketplace, GitHub, or newly created skills for agent roles; users should review sources and permissions before installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json; artifact/SKILL.md lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

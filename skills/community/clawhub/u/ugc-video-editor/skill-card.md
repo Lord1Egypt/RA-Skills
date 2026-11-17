@@ -1,41 +1,55 @@
-## Description: <br>
-Edit raw UGC-style footage into tighter, more usable creator and ad-ready outputs. Use when a team has talking-head, testimonial, or product demo footage that needs cleaner structure without full manual editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit raw UGC-style footage into tighter, more usable creator and ad-ready outputs.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing, ecommerce, and creator teams use this skill to turn rough UGC talking-head, testimonial, or product demo footage into a tighter edit strategy for creator, ad, product-support, storefront, or review assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive footage details while asking for editing guidance. <br>
-Mitigation: Provide only the footage details and editing goals that are appropriate to share with the agent. <br>
-Risk: The skill can produce editing recommendations that over-polish footage or weaken the authentic UGC feel. <br>
-Mitigation: Review the proposed cut strategy against the source footage and preserve product proof, creator voice, and platform expectations before publishing. <br>
+## Use Case:
 
+External creators, marketers, and ecommerce teams use this skill to turn talking-head, testimonial, or product demo footage into cleaner UGC edit plans while preserving a native, authentic feel.
 
-## Reference(s): <br>
-- [UGC Video Editor Output Template](references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/ugc-video-editor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown editing plan with keep/cut recommendations, tone guidance, best final use, and watch-outs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not process video files directly; returns planning guidance for UGC editing decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Private or unreleased UGC footage could be exposed if shared with an agent or editing workflow without permission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use footage only with appropriate authorization and avoid including private or unreleased material unless the workflow is approved for that content.
+
+Risk: Weak or chaotic source footage may lead to a cleaner plan that still is not suitable for publication.
+
+Mitigation: Review the suggested cut/keep strategy and final-use recommendation before producing or publishing the edit.
+
+## Reference(s):
+
+- [UGC Video Editor Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/ugc-video-editor)
+- [Publisher Profile](https://clawhub.ai/user/leooooooow)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns an edit strategy, cut/keep guidance, tone recommendation, best-fit use case, and footage-quality risks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

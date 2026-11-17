@@ -1,41 +1,56 @@
-## Description: <br>
-Deploy a lightweight status API that exposes an OpenClaw bot's runtime health, service connectivity, cron jobs, skills, system metrics, and related status data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a lightweight status API that exposes an OpenClaw bot's runtime health, service connectivity, cron jobs, skills, system metrics, and related operational status.
 
-## Publisher: <br>
-[suspect80](https://clawhub.ai/user/suspect80) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[suspect80](https://clawhub.ai/user/suspect80)
 
-## Use Case: <br>
-Developers and operators use this skill to set up a JSON status endpoint or monitoring dashboard for an OpenClaw agent, including service checks, cron visibility, skill inventory, and host metrics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The status API may expose host, OpenClaw workspace, cron, skill, model, context, and service telemetry to unintended audiences. <br>
-Mitigation: Bind the API to localhost or protect it with strong authentication and TLS before making it reachable from a network. <br>
-Risk: Configured command-based health checks can execute shell commands on the host. <br>
-Mitigation: Disable command checks unless every configuration source is trusted, and run the service under a low-privilege account. <br>
-Risk: The release was classified as suspicious by the authoritative security evidence because scoping and access-control guidance is incomplete. <br>
-Mitigation: Review the skill before installing and avoid exposing OpenClaw telemetry to untrusted networks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suspect80/bot-status-api-test) <br>
+## Use Case:
 
+Developers and operators use this skill to set up an operator-facing monitoring endpoint or dashboard source for an OpenClaw agent. It helps expose bot health, configured service checks, cron status, installed skills, and host metrics as status JSON.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, shell, and systemd snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths, service configuration, and deployment commands for a Node.js status API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The status API can expose sensitive OpenClaw runtime, service, skill, and host metric data if reachable by untrusted users.
+
+Mitigation: Run it only as a private operator-facing service, bind it to localhost or protect it behind authentication, and avoid exposing it directly to public networks.
+
+Risk: Persistent service setup can keep the API running beyond an interactive session and broaden exposure if hardening is incomplete.
+
+Mitigation: Use loginctl linger only when necessary, document removal steps, and verify systemd configuration before enabling the service.
+
+Risk: Configurable collectors can perform command, HTTP, and file checks that may reveal or access unnecessary operational data.
+
+Mitigation: Review the configuration before deployment and disable collectors or checks that are not required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/suspect80/skills/bot-status-api-test)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, INI, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deployment and configuration guidance for a Node.js status API.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

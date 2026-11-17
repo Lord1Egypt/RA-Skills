@@ -1,41 +1,53 @@
-## Description: <br>
-Converts meeting notes, chat logs, voice transcripts, and bullet notes into structured project status with action items, owners, deadlines, decisions, risks, and milestones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts meeting notes, chat logs, voice transcripts, and bullet notes into structured action items with owners, deadlines, decisions, risks, and milestones.
 
-## Publisher: <br>
-[seulkilu](https://clawhub.ai/user/seulkilu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seulkilu](https://clawhub.ai/user/seulkilu)
 
-## Use Case: <br>
-Employees, project managers, and developers use this skill to turn unstructured meeting or chat text into actionable project follow-up records. It is suited for extracting owners, tasks, deadlines, priority, decisions, risks, and next milestones from Chinese, English, or mixed-language notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated action items may assign incorrect owners, deadlines, priorities, or risks when the source notes are ambiguous. <br>
-Mitigation: Review generated owners, deadlines, priorities, and risks before treating them as commitments. <br>
-Risk: A request for a general summary may still produce project-style action items. <br>
-Mitigation: Confirm that the requested output should be action-item oriented before using it for follow-up tracking. <br>
+## Use Case:
 
+Employees, project managers, and developers use this skill to turn unstructured meeting or chat content into a project-management style status update with clear follow-up work.
 
-## Reference(s): <br>
-- [Entity Recognition & Output Patterns](references/patterns.md) <br>
-- [Meeting to Action Items on ClawHub](https://clawhub.ai/seulkilu/meeting-to-action-items) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json] <br>
-**Output Format:** [Structured Markdown-style text with optional JSON from the bundled parser script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs meeting summary, action items, decisions, risks, and milestones; generated owners, deadlines, priorities, and risks should be reviewed before being treated as commitments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Meeting notes, chat logs, and transcripts can contain sensitive internal or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide meeting or chat content that is appropriate for parsing into structured action items.
+
+Risk: The skill may preserve English section headers for Chinese notes, which can surprise users expecting a fully localized output.
+
+Mitigation: Review the generated action-item summary before sharing it or importing it into project-management tools.
+
+## Reference(s):
+
+- [Entity Recognition & Output Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Plain text or JSON containing a meeting summary, action items, decisions, risks, and next milestones.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action items include owner, task, deadline, and priority; unresolved deadlines are marked for confirmation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

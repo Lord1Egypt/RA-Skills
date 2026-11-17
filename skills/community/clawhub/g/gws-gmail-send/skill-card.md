@@ -1,43 +1,49 @@
-## Description: <br>
-Gmail: Send an email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gmail: Send an email.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-People using Google Workspace use this skill to prepare Gmail send commands through the gws CLI, including recipients, subject, body, sender alias, CC/BCC, attachments, HTML content, dry runs, and drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email can be sent from the active Gmail account or configured sender alias to unintended recipients. <br>
-Mitigation: Confirm the active account, sender alias, recipients, subject, body, and attachments before sending. <br>
-Risk: Attachments, HTML body content, or send-as aliases can expose sensitive information if used incorrectly. <br>
-Mitigation: Use --dry-run or --draft when review is needed before sending the message. <br>
-Risk: The skill depends on the gws CLI and shared Gmail authentication setup. <br>
-Mitigation: Install only if the gws CLI is trusted and review the generated shared Gmail/auth instructions before use. <br>
+## Use Case:
 
+Agents use this skill to prepare Gmail send commands with recipients, subject, body text or HTML, sender alias, copies, blind copies, and attachments. It supports sending immediately, saving a draft, or using a dry run for review before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-gmail-send) <br>
-- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands that send mail should be confirmed with the user before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: server release metadata) <br>
+Risk: The skill can prepare Gmail write commands that send messages or create drafts, which may disclose message content or attachments to unintended recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recipients, sender alias, subject, body, and attachments before approving execution; prefer --dry-run or --draft for sensitive messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-gmail-send)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws command-line tool; review email fields before approving execution.]
+
+## Skill Version(s):
+
+1.0.15 (source: server release metadata; embedded skill metadata 0.22.5 from SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

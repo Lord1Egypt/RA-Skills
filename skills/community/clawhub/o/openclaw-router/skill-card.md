@@ -1,46 +1,61 @@
-## Description: <br>
-Openclaw Router routes AI tasks across local and cloud models to optimize cost, track usage, and support multilingual text and optional vision workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes OpenClaw requests across local and cloud language or vision models to balance capability, verification needs, and cost.
 
-## Publisher: <br>
-[pepsiboy87](https://clawhub.ai/user/pepsiboy87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pepsiboy87](https://clawhub.ai/user/pepsiboy87)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to choose between local and configured cloud AI models, track token and cost estimates, manage routing thresholds, and optionally analyze images or screenshots through vision-capable providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect model-provider environment variables and may expose key fragments, endpoints, account details, or model inventory through diagnostics or logs. <br>
-Mitigation: Use dedicated test API keys, run first in a non-production environment, review any generated logs or screenshots before sharing, and rotate credentials if fragments are exposed. <br>
-Risk: Prompts or images may be routed to configured cloud AI providers, including vision/OCR providers, which can disclose sensitive text, screenshots, or regulated data. <br>
-Mitigation: Disable or avoid cloud and vision routes unless needed, review routing configuration before use, and keep sensitive or regulated data out of prompts and images until provider handling is approved. <br>
-Risk: Automated model selection and cost estimates can choose an unsuitable provider or produce inaccurate budget expectations. <br>
-Mitigation: Review threshold and budget settings, test routing decisions with representative tasks, and require human confirmation before using the recommendations for important workloads. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and apply model-routing choices for OpenClaw workflows, including local-first routing, cloud escalation, token and cost tracking, and optional image analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pepsiboy87/openclaw-router) <br>
-- [Project homepage](https://github.com/pepsiboy87/openclaw-router) <br>
-- [README](README.md) <br>
-- [Vision guide](docs/VISION_GUIDE.md) <br>
-- [Examples](docs/EXAMPLES_en.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, Code, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python snippets, YAML configuration examples, and routing result objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inspect environment variables for configured model providers and may send prompts or images to selected cloud AI providers when those routes are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can detect local API-key environment variables and may route prompts or user-selected images to configured cloud providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review provider configuration before use, avoid sending sensitive prompts or images to unapproved providers, and keep API keys in a secret manager or scoped environment rather than persistent shell files.
+
+Risk: The documentation includes unsafe install and credential-handling guidance.
+
+Mitigation: Review installation commands before execution, prefer signed packages or checksummed downloads, and avoid piping remote install scripts directly into a shell.
+
+Risk: The skill writes router configuration under the user's home directory.
+
+Mitigation: Inspect generated files under ~/.openclaw before relying on them in production and ensure file permissions match the user's security requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pepsiboy87/skills/openclaw-router)
+- [Project homepage](https://github.com/pepsiboy87/openclaw-router)
+- [Usage examples](docs/EXAMPLES_en.md)
+- [Vision guide](docs/VISION_GUIDE.md)
+- [FAQ](docs/FAQ_en.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python snippets, YAML configuration examples, and text routing or image-analysis results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local model choices, cloud provider selections, token estimates, cost estimates, and configuration state.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence; artifact metadata also contains 1.0.0 and 3.0.0 references requiring review)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Monitors OpenRouter free models for expiration notices and new model discovery, with optional scheduled Feishu summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors free OpenRouter models for expiration notices and newly available free models, with optional scheduled Feishu notifications.
 
-## Publisher: <br>
-[suidge](https://clawhub.ai/user/suidge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suidge](https://clawhub.ai/user/suidge)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to monitor configured OpenRouter free models, detect upcoming removals, discover newly free endpoints, and produce concise summaries or Feishu notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local OpenClaw model configuration and write a local status file. <br>
-Mitigation: Review configured paths before use and run dry-run or no-notify mode first when validating behavior. <br>
-Risk: The optional bb-browser fallback can start Chrome with remote debugging on port 9222. <br>
-Mitigation: Prefer API-only operation when possible, avoid shared machines for remote-debugging runs, and close any Chrome process started with remote debugging after use. <br>
-Risk: Feishu notifications can be sent to the configured target. <br>
-Mitigation: Verify the Feishu target and cron delivery settings before enabling scheduled runs; use no-notify mode for cron delivery to avoid duplicate messages. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to monitor configured OpenRouter free models, detect model expiration notices, discover new free models, and produce concise notification summaries for manual or scheduled workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suidge/openrouter-free-helper) <br>
-- [Cron task reference](references/cron-task.md) <br>
-- [OpenRouter page structure reference](references/openrouter-structure.md) <br>
-- [OpenRouter frontend models API](https://openrouter.ai/api/frontend/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown summaries with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a local JSON status file and can send Feishu messages when configured; supports dry-run and no-notify modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence and package.json) <br>
+Risk: The skill may start Chrome with DevTools debugging on port 9222 and invoke bb-browser for browser-assisted model discovery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this behavior before installation and prefer API-only execution when browser automation is not required.
+
+Risk: Notifications may include model names, OpenRouter links, and check timestamps.
+
+Mitigation: Confirm the Feishu recipient and notification policy before enabling scheduled or direct notification delivery.
+
+Risk: Global or unpinned installs of browser automation dependencies can change runtime behavior over time.
+
+Mitigation: Pin dependencies where possible and review installed bb-browser adapters before scheduled use.
+
+## Reference(s):
+
+- [Openrouter Free Helper on ClawHub](https://clawhub.ai/suidge/skills/openrouter-free-helper)
+- [Cron Task Reference](references/cron-task.md)
+- [OpenRouter Page Structure Reference](references/openrouter-structure.md)
+- [OpenRouter frontend models endpoint](https://openrouter.ai/api/frontend/models)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands, JSON configuration snippets, and notification summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON status data and may send Feishu messages when notification mode is enabled.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

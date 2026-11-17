@@ -1,39 +1,52 @@
-## Description: <br>
-Strictly judges whether a research paper is worth following, reading, or recommending by focusing on originality, real bottlenecks, hard empirical effects, transferable abstractions, and likely long-term influence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strictly judge whether a research paper is worth following, reading, or recommending for paper triage, reviews, literature evaluation, arXiv screening, research taste checks, and deciding whether a method is genuinely valuable.
 
-## Publisher: <br>
-[197895](https://clawhub.ai/user/197895) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[197895](https://clawhub.ai/user/197895)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Researchers, engineers, and technical reviewers use this skill to triage research papers and decide whether a method has enough originality, empirical strength, and influence potential to follow or recommend.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is deliberately skeptical and may produce a hard value judgment instead of a neutral paper summary.
+
+Mitigation: Use it for strict paper triage or review decisions, and request a separate neutral summary when that is the desired output.
+
+Risk: The workflow expects related-work searches, so conclusions can depend on the quality and freshness of retrieved comparison material.
+
+Mitigation: Review cited related work and baselines before relying on the final recommendation for high-impact decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Researchers, engineers, reviewers, and technical teams use this skill to triage papers, evaluate literature, screen arXiv submissions, and decide whether a method is genuinely worth reading, following, or recommending. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages web research for related work, so paper evaluations may depend on external sources found during browsing. <br>
-Mitigation: Use approved research-browsing practices and verify important claims against the paper, closest prior work, and reliable follow-up sources. <br>
-Risk: Strict rejection defaults can produce conservative recommendations that may understate useful but incremental work. <br>
-Mitigation: Treat the final judgment as an expert triage aid and review borderline cases against the stated criteria before making publication, investment, or roadmap decisions. <br>
+**Output Format:** [Markdown-formatted research paper evaluation with a conclusion, rating, related-work comparison, originality assessment, limitations, influence estimate, and final judgment.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires related-work search and intentionally applies a skeptical evaluation standard.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text paper evaluation with a conclusion, rating, related-work comparison, originality assessment, evidence critique, influence estimate, and final judgment.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may prompt web research for related work and asks the agent to ignore prestige, venues, citations, affiliations, and hype.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

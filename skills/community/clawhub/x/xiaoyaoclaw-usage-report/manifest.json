@@ -1,0 +1,27 @@
+{
+  "name": "OpenClaw Usage Report",
+  "version": "1.0.12",
+  "category": "Usage Analytics / Performance",
+  "description": "OpenClaw usage & performance reporting. Parse session JSONL to answer how long each agent task took, which tools/skills/models were used, and how many tokens were consumed — zero dependency, local only, token is the primary metric. The script reads, computes and outputs no cost fields at all (documentation, report and JSON follow the same scope). Output is minimized to aggregated statistics: no conversation content, no session identifiers and no absolute local paths (the resolved data directory is printed redacted to its last two segments by default; the full path requires the explicit --include-paths flag). Session-level detail (agent/id/start/end/duration_ms/active_ms/model_ms/models/tokens/tools/msgs) is opt-in via --include-sessions. Runtime makes no network calls; doc links are human-readable references only. Language: report text defaults to Chinese and can be adapted to the user's language; the skill imposes no language or region restriction. 中文：OpenClaw 用量报告——解析 session JSONL，回答每次 agent 任务耗时、所用工具/技能/模型、token 消耗。零依赖纯本地，token 为主指标，不做成本估算。输出最小化：默认只输出聚合统计，不含会话内容原文、不含 session 标识、不含本机绝对路径（数据目录默认脱敏为末两级目录，完整路径需 --include-paths）；session 级明细需显式 --include-sessions。运行时不联网。",
+  "homepage": "https://github.com/dtsola/xiaoyaoclaw-usage-report",
+  "compat": [
+    "openclaw",
+    "claude-code",
+    "claude-ai",
+    "cursor",
+    "codex-cli",
+    "gemini-cli",
+    "opencode"
+  ],
+  "permissions": {
+    "read": [
+      "OpenClaw state directory: agents/*/sessions/*.jsonl (session event logs) — read-only, aggregated statistics only"
+    ],
+    "write": [],
+    "network": "none",
+    "environment": [
+      "OPENCLAW_STATE (optional; used only to locate the state directory when --state is not given)"
+    ],
+    "notes": "Read-only: the script itself creates, modifies and deletes no file and writes to stdout only; saving the output elsewhere is a caller-side decision, not a skill behaviour. --include-sessions is required for session-level detail in BOTH the text report and the JSON output. Data directory resolution order = --state argument -> OPENCLAW_STATE env var (the only environment variable read) -> desktop build default path. The directory actually used is printed at the top of every report, redacted to its last two segments by default; --include-paths reveals the full local path and prints a sensitive-metadata warning. Time window is a hard boundary: with a window selected (--today / --week, or the default 'today' when no flag is given) every dimension (agent/model, tools, skills, daily trend, tasks) aggregates in-window events only, out-of-window events are discarded and never appear in the output, and a session spanning the boundary is truncated to its in-window part; full history requires the explicit --all flag. Agent filtering is recomputed per agent: when --agent is used, tool and skill counts, durations and error counts are recomputed for that agent alone, and no other agent's name or shared totals appear. Output minimization: aggregated statistics only by default (no conversation content, no session IDs, no absolute paths); --include-sessions explicitly adds session-level fields (agent, id, start, end, duration_ms, active_ms, model_ms, models, tokens, tools, msgs) and prints a sensitive-metadata warning. No cost reading, computation or output. No network access, no credentials, no configuration files read or written."
+  }
+}

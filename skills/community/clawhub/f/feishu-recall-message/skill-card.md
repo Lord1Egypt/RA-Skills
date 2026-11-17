@@ -1,40 +1,54 @@
-## Description: <br>
-撤回飞书群聊或单聊中的消息，支持单条撤回、批量撤回和按时间范围撤回。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+撤回飞书群消息。以用户身份撤回（recall）飞书群聊或单聊中的消息，支持单条撤回、批量撤回和按时间范围撤回。
 
-## Publisher: <br>
-[tz826](https://clawhub.ai/user/tz826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tz826](https://clawhub.ai/user/tz826)
 
-## Use Case: <br>
-开发者和运维人员可以用此技能指导代理以已授权的飞书用户身份撤回群聊或单聊消息，包括引用消息、批量消息和指定时间范围内的消息。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk or time-range recall could remove many Feishu messages through the user's account. <br>
-Mitigation: Require the agent to show the chat, time window, message count, senders, and message IDs, then obtain explicit confirmation before executing the recall. <br>
-Risk: The recall operation uses user OAuth authority and may affect messages beyond the intended scope. <br>
-Mitigation: Use a least-privileged Feishu account where possible and confirm that the account has only the permissions needed for the intended recall. <br>
+## Use Case:
 
+Workspace operators and agents use this skill to recall Feishu group or direct messages by message ID, quoted-message context, batch selection, or time window. It is intended for authorized users, group owners, or administrators who need controlled message removal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tz826/feishu-recall-message) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides Feishu message recall workflows, required OAuth scope, API action examples, pagination notes, and result reporting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can delete Feishu messages in bulk without built-in preview or confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent or operator to confirm the target chat, message IDs or time window, and message count before any batch deletion.
+
+Risk: Group owners or administrators may be able to recall messages from other members.
+
+Mitigation: Use only in workspaces where message recall is intended and limit use to authorized operators with an explicit deletion request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tz826/skills/feishu-recall-message)
+- [Publisher profile](https://clawhub.ai/user/tz826)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, shell commands]
+
+**Output Format:** [Markdown with inline tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational constraints, batch-recall steps, pagination notes, and result reporting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

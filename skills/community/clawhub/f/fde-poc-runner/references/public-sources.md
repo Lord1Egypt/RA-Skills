@@ -1,0 +1,8 @@
+# Public method sources
+
+- [AWS: Successful Generative AI POC](https://docs.aws.amazon.com/prescriptive-guidance/latest/gen-ai-lifecycle-operational-excellence/dev-architecting.html): Use POC as an experiment to verify business value, data preparation, technical feasibility and risk, with preset quality, latency and cost exit conditions.
+- [AWS: Generative AI Experiment Evaluation Loop](https://docs.aws.amazon.com/prescriptive-guidance/latest/gen-ai-lifecycle-operational-excellence/dev-experimenting-experimentation-loops.html): Records controlled variables, application versions, outputs, and evaluations into repeatable iterations.
+- [AWS: Advance from POC to pre-production](https://docs.aws.amazon.com/prescriptive-guidance/latest/gen-ai-lifecycle-operational-excellence/dev-advancing.html): Make continue, pivot or stop decisions based on original goals and real data, and expand evaluation sets and version management.
+- [Anthropic: Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents): Multiple rounds of agent evaluation should observe final results, process trajectories, tool invocations, and environment states.
+- [OpenAI Evals API](https://platform.openai.com/docs/api-reference/evals): Separate test criteria, data structures, runs and scorers to support cross-model and configuration comparisons.
+- [Azure: Architecture Testing Strategy](https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/testing): Simulate the real environment as much as possible and verify versions, configurations, and environment drift.

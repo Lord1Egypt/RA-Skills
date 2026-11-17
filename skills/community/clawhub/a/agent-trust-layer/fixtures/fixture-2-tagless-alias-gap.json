@@ -1,0 +1,25 @@
+{
+  "description": "Fixture 2-tagless: Alias gap WITHOUT metadata.type/tags — same referent, different surface forms. Tests whether a memory system without tag-aware supersession can still detect that 'Alice Chen' and 'A. Chen' refer to the same person.",
+  "method_note": "No metadata.type or tags passed. Entries are natural-language only, submitted in order, one session per entry.",
+  "entries": [
+    {
+      "id": "mem-t2-001",
+      "content": "Remember that the team lead is Alice Chen.",
+      "timestamp": "2026-06-01T10:00:00Z"
+    },
+    {
+      "id": "mem-t2-002",
+      "content": "Remember that the team lead is A. Chen.",
+      "timestamp": "2026-06-02T10:00:00Z"
+    }
+  ],
+  "expected": {
+    "question": "Should mem-t2-002 supersede mem-t2-001?",
+    "design_answer": "NO (alias gap: 'Alice Chen' and 'A. Chen' are the same referent; supersession requires identity resolution, which a pure tag-free system may not perform)",
+    "expected_active_ids": [
+      "mem-t2-001",
+      "mem-t2-002"
+    ],
+    "note": "Both records should remain active unless the system resolves the alias. False-negative detection: a system that blindly supersedes on any write loses the 'Alice Chen' identity."
+  }
+}

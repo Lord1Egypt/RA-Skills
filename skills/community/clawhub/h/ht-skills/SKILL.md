@@ -17,12 +17,13 @@ config-files:
 
 ## 客户端注意事项（必须遵守）
 
-- **个人花园范围**：`list_collections` / `get_collection` / 新建与修改文档等读写操作**仅针对个人花园**（`source_type=garden`）；用户在灏天文库网页上的精品文集等非花园文集不会出现在列表中，也无法通过 ht-skills 操作。
+- **个人花园范围**：`list_collections` / `get_collection` / 新建与修改文档等读写操作**仅针对个人花园**；用户在灏天文库网页上的精品文集等非花园文集不会出现在列表中，也无法通过 ht-skills 操作。若接口返回「已晋升为精品文集」，请引导用户前往 [灏天文库](https://aiknowledge.cn) 网页编辑。
 - **查询文集列表**：无 `--limit`、`--offset`；仅返回当前用户的**个人花园**文集。
 - **查询文档列表**：必须带 `--collection-id`（文集 ID）；若没有文集 ID，需先 `list_collections.py --name "文集名称"` 查询，或**向用户询问目标文集名称**。
 - **查询文档列表**：无 `--limit`、`--offset`。
 - **更新文档**：`author` 字段不可更新，只能更新 name、content、sort、parent。
-- **修改文档归属**：需有目标文集权限；文档属于多个文集时需指定 `--from-collection-id`。
+- **修改文档归属**：需有目标文集权限；一篇文档只属于一个文集，使用 `move_document.py --id <文档ID> --collection-id <目标文集ID>` 即可。
+- **文档归属**：一篇文档只属于一个文集（产品约束）。
 - **图片上传**：需本地可读图片路径；大文件上传耗时较长。上传成功后响应中的 `file_url` 可直接用于正文插图。
 - **图片分组**：使用 `--group-id` 前可用 `list_image_groups.py` 查询分组 ID；分组必须属于当前用户。
 - **RAG 文档片段检索**：`--collection-ids` 须为**灏天文库公开精品文集 ID**（见下方公开目录链接）；**不要**用 `list_collections.py` 查个人花园文集 ID 来做 RAG 检索。
@@ -45,20 +46,22 @@ config-files:
 ### 规范三：添加文集
 
 1. **用户确认**：新建文集前**必须**让用户确认要创建的文集名称，例如：「将创建文集「xxx」，请确认名称是否正确？」。
-2. **确认后再执行**：用户确认后再执行 `create_collection.py --name "文集名称"`。若使用 `--get-if-exists` 则同名已存在时直接返回已有 ID，不重复创建。
+2. **封面提示**：向用户说明——灏天文库会在创建后**半小时内**自动生成一次封面图；**目前不支持自定义封面**；之后若改名，封面可能与名称不一致，请谨慎操作。创建成功后 API 响应含 `cover_notice`，须转告用户。
+3. **确认后再执行**：用户确认后再执行 `create_collection.py --name "文集名称"`。若使用 `--get-if-exists` 则同名已存在时直接返回已有 ID，不重复创建。
+4. **修改文集名称**：使用 `update_collection.py --id <ID> --name "新名称"` 前，须提醒用户改名可能导致封面与名称不一致（响应含 `cover_notice`）。
 
 ### 规范四：修改文档归属
 
 1. **先定位文档**：用 `list_documents.py --collection-id <文集ID> --name "关键词"` 或 `get_document.py --id <ID>` 确认文档 ID。
 2. **确认目标文集**：用户需提供目标文集名称或 ID；若无则 `list_collections.py --name "关键词"` 查询。
-3. **执行移动**：使用 `move_document.py --id <文档ID> --collection-id <目标文集ID>`；文档属于多个文集时需加 `--from-collection-id <原文集ID>`。
+3. **执行移动**：使用 `move_document.py --id <文档ID> --collection-id <目标文集ID>`。
 
 ### 规范五：上传图片并用于文档
 
 1. **可选分组**：若用户要归类图片，先 `list_image_groups.py` 或 `create_image_group.py --name "分组名"` 取得 `group_id`。
 2. **检查额度**（可选）：`get_image_limits_usage.py` 确认 `can_upload`。
 3. **上传**：`upload_image.py --file "路径" [--remark "说明"] [--group-id N]`。
-4. **使用链接**：从返回 JSON 的 `data.file_url`（或 `data.file_path` 自行拼域名）插入文档 Markdown/HTML；勿猜测 URL。
+4. **使用链接**：从返回 JSON 的 `data.file_url` 插入文档 Markdown/HTML；勿猜测 URL。
 
 ### 规范六：文档片段检索（RAG）
 
@@ -85,10 +88,12 @@ config-files:
 ### 规范八：申请花园文集晋升精品文集
 
 1. **与个人花园维护不同**：晋升是把**已有**个人花园文集申请变为平台精品文集；记录写入 `sys_collection_upload`，由管理员在灏天文库「文集审核管理」审核。
-2. **提交前先查额度**：`check_garden_promotion_quota.py`，确认 `can_submit` 为 true（每用户 24 小时最多 1 次）。
+2. **提交前先查额度**：`check_garden_promotion_quota.py`，确认 `can_submit` 为 true（每用户 24 小时最多 1 次）；响应中的 `notice` 为晋升后果说明，须向用户宣读。
 3. **确认文集 ID**：`list_collections.py` 或 `get_collection.py`；文集内应已有文档。
-4. **提交**：`request_garden_promotion.py --collection-id <ID> [--reason "说明"]`。
-5. **跟踪**：`list_my_garden_promotion_requests.py`（status：0 待审、1 通过、2 驳回）。
+4. **晋升前必须向用户确认**：向用户说明「审核通过后 OpenClaw/ht-skills 将无法再改文集名称、文档内容，请前往灏天文库网页维护；请确认内容已定稿」；**用户同意后再提交**。
+5. **提交**：`request_garden_promotion.py --collection-id <ID> [--reason "说明"] --confirm`（`--confirm` 必填，表示已向用户说明并获确认）。
+6. **跟踪**：`list_my_garden_promotion_requests.py`（status：0 待审、1 通过、2 驳回）。
+7. **晋升后编辑**：若修改接口返回「已晋升为精品文集」，告知用户前往 [灏天文库](https://aiknowledge.cn) 网页编辑，勿反复重试 ht-skills 写接口。
 
 ---
 
@@ -108,6 +113,8 @@ config-files:
 python scripts/create_collection.py --name "文集名称" [--description "50字内简介"] [--brief "500字以上详细介绍"]
 python scripts/create_collection.py --name "文集名称" --get-if-exists
 ```
+
+- 创建成功时响应含 `cover_notice`：半小时内自动生成封面一次，暂不支持自定义封面；后续改名可能导致封面与名称不一致
 
 ## 功能二：新建文档到指定文集
 
@@ -153,16 +160,12 @@ python scripts/update_document.py --id 456 --parent 0
 ## 功能八：修改文档归属（移动到目标文集）
 
 ```bash
-# 将文档移动到目标文集
+# 将文档移动到目标文集（一篇文档只属于一个文集）
 python scripts/move_document.py --id 456 --collection-id 789
-
-# 文档属于多个文集时，需指定原文集 ID
-python scripts/move_document.py --id 456 --collection-id 789 --from-collection-id 123
 ```
 
 - `--id`：文档 ID（必填）
 - `--collection-id`：目标文集 ID（必填）
-- `--from-collection-id`：原文集 ID；文档只属于一个文集可不填，属于多个文集则必填
 
 ## 功能九：设置文档父级（文集内层级）
 
@@ -243,10 +246,12 @@ python scripts/retrieve_documents.py --content "检索内容" --collection-ids c
 
 ```bash
 python scripts/check_garden_promotion_quota.py
-python scripts/request_garden_promotion.py --collection-id <文集ID> [--reason "申请说明"]
+python scripts/request_garden_promotion.py --collection-id <文集ID> [--reason "申请说明"] --confirm
 python scripts/list_my_garden_promotion_requests.py [--limit 50] [--offset 0]
 ```
 
 - 仅针对当前用户的**个人花园**文集（`source_type=garden`）
 - 每用户 **24 小时最多 1 次**晋升申请
-- 审核在灏天文库后台「文集审核管理」进行，通过后文集变为精品文集（`source_type=collection`）
+- 提交前须向用户说明晋升后果；`--confirm` 表示已获用户确认（必填）
+- `check_garden_promotion_quota` 与提交成功响应均含 `notice` 字段（晋升后果说明）
+- 审核在灏天文库后台进行，通过后文集变为精品文集，ht-skills 写接口将不可用

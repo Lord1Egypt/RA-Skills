@@ -1,0 +1,232 @@
+{
+  "vacuum_thermal_lab": {
+    "phase": "earth_analog",
+    "months": 6,
+    "cost_busd": 0.35,
+    "prereq": [],
+    "zh": "真空与热循环试验室",
+    "en": "Vacuum and thermal-cycle laboratory",
+    "why_zh": "先在地面把设备冻住、烤透、抽成真空。这比把人送上去便宜几个数量级。",
+    "why_en": "Freeze, bake, and evacuate hardware on the ground. It is orders of magnitude cheaper than discovering the same flaw in flight."
+  },
+  "analog_operations": {
+    "phase": "earth_analog",
+    "months": 4,
+    "cost_busd": 0.15,
+    "prereq": [],
+    "zh": "模拟任务操作规程",
+    "en": "Analog mission operations",
+    "why_zh": "南极、沙漠、封闭舱。先学会怎么失败才不会在真空里失败。",
+    "why_en": "Antarctica, desert, sealed chambers. Learn how the crew fails before vacuum makes it fatal."
+  },
+  "closed_water_93": {
+    "phase": "earth_analog",
+    "months": 12,
+    "cost_busd": 0.8,
+    "prereq": ["analog_operations"],
+    "zh": "水循环 93%（空间站早期水平）",
+    "en": "Water loop at 93% (early station class)",
+    "why_zh": "国际空间站在卤水处理器之前大约是 93–94%。这是载人远航的最低门槛，不是殖民地门槛。",
+    "why_en": "ISS was about 93–94% before the brine processor. This is the floor for a long crew flight, not the settlement floor."
+  },
+  "closed_water_98": {
+    "phase": "earth_analog",
+    "months": 18,
+    "cost_busd": 1.6,
+    "prereq": ["closed_water_93"],
+    "zh": "水循环 98%",
+    "en": "Water loop at 98%",
+    "why_zh": "NASA 把约 98% 当作远程任务的目标。做不到，补给质量会吃掉发射能力。",
+    "why_en": "NASA treats about 98% as the long-mission target. Miss it and resupply mass eats the launch manifest."
+  },
+  "sabatier": {
+    "phase": "earth_analog",
+    "months": 14,
+    "cost_busd": 0.9,
+    "prereq": ["closed_water_93"],
+    "zh": "萨巴蒂尔氧气回收",
+    "en": "Sabatier oxygen recovery",
+    "why_zh": "二氧化碳加氢生成水和甲烷。氢来自电解，所以氧回收率被化学计量卡住，现行大约 47%，目标 75% 以上。",
+    "why_en": "CO2 plus hydrogen makes water and methane. Hydrogen comes from electrolysis, so oxygen recovery is stoichiometry-limited: about 47% demonstrated as a program figure, goal above 75%."
+  },
+  "crop_lab": {
+    "phase": "earth_analog",
+    "months": 12,
+    "cost_busd": 0.7,
+    "prereq": ["analog_operations"],
+    "zh": "地面植物舱",
+    "en": "Ground crop laboratory",
+    "why_zh": "热量是卡路里，不是生菜照片。照明电力会主导栖息地功率。",
+    "why_en": "Calories, not lettuce photos. Lighting power will dominate the habitat power budget."
+  },
+  "simulant_biology": {
+    "phase": "biology",
+    "months": 10,
+    "cost_busd": 0.45,
+    "prereq": ["crop_lab"],
+    "zh": "模拟星壤生物学",
+    "en": "Regolith-simulant biology",
+    "why_zh": "高氯酸盐、尘埃、紫外。先在模拟物里活过 90 天，再谈月球或火星温室。",
+    "why_en": "Perchlorates, dust, ultraviolet. Ninety days in simulant before anyone talks about a lunar or Martian greenhouse."
+  },
+  "launch_abort": {
+    "phase": "machines",
+    "months": 10,
+    "cost_busd": 0.6,
+    "prereq": ["vacuum_thermal_lab"],
+    "zh": "发射逃逸",
+    "en": "Launch abort",
+    "why_zh": "上升段出事时，逃逸系统决定乘员是事故还是葬礼。",
+    "why_en": "On the way up, an abort system is the difference between an accident and a funeral."
+  },
+  "precision_robotics": {
+    "phase": "machines",
+    "months": 12,
+    "cost_busd": 0.8,
+    "prereq": ["vacuum_thermal_lab"],
+    "zh": "精确机器人着陆与作业",
+    "en": "Precision robotic landing and work",
+    "why_zh": "机器先于人类。它们不怕真空，但怕尘埃、黑夜和没有备件。",
+    "why_en": "Machines before people. They tolerate vacuum and fail from dust, night, and no spare parts."
+  },
+  "lunar_isru_pilot": {
+    "phase": "moon",
+    "months": 16,
+    "cost_busd": 1.1,
+    "prereq": ["precision_robotics", "vacuum_thermal_lab"],
+    "zh": "月球原位资源试点",
+    "en": "Lunar ISRU pilot",
+    "why_zh": "LCROSS 在卡比厄斯坑测到约 5.6% 的水冰。试点要证明能采，不是引用那篇论文。",
+    "why_en": "LCROSS measured about 5.6% water ice at Cabeus. A pilot has to mine it, not cite the paper."
+  },
+  "storm_shelter": {
+    "phase": "moon",
+    "months": 8,
+    "cost_busd": 0.4,
+    "prereq": ["vacuum_thermal_lab"],
+    "zh": "太阳粒子风暴掩体",
+    "en": "Solar particle storm shelter",
+    "why_zh": "银河宇宙线是慢性的。太阳高能粒子是急性的。掩体是睡觉的地方，也是风暴时的地方。",
+    "why_en": "Galactic cosmic rays are chronic. Solar energetic particles are acute. The shelter is where the crew sleeps, and where they hide."
+  },
+  "kilopower": {
+    "phase": "moon",
+    "months": 18,
+    "cost_busd": 1.4,
+    "prereq": ["vacuum_thermal_lab"],
+    "zh": "千瓦级裂变电源",
+    "en": "Kilowatt-class fission power",
+    "why_zh": "KRUSTY/Kilopower 是千瓦级。月球夜和火星尘暴会杀死纯光伏栖息地。",
+    "why_en": "KRUSTY/Kilopower is the kilowatt class. Lunar night and Martian dust storms kill solar-only habitats."
+  },
+  "buried_habitat": {
+    "phase": "moon",
+    "months": 10,
+    "cost_busd": 0.5,
+    "prereq": ["precision_robotics"],
+    "zh": "覆土栖息地",
+    "en": "Regolith-buried habitat",
+    "why_zh": "辐射防护来自质量。月球和火星最便宜的质量是脚下的土。",
+    "why_en": "Radiation shielding is mass. The cheapest mass on the Moon or Mars is the ground underfoot."
+  },
+  "heavy_edl": {
+    "phase": "mars_cargo",
+    "months": 24,
+    "cost_busd": 2.2,
+    "prereq": ["precision_robotics"],
+    "zh": "重型火星进入减速着陆",
+    "en": "Heavy Mars EDL",
+    "why_zh": "已有的成功着陆大约是一吨级。人的着陆器是几十吨。没有这项，载人登陆在物理上不成立。",
+    "why_en": "Successful landings to date are about a tonne. A crewed lander is tens of tonnes. Without this, a crewed landing is physically unavailable."
+  },
+  "moxie_scale": {
+    "phase": "mars_cargo",
+    "months": 12,
+    "cost_busd": 0.7,
+    "prereq": ["precision_robotics"],
+    "zh": "大气制氧演示放大",
+    "en": "Scale-up of atmosphere-to-oxygen",
+    "why_zh": "MOXIE 一共制造了 122 克氧气。人一天就要约 0.9 千克。中间差着四个数量级的运行时间。",
+    "why_en": "MOXIE made 122 grams of oxygen in total. A person needs about 0.9 kg a day. The gap is continuous operation, not a press release."
+  },
+  "industrial_isru": {
+    "phase": "mars_cargo",
+    "months": 20,
+    "cost_busd": 1.8,
+    "prereq": ["moxie_scale", "lunar_isru_pilot"],
+    "zh": "工业级原位推进剂",
+    "en": "Industrial-scale ISRU propellant",
+    "why_zh": "返回地球的氧化剂以吨计。先在月球上学会采水，再在火星上放大制氧。",
+    "why_en": "Return oxidizer is measured in tonnes. Learn to mine water on the Moon, then scale oxygen on Mars."
+  },
+  "ntr_stage": {
+    "phase": "mars_crew",
+    "months": 28,
+    "cost_busd": 3.5,
+    "prereq": ["vacuum_thermal_lab", "storm_shelter"],
+    "zh": "核热火箭上面级",
+    "en": "Nuclear thermal transfer stage",
+    "why_zh": "DRA 5.0 的核热火箭比冲约 900–910 秒，用来把战役质量压进 800–1200 吨的低地轨道初始质量。它没有飞行过。",
+    "why_en": "DRA 5.0's nuclear thermal stage is about 900–910 s Isp, the reason a campaign can fit in an 800–1200 t IMLEO band. It has not flown."
+  },
+  "offworld_obstetrics": {
+    "phase": "biology",
+    "months": 16,
+    "cost_busd": 0.9,
+    "prereq": ["crop_lab", "storm_shelter"],
+    "zh": "地外产科与发育医学",
+    "en": "Off-world obstetrics",
+    "why_zh": "不能生育的前哨不是火种。这一项不保证安全，只表示你建了医疗能力并接受辐射剂量约束。",
+    "why_en": "An outpost that cannot have children is not a seed. This tech does not make birth safe. It builds the medical capability and accepts the dose constraint."
+  },
+  "genome_bank": {
+    "phase": "biology",
+    "months": 12,
+    "cost_busd": 0.6,
+    "prereq": [],
+    "zh": "基因组与种质库",
+    "en": "Genome and germplasm archive",
+    "why_zh": "史密斯 2014 的数量级是没有种质库时需要上万人。一百个活人加上大型档案，才是一颗骰子，而不是一个瓶颈。",
+    "why_en": "Smith 2014 is tens of thousands of people if there is no bank. A hundred living humans plus a large archive is a die to throw, not a bottleneck pretending to be a species."
+  },
+  "self_replicating_factory": {
+    "phase": "independence",
+    "months": 24,
+    "cost_busd": 2.2,
+    "prereq": ["local_manufacturing", "industrial_isru"],
+    "zh": "自复制工厂的种子",
+    "en": "Seed of a self-replicating factory",
+    "why_zh": "1980 年的 NASA 夏季研究（1982 年出版为 NASA CP-2255）讨论过一座能用当地材料维持并长大的月球工厂。那是概念，不是已建成的工厂。这一项只打开研究门。游戏不提供建造步骤。冯·诺依曼 1966 年的自复制自动机是更早的理论，不是图纸。",
+    "why_en": "The 1980 NASA summer study, published in 1982 as NASA CP-2255, discussed a lunar factory that could maintain itself and grow from local material. It is a concept, not a built factory. This item only opens the research gate. The game does not provide a construction procedure. von Neumann's 1966 self-reproducing automaton is earlier theory, not a blueprint."
+  },
+  "local_manufacturing": {
+    "phase": "independence",
+    "months": 22,
+    "cost_busd": 1.5,
+    "prereq": ["precision_robotics", "buried_habitat"],
+    "zh": "本地关键备件制造",
+    "en": "Local critical-parts manufacturing",
+    "why_zh": "断供五年的含义是：生命保障、电源和压力容器的备件不必从地球来。",
+    "why_en": "Five years without resupply means spare parts for life support, power, and pressure vessels are made locally."
+  },
+  "reusable_super_heavy": {
+    "phase": "machines",
+    "months": 24,
+    "cost_busd": 2.5,
+    "prereq": ["precision_robotics", "launch_abort"],
+    "zh": "可重复使用超重型运载",
+    "en": "Reusable super-heavy launch",
+    "why_zh": "设计目标级的运载，不是已证实的航班表现。可靠性在游戏里低于成熟重型火箭，直到你飞出统计。",
+    "why_en": "A design-target launcher, not a demonstrated flight rate. In this game its reliability stays below mature heavy lift until you fly the statistics."
+  },
+  "high_energy_transfer": {
+    "phase": "mars_crew",
+    "months": 16,
+    "cost_busd": 1.2,
+    "prereq": ["ntr_stage"],
+    "zh": "非窗口高能转移",
+    "en": "Off-window high-energy transfer",
+    "why_zh": "可以不等 26 个月，但质量比会惩罚你。窗口仍然是便宜的路。",
+    "why_en": "You can refuse the 26-month wait. The rocket equation charges for it. The window is still the cheap road."
+  }
+}

@@ -1,6 +1,6 @@
 # 拆单支付订单查询
 
-> 官方接口更新时间：`2025.12.30`。来源页：`https://paas.huifu.com/partners/api/doc/cpjs/api_cpjs_hostingcdzf.md`。
+> 官方接口更新时间：`2026-10-10`。来源页：`https://paas.huifu.com/partners/api/doc/cpjs/api_cpjs_hostingcdzf.md`。
 > 本接口只用于拆单支付订单查询，不等同于普通托管交易查询 `v2/trade/hosting/payment/queryorderinfo`。
 
 ## 目录
@@ -53,6 +53,8 @@
 
 ## 请求参数 data
 
+本页表格用于解释拆单查询流程，不是完整 DTO。完整类型、长度、Y/N/C 必须读取 `references/payment-complete-field-catalog.md` 的“拆单支付订单查询”；尤其不能按叶字段名合并请求与响应中的 `org_req_seq_id`。
+
 | 参数 | 中文名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- | --- |
 | `req_date` | 请求日期 | String | Y | 本次查询请求日期，`yyyyMMdd` |
@@ -76,7 +78,7 @@
 | `order_stat` | 预下单状态 | String | N | `1` 支付成功，`2` 支付中，`3` 已退款，`4` 处理中，`5` 支付失败，`6` 部分退款 |
 | `trans_list` | 拆单支付列表 | String(JSON Array) | N | 拆单明细列表 |
 
-## trans_list
+## `response.data.trans_list[]`
 
 | 参数 | 中文名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- | --- |
@@ -93,7 +95,7 @@
 | `wx_response` | 微信响应报文 | String(JSON Object) | N | 微信拆单明细扩展 |
 | `alipay_response` | 支付宝响应报文 | String(JSON Object) | N | 支付宝拆单明细扩展 |
 
-## wx_response
+## `response.data.trans_list[].wx_response`
 
 | 参数 | 中文名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- | --- |
@@ -102,12 +104,12 @@
 | `openid` | 用户标识 | String | Y | 用户在商户 appid 下的唯一标识 |
 | `sub_openid` | 子商户用户标识 | String | N | 用户在子商户 appid 下的唯一标识 |
 | `bank_type` | 付款银行 | String | Y | 银行类型标识 |
-| `cash_fee` | 现金支付金额 | Int | N | 订单现金支付金额 |
-| `coupon_fee` | 代金券金额 | Int | N | 代金券或立减优惠金额 |
+| `cash_fee` | 现金支付金额 | String(12) | N | 订单现金支付金额 |
+| `coupon_fee` | 代金券金额 | String(12) | N | 代金券或立减优惠金额 |
 | `attach` | 商家数据包 | String | N | 原样返回 |
 | `promotion_detail` | 营销详情列表 | Array | N | 微信营销详情 |
 
-### wx_response.promotion_detail[]
+### `response.data.trans_list[].wx_response.promotion_detail[]`
 
 | 参数 | 中文名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- | --- |
@@ -121,7 +123,7 @@
 | `other_contribute` | 其他出资 | String | N | 单位元 |
 | `goods_detail` | 单品列表 | Object | N | 单品优惠信息 |
 
-### wx_response.promotion_detail[].goods_detail
+### `response.data.trans_list[].wx_response.promotion_detail[].goods_detail`
 
 | 参数 | 中文名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- | --- |
@@ -131,7 +133,7 @@
 | `quantity` | 商品数量 | String | Y | 购买数量 |
 | `price` | 商品价格 | String | Y | 优惠后的单价 |
 
-## alipay_response
+## `response.data.trans_list[].alipay_response`
 
 | 参数 | 中文名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- | --- |
@@ -142,7 +144,7 @@
 | `hb_fq_num` | 花呗分期数 | String | N | 花呗分期数 |
 | `hb_fq_seller_percent` | 卖家承担手续费 | String | N | 手续费百分比 |
 
-### alipay_response.voucher_detail_list[]
+### `response.data.trans_list[].alipay_response.voucher_detail_list[]`
 
 | 参数 | 中文名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- | --- |

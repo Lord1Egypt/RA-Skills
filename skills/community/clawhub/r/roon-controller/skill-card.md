@@ -1,41 +1,57 @@
-## Description: <br>
-Control Roon music player through Roon API with automatic Core discovery and zone filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Roon music player through Roon API with automatic Core discovery and zone filtering.
 
-## Publisher: <br>
-[puterjam](https://clawhub.ai/user/puterjam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[puterjam](https://clawhub.ai/user/puterjam)
 
-## Use Case: <br>
-External users and developers who run Roon can use this skill to let an agent discover a local Roon Core, select playback zones, control playback, and report current track information. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a local Roon authorization token in ~/clawd/roon_config.json so it can reconnect later. <br>
-Mitigation: Keep ~/clawd/roon_config.json private, consider user-only file permissions, and revoke the extension in Roon when the skill is no longer used. <br>
-Risk: Installing the skill allows an agent to control playback on the user's Roon zones. <br>
-Mitigation: Install it only when agent-controlled Roon playback is intended, and review available zones before issuing playback commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/puterjam/roon-controller) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Roon controller script](artifact/roon_controller.py) <br>
+## Use Case:
 
+Roon users and automation-focused agents use this skill to discover a Roon Core, select playback zones, control playback, and query current track status through Python or command-line actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with Python examples, shell commands, and JSON-like result dictionaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Controls a local Roon player and stores connection configuration in ~/clawd/roon_config.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can control Roon playback on the user's local network.
+
+Mitigation: Use it only on trusted machines and networks where controlling the configured Roon Core is intended.
+
+Risk: The skill saves a Roon authorization token locally at ~/clawd/roon_config.json.
+
+Mitigation: Keep the token file private with appropriate file permissions and revoke the Roon extension authorization when the skill is no longer used.
+
+Risk: The dependency is specified as roonapi>=0.1.6 rather than pinned to an exact version.
+
+Mitigation: Install in a virtual environment and consider pinning roonapi before deployment.
+
+## Reference(s):
+
+- [Roon Controller on ClawHub](https://clawhub.ai/puterjam/skills/roon-controller)
+- [Publisher profile: puterjam](https://clawhub.ai/user/puterjam)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON-like operation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save Roon Core authorization and zone configuration locally at ~/clawd/roon_config.json.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Generate standard, beautifully formatted `--help` documentation for Command Line Interface (CLI) tools based on raw arguments, flags, and descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates standard terminal-style help text and man-page summaries for command line tools from raw commands, flags, arguments, and descriptions.
 
-## Publisher: <br>
-[sunny0826](https://clawhub.ai/user/sunny0826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunny0826](https://clawhub.ai/user/sunny0826)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn raw CLI commands, options, descriptions, and examples into polished English or Chinese help text suitable for command-line tools and man-page style summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security verdict is suspicious because the release evidence reports potential maintainer, moderation, and sandbox-bypass workflow concerns. <br>
-Mitigation: Review the skill bundle before deployment and install it only in environments where those release-level risks are acceptable. <br>
-Risk: Generated help examples could expose API keys, passwords, tokens, or other sensitive credentials if supplied by the user. <br>
-Mitigation: Redact secrets from generated output using placeholders such as <REDACTED>, YOUR_API_KEY, or ***. <br>
+## Use Case:
 
+Developers and technical writers use this skill to turn rough CLI option lists into polished help output with usage, description, commands, options, and examples. It supports English and Chinese output based on the user's prompt language.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sunny0826/cli-help-writer) <br>
-- [README](artifact/README.md) <br>
-- [Evaluation Cases](artifact/evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown containing fenced text blocks with terminal-style CLI help output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce English or Chinese output based on the user's prompt and should redact sensitive credentials before echoing examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Generated examples could expose credentials if user-provided secrets are repeated verbatim.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact real API keys, passwords, tokens, and similar credentials before including them in generated help text.
+
+Risk: Inferred flags, defaults, or examples may not match the actual CLI implementation.
+
+Mitigation: Review generated help text before copying it into a project, especially inferred defaults and example commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunny0826/skills/cli-help-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text terminal-style help output inside a markdown text code block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include inferred flags, defaults, subcommands, and examples when the user provides incomplete CLI details.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

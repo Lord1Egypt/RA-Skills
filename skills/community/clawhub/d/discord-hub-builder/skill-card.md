@@ -1,43 +1,62 @@
-## Description: <br>
-Build a complete Discord AI command center server from scratch using the Discord REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a Discord AI command center server through the Discord REST API, including categories, channels, roles, and pinned workflow cards.
 
-## Publisher: <br>
-[CaleCorbett](https://clawhub.ai/user/CaleCorbett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[calecorbett](https://clawhub.ai/user/calecorbett)
 
-## Use Case: <br>
-Developers and server operators use this skill to create a Discord-based AI command center with predefined categories, channels, roles, and pinned workflow cards. It is intended for users who have a Discord bot token and target guild ID and want the setup performed through the Discord REST API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a powerful Discord bot token that can modify the target server. <br>
-Mitigation: Use a dedicated bot, avoid exposing real tokens in shared shells or logs, and run the documented dry run before live execution. <br>
-Risk: Created owner-only, readonly, and personal channels may not have the intended permissions automatically applied. <br>
-Mitigation: Manually verify channel permissions before using the created channels for sensitive content. <br>
-Risk: Re-running after a partial failure can create duplicate channels because channel creation does not deduplicate existing names. <br>
-Mitigation: Use dry run to check planned changes and delete any unwanted duplicate channels before retrying a live run. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Discord Developer Portal](https://discord.com/developers/applications) <br>
-- [Discord REST API v10](https://discord.com/api/v10) <br>
-- [ClawHub Skill Page](https://clawhub.ai/CaleCorbett/discord-hub-builder) <br>
+## Use Case:
 
+Developers and operators use this skill to create a structured Discord workspace for AI agent management, including operational channels, agent-specific channels, roles, and pinned workflow cards.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and terminal output listing created Discord channel IDs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Discord bot token, target guild ID, and bot permissions to manage channels, manage roles, send messages, and pin messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The script can make persistent Discord server changes using a bot token with server-management permissions.
+
+Mitigation: Run against a test or empty guild first, verify the guild ID, review the dry-run preview, and get explicit confirmation before a live run.
+
+Risk: Passing a Discord bot token on the command line can expose it through shell history or logs.
+
+Mitigation: Avoid exposing the token in logs or command history and rotate the token if it may have been exposed.
+
+Risk: Channel permissions may not match the intended private or readonly posture after creation.
+
+Mitigation: Manually verify channel permissions before storing sensitive agent outputs or personal content in the server.
+
+Risk: Re-running after a partial failure can create duplicate channels because channel deduplication is not implemented.
+
+Mitigation: Use dry-run before reruns and manually remove duplicate channels if a previous live run partially completed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calecorbett/skills/discord-hub-builder)
+- [Discord Developer Portal](https://discord.com/developers/applications)
+- [Discord API v10](https://discord.com/api/v10)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with bash commands and Python script execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent Discord server changes when run live.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

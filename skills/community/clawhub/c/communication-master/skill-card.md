@@ -1,41 +1,59 @@
-## Description: <br>
-Communication Master is an AI coach for stronger communication skills, clearer boundaries, and assertive conversations across dating, work, family, and leadership settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Communication Master is an AI coach for people who want stronger communication skills, clearer boundaries, and more assertive conversations without needless aggression.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-Individuals and teams use this skill to plan difficult conversations, set boundaries, give feedback, negotiate, validate emotions, and draft situation-specific communication scripts. It is intended for coaching and practice, not therapy or crisis intervention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive personal or relationship details while asking for communication advice. <br>
-Mitigation: Treat examples as sensitive, minimize unnecessary private details, and avoid sharing information that is not needed for the coaching task. <br>
-Risk: Communication coaching can be insufficient for therapy-level, abusive, or safety-critical situations. <br>
-Mitigation: Seek professional help or safety planning when situations involve abuse, chronic harmful patterns, crisis, or therapy-level needs. <br>
+## Use Case:
 
+External users use this skill for communication coaching, including NVC framing, clearer boundaries, feedback, negotiation, emotional validation, and practical scripts for dating, work, family, and leadership conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imwyvern/communication-master) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured coaching sections and example scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language and frames advice as practical communication coaching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill provides communication coaching that may be mistaken for therapy or crisis support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow the artifact safety guidance by suggesting professional counseling for chronic relationship patterns and prioritizing safety planning when abuse is described.
+
+Risk: The skill contains visible publisher promotion and an external product link.
+
+Mitigation: Install from a trusted or version-pinned ClawHub installer when available and make users aware of the promotional link.
+
+Risk: Generated conversation scripts may be poorly suited to a user's cultural context or relationship dynamics.
+
+Mitigation: Review and adapt scripts before use, especially for sensitive, abusive, workplace, family, or cross-cultural situations.
+
+## Reference(s):
+
+- [Communication Master Skill on ClawHub](https://clawhub.ai/imwyvern/skills/communication-master)
+- [Publisher profile: imwyvern](https://clawhub.ai/user/imwyvern)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style coaching response with a situation summary, core issue, suggested script, avoid list, and mindset reframe]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies in the same language the user writes in.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-SecondMe helps OpenClaw users authenticate with SecondMe, manage profile and Plaza activity, browse discover users, manage Key Memory and notes, and view activity summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SecondMe helps OpenClaw users authenticate with SecondMe, manage their profile, use Plaza, browse discover users, manage Key Memory and notes, and view activity summaries.
 
-## Publisher: <br>
-[daihaochen-mv](https://clawhub.ai/user/daihaochen-mv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daihaochen-mv](https://clawhub.ai/user/daihaochen-mv)
 
-## Use Case: <br>
-External SecondMe users and OpenClaw agents use this skill to complete SecondMe login, maintain profile data, use Plaza and discover workflows, manage Key Memory and notes, and retrieve activity summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores SecondMe access credentials locally for continued account access. <br>
-Mitigation: Install only when OpenClaw should access the SecondMe account, and log out or delete {baseDir}/.credentials when local access should be revoked. <br>
-Risk: The skill can update profile data and create Plaza posts, comments, notes, and Key Memory entries through user-directed account actions. <br>
-Mitigation: Review profile edits, Plaza posts/comments, notes, and Key Memory entries before confirming actions. <br>
+## Use Case:
 
+External users and developers use this skill to connect OpenClaw to a SecondMe account, then perform account-scoped workflows such as profile updates, Plaza participation, discover browsing, Key Memory operations, note creation or search, and activity review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daihaochen-mv/mindverse-secondme) <br>
-- [SecondMe Authentication](https://second-me.cn/third-party-agent/auth) <br>
-- [SecondMe Website](https://second-me.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration, text] <br>
-**Output Format:** [Markdown text with API request details and user-facing prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, update, or delete a local credentials file at {baseDir}/.credentials during user-directed authentication flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores a reusable SecondMe account token and some profile details in a local plaintext credentials file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the credentials file private, do not commit or sync it, and log out or revoke access if exposure is suspected.
+
+Risk: The skill can make account-scoped profile, Plaza, Key Memory, notes, discover, and activity requests after authentication.
+
+Mitigation: Review requested actions before approval, especially profile edits, Plaza posts or comments, and memory or note creation.
+
+## Reference(s):
+
+- [SecondMe ClawHub Skill Page](https://clawhub.ai/daihaochen-mv/skills/mindverse-secondme)
+- [SecondMe Homepage](https://second-me.cn/)
+- [SecondMe Authorization Page](https://second-me.cn/third-party-agent/auth)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown text with API request details, JSON snippets, and user-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store a reusable SecondMe access token and selected profile details in a local credentials file after login.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

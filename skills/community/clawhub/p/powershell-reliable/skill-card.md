@@ -1,40 +1,53 @@
-## Description: <br>
-Execute PowerShell commands reliably on Windows. Avoid &&, handle parameter parsing, recover from interruptions, and ensure cross-session continuity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute PowerShell commands reliably on Windows. Avoid &&, handle parameter parsing, recover from interruptions, and ensure cross-session continuity.
 
-## Publisher: <br>
-[Dalomeve](https://clawhub.ai/user/Dalomeve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dalomeve](https://clawhub.ai/user/dalomeve)
 
-## Use Case: <br>
-Developers and agents use this skill to turn Bash-style command habits into reliable Windows PowerShell execution patterns, including safe chaining, parameter handling, path management, encoding, retries, and checkpointing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PowerShell examples involving web requests, deletion targets, background jobs, or checkpoint files could affect local systems if copied without review. <br>
-Mitigation: Review Invoke-WebRequest destinations, Remove-Item targets, background job behavior, and checkpoint contents before running adapted commands. <br>
-Risk: Logs or checkpoint files may accidentally include secrets, tokens, credentials, or request headers. <br>
-Mitigation: Keep secrets out of logs and checkpoints, use environment variables or SecureString for credentials, and scan scripts for sensitive values before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Privacy Security Checklist](references/privacy-checklist.md) <br>
-- [Microsoft PowerShell Documentation](https://docs.microsoft.com/powershell) <br>
+## Use Case:
 
+Developers and engineers use this skill to produce reliable Windows PowerShell command patterns, including safer command sequencing, parameter handling, path handling, output encoding, retries, and checkpoint-based recovery.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with PowerShell code blocks, checklists, and reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; users should review and adapt generated PowerShell before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Checkpoint files can expose sensitive progress state if scripts include secrets or credentials.
+
+Mitigation: Store only non-sensitive progress fields in checkpoint files, exclude password, token, secret, API key, and credential values, and keep checkpoints local to the working directory.
+
+Risk: PowerShell snippets copied from guidance may perform unintended local actions if run without review.
+
+Mitigation: Review generated commands before execution, use explicit error handling, and treat examples as templates to adapt to the local environment.
+
+## Reference(s):
+
+- [Privacy Security Checklist](references/privacy-checklist.md)
+- [Microsoft PowerShell documentation](https://docs.microsoft.com/powershell)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local execution patterns, safety checklists, and reviewable PowerShell snippets; no bundled executable payload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

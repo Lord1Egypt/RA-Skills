@@ -1,0 +1,10 @@
+{
+  "name": "ride",
+  "version": "1.6.0",
+  "description": "Ambient Ride skill for TADA/Throo ride-hailing and taxi service. Wallet, USDC bridge status and recovery, deposit, collateral, ride, payment, chat, and tipping workflows; use it for wallet balances, starting and resuming USDC bridges, and bridge progress.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "license": "MIT-0"
+}

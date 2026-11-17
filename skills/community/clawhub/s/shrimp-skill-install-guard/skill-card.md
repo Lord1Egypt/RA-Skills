@@ -1,45 +1,60 @@
-## Description: <br>
-Guard OpenClaw skill installation with a productized five-step flow: source check, local-state check, mandatory all-files review, risk review, install execution, and post-install verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Install Guard adds a guarded OpenClaw skill installation flow with source checks, local-state checks, all-files review, risk review, controlled execution, and post-install verification.
 
-## Publisher: <br>
-[wuyunting555](https://clawhub.ai/user/wuyunting555) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuyunting555](https://clawhub.ai/user/wuyunting555)
 
-## Use Case: <br>
-Developers, administrators, and security-sensitive teams use this skill to review unfamiliar OpenClaw skills before installation, make go/no-go decisions, execute approved installs, and verify that expected files landed afterward. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run a user-provided install command during the execution phase. <br>
-Mitigation: Start with --dry-run or --stop-before-install, review the report, and only proceed with a simple trusted install command. <br>
-Risk: A review report can miss context or produce an incomplete safety conclusion. <br>
-Mitigation: Treat the result as review support, not a guarantee; verify the target source, expected directory, and key files before accepting the install. <br>
-Risk: Privileged commands, shell interpreters, chaining, pipes, or redirects can broaden installation impact. <br>
-Mitigation: Avoid privileged or shell-interpreted commands and provide a direct executable invocation with an expected install directory. <br>
+## Use Case:
 
+Developers, administrators, and security-sensitive teams use this skill to preflight unfamiliar OpenClaw skills, review source and risk signals, decide go/no-go, and verify installation results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuyunting555/shrimp-skill-install-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/wuyunting555) <br>
-- [README](README.md) <br>
-- [Local verification report](VERIFICATION-2026-04-08.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with optional JSON reports and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports source completeness, file-review coverage, red flags, permissions, risk level, recommendation, install status, and post-install verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.3 (source: frontmatter and server release evidence) <br>
+Risk: Free-form install command execution can allow an unreviewed or mismatched skill install.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run --dry-run or --stop-before-install first, and only provide --install-cmd after confirming it installs the reviewed slug, version, and source.
+
+Risk: URL or local-folder sources may include binaries, large files, archives, or metadata that does not match the intended skill.
+
+Mitigation: Treat skipped, binary, oversized, unreadable, or mismatched source evidence as a blocker until manually checked.
+
+Risk: Fail-open review behavior can leave incomplete review coverage while still producing an install path.
+
+Mitigation: Require the report JSON and verify all-files coverage, risk level, recommendation, expected directory, and SKILL.md presence before accepting the install.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuyunting555/skills/shrimp-skill-install-guard)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Verification report](artifact/VERIFICATION-2026-04-08.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Human-readable Markdown-style report plus optional machine-readable JSON report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source completeness, all-files coverage, red flags, permissions, risk level, install action, post-install verification, and final go/no-go.]
+
+## Skill Version(s):
+
+0.4.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

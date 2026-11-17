@@ -160,7 +160,7 @@
 
 ### 风险 #32
 - 文件行号: -2134
-- 内容: {"0":"{\"subsystem\":\"gateway/channels/feishu\"}","1":"feishu[main]: Feishu[main] DM from ou_c8a0752d42bf333970206260aa242383: 要确定不会影响openclaw的oauth token才可以用：sk-cp-aEqYpa8XLmXgjZMlnf2fhJx9mu5SkjmQFS
+- 内容: {"0":"{\"subsystem\":\"gateway/channels/feishu\"}","1":"feishu[main]: Feishu[main] DM from ou_c8a0752d42bf333970206260aa242383: 要确定不会影响openclaw的oauth token才可以用：REDACTED-SECRET
 - 风险类型: ['基金代码6位']
 
 ### 风险 #33
@@ -8119,7 +8119,7 @@
 
 ### 风险 #32
 - 文件行号: -2134
-- 内容: {"0":"{\"subsystem\":\"gateway/channels/feishu\"}","1":"feishu[main]: Feishu[main] DM from ou_c8a0752d42bf333970206260aa242383: 要确定不会影响openclaw的oauth token才可以用：sk-cp-aEqYpa8XLmXgjZMlnf2fhJx9mu5SkjmQFS
+- 内容: {"0":"{\"subsystem\":\"gateway/channels/feishu\"}","1":"feishu[main]: Feishu[main] DM from ou_c8a0752d42bf333970206260aa242383: 要确定不会影响openclaw的oauth token才可以用：REDACTED-SECRET
 - 风险类型: ['基金代码6位']
 
 ### 风险 #33

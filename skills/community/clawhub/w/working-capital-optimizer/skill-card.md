@@ -1,40 +1,58 @@
-## Description: <br>
-Analyzes SMB and growth-stage company working capital by calculating DSO, DPO, DIO, and cash conversion cycle metrics, identifying AR, AP, and inventory opportunities, and producing prioritized cash-flow improvement recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and optimize working capital for SMBs and growth-stage companies by calculating DSO, DPO, DIO, and CCC, identifying AR/AP/inventory opportunities, and producing a quantified cash release plan.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Finance teams, CFOs, and advisors use this skill to diagnose why cash is constrained despite profitability and to quantify working-capital actions using financial statement, AR aging, AP aging, and inventory data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process confidential financial data such as receivables, payables, supplier terms, and cash-flow details. <br>
-Mitigation: Share only the minimum needed data, anonymize customer and supplier names where practical, and follow the organization's data-handling controls. <br>
-Risk: Working-capital recommendations may be incomplete or unsuitable if the inputs are stale, partial, or not reviewed in business context. <br>
-Mitigation: Have a qualified finance professional review the analysis before changing collections practices, supplier payment timing, or cash-management decisions. <br>
+## Use Case:
 
+External finance operators, CFO advisers, and financial agents use this skill to diagnose cash conversion cycle issues and produce prioritized actions for freeing cash without new financing.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/samledger67-dotcom/working-capital-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown narrative with optional structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory financial analysis and action plans from user-provided business data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may provide sensitive business financial figures to the agent while using this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in approved data-handling environments, share only the figures needed for the analysis, and avoid entering credentials or unrelated confidential records.
+
+Risk: The included Python snippets are examples and may not handle zero, missing, or inconsistent accounting balances in production workflows.
+
+Mitigation: Add input validation, error handling, and finance review before adopting the snippets in operational systems.
+
+Risk: Cash release projections depend on user-provided data and assumptions about collections, supplier terms, and inventory behavior.
+
+Mitigation: Validate source reports, document assumptions, and have a finance owner review recommendations before acting on them.
+
+## Reference(s):
+
+- [Working Capital Optimizer ClawHub Listing](https://clawhub.ai/samledger67-dotcom/skills/working-capital-optimizer)
+- [Publisher Profile](https://clawhub.ai/user/samledger67-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, guidance]
+
+**Output Format:** [Markdown summaries with optional structured JSON and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include working-capital formulas, financial assumptions, prioritized action plans, and cash impact estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

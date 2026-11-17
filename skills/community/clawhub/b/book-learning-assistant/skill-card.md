@@ -1,42 +1,59 @@
-## Description: <br>
-Helps learners study books by building structured book overviews from searched book metadata or user-provided EPUB files, then producing chapter-focused explanations with source-grounded examples and freshness checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+书本学习助手 helps learners study books from either verified online book information or user-provided ebook files, producing structured chapter overviews, core ideas, thinking tools, accessible examples, and timeliness checks.
 
-## Publisher: <br>
-[wangzhanchao883](https://clawhub.ai/user/wangzhanchao883) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhanchao883](https://clawhub.ai/user/wangzhanchao883)
 
-## Use Case: <br>
-Learners and educators use this skill to turn a book title or a supplied EPUB into a structured study path, chapter summaries, key ideas, thinking tools, and accessible examples. It is also useful when an agent needs to read local ebook content before preparing study notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read ebook files supplied by the user, which can expose private reading materials or local file paths to the agent. <br>
-Mitigation: Use only ebook files you are comfortable sharing with the agent, and limit access to the specific file needed for the study task. <br>
-Risk: The artifact mentions writing generated notes into Obsidian and Notion without fully scoping destinations. <br>
-Mitigation: Require an explicit preview and confirmation before any write action, and specify the exact vault, database, page, or folder where notes may be written. <br>
+## Use Case:
 
+External learners, educators, and reading assistants use this skill to turn a book title or local ebook into structured study notes, then drill into selected chapters with examples and current-knowledge checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangzhanchao883/book-learning-assistant) <br>
-- [EBOOK_README.md](artifact/EBOOK_README.md) <br>
-- [output-examples.md](artifact/references/output-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured Markdown, JSON from the ebook helper script, and occasional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs emphasize source-grounded book summaries, chapter explanations, simple examples, and knowledge freshness notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata; frontmatter reports 1.5) <br>
+Risk: Generated notes may be written to Notion, Obsidian, or synced note locations without clear confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination and obtain approval before allowing any write action to synced notes.
+
+Risk: Local ebook parsing can expose the agent to untrusted or very large ebook files.
+
+Mitigation: Process only trusted ebooks, keep size limits in place, and stop if parsing behavior is unexpected.
+
+Risk: PDF support depends on an optional parser dependency.
+
+Mitigation: Install the PDF dependency only when needed, pin the version, and use a constrained environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangzhanchao883/skills/book-learning-assistant)
+- [Ebook local reading guide](artifact/EBOOK_README.md)
+- [Output examples](artifact/references/output-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown, with JSON returned by the ebook helper script when invoked]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include chapter lists, extracted text snippets, examples, and timeliness assessments; ebook helper output can be truncated with a limit parameter.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata; SKILL.md frontmatter lists 1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

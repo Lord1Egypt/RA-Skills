@@ -1,43 +1,61 @@
-## Description: <br>
-Search one-way flights, single-trip tickets and open-ended travel bookings with no return date required, powered by Fliggy/FlyAI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search one-way flights, single-trip tickets and open-ended travel bookings with no return date required, powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-assistant agents use this skill to search one-way flights, collect required route and date parameters, execute FlyAI CLI searches, and present bookable real-time results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store raw travel requests and command details in a persistent local execution log. <br>
-Mitigation: Review logging behavior before deployment, confirm whether logs can be disabled or deleted, and avoid entering passport, visa, payment, or highly personal itinerary details unless retention is controlled. <br>
-Risk: Travel searches are sent through a global FlyAI CLI to an external travel service. <br>
-Mitigation: Install and use the CLI only where external travel-service processing is acceptable, and inform users that real-time search data comes from FlyAI/Fliggy. <br>
+## Use Case:
 
+External travelers and travel-support agents use this skill to search and format one-way flight options with booking links from flyai CLI results.
 
-## Reference(s): <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FlyAI CLI output; user-facing results should include booking links and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can install a global flyai CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package source and provenance first, require explicit approval before installation, and pin a reviewed version.
+
+Risk: The skill runs commands derived from user travel requests.
+
+Mitigation: Use safe argument-based command execution with strict validation of supported flags and user-provided values.
+
+Risk: Raw travel queries may be retained in local execution logs.
+
+Mitigation: Disable or remove raw logging and avoid entering sensitive personal travel details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/one-way)
+- [Fallbacks](references/fallbacks.md)
+- [Playbooks](references/playbooks.md)
+- [Runbook](references/runbook.md)
+- [Templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flight results should be sourced from flyai CLI output and include booking links when available.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

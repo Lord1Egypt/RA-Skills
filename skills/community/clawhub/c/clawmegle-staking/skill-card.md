@@ -1,47 +1,68 @@
-## Description: <br>
-Stake $CLAWMEGLE tokens to earn dual rewards from Clanker LP fees, check staking rewards, claim earnings, and manage staking positions through Bankr API or direct wallet transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stake $CLAWMEGLE tokens to earn dual rewards from Clanker LP fees and manage staking through Bankr API or direct wallet transactions.
 
-## Publisher: <br>
-[tedkaczynski-the-bot](https://clawhub.ai/user/tedkaczynski-the-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tedkaczynski-the-bot](https://clawhub.ai/user/tedkaczynski-the-bot)
 
-## Use Case: <br>
-External agents and developers use this skill to manage $CLAWMEGLE staking on Base, including stake, unstake, claim, balance check, and reward deposit workflows. It is intended for agents that already have a configured Bankr account or direct wallet infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit live Base transactions that stake, unstake, claim, approve token spending, or deposit rewards. <br>
-Mitigation: Review each transaction before submission, verify the contract address and calldata independently, and use a dedicated low-balance wallet. <br>
-Risk: Bankr API keys or direct private keys may authorize asset movement if exposed or mishandled. <br>
-Mitigation: Protect and rotate the Bankr API key, avoid raw private keys where possible, and never store credentials in shared logs or prompts. <br>
-Risk: Heartbeat-based reward management can trigger claims or reward deposits without timely human review. <br>
-Mitigation: Enable autonomous claims or deposits only with explicit approval rules, clear thresholds, and human notification for material position changes. <br>
+## Use Case:
 
+External agents and operators use this skill to check $CLAWMEGLE staking balances and rewards, stake or unstake tokens, claim rewards, and deposit rewards for stakers on Base.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tedkaczynski-the-bot/clawmegle-staking) <br>
-- [Clawmegle Homepage](https://clawmegle.xyz) <br>
-- [Contract Reference](references/contract.md) <br>
-- [Bankr Transaction Format](references/bankr-format.md) <br>
-- [Staking Contract on Basescan](https://basescan.org/address/0x56e687aE55c892cd66018779c416066bc2F5fCf4) <br>
-- [$CLAWMEGLE Token on Basescan](https://basescan.org/token/0x94fa5D6774eaC21a391Aced58086CCE241d3507c) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit or prepare live Base transactions when the user provides Bankr credentials or a direct wallet private key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can initiate real staking, approval, unstaking, claiming, and reward-deposit transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human confirmation before submitting any transaction and use a low-value dedicated wallet or tightly scoped Bankr key.
+
+Risk: Wallet credentials and Bankr API keys are needed for normal operation.
+
+Mitigation: Restrict permissions on local configuration files and avoid reusing high-value keys or wallets.
+
+Risk: The security scan reports an exploitable shell/Python input-handling flaw in deposit-rewards.sh.
+
+Mitigation: Do not pass untrusted amounts to deposit-rewards.sh until its input parsing is fixed.
+
+Risk: The scripts construct and submit raw Base transaction calldata for fixed contract addresses.
+
+Mitigation: Verify contract addresses and transaction calldata independently before execution.
+
+## Reference(s):
+
+- [Contract Reference](references/contract.md)
+- [Bankr Transaction Format](references/bankr-format.md)
+- [Clawmegle](https://clawmegle.xyz)
+- [Bankr](https://bankr.bot)
+- [Bankr API](https://bankr.bot/api)
+- [Staking Contract on Basescan](https://basescan.org/address/0x56e687aE55c892cd66018779c416066bc2F5fCf4)
+- [CLAWMEGLE Token on Basescan](https://basescan.org/token/0x94fa5D6774eaC21a391Aced58086CCE241d3507c)
+- [ClawHub Skill Page](https://clawhub.ai/tedkaczynski-the-bot/skills/clawmegle-staking)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and transaction prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Bankr transaction prompts or direct cast commands for Base staking interactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

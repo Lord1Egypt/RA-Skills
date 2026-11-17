@@ -1,40 +1,50 @@
-## Description: <br>
-Generate platform-specific shopping and recommendation copy for ecommerce products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates platform-specific shopping and recommendation copy for ecommerce products.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Marketers, ecommerce operators, and content creators use this skill to draft product recommendation copy for platforms such as Xiaohongshu, Douyin, Moments, and Zhihu from product details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include subjective product experiences, review language, benefits, pricing, or regulated claims that are not verified by the skill. <br>
-Mitigation: Review and substantiate generated copy before publishing, especially for medical, financial, age-restricted, pricing, review, or product-benefit claims. <br>
-Risk: Packaged metadata does not perfectly match the registry slug or owner. <br>
-Mitigation: Confirm the publisher profile and package identity before installation or use in a production workflow. <br>
+## Use Case:
 
+Marketing teams, ecommerce sellers, and agents use this skill to draft product recommendation copy for social and shopping channels including Xiaohongshu, Douyin, WeChat Moments, and Zhihu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yesong-hue/ecommerce-content-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Plain text and Markdown-style platform copy returned from JavaScript generator functions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft marketing content for multiple platforms; generated claims should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Generated promotional or review-style copy may imply usage, endorsement, or claims that have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated text for truthfulness, substantiation, and platform policy compliance before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yesong-hue/skills/ecommerce-content-generator)
+- [Artifact homepage](https://clawhub.ai/yesong-Hue/content-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Plain text and Markdown-style structured product copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include titles, scripts, hashtags, emojis, recommendation language, and platform labels.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

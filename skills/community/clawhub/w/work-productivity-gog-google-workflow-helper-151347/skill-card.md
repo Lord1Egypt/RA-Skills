@@ -1,48 +1,60 @@
-## Description: <br>
-Helps AI-agent users and skill authors create practical Gog-style Google Workspace workflows for bug fixing, safer setup, reliability improvements, and adjacent skill planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps AI-agent users, skill authors, maintainers, and teams create practical Gog-style Google Workspace workflows for bug fixing, setup hardening, reliability improvement, and adjacent skill creation.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-External AI-agent users, skill authors, maintainers, and teams use this skill to turn demand for Gog-style Google Workspace workflows into practical plans, checklists, templates, code changes, and reliability improvements. It is intended for workflow assistance that remains feasible on local hardware. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may apply the skill to general Google, Workspace, CLI, Gmail, Calendar, Drive, Contacts, or bug-fix requests when the user did not intend to use this workflow. <br>
-Mitigation: Use explicit skill invocation for this workflow and confirm that the requested task matches Gog-style Google Workspace assistance before relying on its output. <br>
-Risk: Generated scripts or Google Workspace action plans could cause unwanted changes if run without review. <br>
-Mitigation: Review generated scripts and workspace actions before execution, test against non-critical data where possible, and confirm account scopes before applying changes. <br>
+## Use Case:
 
+AI-agent users, skill authors, maintainers, and teams use this skill to turn Gog-style Google Workspace needs into practical plans, templates, checklists, code changes, or decision support. It is aimed at local-hardware-friendly workflows that clarify goals, reduce manual coordination, and validate the result against the user's success criteria.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/work-productivity-gog-google-workflow-helper-151347) <br>
-- [Requirement plan](artifact/references/requirement-plan.md) <br>
-- [Popular ClawHub skill demand: self-improving-agent](https://clawhub.ai/skills/self-improving-agent) <br>
-- [Popular ClawHub skill demand: Gog](https://clawhub.ai/skills/gog) <br>
-- [Popular ClawHub skill demand: Github](https://clawhub.ai/skills/github) <br>
-- [Popular ClawHub skill demand: ontology](https://clawhub.ai/skills/ontology) <br>
-- [Popular ClawHub skill demand: Obsidian](https://clawhub.ai/skills/obsidian) <br>
-- [Popular ClawHub skill demand: Nano Pdf](https://clawhub.ai/skills/nano-pdf) <br>
-- [Hacker News discussion on Outlook workflow latency](https://news.ycombinator.com/item?id=48589659) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with checklists, templates, code snippets, shell commands, and validation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, remaining risks, and follow-up work when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may activate too often because its triggers are broad, including Google Workspace and general productivity terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's goal and constraints before applying workflow advice, and review any generated commands or workspace changes before use.
+
+Risk: Generated workflow proposals can be incorrect or too generic for Gmail, Drive, Calendar, Contacts, or business-data workflows.
+
+Mitigation: Validate the proposed artifact against the stated success criteria and keep assumptions, limits, and required inputs visible.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [Popular Clawhub skill demand: self-improving agent](https://clawhub.ai/skills/self-improving-agent)
+- [Popular Clawhub skill demand: Gog](https://clawhub.ai/skills/gog)
+- [Popular Clawhub skill demand: Github](https://clawhub.ai/skills/github)
+- [Popular Clawhub skill demand: ontology](https://clawhub.ai/skills/ontology)
+- [Popular Clawhub skill demand: Obsidian](https://clawhub.ai/skills/obsidian)
+- [Popular Clawhub skill demand: Nano Pdf](https://clawhub.ai/skills/nano-pdf)
+- [Microsoft new Outlook takes 10 seconds to do what Outlook Classic does instantly](https://news.ycombinator.com/item?id=48589659)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with optional code blocks, shell commands, checklists, templates, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be actionable, state assumptions and limits, and include a verification or next-step note when useful.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

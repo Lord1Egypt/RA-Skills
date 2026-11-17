@@ -1,45 +1,57 @@
-## Description: <br>
-Generates I Ching divination readings from natural-language questions by running a local hexagram script, consulting built-in Zhouyi references, and using web research to produce a structured interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+易经起卦 casts I Ching hexagrams from natural-language questions with a bundled qi_gua.py script, then supports Chinese-first structured interpretation using local Zhouyi references and optional web lookup.
 
-## Publisher: <br>
-[crystalchen1017](https://clawhub.ai/user/crystalchen1017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crystalchen1017](https://clawhub.ai/user/crystalchen1017)
 
-## Use Case: <br>
-External users and developers use this skill to cast and interpret I Ching hexagrams from natural-language questions, including Chinese-language readings that combine local reference material with online source checking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Divination questions or web searches may expose sensitive personal details. <br>
-Mitigation: Avoid including sensitive personal information in questions and keep prompts focused on the decision context. <br>
-Risk: I Ching readings can be mistaken for factual, medical, legal, financial, or other professional advice. <br>
-Mitigation: Treat outputs as interpretive reference and use qualified professional guidance for consequential decisions. <br>
-Risk: The skill runs a local Python script and may perform web searches using the question or hexagram terms. <br>
-Mitigation: Review the script and generated search terms before use in restricted environments. <br>
+## Use Case:
 
+External users and agents use this skill to turn a natural-language question into an I Ching hexagram result, then produce a structured Chinese interpretation grounded in local Zhouyi references and checked with relevant web sources when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crystalchen1017/gua) <br>
-- [Output format](references/output-format.md) <br>
-- [Pre-divination guidance](references/pre-divination-guidance.md) <br>
-- [Zhouyi 64-hexagram local reference](references/zhouyi-64-gua.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with command output, hexagram text diagrams, citations, and structured interpretation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The reading includes the original question, primary and changed hexagrams, moving-line basis, targeted interpretation, and reference links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Search-sensitive personal details may be exposed when the skill performs web lookup for hexagram references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including personal, medical, financial, relationship, or other sensitive details in prompts unless the user is comfortable with that exposure.
+
+Risk: Divination output can be mistaken for a determinate answer or high-stakes advice.
+
+Mitigation: Present readings as interpretive reference, distinguish source material from interpretation, and avoid treating the result as a certain conclusion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crystalchen1017/skills/gua)
+- [README](README.md)
+- [Output format](references/output-format.md)
+- [Pre-divination guidance](references/pre-divination-guidance.md)
+- [Zhouyi 64 hexagram local reference](references/zhouyi-64-gua.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with plain-text hexagram output and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first output that includes the question, hexagram graphic, primary and changed hexagrams, moving-line basis, targeted interpretation, and cited references.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

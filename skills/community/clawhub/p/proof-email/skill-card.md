@@ -1,38 +1,58 @@
-## Description: <br>
-Proof Email drafts a cold or warm B2B sales email for a specific recipient, grounding the subject and body in real customer proof and one role-appropriate influence principle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes a cold or warm B2B sales email grounded in real customer proof and one influence principle, tailored to a named recipient's role and company.
 
-## Publisher: <br>
-[growthnation](https://clawhub.ai/user/growthnation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[growthnation](https://clawhub.ai/user/growthnation)
 
-## Use Case: <br>
-Sales and growth teams use this skill to create concise, ready-to-send outreach emails for named B2B prospects. It is intended for cases where the sender provides the recipient, role, company, and offer, then reviews the generated proof-backed draft before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use public research and optional saved customer proof to draft personalised outreach, which may introduce accuracy, privacy, or outreach-compliance concerns. <br>
-Mitigation: Review every draft and cited proof point before sending, and use the skill only for intended B2B sales email drafting for a specific recipient. <br>
+## Use Case:
 
+Sales representatives and go-to-market teams use this skill to draft one ready-to-send outbound email for a specific business recipient. The skill researches or uses connected GrowthNation proof data to select a relevant proof point, influence principle, subject, body, and next-step rationale.
 
-## Reference(s): <br>
-- [Proof Email on ClawHub](https://clawhub.ai/growthnation/proof-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown containing one subject line, one email body, the selected influence principle, proof used, research status, and a short next-step note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The draft should be about 80-130 words, cite or label proof honestly, and avoid inventing customers, quotes, statistics, or biographical details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may search public information about named business recipients and may use connected GrowthNation proof data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use appropriate business-contact inputs, avoid sensitive personal data, and review the draft before sending.
+
+Risk: A sales email can become misleading if proof points, customer names, quotes, or statistics are inaccurate.
+
+Mitigation: Verify every cited proof point against the referenced page or GrowthNation proof library, and use a role-level claim when no real proof is available.
+
+Risk: The optional promotional follow-up line may make the output less neutral than some teams require.
+
+Mitigation: Review or remove the promotional follow-up line when the email needs strictly neutral output.
+
+## Reference(s):
+
+- [Proof Email ClawHub Skill Page](https://clawhub.ai/growthnation/skills/proof-email)
+- [GrowthNation Publisher Profile](https://clawhub.ai/user/growthnation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown email draft with subject, body, influence-principle note, proof note, and research status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one selected email rather than multiple options; body target is about 80-130 words.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Scan openclaw.json for plaintext secrets (tokens, API keys, passwords) and migrate them to environment variables using SecretRef. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and fix leaked API keys, tokens and passwords in your AI agent's config, long/short-term memory and session transcripts (OpenClaw + Claude Code). Use when the user asks to check token or secret safety, scan for leaked credentials, audit agent memory, MEMORY.md, CLAUDE.md or chat history for secrets, move plaintext tokens in openclaw.json to env vars, or stop secrets from being written into memory. Also use after editing openclaw.json or when setting up a new OpenClaw instance. Secret values are never printed.
 
-## Publisher: <br>
-[maoisdamao](https://clawhub.ai/user/maoisdamao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[maoisdamao](https://clawhub.ai/user/maoisdamao)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to audit local OpenClaw configuration for plaintext credentials and migrate confirmed findings to SecretRef-backed environment variables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw configuration and can edit openclaw.json and the user's shell profile during migration. <br>
-Mitigation: Review scan findings and dry-run output, confirm the profile path, and require explicit user confirmation before applying changes. <br>
-Risk: Environment-variable migration moves secrets out of openclaw.json but can still leave them as plaintext in shell profile files. <br>
-Mitigation: For higher-security environments, prefer file- or exec-based SecretRef and restrict permissions on any secret files. <br>
-Risk: The automatic backup file can retain plaintext credentials after migration. <br>
-Mitigation: Protect the .bak file while rollback is needed, then remove it or use the cleanup path after verification. <br>
+## Use Case:
 
+Developers using OpenClaw or Claude Code use this skill to find exposed credentials in configuration, memory, and transcripts, migrate OpenClaw configuration secrets, and reduce the chance of new leaks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maoisdamao/token-safety-checker) <br>
-- [Project homepage](https://github.com/maoisdamao/token-safety-checker) <br>
-- [Publisher profile](https://clawhub.ai/user/maoisdamao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON snippets and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scan output reports field paths, suggested environment variable names, lengths, and risk levels without printing secret values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Removing the OpenClaw Git guard can also delete existing pre-commit checks when hooks have been manually combined.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Save existing hooks before enabling the guard. If hooks were combined, remove only the guard command manually or use a corrected uninstaller.
+
+Risk: Configuration migration handles sensitive credentials and creates a secrets file and backups.
+
+Mitigation: Review the migration dry run and protect the resulting secrets file and backups.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/maoisdamao/skills/token-safety-checker)
+- [Project source and documentation](https://github.com/maoisdamao/token-safety-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown summaries with findings, file locations, remediation guidance, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Secret values are not printed; reports use paths, line numbers, detector names, lengths, and fingerprints.]
+
+## Skill Version(s):
+
+3.0.2 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-微信公众号文章批量采集工具。通过 Browser Harness 连接用户已登录的微信公众号后台，自动提取文章列表、去重、下载全文并保存到本地知识库。适用于个人公众号内容备份、知识库构建、文章管理等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects WeChat Official Account articles through Browser Harness from a logged-in browser session, deduplicates them, downloads full text, and saves local Markdown copies.
 
-## Publisher: <br>
-[adchina2025](https://clawhub.ai/user/adchina2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adchina2025](https://clawhub.ai/user/adchina2025)
 
-## Use Case: <br>
-External users and developers use this skill to collect article lists and full article text from WeChat Official Accounts and other selector-configured article sites into a local knowledge base. It is intended for article backup, content management, and knowledge-base building workflows where the user controls the logged-in browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate a logged-in Chrome session and access account-scoped pages. <br>
-Mitigation: Run it only with a dedicated browser profile that is logged into the intended account and does not hold unrelated sessions. <br>
-Risk: Selector files and target URLs can direct scraping behavior toward arbitrary sites. <br>
-Mitigation: Use trusted URLs and reviewed selector configuration only; avoid accepting selector files from untrusted sources. <br>
-Risk: Server security guidance reports an unsafe shell invocation reachable through user-provided input. <br>
-Mitigation: Do not use untrusted --url values and patch the shell invocation before broad or unattended use. <br>
-Risk: Scheduled collection can accumulate sensitive article data without active review. <br>
-Mitigation: Enable cron only with retention rules, monitoring, and a reviewed save directory. <br>
+## Use Case:
 
+Developers and content operators use this skill to archive authorized WeChat Official Account articles or configured article pages into a local knowledge base as Markdown files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/adchina2025/wechat-article-collector) <br>
-- [Browser Harness](https://github.com/browser-use/browser-harness) <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown article files, JSON article-list data, and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes collected articles under the configured save_dir and writes /tmp/all_articles.json during collection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can scrape authenticated or custom websites beyond the stated WeChat backup workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with accounts and websites you are authorized to archive, and avoid custom or login-required targets unless permissions and retention rules are clear.
+
+Risk: The security evidence reports command-injection exposure in URL handling and filename-sanitization concerns.
+
+Mitigation: Fix those issues before running the skill on untrusted input, and review the generated file paths before scheduling unattended runs.
+
+Risk: Unattended collection can retain local copies of sensitive article content.
+
+Mitigation: Define storage location, access control, and retention expectations before enabling scheduled collection.
+
+## Reference(s):
+
+- [Browser Harness](https://github.com/browser-use/browser-harness)
+- [WeChat Official Account Platform](https://mp.weixin.qq.com)
+- [ClawHub Skill Page](https://clawhub.ai/adchina2025/skills/wechat-article-collector)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files, JSON article lists, configuration JSON, and terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves one Markdown file per article in the configured local directory and may write an intermediate article list to /tmp/all_articles.json.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

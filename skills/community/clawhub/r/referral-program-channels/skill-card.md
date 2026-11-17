@@ -1,40 +1,53 @@
-## Description: <br>
-Helps users plan, implement, and optimize referral program strategy for AI and SaaS products, including rewards, tracking, placement, fraud prevention, tooling, and KPIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users plan, implement, or optimize referral program strategy for AI and SaaS products.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Product, growth, and marketing teams use this skill to design referral programs for AI, SaaS, and subscription products. It guides reward models, referral mechanisms, attribution windows, placement, fraud prevention, tool selection, and KPI tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated referral strategy may reflect sensitive product or business details if local project context files contain them. <br>
-Mitigation: Review `.claude/project-context.md` and `.cursor/project-context.md` for secrets or sensitive business information before using them as context. <br>
-Risk: Referral incentives, attribution rules, and anti-fraud measures may be inappropriate for a specific market or legal environment. <br>
-Mitigation: Validate proposed rewards, caps, fraud checks, and program terms against local law, platform rules, and market norms before launch. <br>
+## Use Case:
 
+Founders, growth teams, marketers, and product teams use this skill to design referral rewards, tracking, placement, fraud prevention, tooling, and KPI frameworks for AI and SaaS referral programs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/referral-program-channels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown strategy plan with structured recommendations and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use project context files when present to tailor product, audience, and value proposition guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter metadata) <br>
+Risk: The skill may read existing project-context files to tailor referral-program advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or sensitive customer data in project-context files before invoking the skill.
+
+Risk: Referral strategy guidance may be inaccurate or unsuitable for a specific product, market, or fraud environment.
+
+Mitigation: Review proposed rewards, attribution rules, fraud controls, and KPIs before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/referral-program-channels)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown with structured recommendations, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local project-context files when present to tailor referral-program advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

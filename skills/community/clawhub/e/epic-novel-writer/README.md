@@ -38,9 +38,9 @@ From `references/archive-template.md`, an 8-step flow auto-generates:
 > **防崩设定体系**：三个模板分别覆盖世界观、角色卡、章纲。章纲模板追踪每章伏笔、线索、技能调用，确保剧情不偏离。
 
 ### 4. Read-Only Archives, Free Editing
-All editing happens in `在编辑稿/` (Work-in-Progress), archive versions (v1/v2/v3…) are **read-only**,可随时对比、回溯、反向合并。
+All editing happens in `在编辑稿/` (Work-in-Progress), archive versions (v1/v2/v3…) are **read-only** — compare and trace back anytime; **reverse-merge (overwrites working files) requires explicit user confirmation and a backup first**.
 
-> **只读存档**：所有编辑在 `在编辑稿/` 完成，存档版本（v1/v2/v3…）只读，随时对比、回溯、反向合并。
+> **只读存档**：所有编辑在 `在编辑稿/` 完成，存档版本（v1/v2/v3…）只读，可随时对比、回溯；反向合并会覆盖编辑稿，需用户明确确认并先备份。
 
 ---
 
@@ -49,6 +49,9 @@ All editing happens in `在编辑稿/` (Work-in-Progress), archive versions (v1/
 | File | Purpose |
 |------|---------|
 | `SKILL.md` | Core rules, workflow, naming conventions, archive process guide |
+| `references/project-structure.md` | Project directory structure + core rules |
+| `references/lifecycle.md` | 13-phase full workflow details (per-phase output files) |
+| `references/name-rules.md` | Naming rules (global continuous numbering + file naming table) |
 | `references/archive-template.md` | 8-step archive flow (directory structure + command examples + checklists) |
 | `references/world-setting-template.md` | World-building template (geography/history/power system/rhythm planning) |
 | `references/character-card-template.md` | Character card template (personality/background/ability growth/appearance tracking) |
@@ -153,6 +156,16 @@ clawhub install epic-novel-writer
 ```bash
 clawhub update epic-novel-writer
 ```
+
+## 🗂️ Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.2.1 | 2026-09-20 | ClawHub security audit remediation: fixed command-injection in archive template (title allowlist sanitization + quoted path expansions); added "Operation Risk & Safety Rules" (confirm before archive, verify destination stays in archive root, prefer file tools over shell); tightened archive triggers to explicit commands only; Stage 13 "archive v0" now requires explicit user confirmation (resolves intent contradiction); added language note (docs in Chinese, output follows project language); reverse-merge now requires confirmation + backup |
+| 1.2.0 | 2026-09-13 | SKILL.md frontmatter 补全（name/version/license/中英 description/compatibility/allowed-tools）；新增 `references/lifecycle.md`（13 阶段详情）与 `references/name-rules.md`（命名规则表）；修正子文件表死链；新增 `LICENSE`（BSD 3-Clause）与 `VERSION` 文件 |
+| 1.1.2 | 2026-04-27 | Removed unsupported license field from SKILL.md frontmatter (ClawHub CLI v0.8.0 defaults to MIT-0) |
+| 1.1.1 | 2026-04-27 | Fixed license field from BSD-3-Clause to MIT |
+| 1.1.0 | 2026-04-27 | Initial release: 13-phase novel workflow, global chapter numbering, read-only archives, character JSON, HTML guides |
 
 ## 📄 License
 

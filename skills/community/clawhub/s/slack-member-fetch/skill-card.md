@@ -1,44 +1,50 @@
-## Description: <br>
-Fetches Slack member information from a workspace or a specific Slack channel using the Slack Web API for member lists, profile lookups, channel membership exports, and downstream automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch Slack workspace or channel member information through the Slack Web API and return structured member records for downstream automation.
 
-## Publisher: <br>
-[donigwapo](https://clawhub.ai/user/donigwapo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[donigwapo](https://clawhub.ai/user/donigwapo)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to fetch Slack workspace or channel member records as structured JSON for audits, roster exports, and downstream automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slack member exports can contain personal and role-related employee information. <br>
-Mitigation: Run the skill only with authorization, store output as sensitive data, and share exports only with approved recipients. <br>
-Risk: A broad Slack bot token or email scope can expose more data than needed. <br>
-Mitigation: Use the least-privileged Slack app possible and grant users:read.email only when email addresses are required. <br>
-Risk: The Slack bot token grants API access if exposed. <br>
-Mitigation: Keep SLACK_BOT_TOKEN in a protected environment variable or secret store, and rotate the token if it is disclosed. <br>
+## Use Case:
 
+Developers, workspace administrators, and automation agents use this skill to list Slack workspace members or channel-specific members for directory review, reporting, or machine-readable exports.
 
-## Reference(s): <br>
-- [Setup and usage](references/setup-and-usage.md) <br>
-- [Slack Web API](https://slack.com/api) <br>
-- [ClawHub skill page](https://clawhub.ai/donigwapo/slack-member-fetch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; script output is structured JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write JSON output to a user-specified file; output may include Slack profile fields such as email, title, timezone, and role flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Slack member exports can contain sensitive employee directory data such as email addresses, titles, admin or owner status, and channel membership.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized Slack bot tokens, store exports in approved locations, and avoid committing or sharing exported files.
+
+## Reference(s):
+
+- [Setup and usage](references/setup-and-usage.md)
+- [Slack Web API](https://slack.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [JSON printed to stdout or written to a file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Slack user IDs, names, display names, emails when scoped, titles, time zones, admin/owner flags, bot status, and deletion status.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

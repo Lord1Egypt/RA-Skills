@@ -1,0 +1,11 @@
+{
+  "name": "permission-auditor",
+  "version": "1.0.0",
+  "description": "Review tool usage patterns and permission configurations",
+  "main": "index.js",
+  "scripts": {
+    "audit": "node index.js"
+  },
+  "keywords": ["permissions", "audit", "security", "tools", "policy"],
+  "license": "MIT"
+}

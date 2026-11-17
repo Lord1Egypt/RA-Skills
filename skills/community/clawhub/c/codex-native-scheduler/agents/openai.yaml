@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Native Scheduler"
+  short_description: "Schedule unattended Codex CLI jobs natively"
+  default_prompt: "Use $codex-native-scheduler to schedule a Codex task in this repository."

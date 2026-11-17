@@ -1,41 +1,54 @@
-## Description: <br>
-RCS Message, the upgraded 5G intelligent SMS, supports mass sending and forwarding of text and template messages directly via phone numbers, with support for images, videos, and interactive cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RCS Message, the upgraded 5G intelligent SMS, supports mass sending and forwarding of text and template messages directly via phone numbers.
 
-## Publisher: <br>
-[longbiao515](https://clawhub.ai/user/longbiao515) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longbiao515](https://clawhub.ai/user/longbiao515)
 
-## Use Case: <br>
-External users, operators, and developers can use this skill to send SMS or RCS messages, including template-based and bulk recipient messages, through a configured 5G messaging provider account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can bulk-send real SMS or RCS messages and may forward content to recipient phone numbers. <br>
-Mitigation: Use only with a trusted messaging account, verify each recipient and message before sending, avoid bulk or forwarded messages without clear consent, and use dry-run validation where possible. <br>
-Risk: API credentials may be saved locally in plaintext session credential files. <br>
-Mitigation: Prefer temporary or test credentials, restrict access to the host account, delete saved credential files after use, and rotate the APP_SECRET when finished. <br>
+## Use Case:
 
+Developers and operators use this skill to send SMS, RCS, AIM, MMS, and fallback SMS messages from natural-language requests or command-line calls. It supports template messages, recipient validation, dry-run validation, and rate-limited group sending.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/longbiao515/rcs-message) <br>
-- [Configured 5G messaging API server](https://5g.fontdo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown or terminal text with command examples and messaging API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send real SMS/RCS messages when valid credentials and recipients are provided; dry-run mode validates parameters without sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release evidence) <br>
+Risk: The skill can mass-send real external SMS/RCS messages through the configured provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recipient lists and message content before execution, use dry-run validation when possible, and avoid bulk sends unless they are intentional.
+
+Risk: API credentials may be stored locally for reuse.
+
+Mitigation: Use non-shared credentials, prefer environment-based secret management, and remove or harden local plaintext credential storage before sensitive use.
+
+## Reference(s):
+
+- [ClawHub rcs-message Skill Page](https://clawhub.ai/longbiao515/skills/rcs-message)
+- [5G Messaging API Server](https://5g.fontdo.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send real external SMS/RCS messages when configured with valid provider credentials; dry-run mode validates inputs without sending.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

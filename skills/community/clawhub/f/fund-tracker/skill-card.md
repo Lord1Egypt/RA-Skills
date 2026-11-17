@@ -1,45 +1,59 @@
-## Description: <br>
-Tracks fund purchase availability, daily purchase quotas, fees, and changes since the previous run using local AKShare-based presets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks fund purchase availability, daily purchase quotas, fees, and changes since the previous run with AKShare.
 
-## Publisher: <br>
-[alondotsh](https://clawhub.ai/user/alondotsh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alondotsh](https://clawhub.ai/user/alondotsh)
 
-## Use Case: <br>
-External users and developers use this skill to check whether configured funds are open, quota-limited, paused, or changed since the previous check. It is intended for fund purchase status tracking, not stock or ETF market-price analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fund status results depend on AKShare and the upstream Eastmoney data source, so network failures or schema changes can produce errors or stale results. <br>
-Mitigation: Treat output as informational, review JSON errors, and verify important fund status results against an authoritative source before acting. <br>
-Risk: The skill stores local runtime history under the skill directory to detect changes between runs. <br>
-Mitigation: Keep generated runtime history out of version control and review it before sharing the skill directory. <br>
-Risk: The Python dependency stack fetches public fund data and should not be treated as financial advice. <br>
-Mitigation: Install dependencies in a controlled environment and use the results only as fund-status tracking input, not investment guidance. <br>
+## Use Case:
 
+External users and developers use this skill to check whether configured funds are open for purchase, limited by quota, paused, or changed since the previous check. The output is informational and is not financial advice.
 
-## Reference(s): <br>
-- [README](artifact/README.md) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/alondotsh/fund-tracker) <br>
-- [Publisher Profile](https://clawhub.ai/user/alondotsh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command output summarized from JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local preset configuration and runtime history files inside the skill directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Crafted preset names can cause history-file reads or writes outside the intended runtime folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only simple preset names containing letters, numbers, hyphens, or underscores, and review preset names before running the checker.
+
+Risk: The checker fetches public fund data through AKShare and Eastmoney, so network or upstream schema changes can affect results.
+
+Mitigation: Run in a reviewed environment, treat JSON errors as data-source failures, and verify important fund information against an authoritative source before acting.
+
+Risk: The skill writes local runtime history files for change tracking.
+
+Mitigation: Keep runtime history local, avoid committing generated history, and run the skill in a virtual environment or container when possible.
+
+## Reference(s):
+
+- [Fund Tracker Skill Page](https://clawhub.ai/alondotsh/skills/fund-tracker)
+- [README](artifact/README.md)
+- [Chinese README](artifact/README.zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown table and short summary derived from JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads preset configuration and writes local runtime history files for change tracking.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

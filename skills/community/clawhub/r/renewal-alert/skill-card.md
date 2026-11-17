@@ -1,42 +1,52 @@
-## Description: <br>
-Track insurance policy renewal dates and send timely reminders before policies expire. Use when users want to register insurance renewal dates, get expiry alerts, or review policies due for renewal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track insurance policy renewal dates and send timely reminders before policies expire.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to track insurance renewal dates, receive reminders before expiration, review upcoming renewals, and consider annual coverage changes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Insurance policy numbers, premiums, and renewal dates can be sensitive.
+
+Mitigation: Confirm where renewal data will be stored, limit stored details to what is needed for reminders, and avoid exposing policy details in shared channels.
+
+Risk: Incorrect or missed renewal details could lead to unreliable reminders.
+
+Mitigation: Ask users to confirm policy dates, reminder offsets, and premium changes when recording or updating renewal information.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to record insurance policy renewal details, receive reminders before expiry, and review upcoming renewals before coverage lapses or auto-renews. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect renewal dates, policy details, or reminder timing could cause a user to miss coverage review or renewal. <br>
-Mitigation: Ask the user to verify policy numbers, renewal dates, premium amounts, and reminder schedules against their insurer documents before relying on alerts. <br>
-Risk: Renewal guidance may be mistaken for a definitive insurance recommendation. <br>
-Mitigation: Frame renewal prompts as review support and advise users to confirm coverage decisions with their insurer or a qualified advisor. <br>
-Risk: The release evidence security guidance is inconsistent with the artifact behavior. <br>
-Mitigation: Treat evidence.security as the authoritative scan source while relying on artifact behavior only for renewal-alert-specific operational mitigations. <br>
+**Output Format:** [Markdown or plain text reminders, renewal summaries, and coverage review prompts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiwenbing/renewal-alert) <br>
+**Other Properties Related to Output:** [May include policy detail checklists, reminder schedules, upcoming renewal lists, and premium-change flags.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with structured reminder details and renewal review prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credentials, account access, or external tool calls are present in the artifact.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

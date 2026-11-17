@@ -1,41 +1,62 @@
-## Description: <br>
-Young Post Downloader helps an agent fetch Young Post Club Spark articles, assemble them into HTML and PDF files, and optionally upload the PDF to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically downloads Young Post Club Spark articles, creates HTML and PDF study materials, and can upload generated files to Feishu.
 
-## Publisher: <br>
-[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx)
 
-## Use Case: <br>
-External users or agents use this skill to collect Young Post Club Spark articles, generate study-material HTML/PDF bundles, and send the PDF to Feishu when that upload is intended. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF conversion uses a shell command, which can be unsafe when paths contain shell metacharacters. <br>
-Mitigation: Use a trusted workspace path, review generated paths before conversion, and prefer a patched version that invokes Chrome with argument-based subprocess execution. <br>
-Risk: Feishu upload is part of the normal workflow and may transfer generated files before the user has reviewed them. <br>
-Mitigation: Ask for explicit confirmation before any Feishu upload and review the generated PDF and target destination first. <br>
+## Use Case:
 
+External users and developers use this skill to fetch Young Post Club Spark article lists, collect article content, generate HTML and PDF learning materials, and optionally upload the generated files to Feishu.
 
-## Reference(s): <br>
-- [Young Post Downloader on ClawHub](https://clawhub.ai/cgxxxxxxxxxxxx/young-post-downloader) <br>
-- [Young Post Club Spark](https://www.youngpostclub.com/spark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets, plus generated HTML and PDF file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local HTML/PDF files and upload the generated PDF to Feishu when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security scan reports unsafe shell execution in the PDF conversion path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installing and replace shell-string execution with subprocess calls that pass arguments as a list.
+
+Risk: Generated HTML and PDF output may include fetched article content that has not been sanitized.
+
+Mitigation: Sanitize article titles, URLs, and body content before rendering HTML or converting it to PDF.
+
+Risk: The Feishu upload behavior is under-scoped and may upload generated files without enough user confirmation.
+
+Mitigation: Require explicit approval and a reviewed destination before uploading files to Feishu.
+
+Risk: The security scan describes the current scripts as incomplete and not production-ready automation.
+
+Mitigation: Treat the skill as review-required before deployment and validate output paths, network behavior, and error handling in a controlled workspace.
+
+## Reference(s):
+
+- [Young Post Club Spark](https://www.youngpostclub.com/spark)
+- [ClawHub Skill Page](https://clawhub.ai/cgxxxxxxxxxxxx/skills/young-post-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; generated artifacts are HTML and PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch website content, render local HTML/PDF files, and upload generated files to Feishu when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

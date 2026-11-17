@@ -1,0 +1,4 @@
+interface:
+  display_name: "算力超市skills"
+  short_description: "基于配置安全调用算力超市完整模型应用与任务开放接口"
+  default_prompt: "Use $likeadmin-market-skills to call the configured compute marketplace API safely."

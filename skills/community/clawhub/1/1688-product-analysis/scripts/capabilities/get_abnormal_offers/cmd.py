@@ -27,13 +27,24 @@ def _parse_args():
         default="ALL",
         help="设备筛选：ALL（全部，默认）、PC、APP",
     )
+    parser.add_argument(
+        "--NEWTON_SHOP_LOGIN_ID",
+        default=None,
+        help="店铺登录ID，指定查询的店铺",
+    )
+    parser.add_argument(
+        "--no-lite",
+        action="store_false",
+        dest="lite",
+        help="关闭 lite 裁剪模式（默认开启 lite，删除 valueMap 中非映射 key 和 cycleCqc 子字段以减少 payload 体积）",
+    )
     return parser.parse_args()
 
 
 def main():
     try:
         args = _parse_args()
-        items = get_abnormal_offers(date_type=args.date_type, device=args.device)
+        items = get_abnormal_offers(date_type=args.date_type, device=args.device, login_id=args.NEWTON_SHOP_LOGIN_ID, lite=args.lite)
         print_output(True, "异常商品列表查询成功", {"count": len(items), "items": items})
     except SystemExit:
         raise

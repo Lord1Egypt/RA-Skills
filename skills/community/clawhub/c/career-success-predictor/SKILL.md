@@ -1,8 +1,9 @@
 ---
 name: career-success-predictor
 metadata:
-  version: 1.0.0
-description: Career fit assessment through 10 questions custom-built for a specific occupation. Evaluates how likely the user is to succeed in a target career and produces a short narrative report file. Use this skill whenever the user asks "Am I cut out for X?", "Should I switch careers to X?", "What are my chances of making it as a X?", mentions career assessment, career fit, job success prediction, 我适合做XX吗, 转行成功率, 职业测评 — or expresses any uncertainty about whether a career or job is right for them, even if they never ask for a "test".
+  version: 1.1.0
+  keywords: ["career assessment", "job fit", "career transition", "career planning", "職業評估"]
+description: Career fit assessment through 10 occupation-specific questions. Estimates success likelihood and produces a personalized report. Trigger when users ask about career switches, job fit, success odds, or career transitions — including "Am I suited for X?", "Can I make it as X?", "Should I switch to X?", "What are my odds in X?", "职业转换", "转行", "职业规划", "我适合做XX吗", "转行成功率", "職業評估", "転職", "キャリア相談", or express uncertainty about career direction.
 ---
 
 # Career Success Predictor

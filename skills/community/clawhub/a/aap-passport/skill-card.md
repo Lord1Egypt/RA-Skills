@@ -1,51 +1,66 @@
-## Description: <br>
-Agent Attestation Protocol - The Reverse Turing Test. Verify AI agents, block humans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Attestation Protocol - The Reverse Turing Test. Verify AI agents, block humans.
 
-## Publisher: <br>
-[ira-hash](https://clawhub.ai/user/ira-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ira-hash](https://clawhub.ai/user/ira-hash)
 
-## Use Case: <br>
-Developers and service operators use this skill to add agent attestation, challenge-response verification, and cryptographic identity proof to AI-agent workflows. Agents can use it to create or reuse an AAP identity, sign verification material, and prove agent status to compatible servers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent AAP identity material can function like a credential for the agent. <br>
-Mitigation: Protect ~/.aap/identity.json like a private key, restrict file access, and rotate the identity if exposure is suspected. <br>
-Risk: Package behavior may change if dependencies or npm packages are consumed without review. <br>
-Mitigation: Pin and review the npm packages before production use. <br>
-Risk: Arbitrary signing requests can create unintended proof or authorization material. <br>
-Mitigation: Approve signing requests only when the message, recipient, and purpose are clear. <br>
-Risk: AAP challenge success alone is not sufficient for sensitive access control. <br>
-Mitigation: Combine challenge verification with application authorization, rate limiting, logging, and other service-side controls. <br>
+## Use Case:
 
+Developers and service operators use Aap Passport to add or test AAP identity, challenge-response, and signature verification flows for AI agents. Agent builders can generate public identity data, sign messages, create proofs, verify signatures, and check verifier health.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ira-hash/aap-passport) <br>
-- [Publisher Profile](https://clawhub.ai/user/ira-hash) <br>
-- [Agent Attestation Protocol Repository](https://github.com/ira-hash/agent-attestation-protocol) <br>
-- [AAP Protocol Specification](PROTOCOL.md) <br>
-- [Security Considerations](SECURITY.md) <br>
-- [Rate Limiting Guide](docs/RATE_LIMITING.md) <br>
-- [npm: aap-agent-server](https://www.npmjs.com/package/aap-agent-server) <br>
-- [npm: aap-agent-client](https://www.npmjs.com/package/aap-agent-client) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or use a persistent AAP identity file and generate signed verification payloads when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: A successful AI_AGENT result can be mistaken for proof that an agent is trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use AAP only as one signal unless you add enrollment, a trusted key registry or certificate authority, and clear trust criteria.
+
+Risk: Using the verifier for access control without operational controls can expose services to abuse.
+
+Mitigation: Add rate limits, bounded session storage, strict CORS, HTTPS, and monitoring before relying on it for protected endpoints.
+
+Risk: Private-key compromise can let another actor impersonate an enrolled agent.
+
+Mitigation: Store keys with restricted permissions, avoid logging private keys, and rotate keys for higher-risk deployments.
+
+Risk: Verifier and LLM endpoints may receive sensitive challenge, identity, or proof data.
+
+Mitigation: Disclose what endpoints receive and avoid sending secrets or sensitive user data through challenge-solving flows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ira-hash/skills/aap-passport)
+- [Protocol Specification](PROTOCOL.md)
+- [Security Considerations](SECURITY.md)
+- [Rate Limiting Guide](docs/RATE_LIMITING.md)
+- [AAP Client Package](https://www.npmjs.com/package/aap-agent-client)
+- [AAP Server Package](https://www.npmjs.com/package/aap-agent-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, json]
+
+**Output Format:** [Markdown guidance, JavaScript examples, shell commands, and structured JSON responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include public identity material, signatures, proofs, challenge data, verifier health results, and error objects.]
+
+## Skill Version(s):
+
+3.2.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Automates report generation with data analysis and template filling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates report generation with data analysis and template filling.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External users and developers use this skill to generate weekly, monthly, analytical, financial, and project reports from data and reusable templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release asks users to run external code that was not included in the scanned artifact. <br>
-Mitigation: Review the referenced repository, dependencies, and app.py before installing or running the commands. <br>
-Risk: Automatic email sending may expose sensitive reports or credentials if controls are unclear. <br>
-Mitigation: Verify credential storage, report recipients, per-send approval, scheduling controls, and report retention or deletion options before use. <br>
+## Use Case:
 
+Business users and developers use this skill to automate recurring weekly, monthly, analytical, financial, and project reports by combining data analysis with template filling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-report-generator) <br>
-- [Referenced installation repository](https://github.com/openclaw-skills/ai-intelligent-report-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and implementation details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce generated report content, template instructions, scheduling guidance, and email-integration setup notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: Install instructions clone and run an unpinned external repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository and dependencies before installing, prefer a pinned commit, and use an isolated environment.
+
+Risk: Scheduled email or report sending could distribute sensitive, incomplete, or incorrect report content.
+
+Mitigation: Confirm recipients, report data contents, and disable controls before enabling scheduled sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-report-generator)
+- [External repository linked in artifact install instructions](https://github.com/openclaw-skills/ai-intelligent-report-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe report generation, template setup, data analysis workflows, and scheduled email/report sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

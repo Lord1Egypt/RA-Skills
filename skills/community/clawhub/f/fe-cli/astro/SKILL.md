@@ -61,7 +61,7 @@ mkdir docs && echo '# Hello VitePress' > docs/index.md
 | Vue integration | `@astrojs/vue vue` |
 | MDX | `@astrojs/mdx` |
 | i18n | `astro-i18next` / manual routing |
-| shadcn/ui | `npx shadcn@latest init` (if React integration) + `lucide-react` |
+| shadcn/ui | `bun add -d shadcn && bunx shadcn init`（固定版本，if React integration）+ `lucide-react` |
 | **Gatsby** | |
 | Tailwind CSS | `tailwindcss postcss autoprefixer` + `gatsby-plugin-postcss` |
 | MDX | `gatsby-plugin-mdx @mdx-js/react` |

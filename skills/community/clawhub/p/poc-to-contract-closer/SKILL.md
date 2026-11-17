@@ -2,7 +2,7 @@
 name: poc-to-contract-closer
 description: Closing playbook for converting a successful ToB POC into a contract. Use when a POC is technically accepted, near final demo, has cleared P0 issues, or has stalled after success and the team needs a structured contract path, gap list, one-page recap, quote action, and launch-node plan.
 priority: critical
-source: lining-field-experience
+source: field-experience
 workers: [tech, pm, sales]
 created: 2026-06-03
 tags: [tob, poc, closing, contract, sales]
@@ -84,10 +84,9 @@ Produce a one-page recap before pricing pressure starts.
 
 **Two-part structure:**
 - **Part A (for decision makers): 3-sentence summary** — pain + POC result + decision requested
-- **Part B (for procurement/internal):** 10-field detail — pain, scope, result, business value, remaining risks, procurement path, closing window, cooling threshold, rollout, decision
+- **Part B (for procurement/internal):** 7-field detail — pain, scope, result, business value, risks, rollout, decision
 
 Part A must be forwardable in a chat or email without attachments. Part B supports internal evaluation.
-If procurement path, closing window, or cooling threshold is missing, the recap must name that gap explicitly instead of implying contract readiness.
 
 ### 4b. Procurement Path Check
 

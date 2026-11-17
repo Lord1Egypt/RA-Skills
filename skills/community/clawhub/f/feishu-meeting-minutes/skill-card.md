@@ -1,44 +1,58 @@
-## Description: <br>
-飞书会议纪要自动生成工具。从飞书妙记链接、minute token 或现成 transcript 文件生成结构化中文会议纪要，并可选导出 PDF、上传回飞书云空间。适用于用户提供飞书妙记链接要求整理会议纪要、要求将逐字稿转正式文档、或希望把会议录音对应 transcript 快速整理成可分发纪要的场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese meeting minutes from a Feishu Minutes link, minute token, or transcript file, with optional PDF export and Feishu Drive upload.
 
-## Publisher: <br>
-[jfvincentyang](https://clawhub.ai/user/jfvincentyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jfvincentyang](https://clawhub.ai/user/jfvincentyang)
 
-## Use Case: <br>
-Employees and developers use this skill to turn Feishu meeting minutes links, minute tokens, or local transcript files into structured Chinese meeting minutes. It can also export the minutes as PDF and upload the PDF to Feishu Drive when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may access Feishu meeting transcripts through lark-cli when fetching minutes. <br>
-Mitigation: Install only when transcript access is acceptable and grant only the Feishu scopes needed for the intended workflow. <br>
-Risk: The optional upload path can send generated PDFs to Feishu Drive. <br>
-Mitigation: Grant the Drive upload scope only when upload is required and review the PDF before uploading or sharing it. <br>
-Risk: Generated meeting minutes may omit context or misstate decisions from the transcript. <br>
-Mitigation: Review generated minutes against the original transcript before distribution. <br>
-Risk: PDF generation and upload depend on local external tools. <br>
-Mitigation: Use trusted local installations of pandoc, xelatex, and lark-cli. <br>
+## Use Case:
 
+Employees, external collaborators, and agents use this skill to turn Feishu meeting records or local transcripts into reviewable Chinese meeting minutes, action items, and optional PDF deliverables.
 
-## Reference(s): <br>
-- [Meeting Minutes Template](references/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown meeting minutes with optional PDF file and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces session-scoped transcript-derived minutes; PDF export and Feishu Drive upload are optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter, release evidence, _meta.json) <br>
+Risk: The skill can access Feishu meeting records and transcripts through lark-cli scopes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the documented Feishu scopes needed for the intended workflow and use the upload scope only when PDF upload is required.
+
+Risk: Generated minutes can contain sensitive meeting details, participant names, transcript paths, Feishu tokens, or links.
+
+Mitigation: Review the generated Markdown and PDF before distribution or upload, and remove sensitive content that should not be shared.
+
+Risk: Automatic transcript summarization may omit context or produce incorrect action items.
+
+Mitigation: Compare the generated minutes with the original transcript before treating decisions, owners, and deadlines as final.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jfvincentyang/skills/feishu-meeting-minutes)
+- [Meeting minutes template](references/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown meeting minutes, optional PDF file, and command output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local meeting_minutes_YYYYMMDD_<slug>_<token>.md files and optional PDFs; optional upload returns Feishu Drive command output.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

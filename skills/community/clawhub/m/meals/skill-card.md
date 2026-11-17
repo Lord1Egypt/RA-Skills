@@ -1,37 +1,48 @@
-## Description: <br>
-Build a personal meal planning system with weekly plans, shopping lists, and dietary tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal meal planning system with weekly plans, shopping lists, and dietary tracking.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to plan weekly meals, maintain a personal meal database, generate shopping lists, and track preferences or optional dietary needs over time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local meal plans and preferences may persist dietary needs, shopping notes, meal ratings, and household preferences in ~/meals/. <br>
-Mitigation: Avoid storing sensitive information in the meal workspace, and review or delete local notes when they are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/meals) <br>
+## Use Case:
 
+External users can use this skill to have an agent organize weekly meals, generate shopping lists, and maintain meal preferences and ratings in local files.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown meal plans, shopping lists, meal records, preference notes, and concise planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and uses local notes under ~/meals/ when the agent follows the skill behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Meal plans, dietary restrictions, household preferences, and ratings may contain personal data stored under ~/meals/.
+
+Mitigation: Treat ~/meals/ as personal data: review contents before sharing, use appropriate local file permissions, and avoid adding sensitive health details that are not needed for meal planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/meals)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files]
+
+**Output Format:** [Markdown meal plans, shopping lists, preference files, and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates user-directed files under ~/meals/ when the agent is asked to maintain the meal-planning workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

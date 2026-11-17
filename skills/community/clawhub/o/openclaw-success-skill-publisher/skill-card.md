@@ -1,41 +1,56 @@
-## Description: <br>
-Capture successful OpenClaw interactions and convert them into reusable skills with an optimized execution path summary, then publish to ClawHub and distribute bilingual sharing posts to Moltbook, Zhihu, Xiaohongshu, or other configured channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures successful OpenClaw interactions, extracts an optimized reusable execution path, generates a reusable skill, and prepares ClawHub publishing plus bilingual sharing drafts.
 
-## Publisher: <br>
-[JimmyWangJimmy](https://clawhub.ai/user/JimmyWangJimmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmywangjimmy](https://clawhub.ai/user/jimmywangjimmy)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to turn a completed, successful workflow into reusable skill artifacts, an optimal execution path summary, a ClawHub publish payload, and bilingual distribution copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish generated content externally when real publish or sharing flags and credentials are supplied. <br>
-Mitigation: Use dry-run first, inspect the generated skill bundle and share_payloads, remove private workflow details, and provide only scoped ClawHub tokens or webhook URLs for intended destinations. <br>
+## Use Case:
 
+Developers and teams use this skill to convert a completed OpenClaw success case into reusable skill assets, an optimal-path summary, publishing payloads, and bilingual distribution copy. It is intended for productizing proven workflows after human review and approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/JimmyWangJimmy/openclaw-success-skill-publisher) <br>
-- [Publish Contract](references/publish_contract.md) <br>
-- [ClawHub Publish Copy](docs_clawhub_publish_bilingual.md) <br>
-- [ClawHub API Base](https://api.clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown, JSON, generated skill files, shell command examples, and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces summary.md, optimal_path.md, generated_skill/, share_payloads/, and publish_report.json; dry-run mode keeps publish and sharing payloads local.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The publishing flow can send generated skill bundles, share drafts, and tokens to configured endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, inspect generated artifacts, require explicit approval for real publishing, and use narrowly scoped tokens with trusted HTTPS endpoints.
+
+Risk: Untrusted success-case text can become operative skill instructions or public sharing content.
+
+Mitigation: Review generated_skill/SKILL.md and share_payloads before publishing, scan for sensitive data, and avoid automatic publish/share without human approval.
+
+## Reference(s):
+
+- [OpenClaw Success Skill Publisher on ClawHub](https://clawhub.ai/jimmywangjimmy/skills/openclaw-success-skill-publisher)
+- [Publisher Profile](https://clawhub.ai/user/jimmywangjimmy)
+- [Publish Contract](references/publish_contract.md)
+- [ClawHub API Endpoint](https://api.clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, JSON reports, generated skill files, ZIP bundles, and optional HTTP publish/share payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run mode can generate local drafts without remote publishing; real publishing requires configured endpoints and explicit approval.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

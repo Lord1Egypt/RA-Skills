@@ -1,56 +1,28 @@
 {
-  "name": "memoria-plugin",
-  "version": "3.34.0",
-  "description": "The most advanced memory system for AI agents. 21 cognitive layers, knowledge graph, procedural learning, vector search, WAL protocol. 100% local-first, zero cloud cost.",
+  "name": "memoria",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Memoria — mémoire locale multi-agent : core découplé + daemon local + MCP. Locale, à nous, et qui ne recommence jamais à zéro.",
   "license": "Apache-2.0",
-  "author": "Primo Studio",
-  "main": "index.ts",
   "type": "module",
-  "openclaw": {
-    "extensions": [
-      "./index.ts"
-    ],
-    "compat": {
-      "pluginApi": ">=1"
-    },
-    "build": {
-      "openclawVersion": "2026.3.28"
-    }
+  "engines": {
+    "node": ">=20"
   },
-  "dependencies": {
-    "better-sqlite3": "^11.10.0"
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "tsc -b && npm run build:vite --workspace @memoria/web",
+    "clean": "tsc -b --clean",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -b"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.13",
-    "typescript": "^6.0.2"
-  },
-  "keywords": [
-    "memory",
-    "ai-agent",
-    "persistent-memory",
-    "long-term-memory",
-    "knowledge-graph",
-    "procedural-learning",
-    "vector-search",
-    "sqlite",
-    "ollama",
-    "lm-studio",
-    "local-first",
-    "cognitive",
-    "context",
-    "claude",
-    "cursor",
-    "copilot",
-    "chatgpt",
-    "openclaw",
-    "wal",
-    "vibe-coding",
-    "developer-tools",
-    "typescript",
-    "llm",
-    "brain-inspired",
-    "multi-layer",
-    "fact-extraction",
-    "self-improving"
-  ]
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.0"
+  }
 }

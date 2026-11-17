@@ -1,48 +1,60 @@
-## Description: <br>
-Guides developers through WeChat Mini Program development, including project structure, app configuration, page registration, WXML syntax, common wx APIs, and official references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for developing WeChat Mini Programs, including project structure, app configuration, page registration, WXML syntax, common wx APIs, and custom components.
 
-## Publisher: <br>
-[zhibuyu](https://clawhub.ai/user/zhibuyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhibuyu](https://clawhub.ai/user/zhibuyu)
 
-## Use Case: <br>
-Developers and engineers use this skill for practical guidance when building WeChat Mini Programs, including app.json configuration, page lifecycle registration, templates, components, wx APIs, and links to official WeChat documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sample code involving network requests, storage, sharing, payments, location, or other privacy-sensitive WeChat APIs may be copied into a real app without enough review. <br>
-Mitigation: Review sample code against WeChat Mini Program requirements and the app's privacy, security, and compliance needs before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to get Chinese-language reference guidance when building WeChat Mini Programs, especially for app.json configuration, page lifecycle registration, WXML patterns, wx APIs, and custom components.
 
-## Reference(s): <br>
-- [WeChat Mini Program Quickstart](https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/) <br>
-- [WeChat Mini Program Framework Reference](https://developers.weixin.qq.com/miniprogram/dev/reference/) <br>
-- [WeChat Mini Program Component Reference](https://developers.weixin.qq.com/miniprogram/dev/component/) <br>
-- [WeChat Mini Program API Reference](https://developers.weixin.qq.com/miniprogram/dev/api/) <br>
-- [WeChat Mini Program Backend API Reference](https://developers.weixin.qq.com/miniprogram/dev/api-backend/) <br>
-- [WeChat Developer Tools Reference](https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html) <br>
-- [WeChat Cloud Run Reference](https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloudrun/src/basic/intro.html) <br>
-- [WeChat Cloud Development Reference](https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/basis/getting-started.html) <br>
-- [App Configuration Reference](references/app-configuration.md) <br>
-- [Mini Program Framework Guide](references/miniprogram-framework.md) <br>
-- [Page Registration Reference](references/page-registration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON, JavaScript, WXML, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Example API endpoints, storage calls, and privacy-related snippets may be copied into a Mini Program without project-specific review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Adapt examples to approved HTTPS domains, data-handling requirements, and declared Mini Program permissions before production use.
+
+## Reference(s):
+
+- [WeChat Mini Program Skill Page](https://clawhub.ai/zhibuyu/skills/wechat-miniprogram-skill)
+- [WeChat Mini Program Quickstart](https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/)
+- [WeChat Mini Program Framework Reference](https://developers.weixin.qq.com/miniprogram/dev/reference/)
+- [WeChat Mini Program Components](https://developers.weixin.qq.com/miniprogram/dev/component/)
+- [WeChat Mini Program API Reference](https://developers.weixin.qq.com/miniprogram/dev/api/)
+- [WeChat Mini Program Backend API Reference](https://developers.weixin.qq.com/miniprogram/dev/api-backend/)
+- [WeChat Developer Tools Reference](https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html)
+- [WeChat Cloud Hosting Reference](https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloudrun/src/basic/intro.html)
+- [WeChat Cloud Development Reference](https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/basis/getting-started.html)
+- [App Configuration Reference](references/app-configuration.md)
+- [Mini Program Framework Reference](references/miniprogram-framework.md)
+- [Page Registration Reference](references/page-registration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON, JavaScript, WXML, and shell-style reference examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language developer guidance; does not execute code or send user data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

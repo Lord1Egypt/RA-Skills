@@ -20,7 +20,7 @@ const {
 } = require('@js-eyes/protocol');
 const { ensureToken } = require('@js-eyes/runtime-paths/token');
 const { getPaths } = require('@js-eyes/runtime-paths');
-const { checkAccess, WS_SUBPROTOCOL_PREFIX } = require('./auth');
+const { checkAccess, isTokenSubprotocol } = require('./auth');
 const { createAuditLogger, NOOP_AUDIT } = require('./audit');
 const { loadConfig, resolveHotReloadableSecurity } = tryLoadConfigModule();
 const pkg = require('./package.json');
@@ -328,7 +328,7 @@ function createServer(options = {}) {
     server: httpServer,
     handleProtocols: (protocols) => {
       for (const p of protocols) {
-        if (typeof p === 'string' && p.startsWith(WS_SUBPROTOCOL_PREFIX)) {
+        if (isTokenSubprotocol(p)) {
           return p;
         }
       }
@@ -357,7 +357,7 @@ function createServer(options = {}) {
         return;
       }
 
-      info.req._jsEyesAccess = access;
+      /** @type {import('http').IncomingMessage & { _jsEyesAccess?: object }} */ (info.req)._jsEyesAccess = access;
       if (access.anonymous) {
         logger.warn?.(`[js-eyes-server] anonymous WebSocket accepted origin=${origin || '<none>'} reason=${access.reason}`);
       }
@@ -366,7 +366,8 @@ function createServer(options = {}) {
   });
 
   wss.on('connection', (socket, request) => {
-    const access = request._jsEyesAccess || { allowed: true, anonymous: false, reason: null };
+    const access = /** @type {import('http').IncomingMessage & { _jsEyesAccess?: object }} */ (request)._jsEyesAccess
+      || { allowed: true, anonymous: false, reason: null };
     handleConnection(socket, request, state, { audit, access });
   });
 
@@ -522,7 +523,7 @@ function createServer(options = {}) {
       cleanupTimer = startCleanup(state);
 
       httpServer.once('error', (err) => {
-        if (err.code === 'EADDRINUSE') {
+        if (/** @type {NodeJS.ErrnoException} */ (err).code === 'EADDRINUSE') {
           reject(new Error(`端口 ${port} 已被占用`));
         } else {
           reject(err);
@@ -539,7 +540,7 @@ function createServer(options = {}) {
           allowAnonymous: Boolean(security.allowAnonymous),
         });
         startConfigWatcher();
-        resolve();
+        resolve(undefined);
       });
     });
   }
@@ -581,7 +582,7 @@ function createServer(options = {}) {
           clearTimeout(forceTimer);
           audit.close?.();
           logger.info('[js-eyes-server] Server stopped.');
-          resolve();
+          resolve(undefined);
         });
       });
     });

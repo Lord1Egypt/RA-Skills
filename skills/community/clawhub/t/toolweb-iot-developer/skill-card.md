@@ -1,44 +1,51 @@
-## Description: <br>
-Professional IoT development career roadmap platform that generates personalized learning paths and specialization guidance based on individual skills and goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional IoT development career roadmap platform that generates personalized learning paths and specialization guidance based on individual skills and goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers, embedded systems professionals, and technical teams use this skill to request personalized IoT learning roadmaps, specialization options, and structured learning paths based on current skills, experience, and career goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Roadmap requests may send IoT experience, skills, goals, timestamps, and an optional user identifier to an external service. <br>
-Mitigation: Use pseudonymous session IDs, leave the optional userId null when possible, and avoid sensitive employer, project, account, or personal details unless needed for the roadmap. <br>
+## Use Case:
 
+Developers, engineers, and technical teams use this skill to generate personalized IoT learning roadmaps, review specialization paths, and identify next steps based on experience, skills, and career goals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-iot-developer) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb portal](https://portal.toolweb.in) <br>
-- [OpenClaw listing](https://toolweb.in/openclaw/) <br>
-- [RapidAPI publisher profile](https://rapidapi.com/user/mkrishna477) <br>
-- [API route](https://api.mkkpro.com/career/iot-developer) <br>
-- [API documentation](https://api.mkkpro.com:8098/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses with roadmap, specialization, and learning-path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roadmap requests include assessment data such as experience, skills, goals, timestamps, session IDs, and an optional user ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and OpenAPI info.version) <br>
+Risk: Assessment requests may include skills, career goals, employment history, or user identifiers sent to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pseudonymous session IDs, omit userId unless needed, and avoid submitting sensitive personal or employment details beyond what is necessary for the roadmap.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-iot-developer)
+- [IoT Developer API Route](https://api.mkkpro.com/career/iot-developer)
+- [IoT Developer API Docs](https://api.mkkpro.com:8098/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [JSON responses summarized as markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -12,20 +12,29 @@ Architecture (MCP tool 级，由 openclaw/hermes 的 LLM 自由编排):
 
 Token resolution (in order):
     1. Environment variable DINZEE_USER_TOKEN (or legacy DINZEEAGENT_API_KEY)
-    2. ~/.dinzee/credentials.json with {"user_token": "sut_xxx"}
-    3. Clear error message
+    2. DINZEE_CREDENTIALS_PATH or /opt/data/.dinzee/credentials.json
+    3. Legacy read-only fallback: ~/.dinzee/credentials.json
+    4. Clear error message
 
 CLI:
-    dinzee.py login <sut_token>             save token to ~/.dinzee/credentials.json
+    dinzee.py login <sut_token>             save token to the configured credentials path
     dinzee.py logout                        delete saved token
     dinzee.py status                        print where the token comes from
     dinzee.py providers                     list registered MCP providers
     dinzee.py list-tools [--provider sif]   list available MCP tools for a provider
     dinzee.py describe <tool>               show a tool's availability / charge flag
     dinzee.py call <tool> --args '<json>'   invoke a tool (json may also come from stdin via --stdin)
+    dinzee.py trace <saved-record.json>     query the persisted gateway call record
 
 Environment overrides:
-    DINZEE_GATEWAY_BASE_URL   default https://gateway.dinzee.ai/
+    DINZEE_GATEWAY_BASE_URL    default https://gateway.dinzee.ai/
+    DINZEE_CREDENTIALS_PATH    default /opt/data/.dinzee/credentials.json
+    DINZEE_DATA_DIR            default /opt/data/.dinzee/data
+
+Local file modes:
+    Credentials file           0600
+    MCP data directories       0777
+    MCP data JSON files        0666
 """
 
 from __future__ import annotations
@@ -35,14 +44,17 @@ import base64
 import io
 import json
 import os
+import re
 import shutil
 import stat
 import sys
 import time
 import uuid
 import zipfile
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
+from urllib.parse import quote
 from urllib.request import Request, urlopen
 
 DEFAULT_BASE_URL = "https://gateway.dinzee.ai/"
@@ -50,7 +62,11 @@ DEFAULT_PROVIDER = "sif"
 
 USER_TOKEN_HEADER = "x-user-integration-token"
 
-CREDENTIALS_PATH = Path.home() / ".dinzee" / "credentials.json"
+DEFAULT_CREDENTIALS_PATH = Path("/opt/data/.dinzee/credentials.json")
+LEGACY_CREDENTIALS_PATH = Path.home() / ".dinzee" / "credentials.json"
+DEFAULT_DATA_DIR = Path("/opt/data/.dinzee/data")
+DATA_DIR_MODE = 0o777
+DATA_FILE_MODE = 0o666
 
 PROVIDERS_PATH = "v1/mcp/providers"
 TOOLS_PATH = "v1/mcp/tools"
@@ -59,6 +75,32 @@ CALLS_PATH = "v1/mcp/calls"
 CATALOG_PATH = "v1/skill-center/catalog"
 INSTALL_PATH = "v1/skill-center/install"
 
+DEFAULT_SYNC_SKILLS = [
+    "amazon-product-attribute-market-analysis",
+    "breakout-product-radar",
+    "momentum-product-scout",
+    "1688-felt-bag-factory-finder",
+    "1688-find-similar-suppliers",
+    "1688-pet-product-mining",
+    "1688-product-find",
+    "1688-source-suppliers",
+    "amazon-ads-batch-creator",
+    "amazon-ads-search-term-report",
+    "amazon-category-comparison",
+    "amazon-category-full-research",
+    "amazon-cdq-listing-quality-score",
+    "amazon-competitor-keepa-monitor",
+    "amazon-feature-word-analyzer",
+    "amazon-price-monitor",
+    "amazon-rank-monitor",
+    "amazon-review-analysis",
+    "bsc-amazon-rufus-cosmo",
+    "inquiry-1688",
+    "keyword-atomic-tagger",
+    "listing-health-monitor",
+    "search-1688-supplier",
+    "sif-amazon-ads-analysis",
+]
 
 # ---------------------------------------------------------------------------
 # Token resolution
@@ -69,26 +111,50 @@ def base_url() -> str:
     return raw.rstrip("/") + "/"
 
 
-def _read_credentials_file() -> dict:
-    if not CREDENTIALS_PATH.is_file():
+def credentials_path() -> Path:
+    raw = (os.environ.get("DINZEE_CREDENTIALS_PATH") or "").strip()
+    return Path(raw).expanduser() if raw else DEFAULT_CREDENTIALS_PATH
+
+
+def data_dir() -> Path:
+    raw = (os.environ.get("DINZEE_DATA_DIR") or "").strip()
+    return Path(raw).expanduser() if raw else DEFAULT_DATA_DIR
+
+
+def _credential_read_paths() -> tuple[Path, ...]:
+    primary = credentials_path()
+    if primary == LEGACY_CREDENTIALS_PATH:
+        return (primary,)
+    return primary, LEGACY_CREDENTIALS_PATH
+
+
+def _read_credentials_file(path: Path | None = None) -> dict:
+    target = path or credentials_path()
+    if not target.is_file():
         return {}
     try:
-        with CREDENTIALS_PATH.open("r", encoding="utf-8") as f:
+        with target.open("r", encoding="utf-8") as f:
             data = json.load(f)
         return data if isinstance(data, dict) else {}
     except (OSError, json.JSONDecodeError):
         return {}
 
 
-def _resolve_token() -> tuple[str | None, str]:
-    """Returns (token, source). source ∈ {env, file, missing}."""
+def _resolve_token_details() -> tuple[str | None, str, Path | None]:
+    """Returns (token, source, file_path). source ∈ {env, file, missing}."""
     env_token = (os.environ.get("DINZEE_USER_TOKEN") or os.environ.get("DINZEEAGENT_API_KEY") or "").strip()
     if env_token:
-        return env_token, "env"
-    file_token = str(_read_credentials_file().get("user_token") or "").strip()
-    if file_token:
-        return file_token, "file"
-    return None, "missing"
+        return env_token, "env", None
+    for path in _credential_read_paths():
+        file_token = str(_read_credentials_file(path).get("user_token") or "").strip()
+        if file_token:
+            return file_token, "file", path
+    return None, "missing", None
+
+
+def _resolve_token() -> tuple[str | None, str]:
+    token, source, _ = _resolve_token_details()
+    return token, source
 
 
 def _require_token() -> str:
@@ -98,7 +164,8 @@ def _require_token() -> str:
             "Error: 找不到用户接入 token (sut_xxx)。两种设置方式：\n"
             "  1. 临时：export DINZEE_USER_TOKEN=sut_xxx\n"
             "  2. 永久：python3 dinzee.py login sut_xxx\n"
-            "         （会保存到 ~/.dinzee/credentials.json，权限 0600）",
+            f"         （会保存到 {credentials_path()}，权限 0600）\n"
+            "  可用 DINZEE_CREDENTIALS_PATH 覆盖保存路径。",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -111,22 +178,24 @@ def _require_token() -> str:
 
 
 def _save_token(token: str) -> Path:
-    CREDENTIALS_PATH.parent.mkdir(parents=True, exist_ok=True)
-    data = _read_credentials_file()
+    target = credentials_path()
+    target.parent.mkdir(parents=True, exist_ok=True)
+    data = _read_credentials_file(target)
     data["user_token"] = token
     data["updated_at"] = int(time.time())
-    tmp = CREDENTIALS_PATH.with_suffix(".tmp")
+    tmp = target.with_suffix(".tmp")
     with tmp.open("w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
     tmp.chmod(stat.S_IRUSR | stat.S_IWUSR)  # 0600
-    tmp.replace(CREDENTIALS_PATH)
-    return CREDENTIALS_PATH
+    tmp.replace(target)
+    return target
 
 
 def _clear_token() -> bool:
-    if CREDENTIALS_PATH.is_file():
+    target = credentials_path()
+    if target.is_file():
         try:
-            CREDENTIALS_PATH.unlink()
+            target.unlink()
             return True
         except OSError:
             return False
@@ -180,6 +249,73 @@ def _print_json(value, fmt: str = "json") -> None:
     print(json.dumps(value, ensure_ascii=False, indent=2))
 
 
+def _utc_now() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def _safe_path_component(value: object) -> str:
+    cleaned = re.sub(r"[^A-Za-z0-9._-]+", "_", str(value or "")).strip("._-")
+    return cleaned or "unknown"
+
+
+def _prepare_data_directory(provider: str, tool: str) -> Path:
+    root = data_dir()
+    provider_dir = root / _safe_path_component(provider)
+    target = provider_dir / _safe_path_component(tool)
+    for directory in (root, provider_dir, target):
+        directory.mkdir(parents=True, exist_ok=True)
+        directory.chmod(DATA_DIR_MODE)
+    probe = target / f".dinzee-write-test-{uuid.uuid4().hex}.tmp"
+    try:
+        with probe.open("x", encoding="utf-8") as f:
+            f.write("")
+        probe.chmod(stat.S_IRUSR | stat.S_IWUSR)
+    finally:
+        if probe.exists():
+            probe.unlink()
+    return target
+
+
+def _call_record_filename(payload: dict, body: dict) -> str:
+    timestamp = _utc_now().strftime("%Y%m%dT%H%M%S%fZ")
+    trace_id = body.get("call_id") or payload.get("idempotencyKey") or uuid.uuid4().hex
+    return f"{timestamp}_{_safe_path_component(trace_id)}.json"
+
+
+def _save_call_record(target_dir: Path, payload: dict, body: dict) -> Path:
+    now = _utc_now()
+    target_dir.mkdir(parents=True, exist_ok=True)
+    target_dir.chmod(DATA_DIR_MODE)
+    target = target_dir / _call_record_filename(payload, body)
+    record = {
+        "schema_version": 1,
+        "saved_at": now.isoformat().replace("+00:00", "Z"),
+        "gateway": {
+            "base_url": base_url(),
+            "call_id": body.get("call_id"),
+            "idempotency_key": payload.get("idempotencyKey"),
+            "authority_correlation_id": body.get("authority_correlation_id"),
+        },
+        "request": {
+            "provider": payload.get("provider"),
+            "tool": payload.get("tool"),
+            "arguments": payload.get("arguments") or {},
+        },
+        "response": body,
+    }
+    tmp = target.with_name(f".{target.name}.{uuid.uuid4().hex}.tmp")
+    try:
+        with tmp.open("x", encoding="utf-8") as f:
+            json.dump(record, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+        tmp.chmod(DATA_FILE_MODE)
+        tmp.replace(target)
+    finally:
+        if tmp.exists():
+            tmp.unlink()
+    return target
+
+
 def _fail(code: int, body: dict) -> None:
     msg = (body or {}).get("error") or (body or {}).get("message") or (body or {}).get("error_body") or json.dumps(body or {}, ensure_ascii=False)
     print(f"Error: HTTP {code}: {msg}", file=sys.stderr)
@@ -210,20 +346,30 @@ def cmd_login(args) -> None:
 
 
 def cmd_logout(args) -> None:
+    target = credentials_path()
     if _clear_token():
-        print(f"✅ Token removed from {CREDENTIALS_PATH}.")
+        print(f"✅ Token removed from {target}.")
     else:
-        print(f"No saved token at {CREDENTIALS_PATH}.")
+        print(f"No saved token at {target}.")
 
 
 def cmd_status(args) -> None:
-    token, source = _resolve_token()
+    token, source, active_file = _resolve_token_details()
+    primary = credentials_path()
     print(f"Gateway base URL : {base_url()}")
     print(f"Token source     : {source}")
+    print(f"Credentials path : {primary} ({'exists' if primary.is_file() else 'absent'})")
+    if LEGACY_CREDENTIALS_PATH != primary:
+        print(
+            "Legacy fallback  : "
+            f"{LEGACY_CREDENTIALS_PATH} "
+            f"({'exists' if LEGACY_CREDENTIALS_PATH.is_file() else 'absent'}, read-only)"
+        )
     if token:
         masked = token[:6] + "…" + token[-4:] if len(token) > 12 else "(short token)"
         print(f"Token preview    : {masked}")
-        print(f"Credentials file : {CREDENTIALS_PATH} ({'exists' if CREDENTIALS_PATH.is_file() else 'absent'})")
+        if active_file:
+            print(f"Active token file: {active_file}")
     else:
         print("No token configured. Run `login <sut_token>` or `export DINZEE_USER_TOKEN=sut_xxx`.")
 
@@ -298,9 +444,26 @@ def cmd_call(args) -> None:
         "arguments": arguments,
         "idempotencyKey": args.idempotency_key or f"sif_{uuid.uuid4().hex}",
     }
+    target_dir: Path | None = None
+    if not getattr(args, "no_save", False):
+        try:
+            target_dir = _prepare_data_directory(args.provider, args.tool)
+        except OSError as e:
+            print(f"Error: 无法准备数据目录 {data_dir()}: {e}", file=sys.stderr)
+            sys.exit(1)
+
     code, body = _request("POST", CALLS_PATH, body=payload, timeout=max(60, int(args.timeout)))
     if code != 200:
         _fail(code, body)
+
+    saved_path: Path | None = None
+    save_error: OSError | None = None
+    if target_dir is not None:
+        try:
+            saved_path = _save_call_record(target_dir, payload, body)
+        except OSError as e:
+            save_error = e
+
     if args.format == "text":
         if (body or {}).get("ok"):
             print(f"Status        : {body.get('status')}")
@@ -313,7 +476,77 @@ def cmd_call(args) -> None:
             print(json.dumps(body, ensure_ascii=False, indent=2))
     else:
         _print_json(body, args.format)
+    if saved_path:
+        print(f"Saved data: {saved_path}", file=sys.stderr)
+    if save_error:
+        print(f"Error: MCP 调用已完成，但数据落盘失败: {save_error}", file=sys.stderr)
+        sys.exit(1)
 
+
+def _load_trace_identifiers(path: Path) -> tuple[str | None, str | None]:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        print(f"Error: 本地调用记录不存在: {path}", file=sys.stderr)
+        sys.exit(2)
+    except OSError as e:
+        print(f"Error: 无法读取本地调用记录 {path}: {e}", file=sys.stderr)
+        sys.exit(2)
+    except json.JSONDecodeError as e:
+        print(f"Error: 本地调用记录不是有效 JSON: {e}", file=sys.stderr)
+        sys.exit(2)
+    if not isinstance(data, dict) or data.get("schema_version") != 1:
+        print("Error: 不支持的本地调用记录格式，要求 schema_version=1。", file=sys.stderr)
+        sys.exit(2)
+    gateway = data.get("gateway")
+    if not isinstance(gateway, dict):
+        print("Error: 本地调用记录缺少 gateway 溯源信息。", file=sys.stderr)
+        sys.exit(2)
+    call_id = str(gateway.get("call_id") or "").strip() or None
+    idempotency_key = str(gateway.get("idempotency_key") or "").strip() or None
+    if not call_id and not idempotency_key:
+        print("Error: 本地调用记录缺少 call_id 和 idempotency_key，无法溯源。", file=sys.stderr)
+        sys.exit(2)
+    return call_id, idempotency_key
+
+
+def cmd_trace(args) -> None:
+    path = Path(args.path).expanduser()
+    call_id, idempotency_key = _load_trace_identifiers(path)
+    if call_id:
+        code, body = _request("GET", f"{CALLS_PATH}/{quote(call_id, safe='')}")
+        if code == 200:
+            _print_json(body, args.format)
+            return
+        if code != 404 or not idempotency_key:
+            _fail(code, body)
+    code, body = _request(
+        "GET",
+        f"{CALLS_PATH}/lookup",
+        query={"idempotencyKey": idempotency_key},
+    )
+    if code != 200:
+        _fail(code, body)
+    _print_json(body, args.format)
+
+
+def _read_json_arg(raw: str | None, use_stdin: bool) -> dict:
+    if use_stdin:
+        raw = sys.stdin.read().strip()
+        if not raw:
+            print("Error: --stdin specified but stdin was empty", file=sys.stderr)
+            sys.exit(2)
+    raw = raw or "{}"
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError as e:
+        print(f"Error: JSON parse failed: {e}", file=sys.stderr)
+        print(f"Received: {raw[:200]}", file=sys.stderr)
+        sys.exit(2)
+    if not isinstance(data, dict):
+        print("Error: JSON input must decode to an object", file=sys.stderr)
+        sys.exit(2)
+    return data
 
 # ---------------------------------------------------------------------------
 # Skill center：装/更新付费数据 skill（经计费网关，按版本扣点）
@@ -419,6 +652,43 @@ def cmd_skill_update(args) -> None:
                 raise
 
 
+def cmd_sync_skills(args) -> None:
+    targets = list(DEFAULT_SYNC_SKILLS)
+    if getattr(args, "include", None):
+        seen = set(targets)
+        for slug in args.include:
+            normalized = slug.strip().lower()
+            if normalized and normalized not in seen:
+                targets.append(normalized)
+                seen.add(normalized)
+    if args.format == "text":
+        print("Syncing Dinzee bundled business skills:")
+        for slug in targets:
+            print(f"  - {slug}")
+        print()
+    failures: list[str] = []
+    for slug in targets:
+        ns = argparse.Namespace(
+            slug=slug,
+            version=None,
+            format=args.format,
+            skills_dir=getattr(args, "skills_dir", None),
+        )
+        try:
+            cmd_skill_install(ns)
+        except SystemExit as exc:
+            failures.append(slug)
+            if not args.keep_going:
+                raise
+            if args.format == "text":
+                print(f"⚠️  {slug} sync failed; continuing because --keep-going was set.", file=sys.stderr)
+    if failures:
+        print(f"Sync completed with failures: {', '.join(failures)}", file=sys.stderr)
+        sys.exit(1)
+    if args.format == "text":
+        print("\n✅ Dinzee bundled business skills are synced.")
+
+
 # ---------------------------------------------------------------------------
 # CLI entry
 # ---------------------------------------------------------------------------
@@ -433,7 +703,10 @@ def main() -> None:
     p.add_argument("--format", "-f", choices=["json", "text"], default="text")
     sub = p.add_subparsers(dest="cmd", required=True)
 
-    sp = sub.add_parser("login", help="save sut_ token to ~/.dinzee/credentials.json")
+    sp = sub.add_parser(
+        "login",
+        help="save sut_ token to DINZEE_CREDENTIALS_PATH or /opt/data/.dinzee/credentials.json",
+    )
     sp.add_argument("token")
     sp.set_defaults(func=cmd_login)
 
@@ -462,7 +735,12 @@ def main() -> None:
     sp.add_argument("--stdin", action="store_true", help="read --args JSON from stdin")
     sp.add_argument("--idempotency-key", help="caller idempotency key (default: random uuid)")
     sp.add_argument("--timeout", type=int, default=240)
+    sp.add_argument("--no-save", action="store_true", help="do not persist this call response locally")
     sp.set_defaults(func=cmd_call)
+
+    sp = sub.add_parser("trace", help="query a persisted gateway call using a saved local JSON record")
+    sp.add_argument("path", help="path to a schema_version=1 saved call record")
+    sp.set_defaults(func=cmd_trace)
 
     sp = sub.add_parser("skills", help="list installable data skills (catalog + price)")
     sp.set_defaults(func=cmd_skills)
@@ -478,6 +756,12 @@ def main() -> None:
     sp.add_argument("--all", action="store_true", help="update every installed content skill")
     sp.add_argument("--skills-dir", help="override skills dir")
     sp.set_defaults(func=cmd_skill_update)
+
+    sp = sub.add_parser("sync-skills", help="install/update Dinzee bundled business skills")
+    sp.add_argument("--skills-dir", help="override skills dir")
+    sp.add_argument("--include", action="append", help="also sync an extra skill slug; may be repeated")
+    sp.add_argument("--keep-going", action="store_true", help="continue syncing remaining skills after a failure")
+    sp.set_defaults(func=cmd_sync_skills)
 
     args = p.parse_args()
     args.func(args)

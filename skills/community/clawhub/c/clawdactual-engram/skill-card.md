@@ -1,43 +1,53 @@
-## Description: <br>
-Build, query, and maintain persistent structured knowledge graphs for AI agents across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Engram helps AI agents build, query, and maintain persistent local knowledge graphs for code, organization, infrastructure, and concept relationships across sessions.
 
-## Publisher: <br>
-[morpheis](https://clawhub.ai/user/morpheis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morpheis](https://clawhub.ai/user/morpheis)
 
-## Use Case: <br>
-Developers and AI agents use Engram to persist local knowledge graphs for code architecture, service dependencies, organizations, infrastructure, and concepts so future sessions can query and update relationships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill maintains a long-lived local knowledge graph that can persist sensitive operational, people, infrastructure, or relationship data across agent sessions. <br>
-Mitigation: Avoid storing secrets, credential contents, private email details, sensitive relationship notes, or trust labels unless that persistence is explicitly intended. <br>
-Risk: Export, import, and delete commands can expose, overwrite, or remove persisted graph data. <br>
-Mitigation: Review the configured database path and exported files before sharing, importing, or deleting graph data. <br>
-Risk: Stored graph entries can become stale and later mislead future agent sessions. <br>
-Mitigation: Use the skill's verification, stale-checking, and git-diff workflows to refresh or remove outdated nodes and edges. <br>
+## Use Case:
 
+Developers and AI agents use Engram to persist architecture, dependency, ownership, and concept relationships, then query paths, blast radius, stale nodes, branch overlays, and cross-model links during future sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/morpheis/clawdactual-engram) <br>
-- [Publisher profile](https://clawhub.ai/user/morpheis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local SQLite persistence at a configurable database path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.10 (source: server release evidence) <br>
+Risk: Persistent knowledge graphs may capture sensitive workspace, organizational, infrastructure, or people metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to non-sensitive architecture and relationship facts by default; avoid storing secrets, credential paths, SSH configuration details, email contents, personal trust rankings, or private organizational data.
+
+Risk: The skill installs and uses a third-party npm package that persists local data.
+
+Mitigation: Pin and audit the package version before use, and restrict access to the local database file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/morpheis/skills/clawdactual-engram)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI command examples and optional structured CLI output such as JSON, JSON-LD, DOT, or batch commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a durable local SQLite knowledge graph; CLI commands can emit structured JSON with the --json flag.]
+
+## Skill Version(s):
+
+0.1.12 (source: release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

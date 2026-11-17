@@ -1,42 +1,56 @@
-## Description: <br>
-SaaS (Screenshot As A Service) lets agents request cloud-rendered PNG or JPEG screenshots of web pages by URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your agent the ability to instantly take screenshots of any website with just the URL. Cloud-based so your agent has to perform no work. Free forever, open source.
 
-## Publisher: <br>
-[Kav-K](https://clawhub.ai/user/Kav-K) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kav-k](https://clawhub.ai/user/kav-k)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add screenshot capture to agents and automations without running a browser locally. The skill supports URL screenshots with options for format, viewport, full-page capture, selectors, dark mode, cookies, headers, ad blocking, and device scale. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The screenshot provider can see submitted URLs and any cookies or headers included in requests. <br>
-Mitigation: Do not send internal-only URLs, private account pages, session cookies, authorization headers, or regulated data unless the service is explicitly trusted and authorized for that use. <br>
-Risk: API keys grant access to the screenshot service and cannot be recovered after registration. <br>
-Mitigation: Store API keys securely and avoid exposing them in prompts, logs, screenshots, or committed files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SnapService API](https://snap.llm.kaveenk.com) <br>
-- [Register API key endpoint](https://snap.llm.kaveenk.com/api/register) <br>
-- [Screenshot endpoint](https://snap.llm.kaveenk.com/api/screenshot) <br>
-- [ClawHub skill page](https://clawhub.ai/Kav-K/snap) <br>
+## Use Case:
 
+Developers and automation builders use this skill to register for a cloud screenshot API and capture public or intentionally shareable web pages as PNG or JPEG files from a URL.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown with curl and Python examples; screenshot requests return PNG or JPEG image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an API key; screenshot requests may include URL, format, viewport, full-page, selector, wait, scale, cookies, headers, dark mode, and ad-blocking options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive cookies, headers, API keys, internal URLs, or private pages could be sent to a third-party screenshot service.
+
+Mitigation: Use the service only for public or intentionally shareable URLs unless the provider is explicitly trusted, and avoid sending credentials or private pages unless credentials are short-lived, narrowly scoped, and safe to expose.
+
+Risk: The service API key cannot be recovered after registration.
+
+Mitigation: Store the API key securely when it is issued and rotate by registering an appropriate replacement if it is lost or exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kav-k/skills/snap)
+- [Publisher profile](https://clawhub.ai/user/kav-k)
+- [Snap screenshot service](https://snap.llm.kaveenk.com)
+- [API registration endpoint](https://snap.llm.kaveenk.com/api/register)
+- [API screenshot endpoint](https://snap.llm.kaveenk.com/api/screenshot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Files]
+
+**Output Format:** [Markdown guidance with bash and Python examples; screenshot responses are PNG or JPEG binary files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a service API key. Documented limits include 2 screenshots per minute, 200 screenshots per day, 16384px maximum full-page height, and 10MB maximum screenshot size.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

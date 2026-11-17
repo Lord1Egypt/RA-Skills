@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.conservative_gates.v1.schema.json",
+  "title": "OpenClaw Safe Update Deterministic Conservative Gates",
+  "type": "object",
+  "required": [
+    "schema",
+    "generated_at",
+    "effect",
+    "runtime_effect",
+    "external_effect",
+    "external_write_effect",
+    "production_apply_allowed",
+    "operator_approval",
+    "status",
+    "handling",
+    "authority_digest",
+    "decision_digest",
+    "required_gates",
+    "satisfied_gates",
+    "decisions",
+    "errors"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.safe_update.conservative_gates.v1"
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effect": {
+      "const": "read_only_openclaw_update_rehearsal"
+    },
+    "runtime_effect": {
+      "const": "none"
+    },
+    "external_effect": {
+      "const": "npm_registry_read_only"
+    },
+    "external_write_effect": {
+      "const": "none"
+    },
+    "production_apply_allowed": {
+      "const": false
+    },
+    "operator_approval": {
+      "const": false
+    },
+    "status": {
+      "enum": [
+        "success",
+        "failed"
+      ]
+    },
+    "handling": {
+      "enum": [
+        "baseline",
+        "conservative",
+        "blocked"
+      ]
+    },
+    "authority_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "decision_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "required_gates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "satisfied_gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "evidence_digest"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "triggered",
+          "source",
+          "outcome",
+          "required_gate",
+          "evidence_digest"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "triggered": {
+            "type": "boolean"
+          },
+          "source": {
+            "enum": [
+              "none",
+              "machine",
+              "operator",
+              "machine_and_operator"
+            ]
+          },
+          "outcome": {
+            "enum": [
+              "pass",
+              "conservative",
+              "blocked"
+            ]
+          },
+          "required_gate": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "evidence_digest": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "additionalProperties": false
+}

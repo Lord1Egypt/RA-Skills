@@ -108,7 +108,7 @@ metadata:
 | 81 | [adenovirus-structure-transmission-and-disease-spectrum](adenovirus-structure-transmission-and-disease-spectrum/SKILL.md) | Adenovirus structure & disease spectrum |
 | 82 | [coxsackievirus-a-b-classification](coxsackievirus-a-b-classification/SKILL.md) | Coxsackievirus A/B classification |
 | 83 | [ev-a71-severe-risk-assessment](ev-a71-severe-risk-assessment/SKILL.md) | EV-A71 severe risk assessment |
-| 84 | [hev-infection-risk-assessment-in-special-populations](hev-infection-risk-assessment-in-special-populations/SKILL.md) | HEV risk in special populations |
+| 84 | [hev-infection-riREDACTED-SECRET](hev-infection-riREDACTED-SECRET/SKILL.md) | HEV risk in special populations |
 | 85 | [antiviral-gene-therapy-agent-design](antiviral-gene-therapy-agent-design/SKILL.md) | Antiviral gene therapy agent design |
 | 86 | [coronavirus-classification-structure-pathogenicity](coronavirus-classification-structure-pathogenicity/SKILL.md) | Coronavirus classification & pathogenicity |
 | 87 | [hdv-infection-type-assessment](hdv-infection-type-assessment/SKILL.md) | HDV co-infection vs. superinfection |

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Longxia Skill Scanner"
+  short_description: "Scan public GitHub agent skills before installation"
+  default_prompt: "Use $longxia-scan to scan this public GitHub agent skill before I install it."

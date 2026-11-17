@@ -1,45 +1,61 @@
-## Description: <br>
-Helps independent teachers turn schedule, student, homework, parent communication, and lesson-package data into a daily dashboard with priority follow-ups and objective student risk flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+只读汇总独立教师的课表、学员跟进、作业、家长沟通和课时信息，生成按优先级排列的每日工作台。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Independent teachers use this skill to generate a daily operating dashboard covering today's classes, preparation, post-class feedback, homework follow-up, parent communication, lesson packages, and the three most important actions. It reads existing workspace data, highlights risks from objective fields, and keeps external communication or writes pending teacher confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation could read student, parent, homework, or course-hour workflow data for generic planning requests. <br>
-Mitigation: Use explicit teacher-workbench prompts and add confirmation before reading sensitive workspace data for generic requests such as daily planning. <br>
-Risk: Dashboard output could expose sensitive student or parent details. <br>
-Mitigation: Use aliases, omit direct identifiers, keep parent and fact summaries within the documented 500-character cap, and avoid family, medical, financial, contact, or identity details. <br>
-Risk: Student risk flags could be misleading if based on impressions rather than data. <br>
-Mitigation: Base risk flags on documented objective thresholds, cite the source field evidence, and explicitly label any teacher-provided subjective judgment. <br>
-Risk: Suggested parent communication or record updates could be mistaken for automatic actions. <br>
-Mitigation: Keep messages, lesson-log summaries, renewal suggestions, and course-hour changes as drafts that require teacher confirmation before any external action or write. <br>
+## Use Case:
 
+独立教师可用此技能查看每日课程、课前准备、课后反馈、作业跟进、家长沟通和剩余课时，并按记录中的数值信号确定优先事项。输出供教师审阅；工作台仅读取和汇总数据。
 
-## Reference(s): <br>
-- [Dashboard Template](references/dashboard-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qizhitang/xiaozhi-teach-solo-dashboard) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown dashboard with structured text tables, checklists, prioritized actions, and risk explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses aliases for students, cites objective fields for risk flags, and does not automatically send parent messages or write records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The workspace may contain sensitive information about students and guardians.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aliases, include only necessary details, respect consent and retention settings, and confirm teaching context before reading student records.
+
+Risk: Field-based risk labels and priorities could be mistaken for a complete assessment of a student's needs.
+
+Mitigation: Show the supporting values and timeframe, keep recommendations for teacher review, and do not present derived labels as subjective judgments.
+
+Risk: The security review was partial because two local references were unavailable to the scanners.
+
+Mitigation: Review the affected references and confirm their content before relying on guidance that depends on them.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-teach-solo-dashboard)
+- [Daily dashboard block templates](artifact/references/daily-dashboard-block-templates.md)
+- [Daily dashboard full sample](artifact/references/daily-dashboard-full-sample.md)
+- [Dashboard template](artifact/references/dashboard-template.md)
+- [Solo teacher workspace schema](artifact/shared/solo-teacher-workspace.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown daily dashboard with seven sections, evidence-based risk notes, and three prioritized actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only summary; uses aliases and documented field values, and leaves decisions and external communications to the teacher.]
+
+## Skill Version(s):
+
+2.12.7 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

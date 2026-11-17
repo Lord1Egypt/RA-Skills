@@ -1,40 +1,54 @@
-## Description: <br>
-ZMT Browser Matrix Manager - Control multi-account browser matrix via HTTP API <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZMT Matrix Browser controls a multi-account browser matrix through a local HTTP API for account listing, startup, shutdown, and information queries.
 
-## Publisher: <br>
-[wociaozhongyunonghaole](https://clawhub.ai/user/wociaozhongyunonghaole) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wociaozhongyunonghaole](https://clawhub.ai/user/wociaozhongyunonghaole)
 
-## Use Case: <br>
-External users, developers, and automation operators use this skill to list, start, stop, and query accounts in a local ZMT multi-account browser matrix through its HTTP API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The external matrix tool and local HTTP API may manage browser profiles, cookies, account sessions, and IP or proxy settings. <br>
-Mitigation: Install and use the skill only when you intend to control that local ZMT setup, and review the external tool and local API separately before operational use. <br>
-Risk: Natural-language or scripted account controls could start, stop, or query the wrong browser account if account names are ambiguous. <br>
-Mitigation: Confirm target account names and intended actions before sending commands to the local API. <br>
+## Use Case:
 
+Developers and operators use this skill to manage ZMT browser-matrix accounts over HTTP, including listing accounts and starting or stopping named browser profiles.
 
-## Reference(s): <br>
-- [ZMT Matrix Tool](https://zmt.scys6688.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples and API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include natural-language instructions for controlling local account browser sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.16 (source: frontmatter and server release evidence) <br>
+Risk: The skill can control browser profiles that may contain active sessions, cookies, and account state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Connect it only to browser accounts the user intends the matrix tool to control.
+
+Risk: Unpinned Python dependencies can change behavior across installations.
+
+Mitigation: Install in a virtual environment and prefer pinned versions of required packages.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wociaozhongyunonghaole/skills/zmt-browser-matrix)
+- [ZMT Matrix Tool](https://zmt.scys6688.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe HTTP API control steps for browser profiles containing active sessions, cookies, and account state.]
+
+## Skill Version(s):
+
+1.0.16 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

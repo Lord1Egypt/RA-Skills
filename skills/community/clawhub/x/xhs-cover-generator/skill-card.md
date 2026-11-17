@@ -1,45 +1,59 @@
-## Description: <br>
-AI cover design assistant for Xiaohongshu creators that queries recent popular-note data, analyzes cover patterns, and produces actionable cover concepts and image-generation prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps Xiaohongshu creators analyze recent high-performing cover examples and generate practical cover design directions, sample-backed summaries, and image prompts.
 
-## Publisher: <br>
-[if530770](https://clawhub.ai/user/if530770) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[if530770](https://clawhub.ai/user/if530770)
 
-## Use Case: <br>
-External creators, brand operators, agencies, and MCN teams use this skill to turn a Xiaohongshu topic or draft into a data-informed cover analysis, visual direction, and practical cover-generation prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends search keywords to a third-party trend API. <br>
-Mitigation: Avoid submitting confidential topics or customer-sensitive planning terms, and review the API endpoint before normal use. <br>
-Risk: Reports may include public creator/profile links and raw remote XHS or CDN image URLs. <br>
-Mitigation: Review generated reports before sharing and remove creator, profile, or media links when redistribution is not appropriate. <br>
-Risk: The security evidence notes disabled HTTPS certificate verification, so returned data could be intercepted or tampered with. <br>
-Mitigation: Review and patch the network request behavior before routine use, or run only in a constrained environment where this risk is acceptable. <br>
+## Use Case:
 
+External creators, brand operators, agencies, and MCN teams use this skill to turn a Xiaohongshu topic or draft into cover-analysis reports and practical cover design prompts backed by recent platform trend data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/if530770/xhs-cover-generator) <br>
-- [Core workflow](references/core_workflow.md) <br>
-- [Xiaohongshu trend data format](references/xhs_trend_data_format.md) <br>
-- [Third-party trend API endpoint](https://onetotenvip.com/skill/cozeSkill/getXhsCozeSkillData) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with image links, tables, design recommendations, generation prompts, and optional JSON data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include remote Xiaohongshu/CDN image URLs, creator or profile links, interaction metrics, and optional debug or output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence release metadata) <br>
+Risk: Search keywords and campaign themes are sent to onetotenvip.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only keywords acceptable to share with that third-party service and disclose this network dependency to users before execution.
+
+Risk: The skill retrieves and displays unvalidated remote cover image URLs.
+
+Mitigation: Apply URL allowlisting, request limits, and link review before rendering images or following returned links.
+
+Risk: The helper script uses custom no-SNI TLS behavior with certificate validation disabled.
+
+Mitigation: Replace it with standard HTTPS certificate validation before routine deployment and run the current script only in a constrained environment.
+
+## Reference(s):
+
+- [Core workflow](references/core_workflow.md)
+- [Xiaohongshu trend data format](references/xhs_trend_data_format.md)
+- [ClawHub skill page](https://clawhub.ai/if530770/skills/xhs-cover-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports, JSON data from the helper script, and cover image prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party image URLs and Xiaohongshu post or profile links returned by the data source.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

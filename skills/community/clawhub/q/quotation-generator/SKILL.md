@@ -1,53 +1,161 @@
 ---
 name: quotation-generator
-description: "Auto-generate professional PDF proforma invoices with company letterhead, multi-language support, and post-quote tracking."
+description: 专业的报价单生成助手。根据用户上传的物料价格表和Excel报价模板，自动分析模板结构、匹配产品价格、计算总价，生成填充完整的报价单Excel。触发场景：用户需要生成报价单、填写报价模板、根据物料清单计算报价、处理多型号产品选型确认、适配不同格式的Excel报价模板。关键词：报价单、报价模板、物料清单、价格计算、生成报价、填写报价、Excel模板适配。
 ---
 
-# Quotation Generator
+# Quotation Generator — 报价单生成
 
-Generate professional proforma invoices for B2B export deals.
+## 概述
 
-## Trigger
-- Customer requests quote/pricing
-- Owner instructs: "Send quote to [customer]"
-- Stage 5 of sales pipeline
+根据用户提供的 **物料价格表** 和 **Excel报价模板**，自动完成：
+1. 解析物料价格数据
+2. 自适应分析任意Excel模板的结构（表头、列映射、单值区域）
+3. 匹配产品型号与单价
+4. 生成填充完整的报价单Excel文件
 
-## Quote Content
-Each proforma invoice includes:
-1. **Company letterhead** — logo, company name, address, contact info
-2. **Customer info** — company, contact person, country
-3. **Product table** — item, specs, quantity, unit price, total
-4. **Terms** — payment terms, delivery time, shipping method, Incoterms
-5. **Validity** — quote valid for 30 days (configurable)
-6. **Notes** — special conditions, certifications, warranty
+> **核心原则**：用户必须先上传物料价格表（Excel/CSV），才能开始报价流程。
 
-## Naming Convention
-`{{brand_code}}-YYYYMMDD-NNN` (e.g., FY-20260324-001)
+---
 
-## Multi-Language Support
-Generate quotes in customer's language:
-- English (default)
-- French (West/Central Africa)
-- Arabic (Middle East/North Africa)
-- Spanish (Latin America)
-- Portuguese (Brazil, Mozambique)
+## 前置条件检查
 
-## Workflow
-1. AI drafts quote based on conversation context and product-kb
-2. Send draft to owner via WhatsApp for approval
-3. Owner approves → AI sends to customer
-4. Update CRM: status = `quote_sent`, attach quote reference
+启动报价流程前，必须确认以下两项，缺一不可：
 
-## Post-Quote Tracking
-- Day 3: If no reply → Follow up asking for feedback
-- Day 7: If no reply → Second follow-up with value proposition
-- Day 14: If no reply → Final follow-up or move to nurture
-- Reply received → Update CRM, continue negotiation (Stage 6)
+| 条件 | 要求 | 缺失时的处理 |
+|------|------|-------------|
+| **物料价格表** | 用户上传的 Excel/CSV，包含 materialName、specModel、retailPrice 等字段 | **必须要求用户先上传**，流程无法继续 |
+| **报价模板** | 用户上传的 Excel 报价单模板 | 若未上传，使用用户最近一次上传的文件，或要求上传 |
 
-## Product KB Integration
-Reads from `product-kb/catalog.json` for:
-- Product specs, dimensions, weight
-- FOB/CIF pricing
-- MOQ (Minimum Order Quantity)
-- Lead time / production time
-- Available certifications
+**物料价格表最低要求**：
+- 至少包含：`产品名称`（或 materialName/品名/物料名）、`规格型号`（或 specModel/型号）、`单价`（或 retailPrice/价格/金额）
+- 支持多行表头，自动识别有效数据行
+- 同一产品名称下允许有多个规格型号
+
+---
+
+## 工作流程
+
+### Step 0: 解析物料价格表
+
+1. 读取用户上传的物料价格表（Excel 或 CSV）。
+2. 识别表头和数据行：
+   - 遍历前 5 行，通过关键词匹配识别表头行（包括但不限于"名称""型号""价格""单价"等关键词）
+   - 表头行下方即为数据起始行
+3. 提取字段映射（模糊匹配，找到与之相关的字段名称）：
+   | 关键词 | 标准字段名 |
+   |--------|-----------|
+   | 产品名称/品名/物料/物料名称/商品名称 | materialName |
+   | 规格/型号/规格型号/Spec | specModel |
+   | 单价/价格/零售价/金额/单价(元)/Price | retailPrice |
+   | 单位/计量单位/Unit | unit |
+   | 备注/Note | remark |
+4. 清洗数据：去除空行、转换价格列为数值型、去除首尾空格。
+5. 输出标准化的物料清单，格式参见 [references/data-schema.md](references/data-schema.md)。
+
+> **陷阱**：多行表头时，取最靠近数据的那一行作为有效表头。合并单元格要展开到每个子单元格。
+
+### Step 1: 分析报价模板结构（自适应）
+
+1. 读取用户上传的 Excel 报价模板（openpyxl）。
+2. **识别主数据 Sheet**：优先使用第一个 Sheet，若名称含"报价""明细"则优先。
+3. **扫描模板结构**：
+   - 遍历所有单元格，识别连续数据区域
+   - 检测合并单元格范围
+4. **识别报价明细表（列表区域 list）**：
+   - 通过关键词扫描所有行，找到含"序号/产品名称/规格/数量/单价/金额/小计"等关键词的行 → 判定为表头行 `start_row`
+   - 若存在多组关键词（如两个表格），选择行号更大、更靠近模板中部的那个（通常是真正的报价明细表，而非封面摘要）
+   - 表头行下方连续的数据行即为 `template_rows`
+   - 列映射：逐列匹配表头文本到标准字段（参见 Step 0 的字段映射表）
+5. **识别单值区域（single_value）**：
+   - 扫描含标签文本的单元格（如"客户名称：""日期：""报价单号：""联系电话："）
+   - 标签右侧（或下方）相邻单元格即为可填值位置
+   - 常见单值字段映射：
+     | 标签关键词 | 标准字段 |
+     |-----------|---------|
+     | 客户/甲方/买方/客户名称 | customer_name |
+     | 日期/报价日期/填表日期 | quotation_date |
+     | 单号/报价单号/编号 | quotation_no |
+     | 电话/联系电话/手机 | contact_phone |
+     | 总计/合计/总金额/总价 | total_amount |
+6. **检测公式**：检查金额列是否已有公式（如 `=C*D`），标记为 `has_formula: true`。
+
+> **陷阱**：合并单元格只输出一个坐标。不要误把"说明""备注""报价单位"等非明细表区域识别为列表区域。
+
+### Step 2: 确认产品型号
+
+1. 从用户输入中提取需要报价的产品名称列表。
+2. 在已解析的物料价格表中查找每个产品：
+   - 若一个 `materialName` 只对应一个 `specModel` → 直接确定
+   - 若一个 `materialName` 对应多个 `specModel` → **必须向用户发起澄清**，列出所有可选型号及对应价格，请用户确认
+3. **澄清规则**：
+   - 若用户已在消息中明确指定了型号 → 视为已澄清，直接继续
+   - 若当前消息是对上一轮澄清的补充（提供了缺失的型号/品牌/规格）→ 视为澄清完成，**禁止再次发起澄清**，继续执行后续流程
+   - 需要澄清的产品必须是物料价格表中真实存在的，禁止自行创造
+   - 如果用户输入的产品在物料表中**找不到**，也要告知用户"未找到该产品，请检查名称或补充到物料表中"
+
+### Step 3: 计算报价明细
+
+1. 根据确认后的产品-型号-单价映射，结合模板列映射，生成填充数据：
+   - 行号规则：第 N 条产品行 = `start_row + N`
+   - **严禁** 把产品写在 `start_row`（表头行），必须从 `start_row + 1` 开始
+   - 数量默认填 `1`，若用户在输入中明确指定了数量则使用指定值
+2. 计算总价：
+   - 若模板金额列已有公式 → 只填数量和单价，让公式自动计算
+   - 若模板金额列无公式 → 计算 `数量 × 单价` 填入金额列
+3. 填充单值区域：
+   - 客户名称、日期、报价单号等，若用户提供则填入对应位置
+   - 日期默认为当天，格式与模板中原有日期格式保持一致
+4. 输出 `fill_operations` 结构，参见 [references/data-schema.md](references/data-schema.md)。
+
+> **陷阱**：`fill_operations` 中各列值的顺序必须与产品顺序严格一致，避免名称、数量、价格错位。
+
+### Step 4: 生成报价文档
+
+1. 复制用户上传的模板到临时目录，生成唯一文件名（UUID 后缀）。
+2. 使用 `openpyxl` 遍历 `fill_operations`，写入对应单元格：
+   - `col` 用 `column_index_from_string()` 转为列索引
+   - `row` 必须 > 0，`col` 不能为空
+   - 对于已有公式的单元格，若需要覆盖，先清除原有公式再写入值
+3. 保存工作簿，返回生成文件的路径和名称。
+
+---
+
+## 模板适配规则
+
+不同用户的报价模板格式差异很大，以下是常见场景的处理策略：
+
+| 场景 | 处理策略 |
+|------|---------|
+| 表头不在第一行 | 通过关键词扫描定位真实表头行，不假设固定位置 |
+| 列顺序不同 | 通过表头文本模糊匹配列字段，动态生成列映射 |
+| 缺少某些列（如无规格列） | 只填存在的列，缺失列留空或跳过 |
+| 金额列已有公式 | 检测公式，不覆盖，只填数量和单价 |
+| 模板只有预留1行 | 在 start_row+1 开始填入，不插入新行（保持简单） |
+| 多Sheet模板 | 默认分析第一个含报价关键词的 Sheet |
+| 标签在单元格左侧（如"客户：XXX"） | 识别"客户"标签，取右侧单元格作为填充位置 |
+
+---
+
+## 关键规则汇总
+
+| 规则 | 说明 |
+|------|------|
+| 前置条件 | 必须先有物料价格表，否则流程无法开始 |
+| 型号澄清 | 同名产品多型号时必须澄清，禁止自行选择 |
+| 表头保护 | 产品数据必须从 `start_row + 1` 开始，禁止覆盖表头 |
+| 列映射自适应 | 通过关键词模糊匹配，不假设固定列顺序 |
+| 顺序一致 | fill_operations 中字段顺序与产品顺序必须对齐 |
+| 公式保护 | 已有公式的单元格优先保留公式，或清除后写入 |
+| 文件唯一 | 生成文件使用 UUID 后缀，避免覆盖历史报价 |
+
+---
+
+## 常见陷阱
+
+- **❌ 无物料表启动**：用户未上传物料价格表就直接要求报价 → 必须先要求上传
+- **❌ 重复澄清**：用户已补充型号信息后，禁止再次调用澄清流程
+- **❌ 覆盖表头**：把产品写在 `start_row` 会覆盖表头，必须从 `start_row + 1` 开始
+- **❌ 字段错位**：`fill_operations` 中各列值的顺序与产品清单顺序不一致，导致名称、数量、价格错位
+- **❌ 虚构产品**：澄清时只能列出物料价格表中真实存在的产品型号
+- **❌ 硬编码列位置**：不能假设"第1列永远是产品名称"，必须通过表头文本动态识别
+- **❌ 覆盖公式**：未检测就覆盖了金额列的公式，导致计算失效

@@ -1,41 +1,55 @@
-## Description: <br>
-Cluster and attribute related wallets across funding chains, shared signers, CEX deposit patterns, governance voters, and related address groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cluster and attribute related wallets — funding chains, shared signers, CEX deposit patterns. Use when tracing wallet ownership, comparing two wallets, finding wallet relationships, governance voters, or related address clusters.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-Developers, analysts, and investigators use this skill to guide Nansen CLI wallet-attribution workflows, compare related addresses, expand candidate clusters with human confirmation, and report confidence-scored ownership signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses, chain selections, and investigation patterns are sent to Nansen through the CLI. <br>
-Mitigation: Install only if the nansen-cli package and Nansen API usage are trusted, and avoid submitting sensitive addresses unless that disclosure is acceptable. <br>
-Risk: Trace, batch, and L2 expansion commands can consume API credits or broaden the investigation beyond the seed wallet. <br>
-Mitigation: Keep trace width at or below the documented limit, reserve counterparty expansion for the seed unless approved, and ask for human confirmation before querying newly found addresses. <br>
+## Use Case:
 
+Developers, analysts, and other external users can use this skill to investigate wallet ownership and relationships, compare addresses, and summarize attribution signals with confidence and role information.
 
-## Reference(s): <br>
-- [Wallet Attribution Reference](artifact/REFERENCE.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nansen-devops/nansen-wallet-clustering) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and confidence-scored attribution output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the nansen CLI and NANSEN_API_KEY; outputs address, owner, confidence, signals, and role when following the reference format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: Wallet addresses and query details sent to Nansen may reveal which wallets or relationships are being investigated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before querying, consider whether you are comfortable sharing the target addresses and investigation details with Nansen; follow the documented expansion protocol and ask before querying newly discovered addresses.
+
+Risk: Research calls, including calls in loops, can incur x402 payments from the configured wallet under its existing authorization and spending limits.
+
+Mitigation: Check the selected authentication method, wallet authorization, payment policy, and spending limits before research; minimize calls and keep trace width at 3 or less.
+
+## Reference(s):
+
+- [Wallet Attribution — Reference](artifact/REFERENCE.md)
+- [Browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+- [Nansen Wallet Clustering on ClawHub](https://clawhub.ai/nansen-devops/skills/nansen-wallet-clustering)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown attribution summary with address, owner, confidence, signals, and role; CLI commands as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Attribution is organized around wallet addresses and confidence levels.]
+
+## Skill Version(s):
+
+0.1.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

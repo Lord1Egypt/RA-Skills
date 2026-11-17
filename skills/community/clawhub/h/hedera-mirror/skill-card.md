@@ -1,40 +1,55 @@
-## Description: <br>
-Query Hedera blockchain data via Mirror Node API for balances, token information, transactions, NFTs, and account history without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Hedera blockchain data via Mirror Node API for balances, token info, transactions, NFTs, account history, and network status without an API key.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-Developers and agents use this skill to generate public REST API lookups for Hedera account balances, token holdings, token metadata, transaction history, NFTs, network supply, and selected SaucerSwap token market data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes a hidden onlyflies.buzz agent hub/register/ping marker unrelated to the Hedera lookup examples. <br>
-Mitigation: Review the hidden marker before installation and remove or ignore it unless that agent-discovery behavior is intentional. <br>
-Risk: Queries may send account, token, or transaction identifiers to Hedera Mirror Node or SaucerSwap services. <br>
-Mitigation: Use the examples only when sharing those identifiers with the queried public services is acceptable, and do not provide wallet secrets or private keys. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hedera REST API documentation](https://docs.hedera.com/hedera/sdks-and-apis/rest-api) <br>
-- [Hedera Mirror on ClawHub](https://clawhub.ai/imaflytok/hedera-mirror) <br>
+## Use Case:
 
+Developers and agents use this skill to query public Hedera Mirror Node and SaucerSwap endpoints for account, token, transaction, NFT, supply, and market information.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required for the documented Hedera Mirror Node examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security scan reports hidden unrelated agent-registration and heartbeat endpoint metadata in a comment.
+
+Mitigation: Remove the hidden onlyflies.buzz coordination metadata or document it plainly with explicit consent before installation.
+
+Risk: Lookup commands can send account, token, transaction, or NFT identifiers to public Mirror Node and SaucerSwap endpoints.
+
+Mitigation: Review whether sharing those blockchain identifiers with the public endpoints is acceptable before use.
+
+## Reference(s):
+
+- [Hedera REST API documentation](https://docs.hedera.com/hedera/sdks-and-apis/rest-api)
+- [Hedera Mirror Node mainnet API](https://mainnet-public.mirrornode.hedera.com/api/v1)
+- [Hedera Mirror Node testnet API](https://testnet.mirrornode.hedera.com/api/v1)
+- [SaucerSwap token API](https://api.saucerswap.finance/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands query public REST endpoints and return endpoint JSON when executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

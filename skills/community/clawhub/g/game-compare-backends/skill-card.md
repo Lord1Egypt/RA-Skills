@@ -1,42 +1,56 @@
-## Description: <br>
-Run a narrow compare between two or three backend profiles when architecture uncertainty is real. Use carefully, because it usually costs more tokens and time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a narrow compare between two or three backend profiles when architecture uncertainty is real.
 
-## Publisher: <br>
-[mike007jd](https://clawhub.ai/user/mike007jd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike007jd](https://clawhub.ai/user/mike007jd)
 
-## Use Case: <br>
-Developers and game teams use this skill to compare two or three plausible backend profiles for a greenfield game project and record the decision criteria, outcome, reasoning, and cost note. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compare mode can consume more tokens and time than choosing a single recommended route. <br>
-Mitigation: Use it only when two or three backend profiles are genuinely plausible, and include a token/cost note in the decision file. <br>
-Risk: The skill may update a Markdown architecture decision that influences project direction. <br>
-Mitigation: Review docs/game-studio/backend-decision.md before committing it or acting on the recommendation. <br>
+## Use Case:
 
+Game developers and engineers use this skill to compare two or three plausible backend profiles for a game project and record the decision, criteria, rationale, and cost note.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mike007jd/game-compare-backends) <br>
-- [README](artifact/README.md) <br>
-- [Usage Examples](artifact/examples/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown decision note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Updates docs/game-studio/backend-decision.md with compared options, criteria, result, rationale, and token/cost note.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Compare mode can spend extra agent time and tokens when the backend choice is already obvious.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when architecture uncertainty is real and include the requested token or cost note in the decision record.
+
+Risk: The workflow may update project documentation with an incorrect or weakly supported backend decision.
+
+Mitigation: Review the compared options, criteria, and rationale before accepting changes to docs/game-studio/backend-decision.md.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [Usage Examples](artifact/examples/usage.md)
+- [Smoke Test](artifact/tests/smoke.md)
+- [ClawHub Skill Page](https://clawhub.ai/mike007jd/skills/game-compare-backends)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance]
+
+**Output Format:** [Markdown decision note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an evidence-based backend comparison and cost note for docs/game-studio/backend-decision.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

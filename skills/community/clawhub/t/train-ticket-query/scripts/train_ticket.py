@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 火车票查询 - ClawHub技能脚本
-零配置即装即用，通过SCF代理调用飞猪+高德API + 12306余票直查
+零配置即装即用，通过SCF代理调用途牛+高德API + 12306余票直查
 3个工具：火车票查询（含余票）、去火车站交通、住宿推荐
 """
 import os
@@ -13,7 +13,7 @@ import urllib.error
 from datetime import datetime, timedelta
 
 # ============ 配置 ============
-FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
+TUNIU_PROXY = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 GAODE_PROXY = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 TIMEOUT = 30
@@ -33,25 +33,19 @@ _CITIES = [
 
 
 # ============ 代理调用 ============
-def _call_fliggy(rtype, params, timeout=None):
-    body = json.dumps({"type": rtype, "params": params}, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    req = urllib.request.Request(
-        FLIGGY_PROXY, data=body,
-        headers={"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN},
-        method="POST",
-    )
-    _timeout = timeout or TIMEOUT
+def _call_tuniu(rtype, params, timeout=None):
+    """调用途牛SCF代理"""
+    url = TUNIU_PROXY
+    headers = {"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN}
+    body = {"type": rtype, "params": params}
+    data = json.dumps(body, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
     try:
-        with urllib.request.urlopen(req, timeout=_timeout) as r:
-            return json.loads(r.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        err = ""
-        try: err = e.read().decode("utf-8", errors="replace")[:300]
-        except: pass
-        return {"error": "proxy error " + str(e.code) + ": " + err}
+        t = timeout or 30
+        with urllib.request.urlopen(req, timeout=t) as resp:
+            return json.loads(resp.read().decode("utf-8"))
     except Exception as e:
-        return {"error": "request error: " + str(e)}
-
+        return {"error": str(e)}
 
 def _call_gaode(api, params):
     body = json.dumps({"type": api, "params": params}).encode("utf-8")
@@ -168,7 +162,7 @@ def _query_12306_tickets(dep_code, arr_code, date):
 
 
 def _get_remaining_tickets(data, date):
-    """从飞猪结果中提取站名对，查询12306余票"""
+    """从途牛结果中提取站名对，查询12306余票"""
     if isinstance(data, dict) and "error" in data:
         return {}
     inner = data.get("data", data) if isinstance(data, dict) else data
@@ -414,14 +408,14 @@ def search_train(params):
     """火车票查询：查询火车票/高铁票的余票、价格和时刻表，含12306实时余票信息。"""
     departure = params.get("departure", "")
     destination = params.get("destination", "")
-    dep_date = params.get("dep_date", "")
-    seat_class = params.get("seat_class", "")
-    transport_no = params.get("transport_no", "")
+    depDate = params.get("depDate", "")
+    seatClass = params.get("seatClass", "")
+    transportNo = params.get("transportNo", "")
 
     if not departure: return "请提供出发城市，如：上海、北京"
     if not destination: return "请提供到达城市，如：北京、成都"
 
-    parsed_date, date_hint = _smart_parse_date(dep_date)
+    parsed_date, date_hint = _smart_parse_date(depDate)
     if not parsed_date: return date_hint
 
     args = {
@@ -430,10 +424,10 @@ def search_train(params):
         "depDate": parsed_date,
         "limit": 10,
     }
-    if seat_class: args["seatClassName"] = seat_class
-    if transport_no: args["transportNo"] = transport_no
+    if seatClass: args["seatClassName"] = seatClass
+    if transportNo: args["transportNo"] = transportNo
 
-    result = _call_fliggy("search_domestic_train", args)
+    result = _call_tuniu("tuniu_train_search", args)
     if isinstance(result, dict) and "error" in result:
         return "火车票查询失败: " + result["error"]
 
@@ -501,23 +495,23 @@ def search_train(params):
 def query_transport(params):
     """去火车站交通：查询从出发地到火车站的打车预估和公交地铁路线。"""
     origin = params.get("origin", "")
-    train_station = params.get("train_station", "")
+    trainStation = params.get("trainStation", "")
     city = params.get("city", "")
 
     if not origin: return "请提供出发地，如：浦东机场、南京路100号"
-    if not train_station: return "请提供火车站名，如：上海虹桥站、北京南站"
+    if not trainStation: return "请提供火车站名，如：上海虹桥站、北京南站"
     if not city: return "请提供城市名，如：上海、北京"
 
-    lines = [f"📍 {origin} → {train_station} 交通方式", ""]
+    lines = [f"📍 {origin} → {trainStation} 交通方式", ""]
 
-    driving = _gaode_driving(origin, train_station, city)
+    driving = _gaode_driving(origin, trainStation, city)
     if driving:
         lines.append("━━━ 🚗 打车/驾车 ━━━")
         lines.append(f"距离{driving['distance_km']}公里 | 约{driving['duration_min']}分钟 | {driving['taxi_cost']}")
         lines.append("💡 可打开微信/支付宝「滴滴出行」小程序叫车")
         lines.append("")
 
-    transit_routes = _gaode_transit(origin, train_station, city)
+    transit_routes = _gaode_transit(origin, trainStation, city)
     if transit_routes:
         metro_routes = []
         bus_routes = []
@@ -588,7 +582,7 @@ def recommend_hotel(params):
     query = params.get("query", "")
     if not query: return "请描述你的住宿需求，如：住哪个区域，预算多少，有什么偏好？"
 
-    result = _call_fliggy("fliggy_ai_search", {"query": query}, timeout=60)
+    result = _call_tuniu("tuniu_train_search", {"query": query}, timeout=60)
     if isinstance(result, dict) and "error" in result:
         return "住宿推荐失败: " + result["error"]
 

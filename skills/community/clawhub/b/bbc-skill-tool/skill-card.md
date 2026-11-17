@@ -1,45 +1,55 @@
-## Description: <br>
-Builds, manages, and troubleshoots WhatsApp bots using the BuilderBot Cloud (BBC) MCP Tool v2.0, with guidance for business bot flows, deployment validation, recovery, and safety gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds, manages, and troubleshoots WhatsApp bots using the BuilderBot Cloud (BBC) MCP Tool v2.0, including project and flow management, answer configuration, validation, deployment, recovery, and common business bot patterns.
 
-## Publisher: <br>
-[leifermendez](https://clawhub.ai/user/leifermendez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leifermendez](https://clawhub.ai/user/leifermendez)
 
-## Use Case: <br>
-Developers, automation builders, and business operators use this skill to create, manage, validate, deploy, and troubleshoot BuilderBot Cloud WhatsApp bots for appointments, customer support, lead capture, content delivery, and human handoff workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WhatsApp bot workflows may collect customer names, contact details, appointment requests, order data, or conversation context. <br>
-Mitigation: Add user-facing privacy notices, collect only necessary data, redact sensitive conversation content, and protect credentials before production use. <br>
-Risk: Webhook, CRM, scraping, and handoff examples can send data to external endpoints. <br>
-Mitigation: Use trusted endpoints, validate webhook destinations, and avoid sending sensitive data unless the business has an approved data handling process. <br>
-Risk: Deployment or deletion actions can change live bot behavior or remove configured flows. <br>
-Mitigation: Require explicit user confirmation before deployment or deletion and verify state after every mutating action. <br>
+## Use Case:
 
+Developers, operators, and business automation builders use this skill to create, update, validate, deploy, and troubleshoot WhatsApp bots on BuilderBot Cloud for appointments, support escalation, lead capture, order status, media handling, and AI-assisted conversations.
 
-## Reference(s): <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Advanced Patterns](artifact/advanced-patterns.md) <br>
-- [Vertical Templates](artifact/verticals.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leifermendez/bbc-skill-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with structured bot plans, validation reports, and BuilderBot Cloud tool-call instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes verification after mutations, explicit confirmation before destructive actions, recovery guidance, and validation before deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide an agent to create, update, validate, deploy, reboot, and delete BuilderBot Cloud bot resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before destructive actions, verify resource state after each mutation, and run validation before deployment.
+
+Risk: CRM, dashboard, webhook, website-scraping, and media URL configuration can expose customer data or connect the bot to external systems.
+
+Mitigation: Review all external URLs and integrations before use, and define privacy notices, consent, retention, and access-control rules for collected or forwarded conversation data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leifermendez/skills/bbc-skill-tool)
+- [Advanced Patterns](artifact/advanced-patterns.md)
+- [Vertical Templates](artifact/verticals.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with structured examples, tool-call sequences, configuration snippets, and bot reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute BuilderBot Cloud mutations, deployment actions, webhook configuration, website scraping setup, media URL configuration, and recovery steps through the connected MCP tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

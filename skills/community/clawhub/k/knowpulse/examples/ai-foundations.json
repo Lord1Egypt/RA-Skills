@@ -1,0 +1,15 @@
+{
+  "topics": [
+    {"id":"ai.token","subject":"ai","title":"Token 与上下文窗口","level":"intro","reviewStatus":"demo"},
+    {"id":"ai.prompt","subject":"ai","title":"Prompt 基础结构","level":"intro","reviewStatus":"demo"},
+    {"id":"ai.rag","subject":"ai","title":"RAG 检索增强生成","level":"intermediate","reviewStatus":"demo"},
+    {"id":"ai.agent","subject":"ai","title":"Agent 工具调用","level":"advanced","reviewStatus":"demo"},
+    {"id":"design.hierarchy","subject":"design","title":"视觉信息层级","level":"intro","reviewStatus":"demo"}
+  ],
+  "dependencies": [
+    {"topicId":"ai.prompt","prerequisiteId":"ai.token","strength":"hard"},
+    {"topicId":"ai.rag","prerequisiteId":"ai.prompt","strength":"hard"},
+    {"topicId":"ai.agent","prerequisiteId":"ai.prompt","strength":"hard"},
+    {"topicId":"ai.agent","prerequisiteId":"ai.rag","strength":"soft"}
+  ]
+}

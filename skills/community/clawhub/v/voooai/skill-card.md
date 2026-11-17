@@ -1,46 +1,63 @@
-## Description: <br>
-VoooAI relays creative media requests to the VoooAI backend to generate workflows, execute them, poll status, retry failed nodes, upload reference media, and download generated image, video, music, storyboard, webtoon, manga, short-drama, and marketing assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VoooAI lets agents relay creative media requests to a backend that generates, executes, monitors, and downloads image, video, music, and multimedia workflows.
 
-## Publisher: <br>
-[hkljjkl](https://clawhub.ai/user/hkljjkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hkljjkl](https://clawhub.ai/user/hkljjkl)
 
-## Use Case: <br>
-External creators, designers, studios, businesses, educators, game developers, and agent users use this skill to turn natural-language creative requests and optional reference media into VoooAI-generated workflows and downloadable multimedia outputs. It is intended for creative workflow operations such as generation, editing, status checks, retries, and result download, not account, billing, analytics, or administration tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected media files are submitted to VoooAI for creative workflow generation and execution. <br>
-Mitigation: Install only if you trust VoooAI with the prompts and media you submit, and use a dedicated access key where possible. <br>
-Risk: Setting VOOOAI_BASE_URL can route requests, access keys, prompts, and media to an alternate server. <br>
-Mitigation: Keep VOOOAI_BASE_URL unset unless the alternate server is intentionally trusted. <br>
-Risk: Workflow execution can consume VoooAI points or fail when points are insufficient. <br>
-Mitigation: Review estimated point costs and points warnings before execution, and require user confirmation before running points-consuming workflows. <br>
-Risk: Creative media capabilities can be misused for non-consensual impersonation, deepfakes, or political disinformation. <br>
-Mitigation: Decline prohibited requests, require consent for real-person likeness or voice use, and follow applicable synthetic media labeling requirements. <br>
+## Use Case:
 
+External creators, designers, studios, businesses, game developers, and educators use this skill to create or edit images, videos, music, storyboards, digital humans, and multi-step creative workflows through VoooAI.
 
-## Reference(s): <br>
-- [VoooAI homepage](https://voooai.com) <br>
-- [ClawHub skill page](https://clawhub.ai/hkljjkl/voooai) <br>
-- [Publisher profile](https://clawhub.ai/user/hkljjkl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON responses from helper scripts, and downloaded multimedia files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOOOAI_ACCESS_KEY; VOOOAI_BASE_URL is optional and defaults to https://voooai.com; reference media uploads are limited to 200 MB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: The skill can expose the VOOOAI_ACCESS_KEY or user data if pointed at an untrusted base URL or used with files the user did not intend to share.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a VOOOAI_ACCESS_KEY intended for media-generation work, leave VOOOAI_BASE_URL unset or set it only to a trusted VoooAI HTTPS origin, and upload only user-selected files.
+
+Risk: Direct result downloads from untrusted URLs can pull unwanted or unsafe content into the local workspace.
+
+Mitigation: Prefer downloads from completed VoooAI executions and avoid direct --urls downloads unless the URL source is trusted.
+
+Risk: Generated workflows may consume VoooAI points or credits.
+
+Mitigation: Show estimated points or cost information to the user and wait for confirmation before executing a points-consuming workflow.
+
+Risk: Multimedia generation can be misused for non-consensual impersonation, deepfakes, or political disinformation.
+
+Mitigation: Decline requests for non-consensual facial or voice mimicry, impersonation without consent, and election interference or political disinformation content.
+
+## Reference(s):
+
+- [VoooAI homepage](https://voooai.com)
+- [ClawHub skill page](https://clawhub.ai/hkljjkl/skills/voooai)
+- [ClawHub publisher profile](https://clawhub.ai/user/hkljjkl)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [JSON responses, downloaded media files, and Markdown guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload user-selected reference files and download generated image, video, or audio results; workflow execution may consume VoooAI points.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

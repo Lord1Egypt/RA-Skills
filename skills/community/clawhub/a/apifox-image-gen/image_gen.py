@@ -12,7 +12,7 @@ import uuid
 import sys
 
 # API配置
-API_KEY = "sk-hJP0yrKv2H7A4mjy39D8C3D5Dd17492494A65f4bCbE9859e"
+API_KEY = "REDACTED-SECRET"
 BASE_URL = "https://jyapi.AI-WX.CN"
 
 def generate_image(prompt, model="gpt-image-1.5", size="1024x1024", n=1, image=None):

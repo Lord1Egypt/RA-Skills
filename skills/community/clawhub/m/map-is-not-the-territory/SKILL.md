@@ -1,13 +1,13 @@
 ---
 name: map-is-not-the-territory
-description: "Activate when: a metric is improving but customers or employees are signaling problems; a strategy or process hasn't been reviewed in over a planning cycle; a team keeps disagreeing and can't resolve it with data; someone says 'the model shows...' or 'the data doesn't show any problems'; a plan is being followed because 'that's how we do it.' Do NOT activate when: the map is demonstrably current and freshly validated against the territory; the decision is so low-stakes that map imprecision doesn't matter."
+description: "Activate when: a metric is improving but customers or employees are signaling problems; a strategy or process hasn't been reviewed in over a planning cycle; a team keeps disagreeing and can't resolve it with data; someone says 'the model shows...' or 'the data doesn't show any problems'; a plan is being followed because 'that's how we do it.' Do NOT activate when: the map is demonstrably current and freshly validated against the territory; the decision is so low-stakes that map imprecision doesn't matter. More: deciqai.com/c/map-is-not-the-territory"
 ---
 
 # Map Is Not the Territory
 
 ## Overview
 
-Any representation — metric, model, strategy deck, org chart, or process manual — is a selective, simplified, aging abstraction. Maps omit (reflecting past priorities), distort (projecting dynamic reality onto static surfaces), and age (the territory moves; the map does not). The map is useful because it compresses complexity; dangerous because users forget it is a compression. Composes with [`goodharts-law`](../goodharts-law/SKILL.md) (optimizing a metric makes it an even worse map), [`first-principles`](../first-principles/SKILL.md) (rebuilding from territory when maps fail), and [`narrative-fallacy`](../narrative-fallacy/SKILL.md) (every narrative is a map that ages).
+Any representation — metric, model, strategy deck, org chart, or process manual — is a selective, simplified, aging abstraction. Maps omit (reflecting past priorities), distort (projecting dynamic reality onto static surfaces), and age (the territory moves; the map does not). The map is useful because it compresses complexity; dangerous because users forget it is a compression. Composes with `goodharts-law` (optimizing a metric makes it an even worse map), `first-principles` (rebuilding from territory when maps fail), and `narrative-fallacy` (every narrative is a map that ages).
 
 ## When to Use
 
@@ -16,6 +16,7 @@ Any representation — metric, model, strategy deck, org chart, or process manua
 - A strategy, model, process, or org chart has not been reviewed in more than one planning cycle
 - "The data shows..." but the data is old, narrow, or from a proxy source
 - A metric is being optimized directly without asking whether it still maps to the underlying goal
+- An AI model's benchmark score, leaderboard rank, or internal "world model" is being treated as proof of real-world capability (AI adoption / AI hype)
 
 **Not when:** the map is demonstrably current and well-calibrated; decision is low-stakes; territory is stable and map is freshly validated.
 
@@ -60,6 +61,8 @@ Decision: fit Y/N/Partially | required updates | update trigger
 ```
 
 *→ Method in Action: [McNamara and the Vietnam Kill-Ratio Map](examples/mcnamara-vietnam-kill-ratio-map.md)*
+
+*→ 2026 lens: [AI Benchmarks as Maps of Capability (2024–2026)](examples/ai-benchmarks-vs-deployment-reality-2024-2026.md)*
 
 ## Pack: Map-Territory Mismatches Across Domains
 
@@ -116,4 +119,6 @@ Decision: fit Y/N/Partially | required updates | update trigger
 **Stop rule:** if territory observation and map are consistent across multiple independent signals, stop auditing. Over-applying risks paralytic model-skepticism where no map is trusted enough to navigate.
 
 ---
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/map-is-not-the-territory** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/map-is-not-the-territory.json*

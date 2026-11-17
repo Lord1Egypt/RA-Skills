@@ -1,44 +1,56 @@
-## Description: <br>
-Professional career roadmap generator for AI-powered cyber-physical security specialists with personalized learning paths and industry focus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional career roadmap generator for AI-powered cyber-physical security specialists with personalized learning paths and industry focus.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, cybersecurity professionals, infrastructure engineers, security architects, and organizations use this skill to generate personalized digital twin security career roadmaps from background, skills, goals, and industry assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Career roadmap recommendations may be incomplete, outdated, or unsuitable for a user's organization, industry, or jurisdiction. <br>
-Mitigation: Review recommendations against current employer requirements, recognized certification bodies, and relevant cyber-physical security standards before acting on them. <br>
-Risk: Assessment requests can include professional background, skills, goals, industry focus, session identifiers, and optional user identifiers. <br>
-Mitigation: Submit only information the user is authorized to share and avoid unnecessary personal, confidential, or organization-sensitive details. <br>
+## Use Case:
 
+Cybersecurity professionals, infrastructure engineers, security architects, and organizations use this skill to generate personalized career roadmaps for digital twin and cyber-physical system security roles. It helps identify skill gaps, learning paths, certifications, resources, milestones, and industry-specific specialization options.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-digital-twin-security) <br>
-- [Digital Twin Security API Route](https://api.mkkpro.com/career/digital-twin-security) <br>
-- [Digital Twin Security API Docs](https://api.mkkpro.com:8095/docs) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [OpenAPI Specification](openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls] <br>
-**Output Format:** [JSON roadmap data with profile, skill gaps, learning path, certifications, resources, and milestones.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Personalized from assessment data including background, skills, goals, industry focus, session identifiers, and timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: The skill sends user-provided professional profile details to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only the information needed for a roadmap, avoid secrets and sensitive employer details, and review the provider's privacy terms when retention or sharing matters.
+
+Risk: Career roadmap recommendations may be too generic or may not match an employer's compliance, training, or role requirements.
+
+Mitigation: Review generated learning paths, certifications, and milestones against current organizational requirements before using them for workforce planning or career decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-digital-twin-security)
+- [API Docs](https://api.mkkpro.com:8095/docs)
+- [Kong Route](https://api.mkkpro.com/career/digital-twin-security)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON]
+
+**Output Format:** [JSON roadmap responses with profile, skill gaps, learning path, certifications, resources, and milestones.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The primary roadmap endpoint accepts professional background, skills, goals, industry focus, session ID, optional user ID, and timestamp fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

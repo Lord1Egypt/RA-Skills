@@ -1,49 +1,69 @@
-## Description: <br>
-Analyzes business plans to produce PESTL analysis, Boston Matrix positioning, SWOT analysis, a business model canvas, dimensional scores, and radar-chart reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes business plans to produce PESTL, Boston Matrix, SWOT, and business model canvas assessments with scored radar chart outputs.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users and business consultants use this skill to turn business-plan documents into structured commercial-model analysis, scoring, strategy recommendations, and visual reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports may load remote ECharts JavaScript that can access report contents, which is sensitive for confidential business plans. <br>
-Mitigation: Use PNG output for confidential material, or bundle ECharts locally and escape report fields before opening generated HTML. <br>
-Risk: Business-model recommendations can be misleading if source documents omit key facts or if inferred items are treated as verified. <br>
-Mitigation: Review missing-information prompts, keep unsupported findings marked as missing or inferred, and validate strategic conclusions before business use. <br>
+## Use Case:
 
+External users and business analysts use this skill to evaluate a business plan's commercial feasibility, identify missing information, and generate structured strategy recommendations and scoring outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/hutian-opc-business-model) <br>
-- [Publisher profile](https://clawhub.ai/user/golngod) <br>
-- [README.md](README.md) <br>
-- [PESTL analysis template](references/01-PESTL分析模板.md) <br>
-- [Boston Matrix template](references/02-波士顿矩阵模板.md) <br>
-- [SWOT analysis template](references/03-SWOT分析模板.md) <br>
-- [Business model canvas template](references/04-画布九宫格模板.md) <br>
-- [Radar chart generation guide](references/07-雷达图生成说明.md) <br>
-- [Comprehensive diagnosis framework](references/08-综合诊断框架.md) <br>
-- [Report output template](references/10-报告输出模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown reports with optional HTML radar-chart output and chart configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts PDF, Word, or text business-plan inputs; asks follow-up questions when key facts are missing and marks unsupported findings rather than inventing them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Confidential business plans may contain sensitive commercial, customer, financial, or strategy information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before use with confidential plans, redact unnecessary sensitive details, and add clear privacy and document-handling instructions.
+
+Risk: Generated HTML reports may execute unsafe injected content or third-party scripts.
+
+Mitigation: Prefer PNG-only output, or escape untrusted report fields, pin or vendor ECharts, and apply a restrictive content security policy before sharing HTML reports.
+
+Risk: Promotional runtime content can distract from risk and privacy expectations.
+
+Mitigation: Remove promotional runtime sections from generated reports and keep user-facing guidance focused on analysis limits, security, and privacy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/golngod/skills/hutian-opc-business-model)
+- [PESTL Analysis Template](references/01-PESTL分析模板.md)
+- [Boston Matrix Template](references/02-波士顿矩阵模板.md)
+- [SWOT Analysis Template](references/03-SWOT分析模板.md)
+- [Business Model Canvas Template](references/04-画布九宫格模板.md)
+- [Information Extraction Prompt](references/05-信息提取提示词.md)
+- [Interactive Confirmation Flow](references/06-交互确认流程.md)
+- [Radar Chart Generation Guide](references/07-雷达图生成说明.md)
+- [Integrated Diagnosis Framework](references/08-综合诊断框架.md)
+- [Scoring Criteria](references/09-评分标准详解.md)
+- [Report Output Template](references/10-报告输出模板.md)
+- [OPC Platform](https://opc.cn)
+- [Coze Platform](https://coze.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with structured analysis, JSON scoring data, and optional PNG or HTML radar chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports PDF, Word, and text inputs; generated HTML should be reviewed before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

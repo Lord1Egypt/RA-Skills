@@ -1,41 +1,49 @@
-## Description: <br>
-Registers functions and triggers on the iii engine across TypeScript, Python, and Rust for creating workers, registering handlers, binding triggers, and invoking functions across languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Registers functions and triggers on the iii engine across TypeScript, Python, and Rust for creating workers, registering handlers, binding triggers, and invoking functions across languages.
 
-## Publisher: <br>
-[rohitg00](https://clawhub.ai/user/rohitg00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rohitg00](https://clawhub.ai/user/rohitg00)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement iii engine workers, register function handlers, bind event triggers, and coordinate cross-language function invocation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated handlers may expose HTTP endpoints, schedule cron jobs, enqueue work, invoke other functions, or connect to external APIs and databases. <br>
-Mitigation: Review generated handlers before deployment and use least-privilege credentials with trusted iii engine endpoints. <br>
-Risk: The skill is only useful in environments that use the iii engine. <br>
-Mitigation: Install and apply it only when the target project uses iii engine functions and triggers. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement iii engine workers that register async function handlers, bind event triggers such as HTTP, cron, queues, state, streams, and subscriptions, and invoke functions across TypeScript, Python, and Rust workers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rohitg00/iii-functions-triggers) <br>
-- [Publisher profile](https://clawhub.ai/user/rohitg00) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses should be adapted to the target iii worker language and reviewed before deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated worker code may configure HTTP, cron, queue, state, stream, or subscription triggers with unintended paths, schedules, or side effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code for the intended iii engine, trigger paths, schedules, and side effects before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rohitg00/skills/iii-functions-triggers)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration]
+
+**Output Format:** [Markdown guidance with inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; review generated code and trigger configuration before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

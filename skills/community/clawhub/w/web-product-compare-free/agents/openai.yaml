@@ -1,0 +1,15 @@
+interface:
+  display_name: 浏览器商品对比助手
+  short_description: 免费复用登录浏览器对比商品页并生成可复制带来源报告
+  default_prompt: 使用 $web-product-compare-free 在指定 browserId 中只读对比 2 到 5 个商品页面，输出带来源和日期的 Markdown 报告；不要购买或调用第三方 API。
+dependencies:
+  - name: Easy WebBridge
+    required: true
+    install:
+      github: https://github.com/xxjrq/easy-webbridge
+      gitee: https://gitee.com/xxjrq/easy-webbridge
+    purpose: 复用已登录浏览器状态并按 browserId 隔离 EasyBR 多账号环境
+guardrails:
+  - 仅选择一个明确 browserId，不广播到所有账号。
+  - 一任务一 session；finally 仅关闭本任务自建 session。
+  - 只读取页面可见信息；禁止购买、加购、支付、批量爬取和第三方 API。

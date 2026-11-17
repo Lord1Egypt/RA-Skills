@@ -16,16 +16,15 @@ Requires: APPLE_MUSIC_DEV_TOKEN and APPLE_MUSIC_USER_TOKEN env vars.
 """
 
 import sys
-if sys.version_info < (3, 9):
+if sys.version_info < (3, 10):
     sys.exit(
-        f"ERROR: Python 3.9+ is required (you have "
+        f"ERROR: Python 3.10+ is required (you have "
         f"{sys.version_info.major}.{sys.version_info.minor}). Please upgrade."
     )
 
 import argparse
 import json
-from collections import Counter
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 
 from _common import call_api, load_profile
@@ -38,7 +37,6 @@ SCRIPT_DIR = Path(__file__).parent
 def cmd_timeline(profile: dict) -> dict:
     """Show taste evolution across Replay years."""
     replay = profile.get("replay_highlights", {})
-    eras = profile.get("era_distribution", [])
     genres = profile.get("genre_distribution", [])
     artists = profile.get("top_artists", [])
 
@@ -215,8 +213,6 @@ def cmd_year_review(profile: dict, year: int) -> dict:
                     year_data["top_genres"].append(str(g))
 
     # Analyze from current profile (enrichments beyond Replay)
-    current_genres = profile.get("genre_distribution", [])
-    current_artists = profile.get("top_artists", [])
     variety = profile.get("variety_score", 0.5)
     mainstream = profile.get("mainstream_score", 0.5)
 
@@ -294,6 +290,9 @@ def main():
             print(f"ERROR: Year must be between 2015 and {current_year}", file=sys.stderr)
             sys.exit(1)
         result = cmd_year_review(profile, args.year)
+    else:  # argparse already restricts this; the branch keeps the variable provably assigned
+        print(f"ERROR: unknown command '{args.command}'.", file=sys.stderr)
+        sys.exit(1)
 
     print(json.dumps(result, indent=2))
 

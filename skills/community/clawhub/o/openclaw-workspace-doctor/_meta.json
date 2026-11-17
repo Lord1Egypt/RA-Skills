@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn7dqd913nq54adkhmw1b90a3d81jr9h",
-  "slug": "openclaw-workspace-doctor",
+  "name": "openclaw-workspace-doctor",
   "version": "1.0.0",
-  "publishedAt": 1773194331393
+  "description": "OpenClaw工作目录医生 - 检测与修复",
+  "triggers": [
+    "工作目录异常",
+    "嵌套目录",
+    ".openclawworkspace",
+    "workspace问题",
+    "路径错误",
+    "openclaw doctor",
+    "openclaw init",
+    "工作目录健康",
+    "工作目录医生"
+  ]
 }

@@ -43,7 +43,7 @@
 | `--resize-long-side` | 目标长边（像素）|
 | `--resize-short-side` | 目标短边（像素）|
 | `--definition` | 图片处理模板 ID |
-| `--schedule-id` | 编排场景 ID（控制台预置 AI 能力），见下方「编排场景一览」。**换装请用 `mps_image_tryon.py`，背景融合请用 `mps_image_bg_fusion.py`**|
+| `--schedule-id` | 编排场景 ID（控制台预置 AI 能力），仅支持下方「编排场景一览」列出的 4 项；其余 AI 图片能力均有专用脚本，见「不由本脚本处理的能力」|
 | `--resource-id` | 资源 ID（高级选项，特定场景使用）|
 | `--output-bucket` | 输出 COS Bucket 名称（默认取 `TENCENTCLOUD_COS_BUCKET` 环境变量）|
 | `--output-region` | 输出 COS Bucket 区域（默认取 `TENCENTCLOUD_COS_REGION` 环境变量）|
@@ -65,13 +65,29 @@
 | ScheduleId | 能力 | 典型触发词 |
 |:---:|------|------|
 | `30000` | **AI 文字水印擦除** | 擦除文字水印 / 去文字水印 / 去图片水印文字 |
-| `30010` | **AI 扩图（图片扩展）** | 图片扩图 / AI 扩展 / 画面扩展 / outpaint |
-| `30030` | **AI 抠图** | AI 抠图 / 智能抠图 / 抠人像 / 抠主体 / 去背景（保留主体）|
 | `30031` | **AI 前景提取** | 前景提取 / 提取主体 / 抽取前景 |
 | `30040` | **AI 图片修复** | 图片修复 / 老照片修复 / 坏损修复 / 划痕修复 / 人像修复 |
-| `30200` | **AI 图片理解** | 图片理解 / 图片内容识别 / AI 看图 / 描述图片内容 |
 
-> ⚠️ 其它业务 ScheduleId 走专属脚本：`30060` 背景融合用 `mps_image_bg_fusion.py`；`30100/30101` 图片换装用 `mps_image_tryon.py`。
+> 以上 4 项是本脚本支持的**全部**编排场景。传入未列出的 ScheduleId 虽不会被拦截，但属于误用。
+
+### 不由本脚本处理的能力
+
+以下能力各有专用脚本，参数与输出更完整（支持 prompt、模型选择、专属调节项等）。
+本脚本**不支持**这些能力，请直接使用对应脚本，不要试图用 `--schedule-id` 绕行：
+
+| 用户意图 | 专用脚本 |
+|------|------|
+| 抠图 / 智能抠图 / 抠主体 / 去背景 / 透明 PNG | `mps_image_cutout.py` |
+| 图片理解 / 看图 / 描述图片内容 / 图片问答 / OCR | `mps_image_comprehend.py` |
+| AI 扩图 / 图片扩展 / outpaint | `mps_image_padding.py` |
+| 背景融合 / 换背景 / 商品背景 | `mps_image_bg_fusion.py` |
+| 图片换装 / 试衣 / 模特换装 | `mps_image_tryon.py` |
+| 局部重绘 / inpainting | `mps_image_repaint.py` |
+| 目标检测 / 物体识别 | `mps_image_detect.py` |
+| 多视角生图 / 换角度 | `mps_image_multiview.py` |
+| 分镜拆图 / 宫格拆图 | `mps_image_split.py` |
+| 换模特 / 换体型 | `mps_image_changemodel.py` |
+| 海报套图 / 批量海报 | `mps_image_poster_suite.py` |
 
 ## 强制规则
 
@@ -80,17 +96,13 @@
   - 用户说"2 倍放大"、"超分"、"提升分辨率"（未指定倍数或目标尺寸）→ 使用 `--super-resolution`（普通 2 倍超分）
   - **两种超分互斥**，不可同时使用 `--super-resolution` 和 `--advanced-sr`
 - **擦除职责边界**：图片中的文字/水印/图标擦除用 `--erase-detect` 或 `--erase-area`；**视频**擦除请用 `mps_erase.py`，不要混用
-- **换装场景禁止用此脚本**：图片换装必须使用 `mps_image_tryon.py`，`mps_imageprocess.py` 不支持换装功能（即使使用 `--schedule-id 30100/30101` 也不正确）
 - **编排场景（`--schedule-id`）使用规则**：
   - 以下 AI 能力**必须**通过 `--schedule-id` 触发，不要自行组合处理参数：
-    - 用户说"图片理解 / 看图 / 描述图片内容" → `--schedule-id 30200`
-    - 用户说"抠图 / 智能抠图 / 抠主体" → `--schedule-id 30030`
     - 用户说"图片修复 / 老照片修复 / 划痕修复" → `--schedule-id 30040`
     - 用户说"前景提取 / 提取主体" → `--schedule-id 30031`
-    - 用户说"AI 扩图 / 图片扩展 / outpaint" → `--schedule-id 30010`
     - 用户说"擦除文字水印 / 去图片上的文字水印"（强调 AI 智能擦除时）→ `--schedule-id 30000`
   - `--schedule-id` 与图片增强/擦除/美颜等本地配置参数**不要混用**（控制台编排模板已定义好完整流程）
-  - 不同业务编排走不同脚本：**背景融合** → `mps_image_bg_fusion.py`（30060）；**换装** → `mps_image_tryon.py`（30100/30101）
+  - **本脚本仅支持 30000 / 30031 / 30040 三项**；抠图、图片理解、扩图、背景融合、换装等能力请用对应专用脚本（见「不由本脚本处理的能力」）
 
 ## 示例命令
 
@@ -134,24 +146,15 @@ python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --resize
 python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --resize-long-side 1920
 
 # === 编排场景（AI 控制台预置能力，仅需输入图片 + schedule-id） ===
-# AI 图片理解（30200）
-python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30200
-
-# AI 抠图（30030）
-python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30030
-
 # AI 图片修复（30040，老照片/划痕修复）
 python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30040
 
 # AI 前景提取（30031）
 python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30031
 
-# AI 扩图（30010）
-python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30010
-
 # AI 文字水印擦除（30000）
 python3 scripts/mps_imageprocess.py --url https://example.com/image.jpg --schedule-id 30000
 
 # 查询图片处理任务状态
-python3 scripts/mps_get_image_task.py --task-id 1234567890-ImageTask-80108cc3380155d98b2e3573a48a
+python3 scripts/mps_get_image_task.py --task-id 1234567890-ImageTaREDACTED-SECRET
 ```

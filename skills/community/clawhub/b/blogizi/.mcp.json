@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "blogizi": {
+      "url": "https://blogizi.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_ACCOUNT_API_KEY"
+      }
+    }
+  }
+}

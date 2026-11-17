@@ -131,8 +131,7 @@ function generateCard(data) {
       
       cardContent += `${isLast ? '└─' : '├─'} 主题${idx + 1}：${topic.title}
 `;
-      const sourceIsLast = !hasTasks;
-      cardContent += `${isLast ? '   ' : '│  '}${sourceIsLast ? '└─' : '├─'} 来源：${topic.channel}${topic.score > 0 ? ` · 重要度：${topic.score}` : ''}
+      cardContent += `${isLast ? '   ' : '│  '}├─ 来源：${topic.channel}${topic.score > 0 ? ` · 重要度：${topic.score}` : ''}
 `;
       
       // 添加任务详情
@@ -150,7 +149,7 @@ function generateCard(data) {
       cardContent += '\n';
     });
   } else {
-    cardContent += '暂无\n\n';
+    cardContent += '└─ 暂无\n\n';
   }
 
   // 添加决策（无emoji）
@@ -163,16 +162,14 @@ function generateCard(data) {
     allKeyDecisions.forEach((d, idx) => {
       const isLast = idx === allKeyDecisions.length - 1;
       cardContent += `${isLast ? '└─' : '├─'} 决策${idx + 1}：${d.decision} → ${d.choice}\n`;
-      cardContent += `${isLast ? '   ' : '│  '}└─ 理由：${d.reason}（${d.channel}）\n\n`;
+      cardContent += `   ${isLast ? ' ' : '│'}└─ 理由：${d.reason}（${d.channel}）\n\n`;
     });
   } else {
     cardContent += `---
 
 ## 📋 重要决策
 
-暂无
-
-`;
+└─ 暂无\n\n`;
   }
 
   // 添加踩坑记录（emoji改为⚠️）
@@ -185,12 +182,12 @@ function generateCard(data) {
     allPitfalls.forEach((p, idx) => {
       const isLast = idx === allPitfalls.length - 1;
       cardContent += `${isLast ? '└─' : '├─'} 问题${idx + 1}：${p.problem}\n`;
-      cardContent += `${isLast ? '   ' : '│  '}├─ 来源：${p.channel}\n`;
+      cardContent += `   ${isLast ? ' ' : '│'}├─ 来源：${p.channel}\n`;
       if (p.solution) {
-        cardContent += `${isLast ? '   ' : '│  '}├─ 解决方案：${p.solution}\n`;
+        cardContent += `   ${isLast ? ' ' : '│'}├─ 解决方案：${p.solution}\n`;
       }
       if (p.lesson) {
-        cardContent += `${isLast ? '   ' : '│  '}└─ 教训：${p.lesson}\n`;
+        cardContent += `   ${isLast ? ' ' : '│'}└─ 教训：${p.lesson}\n`;
       }
       cardContent += '\n';
     });
@@ -199,9 +196,7 @@ function generateCard(data) {
 
 ## ⚠️ 踩坑记录
 
-暂无
-
-`;
+└─ 暂无\n\n`;
   }
 
   // 添加新概念（无emoji）
@@ -214,12 +209,12 @@ function generateCard(data) {
     allConcepts.forEach((c, idx) => {
       const isLast = idx === allConcepts.length - 1;
       cardContent += `${isLast ? '└─' : '├─'} 概念${idx + 1}：${c.term}\n`;
-      cardContent += `${isLast ? '   ' : '│  '}├─ 来源：${c.channel}\n`;
+      cardContent += `   ${isLast ? ' ' : '│'}├─ 来源：${c.channel}\n`;
       if (c.definition) {
-        cardContent += `${isLast ? '   ' : '│  '}├─ 定义：${c.definition}\n`;
+        cardContent += `   ${isLast ? ' ' : '│'}├─ 定义：${c.definition}\n`;
       }
       if (c.scenario) {
-        cardContent += `${isLast ? '   ' : '│  '}└─ 应用场景：${c.scenario}\n`;
+        cardContent += `   ${isLast ? ' ' : '│'}└─ 应用场景：${c.scenario}\n`;
       }
       cardContent += '\n';
     });
@@ -228,9 +223,7 @@ function generateCard(data) {
 
 ## 🧠 新概念
 
-暂无
-
-`;
+└─ 暂无\n\n`;
   }
 
   // 添加金句（emoji改为💬）
@@ -242,16 +235,14 @@ function generateCard(data) {
 `;
     uniqueInsights.forEach((insight, idx) => {
       const isLast = idx === uniqueInsights.length - 1;
-      cardContent += `${isLast ? '└─' : '├─'} "${insight.text}"\n${isLast ? '   ' : '│  '}└─ ${insight.channel}\n\n`;
+      cardContent += `${isLast ? '└─' : '├─'} "${insight.text}"\n   ${isLast ? ' ' : '│'}└─ ${insight.channel}\n\n`;
     });
   } else {
     cardContent += `---
 
 ## 💬 金句摘录
 
-暂无
-
-`;
+└─ 暂无\n\n`;
   }
 
   // 添加来源
@@ -270,7 +261,7 @@ function generateCard(data) {
   cardContent += `
 ---
 
-*💃 金银 Planet · 自我提升部 · ${date}*
+*💃 金银 Planet · 自我提升部*
 `;
 
   return cardContent;

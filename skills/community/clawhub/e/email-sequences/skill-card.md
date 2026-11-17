@@ -1,46 +1,61 @@
-## Description: <br>
-Create segmented email sequences for abandoned carts, post-purchase follow-up, win-back campaigns, and seasonal promotions for online stores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create segmented email sequences for abandoned carts, post-purchase follow-up, win-back campaigns, and seasonal promotions for online stores.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce marketers, store operators, and lifecycle marketing teams use this skill to draft segmented email flows with subject lines, preview text, body copy, CTAs, timing, suppression logic, and ESP setup notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated email campaigns may contain inaccurate, non-compliant, or platform-incompatible marketing guidance if activated without review. <br>
-Mitigation: Review every generated sequence before activation and verify legal, regional, and ESP platform compliance for the target audience. <br>
-Risk: Using full customer lists or sensitive subscriber data in prompts can expose unnecessary personal information. <br>
-Mitigation: Use minimal, anonymized segment details and avoid pasting full customer lists or sensitive subscriber records unless truly necessary. <br>
-Risk: Poor suppression or consent handling can lead to unwanted messages, complaints, or deliverability issues. <br>
-Mitigation: Apply the skill's suppression checklist, confirm purchase and opt-out exits, and validate consent requirements before sending. <br>
+## Use Case:
 
+External ecommerce marketers, operators, and agencies use this skill to draft lifecycle email flows with subject lines, preview text, body copy, CTAs, timing, segmentation, suppression logic, and ESP-specific setup notes.
 
-## Reference(s): <br>
-- [Email Sequences ClawHub Release](https://clawhub.ai/leooooooow/email-sequences) <br>
-- [Email Sequences - Output Template](references/output-template.md) <br>
-- [Email Sequence Strategy Guide - Timing, Segmentation, and Architecture](references/sequence-strategy-guide.md) <br>
-- [ESP Platform Guide - Klaviyo, Mailchimp, Omnisend, ActiveCampaign](references/esp-platform-guide.md) <br>
-- [Email Sequence Quality Checklist](assets/email-sequence-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with sequence overview tables, email blocks, suppression summaries, and platform setup notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, merge-tag placeholders, A/B test variants, consent notes, and region-specific compliance flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Marketing sequence drafts can create compliance exposure if consent, unsubscribe, quiet-hour, SMS, or regional rules are not checked before launch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs against applicable GDPR, CASL, TCPA, CAN-SPAM, ESP policy, and internal legal requirements before activating any live campaign.
+
+Risk: Incorrect suppression, frequency caps, or re-entry logic can email customers after purchase or opt-out and harm deliverability.
+
+Mitigation: Validate purchase exits, opt-out exits, bounce handling, spam complaint handling, re-entry delays, and cross-flow frequency caps in the ESP before deployment.
+
+Risk: Platform-specific setup details may become stale as ESP interfaces and feature sets change.
+
+Mitigation: Confirm current Klaviyo, Mailchimp, Omnisend, or ActiveCampaign trigger names, testing features, and suppression settings before implementation.
+
+## Reference(s):
+
+- [Email Sequences on ClawHub](https://clawhub.ai/leooooooow/skills/email-sequences)
+- [Output Template](references/output-template.md)
+- [Email Sequence Strategy Guide](references/sequence-strategy-guide.md)
+- [ESP Platform Guide](references/esp-platform-guide.md)
+- [Email Sequence Quality Checklist](assets/email-sequence-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown sequence package with tables, email copy blocks, suppression logic, and platform setup notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are drafting and setup guidance only; they should be reviewed before use in live campaigns.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

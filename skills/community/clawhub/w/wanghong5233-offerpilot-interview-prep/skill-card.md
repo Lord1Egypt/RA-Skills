@@ -1,43 +1,57 @@
-## Description: <br>
-Generate interview question bank and answer strategy from JD and company intel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate interview question bank and answer strategy from JD and company intel.
 
-## Publisher: <br>
-[wanghong5233](https://clawhub.ai/user/wanghong5233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanghong5233](https://clawhub.ai/user/wanghong5233)
 
-## Use Case: <br>
-Job seekers and career-support agents use this skill to prepare concise, actionable interview materials from a job description, company details, or a recent job record. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Job descriptions, company details, and interview-preparation inputs may contain sensitive hiring or personal information. <br>
-Mitigation: Use the skill only with a trusted local job-analysis service and avoid submitting confidential material unless its storage and logging behavior is acceptable. <br>
-Risk: A local service listening on the expected endpoint may be misconfigured or unexpected. <br>
-Mitigation: Confirm what process is bound to http://127.0.0.1:8010/api/interview/prep before sending job data. <br>
-Risk: Interview guidance can be overstated as predictive. <br>
-Mitigation: Present recommendations as likely focus areas with confidence, and do not claim certainty about interview outcomes. <br>
+## Use Case:
 
+Job seekers and interview coaches use this skill to generate likely interview focus areas, question banks, answer tips, and concise storylines from a job description, role, company name, or recent job ID.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanghong5233/wanghong5233-offerpilot-interview-prep) <br>
-- [Publisher profile](https://clawhub.ai/user/wanghong5233) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with concise interview summaries, likely focus areas, storylines, question banks, answer tips, and optional curl command templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses either a job_id or company, role title, and job description text; presents interview focus as likely guidance rather than certainty.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Free-form job or company data could be unsafely interpolated into shell commands when using the documented curl workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use safe structured HTTP or JSON serialization, review generated commands before execution, and avoid direct shell-string substitution.
+
+Risk: The skill sends interview-prep inputs to a local service at 127.0.0.1:8010.
+
+Mitigation: Install and use the skill only when that localhost service is trusted, available, and has acceptable handling and retention practices for job descriptions and company material.
+
+Risk: Interview focus areas and answer strategies are probabilistic guidance, not guarantees about an employer's interview process.
+
+Mitigation: Present recommendations as likely focus areas with confidence, and avoid claiming interview certainty.
+
+## Reference(s):
+
+- [Interview Prep Skill Page](https://clawhub.ai/wanghong5233/skills/wanghong5233-offerpilot-interview-prep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with structured interview-prep sections and optional curl command templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Presents likely focus, key storylines, questions, intents, and answer tips without claiming certainty.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

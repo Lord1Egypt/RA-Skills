@@ -1,0 +1,3 @@
+display_name: Influencer Audience Fit Scoring
+short_description: Evaluate creator-audience alignment with transparent scoring and confidence.
+default_prompt: Score audience fit for these creators against the target ICP, provide a dimension-by-dimension breakdown, and return a go/test/no-go recommendation with confidence.

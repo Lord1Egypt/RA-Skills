@@ -1,47 +1,64 @@
-## Description: <br>
-OpenClaw Cloudways integration reference and workflow guide for creating, editing, reviewing, debugging, or extending the built-in Cloudways feature across account auth, inventory, vault-backed credentials, WordPress review flows, DB Manager access, guarded SQL execution, and the Control UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Cloudways integration reference and workflow guide for creating, editing, reviewing, debugging, and extending Cloudways account auth, inventory, vault-backed server/app credentials, WordPress review flows, DB Manager access, guarded SQL execution, and the Control UI.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and Cloudways/OpenClaw operators use this skill to maintain the Cloudways integration workflow, including account setup, inventory loading, secure credential handling, WordPress review metadata, DB access testing, guarded SQL execution, and related UI behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow involves Cloudways, WordPress, SSH/SFTP, database, and vault-backed credentials that could expose sensitive operational access if copied into shared packages or prompts. <br>
-Mitigation: Keep live credentials, API keys, DB Manager URLs, server/app IDs, SSH keys, passwords, and local secrets/config files out of shared artifacts; use placeholders and scrubbed examples only. <br>
-Risk: Database write queries can affect production data. <br>
-Mitigation: Verify the actual OpenClaw implementation before use, use least-privilege accounts where possible, require the documented confirmation phrase, prefer dry-run review, and retain audit logging for write attempts. <br>
-Risk: DB Manager automation and Cloudways API behavior may fail or change with remote platform updates. <br>
-Mitigation: Treat connection tests, inventory refreshes, and DB access checks as live operational validation steps before relying on generated guidance for real sites. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain OpenClaw's built-in Cloudways integration for Cloudways-hosted WordPress review and maintenance workflows, including account setup, inventory loading, secure credential handling, and guarded database actions.
 
-## Reference(s): <br>
-- [Cloudways Integration Implementation](references/implementation.md) <br>
-- [Cloudways Gateway Methods](references/request-methods.md) <br>
-- [Cloudways API Notes For This Integration](references/cloudways-api-notes.md) <br>
-- [Cloudways UI Design](references/ui-design.md) <br>
-- [Cloudways Integration on ClawHub](https://clawhub.ai/maverick-software/cloudways-integration) <br>
-- [Publisher Profile](https://clawhub.ai/user/maverick-software) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code, shell command, JSON, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include implementation notes, operational checklists, API behavior, UI guidance, guarded SQL guidance, and scrubbed example payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill supports workflows that handle Cloudways, SSH, WordPress, and database credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for managing Cloudways-hosted WordPress sites through OpenClaw, treat configured credentials as production-sensitive, and use least-privilege access where possible.
+
+Risk: Database actions can affect production WordPress data when writes are confirmed.
+
+Mitigation: Verify the selected app and server before running database actions, prefer read-only or dry-run paths first, and rely on the documented confirmation and audit logging for writes.
+
+Risk: Live Cloudways, SSH, and DB Manager operations can fail because of authentication, network, or remote platform changes.
+
+Mitigation: Validate Cloudways account credentials, test SSH and DB access before maintenance work, and confirm the selected application context before acting.
+
+## Reference(s):
+
+- [Cloudways Integration on ClawHub](https://clawhub.ai/maverick-software/skills/cloudways-integration)
+- [Implementation Reference](artifact/references/implementation.md)
+- [Gateway Methods Reference](artifact/references/request-methods.md)
+- [Cloudways API Notes](artifact/references/cloudways-api-notes.md)
+- [UI Design Reference](artifact/references/ui-design.md)
+- [Status Response Example](artifact/assets/examples/cloudways-status-response.json)
+- [Metadata Response Example](artifact/assets/examples/cloudways-metadata-response.json)
+- [Read Query Response Example](artifact/assets/examples/cloudways-read-query-response.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code and configuration references plus JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include guarded operational steps for Cloudways credentials, SSH and DB checks, and SQL workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

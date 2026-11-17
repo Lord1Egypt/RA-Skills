@@ -1,41 +1,54 @@
-## Description: <br>
-Helps workers in China assess social-security contribution issues, find query and complaint channels, prepare rights-protection materials, and estimate underpayment or economic compensation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists workers in China with social insurance rights issues, including contribution violation assessment, record lookup guidance, complaint and arbitration path comparison, materials checklists, and compensation or underpayment estimates.
 
-## Publisher: <br>
-[wangyue71](https://clawhub.ai/user/wangyue71) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangyue71](https://clawhub.ai/user/wangyue71)
 
-## Use Case: <br>
-External users use this skill for general legal-information support when evaluating possible employer social-security nonpayment, underpayment, incomplete coverage, or delayed contribution issues. It guides evidence collection, official inquiry channels, rights-protection route selection, materials checklists, and rough compensation or underpayment estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social-security guidance or calculations may be outdated or locally inaccurate because laws, contribution rates, time limits, and complaint procedures can change. <br>
-Mitigation: Verify current local rules and calculated amounts with 12333, 12348, a local agency, or a qualified lawyer before relying on the output or taking action. <br>
-Risk: Users may mistake general legal-information assistance for professional legal advice. <br>
-Mitigation: Keep the legal disclaimer visible and route complex or high-stakes cases to a qualified lawyer or legal-aid service. <br>
+## Use Case:
 
+External users and agents assisting workers in China use this skill to evaluate suspected social insurance underpayment, non-payment, incomplete coverage, or delayed contributions, then identify inquiry channels and rights-protection options. It can also generate materials checklists and estimate social insurance underpayment or economic compensation amounts for review.
 
-## Reference(s): <br>
-- [Social Security Rights skill page](https://clawhub.ai/wangyue71/skills/social-security-rights) <br>
-- [Social Security Rights Reference Guide](references/social_security_guide.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional generated Markdown calculation reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local Python calculator that accepts case inputs and writes a social-security underpayment report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Legal rules, deadlines, and social insurance contribution rates may vary by location or change after release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill output as informational and verify current local requirements with 12333, 12348, a social insurance agency, or a qualified professional before acting.
+
+Risk: Generated compensation or underpayment calculations may be inaccurate if inputs, city rates, dates, or local agency rules differ from the reference data.
+
+Mitigation: Review calculation reports before relying on them and use the local social insurance agency's determination as authoritative.
+
+## Reference(s):
+
+- [Social Security Rights reference guide](references/social_security_guide.md)
+- [ClawHub skill page](https://clawhub.ai/wangyue71/skills/social-security-rights)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and calculator-generated Markdown reports, with optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational legal and contribution estimates that should be reviewed against current local rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

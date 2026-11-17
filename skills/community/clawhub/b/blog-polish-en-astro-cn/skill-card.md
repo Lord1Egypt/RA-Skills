@@ -1,40 +1,58 @@
-## Description: <br>
-Polish and translate a technical blog draft into a 1000-1200 word, 4-5 section Markdown article in English and Simplified Chinese (zh-CN), preserving technical terms and code blocks, then convert the English edition into Astro-compatible Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polish and translate a technical blog draft into a 1000-1200 word, 4-5 section Markdown article in English and Simplified Chinese (zh-CN), preserving technical terms and code blocks, then convert the English edition into Astro-compatible Markdown.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-Developers and technical writers use this skill to polish Markdown blog drafts, translate them into Simplified Chinese, and prepare an Astro-compatible English Markdown version. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses unsafe shell evaluation on the user-controlled outputDir before writing files. <br>
-Mitigation: Review before installing, use only trusted draft paths and simple output directories, and avoid shell-like values such as command substitutions in outputDir. <br>
-Risk: The skill writes Markdown files and creates an images folder in the chosen output directory. <br>
-Mitigation: Run it in a workspace where those file writes are expected, and review the generated paths before using the output. <br>
+## Use Case:
 
+Developers, technical writers, and blog authors use this skill to turn a draft Markdown technical post into polished English, Simplified Chinese, and Astro-compatible Markdown outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j3ffyang/blog-polish-en-astro-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files] <br>
-**Output Format:** [Markdown files plus a JSON object containing engOutputPath, chnOutputPath, and astroPath] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates English, Simplified Chinese, and Astro Markdown outputs under outputDir, and creates an images folder for the Astro output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: frontmatter and server release evidence) <br>
+Risk: A malicious or accidental outputDir value could execute shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputDir before running the skill; use a trusted directory path and avoid shell metacharacters or untrusted values.
+
+Risk: Generated English, Chinese, Astro, and image-directory outputs may persist derived copies of sensitive drafts.
+
+Mitigation: Use the skill only with drafts suitable for storage in the chosen output directory and confirm the output locations before execution.
+
+Risk: The emitted file path JSON may include more fields than the declared output schema describes.
+
+Mitigation: Check the final JSON for engOutputPath, chnOutputPath, and astroPath, and confirm downstream tooling expects those keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/blog-polish-en-astro-cn)
+- [Publisher profile](https://clawhub.ai/user/j3ffyang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [Markdown files with a JSON path summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces English, Simplified Chinese, and Astro Markdown outputs in the requested output directory.]
+
+## Skill Version(s):
+
+1.0.12 (source: server evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Income Tracker records multi-source income, summarizes earnings, and generates trend and source analysis for freelancers, creators, side businesses, and small teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Income Tracker helps freelancers, creators, side-business operators, and small teams record multi-source income, summarize earnings, and generate trend and source analysis.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-External users such as freelancers, creators, side-business operators, and small teams use this skill to record income, review period summaries, analyze income sources, view trends, and export selected records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Income records, backups, and exports may contain sensitive financial data. <br>
-Mitigation: Set DATA_PATH to a private location, restrict file permissions, protect backups and exports, and encrypt storage when handling sensitive records. <br>
-Risk: Dependency lock data references non-HTTPS package mirror URLs. <br>
-Mitigation: Reinstall dependencies from a trusted HTTPS registry before deployment when supply-chain assurance is required. <br>
-Risk: The skill writes local files when recording income. <br>
-Mitigation: Invoke the skill explicitly and review the configured DATA_PATH before use. <br>
+## Use Case:
 
+External users such as freelancers, creators, side-business operators, and small teams use this skill to log income, review daily, weekly, monthly, or yearly totals, analyze income sources, view trends, forecast earnings, and export records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/income-tracker) <br>
-- [Clawdis homepage](https://clawhub.com/skills/income-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Analysis, Configuration, Files] <br>
-**Output Format:** [JSON objects with plain text messages, ASCII charts, and CSV or JSON export payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local JSON income records to DATA_PATH and may return exported records as CSV or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, frontmatter, package.json, skill.yaml) <br>
+Risk: Income records are stored in a local plaintext JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private data path, restrict filesystem permissions, avoid shared machines for this data, and do not store sensitive details that require encryption.
+
+Risk: Dependency hardening issues are noted in the security evidence.
+
+Mitigation: Regenerate dependencies from a trusted HTTPS npm registry and review lockfile changes before running the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/income-tracker)
+- [Skill Homepage](https://clawhub.com/skills/income-tracker)
+- [Publisher Profile](https://clawhub.ai/user/onlyloveher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses, CSV or JSON exports, and plain-text or ASCII chart summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores user income records in a local JSON file and can export filtered record data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json, skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

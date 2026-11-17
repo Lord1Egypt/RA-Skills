@@ -1,39 +1,56 @@
-## Description: <br>
-Detect and resolve backpressure issues in data pipelines, message queues, and streaming systems. Identify bottleneck stages, measure queue depths and processing rates, and recommend flow control strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and resolve backpressure issues in data pipelines, message queues, and streaming systems. Identify bottleneck stages, measure queue depths and processing rates, and recommend flow control strategies.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operations engineers use this skill to diagnose pipeline slowdowns, growing queues, and consumer lag across message queues and streaming systems. It helps identify bottleneck stages and draft flow-control, autoscaling, alerting, and remediation guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Diagnostic commands may reveal operational topology, queue names, consumer groups, or metrics labels.
+
+Mitigation: Review commands before execution, use read-only credentials, and avoid sharing raw command output outside authorized teams.
+
+Risk: Generated remediation guidance such as autoscaling, rate limiting, or load shedding can affect production behavior if applied directly.
+
+Mitigation: Treat recommendations as operator-reviewed proposals and test changes in a controlled environment before production rollout.
+
+Risk: Metrics endpoint and queue queries can expose sensitive operational data even when they do not modify systems.
+
+Mitigation: Run diagnostics only against authorized systems and redact queue names, service names, and topology details from reports when needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operations engineers use this skill to diagnose backpressure in data pipelines, message queues, and streaming systems, then plan flow-control responses such as rate limiting, autoscaling, bounded buffers, circuit breakers, or load shedding. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic commands may query production brokers, queues, cloud accounts, namespaces, or clusters and expose operational metadata. <br>
-Mitigation: Review commands before running them, use least-privilege read-only credentials where possible, and confirm the target environment. <br>
-Risk: Recommendations such as autoscaling, circuit breakers, or load shedding can change production behavior if applied directly. <br>
-Mitigation: Treat recommendations as operational proposals that require normal human approval, testing, and rollback planning. <br>
+**Output Format:** [Markdown with inline bash and YAML code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include diagnostic command snippets, backpressure analysis reports, flow-control recommendations, and Prometheus alert rule examples.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces diagnostic reports, command suggestions, flow-control recommendations, and alerting rule examples for human review.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

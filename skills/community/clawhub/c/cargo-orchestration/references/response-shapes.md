@@ -17,7 +17,6 @@ JSON response structures returned by Cargo CLI commands used in the `cargo-orche
       "runCreationRule": "always",
       "isEnabled": true,
       "schedule": null,
-      "description": "Enriches companies when they enter the segment",
       "healthThreshold": 80,
       "folderUuid": "folder-uuid-or-null",
       "createdAt": "2025-01-01T00:00:00Z",
@@ -38,7 +37,6 @@ JSON response structures returned by Cargo CLI commands used in the `cargo-orche
       "uuid": "tool-uuid",
       "name": "Company Enrichment",
       "workflowUuid": "workflow-uuid",
-      "description": "Enriches a company record with firmographic data",
       "creditsCost": { "kind": "minMax" },
       "triggers": [],
       "isReadOnly": false,
@@ -50,7 +48,7 @@ JSON response structures returned by Cargo CLI commands used in the `cargo-orche
 }
 ```
 
-**Key fields:** `name` (match by name), `workflowUuid` (needed for run/batch commands), `description`.
+**Key fields:** `name` (match by name), `workflowUuid` (needed for run/batch commands). Tools carry no `description` field.
 
 ## cargo-ai orchestration workflow list
 
@@ -73,8 +71,7 @@ JSON response structures returned by Cargo CLI commands used in the `cargo-orche
       },
       "deployedRelease": {
         "uuid": "...",
-        "version": "3",
-        "description": "Added email step",
+        "version": "1.0.3",
         "deployedAt": "2025-01-10T09:00:00Z"
       },
       "createdAt": "2025-01-01T00:00:00Z",
@@ -96,7 +93,6 @@ JSON response structures returned by Cargo CLI commands used in the `cargo-orche
     {
       "uuid": "agent-uuid",
       "name": "Sales Research Agent",
-      "description": "Researches leads and enriches data",
       "isReadOnly": false,
       "folderUuid": "...",
       "createdAt": "2025-01-01T00:00:00Z",
@@ -183,7 +179,7 @@ JSON response structures returned by Cargo CLI commands used in the `cargo-orche
 
 With `--wait-until-finished`, returns the terminal run state (same shape as `run get`).
 
-**Status values:** `pending`, `running`, `success`, `error`, `cancelled`.
+**Status values:** `idle`, `pending`, `running`, `success`, `error`, `cancelling`, `cancelled`, `skipped`.
 
 ## cargo-ai orchestration action execute-batch
 
@@ -214,7 +210,7 @@ With `--wait-until-finished`, returns the terminal batch state (same shape as `b
 }
 ```
 
-**Status values:** `pending`, `running`, `success`, `error`, `cancelled`.
+**Status values:** `idle`, `pending`, `running`, `success`, `error`, `cancelling`, `cancelled`, `skipped`.
 
 ## cargo-ai orchestration run get
 
@@ -240,10 +236,7 @@ With `--wait-until-finished`, returns the terminal batch state (same shape as `b
         "nextNodeUuid": "...",
         "status": "success",
         "title": "✅ {\"qualified\":true,\"score\":8,...}",
-        "creditsUsedCount": 1,
-        "startedAt": "...",
-        "updatedAt": "...",
-        "finishedAt": "..."
+        "creditsUsedCount": 1
       }
     ],
     "createdAt": "2025-01-15T10:00:00Z",
@@ -261,6 +254,13 @@ With `--wait-until-finished`, returns the terminal batch state (same shape as `b
   }
 }
 ```
+
+**`releaseUuid` or `nodes`, never both.** A run created from a deployed tool or
+play looks like the shape above — `releaseUuid` set, no graph, because the nodes
+live on the release. A run from `action execute` (or `run create --nodes`) is the
+mirror image: a full `run.nodes` array and no `releaseUuid`. Anything that needs
+the graph — [diagramming it](node-diagram.md), reading a node's config — reads
+`run.nodes` when present and falls back to `release get <releaseUuid>`.
 
 **Key fields for debugging:**
 
@@ -302,7 +302,7 @@ With `--wait-until-finished`, returns the terminal batch state (same shape as `b
 }
 ```
 
-Poll until `status` is `success`, `error`, or `cancelled`. Note: `batch get` also returns `releaseUuid` — needed to discover output node slugs via `release get`.
+Poll until `status` is `success`, `error`, `cancelled`, or `skipped` (in-flight values: `pending`, `syncing`, `querying`, `running`, `cancelling`). Note: `batch get` also returns `releaseUuid` — needed to discover output node slugs via `release get`.
 
 ## cargo-ai ai chat create
 
@@ -338,7 +338,7 @@ Poll until `status` is `success`, `error`, or `cancelled`. Note: `batch get` als
 }
 ```
 
-**Key field:** `assistantMessage.uuid` (needed for polling).
+**Key field:** `assistantMessage.uuid` (needed for polling). If the chat is still busy with an earlier turn, the response carries only `userMessage` (queued, answered once the turn ahead finishes) and no `assistantMessage`.
 
 ## cargo-ai ai message get
 
@@ -356,7 +356,7 @@ Poll until `status` is `success`, `error`, or `cancelled`. Note: `batch get` als
 }
 ```
 
-**Status values:** `pending`, `generating`, `success`, `error`.
+**Status values:** `pending`, `generating`, `success`, `error`, `cancelling`, `cancelled`.
 
 ## cargo-ai segmentation segment fetch
 
@@ -405,7 +405,7 @@ Tables (`spans`, `runs`, `batches`, `records`) are referenced without a schema p
 **Failure (non-zero exit):**
 
 ```json
-{ "errorMessage": "Code: 60. Table orchestration.unknown doesn't exist" }
+{ "errorMessage": "Table \"unknown\" is not allowed or does not exist." }
 ```
 
 ```json
@@ -420,7 +420,7 @@ Tables (`spans`, `runs`, `batches`, `records`) are referenced without a schema p
     {
       "uuid": "release-uuid",
       "workflowUuid": "...",
-      "version": "3",
+      "version": "1.0.3",
       "description": "Added email step",
       "createdAt": "2025-01-10T09:00:00Z"
     }
@@ -438,12 +438,22 @@ Supports `--workflow-uuid`, `--limit`, `--offset`.
     "uuid": "release-uuid",
     "workflowUuid": "...",
     "userUuid": "...",
-    "version": "3",
+    "version": "1.0.3",
     "description": "Added email step",
     "nodes": [
-      { "uuid": "node-uuid-1", "slug": "enrich_company", "name": "Enrich Company" },
-      { "uuid": "node-uuid-2", "slug": "send_email", "name": "Send Email" },
-      { "uuid": "node-uuid-3", "slug": "output", "name": "Output" }
+      {
+        "uuid": "node-uuid-1",
+        "slug": "enrich_company",
+        "name": "Enrich Company",
+        "kind": "connector",
+        "integrationSlug": "companyEnrich",
+        "actionSlug": "enrichByDomain",
+        "config": { "domain": { "kind": "templateExpression", "expression": "{{nodes.start.domain}}" } },
+        "childrenUuids": ["node-uuid-2"],
+        "fallbackChildUuid": "node-uuid-3",
+        "fallbackOnFailure": false,
+        "position": { "x": 0, "y": 0 }
+      }
     ],
     "createdAt": "2025-01-10T09:00:00Z"
   }
@@ -451,6 +461,14 @@ Supports `--workflow-uuid`, `--limit`, `--offset`.
 ```
 
 **Key field:** `nodes[].slug` — needed for `batch download --output-node-slug`.
+
+`nodes[]` is the complete graph, not a summary: every node carries its `config`,
+`childrenUuids`, and (where set) `fallbackChildUuid`, which is enough to
+[draw the workflow](node-diagram.md) without another call. Two traps when reading
+it: `name` is optional, and **`slug` is not unique** — one shipped release has six
+nodes slugged `variables`. Key anything graph-shaped by `uuid`. `tool` and `agent`
+nodes carry `toolUuid` / `agentUuid` as top-level fields alongside `kind`, and have
+no `actionSlug`.
 
 ## cargo-ai ai chat list
 

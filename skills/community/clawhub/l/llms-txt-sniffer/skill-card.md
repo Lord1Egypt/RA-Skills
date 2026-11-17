@@ -1,40 +1,54 @@
-## Description: <br>
-Locate and utilize AI-friendly documentation index files (llms.txt, llms-full.txt) or sitemap.xml when encountering documentation URLs to map sites quickly and reduce token use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Locate and utilize AI-friendly documentation index files (llms.txt, llms-full.txt) or sitemap.xml for documentation URLs to map sites and reduce token use.
 
-## Publisher: <br>
-[jdchi](https://clawhub.ai/user/jdchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jdchi](https://clawhub.ai/user/jdchi)
 
-## Use Case: <br>
-Developers and agent users use this skill when they provide a documentation URL and want the agent to locate llms.txt, llms-full.txt, or sitemap.xml before reading site documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make outbound requests to user-provided documentation URLs, including direct curl probes documented in the skill instructions. <br>
-Mitigation: Use it only for documentation URLs intentionally provided by the user, and avoid localhost, internal network, cloud metadata, or other sensitive private URLs. <br>
+## Use Case:
 
+Developers and agents use this skill when a user provides a public documentation URL and they need to find an AI-friendly llms.txt, llms-full.txt, or sitemap.xml index before reading the site.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jdchi/llms-txt-sniffer) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON snippets from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and curl; the helper script returns JSON describing the target URL, discovered index URL, index type, and optional preview or error.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and OpenClaw metadata) <br>
+Risk: The sniffer makes outbound network requests from the user's machine or agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only for user-provided, trusted public documentation URLs.
+
+Risk: Under-scoped URL validation may allow requests toward internal services or cloud metadata endpoints.
+
+Mitigation: Avoid running it from environments with access to sensitive internal networks unless URL validation and egress controls are hardened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jdchi/skills/llms-txt-sniffer)
+- [Publisher profile](https://clawhub.ai/user/jdchi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes discovered index structure and may report found_index, type, content_preview, or an error from the sniffer script.]
+
+## Skill Version(s):
+
+1.3.1 (source: openclaw metadata and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

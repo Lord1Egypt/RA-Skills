@@ -1,15 +1,15 @@
 <div align="center">
 
-# Kochen.skill
+# BrainHarness · Kochen
 
 > Wenn du nicht weißt, was du kochen sollst, sag einfach ehrlich, worauf du Lust hast und was im Kühlschrank liegt.
 
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai/code)
 [![Agent Skill](https://img.shields.io/badge/Skill-Cooking-green)](#)
-[![Status](https://img.shields.io/badge/status-v0.1.0-orange)](#)
+[![Status](https://img.shields.io/badge/status-v0.2.0-orange)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-`cooking.skill` ist ein Koch-Skill, der nur die nötigsten Fragen stellt und dann ein Rezept liefert, das man wirklich kochen kann.
+`brainharness-cooking` ist ein Koch-Skill, der nur die nötigsten Fragen stellt und dann ein Rezept liefert, das man wirklich kochen kann.
 
 </div>
 
@@ -54,22 +54,22 @@ Wenn nötig, fragt sie höchstens zwei Dinge:
 Universell:
 
 ```bash
-npx skills add zning1994/cooking-skill
+npx skills add zning1994/brainharness-cooking
 ```
 
 OpenClaw / ClawHub:
 
 ```bash
-openclaw skills install cooking-skill
+npx clawhub@0.23.3 install brainharness-cooking
 ```
 
 ```bash
 mkdir -p .claude/skills
-git clone https://github.com/zning1994/cooking-skill .claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking .claude/skills/brainharness-cooking
 ```
 
 Global:
 
 ```bash
-git clone https://github.com/zning1994/cooking-skill ~/.claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking ~/.claude/skills/brainharness-cooking
 ```

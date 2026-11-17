@@ -21,7 +21,7 @@ metadata:
       example: |
         env = {
           ANTHROPIC_API_KEY = "sk-ant-xxxx";
-          SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/xxx";
+          SLACK_WEBHOOK_URL = "REDACTED-SECRET";
           GMAIL_CHECK_INTERVAL_SECONDS = "60";
           PHISHGUARD_QUARANTINE_LABEL = "PhishGuard-Cuarentena";
         };

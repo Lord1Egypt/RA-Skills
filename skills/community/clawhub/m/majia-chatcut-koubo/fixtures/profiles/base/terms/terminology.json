@@ -1,0 +1,23 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/terminology.schema.json",
+  "$comment": "Anonymous fixture vocabulary; contains no personal or brand terms.",
+  "version": "1.1.0",
+  "maintainer": "fixture",
+  "entries": [
+    {
+      "termId": "term-example",
+      "correct": "示例术语",
+      "wrong": [
+        "示例误词"
+      ],
+      "matchMode": "substring",
+      "risk": "proper-noun"
+    }
+  ],
+  "shortCardWhitelist": {
+    "approved": [
+      "AI",
+      "BI"
+    ]
+  }
+}

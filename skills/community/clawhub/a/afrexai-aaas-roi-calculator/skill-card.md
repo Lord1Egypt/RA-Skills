@@ -1,42 +1,56 @@
-## Description: <br>
-Calculates ROI for AI-as-a-Service by estimating cost savings, efficiency gains, and payback period for deploying managed AI agents across business operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate ROI for AI-as-a-Service (managed AI agents). Estimates cost savings, efficiency gains, and payback period for deploying AI agents across business operations.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Business owners, operators, and advisors use this skill to estimate the financial case for managed AI agents by comparing manual operating costs with AI agent subscription costs, projected savings, payback period, and three-year ROI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ROI estimates, automatable-hour benchmarks, error-reduction assumptions, and margin claims may not match a specific business. <br>
-Mitigation: Validate labor rates, task volume, automation feasibility, pricing, and savings assumptions against the user's own operating data before relying on the result. <br>
-Risk: The skill includes consultation and checkout links for a vendor offer. <br>
-Mitigation: Treat pricing and purchasing links as vendor marketing and independently confirm current terms before making a purchase. <br>
+## Use Case:
 
+Business leaders, operators, and consultants use this skill to estimate whether managed AI agents make financial sense for a company. It produces a vendor-specific ROI analysis comparing manual operations, managed AI agent costs, recovered labor hours, savings, payback period, and three-year ROI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afrexai-cto/afrexai-aaas-roi-calculator) <br>
-- [Discovery call](https://calendly.com/cbeckford-afrexai/discovery-call) <br>
-- [Intro offer checkout](https://buy.stripe.com/fZuaEQaPs9Mrge87l50sU0a) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown ROI analysis with plain-text calculations and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes current-state cost estimates, recommended agent tier, annual savings, payback period, three-year ROI, break-even timing, and next-step links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: ROI outputs are commercially biased toward a specific provider and include direct sales and payment links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as vendor-specific sales guidance and compare them with independent assumptions before making purchasing decisions.
+
+Risk: The skill uses fixed benchmark and pricing assumptions that may not match a user's actual labor costs, processes, or automation potential.
+
+Mitigation: Review and adjust inputs and assumptions against internal financial data before relying on the ROI estimate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/afrexai-cto/skills/afrexai-aaas-roi-calculator)
+- [Publisher Profile](https://clawhub.ai/user/afrexai-cto)
+- [Discovery Call](https://calendly.com/cbeckford-afrexai/discovery-call)
+- [Intro Offer Payment Link](https://buy.stripe.com/fZuaEQaPs9Mrge87l50sU0a)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown ROI analysis with cost, savings, payback, and next-step sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses industry, employee count, annual revenue, and pain points as inputs; outputs are based on vendor-provided assumptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

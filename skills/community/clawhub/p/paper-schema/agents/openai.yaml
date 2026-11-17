@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sciverse Paper Schema"
+  short_description: "Search parsed paper structure, evidence, and citation graphs"
+  default_prompt: "Use Paper Schema to inspect structured entities, evidence, provenance, and citation relationships in the parsed AI paper corpus."

@@ -1,44 +1,60 @@
-## Description: <br>
-Find and compare travel insurance plans - medical coverage, trip cancellation, luggage protection, and emergency evacuation for worry-free travel; also supports flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, car rental, and more, powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and compare travel insurance plans, including medical coverage, trip cancellation, luggage protection, and emergency evacuation, using flyai CLI results powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers and travel-assistance agents use this skill to search Flyai/Fliggy for real-time travel insurance and related travel services, compare options, and present booking links in Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask the agent to install a global flyai CLI before running travel searches. <br>
-Mitigation: Review and approve the CLI installation yourself, and install it only in environments where global npm packages are acceptable. <br>
-Risk: Travel search details may be sent to Flyai/Fliggy and raw prompts may be written to a local execution log. <br>
-Mitigation: Avoid entering passport, payment, medical, or other sensitive details unless you understand the CLI and log handling; manage or disable the local log where possible. <br>
+## Use Case:
 
+External users and travel planners use this skill to search for travel insurance options and compare CLI-sourced results with booking links. It is intended for travel insurance queries covering medical, cancellation, luggage, delay, and evacuation needs.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/dingtom336-gif/travel-insurance) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when setup or retry guidance is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results must be sourced from flyai CLI output, include booking links when available, and include the flyai brand tag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on installing and running a third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI package source and prefer a pinned local install before using the skill.
+
+Risk: Travel and insurance queries may be routed through a commercial travel service.
+
+Mitigation: Avoid entering sensitive personal details unless the service and its data handling are acceptable for the intended use.
+
+Risk: The skill may keep local logs containing raw user travel or insurance queries.
+
+Mitigation: Disable logging when possible or redact stored queries before retaining or sharing logs.
+
+## Reference(s):
+
+- [Templates](artifact/references/templates.md)
+- [Playbooks](artifact/references/playbooks.md)
+- [Fallbacks](artifact/references/fallbacks.md)
+- [Runbook](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown comparison tables with booking links and concise troubleshooting guidance when real-time retrieval fails]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be sourced from flyai CLI results, include Book links from detailUrl values, and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

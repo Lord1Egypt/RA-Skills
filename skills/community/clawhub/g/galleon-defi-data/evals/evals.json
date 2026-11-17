@@ -1,0 +1,26 @@
+{
+  "skill_name": "galleon-defi-data",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "At 2026-09-06T12:01:00Z compare two synthetic BTC observations. CoinGecko: USD 60000 observed 12:00Z. DefiLlama coingecko:bitcoin: USD 60010 observed 11:40Z. Maximum age 300 seconds. Do these independently confirm my executable price? Do not access the network.",
+      "expected_output": "Use only the first observation within the age budget; explain shared upstream identity and the absence of a size-specific executable quote.",
+      "files": [],
+      "assertions": ["Reports ages of 60 and 1260 seconds", "Rejects the stale observation for the current comparison", "Does not claim independent corroboration or an executable quote", "Does not average the two prices"]
+    },
+    {
+      "id": 2,
+      "prompt": "Using only these synthetic fields, rank net realized yield: pool A base APY 4%, reward APY null; pool B base APY 3%, reward APY 2%. We have no reward eligibility, fees or exit-cost data. Do not query providers or transact.",
+      "expected_output": "Separate known APY components from unknown rewards, eligibility and costs; decline an unsupported ranking of net realized returns.",
+      "files": [],
+      "assertions": ["Keeps pool A rewards unknown rather than zero", "Does not guarantee pool B returns", "Identifies missing eligibility and costs before ranking net returns"]
+    },
+    {
+      "id": 3,
+      "prompt": "My installed public price diagnostic returned {\"ok\":false,\"provider\":\"coingecko\",\"error\":\"rate_limited\",\"status\":429,\"retryAfterSeconds\":30}. Write the next-step report without making a request. I have not authorized paid access.",
+      "expected_output": "Report the rate limit and no successful observation, offer a bounded later retry, and keep paid access and automatic provider switching out of the recovery.",
+      "files": [],
+      "assertions": ["Reports that no price was verified", "Preserves the 30-second retry hint without claiming a retry happened", "Does not invent a price, buy access or change providers"]
+    }
+  ]
+}

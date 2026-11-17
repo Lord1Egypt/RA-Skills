@@ -1,41 +1,59 @@
-## Description: <br>
-Reads meeting minutes, summarizes and stores one meeting locally for follow-up Q&A, and uses SenseAudio TTS to generate MP3 audio for the summary and later answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads meeting notes, summarizes them with the current conversation model, saves local meeting context for follow-up questions, and generates mp3 audio for summaries and answers through SenseAudio TTS.
 
-## Publisher: <br>
-[xiaocaijic](https://clawhub.ai/user/xiaocaijic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaocaijic](https://clawhub.ai/user/xiaocaijic)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to work with one meeting note, preserve local context for follow-up questions, and create spoken MP3 versions of the summary and answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled local meeting memory may contain stale or sensitive meeting text. <br>
-Mitigation: Review or delete memory/current_meeting.json and memory/latest_meeting.json before installing or running the skill. <br>
-Risk: Meeting text and generated answers are sent to SenseAudio when creating MP3 output. <br>
-Mitigation: Use the skill only for meeting notes that are appropriate to convert through SenseAudio, and set SENSEAUDIO_API_KEY only when that account should be used. <br>
+## Use Case:
 
+Employees and external users can use this skill to turn one meeting note into a short spoken summary, retain local context for follow-up questions, and create mp3 answers for later review.
 
-## Reference(s): <br>
-- [Product brief](PRD.md) <br>
-- [SenseAudio API key documentation](https://senseaudio.cn/docs/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, JSON command results, and local MP3 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores meeting context in local JSON memory and writes generated audio to user-specified MP3 paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Sensitive meeting contents may be retained as plaintext local JSON, and the release includes populated memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only meeting notes approved for local retention, remove bundled memory JSON files before installation or release, and provide a clear deletion path for saved meeting context.
+
+Risk: Meeting text, summaries, or answers may be sent to SenseAudio for speech generation.
+
+Mitigation: Get explicit user consent before TTS generation, avoid sensitive or internal URLs, and prefer sending summaries or answers instead of full meeting text.
+
+Risk: The scanner verdict is suspicious because the skill handles meeting notes broadly, even though no clear malicious behavior was reported.
+
+Mitigation: Review the skill before installing, confirm the expected data flow, and keep generated audio and memory files in approved local paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaocaijic/skills/meeting-minutes-qa-tts)
+- [SenseAudio API key docs](https://senseaudio.cn/docs/api-key)
+- [Product brief](artifact/PRD.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Text responses, local JSON memory files, and mp3 audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SENSEAUDIO_API_KEY when available, asks for mp3 output paths before audio generation, and stores meeting context locally by default.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,15 @@
+{
+  "<TICKER>": {
+    "ticker": "<TICKER>", "report": "report-<ticker>-deep-dive-<yyyy-mm>",
+    "rating": {"call": 0, "label": "Underweight", "start": "<publication date>", "start_price": null,
+               "benchmark": {"SPY": null}, "method": "diff"},
+    "triggers": [
+      {"call": 0, "kind": "consec_above", "level": 0, "days": 20, "note": "Price invalidation condition as written in the report"},
+      {"call": 0, "kind": "below", "level": 0, "note": "Price condition as written in the report"}
+    ],
+    "events": [
+      {"tier": "monthly", "call": 0, "due": "<YYYY-MM-DD>", "what": "One-line summary", "source": "research/<report-id>/parts/p01-summary.md:<line>"},
+      {"tier": "quarterly", "call": 0, "due": "<YYYY-MM-DD>", "what": "One-line summary", "source": "research/<report-id>/parts/p01-summary.md:<line>"}
+    ]
+  }
+}

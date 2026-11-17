@@ -1,39 +1,55 @@
-## Description: <br>
-Use this skill for any operation with the Indices CLI: authentication, tasks, runs, and secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for Indices CLI operations, including authentication, tasks, runs, and secrets.
 
-## Publisher: <br>
-[itsaphel](https://clawhub.ai/user/itsaphel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[itsaphel](https://clawhub.ai/user/itsaphel)
 
-## Use Case: <br>
-Developers and operators use this skill to run Indices CLI workflows for authentication, task management, run management, and secret management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security review verdict is suspicious and notes unusually broad full-access execution behavior in review helper functionality. <br>
-Mitigation: Install only when the publisher is trusted for ClawHub maintainer work, avoid broad autonomous execution defaults, and review exact commands before using moderation or proof-publishing workflows. <br>
-Risk: The skill handles API keys and secrets through CLI commands. <br>
-Mitigation: Prefer secure prompts or stdin for secret values, avoid embedding credentials in shell history, and delete stored secrets when they are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itsaphel/indices) <br>
+## Use Case:
+
+Developers and operators use this skill to ask an agent for Indices CLI commands and guidance for authentication, task management, run execution, and secret management.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: API keys and secret values can be exposed if placed directly in command arguments or shared command history.
+
+Mitigation: Prefer interactive login, secure secret prompts, or stdin-based secret input, and avoid embedding real credentials in commands.
+
+Risk: Delete operations and commands using --yes can remove Indices resources without an interactive confirmation step.
+
+Mitigation: Review delete commands and any --yes flag with the user before execution.
+
+Risk: Task creation payloads could request fully autonomous execution.
+
+Mitigation: Do not allow task creation payloads that set is_fully_autonomous to true.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Indices CLI command patterns, flags, JSON input guidance, and operational constraints.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with bash command examples and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include guidance for credential handling, secret binding, manual task completion, and confirmation before delete operations.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

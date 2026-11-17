@@ -1,43 +1,58 @@
-## Description: <br>
-A stable native browser (WKWebView) for OpenClaw agents. Opens a visible window with tab management, URL bar, and login helpers \u2014 every website works, including Perplexity, Grok, Claude, and ChatGPT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A stable native browser (WKWebView) for OpenClaw agents that opens a visible window with tab management, URL bar, and login helpers for sites including Perplexity, Grok, Claude, and ChatGPT.
 
-## Publisher: <br>
-[yungookim](https://clawhub.ai/user/yungookim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yungookim](https://clawhub.ai/user/yungookim)
 
-## Use Case: <br>
-Developers and agent operators use this skill to browse websites through a visible native macOS WKWebView, including authenticated sites, form interactions, JavaScript execution, screenshots, and tab management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install external code before use. <br>
-Mitigation: Review and pin the external repository code before installation. <br>
-Risk: Agents may access persistent logged-in browser sessions. <br>
-Mitigation: Use isolated or disposable accounts, avoid sensitive personal logins unless necessary, and clear cookies and tabs after use. <br>
-Risk: Disabling built-in web tools can route future web tasks through this persistent browser session. <br>
-Mitigation: Disable built-in web tools only when that routing behavior is intended. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to navigate and interact with websites through a visible native macOS browser, including authenticated web applications, form entry, screenshots, JavaScript execution, and multi-tab browsing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yungookim/openclaw-browser-2) <br>
-- [OpenClaw Browser Repository](https://github.com/yungookim/openclaw-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline Python, shell, and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser-control guidance and example commands; runtime behavior can create persistent web sessions and screenshots when the referenced browser package is installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The install instructions clone and install remote code without a pinned, reviewed commit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository, pin a trusted commit before installation, and scan the code before enabling the skill.
+
+Risk: The skill can handle authenticated browsing sessions, cookies, and website credentials.
+
+Mitigation: Avoid hardcoding passwords, use separate or disposable browser profiles for sensitive accounts, and only use accounts appropriate for agent-driven browsing.
+
+Risk: The skill recommends disabling built-in web search and fetch tools globally.
+
+Mitigation: Keep built-in web tools enabled unless this replacement is intentional and the operational impact has been reviewed.
+
+## Reference(s):
+
+- [OpenClaw Native Browser ClawHub listing](https://clawhub.ai/yungookim/skills/openclaw-browser-2)
+- [OpenClaw Browser repository](https://github.com/yungookim/openclaw-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python code examples, JSON configuration, and API usage notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill operates a native macOS browser session and may persist cookies across invocations.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

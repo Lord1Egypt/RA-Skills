@@ -1,44 +1,59 @@
-## Description: <br>
-BGP protocol analysis with peer state diagnosis, path selection verification, route filtering validation, and convergence assessment across Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BGP protocol analysis for peer state diagnosis, path selection verification, route filtering validation, and convergence assessment across Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network engineers and operations teams use this skill to investigate BGP peer state, route propagation, path selection, filtering, and convergence issues using read-only diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Router diagnostic access can expose sensitive network topology, routing policy, and peer state. <br>
-Mitigation: Use least-privilege read-only network accounts and limit access to the devices being investigated. <br>
-Risk: BGP findings may be incomplete if expected topology, policy intent, or baseline prefix counts are missing. <br>
-Mitigation: Validate findings against known topology and routing policy before taking operational action. <br>
-Risk: Suggested routing or policy changes could disrupt production traffic if applied without review. <br>
-Mitigation: Treat recommendations as proposals and have qualified operators review and apply changes manually. <br>
+## Use Case:
 
+Developers, network engineers, and operations teams use this skill to investigate BGP peering, route propagation, path-selection, route-policy, convergence, and prefix-scale issues using read-only device output.
 
-## Reference(s): <br>
-- [BGP CLI Reference - Cisco / JunOS / EOS](references/cli-reference.md) <br>
-- [BGP Finite State Machine (FSM)](references/state-machine.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/bgp-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with read-only network diagnostic commands and structured findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces diagnostic reasoning and recommendations; any operational changes should be reviewed and applied manually.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: Router access can expose operationally sensitive network configuration or authentication material if broad command output is pasted into the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only accounts, collect only task-relevant output, and redact authentication keys, shared secrets, and unrelated sensitive configuration before analysis.
+
+Risk: BGP diagnosis can be misleading when expected topology, baseline prefix counts, or intended policy outcomes are incomplete or stale.
+
+Mitigation: Validate findings against the current network design, expected peer inventory, route-policy intent, and recent change records before taking action.
+
+Risk: Suggested remediation could affect routing behavior if applied directly to production routers.
+
+Mitigation: Treat recommendations as operator-reviewed guidance and apply changes only through established change-control and validation procedures.
+
+## Reference(s):
+
+- [BGP CLI Reference](references/cli-reference.md)
+- [BGP Finite State Machine](references/state-machine.md)
+- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/skills/bgp-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with inline read-only vendor CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces protocol-focused diagnostic findings and recommendations for Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

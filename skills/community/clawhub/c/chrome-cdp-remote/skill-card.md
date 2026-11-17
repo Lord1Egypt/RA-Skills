@@ -1,40 +1,57 @@
-## Description: <br>
-Control Chrome/Chromium via CDP (Chrome DevTools Protocol) to open tabs, navigate URLs, take screenshots, execute JavaScript, and work with local or SSH-tunneled remote browsers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Chrome/Chromium via CDP (Chrome DevTools Protocol) to open tabs, navigate URLs, take screenshots, and execute JavaScript on local or remote machines through an SSH tunnel.
 
-## Publisher: <br>
-[noestelar](https://clawhub.ai/user/noestelar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noestelar](https://clawhub.ai/user/noestelar)
 
-## Use Case: <br>
-Developers and engineers use this skill to launch or connect to Chrome with CDP enabled, automate browser actions, capture screenshots, execute JavaScript, and route remote browser control through an SSH tunnel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CDP access can control browser sessions, including logged-in accounts and sensitive pages. <br>
-Mitigation: Use temporary or dedicated Chrome profiles, avoid attaching everyday or sensitive accounts unless intended, and remove saved browser state when finished. <br>
-Risk: Exposed remote debugging ports can allow unintended browser control. <br>
-Mitigation: Keep CDP bound to localhost, use SSH tunnels only with trusted hosts, and close tunnels when the task is complete. <br>
+## Use Case:
 
+Developers and engineers use this skill to automate Chrome or Chromium through Chrome DevTools Protocol commands without adding a full Playwright or Puppeteer dependency. It is useful for browser navigation, screenshots, JavaScript execution, local CDP sessions, and remote CDP sessions over SSH tunnels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noestelar/chrome-cdp-remote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides setup commands, connection patterns, and browser automation snippets for Chrome CDP.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: CDP access grants broad control over the attached Chrome session and can affect logged-in accounts or sensitive browser data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated disposable browser profile without personal sync, saved passwords, payment data, or important accounts.
+
+Risk: Exposing a CDP port or SSH tunnel beyond localhost can allow unintended browser control.
+
+Mitigation: Bind and tunnel CDP only to localhost, and stop Chrome and the SSH tunnel when the session is complete.
+
+Risk: Python dependency installation can introduce package-management or supply-chain risk.
+
+Mitigation: Install dependencies in a virtual environment and pin versions where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noestelar/skills/chrome-cdp-remote)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local and remote CDP setup guidance, verification commands, browser automation examples, and operational pitfalls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

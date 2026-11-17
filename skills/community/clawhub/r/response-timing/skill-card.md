@@ -1,37 +1,51 @@
-## Description: <br>
-Helps an agent decide when to respond or remain silent by determining whether a user is addressing the current agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Response Timing helps an agent decide whether to reply or remain silent when a user may or may not be addressing the current agent.
 
-## Publisher: <br>
-[ebly](https://clawhub.ai/user/ebly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ebly](https://clawhub.ai/user/ebly)
 
-## Use Case: <br>
-Agents operating in group chats use this skill to decide whether a message is directed at them, whether to reply, and when to stay silent or ask for clarification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ambiguous group-chat messages may lead to missed replies or unintended responses. <br>
-Mitigation: Ask users to address the agent explicitly when a conversation is ambiguous, and use the skill's clarification behavior before responding. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ebly/response-timing) <br>
+## Use Case:
+
+Agent builders and workspace users use this skill to control group-chat behavior, especially in Feishu-style conversations, so the agent responds only when addressed, assigned, or clearly useful. It is intended to reduce unwanted interjections while preserving responses for direct mentions, relevant follow-ups, urgent requests, and clarification.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad emergency-response guidance could cause the agent to interject in sensitive or crowded group chats without being directly addressed.
+
+Mitigation: Tighten emergency and follow-up rules for those environments so the agent defaults to NO_REPLY unless directly mentioned, clearly assigned, or clearly able to help.
+
+Risk: Ambiguous names, aliases, or role boundaries could cause replies intended for another person or agent.
+
+Mitigation: Keep agent names, aliases, and responsibility boundaries explicit, and prefer a brief clarification only when the message plausibly addresses this agent.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown guidance with reply and no-reply decision rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only behavior guidance; no code, data access, credentials, or persistence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+**Output Type(s):** [Guidance, Text]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; may lead the agent to produce NO_REPLY when it should stay silent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

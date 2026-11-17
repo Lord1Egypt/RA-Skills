@@ -1,46 +1,65 @@
-## Description: <br>
-Designs a multi-dimensional evaluation framework for AI systems where single-score benchmarks lose information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs multi-dimensional evaluation frameworks for comparing AI systems across qualitative dimensions without collapsing results into a single score.
 
-## Publisher: <br>
-[tatsuko-tsukimi](https://clawhub.ai/user/tatsuko-tsukimi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tatsuko-tsukimi](https://clawhub.ai/user/tatsuko-tsukimi)
 
-## Use Case: <br>
-Developers, evaluators, and AI system teams use this skill to design calibrated, group-wise scorecards for comparing AI systems across qualitative dimensions when a single benchmark number would hide important tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluation logs, datasets, or internal records supplied during use may contain sensitive information. <br>
-Mitigation: Only provide data that is allowed to be processed in the agent environment. <br>
-Risk: Generated rubrics and scorecards may be incomplete or misleading if used without calibration. <br>
-Mitigation: Review generated rubrics and calibrate them against known cases before relying on results for decisions. <br>
+## Use Case:
 
+Developers, evaluation leads, and AI system teams use this skill to design calibrated, group-wise scorecards for agents, RAG systems, deliberation systems, and other AI workflows where single metrics hide important tradeoffs. It helps define dimensions, canonical and proxy measurements, failure modes, and calibration cases before judging results.
 
-## Reference(s): <br>
-- [Group Design Principles](references/group-design-principles.md) <br>
-- [Canonical vs Proxy Decision](references/canonical-vs-proxy-decision.md) <br>
-- [MADEF Axes](references/madef-axes.md) <br>
-- [Memory Bench Taxonomy](references/memory-bench-taxonomy.md) <br>
-- [Deliberation System Evaluation Example](examples/deliberation-system-eval.md) <br>
-- [Cross-Domain RAG Evaluation Example](examples/cross-domain-rag-eval.md) <br>
-- [Axes Design Worksheet](templates/axes-design-worksheet.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with structured worksheets, rubric definitions, and group-wise scorecard tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces methodology and scoring structure; it does not run benchmarks or automate scoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may provide sensitive logs, calibration cases, or system artifacts for the assistant to analyze while designing the evaluation framework.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only artifacts suitable for the assistant environment and redact confidential or regulated data before using the skill.
+
+Risk: The artifact references templates/scorecard.md.tmpl, but the release evidence does not include that file.
+
+Mitigation: Use the included examples and axes worksheet as scorecard guidance, and confirm any generated scorecard format before relying on it.
+
+Risk: Proxy measurements and uncalibrated dimensions can produce misleading comparisons if treated as final benchmark results.
+
+Mitigation: Run the framework on calibration cases, verify expected ordinals, and keep group-wise scores separate rather than creating a composite score.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tatsuko-tsukimi/skills/multi-dim-eval-framework)
+- [README](README.md)
+- [Group Design Principles](references/group-design-principles.md)
+- [Canonical vs Proxy Decision](references/canonical-vs-proxy-decision.md)
+- [MADEF Axes](references/madef-axes.md)
+- [Memory Bench Taxonomy](references/memory-bench-taxonomy.md)
+- [Axes Design Worksheet](templates/axes-design-worksheet.md)
+- [Deliberation System Eval Example](examples/deliberation-system-eval.md)
+- [Cross-Domain RAG Eval Example](examples/cross-domain-rag-eval.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance, rubrics, worksheets, and scorecard structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-in-the-loop evaluation framework designs and group-wise scorecards; it does not run benchmarks or automated scoring.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

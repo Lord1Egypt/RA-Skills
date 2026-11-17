@@ -1,46 +1,63 @@
-## Description: <br>
-Bridge assets to and from Celo. Use when transferring tokens between Celo and other chains like Ethereum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridge assets to and from Celo. Use when transferring tokens between Celo and other chains like Ethereum.
 
-## Publisher: <br>
-[san-npm](https://clawhub.ai/user/san-npm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[san-npm](https://clawhub.ai/user/san-npm)
 
-## Use Case: <br>
-Developers and operators use this skill to identify Celo bridge options, contract addresses, token mappings, and integration examples for moving assets between Celo and other chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bridge URLs, contract addresses, or code examples can move real crypto assets if reused incorrectly. <br>
-Mitigation: Verify each URL, address, chain, token, amount, route, fee, bridge status, and destination against current official documentation and block explorers before approving any wallet prompt. <br>
-Risk: Transfers may be irreversible and may expose transaction metadata to third-party bridge services. <br>
-Mitigation: Use the skill only as Celo bridge reference material, understand the selected bridge's security and privacy model, and approve transactions only after reviewing the full wallet prompt. <br>
+## Use Case:
 
+Developers and agents use this skill to identify Celo bridge options, contract addresses, supported tokens, and integration patterns for moving assets between Celo and other chains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/san-npm/bridging) <br>
-- [Celo bridge documentation](https://docs.celo.org/tooling/bridges) <br>
-- [Celo bridged tokens documentation](https://docs.celo.org/home/bridged-tokens) <br>
-- [Celo bridge list](https://docs.celo.org/home/bridged-tokens/bridges) <br>
-- [Celo cross-chain messaging documentation](https://docs.celo.org/tooling/bridges/cross-chain-messaging) <br>
-- [Bridge contract addresses](references/bridge-contracts.md) <br>
-- [Bridged tokens on Celo](references/bridged-tokens.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with tables and TypeScript or JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference material only; no self-running code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2008 (source: ClawHub release evidence) <br>
+Risk: Examples can initiate real mainnet asset transfers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use testnets first and require explicit confirmation of chain, amount, recipient, token, and bridge provider before any wallet prompt is signed.
+
+Risk: Incorrect or stale contract addresses can route assets to unintended contracts.
+
+Mitigation: Verify contract addresses against official Celo, bridge provider, and block explorer sources before use.
+
+Risk: Bridge fees, delays, approvals, and provider security models vary by route.
+
+Mitigation: Review fees, timing, approvals, withdrawal periods, and bridge provider risk before transferring assets.
+
+## Reference(s):
+
+- [Bridge Contract Addresses](references/bridge-contracts.md)
+- [Bridged Tokens on Celo](references/bridged-tokens.md)
+- [Celo Bridges Documentation](https://docs.celo.org/tooling/bridges)
+- [Celo Bridged Tokens Documentation](https://docs.celo.org/home/bridged-tokens)
+- [Celo Bridge Providers](https://docs.celo.org/home/bridged-tokens/bridges)
+- [Celo Cross-Chain Messaging Documentation](https://docs.celo.org/tooling/bridges/cross-chain-messaging)
+- [ClawHub Skill Page](https://clawhub.ai/san-npm/skills/bridging)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with TypeScript and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bridge provider links, contract addresses, token mappings, dependency snippets, timing notes, fee considerations, and safety checks.]
+
+## Skill Version(s):
+
+1.0.2008 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

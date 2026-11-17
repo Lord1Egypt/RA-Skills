@@ -1,46 +1,56 @@
-## Description: <br>
-Codex Agent lets OpenClaw operate OpenAI Codex CLI through tmux sessions, notify hooks, and a Codex knowledge base so it can plan, launch, monitor, and report coding tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codex Agent helps OpenClaw operate OpenAI Codex CLI through tmux sessions, notification hooks, Codex knowledge files, task workflows, and configuration guidance.
 
-## Publisher: <br>
-[HenryXiaoYang](https://clawhub.ai/user/HenryXiaoYang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[henryxiaoyang](https://clawhub.ai/user/henryxiaoyang)
 
-## Use Case: <br>
-Developers and teams using OpenClaw use this skill to delegate Codex CLI coding tasks, manage approvals, maintain Codex configuration knowledge, and receive task or approval notifications through messaging channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Codex task output, paths, code snippets, or secrets may be forwarded to messaging channels. <br>
-Mitigation: Use private notification channels and disable or redact raw Telegram forwarding for sensitive projects. <br>
-Risk: The skill can delegate broad Codex command and approval authority to OpenClaw or Codex full-auto mode. <br>
-Mitigation: Avoid full-auto for sensitive projects, keep human approval enabled, and review commands before approval. <br>
-Risk: Long-running tmux and monitor processes can persist beyond the intended task window. <br>
-Mitigation: Stop tmux and pane monitor processes after each task and keep OpenClaw session persistence bounded. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Codex Agent on ClawHub](https://clawhub.ai/HenryXiaoYang/codex-agent) <br>
-- [Installation Guide](INSTALL.md) <br>
-- [Codex CLI Reference](references/codex-cli-reference.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [OpenAI Codex](https://github.com/openai/codex) <br>
-- [OpenAI Codex Configuration Reference](https://developers.openai.com/codex/config-reference) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to delegate Codex CLI task planning, execution monitoring, approval handling, configuration checks, and result reporting to OpenClaw while retaining visibility through terminal or messaging channels.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and task reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke tmux, Codex CLI, OpenClaw messaging, and local hook scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent automation can operate long-running Codex/OpenClaw coding sessions.
+
+Mitigation: Install from a pinned reviewed version, keep approval decisions human-controlled for risky commands, and reconsider the long session-reset setting before use.
+
+Risk: Task output and approval details can be forwarded through external messaging channels.
+
+Mitigation: Avoid sensitive repositories unless notifications are redacted or disabled, and configure message targets through reviewed environment variables.
+
+## Reference(s):
+
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [OpenAI Codex CLI](https://github.com/openai/codex)
+- [OpenAI Codex overview](https://developers.openai.com/codex/overview)
+- [OpenAI Codex configuration reference](https://developers.openai.com/codex/config-reference)
+- [Codex CLI reference](references/codex-cli-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and task guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger local tmux sessions, Codex CLI commands, OpenClaw messages, and notification hooks when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

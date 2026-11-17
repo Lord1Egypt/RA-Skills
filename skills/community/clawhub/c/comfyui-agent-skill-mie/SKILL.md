@@ -1,9 +1,14 @@
 ---
 name: comfyui-agent-skill-mie
 description: >
-  Agent skill for running registered ComfyUI workflows through a stable CLI.
-  Supports image, video, music, and speech generation on a local or trusted self-hosted
-  ComfyUI server (default http://127.0.0.1:8188). Registered workflows only.
+  Agent skill for running registered ComfyUI workflows through a stable CLI,
+  and for importing a user's own ComfyUI workflow into their private registry
+  after review. Supports image, video, music, and speech generation, plus
+  text-driven matting, face/expression transfer, and voice cloning, on a local
+  or trusted self-hosted ComfyUI server (default http://127.0.0.1:8188). Can
+  check server health, preflight workflow dependencies, and save the server
+  URL. Runs only registered workflows and reviewed private-registry imports;
+  does not execute arbitrary unreviewed workflow JSON.
 ---
 
 # comfyui-agent-skill-mie
@@ -21,9 +26,17 @@ Use this skill when the user asks to:
 - Generate text-to-video or image-to-video MP4 output.
 - Generate music / instrumental / song-style MP3 output.
 - Synthesize spoken voice audio with Qwen3-TTS.
+- Cut out or mask an object in a picture by describing it in words.
+- Transfer a face, expression, or pose from a driving video onto a reference face photo.
+- Clone a specific voice from a reference audio sample and speak new text in that voice.
 - Check whether a ComfyUI server is available.
+- Import a workflow the user already validated in ComfyUI into their private registry, and activate it only after the generated config is reviewed.
+- Preflight a registered workflow's nodes and models before a long run.
+- Save a persistent ComfyUI server URL when the user asks.
 
-Do not use this skill when the user only wants prompt writing, brainstorming, or discussion without actual generation. Do not use it when the ComfyUI server is unavailable.
+Do not use this skill when the user only wants prompt writing, brainstorming, or discussion without actual generation.
+
+A ComfyUI server being unavailable is not a reason to skip this skill. Return `SERVER_UNAVAILABLE`, ask whether ComfyUI is running on the local machine or on another machine, and point the user at `check` (single health check) and `doctor` (server health plus per-workflow preflight) to diagnose it.
 
 ## Hard Rules
 
@@ -35,8 +48,26 @@ Do not use this skill when the user only wants prompt writing, brainstorming, or
 - If server health fails, stop generation and return/handle `SERVER_UNAVAILABLE`; do not search disk for ComfyUI installs or guess ports.
 - Do not create or edit `config.local.json` unless the user explicitly wants a persistent server URL. For one-off runs, use `--server` or `COMFYUI_URL`.
 - For `reference_to_image`, inspect the reference image with Agent vision and create a prompt. Do not upload that reference image to ComfyUI.
-- For `image_to_image` and `image_to_video`, upload the provided local image with `--image`.
+- Upload local media with the role's flag from the quick command table. `--image` is the image role. `liveportrait` also needs `--video`. `qwen3_tts_clone` needs `-p`, `--text-input "ref_text=..."`, and `--audio`. Do not choose those flags from the capability name.
+- Pass `--width`/`--height` only when the workflow config maps both dimensions and does not use `size_strategy: "workflow_managed"`; always pass both together. Otherwise the CLI returns `INVALID_PARAM` on both the sync and `--submit` paths instead of ignoring them.
 - Analyzer-generated workflow configs require human review before activation.
+
+## Workflow Selection Policy
+
+- Built-in defaults are fallback choices, not hard requirements.
+- If another registered workflow is a stronger semantic match for the request, prefer the stronger match.
+- Use workflow capability metadata and workflow selection guidance to choose among registered workflows.
+- Any automatic workflow selection in the CLI is only a low-risk fallback when no explicit workflow has been chosen.
+- If multiple workflows appear suitable and the user’s preference is ambiguous, ask a brief clarifying question.
+
+## User-Added Workflows
+
+- Users may add custom workflows that were first validated in ComfyUI, then imported into the skill as reviewed registered capabilities.
+- Do not execute arbitrary raw workflow JSON directly.
+- Import the workflow, generate/review the config template, and activate it only after a reviewed `workflow.config.json` exists.
+- User-added workflows must be stored in the per-user workflow registry so skill upgrades do not overwrite them.
+- Once activated, user-added workflows may be selected like other registered workflows when they are a stronger semantic match and required inputs are available.
+- `import-workflow` only accepts **API format** (ComfyUI's *Save (API)* button, requires *Settings → Enable Dev mode options*). A plain *Save* product (UI/Save format, `{nodes, links}`) is refused with `WORKFLOW_NOT_API_FORMAT`. To convert existing UI/Save workflows in place, run `convert-ui` (needs a running ComfyUI + Playwright).
 
 ## Setup
 
@@ -82,22 +113,33 @@ comfyui-skill check
 
 Minimal decision tree:
 
-- User gives text only → `generate -p "..."` (defaults to `z_image_turbo`)
+- User gives text only → start from general T2I (`z_image_turbo` fallback), but prefer a stronger registered match when workflow guidance indicates one (e.g. posters / anime / artistic styles).
+- Poster / text-in-image requests → prefer `qwen_image_2512_4step`
+- Anime / manga / illustration style → prefer `anima_turbo`
+- Artistic / painterly realism / concept art / product → prefer `krea2_turbo`
 - User gives a reference image and wants a new similar image → vision → `reference_to_image` prompt → run `z_image_turbo`
 - User gives an input image and wants edits → `generate --workflow klein_edit --image input_image=... -p "..."`
+- User wants to mask / cut out an object by describing it → `sam3_mat_image`
+- User wants face/expression transfer (face photo + driving video) → `liveportrait`
 - User wants TTS / voice audio → `generate --workflow qwen3_tts --speech-text "..." --instruct "..."`
+- User wants to clone a specific voice from a sample → `qwen3_tts_clone`
 - User wants video → `ltx_23_t2v_distill` (text→video) or `ltx_23_i2v_distilled` (image→video)
 
 | User intent | Workflow / mode | Required command shape |
 |-------------|-----------------|------------------------|
-| Text to image | `z_image_turbo` default | `generate -p "prompt"` |
-| Qwen Image 2512 | `qwen_image_2512_4step` | `generate --workflow qwen_image_2512_4step -p "prompt"` |
+| Text to image (general fallback) | `z_image_turbo` | `generate -p "prompt"` |
+| Poster / embedded text (preferred) | `qwen_image_2512_4step` | `generate --workflow qwen_image_2512_4step -p "prompt"` |
+| Anime / manga / illustration | `anima_turbo` | `generate --workflow anima_turbo -p "prompt"` |
+| Artistic / painterly realism / concept art / product | `krea2_turbo` | `generate --workflow krea2_turbo -p "prompt"` |
 | Similar image from reference | Agent vision + T2I | Read reference image, create English prompt, then T2I |
 | Edit image | `klein_edit` | `generate --workflow klein_edit --image input_image=photo.png -p "edit prompt"` |
+| Mask / cut out an object (text-driven) | `sam3_mat_image` | `generate --workflow sam3_mat_image --image photo.png -p "the cat"` |
+| Face/expression transfer (photo + video) | `liveportrait` | `generate --workflow liveportrait --image face.png --video drive.mp4` |
 | Text to video | `ltx_23_t2v_distill` | `generate --workflow ltx_23_t2v_distill -p "shot prompt"` |
 | Image to video | `ltx_23_i2v_distilled` | `generate --workflow ltx_23_i2v_distilled --image input_image=photo.png -p "motion prompt"` |
 | Text to music | `ace_step_15_music` | `generate --workflow ace_step_15_music -p "music tags"` |
 | Text to speech | `qwen3_tts` | `generate --workflow qwen3_tts --speech-text "..." --instruct "..."` |
+| Voice cloning (from a sample) | `qwen3_tts_clone` | `generate --workflow qwen3_tts_clone -p "new text" --text-input "ref_text=..." --audio sample.mp3` |
 
 For workflow-specific size rules, capability boundaries, and examples, read [references/workflows.md](references/workflows.md).
 
@@ -167,6 +209,13 @@ Show progress for long jobs:
 uv run --no-sync python -m comfyui generate --workflow ltx_23_t2v_distill -p "cinematic waves at sunset, slow pan" --progress
 ```
 
+Convert UI/Save workflows to API format (opt-in; needs a running ComfyUI + Playwright, does not run inference):
+
+```bash
+uv run --no-sync python -m comfyui convert-ui path/to/ui_workflow.json --server http://127.0.0.1:8188
+uv run --no-sync python -m comfyui convert-ui path/to/workflows_dir -o api_workflows/
+```
+
 Full CLI options, output path behavior, async submit/poll, and error code details are in [references/cli.md](references/cli.md).
 
 ## Prompt Enhancement
@@ -220,7 +269,8 @@ Required fail-fast behavior:
 - Server unavailable: return/handle `SERVER_UNAVAILABLE` and ask whether ComfyUI is running locally or on another machine.
 - Missing reference image before `reference_to_image`: return Agent error `NO_REFERENCE_IMAGE`; do not call CLI.
 - No vision for `reference_to_image`: return Agent error `VISION_UNAVAILABLE`; do not call CLI.
-- Missing image for image workflows: return/handle `NO_INPUT_IMAGE` or `INPUT_IMAGE_NOT_FOUND`.
+- Missing required input media: return/handle `NO_INPUT_IMAGE` when an image role is absent and `NO_INPUT_MEDIA` when a video or audio role is absent. If the local path does not exist, handle `INPUT_IMAGE_NOT_FOUND` or `INPUT_MEDIA_NOT_FOUND` respectively. Do not report a missing video or audio input as `NO_INPUT_IMAGE`.
+- A required mapped role that is present but empty: return/handle `MISSING_INPUT`.
 - Missing custom nodes/models during preflight: return/handle `PREFLIGHT_MISSING_NODES` or `PREFLIGHT_MISSING_MODELS`.
 
 When the user provides a remote ComfyUI address, save it only if they want persistence:
@@ -237,7 +287,7 @@ After successful generation, present the result to the user. Do not silently par
 
 - For images, display the file when the runtime supports local image display; otherwise provide the absolute/local path from `outputs[].path`.
 - For MP3/MP4, provide the path or use the runtime's media display/playback capability when available.
-- Prefer omitting `--output`; the CLI writes to a per-job directory under `results/` and returns exact paths in JSON.
+- Prefer omitting `--output`; the CLI writes to a per-job directory under `results/` inside the per-user data root and returns exact paths in JSON. The per-user data root is `%APPDATA%\comfyui-skill` on Windows, `~/Library/Application Support/comfyui-skill` on macOS, and `$XDG_DATA_HOME/comfyui-skill` (or `~/.local/share/comfyui-skill`) on Linux. `save-server` writes `config.local.json` under that same root. Always use the returned `outputs[].path`.
 - For `--count > 1`, parse the wrapper object and present each result.
 
 See [references/cli.md](references/cli.md) for JSON schemas and output directory rules.

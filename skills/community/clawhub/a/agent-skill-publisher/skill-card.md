@@ -1,45 +1,59 @@
-## Description: <br>
-End-to-end workflow for publishing agent skills to GitHub, ClawdHub, and skills.sh, covering repo creation, topic tagging, ClawdHub publishing, skills.sh index requests, and installation verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end workflow for publishing agent skills to GitHub, ClawdHub, and skills.sh, including repo creation, topic tagging, ClawdHub publishing, skills.sh index requests, and installation verification.
 
-## Publisher: <br>
-[bryant24hao](https://clawhub.ai/user/bryant24hao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bryant24hao](https://clawhub.ai/user/bryant24hao)
 
-## Use Case: <br>
-Developers and skill maintainers use this agent skill to publish an agent skill across GitHub, ClawdHub, and skills.sh in one guided workflow. It helps validate files, create and tag a repository, publish to ClawdHub, submit a skills.sh indexing request, verify installation paths, and summarize release links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can make public account changes, including repository creation, pushes, ClawdHub publishing, and skills.sh issue creation. <br>
-Mitigation: Require a dry run and explicit user confirmation before any public account, repository, registry, or issue-tracker action. <br>
-Risk: The artifact describes patching files under ~/.npm/_npx to work around a ClawdHub CLI payload issue. <br>
-Mitigation: Do not allow automatic patching of local CLI cache files; use a fixed or updated ClawdHub CLI instead. <br>
-Risk: Publishing workflows can expose secrets, user-specific paths, or unintended files if run without review. <br>
-Mitigation: Review staged files and scan for secrets, personal paths, large binaries, and stale placeholder links before committing or publishing. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to publish agent skills across GitHub, ClawdHub, and skills.sh, with pre-flight checks, registry submission, and installation verification in one workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bryant24hao/agent-skill-publisher) <br>
-- [Publisher Profile](https://clawhub.ai/user/bryant24hao) <br>
-- [Skill Homepage](https://github.com/bryant24hao/skill-publisher) <br>
-- [GitHub CLI](https://cli.github.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and release checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose public account, repository, registry, and issue-tracker actions that require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide an agent through public account-changing actions such as creating repositories, publishing releases, and opening index request issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use minimal credentials, verify the target skill directory, and require explicit confirmation before each public publish or write step.
+
+Risk: The workflow may run unpinned npx CLIs and describes patching local executable CLI code for a ClawdHub publish workaround.
+
+Mitigation: Inspect CLI versions and exact file changes before execution, and avoid the patch workaround unless the user approves the specific change.
+
+Risk: Publishing the wrong directory or files could expose secrets, user-specific paths, or unintended content.
+
+Mitigation: Run the documented pre-flight checks and secret/path scans on a clean skill directory before any commit or publish operation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bryant24hao/skills/agent-skill-publisher)
+- [Project Homepage](https://github.com/bryant24hao/skill-publisher)
+- [GitHub CLI](https://cli.github.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify repository files, public GitHub repositories, ClawdHub releases, skills.sh index issues, and local npm cache files when the user approves those workflow steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Market Pulse provides real-time market analytics for crypto, DeFi, sentiment, stocks, upcoming events, and market overviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time market analytics for crypto, DeFi yields, sentiment, upcoming crypto events, and traditional market overviews.
 
-## Publisher: <br>
-[lopushok9](https://clawhub.ai/user/lopushok9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lopushok9](https://clawhub.ai/user/lopushok9)
 
-## Use Case: <br>
-External users and analysts use this skill to request current crypto, DeFi yield, sentiment, stock-index, event, and portfolio-analysis summaries for market research. It helps analyze trades and risks, but transaction execution should happen only through a trusted wallet or broker interface. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Market prices, yields, events, and sentiment can be stale, rate-limited, or inconsistent across public sources. <br>
-Mitigation: Ask for fresh sources and timestamps, cross-check conflicting data, and note partial or missing data before relying on the result. <br>
-Risk: The skill can analyze trades and portfolio risks, but it is not a trading authority and should not execute transactions. <br>
-Mitigation: Use it as a market research helper and execute any trades only through a trusted wallet or broker interface. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lopushok9/market-pulse) <br>
-- [CoinGecko simple price API](https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true) <br>
-- [Alternative.me Fear and Greed API](https://api.alternative.me/fng/) <br>
-- [DefiLlama yields](https://defillama.com/yields) <br>
+## Use Case:
 
+External users and market analysts use this skill to request concise market intelligence, portfolio context, DeFi yield summaries, risk notes, and current market overviews from public web and API sources.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown market summaries, ranked lists, and concise analytic guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes timestamps, filters, and data-gap notes when market data freshness matters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live market data and portfolio recommendations can be incomplete, stale, or unsuitable for a user's financial situation.
+
+Mitigation: Treat outputs as informational, show timestamps and data gaps, cross-check conflicting sources, and make financial decisions through qualified review.
+
+Risk: Users may share wallet seed phrases, exchange credentials, or private account exports while asking for portfolio analysis.
+
+Mitigation: Do not request or process secrets; users should keep credentials private and execute trades only through their own trusted wallet or brokerage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lopushok9/skills/market-pulse)
+- [CoinGecko simple price API](https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true)
+- [Alternative.me Fear and Greed API](https://api.alternative.me/fng/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise market summaries, ranked lists, comparisons, timestamps, and cited metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public web and API lookups for current market data; does not execute trades or handle transactions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

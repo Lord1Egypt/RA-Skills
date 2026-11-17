@@ -1,42 +1,58 @@
-## Description: <br>
-DeepVista Recipe manages structured executable workflows called Recipes and runs them through an AI agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepVista Recipe: Manage structured executable workflows (Recipes) and run them via the AI agent.
 
-## Publisher: <br>
-[jingconan](https://clawhub.ai/user/jingconan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingconan](https://clawhub.ai/user/jingconan)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to discover, list, inspect, run, export, and install DeepVista Recipe workflows from the DeepVista CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the DeepVista CLI package and the `deepvista-shared` skill for authentication and profiles. <br>
-Mitigation: Install only after trusting DeepVista and review `deepvista-shared` before use. <br>
-Risk: `recipe run` and `recipe install` are write actions that can create DeepVista content or start agent workflows. <br>
-Mitigation: Confirm with the user before running write commands and present resulting DeepVista recipe URLs after write operations. <br>
+## Use Case:
 
+External users and developers use this skill to list, inspect, run, export, discover, and install DeepVista Recipe workflows through the DeepVista CLI.
 
-## Reference(s): <br>
-- [DeepVista CLI](https://cli.deepvista.ai) <br>
-- [Deepvista Recipe on ClawHub](https://clawhub.ai/jingconan/deepvista-recipe) <br>
-- [jingconan publisher profile](https://clawhub.ai/user/jingconan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and DeepVista CLI output references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recipe run output may stream as NDJSON from the DeepVista CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0-alpha.21 (source: server release evidence) <br>
+Risk: Running a remote Recipe may let the agent take broad actions and update DeepVista account context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Recipe with `deepvista recipe get` before running it, use trusted Recipe sources, and require explicit user confirmation before run or install commands.
+
+Risk: Recipe inputs and runs may involve sensitive user context.
+
+Mitigation: Avoid providing sensitive input unless it is necessary for the workflow and appropriate for the DeepVista account being used.
+
+Risk: The skill installs the DeepVista CLI package without pinning a package version.
+
+Mitigation: Install and run the CLI in a restricted environment, and pin or review the package version through local dependency controls when possible.
+
+## Reference(s):
+
+- [DeepVista CLI Homepage](https://cli.deepvista.ai)
+- [ClawHub Skill Page](https://clawhub.ai/jingconan/skills/deepvista-recipe)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and DeepVista CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recipe run output streams as NDJSON from the DeepVista CLI.]
+
+## Skill Version(s):
+
+0.1.0-alpha.21 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

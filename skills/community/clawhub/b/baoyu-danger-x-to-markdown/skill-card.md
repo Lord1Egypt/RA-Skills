@@ -1,44 +1,59 @@
-## Description: <br>
-Converts X (Twitter) tweets and articles to markdown with YAML front matter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts X (Twitter) tweets, threads, and articles to Markdown with YAML front matter using a disclosed reverse-engineered API flow that requires user consent.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-Developers, researchers, and content archivists use this skill to convert X posts, threads, and articles into local Markdown files with front matter. It can also optionally localize referenced media when the user chooses to download it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to an X session and may use or store sensitive X authentication cookies. <br>
-Mitigation: Prefer X_AUTH_TOKEN and X_CT0 environment variables, review or delete the local cookies cache after use, and avoid running the skill in shared or sensitive workspaces. <br>
-Risk: The skill uses a reverse-engineered X API that may break or trigger account restrictions if X changes behavior or policy. <br>
-Mitigation: Require explicit user consent before conversion and stop when the user declines the reverse-engineered API disclaimer. <br>
-Risk: Optional media localization downloads remote image or video files into the workspace. <br>
-Mitigation: Download media only when expected, keep the ask-each-time preference for normal use, and review downloaded files before sharing or committing output. <br>
+## Use Case:
 
+Developers and agent users use this skill to save X posts, threads, and articles as local Markdown files for review, archiving, or downstream writing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimliu/baoyu-danger-x-to-markdown) <br>
-- [Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-danger-x-to-markdown) <br>
-- [First-time setup reference](references/config/first-time-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files with YAML front matter, optional JSON command output, and optional downloaded media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are organized under an X-to-Markdown directory by account and content identifier unless the user supplies an output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.117.3 (source: frontmatter and server release metadata) <br>
+Risk: The skill handles live X session cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated X account or Chrome profile, avoid shared or synced cookie storage, and rotate or revoke X sessions after use.
+
+Risk: Media downloads can fetch files from content the user did not author.
+
+Mitigation: Avoid --download-media for untrusted content until URL allowlisting, download limits, and safer cookie storage are added.
+
+Risk: The converter uses a reverse-engineered X API rather than an official API.
+
+Mitigation: Require the documented consent flow before conversion and warn users that the API may break or affect account access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimliu/skills/baoyu-danger-x-to-markdown)
+- [Baoyu skills homepage](https://github.com/JimLiu/baoyu-skills#baoyu-danger-x-to-markdown)
+- [First-time setup reference](references/config/first-time-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, JSON, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown files with YAML front matter, optional JSON status output, and shell commands for running the converter.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can optionally download referenced media to local imgs/ and videos/ directories and rewrite Markdown links.]
+
+## Skill Version(s):
+
+1.117.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

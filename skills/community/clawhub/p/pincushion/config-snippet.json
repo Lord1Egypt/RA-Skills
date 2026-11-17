@@ -1,0 +1,16 @@
+{
+  "mcp": {
+    "servers": {
+      "pincushion": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "pincushion-mcp",
+          "--project-dir",
+          "/path/to/your/project",
+          "--cloud-sync"
+        ]
+      }
+    }
+  }
+}

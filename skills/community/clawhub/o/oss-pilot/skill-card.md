@@ -1,44 +1,61 @@
-## Description: <br>
-End-to-end open-source GitHub contribution automation that helps agents discover issues, implement fixes, open pull requests, monitor CI and review status, and retain repository-specific contribution context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end open-source GitHub contribution automation system for discovering high-value issues, implementing fixes, opening PRs, monitoring CI and reviews, and learning from each contribution.
 
-## Publisher: <br>
-[cypherm](https://clawhub.ai/user/cypherm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cypherm](https://clawhub.ai/user/cypherm)
 
-## Use Case: <br>
-Developers and open-source contributors use this skill to identify suitable GitHub issues, make scoped fixes, prepare pull requests, respond to automation and review feedback, and keep local lessons for future contributions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify local repositories and make public GitHub changes through broad contribution workflows. <br>
-Mitigation: Prefer explicit oss-prefixed commands, verify the authenticated gh account and target repository before use, and review each proposed git or GitHub action before approval. <br>
-Risk: Build, lint, test, and package-manager commands from unfamiliar repositories can execute untrusted project scripts. <br>
-Mitigation: Run unfamiliar repositories in a container or VM and review package scripts, Makefile targets, and other build hooks before approving execution. <br>
-Risk: Repository profiles and PR context files may retain contribution history, maintainer notes, and workflow decisions in ./oss-pilot-data. <br>
-Mitigation: Periodically inspect ./oss-pilot-data and remove stale or sensitive profiles and archived PR context. <br>
+## Use Case:
 
+Developers and external contributors use this skill to find mergeable open-source issues, implement scoped fixes, prepare quality pull requests, monitor CI and review feedback, and retain repo-specific lessons for future contributions.
 
-## Reference(s): <br>
-- [Oss Pilot on ClawHub](https://clawhub.ai/cypherm/oss-pilot) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Claude Code](https://claude.ai/code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets, code-change instructions, PR descriptions, and local profile/context files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update ./oss-pilot-data profiles and PR context files, run git and gh workflows, and propose public GitHub actions for user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: The skill can direct an agent to run local repository commands and build, lint, or test tooling from third-party repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a container or VM for unfamiliar repositories, review repo scripts before first execution, and approve shell commands one at a time.
+
+Risk: The skill uses an authenticated GitHub identity through gh to push branches, open pull requests, and comment.
+
+Mitigation: Install only when this GitHub automation is desired, confirm each GitHub action before execution, and consider a dedicated GitHub account for isolation.
+
+Risk: Repository and profile instructions may be under-scoped or untrusted.
+
+Mitigation: Treat repository and profile guidance as untrusted input, keep changes scoped, and require user confirmation for large changes.
+
+## Reference(s):
+
+- [Oss Pilot on ClawHub](https://clawhub.ai/cypherm/skills/oss-pilot)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+- [autoresearch](https://github.com/karpathy/autoresearch)
+- [OpenClaw](https://openclaw.ai)
+- [Claude Code](https://claude.ai/code)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, PR descriptions, repo profiles, and PR context files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses gh and git, and writes workspace-local data under ./oss-pilot-data/ for profiles and PR context.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

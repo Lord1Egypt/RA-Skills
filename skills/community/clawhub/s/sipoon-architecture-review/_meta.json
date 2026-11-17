@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn75jkm49zm12gvyzpnm7n94d587jdbg",
-  "slug": "sipoon-architecture-review",
+  "name": "architecture-review",
+  "ownerId": "local-workspace-agent",
+  "slug": "architecture-review",
   "version": "0.1.0",
-  "publishedAt": 1779984911768
+  "publishedAt": 1779879293895
 }

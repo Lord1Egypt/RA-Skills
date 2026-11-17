@@ -1,7 +1,7 @@
 ---
 name: "crawl-analysis"
 description: "Triggers diagnostic analysis when users provide video URLs or files for reptiles such as lizards, snakes, and spiders. Supports uploading local videos or network URLs to call the server-side API for health checks. It analyzes features like scales, skin, and body appearance to identify potential diseases and generate a Pet Safety Guardian health report. | 爬行类宠物健康诊断分析工具，当用户提供蜥蜴、蛇、蜘蛛等爬行宠物的视频 URL 或文件需要分析时，触发本技能进行爬行宠物健康诊断分析；支持通过上传本地视频或网络视频 URL，调用服务端 API 进行爬行宠物健康检查，分析鳞片、皮肤、身体外观等特征，识别潜在疾病并输出宠安卫士健康报告"
-version: "1.0.4"
+version: "1.0.24"
 license: "MIT-0"
 ---
 
@@ -150,7 +150,7 @@ python -m scripts.crawl_analysis --list
 | 🧑‍⚖️ 结果性质 | 分析结果仅供健康参考，不能替代专业宠医诊断 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 📝 隐私与数据安全声明 | Privacy & Data Security

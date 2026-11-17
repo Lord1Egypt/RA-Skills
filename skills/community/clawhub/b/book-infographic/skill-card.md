@@ -1,41 +1,61 @@
-## Description: <br>
-Book Infographic helps agents parse PDF books, extract core concepts and chapter summaries, and produce editable HTML or Markdown infographics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured knowledge from PDF books and helps generate editable HTML or Markdown infographics for concepts, chapter summaries, timelines, comparisons, flows, and charts.
 
-## Publisher: <br>
-[luemery](https://clawhub.ai/user/luemery) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luemery](https://clawhub.ai/user/luemery)
 
-## Use Case: <br>
-Developers, researchers, and content teams use this skill to turn a supplied PDF book into structured summaries, concept maps, chapter overviews, and editable infographic files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF contents may be extracted into local JSON or HTML output files. <br>
-Mitigation: Use controlled output paths, avoid confidential PDFs unless appropriate, and delete generated files when they are no longer needed. <br>
-Risk: Generated HTML may load ECharts from a third-party CDN. <br>
-Mitigation: For sensitive or offline use, replace the CDN script with a local pinned ECharts copy before opening the generated HTML. <br>
+## Use Case:
 
+External users and developers can use this skill to turn PDF books into structured summaries and editable visual aids for study, research, teaching, or content analysis.
 
-## Reference(s): <br>
-- [Infographic editing guide](references/infographic-guide.md) <br>
-- [Book Infographic ClawHub page](https://clawhub.ai/luemery/book-infographic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON extraction data plus editable HTML or Markdown infographic content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSON and HTML output files from user-provided PDFs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML may run remote JavaScript and include PDF-derived text in active HTML or JavaScript contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open generated HTML locally, escape or sanitize PDF-derived text, and serialize chart data safely before sharing.
+
+Risk: Processing sensitive or untrusted PDFs may expose document contents or unsafe generated output.
+
+Mitigation: Review the skill before use with sensitive documents and avoid processing untrusted PDFs unless output escaping is verified.
+
+Risk: The HTML template loads ECharts from a public CDN.
+
+Mitigation: Vendor ECharts locally or add integrity and content-security controls before distributing generated infographics.
+
+## Reference(s):
+
+- [Book Infographic ClawHub Page](https://clawhub.ai/luemery/skills/book-infographic)
+- [Infographic Guide](references/infographic-guide.md)
+- [ECharts Documentation](https://echarts.apache.org/zh/index.html)
+- [Chart.js Documentation](https://www.chartjs.org/docs/)
+- [D3.js Documentation](https://d3js.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON snippets, shell commands, and editable HTML or Markdown infographic output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce intermediate PDF extraction JSON and editable infographic files; generated HTML should be reviewed before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

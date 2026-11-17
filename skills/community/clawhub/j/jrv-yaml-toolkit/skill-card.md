@@ -1,39 +1,52 @@
-## Description: <br>
-Full-featured YAML toolkit for validating, formatting, converting, merging, and querying YAML files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-featured YAML toolkit for validating, formatting, converting, merging, and querying YAML files. Supports YAML-to-JSON, JSON-to-YAML, schema validation, path queries, and multi-document YAML.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to validate, format, convert, query, patch, merge, lint, and inspect YAML or JSON configuration files in local development, DevOps, CI/CD, data pipeline, and documentation workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The helper can write output to a user-specified path, which could overwrite important configuration files if used carelessly.
+
+Mitigation: Review output paths before using --output, write to a temporary file first for important configurations, and compare changes before replacing originals.
+
+Risk: Full multi-document YAML handling is not supported across every command, even though validation can read multiple documents.
+
+Mitigation: Use multi-document YAML support only for validation unless each document is split or the transformed output is manually reviewed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to validate, format, convert, query, patch, merge, lint, and minify YAML and JSON configuration files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The utility can write transformed output to a file path supplied with --output. <br>
-Mitigation: Use --output only with paths intended for creation or replacement, preferably a new file, and review diffs before using the result in production. <br>
-Risk: The utility depends on PyYAML being available in the Python environment. <br>
-Mitigation: Install PyYAML from a trusted Python environment if it is not already available. <br>
+**Output Format:** [Markdown guidance with bash examples, plus YAML, JSON, and plain-text command output from the helper script]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May write generated YAML or JSON to stdout or to a user-specified output file.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file-oriented output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled command-line utility writes transformed YAML or JSON to stdout by default and can write to a specified output file.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

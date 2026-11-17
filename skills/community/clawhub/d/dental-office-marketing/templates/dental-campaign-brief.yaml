@@ -1,0 +1,36 @@
+# Dental Office Marketing Copy - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+practice:
+  name: ""
+  city: ""
+  state: ""
+  specialties:
+    - ""
+audience:
+  primary: ""
+  patient_question: ""
+services:
+  - name: ""
+    fee: ""
+    financing_available: false
+    claims_approved:
+      - ""
+claim_evidence:
+  - claim: ""
+    source: ""
+    clinician_approved: false
+testimonials:
+  - quote: ""
+    source: ""
+    typical_results: false
+    disclosure: ""
+    release_on_file: false
+before_after:
+  included: false
+  typical_results_statement: ""
+channels:
+  - ""
+publish_date: ""
+approval:
+  dentist: ""
+  practice_manager: ""

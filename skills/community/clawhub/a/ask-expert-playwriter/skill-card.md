@@ -1,40 +1,49 @@
-## Description: <br>
-Uses Playwriter to control a user's logged-in Chrome browser and ask AI assistants such as Gemini for expert advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill uses Playwriter to control a user-signed-in Chrome browser and ask AI assistants such as Gemini for expert advice.
 
-## Publisher: <br>
-[13801201404-sys](https://clawhub.ai/user/13801201404-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13801201404-sys](https://clawhub.ai/user/13801201404-sys)
 
-## Use Case: <br>
-Users and agents use this skill when an AI website requires an already logged-in browser session. It provides Playwriter steps for opening Chrome, creating a session, navigating to a target site, submitting a question, and retrieving the response text or a screenshot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation against logged-in AI websites can expose personal or work account context. <br>
-Mitigation: Use a dedicated browser profile or low-risk account, avoid sensitive data, and clean up sessions and screenshots after use. <br>
-Risk: The security scan notes risky support for bot-detection bypass and under-scoped browser automation. <br>
-Mitigation: Review carefully before installing, verify the Playwriter package and extension, and do not use the skill to bypass anti-bot controls or site rules. <br>
+## Use Case:
 
+Users and agents can use this skill to connect to an already logged-in Chrome session, send questions to browser-based AI assistants, and retrieve the resulting advice. It is most relevant when the target assistant requires an existing authenticated browser session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/13801201404-sys/ask-expert-playwriter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash commands and Playwriter JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser response text or screenshots through Playwriter commands; no fixed output schema.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill attaches automation to a logged-in Chrome session with broad browser scope, which can expose private pages or account actions if used carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate browser profile or low-risk account, confirm the target URL and prompt before sending, avoid sensitive pages, and delete screenshots that may contain private data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/13801201404-sys/skills/ask-expert-playwriter)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with bash and JavaScript command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides browser automation steps for Playwriter sessions and Chrome extension setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

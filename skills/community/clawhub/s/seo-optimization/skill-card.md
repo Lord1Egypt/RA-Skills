@@ -1,40 +1,53 @@
-## Description: <br>
-提供SEO优化的可落地指南与SOP。在开展SEO优化相关工作时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供SEO优化的可落地指南与SOP。在开展SEO优化相关工作时调用。
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External site owners, marketers, and SEO operators use this skill to plan and review technical SEO, content strategy, off-site optimization, monitoring, and compliance work for organic search growth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying SEO recommendations directly to a live site can break redirects, robots.txt, sitemap behavior, structured data, or indexing. <br>
-Mitigation: Review and test proposed technical SEO changes in a controlled environment before production deployment. <br>
-Risk: Marketing and SEO copy can create compliance exposure if it includes unsupported claims or violates advertising rules. <br>
-Mitigation: Have qualified reviewers check claims and jurisdiction-specific advertising-law requirements before publication. <br>
+## Use Case:
 
+External SEO practitioners, content teams, and site operators use this skill to plan technical SEO, content strategy, off-site optimization, monitoring, and compliance checklists for organic search visibility.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/seo-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SEO SOPs, implementation checklists, monitoring recommendations, and compliance reminders; no executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: SEO platform guidance and advertising compliance rules can change or vary by jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current search-engine webmaster guidance, platform rules, and applicable advertising law before relying on recommendations operationally.
+
+Risk: Operational SEO decisions based on generic guidance can produce misleading priorities for a specific site.
+
+Mitigation: Treat outputs as reference guidance and validate recommendations against site analytics, indexing data, and human SEO review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/seo-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, credential use, persistence, or system-level authority is reported in security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

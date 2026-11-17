@@ -1,39 +1,53 @@
-## Description: <br>
-Generates Russian male voice audio using a local ComfyUI Qwen3 TTS workflow and saves the result as an MP3 for voice messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Russian male voice audio using ComfyUI with the Qwen3 TTS node and save it as an MP3 voice message.
 
-## Publisher: <br>
-[Onimka](https://clawhub.ai/user/Onimka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[onimka](https://clawhub.ai/user/onimka)
 
-## Use Case: <br>
-Developers and end users with a configured local Windows ComfyUI setup use this skill to turn intended Russian text into male voice MP3 audio and send it as a voice message. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill launches and uses a local Windows ComfyUI setup, including a shortcut, custom node, model, localhost service, and output folder. <br>
-Mitigation: Install only when that local setup is intended and trusted; verify the shortcut, custom node, model, localhost service, and output folder before use. <br>
-Risk: The skill generates and sends audio from supplied text. <br>
-Mitigation: Generate and send audio only from text the user intended to convert into a voice message. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Onimka/free-voice) <br>
+## Use Case:
 
+Developers and ComfyUI users use this skill to generate Russian male voice audio from text through a local ComfyUI workflow and deliver the resulting MP3 as a voice message.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown with inline shell command and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates MP3 audio through a trusted local ComfyUI service and sends the saved file as a voice message.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow sends prompt text to a local ComfyUI API and writes generated audio to a configured Windows output folder.
+
+Mitigation: Use it only with the intended local ComfyUI setup, and review or change the endpoint and output path before running in a different environment.
+
+Risk: The artifact assumes a Russian male voice configuration and specific ComfyUI node, model, and file paths.
+
+Mitigation: Confirm the required ComfyUI plugin, Qwen3 model, language, and save directory are installed and appropriate for the target use case.
+
+## Reference(s):
+
+- [Free voice from Comfy UI + Qwen3 TTS](https://clawhub.ai/onimka/skills/free-voice)
+- [Publisher profile: onimka](https://clawhub.ai/user/onimka)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local ComfyUI requests and saves generated MP3 audio to the configured output folder.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

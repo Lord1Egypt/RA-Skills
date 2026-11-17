@@ -1,41 +1,58 @@
-## Description: <br>
-Provides A-share portfolio diagnosis for investors by using Tushare-driven market and historical data to assess volatility, beta, Sharpe ratio, maximum drawdown, position mix, risks, and optimization suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portfolio Diagnosis (Public) forwards Chinese A-share portfolio holdings to a remote Prana skill that generates portfolio risk analysis using Tushare-driven metrics such as volatility, beta, Sharpe ratio, and maximum drawdown.
 
-## Publisher: <br>
-[super-max21](https://clawhub.ai/user/super-max21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[super-max21](https://clawhub.ai/user/super-max21)
 
-## Use Case: <br>
-External A-share investors and agents assisting them use the skill to turn holdings inputs into quantitative portfolio risk diagnostics, risk warnings, and optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio holdings, cost basis, positions, and related prompts are sent to the configured Prana service. <br>
-Mitigation: Install only when that data sharing is acceptable for the user's privacy and compliance context; redact sensitive holdings when needed. <br>
-Risk: Prana API credentials may be stored in config/api_key files. <br>
-Mitigation: Use a dedicated or revocable API key and keep config/api_key files out of public repositories. <br>
+## Use Case:
 
+External users and agents use this skill to submit portfolio holdings for Chinese A-share risk diagnosis and receive a professional analysis report with quantitative indicators, charts, risk notes, and optimization suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/super-max21/portfolio-diagnosis-public) <br>
-- [Publisher profile](https://clawhub.ai/user/super-max21) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or text portfolio diagnosis report with quantitative risk metrics and chart-oriented analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured Prana credentials; portfolio prompts are sent to the configured Prana service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: Portfolio prompts and reusable Prana API credentials can be sent to a caller-controlled API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted Prana endpoint and do not set NEXT_PUBLIC_URL or --base-url from untrusted instructions.
+
+Risk: Financial prompts may include sensitive brokerage, account, or portfolio details.
+
+Mitigation: Avoid including real brokerage or account secrets in prompts; rotate the Prana key if it may have been sent to the wrong server.
+
+Risk: The server quality signal quarantines this release for moderation review.
+
+Mitigation: Review the package and security guidance before installing or listing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/super-max21/skills/portfolio-diagnosis-public)
+- [Publisher profile](https://clawhub.ai/user/super-max21)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown or text analysis report returned through the Prana wrapper client]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include portfolio scoring, holdings tables, quantitative risk metrics, charts, risk prompts, and optimization suggestions.]
+
+## Skill Version(s):
+
+5.0.0 (source: server release evidence and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-小Z的元认知置信度检测模块会评估回答置信度，并在低置信度回答前添加不确定标记。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI元认知置信度追踪器 checks an agent answer for confidence using hedging detection and a MiniMax TRUE/FALSE consistency check, then advises adding an uncertainty marker when confidence is low.
 
-## Publisher: <br>
-[freak30](https://clawhub.ai/user/freak30) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freak30](https://clawhub.ai/user/freak30)
 
-## Use Case: <br>
-Developers and agent builders can use this skill to add a lightweight confidence check that flags low-confidence answers before they are sent. It is intended for uncertainty signaling around generated responses, not for proving answer correctness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Questions and generated answers can be sent to MiniMax through the local `mmx` CLI using the user's API key. <br>
-Mitigation: Use only with conversations that are acceptable to send to MiniMax, and disable or review the checker for confidential chats. <br>
-Risk: The artifact privacy section under-discloses the question data sent during consistency checks. <br>
-Mitigation: Document the CLI, credential, and data-sharing behavior clearly before deployment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add confidence-checking behavior to a conversational agent, especially when they want low-confidence answers flagged before a response is sent.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/freak30/ai-self-awareness-tracker) <br>
-- [UQLM PTrueScorer project](https://github.com/cvs-health/uqlm) <br>
-- [arXiv:2602.17431](https://arxiv.org/abs/2602.17431) <br>
-- [arXiv:2604.13068](https://arxiv.org/abs/2604.13068) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [JSON and text guidance from a Python confidence-checking helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May add an uncertainty marker when confidence is below the configured threshold.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Question and answer content can be sent to an external MiniMax model even though the skill documentation says question context is not uploaded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the external data flow, review prompts for private code, credentials, business data, or personal information before use, and minimize transmitted content.
+
+Risk: The checker uses a local API key and the local mmx command, which may inherit broader environment context than intended.
+
+Mitigation: Run it in a constrained environment with only the required MiniMax credential and review command execution before deployment.
+
+Risk: The weekly research behavior described in the skill could become recurring work without explicit user direction.
+
+Mitigation: Require user confirmation before recurring research or reporting tasks and document the expected cadence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freak30/skills/ai-self-awareness-tracker)
+- [UQLM project reference](https://github.com/cvs-health/uqlm)
+- [arXiv:2602.17431](https://arxiv.org/abs/2602.17431)
+- [arXiv:2604.13068](https://arxiv.org/abs/2604.13068)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and JSON command-line output from the bundled Python checker]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call an external MiniMax model and may recommend prepending an uncertainty marker to an answer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

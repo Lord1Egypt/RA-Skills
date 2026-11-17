@@ -1,6 +1,6 @@
 ---
 name: aios-transfer-file
-description: 通过兼容 AWS S3 的 SDK 为 OpenClaw 和 AIOS agent 处理文件传输。当 agent 收到 `file_input://...` URI、需要把输入文件下载到工作区，或需要把本地文件上传后以 `file_output://...` URI 返回给用户时，必须使用这个 skill。不要使用 `aws` CLI 或任何外部 S3 客户端程序完成这些传输。
+description: 通过兼容 AWS S3 的 SDK 为 OpenClaw 和 AIOS agent 处理文件传输。当 agent 收到 `file_input://...` URI、需要按当前 `senderId` 把输入文件下载到工作区，或需要把当前 `senderId` 目录内的本地文件上传后以 `file_output://...` URI 返回给用户时，必须使用这个 skill。不要使用 `aws` CLI 或任何外部 S3 客户端程序完成这些传输。
 ---
 
 # AIOS 文件传输
@@ -9,14 +9,24 @@ description: 通过兼容 AWS S3 的 SDK 为 OpenClaw 和 AIOS agent 处理文�
 
 在 OpenClaw 中，所有文件和图片传输，包括接受用户发来的文件，和给用户发送文件，都必须使用兼容 AWS S3 的 SDK。这适用于附件、`file_input://` 消息，以及任何需要把文件返回给用户的场景。
 
+所有本地文件必须按当前通道提供的 `senderId` 隔离。`senderId` 是 workspace 文件目录的唯一隔离标识；`topic_id` 只用于业务系统 SessionId，不得替代 `senderId` 作为文件目录。
+
+当前工作区内的目录结构固定为：
+
+- `<senderId>/upload`：S3 或通道传入的文件，例如 `file_input://...` 下载结果。
+- `<senderId>/download`：OpenClaw 通过互联网、第三方系统、业务应用等方式下载得到的文件。
+- `<senderId>/generated`：AI 自己生成、转换、分析、渲染或准备返回给用户的文件。
+
 ## 不可违反的规则
 
 - 始终使用 S3 SDK。不要调用 `aws`、`s3cmd`、`mc` 或任何其他外部客户端程序。
 - 本项目统一使用 TypeScript 和 JavaScript。不要为这个 skill 添加 Python 脚本或基于 Python 的传输流程。
 - 在处理任何 `file_input://...` URI 之前，或在发送任何本地文件给用户之前，先触发这个 skill。
 - 传输操作优先使用内置脚本 `scripts/transfer_s3.mjs`，不要在对话中临时写新的传输脚本。
-- 如果工作区中还没有 `file_input` 和 `file_output` 目录，使用前先创建。
-- 下载和上传都必须限制在工作区内进行。
+- 每次运行脚本都必须显式传入当前通道的 `--sender-id <senderId>`；如果无法确认 `senderId`，停止文件传输，不得用 `topic_id`、用户名或推测值替代。
+- 如果工作区中还没有 `<senderId>/upload`、`<senderId>/download`、`<senderId>/generated` 目录，使用前先创建当前需要的目录。
+- 下载和上传的本地文件都必须限制在当前工作区的 `<senderId>` 目录内进行。
+- 禁止读取、查询、写入、上传或暴露其他 `senderId` 目录中的文件。
 - 在 SDK 上传成功之前，不要声称文件已经发送完成。
 - 当你需要返回一个可下载文件时，最终回复必须是单独一条 `file_output://...` 消息，不能附带其他文字。
 
@@ -51,17 +61,17 @@ description: 通过兼容 AWS S3 的 SDK 为 OpenClaw 和 AIOS agent 处理文�
 优先使用内置 JavaScript 工具：
 
 ```bash
-node scripts/transfer_s3.mjs download-uri --uri "file_input://bucket/path/to/file.bin" --workspace .
-node scripts/transfer_s3.mjs upload-file --source "/abs/path/to/file.bin" --workspace .
+node scripts/transfer_s3.mjs download-uri --uri "file_input://bucket/path/to/file.bin" --workspace . --sender-id "<senderId>"
+node scripts/transfer_s3.mjs upload-file --source "/abs/path/to/file.bin" --workspace . --sender-id "<senderId>"
 ```
 
 内置脚本的行为：
 
 - 使用 `@aws-sdk/client-s3` 和上面的 AIOS S3 环境变量。
 - 与 `aios-agent-management-console` 保持同样风格：ESM、动态导入本地安装的包、显式构造 `S3Client`、显式传入凭证，并且 `AIOS_S3_FORCE_PATH_STYLE` 默认取 `true`。
-- 自动创建 `file_input` 和 `file_output` 目录。
-- 把 `file_input://...` URI 下载到 `file_input`。
-- 把待发送文件复制到 `file_output`，重命名为要求的时间戳前缀格式，并上传到发件箱 bucket 根目录。
+- 自动创建当前 `senderId` 下需要的 `upload` 或 `generated` 目录。
+- 把 `file_input://...` URI 下载到 `<senderId>/upload`。
+- 把待发送文件复制到 `<senderId>/generated`，重命名为要求的时间戳前缀格式，并上传到发件箱 bucket 根目录。
 - 输出描述传输结果的 JSON。
 - 支持 `--uri-only`，用于最终上传回复步骤。
 
@@ -92,7 +102,7 @@ node scripts/transfer_s3.mjs upload-file --source "/abs/path/to/file.bin" --work
    - bucket: `bname`
    - key: `path/to/fname.bin`
 3. 在下载目标元数据中保留完整 key。识别远端对象时，不要把它压缩成只有 basename。
-4. 把对象下载到工作区的 `file_input` 目录。
+4. 把对象下载到工作区当前 `<senderId>/upload` 目录。
 5. 本地文件名使用原始 basename，但前面加上时间戳前缀，例如 `123456_fname.bin`。
 6. 如果 basename 本身已经带有时间戳前缀，则替换原有前缀，不要再叠加一个。
 7. 下载完成后，把本地绝对路径加入工作上下文，再继续处理用户请求。
@@ -102,6 +112,7 @@ node scripts/transfer_s3.mjs upload-file --source "/abs/path/to/file.bin" --work
 - 下载请求必须以解析得到的 URI bucket 和 key 为准。
 - 你可以把 URI bucket 与 `AIOS_S3_AGENT_INBOX_BUCKET` 做诊断比较，但下载时不要改写 URI bucket。
 - 使用 SDK 流式下载对象，不要通过 shell 调用客户端可执行程序。
+- 下载本地目标必须位于当前 `<senderId>/upload`，不得写入其他 `senderId` 或工作区根目录。
 - 优先调用 `scripts/transfer_s3.mjs download-uri ...`，不要写一次性的 SDK 代码。
 
 ## 发送文件
@@ -110,18 +121,20 @@ node scripts/transfer_s3.mjs upload-file --source "/abs/path/to/file.bin" --work
 
 1. 先用普通 assistant 消息说明文件内容以及用户该如何使用。
 2. 从 `AIOS_S3_AGENT_OUTBOX_BUCKET` 解析发件箱 bucket。
-3. 把文件重命名为带时间戳前缀的格式，例如 `123456_fname.bin`（如果原始 basename 已经有时间戳前缀，则替换原前缀，不要叠加），然后将最终文件名中的所有空格替换为 `_`，最后将该文件移动到工作区的 `file_output` 目录。
-4. 远端目标必须使用发件箱 bucket 根目录，不要额外添加子目录。
-5. 如果发件箱 bucket 不存在，通过 SDK 先创建，再上传。
-6. 使用 SDK 上传复制后的文件。
-7. 上传成功后，再发送第二条回复，内容只能是 `file_output://<bucket>/<new_name>`。不要在同一条消息里同时输出说明性文字和 `file_output://...` URI。
-8. 从工作区的 `file_output` 目录中删除该文件，避免占用空间。
+3. 确认源文件位于当前 `<senderId>` 目录内；不得上传其他 `senderId` 或工作区根目录下的文件。
+4. 把文件重命名为带时间戳前缀的格式，例如 `123456_fname.bin`（如果原始 basename 已经有时间戳前缀，则替换原前缀，不要叠加），然后将最终文件名中的所有空格替换为 `_`，最后将该文件复制到工作区当前 `<senderId>/generated` 目录。
+5. 远端目标必须使用发件箱 bucket 根目录，不要额外添加子目录。
+6. 如果发件箱 bucket 不存在，通过 SDK 先创建，再上传。
+7. 使用 SDK 上传复制后的文件。
+8. 上传成功后，再发送第二条回复，内容只能是 `file_output://<bucket>/<new_name>`。不要在同一条消息里同时输出说明性文字和 `file_output://...` URI。
+9. 从工作区当前 `<senderId>/generated` 目录中删除上传暂存文件，避免占用空间。
 
 实现要求：
 
 - 远端 key 必须始终精确等于 bucket 根目录下的时间戳文件名。
 - 说明性消息和 `file_output://...` 回复不能合并在同一条 assistant 消息里。
 - 在上传成功之前，不要输出 `file_output://...`。
+- 本地源文件和暂存文件必须始终位于当前 `<senderId>` 目录内。
 - 优先调用 `scripts/transfer_s3.mjs upload-file ...`，不要写一次性的 SDK 代码。
 
 ## 文件名规则
@@ -146,6 +159,7 @@ node scripts/transfer_s3.mjs upload-file --source "/abs/path/to/file.bin" --work
 ## 失败处理
 
 - 如果缺少必需的 S3 配置，停止执行，并准确指出缺失的是哪个环境变量。
+- 如果缺少当前通道的 `senderId`，停止执行，并说明无法确认 workspace 文件隔离目录。
 - 如果 URI 格式错误，无法同时提取 bucket 和 key，停止执行，并报告输入格式有问题。
 - 如果下载或上传失败，报告真实失败原因，不要假装传输已经完成。
 - 如果上传失败，不要发送 `file_output://...` URI。

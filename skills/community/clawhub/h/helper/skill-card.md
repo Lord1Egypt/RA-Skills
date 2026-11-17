@@ -1,41 +1,53 @@
-## Description: <br>
-Project configuration management helper for YAML config files. Use when projects need cross-process/cross-file parameter sharing via a centralized config file. Supports automatic project root detection, nested config key management, and waiting mechanism for values set by other processes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project configuration management helper for YAML files that helps agents coordinate cross-process and cross-file parameters through a centralized config file.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers use Pywayne Helper to share YAML-backed configuration values across processes and modules, including nested settings and values that may be waited on by another process. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Shared YAML configuration files may persist sensitive values or be committed accidentally. <br>
-Mitigation: Keep shared configuration files out of version control and avoid storing long-lived secrets in them. <br>
-Risk: Automatic project-root and default filename behavior may place the shared configuration file somewhere unexpected. <br>
-Mitigation: Set the project root or configuration filename explicitly when file location matters. <br>
-Risk: Users may install a package or source that differs from the intended pywayne helper implementation. <br>
-Mitigation: Verify the pywayne package or GitHub source before installing and using the helper. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/helper) <br>
+## Use Case:
 
+Developers and agents use this skill to manage shared YAML configuration values across modules and processes, including nested values that one process can write and another can wait for and read.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with Python examples and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on using pywayne.helper.Helper methods to create, read, wait for, and delete shared YAML configuration values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive values may be written to a shared project-level YAML file.
+
+Mitigation: Do not store API tokens, passwords, private keys, or other secrets in common_info.yaml; use environment variables or a secret store instead.
+
+Risk: The shared YAML file can be created or changed in the project root as part of normal helper use.
+
+Mitigation: Review the config file path and contents before using the helper in shared projects, and keep sensitive runtime data out of source control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyendt/skills/helper)
+- [ClawHub publisher profile](https://clawhub.ai/user/wangyendt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration]
+
+**Output Format:** [Markdown with Python and YAML code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe creating, reading, updating, or deleting shared YAML values in a project-level config file.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata and auto changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

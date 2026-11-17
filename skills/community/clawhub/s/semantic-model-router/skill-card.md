@@ -1,41 +1,52 @@
-## Description: <br>
-Smart LLM Router routes each query to the cheapest capable model, supports 17 models across Anthropic, OpenAI, Google, DeepSeek, and xAI, uses a pre-trained ML classifier, and requires no extra API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart LLM Router routes each query to the cheapest capable model across Anthropic, OpenAI, Google, DeepSeek, and xAI using a local classifier, semantic fallback, and keyword rules.
 
-## Publisher: <br>
-[rayray1218](https://clawhub.ai/user/rayray1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rayray1218](https://clawhub.ai/user/rayray1218)
 
-## Use Case: <br>
-Developers and engineers use this skill to classify prompts into BASIC, BALANCED, or ELITE LLM tiers and select a lower-cost capable model before making model calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Routed prompts may be retained locally in plaintext query history. <br>
-Mitigation: Disable or remove query logging for sensitive workflows, avoid routing secrets or customer data, and clear query_history.json after use. <br>
-Risk: Unpinned dependencies may change behavior or introduce security exposure over time. <br>
-Mitigation: Pin and review dependencies before deployment, especially in environments handling private prompts or internal code. <br>
-Risk: Routing classifications can select a model tier that is too weak or more expensive than intended. <br>
-Mitigation: Review recommendations for high-impact prompts and use the skill's runtime model or tier override controls when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rayray1218/semantic-model-router) <br>
+## Use Case:
 
+Developers and engineers use this skill to route LLM requests into basic, balanced, or elite model tiers and compare expected model cost for a prompt. It can be used from Python code or a CLI workflow when selecting among supported model providers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON-like Python dictionaries, CLI text reports, and Markdown documentation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routing output includes the selected tier, model identifier, confidence, method, cost metrics, and a human-readable report.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Routed prompts may be saved locally in plaintext query history.
+
+Mitigation: Disable or redirect local history before use, document the storage path and deletion process, and avoid routing secrets, proprietary code, customer data, or regulated information.
+
+Risk: Dependency and model artifact retrieval risks are under-disclosed.
+
+Mitigation: Pin and verify dependencies and any retrieved model artifacts before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rayray1218/skills/semantic-model-router)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Python dictionaries, plain text CLI reports, and Markdown examples with Python and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes one prompt at a time and writes local query history by default unless configured otherwise.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

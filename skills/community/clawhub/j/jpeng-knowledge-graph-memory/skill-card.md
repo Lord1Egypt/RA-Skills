@@ -1,40 +1,53 @@
-## Description: <br>
-Builds and maintains a knowledge graph for long-term memory with concept drift detection and temporal reasoning. Use when storing structured knowledge, detecting concept changes over time, or performing temporal queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and maintains a knowledge graph for long-term memory with concept drift detection, temporal reasoning, structured knowledge storage, and time-based queries.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and agents use this skill to store structured long-term memory as concepts and relationships, query related knowledge, detect concept changes over time, and perform temporal reasoning over recorded events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security result is low confidence because the supplied scan summary says the target skill artifact was not available for a full artifact-backed review. <br>
-Mitigation: Confirm the visible instructions and code match the intended behavior before installing, and reject deployments that request unnecessary credentials, broad filesystem access, or automatic background execution. <br>
-Risk: Long-term memory can retain outdated, incorrect, or sensitive information if callers store it without review. <br>
-Mitigation: Review stored concepts and events, apply retention rules for sensitive data, and validate memory-derived answers before using them in user-facing or automated decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to store structured knowledge as concepts and relationships, detect changes in concept histories, and run temporal or relationship queries over in-memory data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-knowledge-graph-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, JSON, Guidance] <br>
-**Output Format:** [JavaScript API responses, serialized JSON graph data, and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces in-process knowledge graph, concept drift, temporal event, and memory management outputs; no external credentials were detected in the supplied evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Caller-provided data can remain in local process memory while the skill is in use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or regulated data unless the host agent has appropriate memory handling, access control, and retention policies.
+
+Risk: Short-term memory eviction may remove the oldest-created entry rather than the least recently used entry.
+
+Mitigation: Configure memory size and consolidation thresholds for the workload, and explicitly recall, consolidate, or forget entries when retention behavior matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-knowledge-graph-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Code, JSON, Guidance]
+
+**Output Format:** [JavaScript objects and JSON-serializable graph, memory, drift, and temporal query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local in-memory state; no network, credential, destructive, or persistence behavior identified in server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,12 +5,12 @@
 # Locate the user's devices.yaml. Honours $HEARTH_CONFIG, then ~/.hearth/devices.yaml,
 # then ./devices.yaml as a last resort.
 hearth_find_config() {
-  if [ -n "$HEARTH_CONFIG" ] && [ -f "$HEARTH_CONFIG" ]; then
-    echo "$HEARTH_CONFIG"
+  if [ -n "${HEARTH_CONFIG:-}" ] && [ -f "${HEARTH_CONFIG}" ]; then
+    echo "${HEARTH_CONFIG}"
     return 0
   fi
-  if [ -f "$HOME/.hearth/devices.yaml" ]; then
-    echo "$HOME/.hearth/devices.yaml"
+  if [ -f "${HOME:-}/.hearth/devices.yaml" ]; then
+    echo "${HOME}/.hearth/devices.yaml"
     return 0
   fi
   if [ -f "./devices.yaml" ]; then
@@ -54,11 +54,11 @@ hearth_list_devices() {
       yq eval '.devices[].name' "$cfg"
       ;;
     python)
-      python3 -c "
-import yaml, sys
-with open('$cfg') as f:
-    d = yaml.safe_load(f)
-for dev in d.get('devices', []):
+      HEARTH_CFG="$cfg" python3 -c "
+import yaml, os, sys
+with open(os.environ['HEARTH_CFG']) as f:
+    d = yaml.safe_load(f) or {}
+for dev in d.get('devices', []) or []:
     print(dev.get('name', ''))
 "
       ;;
@@ -84,14 +84,17 @@ hearth_get_device() {
       yq eval ".devices[] | select(.name == \"$name\") | to_entries | .[] | .key + \"=\" + (.value | tostring)" "$cfg"
       ;;
     python)
-      python3 -c "
-import yaml, sys, json
-with open('$cfg') as f:
-    d = yaml.safe_load(f)
-for dev in d.get('devices', []):
-    if dev.get('name') == '$name':
+      HEARTH_CFG="$cfg" HEARTH_DEV="$name" python3 -c "
+import yaml, os, json
+with open(os.environ['HEARTH_CFG']) as f:
+    d = yaml.safe_load(f) or {}
+target = os.environ['HEARTH_DEV']
+for dev in d.get('devices', []) or []:
+    if dev.get('name') == target:
         for k, v in dev.items():
-            if isinstance(v, (list, dict)):
+            if isinstance(v, bool):
+                print(f'{k}={str(v).lower()}')
+            elif isinstance(v, (list, dict)):
                 print(f'{k}={json.dumps(v)}')
             else:
                 print(f'{k}={v}')
@@ -116,13 +119,41 @@ hearth_get_default() {
       val=$(yq eval ".defaults.$key // \"\"" "$cfg")
       ;;
     python)
-      val=$(python3 -c "
-import yaml
-with open('$cfg') as f:
-    d = yaml.safe_load(f)
-print(d.get('defaults', {}).get('$key', ''))
+      val=$(HEARTH_CFG="$cfg" HEARTH_KEY="$key" python3 -c "
+import yaml, os
+with open(os.environ['HEARTH_CFG']) as f:
+    d = yaml.safe_load(f) or {}
+print((d.get('defaults', {}) or {}).get(os.environ['HEARTH_KEY'], ''))
 ")
       ;;
   esac
-  [ -z "$val" ] || [ "$val" = "null" ] && echo "$fallback" || echo "$val"
+  if [ -z "$val" ] || [ "$val" = "null" ]; then
+    echo "$fallback"
+  else
+    echo "$val"
+  fi
+}
+
+# Read the member list of a named group.
+# Args: config_path group_name
+hearth_get_group() {
+  local cfg="$1"
+  local group="$2"
+  local parser
+  parser=$(hearth_detect_yaml_parser) || return 1
+
+  case "$parser" in
+    yq)
+      yq eval ".groups.${group}[]" "$cfg" 2>/dev/null
+      ;;
+    python)
+      HEARTH_CFG="$cfg" HEARTH_GRP="$group" python3 -c "
+import yaml, os
+with open(os.environ['HEARTH_CFG']) as f:
+    d = yaml.safe_load(f) or {}
+for name in (d.get('groups', {}) or {}).get(os.environ['HEARTH_GRP'], []) or []:
+    print(name)
+"
+      ;;
+  esac
 }

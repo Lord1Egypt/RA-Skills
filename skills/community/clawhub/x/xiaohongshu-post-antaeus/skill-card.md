@@ -1,47 +1,61 @@
-## Description: <br>
-Create and publish Xiaohongshu (RED) notes through API posting, browser automation, or draft generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and publish Xiaohongshu (RED) notes through API posting, browser automation, or draft generation.
 
-## Publisher: <br>
-[antaeus001](https://clawhub.ai/user/antaeus001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antaeus001](https://clawhub.ai/user/antaeus001)
 
-## Use Case: <br>
-External creators, operators, and developers use this skill to prepare Xiaohongshu note content, create drafts, and publish through approved API credentials or personal-account browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser mode can expose logged-in page contents to an external analyzer model. <br>
-Mitigation: Prefer API mode or draft mode where possible; if browser mode is required, use a local or trusted analyzer endpoint and avoid external model keys for sensitive sessions. <br>
-Risk: Browser automation can publish automatically from a persistent Xiaohongshu account session. <br>
-Mitigation: Use a dedicated account, review prepared content before publishing, and protect or delete the persistent browser profile when finished. <br>
-Risk: Debug and step capture can retain screenshots or HTML from sensitive logged-in sessions. <br>
-Mitigation: Avoid debug or step capture on sensitive accounts and delete captured files after review. <br>
+## Use Case:
 
+External users and developers use this skill to prepare and publish Xiaohongshu notes, including title, body, and hashtag drafting, API posting for approved accounts, browser-assisted posting for personal accounts, and draft-only output for manual publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/antaeus001/xiaohongshu-post-antaeus) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/antaeus001) <br>
-- [Xiaohongshu API setup guide](references/api-setup.md) <br>
-- [Xiaohongshu Open Platform](https://open.xiaohongshu.com) <br>
-- [Xiaohongshu Open Platform documentation](https://school.xiaohongshu.com/open) <br>
-- [Xiaohongshu Creator Center](https://creator.xiaohongshu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text drafts, JSON command output, and shell command invocations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports title, body, tags, and 1-9 JPG/PNG images; platform constraints include short titles, bounded body length, content review, and rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: Browser mode can expose authenticated Xiaohongshu page contents and account actions to a model-driven workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer draft-only or API mode where possible; use browser mode only with a local or self-hosted analyzer endpoint and a dedicated browser profile.
+
+Risk: Automated browser publishing can act inside a logged-in personal account and may submit unintended content.
+
+Mitigation: Review the note content and publishing page before final submission, and keep sensitive accounts or clipboard data out of the browser session.
+
+Risk: Debug and step modes can save screenshots or page HTML that may contain sensitive account information.
+
+Mitigation: Avoid debug capture for normal use; if debugging is necessary, inspect and remove saved artifacts after troubleshooting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/antaeus001/skills/xiaohongshu-post-antaeus)
+- [API Setup Guide](references/api-setup.md)
+- [Xiaohongshu Open Platform](https://open.xiaohongshu.com)
+- [Xiaohongshu Open Platform Documentation](https://school.xiaohongshu.com/open)
+- [Xiaohongshu Creator Console](https://creator.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts can emit draft text or JSON responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce API posting results, browser automation status messages, and formatted draft content for manual publishing.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PresendDeliverableInspection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_type",
+    "audience",
+    "context_basis",
+    "verdict",
+    "must_fix",
+    "additional_findings",
+    "finding_overflow",
+    "can_keep",
+    "repair_route",
+    "unverified_items",
+    "confidence"
+  ],
+  "properties": {
+    "artifact_type": {
+      "type": "string",
+      "enum": ["ppt", "word", "pdf", "excel", "memo", "email", "pasted_text", "mixed_package", "unknown"]
+    },
+    "audience": {
+      "type": "string",
+      "minLength": 1
+    },
+    "context_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recipient",
+        "target_action",
+        "deadline",
+        "material_stage",
+        "known_limits",
+        "missing_context",
+        "context_signals",
+        "risk_weighting"
+      ],
+      "properties": {
+        "recipient": {"type": "string"},
+        "target_action": {"type": "string"},
+        "deadline": {"type": "string"},
+        "material_stage": {"type": "string"},
+        "known_limits": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "missing_context": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "context_signals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["field", "value", "source", "impact"],
+            "properties": {
+              "field": {"type": "string"},
+              "value": {"type": "string"},
+              "source": {"type": "string"},
+              "impact": {"type": "string"}
+            }
+          }
+        },
+        "risk_weighting": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["risk_area", "direction", "reason"],
+            "properties": {
+              "risk_area": {"type": "string"},
+              "direction": {
+                "type": "string",
+                "enum": ["up", "down", "neutral"]
+              },
+              "reason": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "deadline": {
+      "type": "string"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["can_send", "send_after_quick_fixes", "hold_before_send", "rework_before_send"]
+    },
+    "must_fix": {
+      "type": "array",
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["location", "error_family", "error_type", "risk", "context_reason", "evidence", "fix"],
+        "properties": {
+          "location": {"type": "string", "minLength": 1},
+          "error_family": {
+            "type": "string",
+            "enum": [
+              "data_evidence",
+              "data_consistency",
+              "reasoning_gap",
+              "audience_action",
+              "privacy_commitment",
+              "format_rendering",
+              "other"
+            ]
+          },
+          "error_type": {
+            "type": "string",
+            "enum": [
+              "source_missing",
+              "source_stale_or_misaligned",
+              "number_conflict",
+              "formula_or_summary_mismatch",
+              "claim_evidence_gap",
+              "decision_gap",
+              "format_rendering_error",
+              "privacy_or_commitment_risk",
+              "version_residue",
+              "audience_mismatch",
+              "other"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["blocker", "must_fix", "polish"],
+            "default": "must_fix"
+          },
+          "risk": {"type": "string", "minLength": 1},
+          "context_reason": {"type": "string", "minLength": 1},
+          "evidence": {"type": "string", "minLength": 1},
+          "fix": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "additional_findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["location", "error_family", "error_type", "risk", "context_reason", "evidence", "fix"],
+        "properties": {
+          "location": {"type": "string", "minLength": 1},
+          "error_family": {
+            "type": "string",
+            "enum": [
+              "data_evidence",
+              "data_consistency",
+              "reasoning_gap",
+              "audience_action",
+              "privacy_commitment",
+              "format_rendering",
+              "other"
+            ]
+          },
+          "error_type": {
+            "type": "string",
+            "enum": [
+              "source_missing",
+              "source_stale_or_misaligned",
+              "number_conflict",
+              "formula_or_summary_mismatch",
+              "claim_evidence_gap",
+              "decision_gap",
+              "format_rendering_error",
+              "privacy_or_commitment_risk",
+              "version_residue",
+              "audience_mismatch",
+              "other"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["blocker", "must_fix", "polish"],
+            "default": "must_fix"
+          },
+          "risk": {"type": "string", "minLength": 1},
+          "context_reason": {"type": "string", "minLength": 1},
+          "evidence": {"type": "string", "minLength": 1},
+          "fix": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "finding_overflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "detected_total",
+        "displayed_total",
+        "omitted_total",
+        "omitted_blocker_count",
+        "omitted_locations",
+        "expand_instruction"
+      ],
+      "properties": {
+        "detected_total": {"type": "integer", "minimum": 0},
+        "displayed_total": {"type": "integer", "minimum": 0, "maximum": 7},
+        "omitted_total": {"type": "integer", "minimum": 0},
+        "omitted_blocker_count": {"type": "integer", "minimum": 0},
+        "omitted_locations": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "expand_instruction": {"type": "string", "minLength": 1}
+      }
+    },
+    "can_keep": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "repair_route": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["timebox", "action"],
+        "properties": {
+          "timebox": {"type": "string", "minLength": 1},
+          "action": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "unverified_items": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"]
+    }
+  }
+}

@@ -1,45 +1,55 @@
-## Description: <br>
-Research upcoming earnings events, analyze historical beat/miss patterns, and estimate post-earnings price reactions using the Finskills API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research upcoming earnings events, analyze historical beat/miss patterns, and estimate post-earnings price reactions using the Finskills API.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External users and developers use this skill to research earnings calendars, per-stock earnings history, estimate revisions, options-implied moves, and pre-earnings setups using Finskills market data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Finskills API key, which is a sensitive credential. <br>
-Mitigation: Store the key only in the required FINSKILLS_API_KEY environment variable and avoid exposing it in prompts, logs, or shared outputs. <br>
-Risk: Earnings dates, market data, estimate revisions, and options prices can be stale, delayed, or incorrect. <br>
-Mitigation: Verify important data against company investor relations pages, broker data, or another market data source before acting on it. <br>
-Risk: Generated earnings setups may be mistaken for investment advice. <br>
-Mitigation: Treat outputs as research support only and make trading or investment decisions through qualified review and independent analysis. <br>
+## Use Case:
 
+External developers, financial analysts, and market researchers use this skill to prepare earnings calendars, per-stock earnings histories, estimate revision summaries, and options-implied move analysis before earnings events.
 
-## Reference(s): <br>
-- [ClawHub earnings-analyst page](https://clawhub.ai/finskills/earnings-analyst) <br>
-- [Finskills earnings-analyst homepage](https://github.com/finskills/earnings-analyst) <br>
-- [Finskills API](https://finskills.net) <br>
-- [Finskills registration](https://finskills.net/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown earnings calendar or per-ticker earnings analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tabular earnings history, estimate revision summaries, options-implied move ranges, recent news signals, and key watch items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Requests may share tickers, date ranges, and earnings-research context with the Finskills API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an API key with only the required access level and avoid sending confidential trading plans or sensitive account information.
+
+Risk: Earnings dates, options-implied moves, and estimate data can be stale, incomplete, or affected by market liquidity.
+
+Mitigation: Verify earnings dates with company investor-relations sources and treat the skill output as research support rather than a sole basis for trading decisions.
+
+## Reference(s):
+
+- [ClawHub earnings-analyst listing](https://clawhub.ai/finskills/skills/earnings-analyst)
+- [Finskills API](https://finskills.net)
+- [Skill homepage](https://github.com/finskills/earnings-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with tables, calculations, and concise narrative analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY; calendar-only workflows can use the free plan, while full per-stock analysis may require Pro API access.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

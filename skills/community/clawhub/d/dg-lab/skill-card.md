@@ -1,43 +1,67 @@
-## Description: <br>
-Control DG-LAB Coyote 3.0 pulse devices through a local WebSocket controller for pairing, strength changes, waveform presets, and emergency stop handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DG-LAB Control helps an agent pair with and locally control a DG-LAB Coyote 3.0 pulse device over WebSocket, including strength changes, waveform presets, custom waveform generation, and emergency stop handling.
 
-## Publisher: <br>
-[YuuLuo](https://clawhub.ai/user/YuuLuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuuluo](https://clawhub.ai/user/yuuluo)
 
-## Use Case: <br>
-External users and developers use this skill when they intentionally want an agent to help operate a DG-LAB Coyote 3.0 device through a localhost controller. It guides environment setup, device pairing, channel confirmation, strength changes, waveform output, and emergency stop actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a physical pulse device, so incorrect setup or unwanted output could create real physical discomfort or injury. <br>
-Mitigation: Install only when intentional, complete the documented safety and channel confirmations before output, start at low strength, keep emergency stop available, and stop services after use. <br>
-Risk: The workflow installs and runs an external relay server dependency. <br>
-Mitigation: Review the relay-server install source before use and keep the control API bound to localhost as described in the security guidance. <br>
+## Use Case:
 
+External users and developers use this skill to set up a local DG-LAB relay, pair a Coyote 3.0 device, and control confirmed channels with strength, waveform, clear, and emergency stop commands. It is intended for local, intentionally paired device sessions with explicit user safety confirmation before any pulse output.
 
-## Reference(s): <br>
-- [Protocol reference](references/protocol.md) <br>
-- [Waveform format reference](references/waveform-format.md) <br>
-- [DG-LAB official relay server](https://github.com/DG-LAB-OPENSOURCE/DG-LAB-OPENSOURCE) <br>
-- [DG-LAB V3 Bluetooth protocol](https://github.com/DG-LAB-OPENSOURCE/DG-LAB-OPENSOURCE/blob/main/coyote/v3/README_V3.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and localhost HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-facing setup and operation instructions; device actions are executed through local commands only after user safety and channel confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill controls a physical electrostimulation device, so unintended strength or waveform commands can create user safety risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after explicit safety confirmation, start at low strength, keep a conservative strength limit, confirm electrode placement and contraindications, and execute emergency stop immediately on discomfort or stop requests.
+
+Risk: The local HTTP control API is unauthenticated, so another process on the same machine could send device-control commands.
+
+Mitigation: Keep the API bound to localhost, use it only on trusted machines, do not expose or forward the port, and prefer a version with API authentication before broader deployment.
+
+Risk: Consent and channel restrictions rely on workflow discipline and local controller behavior rather than a fully authenticated server-side policy.
+
+Mitigation: Confirm paired device, safety consent, and connected A/B channels before output, send commands only to confirmed channels, and prefer server-side consent and channel enforcement.
+
+Risk: Installation depends on a relay repository and Python package dependency that should be trusted for physical-device control.
+
+Mitigation: Install from reviewed sources, keep the relay local and trusted, pin dependencies for repeatable deployment, and validate relay behavior before use.
+
+## Reference(s):
+
+- [DG-LAB Control ClawHub Page](https://clawhub.ai/yuuluo/skills/dg-lab)
+- [DG-LAB WebSocket Protocol Reference](references/protocol.md)
+- [DG-LAB V3 Waveform Data Format](references/waveform-format.md)
+- [DG-LAB Official Relay Repository](https://github.com/DG-LAB-OPENSOURCE/DG-LAB-OPENSOURCE)
+- [DG-LAB socket/v2 Protocol Source](https://github.com/DG-LAB-OPENSOURCE/DG-LAB-OPENSOURCE/blob/main/socket/v2/README.md)
+- [DG-LAB V3 Bluetooth Protocol Source](https://github.com/DG-LAB-OPENSOURCE/DG-LAB-OPENSOURCE/blob/main/coyote/v3/README_V3.md)
+- [DG-LAB Waveform Example Data](https://github.com/DG-LAB-OPENSOURCE/DG-LAB-OPENSOURCE/blob/main/socket/DG_WAVES_V2_V3_simple.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands, HTTP API examples, JSON payloads, and Python waveform snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local control instructions and command payloads for a paired physical device; no model artifact is produced.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

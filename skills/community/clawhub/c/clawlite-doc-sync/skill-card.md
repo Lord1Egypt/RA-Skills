@@ -1,39 +1,54 @@
-## Description: <br>
-Synchronizes post-release project documentation with actual changes by updating README, architecture, contributing, agent instruction, changelog, TODO, and version-related documentation when appropriate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronizes post-release documentation by aligning README, ARCHITECTURE, CONTRIBUTING, CLAUDE.md, CHANGELOG, TODOS, and VERSION-related content with actual repository changes.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers and maintainers use this skill after code changes and before PR merge to keep Markdown documentation aligned with the implementation, changelog wording, TODO status, and version decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can update Markdown documentation and create a documentation commit. <br>
-Mitigation: Run it on a feature branch and review the resulting diff and commit before merging. <br>
-Risk: Documentation updates around security wording, large rewrites, version bumps, and new TODO items can affect project meaning or release expectations. <br>
-Mitigation: Use the skill's stop-and-ask behavior for those decisions and confirm the requested changes before applying them. <br>
+## Use Case:
 
+Developers and maintainers use this skill after code changes and before PR merge to audit Markdown documentation against the branch diff, apply low-risk factual updates, improve changelog wording, and surface risky documentation decisions for review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May edit documentation files and create a scoped documentation commit when changes are needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can update repository documentation and create a documentation commit, which could introduce incorrect or misleading project guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated diff and commit before pushing, especially for reviewers who do not read Chinese comfortably.
+
+Risk: The workflow inspects branch diffs and documentation state, so running it from the wrong branch can produce irrelevant documentation changes.
+
+Mitigation: Run it from the intended feature branch and honor its base-branch precheck before applying edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/x-rayluan/skills/clawlite-doc-sync)
+- [Publisher profile](https://clawhub.ai/user/x-rayluan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown documentation changes with concise text summaries and optional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce repository file edits and a documentation commit when changes are needed; asks before risky narrative changes or version bumps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-A legal intake agent for law firms that is designed to collect potential-client details, flag conflicts and timing concerns, and avoid unauthorized legal advice during initial triage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A high-security legal intake agent for law firms that helps qualify leads while preventing unauthorized legal advice and PHI leaks through ThumbGate rules.
 
-## Publisher: <br>
-[igorganapolsky](https://clawhub.ai/user/igorganapolsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igorganapolsky](https://clawhub.ai/user/igorganapolsky)
 
-## Use Case: <br>
-Law firm intake teams can use this skill to structure first-contact conversations with potential new clients, collect contact and case facts, and prepare conflict, statute-of-limitations, scheduling, and CRM handoff information for attorney review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive potential-client data and CRM credentials without enough privacy, consent, retention, or compliance detail. <br>
-Mitigation: Require lawyer or compliance-owner review before installation, use mock data first, provide explicit privacy notice and consent before collection or CRM transfer, and define retention, redaction, access-control, and audit requirements. <br>
-Risk: Prompt rules alone do not prove HIPAA compliance or prevent unauthorized practice of law. <br>
-Mitigation: Treat the skill as intake support only, require attorney review for legal conclusions, keep jurisdiction-specific disclaimers current, and prevent the agent from giving advice or outcome guarantees. <br>
-Risk: Automated CRM writes could expose or persist incorrect, sensitive, or unauthorized intake data. <br>
-Mitigation: Restrict CRM credentials to least privilege and require human confirmation before any write or transfer to Clio, MyCase, Litify, or similar systems. <br>
+## Use Case:
 
+External law firm teams use this skill to conduct first-contact legal intake, capture lead details, flag conflicts and statute-of-limitations risks, and prepare attorney review without providing legal advice.
 
-## Reference(s): <br>
-- [Setup Guide](artifact/setup-guide.md) <br>
-- [ThumbGate Prevention Rules](artifact/thumbgate-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/igorganapolsky/legal-intake-pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with setup steps, intake flow instructions, and rule descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce intake summaries, disclaimer language, CRM handoff guidance, and safety-rule checks that require human legal and compliance review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill collects, stores, and may share sensitive legal intake data, including PHI or PII.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add an upfront privacy notice, obtain consent before saving or sending intake details to a CRM, and limit collected data to the intake purpose.
+
+Risk: Legal intake records may be retained or accessed beyond the firm's approved process.
+
+Mitigation: Define retention, access controls, and lead database handling before deployment.
+
+Risk: The assistant could be mistaken for legal counsel or provide jurisdictionally inappropriate disclaimers.
+
+Mitigation: Localize the disclaimer for the firm's jurisdiction and require attorney review for conflict checks, legal advice boundaries, and statute-of-limitations flags.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/igorganapolsky/skills/legal-intake-pilot)
+- [Setup Guide](artifact/setup-guide.md)
+- [ThumbGate Prevention Rules](artifact/thumbgate-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Conversational text and Markdown intake summaries with configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include intake summaries, conflict flags, statute alerts, disclaimers, and redacted lead records.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

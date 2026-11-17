@@ -1,39 +1,49 @@
-## Description: <br>
-Complete startup metrics command center for moving from raw data to investor-ready dashboards across startup stages and business models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete startup metrics command center for turning raw startup data into investor-ready dashboards, covering pre-seed through growth-stage models with diagnostic frameworks, benchmarks, and board-ready reporting.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Founders, operators, finance teams, and their agents use this skill to choose stage- and model-appropriate startup metrics, diagnose metric movement, and produce investor or board reporting guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Financial metric guidance can be mistaken for professional financial advice or definitive benchmarks. <br>
-Mitigation: Treat calculations and thresholds as planning estimates; review outputs with qualified finance, legal, or accounting advisors before making material decisions. <br>
-Risk: Startup metrics work may involve sensitive company financial, customer, or fundraising data. <br>
-Mitigation: Avoid pasting confidential data unless the current agent environment is approved for that information; redact or aggregate sensitive inputs when possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-startup-metrics-engine) <br>
+## Use Case:
 
+Founders, operators, finance teams, and their agents use this skill to select stage- and model-specific startup metrics, diagnose metric changes, prepare investor updates, and generate board-ready metric views.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown text with formulas, YAML-style templates, diagnostic checklists, and reporting outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable tools; financial outputs should be treated as planning estimates, not professional financial advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generic quick-command triggers may select this skill for broad metric requests outside the intended startup or SaaS metrics context.
+
+Mitigation: Invoke the skill with explicit startup, SaaS, or business metrics context when selecting it.
+
+## Reference(s):
+
+- [Startup Metrics Command Center on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-startup-metrics-engine)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with formulas, checklists, diagnostic frameworks, templates, and metric recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-facing startup metrics guidance and reporting templates; it does not execute code or access credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

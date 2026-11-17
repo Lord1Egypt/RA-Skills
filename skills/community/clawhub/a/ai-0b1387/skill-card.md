@@ -1,43 +1,56 @@
-## Description: <br>
-从抖音视频学习: AI编程 - AI时代，计算机如何选择方向 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从抖音视频学习: AI编程 - AI时代，计算机如何选择方向。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users and developers can invoke this skill for Chinese-language guidance about AI programming, AI-era computer science direction choices, and related video-derived learning prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger during unrelated AI, MIT, rail, appliance, or other merged-topic conversations. <br>
-Mitigation: Review prompts and narrow trigger terms before deployment so the skill activates only for AI programming guidance. <br>
-Risk: Merged off-topic sections may lead to irrelevant or confusing guidance. <br>
-Mitigation: Review generated responses for topic relevance and remove unrelated source material when maintaining the skill. <br>
+## Use Case:
 
+Developers and learners use this skill for AI-programming study prompts, especially around choosing computer-science directions in the AI era and reviewing AI coding video references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/ai-0b1387) <br>
-- [Bilibili: AI industry and software engineering demand](https://www.bilibili.com/video/BV1QcVi6sEv5) <br>
-- [Bilibili: AI programming and algorithm video](https://www.bilibili.com/video/BV1s4Gi6yEaB) <br>
-- [Bilibili: MIT How To AI Almost Anything](https://www.bilibili.com/video/BV17hLt6SE2P) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no tools, API keys, or shell commands are requested by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill is poorly scoped and contains unrelated merged content, so it may activate outside AI-programming conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and limit use to AI-programming learning prompts that match the intended topic.
+
+Risk: Unrelated transportation, rail, electronics, and product snippets may produce irrelevant guidance under the AI-programming label.
+
+Mitigation: Treat unrelated snippets as contamination and prefer the AI-programming and video-reference sections when using the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/534422530/skills/ai-0b1387)
+- [Bilibili: AI industry change and software engineer demand](https://www.bilibili.com/video/BV1QcVi6sEv5)
+- [Bilibili: Harsha Suryanaraya programming video](https://www.bilibili.com/video/BV1s4Gi6yEaB)
+- [Bilibili: MIT How To Ai (Almost) Anything, Spring 2026](https://www.bilibili.com/video/BV17hLt6SE2P)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and reference lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only skill; no executable payload or environment access indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

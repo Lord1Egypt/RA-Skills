@@ -78,9 +78,9 @@ The demo wizard guides users through:
 The demo uses these example values (not real credentials):
 - **Twilio SID:** AC1234567890abcdef1234567890abcd
 - **Phone:** +15551234567
-- **OpenAI Key:** sk-proj-demo1234567890abcdefghijklmnopqrstuvwxyz
+- **OpenAI Key:** paste-your-openai-api-key
 - **OpenAI Project ID:** proj_demo1234567890abcdef
-- **OpenAI Webhook Secret:** whsec_demo9876543210fedcba
+- **OpenAI Webhook Secret:** paste-your-openai-webhook-secret
 - **Assistant:** Amber
 - **Operator:** John Smith
 - **Organization:** Acme Corp

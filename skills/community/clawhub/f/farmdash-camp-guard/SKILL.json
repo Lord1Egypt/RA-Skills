@@ -1,0 +1,316 @@
+{
+  "name": "FarmDash Camp Guard",
+  "version": "1.1.2",
+  "description": "Use for pre-sign safety: allowance audits, route/health sentinel checks, policy scan of unsigned transactions. Verdicts only; never signs or broadcasts.",
+  "tags": [
+    "defi",
+    "defi-security",
+    "smart-contract-risk",
+    "token-allowance",
+    "approval-revoke",
+    "approval-risk",
+    "transaction-risk-analysis",
+    "transaction-policy",
+    "wallet-security",
+    "risk-sentinel",
+    "pre-transaction-check",
+    "rug-pull",
+    "defi-scams",
+    "scam-protection",
+    "openclaw",
+    "ai-agent",
+    "mcp",
+    "zero-custody",
+    "web3-security",
+    "farmdash"
+  ],
+  "author": "FarmDash Pioneers (@Parmasanandgarlic)",
+  "homepage": "https://www.farmdash.one/agents",
+  "icon": "shield",
+  "tools": [
+    {
+      "name": "audit_allowance_risk",
+      "description": "Use this when a wallet has existing or proposed ERC20 approvals.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "walletAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "allowances": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string"
+                },
+                "spender": {
+                  "type": "string"
+                },
+                "allowance": {
+                  "type": "string"
+                },
+                "requiredAmount": {
+                  "type": "string"
+                },
+                "amountUsd": {
+                  "type": "number"
+                },
+                "spenderVerified": {
+                  "description": "True only after independent verification against the protocol canonical deployment.",
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [
+        "`verdict`: `pass`, `review`, or `halt`.",
+        "`flags`: approval risks such as unlimited allowance, unknown spender, or large dollar exposure.",
+        "`requiresUserConfirmation`: true unless the verdict is clean."
+      ],
+      "category": "risk"
+    },
+    {
+      "name": "simulate_transaction_risk",
+      "description": "Applies transaction policy checks to an unsigned transaction.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "walletAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "transaction": {
+            "type": "object",
+            "properties": {
+              "to": {
+                "type": "string"
+              },
+              "data": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "chainId": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "to",
+              "data"
+            ]
+          },
+          "expectedTransaction": {
+            "type": "object",
+            "properties": {
+              "to": {
+                "type": "string",
+                "pattern": "^0x[a-fA-F0-9]{40}$"
+              },
+              "chainId": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "value": {
+                "type": "string",
+                "pattern": "^[0-9]+$"
+              },
+              "dataHash": {
+                "type": "string",
+                "pattern": "^0x[a-fA-F0-9]{64}$"
+              }
+            },
+            "required": [
+              "to",
+              "chainId",
+              "dataHash"
+            ]
+          }
+        },
+        "required": [
+          "transaction"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [],
+      "category": "risk"
+    },
+    {
+      "name": "run_risk_sentinel",
+      "description": "Analyze compatibility-swap risk using the active provider quote boundary, allowance state, depeg checks, health factors, and positive-net-edge enforcement. x402 is machine-payment/access infrastructure, not a swap provider. Risk analysis does not authorize, broadcast, confirm, or settle a transaction.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "fromChainId": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "toChainId": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          "fromToken": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "description": "ERC-20 token contract address deployed on the corresponding chain. Do not pass a wallet/EOA; the token address and chain ID must match."
+          },
+          "toToken": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "description": "ERC-20 token contract address deployed on the corresponding chain. Do not pass a wallet/EOA; the token address and chain ID must match."
+          },
+          "fromAmount": {
+            "type": "string",
+            "pattern": "^[0-9]+$"
+          },
+          "walletAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "toAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "protocol": {
+            "type": "string",
+            "enum": [
+              "lifi",
+              "relay"
+            ]
+          },
+          "slippage": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 5
+          },
+          "expectedUpsideUsd": {
+            "type": "number"
+          },
+          "protocolFeeUsd": {
+            "type": "number"
+          },
+          "gasUsd": {
+            "type": "number"
+          },
+          "bridgeFeeUsd": {
+            "type": "number"
+          },
+          "riskBufferUsd": {
+            "type": "number"
+          },
+          "enforcePositive": {
+            "type": "boolean"
+          },
+          "healthFactor": {
+            "type": "number"
+          },
+          "liquidationBufferPct": {
+            "type": "number"
+          },
+          "safetyMode": {
+            "type": "string",
+            "enum": [
+              "strict",
+              "balanced"
+            ]
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [],
+      "category": "risk"
+    }
+  ],
+  "operatingRules": [
+    "A critical flag means stop. Do not continue to signing.",
+    "A high flag means present the issue and require explicit user confirmation after remediation.",
+    "Never hide approval risk behind expected APY or point farming upside.",
+    "Never use referral links inside a risk warning.",
+    "Never claim a route is safe because it is popular. Use the returned flags.",
+    "A valid EVM address is not a verified spender. Unknown identity is a risk state, not a pass.",
+    "Prefer exact or narrowly buffered approvals. More than 20% above `requiredAmount` requires review; more than 10x is high risk.",
+    "Compare the final unsigned transaction with an independently captured expected envelope. Any target, chain, value, or calldata-hash mismatch is a halt.",
+    "A `pass` means only that these policy checks found no supplied-data violation. It is never a smart-contract audit or RPC simulation."
+  ],
+  "requiredEnv": {
+    "FARMDASH_API_KEY": {
+      "description": "Optional Bearer token for Pioneer or Syndicate tier. Scout mode can use limited security checks without a key.",
+      "required": false
+    }
+  },
+  "links": {
+    "website": "https://www.farmdash.one/",
+    "agentHub": "https://www.farmdash.one/agents",
+    "canonicalSkill": "https://www.farmdash.one/openclaw-skills/farmdash-camp-guard/SKILL.md",
+    "documentation": "https://www.farmdash.one/docs",
+    "status": "https://www.farmdash.one/api/v1/agent/status",
+    "openApi": "https://www.farmdash.one/agents/openapi.yaml",
+    "mcpDiscovery": "https://www.farmdash.one/.well-known/mcp.json",
+    "fees": "https://www.farmdash.one/fees",
+    "security": "https://www.farmdash.one/security"
+  },
+  "capability_truth": {
+    "spot.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Healthy execution governor, quote provider, RPC and durable receipt store; customer signs and submits."
+    },
+    "spot.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Owner-signed EVM grant, exact simulation/calldata binding, durable budget and customer-local signer authority."
+    },
+    "futures.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Venue account ownership, local action signature, builder approval, risk/research gates and durable order control."
+    },
+    "futures.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls."
+    },
+    "solana.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts."
+    },
+    "solana.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority."
+    },
+    "ERC4337_SERVER_SUBMISSION": {
+      "status": "preparation_only",
+      "prerequisite": "Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration."
+    },
+    "GENERIC_SERVER_INTENT_EXECUTION": {
+      "status": "preparation_only",
+      "prerequisite": "Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier."
+    },
+    "MEE": {
+      "status": "preparation_only",
+      "prerequisite": "Production coordinator and authoritative source/destination receipt verifier."
+    },
+    "ACP": {
+      "status": "deployment_prerequisite",
+      "prerequisite": "AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC."
+    }
+  },
+  "installation_attribution": {
+    "header": "X-FarmDash-Installation-ID",
+    "optional": true,
+    "analytics_only": true,
+    "generation": "locally generated random UUIDv4, stable per installation, shared across skills",
+    "server_storage": "domain-separated salted hash only",
+    "authority": "none; cannot authenticate, grant quota/payment/trial capacity, own wallets, delegate or sign"
+  }
+}

@@ -1,47 +1,61 @@
-## Description: <br>
-Creates WeChat Moments and WeChat public-account marketing copy plus structured image prompts and poster assets from a product or service brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号/朋友圈营销内容智能体。输入产品/服务主题、卖点、讲师信息、配图需求，输出专业文案+结构化配图。
 
-## Publisher: <br>
-[jeffli2002](https://clawhub.ai/user/jeffli2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffli2002](https://clawhub.ai/user/jeffli2002)
 
-## Use Case: <br>
-Marketing operators, founders, and content teams use this skill to gather campaign details, draft concise Chinese WeChat marketing copy, create image-generation prompts, and assemble a WeChat-ready copy-and-poster package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires credentials for image-generation services and may send prompt content to external providers. <br>
-Mitigation: Use dedicated, scoped credentials and avoid entering sensitive business details, private phone numbers, QR codes, or regulated content unless external processing is approved. <br>
-Risk: Callback mode can expose a local service and stores callback payloads on disk. <br>
-Mitigation: Prefer polling; when callbacks are required, bind only to localhost or a protected interface, add authentication, and clean the callback directory after use. <br>
-Risk: Generated files can retain campaign details, contact information, prompt text, and QR-code references. <br>
-Mitigation: Review output directories before sharing or archiving and remove private campaign artifacts that are no longer needed. <br>
+## Use Case:
 
+Marketing operators, creators, and developers use this skill to generate WeChat Moments or official-account marketing copy, image prompts, and poster assets from product, selling-point, pricing, instructor, and QR-code inputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jeffli2002/wechat-post-gpt-image2) <br>
-- [GPT Image-2 prompt index](gpt-image-2-prompt-index.md) <br>
-- [QR code configuration](references/config/qrcode-schema.md) <br>
-- [Copy workflow template](references/workflow/copy-template.md) <br>
-- [Image layout workflow](references/workflow/image-layout.md) <br>
-- [Prompt library referenced by the skill](https://github.com/EvoLinkAI/awesome-gpt-image-2-API-and-Prompts.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, image prompts, shell command examples, configuration snippets, and generated PNG asset paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write campaign files under wechat-post/{topic-slug}/ and may call external image-generation services when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release evidence and package.json) <br>
+Risk: The callback server may be exposed publicly without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer polling-only operation, or bind callbacks to localhost or a protected host with authentication and firewall controls.
+
+Risk: Generated prompts, product details, contact information, QR assets, and image URLs may be sent to third-party image services.
+
+Mitigation: Review input data before submission, avoid sensitive personal or business information, and use a limited API key.
+
+Risk: Downloaded image URLs and generated files may write into local output directories.
+
+Mitigation: Use a dedicated output directory and review downloaded assets before publishing or redistributing them.
+
+## Reference(s):
+
+- [GPT Image-2 Prompt Matching Index](gpt-image-2-prompt-index.md)
+- [QR Code Configuration](references/config/qrcode-schema.md)
+- [Copy Template](references/workflow/copy-template.md)
+- [Image Layout - WeChat Moments Poster](references/workflow/image-layout.md)
+- [Prompt case library](https://github.com/EvoLinkAI/awesome-gpt-image-2-API-and-Prompts.git)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with generated copy, image prompts, file paths, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local output files under wechat-post/{topic-slug}/, including copy.md, image-prompt.md, qrcode_setting.txt, PNG poster assets, and a combined delivery Markdown file.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

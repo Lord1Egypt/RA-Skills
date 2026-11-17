@@ -268,7 +268,7 @@ class TestOutputScanningDLP(unittest.TestCase):
         self.assertEqual(r.severity, Severity.CRITICAL)
 
     def test_aws_key_detected(self):
-        r = self.guard.scan_output("AKIAIOSFODNN7EXAMPLE")
+        r = self.guard.scan_output("REDACTED-SECRET")
         self.assertEqual(r.severity, Severity.CRITICAL)
 
     def test_github_token_detected(self):
@@ -276,7 +276,7 @@ class TestOutputScanningDLP(unittest.TestCase):
         self.assertEqual(r.severity, Severity.CRITICAL)
 
     def test_private_key_detected(self):
-        r = self.guard.scan_output("-----BEGIN RSA PRIVATE KEY-----\ndata\n-----END RSA PRIVATE KEY-----")
+        r = self.guard.scan_output("REDACTED-SECRET")
         self.assertEqual(r.severity, Severity.CRITICAL)
 
     def test_jwt_detected(self):
@@ -284,7 +284,7 @@ class TestOutputScanningDLP(unittest.TestCase):
         self.assertEqual(r.severity, Severity.CRITICAL)
 
     def test_slack_token_detected(self):
-        r = self.guard.scan_output("xoxb-1234567890-abcdef")
+        r = self.guard.scan_output("REDACTED-SECRET")
         self.assertEqual(r.severity, Severity.CRITICAL)
 
     def test_telegram_token_detected(self):
@@ -324,7 +324,7 @@ class TestEnterpriseDLP(unittest.TestCase):
         self.assertNotIn("sk-", r.sanitized_text)
 
     def test_aws_key_redacted(self):
-        r = self.guard.sanitize_output("AKIAIOSFODNN7EXAMPLE")
+        r = self.guard.sanitize_output("REDACTED-SECRET")
         self.assertTrue(r.was_modified)
         self.assertIn("[REDACTED:aws_key]", r.sanitized_text)
 
@@ -335,7 +335,7 @@ class TestEnterpriseDLP(unittest.TestCase):
         self.assertNotIn("CANARY:Enterprise42", r.sanitized_text)
 
     def test_multiple_credentials_all_redacted(self):
-        text = "AWS: AKIAIOSFODNN7EXAMPLE\nSlack: xoxb-1234567890-abcdef\nGH: ghp_" + "b" * 40
+        text = "AWS: REDACTED-SECRET\nSlack: REDACTED-SECRET\nGH: ghp_" + "b" * 40
         r = self.guard.sanitize_output(text)
         self.assertGreaterEqual(r.redaction_count, 3)
         self.assertNotIn("AKIA", r.sanitized_text)

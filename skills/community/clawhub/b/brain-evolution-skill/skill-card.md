@@ -1,40 +1,54 @@
-## Description: <br>
-Brain Evolution Skill describes an agent memory system that reinforces frequent requests, caches useful responses, and forgets low-value memories using brain-inspired patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an agent memory-management pattern inspired by brain evolution principles, using layered reflex, cache, and neural-pathway storage for repeated requests.
 
-## Publisher: <br>
-[king-nan](https://clawhub.ai/user/king-nan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[king-nan](https://clawhub.ai/user/king-nan)
 
-## Use Case: <br>
-Developers and agent builders can use this skill as guidance for adding layered memory, caching, reinforcement, forgetting, status reporting, and command-line management patterns to an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is described as a memory and persistence system, and saved memories, caches, traces, or logs may contain sensitive text. <br>
-Mitigation: Review before installing, avoid recording sensitive inputs, verify any redaction behavior before enabling automatic capture, and regularly inspect or clear the storage location. <br>
-Risk: The security verdict is suspicious because privacy promises are inconsistent. <br>
-Mitigation: Treat privacy behavior as unverified until reviewed against the actual installed files and limit use to non-sensitive data. <br>
+## Use Case:
 
+Developers use this skill to design or operate a local agent memory cache that reinforces frequent responses, expires weaker memories, and provides Python and command-line management patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/king-nan/brain-evolution-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API examples, CLI commands, runtime data file descriptions, configuration parameters, and operational notes for a layered memory system.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Persistent memory may store user prompts, responses, or other sensitive agent interactions locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in, redact secrets and PII before storage, isolate memory per user or session, and provide retention, deletion, disable, and inspection controls.
+
+Risk: The artifact describes privacy controls while server security evidence notes inconsistent privacy claims.
+
+Mitigation: Validate actual storage and filtering behavior before production use, and document what data is stored, where it is stored, and how users can remove it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/king-nan/skills/brain-evolution-skill)
+- [Publisher profile](https://clawhub.ai/user/king-nan)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local persistent memory and cache behavior; review storage settings before use with sensitive data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

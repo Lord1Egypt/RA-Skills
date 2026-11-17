@@ -1,43 +1,61 @@
-## Description: <br>
-Use Chanjing AI creation APIs to submit image or video generation tasks across multiple models, inspect task status, poll async results, and explicitly download generated assets when requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Chanjing AI creation APIs to submit image or video generation tasks across multiple models, inspect task status, poll async results, and explicitly download generated assets when requested.
 
-## Publisher: <br>
-[zuoyuting214](https://clawhub.ai/user/zuoyuting214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyuting214](https://clawhub.ai/user/zuoyuting214)
 
-## Use Case: <br>
-Developers and external users use this skill to submit Chanjing image or video generation jobs, check asynchronous task status, poll for generated result URLs, and save generated assets only when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-lived Chanjing credentials can be sent to an API host selected through CHANJING_API_BASE. <br>
-Mitigation: Keep CHANJING_API_BASE unset for normal use, or set it only to the official Chanjing API or a host you fully control. <br>
-Risk: Several documented command scripts are missing from the artifact, so the release may not work as documented or may require unreviewed files. <br>
-Mitigation: Review the installed package contents before adding credentials and confirm the expected command scripts are present and reviewable. <br>
+## Use Case:
 
+Developers and operators use this skill to submit Chanjing image or video generation jobs, check task history and task status, poll asynchronous results, and download generated media only when explicitly requested.
 
-## Reference(s): <br>
-- [Zyt ai creation on ClawHub](https://clawhub.ai/zuoyuting214/zyt-ai-creation) <br>
-- [Reference](artifact/reference.md) <br>
-- [Examples](artifact/examples.md) <br>
-- [Chanjing Open API Base](https://open-api.chanjing.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, generated result URLs, and optional downloaded asset files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloaded assets are only saved when the user explicitly requests local output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Credentials and cached access tokens are used for Chanjing AI creation APIs and could be exposed if local configuration is mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the Chanjing credentials directory private, use credentials intended for this workflow, and prefer limited-scope or test credentials when evaluating the skill.
+
+Risk: The configurable API base could send credentials or requests to an unsafe endpoint.
+
+Mitigation: Use the default Chanjing HTTPS endpoint unless a trusted Chanjing-controlled endpoint is explicitly required.
+
+Risk: Submitting, listing, and polling generation tasks can consume API quota and reveal task history.
+
+Mitigation: Review requested operations before execution and run them only in accounts where this access is intended.
+
+## Reference(s):
+
+- [Chanjing Open API base](https://open-api.chanjing.cc)
+- [Chanjing Open API login](https://www.chanjing.cc/openapi/login)
+- [Skill reference](artifact/reference.md)
+- [Skill examples](artifact/examples.md)
+- [ClawHub skill page](https://clawhub.ai/zuoyuting214/skills/zyt-ai-creation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return task identifiers, task detail JSON, remote output URLs, or local file paths when downloads are explicitly requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Content Engine helps agents create, adapt, manage, and distribute content across Twitter/X, LinkedIn, WeChat Official Accounts, blogs, Medium, and Obsidian workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+内容引擎 / Content Engine helps agents create, adapt, schedule, publish, and analyze Markdown-native content across Twitter/X, LinkedIn, WeChat Official Account, blogs, Medium, and Obsidian workflows.
 
-## Publisher: <br>
-[hanjing5024064](https://clawhub.ai/user/hanjing5024064) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanjing5024064](https://clawhub.ai/user/hanjing5024064)
 
-## Use Case: <br>
-Content creators, marketers, and content operations teams use this skill to manage drafts, adapt content to platform-specific formats, plan publishing calendars, collect performance metrics, and generate AI image prompts. It is intended for agent-assisted content workflows that may include local storage, Obsidian import/export, and optional platform publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Obsidian and export paths can read or overwrite local files outside the intended content area. <br>
-Mitigation: Use a dedicated vault or publishable-drafts folder, pass only known paths, and review target paths before import, export, or sync actions. <br>
-Risk: Publishing tokens may allow access to external content platforms. <br>
-Mitigation: Store tokens outside source control, use the minimum permissions available, and rotate or revoke tokens when no longer needed. <br>
-Risk: Automated publishing can distribute incomplete, incorrect, or unintended content. <br>
-Mitigation: Preview adapted content and require explicit confirmation before every publish or scheduled publish action. <br>
+## Use Case:
 
+Content creators, operators, and developers use this skill to manage a local content pipeline, adapt drafts to multiple publishing platforms, generate image prompts, plan calendars, and review performance metrics before or after publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanjing5024064/smart-content-engine) <br>
-- [Platform Specifications](artifact/references/platform-specs.md) <br>
-- [WeChat Guide](artifact/references/wechat-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese conversational guidance, Markdown drafts and previews, JSON CLI inputs, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local content records, calendar exports, adapted platform drafts, reports, and AI image prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Obsidian import and export workflows can read or overwrite files outside the intended vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable Obsidian workflows before installation, restrict vault paths, and require explicit confirmation before import, export, sync, or file overwrite actions.
+
+Risk: Publishing, scheduling, deletion, and export actions can affect public channels or local content.
+
+Mitigation: Use least-privilege platform tokens and require a preview plus explicit user confirmation before public publish, schedule, delete, export, or overwrite actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hanjing5024064/skills/smart-content-engine)
+- [Platform Specifications](references/platform-specs.md)
+- [WeChat Guide](references/wechat-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, generated content drafts, platform-specific adaptations, JSON-style action inputs, reports, and local files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses optional platform credentials from environment variables and stores content data locally.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

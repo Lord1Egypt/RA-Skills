@@ -1,39 +1,54 @@
-## Description: <br>
-Generates multidimensional candidate profile labels and ability assessments from uploaded resumes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates multidimensional candidate resume profiles from uploaded resumes, including tags, capability scores, job predictions, highlights, and risks.
 
-## Publisher: <br>
-[51mee-com](https://clawhub.ai/user/51mee-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[51mee-com](https://clawhub.ai/user/51mee-com)
 
-## Use Case: <br>
-Recruiters, HR teams, and hiring workflow builders can use this skill to turn resume content into structured candidate profile data, including skills, education, job history, role and industry predictions, salary estimate, highlights, risks, and stability signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded resumes can contain sensitive personal data. <br>
-Mitigation: Use the skill only with permission to process candidate data, avoid uploading unnecessary identifiers, and consider redacting sensitive fields before analysis. <br>
-Risk: Salary, risk, demographic, and stability predictions may be incomplete or misleading if treated as definitive hiring criteria. <br>
-Mitigation: Treat these outputs as advisory signals and review them with appropriate human, legal, and organizational hiring controls. <br>
+## Use Case:
 
+Recruiters, hiring teams, and talent systems use this skill to analyze uploaded resumes and produce structured candidate profiles for review. The output includes skills, education, job experience, predicted roles and industries, salary estimates, strengths, risks, and stability indicators.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Analysis] <br>
-**Output Format:** [Structured JSON matching ResumeAnalysisData, with a Markdown candidate profile template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports resume inputs described as PDF, DOC, DOCX, JPG, and PNG; AI-generated profile data is advisory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Uploaded resumes may contain personal contact, employment, education, salary, or other sensitive candidate information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get appropriate candidate permission, minimize unnecessary sensitive details before upload, and review generated profiles before use in hiring workflows.
+
+Risk: AI-generated candidate labels, salary predictions, highlights, and risks may be incomplete or inaccurate.
+
+Mitigation: Treat the profile as decision support only and verify material conclusions against the original resume and human review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/51mee-com/skills/51mee-resume-profile)
+- [ClawHub publisher profile](https://clawhub.ai/user/51mee-com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Analysis, Guidance]
+
+**Output Format:** [Structured JSON with an optional Markdown candidate profile summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [ResumeAnalysisData fields include skills, basic information, education, job experience, predicted role and industry, salary, capacity scores, highlights, and risks.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

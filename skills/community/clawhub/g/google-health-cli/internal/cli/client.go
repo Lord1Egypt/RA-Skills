@@ -67,7 +67,10 @@ func (a *App) apiClient(ctx context.Context) (*api.Client, *config.Config, error
 		return nil, nil, missingCredentialsError(cfg)
 	}
 
-	client := a.buildAPIClient(ctx, cfg, tok)
+	client, err := a.buildAPIClient(ctx, cfg, tok)
+	if err != nil {
+		return nil, nil, err
+	}
 	return client, cfg, nil
 }
 
@@ -109,13 +112,16 @@ func (a *App) buildAuthClient(ctx context.Context, cfg *config.Config, tok *oaut
 
 // buildAPIClient wires the API client for a known-present token. Shared by
 // apiClient and the doctor-style token check.
-func (a *App) buildAPIClient(ctx context.Context, cfg *config.Config, tok *oauth2.Token) *api.Client {
+func (a *App) buildAPIClient(ctx context.Context, cfg *config.Config, tok *oauth2.Token) (*api.Client, error) {
 	base := baseURLOverride
 	if base == "" {
+		if err := config.ValidateBaseURL(cfg.BaseURL); err != nil {
+			return nil, withCode(ExitConfig, err)
+		}
 		base = cfg.BaseURL
 	}
 	authClient := a.buildAuthClient(ctx, cfg, tok)
-	return api.New(authClient.HTTP, base, cfg.User, a.logger)
+	return api.New(authClient.HTTP, base, cfg.User, a.logger), nil
 }
 
 // leveledLogger adapts *slog.Logger to retryablehttp.LeveledLogger so retry

@@ -1,0 +1,7 @@
+{
+  "slug": "movie-finder",
+  "name": "搜索并播放电影，支持按类型/年份/评分筛选，中英文输入，生成 iframe 播放页面",
+  "version": "1.0.1",
+  "installedAt": 1784517150954,
+  "source": "skillhub"
+}

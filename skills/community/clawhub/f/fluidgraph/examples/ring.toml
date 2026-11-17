@@ -1,0 +1,68 @@
+# =============================================================================
+# 闭环网络 —— 用于演示 topology.supported == false 的诚实结论。
+#
+# 拓扑：P1 -> A -> B -> P1
+#
+# 这是一个真正的闭环：水从泵出来后绕一圈又回到泵的出口。环上各支路
+# "该分多少流量"必须联立方程迭代求解，超出了当前求解器的能力
+# （当前用"自底向上累加下游需求"，只在树状网络上成立）。
+#
+# 期望行为：analyze_scenario 返回 topology.supported = false，
+# 负载状态为 UNSUPPORTED。Agent 必须如实告知用户"当前模型不支持该拓扑，
+# 无法可靠求解"，**不得自行估算任何流量或压力**。
+# =============================================================================
+
+[network]
+id = "ring-network"
+name = "闭环演示网络"
+
+[[nodes]]
+id = "P1"
+type = "pump"
+pressure = 400000.0
+
+[[nodes]]
+id = "A"
+type = "junction"
+
+[[nodes]]
+id = "B"
+type = "junction"
+
+[[nodes]]
+id = "L1"
+type = "load"
+min_pressure = 300000.0
+min_flow = 0.002
+
+[[pipes]]
+id = "E1"
+from = "P1"
+to = "A"
+resistance = 1.0e9
+diameter = 0.05
+
+[[pipes]]
+id = "E2"
+from = "A"
+to = "B"
+resistance = 1.0e9
+diameter = 0.05
+
+[[pipes]]
+id = "E3"
+from = "B"
+to = "P1"
+resistance = 1.0e9
+diameter = 0.05
+
+[[pipes]]
+id = "E4"
+from = "A"
+to = "L1"
+resistance = 1.0e9
+diameter = 0.05
+
+[[scenarios]]
+id = "normal"
+name = "闭环工况"

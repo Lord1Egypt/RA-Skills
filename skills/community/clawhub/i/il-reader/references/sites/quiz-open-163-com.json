@@ -1,0 +1,190 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-open-163-com",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:05:11.628Z",
+  "entry": {
+    "url": "https://open.163.com",
+    "final_url": "https://open.163.com/",
+    "title": "网易公开课",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:05:11.628Z",
+    "identity": {
+      "declared_name": "网易公开课",
+      "hostname": "open.163.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "已购课程",
+        "href": "https://vip.open.163.com/center/myOrder",
+        "target": ""
+      },
+      {
+        "text": "精品课程",
+        "href": "https://vip.open.163.com/?source=PC%E5%AF%BC%E8%88%AA%E7%B2%BE%E5%93%81%E8%AF%BE%E7%A8%8B",
+        "target": "_self"
+      },
+      {
+        "text": "初识软件工程专业\n精选 TOP 2\n哈尔滨工业大学公开课：软件之启蒙\n21.3万",
+        "href": "https://open.163.com/newview/movie/free?pid=WHE4G08KE&mid=ZHE4G08L2",
+        "target": ""
+      },
+      {
+        "text": "更多课程",
+        "href": "https://open.163.com/ocw",
+        "target": ""
+      },
+      {
+        "text": "更多课程",
+        "href": "https://open.163.com/newview/search/%E6%BC%94%E8%AE%B2",
+        "target": ""
+      },
+      {
+        "text": "更多课程",
+        "href": "https://open.163.com/appreciation",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "搜索课程、视频、公开课策划",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "搜索课程、视频、公开课策划",
+      "name": "query",
+      "id": "search-input-elem",
+      "css": "#search-input-elem",
+      "role": null,
+      "form_action": "https://open.163.com/",
+      "locator": {
+        "css": "#search-input-elem"
+      },
+      "observed_url": "https://open.163.com/",
+      "observed_at": "2026-10-09T09:05:07.619Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://open.163.com/",
+      "locator": null,
+      "observed_url": "https://open.163.com/",
+      "observed_at": "2026-10-09T09:05:07.619Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-open-163-com:record-lookup",
+      "source_id": "quiz-open-163-com",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://open.163.com/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "搜索课程、视频、公开课策划",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "搜索课程、视频、公开课策划",
+          "name": "query",
+          "id": "search-input-elem",
+          "css": "#search-input-elem",
+          "role": null,
+          "form_action": "https://open.163.com/",
+          "locator": {
+            "css": "#search-input-elem"
+          },
+          "observed_url": "https://open.163.com/",
+          "observed_at": "2026-10-09T09:05:07.619Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-067"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:05:11.628Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-open-163-com-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-open-163-com-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

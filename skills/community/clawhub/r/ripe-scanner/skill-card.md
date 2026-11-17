@@ -1,48 +1,64 @@
-## Description: <br>
-Free stock and crypto momentum scanner with social sentiment analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free stock and crypto momentum scanner with social sentiment analysis.
 
-## Publisher: <br>
-[nomadrex](https://clawhub.ai/user/nomadrex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nomadrex](https://clawhub.ai/user/nomadrex)
 
-## Use Case: <br>
-External users and developers use this skill to scan stocks and crypto assets for momentum, social sentiment, score changes, and historical signal performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker searches and market-interest patterns may be sent to third-party market, social, and search services. <br>
-Mitigation: Review before installing and use the skill only when external market and sentiment lookups are acceptable. <br>
-Risk: The skill may use TAVILY_API_KEY if it is present in the environment. <br>
-Mitigation: Do not set TAVILY_API_KEY unless Tavily-backed Reddit sentiment search is intentionally desired. <br>
-Risk: The skill stores local cache, snapshots, and signal history. <br>
-Mitigation: Delete ~/.openclaw/workspace/memory/ripe_scanner and /tmp/ripe_scanner_cache.json when local scan history should not be retained. <br>
-Risk: Runtime dependencies and external data retrieval increase the installation and execution surface. <br>
-Mitigation: Install dependencies in an isolated Python environment and review the skill before deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to scan stocks and crypto assets for momentum signals, social sentiment, market pulse, score changes, and historical win-rate summaries. Its outputs are informational market-screening aids and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [Ripe Scanner ClawHub Page](https://clawhub.ai/nomadrex/ripe-scanner) <br>
-- [NomadRex Publisher Profile](https://clawhub.ai/user/nomadrex) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [S&P 500 Companies](https://en.wikipedia.org/wiki/List_of_S%26P_500_companies) <br>
-- [Nasdaq-100](https://en.wikipedia.org/wiki/Nasdaq-100) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with inline shell commands and tabular scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read market and social-sentiment data from external services and may write local cache, snapshot, and signal history files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill contacts third-party market and sentiment services and may disclose ticker interests through those requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where those lookups are acceptable, avoid sensitive watchlists, and review the third-party service terms before use.
+
+Risk: Reddit sentiment can use a Tavily API key when TAVILY_API_KEY is present.
+
+Mitigation: Use a scoped key in a dedicated environment, rotate or revoke it as needed, and omit sentiment features when external search is not desired.
+
+Risk: The scanner writes a shared temporary cache that can expose recent scan results on shared systems.
+
+Mitigation: Prefer a dedicated runtime, avoid sudo, clear the cache after use, or run with cache-disabled options where appropriate.
+
+Risk: Momentum and sentiment scores can be incomplete, stale, or misleading for investment decisions.
+
+Mitigation: Treat outputs as informational screening signals and verify results against independent financial data and qualified advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nomadrex/skills/ripe-scanner)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+- [S&P 500 Companies List](https://en.wikipedia.org/wiki/List_of_S%26P_500_companies)
+- [Nasdaq-100 List](https://en.wikipedia.org/wiki/Nasdaq-100)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text tables and concise Markdown summaries with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked ticker tables, ticker-level profiles, sentiment summaries, market pulse summaries, score-change summaries, and historical win-rate summaries.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

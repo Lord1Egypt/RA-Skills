@@ -1,37 +1,50 @@
-## Description: <br>
-Classifies an already identified accounting document by copying it into the appropriate client, year, and month folder with a normalized filename and duplicate detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classement document files already identified accounting records into the appropriate client folder, normalizes filenames, and reports duplicates or records that need review.
 
-## Publisher: <br>
-[trendex](https://clawhub.ai/user/trendex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trendex](https://clawhub.ai/user/trendex)
 
-## Use Case: <br>
-Accounting automation users and agents use this skill as the final filing step after document analysis and client identification. It copies invoices, bank statements, and expense notes into the client folder tree, routes incomplete or uncertain inputs to review folders, and reports the classification result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trendex/classement-document) <br>
+Accounting teams and their agents use this skill as the final filing step after document analysis and client identification. It copies invoices, bank statements, and expense notes into the expected client archive structure while sending uncertain or incomplete records to review folders.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON classification result with concise human-facing status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Copies source files into the configured clients directory, writes an index for classified documents, and leaves the source file in place.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: File handling may copy or write outside the intended archive if hostile dossier metadata is accepted.
+
+Mitigation: Install only for trusted dossier metadata, run under a restricted account, validate slug, date, and path values, reject absolute or parent-directory paths, and enforce the approved intake and archive boundaries before creating directories or copying files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trendex/skills/classement-document)
+- [Publisher profile](https://clawhub.ai/user/trendex)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Shell commands]
+
+**Output Format:** [JSON object with classement status, destination, filename, and optional detail fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Copies the source document into an archive folder and may update a deduplication index for successfully filed records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

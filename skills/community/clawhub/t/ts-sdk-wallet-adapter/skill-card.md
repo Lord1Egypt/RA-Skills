@@ -1,43 +1,57 @@
-## Description: <br>
-Guides React developers through Aptos wallet integration with @aptos-labs/wallet-adapter-react, including provider setup, useWallet(), frontend transaction submission, and wallet connection UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides React developers through Aptos wallet connection with @aptos-labs/wallet-adapter-react, including provider setup, useWallet, frontend transaction submission, and wallet connection UI.
 
-## Publisher: <br>
-[iskysun96](https://clawhub.ai/user/iskysun96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskysun96](https://clawhub.ai/user/iskysun96)
 
-## Use Case: <br>
-Developers integrating Aptos wallet connections in React frontends use this skill to configure the wallet adapter provider, call useWallet(), submit transactions through a browser wallet, and avoid private-key handling in frontend code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Adding the Aptos wallet adapter introduces a frontend dependency into the application. <br>
-Mitigation: Review and pin the dependency through the app's normal package-management process before release. <br>
-Risk: Users could be asked to sign a transaction on the wrong network or without enough context. <br>
-Mitigation: Show the intended network and transaction details clearly before wallet signing, and verify the provider network configuration. <br>
-Risk: Frontend code that handles raw private keys would expose users to key compromise. <br>
-Mitigation: Use the browser wallet adapter for end-user signing and keep private-key generation or custody out of React frontend code. <br>
+## Use Case:
 
+Developers use this skill to integrate Aptos wallet connection in React applications and route end-user transaction signing through browser wallets rather than raw private keys. It provides setup guidance, example TypeScript/React snippets, and common mistake corrections for wallet-adapter usage.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/iskysun96/ts-sdk-wallet-adapter) <br>
-- [Aptos Wallet Adapter Documentation](https://aptos.dev/build/sdks/wallet-adapter/dapp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, TSX, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes frontend wallet setup patterns, transaction submission guidance, and safety reminders for browser wallet handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: Users may approve real blockchain actions generated from frontend transaction payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review transaction payloads, target network, and user-facing wallet prompts before asking users to sign or submit transactions.
+
+Risk: A project could install or import an unofficial package that imitates the Aptos wallet adapter.
+
+Mitigation: Verify that dependencies use the official @aptos-labs/wallet-adapter-react package and review dependency changes before release.
+
+Risk: Frontend code could expose raw private-key handling if developers bypass the wallet adapter pattern.
+
+Mitigation: Use browser wallet signing through useWallet and keep private-key generation or direct signing out of React frontend components.
+
+## Reference(s):
+
+- [Aptos Wallet Adapter documentation](https://aptos.dev/build/sdks/wallet-adapter/dapp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript/React and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes frontend wallet integration patterns, transaction submission guidance, and common mistake remediation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

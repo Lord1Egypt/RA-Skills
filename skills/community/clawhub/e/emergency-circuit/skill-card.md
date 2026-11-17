@@ -1,44 +1,59 @@
-## Description: <br>
-Monitors AI agents in real time to detect anomalies, enforce safety policies, and trigger emergency shutdowns that help prevent damage and cost overruns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors AI agents in real time to detect anomalies, enforce safety policies, and trigger emergency shutdowns to reduce damage and cost overruns.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Developers and operators use Emergency Circuit to monitor AI agent activity, enforce resource and safety policies, and trigger manual or automatic shutdown when an agent violates limits or behaves anomalously. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Emergency shutdown and auto-kill policies can stop active workflows or leave external actions partially complete. <br>
-Mitigation: Test policies in sandbox mode, use explicit agent IDs, and confirm operational impact before enabling production kill controls. <br>
-Risk: Monitoring logs and incident data may contain sensitive operational information. <br>
-Mitigation: Confirm how logs and incident data are stored, retained, and accessed before deployment. <br>
-Risk: External npm or GitHub implementations need verification before installation. <br>
-Mitigation: Review the external package or repository source and confirm it matches the intended release before installing. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor autonomous agents, enforce resource and safety policies, review incidents, and stop agents when policy violations or anomalous behavior are detected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhenStaff/emergency-circuit) <br>
-- [npm package](https://www.npmjs.com/package/openclaw-emergency-circuit) <br>
-- [GitHub project](https://github.com/ZhenRobotics/openclaw-emergency-circuit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples, policy JSON, and TypeScript integration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include monitoring commands, emergency-stop commands, policy templates, troubleshooting steps, and installation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to install mutable external code from npm or GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted sources and verify the exact package or repository version before use.
+
+Risk: Emergency kill commands and automatic shutdown behavior can interrupt agent work.
+
+Mitigation: Test policies in sandbox or staging first, confirm agent IDs before kill commands, and plan recovery for interrupted work.
+
+Risk: Policy configuration errors can cause unwanted stops or insufficient protection.
+
+Mitigation: Validate policies before deployment and review logs and incidents after policy changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhenstaff/skills/emergency-circuit)
+- [GitHub Repository](https://github.com/ZhenRobotics/openclaw-emergency-circuit)
+- [npm Package](https://www.npmjs.com/package/openclaw-emergency-circuit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with bash, JSON, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes monitoring commands, policy examples, incident review guidance, and integration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

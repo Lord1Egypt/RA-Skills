@@ -40,7 +40,7 @@ Greg Abel has received near-universal praise from Berkshire insiders, but extern
 > "The decision to keep every share is an economic decision, because I think the prospects of Berkshire will be better under Greg's management than mine."
 
 **Source:** CNBC, May 3, 2025
-**Link:** https://www.cnbc.com/2025/05/03/warren-buffett-to-ask-board-to-make-greg-abel-ceo-of-berkshire-hathaway-at-year-end.html
+**Link:** https://www.cnbc.com/2025/05/03/warren-buffett-to-aREDACTED-SECRET.html
 
 **2013 - On Abel's Ideas:**
 > "I always make time for Greg when he calls, because he brings me great ideas and is truly innovative in his thinking and business approach."
@@ -256,7 +256,7 @@ Any selling pressure due to Buffett's departure would be a buying opportunity.
 | BBC News | https://www.bbc.com/news/articles/cqj4nev7p70o | News |
 | Business Standard | https://www.business-standard.com/world-news/who-is-greg-abel-warren-buffet-successor-berkshire-hathaway-ceo-125050400113_1.html | Profile |
 | CNBC | https://www.cnbc.com/2024/05/04/warren-buffett-says-greg-abel-will-make-berkshire-hathaway-investing-decisions-when-hes-gone.html | Quotes |
-| CNBC | https://www.cnbc.com/2025/05/03/warren-buffett-to-ask-board-to-make-greg-abel-ceo-of-berkshire-hathaway-at-year-end.html | Quotes |
+| CNBC | https://www.cnbc.com/2025/05/03/warren-buffett-to-aREDACTED-SECRET.html | Quotes |
 | CNBC | https://www.cnbc.com/2025/05/07/warren-buffett-greg-abel-understands-businesses-extremely-well.html | Quotes |
 | Observer | https://observer.com/2025/05/who-is-greg-abel-meet-the-canadian-executive-taking-over-berkshire-hathaway/ | Profile |
 | FOX Business | https://www.foxbusiness.com/business-leaders/greg-abel-holding-a-key-to-buffetts-kingdom | Interview |

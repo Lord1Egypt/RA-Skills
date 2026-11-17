@@ -1,41 +1,52 @@
-## Description: <br>
-Nda Generator provides command-line workflows for creating draft NDA documents, including mutual and unilateral confidentiality agreements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates draft non-disclosure agreement templates, including mutual and unilateral NDA documents, from command-line inputs.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and business users use this skill to generate draft NDA templates for review before legal execution. It supports quick local drafting workflows for mutual and unilateral confidentiality agreements.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated NDA drafts could be mistaken for legal advice or used without jurisdiction-specific review.
+
+Mitigation: Treat generated agreements as draft reference material and consult a qualified attorney before execution.
+
+Risk: The bundled utility can store user-entered party names, deal details, or confidential business information in plaintext local files.
+
+Mitigation: Avoid entering sensitive information until the storage behavior is reviewed, and inspect or remove local nda-generator data files after use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and business users can use this skill to generate quick NDA drafts and related command-line output for confidentiality workflows. Generated agreements should be treated as draft reference material and reviewed by qualified counsel before use. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Party names, deal terms, or notes supplied to commands may be retained in local history or data files. <br>
-Mitigation: Avoid entering highly sensitive terms unless local retention is acceptable, and remove the local nda-generator data directory when it is no longer needed. <br>
-Risk: Generated NDA language may be incomplete or unsuitable for a specific jurisdiction or transaction. <br>
-Mitigation: Use generated agreements as drafts only and have qualified legal counsel review them before execution. <br>
+**Output Format:** [Plain text or Markdown-like NDA draft output to stdout, with command guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/nda-generator) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+**Other Properties Related to Output:** [Generated NDA drafts are local text outputs; the bundled utility can retain arbitrary user input in plaintext local files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown-style document drafts emitted to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some commands write local history or data under the nda-generator data directory.] <br>
+2.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

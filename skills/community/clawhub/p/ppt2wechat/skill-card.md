@@ -1,39 +1,53 @@
-## Description: <br>
-Converts a configured PowerPoint file on macOS into slide images and thumbnail grids, then creates a WeChat official account draft with the generated images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a PowerPoint file on macOS into per-slide PNG images and 3x3 thumbnail sheets, then creates a WeChat official account draft using user-provided credentials.
 
-## Publisher: <br>
-[zhaoxm8023](https://clawhub.ai/user/zhaoxm8023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhaoxm8023](https://clawhub.ai/user/zhaoxm8023)
 
-## Use Case: <br>
-Creators and operators of WeChat official accounts can use this skill to turn a local PPT deck into publishable slide images, thumbnail grids, and a draft article using configured WeChat credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses WeChat app credentials and uploads PPT-derived images to a WeChat official account draft. <br>
-Mitigation: Use dedicated or scoped WeChat credentials where possible, avoid storing real secrets in shared config files, and review the draft before public release. <br>
-Risk: The conversion and upload flow depends on local file paths and generated PNG contents. <br>
-Mitigation: Verify the LibreOffice and Ghostscript paths, keep the output folder free of unrelated PNGs, and confirm the intended PPT before running the workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaoxm8023/ppt2wechat) <br>
+## Use Case:
 
+Developers and content operators use this skill to automate macOS PowerPoint screenshot generation, thumbnail creation, markdown gallery output, and WeChat draft creation for presentation-based publishing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with configuration values and shell commands; generated files include PNG images, thumbnail grids, and a local Markdown gallery.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local LibreOffice, Ghostscript, Pillow, and valid WeChat official account credentials before creating the WeChat draft.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: WeChat credentials may be exposed if users paste real app IDs or secrets into chat, prompts, or config files.
+
+Mitigation: Use environment variables or a secret manager, keep real credentials out of shared prompts and committed config files, and rotate any credential already shared.
+
+Risk: Local presentation content may be uploaded to WeChat without a clear final confirmation step.
+
+Mitigation: Review generated images and require explicit confirmation before upload or draft creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaoxm8023/skills/ppt2wechat)
+- [Publisher profile](https://clawhub.ai/user/zhaoxm8023)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python script and JSON configuration artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local PNG files, thumbnail grids, a markdown image gallery, and a WeChat draft through external command-line tools and WeChat API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

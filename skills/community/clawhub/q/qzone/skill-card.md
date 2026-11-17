@@ -1,40 +1,53 @@
-## Description: <br>
-Qzone helps users create QQ Space posts, journals, album descriptions, interaction plans, and privacy-aware content guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qzone helps users plan QQ Zone content, manage albums, logs, and status posts, configure privacy permissions, and understand backup and deletion boundaries for legacy content.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users and social media operators use this skill to plan and draft QQ Space content, organize albums and journals, improve engagement, and apply basic privacy practices before posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated QQ Space content could expose private addresses, schedules, sensitive photos, or other personal information if published without review. <br>
-Mitigation: Review each generated post before publishing and keep sensitive personal details out of public content. <br>
-Risk: Generated social content may be inaccurate, misleading, or mismatched to the user's intended tone. <br>
-Mitigation: Treat outputs as drafting guidance and edit them for accuracy, audience, and personal voice before use. <br>
+## Use Case:
 
+External users use this skill for QQ Zone content planning, privacy-permission setup, album/log/status management, and cautious guidance around backup, deletion, and third-party export tools.
 
-## Reference(s): <br>
-- [ClawHub Qzone skill page](https://clawhub.ai/zhangifonly/qzone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential handling, or automatic account actions are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Guidance touches backup, deletion, and third-party export tools for legacy QQ Zone content, where mistakes or unsafe tools could cause data loss or account compromise.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up content before deletion, treat deletion as irreversible, and avoid third-party export tools unless the user has independently established that they are trustworthy.
+
+Risk: The release evidence notes scope wording drift because the skill includes QQ Zone content and engagement advice in addition to backup and privacy guidance.
+
+Mitigation: Present content-planning advice as optional general guidance and keep privacy, consent, and account-safety boundaries explicit when advising users.
+
+## Reference(s):
+
+- [Qzone ClawHub skill page](https://clawhub.ai/zhangifonly/skills/qzone)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance in natural language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, account access, persistence, or credential handling is described in the release evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

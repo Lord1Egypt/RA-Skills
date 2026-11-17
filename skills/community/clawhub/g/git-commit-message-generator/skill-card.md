@@ -1,45 +1,60 @@
-## Description: <br>
-Generate conventional commit messages by analyzing staged changes automatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate conventional commit messages by analyzing staged changes automatically.
 
-## Publisher: <br>
-[michaelatamuk](https://clawhub.ai/user/michaelatamuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelatamuk](https://clawhub.ai/user/michaelatamuk)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn staged Git changes into concise Conventional Commits messages with appropriate type, scope, body, and breaking-change details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Staged diffs can include secrets, regulated data, or proprietary code that the agent will inspect while generating a message. <br>
-Mitigation: Review staged files before invoking the skill and avoid using it on sensitive or proprietary material you do not want analyzed. <br>
-Risk: Generated commit messages may misclassify the change type, scope, or breaking-change impact. <br>
-Mitigation: Treat the output as a draft and review the message before committing. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze staged Git changes and draft reviewable Conventional Commits messages with appropriate type, scope, body, and footer details.
 
-## Reference(s): <br>
-- [Conventional Commits Specification](https://www.conventionalcommits.org) <br>
-- [Commit Types Quick Reference](COMMIT_TYPES_REFERENCE.md) <br>
-- [Real-World Commit Message Examples](EXAMPLES.md) <br>
-- [Commitlint Documentation](https://commitlint.js.org) <br>
-- [Semantic Release](https://semantic-release.gitbook.io) <br>
-- [Semantic Versioning](https://semver.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text commit-message drafts with optional inline shell commands and footers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires staged Git changes for best results; generated messages should be reviewed before committing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Risk: Generated commit messages may be incomplete or misleading if staged changes are broad, ambiguous, or include sensitive context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit every generated message before committing.
+
+Risk: Optional tooling setup commands can introduce supply-chain or permission risk when installed globally or run with elevated privileges.
+
+Mitigation: Use project-local pinned dev dependencies for optional integrations and avoid elevated privileges for install commands.
+
+## Reference(s):
+
+- [Conventional Commits Specification](https://www.conventionalcommits.org)
+- [Commit Types Quick Reference](artifact/COMMIT_TYPES_REFERENCE.md)
+- [Real-World Commit Message Examples](artifact/EXAMPLES.md)
+- [Angular Commit Guidelines](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit)
+- [Semantic Versioning](https://semver.org)
+- [Commitlint Documentation](https://commitlint.js.org)
+- [Semantic Release Documentation](https://semantic-release.gitbook.io)
+- [ClawHub Skill Page](https://clawhub.ai/michaelatamuk/skills/git-commit-message-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with Conventional Commits examples and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated commit messages should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

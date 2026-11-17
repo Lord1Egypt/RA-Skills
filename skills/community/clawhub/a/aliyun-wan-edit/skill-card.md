@@ -1,40 +1,54 @@
-## Description: <br>
-Helps agents use Alibaba Cloud Model Studio Wan video editing models for style transfer, keyframe-controlled editing, and animation remix workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when Alibaba Cloud Model Studio Wan video editing models are needed for style transfer, keyframe-controlled editing, or animation remix workflows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and video workflow builders use this skill when an agent needs to modify existing video material with Alibaba Cloud Model Studio Wan edit models, including style transformation, keyframe-to-video guided editing, or animation remix. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future versions could introduce real Alibaba Cloud API calls, video uploads, API-key handling, or broader file access. <br>
-Mitigation: Review future releases for those behaviors before deployment. <br>
+## Use Case:
 
+Developers and video workflow builders use this skill to prepare Alibaba Cloud Model Studio Wan edit requests for modifying existing video material through style transformation, keyframe-guided editing, or animation remixing.
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
-- [Alibaba Cloud Model Studio video generation](https://help.aliyun.com/zh/model-studio/video-generation) <br>
-- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled helper writes a minimal Wan edit request payload to a local JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Generated request JSON may include video URLs or user content intended for Alibaba Cloud processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated request JSON before sending it to Alibaba Cloud or replacing the example video URL with real user content.
+
+Risk: The helper can create local output files during validation and request preparation.
+
+Mitigation: Run it in an expected workspace path and inspect created files before using them in downstream workflows.
+
+## Reference(s):
+
+- [Alibaba Cloud Model Studio video generation documentation](https://help.aliyun.com/zh/model-studio/video-generation)
+- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON request configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local request JSON file for review before use with Alibaba Cloud.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

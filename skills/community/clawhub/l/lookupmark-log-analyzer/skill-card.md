@@ -1,38 +1,53 @@
-## Description: <br>
-Securely analyze system and application logs with automatic sensitive data redaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Securely analyzes whitelisted local OpenClaw and RAG logs, redacts common sensitive values, and reports errors, summaries, or search matches.
 
-## Publisher: <br>
-[lookupmark](https://clawhub.ai/user/lookupmark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lookupmark](https://clawhub.ai/user/lookupmark)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect whitelisted local service logs, summarize error patterns, and search recent log output with automatic redaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local logs can contain sensitive or operational details even when automatic redaction is enabled. <br>
-Mitigation: Install only when the agent should inspect the listed logs, use specific source or search prompts, and review output before sharing it. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect recent local service logs for OpenClaw gateway and local RAG workflows, summarize likely failures, and search known log sources without granting arbitrary file access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lookupmark/lookupmark-log-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text summaries or JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only local log inspection with configurable error and redaction patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Sanitized log excerpts may still reveal operational details or residual sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on intended local OpenClaw and RAG logs, avoid shared contexts with sensitive logs, and review output before sharing.
+
+Risk: Broad requests such as "any errors" can cause wider log inspection across allowed sources than the user intended.
+
+Mitigation: Prefer source-specific requests or confirm scope before asking for broad log analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lookupmark/skills/lookupmark-log-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON log summaries with redacted log excerpts and optional command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads only configured local log sources and may include sanitized operational log snippets.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

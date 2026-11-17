@@ -1,38 +1,53 @@
-## Description: <br>
-Pre-publish privacy scan for ClawHub skills that detects tokens, keys, credentials, .env secrets, personal info, and internal IPs before publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-publish privacy scan for ClawHub skills. Detects tokens, keys, credentials, .env secrets, personal info, and internal IPs before publishing.
 
-## Publisher: <br>
-[weidongkl](https://clawhub.ai/user/weidongkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weidongkl](https://clawhub.ai/user/weidongkl)
 
-## Use Case: <br>
-Developers and publishers use this skill before publishing ClawHub skills to scan for exposed secrets, personal details, and internal network indicators, then review the full report before confirming publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full scan reports can expose detected secrets, credentials, personal paths, emails, or internal network details in the agent conversation. <br>
-Mitigation: Inspect full results locally or share a redacted summary when scanning directories that may contain real private data. <br>
+## Use Case:
 
+Developers and skill publishers use this skill before publishing or updating ClawHub skills to scan for leaked secrets, personal information, internal IPs, and other privacy-sensitive content. It also guides the agent to present the full scan report and request explicit confirmation before publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weidongkl/skill-publish-vetter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and scan report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive findings if the scanned skill contains real secrets or private details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and frontmatter) <br>
+Risk: Scan reports can expose detected secret values in terminal output, chat, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on directories you are comfortable scanning, review output before sharing it, and prefer a revised version that redacts credential values.
+
+Risk: Regex-based privacy scans can produce false positives or miss sensitive values outside the covered patterns.
+
+Mitigation: Treat the scan as a pre-publish aid, then manually review findings and the target skill before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/weidongkl/skills/skill-publish-vetter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell command snippets, scan report text, and confirmation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include full scan reports; detected secret values can appear in terminal output or chat.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

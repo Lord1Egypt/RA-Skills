@@ -10,15 +10,14 @@ def get_media_files():
     media_files = []
     
     try:
-        for item in os.listdir(directory):
-            item_path = os.path.join(directory, item)
-            if os.path.isfile(item_path):
-                ext = os.path.splitext(item)[1].lower()
+        for item in os.scandir(directory):
+            if item.is_file():
+                ext = os.path.splitext(item.name)[1].lower()
                 if ext in media_extensions:
-                    media_files.append(item_path)
+                    media_files.append(item.path)
     except OSError as e:
-        return media_files
+        print(f"Error: {directory} : {e}")
+        return None
     
     media_files.sort(key=lambda a: a.lower())
-    
     return media_files

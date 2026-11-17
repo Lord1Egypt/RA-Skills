@@ -1,41 +1,54 @@
-## Description: <br>
-Identify and eliminate traces of AI-generated text, making writing sound more natural and human. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify and eliminate traces of AI-generated text, making writing sound more natural and human.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Writers, editors, and agents use this skill to scan AI-generated or formulaic text and rewrite it with natural vocabulary, varied rhythm, and a clearer human voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rewrites can make AI-written text appear human-authored in provenance-sensitive contexts. <br>
-Mitigation: Use the skill explicitly and review whether disclosure or avoidance is required for school, hiring, journalism, legal, or compliance work. <br>
-Risk: A rewrite may change factual meaning, intended voice, or attribution. <br>
-Mitigation: Review the revision summary and final text for factual accuracy, voice, and context before publishing or submitting it. <br>
+## Use Case:
 
+External users and writing-focused agents use this skill to revise text that sounds AI-generated, replacing formulaic phrasing with clearer, more natural language while preserving the intended meaning.
 
-## Reference(s): <br>
-- [AI Writing Patterns Detailed Reference](references/patterns.md) <br>
-- [Humanizer AI ClawHub page](https://clawhub.ai/openlark/humanizer-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a revision summary and rewritten text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only writing output; no code execution, credentials, network use, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: De-AI humanization can conflict with provenance-sensitive work such as academic, legal, compliance, or disclosure-bound writing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use ordinary copyediting instead of de-AI humanization for provenance-sensitive work, and route the final text through the required disclosure or compliance review.
+
+Risk: Tone and rhythm changes can unintentionally shift meaning, emphasis, or author voice.
+
+Mitigation: Review the rewritten text against the source for accuracy, intended tone, and preservation of core meaning before use.
+
+## Reference(s):
+
+- [AI Writing Patterns Detailed Reference](artifact/references/patterns.md)
+- [Humanizer AI on ClawHub](https://clawhub.ai/openlark/skills/humanizer-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a brief revision summary and rewritten text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The rewritten text should preserve the source meaning while changing tone, rhythm, and phrasing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

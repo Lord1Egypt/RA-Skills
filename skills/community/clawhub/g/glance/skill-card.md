@@ -1,48 +1,64 @@
-## Description: <br>
-Create, update, and manage Glance dashboard widgets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, update, and manage Glance dashboard widgets for visual tracking, API data display, metrics, stats, and monitored items.
 
-## Publisher: <br>
-[acfranzen](https://clawhub.ai/user/acfranzen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[acfranzen](https://clawhub.ai/user/acfranzen)
 
-## Use Case: <br>
-Developers and OpenClaw users use Glance to create, arrange, refresh, and query local dashboard widgets for API data, metrics, schedules, and other tracked information. The skill helps agents generate widget definitions, manage dashboard instances, store required credentials, and populate widget caches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can establish ongoing widget refresh jobs that may invoke local commands or CLI tools. <br>
-Mitigation: Enable scheduled refresh only for widgets whose fetch.instructions have been reviewed, and disable or remove jobs that are no longer needed. <br>
-Risk: Widgets may depend on stored API keys or credentials for external services. <br>
-Mitigation: Use least-privilege, revocable credentials and avoid broad personal tokens when a scoped token will work. <br>
-Risk: A local dashboard may expose sensitive API, calendar, email, or code activity data if reachable from the network. <br>
-Mitigation: Keep Glance bound to localhost unless external access is intentional, and require strong bearer-token authentication for non-local access. <br>
-Risk: Imported widget instructions can ask the agent to collect data or execute steps beyond the user's intent. <br>
-Mitigation: Review imported widget definitions and fetch.instructions before adding them to a dashboard or enabling cron-based refresh. <br>
+## Use Case:
 
+Developers and external users use Glance to create, update, arrange, refresh, and inspect dashboard widgets that surface data from APIs, credentials, local tools, webhooks, or scheduled agent collection.
 
-## Reference(s): <br>
-- [Glance ClawHub listing](https://clawhub.ai/acfranzen/glance) <br>
-- [Glance homepage](https://github.com/acfranzen/glance) <br>
-- [Widget SDK Documentation](artifact/widget-sdk.md) <br>
-- [Dashboard Management API](artifact/dashboard-api.md) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, JSX/TSX, HTTP, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update dashboard widget definitions, cache payloads, credential setup steps, and scheduled refresh instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scheduled refreshes can give the agent recurring local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable only the refresh schedules you need, review each schedule before use, and disable background services or cron refreshes that are not required.
+
+Risk: Widgets can reuse selected credentials for authenticated API access.
+
+Mitigation: Use least-privilege read-only tokens where possible, avoid sharing broad personal access tokens in chat, and verify credential needs before creating or importing widgets.
+
+Risk: One-line curl-to-bash installation can execute remote installer code.
+
+Mitigation: Prefer manual or verified installation and review installer behavior before running it.
+
+Risk: Imported widget packages can define refresh behavior and credential requirements.
+
+Mitigation: Review imported widget packages before enabling them, especially before accepting refresh schedules or credential requests.
+
+## Reference(s):
+
+- [Glance ClawHub Skill Page](https://clawhub.ai/acfranzen/skills/glance)
+- [Glance Homepage](https://github.com/acfranzen/glance)
+- [Widget SDK Documentation](artifact/widget-sdk.md)
+- [Dashboard Management API](artifact/dashboard-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request bodies, JSX/TSX widget code, curl commands, and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include widget definitions, dashboard API operations, credential setup guidance, refresh schedules, and verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

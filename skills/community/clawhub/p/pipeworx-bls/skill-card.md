@@ -1,40 +1,54 @@
-## Description: <br>
-Access and search Bureau of Labor Statistics economic data series, including historical and latest data for employment, inflation, wages, productivity, and housing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and search Bureau of Labor Statistics economic data series, fetch historical or latest employment, inflation, wages, productivity, and housing data.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to search BLS economic series, retrieve historical data, fetch latest series points, and browse popular series categories through the Pipeworx BLS MCP gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BLS search terms and series requests are sent to the third-party Pipeworx MCP gateway. <br>
-Mitigation: Install only when that routing is acceptable; use a direct BLS API connector when official-source-only data paths are required. <br>
+## Use Case:
 
+Developers and analysts use this skill to search BLS series and retrieve historical or latest public economic data for employment, inflation, wages, productivity, and housing workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/brucegutman/pipeworx-bls) <br>
-- [Publisher profile](https://clawhub.ai/user/brucegutman) <br>
-- [Pipeworx BLS MCP gateway](https://gateway.pipeworx.io/bls/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Markdown with a JSON MCP server configuration block and text responses from BLS lookup tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requests are routed through the third-party Pipeworx MCP gateway; the evidence does not indicate credentials or local access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: BLS-related queries are sent to an external Pipeworx MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is acceptable for the intended workflow.
+
+Risk: Economic analysis based on returned BLS data may be consequential if used for business or policy decisions.
+
+Mitigation: Verify important results against official BLS sources before relying on them.
+
+## Reference(s):
+
+- [Pipeworx bls on ClawHub](https://clawhub.ai/brucegutman/skills/pipeworx-bls)
+- [Pipeworx BLS MCP gateway](https://gateway.pipeworx.io/bls/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, API Calls]
+
+**Output Format:** [Text or Markdown responses with BLS series results, plus MCP server configuration as JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only access through the disclosed Pipeworx MCP gateway]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

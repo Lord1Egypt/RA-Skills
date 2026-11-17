@@ -63,6 +63,17 @@ Use when you need to review Python code for bugs, style, and security issues. Tr
 | `rubrics/` | ✅ | 但放在 references/ 内更安全 |
 | `checklists/` | ⚠️ | 建议合并到 references/ |
 
+## Compaction 行为
+
+| 字段 | 值 | 说明 |
+|------|---|------|
+| `strategy` | `preserve_frontmatter` | 压缩时保留 frontmatter + 前 N 行 body |
+| `body_limit_lines` | 150 | 压缩后 body 大约保留行数 |
+| `preserves` | frontmatter, first_heading_section | 保留的部分 |
+| `loses` | deep_references, gotchas_after_routing | 丢失的部分 |
+
+**对编译器的启示：** routing table 必须放在 SKILL.md 前 150 行内，否则 compaction 后失效。
+
 ## 已知限制
 
 1. description 不支持分段、多行、block scalar（`>-` / `|`）

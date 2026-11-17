@@ -7,10 +7,10 @@
 | ER diagram | Mermaid ER, DBML, Graphviz, SVG | Cardinality labels, table names, key fields, crossing relations. |
 | UML class | Mermaid class, PlantUML, Graphviz | Inheritance direction, method/property wrapping, package grouping. |
 | Sequence | Mermaid sequence, PlantUML | Lifeline order, activation spans, async/return arrows, message text. |
-| Technical architecture | HTML `architecture` IR, Mermaid flowchart, C4/Structurizr, SVG/HTML, draw.io | Layer grouping, trust boundaries, data flow direction, legends. |
+| Technical architecture | draw.io, Mermaid/C4, HTML `architecture` IR, SVG/HTML | Layer grouping, trust boundaries, data flow direction, legends. |
 | Agent / memory architecture | HTML `architecture` IR with semantic node types and flow arrows, SVG/HTML, draw.io | Read/write path separation, tool-call loops, memory tiers, retrieval labels, flow legend. |
 | ML / deep learning | SVG/HTML/canvas | Tensor shapes, layer order, branch joins, repeated blocks, annotations. |
-| Flowchart / process workflow | HTML `workflow` IR, Mermaid flowchart, SVG, draw.io | Decision labels, terminal states, loop-back readability, connector spacing, exception path clarity. |
+| Flowchart / process workflow | Mermaid flowchart, HTML `workflow` IR, SVG, draw.io | Decision labels, terminal states, loop-back readability, connector spacing, exception path clarity. |
 | Live session sketch | Interactive local browser server | Incremental reveal, session isolation, readable labels after manual dragging, export handoff. |
 
 ## Interactive live diagrams
@@ -50,7 +50,7 @@ Coordinates are PNG pixel coordinates after export. Boxes should cover visible l
 ## Diagram repair playbook
 
 - **Overlapping nodes:** increase rank/column spacing, split clusters, or move low-priority annotations into a legend.
-- **Truncated labels:** widen the node, add manual line breaks, reduce label length, or increase export scale.
+- **Truncated labels:** widen the node, add manual line breaks, preserve the full text, and adjust source layout.
 - **Connector through labels:** add waypoints, route orthogonally around boxes, or move labels above the segment.
 - **Connector stacking:** separate parallel edges with different waypoints or bundle them with a shared labeled bus.
 - **Edge clipping:** increase outer padding or export viewBox/canvas size.
@@ -72,3 +72,10 @@ Use HTML `workflow` IR when the user wants a browser-ready process map, approval
 ## Export guidance
 
 Prefer exporting at 2x scale for raster PNGs, then downsample only if text remains crisp. Keep the editable source committed or attached wherever future diagram changes are expected.
+
+
+## Quality delivery contract
+
+Prefer local Mermaid for standard sequence/workflow diagrams, reuse fec-drawio-studio for manually editable architecture, and optionally use Graphviz for dense topology. Fall back to compatible JSON/HTML if local tools are missing, without automatic installation/downloads. Preview, standalone SVG and PNG share source theme styles; export with `--theme light|dark`. PNG export waits for fonts and measures text; use `--manifest source.layout.json --output-manifest image.actual.json` for scaled pixel coordinates. QA must read the actual manifest, not reuse estimated coordinates unchanged for a 2x PNG.
+
+The extended manifest retains canvas/boxes/connectors and adds coordinateSpace, scale, measurement, groups, labels and issues. Group containment is not node overlap. New checks include node-text-overflow, label-content-loss, label-out-of-bounds, edge-label-collision, text-overlap and degenerate-connector. Legacy manifests retain estimated checks. Diagnose constrained explicit sizes/waypoints without dropping text, changing relationships or silently moving coordinates. Increasing export resolution cannot fix source overflow. Visually review the final PNG and record tool availability/version, theme, scale, repair rounds and remaining defects; report partial acceptance when unresolved.

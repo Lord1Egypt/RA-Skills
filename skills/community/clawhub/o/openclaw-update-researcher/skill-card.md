@@ -1,41 +1,58 @@
-## Description: <br>
-Researches recent OpenClaw GitHub releases and tags, filters for the previous day's updates, and produces a structured Markdown report with special attention to memory-system changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches OpenClaw GitHub releases and tags for the prior Asia/Shanghai day and produces structured Markdown update reports with special attention to memory-related changes.
 
-## Publisher: <br>
-[liuxin-lixiang](https://clawhub.ai/user/liuxin-lixiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuxin-lixiang](https://clawhub.ai/user/liuxin-lixiang)
 
-## Use Case: <br>
-Developers and technical teams use this skill to track OpenClaw release activity, summarize important changes, and generate dated update reports focused on memory, embeddings, LanceDB, SQLite, and related context-management changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports rely on current GitHub release and tag content and may contain incomplete or inaccurate summaries. <br>
-Mitigation: Review generated reports against the linked GitHub release or tag before relying on them. <br>
-Risk: The skill accesses GitHub and writes generated reports into report_v1/. <br>
-Mitigation: Install and run it only where GitHub access and local report-file creation are acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to monitor OpenClaw releases, identify updates from the target date, and generate concise technical Markdown reports. It is especially suited for tracking memory, embeddings, LanceDB, SQLite, and context-management changes.
 
-## Reference(s): <br>
-- [OpenClaw GitHub Tags](https://github.com/openclaw/openclaw/tags) <br>
-- [ClawHub Skill Page](https://clawhub.ai/liuxin-lixiang/openclaw-update-researcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes dated reports under report_v1/YYYY-MM-DD/ when a qualifying OpenClaw release is found; otherwise no report is generated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill researches public GitHub pages and can fail or miss updates if GitHub content is unavailable or blocked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated report against the linked OpenClaw release or tags page before relying on it.
+
+Risk: The default target date uses the previous day in the Asia/Shanghai timezone, which may not match every user's local reporting window.
+
+Mitigation: Confirm the intended research date before running the skill, especially outside the Asia/Shanghai timezone.
+
+Risk: The skill may create a local Markdown report under report_v1 for the selected date and version.
+
+Mitigation: Review generated files before committing, publishing, or using them in downstream release processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuxin-lixiang/skills/openclaw-update-researcher)
+- [OpenClaw GitHub tags](https://github.com/openclaw/openclaw/tags)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a dated local report under report_v1 when a matching OpenClaw release is found.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

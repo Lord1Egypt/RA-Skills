@@ -1,42 +1,55 @@
-## Description: <br>
-Visual image search using Google Lens via SerpAPI to identify objects, landmarks, products, plants, animals, artwork, logos, and other visual entities from an image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual image search using Google Lens via SerpAPI to identify objects, landmarks, products, plants, animals, artwork, logos, people, or other visual entities from an image.
 
-## Publisher: <br>
-[TobiasLee](https://clawhub.ai/user/TobiasLee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tobiaslee](https://clawhub.ai/user/tobiaslee)
 
-## Use Case: <br>
-Developers and agents use this skill to run reverse image search, verify uncertain visual identifications, find similar images or exact matches, and retrieve product-oriented visual results from user-provided image URLs or local files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local image files can be uploaded to third-party public image hosts before being submitted for visual search. <br>
-Mitigation: Prefer already-public image URLs, or confirm that the image contains no private photos, documents, credentials, proprietary material, or sensitive screenshots before using a local file. <br>
-Risk: Search requests and image URLs are sent to SerpAPI and may be subject to external service handling and retention. <br>
-Mitigation: Use the skill only for images and search context that are acceptable to share with SerpAPI under the applicable account and data-handling terms. <br>
+## Use Case:
 
+External users, developers, and agent workflows use this skill to identify image contents, find visually similar or exact-match images, retrieve shopping results with prices, and request image provenance metadata. It can search by public image URL or local file path when a SerpAPI key is available.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TobiasLee/image-search) <br>
-- [Publisher Profile](https://clawhub.ai/user/TobiasLee) <br>
-- [SerpAPI](https://serpapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries by default, with optional raw JSON output from SerpAPI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SERPAPI_KEY. Local image files may be uploaded to external image hosting before search.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local file searches can upload readable files up to 32 MB to third-party image hosts without runtime confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer public image URLs and require explicit user confirmation before using local file paths, especially for private photos, screenshots, documents, or arbitrary user-provided paths.
+
+Risk: Image searches send image URLs and related request data to external visual-search services.
+
+Mitigation: Avoid submitting sensitive or confidential images unless the user has approved the external search and understands the data exposure.
+
+## Reference(s):
+
+- [ClawHub Image Search Skill](https://clawhub.ai/tobiaslee/skills/image-search)
+- [SerpAPI](https://serpapi.com/)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown summaries by default, or raw JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SERPAPI_KEY; local file inputs may be uploaded to a third-party image host before search.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Automates multi-channel advertising campaign setup, A/B testing, monitoring, creative generation, and budget optimization for WeChat, Douyin, Xiaohongshu, and Baidu Ads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates marketing campaign setup, A/B testing, audience targeting, budget optimization, and performance monitoring across WeChat, Douyin, Xiaohongshu, and Baidu advertising channels.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Marketing teams and advertising operators use this skill to plan and run multi-channel ad campaigns, A/B tests, performance monitoring, creative generation, and budget allocation. It is intended for workflows that may affect live paid ad accounts, so campaign creation and budget changes should be reviewed before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect live paid ad accounts and budgets without clear safety limits or approval steps. <br>
-Mitigation: Use it first with test or narrowly scoped ad accounts, hard spend limits, explicit approval before campaign creation or budget changes, and a clear stop or rollback process. <br>
+## Use Case:
 
+Marketing teams, growth operators, and developers use this skill to configure and operate multi-channel advertising workflows, including campaign creation, A/B testing, performance monitoring, and automated budget optimization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-marketing-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include campaign configuration examples, operational commands, performance tables, pricing information, and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/package.json) <br>
+Risk: The skill can guide automated campaign creation and budget optimization that may spend real advertising money.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for every campaign creation and budget change, configure hard spend caps, and prefer sandbox or draft-only operation before live deployment.
+
+Risk: The skill may require access to advertising platform credentials and audience data.
+
+Mitigation: Verify which platform credentials and audience data are accessible before use, and limit permissions to the minimum needed for the approved workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-marketing-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML configuration and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include channel selections, budget settings, campaign commands, performance monitoring guidance, and approval checkpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

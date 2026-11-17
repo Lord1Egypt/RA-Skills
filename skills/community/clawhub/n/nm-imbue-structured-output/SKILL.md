@@ -1,7 +1,7 @@
 ---
 name: structured-output
 description: Formats review deliverables with consistent structure for comparable findings
-version: 1.9.8
+version: 1.10.3
 triggers:
   - formatting
   - deliverables
@@ -14,20 +14,7 @@ source: claude-night-market
 source_plugin: imbue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [When to Use](#when-to-use)
-- [Activation Patterns](#activation-patterns)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Step 1: Select Template (`structured-output:template-selected`)](#step-1:-select-template-(structured-output:template-selected))
-- [Step 2: Format Findings (`structured-output:findings-formatted`)](#step-2:-format-findings-(structured-output:findings-formatted))
-- [Step 3: Assign Actions (`structured-output:actions-assigned`)](#step-3:-assign-actions-(structured-output:actions-assigned))
-- [Step 4: Attach Appendix (`structured-output:appendix-attached`)](#step-4:-attach-appendix-(structured-output:appendix-attached))
-- [Output Quality Checklist](#output-quality-checklist)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Structured Output
@@ -52,7 +39,7 @@ source_plugin: imbue
 
 **Auto-Load When**: Finalizing any analysis deliverable or when consistent formatting is requested.
 
-## Required TodoWrite Items
+## Required Progress Items
 1. `structured-output:template-selected`
 2. `structured-output:findings-formatted`
 3. `structured-output:actions-assigned`
@@ -72,15 +59,22 @@ Mark each item complete as you finish the corresponding step.
 - Use consistent finding structure:
   ```markdown
   ### [SEVERITY] Finding Title
-  **Location**: file.rs:123
-  **Category**: Security | Performance | Correctness | Style
-  **Description**: Brief explanation of the issue.
-  **Evidence**: [E1, E2] - Reference to evidence log.
-  **Recommendation**: Specific remediation steps.
+  - **Location**: file.rs:123
+  - **Anchor**: `verbatim source text copied from line 123`
+  - **Category**: Security | Performance | Correctness | Style
+  - **Description**: Brief explanation of the issue.
+  - **Evidence**: [E1, E2] - Reference to evidence log.
+  - **Recommendation**: Specific remediation steps.
   ```
   **Verification:** Run the command with `--help` flag to verify availability.
 - Severity levels: CRITICAL, HIGH, MEDIUM, LOW, INFO.
 - Order findings by severity, then by file location.
+- **Anchor is mandatory and grounds the finding.** Copy the exact
+  source text at `Location` (not a paraphrase). It is what a second
+  pass re-reads to confirm the finding is real. A finding whose anchor
+  does not appear at its cited line is treated as a hallucination and
+  dropped. The check is mechanical: `imbue:review-core` Step 5 runs
+  `plugins/imbue/scripts/citation_verifier.py` over the findings.
 
 ## Step 3: Assign Actions (`structured-output:actions-assigned`)
 - Convert findings to action items with assignee and priority:
@@ -114,6 +108,8 @@ Mark each item complete as you finish the corresponding step.
 
 ## Output Quality Checklist
 Before finalizing:
+- [ ] Every finding carries a verbatim `Anchor` the citation verifier
+      resolved (no unverified findings ship).
 - [ ] All findings have evidence references.
 - [ ] Severity levels are justified.
 - [ ] Recommendations are specific and name the next step.
@@ -121,6 +117,7 @@ Before finalizing:
 - [ ] Format renders correctly in target medium (GitHub, Confluence, etc.).
 
 ## Exit Criteria
-- Todos completed with formatted deliverable.
-- Output follows selected template structure.
-- Stakeholders can act on findings without clarification.
+
+- [ ] All `structured-output:` progress items are marked complete
+- [ ] The deliverable has every section of the selected template
+- [ ] Each finding carries a location and a recommended action

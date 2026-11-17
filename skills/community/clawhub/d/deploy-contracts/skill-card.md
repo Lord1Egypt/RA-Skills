@@ -1,45 +1,57 @@
-## Description: <br>
-Safely deploys Move contracts to Aptos networks, including devnet, testnet, and mainnet, with pre-deployment verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely deploys Move contracts to Aptos networks (devnet, testnet, mainnet) with pre-deployment verification.
 
-## Publisher: <br>
-[iskysun96](https://clawhub.ai/user/iskysun96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskysun96](https://clawhub.ai/user/iskysun96)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and execute Aptos Move contract deployments with checks for security review, test coverage, network selection, funding, publication, verification, and upgrade preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes Aptos mainnet deployment and upgrade commands that can submit transactions using the user's local signing profile, including examples with --assume-yes. <br>
-Mitigation: Before mainnet deploys or upgrades, avoid --assume-yes and explicitly verify the Aptos profile, signer address, network, package, object address, and gas cost. <br>
-Risk: Local Aptos profiles and environment files can contain private keys or other signing material. <br>
-Mitigation: Keep private keys out of prompts, logs, command output, and version control; do not display local Aptos config or secret environment values. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and execute Aptos Move contract deployments across devnet, testnet, and mainnet with security, testing, funding, deployment, upgrade, and verification checkpoints.
 
-## Reference(s): <br>
-- [Aptos CLI Publishing](https://aptos.dev/build/cli/working-with-move-contracts) <br>
-- [Aptos Network Endpoints](https://aptos.dev/nodes/networks) <br>
-- [Aptos Gas and Transaction Fees](https://aptos.dev/concepts/gas-txn-fee) <br>
-- [Aptos Mainnet Explorer](https://explorer.aptoslabs.com/?network=mainnet) <br>
-- [Aptos Testnet Explorer](https://explorer.aptoslabs.com/?network=testnet) <br>
-- [ClawHub Skill Page](https://clawhub.ai/iskysun96/deploy-contracts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and deployment checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include network-specific Aptos CLI commands for devnet, testnet, and mainnet deployment or upgrade workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; skill frontmatter reports 1.0) <br>
+Risk: Auto-confirmed mainnet deploy or upgrade commands can submit high-impact blockchain transactions without an interactive confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human review of the network, account, object address, code diff, compatibility, gas cost, and transaction impact before any mainnet deploy or upgrade, especially when --assume-yes is present.
+
+Risk: Incorrect network, profile, address, or upgrade target can publish or upgrade the wrong Aptos package.
+
+Mitigation: Confirm the target network, profile, named address, object address, balance, and explorer transaction details before and after deployment.
+
+## Reference(s):
+
+- [Aptos CLI Publishing](https://aptos.dev/build/cli/working-with-move-contracts)
+- [Aptos Network Endpoints](https://aptos.dev/nodes/networks)
+- [Aptos Gas and Fees](https://aptos.dev/concepts/gas-txn-fee)
+- [Aptos Testnet Faucet](https://aptos.dev/network/faucet?address=<your_address>)
+- [Aptos Explorer](https://explorer.aptoslabs.com/?network=mainnet)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with checklists and inline bash, Move, and deployment-record examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Aptos network selection, profile setup, funding, deployment, upgrade, verification, and documentation steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

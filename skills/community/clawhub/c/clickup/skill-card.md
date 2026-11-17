@@ -1,40 +1,56 @@
-## Description: <br>
-Interact with ClickUp project management platform via REST API. Use when working with tasks, spaces, lists, assignees, or any ClickUp workflow automation. Handles pagination, subtasks, and common query patterns. Use for task management, reporting, automation, or any ClickUp-related queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the ClickUp project management platform via REST API for task management, reporting, workflow automation, pagination, subtasks, and common query patterns.
 
-## Publisher: <br>
-[shubhs0707](https://clawhub.ai/user/shubhs0707) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shubhs0707](https://clawhub.ai/user/shubhs0707)
 
-## Use Case: <br>
-Developers and operations teams use this skill to query, report on, create, and update ClickUp tasks through the ClickUp REST API. It is suited for task management automation that needs pagination, subtasks, assignee reporting, and workspace/list filtering. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent access private ClickUp workspace data through the ClickUp API. <br>
-Mitigation: Use the least-privileged ClickUp token available and configure only the team, space, and list IDs needed for the intended workflow. <br>
-Risk: Create, update, or delete task operations can modify project records. <br>
-Mitigation: Require explicit confirmation before task-changing API calls and verify target task, team, list, and status values before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClickUp API Reference](references/api-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shubhs0707/clickup) <br>
+## Use Case:
 
+Developers, operators, and project teams use this skill to query, report on, create, and update ClickUp tasks through ClickUp REST API patterns and helper shell commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLICKUP_API_KEY and CLICKUP_TEAM_ID environment variables for live ClickUp API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: ClickUp API tokens can expose or modify workspace data if overprivileged or shared.
+
+Mitigation: Use the least-privileged ClickUp token available and avoid placing tokens in shared files, prompts, transcripts, or generated output.
+
+Risk: Task creation, update, or deletion commands can change live ClickUp work items.
+
+Mitigation: Require explicit approval before running POST, PUT, or DELETE operations against ClickUp.
+
+Risk: Incomplete pagination or missing subtask parameters can produce misleading task reports.
+
+Mitigation: Use subtasks=true for task queries and loop through pages until ClickUp reports last_page=true.
+
+## Reference(s):
+
+- [ClickUp API Reference](references/api-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, curl, jq, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ClickUp API requests and helper-script commands that require CLICKUP_API_KEY and CLICKUP_TEAM_ID.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

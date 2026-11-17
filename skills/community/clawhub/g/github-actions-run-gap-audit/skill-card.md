@@ -1,39 +1,52 @@
-## Description: <br>
-Detect GitHub Actions workflow groups that stopped running on their normal cadence using median run intervals and current inactivity gap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect GitHub Actions workflow groups that stopped running on their normal cadence using median run intervals and current inactivity gap.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to audit GitHub Actions run exports for workflows that have stopped running on their expected cadence, then review text or JSON results for CI checks and automation guardrails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A critical result can fail automation when FAIL_ON_CRITICAL=1 is enabled. <br>
-Mitigation: Review RUN_GLOB filters, regex scope, and warning or critical thresholds before using the fail gate in CI. <br>
-Risk: The audit depends on local JSON exports and can miss workflows that are absent from the selected files. <br>
-Mitigation: Confirm the exported run set covers the repositories, workflows, branches, events, run IDs, and run URLs being audited. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-run-gap-audit) <br>
+## Use Case:
 
+Developers and release engineers use this skill to audit GitHub Actions run exports for workflow groups that have gone unexpectedly quiet because of stale triggers, disabled schedules, or branch drift.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, text, json, shell commands, configuration] <br>
-**Output Format:** [Text report or JSON summary of stale workflow groups, including severity, gap metrics, filters, and critical group details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can exit nonzero when FAIL_ON_CRITICAL=1 and one or more workflow groups are critical.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The audit can include repository, workflow, branch, run ID, and run URL data in generated reports.
+
+Mitigation: Keep RUN_GLOB scoped to intended GitHub Actions export files and review where text or JSON reports are stored or shared.
+
+Risk: Broad run-export globs may parse unintended local JSON files.
+
+Mitigation: Use a narrow RUN_GLOB and optional regex filters such as REPO_MATCH, WORKFLOW_MATCH, RUN_ID_MATCH, or RUN_URL_MATCH for targeted triage.
+
+## Reference(s):
+
+- [GitHub Actions Run Gap Audit on ClawHub](https://clawhub.ai/daniellummis/skills/github-actions-run-gap-audit)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, text, json, shell commands, guidance]
+
+**Output Format:** [Text or JSON reports with optional shell command usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can exit nonzero when FAIL_ON_CRITICAL=1 and critical stale workflow groups are found.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

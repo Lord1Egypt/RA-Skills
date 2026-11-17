@@ -1,6 +1,122 @@
 {
-  "ownerId": "kn7cznn4j3cb0853gxtf1nqvb182354c",
-  "slug": "fb-ads-copywriter-pro",
+  "name": "fb-ads-copywriter-pro",
+  "displayName": "FB Ads Copywriter Pro",
   "version": "2.1.0",
-  "publishedAt": 1774738675244
+  "description": "Facebook 廣告文案專家 - 生成 6 個高轉化率廣告版本，包含 A/B 測試建議和受眾分析",
+  "author": "Vic AI Company",
+  "license": "MIT",
+  "homepage": "https://github.com/vic-ai/fb-ads-copywriter-pro",
+  "repository": "https://github.com/vic-ai/fb-ads-copywriter-pro",
+  "keywords": [
+    "facebook-ads",
+    "copywriting",
+    "marketing",
+    "ai",
+    "advertising",
+    "social-media",
+    "ab-testing",
+    "audience-analysis",
+    "openclaw",
+    "clawhub"
+  ],
+  "category": "marketing",
+  "pricing": {
+    "clawhub_single": {
+      "price": 3,
+      "currency": "HKD",
+      "description": "單次體驗 - 6 文案 +6 圖片 +UTM+ 第 7 日報告"
+    },
+    "subscription_basic": {
+      "price": 29,
+      "currency": "USD",
+      "period": "month",
+      "description": "基礎版 - 無限文案"
+    },
+    "subscription_pro": {
+      "price": 59,
+      "currency": "USD",
+      "period": "month",
+      "description": "專業版 - 無限文案 + 圖片 + 報告"
+    },
+    "subscription_enterprise": {
+      "price": 199,
+      "currency": "USD",
+      "period": "month",
+      "description": "代運營 - 全套服務"
+    }
+  },
+  "features": [
+    "6 個廣告風格生成（FOMO/社交證明/權威/痛點/促銷/故事）",
+    "A/B 測試建議（3 個測試組合）",
+    "目標受眾分析（3 個細分群組）",
+    "投放策略建議（預算分配 + KPI 目標）",
+    "粵語口語化創作",
+    "符合 Facebook 廣告政策",
+    "Email 交付功能",
+    "Telegram 通知功能"
+  ],
+  "requirements": [
+    "python3.8+",
+    "requests>=2.28.0",
+    "python-dotenv>=0.19.0"
+  ],
+  "environmentVariables": [
+    {
+      "name": "GLM_API_KEY",
+      "description": "GLM-4-Flash API Key",
+      "required": true
+    },
+    {
+      "name": "RESEND_API_KEY",
+      "description": "Resend Email API Key",
+      "required": false
+    },
+    {
+      "name": "TELEGRAM_BOT_TOKEN",
+      "description": "Telegram Bot Token",
+      "required": false
+    },
+    {
+      "name": "TELEGRAM_CHAT_ID",
+      "description": "Telegram Chat ID",
+      "required": false
+    }
+  ],
+  "scripts": [
+    {
+      "name": "generate",
+      "command": "python scripts/copy-generator.py generate",
+      "description": "生成廣告文案"
+    },
+    {
+      "name": "batch",
+      "command": "python scripts/copy-generator.py batch",
+      "description": "批量生成廣告文案"
+    },
+    {
+      "name": "send",
+      "command": "python scripts/copy-generator.py send",
+      "description": "發送交付包畀客戶"
+    }
+  ],
+  "examples": [
+    {
+      "title": "基礎生成",
+      "command": "python scripts/copy-generator.py generate --product \"維 C 亮白精華素\" --audience \"25-45 歲女性\"",
+      "description": "為護膚品生成廣告文案"
+    },
+    {
+      "title": "使用問卷數據",
+      "command": "python scripts/copy-generator.py generate --questionnaire memory/questionnaire-sub_123456.md",
+      "description": "根據客戶問卷生成文案"
+    },
+    {
+      "title": "批量生成",
+      "command": "python scripts/copy-generator.py batch --input products.json --output ads/",
+      "description": "批量生成多個產品文案"
+    }
+  ],
+  "publishedAt": "2026-03-15T09:30:00+08:00",
+  "updatedAt": "2026-03-15T09:30:00+08:00",
+  "status": "ready-for-publish"
 }

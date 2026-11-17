@@ -6,6 +6,8 @@
  * 沙箱模式：ZHIHU_TEST_MODE=sandbox node tests/e2e-test.js
  *
  * P1-5 | S11 | S14
+ *
+ * @module e2e-test
  */
 
 // ── 测试配置 ──────────────────────────────────────────────
@@ -13,17 +15,31 @@
 import { existsSync, readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { testLog } from '../scripts/zhihu-logger.js';
 
+/** @type {string} 当前文件目录 */
 const __dirname = dirname(fileURLToPath(import.meta.url));
+/** @type {string} 测试模式 (sandbox|production) */
 const TEST_MODE = process.env.ZHIHU_TEST_MODE || 'sandbox';
-const SKIP_BROWSER = process.env.SKIP_BROWSER === 'true'; // CI 中跳过浏览器测试
-const REPORT_ONLY = process.env.REPORT_ONLY === 'true';   // 仅输出状态，不执行
+/** @type {boolean} CI 中跳过浏览器测试 */
+const SKIP_BROWSER = process.env.SKIP_BROWSER === 'true';
+/** @type {boolean} 仅输出状态，不执行 */
+const REPORT_ONLY = process.env.REPORT_ONLY === 'true';
 
 // ── 工具 ──────────────────────────────────────────────────
 
+/** @type {number} 通过计数 */
 let passed = 0;
+/** @type {number} 失败计数 */
 let failed = 0;
 
+/**
+ * 测试断言检查
+ * @param {string} name - 检查项名称
+ * @param {boolean} ok - 是否通过
+ * @param {string} [detail=''] - 失败详情
+ * @returns {void}
+ */
 function check(name, ok, detail = '') {
   if (ok) {
     passed++;
@@ -36,9 +52,14 @@ function check(name, ok, detail = '') {
 
 // ── 测试 1: 配置文件完整性 ────────────────────────────────
 
+/**
+ * 测试配置文件存在性和完整性
+ * @returns {void}
+ */
 function testConfigFiles() {
   console.log('📋 配置完整性检查:');
 
+  /** @type {Array<[string, string]>} */
   const files = [
     ['package.json', 'package.json'],
     ['SKILL.md', 'SKILL.md'],
@@ -81,6 +102,10 @@ function testConfigFiles() {
 
 // ── 测试 2: HTTP 公开 API ────────────────────────────────
 
+/**
+ * 测试 HTTP 公开 API 连通性
+ * @returns {Promise<void>}
+ */
 async function testPublicAPI() {
   console.log('\n🌐 HTTP 公开 API 测试:');
   try {
@@ -98,12 +123,18 @@ async function testPublicAPI() {
 
 // ── 测试 3: 模块导入完整性 ────────────────────────────────
 
+/**
+ * 测试所有模块的正确导入
+ * @returns {Promise<void>}
+ */
 async function testModuleImports() {
   console.log('\n📦 模块导入测试:');
 
+  /** @type {Array<[string, string, string[]]>} */
   const modules = [
     ['zhihu-core', '../scripts/zhihu-core.js', ['decryptCookies', 'encryptAndSaveCookies', 'initBrowser', 'withRetry', 'writeLog']],
-    ['zhihu-signature', '../scripts/zhihu-signature.js', ['SignatureManager', 'Zse96Provider', 'MockProvider']],
+    ['zhihu-logger', '../scripts/zhihu-logger.js', ['Logger', 'coreLog', 'browserLog', 'httpLog', 'writeLog']],
+    ['zhihu-signature', '../scripts/zhihu-signature.js', ['SignatureManager', 'MockProvider']],
     ['zhihu-ratelimiter', '../scripts/zhihu-ratelimiter.js', ['RateLimiter', 'httpRateLimiter']],
     ['zhihu-http', '../scripts/zhihu-http.js', ['getHotList', 'search', 'getUser', 'getQuestion']],
     ['zhihu-browser', '../scripts/zhihu-browser.js', ['getSelectors', 'findElement', 'getSession']],
@@ -129,14 +160,20 @@ async function testModuleImports() {
       }
     } catch (err) {
       check(`模块 ${name}: 导入失败`, false, err.message.slice(0, 80));
+      testLog.error(`模块 ${name} 导入失败`, err);
     }
   }
 }
 
 // ── 主函数 ────────────────────────────────────────────────
 
+/**
+ * 端到端测试主入口
+ * @returns {Promise<void>}
+ */
 async function main() {
   const startTime = Date.now();
+  testLog.info('端到端集成测试启动', { mode: TEST_MODE, skipBrowser: SKIP_BROWSER });
 
   console.log(`🧪 端到端集成测试`);
   console.log(`   模式: ${TEST_MODE}`);
@@ -168,6 +205,7 @@ async function main() {
   console.log(`  ❌ 失败: ${failed}`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
+  testLog.info('端到端测试完成', { passed, failed, elapsed: `${elapsed}s` });
   process.exit(failed > 0 ? 1 : 0);
 }
 
@@ -176,6 +214,7 @@ async function main() {
   try {
     await main();
   } catch (err) {
+    testLog.error('测试异常', err);
     console.error('\n❌ 测试异常:', err.message);
     process.exit(1);
   }

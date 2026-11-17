@@ -1,39 +1,56 @@
-## Description: <br>
-Trade on Kalshi prediction markets: check portfolio, search markets, analyze orderbooks, place/cancel orders, and manage binary contract positions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on Kalshi prediction markets: check portfolio, search markets, analyze orderbooks, place/cancel orders, and manage binary contract positions.
 
-## Publisher: <br>
-[ghsmc](https://clawhub.ai/user/ghsmc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ghsmc](https://clawhub.ai/user/ghsmc)
 
-## Use Case: <br>
-External users and developers with Kalshi API credentials use this skill to research prediction markets, inspect balances and positions, review orderbooks, and manage confirmed buy, sell, or cancellation actions through Kalshi. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [Kalshi API Documentation](https://kalshi.com/docs/api) <br>
-- [Kalshi API Notes](references/api-notes.md) <br>
-- [Kalshi API Setup Guide](references/setup-guide.md) <br>
-- [Kalshi Trading Guide](references/trading-guide.md) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can place, sell, and cancel live orders; users should confirm each trading action and protect Kalshi private keys with restrictive file permissions.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+External users and agents use this skill to research Kalshi prediction markets, inspect portfolio and orderbook data, and manage order workflows through a Node.js CLI. It can support real-money trading actions, so trade details should be reviewed before order placement or cancellation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The CLI can place or cancel real-money Kalshi production orders without an enforced confirmation step or strict order limits.
+
+Mitigation: Require manual review of ticker, side, contract count, price, total cost, and target environment before every order or cancellation.
+
+Risk: The skill requires Kalshi API credentials and access to an RSA private key that can authorize trading actions.
+
+Mitigation: Use demo credentials first where possible, store the private key outside the artifact, restrict file permissions, and revoke or rotate keys if exposure is suspected.
+
+## Reference(s):
+
+- [Kalshi API Documentation](https://kalshi.com/docs/api)
+- [Setup Guide](references/setup-guide.md)
+- [Trading Guide](references/trading-guide.md)
+- [API Notes](references/api-notes.md)
+- [ClawHub Skill Page](https://clawhub.ai/ghsmc/skills/kalshi-trading)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance, JSON data]
+
+**Output Format:** [JSON CLI output with Markdown setup and trading guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js plus KALSHI_API_KEY_ID and KALSHI_PRIVATE_KEY_PATH; the artifact uses Kalshi production API endpoints by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

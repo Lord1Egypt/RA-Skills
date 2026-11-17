@@ -1,40 +1,58 @@
-## Description: <br>
-Chinese-language investment persona skill that applies Yan Yan-style venture capital mental models to analyze investment questions, business decisions, and founder potential. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yan Yan Perspective V2 is a Chinese-language persona skill that frames investment, business-decision, and founder-assessment questions through ten mental models drawn from public Yan Yan material.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users invoke this skill when they want a Chinese-language Yan Yan-style perspective for founder assessment, venture investment reasoning, long-term business judgment, and commercial decision review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake persona responses for real statements from Yan Yan or for professional financial advice. <br>
-Mitigation: Present outputs as role-play analysis only and require independent review before using them for financial or business decisions. <br>
-Risk: The persona can activate unintentionally if broad trigger phrases appear in conversation. <br>
-Mitigation: Use explicit invocation for Yan Yan-style responses and exit with the documented phrases when the persona is no longer needed. <br>
+## Use Case:
 
+External users can use this skill to generate roleplay-style analysis inspired by public Yan Yan material for founder evaluation, venture-investment questions, business decisions, and long-term value reasoning. Outputs should be treated as simulated analysis, not statements from Yan Yan or personalized financial advice.
 
-## Reference(s): <br>
-- [Yan Yan Perspective V2 ClawHub release](https://clawhub.ai/xiejianjun000/yan-yan-perspective-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language persona responses; no executable code or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake Yan Yan-style outputs for authentic statements from Yan Yan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as AI-generated roleplay-style interpretations inspired by public material, not as statements from the real person.
+
+Risk: Investment commentary could be treated as personalized financial advice.
+
+Mitigation: Use outputs for general analysis only and require independent financial, legal, or investment review before decisions.
+
+Risk: The persona mode may activate unintentionally and shape later responses.
+
+Mitigation: Use the documented exit phrase to return to normal assistant behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/yan-yan-perspective-v2)
+- [Publisher profile](https://clawhub.ai/user/xiejianjun000)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language roleplay-style analysis; no code, tools, or system access are provided by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

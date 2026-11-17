@@ -1,43 +1,61 @@
-## Description: <br>
-Builds defensible prospect shortlists by niche and geography with public-source evidence, public contact paths, and optional outreach copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds niche- and geography-specific prospect shortlists with public-source evidence, public contact paths, and optional outreach copy.
 
-## Publisher: <br>
-[sunflower225](https://clawhub.ai/user/sunflower225) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunflower225](https://clawhub.ai/user/sunflower225)
 
-## Use Case: <br>
-External users and sales or agency teams use this skill to research niche- and geography-specific company shortlists with public contact paths for outbound prospecting or CRM import. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated company or contact-path entries may be incorrect or too weak for CRM import or outreach. <br>
-Mitigation: Verify each company URL, public contact path, and fit cue against public sources before importing records or contacting prospects. <br>
-Risk: Outbound use may be subject to email, privacy, and site-use rules that vary by jurisdiction and channel. <br>
-Mitigation: Confirm applicable outreach, privacy, and website terms before sending messages or reusing collected public contact paths. <br>
+## Use Case:
 
+External sales, agency, and go-to-market teams use this skill to create defensible prospect packs by niche and geography. It helps validate public company evidence, capture usable public contact paths, and optionally draft outreach grounded in verified public signals.
 
-## Reference(s): <br>
-- [Research Workflow](references/research-workflow.md) <br>
-- [Output Format](references/output-format.md) <br>
-- [Input Template](references/input-template.json) <br>
-- [Outreach Templates](references/outreach-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with an embedded JSON or YAML summary block and CSV-friendly company records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public sources only; defaults to a 50-company shortlist when possible; outreach copy is optional on request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Lead lists or outreach drafts may contain stale, incorrect, or thinly supported public business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prospect records before use and verify public URLs, contact paths, fit cues, and outreach angles against the cited public sources.
+
+Risk: Outbound use may create compliance risk if messages are sent without regard to consent, anti-spam, or privacy rules.
+
+Mitigation: Ensure any outreach based on the generated pack complies with applicable consent, anti-spam, and privacy requirements before sending.
+
+Risk: The skill could be misused to seek private enrichment or fabricated direct contact data.
+
+Mitigation: Use only public-source evidence and preserve the documented limits against private-data enrichment, mass email scraping, and fabricated emails, phone numbers, headcount, clients, or performance claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunflower225/skills/lead-finder-outreach)
+- [Research Workflow](references/research-workflow.md)
+- [Output Format](references/output-format.md)
+- [Input Template](references/input-template.json)
+- [Outreach Templates](references/outreach-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown report with an embedded JSON or YAML summary block and optional outreach variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CSV-friendly company records with stable fields for prospect shortlist reuse]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

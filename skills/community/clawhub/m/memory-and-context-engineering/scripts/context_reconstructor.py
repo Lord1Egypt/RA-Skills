@@ -41,7 +41,7 @@ Agent Memory System - 上下文重构器
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any, TYPE_CHECKING
 
 from .type_defs import (
@@ -488,12 +488,17 @@ class TemporalActivator(MemoryActivator):
         return sources
 
     def _hours_since(self, timestamp: datetime) -> float:
-        delta = datetime.now() - timestamp
+        now = datetime.now(timezone.utc).astimezone() if timestamp.tzinfo else datetime.now()
+        delta = now - timestamp
         return delta.total_seconds() / 3600
 
     def _get_window_weight(self, hours: float) -> float:
         for window_name, (low, high) in self._time_windows.items():
             if low <= hours < high:
+                return self._window_weights.get(window_name, 0.5)
+        # 兜底：精确匹配窗口边界
+        for window_name, (low, high) in self._time_windows.items():
+            if hours == low or hours == high:
                 return self._window_weights.get(window_name, 0.5)
         return 0.35
 
@@ -594,8 +599,16 @@ class EmotionalActivator(MemoryActivator):
             return 0.0
 
         recent_states = emotional.data.emotion_states[-5:]
+        current_clean = current.strip().lower()
         for state in recent_states:
-            if state.emotion_type in current or current in state.emotion_type:
+            state_clean = state.emotion_type.strip().lower()
+            # 精确匹配或分词匹配，避免子串误匹配（如 "sad" in "sadness"）
+            if current_clean == state_clean:
+                return 0.7 * state.intensity
+            # 分词匹配：将驼峰/下划线拆分为独立词
+            current_words = set(current_clean.replace("_", " ").split())
+            state_words = set(state_clean.replace("_", " ").split())
+            if current_words & state_words:
                 return 0.7 * state.intensity
 
         return 0.0
@@ -623,10 +636,11 @@ class CausalActivator(MemoryActivator):
     def _match_causal_patterns(
         self, situation: SituationAwareness, procedural: ProceduralMemory
     ) -> float:
-        if procedural.data.decision_patterns:
+        patterns = procedural.data.decision_patterns
+        if patterns:
             avg_success: float = sum(
-                p.success_rate for p in procedural.data.decision_patterns
-            ) / len(procedural.data.decision_patterns)
+                p.success_rate for p in patterns
+            ) / len(patterns)
             return avg_success
 
         return 0.0
@@ -899,17 +913,17 @@ class ContextReconstructor:
         for memory_id, memory_type, memory_obj, heat_level in memory_items:
             triggered_by: list[TriggerDimension] = []
             activation_sources: list[ActivationSource] = []
-            total_score: float = 0.0
+            max_score: float = 0.0
 
             for dim, sources_list in all_sources.items():
                 for source in sources_list:
-                    total_score += source.score
+                    max_score = max(max_score, source.score)
                     dim_enum: TriggerDimension = TriggerDimension(dim)
                     if dim_enum not in triggered_by:
                         triggered_by.append(dim_enum)
                     activation_sources.append(source)
 
-            relevance_score: float = min(1.0, total_score / 3.0)
+            relevance_score: float = min(1.0, max_score)
 
             if relevance_score >= self._relevance_threshold:
                 activated_memories.append(
@@ -1183,57 +1197,137 @@ class ContextReconstructor:
             knowledge_context=knowledge,
             emotional_context=emotional,
             narrative_anchor=narrative,
-            conflicts_handled=[],
+            conflicts_handled=self._detect_conflicts(activated),
             metadata={
                 "total_memories_used": len(activated),
                 "activation_coverage": [d.value for d in activation_result.activation_coverage],
             },
         )
 
+    def _detect_conflicts(self, activated: list[ActivatedMemory]) -> list[dict[str, Any]]:
+        """检测激活记忆中的冲突"""
+        conflicts: list[dict[str, Any]] = []
+
+        # 提取所有记忆摘要
+        summaries: dict[str, list[str]] = {}
+        for mem in activated:
+            key = mem.memory_type.value if hasattr(mem.memory_type, "value") else str(mem.memory_type)
+            if key not in summaries:
+                summaries[key] = []
+            summaries[key].append(mem.content_summary)
+
+        # 检测同一类型记忆中的矛盾
+        for mem_type, contents in summaries.items():
+            if len(contents) < 2:
+                continue
+            for i in range(len(contents)):
+                for j in range(i + 1, len(contents)):
+                    if self._is_contradictory(contents[i], contents[j]):
+                        conflicts.append({
+                            "type": mem_type,
+                            "between": (i, j),
+                            "summary_a": contents[i][:100],
+                            "summary_b": contents[j][:100],
+                            "resolved": False,
+                        })
+
+        return conflicts
+
+    def _is_contradictory(self, a: str, b: str) -> bool:
+        """检测两条记忆是否矛盾"""
+        # 简单矛盾检测：相同主语但相反的谓语
+        negation_words = {"不", "没", "否", "非", "无", "反", "错误", "失败", "不能", "不会"}
+        a_words = set(a.lower().split())
+        b_words = set(b.lower().split())
+        has_negation_a = bool(a_words & negation_words)
+        has_negation_b = bool(b_words & negation_words)
+        return has_negation_a != has_negation_b
+
     def _build_task_context_layer(
         self, activated: list[ActivatedMemory]
     ) -> TaskContextLayer:
+        current_task = "基于激活记忆推断的任务"
+        task_phase = "探索阶段"
+        implicit_requirements: list[str] = ["需要记忆支持"]
+
+        for mem in activated:
+            ctx = mem.activation_context or {}
+            if ctx.get("task_type"):
+                phase_map = {"coding": "编码阶段", "debug": "调试阶段", "design": "设计阶段", "analysis": "分析阶段"}
+                task_phase = phase_map.get(ctx["task_type"], "探索阶段")
+            if ctx.get("task_description"):
+                current_task = ctx["task_description"]
+            if ctx.get("requirements"):
+                implicit_requirements = ctx["requirements"]
+
         return TaskContextLayer(
-            current_task="基于激活记忆推断的任务",
-            task_phase="探索阶段",
-            implicit_requirements=["需要记忆支持"],
+            current_task=current_task,
+            task_phase=task_phase,
+            implicit_requirements=implicit_requirements,
         )
 
     def _build_user_state_layer(
         self, activated: list[ActivatedMemory]
     ) -> UserStateLayer:
         profile_data: dict[str, Any] = {}
+        current_focus = "当前任务焦点"
+        decision_style = "balanced"
+        neuroticism_tendency = 0.0
+
         for mem in activated:
             if mem.memory_type == MemoryType.USER_PROFILE:
                 profile_data["identity"] = mem.content_summary
+                # 从激活上下文中提取更详细的信息
+                ctx = mem.activation_context or {}
+                if ctx.get("user_focus"):
+                    current_focus = ctx["user_focus"]
+                if ctx.get("decision_style"):
+                    decision_style = ctx["decision_style"]
+                if ctx.get("emotional_tendency"):
+                    neuroticism_tendency = float(ctx.get("emotional_tendency", 0.0))
 
         return UserStateLayer(
             user_profile_core=profile_data,
-            current_focus="当前任务焦点",
-            decision_style="balanced",
-            neuroticism_tendency=0.0,
+            current_focus=current_focus,
+            decision_style=decision_style,
+            neuroticism_tendency=neuroticism_tendency,
         )
 
     def _build_experiences_layer(
         self, activated: list[ActivatedMemory]
     ) -> ActivatedExperiencesLayer:
         patterns: list[dict[str, Any]] = []
+        success_stories: list[dict[str, Any]] = []
+        failure_lessons: list[dict[str, Any]] = []
+        tool_recommendations: list[dict[str, Any]] = []
 
         for mem in activated:
+            ctx = mem.activation_context or {}
             if mem.memory_type == MemoryType.PROCEDURAL:
-                patterns.append(
-                    {
-                        "memory_id": mem.memory_id,
-                        "relevance": mem.relevance_score,
-                        "summary": mem.content_summary,
-                    }
-                )
+                entry = {
+                    "memory_id": mem.memory_id,
+                    "relevance": mem.relevance_score,
+                    "summary": mem.content_summary,
+                }
+                patterns.append(entry)
+
+                # 根据结果分类到成功/失败
+                if ctx.get("result") == "success":
+                    success_stories.append(entry)
+                elif ctx.get("result") == "failure":
+                    failure_lessons.append(entry)
+
+            if mem.memory_type == MemoryType.USER_PROFILE and ctx.get("tool_preferences"):
+                tool_recommendations.append({
+                    "tool": ctx["tool_preferences"],
+                    "relevance": mem.relevance_score,
+                })
 
         return ActivatedExperiencesLayer(
             relevant_patterns=patterns,
-            success_stories=[],
-            failure_lessons=[],
-            tool_recommendations=[],
+            success_stories=success_stories,
+            failure_lessons=failure_lessons,
+            tool_recommendations=tool_recommendations,
         )
 
     def _build_knowledge_layer(

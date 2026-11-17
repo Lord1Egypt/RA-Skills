@@ -1,45 +1,59 @@
-## Description: <br>
-CT Monitor helps OpenClaw users monitor crypto KOL tweets, real-time news, RSS feeds, market prices, smart-money signals, and on-chain/social hype data to generate crypto intelligence reports and alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CT Monitor helps agents monitor crypto KOL tweets, real-time news, RSS feeds, prices, Binance Web3 signals, and on-chain context to produce crypto intelligence reports.
 
-## Publisher: <br>
-[tizerluo](https://clawhub.ai/user/tizerluo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tizerluo](https://clawhub.ai/user/tizerluo)
 
-## Use Case: <br>
-External OpenClaw users and crypto market researchers use this skill to query CT Monitor APIs, combine KOL tweets, news, price, and smart-money data, and synthesize Markdown market briefings, alerts, token research, and scheduled reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends CT Monitor API keys and crypto research queries to the CT Monitor service. <br>
-Mitigation: Install only if the user trusts CT Monitor, store the key in CT_MONITOR_API_KEY, and rotate or remove the key when access is no longer needed. <br>
-Risk: Some documented CT Monitor endpoints incur paid API-call charges. <br>
-Mitigation: Review endpoint costs before running workflows, especially scheduled or repeated reports. <br>
-Risk: The skill can propose watchlist add or remove actions. <br>
-Mitigation: Confirm watchlist changes before executing subscription POST or DELETE requests. <br>
-Risk: Scheduled Telegram jobs can repeatedly send reports outside OpenClaw. <br>
-Mitigation: Create cron or Telegram jobs only for reports the user intentionally wants delivered on a recurring schedule, and periodically review active jobs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CT Monitor API Docs](https://api.ctmon.xyz/api/docs) <br>
-- [Project Homepage](https://github.com/tizerluo/ct-monitor-skill) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tizerluo/openclaw-twitter-monitor) <br>
+## Use Case:
 
+External users and crypto analysts use this skill to query CT Monitor APIs, correlate KOL activity, news, token prices, alpha signals, and smart-money data, and receive concise market briefings, due-diligence summaries, security alerts, and scheduled monitoring reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CT_MONITOR_API_KEY and may generate scheduled OpenClaw cron or Telegram delivery commands when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.3.18 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes authenticated CT Monitor API calls that may consume a paid API balance.
+
+Mitigation: Install only if the user trusts CT Monitor with the API key and billing account; keep CT_MONITOR_API_KEY scoped to this service and review cost-bearing prompts before running them.
+
+Risk: The skill can propose recurring OpenClaw cron jobs that repeatedly call external services and deliver reports.
+
+Mitigation: Review each cron schedule, destination, and prompt before enabling it, and periodically audit active jobs.
+
+Risk: Market reports, links, token signals, and investment suggestions are derived from external crypto data that may be inaccurate, manipulated, stale, or incomplete.
+
+Mitigation: Treat outputs as untrusted market intelligence, require source-backed review before acting, and do not rely on the skill as financial advice.
+
+## Reference(s):
+
+- [Openclaw Twitter Monitor on ClawHub](https://clawhub.ai/tizerluo/skills/openclaw-twitter-monitor)
+- [Publisher Profile](https://clawhub.ai/user/tizerluo)
+- [CT Monitor Skill Homepage](https://github.com/tizerluo/ct-monitor-skill)
+- [CT Monitor API Documentation](https://api.ctmon.xyz/api/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses authenticated CT Monitor API calls and may propose scheduled OpenClaw cron jobs for recurring reports.]
+
+## Skill Version(s):
+
+3.3.18 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

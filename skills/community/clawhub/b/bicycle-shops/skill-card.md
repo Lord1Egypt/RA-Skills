@@ -1,40 +1,57 @@
-## Description: <br>
-Find nearby bicycle shops. Invoke when user asks for bike shops near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby bicycle shops. Invoke when user asks for bike shops near me.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and agents use this skill to find nearby bicycle shops, bike stores, repair options, and related services from a user-provided location or city. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Precise location coordinates are required for nearby shop lookup. <br>
-Mitigation: Ask for location only when needed, use trusted location providers, and avoid retaining precise coordinates beyond a short-lived lookup cache. <br>
-Risk: Large or repeated lookup requests can increase privacy exposure and provider load. <br>
-Mitigation: Keep radius and result limits bounded, honor the documented maximum limit, and use short-term caching for repeated location-category-radius queries. <br>
+## Use Case:
 
+External users use this skill to find nearby bicycle shops for purchases, accessories, repairs, or maintenance based on an authorized location, radius, and optional filters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/bicycle-shops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Structured text describing nearby bicycle-shop lookup inputs, filters, errors, and standardized point-of-interest results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses location coordinates, radius, limit, and optional filters such as open_now, min_rating, and keywords.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Nearby shop searches may expose a user's precise location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Query only after user authorization, prefer approximate or grid-obscured coordinates where possible, and avoid retaining precise coordinates.
+
+Risk: The referenced STANDARD_RESPONSE.md schema is not included in the package, which can create response-format ambiguity for integrators.
+
+Mitigation: Confirm the expected POI response schema in the consuming system before deployment.
+
+Risk: Provider outages or rate limits may prevent successful lookup results.
+
+Mitigation: Handle PROVIDER_UNAVAILABLE and RATE_LIMITED responses and use short-term caching for repeated location, category, and radius requests.
+
+## Reference(s):
+
+- [Nearby Bicycle Shops on ClawHub](https://clawhub.ai/codekungfu/skills/bicycle-shops)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Standardized POI list with location-aware shop results, filters, and error codes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authorized location; category is fixed to bicycle-shops; default radius is 3000 meters; default limit is 20 and maximum limit is 50.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

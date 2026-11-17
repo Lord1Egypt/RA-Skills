@@ -1,38 +1,53 @@
-## Description: <br>
-Maps legal elements to facts, burden of proof, evidence types, rebuttal points, and reinforcement strategies for Chinese-language legal evidence preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maps legal elements to facts, burden of proof, evidence types, rebuttal points, and reinforcement strategies so legal users can turn a provision into an evidence checklist.
 
-## Publisher: <br>
-[mctmilk](https://clawhub.ai/user/mctmilk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mctmilk](https://clawhub.ai/user/mctmilk)
 
-## Use Case: <br>
-Legal practitioners and users preparing case evidence use this skill to turn a legal provision into an element-fact-evidence map and six-column summary table for trial preparation or evidence list drafting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated legal evidence mapping may be incomplete, jurisdiction-specific, or unsuitable for court preparation without professional review. <br>
-Mitigation: Confirm the relevant jurisdiction, statute, facts, and burden-of-proof analysis with a qualified legal professional before relying on the output. <br>
+## Use Case:
 
+Legal practitioners use this skill during case preparation to map each legal element to the facts that must be proven, the party with the burden of proof, preferred evidence, likely rebuttals, and concrete ways to strengthen weak evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mctmilk/legal-evidence-mapping-mctmilk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown narrative and six-column table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language legal analysis; no executable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The generated evidence map may not match the applicable jurisdiction, legal basis, or case-specific procedural posture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the jurisdiction and legal provision before use, and have a qualified legal professional review the evidence strategy.
+
+Risk: Users may over-rely on drafting support for legal strategy decisions.
+
+Mitigation: Treat the output as a structured drafting aid and validate facts, burden-of-proof analysis, evidence choices, and rebuttal strategy before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mctmilk/skills/legal-evidence-mapping-mctmilk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown table with explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language legal evidence mapping output with a six-column summary table.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

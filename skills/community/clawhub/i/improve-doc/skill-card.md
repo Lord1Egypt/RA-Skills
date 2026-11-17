@@ -1,38 +1,48 @@
-## Description: <br>
-Analyze and improve existing documentation using Diataxis principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and improve existing documentation using Diataxis principles.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anderskev](https://clawhub.ai/user/anderskev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and documentation maintainers use this skill to analyze Markdown documentation, classify sections by Diataxis type, identify structural issues, and interactively refine the document.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Accepted edits can overwrite the original Markdown file and may introduce inaccurate or misleading documentation.
+
+Mitigation: Use version control or a backup, review proposed changes and the final diff, and only approve writes after the documented refinement gates are satisfied.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and documentation maintainers use this skill to analyze an existing Markdown document, classify sections by Diataxis type, identify documentation issues, and interactively refine sections before the original file is updated. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite the Markdown file supplied by the user. <br>
-Mitigation: Use the skill on files in version control or make a backup first, and review each proposed section change before accepting it. <br>
+**Output Format:** [Markdown analysis, proposed Markdown edits, and concise completion reports]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Improve Doc Skill Page](https://clawhub.ai/anderskev/skills/improve-doc) <br>
+**Other Properties Related to Output:** [May overwrite the target Markdown file only after user-approved refinement gates.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis summaries, section proposals, user prompts, and an update report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may rewrite the Markdown file supplied by the user after interactive approval.] <br>
+1.0.3 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

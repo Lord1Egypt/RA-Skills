@@ -1,43 +1,59 @@
-## Description: <br>
-Searches BT4G for torrents, enriches magnet links with public trackers, and can add selected downloads to qBittorrent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches BT4G for torrents, generates tracker-enriched magnet links, and can add selected magnet links or torrent files to a local qBittorrent Web UI.
 
-## Publisher: <br>
-[sumo0221](https://clawhub.ai/user/sumo0221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sumo0221](https://clawhub.ai/user/sumo0221)
 
-## Use Case: <br>
-External users and agents use this skill to search BT4G for torrent candidates, inspect seed activity, generate tracker-enriched magnet links, and optionally send approved downloads to a local qBittorrent WebUI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start qBittorrent downloads from selected magnet links. <br>
-Mitigation: Require explicit user confirmation before adding any torrent, and verify the selected result, seed activity, and magnet link before submission. <br>
-Risk: The skill may ask an agent to reuse a personal browser session to pass Cloudflare checks. <br>
-Mitigation: Use a dedicated browser profile with no unrelated logins, and avoid forwarding torrent requests to another agent unless the user explicitly approves it. <br>
-Risk: The qBittorrent WebUI examples use default credentials and local WebUI access. <br>
-Mitigation: Change the default qBittorrent password, keep the WebUI bound to localhost, and do not expose the WebUI to the network. <br>
+## Use Case:
 
+Agents assisting users with authorized torrent workflows use this skill to search BT4G, identify active results, enrich magnet links with public trackers, and optionally submit a chosen download to qBittorrent after explicit user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sumo0221/sumo-torrent) <br>
-- [BT4G search endpoint](https://bt4gprx.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated magnet-link text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce tracker-enriched magnet links and qBittorrent WebUI actions after user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The workflow can reuse a personal browser profile or session to bypass site challenges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated browser profile dedicated to this site and do not reuse a personal daily profile.
+
+Risk: The helper can directly add magnet links or torrent files to qBittorrent.
+
+Mitigation: Require explicit user confirmation before adding any magnet link or torrent file to the client.
+
+Risk: The qBittorrent helper includes weak default credentials and accepts credentials through command-line flags.
+
+Mitigation: Change the qBittorrent password, keep the Web UI bound to localhost, and avoid passing passwords on the command line.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sumo0221/skills/sumo-torrent)
+- [Publisher profile](https://clawhub.ai/user/sumo0221)
+- [qBittorrent Web UI](http://localhost:8080)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated magnet-link text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May add public trackers to magnet links and interact with a local qBittorrent Web UI when configured.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence, released 2026-04-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

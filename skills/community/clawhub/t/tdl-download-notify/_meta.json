@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7fae2k4vsvmr2h66ac8cmhxs82v9j4",
+  "ownerId": "local",
   "slug": "tdl-download-notify",
   "version": "1.0.0",
-  "publishedAt": 1775573406292
+  "publishedAt": 1774544400000,
+  "local": true
 }

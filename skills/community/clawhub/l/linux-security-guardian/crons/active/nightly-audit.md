@@ -5,7 +5,7 @@ schedule: "30 19 * * *"
 schedule_ist: "01:00 IST daily"
 schedule_utc: "19:30 UTC daily"
 timezone: Asia/Kolkata
-purpose: Full multi-client Linux server security audit — iterate all clients → all servers → 18 modules via SSH MCP, CVE scan, auto-fix safe issues, queue critical for confirm, per-server report via email plugin
+purpose: Full multi-client Linux server security audit — iterate all clients → all servers → 26 modules via SSH MCP, CVE scan, auto-fix safe issues, queue critical for confirm, per-server report via email plugin
 fire_once: false
 auto_delete: false
 status: active

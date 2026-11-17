@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "DeepSeek"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.7"
   services: ["deepseek"]
   icon: "https://static.oomol.com/logo/third-party/DeepSeek.svg"
 ---
@@ -38,9 +38,11 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `create_anthropic_message` — Create a DeepSeek message via the Anthropic-compatible API. [write]
-- `create_chat_completion` — Create a DeepSeek chat completion via the OpenAI-compatible API. [write]
+- `create_chat_completion` — Create a DeepSeek chat completion via the OpenAI-compatible API.
+- `fetch` — Fetch a webpage with DeepSeek and return its title and Markdown content.
 - `get_user_balance` — Get the current DeepSeek account balance.
 - `list_models` — List the available DeepSeek models.
+- `search` — Search webpages with DeepSeek and return ranked results, summaries and optional body text.
 
 ## Safety
 
@@ -71,11 +73,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — DeepSeek is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=deepseek
+  https://console.oomol.com/connections/deepseek
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - DeepSeek homepage: https://platform.deepseek.com
+- API documentation: https://api-docs.deepseek.com/

@@ -1,42 +1,57 @@
-## Description: <br>
-Converts PDF files into PNG or JPG images with configurable scale and page ranges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDF files into PNG or JPG images locally, with configurable resolution and page ranges.
 
-## Publisher: <br>
-[fly3094](https://clawhub.ai/user/fly3094) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fly3094](https://clawhub.ai/user/fly3094)
 
-## Use Case: <br>
-Developers and agents use this skill to convert local PDF documents into PNG or JPG image files, including selected pages and higher-resolution renders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local PDFs and writes output files, so sensitive PDFs or target paths may be exposed to the local runtime. <br>
-Mitigation: Run it only on PDFs and output locations you are comfortable giving the tool access to. <br>
-Risk: Existing output files can be overwritten during image generation. <br>
-Mitigation: Use a dedicated output directory or review target filenames before execution. <br>
-Risk: The skill depends on npm packages for PDF rendering and canvas output. <br>
-Mitigation: Verify npm dependencies, including pdfjs-dist and canvas, come from trusted sources before installation. <br>
+## Use Case:
 
+Developers and other agent users use this skill to convert local PDF documents into image files for document processing, previews, extraction workflows, or batch conversion.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fly3094/pdf-to-images) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration] <br>
-**Output Format:** [PNG or JPG image files with command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports scale values from 0.5 to 5.0 and optional page ranges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on Node.js packages for PDF rendering, and dependency resolution may install packages required at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where npm dependency resolution is acceptable, and verify required packages before deployment.
+
+Risk: The converter may require the canvas package or native canvas dependencies to render pages successfully.
+
+Mitigation: Confirm canvas is installed and operational in the target runtime before relying on the converter in an agent workflow.
+
+Risk: The usage text is primarily in Chinese, which can make setup and troubleshooting harder for non-Chinese users.
+
+Mitigation: Provide translated runbook notes or operator guidance for teams that do not read Chinese.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fly3094/skills/pdf-to-images)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG or JPG image files with console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports scale values from 0.5 to 5.0 and optional page ranges such as 1-3,5.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

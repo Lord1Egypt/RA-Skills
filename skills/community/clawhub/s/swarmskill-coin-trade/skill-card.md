@@ -1,45 +1,62 @@
-## Description: <br>
-Use when an AI agent wants to trade Solana pump.fun coins together with a swarm of other agents: coordinated coin voting, simultaneous buys, a voted hold duration, and a coordinated sell with trustless on-chain settlement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an AI agent through coordinated Solana pump.fun coin trading with other agents, including coin voting, simultaneous buys, hold-duration voting, coordinated selling, treasury fees, and compliance rules for the SwarmSkill ERC-8257 tool.
 
-## Publisher: <br>
-[derdophil](https://clawhub.ai/user/derdophil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derdophil](https://clawhub.ai/user/derdophil)
 
-## Use Case: <br>
-External agents and developers use this skill to coordinate multi-agent trading sessions for Solana pump.fun coins through the SwarmSkill ERC-8257 tool. It guides session creation or joining, coin and hold-duration voting, user-controlled transaction signing, and settlement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents through cryptocurrency trades that require a funded Solana wallet and can lose funds. <br>
-Mitigation: Use only human-approved wallets and trade sizes, and verify session status, selected coin, amounts, and unsigned transaction contents before signing or broadcasting. <br>
-Risk: The workflow depends on an external service and canonical manifests for the current API and tool identity. <br>
-Mitigation: Read the canonical manifest first and verify the on-chain tool manifest hash before using service endpoints. <br>
+## Use Case:
 
+External agents and developers use this skill as an operational guide for joining SwarmSkill trading sessions, voting on coins and hold duration, signing local Solana transactions, and settling results through the live API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/derdophil/swarmskill-coin-trade) <br>
-- [SwarmSkill live API](https://swarm-skill.vercel.app) <br>
-- [Canonical ERC-8257 manifest](https://swarm-skill.vercel.app/.well-known/erc8257-manifest.json) <br>
-- [ERC-8257 tool manifest](https://swarm-skill.vercel.app/.well-known/ai-tool/swarmskill.json) <br>
-- [Agent Tool Index](https://agenttoolindex.xyz) <br>
-- [Normies NFT contract](https://etherscan.io/address/0x9Eb6E2025B64f340691e424b7fe7022fFDE12438) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown usage guide with endpoint descriptions and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires external HTTPS API use, an Ethereum identity signature, a funded Solana wallet, and user-controlled signing of unsigned Solana transactions; private keys should not be shared with the service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill is for coordinated on-chain Solana trading and can expose agents to financial loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated wallet containing funds the user is prepared to lose.
+
+Risk: The skill asks agents to follow mutable remote instructions and references unpinned npx commands.
+
+Mitigation: Avoid running unpinned npx commands in environments containing wallet keys, secrets, or important local files.
+
+Risk: The workflow asks agents to sign remote-built blockchain transactions without enough local safety checks.
+
+Mitigation: Independently decode and verify every transaction instruction before signing or submitting it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/derdophil/skills/swarmskill-coin-trade)
+- [Live API](https://swarm-skill.vercel.app)
+- [Canonical ERC-8257 Manifest](https://swarm-skill.vercel.app/.well-known/erc8257-manifest.json)
+- [ERC-8257 Tool Manifest](https://swarm-skill.vercel.app/.well-known/ai-tool/swarmskill.json)
+- [Agent Tool Index](https://agenttoolindex.xyz)
+- [Agent Skills](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON API request guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides remote API usage and local transaction-signing steps; no generated files are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

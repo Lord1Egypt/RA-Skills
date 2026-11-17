@@ -1,42 +1,57 @@
-## Description: <br>
-Actively monitors, responds to, and drives pull request reviews to completion with real-time tracking list synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Actively monitors pull request status, reviewer feedback, and CI results so an agent can respond to review feedback, update tracking state, and drive reviews toward merge.
 
-## Publisher: <br>
-[Linux2010](https://clawhub.ai/user/Linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-Developers and maintainers use this skill to monitor pull requests, respond to reviewer feedback, address CI failures, and keep PR tracking records current until merge or closure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to actively manage PR review work, including branch changes, commits, comments, PR edits, and tracking-file writes. <br>
-Mitigation: Restrict use to specific repositories and PRs, and require confirmation before commits, pushes, comments, PR edits, or tracking-file writes. <br>
-Risk: The skill references a hard-coded local memory path for PR tracking data. <br>
-Mitigation: Replace or disable the hard-coded path before use unless PR metadata should be stored there. <br>
-Risk: Broad automated monitoring and persistence can record PR metadata outside the intended workspace. <br>
-Mitigation: Review the configured storage location and retention expectations before deployment. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to monitor active pull requests, assess review and CI status, respond to maintainer feedback, and keep PR tracking records current.
 
-## Reference(s): <br>
-- [PR Advocacy on ClawHub](https://clawhub.ai/Linux2010/pr-advocacy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, status procedures, and response templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose PR branch changes, review responses, commits, and tracking-file updates depending on agent permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact/skill.json) <br>
+Risk: The skill may guide an agent to make repository changes, change branches, commit work, or push review fixes without clear approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain use to specific repositories and pull requests, and require user approval before commits, pushes, or PR comments.
+
+Risk: Persistent tracking or memory updates may write PR state to locations the user did not approve.
+
+Mitigation: Store tracking state only in a user-approved skill-specific location and disable automatic updates to core memory, skills, or workflows.
+
+Risk: Continuous PR monitoring may act on unintended pull requests or stale context.
+
+Mitigation: Scope monitoring to explicit PR numbers, review status before each action, and confirm destructive or externally visible changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linux2010/skills/pr-advocacy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash snippets and response templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide repository edits, commits, tracking-list updates, and PR review comments.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

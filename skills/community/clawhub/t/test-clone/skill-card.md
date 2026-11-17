@@ -1,41 +1,58 @@
-## Description: <br>
-Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com.
 
-## Publisher: <br>
-[krischristen-hash](https://clawhub.ai/user/krischristen-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krischristen-hash](https://clawhub.ai/user/krischristen-hash)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate ClawHub CLI commands for discovering skills, installing or updating them locally, authenticating, and publishing skill folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk update commands with force flags can overwrite local installed skills. <br>
-Mitigation: Review the selected skills first and avoid `--all --no-input --force` unless intentionally replacing local installed skills. <br>
-Risk: Publishing uploads the selected skill folder to ClawHub and may expose unintended contents. <br>
-Mitigation: Inspect the folder before publishing and remove files that should not be released. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage ClawHub skills from the command line, including search, install, update, listing, authentication, and publishing workflows.
 
-## Reference(s): <br>
-- [ClawHub Registry](https://clawhub.com) <br>
-- [Test Clone release page](https://clawhub.ai/krischristen-hash/test-clone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command examples for install, authentication, search, update, listing, and publish workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: An unpinned global CLI install can pull a version that has not been reviewed for this environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the CLI from a trusted registry and prefer a pinned, reviewed package version.
+
+Risk: Bulk forced noninteractive updates can change multiple installed agent skills with little user review.
+
+Mitigation: Prefer updating a single named skill first; use bulk forced updates only when the operator intentionally wants multiple installed skills changed.
+
+Risk: Publishing a broad target directory can unintentionally include secrets or unrelated local files.
+
+Mitigation: Review the target directory before publishing and publish only the intended named skill folder.
+
+## Reference(s):
+
+- [Test Clone Skill Page](https://clawhub.ai/krischristen-hash/skills/test-clone)
+- [ClawHub Registry](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the clawhub CLI binary; examples include npm installation, registry/workdir configuration, authentication, search, install, update, list, and publish commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

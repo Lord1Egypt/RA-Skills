@@ -1,44 +1,55 @@
-## Description: <br>
-Yuri Graph Gateway is a usage guide for routing Facebook Graph API requests through the baiz.ai proxy by replacing the Facebook Graph domain and using a Yuri API token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A transparent proxy usage guide for calling Facebook Graph API endpoints through Yuri Graph Gateway with a Yuri API token.
 
-## Publisher: <br>
-[yuriskills](https://clawhub.ai/user/yuriskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuriskills](https://clawhub.ai/user/yuriskills)
 
-## Use Case: <br>
-Developers and API integrators use this skill to adapt existing Facebook Graph API calls to a third-party proxy service by changing the request host and substituting a Yuri platform token for the Facebook access token. It is intended for users who have verified the provider and are comfortable making baiz.ai part of their Facebook security boundary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes Facebook Graph API traffic through a third-party gateway that can affect Facebook requests and token handling. <br>
-Mitigation: Install only after deciding to trust baiz.ai as part of the Facebook security boundary, start with a least-privilege test Facebook account, and verify provider security and revocation controls before production use. <br>
-Risk: Write, delete, upload, publishing, ads, or account-management operations could change Facebook assets through the proxy. <br>
-Mitigation: Require human approval before any state-changing or account-management request and review the exact endpoint, method, parameters, and target account. <br>
-Risk: Passing a sensitive token as an access_token query parameter can expose it through browser history or logs. <br>
-Mitigation: Prefer sending the token in POST or PUT request bodies when supported, store it only in a secret manager or environment variable, and rotate or revoke it if exposed. <br>
+## Use Case:
 
+Developers and external API users use this skill to configure calls to Facebook Graph API endpoints through the Yuri Graph Gateway by replacing the Graph API domain and using a Yuri platform token.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuriskills/yuri-graph-gateway) <br>
-- [Publisher profile](https://clawhub.ai/user/yuriskills) <br>
-- [baiz.ai homepage](https://baiz.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown usage guidance with curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes credential handling, proxy endpoint substitution, supported request types, and security precautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: The proxy can route high-impact Facebook Graph API actions through a third-party provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege test or sandbox Facebook resources until provider authorization isolation, token storage, log redaction, and deletion controls are verified.
+
+Risk: Yuri tokens may be exposed when passed in URLs, shell history, browser history, or logs.
+
+Mitigation: Prefer body-based secret handling where available, keep tokens in a secret manager or environment variable, and rotate or revoke any token that may have been exposed.
+
+## Reference(s):
+
+- [Baiz AI Homepage](https://baiz.ai)
+- [Yuri Graph Gateway on ClawHub](https://clawhub.ai/yuriskills/skills/yuri-graph-gateway)
+- [Yuri Graph Gateway Endpoint](https://facebook-graph.baiz.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with curl examples and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a sensitive YURI_TOKEN credential.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

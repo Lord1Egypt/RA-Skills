@@ -1,39 +1,50 @@
-## Description: <br>
-Create a polished client education handout with visuals, FAQs, and clear next steps for a bookkeeping firm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a bookkeeping firm.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Bookkeepers and accounting practice owners use this skill to draft client education handouts that explain bookkeeping topics with visuals, FAQs, and clear next steps before external review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client-facing financial or accounting explanations may be inaccurate, incomplete, or inconsistent with firm policy. <br>
-Mitigation: Review the final handout for accuracy, compliance, and firm-specific policy before sharing it externally. <br>
+## Use Case:
 
+Bookkeepers and accounting practice owners use this skill to create client education handouts with explainer copy, visuals, FAQs, and next steps for bookkeeping topics.
 
-## Reference(s): <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-bookkeeping-firm-client-education-handout) <br>
-- [ClawHub release page](https://clawhub.ai/tobeyrebecca/toby-generate-bookkeeping-firm-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured prose for a client-facing handout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prompts for visuals and FAQ-style sections; review before external publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated bookkeeping education content may contain inaccurate or incomplete financial guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct the handout for bookkeeping accuracy and client suitability before sharing it externally.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-bookkeeping-firm-client-education-handout)
+- [SkillBoss Skill Homepage](https://www.skillboss.co/skills/generate-bookkeeping-firm-client-education-handout)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown handout content with suggested visuals, FAQs, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for financial accuracy before client publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

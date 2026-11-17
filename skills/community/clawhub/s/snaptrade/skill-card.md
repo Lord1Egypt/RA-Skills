@@ -1,42 +1,61 @@
-## Description: <br>
-Connect to a user's investment accounts via SnapTrade SDK and generate portfolio reports, connection portal links, account registration support, brokerage reconnection flows, and order-related workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to a user's investment accounts through the SnapTrade SDK to create brokerage connection links, manage reconnections, list accounts and brokerages, generate portfolio value reports, and place or monitor stock and ETF orders.
 
-## Publisher: <br>
-[brendanwood](https://clawhub.ai/user/brendanwood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brendanwood](https://clawhub.ai/user/brendanwood)
 
-## Use Case: <br>
-External users and agents use this skill to connect brokerage accounts through SnapTrade, retrieve portfolio account data, produce total-value reports, and support order placement or monitoring when trading authority is intentionally enabled. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real brokerage trades when SnapTrade trade authority is available. <br>
-Mitigation: Require explicit confirmation of account, symbol, side, quantity, order type, time in force, and price before any trade; avoid order scripts for read-only reporting workflows. <br>
-Risk: Stored SnapTrade credentials and user secrets grant ongoing brokerage access. <br>
-Mitigation: Store the secrets file with restrictive permissions, avoid sharing it, and use read-only brokerage permissions where possible. <br>
-Risk: Recurring reporting or messaging automation can repeatedly access financial account data. <br>
-Mitigation: Review cron and messaging automation before enabling it and limit scheduled jobs to the minimum reporting scope needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SnapTrade](https://snaptrade.com) <br>
-- [ClawHub SnapTrade release](https://clawhub.ai/brendanwood/snaptrade) <br>
+## Use Case:
 
+Developers and agent users use this skill to connect brokerage accounts through SnapTrade, retrieve account and portfolio data, create connection or reconnect links, and run explicitly configured stock or ETF order workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON outputs from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit connection or reconnect URLs, account lists, portfolio totals, order placement status, and order monitoring updates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place live stock or ETF trades when trading credentials and account scope are configured.
+
+Mitigation: Before running order workflows, verify the account, action, symbol, units, order type, limit price, time in force, and whether monitoring is enabled.
+
+Risk: Brokerage credentials and SnapTrade user secrets are stored in a local configuration file.
+
+Mitigation: Keep the configuration outside the repository, restrict file permissions, and remove or rotate credentials when access is no longer needed.
+
+Risk: Scheduled portfolio reports can repeatedly expose financial information to an external destination.
+
+Mitigation: Confirm the report recipient, delivery channel, schedule, and removal steps before enabling cron-based reporting.
+
+Risk: Portfolio totals may include disabled connections or stale synchronization states.
+
+Mitigation: Review disabled-connection and sync-timeout output before using portfolio totals for financial decisions.
+
+## Reference(s):
+
+- [ClawHub SnapTrade Skill Page](https://clawhub.ai/brendanwood/skills/snaptrade)
+- [SnapTrade](https://snaptrade.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or text outputs from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include connection or reconnect URLs, account and brokerage lists, portfolio totals, order status updates, and scheduled reporting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

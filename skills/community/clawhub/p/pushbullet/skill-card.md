@@ -1,44 +1,55 @@
-## Description: <br>
-Pushbullet provides an OAuth-backed integration for sending pushes, sharing links and files, managing devices, creating chats, and handling cross-device messaging through ClawLink. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pushbullet API integration with managed OAuth for cross-device notification automation. Send pushes, manage devices, create chats, and handle cross-device messaging. Use this skill when users want to send notifications to devices, share links or notes across devices, manage Pushbullet chats, or register and manage connected devices.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and end users use this skill to automate Pushbullet notifications, file and link sharing, push history review, device management, and chat management from an agent workflow. It is intended for explicit Pushbullet tasks after the user has connected a Pushbullet account through ClawLink OAuth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Pushbullet OAuth connection and sensitive account access through ClawLink. <br>
-Mitigation: Install it only when the user trusts ClawLink with the Pushbullet connection and use it only for explicit Pushbullet tasks. <br>
-Risk: Write and destructive operations can create, update, delete, or clear Pushbullet pushes, chats, and devices. <br>
-Mitigation: Review send, update, delete, and clear-all requests carefully before execution. <br>
-Risk: File pushes, links, notes, chat data, device identifiers, and push history may leave or be exposed through the connected Pushbullet account and related upload infrastructure. <br>
-Mitigation: Avoid sharing sensitive content unless the user intends it to pass through Pushbullet and any required upload flow. <br>
+## Use Case:
 
+Developers and automation users use this skill to connect a Pushbullet account through ClawLink, send cross-device notifications, share links or files, inspect push history, and manage devices or chats.
 
-## Reference(s): <br>
-- [Pushbullet API Docs](https://docs.pushbullet.com) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawHub Pushbullet Skill Page](https://clawhub.ai/hith3sh/pushbullet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command and JSON tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected Pushbullet OAuth account through ClawLink; write and destructive actions should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill depends on an external ClawLink plugin and OAuth service that can access Pushbullet account data after authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when the ClawLink service and plugin source are trusted, prefer a pinned or verified plugin release when available, and review OAuth scopes before authorizing.
+
+Risk: Write and destructive Pushbullet operations can send pushes or delete pushes, chats, and devices.
+
+Mitigation: Review confirmation prompts carefully before approving write or delete actions, especially operations that delete all pushes or remove chats or devices.
+
+## Reference(s):
+
+- [Pushbullet API Docs](https://docs.pushbullet.com)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=pushbullet)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a trusted ClawLink plugin connection and user confirmation for write or destructive actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

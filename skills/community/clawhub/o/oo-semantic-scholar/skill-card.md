@@ -1,44 +1,54 @@
-## Description: <br>
-Semantic Scholar helps agents search, retrieve, and recommend research papers, authors, citations, references, and snippets through the OOMOL Semantic Scholar connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic Scholar (semanticscholar.org). Use this skill for ANY Semantic Scholar request — searching and reading data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, researchers, and research assistants use this skill to query Semantic Scholar from an agent workflow, including paper search, author lookup, citation and reference retrieval, title matching, snippets, and paper recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting Semantic Scholar credentials through OOMOL and uses OOMOL as an intermediary for requests. <br>
-Mitigation: Install and use it only when that intermediary model is acceptable, and connect credentials only through the documented OOMOL setup path when needed. <br>
-Risk: First-time setup may require installing the oo CLI before connector actions can run. <br>
-Mitigation: Review the oo CLI installation step before running it, and perform login or connection setup only after an authentication or connection failure. <br>
+## Use Case:
 
+Researchers, students, and developers can search Semantic Scholar and retrieve paper, author, citation, reference, and recommendation data. The agent can use these results to answer literature discovery and lookup requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-semantic-scholar) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Semantic Scholar homepage](https://www.semanticscholar.org/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses include a data payload and execution metadata when actions are run with JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The CLI installer downloads and runs external installation code that the evidence identifies as unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installation steps before setup and prefer a pinned, verified CLI release.
+
+Risk: Research requests use the OOMOL-connected account, which may involve credential handling and billing.
+
+Mitigation: Review OOMOL's credential handling and billing for the connected account before use.
+
+## Reference(s):
+
+- [Semantic Scholar](https://www.semanticscholar.org/)
+- [Semantic Scholar API documentation](https://api.semanticscholar.org/api-docs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Structured data]
+
+**Output Format:** [Research findings and paper or author records, summarized in text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The returned data depends on the selected search, paper, author, citation, reference, or recommendation action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

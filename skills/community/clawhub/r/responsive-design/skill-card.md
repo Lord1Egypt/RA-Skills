@@ -1,43 +1,51 @@
-## Description: <br>
-Implement responsive layouts using container queries, fluid typography, CSS Grid, mobile-first breakpoints, responsive images, and adaptive navigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement responsive layouts using container queries, fluid typography, CSS Grid, mobile-first breakpoints, responsive images, and adaptive navigation.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to plan and implement responsive web interfaces across device sizes, component containers, media, navigation, grids, and tables. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Global installation makes the skill available across an editor profile. <br>
-Mitigation: Use per-project installation when the skill should be limited to a specific project. <br>
-Risk: Install commands such as npx or GitHub-based installs can execute or fetch content from external sources. <br>
-Mitigation: Run install commands only from sources the user trusts and review the selected install path before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Responsive Design release](https://clawhub.ai/wpank/responsive-design) <br>
-- [README](README.md) <br>
-- [Breakpoint Strategies](references/breakpoint-strategies.md) <br>
-- [Container Queries Deep Dive](references/container-queries.md) <br>
-- [Fluid Layouts and Typography](references/fluid-layouts.md) <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to generate responsive CSS and React guidance for layouts, components, media, navigation, and tables across screen and container sizes.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with CSS, TSX, and shell command code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference material; generated implementation snippets should be reviewed and tested against the target layout and browser support requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation commands may use unpinned package or branch references.
+
+Mitigation: Install from a trusted source and prefer a pinned ClawHub version or immutable commit instead of @latest or a main branch.
+
+## Reference(s):
+
+- [Responsive Design Skill Page](https://clawhub.ai/wpank/skills/responsive-design)
+- [Container Queries Deep Dive](references/container-queries.md)
+- [Breakpoint Strategies](references/breakpoint-strategies.md)
+- [Fluid Layouts and Typography](references/fluid-layouts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with CSS, TypeScript/React, Tailwind, and shell command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation patterns and examples for responsive frontend design; no runtime behavior is included in the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

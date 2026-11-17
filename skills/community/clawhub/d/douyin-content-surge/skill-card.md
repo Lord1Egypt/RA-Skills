@@ -1,46 +1,61 @@
-## Description: <br>
-Queries Douyin daily like-surge rankings, returning TOP50 works ranked by single-day new likes with category filtering and up to 30 days of historical lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音每日点赞飙升榜查询工具。日度收录全平台抖音作品，输出单日新增点赞TOP50榜单，支持按赛道分类查询、历史日期回溯（最多30天）。当用户查询抖音飙升榜、抖音点赞飙升、抖音飙升排名、抖音飙升榜时使用。触发词：抖音飙升榜、点赞飙升、飙升排名、飙升榜、抖音飙升、抖音新增。
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External content operators, short-video creators, MCN agencies, and data analysts use this skill to find Douyin works with rapid daily like growth, filter rankings by content category, and review recent historical trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires REDFOX_API_KEY for RedFoxHub API access, so accidental disclosure could expose the user's account or quota. <br>
-Mitigation: Store REDFOX_API_KEY only as a secret or environment variable, avoid pasting real keys into chats, files, or logs, and rotate the key if exposure is suspected. <br>
-Risk: Daily subscription or push behavior may create recurring automated delivery that users did not intend to enable. <br>
-Mitigation: Confirm the selected category, schedule, and subscription preference before enabling any recurring daily push. <br>
-Risk: The ranking data is a daily ingestion snapshot and may differ from cumulative public engagement counts. <br>
-Mitigation: Present the data as single-day new interaction counts and include the update time and lookback limits when reporting results. <br>
+## Use Case:
 
+Content operators, short-video creators, MCN agencies, and data analysts use this skill to query Douyin works with the largest single-day like increases, filter by content category, and review recent historical trends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/douyin-content-surge) <br>
-- [API configuration](references/api-config.md) <br>
-- [Interaction guide](references/interaction-guide.md) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [Douyin hot content rank API](https://redfox.hk/story/api/dy/search/hotContentRank) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown ranking tables with clickable Douyin links, plus concise configuration and error-handling guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to TOP20 results; can return up to 50 entries per category; uses yesterday's data by default, updates daily at 17:00, and supports a 30-day lookback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: The skill requires a RedFox API key and sends Douyin ranking query parameters to redfox.hk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure REDFOX_API_KEY only from the documented RedFox source, treat it as a secret, and review key scope, expiry, and revocation options before use.
+
+Risk: Generated ranking entries can include video links returned by the external API.
+
+Mitigation: Review links before opening them and avoid treating returned URLs as independently verified by the skill.
+
+Risk: The advertised subscription or auto-push behavior is not enough by itself to prove a scheduler, cancellation path, or confirmation flow.
+
+Mitigation: Rely on subscription behavior only when the publisher provides operational documentation for scheduling, user confirmation, and cancellation.
+
+## Reference(s):
+
+- [API configuration](references/api-config.md)
+- [Interaction guide](references/interaction-guide.md)
+- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFox hot content rank API](https://redfox.hk/story/api/dy/search/hotContentRank)
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/douyin-content-surge)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown tables with clickable work links, plus concise setup and error guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to TOP20 results; can return up to TOP50 per category and supports dates within the documented 30-day lookback window.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

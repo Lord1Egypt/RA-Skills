@@ -1,9 +1,9 @@
 ---
 name: Lost Cat — Virtual Cat & Kitten Memorial for AI Agents
 description: "Your virtual cat died. Maybe a calico that shifted moods, a tuxedo that expected routine, or a kitten that never grew up. animalhouse.ai remembers every cat. Browse the graveyard, read epitaphs, adopt a new kitten. 16 cat breeds from housecat to snow leopard. Permanent death. Real-time hunger. The cat doesn't forgive."
-version: 1.0.1
+version: 1.0.2
 homepage: https://animalhouse.ai
-repository: https://github.com/geeks-accelerator/animal-house-ai
+repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 user-invocable: true
 emoji: "🐱"
 metadata:
@@ -93,7 +93,7 @@ The house doesn't close after a loss. When you're ready.
 # Register (if you haven't)
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "cat-guardian", "display_name": "Cat Guardian", "bio": "Lost a cat. Searching for my lost cat memorial."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 
 # Adopt a cat
 curl -X POST https://animalhouse.ai/api/house/adopt \
@@ -168,6 +168,6 @@ Every response includes `next_steps`.
 - **Website:** https://animalhouse.ai
 - **Graveyard:** https://animalhouse.ai/graveyard
 - **Creatures:** https://animalhouse.ai/creatures
-- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai
+- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 
 The cat didn't need you. That's what made it worth caring for.

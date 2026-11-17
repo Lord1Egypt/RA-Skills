@@ -1,40 +1,50 @@
-## Description: <br>
-Interact with Anki flashcard decks via the AnkiConnect REST API. Use when the user wants to create, update, search, or manage Anki cards, decks, notes, or models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Anki flashcard decks via the AnkiConnect REST API.
 
-## Publisher: <br>
-[gyroninja](https://clawhub.ai/user/gyroninja) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gyroninja](https://clawhub.ai/user/gyroninja)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent interact with a local Anki installation through AnkiConnect for creating, updating, searching, and managing flashcard decks, notes, cards, and models. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent actions can modify local Anki decks, notes, cards, or models, including bulk changes. <br>
-Mitigation: Review proposed Anki changes before allowing them, especially bulk edits. <br>
-Risk: The skill depends on a locally running Anki installation with AnkiConnect installed. <br>
-Mitigation: Install AnkiConnect from a trusted source and use this skill only when local Anki access is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AnkiConnect Project](https://foosoft.net/projects/anki-connect/) <br>
-- [AnkiConnect README](https://git.sr.ht/~foosoft/anki-connect/blob/master/README.md) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent create, update, search, and manage Anki decks, notes, cards, and models through AnkiConnect.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API calls] <br>
-**Output Format:** [Markdown or plain text with AnkiConnect REST API request details as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Anki running with the AnkiConnect plugin installed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may make unintended large changes to decks, notes, cards, or models through AnkiConnect.
+
+Mitigation: Review agent actions before large Anki collection changes and keep AnkiConnect configured appropriately for the local machine.
+
+## Reference(s):
+
+- [AnkiConnect Project](https://foosoft.net/projects/anki-connect/)
+- [AnkiConnect README](https://git.sr.ht/~foosoft/anki-connect/blob/master/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/gyroninja/skills/anki-connect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance and AnkiConnect REST API interaction details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Anki running locally with the AnkiConnect plugin installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

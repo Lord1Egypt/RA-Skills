@@ -1,41 +1,58 @@
-## Description: <br>
-Checks the status of an asynchronous OATDA video generation task and reports whether the video is queued, processing, completed, or failed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check the status of an asynchronous video generation task from OATDA, retrieve the video URL after completion, or poll a video task by task ID.
 
-## Publisher: <br>
-[devcsde](https://clawhub.ai/user/devcsde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devcsde](https://clawhub.ai/user/devcsde)
 
-## Use Case: <br>
-Developers and external users use this skill to check an existing OATDA video generation task by task ID, retrieve the completed video URL, and understand common status or error responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an OATDA API key and sends it to oatda.com when checking task status. <br>
-Mitigation: Install only if you trust OATDA, keep the key in the expected environment variable or credentials file, and do not print the full key in agent output. <br>
-Risk: The skill runs shell commands that call an external API with a user-provided task ID. <br>
-Mitigation: Review the generated command before execution and confirm the task ID is the intended OATDA video task. <br>
+## Use Case:
 
+Developers and agents use this skill to check OATDA video generation task status, handle pending or failed states, and return completed video URLs and costs when available.
 
-## Reference(s): <br>
-- [OATDA](https://oatda.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/devcsde/oatda-video-status) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and status-response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OATDA task ID, curl, jq, and an OATDA API key from OATDA_API_KEY or ~/.oatda/credentials.json; completed responses may include video URLs and cost details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill uses an OATDA API key to query task status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when OATDA is trusted with the API key and task IDs, and avoid printing the full key in agent responses or logs.
+
+Risk: The skill may read ~/.oatda/credentials.json when OATDA_API_KEY is not set.
+
+Mitigation: Set OATDA_API_KEY directly when the credential file should not be read.
+
+Risk: Returned video URLs and task IDs may expose generated media or account activity.
+
+Mitigation: Share task IDs and returned URLs only with intended recipients, and download completed videos promptly when URLs may be temporary.
+
+## Reference(s):
+
+- [OATDA](https://oatda.com)
+- [ClawHub skill page](https://clawhub.ai/devcsde/skills/oatda-video-status)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and summarized API response details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include video status, video URL, direct video URL, provider, model, completion time, cost, and error guidance when returned by the OATDA API.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

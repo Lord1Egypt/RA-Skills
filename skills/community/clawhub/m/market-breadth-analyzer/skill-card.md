@@ -1,43 +1,59 @@
-## Description: <br>
-Measure US equity market breadth using advance/decline lines, percentage of stocks above moving averages, and new highs/lows via the Finskills API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measure US equity market breadth using advance/decline lines, percentage of stocks above moving averages, and new highs/lows via the Finskills API.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External users and developers use this skill to fetch Finskills market breadth data, assess whether US equity market participation is broad or narrow, detect breadth divergences, and produce a market health report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Finskills API key and uses results to generate market-health analysis that could influence financial decisions. <br>
-Mitigation: Keep the API key private, confirm trust in Finskills before installation, and verify important investment decisions against additional sources. <br>
+## Use Case:
 
+External users and developers use this skill to assess US equity market breadth, detect breadth divergences, and summarize market health from Finskills API data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/finskills/market-breadth-analyzer) <br>
-- [Finskills market-breadth analyzer homepage](https://github.com/finskills/market-breadth-analyzer) <br>
-- [Finskills API](https://finskills.net) <br>
-- [Market breadth endpoint](https://finskills.net/v1/free/market/breadth) <br>
-- [Market summary endpoint](https://finskills.net/v1/market/summary) <br>
-- [Short volume endpoint](https://finskills.net/v1/free/market/short-volume-top) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown market breadth report with calculated indicators, divergence checks, market health score, and investor-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY and returns research support, not financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence and frontmatter) <br>
+Risk: The skill sends market-analysis requests to Finskills using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an appropriate Finskills API key, protect it as a secret, and avoid sending data you do not want processed by Finskills.
+
+Risk: Market health reports may include positioning suggestions based on third-party market data.
+
+Mitigation: Treat outputs as informational and review investment decisions before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/market-breadth-analyzer)
+- [Project homepage](https://github.com/finskills/market-breadth-analyzer)
+- [Finskills](https://finskills.net)
+- [Finskills registration](https://finskills.net/register)
+- [Market breadth endpoint](https://finskills.net/v1/free/market/breadth)
+- [Market summary endpoint](https://finskills.net/v1/market/summary)
+- [Short volume endpoint](https://finskills.net/v1/free/market/short-volume-top)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown market breadth report with calculated indicators and positioning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Finskills market data and requires FINSKILLS_API_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

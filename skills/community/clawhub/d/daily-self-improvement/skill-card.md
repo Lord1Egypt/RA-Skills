@@ -1,43 +1,58 @@
-## Description: <br>
-Daily Self Improvement automatically collects an agent's daily failures, corrections, and notes, analyzes recurring problems, searches ClawHub for improvement suggestions, writes a Markdown report, and can send it to Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Self Improvement collects daily failure and correction signals, analyzes recurring issues, suggests relevant ClawHub skills, writes a Markdown reflection report, and can send the report to Discord.
 
-## Publisher: <br>
-[sunnyhot](https://clawhub.ai/user/sunnyhot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnyhot](https://clawhub.ai/user/sunnyhot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to schedule or manually run a daily reflection workflow that summarizes recent issues, identifies repeated failure patterns, suggests relevant ClawHub skills, and records a daily improvement report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports a hardcoded local gateway token and prefilled Discord delivery from local notes and logs. <br>
-Mitigation: Remove and rotate the hardcoded token, replace the Discord channel with one controlled by the deploying user, and disable Discord delivery until the exact payload has been reviewed. <br>
-Risk: Scheduled runs can read local failure logs, corrections, and daily notes and write daily reports. <br>
-Mitigation: Review configured data sources and report paths before enabling cron, and run manually first to confirm the collected content is acceptable. <br>
+## Use Case:
 
+Agents, developers, and operators use this skill to summarize recent failures, daily-note issues, and corrections into a daily self-improvement report with suggested follow-up skills and actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunnyhot/daily-self-improvement) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Configuration example](config/settings.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report, console text, and optional Discord message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; optional ClawHub search and Discord delivery are controlled by configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The release ships unsafe defaults that can send local operational summaries to a preset Discord destination using an embedded gateway credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded gateway token, disable Discord notifications by default, replace the bundled channel ID with a confirmed destination, and inspect the outgoing report payload before scheduling.
+
+Risk: Failure logs, daily notes, corrections, and memory files may contain sensitive operational or user-specific information.
+
+Mitigation: Review and minimize configured data sources before running the skill, and avoid sending generated summaries to external services unless the destination is approved.
+
+Risk: The generated report recommends skill install commands that could introduce additional unreviewed packages.
+
+Mitigation: Review each recommended package separately before running any generated install command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunnyhot/skills/daily-self-improvement)
+- [Publisher profile](https://clawhub.ai/user/sunnyhot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with suggested actions, skill install commands, optional Discord message text, and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a dated report under memory/self-improvement and may append a daily-note summary when those workspace files are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

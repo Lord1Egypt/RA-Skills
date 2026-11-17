@@ -70,6 +70,9 @@ python scripts/transcribe.py \--audio\_path "F:/TestOutput/test.wav" \--model la
 \# 指定每句换行显示  
 python scripts/transcribe.py \--audio\_path "F:/TestOutput/test.wav" \--model large-v3-ct2 \--output text \--separator "\n"
 
+\# 启用分段导出，按模型切分导出音频和文本和 **MeloTTS** 训练或微调生成 metadata.list
+python scripts/transcribe.py \--audio\_path "F:/TestOutput/test.wav" --split --metadata
+
 ### **2\. 批量目录转录**
 
 当 \--audio\_path 指向一个文件夹时，程序会自动找出所有音频文件并批量转录。

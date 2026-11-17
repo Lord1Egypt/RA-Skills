@@ -1,0 +1,9 @@
+{
+  "name": "system-status",
+  "version": "1.0.0",
+  "description": "Reports Windows system health: disk, memory, CPU, and top space consumers. Use when user asks about disk space, storage, system resources, or computer health.",
+  "main": "index.js",
+  "scripts": {
+    "check": "node index.js"
+  }
+}

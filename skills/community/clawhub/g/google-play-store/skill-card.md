@@ -1,49 +1,68 @@
-## Description: <br>
-Publish, optimize, and scale Android apps on Google Play with release automation, ASO, policy compliance, and rejection recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish, optimize, and scale Android apps on Google Play with release automation, ASO, policy compliance, and rejection recovery.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and release teams use this skill to plan, publish, optimize, and troubleshoot Android app releases on Google Play, including release tracks, ASO, policy compliance, rejection recovery, and Fastlane-based automation guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Release automation workflows can expose keystores, service-account JSON, API keys, OAuth tokens, or Play Console credentials if users paste or store secrets in local notes or CI artifacts. <br>
-Mitigation: Use protected CI secrets, avoid artifact uploads for generated credential files, delete temporary credential files after builds, and follow the skill's instruction to refuse storing credential material. <br>
-Risk: Local memory may retain operational app metadata, package names, release status, or workflow preferences. <br>
-Mitigation: Keep local memory limited to non-sensitive metadata and review or clear saved release preferences when they contain sensitive operational details. <br>
-Risk: Publishing and policy guidance may become stale as Google Play requirements change. <br>
-Mitigation: Review proposed release, policy, SDK, and testing recommendations against current Google Play Console requirements before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/google-play-store) <br>
-- [Skill Homepage](https://clawic.com/skills/google-play-store) <br>
-- [Setup](artifact/setup.md) <br>
-- [Release Tracks and Rollouts](artifact/tracks.md) <br>
-- [App Store Optimization](artifact/aso.md) <br>
-- [Policy Compliance](artifact/policies.md) <br>
-- [Rejection Recovery](artifact/rejections.md) <br>
-- [Fastlane Automation](artifact/fastlane.md) <br>
-- [Memory Template](artifact/memory-template.md) <br>
+## Use Case:
 
+Developers and release managers use this skill to prepare, publish, optimize, and troubleshoot Android app releases on Google Play. It helps agents provide checklists, rollout guidance, ASO advice, policy compliance review, rejection recovery steps, and Fastlane-oriented automation examples.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local memory files under ~/google-play-store/ for non-sensitive app metadata and workflow preferences.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may keep local notes about app names, package identifiers, release status, and workflow preferences under ~/google-play-store/.
+
+Mitigation: Use the memory folder only for non-secret app and workflow notes, keep it appropriately protected, and never store API keys, tokens, service-account JSON, keystores, or passwords there.
+
+Risk: Fastlane and CI/CD snippets are examples that may handle release credentials or generated secret files if adapted directly.
+
+Mitigation: Harden examples before use by pinning dependencies, protecting CI secrets, limiting service-account permissions, and cleaning up decoded secret files.
+
+Risk: Track promotion or production rollout commands can affect live app availability and users.
+
+Mitigation: Review rollout percentage, target track, versionCode, and policy readiness before running commands; prefer staged rollouts with monitoring gates.
+
+Risk: Trying to bypass Google enforcement with additional developer accounts can lead to broader account termination.
+
+Mitigation: Resolve policy issues through documented fixes and appeals instead of creating accounts to evade enforcement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/google-play-store)
+- [Skill homepage](https://clawic.com/skills/google-play-store)
+- [Setup](artifact/setup.md)
+- [Release tracks and rollouts](artifact/tracks.md)
+- [App Store Optimization](artifact/aso.md)
+- [Policy compliance](artifact/policies.md)
+- [Rejection recovery](artifact/rejections.md)
+- [Fastlane automation](artifact/fastlane.md)
+- [Memory template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with checklists, tables, shell commands, configuration snippets, and release workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local note structures under ~/google-play-store/ and Fastlane or CI examples for the user to review and run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

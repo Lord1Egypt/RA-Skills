@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "notes": "Only add genuine prior failures or accepted tasks. Review command safety before setting enabled=true. An empty suite returns BLOCKED (exit 2).",
+  "cases": []
+}

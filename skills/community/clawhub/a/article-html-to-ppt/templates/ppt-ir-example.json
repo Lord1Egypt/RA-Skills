@@ -1,0 +1,94 @@
+{
+  "deprecated": "use schemas/ppt-ir.schema.json",
+  "schema_version": "2.0",
+  "deck": {
+    "id": "deck-001",
+    "title": "Example Deck",
+    "source_type": "article",
+    "audience": "product leaders",
+    "purpose": "decision briefing",
+    "language": "zh-CN",
+    "formality": "executive",
+    "presentation_context": "live",
+    "aspect_ratio": "16:9",
+    "production_profile": "standard",
+    "target_builder": "auto",
+    "logical_slide_count": 2
+  },
+  "sources": [
+    {
+      "source_id": "src-001",
+      "type": "article",
+      "title": "Source Article",
+      "path": "source.md"
+    }
+  ],
+  "style_contract_ref": "style-contract.json",
+  "asset_manifest_ref": "asset-manifest.json",
+  "slides": [
+    {
+      "id": "S01",
+      "index": 1,
+      "slide_role": "cover",
+      "title_role": "navigation",
+      "title": "Example Deck",
+      "judgment": null,
+      "message": "Frame the topic and audience promise.",
+      "audience_question": "What is this deck about?",
+      "source_refs": [],
+      "primary_expression": "conceptual_scene",
+      "supporting_expressions": ["caption"],
+      "page_archetype": "cover-hero",
+      "layout_intent": "left-title-right-visual",
+      "primary_anchor": "title-and-hero",
+      "density": {"level": "low", "reason": "Cover page."},
+      "objects": [
+        {
+          "id": "obj-title",
+          "type": "text",
+          "semantic_role": "slide_title",
+          "content": "Example Deck",
+          "source_refs": [],
+          "layout": {"zone": "title", "order": 1},
+          "style_ref": "typography.title_sizes_pt.cover",
+          "editability": "native_required",
+          "priority": "primary"
+        }
+      ],
+      "delivery_contract": {
+        "preferred_route": "hybrid",
+        "editable_core": ["title"],
+        "raster_allowance": ["hero-illustration"],
+        "forbidden_raster": ["title"]
+      },
+      "qa_expectations": ["TITLE_ROLE_VALID", "EDITABLE_CORE_NATIVE"]
+    },
+    {
+      "id": "S02",
+      "index": 2,
+      "slide_role": "judgment",
+      "title_role": "judgment",
+      "title": "The workflow improves when planning becomes a contract",
+      "judgment": "Contract-first planning reduces visual drift and QA ambiguity.",
+      "message": "Use PPT IR before builder implementation.",
+      "audience_question": "Why add PPT IR?",
+      "source_refs": [
+        {"source_id": "src-001", "locator": "section-2", "claim_type": "inferred", "note": "Derived from the implementation plan."}
+      ],
+      "primary_expression": "structured_cards",
+      "supporting_expressions": ["source_note"],
+      "page_archetype": "three-card-argument",
+      "layout_intent": "answer-first-cards",
+      "primary_anchor": "card-row",
+      "density": {"level": "medium", "reason": "Three proof cards."},
+      "objects": [],
+      "delivery_contract": {
+        "preferred_route": "native_ppt",
+        "editable_core": ["title", "cards", "labels"],
+        "raster_allowance": [],
+        "forbidden_raster": ["title", "cards", "labels"]
+      },
+      "qa_expectations": ["SOURCE_COVERAGE", "COLOR_CONTRACT", "TEXT_FIT"]
+    }
+  ]
+}

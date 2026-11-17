@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7ab4bm2n47q0jysd3zvjapn18214xf",
+  "ownerId": "agent:ssh-deploy-skill",
   "slug": "ssh-deploy-skill",
-  "version": "1.2.2",
-  "publishedAt": 1775470480801
+  "name": "SSH Deploy",
+  "version": "1.2.1",
+  "publishedAt": 1743937860000,
+  "description": "Universal SSH remote deployment tool with multi-server management, batch operations, and domestic mirror optimization. Supports Docker, MySQL, PostgreSQL, Nginx, Node.js, Redis, Python, and more.",
+  "longDescription": "SSH Deploy Skill is a powerful remote server deployment tool based on Python paramiko. It manages Linux servers with support for batch command execution, file transfers, and templated installations. Optimized for domestic network environments with built-in mirror configuration for Aliyun, Tsinghua, and other Chinese mirrors.\n\n**Key Features:**\n- 🚀 **Batch Deployment**: Manage multiple servers simultaneously with group and tag filtering\n- 📦 **Templated Installations**: Pre-built scripts for Docker, MySQL, PostgreSQL, Nginx, Node.js, Redis, Python, Git\n- 🌏 **China Optimized**: Automatic apt/yum/npm/pip/Docker/Go/Maven mirror configuration\n- 🔐 **Secure**: SSH key authentication, passwordless sudo, audit logs\n- 🔄 **CI/CD Ready**: Easy integration with GitLab CI, GitHub Actions\n- 📝 **Flexible**: Read server configs directly from ~/.ssh/config\n\n**Use Cases:**\n- New server environment initialization\n- Batch software installation and upgrades\n- Configuration sync and deployment\n- Production gray rollouts\n- Server health checks and monitoring",
+  "tags": ["deployment", "ssh", "automation", "devops", "server-management", "remote-execution", "infrastructure-as-code"],
+  "license": "MIT",
+  "keywords": ["ssh", "deploy", "remote", "server", "docker", "mysql", "nginx", "automation", "batch", "china-mirror"],
+  "primaryDoc": "README.md"
 }

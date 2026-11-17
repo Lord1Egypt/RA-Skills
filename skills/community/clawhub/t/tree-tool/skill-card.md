@@ -1,40 +1,52 @@
-## Description: <br>
-Display directory structure as an indented tree for visualizing folder hierarchies and project structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display directory structure as an indented tree. Use for visualizing folder hierarchies and project structure.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect folder hierarchies and summarize project structure as an indented directory tree.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Documented CLI options do not fully match the bundled script; the script supports a path argument and -d/--depth, while the documentation lists -L, -a, -h, and -I behavior.
+
+Mitigation: Verify supported arguments before use and invoke the bundled script with its supported path and -d/--depth options.
+
+Risk: Directory listings may expose hidden or sensitive filenames in the conversation.
+
+Mitigation: Run the skill only on paths whose file and directory names are appropriate to disclose, or filter sensitive paths before sharing output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to inspect local project or folder structure as an indented directory tree. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The tool prints file and folder names from the path it is given, including hidden names. <br>
-Mitigation: Run it only on directories whose names can be disclosed, and review output before sharing it. <br>
-Risk: Some documented command-line options do not match the implemented script flags. <br>
-Mitigation: Check the script-supported flags or run a local test before relying on documented examples in automation. <br>
+**Output Format:** [Plain text directory tree, with Markdown shell command examples in the skill documentation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/tree-tool) <br>
+**Other Properties Related to Output:** [Recursive directory listing; bundled script defaults to depth 3]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text directory tree, with Markdown usage guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script reads a local path and prints directory and file names; some documented command-line options do not match the implemented script flags.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

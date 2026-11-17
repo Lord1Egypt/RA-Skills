@@ -1,48 +1,63 @@
-## Description: <br>
-Professional BTC risk radar using public options, perp, and spot data. Use when the user wants a clear Bitcoin risk snapshot with volatility/skew context, panic or black-swan validation, timestamped evidence, confidence scoring, and explicit caveats for traders or advanced observers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional BTC risk radar using public options, perp, and spot data. Use when the user wants a clear Bitcoin risk snapshot with volatility/skew context, panic or black-swan validation, timestamped evidence, confidence scoring, and explicit caveats for traders or advanced observers.
 
-## Publisher: <br>
-[spyfree](https://clawhub.ai/user/spyfree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spyfree](https://clawhub.ai/user/spyfree)
 
-## Use Case: <br>
-External users, traders, and advanced market observers use this skill to generate a timestamped Bitcoin risk-state snapshot from public options, perpetual, and spot-market data. It summarizes volatility, skew, funding, liquidity, confidence, caveats, and 72-hour validation triggers without placing trades or accessing private accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound requests to public crypto-market APIs may be blocked, intermittently unavailable, or inappropriate in restricted network environments. <br>
-Mitigation: Run the skill only where public market API calls are allowed, and preserve the availability, data_gaps, degraded_mode, and confidence fields when explaining results. <br>
-Risk: Heuristic risk labels and action triggers may be mistaken for deterministic predictions or financial advice. <br>
-Mitigation: Present outputs as informational market-risk analysis, include explicit caveats and confidence, and do not use the skill to automatically trade or place orders. <br>
-Risk: Providing exchange credentials, wallet access, cookies, or API keys would exceed the intended read-only public-data scope. <br>
-Mitigation: Do not provide credentials or wallet access; use only the documented public data sources. <br>
+## Use Case:
 
+External users, traders, and advanced market observers use this skill to generate timestamped Bitcoin risk snapshots from public options, perpetual, and spot-market data, with confidence scoring, caveats, and action triggers. It supports quick market-risk assessment, not investment advice or automated trading.
 
-## Reference(s): <br>
-- [Metrics Reference](references/metrics.md) <br>
-- [BTC Risk Radar ClawHub Page](https://clawhub.ai/spyfree/btc-risk-radar) <br>
-- [Deribit Public API](https://www.deribit.com/api/v2/public) <br>
-- [Coinbase BTC-USD Spot Public API](https://api.coinbase.com/v2/prices/BTC-USD/spot) <br>
-- [Binance Public API](https://api.binance.com/api/v3) <br>
-- [OKX Public API](https://www.okx.com/api/v5) <br>
-- [Bybit Public API](https://api.bybit.com/v5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text narrative with optional JSON payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes as-of timestamp, source availability, data gaps, degraded-mode flag, confidence score, risk label, validation matrix, action triggers, and caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill makes unauthenticated outbound requests to public crypto exchange APIs, so execution depends on network access and third-party endpoint availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where public exchange API access is acceptable; review data_gaps and degraded_mode before relying on the snapshot.
+
+Risk: The skill produces heuristic market-risk analysis that could be mistaken for financial advice or deterministic prediction.
+
+Mitigation: Present outputs with caveats, confidence score, and not-investment-advice language; avoid automated trading or order placement based on the output alone.
+
+Risk: Some metrics are proxies or approximations, including put-volume share and front-expiry delta-nearest risk reversals.
+
+Mitigation: Label proxy metrics explicitly and use them for situational awareness rather than exact institutional replication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spyfree/skills/btc-risk-radar)
+- [Metrics Reference](references/metrics.md)
+- [Deribit Public API](https://www.deribit.com/api/v2/public)
+- [Coinbase BTC-USD spot price API](https://api.coinbase.com/v2/prices/BTC-USD/spot)
+- [Binance Public API](https://api.binance.com/api/v3)
+- [OKX Public API](https://www.okx.com/api/v5)
+- [Bybit Public API](https://api.bybit.com/v5)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Plain-text or Markdown narrative with optional JSON payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Timestamped BTC market snapshot with risk label, confidence score, availability, data gaps, degraded mode, 72h validation matrix, action triggers, and caveats; language may be English or Chinese.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence; script version 0.1.1 differs)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

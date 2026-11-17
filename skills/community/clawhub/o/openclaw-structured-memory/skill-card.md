@@ -1,44 +1,61 @@
-## Description: <br>
-Qordinate gives an OpenClaw agent durable structured memory for documents, contacts, tasks, reminders, web search, and connected apps through an MCP connection authenticated with an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qordinate gives OpenClaw agents durable structured memory for documents, contacts, tasks, reminders, web search, and connected apps through an MCP server authenticated with a Qordinate API key.
 
-## Publisher: <br>
-[SinghCoder](https://clawhub.ai/user/SinghCoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[singhcoder](https://clawhub.ai/user/singhcoder)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect an agent to Qordinate over MCP so it can store, retrieve, and update durable user context such as documents, contacts, tasks, reminders, forms, automations, web-search results, and connected-app data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad ongoing access to private documents, contacts, tasks, reminders, connected apps, and stored Qordinate data. <br>
-Mitigation: Use a dedicated or expiring QORDINATE_API_KEY, connect only necessary apps, and periodically review stored data and active automations. <br>
-Risk: The agent may make persistent changes such as deletes, sharing actions, reminders, automations, or connected-app actions. <br>
-Mitigation: Require explicit user confirmation before any destructive, sharing, reminder, automation, or connected-app action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/SinghCoder/openclaw-structured-memory) <br>
-- [Qordinate MCP Server](https://api.qordinate.ai/mcp) <br>
-- [Qordinate App](https://app.qordinate.ai) <br>
-- [Qordinate WhatsApp Channel](https://qordinate.ai/whatsapp) <br>
-- [Qordinate Telegram Channel](https://qordinate.ai/telegram) <br>
-- [Qordinate Slack Channel](https://qordinate.ai/slack) <br>
+## Use Case:
 
+Developers and OpenClaw agent users use this skill to connect an agent to Qordinate via MCP so it can preserve and retrieve structured memory, manage tasks and reminders, interact with documents and contacts, and use connected productivity services over time.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown with setup instructions, connection details, and natural-language MCP query examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MCP client support, curl, and QORDINATE_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata; artifact frontmatter reports 0.3) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Qordinate API key can allow broad and lasting access to memory, documents, contacts, tasks, reminders, and connected apps.
+
+Mitigation: Use the narrowest available API key scope, set an expiry when possible, store the key securely, and revoke it when the integration is no longer needed.
+
+Risk: The agent can store information permanently or change, delete, share, and automate user data through Qordinate.
+
+Mitigation: Require explicit user confirmation before permanent storage, deletion, sharing, connected-app actions, or automation creation.
+
+Risk: Sensitive personal data or secrets could be sent to the remote Qordinate service.
+
+Mitigation: Avoid sending secrets or sensitive personal data unless the user has approved the disclosure and the data is necessary for the task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/singhcoder/skills/openclaw-structured-memory)
+- [Qordinate MCP server endpoint](https://api.qordinate.ai/mcp)
+- [Qordinate application](https://app.qordinate.ai)
+- [Qordinate WhatsApp channel](https://qordinate.ai/whatsapp)
+- [Qordinate Telegram channel](https://qordinate.ai/telegram)
+- [Qordinate Slack channel](https://qordinate.ai/slack)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, API Calls, Text]
+
+**Output Format:** [Markdown instructions with MCP connection details and natural-language query examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QORDINATE_API_KEY and curl; uses Streamable HTTP MCP transport.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

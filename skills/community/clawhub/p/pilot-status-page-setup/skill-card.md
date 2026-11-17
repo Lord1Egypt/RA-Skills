@@ -1,42 +1,57 @@
-## Description: <br>
-Deploy a status page pipeline with 3 agents that automate service monitoring, status aggregation, and public incident communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a status page pipeline with three agents that automate service monitoring, status aggregation, and public incident communication.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to configure a three-agent status page workflow for health checks, status aggregation, and incident notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup depends on pilotctl, clawhub, and multiple role-specific pilot-* skills. <br>
-Mitigation: Confirm those tools and skills are trusted and expected before installation or execution. <br>
-Risk: The setup manifest write step may replace existing status page setup data. <br>
-Mitigation: Inspect or back up ~/.pilot/setups/status-page.json before writing the role-specific manifest. <br>
-Risk: Incident notifications may expose internal hostnames, private endpoints, secrets, or unnecessary outage details. <br>
-Mitigation: Review and minimize incident payloads before publishing to status pages, subscriber emails, or Slack channels. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to configure a three-agent pipeline for endpoint monitoring, status aggregation, public status page updates, and incident notifications.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON manifest templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, clawhub, the referenced pilot-* skills, and a running daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs multiple role-specific dependencies that may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned, trusted dependency versions and review each installed skill before deployment.
+
+Risk: The setup establishes trust between monitoring, aggregation, and publishing agents.
+
+Mitigation: Validate the deployment prefix and verify each peer identity before completing handshakes.
+
+Risk: Incident data can be published to public status pages, subscriber email, and Slack.
+
+Mitigation: Restrict and review incident fields before publication so sensitive operational details are not exposed.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON manifests and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, clawhub, the pilot-protocol skill, role-specific Pilot skills, and a running daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact metadata version is 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+name: 牛股王主力资金流向
+slug: main-capital-flow-direction
+version: 1.0.0
+description: 牛股王独家研发的A股主力资金流向监测工具，基于主力资金净流入/流出数据，叠加上证指数走势，实时展示大资金进出方向，帮助投资者识别资金驱动力、捕捉资金与指数的背离信号，辅助择时决策。
+author: 牛股王 (niuguwang.com)
+category: 金融投资
+tags:
+  - A股
+  - 主力资金
+  - 资金流向
+  - 牛股王

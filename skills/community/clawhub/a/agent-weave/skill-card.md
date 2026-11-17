@@ -1,47 +1,63 @@
-## Description: <br>
-Master-Worker Agent Cluster for parallel task execution. Use when building distributed agent systems with parallel processing needs, task orchestration, or MapReduce-style workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master-Worker Agent Cluster for parallel task execution. Use when building distributed agent systems with parallel processing needs, task orchestration, or MapReduce-style workflows.
 
-## Publisher: <br>
-[gl813788-byte](https://clawhub.ai/user/gl813788-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gl813788-byte](https://clawhub.ai/user/gl813788-byte)
 
-## Use Case: <br>
-Developers and engineers use Agent Weave to build master-worker agent clusters that execute tasks in parallel, coordinate worker agents, and support MapReduce-style workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged npm bin metadata appears inconsistent with the artifact files. <br>
-Mitigation: Verify the package contents and CLI entry point before installation or execution. <br>
-Risk: Task functions executed by worker agents can run local code supplied to the orchestration framework. <br>
-Mitigation: Run only trusted task functions and prefer project-local installation. <br>
-Risk: Large worker counts or long-running tasks can consume local compute resources. <br>
-Mitigation: Set practical worker-count and timeout limits for expensive jobs. <br>
-Risk: Generated ./agent-logs files may contain sensitive local task data. <br>
-Mitigation: Review, protect, and clean local log files according to the deployment environment's data-handling requirements. <br>
+## Use Case:
 
+Developers and engineers use Agent Weave to build master-worker agent clusters, distribute work across parallel workers, and implement MapReduce-style task orchestration.
 
-## Reference(s): <br>
-- [Agent Weave ClawHub Page](https://clawhub.ai/gl813788-byte/agent-weave) <br>
-- [README](artifact/README.md) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [Test Report](artifact/TEST_REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports local Node.js usage, CLI workflows, and generated task orchestration patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, package.json, CHANGELOG) <br>
+Risk: The release has install-supply-chain concerns because the package lock references a non-HTTPS npm registry mirror.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Regenerate the lockfile against an HTTPS registry before installation, CI use, or redistribution.
+
+Risk: The package creates local log and report files during agent orchestration.
+
+Mitigation: Run it in a controlled workspace and review generated files for sensitive task data before sharing or retaining logs.
+
+Risk: The inter-agent communication layer should not be relied on for strong message confidentiality or authentication without code changes.
+
+Mitigation: Use it only within trusted local boundaries unless additional authentication, authorization, and message protection are added.
+
+Risk: Monitoring timers and long-running agent tasks can continue consuming local resources.
+
+Mitigation: Set operational limits, cancel long-running tasks when no longer needed, and clean up agents after execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gl813788-byte/skills/agent-weave)
+- [README](artifact/README.md)
+- [Test Report](artifact/TEST_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated JavaScript code, CLI usage, cluster configuration, and implementation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

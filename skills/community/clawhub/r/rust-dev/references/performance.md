@@ -19,6 +19,8 @@ Whatever you build to answer a performance question - a benchmark, an A/B timing
 
 A profiler needs optimized code *and* debug symbols, but a plain `--release` build strips the symbols - so the profile comes back as unreadable `[unknown]` frames. Add a `profiling` profile once:
 
+One toolchain change to know before you blame your tools: **Rust 1.97 made the v0 symbol mangling scheme the default.** The release notes are explicit that this "may cause some tools (such as debuggers or profilers, especially with old versions) to fail to demangle symbols emitted by Rust" and "may also cause the formatting of text in backtraces to change". So garbled or undemangled frames after a toolchain bump usually mean an out-of-date profiler, not a broken build.
+
 ```toml
 [profile.profiling]
 inherits = "release"
@@ -26,8 +28,8 @@ debug = true
 ```
 
 - **`samply`** is the go-to sampling profiler: `cargo install --locked samply`, build with `cargo build --profile profiling`, then `samply record ./target/profiling/my-app`. It opens an interactive Firefox Profiler view in the browser; works on macOS, Linux, and Windows (on Linux, grant perf access once with `sysctl kernel.perf_event_paranoid=1`).
-- **`cargo-flamegraph`** produces a static flamegraph SVG; `samply` has largely displaced it for interactive work.
-- For **heap profiling** - what allocates and how much - the `dhat` crate gives in-process, native-speed heap profiling: add it, set its global allocator, and view the profile in the DHAT online viewer (cross-platform, unlike Valgrind).
+- **`cargo-flamegraph`** produces a static flamegraph SVG; `samply` has largely displaced it for interactive work. On Linux it now needs `--no-rosegment`, because rust-lld became the default linker in 1.90 and perf cannot generate accurate stack traces without it - the same applies under mold.
+- For **heap profiling** - what allocates and how much - the `dhat` crate gives in-process, cross-platform heap profiling (unlike Valgrind): add it, set its global allocator, and view the profile in the DHAT online viewer. Budget for the slowdown; its docs warn that "the program will run more slowly than normal... it can be large", and the author notes maintenance is not a high priority. It is a tool you reach for deliberately, not one you leave wired in.
 - The **Rust Performance Book** (https://nnethercote.github.io/perf-book/) is the canonical guide - read it before reaching for tricks.
 
 For a release profile that is representative and ships fast:
@@ -72,7 +74,7 @@ A note on profiles: `cargo bench` inherits `[profile.release]`, so an aggressive
 ```toml
 [profile.dist]      # build shipping artifacts with `cargo build --profile dist`
 inherits = "release"
-lto = "fat"
+lto = "thin"        # "fat" squeezes out a little more, at a much slower link
 codegen-units = 1
 ```
 
@@ -83,8 +85,20 @@ To catch performance regressions automatically, run benchmarks in CI. **CodSpeed
 Before micro-optimizing, the changes that actually move the needle in typical Rust apps:
 
 - **Allocations.** Needless `.clone()` on a hot path, or building a `Vec` without `Vec::with_capacity` when the size is known, are the most common real costs. A profiler will point you straight at them.
+- **`into_iter()` instead of `.iter()` when you are transforming a collection you own.** Iterating by reference keeps every source element alive until the whole transform finishes, so peak memory holds both representations at once. `into_iter()` lets each source element drop as it is consumed. On a large decode this is a one-word change that can halve the peak.
+- **Buffered output.** `println!` takes the stdout lock on every call, and stdout is line-buffered, so each newline becomes a write syscall and a loop printing a million lines is dominated by them - the usual reason a Rust CLI loses to a Python script. Lock once and buffer: `let mut out = std::io::BufWriter::new(std::io::stdout().lock());`, then `writeln!(out, ...)?`. Same for files: wrap `File` in `BufWriter` / `BufReader`. Then call `out.flush()?` yourself before it goes out of scope - std warns "It is critical to call `flush` before `BufWriter<W>` is dropped", because drop flushes but ignores any error.
 - **Data parallelism.** For CPU-bound work over a collection, `rayon` turns `.iter()` into `.par_iter()` and uses every core - often the biggest win for the least code.
 - **Avoid premature `Arc`/`Box`/`dyn`.** Indirection has a cost; reach for it when the design needs it, not preemptively.
 - **Async is for I/O concurrency, not speed.** If your workload is CPU-bound, async adds overhead without benefit - use threads or `rayon`.
 
 And the discipline that ties it together: a change is only an optimization if a benchmark or profiler says so. Otherwise it is just added complexity.
+
+## Memory: high RSS is usually not a leak
+
+When resident memory looks too high, the folk-wisdom fix is to swap the global allocator to `jemalloc` or `mimalloc`. Measure before you believe it - that swap is as likely to make things worse, and it does nothing about the actual cause.
+
+Most "excess" RSS is memory the process already freed but the allocator has **retained** rather than returned to the OS. It is available for reuse and it is not a leak; it just looks alarming in a process monitor. Confirm which you have before acting - a heap profiler (`dhat`) shows *live* bytes, and the gap between live bytes and RSS is retention and fragmentation, not leakage.
+
+If that gap is where your memory went, the lever is **the transient peak, not the allocator**: an allocator only holds regions that some earlier spike forced it to acquire. Cutting the spike (stream instead of buffering, `into_iter()` instead of `.iter()`, process in batches) means the regions are never claimed in the first place. Reach for an allocator swap only with a measurement in hand showing it helps *your* workload on *your* platform - and re-measure after, because the intuitive result is not guaranteed.
+
+The same goes for trimming. `malloc_trim(0)` at a quiet point (and `MALLOC_ARENA_MAX` to cap glibc's arenas) can visibly drop RSS on Linux, but it is a glibc function with no portable equivalent - a trim hook patches one platform, while cutting the spike fixes all of them.

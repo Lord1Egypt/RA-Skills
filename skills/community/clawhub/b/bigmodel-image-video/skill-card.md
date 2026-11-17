@@ -1,46 +1,59 @@
-## Description: <br>
-Generates images and videos through the BigModel CogView and CogVideoX API for creative visuals such as covers, product images, social media assets, and short videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BigModel Image Video Generator uses BigModel CogView and CogVideoX APIs to generate single or batch images and asynchronous videos from prompts.
 
-## Publisher: <br>
-[156554395](https://clawhub.ai/user/156554395) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[156554395](https://clawhub.ai/user/156554395)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to call BigModel for prompt-driven image, batch image, and video generation. It supports scripts and Python APIs for social media assets, covers, product images, posters, and short videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and referenced image URLs are transmitted to BigModel for generation. <br>
-Mitigation: Avoid sensitive prompts or private URLs, and require explicit confirmation before external generation calls. <br>
-Risk: The skill requires a BigModel API key. <br>
-Mitigation: Use scoped API keys and prefer session-only secret storage or a secrets manager. <br>
-Risk: Broad activation language may trigger external generation when visual creation is only implied. <br>
-Mitigation: Confirm user intent, model choice, and cost-sensitive settings before making API calls. <br>
+## Use Case:
 
+Developers, creators, and external users use this skill to create visual content such as covers, social posts, product images, posters, and short videos through BigModel API calls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/156554395/bigmodel-image-video) <br>
-- [BigModel Open Platform](https://open.bigmodel.cn/) <br>
-- [BigModel API Base](https://open.bigmodel.cn/api) <br>
-- [Skill README](README.md) <br>
-- [Skill Instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets; API calls return JSON objects containing generated media URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BIGMODEL_API_KEY; generated prompts and optional image URLs are sent to BigModel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a real BigModel API key and may expose secrets if users store the key in committed or synced shell configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the API key in a secret manager or temporary environment variable and avoid committing shell files that contain credentials.
+
+Risk: Changing the BigModel base URL could route prompts, image URLs, or credentials to an unintended service.
+
+Mitigation: Keep the default BigModel endpoint and avoid user-controlled base_url values unless they have been reviewed.
+
+Risk: Prompts and optional image URLs are sent to BigModel for image or video generation.
+
+Mitigation: Avoid submitting sensitive or confidential prompt content or image URLs unless the BigModel service terms and data handling are acceptable for the use case.
+
+## Reference(s):
+
+- [BigModel Open Platform](https://open.bigmodel.cn/)
+- [BigModel API Endpoint](https://open.bigmodel.cn/api)
+- [ClawHub Skill Page](https://clawhub.ai/156554395/skills/bigmodel-image-video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime calls return JSON containing generated image, video, task, and cover URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a BIGMODEL_API_KEY environment variable and sends prompts, and optional image URLs for video generation, to BigModel.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

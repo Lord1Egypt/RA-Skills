@@ -1,42 +1,57 @@
-## Description: <br>
-Automates Sovereign Local Vector Memory and Gemma-300M embeddings for OpenClaw, including local vector embedding setup, model configuration, and memory health monitoring without external API dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates local vector memory with Gemma-300M embeddings, model configuration, and memory health monitoring without external API dependencies.
 
-## Publisher: <br>
-[GreatApe42069](https://clawhub.ai/user/GreatApe42069) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[greatape42069](https://clawhub.ai/user/greatape42069)
 
-## Use Case: <br>
-External developers and OpenClaw users use this skill to configure local vector memory, local embedding model settings, and memory health checks for an agent environment. It is intended for users who explicitly want persistent local memory built from broad home or workspace content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad home or workspace indexing can capture sensitive local content into persistent agent memory. <br>
-Mitigation: Before setup, narrow indexed paths to specific project folders, review exclusions, avoid symlinking sensitive directories, and know how to delete the vector database. <br>
-Risk: The skill changes OpenClaw memory defaults and may retain indexed data after source files are removed. <br>
-Mitigation: Review configuration changes before running, keep a rollback path for memory settings, and revert OpenClaw memory configuration when the persistent memory behavior is no longer wanted. <br>
-Risk: Initial setup downloads packages and a local embedding model before memory indexing can run. <br>
-Mitigation: Confirm the dependency and model sources are acceptable for the environment before approving setup commands. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure a local vector-memory stack, set local embedding model options, and add health checks for memory indexing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GreatApe42069/neverforget) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup guidance, local memory health checks, and OpenClaw memory configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: SKILL.md frontmatter, package.json, _meta.json, release evidence) <br>
+Risk: The skill can build a persistent local memory index over broad parts of the user's home environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the filesystem scope to specific project folders before setup and review exclusions for secrets and private data.
+
+Risk: Setup may make persistent changes by installing dependencies, restarting the gateway, changing configuration, and appending HEARTBEAT.md content.
+
+Mitigation: Review each setup step before approval and keep a rollback plan for dependency, configuration, gateway, and HEARTBEAT.md changes.
+
+Risk: Symlink-based or overly broad indexing can pull unintended files into memory.
+
+Mitigation: Avoid symlink-based indexing unless deliberate and verify indexed paths after the first run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/greatape42069/skills/neverforget)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance for local indexing, model configuration, exclusion rules, and memory health checks.]
+
+## Skill Version(s):
+
+1.0.4 (source: SKILL.md frontmatter, package.json, _meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

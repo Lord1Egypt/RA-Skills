@@ -1,41 +1,52 @@
-## Description: <br>
-Builds exit readiness packages for founders and business owners, including valuation estimates, exit path analysis, readiness scorecards, and value maximization roadmaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides founders and business owners with structured exit readiness packages, including valuation estimates, exit path comparisons, readiness scorecards, value maximization roadmaps, deal structure guidance, and milestone planning.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Founders, business owners, CFOs, and investors use this skill to evaluate exit options, estimate valuation ranges, identify readiness gaps, and plan due diligence and value-improvement milestones. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may disclose confidential business details, proprietary financials, strategic plans, customer-identifying data, or material nonpublic information while preparing exit scenarios. <br>
-Mitigation: Use only authorized, approved runtime environments for sensitive inputs, and redact or generalize figures and identifying details where possible. <br>
-Risk: Valuation ranges, deal-structure comments, and tax considerations may be mistaken for professional financial, legal, tax, or M&A advice. <br>
-Mitigation: Treat outputs as planning frameworks and have qualified M&A, legal, CPA, or tax advisors validate material decisions, especially for larger transactions. <br>
-Risk: Sector benchmarks and exit multiples may not reflect current market conditions or the user's specific business profile. <br>
-Mitigation: Validate benchmark assumptions against current comparable transactions, company-specific diligence, and professional market guidance before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-exit-strategy) <br>
+## Use Case:
 
+Founders, business owners, CFOs, and investors use this skill to evaluate exit options, estimate directional valuation ranges, identify readiness gaps, and plan concrete preparation steps before a sale, IPO, buyout, or wind-down.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with headers, tables, scorecards, and prioritized action lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes valuation ranges, exit path comparisons, readiness scoring, deal-structure guidance, and a 12-month milestone calendar.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Valuation, transaction, and tax guidance may be inaccurate or incomplete for a specific business or deal.
+
+Mitigation: Treat outputs as directional planning material and consult qualified M&A, legal, CPA, or tax advisors before making transaction decisions.
+
+Risk: The README includes external promotional resource links that route users outside ClawHub.
+
+Mitigation: Review external links before use; the skill itself does not require installing, running, or purchasing those resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-exit-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with headings, tables, scorecards, prioritized action lists, and milestone calendars]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directional business planning guidance; valuation and tax outputs require professional review before use in decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

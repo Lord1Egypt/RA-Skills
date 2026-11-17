@@ -1,44 +1,63 @@
-## Description: <br>
-Build high-converting paywalls for mobile apps and web with proven patterns, pricing strategies, and A/B testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build high-converting paywalls for mobile apps and web with proven patterns, pricing strategies, and A/B testing.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Product, growth, design, and engineering teams use this skill to plan and improve mobile app paywalls and SaaS pricing flows, including placement, layout, copy, pricing, and A/B testing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Conversion-focused paywall advice can create misleading or non-compliant subscription experiences if claims, urgency, pricing, or testimonials are not truthful. <br>
-Mitigation: Use truthful claims, clear total pricing and billing terms, visible cancellation and dismiss options, app-store compliance checks, and documented consent for names, photos, likenesses, or customer logos. <br>
-Risk: Paywall experiments can produce unreliable decisions or short-term gains that harm retention when tests are underpowered, stopped early, or evaluated only on conversion rate. <br>
-Mitigation: Use statistically sound A/B tests, set duration and sample size before launch, avoid early stopping, and review cancellation, trial-to-paid, ARPU, and LTV metrics before adopting a variant. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Paywall skill page](https://clawhub.ai/ivangdavila/paywall) <br>
-- [Mobile app paywalls](mobile.md) <br>
-- [Web/SaaS pricing pages](web.md) <br>
-- [Paywall layout patterns](layout.md) <br>
-- [Paywall pricing strategy](pricing.md) <br>
-- [Paywall A/B testing](testing.md) <br>
+## Use Case:
 
+Product teams, growth marketers, designers, and developers use this skill to plan mobile app paywalls and web/SaaS pricing pages, including layout, copy, placement, pricing, and A/B testing guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with examples, checklists, and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no code execution, tool calls, or permissions are required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Subscription and pricing guidance could encourage manipulative or unclear monetization patterns.
+
+Mitigation: Review recommendations for transparent billing, fair plan presentation, clear cancellation terms, and app-store or consumer-protection compliance before implementation.
+
+Risk: Regional pricing, annual defaults, decoy plans, urgency, and onboarding paywalls may be inappropriate for some audiences or jurisdictions.
+
+Mitigation: Treat these as review-required suggestions and adapt them to product policy, local law, accessibility needs, and user expectations.
+
+Risk: Short-term conversion lifts can hide higher cancellations or lower long-term revenue quality.
+
+Mitigation: Evaluate paywall tests with trial-to-paid conversion, cancellation, ARPU, LTV, and statistical rigor, not conversion rate alone.
+
+## Reference(s):
+
+- [Paywall skill overview](artifact/SKILL.md)
+- [Paywall copywriting](artifact/copy.md)
+- [Paywall layout patterns](artifact/layout.md)
+- [Mobile app paywalls](artifact/mobile.md)
+- [Paywall placement strategy](artifact/placement.md)
+- [Paywall pricing strategy](artifact/pricing.md)
+- [Paywall A/B testing](artifact/testing.md)
+- [Web/SaaS pricing pages](artifact/web.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with examples, checklists, tables, and implementation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include pricing, placement, copy, layout, platform-compliance, and experiment-design recommendations for human review before implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

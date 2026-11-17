@@ -1,40 +1,50 @@
-## Description: <br>
-提供各大App每日签到自动提醒、积分累计及价值兑换指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides daily app check-in reminders, points accumulation guidance, and value redemption guidance.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users can use this skill for daily app check-in reminders, point accumulation, and value redemption guidance. The artifact content also provides shopping and deal-comparison guidance, including price, discount, logistics, rating, after-sales, and review signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised check-in purpose does not match the shopping-focused artifact content, which may confuse users or route them to the wrong workflow. <br>
-Mitigation: Review the skill description and artifact behavior together before deployment, and clarify whether the release should focus on daily check-ins or shopping and deal comparison. <br>
-Risk: The skill can provide purchase-oriented guidance such as discounts, logistics, ratings, after-sales status, and buyer reviews. <br>
-Mitigation: Treat outputs as guidance to verify against the target app or merchant before acting on purchase, delivery, return, or warranty information. <br>
+## Use Case:
 
+External users can ask an agent for daily app check-in reminders, points tracking, and redemption guidance. The artifact also includes shopping comparison and purchase guidance fields, so users should confirm the skill scope before relying on the output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/checkin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance in natural language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no tools, APIs, shell commands, or credential variables detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The security summary reports that the advertised check-in purpose does not match the shopping and purchase-guidance instructions in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and align the skill name, description, examples, and scope before users rely on the skill for check-in, shopping, or purchase decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/checkin)
+- [Publisher profile](https://clawhub.ai/user/mike47512)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses may include reminders, points guidance, shopping filters, order details, and coupon suggestions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

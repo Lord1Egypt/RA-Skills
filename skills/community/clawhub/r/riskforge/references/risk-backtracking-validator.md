@@ -1,4 +1,4 @@
-name: risk-backtracking-validator
+name: riREDACTED-SECRET
 description: 风险回溯校验协议，用于在生成每个风险项时进行即时校验，确保风险描述、建议和影响表述的准确性
 triggers:
   - 风险验证

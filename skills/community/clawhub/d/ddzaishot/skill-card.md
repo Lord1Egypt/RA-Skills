@@ -1,43 +1,59 @@
-## Description: <br>
-Ddzaishot supports Dou Dizhu game analysis by scanning visible cards, tracking play state, and returning AI play suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ddzaishot helps users analyze Dou Dizhu games by recognizing on-screen cards, tracking play history, and suggesting moves.
 
-## Publisher: <br>
-[bladezhang](https://clawhub.ai/user/bladezhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bladezhang](https://clawhub.ai/user/bladezhang)
 
-## Use Case: <br>
-Players and agent operators use this skill to analyze Dou Dizhu hands, track visible cards, request suggested plays, and optionally assist with calibrated mouse clicks during gameplay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture the visible screen and save screenshots, which may expose sensitive windows or information. <br>
-Mitigation: Hide unrelated sensitive windows before scanning, keep the game window focused, and review or delete saved screenshots in the logs directory. <br>
-Risk: The skill can automate mouse clicks during gameplay with limited scoping controls. <br>
-Mitigation: Use demo and suggestion modes first, calibrate mouse positions carefully, and enable auto mode only when the intended game window is active. <br>
-Risk: Card recognition depends on local templates and fixed screen regions, so suggestions may be wrong if recognition is inaccurate. <br>
-Mitigation: Create and verify card templates for the target game UI, review scan results before acting, and treat recommendations as advisory. <br>
+## Use Case:
 
+Players or developers running a local Dou Dizhu assistant use this skill to scan a visible game screen, keep card counts, request AI move suggestions, and optionally automate calibrated card-play clicks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bladezhang/ddzaishot) <br>
-- [Publisher profile](https://clawhub.ai/user/bladezhang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, interactive prompts, and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include card lists, gameplay state, recommendations, reasoning text, and mouse calibration coordinates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Full-screen capture can expose sensitive information outside the game window.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Close sensitive windows before scanning and delete saved screenshots in logs after use.
+
+Risk: Mouse automation can click the wrong target if calibration is stale or the active window changes.
+
+Mitigation: Use automatic play only after calibration and only while the intended game window is active.
+
+Risk: Unpinned dependency ranges can change behavior across installations.
+
+Mitigation: Install in a virtual environment and pin dependency versions for repeatable use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bladezhang/skills/ddzaishot)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Interactive terminal text and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save screenshots to logs and may issue calibrated mouse clicks when automatic play is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

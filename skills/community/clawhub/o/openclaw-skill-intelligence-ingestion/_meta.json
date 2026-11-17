@@ -1,0 +1,8 @@
+{
+  "name": "intelligence-ingestion",
+  "version": "1.0.0",
+  "description": "Auto-analyze URLs/info for OpenClaw strategic value, classify, create Obsidian notes, update memory",
+  "author": "sarahmirrand001",
+  "tags": ["intelligence", "analysis", "memory", "obsidian"],
+  "homepage": "https://github.com/sarahmirrand001-oss/openclaw-skill-intelligence-ingestion"
+}

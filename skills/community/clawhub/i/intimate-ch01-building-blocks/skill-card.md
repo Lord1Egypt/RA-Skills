@@ -1,47 +1,61 @@
-## Description: <br>
-Provides a Chinese-language study helper for Chapter 1 of Miller's Intimate Relationships, using progressive disclosure to explain intimacy, attachment, cultural influences, individual differences, and evolutionary perspectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language study helper for Chapter 1 of Miller's Intimate Relationships that explains core concepts such as intimacy, need to belong, attachment styles, gender roles, individual differences, self-esteem, and evolutionary perspectives using progressive disclosure and bundled chapter notes.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-External learners and students use this skill to review Chapter 1 concepts, ask targeted questions, and analyze textbook examples without receiving an entire chapter dump. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational relationship-study explanations as professional relationship or mental-health advice. <br>
-Mitigation: Use the skill as study support only, and seek qualified professional help for personal mental-health, safety, or relationship-crisis decisions. <br>
-Risk: The notes are derived from textbook chapter material and may require provenance or licensing review before redistribution. <br>
-Mitigation: Review the source textbook, cited references, and license expectations before relying on or redistributing the material. <br>
+## Use Case:
 
+External learners and educators use this skill to study, review, and discuss Chapter 1 of Miller's Intimate Relationships in Chinese. It helps users ask targeted questions, analyze examples, and connect textbook concepts to cases without loading the full chapter at once.
 
-## Reference(s): <br>
-- [Attachment Styles](references/attachment-styles.md) <br>
-- [Common Misconceptions](references/common-misconceptions.md) <br>
-- [Cultural Influences](references/cultural-influences.md) <br>
-- [Evolutionary Perspective](references/evolutionary-perspective.md) <br>
-- [Examples](references/examples.md) <br>
-- [Individual Differences](references/individual-differences.md) <br>
-- [Key Terms](references/key-terms.md) <br>
-- [Research](references/research.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational study guidance, primarily in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Progressive disclosure for educational support; no code, shell commands, configuration, or API calls are indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: The skill relies on bundled notes rather than live research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as chapter-study guidance and verify claims against the textbook or current sources when freshness or precision matters.
+
+Risk: The artifact is scoped to Chapter 1 of one textbook.
+
+Mitigation: Keep use within Chapter 1 concepts and redirect or qualify answers when users ask about later chapters or broader relationship advice.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/junwugit/skills/intimate-ch01-building-blocks)
+- [Attachment Styles](references/attachment-styles.md)
+- [Common Misconceptions](references/common-misconceptions.md)
+- [Cultural Influences](references/cultural-influences.md)
+- [Evolutionary Perspective](references/evolutionary-perspective.md)
+- [Textbook Examples](references/examples.md)
+- [Individual Differences](references/individual-differences.md)
+- [Key Terms](references/key-terms.md)
+- [Research References](references/research.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bundled reference notes and progressive disclosure; no tool, MCP, credential, or live research access is requested by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

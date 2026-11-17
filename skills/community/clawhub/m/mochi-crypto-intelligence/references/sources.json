@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "directory_review_date": "2026-10-21",
+  "purpose": "Starter directory; discover additional authentic official sources for any project. No ranking, complete market coverage or ongoing availability guarantee.",
+  "expansion": "Use host search and normal public browsing for relevant official announcements, release notes, independent accessible reporting and public discussion. Open originals; no mandatory API or social login.",
+  "sources": [
+    {
+      "id": "ethereum-foundation",
+      "name": "Ethereum Foundation Blog",
+      "url": "https://blog.ethereum.org/",
+      "kind": "project",
+      "topics": [
+        "ETH",
+        "Ethereum"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions.",
+      "feed": "https://blog.ethereum.org/feed.xml"
+    },
+    {
+      "id": "bitcoin-core",
+      "name": "Bitcoin Core releases",
+      "url": "https://github.com/bitcoin/bitcoin/releases",
+      "kind": "release",
+      "topics": [
+        "BTC",
+        "Bitcoin"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions.",
+      "feed": "https://github.com/bitcoin/bitcoin/releases.atom"
+    },
+    {
+      "id": "bitcoin-org",
+      "name": "Bitcoin.org release announcements",
+      "url": "https://bitcoin.org/en/releases",
+      "kind": "project",
+      "topics": [
+        "BTC",
+        "Bitcoin"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions.",
+      "feed": "https://bitcoin.org/en/rss/releases.rss"
+    },
+    {
+      "id": "solana-news",
+      "name": "Solana News",
+      "url": "https://solana.com/news",
+      "kind": "project",
+      "topics": [
+        "SOL",
+        "Solana"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions."
+    },
+    {
+      "id": "coinbase-blog",
+      "name": "Coinbase Blog",
+      "url": "https://www.coinbase.com/blog/landing",
+      "kind": "exchange",
+      "topics": [
+        "listings",
+        "stablecoins",
+        "infrastructure"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions."
+    },
+    {
+      "id": "kraken-blog",
+      "name": "Kraken Blog",
+      "url": "https://blog.kraken.com/",
+      "kind": "exchange",
+      "topics": [
+        "listings",
+        "exchange"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions."
+    },
+    {
+      "id": "sec-releases",
+      "name": "US SEC press releases",
+      "url": "https://www.sec.gov/newsroom/press-releases",
+      "kind": "regulator",
+      "topics": [
+        "filings",
+        "regulation",
+        "ETFs"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions."
+    },
+    {
+      "id": "circle-blog",
+      "name": "Circle Blog",
+      "url": "https://www.circle.com/blog",
+      "kind": "issuer",
+      "topics": [
+        "USDC",
+        "stablecoins"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions."
+    },
+    {
+      "id": "tether-news",
+      "name": "Tether News",
+      "url": "https://tether.io/news/",
+      "kind": "issuer",
+      "topics": [
+        "USDT",
+        "stablecoins"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions."
+    },
+    {
+      "id": "ethereum-governance",
+      "name": "Ethereum Magicians",
+      "url": "https://ethereum-magicians.org/",
+      "kind": "governance",
+      "topics": [
+        "Ethereum",
+        "EIPs"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions."
+    },
+    {
+      "id": "uniswap-governance",
+      "name": "Uniswap Governance",
+      "url": "https://gov.uniswap.org/",
+      "kind": "governance",
+      "topics": [
+        "UNI",
+        "DeFi"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions."
+    },
+    {
+      "id": "aave-governance",
+      "name": "Aave Governance",
+      "url": "https://governance.aave.com/",
+      "kind": "governance",
+      "topics": [
+        "AAVE",
+        "DeFi"
+      ],
+      "access": "free public page; availability and robots must be checked on each run",
+      "trust_note": "Primary for its own statements; forum authors/proposals are not automatic approved protocol actions."
+    }
+  ]
+}

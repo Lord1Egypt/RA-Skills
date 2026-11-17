@@ -1,40 +1,53 @@
-## Description: <br>
-Book tailor services through Lokuli MCP. Use when user needs to find and book tailor. Triggers on requests like "book a tailor", "find tailor near me", or any tailor service request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Tailor helps agents search for and book tailor services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to search for tailor providers, check appointment availability, and create a booking through Lokuli's MCP server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Booking requests can share customer name, email, and phone number with Lokuli. <br>
-Mitigation: Confirm the exact contact details before using create_booking. <br>
-Risk: An incorrect provider, service, appointment time, price, or cancellation term could result in an unwanted booking. <br>
-Mitigation: Confirm the provider, service, appointment time, and any available price or cancellation terms before booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub Book Tailor listing](https://clawhub.ai/edwardrodriguez703-design/book-tailor) <br>
+## Use Case:
 
+External users and their agents use this skill to find tailor providers, check availability, and create bookings through Lokuli. Users should confirm the provider, time slot, and contact details before allowing a booking request to be sent.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance] <br>
-**Output Format:** [JSON-RPC tool calls and concise natural-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request or pass provider, service, appointment, and customer contact details to Lokuli.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create external bookings and send contact details to Lokuli without an explicit confirmation or privacy step.
+
+Mitigation: Confirm the provider, time slot, and contact details with the user before allowing any booking request to be sent.
+
+Risk: The security evidence recommends review before installation and reports a suspicious verdict.
+
+Mitigation: Review the skill before installing and use it only when the user intends to search for or book tailor services through Lokuli.
+
+## Reference(s):
+
+- [Book Tailor on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-tailor)
+- [Lokuli MCP SSE endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls]
+
+**Output Format:** [Markdown instructions with JSON-RPC tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SSE transport to call Lokuli MCP tools for search, availability, and booking.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

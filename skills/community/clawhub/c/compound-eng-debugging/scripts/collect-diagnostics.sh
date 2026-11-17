@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# collect-diagnostics.sh — Gather environment diagnostics for debugging
+# collect-diagnostics.sh: gather environment diagnostics for debugging
 # Usage: bash collect-diagnostics.sh [output-file]
 #
 # Collects system info, language versions, git state, and project metadata.
@@ -9,13 +9,30 @@ set -euo pipefail
 
 OUTPUT="${1:-}"
 
+sanitize_remote() {
+    local remote="$1"
+    if [[ "$remote" == *://* ]]; then
+        local scheme="${remote%%://*}"
+        local address="${remote#*://}"
+        local authority="${address%%[/?#]*}"
+        local path="${address#"$authority"}"
+        if [[ "$authority" == *@* ]]; then
+            authority="<REDACTED>@${authority##*@}"
+        fi
+        path="${path%%\?*}"
+        path="${path%%\#*}"
+        printf '%s://%s%s' "$scheme" "$authority" "$path"
+    else
+        printf '%s' "$remote"
+    fi
+}
+
 collect() {
     local buf=""
 
     buf+="# Diagnostic Report"$'\n'
     buf+="**Collected:** $(date -u +%Y-%m-%dT%H:%M:%SZ)"$'\n\n'
 
-    # --- System ---
     buf+="## System"$'\n\n'
     buf+="| Property | Value |"$'\n'
     buf+="|----------|-------|"$'\n'
@@ -29,7 +46,6 @@ collect() {
     buf+="| PWD | $(pwd) |"$'\n'
     buf+=$'\n'
 
-    # --- Disk / Memory ---
     buf+="## Resources"$'\n\n'
     buf+='```'$'\n'
     buf+="Disk (pwd): $(df -h . 2>/dev/null | tail -1 | awk '{print $4 " available of " $2}')"$'\n'
@@ -38,7 +54,6 @@ collect() {
     fi
     buf+='```'$'\n\n'
 
-    # --- Git ---
     if git rev-parse --is-inside-work-tree &>/dev/null; then
         buf+="## Git"$'\n\n'
         buf+="| Property | Value |"$'\n'
@@ -46,11 +61,12 @@ collect() {
         buf+="| Branch | $(git branch --show-current 2>/dev/null || echo 'detached') |"$'\n'
         buf+="| Last commit | $(git log -1 --format='%h %s' 2>/dev/null || echo 'none') |"$'\n'
         buf+="| Dirty files | $(git status --porcelain 2>/dev/null | wc -l | tr -d ' ') |"$'\n'
-        buf+="| Remote | $(git remote get-url origin 2>/dev/null || echo 'none') |"$'\n'
+        local remote
+        remote=$(git remote get-url origin 2>/dev/null || echo 'none')
+        buf+="| Remote | $(sanitize_remote "$remote") |"$'\n'
         buf+=$'\n'
     fi
 
-    # --- Language Versions ---
     buf+="## Languages & Runtimes"$'\n\n'
     buf+="| Tool | Version |"$'\n'
     buf+="|------|---------|"$'\n'
@@ -72,7 +88,6 @@ collect() {
     done
     buf+=$'\n'
 
-    # --- Package Managers ---
     buf+="## Package Managers"$'\n\n'
     buf+="| Tool | Version |"$'\n'
     buf+="|------|---------|"$'\n'
@@ -85,7 +100,6 @@ collect() {
     done
     buf+=$'\n'
 
-    # --- Project Detection ---
     buf+="## Project Files Detected"$'\n\n'
     for f in package.json composer.json pyproject.toml Cargo.toml Gemfile go.mod build.gradle pom.xml Makefile Dockerfile docker-compose.yml .env.example; do
         if [ -f "$f" ]; then
@@ -94,7 +108,6 @@ collect() {
     done
     buf+=$'\n'
 
-    # --- Environment Variables (safe subset) ---
     buf+="## Environment (safe subset)"$'\n\n'
     buf+="| Variable | Value |"$'\n'
     buf+="|----------|-------|"$'\n'

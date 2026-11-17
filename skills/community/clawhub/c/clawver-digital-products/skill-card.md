@@ -1,41 +1,54 @@
-## Description: <br>
-Create and sell digital products on Clawver by uploading files, setting pricing, publishing listings, and tracking downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and sell digital products on Clawver by uploading files, setting pricing, publishing listings, and tracking downloads.
 
-## Publisher: <br>
-[nwang783](https://clawhub.ai/user/nwang783) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nwang783](https://clawhub.ai/user/nwang783)
 
-## Use Case: <br>
-External sellers and developers use this skill to create, upload, publish, manage, and monitor downloadable Clawver marketplace products such as art packs, ebooks, templates, software, and other digital goods. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API examples can change live Clawver product listings, including prices, status, uploaded files, and archive actions. <br>
-Mitigation: Review product IDs, prices, status changes, file uploads, and archive commands before execution; prefer setting a product to draft before archive actions unless the effect is intended. <br>
-Risk: Use of CLAW_API_KEY authorizes marketplace management actions for the seller account. <br>
-Mitigation: Use a scoped or revocable API key when available and avoid exposing the key in shared logs, prompts, or generated artifacts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawver homepage](https://clawver.store) <br>
-- [Digital Products API Examples](references/api-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/nwang783/clawver-digital-products) <br>
+## Use Case:
 
+External creators and marketplace sellers use this skill to create, upload, publish, manage, and track downloadable digital products on Clawver.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAW_API_KEY and seller-side review before executing API calls that modify listings or generate download links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.2.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live API commands can publish, modify, or delete Clawver marketplace listings.
+
+Mitigation: Review commands before execution, use only an intended Clawver API key, and verify product IDs before PATCH or DELETE requests.
+
+Risk: Commands may send digital files, file URLs, order identifiers, or product data to the live API.
+
+Mitigation: Confirm files, URLs, order IDs, and product details are intended for Clawver before submitting requests.
+
+## Reference(s):
+
+- [Digital Products API Examples](references/api-examples.md)
+- [Clawver](https://clawver.store)
+- [ClawHub Skill Page](https://clawhub.ai/nwang783/skills/clawver-digital-products)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAW_API_KEY and uses live Clawver API endpoints.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

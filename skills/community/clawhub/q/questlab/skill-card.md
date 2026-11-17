@@ -1,41 +1,57 @@
-## Description: <br>
-为信息学奥赛(NOI/CSP)生成高质量编程题，注重思维深度和巧妙解法。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为信息学奥赛(NOI/CSP)生成高质量编程题，注重思维深度和巧妙解法。
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-Developers, educators, and contest problem setters use this skill to draft OI, NOI, CSP, GESP, and OJ-style programming problems with realistic scenarios, algorithmic depth, Markdown statements, sample data, and scoring guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill for unrelated programming questions. <br>
-Mitigation: Review or narrow activation triggers when installing the skill outside OI, CSP, NOI, GESP, or algorithm-contest workflows. <br>
-Risk: Generated problem proposals may contain incorrect, low-quality, or misleading contest guidance. <br>
-Mitigation: Have a qualified reviewer verify problem statements, constraints, examples, scoring, and solution logic before publication or classroom use. <br>
+## Use Case:
 
+External educators, contest authors, and developers use this skill to draft OI, NOI, and CSP-style programming contest problems with realistic scenarios, difficulty gradients, samples, and quality checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/questlab) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/fslong520) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Code] <br>
-**Output Format:** [Markdown problem statements with examples, data ranges, scoring guidance, and optional solution hints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for human review before use in contests or educational materials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Broad trigger terms may cause the skill to activate for general programming-problem requests outside formal contest authoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the trigger wording during installation when the deployment should be limited to formal OI, NOI, or CSP problem authoring.
+
+Risk: Generated contest problems may contain incorrect constraints, weak samples, overly familiar templates, or misleading hints.
+
+Mitigation: Have an experienced contest author review the statement, data ranges, samples, scoring, and intended solution before publication or classroom use.
+
+Risk: Student-interest scenarios can accidentally include recognizable commercial game or platform names.
+
+Mitigation: Use generic scenario descriptions and review generated statements for third-party names before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fslong520/skills/questlab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown contest problem statements with structured sections and fenced sample blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multiple problems, scoring, data ranges, samples, and optional hints when requested.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

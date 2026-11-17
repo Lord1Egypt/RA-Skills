@@ -1,39 +1,57 @@
-## Description: <br>
-Generate 7-day or 30-day social media content calendars with hooks, body copy, CTAs, hashtags, engagement quality scoring, rewrite passes, past-performance weighting, CSV export, and tracker output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate 7-day or 30-day social media content calendars for any niche, with post-level scoring, optional rewrites, past-performance adaptation, multi-platform output, A/B variants, CSV export, and an engagement tracker.
 
-## Publisher: <br>
-[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1)
 
-## Use Case: <br>
-External creators, marketers, and business operators use this skill to generate ready-to-review social media calendars for specific niches, audiences, platforms, and tones. It can produce human-readable plans, structured JSON, CSV scheduler exports, and blank engagement tracker templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign, customer, audience, or performance details may be sent to the selected LLM backend when remote generation is used. <br>
-Mitigation: Use --demo or LLM_BACKEND=local for testing or sensitive inputs, and avoid submitting confidential data unless remote processing is intended. <br>
+## Use Case:
 
+Marketing teams, creators, and business operators use this skill to draft ready-to-schedule social media calendars tailored by niche, audience, platform, and tone. It can produce 7-day or 30-day calendars with hooks, body copy, CTAs, hashtags, quality scores, optional CSV export, and tracker templates.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/drivenautoplex1/content-calendar-pro) <br>
-- [OpenClaw skills repository](https://github.com/drivenautoplex1/openclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, shell commands, guidance] <br>
-**Output Format:** [Human-readable text or Markdown-style calendar output, structured JSON, and CSV scheduler exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write calendar files when an output path is supplied; demo and compliance-only modes avoid API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence; skill frontmatter reports 1.2.0) <br>
+Risk: The skill may send niche, audience, and generated-content prompts to Anthropic when the local backend is unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide an Anthropic API key only when hosted processing is acceptable, avoid sensitive prompt inputs, and prefer sandboxed execution with pinned dependencies for production use.
+
+Risk: Local MLX and premium-feature claims may be overstated relative to the implementation.
+
+Mitigation: Validate the required backend and selected options, such as 30-day generation, multi-platform output, CSV export, and tracker output, before relying on the skill in a production publishing workflow.
+
+Risk: Generated marketing content for regulated or high-risk verticals may be inaccurate or unsuitable without review.
+
+Mitigation: Review all generated posts before publication and run the included compliance check where applicable, especially for mortgage, real estate, crypto, healthcare, or financial content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drivenautoplex1/skills/content-calendar-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV, guidance]
+
+**Output Format:** [Human-readable calendar text, structured JSON, and optional CSV scheduler export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include post scores, A/B hook variants, compliance-check results, and a blank engagement tracker template.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Manage Hadoop clusters via Ambari REST API, including service start, stop, restart, component operations, and cluster monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Hadoop clusters via Ambari REST API, including service start, stop, and restart operations, component operations, and cluster monitoring.
 
-## Publisher: <br>
-[lukaizj](https://clawhub.ai/user/lukaizj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lukaizj](https://clawhub.ai/user/lukaizj)
 
-## Use Case: <br>
-Developers and cluster operators use this skill to manage Ambari-backed Hadoop clusters, inspect services and hosts, and generate commands or code for service and component operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Ambari credentials in plaintext under the local skill directory. <br>
-Mitigation: Use least-privilege Ambari accounts, restrict config file permissions, avoid production credentials in examples or shell history, and replace plaintext storage with a secret manager where possible. <br>
-Risk: The skill can make authenticated changes to Hadoop services and components, including disruptive start, stop, and restart operations. <br>
-Mitigation: Review generated commands before execution, verify target cluster, service, component, and host names, and monitor Ambari request status during changes. <br>
-Risk: TLS certificate verification is disabled by default in the included client behavior. <br>
-Mitigation: Review the TLS verification default before real cluster use and configure trusted CA certificates for production environments. <br>
+## Use Case:
 
+Developers and cluster administrators use this skill to manage Ambari-backed Hadoop clusters, inspect cluster state, and prepare commands for service or component operations.
 
-## Reference(s): <br>
-- [API Endpoints](references/api-endpoints.md) <br>
-- [Examples](references/examples.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/lukaizj/lukaizj-ambari-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python snippets, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe Ambari REST API calls and local configuration steps for authenticated cluster operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release evidence) <br>
+Risk: The skill can perform live Ambari service and component start, stop, and restart operations that may disrupt production clusters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, use least-privilege Ambari credentials, and treat service changes as administrative actions that require operational approval.
+
+Risk: Cluster credentials may be supplied on the command line and stored in a plaintext local configuration file.
+
+Mitigation: Avoid real passwords on the command line, protect or replace the local config file with an approved secret-management process, and rotate credentials after testing.
+
+Risk: The helper client disables TLS certificate verification by default.
+
+Mitigation: Enable certificate verification or configure a trusted CA bundle before connecting to production Ambari servers.
+
+## Reference(s):
+
+- [API Endpoints](references/api-endpoints.md)
+- [Examples](references/examples.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, API calls, Code, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Ambari REST operation guidance, helper-script commands, status output interpretation, and configuration steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

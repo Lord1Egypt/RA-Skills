@@ -1,38 +1,57 @@
-## Description: <br>
-Extracts structured product information, including model, quantity, price, currency, and images, from PDF quotations and product catalogs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts product model, quantity, price, currency, and image information from PDF quotations and product catalogs.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-Developers, catalog operators, and ecommerce teams use this skill to extract product rows and product images from PDF quotations or catalogs into structured outputs for review and downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes local PDFs and can write extracted text, tables, images, and spreadsheets to disk; catalog layout errors may also produce incorrect extracted product data. <br>
-Mitigation: Use PDFs you are comfortable processing locally, verify output paths, install required Python PDF/image/spreadsheet libraries in a controlled environment, and manually review extracted products, prices, currencies, and image matches. <br>
+## Use Case:
 
+External users and developers use this skill to convert supplier PDF quotations or product catalogs into structured product records for review, spreadsheet export, and image matching workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1688aiinfra/newton-quotation-pdf-extraction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with Python code and local extraction outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce extracted text, images, tables, Excel files, and structured product records depending on the PDF workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated CSV or XLSX files may contain unsafe formula-like cells when the source PDF is untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or sanitize spreadsheet cells before opening generated files in spreadsheet software.
+
+Risk: The skill writes extracted text, image, table, and spreadsheet outputs to user-selected paths.
+
+Mitigation: Use a dedicated output directory and review generated files before sharing or importing them into other systems.
+
+Risk: PDF layout variation can produce incomplete or mismatched product, price, quantity, or image extraction.
+
+Mitigation: Run the PDF structure analysis first, confirm the currency with the user, and spot-check extracted records and matched images before relying on the output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1688aiinfra/skills/newton-quotation-pdf-extraction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with Python code blocks and local file outputs such as TXT, JSON, CSV, XLSX, and extracted images.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files are written to user-selected output paths; spreadsheet outputs should be reviewed before opening when source PDFs are untrusted.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

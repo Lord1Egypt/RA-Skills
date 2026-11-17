@@ -1,42 +1,51 @@
-## Description: <br>
-Structured plan management for short-term goals and detailed implementation schemes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured plan management for short-term goals and detailed implementation schemes.
 
-## Publisher: <br>
-[wx528](https://clawhub.ai/user/wx528) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wx528](https://clawhub.ai/user/wx528)
 
-## Use Case: <br>
-Developers, project maintainers, and other users use this skill to create Markdown plan overviews, detailed implementation plans, and indexes for tracking short-term work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update local Markdown planning files under a plans/ directory. <br>
-Mitigation: Review generated or changed planning files, especially if important planning documents already exist. <br>
-Risk: Plans can remain incomplete or misleading if template placeholders such as TBD are left unresolved. <br>
-Mitigation: Review plan content, deadlines, status fields, and checkboxes before relying on the plan. <br>
+## Use Case:
 
+Developers, project contributors, and other users use this skill to create, update, and track lightweight Markdown plans, including plan overviews, detailed implementation steps, and plan indexes.
 
-## Reference(s): <br>
-- [Plans Overview Template](templates/plans-overview.md) <br>
-- [Detailed Plan Template](templates/detailed-plan.md) <br>
-- [Detailed Plans Index Template](templates/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown files with tables, checkboxes, and frontmatter] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update files under a plans/ directory; no executable code, network use, or credential handling was reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated or updated plan documents may contain inaccurate priorities, dates, or steps if the user provides incomplete context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plan files as normal project documentation before using them to guide work.
+
+## Reference(s):
+
+- [Plan Overview Template](templates/plans-overview.md)
+- [Detailed Plan Template](templates/detailed-plan.md)
+- [Detailed Plans Index Template](templates/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown files and concise plan-management guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace planning documents such as overviews, detailed plans, indexes, checklists, and status tables.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

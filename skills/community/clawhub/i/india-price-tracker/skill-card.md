@@ -1,46 +1,64 @@
-## Description: <br>
-Track and compare product prices across popular Indian stores (Amazon India, Flipkart, Reliance Digital, Croma, Vijay Sales, Tata CLiQ, and more), compute effective prices after offers/cashback, detect arbitrage opportunities, and monitor price history with alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and compare product prices across popular Indian stores (Amazon India, Flipkart, Reliance Digital, Croma, Vijay Sales, Tata CLiQ, and more), compute effective prices after offers/cashback, detect arbitrage opportunities, and monitor price history with alerts.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-External users, developers, and price analysts use this skill to compare India-focused ecommerce prices, calculate effective payable costs, monitor price history, and flag price-drop or arbitrage opportunities for manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live store integrations can violate platform terms, rate limits, or regional legal requirements if enabled without review. <br>
-Mitigation: Keep the default mock mode for local evaluation and move to live adapters only after store policy review, rate-limit planning, and legal or compliance sign-off. <br>
-Risk: Price, stock, shipping, cashback, and SKU matching data can be incomplete or misleading. <br>
-Mitigation: Treat outputs as decision support, include confidence notes, flag uncertain matches, and manually verify high-value opportunities before purchases or resale decisions. <br>
-Risk: Credential exposure is possible if live adapters are extended with API keys. <br>
-Mitigation: Do not hardcode API keys in source code or chat, and review any live adapter changes before production use. <br>
+## Use Case:
 
+Developers and ecommerce analysts use this skill to compare India-focused store listings, estimate effective prices after discounts, cashback, and shipping, monitor price history, and prepare threshold alerts before implementing compliant live adapters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anugotta/india-price-tracker) <br>
-- [OpenClaw homepage metadata](https://clawhub.ai/Michael-laffin/price-tracker) <br>
-- [README](README.md) <br>
-- [Setup](setup.md) <br>
-- [Validation checklist](validation-checklist.md) <br>
+### Deployment Geography for Use:
 
+India
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default scripts use mock adapters; generated reports are decision support and should be manually verified before high-value action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated mock prices may be mistaken for real market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as decision support only; validate compliant live adapters and manually verify high-value opportunities before purchase, resale, or arbitrage decisions.
+
+Risk: Live store integrations can run into platform terms, rate limits, or regional legal restrictions.
+
+Mitigation: Review each store's terms of service, use approved access methods, and complete legal or compliance review before enabling live automation.
+
+Risk: Bulk monitoring can write alerts to a caller-provided file path.
+
+Mitigation: Use explicit reviewed output paths and avoid pointing output at sensitive or unrelated files.
+
+Risk: Incorrect SKU matching, availability, discount, cashback, shipping, or fee assumptions can create misleading arbitrage signals.
+
+Mitigation: Compare exact variants only, flag uncertain matches for manual review, and document fee and rounding assumptions before relying on alerts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anugotta/skills/india-price-tracker)
+- [Clawdis Homepage](https://clawhub.ai/Michael-laffin/price-tracker)
+- [Setup Guide](setup.md)
+- [Validation Checklist](validation-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text reports with local Python command examples and optional alert files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default scripts use mock data; bulk monitoring can write alerts to a user-provided output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

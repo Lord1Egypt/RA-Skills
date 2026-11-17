@@ -1,49 +1,67 @@
-## Description: <br>
-Mobilerun lets agents control real Android phones through the Mobilerun API, including tapping, swiping, typing, screenshots, UI tree inspection, app management, and AI agent tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control real Android phones through the Mobilerun API for tapping, swiping, typing, screenshots, UI-tree reading, app management, and autonomous Droidrun Agent tasks.
 
-## Publisher: <br>
-[Mariozada](https://clawhub.ai/user/Mariozada) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariozada](https://clawhub.ai/user/mariozada)
 
-## Use Case: <br>
-External users and developers use Mobilerun to automate or remotely operate Android devices, either by issuing direct screen-control API calls or delegating multi-step app workflows to the Droidrun Agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can observe and control a real Android device, including screenshots, UI tree access, taps, typing, app management, and autonomous tasks. <br>
-Mitigation: Use it only on an intended device, prefer a dedicated or low-risk phone, and require explicit confirmation before sensitive app actions, purchases, account changes, app installs or uninstalls, or feedback submission. <br>
-Risk: Screenshots, accessibility trees, and device state can contain sensitive personal data. <br>
-Mitigation: Share device observations only with the user, avoid logging or revealing sensitive screen/UI data, and never expose the Mobilerun API key. <br>
-Risk: Personal-device setup requires sideloading the Droidrun Portal APK and enabling Android Accessibility access. <br>
-Mitigation: Verify the APK source before sideloading, disable unknown-sources access after installation, and turn off Accessibility access when Mobilerun is not needed. <br>
+## Use Case:
 
+Developers and external users use this skill to remotely control a connected Android device, automate app workflows, inspect screenshots and accessibility trees, provision cloud devices, or delegate multi-step phone tasks to the Droidrun Agent.
 
-## Reference(s): <br>
-- [Mobilerun Skill Page](https://clawhub.ai/Mariozada/mobilerun-skill) <br>
-- [Mariozada Publisher Profile](https://clawhub.ai/user/Mariozada) <br>
-- [Mobilerun Platform API](api.md) <br>
-- [Phone Control API Reference](phone-api.md) <br>
-- [Mobilerun Setup](setup.md) <br>
-- [Mobilerun Plans & Subscriptions](subscription.md) <br>
-- [Droidrun Portal](https://droidrun.ai/portal) <br>
-- [Droidrun Portal Source](https://github.com/droidrun/droidrun-portal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline HTTP and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Mobilerun API requests, device status summaries, setup guidance, and task progress updates; must not expose API keys or sensitive screenshot/UI-tree data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Remote Android control can expose sensitive screenshots, UI text, account data, and app state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a non-primary device or test profile when possible, avoid sharing screenshots or UI trees beyond the user, and keep MOBILERUN_API_KEY out of chat and logs.
+
+Risk: The required sideloaded Portal APK and Accessibility service grant broad visibility and control over the device.
+
+Mitigation: Verify the APK source as much as possible, enable Accessibility only when needed, and disable the service after use.
+
+Risk: Autonomous tasks, app management, cloud-device termination, field clearing, feedback submission, or plan-consuming operations may affect accounts or spend credits.
+
+Mitigation: Require explicit user confirmation before destructive, account-affecting, billing-related, or autonomous actions.
+
+## Reference(s):
+
+- [Mobilerun Skill Page](https://clawhub.ai/mariozada/skills/mobilerun-skill)
+- [Publisher Profile](https://clawhub.ai/user/mariozada)
+- [Mobilerun API Base](https://api.mobilerun.ai/v1)
+- [Mobilerun API Keys](https://cloud.mobilerun.ai/api-keys)
+- [Mobilerun Billing](https://cloud.mobilerun.ai/billing)
+- [Droidrun Portal](https://droidrun.ai/portal)
+- [Droidrun Portal Source](https://github.com/droidrun/droidrun-portal)
+- [Phone Control API Reference](artifact/phone-api.md)
+- [Mobilerun Platform API](artifact/api.md)
+- [Mobilerun Setup](artifact/setup.md)
+- [Mobilerun Plans and Subscriptions](artifact/subscription.md)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Configuration guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with HTTP request examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MOBILERUN_API_KEY and may return screenshots, UI accessibility data, task status, and device-control results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

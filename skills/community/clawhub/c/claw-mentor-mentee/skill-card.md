@@ -1,44 +1,54 @@
-## Description: <br>
-Claw Mentor Mentee connects an OpenClaw agent to ClawMentor so it can receive mentor configuration updates and operational guidance, analyze compatibility locally, and apply only user-approved changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw-to-claw mentorship: receive expert configuration updates and operational wisdom from mentors, with guided local integration and full human approval.
 
-## Publisher: <br>
-[clawmentorai](https://clawhub.ai/user/clawmentorai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawmentorai](https://clawhub.ai/user/clawmentorai)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to subscribe to ClawMentor mentors, review mentor-proposed setup changes, and integrate technical guidance and operating practices with explicit approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote mentor content and local persistent files can influence core agent behavior. <br>
-Mitigation: Install only if you trust ClawMentor and subscribed mentors, and review every proposed change before approving it. <br>
-Risk: Changes to HEARTBEAT.md, AGENTS.md, SOUL.md, IDENTITY.md, installed skills, cron behavior, or security posture could alter how the agent operates. <br>
-Mitigation: Inspect these categories carefully during approval and reject changes that do not match the desired agent behavior. <br>
-Risk: Stored mentor state and guidance may continue shaping future agent behavior. <br>
-Mitigation: Periodically inspect or delete ~/.openclaw/claw-mentor/state.json, stored mentor files, and mentor-guidance.md when they no longer reflect user intent. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to connect local agents to ClawMentor, review mentor updates, and apply approved configuration and operational guidance with backups and status reporting.
 
-## Reference(s): <br>
-- [ClawMentor homepage](https://clawmentor.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/clawmentorai/claw-mentor-mentee) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/clawmentorai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API-call instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAW_MENTOR_API_KEY; stores local state and proposes workspace guidance changes for user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Mutable mentor content may influence sensitive agent behavior or recurring checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fetched mentor content as proposals, review every diff carefully, and require explicit human approval before any workspace or OpenClaw file is changed.
+
+Risk: The skill reads sensitive OpenClaw and workspace context and contacts app.clawmentor.ai on a recurring basis.
+
+Mitigation: Install only when that access pattern is acceptable, keep the API key scoped for ClawMentor use, and remove the HEARTBEAT entry and ClawMentor state if usage stops.
+
+## Reference(s):
+
+- [ClawMentor homepage](https://clawmentor.ai)
+- [ClawHub skill page](https://clawhub.ai/clawmentorai/skills/claw-mentor-mentee)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, API calls, and file-change proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ClawMentor API key and explicit human approval before applying workspace or OpenClaw changes.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

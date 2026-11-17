@@ -1,39 +1,59 @@
-## Description: <br>
-Diagnose and recover broken Git state and worktree metadata with a staged, low-risk recovery flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and recover broken Git state and worktree metadata with a staged, low-risk recovery flow.
 
-## Publisher: <br>
-[delorenj](https://clawhub.ai/user/delorenj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[delorenj](https://clawhub.ai/user/delorenj)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose broken Git repositories, plan low-risk worktree and ref recovery steps, and verify repository health after each fix. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Git repair guidance can change local repository metadata, including refs, HEAD state, and worktree records. <br>
-Mitigation: Snapshot or back up .git first, review branch and HEAD repair commands before execution, and use manual .git edits only after normal Git commands fail. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/delorenj/unfuck-my-git-state) <br>
-- [Symptom Map](references/symptom-map.md) <br>
-- [Recovery Checklist](references/recovery-checklist.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose damaged Git repository state, route symptoms to low-risk recovery steps, and verify the repository after each remediation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash command blocks and stepwise repair guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes snapshot-first diagnostics, non-destructive repair plans, and verification gates before escalation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Diagnostic snapshots may capture sensitive Git data such as remote URLs, refs, reflog details, and repository paths in .git-state-snapshots.
+
+Mitigation: Use the skill only on repositories where local diagnostic snapshots are acceptable, then inspect or delete .git-state-snapshots before committing, uploading logs, or sharing the repository.
+
+Risk: Remote URLs can contain embedded tokens or credentials, and the snapshot script does not redact them.
+
+Mitigation: Avoid running the snapshot workflow on repositories with credentials in remote URLs unless the script is updated to redact secrets and create owner-only files.
+
+Risk: Some recovery steps can affect Git refs, worktrees, or HEAD state if applied to the wrong symptom.
+
+Mitigation: Follow the staged workflow: snapshot first, apply the smallest matching playbook, back up .git before manual repairs, and run the recovery checklist after each change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/delorenj/skills/unfuck-my-git-state)
+- [Publisher Profile](https://clawhub.ai/user/delorenj)
+- [Symptom Map](references/symptom-map.md)
+- [Recovery Checklist](references/recovery-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local diagnostic snapshot files when the bundled snapshot script is run.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

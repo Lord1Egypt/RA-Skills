@@ -1,44 +1,59 @@
-## Description: <br>
-Downloads Douyin videos through the TikHub API from short links, full URLs, query parameters, or bare video IDs, with optional saving to disk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads Douyin videos from supported Douyin links or 16-19 digit video IDs through the TikHub API, then prints the resolved video URL or saves an MP4 file.
 
-## Publisher: <br>
-[mfang0126](https://clawhub.ai/user/mfang0126) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mfang0126](https://clawhub.ai/user/mfang0126)
 
-## Use Case: <br>
-External users and agents use this skill to resolve Douyin video links or IDs and retrieve either a direct video URL or a downloaded MP4 file. It is intended for Douyin videos only, not live streams, image carousels, or other video platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to run when a Douyin link or numeric video ID is merely detected. <br>
-Mitigation: Require explicit user confirmation before contacting TikHub or downloading files. <br>
-Risk: Douyin links or video IDs and a local TikHub API token are used with a third-party API. <br>
-Mitigation: Install only when this data sharing is acceptable, store the token in ~/.openclaw/config.json, and avoid sharing sensitive or private video identifiers. <br>
-Risk: The downloader is limited to Douyin videos and may fail for live streams, image carousels, private, deleted, or unsupported videos. <br>
-Mitigation: Use it only for supported Douyin video links or 16-19 digit IDs and review failures before retrying with other tools. <br>
+## Use Case:
 
+External users and developers use this skill to resolve Douyin short links, full Douyin video URLs, query-parameter IDs, or bare 16-19 digit video IDs and optionally download the corresponding video file. It is intended for Douyin video clips only, not live streams, image carousels, or other video platforms.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mfang0126/grab-douyin) <br>
-- [TikHub API token registration](https://user.tikhub.io/register) <br>
-- [TikHub Douyin fetch-one-video endpoint](https://api.tikhub.io/api/v1/douyin/web/fetch_one_video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May print a Douyin modal_id, direct video URL, or saved MP4 path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill requires a TikHub bearer token and sends Douyin video IDs with that token to TikHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the token only in the expected local configuration file, avoid exposing it in prompts or logs, and confirm TikHub use is acceptable before running the skill.
+
+Risk: Broad trigger rules may cause the agent to process Douyin-looking text or short links before the user's intent is explicit.
+
+Mitigation: Ask for confirmation before making lookups or downloads, especially when input came from untrusted copied text.
+
+Risk: Short-link resolution and downloads make external network requests and can write MP4 files to disk.
+
+Mitigation: Review the resolved video ID and output directory before downloading, and use a custom output directory when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mfang0126/skills/grab-douyin)
+- [TikHub token registration](https://user.tikhub.io/register)
+- [TikHub Douyin fetch endpoint](https://api.tikhub.io/api/v1/douyin/web/fetch_one_video)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown with inline shell commands and command output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print a direct video URL or write an MP4 file to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

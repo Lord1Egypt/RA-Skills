@@ -1,46 +1,65 @@
-## Description: <br>
-Smart multi-model AI gateway on Cardano that routes prompts to the best LLM (GPT-5.2, Claude Sonnet 4.5, GPT-4o, Claude Haiku 4.5, GPT-4o-mini) with automatic fallback, tiered pricing, OpenAI-compatible format, and ADA payment via Masumi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart multi-model AI gateway on Cardano that routes prompts to supported LLMs with automatic fallback, tiered pricing, and an OpenAI-compatible format paid through Masumi.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-External developers and agents use this skill to route prompts or OpenAI-compatible message arrays to a paid multi-model LLM gateway with tiered routing, fallback, and Cardano, Stellar, and XRPL payment support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and payment credentials are sent to a hosted third-party service. <br>
-Mitigation: Install only if you trust NEXUS, avoid secrets or regulated data, and prefer sandbox or tightly limited payment credentials. <br>
-Risk: The skill can trigger paid remote calls with unclear per-use limits. <br>
-Mitigation: Require explicit confirmation before paid calls and enforce spending limits where the agent environment supports them. <br>
+## Use Case:
 
+External developers and agents use this skill to send prompts or OpenAI-compatible message arrays to a paid remote LLM gateway that can route across multiple model tiers and payment protocols.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/nexus-llm-gateway) <br>
-- [NEXUS platform](https://ai-service-hub-15.emergent.host) <br>
-- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON service response containing a result string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a remote HTTPS request and a payment proof or payment credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompts and OpenAI-compatible message arrays are sent to a remote LLM gateway for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, regulated data, or confidential prompts unless the service has been reviewed for the intended data class.
+
+Risk: The skill can make paid remote LLM calls under broad auto-invocation conditions.
+
+Mitigation: Use sandbox or short-lived, limited payment credentials where possible, and confirm the agent's invocation and spending controls before deployment.
+
+Risk: Payment proofs or credentials may be included in request headers for paid or legacy flows.
+
+Mitigation: Limit credential scope and lifetime, store payment proof values outside prompts, and rotate them if exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-llm-gateway)
+- [NEXUS Platform](https://ai-service-hub-15.emergent.host)
+- [LLM Gateway Endpoint](https://ai-service-hub-15.emergent.host/api/original-services/llm-gateway)
+- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+- [Stellar Fee Sponsorship](https://ai-service-hub-15.emergent.host/api/mpp/stellar/sponsor-info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [JSON service response containing model-generated content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires payment authorization for normal use; legacy calls may use NEXUS_PAYMENT_PROOF, and sandbox_test is documented for free testing.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

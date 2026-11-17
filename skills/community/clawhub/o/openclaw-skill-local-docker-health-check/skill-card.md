@@ -1,38 +1,54 @@
-## Description: <br>
-Inspects container health and suggests fixes for common errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspects container health and suggests fixes for common errors.
 
-## Publisher: <br>
-[liverock](https://clawhub.ai/user/liverock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liverock](https://clawhub.ai/user/liverock)
 
-## Use Case: <br>
-Developers and operators use Docker Medic to inspect Docker container health, identify common log or status patterns, and get suggested remediation actions for affected containers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Container health recommendations may be incomplete or not fit a specific production environment. <br>
-Mitigation: Review the reported diagnosis and suggested remediation against live Docker logs, service dependencies, and deployment policy before making changes. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Docker-style container health signals, identify common failure patterns, and receive suggested remediation actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liverock/openclaw-skill-local-docker-health-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Plain-text summary, Markdown status table, and JSON prescriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May target a named container or inspect all containers; suggested fixes should be reviewed before operational changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Diagnostics may reflect bundled mock container data rather than live Docker state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify findings against actual container status and logs before making operational changes.
+
+Risk: Suggested fixes such as restarts, memory changes, or dependency checks may be incomplete for a specific deployment.
+
+Mitigation: Review the recommendation in context and apply changes through normal operational controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liverock/skills/openclaw-skill-local-docker-health-check)
+- [Publisher profile](https://clawhub.ai/user/liverock)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Plain text summary, Markdown status table, and JSON prescriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The optional name parameter narrows diagnostics to a specific container when supported by the caller.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

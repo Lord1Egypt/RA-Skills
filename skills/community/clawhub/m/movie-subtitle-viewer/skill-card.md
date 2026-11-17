@@ -1,44 +1,59 @@
-## Description: <br>
-Search, download, parse, and summarize movie subtitles from OpenSubtitles in .srt or .ass formats using movie name and year. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches OpenSubtitles for movie subtitles, downloads subtitle files, parses .srt and .ass dialogue, and helps an agent summarize movie plots from subtitle text.
 
-## Publisher: <br>
-[adminlove520](https://clawhub.ai/user/adminlove520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adminlove520](https://clawhub.ai/user/adminlove520)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to search for movie subtitles, download subtitle files, parse dialogue, and prepare subtitle text for AI-assisted plot summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill follows download links returned by OpenSubtitles without host validation, redirect limits, or response-size limits. <br>
-Mitigation: Review before installing and prefer an updated version that validates download hosts, limits redirects and response sizes, and downloads only from expected OpenSubtitles endpoints. <br>
-Risk: Downloaded subtitle filenames or paths may write outside a clearly bounded workspace, overwrite files, or allow path traversal. <br>
-Mitigation: Download only into a dedicated folder and prefer an updated version that sanitizes filenames, blocks path traversal, and prevents unintended overwrites. <br>
-Risk: OpenSubtitles credentials are required and subtitle text may be sent to an AI provider for summarization. <br>
-Mitigation: Use a limited OpenSubtitles account, store credentials in a normal secret store, and disclose or review any AI-provider transfer of subtitle text. <br>
+## Use Case:
 
+Developers and agent users use this skill to find and download movie subtitles from OpenSubtitles, extract dialogue from local subtitle files, and prepare subtitle text for plot summaries or scene analysis.
 
-## Reference(s): <br>
-- [Movie Subtitle Viewer ClawHub listing](https://clawhub.ai/adminlove520/movie-subtitle-viewer) <br>
-- [OpenSubtitles API](https://opensubtitles.stoplight.io) <br>
-- [pysubs2](https://github.com/Arcanemagus/pysubs2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets, shell commands, environment-variable configuration, parsed subtitle text, and downloaded subtitle files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenSubtitles credentials; parses .srt and .ass files; downloaded subtitles are written to the requested save path or source filename.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Downloaded subtitle filenames can influence where files are written and may overwrite local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit save path inside a dedicated workspace directory and review downloaded filenames before writing files.
+
+Risk: OpenSubtitles credentials, search terms, and subtitle text may be sent to external services.
+
+Mitigation: Use restricted credentials, avoid sensitive search or subtitle content, and review external-service handling before installation.
+
+Risk: Dependency versions are not pinned.
+
+Mitigation: Install in an isolated environment and pin reviewed dependency versions before production use.
+
+## Reference(s):
+
+- [OpenSubtitles API](https://opensubtitles.stoplight.io)
+- [pysubs2](https://github.com/Arcanemagus/pysubs2)
+- [ClawHub Skill Page](https://clawhub.ai/adminlove520/skills/movie-subtitle-viewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, configuration values, subtitle dialogue text, and plot-summary text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime use requires OpenSubtitles credentials and may create downloaded subtitle files in the workspace.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

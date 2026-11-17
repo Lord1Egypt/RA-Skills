@@ -1,40 +1,52 @@
-## Description: <br>
-PACT - Protocol for Agent Constitutional Trust is a five-chamber agent-to-agent trust and negotiation protocol for identity verification, intent analysis, constitutional negotiation, capability-locked session tokens, and audit trails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PACT - Protocol for Agent Constitutional Trust is a five-chamber agent-to-agent trust and negotiation protocol that handles identity verification, intent analysis, constitutional negotiation, capability-locked session tokens, and audit trails.
 
-## Publisher: <br>
-[skingem1](https://clawhub.ai/user/skingem1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[skingem1](https://clawhub.ai/user/skingem1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent-system operators use this skill to establish trust between agents from different systems before data exchange, payment, or secure sessions. It guides identity verification, intent analysis, constitutional negotiation, session ceilings, and capability-locked token creation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A separate implementation of the referenced SDK may initiate signatures, payments, or on-chain attestations with lasting external effects.
+
+Mitigation: Review and test the SDK implementation, and require explicit approval before signatures, payments, or attestations are executed.
+
+Risk: Trust negotiation could be misused as a reason to bypass higher-priority safety constraints.
+
+Mitigation: Enforce non-negotiable safety constraints outside the PACT session and treat them as overriding any negotiated session terms.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill when two agents from different systems need to establish trust before data exchange, payment, or session creation. It guides first-contact trust negotiation, capability declaration, constitutional constraints, and secure session setup. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The security review verdict is suspicious because the release evidence flags elevated authority in a review helper. <br>
-Mitigation: Install only in trusted repository contexts, review proposed commands before writes, use intended authenticated accounts, and avoid full sandbox bypass unless it is explicitly needed. <br>
-Risk: PACT sessions are sensitive because they establish trust, payment terms, capability limits, and session tokens between agents. <br>
-Mitigation: Preserve SOUL or other safety constraints, reject low-trust sessions, apply capability-locked tokens with expiry, and retain audit trails for review. <br>
+**Output Format:** [Markdown guidance with TypeScript example code]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/skingem1/godman-pact) <br>
+**Other Properties Related to Output:** [Markdown-only skill text; no executable files are included in the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with protocol steps, tables, and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe trust score bands, session ceilings, capability-locked token setup, and audit trail considerations.] <br>
+0.3.0 (source: SKILL.md frontmatter and ClawHub release metadata)
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

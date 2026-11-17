@@ -1,42 +1,53 @@
-## Description: <br>
-Generates ecommerce marketing videos through a local MCP connection to a remote video-generation API, including task creation, progress checks, and video download support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates ecommerce marketing videos for users and helps them submit video jobs, check progress, and download completed videos.
 
-## Publisher: <br>
-[lu200852](https://clawhub.ai/user/lu200852) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lu200852](https://clawhub.ai/user/lu200852)
 
-## Use Case: <br>
-External users and developers use this skill to submit ecommerce or product marketing video generation tasks, check task status, and retrieve completed videos through an MCP-backed workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an API key for the video-generation provider. <br>
-Mitigation: Use a scoped API key when available, store it only in the private .env file, and do not paste or log the key in chat or shell history. <br>
-Risk: The workflow depends on a local MCP gateway at localhost:10620. <br>
-Mitigation: Install only when you trust both the video-generation provider and the local mcporter service configured for this skill. <br>
-Risk: Video downloads can save remote content to the local filesystem. <br>
-Mitigation: Download videos only for task IDs you recognize and review generated download URLs before executing shell download commands. <br>
+## Use Case:
 
+External users and agents use this skill to create ecommerce or product marketing videos, track generation status, and retrieve finished video assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lu200852/hilight-video-generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with task status summaries, MCP tool guidance, and inline shell commands for downloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task IDs, status values, progress estimates, video download URLs, and local file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The download flow can save files from remote-provided URLs without enough guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted MCP services, validate download URLs and filenames, prefer scoped download tooling, and require explicit confirmation before writing files locally.
+
+Risk: The skill depends on a configured API key for the remote video service.
+
+Mitigation: Keep VIDEO_API_KEY in the configured secret environment file, restrict file permissions, and avoid logging or echoing the key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lu200852/skills/hilight-video-generate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with task IDs, status summaries, download links, and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated video files locally when the user asks to download them.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

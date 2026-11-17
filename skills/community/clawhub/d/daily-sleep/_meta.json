@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn79bebfnwg15sb0g7cj5z5nyd83gxh0",
   "slug": "daily-sleep",
-  "version": "1.0.3",
-  "publishedAt": 1777287250013
+  "version": "1.0.0",
+  "runtime": {
+    "node": ">=18"
+  },
+  "ownerId": "kn79bebfnwg15sb0g7cj5z5nyd83gxh0"
 }

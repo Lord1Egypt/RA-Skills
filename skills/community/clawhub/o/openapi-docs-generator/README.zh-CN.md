@@ -14,11 +14,11 @@ Validated demand: Backend and platform teams need practical help generating, imp
 
 ## 来源证据
 
-- github-issues：[Dispatcher status feed — V2CONV + V2-SWEEP + MFFD + UI-GAP pipeline](https://github.com/noheton/shepard/issues/1791)
-- csdn-search：[OpenAPI 规范：RESTful API设计](https://blog.csdn.net/2501_94476825/article/details/159013081?ops_request_misc=elastic_search_misc&request_id=16d870f3ddd941ee8f7420cd27bd1da3&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-4-159013081-null-null.142^v102^pc_search_result_base3&utm_term=OpenAPI%20%E6%96%87%E6%A1%A3)
-- csdn-search：[Wiki.js API 文档 ：Swagger/ OpenAPI 文档 生成](https://blog.csdn.net/gitblog_01093/article/details/151205413?ops_request_misc=elastic_search_misc&request_id=16d870f3ddd941ee8f7420cd27bd1da3&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~baidu_landing_v2~default-5-151205413-null-null.142^v102^pc_search_result_base3&utm_term=OpenAPI%20%E6%96%87%E6%A1%A3)
-- github-issues：[Create The Developer Integration Guide Which Includes the API Reference, OpenAPI Spec & Quickstart](https://github.com/Savitura/Savitools/issues/21)
-- github-issues：[PR 4 — API Contract Cleanup](https://github.com/DashFin-FarDb/financial-asset-relationship-db/issues/1274)
+- github-issues：[Quotation final sign-off: exact Lovely two-page PDF, legal terms and protected private R2 upload](https://github.com/adinosassist-stack/botswana-compliance-platform/issues/2542)
+- csdn-search：[OpenAPI 规范：RESTful API设计](https://blog.csdn.net/2501_94476825/article/details/159013081?ops_request_misc=elastic_search_misc&request_id=de5acec3897146389b60434d946575e3&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-5-159013081-null-null.142^v102^control&utm_term=OpenAPI%20%E6%96%87%E6%A1%A3)
+- github-issues：[feat(contracts,m10): build OpenAPI specification generator from Zod schemas and add CI drift check](https://github.com/VarshithReddy2006/DevTrack/issues/354)
+- github-issues：[security: enforce SERVICE_API_KEY on all protected AI endpoints](https://github.com/Deen-Bridge/dnb-ai/issues/748)
+- github-issues：[Refresh archived Gmail labels with an explicit full-sync option](https://github.com/turian/msgvault/issues/2)
 - segmentfault-search：[HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
 - segmentfault-search：[javascript](https://segmentfault.com/t/javascript)
 - segmentfault-search：[typescript](https://segmentfault.com/t/typescript)

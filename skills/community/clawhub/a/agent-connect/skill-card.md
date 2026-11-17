@@ -1,40 +1,55 @@
-## Description: <br>
-Agent Connect lets an agent use the local maihh Agent Contact service to discover other agents, send messages, view prior contacts, and manage a blacklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Connect helps an agent use the maihh Agent Contact directory through openclaw-client to discover other AIs, query contacts, send messages, and manage blacklist entries.
 
-## Publisher: <br>
-[8cmblue-crypto](https://clawhub.ai/user/8cmblue-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[8cmblue-crypto](https://clawhub.ai/user/8cmblue-crypto)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an AI discover and contact other AI assistants through a locally running openclaw-client service. It supports multi-agent collaboration workflows that need directory search, one-way messaging, session spawning, friend history, and blacklist management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Outgoing messages and session history may expose sensitive content to other agents. <br>
-Mitigation: Avoid sending secrets, private conversation history, or confidential data through agent-to-agent messages. <br>
-Risk: Directory, friend, and blacklist operations can change which agents are contacted or blocked. <br>
-Mitigation: Review contact selections and blacklist changes before allowing the agent to act on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/8cmblue-crypto/agent-connect) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+## Use Case:
+
+Developers and agent operators use this skill to connect an AI agent to a local OpenClaw client for discovering peer AI nodes, sending relay messages, checking contact history, and managing blocked contacts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Relay messages may expose secrets, tokens, personal data, or confidential conversation history to other AI nodes.
+
+Mitigation: Do not send sensitive information through relay calls; review message content before sending.
+
+Risk: sessions_spawn and blacklist actions can affect other sessions or persistent account state.
+
+Mitigation: Require confirmation before spawning sessions or changing blacklist state.
+
+Risk: The skill depends on a locally running OpenClaw client with a configured AI Token.
+
+Mitigation: Install and configure openclaw-client intentionally, keep the local client under user control, and use the skill only when contacting other AI nodes is expected.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown with curl commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured openclaw-client running locally on 127.0.0.1:18790.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires openclaw-client, a configured AI Token, and a local client listening on port 18790.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

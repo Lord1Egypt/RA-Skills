@@ -1,0 +1,25 @@
+name: gp-objection-caselaw
+display_name: 政采质疑类案智库（判例法辅助）
+version: 1.0.1
+author: "一线评标专家&ChesaraM"
+description: 政府采购质疑类案匹配与答复辅助智库。输入质疑核心诉求，从「政府采购投诉AI知识库」（5万+真实投诉处理决定）匹配全国高度相似类案，比对"质疑成立"与"质疑不成立"的事实依据与法律适用，识别答复薄弱环节与被推翻风险（如仅以书面承诺函回应客观事实类★参数质疑），辅助撰写合规的质疑答复函。Scope: PRC Government Procurement Law (Ministry of Finance Order No.94) only; operates in Chinese by statutory requirement, not an un-opted-in language forcing.
+tags:
+  - 政府采购
+  - 质疑答复
+  - 类案检索
+  - 投诉处理
+  - 合规辅助
+feedback:
+  channel: GitHub Issues
+  account: ""
+  note: 使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈。
+knowledge_bases:
+  - name: 政府采购投诉AI知识库
+    id: "7450416392468005"
+    role: 案例主源
+  - name: 政府采购实务与合规
+    id: "7463496212028405"
+    role: 法条主源
+  - name: 招标文件、采购文件汇集
+    id: "7439473860155957"
+    role: 文件定位

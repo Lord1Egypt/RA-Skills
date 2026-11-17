@@ -1,46 +1,63 @@
-## Description: <br>
-Garmin Connect integration for OpenClaw that syncs fitness data including steps, heart rate, calories, workouts, and sleep through OAuth into local SQLite storage for fast access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Garmin Connect integration for OpenClaw: sync fitness data (steps, HR, calories, workouts, sleep) using OAuth. Supports China (garmin.cn) and Global (garmin.com) regions. Data is stored in SQLite database for fast access.
 
-## Publisher: <br>
-[tcyxk](https://clawhub.ai/user/tcyxk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tcyxk](https://clawhub.ai/user/tcyxk)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to authenticate with Garmin Connect, synchronize Garmin health and workout data, and query local SQLite-backed summaries for conversational health status, sleep, activity, and workout reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Garmin credentials and session material are sensitive and the security guidance warns against password-on-command-line examples. <br>
-Mitigation: Avoid command-line password entry when possible, restrict access to ~/.garth/session.json, and rotate Garmin credentials if exposure is suspected. <br>
-Risk: Local SQLite and cache files may contain sensitive Garmin health and activity data. <br>
-Mitigation: Protect ~/.clawdbot/garmin/data.db and related cache files with least-privilege permissions, encrypted storage where available, and careful backup handling. <br>
-Risk: Feishu and webhook report scripts can send sensitive health summaries to external destinations. <br>
-Mitigation: Review outbound report configuration, remove or rotate embedded Feishu credentials, and disable Feishu/webhook reporting unless the destination is intended. <br>
-Risk: Daemon, timer, or scheduled sync behavior can repeatedly collect or share data after installation. <br>
-Mitigation: Review the daemon and timer setup before enabling it, and disable background sync or outbound reports when continuous operation is not required. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to authenticate with Garmin Connect, synchronize fitness, sleep, workout, and health metrics into local SQLite storage, and query or summarize that data through OpenClaw workflows.
 
-## Reference(s): <br>
-- [ClawHub Garmin Connect release page](https://clawhub.ai/tcyxk/garmin-connect-tcyxk) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python examples, and text health summaries backed by local SQLite data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or update local Garmin session files, SQLite health data, sync status, and optional outbound report configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Garmin credentials may be exposed through command-line password entry or weak local persistence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use interactive secret input or an OS credential store instead of command-line passwords, rotate credentials after setup, and restrict ~/.garth permissions to the current user.
+
+Risk: Private health data is stored locally in SQLite and cache files.
+
+Mitigation: Run on a trusted single-user machine, restrict ~/.clawdbot permissions, and review retention or deletion expectations before enabling regular sync.
+
+Risk: Feishu app secrets, webhook URLs, or report destinations can leak health summaries to unintended recipients.
+
+Mitigation: Rotate any shared or default Feishu secret, verify recipients and webhook URLs, and use least-privilege app permissions before enabling reports.
+
+Risk: Scheduled sync setup may encourage unnecessary elevated privileges.
+
+Mitigation: Run synchronization as the normal user where possible and review systemd timers or services before enabling automatic execution.
+
+## Reference(s):
+
+- [Garmin Connect ClawHub skill page](https://clawhub.ai/tcyxk/skills/garmin-connect-tcyxk)
+- [tcyxk ClawHub publisher profile](https://clawhub.ai/user/tcyxk)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local SQLite health data and trigger Garmin synchronization scripts when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

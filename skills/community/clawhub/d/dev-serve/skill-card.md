@@ -1,42 +1,57 @@
-## Description: <br>
-Start and manage tmux-backed dev servers exposed through Caddy at wildcard subdomains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start and manage tmux-backed dev servers exposed through Caddy at wildcard subdomains.
 
-## Publisher: <br>
-[BrennerSpear](https://clawhub.ai/user/BrennerSpear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brennerspear](https://clawhub.ai/user/brennerspear)
 
-## Use Case: <br>
-Developers and engineers use this skill to start, list, restart, and stop local project dev servers in tmux while exposing them through Caddy on wildcard subdomains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper can expose local dev servers on a wildcard domain with limited safeguards. <br>
-Mitigation: Use it only with trusted repositories, keep repo names and DEV_SERVE_DOMAIN DNS-safe, firewall raw dev ports, and remove routes with dev-serve down when finished. <br>
-Risk: The helper can modify the Caddyfile and reload Caddy through the local admin API. <br>
-Mitigation: Back up the Caddyfile before use and review generated route changes before relying on the exposed service. <br>
-Risk: The helper can patch Vite configuration and run project dev commands in tmux. <br>
-Mitigation: Inspect the project's package.json dev script or DEV_CMD override before starting a server, especially for unfamiliar repositories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dev Serve on ClawHub](https://clawhub.ai/BrennerSpear/dev-serve) <br>
-- [Caddy companion skill](https://clawhub.com/skills/caddy) <br>
+## Use Case:
 
+Developers and engineers use this skill to start, expose, list, restart, and stop local project dev servers through tmux and Caddy-backed wildcard HTTPS routes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command blocks and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide changes to tmux sessions, Vite allowedHosts, Caddyfile routes, Caddy reloads, and local state files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script can persistently modify Caddyfile and Vite configuration files.
+
+Mitigation: Use it only on trusted repositories, review generated file changes, and keep backups or diffs before committing or reusing those changes.
+
+Risk: Crafted project names, domains, or ports could change files or execute commands because of input-handling flaws.
+
+Mitigation: Use simple DNS-safe folder names, a trusted DEV_SERVE_DOMAIN, numeric ports, and review commands before running them.
+
+Risk: Pointing CADDY_ADMIN at an unintended endpoint could reload or affect the wrong Caddy instance.
+
+Mitigation: Keep CADDY_ADMIN restricted to the intended local Caddy admin endpoint.
+
+## Reference(s):
+
+- [Dev Serve ClawHub skill page](https://clawhub.ai/brennerspear/skills/dev-serve)
+- [Caddy companion skill](https://clawhub.com/skills/caddy)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may edit Caddyfile, state JSON, and Vite configuration files when used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

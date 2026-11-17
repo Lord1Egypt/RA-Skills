@@ -26,8 +26,7 @@ Or set environment variable **`HIFLEET_API_KEY`**.
 |---------|--------|
 | Liner / line schedule between two ports | **hifleet-schedule** |
 | Ro-Ro or container sailing | **hifleet-schedule** |
-| Open tonnage in **my email** | **hifleet-mytonnages** |
-| Vessels **arriving at** a port | **hifleet-mytonnages** (pre-arrival) |
+| Public open tonnage / cargo | **hifleet-opentonnages** |
 
 ## D. Unlock
 

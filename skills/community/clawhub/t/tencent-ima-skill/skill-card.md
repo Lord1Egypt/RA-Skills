@@ -1,45 +1,54 @@
-## Description: <br>
-Control the IMA (ima.copilot) desktop application for AI search and private knowledge retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control the IMA (ima.copilot) desktop application for AI search and private knowledge retrieval.
 
-## Publisher: <br>
-[hyddd](https://clawhub.ai/user/hyddd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyddd](https://clawhub.ai/user/hyddd)
 
-## Use Case: <br>
-Developers and agent users use this skill to launch Tencent IMA, run public AI searches, and query configured private knowledge bases from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a local Tencent IMA desktop session through remote debugging. <br>
-Mitigation: Install only when this level of local application control is acceptable, and confirm the debug port is restricted to the local session and closed when use is complete. <br>
-Risk: Private knowledge-base queries require storing or supplying a knowledge ID. <br>
-Mitigation: Store the knowledge ID only in approved local configuration or environment variables, and review who can read that configuration before enabling private-knowledge mode. <br>
-Risk: The skill rewrites IMA requests to enable private knowledge-base mode. <br>
-Mitigation: Use private-knowledge mode only for explicit user-requested queries and review the request-rewriting behavior before deployment. <br>
-Risk: The skill extracts rendered page text from the IMA session. <br>
-Mitigation: Review whether the extracted page content may include sensitive private-knowledge results before sharing logs or agent output. <br>
+## Use Case:
 
+Developers and external agent users on macOS use this skill to let an agent search Tencent IMA and optionally retrieve results from a configured private knowledge base.
 
-## Reference(s): <br>
-- [Tencent IMA Skill on ClawHub](https://clawhub.ai/hyddd/tencent-ima-skill) <br>
-- [hyddd publisher profile](https://clawhub.ai/user/hyddd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text search results with setup and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script prints extracted IMA page text and truncates result output to the first 3000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill opens and controls a local IMA debugging session and can rewrite private knowledge-base requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, use a pinned dependency in a virtual environment, and close IMA after use.
+
+Risk: Private mode sends a configured knowledge ID and returns extracted private knowledge-base text to the agent.
+
+Mitigation: Avoid sensitive private knowledge bases until the CDP exposure and confirmation model are tightened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyddd/skills/tencent-ima-skill)
+- [Clawdbot project](https://github.com/clawdbot/clawdbot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text search results with command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the IMA desktop app, Python 3, websocket-client, and a configured knowledge ID for private knowledge-base searches.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+interface:
+  display_name: "TempGuru Pro Operations"
+  short_description: "Route staffing-ops software interest to TempGuru"
+  default_prompt: "Use $tempguru-pro-operations to route my staffing-company operations-tooling inquiry to a TempGuru contact."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "tempguru-event-staffing"
+      description: "TempGuru configured-market, roles, and benchmark lookups for framing"
+      transport: "streamable_http"
+      url: "https://mcp.tempguru.co/mcp?source=openai-codex"

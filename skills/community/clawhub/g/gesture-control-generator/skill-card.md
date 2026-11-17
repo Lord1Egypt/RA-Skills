@@ -1,46 +1,53 @@
-## Description: <br>
-Generates complete browser-based HTML scenes that let users control Three.js visual effects with either mouse input or webcam-based hand gestures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates gesture-controlled interactive scenes by asking what the user wants to control, then producing a complete HTML file that supports mouse and camera-based gesture input.
 
-## Publisher: <br>
-[zhouchang1988](https://clawhub.ai/user/zhouchang1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhouchang1988](https://clawhub.ai/user/zhouchang1988)
 
-## Use Case: <br>
-Developers and creative technologists use this skill to generate self-contained interactive HTML visual effects, including particles, butterflies, ripples, fireworks, stars, and other custom scenes controlled by mouse or hand gestures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated pages can request webcam access for gesture control. <br>
-Mitigation: Prefer mouse-only mode when camera access is unnecessary, and review or modify generated pages so camera startup occurs only after an explicit user action. <br>
-Risk: Generated pages load Three.js and MediaPipe code from jsDelivr. <br>
-Mitigation: Review remote script dependencies before deployment and pin or self-host approved copies when operating in controlled environments. <br>
-Risk: Generated file paths and support-file copies may place new HTML or JavaScript files in the workspace. <br>
-Mitigation: Review proposed output paths before allowing file creation and scan generated files before sharing or deployment. <br>
+## Use Case:
 
+Developers and creators use this skill to generate browser-based visual effects that respond to mouse movement or webcam-powered hand gestures. It is suited for interactive demos, creative coding prototypes, and lightweight web experiences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouchang1988/gesture-control-generator) <br>
-- [particles.html](references/particles.html) <br>
-- [butterfly.html](references/butterfly.html) <br>
-- [ripple.html](references/ripple.html) <br>
-- [Three.js CDN dependency](https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, JavaScript, and configuration snippets; generated usage may create complete HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated pages may include Three.js rendering, local gesture-scene.js support code, browser camera controls, and remote CDN script dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact SKILL.md frontmatter lists 2.0.0) <br>
+Risk: Generated pages can request and start webcam use on page load while running external CDN scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before opening them, prefer mouse-only mode when camera use is not required, and avoid running them in sensitive camera contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouchang1988/skills/gesture-control-generator)
+- [Particle trail example](references/particles.html)
+- [Butterfly example](references/butterfly.html)
+- [Ripple example](references/ripple.html)
+- [Three.js CDN dependency](https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [code, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, JavaScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML pages depend on a local gesture-scene.js helper and browser support for camera permission when gesture mode is used.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

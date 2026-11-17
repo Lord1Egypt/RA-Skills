@@ -1,0 +1,15 @@
+{
+  "maxChars": 35,
+  "documents": [
+    {
+      "id": "a",
+      "text": "critical",
+      "priority": 10
+    },
+    {
+      "id": "b",
+      "text": "very long secondary document that will not fit",
+      "priority": 1
+    }
+  ]
+}

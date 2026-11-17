@@ -1,0 +1,187 @@
+{
+ "category": "expense-budget",
+ "zh": "费用与预算管控专家",
+ "free_uses": 5,
+ "subscription_cny_per_month": 9.9,
+ "per_call_cny": 0.3,
+ "founder_price_lock": 9.9,
+ "subs": [
+  {
+   "id": "budget-variance-check",
+   "name": "费用预算执行差异核对",
+   "layer": "local",
+   "entry": "budget-variance-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "核对",
+    "费用预算执行差异核对",
+    "预算执行表"
+   ],
+   "cols": [
+    "实际数",
+    "差异",
+    "差异率",
+    "执行率",
+    "费用科目",
+    "预算数"
+   ]
+  },
+  {
+   "id": "department-budget-execution-check",
+   "name": "部门费用预算执行核对",
+   "layer": "local",
+   "entry": "department-budget-execution-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "核对",
+    "部门费用预算执行核对",
+    "部门费用预算执行表"
+   ],
+   "cols": [
+    "剩余额度",
+    "已发生金额",
+    "执行率",
+    "期间",
+    "费用科目",
+    "超支金额",
+    "部门",
+    "预算金额"
+   ]
+  },
+  {
+   "id": "expense-compliance",
+   "name": "报销单合规预检",
+   "layer": "local",
+   "entry": "expense-compliance-full.js",
+   "kw": [
+    "AI核对",
+    "免费",
+    "发票",
+    "合规预检",
+    "报销",
+    "报销单合规预检",
+    "要素完整性",
+    "财务",
+    "重复报销"
+   ],
+   "cols": [
+    "报销单"
+   ]
+  },
+  {
+   "id": "fee-budget-pack",
+   "name": "费用与预算技能包",
+   "layer": "local",
+   "entry": "fee-budget-pack-full.js",
+   "kw": [
+    "报销合规",
+    "物业费用",
+    "离线",
+    "费用与预算技能包",
+    "费用核对",
+    "预算执行"
+   ],
+   "cols": []
+  },
+  {
+   "id": "shared-cost-pack",
+   "name": "公共费用与分摊技能包",
+   "layer": "local",
+   "entry": "shared-cost-pack-full.js",
+   "kw": [
+    "仓储费",
+    "代理佣金",
+    "公共费用",
+    "公共费用与分摊技能包",
+    "废料处置",
+    "手续费",
+    "水电分摊",
+    "门店核对"
+   ],
+   "cols": []
+  },
+  {
+   "id": "software-license-check",
+   "name": "软件许可与云资源费用核对",
+   "layer": "local",
+   "entry": "software-license-check-full.js",
+   "kw": [
+    "云资源台账",
+    "免费",
+    "许可核对",
+    "软件许可与云资源费用核对",
+    "软件许可台账"
+   ],
+   "cols": [
+    "供应商",
+    "实例档位",
+    "平均用量占比",
+    "年费用",
+    "折扣",
+    "月均费用",
+    "核对基准日",
+    "每许可年单价",
+    "自动续费",
+    "装机或账号数",
+    "订阅开始",
+    "订阅结束",
+    "许可数量",
+    "许可类型",
+    "账期月数",
+    "软件或资源名称"
+   ]
+  },
+  {
+   "id": "travel-standard-check",
+   "name": "差旅费标准与报销核对",
+   "layer": "local",
+   "entry": "travel-standard-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "差旅费报销与标准表",
+    "差旅费标准与报销核对",
+    "核对"
+   ],
+   "cols": [
+    "交通费",
+    "交通费标准上限",
+    "伙食补助",
+    "伙食补助日标准",
+    "住宿费",
+    "住宿费标准上限",
+    "其他费用",
+    "出差天数",
+    "出差起止日期",
+    "姓名",
+    "审批",
+    "报销合计",
+    "行程",
+    "超标金额"
+   ]
+  },
+  {
+   "id": "travel-toll-pack",
+   "name": "差旅与通行费技能包",
+   "layer": "local",
+   "entry": "travel-toll-pack-full.js",
+   "kw": [
+    "差旅与通行费技能包",
+    "差旅标准",
+    "费用报销",
+    "超标核对",
+    "过路过桥",
+    "通行费",
+    "部门核对"
+   ],
+   "cols": []
+  }
+ ],
+ "coverage": {
+  "local": 8,
+  "total": 8,
+  "note": "本公开包内可本地运行 8 个子技能；本类共 8 个，其余 0 个只在订阅版里提供"
+ }
+}

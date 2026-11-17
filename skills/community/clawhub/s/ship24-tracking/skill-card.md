@@ -1,47 +1,58 @@
-## Description: <br>
-Track shipments and manage trackers using Ship24's universal tracking API for 2,500+ couriers and eCommerce platforms worldwide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track shipments and manage trackers using Ship24's universal tracking API -- 2,500+ couriers and eCommerce platforms worldwide.
 
-## Publisher: <br>
-[ship24](https://clawhub.ai/user/ship24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ship24](https://clawhub.ai/user/ship24)
 
-## Use Case: <br>
-External users and developers use this skill to track packages, create and update shipment trackers, retrieve tracking history, and manage webhook-based shipment notifications through Ship24. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Ship24 API key. <br>
-Mitigation: Use a revocable or least-privileged Ship24 API key when available and provide it through the SHIP24_API_KEY environment variable. <br>
-Risk: Tracker references can contain customer or order identifiers. <br>
-Mitigation: Avoid placing sensitive customer or order data in clientTrackerId or other tracker references unless needed for the workflow. <br>
-Risk: Webhook subscription and replay features can send shipment event data to an external endpoint. <br>
-Mitigation: Verify webhook destinations before subscribing trackers or replaying missed delivery events. <br>
-Risk: Bulk tracker creation may partially create trackers when a request is retried after failure. <br>
-Mitigation: Check returned created, duplicate, and failed counts, then inspect tracker state before retrying failed bulk operations. <br>
-Risk: Some Ship24 operations are rate-limited. <br>
-Mitigation: Respect documented rate limits for courier listing and webhook replay operations and retry with backoff when appropriate. <br>
+## Use Case:
 
+External users and developers use this skill to track orders, create and manage shipment trackers, retrieve delivery status, and replay webhook events through Ship24.
 
-## Reference(s): <br>
-- [Ship24 Documentation](https://docs.ship24.com) <br>
-- [Ship24](https://ship24.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown responses with shipment status, tracker metadata, setup configuration snippets, and operational guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHIP24_API_KEY. Outputs may reference shipment events, tracker identifiers, courier data, and webhook subscription status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Tracking numbers, client tracker IDs, destination details, and tracker actions may be sent to Ship24.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an appropriate Ship24 API key and avoid sending shipment or order data that should not be shared with Ship24.
+
+Risk: Tracker creation, bulk tracker creation, and webhook replay actions may affect the user's Ship24 account or billing.
+
+Mitigation: Confirm account-impacting operations before execution, especially bulk tracker creation and webhook replay requests.
+
+Risk: Some Ship24 operations are rate-limited, including courier lookup and webhook replay.
+
+Mitigation: Throttle repeated calls and follow the documented one-request-per-second limits for the affected operations.
+
+## Reference(s):
+
+- [Ship24 Documentation](https://docs.ship24.com)
+- [Ship24 Skill on ClawHub](https://clawhub.ai/ship24/skills/ship24-tracking)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration examples and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Ship24 API key supplied through SHIP24_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

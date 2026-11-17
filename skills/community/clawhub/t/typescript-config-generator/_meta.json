@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "typescript-config-generator",
+  "schema_version": "1",
+  "name": "typescript-config-generator",
   "version": "1.0.0",
-  "publishedAt": 1772456938589
+  "description": "生成 TypeScript 配置",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["typescript", "config", "tsconfig"],
+  "license": "MIT"
 }

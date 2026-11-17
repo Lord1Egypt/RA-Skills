@@ -1,44 +1,61 @@
-## Description: <br>
-Rigorous workflow for producing long-form knowledge content with multi-agent collaboration, independent audit, machine-verifiable quality gates, and versioned errata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rigorous workflow for producing long-form knowledge content with multi-agent collaboration, independent audit, versioned errata, and machine-verifiable quality gates.
 
-## Publisher: <br>
-[christianye](https://clawhub.ai/user/christianye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christianye](https://clawhub.ai/user/christianye)
 
-## Use Case: <br>
-Writers, researchers, and agent operators use this skill to plan, produce, audit, fix, publish, and maintain long-form knowledge products such as textbooks, knowledge bases, and deep reports. It is intended for projects large enough to benefit from explicit checkpoints, sub-agent coordination, machine checks, and changelog-driven revision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can add planning, audit, sub-agent, and publishing overhead when applied to broad long-form tasks. <br>
-Mitigation: Use it for substantial knowledge products where that process is desired, and avoid it for one-off Q&A, short reports, simple documentation, or code projects. <br>
-Risk: Machine checks can catch missing citations, duplicate citations, weak safety coverage, heading errors, and all-positive reviews, but they do not prove the final content is factually correct. <br>
-Mitigation: Keep the independent audit step, review red and yellow findings before publishing, and re-run the audit after fixes to catch regressions. <br>
+## Use Case:
 
+Developers, writers, and content teams use this skill to structure long-form knowledge products such as textbooks, knowledge bases, and deep reports. It guides planning, sub-agent task design, assembly, independent audit, fixes, publishing checks, and errata management.
 
-## Reference(s): <br>
-- [Build Protocol on ClawHub](https://clawhub.ai/christianye/build-protocol) <br>
-- [Workflow Checkpoints](artifact/references/workflow-checkpoints.md) <br>
-- [Audit Script Template](artifact/references/audit-script-template.sh) <br>
-- [Sub-agent Task Spec Examples](artifact/references/subagent-spec-examples.md) <br>
-- [Supplements Knowledge Base Case Study](artifact/references/case-study-supplements.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command templates and checklist-style workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to guide agent behavior and quality checks; generated deliverables may include long-form Markdown, audit reports, changelogs, and publishable documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Broad automatic activation can move the agent into heavyweight publishing, uploading, moving, archiving, or overwrite workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before publishing, uploading, moving, archiving, replacing, or overwriting deliverables.
+
+Risk: The bundled audit script template may be mistaken for a ready CI gate.
+
+Mitigation: Review and fix its exit-status behavior and zero-match handling before relying on it for automated gating.
+
+Risk: The workflow is intentionally heavyweight and may be inappropriate for short or simple writing tasks.
+
+Mitigation: Use it only for long-form knowledge products or multi-step, multi-agent content work where independent audit and versioned errata are required.
+
+## Reference(s):
+
+- [Build Protocol Skill Page](https://clawhub.ai/christianye/skills/build-protocol)
+- [Workflow Checkpoints](artifact/references/workflow-checkpoints.md)
+- [Audit Script Template](artifact/references/audit-script-template.sh)
+- [Sub-agent Task Spec Examples](artifact/references/subagent-spec-examples.md)
+- [Supplements Knowledge Base Case Study](artifact/references/case-study-supplements.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with task specifications, checklists, changelog structure, and shell audit command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included audit script template is project-specific and should be configured and reviewed before use as a gate.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

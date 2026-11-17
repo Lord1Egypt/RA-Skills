@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Agent Browser Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for Agent Browser-s..."
+  default_prompt: "Use $work-productivity-agent-browser-workflow-helper to help me Agent users show strong demand for Agent Browser-style workflows on Clawhub. They need practical help fixing bugs, harde."
+
+policy:
+  allow_implicit_invocation: true

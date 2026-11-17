@@ -1,42 +1,54 @@
-## Description: <br>
-Sends requests to the dr.eamer.dev LLM API for chat completions, vision analysis, image generation, text-to-speech, and video generation across multiple model providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Geepers Llm sends requests to the dr.eamer.dev LLM API for chat completions, vision analysis, image generation, text-to-speech, and video generation across 12 model providers.
 
-## Publisher: <br>
-[lukeslp](https://clawhub.ai/user/lukeslp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lukeslp](https://clawhub.ai/user/lukeslp)
 
-## Use Case: <br>
-Developers and external users use this skill to route LLM requests through a unified third-party API when comparing provider responses or accessing chat, vision, image generation, text-to-speech, and video generation endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-selected prompts, files, images, or speech requests to a disclosed third-party API and routed model providers. <br>
-Mitigation: Use the skill only when you trust dr.eamer.dev and its provider routing, and avoid sending secrets, regulated data, confidential business content, private images, or personal information unless that processing is acceptable. <br>
-Risk: A shared API key could be exposed or overused if reused broadly. <br>
-Mitigation: Use a dedicated, revocable DREAMER_API_KEY and rotate or revoke it when access no longer needs to be granted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Geepers Llm on ClawHub](https://clawhub.ai/lukeslp/geepers-llm) <br>
-- [Publisher profile: lukeslp](https://clawhub.ai/user/lukeslp) <br>
-- [Dreamer API](https://api.dr.eamer.dev) <br>
-- [Dreamer site](https://dr.eamer.dev) <br>
+## Use Case:
 
+Developers and agents use this skill to call a unified external LLM API for chat, vision, image generation, text-to-speech, video generation, and provider comparison.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with endpoint examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide the agent to call an external third-party API using a user-provided API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, image URLs, and text-to-speech content are sent to api.dr.eamer.dev and may be routed to downstream model providers.
+
+Mitigation: Avoid sending secrets, credentials, regulated data, or sensitive images unless that data flow has been approved.
+
+Risk: The skill depends on an external LLM API service and API-key authentication.
+
+Mitigation: Confirm service availability, provider terms, and DREAMER_API_KEY handling before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lukeslp/skills/geepers-llm)
+- [Dreamer LLM service](https://dr.eamer.dev)
+- [Dreamer LLM API](https://api.dr.eamer.dev)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with HTTP examples and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DREAMER_API_KEY; requests may include prompts, image URLs, and text-to-speech content sent to an external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

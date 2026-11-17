@@ -1,43 +1,60 @@
-## Description: <br>
-Creates and switches OpenClaw agents, including generated agent workspaces, memory files, cron templates, and configuration entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and switches OpenClaw agents, including generated workspace files, default capabilities, and configuration updates.
 
-## Publisher: <br>
-[TevfikGulep](https://clawhub.ai/user/TevfikGulep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tevfikgulep](https://clawhub.ai/user/tevfikgulep)
 
-## Use Case: <br>
-Developers and operators use this skill to create persistent OpenClaw sub-agents, switch between agents, and prepare the files and configuration needed for each agent workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent sub-agents can inherit broad OpenClaw capabilities including browser, Sheets, cron, memory, and configuration authority. <br>
-Mitigation: Install only when persistent sub-agents are intended, restrict external credentials, and review each generated agent's permissions before use. <br>
-Risk: The release can modify OpenClaw configuration and may require manual cleanup if agent creation is incorrect. <br>
-Mitigation: Back up openclaw.json before running the creation script and remove incorrect agent entries manually if needed. <br>
-Risk: Using an existing Chrome profile can expose active browser sessions to newly created agents. <br>
-Mitigation: Prefer isolated browser profiles and avoid profile=chrome unless shared session access is explicitly required. <br>
-Risk: Generated USER.md and cron files may contain sensitive or unintended data or automation behavior. <br>
-Mitigation: Review generated USER.md content and cron files before enabling or copying cron jobs into the active workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TevfikGulep/agent-factory) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to create named agents, generate their workspace files, and switch or route tasks between agents.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Markdown, Python, and JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent agent directories and updates OpenClaw configuration when the bundled shell script is run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent agent workspaces and global OpenClaw configuration changes may alter the host environment.
+
+Mitigation: Review the generated files and config update path before installation, and back up the OpenClaw config before running the script.
+
+Risk: Crafted agent IDs or names may corrupt files or execute commands because of input-handling flaws.
+
+Mitigation: Do not allow untrusted users or prompts to choose agent IDs or names until sed templating and post-sanitization ID validation are fixed.
+
+Risk: The generated USER.md contains a hardcoded user identity.
+
+Mitigation: Replace the hardcoded identity with deployment-specific user information before distribution or use.
+
+Risk: Predictable temporary file handling can be unsafe in shared or untrusted environments.
+
+Mitigation: Patch the script to use secure temporary file creation before running it outside a controlled single-user environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tevfikgulep/skills/agent-factory)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, shell command examples, and generated OpenClaw configuration entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates persistent OpenClaw agent workspace files and appends an agent entry to the OpenClaw config.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

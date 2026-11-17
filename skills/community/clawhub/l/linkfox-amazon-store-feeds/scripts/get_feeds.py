@@ -19,8 +19,7 @@ from _spapi_feeds_common import (
     developer_proxy_call,
     emit_result,
     ensure_auth_skill_available,
-    get_store_tokens,
-    lf_inline_flag,
+        lf_inline_flag,
     load_cli_params,
     merge_success_json,
     require_seller_region,
@@ -78,13 +77,8 @@ def main() -> None:
     path = f"{FEEDS_PATH_PREFIX}/feeds"
     qs = _build_query(params)
 
-    tokens = get_store_tokens(seller_id, region)
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
     proxy = developer_proxy_call(
-        region, path, "GET", tokens["accessToken"], query_string=qs
+        region, path, "GET", seller_id, query_string=qs
     )
     out: dict = {"developerProxy": proxy, "resolvedPath": path, "queryString": qs}
     merge_success_json(out, proxy, "feeds")

@@ -1,10 +1,14 @@
 ---
 name: my-coffee
-description: Use when users ask to order Luckin Coffee, search Luckin stores/products, query pickup code/order status, cancel a Luckin order, or mention 瑞幸、luckin、咖啡、果茶、轻乳茶、果蔬茶、柠檬茶、点单、下单、门店、取餐码.
+description: Use when users ask to order Luckin Coffee, search Luckin stores/products, query pickup code/order status, cancel a Luckin order, or mention 瑞幸、luckin、咖啡、拿铁、美式、生椰拿铁、橙C美式、果茶、轻乳茶、果蔬茶、柠檬茶、点单、下单、点一杯、喝一杯、买一杯、门店、取餐码.
 keywords:
   - 瑞幸
   - luckin
   - 咖啡
+  - 拿铁
+  - 美式
+  - 生椰拿铁
+  - 橙C美式
   - 果茶
   - 轻乳茶
   - 果蔬茶
@@ -18,7 +22,7 @@ keywords:
 packageType: instruction-skill
 instructionOnly: true
 metadata:
-  version: 0.8.2
+  version: 0.8.4
   openclaw:
     requiredMcp:
       - my-coffee
@@ -169,10 +173,10 @@ curl -s https://ipinfo.io/json
    - 只有用户明确回复确认后，才能继续调用 `previewOrder`。
 
 5. **预览订单** - 用户确认后必须调用 `previewOrder`，不得直接 `createOrder`。
-   - 用于获取原价、减免金额、最终价格和 `couponCodeList`。
+   - 用于获取价格、减免金额、最终价格和 `couponCodeList`。
    - 必填：`deptId`、`productList`。
    - `amount`、`productId`、`skuCode` 来自商品搜索结果。
-   - `totalInitialPrice` 是订单原价，`privilegeMoney` 是减免金额，`discountPrice` 是最终应付金额。
+   - `totalInitialPrice` 是订单价格，`privilegeMoney` 是减免金额，`discountPrice` 是最终应付金额。
    - 预览返回 `couponCodeList` 非空时，创建订单必须原样传给 `createOrder`。
    - 比较价格前先确认工具返回单位；单位不明或字段缺失时停止并向用户确认，不要自行换算。
    - 如果最终应付金额不高于预估价、商品明细一致且优惠券信息正常，不要再次询问用户，直接进入 `createOrder`。
@@ -185,7 +189,7 @@ curl -s https://ipinfo.io/json
    - 使用 `queryShopList` 返回的门店坐标。
    - 默认：`delivery="pick"`。
    - 仅使用 `payOrderQrCodeUrl` 作为支付链接，不展示 `payOrderUrl`。
-   - 文字回复展示：订单号、门店名称、商品名、数量、原价（来自 `previewOrder.totalInitialPrice`，展示为 `¥金额`）、减免金额（来自 `previewOrder.privilegeMoney`，展示为 `¥金额`）、应付金额（优先使用 `createOrder.discountPrice`，缺失时用 `previewOrder.discountPrice`，展示为 `¥金额`）
+   - 文字回复展示：订单号、门店名称、商品名、数量、价格（来自 `previewOrder.totalInitialPrice`，展示为 `¥金额`）、减免金额（来自 `previewOrder.privilegeMoney`，展示为 `¥金额`）、应付金额（优先使用 `createOrder.discountPrice`，缺失时用 `previewOrder.discountPrice`，展示为 `¥金额`）
    - 未完成支付前，不告知用户取餐码、可取餐、预计取餐等取餐信息。
    - 支付二维码展示规则：优先使用当前 channel 的原生图片能力发送（如飞书/微信用 `message` 工具的 `media` 参数传入完整的 `payOrderQrCodeUrl`）；若当前环境为纯文本界面（如 Cursor、终端、不支持 media 参数的 channel），使用 Markdown 图片语法 `![支付二维码](完整payOrderQrCodeUrl)`。同步展示支付链接 `[打开支付二维码](完整payOrderQrCodeUrl)`，保证二维码未展示时用户仍可点击链接支付。URL 必须原样完整保留，不得用 `…` 省略或截断，链接地址部分必须是完整 URL。
    - 创建订单成功并展示支付信息后，固定追加：`支付完成后告诉我一声，我可以马上帮你查询订单状态和取餐码。` 并提供两个固定回复（带序号）：`1. 已支付，帮我查取餐码`、`2. 还没支付，稍后再查`。

@@ -1,42 +1,55 @@
-## Description: <br>
-Orchestrate book-to-content workflows that generate video, audio, cover images, and a manifest for episode or campaign packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates book-to-content workflows that package a selected book into video, audio, cover images, and a manifest for an episode or campaign.
 
-## Publisher: <br>
-[OiiOAI](https://clawhub.ai/user/OiiOAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oiioai](https://clawhub.ai/user/oiioai)
 
-## Use Case: <br>
-Developers and content workflow builders use this skill to connect book selection, longform media generation, and cover generation adapters, then bundle the outputs into an episode or campaign package with an auditable manifest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Preparing a destination with clear-existing can delete existing files in the selected episode directory if the output root or prefix is wrong. <br>
-Mitigation: Run in a dedicated workspace or throwaway output directory, verify the exact destination path, and avoid clear-existing unless the target is confirmed. <br>
-Risk: Generated manifests can include local source, prompt, checkpoint, and output paths that may reveal sensitive filesystem details. <br>
-Mitigation: Review manifests before sharing them and remove or avoid sensitive local paths when distributing generated packages. <br>
+## Use Case:
 
+Developers and content teams use this skill to connect book-selection, longform generation, and cover-generation adapters, then bundle the outputs into a stable episode package.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OiiOAI/bookmorph-magic) <br>
-- [Adapter contracts](references/integration-template.md) <br>
-- [Manifest schema](references/manifest-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON manifest output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When adapters are supplied, the helper script packages video, audio, three cover images, and manifest.json into a configurable episode directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The helper script can delete or write outside the intended output folder when configured unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted, dedicated output root, independently check target paths, avoid custom episode directory prefixes, and use --clear-existing only after confirming the destination.
+
+Risk: The skill relies on external adapters for book selection, longform media, and cover generation.
+
+Mitigation: Review adapter outputs before bundling and record failed or partial runs in manifest.json for audit and retry workflows.
+
+## Reference(s):
+
+- [BookMorph Magic ClawHub skill page](https://clawhub.ai/oiioai/skills/bookmorph-magic)
+- [Adapter contracts](references/integration-template.md)
+- [Manifest fields](references/manifest-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON manifest outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an episode directory containing video, audio, three cover images, and manifest.json when adapters supply source artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

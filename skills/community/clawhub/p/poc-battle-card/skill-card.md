@@ -1,42 +1,54 @@
-## Description: <br>
-Poc Battle Card helps sales teams turn POC results and competitor performance into a competitive analysis matrix, response strategy, recommended talk tracks, and next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Poc Battle Card helps agents turn POC results and competitor performance into a concise competitive analysis battle card.
 
-## Publisher: <br>
-[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255)
 
-## Use Case: <br>
-Sales and customer-facing teams use this skill to review POC outcomes, compare known competitor performance, identify differentiators and gaps, and prepare customer-ready follow-up messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated competitive claims may be inaccurate or overstate advantages if the input POC facts are incomplete. <br>
-Mitigation: Review the battle card against confirmed POC results and clearly separate confirmed evidence from assumptions before using it with customers. <br>
-Risk: POC details can include sensitive customer, product, pricing, or competitor information. <br>
-Mitigation: Use only approved environments for sensitive inputs and follow the organization's customer-data and competitive-intelligence handling rules. <br>
-Risk: Some manifest metadata is garbled, which can make catalog-level descriptions less reliable. <br>
-Mitigation: Inspect the readable skill instructions and generated output before relying on the release metadata. <br>
+## Use Case:
 
+Sales teams and solution engineers use this skill to summarize POC status, compare known competitor results, identify differentiated strengths and risks, draft customer-facing talk tracks, and recommend next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/poc-battle-card) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown battle card with tables, strategy notes, talk tracks, and next-step recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can draft PPT or Word-oriented content when requested; customer-facing claims should be reviewed against known POC facts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Users may provide confidential customer, POC, or competitor details while requesting analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential business information unless it is appropriate for the assistant to process it.
+
+Risk: Competitive positioning may be misleading if the input POC or competitor facts are incomplete or speculative.
+
+Mitigation: Base the battle card on confirmed facts and clearly separate confirmed findings from assumptions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/skills/poc-battle-card)
+- [ClawHub publisher profile](https://clawhub.ai/user/andyrenxu7255)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown battle-card text; PPT or Word when requested by the user]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's supplied POC and competitor facts; no code, dependencies, credential use, or persistence are identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

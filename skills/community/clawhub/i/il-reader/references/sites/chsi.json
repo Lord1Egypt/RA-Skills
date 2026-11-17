@@ -1,0 +1,453 @@
+{
+  "version": "2.4.0",
+  "source_id": "chsi",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:00:57.267Z",
+  "entry": {
+    "url": "https://www.chsi.com.cn/",
+    "final_url": "https://www.chsi.com.cn/",
+    "title": "中国高等教育学生信息网（学信网）",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:00:57.267Z",
+    "identity": {
+      "declared_name": "中国高等教育学生信息网（学信网）",
+      "hostname": "www.chsi.com.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "专业洞察",
+        "href": "https://xz.chsi.com.cn/speciality/index.action",
+        "target": "_blank"
+      },
+      {
+        "text": "帮助中心",
+        "href": "https://www.chsi.com.cn/help",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "",
+      "name": "query",
+      "id": "top-nav-search-input",
+      "css": "#top-nav-search-input",
+      "role": null,
+      "form_action": "https://cn.bing.com/search",
+      "locator": {
+        "css": "#top-nav-search-input"
+      },
+      "observed_url": "https://www.chsi.com.cn/",
+      "observed_at": "2026-10-09T09:00:55.863Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://cn.bing.com/search",
+      "locator": null,
+      "observed_url": "https://www.chsi.com.cn/",
+      "observed_at": "2026-10-09T09:00:55.863Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 1",
+      "label": "",
+      "aria_label": "Go to slide 1",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 1",
+        "exact": true
+      },
+      "observed_url": "https://www.chsi.com.cn/",
+      "observed_at": "2026-10-09T09:00:55.863Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 2",
+      "label": "",
+      "aria_label": "Go to slide 2",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 2",
+        "exact": true
+      },
+      "observed_url": "https://www.chsi.com.cn/",
+      "observed_at": "2026-10-09T09:00:55.863Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 3",
+      "label": "",
+      "aria_label": "Go to slide 3",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 3",
+        "exact": true
+      },
+      "observed_url": "https://www.chsi.com.cn/",
+      "observed_at": "2026-10-09T09:00:55.863Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 4",
+      "label": "",
+      "aria_label": "Go to slide 4",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 4",
+        "exact": true
+      },
+      "observed_url": "https://www.chsi.com.cn/",
+      "observed_at": "2026-10-09T09:00:55.863Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 5",
+      "label": "",
+      "aria_label": "Go to slide 5",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 5",
+        "exact": true
+      },
+      "observed_url": "https://www.chsi.com.cn/",
+      "observed_at": "2026-10-09T09:00:55.863Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "Previous slide",
+      "label": "",
+      "aria_label": "Previous slide",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Previous slide",
+        "exact": true
+      },
+      "observed_url": "https://www.chsi.com.cn/",
+      "observed_at": "2026-10-09T09:00:55.863Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "Next slide",
+      "label": "",
+      "aria_label": "Next slide",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Next slide",
+        "exact": true
+      },
+      "observed_url": "https://www.chsi.com.cn/",
+      "observed_at": "2026-10-09T09:00:55.863Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "chsi:record-lookup",
+      "source_id": "chsi",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.chsi.com.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "",
+          "name": "query",
+          "id": "top-nav-search-input",
+          "css": "#top-nav-search-input",
+          "role": null,
+          "form_action": "https://cn.bing.com/search",
+          "locator": {
+            "css": "#top-nav-search-input"
+          },
+          "observed_url": "https://www.chsi.com.cn/",
+          "observed_at": "2026-10-09T09:00:55.863Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 1",
+          "label": "",
+          "aria_label": "Go to slide 1",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 1",
+            "exact": true
+          },
+          "observed_url": "https://www.chsi.com.cn/",
+          "observed_at": "2026-10-09T09:00:55.863Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 2",
+          "label": "",
+          "aria_label": "Go to slide 2",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 2",
+            "exact": true
+          },
+          "observed_url": "https://www.chsi.com.cn/",
+          "observed_at": "2026-10-09T09:00:55.863Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 3",
+          "label": "",
+          "aria_label": "Go to slide 3",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 3",
+            "exact": true
+          },
+          "observed_url": "https://www.chsi.com.cn/",
+          "observed_at": "2026-10-09T09:00:55.863Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 4",
+          "label": "",
+          "aria_label": "Go to slide 4",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 4",
+            "exact": true
+          },
+          "observed_url": "https://www.chsi.com.cn/",
+          "observed_at": "2026-10-09T09:00:55.863Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 5",
+          "label": "",
+          "aria_label": "Go to slide 5",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 5",
+            "exact": true
+          },
+          "observed_url": "https://www.chsi.com.cn/",
+          "observed_at": "2026-10-09T09:00:55.863Z"
+        },
+        {
+          "tag": "div",
+          "type": null,
+          "text": "Previous slide",
+          "label": "",
+          "aria_label": "Previous slide",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Previous slide",
+            "exact": true
+          },
+          "observed_url": "https://www.chsi.com.cn/",
+          "observed_at": "2026-10-09T09:00:55.863Z"
+        },
+        {
+          "tag": "div",
+          "type": null,
+          "text": "Next slide",
+          "label": "",
+          "aria_label": "Next slide",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Next slide",
+            "exact": true
+          },
+          "observed_url": "https://www.chsi.com.cn/",
+          "observed_at": "2026-10-09T09:00:55.863Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "chsi",
+    "quiz_entries": [
+      "quiz-entry-055"
+    ],
+    "example_ids": [
+      "2025-M16-Q1",
+      "2026-M16-Q1"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:00:57.267Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/chsi-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/chsi-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

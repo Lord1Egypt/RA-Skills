@@ -1,45 +1,59 @@
-## Description: <br>
-Search the web and X (Twitter) using xAI's Grok API with real-time access, citations, and image understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web and X (Twitter) using xAI's Grok API with real-time access, citations, and image understanding.
 
-## Publisher: <br>
-[castanley](https://clawhub.ai/user/castanley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[castanley](https://clawhub.ai/user/castanley)
 
-## Use Case: <br>
-Developers and external agent users use this skill to retrieve current web information and X discussion through xAI's Grok API, including source citations and optional media understanding. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries, filters, and media-analysis inputs are sent to xAI. <br>
-Mitigation: Avoid submitting secrets, regulated data, or confidential business information in searches. <br>
-Risk: The skill requires an xAI API key for API calls. <br>
-Mitigation: Use a dedicated API key that can be monitored, rotated, and revoked. <br>
-Risk: Reasoning searches and optional media understanding can add latency and API cost. <br>
-Mitigation: Enable media understanding only when needed and narrow searches with domains, handles, or date ranges. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [xAI Web Search documentation](https://docs.x.ai/developers/tools/web-search) <br>
-- [xAI X Search documentation](https://docs.x.ai/developers/tools/x-search) <br>
-- [xAI API base](https://api.x.ai/v1) <br>
-- [xAI API console](https://console.x.ai/) <br>
-- [ClawHub skill page](https://clawhub.ai/castanley/grok) <br>
+## Use Case:
 
+Developers and external agent users use this skill to retrieve current web information and X discussion through xAI's Grok API, with optional domain, handle, date, image, and video controls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, api calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text responses with citations, usage metadata, and optional JSON-like result objects from API calls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XAI_API_KEY; supports web and X search filters, date ranges, and optional image or video understanding.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries, filters, and optional media-understanding requests are sent to xAI's API.
+
+Mitigation: Avoid confidential, regulated, or sensitive internal searches unless the xAI account and data-handling terms permit that use.
+
+Risk: The skill requires an XAI_API_KEY credential.
+
+Mitigation: Keep the API key protected in environment configuration and do not expose it in prompts, logs, or shared output.
+
+Risk: Current web and X search results can include incomplete, misleading, or low-quality source material.
+
+Mitigation: Review returned citations and source context before using results for important decisions.
+
+## Reference(s):
+
+- [xAI Web Search documentation](https://docs.x.ai/developers/tools/web-search)
+- [xAI X Search documentation](https://docs.x.ai/developers/tools/x-search)
+- [xAI API base](https://api.x.ai/v1)
+- [ClawHub skill page](https://clawhub.ai/castanley/skills/grok)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Text or Markdown responses with citations, usage metadata, and optional raw API response data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XAI_API_KEY and sends search queries, filters, and optional media-understanding requests to xAI's API.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

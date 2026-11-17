@@ -1,0 +1,30 @@
+{
+  "success": {
+    "scripts": [
+      {
+        "id": "B01",
+        "scene": "书桌",
+        "person": "甲",
+        "action": "朗读已定稿开场",
+        "final_duration_seconds": 10
+      },
+      {
+        "id": "B02",
+        "scene": "书桌",
+        "person": "甲",
+        "action": "展示已定稿书封",
+        "final_duration_seconds": 5
+      }
+    ],
+    "available_window": "10:00–10:20",
+    "constraints": "不补机位，不把成片时长当拍摄耗时"
+  },
+  "failure": {
+    "scripts": [
+      {
+        "scene": "书桌",
+        "person": "甲"
+      }
+    ]
+  }
+}

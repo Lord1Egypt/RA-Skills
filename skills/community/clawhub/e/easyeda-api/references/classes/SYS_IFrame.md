@@ -1,15 +1,14 @@
 # SYS\_IFrame class
 
-系统 / 内联框架窗口类
+System / iframe window class
 
 ## Signature
 
 ```typescript
-declare class SYS_IFrame 
+class SYS_IFrame
 ```
 
 ## Remarks
-
 
 ## Methods
 
@@ -17,72 +16,68 @@ declare class SYS_IFrame
 
 Method
 
-
 </th><th>
 
 Modifiers
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [closeIFrame(id)](./SYS_IFrame.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 关闭内联框架窗口
-
+**_(BETA)_** Close iframe window
 
 </td></tr>
 <tr><td>
 
 [hideIFrame(id)](./SYS_IFrame.md)
 
+</td><td>
 
 </td><td>
 
+**_(BETA)_** Hide iframe window
+
+</td></tr>
+<tr><td>
+
+[isIFrameAlreadyExist(id)](./SYS_IFrame.md)
 
 </td><td>
 
-**_(BETA)_** 隐藏内联框架窗口
+</td><td>
 
+**_(BETA)_** Whether the iframe already exists
 
 </td></tr>
 <tr><td>
 
 [openIFrame(htmlFileName, width, height, id, props)](./SYS_IFrame.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 打开内联框架窗口
-
+**_(BETA)_** Open iframe window
 
 </td></tr>
 <tr><td>
 
 [showIFrame(id)](./SYS_IFrame.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 显示内联框架窗口
-
+**_(BETA)_** Show iframe window
 
 </td></tr>
 </tbody></table>
@@ -97,12 +92,12 @@ Description
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-关闭内联框架窗口
+Close iframe window
 
 ## Signature
 
 ```typescript
-closeIFrame(id?: string): Promise<boolean>;
+function closeIFrame(id?: string): Promise<boolean>;
 ```
 
 ## Parameters
@@ -111,49 +106,62 @@ closeIFrame(id?: string): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 id
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 内联框架窗口 ID，如若传入 `undefined`<!-- -->，将关闭由本扩展打开的所有内联框架窗口
-
+_(Optional)_ Iframe window ID. If not passed in, all iframe windows opened by this extension will be closed
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
 
 ## Remarks
 
-关闭指定 ID 的内联框架窗口
+Close the iframe window with the specified ID
 
-注意：本接口仅扩展有效，在独立脚本环境内调用将始终 `throw Error`
+Note: This API is only valid for extensions. Calling it in a standalone script environment will always `throw Error`
+
+## Example
+
+```javascript
+// 1. 打开两个内联框架窗口（自建 fixture，演示按 ID 定向关闭）
+await eda.sys_IFrame.openIFrame('/extension.json', 300, 200, '嘉立创示例_窗口A', { title: '嘉立创示例 窗口A' });
+await eda.sys_IFrame.openIFrame('/extension.json', 300, 200, '嘉立创示例_窗口B', { title: '嘉立创示例 窗口B' });
+console.log('已打开两个窗口：嘉立创示例_窗口A / 嘉立创示例_窗口B');
+
+// 2. 按 ID 关闭指定窗口
+const closedById = await eda.sys_IFrame.closeIFrame('嘉立创示例_窗口A');
+console.log('按 ID 关闭窗口 A 结果：', closedById);
+
+// 3. 不传 id，关闭本扩展打开的全部剩余窗口（清理窗口 B，还原界面）
+const closedAll = await eda.sys_IFrame.closeIFrame();
+console.log('关闭全部剩余窗口结果：', closedAll);
+
+// 4. 对已不存在的窗口再关闭一次，验证幂等语义（返回 true 而非 false）
+const closedAgain = await eda.sys_IFrame.closeIFrame('嘉立创示例_窗口A');
+console.log('重复关闭已关窗口结果：', closedAgain);
+```
 
 ### hideiframe
 
@@ -161,12 +169,12 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-隐藏内联框架窗口
+Hide iframe window
 
 ## Signature
 
 ```typescript
-hideIFrame(id?: string): Promise<boolean>;
+function hideIFrame(id?: string): Promise<boolean>;
 ```
 
 ## Parameters
@@ -175,49 +183,121 @@ hideIFrame(id?: string): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 id
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 内联框架窗口 ID
-
+_(Optional)_ Iframe window ID. If not passed in, all iframe windows associated with the extension will be hidden
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
 
 ## Remarks
 
-本接口为结果导向的： 如若未找到指定内联框架窗口，接口将会返回 `false`<!-- -->； 如若在执行操作前该内联框架窗口已处于隐藏状态，接口将会返回 `true`
+This API is result-oriented: If the specified iframe window is not found, the API returns `false`<!-- -->; if the iframe window was already hidden before the operation, the API returns `true`
 
-注意：本接口仅扩展有效，在独立脚本环境内调用将始终 `throw Error`
+Note: This API is only valid for extensions. Calling it in a standalone script environment will always `throw Error`
+
+## Example
+
+```javascript
+// 1. 打开一个内联框架窗口（自建 fixture）
+const opened = await eda.sys_IFrame.openIFrame('/extension.json', 320, 200, '嘉立创示例_隐藏演示', {
+	title: '嘉立创示例 隐藏演示窗口',
+});
+console.log('打开结果：', opened);
+
+// 2. 隐藏该窗口（窗口从界面消失，但未被销毁）
+const hidden = await eda.sys_IFrame.hideIFrame('嘉立创示例_隐藏演示');
+console.log('隐藏结果：', hidden);
+
+// 3. 对已隐藏的窗口再次隐藏，验证幂等语义（返回 true）
+const hideAgain = await eda.sys_IFrame.hideIFrame('嘉立创示例_隐藏演示');
+console.log('重复隐藏结果：', hideAgain);
+
+// 4. 对不存在的窗口 ID 隐藏，结果导向返回 false（不抛错）
+const hideMissing = await eda.sys_IFrame.hideIFrame('嘉立创示例_不存在的窗口');
+console.log('不存在的窗口 ID →', hideMissing);
+
+// 5. 关闭隐藏状态的窗口还原界面（隐藏的窗口可直接关闭）
+const closed = await eda.sys_IFrame.closeIFrame('嘉立创示例_隐藏演示');
+console.log('关闭隐藏窗口结果：', closed);
+```
+
+### isiframealreadyexist
+
+# SYS\_IFrame.isIFrameAlreadyExist() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Whether the iframe already exists
+
+## Signature
+
+```typescript
+function isIFrameAlreadyExist(id: string): Promise<boolean>;
+```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+</th><th>
+
+Type
+
+</th><th>
+
+Description
+
+</th></tr></thead>
+<tbody><tr><td>
+
+id
+
+</td><td>
+
+string
+
+</td><td>
+
+Iframe ID
+
+</td></tr>
+</tbody></table>
+
+## Returns
+
+Promise&lt;boolean&gt;
+
+Whether Exists
+
+## Remarks
+
+Note: This API is only valid for extensions. Calling it in a standalone script environment will always `throw Error` ADD since EDA v4.2
 
 ### openiframe
 
@@ -225,20 +305,28 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-打开内联框架窗口
+Open iframe window
 
 ## Signature
 
 ```typescript
-openIFrame(htmlFileName: string, width?: number, height?: number, id?: string, props?: {
-        maximizeButton?: boolean;
-        minimizeButton?: boolean;
-        minimizeStyle?: 'collapsed' | 'constricted';
-        buttonCallbackFn?: (button: 'close' | 'minimize' | 'maximize') => void | Promise<void>;
-        onBeforeCloseCallFn?: () => boolean | undefined | Promise<boolean | undefined>;
-        grayscaleMask?: boolean;
-        title?: string;
-    }): Promise<boolean>;
+function openIFrame(
+	htmlFileName: string,
+	width?: number,
+	height?: number,
+	id?: string,
+	props?: {
+		maximizeButton?: boolean;
+		minimizeButton?: boolean;
+		minimizeStyle?: 'collapsed' | 'constricted';
+		buttonCallbackFn?: (button: 'close' | 'minimize' | 'maximize') => void | Promise<void>;
+		onBeforeCloseCallFn?: () => boolean | undefined | Promise<boolean | undefined>;
+		grayscaleMask?: boolean;
+		title?: string;
+		x?: number;
+		y?: number;
+	},
+): Promise<boolean>;
 ```
 
 ## Parameters
@@ -247,119 +335,116 @@ openIFrame(htmlFileName: string, width?: number, height?: number, id?: string, p
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 htmlFileName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-需要加载的 HTML 文件在扩展包内的路径，从扩展根目录起始，例如 `/iframe/index.html`
-
+The path of the HTML file to load within the extension package, starting from the extension root directory, e.g. `/iframe/index.html`
 
 </td></tr>
 <tr><td>
 
 width
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-_(Optional)_ 内联框架窗口的宽度
-
+_(Optional)_ Width of the iframe window
 
 </td></tr>
 <tr><td>
 
 height
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-_(Optional)_ 内联框架窗口的高度
-
+_(Optional)_ Height of the iframe window
 
 </td></tr>
 <tr><td>
 
 id
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 内联框架窗口 ID，用于关闭内联框架窗口
-
+_(Optional)_ Iframe window ID, used to close the iframe window
 
 </td></tr>
 <tr><td>
 
 props
 
+</td><td>
+
+{ maximizeButton?: boolean; minimizeButton?: boolean; minimizeStyle?: 'collapsed' \| 'constricted'; buttonCallbackFn?: (button: 'close' \| 'minimize' \| 'maximize') =&gt; void \| Promise&lt;void&gt;; onBeforeCloseCallFn?: () =&gt; boolean \| undefined \| Promise&lt;boolean \| undefined&gt;; grayscaleMask?: boolean; title?: string; x?: number; y?: number }
 
 </td><td>
 
-{ maximizeButton?: boolean; minimizeButton?: boolean; minimizeStyle?: 'collapsed' \| 'constricted'; buttonCallbackFn?: (button: 'close' \| 'minimize' \| 'maximize') =&gt; void \| Promise&lt;void&gt;; onBeforeCloseCallFn?: () =&gt; boolean \| undefined \| Promise&lt;boolean \| undefined&gt;; grayscaleMask?: boolean; title?: string; }
-
-
-</td><td>
-
-_(Optional)_ 其它参数
-
+_(Optional)_ Other parameters
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
 
 ## Remarks
 
-本接口仅扩展包允许调用，用户需要在扩展包内包含用于内联的 HTML 文件；
+This API can only be called by extension packages. Users need to include an HTML file for embedding in the extension package;
 
-本接口调用后将会打开一个 Dialog 窗口，该 Dialog 窗口的标题为 HTML 文件的 `<title>`<!-- -->，标题栏有关闭按钮；
+After this API is called, a Dialog window will open. The title of the Dialog window is the `<title>` of the HTML file, and the title bar has a close button;
 
-正文部分为内联框架，`width` 和 `height` 均为正文部分内联框架的宽高；
+The body is an iframe. `width` and `height` are the width and height of the iframe in the body;
 
-内联框架需要展示 `htmlFileName` 的内容，该 HTML 从扩展包内获取，并已在安装时被存储至 IndexedDB 中
+The iframe needs to display the content of `htmlFileName`<!-- -->. This HTML is obtained from the extension package and has been stored in IndexedDB during installation
 
-注意：本接口仅扩展有效，在独立脚本环境内调用将始终 `throw Error`
+Note: This API is only valid for extensions. Calling it in a standalone script environment will always `throw Error`
+
+## Example
+
+```javascript
+// 1. 打开一个带标题和最大化/最小化按钮的内联框架窗口（自建 ID 便于后续定位）
+const opened = await eda.sys_IFrame.openIFrame('/extension.json', 360, 240, '嘉立创示例_窗口', {
+	title: '嘉立创示例 内联框架窗口',
+	minimizeButton: true,
+	maximizeButton: true,
+	grayscaleMask: false,
+});
+console.log('打开结果：', opened);
+
+// 2. 关闭刚才打开的窗口还原界面（自建自删，保证案例可重复运行）
+const closed = await eda.sys_IFrame.closeIFrame('嘉立创示例_窗口');
+console.log('关闭结果：', closed);
+```
 
 ### showiframe
 
@@ -367,12 +452,12 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-显示内联框架窗口
+Show iframe window
 
 ## Signature
 
 ```typescript
-showIFrame(id?: string): Promise<boolean>;
+function showIFrame(id?: string): Promise<boolean>;
 ```
 
 ## Parameters
@@ -381,46 +466,68 @@ showIFrame(id?: string): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 id
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 内联框架窗口 ID
-
+_(Optional)_ Iframe window ID. If not passed in, all iframe windows associated with the extension will be shown
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
 
 ## Remarks
 
-本接口为结果导向的： 如若未找到指定内联框架窗口，接口将会返回 `false`<!-- -->； 如若在执行操作前该内联框架窗口已处于显示状态，接口将会返回 `true`
+This API is result-oriented: If the specified iframe window is not found, the API returns `false`<!-- -->; if the iframe window was already in the shown state before the operation, the API returns `true`
 
-注意：本接口仅扩展有效，在独立脚本环境内调用将始终 `throw Error`
+Note: This API is only valid for extensions. Calling it in a standalone script environment will always `throw Error`
+
+## Example
+
+```javascript
+// 1. 打开一个内联框架窗口（自建 fixture）
+const opened = await eda.sys_IFrame.openIFrame('/extension.json', 320, 200, '嘉立创示例_显示演示', {
+	title: '嘉立创示例 显示演示窗口',
+});
+console.log('打开结果：', opened);
+
+// 2. 先隐藏窗口，制造"待恢复"状态
+await eda.sys_IFrame.hideIFrame('嘉立创示例_显示演示');
+console.log('已隐藏窗口，准备恢复显示');
+
+// 3. 显示该窗口（从隐藏状态恢复，界面重新可见）
+const shown = await eda.sys_IFrame.showIFrame('嘉立创示例_显示演示');
+console.log('显示结果：', shown);
+
+// 4. 对已显示的窗口再次显示，验证幂等语义（返回 true）
+const showAgain = await eda.sys_IFrame.showIFrame('嘉立创示例_显示演示');
+console.log('重复显示结果：', showAgain);
+
+// 5. 对不存在的窗口 ID 显示，结果导向返回 false（不抛错）
+const showMissing = await eda.sys_IFrame.showIFrame('嘉立创示例_不存在的窗口');
+console.log('不存在的窗口 ID →', showMissing);
+
+// 6. 关闭窗口还原界面
+const closed = await eda.sys_IFrame.closeIFrame('嘉立创示例_显示演示');
+console.log('关闭结果：', closed);
+```

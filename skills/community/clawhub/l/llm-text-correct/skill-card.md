@@ -1,48 +1,59 @@
-## Description: <br>
-Corrects Chinese text using pycorrector with KenLM and optional MacBERT refinement, supporting direct text, files, and folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Corrects Chinese text with pycorrector, KenLM, and optional MacBERT refinement to address typos, grammar, punctuation, and wording issues in pasted text or text files.
 
-## Publisher: <br>
-[wangminrui2022](https://clawhub.ai/user/wangminrui2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangminrui2022](https://clawhub.ai/user/wangminrui2022)
 
-## Use Case: <br>
-Developers and agent users can use this skill to correct Chinese spelling, similar-character, grammar, and punctuation errors in pasted text or local text-like files. It is intended for Chinese text workflows and can optionally refine results with a MacBERT model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically change Python environments and install broad unpinned packages. <br>
-Mitigation: Install and run it only in an isolated environment after reviewing dependency behavior. <br>
-Risk: The skill can download models and probe local GPU capabilities. <br>
-Mitigation: Allow network downloads and hardware probing only in environments where that behavior is acceptable. <br>
-Risk: The skill can bulk-process local files and create corrected copies. <br>
-Mitigation: Avoid broad private folders or source-code directories, and review generated output files before using them. <br>
-Risk: The skill writes local logs while processing text. <br>
-Mitigation: Avoid processing sensitive text unless local logging is acceptable for the deployment environment. <br>
+## Use Case:
 
+Developers and agent users use this skill to correct Chinese text pasted into an agent workflow or stored in .txt files. It supports single text inputs, individual files, and folder-level batch correction when the user requests it.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangminrui2022/llm-text-correct) <br>
-- [shibing624/macbert4csc-base-chinese model](https://huggingface.co/shibing624/macbert4csc-base-chinese) <br>
-- [shibing624/chinese-kenlm-klm model](https://huggingface.co/shibing624/chinese-kenlm-klm) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Corrected Chinese text returned inline or written to corrected text files, with command-line status and logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create sibling corrected files or corrected output folders when file or directory paths are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata) <br>
+Risk: The skill can install or update Python packages and download large model files at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated disposable environment, review dependency sources, and pin dependencies before production use.
+
+Risk: The skill can batch-process local files and folders and write corrected copies.
+
+Mitigation: Limit execution to an explicit working directory, avoid sensitive drafts, and review corrected outputs before replacing originals.
+
+Risk: The skill creates persistent logs and may display snippets of processed text.
+
+Mitigation: Review logging behavior, clear logs when needed, and avoid confidential text until logging controls are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangminrui2022/skills/llm-text-correct)
+- [MacBERT4CSC model](https://huggingface.co/shibing624/macbert4csc-base-chinese)
+- [Chinese KenLM model](https://huggingface.co/shibing624/chinese-kenlm-klm)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, guidance]
+
+**Output Format:** [Corrected Chinese text, optional correction details, and corrected .txt file outputs for file or folder inputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create corrected copies next to source files or in a corrected output folder.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

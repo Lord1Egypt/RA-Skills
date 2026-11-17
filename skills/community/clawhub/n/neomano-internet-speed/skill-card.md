@@ -1,42 +1,59 @@
-## Description: <br>
-Measures the current internet connection's download and upload speed from the local machine using Cloudflare speed test endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measure current internet connection speed (download + upload) from this machine using a lightweight HTTP-based speed test against Cloudflare speed endpoints.
 
-## Publisher: <br>
-[elandivar](https://clawhub.ai/user/elandivar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elandivar](https://clawhub.ai/user/elandivar)
 
-## Use Case: <br>
-External users and developers use this skill when they want an on-demand download/upload throughput check from the machine running the agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The speed test sends download and upload traffic to Cloudflare, which may be unsuitable on metered, restricted, or sensitive networks. <br>
-Mitigation: Run it only on networks where the test traffic and Cloudflare visibility are acceptable. <br>
-Risk: Measured throughput can vary with current network conditions and routing. <br>
-Mitigation: Treat results as a point-in-time estimate and rerun when comparing network changes. <br>
+## Use Case:
 
+Developers, operators, and external users can ask an agent to measure current download and upload throughput from the local machine and report the results in Mbps.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/elandivar/neomano-internet-speed) <br>
-- [Cloudflare speed test download endpoint](https://speed.cloudflare.com/__down) <br>
-- [Cloudflare speed test upload endpoint](https://speed.cloudflare.com/__up) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text speed measurements in Mbps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, uses no external Python dependencies, and contacts Cloudflare speed test endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Running the speed test sends and receives network traffic with Cloudflare from the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user asks for a speed test and is comfortable with Cloudflare endpoint traffic from the current network.
+
+Risk: Large custom download or upload byte values can consume bandwidth on metered or constrained networks.
+
+Mitigation: Keep default byte values unless larger tests are necessary, and avoid large custom values on metered or limited connections.
+
+Risk: Throughput measurements can be misleading because results depend on current network conditions and routing.
+
+Mitigation: Treat reported Mbps values as point-in-time estimates and rerun when conditions or routing may have changed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elandivar/skills/neomano-internet-speed)
+- [Cloudflare speed download endpoint](https://speed.cloudflare.com/__down)
+- [Cloudflare speed upload endpoint](https://speed.cloudflare.com/__up)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text Mbps measurements with optional Markdown shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports download and upload throughput; results vary with current network conditions and routing.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

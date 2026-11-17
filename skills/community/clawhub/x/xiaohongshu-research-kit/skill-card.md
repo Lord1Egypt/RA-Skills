@@ -1,43 +1,60 @@
-## Description: <br>
-Extract and analyze Xiaohongshu (Little Red Book) content using yt-dlp and gallery-dl, including note metadata, image and video extraction, user profile analysis, and content research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract and analyze Xiaohongshu (Little Red Book) content using yt-dlp and gallery-dl for note metadata, image and video extraction, user profile analysis, and content research.
 
-## Publisher: <br>
-[xuya227939](https://clawhub.ai/user/xuya227939) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuya227939](https://clawhub.ai/user/xuya227939)
 
-## Use Case: <br>
-External users, researchers, and content analysts use this skill to inspect Xiaohongshu notes, profiles, and topic pages with local yt-dlp and gallery-dl commands, then summarize extracted metadata and engagement data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to use browser login cookies for Xiaohongshu content access. <br>
-Mitigation: Review before installing, approve any command that reads browser cookies, and prefer a dedicated browser profile or site-limited cookie file. <br>
-Risk: The skill relies on local yt-dlp and gallery-dl tooling to access user-selected Xiaohongshu URLs. <br>
-Mitigation: Install yt-dlp and gallery-dl only from trusted sources and review generated shell commands before execution. <br>
+## Use Case:
 
+Developers, analysts, and content researchers use this skill to inspect Xiaohongshu notes, profiles, and topic pages by running local yt-dlp and gallery-dl commands, parsing returned JSON, and presenting structured findings in Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuya227939/xiaohongshu-research-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/xuya227939) <br>
-- [Support issues](https://github.com/xuya227939/xiaohongshu-research-kit/issues) <br>
-- [SnapVee](https://snapvee.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured result tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include parsed metadata fields, engagement statistics, image or video URLs, and short follow-up analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+Risk: Browser-cookie workflows can expose authenticated Xiaohongshu session data to local third-party tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile containing only the Xiaohongshu account needed for research and review commands before execution.
+
+Risk: Cookie-derived outputs may include private, account-bound, or sensitive content.
+
+Mitigation: Avoid sharing raw outputs and remove sensitive account or content details before publishing analysis.
+
+Risk: Unpinned yt-dlp or gallery-dl installs may change extraction behavior over time.
+
+Mitigation: Prefer pinned or isolated installs and record tool versions with research results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xuya227939/skills/xiaohongshu-research-kit)
+- [Publisher Profile](https://clawhub.ai/user/xuya227939)
+- [SnapVee Homepage](https://snapvee.com)
+- [GitHub Issues](https://github.com/xuya227939/xiaohongshu-research-kit/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell command blocks, JSON field mappings, and summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may depend on local yt-dlp/gallery-dl behavior and authenticated browser-cookie access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

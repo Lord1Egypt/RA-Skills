@@ -1,41 +1,58 @@
-## Description: <br>
-Minimal CLI for the Toss Payments Core API to retrieve payment details and perform full or partial payment cancellations with payment keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line skill for retrieving Toss Payments payment details and performing full or partial payment cancellations with payment keys.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers and operators use this skill to work with Toss Payments from the command line, including payment lookup and full or partial cancellation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cancel real Toss Payments transactions when provided a valid secret key. <br>
-Mitigation: Use test keys first, require explicit human confirmation before cancellation, and restrict production keys as much as Toss Payments allows. <br>
-Risk: The skill depends on TOSS_SECRET_KEY and allows the base URL to be overridden. <br>
-Mitigation: Store the secret key securely, avoid exposing it in logs, and keep TOSS_BASE_URL pointed at trusted Toss Payments endpoints. <br>
+## Use Case:
 
+Developers and operators use this skill to run Toss Payments API workflows from a command line, including payment lookup and full or partial cancellation. It is intended for environments where the operator is authorized to use a Toss Payments secret key.
 
-## Reference(s): <br>
-- [Toss Payments Core API](https://docs.tosspayments.com/reference#tag/Payments) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chloepark85/toss-payments-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that retrieve payment details or cancel Toss Payments transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill requires a Toss Payments secret key, which can authorize real payment operations if exposed or misused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep TOSS_SECRET_KEY private, use least-privileged operational environments, and avoid sharing command output or shell history that may contain secrets.
+
+Risk: Cancel-payment commands can trigger real full or partial payment cancellations.
+
+Mitigation: Confirm the payment key, cancellation reason, amount, and target environment before running cancellation commands.
+
+Risk: An incorrect TOSS_BASE_URL could send payment requests to an unintended endpoint.
+
+Mitigation: Verify that TOSS_BASE_URL points to the legitimate Toss Payments API before use, or leave it unset to use the documented default.
+
+## Reference(s):
+
+- [Toss Payments Core API](https://docs.tosspayments.com/reference#tag/Payments)
+- [ClawHub Skill Page](https://clawhub.ai/chloepark85/skills/toss-payments-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

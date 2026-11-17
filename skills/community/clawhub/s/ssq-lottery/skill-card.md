@@ -1,46 +1,61 @@
-## Description: <br>
-查询中国福利彩票双色球开奖结果，支持多数据源自动切换并优先使用官方渠道。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询最新或指定期双色球开奖结果及中奖号码，优先官方数据源，含中奖规则说明和奖池信息。
 
-## Publisher: <br>
-[chenchaoqun](https://clawhub.ai/user/chenchaoqun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchaoqun](https://clawhub.ai/user/chenchaoqun)
 
-## Use Case: <br>
-External users and agents use this skill to look up the latest or specified China Welfare Lottery Double Color Ball draw results, verify numbers, and review prize rules. It is an information lookup helper and does not provide lottery predictions or buying advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lottery results can be stale, unavailable, or parsed incorrectly when public websites change structure or block requests. <br>
-Mitigation: Verify prize, payout, and ticket decisions on the official China Welfare Lottery site before relying on results. <br>
-Risk: Fallback data may come from third-party lottery sites rather than official sources. <br>
-Mitigation: Prefer official China Welfare Lottery data and label third-party results as reference-only. <br>
-Risk: The skill discusses lottery rules and results, which users may mistake for betting or financial advice. <br>
-Mitigation: Keep responses limited to factual lookup and rules guidance, and avoid predictions, number recommendations, or purchase encouragement. <br>
+## Use Case:
 
+External users and agents use this skill to look up China Welfare Lottery Double Color Ball draw results for the latest or a specified issue, compare numbers, and review prize rules. It is informational only and should not be treated as betting advice or authoritative proof of a prize.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenchaoqun/ssq-lottery) <br>
-- [双色球数据源配置](references/data_sources.md) <br>
-- [双色球游戏规则详解](references/rules.md) <br>
-- [中国福彩网](http://www.zhcw.com) <br>
-- [中国福彩网开奖公告](http://kaijiang.zhcw.com/zhcw/html/ssq/list.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with lottery draw fields, source notes, prize-rule guidance, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May contact public lottery websites and may fall back from official sources to third-party sources when official pages are unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Lottery results may be incomplete, stale, or altered in transit because the skill depends on external websites and some official sources use HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat returned numbers as convenience information and verify important results directly against official China Welfare Lottery channels before acting on them.
+
+Risk: Fallback third-party lottery sources may differ from official data or omit context such as prize pool details.
+
+Mitigation: Prefer official sources when available and clearly label third-party results as reference-only.
+
+Risk: The skill can answer lottery-result questions, which may be misread as gambling advice.
+
+Mitigation: Keep responses limited to factual lookup and rules guidance, and avoid prediction, number selection, or purchasing recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenchaoqun/skills/ssq-lottery)
+- [Data source configuration](references/data_sources.md)
+- [Double Color Ball rules](references/rules.md)
+- [China Welfare Lottery draw announcements](http://kaijiang.zhcw.com/zhcw/html/ssq/list.html)
+- [China Welfare Lottery official site](http://www.zhcw.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style text with lottery draw fields and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include issue number, draw date, red balls, blue ball, prize pool, data source, rule summary, and source verification reminders.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

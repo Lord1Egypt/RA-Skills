@@ -1,29 +1,27 @@
 ---
 name: architecture-paradigms
-description: Selects and routes to the right architecture paradigm
-version: 1.9.8
+description: Routes to the right architecture paradigm
+version: 1.10.3
 triggers:
   - architecture
   - patterns
   - selection
   - implementation
   - adr
-  - choosing patterns for a new system or comparing trade-offs before making architecture decisions
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.architecture-paradigm-functional-core", "night-market.architecture-paradigm-hexagonal", "night-market.architecture-paradigm-cqrs-es", "night-market.architecture-paradigm-event-driven", "night-market.architecture-paradigm-layered", "night-market.architecture-paradigm-modular-monolith", "night-market.architecture-paradigm-microkernel", "night-market.architecture-paradigm-microservices", "night-market.architecture-paradigm-service-based", "night-market.architecture-paradigm-space-based", "night-market.architecture-paradigm-pipeline", "night-market.architecture-paradigm-serverless", "night-market.architecture-paradigm-client-server"]}}}
+  - choosing patterns for a new system or comparing architecture trade-offs
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.architecture-paradigm-functional-core", "night-market.architecture-paradigm-hexagonal", "night-market.architecture-paradigm-domain-driven", "night-market.architecture-paradigm-cqrs-es", "night-market.architecture-paradigm-event-driven", "night-market.architecture-paradigm-layered", "night-market.architecture-paradigm-modular-monolith", "night-market.architecture-paradigm-microkernel", "night-market.architecture-paradigm-microservices", "night-market.architecture-paradigm-service-based", "night-market.architecture-paradigm-space-based", "night-market.architecture-paradigm-pipeline", "night-market.architecture-paradigm-serverless", "night-market.architecture-paradigm-client-server"]}}}
 source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Table of Contents
+## When NOT To Use
 
-- [Quick Scenario Router](#quick-scenario-router)
-- [3-Step Selection Workflow](#3-step-selection-workflow)
-- [Available Paradigm Skills](#available-paradigm-skills)
-- [Integration with Other Skills](#integration-with-other-skills)
-- [Exit Criteria](#exit-criteria)
+- The paradigm is already chosen, so go straight to that paradigm's skill
+- Reviewing an existing design against its ADRs (use
+  `pensive:architecture-review`)
 
 # Architecture Paradigm Router
 
@@ -43,6 +41,13 @@ Match your needs to the recommended paradigm:
 | **ETL/data processing pipeline** | Pipeline Architecture | `architecture-paradigm-pipeline` |
 | **Simple CRUD app** | Layered Architecture | `architecture-paradigm-layered` |
 | **Command/query separation** | CQRS and Event Sourcing | `architecture-paradigm-cqrs-es` |
+| **Rich business rules to model** | Domain-Driven Design | `architecture-paradigm-domain-driven` |
+
+**One of these is not like the others.** Domain-Driven Design answers
+"what are the concepts and what do we call them." The rest answer "where
+does the code go." DDD composes with a structural paradigm (commonly
+layered, hexagonal, or modular monolith) rather than competing with it, so
+selecting it does not mean deselecting one of the others.
 
 ## 3-Step Selection Workflow
 
@@ -77,6 +82,12 @@ Based on your needs from Step 1, review these options:
 
 **For Simplicity & Maintainability**
 - Load `architecture-paradigm-layered` - Simple, well-understood separation
+
+**For Rich Business Rules**
+- Load `architecture-paradigm-domain-driven` - Models the business in its
+  own language. Pair it with whichever structural paradigm you picked
+  above. It does not replace one. Skip it when the domain is CRUD over a
+  form, where the model would just be the schema under a new name.
 
 **For Real-time Event Processing**
 - Load `architecture-paradigm-event-driven` - Scalable, decoupled processing
@@ -120,6 +131,7 @@ The individual paradigm skill provides:
 | **Space-Based** | High | Large | Linear scalability | `architecture-paradigm-space-based` |
 | **Pipeline** | Low | Small-Medium | ETL workflows | `architecture-paradigm-pipeline` |
 | **Client-Server** | Low | Small | Traditional apps | `architecture-paradigm-client-server` |
+| **Domain-Driven Design** | Medium | Small-Large | Rich business rules (composes with the above) | `architecture-paradigm-domain-driven` |
 
 ## Integration with Other Skills
 

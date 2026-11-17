@@ -1,51 +1,66 @@
-## Description: <br>
-三只虾协作系统 is a multi-agent task coordination framework for role-based task assignment, file-based monitoring, heartbeat checks, and completion notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+三只虾协作系统 helps an OpenClaw multi-agent team coordinate task assignment, heartbeat checks, file monitoring, and completion notifications.
 
-## Publisher: <br>
-[AyangAI](https://clawhub.ai/user/AyangAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayangai](https://clawhub.ai/user/ayangai)
 
-## Use Case: <br>
-Developers and operators use this skill to coordinate OpenClaw-style multi-agent work through shared task queues, role responsibilities, macOS file monitoring, scheduled heartbeat checks, and Feishu task completion notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent macOS launchd and fswatch monitoring can run in the background with weak scoping and hard-coded local paths. <br>
-Mitigation: Inspect the scripts and plist configuration before loading services, replace hard-coded paths with environment-specific paths, and enable monitoring only for intended task files. <br>
-Risk: Feishu notifications can expose task details, private links, credentials, or other sensitive work product to the wrong recipient or webhook. <br>
-Mitigation: Verify the Feishu webhook and recipient before use, redact sensitive queue details, and avoid placing secrets or customer data in task queues or notification messages. <br>
-Risk: Automatic task queue, memory, and notification workflows may overwrite or remove operational context. <br>
-Mitigation: Keep backups or version control for queue and memory files before enabling automated cleanup or recurring background workflows. <br>
-Risk: The release evidence does not include server-resolved source provenance. <br>
-Mitigation: Treat the artifact files as the review boundary and do not infer GitHub origin, maintainership, or upstream history from the skill text. <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate a small OpenClaw assistant team with CPMO, COO, and CGO roles. It provides task queue conventions, macOS heartbeat automation, file-change monitoring, and notification templates for tracking work and reporting completed tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AyangAI/three-shrimp-collab) <br>
-- [Publisher profile](https://clawhub.ai/user/AyangAI) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [Detailed documentation](artifact/README.md) <br>
-- [Automation flow](artifact/docs/shrimp-automation-flow.md) <br>
-- [Collaboration protocol](artifact/docs/shrimp-collaboration-protocol.md) <br>
-- [Heartbeat configuration](artifact/docs/shrimp-heartbeat-config.md) <br>
-- [Task notification guide](artifact/docs/shrimp-task-notification.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces task queue conventions, role coordination guidance, launchd setup steps, and notification workflow instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Persistent background monitoring may continue watching workspace files after setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review launchd jobs before loading them, keep only the jobs you intend to run, and unload them when monitoring is no longer needed.
+
+Risk: Task details may be sent to hard-coded or unvalidated Feishu destinations.
+
+Mitigation: Replace all Feishu webhook and user identifiers with approved recipients, and disable external notifications when task content is sensitive.
+
+Risk: The artifact is tailored to a specific local account and absolute workspace paths.
+
+Mitigation: Update hard-coded local paths and account-specific settings before installation.
+
+Risk: Queue reset or setup commands can alter local task state.
+
+Mitigation: Back up task queue and log files before running setup or reset commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ayangai/skills/three-shrimp-collab)
+- [Artifact README](artifact/README.md)
+- [Skill overview](artifact/SKILL.md)
+- [Automation workflow](artifact/docs/shrimp-automation-flow.md)
+- [Heartbeat configuration](artifact/docs/shrimp-heartbeat-config.md)
+- [Task notification specification](artifact/docs/shrimp-task-notification.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets, task queue templates, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for OpenClaw task coordination and local macOS automation setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

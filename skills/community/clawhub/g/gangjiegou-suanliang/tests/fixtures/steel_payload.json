@@ -1,0 +1,29 @@
+{
+  "schema": "cad-steel-geometry/v1",
+  "sections": [
+    {
+      "type": "section",
+      "section_type": "h_section",
+      "text": "HN400x200x8x13",
+      "evidence": [{"text": "HN400x200x8x13", "layer": "S-BEAM-LINE"}]
+    }
+  ],
+  "members": [
+    {
+      "type": "member",
+      "code": "G1",
+      "name": "钢梁",
+      "category": "beam",
+      "system": "steel",
+      "evidence": [{"text": "G1 HN400x200x8x13 L=6000", "layer": "S-BEAM-LINE"}]
+    }
+  ],
+  "materials": [
+    {"grade": "Q355", "evidence": [{"text": "Q355"}]}
+  ],
+  "steel_geometry": [
+    {"layer": "S-BEAM-LINE", "geometry": [0, 0, 6000, 0]}
+  ],
+  "connections": [],
+  "finishes": []
+}

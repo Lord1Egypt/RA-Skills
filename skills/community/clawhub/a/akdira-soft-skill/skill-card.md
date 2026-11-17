@@ -1,37 +1,49 @@
-## Description: <br>
-Teaches the AI to design like a high-end agency, with exact guidance for fonts, spacing, shadows, card structures, animations, and avoiding generic visual defaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches the AI to apply high-end visual design patterns, including premium typography, spacing, card structure, animation, and anti-generic UI constraints.
 
-## Publisher: <br>
-[akdira](https://clawhub.ai/user/akdira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akdira](https://clawhub.ai/user/akdira)
 
-## Use Case: <br>
-Developers and designers use this skill to steer an agent toward premium UI/UX and motion design when generating web interfaces. It is intended for projects where a strong high-end visual style is desired and the user can override it for brand, accessibility, or existing design-system constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill strongly favors a specific high-end visual style that may conflict with branding, accessibility needs, simpler UI requirements, existing design systems, or standard project icons and fonts. <br>
-Mitigation: Explicitly override the skill when project constraints require different branding, accessibility choices, simpler UI, existing design-system compliance, or standard icons and fonts. <br>
+## Use Case:
 
+External developers and design-focused agents use this skill to generate frontend UI code with premium typography, spacing, card architecture, responsive layouts, and motion choreography.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with generated UI code when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Applies strict visual-design, motion, responsive-layout, and performance guardrails to agent output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill strongly steers frontend output toward a specific premium visual style, which may override simpler product or brand requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated UI against the target product's design requirements and relax or revise the style constraints when they conflict.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/akdira/skills/akdira-soft-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Guidance]
+
+**Output Format:** [Markdown with frontend code blocks and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-openclaw2backup helps agents guide OpenClaw backup, restore, and backup management workflows for workspaces, skills, configuration, wallet data, and memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up and restores OpenClaw workspaces, skills, memory files, wallet-related configuration, and settings through quick backup, full backup, selective restore, and backup management workflows.
 
-## Publisher: <br>
-[SuCriss](https://clawhub.ai/user/SuCriss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sucriss](https://clawhub.ai/user/sucriss)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create quick or full backups, list existing backups, and restore selected OpenClaw workspace, skill, configuration, wallet, and memory data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups may include wallet configuration, memory files, credentials, repository history, and personal workspace data. <br>
-Mitigation: Store backup ZIP files only in protected or encrypted locations and treat them as sensitive data. <br>
-Risk: Restore operations can overwrite active OpenClaw workspace, skill, and configuration data. <br>
-Mitigation: Verify the backup source before restoring, use DryRun when possible, and keep a current backup of the existing state. <br>
-Risk: The reviewed artifact references backup and restore scripts that were not included for inspection. <br>
-Mitigation: Obtain and review the referenced scripts from a trusted source before granting the skill authority to run backup or restore workflows. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to create recoverable backups of local OpenClaw environments and restore selected workspace, skill, memory, and configuration data when migrating or recovering an installation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SuCriss/openclaw2backup) <br>
-- [Publisher profile](https://clawhub.ai/user/SuCriss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May refer users to PowerShell backup, restore, and backup-listing commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Backups can include sensitive wallet, memory, OpenClaw configuration, repository, and workspace data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store generated backups in encrypted storage, avoid sharing or syncing unencrypted archives, and review whether wallet, memory, openclaw.json, and .git history should be included.
+
+Risk: Restore and delete operations can overwrite or remove local OpenClaw data.
+
+Mitigation: Use preview or dry-run restore behavior when available and confirm the selected archive, restore scope, and deletion target before running destructive actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sucriss/skills/openclaw2backup)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with PowerShell and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide backup creation, restore, listing, and deletion workflows that read or write ZIP archives and local OpenClaw configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

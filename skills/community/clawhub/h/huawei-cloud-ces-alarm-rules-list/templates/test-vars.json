@@ -1,0 +1,112 @@
+{
+  "skill_name": "huawei-cloud-ces-alarm-rules-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "ListAlarmRules 操作与参数（语法）",
+      "command": "hcloud CES ListAlarmRules --cli-region={region} --help",
+      "expected": "KooCLI prints the ListAlarmRules help (params: --alarm_id / --name / --namespace / --resource_id / --enterprise_project_id / --product_name / --resource_level / --limit / --offset ; no --alarm_level / --alarm_state / --resource_type)",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "ListAlarmRulePolicies 操作与参数（语法）",
+      "command": "hcloud CES ListAlarmRulePolicies --cli-region={region} --help",
+      "expected": "KooCLI prints the help with required --alarm_id plus --limit / --offset",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "ListAlarmRuleResources 操作与参数（语法）",
+      "command": "hcloud CES ListAlarmRuleResources --cli-region={region} --help",
+      "expected": "KooCLI prints the help with required --alarm_id plus --limit / --offset",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "ListAlarms 操作（状态补齐用的 v1 接口）",
+      "command": "hcloud CES ListAlarms --cli-region={region} --help",
+      "expected": "KooCLI prints the help (params: --start / --limit / --order / --enterprise_project_id)",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-05",
+      "name": "告警规则真实只读查询（live）",
+      "command": "hcloud CES ListAlarmRules --cli-region={region} --limit=1",
+      "expected": "Returns alarm rule JSON (alarms[].alarm_id / name / namespace / policies / resources / enabled)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-06",
+      "name": "脚本默认输出（名称列表）",
+      "command": "python3 scripts/ces_alarm_rules.py --region {region}",
+      "expected": "Header line with the rule count followed by one rule name per line (or an explicit empty / permission message)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-07",
+      "name": "脚本表格输出（规则ID·名称·资源类型·监控维度·指标·阈值与比较符·告警级别·当前状态·是否启用·通知方式）",
+      "command": "python3 scripts/ces_alarm_rules.py --region {region} --table",
+      "expected": "Aligned table whose header contains the ten acceptance columns in order",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-08",
+      "name": "脚本原始 JSON 输出",
+      "command": "python3 scripts/ces_alarm_rules.py --region {region} --json",
+      "expected": "JSON array of raw alarm rule objects (no renamed fields)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-09",
+      "name": "客户端过滤（级别 / 状态 / 资源类型 / 名称）",
+      "command": "python3 scripts/ces_alarm_rules.py --region {region} --alarm-state insufficient_data --alarm-level 1,2 --table",
+      "expected": "Only rules matching the filters are printed; 数据不足 is never mixed with 正常",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-10",
+      "name": "单条规则详情（阈值策略 + 关联资源 + 通知对象）",
+      "command": "python3 scripts/ces_alarm_rules.py --region {region} --rule-id <alarm_id>",
+      "expected": "Detail block with 阈值策略 / 关联资源 / 通知对象 sections for that rule",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-11",
+      "name": "写意图拒绝",
+      "command": "python3 scripts/ces_alarm_rules.py --enable-alarm-rule",
+      "expected": "Exit code 1 with 写操作意图 guard message; no hcloud command executed",
+      "type": "guard",
+      "executor": "script"
+    },
+    {
+      "id": "TC-12",
+      "name": "参数帮助（脚本）",
+      "command": "python3 scripts/ces_alarm_rules.py --help",
+      "expected": "argparse help printed, exit 0",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-13",
+      "name": "离线单元测试",
+      "command": "python3 -m unittest discover -s tests",
+      "expected": "All offline unit tests pass (mocked hcloud): guard / command build / JSON+envelope / offset paging / state map / filters / three output modes / detail / SDK fallback",
+      "type": "unit",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": ["以 HUAWEI/HW/HWC 开头的环境变量中匹配 AK/SK 的键值对（可选用 CES_ALARM_PROJECT_ID 供 SDK 回退）"],
+  "notes": "只读操作（CES ListAlarmRules / ListAlarmRulePolicies / ListAlarmRuleResources，全部 GET；状态补齐额外用 v1 ListAlarms 只读列表），无资源创建/修改/删除风险。--alarm-level / --alarm-state / --resource-type 在 KooCLI 7.3.12 的 ListAlarmRules 中不存在对应 query 参数，因此翻全量后在客户端过滤；告警状态只在 v1 ListAlarms 响应里（alarm_state），v2 ListAlarmRules 不含该字段。CLI 主路径经 skill-quality-cli 包裹；SDK 回退使用 huaweicloudsdkces v2/v1，缺少时运行 scripts/ensure_env.py 安装。写意图守卫拦截变更意图，其行为由离线单元测试（TC-13）覆盖。真实只读验证由 QA 带外执行。"
+}

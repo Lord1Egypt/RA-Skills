@@ -1,39 +1,56 @@
-## Description: <br>
-Sync local .md data files to Google Sheets with content-hash deduplication for expenses, investments, and other key-value data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Syncs local Markdown data files to Google Sheets with dedup hashing for expenses, investments, and other key-value data.
 
-## Publisher: <br>
-[hohobohan](https://clawhub.ai/user/hohobohan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hohobohan](https://clawhub.ai/user/hohobohan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to parse local Markdown ledger-style records, deduplicate them against existing Google Sheets rows, and append only new expense or investment entries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The sync flow depends on a local Google service-account JSON credential.
+
+Mitigation: Use a least-privilege service account and avoid logging, copying, or exposing the credential file.
+
+Risk: Recurring scheduled writes can append data to the wrong spreadsheet or run more broadly than intended.
+
+Mitigation: Confirm the spreadsheet destination, cron schedule, and narrowly defined source Markdown files before installation.
+
+Risk: Parsed local Markdown records may create unintended Google Sheets rows if the input files are stale or malformed.
+
+Mitigation: Review the source files and deduplication key behavior before enabling append-only sync.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and users maintaining local Markdown ledgers use this skill to configure append-only Google Sheets synchronization with service-account authentication and deduplication. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A configured sync may append private expense or investment data to the wrong Google Sheet. <br>
-Mitigation: Confirm the spreadsheet ID is the intended destination before scheduling or running the sync. <br>
-Risk: The service-account credential may grant broader Google Sheets access than needed. <br>
-Mitigation: Use a credential owned by the user and limit it to the minimum permissions required for the target spreadsheet. <br>
+**Output Format:** [Markdown guidance with regex examples, API notes, and cron-oriented sync instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Append-only Google Sheets sync pattern using deduplication keys and local service-account credentials]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python regex examples, API notes, and sync configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Append-only synchronization guidance; users must supply their own Google service-account credential and spreadsheet destination.] <br>
+1.0.0 (source: frontmatter, changelog, server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

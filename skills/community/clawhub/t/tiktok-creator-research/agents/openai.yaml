@@ -1,0 +1,4 @@
+interface:
+  display_name: "TikTok Creator Research"
+  short_description: "Vet public TikTok creators and content"
+  default_prompt: "Use $tiktok-creator-research to build a current TikTok creator shortlist."

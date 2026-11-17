@@ -1,43 +1,63 @@
-## Description: <br>
-Session Memory helps OpenClaw agents preserve long-running work context by converting session transcripts into searchable Markdown, building a structured glossary, and suggesting memory-aware cron job prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Memory helps OpenClaw agents preserve context by converting session transcripts into searchable Markdown, generating a structured memory glossary, and suggesting memory-aware cron prompts.
 
-## Publisher: <br>
-[moltbotmolty-del](https://clawhub.ai/user/moltbotmolty-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moltbotmolty-del](https://clawhub.ai/user/moltbotmolty-del)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve OpenClaw session history, build searchable memory indexes, and add memory context to recurring agent automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly persists historical OpenClaw conversations into searchable workspace files. <br>
-Mitigation: Use it only when persistent session memory is intended, and review generated memory files before sharing or publishing the workspace. <br>
-Risk: Generated memory may contain sensitive conversation details with limited privacy controls. <br>
-Mitigation: Add redaction, exclusions, file permission tightening, and cleanup procedures before use in sensitive environments. <br>
-Risk: Recurring cron indexing can continue copying new session content into memory files. <br>
-Mitigation: Avoid enabling recurring cron indexing in sensitive environments unless retention and review procedures are in place. <br>
+## Use Case:
 
+Developers and agent operators use this skill to retain searchable context across compacted or isolated OpenClaw sessions, including session transcripts, entity indexes, decisions, and cron job memory prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moltbotmolty-del/sessionmemory) <br>
-- [AI Advantage](https://aiadvantage.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, terminal status text, and setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes session transcripts, glossary files, converter state, and cron optimization reports under the user's OpenClaw memory workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill can copy broad private OpenClaw conversation history, names, decisions, file paths, and cron prompts into durable searchable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only in workspaces where this retention is acceptable, and add redaction or role filtering before indexing sensitive sessions.
+
+Risk: Weak session scoping may index more history than the operator intended.
+
+Mitigation: Narrow session selection, review configured input paths, and use retention limits before running full or scheduled indexing.
+
+Risk: Cron-based updates can keep sensitive memory artifacts current without repeated manual review.
+
+Mitigation: Require review before enabling cron jobs and maintain a cleanup process for generated memory files and state.
+
+Risk: Artifact claims about scanner cleanliness conflict with the server security verdict.
+
+Mitigation: Rely on the server security summary and review the skill before installation rather than trusting promotional safety claims in the artifact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moltbotmolty-del/skills/sessionmemory)
+- [Publisher profile](https://clawhub.ai/user/moltbotmolty-del)
+- [AI Advantage](https://aiadvantage.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files and setup guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces durable local memory artifacts such as memory/sessions/*.md, memory/SESSION-GLOSSAR.md, state JSON files, and cron optimization reports.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

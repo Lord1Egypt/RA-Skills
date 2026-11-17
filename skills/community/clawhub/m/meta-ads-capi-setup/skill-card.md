@@ -1,43 +1,58 @@
-## Description: <br>
-A Meta Conversions API setup guide for configuring server-side event tracking to improve Meta Ads conversion measurement and reduce CPA discrepancies versus pixel-only tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Didoo AI] Step-by-step guide for setting up Meta Conversions API (CAPI) server-side event tracking that improves conversion measurement accuracy and reduces CPA discrepancy vs pixel-only tracking, for use when setting up tracking for a new account or when CPA shown in Meta Ads Manager is significantly higher than actual leads/sales.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
 
-## Use Case: <br>
-Marketing operations teams, developers, and external agencies use this skill to set up Meta Conversions API tracking, choose an integration method, configure conversion events, test deduplication, and handle customer identifiers responsibly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meta system-user tokens and pixel identifiers can be exposed if copied into code, logs, shared documents, or repositories. <br>
-Mitigation: Store access tokens like passwords, use environment variables or a secrets manager, restrict token permissions to the minimum required scopes, and rotate tokens when access changes. <br>
-Risk: Sending hashed identifiers, CRM status, or revenue events to Meta without appropriate consent or another lawful basis can create privacy and compliance risk. <br>
-Mitigation: Confirm the lawful basis before sending data, minimize transmitted fields, honor opt-outs, and update privacy disclosures for server-side conversion tracking. <br>
-Risk: Incorrect Pixel and CAPI event setup can duplicate, omit, or misattribute conversion events. <br>
-Mitigation: Test events in Meta Events Manager, pass the same event_id for browser and server events, verify deduplication status, and monitor parameter completeness before relying on campaign metrics. <br>
+## Use Case:
 
+External marketers, developers, and operators use this skill to set up Meta Conversions API tracking, choose an integration method, configure conversion events, and test that Pixel and CAPI events are deduplicated correctly.
 
-## Reference(s): <br>
-- [Meta Graph API CAPI events endpoint](https://graph.facebook.com/v21.0/{pixel_id}/events) <br>
-- [ClawHub skill page](https://clawhub.ai/elias-didoo/meta-ads-capi-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown setup guide with credential tables, event checklists, and API endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Meta access token, pixel ID, Business Manager permissions, and privacy review before sending customer identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Meta access tokens can expose Business and Marketing API capabilities if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the token like a password, store it outside source control, and confirm the token has only the permissions needed for CAPI setup.
+
+Risk: CAPI events can include customer identifiers or conversion data that may be subject to privacy, consent, and regional compliance requirements.
+
+Mitigation: Confirm authorization and consent before sending data to Meta, use HTTPS, and hash supported personal identifiers with SHA-256 before transmission.
+
+Risk: Incorrect Pixel and CAPI deduplication can double-count events or distort campaign measurement.
+
+Mitigation: Pass matching event_id and event_name values for the same conversion and test events in Meta Events Manager before relying on reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elias-didoo/skills/meta-ads-capi-setup)
+- [Meta Graph API events endpoint](https://graph.facebook.com/v21.0/{pixel_id}/events)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with setup steps, checklists, and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; advises manual CAPI setup, event testing, deduplication checks, and secure token handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

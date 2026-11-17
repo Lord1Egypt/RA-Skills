@@ -1,43 +1,58 @@
-## Description: <br>
-Selects approximate China A-share small-cap stock candidates using public Eastmoney market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小市值选股（纯 OpenClaw 公开源版）：基于东财公开行情做小市值近似筛选。
 
-## Publisher: <br>
-[luyao-inc](https://clawhub.ai/user/luyao-inc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luyao-inc](https://clawhub.ai/user/luyao-inc)
 
-## Use Case: <br>
-Developers, financial research agents, and analysts use this skill to retrieve informational China A-share small-cap screening results from public market data. The output supports research workflows and is not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to Eastmoney and depends on public market-data availability. <br>
-Mitigation: Run it only where outbound access to Eastmoney is allowed, and handle API failures or unavailable data as expected runtime conditions. <br>
-Risk: Financial screening output could be mistaken for investment advice. <br>
-Mitigation: Treat results as informational research output and independently verify data, assumptions, and suitability before acting on them. <br>
-Risk: The documented script path may need correction at runtime. <br>
-Mitigation: Confirm the installed script path before invocation and adjust the command path if the runtime layout differs. <br>
+## Use Case:
 
+Developers and market-analysis users can run this skill to retrieve an informational, public-data-based screen of China A-share small-cap stocks and related quote fields. The output is an approximation and is not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luyao-inc/china-stock-smallcap) <br>
-- [Eastmoney public quote API](https://push2.eastmoney.com/api/qt/clist/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes strategy type, status, message, and ranked stock records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and frontmatter) <br>
+Risk: The stock screen is an approximate informational result and may be misleading if treated as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output only as a starting point for analysis, verify market data independently, and do not treat results as investment advice.
+
+Risk: The selector depends on the availability and response shape of the Eastmoney public quote API.
+
+Mitigation: Review command results for errors or missing fields and update the selector if the upstream API changes.
+
+Risk: The documented command path may not match the packaged artifact layout.
+
+Mitigation: Confirm the installed skill exposes the selector at the documented path before relying on the command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luyao-inc/skills/china-stock-smallcap)
+- [Eastmoney public quote API](https://push2.eastmoney.com/api/qt/clist/get)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON from a command-line Python selector, with agent-facing guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns ranked stock entries with symbol, name, price, percent change, turnover, market cap, main net inflow, P/E, P/B, raw source fields, status, strategy type, and message.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

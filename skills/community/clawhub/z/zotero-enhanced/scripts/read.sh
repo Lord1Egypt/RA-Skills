@@ -14,14 +14,14 @@ Download and read a PDF attachment from a Zotero item via WebDAV.
 
 Environment variables:
   ZOTERO_USER_ID, ZOTERO_API_KEY required.
-  WEBDAV_URL, WEBDAV_USER, WEBDAV_PASS required (WebDAV storage).
+  ZOTERO_WEBDAV_URL (https:// required), ZOTERO_WEBDAV_USER, ZOTERO_WEBDAV_PASS required (WebDAV storage).
 
-Version: zotero-enhanced read.sh v1.3.8
+Version: zotero-enhanced read.sh v1.3.14
 EOF
         exit 0
         ;;
     --version)
-        echo "zotero-enhanced read.sh v1.3.8"
+        echo "zotero-enhanced read.sh v1.3.14"
         exit 0
         ;;
 esac
@@ -29,15 +29,32 @@ esac
 # --- Configuration ---
 : "${ZOTERO_API_KEY:?ZOTERO_API_KEY not set}"
 : "${ZOTERO_USER_ID:?ZOTERO_USER_ID not set}"
-: "${WEBDAV_URL:?WEBDAV_URL not set}"
-: "${WEBDAV_USER:?WEBDAV_USER not set}"
-: "${WEBDAV_PASS:?WEBDAV_PASS not set}"
+: "${ZOTERO_WEBDAV_URL:?ZOTERO_WEBDAV_URL not set}"
+: "${ZOTERO_WEBDAV_USER:?ZOTERO_WEBDAV_USER not set}"
+: "${ZOTERO_WEBDAV_PASS:?ZOTERO_WEBDAV_PASS not set}"
+
+# --- Security Helpers ---
+# Refuse to send WebDAV credentials over plaintext http. Credentials and
+# library files must travel over TLS.
+require_https_webdav_url() {
+    case "$1" in
+        https://*) return 0 ;;
+        http://*)
+            echo "Error: ZOTERO_WEBDAV_URL uses plaintext http://, which would send" >&2
+            echo "  WebDAV credentials and library files unencrypted. Use https://." >&2
+            return 1 ;;
+        *)
+            echo "Error: ZOTERO_WEBDAV_URL must be an https:// URL." >&2
+            return 1 ;;
+    esac
+}
+require_https_webdav_url "$ZOTERO_WEBDAV_URL" || exit 1
 
 ITEM_KEY="$1"
 [ -n "$ITEM_KEY" ] || { echo "Error: Zotero item key not provided."; exit 1; }
 
-TMP_DIR="/tmp/zotero-read-$$"
-mkdir -p "$TMP_DIR"
+# mktemp -d: unpredictable per-run directory with 0700 perms (no symlink races)
+TMP_DIR=$(mktemp -d "${TMPDIR:-/tmp}/zotero-read.XXXXXX")
 trap 'rm -rf -- "$TMP_DIR"' EXIT
 
 API_URL="https://api.zotero.org/users/$ZOTERO_USER_ID/items"
@@ -55,15 +72,20 @@ echo "  - Found attachment key: $ATTACHMENT_KEY"
 
 # --- 2. Download from WebDAV ---
 ZIP_FILE="$ATTACHMENT_KEY.zip"
-WEBDAV_SOURCE_URL="${WEBDAV_URL%/}/$ZIP_FILE"
+WEBDAV_SOURCE_URL="${ZOTERO_WEBDAV_URL%/}/$ZIP_FILE"
 LOCAL_ZIP_PATH="$TMP_DIR/$ZIP_FILE"
 
 echo "Step 2: Downloading $ZIP_FILE from WebDAV..."
-curl -s -f -u "$WEBDAV_USER:$WEBDAV_PASS" -o "$LOCAL_ZIP_PATH" "$WEBDAV_SOURCE_URL"
+curl -s -f -u "$ZOTERO_WEBDAV_USER:$ZOTERO_WEBDAV_PASS" -o "$LOCAL_ZIP_PATH" "$WEBDAV_SOURCE_URL"
 echo "  - Download complete."
 
 # --- 3. Unzip and Find PDF ---
 echo "Step 3: Extracting PDF..."
+# Zip-slip guard: refuse archives with path-traversal or absolute entries
+if unzip -Z1 "$LOCAL_ZIP_PATH" 2>/dev/null | grep -qE '(^|/)\.\.(/|$)|^/'; then
+    echo "Error: zip archive contains unsafe path entries; refusing to extract." >&2
+    exit 1
+fi
 unzip -q "$LOCAL_ZIP_PATH" -d "$TMP_DIR"
 PDF_FILE=$(find "$TMP_DIR" -maxdepth 1 -iname "*.pdf" -print -quit)
 [ -f "$PDF_FILE" ] || { echo "Error: PDF file not found in zip archive."; exit 1; }

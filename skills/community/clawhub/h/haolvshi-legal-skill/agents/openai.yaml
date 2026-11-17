@@ -1,0 +1,10 @@
+interface:
+  display_name: "好律狮法律技能包"
+  short_description: "面向 AI 的法律咨询、赔偿与费用计算、社保和养老保险待遇测算、合同审核与诉讼文书生成"
+  icon_small: "./assets/haolvshi-legal-skill-icon.png"
+  icon_large: "./assets/haolvshi-legal-skill-logo.png"
+  brand_color: "#B98A45"
+  default_prompt: "使用 $haolvshi-legal-skill 帮我处理一个法律问题。"
+
+policy:
+  allow_implicit_invocation: true

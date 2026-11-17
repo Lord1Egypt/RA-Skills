@@ -1,44 +1,54 @@
-## Description: <br>
-Gestalt is a model-agnostic prompt-style collaboration skill that makes an agent more direct, substantive, explicit about uncertainty, and disciplined about memory use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks for Gestalt mode or wants terse, substantive, low-filler collaboration.
 
-## Publisher: <br>
-[dwgoldie](https://clawhub.ai/user/dwgoldie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dwgoldie](https://clawhub.ai/user/dwgoldie)
 
-## Use Case: <br>
-Developers, coding-agent users, and chatbot users use Gestalt to steer language models toward terse, constructive collaboration: lead with answers, challenge weak assumptions, disclose uncertainty, and preserve durable decisions without saving secrets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes agent behavior and may make responses more direct or autonomous than users expect. <br>
-Mitigation: Review the prompt text before deployment and keep explicit control over consequential actions such as commits, pushes, deletions, and privacy-sensitive steps. <br>
-Risk: In coding-agent environments, durable memory files can accidentally capture sensitive or transient details. <br>
-Mitigation: Use the skill only in trusted repositories, avoid saving secrets or sensitive information, and periodically review memory files created by the agent. <br>
+## Use Case:
 
+Developers and agent users apply Gestalt to configure language models and coding agents for direct, substantive collaboration with explicit uncertainty handling and disciplined use of memory when available.
 
-## Reference(s): <br>
-- [Gestalt ClawHub page](https://clawhub.ai/dwgoldie/gestalt) <br>
-- [dwgoldie publisher profile](https://clawhub.ai/user/dwgoldie) <br>
-- [README.md](README.md) <br>
-- [AGENTS.md](AGENTS.md) <br>
-- [CHATBOTS.md](CHATBOTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown prompt instructions and custom-instruction text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes variants for coding-agent files and chatbot custom-instruction fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: In coding-agent deployments, the skill may encourage agents to create repo-local memory, task, or communication files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review AGENTS.md and GEMINI.md before deployment and remove or constrain the memory guidance if repository-local notes are not desired.
+
+Risk: Direct, terse collaboration guidance may make responses more forceful than expected for some workflows.
+
+Mitigation: Pair the skill with local project instructions that define escalation, review, and communication expectations for the target team.
+
+## Reference(s):
+
+- [ClawHub Gestalt Skill Page](https://clawhub.ai/dwgoldie/skills/gestalt)
+- [AGENTS.md Standard](https://agents.md/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, shell commands]
+
+**Output Format:** [Markdown prompt and agent instruction files with an optional shell sync script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden execution, network access, credential handling, or destructive behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

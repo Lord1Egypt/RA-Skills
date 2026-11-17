@@ -1,6 +1,49 @@
 {
-  "ownerId": "kn73rjsd61kjdxp8s6k7ryn8x184h9xs",
-  "slug": "michael-burry-investing",
+  "name": "michael-burry",
   "version": "1.0.0",
-  "publishedAt": 1776261655050
+  "description": "Michael Burry's contrarian value investing philosophy — the physician-turned-investor who predicted the 2008 subprime crisis and went short the entire US mortgage market through Scion Capital",
+  "author": "Leo Li",
+  "tags": [
+    "investing",
+    "michael-burry",
+    "value-investing",
+    "contrarian",
+    "scion-capital",
+    "subprime-mortgage",
+    "big-short",
+    "margin-of-safety",
+    "short-selling",
+    "cassandra-unchained"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Talentedleo/celebrity_skills",
+  "issues": "https://github.com/Talentedleo/celebrity_skills/issues",
+  "minimumOpenClawVersion": "1.0.0",
+  "skillSpecVersion": "1.0.0",
+  "triggers": [
+    "Michael Burry",
+    "Burry",
+    "Scion Capital",
+    "Scion Asset Management",
+    "Big Short",
+    "subprime mortgage",
+    "value investing",
+    "contrarian investing",
+    "margin of safety",
+    "short selling",
+    "Cassandra Unchained",
+    "Cassandra"
+  ],
+  "sources": [
+    {
+      "name": "Wikipedia - Michael Burry",
+      "url": "https://en.wikipedia.org/wiki/Michael_Burry"
+    },
+    {
+      "name": "Cassandra Unchained (Substack)",
+      "url": "https://cassandraunchained.substack.com"
+    }
+  ],
+  "lastUpdated": "2026-04-15",
+  "language": "en"
 }

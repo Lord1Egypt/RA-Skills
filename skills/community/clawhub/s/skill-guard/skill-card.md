@@ -1,41 +1,62 @@
-## Description: <br>
-Scan ClawHub skills for security vulnerabilities BEFORE installing. Use when installing new skills from ClawHub to detect prompt injections, malware payloads, hardcoded secrets, and other threats. Wraps clawhub install with mcp-scan pre-flight checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stage, scan, and install a ClawHub skill when the user requests a guarded ClawHub installation. Blocks installation on security findings or incomplete scans.
 
-## Publisher: <br>
-[jamesOuttake](https://clawhub.ai/user/jamesOuttake) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jamesouttake](https://clawhub.ai/user/jamesouttake)
 
-## Use Case: <br>
-Developers and ClawHub users use skill-guard to stage and scan ClawHub skills with mcp-scan before installing them, blocking or quarantining skills when issues are detected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs shell commands that stage, scan, and install other skills. <br>
-Mitigation: Review scripts/safe-install.sh before use and install only if you are comfortable with those local actions. <br>
-Risk: Force installing can replace an existing skill. <br>
-Mitigation: Use --force only when intentionally replacing an existing installation. <br>
-Risk: The scan can be skipped by command-line option. <br>
-Mitigation: Avoid --skip-scan for normal installs so the pre-install security check runs. <br>
+## Use Case:
 
+Developers and operators use this skill to install requested ClawHub skills through a guarded workflow that stages downloads, requires complete clean Snyk Agent Scan results, and blocks installation when scans are incomplete or report findings.
 
-## Reference(s): <br>
-- [mcp-scan](https://github.com/invariantlabs-ai/mcp-scan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce exit codes and quarantined staging paths when threats or errors are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The guarded installer downloads a requested skill, uploads staged text content to Snyk for analysis, and can modify the local OpenClaw workspace after a clean scan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where external Snyk analysis and workspace modification are acceptable, and provide SNYK_TOKEN through an environment variable or secret manager.
+
+Risk: A clean scanner result is not a guarantee that a downloaded skill is safe.
+
+Mitigation: Review retained quarantine and backup directories as data when a scan or replacement fails, and do not execute staged skill content.
+
+Risk: The scanner package is pinned, but its transitive dependencies are not fully locked and uvx may download dependencies on first use.
+
+Mitigation: Use trusted clawhub and uvx binaries from approved package sources and run the installer in an environment where first-use downloads are acceptable.
+
+Risk: Replacing an existing skill can require manual recovery if the machine crashes or the process is forcibly terminated.
+
+Mitigation: Use --force only for intentional replacement, preserve the printed run directory, and recover from the previous-skill backup if automatic rollback cannot complete.
+
+## Reference(s):
+
+- [Snyk Agent Scan](https://github.com/snyk/agent-scan)
+- [ClawHub skill page](https://clawhub.ai/jamesouttake/skills/skill-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print exit status, a private staging directory, and backup location information.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

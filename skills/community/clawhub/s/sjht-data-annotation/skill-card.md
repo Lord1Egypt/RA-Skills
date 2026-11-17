@@ -1,41 +1,58 @@
-## Description: <br>
-A general data annotation skill for image, video, text, and mixed datasets that helps agents plan annotation work, call appropriate models, save structured results, and provide a web review and editing interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+General data annotation skill for image, video, text, and mixed datasets that guides requirement review, model-assisted labeling, structured result generation, and web-based annotation review/editing.
 
-## Publisher: <br>
-[aowind](https://clawhub.ai/user/aowind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aowind](https://clawhub.ai/user/aowind)
 
-## Use Case: <br>
-Developers, data operations teams, and annotation reviewers use this skill to create and resume data-labeling workflows, generate JSONL annotation outputs from requirements and source data, and review or edit annotations through a web interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The web API and deployment guidance can expose private files or allow broad file writes if published without controls. <br>
-Mitigation: Use only in a controlled environment; add authentication, remove wildcard CORS and autoindex, restrict reads and writes to a dedicated data directory, and avoid running the API as root. <br>
-Risk: Annotation workflows may upload private data to third-party model APIs. <br>
-Mitigation: Confirm that model-provider use is approved for the dataset before sending files or extracted content to external services. <br>
+## Use Case:
 
+Developers, data teams, and annotation operators use this skill to plan and execute model-assisted labeling jobs over images, videos, text, or mixed datasets, then save structured JSONL results and inspect or edit them in a web viewer.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aowind/sjht-data-annotation) <br>
-- [Output formats reference](references/output-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, JSONL files, HTML files] <br>
-**Output Format:** [Markdown guidance with JSON, JSONL, shell, Python, HTML, and nginx configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces annotation plans, progress updates, dataset JSONL records, summary JSON, and optional web viewer/API deployment assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The annotation API and web viewer can expose dataset files and annotation results if deployed beyond a trusted local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the API bound to localhost or a private network, do not expose it publicly, and restrict access to a dedicated annotation results directory.
+
+Risk: The documented Nginx/root deployment flow can introduce host-configuration and broad file-access risk.
+
+Mitigation: Review deployment changes before use, avoid serving from privileged root paths, and deploy in a contained environment with least-privilege filesystem access.
+
+Risk: Datasets may be sent to model providers during annotation.
+
+Mitigation: Use non-sensitive datasets unless the selected model provider and data handling path have been approved.
+
+## Reference(s):
+
+- [Output Formats Reference](artifact/references/output-formats.md)
+- [ClawHub Skill Page](https://clawhub.ai/aowind/skills/sjht-data-annotation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON/JSONL examples, shell commands, Python helper code, and HTML viewer configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces annotation plans, JSONL datasets, summaries, generated viewer files, and deployment guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json; CHANGELOG top entry is 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

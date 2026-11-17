@@ -1,43 +1,58 @@
-## Description: <br>
-Deterministic OpenClaw Codex profile failover for Windows workspaces with duplicate detection, workspace variant aliases, quota-aware profile choice, Telegram session sync, network outage protection, and install helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic OpenClaw Codex profile failover for Windows workspaces with duplicate detection, workspace variant aliases, quota-aware profile choice, Telegram session sync, network outage protection, and install helpers.
 
-## Publisher: <br>
-[ugurinanc12](https://clawhub.ai/user/ugurinanc12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugurinanc12](https://clawhub.ai/user/ugurinanc12)
 
-## Use Case: <br>
-Developers and operators maintaining OpenClaw Codex workspaces use this skill to inspect auth-profiles.json, choose the healthiest Codex OAuth profile, sync session overrides, and package a safer replacement for ad hoc profile rotation logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Apply and daemon modes can modify OpenClaw auth profile order, session overrides, registry state, and remove profiles after repeated invalid-token findings. <br>
-Mitigation: Back up auth and session files, run dry-run first, inspect the JSON plan, and use apply or daemon mode only after the selected profile and planned removals are acceptable. <br>
-Risk: The skill operates on sensitive OAuth profile and session state. <br>
-Mitigation: Install and run it only in a trusted OpenClaw workspace, keep credential files local, and avoid sharing dry-run or report output unless redacted. <br>
-Risk: Optional Telegram/OpenClaw notifications may reveal profile-switching or quota state to a configured target. <br>
-Mitigation: Leave notifications disabled unless needed and verify the configured notification target and account before enabling them. <br>
+## Use Case:
 
+Developers and operators use this skill to stabilize multi-account Codex profile switching in OpenClaw workspaces, inspect OAuth profile state, select a healthier account, and install a repeatable profile orchestration workflow.
 
-## Reference(s): <br>
-- [State Model](references/state-model.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ugurinanc12/codex-profile-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands; bundled scripts emit JSON reports or text summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run mode reports planned profile and session changes before apply mode mutates workspace state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: The skill can copy token-bearing Codex profile data into workspace registry or backup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run first, keep the workspace state directory private, and protect or remove registry and backup files that may contain credentials.
+
+Risk: Apply or daemon mode can rewrite authentication profile order, session overrides, and remove invalid profiles after the configured streak.
+
+Mitigation: Inspect the dry-run JSON before enabling apply or daemon mode, and use conservative invalid-streak settings.
+
+Risk: Telegram and other OpenClaw session sync can move session overrides to the selected profile.
+
+Mitigation: Limit configured session targets and verify the selected profile before enabling notifications or session sync.
+
+## Reference(s):
+
+- [State Model](references/state-model.md)
+- [ClawHub skill page](https://clawhub.ai/ugurinanc12/skills/codex-profile-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads, shell commands, and configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce dry-run reports, apply-mode changes, daemon startup commands, and installation configuration.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

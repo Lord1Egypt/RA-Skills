@@ -1,48 +1,61 @@
-## Description: <br>
-Baidu Drive helps agents manage Baidu Netdisk files, including uploads, downloads, transfers, sharing, search, moves, copies, renames, and folder creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Drive enables agents to manage Baidu Netdisk files, including uploads, downloads, transfers, sharing, search, move, copy, rename, and folder creation.
 
-## Publisher: <br>
-[may-yaha](https://clawhub.ai/user/may-yaha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[may-yaha](https://clawhub.ai/user/may-yaha)
 
-## Use Case: <br>
-External users and developers use this skill to operate Baidu Drive files through the bdpan CLI while keeping actions scoped to the skill's application directory and requiring deliberate handling of login, update, destructive, and overwrite operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth tokens and local credentials for Baidu Drive access. <br>
-Mitigation: Use only the documented login flow, avoid reading or exposing local credential files, and log out or uninstall when access is no longer needed. <br>
-Risk: Uploads, downloads, transfers, shares, overwrites, and deletes can expose or alter user files. <br>
-Mitigation: Review paths before file operations, require confirmation for destructive or overwrite actions, and treat generated share links as externally accessible. <br>
-Risk: Install and update flows depend on trusting the Baidu CLI source. <br>
-Mitigation: Install only when the user trusts the Baidu CLI source and consider reviewing or sandboxing installer behavior before use in sensitive environments. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate files in a Baidu Drive app folder, including upload, download, transfer from share links, sharing, search, and file organization.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/may-yaha/baidu-netdisk-storage) <br>
-- [Skill definition](SKILL.md) <br>
-- [Authentication guide](reference/authentication.md) <br>
-- [bdpan CLI command reference](reference/bdpan-commands.md) <br>
-- [Usage examples](reference/examples.md) <br>
-- [Usage notes](reference/notes.md) <br>
-- [Troubleshooting guide](reference/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Baidu Drive share links, transfer status, and JSON-formatted CLI results when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.3 (source: server release evidence) <br>
+Risk: Install and update flows can run or replace code from Baidu-hosted remote endpoints with limited independent authenticity controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use it only when the Baidu-hosted installer and update channel are trusted, and avoid automatic install or update modes in sensitive environments.
+
+Risk: A shell-backed agent can affect the Baidu Drive app folder, local download paths, and share-link creation.
+
+Mitigation: Confirm upload, download, and share destinations before execution, and avoid exposing local token or configuration files.
+
+Risk: Uninstall behavior can delete the configured bdpan data directory when BDPAN_CONFIG_DIR is customized.
+
+Mitigation: Verify the exact configured directory before running uninstall with a custom BDPAN_CONFIG_DIR value.
+
+## Reference(s):
+
+- [bdpan CLI Command Reference](reference/bdpan-commands.md)
+- [Authentication Guide](reference/authentication.md)
+- [Examples](reference/examples.md)
+- [Troubleshooting Guide](reference/troubleshooting.md)
+- [Development Notes](reference/notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and occasional JSON command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute bdpan CLI operations after the skill's confirmation checks; outputs can include links, paths, status text, or JSON from bdpan.]
+
+## Skill Version(s):
+
+1.4.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

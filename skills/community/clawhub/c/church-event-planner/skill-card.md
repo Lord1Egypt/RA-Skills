@@ -1,42 +1,56 @@
-## Description: <br>
-Plan and manage church events from start to finish with church-specific intelligence for ministry team coordination, volunteer rotation tracking, sermon series alignment, and liturgical calendar awareness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and manage church events from concept through wrap-up with templates, task tracking, volunteers, vendors, budgets, ministry teams, sermon-series alignment, and liturgical calendar awareness.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-Church staff and ministry coordinators use this skill to plan events, maintain task lists, coordinate volunteers and vendors, track budgets, and connect events with ministry teams, sermon series, and liturgical seasons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores volunteer contact details, preferences, availability, workload notes, vendor information, and church event records in a persistent local event-data.json file. <br>
-Mitigation: Store only necessary details, get consent for volunteer contact and preference data, periodically remove stale records, and limit access to the local data file. <br>
-Risk: Broad event-planning triggers could activate the skill when the user did not intend to manage church records. <br>
-Mitigation: Use explicit church-related prompts before creating or changing records, and confirm user intent before writing new event, volunteer, vendor, or budget data. <br>
+## Use Case:
 
+Church staff and ministry leaders use this skill to plan services, retreats, VBS, potlucks, fundraisers, weddings, funerals, outreach events, and related ministry work. It helps maintain event records, due dates, volunteer assignments, vendor history, budgets, and follow-up tasks.
 
-## Reference(s): <br>
-- [Church Event Planner release page](https://clawhub.ai/chris-openclaw/church-event-planner) <br>
-- [README](README.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown with structured updates to event-data.json when event records change] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local event-data.json file for events, tasks, vendors, volunteers, ministry teams, sermon series, and liturgical calendar data] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, release evidence, README, CHANGELOG) <br>
+Risk: Persistent event records can include volunteer contact details, preferences, availability, burnout indicators, vendor history, budgets, and church operations data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in an access-controlled local data environment, minimize sensitive volunteer or pastoral details, and review data before saving or sharing roster-wide summaries.
+
+Risk: The skill may surface broad volunteer or ministry team context when planning assignments or status updates.
+
+Mitigation: Require explicit user review before displaying broad roster data, and limit responses to the event or team context needed for the current request.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chris/skills/church-event-planner)
+- [Publisher Profile](https://clawhub.ai/user/chris)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with structured event data stored as JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update event-data.json with event, task, vendor, volunteer, ministry team, sermon series, liturgical calendar, and budget records.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

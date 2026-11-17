@@ -1,6 +1,6 @@
 {
   "id": "fec-canvas-threejs",
-  "name": "Canvas 与 Three.js",
+  "name": "Canvas and Three.js",
   "category": "implementation-capability",
   "tags": [
     "canvas",
@@ -10,8 +10,8 @@
     "visualization",
     "r3f"
   ],
-  "summary": "Frontend Craft skill for Canvas 与 Three.js.",
-  "version": "2.5.0",
+  "summary": "Build or review interactive Canvas, WebGL, Three.js, and React Three Fiber visuals.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -34,7 +34,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when building or reviewing Canvas 2D, Three.js/WebGL, React Three Fiber, GLSL shaders, ShaderToy-to-WebGL adaptation, 2D/3D visualization, game rendering, animation loops, GPU resource cleanup, or rendering performance. Do not use for standard DOM UI, charts already covered by a chart library, or non-graphical performance work; Chinese triggers include Canvas, Three.js, WebGL, GLSL, Shader, 3D, 数据可视化, 游戏.",
+  "description": "Use when building or reviewing Canvas 2D, Three.js/WebGL, React Three Fiber, GLSL shaders, ShaderToy-to-WebGL adaptation, 2D/3D visualization, game rendering, animation loops, GPU resource cleanup, or rendering performance. Do not use for standard DOM UI, charts already covered by a chart library, or non-graphical performance work; Chinese triggers include Canvas, Three.js, WebGL, GLSL, Shader, 3D, data visualization, games.",
   "source": "skills/fec-canvas-threejs",
   "references": [
     "references/rendering-patterns.md",

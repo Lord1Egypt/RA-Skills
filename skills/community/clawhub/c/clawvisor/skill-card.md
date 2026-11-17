@@ -1,43 +1,65 @@
-## Description: <br>
-Routes agent tool requests through Clawvisor for credential vaulting, task-scoped authorization, policy enforcement, and human approval flows across connected services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route tool requests through Clawvisor for credential vaulting, task-scoped authorization, and human approval flows for Gmail, Calendar, Drive, Contacts, GitHub, and iMessage.
 
-## Publisher: <br>
-[ericlevine](https://clawhub.ai/user/ericlevine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlevine](https://clawhub.ai/user/ericlevine)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route Gmail, Calendar, Drive, Contacts, GitHub, and iMessage actions through Clawvisor so credentials stay vaulted and requests can be scoped, audited, restricted, or sent for human approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broadly scoped Clawvisor agent token can access sensitive connected services. <br>
-Mitigation: Use a dedicated, narrowly scoped token and rotate or revoke it immediately if compromised. <br>
-Risk: Standing or overly broad tasks can authorize more actions than a workflow needs. <br>
-Mitigation: Prefer short-lived task scopes where possible and review standing tasks before approving them. <br>
-Risk: Write or destructive actions could affect email, calendar, file, message, or repository data. <br>
-Mitigation: Use the provided safe policies so write operations require approval and destructive actions are blocked or explicitly reviewed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route service actions through Clawvisor so credentials stay vaulted, task scopes are approved, restrictions are enforced, and risky actions can require human approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericlevine/clawvisor) <br>
-- [Clawvisor homepage](https://github.com/clawvisor/clawvisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWVISOR_URL, CLAWVISOR_AGENT_TOKEN, and OPENCLAW_HOOKS_URL environment configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.10 (source: ClawHub server release metadata) <br>
+Risk: The agent token is a high-privilege credential for services activated in Clawvisor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated scoped token, keep task scopes narrow, and rotate or revoke the token immediately if it is exposed.
+
+Risk: Standing or broad task scopes can permit persistent access to sensitive Gmail, Calendar, Drive, Contacts, GitHub, or iMessage data.
+
+Mitigation: Prefer short-lived tasks, avoid standing all-mailbox authorizations unless necessary, and use session identifiers for standing workflows.
+
+Risk: Write or destructive service actions can affect email, calendar events, files, issues, or messages.
+
+Mitigation: Review and apply the included safe policies so writes and sensitive reads require approval, email deletion is blocked, and iMessage sending remains disabled unless explicitly enabled.
+
+Risk: Self-hosted Clawvisor setup commands depend on the deployed service version and trust boundary.
+
+Mitigation: Pin or verify the self-hosted Clawvisor version before running setup commands and install only when the Clawvisor deployment is trusted.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ericlevine/skills/clawvisor)
+- [Clawvisor repository](https://github.com/clawvisor/clawvisor)
+- [Task and request examples](https://github.com/clawvisor/clawvisor/blob/main/docs/TASK_EXAMPLES.md)
+- [Clawvisor docs](https://github.com/clawvisor/clawvisor/tree/main/docs)
+- [Clawvisor hosted access](https://clawvisor.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWVISOR_URL, CLAWVISOR_AGENT_TOKEN, and OPENCLAW_HOOKS_URL; routes service actions through Clawvisor task scopes, restrictions, and approval flows.]
+
+## Skill Version(s):
+
+0.9.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

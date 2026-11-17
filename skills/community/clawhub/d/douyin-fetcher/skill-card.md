@@ -1,45 +1,57 @@
-## Description: <br>
-抖音视频获取模块。从抖音链接下载视频文件，支持短视频和 DASH 格式长视频。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Douyin Fetcher helps an agent retrieve Douyin video files from Douyin links, including short videos and DASH-format long videos.
 
-## Publisher: <br>
-[don068589](https://clawhub.ai/user/don068589) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[don068589](https://clawhub.ai/user/don068589)
 
-## Use Case: <br>
-Developers and agent operators use this skill to resolve Douyin video links, extract media stream URLs through a browser session, and download or merge short-form and DASH video assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use a browser profile and potentially rely on existing session credentials while accessing Douyin pages. <br>
-Mitigation: Use a dedicated low-privilege browser profile and require explicit approval before using authenticated sessions or credentials. <br>
-Risk: The workflow can download, merge, archive, move, and delete media files and transcripts. <br>
-Mitigation: Confirm the source link, rights to download, output paths, retention choice, and cleanup actions before running file operations. <br>
-Risk: Extracted audio may be sent to a local ASR endpoint for transcription. <br>
-Mitigation: Confirm the ASR endpoint, data handling expectations, and whether the media contains sensitive content before transcription. <br>
-Risk: The release evidence flags stale TikHub API behavior for review. <br>
-Mitigation: Remove or review the TikHub API path before use and do not configure API tokens without explicit user approval. <br>
+## Use Case:
 
+Developers and agents use this skill to resolve Douyin links, extract video or audio stream URLs through browser inspection, and download or merge media files for later transcription, analysis, or storage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/don068589/douyin-fetcher) <br>
-- [Publisher profile](https://clawhub.ai/user/don068589) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown instructions with shell commands, browser actions, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of video, audio, merged media, and transcript files when the agent follows the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill uses browser access, network requests, local downloads, and ffmpeg commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with an isolated browser profile and approve each generated browser action, download command, and ffmpeg command before execution.
+
+Risk: The skill writes media and transcript artifacts to local paths.
+
+Mitigation: Use a user-approved output directory, limit file retention to the requested artifacts, and clean temporary media files after the workflow completes.
+
+Risk: The security summary flags weak scoping and unsafe generated instructions.
+
+Mitigation: Review or patch generated command and tool-call handling before allowing an agent to execute the workflow automatically.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/don068589/skills/douyin-fetcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with browser tool-call examples, JavaScript snippets, shell commands, and local file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser-operation instructions, download commands, media file paths, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

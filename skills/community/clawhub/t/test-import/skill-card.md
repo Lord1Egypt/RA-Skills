@@ -1,40 +1,54 @@
-## Description: <br>
-Publishes a local skill to ClawHub using command-line or Python API with specified slug, name, version, path, and optional changelog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes a local skill to ClawHub using command-line or Python API inputs for slug, name, version, path, and optional changelog.
 
-## Publisher: <br>
-[wuhaichao87](https://clawhub.ai/user/wuhaichao87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuhaichao87](https://clawhub.ai/user/wuhaichao87)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to publish local skill directories to ClawHub from the command line or from Python, supplying release metadata and an optional changelog. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill ships with an embedded bearer token. <br>
-Mitigation: Treat the token as exposed, rotate or revoke it, and require users to provide their own credential at runtime. <br>
-Risk: The skill can upload local skill files without clear pre-upload review. <br>
-Mitigation: Run it only on non-sensitive skill directories after listing and confirming exactly which files will be uploaded. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to publish local skill directories to ClawHub by providing release metadata and a source path. It supports both command-line use and Python API invocation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuhaichao87/test-import) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include slug, display name, version, local skill path, and optional changelog values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence reports a hardcoded publishing token in the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install or run this version with the embedded token present; revoke the exposed token and replace it with user-provided credentials.
+
+Risk: The release evidence reports that the skill uploads matching local source and text files to ClawHub without strong user review controls.
+
+Mitigation: Review the target directory before use and add a dry-run or confirmation step before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuhaichao87/skills/test-import)
+- [Publisher profile](https://clawhub.ai/user/wuhaichao87)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke ClawHub API calls and upload matching local source or text files when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

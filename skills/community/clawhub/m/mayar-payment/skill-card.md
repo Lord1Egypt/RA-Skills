@@ -1,42 +1,68 @@
-## Description: <br>
-Mayar.id payment integration for generating invoices, payment links, and tracking transactions via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mayar.id payment integration for generating invoices, payment links, and tracking transactions via MCP.
 
-## Publisher: <br>
-[ahsanatha](https://clawhub.ai/user/ahsanatha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ahsanatha](https://clawhub.ai/user/ahsanatha)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to Mayar.id payment workflows for Indonesian commerce, including invoice creation, payment links, transaction checks, subscriptions, webhooks, and customer payment messages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live payment-account authority, including invoice creation, payment links, webhook registration, and customer messaging. <br>
-Mitigation: Use sandbox credentials first, store the API token as a secret, verify and preferably pin the MCP helper, and require explicit confirmation before payment-account or customer-facing actions. <br>
-Risk: Payment workflows handle customer names, emails, mobile numbers, payment status, and transaction details. <br>
-Mitigation: Limit customer data shared with the agent, avoid logging secrets or unnecessary personal data, and review generated messages before sending them to customers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mayar.id API Reference](references/api-reference.md) <br>
-- [Mayar Integration Examples](references/integration-examples.md) <br>
-- [Mayar MCP Tools Reference](references/mcp-tools.md) <br>
-- [Mayar Official API Documentation](https://docs.mayar.id/api-reference/introduction) <br>
+## Use Case:
 
+Developers and operators use this skill to connect agents to Mayar.id payment workflows, including invoice creation, payment-link generation, transaction tracking, subscription checks, WhatsApp payment messaging, and Indonesian payment method handling.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline bash, JSON, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Mayar API or MCP command outputs such as invoice IDs, transaction IDs, payment links, balances, and webhook results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can give an agent access to a live Mayar payment account and customer transaction data.
+
+Mitigation: Use least-privilege credentials where possible, restrict agent access to trusted environments, and review account permissions before installation.
+
+Risk: Payment tokens may be exposed if placed directly in command arguments or committed configuration.
+
+Mitigation: Store tokens outside committed files, avoid passing live tokens inline, protect credential files, and rotate credentials if exposure is suspected.
+
+Risk: Payment fulfillment can be incorrect if webhook or polling results are trusted without verification.
+
+Mitigation: Verify webhook behavior before production fulfillment, persist invoice IDs, and reconcile payment status before releasing goods or services.
+
+Risk: Shell-string examples can become unsafe when populated with user-controlled fields.
+
+Mitigation: Escape or validate customer-provided values and prefer structured API calls over interpolated shell commands in production implementations.
+
+Risk: WhatsApp and reporting workflows can expose customer payment details.
+
+Mitigation: Add consent, access control, and redaction controls before sending or storing customer-facing payment messages and reports.
+
+## Reference(s):
+
+- [Mayar.id API Reference](references/api-reference.md)
+- [Mayar Integration Examples](references/integration-examples.md)
+- [Mayar MCP Tools Reference](references/mcp-tools.md)
+- [Official Mayar API Documentation](https://docs.mayar.id/api-reference/introduction)
+- [Mayar API Keys](https://web.mayar.id/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with shell, JSON, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP tool names, request fields, payment workflow patterns, and production checklist guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

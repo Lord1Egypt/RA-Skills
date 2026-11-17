@@ -1,38 +1,49 @@
-## Description: <br>
-Deep workflow for LLM tool/function calling - schema design, validation, permissions, errors, idempotency, testing, and safe orchestration with agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep workflow for LLM tool/function calling-schema design, validation, permissions, errors, idempotency, testing, and safe orchestration with agents.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, review, and debug LLM tool/function calling workflows for APIs, databases, internal tools, MCP servers, and agent orchestration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance covers credentials, admin tools, filesystem tools, and sensitive data, which could be misapplied in a real system design. <br>
-Mitigation: Review those topics against your own authorization, approval, sandboxing, logging, and data-handling policies before implementing related tool behavior. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, review, and debug safer LLM tool-calling integrations, including schemas, authorization, execution semantics, error handling, observability, and regression testing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mikeclaw007/tool-calling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with checklists and structured workflow stages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no tools, scripts, credentials, or API calls are executed by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Users may treat the workflow as a finished implementation and overlook risks in the actual tools, APIs, credentials, or write operations they build.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as design guidance and separately review concrete tool implementations, permissions, credentials, side effects, and deployment controls before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/tool-calling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists and implementation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only skill; it does not add executable code, persistence, or hidden access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

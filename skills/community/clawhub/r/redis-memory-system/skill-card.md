@@ -1,41 +1,58 @@
-## Description: <br>
-Fully automatic cross-session short-term memory system for OpenClaw that stores conversation summaries in Redis with semantic tag indexing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fully automatic cross-session short-term memory system with a single script, configuration-driven operation, and a semantic tag index.
 
-## Publisher: <br>
-[hualang-c](https://clawhub.ai/user/hualang-c) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hualang-c](https://clawhub.ai/user/hualang-c)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and operate a local Redis-backed memory layer that synchronizes transcript-derived summaries, retrieves recent memory, and searches semantic tags across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads raw OpenClaw transcript files and stores conversation-derived memory in Redis. <br>
-Mitigation: Install only where users expect persistent local memory, narrow SESSIONS_DIR and MEMORY_USERS, and avoid confidential or multi-user sessions without consent, deletion, and access controls. <br>
-Risk: The setup workflow installs persistent background jobs for memory synchronization and monitoring. <br>
-Mitigation: Review the installed crontab after setup, keep Redis protected, and disable or scope scheduled jobs that are not needed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and operate a Redis-backed memory helper that syncs recent session dialogue summaries, retrieves recent memory, searches semantic tags, and checks memory-system status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hualang-c/redis-memory-system) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hualang-c) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Redis and configured OpenClaw transcript access; sync and retrieval commands operate on local files and Redis keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: ClawHub release metadata and artifact _meta.json) <br>
+Risk: The skill ingests cross-session transcript content into Redis, which can include sensitive user or session information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an opt-in installation path, treat stored summaries and transcript excerpts as sensitive data, and avoid shared Redis databases.
+
+Risk: The setup script registers persistent cron-based background execution.
+
+Mitigation: Manually review or remove cron registration before deployment, and approve scheduled execution only for intended users and environments.
+
+Risk: Redis-backed memory can be exposed if Redis access is broad or unauthenticated.
+
+Mitigation: Restrict Redis access, validate configured usernames, and isolate memory data per user or deployment.
+
+## Reference(s):
+
+- [Redis Memory System README](artifact/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/hualang-c/skills/redis-memory-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Redis memory operations for sync, get, set, tag search, heartbeat, ping, and stats workflows.]
+
+## Skill Version(s):
+
+3.3.0 (source: server release evidence, artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

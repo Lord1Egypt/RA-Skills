@@ -1,16 +1,19 @@
 {
   "name": "kids-points",
-  "version": "1.3.0",
-  "description": "儿童积分管理助手 - 语意识别，自动记账，跨 Session 数据一致",
+  "version": "1.2.0",
+  "description": "儿童积分语音助手 - 支持语音记账、语音播报、音频识别（依赖 kid-point-voice-component）",
+  "description": "孩子积分管理技能 - 记录学习任务、生活习惯积分，统计每日/每周/每月数据（支持 TTS 语音播报）",
   "main": "agent-handler.js",
   "scripts": {
-    "test": "echo 'kids-points v2.0 - 简单、灵活的积分管理工具'"
+    "test": "node scripts/index.js",
+    "parse": "node scripts/parse-input.js"
   },
   "keywords": [
     "kids",
     "points",
     "积分",
-    "学习管理"
+    "学习管理",
+    "家庭教育"
   ],
   "author": "老王",
   "license": "MIT",

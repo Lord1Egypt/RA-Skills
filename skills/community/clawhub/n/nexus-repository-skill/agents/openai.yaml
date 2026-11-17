@@ -1,0 +1,7 @@
+interface:
+  display_name: "Nexus Repository"
+  short_description: "Nexus artifact repository operations"
+  default_prompt: "Use $nexus-skills to search Nexus for the requested artifact safely."
+
+policy:
+  allow_implicit_invocation: true

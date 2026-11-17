@@ -1,0 +1,4 @@
+interface:
+  display_name: "南京留学移民审计 | Nanjing Agency Audit"
+  short_description: "南京留学移民双语审计｜Bilingual Nanjing agency audit"
+  default_prompt: "使用 $audit-nanjing-overseas-agencies 中英双语审计南京留学与移民机构。 / Use $audit-nanjing-overseas-agencies to audit Nanjing study-abroad and immigration agencies bilingually."

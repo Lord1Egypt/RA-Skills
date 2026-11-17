@@ -1,44 +1,56 @@
-## Description: <br>
-需求澄清与执行确认。用于日常代码任务（修改、重构、优化、添加注释等）。当用户提出需求时，先通过快速追问（3-5 轮）完善需求，执行前根据规则判断是否需要确认。与 brainstorming（复杂系统设计）互补。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Requirement Agent is a Chinese-language workflow helper that clarifies routine code-change requests and applies configurable confirmation rules before execution.
 
-## Publisher: <br>
-[trackoverflow](https://clawhub.ai/user/trackoverflow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trackoverflow](https://clawhub.ai/user/trackoverflow)
 
-## Use Case: <br>
-Developers and coding agents use this skill to clarify routine code-change requests before execution and decide when a proposed change needs explicit confirmation. It is intended for everyday edits such as refactoring, optimization, formatting, comments, renames, and scoped modifications rather than complex system design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad auto-execution defaults can allow routine single-file, rename, formatting, and code-organization edits without explicit approval. <br>
-Mitigation: Review config/rules.yaml before deployment and tighten or disable auto_execute settings when every code change should require approval. <br>
-Risk: Ambiguous code-change requests may still be clarified incompletely before work begins. <br>
-Mitigation: Use the questioning guide's structured rounds and require confirmation for logic changes, deletions, dependencies, migrations, and irreversible operations. <br>
+## Use Case:
 
+Developers and coding agents use this skill to turn vague routine code-change requests into clearer requirements, then decide whether to proceed automatically or ask for confirmation before making changes.
 
-## Reference(s): <br>
-- [Questioning Guide](references/questioning-guide.md) <br>
-- [Configuration Guide](references/config-guide.md) <br>
-- [Rules Configuration](config/rules.yaml) <br>
-- [ClawHub Skill Page](https://clawhub.ai/trackoverflow/requirement-agent) <br>
-- [Skill Reference](https://skills.sh/requirement-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with structured questions, confirmation prompts, and YAML configuration rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; behavior is controlled by config/rules.yaml.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The configurable auto-execution rules may allow changes such as single-file edits, text-only edits, renames, or direct-modify requests without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review config/rules.yaml before use and tighten auto_execute or require_confirmation settings when every code change should require approval.
+
+Risk: The workflow is intended for routine code tasks and may be insufficient for complex system design or architecture work.
+
+Mitigation: Route new systems, architecture planning, and multi-module design work to a deeper design workflow before implementation.
+
+## Reference(s):
+
+- [Questioning Guide](references/questioning-guide.md)
+- [Configuration Guide](references/config-guide.md)
+- [Requirement Agent ClawHub Page](https://clawhub.ai/trackoverflow/skills/requirement-agent)
+- [Requirement Agent Skill Page](https://skills.sh/requirement-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown conversational responses with optional code edits and configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language clarification prompts and confirmation decisions governed by config/rules.yaml.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

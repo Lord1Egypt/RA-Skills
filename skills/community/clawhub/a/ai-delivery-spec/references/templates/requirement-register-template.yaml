@@ -1,0 +1,29 @@
+artifact: requirement_register
+artifact_role: supporting
+applicable_stages: [intake, clarify, specify, review, baseline, change, acceptance]
+applies_when: 多需求确需集中跟踪时使用；登记册不替代模块需求。
+schema_version: 5.1.0
+register_id: REGISTER-REQ-001
+product: "{product name}"
+current_baseline: "0.1-draft"
+iterations: []
+requirements:
+  - id: REQ-CORE-001
+    title: "{requirement title}"
+    type: new_capability
+    stage: submitted
+    # intake_decision / priority 仅录入已定结论；不预填。
+    outcome: "{observable outcome}"
+    source_refs: [SRC-REQ-001]
+    # value / complexity / uncertainty 在有依据的评估后填写。
+    owner: "{owner}"
+    requester: "{requester}"
+    dependency_refs: []
+    behavior_refs: []
+    acceptance_refs: []
+    review_refs: []
+    change_refs: []
+    baseline_version: "0.1-draft"
+dependency_edges: []
+audit_log: []
+# 实际发生动作后再记录 actor、action、at 和 evidence_refs。

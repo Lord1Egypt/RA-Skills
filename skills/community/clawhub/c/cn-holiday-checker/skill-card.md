@@ -1,42 +1,56 @@
-## Description: <br>
-Queries Chinese holidays, work-shift arrangements, and workday status from local calendar files, with optional updates from configured public calendar sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Chinese holidays, work-shift arrangements, and determines whether a date is a workday using local calendar data and weekly fallback rules.
 
-## Publisher: <br>
-[claudecaicai](https://clawhub.ai/user/claudecaicai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claudecaicai](https://clawhub.ai/user/claudecaicai)
 
-## Use Case: <br>
-Developers and agent users use this skill to check whether a China-specific date is a holiday, adjusted workday, or normal workday/rest day, and to update the local holiday calendar data when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Holiday data can become stale if the local calendar files are not updated. <br>
-Mitigation: Run the provided update command when fresh holiday data is needed and verify the resulting calendar file before relying on it. <br>
-Risk: Automatic monthly updates pull calendar data from configured public URLs. <br>
-Mitigation: Review config.json, approve the iCloud and GitHub calendar sources for the environment, and keep any cron entry explicit and easy to disable. <br>
+## Use Case:
 
+Developers and agents use this skill to answer China-focused holiday, adjusted workday, and rest-day questions for a given date. It can also refresh the local ICS calendar data from configured sources when updates are enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/claudecaicai/cn-holiday-checker) <br>
-- [Primary China holiday calendar source](https://calendars.icloud.com/holidays/cn_zh.ics) <br>
-- [Backup China holidays calendar source](https://raw.githubusercontent.com/lanceliao/china-holidays/master/holidays.ics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text status messages and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Date checks accept YYYY-MM-DD input and return a workday/rest-day status with a short detail string.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Automatic updates contact configured external calendar URLs and replace the local ICS data file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review PRIMARY_URL and BACKUP_URL before enabling updates; add size and validation limits before relying on untrusted sources.
+
+Risk: Holiday and workday answers depend on the accuracy and freshness of the local ICS calendar data.
+
+Mitigation: Keep calendar data current and verify high-impact scheduling decisions against official sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/claudecaicai/skills/cn-holiday-checker)
+- [Publisher profile](https://clawhub.ai/user/claudecaicai)
+- [Primary Chinese holiday calendar source](https://calendars.icloud.com/holidays/cn_zh.ics)
+- [Backup Chinese holiday calendar source](https://raw.githubusercontent.com/lanceliao/china-holidays/master/holidays.ics)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Date responses include the queried date, workday/rest-day status, and matching calendar detail when available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

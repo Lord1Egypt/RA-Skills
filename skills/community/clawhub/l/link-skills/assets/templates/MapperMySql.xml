@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis XML 模板 — 使用时替换以下占位符：
+  {Name}   → 类名（PascalCase，如 KbDocument）
+  {name}   → 变量名（camelCase，如 kbDocument）
+  {module} → 模块名（如 aiAssistant）
+  {domain} → 业务域名（如 knowledge）
+  {table}  → 表名（如 LNK_KB_DOCUMENT）
+  字段部分请根据实际表结构调整
+-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.link.{module}.{domain}.{name}.dao.mybatis.mapper.{Name}Mapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="BaseResultMap" type="com.link.{module}.{domain}.{name}.model.{Name}">
+        <id     column="ID"                    property="id"                    jdbcType="DECIMAL"/>
+        <result column="NAME"                  property="name"                  jdbcType="VARCHAR"/>
+        <result column="DESCRIPTION"           property="description"           jdbcType="VARCHAR"/>
+        <result column="STATUS"                property="status"                jdbcType="DECIMAL"/>
+        <result column="CREATED_BY"            property="createdBy"             jdbcType="VARCHAR"/>
+        <result column="CREATION_DATE"         property="creationDate"          jdbcType="TIMESTAMP"/>
+        <result column="LAST_UPDATED_BY"       property="lastUpdatedBy"         jdbcType="VARCHAR"/>
+        <result column="LAST_UPDATE_DATE"      property="lastUpdateDate"        jdbcType="TIMESTAMP"/>
+        <result column="OBJECT_VERSION_NUMBER" property="objectVersionNumber"   jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <!-- 基础字段 -->
+    <sql id="Base_Column_List">
+        ID, NAME, DESCRIPTION, STATUS,
+        CREATED_BY, CREATION_DATE, LAST_UPDATED_BY, LAST_UPDATE_DATE, OBJECT_VERSION_NUMBER
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id="Where_Clause">
+        <where>
+            <if test="entity != null">
+                <if test="entity.name != null and entity.name != ''">
+                    AND NAME LIKE CONCAT('%', #{entity.name}, '%')
+                </if>
+                <if test="entity.status != null">
+                    AND STATUS = #{entity.status}
+                </if>
+            </if>
+        </where>
+    </sql>
+
+    <!-- 分页查询 -->
+    <select id="queryByExamplePage" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM {table}
+        <include refid="Where_Clause"/>
+        ORDER BY CREATION_DATE DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!-- 查询总数 -->
+    <select id="queryCount" resultType="int">
+        SELECT COUNT(1)
+        FROM {table}
+        <include refid="Where_Clause"/>
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="queryById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM {table}
+        WHERE ID = #{id}
+    </select>
+
+    <!-- 新增 -->
+    <insert id="insert" parameterType="com.link.{module}.{domain}.{name}.model.{Name}"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO {table} (
+            NAME, DESCRIPTION, STATUS,
+            CREATED_BY, CREATION_DATE, OBJECT_VERSION_NUMBER
+        ) VALUES (
+            #{name}, #{description}, #{status},
+            #{createdBy}, NOW(), 1
+        )
+    </insert>
+
+    <!-- 更新（乐观锁） -->
+    <update id="update" parameterType="com.link.{module}.{domain}.{name}.model.{Name}">
+        UPDATE {table}
+        SET NAME = #{name},
+            DESCRIPTION = #{description},
+            STATUS = #{status},
+            LAST_UPDATED_BY = #{lastUpdatedBy},
+            LAST_UPDATE_DATE = NOW(),
+            OBJECT_VERSION_NUMBER = OBJECT_VERSION_NUMBER + 1
+        WHERE ID = #{id}
+          AND OBJECT_VERSION_NUMBER = #{objectVersionNumber}
+    </update>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById">
+        DELETE FROM {table} WHERE ID = #{id}
+    </delete>
+
+</mapper>

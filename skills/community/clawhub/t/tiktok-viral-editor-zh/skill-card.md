@@ -1,42 +1,58 @@
-## Description: <br>
-Helps agents use Sparki to turn source videos into TikTok-style short videos with stronger hooks, faster pacing, and attention-focused edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Sparki skill variant for TikTok-oriented short-video editing that guides agents through setup, API-key use, upload, prompt-driven editing, and command execution while preserving a viral TikTok pacing focus.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External users and creators use this skill when they want an agent to prepare TikTok-style video edits through Sparki. It is suited for short-form video workflows that need prompt-driven editing, uploads, project status checks, and downloaded results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected videos are uploaded to Sparki for cloud processing. <br>
-Mitigation: Use this skill only for videos that are acceptable to process with Sparki, and ask explicitly for local or manual editing when cloud processing is not acceptable. <br>
-Risk: The Sparki API key may be saved in the local OpenClaw configuration file. <br>
-Mitigation: Prefer SPARKI_API_KEY as an environment variable when the key should not be persisted locally. <br>
+## Use Case:
 
+External creators, editors, and agents use this skill to turn local video assets into TikTok-style short videos with stronger hooks, faster pacing, and 9:16-oriented output through Sparki's remote video-editing workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fischerlam/tiktok-viral-editor-zh) <br>
-- [Sparki homepage](https://sparki.io) <br>
-- [Sparki Telegram upload](https://t.me/Sparki_AI_bot/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Markdown guidance with CLI commands, JSON command results, and downloaded video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads MP4 or MOV files to Sparki, stores local configuration and project history, and downloads edited MP4 results when projects complete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: SKILL.md frontmatter, release evidence, and _meta.json) <br>
+Risk: The skill uploads source videos and prompts to Sparki as part of a third-party remote editing workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with video and prompt content that is approved for upload to Sparki.
+
+Risk: API key storage and endpoint selection need review, especially when saving keys or using --base-url.
+
+Mitigation: Prefer SPARKI_API_KEY for credentials and use the default endpoint unless a replacement endpoint is fully trusted.
+
+Risk: Downloaded outputs can overwrite explicit paths and are not size-limited by the downloader.
+
+Mitigation: Choose output paths deliberately, avoid critical filenames, and confirm available disk space before long runs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fischerlam/skills/tiktok-viral-editor-zh)
+- [Sparki Homepage](https://sparki.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; Sparki CLI commands emit JSON and may download edited video files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SPARKI_API_KEY, uploads MP4 or MOV files to Sparki, and writes downloaded videos to a configured or explicit output path.]
+
+## Skill Version(s):
+
+1.0.12 (source: SKILL.md frontmatter, _meta.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

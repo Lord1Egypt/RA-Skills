@@ -5,8 +5,10 @@ Shared config loading for Apple Health Sync scripts.
 
 import json
 import os
+import stat
 from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
+from urllib import error, request
 
 
 # App config
@@ -25,6 +27,13 @@ APP_CONFIG = {
     "v5_history_max_plaintext_bytes": 16_777_216,
 }
 APP_OWNED_KEYS = set(APP_CONFIG.keys())
+ALLOWED_RELAY_URLS = frozenset(
+    {
+        str(APP_CONFIG["supabase_get_data_url"]),
+        str(APP_CONFIG["supabase_qr_code_generator_url"]),
+        str(APP_CONFIG["supabase_unlink_device_url"]),
+    }
+)
 
 
 # User config
@@ -35,6 +44,46 @@ DEFAULTS_CONFIG_PATH = SKILL_DIR / "references" / "configs.defaults.json"
 ALLOWED_STORAGE_VALUES = {"sqlite", "json"}
 REQUIRED_DEFAULT_STRING_KEYS = ("storage",)
 REMOVED_USER_CONFIG_KEYS = {"custom_sink_command", "onboarding_deeplink"}
+
+
+def validate_relay_url(raw_url: str) -> str:
+    url = str(raw_url).strip()
+    if url not in ALLOWED_RELAY_URLS:
+        raise RuntimeError("Refusing network request to an undeclared relay URL.")
+    return url
+
+
+class RejectRelayRedirects(request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise error.HTTPError(
+            req.full_url,
+            code,
+            "Relay redirects are not allowed.",
+            headers,
+            fp,
+        )
+
+
+def open_relay_request(req: request.Request, timeout: int):
+    validate_relay_url(req.full_url)
+    opener = request.build_opener(RejectRelayRedirects())
+    return opener.open(req, timeout=timeout)
+
+
+def secure_state_directory(path: Path) -> None:
+    path.mkdir(mode=0o700, parents=True, exist_ok=True)
+    if not path.is_dir():
+        raise RuntimeError(f"State path is not a directory: {path}")
+    os.chmod(path, 0o700)
+
+
+def secure_private_file(path: Path) -> None:
+    if path.is_symlink():
+        raise RuntimeError(f"Sensitive file must not be a symbolic link: {path}")
+    file_mode = path.stat().st_mode
+    if not stat.S_ISREG(file_mode):
+        raise RuntimeError(f"Sensitive path is not a regular file: {path}")
+    os.chmod(path, 0o600)
 
 
 def resolve_state_dir(raw_state_dir: str = "") -> Path:
@@ -105,6 +154,7 @@ def load_existing_user_config(state_dir: Optional[Path] = None) -> Dict[str, Any
     paths = resolve_user_paths(state_dir)
     for path in (paths["primary_config_path"], paths["legacy_user_config_path"]):
         if path.exists():
+            secure_private_file(path)
             raw_user_config = strip_app_owned_keys(load_json_object(path, "user config"))
             user_config, migrated = migrate_legacy_user_config_keys(raw_user_config)
             if migrated or path != paths["primary_config_path"]:
@@ -127,11 +177,26 @@ def load_effective_config(state_dir: Optional[Path] = None) -> Tuple[Dict[str, A
 
 
 def atomic_write_json(path: Path, payload: Dict[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
+    path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    os.chmod(tmp, 0o600)
-    tmp.replace(path)
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    file_descriptor = None
+    try:
+        file_descriptor = os.open(tmp, flags, 0o600)
+        os.fchmod(file_descriptor, 0o600)
+        with os.fdopen(file_descriptor, "w", encoding="utf-8") as file_handle:
+            file_descriptor = None
+            file_handle.write(json.dumps(payload, indent=2) + "\n")
+            file_handle.flush()
+            os.fsync(file_handle.fileno())
+        tmp.replace(path)
+        secure_private_file(path)
+    finally:
+        if file_descriptor is not None:
+            os.close(file_descriptor)
+        tmp.unlink(missing_ok=True)
 
 
 def write_user_config(payload: Dict[str, Any], state_dir: Optional[Path] = None) -> None:

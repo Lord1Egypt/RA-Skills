@@ -1,41 +1,58 @@
-## Description: <br>
-Navigate and query crypto networks via OpenScan infrastructure for balances, blocks, transactions, gas prices, mempool data, fee estimates, token lookups, event decoding, RPC endpoints, and ENS resolution across Ethereum, Bitcoin, Arbitrum, Optimism, Base, Polygon, BNB, and Sepolia. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate and query crypto networks via OpenScan infrastructure for blockchain data such as balances, blocks, transactions, gas prices, mempool status, fee estimates, token lookups, event decoding, RPC endpoints, and ENS resolution across Ethereum, Bitcoin, Arbitrum, Optimism, Base, Polygon, BNB, and Sepolia.
 
-## Publisher: <br>
-[josealoha666](https://clawhub.ai/user/josealoha666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[josealoha666](https://clawhub.ai/user/josealoha666)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to inspect read-only blockchain data, resolve ENS names, decode EVM transactions and events, benchmark or configure RPC endpoints, and return explorer-linked JSON results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Blockchain addresses, transaction hashes, selectors, and RPC queries may be sent to public RPC providers or disclosed lookup services. <br>
-Mitigation: Use privacy-tagged RPCs or trusted custom RPCs for sensitive investigations. <br>
-Risk: RPC settings are persisted locally and may affect which providers receive future queries. <br>
-Mitigation: Review ~/.config/openscan-crypto/rpc-config.json after changing RPC settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenScan Crypto ClawHub Release](https://clawhub.ai/josealoha666/openscan-crypto) <br>
-- [OpenScan Explorer](https://openscan.eth.link) <br>
-- [OpenScan Metadata CDN](https://cdn.jsdelivr.net/npm/@openscan/metadata@1.1.1-alpha.0/dist) <br>
+## Use Case:
 
+Developers, analysts, and crypto-focused agents use this skill to inspect read-only EVM and Bitcoin network data, decode transactions and events, resolve ENS names, review gas or fee conditions, and manage RPC endpoint choices through OpenScan-backed tooling.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands emit JSON to stdout; many blockchain entities include OpenScan explorer links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; package.json reports 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Read-only blockchain lookups may be sent to public RPC and indexing services.
+
+Mitigation: Use the skill only for queries where sharing addresses, transaction hashes, or lookup targets with public infrastructure is acceptable.
+
+Risk: Private mode is not consistently enforced across ENS and price lookup paths.
+
+Mitigation: Do not treat the --private option as full privacy protection, and avoid sensitive ENS or price queries until those paths are verified.
+
+Risk: Installation resolves mutable npm dependencies at install time.
+
+Mitigation: Install without elevated privileges, review resolved dependency versions, and pin or vendor dependencies before controlled deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josealoha666/skills/openscan-crypto)
+- [OpenScan explorer](https://openscan.eth.link)
+- [OpenScan metadata CDN](https://cdn.jsdelivr.net/npm/@openscan/metadata@1.1.1-alpha.0/dist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands return JSON to stdout and may include OpenScan explorer links for blockchain entities.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata, released 2026-02-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

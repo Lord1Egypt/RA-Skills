@@ -1,39 +1,53 @@
-## Description: <br>
-Leo is a personal profile skill that helps users learn about Leo's background, interests, skills, published projects, and contact or collaboration options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Leo is a personal profile skill that answers questions about Leo's basic information, interests, technical skills, published ClawHub skills, collaboration interests, and contact placeholders.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and collaborators use this skill to learn who Leo is, review listed interests and projects, and identify intended contact or collaboration channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Customized profile content may expose personal contact details or other sensitive information. <br>
-Mitigation: Only publish contact details and personal information that the publisher is comfortable making public. <br>
-Risk: Template placeholders may leave profile details incomplete or misleading. <br>
-Mitigation: Review and update placeholder fields before relying on the profile for introductions, contact, or collaboration decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Leo Skill Page](https://clawhub.ai/LeoCryptoFlow/leo) <br>
+## Use Case:
 
+External users and potential collaborators use this skill to learn who Leo is, review his interests and published ClawHub skills, and identify intended collaboration topics. The source currently contains placeholders for detailed education, work history, social profiles, and contact methods.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text profile information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static profile content; no code execution, credentials, network behavior, or autonomous actions according to security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The profile contains placeholders for education, work history, social profiles, and contact methods, so answers about those details may be incomplete.
+
+Mitigation: Treat placeholder fields as unavailable information and verify important personal or contact details through the publisher profile or another trusted channel.
+
+Risk: The artifact includes a local update path that reveals a likely user environment location.
+
+Mitigation: Replace the local path with generic update guidance before broad public distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/leo)
+- [ClawHub publisher profile](https://clawhub.ai/user/leocryptoflow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; responses are grounded in the personal-profile content and placeholders in the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

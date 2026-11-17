@@ -1,198 +1,198 @@
 # Nightlife — Spain
 
-## Horarios (Realidad)
+## Timing (Reality)
 
-| Fase | Hora | Actividad |
+| Phase | Time | Activity |
 |------|------|-----------|
-| Cañas/vermut | 19-21h | Terrazas, bares |
-| Cena | 21-23h | Restaurantes |
-| Copas | 23-02h | Bares de copas |
-| Discoteca | 02-06h | Clubs |
+| Beers/vermouth | 19-21h | Terraces, bars |
+| Dinner | 21-23h | Restaurants |
+| Drinks | 23-02h | Cocktail bars |
+| Club | 02-06h | Clubs |
 
-**Llegar antes de las 02h a discoteca** = estar solo.
+**Arriving at a club before 2am** = being alone.
 
 ## Madrid
 
-### Zonas de Copas
+### Drinking Areas
 
-| Zona | Ambiente | Edad |
+| Area | Vibe | Age |
 |------|----------|------|
-| Malasaña | Hipster, alternativo | 25-40 |
-| Chueca | LGBTQ+, fiestero | 20-45 |
-| La Latina | Castizo, terrazas | 25-45 |
-| Huertas | Turístico, shots | 18-30 |
+| Malasaña | Hipster, alternative | 25-40 |
+| Chueca | LGBTQ+, party | 20-45 |
+| La Latina | Traditional, terraces | 25-45 |
+| Huertas | Touristy, shots | 18-30 |
 | Lavapiés | Multicultural | 25-40 |
-| Salamanca | Pijo, caro | 25-45 |
+| Salamanca | Posh, expensive | 25-45 |
 
-### Bares Específicos
+### Specific Bars
 
-| Bar | Zona | Tipo |
+| Bar | Area | Type |
 |-----|------|------|
-| Museo Chicote | Gran Vía | Cócteles clásicos, Hemingway |
-| Sala Equis | Lavapiés | Cine antiguo, terraza |
-| La Vía Láctea | Malasaña | Rock, histórico |
-| El Junco | Malasaña | Jazz en vivo |
-| Medias Puri | Malasaña | Indie, pequeño |
+| Museo Chicote | Gran Vía | Classic cocktails, Hemingway |
+| Sala Equis | Lavapiés | Old cinema, terrace |
+| La Vía Láctea | Malasaña | Rock, historic |
+| El Junco | Malasaña | Live jazz |
+| Medias Puri | Malasaña | Indie, small |
 
-### Discotecas
+### Clubs
 
-| Club | Tipo | Entrada | Hora |
+| Club | Type | Cover | Hours |
 |------|------|---------|------|
-| Kapital | 7 plantas, mainstream | €15-20 | 00-06h |
-| Teatro Barceló | Pop, turístico | €15-20 | 00-06h |
+| Kapital | 7 floors, mainstream | €15-20 | 00-06h |
+| Teatro Barceló | Pop, touristy | €15-20 | 00-06h |
 | Mondo | House/techno | €12-18 | 01-07h |
 | Siroco | Indie, rock | €10-15 | 00-05h |
 | Cool | Techno, underground | €10-15 | 01-08h |
 
 ## Barcelona
 
-### Zonas
+### Areas
 
-| Zona | Ambiente | Nota |
+| Area | Vibe | Note |
 |------|----------|------|
-| Born | Trendy, cócteles | Caro |
-| Raval | Alternativo | Cuidado callejones |
-| Gótico | Turístico | Plaza Reial llena |
-| Gràcia | Local, tranquilo | Plazas |
-| Poble Sec | Barato, auténtico | Carrer Blai |
-| Port Olímpic | Discotecas turísticas | Evitar |
-| Eixample (Gaixample) | LGBTQ+ | Ambiente |
+| Born | Trendy, cocktails | Expensive |
+| Raval | Alternative | Watch the alleys |
+| Gothic | Touristy | Plaça Reial packed |
+| Gràcia | Local, chill | Plazas |
+| Poble Sec | Cheap, authentic | Carrer Blai |
+| Port Olímpic | Touristy clubs | Avoid |
+| Eixample (Gaixample) | LGBTQ+ | Scene |
 
-### Bares
+### Bars
 
-| Bar | Zona | Tipo |
+| Bar | Area | Type |
 |-----|------|------|
-| Paradiso | Born | Cócteles, entrada secreta |
-| Bar Marsella | Raval | Absenta, antiguo |
-| Dry Martini | Eixample | Cócteles clásicos |
-| Betty Ford's | Gràcia | Rock, americano |
+| Paradiso | Born | Cocktails, secret entrance |
+| Bar Marsella | Raval | Absinthe, old |
+| Dry Martini | Eixample | Classic cocktails |
+| Betty Ford's | Gràcia | Rock, American |
 | La Cervecita Nuestra de Cada Día | Gràcia | Craft beer |
 
-### Discotecas
+### Clubs
 
-| Club | Tipo | Entrada | Hora |
+| Club | Type | Cover | Hours |
 |------|------|---------|------|
-| Razzmatazz | 5 salas, variado | €15-20 | 01-06h |
-| Apolo | Electrónica | €12-18 | 00-06h |
+| Razzmatazz | 5 rooms, varied | €15-20 | 01-06h |
+| Apolo | Electronic | €12-18 | 00-06h |
 | Moog | Techno | €10-15 | 00-05h |
-| Opium | Comercial, playa | €20-25 | 00-06h |
+| Opium | Commercial, beach | €20-25 | 00-06h |
 | Input | Techno | €15-20 | 00-07h |
 
-**Evitar:** Port Olímpic (turístico, caro, peleas).
+**Avoid:** Port Olímpic (touristy, expensive, fights).
 
 ## Ibiza
 
-### Por Tipo
+### By Type
 
-| Quieres | Ve a |
+| You want | Go to |
 |---------|------|
-| Techno puro | DC-10, Underground |
-| House/comercial | Pacha, Hï Ibiza |
-| Ver y ser visto | Ushuaïa (day club) |
-| Más tranquilo | Pikes, Las Dalias |
-| Atardecer | Café del Mar, Mambo |
+| Pure techno | DC-10, Underground |
+| House/commercial | Pacha, Hï Ibiza |
+| See and be seen | Ushuaïa (day club) |
+| Quieter | Pikes, Las Dalias |
+| Sunset | Café del Mar, Mambo |
 
-### Precios (2024)
+### Prices (2024)
 
-| Concepto | Precio |
+| Item | Price |
 |----------|--------|
-| Entrada club | €50-100 |
-| Copa club | €20-30 |
-| Botella en mesa | €300-500 |
+| Club entry | €50-100 |
+| Club drink | €20-30 |
+| Table bottle | €300-500 |
 | Taxi San Antonio-Ibiza | €30-40 |
 
-**Temporada:** Junio-septiembre. Opening/closing parties en mayo/octubre.
+**Season:** June-September. Opening/closing parties in May/October.
 
-## Sevilla
+## Seville
 
-### Zonas
+### Areas
 
-| Zona | Tipo |
+| Area | Type |
 |------|------|
-| Alameda de Hércules | Alternativo, terrazas |
-| Triana | Flamenco, bares |
-| Alfalfa | Joven, copas |
-| Centro | Turístico |
+| Alameda de Hércules | Alternative, terraces |
+| Triana | Flamenco, bars |
+| Alfalfa | Young, drinks |
+| Centro | Touristy |
 
-### Horario Verano
-Por el calor, la gente sale más tarde:
-- Terrazas: 22-01h
-- Copas: 01-04h
-- Discotecas: 03-07h
+### Summer Timing
+Because of the heat, people go out later:
+- Terraces: 22-01h
+- Drinks: 01-04h
+- Clubs: 03-07h
 
 ## San Sebastián
 
-### Zonas
+### Areas
 
-| Zona | Tipo |
+| Area | Type |
 |------|------|
-| Parte Vieja | Pintxos → copas |
-| Gros | Surferos, alternativo |
-| Centro | Terrazas |
+| Old Town | Pintxos → drinks |
+| Gros | Surfers, alternative |
+| Centro | Terraces |
 
-**Nota:** Ciudad pequeña, cierra antes que Madrid/Barcelona (~03-04h).
+**Note:** Small city, closes earlier than Madrid/Barcelona (~03-04h).
 
 ## Valencia
 
-### Zonas
+### Areas
 
-| Zona | Tipo |
+| Area | Type |
 |------|------|
-| Barrio del Carmen | Principal, variado |
-| Ruzafa | Hipster, terrazas |
-| Malvarrosa/playa | Chiringuitos noche |
-| Ciudad de las Artes | Discotecas grandes |
+| Barrio del Carmen | Main, varied |
+| Ruzafa | Hipster, terraces |
+| Malvarrosa/beach | Beach bars at night |
+| Ciudad de las Artes | Big clubs |
 
-### Festivales
-- **Fallas (marzo):** Fiesta 24h, ciudad no duerme
-- **Verano:** L'Umbracle Terraza
+### Festivals
+- **Fallas (March):** 24h party, the city doesn't sleep
+- **Summer:** L'Umbracle Terraza
 
 ## Bilbao
 
-### Zonas
+### Areas
 
-| Zona | Tipo |
+| Area | Type |
 |------|------|
-| Casco Viejo | Pintxos → copas |
-| Pozas | Alternativo |
-| Indautxu | Pijo |
+| Old Town | Pintxos → drinks |
+| Pozas | Alternative |
+| Indautxu | Posh |
 
 ## LGBTQ+
 
-### Mejores Ciudades
+### Best Cities
 
-| Ciudad | Zona principal |
+| City | Main area |
 |--------|----------------|
-| Madrid | Chueca (epicentro) |
+| Madrid | Chueca (epicenter) |
 | Barcelona | Gaixample |
-| Sitges | Toda la ciudad |
+| Sitges | The whole town |
 | Gran Canaria | Maspalomas/Playa del Inglés |
-| Ibiza | Toda la isla |
+| Ibiza | The whole island |
 
 ### Madrid Chueca
 
-| Local | Tipo |
+| Venue | Type |
 |-------|------|
-| Fulanita de Tal | Lesbiana |
+| Fulanita de Tal | Lesbian |
 | Delirio | Drag shows |
 | Strong | Bears |
 | Boyberry | General |
-| Kluster | Discoteca |
+| Kluster | Club |
 
 ### Barcelona Gaixample
 
-| Local | Tipo |
+| Venue | Type |
 |-------|------|
-| Punto BCN | Aperitivos, drag |
-| Axel Hotel | Terraza, rooftop |
-| Metro | Discoteca |
-| Arena | Grupo de discotecas |
+| Punto BCN | Aperitifs, drag |
+| Axel Hotel | Terrace, rooftop |
+| Metro | Club |
+| Arena | Club group |
 
 ## Tips
 
-1. **Vestimenta:** Más arreglados que en UK/USA. Evitar zapatillas deportivas en clubs nice.
-2. **Reservas en discotecas:** Algunas tienen lista online con descuento/entrada gratis.
-3. **After hours:** Madrid tiene cultura de after. Kapital abre domingo mañana.
-4. **No bebas en la calle:** Botellón prohibido/multado en muchas ciudades.
-5. **Taxis noche:** Suplemento nocturno normal. Usa app (FreeNow, Cabify).
-6. **Drogas:** Consumo personal descriminalizado pero venta ilegal. Policía puede multar.
+1. **Dress:** Smarter than in the UK/USA. Avoid sneakers at nice clubs.
+2. **Club reservations:** Some have online lists with discounts/free entry.
+3. **After hours:** Madrid has an after-party culture. Kapital opens Sunday morning.
+4. **Don't drink in the street:** Botellón (street drinking) banned/fined in many cities.
+5. **Night taxis:** Night surcharge is normal. Use an app (FreeNow, Cabify).
+6. **Drugs:** Personal use decriminalized but selling is illegal. Police can fine you.

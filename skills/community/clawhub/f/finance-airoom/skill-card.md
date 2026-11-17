@@ -1,47 +1,59 @@
-## Description: <br>
-Provides agents with structured, simulated global financial market data documents and quantitative strategy reference material for market monitoring and analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agents with a supervised downloader and guidance for retrieving structured, simulated global finance data files from airoom.ltd and using them as reference inputs for market monitoring.
 
-## Publisher: <br>
-[airoom-ai](https://clawhub.ai/user/airoom-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airoom-ai](https://clawhub.ai/user/airoom-ai)
 
-## Use Case: <br>
-Developers and AI operators use this skill to download and review airoom.ltd financial data files, environment scores, and strategy reference material for market monitoring workflows. It should be used for information gathering only, with human review before any financial action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates browser-based downloads from a configured financial data page and may retrieve unexpected or unsafe files. <br>
-Mitigation: Use only manual, user-directed downloads from authorized pages, prefer HTTPS, set a small WP_MAX_FILES value, and scan downloaded files before opening them. <br>
-Risk: The documentation encourages risky AI-driven investing workflows and strategy signals. <br>
-Mitigation: Treat all data and signals as informational only; do not let an agent place trades or act on strategy signals without explicit human and regulatory review. <br>
-Risk: Optional WordPress credentials can be supplied for authenticated pages. <br>
-Mitigation: Avoid storing credentials in config, use scoped credentials only when required, and remove credentials after the download task completes. <br>
-Risk: The default target configuration uses HTTP. <br>
-Mitigation: Prefer HTTPS endpoints when available and verify the source page before downloading files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure a Playwright-based downloader for airoom.ltd financial data files and feed downloaded data into supervised analysis or monitoring workflows. It should be used as reference data support, not as an autonomous trading system.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/airoom-ai/finance-airoom) <br>
-- [Publisher profile](https://clawhub.ai/user/airoom-ai) <br>
-- [airoom.ltd public data page](http://airoom.ltd/index.php/airoom/) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with Python commands, configuration JSON, and downloaded local data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require WP_URL, WP_TARGET_URL, optional WordPress credentials, WP_OUTPUT_DIR, and WP_MAX_FILES.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata and artifact/_meta.json) <br>
+Risk: AI-directed financial strategy use could be mistaken for investment advice or autonomous trading instruction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only as a supervised downloader and analysis aid; require human or qualified professional review before any financial decision and do not allow autonomous trade execution.
+
+Risk: Broad network and download behavior can retrieve unexpected files from a configured target page.
+
+Mitigation: Restrict WP_URL and WP_TARGET_URL to trusted pages, use a dedicated output directory, set WP_MAX_FILES where appropriate, and inspect downloaded files before opening or passing them to other tools.
+
+Risk: Optional WordPress credentials may be exposed if used on HTTP or untrusted sites.
+
+Mitigation: Avoid entering WordPress credentials unless the site uses HTTPS and credential use is necessary; prefer the public no-login workflow when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/airoom-ai/skills/finance-airoom)
+- [Publisher profile](https://clawhub.ai/user/airoom-ai)
+- [airoom.ltd target data page](http://airoom.ltd/index.php/airoom/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration examples; runtime commands produce console text and locally downloaded files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses WP_URL, WP_TARGET_URL, optional WordPress credentials, WP_OUTPUT_DIR, and WP_MAX_FILES to control the target page and download behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

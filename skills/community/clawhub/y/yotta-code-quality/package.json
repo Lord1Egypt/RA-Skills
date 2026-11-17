@@ -1,0 +1,38 @@
+{
+  "name": "@yottameta/yotta-code-quality",
+  "version": "0.4.5",
+  "description": "Pair-style code quality reviewer: twelve book-grounded decay risks (R1-R6, T1-T6) plus release-safety and first-paint UX checks; Iron Law findings (Symptom -> Source -> Consequence -> Remedy) and 0-100 Health Score.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-code-quality",
+    "code-review",
+    "tech-debt",
+    "test-quality"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "install.sh",
+    "references",
+    "bin",
+    "assets",
+    "README.zh-CN.md",
+    "NOTICE",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-code-quality.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-code-quality": "bin/install.js"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\""
+  }
+}

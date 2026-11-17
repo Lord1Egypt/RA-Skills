@@ -1,45 +1,52 @@
-## Description: <br>
-Call GET /api/v1/google/patents/details for Google SERP Patents Details through Just Serp API with patent_id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/patents/details for Google SERP Patents Details through Just Serp API with patent_id.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers, patent researchers, and IP due diligence teams use this skill to retrieve Google Patents detail data, including abstracts, claims, and legal status, through Just Serp API for a specified patent_id. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Just Serp API key, which could be exposed if pasted into chat, screenshots, or logs. <br>
-Mitigation: Provide the key only through the documented JUST_SERP_API_KEY environment variable and avoid sharing the key value in prompts or output. <br>
-Risk: Patent lookup parameters are submitted to Just Serp API during endpoint execution. <br>
-Mitigation: Submit only intended patent IDs and optional lookup parameters, and use the skill only when sharing those values with Just Serp API is acceptable. <br>
-Risk: When requested, raw HTML or backend error payloads may be returned in the skill output. <br>
-Mitigation: Review returned raw payloads before redistributing them and avoid including sensitive values in request parameters. <br>
+## Use Case:
 
+Developers and agents use this skill to call Just Serp API's Google patent details endpoint for patent abstracts, claims, and legal status using a Google Patent ID.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justserpapi/justserpapi-google-patents-details) <br>
-- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_patents_details&utm_content=project_link) <br>
-- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_patents_details&utm_content=project_link) <br>
-- [Generated Operations Reference](generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown summary with an inline shell command and raw JSON API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and patent_id; optional query parameters include language and html.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Passing the Just Serp API key as a command-line argument can expose the secret locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in environments where command lines are not captured in logs or visible to other local users, and prefer a helper version that reads JUST_SERP_API_KEY directly from the environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justserpapi/skills/justserpapi-google-patents-details)
+- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_patents_details&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_patents_details&utm_content=project_link)
+- [Just Serp API Base URL](https://api.justserpapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown summary with optional raw JSON API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and a patent_id parameter.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "China CDC Health Reports"
+  short_description: "Find five official China CDC report series"
+  default_prompt: "Use $find-china-cdc-health-report to locate and process the requested official China CDC report."

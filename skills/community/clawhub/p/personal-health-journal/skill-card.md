@@ -1,43 +1,59 @@
-## Description: <br>
-Personal Health Journal helps an agent record daily symptoms and vital signs, generate structured daily health summaries, identify trend changes, and provide risk-tiered care reminders without replacing clinical diagnosis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal Health Journal helps agents record daily symptoms and vital signs, generate structured health summaries, analyze recent trends, and surface tiered care reminders without replacing clinical diagnosis.
 
-## Publisher: <br>
-[yangforsix](https://clawhub.ai/user/yangforsix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangforsix](https://clawhub.ai/user/yangforsix)
 
-## Use Case: <br>
-Individuals and care-support agents use this skill to keep dated symptom, vital-sign, medication, and care-history notes, then summarize recent trends and red-flag symptoms for safer follow-up. It is intended for tracking and triage support, not diagnosis or emergency care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive symptom, vital-sign, medication, and care-history notes in a local folder. <br>
-Mitigation: Keep the folder private, avoid adding direct identifiers or account details, and review records before sharing them. <br>
-Risk: Health guidance could be mistaken for clinical diagnosis or emergency medical advice. <br>
-Mitigation: Use the output for tracking and triage support only, and seek timely in-person medical care when urgent or worsening symptoms appear. <br>
+## Use Case:
 
+External users use this skill to keep a local Markdown health journal, summarize daily symptoms and vital signs, review 7-14 day trends, and identify when home observation, follow-up, or urgent in-person care may be appropriate.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yangforsix/personal-health-journal) <br>
-- [Symptom record template](references/symptom-template.md) <br>
-- [Daily health summary template](references/daily-summary-template.md) <br>
-- [Risk tiers and care reminders](references/risk-flags.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown health records, daily summaries, and concise chat summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores sensitive health notes locally and should avoid identifiers such as ID numbers, account details, real names, hospital numbers, and inspection barcodes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Local Markdown health notes may contain sensitive medical information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store records in a private, access-restricted folder and avoid syncing, sharing, or committing the journal files.
+
+Risk: Symptom-based directory names may reveal private health details.
+
+Mitigation: Use neutral directory names or another naming scheme that does not expose symptoms.
+
+Risk: Health summaries and risk tiers could be mistaken for a clinical diagnosis.
+
+Mitigation: Keep outputs framed as health management and risk reminders, and seek timely in-person care for urgent symptoms.
+
+## Reference(s):
+
+- [Symptom Record Template](references/symptom-template.md)
+- [Daily Health Summary Template](references/daily-summary-template.md)
+- [Risk Classification and Care Guidance](references/risk-flags.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Analysis, Guidance]
+
+**Output Format:** [Markdown health records, daily summaries, trend analysis, and tiered care reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local daily health-journal files and mirrors a concise summary in chat.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

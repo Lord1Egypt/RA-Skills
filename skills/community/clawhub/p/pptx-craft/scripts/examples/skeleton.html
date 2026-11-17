@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>PPT 骨架示例 · skeleton</title>
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  pptx-craft 最小 HTML 骨架（#6 最小骨架优先）                       ║
+  ║  用法: python scripts/html2ppt.py skeleton.html --out skeleton.pptx ║
+  ║  规则: 解析器零专属类名, 只认【语义标签 + 通用契约 class】。           ║
+  ║  契约 class(可选增强, 加了对解析最稳):                              ║
+  ║    hero / cover    → 封面页                                        ║
+  ║    head            → 页眉区(眉标+标题+副题)                          ║
+  ║    card / box      → 卡片                                           ║
+  ║    grid / contain  → 卡片栅格 / 正文包裹容器                          ║
+  ║    timeline / steps→ 时间线/阶段(竖向序列)                           ║
+  ║  不加任何 class 也能解析(走语义+几何启发兜底), class 只是更稳。       ║
+  ╚══════════════════════════════════════════════════════════════════╝
+-->
+</head>
+<body>
+
+  <!-- ① 封面页：用 <section class="hero"> 自动识别为 hero 版式 -->
+  <section id="cover" class="hero">
+    <h1>产品半年度复盘</h1>
+    <p class="sub">2026 H1 · 增长、反思与下一步</p>
+  </section>
+
+  <!-- ② 核心结论：contain 包裹 + 多个 card -->
+  <section id="summary" class="contain">
+    <h2>核心结论</h2>
+    <div class="card">
+      <h3>结论一</h3>
+      <p>用一句话讲清最重要的判断，正文可多行。</p>
+    </div>
+    <div class="card">
+      <h3>结论二</h3>
+      <p>第二重要的判断，同样支持多行正文。</p>
+    </div>
+  </section>
+
+  <!-- ③ 关键里程碑：timeline 竖向序列，每个条目可带日期 -->
+  <section id="steps" class="timeline">
+    <h2>关键里程碑</h2>
+    <div>
+      <span class="date">3月</span>
+      <h3>立项</h3>
+      <p>完成方案评审与资源确认。</p>
+    </div>
+    <div>
+      <span class="date">6月</span>
+      <h3>上线</h3>
+      <p>首批用户验证，跑通主流程。</p>
+    </div>
+  </section>
+
+  <!-- ④ 指标看板：grid 卡片栅格（3 列自适应） -->
+  <section id="data" class="grid">
+    <h2>指标看板</h2>
+    <div class="card"><h3>DAU</h3><p>12.4万 · 环比 +18%</p></div>
+    <div class="card"><h3>次日留存</h3><p>45%</p></div>
+    <div class="card"><h3>NPS</h3><p>62</p></div>
+  </section>
+
+  <!-- ⑤ 普通段落：纯文本块（陈述页会自动升字号居中） -->
+  <section id="note">
+    <h2>一句话总结</h2>
+    <p>把最重要的那句话放在这里，少内容页会自动放大成陈述版式。</p>
+  </section>
+
+</body>
+</html>

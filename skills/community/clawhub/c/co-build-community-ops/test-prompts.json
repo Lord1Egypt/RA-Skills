@@ -1,0 +1,80 @@
+{
+  "skill": "co-build-community-ops",
+  "version": "0.1.0",
+  "source_book": "《价值互联网产业应用蓝皮书（2025 年）》 \"价值互联网产业应用蓝皮书\"编写组（主编：梁超杰）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我做了一个知识付费产品，想让用户不只是买课，而是像共建者一样参与进来——消费即投资到底怎么落地？",
+      "expected_behavior": "应激活 co-build-community-ops，引导定义价值主张与'消费即投资'共识，产出行为→事业投资映射清单。",
+      "notes": "正面场景：消费即投资落地，description 明确列出的信号。"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我们是个小团队，手上有几千用户但活跃度低、拉新就死，怎么从 0 搭一个事业共同体把他们变成长期共建者？",
+      "expected_behavior": "应激活 co-build-community-ops，按 E 步骤定义共同体价值主张、设计行动→贡献→通证闭环。",
+      "notes": "正面场景：从 0 搭共建社区 / 事业共同体，核心信号。"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "我想用四融（融人融智融市场融资源）把外面的合作方、渠道资源吸进来一起做，机制怎么设计？",
+      "expected_behavior": "应激活 co-build-community-ops，用四融杠杆设计黏性工具矩阵与治理闭环。",
+      "notes": "正面场景：四融转化外部资源为协同动能。"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "怎么设计通证作为黏性工具让社区自增长、自裂变，而不是靠烧钱拉新？",
+      "expected_behavior": "应激活 co-build-community-ops，明确通证三重角色（记账/权利/结算凭据）并设计自增长机制。",
+      "notes": "正面场景：黏性工具/通证让社区自增长。"
+    },
+    {
+      "id": "should-trigger-05",
+      "type": "should_trigger",
+      "prompt": "我有个粉丝群，但感觉就是个流量群，怎么变成真共建社区、让用户有真实权益回馈？",
+      "expected_behavior": "应激活 co-build-community-ops，引导用户从'伪社群'升级为事业共同体并定义真实贡献回馈路径。",
+      "notes": "正面场景：验证自己是不是真共建，典型创作者社区诉求。"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我想设计一套社区贡献计量和分润的规则，把'行为贡献→权益'写进智能合约代码，比例怎么定、代码怎么写？",
+      "expected_behavior": "不应激活本 skill，应转 S5 贡献计量与分配设计器（本 skill 不覆盖分配机制的代码化）。",
+      "notes": "诱饵：通证分配规则与合约代码属 S5 范畴，非 S6 组织运营范式。"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "我是自由职业者，一个人想进 Web3 接单赚通证，不知道自己能接什么活、从哪接。",
+      "expected_behavior": "不应激活本 skill，应转 S9 OPC/超级个体落地清单（个体侧接单，非平台侧搭社区）。",
+      "notes": "诱饵：个体承接任务属 S9，S6 是平台/企业侧组织设计。"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "我们社区想发一个代币面向境内居民募资，境内合不合规、会不会踩红线？",
+      "expected_behavior": "不应激活本 skill，应转 S2 合规边界红线检查（境内发币/代币化融资是 S2 生死闸门）。",
+      "notes": "诱饵：境内合规判断属 S2，S6 在'非金融数字化赋能'框架内谈运营、不判红线。"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我是做自媒体的，想把我的读者变成帮我传播、创作的共建者，这算 S6 还是 S9？",
+      "expected_behavior": "应触发 S6：创作者组织'自己的受众'成事业共同体属 S6 信号5；区别于 S9（个体去接别人平台的单）。但需一句话澄清互斥边界。",
+      "notes": "边界：个体 vs 平台——组织者视角归 S6，承接者视角归 S9，本案是前者。"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "我们想搭个会员积分体系，让用户积分能兑换权益、觉得参与有回报，这算不算共建社区？",
+      "expected_behavior": "可触发 S6 引导，但必须先澄清'积分群≠真共建'：若无真实行为贡献计量与产业现金流回馈，则只是积分营销，应引导按 E 步骤定义价值主张而非套模板。",
+      "notes": "边界：积分体系 vs 真共建社区，意图是设计黏性机制但易沦为伪社群。"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0）。"
+}

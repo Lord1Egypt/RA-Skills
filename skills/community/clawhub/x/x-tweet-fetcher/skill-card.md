@@ -1,42 +1,59 @@
-## Description: <br>
-Fetches public X/Twitter tweets without login or API keys, including regular tweets, long tweets, quoted tweets, and full X Articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch tweets from X/Twitter without login or API keys, including regular tweets, long tweets, quoted tweets, and full X Articles with zero dependencies or configuration.
 
-## Publisher: <br>
-[hjw21century](https://clawhub.ai/user/hjw21century) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hjw21century](https://clawhub.ai/user/hjw21century)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve public X/Twitter post content, engagement stats, quoted tweets, and long-form X Articles from a tweet URL without account credentials or API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Tweet lookup requests are sent to FxTwitter, which may observe requested tweet IDs and request metadata. <br>
-Mitigation: Avoid using the skill for sensitive URLs, and review FxTwitter privacy and provider suitability before deployment. <br>
-Risk: The skill depends on FxTwitter availability and cannot fetch deleted, private, or reply-thread content. <br>
-Mitigation: Handle fetch errors explicitly and use a fallback process when content is unavailable or reply text is required. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve public X/Twitter post content, engagement metadata, quoted posts, and long-form article text without requiring X/Twitter credentials or API keys.
 
-## Reference(s): <br>
-- [FxTwitter](https://github.com/FxEmbed/FxEmbed) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [ClawHub skill page](https://clawhub.ai/hjw21century/x-tweet-fetcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text] <br>
-**Output Format:** [JSON object or plain text from a Python CLI/API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes tweet text, article text, author metadata, engagement counts, quote data, and error messages when fetching fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Requested public tweet identifiers are sent to the FxTwitter service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid use in sensitive research workflows where revealing the queried post identifier to a third-party service is unacceptable.
+
+Risk: Fetching depends on FxTwitter availability and rate limits.
+
+Mitigation: Handle returned errors explicitly and use an alternate collection path when FxTwitter is unavailable.
+
+Risk: The skill cannot access reply threads, deleted tweets, or private tweets.
+
+Mitigation: Use it only for public single-post extraction and rely on the returned reply count instead of expecting reply content.
+
+## Reference(s):
+
+- [X Tweet Fetcher on ClawHub](https://clawhub.ai/hjw21century/skills/x-tweet-fetcher)
+- [FxTwitter / FxEmbed](https://github.com/FxEmbed/FxEmbed)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, code, shell commands]
+
+**Output Format:** [JSON or plain text, with Markdown usage examples and Python API snippets in the skill guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a public x.com or twitter.com status URL; requests are sent to FxTwitter; no credentials or external Python packages are required.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

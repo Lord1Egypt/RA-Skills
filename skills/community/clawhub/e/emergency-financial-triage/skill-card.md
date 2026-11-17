@@ -1,48 +1,61 @@
-## Description: <br>
-Priority-based action plan for financial emergencies. Use when someone can't make rent, is about to be evicted, can't afford food, has utilities about to be shut off, or faces any immediate financial crisis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emergency Financial Triage provides a priority-based action plan for immediate financial emergencies such as missed rent, eviction risk, food insecurity, utility shutoff, or sudden income loss.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and assisting agents use this skill to prioritize urgent financial actions when facing missed rent, eviction risk, food insecurity, medication costs, utility shutoff, job loss, or multiple overdue bills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with US-specific resources that should be adapted for users outside the United States. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guidance is US-oriented and may point to assistance programs that do not apply in the user's location. <br>
-Mitigation: Confirm the user's location and use local emergency, food, housing, utility, legal aid, and crisis resources when outside the US. <br>
-Risk: Filesystem or calendar access could create unwanted files or reminders if used without a clear request. <br>
-Mitigation: Only use filesystem or calendar tools for an explicit user-directed action such as saving a checklist or setting a reminder. <br>
+## Use Case:
 
+External users and support agents use this skill to prioritize urgent needs, contact creditors, avoid predatory loans, and locate assistance resources during a financial crisis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/emergency-financial-triage) <br>
-- [USDA SNAP program](https://www.fns.usda.gov/snap/supplemental-nutrition-assistance-program) <br>
-- [LIHEAP program](https://www.acf.hhs.gov/ocs/programs/liheap) <br>
-- [Emergency Rental Assistance Program](https://home.treasury.gov/policy-issues/coronavirus/assistance-for-state-local-and-tribal-governments/emergency-rental-assistance-program) <br>
-- [211 helpline](https://www.211.org/) <br>
-- [NeedyMeds](https://www.needymeds.org/) <br>
-- [FindHelp](https://www.findhelp.org) <br>
-- [LawHelp](https://www.lawhelp.org) <br>
-- [Feeding America food bank locator](https://www.feedingamerica.org/find-your-local-foodbank) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklists, priority order, call scripts, and resource links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May support user-directed calendar reminders or filesystem-saved checklists when the agent has those tools available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill declares calendar and filesystem access without explaining why those permissions are needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if those permissions are acceptable for the deployment, or ask the publisher to remove them and provide a pinned, reproducible install command.
+
+Risk: The financial assistance programs, phone numbers, and agency links are US-focused.
+
+Mitigation: Confirm local equivalents before using the guidance outside the United States.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/emergency-financial-triage)
+- [USDA Supplemental Nutrition Assistance Program](https://www.fns.usda.gov/snap/supplemental-nutrition-assistance-program)
+- [LIHEAP program](https://www.acf.hhs.gov/ocs/programs/liheap)
+- [US Treasury Emergency Rental Assistance Program](https://home.treasury.gov/policy-issues/coronavirus/assistance-for-state-local-and-tribal-governments/emergency-rental-assistance-program)
+- [211 helpline](https://www.211.org/)
+- [NeedyMeds prescription assistance](https://www.needymeds.org/)
+- [FindHelp local assistance search](https://www.findhelp.org)
+- [LawHelp legal aid directory](https://www.lawhelp.org)
+- [Feeding America food bank locator](https://www.feedingamerica.org/find-your-local-foodbank)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with prioritized checklists and call scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [US-focused resources; requires local adaptation outside the United States.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

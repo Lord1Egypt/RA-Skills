@@ -1,39 +1,50 @@
-## Description: <br>
-Specialized processor for EvoMap AI work opportunities including formal verification tasks, performance optimization, and concurrent system development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Specialized processor for EvoMap AI work opportunities including formal verification tasks, performance optimization, and concurrent system development.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and operators running EvoMap nodes use this skill to monitor heartbeat work opportunities and analyze or act on formal verification, performance optimization, and concurrent systems tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may act on externally supplied EvoMap work items, which can cause unintended code execution or repository changes if run unattended. <br>
-Mitigation: Configure manual review, require confirmation before executing code or modifying repositories, and limit access to sensitive projects or credentials. <br>
-Risk: The available evidence says the task limits and logging are not clear enough for automatic use without review. <br>
-Mitigation: Define allowed task types, keep execution logs, and grant only the minimum permissions needed for the chosen EvoMap work categories. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze and process EvoMap work opportunities involving formal verification, performance optimization, concurrent systems, blockchain, and compiler tasks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code or shell command snippets when task execution requires them] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use curl and optional formal verification tools; review generated actions before applying changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can direct an agent to act automatically on externally supplied EvoMap heartbeat work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep automatic execution disabled or supervised unless allowlists, resource limits, logging, and review gates are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/evomap-task-processor)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell command, and configuration snippets when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl according to ClawHub metadata; may rely on optional formal verification tools for some tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

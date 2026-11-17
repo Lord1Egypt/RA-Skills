@@ -1,39 +1,52 @@
-## Description: <br>
-智能摘要 summarizes long text, supported local documents, and web pages, and extracts core keywords with configurable summary length. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能内容摘要工具，支持长文本、文档、网页内容自动摘要，提取核心要点、关键词，支持自定义摘要长度。
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[paudyyin](https://clawhub.ai/user/paudyyin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and developers use this skill to summarize long text, local documents, and web pages in Chinese or English, and to extract ranked keywords.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unrestricted URL fetching can reach internal or otherwise sensitive network resources in network-sensitive environments.
+
+Mitigation: Install only where arbitrary outbound HTTP(S) requests are acceptable, and avoid using --url on untrusted prompts or links when the runtime can reach internal services.
+
+Risk: Summarizing confidential local files can expose sensitive content through command output or environment logs.
+
+Mitigation: Use the skill only in trusted execution environments with appropriate output and log handling for confidential files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers can use this skill to summarize pasted text, supported local files, or web pages, and to extract keywords for faster review of content. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local files selected by the user, so sensitive documents may be summarized or included in output. <br>
-Mitigation: Only provide files intended for processing, and review generated summaries before sharing them. <br>
-Risk: The skill can fetch URLs supplied by the user, including private, tokenized, localhost, intranet, or cloud metadata URLs. <br>
-Mitigation: Avoid confidential or privileged URLs unless the user specifically intends the agent to process that content. <br>
+**Output Format:** [Plain text, Markdown, or JSON summary with keywords and optional metadata]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Supports short, medium, and long summary lengths and optional metadata.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Plain text, Markdown, or JSON summaries and keyword lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summary length can be short, medium, or long; optional metadata may include source and word count.] <br>
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

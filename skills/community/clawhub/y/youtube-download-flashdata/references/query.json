@@ -1,0 +1,17 @@
+{
+  "video_id": "jNQXAC9IVRw",
+  "mode": "async",
+  "download_type": "audio_video",
+  "video_quality": "<=720",
+  "output_format": "mp4",
+  "start_at": "00:00:00",
+  "end_at": "00:00:10",
+  "storage": {
+    "storage_type": "s3",
+    "storage_url": "your-media-bucket",
+    "access_key": "YOUR_ACCESS_KEY",
+    "secret_key": "YOUR_SECRET_KEY",
+    "region": "us-east-1",
+    "object_prefix": "flashdata-clips"
+  }
+}

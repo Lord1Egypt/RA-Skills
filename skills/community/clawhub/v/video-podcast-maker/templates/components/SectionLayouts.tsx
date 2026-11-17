@@ -2,7 +2,7 @@
  * SectionLayouts — pre-built section layouts for visual variety
  *
  * These are higher-level layouts that combine backgrounds, animations,
- * and content placement. Claude picks one per section and fills in content.
+ * and content placement. The agent picks one per section and fills in content.
  *
  * Each layout is theme-aware (uses props.primaryColor etc.) and
  * orientation-aware (adapts for 16:9 / 9:16).

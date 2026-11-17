@@ -58,7 +58,7 @@ West: Old Town (Rattanakosin)
 | **Phrom Phong** | EmQuartier, Japanese expats | ฿25,000-50,000 | Families, shopping |
 | **Thonglor** | Hip, cafés, nightlife | ฿25,000-55,000 | Young expats, creatives |
 | **Ekkamai** | Thonglor-lite, residential | ฿20,000-40,000 | Quieter trendy |
-| **Phra Khanong** | Up-and-coming | ฿15,000-30,000 | Budget nomads |
+| **Phra Khanong** | Up-and-coming | ฿10,000-20,000 | Budget nomads |
 | **On Nut** | Value + BTS access | ฿12,000-25,000 | Budget long-term |
 | **Bang Na** | Far but cheap | ฿10,000-20,000 | Very budget |
 

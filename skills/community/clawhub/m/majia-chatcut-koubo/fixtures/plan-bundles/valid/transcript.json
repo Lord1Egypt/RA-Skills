@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../schemas/transcript.schema.json",
+  "schemaVersion": "1.0.0",
+  "projectId": "proj_demo",
+  "transcriptId": "transcript_demo",
+  "revision": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "sourceAssetId": "asset_speaker",
+  "sourceRevision": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "language": "zh-CN",
+  "words": [
+    {
+      "wordId": "word_001",
+      "range": {
+        "domain": "source",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 0,
+        "end": 30
+      },
+      "sourceText": "先",
+      "confidence": 1,
+      "riskFlags": [
+        "none"
+      ],
+      "evidenceRefs": [
+        "evidence_transcript"
+      ]
+    },
+    {
+      "wordId": "word_002",
+      "range": {
+        "domain": "source",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 30,
+        "end": 60
+      },
+      "sourceText": "验证",
+      "confidence": 1,
+      "riskFlags": [
+        "none"
+      ],
+      "evidenceRefs": [
+        "evidence_transcript"
+      ]
+    }
+  ]
+}

@@ -1,47 +1,62 @@
-## Description: <br>
-Provides an Alibaba Cloud Firewall status overview covering asset management, border firewall switch status, and traffic trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud Firewall Status Overview provides one-click querying of overall cloud firewall status, including asset management, border firewall switch status, and traffic overview.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Cloud security operators and developers use this skill to run Aliyun CLI Cloud Firewall checks and summarize coverage, firewall switch status, asset exposure, and traffic overview information for an Alibaba Cloud account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs credentialed Aliyun CLI commands against the active Alibaba Cloud account. <br>
-Mitigation: Use a least-privilege read-only RAM profile and confirm the active account, profile, and region before use. <br>
-Risk: The skill can change local Aliyun CLI behavior by enabling AI-mode and updating plugins. <br>
-Mitigation: Review CLI and plugin settings before installation, avoid automatic updates unless trusted, and confirm AI-mode is disabled after interrupted runs. <br>
-Risk: The skill requires sensitive cloud credentials to be configured locally. <br>
-Mitigation: Never paste credentials into chat or command output, and verify credential status without printing Access Key or secret values. <br>
+## Use Case:
 
+Developers and cloud security operators use this skill to collect an Alibaba Cloud Firewall status overview from Aliyun CLI commands and produce a concise report covering assets, Internet/VPC/NAT firewall status, and recent traffic. It is intended for read-only operational visibility into configured Alibaba Cloud accounts.
 
-## Reference(s): <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Cloud Firewall API Analysis](references/api-analysis.md) <br>
-- [Aliyun CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [Verification Method](references/verification-method.md) <br>
+### Deployment Geography for Use:
 
+Global; operational queries are limited by the skill to Alibaba Cloud Firewall regions cn-hangzhou and ap-southeast-1.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown report with inline Aliyun CLI commands and CLI-derived status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Aliyun CLI, configured Alibaba Cloud credentials, Cloud Firewall read permissions, and a supported Cloud Firewall region.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: The workflow can modify the local Aliyun CLI installation or plugin state before collecting status data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and remove automatic installer and plugin-update steps; use a preinstalled, verified Aliyun CLI.
+
+Risk: Authenticated cloud commands can access account and regional firewall data beyond the intended review scope.
+
+Mitigation: Confirm the exact Alibaba Cloud account and region before execution and grant only read-only Cloud Firewall RAM permissions.
+
+Risk: Access keys or STS tokens may be exposed if they are placed in command-line arguments, prompts, or transcripts.
+
+Mitigation: Use preconfigured credential profiles or external credential setup and do not include any secret values in commands or conversation output.
+
+## Reference(s):
+
+- [Related APIs](references/related-apis.md)
+- [RAM Policies](references/ram-policies.md)
+- [Verification Method](references/verification-method.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation Guide](references/cli-installation-guide.md)
+- [API Analysis](references/api-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summary report with inline shell commands and CLI result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports partial results when individual CLI calls fail; traffic trend outputs are summarized to control response size.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

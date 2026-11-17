@@ -1,40 +1,53 @@
-## Description: <br>
-Automates quarterly financial report generation with dividend-adjusted total return calculations for stock performance reports, quarterly earnings summaries, and return analytics using CSV price data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated quarterly financial report generation with dividend-adjusted total return calculations for stock performance reports, quarterly earnings summaries, and return analytics from CSV price data.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and analysts use this skill to analyze stock CSV exports and generate quarterly reports with price returns, dividend-adjusted total returns, dividends, high and low prices, and volume metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial return calculations can be incorrect or misapplied if CSV inputs are incomplete, malformed, or use unexpected column semantics. <br>
-Mitigation: Run the skill only on CSV files you intend to analyze and independently verify financial calculations before investment or business decisions. <br>
-Risk: The analyzer depends on local Python and pandas availability and expected CSV columns for date, price, and volume data. <br>
-Mitigation: Confirm pandas is installed and validate input files against the documented CSV format before relying on generated reports. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to generate stock performance reports, quarterly earnings summaries, and return analytics from local CSV price data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/financial-report-automator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; analyzer results are Python dictionaries or JSON-like reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Consumes local stock CSV files, requires Python 3.10+ and pandas, and produces local financial report data without hidden network or credential behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Generated stock reports may be mistaken for financial advice or live market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as analytical output to verify against source CSV data and qualified financial review before acting on them.
+
+Risk: The included script processes local stock CSV files with pandas, so results depend on the quality and freshness of the input data.
+
+Mitigation: Use trusted CSV exports, verify expected columns and date ranges, and review calculations before relying on the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/financial-report-automator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples, shell commands, and JSON report structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local CSV-based financial analysis guidance and structured quarterly report data for agent use.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

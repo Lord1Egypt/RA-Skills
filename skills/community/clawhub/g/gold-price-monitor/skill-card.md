@@ -1,44 +1,52 @@
-## Description: <br>
-监控黄金价格 - 获取实时国际金价，记录历史价格，当价格波动超过阈值时发出通知。适合 OpenClaw 定时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors gold prices, records baseline and opening prices, and generates notification guidance when price movement crosses a configured threshold.
 
-## Publisher: <br>
-[whatyouprompt](https://clawhub.ai/user/whatyouprompt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whatyouprompt](https://clawhub.ai/user/whatyouprompt)
 
-## Use Case: <br>
-External users and OpenClaw agents use this skill to check Au99.99 gold quotes, track local price baselines, and surface threshold-based buy/sell alerts for informational monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents buy, sell, or hold suggestions from public quote data and a fixed threshold, which could be mistaken for financial advice. <br>
-Mitigation: Treat alerts as informational, verify prices with a trusted source, and make financial decisions outside the skill. <br>
-Risk: Scheduled use makes outbound requests to Sina Finance and depends on a public quote endpoint that may change or become unavailable. <br>
-Mitigation: Install only where scheduled outbound requests are acceptable, and handle error status output before notifying users. <br>
-Risk: Some comments and labels mention CCB even though the implementation uses Sina and Shanghai Gold Exchange Au99.99 data. <br>
-Mitigation: Review the reported source field and data endpoint when interpreting alerts or adapting the skill. <br>
+## Use Case:
 
+External users and agent operators use this skill to check Au99.99 gold prices, compare them with saved baselines, and receive concise buy, sell, or hold notifications. It is suitable for scheduled OpenClaw runs where the operator wants threshold-based price alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whatyouprompt/gold-price-monitor) <br>
-- [Sina Finance](https://finance.sina.com.cn/) <br>
-- [Sina Finance Au99.99 quote endpoint](http://hq.sinajs.cn/?list=gds_AU9999) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON result with human-readable alert message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local JSON baseline files for price history and daily opening prices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can provide buy, sell, or hold guidance based on an unauthenticated price feed and source-description mismatches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installation, avoid relying on it for financial decisions, and switch to an authenticated HTTPS source with aligned source labels and trusted price validation before high-stakes use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whatyouprompt/skills/gold-price-monitor)
+- [Publisher profile](https://clawhub.ai/user/whatyouprompt)
+- [Sina Finance](https://finance.sina.com.cn/)
+- [China Construction Bank gold quotation XML endpoint](https://www2.ccb.com/cn/home/news/gjshjjc01.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs price fields, threshold status, alert flag, recommendation text, and timestamped status messages.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Card Rate"
+  short_description: "Earning rates and caps for one US credit card"
+  default_prompt: "Use $card-rate to break down the earning rates on Chase Sapphire Preferred."

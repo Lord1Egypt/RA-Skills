@@ -1,0 +1,14 @@
+{
+  "title": "topic_title",
+  "lifecycle": "lifecycle_status",
+  "priority": "recommendation_priority",
+  "date": "source_date",
+  "competition": "competition_density",
+  "originality": "originality_assessment",
+  "value": "value_judgment",
+  "reason": "recommendation_reason",
+  "angle": "suggested_angle",
+  "risk": "risk_notice",
+  "fit": "position_fit",
+  "reviewDate": "evaluation_date"
+}

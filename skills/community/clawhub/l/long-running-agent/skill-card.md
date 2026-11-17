@@ -1,50 +1,63 @@
-## Description: <br>
-Long-Running Agent helps AI agents manage multi-step projects across sessions using persistent project briefs, changelogs, progress tracking, failure records, and continuation protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long Running Agent helps AI agents manage multi-step projects across sessions by creating and maintaining project briefs, changelogs, progress records, failed-attempt notes, and next actions.
 
-## Publisher: <br>
-[sleepingzzzz](https://clawhub.ai/user/sleepingzzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sleepingzzzz](https://clawhub.ai/user/sleepingzzzz)
 
-## Use Case: <br>
-Developers and agents use this skill to create, resume, monitor, and pause long-running software projects while preserving context across sessions. It is intended for workflows that need persistent memory in PROJECT.md and CHANGELOG.md files, explicit next actions, failed-method tracking, and Git checkpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent project memory may retain sensitive or stale context in PROJECT.md or CHANGELOG.md. <br>
-Mitigation: Use the skill in a dedicated workspace, avoid writing secrets to project memory files, and review those files before resuming work. <br>
-Risk: Project initialization and continuation can write or overwrite task files. <br>
-Mitigation: Back up existing task folders before initializing and review generated file changes before continuing work. <br>
-Risk: Arbitrary path options can direct writes outside the intended task area. <br>
-Mitigation: Avoid arbitrary --path values and keep project files under the expected workspace task directory. <br>
-Risk: Heartbeat or background continuation can resume work without a fresh prompt. <br>
-Mitigation: Enable heartbeat-style automation only when unattended continuation is explicitly intended. <br>
+## Use Case:
 
+Developers and agent users use this skill to create, resume, inspect, update, and pause long-running AI-assisted projects. It is intended for workflows that need persistent local project state across sessions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sleepingzzzz/long-running-agent) <br>
-- [Long-Running Tasks Research](https://www.anthropic.com/research/long-running-tasks) <br>
-- [clax Reference Implementation](https://github.com/smsharma/clax) <br>
-- [Best Practices](references/best-practices.md) <br>
-- [Project Template](references/project-template.md) <br>
-- [Changelog Template](references/changelog-template.md) <br>
-- [Ralph Loop](references/ralph-loop.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update PROJECT.md, CHANGELOG.md, tests directories, and task files in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill persists project plans, progress, failed attempts, and session notes in local files that can influence future agent work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep project state in trusted directories and review PROJECT.md and CHANGELOG.md before asking an agent to continue work.
+
+Risk: The initialization script can overwrite existing PROJECT.md and CHANGELOG.md files at writable destinations.
+
+Mitigation: Use trusted project names and --path values, and check the destination before initializing a project.
+
+Risk: Mutable project notes can carry stale or misleading context into later sessions.
+
+Mitigation: Review progress records, failed-attempt notes, and next actions during each orientation step.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sleepingzzzz/skills/long-running-agent)
+- [Anthropic Long-Running Tasks](https://www.anthropic.com/research/long-running-tasks)
+- [smsharma/clax Reference Implementation](https://github.com/smsharma/clax)
+- [Best Practices](references/best-practices.md)
+- [Changelog Template](references/changelog-template.md)
+- [Project Template](references/project-template.md)
+- [Ralph Loop](references/ralph-loop.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local PROJECT.md, CHANGELOG.md, tests directories, and project state under tasks; OpenClaw metadata requires git.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

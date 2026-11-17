@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI 通识课 · E·N BNBU 新生 4 周上手</title>
+<style>body{font-family:"Microsoft YaHei",sans-serif;margin:0;background:#fff7ed;color:#0f172a}header{padding:14px 20px;background:#c2410c;color:#fff}h1{margin:0;font-size:18px}.wrap{padding:16px 20px}.box{background:#ffedd5;border:1px solid #fed7aa;border-radius:8px;padding:14px;margin-top:12px}.week{margin:8px 0}b{display:block;margin-bottom:4px}label{margin-right:14px;font-size:14px}button{background:#c2410c;color:#fff;border:0;padding:9px 16px;border-radius:6px;margin:6px 8px 0 0;cursor:pointer}#log{font-family:monospace;white-space:pre-wrap;background:#fff;padding:10px;border-radius:6px;margin-top:8px}</style></head>
+<body><header><h1>AI 通识课 · E·N 北师港浸大(BNBU) 博雅智能学院(SAI) · 新生 4 周 AI 上手</h1></header>
+<div class="wrap"><div class="box"><b>4 周加速包（对齐博智坊六期主题）</b>
+<div class="week"><b>W1 大模型基础</b><label><input type="checkbox"/> 体验对话大模型</label><label><input type="checkbox"/> 理解 Token</label></div>
+<div class="week"><b>W2 Vibe Coding</b><label><input type="checkbox"/> 用 SOLO 写第一个程序</label><label><input type="checkbox"/> 调试与验证</label></div>
+<div class="week"><b>W3 AIGC</b><label><input type="checkbox"/> 文生图/文生文</label><label><input type="checkbox"/> 本地化创作</label></div>
+<div class="week"><b>W4 3D 重建 & CV</b><label><input type="checkbox"/> 智能体初探</label><label><input type="checkbox"/> 结课作品</label></div>
+<button id="start">开启 4 周自动驾驶</button><button id="reset" style="background:#475569">重置</button></div>
+<div class="box"><div id="log">点击「开启 4 周自动驾驶」：引擎将按周推进课件+游戏+自测，并写入日历/闹钟/IMA（WorkBuddy 设备侧 + OPS-1 运营流演示）。</div></div></div>
+<script>document.getElementById('start').onclick=()=>{
+try{localStorage.setItem('bnbu4w','started')}catch(_){}
+document.getElementById('log').textContent='🚀 OPS-1 已启动：\n W1 大模型基础 → 日历已排 + 周一闹钟 + IMA 落库\n W2 Vibe Coding → 课件+游戏+自测(VERIFY 全测后分发)\n W3 AIGC → 同上\n W4 3D/CV → 结课综合测评 → LEARN 认证评估';
+};
+document.getElementById('reset').onclick=()=>{document.getElementById('log').textContent='已重置。';try{localStorage.removeItem('bnbu4w')}catch(_){}};</script></body></html>

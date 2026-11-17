@@ -1,38 +1,54 @@
-## Description: <br>
-Use when Codex is adding, editing, selecting, reviewing, or explaining tests in any repository, including mocks, fixtures, snapshots, CI validation, regression coverage, TDD/red-green proof, or readiness claims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when Codex is adding, editing, selecting, reviewing, or explaining tests in any repository, including mocks, fixtures, snapshots, CI validation, regression coverage, TDD/red-green proof, or readiness claims. Enforces behavior-first test design so tests catch real regressions instead of merely passing the current implementation.
 
-## Publisher: <br>
-[vyctorbrzezowski](https://clawhub.ai/user/vyctorbrzezowski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vyctorbrzezowski](https://clawhub.ai/user/vyctorbrzezowski)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to design, revise, review, and report on behavior-first tests that prove real regressions instead of only exercising implementation details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Red-green proof work can involve temporary reverted or injected changes that should not remain in the final diff. <br>
-Mitigation: Review the final diff, remove temporary proof changes, and rerun the focused validation before relying on the result. <br>
+## Use Case:
 
+Developers and engineers use this skill when writing, revising, selecting, reviewing, or explaining tests so coverage is grounded in observable behavior and credible regression proof.
 
-## Reference(s): <br>
-- [Test Smell Reference](references/test-smells.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline code, test examples, and command recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend focused test runs, red-green proof steps, and final validation reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Temporary red-green proof changes could be left in the final diff.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove temporary mutations or reverts, then rerun the focused test command before reporting completion.
+
+Risk: Test guidance could still produce misleading confidence if the asserted boundary is too narrow.
+
+Mitigation: Review tests against observable behavior, known test smells, and the specific regression thesis before relying on the result.
+
+## Reference(s):
+
+- [Test Smell Reference](references/test-smells.md)
+- [ClawHub skill page](https://clawhub.ai/vyctorbrzezowski/skills/write-better-tests)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with repository-native code and shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend focused test runs, red-green proof steps, and concise final testing reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

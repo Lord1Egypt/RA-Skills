@@ -1,44 +1,63 @@
-## Description: <br>
-Canvas as an app platform. Build, store, and run rich visual apps on the OpenClaw Canvas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Canvas as an app platform. Build, store, and run rich visual apps on the OpenClaw Canvas.
 
-## Publisher: <br>
-[fraction12](https://clawhub.ai/user/fraction12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fraction12](https://clawhub.ai/user/fraction12)
 
-## Use Case: <br>
-Developers and OpenClaw users use Canvas-OS to build, serve, and display local HTML/CSS/JavaScript apps on the OpenClaw Canvas. It is suited for dashboards, trackers, quick visual displays, and agent-updated Canvas interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The helper scripts can stop processes on a selected local port, which may interrupt unrelated local services. <br>
-Mitigation: Confirm the port and listening process before closing or replacing a server, and use dedicated Canvas app ports where possible. <br>
-Risk: Local Canvas app folders or served pages may expose private data if sensitive files are placed in the app directory. <br>
-Mitigation: Keep Canvas app directories scoped to intended assets and avoid storing secrets or private data in served folders. <br>
-Risk: Direct HTML injection can run untrusted HTML or JavaScript inside the Canvas context. <br>
-Mitigation: Use trusted app content only, review injected HTML before execution, and prefer localhost serving for reusable apps with known assets. <br>
+## Use Case:
 
+Developers and OpenClaw users use Canvas-OS to build, launch, and update rich HTML/CSS/JS Canvas apps such as dashboards and trackers. The skill guides agents through local Canvas app serving, direct HTML injection, live data updates, and two-way Canvas-to-agent interactions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fraction12/canvas-os) <br>
-- [README](README.md) <br>
-- [Canvas Loading Reference](CANVAS-LOADING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell, Python, JavaScript, HTML, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Canvas app setup guidance and helper command patterns; generated apps may include HTML templates and JavaScript APIs for live updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Local Canvas app serving can expose local files from the served app directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted local Canvas apps, review the directory before serving it, and prefer binding local servers to 127.0.0.1.
+
+Risk: Helper scripts can force-stop an unrelated process that owns the selected port.
+
+Mitigation: Check which process is using the port before allowing cleanup, and avoid passing untrusted port values to helper scripts.
+
+Risk: Direct HTML injection and generated page code can run with weak safeguards.
+
+Mitigation: Inject only trusted HTML and data, and review generated JavaScript before running Canvas eval.
+
+Risk: Dashboard and tracker interactions can send text back to the OpenClaw agent through deep links.
+
+Mitigation: Use trusted templates and review or disable Canvas-to-agent actions before opening apps that handle sensitive data.
+
+## Reference(s):
+
+- [Canvas Loading Reference](artifact/CANVAS-LOADING.md)
+- [Canvas OS README](artifact/README.md)
+- [Canvas-OS ClawHub Page](https://clawhub.ai/fraction12/skills/canvas-os)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local HTML/CSS/JS app files and Canvas helper commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-A Chinese creative writing assistant that rewrites or composes text using the stated style mechanisms of Wang Xiaobo, Wang Shuo, Gabriel Garcia Marquez, Italo Calvino, and Jorge Luis Borges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language writing assistant that rewrites or drafts prose in the styles of Wang Xiaobo, Wang Shuo, Gabriel Garcia Marquez, Italo Calvino, or Jorge Luis Borges.
 
-## Publisher: <br>
-[shaozhengmao](https://clawhub.ai/user/shaozhengmao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaozhengmao](https://clawhub.ai/user/shaozhengmao)
 
-## Use Case: <br>
-Writers, editors, and other external users use this skill to rewrite or draft Chinese prose in a requested literary mode. It is intended for creative text generation, with review before attribution-sensitive or factual publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prose may imitate named authors closely enough to create attribution, publication, or appropriate-use concerns. <br>
-Mitigation: Review outputs before publication and avoid presenting generated prose as the original author's work. <br>
-Risk: Fictional or pseudo-scholarly references may be mistaken for real citations. <br>
-Mitigation: Check references before factual use and label invented citations as fictional when accuracy matters. <br>
-Risk: Broad style trigger phrases may activate rewriting when the user's requested style or source content is ambiguous. <br>
-Mitigation: Ask a clarifying question or confirm the target author and content before rewriting ambiguous requests. <br>
+## Use Case:
 
+External users and writing agents use this skill to rewrite supplied Chinese text or draft new Chinese prose in one of several named literary styles. If the user names a style but not the content, the skill may ask a clarifying question or use surrounding context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaozhengmao/humanize-zh-writers) <br>
-- [Publisher profile](https://clawhub.ai/user/shaozhengmao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown creative-writing response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include one or two concise notes explaining the core stylistic treatment when useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may respond in Chinese when activated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for Chinese-language writing workflows or explicitly request another output language when needed.
+
+Risk: Broad author-style requests may activate the skill without enough source content or topic detail.
+
+Mitigation: Ask a clarifying question when the target style is named but the content or topic is missing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaozhengmao/skills/humanize-zh-writers)
+- [ClawHub publisher profile](https://clawhub.ai/user/shaozhengmao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language rewritten or newly composed prose, with optional brief explanation of the core stylistic treatment.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

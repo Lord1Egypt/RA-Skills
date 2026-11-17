@@ -1,6 +1,46 @@
 {
-  "ownerId": "kn71asv5ce1x1ytv32k5av44gx817hff",
-  "slug": "agent-audit-trail",
+  "name": "agent-audit-trail",
   "version": "2.1.0",
-  "publishedAt": 1775152547302
+  "description": "Append-only, hash-chained audit log for AI agents. Records agent actions, tool calls, decisions, and external writes with provenance, timestamps, and sha256 chain integrity. Designed for compliance with EU AI Act Article 12 automatic event recording requirements for high-risk AI systems.",
+  "author": {
+    "name": "Justin Roosch",
+    "url": "https://github.com/roosch269"
+  },
+  "license": "MIT-0",
+  "tags": [
+    "audit",
+    "compliance",
+    "logging",
+    "eu-ai-act",
+    "article-12",
+    "governance",
+    "provenance",
+    "security"
+  ],
+  "keywords": [
+    "audit trail",
+    "agent logging",
+    "hash chain",
+    "event log",
+    "compliance logging"
+  ],
+  "companions": [
+    {
+      "name": "agent-self-assessment",
+      "version": "2.2.1",
+      "reason": "Run the assessment first, then set up logging for ongoing compliance"
+    },
+    {
+      "name": "agirails",
+      "version": "3.0.0",
+      "reason": "Enable payment tracking in your audit trail"
+    }
+  ],
+  "compliance": {
+    "euAiAct": {
+      "article": 12,
+      "deadline": "2026-08-01",
+      "scope": "High-risk AI systems — automatic event recording"
+    }
+  }
 }

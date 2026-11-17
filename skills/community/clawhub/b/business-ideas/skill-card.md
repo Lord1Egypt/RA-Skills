@@ -1,43 +1,52 @@
-## Description: <br>
-Generate unlimited business ideas with validation frameworks, market filters, and viability scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate unlimited business ideas with validation frameworks, market filters, and viability scoring.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Entrepreneurs, founders, and makers use this skill to brainstorm startup or side-project ideas, apply market and constraint filters, score viability, and plan validation experiments before building. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and update local idea notes that may contain proprietary business plans or user preferences. <br>
-Mitigation: Treat files in ~/business-ideas as sensitive, review generated notes before sharing them, and avoid storing confidential details unless local storage is acceptable. <br>
-Risk: Validation experiments may collect emails, measure customer interest, or test products that are not yet available. <br>
-Mitigation: Use clear disclosures, privacy notices, consent for marketing or email collection, and honest messaging when testing demand. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Business Ideas on ClawHub](https://clawhub.ai/ivangdavila/business-ideas) <br>
-- [Business Ideas homepage](https://clawic.com/skills/business-ideas) <br>
-- [Idea Generation Frameworks](artifact/frameworks.md) <br>
-- [Idea Validation Methods](artifact/validation.md) <br>
-- [Memory Setup](artifact/memory-template.md) <br>
+## Use Case:
 
+External users use this skill to generate, filter, score, and validate startup, side-project, and business ideas, with optional local memory for prior ideas and preferences.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with ranked idea tables, scorecards, validation plans, and occasional shell commands for local memory setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Markdown notes under ~/business-ideas when the user wants persistent idea memory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated business ideas, favorites, rejection notes, and preferences may be stored in ~/business-ideas/ and reused by later local agent sessions.
+
+Mitigation: Avoid saving confidential business plans or sensitive preferences there unless local reuse is acceptable; ask the agent before saving when tighter control is needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/business-ideas)
+- [Skill Homepage](https://clawic.com/skills/business-ideas)
+- [Idea Generation Frameworks](frameworks.md)
+- [Memory Setup - Business Idea Generator](memory-template.md)
+- [Idea Validation Methods](validation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with ranked tables, scorecards, checklists, and occasional shell commands for local memory setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist generated ideas, favorites, rejection notes, and preferences in ~/business-ideas/ when the user allows local memory updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

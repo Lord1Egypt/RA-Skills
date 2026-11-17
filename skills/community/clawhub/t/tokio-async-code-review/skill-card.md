@@ -1,44 +1,57 @@
-## Description: <br>
-Reviews tokio async runtime usage for task management, sync primitives, channel patterns, and runtime configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Tokio async runtime usage in Rust code, including task management, synchronization primitives, channel patterns, runtime configuration, and Rust 2024 async changes.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Rust projects that use Tokio, async/await, spawned tasks, channels, async synchronization, runtime configuration, and related tower, hyper, or tokio-util integration patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on a companion review-verification-protocol skill before findings are reported. <br>
-Mitigation: Install the companion skill from a trusted source and complete its pass conditions before relying on review results. <br>
-Risk: Async code-review guidance can produce misleading findings if the dependency surface, runtime model, or blocking inventory gates are skipped. <br>
-Mitigation: Complete the documented gates and require file:line evidence for every reported issue. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Rust code that uses Tokio or async/await. It guides checks for runtime setup, task lifecycle, blocking operations, synchronization, channels, cancellation, and evidence-backed severity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/tokio-async-code-review) <br>
-- [Task Management](references/task-management.md) <br>
-- [Sync Primitives](references/sync-primitives.md) <br>
-- [Channels](references/channels.md) <br>
-- [Pinning, Cancellation, and Async Internals](references/pinning-cancellation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review findings with file and line references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings use Critical, Major, Minor, or Informational severity labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Review findings may be incorrect or overstate severity when dependency, runtime, or blocking evidence is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Complete the documented gates and require file:line evidence before reporting Critical or Major issues.
+
+Risk: Suggested async changes can alter runtime behavior, cancellation, locking, or concurrency limits.
+
+Mitigation: Treat the output as review guidance and confirm changes against project tests and relevant Tokio or Rust behavior before applying them.
+
+## Reference(s):
+
+- [Task Management](references/task-management.md)
+- [Sync Primitives](references/sync-primitives.md)
+- [Channels](references/channels.md)
+- [Pinning, Cancellation, and Async Internals](references/pinning-cancellation.md)
+- [Review Verification Protocol](../review-verification-protocol/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with file:line findings, severity labels, and concise descriptions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings require gate checks and file:line evidence before Critical or Major severity is asserted.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

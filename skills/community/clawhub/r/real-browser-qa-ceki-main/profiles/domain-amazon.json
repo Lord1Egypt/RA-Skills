@@ -1,0 +1,63 @@
+{
+  "id": "domain-amazon",
+  "label": "Amazon — E-Commerce Browser",
+  "emoji": "📦",
+  "domain": "amazon.com",
+  "description": "Extracted from: generic e-commerce Playwright scrapers, Amazon scraper patterns, Scrapfly Amazon guides. Verified 2026-07-16: search works via CDP, physical product pages block automated access (Page Not Found). Book pages render fully.",
+  "source_patterns": [
+    "Search: type query → 3-5s results → scroll results 1-2s per product row (confirmed: search works, 64+ results, no captcha)",
+    "Product page: scroll for description (lazy-loads!) → click 'See More' → 1-2s → scroll to reviews",
+    "⚠️ Amazon blocks physical product pages for CDP-driven sessions (returns Page Not Found, 770px). Book (Kindle) pages work — description NOT lazy-loaded, in initial HTML.",
+    "Reviews: paginated, click 'Next page' → 2-4s load",
+    "Add to cart: click → 1-2s → cart modal → 'Proceed' or continue",
+    "Image gallery: click thumbnail → 500ms switch → hold on main image 2-4s",
+    "Navigation: deliberate, goal-oriented. Not casual browsing."
+  ],
+  "active_hours": {
+    "description": "Shopping hours — lunch, evening, weekends",
+    "peak": [10, 13, 15, 20, 23],
+    "off_peak_min": 5
+  },
+  "typing": {
+    "wpm": { "min": 65, "max": 100 },
+    "profile": "natural",
+    "think_prob": 0.015,
+    "think_ms": [300, 1200],
+    "backspace_freq": 0.03,
+    "search_typing_wpm": { "min": 80, "max": 120 }
+  },
+  "scroll": {
+    "passes": 2,
+    "description": "Targeted — scroll to find specific info (price, desc, reviews). Source: e-com scrapers",
+    "speed_px_per_ms": { "min": 20, "max": 55 },
+    "pause_between_passes_ms": { "min": 1000, "max": 3000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.7 },
+    "scroll_method": "targeted (not aimless)"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 1500, "max": 4000 },
+    "pre_click_pause_ms": { "min": 200, "max": 700 },
+    "inter_action_pause_ms": { "min": 300, "max": 1500 },
+    "post_cart_pause_ms": { "min": 1500, "max": 3000 }
+  },
+  "mouse": {
+    "speed": 1.0,
+    "curvature": 0.12,
+    "jitter": 0.25,
+    "description": "Moderate, direct — purposeful shopping"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "search_box": "#twotabsearchtextbox",
+      "add_to_cart": "#add-to-cart-button",
+      "product_title": "#productTitle",
+      "reviews_tab": "[data-hook='cr-insights-widget']"
+    },
+    "lazy_load_strategy": {
+      "description": "Product descriptions and A+ content are lazy-loaded. Scroll past fold.",
+      "scroll_past_fold_px": 800,
+      "wait_for_render_ms": { "min": 1000, "max": 3000 }
+    },
+    "sequence_hint": "navigate homepage → search → scroll results → click product → scroll past fold (description lazy-loads) → click 'See More' → scroll to reviews → click review page → back → add to cart"
+  }
+}

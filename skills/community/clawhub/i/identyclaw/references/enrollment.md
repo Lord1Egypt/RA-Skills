@@ -2,7 +2,9 @@
 
 Complete guide to setting up your IdentyClaw Passport for API access.
 
-This guide is for both humans and automation agents. Account creation is performed with `gennearaccount`; the purchase portal step is the human-operated checkout step.
+This guide is for both humans and automation agents. **OpenClaw Gateway operators** create NEAR accounts with the [openclaw-identyclaw-plugin](https://github.com/discernible-io/openclaw-identyclaw-plugin) (v1.5.0+ CLI or optional agent tool). **Hermes, IronClaw, NanoClaw, Cursor, and custom SDK clients** use `gennearaccount` (or equivalent host-side account generation) plus client-side API login. The purchase portal step is the human-operated checkout step in all paths.
+
+**Runtime routing:** see [agent-frameworks.md](agent-frameworks.md) (MCP `doc:reference:agent-frameworks`) for per-framework install links and capability matrix.
 
 ## Table of Contents
 
@@ -19,26 +21,30 @@ This guide is for both humans and automation agents. Account creation is perform
 
 | Audience | Route |
 |----------|-------|
-| **OpenClaw Gateway operators** | [OpenClaw plugin + skill route](#openclaw-plugin--skill-route) — install ClawHub skill and plugin; plugin handles JWT login and API tools after NEAR account + Passport purchase |
-| **Other AI agents** (Cursor MCP, custom SDK, shell agents) | [Manual enrollment](#manual-enrollment-all-other-agents) — full walkthrough with `gennearaccount`, curl login, and hand-rolled API calls |
+| **OpenClaw Gateway operators** | [OpenClaw plugin + skill route](#openclaw-plugin--skill-route) — plugin generates NEAR credentials (no `gennearaccount` binary), handles JWT login and API tools after Passport purchase |
+| **Hermes Agent** | [hermes-integration-guide.md](hermes-integration-guide.md) — copy `hermes-identyclaw-skill/` to `~/.hermes/skills/` + manual enrollment below |
+| **IronClaw** | [ironclaw-integration-guide.md](ironclaw-integration-guide.md) — MCP docs + `gennearaccount` + host sidecar for login/HOLA |
+| **NanoClaw** | [nanoclaw-integration-guide.md](nanoclaw-integration-guide.md) — bind-mounted secrets + MCP/curl in container |
+| **Cursor / Claude Desktop / custom SDK / shell** | [Manual enrollment](#manual-enrollment-all-other-agents) — `gennearaccount`, curl login, MCP `doc:skills` |
 
-Both paths share the same on-chain prerequisites: a NEAR implicit account and a minted IdentyClaw Passport. Only the **post-purchase API integration** differs.
+Both paths share the same on-chain prerequisites: a NEAR implicit account and a minted IdentyClaw Passport. **Account creation** and **post-purchase API integration** differ by path (OpenClaw plugin vs `gennearaccount` + client-side HTTP).
 
 ## OpenClaw: Plugin + Skill Route
 
 **For OpenClaw users only.** Other AI agents must follow [manual enrollment](#manual-enrollment-all-other-agents) below.
 
-The OpenClaw route keeps NEAR account creation and Passport purchase unchanged, then replaces manual curl login and ad-hoc HTTP with a **ClawHub skill** (workflow guidance) and **OpenClaw plugin** (typed tools + automatic JWT lifecycle).
+The OpenClaw route uses the **openclaw-identyclaw-plugin** (v1.5.0+) for NEAR implicit account generation and post-purchase API integration, plus a **ClawHub skill** for workflow guidance. Passport purchase remains a human checkout step.
 
 ### What still requires manual steps
 
-1. **Create NEAR account** — `gennearaccount` (see [Step 1](#step-1-create-near-account)); store credentials on bind-mounted OpenClaw state ([NEAR Credentials Storage](#near-credentials-storage-required))
+1. **Fund the NEAR account** — transfer NEAR for checkout and transaction fees
 2. **Purchase Passport** — human checkout at https://purchase.identyclaw.com (see [Step 2](#step-2-purchase-identityclaw-passport))
 
-There is no IdentyClaw MCP tool or plugin that replaces `gennearaccount` for account creation or the purchase portal for minting.
+There is no IdentyClaw MCP tool or plugin that replaces the purchase portal for minting. Non-OpenClaw agents must still use `gennearaccount` for account creation (see [Manual enrollment](#manual-enrollment-all-other-agents)).
 
 ### What the plugin + skill replace
 
+- **`gennearaccount` on OpenClaw** — plugin operator CLI or optional `identyclaw_generate_near_account` tool writes gennearaccount-compatible JSON to `secrets/near-credentials/` (private key never returned to chat)
 - Hand-rolled `GET /api/login/timestamp` → sign → `POST /api/login` (plugin caches JWT, applies `New-Token` headers, re-logins before expiry)
 - Manual curl for identity, HOLA verify/create, agent discovery, and MCP doc fetch (plugin tools)
 - Scattered protocol docs during daily operation (skill auto-triggers on identity/HOLA/DID prompts; `identyclaw_list_resources` / `doc:discovery` for deep references)
@@ -53,13 +59,71 @@ openclaw plugins install clawhub:@identyclaw/openclaw-identyclaw-plugin
 | Artifact | ClawHub | Role |
 |----------|---------|------|
 | Skill | [identyclaw/identyclaw](https://clawhub.ai/identyclaw/identyclaw) | When to use IdentyClaw, HOLA verify/create patterns, discovery guardrails |
-| Plugin | [@identyclaw/openclaw-identyclaw-plugin](https://clawhub.ai/plugins/@identyclaw/openclaw-identyclaw-plugin) | Callable tools (`identyclaw_get_my_identity`, `identyclaw_create_hola`, `identyclaw_verify_hola`, …) |
+| Plugin | [@identyclaw/openclaw-identyclaw-plugin](https://clawhub.ai/plugins/@identyclaw/openclaw-identyclaw-plugin) | NEAR account generation, JWT login, HOLA, identity, discovery (`identyclaw_generate_near_account`, `identyclaw_get_my_identity`, …) |
 
 After `npm run prepare:publish` in a local checkout, install the plugin from path instead: `openclaw plugins install /path/to/openclaw-identyclaw-plugin`.
 
-### 2. Configure Passport credentials on the Gateway
+### 2. Create NEAR account (OpenClaw — no `gennearaccount`)
 
-Copy `account_id` and `private_key` from your `gennearaccount` JSON into plugin config. **Never paste keys into chat** — configure them in OpenClaw config only.
+Store credentials on bind-mounted OpenClaw state ([NEAR Credentials Storage](#near-credentials-storage-required)). Output directory must end with `secrets/near-credentials` (recommended) or appear in plugin `nearCredentialsOutputDirs`.
+
+**Option A — Operator CLI (recommended)**
+
+From a plugin checkout on the host (or anywhere Node ≥ 22.19 is available):
+
+```bash
+npm run generate-near-account -- /path/to/secrets/near-credentials
+# default: ./secrets/near-credentials
+# env: IDENTYCLAW_NEAR_CREDENTIALS_DIR
+```
+
+Typical OpenClaw bind-mount layout (host path; create parent dirs first):
+
+```bash
+mkdir -p ~/.openclaw-agent-a/secrets/near-credentials
+chmod 700 ~/.openclaw-agent-a/secrets/near-credentials
+npm run generate-near-account -- ~/.openclaw-agent-a/secrets/near-credentials
+```
+
+Inside the container the same directory is usually `/home/node/.openclaw/secrets/near-credentials`. The CLI prints `implicit_account_id` on stdout and writes `<implicit_account_id>.json` with mode `0600` (directory `0700`). **Private keys never appear in CLI stdout.**
+
+**Option B — Agent tool (optional, advanced)**
+
+Allowlist `identyclaw_generate_near_account` and set a default output directory:
+
+```json5
+{
+  plugins: {
+    entries: {
+      "identyclaw-tools": {
+        config: {
+          generateNearAccountDefaultDir: "/home/node/.openclaw/secrets/near-credentials",
+          nearCredentialsOutputDirs: []
+        }
+      }
+    }
+  },
+  tools: {
+    allow: ["identyclaw_generate_near_account"]
+  }
+}
+```
+
+The tool returns `implicit_account_id`, `public_key`, and `filePath` only — not `private_key`.
+
+Fund the new account with NEAR before purchasing a Passport.
+
+### 3. Purchase Passport
+
+Complete human checkout at https://purchase.identyclaw.com using the `implicit_account_id` from step 2. See [Step 2: Purchase IdentyClaw Passport](#step-2-purchase-identityclaw-passport) for form fields and pricing.
+
+### 4. Configure Passport credentials on the Gateway
+
+After purchase, point the plugin at the credentials JSON. **Never paste keys into chat** — configure them in OpenClaw config, `.env`, or identyclaw-agents bootstrap only.
+
+**Bootstrap sync (identyclaw-agents layouts):** restart the gateway (e.g. `./identyclaw.sh restart agent-a`) so bootstrap reads `secrets/near-credentials/<implicit_account_id>.json` and syncs `IDENTYCLAW_ACCOUNT_ID` / `IDENTYCLAW_NEAR_PRIVATE_KEY` into `.env` and plugin config.
+
+**Manual config:** copy `implicit_account_id` (or legacy `account_id` from `gennearaccount` JSON) → plugin `accountid`, and `private_key` → `nearPrivateKey`:
 
 ```json5
 {
@@ -70,7 +134,8 @@ Copy `account_id` and `private_key` from your `gennearaccount` JSON into plugin 
         config: {
           baseUrl: "https://api.identyclaw.com",
           accountid: "<64-char-hex-from-credentials-json>",
-          nearPrivateKey: "ed25519:..."
+          nearPrivateKey: "ed25519:...",
+          generateNearAccountDefaultDir: "/home/node/.openclaw/secrets/near-credentials"
         }
       }
     }
@@ -89,13 +154,13 @@ Copy `account_id` and `private_key` from your `gennearaccount` JSON into plugin 
 }
 ```
 
-Environment variable fallback (same semantics): `IDENTYCLAW_BASE_URL`, `IDENTYCLAW_ACCOUNT_ID`, `IDENTYCLAW_NEAR_PRIVATE_KEY`.
+Environment variable fallback (same semantics): `IDENTYCLAW_BASE_URL`, `IDENTYCLAW_ACCOUNT_ID`, `IDENTYCLAW_NEAR_PRIVATE_KEY`, `IDENTYCLAW_NEAR_CREDENTIALS_DIR`.
 
 Protected tools are **optional** in the plugin manifest — they stay off until allowlisted and credentials are set. Public tools (`identyclaw_list_agents`, `identyclaw_list_resources`, `identyclaw_get_resource`) work without credentials.
 
 `nearPrivateKey` is used **only on the Gateway host** for two separate signatures: **API login** (base64url over `accountid` + `timestamp_iso`) and **HOLA create** (base32 over the canonical HOLA prefix). It is never sent to `POST /api/login` or nonce endpoints.
 
-### 3. Verify enrollment
+### 5. Verify enrollment
 
 Ask your agent (or invoke the tool directly) to run **`identyclaw_get_my_identity`**. A successful response confirms JWT login and Passport binding.
 
@@ -103,7 +168,7 @@ Optionally browse **`identyclaw_list_resources`** with URI `doc:discovery` for t
 
 Save the identity payload to `IDENTITY.md` in your workspace (see [Step 4: Save Identity Information](#step-4-save-identity-information)).
 
-### 4. Inbound events (optional)
+### 6. Inbound events (optional)
 
 To receive HOLA validation webhooks on your gateway, set Passport `webhook_url` to your OpenClaw gateway **base URL** (not `/hooks/agent`) and wire `/hooks/agent`. See [`openclaw-integration-guide.md`](openclaw-integration-guide.md).
 
@@ -128,9 +193,9 @@ The sections below are the canonical enrollment path for **non-OpenClaw** agents
 3. Purchase IdentyClaw Passport at https://purchase.identyclaw.com
 4. Login to API and start using your identity
 
-OpenClaw operators: after steps 1–3, use the [plugin + skill route](#openclaw-plugin--skill-route) instead of step 4 curl login.
+OpenClaw operators: use the [plugin + skill route](#openclaw-plugin--skill-route) instead of steps 1–4 below.
 
-**Requirements**:
+**Requirements** (manual / non-OpenClaw path):
 - A NEAR account (created with `gennearaccount`) — this is the only credential you need. The account holds and controls your IdentyClaw Passport, and its private key signs every API request. There is no separate API key, password, or wallet credential.
 - NEAR tokens for checkout and transaction fees (amount depends on selected purchase options)
 - A few minutes to complete enrollment
@@ -144,35 +209,33 @@ OpenClaw operators: after steps 1–3, use the [plugin + skill route](#openclaw-
 
 ## Human vs Agent Responsibilities
 
-- **Agent-compatible (CLI):** Install `gennearaccount` (for account creation), create NEAR account, query owned IdentyClaw Passports, run blockchain reads, and perform API login/signing flows.
-- **OpenClaw operators:** After NEAR account + Passport purchase, use the [plugin + skill route](#openclaw-plugin--skill-route) for JWT login and protected API calls — do not hand-roll curl login on the Gateway when the plugin is available.
+- **Agent-compatible (CLI, non-OpenClaw):** Install `gennearaccount` for account creation, create NEAR account, query owned IdentyClaw Passports, run blockchain reads, and perform API login/signing flows.
+- **OpenClaw operators:** Use the [plugin + skill route](#openclaw-plugin--skill-route) for NEAR account generation (`npm run generate-near-account` or optional `identyclaw_generate_near_account`), JWT login, and protected API calls — do not install `gennearaccount` or hand-roll curl login on the Gateway when the plugin is available.
 - **Other AI agents:** Follow [Step 3](#step-3-authenticate-with-your-near-account) curl login (or a local login script per [`mcp-auth-tools.md`](mcp-auth-tools.md)); MCP at `https://api.identyclaw.com/mcp` is documentation-only and does not perform login for you.
 - **Human-operated:** Complete checkout at `https://purchase.identyclaw.com` to buy/mint an IdentyClaw Passport.
-- **Principal ContactURI (strongly recommended):** When setting `ContactURI` in the DN, use an identifier whose authority you control and monitor (for example an email on your domain). Publish your canonical `tokenId` on channels verifiers trust. See [`public/policies/why-identyclaw.md`](../public/policies/why-identyclaw.md#111-human-principals-and-contacturi).
-- **Boundary:** There is currently no IdentyClaw MCP tool documented as replacing `gennearaccount` for NEAR account creation.
+- **Principal ContactURI (strongly recommended):** When setting `ContactURI` in the DN, use an identifier whose authority you control and monitor (for example an email on your domain). Publish your canonical `tokenId` on channels verifiers trust. See [`public/policies/why-identyclaw.md`](../policies/why-identyclaw.md#111-human-principals-and-contacturi).
+- **Boundary:** The OpenClaw plugin replaces `gennearaccount` for Gateway operators only. MCP at `https://api.identyclaw.com/mcp` does not create NEAR accounts — non-OpenClaw agents must use `gennearaccount` below.
 
 ## Step 1: Create NEAR Account
 
-⚠️ **IMPORTANT**: Create your NEAR implicit account with `gennearaccount` before purchasing your IdentyClaw Passport.
+**OpenClaw operators:** skip this section — use [OpenClaw: Create NEAR account](#2-create-near-account-openclaw--no-gennearaccount) instead.
+
+⚠️ **IMPORTANT**: Create your NEAR implicit account before purchasing your IdentyClaw Passport.
 
 ### Install gennearaccount
 
-Download and install the CLI tool:
-```bash
-wget http://nbg1.your-objectstorage.com/identyclaw/gennearaccount_1.0_amd64.deb
-sudo dpkg -i gennearaccount_1.0_amd64.deb
-```
+⚠️ **Security:** Prefer HTTPS downloads. The `gennearaccount` object-storage URL is plain HTTP — treat it as MITM-risk until you verify the SHA-256 (and preferably the signed `SHA256SUMS`) **before** `dpkg`. Never install a `.deb` you have not checksum-verified.
 
-### Verify Download Integrity (Required)
+**Required order:** download → verify integrity → install (never install first).
 
-Before installing, verify checksums for published binaries:
+Expected checksums:
 
 - `gennearaccount_1.0_amd64.deb`: `fb227cd3e0f35deb10127aa110781013daa698c20a417fb782966c075dda25dd`
 - `near-cli-rs-ai.deb`: `8f4e227151bb1951cd9fe330d8b20342789b538033974629fcb417127b10afd0`
 - Release signing key fingerprint: `FCC4 83E7 AFD8 E01D D619 0BEA 8DCE EB70 EEF8 986F`
 
-End-user signature and checksum verification:
 ```bash
+# 1) Fetch signed checksums over HTTPS
 curl -fL https://identyclaw.ams3.cdn.digitaloceanspaces.com/RELEASE_SIGNING_KEY.asc -o RELEASE_SIGNING_KEY.asc
 curl -fL https://identyclaw.ams3.cdn.digitaloceanspaces.com/SHA256SUMS -o SHA256SUMS
 curl -fL https://identyclaw.ams3.cdn.digitaloceanspaces.com/SHA256SUMS.sig -o SHA256SUMS.sig
@@ -180,10 +243,21 @@ gpg --import RELEASE_SIGNING_KEY.asc
 gpg --fingerprint 8DCEEB70EEF8986F
 # Confirm fingerprint equals FCC4 83E7 AFD8 E01D D619 0BEA 8DCE EB70 EEF8 986F
 gpg --verify SHA256SUMS.sig SHA256SUMS
+
+# 2) Download packages (HTTPS preferred; HTTP only if no HTTPS mirror)
 curl -fL http://nbg1.your-objectstorage.com/identyclaw/gennearaccount_1.0_amd64.deb -o gennearaccount_1.0_amd64.deb
 curl -fL https://identyclaw.ams3.cdn.digitaloceanspaces.com/near-cli-rs-ai.deb -o near-cli-rs-ai.deb
+
+# 3) Verify before any install
 sha256sum -c SHA256SUMS
+# Or at minimum for gennearaccount alone:
+echo 'fb227cd3e0f35deb10127aa110781013daa698c20a417fb782966c075dda25dd  gennearaccount_1.0_amd64.deb' | sha256sum -c
+
+# 4) Install only after checksums match
+sudo dpkg -i gennearaccount_1.0_amd64.deb
 ```
+
+**OpenClaw operators:** skip `gennearaccount` — use the plugin path instead ([OpenClaw plugin + skill route](#openclaw-plugin--skill-route)).
 
 ### NEAR Credentials Storage (Required)
 
@@ -208,13 +282,15 @@ Works when `$HOME` is on durable disk and is not wiped on redeploy.
 
 With the typical OpenClaw setup, `HOME` is `/home/node` inside the container, but `~/.near-credentials` is **not** under the bind-mounted `.openclaw` state — it is wiped when the container is recreated. Use one of these instead:
 
-**Option A (recommended) — next to other secrets**
+**Option A (recommended) — plugin-compatible `secrets/near-credentials`**
 
 | Where | Path |
 |-------|------|
-| Inside container | `/home/node/.openclaw/secrets/near/` |
-| On host (agent A) | `~/.openclaw-agent-a/secrets/near/` |
-| On host (agent B) | `~/.openclaw-agent-b/secrets/near/` |
+| Inside container | `/home/node/.openclaw/secrets/near-credentials/` |
+| On host (agent A) | `~/.openclaw-agent-a/secrets/near-credentials/` |
+| On host (agent B) | `~/.openclaw-agent-b/secrets/near-credentials/` |
+
+Required by [openclaw-identyclaw-plugin](https://github.com/discernible-io/openclaw-identyclaw-plugin) v1.5.0+ account generation (`npm run generate-near-account`, `identyclaw_generate_near_account`).
 
 **Option B — under the workspace mount**
 
@@ -295,13 +371,19 @@ Provide your agent's identity details:
 
 **Optional**:
 - **Family name** - In many countries this is a surname
-- **Contact URI** - Format: `channel-type:provider:address` (e.g., `email:example.com:user@example.com`)
+- **Contact URI** - Format: `scheme:authority:identifier` (e.g., `email:example.com:user@example.com`). Full standard and extended scheme tables: [`token-metadata.md` § ContactURI](token-metadata.md#contacturi-format).
   - Email: `email:example.com:user@example.com`
   - Twitter/X: `twitter:x.com:username`
   - Telegram: `telegram:telegram.com:username`
   - Phone: `phone:ES:34683493049`
   - LinkedIn: `linkedin:linkedin.com:userid`
-  - GitHub: `github:github.com:username`
+  - GitHub: `github:github.com:discernible-io`
+  - A2A: `a2a:identyclaw.com:https://identyclaw-concierge.identyclaw.com:7443`
+  - Discord: `discord:discord.com:123456789012345678`
+  - Fediverse: `fediverse:mastodon.social:@agent@mastodon.social`
+  - Matrix: `matrix:matrix.org:@agent:matrix.org`
+  - Nostr: `nostr:nostr.com:npub1abc...`
+  - DNS / NFC / onion / SMS / IRC / CalDAV — see [extended schemes](token-metadata.md#extended-channel-schemes)
 - **Tax residence** - Country code if you want to indicate where you're a taxpayer (e.g., US, GB, DE)
 - **Tax code** - Optional, may be useful if you trade
 - **Incept date** - When your memory starts (optional)
@@ -353,10 +435,11 @@ Trait categories, index ranges, and allowed value strings are defined in **[Faci
 - Perfect for: High-traffic SaaS, large deployments
 - **Negotiable pricing for volume deployments**
 
-**Collectible Tier** (496 NEAR one-time, immortal):
+**Collectible Tier** (**9 NEAR** one-time temporary offer through October 9, 2026; regular 496 NEAR, immortal):
 - 496 requests per minute
 - Fixed one-time fee, no renewal
 - Token never expires (immortal)
+- **Temporary price:** 9 NEAR until October 9, 2026 (then returns to 496 NEAR)
 - Perfect for: Permanent identity records, collectibles, historical archives
 
 **What You Get**:
@@ -412,7 +495,7 @@ See the login authentication documentation for complete login flow and troublesh
      -H "Content-Type: application/json" \
      -d '{"accountid":"<your 64-char account id>","timestamp":<unix from step 1>,"base64url_signature":"<signature from step 3>"}'
    ```
-   Note: The `timestamp` field (Unix seconds) is optional. If omitted, the server will use the current time.
+   **Required:** send exactly one of `timestamp` (Unix seconds) or `timestamp_iso` from the **same** `GET /api/login/timestamp` challenge used for signing. Do not omit both, do not send both, and do not invent a local clock value — the signature must cover that challenge’s `timestamp_iso`.
 
 5. **Receive JWT token**:
    - Response contains `jwt_token` field with JWT access token for API calls
@@ -463,12 +546,14 @@ After successful login, retrieve your identity information and save it to `IDENT
 
 **Critical Notes**:
 - ⚠️ Store the gennearaccount JSON on **non-volatile storage** with your other secrets; back it up to encrypted operator storage (see [NEAR Credentials Storage](#near-credentials-storage-required))
-- ⚠️ The private key in `<credentials-dir>/<account_id>.json` signs authentication messages - keep it in a secure local store and access it only from trusted runtime code
+- ⚠️ The private key in `<credentials-dir>/<account_id>.json` signs authentication messages — keep it in a secure local store and access it only from trusted runtime code
+- ⚠️ **Never** paste `private_key`, JWT, or credentials JSON into chat, logs, tickets, or shell history; prefer plugin/Gateway config over ad-hoc scripts
 - ⚠️ Use the exact `private_key` string (ed25519:...) from the credentials file for signing
 - ⚠️ API login signs `accountid + timestamp_iso`; the signed message must match the accountid in the JSON body exactly
 - ⚠️ Use `timestamp` and `timestamp_iso` from the same `/api/login/timestamp` response object
 - ⚠️ For every retry, session, or agent process, fetch a new login timestamp pair and use it once
 - ⚠️ The IdentyClaw Passport ID (12-letter) is used for HOLA protocol, not for API login (use accountid for login)
+- ⚠️ Passport metadata may include DN, ContactURI, geo, and facial/biometric-style fields — minimize collection, treat as sensitive PII, and do not log full identity payloads
 
 ## Troubleshooting
 
@@ -477,13 +562,13 @@ After successful login, retrieve your identity information and save it to `IDENT
 #### "Credentials lost after container restart"
 
 - **Cause**: Account JSON was stored under container-ephemeral paths (`~/.near-credentials`, `/tmp`, or cwd) instead of bind-mounted OpenClaw state.
-- **Fix**: Regenerate only if no backup exists; otherwise restore from backup into `/home/node/.openclaw/secrets/near/` (recommended) or `workspace/.near-credentials/`.
-- **Prevention**: Always run `gennearaccount <credentials-dir>` with a directory on the bind mount; see [NEAR Credentials Storage](#near-credentials-storage-required).
+- **Fix**: Regenerate only if no backup exists; otherwise restore from backup into `/home/node/.openclaw/secrets/near-credentials/` (recommended) or `workspace/.near-credentials/`.
+- **Prevention (OpenClaw):** run `npm run generate-near-account -- <bind-mounted-secrets/near-credentials>` or allowlisted `identyclaw_generate_near_account`; **non-OpenClaw:** run `gennearaccount <credentials-dir>` on the bind mount — see [NEAR Credentials Storage](#near-credentials-storage-required).
 
 #### "Account not found"
 
 - Check credentials file exists at `<credentials-dir>/<account-id>.json` (default on persistent `$HOME`: `~/.near-credentials/mainnet/`)
-- If running in OpenClaw/Podman, confirm you did not store credentials under ephemeral `~/.near-credentials` — use `/home/node/.openclaw/secrets/near/` or `workspace/.near-credentials/` instead
+- If running in OpenClaw/Podman, confirm you did not store credentials under ephemeral `~/.near-credentials` — use `/home/node/.openclaw/secrets/near-credentials/` or `workspace/.near-credentials/` instead
 - Verify you're using the correct network (mainnet)
 
 #### "Insufficient balance"
@@ -541,7 +626,7 @@ After successful login, retrieve your identity information and save it to `IDENT
 
 - **FAQ**: https://purchase.identyclaw.com/faq
 - **Support**: support@identyclaw.com
-- **Documentation**: https://api.identyclaw.com/docs
+- **Documentation**: https://api.identyclaw.com/openapi.json
 - **API Reference**: See the API endpoint documentation
 
 ## Next Steps
@@ -552,4 +637,4 @@ After successful login, retrieve your identity information and save it to `IDENT
 - HOLA Protocol (Inter-Agent) — [`hola-agent-authentication.md`](hola-agent-authentication.md)
 - Token metadata documentation
 - API endpoint documentation
-- View API documentation at https://api.identyclaw.com/docs
+- View API documentation at https://api.identyclaw.com/openapi.json

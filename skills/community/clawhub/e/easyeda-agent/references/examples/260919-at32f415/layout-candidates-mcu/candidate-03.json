@@ -1,0 +1,650 @@
+{
+  "id": "candidate-03",
+  "variant": "pin-gap(40.00)",
+  "module": "mcu-decoupling",
+  "strategy": "pin-satellites",
+  "placements": [
+    {
+      "ref": "C14",
+      "primitiveId": "4b1b1e03679c5a6b",
+      "xMil": 1581.282,
+      "yMil": 905.5,
+      "rotationDeg": 180,
+      "layer": 1,
+      "bbox": {
+        "minX": 1521.557,
+        "minY": 872.543,
+        "maxX": 1641.003,
+        "maxY": 938.454
+      },
+      "pads": [
+        {
+          "primitiveId": "4b1b1e03679c5a6be14",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 1553.682,
+          "y": 905.5,
+          "width": 31.5,
+          "height": 35.4,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "4b1b1e03679c5a6be15",
+          "padNumber": "1",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 1608.882,
+          "y": 905.5,
+          "width": 31.5,
+          "height": 35.4,
+          "rotation": 180
+        }
+      ]
+    },
+    {
+      "ref": "C15",
+      "primitiveId": "2aeab466cc4faf3d",
+      "xMil": 1962.026,
+      "yMil": 905.5,
+      "rotationDeg": 0,
+      "layer": 1,
+      "bbox": {
+        "minX": 1902.305,
+        "minY": 872.546,
+        "maxX": 2021.751,
+        "maxY": 938.457
+      },
+      "pads": [
+        {
+          "primitiveId": "2aeab466cc4faf3de14",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 1989.626,
+          "y": 905.5,
+          "width": 31.5,
+          "height": 35.4
+        },
+        {
+          "primitiveId": "2aeab466cc4faf3de15",
+          "padNumber": "1",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 1934.426,
+          "y": 905.5,
+          "width": 31.5,
+          "height": 35.4
+        }
+      ]
+    },
+    {
+      "ref": "C16",
+      "primitiveId": "dc4690dacc8c5eb4",
+      "xMil": 1826.8,
+      "yMil": 1174.624,
+      "rotationDeg": 90,
+      "layer": 1,
+      "bbox": {
+        "minX": 1793.843,
+        "minY": 1114.903,
+        "maxX": 1859.754,
+        "maxY": 1234.349
+      },
+      "pads": [
+        {
+          "primitiveId": "dc4690dacc8c5eb4e14",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 1826.8,
+          "y": 1202.224,
+          "width": 35.4,
+          "height": 31.5,
+          "rotation": 90
+        },
+        {
+          "primitiveId": "dc4690dacc8c5eb4e15",
+          "padNumber": "1",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 1826.8,
+          "y": 1147.024,
+          "width": 35.4,
+          "height": 31.5,
+          "rotation": 90
+        }
+      ]
+    },
+    {
+      "ref": "U6",
+      "primitiveId": "fb1f8c9c14089323",
+      "xMil": 1771.654,
+      "yMil": 984.252,
+      "rotationDeg": 0,
+      "layer": 1,
+      "bbox": {
+        "minX": 1681.0030000000002,
+        "minY": 879.5289999999999,
+        "maxX": 1862.305,
+        "maxY": 1074.9029999999998
+      },
+      "pads": [
+        {
+          "primitiveId": "fb1f8c9c14089323e46",
+          "padNumber": "1",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 1716.5,
+          "y": 905.5,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e47",
+          "padNumber": "2",
+          "net": "OSC_IN",
+          "layer": 1,
+          "x": 1732.3,
+          "y": 905.5,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e48",
+          "padNumber": "3",
+          "net": "OSC_OUT",
+          "layer": 1,
+          "x": 1748,
+          "y": 905.5,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e49",
+          "padNumber": "4",
+          "net": "NRST",
+          "layer": 1,
+          "x": 1763.8,
+          "y": 905.5,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e50",
+          "padNumber": "5",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 1779.5,
+          "y": 905.5,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e51",
+          "padNumber": "6",
+          "net": "PA0",
+          "layer": 1,
+          "x": 1795.3,
+          "y": 905.5,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e52",
+          "padNumber": "7",
+          "net": "PA1",
+          "layer": 1,
+          "x": 1811,
+          "y": 905.5,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e53",
+          "padNumber": "8",
+          "net": "PA2",
+          "layer": 1,
+          "x": 1826.8,
+          "y": 905.5,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e54",
+          "padNumber": "9",
+          "net": "PA3",
+          "layer": 1,
+          "x": 1850.4,
+          "y": 929.1,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e55",
+          "padNumber": "10",
+          "net": "PA4",
+          "layer": 1,
+          "x": 1850.4,
+          "y": 944.9,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e56",
+          "padNumber": "11",
+          "net": "PA5",
+          "layer": 1,
+          "x": 1850.4,
+          "y": 960.6,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e57",
+          "padNumber": "12",
+          "net": "PA6",
+          "layer": 1,
+          "x": 1850.4,
+          "y": 976.4,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e58",
+          "padNumber": "13",
+          "net": "PA7",
+          "layer": 1,
+          "x": 1850.4,
+          "y": 992.1,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e59",
+          "padNumber": "14",
+          "net": "PB0",
+          "layer": 1,
+          "x": 1850.4,
+          "y": 1007.9,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e60",
+          "padNumber": "15",
+          "net": "PB1",
+          "layer": 1,
+          "x": 1850.4,
+          "y": 1023.6,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e61",
+          "padNumber": "16",
+          "net": "PB2",
+          "layer": 1,
+          "x": 1850.4,
+          "y": 1039.4,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e62",
+          "padNumber": "17",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 1826.8,
+          "y": 1063,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e63",
+          "padNumber": "18",
+          "net": "PA8",
+          "layer": 1,
+          "x": 1811,
+          "y": 1063,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e64",
+          "padNumber": "19",
+          "net": "PA9",
+          "layer": 1,
+          "x": 1795.3,
+          "y": 1063,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e65",
+          "padNumber": "20",
+          "net": "PA10",
+          "layer": 1,
+          "x": 1779.5,
+          "y": 1063,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e66",
+          "padNumber": "21",
+          "net": "PA11",
+          "layer": 1,
+          "x": 1763.8,
+          "y": 1063,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e67",
+          "padNumber": "22",
+          "net": "PA12",
+          "layer": 1,
+          "x": 1748,
+          "y": 1063,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e68",
+          "padNumber": "23",
+          "net": "PA13",
+          "layer": 1,
+          "x": 1732.3,
+          "y": 1063,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e69",
+          "padNumber": "24",
+          "net": "PA14",
+          "layer": 1,
+          "x": 1716.5,
+          "y": 1063,
+          "width": 7.9,
+          "height": 23.6
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e70",
+          "padNumber": "25",
+          "net": "PA15",
+          "layer": 1,
+          "x": 1692.9,
+          "y": 1039.4,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e71",
+          "padNumber": "26",
+          "net": "PB3",
+          "layer": 1,
+          "x": 1692.9,
+          "y": 1023.6,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e72",
+          "padNumber": "27",
+          "net": "PB4",
+          "layer": 1,
+          "x": 1692.9,
+          "y": 1007.9,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e73",
+          "padNumber": "28",
+          "net": "PB5",
+          "layer": 1,
+          "x": 1692.9,
+          "y": 992.1,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e74",
+          "padNumber": "29",
+          "net": "PB6",
+          "layer": 1,
+          "x": 1692.9,
+          "y": 976.4,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e75",
+          "padNumber": "30",
+          "net": "PB7",
+          "layer": 1,
+          "x": 1692.9,
+          "y": 960.6,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e76",
+          "padNumber": "31",
+          "net": "BOOT0",
+          "layer": 1,
+          "x": 1692.9,
+          "y": 944.9,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e77",
+          "padNumber": "32",
+          "net": "PB8",
+          "layer": 1,
+          "x": 1692.9,
+          "y": 929.1,
+          "width": 23.6,
+          "height": 7.9
+        },
+        {
+          "primitiveId": "fb1f8c9c14089323e78",
+          "padNumber": "33",
+          "net": "GND",
+          "layer": 1,
+          "x": 1771.7,
+          "y": 984.3,
+          "width": 110.2,
+          "height": 110.2
+        }
+      ]
+    }
+  ],
+  "measurements": {
+    "moduleBounds": {
+      "minX": 1521.557,
+      "minY": 872.543,
+      "maxX": 2021.751,
+      "maxY": 1234.349
+    },
+    "moduleWidthMil": 500.194,
+    "moduleHeightMil": 361.806,
+    "minInternalGapMil": 40,
+    "closestInternalGap": {
+      "from": "C15",
+      "to": "U6",
+      "distanceMil": 40
+    },
+    "minExternalComponentGapMil": 14.026,
+    "closestExternalComponentGap": {
+      "from": "C14",
+      "to": "R3",
+      "distanceMil": 14.026
+    },
+    "pinDistances": [
+      {
+        "member": "C14",
+        "memberPad": "1",
+        "owner": "U6",
+        "ownerPad": "1",
+        "net": "+3V3",
+        "distanceMil": 107.618,
+        "source": "原理图.pdf 第1页：C14→U6.1"
+      },
+      {
+        "member": "C15",
+        "memberPad": "1",
+        "owner": "U6",
+        "ownerPad": "5",
+        "net": "+3V3",
+        "distanceMil": 154.926,
+        "source": "原理图.pdf 第1页：C15→U6.5"
+      },
+      {
+        "member": "C16",
+        "memberPad": "1",
+        "owner": "U6",
+        "ownerPad": "17",
+        "net": "+3V3",
+        "distanceMil": 84.024,
+        "source": "原理图.pdf 第1页：C16→U6.17"
+      }
+    ],
+    "edgeDistances": [
+      {
+        "ref": "C14",
+        "nearestEdge": "bottom",
+        "distanceMil": 872.543,
+        "source": "polygon"
+      },
+      {
+        "ref": "C15",
+        "nearestEdge": "bottom",
+        "distanceMil": 872.546,
+        "source": "polygon"
+      },
+      {
+        "ref": "C16",
+        "nearestEdge": "top",
+        "distanceMil": 734.151,
+        "source": "polygon"
+      },
+      {
+        "ref": "U6",
+        "nearestEdge": "bottom",
+        "distanceMil": 879.529,
+        "source": "polygon"
+      }
+    ],
+    "limitations": [
+      "15 routed line(s) exist; copper geometry was not checked"
+    ]
+  },
+  "actions": [
+    {
+      "id": "place-C14",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 180,
+          "x": 1581.282,
+          "y": 905.5
+        },
+        "primitiveId": "4b1b1e03679c5a6b"
+      }
+    },
+    {
+      "id": "place-C15",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 0,
+          "x": 1962.026,
+          "y": 905.5
+        },
+        "primitiveId": "2aeab466cc4faf3d"
+      }
+    },
+    {
+      "id": "place-C16",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 90,
+          "x": 1826.8,
+          "y": 1174.624
+        },
+        "primitiveId": "dc4690dacc8c5eb4"
+      }
+    },
+    {
+      "id": "save",
+      "action": "pcb.save",
+      "payload": {}
+    }
+  ],
+  "apply": {
+    "version": 1,
+    "meta": {
+      "name": "mcu-decoupling candidate-03",
+      "description": "Generated by easyeda pcb layout-plan; footprint-anchor coordinates; boardSha256=8c90926484f3d408a406c7bc4c2713d3ad8c358106873865afbeec3873cbed09; layoutSha256=dd430ba278e8e17dc3d1539f08dc24b5bb9661ded8d4ace2add37b838e499527; hashSemantic=sha256(raw-file-bytes)",
+      "project": "ceshi",
+      "doc": "2e719e9419653c72"
+    },
+    "defaults": {},
+    "steps": [
+      {
+        "id": "place-C14",
+        "name": "place C14",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 180,
+            "x": 1581.282,
+            "y": 905.5
+          },
+          "primitiveId": "4b1b1e03679c5a6b"
+        }
+      },
+      {
+        "id": "place-C15",
+        "name": "place C15",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 0,
+            "x": 1962.026,
+            "y": 905.5
+          },
+          "primitiveId": "2aeab466cc4faf3d"
+        }
+      },
+      {
+        "id": "place-C16",
+        "name": "place C16",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 90,
+            "x": 1826.8,
+            "y": 1174.624
+          },
+          "primitiveId": "dc4690dacc8c5eb4"
+        }
+      },
+      {
+        "id": "save",
+        "name": "save PCB checkpoint",
+        "action": "pcb.save"
+      }
+    ]
+  },
+  "files": {
+    "apply": "candidate-03.apply.json",
+    "candidate": "candidate-03.json",
+    "preview": "candidate-03.svg"
+  }
+}

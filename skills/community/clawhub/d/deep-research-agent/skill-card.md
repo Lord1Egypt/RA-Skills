@@ -1,43 +1,59 @@
-## Description: <br>
-Deep Research Agent performs structured research and analysis on user-supplied topics, producing sourced summaries, reports, comparisons, landscape maps, and evaluation recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research Agent guides agents through quick research, deep dives, comparisons, landscape mapping, and adoption evaluations with source-aware structured outputs.
 
-## Publisher: <br>
-[jahonn](https://clawhub.ai/user/jahonn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jahonn](https://clawhub.ai/user/jahonn)
 
-## Use Case: <br>
-Developers, analysts, and other external users use this skill to turn broad questions into sourced summaries, deep research reports, comparison matrices, landscape maps, and decision frameworks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research outputs may include incorrect, stale, biased, or incomplete source interpretations. <br>
-Mitigation: Review cited sources, confidence notes, and gaps before using the output for decisions. <br>
-Risk: The skill uses web search and may use subagent processing, which can expose sensitive internal information if prompts include it. <br>
-Mitigation: Use scoped installation and avoid sensitive internal information unless web search and subagent processing are acceptable for the use case. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to turn broad research questions into structured summaries, sourced reports, comparison matrices, landscape maps, and adoption recommendations.
 
-## Reference(s): <br>
-- [Research Agent Methodology Reference](references/methodology.md) <br>
-- [Agent Skills](https://agentskills.io) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
-- [Deep Research Agent on ClawHub](https://clawhub.ai/jahonn/deep-research-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown research reports, comparison tables, decision matrices, and concise conversational summaries with sources.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write RESEARCH.md for deep dives or LANDSCAPE.md for longer landscape analyses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Research outputs can reflect stale, biased, incomplete, or low-credibility web sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's source hierarchy, recency checks, bias checks, citations, and gaps-and-caveats sections before relying on conclusions.
+
+Risk: Deep-dive workflows may write workspace report files and could overwrite an existing report if an agent proceeds without confirmation.
+
+Mitigation: Ask the agent to confirm before writing or overwriting files such as RESEARCH.md.
+
+Risk: Installing through an npm CLI path adds installer trust and version-pinning risk.
+
+Mitigation: Install through ClawHub when possible; otherwise pin and verify the installer before use.
+
+## Reference(s):
+
+- [Research Agent Methodology Reference](references/methodology.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+- [Agent Skills](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research reports, comparison matrices, landscape maps, decision frameworks, and concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deep-dive mode may produce a workspace report file such as RESEARCH.md; shorter modes return structured results in the conversation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

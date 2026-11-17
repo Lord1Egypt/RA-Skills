@@ -1,41 +1,58 @@
-## Description: <br>
-Training Swarm helps agents manage training knowledge, generate quizzes and study plans, track learner progress, and prepare proactive reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Training Swarm helps agents manage training knowledge, generate quizzes, create study plans, track progress, and send proactive reminders.
 
-## Publisher: <br>
-[gaoshung1981888](https://clawhub.ai/user/gaoshung1981888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoshung1981888](https://clawhub.ai/user/gaoshung1981888)
 
-## Use Case: <br>
-Developers, trainers, and operations teams use this skill to turn product or process knowledge into training quizzes, personalized study plans, knowledge cards, progress reports, and reminder workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create persistent local training records under the user's home directory. <br>
-Mitigation: Ask for confirmation before creating files and use only user-approved locations and learner data. <br>
-Risk: The skill may prepare or trigger WeChat-style external reminders. <br>
-Mitigation: Confirm recipient, channel, schedule, and message content before sending any reminder externally. <br>
+## Use Case:
 
+Employees and training operators use this skill to structure knowledge bases, produce training quizzes, create learning plans, track learner progress, and prepare reminder workflows.
 
-## Reference(s): <br>
-- [Submitted skill definition](artifact/SKILL.md) <br>
-- [ClawHub release page](https://clawhub.ai/gaoshung1981888/training-swarm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell command snippets and JSON knowledge-card examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local training records, plans, reports, and knowledge cards when the user approves file creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may create persistent training files in a user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before creating or updating training records, and review generated file paths before execution.
+
+Risk: Reminder workflows may involve outbound networked channels and employee progress or assessment data.
+
+Mitigation: Confirm recipients, channels, and data content before sending reminders, especially when personal or assessment data is involved.
+
+Risk: Training content, quiz answers, and progress assessments may be incorrect or incomplete.
+
+Mitigation: Review generated materials against the source knowledge base and require human confirmation for assessment results.
+
+## Reference(s):
+
+- [Training Swarm ClawHub skill page](https://clawhub.ai/gaoshung1981888/skills/training-swarm)
+- [gaoshung1981888 ClawHub publisher profile](https://clawhub.ai/user/gaoshung1981888)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local training records, knowledge cards, progress reports, and reminder workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

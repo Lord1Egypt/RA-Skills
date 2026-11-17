@@ -1,47 +1,60 @@
-## Description: <br>
-Analyze emotional tone and detect opinions through the NEXUS remote sentiment-analysis service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze emotional tone and detect opinions.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and agents use this skill to send text to the NEXUS API for sentiment and opinion analysis. It is suited to workflows that can approve remote processing and paid per-request access before submitting content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends submitted text to a third-party NEXUS service for remote analysis. <br>
-Mitigation: Do not submit secrets, regulated data, or confidential business content unless third-party processing has been approved. <br>
-Risk: Normal use may incur per-request payment through supported payment protocols. <br>
-Mitigation: Use the documented sandbox payment proof for testing and confirm payment requirements before production use. <br>
+## Use Case:
 
+External users and developers use this skill to send text to the NEXUS service for sentiment and opinion analysis in agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/nexus-sentiment-analysis) <br>
-- [NEXUS platform](https://ai-service-hub-15.emergent.host) <br>
-- [Sentiment analysis API endpoint](https://ai-service-hub-15.emergent.host/api/original-services/sentiment-analysis) <br>
-- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API responses and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NEXUS_PAYMENT_PROOF for paid access; sandbox_test is documented for testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Text submitted for analysis and payment proof data are sent to the remote NEXUS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, regulated data, or proprietary text unless NEXUS is approved for the use case.
+
+Risk: The skill advertises paid per-request API usage.
+
+Mitigation: Monitor usage and payment proof configuration before enabling the skill in automated workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-sentiment-analysis)
+- [NEXUS Platform](https://ai-service-hub-15.emergent.host)
+- [Sentiment Analysis API Endpoint](https://ai-service-hub-15.emergent.host/api/original-services/sentiment-analysis)
+- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object containing a service response string.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The response is produced by a paid remote NEXUS API call.]
+
+## Skill Version(s):
+
+2.1.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

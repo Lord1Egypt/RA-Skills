@@ -1,44 +1,55 @@
-## Description: <br>
-Crustdata (crustdata.com). Use this skill for ANY Crustdata request - searching and reading data. Whenever a task involves Crustdata, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Crustdata and retrieve company information through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to search, identify, and enrich Crustdata company records through an OOMOL-connected account without handling raw Crustdata API tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence flags the package as suspicious because bundled maintainer helpers may run with broad authority or perform credentialed account actions. <br>
-Mitigation: Install only from the trusted publisher account, review the skill before use, and avoid full-access nested agent execution unless explicitly intended. <br>
-Risk: This skill requires sensitive credentials through an OOMOL-connected Crustdata account. <br>
-Mitigation: Use the OOMOL connection flow so credentials remain server-side, and reconnect or rotate credentials when scope or expiration errors occur. <br>
-Risk: Connector actions depend on live schemas and may fail or behave differently if the connected service changes. <br>
-Mitigation: Inspect the live action schema before constructing payloads and confirm any action marked write or destructive before execution. <br>
+## Use Case:
 
+Developers and business researchers use this skill to search Crustdata, resolve company identifiers, and retrieve company enrichment data through their connected OOMOL account.
 
-## Reference(s): <br>
-- [Crustdata homepage](https://crustdata.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Skill page](https://clawhub.ai/oomol/oo-crustdata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before action payload construction; connector responses include data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: If the oo CLI is missing, setup guidance can run a downloaded installer without separate approval or integrity verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI separately before agent use, and require approval for any later installation attempt.
+
+Risk: The OOMOL connection handles Crustdata access and query payloads.
+
+Mitigation: Understand that OOMOL handles the connected account access and payloads before using the skill.
+
+## Reference(s):
+
+- [Crustdata API documentation](https://docs.crustdata.com/openapi-specs/2025-11-01/introduction)
+- [Crustdata](https://crustdata.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Structured company data with concise textual summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Company search, identification, autocomplete, and enrichment results; company search supports cursor pagination.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

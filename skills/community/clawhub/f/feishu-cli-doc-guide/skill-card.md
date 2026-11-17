@@ -1,42 +1,58 @@
-## Description: <br>
-A reference guide for checking Feishu-compatible Markdown before document import, covering Mermaid and PlantUML limits, table splitting, callouts, formulas, images, API limits, and fallback behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language compatibility guide for preparing Feishu Markdown documents, covering Mermaid and PlantUML constraints, table splitting, callouts, formulas, images, API limits, and fallback behavior.
 
-## Publisher: <br>
-[GISwilson](https://clawhub.ai/user/GISwilson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[giswilson](https://clawhub.ai/user/giswilson)
 
-## Use Case: <br>
-Developers and agents use this skill as a preflight guide when generating Markdown that will be imported into Feishu documents, especially content with diagrams, tables, callouts, formulas, and images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide can shape generated Feishu documents, so incorrect or stale compatibility guidance could cause import failures or degraded document output. <br>
-Mitigation: Review generated Markdown against the guide's checklist before importing and verify high-risk diagrams, large tables, formulas, and images in Feishu. <br>
-Risk: The reviewed package does not include any optional local style-guide file an agent may choose to consult. <br>
-Mitigation: Inspect any separate local style-guide reference before relying on it for document generation. <br>
+## Use Case:
 
+Developers and agent authors use this read-only reference before generating Markdown for Feishu document import so diagrams, tables, callouts, formulas, and images follow Feishu-compatible patterns.
 
-## Reference(s): <br>
-- [Feishu Mermaid Board Syntax Reference](references/mermaid-spec.md) <br>
-- [ClawHub skill page](https://clawhub.ai/GISwilson/feishu-cli-doc-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/GISwilson) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with checklists, compatibility rules, and syntax examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only reference guidance; no executable code or credential handling in the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Markdown prepared without applying the compatibility checklist can still fail Feishu import, especially for complex diagrams or oversized tables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Markdown against the packaged Feishu compatibility rules and test representative imports for diagram-heavy or table-heavy documents.
+
+Risk: The skill is mainly Chinese-language Feishu compatibility guidance and may be misapplied outside Feishu document workflows.
+
+Mitigation: Use it only when preparing Markdown for Feishu document creation or import, and confirm the target workflow before applying its constraints.
+
+Risk: The optional local ~/.claude/rules style-guide reference may not exist in every installer environment.
+
+Mitigation: Rely on the packaged guidance in the skill artifact unless the local style-guide file is intentionally maintained.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/giswilson/skills/feishu-cli-doc-guide)
+- [Mermaid Feishu board syntax guide](artifact/references/mermaid-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance and compatibility checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only reference content; no code execution, persistence, or credential handling identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

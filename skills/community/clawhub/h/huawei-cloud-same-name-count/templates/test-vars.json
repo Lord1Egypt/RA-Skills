@@ -1,0 +1,64 @@
+{
+  "skill_name": "huawei-cloud-same-name-count",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/query.py --help",
+      "expected": "argparse help printed, exit 0; contains --name/--gender/--province/--format",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "Same-name count for a known name (Markdown)",
+      "command": "python3 scripts/query.py --name 张伟",
+      "expected": "Markdown with total 6,901 and by-gender / by-province breakdown",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "Gender filter",
+      "command": "python3 scripts/query.py --name 刘洋 --gender 女 --format json",
+      "expected": "JSON with matched=true, total=2108, by_gender={女:2108}",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "Province filter",
+      "command": "python3 scripts/query.py --name 李娜 --province 广东 --format json",
+      "expected": "JSON with total=1240 and by_province={广东:1240}",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "No result for an absent name",
+      "command": "python3 scripts/query.py --name 不存在的名字",
+      "expected": "Explicit no-result message printed, exit 0 (not silent)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-06",
+      "name": "No result when the filter excludes all records",
+      "command": "python3 scripts/query.py --name 张伟 --gender 女",
+      "expected": "Explicit no-result message (name exists but filter excludes), exit 0",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-07",
+      "name": "Invalid filter rejected",
+      "command": "python3 scripts/query.py --name 张伟 --gender 不明",
+      "expected": "error message on stderr, exit 2",
+      "type": "readonly",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": [],
+  "notes": "Pure local Python 3 skill: no Huawei Cloud credentials, CLI, SDK, or network access. All cases are read-only and only read the built-in dataset. When the smoke harness cannot execute interpreter commands, the structural self-check plus the unit tests under tests/ cover the behaviour."
+}

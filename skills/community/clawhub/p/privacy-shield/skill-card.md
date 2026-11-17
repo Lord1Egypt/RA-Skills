@@ -1,41 +1,53 @@
-## Description: <br>
-Manages sensitive data access by marking resources with privacy levels and enforcing share, export, display, and internal-use restrictions through a local registry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages sensitive data access by marking resources with privacy levels and enforcing share, export, display, and internal-use restrictions through a centralized registry.
 
-## Publisher: <br>
-[xiaobu2020](https://clawhub.ai/user/xiaobu2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaobu2020](https://clawhub.ai/user/xiaobu2020)
 
-## Use Case: <br>
-Developers and agent operators use this skill to label local resources by privacy level, check whether a planned action is allowed, and review audit records before data is shared or exported. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Registry and audit files can reveal sensitive file names, privacy categories, reasons, and access decisions. <br>
-Mitigation: Store the registry and audit log locally with access limited to trusted users and agents. <br>
-Risk: Incorrect or stale privacy labels can allow an agent to make the wrong share, export, display, or internal-use decision. <br>
-Mitigation: Review labels before sensitive operations and use the audit command, especially the deny-only view, to inspect enforcement decisions. <br>
+## Use Case:
 
+Developers and agents use Privacy Shield to mark sensitive files, directories, and rule categories, then check whether planned operations such as sharing, exporting, displaying, or internal use are allowed before acting.
 
-## Reference(s): <br>
-- [Privacy Shield on ClawHub](https://clawhub.ai/xiaobu2020/privacy-shield) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaobu2020) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, JSON] <br>
-**Output Format:** [Markdown guidance with CLI commands and local JSON/JSONL registry records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local privacy labels, permission check results, and audit-log entries; no hidden network, credential, or privilege behavior was reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security review states that the core permission check can mistakenly treat some sensitive paths as public.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as advisory until path matching is fixed or compensated for with normalized, component-aware path checks and review before sharing or exporting data.
+
+Risk: The security guidance warns against elevated-privilege use or attacker-controlled WORKSPACE values.
+
+Mitigation: Run the tool with least privilege in a trusted workspace and do not use it as the sole approval gate for external disclosure.
+
+## Reference(s):
+
+- [Privacy Shield ClawHub skill page](https://clawhub.ai/xiaobu2020/skills/privacy-shield)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON registry examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command usage can create or update a JSON privacy registry and JSONL audit log.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

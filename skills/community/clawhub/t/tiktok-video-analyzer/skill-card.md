@@ -1,44 +1,57 @@
-## Description: <br>
-Analyzes TikTok, YouTube, Instagram, Twitter/X, and other supported video URLs by downloading audio, transcribing it locally, and answering questions about the content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze videos from TikTok, YouTube, Instagram, Twitter/X, and other supported sites by downloading audio, transcribing it locally, and answering questions about the content.
 
-## Publisher: <br>
-[holl4ndtv](https://clawhub.ai/user/holl4ndtv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[holl4ndtv](https://clawhub.ai/user/holl4ndtv)
 
-## Use Case: <br>
-External OpenClaw users use this skill to analyze video URLs, generate local transcripts, summarize content, answer questions, and search previously cached transcripts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Transcripts are written locally by default even though the user-facing flow presents saving as optional. <br>
-Mitigation: Review before installing; prefer an update that makes transcript retention truly opt-in and clearly discloses cache behavior. <br>
-Risk: Saved transcript handling uses local filenames and passes raw transcript JSON through command arguments. <br>
-Mitigation: Sanitize saved filenames, avoid passing raw transcript JSON through shell arguments, and restrict transcript directory permissions. <br>
-Risk: The skill downloads media audio, installs or uses local transcription dependencies, and may download a transcription model on first run. <br>
-Mitigation: Run only in environments where those network downloads and local storage behaviors are acceptable, and verify dependencies before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/holl4ndtv/tiktok-video-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/holl4ndtv) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to turn social and video URLs into local transcripts and concise answers, including summaries, extracted teaching points, hooks, and follow-up questions against saved transcripts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and answers, with local helper scripts returning JSON to the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads audio with yt-dlp, transcribes locally, caches transcript JSON under the skill directory, and may reuse cached transcripts for follow-up questions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may download online media and model files, then store transcripts locally in ways users may not expect.
+
+Mitigation: Run it only after review in a dedicated environment and avoid sensitive videos unless local storage behavior is acceptable.
+
+Risk: Unsafe save and ID handling could affect local transcript files or commands when used with untrusted videos or local files.
+
+Mitigation: Fix the save workflow, validate transcript IDs and paths, and review generated commands before execution.
+
+Risk: System-level dependency installation can modify the user's Python environment.
+
+Mitigation: Install dependencies in a virtual environment, container, or other isolated runtime instead of system Python.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/holl4ndtv/skills/tiktok-video-analyzer)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown answers with inline shell commands and optional JSON transcript data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download online media, create local transcript files, and reuse cached transcripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

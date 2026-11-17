@@ -1,40 +1,54 @@
-## Description: <br>
-Extracts text, tables, media, and structured web data from authorized websites and exports results as JSON, CSV, Markdown, or SQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract and export structured web data such as text, tables, and images in JSON, CSV, Markdown, or SQL formats while respecting ethical and legal scraping practices.
 
-## Publisher: <br>
-[rupertnt034](https://clawhub.ai/user/rupertnt034) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rupertnt034](https://clawhub.ai/user/rupertnt034)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to direct an agent to scrape public or otherwise authorized websites, capture text, tables, and media, and export structured results while applying conservative request rates and site-compliance practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scraping private, authenticated, restricted, or personal data can create legal and privacy exposure. <br>
-Mitigation: Use the skill only for public or otherwise authorized websites and avoid collecting personal or authenticated data unless there is a clear lawful basis. <br>
-Risk: High crawl depth, aggressive request rates, or bypass-oriented proxy and user-agent behavior can violate site terms or access controls. <br>
-Mitigation: Keep request rates conservative, respect robots.txt and site terms, and do not use proxy or user-agent rotation to bypass access controls. <br>
+## Use Case:
 
+Developers, analysts, and operators use this skill to ask an agent for web-scraping commands, extraction plans, and export formats for public or authorized websites.
 
-## Reference(s): <br>
-- [ClawHub Web Scraper release](https://clawhub.ai/rupertnt034/rupert-web-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and structured data snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scrape commands, extraction plans, export format choices, JSON examples, and risk-aware usage guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill provides broad web-scraping guidance that could be misapplied to unauthorized, private, authenticated, or out-of-scope sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on public or authorized sites, respect robots.txt and site terms, avoid private or authenticated content unless permission is explicit, and confirm scope before crawling or exporting data.
+
+Risk: Bulk crawling or media export can create operational or compliance issues if performed without limits.
+
+Mitigation: Apply rate limits, caching, retries, and scope review before collecting or exporting large amounts of content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rupertnt034/skills/rupert-web-scraper)
+- [Publisher profile](https://clawhub.ai/user/rupertnt034)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples and structured data examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON, CSV, Markdown, SQL, and scraping workflow suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

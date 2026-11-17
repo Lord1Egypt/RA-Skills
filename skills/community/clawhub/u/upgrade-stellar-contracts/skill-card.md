@@ -1,43 +1,57 @@
-## Description: <br>
-Upgrade Stellar/Soroban smart contracts using OpenZeppelin's upgradeable module. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upgrade Stellar/Soroban smart contracts using OpenZeppelin's upgradeable module. Use when users need to: (1) make Soroban contracts upgradeable via native WASM replacement, (2) use Upgradeable or UpgradeableMigratable derive macros, (3) implement atomic upgrade-and-migrate patterns with an Upgrader contract, (4) ensure storage key compatibility across upgrades, or (5) test upgrade paths for Soroban contracts.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and review Stellar/Soroban contract upgrades, including upgradeable module usage, migration flow design, access control, and storage compatibility checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance may be applied to live contracts with outdated Stellar or OpenZeppelin APIs. <br>
-Mitigation: Verify current OpenZeppelin Stellar APIs before using generated or adapted upgrade code. <br>
-Risk: Incomplete authorization on upgrade paths can allow unauthorized contract replacement. <br>
-Mitigation: Require owner, role-based, multisig, or governance authorization and manually review all upgrade code. <br>
-Risk: Storage migration or compatibility mistakes can corrupt contract state. <br>
-Mitigation: Test upgrade and migration flows on a local or test network before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, implement, and review upgrade paths for Stellar/Soroban smart contracts using OpenZeppelin's upgradeable module, including access control, migration, storage compatibility, and test-network validation.
 
-## Reference(s): <br>
-- [OpenZeppelin stellar-contracts examples](https://github.com/OpenZeppelin/stellar-contracts) <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/upgrade-stellar-contracts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with Rust code examples and review checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable code or hidden automation is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated upgrade guidance or code can affect deployed smart contracts and assets if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code carefully, enforce access control, test upgrade and migration paths on a local or test network, and verify storage compatibility before production use.
+
+Risk: An Upgrader contract without its own access control can allow unauthorized upgrade execution.
+
+Mitigation: Require explicit Upgrader authorization, such as owner, role-based, multisig, or governance controls, before invoking target contract upgrades.
+
+Risk: Storage key or value-type changes across contract versions can corrupt existing state.
+
+Mitigation: Keep existing storage keys and value types compatible, add new keys instead of renaming or removing old ones, and validate state reads after upgrading on a test network.
+
+## Reference(s):
+
+- [OpenZeppelin Stellar Contracts](https://github.com/OpenZeppelin/stellar-contracts)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Rust code examples, checklists, and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

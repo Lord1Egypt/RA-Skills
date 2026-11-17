@@ -1,39 +1,54 @@
-## Description: <br>
-Manage agents in Google Dialogflow CX via REST API. Use for creating, listing, updating, and deleting chatbot agents. Supports v3beta1 API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage agents in Google Dialogflow CX via REST API for creating, listing, updating, and deleting chatbot agents using the v3beta1 API.
 
-## Publisher: <br>
-[Yash-Kavaiya](https://clawhub.ai/user/Yash-Kavaiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yash-kavaiya](https://clawhub.ai/user/yash-kavaiya)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to manage Dialogflow CX agents in a Google Cloud project. It helps list, create, inspect, update, delete, export, and validate agents using REST examples or the bundled Python CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify or delete Dialogflow CX agents when used with Google credentials that have sufficient permissions. <br>
-Mitigation: Use least-privilege Google Cloud credentials limited to the intended project and confirm project, location, and agent identifiers before update, restore, or delete operations. <br>
-Risk: Destructive changes may remove or overwrite important chatbot agent configuration. <br>
-Mitigation: Export or back up important agents before destructive operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agents API Reference](references/agents.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to manage Google Dialogflow CX agents in authorized Google Cloud projects, including listing, creating, updating, deleting, exporting, and validating agents.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands, REST request examples, and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authenticated Google Cloud credentials and Dialogflow CX API access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Delete and export operations can affect production Dialogflow CX agents when run with broad Google Cloud credentials.
+
+Mitigation: Use least-privilege credentials, restrict allowed projects and locations, and avoid granting delete or export permissions unless those operations are required.
+
+Risk: Agent deletion or export may proceed without enough operator confirmation or backup preparation.
+
+Mitigation: Require manual confirmation and verified backups before running delete or export workflows against important agents.
+
+## Reference(s):
+
+- [Agents API Reference](references/agents.md)
+- [Dialogflow CX v3beta1 API Base URL](https://dialogflow.googleapis.com/v3beta1)
+- [ClawHub Skill Page](https://clawhub.ai/yash-kavaiya/skills/dialogflow-cx-agents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON request examples, and Python CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled CLI prints Dialogflow CX agent details as text or JSON depending on the operation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

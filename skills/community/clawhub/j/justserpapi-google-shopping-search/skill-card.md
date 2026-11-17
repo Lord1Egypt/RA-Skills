@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/v1/google/shopping/search for Google SERP Shopping Search through Just Serp API with query. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/shopping/search for Google SERP Shopping Search through Just Serp API with query.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and agents use this skill to query Just Serp API's Google Shopping search endpoint and retrieve product listings, prices, and merchant data for pricing research and catalog monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends JUST_SERP_API_KEY and user-provided shopping search parameters to Just Serp API. <br>
-Mitigation: Use the skill only when Just Serp API is trusted for the API key and search terms; keep JUST_SERP_API_KEY out of chat, screenshots, and shared logs. <br>
-Risk: Optional raw HTML requests may return upstream search-result HTML alongside structured data. <br>
-Mitigation: Request raw HTML only when needed and treat returned HTML as untrusted data for review or downstream processing. <br>
+## Use Case:
 
+External users and developers use this skill to run Google Shopping searches through Just Serp API for product listings, prices, merchants, pricing research, and catalog monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justserpapi/justserpapi-google-shopping-search) <br>
-- [Just Serp API project site](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_shopping_search&utm_content=project_link) <br>
-- [Just Serp API documentation](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_shopping_search&utm_content=project_link) <br>
-- [Generated operation reference](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, JSON] <br>
-**Output Format:** [Markdown summary followed by raw JSON from the Just Serp API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and a query parameter; optional query parameters control localization, filtering, pagination, SafeSearch, and raw HTML inclusion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Shopping search terms, localization settings, and the Just Serp API key are sent to Just Serp API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run this skill only when that data sharing is acceptable, keep the API key out of chat messages and logs, and avoid sensitive personal, confidential business, or secret data in search queries.
+
+Risk: The skill performs expected network API calls and may return raw backend error payloads.
+
+Mitigation: Review backend payloads before sharing them externally and avoid including secrets or sensitive query details in troubleshooting transcripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justserpapi/skills/justserpapi-google-shopping-search)
+- [Just Serp API Project Site](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_shopping_search&utm_content=project_link)
+- [Just Serp API Documentation](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_shopping_search&utm_content=project_link)
+- [Generated Operation Reference](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and sends query parameters to Just Serp API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

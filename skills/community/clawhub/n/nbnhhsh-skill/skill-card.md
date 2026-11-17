@@ -1,43 +1,54 @@
-## Description: <br>
-Translate Chinese pinyin initialisms and internet abbreviations to their possible full Chinese meanings, supporting multiple terms at once. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate Chinese pinyin initialisms and internet abbreviations to their possible full Chinese meanings, supporting multiple terms at once.
 
-## Publisher: <br>
-[JayeGT002](https://clawhub.ai/user/JayeGT002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayegt002](https://clawhub.ai/user/jayegt002)
 
-## Use Case: <br>
-Developers and agents use this skill to look up Chinese pinyin initialisms and internet abbreviations, including batch queries, and return possible full Chinese interpretations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the skill when the user did not intend a pinyin abbreviation lookup. <br>
-Mitigation: Confirm intent before using the lookup flow for vague prompts or unexplained strings. <br>
-Risk: Lookup text may be sent to an external API. <br>
-Mitigation: Avoid using the skill on private, confidential, or sensitive text. <br>
-Risk: The API may have rate limits or pending-review results. <br>
-Mitigation: Respect rate limits, avoid unnecessary repeated queries, and present pending-review or ambiguous results as uncertain. <br>
+## Use Case:
 
+External users and developers use this skill to look up Chinese pinyin initialisms, internet slang abbreviations, and ambiguous letter strings, including batch queries with multiple possible interpretations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JayeGT002/nbnhhsh-skill) <br>
-- [nbnhhsh lookup API](https://lab.magiconch.com/api/nbnhhsh/guess) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and plain-text lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return multiple possible interpretations for each abbreviation; API responses can include pending-review results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Lookup text is sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill with secrets, personal data, or confidential text; use explicit short abbreviation lookups.
+
+Risk: Abbreviations may have multiple meanings or pending-review results.
+
+Mitigation: Treat returned meanings as candidates and review the surrounding context before relying on an interpretation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jayegt002/skills/nbnhhsh-skill)
+- [nbnhhsh API endpoint](https://lab.magiconch.com/api/nbnhhsh/guess)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and API result interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return multiple candidate meanings for one abbreviation; queries are sent to a third-party API.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

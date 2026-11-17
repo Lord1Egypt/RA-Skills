@@ -1,37 +1,49 @@
-## Description: <br>
-Xiao Chuang You Garden helps agents answer gardening, balcony planting, flowers, houseplants, potted plants, flowering periods, and plant-care questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides conversational gardening guidance for flowers, balcony plants, potted plants, flowering seasons, and daily plant care.
 
-## Publisher: <br>
-[zcr3344](https://clawhub.ai/user/zcr3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcr3344](https://clawhub.ai/user/zcr3344)
 
-## Use Case: <br>
-External users and agent builders use this skill to provide concise plant recommendations, seasonal gardening guidance, balcony plant-care advice, and follow-up questions about light and growing conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad plant-related terms in conversations where stricter routing is desired. <br>
-Mitigation: Review and narrow the trigger wording before deployment if the agent should only handle specific gardening or plant-care requests. <br>
+## Use Case:
 
+External users use this skill to receive friendly gardening advice, including seasonal planting suggestions, balcony plant recommendations, routine care guidance, and follow-up questions about growing conditions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should include a plant name, care points, a suitable audience, and a follow-up question about balcony direction or light conditions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may activate on broad plant or balcony terms in conversations where gardening guidance is not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation behavior before installation and keep use scoped to benign gardening and plant-care requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zcr3344/skills/xiao-chuang-you-garden)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses include a plant name, care points, suitable audience, and a follow-up question about balcony direction or lighting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

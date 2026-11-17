@@ -1,43 +1,54 @@
-## Description: <br>
-WakaTime (wakatime.com). Use this skill for WakaTime requests that search and read coding activity through the OOMOL `oo` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WakaTime (wakatime.com). Use this skill for ANY WakaTime request — searching and reading data. Whenever a task involves WakaTime, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and engineers use this skill to query their connected WakaTime account for coding stats, summaries, status-bar data, all-time coding time, project lists, and current-user details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read WakaTime activity through an OOMOL-connected account. <br>
-Mitigation: Install it only when that access is intended, and connect only the intended WakaTime API key. <br>
-Risk: First-time setup may require downloading and running an `oo` CLI installer. <br>
-Mitigation: Review or verify the installer before running the pipe-to-shell command. <br>
+## Use Case:
 
+Developers and other WakaTime users can retrieve their account profile, coding statistics, daily summaries, project list, and current status through an agent. The agent can use these results to answer questions about the user's tracked coding activity.
 
-## Reference(s): <br>
-- [ClawHub WakaTime skill page](https://clawhub.ai/oomol/oo-wakatime) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [WakaTime homepage](https://wakatime.com) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses include data and meta.executionId fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: CLI setup may execute unverified installer code or add persistent bundled agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, verify the selected release, and decide whether to disable automatic bundled-skill synchronization.
+
+Risk: Connecting WakaTime involves trusting OOMOL with the connection and account-data processing.
+
+Mitigation: Connect only if OOMOL's handling of WakaTime account data is acceptable, and review the connection and requested access.
+
+## Reference(s):
+
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [WakaTime API documentation](https://wakatime.com/developers)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Analysis, Text]
+
+**Output Format:** [JSON data with concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected WakaTime account and available account data.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

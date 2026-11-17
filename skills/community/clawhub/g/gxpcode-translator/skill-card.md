@@ -1,42 +1,64 @@
-## Description: <br>
-Gxpcode Translator helps an agent translate text and PDF inputs with terminology support, producing bilingual HTML and Markdown outputs for PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gxpcode Translator supports specialized text and PDF translation with terminology protection, PDF OCR parsing, and bilingual HTML and Markdown export.
 
-## Publisher: <br>
-[gxpcode-hezhong](https://clawhub.ai/user/gxpcode-hezhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gxpcode-hezhong](https://clawhub.ai/user/gxpcode-hezhong)
 
-## Use Case: <br>
-External users and developers use this skill to translate text or PDF documents while preserving configured terminology. It is especially oriented toward domain-specific documents where the user supplies a field, optional subdomain, and terminology dictionary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that full original and translated content may be retained in local log files. <br>
-Mitigation: Avoid confidential or regulated documents unless logging is disabled, changed, or reviewed for the deployment environment. <br>
-Risk: The security scan reports cloud OCR usage and local PaddleOCR token storage for PDF processing. <br>
-Mitigation: Use the PDF route only when the OCR path is acceptable, protect the token, and consider a local OCR path for sensitive documents. <br>
+## Use Case:
 
+External users and developers use this skill to translate domain-specific text or PDF documents while preserving glossary terms. For PDF inputs, it can parse pages through OCR, translate page groups, and export bilingual HTML and Markdown files for review.
 
-## Reference(s): <br>
-- [Source repository](https://github.com/Gxpcode-hezhong/Gxpcode-translator) <br>
-- [Source commit](https://github.com/Gxpcode-hezhong/Gxpcode-translator/tree/756769d10bcfdd4e378585fbf88aa3fb799dbfc5) <br>
-- [ClawHub skill page](https://clawhub.ai/gxpcode-hezhong/skills/gxpcode-translator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain translated text for text requests; generated bilingual HTML and Markdown files for PDF requests; JSON-backed configuration for local settings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [PDF workflows can create local logs, intermediate files, and bilingual output files under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Full source and translated document contents may be retained in plaintext logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with non-sensitive documents unless durable plaintext logging is acceptable; review and clear generated logs according to local retention policy.
+
+Risk: PDF workflows may send document content to cloud OCR processing.
+
+Mitigation: Avoid confidential PDFs unless the user is comfortable with cloud OCR processing or has arranged an approved local OCR path.
+
+Risk: Generated HTML can behave as active content if source document markup is embedded.
+
+Mitigation: Treat generated HTML as active content and open it only in trusted environments after reviewing the source document.
+
+Risk: PDF and browser-style workflows have insufficient safeguards for untrusted PDFs or paths.
+
+Mitigation: Avoid PDFs or paths from untrusted sources and review the skill before installing or running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gxpcode-hezhong/skills/gxpcode-translator)
+- [Publisher profile](https://clawhub.ai/user/gxpcode-hezhong)
+- [Server-resolved GitHub source](https://github.com/Gxpcode-hezhong/Gxpcode-translator)
+- [Gxpcode translation rules](refs/Gxpcode-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain translated text for text inputs; bilingual HTML and Markdown files plus logs for PDF workflows.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a CSV terminology dictionary and configurable output directory; PDF workflows may use cloud OCR and write intermediate files.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

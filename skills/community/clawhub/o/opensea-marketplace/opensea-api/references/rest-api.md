@@ -1,6 +1,6 @@
-# OpenSea REST API Reference
+# OpenSea REST API reference
 
-## Base URL and Authentication
+## Base URL and authentication
 
 ```
 Base URL: https://api.opensea.io
@@ -9,30 +9,26 @@ API key header: x-api-key: $OPENSEA_API_KEY
 Bearer token header: Authorization: Bearer <token>  (wallet-authenticated endpoints only)
 ```
 
-See [authentication.md](authentication.md) for the full auth flow and scope reference.
+The auth flow and scopes are in [authentication.md](authentication.md).
 
 ## Pagination
 
-List endpoints support cursor-based pagination:
-- `limit`: Page size (default varies, max 100)
-- `next`: Cursor token from previous response
+Parameters vary by endpoint:
+- `limit`: page size; the default and maximum vary by endpoint.
+- `next` or `cursor`: the cursor from the previous response, sent as whichever parameter that endpoint documents.
+- `after`: a cursor for profile offers and listings, but Unix seconds for events. Event `before` is also Unix seconds.
 
-## Supported Chains
+The tool activity endpoint uses `offset` rather than a cursor.
 
-| Chain | Identifier |
-|-------|------------|
-| Ethereum | `ethereum` |
-| Polygon | `matic` |
-| Arbitrum | `arbitrum` |
-| Optimism | `optimism` |
-| Base | `base` |
-| Avalanche | `avalanche` |
-| Klaytn | `klaytn` |
-| Zora | `zora` |
-| Blast | `blast` |
-| Sepolia (testnet) | `sepolia` |
+## Supported chains
 
-## Endpoint Reference
+The chain list changes as chains launch. `GET /api/v2/chains` returns the current identifiers, native symbols and swap support:
+
+```bash
+opensea-get.sh "/api/v2/chains"
+```
+
+## Endpoints
 
 ### Collections
 
@@ -47,16 +43,23 @@ List endpoints support cursor-based pagination:
 | `/api/v2/collections/{slug}/offer_aggregates` | GET | Top offers grouped by price level |
 | `/api/v2/collections/{slug}/holders` | GET | Holders ranked by quantity owned |
 | `/api/v2/collections/{slug}/floor_prices` | GET | Floor-price history |
+| `/api/v2/collections/{slug}/metadata` | GET | Saved page (hero, about, overview) in the PATCH body shape, with a preview URL (requires `write:collections`, collection editor) |
+| `/api/v2/collections/{slug}/metadata` | PATCH | Update the page; omitted fields keep what is saved, `overview` replaces every module (requires `write:collections`) |
+| `/api/v2/collections/{slug}/media/{placement}` | POST | Upload context for a page image or MP4 video; pass the token in the metadata PATCH (requires `write:collections`) |
+| `/api/v2/collections/{slug}/pricing_currency` | POST | Price secondary sales in the chain's USD stablecoin or native currency (requires `write:collections`) |
+| `/api/v2/collections/{slug}/creator_fee_enforcement` | GET | Whether creator fees are enforced onchain and whether the contract supports it |
+| `/api/v2/collections/{slug}/creator_fee_enforcement` | POST | Build the transactions that turn enforcement on or off; send them from each one's `from` (requires `write:collections`) |
+| `/api/v2/collections/{slug}/refresh` | POST | Queue a collection metadata refresh from the contract (requires `write:collections`) |
 
 ### NFTs
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/api/v2/chain/{chain}/contract/{contract}/nfts/{token_id}` | GET | Single NFT details |
-| `/api/v2/collection/{slug}/nfts` | GET | NFTs by collection |
+| `/api/v2/collection/{slug}/nfts` | GET | NFTs by collection (`traits`, `has_agent_binding`, `limit`, `next`) |
 | `/api/v2/chain/{chain}/account/{address}/nfts` | GET | NFTs by wallet |
 | `/api/v2/chain/{chain}/contract/{contract}/nfts` | GET | NFTs by contract |
-| `/api/v2/nft/{contract}/{token_id}/refresh` | POST | Refresh NFT metadata |
+| `/api/v2/chain/{chain}/contract/{address}/nfts/{identifier}/refresh` | POST | Refresh NFT metadata |
 | `/api/v2/nfts/batch` | POST | Fetch multiple NFTs in one request |
 | `/api/v2/chain/{chain}/contract/{contract}/nfts/{token_id}/owners` | GET | Owners of an NFT (paginated for ERC-1155s) |
 | `/api/v2/chain/{chain}/contract/{contract}/nfts/{token_id}/analytics` | GET | Historical sale points for an NFT |
@@ -93,9 +96,10 @@ List endpoints support cursor-based pagination:
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
+| `/api/v2/events` | GET | Recent marketplace events |
 | `/api/v2/events/collection/{slug}` | GET | Events by collection |
 | `/api/v2/events/chain/{chain}/contract/{contract}/nfts/{token_id}` | GET | Events by NFT |
-| `/api/v2/events/chain/{chain}/account/{address}` | GET | Events by account |
+| `/api/v2/events/accounts/{address}` | GET | Events by account |
 
 ### Drops
 
@@ -103,10 +107,19 @@ List endpoints support cursor-based pagination:
 |----------|--------|-------------|
 | `/api/v2/drops` | GET | List drops (featured, upcoming, recently_minted) |
 | `/api/v2/drops/{slug}` | GET | Detailed drop info with stages and supply |
+| `/api/v2/drops/{slug}/items` | GET | A drop's saved items, a draft's included (requires `write:drops`, collection editor) |
 | `/api/v2/drops/{slug}/mint` | POST | Build mint transaction data |
-| `/api/v2/drops/eligibility/{slug}` | GET | Check drop eligibility (requires `read:eligibility` scope + Bearer token) |
+| `/api/v2/drops/{slug}/cross_chain_mint` | POST | Build ordered transactions to pay on one chain and mint on another |
+| `/api/v2/drops/{slug}/eligibility` | GET | Check drop eligibility (requires `read:eligibility` scope + Bearer token) |
 | `/api/v2/drops/deploy` | POST | Build deploy-contract transaction for a new drop |
 | `/api/v2/drops/deploy/{chain}/{tx_hash}/receipt` | GET | Receipt for a previously submitted deploy transaction |
+| `/api/v2/drops/{slug}/publish` | POST | Build the publish transaction; send it from the returned `from` (requires `write:drops`, contract owner) |
+| `/api/v2/drops/{slug}/unpublish` | POST | Build the unpublish transaction (same rules as publish) |
+| `/api/v2/drops/{slug}/metadata/ipfs` | POST | Start uploading item media and metadata to IPFS; returns `workflow_execution_id` (requires `write:drops`) |
+| `/api/v2/drops/{slug}/metadata/ipfs/{workflow_execution_id}` | GET | IPFS upload progress: `running`, `completed`, `failed` or `not_found` (requires `write:drops`) |
+| `/api/v2/drops/{slug}/items/manifest` | POST | Upload context for the metadata manifest CSV (requires `write:drops`) |
+| `/api/v2/drops/{slug}/items/media` | POST | Upload contexts for up to 50 item media files; pass one `upload_batch_id` on every request for a set (requires `write:drops`) |
+| `/api/v2/drops/{slug}/items/media/save-batch` | POST | Save an upload batch as the drop's items by filename, up to 15,000 (requires `write:drops`) |
 
 ### Accounts
 
@@ -124,6 +137,54 @@ List endpoints support cursor-based pagination:
 | `/api/v2/account/{address}/pnl` | GET | Aggregated trading P&L (realized + unrealized) for a wallet |
 | `/api/v2/account/{address}/pnl/closed-positions` | GET | Closed (realized) trading positions for a wallet |
 | `/api/v2/account/{address}/pnl/token-transfers` | GET | Token transfers contributing to a wallet's position in a currency (requires `contract_address` + `chain`) |
+| `/api/v2/accounts/{address_or_username}/agent-relationships` | GET | Public agent ownership relationships for a profile (API key only) |
+
+### Agent accounts
+
+An agent is an account, not a flag on a wallet. Ownership is a relationship
+between two accounts that both sides confirm. It is a declaration only:
+naming an account as your agent grants it no ability to act for you. It is
+self-reported and OpenSea does not verify it. An agent has zero or one
+confirmed owner.
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/v2/accounts/agent` | PUT | Declare the authenticated account an agent (`write:wallets`) |
+| `/api/v2/accounts/agent` | DELETE | Withdraw the agent declaration (`write:wallets`) |
+| `/api/v2/accounts/agent-relationships` | POST | Propose a relationship (`write:wallets`) |
+| `/api/v2/accounts/agent-relationships/confirm` | POST | Confirm a proposal made to you (`write:wallets`) |
+| `/api/v2/accounts/agent-relationships` | DELETE | Withdraw a proposal or revoke a confirmed relationship (`write:wallets`) |
+| `/api/v2/accounts/agent-relationships` | GET | List your own relationships, including pending (`read:wallets`) |
+
+The writes take `write:wallets` but the list takes `read:wallets`. A client
+driving the whole handshake needs both, or the list call returns 403
+"Insufficient permissions".
+
+Propose and confirm take `{"counterparty_address": "0x...", "caller_role":
+"AGENT"|"OWNER"}`. Your own account is never in the body; it comes from the
+token. `caller_role` is the side *you* are on, so `AGENT` means "I am an agent
+and this account owns me".
+
+Revoke takes `counterparty_address` and `caller_role` as query parameters
+rather than a body, because fetch, OkHttp and urllib all drop DELETE bodies by
+default and proxies may strip them.
+
+Proposing a relationship that is already awaiting you confirms it, so a client
+that cannot tell who moved first can just propose.
+
+Responses: declare and withdraw return `{"is_agent", "changed"}`, where
+`changed` is false if the account already had that status. Propose and confirm
+return `{"relation", "created"}`. Revoke returns `{"removed"}`, false when no
+such relationship existed. The list returns `{"relationships": [...]}`.
+
+A relationship carries `status` (`PENDING_AGENT`, `PENDING_OWNER` or
+`CONFIRMED`), `initiated_by`, `awaiting_confirmation_from` (null once
+confirmed), `agent_account_id`, `owner_account_id`, the two wallet addresses,
+and `created_at` / `confirmed_at` as Unix timestamps in seconds. `status` is
+authoritative; `awaiting_confirmation_from` is derived from it.
+
+Either side may withdraw or revoke at any time, which deletes the
+relationship. Only confirmed relationships appear on a public profile.
 
 ### Tokens
 
@@ -136,12 +197,21 @@ List endpoints support cursor-based pagination:
 | `/api/v2/chain/{chain}/token/{address}/holders` | GET | Paginated holders + aggregate distribution health |
 | `/api/v2/chain/{chain}/token/{address}/liquidity-pools` | GET | Liquidity pools for a token |
 
+### Signals
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/v2/signals` | GET | Public signals about one subject, newest first: `chain` + `contract` (currency), plus `token_id` (NFT), or `collection` alone; `limit` 1-100, `cursor`. A page can be empty while `next` is set |
+| `/api/v2/signals/{signal_id}` | GET | One public signal; `signal_id` is an opaque `sig_v1_...` string |
+| `/api/v2/signals` | POST | Post a signal: `text` (up to 3000 characters), the subject fields, optional `author_address`. Requires the `write:posts` scope; not idempotent; 422 during the cooldown |
+| `/api/v2/signals/{signal_id}` | DELETE | Delete your own signal (204). Requires the `write:posts` scope |
+
 ### Tools
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/api/v2/tools` | GET | List registered tools (sort by newest/oldest, filter by type) |
-| `/api/v2/tools/search` | GET | Search tools by keyword, tags, creator, access type |
+| `/api/v2/tools` | GET | List registered tools (sort by newest/oldest, filter by `type`, `source`) |
+| `/api/v2/tools/search` | GET | Search tools by keyword, tags, creator, access type, `source`, gating `collection`; `include_details=false` for a lighter response |
 | `/api/v2/tools/{registry_chain}/{registry_addr}/{tool_id}` | GET | Get a specific registered tool |
 
 ### Assets
@@ -150,31 +220,34 @@ List endpoints support cursor-based pagination:
 |----------|--------|-------------|
 | `/api/v2/assets/transfer` | POST | Build transactions to transfer NFTs or tokens between wallets |
 
-### Swap & Transactions
+### Swaps and transactions
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/api/v2/swap/quote` | GET | Get a single-asset swap quote |
 | `/api/v2/swap/execute` | POST | Get executable transactions for a multi-asset swap |
-| `/api/v2/transactions/receipt` | POST | Fetch transaction status (any tx type — sweep, swap, fulfillment) |
+| `/api/v2/transactions/receipt` | POST | Transaction status for any type: sweep, swap, fulfillment |
 
-## Event Types
+## Event types
 
-For the events endpoint, filter with `event_type`:
-- `sale` - NFT sold
-- `transfer` - NFT transferred
-- `listing` - New listing created
-- `offer` - New offer made
-- `cancel` - Order cancelled
-- `redemption` - NFT redeemed
+Filter the events endpoints with `event_type`:
+- `sale`: NFT sold
+- `transfer`: NFT transferred
+- `mint`: NFT minted
+- `listing`: listing created
+- `offer`: offer made
+- `trait_offer`: trait offer made
+- `collection_offer`: collection offer made
 
-## Rate Limits
+For order invalidation and revalidation, use the [Stream API](stream-api.md), or check an order's status with the get-order endpoint.
 
-All v2 endpoints require an API key. OpenSea uses a **token bucket** algorithm: your API key has a bucket of request tokens that refills over a fixed time window. Each request consumes one token. When the bucket is empty, the API returns `429 Too Many Requests`.
+## Rate limits
 
-All API keys under the same account share a single rate limit bucket. Creating multiple API keys will not increase your overall rate limit.
+Every v2 endpoint needs an API key. Limits use a **token bucket**: the key's bucket refills over a fixed window, each request takes one token, and an empty bucket returns `429 Too Many Requests`.
 
-### Default Rate Limits (Tier 1)
+All API keys on one account share a bucket, so extra keys do not raise the limit.
+
+### Default limits (tier 1)
 
 | Operation | Limit |
 |-----------|-------|
@@ -182,9 +255,9 @@ All API keys under the same account share a single rate limit bucket. Creating m
 | Write (POST) | 60 requests/minute |
 | Fulfillment | 60 requests/minute |
 
-Higher tiers are available for select users. You can apply for a rate limit increase via the [OpenSea Developer Portal](https://opensea.io/settings/developer).
+Higher tiers are available to some users. Apply for an increase in the [OpenSea Developer Portal](https://opensea.io/settings/developer).
 
-### Rate Limit Response Headers
+### Rate limit response headers
 
 A `429` response includes these headers:
 
@@ -195,21 +268,21 @@ A `429` response includes these headers:
 | `X-RateLimit-Remaining` | Requests remaining in the current window |
 | `Retry-After` | Seconds to wait before retrying |
 
-## Error Codes
+## Error codes
 
 | Code | Meaning |
 |------|---------|
-| 400 | Bad request - check parameters |
-| 401 | Unauthorized - missing/invalid API key or Bearer token |
-| 403 | Forbidden - valid auth but insufficient scopes |
+| 400 | Bad request: check parameters |
+| 401 | Unauthorized: missing or invalid API key or Bearer token |
+| 403 | Forbidden: valid auth but missing scope |
 | 404 | Resource not found |
 | 429 | Rate limited |
 | 500 | Server error |
 
 ## Tips
 
-1. Use collection slugs (not addresses) for collection endpoints
-2. Use chain identifiers for NFT/account endpoints
-3. All timestamps are Unix epoch seconds
-4. Prices are in wei (divide by 10^18 for ETH)
-5. Use `jq` to parse JSON responses: `./script.sh | jq '.nft.name'`
+1. Collection endpoints take slugs, not addresses.
+2. NFT and account endpoints take chain identifiers.
+3. Timestamp formats vary: event `after` and `before` are Unix seconds; token price-history `start_time` and `end_time` are ISO 8601.
+4. Token amounts are in base units (wei for ETH); USD prices are not.
+5. Parse responses with `jq`, for example `./script.sh | jq '.nft.name'`.

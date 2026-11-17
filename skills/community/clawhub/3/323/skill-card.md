@@ -1,45 +1,67 @@
-## Description: <br>
-Manage AI agent skills using the @tiktok-fe/skills CLI (binary: ai-skills) for finding, installing, removing, updating, publishing, listing, and managing skills across coding agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage AI agent skills using the @tiktok-fe/skills CLI (binary: ai-skills).
 
-## Publisher: <br>
-[Nanki-nn](https://clawhub.ai/user/Nanki-nn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanki-nn](https://clawhub.ai/user/nanki-nn)
 
-## Use Case: <br>
-Developers and AI agent operators use this skill to get concise, non-interactive command guidance for the ai-skills CLI when managing skills across tools such as Cursor, Claude Code, GitHub Copilot, Windsurf, Codex, and Gemini CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage automated installs, updates, removals, publishing, unpublishing, and cleanup actions that affect multiple AI agent tool directories. <br>
-Mitigation: Review the exact target, scope, agent list, and command before allowing -y or --force, especially for remove, clean, update, publish, unpublish, or overwrite actions. <br>
-Risk: The skill depends on guidance for the @tiktok-fe/skills npm package and the skill sources it installs from. <br>
-Mitigation: Use the skill only when the package and requested source are trusted; prefer project scope, specify exact agents with --agents, and run list or --list checks before applying changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent find, install, update, remove, publish, and manage AI-agent skills across supported coding-agent environments with the @tiktok-fe/skills CLI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Nanki-nn/323) <br>
-- [CLI Overview](artifact/llms/cli-overview.txt) <br>
-- [AI Best Practices](artifact/llms/guides/ai-best-practices.txt) <br>
-- [Skill Format Guide](artifact/llms/guides/skill-format.txt) <br>
-- [Source Platforms Guide](artifact/llms/guides/source-platforms.txt) <br>
-- [Supported Agents Guide](artifact/llms/guides/agents-list.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes pure-mode CLI usage, explicit scope flags, and confirmation flags for non-interactive agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may ask an agent to run unpinned @tiktok-fe/skills tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted and pinned package versions before allowing install or update commands.
+
+Risk: Skill-management commands can make broad changes to future AI-agent behavior.
+
+Mitigation: Review update lists before applying changes and limit commands to project scope or specific agents.
+
+Risk: Force and auto-confirm flags can bypass useful confirmation steps for destructive operations.
+
+Mitigation: Avoid blanket use of --force or -y and review cleanup, removal, and update actions before execution.
+
+Risk: Install metadata may be uploaded when telemetry is enabled.
+
+Mitigation: Disable telemetry when install metadata should not be uploaded.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nanki-nn/skills/323)
+- [CLI Overview](llms/cli-overview.txt)
+- [Add Command](llms/commands/add.txt)
+- [Update Command](llms/commands/update.txt)
+- [Clean Command](llms/commands/clean.txt)
+- [Source Platforms Guide](llms/guides/source-platforms.txt)
+- [Supported Agents Guide](llms/guides/agents-list.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command flags and review guidance for skill installation, update, publishing, and cleanup workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

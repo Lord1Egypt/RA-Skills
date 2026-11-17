@@ -1,40 +1,54 @@
-## Description: <br>
-Chat with Thomas Hobbes (1588-1679), English materialist philosopher, about the state of nature, the Leviathan, and the war of all against all. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Thomas Hobbes (1588-1679), English materialist philosopher, in a persona focused on the state of nature, the Leviathan, and the war of all against all.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users and developers use this skill to converse with a Thomas Hobbes persona for educational or exploratory discussion of Hobbesian philosophy. It is suited to roleplay and historical-philosophical dialogue, not professional political, legal, or policy advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona may be invoked unintentionally by mentions of Hobbes or related trigger phrases. <br>
-Mitigation: Use explicit invocation such as /hobbes when possible and review replies before relying on persona behavior. <br>
-Risk: The persona can present Hobbesian political views as in-character guidance rather than modern professional advice. <br>
-Mitigation: Treat responses as historical roleplay and do not rely on them for legal, civic, workplace, or policy decisions. <br>
+## Use Case:
 
+External users invoke this persona skill to converse with a Thomas Hobbes roleplay agent about political philosophy, human nature, sovereignty, and related works.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-hobbes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [In-character English or Chinese persona responses; no tools, files, or shell commands are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Broad natural-language triggers such as "hobbes" may activate the persona when the user did not intend to enter roleplay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit triggers such as /hobbes when invoking the skill and disable or narrow broad triggers in deployments that require stricter activation control.
+
+Risk: The persona is instructed not to know events after December 1679, so it may be unsuitable for current factual, legal, civic, or policy advice.
+
+Mitigation: Use it for roleplay and historical-philosophical discussion, and rely on current authoritative sources for modern factual or policy decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-hobbes)
+- [Publisher profile](https://clawhub.ai/user/bhackerj)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in character as Thomas Hobbes and mirrors English or Chinese based on the user's language.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

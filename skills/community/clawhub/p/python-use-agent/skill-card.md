@@ -1,42 +1,54 @@
-## Description: <br>
-Python Use Agent is a compatibility skill for task-driven Python execution that forwards users toward the unified code entry point. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python Use Agent is a backward-compatible ClawHub skill that routes Python task requests toward a unified code entry point and can generate, run, review, and report on Python code tasks.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Developers and technical users use this skill to request Python-based task execution, direct Python execution, or code review through a backward-compatible entry point. The current documentation recommends using the unified code python workflow for future tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Python execution may run with local workspace permissions even when sandbox settings appear enabled. <br>
-Mitigation: Run the skill only in a disposable workspace or OS-level container and avoid exposing secrets or sensitive files. <br>
-Risk: Generated or supplied Python code may perform unintended file, network, or system actions. <br>
-Mitigation: Review code before execution and treat dangerous-function blocking and sandbox indicators as advisory rather than enforced controls. <br>
+## Use Case:
 
+Developers and external ClawHub users can use this skill as a compatibility layer for Python-oriented tasks such as data analysis, API calls, automation, code execution, and code review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jirboy/python-use-agent) <br>
-- [AiPy App Homepage](https://www.aipy.app/) <br>
-- [Package Repository](https://github.com/knownsec/aipyapp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON result objects, console text, and generated Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write logs, temporary Python files, and result files under ./python-use-results when execution paths are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The security evidence says the skill exposes unsandboxed host code execution while presenting sandbox and review behavior that is not actually enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only trusted tasks or code, review generated code before execution, and use an external container or restricted environment when isolation is required.
+
+Risk: Artifact behavior allows Python code execution with filesystem and network access in normal operation.
+
+Mitigation: Avoid supplying secrets or sensitive files to the execution environment unless the hosting agent is already approved for that access.
+
+## Reference(s):
+
+- [Python Use Agent ClawHub listing](https://clawhub.ai/jirboy/skills/python-use-agent)
+- [AiPy homepage](https://www.aipy.app/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON and text responses with generated code, execution logs, stdout, stderr, and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save logs, generated code, and execution results under python-use-results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

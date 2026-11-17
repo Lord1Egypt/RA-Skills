@@ -1,40 +1,54 @@
-## Description: <br>
-Converts Chinese-language text reports into strict MODULE-format visualization component JSON when users ask for report visualization, chart-based presentation, or richer visual reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Chinese text reports into strict seller-report visualization component JSON for chart, card, timeline, alert, and influence layouts.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-Developers and report-writing agents use this skill to transform Chinese-language report content into structured visualization modules for charts, cards, timelines, alerts, and comparison lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated visualization JSON can be inaccurate, incomplete, or mismatched to the report language or strict component schema. <br>
-Mitigation: Review generated JSON for accuracy, completeness, language fit, and schema compliance before using it in a report workflow. <br>
-Risk: The skill may activate on broad report or chart wording and produce a visualization response when the user expected a different kind of analysis. <br>
-Mitigation: Confirm that the user wants a seller-report visualization component output before relying on the generated configuration. <br>
+## Use Case:
 
+External users and developers use this skill to turn Chinese-language report content into structured visualization modules. It is suited for report-to-dashboard drafting where output must follow the seller-report JSON component schema.
 
-## Reference(s): <br>
-- [Anti-patterns Reference](references/anti-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, configuration] <br>
-**Output Format:** [A seller-report fenced Markdown code block containing a single JSON object with modules and visualization component configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output must contain no prose outside the seller-report code block.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: Broad visualization requests may select this skill even when the user does not want Chinese seller-report JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that Chinese-language, seller-report formatted visualization JSON is the intended output before applying the skill to broad report-visualization prompts.
+
+Risk: Generated chart configurations can be misleading if source reports lack sufficient raw data for the requested visualization type.
+
+Mitigation: Review each generated component against the source report and avoid inferred, backfilled, or mixed-unit data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/report-to-visualization)
+- [Anti-pattern reference](artifact/references/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown fenced seller-report JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single modules array of visualization component configurations and is designed for Chinese-language reports.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

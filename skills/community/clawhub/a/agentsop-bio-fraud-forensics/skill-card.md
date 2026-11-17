@@ -1,50 +1,68 @@
-## Description: <br>
-Screens biomedical and life-science papers for observable research-integrity anomalies in images, statistics, paper-mill signals, and prior-publication status while framing outputs as reproducible questions rather than accusations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens biomedical and life-science papers for observable signs of image manipulation, statistical anomalies, paper-mill patterns, and prior integrity flags while framing outputs as questions for clarification rather than accusations.
 
-## Publisher: <br>
-[agentsope](https://clawhub.ai/user/agentsope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentsope](https://clawhub.ai/user/agentsope)
 
-## Use Case: <br>
-External researchers, editors, reviewers, and integrity-screening users can use this skill to triage biomedical papers, figures, DOIs, and supplementary data for reproducible anomalies. It helps produce neutral observations, verification routing, statistical checks, and PubPeer-style notes without making misconduct determinations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research-integrity screening output could be mistaken for a misconduct finding or used as an accusation. <br>
-Mitigation: Treat results as preliminary observations, keep language neutral and reproducible, and reserve misconduct determinations for authorized journals, institutions, or official bodies. <br>
-Risk: Automated or visual anomaly checks can produce false positives or miss benign explanations. <br>
-Mitigation: Verify every cited anomaly against the source artifact, record the exact test and location, and evaluate innocent alternatives before escalating a concern. <br>
+## Use Case:
 
+Researchers, reviewers, editors, and research-integrity analysts use this skill to triage biomedical papers, figures, supplementary data, and DOIs for reproducible anomalies, verification routes, and neutral PubPeer-style clarification notes.
 
-## Reference(s): <br>
-- [Operation Models](references/sop_models.md) <br>
-- [Research Notes](references/research_notes.md) <br>
-- [Misconduct Taxonomy and Honest-Error Discriminators](references/R01-misconduct-taxonomy.md) <br>
-- [Image Forensics](references/R02-image-forensics.md) <br>
-- [Statistical Forensics](references/R03-statistical-forensics.md) <br>
-- [Exposure Sites as Method Source](references/R04-exposure-sites-method.md) <br>
-- [Evidence Strength and Red Lines](references/R05-evidence-red-lines.md) <br>
-- [Screening Workflow and Forensic Record](references/R06-screening-workflow.md) <br>
-- [Paper Mill and Systemic Signals](references/R07-paper-mill-signals.md) <br>
-- [Worked Screening Examples](examples/demo_screening.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentsope/agentsop-bio-fraud-forensics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, code] <br>
-**Output Format:** [Markdown screening notes with neutral findings, reproducible annotations, optional statistical recomputation steps, and verification routing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should state what each observation can and cannot prove, avoid accusatory wording, and remain grounded in visible evidence or cited status checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and target metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The workflow may expose API-key values if an agent follows troubleshooting steps too literally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not read, print, paste, or transmit API-key contents; only confirm that expected configuration files or environment variables exist.
+
+Risk: Biomedical papers, peer-review files, embargoed manuscripts, proprietary data, or personal data may be disclosed to third-party services during status checks or forensic review.
+
+Mitigation: Prefer DOI lookups and local analysis; upload sensitive files only after explicit authorization and review of the destination service terms.
+
+Risk: Integrity-screening outputs can be misread as accusations or adjudicated findings.
+
+Mitigation: Keep conclusions neutral and evidence-bound, state what each observation cannot prove, and route unresolved concerns to authors, editors, institutions, or official records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentsope/skills/agentsop-bio-fraud-forensics)
+- [Bio-Fraud Forensics README](artifact/README.md)
+- [Bio-Fraud Forensics Usage Guide](artifact/USAGE.md)
+- [Operation Models - Full Cards (M1-M7)](artifact/references/sop_models.md)
+- [Research Notes - Evidence Summary, Routing Table, Seed Lists](artifact/references/research_notes.md)
+- [R01 - Misconduct Taxonomy and Honest-Error Discriminators](artifact/references/R01-misconduct-taxonomy.md)
+- [R02 - Image Forensics](artifact/references/R02-image-forensics.md)
+- [R03 - Statistical Forensics](artifact/references/R03-statistical-forensics.md)
+- [R04 - Exposure Sites as Method Source](artifact/references/R04-exposure-sites-method.md)
+- [R05 - Evidence Strength and Red Lines](artifact/references/R05-evidence-red-lines.md)
+- [R06 - Screening Workflow and Forensic Record](artifact/references/R06-screening-workflow.md)
+- [R07 - Paper Mill and Systemic Signals](artifact/references/R07-paper-mill-signals.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown screening notes with reproducible checks, neutral findings, verification routing, and occasional inline shell or Python commands for local analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should identify the test used, the input checked, what was observed, what the observation cannot prove, and any benign explanations considered.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

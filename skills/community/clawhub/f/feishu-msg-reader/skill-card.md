@@ -1,44 +1,58 @@
-## Description: <br>
-Fetch Feishu message content by message_id, with optional thread context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Feishu message content by message_id, with optional thread context for replies and interactive-card fallback text.
 
-## Publisher: <br>
-[deadblue22](https://clawhub.ai/user/deadblue22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deadblue22](https://clawhub.ai/user/deadblue22)
 
-## Use Case: <br>
-Developers and operators use this skill to retrieve Feishu message content by message ID, inspect raw message payloads, and optionally include thread context for replies or interactive-card fallback text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read Feishu messages accessible to the configured Feishu app or tenant token. <br>
-Mitigation: Use least-privileged Feishu credentials and only fetch message IDs needed for the current task. <br>
-Risk: Passing a tenant access token on the command line can expose the token through shell history or process listings. <br>
-Mitigation: Prefer environment variables or the OpenClaw config file over the --token argument when possible. <br>
-Risk: Using --thread retrieves additional conversation context beyond the target message. <br>
-Mitigation: Use --thread only when surrounding replies are needed to interpret the requested message. <br>
+## Use Case:
 
+Developers and operators use this skill to retrieve Feishu message content by message ID, inspect parsed message bodies, and gather thread context when a replied-to message or interactive card placeholder lacks enough detail.
 
-## Reference(s): <br>
-- [Feishu Open Platform APIs](https://open.feishu.cn/open-apis) <br>
-- [ClawHub skill page](https://clawhub.ai/deadblue22/feishu-msg-reader) <br>
-- [Publisher profile](https://clawhub.ai/user/deadblue22) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON from the Feishu fetch script plus Markdown guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script returns parsed message fields and can include a chronologically sorted thread array when --thread is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Thread retrieval can transiently fetch nearby unrelated messages from the same Feishu chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workspaces where this access is appropriate, and review thread-mode output before sharing or acting on it.
+
+Risk: Passing a tenant access token with --token can expose credentials through local shell history or process listings.
+
+Mitigation: Prefer configured Feishu app credentials or environment variables, and use a least-privileged Feishu app.
+
+Risk: Interactive-card messages only expose fallback or degraded text through the Feishu message API.
+
+Mitigation: Use --thread to inspect surrounding text or post messages when fallback content is incomplete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deadblue22/skills/feishu-msg-reader)
+- [Feishu Open API Base](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the helper script, with Markdown usage guidance in the skill instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The JSON output may include parsed content for a single message, raw API responses, or a chronological thread array when --thread is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

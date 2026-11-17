@@ -1,11 +1,11 @@
 ---
 name: oo-sentry
-description: "Sentry (sentry.io). Use this skill for ANY Sentry request — reading, creating, and updating data. Whenever a task involves Sentry, use this skill instead of calling the API directly."
+description: "Sentry (sentry.io). Use this skill for ANY Sentry request — reading, creating, updating, and deleting data. Whenever a task involves Sentry, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Sentry"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["sentry"]
   icon: "https://static.oomol.com/logo/third-party/Sentry.svg"
 ---
@@ -55,7 +55,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_organization_releases` — List releases that belong to a Sentry organization, optionally filtered by version prefix.
 - `list_organization_replays` — List session replays for a Sentry organization, with optional project and environment filters.
 - `list_organization_sentry_apps` — List the custom Sentry Apps created by a Sentry organization.
-- `update_issue` — Update mutable attributes on one Sentry issue, such as status, assignment, or bookmarks. [write]
+- `update_issue` — Update mutable attributes on one Sentry issue, such as status, assignment, or bookmarks. [destructive]
 
 ## Safety
 
@@ -86,11 +86,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Sentry is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=sentry
+  https://console.oomol.com/connections/sentry
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Sentry homepage: https://sentry.io
+- API documentation: https://docs.sentry.io/api/

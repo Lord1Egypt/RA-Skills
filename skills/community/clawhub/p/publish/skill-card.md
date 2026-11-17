@@ -1,41 +1,58 @@
-## Description: <br>
-Backup and restore your OpenClaw workspace to GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup and restore your OpenClaw workspace to GitHub.
 
-## Publisher: <br>
-[nickconstantinou](https://clawhub.ai/user/nickconstantinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickconstantinou](https://clawhub.ai/user/nickconstantinou)
 
-## Use Case: <br>
-External developers and OpenClaw users use this skill to back up workspace skills, scripts, and project code to a GitHub repository and restore selected workspace content when needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The backup may upload more workspace content than its documentation promises if the safer filtered copy path fails. <br>
-Mitigation: Install and use rsync, review files staged for backup before pushing, and use a private GitHub repository. <br>
-Risk: A broad or exposed GitHub token could allow unintended access to backed-up workspace content. <br>
-Mitigation: Use a fine-grained token limited to the backup repository with only the permissions required for content writes. <br>
-Risk: Restoring from an untrusted repository can affect future agent behavior through restored workspace or agent configuration files. <br>
-Mitigation: Restore only from repositories you fully trust and review restored content before using the workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickconstantinou/publish) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to back up and restore workspace files through a GitHub repository while configuring required environment variables and credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BACKUP_REPO, OPENCLAW_WORKSPACE, and usually GITHUB_TOKEN; performs GitHub backup and restore operations through bundled shell scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security summary says the skill can upload more local workspace data than promised.
+
+Mitigation: Use only a private, dedicated GitHub repository and inspect staged files before any push.
+
+Risk: The security summary says secrets and GitHub credentials are handled unsafely in failure paths.
+
+Mitigation: Use a fine-grained token limited to the backup repository, and avoid running the skill on workspaces containing secrets or private data.
+
+Risk: The security guidance says users should not rely on the documented exclusions or secret scanner.
+
+Mitigation: Review the copied backup contents independently before syncing or restoring.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickconstantinou/skills/publish)
+- [Publisher profile](https://clawhub.ai/user/nickconstantinou)
+- [ShellCheck](https://www.shellcheck.net/)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and environment variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BACKUP_REPO, OPENCLAW_WORKSPACE, and optionally GITHUB_TOKEN.]
+
+## Skill Version(s):
+
+1.0.12 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

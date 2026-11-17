@@ -1,0 +1,37 @@
+{
+  "spec_name": "答辩状",
+  "version": "1.0",
+  "title": "民事答辩状",
+  "immutables": [
+    {"marker": "民事答辩状", "text": "民事答辩状", "description": "标题"},
+    {"marker": "此致", "text": "此致", "description": "结尾敬语"}
+  ],
+  "skeleton": {
+    "required": ["民事答辩状", "答辩人", "被答辩人", "答辩意见", "此致", "人民法院", "日期"],
+    "critical": ["民事答辩状", "此致", "人民法院"]
+  },
+  "replacements": {
+    "【法院名称】": "case_data.court.name",
+    "【案由】": "case_data.case_cause",
+    "【答辩人名称】": "case_data.parties.def.name",
+    "【被答辩人姓名】": "case_data.parties.plt.name",
+    "【律师姓名】": "case_data.attorney.name",
+    "【律所全称】": "case_data.attorney.firm",
+    "【日期】": "case_data.date_today"
+  },
+  "narrative_fill": {
+    "defense_section": {
+      "placeholder": "【答辩意见】",
+      "source": "case_data.defense.argument",
+      "fallback": "答辩人请求法院依法驳回原告诉讼请求。"
+    }
+  },
+  "sections": {
+    "header": {"label": "民事答辩状"},
+    "parties": {"label": "当事人信息"},
+    "defense": {"label": "答辩意见"},
+    "footer": {"label": "此致\nXXXX人民法院\n\n答辩人：\n日期："}
+  },
+  "party_roles": ["原告", "被告"],
+  "requires_party_coverage": true
+}

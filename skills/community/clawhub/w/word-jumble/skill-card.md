@@ -1,42 +1,52 @@
-## Description: <br>
-Generates Word Jumble puzzles with scrambled clue words, circled letters that spell a final idiom, a cartoon hint image, and a printable puzzle PNG. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Word Jumble puzzles with scrambled words, circled clue letters, a final idiom answer, a cartoon hint image, and a printable puzzle screenshot.
 
-## Publisher: <br>
-[robin-marv](https://clawhub.ai/user/robin-marv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[robin-marv](https://clawhub.ai/user/robin-marv)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Creators and agents use this skill to generate daily-style word jumble puzzles, validate their puzzle structure, render printable puzzle images, and return generated files for posting or scheduling elsewhere.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Rendering untrusted puzzle JSON or image filenames may expose users to renderer hardening issues.
+
+Mitigation: Use the skill for puzzles you generate or otherwise trust, and avoid untrusted puzzle JSON or image filenames until HTML escaping and validator checks are fixed.
+
+Risk: Cartoon image prompts are sent to the configured external image generation provider.
+
+Mitigation: Do not include sensitive or confidential information in image generation prompts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to create daily or ad hoc word-jumble puzzles, validate puzzle invariants, generate a cartoon hint, and return local puzzle assets for separate publishing or scheduling. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, image files]
 
-## Known Risks and Mitigations: <br>
-Risk: Cartoon image prompts are sent to the configured external image-generation service. <br>
-Mitigation: Do not include private, sensitive, or confidential information in image prompts. <br>
-Risk: The generated HTML includes the answer key and should not be treated as a secure way to hide puzzle answers. <br>
-Mitigation: Use the answer key only as a visual puzzle aid and review generated outputs before publishing. <br>
-Risk: The skill writes local output files and briefly runs a local preview server while rendering the printable image. <br>
-Mitigation: Review output paths before use, keep the preview server bound to localhost, and stop it after rendering. <br>
+**Output Format:** [Markdown response with file paths, JSON puzzle data, generated image files, and shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/robin-marv/word-jumble) <br>
+**Other Properties Related to Output:** [Produces a puzzle JSON file, a cartoon JPG, and a printable PNG; posting and scheduling are handled by the caller.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with local file paths, JSON puzzle data, shell commands, and generated image assets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a puzzle JSON file, a cartoon JPG, and a printable PNG in a local output directory; publishing remains the caller's responsibility.] <br>
+1.2.3 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.2.3 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

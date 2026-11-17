@@ -1,43 +1,57 @@
-## Description: <br>
-Build multi-agent systems and swarms on AINative for orchestrating specialized OpenClaw agents, dispatching tasks, implementing agent communication, building handoff workflows, and collecting RLHF feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build multi-agent systems and swarms on AINative for dispatching OpenClaw agents, implementing agent communication, building autonomous handoffs, and collecting RLHF feedback.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate AINative/OpenClaw agent workflows, dispatch tasks to specialized agents, connect to ACP sessions, call AINative APIs, and collect feedback for agent improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, memory entries, recall queries, RLHF feedback, session IDs, gateway tokens, and API keys may contain sensitive data. <br>
-Mitigation: Redact secrets and regulated data before using the examples, and handle API keys and tokens as sensitive credentials. <br>
-Risk: Delegated agent tasks and hosted API workflows can propose or perform actions that need human oversight. <br>
-Mitigation: Review delegated tasks and generated outputs before running commands or applying changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to route coding, deployment, security, testing, documentation, data, and performance tasks across AINative/OpenClaw agents. It also provides patterns for agent-to-agent communication, custom API-backed agents, memory recall, and feedback collection.
 
-## Reference(s): <br>
-- [AINative chat completions API endpoint](https://api.ainative.studio/v1/public/chat/completions) <br>
-- [AINative memory remember API endpoint](https://api.ainative.studio/api/v1/public/memory/v2/remember) <br>
-- [AINative memory recall API endpoint](https://api.ainative.studio/api/v1/public/memory/v2/recall) <br>
-- [AINative RLHF feedback API endpoint](https://api.ainative.studio/api/v1/public/zerodb/rlhf/feedback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples may reference hosted APIs, local CLI commands, gateway tokens, API keys, memory, recall, RLHF feedback, and delegated agent tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Examples send prompts, conversation history, memory contents, recall queries, and feedback to AINative-hosted services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data approved for that provider, and avoid secrets, regulated data, customer data, proprietary code, and security findings unless the organization has approved the data flow.
+
+Risk: The memory examples can persist user-derived content in cloud memory without clear consent or retention controls.
+
+Mitigation: Establish consent, retention, deletion, and review procedures before enabling memory or feedback collection workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/urbantech/skills/ainative-agent-framework)
+- [AINative chat completions API](https://api.ainative.studio/v1/public/chat/completions)
+- [AINative memory remember API](https://api.ainative.studio/api/v1/public/memory/v2/remember)
+- [AINative memory recall API](https://api.ainative.studio/api/v1/public/memory/v2/recall)
+- [AINative RLHF feedback API](https://api.ainative.studio/api/v1/public/zerodb/rlhf/feedback)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, command examples, routing patterns, and operational guidance for agent workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-Patch a locally installed OpenClaw Control UI so that finishing an assistant reply plays a short Web-Audio chime with selectable presets and an in-page picker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Echo patches a locally installed OpenClaw Control UI so completed assistant replies can play selectable Web Audio chimes in the browser tab.
 
-## Publisher: <br>
-[symbolstar](https://clawhub.ai/user/symbolstar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[symbolstar](https://clawhub.ai/user/symbolstar)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to apply, remove, or reapply a local browser UI patch that plays an audible completion cue when an assistant response finishes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The apply script rewrites every detected local OpenClaw UI installation. <br>
-Mitigation: Review the target paths printed by apply.sh before relying on the patch, keep the generated backups, and use remove.sh or an OpenClaw reinstall/update if the UI behaves unexpectedly. <br>
-Risk: The cue depends on OpenClaw webchat DOM structure and browser AudioContext behavior. <br>
-Mitigation: Use the provided manual verification steps after applying the patch, and expect the cue to be unavailable until the page receives a user gesture or if the target DOM class changes. <br>
+## Use Case:
 
+External developers and OpenClaw users use Echo to add, configure, remove, or re-apply an audible browser cue for completed assistant replies in the OpenClaw Control UI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/symbolstar/echo-cue) <br>
-- [OpenClaw Completion Sound Pull Request](https://github.com/openclaw/openclaw/pull/73894) <br>
-- [OpenClaw Completion Sound Issue](https://github.com/openclaw/openclaw/issues/69186) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Applies or removes a local OpenClaw Control UI patch; browser-level preferences are stored in localStorage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release persistently modifies every detected OpenClaw UI installation with injected JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the payload, run without sudo or administrator privileges, and use remove.sh to restore from backups when the patch is no longer wanted.
+
+Risk: OpenClaw updates or an upstream completion-sound feature can change the patched UI files or make the local patch unnecessary.
+
+Mitigation: Re-run apply.sh after OpenClaw updates only when needed, and prefer the upstream feature when it becomes available.
+
+Risk: The browser cue depends on the current OpenClaw web UI DOM and Web Audio user-gesture behavior.
+
+Mitigation: Use the manual verification checklist after installation and expect the cue to fail quietly if the UI anchor changes or the browser AudioContext is not unlocked.
+
+## Reference(s):
+
+- [Echo ClawHub skill page](https://clawhub.ai/symbolstar/skills/echo-cue)
+- [symbolstar ClawHub publisher profile](https://clawhub.ai/user/symbolstar)
+- [OpenClaw completion-sound upstream PR #73894](https://github.com/openclaw/openclaw/pull/73894)
+- [OpenClaw completion-sound issue #69186](https://github.com/openclaw/openclaw/issues/69186)
+- [Manual verification checklist](artifact/tests/manual.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local patch install, removal, re-apply, and browser localStorage configuration steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

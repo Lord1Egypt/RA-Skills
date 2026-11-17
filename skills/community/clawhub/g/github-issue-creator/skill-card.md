@@ -1,38 +1,55 @@
-## Description: <br>
-Convert raw notes, error logs, voice dictation, or screenshots into crisp GitHub-flavored markdown issue reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert raw notes, error logs, voice dictation, or screenshots into crisp GitHub-flavored markdown issue reports.
 
-## Publisher: <br>
-[thegovind](https://clawhub.ai/user/thegovind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thegovind](https://clawhub.ai/user/thegovind)
 
-## Use Case: <br>
-Developers and project teams use this skill to turn messy bug reports, logs, dictation, or screenshots into structured GitHub-style Markdown issues saved under the repository's issues directory. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated issue files can include sensitive logs, screenshots, identifiers, or details inferred from prior conversation or memory. <br>
-Mitigation: Review generated Markdown before committing or sharing, and replace sensitive values with placeholders such as [PROJECT_NAME] or [USER_ID]. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thegovind/github-issue-creator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/thegovind) <br>
+## Use Case:
+
+Developers and maintainers use this skill to turn informal bug reports, logs, voice notes, screenshots, or GIF references into structured GitHub-style issue reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated issue reports can contain sensitive user, project, or environment details from the original bug report.
+
+Mitigation: Review the issue text before publishing and replace sensitive values with placeholders such as [PROJECT_NAME] or [USER_ID].
+
+Risk: The skill writes generated reports into an /issues/ directory in the repository.
+
+Mitigation: Confirm the target repository, generated filename, and issue content before relying on the file in a workflow with stricter path controls.
+
+Risk: Inferred environment, reproduction, or severity details may be incomplete or incorrect when the source report is informal.
+
+Mitigation: Verify environment fields, reproduction steps, and severity classification before submitting the issue.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [GitHub-flavored Markdown issue file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates issue files in /issues/ using YYYY-MM-DD-short-description.md names; may include inline references to attached images or GIFs.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+**Output Type(s):** [Markdown, Files, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [GitHub-flavored Markdown issue report saved as a dated file under /issues/.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the naming convention YYYY-MM-DD-short-description.md and may include inline references to attached images or GIFs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

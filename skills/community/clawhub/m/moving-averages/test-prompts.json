@@ -1,0 +1,52 @@
+{
+  "skill": "moving-averages",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "均线金叉了是不是该买入？用什么周期比较好？",
+      "expected_behavior": "激活 moving-averages，讲双均线组合、简单均线更可靠、周期选择",
+      "notes": "均线金叉/周期"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "听说四周规则很厉害，具体怎么操作？",
+      "expected_behavior": "激活 moving-averages，解释突破前4周高低点，并提示连续在市横盘拉锯",
+      "notes": "四周规则"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "为什么我的均线策略一横盘就亏钱？",
+      "expected_behavior": "激活 moving-averages，解释横盘占1/3~1/2时间无效、须先判有无趋势",
+      "notes": "横盘失效"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "RSI 到 75 了，是不是该卖了？",
+      "expected_behavior": "不应激活本 skill（摆动指数），应激活 oscillators-contrarian",
+      "notes": "跨 skill 混淆：应触发 oscillators-contrarian"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这条趋势线斜率变平缓了，是不是要反转？",
+      "expected_behavior": "不应激活本 skill（趋势线），应激活 trend-tools",
+      "notes": "诱饵：趋势线"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "均线刚死叉，但大趋势明明还是向上的，要不要卖？",
+      "expected_behavior": "激活本 skill 并提示均线滞后、短期死叉在强趋势中可能是噪音，须结合主趋势层级判断",
+      "notes": "边界：滞后vs主趋势"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 oscillators-contrarian；should-not-trigger-02 指向 trend-tools。"
+}

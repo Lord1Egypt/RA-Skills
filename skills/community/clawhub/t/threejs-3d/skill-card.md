@@ -1,51 +1,69 @@
-## Description: <br>
-Comprehensive Three.js 3D graphics reference for building web apps, games, and visualizations with scene setup, cameras, geometries, materials, lights, shadows, post-processing, controls, animation, loaders, textures, TSL/node materials, math utilities, and debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Three.js 3D graphics reference for building 3D web apps, games, and visualizations with scene setup, cameras, geometries, materials, lights, shadows, post-processing, controls, animation, loaders, textures, TSL/node materials, math utilities, and debugging.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill as a practical Three.js reference when building, debugging, and tuning 3D browser experiences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied examples may include dependency versions, CDN decoder paths, or media asset loading patterns that become stale or unsuitable for a project. <br>
-Mitigation: Review Three.js versions, CDN URLs, and any model, texture, audio, or video assets before reusing examples. <br>
+## Use Case:
 
+Developers and engineers use this skill as a practical Three.js reference when building or reviewing 3D browser experiences, games, visualizations, and rendering workflows.
 
-## Reference(s): <br>
-- [Getting Started](references/getting-started.md) <br>
-- [Cameras](references/cameras.md) <br>
-- [Geometries](references/geometries.md) <br>
-- [Materials](references/materials.md) <br>
-- [Lights and Environments](references/lights.md) <br>
-- [Objects and Scene Graph](references/objects.md) <br>
-- [Textures](references/textures.md) <br>
-- [Loaders](references/loaders.md) <br>
-- [Animation](references/animation.md) <br>
-- [Controls and Labels](references/controls.md) <br>
-- [Math Utilities](references/math.md) <br>
-- [Renderers, Post-Processing, and Shadows](references/renderers.md) <br>
-- [Node Materials and TSL](references/nodes.md) <br>
-- [Helpers and Debugging](references/helpers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference material; no direct tool calls or credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated Three.js examples may load models, textures, or decoder files from external URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated app code before running it, prefer trusted or pinned asset locations, and verify external resources used by loaders.
+
+Risk: 3D rendering examples can create performance or memory pressure when assets, render targets, textures, or animation loops are not bounded.
+
+Mitigation: Cap pixel ratio and texture sizes, dispose Three.js resources after use, and test generated scenes on target browsers and devices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/threejs-3d)
+- [Getting Started - Advanced Patterns](references/getting-started.md)
+- [Cameras](references/cameras.md)
+- [Geometries](references/geometries.md)
+- [Materials](references/materials.md)
+- [Lights & Environments](references/lights.md)
+- [Objects & Scene Graph](references/objects.md)
+- [Textures](references/textures.md)
+- [Loaders](references/loaders.md)
+- [Animation](references/animation.md)
+- [Controls & Labels](references/controls.md)
+- [Math Utilities](references/math.md)
+- [Renderers, Post-Processing & Shadows](references/renderers.md)
+- [Node Materials & TSL](references/nodes.md)
+- [Helpers & Debugging](references/helpers.md)
+- [Example Draco decoder URL](https://www.gstatic.com/draco/versioned/decoders/1.5.7/)
+- [Example KTX2 transcoder URL](https://unpkg.com/three@0.170.0/examples/jsm/libs/basis/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-oriented output; generated app code should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

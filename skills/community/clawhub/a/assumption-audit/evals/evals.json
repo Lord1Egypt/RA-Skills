@@ -1,0 +1,32 @@
+{
+  "skill_name": "assumption-audit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We will migrate all customer records this weekend. The destination schema looks compatible and we can probably roll back if needed. Audit the assumptions before we proceed.",
+      "expected_output": "A short set of migration-critical assumptions with impact and resolution paths, including schema compatibility and rollback capability.",
+      "assertions": [
+        "Assumptions are prioritized by material impact",
+        "The output distinguishes testable unknowns from decisions",
+        "It proposes cheap verification where possible"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Choose a title for this internal memo and audit assumptions.",
+      "expected_output": "A minimal or no assumption audit because the task is low impact.",
+      "assertions": [
+        "The skill avoids inventing a large risk register for a trivial task"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our process always has one approver, so we'll model a single approver field.",
+      "expected_output": "The audit flags the single-approver premise as material and asks whether delegation, joint approval, absence, or thresholds can create multiple approvers.",
+      "assertions": [
+        "The hidden data-model assumption is surfaced",
+        "Potential consequences of the assumption are stated"
+      ]
+    }
+  ]
+}

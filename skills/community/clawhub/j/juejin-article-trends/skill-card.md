@@ -1,39 +1,54 @@
-## Description: <br>
-Fetches Juejin technology article rankings, including category lists and hot or newest article trends by category. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Juejin technology article categories and popular or newest article rankings by category.
 
-## Publisher: <br>
-[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018)
 
-## Use Case: <br>
-Developers and technical readers use this skill to discover Juejin article categories and retrieve current ranked articles for topics such as frontend, backend, Android, iOS, AI, development tools, career, and reading. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled Node.js script makes automated requests to Juejin, so results depend on the remote service and on sending expected query values. <br>
-Mitigation: Use category IDs returned by the categories command, use documented type values such as hot or new, and review returned rankings before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Juejin skill page](https://clawhub.ai/wuchubuzai2018/juejin-article-trends) <br>
-- [Juejin](https://juejin.cn/) <br>
-- [Juejin category API](https://api.juejin.cn/tag_api/v1/query_category_briefs) <br>
+## Use Case:
 
+Developers and technical readers use this skill to list Juejin content categories and retrieve category-specific hot or newest article rankings with article metadata such as title, author, views, likes, comments, and tags.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands return public Juejin category and article ranking data, including titles, authors, counts, tags, article IDs, and URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Node script makes outbound requests to Juejin and uses randomized browser User-Agent headers.
+
+Mitigation: Install only where outbound access to Juejin is acceptable, and consider replacing randomized User-Agent selection with a static identifying User-Agent before deployment.
+
+Risk: Article ranking results depend on Juejin API availability and response format.
+
+Mitigation: Review command output before relying on it, and update the script if Juejin changes the category or article ranking endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuchubuzai2018/skills/juejin-article-trends)
+- [Juejin](https://juejin.cn)
+- [Juejin category API](https://api.juejin.cn/tag_api/v1/query_category_briefs)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON output from the Node script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns public Juejin category and article ranking data; output depends on Juejin API availability and response shape.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

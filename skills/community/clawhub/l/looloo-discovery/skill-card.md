@@ -1,41 +1,56 @@
-## Description: <br>
-Use this skill when the user wants to discover new LooLoo tokens, inspect token activity, or review current positions from OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to discover new LooLoo tokens, inspect token activity, or review current positions from OpenClaw.
 
-## Publisher: <br>
-[looloolol](https://clawhub.ai/user/looloolol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[looloolol](https://clawhub.ai/user/looloolol)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to scan LooLoo internal-market tokens, review a selected token's recent trades and top holders, and check authenticated wallet positions through OpenClaw.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Wallet-position queries may reveal authenticated account information in the chat.
+
+Mitigation: Use wallet-position lookup only when the user asks for it, summarize narrowly, and keep raw JSON available only when needed.
+
+Risk: Token discovery and activity summaries may be misread as guaranteed returns or financial advice.
+
+Mitigation: Frame results as discovery and execution support, and do not imply guaranteed profits.
+
+Risk: The workflow depends on the bundled openclaw-looloo plugin tools.
+
+Mitigation: Confirm trust in the plugin before installing or using the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill in OpenClaw to discover new internal-market LooLoo tokens, inspect token trading and holder activity, and review their authenticated wallet positions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and summarize authenticated wallet positions when the user asks for them. <br>
-Mitigation: Install and use it only when comfortable sharing wallet-position context with OpenClaw's LooLoo plugin. <br>
-Risk: Token discovery results may be mistaken for financial advice or a profit guarantee. <br>
-Mitigation: Frame outputs as research and execution support, and avoid implying guaranteed profits. <br>
+**Output Format:** [Concise markdown or plain-text summaries, with raw JSON available when needed]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [LooLoo Discovery on ClawHub](https://clawhub.ai/looloolol/looloo-discovery) <br>
-- [looloolol publisher profile](https://clawhub.ai/user/looloolol) <br>
+**Other Properties Related to Output:** [May include token activity signals, top-holder summaries, and authenticated wallet-position information returned by the trusted OpenClaw plugin.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Markdown summaries with tool-backed token and wallet findings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Raw JSON remains available when needed; token discovery output should be treated as research support, not financial advice.] <br>
+0.1.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

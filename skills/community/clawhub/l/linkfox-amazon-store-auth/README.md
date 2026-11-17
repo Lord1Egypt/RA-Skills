@@ -1,6 +1,6 @@
 # Amazon Store Authorization Skill
 
-亚马逊店铺 **授权与管理** Skill，提供授权流程、令牌管理、店铺查询等能力，是所有下游业务 skill（如 `linkfox-amazon-store-report`）的前置依赖。
+亚马逊店铺 **授权与管理** Skill，提供授权流程、令牌管理、店铺查询、本地取消/解绑授权等能力，是所有下游业务 skill（如 `linkfox-amazon-store-report`）的前置依赖。
 
 ## 📋 目录结构
 
@@ -18,7 +18,8 @@ linkfox-amazon-store-auth/
     ├── authorize_url.py              # 生成授权 URL
     ├── authorized_stores.py          # 列出已授权店铺
     ├── refresh_token.py              # 刷新访问令牌
-    └── store_tokens.py               # 查询店铺令牌
+    ├── store_tokens.py               # 查询授权状态
+    └── cancel_authorization.py       # 本地取消/解绑授权
 ```
 
 ## 🚀 快速开始
@@ -40,7 +41,7 @@ POST /spApi/authorizeUrl
 POST /spApi/authorizedStores
 ```
 
-### 3. 获取访问令牌（供下游 skill 使用）
+### 3. 查询授权状态
 
 ```bash
 POST /spApi/storeTokens
@@ -49,6 +50,18 @@ POST /spApi/storeTokens
   "region": "NA"
 }
 ```
+
+### 4. 本地取消/解绑授权
+
+```bash
+POST /spApi/cancelAuthorization
+{
+  "sellerId": "A1234567890",
+  "region": "NA"
+}
+```
+
+说明：该接口只在 LinkFox 本地解绑/停用授权，不代表 Amazon Seller Central 侧 OAuth 授权已撤销。
 
 ## 🔗 关联 Skill
 

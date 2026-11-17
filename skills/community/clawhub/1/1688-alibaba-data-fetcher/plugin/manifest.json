@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "1688 Data Claw - 数据采集器",
+  "version": "1.0.0",
+  "description": "采集1688店铺经营数据，为OpenClaw提供结构化数据接口",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAur6CE+BGEBWB5atgTevs6vDdZ6meGWEF+rhbEE5RPwraDMAPRjj3a3arI0nu499MVxHRHIso7U96k7U1sPC6MDpjgHyGEQora44bUp5mv5O4pztCLF+/b9nETcXlmJjJLf/3B4clXKC1PCJDQgODbl6HIUL5RumrDDkJM93jc/2hHetJS0cGvisO9tE0jYYmGsUtJ0SA7yJS73NuH1xbhzj5+xrYAR92b/rgpe1RXuQLyotvKqUnGCdw1aAs/T4nNJ3YSFevted0cqjvU0zTvFVf8UooH6uRbgHpE0gHiD2aO5B0z4ZBdq38MbMPbtTLhYqq78pgJRXiGt9SIxXAywIDAQAB",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs",
+    "background"
+  ],
+  "externally_connectable": {
+    "matches": ["https://*.1688.com/*", "https://1688.com/*"],
+    "ids": ["*"]
+  },
+  "host_permissions": [
+    "https://*.1688.com/*",
+    "https://1688.com/*",
+    "http://localhost:*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.1688.com/*",
+        "https://1688.com/*"
+      ],
+      "js": [
+        "md5.js",
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["https://*.1688.com/*"]
+    }
+  ]
+}

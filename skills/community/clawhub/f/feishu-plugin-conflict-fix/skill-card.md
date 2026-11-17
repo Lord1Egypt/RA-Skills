@@ -1,42 +1,59 @@
-## Description: <br>
-飞书插件工具冲突修复工具。解决 feishu_chat 命名冲突、TTS 语音配置、多 Bot 工具隔离等问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides troubleshooting guidance for Feishu and OpenClaw plugin conflicts, TTS message attachments, and multi-bot tool isolation.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose and resolve Feishu/OpenClaw plugin conflicts, disable unwanted TTS behavior, and configure tool isolation for multiple bots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reset commands can remove Feishu plugin files and restart OpenClaw services if a user chooses to run them. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json, list matching ~/.openclaw/plugins/feishu* paths before deletion, and confirm a gateway restart window before applying reset steps. <br>
-Risk: Installing or enabling @larksuite/openclaw-lark can grant Feishu permissions in the target environment. <br>
-Mitigation: Verify the package source and review the requested Feishu permissions before installation or reconfiguration. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose Feishu tool-name conflicts, disable unwanted TTS behavior, isolate tools across multiple bots, and recover OpenClaw Feishu configuration.
 
-## Reference(s): <br>
-- [Official Plugin Usage Guide](https://my.feishu.cn/docx/MFK7dDFLFoVlOGxWCv5cTXKmnMh) <br>
-- [Streaming Reply Configuration](https://www.feishu.cn/docx/Qv3fdMljgoUjYJx5cwAc3tinnfc) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose OpenClaw configuration changes and service restart commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json, release metadata) <br>
+Risk: Recovery steps include deleting Feishu plugin files and resetting OpenClaw configuration, which can remove working settings if paths or backups are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run diagnostic commands first, verify exact paths, and confirm a restorable backup before using reset or deletion commands.
+
+Risk: The guidance recommends installing a package with npx, which can execute package code during installation.
+
+Mitigation: Pin and verify the package source and version before running npx installation commands.
+
+Risk: Recommended Feishu plugin capabilities may require document write access or message-history permissions.
+
+Mitigation: Grant only the Feishu document or message-history permissions that are required for the intended workflow.
+
+## Reference(s):
+
+- [Official Feishu Plugin Guide](https://my.feishu.cn/docx/MFK7dDFLFoVlOGxWCv5cTXKmnMh)
+- [Feishu Streaming Reply Configuration](https://www.feishu.cn/docx/Qv3fdMljgoUjYJx5cwAc3tinnfc)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes diagnostic steps, OpenClaw configuration examples, and recovery command sequences.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, skill.json, artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

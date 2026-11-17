@@ -1,0 +1,344 @@
+# Logic Layer - Authoritative Department/Action Catalog (deduplicated & merged)
+# ENGLISH EDITION. The original Chinese edition is preserved verbatim at `department_actions.zh.yaml`.
+# Bilingual policy (中英文皆可适配): default `.yaml` files are English; `.zh.yaml` files are the
+# Chinese originals. Machine keys (slug / source / department code) are IDENTICAL across both
+# editions so that all scripts keep working regardless of language.
+#
+# Main axis: OPB-Skills (chendongqi, MIT, 91 skills / 24 departments, most complete)
+# Complementary: Frog1205 (legal-dense) / slavingia (startup growth) / ReScienceLab (SEO, social, brand)
+#                / sober568 (OPC five-stage diagnostics)
+# Workflow thinking: easychen (CC-BY-NC-SA) - its licence does not require attribution or inclusion here
+# Source codes (internal provenance, development-time only):
+#   OPB  = chendongqi/OPB-Skills
+#   Frog = Frog1205/OPC-Skills
+#   slav = slavingia/skills
+#   ReS  = ReScienceLab/opc-skills
+#   sober= sober568/opc-zhinao
+#   easy = easychen/opc-methodology (used under CC-BY-NC-SA)
+#   WSHU = original extension by Tianjin Weishu AI Technology Co., Ltd. (24-department extensions; registered IP increment)
+# Fields: slug (EN machine id) / name (EN display name) / source (source code) / note (optional)
+
+meta:
+  version: 0.2.0
+  department_count: 24
+  action_total: 177
+  principle: Curated breadth (deduplicated union of authoritative actions per department), not a dump of 90+ raw files
+  note: 12 core departments = 141 actions; the action layer for the 12 optional departments was completed on 2026-08-15 (6 departments reuse core actions, 6 departments add 18 original WSHU extension actions), totaling 177 action bindings over 159 unique action_specs. Fixes an earlier bug where tools_ref pointed at non-existent sections, leaving optional-department experts with zero capabilities.
+
+departments:
+
+  # ---------------------------------------- 1. Lead / General Decision ----------------------------------------
+  lead:
+    display: Lead / General Decision-making / Organization & Personal Development
+    note: In a one-person company the lead IS the individual; covers company strategy, self-management, organizational learning
+    actions:
+      - { slug: strategic-startup-mentor,        name: Startup Mentor,              source: OPB }
+      - { slug: strategic-startup-simulator,     name: Startup Simulator,           source: OPB }
+      - { slug: personal-review,                 name: Periodic Review,             source: OPB }
+      - { slug: personal-planning,               name: Planning Assistant,          source: OPB }
+      - { slug: personal-talent-discovery,       name: Talent Discovery Advisor,    source: OPB }
+      - { slug: personal-goal-manager,           name: Goal Management,             source: OPB }
+      - { slug: personal-habit-builder,          name: Habit Builder,               source: OPB }
+      - { slug: personal-career-planner,         name: Career Planning,             source: OPB }
+      - { slug: personal-time-manager,           name: Time Management,             source: OPB }
+      - { slug: personal-health-manager,          name: Health Management,           source: OPB }
+      - { slug: personal-human3,                 name: HUMAN 3.0 Assessment,        source: OPB }
+      - { slug: learning-planner,                name: Learning Planner,            source: OPB }
+      - { slug: knowledge-manager,               name: Knowledge Management,        source: OPB }
+      - { slug: company-values,                  name: Company Values,              source: slav }
+
+  # ---------------------------------------- 2. Administration / Operations ----------------------------------------
+  admin:
+    display: Administration / Operations / Events
+    actions:
+      - { slug: user-operations,                 name: User Operations,             source: OPB }
+      - { slug: event-planner,                   name: Event Planning,              source: OPB }
+
+  # ---------------------------------------- 3. HR ----------------------------------------
+  hr:
+    display: Human Resources
+    note: A one-person company is mostly self-managed, but standardized HR actions are retained for SME / multi-staff packs
+    actions:
+      - { slug: hr-recruiter,                    name: Recruiting Assistant,        source: OPB }
+      - { slug: hr-performance,                  name: Performance Management,      source: OPB }
+      - { slug: hr-compensation,                 name: Compensation Design,         source: OPB }
+
+  # ---------------------------------------- 4. Finance ----------------------------------------
+  finance:
+    display: Finance / Tax
+    actions:
+      - { slug: finance-planner,                 name: Financial Planning,          source: OPB }
+      - { slug: finance-cost-analyst,            name: Cost Analysis,               source: OPB }
+      - { slug: finance-investment-analyst,      name: Investment Analysis,         source: OPB }
+
+  # ---------------------------------------- 5. Legal / Compliance ----------------------------------------
+  legal:
+    display: Legal / Compliance
+    note: Frog1205's legal series complements OPB's compliance trio to form a deep legal action set
+    actions:
+      - { slug: legal-contract-reviewer,         name: Contract Review,             source: OPB }
+      - { slug: legal-compliance-checker,        name: Compliance Check,            source: OPB }
+      - { slug: legal-ip-manager,                name: IP Management,               source: OPB }
+      - { slug: legal-overview,                  name: Legal Overview,              source: Frog }
+      - { slug: legal-agreement,                 name: Agreement Drafting,          source: Frog }
+      - { slug: legal-compare,                   name: Clause Comparison,           source: Frog }
+      - { slug: legal-freelancer,                name: Freelance Legal,             source: Frog }
+      - { slug: legal-missing,                   name: Missing Clauses,             source: Frog }
+      - { slug: legal-nda,                       name: NDA,                         source: Frog }
+      - { slug: legal-negotiate,                 name: Legal Negotiation,           source: Frog }
+      - { slug: legal-plain,                     name: Plain-Language Law,          source: Frog }
+      - { slug: legal-privacy,                   name: Privacy Compliance,          source: Frog }
+      - { slug: legal-report-pdf,                name: Legal Report,                source: Frog }
+      - { slug: legal-review,                    name: Legal Review,                source: Frog }
+      - { slug: legal-risks,                     name: Legal Risk,                  source: Frog }
+      - { slug: legal-terms,                     name: Terms Generation,            source: Frog }
+      - { slug: opc-compliance-diagnosis,        name: OPC Compliance Diagnosis,    source: sober }
+
+  # ---------------------------------------- 6. R&D / Product / Engineering / Design / QA / DevOps ----------------------------------------
+  rnd:
+    display: R&D / Product / Engineering / Design / Quality / DevOps & Security
+    note: Technology and product delivery hub; vertical specializations (automotive cockpit / Android / ASPICE) are flagged industry_specific and enabled per industry pack
+    actions:
+      # Product
+      - { slug: product-industry-analyst,        name: Industry Analysis,           source: OPB }
+      - { slug: product-researcher,              name: Product Research,            source: OPB }
+      - { slug: product-market-researcher,       name: Market Research,             source: OPB }
+      - { slug: product-ideation-pm,             name: Product Ideation PM,         source: OPB }
+      - { slug: product-ai-remake,               name: AI Product Rebuild,          source: OPB }
+      # General R&D
+      - { slug: rnd-frontend-review,             name: Frontend Review,             source: OPB }
+      - { slug: rnd-code-simplify,               name: Code Simplification,         source: OPB }
+      - { slug: rnd-requirements-writer,         name: Requirements Writing,        source: OPB }
+      - { slug: rnd-fullstack-architect,         name: Full-Stack Architecture,     source: OPB }
+      - { slug: rnd-api-design,                  name: API Design,                  source: OPB }
+      - { slug: rnd-db-table-design,             name: Database Schema Design,      source: OPB }
+      - { slug: rnd-technical-writer,            name: Technical Writing,           source: OPB }
+      - { slug: rnd-blog-planner,                name: Blog Series Planning,        source: OPB }
+      - { slug: rnd-arch-diagrammer,             name: Architecture Diagramming,    source: OPB }
+      - { slug: rnd-frontend-design,             name: Frontend Design,             source: OPB }
+      # Vertical specializations (enabled per industry pack)
+      - { slug: rnd-cockpit-architect,           name: Cockpit Architecture,        source: OPB, industry_specific: true }
+      - { slug: rnd-android-architect,           name: Android Architecture,        source: OPB, industry_specific: true }
+      - { slug: rnd-android-perf,                name: Android Performance,         source: OPB, industry_specific: true }
+      - { slug: rnd-anr-analyzer,                name: ANR Analysis,                source: OPB, industry_specific: true }
+      - { slug: rnd-auto-issue,                  name: Cockpit Issue Analysis,      source: OPB, industry_specific: true }
+      - { slug: rnd-aspice-sys2swe,              name: ASPICE Requirements Decomposition, source: OPB, industry_specific: true }
+      - { slug: rnd-aspice-reviewer,             name: ASPICE Requirements Review,  source: OPB, industry_specific: true }
+      # Design
+      - { slug: design-ui-ux,                    name: UI/UX Design,                source: OPB }
+      - { slug: design-visual,                   name: Visual Design,               source: OPB }
+      - { slug: design-remotion,                 name: Video Generation,            source: OPB }
+      # Testing
+      - { slug: test-case-writer,                name: Test Case Writing,           source: OPB }
+      - { slug: test-automation,                 name: Test Automation,             source: OPB }
+      - { slug: test-performance,                name: Performance Testing,         source: OPB }
+      - { slug: test-security,                   name: Security Testing,            source: OPB }
+      - { slug: test-manager,                    name: Test Management,             source: OPB }
+      # Quality
+      - { slug: quality-system-builder,          name: Quality System Building,     source: OPB }
+      - { slug: quality-monitor,                 name: Quality Monitoring,          source: OPB }
+      - { slug: quality-auditor,                 name: Quality Audit,               source: OPB }
+      - { slug: quality-improvement,             name: Quality Improvement,         source: OPB }
+      - { slug: quality-risk-manager,            name: Quality Risk,                source: OPB }
+      # DevOps / Security
+      - { slug: devops-system-ops,               name: System Operations,           source: OPB }
+      - { slug: devops-engineer,                 name: DevOps,                      source: OPB }
+      - { slug: devops-cloud-arch,               name: Cloud Architecture,          source: OPB }
+      - { slug: sec-strategist,                  name: Security Strategy,           source: OPB }
+      - { slug: sec-data-security,               name: Data Security,               source: OPB }
+      - { slug: sec-incident-response,           name: Security Incident Response,  source: OPB }
+      # Meta skills (tooling)
+      - { slug: meta-skill-creator,              name: Skill Creator,               source: OPB }
+      - { slug: opc-template-engine,             name: OPC Template Engine,         source: ReS }
+      - { slug: opc-add-skill-engine,            name: Add OPC Skill,               source: ReS }
+
+  # ---------------------------------------- 7. Content Marketing / Brand / Visual ----------------------------------------
+  mkt_content:
+    display: Content Marketing / Brand / Visual / Copywriting
+    actions:
+      - { slug: content-app-namer,               name: App Naming,                  source: OPB }
+      - { slug: content-creator,                 name: Content Creation,            source: OPB }
+      - { slug: content-audio,                   name: Audio Generation,            source: OPB }
+      - { slug: content-video-script,            name: Video Script,                source: OPB }
+      - { slug: content-altay,                   name: Essay Writing,               source: OPB }
+      - { slug: content-oss-article,             name: Open-Source Article,         source: OPB }
+      - { slug: content-notebooklm,              name: Research Assistant,          source: OPB }
+      - { slug: mkt-ad-copywriter,               name: Ad Copywriting,              source: OPB }
+      - { slug: brand-manager,                   name: Brand Management,            source: OPB }
+      - { slug: brand-pr-strategist,             name: PR Strategy,                 source: OPB }
+      - { slug: brand-reputation,                name: Reputation Monitoring,       source: OPB }
+      - { slug: design-banner,                   name: Banner Creation,             source: ReS }
+      - { slug: design-logo,                     name: Logo Creation,               source: ReS }
+      - { slug: design-image-ai,                 name: AI Image,                    source: ReS }
+
+  # ---------------------------------------- 8. Distribution / Channels / BD ----------------------------------------
+  mkt_dist:
+    display: Distribution / Channels / Business Development
+    actions:
+      - { slug: bd-partnership,                  name: Partnership Management,      source: OPB }
+      - { slug: bd-negotiator,                   name: Business Negotiation,         source: OPB }
+      - { slug: bd-channel-dev,                  name: Channel Development,         source: OPB }
+      - { slug: dist-reddit,                     name: Reddit Distribution,         source: ReS }
+      - { slug: dist-twitter,                    name: Twitter Distribution,        source: ReS }
+      - { slug: dist-producthunt,                name: Product Hunt,                source: ReS }
+      - { slug: dist-requesthunt,                name: Request Hunter,              source: ReS }
+
+  # ---------------------------------------- 9. SEO / Growth / Social Acquisition ----------------------------------------
+  mkt_seo:
+    display: SEO / Growth / Social Acquisition
+    actions:
+      - { slug: seo-optimizer,                   name: SEO Optimization,            source: OPB }
+      - { slug: seo-geo,                         name: Geo SEO,                     source: ReS }
+      - { slug: seo-domain-hunter,               name: Domain Hunter,               source: ReS }
+      - { slug: growth-user-ops,                 name: User Growth,                 source: OPB }
+      - { slug: growth-sustainably,              name: Sustainable Growth,          source: slav }
+      - { slug: growth-first-customers,          name: First Customers,             source: slav }
+      - { slug: growth-pricing,                  name: Pricing Strategy,            source: slav }
+
+  # ---------------------------------------- 10. Sales / Customers ----------------------------------------
+  sales:
+    display: Sales / Customers / Customer Service
+    actions:
+      - { slug: sales-strategist,                name: Sales Strategy,              source: OPB }
+      - { slug: sales-crm,                       name: CRM Management,              source: OPB }
+      - { slug: sales-forecaster,                name: Sales Forecasting,           source: OPB }
+      - { slug: support-customer-service,         name: Customer Service Assistant, source: OPB }
+      - { slug: support-technical,                name: Technical Support,          source: OPB }
+
+  # ---------------------------------------- 11. Data / Analytics / BI ----------------------------------------
+  data:
+    display: Data / Analytics / Business Intelligence
+    actions:
+      - { slug: data-analyst,                    name: Data Analysis,               source: OPB }
+      - { slug: data-user-behavior,               name: User Behavior Analysis,     source: OPB }
+      - { slug: data-bi,                         name: Business Intelligence,       source: OPB }
+
+  # ---------------------------------------- 12. Strategy / Business Model / Startup Diagnostics ----------------------------------------
+  strategy:
+    display: Strategy / Business Model / Startup Methodology & Diagnostics
+    note: Startup-stage methodology + OPC five-stage diagnostics + independently rewritten workflows (source "easy" is conceptual inspiration only, expressed in our own words)
+    actions:
+      - { slug: strategy-validate-idea,          name: Idea Validation,             source: slav }
+      - { slug: strategy-mvp,                    name: MVP Design,                  source: slav }
+      - { slug: strategy-marketing-plan,         name: Marketing Plan,              source: slav }
+      - { slug: strategy-find-community,         name: Community Discovery,         source: slav }
+      - { slug: strategy-processize,             name: Processization,              source: slav }
+      - { slug: strategy-minimalist-review,      name: Minimalist Review,           source: slav }
+      # OPC five-stage diagnostics (sober568)
+      - { slug: diagnosis-idea-feasibility,      name: Idea Feasibility,            source: sober }
+      - { slug: diagnosis-mvp-design,            name: Diagnostic MVP Design,       source: sober }
+      - { slug: diagnosis-seed-coldstart,        name: Seed Cold Start,             source: sober }
+      - { slug: diagnosis-scale-growth,          name: Scale Growth,                source: sober }
+      - { slug: diagnosis-feasibility-score,     name: Feasibility Scoring,         source: sober }
+      - { slug: diagnosis-report-export,         name: Diagnostic Report Export,    source: sober }
+      - { slug: diagnosis-user-feedback,         name: User Feedback,               source: sober }
+      # Independently rewritten workflows (easychen as conceptual inspiration, our own expression, no text copied)
+      - { slug: wf-opc-orchestrator,             name: OPC Orchestrator,            source: easy, derived: true }
+      - { slug: wf-conversion-loop,              name: Conversion Loop,             source: easy, derived: true }
+      - { slug: wf-asset-ops,                    name: Asset Operations,            source: easy, derived: true }
+      - { slug: wf-business-model,               name: Business Model Design,       source: easy, derived: true }
+      - { slug: wf-value-proposition,            name: Value Proposition,           source: easy, derived: true }
+      - { slug: wf-niche-positioning,            name: Niche Positioning,           source: easy, derived: true }
+      - { slug: wf-dashboard-review,             name: Dashboard Review,            source: easy, derived: true }
+      - { slug: wf-resource-audit,               name: Resource Audit,              source: easy, derived: true }
+      - { slug: wf-mvp-designer,                 name: MVP Designer,                source: easy, derived: true }
+
+  # =========================================================================
+  # II. 12 Optional Departments (activated on demand, core: false) - action layer completed 2026-08-15
+  # Fix: previously tools_ref in experts-template pointed at non-existent sections,
+  #      so build_experts resolved to zero capabilities for activated optional departments
+  #      (silently hollow experts). The sections below make every one of the 24
+  #      department codes resolve to real actions.
+  # =========================================================================
+
+  # Product (requirements-definition side, distinct from rnd's implementation side): reuses rnd's product-* actions
+  product:
+    display: Product Management / Requirements Definition / Roadmap
+    actions:
+      - { slug: product-industry-analyst,        name: Industry Analysis,           source: OPB }
+      - { slug: product-researcher,              name: Product Research,            source: OPB }
+      - { slug: product-market-researcher,       name: Market Research,             source: OPB }
+      - { slug: product-ideation-pm,             name: Product Ideation PM,         source: OPB }
+      - { slug: product-ai-remake,               name: AI Product Rebuild,          source: OPB }
+
+  # Design (visual side, distinct from mkt_content's copywriting side): reuses rnd's design-* actions
+  design:
+    display: Design / Brand Visual / UI & UX
+    actions:
+      - { slug: design-ui-ux,                    name: UI/UX Design,                source: OPB }
+      - { slug: design-visual,                   name: Visual Design,               source: OPB }
+      - { slug: design-remotion,                 name: Video Generation,            source: OPB }
+
+  # Quality (quality-control side): reuses rnd's quality-* actions
+  quality:
+    display: Quality Management / QA / Quality Control
+    actions:
+      - { slug: quality-system-builder,          name: Quality System Building,     source: OPB }
+      - { slug: quality-monitor,                 name: Quality Monitoring,          source: OPB }
+      - { slug: quality-auditor,                 name: Quality Audit,               source: OPB }
+      - { slug: quality-improvement,             name: Quality Improvement,         source: OPB }
+      - { slug: quality-risk-manager,            name: Quality Risk,                source: OPB }
+
+  # Customer Service (post-sale side): reuses sales' support-customer-service action
+  customer_service:
+    display: Customer Service / Ticketing / Complaints
+    actions:
+      - { slug: support-customer-service,        name: Customer Service Assistant, source: OPB }
+
+  # PR (media side, distinct from mkt_content's owned-content side): reuses mkt_content's brand-* actions
+  pr:
+    display: Public Relations / Media Relations / Reputation
+    actions:
+      - { slug: brand-pr-strategist,             name: PR Strategy,                 source: OPB }
+      - { slug: brand-reputation,                name: Reputation Monitoring,       source: OPB }
+
+  # Operations (business orchestration side): reuses admin's actions
+  operations:
+    display: Operations / Process Orchestration / Cross-department Coordination
+    actions:
+      - { slug: user-operations,                 name: User Operations,             source: OPB }
+      - { slug: event-planner,                   name: Event Planning,              source: OPB }
+
+  # --- The following 6 departments carry original extension actions for the 24-department model
+  #     (WSHU originals, registered as Weishu's data-IP extension increment) ---
+  procurement:
+    display: Procurement & Supply Chain / Vendors / Inventory / Fulfillment
+    actions:
+      - { slug: procurement-sourcing,            name: Vendor Sourcing,             source: WSHU }
+      - { slug: procurement-negotiation,         name: Procurement Negotiation,     source: WSHU }
+      - { slug: procurement-inventory,           name: Inventory Strategy,          source: WSHU }
+
+  investor:
+    display: Investment & Financing / Fundraising Materials / Capital Operations
+    actions:
+      - { slug: investor-bp,                     name: Fundraising Deck,            source: WSHU }
+      - { slug: investor-relations,              name: Investor Relations,          source: WSHU }
+      - { slug: investor-valuation,              name: Valuation & Terms,           source: WSHU }
+
+  csm:
+    display: Customer Success / Renewals / Upsell
+    actions:
+      - { slug: csm-health,                      name: Health Monitoring,           source: WSHU }
+      - { slug: csm-renewal,                     name: Renewal Drive,               source: WSHU }
+      - { slug: csm-upsell,                      name: Upsell Mining,               source: WSHU }
+
+  international:
+    display: Global Expansion & Cross-border / Localization / Overseas Compliance
+    actions:
+      - { slug: intl-localization,               name: Localization,                source: WSHU }
+      - { slug: intl-compliance,                 name: Overseas Compliance,         source: WSHU }
+      - { slug: intl-growth,                     name: Cross-border Growth,         source: WSHU }
+
+  risk:
+    display: Risk Control & Internal Control / Risk Map / Audit
+    actions:
+      - { slug: risk-map,                        name: Risk Map,                    source: WSHU }
+      - { slug: risk-control,                    name: Internal Control Process,    source: WSHU }
+      - { slug: risk-audit,                      name: Audit & Anti-Fraud,          source: WSHU }
+
+  it_security:
+    display: IT & Security / Assets / Network / Backup
+    actions:
+      - { slug: it-asset,                        name: Assets & Permissions,        source: WSHU }
+      - { slug: it-network,                      name: Network Security,            source: WSHU }
+      - { slug: it-backup,                       name: Backup & Disaster Recovery,  source: WSHU }

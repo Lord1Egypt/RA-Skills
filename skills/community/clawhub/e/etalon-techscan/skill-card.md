@@ -1,40 +1,59 @@
-## Description: <br>
-Detects a domain's technology stack with the local ETALON CLI and returns detected frameworks, CDNs, CMS platforms, analytics, hosting providers, confidence scores, and detection methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Etalon Tech Scan helps agents use the ETALON CLI to detect website technologies from HTTP headers, cookies, scripts, meta tags, HTML patterns, and DNS records.
 
-## Publisher: <br>
-[rednix](https://clawhub.ai/user/rednix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rednix](https://clawhub.ai/user/rednix)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to inspect websites, compare competitor or vendor stacks, support due diligence, and gather evidence for migration or technology decisions after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or running the wrong local ETALON CLI package could expose the user to untrusted code. <br>
-Mitigation: Verify that the etalon-cli package and repository are the intended trusted sources before installing or running the command. <br>
-Risk: Technology scans contact target websites and batch scans can create unwanted traffic or policy issues. <br>
-Mitigation: Run scans only for user-approved domains where there is permission or a legitimate reason, and use batch mode carefully. <br>
+## Use Case:
 
+Developers, engineers, and analysts use this skill to confirm a website's technology stack, compare competitors or vendors, and summarize detected frameworks, hosting, analytics, payments, CMS, CDN, and security tools with confidence signals.
 
-## Reference(s): <br>
-- [ETALON homepage](https://etalon.nma.vc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Human-readable Markdown summaries with inline shell commands and grouped scan findings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes technology categories, confidence scores, and detection methods when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.5 (source: release evidence and frontmatter) <br>
+Risk: Website scans may be run against targets the user did not intend or in bulk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit confirmation before each scan target and handle batch scans carefully.
+
+Risk: Installing or running an unpinned local CLI can execute code outside the agent workspace.
+
+Mitigation: Install only a trusted, preferably pinned ETALON CLI release and avoid elevated privileges.
+
+Risk: Database credentials may be exposed if passed directly on the command line.
+
+Mitigation: Use a protected environment variable or secret store for database connection strings when supported.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rednix/skills/etalon-techscan)
+- [Publisher profile](https://clawhub.ai/user/rednix)
+- [ETALON homepage](https://etalon.nma.vc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and grouped scan results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports detected technologies with confidence scores and detection methods; requires a local etalon CLI installation.]
+
+## Skill Version(s):
+
+0.9.5 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

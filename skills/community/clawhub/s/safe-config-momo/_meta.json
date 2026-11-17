@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn7dme0ba5x69kb4m43z18veeh82fz24",
-  "slug": "safe-config-momo",
+  "slug": "safe-config",
+  "name": "Safe Config Modifier",
   "version": "1.0.0",
-  "publishedAt": 1772900270138
+  "description": "安全修改 OpenClaw 配置文件的标准流程 - 备份、脱敏预览、验证、确认后执行",
+  "author": {
+    "name": "Momo",
+    "contact": "telegram:8543840552"
+  },
+  "tags": ["openclaw", "config", "security", "safety", "modifier"],
+  "requirements": {
+    "openclaw": ">=2025.1.0",
+    "tools": ["jq", "cp", "date"]
+  },
+  "features": [
+    "配置修改前自动备份",
+    "敏感信息脱敏预览",
+    "JSON 格式验证",
+    "严格的确认流程（只认 ojbk可以改了）",
+    "配置修改后验证"
+  ],
+  "changelog": {
+    "1.0.0": "初始版本发布"
+  }
 }

@@ -1,43 +1,60 @@
-## Description: <br>
-Hunyuan 3D v3.1 asset generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `hunyuan-3d/v3.1/pro/text-to-3d`, `hunyuan-3d/v3.1/pro/image-to-3d`, `hunyuan-3d/v3.1/rapid/text-to-3d`, `hunyuan-3d/v3.1/rapid/image-to-3d`, text-to-3D, image-to-3D, PBR, geometry, face count, polling, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hunyuan 3D v3.1 asset generation on PoYo via the PoYo submit API for text-to-3D and image-to-3D workflows.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and technical artists use this skill to plan, prepare, and submit PoYo Hunyuan 3D v3.1 text-to-3D or image-to-3D asset generation jobs. It helps select Pro or Rapid model IDs, shape request payloads, handle API-key use, and identify the next polling or webhook step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make outbound API calls using POYO_API_KEY, which is a secret credential. <br>
-Mitigation: Use a server-side environment or secret manager, use least-privileged keys when available, and avoid exposing keys in chat, logs, browser code, screenshots, or public repositories. <br>
-Risk: Submitting confidential prompts, object images, private asset URLs, or callback URLs sends that material to PoYo and any configured callback receiver. <br>
-Mitigation: Submit only material the user is allowed to share with PoYo and the callback receiver, and avoid live API calls unless the user explicitly requests them from a trusted server-side shell. <br>
+## Use Case:
 
+Developers and 3D asset pipeline engineers use this skill to prepare PoYo Hunyuan 3D v3.1 text-to-3D or image-to-3D submissions, choose Pro or Rapid model IDs, handle payload options, and plan polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Hunyuan 3D v3.1 API Reference](references/api.md) <br>
-- [PoYo Hunyuan 3D v3.1 Documentation](https://docs.poyo.ai/api-manual/3d-series/hunyuan-3d-3-1) <br>
-- [PoYo Hunyuan 3D v3.1 Model Page](https://poyo.ai/models/hunyuan-3d-3-1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-hunyuan-3d-3-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown with JSON payloads and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selected model ID, text-to-3D or image-to-3D workflow summary, request payload, material and geometry settings, task ID, and polling or webhook next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill submits prompts, image URLs, callback URLs, and generation options to PoYo over the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended PoYo Hunyuan 3D generation workflows and review payload JSON before submission.
+
+Risk: POYO_API_KEY is required for live submissions and could be exposed if placed in client-side code, logs, repositories, screenshots, or chat output.
+
+Mitigation: Store POYO_API_KEY only in a server-side environment variable or backend secret manager and avoid echoing it in generated examples.
+
+Risk: Prompts, private image URLs, generated asset URLs, and callback URLs may contain confidential project information.
+
+Mitigation: Do not submit confidential inputs or private callback URLs unless the user trusts PoYo and the receiving endpoint.
+
+## Reference(s):
+
+- [PoYo Hunyuan 3D v3.1 API Reference](references/api.md)
+- [PoYo Hunyuan 3D 3.1 model page](https://poyo.ai/models/hunyuan-3d-3-1)
+- [PoYo Hunyuan 3D 3.1 API docs](https://docs.poyo.ai/api-manual/3d-series/hunyuan-3d-3-1)
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-hunyuan-3d-3-1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and bash or curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a PoYo task_id when the user explicitly requests a live submission from a trusted shell.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

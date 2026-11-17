@@ -1,42 +1,60 @@
-## Description: <br>
-1+5 Distributed Production Swarm with Session Inheritance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hive-Commander provides a 1+5 distributed production swarm with session inheritance.
 
-## Publisher: <br>
-[Lawliet-ai](https://clawhub.ai/user/Lawliet-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lawliet-ai](https://clawhub.ai/user/lawliet-ai)
 
-## Use Case: <br>
-Developers and advanced agent users use this skill to decompose complex requests into a fixed five-worker swarm, run isolated worker calls, and synthesize the resulting Markdown outputs into a conflict-checked final response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores model-session credentials, base URL, prompts, and worker outputs under ~/.openclaw/swarm_tmp for swarm execution. <br>
-Mitigation: Use only with trusted publishers and trusted workspaces, run in a sandbox or dedicated environment when possible, and delete task_config.json after use. <br>
-Risk: Worker requests are sent to the configured model API endpoint, so an unexpected base_url could route sensitive task content to an unintended service. <br>
-Mitigation: Verify the configured base_url before dispatch and review any mounted third-party skills before allowing them into the swarm. <br>
-Risk: Parallel worker outputs may contain incorrect or conflicting analysis that could affect the final synthesis. <br>
-Mitigation: Review the generated worker_*.md files and the synthesized response before acting on high-impact recommendations. <br>
+## Use Case:
 
+External users and developers use this skill to split complex requests into five isolated worker tasks, dispatch those tasks through the configured model endpoint, and synthesize worker Markdown outputs into a conflict-audited response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lawliet-ai/hive-commander) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown synthesis with worker Markdown files and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fixed five-worker dispatch with a 120-second per-worker API timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill inherits active model API credentials and writes them to a local OpenClaw temp configuration file for parallel worker calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit consent, scoped short-lived tokens, restrictive file permissions, per-run private temp directories, and cleanup of secret-bearing files.
+
+Risk: Worker prompts are sent to the configured base_url with weak endpoint scoping.
+
+Mitigation: Allowlist approved model endpoints and validate the base_url before each run.
+
+Risk: Parallel worker outputs are written to a shared OpenClaw temp directory.
+
+Mitigation: Review worker_*.md outputs before reuse and run multi-agent swarms in a Docker container or dedicated VM when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lawliet-ai/skills/hive-commander)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [JSON Schema Draft 7](http://json-schema.org/draft-07/schema#)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown synthesis with JSON worker configuration and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fixed five-worker fan-out; worker outputs are written under ~/.openclaw/swarm_tmp/.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

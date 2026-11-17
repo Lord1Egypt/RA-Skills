@@ -1,48 +1,62 @@
-## Description: <br>
-从Kettle作业（.kjb/.ktr）中提取SQL脚本，支持批量提取、合并SQL组件和简洁输出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts SQL scripts from Kettle .kjb and .ktr ETL jobs, with support for batch extraction, SQL component merging, and simple SQL-file output.
 
-## Publisher: <br>
-[chenjunhan633-glitch](https://clawhub.ai/user/chenjunhan633-glitch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjunhan633-glitch](https://clawhub.ai/user/chenjunhan633-glitch)
 
-## Use Case: <br>
-Developers and data engineers use this skill to extract, review, merge, and batch-process SQL embedded in Kettle ETL job and transformation files. It is suited for SQL backup, migration preparation, code review, documentation, and troubleshooting workflows where the original SQL should be preserved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL and reports may contain sensitive business logic or database details. <br>
-Mitigation: Run the skill in a controlled project workspace, treat generated SQL and reports as sensitive, and avoid committing reports or extracted SQL accidentally. <br>
-Risk: Executable SQL generated from Kettle files may be unsafe or unsuitable for a target production database without review. <br>
-Mitigation: Manually review and test generated executable SQL in a non-production database before considering production use. <br>
-Risk: Broad input paths can process more Kettle files than intended. <br>
-Mitigation: Point the tool at specific Kettle files or narrowly scoped directories. <br>
+## Use Case:
 
+Developers and data engineers use this skill to extract, inspect, merge, and archive SQL embedded in Kettle ETL job and transformation files without modifying the SQL content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenjunhan633-glitch/kettle-sql-extractor) <br>
-- [README](README.md) <br>
-- [Quick Start Guide](docs/QUICK_START.md) <br>
-- [Usage Examples](docs/USAGE_EXAMPLES.md) <br>
-- [Merge SQL Quickstart](docs/MERGE_SQL_QUICKSTART.md) <br>
-- [Batch Extract Quickstart](docs/BATCH_EXTRACT_QUICKSTART.md) <br>
-- [Troubleshooting Case](docs/troubleshooting_case_kettle_extract.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; generated artifacts may include SQL, JSON, text summaries, and HTML reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in simple-output mode for SQL-only files or full report mode for analysis summaries and HTML reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated executable SQL can change database state if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review extracted and generated SQL before database execution, and test against non-production data first.
+
+Risk: Cleanup commands and broad output directories can remove or overwrite unintended files.
+
+Mitigation: Use an explicit output directory, inspect cleanup candidates, and avoid running cleanup from a repository root, home directory, or shared workspace.
+
+Risk: HTML reports and parsed Kettle content may be unsafe when inputs come from untrusted sources.
+
+Mitigation: Treat generated reports as untrusted, process external Kettle files in an isolated workspace, and use reviewed, pinned dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenjunhan633-glitch/skills/kettle-sql-extractor)
+- [ClawHub homepage metadata](https://clawhub.com/skills/kettle-sql-extractor)
+- [README](artifact/README.md)
+- [Quick start guide](artifact/docs/QUICK_START.md)
+- [Merge SQL quickstart](artifact/docs/MERGE_SQL_QUICKSTART.md)
+- [Batch extract quickstart](artifact/docs/BATCH_EXTRACT_QUICKSTART.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with bash and Python commands; generated artifacts may include SQL, JSON, text, and HTML files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce simple SQL-only output or fuller batch analysis reports depending on selected command options.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

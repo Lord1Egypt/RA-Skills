@@ -1,0 +1,13 @@
+{
+  "name": "perf-security-assessment",
+  "displayName": "性能安全评估",
+  "version": "1.0.0",
+  "description": "对系统进行性能评估（响应时间、并发能力、资源消耗）和安全评估（认证授权、数据保护、OWASP Top 10），输出性能指标达标情况和安全风险清单。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["performance", "security", "testing", "owasp", "load-testing"],
+  "minOpenClawVersion": "1.2.0"
+}

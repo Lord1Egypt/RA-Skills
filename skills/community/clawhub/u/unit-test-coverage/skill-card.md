@@ -1,40 +1,49 @@
-## Description: <br>
-Unit test engineer skill for PHPUnit or Pest coverage, service-level assertions, and focused regression protection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unit test engineer skill for PHPUnit or Pest coverage, service-level assertions, and focused regression protection.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and engineers use this skill to add or update focused PHPUnit or Pest unit tests for WelineFramework services, helpers, models, and related logic. It helps produce deterministic regression coverage and reports the focused test command used for validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad coverage request could lead the agent to create tests that are not actually focused on unit-level behavior. <br>
-Mitigation: Review the generated test scope, assertions, and reported command to confirm the work protects the intended unit-level regression. <br>
-Risk: Small implementation changes made for testability could affect behavior outside the targeted unit boundary. <br>
-Mitigation: Review generated diffs and run the focused PHPUnit or Pest command before accepting the changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to create or update focused WelineFramework unit tests for service-level behavior, model or helper logic, and deterministic regression protection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/unit-test-coverage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with code changes, focused test commands, and validation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should stay focused on unit-level behavior and include the protected regression case.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill is tailored to WelineFramework, Chinese role names, and local project guidance, so it may produce less relevant test guidance outside that context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in WelineFramework projects with the referenced local guidance available, and review generated or modified tests before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/unit-test-coverage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes focused test commands and a note describing the protected regression case.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

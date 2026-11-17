@@ -1,43 +1,56 @@
-## Description: <br>
-Provides a video-derived guide for learning AI security and AI penetration testing techniques from Douyin and Bilibili sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从抖音视频学习: AI安全 — 【大白哥AI与安全】手把手教你AI渗透,挖漏洞
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and security learners can use this skill as a guided note set for AI security learning prompts, examples, and related video references. Review before installation because the release security evidence flags unrelated subscription endpoint and token-like content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill mixes an AI security learning purpose with unrelated subscription endpoint and token-like content. <br>
-Mitigation: Do not install this version unless the publisher explains and removes the unrelated endpoint, token-like strings, and duplicated broad triggers. <br>
-Risk: The content-level mismatch may make the skill misleading or unsafe to use without review. <br>
-Mitigation: Review the skill text and security scan evidence before deployment, even though VirusTotal was clean. <br>
+## Use Case:
 
+Developers and security learners use this OpenCode skill to request Chinese-language guidance for authorized AI-security learning and practice based on referenced short-form video material.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/534422530/ai-b9b1fb) <br>
-- [Bilibili Video BV1MaAuzPEhX](https://www.bilibili.com/video/BV1MaAuzPEhX) <br>
-- [Bilibili Video BV1oZVD6kEfP](https://www.bilibili.com/video/BV1oZVD6kEfP) <br>
-- [Bilibili Video BV1aK421Y7WK](https://www.bilibili.com/video/BV1aK421Y7WK) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with optional code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No declared tools or MCP dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Security evidence rates the release suspicious because it repeatedly embeds an unrelated token-bearing external endpoint and broad triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or validate the repeated endpoint and token-like value, and narrow triggers to the actual AI-security learning topic before installation.
+
+Risk: Merged sections may include unrelated or unintended material.
+
+Mitigation: Confirm that the merged sections are intentional and relevant before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/ai-b9b1fb)
+- [Bilibili video BV1MaAuzPEhX](https://www.bilibili.com/video/BV1MaAuzPEhX)
+- [Bilibili video BV1oZVD6kEfP](https://www.bilibili.com/video/BV1oZVD6kEfP)
+- [Bilibili video BV1aK421Y7WK](https://www.bilibili.com/video/BV1aK421Y7WK)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with short command/path snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guide content; no automatic execution or persistence indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Access Flickr with local user-supplied API credentials and OAuth tokens to verify authorization, export or download recent and album photos, and edit tags, titles, and descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Flickr Claw helps agents use a user's local Flickr credentials to verify authorization, export recent-upload or album metadata, download images for local review, and update photo tags, titles, and descriptions.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-External users and developers use this skill to manage Flickr account workflows from an agent, including OAuth setup checks, album and recent-upload export, local image review downloads, and reviewed metadata updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flickr credentials and OAuth tokens are local secrets under ~/.openclaw. <br>
-Mitigation: Protect token files as secrets and use read-only tokens for browsing, exports, and downloads whenever write access is not required. <br>
-Risk: Write-capable commands can change Flickr photo tags, titles, and descriptions. <br>
-Mitigation: Review photo IDs and proposed metadata before running write commands, and create write tokens only when metadata edits are intended. <br>
-Risk: CSV exports and downloaded images can leave local copies of account photo metadata or image content. <br>
-Mitigation: Delete exported CSVs and downloaded image directories after review unless the user explicitly wants to keep them. <br>
+## Use Case:
 
+Developers and external users working with a Flickr account use this skill to run local auth checks, export album or recent-upload metadata, download images for visual review, and apply reviewed metadata updates.
 
-## Reference(s): <br>
-- [Flickr Claw on ClawHub](https://clawhub.ai/stanestane/flickr-claw) <br>
-- [Flickr workflow](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; script output may include terminal text, CSV files, downloaded image files, and JSON manifests.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Flickr API credentials and OAuth token files; write operations can update photo tags, titles, and descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: Flickr credentials and OAuth tokens are stored locally in plaintext under ~/.openclaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect ~/.openclaw from other users and backups, remove token files when no longer needed, and revoke or rotate Flickr tokens after use.
+
+Risk: Write-capable authorization can change photo tags, titles, and descriptions.
+
+Mitigation: Use read-only tokens for exports and downloads, mint write tokens only for reviewed metadata edits, and avoid delete permission.
+
+Risk: The skill depends on locally installed Python packages.
+
+Mitigation: Use a virtual environment and pin dependencies before running it in sensitive environments.
+
+## Reference(s):
+
+- [Flickr workflow](artifact/references/workflow.md)
+- [Flickr Claw release page](https://clawhub.ai/stanestane/skills/flickr-claw)
+- [Flickr REST API endpoint](https://api.flickr.com/services/rest)
+- [Flickr OAuth authorization endpoint](https://www.flickr.com/services/oauth/authorize)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with command examples; CSV metadata exports and downloaded image files when commands are run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Flickr API credentials and OAuth token files; write actions require write-capable Flickr authorization.]
+
+## Skill Version(s):
+
+1.5.0 (source: server evidence release.version and SKILL.md metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

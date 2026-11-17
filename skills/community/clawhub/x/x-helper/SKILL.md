@@ -1,7 +1,7 @@
 ---
 name: x-helper
 description: Full-featured X (Twitter) assistant — search, post with media, thread, DM, Lists, bookmarks, trends, articles, block/mute, and more. Pure Python stdlib.
-version: 3.0.3
+version: 3.0.6
 license: MIT-0
 metadata:
   openclaw:
@@ -10,6 +10,17 @@ metadata:
       bins: []
       env:
         - X_CLIENT_ID
+        - X_BEARER_TOKEN
+    permissions:
+      network:
+        - api.x.com
+        - x.com
+        - api.twitter.com
+      filesystem:
+        - ~/.x-helper/ (token cache, mode 0o600)
+      env:
+        - X_CLIENT_ID
+        - X_BEARER_TOKEN
 ---
 
 # X Helper
@@ -20,7 +31,7 @@ metadata:
 
 > ⚠️ **数据外发提醒**：推文内容、私信、媒体文件、搜索查询、用户信息及 Bearer Token 将被发送至 X API 服务器（api.x.com / api.twitter.com）。请勿在自动化环境中处理敏感/机密内容。
 >
-> ⚠️ **凭据管理提醒**：Access Token 存储在 `~/.x-helper/auth.json`（权限 0o600）。Token 通过 Python 内存传递，不会暴露在进程列表或 shell 历史中。
+> ⚠️ **凭据由你掌握**：推荐把 Bearer Token 放进自己的环境变量 `X_BEARER_TOKEN`（你自己执行 export，AI 只读取、不存储、不中转）。Token 通过 Python 内存传递，不会暴露在进程列表或 shell 历史中。
 
 ## 前置准备
 
@@ -31,13 +42,27 @@ metadata:
 3. 注册回调 URL：`http://localhost:8080/callback`
 4. 记下 **Client ID**（和可选的 Client Secret）
 
-### 2. 授权
+### 2. 配置访问令牌（推荐：自己放环境变量）
+
+在你自己电脑的终端里执行（AI 不会看到你输入的 token）：
+
+```bash
+export X_BEARER_TOKEN='你的 X API Bearer Token'
+```
+
+> 💡 从 X Developer Portal 的 App 页面复制 Bearer Token，自己粘贴到终端。
+> 这个 token 存在你自己的 shell 环境变量里，AI 只读取、不存储、不中转。
+
+### 2b. OAuth 授权流程（仅用于获取 Token）
+
+`auth authorize` 会跑一次 OAuth 2.0 浏览器授权，把 Token 缓存到
+`~/.x-helper/auth.json`。**本 skill 不会自动读取该文件来发请求**——
+授权完成后请把拿到的 Token 自己 `export X_BEARER_TOKEN=...` 再使用。
+（缓存文件仅由你手动运行的 `auth status` / `auth logout` 读取。）
 
 ```bash
 python3 scripts/x_client.py auth authorize --client-id YOUR_CLIENT_ID
 ```
-
-会自动弹浏览器授权。Token 缓存到 `~/.x-helper/auth.json`，自动 refresh。
 
 ### 3. 检查状态
 
@@ -183,9 +208,12 @@ python3 scripts/x_client.py auth status
 ```
   dm list [--max N]
   dm conversation <id> [--max N]
-  dm send <username> <text>
-  dm delete <event-id>
+  dm send <username> <text> --confirm
+  dm delete <event-id> --confirm
 ```
+
+> ⚠️ **私信敏感**：`dm conversation` 输出的是私信内容（非公开数据），不要外泄。
+> `dm send` / `dm delete` 为不可逆操作，必须显式加 `--confirm` 才会执行。
 
 ### Lists
 ```

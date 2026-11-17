@@ -1,42 +1,61 @@
-## Description: <br>
-Controls a paired Android Node device's USB camera for single-frame capture, streaming frame delivery, stopping streams, and closing camera callbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls a paired Android Node device's USB camera for single-frame capture, streaming frame events, stopping streams, and closing camera callbacks.
 
-## Publisher: <br>
-[lxx328](https://clawhub.ai/user/lxx328) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxx328](https://clawhub.ai/user/lxx328)
 
-## Use Case: <br>
-Developers and operators use this skill to capture one-off images or stream JPEG frames from a paired Node device for remote monitoring, troubleshooting, and vision analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Camera capture and streaming can expose private spaces or sensitive visual data. <br>
-Mitigation: Install only where camera monitoring is intended, prefer single-frame capture when possible, and avoid capturing sensitive spaces unless the Node network and image URLs are trusted. <br>
-Risk: Live streaming and retained image URLs can continue consuming bandwidth, power, or exposing recent images if left running. <br>
-Mitigation: Start streaming only when needed, call camera.stopStreaming or camera.close after use, and rely on the skill's documented recent-image cleanup behavior. <br>
+## Use Case:
 
+Developers and external agents use this skill to capture still images or receive camera frames from a paired Node device for remote monitoring, visual inspection, and downstream vision analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lxx328/node-camera) <br>
-- [Publisher profile](https://clawhub.ai/user/lxx328) <br>
-- [Server provenance](unavailable) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, JSON, shell commands] <br>
-**Output Format:** [Markdown guidance with JSON command examples and optional helper script commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Camera capture and stream events return JPEG image URLs hosted by the Node device; the bundled helper can download URLs or inspect frame JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Camera frames may expose private spaces or sensitive visual information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted devices in appropriate locations, and avoid capturing or streaming images from private areas without approval.
+
+Risk: Captured images are served over HTTP from the Node device and frame URLs may be pushed through cloud events.
+
+Mitigation: Use trusted networks and paired devices only, and avoid exposing the device HTTP server or image URLs beyond the intended agent workflow.
+
+Risk: Calling camera.close stops stream callbacks but may not guarantee hardware shutdown.
+
+Mitigation: Confirm the Node device camera state after sensitive sessions and rely on the device UI or lifecycle controls when hardware shutdown is required.
+
+Risk: The helper script can download from supplied URLs, decode base64 frame data, and write to supplied output paths.
+
+Mitigation: Pass only trusted image URLs, frame data, and output paths to the helper script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxx328/skills/node-camera)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, JSON, code]
+
+**Output Format:** [Markdown guidance with JSON command payloads and optional helper-script commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill returns image URLs for captured frames and may guide agents to download JPEG images from the Node device HTTP server.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

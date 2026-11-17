@@ -1,40 +1,54 @@
-## Description: <br>
-Command-line client for the Bank of Korea ECOS Open API to list statistic tables and fetch time series data in JSON by code and frequency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line client for the Bank of Korea ECOS API to list statistic tables and fetch time series data as JSON by code and frequency.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers, data analysts, and agents use this skill to configure and run a CLI for Bank of Korea ECOS statistics, including listing statistic tables and fetching time-series JSON for downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Bank of Korea ECOS API key, which can be exposed through shared logs, chats, or shell history. <br>
-Mitigation: Provide BOK_API_KEY through a secure environment and avoid pasting or echoing it in commands or shared transcripts. <br>
-Risk: The reviewed artifact documents CLI usage but does not include the CLI implementation for inspection. <br>
-Mitigation: Inspect any repository or package before running pip install -e . and install in a virtual environment from a trusted source. <br>
+## Use Case:
 
+Developers and agents use this skill to work with Bank of Korea ECOS statistics from a command-line workflow, including listing statistic tables and fetching time series by code, frequency, and date range.
 
-## Reference(s): <br>
-- [ECOS API portal](https://ecos.bok.or.kr/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands, environment variable guidance, and API endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of BOK_API_KEY and BOK_LANG; CLI responses are direct ECOS JSON passthroughs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The ECOS API key can be exposed through raw request URLs, debug logs, shell history, or shared output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep BOK_API_KEY in a secret store or local environment variable, avoid publishing raw requests or debug logs, and rotate the key if exposure is suspected.
+
+Risk: The submitted artifact contains documentation only, so users may assume the CLI implementation is included when it is not present in this release artifact.
+
+Mitigation: Install only from a trusted CLI implementation source and verify the package contents before using the skill in an agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chloepark85/skills/bank-of-korea-ecos-cli)
+- [ECOS API portal](https://ecos.bok.or.kr/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BOK_API_KEY; ECOS API responses are direct JSON passthroughs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

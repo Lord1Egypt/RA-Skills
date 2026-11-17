@@ -1,38 +1,58 @@
-## Description: <br>
-Generate Guillaume's daily reading list by searching curated sources across AI, LLMs, full-stack dev, anime, horror games, and metal music; it handles deduplication, Obsidian file output, Mission Control ingestion, and weekly or yearly archiving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Guillaume's daily reading list by searching curated AI, LLM, full-stack development, anime, horror game, and metal music sources, deduplicating prior reads, writing Obsidian Markdown, updating Mission Control, and supporting weekly and yearly archiving.
 
-## Publisher: <br>
-[guillaumemaka](https://clawhub.ai/user/guillaumemaka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guillaumemaka](https://clawhub.ai/user/guillaumemaka)
 
-## Use Case: <br>
-Guillaume uses this skill to generate a daily, deduplicated reading list across curated technical and culture sources, write it into Obsidian, and report delivery through Mission Control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weekly and yearly archiving can delete personal Obsidian reading files after archive creation. <br>
-Mitigation: Review the configured Daily Reading paths before use, add a dry-run or confirmation step, and move files to a recoverable trash or archive-staging folder instead of deleting them directly. <br>
+## Use Case:
 
+External users and personal automation agents use this skill to generate a daily, deduplicated reading list for Guillaume, save it as an Obsidian Markdown file, notify him, and update Mission Control. The skill also supports routine weekly and yearly archive maintenance for those reading lists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guillaumemaka/poly-daily-reading) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Obsidian markdown reading list with supporting JSON payloads and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily and archive files under the configured Obsidian Daily Reading folder and records read URLs in a JSON cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill reads and writes named Obsidian reading-list files and updates Mission Control, which can affect a user's personal knowledge base and automation records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those file and Mission Control updates are intended, and review the target paths before unattended use.
+
+Risk: Mission Control commands use shell execution and inline JSON payloads, which can be fragile or unsafe if web-derived fields are not validated.
+
+Mitigation: Pin the Mission Control CLI tooling, validate article titles, URLs, categories, and summaries before ingestion, and prefer structured argument passing over inline JSON where possible.
+
+Risk: Weekly and yearly archive workflows delete source archive files after consolidation.
+
+Mitigation: Make archive deletion confirmable or reversible, and verify the consolidated archive exists before removing daily or monthly files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guillaumemaka/skills/poly-daily-reading)
+- [Publisher Profile](https://clawhub.ai/user/guillaumemaka)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown daily reading files, JSON status and ingestion payloads, and concise text summaries with shell command invocations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes dated reading-list files and archive files, updates a read-status cache, and uses bounded source searches with deduplication against recent history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

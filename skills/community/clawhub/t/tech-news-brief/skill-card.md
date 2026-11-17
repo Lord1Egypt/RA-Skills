@@ -1,46 +1,60 @@
-## Description: <br>
-Organizes Chinese and foreign technology news into source drafts, Chinese summaries, and DOCX files that follow the "xx班" reporting format, completing discovery through email delivery in one session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers recent AI, large-model, semiconductor, and frontier-technology news, then produces Chinese summaries, Markdown source files, DOCX reports, ZIP archives, and optional email delivery.
 
-## Publisher: <br>
-[scienlot](https://clawhub.ai/user/scienlot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scienlot](https://clawhub.ai/user/scienlot)
 
-## Use Case: <br>
-External users and analysts use this agent skill to find recent AI, large-model, semiconductor, and frontier-technology news, filter it by recency and strategic relevance, generate concise Chinese reporting drafts, convert them to DOCX, and send the packaged report by email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires SMTP credentials and can send generated report archives by email. <br>
-Mitigation: Use app-specific SMTP credentials, keep .env files private, avoid command-line passwords, and confirm the SMTP recipient before sending. <br>
-Risk: The generated ZIP archive may contain local MD and DOCX reports selected by the agent workflow. <br>
-Mitigation: Review the ZIP contents before email delivery and send only to the intended SMTP_TO recipient. <br>
-Risk: The reporting guide emphasizes a China-strategy brief posture that may not fit neutral reporting needs. <br>
-Mitigation: Adjust the writing guide before use when neutral or different editorial framing is required. <br>
+## Use Case:
 
+External users and operators use this skill to compile recent technology news into Chinese daily briefings. It supports article discovery, source capture, summary drafting, DOCX conversion, ZIP packaging, and email delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scienlot/tech-news-brief) <br>
-- [Recommended news sources](artifact/references/sources.md) <br>
-- [Summary writing guide](artifact/references/writing-guide.md) <br>
-- [README](artifact/README.md) <br>
-- [Firecrawl scrape API](https://api.firecrawl.dev/v2/scrape) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown reports, DOCX files, ZIP archives, email delivery status, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates dated local report directories and can package selected report files for SMTP delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can send generated report archives by email using stored SMTP credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated SMTP account or app password, confirm the recipient before use, and avoid passing passwords on the command line.
+
+Risk: The workflow can download external news pages and write generated report files.
+
+Mitigation: Constrain report and download output paths, review generated files before delivery, and keep fallback download credentials scoped.
+
+Risk: The artifact intentionally applies a Chinese and China-focused editorial framing.
+
+Mitigation: Use it only where that editorial posture is appropriate and review generated summaries for factual accuracy and neutrality requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scienlot/skills/tech-news-brief)
+- [ClawHub publisher profile](https://clawhub.ai/user/scienlot)
+- [Recommended news sources](artifact/references/sources.md)
+- [Summary writing guide](artifact/references/writing-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, DOCX files, Shell commands, Configuration guidance]
+
+**Output Format:** [Chinese Markdown reports, DOCX documents, ZIP archives, and email status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SMTP environment variables for email delivery and may use Firecrawl as a fallback content-download path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

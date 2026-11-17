@@ -1,0 +1,56 @@
+{
+  "name": "douyinvideo-copy-extract",
+  "version": "1.0.0",
+  "description": "调用通义千问大模型，将本地视频文件或抖音/小红书等平台视频链接转写为干净文案，并按自定义 Prompt 生成总结、改写、金句、分镜头、中英翻译等风格化内容。支持视频转文字、字幕提取、会议纪要、课程拆解、直播复盘、短视频二创等场景。",
+  "main": "scripts/video2text/index.js",
+  "type": "commonjs",
+  "keywords": [
+    "视频转文字",
+    "视频转稿",
+    "字幕提取",
+    "视频总结",
+    "视频内容分析",
+    "会议纪要",
+    "课程拆解",
+    "直播复盘",
+    "采访整理",
+    "短视频二创",
+    "口播稿",
+    "小红书文案",
+    "抖音文案",
+    "金句提取",
+    "视频翻译",
+    "语音转文字",
+    "语音转写",
+    "视频字幕",
+    "视频摘要",
+    "视频文案提取",
+    "内容创作",
+    "短视频运营",
+    "素材处理",
+    "video2text",
+    "video-to-text",
+    "speech-to-text",
+    "video-analysis",
+    "content-workflow",
+    "transcription",
+    "subtitle-extraction",
+    "meeting-minutes",
+    "video-summary",
+    "audio-to-text"
+  ],
+  "homepage": "https://github.com/um-why/video2text-skill#readme",
+  "bugs": {
+    "url": "https://github.com/um-why/video2text-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/video2text-skill.git"
+  },
+  "author": "GuaiKei (微信 13395823479)",
+  "license": "MIT",
+  "category": "content-creation",
+  "engines": {
+    "node": ">=16.14.0"
+  }
+}

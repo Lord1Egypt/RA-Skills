@@ -1,43 +1,57 @@
-## Description: <br>
-Searches Reddit posts through Apify and helps an agent summarize community sentiment, themes, and notable discussions for a user-provided topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Reddit posts for a requested topic through Apify and helps an agent summarize community sentiment, key themes, and notable discussions.
 
-## Publisher: <br>
-[netmsglog](https://clawhub.ai/user/netmsglog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[netmsglog](https://clawhub.ai/user/netmsglog)
 
-## Use Case: <br>
-Developers and external users use this skill when they want an agent to search public Reddit discussions, inspect returned post metadata, and summarize community sentiment on a specific topic. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries and related request data are sent to Apify/Reddit-related services. <br>
-Mitigation: Avoid confidential queries and review topics before running the search. <br>
-Risk: The skill requires an APIFY_TOKEN that could be misused if exposed. <br>
-Mitigation: Use a limited Apify token and keep it out of source control, logs, shared terminals, and chat transcripts. <br>
-Risk: Apify usage may incur costs. <br>
-Mitigation: Set spending limits or monitor Apify usage before repeated or broad searches. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Reddit Explore on ClawHub](https://clawhub.ai/netmsglog/reddit-explore) <br>
-- [Apify Setup Guide](references/apify-setup.md) <br>
-- [Apify Console](https://console.apify.com/) <br>
+## Use Case:
 
+External users and developers use this skill to search Reddit discussions on a topic, gather Apify-backed post data, and produce concise summaries of community sentiment, themes, and notable posts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary based on JSON Reddit search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, apify-client, and APIFY_TOKEN; search queries are sent to Apify/Reddit-related services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reddit search topics are sent to Apify and may be processed by that third-party service.
+
+Mitigation: Use the skill only for topics appropriate to share with Apify and avoid sending sensitive search terms.
+
+Risk: The Apify API token grants account access and can consume platform credits.
+
+Mitigation: Set APIFY_TOKEN through a protected environment or secret manager and avoid passing tokens on the command line.
+
+Risk: The required apify-client package is installed into the local Python environment.
+
+Mitigation: Install apify-client in a virtual environment with pinned versions when deploying the skill.
+
+## Reference(s):
+
+- [Apify Setup Guide](references/apify-setup.md)
+- [Apify Console](https://console.apify.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary with Reddit post links and JSON-backed findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, apify-client, and APIFY_TOKEN; the default search limit is 30 posts.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

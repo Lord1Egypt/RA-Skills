@@ -1,0 +1,44 @@
+{
+  "template_id": "evidence-pack-v1",
+  "template_version": "1.1.0",
+  "status": "DRAFT_SERVICE_NOT_OFFER",
+  "recommended_threshold": 85,
+  "threshold_note": "Proposed pilot threshold; stored outside the rubric and calibrated before funded use. Not a measured performance guarantee.",
+  "request_schema": "../schemas/evidence-pack-v1.request.schema.json",
+  "result_schema": "../schemas/evidence-pack-v1.result.schema.json",
+  "rubric_file": "evidence-pack-v1.rubric.json",
+  "scope_limit": {
+    "entities": 10,
+    "fields": 10,
+    "total_cells": 50
+  },
+  "default_privacy": "public_non_sensitive_only",
+  "execution_preference": "targeted_after_supplier_agreement",
+  "supplier_status": "UNKNOWN",
+  "price": null,
+  "turnaround": null,
+  "required_owner_decisions": [
+    "specific item list",
+    "source/version/as-of policy",
+    "search plan and access limits",
+    "sharing/publishing permission",
+    "actual supplier and quote",
+    "network, reward and maximum all-in spend at transaction handoff"
+  ],
+  "delivery": [
+    "result.json",
+    "evidence.md"
+  ],
+  "delivery_note": "Deliver result.json and readable evidence.md. Documented UNRESOLVED results are valid; do not reward contradictions or fabricate cells.",
+  "source_rule": "PROVIDED_CORPUS: cite only the approved sources. INDEPENDENT_PUBLIC_RETRIEVAL: start from the approved sources, and cite any other public https source only as an independent retrieval, quoted verbatim with its locator, publisher and retrieval time, within the search budget.",
+  "source_authentication": "Compare to approved provided corpus, or independently retrieve public sources. The evaluator may open cited pages; a quoted excerpt with its locator and retrieval time is what makes a citation checkable. A hash alone is not authentication.",
+  "must_pass_note": "must=true criteria have weight zero. Weighted criteria sum to 1.0. Schema validation is not proof that semantic gates will be adjudicated correctly.",
+  "non_goals": [
+    "guaranteed supplier",
+    "guaranteed quote",
+    "private-data escrow",
+    "live-web truth certification without independent evidence",
+    "automatic purchase",
+    "contract modification"
+  ]
+}

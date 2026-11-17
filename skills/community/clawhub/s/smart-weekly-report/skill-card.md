@@ -1,43 +1,52 @@
-## Description: <br>
-Report Generator helps users turn natural-language weekly work updates into structured, professional weekly reports with role-specific sections, issue analysis, and next-week plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Report Generator helps users turn natural-language descriptions of weekly work into structured, role-specific weekly reports with issues, insights, and next-week plans.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-Employees, team leads, and business operators use this skill to draft concise weekly reports from their role, completed work, blockers, metrics, and next-week priorities. It is especially useful for engineering, sales, marketing, HR, operations, finance, project status, and management reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential company information, personal data, customer identifiers, financial details, source code, credentials, or unreleased business plans into an AI service while preparing a report. <br>
-Mitigation: Use only AI services approved by the user's organization and remove or anonymize sensitive details before sharing work updates with the model. <br>
-Risk: Generated reports may omit context, overstate progress, or frame issues incorrectly when the user's input is incomplete. <br>
-Mitigation: Review and edit the generated report before sending it, and add missing metrics, owners, dates, and business context where needed. <br>
+## Use Case:
 
+Employees, team leads, and knowledge workers use this skill to convert weekly accomplishments, blockers, metrics, and plans into concise reports tailored to their role and reporting audience.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wscats/smart-weekly-report) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
-- [Artifact Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports and follow-up editing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill that produces role-specific weekly report drafts and can revise tone, detail, or structure based on user feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence and CHANGELOG, released 2026-05-02) <br>
+Risk: Users may paste confidential work details, customer data, HR records, exact financial figures, source code, or other sensitive internal information into the AI tool they use with this prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only organization-approved AI tools and redact or anonymize sensitive names, figures, identifiers, and internal details before generating reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/smart-weekly-report)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown weekly report with tables and short prose tailored to the user's role.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only artifact with no executable behavior.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence and changelog, released 2026-05-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

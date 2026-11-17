@@ -1,47 +1,66 @@
-## Description: <br>
-Runs Dievio lead search and LinkedIn lookup workflows through the public API with authentication, filters, pagination, and credit-aware handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Dievio lead search and LinkedIn lookup workflows through the public API with correct authentication, filters, pagination, and credit-aware handling.
 
-## Publisher: <br>
-[hundevmode](https://clawhub.ai/user/hundevmode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hundevmode](https://clawhub.ai/user/hundevmode)
 
-## Use Case: <br>
-Growth teams, SDR workflows, agencies, and builders use this skill to run authorized B2B lead discovery and LinkedIn enrichment through Dievio with structured filters, pagination, and credit-aware result handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Lead search and LinkedIn enrichment can expose personal contact data. <br>
-Mitigation: Use the skill only for authorized B2B workflows, keep summary output unless full records are needed, and follow applicable privacy, platform, anti-spam, retention, and internal data-handling rules. <br>
-Risk: API credentials and large paginated pulls can increase security, privacy, or billing exposure. <br>
-Mitigation: Use a dedicated Dievio API key, avoid printing secrets, set explicit page and result limits, and pass only intended JSON files to body-file inputs. <br>
-Risk: Credit limits or transient API failures can return fewer results than requested or interrupt pagination. <br>
-Mitigation: Trust the returned count and paging fields, do not retry credential or credit failures until fixed, and use bounded backoff for transient server errors. <br>
+## Use Case:
 
+External growth teams, sales development teams, agencies, and developers use this skill to run Dievio B2B lead searches, enrich LinkedIn profile URLs, handle pagination, and return API results for downstream automations.
 
-## Reference(s): <br>
-- [Dievio Homepage](https://dievio.com) <br>
-- [Dievio API Overview](https://docs.dievio.com/api-reference/overview) <br>
-- [Dievio API Reference (Condensed)](references/api-reference.md) <br>
-- [Dievio Filters Cheatsheet](references/filters-cheatsheet.md) <br>
-- [Dievio Pagination](references/pagination.md) <br>
-- [Dievio API Errors](references/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is summary-only; raw output can include emails or phone numbers and should be requested only when full records are needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: API keys can be exposed if passed on the command line, printed, or stored in logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the DIEVIO_API_KEY environment variable, avoid printing secrets, and install only from a trusted or pinned source.
+
+Risk: Raw or enriched Dievio results can contain sensitive lead contact data such as emails and phone numbers.
+
+Mitigation: Use the default summary output for logs and only request raw output when collection, storage, and use of the contact data are authorized.
+
+Risk: Large paginated searches may consume API credits and return fewer rows than requested when credits are low.
+
+Mitigation: Set explicit max_results and pagination limits, monitor returned count fields, and stop pagination when has_more is false.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hundevmode/skills/dievio-lead-search-api)
+- [Dievio Website](https://dievio.com)
+- [Dievio API Overview](https://docs.dievio.com/api-reference/overview)
+- [Dievio Authentication](https://docs.dievio.com/api-reference/authentication)
+- [Dievio Lead Search](https://docs.dievio.com/api-reference/search)
+- [Dievio LinkedIn Lookup](https://docs.dievio.com/api-reference/linkedin-lookup)
+- [API contracts](references/api-reference.md)
+- [Filter fields and allowed values](references/filters-cheatsheet.md)
+- [Pagination behavior](references/pagination.md)
+- [Error handling guidance](references/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default CLI output is summary-only; raw output may include emails, phone numbers, and other lead contact data.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

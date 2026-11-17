@@ -1,43 +1,59 @@
-## Description: <br>
-Amazon listing builder and optimizer for sellers that creates keyword-optimized listing copy, audits existing listings, checks keyword coverage, and compares listings against competitors across 12 Amazon marketplaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Listing Optimization helps sellers create keyword-optimized Amazon listings, audit existing listings, identify keyword gaps, benchmark competitors, and generate revised listing copy across supported Amazon marketplaces.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External sellers and marketplace operators use this skill to create Amazon-ready listing copy from product attributes, keyword lists, and competitor ASINs, or to audit and rewrite existing listings for stronger keyword coverage and conversion signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live Amazon and web-search requests may expose ASINs, URLs, keywords, marketplaces, product plans, or competitor targets entered by the user. <br>
-Mitigation: Use only public or non-confidential listing inputs, and avoid entering product plans or competitor targets that should remain private. <br>
-Risk: Generated listing copy or audit recommendations may be inaccurate, incomplete, or unsuitable for Seller Central policy requirements. <br>
-Mitigation: Review and edit all generated titles, bullets, descriptions, backend search terms, and recommendations before publishing them in Seller Central. <br>
-Risk: Release provenance is unavailable, so the upstream source cannot be confirmed from server-resolved import metadata. <br>
-Mitigation: Verify the source and release terms before installing or relying on the skill in a production seller workflow. <br>
+## Use Case:
 
+External Amazon sellers and marketplace operators use this skill to create new Amazon listings from product details, keywords, and competitor ASINs, or to audit and optimize existing listings for keyword coverage, SEO quality, and conversion-oriented copy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/amazon-listing-optimization) <br>
-- [Amazon Keyword Research companion skill](https://github.com/nexscope-ai/Amazon-Skills/tree/main/amazon-keyword-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with ready-to-use listing copy, keyword coverage tables, audit scores, recommendations, and occasional shell commands for fetching public Amazon listing data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include titles, bullet points, descriptions, backend search terms, before-and-after rewrites, competitor comparisons, and marketplace-specific language guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The installation command uses an unpinned global package install path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source and prefer a pinned installer version or reviewed commit before deployment.
+
+Risk: ASINs, product-page URLs, and listing requests may be sent to Amazon or web search/fetch tools.
+
+Mitigation: Avoid using the skill with confidential launch plans or sensitive product strategy unless that exposure is acceptable.
+
+Risk: Generated listing copy, SEO scores, and marketplace recommendations may be inaccurate or unsuitable for a seller's policy obligations.
+
+Mitigation: Review all generated copy and recommendations before pasting them into Seller Central or making listing changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/amazon-listing-optimization)
+- [Amazon keyword research companion skill](https://github.com/nexscope-ai/Amazon-Skills/tree/main/amazon-keyword-research)
+- [Nexscope suite](https://github.com/nexscope-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with ready-to-use listing copy, audit tables, keyword coverage reports, and optional bash command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include titles, bullet points, descriptions, backend search terms, before-and-after copy, scoring tables, and marketplace-language-specific recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

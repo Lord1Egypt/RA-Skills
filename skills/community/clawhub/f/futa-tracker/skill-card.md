@@ -1,40 +1,53 @@
-## Description: <br>
-Tracks FUTA Express (Phương Trang) package delivery status through the public FUTA Express lookup API using a provided tracking code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track FUTA Express (Phuong Trang) package delivery status using their public API when the user provides a tracking code.
 
-## Publisher: <br>
-[tongtanhieu](https://clawhub.ai/user/tongtanhieu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tongtanhieu](https://clawhub.ai/user/tongtanhieu)
 
-## Use Case: <br>
-External users and agents use this skill to look up FUTA Express shipment status, package details, fees, and delivery history from a tracking code. Results are presented in Vietnamese while preserving the returned field values. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A tracking lookup can display personal shipment details, including sender, recipient, phone, and identity fields. <br>
-Mitigation: Use the skill only for shipments the user is authorized to check, and mask or omit phone and identity fields unless they are required for the task. <br>
-Risk: The agent queries FUTA Express with a user-provided tracking code and may surface sensitive delivery history. <br>
-Mitigation: Confirm the tracking code before lookup and avoid sharing returned shipment details beyond the authorized user. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FUTA Express public package lookup API](https://api.futaexpress.vn/bo-operation/f1/full-bill-by-code-public/<tracking_code>) <br>
-- [ClawHub release page](https://clawhub.ai/tongtanhieu/futa-tracker) <br>
+## Use Case:
 
+External users and support agents use this skill to look up FUTA Express shipment status, route, fees, service details, and delivery history from a tracking code. It is intended for Vietnamese-language package tracking workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown tracking report with Vietnamese shipment fields, package details, fees, and status history] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a tracking code and may include personal sender, recipient, phone, identity, fee, and shipment-history details returned by the API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may display personal shipment information, including phone numbers and government ID fields, for anyone who supplies a valid tracking code.
+
+Mitigation: Mask phone numbers and identity fields by default, and limit output to shipment status, route, timestamps, and non-sensitive service details unless the user is authorized to view more.
+
+Risk: Tracking-code lookups can expose sender, receiver, and delivery details beyond basic shipment status.
+
+Mitigation: Ask the user to confirm they are authorized to view the shipment before presenting sensitive sender, receiver, or delivery-recipient details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tongtanhieu/skills/futa-tracker)
+- [FUTA Express public tracking endpoint](https://api.futaexpress.vn/bo-operation/f1/full-bill-by-code-public/<tracking_code>)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Vietnamese Markdown tracking summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a FUTA Express tracking code; preserves Vietnamese values and formats shipment fields for readability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

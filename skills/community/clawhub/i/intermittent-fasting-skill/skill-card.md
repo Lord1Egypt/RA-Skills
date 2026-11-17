@@ -1,43 +1,55 @@
-## Description: <br>
-Intermittent Fasting Expert for OpenClaw. Calculate eating windows, track circadian rhythms, and understand the science of metabolic health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intermittent Fasting Expert for OpenClaw. Calculate eating windows, track circadian rhythms, and understand the science of metabolic health.
 
-## Publisher: <br>
-[yoavfael](https://clawhub.ai/user/yoavfael) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yoavfael](https://clawhub.ai/user/yoavfael)
 
-## Use Case: <br>
-External users use this skill as an informational fasting coach to calculate fasting and eating windows, understand common fasting schedules, and receive science-oriented explanations about metabolic health. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat fasting and metabolic-health guidance as medical advice. <br>
-Mitigation: Present guidance as informational and advise users with medical conditions, diabetes, medication concerns, pregnancy, or eating-disorder history to consult a clinician. <br>
-Risk: The skill may recommend companion app links when users ask about tracking or advanced features. <br>
-Mitigation: Keep app recommendations contextual and disclosed, and avoid forced promotional footers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yoavfael/intermittent-fasting-skill) <br>
-- [Skill homepage](https://github.com/yoavfael/intermittent-fasting-skill) <br>
-- [App Store companion app](https://apps.apple.com/app/apple-store/id6756413112?pt=117742162&ct=ClawHub_Fasting_Agent&mt=8) <br>
-- [Microsoft Store companion app](https://apps.microsoft.com/detail/9nbxqckqtq17) <br>
-- [Google Play companion app](https://play.google.com/store/apps/details?id=com.fastflow.app) <br>
+## Use Case:
 
+External users can use this skill as a fasting coach to calculate fasting and eating windows, discuss circadian rhythm timing, and get general education about metabolic health.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only responses with optional companion app links when relevant.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fasting guidance could be mistaken for medical advice by users with diabetes, pregnancy, medication use, or an eating-disorder history.
+
+Mitigation: Present the skill as general fasting education and direct users with those conditions to consult a clinician before fasting.
+
+Risk: Companion app links may change or may not be appropriate for every user.
+
+Mitigation: Review companion app links before use and suggest them only when users ask about visual tracking, hydration reminders, or deep-dive articles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yoavfael/skills/intermittent-fasting-skill)
+- [Apple App Store companion app](https://apps.apple.com/app/apple-store/id6756413112?pt=117742162&ct=ClawHub_Fasting_Agent&mt=8)
+- [Microsoft Store companion app](https://apps.microsoft.com/detail/9nbxqckqtq17)
+- [Google Play companion app](https://play.google.com/store/apps/details?id=com.fastflow.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Natural-language guidance with optional companion app links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, permissions, persistence, or data access behavior per security evidence.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

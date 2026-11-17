@@ -1,42 +1,55 @@
-## Description: <br>
-Create polished client education handouts with visuals, FAQs, and clear next steps tailored for independent insurance agency use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create polished client education handouts with visuals, FAQs, and clear next steps tailored for independent insurance agency use.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Insurance agency owners and account managers use this skill to draft client education handouts that explain insurance topics, include FAQs, and provide clear next steps for clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated insurance education content may be inaccurate, incomplete, or unsuitable for a specific jurisdiction, carrier, or product. <br>
-Mitigation: Review all generated content for accuracy, jurisdiction, carrier/product specifics, and compliance before sharing with clients. <br>
-Risk: Manual installation references an external repository even though server-resolved provenance is unavailable. <br>
-Mitigation: Prefer ClawHub installation, and verify the external repository before using manual install instructions. <br>
+## Use Case:
 
+Insurance agency owners and account managers use this skill to draft client-facing education handouts that explain insurance topics with visuals, FAQs, and clear next steps. Outputs should be reviewed before external publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-independent-insurance-agency-client-education-handout) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-independent-insurance-agency-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown handout draft with FAQ content, visual direction, and next-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on chat and image generation APIs; generated content should be reviewed before client use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad Bash and file-read access that is not justified by its handout-generation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where tool access can be restricted or confirmed, and prefer a narrowed tool declaration before production use.
+
+Risk: Generated insurance education materials could be inaccurate, incomplete, or unsuitable for external publication.
+
+Mitigation: Have a qualified agency reviewer check the handout for accuracy, readability, jurisdictional fit, and compliance before sharing it with clients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-independent-insurance-agency-client-education-handout)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-independent-insurance-agency-client-education-handout)
+- [Complete setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style client education handout content with FAQ sections, suggested visuals, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use chat and image generation capabilities; review content before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

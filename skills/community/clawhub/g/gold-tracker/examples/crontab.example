@@ -1,0 +1,29 @@
+# =========================================================
+# gold-tracker cron 调度示例
+#
+# 使用方法：
+#   1. 把下面的 /path/to/gold-tracker 替换为实际安装路径
+#   2. 确保 python3 在 cron 的 PATH 中（或用绝对路径 /usr/bin/env python3）
+#   3. crontab -e 粘贴以下内容；用 crontab -l 验证
+#   4. 运行 python3 scripts/verify.py check 确认「调度已挂载」（心跳检查）
+#
+# 说明：脚本入口已做 PATH 引导（common/paths.bootstrap_path），
+# 不依赖用户 shell 配置；curl/sendmail 等外部命令也能在无交互环境找到。
+# =========================================================
+
+SKILL=/path/to/gold-tracker
+
+# 每 30 分钟：抓取 + 检测 + 发送（用 run_cycle.sh 一条命令搞定）
+*/30 * * * * sh "$SKILL/examples/run_cycle.sh" >> "$SKILL/logs/cron.log" 2>&1
+
+# 每日 02:00：自动解决超时提醒
+0 2 * * * cd "$SKILL" && python3 scripts/alert_manager.py auto_resolve >> logs/cron.log 2>&1
+
+# 每日 02:30：清理过期提醒 + 归档非当日日志
+30 2 * * * cd "$SKILL" && python3 scripts/alert_manager.py cleanup >> logs/cron.log 2>&1 && python3 scripts/archive.py archive >> logs/cron.log 2>&1
+
+# 每月 1 日 03:00：清理过期归档（>365 天）
+0 3 1 * * cd "$SKILL" && python3 scripts/archive.py cleanup >> logs/cron.log 2>&1
+
+# 每周一 03:30：标准化日志（可选，若历史日志格式不统一）
+30 3 * * 1 cd "$SKILL" && python3 scripts/archive.py normalize >> logs/cron.log 2>&1

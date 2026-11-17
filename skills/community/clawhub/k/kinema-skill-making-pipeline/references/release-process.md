@@ -19,15 +19,22 @@ HAS_CLAUDE_CODE=false
 HAS_OPENCLAW=false
 [ -d "$HOME/.openclaw" ] && HAS_OPENCLAW=true
 
+# 检测 Codex（命令或 ~/.codex 存在）
+HAS_CODEX=false
+if command -v codex >/dev/null 2>&1 || [ -d "$HOME/.codex" ]; then
+  HAS_CODEX=true
+fi
+
 echo "Claude Code installed: $HAS_CLAUDE_CODE"
 echo "OpenClaw installed:    $HAS_OPENCLAW"
+echo "Codex installed:       $HAS_CODEX"
 ```
 
 记录结果，后续 Step 7 和 Step 8 将据此判断是否执行。
 
 ### 2. 版本一致性校验
 
-运行版本校验脚本，确认 SKILL.md、plugin.json、git tag 三处版本号一致。
+运行版本校验脚本，确认根 SKILL.md、Claude/Codex 两份 plugin manifest 与 git tag 四处版本号一致。
 
 ```bash
 bash scripts/version-check.sh
@@ -66,29 +73,32 @@ git status
 
 ---
 
-## Step 2: 更新版本号（SKILL.md + plugin.json 同步）
+## Step 2: 更新版本号（SKILL.md + 两份 plugin.json 同步）
 
-**⚠️ 关键步骤：两个文件必须同时更新，不可遗漏任何一个。**
+**⚠️ 关键步骤：三个文件必须同时更新，不可遗漏任何一个。**
 
-每次发版需要更新以下两处版本号：
+每次发版需要更新以下三处版本号：
 
 | 文件 | 字段 |
 |------|------|
 | `SKILL.md` | frontmatter `version: X.Y.Z` |
 | `.claude-plugin/plugin.json` | `"version": "X.Y.Z"` |
+| `.codex-plugin/plugin.json` | `"version": "X.Y.Z"` |
 
 ### 动作
 
 1. 确定新版本号（遵循 [Semantic Versioning](../SKILL.md#version-numbering--版本号规则)）
 2. 更新 `SKILL.md` frontmatter 中的 `version`
 3. 更新 `.claude-plugin/plugin.json` 中的 `version`
+4. 更新 `.codex-plugin/plugin.json` 中的 `version`
 
 ### 验证
 
 ```bash
-# 快速确认两文件版本号一致
+# 快速确认三文件版本号一致
 grep '^version:' SKILL.md
 grep '"version"' .claude-plugin/plugin.json
+grep '"version"' .codex-plugin/plugin.json
 
 # 或运行完整校验脚本
 bash scripts/version-check.sh
@@ -105,10 +115,8 @@ bash scripts/version-check.sh
 
 ```bash
 # 提交版本号变更
-git add SKILL.md .claude-plugin/plugin.json
-git commit -m "chore: bump version to vX.Y.Z
-
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
+git add SKILL.md .claude-plugin/plugin.json .codex-plugin/plugin.json
+git commit -m "chore: bump version to vX.Y.Z"
 
 # 打 annotated tag
 git tag -a vX.Y.Z -m "Release vX.Y.Z: <简短描述>"
@@ -133,9 +141,9 @@ git log --oneline -1
 ### 动作
 
 ```bash
-git push origin master
+git push origin <default-branch>
 git push origin vX.Y.Z
-# 或一次性推送: git push origin master --tags
+# 或一次性推送: git push origin <default-branch> --tags
 ```
 
 ### 验证
@@ -186,16 +194,17 @@ gh release create vX.Y.Z \
 
 \`\`\`bash
 claude plugin update <skill-name>@<marketplace-name>
+codex plugin marketplace upgrade <marketplace-name>
+codex plugin add <skill-name>@<marketplace-name>
 \`\`\`
-更新后请重开 CLI 或执行 \`/reload-plugins\` 使新版本生效。
-
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
+Claude Code 更新后请重开 CLI 或执行 \`/reload-plugins\`；Codex 更新后请新开对话。"
 ```
 
 > **要点**：
 > - 「更新内容」每行 = 一个新功能或一个 bug 修复 + `@commit-id`，让读者可直接追溯到具体提交。
 > - 一条 commit 对应一行；若多个 commit 服务同一功能，可合并为一行并列出多个 `@id`。
-> - 「更新指令」固定给出 `claude plugin update` 与 reload 提示，与 Step 8 一致。
+> - 「更新指令」列出已支持平台的更新命令与重载边界，与 Step 8 一致。
+> - 只有项目明确要求且真实身份已知时才添加 `Co-Authored-By`，不得编造 agent 名称或邮箱。
 
 ### 验证
 
@@ -208,21 +217,21 @@ gh release view vX.Y.Z --repo <org>/<repo>
 
 ## Step 6: 发布到 ClawHub（临时文件夹模式）
 
-**⚠️ 必须使用临时文件夹模式**。ClawHub CLI 检测到 `.claude-plugin/` 会将项目误判为 plugin 而非 skill。
+**⚠️ 必须使用临时文件夹模式**。ClawHub CLI 可能把 Claude/Codex plugin metadata 误判为待发布插件，而不是纯 skill。
 
 ### 动作
 
 ```bash
-# 创建临时文件夹，排除 .claude-plugin/ 和其他非发布文件
+# 创建临时文件夹，排除两种 plugin metadata、Codex wrapper 和其他非发布文件
 TMPDIR=$(mktemp -d /tmp/clawhub-publish-XXXXXX)
 
 # macOS / Linux
-rsync -a --exclude='.git' --exclude='.claude-plugin' --exclude='.claude' \
+rsync -a --exclude='.git' --exclude='.claude-plugin' --exclude='.codex-plugin' --exclude='.claude' \
   --exclude='.clawhub' --exclude='skills' . "$TMPDIR/"
 
 # Windows (无 rsync)
 # find . -maxdepth 1 -not -name '.git' -not -name '.claude-plugin' \
-#   -not -name '.claude' -not -name '.clawhub' -not -name 'skills' \
+#   -not -name '.codex-plugin' -not -name '.claude' -not -name '.clawhub' -not -name 'skills' \
 #   -not -name '.' | while read f; do cp -r "$f" "$TMPDIR/"; done
 
 # 发布
@@ -276,9 +285,13 @@ clawhub list | grep <skill-name>
 
 ---
 
-## Step 8: 更新 Claude Code 插件
+## Step 8: 更新 Claude Code 与 Codex 插件
 
-**条件**: 仅当 `HAS_CLAUDE_CODE=true`（`~/.claude` 存在）时执行。
+分别根据 `HAS_CLAUDE_CODE` 与 `HAS_CODEX` 执行已安装平台的更新；未安装的平台跳过。
+
+### 8.1 Claude Code
+
+**条件**: `HAS_CLAUDE_CODE=true`（`~/.claude` 存在）。
 
 ### Agent 直接执行更新（无需要求用户手动更新）
 
@@ -345,6 +358,38 @@ cat ~/.claude/plugins/cache/<marketplace-name>/<skill-name>/<version>/.claude-pl
 
 **如果 HAS_CLAUDE_CODE=false** → 跳过此步，输出: `⏭ Claude Code 未安装，跳过插件同步`
 
+### 8.2 Codex
+
+**条件**: `HAS_CODEX=true`，且该 skill 已在 Codex marketplace 中登记。
+
+先用 `codex plugin marketplace list --json` 确认 marketplace 来源。Git marketplace 先刷新再安装：
+
+```bash
+codex plugin marketplace upgrade <marketplace-name>
+codex plugin add <skill-name>@<marketplace-name>
+```
+
+本地 marketplace 直接执行 `codex plugin add`，不要对本地 source 强行运行 upgrade。
+
+若 marketplace 尚未配置，先根据其实际来源添加一次：
+
+```bash
+codex plugin marketplace add <marketplace-git-url-or-local-root>
+codex plugin add <skill-name>@<marketplace-name>
+```
+
+不要手工编辑 Codex 的 `config.toml` 或插件缓存。通过以下命令确认版本、启用状态和 Git source：
+
+```bash
+codex plugin list --json
+```
+
+安装完成后提醒用户：
+
+> ✅ 已安装或更新 `<skill-name>` 到 vX.Y.Z。请新开一个 Codex 对话，使新的 skill 内容生效。
+
+**如果 HAS_CODEX=false** → 跳过此节，输出: `⏭ Codex 未安装，跳过插件同步`
+
 ---
 
 ## Step 9: 全量版本校验
@@ -354,7 +399,7 @@ cat ~/.claude/plugins/cache/<marketplace-name>/<skill-name>/<version>/.claude-pl
 ### 动作
 
 ```bash
-# 本地三源校验
+# 本地四源校验
 bash scripts/version-check.sh
 ```
 
@@ -365,6 +410,7 @@ bash scripts/version-check.sh
 echo "=== Projects Repo ==="
 grep '^version:' SKILL.md
 cat .claude-plugin/plugin.json | grep '"version"'
+cat .codex-plugin/plugin.json | grep '"version"'
 git tag -l 'v*' --sort=-version:refname | head -1
 
 # GitHub Release
@@ -382,6 +428,10 @@ clawhub list | grep <skill-name>
 # Claude Code Marketplace（条件: HAS_CLAUDE_CODE）
 echo "=== Claude Code Marketplace ==="
 claude plugin list | grep <skill-name>
+
+# Codex Marketplace（条件: HAS_CODEX）
+echo "=== Codex Marketplace ==="
+codex plugin list --json
 ```
 
 ### 输出校验报告
@@ -389,12 +439,14 @@ claude plugin list | grep <skill-name>
 | Location | Version | Status |
 |----------|---------|--------|
 | Projects repo (SKILL.md) | X.Y.Z | ✅/❌ |
-| Projects repo (plugin.json) | X.Y.Z | ✅/❌ |
+| Projects repo (Claude plugin.json) | X.Y.Z | ✅/❌ |
+| Projects repo (Codex plugin.json) | X.Y.Z | ✅/❌ |
 | Git tag | X.Y.Z | ✅/❌ |
 | GitHub Release | X.Y.Z | ✅/❌ |
 | ClawHub | X.Y.Z | ✅/❌ |
 | ClawHub Cache | X.Y.Z | ✅/⏭ (未安装) |
 | Claude Code Marketplace | X.Y.Z | ✅/⏭ (未安装) |
+| Codex Marketplace | X.Y.Z | ✅/⏭ (未安装) |
 
 ---
 
@@ -403,13 +455,13 @@ claude plugin list | grep <skill-name>
 Agent 必须在发版完成后逐一核对以下清单，确认所有步骤已完成：
 
 - [ ] **Step 1**: 所有变更已 commit（`git status` clean）
-- [ ] **Step 2**: SKILL.md 和 plugin.json 版本号已同步更新
+- [ ] **Step 2**: SKILL.md 和 Claude/Codex 两份 plugin.json 版本号已同步更新
 - [ ] **Step 3**: Git tag 已创建（`git tag -l` 确认）
 - [ ] **Step 4**: Commit 和 tag 已 push 到 GitHub（`git ls-remote` 确认）
 - [ ] **Step 5**: GitHub Release 已创建（`gh release view` 确认）
 - [ ] **Step 6**: ClawHub 已发布（`clawhub inspect` 确认 Latest 版本）
 - [ ] **Step 7**: ClawHub 缓存已更新（如果 OpenClaw 已安装）
-- [ ] **Step 8**: Claude Code 插件已更新（如果 Claude Code 已安装）
+- [ ] **Step 8**: Claude Code 与 Codex 插件已更新（按已安装平台执行）
 - [ ] **Step 9**: 全量版本校验报告已输出，所有已安装平台版本一致
 
 **如果任何一项未通过 → 返回对应 Step 修复后重新校验。**

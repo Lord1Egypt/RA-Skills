@@ -1,0 +1,432 @@
+{
+  "_comment": "本文件为「模型单价配置」,随 skill 发布、可被用户直接编辑,无需改 Python 代码。采集器启动时会读取此文件并覆盖 scripts/collect_usage_data.py 里的内置默认值。结构:models=各模型每百万 token 单价(元,输入/输出分别计价);timed_free=限时免费模型及其免费截止日(含当天);custom_local=自建接口单价覆盖(键为去掉 custom-local: 前缀的底层模型名);default_model=WorkBuddy 默认模型(兜底 'default' 占位符实际执行的付费模型)。遇到报告里标「未配置」的模型,把它的单价加进 models(或用户本机 pricing.local.json)即可。发布版仅含 WorkBuddy 官方内置模型 + auto；`delisted` 段存放**曾由 WorkBuddy 官方提供、现已下架**的模型（历史调用仍需计价/标注，仍属官方模型，可随发布版走，不算用户第三方模型）；其余仍可用的第三方/自建模型请用户写入本机 pricing.local.json。",
+  "_definitions": {
+    "delisted": "曾在 WorkBuddy 官方提供、现已下架的模型（历史调用仍需计价/标注，仍属官方模型，随发布版走，不算用户第三方模型）。判定依据：底层模型名命中官方下架名单且走官方通道（gateway / openrouter-free），不含 custom-local。",
+    "custom_local": "用户后来通过外部 API 接口自建 / 接入的自定义模型（如本机自建端点、自己的 OpenRouter / bigmodel 账号等），表现为 model_key 带 `custom-local:` 前缀或走 openrouter-free 免费档。判定依据（满足任一即恒属自定义，绝不归类为 delisted）：① 通道是 custom-local；② 模型名带 custom-local: 前缀；③ 运行时采集器读取本机 `~/.workbuddy/models.json`，凡被配成自定义/外部端点（vendor=custom 或 url 含 openrouter）或本地 Ollama（vendor=ollama / localhost:11434）的模型，无论 trace 通道是否记成官方 gateway，一律优先判为自定义（🔧 外部 / 🏠 本地），优先级高于 delisted 判定。",
+    "boundary_rule": "delisted 与 custom_local 必须严格分开。判定顺序：① 前缀信号 ② custom-local 通道 ③ openrouter-free 通道 ④ 名称命中「自定义集」（运行时从 models.json 自动发现 ∪ user_custom_models 人工兜底，专治撞名官方模型走 gateway 的误识别，如 GLM-4.7-Flash 被配成自定义端点即标 🔧）。任意一项命中即判为自定义，且优先级高于 delisted。即使某个 custom-local 模型底层跑的恰好是某已下架官方模型（如 custom-local:GLM-4.5-air 跑 glm-4.5-air），它也只算「用户自定义」，不会被误标为「官方已下架」。报告内 🗄️=官方已下架，🔧=用户自定义（外部 API），🏠=本地推理（Ollama），三者视觉区分、分别计算。",
+    "display_merge": "**显示层合并**：把「同一模型的收费版变体」在报告里归并到基础模型名下，只显示一行，避免同一模型被拆成两条。典型场景：WorkBuddy 对同一模型提供「免费额度版」与「免费额度用尽后的收费版」两个入口，trace 里分别记为 `hy4-preview` / `hy4-preview-x`、`hy3` / `hy3-x`。键 = 要被合并掉的变体名，值 = 合并后显示的基础模型名。**合并只影响显示分组，不影响计费**：每行仍按各 trace 实际执行的模型（exec_model）单独计价，所以免费额度版的用量记 ¥0、收费版的用量按刊例价计费，合并行的花费 = 其中收费版那部分的用量费用。单价列显示基础模型的刊例价（不因限免归零），便于「原价 vs 实付」对比。",
+    "hy4_night_free": "Hy4 preview 限免新规（WorkBuddy 2026-09-09 公告，2026-09-10 23:59 后生效）：① 已体验过 Hy4 preview 的用户——夜间 23:00-次日 8:00 免费，其余时段正常消耗积分；② 未体验过的用户（含 2026-09-11 起新注册）——在 2026-10-10 23:59 前首次开启 Hy4 preview 对话，自首次开启日起 14 天享每日免费额度；③ Hy4 preview 为纯语言模型，发起生图/视频等多模态任务时会切换到相应多模态模型并正常扣积分，不吃本额度。计价处理：普适免费期于 2026-09-10 结束，故 timed_free 仍保留 hy4-preview=2026-09-10，以保证 09-10 及更早的历史调用继续计 ¥0；2026-09-11 起的 hy4-preview 调用本表按官方刊例价 6/18 计。⚠️ 若你属「已体验过」的老用户、夜间 23:00-08:00 实际免费，本表会把这部分算成付费（偏高）——WorkBuddy 侧免费额度由配置缓存的 modelPromotions（如 hy4-free-trial-202608，factor 0）控制，是分人群 + 时段制，静态价表无法表达；如需精确，请用本机 pricing.local.json 覆盖或按实际账单反推。2026-09-28 更新：夜间免费额度已延长至 2026-10-31（含当天），见 scheduled_pricing 的 until 字段。注意：hy4-preview-x 是「免费额度用尽后的收费版变体」（见 display_merge），不要把它覆盖为 0。"
+  },
+  "_pricing_rules": {
+    "unit": "元 / 百万 tokens(CNY per 1M tokens),输入按「缓存未命中」价,不计缓存命中折扣",
+    "tier_rule": "厂商按输入长度分档计价的官方内置模型(如 glm-5.1),一律取「长上下文档」(输入 > 32k)单价 —— Agent 会话上下文普遍超过 32k,取长档更贴近真实账单。",
+    "auto_is_null": "auto 为 WorkBuddy 智能路由入口,无单一单价,故恒为 null;采集器对其走 router_avg(本期付费模型均价)计价,不会被判为「未配置」。",
+    "updated": "2026-10-20",
+    "peak_valley": "峰谷计费（如 DeepSeek-V4.1-Flash）：models 段的 input/output 统一取【空闲时段】价，高峰时段价另以 peak_input/peak_output 记录。v1.7.1 起不再需要手工覆盖 —— scheduled_pricing 段已内置「工作日 09:00-12:00 / 14:00-18:00 走 peak_*」规则，采集器按每次调用的时间戳自动选档；如需改成别的时段，在 pricing.local.json 覆盖该模型规则即可。",
+    "scheduled_pricing": "v1.7.1 新增：按调用时刻（日期区间 + 星期 + 小时）改写单价，覆盖夜间免费 / 峰谷双档 / 限期促销三类规则。未命中任何规则时完全不影响既有行为（零回归）。详见同文件 scheduled_pricing 段的 _comment。"
+  },
+  "_sources": {
+    "official_builtin": "https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Model (WorkBuddy 官方内置模型列表,2026-08)",
+    "zhipu_cny": "https://open.bigmodel.cn/pricing (智谱开放平台人民币刊例价) — glm-5.2 / glm-5.1",
+    "glm53_cny": "https://new.qq.com/rain/a/20260819A0CRBG00 (2026-08-19 报道引智谱官方: GLM-5.3 输入8 / 输出28 / 缓存命中输入2 每百万 tokens 人民币，与 GLM-5.2 同价，思考强制开启) — glm-5.3",
+    "zhipu_overview": "https://docs.bigmodel.cn/cn/guide/start/model-overview (智谱模型总览) — GLM-4.7-Flash 标注「免费模型」，GLM-4.5-Air 为「高性价比轻量模型」(付费)；GLM-4.6 仅文本、无 GLM-4.6V",
+    "zhipu_release": "https://docs.z.ai/release-notes/new-released (智谱发布记录) — GLM-5.2(2026-06)/GLM-5.1(2026-04)/GLM-5(2026-02)/GLM-4.7-Flash(2026-01) 等发布时间线",
+    "zhipu_vision_cny": "https://ai.360.com/open/zh/models/z-ai/glm-5v-turbo (360 智脑 API 转售页,人民币刊例 ¥5/¥22,与智谱 GLM-5-Turbo 短档同价) — glm-5v-turbo",
+    "moonshot_cny": "https://platform.moonshot.cn (Kimi 开放平台首页人民币价) — kimi-k2.7-code ¥6.5/¥27、kimi-k2.6 ¥6.5/¥27",
+    "kimi_models": "https://platform.kimi.ai/docs/models (Kimi 模型列表) — kimi-k2.5 于 2026-08-31 全平台 sunset；kimi-k2 系列 2026-05-25 停用",
+    "kimi_k3_cny": "https://new.qq.com/rain/a/20260803A0AZVK00 (2026-08-03 报道引月之暗面官网数据:Kimi K3 输入 20 元 / 输出 100 元) — kimi-k3,非一手官网页面,如有出入请以官网为准",
+    "minimax_cny": "https://platform.minimaxi.com/docs/guides/pricing-paygo (MiniMax 开放平台人民币按量计费) — minimax-m2.7 2.1/8.4",
+    "minimax_release": "https://intl.minimaxi.com/docs/release-notes/models (MiniMax 发布记录) — M3(2026-06)/M2.7(2026-03)/M2.5(2026-02) 发布时间线",
+    "deepseek_cny": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing (DeepSeek 官方人民币定价页,2026-09-10 起) — deepseek-flash(V4.1-Flash)：空闲 缓存命中0.02/未命中1/输出4，高峰翻倍 0.04/2/8（高峰=周一至周五 09:00-12:00、14:00-18:00）；deepseek-v4-pro：缓存命中0.30/未命中9/输出27；旧名 deepseek-v4-flash 已下线、请求由 V4.1-Flash 承接并按 Flash 价计费",
+    "deepseek_release": "https://api-docs.deepseek.com/updates 与 https://news.qq.com/rain/a/20260909A0CWDE00 (2026-09-09/10 报道) — V4.1-Flash 于 2026-09-10 12:00 上线（性能/费用/速度/总用时全面超越 V4 Pro，约 284 tok/s）；V4-Pro 计划 2026-09-14 12:00 下线并将请求自动路由至 V4.1-Flash；V4(2026-04-24) 为上一代；V3.2(2025-12-01) 更早",
+    "hunyuan_doc": "https://www.cloud.tencent.com/document/product/302/104753 (腾讯混元文档) — HY 2.0 Think(hunyuan-2.0-thinking-20251109) 将于 2026.6.10 下线",
+    "hunyuan_site": "https://hunyuan.tencent.com/ (腾讯混元官网) — Hy3 为 2026 年新发布旗舰，与 HY 2.0 Think 非同一模型",
+    "tokenhub_models": "https://www.cloud.tencent.com/document/product/1300/78934 (TokenHub 模型列表,2026-07-20) — 仍含 deepseek-v3.2 / glm-5 / glm-5-turbo / kimi-k2.5 / minimax-m2.5 等",
+    "workbuddy_history": "https://cloud.tencent.cn/developer/article/2706786 等 (WorkBuddy 历史内置模型清单) — 曾内置 GLM-5.0/GLM-5.0-Turbo/GLM-4.7/MiniMax-M2.5/Kimi-K2.5/DeepSeek-V3.2/Hunyuan-2.0-Thinking，佐证这些确为 WorkBuddy 官方曾配置模型",
+    "workbuddy_13models": "https://cloud.tencent.com/developer/article/2706774 (WorkBuddy 桌面端内置 13 模型快照: Auto / Hy3 preview / GLM-5.0 / GLM-5.0-Turbo / GLM-5v-Turbo / GLM-4.7 / MiniMax-M2.7 / MiniMax-M2.5 / Kimi-K2.5 / DeepSeek-V3.2 / Hunyuan-2.0-Thinking / GLM-5.1 / Kimi-K2.6) — 佐证 hy3-preview、glm-4.7 曾为官方内置、现已下架",
+    "hy3_preview": "https://www.cnr.cn/tech/techph/20260706/t20260706_527693785.shtml (2026-07-06 混元 Hy3 正式发布；4-23 发布 Hy3 preview，7-6 被正式版取代)",
+    "zhipu_glm47": "https://docs.bigmodel.cn/cn/guide/start/model-overview (智谱模型总览: GLM-4.7 与 GLM-4.7-Flash 为并列不同模型；GLM-4.7 付费、GLM-4.7-Flash 免费)",
+    "glm47_compare": "https://llm-stats.com/models/compare/glm-4.7-vs-glm-4.7-flash (GLM-4.7 付费 ~$0.60/$2.20 每百万 tokens；GLM-4.7-Flash 免费 ~$0.07/$0.40)",
+    "glm46v_cny": "https://finance.eastmoney.com/a/202512083585666118.html (智谱官方报道: GLM-4.6V 多模态 106B-A12B 开源, 官方刊例价 输入1元/输出3元 每百万 tokens, GLM-4.6V-Flash 免费) — 证实 glm-4.6v 真实存在",
+    "glm53flash_cny": "https://m.21jingji.com/article/20260828/herald/e8a2a10a2a3f742dc7a2f914f2620c0f.html (2026-08-28 报道引智谱官方: GLM-5.3-Flash 每百万 tokens 输入0.8 / 输出2.8 / 缓存命中输入0.23 元，为 GLM-5.3 的 1/10；上线前两周半价，限时折扣期低至 1/20；OpenRouter z-ai/glm-5.3-flash 国际价 $0.15/$0.50/$0.03)",
+    "hy4_preview": "https://www.cnstock.com/commonDetail/779697 (2026-08-28 腾讯混元 Hy4 preview 发布并开源，已在 WorkBuddy/CodeBuddy 国内版及国际版、元宝、ima 同步首发；官方定价 输入6 / 输出18 / 缓存命中0.3 每百万 tokens；WorkBuddy/CodeBuddy 面向用户开展为期 2 周限时免费活动)",
+    "openai_cny": "https://platform.openai.com/docs/pricing (OpenAI 官方美元定价) — Codex 常用模型 gpt-5-codex / gpt-5.1-codex / gpt-5.2-codex / o4-mini / gpt-4o / gpt-4.1 等；本表按其美元刊例价 ×7.2 折 CNY 记录，标注为估算值，待 OpenAI 官方 CNY 定价确认；若你的 Codex 跑其它模型名，请把对应单价加进本机 scripts/pricing.local.json",
+    "hy4_free_newrule": "https://www.163.com/dy/article/L6DRQP550511B8LM.html (IT之家,2026-09-09 WorkBuddy 公告) — Hy4 preview 限免调整为分人群：已体验过的老用户夜间 23:00-次日8:00 免费、其余时段扣积分；未体验过的用户 2026-10-10 23:59 前首次开启起 14 天每日免费额度；Hy4 preview 为纯语言模型，多模态任务会切模型并正常扣积分。参考：https://cloud.tencent.com/developer/article/2735172",
+    "step5_preview": "https://platform.stepfun.ai/docs/en/guides/models/step-5-preview (阶跃 Step 5 Preview 官方模型页) + https://platform.stepfun.ai/docs/en/guides/pricing/details (官方定价：输入$1.00/缓存命中$0.10/输出$2.70 每百万 tokens) — WorkBuddy 内独家限免 2026-10-12~10-25（平时 0.43 倍积分，来源 https://www.aipromonow.com/promos/workbuddy-step-5-preview-free-oct25-2026）",
+    "minimax_m31_flash": "https://www.thepaper.cn/newsDetail_forward_34289270 (澎湃,2026-10-19 MiniMax M3.1 Flash 正式发布：官宣 API 价 输入1/输出4/缓存读取0.1 每百万 tokens，比 M3 降 50%+) + https://news.qq.com/rain/a/20261020A057PH00 (腾讯新闻：Space Bunny 即 M3.1 Flash 早期匿名版) — minimax-m3.1-flash / space-bunny 身份揭示",
+    "kimi_k28_preview": "https://geekai.co/models/kimi-k2.8-preview (极客智坊官方直连 原价 ¥6.5/¥27/缓存命中¥1.7) + http://www.relayai.com.cn/pricing-calculator.html (RelayAI 计算器：Kimi K2.8 Preview ¥6.5/¥27/缓存命中¥1.7) — kimi-k2.8-preview；Moonshot 官网首页未单独挂牌价",
+    "mimo_v26_pro": "https://platform.xiaomimimo.com/docs/pricing (小米 MiMo 官方定价页：mimo-v2.6-pro 实时推理 输入(缓存命中)¥0.025/输入(未命中)¥3.00/输出¥6.00，批量减半；UltraSpeed 0.25/30/60) + https://mimo.xiaomi.com/mimo-v2-6/article (美元 $0.0036/$0.435/$0.87) — mimo-v2.6-pro",
+    "minimax_m3_cny": "https://www.llm-releases.com/families/minimax-m3-1 (MiniMax M3 列表价 $0.30/$1.20=¥2.1/¥8.4 ≤512k) + http://www.relayai.com.cn/pricing-calculator.html (MiniMax-M3 ≤512K ¥2.1/¥8.4、>512K ¥4.2/¥16.8) — 修正 minimax-m3 此前误记的 ¥1/¥4"
+  },
+  "default_model": "glm-5.2",
+  "models": {
+    "auto": null,
+    "hy3": {
+      "input": 1.0,
+      "output": 4.0
+    },
+    "hy3-x": {
+      "input": 1.0,
+      "output": 4.0,
+      "note": "hy3 收费版（每日免费额度用完后按官方价计费）；官方定价：输入1 / 输出4 每百万 tokens（缓存命中输入0.25）"
+    },
+    "hy4-preview": {
+      "input": 6.0,
+      "output": 18.0,
+      "note": "腾讯混元 Hy4 preview（hunyuan 重建后新一代，2026-08-28 发布并开源，770B/49B MoE，上下文破 1M）；已在 WorkBuddy/CodeBuddy 国内版及国际版首发；官方刊例价 输入6 / 输出18 每百万 tokens（缓存命中输入0.3）；WorkBuddy 开展为期 2 周限时免费（至 2026-09-10，详见 timed_free）；属语言大模型，无原生多模态生成，图片任务由平台自动切换其他模型计费"
+    },
+    "hy4-preview-x": {
+      "input": 6.0,
+      "output": 18.0,
+      "note": "Hy4 preview 收费版（限免期结束后按此价计费）；官方定价：输入6 / 输出18 每百万 tokens"
+    },
+    "glm-5.2": {
+      "input": 8.0,
+      "output": 28.0
+    },
+    "glm-5.3": {
+      "input": 8.0,
+      "output": 28.0,
+      "note": "智谱 GLM-5.3（2026-08 发布，API 于 2026-08-19 正式开放）；官方定价与 GLM-5.2 完全一致：输入8 / 输出28 每百万 tokens（缓存命中输入 ¥2）；breaking change——thinking 思考模式强制开启（disabled 请求报错），默认 reasoning_effort=max；非高峰/周末调用享 50% 折扣（若 WorkBuddy 对 5.3 沿用 5.2 夜猫子计划，则应另加 glm-5.3-x ≈ 5.06/17.7）"
+    },
+    "glm-5.3-flash": {
+      "input": 0.8,
+      "output": 2.8,
+      "note": "智谱 GLM-5.3-Flash（320B-A18B 开源 MoE，2026-08-26 发布并认领匿名模型 Ox-Alpha/「牛来」，原生多模态、1M 上下文）；官方刊例价 输入0.8 / 输出2.8 每百万 tokens（缓存命中输入0.23），约为 GLM-5.3 的 1/10；上线前两周限时半价（0.4/1.4）；国际版 z.ai/OpenRouter z-ai/glm-5.3-flash 价 $0.15/$0.50/$0.03"
+    },
+    "glm-5.2-x": {
+      "input": 5.06,
+      "output": 17.7,
+      "note": "实为智谱 GLM-5.2，Trace里面这个标注含 Workbuddy 的 glm-5.2 夜猫子折扣（2026-07-16开始）；单价：输入或输出每百万 tokens * 0.5 / 0.79"
+    },
+    "glm-5.1": {
+      "input": 8.0,
+      "output": 28.0
+    },
+    "glm-5v-turbo": {
+      "input": 5.0,
+      "output": 22.0
+    },
+    "minimax-m3": {
+      "input": 2.1,
+      "output": 8.4,
+      "cache_hit_input": 0.42,
+      "note": "MiniMax-M3（2026-06 发布，支持图像/视频输入，擅长代码与智能体任务）。2026-10-20 修正：此前误记为 ¥1/¥4，官方实际为分档刊例价——≤512K 上下文 输入2.1/输出8.4/缓存命中0.42（=$0.30/$1.20×7），>512K 输入4.2/输出16.8/缓存命中0.84；RelayAI 计算器与塔猴评测引官方价一致。Agent 会话普遍 200K 上下文，落在 ≤512K 档，故默认取 ¥2.1/¥8.4。"
+    },
+    "minimax-m3.1-flash": {
+      "input": 1.0,
+      "output": 4.0,
+      "cache_hit_input": 0.1,
+      "note": "MiniMax M3.1 Flash（2026-10-19 正式发布；此前以匿名模型 Space Bunny 名义 9 月下旬先行灰度、处理超 200T token）。官方 API 刊例价 输入1/输出4/缓存读取0.1 每百万 tokens（比 M3 降 50%+）；1M 上下文、文本+图像+视频输入、原生多模态与 Agent 能力。WorkBuddy 积分倍率 0.08x，与 Space Bunny 同价档——两者实为同一模型的匿名期与正式版。早期 llm-releases 记 $0.30/$1.20 实为 M3 价/preview 口径，与正式发布报道矛盾，已弃用。"
+    },
+    "kimi-k3": {
+      "input": 20.0,
+      "output": 100.0
+    },
+    "kimi-k2.7-code": {
+      "input": 6.5,
+      "output": 27.0
+    },
+    "kimi-k2.6": {
+      "input": 6.5,
+      "output": 27.0
+    },
+    "kimi-k2.8-preview": {
+      "input": 6.5,
+      "output": 27.0,
+      "cache_hit_input": 1.7,
+      "note": "Kimi K2.8 Preview（2026-09-11 Kimi Code 全量上线，Model ID 仍 kimi-for-coding，无需改配置）。1M 上下文、支持图片+视频输入、low/high/max 三档思考（默认 max）；综合性能接近 K3、思考效率优于 K2.7 Code。Moonshot 官网首页未单独挂牌价，但 geekai 官方直连渠道与 RelayAI 计算器一致给出 输入6.5/输出27/缓存命中1.7 每百万 tokens（与 K2.7 Code 同价、缓存命中略高）。"
+    },
+    "deepseek-v4.1-flash": {
+      "input": 1.0,
+      "output": 4.0,
+      "peak_input": 2.0,
+      "peak_output": 8.0,
+      "cache_hit_input": 0.02,
+      "note": "DeepSeek-V4.1-Flash（官方模型名 deepseek-flash，2026-09-10 12:00 正式上线；1M 上下文；支持原生多模态图像理解）。峰谷双档价（元/百万 tokens，输入按缓存未命中口径）：空闲 输入1/输出4/缓存命中0.02，高峰翻倍 输入2/输出8/缓存命中0.04；高峰时段=周一至周五 09:00-12:00、14:00-18:00（北京时间），其余为空闲。本表 input/output 取【空闲档】，高峰值另见 peak_input/peak_output（代码只读 input/output，peak_* 仅供查阅）。旧模型名 deepseek-v4-flash / deepseek-v4-flash-vision-exp 仍可调用，但已由 DeepSeek 下架、请求自动路由至本模型并按 Flash 价计费。"
+    },
+    "deepseek-flash": {
+      "input": 1.0,
+      "output": 4.0,
+      "peak_input": 2.0,
+      "peak_output": 8.0,
+      "cache_hit_input": 0.02,
+      "note": "同 deepseek-v4.1-flash —— DeepSeek 官方在售的模型名就是 `deepseek-flash`（调用示例见 api-docs.deepseek.com）。单列此行是因为 API / 第三方工具上报的 model 字段常用官方名；报告里与 deepseek-v4.1-flash 合并显示为一行（见 display_merge）。"
+    },
+    "deepseek-v4-pro": {
+      "input": 3.0,
+      "output": 6.0,
+      "note": "DeepSeek-V4-Pro（2026-04-24 随 V4 发布，官方在售名 deepseek-v4-pro）。⚠️ 两点：① DeepSeek 计划 2026-09-14 12:00 下线 V4-Pro，届时所有指向它的请求自动路由至 V4.1-Flash 并按 Flash 价计费；② 本表单价 ¥3/¥6 为 2026-08 记录值，而 DeepSeek 现行官方刊例页显示 Pro 为「缓存未命中输入9/输出27、缓存命中0.30」，二者存在出入——历史报表若出现偏差，请用本机 pricing.local.json 覆盖为你想采用的价。"
+    },
+    "claude-opus-4": {
+      "input": 108.0,
+      "output": 540.0,
+      "note": "Claude Code 数据源用；Anthropic Opus 4/4.5 美元刊例价 $15/$75 per MTok 按 ~7.2 折算 CNY 的估算值，请以官方最新定价为准或用 pricing.local.json 覆盖"
+    },
+    "claude-opus-4-5-20251101": {
+      "input": 108.0,
+      "output": 540.0,
+      "note": "Opus 4.5（2025-11-01）估算值，美元刊例价折算 CNY"
+    },
+    "claude-sonnet-4": {
+      "input": 21.6,
+      "output": 108.0,
+      "note": "Claude Code 数据源用；Sonnet 4/4.5 美元刊例价 $3/$15 per MTok 按 ~7.2 折算 CNY 估算值"
+    },
+    "claude-sonnet-4-20250514": {
+      "input": 21.6,
+      "output": 108.0,
+      "note": "Sonnet 4（2025-05-14）估算值，美元刊例价折算 CNY"
+    },
+    "claude-haiku-4": {
+      "input": 5.76,
+      "output": 28.8,
+      "note": "Claude Code 数据源用；Haiku 4/4.5 美元刊例价 $0.8/$4 per MTok 按 ~7.2 折算 CNY 估算值"
+    },
+    "claude-haiku-4-20250514": {
+      "input": 5.76,
+      "output": 28.8,
+      "note": "Haiku 4（2025-05-14）估算值，美元刊例价折算 CNY"
+    },
+    "gpt-5-codex": {
+      "input": 9.0,
+      "output": 72.0,
+      "note": "OpenAI Codex 编程模型（美元 $1.25/$10 per MTok ×7.2 估算；源 _sources.openai_cny）"
+    },
+    "gpt-5.1-codex": {
+      "input": 9.0,
+      "output": 72.0,
+      "note": "OpenAI Codex 编程模型（美元 $1.25/$10 per MTok ×7.2 估算；源 _sources.openai_cny）"
+    },
+    "gpt-5.2-codex": {
+      "input": 9.0,
+      "output": 72.0,
+      "note": "OpenAI Codex 编程模型（美元 $1.25/$10 per MTok ×7.2 估算；源 _sources.openai_cny）"
+    },
+    "o4-mini": {
+      "input": 7.92,
+      "output": 31.68,
+      "note": "OpenAI o4-mini 推理模型（美元 $1.10/$4.40 per MTok ×7.2 估算；源 _sources.openai_cny）"
+    },
+    "gpt-4o": {
+      "input": 18.0,
+      "output": 72.0,
+      "note": "OpenAI GPT-4o（美元 $2.50/$10 per MTok ×7.2 估算；源 _sources.openai_cny）"
+    },
+    "gpt-4.1": {
+      "input": 14.4,
+      "output": 57.6,
+      "note": "OpenAI GPT-4.1（美元 $2.00/$8 per MTok ×7.2 估算；源 _sources.openai_cny）"
+    },
+    "mimo-v2.6-pro": {
+      "input": 3.0,
+      "output": 6.0,
+      "cache_hit_input": 0.025,
+      "note": "小米 MiMo-V2.6-Pro（2026-09-22 发布，1M 上下文、原生全模态——文本/图像/视频、支持视觉推理与 Computer Use）。小米官方定价页（platform.xiaomimimo.com）国内刊例价：输入(缓存命中)0.025/输入(未命中)3.00/输出6.00 每百万 tokens；批量推理减半；UltraSpeed 版（mimo-v2.6-pro-ultraspeed）为 0.25/30/60。美元价 $0.0036/$0.435/$0.87 ×7≈¥0.025/¥3/¥6 与 CNY 页一致。⚠️ 旧版 mimo-v2.5-pro / mimo-v2.5 已于 2026-10-21 10:00 下线，勿计旧版。WorkBuddy 已于 2026-10 纳入官方下拉（0.13x）；此前误以为 MiMo 仅走自定义接入，实际已成官方内置。"
+    },
+    "space-bunny": {
+      "input": 1.0,
+      "output": 4.0,
+      "cache_hit_input": 0.1,
+      "note": "WorkBuddy 官方内置模型，**实为 MiniMax M3.1 Flash 的早期匿名版（代号 Space Bunny）**——2026-10-19 MiniMax 官宣，匿名期（9 月下旬起）处理超 200T token 的就是它；2026-10-19 正式版 M3.1 Flash 发布后两者在 WorkBuddy 下拉中并存、积分倍率均为 0.08x、官方刊例价同为 ¥1/¥4（缓存读取 ¥0.1）。原 ¥0.73/¥2.91 为「0.08x 倍率锚定 deepseek-v4.1-flash」的推算值，现以官方刊例价 ¥1/¥4 回填（更权威）。建议后续版本将 space-bunny 与 minimax-m3.1-flash 经 display_merge 合并为同一模型展示。"
+    },
+    "step-5-preview": {
+      "input": 7.2,
+      "output": 19.44,
+      "cache_hit_input": 0.72,
+      "note": "阶跃星辰 Step 5 Preview（StepFun 旗舰 Agent 模型，2026-09-20 发布，2026-10-12 起接入 WorkBuddy 独家限免至 2026-10-25）。官方直连 API 定价（platform.stepfun.ai，美元价 ×7.2≈CNY 估算）：输入(缓存未命中) $1.00 / 输入(缓存命中) $0.10 / 输出 $2.70 每百万 tokens；1M 上下文、文本+图像+视频输入、支持工具调用/JSON/推理强度。⚠️ 经 WorkBuddy 使用时按平台积分计费（限免期 0 积分、之后约 0.43 倍），与下方直连 API ¥ 价非同一口径；如需精确还原 WorkBuddy 实际花费请用官方用量导出或本机 pricing.local.json 覆盖。"
+    }
+  },
+  "delisted": {
+    "glm-5.0-turbo": {
+      "input": 7.0,
+      "output": 26.0,
+      "note": "智谱 GLM-5-Turbo（WorkBuddy 文档记作 GLM-5.0-Turbo），已被 5.1/5.2 取代；取长上下文档(>32k)刊例价 ¥7/¥26 每百万 tokens（bigmodel.cn）"
+    },
+    "glm-5": {
+      "input": 6.0,
+      "output": 22.0,
+      "note": "智谱 GLM-5（WorkBuddy 文档亦记作 GLM-5.0），已被 5.1/5.2 取代；取长上下文档(>32k)刊例价 ¥6/¥22 每百万 tokens（bigmodel.cn）"
+    },
+    "glm-5.0": {
+      "input": 6.0,
+      "output": 22.0,
+      "note": "同 glm-5（WorkBuddy 文档记作 GLM-5.0 的别名写法），已被 5.1/5.2 取代；刊例价同 glm-5 ¥6/¥22"
+    },
+    "glm-4.6v": {
+      "input": 1.0,
+      "output": 3.0,
+      "note": "智谱 GLM-4.6V 多模态模型（106B-A12B，2025-12-08 开源），真实存在；官方刊例价 ¥1/¥3 每百万 tokens（GLM-4.6V-Flash 免费）；WorkBuddy 曾内置、现不在列表"
+    },
+    "glm-4.5-air": {
+      "input": 1.2,
+      "output": 8.0,
+      "note": "智谱 GLM-4.5-Air 高性价比轻量模型（付费）；取长上下文档(>32k)刊例价 ¥1.2/¥8 每百万 tokens（bigmodel.cn）"
+    },
+    "glm-4.7-flash": {
+      "input": 0.0,
+      "output": 0.0,
+      "note": "智谱 GLM-4.7-Flash 免费模型（官网标注「免费模型，提供普惠体验」）；历史调用按免费计价"
+    },
+    "minimax-m2.5": {
+      "input": 2.1,
+      "output": 8.4,
+      "note": "MiniMax-M2.5（2026-02 发布），已被 m2.7 取代；历史模型刊例价 ¥2.1/¥8.4 每百万 tokens（platform.minimaxi.com 历史模型）"
+    },
+    "minimax-m2.7": {
+      "input": 2.1,
+      "output": 8.4,
+      "note": "MiniMax-M2.7（2026-03 发布），WorkBuddy 官方接口已下架（用户于 2026-08 确认）；历史调用仍按官方刊例价 ¥2.1/¥8.4 每百万 tokens（platform.minimaxi.com）计"
+    },
+    "kimi-k2.5": {
+      "input": 4.0,
+      "output": 21.0,
+      "note": "Kimi-K2.5，Kimi 官方已于 2026-08-31 全平台 sunset；WorkBuddy 当前内置已无此模型；刊例价 ¥4/¥21 每百万 tokens（platform.moonshot.cn）"
+    },
+    "deepseek-v3.2": {
+      "input": 2.0,
+      "output": 3.0,
+      "note": "DeepSeek-V3.2（上一代旗舰，deepseek-chat/reasoner 对应版本）；缓存未命中刊例价 ¥2/¥3 每百万 tokens（api-docs.deepseek.com）"
+    },
+    "hunyuan-2.0-thinking": {
+      "input": 5.3,
+      "output": 21.2,
+      "note": "腾讯混元 HY 2.0 Think（hunyuan-2.0-thinking-20251109），独立下架模型，并非 Hy3 的前身/旧版本，与 Hy3 无继承关系；已于 2026-06-10 下线；取长上下文档(>32k)刊例价 ¥5.3/¥21.2 每百万 tokens（腾讯云混元计费概述）"
+    },
+    "hy3-preview": {
+      "input": 1.0,
+      "output": 4.0,
+      "note": "混元 Hy3 preview（hunyuan 重建后首个版本，2026-04-23 发布，295B/21B MoE），2026-07-06 被正式版 Hy3 取代；与 Hy3 同架构，历史成本暂按 Hy3 计价估算（preview 期或有限免/折扣，实际以账单为准）"
+    },
+    "glm-4.7": {
+      "input": 4.0,
+      "output": 16.0,
+      "note": "智谱 GLM-4.7 付费版（358B，2025-12-22 发布），与免费版 GLM-4.7-Flash 为不同模型；取长上下文档(>32k)刊例价 ¥4/¥16 每百万 tokens（bigmodel.cn）"
+    },
+    "deepseek-v4-flash": {
+      "input": 1.0,
+      "output": 2.0,
+      "note": "DeepSeek-V4-Flash（旧 Flash 系列）。DeepSeek 官方已于 2026-09-10 由 V4.1-Flash 取代并下架；旧模型名仍可调用但由 V4.1-Flash 提供服务、按 Flash 价计费。历史调用仍按当时刊例价 ¥1/¥2 每百万 tokens 估。"
+    }
+  },
+  "timed_free": {
+    "step-5-preview": "2026-10-25",
+    "hy3": "2026-10-31",
+    "hy4-preview": "2026-09-10"
+  },
+  "low_confidence": {
+    "_comment": "成本置信度（v1.5.2 新增）：静态单价 × token 量 的估算与**实际计费**存在已知系统性偏差的模型。这些模型在 L2（未导入官方用量导出）下被标注为「低置信度」，报告里不参与成本结论。根因一律是服务端按用户 / 时段 / 配额减免 —— 静态价表在数学上无法表达，唯一真值是官方用量导出的「积分」字段（v1.6.0 --import-official）。值为给用户看的原因说明，会原样渲染进报告。",
+    "hy4-preview": "夜间 23:00–次日 08:00 免费（2026-09-11 起生效，2026-09-28 更新：延长至 2026-10-31），白天正常计费。v1.7.1 起已由 scheduled_pricing 按调用时刻判免费，夜间调用不再计费；残余偏差：该夜间窗口为实测推断、非官方公告原文，若平台调整会以 ⏱ 标记行显示且需手动覆盖。",
+    "hy4-preview-x": "收费变体、全时段计费，单价本身可靠；但被 display_merge 合并进 hy4-preview，会与「夜间免费」的基础版混在同一行显示，读金额时需留意。",
+    "deepseek-v4.1-flash": "峰谷双档计价（高峰 输入2 / 输出8，空闲 输入1 / 输出4）。v1.7.1 起已由 scheduled_pricing 按「工作日 09:00-12:00 / 14:00-18:00」切高峰价；残余偏差：跨时区或夏令时场景下时刻归北京时间的换算可能有 1 小时误差。",
+    "glm-5.3": "发布期 5 折促销已于 2026-09-09 24:00 到期。v1.7.1 起已由 scheduled_pricing 按日期区间打 5 折，跨期报告不再整体高估；残余偏差：官方另有「非高峰/周末 5 折」的长期折扣未纳入（缺可靠时段口径），可能仍高估。",
+    "glm-5.3-flash": "同 glm-5.3：5 折促销 2026-09-09 到期。v1.7.1 起已按日期区间打 5 折；残余偏差同 glm-5.3（长期折扣口径未明）。该模型无夜间免费，是实测成本大头（2026-09-12~14 占 72%）。"
+  },
+  "low_confidence_bias": {
+    "_comment": "偏差方向（v1.7.0 新增，机读）：与 low_confidence 同键。over=静态估算高于实际（如夜间免费被全时段计费）；under=静态估算低于实际（如峰谷双档取空闲价，高峰被低估）；mixed=方向不明。报告据此渲染 ⚠↑/⚠↓，让用户一眼看出 L2 数字是虚高还是虚低。",
+    "hy4-preview": "over",
+    "hy4-preview-x": "over",
+    "deepseek-v4.1-flash": "under",
+    "glm-5.3": "over",
+    "glm-5.3-flash": "over"
+  },
+  "scheduled_pricing": {
+    "_comment": "时段定价（v1.7.1 新增）：模型名 -> 规则列表，按【调用时刻】改写静态单价 —— 解决「夜间免费 / 峰谷双档 / 限期促销」这类静态价表在数学上无法表达的服务端规则（此前只能靠 low_confidence 标注，数字仍是错的）。规则字段：from/until='YYYY-MM-DD' 生效区间（含端点）；dow=星期列表 1=周一…7=周日（也接受 mon/tue/.../sun）；hours='HH:MM-HH:MM' 北京时间、左闭右开、支持跨午夜（如 23:00-08:00）；effect=free|peak|discount；factor=peak/discount 的倍率（缺省 peak=2.0、discount=1.0）；note=给用户看的说明。按配置顺序取**第一条命中**的规则，故更特殊的规则写在前面。缺失的维度按「不套用该维度规则」处理（宁可少打折，也不把白天误判成夜间免费）。所有时间均为北京时间（Asia/Shanghai），与官方用量导出的时间列同口径。",
+    "hy4-preview": [
+      {
+        "from": "2026-09-11",
+        "until": "2026-10-31",
+        "hours": [
+          "23:00-08:00"
+        ],
+        "effect": "free",
+        "note": "限时免费 2 周（至 2026-09-10，见 timed_free）结束后转为夜间免费：23:00–次日 08:00 调用不计费，白天按刊例价 6/18。2026-09-28 更新：夜间免费额度已延长，截至 2026-10-31（含当天）。实测依据：官方用量导出中 2026-09-10 及之前的 61 次调用积分全为 0；2026-09-12 11:xx 单次收 43.40 积分（白天唯一一次收费）。⚠️ 该夜间窗口为实测推断，非官方公告原文；若与实际不符，请用 pricing.local.json 覆盖本条规则。"
+      }
+    ],
+    "deepseek-v4.1-flash": [
+      {
+        "dow": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "hours": [
+          "09:00-12:00",
+          "14:00-18:00"
+        ],
+        "effect": "peak",
+        "note": "DeepSeek 峰谷双档：工作日 09:00-12:00 与 14:00-18:00 为高峰，按 peak_input/peak_output（2/8）计费；其余时段按空闲价（1/4）。models 段的 input/output 统一取空闲档，故不套本规则会系统性低估。"
+      }
+    ],
+    "deepseek-flash": [
+      {
+        "dow": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "hours": [
+          "09:00-12:00",
+          "14:00-18:00"
+        ],
+        "effect": "peak",
+        "note": "同 deepseek-v4.1-flash —— 这是 DeepSeek 官方在售的模型名。报告里两者经 display_merge 合并显示为一行，但逐 trace 计费各按自己的模型名查表，故两条规则都要有，不能只写一条。"
+      }
+    ],
+    "glm-5.3": [
+      {
+        "from": "2026-08-19",
+        "until": "2026-09-09",
+        "effect": "discount",
+        "factor": 0.5,
+        "note": "发布期 5 折促销，2026-09-09 24:00 到期，此后按刊例价全价（8/28）。跨期报告若不做按日切分会把促销期也按全价算，高估约 2 倍。⚠️ 官方另有「非高峰/周末 5 折」的长期折扣说法，因缺可靠时段口径未纳入；如你确认其时段，可用 pricing.local.json 追加一条 discount 规则。"
+      }
+    ],
+    "glm-5.3-flash": [
+      {
+        "from": "2026-08-26",
+        "until": "2026-09-09",
+        "effect": "discount",
+        "factor": 0.5,
+        "note": "上线前两周限时半价（实际单价 0.4/1.4），2026-09-09 到期，与 glm-5.3 同期结束。"
+      }
+    ],
+    "space-bunny": [
+      {
+        "from": "2026-10-02",
+        "until": "2026-10-07",
+        "effect": "discount",
+        "factor": 0.375,
+        "note": "【已于 2026-10-08 到期】官方限时折扣（promotions[space-bunny-discount-202610]，kind=discount / badge=限时折扣 / hover 文案「10月2日-10月7日，享限时折扣。」）：2026-10-02~10-07（含）积分倍率为 x0.03。\n**折扣已结束**：官方配置里该 promotions 条目已被移除、credits 恢复正价 x0.08，models 段的 ¥ 单价已按正价重新锚定为 ¥0.73/¥2.91。\n本规则保留作**历史口径**（分析 10-02~10-07 的调用时仍能正确还原折扣价）。factor = 0.03/0.08 = 0.375 是**相对正价的折扣比例**——正价 ¥0.73 × 0.375 ≈ ¥0.27，与折扣期原始推算值（锚点 ¥1 × 0.03/0.11 = ¥0.2727）一致。\n⚠️ since until=2026-10-07 是闭区间上界（_rule_matches 用 as_of_date > until 才排除），10-08 起自动不命中，无需手动删除。\n⚠️ 官方只公布积分倍率、不公布 ¥ 刊例价，任何换算都是推算值；若需精确还原 10-02~10-07 的真实 ¥ 单价，用 pricing.local.json 覆盖。"
+      }
+    ]
+  },
+  "display_merge": {
+    "hy4-preview-x": "hy4-preview",
+    "hy3-x": "hy3",
+    "deepseek-flash": "deepseek-v4.1-flash"
+  },
+  "mode_rates": {
+    "_comment": "档位（路由三档：快速/均衡/极致）估算单价（v1.3.0 新增分析维度）。档位倍率是「积分维度」，与 ¥ 刊例价正交——已确认不参与金额计算，仅作分析维度。下方 ¥ 单价为「倍率锚定法」估算：按已知模型倍率线性外推（见各档 anchor）。服务端配置缓存 acc-product-config-v3.json 的官方 credits 倍率会覆盖这里的 multiplier，但 ¥ 单价仍以本段锚定值为准（官方只给倍率不给 ¥）。若想更精确，请按你实际积分消耗反推后改本段 input/output；改完无需动 Python。别名 alias 为配置缓存规范 id（极致在缓存里叫 deep-model，trace 里是 extreme-model，采集器已自动归一）。",
+    "auto_estimate": true,
+    "fast": {
+      "alias": "fast-model",
+      "label": "快速",
+      "multiplier": 0.21,
+      "input": 1.91,
+      "output": 7.64,
+      "anchor": "2026-09-28 重锚：DeepSeek-V4.1-Flash 0.11x（空闲 ¥1/¥4；早期 0.03x 独家优惠已结束）×1.909（=0.21/0.11）—— 原锚点已下架 V4-Flash 0.17x (¥1/¥2) ×1.235 使本档隐含 ¥/倍率仅 5.90/11.76，与 balanced/extreme（同锚 glm-5.2 0.79x ¥8/¥28，隐含 10.12/35.44）明显脱节；重锚后为 9.09/36.36，三档口径归一。交叉验证：改用 glm-5.2 同锚得 ¥2.13/7.44，与本值相差约 10%。"
+    },
+    "balanced": {
+      "alias": "balanced-model",
+      "label": "均衡",
+      "multiplier": 0.65,
+      "input": 6.58,
+      "output": 23.04,
+      "anchor": "glm-5.2 0.79 (¥8/¥28) ×0.823"
+    },
+    "extreme": {
+      "alias": "deep-model",
+      "label": "极致",
+      "multiplier": 1.2,
+      "input": 12.15,
+      "output": 42.51,
+      "anchor": "glm-5.2 0.79 (¥8/¥28) ×1.519"
+    }
+  },
+  "custom_local": {}
+}

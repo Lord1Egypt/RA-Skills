@@ -1,0 +1,27 @@
+[
+  {
+    "testName": "greet",
+    "timestamp": "2026-07-01T10:00:00.000Z",
+    "duration": 12,
+    "passed": true,
+    "assertions": [
+      { "assertion": "contains:Hello", "passed": true },
+      { "assertion": "contains:!", "passed": true },
+      { "assertion": "not_contains:error", "passed": true }
+    ],
+    "actualOutput": "Hello!",
+    "expectedOutput": "Hello"
+  },
+  {
+    "testName": "format_date",
+    "timestamp": "2026-07-01T10:01:00.000Z",
+    "duration": 8,
+    "passed": true,
+    "assertions": [
+      { "assertion": "regex:\\d{4}-\\d{2}-\\d{2}", "passed": true },
+      { "assertion": "length:10", "passed": true }
+    ],
+    "actualOutput": "2026-07-01",
+    "expectedOutput": "2026-07-02"
+  }
+]

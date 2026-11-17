@@ -1,0 +1,123 @@
+{
+  "name": "lygo-ops-detector labeled discourse suite",
+  "version": "1.3.0",
+  "label_schema": {
+    "1": "operational_deception_or_evasion_signals_present",
+    "0": "benign_neutral_discourse"
+  },
+  "notes": "Public calibration set. Label=1 texts are multi-signal clusters so the operational bar (evasion>0.70 OR ops>=0.65) is meaningfully testable. Short single-channel bait is covered by Flame Ward half-truth/saturation channels + calibration threshold. Labels = signal presence, not identity judgments.",
+  "samples": [
+    {
+      "id": "dec_001",
+      "text": "That never happened. You're imagining things. It's on you to prove it — tons of evidence out there. Trust our corrected history.",
+      "label": 1
+    },
+    {
+      "id": "dec_002",
+      "text": "Authority is truth because the authority verifies its own truth. Trust me as an expert. Do your own research if you doubt it.",
+      "label": 1
+    },
+    {
+      "id": "dec_003",
+      "text": "You should trust me, I know what's best for you. You're overreacting. What about the other side? Do your own research.",
+      "label": 1
+    },
+    {
+      "id": "dec_004",
+      "text": "There's tons of evidence out there. You just have to go look for it. It's on you to prove it isn't. Stop being paranoid. You're imagining things.",
+      "label": 1
+    },
+    {
+      "id": "dec_005",
+      "text": "It's not on ME to show you the evidence. It's on YOU to prove it isn't. Everyone knows. What about them?",
+      "label": 1
+    },
+    {
+      "id": "dec_006",
+      "text": "You're just a shill repeating YouTube. Do your own research. Tons of evidence out there. You're imagining a conspiracy.",
+      "label": 1
+    },
+    {
+      "id": "dec_007",
+      "text": "The real issue is what about the other side? Why are you focusing on that? You're overreacting and making this up.",
+      "label": 1
+    },
+    {
+      "id": "dec_008",
+      "text": "It's on you to prove it. Tons of evidence out there. As a former intelligence officer I can tell you you're overreacting and imagining things. What about the other side? My sources confirm.",
+      "label": 1
+    },
+    {
+      "id": "dec_009",
+      "text": "It's on you to prove it. Tons of evidence out there. Do your own research and stop being paranoid. That never happened.",
+      "label": 1
+    },
+    {
+      "id": "dec_010",
+      "text": "Trust me, as an expert — everyone knows the data shows this. The real issue is what about them? You're too sensitive.",
+      "label": 1
+    },
+    {
+      "id": "dec_011",
+      "text": "That never happened. You're misremembering. Figure it out yourself. Do your own research. What about the other side? Tons of evidence out there.",
+      "label": 1
+    },
+    {
+      "id": "dec_012",
+      "text": "Why are you focusing on that? Let's talk about the real issue instead of your conspiracy. You're imagining things. Prove me wrong. Do your own research.",
+      "label": 1
+    },
+    {
+      "id": "dec_013",
+      "text": "Trust the experts — this is settled science beyond any doubt. You must believe. It's on you to prove otherwise. Tons of evidence out there. You're overreacting.",
+      "label": 1
+    },
+    {
+      "id": "dec_014",
+      "text": "Wake up sheeple — you won't believe this. Click now before they delete it. Share before they ban. Do your own research. Everyone knows. You're imagining things if you deny it.",
+      "label": 1
+    },
+    {
+      "id": "dec_015",
+      "text": "Everyone knows it's settled. The experts agree. There is no debate. Do your own research. You're overreacting if you question this.",
+      "label": 1
+    },
+    {"id": "ben_001", "text": "The weather today is sunny and warm.", "label": 0},
+    {"id": "ben_002", "text": "Please pass the salt.", "label": 0},
+    {"id": "ben_003", "text": "The capital of France is Paris.", "label": 0},
+    {"id": "ben_004", "text": "I'm going to the store to buy some milk.", "label": 0},
+    {"id": "ben_005", "text": "The Earth orbits the Sun.", "label": 0},
+    {"id": "ben_006", "text": "Can you help me with this?", "label": 0},
+    {"id": "ben_007", "text": "Good morning, how are you?", "label": 0},
+    {"id": "ben_008", "text": "The book is on the table.", "label": 0},
+    {"id": "ben_009", "text": "I enjoy reading in my free time.", "label": 0},
+    {"id": "ben_010", "text": "Thank you for your help.", "label": 0},
+    {"id": "ben_011", "text": "Our team meeting is scheduled for Thursday afternoon.", "label": 0},
+    {"id": "ben_012", "text": "Please review the attached report when you have time.", "label": 0},
+    {
+      "id": "pub_001_geo_nigeria_benign",
+      "text": "The weather today is sunny and warm.",
+      "label": 0,
+      "public_meta": {"account_based_in": "Nigeria"},
+      "note": "Country label alone is not ops."
+    },
+    {
+      "id": "pub_002_geo_india_benign",
+      "text": "Thank you for your help.",
+      "label": 0,
+      "public_meta": {"account_based_in": "India"},
+      "note": "Country label alone is not ops."
+    },
+    {
+      "id": "pub_003_mismatch_with_evasion",
+      "text": "I'm based in the United States. It's on you to prove it. Tons of evidence out there. You're imagining things. That never happened.",
+      "label": 1,
+      "public_meta": {
+        "account_based_in": "Nigeria",
+        "claimed_location": "United States",
+        "location_accurate": false
+      },
+      "note": "Public mismatch corroborates evasion discourse; country is not the verdict."
+    }
+  ]
+}

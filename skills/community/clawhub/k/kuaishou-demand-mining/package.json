@@ -1,0 +1,31 @@
+{
+  "name": "kuaishou-demand-mining",
+  "version": "1.1.1",
+  "description": "获取成千上万条快手社媒平台的实时用户评论内容做聚类与情感分析，抽取高频痛点、功能诉求与未被满足的需求，把用户评论变成“用户到底要什么”的结构清单，按痛点聚类、标注频次与情感强度，直接喂给选品与产品工程，输出需求机会清单与佐证原文。",
+  "keywords": [
+    "快手",
+    "爆款视频",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长"
+  ],
+  "homepage": "https://github.com/um-why/kuaishou-skill",
+  "bugs": {
+    "url": "https://github.com/um-why/kuaishou-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/kuaishou-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "main": "scripts/kuaishou/search-cli.js",
+  "scripts": {
+    "search": "node scripts/kuaishou/search-cli.js",
+    "post": "node scripts/kuaishou/post-cli.js",
+    "comment": "node scripts/kuaishou/comment-cli.js"
+  }
+}

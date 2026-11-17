@@ -1,45 +1,57 @@
-## Description: <br>
-Precision decisioning, agentic trust, and verifiable identity for autonomous agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Precision decisioning, agentic trust, and verifiable identity for autonomous agents.
 
-## Publisher: <br>
-[knuckles-stack](https://clawhub.ai/user/knuckles-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[knuckles-stack](https://clawhub.ai/user/knuckles-stack)
 
-## Use Case: <br>
-Developers using OpenClaw use this plugin to route high-risk tool calls through Kevros governance for pre-execution verification and post-execution attestation. Agents can also call registered tools to verify an action or look up an agent trust passport. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: High-risk tool inputs and execution summaries may be sent to an external governance service by default. <br>
-Mitigation: Configure an explicit API key and non-identifying agentId, avoid sending secrets or private file contents through governed tools, narrow highRiskTools to the intended scope, and consider disabling autoAttest in sensitive workspaces. <br>
-Risk: Remote governance decisions can block high-risk tool use. <br>
-Mitigation: Choose the enforcement mode deliberately, test policies in advisory mode before enforcing them, and document operator approval or rollback procedures for blocked workflows. <br>
-Risk: CLAMP decisions should not be assumed to rewrite tool actions unless independently confirmed. <br>
-Mitigation: Treat CLAMP as a constrained decision that requires caller-side validation of the applied action before execution. <br>
+## Use Case:
 
+Developers and external agent operators use Openclaw Plugin to verify high-risk OpenClaw tool calls against Kevros governance policy, record post-execution attestations, and query agent trust passports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/knuckles-stack/openclaw-plugin) <br>
-- [Artifact README](README.md) <br>
-- [Kevros governance gateway](https://governance.taskhawktech.com) <br>
-- [Kevros agent discovery card](https://governance.taskhawktech.com/.well-known/agent.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, JSON, Guidance] <br>
-**Output Format:** [OpenClaw hook decisions, JSON API responses, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May block, allow, or log high-risk tool calls depending on enforcement mode and gateway response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.9 (source: release metadata and package.json) <br>
+Risk: High-risk tool inputs, command arguments, file-operation details, hostname-derived agent IDs, and short output excerpts may be sent to the Kevros gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the plugin only in environments where that data sharing is acceptable; configure an explicit agentId and apiKey, restrict highRiskTools, and disable autoAttest when output attestation is not appropriate.
+
+Risk: CLAMP decisions may not enforce constrained actions in the local tool call path.
+
+Mitigation: Do not rely on CLAMP as a hard constraint until the plugin applies constrained actions or fails closed; treat CLAMP responses as requiring review or additional enforcement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/knuckles-stack/skills/openclaw-plugin)
+- [Kevros governance gateway](https://governance.taskhawktech.com)
+- [Kevros agent discovery card](https://governance.taskhawktech.com/.well-known/agent.json)
+- [Kevros MCP endpoint](https://governance.taskhawktech.com/mcp/)
+- [Kevros pricing](https://www.taskhawktech.com/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Configuration, Guidance]
+
+**Output Format:** [JSON responses and OpenClaw configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Registers OpenClaw hooks for pre-call verification and post-call attestation, plus callable verification and passport lookup tools.]
+
+## Skill Version(s):
+
+0.3.9 (source: server release metadata, package.json, openclaw.plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

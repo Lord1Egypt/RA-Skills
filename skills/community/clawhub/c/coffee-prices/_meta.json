@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn71gq55wqmkj930e57t14waxx82aw7m",
+  "owner": "realank",
   "slug": "coffee-prices",
-  "version": "1.0.0",
-  "publishedAt": 1772712901875
+  "displayName": "Coffee Prices by City",
+  "latest": {
+    "version": "0.1.0",
+    "publishedAt": 0,
+    "commit": ""
+  },
+  "history": []
 }

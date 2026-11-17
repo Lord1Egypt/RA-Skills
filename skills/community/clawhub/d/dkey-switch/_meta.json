@@ -1,6 +1,36 @@
 {
-  "ownerId": "kn74pgt2txzv12dvm5ch1endqs82hb7w",
+  "ownerId": "local-user",
   "slug": "dkey-switch",
   "version": "1.1.4",
-  "publishedAt": 1773220983907
+  "publishedAt": 1770000000000,
+  "description": "Windows 窗口焦点切换与标签页导航工具，支持按关键词定位、切换及管理运行中应用。",
+  "intents": {
+    "activate_window": {
+      "description": "通过窗口标题关键词切换到指定运行中窗口",
+      "examples": [
+        "切到微信",
+        "切换到浏览器",
+        "定位窗口到代码编辑器",
+        "把 QQ 窗口调到前台",
+        "激活正在运行的窗口"
+      ]
+    },
+    "switch_tab": {
+      "description": "在已激活的窗口内切换标签页或页签",
+      "examples": [
+        "切换到下一个标签",
+        "切到上一个页签",
+        "切换标签页",
+        "在窗口内切 tab"
+      ]
+    },
+    "list_windows": {
+      "description": "列出当前系统运行的所有窗口列表",
+      "examples": [
+        "查看正在运行的窗口",
+        "列出所有窗口",
+        "显示当前程序列表"
+      ]
+    }
+  }
 }

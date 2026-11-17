@@ -1,47 +1,61 @@
-## Description: <br>
-Execute DeFi transactions on BSC via SHLL AgentNFA. The AI handles all commands and users only need to chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute DeFi transactions on BSC via SHLL AgentNFA. The AI handles all commands and users only need to chat.
 
-## Publisher: <br>
-[kledx](https://clawhub.ai/user/kledx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kledx](https://clawhub.ai/user/kledx)
 
-## Use Case: <br>
-External users and developers use this skill to let an AI agent operate SHLL CLI or MCP tools for BSC DeFi onboarding, portfolio checks, swaps, lending, and policy-limited vault actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an AI agent authority to perform BSC DeFi actions with an operator private key. <br>
-Mitigation: Use a new dedicated operator wallet with minimal gas only, never a main or owner wallet. <br>
-Risk: Write operations such as transfers, config changes, and raw calldata can move funds or alter risk settings. <br>
-Mitigation: Require explicit user confirmation before every write action and verify token ID, action type, amount, target, and risk note. <br>
-Risk: Raw calldata may be unsafe when the recipient cannot be decoded or verified. <br>
-Mitigation: Block undecodable recipient calldata and prefer built-in SHLL command flows where possible. <br>
-Risk: Package or version confusion could install software other than the reviewed release. <br>
-Mitigation: Verify the npm package name, version 6.0.5, and release hashes before installation. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent run SHLL CLI or MCP workflows for BSC DeFi operations, including setup checks, portfolio reads, swaps, lending, transfers, and raw calldata execution through PolicyGuard.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kledx/shll-skills) <br>
-- [SHLL Website](https://shll.run) <br>
-- [npm Package](https://www.npmjs.com/package/shll-skills) <br>
-- [PolicyGuard Contract](https://bscscan.com/address/0x25d17eA0e3Bcb8CA08a2BFE917E817AFc05dbBB3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented runtime responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RUNNER_PRIVATE_KEY for write operations and may use SHLL_RPC for BSC RPC configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.5 (source: server release metadata and frontmatter) <br>
+Risk: The skill uses an operator private key for DeFi execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a fresh dedicated operator wallet with minimal BNB for gas, and never reuse a main wallet, owner wallet, or wallet holding significant funds.
+
+Risk: The server security review flags unpinned npm execution as a supply-chain risk.
+
+Mitigation: Pin and verify the npm package before execution, and avoid unpinned npx MCP setup.
+
+Risk: Raw calldata, transfers, and configuration changes can authorize high-impact transactions.
+
+Mitigation: Require explicit confirmation before these actions and review the token ID, action type, amount, target, and risk note before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kledx/skills/shll-skills)
+- [SHLL website](https://shll.run)
+- [npm package](https://www.npmjs.com/package/shll-skills)
+- [PolicyGuard contract on BscScan](https://bscscan.com/address/0x25d17eA0e3Bcb8CA08a2BFE917E817AFc05dbBB3)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and machine-friendly JSON runtime responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a dedicated RUNNER_PRIVATE_KEY operator wallet for write operations; write operations require explicit user confirmation.]
+
+## Skill Version(s):
+
+6.0.5 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

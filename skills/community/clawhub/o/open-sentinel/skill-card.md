@@ -1,44 +1,61 @@
-## Description: <br>
-Transparent LLM proxy that monitors and enforces policies on AI agent behavior, evaluating responses against configurable rules for hallucinations, PII leaks, prompt injection, and workflow violations before they reach users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transparent LLM proxy that monitors and enforces policies on AI agent behavior, evaluating responses against configurable rules for hallucinations, PII leaks, prompt injection, and workflow violations before they reach users.
 
-## Publisher: <br>
-[sentinel199](https://clawhub.ai/user/sentinel199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[sentinel199](https://clawhub.ai/user/sentinel199)
 
-## Use Case: <br>
-Developers and teams use this skill to configure Open Sentinel as a transparent proxy for OpenAI-compatible LLM clients, adding policy checks for agent responses and multi-turn workflows. It helps route setup, policy authoring, CLI usage, and configuration for response monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overstate blocking protection because the documented default judge engine evaluates asynchronously and some failures pass requests through. <br>
-Mitigation: Test the selected engine and mode against expected unsafe outputs before relying on it as a safety boundary, and use critical blocking paths where immediate enforcement is required. <br>
-Risk: Provider API keys are required and proxy traffic may include sensitive prompts or responses. <br>
-Mitigation: Scope provider API keys carefully, keep credentials in environment variables, and disable or tightly control tracing for sensitive traffic. <br>
-Risk: The release depends on the upstream opensentinel package distributed outside NVIDIA. <br>
-Mitigation: Review the upstream PyPI package and installation source before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, configure, and run Open Sentinel as an OpenAI-compatible proxy that evaluates LLM responses against policy rules before use in agent workflows.
 
-## Reference(s): <br>
-- [Open Sentinel GitHub](https://github.com/open-sentinel/open-sentinel) <br>
-- [Open Sentinel Documentation](https://github.com/open-sentinel/open-sentinel/tree/main/docs) <br>
-- [Open Sentinel PyPI Package](https://pypi.org/project/opensentinel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell, Python, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proxy setup steps, policy examples, CLI commands, and configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: The release asks users to install an external package and configure provider API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified opensentinel package, install it in an isolated environment, and use limited-scope provider keys.
+
+Risk: The default asynchronous judge may not prevent sensitive content, payment actions, or irreversible automated actions before downstream use.
+
+Mitigation: Do not rely on the default async judge as the sole preventive control for high-stakes workflows; configure critical blocking paths and keep human approval for irreversible actions.
+
+Risk: The artifact describes fail-open hook behavior, so policy evaluation failures or timeouts can allow requests to pass through.
+
+Mitigation: Test policies under failure and timeout conditions, monitor traces, and add independent safeguards before routing regulated or highly sensitive traffic through the proxy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sentinel199/skills/open-sentinel)
+- [Open Sentinel Homepage](https://github.com/open-sentinel/open-sentinel)
+- [Open Sentinel Docs](https://github.com/open-sentinel/open-sentinel/tree/main/docs)
+- [Open Sentinel PyPI Package](https://pypi.org/project/opensentinel)
+- [Open Sentinel Issues](https://github.com/open-sentinel/open-sentinel/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, Python, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata; artifact frontmatter reports 0.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Rewrite AI-like or stiff text into natural, credible human writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrite AI-like or stiff text into natural, credible human writing.
 
-## Publisher: <br>
-[juanbastias](https://clawhub.ai/user/juanbastias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juanbastias](https://clawhub.ai/user/juanbastias)
 
-## Use Case: <br>
-External users, employees, and content teams use this skill to rewrite drafts such as emails, messages, social posts, website copy, and support replies so they sound natural while preserving meaning and factual claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may change wording in contexts where exact phrasing or domain review matters, such as legal, medical, compliance, policy, or academic integrity work. <br>
-Mitigation: Review every change before using the rewritten text in those contexts. <br>
-Risk: The skill may be used to polish promotional or factual claims without validating whether those claims are accurate. <br>
-Mitigation: Run a factual claim check before publication when the source text contains factual or promotional claims. <br>
+## Use Case:
 
+Employees, external users, and content creators use this skill to rewrite drafts, messages, emails, captions, website copy, sales text, support replies, and short explainers so they sound more natural while preserving meaning and facts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown by default, or plain rewritten text when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a final rewrite with a brief note on main changes unless the user asks for only the final text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill may activate for broad text-improvement requests where another writing style or workflow might be preferred.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review routing expectations before deployment and adjust trigger behavior if a narrower editing workflow is needed.
+
+Risk: The skill improves wording but does not verify factual or promotional claims.
+
+Mitigation: Run a factual claim check before publishing text that includes claims, numbers, dates, prices, conditions, commitments, or promotional statements.
+
+## Reference(s):
+
+- [Humanized Writing Editor on ClawHub](https://clawhub.ai/juanbastias/skills/humanized-writing-editor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with rewritten text and a brief change summary by default]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return only the rewritten text when requested; may offer concise tone variants when useful or requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

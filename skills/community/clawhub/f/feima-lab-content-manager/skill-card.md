@@ -1,49 +1,63 @@
-## Description: <br>
-Feima Lab Content Manager helps agents turn text or Markdown into Feima Lab-style MDX articles, generate local previews, localize images, manage article metadata, and save, publish, unpublish, or query Feima Lab content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feima Lab Content Manager helps agents turn source text or Markdown into feima-lab styled MDX posts with local previews, image localization, metadata management, and optional authenticated backend save, publish, unpublish, listing, tagging, and upload workflows.
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-Content authors and developers use this skill to draft Feima Lab blog or news articles, preview MDX locally, prepare metadata, and optionally publish or update remote articles through the Feima Lab backend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save, publish, unpublish, and upload files to live Feima Lab content systems. <br>
-Mitigation: Confirm the target article, backend, publish action, and file paths before running remote write operations; use dry-run or query commands first when available. <br>
-Risk: Remote API actions require an internal API key, and mishandling that key could expose privileged access. <br>
-Mitigation: Keep the API key in the user's shell environment only, do not store it in persistent skill memory or article metadata, and stop when the key is missing or rejected. <br>
-Risk: Image localization and upload behavior can read local file paths referenced by article content. <br>
-Mitigation: Avoid running the skill on untrusted Markdown with local file references, and restrict image or file inputs to the intended article directory. <br>
+## Use Case:
 
+Developers and content authors use this skill to create, preview, and manage feima-lab blog or news content from natural language, Markdown, and image inputs. Teams with the required internal API key can also use it to save, publish, unpublish, list, tag, and upload content through the feima-lab backend.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/feima-lab-content-manager) <br>
-- [Artifact README](README.md) <br>
-- [API publish workflow](references/api-publish-workflow.md) <br>
-- [API error handling](references/api-error-handling.md) <br>
-- [Metadata schema](references/meta-schema.md) <br>
-- [Component selection guide](references/component-selection.md) <br>
-- [Feima style snapshot](references/feima-style-snapshot.json) <br>
-- [Feima Lab repository](https://github.com/fangshan101-coder/feima-lab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated MDX, JSON, HTML, and image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also call Feima Lab API scripts that return JSON or table-formatted status output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: Remote save, publish, unpublish, tag, and upload actions can change backend content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a trusted publisher and require human review before running any remote write or publish command.
+
+Risk: The skill requires an internal FX_AI_API_KEY for backend operations.
+
+Mitigation: Keep the key in the shell environment only and do not store it in MEMORY.md, generated files, or other persistent project state.
+
+Risk: Image localization and upload workflows may fetch URLs or read local image paths.
+
+Mitigation: Avoid untrusted MDX and image URLs unless path containment and outbound-fetch restrictions are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/feima-lab-content-manager)
+- [README](README.md)
+- [API publish workflow](references/api-publish-workflow.md)
+- [API error handling](references/api-error-handling.md)
+- [Component selection](references/component-selection.md)
+- [Meta schema](references/meta-schema.md)
+- [feima style snapshot](references/feima-style-snapshot.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus generated MDX, HTML preview, image, and JSON metadata files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote publishing actions require Node 18+ and an internal FX_AI_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

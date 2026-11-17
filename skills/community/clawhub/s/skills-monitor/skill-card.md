@@ -1,47 +1,59 @@
-## Description: <br>
-AI Skills one-stop monitoring and evaluation platform for seven-factor skill scoring, cross-model benchmarking, centralized dashboards, diagnostics, recommendations, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors, evaluates, benchmarks, recommends, and reports on AI Skills through a seven-factor scoring engine, cross-model baseline data, dashboards, and diagnostics.
 
-## Publisher: <br>
-[jaredwei01](https://clawhub.ai/user/jaredwei01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaredwei01](https://clawhub.ai/user/jaredwei01)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor installed AI skills, evaluate skill health and performance, compare benchmark results, generate diagnostic reports, and surface recommendations from a web or command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute installed skills without sandboxing. <br>
-Mitigation: Run it in a sandbox or dedicated environment and review monitored skills before enabling automated execution. <br>
-Risk: Scheduled uploads and reports can transmit telemetry to a configured server. <br>
-Mitigation: Verify the destination server and payload contents before enabling scheduled or automatic uploads. <br>
-Risk: Fallback credential storage should not be treated as strong encryption. <br>
-Mitigation: Prefer OS keychain-backed storage and avoid storing high-value secrets in fallback storage. <br>
-Risk: Bundled server authentication should be reviewed before exposing dashboards or APIs beyond localhost. <br>
-Mitigation: Keep services local until authentication, network exposure, and deployment settings have been reviewed. <br>
+## Use Case:
 
+Developers and teams use this skill to monitor installed AI Skills, run seven-factor evaluations and model benchmarks, compare or recommend skills, and generate operational reports for dashboards or push notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaredwei01/skills-monitor) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Deployment guide](artifact/deploy/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [CLI text, Markdown reports, JSON API responses, and web dashboard views] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run installed skills, persist monitoring data, schedule reports, and upload telemetry to a configured server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Insecure public-server defaults can expose dashboards, reports, or agent credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require authentication on overview and dashboard routes, disable debug mode, set a random secret, and bind locally or place the service behind HTTPS.
+
+Risk: Weak agent registration or token handling can allow existing tokens to be overwritten or reused without sufficient authorization.
+
+Mitigation: Require authenticated ownership for registration and key-update flows, then rotate or revoke affected tokens before deployment.
+
+Risk: Telemetry, report uploads, and push notifications can disclose operational data or send it to an under-disclosed webhook destination.
+
+Mitigation: Make realtime telemetry opt-in with consent checks, remove or replace the hardcoded WeCom webhook, and require HTTPS for remote uploads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaredwei01/skills/skills-monitor)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Deployment guide](artifact/deploy/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [CLI and agent responses as JSON-like text, Markdown diagnostic reports, and dashboard/server configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local monitoring data, benchmark cache data, report files, dashboard or server processes, and optional remote uploads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata also contains 0.7.0 and setup.py contains 0.6.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

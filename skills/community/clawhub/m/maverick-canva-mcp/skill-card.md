@@ -1,45 +1,55 @@
-## Description: <br>
-Search, read, and manage Canva design work through Canva's hosted MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, read, and manage Canva designs, assets, exports, and templates through Canva's hosted MCP service.
 
-## Publisher: <br>
-[maverick](https://clawhub.ai/user/maverick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick](https://clawhub.ai/user/maverick)
 
-## Use Case: <br>
-Developers, operators, and creative teams use this skill to let an agent search, inspect, export, and manage Canva designs, assets, folders, comments, brand materials, and templates through Canva's hosted MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connected Canva OAuth grant lets the agent act through the user's Canva account, including write-capable actions when the grant allows them. <br>
-Mitigation: Use the least-privileged Canva grant available, confirm clear user intent before write actions, inspect relevant design or asset state before editing, and revoke the integration when it is no longer needed. <br>
-Risk: Tool arguments and results transit Canva's hosted MCP service, so unrelated sensitive content could be exposed if included in requests. <br>
-Mitigation: Only send content needed for the Canva task and avoid placing unrelated secrets or sensitive material in tool arguments. <br>
-Risk: Re-running setup with stale OAuth values can overwrite fresher local credentials and break the integration. <br>
-Mitigation: Run credential setup only with freshly minted OAuth values, and re-authorize in Canva if calls keep failing with authentication errors. <br>
+## Use Case:
 
+External users and Canva account holders can use the skill to find and review designs, assets, exports, and templates, and to manage Canva content through the account they connect. Developers can use it to connect an agent to Canva's hosted MCP service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick/maverick-canva-mcp) <br>
-- [Canva MCP overview and endpoint](https://www.canva.dev/docs/mcp/) <br>
-- [Canva MCP troubleshooting and authentication](https://www.canva.dev/docs/mcp/troubleshooting/) <br>
-- [mcporter configuration reference](https://github.com/openclaw/mcporter/blob/v0.11.1/docs/config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-capable MCP tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter and user-provided Canva OAuth credentials; live tool schemas come from Canva's hosted MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Edits, sharing, comments, or publishing can affect content visible to the connected Canva account or team.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm clear user intent before changes, review the affected content and granted account permissions, and avoid sending unrelated sensitive information.
+
+Risk: Rerunning setup with stale OAuth credentials can overwrite newer credentials stored by the integration.
+
+Mitigation: Only rerun setup with freshly issued credentials; revoke the Canva integration when it is no longer needed.
+
+## Reference(s):
+
+- [Canva MCP documentation](https://www.canva.dev/docs/mcp/)
+- [Canva MCP troubleshooting](https://www.canva.dev/docs/mcp/troubleshooting/)
+- [ClawHub skill page](https://clawhub.ai/maverick/skills/maverick-canva-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files, Guidance]
+
+**Output Format:** [Natural-language responses and Canva design or asset exports, depending on available server tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available actions and export formats depend on the live Canva MCP tool catalog and the connected account's permissions.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

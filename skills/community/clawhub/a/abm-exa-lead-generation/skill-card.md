@@ -1,40 +1,57 @@
-## Description: <br>
-Helps users build targeted prospect lists with Exa web search from ideal customer profile criteria, qualifying signals, and desired output needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents build targeted prospect lists with Exa web search by translating an ideal customer profile into search queries, enriching promising results, and organizing qualified companies or contacts.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Sales, growth, and business development users use this skill to turn an ideal customer profile into ranked company and contact prospect lists for outreach, ABM campaigns, or partnership prospecting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External search queries can expose sensitive product strategy, customer names, or targeting details. <br>
-Mitigation: Use a trusted Exa CLI or helper and avoid including confidential details in search queries when that information should not leave the environment. <br>
-Risk: Search-derived prospect data and qualifying signals may be incomplete, stale, or unsuitable for outreach without review. <br>
-Mitigation: Validate high-fit prospects, signals, and contact details before relying on the list for sales or marketing actions. <br>
+## Use Case:
 
+Sales, marketing, partnership, and go-to-market users use this skill to build ranked prospect lists from an ideal customer profile for outreach, ABM campaigns, or partnership prospecting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-exa-lead-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with prospect tables, company details, search queries, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prospects are deduplicated across searches and ranked by fit strength.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Shell command templates could create command-injection risk if user queries or search-result IDs are interpolated directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass queries and IDs as literal process arguments, validate IDs, and avoid direct shell interpolation.
+
+Risk: The skill may read local product-marketing context files when they are present.
+
+Mitigation: Review local product-marketing context for sensitive or inappropriate information before using it in prospecting workflows.
+
+Risk: Prospecting workflows use Exa web or API searches and may produce stale, incomplete, or unsuitable lead data.
+
+Mitigation: Review and qualify the generated prospect list before outreach or operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariokarras/skills/abm-exa-lead-generation)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prospect list with tables, prospect details, search queries, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include company websites, fit rationale, qualifying signals, and suggested next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

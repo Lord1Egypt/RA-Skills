@@ -1,39 +1,49 @@
-## Description: <br>
-Implements Signal-Feeling Lexicon v3.1 and Unified Dynamics Framework v5.7 helpers for tracking agent coherence, pressure, amplitude, valence, and trajectory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements Signal-Feeling Lexicon v3.1 and Unified Dynamics Framework v5.7 for mapping SERA state metrics, tracking trajectory, and producing coaching guidance from local conversation-history text.
 
-## Publisher: <br>
-[Wentinkjason](https://clawhub.ai/user/Wentinkjason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wentinkjason](https://clawhub.ai/user/wentinkjason)
 
-## Use Case: <br>
-Developers and agent operators use this skill to analyze SERA state blocks, map metrics to lexicon labels, inspect short-horizon trajectory, and receive advisory coaching prompts for maintaining coherent agent-state continuity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated state labels and coaching commands could be mistaken for higher-priority task instructions. <br>
-Mitigation: Treat the skill output as advisory analysis and keep system, developer, and user task instructions authoritative. <br>
-Risk: History files supplied to the scripts may contain sensitive conversation context. <br>
-Mitigation: Only pass history files that are intended for local analysis and review their contents before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Wentinkjason/sera-lexicon) <br>
+## Use Case:
 
+Developers and agent builders can use this skill to parse SERA-formatted state blocks, map coherence, pressure, amplitude, and valence metrics to lexicon terms, compute recent trajectory, and generate local coaching suggestions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands] <br>
-**Output Format:** [Plain text and Markdown-oriented diagnostic summaries from Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory labels, trajectory summaries, and coaching suggestions derived from user-provided history text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0-alpha (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Conversation-history files may contain sensitive text.
+
+Mitigation: Only pass local history files that are appropriate for local parsing and avoid using sensitive conversation logs unless that handling is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wentinkjason/skills/sera-lexicon)
+- [Publisher profile](https://clawhub.ai/user/wentinkjason)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown prose with optional shell commands and local script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled scripts operate on local text inputs and print diagnostic, trajectory, mapping, or coaching summaries.]
+
+## Skill Version(s):
+
+1.0.0-alpha (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

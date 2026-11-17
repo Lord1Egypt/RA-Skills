@@ -1,0 +1,8 @@
+interface:
+  display_name: 转录文字忠实清稿
+  short_description: 忠实清理中文转录稿，保留原意、修改清单与待确认项说明
+  default_prompt: 请粘贴拥有或获授权的原始转录文字，并说明说话人/时间标记和希望的清稿程度；我会输出干净稿、修改清单与待确认项。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: true

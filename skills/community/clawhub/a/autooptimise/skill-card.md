@@ -1,47 +1,57 @@
-## Description: <br>
-Autonomously optimises OpenClaw skills by benchmarking outputs, scoring them, proposing targeted SKILL.md changes, and re-testing approved changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomously optimises OpenClaw skills using a benchmark-driven loop that scores outputs, identifies weak patterns, proposes targeted SKILL.md changes, re-tests, and keeps or discards changes based on measured improvement.
 
-## Publisher: <br>
-[wealthvisionai-source](https://clawhub.ai/user/wealthvisionai-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wealthvisionai-source](https://clawhub.ai/user/wealthvisionai-source)
 
-## Use Case: <br>
-Developers and skill authors use Autooptimise to benchmark an installed OpenClaw skill, identify low-scoring behavior, and review targeted improvements before approving any SKILL.md changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live benchmark runs can exercise target-skill tools and may interact with account-connected or mutating capabilities. <br>
-Mitigation: Confirm the exact target skill and planned tools before each run, and avoid heartbeat scheduling for account-connected or mutating skills. <br>
-Risk: The skill proposes changes to other skills, which could introduce misleading guidance or broaden authority if accepted without review. <br>
-Mitigation: Review every proposed diff before approval and check that changes do not weaken safety rules or expand permissions. <br>
-Risk: Benchmark prompts and scoring choices can steer optimization toward narrow measured behavior instead of overall skill quality. <br>
-Mitigation: Review benchmark prompts and scoring output before relying on results, and validate accepted changes in normal agent use. <br>
+## Use Case:
 
+Developers and skill maintainers use Autooptimise to benchmark an OpenClaw skill, review quality scores, and evaluate one targeted improvement at a time before accepting changes.
 
-## Reference(s): <br>
-- [Autooptimise on ClawHub](https://clawhub.ai/wealthvisionai-source/autooptimise) <br>
-- [README](README.md) <br>
-- [Runner instructions](runner/run_experiment.md) <br>
-- [Scoring rubric](benchmark/scorer.md) <br>
-- [Benchmark tasks](benchmark/tasks.json) <br>
-- [autoresearch](https://github.com/karpathy/autoresearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON scoring records and unified diffs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human approval before applying proposed changes; logs benchmark iterations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and artifact changelog, released 2026-03-22) <br>
+Risk: The skill can test another skill and change that skill's behavior after approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it with an explicit target skill and review every proposed diff before approving changes.
+
+Risk: Unattended scheduled use on sensitive skills could surface or approve changes without enough review.
+
+Mitigation: Avoid unattended HEARTBEAT use on sensitive skills and run it only from trusted source versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wealthvisionai-source/skills/autooptimise)
+- [README](artifact/README.md)
+- [Runner instructions](artifact/runner/run_experiment.md)
+- [Scoring rubric](artifact/benchmark/scorer.md)
+- [Benchmark tasks](artifact/benchmark/tasks.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, unified diffs, JSON judge scores, and experiment log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create runner/experiment_log.md and modify a target SKILL.md only after explicit human approval.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog, released 2026-03-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

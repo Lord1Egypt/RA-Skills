@@ -1,38 +1,49 @@
-## Description: <br>
-该技能指导 OpenClaw 用户通过配置 SOUL.md 来调整 MiniMax 的输出风格、分块行为和截断处理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将 MiniMax 调教成"免费 Claude"的方法论。通过配置 SOUL.md 文件，实现智能分块输出、思考链隐藏、Claude 风格回复等高级特性。适用于希望提升 MiniMax 输出质量、减少截断、增加 Claude 风格体验的用户。
 
-## Publisher: <br>
-[howtimeschange](https://clawhub.ai/user/howtimeschange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[howtimeschange](https://clawhub.ai/user/howtimeschange)
 
-## Use Case: <br>
-OpenClaw users use this skill to create or update a persistent SOUL.md configuration that changes MiniMax response style, chunking behavior, and guidance patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to overwrite a persistent OpenClaw behavior file with broad permanent agent instructions. <br>
-Mitigation: Install only when persistent global behavior changes are intended; back up any existing SOUL.md before saving new content. <br>
-Risk: Broad behavior rules may create undesired response style, routing, or disclosure patterns across future OpenClaw sessions. <br>
-Mitigation: Review and narrow the rules before use, then keep a clear removal or restore path for reverting the file. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External OpenClaw users use this skill for guidance on configuring MiniMax behavior through a persistent SOUL.md profile, including chunked responses, hidden reasoning, and Claude-style response patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command snippets and configuration text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for creating and reloading SOUL.md; users apply the configuration manually.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill instructs users to overwrite a persistent OpenClaw SOUL.md configuration file, which can affect future agent behavior.
+
+Mitigation: Back up any existing ~/.openclaw/workspace/SOUL.md file, review the inserted rules before use, and restore or delete the file if behavior changes in unwanted ways.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtimeschange/skills/minimax-opus-tune)
+- [ClawHub publisher profile](https://clawhub.ai/user/howtimeschange)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The guidance asks users to create or overwrite a persistent OpenClaw SOUL.md behavior profile.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

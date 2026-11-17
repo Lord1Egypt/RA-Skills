@@ -1,38 +1,53 @@
-## Description: <br>
-Provides Zhang Juzheng-inspired pragmatic reform frameworks for organizational change, execution problems, stakeholder resistance, and incentive analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供张居正视角下的务实改革策略，针对变革阻力、执行力不足和复杂利益博弈，帮助使用者梳理可执行的组织变革思路。
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Managers, operators, founders, and change agents use this skill to analyze organizational reform, execution gaps, stakeholder resistance, and incentive tradeoffs through Zhang Juzheng-inspired frameworks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Management and reform recommendations could be treated as authoritative advice for sensitive people, incentive, or accountability decisions. <br>
-Mitigation: Use the skill as a perspective generator, then review recommendations with appropriate organizational, legal, HR, or stakeholder judgment before applying hard-edged tactics. <br>
+## Use Case:
 
+面向中文组织改革推动者、管理者和团队负责人，用于分析变革阻力、执行力、利益协调和渐进试点等问题，并形成供使用者判断的策略草稿。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/zhangjuzheng-think-partner) <br>
+### Deployment Geography for Use:
 
+China (primary organizational context)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Chinese Markdown advice with scenario analysis, diagnostic questions, and actionable recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first responses with English key terms preserved; no code execution, credential access, file access, network access, or persistence requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Strategic guidance could be mistaken for a formal personnel, legal, investment, or organizational decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as preliminary discussion drafts; have qualified people review formal decisions under applicable policies.
+
+Risk: Reform analysis may expose identifiable personal, customer, or nonpublic business information.
+
+Mitigation: Use only the minimum necessary context and redact or aggregate sensitive details before sharing them.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/zhangjuzheng-think-partner)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Text, Markdown]
+
+**Output Format:** [简体中文 Markdown，包含分析框架、建议、清单和表格]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [供使用者判断的纸面草稿；不执行工具、网络、保存、外发或审批操作。]
+
+## Skill Version(s):
+
+1.0.4 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

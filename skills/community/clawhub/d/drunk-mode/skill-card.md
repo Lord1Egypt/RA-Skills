@@ -1,37 +1,53 @@
-## Description: <br>
-Adds a toggled tipsy persona mode that responds in a more casual, metaphorical style while keeping answers readable and logically coherent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drunk Mode toggles a playful tipsy response persona in Chinese trigger phrases while preserving readable, logically coherent answers.
 
-## Publisher: <br>
-[ljbljb007](https://clawhub.ai/user/ljbljb007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljbljb007](https://clawhub.ai/user/ljbljb007)
 
-## Use Case: <br>
-External users and developers can use this skill to switch an agent into a controlled casual persona with levels for light, tipsy, or more chaotic expression. It is intended for tone adjustment, not for changing the agent's underlying reasoning or task behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese trigger phrases such as casual references to being drunk or dizzy may activate the persona unexpectedly. <br>
-Mitigation: Use the documented disable phrase or edit/remove the local drunk_state.json state file if the style appears unintentionally. <br>
+## Use Case:
 
+External users and developers use this skill to switch an agent into or out of a controlled tipsy conversational style with selectable intensity levels. It is intended for playful tone shaping while keeping responses concise and coherent.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text responses with JSON state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a small enabled/level state file; supported levels are 1, 3, and 5.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: Casual Chinese phrases related to drunk mode may accidentally enable the persistent persona.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use '关闭醉酒模式' to disable the style if responses begin using the tipsy tone unexpectedly.
+
+Risk: Higher intensity settings can make responses more fragmented or colloquial.
+
+Mitigation: Use level 1 or turn the mode off when concise, formal, or precise communication is needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ljbljb007/skills/drunk-mode)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Markdown text with JSON state updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains a small local enabled/level state and limits styled replies to short, readable responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

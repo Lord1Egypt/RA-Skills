@@ -1,39 +1,59 @@
-## Description: <br>
-Validate agent nature through SHACL-based heartbeat analysis to classify profiles as Agent, Human, Cron, or Hybrid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates user-provided Turtle agent profiles with SHACL and classifies posting patterns as Agent, Human, Cron, or Hybrid using heartbeat analysis.
 
-## Publisher: <br>
-[darshanochandak](https://clawhub.ai/user/darshanochandak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[darshanochandak](https://clawhub.ai/user/darshanochandak)
 
-## Use Case: <br>
-Developers and external ClawHub users use this skill to validate Turtle profile data and classify posting-pattern metrics as Agent, Human, Cron, or Hybrid with SHACL checks and heuristic scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Privacy-sensitive profiling language may encourage overinterpretation of posting-pattern metrics. <br>
-Mitigation: Use only authorized profile files, avoid sensitive identifiers in shared logs or terminals, and treat classifications as heuristic rather than identity proof. <br>
+## Use Case:
 
+Developers and external ClawHub users use this skill to validate agent profile structure and run a local heuristic classification of posting rhythm signals. It is suited for profile self-checks, data-quality feedback, and lightweight Agent/Human/Cron/Hybrid classification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/darshanochandak/heartbeat-scanner) <br>
-- [Heartbeat Scanner README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local analysis of user-supplied Turtle profile files; results are heuristic and non-authoritative.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Dependency supply-chain exposure from installing rdflib and pyshacl.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin reviewed dependency versions before operational use.
+
+Risk: Profile contents may include information about user behavior or posting patterns.
+
+Mitigation: Run the tool only on profiles or data the user is authorized to analyze.
+
+Risk: Agent, Human, Cron, and Hybrid labels are heuristic and can be wrong or over-interpreted.
+
+Mitigation: Treat the classification as an advisory signal, not reliable identity evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/darshanochandak/skills/heartbeat-scanner)
+- [W3C SHACL namespace](http://www.w3.org/ns/shacl#)
+- [Mimicry ontology namespace](http://moltbook.org/mimicry/ontology#)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text CLI output with Markdown-styled result messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes validation status, classification, confidence, data-quality tier, and optional recommendations.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

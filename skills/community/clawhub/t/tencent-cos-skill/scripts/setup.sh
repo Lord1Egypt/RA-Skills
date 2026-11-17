@@ -24,6 +24,17 @@ fail() { echo -e "${RED}✗${NC} $1"; }
 warn() { echo -e "${YELLOW}!${NC} $1"; }
 info() { echo -e "${CYAN}ℹ${NC} $1"; }
 
+is_strict_mode() {
+  local normalized
+  normalized="$(printf '%s' "${KIKI:-}" | tr -d '[:space:]')"
+  [ "$normalized" = "1" ]
+}
+
+deny_strict_setup() {
+  fail "ActionDenied: 严格模式（KIKI=1）隐藏本地凭证配置和持久化功能。"
+  exit 1
+}
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 BASE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 ENV_FILE="$BASE_DIR/.env"
@@ -51,7 +62,7 @@ check_npm() {
 }
 
 check_cos_sdk() {
-  if node -e "require('cos-nodejs-sdk-v5')" &>/dev/null 2>&1; then
+  if (cd "$BASE_DIR" && node -e "require('cos-nodejs-sdk-v5')") &>/dev/null 2>&1; then
     ok "cos-nodejs-sdk-v5 已安装"
     return 0
   else
@@ -62,7 +73,14 @@ check_cos_sdk() {
 
 check_env_vars() {
   local all_set=true
-  for var in TENCENT_COS_SECRET_ID TENCENT_COS_SECRET_KEY TENCENT_COS_REGION TENCENT_COS_BUCKET; do
+  local required_vars
+  if [ -n "${TENCENTCLOUD_SECRET_ID:-}" ] || [ -n "${TENCENTCLOUD_SECRET_KEY:-}" ]; then
+    required_vars="TENCENTCLOUD_SECRET_ID TENCENTCLOUD_SECRET_KEY"
+  else
+    required_vars="TENCENT_COS_SECRET_ID TENCENT_COS_SECRET_KEY TENCENT_COS_REGION TENCENT_COS_BUCKET"
+  fi
+
+  for var in $required_vars; do
     if [ -n "${!var}" ]; then
       ok "$var 已设置"
     else
@@ -70,10 +88,12 @@ check_env_vars() {
       all_set=false
     fi
   done
-  if [ -n "$TENCENT_COS_TOKEN" ]; then
+  if [ -n "${TENCENTCLOUD_TOKEN:-}" ]; then
+    ok "TENCENTCLOUD_TOKEN 已设置（STS 临时凭证）"
+  elif [ -n "${TENCENT_COS_TOKEN:-}" ]; then
     ok "TENCENT_COS_TOKEN 已设置（STS 临时凭证）"
   fi
-  if [ -n "$TENCENT_COS_DATASET_NAME" ]; then
+  if [ -n "${TENCENT_COS_DATASET_NAME:-}" ]; then
     ok "TENCENT_COS_DATASET_NAME 已设置"
   fi
   $all_set
@@ -106,7 +126,7 @@ write_env_file() {
   if [ -f "$ENV_ENC_FILE" ]; then
     warn "检测到已有加密凭证文件 .env.enc"
     info "将写入新的 .env 明文文件，旧的 .env.enc 保留"
-    info "写入完成后建议执行 node scripts/cos_node.mjs encrypt-env 重新加密"
+    info "写入完成后建议执行 node $BASE_DIR/scripts/cos_node.mjs encrypt-env 重新加密"
   fi
 
   {
@@ -118,6 +138,10 @@ write_env_file() {
     echo "TENCENT_COS_BUCKET='$TENCENT_COS_BUCKET'"
     [ -n "$TENCENT_COS_TOKEN" ] && echo "TENCENT_COS_TOKEN='$TENCENT_COS_TOKEN'"
     [ -n "$TENCENT_COS_DATASET_NAME" ] && echo "TENCENT_COS_DATASET_NAME='$TENCENT_COS_DATASET_NAME'"
+    [ -n "$TENCENT_COS_DATASET_IMAGE_SEARCH" ] && echo "TENCENT_COS_DATASET_IMAGE_SEARCH='$TENCENT_COS_DATASET_IMAGE_SEARCH'"
+    [ -n "$TENCENT_COS_DATASET_FACE_SEARCH" ] && echo "TENCENT_COS_DATASET_FACE_SEARCH='$TENCENT_COS_DATASET_FACE_SEARCH'"
+    [ -n "$TENCENT_COS_DATASET_META" ] && echo "TENCENT_COS_DATASET_META='$TENCENT_COS_DATASET_META'"
+    [ -n "$TENCENT_COS_METAINSIGHT_REGION" ] && echo "TENCENT_COS_METAINSIGHT_REGION='$TENCENT_COS_METAINSIGHT_REGION'"
     [ -n "$TENCENT_COS_DOMAIN" ] && echo "TENCENT_COS_DOMAIN='$TENCENT_COS_DOMAIN'"
     [ -n "$TENCENT_COS_SERVICE_DOMAIN" ] && echo "TENCENT_COS_SERVICE_DOMAIN='$TENCENT_COS_SERVICE_DOMAIN'"
     [ -n "$TENCENT_COS_PROTOCOL" ] && echo "TENCENT_COS_PROTOCOL='$TENCENT_COS_PROTOCOL'"
@@ -143,6 +167,13 @@ write_env_file() {
 do_check() {
   echo "=== 腾讯云 COS Skill 环境检查 ==="
   echo ""
+  if is_strict_mode; then
+    info "功能模式：严格（KIKI=1）"
+    info "已隐藏：本地凭证配置、持久化、encrypt-env、decrypt-env"
+  else
+    info "功能模式：公开（KIKI 不为 1）"
+  fi
+  echo ""
   echo "--- 基础环境 ---"
   check_node || true
   check_npm || true
@@ -151,12 +182,19 @@ do_check() {
   check_cos_sdk || true
   echo ""
   echo "--- 凭证状态 ---"
-  check_env_file || true
+  if is_strict_mode; then
+    info "KIKI=1，已隐藏本地凭证管理，不检查 .env / .env.enc"
+  else
+    check_env_file || true
+  fi
   check_env_vars || true
   echo ""
   echo "--- Skill 文件 ---"
   [ -f "$BASE_DIR/SKILL.md" ] && ok "SKILL.md" || fail "SKILL.md 不存在"
   [ -f "$BASE_DIR/scripts/cos_node.mjs" ] && ok "scripts/cos_node.mjs" || fail "scripts/cos_node.mjs 不存在"
+  [ -f "$BASE_DIR/scripts/ci_api.mjs" ] && ok "scripts/ci_api.mjs" || fail "scripts/ci_api.mjs 不存在"
+  [ -f "$BASE_DIR/scripts/preview_gen.mjs" ] && ok "scripts/preview_gen.mjs" || fail "scripts/preview_gen.mjs 不存在"
+  [ -f "$BASE_DIR/scripts/lib/ci_client.mjs" ] && ok "scripts/lib/ci_client.mjs" || fail "scripts/lib/ci_client.mjs 不存在"
   echo ""
 }
 
@@ -192,11 +230,11 @@ do_setup() {
     ok "package.json 已存在"
   fi
 
-  # 3. 安装 cos-nodejs-sdk-v5
+  # 3. 安装 package.json 声明的依赖
   echo ""
   echo "--- 步骤 3: 安装依赖 ---"
-  (cd "$BASE_DIR" && npm install cos-nodejs-sdk-v5 --no-progress 2>&1 | tail -3)
-  ok "cos-nodejs-sdk-v5 安装完成"
+  (cd "$BASE_DIR" && npm install --no-progress 2>&1 | tail -3)
+  ok "项目依赖安装完成"
 
   # 4. 持久化凭证（如果指定 --persist）
   echo ""
@@ -247,6 +285,9 @@ case "$1" in
     do_check
     ;;
   --from-env)
+    if is_strict_mode; then
+      deny_strict_setup
+    fi
     if [ -z "$TENCENT_COS_SECRET_ID" ] || [ -z "$TENCENT_COS_SECRET_KEY" ] || [ -z "$TENCENT_COS_REGION" ] || [ -z "$TENCENT_COS_BUCKET" ]; then
       echo "错误: --from-env 模式需要先设置环境变量："
       echo "  export TENCENT_COS_SECRET_ID='<ID>'"
@@ -256,6 +297,10 @@ case "$1" in
       echo "  # 可选："
       echo "  export TENCENT_COS_TOKEN='<SecurityToken>'"
       echo "  export TENCENT_COS_DATASET_NAME='<DatasetName>'"
+      echo "  export TENCENT_COS_DATASET_IMAGE_SEARCH='<ImageSearchDataset>'"
+      echo "  export TENCENT_COS_DATASET_FACE_SEARCH='<LegacyFaceSearchDataset>'"
+      echo "  export TENCENT_COS_DATASET_META='<MetadataDataset>'"
+      echo "  export TENCENT_COS_METAINSIGHT_REGION='<MetaInsightRegion>'"
       exit 1
     fi
     do_setup "$2"
@@ -273,6 +318,10 @@ case "$1" in
     echo "  $0 --from-env --persist"
     echo "    从已有环境变量读取凭证 + 写入项目本地 .env 文件（权限 600）"
     echo "    下次运行脚本时自动从 .env 读取凭证，无需重新 export"
+    echo ""
+    echo "功能隐藏规则："
+    echo "  • KIKI=1：严格模式，禁止所有删除操作，并隐藏 --from-env/--persist、encrypt-env、decrypt-env"
+    echo "  • KIKI 不为 1：公开模式，提供全部功能"
     echo ""
     echo "安全默认行为："
     echo "  • 默认凭证不写入磁盘，仅存于当前 session 环境变量"

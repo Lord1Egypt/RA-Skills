@@ -1,44 +1,56 @@
-## Description: <br>
-The Messari BTC & ETH Tracker helps agents retrieve Bitcoin and Ethereum market analytics through the Teneo Protocol network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Messari BTC & ETH Tracker provides Bitcoin and Ethereum market analytics from Messari data through a Teneo Protocol agent.
 
-## Publisher: <br>
-[teneoprotocoldev](https://clawhub.ai/user/teneoprotocoldev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teneoprotocoldev](https://clawhub.ai/user/teneoprotocoldev)
 
-## Use Case: <br>
-External agents, developers, traders, analysts, and researchers use this skill to connect to a Teneo-hosted Messari tracker and request BTC and ETH market data for portfolio review, financial modeling, or automated analytics workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to connect a funded wallet for automatic USDC payments without enough payment-scope detail. <br>
-Mitigation: Use only a low-balance wallet, verify the Teneo SDK and backend independently, and manually review every transaction amount and recipient before signing. <br>
-Risk: The security verdict is suspicious for this release. <br>
-Mitigation: Review the skill carefully before installation and treat the payment flow as requiring additional human approval. <br>
+## Use Case:
 
+External traders, analysts, researchers, and developers use this agent to retrieve BTC and ETH market metrics, ROI data, supply information, and all-time-high analytics for portfolio review or analytics pipelines.
 
-## Reference(s): <br>
-- [Messari BTC & ETH Tracker on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-messari-btc-eth-tracker) <br>
-- [Teneo Protocol](https://teneo-protocol.ai) <br>
-- [Teneo Agent SDK on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-sdk) <br>
-- [@teneo-protocol/sdk on npm](https://www.npmjs.com/package/@teneo-protocol/sdk) <br>
-- [Teneo Agent SDK GitHub Repository](https://github.com/TeneoProtocolAI/teneo-agent-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes WebSocket connection details, payment network configuration, and supported USDC contract addresses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill uses a funded wallet for automatic USDC payments without clear local limits or per-transaction approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated low-balance wallet, avoid unlimited token approvals, and confirm the agent identity, payment amount, recipient, chain, and approval flow before signing any transaction.
+
+Risk: SDK or package substitution could affect wallet or payment behavior.
+
+Mitigation: Verify the SDK source and package versions before installation and review the installed dependency tree before use.
+
+## Reference(s):
+
+- [Skill page on ClawHub](https://clawhub.ai/teneoprotocoldev/skills/teneo-agent-messari-btc-eth-tracker)
+- [Teneo Protocol](https://teneo-protocol.ai)
+- [Teneo Agent SDK on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-sdk)
+- [@teneo-protocol/sdk npm package](https://www.npmjs.com/package/@teneo-protocol/sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, a supported wallet, and USDC on Base, Peaq, or Avalanche for paid agent access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

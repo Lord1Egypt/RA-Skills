@@ -1,38 +1,55 @@
-## Description: <br>
-Sets up automatic scheduled backups of an OpenClaw workspace or another directory to GitHub or GitLab on macOS or Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up automatic scheduled backups to GitHub or GitLab for an OpenClaw workspace or other directories, with support for GitHub CLI repository setup, macOS launchd, and Linux cron.
 
-## Publisher: <br>
-[Cooperun](https://clawhub.ai/user/Cooperun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cooperun](https://clawhub.ai/user/cooperun)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure recurring Git-based backups for a workspace or directory, create or connect a remote repository, and manage scheduled backup jobs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recurring automation can commit and push all non-ignored files from the selected directory to a remote Git host. <br>
-Mitigation: Before enabling scheduling, verify the Git remote, repository privacy, authenticated account, and ignore rules; run one manual backup and inspect the commit. <br>
-Risk: An incorrect backup path or repository configuration can expose unintended workspace, secret, or personal files. <br>
-Mitigation: Choose the backup directory deliberately and exclude sensitive files before running Git add, commit, or push operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and operators use this skill to configure recurring Git-based backups for local workspaces or selected directories. It helps set up the remote repository, local configuration, scheduled task, and backup management commands.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Scheduled backups may push sensitive, private, or unintended files from a broad local directory to a remote Git repository.
+
+Mitigation: Choose a narrow backup folder, review it for secrets and private data, add exclusions such as .gitignore, and confirm the exact private remote repository before installing the schedule.
+
+Risk: The installed cron or launchd job keeps pushing changes automatically after setup.
+
+Mitigation: Make sure the backup cadence is intended, monitor logs and repository contents after installation, and use the provided uninstall flow when scheduled backups are no longer wanted.
+
+Risk: Editable or untrusted schedule values may create unsafe recurring jobs because schedule validation is not established in the evidence.
+
+Mitigation: Use only reviewed schedule values and avoid accepting schedule strings from untrusted input until validation is added.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install scheduled tasks and create or modify Git configuration, log files, and backup scripts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and management instructions for scheduled Git backups.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

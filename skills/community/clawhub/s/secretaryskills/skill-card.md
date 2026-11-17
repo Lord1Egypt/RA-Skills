@@ -1,40 +1,59 @@
-## Description: <br>
-Helps users clarify, break down, and schedule long-term goals into manageable tasks with automated reminders and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users clarify, break down, and schedule long-term goals into manageable tasks with reminders and progress tracking.
 
-## Publisher: <br>
-[joeyxin-del](https://clawhub.ai/user/joeyxin-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyxin-del](https://clawhub.ai/user/joeyxin-del)
 
-## Use Case: <br>
-External users and developers use this skill to turn vague long-term goals into clarified goal statements, milestones, atomic tasks, local plan files, cron-style reminder payloads, and progress reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save personal goal, milestone, and task details as local markdown files. <br>
-Mitigation: Install only if local plan persistence is acceptable, and use output paths only for folders the user intends the skill to modify. <br>
-Risk: Cron-style reminder JSON may be copied into an external automation system and trigger repeated reminders. <br>
-Mitigation: Review generated cron expressions and payload contents before placing them into any automation system. <br>
+## Use Case:
 
+Individuals and productivity-focused agents use this skill to turn vague long-term goals into clarified plans, milestone and task breakdowns, scheduling payloads, and progress status updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joeyxin-del/secretaryskills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown plan files, plain text CLI guidance, and JSON cron reminder payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save goal and task details to local markdown files when the user chooses to persist a plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Plan files and scheduling payloads may contain personal goals, timelines, and task context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact plan Markdown and scheduling JSON before sharing them or importing them into automation tools.
+
+Risk: Scheduling payloads may become stale when plans change or tasks are missed.
+
+Mitigation: Review generated cron configuration and realign the plan before enabling or updating automated reminders.
+
+Risk: Chinese-first prompts may be hard for non-Chinese users to follow.
+
+Mitigation: Translate or adapt prompts before use when the user or deployment context requires another language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeyxin-del/skills/secretaryskills)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Conversational text, Markdown plan files, status reports, and JSON scheduling payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save local plan files under a configurable plans directory when the user chooses to persist a plan.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Add Feishu (Lark) as a channel. Uses WebSocket long connection -- no public URL or ngrok needed. Works alongside WhatsApp, Telegram, Slack, or as a standalone channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add Feishu (Lark) as a channel using a WebSocket long connection, with no public URL or ngrok required, alongside WhatsApp, Telegram, Slack, or as a standalone channel.
 
-## Publisher: <br>
-[will-17173](https://clawhub.ai/user/will-17173) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[will-17173](https://clawhub.ai/user/will-17173)
 
-## Use Case: <br>
-Developers and operators use this skill to add a Feishu or Lark messaging channel to NanoClaw, configure bot credentials, register chats, and verify message handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The integration uses Feishu app credentials and persistent bot access to chats. <br>
-Mitigation: Use a dedicated Feishu app, keep FEISHU_APP_ID and FEISHU_APP_SECRET out of version control, and add the bot only to trusted chats. <br>
-Risk: Group registrations can allow broad chat access when trigger checks are disabled. <br>
-Mitigation: Prefer trigger-required group registrations unless everyone in the chat should be able to invoke the assistant. <br>
-Risk: Setup may use an incorrect chat identifier if the documented prefix differs from the implemented channel identifier. <br>
-Mitigation: Verify the JID prefix during setup before registering a chat. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/will-17173/add-feishu) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [Lark Open Platform](https://open.larksuite.com) <br>
-- [Feishu bot info API](https://open.feishu.cn/open-apis/bot/v3/info) <br>
+## Use Case:
 
+Developers and engineers use this skill to add and configure a Feishu/Lark messaging channel for NanoClaw. It applies code changes, guides app setup, configures credentials, and explains registration and troubleshooting for direct and group chats.
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash and TypeScript snippets plus skill package files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deterministic NanoClaw channel code changes and setup instructions for Feishu credentials, chat registration, validation, troubleshooting, and removal.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and manifest.yaml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles Feishu App Secret credentials and instructs users to copy runtime environment files, which can expose secrets if files are committed, backed up, or included in diagnostics.
+
+Mitigation: Use a dedicated runtime env file containing only FEISHU_APP_ID and FEISHU_APP_SECRET, restrict file permissions, and keep credential files out of version control, backups, and diagnostics.
+
+Risk: The requested Feishu permissions include im:chat.members:read, which the security summary flags as apparently unused.
+
+Mitigation: Remove im:chat.members:read unless review confirms it is required for the deployment.
+
+Risk: Registered Feishu chat messages, sender identity, and chat metadata are processed and stored by NanoClaw so the bot can respond.
+
+Mitigation: Review data handling expectations before enabling the channel, register only intended chats, and test with a pinned or local install before broader deployment.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn)
+- [Lark Open Platform](https://open.larksuite.com)
+- [Feishu Bot Info API](https://open.feishu.cn/open-apis/bot/v3/info)
+- [ClawHub skill page](https://clawhub.ai/will-17173/skills/add-feishu)
+- [Publisher profile](https://clawhub.ai/user/will-17173)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deterministic code package instructions, environment variable guidance, validation commands, chat registration snippets, troubleshooting steps, and removal guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: manifest.yaml and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

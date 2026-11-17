@@ -21,15 +21,16 @@ Trigger phrases include:
 - 按这个参考图做
 - 公众号封面 / 公众号配图 / 正文配图
 - 产品介绍图 / 课程图 / 电商图 / 付费资料图
+- 旅游手绘地图 / 美食地图 / 旅行地图 / 城市地图 / city walk 地图
+- 打卡路线图 / 一天从早吃到晚 / 5 天游路线
 
 ## Core Rule
 
 The user should not be stuck at "image prompt" when the runtime can generate
 images.
 
-- Do not make ordinary users write image prompts. Prompts are an internal
-  fallback or implementation detail. The user-facing deliverable is a cover,
-  graphic-note pages, page copy, and Xiaohongshu caption.
+- Do not make ordinary users write image prompts. The user-facing deliverable
+  is a cover, graphic-note pages, page copy, and Xiaohongshu caption.
 - If the user provides reference images, use them as the visual anchor and
   generate or prepare images in the same structural style, without direct
   copying.
@@ -56,7 +57,7 @@ from a keyword or content direction, such as "女性成长", "帮我做一篇图
 1. Confirm the publishing format if unclear: graphic note/image, spoken video,
    or Vlog storyboard.
 2. If graphic note/image is confirmed, use `keyword-to-publishable-content-package.md`
-   to search or inspect public references within the confirmed credit scope.
+   to search or inspect public references within the confirmed research scope.
 3. Distill the references into reusable angles: keywords, core point, cover
    promise, page structure, and comment demand.
 4. Rewrite the angle into the user's own publishable graphic-note content. Do
@@ -69,6 +70,13 @@ from a keyword or content direction, such as "女性成长", "帮我做一篇图
    - generated images when the runtime has image generation
 6. Produce a Xiaohongshu caption of about 300 Chinese characters plus 10
    publishing keywords and one comment prompt.
+
+Before image generation, run `xhs-platform-management-risk-baseline.md` and
+`xhs-content-compliance-risk-gate.md` on all on-image text, captions, keywords,
+and comment prompts. Do not generate images with risky CTA text such as
+"加微信", "评论领取", "私信发你", "扣 1", QR-code guidance, or guaranteed results.
+For product/commercial visuals, keep public value first and product name later.
+Fix the text first, then generate.
 
 For this path, the user does not need to provide a reference image. A reference
 image is useful only when the user wants a specific visual style. Otherwise,
@@ -148,6 +156,8 @@ note.
 
 Default routes:
 
+- travel map / food map / city-walk map / check-in route -> Travel Handdrawn
+  Map
 - travel / food / local life -> Travel Food Local-Life Cover
 - AI tool / tutorial / workflow + face/screenshot -> AI Person Tool Infographic
 - no-face tutorial / Lingzao / Agent / knowledge explanation -> Lingzao
@@ -158,8 +168,14 @@ If the user gives no face, screenshot, or product image, prefer a no-person
 knowledge card or AI-assisted graphic note instead of inventing a fake
 personal-photo cover.
 
+If the user asks for a city/destination route map, food map, itinerary map,
+or check-in order image, use `travel-handdrawn-map-visual-workflow.md` before
+image generation. Do not treat it as a generic travel poster. First collect or
+infer city, theme, number of points, point names, and route order; if these are
+missing, ask for the five-field map intake in that playbook.
+
 If the topic is broad, such as 女性成长, first search or inspect a small set of
-recent/high-signal references after credit confirmation, then turn the extracted
+recent/high-signal references after scope confirmation, then turn the extracted
 angle into a graphic-note package. Do not ask the user to provide an image
 prompt.
 
@@ -239,7 +255,7 @@ generated-image repair when actual images exist.
 - Does the image have a save/click reason, not only decoration?
 - Is the visual style suitable for the user's current resources?
 - Is the route honest about what can be generated from the user's materials?
-- Are local reference paths kept internal?
+- Are local reference paths kept out of the user-facing answer?
 - Are logos, brand marks, and IP characters used only when appropriate?
 
 ## User-Facing Continuations

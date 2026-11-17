@@ -1,46 +1,60 @@
-## Description: <br>
-Configure DeepInfra model routing with provider auth, model selection, fallback chains, and cost-aware defaults for stable open-source and frontier model workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure DeepInfra model routing with provider auth, model selection, fallback chains, and cost-aware defaults for stable open-source and frontier model workflows.
 
-## Publisher: <br>
-[ats3v](https://clawhub.ai/user/ats3v) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ats3v](https://clawhub.ai/user/ats3v)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect OpenAI-compatible workflows to DeepInfra, choose models by workload, define fallback chains, and control cost drift over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt text and selected model metadata are sent to DeepInfra when inference is requested. <br>
-Mitigation: Use the skill only for data you are comfortable sending to DeepInfra, and do not include API keys, passwords, personal records, or regulated data in prompts. <br>
-Risk: Local routing notes can accumulate operational preferences and incident history under ~/deep-infra/. <br>
-Mitigation: Periodically review the local memory file and keep notes limited to routing decisions, outcomes, and non-secret configuration preferences. <br>
-Risk: Model routing mistakes, excessive retries, or broad premium-model use can increase cost. <br>
-Mitigation: Set budget ceilings by workload, keep fallback chains short, and verify routing changes with a small prompt set before broader use. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect OpenAI-compatible workflows to DeepInfra, choose task-appropriate models, configure fallback routing, and control cost drift over time.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ats3v/deep-infra) <br>
-- [DeepInfra OpenAI-compatible API](https://api.deepinfra.com/v1/openai/) <br>
-- [DeepInfra model catalog endpoint](https://api.deepinfra.com/v1/openai/models) <br>
-- [DeepInfra chat completions endpoint](https://api.deepinfra.com/v1/openai/chat/completions) <br>
-- [DeepInfra dashboard](https://deepinfra.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and DEEPINFRA_API_KEY for verification examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: A real DeepInfra API key could be exposed if pasted into command-line arguments or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an environment variable or secret store for DEEPINFRA_API_KEY, avoid command-line key arguments, and do not save keys in memory files or chat.
+
+Risk: Prompt content and selected model metadata leave the local machine when routed inference is requested.
+
+Mitigation: Use the skill only for data appropriate to send to DeepInfra, and remove sensitive content before making inference requests.
+
+Risk: Local routing notes under ~/deep-infra/ may retain operational context that should not include secrets.
+
+Mitigation: Record decisions, pass/fail checks, budgets, and incident summaries only; do not store plaintext credentials or sensitive prompt data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ats3v/skills/deep-infra)
+- [DeepInfra OpenAI-compatible model catalog endpoint](https://api.deepinfra.com/v1/openai/models)
+- [DeepInfra OpenAI-compatible chat completions endpoint](https://api.deepinfra.com/v1/openai/chat/completions)
+- [DeepInfra dashboard](https://deepinfra.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce routing notes for local files under ~/deep-infra/ and DeepInfra API request patterns; requires DEEPINFRA_API_KEY, curl, and jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

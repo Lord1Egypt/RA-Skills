@@ -1,39 +1,50 @@
-## Description: <br>
-Build reliable, fast E2E test suites with Playwright and Cypress for critical user journeys, flaky test reduction, and CI/CD integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build reliable, fast E2E test suites with Playwright and Cypress, with guidance for critical user journey coverage, flaky test elimination, and CI/CD integration.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to design, debug, and maintain end-to-end browser tests for critical web workflows with Playwright or Cypress. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A global or unverified install can make the guidance available outside the intended project or reduce build repeatability. <br>
-Mitigation: Prefer a project-scoped install unless global availability is intentional, and pin or verify the ClawHub source for repeatable builds. <br>
-Risk: Example Playwright, Cypress, and CI snippets may not match the target application's routes, data model, or pipeline constraints. <br>
-Mitigation: Review and adapt examples before use, then run the resulting tests locally and in CI before relying on them as release gates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/e2e-testing-patterns) <br>
+## Use Case:
 
+Developers and engineers use this skill to design, implement, debug, and maintain end-to-end test automation for web applications using Playwright and Cypress. It is especially relevant for critical workflows, flaky test diagnosis, browser-test CI/CD pipelines, selector strategy, accessibility checks, and visual regression testing.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No automatic code execution; examples must be adapted and reviewed for the target project.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable npx install commands can fetch changing packages or code in sensitive environments.
+
+Mitigation: Prefer a pinned or reviewed ClawHub release before installation, and keep Playwright and related tools as pinned dev dependencies with a lockfile in project and CI environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/e2e-testing-patterns)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, YAML, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Playwright, Cypress, accessibility, visual regression, debugging, and CI/CD testing patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

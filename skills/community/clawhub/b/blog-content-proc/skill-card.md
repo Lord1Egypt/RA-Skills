@@ -1,40 +1,50 @@
-## Description: <br>
-Processes blog content to extract embedded videos and generate lightweight GIF previews for quick scanning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process blog content to extract videos and generate GIF previews. Works with blogwatcher, video-frames, and gifgrep skills.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and content workflows use this skill to process blog or RSS feeds, extract embedded video URLs, and generate GIF previews for quick scanning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted feeds or media files can expose media-processing steps to malformed or oversized inputs. <br>
-Mitigation: Use feeds and videos you trust, and apply size limits, time limits, and sandboxing where possible. <br>
-Risk: The artifact does not include the executable implementation file referenced by package.json. <br>
-Mitigation: If installing as an npm package, verify the missing implementation file, dependency versions, and source provenance first. <br>
+## Use Case:
 
+Developers and content operations teams use this skill to process blog or RSS feeds, extract embedded video URLs, and generate lightweight GIF previews for quick review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/blog-content-proc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, guidance] <br>
-**Output Format:** [Markdown guidance with extracted video URLs and generated GIF preview file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on RSS parsing and ffmpeg-based media processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Dependency hygiene concerns may affect reproducibility or production assurance, especially around ffmpeg-static.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin dependencies, keep a lockfile, and review the ffmpeg-static package source before relying on the skill in production.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/blog-content-proc)
+- [Publisher Profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with generated video URL lists and GIF preview file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on RSS parsing and ffmpeg-backed GIF generation dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Track A-share market anomalies, including limit-up streaks, unusual volume, large capital flows, and stock-level drilldowns powered by GroundAPI MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track A-share market anomalies, including limit-up streaks, unusual volume, and large capital flows, and drill into individual stocks using GroundAPI MCP tools.
 
-## Publisher: <br>
-[qingkongzhiqian](https://clawhub.ai/user/qingkongzhiqian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qingkongzhiqian](https://clawhub.ai/user/qingkongzhiqian)
 
-## Use Case: <br>
-External users and analysts use this skill to request A-share anomaly reports, investigate limit-up streaks, volume spikes, capital-flow changes, and drill into selected stocks through GroundAPI MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a GroundAPI API key for the MCP service. <br>
-Mitigation: Use a revocable, limited API key where possible and rotate it if access is no longer needed. <br>
-Risk: Market-analysis requests are sent to the GroundAPI MCP service. <br>
-Mitigation: Install and use the skill only when GroundAPI is trusted for the relevant market-analysis requests. <br>
-Risk: Generated market analysis could be mistaken for investment advice. <br>
-Mitigation: Treat reports as informational and review them before acting on any market decision. <br>
+## Use Case:
 
+External users and market analysts use this skill to summarize A-share market anomaly signals, inspect limit-up activity, compare unusual volume and capital-flow indicators, and produce an informational anomaly report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qingkongzhiqian/groundapi-anomaly-tracker) <br>
-- [GroundAPI homepage](https://groundapi.net) <br>
-- [GroundAPI MCP endpoint](https://mcp.groundapi.net/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown market-analysis report with optional JSON MCP configuration snippet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GROUNDAPI_KEY and the GroundAPI MCP service; generated market analysis is informational and not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; changelog: v1.1.0 Update MCP endpoint to new format) <br>
+Risk: Market anomaly reports may be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational market data, preserve the non-advice caveat, and avoid recommendation language.
+
+Risk: The skill sends market-analysis queries to the GroundAPI MCP endpoint.
+
+Mitigation: Use it only when sharing those queries with GroundAPI is acceptable.
+
+Risk: A real GroundAPI key could be exposed if copied into files or chat transcripts.
+
+Mitigation: Configure the key through environment or secret management and do not commit real credentials.
+
+Risk: Third-party market data calls can fail or return incomplete data.
+
+Mitigation: Skip failed retrieval steps, clearly state missing data, and avoid filling gaps with assumptions.
+
+## Reference(s):
+
+- [GroundAPI homepage](https://groundapi.net)
+- [GroundAPI MCP endpoint](https://mcp.groundapi.net/mcp)
+- [ClawHub skill page](https://clawhub.ai/qingkongzhiqian/skills/groundapi-anomaly-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, guidance, configuration]
+
+**Output Format:** [Markdown report with tables, bullet summaries, and informational caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output language follows the user; failed data retrieval steps should be skipped and disclosed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

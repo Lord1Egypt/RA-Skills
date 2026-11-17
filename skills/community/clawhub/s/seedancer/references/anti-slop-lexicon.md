@@ -1,3 +1,8 @@
+> **Language**: This document is in Chinese only. For English overview, see [README.md](../README.md).
+>
+> **语言说明**: 本文档仅提供中文版本。英文概述请查看 [README.md](../README.md)。
+
+---
 # 反空洞词典 (Anti-Slop Lexicon)
 
 > 注意力是预算。空洞词不仅丑，还贵——浪费模型有限的条件影响。

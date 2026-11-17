@@ -1,39 +1,52 @@
-## Description: <br>
-Backs up files uploaded to a Slack channel into the local ~/.openclaw/doc/backup directory with filters for count, filename, file type, and upload time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Back up files uploaded to a Slack channel to the local doc/backup directory, with matching by count, filename prefix or keyword, file type, and recent upload time.
 
-## Publisher: <br>
-[caigang78](https://clawhub.ai/user/caigang78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[caigang78](https://clawhub.ai/user/caigang78)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve real files from a Slack channel and persist verified backups locally. It is useful when a user needs recent Slack uploads saved by recency, name, type, or count. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can copy potentially sensitive Slack files to a persistent local backup folder. <br>
-Mitigation: Confirm the Slack token, workspace, and channel before use, and apply appropriate access controls and retention practices to ~/.openclaw/doc/backup. <br>
-Risk: The submitted artifact depends on shared Slack helper files that were not included for review. <br>
-Mitigation: Review the referenced shared helper files before installing or running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/caigang78/slack-backup) <br>
+## Use Case:
 
+External users and developers use this skill to back up real files from Slack into a local backup directory after describing the desired Slack file or filter in natural language.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text] <br>
-**Output Format:** [Shell command execution that emits SUCCESS or ERROR status lines and writes downloaded files to a local backup directory] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses environment variables such as LIMIT, NAME_PREFIX, NAME_CONTAINS, MINUTES, FILE_TYPE, and BACKUP_DIR to select Slack files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The executable behavior depends on shared Slack helper files that were outside the reviewed artifact.
+
+Mitigation: Install or run the skill only when those shared helper files are trusted, versioned with the skill, and protected from modification.
+
+Risk: The skill downloads real Slack files to a local backup directory.
+
+Mitigation: Use explicit Slack backup wording, review requested filters before execution, and verify SUCCESS output plus non-empty downloaded files.
+
+## Reference(s):
+
+- [ClawHub Slack Backup skill page](https://clawhub.ai/caigang78/skills/slack-backup)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files, Text]
+
+**Output Format:** [Markdown guidance with inline bash commands and SUCCESS or ERROR status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads matched Slack files to ~/.openclaw/doc/backup/ and requires success output plus a non-empty file check.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

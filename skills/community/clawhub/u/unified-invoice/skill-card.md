@@ -1,40 +1,61 @@
-## Description: <br>
-Generates Korean quotes and tax invoices, manages client and item records, calculates VAT and totals, and exports invoice documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Korean quotes, Korean tax invoices, and freelancer invoice documents with client and item records, VAT calculations, and HTML, PDF, or Markdown output.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers, freelancers, and business operators use this skill to create quotes and tax invoices, maintain reusable client and item data, and generate local invoice files for customer billing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and emits sensitive business, client, invoice, tax, and banking data in local data and output files. <br>
-Mitigation: Install only in a trusted local workspace and treat the data and output folders as sensitive. <br>
-Risk: Untrusted client names, item descriptions, or notes can flow into generated HTML or Markdown documents. <br>
-Mitigation: Use trusted input data until generated HTML and Markdown escaping and output path constraints are confirmed. <br>
+## Use Case:
 
+Freelancers and small business operators use this skill to create Korean quotes, Korean tax invoices, and client invoices while maintaining reusable client, sender, and item records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/unified-invoice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with CLI commands; generated invoice artifacts are HTML, PDF, and Markdown where supported.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files may include client, business, invoice amount, tax, and bank-account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata; artifact frontmatter and package.json show 1.0.0) <br>
+Risk: Unescaped document data can affect generated HTML or PDF invoices when client, item, notes, or date values are untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape or sanitize document fields before rendering and avoid untrusted client, item, notes, or date values until escaping is fixed.
+
+Risk: Path handling can expose unsafe file-write or PDF-conversion behavior.
+
+Mitigation: Validate output filenames and paths before writing files or converting HTML to PDF.
+
+Risk: Client, sender, invoice, and bank details are sensitive business data stored in local JSON and generated document files.
+
+Mitigation: Keep the data and output directories out of shared repositories and restrict access to generated invoices.
+
+Risk: PDF conversion depends on a browser connection and may process generated invoice HTML.
+
+Mitigation: Run PDF conversion in an isolated browser profile until escaping and output path validation are addressed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/unified-invoice)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, HTML, PDF, Shell commands, Configuration]
+
+**Output Format:** [Markdown, HTML, and PDF files plus command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated documents to an output directory and stores client, item, and sender records in JSON files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter/package.json list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

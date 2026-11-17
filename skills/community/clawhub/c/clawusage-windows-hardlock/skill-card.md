@@ -1,41 +1,56 @@
-## Description: <br>
-Runs bundled local PowerShell scripts from chat to report OpenClaw/Codex usage, manage idle alerts, set thresholds, and switch output language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs local ClawUsage monitoring commands from Telegram or Feishu chat to check Codex usage, manage automatic idle alerts, set thresholds, and switch language.
 
-## Publisher: <br>
-[fantasyengineercdream](https://clawhub.ai/user/fantasyengineercdream) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fantasyengineercdream](https://clawhub.ai/user/fantasyengineercdream)
 
-## Use Case: <br>
-OpenClaw users on Windows use this chat command to check Codex usage and manage idle usage alerts from Telegram or Feishu command channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local OpenClaw auth and session files and use stored tokens to request usage data. <br>
-Mitigation: Install only when the publisher and Windows chat-triggered usage-monitoring behavior are trusted, and review local token and session access before use. <br>
-Risk: Auto alerts can create a hidden Windows scheduled task and send idle or usage details to a chat target inferred from recent activity. <br>
-Mitigation: Enable auto alerts only when that background behavior and inferred target selection are acceptable; use the skill's auto status and auto off controls to inspect or disable it. <br>
-Risk: Outbound usage checks may contact chatgpt.com with the stored token. <br>
-Mitigation: Confirm that outbound access to chatgpt.com and use of the stored token are permitted in the deployment environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fantasyengineercdream/clawusage-windows-hardlock) <br>
+## Use Case:
 
+Developers and external OpenClaw users on Windows use this skill from chat to inspect Codex usage, configure idle reminders, and return the local command output directly.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text command output from bundled PowerShell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns stdout directly without model post-formatting; supports English and Chinese output modes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads OpenClaw authentication and session files and uses a local token to query ChatGPT usage.
+
+Mitigation: Install only in a trusted Windows profile, review the behavior before use, and avoid enabling it where local OpenClaw credentials should remain inaccessible to skills.
+
+Risk: Automatic idle alerts install a hidden recurring Windows scheduled task.
+
+Mitigation: Enable auto alerts only deliberately, review the scheduled task named ClawUsageAuto, and run /clawusage auto off to remove it when no longer needed.
+
+Risk: Usage and session snapshots are cached under the user's profile.
+
+Mitigation: Treat the .clawusage state directory as sensitive local data and delete it when clearing local usage history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fantasyengineercdream/skills/clawusage-windows-hardlock)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns stdout directly without model post-formatting.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

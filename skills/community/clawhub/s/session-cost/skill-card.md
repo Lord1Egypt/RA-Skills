@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze OpenClaw session logs to report token usage, costs, and performance metrics grouped by agent and model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze OpenClaw session logs to report token usage, costs, and performance metrics grouped by agent and model.
 
-## Publisher: <br>
-[khaney64](https://clawhub.ai/user/khaney64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[khaney64](https://clawhub.ai/user/khaney64)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to summarize local session logs, estimate API spending, inspect token usage, and compare costs by agent, provider, model, or session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local OpenClaw session logs may include session IDs, usage history, and spending patterns. <br>
-Mitigation: Use --agent, --offset, --provider, or a narrow --path to limit the report scope, and avoid sharing JSON, details, or Discord output when the contents are sensitive. <br>
-Risk: The utility reads local session log files from the default OpenClaw agents directory or a user-supplied path. <br>
-Mitigation: Run it only when local log access is appropriate, and review the selected path before producing or sharing reports. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect local OpenClaw session logs, estimate API spending, and summarize token, cache, cost, duration, provider, model, and agent usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/khaney64/session-cost) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text summaries, compact tables, JSON objects, and Discord-friendly Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports filters for agent, provider, time offset, custom log path, and per-session details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill reads local OpenClaw session log files, which may include usage metadata and session identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on logs you are authorized to inspect, and use --agent, --path, --provider, or --offset to narrow scans when appropriate.
+
+Risk: Cost and token summaries depend on usage fields recorded in local session logs and may be incomplete when a model or provider does not report tokens.
+
+Mitigation: Treat summaries as operational estimates and inspect detail or JSON output when values appear incomplete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/khaney64/skills/session-cost)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Analysis]
+
+**Output Format:** [Plain text summaries, tabular text details, JSON, or markdown-friendly chat summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports agent, provider, time-window, path, detail, table, JSON, and chat-summary filters.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

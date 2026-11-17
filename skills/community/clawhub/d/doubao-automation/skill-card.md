@@ -1,43 +1,52 @@
-## Description: <br>
-豆包自动化操作 lets an agent control a logged-in Microsoft Edge browser through Playwright CDP to use Doubao for chat, image and video generation, batch generation, and downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+豆包自动化操作技能基于 Playwright CDP 协议接管已登录 Edge 浏览器，实现豆包 AI 的自动化操作，支持批量生成图片、批量生成视频、文本对话和下载生成内容。
 
-## Publisher: <br>
-[hitjcl](https://clawhub.ai/user/hitjcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitjcl](https://clawhub.ai/user/hitjcl)
 
-## Use Case: <br>
-Developers and end users who already use Doubao in Edge can ask an agent to run Doubao chats, create or download generated images and videos, and process prompt lists in batches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a logged-in Edge browser through CDP and can disrupt or expose normal browsing sessions. <br>
-Mitigation: Use a separate Edge profile with only Doubao logged in, and close sensitive tabs before running the skill. <br>
-Risk: The startup flow can close existing Edge windows before relaunching Edge in CDP mode. <br>
-Mitigation: Save browser work first, or run the skill from a dedicated browser profile that is not used for normal browsing. <br>
-Risk: Image-to-video operations can send the selected local image file to Doubao. <br>
-Mitigation: Review the image path and file contents before running image-to-video, and avoid sending sensitive files. <br>
+## Use Case:
 
+External users and automation developers use this skill to operate Doubao through an already logged-in Microsoft Edge browser for chat, image generation, video generation, image-to-video conversion, and downloading recent generated content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hitjcl/doubao-automation) <br>
-- [Doubao](https://www.doubao.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, console text, JSON result summaries, and downloaded media files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Edge browser session reachable through localhost CDP; generated media downloads are saved to the requested output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill controls a logged-in Edge browser broadly and may disrupt or expose unrelated browser sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate Edge profile dedicated to Doubao, close unrelated browser sessions first, avoid sensitive prompt files or image uploads, and stop the CDP-enabled browser after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hitjcl/skills/doubao-automation)
+- [Publisher profile](https://clawhub.ai/user/hitjcl)
+- [Doubao website](https://www.doubao.com/)
+- [Doubao chat endpoint used by the skill](https://www.doubao.com/chat/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script-generated text or downloaded media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Edge profile exposed through local CDP on port 9222.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

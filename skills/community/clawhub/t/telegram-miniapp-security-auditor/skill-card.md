@@ -1,45 +1,54 @@
-## Description: <br>
-Audit Telegram Mini App projects for launch safety before connecting bot tokens or public channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Telegram Mini App projects for launch-readiness risks around initData validation, bot tokens, admin endpoints, CORS, PII collection, and public channel deployment.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers and engineers use this skill to statically audit Telegram Mini App frontends, backends, BotFather launch runbooks, and related ClawHub or Codex skill packages before connecting production bot tokens or public channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated audit reports may include snippets of secrets or token-like values found in the scanned project. <br>
-Mitigation: Run the auditor only against the intended project or subdirectory, write reports to a controlled output directory, limit report sharing, and rotate any real credentials found. <br>
-Risk: Static audit output can miss runtime behavior or require human interpretation before launch. <br>
-Mitigation: Inspect every BLOCK and REVIEW file reference, complete the Mini App security checklist, and require local or browser QA evidence before BotFather or public channel changes. <br>
-Risk: The skill suggests an optional TrustClaw scan command for packaged ClawHub or Codex skills. <br>
-Mitigation: Review that command and its target path separately before running it. <br>
+## Use Case:
 
+Developers and engineers use this skill to run a static, evidence-first audit of Telegram Mini App projects before connecting production bot tokens, BotFather settings, or public channels.
 
-## Reference(s): <br>
-- [Telegram Mini App Security Checklist](artifact/references/tma-security-checklist.md) <br>
-- [Source Homepage](https://github.com/zack-dev-cm/telegram-miniapp-security-auditor) <br>
-- [ClawHub Release Page](https://clawhub.ai/zack-dev-cm/telegram-miniapp-security-auditor) <br>
-- [Publisher Profile](https://clawhub.ai/user/zack-dev-cm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands, plus generated JSON and Markdown audit report files when the bundled auditor is run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Audit responses lead with PASS, REVIEW, or BLOCK, followed by findings, launch recommendation, produced artifacts, and audit limitations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill reads a user-selected Telegram Mini App project, which can include local configuration files such as .env.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on projects you intend to audit and review report contents before sharing them.
+
+Risk: Generated audit reports may contain token-like or secret-like snippets from the scanned project.
+
+Mitigation: Store reports in a private location and redact sensitive snippets before distributing results.
+
+## Reference(s):
+
+- [Telegram Mini App Security Checklist](references/tma-security-checklist.md)
+- [Project homepage](https://github.com/zack-dev-cm/telegram-miniapp-security-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON audit reports with concise launch recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file paths, evidence snippets, PASS/REVIEW/BLOCK decisions, and remediation guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

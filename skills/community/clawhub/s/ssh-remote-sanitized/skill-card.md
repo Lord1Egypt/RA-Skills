@@ -1,42 +1,56 @@
-## Description: <br>
-Manages SSH-accessible Linux/Unix servers through connection checks, remote command execution, file transfer, monitoring, service management, log review, and security checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SSH remote server management skill for Linux and Unix operations, including multi-server connection management, remote command execution, file transfer, system monitoring, service management, log analysis, and security checks.
 
-## Publisher: <br>
-[nickliang](https://clawhub.ai/user/nickliang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickliang](https://clawhub.ai/user/nickliang)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to administer configured Linux/Unix servers over SSH, including command execution, file transfer, monitoring, service management, log inspection, and security checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad remote administrative power over SSH-accessible servers. <br>
-Mitigation: Install only for intended server administration, use least-privilege SSH accounts, prefer keys over passwords, and avoid production or root credentials where possible. <br>
-Risk: Remote commands, file transfers, log cleanup, hardening, recursive transfer, and preset upload functions can make destructive or hard-to-recover changes. <br>
-Mitigation: Review exact commands and paths before execution, keep backups, and use the highest-risk operations only when a recovery path is available. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to manage configured Linux or Unix servers over SSH for routine administration, troubleshooting, monitoring, file transfer, service control, log review, and security checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nickliang/ssh-remote-sanitized) <br>
-- [README.md](artifact/README.md) <br>
-- [Quick configuration guide](artifact/docs/快速配置指南.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style operational responses with command output summaries and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include remote command output, file transfer status, system metrics, service status, log excerpts, and security recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: Broad SSH administration can expose production servers if credentials, host identity, or target selection are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege SSH accounts with dedicated keys, avoid storing passwords or key passphrases in JSON configuration, verify host keys out of band, and restrict configured server targets.
+
+Risk: Remote commands, sudo-backed operations, and destructive file actions can cause service disruption or data loss.
+
+Mitigation: Validate the command, inputs, and target host before execution; require separate review for destructive or sudo-backed actions and keep backups for production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickliang/skills/ssh-remote-sanitized)
+- [ssh2 documentation](https://github.com/mscdex/ssh2)
+- [OpenSSH manual](https://www.openssh.com/manual.html)
+- [Linux system administration reference](https://linux.die.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style operational responses with command output, status summaries, configuration snippets, and guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe or execute SSH-backed operations against configured target servers; review targets and commands before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

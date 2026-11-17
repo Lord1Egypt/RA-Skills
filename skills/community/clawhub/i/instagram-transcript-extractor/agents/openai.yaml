@@ -1,0 +1,9 @@
+interface:
+  display_name: "Instagram Transcript Extractor"
+  short_description: "Extract transcripts from Instagram videos"
+  icon_small: "./assets/instagram-transcript-extractor-icon.svg"
+  icon_large: "./assets/instagram-transcript-extractor-icon.svg"
+  default_prompt: "Use $instagram-transcript-extractor to transcribe an Instagram Reel."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,47 +1,68 @@
-## Description: <br>
-Huo15 OpenClaw Enhance is an OpenClaw plugin that adds non-invasive agent-harness enhancements such as memory support, task and workflow tools, status views, file sharing, upload handling, configuration diagnostics, and skill recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huo15 Openclaw Enhance is a third-party OpenClaw plugin that adds non-invasive agent-harness features such as structured memory, safety observations, task and workflow helpers, statusline and dashboard views, file upload and sharing bridges, and session search without replacing native OpenClaw behavior.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this plugin to extend OpenClaw with non-invasive productivity, memory, workflow, file-transfer, diagnostics, and safety-observation features while keeping overlapping behavior delegated to OpenClaw itself. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin enables broad always-on memory, prompt-hook, local scanning, task-dispatch, and file-transfer behavior beyond the narrow upload-loop fix described in the release summary. <br>
-Mitigation: Review the enabled modules before deployment and disable unneeded features such as bridge dispatch, session bridge, native memory surfacing, file sharing or upload, configuration diagnostics, hook profiling, workflows, and lifecycle memory capture. <br>
-Risk: Setup and LaunchAgent scripts can create persistent instruction-file changes or scheduled execution. <br>
-Mitigation: Do not run setup or scheduled follow-up scripts unless the operator has reviewed the changes and accepted persistent local effects. <br>
-Risk: Memory export and upload or share links can expose sensitive local data paths or generated files. <br>
-Mitigation: Treat memory exports and file links as sensitive, limit sharing to intended recipients, and revoke or expire links when they are no longer needed. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this plugin to add persistent context, task organization, safety observations, file-transfer helpers, session lifecycle cues, and operational diagnostics to OpenClaw agents while keeping native OpenClaw behavior authoritative.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-enhance) <br>
-- [Publisher Profile](https://clawhub.ai/user/zhaobod1) <br>
-- [Project Homepage](https://cnb.cool/huo15/ai/huo15-openclaw-enhance) <br>
-- [README](README.md) <br>
-- [Architecture](docs/architecture.md) <br>
-- [Non-invasive Enhancement ADR](docs/decisions/0001-non-invasive-enhancement.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured tool responses with file paths, shell commands, JSON-like configuration, and human-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local file-share or upload links, memory and task records, diagnostic findings, and commands for an OpenClaw user to review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.7.21 (source: server release evidence and package.json; changelog released 2026-06-26) <br>
+Risk: The plugin is broad and always-on, and server security evidence says it can persistently change agent behavior and force replies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when those enhancements are wanted, review enabled modules before deployment, and disable behavior-changing modules that are not needed.
+
+Risk: Local upload and share routes can expose files through generated URLs.
+
+Mitigation: Review large-file upload and sharing settings, require an appropriate public base URL only when needed, use short expirations, and revoke shared files when the transfer is complete.
+
+Risk: Memory capture, transcript search, and history surfacing can reveal local agent context.
+
+Mitigation: Disable automatic memory and transcript/history features for sensitive workspaces or limit use to agents where persistent context is acceptable.
+
+Risk: LaunchAgent, archiver, or curl-to-bash setup paths can create unwanted background behavior or install unreviewed code.
+
+Mitigation: Prefer the package-manager install path, pin and inspect any setup script before execution, and avoid optional background-task setup unless operations require it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-enhance)
+- [Source repository](https://cnb.cool/huo15/ai/huo15-openclaw-enhance)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [npm package](https://www.npmjs.com/package/@huo15/openclaw-enhance)
+- [Architecture documentation](docs/architecture.md)
+- [Product requirements](docs/PRD.md)
+- [Non-invasive enhancement decision](docs/decisions/0001-non-invasive-enhancement.md)
+- [Remove model router decision](docs/decisions/0002-remove-model-router.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, JSON-like tool results, inline shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include temporary local file-sharing or upload URLs, memory and transcript search summaries, dashboard/status information, and proposed OpenClaw CLI commands.]
+
+## Skill Version(s):
+
+6.7.21 (source: server release and package.json; SKILL.md frontmatter reports 6.7.13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

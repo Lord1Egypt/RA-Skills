@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7db53t345wnbfmad9bqdxzn582wphx",
-  "slug": "openclaw-github-backup",
+  "name": "openclaw-backup",
   "version": "1.0.0",
-  "publishedAt": 1773461789475
+  "description": "Automatically backup OpenClaw configuration to a private GitHub repository with smart backup frequency.",
+  "author": "OpenClaw Community",
+  "tags": ["backup", "github", "automation", "security", "openclaw"],
+  "license": "MIT"
 }

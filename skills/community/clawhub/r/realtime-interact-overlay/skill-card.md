@@ -1,42 +1,57 @@
-## Description: <br>
-Realtime Interact Overlay helps agents request user confirmation, selection, or short input through a macOS dialog or browser overlay near the active task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Realtime Interact Overlay displays local macOS or browser pop-up dialogs so an agent can request user confirmation, input, or selection near the active workflow.
 
-## Publisher: <br>
-[LightCastlePro](https://clawhub.ai/user/LightCastlePro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lightcastlepro](https://clawhub.ai/user/lightcastlepro)
 
-## Use Case: <br>
-Developers and agent operators can use this skill when an agent needs explicit user confirmation or brief input before continuing with local or browser-based actions. It is best suited for low-sensitivity confirmations and should not be used for passwords, payments, account approvals, or destructive file actions until the documented security gaps are fixed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Browser overlay content may be unsafe because the security summary identifies review-worthy gaps around browser injection and unsafe modal rendering. <br>
-Mitigation: Review the implementation before installation and use only an updated version that escapes browser modal content and avoids unsafe innerHTML behavior. <br>
-Risk: The skill is not suitable for sensitive input because the security guidance says hidden password entry is not genuinely implemented. <br>
-Mitigation: Do not use the skill for passwords, payments, account approvals, or other sensitive input until hidden-entry handling is fixed and reviewed. <br>
-Risk: The skill can be used to confirm destructive or high-impact actions while local and browser permissions are not clearly documented. <br>
-Mitigation: Avoid file-deletion confirmations and other high-impact approvals until required permissions and user-facing approval boundaries are clearly documented. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LightCastlePro/realtime-interact-overlay) <br>
-- [Skill source overview](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to pause actions such as posting comments, deleting files, or completing browser workflows until a user confirms or provides input.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON interaction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser-injected JavaScript for overlays and JSON status values such as confirmed, cancel, timeout, or error.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive values entered through input, password, or payment dialogs can be exposed or mishandled.
+
+Mitigation: Use the skill only for low-risk confirmations; do not enter passwords, payment codes, API keys, recovery phrases, or other secrets.
+
+Risk: Browser mode injects JavaScript into the active page and can be unsafe on logged-in or sensitive pages.
+
+Mitigation: Avoid browser JavaScript injection on logged-in or sensitive pages until message rendering uses literal text and the confirmation result flow is fully implemented.
+
+Risk: A confirmation popup can still approve an incorrect or destructive agent action.
+
+Mitigation: Review the proposed action text before execution, and scan and test the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lightcastlepro/skills/realtime-interact-overlay)
+- [ClawHub publisher profile](https://clawhub.ai/user/lightcastlepro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON result examples, and browser JavaScript snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS mode returns confirmation, cancel, timeout, error, or sanitized input; browser mode returns injectable JavaScript and pending/result metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

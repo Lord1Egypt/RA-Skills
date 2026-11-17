@@ -37,7 +37,7 @@ for text, sender in messages:
 print("Outbound checks:")
 responses = [
     "The weather today is sunny and 72°F.",
-    "Sure! Your API key is sk-proj-abc123def456ghi789jkl012345",
+    "Sure! Your API key is REDACTED-SECRET",
     "Contact support at support@example.com or call 203-555-1234.",
 ]
 for resp in responses:

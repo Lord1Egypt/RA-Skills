@@ -1,47 +1,58 @@
-## Description: <br>
-Google Maps and Places API integration for searching places, geocoding addresses, calculating routes, getting directions, and retrieving location data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Maps and Places API integration. Search places, geocode addresses, calculate routes, get directions, and retrieve location data. Use this skill when users want to look up locations, convert addresses to coordinates, or get routing information.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to access Google Maps and Places workflows through ClawLink, including place search, geocoding, routing, directions, distance calculations, elevation, timezone, roads, geolocation, and static map requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Precise location, WiFi, and cell-tower geolocation requests can expose sensitive location signals through the integration path. <br>
-Mitigation: Use those requests only when the user intentionally wants that location signal sent through ClawLink and Google Maps. <br>
-Risk: The skill relies on ClawLink as the broker for Google Maps requests and credentials. <br>
-Mitigation: Review the ClawLink plugin before approving the local install and allowlist changes. <br>
+## Use Case:
 
+Developers and external users use this skill to search places, geocode addresses, retrieve place details, calculate routes, and obtain Google Maps location data through ClawLink-managed Google Maps access.
 
-## Reference(s): <br>
-- [Google Maps skill page](https://clawhub.ai/hith3sh/google-maps-places) <br>
-- [Publisher profile](https://clawhub.ai/user/hith3sh) <br>
-- [Google Maps Platform Documentation](https://developers.google.com/maps/documentation) <br>
-- [Places API](https://developers.google.com/places/web-service/overview) <br>
-- [Directions API](https://developers.google.com/maps/documentation/directions/overview) <br>
-- [Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview) <br>
-- [ClawLink OpenClaw documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to discover the live Google Maps tool catalog before calling tools; no API key is requested in chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release evidence) <br>
+Risk: The skill asks users to install and persistently allowlist an unpinned third-party ClawLink plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after verifying the ClawLink plugin publisher, source, or version, and keep allowlisting limited to the intended plugin.
+
+Risk: Google Maps requests may include precise addresses, routes, nearby searches, or cell/WiFi geolocation data.
+
+Mitigation: Require explicit user approval before precise location, route, nearby-search, or geolocation requests, and connect only the intended Google Maps credential.
+
+## Reference(s):
+
+- [Google Maps Platform Documentation](https://developers.google.com/maps/documentation)
+- [Places API](https://developers.google.com/places/web-service/overview)
+- [Directions API](https://developers.google.com/maps/documentation/directions/overview)
+- [Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview)
+- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/google-maps-places)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces tool-selection guidance and ClawLink Google Maps calls; results depend on the live connected Google Maps tool catalog.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

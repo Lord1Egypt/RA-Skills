@@ -1,41 +1,54 @@
-## Description: <br>
-This deprecated skill only directs users to install the replacement Polymarket trade assistant and does not provide trading functionality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This ClawHub skill release is a deprecated Polymarket trading assistant that directs users to install polymarket-trade-assistant instead.
 
-## Publisher: <br>
-[donkeylmx](https://clawhub.ai/user/donkeylmx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[donkeylmx](https://clawhub.ai/user/donkeylmx)
 
-## Use Case: <br>
-External users who encounter this deprecated ClawHub release can use it as a pointer to the replacement skill, polymarket-trade-assistant. It is not useful for market scanning, trading decisions, position management, or backtesting in this version. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This deprecated version does not provide the advertised Polymarket trading functionality. <br>
-Mitigation: Treat the release as a deprecation notice and evaluate the named replacement skill before relying on it. <br>
-Risk: The replacement skill may support financial decisions or account authority. <br>
-Mitigation: Review the replacement skill's provenance, permissions, and security findings before installation or use. <br>
+## Use Case:
 
+External users and agents use this release to recognize that the Polymarket trading assistant package is deprecated and to locate the named replacement skill. The artifact should be treated as a pointer to another skill, not as a reviewed trading assistant implementation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/donkeylmx/polymarket-trader-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/donkeylmx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Short text with an install command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated release notice only; no executable trading workflow is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The release is a deprecation pointer and does not include the replacement skill's reviewed implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that polymarket-trade-assistant is the intended replacement from a trusted publisher before installing.
+
+Risk: The artifact points to an unpinned replacement skill, so later replacement versions may differ from this reviewed release.
+
+Mitigation: Prefer a pinned version or signed/checksummed release before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/donkeylmx/skills/polymarket-trader-skills)
+- [Publisher profile](https://clawhub.ai/user/donkeylmx)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text notice with an install command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No reviewed trading implementation is included in this artifact.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

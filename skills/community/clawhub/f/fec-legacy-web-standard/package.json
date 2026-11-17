@@ -1,7 +1,7 @@
 {
-  "name": "@frontend-craft/fec-legacy-web-standard",
-  "version": "2.4.0",
-  "description": "Use when maintaining or safely modifying existing non-framework frontend code: vanilla JavaScript, jQuery, HTML/CSS, MPA pages, server-rendered templates, legacy plugins, or long-lived code that should stay in its current stack. Use migration skill when planning a move to React/Vue/TypeScript; Chinese triggers include 传统前端, 原生 JS, jQuery.",
+  "name": "@bovinphang/fec-legacy-web-standard",
+  "version": "2.9.0",
+  "description": "Use when maintaining or safely modifying existing non-framework frontend code: vanilla JavaScript, jQuery, HTML/CSS, MPA pages, server-rendered templates, legacy plugins, or long-lived code that should stay in its current stack. Use migration skill when planning a move to React/Vue/TypeScript; Chinese triggers include traditional frontend, native JS, jQuery.",
   "type": "module",
   "license": "MIT",
   "author": {
@@ -28,6 +28,7 @@
     "references",
     "scripts",
     "data",
+    "assets",
     "metadata.json",
     "README.md",
     "LICENSE"

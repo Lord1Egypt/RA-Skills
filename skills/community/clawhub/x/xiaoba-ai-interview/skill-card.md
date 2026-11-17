@@ -1,44 +1,55 @@
-## Description: <br>
-Uses the Xiaoba AI Interview open API to create interview plans, manage candidates, start interview sessions, and retrieve interview results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents use the Xiaoba AI Interview API to create interview plans, manage candidates, start interview sessions, and retrieve interview results.
 
-## Publisher: <br>
-[changwu](https://clawhub.ai/user/changwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[changwu](https://clawhub.ai/user/changwu)
 
-## Use Case: <br>
-Recruiting and hiring teams use this skill to call Xiaoba interview APIs for interview planning, candidate setup, session scheduling, and result retrieval. Developers can use the included curl and jq examples to integrate those workflows into an agent run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate and interview data is sent to an external Xiaoba/ibaguo service. <br>
-Mitigation: Use only with authority to process the data, confirm candidate consent and legal basis, and avoid sending unnecessary resume or contact details. <br>
-Risk: The XIAOBA_API_KEY credential can expose the interview API account if logged or shared. <br>
-Mitigation: Store the key in the environment, keep authorization headers out of chats and logs, and redact sensitive response details. <br>
-Risk: Generated interview links may grant access to candidate interview sessions. <br>
-Mitigation: Share interview URLs only with intended recipients and treat them as sensitive session links. <br>
+## Use Case:
 
+Developers and recruiting teams use this skill to integrate Xiaoba interview workflows into an agent, including plan creation, candidate setup, interview scheduling, and result retrieval through API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/changwu/xiaoba-ai-interview) <br>
-- [Xiaoba / ibaguo homepage](https://www.ibaguo.com) <br>
-- [Xiaoba API base URL](https://www.ibaguo.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and the XIAOBA_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill sends candidate and interview data to an external interview API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only necessary candidate and resume fields, obtain candidate consent where required, and review the provider's retention and privacy terms before using real applicant data.
+
+Risk: The Xiaoba API key could be exposed in chat, logs, or request output.
+
+Mitigation: Store the key only in XIAOBA_API_KEY, avoid printing authorization headers, and log only paths, methods, and redacted response summaries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/changwu/skills/xiaoba-ai-interview)
+- [Xiaoba Homepage](https://www.ibaguo.com)
+- [Xiaoba API Base URL](https://www.ibaguo.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and the XIAOBA_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

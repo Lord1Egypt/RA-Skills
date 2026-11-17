@@ -1,47 +1,59 @@
-## Description: <br>
-Design helps agents create customized design-project skills and supporting references that guide users from requirements definition through research, solution design, review, and delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design generates a tailored design-project skill with supporting references to guide an agent through intake, research, solution design, review, delivery, and persistent project notes.
 
-## Publisher: <br>
-[balancegsr](https://clawhub.ai/user/balancegsr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[balancegsr](https://clawhub.ai/user/balancegsr)
 
-## Use Case: <br>
-External users and developers use this skill to generate a tailored design-project skill for product, interaction, experience, information architecture, visual, or related design work. The generated project skill helps structure intake, research, design decisions, review, delivery, and project memory across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and installs design-project skills with local project files that future sessions may reload as project memory. <br>
-Mitigation: Install only in a workspace where generated design files are acceptable, review the preview and delivery mode before confirming, and avoid placing unrelated secrets or private material in project files. <br>
-Risk: The artifact declares local write and bash capabilities for creating generated skill and project folder structures. <br>
-Mitigation: Confirm the generated paths and delivery choice before file creation, and review generated content before using it in sensitive workspaces. <br>
+## Use Case:
 
+External agent users use this skill to create a project-specific design workflow skill for product, interaction, experience, information architecture, or visual design work. The generated skill guides the project from requirements through research, solution design, review, delivery, and follow-up summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/balancegsr/skill-creator-design) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Review Checklist Template](artifact/references/templates/guides/review_checklist.md) <br>
-- [Full Summary Guide Template](artifact/references/templates/guides/summary_guide_full.md) <br>
-- [Lite Summary Guide Template](artifact/references/templates/guides/summary_guide_lite.md) <br>
-- [Full Skill Template](artifact/references/templates/skill/full.md) <br>
-- [Lite Skill Template](artifact/references/templates/skill/lite.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown skill files, reference files, project folders, and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can install generated skill files into the current workspace or package them as a ZIP after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The generated project skill creates and maintains local Markdown files for design progress, decisions, reviews, outputs, summaries, and feedback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where this file creation is expected, and review the generated preview before approving installation.
+
+Risk: Generated design-project skills may activate on broad design-continuation phrases.
+
+Mitigation: Inspect the generated skill name, trigger wording, and project directory before installation so activation scope matches the intended design project.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/balancegsr/skills/skill-creator-design)
+- [Skill source README](README.md)
+- [Lite skill template](references/templates/skill/lite.md)
+- [Full skill template](references/templates/skill/full.md)
+- [Review checklist guide](references/templates/guides/review_checklist.md)
+- [Lite summary guide](references/templates/guides/summary_guide_lite.md)
+- [Full summary guide](references/templates/guides/summary_guide_full.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown files and Markdown previews, with optional shell commands for packaging or installation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a generated SKILL.md, review_checklist.md, summary_guide.md, design project files, and optional ZIP packaging.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

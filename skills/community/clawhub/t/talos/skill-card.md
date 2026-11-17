@@ -1,43 +1,54 @@
-## Description: <br>
-Talos plans a 4-week social media content calendar with platform-specific captions, posting times, content pillars, hashtag guidance, and JSON/Markdown exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Talos plans and batches a 4-week social media content calendar with platform-specific captions, posting-time guidance, content pillar rotation, and JSON and Markdown exports.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Social media managers, marketers, creators, and small teams use this skill to turn a brand topic into an offline 4-week posting plan for Twitter/X, LinkedIn, Instagram, and Threads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs the Python formatting package rich before running. <br>
-Mitigation: Install dependencies in a virtual environment and avoid system-wide package installation when possible. <br>
-Risk: The skill writes social_calendar_*.json and social_calendar_*.md exports in the current working directory. <br>
-Mitigation: Run it in a dedicated folder and avoid placing sensitive campaign details in shared directories. <br>
-Risk: Generated captions, posting times, and hashtags may not match current platform guidance or brand requirements. <br>
-Mitigation: Review and edit the generated calendar before importing it into a scheduling tool. <br>
+## Use Case:
 
+External users and marketing teams use this skill to generate a local 4-week posting plan for Twitter/X, LinkedIn, Instagram, and Threads from a brand topic, posting cadence, content pillars, and tone.
 
-## Reference(s): <br>
-- [Talos ClawHub listing](https://clawhub.ai/occupythemilkyway/talos) <br>
-- [OccupyTheMilkyWay publisher profile](https://clawhub.ai/user/occupythemilkyway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash and Python code blocks; generated JSON and Markdown calendar files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRAND_TOPIC; optional PLATFORMS, POSTS_PER_WEEK, CONTENT_PILLARS, and BRAND_TONE tune the generated calendar.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The install command modifies system Python packages and installs an unpinned dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in an isolated virtual environment and pin or review the dependency before use.
+
+Risk: Generated calendar files are written to the current working directory and may overwrite existing files with the same generated names.
+
+Mitigation: Run the skill in a dedicated working directory where replacing generated calendar files is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/skills/talos)
+- [ClawHub metadata homepage](https://clawhub.ai/occupythemilkyway/talos)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with inline bash and Python code; generated runtime artifacts are JSON and Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated calendar is written locally as social_calendar_<topic>_<date>.json and social_calendar_<topic>_<date>.md.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

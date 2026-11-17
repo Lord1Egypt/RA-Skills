@@ -1,39 +1,54 @@
-## Description: <br>
-SEC filings, insider trades & company financials for AI agents: pull SEC EDGAR filings, 8-K material events, Form 4 insider transactions, headline financials, and the latest market-wide filings for any US-listed company. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEC filings, insider trades, company financials, and recent market-wide filings for AI agents working with US-listed companies.
 
-## Publisher: <br>
-[colinhughes2121](https://clawhub.ai/user/colinhughes2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colinhughes2121](https://clawhub.ai/user/colinhughes2121)
 
-## Use Case: <br>
-External developers and financial-research agents use this skill to retrieve live SEC EDGAR company profiles, insider transactions, 8-K events, headline financials, and market-wide filing updates for equity research, due diligence, and trading-signal workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger paid x402 API calls in USDC, especially during broad market-wide filing queries. <br>
-Mitigation: Use a wallet or agent budget you are comfortable spending and review the listed per-call prices before running broad queries. <br>
+## Use Case:
 
+External agents, developers, and financial research workflows use this skill to retrieve SEC EDGAR profiles, insider transactions, 8-K events, headline financials, recent form filings, and SEC 360 summaries for equity research and due diligence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/colinhughes2121/sec-insider-trades-company-financials) <br>
-- [GoCreative API base URL](https://api.gocreativeai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with HTTPS GET endpoints returning JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pay-per-call x402 API access; broad market-wide queries can incur repeated USDC charges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill makes paid per-call HTTPS requests using x402 and USDC.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the payment model before installation and configure wallet or agent spending limits where available.
+
+Risk: SEC and financial data may influence research, diligence, or trading decisions.
+
+Mitigation: Treat returned data as research input, verify material decisions against authoritative filings, and avoid fully automated trading actions based only on this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colinhughes2121/skills/sec-insider-trades-company-financials)
+- [GoCreative API endpoint](https://api.gocreativeai.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Guidance]
+
+**Output Format:** [JSON API responses with concise agent-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid HTTPS GET calls using x402 USDC payments; no API key or signup is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

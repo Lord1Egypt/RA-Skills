@@ -1,41 +1,58 @@
-## Description: <br>
-抓取新浪财经 7×24 实时新闻流，并按新闻类别生成包含时间、来源和阅读量的 Markdown 日报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抓取新浪财经 7x24 实时新闻流，自动分类生成结构化日报；每类新闻按时间线排列，标注来源和阅读量，适合每日早间财经、政治、科技新闻速览。
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Analysts, operators, and agents use this skill to turn Sina Finance's public 7x24 news feed into a categorized daily briefing for finance, politics, technology, industrial, and social news review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional cron example can run daily public-web fetches and save generated reports to memory. <br>
-Mitigation: Enable scheduled execution only when recurring Sina Finance fetching and stored daily report files are acceptable. <br>
-Risk: Fetched page content may be blocked, too short, or otherwise fail to produce a complete report. <br>
-Mitigation: Check fetch status and review generated reports before using them for decisions. <br>
+## Use Case:
 
+External users and agents use this skill to fetch public Sina Finance 7x24 news text and turn it into a concise Chinese Markdown daily report grouped by topic. It is suited for recurring morning briefings that need time, source, and readership details preserved.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/paudyyin/sina-daily-news) <br>
-- [Sina Finance 7x24 news feed](https://finance.sina.com.cn/7x24/?tag=0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown daily report with categorized bullet lists, plus optional shell and cron configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Consumes fetched Sina Finance page text from stdin or argv[1]; optional cron usage may save daily reports to memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release, SKILL.md frontmatter, package.json) <br>
+Risk: The optional cron example runs daily and may persist reports to memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cron schedule, destination, and retained report contents before enabling automated execution.
+
+Risk: News parsing and keyword classification can omit items or place them in the wrong category when the source page format or wording changes.
+
+Mitigation: Review generated reports before relying on them and update category keywords or parsing rules when output quality drifts.
+
+Risk: The report depends on public Sina Finance content fetched at runtime.
+
+Mitigation: Cross-check important stories with additional sources when accuracy, completeness, or availability matters.
+
+## Reference(s):
+
+- [Sina Finance 7x24 News](https://finance.sina.com.cn/7x24/?tag=0)
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/sina-daily-news)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration]
+
+**Output Format:** [Chinese Markdown report with categorized news sections and optional cron configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read fetched news text from stdin or a command-line argument; optional cron usage may save daily reports to memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md metadata, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: searxng-search-cli
 displayName: "SearXNG Search CLI (Free, Self-hosted, Auto-deploy, Multi-Channel)"
-version: 1.2.1
+version: 1.3.0
 description: |
   Use self-hosted SearXNG search engine (Free, Self-hosted, Auto-deploy, Multi-Channel). SearXNG is a free meta search engine that aggregates 200+ search engines (Google, Bing, Brave, GitHub, etc.), completely free and self-hostable.
   Trigger: User needs to search queries, research information, find resources, etc.
@@ -19,10 +19,10 @@ Use SearXNG self-hosted search API for fast, accurate searching.
 
 ## ⚠️ Before First Use | 首次使用必读
 
-**首次使用此 skill 前，必须先读取 [ONBOARDING.md](ONBOARDING.md) 完成环境配置。**
+**首次使用此 skill 前，必须先读取 [references/ONBOARDING.md](references/ONBOARDING.md) 完成环境配置。**
 
-- **首次配置** → 读取 ONBOARDING.md 完成全部步骤
-- **环境不可用**（命令不存在、依赖缺失、搜索失败）→ 读取 ONBOARDING.md Troubleshooting 排查修复
+- **首次配置** → 读取 references/ONBOARDING.md 完成全部步骤
+- **环境不可用**（命令不存在、依赖缺失、搜索失败）→ 读取 references/ONBOARDING.md Troubleshooting 排查修复
 - **配置完成后** → 直接使用下方 Run Commands
 
 ## Run Commands | 使用命令

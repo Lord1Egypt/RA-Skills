@@ -1,44 +1,57 @@
-## Description: <br>
-恋爱避雷针 helps users review relationship or flirting chat snippets for recurring red-flag patterns such as unclear commitment, manipulative wording, avoidance, PUA-style pressure, or casual-only behavior, then returns an evidence-based warning report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+恋爱避雷针 analyzes user-provided dating chat excerpts for recurring risky relationship patterns and returns a cautious report with evidence snippets, a warning level, and practical advice.
 
-## Publisher: <br>
-[chujindan-dotcom](https://clawhub.ai/user/chujindan-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chujindan-dotcom](https://clawhub.ai/user/chujindan-dotcom)
 
-## Use Case: <br>
-External users invoke this skill to assess relationship-chat excerpts they provide and receive a concise red-flag report with risk level, matched behavior types, quoted evidence, and practical next steps. It is intended as informal defensive guidance for personal decision support, not as proof about another person. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Relationship chat excerpts can contain private or sensitive personal information. <br>
-Mitigation: Share only the minimum needed context, remove identifying details where possible, and avoid pasting more private information than needed. <br>
-Risk: The report can be mistaken for proof about another person or for professional relationship, mental-health, legal, or safety advice. <br>
-Mitigation: Treat outputs as informal guidance, check them against real-world context, and seek trusted personal, professional, or legal support for manipulation or safety concerns. <br>
-Risk: Broad relationship-related activation phrases may invoke the skill unintentionally. <br>
-Mitigation: Invoke the skill explicitly by name when using it and review what chat content is being shared before analysis. <br>
+## Use Case:
 
+External users use this skill to review their own dating or flirtation chat excerpts for recurring warning signs such as manipulation, ambiguity, avoidance, or control. It helps separate stronger patterns from insufficient evidence and returns a short relationship risk report.
 
-## Reference(s): <br>
-- [恋爱避雷针 ClawHub release](https://clawhub.ai/chujindan-dotcom/dating-avoidpit) <br>
-- [Publisher profile: chujindan-dotcom](https://clawhub.ai/user/chujindan-dotcom) <br>
-- [Archetype reference library](references/archetypes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report card with risk score, matched archetypes, quoted evidence, danger level, summary, advice, and disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses only user-provided chat excerpts and may ask 1-2 clarifying questions when evidence is insufficient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may over-label another person when the chat excerpt is incomplete or lacks a repeated pattern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the artifact's guardrails: rely on recurring patterns, mark insufficient evidence as observation, and include the stated disclaimer that the report is not factual proof.
+
+Risk: User-submitted relationship chat logs can include sensitive private information.
+
+Mitigation: Share only excerpts the user is comfortable processing, and minimize or anonymize private details where possible.
+
+Risk: PUA, control, or safety-related scenarios may involve real-world harm beyond chat analysis.
+
+Mitigation: Reduce humor in serious scenarios and recommend support from trusted people, professionals, or legal channels when safety concerns appear.
+
+## Reference(s):
+
+- [渣谱系库（11 款）](references/archetypes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown report card with quoted evidence snippets, labels, warning level, and brief advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided chat excerpts and may ask 1-2 clarifying questions when evidence is insufficient.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

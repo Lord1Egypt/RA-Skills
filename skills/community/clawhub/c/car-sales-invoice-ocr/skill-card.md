@@ -1,45 +1,66 @@
-## Description: <br>
-Extracts structured fields from motor vehicle sales invoice images or PDFs using Scnet's OCR API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports precise extraction of vehicle-specific fields from motor vehicle sales invoices, including VIN, engine number, brand model, buyer information, total tax-inclusive amount, and tax payment voucher number.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to extract invoice numbers, buyer and seller details, VIN, engine number, vehicle model, tax, amount, and related fields from motor vehicle sales invoices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle invoice images or PDFs can contain personal, vehicle, seller, buyer, tax, and payment data that is sent to Scnet's OCR service. <br>
-Mitigation: Use the skill only for files you are authorized to share with Scnet, and avoid submitting invoices containing data you are not allowed to disclose. <br>
-Risk: The skill requires an API key and allows the API base URL to be configured. <br>
-Mitigation: Keep SCNET_API_KEY in config/.env with restricted permissions and verify SCNET_API_BASE before use. <br>
-Risk: Parallel or high-volume requests can trigger the OCR service rate limit. <br>
-Mitigation: Call the skill serially for batches and retry after waiting when 429 rate-limit responses occur. <br>
+## Use Case:
 
+External users and agents use this skill to submit local motor vehicle sales invoice images, PDFs, or archives to the Sugon-Scnet OCR API and receive structured invoice fields for downstream review or processing.
 
-## Reference(s): <br>
-- [Sugon-Scnet OCR API documentation summary](references/api-docs.md) <br>
-- [Vehicle sales invoice field summary](assets/templates/fields-summary.md) <br>
-- [Scnet website](https://www.scnet.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/scnet-sugon/car-sales-invoice-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Guidance] <br>
-**Output Format:** [Pretty-printed JSON on stdout for successful OCR results; human-readable text for errors and setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY; sends the selected invoice file to Scnet's OCR service and returns the API data payload with confidence values removed by the wrapper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter, skill.yaml, release evidence) <br>
+Risk: Vehicle sales invoices may contain sensitive buyer, seller, tax, and vehicle identifiers that are uploaded to an external OCR endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after confirming that upload to Sugon-Scnet or another approved OCR endpoint is allowed for the invoice data, and redact or withhold documents when consent, policy, or vendor review is required.
+
+Risk: A configurable API base can direct invoice files and bearer-token requests away from the documented Scnet host.
+
+Mitigation: Keep SCNET_API_BASE set to the documented HTTPS Scnet API base unless an alternate endpoint has been explicitly reviewed and approved.
+
+Risk: The required SCNET_API_KEY is stored in local configuration and used as a bearer token for network requests.
+
+Mitigation: Protect the .env file, avoid pasting API keys into chat, rotate expired or exposed tokens, and restrict file permissions to the local owner.
+
+Risk: The OCR API has documented rate limits, and repeated concurrent calls can cause 429 failures.
+
+Mitigation: Call the skill serially or throttle batch workflows, and retry only after an appropriate delay when rate limits are encountered.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/scnet-sugon/skills/car-sales-invoice-ocr)
+- [Publisher Profile](https://clawhub.ai/user/scnet-sugon)
+- [Sugon-Scnet OCR API Documentation Summary](references/api-docs.md)
+- [Vehicle Sales Invoice Fields Summary](assets/templates/fields-summary.md)
+- [Scnet Website](https://www.scnet.cn)
+- [Scnet OCR API Base](https://api.scnet.cn/api/llm/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON data on standard output with human-facing error text for configuration, network, or API failures.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recognized invoice data is returned from the API data payload after removing confidence fields; output fields vary by OCR type.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter, skill.yaml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

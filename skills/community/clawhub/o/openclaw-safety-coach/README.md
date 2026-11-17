@@ -4,43 +4,50 @@
 
 **🔗 [View on GitHub](https://github.com/justindobbs/openclaw-productivity-suite/blob/main/skills/openclaw-safety-coach)**
 
-This skill is designed to help you set up a secure and safe environment for your OpenClaw instance. We've learned that the majority of security issues can be avoided with a few simple steps. By following these steps, you can ensure that your OpenClaw instance is protected from potential threats.
+This skill helps you set up and maintain a secure environment for your OpenClaw instance. OpenClaw ships with conservative defaults — this coach helps you stay on them and harden further as you expose more surface.
 
 ## Philosophy
 
 **Start simple, then layer complexity.** Address and understand the most common safety issues quickly, then progress to more sophisticated setups with multiple security layers.
 
+**One trust boundary per gateway.** This skill assumes a single operator or a team whose members trust each other. For mixed-trust or adversarial-user operation, split into separate gateways and credentials.
+
 **Security is continuous, not one-time.** This isn't a "set it and forget it" solution - it's an ongoing process of improvement and adaptation to emerging threats.
 
-## What's New (2026.1.8 - 2026.2.26)
+## What's New (October 2026)
 
-This skill now covers the latest OpenClaw security features:
+Modernized to align with the current OpenClaw security documentation:
 
-- **External Secrets Management** (`openclaw secrets` workflow) - Preferred method for API key storage
-- **Multi-User/Shared Environment Hardening** - Security guidance for VPS and shared deployments
-- **DM Pairing Security** - Pairing-first defaults to prevent unauthorized bot access
-- **Browser SSRF Policy** - Trusted-network mode for internal service protection
-- **Container Namespace Security** - Docker network isolation controls
-- **Sandbox Scope Configuration** - Per-agent isolation defaults
-- **Exec Approvals System** - Enhanced approval workflows with wildcard support
-- **Control UI HTTPS Enforcement** - Secure-by-default web interface
-- **Hooks/Webhooks Security** - Session key controls for webhook requests
-- **Heartbeat Direct Policy** - DM delivery controls for heartbeat messages
-- **Command + DM/Group Hardening** - `commands.allowFrom`, `session.dmScope`, and group allowlists for shared inboxes
-- **Dangerous Flag Watchlist** - Control UI, Docker sandbox, and channel overrides now tracked explicitly
+- **Tool Profiles & Deny Groups** - `tools.profile="messaging"` baseline; deny `group:automation`, `group:runtime`, `group:fs`
+- **Cross-Provider Messaging Controls** - `tools.message.crossContext.allowAcrossProviders` / `allowWithinProvider` to confine message actions
+- **Elevated Execution Mode** - `tools.elevated` controls for running exec outside the sandbox, with `allowFrom` restrictions
+- **Context Visibility** - `contextVisibility` per channel/room (`"all"`, `"allowlist"`, `"allowlist_quote"`) to filter untrusted prompt content
+- **Session Visibility & Agent-to-Agent** - `tools.sessions.visibility` (`self`/`tree`/`agent`/`all`) and `tools.agentToAgent` controls
+- **Sub-Agent Delegation Guardrails** - `sandbox: "require"` on `sessions_spawn`; `agents.defaults.subagents.allowAgents` restrictions
+- **Sandbox Workspace Access** - `agents.defaults.sandbox.workspaceAccess` modes: `"none"`, `"ro"`, `"rw"`
+- **Filesystem Restrictions** - `tools.fs.workspaceOnly=true` restricts all read/write/edit paths to the workspace
+- **Node Execution (`system.run`)** - Remote code execution on paired macOS nodes with `gateway.nodes.commands.allow`/`.deny` policy
+- **`openclaw` Delegation Tool** - Agents request persistent config/lifecycle changes through typed operations with permission policy
+- **Requester-Scoped Controls** - `tools.toolsBySender` and owner-only inventories as defense-in-depth
+- **Expanded Dangerous Flags Watchlist** - Now includes plugin permission modes, Telegram private network, Synology Chat webhook path, per-mapping `allowUnsafeExternalContent`, audit suppressions
+- **Operator Incident Response** - Contain → Rotate → Audit → Deep Scan → Verify → Collect → Redeploy playbook aligned with official docs
+- **Retired Flags** - `gateway.controlUi.dangerouslyDisableDeviceAuth` marked as retired/inert; `gateway.controlUi.allowInsecureAuth` removed
+- **Gateway Auth Clarified** - `gateway.auth.mode="none"` is explicit opt-in (not removed); trusted-proxy auth and Tailscale auth documented
 
 ## Quick Start
 
 1. Load the Safety Coach skill in your OpenClaw instance
 2. **Immediate actions:**
+   - Run `openclaw security audit --deep` for a full assessment (gateway auth, dangerous flags, file permissions, plugin/skill code scan)
    - Run `openclaw secrets audit` to check for plaintext API keys
-   - Run `openclaw security audit` for general security assessment (confirms gateway auth, TLS 1.3, dangerous flags, skill/plugin scanner results)
-   - Run `openclaw security audit --fix` to automatically address most issues
-   - Verify `dmPolicy="pairing"` is set for all providers
+   - Verify `dmPolicy="pairing"` is set for all DM-capable channels
    - Review `openclaw pairing list` for unauthorized access attempts
-   - Check `session.dmScope="per-channel-peer"` (shared inbox default) and group `requireMention`/allowlists
-   - Ensure `commands.allowFrom` is scoped to trusted operators and `hooks.allowedAgentIds` is restricted
-   - Confirm Control UI is behind HTTPS (Tailscale Serve or TLS cert) and no `dangerouslyAllow*` flags are enabled
+   - Set `session.dmScope="per-channel-peer"` if multiple people can DM the bot
+   - Set `contextVisibility="allowlist"` on rooms with untrusted members
+   - Ensure `commands.allowFrom` is scoped to trusted operators
+   - Confirm `tools.elevated.enabled=false` and `tools.agentToAgent.enabled=false` unless explicitly needed
+   - Confirm no `dangerouslyAllow*` flags are enabled and no `permissionMode=approve-all` on plugins
+   - Confirm Control UI is behind HTTPS (Tailscale Serve or TLS cert)
 3. Review the safety policies and customize for your use case
 4. Test with various prompts to ensure proper behavior
 5. Monitor and adjust policies as needed
@@ -55,48 +62,59 @@ The Safety Coach automatically activates when potentially unsafe requests are de
 
 ## Security Areas Covered
 
-### Core Security
-- API key storage (`openclaw auth set` vs insecure config storage)
-- File permission hardening
-- Tool execution safety (`exec` approvals)
-- Gateway and webhook security
+### Gateway & Network
+- Gateway bind and auth (`gateway.bind="loopback"`, `gateway.auth.mode`, trusted-proxy, Tailscale)
+- Control UI exposure and origin settings (`gateway.publicOrigin`, `gateway.controlUi.allowedOrigins`)
+- Rate limiting (lockouts, throttles, caps, cooldowns)
+- Network exposure and reverse proxy hardening
 
-### New in OpenClaw 2026.x
-- External secrets management
-- Multi-user deployment hardening
-- DM pairing and allowlist controls
-- Browser SSRF protection
-- Container namespace isolation
-- Control UI HTTPS enforcement
-- Hooks session key security
-- Command authorization + DM scope hardening
-- Dangerous flag watchlist (Control UI, Docker, channel allowlist bypasses)
+### Access Control
+- DM policy (`pairing`, `allowlist`, `open`, `disabled`) and `allowFrom` lists
+- DM session isolation (`session.dmScope`) and identity links (`session.identityLinks`)
+- Group policy (`groupPolicy="allowlist"`, `groupAllowFrom`, `requireMention`, custom `mentionPatterns`)
+- Context visibility filtering (`contextVisibility`)
+- Command authorization (`commands.allowFrom`)
+
+### Tool & Agent Permissions
+- Tool profiles and deny groups (`tools.profile`, `group:automation`, `group:runtime`, `group:fs`)
+- Control-plane tool restrictions (`gateway`, `cron`, `sessions_spawn`, `sessions_send`)
+- Cross-provider messaging controls (`tools.message.crossContext`)
+- Exec approvals (`exec.security="deny"`, `exec.ask="always"`)
+- Node execution (`system.run`) and gateway command policy
+- Elevated mode (`tools.elevated`)
+- Filesystem restrictions (`tools.exec.applyPatch.workspaceOnly`, `tools.fs.workspaceOnly`)
+- `openclaw` delegation tool and requester-scoped controls (`tools.toolsBySender`)
+
+### Sandbox & Isolation
+- Sandbox scope (`"agent"`, `"session"`, `"shared"`) and workspace access (`"none"`, `"ro"`, `"rw"`)
+- Docker bind validation and blocked-path denylist
+- Container dangerous flags (`dangerouslyAllowContainerNamespaceJoin`, etc.)
+- Sub-agent delegation guardrails (`sandbox: "require"`, `allowAgents`)
+- Session visibility (`tools.sessions.visibility`) and agent-to-agent controls
 
 ### Threat Detection
-- Malicious skill detection
-- Tool abuse prevention
-- SSRF/exfiltration protection
-- Prompt injection defense
-- Secret leakage detection
+- Malicious skill/plugin detection (`openclaw security audit --deep`)
+- Tool abuse and exec escalation prevention
+- SSRF/exfiltration protection (browser SSRF policy, Telegram private network)
+- Prompt injection defense (sandboxing, `contextVisibility`, untrusted-input wrapping)
+- Secret leakage detection and rotation workflows
 - Memory poisoning prevention
-- `session.dmScope="per-channel-peer"` (or `per-account-channel-peer`) for shared inboxes; keep `groupPolicy="allowlist"` + `groupAllowFrom` on group channels with `requireMention: true`
-- `commands.allowFrom` to limit slash commands even when chat is open to more users
-- Control UI dangerous flags to avoid:
-  - `gateway.controlUi.allowInsecureAuth`
-  - `gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback`
-  - `gateway.controlUi.dangerouslyDisableDeviceAuth`
-- Docker sandbox dangerous flags to avoid:
-  - `agents.defaults.sandbox.docker.dangerouslyAllowContainerNamespaceJoin`
-  - `dangerouslyAllowExternalBindSources`
-  - `dangerouslyAllowReservedContainerTargets`
-- Channel allowlist bypass flags to avoid:
-  - `channels.<provider>.dangerouslyAllowNameMatching`
-- Hooks/cron external-content flags: keep `hooks.allowUnsafeExternalContent` and `hooks.gmail.allowUnsafeExternalContent` false; isolate cron payloads that set `allowUnsafeExternalContent`
-- Require HTTPS/TLS 1.3 gateways, keep `gateway.auth.mode` set, and verify device pairing uses nonce-based v2 signatures
-- `hooks.allowedAgentIds` for webhook routing + `tools.exec.applyPatch.workspaceOnly=true` to keep edits inside the workspace
-- `openclaw security audit` now scans skill/plugin code—run it after each install/update
+- Cross-provider messaging abuse detection
+- Elevated execution and sub-agent delegation abuse
 
-> 📚 Reference: [OpenClaw Security Guide](https://docs.openclaw.ai/gateway/security) details these flags and deployment assumptions.
+### Dangerous Flags Watchlist
+- `gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback`
+- `browser.ssrfPolicy.dangerouslyAllowPrivateNetwork`
+- `agents.defaults.sandbox.docker.dangerouslyAllow*` (three flags)
+- `channels.*.dangerouslyAllowNameMatching` (all providers incl. plugin channels)
+- `channels.synology-chat.dangerouslyAllowInheritedWebhookPath`
+- `channels.telegram.network.dangerouslyAllowPrivateNetwork`
+- `hooks.allowUnsafeExternalContent` / `hooks.gmail.allowUnsafeExternalContent` / `hooks.mappings[*].allowUnsafeExternalContent`
+- `tools.exec.applyPatch.workspaceOnly=false`
+- `plugins.entries.acpx.config.permissionMode=approve-all`
+- `security.audit.suppressions` (tracked even when suppressed)
+
+> 📚 Reference: [OpenClaw Security Guide](https://docs.openclaw.ai/gateway/security) — trust model, audit checks, hardened baselines, access control, tool permissions, network exposure, secrets/storage, incident response.
 
 ## Contributing
 
@@ -105,14 +123,14 @@ We welcome contributions to improve this safety coach.
 ### Adding New Safety Rules
 
 1. **Identify the Risk**: Clearly define the security concern or threat vector
-2. **Research**: Check OpenClaw changelog for relevant updates
-3. **Create Test Cases**: Write examples of both safe and unsafe prompts  
+2. **Research**: Check [OpenClaw security docs](https://docs.openclaw.ai/gateway/security) and [audit checks reference](https://docs.openclaw.ai/gateway/security/audit-checks) for relevant updates
+3. **Create Test Cases**: Write examples of both safe and unsafe prompts
 4. **Implement Logic**: Add detection and response mechanisms
 5. **Document**: Update this skill's documentation with configuration examples
 
 ### Version Tracking
 
-When adding new rules, include the relevant OpenClaw version in parentheses (e.g., "2026.2.26+") to help users understand which features require specific OpenClaw versions.
+When adding new rules, include the relevant OpenClaw version or doc page link to help users understand which features require specific OpenClaw versions.
 
 ## License
 

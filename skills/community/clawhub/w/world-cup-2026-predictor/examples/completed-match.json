@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "status": "final",
+  "event_id": "event-425f7518b27c3f6742c6bfc5",
+  "score_90m": {
+    "home": 1,
+    "away": 1
+  },
+  "score_after_extra_time": {
+    "home": 3,
+    "away": 1
+  },
+  "qualified": "Argentina",
+  "sources": [
+    {
+      "name": "Official competition result",
+      "official": true,
+      "observed_at": "2026-07-19T22:45:00+00:00",
+      "url": "https://example.test/matches/argentina-netherlands"
+    }
+  ]
+}

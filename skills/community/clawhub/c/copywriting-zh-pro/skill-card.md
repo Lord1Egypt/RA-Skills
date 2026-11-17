@@ -1,40 +1,52 @@
-## Description: <br>
-A Chinese copywriting assistant for drafting and revising persuasive copy across cross-border marketing, Xiaohongshu, WeChat public accounts, ecommerce pages, ads, landing pages, email, brand messaging, and review-ready deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-focused copywriting skill for cross-border marketing, Xiaohongshu, WeChat public accounts, social posts, short-form video scripts, ecommerce pages, ads, landing pages, sales copy, email marketing, brand copy, and executive-ready variants.
 
-## Publisher: <br>
-[wewehg](https://clawhub.ai/user/wewehg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wewehg](https://clawhub.ai/user/wewehg)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and teams use this skill to draft, revise, and structure persuasive Chinese marketing copy for social, ecommerce, advertising, landing page, email, brand, and cross-border channels. It is intended for copy generation and review-ready messaging, not for code execution or data access.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Persuasive marketing copy may include unsupported claims if the user does not provide proof, metrics, or constraints.
+
+Mitigation: Require real evidence for strong claims, soften unsupported wording, and insert proof placeholders rather than fabricating results.
+
+Risk: The skill defaults toward Chinese-oriented persuasive copy, which may be unsuitable for neutral writing or non-Chinese output.
+
+Mitigation: Explicitly specify the desired language, tone, and whether persuasive framing should be avoided.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing operators, founders, creators, and ecommerce teams use this skill to turn a product, audience, offer, and CTA into platform-ready Chinese or bilingual copy variants for testing and publishing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include unsupported claims, urgency, testimonials, pricing, refund terms, or compliance-sensitive wording. <br>
-Mitigation: Review copy before publishing and verify claims, proof points, legal terms, and market-specific requirements. <br>
-Risk: Cross-border or overseas copy may use tone or claims that do not fit the target market or channel. <br>
-Mitigation: Adapt outputs for the intended geography, platform, audience, and applicable advertising rules before use. <br>
+**Output Format:** [Markdown or plain text copy with labeled variants, outlines, hooks, CTAs, and channel notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wewehg/copywriting-zh-pro) <br>
+**Other Properties Related to Output:** [Outputs may include assumptions, A/B variants, proof placeholders, and platform-specific copy structures.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text copy variants with labeled sections, headlines, CTAs, scripts, outlines, and channel notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include multiple tone, platform, or A/B testing variants; no tool calls or executable code are produced.] <br>
+0.1.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

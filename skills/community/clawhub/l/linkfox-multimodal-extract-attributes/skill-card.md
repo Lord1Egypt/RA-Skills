@@ -1,43 +1,67 @@
-## Description: <br>
-Analyzes product main images and optional additional images with multimodal AI to extract structured visual attributes and image prompts for e-commerce product records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes product listing images with LinkFox multimodal AI to extract structured visual attributes such as color, material, shape, style, and image prompts.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External e-commerce sellers and developers use this skill to turn product lists with image URLs into structured visual attributes, grouped attribute distributions, and tabular results for comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product image URLs, listing data, prompts, and supplied context may be sent to LinkFox for analysis. <br>
-Mitigation: Use the skill only with data approved for transfer to LinkFox, avoid confidential catalog data, and keep prompts and context narrowly scoped. <br>
-Risk: The artifact describes automatic feedback reporting to a separate LinkFox endpoint without clear consent. <br>
-Mitigation: Disable or avoid feedback reporting unless users have explicitly agreed to that separate data transfer. <br>
-Risk: The release security verdict is suspicious because feedback behavior expands data sharing beyond the image-analysis API. <br>
-Mitigation: Review the skill before installation and confirm the feedback behavior matches the intended deployment policy. <br>
+## Use Case:
 
+External e-commerce sellers, operators, and agents use this skill to turn product image URLs and prompts into structured product attributes and attribute-group summaries. It supports image-based listing analysis workflows where product data is explicitly supplied by the current pipeline.
 
-## Reference(s): <br>
-- [API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-multimodal-extract-attributes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, json] <br>
-**Output Format:** [Markdown guidance with API parameters, shell examples, and JSON response structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces product records enriched with attributeName and attributeValue, grouped attribute summaries, table columns, and token cost when the LinkFox API call succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Product images, prompts, product records, and related context may be sent to LinkFox services for multimodal analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only product data approved for LinkFox processing, and avoid confidential catalog data unless third-party processing is approved.
+
+Risk: The skill uses LinkFox API credentials, and onboarding guidance can place API keys in shell startup files.
+
+Mitigation: Store credentials only in approved user-local or managed secret locations, and avoid shared or logged shell environments.
+
+Risk: Full responses and cached results are persisted locally in LinkFox session and cache directories.
+
+Mitigation: Run the skill from an appropriate workspace and delete response or cache files when local retention is not acceptable.
+
+Risk: Image analysis consumes LinkFox compute credits, and the onboarding helper can create payment orders.
+
+Mitigation: Confirm user intent before additional analysis or billing actions, and avoid automatic retries that may increase cost.
+
+Risk: Feedback reporting can send issue, sentiment, or improvement details to LinkFox.
+
+Mitigation: Keep feedback free of confidential details and disclose external reporting when relevant to the user's workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-multimodal-extract-attributes)
+- [API Reference](references/api.md)
+- [Authentication and Billing Onboarding](references/onboarding.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON responses saved to local files, concise stdout summaries for large responses, and Markdown tables or summaries for presentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Full responses are written under a LinkFox session data directory; repeated calls with the same parameters may use a 24-hour local cache unless disabled.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

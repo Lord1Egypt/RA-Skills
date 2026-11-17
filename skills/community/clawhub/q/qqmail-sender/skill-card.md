@@ -1,40 +1,58 @@
-## Description: <br>
-Sends and receives QQ Mail messages for OpenClaw agents over SMTP/POP3, with support for attachments and CC/BCC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Sender helps OpenClaw AI Agents send and receive QQ Mail messages over SMTP/POP3, including text or HTML bodies, attachments, and CC/BCC recipients.
 
-## Publisher: <br>
-[feastfuyan](https://clawhub.ai/user/feastfuyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[feastfuyan](https://clawhub.ai/user/feastfuyan)
 
-## Use Case: <br>
-Developers and teams using OpenClaw agents use this skill to send task updates, scheduled reports, and files through QQ Mail, and to check inbox messages for multi-agent coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Email automation can send messages or attachments to unintended recipients. <br>
-Mitigation: Confirm every recipient and attachment before sending, and avoid broad local file paths or secret-bearing content. <br>
-Risk: Mailbox reading and auto-replies can expose message contents or send responses without clear approval. <br>
-Mitigation: Use a dedicated, revocable QQ Mail authorization code and enable scheduled checks or auto-replies only with explicit rules and a clear stop mechanism. <br>
+## Use Case:
 
+Developers and teams using OpenClaw AI Agents can use this skill to automate email-based notifications, report delivery, file transfer, and multi-agent collaboration through a dedicated QQ Mail account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/feastfuyan/qqmail-sender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Email actions require QQ Mail SMTP/POP3 credentials and explicit recipient, attachment, and automation choices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Mailbox credentials or authorization codes may give an agent broad access to send or receive email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege mailbox or app authorization code and avoid sharing primary account credentials.
+
+Risk: Automated sending, auto-replies, or attachments can disclose sensitive information or reach unintended recipients.
+
+Mitigation: Review recipients, attachment contents, and auto-reply rules before sending, and do not attach secrets or regulated data.
+
+Risk: Dependency installation commands can affect the runtime environment.
+
+Mitigation: Prefer pinned or isolated dependency installs before using the skill in a production agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/feastfuyan/skills/qqmail-sender)
+- [Publisher profile](https://clawhub.ai/user/feastfuyan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides QQ Mail SMTP/POP3 configuration guidance and example email automation snippets.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

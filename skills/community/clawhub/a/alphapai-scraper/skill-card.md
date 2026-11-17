@@ -1,44 +1,67 @@
-## Description: <br>
-登录 Alpha派并抓取最近 N 小时点评，保存原文、结构化归档并建立本地索引；也可以用精确检索、向量检索或混合检索查询最近 N 天的历史点评库并生成手机友好摘要，可选发送到飞书。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs in to AlphaPai to scrape recent market comments, archive raw and structured records, build local search indexes, query historical comments, generate mobile-friendly summaries, and optionally send summaries to Feishu.
 
-## Publisher: <br>
-[clawdbotrr](https://clawhub.ai/user/clawdbotrr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdbotrr](https://clawhub.ai/user/clawdbotrr)
 
-## Use Case: <br>
-Analysts and agents use this skill to collect recent AlphaPai market comments, archive them locally, query the comment history by topic and time window, and generate concise mobile-friendly summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse AlphaPai login sessions or account credentials. <br>
-Mitigation: Use a dedicated AlphaPai token or site-specific cookies where possible, avoid full browser profiles for shared releases, and rotate or remove credentials when no longer needed. <br>
-Risk: Scraped authenticated AlphaPai content is stored locally in raw files, normalized archives, indexes, reports, and runtime metadata. <br>
-Mitigation: Keep the output directory access-controlled and periodically delete storage-state, cookie backup, raw, index, report, and runtime files that are no longer required. <br>
-Risk: Summaries or derived content may be sent to external services such as Feishu webhooks or an AI model. <br>
-Mitigation: Keep Feishu disabled unless transmission is intended and review configured model or webhook destinations before processing sensitive content. <br>
+## Use Case:
 
+External users and developers use this skill to collect recent AlphaPai comments, store them locally, query the indexed archive by topic and time window, and produce concise Chinese summaries for market research workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawdbotrr/alphapai-scraper) <br>
-- [AlphaPai web application](https://alphapai-web.rabyte.cn) <br>
-- [AlphaPai comment page](https://alphapai-web.rabyte.cn/reading/home/comment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, JSON archives, SQLite and vector indexes, local runtime files, and optional Feishu webhook messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written under the configured local data directory and may include raw scraped content, normalized records, reports, and runtime metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill requires AlphaPai credentials, tokens, cookies, or saved browser sessions, and the supplied security evidence warns that these authenticated session files need tight local protection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped AlphaPai token or dedicated browser profile, keep credential and session files out of published packages, restrict local file permissions, and delete saved session artifacts when no longer needed.
+
+Risk: The security guidance flags broad browser-session access and Chrome-profile fallback as review concerns.
+
+Mitigation: Prefer storage state, token, or cookies for a dedicated AlphaPai session, and disable Chrome-profile fallback unless the operator has reviewed and accepted that access.
+
+Risk: The security guidance calls out ignore_https_errors behavior before authenticated login.
+
+Mitigation: Remove or disable ignore_https_errors before entering credentials or using authenticated sessions.
+
+Risk: Optional Feishu webhook delivery can send generated summaries outside the local machine.
+
+Mitigation: Leave Feishu disabled unless the exact webhook endpoint is trusted and intended for the scraped or summarized content.
+
+Risk: Artifact documentation notes that hybrid retrieval lacks stronger reranking and negation filtering, so query summaries may include irrelevant or misleading matches.
+
+Mitigation: Review source snippets and treat generated summaries as aids for research triage rather than final market conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdbotrr/skills/alphapai-scraper)
+- [AlphaPai web application](https://alphapai-web.rabyte.cn)
+- [AlphaPai comments page](https://alphapai-web.rabyte.cn/reading/home/comment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, raw text or Markdown captures, structured JSON records, SQLite and vector indexes, runtime metadata, configuration guidance, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written locally under the configured AlphaPai data directory; Feishu delivery is optional and disabled unless a trusted webhook is configured.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

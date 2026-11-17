@@ -1,45 +1,60 @@
-## Description: <br>
-Search web for user pain points and output a PRD JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search web for user pain points and output a PRD JSON.
 
-## Publisher: <br>
-[lijinhongucl-pixel](https://clawhub.ai/user/lijinhongucl-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijinhongucl-pixel](https://clawhub.ai/user/lijinhongucl-pixel)
 
-## Use Case: <br>
-Product builders, developers, and operators use this skill to search for real user complaints around a keyword, extract pain points, and generate a structured PRD with OpenClaw task JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search keywords are sent to external services. <br>
-Mitigation: Use non-sensitive keywords and a dedicated Brave Search API key when broader web search is needed. <br>
-Risk: Baidu support is documented, but server evidence flags a mismatch around that option. <br>
-Mitigation: Do not rely on Baidu behavior until the publisher implements it with declared hosts or removes the stale references. <br>
-Risk: Without a Brave API key, results may be limited to Hacker News and may return no_results for non-technical topics. <br>
-Mitigation: Handle no_results responses in downstream workflows and configure BRAVE_API_KEY for broader search coverage. <br>
+## Use Case:
 
+Product builders, founders, and developers use this skill to search public web discussions for pain points and turn the results into a PRD-style JSON with user stories, MVP features, and OpenClaw tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lijinhongucl-pixel/auto-prd-hunter) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lijinhongucl-pixel) <br>
-- [Brave Search API](https://api.search.brave.com/) <br>
-- [Hacker News Algolia Search API](https://hn.algolia.com/api/v1/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns valid JSON only, with success, no_results, or error status; success responses include pain points, user stories, MVP features, OpenClaw tasks, source URLs, and generation metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: Search keywords are sent to external search services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use confidential product names, customer data, secrets, or internal project details as keywords.
+
+Risk: Baidu API key setup is documented, but the packaged script does not implement a Baidu network request.
+
+Mitigation: Treat Baidu setup notes as inconsistent documentation and rely on Brave Search or Hacker News behavior unless the artifact is updated.
+
+Risk: Generated PRD content depends on public search results and simple extraction logic.
+
+Mitigation: Review source URLs, quotes, priorities, and generated tasks before using the output for product decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lijinhongucl-pixel/skills/auto-prd-hunter)
+- [Brave Search API](https://api.search.brave.com/)
+- [Hacker News Algolia API](https://hn.algolia.com/api/v1/search)
+- [Baidu Cloud](https://cloud.baidu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns success JSON with pain points, user stories, MVP features, OpenClaw tasks, source URLs, and generation metadata; returns error JSON when API searches fail or produce no results.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Instalación completa de Blender MCP para OpenClaw. Incluye setup local/remoto, ngrok, verificación, troubleshooting y estudio de 3 recursos obligatorios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and configures Blender MCP for OpenClaw, including local and remote setup, ngrok guidance, verification scripts, troubleshooting, and prerequisite resources.
 
-## Publisher: <br>
-[yejay7](https://clawhub.ai/user/yejay7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yejay7](https://clawhub.ai/user/yejay7)
 
-## Use Case: <br>
-Developers and technical users use this skill to configure Blender MCP for OpenClaw, verify local or remote Blender connectivity, inspect scenes, and troubleshoot common setup and coordinate-system issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts can default to hard-coded public ngrok endpoints. <br>
-Mitigation: Prefer localhost-only setup and replace or remove hard-coded ngrok hosts before running scripts. <br>
-Risk: Direct remote client scripts can send Blender commands or Python code without clear user control. <br>
-Mitigation: Run remote client scripts only against endpoints you own and trust, and review commands before execution. <br>
-Risk: The execute_blender_code path provides full Blender Python execution. <br>
-Mitigation: Treat Blender Python execution as privileged: review code first and limit Blender access to trusted projects and files. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up Blender MCP, verify a Blender connection, inspect scenes, and troubleshoot common 3D creation issues.
 
-## Reference(s): <br>
-- [Blender MCP official repository](https://github.com/ahujasid/blender-mcp) <br>
-- [Blender Orchestrator repository](https://github.com/mlolson/blender-orchestrator) <br>
-- [I Made Claude Use Blender](https://www.youtube.com/watch?v=dxlyCPGCvy8) <br>
-- [Sistema de Coordenadas en Blender](references/coordinate_system.md) <br>
-- [Errores Comunes en Blender MCP - Soluciones](references/common_errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps, verification commands, troubleshooting guidance, and helper scripts for Blender MCP workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: Hard-coded public ngrok endpoints may route Blender MCP traffic to an unintended remote host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer `localhost:9876` for local use and remove or replace hard-coded ngrok hosts before running scripts.
+
+Risk: Unauthenticated remote Blender MCP access can allow remote control of a Blender session.
+
+Mitigation: Do not expose Blender MCP over public ngrok without authentication and encrypted transport.
+
+Risk: Helper scripts launch `blender-mcp` through `uvx`, which may fetch or run an unreviewed package version.
+
+Mitigation: Pin `blender-mcp` to a reviewed version and pass only the minimum required environment variables to subprocesses.
+
+## Reference(s):
+
+- [Openclaw 3d Blender MCP on ClawHub](https://clawhub.ai/yejay7/skills/openclaw-3d-blender-mcp)
+- [blender-mcp Official Repo](https://github.com/ahujasid/blender-mcp)
+- [blender-orchestrator](https://github.com/mlolson/blender-orchestrator)
+- [I Made Claude Use Blender](https://www.youtube.com/watch?v=dxlyCPGCvy8)
+- [Sistema de Coordenadas en Blender](references/coordinate_system.md)
+- [Errores Comunes en Blender MCP - Soluciones](references/common_errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, JSON, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes helper scripts for Blender MCP connection verification and scene inspection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact/_meta.json, skill footer)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

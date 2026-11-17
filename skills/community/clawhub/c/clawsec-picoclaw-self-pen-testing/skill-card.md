@@ -1,41 +1,58 @@
-## Description: <br>
-Picoclaw-only local posture-review skill focused on read-only findings and safe operator remediation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Picoclaw-only local posture-review skill focused on read-only findings and safe operator remediation guidance.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0-or-later <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Developers and operators use this skill to review a generated Picoclaw posture profile for local security findings such as public UI exposure, disabled authentication, unrestricted tooling, unsigned mode, MCP trust boundaries, scheduler persistence, plaintext secret markers, and multi-channel auth review needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0-or-later
 
-## Known Risks and Mitigations: <br>
-Risk: A Picoclaw posture profile and the generated findings may reveal sensitive local security posture. <br>
-Mitigation: Store and share profiles and findings as security-sensitive data, and redact them before broader distribution. <br>
-Risk: The release is published by a third party. <br>
-Mitigation: Install only when the publisher is trusted and the user intends to analyze a Picoclaw posture profile. <br>
+## Use Case:
 
+Developers and security operators use this skill to review an existing Picoclaw posture profile for local exposure, authentication, workspace, MCP, scheduler, secrets, and multi-channel access findings.
 
-## Reference(s): <br>
-- [ClawSec homepage](https://clawsec.prompt.security) <br>
-- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-picoclaw-self-pen-testing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, guidance] <br>
-**Output Format:** [JSON with severity-ranked findings, summary counts, evidence strings, and remediation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally against an explicit Picoclaw profile path and prints deterministic JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.5 (source: frontmatter, skill.json, changelog, release evidence; released 2026-06-23) <br>
+Risk: A floating npx installation command can retrieve an unexpected installer or release state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the signed release verification instructions or a pinned, reviewed installer version before installation.
+
+Risk: The tool reads a user-provided Picoclaw posture profile and prints security findings that may describe local exposure or configuration weaknesses.
+
+Mitigation: Run it locally on intended profile files only and handle generated findings as sensitive operational information.
+
+Risk: Findings and recommendations are review guidance, not automatic remediation.
+
+Mitigation: Require operator review before applying configuration changes or security remediations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-picoclaw-self-pen-testing)
+- [ClawSec homepage](https://clawsec.prompt.security)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, json, guidance]
+
+**Output Format:** [JSON containing severity-ranked findings, evidence strings, recommendations, and summary counts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally on a user-provided Picoclaw posture profile and performs read-only analysis.]
+
+## Skill Version(s):
+
+0.0.5 (source: frontmatter, skill.json, CHANGELOG, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

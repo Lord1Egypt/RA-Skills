@@ -1,39 +1,58 @@
-## Description: <br>
-Standalone lightweight router for a personal second-brain loop. Use when the user asks knowledge, judgment, writing, reflection, decision, AI-agent, product, learning, or long-term thinking questions. It maps the question to cognitive anchors, recalls local knowledge and experience context, answers, and optionally writes back to the right wiki layer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes knowledge, judgment, writing, reflection, decision, AI-agent, product, learning, and long-term thinking questions through cognitive anchors, local recall, and optional wiki writeback.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and developers use this skill to route knowledge, writing, judgment, reflection, and long-term thinking prompts through a lightweight personal second-brain workflow. It helps select cognitive anchors, recall limited local wiki context, answer from that context, and write back only when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording and local recall can cause an agent to inspect personal notes more often than a user expects. <br>
-Mitigation: Review or change the hardcoded vault paths before use, and require confirmation before reading sensitive local notes or performing wiki writebacks. <br>
+## Use Case:
 
+External users and developers use this skill to route broad thinking, writing, decision, and knowledge-management questions through a personal Markdown wiki, selected cognitive anchors, local recall tools, and small explicit writebacks.
 
-## Reference(s): <br>
-- [Second Brain Router on ClawHub](https://clawhub.ai/harrylabsj/second-brain-router) <br>
-- [Publisher profile: harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with concise routing receipts and optional shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose small, auditable wiki writebacks only when the user explicitly asks to save or update content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may consult local second-brain or wiki materials for broad thinking and writing questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for workflows where that local consultation is desired, and review or customize the default vault paths and recall tools before use.
+
+Risk: The default paths and receipt template may not match the user's setup or language preference.
+
+Mitigation: Adjust the vault paths, recall commands, and receipt language during installation or before relying on the routing loop.
+
+Risk: Wiki writeback could preserve an incorrect or premature conclusion if requested too broadly.
+
+Mitigation: Use the documented explicit-writeback posture: write only when the user asks to save or update, keep edits small, and preserve existing content and frontmatter.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/second-brain-router)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell command suggestions and small wiki file updates when explicitly requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local wiki or recall-tool output; writes only after explicit user request.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

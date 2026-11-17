@@ -1,43 +1,57 @@
-## Description: <br>
-Network Tools gives agents a unified interface for local command-line network utilities, including web fetches, downloads, DNS lookups, ping, traceroute, whois, IP checks, media downloads, proxy routing, and tool selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables AI agents to select and run local network tools for web fetching, downloads, media retrieval, proxy routing, and network diagnostics without API keys.
 
-## Publisher: <br>
-[savior-li](https://clawhub.ai/user/savior-li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[savior-li](https://clawhub.ai/user/savior-li)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs to retrieve web content, download files, inspect network paths, query DNS or whois data, check public IP routing, or use local proxy-aware tools without API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make outbound requests to user-supplied URLs and network diagnostic services, which can expose requested domains, hostnames, IP routing, or other sensitive targets. <br>
-Mitigation: Use it only for intended destinations, avoid private URLs, tokens, cookies, and sensitive hostnames, and confirm proxy settings before sending requests. <br>
-Risk: The skill can download files or media to local paths. <br>
-Mitigation: Review and scan downloaded files before opening or executing them, and choose output paths deliberately to avoid unwanted overwrites. <br>
+## Use Case:
 
+Developers and agents use this skill when they need controlled web retrieval, file downloads, DNS and connectivity diagnostics, public IP checks, WHOIS lookups, or media downloads through locally installed command-line tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/savior-li/network-tools) <br>
-- [README](README.md) <br>
-- [Skill documentation](SKILL.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Command-line text output, downloaded files, and Markdown guidance with bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save user-directed downloads to local paths and may route supported commands through an optional local SOCKS5 proxy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata, package.json, CHANGELOG) <br>
+Risk: Broad network and proxy access can reach unintended or sensitive destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for explicit, user-approved network requests and avoid internal URLs, metadata endpoints, untrusted redirects, and sensitive resources.
+
+Risk: Command-line headers can expose secrets.
+
+Mitigation: Do not pass secrets in command-line headers; use safer secret handling outside this skill when authentication is required.
+
+Risk: Downloads can write unsafe or unexpected files.
+
+Mitigation: Keep downloads in a controlled directory and inspect filenames and content before processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/savior-li/skills/network-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and text output from local network tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce downloaded files when download or media commands are used.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Security scanning and transaction simulation for Solana AI agents <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanning and transaction simulation for Solana AI agents
 
-## Publisher: <br>
-[buildsentinel-dev](https://clawhub.ai/user/buildsentinel-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buildsentinel-dev](https://clawhub.ai/user/buildsentinel-dev)
 
-## Use Case: <br>
-Developers and Solana AI agents use Sentinel to scan user requests for prompt or fraud threats and to simulate Solana transactions against policy before signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to rely on an undeclared local `sentinel` command for financial transaction safety decisions. <br>
-Mitigation: Install and use it only after verifying the exact CLI source, version, and local policy file. <br>
-Risk: Transaction approval may be treated as authoritative even when scanner or simulator provenance is unknown. <br>
-Mitigation: Limit use to Solana transaction or wallet-security contexts and keep human review in the signing flow for high-value or unusual transactions. <br>
+## Use Case:
 
+Developers and engineers use Sentinel to screen Solana-related user instructions for threats and simulate transactions before execution. It supports policy checks for spending limits, allowlists, blocklists, time bounds, and risk thresholds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buildsentinel-dev/build-sentinel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-result interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local sentinel CLI and policy configuration; transaction approval depends on verified executable source, version, and policy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill's activation scope and shell-style user-input command need review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to Solana transaction and policy-review workflows, and review the skill before installing.
+
+Risk: User messages passed into shell command strings can create command-construction risk.
+
+Mitigation: Pass user messages to the Sentinel CLI with structured arguments or stdin instead of building shell command strings.
+
+Risk: Sentinel CLI failures can leave a transaction without a completed scan or simulation.
+
+Mitigation: Fail closed on CLI errors, report the error to the user, and check configuration with `sentinel config show` before retrying.
+
+## Reference(s):
+
+- [Sentinel ClawHub Skill Page](https://clawhub.ai/buildsentinel-dev/skills/build-sentinel)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON result interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fail closed on Sentinel CLI errors; outputs guide the agent to proceed, block, or report a specific risk.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

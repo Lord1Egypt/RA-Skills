@@ -1,44 +1,59 @@
-## Description: <br>
-NFS-e field extractor for Brazilian agents that extracts CNPJ, prestador, tomador, service value, service code, and ISS fields from Sao Paulo NFS-e invoices for bookkeeping, reimbursement batching, and accountant handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NFS-e Parser extracts structured fields such as CNPJ, prestador, tomador, service value, service code, and ISS from Brazilian São Paulo NFS-e PDFs for bookkeeping, reimbursement batching, and accountant handoff.
 
-## Publisher: <br>
-[tlalvarez](https://clawhub.ai/user/tlalvarez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tlalvarez](https://clawhub.ai/user/tlalvarez)
 
-## Use Case: <br>
-Developers and agents use this skill to extract structured fields from Sao Paulo Brazilian NFS-e PDFs for bookkeeping, reimbursement batching, accountant handoff, CNPJ validation, and ISS reconciliation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow downloads parser code from GitHub at use time. <br>
-Mitigation: Inspect the downloaded parser, pin the repository to a known commit, and run it in a virtual environment before processing invoices. <br>
-Risk: Financial invoice fields can be misread or incomplete after OCR and parsing. <br>
-Mitigation: Process only intended invoice PDFs and manually verify important accounting fields, CNPJ validation warnings, and missing-field warnings before ledger or reimbursement use. <br>
-Risk: OCR text may contain sensitive invoice data. <br>
-Mitigation: Keep processing local and delete temporary OCR text after use. <br>
+## Use Case:
 
+Developers, agents, and bookkeeping teams use this skill to turn OCR text from São Paulo NFS-e PDFs into structured invoice fields for accounting workflows, reimbursement batches, and accountant handoff. It is intended for Brazilian service invoices and includes validation cues such as CNPJ checks and missing-field warnings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tlalvarez/nfs-e-parser) <br>
-- [NFS-e extraction methodology](https://auxiliar.ai/solve/nfs-e-extraction/) <br>
-- [Parser source referenced by skill](https://github.com/Tlalvarez/Auxiliar-ai.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python code examples, and JSON output shape examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local workflow guidance for OCR, parser setup, field extraction, validation warnings, and invoice summary generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v0.1.1 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill asks users to fetch and run mutable remote parser code without integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the parser before installation, pin it to a specific commit, and verify a checksum before copying or executing it.
+
+Risk: NFS-e PDFs and extracted OCR text can contain sensitive financial and business data.
+
+Mitigation: Run OCR and parsing in a limited local workspace without unrelated credentials or files; use cloud OCR only with explicit approval and privacy/compliance review.
+
+Risk: The documented validation is scoped to São Paulo NFS-e PDFs and has limited coverage for non-zero retention values.
+
+Mitigation: Review missing-field warnings, validate CNPJ check digits, and manually confirm accounting-critical fields before writing results to a ledger.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tlalvarez/skills/nfs-e-parser)
+- [NFS-e extraction methodology](https://auxiliar.ai/solve/nfs-e-extraction/)
+- [Referenced parser repository](https://github.com/Tlalvarez/Auxiliar-ai.git)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions, JSON]
+
+**Output Format:** [Markdown guidance with bash and Python snippets; parser output is structured JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow uses local OCR/parsing steps and may emit missing-field or invalid-CNPJ warnings for review before ledger entry.]
+
+## Skill Version(s):
+
+v0.1.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

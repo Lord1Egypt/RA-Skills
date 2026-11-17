@@ -1,37 +1,52 @@
-## Description: <br>
-Validate and improve OpenAPI/Swagger specifications - check for completeness, consistency, security definitions, and API design best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate and improve OpenAPI/Swagger specifications - check for completeness, consistency, security definitions, and API design best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and API engineers use this skill to validate OpenAPI 3.x and Swagger 2.0 specifications, audit documentation completeness, review REST design consistency, and identify security definition gaps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may inspect OpenAPI or Swagger files that describe private API designs.
+
+Mitigation: Review target files and workspace scope before use, especially when private API designs are present.
+
+Risk: Audit recommendations may miss context-specific API, security, or documentation requirements.
+
+Mitigation: Have developers or API owners review recommendations before changing specifications or implementation plans.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and API engineers use this skill to validate OpenAPI 3.x and Swagger 2.0 specifications, audit completeness and consistency, and generate actionable API design and security recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: OpenAPI and Swagger specifications may expose private API structure, internal endpoint names, schema details, and security design information. <br>
-Mitigation: Run the skill only on repositories or files that are appropriate for the local agent to inspect, and avoid sharing confidential specifications in untrusted environments. <br>
+**Output Format:** [Markdown audit report with optional inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include scores, issue lists, severity groupings, and actionable recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown audit report with findings, scores, and actionable recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include shell commands for local OpenAPI/Swagger file discovery and version checks.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

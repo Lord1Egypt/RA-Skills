@@ -1,10 +1,16 @@
 ---
 name: poyo-wan-2-6
 description: Wan 2.6 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `wan2.6-text-to-video`, `wan2.6-image-to-video`, `wan2.6-video-to-video`, text-to-video, image-to-video, video-to-video, and `multi_shots` control.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/video-series/wan-2-6", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage": "https://poyo.ai/models/wan-2-6", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Wan 2.6 Video Generation
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/wan-2-6>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/wan-2-6>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for Wan 2.6 jobs on PoYo. It routes between text-to-video, image-to-video, and video-to-video within one model family.
 

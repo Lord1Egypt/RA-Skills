@@ -1,39 +1,52 @@
-## Description: <br>
-Deep React patterns workflow for component boundaries, composition, hooks rules, effects and data fetching, performance, testing, and accessibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep React patterns workflow: component boundaries, composition, hooks rules, effects and data fetching, performance, testing, and accessibility for structuring React apps, reviewing component design, and debugging re-renders.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codekungfu](https://clawhub.ai/user/codekungfu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to structure React applications, review component boundaries and state flow, and debug hooks, effects, rendering, hydration, testing, and accessibility issues.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: React guidance can be mismatched to the user's framework, routing model, or React version.
+
+Mitigation: Confirm the React version and framework before applying recommendations.
+
+Risk: The skill may suggest common React libraries or state-management approaches that are not appropriate for every project.
+
+Mitigation: Review suggested dependencies and architectural changes against project requirements before adoption.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to structure React applications, review component design, choose state and data-flow patterns, and debug hooks, effects, re-renders, hydration, testing, and accessibility concerns. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code]
 
-## Known Risks and Mitigations: <br>
-Risk: React guidance may be applied without matching the project's React version, framework, or server/client rendering constraints. <br>
-Mitigation: Confirm the React version and framework before applying recommendations, then review any proposed code changes before use. <br>
-Risk: Performance, effects, or data-fetching changes can introduce regressions when adopted without evidence from the target application. <br>
-Mitigation: Profile, test critical flows, and validate accessibility behavior before relying on architecture or optimization changes. <br>
+**Output Format:** [Markdown guidance with concise examples and review checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May adapt recommendations to the user's React version and framework.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with review checklists and practical recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool calls, external services, or generated files are required by the artifact.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

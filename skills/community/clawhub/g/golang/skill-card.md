@@ -1,41 +1,54 @@
-## Description: <br>
-Records, searches, and exports local Go development activity entries for build, test, lint, format, and related workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records, searches, and exports local Go development notes through shell commands; it does not perform Go builds, tests, linting, or formatting itself.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and teams can use this skill to record, search, and export local notes about Go build, test, lint, format, and related development activity. Treat it as an offline activity log, not as a substitute for actual Go build, test, lint, or formatting tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is marketed as Go build, test, lint, and format tooling, but the artifact records user-entered text in persistent local logs. <br>
-Mitigation: Use it only as a local activity log and run actual Go toolchain commands separately for build, test, lint, and formatting results. <br>
-Risk: Entries are saved under ~/.local/share/golang and can later be searched or exported. <br>
-Mitigation: Do not enter secrets, confidential code snippets, customer data, or private incident details. <br>
+## Use Case:
 
+Developers and engineers can use this skill to keep timestamped local records of Go-related checks, lint notes, formatting notes, code generation notes, and review findings, then search or export those records for later review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/golang) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may write local log and export files under ~/.local/share/golang.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill stores development notes in local plaintext logs and exports that may contain sensitive details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter secrets, tokens, proprietary source snippets, or sensitive incident details; review generated CSV, JSON, and text exports before sharing.
+
+Risk: The skill is presented as Go build, test, lint, and format tooling, but the security evidence says it records entries rather than executing those Go workflows.
+
+Mitigation: Treat outputs as journal entries and run actual Go build, test, lint, and formatting tools separately before relying on technical results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/golang)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration, Guidance]
+
+**Output Format:** [Plain text with shell command examples and local log or export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes plaintext logs and JSON, CSV, or text exports under ~/.local/share/golang/.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

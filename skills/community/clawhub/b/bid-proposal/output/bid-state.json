@@ -1,0 +1,18 @@
+{
+  "project_name": "2026年度网络安全运营服务",
+  "project_type": "安全服务类",
+  "output_file": "output/2026年度网络安全运营服务-技术方案.docx",
+  "status": "completed",
+  "chapters": [
+    {"id": "ch1", "title": "项目背景", "status": "confirmed"},
+    {"id": "ch2", "title": "项目理解与需求分析", "status": "confirmed"},
+    {"id": "ch3", "title": "服务内容清单", "status": "confirmed"},
+    {"id": "ch4", "title": "安全运营方案", "status": "confirmed"},
+    {"id": "ch5", "title": "漏洞管理、渗透测试与应急响应方案", "status": "confirmed"},
+    {"id": "ch6", "title": "安全加固与基线管理方案", "status": "confirmed"},
+    {"id": "ch7", "title": "软件上线安全评估方案", "status": "confirmed"},
+    {"id": "ch8", "title": "项目组织管理方案", "status": "confirmed"},
+    {"id": "ch9", "title": "服务保障与SLA", "status": "confirmed"}
+  ],
+  "generated_at": "2026-06-09T21:30:00+08:00"
+}

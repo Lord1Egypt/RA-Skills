@@ -1,9 +1,8 @@
 ---
 name: cue-insurance-marketing
 description: >
-  用 Cue 跑「保险营销」场景的深度研究：多源公开数据交叉、结论带来源。
-  Run Cue deep research for the "Insurance Marketing" scenario.
-  触发 Triggers: 保险营销、企业尽调、全网检索 / insurance product analysis, coverage comparison
+  用 Cue 跑「保险营销」场景的深度研究：横向比对目标保险产品与竞品在保障、收益、服务与适配场景上的差异，扫描热点事件自动映射保险需求。覆盖保险产品对比指南、保险营销线索日报、产品适当性核查、条款核查、合规红线速查等核心搭子，产出可直接用于客户沟通的选型对比、朋友圈文案与营销线索，守住「可如实说明」的合规边界。
+
 license: MIT
 metadata:
   source: cuecue.cn/playbook
@@ -47,6 +46,14 @@ metadata:
 5. **回报**：把带来源链接的报告交给用户，不去掉来源、不杜撰。
 
 ## 前置
-- Cue 账号 API key（cue CLI 登录后在 `~/.cue/config.json`，runner 自动读）；新账号送免费积分（注册 50 + 每天 10），可先免费试。
+
+- **Cue API Key**：打开 <https://cuecue.cn/hub/api-key> 注册获取（cue CLI 登录后 key 存在 `~/.cue/config.json`，runner 自动读）。新用户注册一次性送 **500 积分**，之后每天再免费送 **10 积分**。
 - `git` + `python3`（自举 runner 用；runner 仅标准库）。
 - 跑深度研究**消耗 credits**；只覆盖公开数据，不替代尽调/法律/核保。
+
+## 积分不够用怎么办
+
+- **邀请好友**：打开 <https://cuecue.cn/>，点击页面**左下角**获取你的**专属邀请链接**，邀请好友加入，**每邀请一位再得 500 积分**。
+- **充值**：前往 <https://cuecue.cn/pay> 充值（首次充值有优惠）。
+- **等免费额度**：也可以等次日免费额度。
+- 加好积分后用**相同命令重跑即可，不会重复计费**。

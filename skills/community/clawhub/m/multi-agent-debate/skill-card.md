@@ -1,41 +1,53 @@
-## Description: <br>
-Verify facts, reduce hallucinations, and explore multiple viewpoints through structured multi-agent debate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Agent Debate helps agents verify facts, reduce hallucinations, and explore multiple viewpoints by generating independent answers, structured critiques, optional refinements, and consensus or verdicts.
 
-## Publisher: <br>
-[simoncatbot](https://clawhub.ai/user/simoncatbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncatbot](https://clawhub.ai/user/simoncatbot)
 
-## Use Case: <br>
-Developers, analysts, and other agent users apply this skill when they need a structured second-opinion workflow for fact-checking, complex reasoning, trade-off analysis, or hallucination detection. The skill guides multiple agents through independent answers, critique, optional revision, and a consensus or verdict phase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Higher model cost and latency can occur because the workflow requests multiple independent answers and critique rounds. <br>
-Mitigation: Use the debate workflow for complex, high-stakes, or accuracy-sensitive questions, and limit the number of agents or rounds when speed matters. <br>
-Risk: Sensitive prompt content may be processed across multiple internal reasoning passes. <br>
-Mitigation: Avoid placing secrets or highly sensitive information into debate prompts unless the agent environment is approved for that data. <br>
+## Use Case:
 
+Developers, analysts, and teams use this skill to structure multi-agent debate for fact-checking, complex reasoning, trade-off analysis, and hallucination checks where independent critique improves answer quality.
 
-## Reference(s): <br>
-- [Detailed Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/simoncatbot/multi-agent-debate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown debate transcript with independent answers, critique rounds, optional revisions, and a final consensus or verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May increase token use and latency because the workflow asks for multiple independent answers and critique rounds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The debate pattern can increase model usage and latency because it asks for multiple independent answers and critique rounds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for complex or high-accuracy tasks, and skip it for simple facts, purely creative work, or speed-critical requests.
+
+Risk: A forced consensus may hide legitimate disagreement or produce misleading confidence.
+
+Mitigation: Keep initial answers independent, require specific critiques, and preserve defensible disagreement when consensus is not warranted.
+
+## Reference(s):
+
+- [Detailed Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with reusable debate templates and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May increase latency and model usage because multiple independent answers and critique rounds are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

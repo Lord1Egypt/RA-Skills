@@ -1,44 +1,57 @@
-## Description: <br>
-Manage contacts, campaigns, automations, and ecommerce marketing workflows in Omnisend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage contacts, campaigns, automations, and ecommerce marketing workflows in Omnisend. Use this skill when users want to create or update contacts, run email campaigns, manage automations, and review marketing performance data via the Omnisend API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Marketing operators, ecommerce teams, and support agents use this skill to inspect Omnisend data, manage contacts, review campaigns and automations, and prepare customer-impacting marketing actions through a connected Omnisend account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth-backed access to a connected Omnisend account, so tool use can expose or modify real marketing data. <br>
-Mitigation: Install only when the user intends to connect Omnisend through ClawLink, and verify the active integration before calling Omnisend tools. <br>
-Risk: Confirmed write actions can affect contacts, campaigns, automations, email, SMS, and live customer workflows. <br>
-Mitigation: Preview and confirm the target resource and intended effect before create, update, delete, send, or automation-triggering actions. <br>
+## Use Case:
 
+External users and marketing operators use this skill to manage Omnisend contacts, campaigns, automations, email/SMS workflows, and performance data through a connected Omnisend account.
 
-## Reference(s): <br>
-- [Omnisend skill page](https://clawhub.ai/hith3sh/omnisend-marketing) <br>
-- [Omnisend API Documentation](https://api-docs.omnisend.com/) <br>
-- [Omnisend Integrations](https://www.omnisend.com/integrations/) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected Omnisend account through ClawLink; write actions should be previewed and explicitly confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release metadata) <br>
+Risk: The skill asks users to install and allowlist a third-party credential-bearing plugin with broad business-data write capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the user trusts ClawLink with the Omnisend account, review requested Omnisend OAuth scopes, and prefer a pinned or verified plugin version with clear rollback and token revocation steps.
+
+Risk: Campaign sends, SMS sends, destructive actions, and automation triggers can affect customers or marketing operations.
+
+Mitigation: Preview high-impact actions, confirm the target resource and intended effect with the user, and execute only after the preview matches the user's intent.
+
+## Reference(s):
+
+- [Omnisend API Documentation](https://api-docs.omnisend.com/)
+- [Omnisend Integrations](https://www.omnisend.com/integrations/)
+- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/omnisend-marketing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ClawLink plugin connection to Omnisend; write, send, delete, and automation actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

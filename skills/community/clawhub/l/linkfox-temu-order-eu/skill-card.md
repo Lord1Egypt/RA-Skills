@@ -1,48 +1,66 @@
-## Description: <br>
-Provides Temu EU order-management guidance, reference material, and scripts for LinkFox gateway access to Partner EU order APIs, including order lists, details, shipping information, amounts, combined shipments, customization data, and verification uploads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance and scripts for Temu EU order-management API calls through the LinkFox gateway, including order list, detail, shipping information, amount queries, combined shipment, customization, and verification upload workflows.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External sellers, operations teams, and developers use this skill to query and manage Temu EU order workflows through LinkFox gateway scripts and API documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Europe <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Temu seller order data, shipping details, and reusable Temu or LinkFox credentials. <br>
-Mitigation: Install only for agents and environments that are permitted to handle those data classes, and scope credentials to the minimum order workflow needed. <br>
-Risk: The artifact includes utilities for storing Temu access tokens in a local plaintext token file. <br>
-Mitigation: Prefer passing tokens only when needed, avoid local plaintext token storage where possible, and rotate any token that may have been exposed in logs or shell history. <br>
-Risk: Generic proxy and file-download scripts provide broader access than a single order API workflow may require. <br>
-Mitigation: Use the specific order scripts for routine tasks and reserve generic proxy or file-download scripts for cases where that broader access is intentionally required. <br>
+## Use Case:
 
+External Temu EU merchants, marketplace operators, and developers use this skill to retrieve order data, shipping data, payment amounts, customization details, and verification-upload guidance for order workflows. It is intended for agents assisting with LinkFox-authenticated Temu EU order operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linkfox-ai/linkfox-temu-order-eu) <br>
-- [API reference](references/api.md) <br>
-- [Temu access token guide](references/access-token.md) <br>
-- [Partner EU catalog](references/partner-eu-catalog.md) <br>
-- [Order API index](references/apis/README.md) <br>
-- [Temu Partner EU documentation](https://partner-eu.temu.com/documentation?menu_code=dbd3d395963a408984b8ae7dbc5f64f9) <br>
-- [LinkFox Temu gateway](https://tool-gateway.linkfox.com/temu/proxy) <br>
+### Deployment Geography for Use:
 
+Europe
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include API request bodies, token-handling steps, and script invocation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles Temu merchant credentials and customer shipping data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace, pass credentials only when needed, avoid inline full output for shipping or decrypted-address calls, and restrict file access to users who should see order data.
+
+Risk: Temu access tokens may be stored locally in plaintext.
+
+Mitigation: Prefer short-lived or dedicated store credentials, protect the token store path, remove stale tokens, and avoid sharing workspaces that contain saved token files.
+
+Risk: Endpoint override environment variables can redirect gateway traffic.
+
+Mitigation: Keep LINKFOX_TOOL_GATEWAY, TEMU_API_BASE_URL, and STORE_API_BASE_URL unset or set only to trusted LinkFox endpoints before running scripts.
+
+Risk: Order responses can include sensitive personal information and may be saved to local JSON files.
+
+Mitigation: Review saved response files before sharing logs or artifacts, and delete local order-response data when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-temu-order-eu)
+- [API reference](references/api.md)
+- [Temu accessToken authorization and retrieval](references/access-token.md)
+- [Partner EU order interface catalog](references/partner-eu-catalog.md)
+- [Order API document index](references/apis/README.md)
+- [Temu Partner EU documentation](https://partner-eu.temu.com/documentation?menu_code=dbd3d395963a408984b8ae7dbc5f64f9)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request or response artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts write full gateway responses to local JSON files and may print either the full response or a summary depending on response size and inline mode.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

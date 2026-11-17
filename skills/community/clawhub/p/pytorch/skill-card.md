@@ -1,37 +1,48 @@
-## Description: <br>
-Avoid common PyTorch mistakes - train/eval mode, gradient leaks, device mismatches, and checkpoint gotchas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avoid common PyTorch mistakes -- train/eval mode, gradient leaks, device mismatches, and checkpoint gotchas.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a PyTorch checklist to avoid common mistakes in training, inference, gradient handling, device placement, DataLoader setup, checkpointing, in-place operations, and memory management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated PyTorch guidance or code may be incorrect or unsuitable for a specific model, dataset, hardware setup, or training workflow. <br>
-Mitigation: Review generated PyTorch code before running it, especially code that installs packages, downloads datasets, or uses GPU resources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub PyTorch skill page](https://clawhub.ai/ivangdavila/pytorch) <br>
+## Use Case:
 
+Developers and engineers use this skill as quick reference guidance for avoiding common PyTorch training, inference, device, DataLoader, checkpoint, autograd, and memory-management mistakes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with inline PyTorch code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior in the skill artifact; review generated PyTorch code before running it.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Checkpoint-loading guidance may be copied without enough safety checks for untrusted model files.
+
+Mitigation: Load checkpoints only from trusted sources, prefer torch.load(..., weights_only=True) where supported, and verify model files before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/pytorch)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with inline PyTorch code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise reference material; no active code execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

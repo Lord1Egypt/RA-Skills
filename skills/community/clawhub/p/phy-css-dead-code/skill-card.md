@@ -1,42 +1,54 @@
-## Description: <br>
-Unused CSS detector and dead selector auditor that scans stylesheet files against HTML, JSX, TSX, Vue, and template files to find selectors that appear to be defined but unreferenced. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CSS Dead Code audits CSS, Sass, Less, Tailwind, Bootstrap, and CSS Modules projects by comparing selectors against template and component files, then reporting unused selectors, duplicate definitions, !important overuse, orphaned blocks, estimated byte savings, and verification commands.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to audit CSS, Sass, Less, Tailwind, Bootstrap, and CSS Modules projects for cleanup candidates, duplicate selectors, orphaned module files, and estimated size savings. It is best used as a review aid before manual deletion, not as an automatic remover. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may give overconfident deletion guidance or ready-to-run file removal commands based on heuristic scans. <br>
-Mitigation: Use the report as a review aid, commit or back up first, manually verify every selector or CSS module it flags, and only run deletion commands after confirming files are unused and recoverable. <br>
-Risk: Dynamic class names, generated markup, framework conventions, or runtime-only selectors can make a selector look unused when it is still required. <br>
-Mitigation: Run the skill inside the intended project, inspect generated candidates against application behavior, and validate cleanup with tests or visual review before merging changes. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to audit project stylesheets for dead selectors, duplicate rules, orphaned CSS modules or animation blocks, and size-reduction opportunities before cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-css-dead-code) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown report with inline bash, Python, CSS, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports dead selector candidates, verification commands, estimated byte savings, and cleanup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence and skill frontmatter) <br>
+Risk: The skill scans broad project source files and may suggest deleting CSS files or removing rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a clean version-controlled workspace and manually review every selector and deletion command before applying changes.
+
+Risk: The skill may use unpinned npx tooling, which can execute versions that differ over time.
+
+Mitigation: Prefer locally installed, lockfile-pinned Tailwind or Percy binaries and inspect any npx command before running it.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-css-dead-code)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file paths, estimated byte savings, safe-deletion plans, and grep verification commands.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

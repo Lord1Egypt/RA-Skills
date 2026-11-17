@@ -1,0 +1,212 @@
+{
+  "card_id": "WQ-EXP-024",
+  "source_type": "clinical_experience",
+  "source_file": "王琦治疗肥胖经验_杨玲玲.pdf",
+  "title": "当代名医",
+  "authors": [
+    "李英帅",
+    "李玲孺",
+    "痰湿肥胖",
+    "血瘀肥胖"
+  ],
+  "year": 2022,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨质分型治疗肥胖，使体质可调更有临床意义。"
+  },
+  "treatment_approach": {
+    "main_formula": "",
+    "related_formulas": [],
+    "principle": "活血化瘀",
+    "herbs": [
+      "黄芪",
+      "白术",
+      "当归",
+      "茯苓",
+      "半夏",
+      "泽泻"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "经验，从体病相关角度出发，举例分析王琦从气虚肥胖、痰湿肥胖、血瘀肥胖３个方面综合调治的经验，认为辨质分型治疗肥胖，使体质可调更有临床意义。 经验继承工作指导老师。长期从事中医教学、临床、科研工作，对内伤杂病及男性性功能障碍、男性不育、前列腺疾病等具有丰富的临床经验。 认为，肥胖与痰湿体质最为密切，察肥胖临证之规律，将肥胖分为气虚肥胖、痰湿肥胖和血瘀肥胖三型。现将其从体质论治肥胖的经验整理如下。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "004 气虚也有可能是脾受湿困，代偿运化的结果",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "”王琦老师将具有这一系列表现的肥胖患者归于气虚型肥胖，指出治疗气虚型肥胖，健脾益气是关键",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "通过健脾益气，增强脾的运化功能， 使痰湿得化，水谷精微得以输布，代谢障碍恢复正常，从而达到治疗气虚肥胖的根本目的",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨质分型治疗肥胖，使体质可调更有临床意义。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为活血化瘀。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、白术、当归、茯苓、半夏、泽泻。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "经验，从体病相关角度出发，举例分析王琦从气虚肥胖、痰湿肥胖、血瘀肥胖３个方面综合调治的经验，认为辨质分型治疗肥胖，使体质可调更有临床意义",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "长期从事中医教学、临床、科研工作，对内伤杂病及男性性功能障碍、男性不育、前列腺疾病等具有丰富的临床经验",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "气虚质",
+    "痰湿质",
+    "血瘀质"
+  ],
+  "related_diseases": [
+    "肥胖"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "004 气虚也有可能是脾受湿困，代偿运化的结果",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": null
+    },
+    {
+      "sentence": "”王琦老师将具有这一系列表现的肥胖患者归于气虚型肥胖，指出治疗气虚型肥胖，健脾益气是关键",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    },
+    {
+      "sentence": "通过健脾益气，增强脾的运化功能， 使痰湿得化，水谷精微得以输布，代谢障碍恢复正常，从而达到治疗气虚肥胖的根本目的",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 2
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "气虚质",
+      "痰湿质",
+      "血瘀质"
+    ],
+    "disease": [
+      "肥胖"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 3,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 1
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.986817",
+  "methods": {},
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.579647",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.579655"
+  }
+}

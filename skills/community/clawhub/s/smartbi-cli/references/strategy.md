@@ -1,6 +1,6 @@
 # `strategy` 参考（决策树 / 槽位抽取 / serverType 路径）
 
-本文件为 **Smartbi CLI Skill** 的附属参考；流程性 MUST 以上级 `SKILL.md` 为准。
+本文件为 **SmartBI CLI Skill** 的附属参考；流程性 MUST 以上级 `SKILL.md` 为准。
 
 ## Fast Path Decision Tree
 
@@ -8,7 +8,7 @@
 2. 唯一 `operationKey` 但参数未确认 → `contract`
 3. 唯一 `operationKey` 且参数齐全 → `execute`
 4. 无 `operationKey` 或仅业务目标表达 → `discover`
-5. `discover` 出现多候选 → 先让用户选择再进入 `contract`
+5. `discover` 出现多候选 → 根据业务目标、资源类型与契约收敛；仅对影响答案或操作范围的剩余歧义请用户选择，取数无需用户选择技术接口。
 
 ## Slot Extraction（业务语义抽取）
 
@@ -25,17 +25,19 @@
 | `limit` | 行数 | `requestBodySchema` 中 `mql.limit` | 前10/前100 |
 | `time_range` | 时间范围 | 转化为 `dimFilter` SQL 表达式 | 去年→`"年份 = '2025'"` |
 
-把槽位拼成 2-3 组关键词，配合 `smartbi list --domain <domain> --agent` 收敛（search 仅作 list 的补充回退）。
+把槽位拼成 2-3 组关键词，配合 `smartbi list --profile <name> --domain <domain> --agent` 收敛（search 仅作 list 的补充回退）。
+
+上述 MQL 字段映射仅用于模型分支。报表分支按报表参数与只读查询/导出契约映射，不把所有业务筛选都构造成 dimFilter。API 列表不是业务资源列表；资源定位按 `discovery.md`。
 
 ## 槽位缺失处理
 
 | 缺失槽位 | 处理策略 |
 |---------|---------|
 | `action` 未知 | 让用户补充要做什么（查/导出/创建等） |
-| `resource` 未知 | 从上下文推断，或 `list --agent` 全量重排让用户选 |
-| `dims`/`metrics` 未知 | 调用 `getDataModelTrees` 列出字段，让用户指定 |
-| `filters` 未知 | 若用户未提过滤语义，可省略，不影响主查询 |
-| `modelId` 未知 | 调用 `listCatalogElementsByResourceType` 列出可用模型，让用户选择 |
+| `resource` 未知 | 按业务需求通过已核实的资源搜索接口定位模型/报表，不假设页面预选资源；仅对剩余业务歧义澄清 |
+| `dims`/`metrics` 未知 | 从问句和目标资源必要元数据匹配；模型字段树或报表定义按需读取，不能唯一确定业务口径才澄清 |
+| `filters` 未知 | 核实用户范围及资源默认筛选；省略参数不等于全部，不能无条件声称不影响结果 |
+| `modelId` 未知 | 已确定模型分支时有范围搜索并核实资源身份，唯一匹配直接使用，不默认让用户从全部模型中选择 |
 
 ## serverType 路径差异
 
@@ -43,11 +45,11 @@
 
 | `serverType` | 配置 `baseUrl` 示例 | 实际请求路径（queryDataByMql） |
 |-------------|-------------------|-------------------------------|
-| `smartbi` | `http://host/smartbi` | `http://host/smartbi/api/v1/datamodel/datamodel/query-data-by-mql` |
+| `smartbi` | `http://host/smartbi` | `http://host/smartbi/sdk/api/v1/datamodel/datamodel/query-data-by-mql` |
 | `sdk-server` | `http://host:8086` | `http://host:8086/api/v1/datamodel/datamodel/query-data-by-mql` |
 
 关键差异：
-- `smartbi` 模式下 `baseUrl` 本身含 `/smartbi` 路径前缀，拼接后完整路径含两个层级
+- `smartbi` 模式由 CLI 在配置 baseUrl 后追加 `/sdk`；手工 HTTP 调用也需使用当前契约对应的 SDK 根地址，不重复追加
 - `sdk-server` 模式部分接口路径中 domain 重复（`datamodel/datamodel`），需注意区分
 - 使用 `smartbi call` CLI 时无需手动拼路径（CLI 内部处理前缀），但若在 Rhino/JS 脚本中直连 HTTP 需按 serverType 构造完整 URL
 

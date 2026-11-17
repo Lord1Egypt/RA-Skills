@@ -1,0 +1,78 @@
+{
+  "name": "lygo-cli-bridge",
+  "displayName": "LYGO CLI Bridge",
+  "version": "1.0.0",
+  "description": "Unified LYGO entrypoint: health, map, analyze, mint, radar. Local-first; optional companions. No subprocess, no auto-publish.",
+  "slug": "lygo-cli-bridge",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-cli-bridge",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-cli-bridge",
+  "signature": "Delta9Phi963-CLI-BRIDGE-v1.0.0",
+  "tags": [
+    "latest",
+    "lygo",
+    "cli",
+    "bridge",
+    "onboarding",
+    "health",
+    "ops-detector",
+    "mint",
+    "radar",
+    "openclaw",
+    "delta9"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "lygo": "scripts/lygo_cli.py",
+    "health": "scripts/lygo_cli.py health",
+    "map": "scripts/lygo_cli.py map",
+    "analyze": "scripts/lygo_cli.py analyze",
+    "mint": "scripts/lygo_cli.py mint",
+    "radar": "scripts/lygo_cli.py radar",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "⚡",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-cli-bridge",
+    "requires": {
+      "anyBins": ["python", "python3"]
+    },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": {
+      "https_get": "health intent only",
+      "http_post": false
+    },
+    "filesystem": {
+      "read": "optional user paths",
+      "write": "opt-in with --i-consent",
+      "shell": false,
+      "subprocess": false
+    },
+    "publish": {
+      "git_push": false,
+      "huggingface": false,
+      "clawhub": false,
+      "social": false
+    }
+  },
+  "lattice": {
+    "role": "unified_cli_bridge",
+    "pairs_with": [
+      "lygo-kickstart-wizard",
+      "lygo-ops-detector",
+      "lygo-mint-walkthrough",
+      "lygo-deception-radar",
+      "lygo-public-lattice-gate"
+    ]
+  },
+  "security": {
+    "consent_required": true,
+    "no_auto_publish": true,
+    "local_first": true,
+    "no_subprocess": true,
+    "version": "1.0.0"
+  }
+}

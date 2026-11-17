@@ -1,47 +1,61 @@
-## Description: <br>
-Use this skill when the user asks for a quote, estimate, price, or "how much" for a UK trades job - electrical, plumbing, locksmith, glazing, carpentry, handyperson, heating, gas, roofing, drains, white goods, or boiler service. Calls the JustFix Estimator MCP server to return a cost breakdown, scope summary, and a tappable booking link that completes the booking in the browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JustFix helps an agent quote UK trades jobs by calling the JustFix Estimator MCP server to return a scope summary, cost breakdown, and booking link.
 
-## Publisher: <br>
-[adam-graham](https://clawhub.ai/user/adam-graham) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[adam-graham](https://clawhub.ai/user/adam-graham)
 
-## Use Case: <br>
-External users in the UK use this skill to get home-services labour estimates and booking links from an AI agent. Developers can add JustFix quote generation to agent workflows without requiring API keys or customer credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User job descriptions are sent to JustFix's public MCP service. <br>
-Mitigation: Use the skill only for UK trades quote requests and avoid sending unnecessary personal or sensitive details. <br>
-Risk: Booking links lead users to JustFix and include a unique attribution ID. <br>
-Mitigation: Disclose that the link opens JustFix before the user clicks, and pass the returned booking URL through unchanged. <br>
-Risk: Broad activation guidance can cause the skill to trigger on loosely related home-services conversations. <br>
-Mitigation: Configure narrow triggers and confirm UK quote or booking intent before calling the estimator. <br>
-Risk: The estimate does not include live availability, payment collection, or parts and materials. <br>
-Mitigation: State the labour-only scope, estimated duration, call-out fee, and final-invoice caveat in the agent response. <br>
+## Use Case:
 
+External UK users can ask an agent for home-services pricing, and developers can embed the skill in agent harnesses to surface JustFix estimates and booking links for trades work.
 
-## Reference(s): <br>
-- [JustFix skill repository](https://github.com/Just-Fix/justfix-skill) <br>
-- [JustFix homepage](https://justfix.app) <br>
-- [JustFix Estimator MCP endpoint](https://estimator-mcp.justfix.app/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/adam-graham/justfix) <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown or plain text quote card with cost breakdown and booking URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a unique JustFix booking URL with attribution ID; estimates are labour-only and final invoice can vary with actual time spent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can send household repair details to a commercial MCP service when triggered by quote or booking requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the agent to ask before sending repair details to JustFix unless the user clearly requested a quote or booking link.
+
+Risk: One Codex CLI install path uses an unpinned npm proxy for the MCP connection.
+
+Mitigation: Prefer a pinned reviewed mcp-remote version or a locked local install before deployment.
+
+Risk: The skill returns estimates only and cannot guarantee actual labour time, availability, materials, payment, or completed booking.
+
+Mitigation: Present the scope caveat and send users to the JustFix booking page to confirm details before committing.
+
+## Reference(s):
+
+- [JustFix skill repository](https://github.com/Just-Fix/justfix-skill)
+- [JustFix homepage](https://justfix.app)
+- [JustFix Estimator MCP endpoint](https://estimator-mcp.justfix.app/mcp)
+- [JustFix support policy](https://www.justfix.app/support-policy)
+- [ClawHub skill page](https://clawhub.ai/adam-graham/skills/justfix)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown or plain text quote card with cost breakdown, scope summary, caveat, and booking URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls public MCP tools for service lists, call-out fees, and estimate cards; booking completion happens on the JustFix website.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

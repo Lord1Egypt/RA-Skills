@@ -1,0 +1,52 @@
+{
+  "os_info": {
+    "caption": "Microsoft Windows 11 Pro",
+    "version": "10.0.22631",
+    "build_number": "22631",
+    "os_architecture": "64-bit",
+    "last_boot_up_time": "2026-10-14T08:00:00Z"
+  },
+  "reboot_pending": false,
+  "winget_upgrades": [
+    {
+      "name": "Git",
+      "id": "Git.Git",
+      "installed_version": "2.44.0",
+      "latest_version": "2.47.0",
+      "source": "winget"
+    },
+    {
+      "name": "cURL",
+      "id": "cURL.cURL",
+      "installed_version": "8.4.0",
+      "latest_version": "8.10.1",
+      "source": "winget"
+    },
+    {
+      "name": "Microsoft Edge",
+      "id": "Microsoft.Edge",
+      "installed_version": "120.0.0",
+      "latest_version": "130.0.0",
+      "source": "winget"
+    }
+  ],
+  "registry_installed": [
+    {
+      "name": "LegacyInternalTool",
+      "id": "LegacyInternalTool_v1",
+      "installed_version": "1.0.0",
+      "publisher": "Acme Corp",
+      "install_date": "20220101",
+      "uninstall_string": "disponible"
+    }
+  ],
+  "windows_updates_pending": [
+    {
+      "title": "2026-10 Security Update for Windows 11 (KB5044284)",
+      "kb_articles": ["KB5044284"],
+      "is_mandatory": true,
+      "severity": "Critical",
+      "cves": []
+    }
+  ]
+}

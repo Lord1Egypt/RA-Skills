@@ -1,41 +1,54 @@
-## Description: <br>
-根据研究生不同阶段目标，制定分阶段学习与科研计划，优化时间管理，跟踪进度，平衡科研与学业任务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Chinese-speaking graduate students create staged study, research, thesis-writing, and time-management plans across graduate school milestones.
 
-## Publisher: <br>
-[bicky716](https://clawhub.ai/user/bicky716) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bicky716](https://clawhub.ai/user/bicky716)
 
-## Use Case: <br>
-Graduate students use this skill to build Chinese-language study, research, thesis, internship, and time-management plans across graduate school stages. It helps turn broad academic goals into weekly or daily tasks, progress templates, and adjustment suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include unnecessary private academic, personal, or institutional details when requesting plans. <br>
-Mitigation: Share only the planning context needed for scheduling and omit sensitive identifiers or confidential institutional information. <br>
-Risk: Generated plans may not match a student's actual program rules, advisor expectations, or workload constraints. <br>
-Mitigation: Review plans against official requirements and adjust deadlines, scope, and priorities before relying on them. <br>
+## Use Case:
 
+Graduate students use this skill to turn semester, research, thesis, internship, and graduation goals into weekly or daily plans. It is intended for planning support, progress tracking, schedule adjustment, and balancing coursework with research obligations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bicky716/graduate-plan-helper) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bicky716) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown plans, schedules, checklists, and progress templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential use, network access, or persistence is described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Planning advice may not reflect a student's official program deadlines, advisor expectations, or local academic policies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should verify generated plans against institutional requirements and advisor guidance before relying on them.
+
+Risk: The skill is written for Chinese-speaking graduate students and may be less useful outside that language and academic context.
+
+Mitigation: Deploy it where Chinese-language graduate planning support is appropriate, or adapt prompts and examples for the target audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bicky716/skills/graduate-plan-helper)
+- [Publisher profile](https://clawhub.ai/user/bicky716)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured plain text plans, schedules, templates, and adjustment guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, network access, persistence, or hidden authority is reported in the server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

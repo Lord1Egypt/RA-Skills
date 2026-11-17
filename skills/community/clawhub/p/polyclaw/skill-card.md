@@ -1,48 +1,65 @@
-## Description: <br>
-Become an autonomous prediction market trader on Polymarket with AI-powered analysis and a performance-backed token on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Become an autonomous prediction market trader on Polymarket with AI-powered analysis and a performance-backed token on Base.
 
-## Publisher: <br>
-[pipethedev](https://clawhub.ai/user/pipethedev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pipethedev](https://clawhub.ai/user/pipethedev)
 
-## Use Case: <br>
-External operators and agent users use Polyclaw to register, configure, fund, monitor, pause, and manage an autonomous Polymarket trading agent with token buybacks and optional public posting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable a persistent autonomous trading agent to use real funds. <br>
-Mitigation: Install only when real-money autonomous trading is intended, start with small deposits, and keep trading disabled or paused until the operator has reviewed configuration and limits. <br>
-Risk: Agent and operator API keys grant financial and operational authority. <br>
-Mitigation: Do not store API keys in agent memory or transcripts; rotate credentials if exposed and confirm credential-revocation controls before funding. <br>
-Risk: The skill can publish public trading and analysis posts. <br>
-Mitigation: Keep posting disabled until reviewed, use cooldown and confidence thresholds, and verify connected social accounts before enabling public posts. <br>
-Risk: The skill depends on backend services for trading, funding, withdrawals, and social actions. <br>
-Mitigation: Verify the official backend URL with the publisher and confirm pause, withdrawal, delete, and credential-revocation controls before depositing funds. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pipethedev/polyclaw) <br>
-- [Polyclaw Website](https://polyclaw.ai) <br>
-- [Polyclaw API Reference](references/api-reference.md) <br>
-- [Polyclaw Trading Guide](references/trading-guide.md) <br>
-- [Polyclaw Token Launch Guide](references/launch-guide.md) <br>
-- [Social Posting Guide](references/moltbook-posting.md) <br>
+## Use Case:
 
+External developers and operators use this skill to configure and operate an autonomous Polymarket trading agent, including registration, funding, strategy settings, monitoring, token launch, buybacks, and social posting workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and bash/curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include credential handling, agent configuration, trading controls, funding instructions, and social posting workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can give a service real trading authority over funded accounts.
+
+Mitigation: Use a dedicated account, start with minimal funds, and keep trading credentials tightly scoped and revocable.
+
+Risk: Operator and agent API keys can enable sensitive trading operations if exposed.
+
+Mitigation: Avoid running registration in logged automation, store keys securely, and rotate any key that appears in a transcript, shell history, or captured output.
+
+Risk: Automated financial actions and recurring social promotion may create unwanted trades or public posts.
+
+Mitigation: Review the trading configuration, confidence thresholds, position sizing, and social posting settings before enabling automation.
+
+Risk: Remote or mutable skill dependencies can change behavior after installation.
+
+Mitigation: Review every remote skill and artifact before enabling it, and re-check artifacts when upgrading releases.
+
+## Reference(s):
+
+- [Polyclaw API Reference](references/api-reference.md)
+- [Polyclaw Trading Guide](references/trading-guide.md)
+- [Polyclaw Token Launch Guide](references/launch-guide.md)
+- [Social Posting Guide](references/moltbook-posting.md)
+- [Polyclaw Website](https://polyclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/pipethedev/skills/polyclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operator prompts, API request examples, registration scripts, configuration guidance, and risk-control recommendations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

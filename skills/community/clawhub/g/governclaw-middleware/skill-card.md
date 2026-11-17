@@ -1,40 +1,56 @@
-## Description: <br>
-GovernClaw Policy Enforcer provides a governed HTTP wrapper for OpenClaw agents that asks a GovernClaw policy service to allow or block requests before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GovernClaw Policy Enforcer helps OpenClaw agents route HTTP requests through a GovernClaw policy service before execution.
 
-## Publisher: <br>
-[aakash2289](https://clawhub.ai/user/aakash2289) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aakash2289](https://clawhub.ai/user/aakash2289)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw agent builders use this skill to mediate external HTTP API calls through a GovernClaw policy service and receive explicit block reasons when policy denies a request. The current artifact implements governed HTTP behavior, not shell, file, or browser governance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The configured GovernClaw policy service receives request URLs, headers, bodies, and session or agent context for governed HTTP calls.
+
+Mitigation: Set GOVERNCLAW_URL only to a GovernClaw service that is trusted and authorized to receive those request details.
+
+Risk: Allowed HTTP requests can be rewritten by the policy service before execution.
+
+Mitigation: Review policy service behavior and audit logs, and avoid sending secrets through governedHttp unless disclosure and rewriting are acceptable.
+
+Risk: The current artifact implements HTTP governance only, even though broader shell, file, and browser wrappers are described as future work.
+
+Mitigation: Continue using separate controls for shell, file, and browser actions until governed wrappers for those actions are implemented and reviewed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to route OpenClaw HTTP API calls through GovernClaw for policy checks and block reasons before external requests are sent. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [API Calls, JSON, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: HTTP request bodies and headers are forwarded to the GovernClaw policy service, which can expose secrets such as Authorization headers, cookies, API keys, or tokens. <br>
-Mitigation: Use only a GovernClaw endpoint you operate or strongly trust, keep it authenticated and protected, and avoid sending unnecessary secrets. <br>
-Risk: The policy service can modify the final HTTP request before it is sent. <br>
-Mitigation: Review policy rules and audit logs before deployment, and use a governance mode that matches the environment's tolerance for uncertainty. <br>
+**Output Format:** [JSON-like tool responses containing allowed HTTP results, request errors, or policy block reasons.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aakash2289/governclaw-middleware) <br>
+**Other Properties Related to Output:** [Governed HTTP calls can include audit logs on blocked requests, and allowed calls may use an effective payload returned by the policy service.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON-like HTTP response or block/error object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a policy block reason and audit log when GovernClaw blocks a request.] <br>
+1.0.0 (source: server release metadata and user changelog)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,228 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/dxt/main/dist/mcpb-manifest.schema.json",
+  "manifest_version": "0.3",
+  "name": "gogcli-mcp-calendar",
+  "display_name": "gogcli (Calendar)",
+  "version": "4.12.0",
+  "description": "Extended Google Calendar for Claude via gogcli — auth + Calendar events + Meet space management",
+  "author": {
+    "name": "Chris Hall",
+    "email": "chris.c.hall@gmail.com",
+    "url": "https://github.com/chrischall"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrischall/gogcli-mcp"
+  },
+  "homepage": "https://github.com/chrischall/gogcli-mcp",
+  "support": "https://github.com/chrischall/gogcli-mcp/issues",
+  "license": "MIT",
+  "keywords": [
+    "google",
+    "calendar",
+    "meet",
+    "meetings",
+    "gogcli",
+    "gog"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/index.js"
+      ],
+      "env": {
+        "GOG_ACCOUNT": "${user_config.gog_account}",
+        "GOG_PATH": "${user_config.gog_path}",
+        "GOG_FILE_ROOTS": "${user_config.gog_file_roots}",
+        "DISPLAY_TZ": "${user_config.display_tz}",
+        "GOG_READONLY": "${user_config.gog_readonly}",
+        "GOG_TIMEZONE": "${user_config.gog_timezone}"
+      }
+    }
+  },
+  "user_config": {
+    "gog_account": {
+      "type": "string",
+      "title": "Google Account",
+      "description": "Default Google account email (optional — uses gogcli's configured default if omitted)",
+      "required": false
+    },
+    "gog_path": {
+      "type": "string",
+      "title": "gog Executable Path",
+      "description": "Path to the gog executable (optional — defaults to 'gog' on your PATH)",
+      "required": false
+    },
+    "gog_file_roots": {
+      "type": "string",
+      "title": "Allowed file directories",
+      "description": "Directories tools may read files from (attachments, uploads) or write files to (exports, downloads), separated by ':' (';' on Windows). Optional — defaults to ~/gogcli-mcp-files",
+      "required": false
+    },
+    "display_tz": {
+      "type": "string",
+      "title": "Display time zone",
+      "description": "zone for *Display fields and for interpreting naive gog values; defaults to America/New_York",
+      "required": false
+    },
+    "gog_readonly": {
+      "type": "string",
+      "title": "Read-only mode",
+      "description": "block all mutating gog API requests (injects gog's --readonly); set to 0/false/no/off (or unset) to allow writes",
+      "required": false
+    },
+    "gog_timezone": {
+      "type": "string",
+      "title": "gog time zone",
+      "description": "zone gog formats naive dates in; unset, runner.ts hands gog DISPLAY_TZ so the two cannot diverge",
+      "required": false
+    }
+  },
+  "tools": [
+    {
+      "name": "gog_auth_add",
+      "description": "Authorize a Google account via browser-based OAuth"
+    },
+    {
+      "name": "gog_auth_health",
+      "description": "Live per-account token health: validity, age, and pre-expiry warnings (detects invalid_grant)"
+    },
+    {
+      "name": "gog_auth_add_url",
+      "description": "Begin remote/headless OAuth (step 1): return a sign-in URL to open in any browser"
+    },
+    {
+      "name": "gog_auth_add_complete",
+      "description": "Complete remote/headless OAuth (step 2): exchange the pasted redirect URL and store the token"
+    },
+    {
+      "name": "gog_auth_list",
+      "description": "List all Google accounts stored in gogcli"
+    },
+    {
+      "name": "gog_auth_status",
+      "description": "Show gogcli auth configuration"
+    },
+    {
+      "name": "gog_auth_services",
+      "description": "List Google services and OAuth scopes supported by gogcli"
+    },
+    {
+      "name": "gog_auth_run",
+      "description": "Run any gog auth subcommand (escape hatch)"
+    },
+    {
+      "name": "gog_calendar_events",
+      "description": "List calendar events; compact by default (view=full for descriptions and attendees), paginated and flags a truncated range"
+    },
+    {
+      "name": "gog_calendar_get",
+      "description": "Get a specific calendar event"
+    },
+    {
+      "name": "gog_calendar_create",
+      "description": "Create a calendar event (optionally attach a Zoom meeting via withZoom)"
+    },
+    {
+      "name": "gog_calendar_update",
+      "description": "Update an existing calendar event (add/replace/remove Zoom meeting via withZoom/regenerateZoom/removeZoom)"
+    },
+    {
+      "name": "gog_calendar_delete",
+      "description": "Delete a calendar event (asks the user to confirm when it has guests or recurs)"
+    },
+    {
+      "name": "gog_calendar_respond",
+      "description": "Respond to a calendar event invitation"
+    },
+    {
+      "name": "gog_calendar_run",
+      "description": "Run any gog calendar subcommand (escape hatch)"
+    },
+    {
+      "name": "gog_calendar_calendars",
+      "description": "List the calendars in your calendar list"
+    },
+    {
+      "name": "gog_calendar_search",
+      "description": "Full-text search for events with optional time filters"
+    },
+    {
+      "name": "gog_calendar_changed",
+      "description": "List most recently changed events (including cancellations) across calendars"
+    },
+    {
+      "name": "gog_calendar_freebusy",
+      "description": "Query free/busy intervals for one or more calendars"
+    },
+    {
+      "name": "gog_calendar_colors",
+      "description": "Show the available calendar and event color palette"
+    },
+    {
+      "name": "gog_calendar_acl",
+      "description": "List the access control list (sharing rules) for a calendar"
+    },
+    {
+      "name": "gog_calendar_move",
+      "description": "Move an event to another calendar (asks the user to confirm when guests are emailed)"
+    },
+    {
+      "name": "gog_calendar_out_of_office",
+      "description": "Create an Out of Office event that auto-declines invitations (asks the user to confirm unless autoDecline is none)"
+    },
+    {
+      "name": "gog_calendar_unsubscribe",
+      "description": "Remove a calendar from your calendar list"
+    },
+    {
+      "name": "gog_calendar_delete_calendar",
+      "description": "Delete an owned secondary calendar (asks the user to confirm)"
+    },
+    {
+      "name": "gog_meet_create",
+      "description": "Create a Google Meet space, optionally configuring recording, transcription, smart notes, attendance reports and moderation"
+    },
+    {
+      "name": "gog_meet_get",
+      "description": "Get a Google Meet space by meeting code"
+    },
+    {
+      "name": "gog_meet_update",
+      "description": "Update a Google Meet space's access, recording, transcription, smart notes, attendance report and moderation settings"
+    },
+    {
+      "name": "gog_meet_end",
+      "description": "End the active conference in a Meet space"
+    },
+    {
+      "name": "gog_meet_history",
+      "description": "List past calls in a Meet space"
+    },
+    {
+      "name": "gog_meet_participants",
+      "description": "List participants from a Meet call"
+    },
+    {
+      "name": "gog_zoom_auth_setup",
+      "description": "Store Zoom Server-to-Server OAuth credentials (needed for calendar event Zoom attachment)"
+    },
+    {
+      "name": "gog_zoom_auth_doctor",
+      "description": "Validate stored Zoom Server-to-Server OAuth credentials"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "linux",
+      "win32"
+    ],
+    "runtimes": {
+      "node": ">=22.0.0"
+    }
+  }
+}

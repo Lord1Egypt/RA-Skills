@@ -1,43 +1,54 @@
-## Description: <br>
-Generates competitor intelligence reports from a competitor name, brand, or link, covering pricing strategy, marketing moves, user-review sentiment, SWOT analysis, and response strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inputs a competitor name or link and generates a competitor analysis report covering pricing strategy, marketing actions, user review analysis, SWOT, and response strategies.
 
-## Publisher: <br>
-[amaxclaw](https://clawhub.ai/user/amaxclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amaxclaw](https://clawhub.ai/user/amaxclaw)
 
-## Use Case: <br>
-Product managers, marketing operators, and founders use this skill to draft competitor analysis reports and compare pricing, marketing, customer feedback, SWOT factors, and response options. Outputs should be treated as business-analysis drafts that require source review before decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may be generic, synthetic, or partly random and could mislead pricing, marketing, investment, or product decisions. <br>
-Mitigation: Treat reports as drafts; require source attribution, human review, and independent validation before relying on the analysis. <br>
-Risk: Competitor research based on public information can be incomplete, outdated, or limited by source terms. <br>
-Mitigation: Use lawful public sources, respect source terms, and cross-check findings with direct market research. <br>
-Risk: The release is commercial and may involve paid report or membership terms. <br>
-Mitigation: Confirm pricing and purchase terms before use. <br>
+## Use Case:
 
+Product managers, marketing operators, and founders use this skill to draft competitor intelligence reports from a competitor name, brand, or URL. It is best treated as a structured report framework whose findings should be independently verified before business use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amaxclaw/competitor-intelligence-monitor) <br>
-- [Skill README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with structured analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes executive summary, pricing analysis, marketing analysis, user-review sentiment, SWOT, and short-, medium-, and long-term counter-strategy guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, manifest.json, and SKILL.md metadata) <br>
+Risk: Reports may present template-based or partly random outputs as competitor intelligence without verifiable public-data attribution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the report as a draft framework, verify claims against independent sources, and require clear source citations before relying on it for business decisions.
+
+Risk: Users may enter confidential strategy, product, or competitor details into an unverified third-party skill.
+
+Mitigation: Avoid submitting confidential information unless the publisher's data handling terms are reviewed and approved.
+
+## Reference(s):
+
+- [ClawHub skill page: competitor-intelligence-monitor](https://clawhub.ai/amaxclaw/skills/competitor-intelligence-monitor)
+- [Publisher profile: amaxclaw](https://clawhub.ai/user/amaxclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Structured report text with executive summary, pricing analysis, marketing analysis, user review analysis, SWOT, and counter-strategy sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports may include template-based and simulated analysis; users should verify claims independently.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, manifest, and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,51 @@
-## Description: <br>
-Cynefin helps an agent classify ambiguous decisions into Clear, Complicated, Complex, Chaotic, or Confused domains and match the decision method to the situation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to classify a decision situation with the Cynefin domains and choose a response method suited to its cause-and-effect pattern.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, developers, and agents use this skill when familiar playbooks fail, experts disagree, or a crisis needs domain diagnosis before action. It guides the agent to elicit the situation, diagnose cause-effect structure, choose the matching Cynefin method, and produce a boundary-watch plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides advisory judgment for ambiguous situations, and its recommendations may be inappropriate if applied without human review. <br>
-Mitigation: Require explicit confirmation before acting on any real-world, destructive, financial, or account-changing recommendation. <br>
-Risk: A domain diagnosis can be wrong when the user provides incomplete facts or when conditions shift during a crisis. <br>
-Mitigation: Use the skill's boundary-watch and re-diagnosis steps, and involve domain experts before committing to high-stakes actions. <br>
+## Use Case:
 
+Leaders, teams, and decision-makers use Cynefin to diagnose whether a situation is clear, complicated, complex, chaotic, or confused, then choose a decision approach suited to its cause-and-effect pattern. It is intended for situations where familiar practices fail, experts disagree, or conditions are changing; routine execution can skip the framework.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/cynefin) <br>
-- [Publisher profile](https://clawhub.ai/user/deciqai) <br>
-- [Sources - cynefin](references/sources.md) <br>
-- [Method in Action: Snowden at IBM (1999) and the HBR Synthesis (2007)](examples/snowden-at-ibm-1999-and-the-hbr-synthesis-2007.md) <br>
-- [deciqAI](https://deciqai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured diagnosis fields and step-by-step coaching prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause for user input at explicit WAIT checkpoints during novice coaching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A domain diagnosis or proposed crisis or business action may not fit the real situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a decision-coaching aid and review proposed high-stakes actions before implementing them.
+
+## Reference(s):
+
+- [Cynefin primary sources](artifact/references/sources.md)
+- [Cynefin skill page](https://clawhub.ai/deciqai/skills/cynefin)
+- [Cynefin overview](https://www.deciqai.com/c/cynefin)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Structured Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides a domain diagnosis, a matched decision method, suggested actions, and boundary signals; coaching mode pauses for user responses between steps.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

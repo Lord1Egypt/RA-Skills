@@ -1,44 +1,55 @@
-## Description: <br>
-Manages digital garden notes, link structures, and health metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages digital garden notes, link structures, and health metrics
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers, documentation maintainers, and knowledge-base curators use this skill to organize living notes, maintain bidirectional links, track content maturity, and plan maintenance for digital gardens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause the skill to activate during general knowledge-base or documentation curation work. <br>
-Mitigation: Use explicit prompts when requesting note edits or reorganization, and review proposed changes before applying them. <br>
-Risk: Suggested commands and templates may not match a user's local garden layout or available scripts. <br>
-Mitigation: Verify command availability with help or environment checks and adapt generated paths, YAML fields, and maintenance schedules to the local repository before use. <br>
+## Use Case:
 
+Knowledge workers and developers use this skill to organize a digital garden, connect notes, review content maturity, and track maintenance and link health.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-memory-palace-digital-garden-cultivator) <br>
-- [Publisher profile](https://clawhub.ai/user/athola) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace) <br>
-- [artifact/modules/linking-patterns.md](artifact/modules/linking-patterns.md) <br>
-- [artifact/modules/maintenance.md](artifact/modules/maintenance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose note structures, link patterns, maintenance schedules, and garden health metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Maintenance instructions may lead to notes being deleted or reorganized without explicit approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the maintenance instructions before enabling them and keep backups of important notes.
+
+Risk: The security scan was partial because some referenced local paths could not be resolved.
+
+Mitigation: Review related material and referenced paths before installation.
+
+## Reference(s):
+
+- [Memory Palace project page](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
+- [Linking Patterns](artifact/modules/linking-patterns.md)
+- [Garden Maintenance](artifact/modules/maintenance.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance, JSON, Shell commands]
+
+**Output Format:** [Markdown guidance and notes; garden metrics as JSON, brief text, or Prometheus exposition]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Metrics may be presented in JSON, brief, or Prometheus format.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

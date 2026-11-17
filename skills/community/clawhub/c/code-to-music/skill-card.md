@@ -1,43 +1,59 @@
-## Description: <br>
-Converts code files into MP3 music by analyzing code structure, mapping features to musical parameters, and sending a generated prompt and lyrics to the MiniMax music generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a code file into music by analyzing code structure, mapping those features to musical parameters, and using the MiniMax music-2.6 API to generate a code-inspired MP3.
 
-## Publisher: <br>
-[besty0121](https://clawhub.ai/user/besty0121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[besty0121](https://clawhub.ai/user/besty0121)
 
-## Use Case: <br>
-Developers and external users use this skill to turn a selected source code file into a novelty or documentation-oriented MP3 code symphony based on line count, functions, indentation, keywords, strings, and comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Code-derived metadata is sent to MiniMax for music generation. <br>
-Mitigation: Use non-sensitive files and avoid proprietary code unless that disclosure is acceptable. <br>
-Risk: The skill requires a MiniMax API key. <br>
-Mitigation: Keep the API key in the MINIMAX_API_KEY environment variable and do not commit it to files or prompts. <br>
-Risk: The generated MP3 is downloaded from a service-provided URL. <br>
-Mitigation: Run the script in a trusted environment and review downloaded output before redistribution. <br>
+## Use Case:
 
+Developers and external users can use this skill to turn a local source-code file into an MP3 composition for creative presentation, documentation, or experimentation with code-derived music.
 
-## Reference(s): <br>
-- [Code to Music on ClawHub](https://clawhub.ai/besty0121/code-to-music) <br>
-- [MiniMax music generation API endpoint](https://api.minimaxi.com/v1/music_generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown instructions with shell commands; generated MP3 file when the script is run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and sends code-derived music prompts and lyrics to MiniMax before downloading an MP3 from the returned audio URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends code-derived counts, prompts, and generated lyrics to MiniMax, which may be inappropriate for sensitive proprietary code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with code that is acceptable to process through MiniMax, or review and redact sensitive source material before running it.
+
+Risk: The skill downloads an audio URL returned by the external API and writes the response body directly to disk.
+
+Mitigation: Use trusted MiniMax API responses and consider adding URL validation and response-size limits before routine use.
+
+Risk: Music generation depends on a configured MiniMax API key and account quota for music-2.6.
+
+Mitigation: Configure MINIMAX_API_KEY for an account with music-2.6 access before use and monitor quota or billing impact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/besty0121/skills/code-to-music)
+- [MiniMax API host](https://api.minimaxi.com)
+- [MiniMax music generation endpoint](https://api.minimaxi.com/v1/music_generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls, files]
+
+**Output Format:** [Console status output and an MP3 audio file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a local input code file, sends derived prompts and generated lyrics to MiniMax, and writes the returned audio to a user-specified path or code_symphony.mp3.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

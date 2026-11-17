@@ -1,0 +1,61 @@
+{
+  "id": "fec-refactoring-functions",
+  "name": "Function Refactorings",
+  "category": "review-quality",
+  "tags": [
+    "refactoring",
+    "functions",
+    "parameters",
+    "decomposition"
+  ],
+  "summary": "Function, naming, parameter, shared-context, and phase refactoring techniques for frontend code.",
+  "version": "2.9.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "refactoring",
+    "functions",
+    "parameters",
+    "decomposition"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when behavior-preserving frontend refactoring focuses on function structure, naming, parameters, shared context, or phase boundaries, and the selected technique needs family-specific mechanics, risks, and JavaScript/TypeScript/React/Vue adaptation.",
+  "source": "skills/fec-refactoring-functions",
+  "references": [
+    "references/function-refactorings.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-refactoring",
+      "fec-code-smells",
+      "fec-refactoring-catalog",
+      "fec-refactoring-validation",
+      "fec-typescript-project-standard"
+    ],
+    "boundaryWorkflows": [
+      "Use dead-code cleanup for proven unused code, exports, styles, routes, fixtures, or dependencies.",
+      "Use TDD when adding new observable behavior or fixing a behavior-changing defect.",
+      "Use debugging first when the failure cause is unknown.",
+      "Use validation repair for understood lint, typecheck, test, or build failures that predate the refactoring step.",
+      "Use code review for merge-readiness review rather than structure-changing execution.",
+      "Use migration or architecture planning for dependency, framework, router, state-library, or platform replacements."
+    ],
+    "capabilityTags": [
+      "refactoring",
+      "functions",
+      "parameters",
+      "decomposition"
+    ]
+  }
+}

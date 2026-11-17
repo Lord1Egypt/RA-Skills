@@ -1,55 +1,67 @@
-## Description: <br>
-Integrate Circle Gateway to maintain unified USDC balances across supported EVM and Solana networks and perform fast crosschain transfers using deposit, burn, and mint workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Circle Gateway to hold a unified USDC balance across multiple blockchains and transfer USDC instantly (<500ms) via permissionless deposit, burn, and mint workflows.
 
-## Publisher: <br>
-[mscandlen3](https://clawhub.ai/user/mscandlen3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mscandlen3](https://clawhub.ai/user/mscandlen3)
 
-## Use Case: <br>
-Developers and engineers use this skill to build Circle Gateway integrations for unified USDC balances, deposits, balance queries, and crosschain transfers across supported EVM and Solana networks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples can initiate real USDC transfers, wallet signatures, and contract interactions. <br>
-Mitigation: Default to testnets and require explicit human review of network, recipient, amount, token, fees, and expiry before signing or broadcasting. <br>
-Risk: Circle API keys, entity secrets, private keys, or signing keys may be exposed if copied into code or logs. <br>
-Mitigation: Keep credentials server-side in environment variables or a secrets manager, and avoid committing or logging secret material. <br>
-Risk: Incorrect Gateway contract addresses, API URLs, domain IDs, token decimals, or signing payloads can cause failed transactions or fund loss. <br>
-Mitigation: Verify addresses and API URLs against Circle's official docs, use 6-decimal USDC amounts, and preserve the documented EIP-712 and Solana signing payload formats exactly. <br>
-Risk: Using a raw Solana wallet address as a destination recipient can route funds incorrectly. <br>
-Mitigation: Validate whether the destination is already a USDC token account before deriving or using an associated token account. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement Circle Gateway deposits, balance checks, and cross-chain USDC transfers across supported EVM chains and Solana. It is intended for applications that need chain-agnostic balances, low-latency transfers, payment routing, or cross-chain capital efficiency.
 
-## Reference(s): <br>
-- [Use Gateway on ClawHub](https://clawhub.ai/mscandlen3/use-gateway) <br>
-- [Circle Developer Docs](https://developers.circle.com/llms.txt) <br>
-- [Gateway Contract Addresses Configuration](references/config.md) <br>
-- [Depositing USDC on EVM](references/deposit-evm.md) <br>
-- [Depositing USDC on EVM from a Circle Developer-Controlled Wallet](references/deposit-evm-circle-wallet.md) <br>
-- [Depositing USDC on Solana](references/deposit-solana.md) <br>
-- [Query Gateway Balance](references/query-balance.md) <br>
-- [Gateway EVM-to-EVM Transfer Reference](references/evm-to-evm.md) <br>
-- [Gateway EVM-to-Solana Transfer Reference](references/evm-to-solana.md) <br>
-- [Gateway Solana-to-EVM Transfer Reference](references/solana-to-evm.md) <br>
-- [Gateway Solana-to-Solana Transfer Reference](references/solana-to-solana.md) <br>
-- [Transfer Gateway Balance with Circle Developer-Controlled Wallets](references/transfer-evm-circle-wallet.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, configuration, API, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes workflow-specific examples for EVM, Solana, Circle Wallets, and Gateway API interactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Generated examples can sign and submit real USDC transfers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep workflows on testnet until explicit confirmation screens, amount/address/domain validation, and mainnet acknowledgments are in place.
+
+Risk: A mainnet/testnet configuration mismatch is reported by security evidence.
+
+Mitigation: Review chain configuration before deployment and verify every environment, contract address, domain ID, and Gateway API endpoint before enabling transfers.
+
+Risk: Circle API keys and entity secrets authorize sensitive wallet operations.
+
+Mitigation: Store credentials only in environment variables or a secrets manager, never commit or log them, and restrict production signing authority.
+
+## Reference(s):
+
+- [Gateway Contract Addresses Configuration](references/config.md)
+- [Depositing USDC on EVM from a Circle Developer-Controlled Wallet](references/deposit-evm-circle-wallet.md)
+- [Depositing USDC on EVM](references/deposit-evm.md)
+- [Depositing USDC on Solana](references/deposit-solana.md)
+- [Gateway EVM-to-EVM Transfers](references/evm-to-evm.md)
+- [Gateway EVM-to-Solana Transfer Reference](references/evm-to-solana.md)
+- [Querying Unified Balance](references/query-balance.md)
+- [Gateway Solana-to-EVM Transfers](references/solana-to-evm.md)
+- [Gateway Solana-to-Solana Transfer](references/solana-to-solana.md)
+- [Transfer Gateway Balance via Circle Developer-Controlled Wallets](references/transfer-evm-circle-wallet.md)
+- [Circle Developer Docs](https://developers.circle.com/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, API Calls, Guidance]
+
+**Output Format:** [Markdown with TypeScript, TSX, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include runnable blockchain transaction examples that require explicit user confirmation, strict validation, testnet defaults, and protected Circle credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

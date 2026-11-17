@@ -1,41 +1,64 @@
-## Description: <br>
-Order groceries from Zepto in seconds. Just say what you need, get a payment link on WhatsApp, pay on your phone, done. Remembers your usual items. Works across India where Zepto delivers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zepto helps an agent order groceries from Zepto by confirming the delivery address, managing cart items, generating a payment link, and sending it over WhatsApp for user payment.
 
-## Publisher: <br>
-[bewithgaurav](https://clawhub.ai/user/bewithgaurav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bewithgaurav](https://clawhub.ai/user/bewithgaurav)
 
-## Use Case: <br>
-External users use this skill to automate Zepto grocery shopping in a logged-in browser session, including address confirmation, cart building, payment-link generation, and order follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-India, where Zepto delivers <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate in a logged-in Zepto browser session and may act on the user's grocery account. <br>
-Mitigation: Confirm the delivery address, cart contents, total, and payment link before proceeding, and use a separate browser profile or clear the session when persistent access is not desired. <br>
-Risk: Smart-shop and clear-cart flows can remove existing cart items. <br>
-Mitigation: Check the cart before adding items and get clear user confirmation before clearing items except where the user has explicitly approved post-payment cleanup. <br>
+## Use Case:
 
+External users in India use this skill to delegate Zepto grocery shopping tasks to an agent while retaining control over address confirmation and payment approval. The skill supports repeat grocery ordering by using local order history to suggest usual items.
 
-## Reference(s): <br>
-- [ClawHub Zepto Skill](https://clawhub.ai/bewithgaurav/zepto) <br>
-- [Zepto Website](https://www.zepto.com) <br>
+### Deployment Geography for Use:
 
+India
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and user-facing checkout guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser-automation steps, cart summaries, address confirmation prompts, payment-link instructions, and local order-history guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: package.json, server release metadata) <br>
+Risk: The skill controls an authenticated Zepto browser session and can change shopping-account state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before address changes, cart changes, checkout, payment-link generation, and order-history scraping.
+
+Risk: Cart clearing may remove items the user intended to keep.
+
+Mitigation: Show current cart contents and ask whether to keep or clear existing items before removal.
+
+Risk: Payment-link workflows can lead to unintended purchases if the user does not inspect the order.
+
+Mitigation: Have the user review cart contents, delivery address, total price, and the payment link before completing payment manually.
+
+Risk: Local order history may retain shopping preferences.
+
+Mitigation: Tell users where the local order-history file is stored and support clearing it when they no longer want retained shopping context.
+
+## Reference(s):
+
+- [ClawHub Zepto skill page](https://clawhub.ai/bewithgaurav/skills/zepto)
+- [ClawHub publisher profile](https://clawhub.ai/user/bewithgaurav)
+- [Zepto website](https://www.zepto.com)
+- [Zepto account page](https://www.zepto.com/account)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw browser control and may use WhatsApp messaging for payment links.]
+
+## Skill Version(s):
+
+1.0.6 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

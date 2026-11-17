@@ -1,47 +1,55 @@
-## Description: <br>
-When the user has a new development idea, search GitHub first for open-source projects to fork as a starting point. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Before the user starts coding a new project idea, search GitHub for an existing repo to fork as a starting point. Skip for debugging, learning, or a specific algorithm/function.
 
-## Publisher: <br>
-[gdwhisper](https://clawhub.ai/user/gdwhisper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gdwhisper](https://clawhub.ai/user/gdwhisper)
 
-## Use Case: <br>
-Developers and coding agents use this skill during early project ideation to search GitHub for open-source repositories that may be suitable to fork, extend, or study before building from scratch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad coding requests and steer the agent toward GitHub search before the user has asked for external project reuse. <br>
-Mitigation: Install it only in environments where proactive GitHub discovery is desired, and confirm with the user before recommending a fork as the implementation path. <br>
-Risk: Helper scripts can run shell commands with poorly scoped inputs. <br>
-Mitigation: Avoid untrusted script options or repository names until the scripts use a safer HTTP client or argument-array subprocess call. <br>
-Risk: The skill may use GitHub credentials for higher API limits. <br>
-Mitigation: Use a minimal GitHub token only when needed and avoid granting broader scopes than repository search requires. <br>
-Risk: Forking third-party repositories can carry license and reuse obligations. <br>
-Mitigation: Review repository licenses and project terms before forking, extending, or shipping derived work. <br>
+## Use Case:
 
+Developers and agents use fork-it before starting a new project to search GitHub for existing repositories, compare reuse fit, and recommend whether to fork, extend, reference, or build from scratch.
 
-## Reference(s): <br>
-- [Fork-It ClawHub listing](https://clawhub.ai/gdwhisper/fork-it) <br>
-- [gdwhisper ClawHub profile](https://clawhub.ai/user/gdwhisper) <br>
-- [GitHub Search API v3](https://api.github.com/search/repositories) <br>
-- [GitHub REST API repositories endpoint](https://api.github.com/repos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON results from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use GITHUB_TOKEN for higher GitHub API rate limits; review repository licenses before forking third-party code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence) <br>
+Risk: Project search terms and selected repository names are sent to GitHub when the scripts are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive project names, private repository identifiers, or confidential search terms unless sharing them with GitHub is acceptable.
+
+Risk: If GITHUB_TOKEN is set, the scripts include it in GitHub API requests for rate limits.
+
+Mitigation: Use a least-privilege token or unset GITHUB_TOKEN when higher rate limits are unnecessary.
+
+## Reference(s):
+
+- [fork-it Script Reference](artifact/references/schema.md)
+- [GitHub repository search API endpoint](https://api.github.com/search/repositories)
+- [GitHub repository details API endpoint](https://api.github.com/repos)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, text]
+
+**Output Format:** [Markdown with inline bash commands and summarized repository data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository names, URLs, stars, language, license, recent activity, topics, and reuse advice.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

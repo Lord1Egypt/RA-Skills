@@ -1,45 +1,60 @@
-## Description: <br>
-Calculate a person's Four Pillars (BaZi / Eight Characters) from birth date and time using sexagenary-cycle offsets from one trusted reference datetime that already has known year/month/day/hour pillars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates Four Pillars BaZi values from a birth date and time using a trusted reference datetime, with optional DaYun luck cycles and current LiuNian Ganzhi output.
 
-## Publisher: <br>
-[wingchiu](https://clawhub.ai/user/wingchiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wingchiu](https://clawhub.ai/user/wingchiu)
 
-## Use Case: <br>
-External users and developers use this skill to calculate BaZi pillars, Eight Characters, DaYun cycles when gender is provided, and the current LiuNian Ganzhi from a birth datetime and timezone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local Python script depends on lunar_python for DaYun solar-term calculations. <br>
-Mitigation: Review and verify the lunar_python dependency before installing or running the skill in an agent environment. <br>
-Risk: BaZi results depend on the selected reference datetime, anchor quality, and boundary conventions. <br>
-Mitigation: Use verified anchors and compare outputs against a trusted almanac source before relying on results. <br>
+## Use Case:
 
+External users and agent developers use this skill to calculate BaZi pillars, eight characters, DaYun cycles, and current LiuNian values from birth details and a verified reference dataset.
 
-## Reference(s): <br>
-- [Anchor Requirements](references/method.md) <br>
-- [Verified Reference](references/reference-verified.json) <br>
-- [Reference Template](references/reference-template.json) <br>
-- [Anchor Template](references/anchors-template.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wingchiu/bazi-calculator) <br>
-- [Publisher Profile](https://clawhub.ai/user/wingchiu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local birth-chart calculation output including pillars, Eight Characters, current LiuNian, and optional DaYun details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Birth date, time, and timezone can be sensitive personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the calculator locally and avoid sharing birth details or outputs beyond the intended analysis context.
+
+Risk: The calculator depends on the local Python environment and the lunar_python library.
+
+Mitigation: Confirm Python and lunar_python are installed before use, and treat dependency installation as a separate environment setup step.
+
+Risk: BaZi accuracy depends on the selected reference data and boundary rules.
+
+Mitigation: Use verified JiaZi anchors or reference data, and validate outputs against a trusted almanac source when precision matters.
+
+## Reference(s):
+
+- [Anchor Requirements](references/method.md)
+- [Verified Reference Dataset](references/reference-verified.json)
+- [Reference Template](references/reference-template.json)
+- [Anchor Template](references/anchors-template.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and plain text calculation output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calculations depend on birth datetime, timezone, reference JSON, and optional gender for DaYun.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

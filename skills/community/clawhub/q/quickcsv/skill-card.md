@@ -1,38 +1,54 @@
-## Description: <br>
-Convert JSON, YAML, or TSV files to standardized CSV format with automatic header detection and consistent output for analysis and processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert JSON, YAML, or TSV files to standardized CSV format with automatic header detection and consistent output for easy data analysis and processing.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Data analysts, researchers, and engineers use QuickCSV to convert local JSON, YAML, or TSV files into consistent CSV output for analysis or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI reads the input file path provided by the user and can overwrite the selected output path. <br>
-Mitigation: Run it only on intended local files and choose output paths that are safe to create or replace. <br>
+## Use Case:
 
+Data analysts, researchers, and engineers use Quickcsv to convert JSON, YAML, or TSV inputs into standardized CSV for analysis, processing, or transfer between tools.
 
-## Reference(s): <br>
-- [Quickcsv ClawHub page](https://clawhub.ai/albionaiinc-del/quickcsv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides local file conversion and may write CSV output to stdout or to a user-selected file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Using -o writes to a selected path and may replace an existing file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose output paths deliberately and avoid overwriting important files without a backup or review.
+
+Risk: CSV generated from untrusted input may contain formula-like cells that spreadsheet software could evaluate.
+
+Mitigation: Review or sanitize untrusted data before opening generated CSV files in spreadsheet software.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/quickcsv)
+- [Publisher profile](https://clawhub.ai/user/albionaiinc-del)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with bash command examples and CSV output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The tool can write CSV to a selected output path or stream CSV to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

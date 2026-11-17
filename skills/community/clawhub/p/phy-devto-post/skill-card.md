@@ -1,42 +1,56 @@
-## Description: <br>
-Post articles to DEV.to using AppleScript Chrome control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post articles to DEV.to using AppleScript Chrome control for technical blog posts, showdev articles, or open source project announcements.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and content authors use this skill to publish technical blog posts, showdev articles, and open source project announcements to DEV.to from a logged-in Chrome session on macOS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent high-impact authority to publish through the DEV.to account currently logged in to Chrome. <br>
-Mitigation: Require manual final confirmation before commands that post with published:true or click Publish, and review the exact title, tags, body, and published state. <br>
-Risk: Publishing from the user's real browser session may affect the wrong DEV.to account or profile. <br>
-Mitigation: Use a separate Chrome profile or test account when possible and confirm the active DEV.to account before publishing. <br>
+## Use Case:
 
+Developers and technical publishers use this skill to prepare and publish DEV.to articles through a logged-in Chrome session on macOS. It is suited for technical blog posts, showdev articles, and open source project announcements where the agent returns the published article link.
 
-## Reference(s): <br>
-- [Phy Devto Post on ClawHub](https://clawhub.ai/PHY041/phy-devto-post) <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [DEV Community](https://dev.to) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with bash, JavaScript, and article-template examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces publishing instructions and command snippets; actual publication depends on a logged-in Chrome session and user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can publish a live DEV.to article through the user's logged-in Chrome session without a required review or confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add a draft-first workflow and require explicit confirmation of the title, tags, target account, and publication status before posting.
+
+Risk: Long-article handling uses temporary files for article content.
+
+Mitigation: Use safer temporary-file handling, remove temporary files after use, and avoid storing sensitive draft content in predictable paths.
+
+## Reference(s):
+
+- [Phy Devto Post on ClawHub](https://clawhub.ai/phy041/skills/phy-devto-post)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+- [Canlah AI homepage](https://canlah.ai)
+- [DEV.to](https://dev.to)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with inline bash, AppleScript, JavaScript, and JXA code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish a live DEV.to article through the user's logged-in Chrome session and should return the final article link.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

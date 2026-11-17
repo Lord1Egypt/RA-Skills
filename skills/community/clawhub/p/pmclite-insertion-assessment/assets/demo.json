@@ -1,0 +1,19 @@
+{
+  "notice": "示例数据 · 不是你的真实工单",
+  "verdict": "可以插，急单料已齐，需换线",
+  "max_shift_days": 3,
+  "impacted": [
+    {
+      "work_order": "WO-0031",
+      "before": "11-14 → 11-18",
+      "after": "11-17 → 11-21",
+      "shift_days": 3
+    },
+    {
+      "work_order": "WO-0033",
+      "before": "11-19 → 11-20",
+      "after": "11-20 → 11-21",
+      "shift_days": 1
+    }
+  ]
+}

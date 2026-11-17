@@ -1,41 +1,55 @@
-## Description: <br>
-A-share Chinese stock market daily briefing that collects index data, sector rankings, capital flows, major announcements, and generates a structured daily report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-share (Chinese stock market) daily briefing that collects index data, sector rankings, capital flows, major announcements, and generates a structured daily report.
 
-## Publisher: <br>
-[bustes01](https://clawhub.ai/user/bustes01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bustes01](https://clawhub.ai/user/bustes01)
 
-## Use Case: <br>
-External users use this skill to assemble a daily A-share market brief from public financial sources or an optional AShareHub API key. The skill is intended for informational reporting and instructs the agent to mark missing data as unavailable rather than guessing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional AShareHub workflow uses a sensitive API key. <br>
-Mitigation: Keep the key in an environment variable, avoid pasting credentials into prompts or reports, and review API commands before execution. <br>
-Risk: Market data may be delayed, incomplete, or unsuitable for investment decisions. <br>
-Mitigation: Use cited public sources or the configured API, mark missing values as unavailable, and have a human review the brief before acting on it financially. <br>
+## Use Case:
 
+External users and market analysts use this skill to generate a concise daily briefing on China's A-share market, including indices, sector movement, capital flows, market sentiment, announcements, and next-day watch items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bustes01/astock-daily-brief) <br>
-- [AShareHub](https://asharehub.com/zh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style daily market brief with structured sections and optional inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a financial disclaimer and instructs the agent to mark unavailable data rather than fabricate values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Optional API mode sends requests to AShareHub using a user-provided API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm AShareHub is trusted before use and use a dedicated API key with only the needed access.
+
+Risk: Market data may be delayed or unavailable, and the generated brief could be mistaken for investment advice.
+
+Mitigation: Treat the brief as informational only, preserve unavailable-data markings, and keep the investment-advice disclaimer visible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bustes01/skills/astock-daily-brief)
+- [ClawHub homepage metadata](https://clawhub.ai/BusTes01/astock-daily-brief)
+- [AShareHub](https://asharehub.com/zh/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown daily market brief with optional shell command examples for API access]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public web search by default; optional AShareHub API mode requires ASHAREHUB_API_KEY.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

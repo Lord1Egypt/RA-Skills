@@ -1,41 +1,54 @@
-## Description: <br>
-Blazingly fast text search tool - recursively searches directories for regex patterns with respect to gitignore rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blazingly fast text search tool - recursively searches directories for regex patterns with respect to gitignore rules.
 
-## Publisher: <br>
-[Arnarsson](https://clawhub.ai/user/Arnarsson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arnarsson](https://clawhub.ai/user/arnarsson)
 
-## Use Case: <br>
-Developers and engineers use this skill to get ripgrep command guidance for fast recursive text search, file type and path filtering, and careful search or replacement workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Examples can search hidden or ignored files and expose sensitive matches if used carelessly. <br>
-Mitigation: Preview matches, scope searches to intended paths, and be deliberate when using --hidden or --no-ignore. <br>
-Risk: Bulk replacement examples can modify many files at once when piped into commands such as sed -i. <br>
-Mitigation: Review matched files and preview replacements before running bulk edits, especially outside version-controlled directories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Ripgrep Release](https://clawhub.ai/Arnarsson/ripgrep) <br>
-- [ripgrep GitHub Repository](https://github.com/BurntSushi/ripgrep) <br>
-- [ripgrep User Guide](https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to get concise ripgrep command guidance for fast recursive text search, file filtering, context output, and replacement workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the rg binary; install metadata includes Homebrew and apt package options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using --hidden or --no-ignore can search ignored or private files and surface sensitive content.
+
+Mitigation: Review search scope, path filters, and ignore-related flags before running commands in repositories with private or generated files.
+
+Risk: The sed -i replacement pipeline can modify many files in place.
+
+Mitigation: Preview matches first, narrow paths or file types, and rely on version control or backups before bulk replacement.
+
+## Reference(s):
+
+- [ClawHub Ripgrep Skill](https://clawhub.ai/arnarsson/skills/ripgrep)
+- [ripgrep GitHub Repository](https://github.com/BurntSushi/ripgrep)
+- [ripgrep User Guide](https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the rg binary; install metadata lists Homebrew formula ripgrep and apt package ripgrep.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

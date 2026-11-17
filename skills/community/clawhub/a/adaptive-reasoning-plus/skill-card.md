@@ -1,38 +1,49 @@
-## Description: <br>
-Adaptive Reasoning Plus helps an agent score task complexity and choose a matching reasoning depth before responding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adaptive Reasoning Plus helps agents score task complexity and choose an appropriate response depth, from quick execution through structured extended reasoning.
 
-## Publisher: <br>
-[tsangho](https://clawhub.ai/user/tsangho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsangho](https://clawhub.ai/user/tsangho)
 
-## Use Case: <br>
-Developers and agent users use this skill to prompt an agent to assess task complexity, select an appropriate reasoning depth, and surface that decision for complex or high-impact requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review notes contradictory guidance that could cause an agent to treat file deletion as a direct low-risk action. <br>
-Mitigation: Before installing in an agent that can edit or delete files, correct the instructions so destructive or irreversible operations require target verification, explicit confirmation, and elevated reasoning. <br>
+## Use Case:
 
+Developers and external agent users use this skill to make task handling more adaptive by scoring complexity, ambiguity, impact, and irreversible actions before selecting a reasoning posture.
 
-## Reference(s): <br>
-- [Domain Scoring Reference](references/domain-scoring.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or plain text reasoning annotations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an explicit complexity score and selected reasoning strategy for tasks scored 6 or higher.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The file-deletion example can encourage fast handling of a destructive action.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Correct the example so file deletion and other irreversible actions require path validation, impact review, and explicit user confirmation before execution.
+
+## Reference(s):
+
+- [Domain Scoring Reference](references/domain-scoring.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown or text guidance with optional structured complexity labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a visible complexity score and selected reasoning strategy for higher-complexity tasks.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

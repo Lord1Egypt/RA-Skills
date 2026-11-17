@@ -1,42 +1,58 @@
-## Description: <br>
-Generates a proposal executive summary and scope outline from a project brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a concise proposal executive summary and scope outline from a project brief.
 
-## Publisher: <br>
-[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai)
 
-## Use Case: <br>
-Business development teams, consultants, and freelancers use this skill to turn project details into a concise proposal outline with an executive summary, phased scope, out-of-scope items, and an estimated investment range. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated proposal content may include inaccurate, overstated, or unsuitable business claims. <br>
-Mitigation: Review and edit generated proposals before sharing them with clients or relying on estimates. <br>
-Risk: Project briefs may contain confidential client data, secrets, or sensitive contract terms. <br>
-Mitigation: Avoid entering sensitive information unless the agent environment is approved for that data. <br>
-Risk: The skill includes a promotional link to an external paid version. <br>
-Mitigation: Evaluate the external offer separately before purchasing or using it. <br>
+## Use Case:
 
+External business development teams, freelancers, and proposal writers use this skill to turn a project brief into a one-page executive summary, high-level scope outline, out-of-scope list, and estimated investment range.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/apex-stack-ai/client-proposal-generator-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown proposal outline with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided client name, project type, deliverables, and rate to draft proposal content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Business-sensitive client names, rates, and project details may be included in prompts or generated proposals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inputs before use and avoid sharing confidential client or pricing information unless the deployment environment is approved for that data.
+
+Risk: Generated proposal language, scope, or estimates may be incomplete or commercially inaccurate.
+
+Mitigation: Review and revise generated proposals before sending them to clients.
+
+Risk: The skill includes a disclosed promotional Gumroad link.
+
+Mitigation: Treat the link as informational; the security evidence says the skill does not instruct agents to open it automatically.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apex-stack-ai/skills/client-proposal-generator-lite)
+- [Full Client Proposal Generator](https://apexstack.gumroad.com/l/client-proposal-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown proposal outline with section headings and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided client names, project details, deliverables, and rates to draft proposal content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

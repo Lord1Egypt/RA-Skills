@@ -1,37 +1,59 @@
-## Description: <br>
-Configures an OpenClaw workspace to use the Memory V8 low-context memory pattern with session-first context, summarized daily notes, a concise long-term MEMORY.md file, and on-demand retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Empathic Trinity Core installs, migrates, and configures a low-context OpenClaw memory system that uses session-first working memory, summary-style daily notes, compact long-term memory, and on-demand retrieval while preserving user-state and collaboration cues.
 
-## Publisher: <br>
-[Chiyuchen-web](https://clawhub.ai/user/Chiyuchen-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chiyuchen-web](https://clawhub.ai/user/chiyuchen-web)
 
-## Use Case: <br>
-Developers and OpenClaw workspace users use this skill to install or migrate a workspace memory setup so long-term facts, reflections, emotional context, and recent daily summaries are stored with lower context overhead. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may read or rewrite private memory and agent-configuration files such as AGENTS.md, SOUL.md, USER.md, MEMORY.md, and memory/ daily notes. <br>
-Mitigation: Review or back up those files before installation and decide deliberately whether emotional, relationship, or user-state cues should be stored long term. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Chiyuchen-web/empathic-trinity-core) <br>
+## Use Case:
 
+Developers and OpenClaw workspace maintainers use this skill to migrate an existing workspace to a lower-context memory workflow, configure long-term and daily memory files, and guide agents toward concise, need-based memory retrieval.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions and workspace file configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to read, rewrite, or create memory-related workspace files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to rewrite persistent memory and agent-instruction files before the user has reviewed the intended changes.
+
+Mitigation: Review the planned edits to AGENTS.md, MEMORY.md, SOUL.md, USER.md, and daily memory files before applying them.
+
+Risk: Broad workspace permissions could allow memory migration steps to affect more files than intended.
+
+Mitigation: Use a backup or clean commit before installation and grant only the file access needed for the confirmed migration.
+
+Risk: Memory migration can preserve outdated, sensitive, or misleading personal context if summaries are accepted without review.
+
+Mitigation: Inspect the resulting MEMORY.md and daily summaries, remove sensitive or stale content, and keep only high-value long-term information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chiyuchen-web/skills/empathic-trinity-core)
+- [Memory V8 README](artifact/README.md)
+- [Memory V8 Architecture](artifact/ARCHITECTURE.md)
+- [Daily memory guidance](artifact/daily/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with file-editing guidance and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace memory structure guidance and may direct changes to persistent agent and memory files.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

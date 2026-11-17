@@ -1,39 +1,57 @@
-## Description: <br>
-Real-time BTC Orderbook Imbalance (OBI) tracking for professional traders. Detects high-conviction whale activity before it hits the tape. Powered by Sovereign-Futures logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time BTC Orderbook Imbalance tracking for professional traders to detect high-conviction whale activity before it hits the tape.
 
-## Publisher: <br>
-[tmstudio667-commits](https://clawhub.ai/user/tmstudio667-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tmstudio667-commits](https://clawhub.ai/user/tmstudio667-commits)
 
-## Use Case: <br>
-Professional traders and market-monitoring agents use this skill to request BTC orderbook imbalance alerts for OKX and Binance, including whale fingerprinting and high-conviction OBI threshold signals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes paid trading-signal claims that are not substantiated by reviewable code or data-source details. <br>
-Mitigation: Verify the publisher, fee handling, market-data sources, and the claimed external scanning engine before relying on any trading signal. <br>
-Risk: Users may treat orderbook imbalance alerts as evidence of trading accuracy or financial advice. <br>
-Mitigation: Use the alerts only as one input to an independently reviewed trading process and confirm results against trusted market data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tmstudio667-commits/whale-pulse-monitor) <br>
+## Use Case:
 
+External traders and market-monitoring agents use this skill to run a BTC order book imbalance monitor for OKX and Binance and surface high-conviction whale activity alerts.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid access is described as $0.25 USDC per use on the Base network.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented run command uses an unpinned npx package.
+
+Mitigation: Verify that openclaw is the expected official package and run a pinned audited version in a least-privileged environment before installation or execution.
+
+Risk: Trading signals and whale-activity claims may be incorrect, incomplete, or unsuitable for a user's trading strategy.
+
+Mitigation: Treat outputs as informational market-monitoring signals and review them with independent risk controls before making trading decisions.
+
+Risk: The skill charges 0.25 USDC via x402 per use.
+
+Mitigation: Confirm the fee, currency, and Base network payment details before running the skill.
+
+## Reference(s):
+
+- [Whale Pulse Monitor ClawHub listing](https://clawhub.ai/tmstudio667-commits/skills/whale-pulse-monitor)
+- [System Architect Zero ClawHub profile](https://clawhub.ai/user/tmstudio667-commits)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market-monitoring alerts and informational trading signals; access costs 0.25 USDC per use via x402.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

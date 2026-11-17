@@ -1,46 +1,61 @@
-## Description: <br>
-ClawShorts helps an agent manage a Fire TV YouTube Shorts limiter that tracks daily Shorts watch time and closes YouTube when the configured limit is reached. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawShorts helps an agent check, manage, and configure YouTube Shorts limiting on Fire TV devices.
 
-## Publisher: <br>
-[cindulasai](https://clawhub.ai/user/cindulasai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindulasai](https://clawhub.ai/user/cindulasai)
 
-## Use Case: <br>
-External users and developers use this skill to set up, monitor, and configure a local Fire TV YouTube Shorts limiter through ADB, including status checks, resets, device management, and daemon control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses ADB to control Fire TV devices on the local network. <br>
-Mitigation: Use it only on a trusted, password-protected home network and disable ADB debugging when the limiter is not needed. <br>
-Risk: The background daemon can close YouTube automatically when the daily limit is reached. <br>
-Mitigation: Review the configured devices and daily limits before enabling the daemon, and use the documented stop or reset commands when enforcement is not desired. <br>
-Risk: Local logs or UI dump files may contain sensitive screen or usage details. <br>
-Mitigation: Periodically review or delete local files under ~/.clawshorts and /tmp when screen contents or usage history may be sensitive. <br>
+## Use Case:
 
+External users and home automation agents use this skill to enforce daily YouTube Shorts limits on Fire TV devices, inspect usage, reset counters, manage the background limiter, and tune per-device configuration.
 
-## Reference(s): <br>
-- [ClawShorts ClawHub Release](https://clawhub.ai/cindulasai/clawshorts) <br>
-- [README](artifact/README.md) <br>
-- [Security Audit Report](artifact/SECURITY_AUDIT.md) <br>
-- [Per-Device Config and Auto-Detection Spec](artifact/SPEC.md) <br>
-- [Troubleshooting Guide](artifact/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with shell commands and status or configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that interact with local ADB, SQLite configuration, and a user-level background daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: ClawHub release metadata) <br>
+Risk: ADB access on a Fire TV can allow local network control of the device.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable ADB only on a trusted, password-protected home network and disable it when the limiter is no longer needed.
+
+Risk: The optional background daemon can close YouTube automatically when the configured daily limit is reached.
+
+Mitigation: Review the configured device list and daily limits before starting the daemon, and use the provided stop or uninstall controls when enforcement should end.
+
+Risk: Misconfigured device targets could cause unwanted ADB connection attempts.
+
+Mitigation: Use only private Fire TV IP addresses from the trusted home network; the release evidence notes public IPs are rejected.
+
+## Reference(s):
+
+- [ClawShorts Skill Page](https://clawhub.ai/cindulasai/skills/clawshorts)
+- [README](artifact/README.md)
+- [Per-Device Config and Auto-Detection Spec](artifact/SPEC.md)
+- [Troubleshooting Guide](artifact/TROUBLESHOOTING.md)
+- [Security Audit Report](artifact/SECURITY_AUDIT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses adb and python3 on the user's machine; stores per-device settings and usage locally.]
+
+## Skill Version(s):
+
+1.3.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

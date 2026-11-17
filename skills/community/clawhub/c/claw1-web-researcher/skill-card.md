@@ -1,39 +1,53 @@
-## Description: <br>
-Conduct structured web research for market insights, competitor analysis, trend monitoring, pricing, and content curation with clear, actionable reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct structured web research for market insights, competitor analysis, trend monitoring, pricing, and content curation with clear, actionable reports.
 
-## Publisher: <br>
-[Gpunter](https://clawhub.ai/user/Gpunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gpunter](https://clawhub.ai/user/gpunter)
 
-## Use Case: <br>
-Developers, founders, analysts, and content creators use this skill to gather sourced web findings, compare competitors, monitor trends, research pricing, and summarize URLs before making product, market, or content decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Summarizing URLs causes the agent to visit user-provided web pages. <br>
-Mitigation: Provide only URLs that are intended for review, and verify important facts before relying on the summary. <br>
-Risk: Recurring monitoring can repeatedly check selected topics. <br>
-Mitigation: Use daily or weekly monitoring only for topics intentionally approved for ongoing research. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Gpunter/claw1-web-researcher) <br>
+## Use Case:
 
+Agents use this skill to perform live web research for market research, competitor analysis, trend monitoring, pricing checks, content research, and due diligence.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown research reports with findings, analysis, opportunities, and source lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs vary by requested research depth and may include URL summaries, competitor tables, pricing ranges, trend briefs, or recurring research updates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may request live URLs during research or summarization, which can expose private, internal, or sensitive links if supplied by the user.
+
+Mitigation: Only provide URLs intended for external research, and avoid localhost, private network, cloud metadata, or confidential internal links.
+
+Risk: Research findings can be incomplete, stale, or biased by the sources selected during live web research.
+
+Mitigation: Use deeper research modes for decisions involving money, compare cited sources, and review findings before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gpunter/skills/claw1-web-researcher)
+- [Publisher profile](https://clawhub.ai/user/gpunter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown research reports with findings, analysis, opportunities, and sources.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depth can be quick, standard, or deep depending on the research command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

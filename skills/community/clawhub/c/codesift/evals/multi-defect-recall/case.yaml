@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: multi-defect-recall
+expected_outcome: |
+  The review reports five seeded problems: the CI step `pytest -q || true` cannot fail;
+  load_orders turns read and parse failures into an empty list, so a missing export
+  shows zero revenue; total_with_tax floors the tax although its docstring promises
+  rounding half up (1999 cents gives 2158 instead of 2159); test_total_with_tax derives
+  its expected value from the same formula and cannot catch that; and
+  app/legacy_report.py is referenced nowhere. app/cleanup.py has no import but is
+  reached by name through the TASKS registry, so it must not be reported as unused.
+  Nothing is edited before approval.
+context:
+  scaffold_script: place-files.sh

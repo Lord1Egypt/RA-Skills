@@ -1,30 +1,21 @@
 ---
 name: dlazy-image-generate
-version: 1.2.0
-description: Image generation skill. Automatically selects the best dlazy CLI image model based on the prompt.
-metadata:
-  {
-    'clawdbot':
-      {
-        'emoji': '🤖',
-        'requires': { 'bins': ['npm', 'npx'] },
-        'install': 'npm install -g @dlazy/cli@latest',
-        'installAlternative': 'npx @dlazy/cli@latest',
-        'homepage': 'https://github.com/dlazyai/cli',
-        'source': 'https://github.com/dlazyai/cli',
-        'author': 'dlazyai',
-        'license': 'see-repo',
-        'npm': 'https://www.npmjs.com/package/@dlazy/cli',
-        'configLocation': '~/.dlazy/config.json',
-        'apiEndpoints': ['api.dlazy.com', 'files.dlazy.com'],
-      },
-    'openclaw': { 'systemPrompt': 'When this skill is called, use dlazy <subcommand>.' },
-  }
+version: 1.3.5
+description: "Image generation skill. Automatically selects the best dlazy CLI image model based on the prompt. 图片生成技能。根据提示词自动选择最佳的 dlazy CLI 图片生成模型。"
+metadata: {"clawdbot":{"emoji":"🤖","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli@1.2.3","installAlternative":"npx @dlazy/cli@1.2.3","homepage":"https://github.com/dlazy-ai/cli","source":"https://github.com/dlazy-ai/cli","author":"dlazyai","license":"see-repo","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"When this skill is called, use dlazy <subcommand>."}}
 ---
 
-# dlazy-image-generate
+# 图片生成 Image Generate
 
 [English](./SKILL.md) · [中文](./SKILL-cn.md)
+
+
+
+
+
+
+
+
 
 Image generation skill. Automatically selects the best dlazy CLI image model based on the prompt.
 
@@ -36,9 +27,11 @@ Image generation skill. Automatically selects the best dlazy CLI image model bas
 
 ## Authentication
 
-All requests require a dLazy API key. The recommended way to authenticate is:
+All requests require a dLazy API key. The recommended way to authenticate is `dlazy login`:
 
-````bash
+```bash
+dlazy login
+```
 
 This runs a device-code flow (also works in remote shells) and **automatically saves your API key** to the local CLI config — no manual copy/paste required.
 
@@ -48,7 +41,7 @@ If you already have an API key, you can save it directly:
 
 ```bash
 dlazy auth set YOUR_API_KEY
-````
+```
 
 The CLI saves the key in your user config directory (`~/.dlazy/config.json` on macOS/Linux, `%USERPROFILE%\.dlazy\config.json` on Windows), with file permissions restricted to your OS user account. You can also supply the key per-invocation via the `DLAZY_API_KEY` environment variable.
 
@@ -60,20 +53,23 @@ The CLI saves the key in your user config directory (`~/.dlazy/config.json` on m
 
 Each key is scoped to your dLazy organization and can be **rotated or revoked at any time** from the same dashboard.
 
+
+
+
 ## About & Provenance
 
-- **CLI source code**: [github.com/dlazyai/cli](https://github.com/dlazyai/cli)
+- **CLI source code**: [github.com/dlazy-ai/cli](https://github.com/dlazy-ai/cli)
 - **Maintainer**: dlazyai
-- **npm package**: `@dlazy/cli` (pinned to `1.0.9` in this skill's install spec)
+- **npm package**: `@dlazy/cli` (pinned to `1.2.3` in this skill's install spec)
 - **Homepage**: [dlazy.com](https://dlazy.com)
 
 You can install on demand without persisting a global binary by running:
 
 ```bash
-npx @dlazy/cli@latest <command>
+npx @dlazy/cli@1.2.3 <command>
 ```
 
-Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@latest`). Review the GitHub source before installing.
+Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@1.2.3`). Review the GitHub source before installing.
 
 ## How It Works
 
@@ -89,13 +85,13 @@ This is the standard SaaS pattern; the skill itself does not access network or f
 
 Every `dlazy` invocation prints a JSON envelope on stdout. Any flag value can be a **pipe reference** that pulls from the upstream command's envelope, so you can chain steps without copying URLs by hand.
 
-| Reference           | Resolves to                                                       |
-| ------------------- | ----------------------------------------------------------------- |
-| `-`                 | Upstream's natural value for this field (scalar or array)         |
-| `@N`                | The N-th output's primary value (e.g. `@0` = first output url)    |
-| `@N.<jsonpath>`     | Drill into the N-th output (`@0.url`, `@1.meta.fps`)              |
-| `@*`                | All outputs' primary values as an array                           |
-| `@stdin`            | The whole upstream JSON envelope                                  |
+| Reference          | Resolves to                                                     |
+| ------------------ | --------------------------------------------------------------- |
+| `-`                | Upstream's natural value for this field (scalar or array)       |
+| `@N`               | The N-th output's primary value (e.g. `@0` = first output url)  |
+| `@N.<jsonpath>`    | Drill into the N-th output (`@0.url`, `@1.meta.fps`)            |
+| `@*`               | All outputs' primary values as an array                         |
+| `@stdin`           | The whole upstream JSON envelope                                |
 | `@stdin:<jsonpath>` | Jsonpath into the whole envelope (`@stdin:result.outputs[0].url`) |
 
 ### Examples
@@ -107,7 +103,7 @@ dlazy seedream-4.5 --prompt "a red fox in snow" \
 
 # Generate an image, then add TTS narration over a still
 dlazy seedream-4.5 --prompt "lighthouse at dawn" \
-  | dlazy keling-tts --text "Welcome to the coast." --image @0.url
+  | dlazy qwen-tts --text "Welcome to the coast." --image @0.url
 
 # Fan-out: pass every upstream output url into a batch step
 dlazy seedream-4.5 --prompt "city skyline" --n 4 \
@@ -125,7 +121,6 @@ This skill handles all image generation requests by selecting the best `dlazy` i
 - `dlazy banana-pro`: High-quality text-to-image model (optional 1 reference image). Good for detailed key visuals, product shots, and brand-style imagery.
 - `dlazy banana2`: General text-to-image model (optional 1 reference image), prioritizing speed and cost. Good for quick drafts, social posts, and multi-ratio generation.
 - `dlazy gpt-image-2`: GPT Image 2 model for text-to-image and image editing. Supports generating images from text as well as editing and synthesizing images with reference inputs.
-- `dlazy grok-4.2`: Minimalist text-to-image model, prompt-only. Good for quick concept validation or undemanding instant generation.
 - `dlazy image-replicate`: Image replicate tool: analyzes the source's composition, color, lighting, and style, then uses Seedream 4.5 to generate a new image in the same style.
 - `dlazy imageseg`: Image matting tool: separates foreground and returns a transparent-background URL. Good for product images, cutouts, and compositing.
 - `dlazy jimeng-t2i`: Jimeng high-res text-to-image model with multi-ratio ultra-HD output and reference-image constraints. Good for commercial visuals and refined output.
@@ -137,8 +132,11 @@ This skill handles all image generation requests by selecting the best `dlazy` i
 - `dlazy recraft-v4-pro-vector`: High-fidelity text-to-vector model, 4MP-tier quality. Good for production SVG assets and detailed illustrations.
 - `dlazy recraft-v4-vector`: Text-to-vector model that outputs SVG results. Suitable for logos, icons, and scalable design assets.
 - `dlazy seedream-4.5`: High-quality text-to-image/image-to-image model, suitable for posters, realism, and creative scenes. Supports prompt + multiple reference images, outputting single high-res images (2K/4K).
+- `dlazy seedream-5.0`: Full version of the Doubao image model, generating 2K/3K/4K images from prompts and reference images. Suited to key visuals, posters and anything meant for large-format print.
 - `dlazy seedream-5.0-lite`: Lightweight high-speed image generation model, suitable for batch generation, sketches, and low-cost iteration. Supports prompt + reference images, outputting 2K/3K images.
+- `dlazy seedream-5.0-pro`: Professional tier of Seedream 5.0, stronger on fine detail, typography and complex composition. Suited to commercial key visuals and demanding brand assets.
 - `dlazy superres`: Image super-resolution tool: enhances image clarity and details, returning enhanced URL, suitable for low-res asset restoration and upscaling.
+- `dlazy vectorize`: Image-to-SVG tool: converts raster images (PNG/JPG) into color vector SVG and returns the URL, suitable for lossless scaling and vectorization of logos, icons, and flat illustrations.
 - `dlazy viduq2-t2i`: Vidu image model with text + reference image, ratio, and resolution control. Good for character art, covers, and high-res output.
 
 **CRITICAL INSTRUCTION FOR AGENT**:
@@ -147,19 +145,19 @@ This skill handles all image generation requests by selecting the best `dlazy` i
 2. Run `dlazy <model_name> -h` to check parameters.
 3. Execute the command.
 
+
 ## Error Handling
 
 | Code | Error Type                         | Example Message                                                                                                          |
 | ---- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 401  | Unauthorized (No API Key)          | `ok: false, code: "unauthorized", message: "API key is missing or invalid"`                                              |
-| 501  | Missing required parameter         | `error: required option '--prompt <prompt>' not specified`                                                               |
-| 502  | Local file read error              | `Error: Image file/Video file not found: C:\path\to\your\file`                                                           |
-| 503  | API request failed (no balance)    | `ok: false, code: "insufficient_balance"`                                                                                |
-| 503  | API request failed (server error)  | `HTTP status code error (500 server crash)`                                                                              |
+| 401  | Unauthorized (No API Key)          | `ok: false, code: "unauthorized", message: "API key is missing or invalid"`                                                              |
+| 501  | Missing required parameter         | `error: required option '--prompt <prompt>' not specified`                                                              |
+| 502  | Local file read error              | `Error: Image file/Video file not found: C:\path\to\your\file`                                                          |
+| 503  | API request failed (no balance)    | `ok: false, code: "insufficient_balance"` |
+| 503  | API request failed (server error)  | `HTTP status code error (500 server crash)`                                                                             |
 | 504  | Asynchronous task execution failed | `=== Generation Failed ===` / `{Specific error reason returned by backend, for example "Prompt violates safety policy"}` |
 
-> **AGENT CRITICAL INSTRUCTION**:
->
+> **AGENT CRITICAL INSTRUCTION**: 
 > 1. If the execution result returns `code: "insufficient_balance"`, you MUST explicitly inform the user that their credits are insufficient and guide them to recharge: [https://dlazy.com/dashboard/organization/settings?tab=credits](https://dlazy.com/dashboard/organization/settings?tab=credits)
 > 2. If the execution result returns `code: "unauthorized"` or indicates missing API key, you MUST inform the user to get their API key from [https://dlazy.com/dashboard/organization/api-key](https://dlazy.com/dashboard/organization/api-key) and save it using `dlazy auth set <key>` and resume the task.
 

@@ -1,48 +1,78 @@
-## Description: <br>
-Deprecated HeyGen skill that helps an agent generate, manage, and retrieve AI avatar videos while directing users toward the newer create-video and avatar-video workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated HeyGen skill that helps an agent generate and manage AI avatar videos with legacy v1/v2 endpoints while directing users to current v3 replacement skills.
 
-## Publisher: <br>
-[michaelwang11394](https://clawhub.ai/user/michaelwang11394) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelwang11394](https://clawhub.ai/user/michaelwang11394)
 
-## Use Case: <br>
-Developers and content teams use this skill to create talking-head videos, explainers, and presentations through HeyGen MCP tools or HeyGen API calls. It is mainly useful for backward compatibility with older HeyGen workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is deprecated and documents older HeyGen v1/v2 endpoints. <br>
-Mitigation: Prefer the newer create-video or avatar-video skills when possible; use this release only for legacy compatibility. <br>
-Risk: The skill can use a HeyGen API key to send selected media, prompts, portraits, and customer data to HeyGen. <br>
-Mitigation: Review uploads, prompts, portraits, and customer data before use, and grant HeyGen API access only in environments where that data sharing is acceptable. <br>
-Risk: Webhook URLs and delete actions can affect real workflows or assets. <br>
-Mitigation: Review webhook URLs and destructive actions before execution, and verify webhook signatures in real deployments. <br>
+## Use Case:
 
+Developers and content operators use this skill to guide HeyGen avatar video generation, prompt optimization, video status polling, asset upload, captions, templates, and webhook workflows. Because this release is deprecated, users should prefer the current create-video or avatar-video skills for new v3 API work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michaelwang11394/video-agent) <br>
-- [HeyGen Video Agent API](https://docs.heygen.com/reference/generate-video-agent) <br>
-- [Authentication reference](references/authentication.md) <br>
-- [Video Agent reference](references/video-agent.md) <br>
-- [Video generation reference](references/video-generation.md) <br>
-- [Video status reference](references/video-status.md) <br>
-- [Webhook reference](references/webhooks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code snippets, HTTP examples, and MCP tool-call recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HEYGEN_API_KEY or connected HeyGen MCP tools; outputs may include request configurations, video IDs, polling guidance, and download URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.23.0 (source: server release metadata) <br>
+Risk: The skill can guide broad HeyGen account-changing actions using HEYGEN_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an API key you are comfortable letting an agent use, and review the skill before installation.
+
+Risk: Delete actions may remove videos or related resources.
+
+Mitigation: Require explicit manual confirmation before any delete action is executed.
+
+Risk: Upload workflows may send sensitive media to HeyGen.
+
+Mitigation: Avoid uploading sensitive media and validate file type, size, and content before upload.
+
+Risk: URL-based ingestion can fetch arbitrary remote content.
+
+Mitigation: Use strict allowlists and size limits before allowing an agent to ingest URLs.
+
+Risk: Public webhook endpoints can expose event data or accept untrusted requests.
+
+Mitigation: Secure webhook endpoints before public exposure and verify event origin or signatures.
+
+## Reference(s):
+
+- [HeyGen Video Agent API documentation](https://docs.heygen.com/reference/generate-video-agent)
+- [Skill definition](SKILL.md)
+- [HeyGen Authentication](references/authentication.md)
+- [Video Agent API](references/video-agent.md)
+- [Video Generation](references/video-generation.md)
+- [Video Status and Polling](references/video-status.md)
+- [Asset Upload and Management](references/assets.md)
+- [HeyGen Quota and Credits](references/quota.md)
+- [HeyGen Avatars](references/avatars.md)
+- [HeyGen Voices](references/voices.md)
+- [Video Agent Prompt Optimizer](references/prompt-optimizer.md)
+- [Visual Style Library](references/visual-styles.md)
+- [Webhooks](references/webhooks.md)
+- [HeyGen and Remotion Integration](references/remotion-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with API examples, command snippets, and structured request configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide MCP tool calls or direct HeyGen API requests that require HEYGEN_API_KEY.]
+
+## Skill Version(s):
+
+2.23.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

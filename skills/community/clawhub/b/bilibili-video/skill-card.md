@@ -1,43 +1,59 @@
-## Description: <br>
-Bilibili Video extracts Bilibili video subtitles or audio transcripts using a fallback flow from creator-provided captions to AI subtitles to local audio download and ASR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts Bilibili video subtitles and audio, using CC subtitles, AI subtitles, then audio download plus ASR transcription as fallback paths.
 
-## Publisher: <br>
-[guoqunabc](https://clawhub.ai/user/guoqunabc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoqunabc](https://clawhub.ai/user/guoqunabc)
 
-## Use Case: <br>
-Developers and agents use this skill when a user provides a Bilibili URL or BV/AV identifier and needs video information, subtitles, downloaded audio, or transcript text for summarization and analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store and refresh reusable Bilibili session cookies. <br>
-Mitigation: Prefer unauthenticated use when possible, avoid pasting raw cookies into chat, and delete the saved cookie file when no longer needed. <br>
-Risk: The skill can download or save video-derived transcript and audio files locally. <br>
-Mitigation: Review the target video before use and delete /tmp/openclaw/bilibili/ outputs after they are no longer needed. <br>
-Risk: ASR fallback may run additional local transcription tooling after audio download. <br>
-Mitigation: Disable ASR fallback when only subtitle retrieval is required or when local transcription tooling is not approved. <br>
+## Use Case:
 
+Developers and external users use this skill to retrieve subtitles, transcripts, or audio from Bilibili videos for downstream summarization, analysis, or review.
 
-## Reference(s): <br>
-- [Bilibili API Notes](references/api-notes.md) <br>
-- [Bilibili Video on ClawHub](https://clawhub.ai/guoqunabc/bilibili-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcript files with video metadata and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes transcript and optional audio-derived files under /tmp/openclaw/bilibili/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores Bilibili session cookies locally and may use them automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandboxed environment, keep the cookie file private, and delete ~/.openclaw/workspace/.bilibili_cookies.json when authenticated access is no longer needed.
+
+Risk: The audio transcription fallback can run a local speech-to-text.sh script that the security evidence identifies as unverified.
+
+Mitigation: Review that script before enabling ASR, or run extraction with --no-asr when the fallback is not required.
+
+Risk: Downloaded transcripts and audio may remain under /tmp/openclaw/bilibili.
+
+Mitigation: Monitor that directory and remove retained files after use, especially for private, paid, or copyrighted videos.
+
+## Reference(s):
+
+- [Bilibili API Notes](references/api-notes.md)
+- [Bilibili](https://www.bilibili.com)
+- [ClawHub Skill Page](https://clawhub.ai/guoqunabc/skills/bilibili-video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated transcript or audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes transcript and audio artifacts under /tmp/openclaw/bilibili when extraction succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

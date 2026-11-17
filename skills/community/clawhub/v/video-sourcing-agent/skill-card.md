@@ -1,42 +1,53 @@
-## Description: <br>
-Run the Video Sourcing Agent with deterministic, concise chat UX for /video_sourcing using a pinned self-bootstrap runtime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run the Video Sourcing Agent with deterministic, concise chat UX for /video_sourcing using a pinned self-bootstrap runtime.
 
-## Publisher: <br>
-[memories-ai-official](https://clawhub.ai/user/memories-ai-official) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[memories-ai-official](https://clawhub.ai/user/memories-ai-official)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to source, compare, and analyze social videos from services such as YouTube, TikTok, Instagram, and X, then receive concise results with concrete video references. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and runs an external video-sourcing runtime locally. <br>
-Mitigation: Install only when the Memories.ai Labs publisher and the pinned runtime are trusted. <br>
-Risk: The runtime uses Google and YouTube API keys, which can expose quota, billing, or data-access risk. <br>
-Mitigation: Use restricted API keys and monitor quota and billing while the skill is enabled. <br>
-Risk: Automatic invocation may run local host execution when users ask for video sourcing or trend analysis. <br>
-Mitigation: Prefer explicit /video_sourcing invocations when tighter control over execution is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Video Sourcing Agent page](https://clawhub.ai/memories-ai-official/video-sourcing-agent) <br>
-- [Video Sourcing Agent repository](https://github.com/Memories-ai-labs/video-sourcing-agent) <br>
+## Use Case:
 
+Developers and agents use this skill to find, compare, and analyze social videos from services such as YouTube, TikTok, Instagram, and Twitter/X, returning concise conclusions and concrete video references.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Concise Markdown responses with progress updates, top video references, and actionable error messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shows the top three video references by default and can use compact or verbose event detail.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs downloaded runtime code outside the sandbox while using API keys.
+
+Mitigation: Install only if the Memories.ai Labs runtime is trusted, use restricted API keys, and avoid exposing unrelated secrets in the environment.
+
+Risk: The runtime is fetched from a pinned tag but evidence reports no strong integrity checks.
+
+Mitigation: Review the runtime before deployment and prefer pinning it to an immutable commit.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/memories-ai-official/skills/video-sourcing-agent)
+- [Video Sourcing Agent Homepage](https://github.com/Memories-ai-labs/video-sourcing-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with concise progress updates, final summary, video references, and tool status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit NDJSON runtime events internally; public responses should include at most the top three video references by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

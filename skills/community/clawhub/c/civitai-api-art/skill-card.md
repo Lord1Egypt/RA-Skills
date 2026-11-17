@@ -1,40 +1,61 @@
-## Description: <br>
-Generate AI images from prompts using CivitAI's JavaScript SDK with configurable models, samplers, seeds, steps, LoRA networks, and output paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images from text prompts with CivitAI's JavaScript SDK using configurable models, samplers, seeds, steps, LoRA networks, and output settings.
 
-## Publisher: <br>
-[shinnpuru](https://clawhub.ai/user/shinnpuru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shinnpuru](https://clawhub.ai/user/shinnpuru)
 
-## Use Case: <br>
-Developers and creators use this skill to request CivitAI image generations from an agent, tune generation settings, and save the resulting image locally. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a CivitAI API token and sends prompts and generation settings to CivitAI. <br>
-Mitigation: Use a dedicated CivitAI token, store it in the CIVITAI_API_TOKEN environment variable, and avoid submitting sensitive prompts or settings. <br>
-Risk: Generated images are written to a user-selected local output path. <br>
-Mitigation: Use a dedicated output directory or explicit image filename, and avoid pointing --output at important existing files. <br>
-Risk: Generation may depend on the civitai npm package and may consume CivitAI credits or subscription resources. <br>
-Mitigation: Install only if you trust the civitai package and confirm account costs or permissions before running large generations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Agents and developers use this skill to request CivitAI image generations from prompts and tune common Stable Diffusion parameters such as model, sampler, seed, size, steps, CFG scale, and LoRA networks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and local image file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, the civitai npm package, and CIVITAI_API_TOKEN; generated images are saved to the configured output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires network access and a CivitAI API token to submit image-generation jobs.
+
+Mitigation: Use a dedicated token with limited exposure and keep it in the CIVITAI_API_TOKEN environment variable rather than embedding it in prompts, commands, or files.
+
+Risk: Prompts and generated content are sent to CivitAI and may be governed by CivitAI model permissions, subscriptions, and terms.
+
+Mitigation: Avoid private or sensitive prompt content and confirm that selected models and LoRA networks are permitted for the intended use.
+
+Risk: The script downloads generated images to a user-supplied output path.
+
+Mitigation: Run the skill in a restricted workspace and choose output paths deliberately.
+
+Risk: The npm dependency can change over time if installed without a lockfile.
+
+Mitigation: Pin the civitai package version and use a lockfile for repeatable installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shinnpuru/skills/civitai-api-art)
+- [Publisher profile](https://clawhub.ai/user/shinnpuru)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with command-line examples, console text, generated image URLs, and local image file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CivitAI API token in the environment and writes the generated image to the requested output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

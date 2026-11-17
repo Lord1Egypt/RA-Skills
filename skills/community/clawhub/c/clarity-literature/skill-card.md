@@ -1,43 +1,58 @@
-## Description: <br>
-Search research papers and get publication details from Clarity Protocol for literature, PubMed references, and citation details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search research papers and retrieve publication details from Clarity Protocol, including PubMed identifiers, abstracts, citation metrics, and full-text availability when available.
 
-## Publisher: <br>
-[clarityprotocol](https://clawhub.ai/user/clarityprotocol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[clarityprotocol](https://clawhub.ai/user/clarityprotocol)
 
-## Use Case: <br>
-External users, developers, and researchers use this skill to search Clarity Protocol literature records, retrieve paper metadata by PMID, check full-text availability, and gather citation details for literature reviews or bibliographies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send literature lookup requests to Clarity Protocol and may include an API key when CLARITY_API_KEY is set. <br>
-Mitigation: Install it only when Clarity Protocol network access is acceptable, and store CLARITY_API_KEY as a service credential rather than embedding it in prompts or files. <br>
-Risk: Anonymous use is limited to 10 requests per minute, while authenticated use is limited to 100 requests per minute. <br>
-Mitigation: Plan automated literature lookups around the documented rate limits and retry after the API-provided delay when rate limited. <br>
+## Use Case:
 
+External users and developers use this skill to search Clarity Protocol's literature database, retrieve paper details by PMID, and gather abstracts, citation metrics, and PubMed/Semantic Scholar-derived metadata for literature review and bibliography workflows.
 
-## Reference(s): <br>
-- [Clarity Literature on ClawHub](https://clawhub.ai/clarityprotocol/clarity-literature) <br>
-- [clarityprotocol Publisher Profile](https://clawhub.ai/user/clarityprotocol) <br>
-- [Clarity Protocol](https://clarityprotocol.io) <br>
-- [Clarity Protocol API](https://clarityprotocol.io/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or summary command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Clarity Protocol over the network and may use the optional CLARITY_API_KEY environment variable for higher rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill contacts clarityprotocol.io and may send CLARITY_API_KEY when that environment variable is set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network use before installation and provide the API key only in trusted environments.
+
+Risk: The current search behavior should be treated as a database listing unless the provider adds documented keyword or filtered search.
+
+Mitigation: Use retrieved results as candidate literature records and apply independent filtering for precise search workflows.
+
+Risk: Paper metadata, abstracts, and citation counts may be incomplete or stale.
+
+Mitigation: Verify important citations and publication details against primary publication sources before relying on them.
+
+## Reference(s):
+
+- [Clarity Protocol](https://clarityprotocol.io)
+- [Clarity Protocol API](https://clarityprotocol.io/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON or text command output from the bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires internet access to clarityprotocol.io; optional CLARITY_API_KEY increases rate limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill metadata and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

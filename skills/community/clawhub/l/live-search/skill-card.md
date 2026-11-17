@@ -1,40 +1,54 @@
-## Description: <br>
-Real-time answers from the public web via the host app's local search gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Live Search helps an agent fetch fresh public web results through a host-provided local search gateway when the user needs current information.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and developers use this skill when an assistant needs current web information, such as recent news, prices, scores, rates, weather, or fact checks after the model's knowledge cutoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may contain sensitive or confidential information sent through the host app's search gateway. <br>
-Mitigation: Keep queries concise and do not include secrets, credentials, or confidential data. <br>
-Risk: Live web results can be incomplete, outdated, or misleading for important decisions. <br>
-Mitigation: Verify important results at the linked sources before relying on them. <br>
+## Use Case:
 
+Developers and agent users use this skill when an answer depends on current public web data, including news, prices, weather, scores, rates, fact checks, or other information after the model knowledge cutoff.
 
-## Reference(s): <br>
-- [Live Search on ClawHub](https://clawhub.ai/codenova58/live-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and verbatim search result blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Copies the search API message field verbatim before any optional grounded summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries may reveal sensitive intent or private information to the host search gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, credentials, private documents, or sensitive personal details in search terms.
+
+Risk: Returned links and snippets come from the public web and may be incorrect, stale, or unsafe.
+
+Mitigation: Treat links as untrusted and verify important facts at their original sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page: Live Search](https://clawhub.ai/codenova58/skills/live-search)
+- [ClawHub publisher profile: codenova58](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown result lists with optional concise analysis and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primary search results are expected to preserve the gateway-provided message block before any added analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

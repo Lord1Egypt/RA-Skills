@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-stockpile"
+version = "2.0.1"
+description = "Official Model Context Protocol (MCP) server for Stockpile Market - Autonomous Agent Commerce & Curation."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Stockpile Market", email = "contact-stockpile@designiscasual.com" },
+]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "stockpile",
+    "ecommerce",
+    "agents",
+    "ai-agents",
+    "claude",
+    "cursor",
+    "inventory",
+    "commerce",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Internet :: WWW/HTTP",
+]
+dependencies = [
+    "mcp>=1.0.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.5.0",
+]
+
+[project.urls]
+Homepage = "https://stockpile.market"
+Documentation = "https://stockpile.market/agents"
+Repository = "https://github.com/casualbrooks/mcp-stockpile"
+Issues = "https://github.com/casualbrooks/mcp-stockpile/issues"
+
+[project.scripts]
+mcp-stockpile = "mcp_stockpile.cli:main"
+stockpile-mcp = "mcp_stockpile.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_stockpile"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+asyncio_mode = "auto"

@@ -1,43 +1,55 @@
-## Description: <br>
-Guide users to VideoAny Video Compressor tool to reduce video file size with quality/scale/format controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users to VideoAny Video Compressor tool to reduce video file size with quality/scale/format controls.
 
-## Publisher: <br>
-[GaoQ1](https://clawhub.ai/user/GaoQ1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoq1](https://clawhub.ai/user/gaoq1)
 
-## Use Case: <br>
-External users and agents use this skill to guide video compression decisions and route authorized videos through VideoAny with quality, scale, and output format choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may upload confidential or sensitive videos to a third-party web service. <br>
-Mitigation: Review VideoAny privacy and retention practices, and avoid uploading confidential videos unless authorized and approved. <br>
-Risk: Legacy script names may mislead agents into expecting image, SVG, or dubbing behavior. <br>
-Mitigation: Use scripts/guide_video_compressor.py as the primary entrypoint and treat legacy names as compatibility wrappers. <br>
-Risk: Compression can reduce visual quality or affect playback compatibility. <br>
-Mitigation: Test on a short clip and tune quality, scale, and format before a full export. <br>
+## Use Case:
 
+External users and developers use this skill to get concise guidance for compressing authorized videos through VideoAny with quality, scale, and format settings.
 
-## Reference(s): <br>
-- [VideoAny Video Compressor](https://videoany.io/tools/video-compressor) <br>
-- [ClawHub Video Compressor release page](https://clawhub.ai/GaoQ1/video-compressor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Plain text guidance with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No local video processing; compression is performed on VideoAny web.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Uploaded videos are handled by a third-party web service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with videos the user is authorized to process, and avoid sensitive footage unless the user accepts the third-party site's upload handling.
+
+Risk: Compression can reduce visual quality while lowering file size.
+
+Mitigation: Test settings on a short clip first and adjust quality, scale, and format before full export.
+
+## Reference(s):
+
+- [VideoAny Video Compressor](https://videoany.io/tools/video-compressor)
+- [ClawHub Skill Page](https://clawhub.ai/gaoq1/skills/video-compressor)
+- [Publisher Profile](https://clawhub.ai/user/gaoq1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local scripts print guidance; video compression is performed on the external VideoAny website.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, clawhub.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

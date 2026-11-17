@@ -2,6 +2,16 @@
   "version": 1,
   "registry": "https://clawhub.ai",
   "slug": "vadeepresearch",
-  "installedVersion": "1.1.1",
-  "installedAt": 1780898518196
+  "ownerHandle": "va-ais",
+  "installedVersion": "1.2.0",
+  "installedAt": 1785131268276,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "9baced52704df9bd5c454efd66abf84f460aa3f874e9c75a64cfba4da75e1a92",
+    "integrity": "sha256-m6ztUnBN+b1cRU79Zqv4T0YKo/h06cdaZM+6TadeGpI="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "12515802453d0790f4572e58ec2354eb5f3bd54e86bd7e63f997ba35355a20ca"
+  }
 }

@@ -1,43 +1,55 @@
-## Description: <br>
-Helps agents write, validate, and troubleshoot recurring scheduled buy (DCA) strategies on Superior Trade that add to an open pair on calendar triggers rather than price triggers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when writing, validating, or troubleshooting a recurring scheduled buy strategy on Superior Trade that adds to the same trading pair on a calendar trigger rather than a price trigger.
 
-## Publisher: <br>
-[superior-ai](https://clawhub.ai/user/superior-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superior-ai](https://clawhub.ai/user/superior-ai)
 
-## Use Case: <br>
-Developers and trading-strategy authors use this skill to draft and review Freqtrade-based DCA strategies for weekly, daily, or monthly scheduled crypto buys on Superior Trade. It supports configuration choices, callback implementation, and troubleshooting common failures such as rejected repeat entries, double-buying, and stake sizing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated DCA trading guidance can lead to real financial loss when applied with live funds, especially with futures, margin, or cross-margin settings. <br>
-Mitigation: Set a maximum total budget, dry-run or backtest before live use, define exit rules up front, and use extra caution with leveraged or margin trading. <br>
-Risk: Incorrect stake sizing or missing position-adjustment settings can over-allocate funds, exhaust the wallet, or prevent scheduled buys from executing as intended. <br>
-Mitigation: Review stake_amount, dry_run_wallet, max_dca_multiplier, max_entry_position_adjustment, and position_adjustment_enable before deployment. <br>
-Risk: A missing same-day guard can cause an unintended double buy on the initial calendar trigger. <br>
-Mitigation: Keep the adjust_trade_position guard that skips an add when the latest filled entry occurred on the current candle date. <br>
+## Use Case:
 
+Developers and trading-strategy builders use this skill to draft, validate, and troubleshoot Freqtrade-style DCA strategies that perform recurring scheduled buys. It helps distinguish calendar-based accumulation from price-triggered grid trading and provides reference code, configuration, pitfalls, and variants.
 
-## Reference(s): <br>
-- [Freqtrade adjust_trade_position documentation](https://www.freqtrade.io/en/stable/strategy-callbacks/#adjust-trade-position) <br>
-- [Freqtrade DigDeeperStrategy reference](https://github.com/freqtrade/freqtrade/issues/7052) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with Python and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Freqtrade strategy snippets, configuration fragments, checklists, and troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automated DCA strategies can keep buying on a funded exchange account and may lose money.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Backtest the strategy, run dry-run or paper trading, verify pair, stake, wallet size, cadence, spot versus futures mode, and monitoring or kill-switch settings before funded use.
+
+Risk: Incorrect trading parameters can cause unintended recurring buys or wallet exhaustion.
+
+Mitigation: Review generated strategy and configuration settings before execution, including stake sizing, wallet reserve, cadence, and position-adjustment behavior.
+
+## Reference(s):
+
+- [Dca Weekly ClawHub release](https://clawhub.ai/superior-ai/skills/dca-weekly)
+- [Freqtrade adjust_trade_position documentation](https://www.freqtrade.io/en/stable/strategy-callbacks/#adjust-trade-position)
+- [Freqtrade DigDeeperStrategy reference](https://github.com/freqtrade/freqtrade/issues/7052)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration]
+
+**Output Format:** [Markdown with Python and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces strategy guidance and examples for human review before deployment; it does not bundle executables or require credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

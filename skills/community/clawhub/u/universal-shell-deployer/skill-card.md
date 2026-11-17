@@ -1,44 +1,54 @@
-## Description: <br>
-Install, configure, start, stop, and verify local or remote development infrastructure across Windows, Linux, and macOS by executing commands through a unified workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, start, stop, and verify local or remote development infrastructure across Windows, Linux, and macOS by executing commands through a unified workflow.
 
-## Publisher: <br>
-[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, run, and verify local or remote environment setup tasks for common infrastructure services across Windows, Linux, and macOS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute commands that modify local or remote services. <br>
-Mitigation: Review the proposed command plan before execution, run changes in small verified steps, and approve privilege escalation explicitly. <br>
-Risk: Example remote nodes use administrative accounts. <br>
-Mitigation: Keep example nodes disabled until intentionally configured and prefer least-privilege accounts over root or Administrator. <br>
-Risk: The MinIO recipe contains a placeholder root password. <br>
-Mitigation: Replace placeholder credentials before use and avoid storing secrets in config.json. <br>
-Risk: State persistence can capture sensitive command output or operational details. <br>
-Mitigation: Record only short non-sensitive summaries in config.json and keep credentials in external secret stores referenced by authRef. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, execute, verify, and persist state for local or remote setup of common development infrastructure such as Redis, PostgreSQL, MySQL, MinIO, ZLMediaKit, Docker, Nginx, Node.js, Python, and Java.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/universal-shell-deployer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command plans, shell commands, verification steps, and configuration update summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update config.json state while guiding verified deployment steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The MinIO recipe includes predictable root credentials that could expose a deployed storage service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the default MinIO credentials with unique generated secrets or a secret manager value before deployment, and bind MinIO only to trusted networks.
+
+Risk: The skill can execute local or remote shell commands and may use elevated privileges for infrastructure changes.
+
+Mitigation: Confirm the target host, transport, privilege level, and exact commands before execution, especially for remote nodes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/skills/universal-shell-deployer)
+- [Publisher profile](https://clawhub.ai/user/hgvgfgvh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with command plans, shell commands, verification results, and configuration state summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update the skill's config.json state after meaningful progress.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

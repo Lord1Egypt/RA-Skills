@@ -1,43 +1,55 @@
-## Description: <br>
-Search places, open routes, and run Apple Maps workflows on macOS using local CLI commands and shortcut automation with explicit safety checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search places, open routes, and run Apple Maps workflows on macOS using local CLI commands and shortcut automation with explicit safety checks.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill on macOS to search places, open Apple Maps routes, generate reusable map links, and manage local Apple Maps workflow preferences with confirmation gates for sharing and bulk actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Place searches, route origins and destinations, and map parameters may be sent to Apple Maps. <br>
-Mitigation: Use minimal query strings, preview generated URLs, and avoid sending sensitive location context unless the user confirms. <br>
-Risk: Opening multiple map links or sharing generated links can expose private context or disrupt the user's workspace. <br>
-Mitigation: Default to one link at a time, show counts for bulk actions, and require explicit confirmation before bulk opens or external sharing. <br>
-Risk: Fallback automation through shortcuts or osascript may be less deterministic than direct Apple Maps URL launches. <br>
-Mitigation: Prefer open -a Maps with explicit URLs, probe command availability first, and explain capability limits before using fallback paths. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ivangdavila/apple-maps) <br>
-- [Skill homepage](https://clawic.com/skills/apple-maps) <br>
-- [Apple Maps endpoint](https://maps.apple.com) <br>
+## Use Case:
 
+Mac users and agents use this skill to search Apple Maps for places, nearby categories, addresses, routes, and reusable map links while applying confirmation gates for sharing, routing, and bulk opens.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Apple Maps URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local configuration files under ~/apple-maps/ only after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-provided map queries could be interpolated unsafely into shell commands.
+
+Mitigation: Percent-encode query values and pass the generated Apple Maps URL as a separate process argument to `open -a Maps`.
+
+Risk: Map queries, route origins, destinations, or generated share links may disclose location intent.
+
+Mitigation: Use minimal query strings, preview generated URLs, and require explicit approval before opening sensitive searches, sharing links, or launching multiple map links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/apple-maps)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Apple Maps endpoint](https://maps.apple.com)
+- [Skill homepage](https://clawic.com/skills/apple-maps)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Apple Maps URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are intended for macOS and should preview generated Apple Maps URLs before launch.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

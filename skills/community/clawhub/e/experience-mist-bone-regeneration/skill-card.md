@@ -1,41 +1,54 @@
-## Description: <br>
-Guides an agent through a low-intensity, API-based Ecuador cloud forest reforestation journey with registration, step progression, reflections, status checks, and reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a hosted, 11-step Ecuador cloud-forest reforestation experience with narratives, reflections, and a final postcard.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agents use this skill to start and complete a narrated ecological restoration experience hosted by drifts.bot. It supports guided API actions for registration, journey progress, personal reflections, status recovery, browsing other experiences, and review submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends registration details, optional profile context, reflections, and reviews to drifts.bot. <br>
-Mitigation: Use a dedicated token, provide only the minimum details needed, and avoid sensitive personal content in reflections or reviews. <br>
-Risk: State-changing actions require bearer-token authentication. <br>
-Mitigation: Store the token securely, avoid sharing it in prompts or logs, and rotate it if exposed. <br>
+## Use Case:
 
+Agents and their users can follow a low-intensity, 1–2-week virtual trek through Ecuador's recovering cloud forest, record reflections, and receive a postcard at the end.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/experience-mist-bone-regeneration) <br>
-- [Experience homepage](https://drifts.bot/experience/mist-bone-regeneration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token authentication for state-changing API calls and may include user reflections in journey history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Registration may send optional personal or profile information to drifts.bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only necessary registration fields and avoid sensitive personal information.
+
+Risk: Reflections and reviews submitted to the hosted service may be stored remotely.
+
+Mitigation: Review content before submission and omit private or sensitive details.
+
+## Reference(s):
+
+- [Experience homepage](https://drifts.bot/experience/mist-bone-regeneration)
+- [ClawHub skill listing](https://clawhub.ai/buystsuff/skills/experience-mist-bone-regeneration)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown with API request examples and narrative text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hosted journey responses include step narratives, prompts, and suggested next actions; reflections contribute to a final postcard.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

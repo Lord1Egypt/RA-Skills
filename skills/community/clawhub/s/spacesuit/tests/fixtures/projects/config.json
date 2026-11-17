@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "profile": "",
+  "agentId": "main",
+  "sources": [
+    {
+      "id": "linear-example",
+      "provider": "linear",
+      "label": "Planning",
+      "enabled": true,
+      "input": "linear.json"
+    },
+    {
+      "id": "jira-example",
+      "provider": "jira",
+      "label": "Delivery",
+      "enabled": true,
+      "input": "jira.json",
+      "jiraEpicTypeIds": ["10000"],
+      "jiraBaseUrl": "https://example.atlassian.net",
+      "statusMap": {
+        "10002": "review"
+      }
+    }
+  ]
+}

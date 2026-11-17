@@ -1,42 +1,58 @@
-## Description: <br>
-Recommend music based on your current mood, activity, or conversation context. Returns a curated track list you can search on Spotify, YouTube, or Apple Music. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommend music based on your current mood, activity, or conversation context. Returns a curated track list you can search on Spotify, YouTube, or Apple Music.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn conversation context, mood, activity, or time of day into a short curated music recommendation list. The recommendations are intended to be searched manually on Spotify, YouTube, or Apple Music and do not require platform credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Vague activation language could cause the skill to be used when the user did not intend to request music recommendations. <br>
-Mitigation: Invoke the skill explicitly for music recommendations based on mood, activity, or conversation context. <br>
-Risk: Users may expect the skill to remember preferences or create platform playlists. <br>
-Mitigation: Treat outputs as curated track lists to search manually, and do not expect preference storage or generated playlist links unless separately documented. <br>
+## Use Case:
 
+External users ask an agent for mood-, activity-, or time-aware music recommendations and receive a curated list of tracks to search on Spotify, YouTube, or Apple Music.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/mood-music) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Publisher GitHub profile](https://github.com/TheShadowRose) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown-style curated track lists with detected mood labels and artist-track pairs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API credentials required; platform names indicate where users can search for tracks, not generated playlist links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, changelog, release evidence) <br>
+Risk: Recommendation quality may be limited by heuristic mood detection and a fixed curated track list.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggested tracks before relying on them; treat them as music suggestions rather than personalized or exhaustive playlists.
+
+Risk: Some artifact documentation contains stale or overbroad claims about generated playlist links, learning over time, storage, and platform integration.
+
+Mitigation: Use the version 1.0.1 SKILL.md, changelog, and server security guidance as the release scope: no API credentials are needed, no hidden network access or persistence was found, and outputs are searchable track lists.
+
+Risk: Conversation context shared with the agent may include personal mood or activity details.
+
+Mitigation: Share only context appropriate for music recommendations and avoid sensitive personal information when requesting suggestions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshadowrose/skills/mood-music)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text with a mood label and curated track list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API credentials are required; recommendations are based on local conversation context and curated track data.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and changelog, released 2026-03-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,62 @@
-## Description: <br>
-Execute declarative YAML AI workflows with branching, retry, multi-provider LLM support, guardrails, and OpenTelemetry tracing via the Beddel Python SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Beddel helps agents create, validate, run, and debug declarative YAML AI workflows with branching, retries, guardrails, multi-provider LLM calls, and OpenTelemetry tracing.
 
-## Publisher: <br>
-[botanarede](https://clawhub.ai/user/botanarede) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[botanarede](https://clawhub.ai/user/botanarede)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create, validate, run, debug, and serve declarative YAML workflows for multi-step LLM pipelines, automation, guardrails, and observability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Beddel YAML can execute local automation through shell_exec, plugin installation, and delegated-agent steps. <br>
-Mitigation: Review each workflow before execution, run with read-only sandboxing where possible, and add allowlists or confirmation gates for shell_exec, plugin-install, and agent-exec steps. <br>
-Risk: Workflows can read environment variables through $env references, including API keys. <br>
-Mitigation: Run workflows with a minimal environment and provide only the specific credentials needed for the selected LLM provider. <br>
-Risk: Untrusted or LLM-generated workflows may request broad local command or agent authority. <br>
-Mitigation: Avoid running untrusted workflows directly; validate YAML first and require human approval for commands, external agent delegation, and network-affecting installation steps. <br>
+## Use Case:
 
+Developers and agent builders use Beddel to author, validate, run, and troubleshoot YAML-defined AI pipelines and multi-step LLM chains. It is also useful for installing and verifying the Beddel OpenClaw plugin and documenting workflow primitives.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/botanarede/beddel) <br>
-- [Publisher Profile](https://clawhub.ai/user/botanarede) <br>
-- [Workflow YAML Format](artifact/references/workflow-format.md) <br>
-- [Primitives Reference](artifact/references/primitives.md) <br>
-- [Execution Strategies](artifact/references/execution-strategies.md) <br>
-- [Variable Resolution](artifact/references/variable-resolution.md) <br>
-- [Bundled Setup Workflow](artifact/examples/setup-beddel.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML, Bash, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include workflow files, CLI commands, validation guidance, and OpenClaw plugin setup steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Workflows can install packages or plugins and run local commands or delegated agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted Beddel packages and plugins, review workflow YAML before execution, and prefer pinned package and plugin versions.
+
+Risk: Workflow inputs, environment variables, prompts, or tool outputs may expose secrets to local tools, delegated agents, or configured LLM providers.
+
+Mitigation: Avoid running untrusted YAML, keep secrets in environment variables, and do not pass secrets into prompts or tool outputs.
+
+Risk: Serving workflows or using shell_exec, agent-exec, $env variables, or plugin installation can expand the runtime attack surface.
+
+Mitigation: Review those workflow features before use and avoid enabling them for untrusted workflows.
+
+## Reference(s):
+
+- [Beddel ClawHub Skill Page](https://clawhub.ai/botanarede/skills/beddel)
+- [LiteLLM Providers](https://docs.litellm.ai/docs/providers)
+- [Workflow YAML Format](references/workflow-format.md)
+- [Primitives Reference](references/primitives.md)
+- [Execution Strategies](references/execution-strategies.md)
+- [Variable Resolution](references/variable-resolution.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce workflow YAML, validation guidance, command lines, plugin setup steps, and troubleshooting notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

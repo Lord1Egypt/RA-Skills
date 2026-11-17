@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 920" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <rect width="680" height="920" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="340" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#111827">统一凭据体系 · 世界较佳升级全景（v1.1）</text>
+  <text x="340" y="70" text-anchor="middle" font-size="13" fill="#5B6B7B">在 KeePass/.kdbx 真相源上叠加 5 层 · 覆盖「抗AI攻击 / 支付合规 / AI世界适配」</text>
+
+  <!-- Section header -->
+  <text x="20" y="100" font-size="15" font-weight="700" fill="#1E40AF">⬆ 世界较佳 5 层升级架构（A 为基础，E 为 outermost 治理）</text>
+
+  <!-- Layer E -->
+  <rect x="20" y="112" width="640" height="68" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="120" width="5" height="52" rx="2.5" fill="#7C3AED"/>
+  <circle cx="54" cy="146" r="13" fill="#7C3AED"/>
+  <text x="54" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">E</text>
+  <text x="78" y="142" font-size="15" font-weight="700" fill="#1F2933">场景治理层（叠加，不替代金库）</text>
+  <text x="78" y="164" font-size="12" fill="#5B6B7B">支付 → PCI DSS / HSM / 令牌化 / P2PE ｜ 权限 → RBAC / 最小权限 / JIT / MCP / XAA</text>
+
+  <!-- Layer D -->
+  <rect x="20" y="190" width="640" height="68" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="198" width="5" height="52" rx="2.5" fill="#2563EB"/>
+  <circle cx="54" cy="224" r="13" fill="#2563EB"/>
+  <text x="54" y="229" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">D</text>
+  <text x="78" y="220" font-size="15" font-weight="700" fill="#1F2933">AI 世界适配层（credential broker + JIT）</text>
+  <text x="78" y="242" font-size="12" fill="#5B6B7B">agent 向 broker 请求 → 短时·窄域·可审计 token ｜ 秘不进模型上下文 ｜ 每 agent 独立身份+短TTL</text>
+
+  <!-- Layer C -->
+  <rect x="20" y="268" width="640" height="68" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="276" width="5" height="52" rx="2.5" fill="#0EA5A4"/>
+  <circle cx="54" cy="302" r="13" fill="#0EA5A4"/>
+  <text x="54" y="307" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">C</text>
+  <text x="78" y="298" font-size="15" font-weight="700" fill="#1F2933">抗攻击层（反黑色 / AI 攻击）</text>
+  <text x="78" y="320" font-size="12" fill="#5B6B7B">20+ 字符随机密码 + passkey（域名绑定） + 泄露监控 + 限制自动填充 + 硬件密钥(YubiKey)</text>
+
+  <!-- Layer B -->
+  <rect x="20" y="346" width="640" height="68" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="354" width="5" height="52" rx="2.5" fill="#15A05A"/>
+  <circle cx="54" cy="380" r="13" fill="#15A05A"/>
+  <text x="54" y="385" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">B</text>
+  <text x="78" y="376" font-size="15" font-weight="700" fill="#1F2933">防盗 / 恢复层（已有，强化）</text>
+  <text x="78" y="398" font-size="12" fill="#5B6B7B">零知识 + 主密码/密钥文件双因子 + SSS 分片 break-glass + 根密钥硬件库(DPAPI/Keychain/HUKS)</text>
+
+  <!-- Layer A -->
+  <rect x="20" y="424" width="640" height="68" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="432" width="5" height="52" rx="2.5" fill="#65A30D"/>
+  <circle cx="54" cy="458" r="13" fill="#65A30D"/>
+  <text x="54" y="463" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">A</text>
+  <text x="78" y="454" font-size="15" font-weight="700" fill="#1F2933">凭据层（已有 · 真相源）</text>
+  <text x="78" y="476" font-size="12" fill="#5B6B7B">全服务凭据存 .kdbx + TOTP/硬件密钥 2FA ｜ Google/GitHub/微信 优先升级 passkey</text>
+
+  <!-- 5 questions quick-answer band -->
+  <rect x="20" y="510" width="640" height="190" rx="12" fill="#EEF4FF" stroke="#93C5FD"/>
+  <text x="36" y="536" font-size="14" font-weight="700" fill="#1E40AF">五大硬问题 · 速答</text>
+  <text x="36" y="562" font-size="12.5" fill="#334155"><tspan fill="#15A05A" font-weight="700">① 覆盖主流软件？</tspan> 全覆盖——.kdbx 通吃任何「账号+密钥」；Google/GitHub/微信已原生 passkey，支付宝走平台生物识别</text>
+  <text x="36" y="588" font-size="12.5" fill="#334155"><tspan fill="#15A05A" font-weight="700">② 反黑/AI 攻击？</tspan> 结构性反——20+ 随机密码 AI 破不了；passkey 域名绑定让钓鱼不可能；粘贴实时域名校验</text>
+  <text x="36" y="614" font-size="12.5" fill="#334155"><tspan fill="#0EA5A4" font-weight="700">③ 适合 AI 世界？</tspan> 基础兼容，需加 broker+JIT——agent 永不直接持秘，秘不进模型上下文（1Password/Keycard 范式）</text>
+  <text x="36" y="640" font-size="12.5" fill="#334155"><tspan fill="#15A05A" font-weight="700">④ 防盗？</tspan> 零知识（服务器只见密文）+ 双因子 + SSS 分片 + 硬件密钥库(HUKS/DPAPI/Enclave)</text>
+  <text x="36" y="666" font-size="12.5" fill="#334155"><tspan fill="#15A05A" font-weight="700">⑤ 多场景？</tspan> 分层适合——支付叠 PCI DSS/HSM/令牌化；权限靠 RBAC/JIT/MCP/XAA；vault 管凭据，决策在服务层</text>
+
+  <!-- 3 key actions banner -->
+  <rect x="20" y="716" width="640" height="120" rx="12" fill="#FFF7ED" stroke="#FDBA74"/>
+  <text x="36" y="742" font-size="14" font-weight="700" fill="#C2410C">最关键的 3 个「良好」动作</text>
+  <text x="36" y="768" font-size="12.5" fill="#7C2D12">1️⃣ 把 Google / GitHub / 微信 全升级 passkey → 一次性消灭密码钓鱼面</text>
+  <text x="36" y="792" font-size="12.5" fill="#7C2D12">2️⃣ AI agent 强制 broker + JIT → 秘不进模型上下文，会话结束即吊销</text>
+  <text x="36" y="816" font-size="12.5" fill="#7C2D12">3️⃣ 高价值 / 支付账户叠加硬件密钥（YubiKey / FIDO2）→ 设备被控也动不了</text>
+
+  <text x="36" y="860" font-size="11" fill="#475569">负责专家：credential-vault-steward（统一凭据安全专家）全程记录维护 + AI 凭证审计 + passkey 迁移台账</text>
+</svg>

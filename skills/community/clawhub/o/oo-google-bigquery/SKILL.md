@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Google BigQuery"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["google_bigquery"]
   icon: "https://static.oomol.com/logo/third-party/google_bigquery.png"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `cancel_job` — Cancel a BigQuery job. [write]
+- `cancel_job` — Cancel a BigQuery job. [destructive]
 - `create_dataset` — Create a BigQuery dataset. [write]
 - `create_routine` — Create a BigQuery routine such as a user-defined function or stored procedure. [write]
 - `create_table` — Create a BigQuery table. [write]
@@ -66,9 +66,9 @@ Each action is listed below with a one-line description; actions that change sta
 - `start_extract_job_to_gcs` — Start an asynchronous BigQuery extract job to Cloud Storage objects. [write]
 - `start_load_job_from_gcs` — Start an asynchronous BigQuery load job from Cloud Storage objects. [write]
 - `start_query_job` — Start an asynchronous BigQuery query job. [write]
-- `update_dataset` — Replace BigQuery dataset metadata with the supplied dataset resource fields. [write]
-- `update_routine` — Replace BigQuery routine metadata and definition fields. [write]
-- `update_table` — Replace BigQuery table metadata with the supplied table resource fields. [write]
+- `update_dataset` — Replace BigQuery dataset metadata with the supplied dataset resource fields. [destructive]
+- `update_routine` — Replace BigQuery routine metadata and definition fields. [destructive]
+- `update_table` — Replace BigQuery table metadata with the supplied table resource fields. [destructive]
 
 ## Safety
 
@@ -99,11 +99,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Google BigQuery is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=google_bigquery
+  https://console.oomol.com/connections/google_bigquery
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Google BigQuery homepage: https://cloud.google.com/bigquery
+- API documentation: https://cloud.google.com/bigquery/docs/reference/rest/v2

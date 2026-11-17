@@ -1,42 +1,58 @@
-## Description: <br>
-AI assistant for financial compliance audits offering checklists, risk identification, audit report generation, and regulatory update tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI assistant for financial compliance audits offering checklists, risk identification, audit report generation, and regulatory update tracking.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Compliance officers and internal audit teams use this skill to prepare financial compliance audits, generate audit checklists, identify regulatory and control risks, draft audit reports, and track regulatory updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance guidance or regulatory update summaries may be incomplete, stale, or jurisdiction-specific. <br>
-Mitigation: Validate outputs against current official regulator publications and internal legal or compliance review before operational use. <br>
-Risk: Audit prompts may include sensitive customer, transaction, or privileged legal material. <br>
-Mitigation: Share only necessary data and use the skill only in environments approved for that data, consistent with the security guidance. <br>
-Risk: Generated checklists and audit reports can miss organization-specific controls or remediation obligations. <br>
-Mitigation: Treat outputs as drafts and reconcile them with internal control frameworks, policies, and accountable reviewer sign-off. <br>
+## Use Case:
 
+Compliance officers and internal audit teams at financial institutions use it to prepare checklists, risk ratings, evidence requests, draft audit reports, rectification trackers, and regulatory gap assessments for China-focused reviews. Outputs are working drafts that require qualified review and sign-off.
 
-## Reference(s): <br>
-- [Finance Compliance Audit on ClawHub](https://clawhub.ai/gechengling/finance-compliance-audit) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, report sections, and compliance review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include jurisdiction- or policy-sensitive compliance guidance that requires professional review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The security inspection was partial; scanners reported no findings, but the evidence is incomplete and one local reference is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the missing reference and account for the incomplete inspection when deciding whether to install.
+
+Risk: Sensitive customer or transaction details could be exposed if included in audit prompts or samples.
+
+Mitigation: Provide only necessary, masked data; do not include identifiers, account details, raw transactions, or confidential inspection materials.
+
+Risk: Regulatory references or draft findings may be outdated or mistaken for formal advice.
+
+Mitigation: Check current official sources and have qualified compliance or audit staff review and sign off on conclusions.
+
+## Reference(s):
+
+- [Finance Compliance Audit on ClawHub](https://clawhub.ai/gechengling/skills/finance-compliance-audit)
+- [Publisher profile: gechengling](https://clawhub.ai/user/gechengling)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown checklists, risk matrices, evidence requests, report drafts, rectification trackers, and regulatory gap assessments.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts require qualified review; use minimized and masked data. China financial regulation focus.]
+
+## Skill Version(s):
+
+3.0.4 (source: frontmatter; server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

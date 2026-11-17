@@ -1,0 +1,32 @@
+<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+  <!-- meta: 编号 {{N-XX}} | 名称 {{款式名称}} | 分类 {{风格大类}} | 难度 {{入门/进阶/专业}} | 标签 {{场合标签}} -->
+  <!-- palette: c-base: {{主色}} | c-tip: {{辅色}} | c-edge: {{轮廓色}}（运行时按诊断色系替换） -->
+  <!-- 说明：本文件为 SVG 素材骨架模板。填充步骤：
+       1) 复制本骨架并按种子 ID 规范命名：SS-{品类}-{分类}-{序号}.svg
+       2) 替换 meta / palette 注释内容
+       3) 删除「template-guide」辅助层（仅用于模板预览）
+       4) 在「底 / 主体 / 点缀」三层内绘制图形，每个独立图形用 <g id="..."> 分组
+       5) 生成后用命令校验：python scripts/styling-studio-check-svg.py <本文件>
+       6) 登记：在种子块前加一行 seed 注释（注释包裹，内容格式为
+          seed: 种子ID ｜ 编号 名称），整体追加至对应品类包
+          references/svg-bundle-{品类}.md 末尾，并同步预置清单与 wordlib  -->
+  <defs>
+    <!-- layer: 可复用单元（图案单元 / 笔刷 / 渐变 / clipPath） -->
+  </defs>
+  <!-- layer: 辅助（模板预览用，生成正式素材时删除本层） -->
+  <g id="template-guide">
+    <rect x="8" y="8" width="184" height="224" rx="12" fill="#FBF7F1" stroke="#DCCFC2" stroke-width="1.5"/>
+    <text x="100" y="106" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A8927E">SVG 素材骨架模板</text>
+    <text x="100" y="130" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#BCAA97">在「底 / 主体 / 点缀」三层内绘制图形</text>
+    <text x="100" y="150" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#C9B9A8">生成正式素材时删除本辅助层</text>
+  </g>
+  <!-- layer: 底 -->
+  <g id="base">
+  </g>
+  <!-- layer: 主体 -->
+  <g id="subject">
+  </g>
+  <!-- layer: 点缀 -->
+  <g id="accent">
+  </g>
+</svg>

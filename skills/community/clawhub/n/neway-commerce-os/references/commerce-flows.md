@@ -1,70 +1,91 @@
 # Commerce Flows
 
+Companion to `SKILL.md`. Read this when you are wiring a real backend, or when
+you need to reason about what the scaffold actually implements versus what is a
+placeholder.
+
 ## 1. Catalog flow
 
-User lands on the storefront and sees:
-- featured hero
-- product matrix
-- benefit blocks
-- pricing or product cards
-- AI concierge prompt
+What ships:
 
-Default catalog behaviors:
-- load product list from `/functions/api/products`
-- support category chips
-- support featured badges
-- support multi-product studio presentation
+- `src/data/products.ts` is loaded directly by the pages — no fetch on boot.
+- `functions/api/products.ts` is a mock endpoint that returns a small slice of
+  the same catalog in the same shape. It exists so swapping to a real API is a
+  one-line change in the component, not a shape migration.
+- Categories come from the same file and drive: Navbar links, HomePage banners,
+  ShopPage tabs, Footer links, and product `category` values.
+
+Upgrade path: point the pages at `/api/products`, add pagination and server-side
+filtering, keep the `Product` interface unchanged.
 
 ## 2. Cart flow
 
-User actions:
-1. add a product to cart
-2. adjust quantity
-3. remove an item
-4. proceed to checkout
+`src/store/cartStore.ts` (Zustand + `persist`):
 
-Default cart state:
-- local state in frontend
-- mock subtotal calculation
-- upgrade path to server-priced cart logic
+- `items: CartItem[]` — keyed by `product.id + selectedSize + selectedColor`, so
+  the same product in two sizes is two lines.
+- `addItem(product, size, color)` merges an existing line instead of duplicating it.
+- `updateQuantity(...)` removes the line when quantity drops to 0.
+- `itemCount()` / `total()` are derived, never stored.
+- `isOpen` / `toggleCart()` drive the global `CartDrawer`.
+
+The wishlist lives in the same file as a second store (`useWishlistStore`) and is
+persisted under `<slug>-wishlist`.
+
+Upgrade path: server-priced carts — send the cart to a `/api/cart` endpoint,
+recompute totals server-side, and treat the client total as display-only.
 
 ## 3. Checkout flow
 
+Three steps, one component, one `step` state variable:
+
+1. **Shipping** — recipient, phone (`^1[3-9]\d{9}$`), province / city / district
+   cascade, detail address, shipping method.
+2. **Payment & promo** — promo code against `PROMO_CODES`, payment method
+   (WeChat / Alipay / bank card, lucide icons), invoice toggle, order notes.
+3. **Review** — address and payment summary with jump-back links, item list,
+   terms checkbox, final submit.
+
+Money rules:
+
+- Subtotal comes from `cartStore.total()`.
+- Shipping is free once subtotal >= `FREE_SHIPPING_THRESHOLD` (from
+  `src/utils/format.ts`), otherwise the selected method's fee.
+- Discount is percent or fixed, applied after shipping.
+- All display goes through `formatPrice()`.
+
+**The `clearCart()` rule:** the cart is cleared only on the final submit of step
+3, once and only once. Clearing earlier (step 1 or 2) destroys the order the
+customer is still reviewing.
+
 ### Mock mode
-- create a fake order id
-- simulate payment success
-- redirect to account or success state
+
+Generate an order id (`SL` + `Date.now().toString(36).toUpperCase()`), simulate a
+short delay, show the success screen. No external calls.
 
 ### Stripe mode
-- create checkout session
-- redirect to stripe hosted checkout
-- process webhook on payment success
-- update order status
+
+Create a Checkout Session server-side, redirect to Stripe's hosted page, process
+the webhook, then update order state. `.env` switches behaviour via
+`VITE_PAYMENT_MODE`.
 
 ## 4. AI sales concierge flow
 
-Primary goal: help the visitor choose the right product.
+Two implementations that must stay in sync:
 
-Suggested behaviors:
-- ask what the customer wants to achieve
-- narrow by budget, use case, or experience level
-- recommend one primary product and one alternative
-- answer objections briefly
-- push to add-to-cart or checkout
+- Front end: `src/components/AIChatWidget.tsx` — `mockAIResponse()` with >= 8
+  keyword scenarios matching **both Chinese and English** keywords, plus a
+  default fallback. Replies that recommend products render clickable mini cards.
+- Back end: `functions/api/assistant.ts` — the same keyword idea behind an HTTP
+  endpoint, as the integration point for a real model.
 
-## 5. Account flow
+Suggested live behaviour: ask about occasion, narrow by budget, recommend one
+primary product plus one alternative, answer objections briefly, push to
+add-to-cart.
 
-Account page may include purchased products, order history, download links, billing status, and upgrade prompts.
+## 5. Admin flow
 
-## 6. Admin flow
-
-Admin page may include product list, order list, promo controls, feature toggles, payment mode switch, and assistant prompt configuration.
-
-## 7. Webhook flow
-
-Stripe webhook responsibilities:
-- verify signature
-- parse event type
-- update order/payment status
-- emit audit log or console trace
-- ignore unsupported events safely
+`src/pages/AdminPage.tsx` renders metrics, a recent-orders table with status
+pills, top products and a stock overview driven by `product.stock`. Order rows
+are mock data in the detected language. Replace with real queries when the
+backend exists.

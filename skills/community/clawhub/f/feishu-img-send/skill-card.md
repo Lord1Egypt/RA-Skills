@@ -1,38 +1,55 @@
-## Description: <br>
-Send images to Feishu users through the Feishu Open Platform API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send images to Feishu users through the Feishu Open Platform API.
 
-## Publisher: <br>
-[BOMBFUOCK](https://clawhub.ai/user/BOMBFUOCK) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bombfuock](https://clawhub.ai/user/bombfuock)
 
-## Use Case: <br>
-Developers and operators can invoke shell or Python helpers to upload a local image to Feishu and send it to a specified open_id recipient. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bundled reusable Feishu app credentials allow messages to be sent through an app identity the installer does not control. <br>
-Mitigation: Use a version that requires installer-owned Feishu credentials from environment variables or a secret manager, with least-privilege app permissions. <br>
-Risk: The selected local image is uploaded to Feishu and sent to the supplied recipient. <br>
-Mitigation: Avoid sensitive files, validate the file path and recipient before execution, and require confirmation before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and automation users can send a local image file to a Feishu user from shell or Python workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, API Calls] <br>
-**Output Format:** [Shell command or Python call with JSON API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads one local image path and sends it to one Feishu open_id recipient.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release ships reusable Feishu app credentials in plaintext.
+
+Mitigation: Do not install this version unless the publisher's Feishu app identity is trusted; the publisher should revoke and rotate the exposed secret and require user-supplied secure configuration.
+
+Risk: Local image paths provided to the scripts are uploaded to Feishu and sent under the bundled app identity.
+
+Mitigation: Confirm the target user and image file before use, and add clear confirmation and input validation before sending files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bombfuock/skills/feishu-img-send)
+- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu image upload endpoint](https://open.feishu.cn/open-apis/im/v1/images)
+- [Feishu image message endpoint](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [Shell output or Python return data from Feishu API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads local image files to Feishu and returns the API response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

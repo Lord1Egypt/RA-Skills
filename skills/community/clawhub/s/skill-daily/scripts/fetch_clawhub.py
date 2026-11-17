@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 ClawHub Skill 抓取脚本
 基于 Convex API 翻页抓取 Top N Skill
@@ -135,7 +135,7 @@ def save_snapshot(skills, date_str, output_dir):
 
 def main():
     parser = argparse.ArgumentParser(description="抓取 ClawHub Skill 数据")
-    parser.add_argument("--num", type=int, default=200, help="目标抓取数量（默认 200）")
+    parser.add_argument("--num", type=int, default=500, help="目标抓取数量（默认 500）")
     parser.add_argument("--sort", default="downloads", help="排序字段（默认 downloads）")
     parser.add_argument("--page-size", type=int, default=50, help="每页大小（默认 50）")
     parser.add_argument("--output", default="data/snapshots", help="输出目录")

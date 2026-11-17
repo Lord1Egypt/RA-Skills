@@ -1,43 +1,61 @@
-## Description: <br>
-Deploys a four-agent Pilot content distribution setup with one origin and three regional edge nodes for replicated updates and heartbeat monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a four-agent Pilot Protocol setup that syncs content from one origin node to US, EU, and Asia edge nodes with heartbeat monitoring.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a Pilot origin and regional edge agents for content replication, trust handshakes, host naming, and heartbeat monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect role, prefix, peer hostname, or manifest path can configure agents for the wrong replication topology. <br>
-Mitigation: Confirm the role, deployment prefix, peer hostnames, and ~/.pilot manifest path before applying the setup. <br>
-Risk: Cross-host handshakes establish trust between Pilot agents. <br>
-Mitigation: Handshake only with hosts you control or trust, then verify trust state before sending content updates. <br>
-Risk: The setup depends on pilot-* skills plus the pilotctl and clawhub binaries. <br>
-Mitigation: Review the named skills and install pilotctl and clawhub only from trusted sources. <br>
+## Use Case:
 
+Developers and operators use this skill to configure a Pilot Protocol content distribution setup with one origin agent and three regional edge agents, including trust handshakes, hostnames, companion skills, and role manifests.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-multi-region-content-sync-setup) <br>
+### Deployment Geography for Use:
 
+Global, with documented US, EU, and Asia edge roles.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON manifest templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes role-specific hostnames, peer lists, data flows, handshake steps, and dependency requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup grants broad authority across multi-agent trust, remote content transfer, package installation, and persistent configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup before installing, use only trusted Pilot peers, and confirm each local change before execution.
+
+Risk: An unsafe deployment prefix could produce confusing or invalid hostnames across the origin and edge nodes.
+
+Mitigation: Validate the prefix to hostname-safe characters before applying hostnames or writing the manifest.
+
+Risk: Companion skills are installed as part of the setup and may affect the behavior of content transfer, broadcast, health, and heartbeat workflows.
+
+Mitigation: Pin or verify companion skills before installation.
+
+Risk: The setup writes persistent configuration to the local Pilot setup directory.
+
+Mitigation: Remove ~/.pilot/setups/multi-region-content-sync.json when the setup should no longer remain active.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-specific setup instructions and a persistent Pilot setup manifest path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

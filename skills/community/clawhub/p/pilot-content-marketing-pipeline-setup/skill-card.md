@@ -1,39 +1,50 @@
-## Description: <br>
-Deploys a three-agent content marketing pipeline that coordinates research, writing, and publication workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a content marketing pipeline with three agents.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Content teams and developers use this skill to configure researcher, writer, and publisher agents for an automated research-to-publication pipeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can configure trusted agent-to-agent communication and external publishing or notification destinations without detailed scoping in the artifact. <br>
-Mitigation: Verify each CMS, Slack, webhook, and peer-agent destination before use; apply least-privilege credentials; test with non-sensitive drafts; and keep a clear process to revoke trusted peer connections. <br>
+## Use Case:
 
+Marketing teams and developers use this skill to configure a three-agent content pipeline where a researcher gathers source material, a writer drafts content, and a publisher formats and distributes finished work.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-content-marketing-pipeline-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, clawhub, the pilot-protocol skill, and a running daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Agents configured by this skill can gain broad local setup and publishing authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, pin or inspect dependent skills, use a simple alphanumeric deployment prefix, verify every peer identity before handshakes, and test with least-privilege CMS and Slack credentials in staging before production use.
+
+## Reference(s):
+
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-content-marketing-pipeline-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON manifest templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, clawhub, dependent Pilot skills, and a running daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

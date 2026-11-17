@@ -1,39 +1,56 @@
-## Description: <br>
-Install, configure, and run NadirClaw LLM router to cut AI API costs by 40-70%. Use when the user wants to reduce LLM spending, route prompts to cheaper models, set up cost-saving proxy, or optimize API usage across providers (OpenAI, Anthropic, Google, Ollama). Also use when asked about model routing, LLM cost optimization, or setting up NadirClaw with OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NadirClaw installs, configures, and runs an LLM routing proxy that routes prompts across providers to reduce AI API costs.
 
-## Publisher: <br>
-[doramirdor](https://clawhub.ai/user/doramirdor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[doramirdor](https://clawhub.ai/user/doramirdor)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and configure NadirClaw as a local LLM routing proxy for OpenClaw, Claude Code, or OpenAI-compatible tools. It helps route prompts across cheaper, local, and premium model providers while monitoring savings and routing behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installer can automatically change OpenClaw routing and leave a background local proxy running. <br>
-Mitigation: Review the install behavior before execution, confirm that routing through NadirClaw is intended, and identify how to stop the service and remove the OpenClaw provider change. <br>
-Risk: LLM prompts may pass through a local proxy and upstream package behavior is outside the skill card evidence. <br>
-Mitigation: Use only when the upstream nadirclaw Python package is trusted, and inspect credential handling, prompt logging, and local log storage before routing sensitive traffic. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [NadirClaw ClawHub release](https://clawhub.ai/doramirdor/nadirclaw) <br>
+## Use Case:
 
+Developers and engineers use this skill to install and configure NadirClaw as an LLM routing proxy for OpenClaw, Claude Code, or OpenAI-compatible tools, then monitor routing behavior and savings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local service commands, OpenClaw onboarding steps, routing profile choices, and troubleshooting guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer automatically installs an unpinned external package.
+
+Mitigation: Use a pinned, reviewed NadirClaw package version in a virtual environment before running the skill.
+
+Risk: OpenClaw routing changes may cause future prompts to pass through a local proxy and onward to selected model providers.
+
+Mitigation: Confirm the onboarding config changes, provider routing behavior, and rollback steps before using the proxy.
+
+Risk: The installer starts a detached local service that can continue handling prompts after setup.
+
+Mitigation: Start the service manually when tighter operational control is needed and monitor or stop the process explicitly.
+
+## Reference(s):
+
+- [NadirClaw skill page](https://clawhub.ai/doramirdor/skills/nadirclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose package installation, local service startup, OpenClaw onboarding, provider routing configuration, and monitoring commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,52 @@
-## Description: <br>
-Pingdom (pingdom.com). Use this skill for ANY Pingdom request - searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pingdom (pingdom.com). Use this skill for ANY Pingdom request — searching and reading data. Whenever a task involves Pingdom, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operations teams use this skill to inspect Pingdom uptime monitoring data through an OOMOL-connected account. It supports listing checks and probes, retrieving check details, and checking account credit status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Pingdom account and uses OOMOL as an intermediary for access. <br>
-Mitigation: Connect only the minimum Pingdom access needed for read-only monitoring tasks and review the OOMOL connection before use. <br>
-Risk: The first-time setup documentation includes remote installer commands for the oo CLI. <br>
-Mitigation: Review OOMOL's official install instructions before running installer scripts, and avoid executing remote scripts blindly. <br>
+## Use Case:
 
+Developers and operators use this skill to read Pingdom uptime checks, account credit information, and probe details through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [Pingdom homepage](https://www.pingdom.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Pingdom skill on ClawHub](https://clawhub.ai/oomol/oo-pingdom) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before running Pingdom read actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Automatic setup may execute an unpinned remote installer without clear user approval; the remote installers and live connector implementation remain unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a reviewed, pinned CLI manually and prevent automatic installer execution. Review or disable managed-skill synchronization, connect only the intended Pingdom account, and account for OOMOL mediating access.
+
+## Reference(s):
+
+- [Pingdom API documentation](https://docs.pingdom.com/api/)
+- [Pingdom](https://www.pingdom.com)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [Pingdom skill page on ClawHub](https://clawhub.ai/oomol/skills/oo-pingdom)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Pingdom data as JSON with concise text summaries and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-oriented results for uptime checks, account credits, and probe information.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

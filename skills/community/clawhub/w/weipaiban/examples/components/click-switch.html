@@ -1,0 +1,68 @@
+<section
+  data-type="clickSwitch"
+  data-effect="fade"
+  data-duration="0.5"
+  data-name="日夜切换"
+>
+  <section data-state="before">
+    <svg width="390" height="220" data-name="白天">
+      <rect x="0" y="0" width="390" height="220" fill="#fff4d6" />
+      <text
+        x="24"
+        y="90"
+        width="342"
+        height="40"
+        fill="#8a5a12"
+        font-size="22"
+        data-align="center"
+      >
+        白天模式 · 点击切换
+      </text>
+    </svg>
+  </section>
+  <section data-state="after">
+    <svg width="390" height="220" data-name="夜晚">
+      <rect x="0" y="0" width="390" height="220" fill="#1b2433" />
+      <text
+        x="24"
+        y="70"
+        width="342"
+        height="40"
+        fill="#f2e9d8"
+        font-size="22"
+        data-align="center"
+      >
+        夜晚模式
+      </text>
+    </svg>
+    <details data-name="夜间说明" data-duration="0.6">
+      <summary>
+        <svg width="390" height="48">
+          <rect x="0" y="0" width="390" height="48" fill="#2d3a4f" />
+          <text
+            x="20"
+            y="12"
+            width="350"
+            height="24"
+            fill="#ffffff"
+            font-size="15"
+          >
+            切换后仍可再展开
+          </text>
+        </svg>
+      </summary>
+      <svg width="390" height="80">
+        <text
+          x="20"
+          y="24"
+          width="350"
+          height="40"
+          fill="#333333"
+          font-size="15"
+        >
+          clickSwitch 的 after 层里嵌套 details。
+        </text>
+      </svg>
+    </details>
+  </section>
+</section>

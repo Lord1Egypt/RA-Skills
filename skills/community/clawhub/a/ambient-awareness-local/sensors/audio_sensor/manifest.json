@@ -1,0 +1,10 @@
+{
+  "id": "audio.microphone.stub",
+  "name": "Audio Sensor Stub",
+  "version": "0.1.0",
+  "capabilities": ["audio", "speech_detection", "asr"],
+  "permission_class": 2,
+  "enabled_by_default": false,
+  "poll_interval_seconds": 2,
+  "entrypoint": "sensor.py:AudioSensor"
+}

@@ -1,41 +1,53 @@
-## Description: <br>
-Apple Design Award standard Swift/SwiftUI project validation skill that checks build status, architecture, design system usage, accessibility, internationalization, performance, native integration, and testing, then generates a consolidated report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swiftverify helps agents validate Swift and SwiftUI projects against Apple Design Award-oriented quality checks for build health, architecture, design-system use, accessibility, internationalization, performance, native integration, and testing.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineering teams use Swiftverify after feature completion, before pull-request merge, or before release to evaluate Swift and SwiftUI application quality against build, architecture, design, accessibility, internationalization, performance, native integration, and test criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release references shell scripts that were not included in the reviewed package. <br>
-Mitigation: Before running any referenced command, confirm the scripts exist, are from a trusted source, and have been reviewed in the local project or CI environment. <br>
-Risk: Some checks, including performance validation with Instruments, require local tooling or manual review and may not be fully automated by the skill artifact. <br>
-Mitigation: Treat generated validation results as engineering guidance and verify build, accessibility, internationalization, performance, and test outcomes with the appropriate Apple tooling. <br>
+## Use Case:
 
+Developers and engineering agents use this skill after feature work, before pull-request merge, or before release to run or plan Swift/SwiftUI validation checks and produce a consolidated verification report.
 
-## Reference(s): <br>
-- [Swiftverify ClawHub release page](https://clawhub.ai/soponcd/swiftverify) <br>
-- [soponcd publisher profile](https://clawhub.ai/user/soponcd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, check tables, CI configuration snippets, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces validation workflow guidance and report structure; referenced quality scripts must exist in the local Swift project or CI environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may run local build, lint, and test commands in the target repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the validation entrypoint before use, run it in an appropriate local or CI environment, and confirm that generated reports are handled according to the repository's artifact policy.
+
+Risk: The documentation contains inconsistent entrypoint paths and generated report handling expectations.
+
+Mitigation: Confirm the actual verification command and decide whether specs/verification_report.md should be committed or treated as a generated build artifact before CI adoption.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/swiftverify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and report guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update a verification report artifact when the referenced validation flow is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

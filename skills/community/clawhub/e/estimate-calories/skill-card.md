@@ -1,40 +1,53 @@
-## Description: <br>
-Estimates calories and macro-nutrients from food images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when estimating calories and macro-nutrients from food images.
 
-## Publisher: <br>
-[swang62](https://clawhub.ai/user/swang62) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swang62](https://clawhub.ai/user/swang62)
 
-## Use Case: <br>
-External users can use this skill to turn food photos into rough meal logs with itemized calorie and macro-nutrient estimates. It is intended for general tracking and should not be used for medical nutrition decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Food-photo calorie and macro estimates can be inaccurate because portions, hidden ingredients, oils, sauces, and labels may be unclear or unavailable. <br>
-Mitigation: Treat outputs as rough estimates and verify important numbers with package labels, weighed portions, authoritative nutrition sources, or a qualified professional. <br>
-Risk: Nutrition estimates could be misused for health-critical decisions such as insulin dosing, eating disorder treatment, medical nutrition therapy, allergies, or strict diets. <br>
-Mitigation: Do not rely on this skill for medical or diet-critical decisions; seek qualified professional guidance for those uses. <br>
+## Use Case:
 
+External users use this skill to estimate calories, macro-nutrients, portion sizes, and meal totals from food images.
 
-## Reference(s): <br>
-- [Estimate Calories on ClawHub](https://clawhub.ai/swang62/estimate-calories) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured meal summary with itemized estimates and meal totals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides rough visual estimates for calories, protein, carbs, fat, and fiber; asks for clarification when foods cannot be identified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Food-photo calorie and macro estimates can be inaccurate because portions, ingredients, oils, sauces, and preparation methods may not be fully visible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State assumptions, account for hidden calories, estimate restaurant meals conservatively, and ask the user for clarification when food items cannot be identified.
+
+Risk: Broad food-image trigger wording may cause analysis in contexts where calorie estimation was not intended.
+
+Mitigation: Use the skill in workflows where food-photo nutrition estimation is expected and confirm user intent when the image context is ambiguous.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swang62/skills/estimate-calories)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown structured meal summary with itemized nutrition estimates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Estimates calories, protein, carbs, fat, fiber, visible portion sizes, assumptions, and clarification needs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

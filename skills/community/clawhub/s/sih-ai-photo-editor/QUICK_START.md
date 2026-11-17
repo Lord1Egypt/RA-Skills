@@ -93,7 +93,7 @@ python3 /Users/chensong/.nvm/versions/node/v22.12.0/lib/node_modules/openclaw/sk
 ### API Key配置
 API Key已预设在 `scripts/config.py`：
 ```python
-SIH_API_KEY = "sk-w4YfLvoXwIEM0I3uNcOOOclfHkBDiR19Md9ixabWv1XMNPhn"
+SIH_API_KEY = "REDACTED-SECRET"
 ```
 
 生产环境建议使用环境变量：

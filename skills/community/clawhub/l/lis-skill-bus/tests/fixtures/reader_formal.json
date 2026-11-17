@@ -1,0 +1,30 @@
+{
+  "schema": "cad-contract/v1",
+  "spec": "cad-file-reader/v0",
+  "contract_id": "cad-20261109-demo-0001",
+  "provenance": "reader",
+  "coordinate_unit": "mm",
+  "producer": {
+    "skill": "cad-file-reader",
+    "schema": "cad-file-reader/v0",
+    "produced_at": "2026-11-09T10:00:00+0800",
+    "final_quantity": false
+  },
+  "source": {
+    "file": "demo-plan.dwg",
+    "sha256": "3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f"
+  },
+  "project_key": {
+    "project": "demo",
+    "building": "1",
+    "floor": "1F",
+    "zone": "",
+    "room": "",
+    "specialty": "structure",
+    "source": "explicit",
+    "review_required": false
+  },
+  "contract": {
+    "entities": []
+  }
+}

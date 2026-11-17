@@ -1,45 +1,59 @@
-## Description: <br>
-Captures marketing performance issues, reusable campaign learnings, feature requests, and promotion candidates so agents can support continuous marketing improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records marketing performance issues and learnings in local Markdown logs so teams can improve campaigns, messaging, and attribution over time.
 
-## Publisher: <br>
-[jose-compu](https://clawhub.ai/user/jose-compu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jose-compu](https://clawhub.ai/user/jose-compu)
 
-## Use Case: <br>
-Marketing operators and agent users use this skill to capture campaign issues, messaging misses, channel underperformance, audience drift, attribution gaps, brand inconsistency, content decay, and marketing tooling requests. The skill helps convert recurring patterns into brand guidelines, channel playbooks, personas, attribution standards, or new marketing skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hook examples with broad or empty matchers can inject reminders outside marketing work. <br>
-Mitigation: Keep hooks project-level and narrow matchers to marketing-specific terms before enabling them. <br>
-Risk: Marketing learning files could capture secrets, customer PII, ad account credentials, or sensitive revenue details. <br>
-Mitigation: Record only aggregated metrics and redacted campaign identifiers; do not store secrets or sensitive customer and revenue data. <br>
-Risk: PostToolUse hooks may inspect local command output that contains sensitive information. <br>
-Mitigation: Enable PostToolUse only when command-output inspection is needed, and review generated skill output before trusting or deploying it. <br>
+## Use Case:
 
+Marketing teams and their agents use this skill to capture campaign setbacks, messaging misses, audience changes, and attribution gaps, then review recurring lessons for incorporation into marketing guidance.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/jose-compu/self-improving-marketing) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Entry Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, hook configuration examples, and structured markdown log templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local .learnings markdown files and optional hook-related skill scaffolds when the user chooses to apply the guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Learning logs may contain customer personal data, credentials, transcripts, or sensitive revenue figures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Exclude sensitive details from logs and review entries before sharing or committing them.
+
+Risk: Optional hooks may add reminders or inspect tool output beyond the intended marketing workflow.
+
+Mitigation: Keep hooks project-scoped, use narrow marketing matchers, and leave PostToolUse disabled unless output scanning is intended.
+
+Risk: Promoted guidance or extracted skills may carry inaccurate or unreviewed marketing claims.
+
+Mitigation: Review proposed changes and generated skills before adopting or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/jose-compu/skills/self-improving-marketing)
+- [Hook setup guidance](artifact/references/hooks-setup.md)
+- [OpenClaw integration guidance](artifact/references/openclaw-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown learning and issue entries with optional setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes project-local learning logs; can suggest reviewed updates to marketing guidance or a reusable skill.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

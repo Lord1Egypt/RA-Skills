@@ -1,0 +1,4 @@
+interface:
+  display_name: AI-Native-Bootstrap
+  short_description: 安全接入可验证的 AI 项目研发流程
+  default_prompt: Audit this repository and use the ai-native-bootstrap skill to propose a minimal, evidence-based AI-native SDLC setup. Do not change application code or deploy without explicit authorization.

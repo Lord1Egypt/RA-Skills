@@ -1,40 +1,56 @@
-## Description: <br>
-Guides agents in using the Dreamina CLI for image and video generation workflows, including account checks, task submission, and async result queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent needs Dreamina image or video generation through the dreamina CLI.
 
-## Publisher: <br>
-[mr-j-j](https://clawhub.ai/user/mr-j-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mr-j-j](https://clawhub.ai/user/mr-j-j)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to operate Dreamina image and video generation through a local CLI, including session checks, credit checks, task submission, asynchronous result queries, and saved task review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generation commands may consume Dreamina account credits.
+
+Mitigation: Review commands before paid submissions and check account credit before running real generation tasks.
+
+Risk: The CLI may reuse an existing Dreamina login session.
+
+Mitigation: Install and use the skill only when the agent is expected to access the local Dreamina CLI and the associated Dreamina account.
+
+Risk: Asynchronous generation can be mistaken for completion at submit time.
+
+Mitigation: Track the submit ID and query the final task result before treating generated media as complete.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to operate Dreamina image and video generation through the local CLI while checking help output, account session state, credits, task submission, and follow-up status. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Dreamina generation commands may consume paid account credits. <br>
-Mitigation: Warn the user before running credit-consuming commands and check account credit when budget matters. <br>
-Risk: Async generation submissions can be misreported if only the shell exit code is checked. <br>
-Mitigation: Treat submissions as successful only when a submit ID is returned with an expected generation status, then query results by submit ID. <br>
+**Output Format:** [Markdown guidance with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Dreamina on ClawHub](https://clawhub.ai/mr-j-j/dreamina) <br>
+**Other Properties Related to Output:** [The skill guides agents to inspect CLI help before use and to track submit IDs and final task status for asynchronous generation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command records, submit IDs, generation statuses, and warnings before credit-consuming actions.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

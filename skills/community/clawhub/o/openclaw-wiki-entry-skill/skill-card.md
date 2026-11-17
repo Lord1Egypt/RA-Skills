@@ -1,47 +1,65 @@
-## Description: <br>
-Use when the operator asks to merge configured transit notes into domain wiki pages with source metadata, index updates, status transitions, and audit checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the operator asks to merge configured transit notes into domain wiki pages with source metadata, index updates, status transitions, and audit checks.
 
-## Publisher: <br>
-[arroncn993-sys](https://clawhub.ai/user/arroncn993-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arroncn993-sys](https://clawhub.ai/user/arroncn993-sys)
 
-## Use Case: <br>
-OpenClaw operators use this skill to merge compiled markdown transit notes into configured domain wiki pages while keeping source metadata, index entries, backlinks, status fields, and final audit checks aligned. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit, move, and audit many files in a configured markdown vault. <br>
-Mitigation: Run it only in an explicitly configured vault, keep backups or version control, and review checkpoint and audit results before treating a run as complete. <br>
-Risk: A broad audit command hook can execute trusted shell code. <br>
-Mitigation: Use only audit commands supplied by a trusted operator or vetted workflow step, and avoid passing unreviewed dynamic shell text. <br>
-Risk: Broad QMD or history collections may expose more local knowledge-base content than needed. <br>
-Mitigation: Configure QMD only when local recall is needed and scope searchable collections to the relevant vault material. <br>
+## Use Case:
 
+OpenClaw operators and developers use this skill to merge compiled Markdown transit notes into a configured local wiki, update source metadata and indexes, move completed notes, and audit consistency before treating an entry run as complete.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arroncn993-sys/openclaw-wiki-entry-skill) <br>
-- [README](README.md) <br>
-- [Workflow](references/workflow.md) <br>
-- [Path Decision](references/path-decision.md) <br>
-- [Self-Check Checklist](references/self-check-checklist.md) <br>
-- [Error Playbook](references/error-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown file updates with shell command invocations and checkpoint/audit status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit vault and wiki path configuration through environment variables or command arguments; QMD recall is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Bundled scripts permit broad local file writes and moves during wiki maintenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a high-trust local vault, keep the vault under version control or backups, and run the skill with the least filesystem privileges needed for the configured vault.
+
+Risk: Checkpoint auditing can execute raw shell commands through the audit command path.
+
+Mitigation: Restrict or patch raw audit command execution before broader use, and allow only reviewed audit commands in trusted workspaces.
+
+Risk: Absolute paths or parent-directory path segments could write outside the intended vault boundary.
+
+Mitigation: Reject absolute and parent-directory paths and canonicalize every target path under the configured vault before execution.
+
+Risk: Note content and wikilinks can influence generated wiki output and link synchronization.
+
+Mitigation: Treat note content and wikilinks as untrusted input, review proposed edits, and require the final audit to pass before marking work complete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arroncn993-sys/skills/openclaw-wiki-entry-skill)
+- [Workflow](references/workflow.md)
+- [Path Decision](references/path-decision.md)
+- [Self-Check Checklist](references/self-check-checklist.md)
+- [Error Playbook](references/error-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs local file edits and audit steps for Markdown wiki maintenance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

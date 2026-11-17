@@ -1,42 +1,54 @@
-## Description: <br>
-Reference tool for devtools that provides quick plain-text guidance for Social Automator concepts, quickstarts, patterns, debugging, performance, security, migration, and cheatsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Automator provides static devtools reference documentation for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill as a static reference helper for Social Automator-related devtools concepts and operational guidance. It returns plain-text documentation for selected topics rather than connecting to external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the static reference helper for a functioning social automation integration. <br>
-Mitigation: Treat the output as generic guidance and independently validate any operational steps before applying them. <br>
-Risk: Users may provide credentials even though the skill does not require or evidence credential handling. <br>
-Mitigation: Do not provide credentials or connect social accounts unless separate tooling is independently reviewed and added outside this skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to look up concise Social Automator reference material, operational patterns, troubleshooting guidance, performance notes, security considerations, migration steps, and quick-reference commands.
 
-## Reference(s): <br>
-- [Social Automator on ClawHub](https://clawhub.ai/bytesagain3/social-automator) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
-- [Publisher Profile](https://clawhub.ai/user/bytesagain3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no API keys, credentials, network calls, or account access are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The bundled script version is 2.0.0 while the server release and skill manifest version are 2.0.1.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended release version before publishing or installing where exact version reporting matters.
+
+Risk: The skill content is generic reference text and may not match a specific organization's Social Automator implementation.
+
+Mitigation: Review the guidance against local tooling, policies, and operational requirements before relying on it.
+
+## Reference(s):
+
+- [Social Automator ClawHub page](https://clawhub.ai/bytesagain3/skills/social-automator)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc output; no credentials, network access, file access, or external API calls are required.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

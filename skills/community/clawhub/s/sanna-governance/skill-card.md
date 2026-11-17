@@ -1,40 +1,57 @@
-## Description: <br>
-Sanna governance governs tool calls transparently with constitution-based enforcement and cryptographic receipts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sanna governance makes AI agent tool calls governed transparently.
 
-## Publisher: <br>
-[nicallen-exd](https://clawhub.ai/user/nicallen-exd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicallen-exd](https://clawhub.ai/user/nicallen-exd)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route tool calls through Sanna governance, enforcing YAML constitution rules and recording receipts for allowed, blocked, or escalated actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external governance plugin for enforcement behavior. <br>
-Mitigation: Review the @sanna-ai/openclaw plugin and its constitution settings before installation. <br>
-Risk: Tool calls can be blocked or escalated, which may interrupt automated workflows. <br>
-Mitigation: Test constitution rules in the target environment and define a clear human approval path for escalated actions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to apply constitution-based governance to tool calls, allowing, blocking, or escalating actions for human approval. It also records Ed25519-signed receipts for governed actions.
 
-## Reference(s): <br>
-- [Sanna Governance on ClawHub](https://clawhub.ai/nicallen-exd/sanna-governance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with governed tool-call outcomes and persisted receipts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the @sanna-ai/openclaw plugin and node; governed tool calls may be allowed, blocked, or escalated for human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The required third-party governance plugin can observe and control high-impact tool calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plugin before installation and run it with least-privilege runtime limits.
+
+Risk: The required plugin version is not pinned in the artifact metadata.
+
+Mitigation: Pin and review a specific plugin version before deployment.
+
+Risk: Governed actions automatically persist receipts, which may affect data retention expectations.
+
+Mitigation: Document receipt storage, retention, deletion behavior, and any network endpoints before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicallen-exd/skills/sanna-governance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [Text decisions and receipt records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and the @sanna-ai/openclaw plugin.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

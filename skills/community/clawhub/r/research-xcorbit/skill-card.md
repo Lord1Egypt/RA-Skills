@@ -1,42 +1,53 @@
-## Description: <br>
-Research XCorbit guides agents through structured product-market research for products, hardware, apps, AI products, cultural IP, consumer goods, B2B tools, and cross-category opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research XCorbit guides agents through structured product and market research for new products, hardware, AI products, apps, consumer goods, B2B tools, and cross-industry opportunities using recent evidence, platform scans, competitive analogies, source credibility checks, and a 5-look-3-define strategy framework.
 
-## Publisher: <br>
-[tracevan](https://clawhub.ai/user/tracevan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tracevan](https://clawhub.ai/user/tracevan)
 
-## Use Case: <br>
-External users, product teams, founders, and strategists use this skill to evaluate whether a product or market opportunity is worth pursuing, who it should target, how it should be positioned, and what MVP path to test first. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product-market reports may overstate platform metrics such as ratings, sales counts, review counts, or crowdfunding totals. <br>
-Mitigation: Treat platform figures as public signals, require source and credibility labels, and avoid converting them into claims about true revenue, retention, or market size without corroboration. <br>
-Risk: Research output can become stale when products, platforms, regulation, or market behavior changes quickly. <br>
-Mitigation: Prioritize the most recent 24 months of evidence, include source dates where possible, and flag unknown or unverified claims instead of filling gaps with assumptions. <br>
-Risk: The skill may produce deeper research structure than needed for lightweight brainstorming or copywriting tasks. <br>
-Mitigation: Scope the requested depth up front and ask the agent for a quick judgment, concise scan, or full report depending on the task. <br>
+## Use Case:
 
+External users, product teams, founders, and strategy researchers use this skill to produce decision-oriented market research for product opportunities, competitors, target users, positioning, business models, MVP paths, and go-to-market risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tracevan/research-xcorbit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown research reports with source notes, comparison tables, risk analysis, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes recent public sources, platform-wide scanning, source credibility labels, cross-category comparisons, and Five-Look Three-Define strategy analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can produce detailed research-heavy strategy reports when a user only wants quick brainstorming, copywriting, or implementation help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set the desired scope, depth, market, and output format before invocation, or request a concise alternative format explicitly.
+
+Risk: Product strategy conclusions can be misleading if source quality, date range, or platform metrics are not clearly separated from verified business results.
+
+Mitigation: Require source labels, dates, confidence levels, and explicit caveats for platform indicators such as ratings, reviews, sales counts, crowdfunding totals, and social engagement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tracevan/skills/research-xcorbit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research report with structured tables, source credibility notes, strategic recommendations, and MVP guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emphasizes recent evidence, platform-wide scans, direct and substitute competitors, cross-category analogies, failure cases, 5-look-3-define strategy analysis, and clear do-or-do-not-build recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

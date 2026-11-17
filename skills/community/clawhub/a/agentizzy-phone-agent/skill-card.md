@@ -1,46 +1,59 @@
-## Description: <br>
-Provides shell helpers for provisioning AgentIzzy inbound AI phone agents, retrieving call history and captured leads, configuring webhooks, and checking usage through the AgentIzzy API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI phone agent for any business that answers inbound calls, captures leads, books appointments, and returns structured call data with transcripts, summaries, and sentiment.
 
-## Publisher: <br>
-[ryanhall00](https://clawhub.ai/user/ryanhall00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanhall00](https://clawhub.ai/user/ryanhall00)
 
-## Use Case: <br>
-Developers and operators use this skill to add inbound phone handling to agent workflows, provision AgentIzzy phone agents, retrieve call and lead data, configure webhooks, and route call transcripts, summaries, and sentiment into downstream systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access customer call recordings, transcripts, summaries, sentiment, and lead PII through the AgentIzzy API. <br>
-Mitigation: Install only when AgentIzzy is trusted for this data, use a dedicated API key, and confirm legal authority, caller notice, consent, and retention requirements before use. <br>
-Risk: Webhook configuration can send call and lead events to an external endpoint. <br>
-Mitigation: Configure webhooks only to trusted HTTPS endpoints controlled by the deploying organization. <br>
-Risk: Dedicated phone-number provisioning and billing checkout examples may create paid services or account changes. <br>
-Mitigation: Require account-owner confirmation before phone-number provisioning or paid-plan checkout. <br>
-Risk: The API key authorizes access to provisioned agents and associated call and lead data. <br>
-Mitigation: Store AGENTIZZY_API_KEY as a secret, avoid logging it, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add inbound phone handling, lead capture, appointment booking, and call analytics to agent workflows through the AgentIzzy API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanhall00/agentizzy-phone-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/ryanhall00) <br>
-- [AgentIzzy API endpoint](https://api.agentizzy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON API responses] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTIZZY_API_KEY, curl, and python3; calls AgentIzzy HTTPS API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence; SKILL.md frontmatter says 1.2.0) <br>
+Risk: The skill accesses sensitive call recordings, transcripts, caller contact details, and lead data through AgentIzzy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where AgentIzzy is trusted for this data, protect AGENTIZZY_API_KEY, and confirm privacy or compliance requirements before use.
+
+Risk: The skill can register accounts, configure webhooks, provision phone numbers, and start billing checkout flows.
+
+Mitigation: Require explicit human approval before account creation, webhook configuration, phone-number provisioning, or checkout actions.
+
+Risk: The security guidance warns against passing untrusted values into helper scripts until JSON and URL construction are hardened.
+
+Mitigation: Use trusted inputs for script arguments or review and harden argument handling before exposing the scripts to untrusted values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryanhall00/skills/agentizzy-phone-agent)
+- [AgentIzzy API registration endpoint](https://api.agentizzy.com/api/v1/register)
+- [AgentIzzy agents endpoint](https://api.agentizzy.com/api/v1/agents)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, json, guidance]
+
+**Output Format:** [Markdown guidance with bash examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTIZZY_API_KEY for authenticated API calls and uses curl plus python3 in the bundled helper scripts.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release evidence; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

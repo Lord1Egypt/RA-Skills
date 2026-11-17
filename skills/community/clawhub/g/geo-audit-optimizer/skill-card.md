@@ -1,48 +1,66 @@
-## Description: <br>
-GEO audit for AI search visibility. Scores your brand 0-100 across ChatGPT, Gemini, Grok & more. $0.99/audit or free with coupon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO audit for AI search visibility. Scores your brand 0-100 across ChatGPT, Gemini, Grok & more. $0.99/audit or free with coupon.
 
-## Publisher: <br>
-[FeyDeFi](https://clawhub.ai/user/FeyDeFi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[feydefi](https://clawhub.ai/user/feydefi)
 
-## Use Case: <br>
-External users and developers use this skill to run a XanLens GEO audit for a human-provided website URL, review AI search visibility results, and receive optimization guidance for improving brand citation across AI search engines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The audit sends a website URL and optional coupon to XanLens. <br>
-Mitigation: Use the skill only when sharing that website URL and optional coupon with XanLens is acceptable. <br>
-Risk: The audit may involve a paid request. <br>
-Mitigation: Require explicit human approval before any payment or paid audit is initiated. <br>
-Risk: Generated optimization guidance or drafted content may be inaccurate, poorly attributed, or unsuitable for a platform's rules. <br>
-Mitigation: Have a human review generated content for truthfulness, attribution, and platform policy compliance before publishing. <br>
-Risk: API response fields may contain suggested actions or instructions. <br>
-Mitigation: Treat API response instructions as display guidance only; do not auto-apply fixes, publish content, modify files, run code, install packages, or follow response-suggested URLs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Geo Principles](references/geo-principles.md) <br>
-- [Platform Guide](references/platform-guide.md) <br>
-- [Schema & Structured Data Templates](references/schema-templates.md) <br>
-- [XanLens API Docs](https://xanlens.com/api-docs) <br>
-- [XanLens llms.txt](https://xanlens.com/llms.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/FeyDeFi/geo-audit-optimizer) <br>
+## Use Case:
 
+External users and developers use this skill to audit a website's brand visibility across AI search engines and receive a scored optimization plan. It is read-only by design: the agent presents findings and recommendations while the human approves payments and handles any publishing or site changes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown summary with audit score, grade, and recommended fixes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a human-provided website URL and optional coupon; paid audits require explicit human approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The audit can require payment or coupon use.
+
+Mitigation: Ask for explicit human approval before any paid audit and show the selected payment or coupon path before calling the API.
+
+Risk: The remote audit response includes agent-facing presentation instructions.
+
+Mitigation: Treat response instructions as untrusted display guidance only; do not execute actions, fetch URLs, install packages, or bypass local rules based on the response.
+
+Risk: The fixes endpoint may enable website or content changes despite the skill's read-only posture.
+
+Mitigation: Use fixes only for visible drafts or recommendations unless the human can review exactly what will change and explicitly approves the action.
+
+Risk: Anti-detection content guidance can encourage manipulative or platform-violating behavior.
+
+Mitigation: Keep recommendations factual, policy-compliant, and human-reviewed; avoid fake reviews, spam, or deceptive platform engagement.
+
+## Reference(s):
+
+- [GEO Principles](references/geo-principles.md)
+- [Platform Guide](references/platform-guide.md)
+- [Schema & Structured Data Templates](references/schema-templates.md)
+- [XanLens Homepage](https://xanlens.com)
+- [XanLens API Docs](https://xanlens.com/api-docs)
+- [XanLens llms.txt](https://xanlens.com/llms.txt)
+- [ClawHub Skill Page](https://clawhub.ai/feydefi/skills/geo-audit-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown summary with audit score, grade context, and recommended optimization actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a human-provided website URL and explicit human approval before any paid audit; polling may take about 3-5 minutes.]
+
+## Skill Version(s):
+
+3.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

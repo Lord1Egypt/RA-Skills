@@ -1,42 +1,55 @@
-## Description: <br>
-日本雅虎拍卖商品估价工具 - 自动获取商品信息、查询历史成交价、计算建议出价 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+日本雅虎拍卖商品估价工具 - 自动获取商品信息、查询历史成交价、计算建议出价
 
-## Publisher: <br>
-[HiddenPuppy](https://clawhub.ai/user/HiddenPuppy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hiddenpuppy](https://clawhub.ai/user/hiddenpuppy)
 
-## Use Case: <br>
-External users and purchasing agents use this skill to estimate Yahoo Japan auction items by looking up current listing information, historical aucfree sale prices, and a suggested bid. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary reports that crafted item IDs or proxy settings can execute unintended local shell commands. <br>
-Mitigation: Run only with trusted, normal-looking auction IDs and a proxy value that contains no credentials or shell metacharacters; review the script before installation. <br>
-Risk: The skill prints proxy configuration in output, which can expose sensitive proxy details if credentials are embedded in the proxy URL. <br>
-Mitigation: Use a credential-free local proxy value when possible and avoid sharing logs that include proxy settings. <br>
+## Use Case:
 
+External users and agents use this skill to estimate Yahoo Japan auction items by fetching current listing details, comparing historical aucfree sale prices, and calculating a suggested bid.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HiddenPuppy/yahoo-auction-estimator) <br>
-- [Yahoo! Auctions Japan](https://auctions.yahoo.co.jp/) <br>
-- [aucfree historical auction search](https://aucfree.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text with item summaries, historical prices, suggested bids, and status labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, curl, and the PROXY_SOCKS5 environment variable for proxy access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: Auction IDs or proxy settings may lead to unintended shell command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted auction IDs and prefer a patched version that validates inputs and uses safe argument arrays or a native HTTP client.
+
+Risk: Proxy credentials may be printed in CLI output.
+
+Mitigation: Avoid embedding credentials in PROXY_SOCKS5 and run the skill only in environments where console output is appropriately protected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hiddenpuppy/skills/yahoo-auction-estimator)
+- [Yahoo! Auctions item pages](https://auctions.yahoo.co.jp/)
+- [aucfree historical auction search](https://aucfree.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI report with item title, keyword, current price, end time, historical price range, suggested bid, and status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, curl, and PROXY_SOCKS5 for proxy access.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact package metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

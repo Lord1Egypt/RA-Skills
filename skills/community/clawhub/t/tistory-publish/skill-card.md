@@ -1,46 +1,57 @@
-## Description: <br>
-Tistory Publish automates Tistory blog publishing through OpenClaw Playwright CDP, including TinyMCE content insertion, OG cards, banner uploads, tags, category selection, and representative image setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Tistory blog publishing via OpenClaw Playwright CDP, including TinyMCE editor manipulation, OG card insertion, banner upload, tag registration, category setting, and representative image selection.
 
-## Publisher: <br>
-[garibong-labs](https://clawhub.ai/user/garibong-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[garibong-labs](https://clawhub.ai/user/garibong-labs)
 
-## Use Case: <br>
-Developers and content publishers use this skill to publish HTML-based Tistory posts via browser automation when a logged-in OpenClaw Chrome session is available. It supports optional banners, tags, category selection, representative images, and private or public publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The publishing workflow can create public Tistory posts through a logged-in browser without a final confirmation step. <br>
-Mitigation: Run test publishes with --private first and review the target blog, title, body, category, tags, and banner before removing --private. <br>
-Risk: The mk-review template includes a hard-coded default blog when --blog is omitted. <br>
-Mitigation: Always pass an explicit --blog value, and review or remove the template default before use. <br>
-Risk: Kakao credentials may be used by the separate login helper for session recovery. <br>
-Mitigation: Store any credential file outside shared locations with strict local permissions and provide it only through --cred-file or TISTORY_CRED_FILE when login recovery is required. <br>
+## Use Case:
 
+Developers and content operators use this skill to prepare and publish Tistory blog posts through an authenticated OpenClaw-controlled browser session. It supports HTML body insertion, category selection, tags, image upload, OG cards, and public or private publishing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/garibong-labs/tistory-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/garibong-labs) <br>
-- [README](artifact/README.md) <br>
-- [Simple post runbook](artifact/templates/simple-post/RUNBOOK.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON status] <br>
-**Output Format:** [Markdown guidance with inline bash commands; publishing scripts return JSON status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can publish to a real Tistory blog through an authenticated browser session; use --private for test runs before public publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.1.4 (source: server release metadata) <br>
+Risk: The skill can publish live Tistory posts through an authenticated browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --private or a test blog first, then review title, body, category, tags, images, and OG cards before public publishing.
+
+Risk: The login helper can use a Kakao credential file to recover a Tistory session.
+
+Mitigation: Keep credential files outside shared repositories with tight file permissions, and pass them only via --cred-file or TISTORY_CRED_FILE when needed.
+
+Risk: Untrusted body HTML or blog host values can affect browser automation and OG placeholder handling.
+
+Mitigation: Use trusted body files and known Tistory blog domains until the evidence guidance notes that OG placeholder escaping and host validation issues are fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/garibong-labs/skills/tistory-publish)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, HTML content expectations, and JSON status responses from scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update public or private Tistory posts through an authenticated browser session.]
+
+## Skill Version(s):
+
+5.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

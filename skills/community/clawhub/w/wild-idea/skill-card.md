@@ -1,47 +1,62 @@
-## Description: <br>
-Generates lateral brainstorming outputs by juxtaposing concrete constraints from remote domains, random seed texts, and web-discovered topics against specific user-domain products or features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Injects concrete constraints from remote domains as "nails" and juxtaposes them with user-domain "counterparts" to generate intentionally unusual brainstorming outputs, with comfort and web-verification gates.
 
-## Publisher: <br>
-[liwenyu2002](https://clawhub.ai/user/liwenyu2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liwenyu2002](https://clawhub.ai/user/liwenyu2002)
 
-## Use Case: <br>
-External developers, product teams, and creative workers use this skill when they are stuck on a product, design, or strategy problem and want unusual concrete idea prompts. The skill is intended to produce nail-to-counterpart brainstorming tables that pass comfort and web-verification gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses local command execution through helper scripts. <br>
-Mitigation: Review the scripts before running them and execute the skill in an environment where local command execution is acceptable. <br>
-Risk: Tavily searches can expose search terms derived from the user's problem, and the skill involves a Tavily API key. <br>
-Mitigation: Use a dedicated, revocable Tavily API key and avoid confidential project names, private strategy, or sensitive prompt details unless sending related queries to Tavily is acceptable. <br>
+## Use Case:
 
+Developers, product teams, and other creative practitioners use this skill when they are stuck on a product or design problem and need deliberately unfamiliar, concrete idea prompts. It produces nail-to-counterpart brainstorming tables and rerolls ideas that are too conventional or already implemented.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/liwenyu2002/wild-idea) <br>
-- [Skill specification](SKILL.md) <br>
-- [ClawScan overview](CLAWSCAN.md) <br>
-- [Remote-domain paradigms](references/paradigms.md) <br>
-- [Seed library](references/mao-seeds.md) <br>
-- [Search integration notes](references/search-integration.md) <br>
-- [Tavily curl example](references/tavily-curl-example.md) <br>
-- [Output example](templates/output-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables, optional helper-script JSON, shell commands, and an HTML poster template.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are expected to avoid explanatory connective text between the remote-domain nail and the user-domain counterpart.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact package.json reports 5.0.0) <br>
+Risk: The skill can send search terms related to a user's brainstorming problem to Tavily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when external search is approved, and avoid entering confidential product ideas unless the search workflow is explicitly permitted.
+
+Risk: The artifact uses local API-key and home-directory helper patterns for Tavily search.
+
+Mitigation: Review and replace the curl, .env, and home-directory helper examples with a scoped, reviewed API client before organizational deployment.
+
+Risk: Generated ideas are intentionally unconventional and may be misleading if treated as validated product strategy.
+
+Mitigation: Treat outputs as brainstorming prompts and require human review, feasibility checks, and independent validation before use.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/liwenyu2002/skills/wild-idea)
+- [Paradigms reference](references/paradigms.md)
+- [Mao seed library](references/mao-seeds.md)
+- [Search integration reference](references/search-integration.md)
+- [Tavily curl example](references/tavily-curl-example.md)
+- [Output example](templates/output-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, code, guidance]
+
+**Output Format:** [Markdown tables with concise text, optional HTML poster content, and inline shell or Python command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses random seed selection and optional external Tavily search; search failures are expected to be reported or skipped rather than filled from memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact package.json reports 5.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

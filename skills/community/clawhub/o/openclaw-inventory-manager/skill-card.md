@@ -1,45 +1,56 @@
-## Description: <br>
-An enterprise-grade asset manager that tracks, manages, and automatically syncs OpenClaw skills capabilities and sources to your GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An enterprise-grade asset manager that tracks, manages, and automatically syncs OpenClaw skills capabilities and sources to your GitHub.
 
-## Publisher: <br>
-[downwind7clawd-ctrl](https://clawhub.ai/user/downwind7clawd-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[downwind7clawd-ctrl](https://clawhub.ai/user/downwind7clawd-ctrl)
 
-## Use Case: <br>
-Developers and operators use this skill to audit installed OpenClaw skills, identify their sources, generate inventory manifests, and optionally synchronize those manifests through Git. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change Git state, create commits, and push local skill metadata to GitHub. <br>
-Mitigation: Use a private, dedicated inventory repository and confirm push only after reviewing the generated manifests and Git status. <br>
-Risk: The sync workflow can commit broad workspace contents, not only inventory files. <br>
-Mitigation: Run it from a directory without unrelated files and inspect staged or changed files before committing. <br>
-Risk: Generated manifests may expose local paths, sources, and skill metadata. <br>
-Mitigation: Review SKILLS_MANIFEST.json and SKILLS_MANIFEST.md before sharing or pushing them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to audit installed OpenClaw skills, identify each skill's source, and generate Git-synced inventory manifests for review.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/downwind7clawd-ctrl/openclaw-inventory-manager) <br>
-- [README](artifact/README.md) <br>
-- [Tutorial](artifact/TUTORIAL.md) <br>
-- [Security policy](artifact/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated JSON and Markdown inventory manifests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SKILLS_MANIFEST.json and SKILLS_MANIFEST.md; sync workflows may create Git commits and can push after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: The skill can commit and push local inventory outputs to a Git remote, which may include more local metadata than users expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated manifests before committing or pushing, run the tool only in a dedicated inventory repository, and keep sensitive files excluded with .gitignore.
+
+Risk: Regex scrubbing and SKILL.private.md handling reduce exposure but are not a complete privacy boundary.
+
+Mitigation: Avoid credential-bearing Git remote URLs, keep secrets out of skill documentation, and treat generated manifests as review-required before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/downwind7clawd-ctrl/skills/openclaw-inventory-manager)
+- [README](artifact/README.md)
+- [Tutorial](artifact/TUTORIAL.md)
+- [Security policy](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text plus generated JSON and Markdown manifest files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 14 or higher and Git for synchronization workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

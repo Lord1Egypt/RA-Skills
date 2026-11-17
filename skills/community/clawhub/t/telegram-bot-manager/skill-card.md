@@ -1,45 +1,59 @@
-## Description: <br>
-Manage and configure Telegram bots for OpenClaw, including Telegram integration setup, bot token configuration, webhook or channel settings, token validation, and connectivity checks for api.telegram.org. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and configure Telegram bots for OpenClaw. Use when setting up Telegram integrations, troubleshooting bot connectivity, configuring bot tokens, or managing Telegram channel/webhook settings. Handles bot registration, token validation, and network connectivity checks for api.telegram.org.
 
-## Publisher: <br>
-[362224222](https://clawhub.ai/user/362224222) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[362224222](https://clawhub.ai/user/362224222)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to set up, validate, and troubleshoot Telegram bot integrations. It supports bot registration guidance, local OpenClaw configuration, webhook or polling setup, and Telegram API connectivity checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot tokens may leak through command-line arguments, shell history, terminal output, logs, screenshots, or committed configuration files. <br>
-Mitigation: Use a dedicated bot token, prefer environment variables or secured configuration over command-line arguments, restrict access to config and backup files, and rotate any token that may have been exposed. <br>
-Risk: Setup behavior can make local OpenClaw configuration changes and create backup files that may contain sensitive token values. <br>
-Mitigation: Review the scripts before execution, run them in the intended OpenClaw environment, verify file permissions on OpenClaw config and backup files, and confirm the resulting Telegram settings before production use. <br>
+## Use Case:
 
+Developers and operators use this skill to set up, test, and troubleshoot Telegram bot integrations for OpenClaw, including bot token validation, OpenClaw configuration, polling, and webhook setup.
 
-## Reference(s): <br>
-- [OpenClaw Telegram Configuration Guide](references/OPENCLAW_CONFIG.md) <br>
-- [Telegram Webhook Setup Guide](references/WEBHOOK_SETUP.md) <br>
-- [Telegram Bot API Documentation](https://core.telegram.org/bots/api) <br>
-- [BotFather Documentation](https://core.telegram.org/bots#6-botfather) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/362224222/telegram-bot-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown documentation with bash commands, JSON configuration examples, and Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational steps that can call Telegram API endpoints and modify local OpenClaw configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata.json) <br>
+Risk: Telegram bot tokens may be exposed through command-line history, process listings, configuration files, or backup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or owner-only secure configuration, avoid passing production tokens as command-line arguments, rotate compromised tokens, and verify OpenClaw config and backup file permissions.
+
+Risk: Webhook setup guidance includes privileged system commands that can change nginx, firewall, certificate, and public endpoint configuration.
+
+Mitigation: Run privileged webhook setup commands only on systems intended for those changes, review commands before execution, and confirm SSL, secret token, and access controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/362224222/skills/telegram-bot-manager)
+- [OpenClaw Publisher Profile](https://clawhub.ai/user/362224222)
+- [OpenClaw Telegram Configuration Guide](references/OPENCLAW_CONFIG.md)
+- [Telegram Webhook Setup Guide](references/WEBHOOK_SETUP.md)
+- [Telegram Bot API Documentation](https://core.telegram.org/bots/api)
+- [BotFather Documentation](https://core.telegram.org/bots#6-botfather)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that call Telegram APIs, update OpenClaw configuration, restart the OpenClaw gateway, or modify webhook infrastructure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact metadata, release notes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

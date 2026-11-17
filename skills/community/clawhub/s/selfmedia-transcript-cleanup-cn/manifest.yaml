@@ -1,0 +1,26 @@
+name: selfmedia-transcript-cleanup-cn
+slug: selfmedia-transcript-cleanup-cn
+display_name: 转录文字忠实清稿
+description: 接收用户拥有或获授权的中文原始转录文字、可选说话人和时间标记及清稿尺度，交付忠实原意的干净稿、逐项修改清单与待确认标记，适用于访谈、口述和视频字幕初稿；缺少文本或说话人无法区分时先请求补充，绝不凭空补词或校正专名数字。
+version: 1.0.1
+icon: icon-512.png
+repository: https://github.com/xxjrq/selfmedia-transcript-cleanup-cn
+license: MIT-0
+tags:
+  - transcript
+  - chinese
+  - editorial
+  - content-operations
+  - fact-preservation
+trigger_words:
+  - 转录稿清理
+  - 访谈文字整理
+  - 口述稿清稿
+  - 中文字幕校稿
+interface:
+  display_name: 转录文字忠实清稿
+  short_description: 忠实清理中文转录稿，保留原意、修改清单与待确认项说明
+  default_prompt: 请粘贴拥有或获授权的原始转录文字，并说明说话人/时间标记和希望的清稿程度；我会输出干净稿、修改清单与待确认项。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: python3 scripts/self_test.py

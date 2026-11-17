@@ -1,0 +1,23 @@
+{
+  "skill_name": "alphaear-logic-visualizer",
+  "positive": [
+    {
+      "prompt": "把AI算力需求上升如何传导到光模块公司的利润画成逻辑图",
+      "assertions": [
+        "extracts causal nodes and edges",
+        "uses positive/negative/neutral polarity",
+        "produces Draw.io XML or rendered HTML"
+      ]
+    }
+  ],
+  "negative": [
+    {
+      "prompt": "查询中际旭创最新价",
+      "expected_route": "mx-data"
+    },
+    {
+      "prompt": "跟踪一下我昨天那个AI算力信号有没有被证伪",
+      "expected_route": "alphaear-signal-tracker"
+    }
+  ]
+}

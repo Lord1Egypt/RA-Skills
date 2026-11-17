@@ -199,3 +199,180 @@
 - `merchantNo`: 商户单号
 - `remarks`: 备注
 - `refundNo`: 退款单号
+
+## FISCAL_AUTH_PAYMENT_VOUCHER (财政授权支付凭证)
+- `title`: 标题
+- `voucherNo`: 凭证号码
+- `payDate`: 付款日期
+- `payerName`: 付款人全称
+- `payerAccount`: 付款人账号
+- `payerBank`: 付款人开户银行
+- `payeeName`: 收款人全称
+- `payeeAccount`: 收款人账号
+- `payeeBank`: 收款人开户银行
+- `payAmountUpper`: 支付金额(大写)
+- `payAmountLower`: 支付金额(小写)
+- `agencyCode`: 单位编码
+- `settleMethod`: 结算方式
+- `budgetAgency`: 预算单位
+- `fundType`: 资金性质
+- `fundUsage`: 资金用途
+- `functionalType`: 功能分类
+- `economicType`: 经济分类
+
+## CUSTOMS_PAYMENT_RECEIPT (海关专用缴款书)
+- `title`: 标题
+- `revenueSystem`: 收入系统
+- `issueDate`: 填发日期
+- `customsReceiptNumber`: 缴款书号码
+- `revenueAuthority`: 收入机关
+- `budgetSubject`: 科目
+- `budgetLevel`: 预算级次
+- `receivingTreasury`: 收款国库
+- `payerName`: 缴款单位名称
+- `payerAccount`: 缴款单位账号
+- `payerBank`: 缴款单位开户银行
+- `totalAmountUpper`: 合计金额(大写)
+- `totalAmountLower`: 合计金额(小写)
+- `applicantCode`: 申请单位编号
+- `customsDeclarationNumber`: 报关单编号
+- `contractNumber`: 合同号
+- `conveyanceNumber`: 运输工具号
+- `paymentDeadline`: 缴款期限
+- `deliveryOrderNumber`: 提货单号
+- `nationalStandardCode`: 国标代码
+- `transactionSerialNumber`: 交易流水号
+- `goodsDetails`: 货物明细
+  - `taxCode`: 税号
+  - `goodsName`: 货物名称
+  - `quantity`: 数量
+  - `unit`: 单位
+  - `customsValue`: 完税价格
+  - `taxRate`: 税率
+  - `taxAmount`: 税款金额
+
+## CUSTOMS_DECLARATION (海关进/出口货物报关单)
+- `title`: 标题
+- `preEntryNumber`: 预录入编号
+- `customsNumber`: 海关编号
+- `pageNumber`: 页码/页数
+- `consignor`: 境内发货人/境内收货人
+- `customsOffice`: 出境关别/进境关别
+- `exportDate`: 出口日期/进口日期
+- `declareDate`: 申报日期
+- `recordNumber`: 备案号
+- `consignee`: 境外收货人/境外发货人
+- `transportMode`: 运输方式
+- `transportation`: 运输工具名称及航次号
+- `blNumber`: 提运单号
+- `storageLocation`: 货物存放地点
+- `manufacturer`: 生产销售单位/消费使用单位
+- `supervisionMode`: 监管方式
+- `supervisionModeCode`: 监管方式代码
+- `exemptionNature`: 征免性质
+- `licenseNumber`: 许可证号
+- `departurePort`: 启运港
+- `contractNumber`: 合同协议号
+- `tradeCountry`: 贸易国
+- `destinationCountry`: 运抵国/启运国
+- `destinationPort`: 指运港/经停港
+- `exitPort`: 离境口岸/入境口岸
+- `packageType`: 包装种类
+- `packageQuantity`: 件数
+- `grossWeight`: 毛重
+- `netWeight`: 净重
+- `tradeTerms`: 成交方式
+- `freightCharges`: 运费
+- `insurancePremiums`: 保费
+- `miscellaneousCharges`: 杂费
+- `attachmentAndNumber`: 随附单证及编号
+- `remarks`: 标记唛码及备注
+- `goodsDetails`: 商品明细
+  - `itemNumber`: 项号
+  - `commodityCode`: 商品编号
+  - `commodityName`: 商品名称及规格型号
+  - `quantityAndUnit1`: 数量及单位
+  - `quantityAndUnit2`: 数量及单位2
+  - `quantityAndUnit3`: 数量及单位3
+  - `unitPrice`: 单价
+  - `totalPrice`: 总价
+  - `currency`: 币制
+  - `originCountry`: 原产国
+  - `finalDestinationCountry`: 最终目的地
+  - `domesticSourceArea`: 境内货源地
+  - `taxExemptionIndicator`: 征免
+
+## INTERNATIONAL_BILL (国际汇票)
+- `draftNumber`: 汇票号码
+- `draftDate`: 出票日期
+- `amount`: 汇票金额
+- `amountInWords`: 汇票金额大写
+- `payeeName`: 收款人名称
+- `draweeName`: 付款行/受票人
+- `draftTenor`: 汇票期限
+- `lcNumber`: 信用证号码
+- `issueDate`: 信用证开证日期
+- `issueBank`: 信用证开证行
+- `drawer`: 出票人
+
+## COMMERCIAL_INVOICE (商业发票)
+- `invoiceNo`: 发票号码
+- `invoiceDate`: 发票日期
+- `totalAmount`: 发票金额
+- `issuerName`: 发票开具方名称
+- `issuerAddress`: 发票开具方地址
+- `lcNumber`: 信用证编号
+- `lcDate`: 信用证开证日期
+- `contractNumber`: 合同号
+- `priceTerm`: 成交方式
+
+## CERTIFICATE_OF_ORIGIN (原产地证明)
+- `exporter`: 出口商
+- `consignee`: 收货人
+- `transportAndRoute`: 运输方式及路线
+- `lcNumber`: 信用证编号
+- `issueDate`: 开具日期
+- `issuer`: 开具方名称
+
+## CARGO_TRANSPORT_INSURANCE (货物运输保险单)
+- `issueDate`: 签单日期
+- `lcNumber`: 信用证编号
+- `totalAmountLower`: 保险金额(小写)
+- `totalAmountUpper`: 保险金额(大写)
+- `insured`: 被保险人
+- `claimPayableAt`: 赔款偿付地点
+- `perConverance`: 装载运输工具
+- `sigOn`: 启运日期
+- `routeFrom`: 启运地
+- `routeTo`: 目的地
+
+## PACKING_LIST (装箱单)
+- `packingListNo`: 装箱单号
+- `invoiceNo`: 发票号
+- `issueDate`: 签单日期
+- `exporterName`: 出单方
+- `exporterAddress`: 出单方地址
+- `consigneeName`: 收货人
+- `consigneeAddress`: 收货人地址
+- `notifyParty`: 通知方
+- `loadingPort`: 起运港
+- `dischargePort`: 卸货港
+- `vesselNo`: 航次号
+- `containerNo`: 箱号
+- `totalNetWeight`: 总净重
+- `totalGrossWeight`: 总毛重
+- `totalMeasurement`: 总体积
+- `priceTerm`: 成交方式
+- `contractNumber`: 合同号
+- `lcNumber`: 信用证编号
+
+## BILL_OF_LADING (提单)
+- `blNumber`: 提单号
+- `issueDate`: 签单日期
+- `loadingPort`: 装运港
+- `dischargePort`: 卸货港
+- `exporterName`: 发货人
+- `consigneeName`: 收货人
+- `notifyParty`: 通知方
+- `vessel`: 航次号
+- `issuePlace`: 签发地点

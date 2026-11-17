@@ -1,0 +1,17 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_wb_set_curr_appid",
+		"description": "Set the application ID (appId) for the current session context. Before calling any application-level plugin (such as querying app config, tables, workflows, etc.), you must call this plugin first to switch the target of subsequent plugins to the specified application. After calling _wb_set_curr_appid, you need to call _query_app_user to get the current user's roles and permissions in that application.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"appId": {
+					"type": "string",
+					"description": "The appId to switch to. It must be an existing application in the current company that the current user has permission to access."
+				}
+			},
+			"required": ["appId"]
+		}
+	}
+}

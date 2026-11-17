@@ -1,40 +1,56 @@
-## Description: <br>
-Generate clean A4 PDF reports from structured JSON using Jinja2 and WeasyPrint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates clean A4 PDF reports from structured JSON using Jinja2 and WeasyPrint for analytical summaries, data reports, and chart-based exports.
 
-## Publisher: <br>
-[0xvespertine](https://clawhub.ai/user/0xvespertine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[0xvespertine](https://clawhub.ai/user/0xvespertine)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, analysts, and agent operators use this skill to turn workspace JSON data into formatted A4 PDF reports with summaries, sections, tables, charts, footers, and optional debug HTML.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Custom Jinja2 templates can affect rendered HTML and PDF output more broadly than ordinary report data.
+
+Mitigation: Use only trusted custom templates and review template content before rendering.
+
+Risk: PDF generation and template rendering may run in an environment with access to local files or sensitive environment variables.
+
+Mitigation: Run the skill in a low-privilege or isolated workspace and avoid exposing sensitive environment variables during rendering.
+
+Risk: Unpinned Python dependencies or system package installation can change host behavior over time.
+
+Mitigation: Pin Python dependencies before production use and approve the sudo system package install only after reviewing the host changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and analysts use this skill to convert workspace JSON report data, tables, and chart references into clean A4 PDFs for analytical summaries, data reports, and exports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs system packages and Python dependencies and creates a persistent local virtual environment. <br>
-Mitigation: Install only after reviewing the apt-get and pip commands, prefer a pinned or freshly recreated virtual environment, and remove ~/.openclaw/workspace/.venv_pdf when the skill is no longer used. <br>
-Risk: Report inputs, outputs, templates, and chart paths touch local workspace files. <br>
-Mitigation: Keep input and output paths inside the workspace and review warnings for missing or skipped chart images before relying on the PDF. <br>
+**Output Format:** [PDF file, optional HTML file, and JSON status output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xvespertine/pdf-report) <br>
+**Other Properties Related to Output:** [Requires python3 plus WeasyPrint and Jinja2 dependencies; all input, output, template, and chart paths are constrained to the workspace.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, JSON status] <br>
-**Output Format:** [PDF file with optional HTML debug output and JSON status on stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, WeasyPrint, Jinja2, and WeasyPrint system libraries; input, output, template, and chart paths are constrained to the workspace.] <br>
+1.0.1 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

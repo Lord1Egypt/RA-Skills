@@ -1,41 +1,55 @@
-## Description: <br>
-Reviews Rust FFI code for type safety, memory layout compatibility, string handling, callback patterns, and unsafe boundary correctness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Rust FFI code for type safety, memory layout compatibility, string handling, callback patterns, and unsafe boundary correctness.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Rust FFI boundaries, including extern blocks, C-compatible layouts, bindgen output, callbacks, ownership transfer, and unsafe boundary documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce incorrect or misleading FFI review findings if it is used without reading the relevant crate context and source blocks. <br>
-Mitigation: Follow the skill's gates before reporting findings: inspect Cargo.toml, linkage or binding sources, complete code evidence, and the pre-report verification protocol. <br>
-Risk: Security scanning noted a false positive on a Rust safety-code example, so raw scanner output alone may overstate exploit behavior. <br>
-Mitigation: Use the supplied security verdict and summary as authoritative, and review example code as instructional material rather than executable behavior. <br>
+## Use Case:
 
+Developers and code reviewers use this skill to review Rust FFI boundaries, including extern declarations, repr(C) layout, C string and pointer ownership, callback safety, bindgen output, and build/linkage configuration.
 
-## Reference(s): <br>
-- [Safety Patterns](references/safety-patterns.md) <br>
-- [Type Mapping](references/type-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review findings with file-line references, severity labels, and concise explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are gated by crate context, linkage review, code evidence, and a pre-report verification protocol.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill may over-apply edition-specific Rust FFI rules if the reviewed crate edition is not checked first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow Gate 1 by opening Cargo.toml and recording the crate edition before reporting edition-specific issues.
+
+Risk: FFI findings can be inaccurate when based only on partial diffs or isolated snippets.
+
+Mitigation: Follow Gate 3 by reading the full relevant function or block and citing a concrete file and line for each finding.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/ffi-code-review)
+- [Type Mapping](references/type-mapping.md)
+- [Safety Patterns](references/safety-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review findings with file-line citations and severity labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are gated on crate context, linkage and binding sources, and full code evidence before reporting.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

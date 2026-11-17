@@ -1,40 +1,59 @@
-## Description: <br>
-Generates videos from an image and text prompt using supported remote video-generation models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos from an input image and text prompt through supported remote video-generation models.
 
-## Publisher: <br>
-[lrshu](https://clawhub.ai/user/lrshu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrshu](https://clawhub.ai/user/lrshu)
 
-## Use Case: <br>
-Developers and agent users can invoke this skill to submit image-to-video generation requests with a prompt, optional first or last frame media, and a selected supported model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected image or video files, and an API token are sent to a configurable remote service. <br>
-Mitigation: Verify the provider and TEAM_BASE_URL before use, avoid sensitive or proprietary media, and run with a scoped API key. <br>
-Risk: Remote data handling and execution scoping are weakly disclosed in the available evidence. <br>
-Mitigation: Review the provider's data-handling terms and prefer deployment only in environments where external media processing is approved. <br>
+## Use Case:
 
+Developers and external users use this skill to submit image-and-text video generation jobs to supported hosted models through a Python command.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lrshu/lrshuai-image-to-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON] <br>
-**Output Format:** [Command-line output with status messages and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TEAM_API_KEY and prompt/media inputs; may poll for asynchronous generation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence release and frontmatter) <br>
+Risk: The skill sends user-provided media and prompts to a remote API for generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive media and prompts, and disclose remote upload behavior before use.
+
+Risk: TEAM_BASE_URL can change the API destination.
+
+Mitigation: Set TEAM_BASE_URL only for trusted HTTPS endpoints and keep TEAM_API_KEY narrowly scoped.
+
+Risk: The skill attempts to force direct script execution outside the managed runner.
+
+Mitigation: Review execution posture before installing and prefer managed execution controls where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrshu/skills/lrshuai-image-to-video)
+- [Publisher profile: lrshu](https://clawhub.ai/user/lrshu)
+- [Default Team AI API endpoint](https://dlazy.com/api/ai/tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TEAM_API_KEY; local media may be encoded into request payloads or remote media URLs may be passed through.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

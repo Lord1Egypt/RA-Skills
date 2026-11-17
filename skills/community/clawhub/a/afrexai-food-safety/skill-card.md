@@ -1,38 +1,49 @@
-## Description: <br>
-Assists businesses in developing, auditing, and maintaining HACCP plans and FDA/USDA food safety programs for hazard control and regulatory compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assist businesses in developing, auditing, and maintaining HACCP plans and FDA/USDA food safety programs for hazard control and regulatory compliance.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Food business operators, quality assurance teams, and food safety consultants use this skill to draft HACCP plans, audit operations, manage prerequisite programs, and map FDA, USDA-FSIS, state, local, and third-party audit requirements to daily food operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Food safety, HACCP, audit, or regulatory guidance may be incomplete, outdated, or unsuitable for a specific facility or jurisdiction. <br>
-Mitigation: Use the skill as a drafting and checklist aid; have HACCP plans, audit findings, and regulatory decisions reviewed by qualified food safety personnel and verify current FDA, USDA, state, local, and facility-specific requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/1kalin/afrexai-food-safety) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Restaurant operators, food manufacturers, quality assurance teams, consultants, commissary kitchens, and catering or food truck operations use this skill to draft HACCP plans, audit food safety programs, map FDA/USDA requirements, prepare for third-party audits, and plan recall readiness.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, and structured audit findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafting and checklist aids and should be reviewed by qualified food safety personnel before operational use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Food-safety or regulatory guidance may be incomplete, outdated, or unsuitable for a specific product, process, jurisdiction, or facility.
+
+Mitigation: Validate HACCP plans, recall processes, critical limits, and regulatory conclusions against current FDA, USDA-FSIS, state, and local requirements with a qualified HACCP coordinator, PCQI, process authority, or food-safety professional before implementation.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/1kalin/skills/afrexai-food-safety)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown with structured plans, audit findings, tables, checklists, and reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational food-safety and compliance drafting support; outputs require review against current regulations and facility-specific conditions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

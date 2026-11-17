@@ -1,40 +1,54 @@
-## Description: <br>
-Find domain experts, thought leaders, and subject-matter authorities on any topic by searching Twitter and Reddit for people who demonstrate deep knowledge, frequent discussion, and above-average expertise in a specific field. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Finder helps users find domain experts, thought leaders, and subject-matter authorities by searching Twitter and Reddit for people who demonstrate deep knowledge and frequent discussion of a topic.
 
-## Publisher: <br>
-[atyachin](https://clawhub.ai/user/atyachin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atyachin](https://clawhub.ai/user/atyachin)
 
-## Use Case: <br>
-Developers, researchers, recruiters, and analysts use this skill to identify subject-matter experts, thought leaders, practitioners, educators, and key opinion leaders from public social-media activity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the Xpoz service and the mcporter npm package to search and export social-media data. <br>
-Mitigation: Install it only after trusting Xpoz and the mcporter package, and review the OAuth setup before use. <br>
-Risk: Search topics, exported CSVs, rankings, and profile analysis can be personal-data-adjacent. <br>
-Mitigation: Avoid confidential or sensitive search topics, collect only necessary data, store exports carefully, delete them when finished, and follow platform terms and applicable privacy rules. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Expert Finder on ClawHub](https://clawhub.ai/atyachin/expert-finder) <br>
-- [Xpoz](https://xpoz.ai) <br>
+## Use Case:
 
+External users, recruiters, researchers, and developers use this skill to identify and rank domain experts, thought leaders, practitioners, educators, and key opinion leaders for a specified topic.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked expert profiles, scores, rationale, social-media metrics, quotes, and CSV-derived analysis.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an external npm package and an Xpoz OAuth account for search access.
+
+Mitigation: Review the mcporter package before installation, prefer a pinned version when available, and authorize only the Xpoz access needed for the task.
+
+Risk: Expert rankings based on social media activity can be incomplete, stale, or biased toward visible public discussion.
+
+Mitigation: Treat rankings as leads for review and validate expertise through independent sources before outreach, hiring, or sourcing decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/atyachin/skills/expert-finder)
+- [Xpoz](https://xpoz.ai)
+- [Xpoz MCP Service](https://mcp.xpoz.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ranks candidate experts with profile context, reasons, activity signals, and representative examples for human review.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

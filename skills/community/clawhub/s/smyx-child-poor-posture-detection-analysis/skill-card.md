@@ -1,44 +1,63 @@
-## Description: <br>
-Analyzes child sitting-posture video from a desk lamp or desk-mounted camera to estimate posture metrics, produce reminder text, and report monitoring results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a submitted study-area video to estimate a child's posture, produce reminder text, and return structured posture reports.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-Agents use this skill to run cloud-backed posture analysis on user-provided child study-area video or image inputs, returning structured posture metrics, voice-reminder text, suggestions, and report links. It can also query prior cloud reports for the same posture-monitoring workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive child video, URLs, reports, and cloud API calls. <br>
-Mitigation: Use only with explicit guardian consent, avoid sensitive footage unless retention and deletion practices are clear, and review where submitted media and generated reports are stored. <br>
-Risk: The security evidence says the skill silently creates or reuses local identities and stores tokens. <br>
-Mitigation: Run it in an isolated environment, review local identity and token storage before use, and clear local state when analysis is complete. <br>
-Risk: Posture and Cobb-angle outputs are visual estimates and are not medical diagnoses. <br>
-Mitigation: Use results only for posture reminders and habit support; consult a qualified clinician for scoliosis or other medical assessment. <br>
+## Use Case:
 
+Parents, educators, and teams integrating smart study desks can submit a child's study-area video for estimated posture metrics, reminder text, and a session report, or request previously generated reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-child-poor-posture-detection-analysis) <br>
-- [API reference](artifact/references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown and JSON reports with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include posture metrics, poor-posture classifications, voice-reminder text, suggestions, snapshot or report links, and historical-report tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter lists 1.0.2) <br>
+Risk: A child's study-area video may be uploaded to a remote service, and the scanner flags privacy concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain a guardian's informed consent and review the service's video handling before submitting footage; limit video to what is needed for posture review.
+
+Risk: The scanner flags identity and token handling concerns.
+
+Mitigation: Review credential handling and access controls before use, and keep any API credentials out of user-visible output.
+
+Risk: The scanner found a mismatch between advertised real-time reminders and the submitted-video analysis and report-history behavior it observed.
+
+Mitigation: Confirm the desired workflow and capabilities with a non-sensitive sample before relying on it for live monitoring.
+
+Risk: Visual posture and Cobb-angle estimates could be mistaken for medical assessment.
+
+Mitigation: Present results only as posture guidance; do not use them for diagnosis or as a substitute for professional medical evaluation.
+
+## Reference(s):
+
+- [Posture analysis API reference](references/api_doc.md)
+- [Skill introduction](https://lifeemergence.com/sample.html)
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-child-poor-posture-detection-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured posture analysis and report data; history results may be presented as a Markdown table.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Posture and Cobb-angle values are visual estimates, not medical diagnoses; the skill documentation says they do not replace medical evaluation.]
+
+## Skill Version(s):
+
+1.0.18 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

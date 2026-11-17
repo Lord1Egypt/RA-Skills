@@ -2,7 +2,7 @@
 
 ## 需求
 
-Validated demand: Agent users show strong demand for Multi Search Engine-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 10 separate online signals across 4 source families, so it represents broader demand rather than a single isolated request.
+Validated demand: Agent users show strong demand for Multi Search Engine-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
 目标用户：AI-agent users, skill authors, maintainers, and teams who want proven popular skill patterns adapted into more reliable or adjacent workflows
 
@@ -10,20 +10,22 @@ Validated demand: Agent users show strong demand for Multi Search Engine-style w
 
 需求评分：100/100
 
-证据覆盖：10 条信号，覆盖 4 个来源类型。
+证据覆盖：12 条信号，覆盖 3 个来源类型。
 
 ## 来源证据
 
-- clawhub-popular-skill：[Popular Clawhub skill demand: self-improving agent has 463,096 downloads](https://clawhub.ai/skills/self-improving-agent)
-- clawhub-popular-skill：[Popular Clawhub skill demand: ontology has 190,095 downloads](https://clawhub.ai/skills/ontology)
-- clawhub-popular-skill：[Popular Clawhub skill demand: Multi Search Engine has 154,000 downloads](https://clawhub.ai/skills/multi-search-engine)
-- hacker-news-ask-hn：[Forked CozoDB to give agents cognitive primitives](https://news.ycombinator.com/item?id=48605896)
-- hacker-news-ask-hn：[Changes that cut our LLM pipeline costs more than model-switching did](https://news.ycombinator.com/item?id=48608978)
-- v2ex-latest：[Vibe Coding 了一个博客框架](https://www.v2ex.com/t/1221650)
-- github-issues：[[idea] Cross-instance quickfix/jump bridge using the existing server-switcher socket discovery](https://github.com/stanfish06/nvim/issues/218)
-- github-issues：[feat(shelves): align shelf Quanta/Arcana/Rectification with the Prominence economy](https://github.com/rfizzle/meridian/issues/84)
-- github-issues：[Add optional macOS Finder integration for pipx installs](https://github.com/LiukDiihMieu/npyquick/issues/30)
-- github-issues：[De-vendor mcp_common: consume the shared mcp-common package directly](https://github.com/poodle64/supacrawl/issues/141)
+- clawhub-popular-skill：[Popular Clawhub skill demand: ontology has 201,215 downloads](https://clawhub.ai/skills/ontology)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Multi Search Engine has 164,955 downloads](https://clawhub.ai/skills/multi-search-engine)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Agent Browser has 159,132 downloads](https://clawhub.ai/skills/agent-browser-clawdbot)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Nano Banana Pro has 108,279 downloads](https://clawhub.ai/skills/nano-banana-pro)
+- clawhub-popular-skill：[Popular Clawhub skill demand: Tavily Search has 109,833 downloads](https://clawhub.ai/skills/openclaw-tavily-search)
+- hacker-news-ask-hn：[Ask HN: Advice on local efficient analogical retrieval?](https://news.ycombinator.com/item?id=50361973)
+- segmentfault-search：[HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search：[javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search：[typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search：[ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search：[Yoast SEO Premium Setup: Build High-Ranking WordPress Sites](https://segmentfault.com/a/1190000048182795)
+- segmentfault-search：[问： 父元素用了伪类active的样式后，其子元素的点击事件onclick无法触发？](https://segmentfault.com/q/1010000040598886)
 
 ## 这个技能如何满足需求
 

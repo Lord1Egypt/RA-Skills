@@ -1,43 +1,55 @@
-## Description: <br>
-HeyLead connects an OpenClaw agent to an MCP-native LinkedIn SDR that supports prospecting, personalized outreach, follow-up, reply handling, and pipeline tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to HeyLead for LinkedIn prospecting, outreach campaigns, replies, and analytics.
 
-## Publisher: <br>
-[D4umak](https://clawhub.ai/user/D4umak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[d4umak](https://clawhub.ai/user/d4umak)
 
-## Use Case: <br>
-Sales teams and go-to-market operators use HeyLead to connect an OpenClaw agent to LinkedIn outreach workflows. It helps create buyer personas and campaigns, send or review personalized messages, monitor replies, and track pipeline outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous LinkedIn account actions could send outreach or engagement without sufficient review. <br>
-Mitigation: Start in Copilot/review mode, keep the cloud scheduler disabled until safeguards are understood, and use pause or emergency-stop controls for active campaigns. <br>
-Risk: The security evidence says approval, token, and scheduler boundaries are not clear enough. <br>
-Mitigation: Pin and inspect the heylead package before use, verify how to revoke Google and LinkedIn access, and avoid sensitive conversations unless the local storage and external AI processing model is acceptable. <br>
+## Use Case:
 
+Sales teams, recruiters, job seekers, and other professionals use HeyLead to find relevant LinkedIn contacts, prepare outreach campaigns, manage replies, and review results.
 
-## Reference(s): <br>
-- [HeyLead ClawHub release](https://clawhub.ai/D4umak/heylead) <br>
-- [HeyLead PyPI project](https://pypi.org/project/heylead/) <br>
-- [HeyLead GitHub repository](https://github.com/D4umak/heylead) <br>
-- [HeyLead issue tracker](https://github.com/D4umak/heylead/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and natural-language command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May configure an MCP server that can operate a user's LinkedIn account after account setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.13 (source: server release metadata and artifact clawhub.json) <br>
+Risk: Connected accounts grant access to inbox content, contacts, and outreach activity, while data-sharing and retention boundaries are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review HeyLead and Unipile account scopes and hosted data terms before connecting accounts; limit access to what is needed.
+
+Risk: Automated outreach, posts, meeting bookings, and CRM updates can affect external contacts or the user's accounts.
+
+Mitigation: Keep autopilot and full-tool modes off until reviewed; inspect drafts and require confirmation before launching campaigns or enabling account actions.
+
+## Reference(s):
+
+- [HeyLead on ClawHub](https://clawhub.ai/d4umak/skills/heylead)
+- [HeyLead website](https://heylead.dev)
+- [HeyLead on PyPI](https://pypi.org/project/heylead/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can prepare campaigns and report outreach activity; connected tools can also take account actions.]
+
+## Skill Version(s):
+
+0.10.420 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

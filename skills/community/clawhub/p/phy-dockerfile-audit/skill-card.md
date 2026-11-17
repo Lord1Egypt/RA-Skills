@@ -1,40 +1,53 @@
-## Description: <br>
-Dockerfile static security auditor that scans Dockerfiles for root execution, unpinned base images, secrets in ENV or ARG, remote ADD fetches, shell-form ENTRYPOINT or CMD, sudo installation, missing .dockerignore files, privileged exposed ports, apt-get bloat, and hardcoded ARG defaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phy Dockerfile Audit is a zero-dependency Dockerfile static security auditor that scans Dockerfiles for common container risks and can fail CI on critical or high findings.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to audit Dockerfiles locally or in CI and identify common container security misconfigurations before images are built or released. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanner output can include matching Dockerfile lines, which may expose secret-like values if the scanned files contain real secrets. <br>
-Mitigation: Run the scanner only on repositories intended for audit and avoid sharing raw output publicly when Dockerfiles may contain sensitive values. <br>
+## Use Case:
 
+Developers, DevOps engineers, and security engineers use this skill to scan Dockerfiles locally or in CI for common container security misconfigurations mapped to CIS Docker Benchmark and CWE.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-dockerfile-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text reports, JSON findings, or GitHub Actions annotations with file, line, severity, CWE, snippet, and fix guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CI mode exits nonzero when CRITICAL or HIGH findings are detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact frontmatter) <br>
+Risk: The security scanner output is advisory and may need project-specific review before remediation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review findings before acting on them and validate changes against the project's container security requirements.
+
+Risk: One remote ADD checksum remediation example is flawed if copied verbatim.
+
+Mitigation: Download remote content to a file, compare it against a pinned trusted digest using a valid sha256sum manifest, and fail the build on mismatch.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, terminal text, JSON, or GitHub Actions annotations depending on selected CLI format]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can operate locally without Docker, hadolint, network access, or third-party Python dependencies.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

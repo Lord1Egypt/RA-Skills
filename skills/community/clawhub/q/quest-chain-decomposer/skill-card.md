@@ -1,45 +1,53 @@
-## Description: <br>
-Breaks a fuzzy, high-friction goal into a sequenced quest chain with prerequisite nodes, parallel branches, waiting points, Definitions of Done, and the first three actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Breaks a fuzzy, high-friction goal into a sequenced quest chain with prerequisite nodes, parallel branches, waiting points, Definitions of Done, and first actions.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to turn a broad personal, study, administrative, home, or project goal into an actionable task map with dependencies, waiting points, concrete done lines, starter actions, and reroute rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated plan can be incomplete or misprioritized if the user provides an unclear goal, missing deadline, or hidden constraints. <br>
-Mitigation: Ask the user for the goal, deadline or time window, success definition, resources, constraints, blockers, approvals, and handoffs before relying on the plan. <br>
-Risk: For large cross-team schedules, the skill may stay at the planning level and not replace full project management tooling. <br>
-Mitigation: Use the output as an initial task map, then transfer owners, dates, dependencies, and status tracking into the team's project management system. <br>
-Risk: The skill should not need credentials, account access, broad filesystem permissions, or background access. <br>
-Mitigation: Provide only goal details and constraints needed for planning, and do not grant unnecessary credentials or broad access. <br>
+## Use Case:
 
+Employees, external users, and personal productivity agents use this skill to turn messy study, home, admin, or personal project goals into practical task maps with visible dependencies and immediate next actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/quest-chain-decomposer) <br>
-- [Publisher Profile](https://clawhub.ai/user/harrylabsj) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown quest-chain plan with objectives, dependencies, Definitions of Done, starter actions, and reroute rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No shell commands, credentials, account access, broad filesystem permissions, or background access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may activate for broad planning or procrastination-related requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when the user is asking for task decomposition or rerouting, and let more specialized project-management or domain skills handle detailed schedules.
+
+Risk: Generated quest plans can be incomplete or poorly prioritized for complex cross-team work.
+
+Mitigation: Keep the output at the planning level, then review dependencies, owners, and deadlines before treating the plan as operational.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/harrylabsj/skills/quest-chain-decomposer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown quest-chain plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a main quest objective, quest chain map, Definition of Done by step, starter trio, and reroute rules.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version; artifact frontmatter reports v1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Analyzes PRDs with a Spec Coding workflow to identify backend, frontend, customer-visible, test, and risk impacts before implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 Spec Coding 理念的 PRD 影响分析工具，采用渐进式上下文管理，专注于识别客户可见的前端变化，生成可执行的代码级影响规约 (Spec)，并支持通过 Workflow 编排实现自动化实施。
 
-## Publisher: <br>
-[ohalo](https://clawhub.ai/user/ohalo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ohalo](https://clawhub.ai/user/ohalo)
 
-## Use Case: <br>
-Developers, engineers, product teams, and reviewers use this skill to convert PRDs into structured impact specifications that can be reviewed before code changes are made. It is aimed at large project impact assessment, cross-team requirement handoff, code-review preparation, test coverage planning, and technical-debt analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect PRDs and relevant repository files during impact analysis. <br>
-Mitigation: Limit access to the PRD and repository areas needed for the task, and avoid granting access to secrets or unrelated private repositories. <br>
-Risk: Generated impact specifications or optional code-generation outputs may be incomplete or incorrect. <br>
-Mitigation: Review the generated specs before implementation and keep any code-generation step under explicit user control. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to analyze PRDs, identify backend and frontend impact, and turn requirements into reviewable change specifications before implementation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ohalo/prd-impact-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON change specifications with pseudocode, risk notes, and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inspect specified PRDs and relevant repository files; optional code generation should remain under explicit user control.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may analyze sensitive PRDs and codebase context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the agent is allowed to access the relevant product requirements and source code.
+
+Risk: Generated change specs may be incomplete or incorrect for permission, database, or API changes.
+
+Mitigation: Review generated specifications before allowing optional code-generation or workflow steps to modify source code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ohalo/skills/prd-impact-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown specifications with JSON intermediate representations and code-oriented pseudocode examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reviewable PRD impact specs, including backend changes, frontend customer-visible changes, risk notes, workflow steps, and implementation checklists.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

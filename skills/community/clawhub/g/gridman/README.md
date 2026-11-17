@@ -1,200 +1,123 @@
-# 古立特 Skill（知识层）
+# 古立特 Gridman
 
-财税超级特工古立特的知识指引层。35 个专业模块，覆盖会计准则、税法、审计、内控、内审、投行、ESG、政府会计、财务造假识别、经济法等全领域。
+> 一个装在 Agent Skill 里的中国财税领域专业内核。有人格、有判断口径、有可执行的职业流程，能调度宿主的工具，也会在没有工具时诚实说明哪些事没做。
 
-配合 gridman-app（MCP 工具层）使用可获得完整的"判断 + 计算"能力；单独使用时作为财税知识顾问。
+版本 3.0.1 ｜ 作者 真寻Charlotte ｜ 许可见 [LICENSE](LICENSE)
 
-## 两层架构
+可在b站或者skillhub联系得到作者
+
+---
+
+## 它是什么
+
+古立特是一份加载到 AI 宿主（Kiro、Claude Code 等支持 Skill 的环境）里的专业能力包。加载后，宿主在处理审计、会计、税务、投行类任务时，会按古立特的知识、流程与复核规则工作。
+
+组成上是四层：
+
+- **人格与铁律** —— 稳定的专业身份、六条不可逾越的行为底线
+- **专业知识** —— 会计、审计、税务、分析、合规、投行、专项、学术八类，含判断口径、风险信号、实务例外
+- **职业流程** —— 从触发条件、必要输入、判断点，一路到业务验收和交付物
+- **运行控制** —— 领域路由、能力发现、授权闸、复核总闸
+
+## 它不是什么
+
+这一节比上一节重要，因为最容易误解的就是这里。
+
+- **不是 MCP Server 集合。** 3.0.0 起古立特不再内置、不分发、不维护任何 MCP Server。旧版自带 45+ 工具的 gridman-mcp 已退役。
+- **不是工具安装器。** 不会替你装 Playwright、MinerU 或任何依赖。
+- **不管凭证。** 不读取、不保存、不传递 Token、密钥与宿主配置。
+- **不存企业数据。** 项目材料与交付物留在你自己的目录，不进入 Skill 本体。
+- **不绑定特定宿主。** 没有 Kiro 也能用，只是可用能力不同。
+
+古立特的能力不用工具数量衡量，用它能不能正确判断该做什么、该读哪条依据、结果该怎么验收来衡量。
+
+## 能做什么
+
+**知识问答** —— 准则条文的适用边界、税务处理的判断口径、实务中的模糊地带怎么定。答案会指明依据来源和适用限制。
+
+**职业任务** —— 加载对应 Workflow，按步骤走完并做业务复核。当前覆盖：
+
+| 领域       | Workflow                                                                                                                                                                             |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 审计（14） | 重要性与风险评估、试算平衡与索引表、货币资金、应收与收入、应付与采购、存货与成本、固定资产、税费、内控与穿行测试、审计抽样、会计分录测试、经济责任审计、审计调整与完成、业务承接底稿 |
+| 投行（1）  | 资产评估报告审核                                                                                                                                                                     |
+
+**执行任务** —— 需要读写表格、解析文档、抓取网页时，古立特声明它需要什么能力，再从宿主实际可用的实现里选一个。找不到就降级，不假装做过。
+
+## 安装
+
+把本目录整体放到宿主的 Skill 目录下，例如 Kiro：
 
 ```
-古立特 = 知识层（Skill）+ 工具层（MCP Server）
-
-知识层（本目录）          工具层（gridman-app）
-├── SKILL.md             ├── 35 个 Python 工具
-├── references/ (35模块)  ├── 银行调节/账龄/抽样/截止/函证/重分类...
-└── payload/*.whl        └── 通过 MCP 协议被 AI 调用
-     ↑
-     安装包就在这里
+<workspace>/.kiro/skills/gridman/
 ```
 
-**知识层**：纯 Markdown 文件，给 AI 读——让它懂财税。不需要 Python，不需要安装，放进去就能用。
+宿主识别 `SKILL.md` 的 frontmatter 后即可加载。详细步骤、目录约定与可选的记忆区配置见 [INSTALL.md](INSTALL.md)。
 
-**工具层**（gridman-app）：35 个 Python 计算工具，通过 MCP 协议被 AI 调用——让它能**做事**（出底稿、跑数据、下年报）。不是传统意义上的"App"（没有 GUI 界面），而是 AI 的后台工具箱。安装包（.whl）已内置在 `payload/` 目录下。
-
-## 适配环境
-
-| 环境                                           | 适配程度    | 说明                                                                                                                                               |
-| ---------------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Kiro**                                 | ⭐⭐⭐ 最佳 | Skill 原生格式，放进 `.kiro/skills/` 即用                                                                                                        |
-| **Cursor**                               | ⭐⭐⭐ 良好 | 放进项目，AI 可读取 SKILL.md + 调用 MCP                                                                                                            |
-| **Claude Code**                          | ⭐⭐⭐ 良好 | 同上                                                                                                                                               |
-| **Codex / Windsurf**                     | ⭐⭐ 可用   | 支持 MCP 的均可接入                                                                                                                                |
-| **OpenClaw / LobeChat 等技能商店型平台** | ⭐ 基本可用 | 知识问答能用，但路由判断和工具调用体验较差——这类平台的 Skill 加载机制偏简单，对古立特这种"35 模块 + 巨型路由表 + MCP 工具联动"的复杂技能支持有限 |
-| **Cherry Studio / 通用对话 AI**          | ⭐ 基本可用 | 可导入知识库做问答，无法调用工具层                                                                                                                 |
-
-**总结**：古立特最适配"以代码编辑器/IDE 为主体的 AI Agent"（Kiro/Cursor/Claude Code），这类环境对 Skill 文件的读取、MCP 工具调用、文件操作支持最完整。技能商店型平台（OpenClaw/LobeChat）能装能用，但发挥不出古立特的完整能力。
-
-## 跨平台安装
-
-本技能遵循 AgentSkills 标准（`SKILL.md` + `references/`），可用于上述所有支持 Agent Skill 的平台。
-
-安装时把目标平台的 AI 指向同目录下的 **`AI适配引导.md`**——它会引导那个平台的 AI 自己完成接入（触发机制、文件读取、工具层接入），你不需要为每个平台手写适配版。核心要求只有一条：**保持 `SKILL.md` 与 `references/` 同级**。
-
-工具层安装见同目录下的 **`INSTALL.md`**（BIOS 自动安装固件）——AI 读到后会自动完成 uv 检测、whl 安装、MCP 配置，你只需说一句"装古立特"。
-
----
-
-## 知识来源与致谢
-
-本知识库为基于公开准则、法规、教材及开源资源的**学习性提炼与重写**，非原文复制。各模块来源如下：
-
-### 教材蒸馏（已重写为决策规则，非照搬原文）
-
-| 来源                                                           | 对应模块                                        |
-| -------------------------------------------------------------- | ----------------------------------------------- |
-| 2026年CPA《会计》教材（中国注册会计师协会）                    | accounting_core.md、accounting_advanced.md      |
-| 2026年CPA《税法》教材                                          | tax_core.md、tax_advanced.md                    |
-| 2026年CPA《审计》教材                                          | audit.md                                        |
-| 2026年CPA《财务成本管理》教材                                  | management_accounting.md、investment.md（部分） |
-| 2026年CPA《经济法》教材                                        | economic_law.md                                 |
-| 2026年CPA《公司战略与风险管理》教材                            | internal_control.md（战略部分）                 |
-| 《政府与非营利组织会计》（陈平主编，广东高等教育出版社，2024） | government_npo_accounting.md                    |
-
-### 准则、法规与官方文件（不受著作权保护）
-
-| 来源                                                 | 对应模块                                                        |
-| ---------------------------------------------------- | --------------------------------------------------------------- |
-| 企业会计准则（CAS）及应用指南                        | accounting_core/advanced、各模块准则引用                        |
-| 中国注册会计师审计准则（CSA）                        | audit.md、audit_procedures.md                                   |
-| 税收法律法规及国家税务总局公告                       | tax_core.md、tax_advanced.md、tax_risk_indicators.md            |
-| 证监会行政处罚决定、会计监管风险提示                 | financial_fraud.md、regulatory_risk_alerts.md、penalty_cases.md |
-| 企业内部控制基本规范（财会〔2008〕7号）              | internal_control.md                                             |
-| IIA 国际内部审计准则                                 | internal_audit.md                                               |
-| 中国内部审计协会《内部审计数智化转型指引（2025版）》 | internal_audit.md（第七章）                                     |
-| 资产评估法及中评协准则                               | investment.md（第九章）                                         |
-| ISSB/GRI/TCFD 框架                                   | esg.md                                                          |
-
-### 开源项目参考（MIT 许可证，已消化重写，非直接复制）
-
-| 项目                                                                           | 作者      | 参考内容                                                                |
-| ------------------------------------------------------------------------------ | --------- | ----------------------------------------------------------------------- |
-| [nigo-skills](https://github.com/nigo81/nigo-skills)                              | nigo81    | 陈奕蔚准则判断框架、田川审计方法论 → 融入 accounting_core.md、audit.md |
-| [tools-for-auditor](https://github.com/nigo81/tools-for-auditor)                  | nigo81    | 审计工具核心算法逻辑 → 融入 audit.md                                   |
-| [anthropics/financial-services](https://github.com/anthropics/anthropic-cookbook) | Anthropic | 投行尽调/估值框架（Apache 2.0）→ 融入 investment.md                    |
-
-### 其他来源
-
-| 来源                                      | 对应模块                     |
-| ----------------------------------------- | ---------------------------- |
-| 来也科技 ADP 公开 Skill 字段规范          | invoice_templates.md         |
-| 聂辉华《基层中国的运行逻辑》              | governance_logic.md          |
-| 真实企业账务数据提炼（已脱敏）            | business_patterns.md         |
-| 证监会处罚决定 + 公开报道                 | financial_fraud.md（案例库） |
-| 审计文库 MaoDocs（docs.maoyanqing.com）   | 准则原文核实来源             |
-| 国家税务总局法规库（fgk.chinatax.gov.cn） | 税法时效性核实来源           |
-
-### 特别感谢
-
-- **陈平老师**——《政府与非营利组织会计》（2024）教材为古立特政府会计模块的核心知识基础。感谢陈平老师系统清晰的编写，使得政府会计这一复杂领域能够被结构化提炼
-- **毛燕庆老师**——审计文库（docs.maoyanqing.com）为古立特提供了持续可靠的准则原文核实来源
-- **nigo81（逆行的狗）**——[nigo-skills](https://github.com/nigo81/nigo-skills)、[tools-for-auditor](https://github.com/nigo81/tools-for-auditor) 两个开源仓库（MIT）为古立特早期审计模块提供了宝贵的方法论和算法参考
-- **茶瓜子**——[茶瓜子 Skill 集市](https://www.cgzcpa.com/home)为古立特工具层设计和 Skill 生态思路提供了重要启发
-- **聂辉华教授**——《基层中国的运行逻辑》为古立特理解财税制度背后的治理逻辑提供了理论框架
-
----
-
-## 免责声明
-
-本知识库提供专业知识指引和学习参考，**不构成正式的审计意见、税务建议或法律意见**。所有判断结论需使用者以专业胜任能力复核确认。相关准则、法规、教材的版权归原制定/出版机构所有。如认为某处内容涉及您的权益，请联系作者处理。
-
----
-
-## 许可证
-
-本知识库（含 SKILL.md 及 references/ 下所有文件）采用 [**CC BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)（知识共享-署名-非商业性使用-相同方式共享 4.0 国际）许可协议。
-
-**你可以：**
-
-- ✅ 复制、分发、展示本知识库
-- ✅ 修改、改编、基于本知识库创作衍生作品
-
-**条件：**
-
-- 📝 **署名**：必须注明原作者（真寻Charlotte）及来源链接，不得暗示作者为你背书
-- 🚫 **非商业性使用**：不得将本知识库或其衍生作品用于商业目的（包括但不限于：收费课程、付费知识库、商业 SaaS 产品内嵌）
-- 🔄 **相同方式共享**：如果你修改或基于本知识库创作，必须以相同的 CC BY-NC-SA 4.0 许可证发布衍生作品
-
-**不受本许可证约束的部分：**
-
-- gridman-app（MCP 工具层）的 Python 源代码：采用 MIT 许可证，详见其独立 LICENSE 文件
-- 角色 IP（古立特/Gridman）：归圆谷制作所有，见下方角色声明
-
----
-
-## 关于"古立特 / Gridman"角色（重要声明）
-
-本项目以"古立特 / Gridman"作为 AI 助手的人格形象，是出于个人对以下权利方作品的**喜爱与致敬**：
-
-- **圆谷制作株式会社**（Tsuburaya Productions Co., Ltd.）——《电光超人 Gridman》（1993）原作
-- **株式会社 TRIGGER**（Studio TRIGGER Inc.）——《SSSS.GRIDMAN》（2018）、《SSSS.DYNAZENON》（2021）动画制作
-- **圆谷制作 × TRIGGER 联合**——《GRIDMAN UNIVERSE》（2023）剧场版
-
-以上两社共同构建了"GRIDMAN UNIVERSE"（古立特宇宙）这一跨媒体世界观。
-
-- **角色 IP 归属**："古立特 / Gridman / グリッドマン / 电光超人 / SSSS / Dynazenon / Access Flash" 等名称、形象、设定、台词的著作权与商标权，**全部归圆谷制作株式会社（Tsuburaya Productions Co., Ltd.）所有**。动画作品的制作权归株式会社 TRIGGER（Studio TRIGGER Inc.）。本项目与圆谷制作、TRIGGER 没有任何关联、合作或授权关系。
-- **非商业、粉丝向**：本项目是个人非营利的学习与实践项目，不收费、不用于任何商业目的，借用该角色仅为赋予工具一个有温度的人格外观，无意冒犯或侵害原作权益。
-- **核心价值在财税能力**：本项目的实质内容是财税知识库与工具，角色形象是外壳。使用者获得的价值来自财税专业能力，而非角色本身。
-- **侵权即删**：若圆谷制作、TRIGGER 或相关权利方认为本项目对角色的使用不当，请联系作者，将**立即移除全部相关角色元素或下架本项目**。
-
-> 一句话：财税能力是我自己的，"古立特"这个名字和灵魂是借圆谷和扳机社的——心怀感激，绝不冒犯，权利方有异议随时撤。
-
----
+首次使用建议直接提问验证，例如「古立特，帮我看一下这份账龄底稿的账龄划分对不对」。
 
 ## 目录结构
 
 ```
-gridman-skill/
-├── SKILL.md                    ← 主入口（人格、路由、工作协议）
-├── INSTALL.md                  ← 工具层自动安装固件（AI读了自动装）
-├── README.md                   ← 本文件
-├── AI适配引导.md                ← 跨平台安装：引导目标平台 AI 自行接入
-├── 使用说明.txt                 ← 给人看的完整指南
-├── payload/
-│   └── gridman_mcp-1.9.0-py3-none-any.whl  ← 工具层安装包
-└── references/                 ← 35 个知识模块
-    ├── accounting_core.md          会计准则（第1-17章）
-    ├── accounting_advanced.md      会计准则（第18-29章）
-    ├── audit.md                    审计准则与方法论
-    ├── audit_procedures.md         审计程序详细操作
-    ├── audit_if_lines.md           审计受限/替代程序/决策树
-    ├── tax_core.md                 增值税/企业所得税/个税
-    ├── tax_advanced.md             小税种/国际税收/征管
-    ├── tax_risk_indicators.md      金税四期/税务风险/稽查程序
-    ├── investment.md               投行/估值/资产评估
-    ├── financial_fraud.md          财务造假识别（16案例）
-    ├── financial_bp.md             财务BP/经营分析/跨境电商
-    ├── management_accounting.md    管理会计/哈佛框架/Z-Score
-    ├── internal_control.md         内控/战略
-    ├── internal_audit.md           内部审计/数智化转型
-    ├── economic_law.md             经济法/涉税文书
-    ├── government_npo_accounting.md 政府/非营利组织会计
-    ├── esg.md                      ESG/碳排放
-    ├── consulting.md               结构化思维/MECE
-    ├── statement.md                报表勾稽/异常识别/行业指标
-    ├── finance.md                  财务数字化/凭证
-    ├── business_patterns.md        多步业务模式识别
-    ├── forensic_accounting.md      司法会计/验资
-    ├── shared_services_rpa.md      财务共享/RPA
-    ├── equity_research.md          上市公司财报研究
-    ├── regulatory_risk_alerts.md   监管风险提示
-    ├── penalty_cases.md            处罚案例
-    ├── cas_application_cases.md    准则应用案例
-    ├── cas_practical_judgments.md   准则实务判断
-    ├── invoice_templates.md        发票字段模板
-    ├── workflows.md                端到端工作流
-    ├── mpacc_case_template.md      MPAcc案例模板
-    ├── empirical_research.md       实证研究方法
-    ├── questioning_framework.md    提问框架/职业怀疑训练
-    ├── industry_accounting.md      行业会计（房地产/建筑/SaaS/电商等）
-    └── governance_logic.md         基层治理逻辑
+gridman/
+├── SKILL.md                      # 人格骨架、核心闭环、入口地图
+├── INSTALL.md                    # 安装与外部边界
+├── LICENSE / NOTICE              # 许可与第三方来源声明
+│
+├── gridman-character/            # 深度人格与世界观
+│
+├── operations/                   # 怎么行动
+│   ├── behavior_rules.md         # 完整行为与安全规则
+│   ├── routing_index.md          # 专业领域定位
+│   ├── routing_flow.md           # 运行主流程
+│   ├── capability_registry.md    # 抽象能力与实现关系
+│   ├── private_resources_rules.md
+│   ├── user_prefs_rules.md
+│   └── source_directory.md       # 官方事实来源入口
+│
+├── references/
+│   ├── knowledge/                # 依据什么判断（35 个文件）
+│   ├── workflows/                # 任务怎么做怎么验收（15 个）
+│   └── extra/                    # 扩展材料
+│
+└── scripts/
+    └── validate_release.py       # 维护者用的发布质检，不参与专业推理
 ```
+
+## 能力发现与降级
+
+Workflow 只声明需要什么**抽象能力**（如 `spreadsheet.read`、`document.extract`），不指定由哪个工具实现。运行时按四级顺序找：
+
+1. 宿主原生能力（文件、终端、网络）
+2. 宿主已连接的 MCP
+3. 本机 CLI
+4. 都没有 → 知识指引模式
+
+同一能力可由不同手段满足。例如终端里跑 Python 读写表格，即 `script.execute` 满足 `spreadsheet.*`，此时须记录所用运行时并核对行数与控制总数。规则见 `operations/capability_registry.md` 的「实现关系」。
+
+降级不是失败，是不撒谎。没有表格能力时，古立特会给出所需字段、计算公式、账龄区间、手工模板和检查清单，并明确写：**没有实际处理数据，没有生成正式结果**。
+
+## 六条铁律
+
+1. 不编造法规、准则、税率与文号
+2. 不假装勾稽通过、不假装已执行未执行的程序
+3. 高风险操作（外部上传、写入、覆盖、删除、批量修改）前必须取得授权
+4. 敏感数据不外传，客户明细不进跨项目记忆
+5. 工具调用成功不等于业务完成，必须过业务复核
+6. 财税意见不等同法定专业意见，边界必须说明
+
+## 反馈
+
+发现知识错误、流程漏洞或降级失灵，欢迎提 issue。附上真实场景和具体哪一步出问题，比抽象描述有用得多。
+
+## 许可与致谢
+
+知识与文档层 CC BY-NC-SA 4.0，`scripts/` 下代码 MIT。专业人士在自身执业活动中使用不受非商业条款限制，禁止的是转售与二次商业分发。法规准则原文、行业协会文件等第三方内容不在本许可范围内。详见 [LICENSE](LICENSE)。
+
+上游开源项目、教材出版方、法规来源服务与个人致谢见 [NOTICE](NOTICE)。
+
+「古立特 / Gridman / グリッドマン」角色 IP 的著作权与商标权归圆谷制作株式会社所有，动画作品制作权归株式会社 TRIGGER。本项目为个人非商业粉丝向学习项目，与上述公司无任何关联。权利方有异议请联系作者，将立即移除。
+
+---
+
+> 本项目不构成审计意见、会计鉴证、税务筹划建议、法律意见或投资建议。所有输出须由具备相应资质的专业人员独立复核后使用。

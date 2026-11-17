@@ -1,42 +1,59 @@
-## Description: <br>
-Ai Maker routes ecommerce creative briefs to Jimeng or LiblibAI image-generation workflows and records candidate results and generation parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Maker helps e-commerce image teams turn creative briefs into Jimeng or LiblibAI image-generation result records with tool selection, model parameters, and output paths.
 
-## Publisher: <br>
-[duzhihai123](https://clawhub.ai/user/duzhihai123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzhihai123](https://clawhub.ai/user/duzhihai123)
 
-## Use Case: <br>
-External users and ecommerce creative teams can use this skill to turn Chinese-language creative briefs into structured image-generation requests, candidate output records, and reproducible parameter notes. It is best treated as a scaffold until provider calls and output-file verification are implemented. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can report successful image generation while returning placeholder paths instead of provider-created files. <br>
-Mitigation: Confirm real Jimeng or LiblibAI provider calls are implemented and verify output files exist before relying on generated results. <br>
-Risk: Prompt excerpts and generation details may be appended to local history. <br>
-Mitigation: Avoid including sensitive product or campaign details in prompts unless local history storage is acceptable. <br>
+## Use Case:
 
+E-commerce creative operators and agent builders use this skill to route product briefs to Jimeng or LiblibAI-style image workflows, choose parameters, and preserve generation records for review and iteration.
 
-## Reference(s): <br>
-- [ClawHub Ai Maker release page](https://clawhub.ai/duzhihai123/ai-maker) <br>
-- [Jimeng](https://jimeng.jianying.com/) <br>
-- [LiblibAI](https://www.liblib.art/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, configuration, guidance] <br>
-**Output Format:** [JSON generation result records with image paths, tool names, model parameters, and status messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Configured for 1-4 candidate image records; video generation is reserved and disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The security summary says the inspected code claims image generation while returning placeholder success results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review runtime behavior before relying on generated output, and verify that real Jimeng or LiblibAI integrations are implemented and tested before production use.
+
+Risk: The security guidance says prompt snippets may be retained in plaintext generation history.
+
+Mitigation: Avoid confidential prompts unless history storage is hardened, access-controlled, or disabled for sensitive runs.
+
+Risk: The security guidance calls for runtime quantity validation.
+
+Mitigation: Validate requested image counts at runtime against the documented 1-4 image limit before invoking or simulating generation.
+
+## Reference(s):
+
+- [Ai Maker ClawHub Listing](https://clawhub.ai/duzhihai123/skills/ai-maker)
+- [Jimeng](https://jimeng.jianying.com/)
+- [LiblibAI](https://www.liblib.art/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [JSON result objects with image path metadata and Markdown generation-history entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records selected tool, model, prompt-derived parameters, quantity, and output paths; current inspected code returns placeholder image paths rather than invoking live image generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

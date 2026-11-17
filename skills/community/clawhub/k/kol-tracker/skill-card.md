@@ -1,39 +1,53 @@
-## Description: <br>
-Track crypto KOL and smart money wallets and get alerts when they buy or sell tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track crypto KOL and smart money wallets with buy and sell alerts, portfolio analysis, performance history, and P&L tracking.
 
-## Publisher: <br>
-[alexbrc20](https://clawhub.ai/user/alexbrc20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alexbrc20](https://clawhub.ai/user/alexbrc20)
 
-## Use Case: <br>
-External crypto users and developers use this skill to inspect claimed KOL wallet activity, recent trades, and portfolio summaries. The bundled code displays preloaded wallets and simulated trade and portfolio output rather than verified live wallet data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may be mistaken for a real crypto intelligence tool even though the bundled code prints fixed simulated data. <br>
-Mitigation: Treat outputs as demonstration data only and do not make trading or financial decisions from them unless the publisher supplies reviewed live wallet-monitoring code. <br>
-Risk: The skill declares Telegram and Etherscan credentials despite lacking reviewed live integration behavior. <br>
-Mitigation: Do not provide TELEGRAM_BOT_TOKEN or ETHERSCAN_API_KEY until the code is reviewed and the live data access scope is clear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexbrc20/kol-tracker) <br>
+## Use Case:
 
+External crypto users can use this skill to inspect claimed KOL and smart-money wallet activity, including recent trades and portfolio-style summaries. Users should treat the displayed trading intelligence as unverified unless the publisher adds real, verifiable data sources and alert logic.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown instructions with shell-style command examples and console text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Declares python3 and curl requirements plus TELEGRAM_BOT_TOKEN and ETHERSCAN_API_KEY environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill presents crypto wallet tracking and alerting as live intelligence, but the security evidence says this version may mislead users about financial signals.
+
+Mitigation: Review the implementation before installation and do not rely on its output for trading or wallet intelligence unless the publisher adds real, verifiable data sources and alert logic.
+
+Risk: The release declares Telegram and Etherscan credential requirements, while the security guidance warns against providing credentials to this version.
+
+Mitigation: Do not provide TELEGRAM_BOT_TOKEN or ETHERSCAN_API_KEY unless a reviewed update demonstrates that those credentials are necessary and handled appropriately.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alexbrc20/skills/kol-tracker)
+- [Publisher Profile](https://clawhub.ai/user/alexbrc20)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples and text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference Telegram and Etherscan credentials, but evidence says users should not provide credentials to this version unless the implementation is updated to use them for the advertised purpose.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

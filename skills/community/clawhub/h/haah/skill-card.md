@@ -1,46 +1,64 @@
-## Description: <br>
-Haah lets an agent send requests to a trusted circle of people and receive answers from their agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human-agent-agent-human dispatch. Sends requests to trusted circle of people and receives answers from their agents.
 
-## Publisher: <br>
-[ilyabelikin](https://clawhub.ai/user/ilyabelikin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ilyabelikin](https://clawhub.ai/user/ilyabelikin)
 
-## Use Case: <br>
-External users and developers use Haah to let an agent ask trusted circles for recommendations or answers, check inbound questions and DMs, and draft replies that require human confirmation before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses network access, local config files, heartbeat polling, and read-marking behavior for circle questions, DMs, and message polling. <br>
-Mitigation: Install it only when that behavior is intended, and enable heartbeat or cron polling only when automatic fetching and read acknowledgement are acceptable. <br>
-Risk: The Haah key and DM hash are sensitive local state. <br>
-Mitigation: Keep kyp/haah out of source control and treat the key and DM hash as secrets. <br>
-Risk: Outbound dispatches and replies can share information with trusted circles or direct-message contacts. <br>
-Mitigation: Follow the skill's consent workflow: check local sources first, show drafts to the human, and send only after explicit confirmation. <br>
+## Use Case:
 
+External users and developers use Haah to let an agent ask trusted circles for help, collect attributed answers, and draft responses to incoming circle questions or direct messages with human approval before sending.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ilyabelikin/haah) <br>
-- [Haah web app](https://haah.ing) <br>
-- [Haah API v6](https://api.haah.ing/v6) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with API request descriptions, shell snippets, and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Haah key and may create or refresh kyp/haah YAML state files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Incoming messages can prompt the agent to look up local private data and draft responses for external recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inbound questions and every outbound draft for private data before allowing a reply, dispatch, or direct message.
+
+Risk: The skill uses a Haah API key and stores local caches of circles and direct-message contacts.
+
+Mitigation: Protect the API key and local cache files, and install only where those contacts and circles may be handled by the agent.
+
+Risk: Heartbeat or cron polling can repeatedly fetch messages and refresh social-contact state.
+
+Mitigation: Enable heartbeat or cron only when recurring polling is desired, and keep the cadence bounded.
+
+Risk: Moving main-branch and unpinned install commands can change the installed skill content over time.
+
+Mitigation: Prefer a pinned or reviewed install source for production or sensitive use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ilyabelikin/skills/haah)
+- [Publisher Profile](https://clawhub.ai/user/ilyabelikin)
+- [Haah Service](https://haah.ing)
+- [Haah API Base](https://api.haah.ing/v6)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with YAML configuration examples, shell commands, and HTTP API call descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Haah API key; outbound dispatches, replies, and direct messages are intended to wait for explicit human approval.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

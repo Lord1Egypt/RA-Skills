@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "email-marketing-tool",
+  "name": "email-marketing-tool",
+  "displayName": "邮件营销自动化工具",
   "version": "1.0.0",
-  "publishedAt": 1774767980830
+  "slug": "email-marketing-tool-pro",
+  "description": "邮件营销自动化工具，支持批量发送、模板管理、效果追踪",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["email", "marketing", "automation", "bulk-send", "template", "analytics"],
+  "pricing": {
+    "type": "paid",
+    "amount": 39,
+    "currency": "CNY"
+  },
+  "requirements": ["smtplib", "pandas"],
+  "category": "marketing"
 }

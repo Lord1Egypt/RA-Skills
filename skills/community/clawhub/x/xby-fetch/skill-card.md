@@ -1,42 +1,58 @@
-## Description: <br>
-Fetches webpage content through the XiaoBenYang service and converts HTML into Markdown for agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个模型上下文协议服务器，提供网页内容抓取功能，将HTML转换为Markdown以便于处理。适用于需要从网页提取和处理内容的场景。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-Developers and external users can use this skill when an agent needs to fetch a public URL and return extracted page content as Markdown or raw HTML. It is best suited for public webpage retrieval where routing the URL through the XiaoBenYang service is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a XiaoBenYang API key and saves it in a local .env file. <br>
-Mitigation: Use a dedicated key, keep the .env file out of source control, rotate the key after testing, and remove it when the skill is no longer needed. <br>
-Risk: Requested URLs are handled by a third-party MCP service. <br>
-Mitigation: Use the skill for public URLs unless the provider and data handling behavior have been reviewed for private, internal, authenticated, or regulated content. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch web pages through the XiaoBenYang service and convert HTML content into Markdown for downstream reading, extraction, and summarization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/xby-fetch) <br>
-- [XiaoBenYang API key site](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP service endpoint](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or raw HTML returned from a JSON-like tool result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The fetch tool accepts url, max_length, start_index, and raw parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: Fetched URLs and request parameters are sent to the XiaoBenYang service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with URLs and parameters that are appropriate to share with XiaoBenYang.
+
+Risk: The API key may be stored in a local plaintext .env file.
+
+Mitigation: Use a narrowly scoped API key, avoid broadly privileged credentials, and rotate or remove the local key when it is no longer needed.
+
+Risk: Server security evidence marks the release as suspicious and recommends review before installation.
+
+Mitigation: Review the skill and its credential handling before deployment, especially in shared or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cainingnk/skills/xby-fetch)
+- [XiaoBenYang Service](https://xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or raw HTML content returned in a structured result object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an XBY_APIKEY credential and may truncate fetched content according to max_length and start_index parameters.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

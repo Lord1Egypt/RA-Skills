@@ -1,6 +1,28 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "batch-compile",
-  "version": "1.1.2",
-  "publishedAt": 1782309240066
+  "name": "batch_compile",
+  "version": "3.0.0",
+  "description": "Batch compile Gitea, Obsidian Git, or uploaded archives into a knowledge base.",
+  "author": "mayidan",
+  "language": "python3",
+  "entry": "SKILL.md",
+  "part_of": "paper-kb-v3",
+  "requires": {
+    "env": [
+      "GITEA_URL",
+      "GITEA_ADMIN_TOKEN"
+    ],
+    "context": [
+      "SenderId",
+      "ChatType",
+      "GroupSubject",
+      "MessageSid",
+      "MessageThreadId",
+      "AccountId",
+      "CardActionValue",
+      "CardFormValues",
+      "WasMentioned",
+      "MediaPath",
+      "MediaType"
+    ]
+  }
 }

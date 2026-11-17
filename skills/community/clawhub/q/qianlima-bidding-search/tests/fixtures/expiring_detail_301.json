@@ -1,0 +1,22 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "id": 301,
+    "title": "深圳市某区机关物业服务合同公告",
+    "areaName": "广东省-深圳市-福田区",
+    "purchasingUnit": "深圳市某区机关事务管理局",
+    "publishTime": "2025-11-20",
+    "serviceStartTime": "2025-12-01",
+    "serviceExpireTime": "2026-11-30",
+    "contractAmount": "3600000.00",
+    "contractPeriod": "1年",
+    "winningBidderUnit": "深圳市城市服务有限公司",
+    "purchasingUnitLinkName": "李主任",
+    "purchasingUnitLinkPhone": "0755-11111111",
+    "url": "https://www.qianlima.com/expiring-301.html",
+    "targetKeywords": [
+      "物业服务"
+    ]
+  }
+}

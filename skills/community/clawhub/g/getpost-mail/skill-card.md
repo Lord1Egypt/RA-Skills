@@ -1,45 +1,54 @@
-## Description: <br>
-Buy shipping labels, get rates, and track parcels via API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buy shipping labels, get rates, and track parcels via API.
 
-## Publisher: <br>
-[dommholland](https://clawhub.ai/user/dommholland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dommholland](https://clawhub.ai/user/dommholland)
 
-## Use Case: <br>
-Developers and agents use this skill to sign up for GetPost API access, authenticate with a bearer key, request shipping rates, buy labels, and track parcels through the mail API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Buying a shipping label may create a billable transaction or carrier commitment. <br>
-Mitigation: Require explicit confirmation of sender, recipient, parcel details, carrier, rate, and total cost before submitting a label purchase. <br>
-Risk: The bearer API key grants access to GetPost mail API operations. <br>
-Mitigation: Keep the key private, avoid placing it in shared transcripts or files, and prefer test or limited keys if available. <br>
-Risk: Rate, label, and tracking requests include address, parcel, and shipment data that may be shared with GetPost and carriers. <br>
-Mitigation: Use the skill only with shipping data that is appropriate for GetPost, EasyPost, and carrier processing. <br>
-Risk: Pricing, billing, privacy, and carrier-sharing terms may affect whether live use is appropriate. <br>
-Mitigation: Verify GetPost's current terms and pricing before using the skill with live shipments. <br>
+## Use Case:
 
+Developers and agent builders use this skill to call the GetPost mail API for shipping rates, label purchases, and parcel tracking. It is suited to workflows where an agent drafts or executes shipping API requests with user-approved shipment data.
 
-## Reference(s): <br>
-- [GetPost Mail API documentation](https://getpost.dev/docs/api-reference#mail) <br>
-- [ClawHub skill page](https://clawhub.ai/dommholland/getpost-mail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API Calls, guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GetPost bearer API key; live label purchases can incur cost and share address and parcel data with shipping providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: The skill can enable live shipping label purchases with a production API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test or redacted data first and require explicit user approval before buying labels with a live key.
+
+Risk: Shipping requests may send names, addresses, parcel details, and tracking identifiers to a third-party service.
+
+Mitigation: Store API keys securely, minimize address data, and confirm user consent before sending shipment details.
+
+## Reference(s):
+
+- [GetPost Mail API Documentation](https://getpost.dev/docs/api-reference#mail)
+- [ClawHub Skill Page](https://clawhub.ai/dommholland/skills/getpost-mail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with curl examples and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GetPost API key; live label purchases should require explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release version and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

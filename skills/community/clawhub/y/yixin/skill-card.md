@@ -1,38 +1,49 @@
-## Description: <br>
-Yixin is an archived historical reference for the discontinued NetEase and China Telecom social application. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yixin is an archived reference skill about the discontinued NetEase and China Telecom messaging app, covering product history, competitive context, and migration guidance.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users and researchers use this skill as a brief historical archive for the discontinued Yixin social app, not as an active account integration or automation tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the archived historical reference for a working Yixin integration. <br>
-Mitigation: Treat it as informational content only; do not expect account connection, automation, or live service functionality. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about Yixin's shutdown, historical role in China's messaging market, and practical alternatives or account-recovery paths.
 
-## Reference(s): <br>
-- [Yixin on ClawHub](https://clawhub.ai/zhangifonly/yixin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown informational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, account access, file access, or background behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Product-history or migration guidance for a discontinued service may be outdated or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as informational and use official NetEase support channels for real account, phone-number, or asset recovery issues.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/yixin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational archive content; no code execution, external tool access, or persisted state.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

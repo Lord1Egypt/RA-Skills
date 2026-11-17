@@ -2,20 +2,22 @@
 jurisdiction: "Puerto Rico"
 slug: puerto-rico
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-06-02"
-canonicalUrl: https://openagreements.org/legal/non-compete/puerto-rico
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-06-02"
+human_reviewed_at: null
+next_review_due: "2026-11-29"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/puerto-rico
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/puerto-rico · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/puerto-rico · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Non-Competes in Puerto Rico[^about]
 
@@ -35,7 +37,7 @@ Puerto Rico has no non-compete statute; post-employment covenants are enforceabl
 | **Restriction extended during a breach?** | Silent — risky if it pushes enforcement past the 12-month ceiling |
 | **Maximum length set by law** | 12 months (additional time excessive and unnecessary) |
 
-## Are employee non-compete agreements enforceable in Puerto Rico? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in Puerto Rico? {#employee-non-compete-enforceability}
 
 **Short answer.** Sometimes. Puerto Rico has no statute that governs non-competes. As a civil-law jurisdiction, it enforces post-employment covenants only when they satisfy the strict three-part reasonableness test the Puerto Rico Supreme Court announced in *Arthur Young & Co. v. Vega III* [^ay-test].
 
@@ -101,7 +103,7 @@ This is a meaningful clarification of *Arthur Young*. The Court explained that i
 
 *Reyes Ramis* also confirms that the strict *Arthur Young* requirements are an employment-law doctrine. The Court held that a non-compete tied to a stock-redemption arrangement among owners did not have to conform fully to the strict conditions established in *Arthur Young* [^rr-stock]. Covenants ancillary to the sale of a business or an ownership exit are analyzed more flexibly than employer-employee restraints.
 
-## Does the restricted period toll or extend if the employee breaches? {#tolling}
+## Does the restricted period toll or extend if the employee breaches? {#extended-for-breach}
 
 **Short answer.** Puerto Rico primary law is silent. No Puerto Rico Supreme Court, Court of Appeals, federal district, or First Circuit decision squarely approves or rejects either a contractual extension-on-breach clause or a court-ordered equitable extension of a Puerto Rico non-compete. The safest assumption is that a court will hold the employer to the twelve-month ceiling [^ay-duration-2].
 
@@ -122,7 +124,7 @@ Two background developments matter for monitoring but do not change the Puerto R
 
 The practical takeaway is stability with a narrow margin. Because the framework is judicial, the most reliable signal of change would be a new Supreme Court decision rather than a bill, and *Reyes Ramis* remains the most recent word: the strict requirements apply to employer-employee covenants, with a single territorial or customer limit sufficing [^rr-current].
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-06-02. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Puerto Rico. This article synthesizes Puerto Rico primary law and is not legal advice from a Puerto Rico-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-06-02. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Puerto Rico. This article synthesizes Puerto Rico primary law and is not legal advice from a Puerto Rico-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Non-Competes in Puerto Rico*, OpenAgreements (last updated June 2, 2026), https://openagreements.org/practice-guides/non-compete/us/puerto-rico.
 
 [^ay-test]: **Arthur Young & Co. v. Vega III** — "Para ser razonable, un acuerdo de no competir debe reunir los siguientes requisitos: (1) debe ser necesario para proteger un interés legítimo del patrono, (2) no debe imponer al empleado una carga demasiado onerosa, (3) y no debe afectar demasiado al público." *Arthur Young & Co. v. Vega III, 136 D.P.R. 157 (1994).* <https://aldia.microjuris.com/wp-content/uploads/2022/09/136DPR157.pdf>
 

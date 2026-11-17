@@ -27,7 +27,7 @@ Each team member's config gains a `health` object for tracking operational statu
 }
 ```
 
-Members without a `health` object operate as before (no health monitoring — backward compatible).
+Members without a `health` object operate as before (no health monitoring, backward compatible).
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -137,7 +137,7 @@ stalled ──────────────────► unresponsive
 - `stalled → healthy`: Agent responds to health_check
 - `stalled → unresponsive`: Agent fails to respond within 30s of health_check
 - `unresponsive → replaced`: After 2 failed recovery attempts, fresh agent spawned
-- `replaced`: Terminal state — agent is decommissioned
+- `replaced`: Terminal state, agent is decommissioned
 
 ## Heartbeat Protocol
 
@@ -176,6 +176,14 @@ enables graceful teammate shutdown from hook logic
 without requiring the lead to send explicit kill
 signals.
 
+Since 2.1.290, `TeammateIdle` fires only for the teammate
+itself, never from a subagent or fork the teammate starts.
+A Stop budget no longer counts those children as idle
+teammates. In Agent results, an in-process teammate's
+`agent_id` is now its agent ID, and its `name@team`
+address moved to `teammate_id`. Match on `teammate_id`
+when routing by team name.
+
 Use cases for team health:
 
 - Stop a teammate that has been idle too long
@@ -199,8 +207,8 @@ omitted the output file path. This made it difficult
 for parent agents (including team leads) to recover
 agent results after context compaction. Fixed in 2.1.71:
 completion notifications now include the output file
-path, enabling reliable result retrieval even after
-the parent's context has been compacted.
+path. The parent can retrieve results even after its
+context has been compacted.
 
 ## `--print` Team Agent Fix (2.1.71+)
 

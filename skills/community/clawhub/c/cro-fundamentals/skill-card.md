@@ -1,39 +1,52 @@
-## Description: <br>
-Provides step-by-step guidance to diagnose, prioritize, test, and document conversion rate optimization efforts across the full funnel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides step-by-step guidance to diagnose, prioritize, test, and document conversion rate optimization efforts across the full funnel.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wellyxy](https://clawhub.ai/user/wellyxy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External teams and agents use this skill to plan CRO work: diagnose funnel drop-offs with analytics, prioritize the highest-impact funnel steps, run single-variable experiments, and document results.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Applying CRO recommendations to real analytics or session recordings may involve sensitive or unauthorized user data.
+
+Mitigation: Use only authorized, privacy-appropriate analytics and recording sources, and follow the organization's data handling requirements.
+
+Risk: The artifact links to an optional promotional external site for Racoonn.
+
+Mitigation: Treat the link as optional and review it under normal third-party or vendor approval before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, marketers, and product teams use this skill to start or focus a conversion rate optimization program by diagnosing funnel drop-offs, prioritizing tests, and documenting results. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The optional Racoonn link points to a third-party service that may request landing pages, analytics, session recordings, or business data. <br>
-Mitigation: Evaluate that service separately before sharing product or business data. <br>
+**Output Format:** [Markdown guidance with checklists, funnel priorities, and testing recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Cro Fundamentals release page](https://clawhub.ai/wellyxy/cro-fundamentals) <br>
-- [Racoonn](https://racoonn.me) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with a quick-reference table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; includes optional third-party marketing link.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

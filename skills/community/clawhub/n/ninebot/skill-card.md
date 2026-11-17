@@ -1,38 +1,49 @@
-## Description: <br>
-Ninebot helps agents assist with Ninebot electric scooters, self-balancing vehicles, and e-bikes for diagnostics, status checks, configuration, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ninebot helps agents guide interactions with Ninebot scooters, balance vehicles, and e-bikes for connection, diagnostics, configuration, and troubleshooting.
 
-## Publisher: <br>
-[aNinebot](https://clawhub.ai/user/aNinebot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aninebot](https://clawhub.ai/user/aninebot)
 
-## Use Case: <br>
-External users and device operators use this skill to get agent assistance with Ninebot device connection, battery and mileage checks, diagnostics, configuration, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Device-changing commands such as speed-limit changes, firmware-related steps, and factory reset may alter safety behavior or erase settings. <br>
-Mitigation: Confirm the exact device and command before any real action, keep the vehicle stationary, and require explicit user approval for high-impact changes. <br>
+## Use Case:
 
+External users and device operators use this skill to ask an agent for Ninebot device connection help, status checks, riding data, diagnostics, configuration guidance, and common fault troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aNinebot/ninebot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with inline device command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes device-action guidance for Bluetooth connection, status queries, diagnostics, speed-limit and lighting configuration, firmware checks, and factory reset.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill can guide configuration changes, speed-limit adjustments, or factory reset actions on Ninebot devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for devices the user controls, require explicit confirmation before reset or configuration writes, and consider safety, pairing, warranty, and local regulatory effects.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/aninebot/skills/ninebot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

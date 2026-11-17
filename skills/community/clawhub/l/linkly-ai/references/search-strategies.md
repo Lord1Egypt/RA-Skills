@@ -20,17 +20,24 @@ Linkly AI uses **BM25 + vector hybrid retrieval**. Understanding how both signal
 linkly search "auth migration" --limit 30
 
 # Step 2: grep filters that set down to docs that actually contain both.
-#   `linkly grep` exits 0 even on zero matches (success = "the search ran"),
-#   so chaining with `&&` does NOT filter — read the JSON `total_matches`
-#   field instead. `jq` parses the per-doc count.
-for id in <ID1> <ID2> <ID3> ...; do
-  count_a=$(linkly grep "auth"      "$id" --mode count --json | jq -r '.total_matches // 0')
-  count_b=$(linkly grep "migration" "$id" --mode count --json | jq -r '.total_matches // 0')
-  if [ "$count_a" -gt 0 ] && [ "$count_b" -gt 0 ]; then
-    echo "$id matches both"
-  fi
-done
+#   `grep` takes the whole ID list, and `-` reads it from the pipe.
+linkly search "auth migration" --limit 30 --json \
+  | jq -r '.results[].doc_id' \
+  | linkly grep "auth" - --mode count --json \
+  | jq -r 'select(.total_matches > 0) | .results[].doc_id' \
+  | linkly grep "migration" - --mode count --json \
+  | jq -r 'select(.total_matches > 0) | .results[].doc_id'
 ```
+
+Each stage emits one JSON object per document, so `jq` can drop the non-matching ones before the next `grep` ever sees them.
+
+For a single document, `--exit-code` makes the check a plain conditional:
+
+```bash
+linkly grep "auth" "$id" --mode count --exit-code >/dev/null && echo "$id matches"
+```
+
+Without `--exit-code`, `grep` exits 0 even on zero matches (success means "the search ran"), so you would have to read the count out of the JSON yourself.
 
 For two terms a faster shortcut is to grep one (the rarer) right after `search`, since the BM25 ranking already biases toward documents matching multiple terms — most top-N results will already satisfy AND.
 
@@ -99,7 +106,7 @@ Try in this order:
 After finding documents with `search`, use `grep` to locate specific content without reading entire files:
 
 1. **Known terms or names**: `linkly grep "John Smith" <ID>` — find exact references to a person, product, or concept.
-2. **Codes or identifiers**: `linkly grep "INV-\d{4}" <DOC_ID> -i` — search for invoice numbers, error codes, etc. `doc_id` takes a single ID; to scan multiple documents loop the call: `for id in <ID1> <ID2>; do linkly grep "INV-\d{4}" "$id" -i; done`.
+2. **Codes or identifiers**: `linkly grep "INV-\d{4}" <DOC_ID> -i` — search for invoice numbers, error codes, etc. To scan multiple documents, pass all the IDs in one call (`linkly grep "INV-\d{4}" <ID1> <ID2> -i`) or pipe them in via `-` — no shell loop needed. Only the MCP `grep` tool is limited to one `doc_id` per call.
 3. **Count occurrences**: `linkly grep "TODO|FIXME" <ID> --mode count` — quickly tally matches.
 4. **Context for understanding**: `linkly grep "pattern" <ID> -C 3` — see surrounding lines.
 5. **Combine with read**: After finding a match at line N, use `linkly read <ID> --offset N-10 --limit 30` to read the full surrounding context.
@@ -143,6 +150,16 @@ linkly find-paths --patterns WeChat,微信,wxid --limit 5
 linkly search "购物订单 receipt" --path-glob "*xinWeChat*" --limit 10
 ```
 
+**Branch on what the user actually wanted from the container:**
+
+- **A topic inside it** ("receipts in my WeChat") → step 2 above: `search` scoped by `--path-glob`.
+- **Its contents** ("what's in that folder?", "list the PDFs in there") → `linkly list --scope folder --path <candidate path>`. Enumeration is complete and paginated; a search is ranked and capped, so it can never answer "what is there". Pass the candidate's `path` field here, **not** its `path_glob` — `list` takes an address, and the glob-quoted form would be matched literally.
+
+```bash
+linkly find-paths --patterns reports --limit 5
+linkly list --scope folder --path /Users/me/Documents/reports --type pdf
+```
+
 For a **cloud library**, scope `find_paths` to it (over `--remote`) and carry the returned `cloud://owner/slug` reference into the follow-up `search`:
 
 ```bash
@@ -174,6 +191,53 @@ linkly search "onboarding" --remote --library "cloud://blueeon/design-system" --
 | Zotero                | `Zotero,zotero`                     | `Zotero/storage`                                   |
 
 The first column matches what users actually say; the third column is the real on-disk identifier `find_paths` is going to surface.
+
+### Searching the user's notes
+
+Notes are short local Markdown cards. Two different tools reach them, and picking the wrong one wastes a round-trip:
+
+| The user wants                     | Use                                                                |
+| ---------------------------------- | ------------------------------------------------------------------ |
+| To browse, or to filter by tag     | `linkly list --scope notes [--tags ...]` — enumerates, no matching |
+| To find notes mentioning something | `linkly search "<query>" --scope notes` — full-text                |
+
+```bash
+linkly list --scope notes --tags project           # "show my project notes"
+linkly search "onboarding checklist" --scope notes  # "did I write anything about onboarding?"
+```
+
+⚠️ **`--scope notes` ignores `--library` and `--path-glob`.** Passing them together doesn't error — the path/library filter is silently dropped, and you get results from the whole notes folder. If you need both a path filter and note content, search without `--scope` and filter the results yourself.
+
+Start from `list` when the user's phrasing is about the notes themselves ("my notes", "notes tagged X", "recent notes"); start from `search` when it's about a topic. `list` responses carry `available_tags`, which is the reliable way to learn what tag vocabulary the user actually uses — guessing tag names produces empty results.
+
+The same split applies one level up: `list --scope folder` / `--scope library` enumerates a container the user can name, while `search` ranks a topic across one. Notes are simply the third container `list` knows about, not a separate tool.
+
+### Searching derived text (OCR and transcripts)
+
+Several document types have no literal text in the file — Linkly indexes text _derived_ from them, and that changes how queries behave:
+
+- **Images and scanned PDFs** are indexed from OCR output. Search matches recognized text, so expect OCR-typical noise: split words, confused characters, missing punctuation. Prefer distinctive multi-word phrases over exact strings, and drop punctuation from the query.
+- **Audio and video** are indexed from transcripts. Search matches what was _said_, so query with spoken phrasing rather than document phrasing ("we decided to postpone" rather than "decision: postponed"). `outline` on these returns chapters and time spans (`HH:MM:SS`) instead of headings — use it to jump to the right moment, then `read` that range.
+
+```bash
+linkly search "quarterly revenue slide" --type image      # scanned/photographed content
+linkly search "we should postpone the launch" --type audio,video
+linkly outline <MEDIA_ID>                                 # chapters + time spans
+```
+
+If media searches return nothing at all, transcription may simply be switched off — it is opt-in per media kind in Desktop Settings → Indexing. Check that before concluding the content isn't there.
+
+To pull the text out of images _referenced by_ another document (a clipped article, a report with screenshots), don't search for the images separately — read the host document with `--image-text full`.
+
+### When a document is searchable but unreadable
+
+Some documents appear in search results (their filename and path are indexed) but have no readable body. `read` and `grep` then fail with an explicit reason:
+
+- a cloud-storage placeholder that was never downloaded locally
+- a media file with no audio track, or one whose transcription failed
+- a file whose signature doesn't match its extension (a stub or renamed file)
+
+**This is a terminal state, not a transient error.** Relay the reason to the user — for cloud placeholders, that they should download the file in their cloud client and wait for indexing. Do **not** re-run `search` and retry the read: the `doc_id` is valid and stable, the text simply doesn't exist yet.
 
 ### Constraining by time
 
@@ -218,10 +282,10 @@ linkly search "transformer architecture" --library my-research --limit 10
 
 **When NOT to use:**
 
-- General searches like "find my PDF about X" → global search is better
-- You're unsure which library → search globally, or ask the user
+- General searches like "find my PDF about X" → omit `--library`
+- You're unsure which library → omit it and search the user's local content, or ask
 
-Libraries are optional. **Default to global search** (which covers your local content only — cloud libraries are never included unless named explicitly) unless the user specifies otherwise.
+Libraries are optional — **omit `--library` by default**. But be precise about what that means: omitting it searches all of the user's **local** indexed content, not "everything". Cloud libraries are a separate tier that is never included implicitly; each one must be named explicitly, one search per library. A query that comes back empty therefore has two possible meanings — the content genuinely isn't indexed, or it lives in a cloud library you never searched. Don't report the first when you haven't ruled out the second.
 
 ### Filtering by file path
 

@@ -1,40 +1,52 @@
-## Description: <br>
-Collect, verify, and forecast war or geopolitical conflict developments using authoritative sources, cross-validation, and scenario-based prediction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect, verify, and forecast war or geopolitical conflict developments using authoritative sources, cross-validation, and scenario-based prediction.
 
-## Publisher: <br>
-[wlkqyang-star](https://clawhub.ai/user/wlkqyang-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wlkqyang-star](https://clawhub.ai/user/wlkqyang-star)
 
-## Use Case: <br>
-External users and analysts use this skill to structure open-source geopolitical conflict updates and forecasts, especially US-Iran-related assessments, with explicit source ranking, uncertainty labels, time windows, and scenario-based watchlists. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Geopolitical forecasts can be wrong or become stale as events change. <br>
-Mitigation: Treat outputs as uncertain assessments, require dated source checks, and update conclusions when new evidence changes the forecast. <br>
-Risk: Open-source conflict reporting may include propaganda, single-party claims, or unverified battlefield narratives. <br>
-Mitigation: Use the skill's source hierarchy and verification labels, and avoid treating belligerent claims as confirmed without independent corroboration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/wlkqyang-star/zeelin-us-iran-forecast) <br>
-- [Publisher profile](https://clawhub.ai/user/wlkqyang-star) <br>
+## Use Case:
 
+External users and analysts use this skill to structure open-source war and geopolitical conflict monitoring, especially US-Iran-related developments, into verified facts, assessments, and scenario-based forecasts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with dated facts, assessments, forecasts, scenario trees, and watchlists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should distinguish confirmed facts from assessments and forecasts, use concrete dates, cite source confidence, and include disconfirming signals.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Conflict information can be fast-moving, adversarial, or stale.
+
+Mitigation: Use current reliable sources, clear attribution, and cross-validation before relying on any conflict update.
+
+Risk: Forecasts or single-party claims may be mistaken for confirmed facts.
+
+Mitigation: Keep confirmed facts, assessments, and forecasts separate, and label single-party or preliminary claims clearly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wlkqyang-star/skills/zeelin-us-iran-forecast)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conflict intelligence brief with dated facts, assessments, forecast horizons, scenarios, and watchlist indicators]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current, reliable sources and explicit separation of confirmed facts, assessments, and forecasts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

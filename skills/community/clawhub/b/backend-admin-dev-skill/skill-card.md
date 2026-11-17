@@ -1,41 +1,54 @@
-## Description: <br>
-Guides agents through developing a Vue 3 and Flask backend admin portal with RBAC, project management, image upload, S3-compatible storage, content management, settings, logs, and deployment notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for developing and managing a Vue 3 and Flask Project Portal admin system with RBAC, multi-project workflows, media uploads, S3-compatible storage, content management, settings, and logs.
 
-## Publisher: <br>
-[258468639](https://clawhub.ai/user/258468639) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[258468639](https://clawhub.ai/user/258468639)
 
-## Use Case: <br>
-Developers and agents use this skill to plan and implement backend administration features for a project portal, including permissions, users, projects, file storage, content operations, and deployment configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Password storage guidance in the artifact references raw SHA256 hashing. <br>
-Mitigation: Use bcrypt or Argon2 for password hashing before applying the design in a real system. <br>
-Risk: The artifact describes token-based authentication with tokens stored in localStorage. <br>
-Mitigation: Assess token lifetime and storage strategy, and prefer safer session handling for production deployments. <br>
-Risk: The artifact includes image and attachment upload workflows plus S3-compatible credentials. <br>
-Mitigation: Validate file type and size, scan or restrict uploads, and keep storage credentials scoped and private. <br>
+## Use Case:
 
+Developers and administrators use this skill as implementation guidance for a Project Portal admin system. It helps plan and maintain RBAC, user and role management, project records, image and attachment handling, S3-compatible storage, dynamic content, system settings, and operational logs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code snippets, API notes, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed file paths, API routes, database tables, Docker settings, and security recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Administrative RBAC changes, password resets, account disabling, S3 deletion, upload handling, and file proxying can affect access, expose files, or lose data if used carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict those workflows to authorized administrators and review changes before applying them to production systems.
+
+Risk: The skill describes a documentation-only admin portal workflow, so generated implementation guidance may still need project-specific security review.
+
+Mitigation: Review authentication, authorization, upload limits, storage permissions, and file proxy behavior against the target deployment before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/258468639/skills/backend-admin-dev-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/258468639)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code paths, API routes, configuration names, and deployment notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only Chinese-language skill; no hidden execution, persistence, or deceptive behavior reported by server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

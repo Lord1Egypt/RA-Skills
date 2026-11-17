@@ -18,7 +18,6 @@ Read this file for enterprise members, enterprise issue views, enterprise milest
 | Read enterprise issue comments | `atomgit_get_enterprise_issue_comments` |
 | Read enterprise issue labels | `atomgit_get_enterprise_issue_labels` |
 | Read enterprise issue statuses | `atomgit_get_enterprise_issue_statuses` |
-| Read enterprise issue statuses v5 | `atomgit_get_enterprise_issue_statuses_v5` |
 | Read enterprise labels | `atomgit_get_enterprise_labels` |
 | Read enterprise pull requests | `atomgit_get_enterprise_pull_requests` |
 | Read enterprise milestone list | `atomgit_get_enterprise_milestones_v8` |

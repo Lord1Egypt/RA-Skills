@@ -1,42 +1,62 @@
-## Description: <br>
-Read your Apple Books library, highlights, notes, and reading progress directly from the local SQLite databases on macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read your Apple Books library, highlights, notes, and reading progress directly from the local SQLite databases on macOS.
 
-## Publisher: <br>
-[alexissan](https://clawhub.ai/user/alexissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexissan](https://clawhub.ai/user/alexissan)
 
-## Use Case: <br>
-Developers and external users use this skill to inspect a local Apple Books library, including books, highlights, notes, collections, and reading progress, through read-only SQLite queries on macOS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose private reading history, highlights, and notes to the host agent process. <br>
-Mitigation: Install only in a trusted environment, request only the Apple Books information needed, and avoid sharing highlights or notes unless intentional. <br>
-Risk: Full Disk Access may grant the host process broader local visibility than the skill itself uses. <br>
-Mitigation: Grant Full Disk Access only to trusted agent processes and remove that access when it is no longer needed. <br>
-Risk: Write operations against Apple Books databases may corrupt local data or cause iCloud sync issues. <br>
-Mitigation: Use the skill's read-only query posture and do not run INSERT, UPDATE, or DELETE statements against Apple Books databases. <br>
+## Use Case:
 
+Developers and end users on macOS use this skill to let an agent inspect local Apple Books library data, highlights, notes, reading progress, collections, and reading statistics through SQLite queries.
 
-## Reference(s): <br>
-- [ClawHub Apple Books skill page](https://clawhub.ai/alexissan/apple-books) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash and SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only local SQLite query guidance for macOS Apple Books data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill requires Full Disk Access for the process querying local Apple Books data, which can expose private library, highlight, note, and reading progress information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a trusted agent environment, and grant Full Disk Access only to the specific process that needs to query Apple Books data.
+
+Risk: The sample SQLite commands are described as read-only but are not technically constrained to read-only execution.
+
+Mitigation: Run sqlite3 in read-only mode where possible and execute only SELECT-style queries against Apple Books databases.
+
+Risk: Search terms and asset IDs shown in sample queries can be directly substituted into SQL examples.
+
+Mitigation: Escape or parameterize user-provided search terms and asset IDs before execution instead of inserting raw text into SQL.
+
+Risk: Writing to Apple Books databases can corrupt local data or create iCloud sync issues.
+
+Mitigation: Do not run INSERT, UPDATE, or DELETE statements against these databases; keep interactions limited to inspection queries.
+
+## Reference(s):
+
+- [ClawHub Apple Books skill page](https://clawhub.ai/alexissan/skills/apple-books)
+- [Skill homepage](https://clawhub.ai/alexissan/apple-books)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and SQL command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS only; requires sqlite3 and Full Disk Access for the process querying Apple Books data.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

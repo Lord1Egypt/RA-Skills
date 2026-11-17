@@ -1,42 +1,53 @@
-## Description: <br>
-Guides agents in creating robust bash and Python automation scripts with logging, error handling, idempotency, scheduling, validation, and debugging practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imported specialist agent skill for automation scripter. Use when requests match this domain or role.
 
-## Publisher: <br>
-[nntrivi2001](https://clawhub.ai/user/nntrivi2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nntrivi2001](https://clawhub.ai/user/nntrivi2001)
 
-## Use Case: <br>
-Developers and operators use this skill to design, implement, test, and schedule local automation jobs that reduce repetitive manual work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated automation scripts or timers can affect files, credentials, notification endpoints, schedules, permissions, and logs if accepted without review. <br>
-Mitigation: Review the exact files touched, credentials or endpoints used, schedule, permissions, logs, and disable or removal path before using generated scripts or timers. <br>
-Risk: The artifact references a local automation template that may be unavailable or unreviewed in the target environment. <br>
-Mitigation: Use the referenced local template only after inspecting it; otherwise rely on the visible guidance and adapt it to local standards. <br>
-Risk: Unattended jobs can fail silently or run concurrently if scheduling, logging, and lock behavior are not verified. <br>
-Mitigation: Test manually, monitor the first automated run, configure timestamped logs, and use lock files and systemd timer or journal checks. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft and review bash or Python automation for recurring workflow tasks, including logging, error handling, idempotency, and scheduling with systemd timers or cron.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nntrivi2001/agent-automation-scripter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code blocks, checklists, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bash or Python script patterns, scheduling guidance, validation steps, and debugging commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill helps create unattended local automation, including cron or systemd timer changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before making scheduling changes, review generated scripts before scheduling them, and monitor the first automated run through logs.
+
+Risk: The artifact points agents to a local automation-patterns template file outside the package.
+
+Mitigation: Inspect any external local template file before allowing an agent to load or apply it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nntrivi2001/skills/agent-automation-scripter)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scheduling guidance, validation checklists, and debugging commands for unattended automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,67 @@
-## Description: <br>
-Submits proofs to the OpenMath platform using a two-stage commit-reveal flow. Use when the user wants to commit a proof hash or reveal a Lean/Rocq proof on the Shentu network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submits proofs to the OpenMath platform through a two-stage commit-reveal flow for committing proof hashes and revealing Lean/Rocq proofs on the Shentu network.
 
-## Publisher: <br>
-[bennyzhe](https://clawhub.ai/user/bennyzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bennyzhe](https://clawhub.ai/user/bennyzhe)
 
-## Use Case: <br>
-Developers and theorem provers use this skill to prepare and submit OpenMath proof commitments and proof reveals through Shentu, then check transaction and theorem status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blockchain submissions may spend fees or deposits and publish proof details. <br>
-Mitigation: Before broadcasting, verify the theorem ID, proof file, prover and agent addresses, feegrant limits, RPC endpoint, and exact shentud binary. <br>
-Risk: Local key or configuration setup can expose sensitive wallet material if handled carelessly. <br>
-Mitigation: Keep key creation or recovery and openmath-env.json writes as explicit user-approved manual steps, and use the local OS keyring for signing. <br>
-Risk: Using an unexpected shentud binary or RPC endpoint can lead to unintended transaction behavior. <br>
-Mitigation: Confirm the shentud path and version before submission, prefer trusted official releases, and review any SHENTU_NODE_URL override. <br>
+## Use Case:
 
+Developers, theorem provers, and external agents use this skill to prepare and submit OpenMath proofs, verify authz and feegrant readiness, broadcast commit-reveal transactions, and check theorem status on Shentu.
 
-## Reference(s): <br>
-- [Init Setup](references/init-setup.md) <br>
-- [OpenMath Environment Example](references/openmath-env.example.json) <br>
-- [Shentu Proof Submission Guidelines](references/submission_guidelines.md) <br>
-- [OpenMath Authz Setup](references/authz_setup.md) <br>
-- [Shentu Releases](https://github.com/shentufoundation/shentu/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and generated transaction files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate proofhash.json or proofdetail.json locally before the user broadcasts with shentud.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v1.0.7 (source: frontmatter; release evidence version 1.0.7) <br>
+Risk: The configured shentud binary may be installed without integrity verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an official Shentu release and verify the binary with a checksum or signature before trusting it.
+
+Risk: Wallet feegrant or authz checks may accept overly broad spending authority.
+
+Mitigation: Use narrow allowed messages, finite spend limits, and expiration dates; review and revoke existing broad grants before treating readiness as sufficient.
+
+Risk: Local key setup or recovery can expose seed phrases or recovery material.
+
+Mitigation: Keep seed phrases out of chat and perform key creation or recovery manually in a local trusted environment.
+
+Risk: Manual authz examples include an expiration date that was already past on 2026-09-12.
+
+Mitigation: Replace example expiration values with a reviewed future expiration before creating grants.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bennyzhe/skills/openmath-submit-theorem)
+- [Init setup](references/init-setup.md)
+- [Shentu proof submission guidelines](references/submission_guidelines.md)
+- [OpenMath authz setup](references/authz_setup.md)
+- [OpenMath environment example](references/openmath-env.example.json)
+- [Authz submit configuration example](references/authz-submit-config.example.json)
+- [Shentu releases](https://github.com/shentufoundation/shentu/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local transaction JSON filenames, readiness checks, broadcast commands, and status-query guidance.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata; artifact frontmatter v1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

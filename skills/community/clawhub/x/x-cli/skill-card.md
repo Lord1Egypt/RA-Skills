@@ -1,44 +1,60 @@
-## Description: <br>
-Full-featured X/Twitter toolkit: read, search, post, interact, DMs, lists, polls, and trends with cookie authentication and no API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-featured X/Twitter toolkit for agents that can read, search, post, interact, manage DMs, lists, polls, and trends through cookie-authenticated command-line scripts.
 
-## Publisher: <br>
-[ignsoftwarellc](https://clawhub.ai/user/ignsoftwarellc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ignsoftwarellc](https://clawhub.ai/user/ignsoftwarellc)
 
-## Use Case: <br>
-Developers and external agent users use this skill to let an agent read X/Twitter content, search timelines, publish posts, manage interactions, handle DMs, and perform account operations from command-line tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad live control over an X/Twitter account, including posting, DMs, deletion, follows, blocks, lists, uploads, polls, and scheduled actions. <br>
-Mitigation: Require explicit user approval before any state-changing action and prefer a dedicated account for agent use. <br>
-Risk: Authentication uses account credentials and cookies, which can expose the account if copied into chat, command history, logs, or shared files. <br>
-Mitigation: Do not paste passwords into chat, avoid command-line password flags, and protect config.json and cookies.json with local file controls. <br>
-Risk: Automated public posts, DMs, or moderation actions can be reputationally or operationally harmful if triggered unintentionally. <br>
-Mitigation: Use dry-run or preview flows where available and require confirmation for post, DM, delete, follow, block, upload, poll, list, and schedule commands. <br>
+## Use Case:
 
+External developers and agent operators use X-CLI Toolkit to monitor and search X/Twitter content and, when explicitly authorized, perform account actions such as posting, replies, DMs, follows, lists, polls, and scheduling from command-line workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ignsoftwarellc/x-cli) <br>
-- [X-CLI project homepage](https://github.com/ignsoftwarellc/x-cli) <br>
-- [twikit library](https://github.com/d60/twikit) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text by default, with optional structured JSON from command flags and inline shell commands in usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may read live account state or perform live X/Twitter account actions depending on the selected script and user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Account credentials and cookies can be exposed through agent chat, shell commands, or plaintext configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste passwords into agent chats or commands; prefer imported cookies with restrictive local permissions and treat cookies.json and config.json as secrets.
+
+Risk: Authenticated commands can post, delete, send DMs, follow, block, mute, manage lists, create polls, or schedule posts with limited safeguards.
+
+Mitigation: Use a dedicated low-risk account and require explicit manual confirmation before any account-changing command.
+
+Risk: Broad account automation may affect private messages or public reputation if misused or compromised.
+
+Mitigation: Avoid using the skill with accounts whose private messages, audience, or public reputation would be costly to lose.
+
+## Reference(s):
+
+- [X-CLI Toolkit on ClawHub](https://clawhub.ai/ignsoftwarellc/skills/x-cli)
+- [X-CLI source homepage](https://github.com/ignsoftwarellc/x-cli)
+- [twikit Python X/Twitter API wrapper](https://github.com/d60/twikit)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON command output with command-line setup and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python >=3.10, twikit, local cookies or credentials, and optional proxy configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

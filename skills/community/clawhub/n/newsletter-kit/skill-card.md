@@ -1,40 +1,54 @@
-## Description: <br>
-Build and format email newsletters from agent-curated content. Sections, formatting, subscriber-friendly HTML output. Works with any email service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and format email newsletters from agent-curated content. Sections, formatting, subscriber-friendly HTML output. Works with any email service.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to collect newsletter items, organize them into sections, draft copy, and export a review-ready newsletter for an email service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Newsletter notes and private links may be saved in a local item store. <br>
-Mitigation: Avoid storing sensitive content unless local persistence is acceptable, and clear or delete the item store when the newsletter content is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to collect newsletter items, organize them into sections, draft newsletter copy, and export subscriber-ready content for an email service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/newsletter-kit) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code] <br>
-**Output Format:** [HTML, Markdown, or plain text newsletter content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes sectioned items, links, notes, an optional intro, and the newsletter date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: Newsletter items are stored locally in newsletter-items.json, so local data loss or unauthorized local access could affect draft content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep backups of important newsletter drafts and protect the local workspace where the skill stores draft items.
+
+Risk: Generated Markdown may include untrusted titles, notes, or URLs directly in newsletter output.
+
+Mitigation: Review generated Markdown before publishing and prefer the HTML output path when link and text escaping matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/newsletter-kit)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code]
+
+**Output Format:** [HTML, Markdown, or plain text newsletter content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores draft newsletter items locally in newsletter-items.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

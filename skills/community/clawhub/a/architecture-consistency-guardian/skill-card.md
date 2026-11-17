@@ -1,44 +1,62 @@
-## Description: <br>
-Enforce system-wide consistency before code changes by guiding agents through source-of-truth discovery, global reference scans, grouped modifications, residue audits, and regression verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforce system-wide consistency before code changes by guiding agents through global scans, source-of-truth identification, grouped edits, residue audits, and regression verification.
 
-## Publisher: <br>
-[upsightx](https://clawhub.ai/user/upsightx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upsightx](https://clawhub.ai/user/upsightx)
 
-## Use Case: <br>
-Developers and engineering teams use this skill when code changes touch shared architecture contracts such as names, states, paths, configs, schemas, entry points, fallbacks, or documentation. It helps an agent scan globally, identify the single source of truth, plan coordinated edits, audit residue, and produce a structured consistency report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local scanners can inspect repository contents beyond the intended task scope if pointed at broad directories. <br>
-Mitigation: Keep scan roots limited to the repository you intend to inspect and avoid scanning home directories or unrelated private code. <br>
-Risk: The workflow can lead to broad cross-file changes that affect shared contracts. <br>
-Mitigation: Review the proposed modification plan before edits, then run residue searches and focused regression checks after changes. <br>
+## Use Case:
 
+Developers and engineering agents use this skill when refactoring, cleaning legacy paths, aligning schemas, consolidating state machines, or making other cross-file code changes that must preserve architectural consistency.
 
-## Reference(s): <br>
-- [Detailed workflow](references/workflow.md) <br>
-- [Structured report template](references/output_template.md) <br>
-- [Common consistency risk patterns](references/risk_patterns.md) <br>
-- [Architecture contract template](references/contract_template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/upsightx/architecture-consistency-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured report sections; bundled scanners may also emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include modification plans, source-of-truth summaries, residue audit results, regression checks, and architecture contract templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Manual or npx installation could resolve to a source different from the reviewed ClawHub artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from the reviewed ClawHub artifact when possible, or pin and verify the manual installation source.
+
+Risk: Broad consistency scans can include irrelevant directories or produce an affected-file plan that is too wide for the intended change.
+
+Mitigation: Review the proposed affected-file plan before edits and keep scans limited to relevant project directories.
+
+Risk: Choosing the wrong source of truth can lead to misleading refactor guidance or incomplete cleanup.
+
+Mitigation: Require the agent to name the canonical file or module, list competing sources, and document retained compatibility before making edits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/upsightx/skills/architecture-consistency-guardian)
+- [Workflow Details](references/workflow.md)
+- [Output Template](references/output_template.md)
+- [Common Consistency Risk Patterns](references/risk_patterns.md)
+- [Architecture Contract Template](references/contract_template.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command examples, structured reports, and optional JSON scan summaries from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce affected-file plans, architecture contract drafts, consistency reports, residue scan summaries, and concrete verification commands.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

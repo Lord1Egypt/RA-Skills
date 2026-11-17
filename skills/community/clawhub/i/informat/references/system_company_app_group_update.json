@@ -1,0 +1,36 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_app_group_update",
+    "description": "Update an existing application group in the company. Must specify the group ID and list the fields to be updated in updateFieldList. Only fields listed in updateFieldList will be modified.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Application group ID (required)."
+        },
+        "updateFieldList": {
+          "type": "array",
+          "description": "List of field names to be updated in this operation. Only fields listed here will be modified; other fields will remain unchanged.",
+          "items": {
+            "type": "string",
+            "enum": ["name", "rowNumber"]
+          }
+        },
+        "name": {
+          "type": "string",
+          "description": "Group name (must be unique within the company).",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "rowNumber": {
+          "type": "number",
+          "description": "Display order number. Lower numbers appear first."
+        }
+      },
+      "required": ["id", "updateFieldList"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,41 +1,60 @@
-## Description: <br>
-Provides real-time crypto market intelligence through MCP tools for live orderflow across 20 exchanges, directional regime detection, historical OHLCV with buy/sell flow, and on-chain address risk profiling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time crypto market intelligence for live exchange orderflow, directional regime detection, historical OHLCV with buy/sell flow, and on-chain address risk profiling.
 
-## Publisher: <br>
-[tunedforai](https://clawhub.ai/user/tunedforai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tunedforai](https://clawhub.ai/user/tunedforai)
 
-## Use Case: <br>
-External users and developers use this skill to query live crypto market data, orderflow, macro regime signals, historical bars, and wallet address risk through a registered MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses and trading questions sent to the MCP provider may reveal identity, holdings, or trading intent. <br>
-Mitigation: Only submit addresses and questions you are comfortable sharing with the provider; do not provide private keys, seed phrases, exchange logins, or other secrets. <br>
-Risk: Market signals, address labels, and live data can be stale, incomplete, or unsuitable as sole input for trading decisions. <br>
-Mitigation: Treat results as informational, check freshness and risk fields, and corroborate important decisions with independent sources before acting. <br>
+## Use Case:
 
+Developers, analysts, and trading agents use this skill to query live crypto market structure, macro regime signals, historical bars, and wallet-address risk through native MCP tool calls.
 
-## Reference(s): <br>
-- [x402 MCP server](https://x402.tunedfor.ai/mcp) <br>
-- [x402 REST API](https://x402.tunedfor.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with MCP tool-call arguments and shell command snippets; MCP tools return structured market data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a remote MCP endpoint; MCP access is free and rate-limited, with REST setup available through api_info().] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and skill metadata) <br>
+Risk: Market queries and wallet addresses are sent to x402.tunedfor.ai and may be linkable to the user's interests or identity by the service operator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only queries and wallet addresses appropriate to share with that service, and avoid sensitive or unnecessary address lookups.
+
+Risk: Wallet secrets, exchange credentials, or seed phrases could expose funds if provided during use.
+
+Mitigation: Do not provide seed phrases, private keys, exchange credentials, or other wallet secrets to the skill or remote service.
+
+Risk: Live market outputs can become stale or be constrained by free-tier rate limits.
+
+Mitigation: Check freshness indicators such as stale status before relying on returned data, and independently review market signals before taking action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tunedforai/skills/x402-market-structure)
+- [Publisher Profile](https://clawhub.ai/user/tunedforai)
+- [x402 MCP Endpoint](https://x402.tunedfor.ai/mcp)
+- [x402 REST API Base](https://x402.tunedfor.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline tool calls and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a remote MCP service; MCP tools are free and rate-limited, with no API key or wallet required.]
+
+## Skill Version(s):
+
+1.2.0 (source: artifact frontmatter, evidence release, and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

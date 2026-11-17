@@ -1,39 +1,53 @@
-## Description: <br>
-Emit OADP discovery signals from your agent's workspace so other agents can find you. Adds markers to your files, configures .well-known endpoints, and joins the open agent discovery network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emit OADP discovery signals from an agent workspace so other agents can find it, including file markers, web discovery endpoints, and open discovery network registration.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-External developers and agent operators use this skill to publish OADP discovery markers, web-root metadata, and hub ping or registration requests so other agents can discover their workspace or web server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make an agent workspace or web root discoverable and can send identifying agent metadata to a third-party hub. <br>
-Mitigation: Use only public-safe agent metadata, avoid internal or private workspaces, verify the hub before sending requests, and apply the snippets only when intentional discoverability is desired. <br>
-Risk: The file snippets can persist discovery markers in AGENTS.md, .well-known/agent-protocol.json, robots.txt, or HTML metadata. <br>
-Mitigation: Back up affected files before modification and keep removal steps for each marker or endpoint added by the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OADP Protocol Spec](https://onlyflies.buzz/clawswarm/PROTOCOL.md) <br>
+## Use Case:
 
+Developers and agent operators use OADP Emit to add discovery markers, publish optional web discovery files, and send ping or register requests so agent workspaces can be found by OADP-compatible scanners.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, and HTML/meta-tag examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional hub ping and registration payload examples that may send public agent metadata to a third-party endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to send agent metadata to an unverified external discovery service.
+
+Mitigation: Use only deliberate, non-sensitive names, descriptions, and capability lists; prefer a trusted or self-hosted hub for sensitive environments.
+
+Risk: Persistent OADP comments or endpoint references in boot-read and web server files can keep an agent or workspace discoverable after setup.
+
+Mitigation: Remove OADP comments and related discovery entries from AGENTS.md, .well-known files, robots.txt, or HTML metadata when discovery is no longer intended.
+
+## Reference(s):
+
+- [OADP Protocol Spec](https://onlyflies.buzz/clawswarm/PROTOCOL.md)
+- [ClawHub Skill Page](https://clawhub.ai/imaflytok/skills/oadp-emit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, JSON, HTML, and plain-text configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands and snippets that may persist OADP discovery markers or endpoint references in workspace and web server files.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

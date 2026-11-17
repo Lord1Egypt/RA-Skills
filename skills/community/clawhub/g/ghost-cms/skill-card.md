@@ -1,60 +1,72 @@
-## Description: <br>
-Ghost CMS helps agents create, publish, schedule, and manage Ghost blog content, newsletters, members, comments, analytics, media, users, and themes through the Ghost Admin API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ghost CMS integrates with the Ghost Admin API so agents can create, publish, schedule, and manage blog content, newsletters, members, comments, themes, snippets, and analytics.
 
-## Publisher: <br>
-[chrisagiddings](https://clawhub.ai/user/chrisagiddings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chrisagiddings](https://clawhub.ai/user/chrisagiddings)
 
-## Use Case: <br>
-Developers, site operators, and content teams use this skill to manage Ghost CMS sites from an agent, including drafting, publishing, scheduling, subscriber and member workflows, comments, analytics, newsletters, media uploads, user administration, and theme management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires broad Ghost Admin API authority and can perform site-changing operations. <br>
-Mitigation: Install only when full Ghost Admin access is acceptable, use a staging site or dedicated integration key when possible, and review requested operations before execution. <br>
-Risk: Publishing and newsletter operations can make content public or email subscribers. <br>
-Mitigation: Review generated content before publishing or emailing subscribers, and prefer drafts or scheduled posts for human approval workflows. <br>
-Risk: A bundled script can update a hard-coded post without confirmation. <br>
-Mitigation: Avoid running update-teapot.js unless its target and behavior have been reviewed for the intended Ghost site. <br>
-Risk: Exported member data or snippets may contain sensitive site or subscriber information. <br>
-Mitigation: Keep exported member data and snippets outside version-controlled folders unless they have been reviewed and sanitized. <br>
+## Use Case:
 
+Developers and site operators use this skill to manage Ghost CMS publishing workflows, subscriptions, comments, newsletters, analytics, themes, and local snippet libraries through agent-generated guidance and commands.
 
-## Reference(s): <br>
-- [Skill Overview](SKILL.md) <br>
-- [README](README.md) <br>
-- [Ghost CMS Setup and Authentication](references/setup.md) <br>
-- [Ghost Admin API Reference](references/api-reference.md) <br>
-- [Content Management](references/content.md) <br>
-- [Members and Subscribers](references/members.md) <br>
-- [Newsletters](references/newsletters.md) <br>
-- [Comment Management](references/comments.md) <br>
-- [Analytics and Insights](references/analytics.md) <br>
-- [Ghost Theme Management](references/themes.md) <br>
-- [Lexical Card Types Reference](references/lexical-cards.md) <br>
-- [Lexical Migration Guide](LEXICAL-MIGRATION.md) <br>
-- [Ghost Snippets](snippets/README.md) <br>
-- [Ghost Admin API Docs](https://ghost.org/docs/admin-api/) <br>
-- [Ghost Editor Documentation](https://ghost.org/help/using-the-editor/) <br>
-- [Lexical Framework](https://lexical.dev/) <br>
-- [Ghost Theme Docs](https://ghost.org/docs/themes/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON payloads, and Ghost Admin API operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user commands, Node.js/npm, GHOST_ADMIN_KEY, and GHOST_API_URL; operations may create, update, delete, publish, email, upload, or modify Ghost site resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release metadata and package.json) <br>
+Risk: Ghost Admin API credentials grant full site access with no read-only scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for sites where full Admin API access is acceptable, use a staging site or dedicated integration key, store credentials securely, and rotate keys regularly.
+
+Risk: Publish, delete, theme, member, and settings operations can immediately affect public content, subscribers, billing access, or site behavior.
+
+Mitigation: Review generated commands before execution, prefer draft and scheduled workflows, save current state before destructive changes, and verify results after each operation.
+
+Risk: The package includes scripts/update-teapot.js, which security evidence says can overwrite a hard-coded Ghost post.
+
+Mitigation: Avoid running scripts/update-teapot.js unless it has been reviewed and adapted for the intended site and post.
+
+Risk: Security evidence reports a theme download path validation bug that can write outside the intended directory.
+
+Mitigation: Avoid theme download operations or constrain and review output paths until the validation issue is fixed.
+
+## Reference(s):
+
+- [Ghost Admin API Reference](references/api-reference.md)
+- [Ghost CMS Setup & Authentication](references/setup.md)
+- [Content Management](references/content.md)
+- [Members & Subscribers](references/members.md)
+- [Newsletters](references/newsletters.md)
+- [Comment Management](references/comments.md)
+- [Analytics & Insights](references/analytics.md)
+- [Ghost Theme Management](references/themes.md)
+- [Lexical Card Types Reference](references/lexical-cards.md)
+- [Ghost Snippets Library](snippets/README.md)
+- [Official Ghost Admin API Docs](https://ghost.org/docs/admin-api/)
+- [Ghost CMS](https://ghost.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, JSON, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide API operations that create, publish, update, delete, upload, or configure Ghost CMS resources.]
+
+## Skill Version(s):
+
+0.1.8 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

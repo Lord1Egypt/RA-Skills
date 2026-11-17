@@ -1,0 +1,31 @@
+{
+  "title": "AI-DWG Data",
+  "description": "Per-project data shape for AI-DWG (Workspace Generator). DWG has no state file; data reflects the generated workspace identity.",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema": {"type":"string"},
+    "$schemaVersion": {"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy": {"type":"string","const":"AI-DFE"},
+    "$generatedOn": {"type":"string","format":"date-time"},
+    "$family": {"type":"string"},
+    "$package": {"type":"string","const":"ai-dwg"},
+    "data": {
+      "type":"object","required":["projectId","workspaceGenerated"],
+      "properties": {
+        "projectId":{"type":["string","null"]},
+        "generatedBy":{"type":["string","null"]},
+        "generatedVersion":{"type":["string","null"]},
+        "generatedOn":{"type":["string","null"]},
+        "source":{"type":["string","null"]},
+        "identityType":{"type":["string","null"],"enum":["architecture","product","none",null]},
+        "systemName":{"type":["string","null"]},
+        "architectureStyle":{"type":["string","null"]},
+        "primaryTechnology":{"type":["string","null"]},
+        "deploymentModel":{"type":["string","null"]},
+        "productName":{"type":["string","null"]},
+        "workspaceGenerated":{"type":["boolean","null"]}
+      }
+    }
+  }
+}

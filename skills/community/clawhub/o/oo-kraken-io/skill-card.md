@@ -1,43 +1,61 @@
-## Description: <br>
-Kraken.io lets agents check Kraken.io account status and optimize images through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kraken.io (kraken.io). Use this skill for ANY Kraken.io request — reading, creating, and updating data. Whenever a task involves Kraken.io, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Kraken.io from an agent session, including checking plan and monthly optimization quota status and optimizing images from a public URL or upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image optimization can send image content to OOMOL/Kraken.io and store optimized results in connector transit. <br>
-Mitigation: Run optimization only for image sources the user has confirmed are appropriate for external processing and storage. <br>
-Risk: The optimize_image action is under-labeled as read-safe even though it processes image data. <br>
-Mitigation: Treat optimize_image as a data-processing action and confirm the exact source and intended output before execution. <br>
+## Use Case:
 
+Developers and agent users can check a Kraken.io account's plan status and optimize an image through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-kraken-io) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Kraken.io homepage](https://kraken.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector payloads or responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process image URLs or uploaded image content through Kraken.io and store optimized image results in connector transit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Initial CLI setup may install additional agent skills without clearly seeking approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, inspect which skills it adds, and disable unwanted startup synchronization with OO_SKILLS_SYNC_DISABLED.
+
+Risk: Images submitted for optimization are processed by OOMOL and Kraken.io.
+
+Mitigation: Confirm that the image can be shared with both providers before uploading it.
+
+Risk: The exact remote installer and hosted connector behavior were not verified in the security review.
+
+Mitigation: Review the installer and connector before allowing automatic setup or sending image data.
+
+## Reference(s):
+
+- [Kraken.io API documentation](https://kraken.io/docs/getting-started)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [Kraken.io](https://kraken.io)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-kraken-io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON action results with concise text guidance and oo CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One connector action per request; image optimization results may be stored in connector transit.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

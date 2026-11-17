@@ -1,42 +1,52 @@
-## Description: <br>
-Shopify Admin guides agents through Shopify Admin API workflows for product tags, inventory, OAuth token refresh, and other GraphQL or REST operations using a Custom App access token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shopify Admin API SOP for product tags, inventory, and other write operations via GraphQL/REST, for stores using a Custom App access token.
 
-## Publisher: <br>
-[happynocyohei](https://clawhub.ai/user/happynocyohei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[happynocyohei](https://clawhub.ai/user/happynocyohei)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and store operators use this skill to guide Shopify Admin API write operations, including product tags, inventory-related scopes, and token refresh workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles powerful Shopify Admin credentials that can modify products, inventory, themes, and orders depending on token scopes.
+
+Mitigation: Use least-privilege Shopify scopes, verify the intended myshopify.com store domain before each request, and review proposed write operations before execution.
+
+Risk: The OAuth example uses example.com and a static state value, which could expose an authorization code if followed literally.
+
+Mitigation: Use a HTTPS callback endpoint you control, generate fresh state values, and handle client secrets, authorization codes, and access tokens securely.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and store operators use this skill to guide agents through Shopify Admin API operations such as reading and updating product tags, preparing inventory-related requests, and refreshing OAuth tokens while handling store credentials carefully. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
 
-## Known Risks and Mitigations: <br>
-Risk: Shopify Admin API credentials can authorize sensitive product, inventory, theme, order, or customer-data changes. <br>
-Mitigation: Use least-privilege Shopify scopes, verify the store domain, keep tokens and client secrets out of chats and logs, rotate exposed credentials, and require explicit confirmation before write operations. <br>
-Risk: Product tag updates replace the full tag list when using the documented productUpdate pattern. <br>
-Mitigation: Fetch current tags first, merge the intended changes, and confirm the complete final tag set before updating. <br>
-Risk: OAuth refresh flows can expose client secrets or use placeholder redirect domains if copied directly. <br>
-Mitigation: Configure an approved redirect URL for the target app and protect client secrets during the short-lived code exchange. <br>
+**Output Format:** [Markdown with inline GraphQL, REST, TOML, and JSON examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/happynocyohei/shopify-admin-sop) <br>
+**Other Properties Related to Output:** [Requires Shopify store domain and Admin API access token secrets.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline GraphQL, REST, TOML, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Shopify store domain and Admin API access token; write operations should be confirmed before execution.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

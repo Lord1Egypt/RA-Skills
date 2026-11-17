@@ -1,39 +1,54 @@
-## Description: <br>
-Queries DAO3 platform data by user ID, map ID, keyword, or authenticated account context, returning profiles, map details, comments, favorites, recent plays, messages, statistics, retention, behavior data, and raw endpoint responses as JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dao3 Statistics helps agents query DAO3 (Shendao) user, map, comment, search, message, and statistics data through a Python CLI that returns JSON.
 
-## Publisher: <br>
-[ifishcool](https://clawhub.ai/user/ifishcool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ifishcool](https://clawhub.ai/user/ifishcool)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch DAO3 public data and authenticated account or map statistics through a Python command-line interface. It is useful for DAO3 user, map, message, and analytics lookup workflows where JSON output is expected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make authenticated DAO3 API requests, including broad raw endpoint requests beyond the named query commands. <br>
-Mitigation: Use a minimally scoped DAO3 token when available, avoid passing secrets directly on the command line, and call raw endpoints only after confirming the exact DAO3 path and account data involved. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch DAO3 platform profile, map, comment, relationship, search, message, and statistics data. It supports public lookups and authenticated account-scoped queries when the user intentionally provides a DAO3 token and user-agent.
 
-## Reference(s): <br>
-- [DAO3 API base endpoint](https://code-api-pc.dao3.fun) <br>
-- [ClawHub skill page](https://clawhub.ai/ifishcool/dao3-statistics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON emitted by Python CLI commands, with Markdown guidance for command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated commands require a DAO3 token and user-agent; failures are returned as JSON objects with error details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Authenticated DAO3 commands accept account tokens on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived or scoped credentials when possible, avoid pasting long-lived tokens into chat or shell history, and rotate any token that may have been exposed.
+
+Risk: The raw endpoint mode can access broader authenticated DAO3 API paths than the curated commands.
+
+Mitigation: Use curated commands for normal queries and reserve raw endpoint calls for intentional, reviewed API access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ifishcool/skills/dao3-statistics)
+- [DAO3 API endpoint](https://code-api-pc.dao3.fun)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command outputs are JSON objects; failures include error details such as endpoint, status code, message, and response when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

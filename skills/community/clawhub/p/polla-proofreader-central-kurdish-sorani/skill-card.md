@@ -1,47 +1,59 @@
-## Description: <br>
-Provides academic-grade Central Kurdish (Sorani) proofreading, terminology review, grammar checks, punctuation correction, conciseness edits, and literary rhetoric analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic auditor and Rhetoric expert for Central Kurdish (Sorani). Use to verify professional standards in punctuation, terminology, orthography, grammar, and conciseness. Capable of literary analysis for poetry using academic authorities. Implements zero-tolerance character-level auditing.
 
-## Publisher: <br>
-[jwtiyar](https://clawhub.ai/user/jwtiyar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jwtiyar](https://clawhub.ai/user/jwtiyar)
 
-## Use Case: <br>
-External users can use this skill to proofread Central Kurdish (Sorani) text against academic orthography, punctuation, grammar, terminology, and conciseness standards. It is also intended to analyze poetry and literary passages without rewriting them when preservation of rhythm and rhyme is required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strict proofreading can rewrite punctuation, spacing, terminology, formatting, or mixed-language conventions that the user intended to preserve. <br>
-Mitigation: Review the final audited text and character-level audit log before accepting changes, and state any publisher-specific or mixed-language conventions that must remain unchanged. <br>
-Risk: Public reference lookups or search queries could expose sensitive text or context. <br>
-Mitigation: Avoid sending sensitive text through workflows that require external lookup, or use approved internal references for confidential material. <br>
+## Use Case:
 
+External users and reviewers use this skill to proofread Central Kurdish (Sorani) text against professional punctuation, terminology, orthography, grammar, and conciseness standards. It can also provide literary analysis for poetry while preserving the supplied text.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jwtiyar/polla-proofreader-central-kurdish-sorani) <br>
-- [Puxtey Renus U Xallbendi PDF](https://diyako.yageyziman.com/wp-content/uploads/2024/08/Puxtey_Renus_U_Xallbendi_Weshani_4.pdf) <br>
-- [Diyako Yageyziman Orthography](https://diyako.yageyziman.com/%da%95%db%8e%d9%86%d9%88%d9%88%d8%b3/) <br>
-- [Diyako Yageyziman Terminology](https://diyako.yageyziman.com/%d8%b2%d8%a7%d8%b1%d8%a7%d9%88%db%95%d8%b3%d8%a7%d8%b2%db%8c/) <br>
-- [Diyako Yageyziman Verb Morphology](https://diyako.yageyziman.com/%d8%af%db%86%d8%b2%db%8c%d9%86%db%95%d9%88%db%95%db%8c-%da%95%db%95%da%af%db%8c-%da%a9%d8%a7%d8%b1%d8%8c-%d8%af%db%86%d8%b2%db%8c%d9%86%db%95%d9%88%db%95%db%8c-%da%95%db%95%da%af%d8%8c-%d9%82%db%95/05/06/2018/) <br>
-- [Kurdish Language Academy](https://gov.krd/ka-en) <br>
-- [VejinLex Dictionary](https://lex.vejin.net) <br>
-- [ZKurd IT Dictionary](https://zkurd.org/it-dictionary/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with corrected text, character-level audit tables, and validation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use public reference lookups for uncertain Central Kurdish orthography, terminology, and grammar cases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may enforce strict Sorani-standard punctuation, terminology, orthography, grammar, and academic style when a flexible or mixed-language convention is intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final audited text and character-level log against the audience, domain, and preferred style before accepting changes.
+
+Risk: The skill may use public language references for uncertain proofreading decisions.
+
+Mitigation: Avoid submitting confidential text to public lookup services unless the deployment environment permits that data handling.
+
+## Reference(s):
+
+- [Puxtey Renus U Xallbendi PDF](https://diyako.yageyziman.com/wp-content/uploads/2024/08/Puxtey_Renus_U_Xallbendi_Weshani_4.pdf)
+- [Diyako Yagey Ziman Renus](https://diyako.yageyziman.com/%da%95%db%8e%d9%86%d9%88%d9%88%d8%b3/)
+- [Diyako Yagey Ziman Zarawesazi](https://diyako.yageyziman.com/%d8%b2%d8%a7%d8%b1%d8%a7%d9%88%db%95%d8%b3%d8%a7%d8%b2%db%8c/)
+- [Diyako Yagey Ziman Verb Root Finding](https://diyako.yageyziman.com/%d8%af%db%86%d8%b2%db%8c%d9%86%db%95%d9%88%db%95%db%8c-%da%95%db%95%da%af%db%8c-%da%a9%d8%a7%d8%b1%d8%8c-%d8%af%db%86%d8%b2%db%8c%d9%86%db%95%d9%88%db%95%db%8c-%da%95%db%95%da%af%d8%8c-%d9%82%db%95/05/06/2018/)
+- [Kurdish Language Academy](https://gov.krd/ka-en)
+- [VejinLex Dictionary](https://lex.vejin.net)
+- [ZKurd IT Dictionary](https://zkurd.org/it-dictionary/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown containing audited text, a character-level audit log, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public language references for uncertain cases when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

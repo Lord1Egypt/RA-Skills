@@ -43,6 +43,7 @@ from pydub import AudioSegment
 import ffmpeg_downloader as ffdl
 import importlib
 import requests
+import re
 
 logger = LoggerManager.setup_logger(logger_name="link-resolver-engine")
 
@@ -69,6 +70,32 @@ def ensure_ffmpeg():
 
     logger.info(f"✅ ffmpeg 已就绪 → {ffdl.ffmpeg_path}")
     return True
+
+def is_bilibili_normal_url(url: str) -> bool:
+    """
+    判断是否为普通的 B 站视频链接（非 b23.tv 短链接）
+    """
+    if not url:
+        return False
+    
+    url_lower = url.lower().strip()
+    
+    # 支持以下常见格式：
+    # https://www.bilibili.com/video/BV1xx...
+    # https://bilibili.com/video/BV1xx...
+    # https://www.bilibili.com/video/av123...
+    # https://b23.tv/xxxx 这种不算普通链接
+    patterns = [
+        r'bilibili\.com/video/(bv|av|BV|AV)',
+        r'bilibili\.com/video/BV[a-zA-Z0-9]+',
+        r'bilibili\.com/video/av\d+',
+    ]
+    
+    for pattern in patterns:
+        if re.search(pattern, url_lower):
+            return True
+    
+    return False
 
 def download_bilibili_video_smart(
     url: str,
@@ -110,15 +137,28 @@ def download_bilibili_video_smart(
     # 2.1 展开 b23.tv
     expand_ok, expanded_url = bilibili_video.expand_bilibili_url(url)
     if not expand_ok:
-        return False, f"短链接展开失败: {expanded_url}，请重试"
+        # 这里只有两种可能：
+        # 1. 是 b23.tv 但展开失败了
+        # 2. 函数内部返回了其他错误
+        # 我们可以再做一次判断：如果输入的原始 url 明显是普通 B 站链接，就不要报错
+        if is_bilibili_normal_url(url):
+            logger.info(f"非短链接，但检测到普通 B 站链接，直接使用: {url}")
+            expanded_url = url
+        else:
+            return False, f"短链接展开失败: {expanded_url}，请重试"
 
-    logger.info(f"✅ 短链接已展开: {expanded_url}")
+    logger.info(f"✅ 链接处理完成，使用 URL: {expanded_url}")
 
     # 2.2 获取无水印直链
     play_info = bilibili_video.get_bilibili_no_wm(expanded_url)
     if not play_info or not play_info.get("video_url"):
-        return False, "获取 B站直链失败，请重试"
-
+        logger.info("获取无水印B站直链失败，直接下载！！！")
+        play_info = {
+            "video_url": expanded_url,
+            "audio_url": None,
+            "title": "bilibili_video",
+            "quality": None
+        }
     logger.info(f"✅ 已获取直链，质量: {play_info.get('quality', '未知')}")
 
     # 2.3 执行 requests 下载
@@ -127,7 +167,6 @@ def download_bilibili_video_smart(
         filename=filename_prefix,
         download_dir=download_dir
     )
-
     if success_request:
         return True, "下载成功！"
     else:
@@ -221,7 +260,6 @@ def identify_platform_with_redirect(url: str, timeout=5) -> str:
         return "B站"
     return "未知平台"
 
-# 测试一下
 if __name__ == "__main__":
     env_manager.check_python_version()
     env_manager.setup_venv()    
@@ -236,7 +274,7 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--filename-prefix", type=str, default=None, help="文件名前缀")
     parser.add_argument("-d", "--download-dir", type=str, default="downloads", help="下载目录")
     parser.add_argument("-f", "--format", type=str, default="bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best", help="yt-dlp 格式")
-    
+
     args = parser.parse_args()
     
     platform = identify_platform_with_redirect(args.url) 

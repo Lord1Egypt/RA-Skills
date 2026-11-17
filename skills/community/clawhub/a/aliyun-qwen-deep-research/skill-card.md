@@ -1,45 +1,56 @@
-## Description: <br>
-Use when a task needs Alibaba Cloud Model Studio Qwen Deep Research models to plan multi-step investigation, run iterative web research, and produce structured reports with citations or evidence summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a task needs Alibaba Cloud Model Studio Qwen Deep Research models to plan multi-step investigation, run iterative web research, and produce structured reports with citations or evidence summaries.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and research agents use this skill to prepare Alibaba Cloud Qwen Deep Research requests, keep run settings organized, and capture structured research outputs with citations or evidence summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China mainland (Beijing region) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Alibaba Cloud DashScope credentials. <br>
-Mitigation: Protect DASHSCOPE_API_KEY or configured Alibaba Cloud credentials and run the helper from an isolated virtual environment. <br>
-Risk: Research goals, request payloads, run settings, and report snapshots may be saved locally. <br>
-Mitigation: Review saved files under output/aliyun-qwen-deep-research/ and delete sensitive or unneeded artifacts after use. <br>
-Risk: The release evidence notes that this is a request-preparation/support skill rather than a complete research executor. <br>
-Mitigation: Confirm generated request payloads and model responses before relying on reports or sharing results. <br>
+## Use Case:
 
+Developers and research teams use this skill to prepare Alibaba Cloud Qwen Deep Research requests, guide multi-step web investigations, and organize structured reports with citations or evidence summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cinience/aliyun-qwen-deep-research) <br>
-- [Qwen Deep Research documentation](https://help.aliyun.com/zh/model-studio/qwen-deep-research) <br>
-- [Qwen Deep Research model updates](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
-- [Alibaba Cloud Model Studio model list](https://help.aliyun.com/zh/model-studio/models) <br>
+### Deployment Geography for Use:
 
+China mainland (Beijing) region
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request payload files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores request payloads, run settings, and report snapshots under output/aliyun-qwen-deep-research/ unless OUTPUT_DIR is overridden.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Research prompts, attachments, request payloads, and report snapshots may contain sensitive information and are sent to Alibaba Cloud Model Studio or retained locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when this data handling fits policy; avoid secrets or confidential business data in prompts and review retained files under output/aliyun-qwen-deep-research/.
+
+Risk: The skill depends on the dashscope SDK in the runtime environment.
+
+Mitigation: Pin or review the dashscope dependency before production installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-qwen-deep-research)
+- [Qwen-Deep-Research](https://help.aliyun.com/zh/model-studio/qwen-deep-research)
+- [Qwen-Deep-Research snapshot updates](https://help.aliyun.com/zh/model-studio/newly-released-models)
+- [Model Studio model list](https://help.aliyun.com/zh/model-studio/models)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON request files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates normalized request payloads and stores request/report artifacts under output/aliyun-qwen-deep-research/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

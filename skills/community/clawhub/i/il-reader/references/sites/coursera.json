@@ -1,0 +1,1565 @@
+{
+  "version": "2.4.0",
+  "source_id": "coursera",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:01:22.703Z",
+  "entry": {
+    "url": "https://www.coursera.org/",
+    "final_url": "https://www.coursera.org/",
+    "title": "Coursera | Online Courses, Certificates, & Degrees",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:01:22.703Z",
+    "identity": {
+      "declared_name": "Coursera",
+      "hostname": "www.coursera.org",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "订阅即可解锁 10,000 多门课程",
+        "href": "https://www.coursera.org/courseraplus",
+        "target": ""
+      },
+      {
+        "text": "订阅即可解锁 10,000 多门课程",
+        "href": "https://www.coursera.org/business",
+        "target": ""
+      },
+      {
+        "text": "来自 Anthropic、AWS、Microsoft 等机构的免费课程。",
+        "href": "https://www.coursera.org/explore/free-courses",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "探索我们的目录",
+      "label": "",
+      "aria_label": "探索我们的目录",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "探索我们的目录",
+        "exact": true
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "a",
+      "type": null,
+      "text": "学位",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "搜索目录",
+      "label": "",
+      "aria_label": "搜索目录",
+      "placeholder": "您想学习什么？",
+      "name": "query",
+      "id": "search-autocomplete-input",
+      "css": "#search-autocomplete-input",
+      "role": "combobox",
+      "form_action": "https://www.coursera.org/",
+      "locator": {
+        "css": "#search-autocomplete-input"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "搜索",
+      "label": "",
+      "aria_label": "搜索",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.coursera.org/",
+      "locator": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "询问 Coursera",
+      "label": "",
+      "aria_label": "询问 Coursera",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "询问 Coursera",
+        "exact": true
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "a",
+      "type": null,
+      "text": "登录",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "a",
+      "type": null,
+      "text": "免费加入",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "免费加入",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "免费加入",
+        "exact": true
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "转到课程内容 1",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "转到课程内容 1",
+        "exact": true
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "转到课程内容 2",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "转到课程内容 2",
+        "exact": true
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "转到课程内容 3",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "转到课程内容 3",
+        "exact": true
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "人工智能工程师",
+      "label": "",
+      "aria_label": "人工智能工程师",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R26llalalahqd4q:",
+      "css": "#cds-react-aria-\\:R26llalalahqd4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R26llalalahqd4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "软件开发人员",
+      "label": "",
+      "aria_label": "软件开发人员",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2allalalahqd4q:",
+      "css": "#cds-react-aria-\\:R2allalalahqd4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2allalalahqd4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "数据分析师",
+      "label": "",
+      "aria_label": "数据分析师",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2ellalalahqd4q:",
+      "css": "#cds-react-aria-\\:R2ellalalahqd4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2ellalalahqd4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "项目经理",
+      "label": "",
+      "aria_label": "项目经理",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2illalalahqd4q:",
+      "css": "#cds-react-aria-\\:R2illalalahqd4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2illalalahqd4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "领导力",
+      "label": "",
+      "aria_label": "领导力",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2mllalalahqd4q:",
+      "css": "#cds-react-aria-\\:R2mllalalahqd4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2mllalalahqd4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "数字营销人员",
+      "label": "",
+      "aria_label": "数字营销人员",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2qllalalahqd4q:",
+      "css": "#cds-react-aria-\\:R2qllalalahqd4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2qllalalahqd4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "开始 7 天免费试用",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "cta-3R4mlvjWLj5qNwiOVsHVcv",
+      "css": "#cta-3R4mlvjWLj5qNwiOVsHVcv",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#cta-3R4mlvjWLj5qNwiOVsHVcv"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "开始 7 天免费试用",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "cta-6tZ3N3rfRrpvmuLqUdrqwk",
+      "css": "#cta-6tZ3N3rfRrpvmuLqUdrqwk",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#cta-6tZ3N3rfRrpvmuLqUdrqwk"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "数据",
+      "label": "",
+      "aria_label": "数据",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R26llalalakad4q:",
+      "css": "#cds-react-aria-\\:R26llalalakad4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R26llalalakad4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "商业",
+      "label": "",
+      "aria_label": "商业",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2allalalakad4q:",
+      "css": "#cds-react-aria-\\:R2allalalakad4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2allalalakad4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "销售与市场营销",
+      "label": "",
+      "aria_label": "销售与市场营销",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2ellalalakad4q:",
+      "css": "#cds-react-aria-\\:R2ellalalakad4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2ellalalakad4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "信息技术",
+      "label": "",
+      "aria_label": "信息技术",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2illalalakad4q:",
+      "css": "#cds-react-aria-\\:R2illalalakad4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2illalalakad4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "软件工程",
+      "label": "",
+      "aria_label": "软件工程",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2mllalalakad4q:",
+      "css": "#cds-react-aria-\\:R2mllalalakad4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2mllalalakad4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "开始我的职业生涯",
+      "label": "开始我的职业生涯",
+      "aria_label": "开始我的职业生涯",
+      "placeholder": null,
+      "name": null,
+      "id": "hiddenRadio-LEARNING_GOAL_LAND_NEW_JOB",
+      "css": "#hiddenRadio-LEARNING_GOAL_LAND_NEW_JOB",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#hiddenRadio-LEARNING_GOAL_LAND_NEW_JOB"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "改变我的职业生涯",
+      "label": "改变我的职业生涯",
+      "aria_label": "改变我的职业生涯",
+      "placeholder": null,
+      "name": null,
+      "id": "hiddenRadio-LEARNING_GOAL_CHANGE_CAREER",
+      "css": "#hiddenRadio-LEARNING_GOAL_CHANGE_CAREER",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#hiddenRadio-LEARNING_GOAL_CHANGE_CAREER"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "在我目前的岗位上成长",
+      "label": "在我目前的岗位上成长",
+      "aria_label": "在我目前的岗位上成长",
+      "placeholder": null,
+      "name": null,
+      "id": "hiddenRadio-LEARNING_GOAL_IMPROVE_SKILLS",
+      "css": "#hiddenRadio-LEARNING_GOAL_IMPROVE_SKILLS",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#hiddenRadio-LEARNING_GOAL_IMPROVE_SKILLS"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "拓展工作外领域",
+      "label": "拓展工作外领域",
+      "aria_label": "拓展工作外领域",
+      "placeholder": null,
+      "name": null,
+      "id": "hiddenRadio-LEARNING_GOAL_PERSONAL_INTEREST",
+      "css": "#hiddenRadio-LEARNING_GOAL_PERSONAL_INTEREST",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#hiddenRadio-LEARNING_GOAL_PERSONAL_INTEREST"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "AI",
+      "label": "",
+      "aria_label": "AI",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R26llalalalqd4q:",
+      "css": "#cds-react-aria-\\:R26llalalalqd4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R26llalalalqd4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "商业",
+      "label": "",
+      "aria_label": "商业",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2allalalalqd4q:",
+      "css": "#cds-react-aria-\\:R2allalalalqd4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2allalalalqd4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "计算机科学与信息技术",
+      "label": "",
+      "aria_label": "计算机科学与信息技术",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2ellalalalqd4q:",
+      "css": "#cds-react-aria-\\:R2ellalalalqd4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2ellalalalqd4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "数据科学",
+      "label": "",
+      "aria_label": "数据科学",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2illalalalqd4q:",
+      "css": "#cds-react-aria-\\:R2illalalalqd4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2illalalalqd4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "健康",
+      "label": "",
+      "aria_label": "健康",
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R2mllalalalqd4q:",
+      "css": "#cds-react-aria-\\:R2mllalalalqd4q\\:",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R2mllalalalqd4q\\:"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "了解更多",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "cta-6Suw4v4d83Fmfnayo7ykXQ",
+      "css": "#cta-6Suw4v4d83Fmfnayo7ykXQ",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#cta-6Suw4v4d83Fmfnayo7ykXQ"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Coursera 是否经过认证，Coursera 证书是否得到雇主的认可？",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R12qralalafqd4q:-accordion-header",
+      "css": "#cds-react-aria-\\:R12qralalafqd4q\\:-accordion-header",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R12qralalafqd4q\\:-accordion-header"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Coursera 证书值得吗？",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R14qralalafqd4q:-accordion-header",
+      "css": "#cds-react-aria-\\:R14qralalafqd4q\\:-accordion-header",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R14qralalafqd4q\\:-accordion-header"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "什么是 Coursera Plus，值得吗？",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R16qralalafqd4q:-accordion-header",
+      "css": "#cds-react-aria-\\:R16qralalafqd4q\\:-accordion-header",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R16qralalafqd4q\\:-accordion-header"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Coursera 是否提供免费在线课程？",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R18qralalafqd4q:-accordion-header",
+      "css": "#cds-react-aria-\\:R18qralalafqd4q\\:-accordion-header",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R18qralalafqd4q\\:-accordion-header"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Coursera 上最受欢迎的课程有哪些？",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R1aqralalafqd4q:-accordion-header",
+      "css": "#cds-react-aria-\\:R1aqralalafqd4q\\:-accordion-header",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R1aqralalafqd4q\\:-accordion-header"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Coursera 如何帮助我找到工作或提升职业生涯？",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R1cqralalafqd4q:-accordion-header",
+      "css": "#cds-react-aria-\\:R1cqralalafqd4q\\:-accordion-header",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R1cqralalafqd4q\\:-accordion-header"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "什么是 Coursera to Business，费用是多少？",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "cds-react-aria-:R1eqralalafqd4q:-accordion-header",
+      "css": "#cds-react-aria-\\:R1eqralalafqd4q\\:-accordion-header",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#cds-react-aria-\\:R1eqralalafqd4q\\:-accordion-header"
+      },
+      "observed_url": "https://www.coursera.org/",
+      "observed_at": "2026-10-09T09:01:22.209Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "coursera:record-lookup",
+      "source_id": "coursera",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.coursera.org/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "探索我们的目录",
+          "label": "",
+          "aria_label": "探索我们的目录",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "探索我们的目录",
+            "exact": true
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "搜索目录",
+          "label": "",
+          "aria_label": "搜索目录",
+          "placeholder": "您想学习什么？",
+          "name": "query",
+          "id": "search-autocomplete-input",
+          "css": "#search-autocomplete-input",
+          "role": "combobox",
+          "form_action": "https://www.coursera.org/",
+          "locator": {
+            "css": "#search-autocomplete-input"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "搜索",
+          "label": "",
+          "aria_label": "搜索",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.coursera.org/",
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "询问 Coursera",
+          "label": "",
+          "aria_label": "询问 Coursera",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "询问 Coursera",
+            "exact": true
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "免费加入",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "免费加入",
+            "exact": true
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "转到课程内容 1",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "转到课程内容 1",
+            "exact": true
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "转到课程内容 2",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "转到课程内容 2",
+            "exact": true
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "转到课程内容 3",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "转到课程内容 3",
+            "exact": true
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "人工智能工程师",
+          "label": "",
+          "aria_label": "人工智能工程师",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R26llalalahqd4q:",
+          "css": "#cds-react-aria-\\:R26llalalahqd4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R26llalalahqd4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "软件开发人员",
+          "label": "",
+          "aria_label": "软件开发人员",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2allalalahqd4q:",
+          "css": "#cds-react-aria-\\:R2allalalahqd4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2allalalahqd4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "数据分析师",
+          "label": "",
+          "aria_label": "数据分析师",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2ellalalahqd4q:",
+          "css": "#cds-react-aria-\\:R2ellalalahqd4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2ellalalahqd4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "项目经理",
+          "label": "",
+          "aria_label": "项目经理",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2illalalahqd4q:",
+          "css": "#cds-react-aria-\\:R2illalalahqd4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2illalalahqd4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "领导力",
+          "label": "",
+          "aria_label": "领导力",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2mllalalahqd4q:",
+          "css": "#cds-react-aria-\\:R2mllalalahqd4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2mllalalahqd4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "数字营销人员",
+          "label": "",
+          "aria_label": "数字营销人员",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2qllalalahqd4q:",
+          "css": "#cds-react-aria-\\:R2qllalalahqd4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2qllalalahqd4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "开始 7 天免费试用",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "cta-3R4mlvjWLj5qNwiOVsHVcv",
+          "css": "#cta-3R4mlvjWLj5qNwiOVsHVcv",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cta-3R4mlvjWLj5qNwiOVsHVcv"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "开始 7 天免费试用",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "cta-6tZ3N3rfRrpvmuLqUdrqwk",
+          "css": "#cta-6tZ3N3rfRrpvmuLqUdrqwk",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cta-6tZ3N3rfRrpvmuLqUdrqwk"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "数据",
+          "label": "",
+          "aria_label": "数据",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R26llalalakad4q:",
+          "css": "#cds-react-aria-\\:R26llalalakad4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R26llalalakad4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "商业",
+          "label": "",
+          "aria_label": "商业",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2allalalakad4q:",
+          "css": "#cds-react-aria-\\:R2allalalakad4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2allalalakad4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "销售与市场营销",
+          "label": "",
+          "aria_label": "销售与市场营销",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2ellalalakad4q:",
+          "css": "#cds-react-aria-\\:R2ellalalakad4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2ellalalakad4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "信息技术",
+          "label": "",
+          "aria_label": "信息技术",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2illalalakad4q:",
+          "css": "#cds-react-aria-\\:R2illalalakad4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2illalalakad4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "软件工程",
+          "label": "",
+          "aria_label": "软件工程",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2mllalalakad4q:",
+          "css": "#cds-react-aria-\\:R2mllalalakad4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2mllalalakad4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "开始我的职业生涯",
+          "label": "开始我的职业生涯",
+          "aria_label": "开始我的职业生涯",
+          "placeholder": null,
+          "name": null,
+          "id": "hiddenRadio-LEARNING_GOAL_LAND_NEW_JOB",
+          "css": "#hiddenRadio-LEARNING_GOAL_LAND_NEW_JOB",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#hiddenRadio-LEARNING_GOAL_LAND_NEW_JOB"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "改变我的职业生涯",
+          "label": "改变我的职业生涯",
+          "aria_label": "改变我的职业生涯",
+          "placeholder": null,
+          "name": null,
+          "id": "hiddenRadio-LEARNING_GOAL_CHANGE_CAREER",
+          "css": "#hiddenRadio-LEARNING_GOAL_CHANGE_CAREER",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#hiddenRadio-LEARNING_GOAL_CHANGE_CAREER"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "在我目前的岗位上成长",
+          "label": "在我目前的岗位上成长",
+          "aria_label": "在我目前的岗位上成长",
+          "placeholder": null,
+          "name": null,
+          "id": "hiddenRadio-LEARNING_GOAL_IMPROVE_SKILLS",
+          "css": "#hiddenRadio-LEARNING_GOAL_IMPROVE_SKILLS",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#hiddenRadio-LEARNING_GOAL_IMPROVE_SKILLS"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "拓展工作外领域",
+          "label": "拓展工作外领域",
+          "aria_label": "拓展工作外领域",
+          "placeholder": null,
+          "name": null,
+          "id": "hiddenRadio-LEARNING_GOAL_PERSONAL_INTEREST",
+          "css": "#hiddenRadio-LEARNING_GOAL_PERSONAL_INTEREST",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#hiddenRadio-LEARNING_GOAL_PERSONAL_INTEREST"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "AI",
+          "label": "",
+          "aria_label": "AI",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R26llalalalqd4q:",
+          "css": "#cds-react-aria-\\:R26llalalalqd4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R26llalalalqd4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "商业",
+          "label": "",
+          "aria_label": "商业",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2allalalalqd4q:",
+          "css": "#cds-react-aria-\\:R2allalalalqd4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2allalalalqd4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "计算机科学与信息技术",
+          "label": "",
+          "aria_label": "计算机科学与信息技术",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2ellalalalqd4q:",
+          "css": "#cds-react-aria-\\:R2ellalalalqd4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2ellalalalqd4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "数据科学",
+          "label": "",
+          "aria_label": "数据科学",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2illalalalqd4q:",
+          "css": "#cds-react-aria-\\:R2illalalalqd4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2illalalalqd4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "健康",
+          "label": "",
+          "aria_label": "健康",
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R2mllalalalqd4q:",
+          "css": "#cds-react-aria-\\:R2mllalalalqd4q\\:",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R2mllalalalqd4q\\:"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "了解更多",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "cta-6Suw4v4d83Fmfnayo7ykXQ",
+          "css": "#cta-6Suw4v4d83Fmfnayo7ykXQ",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cta-6Suw4v4d83Fmfnayo7ykXQ"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Coursera 是否经过认证，Coursera 证书是否得到雇主的认可？",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R12qralalafqd4q:-accordion-header",
+          "css": "#cds-react-aria-\\:R12qralalafqd4q\\:-accordion-header",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R12qralalafqd4q\\:-accordion-header"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Coursera 证书值得吗？",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R14qralalafqd4q:-accordion-header",
+          "css": "#cds-react-aria-\\:R14qralalafqd4q\\:-accordion-header",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R14qralalafqd4q\\:-accordion-header"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "什么是 Coursera Plus，值得吗？",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R16qralalafqd4q:-accordion-header",
+          "css": "#cds-react-aria-\\:R16qralalafqd4q\\:-accordion-header",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R16qralalafqd4q\\:-accordion-header"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Coursera 是否提供免费在线课程？",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R18qralalafqd4q:-accordion-header",
+          "css": "#cds-react-aria-\\:R18qralalafqd4q\\:-accordion-header",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R18qralalafqd4q\\:-accordion-header"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Coursera 上最受欢迎的课程有哪些？",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R1aqralalafqd4q:-accordion-header",
+          "css": "#cds-react-aria-\\:R1aqralalafqd4q\\:-accordion-header",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R1aqralalafqd4q\\:-accordion-header"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Coursera 如何帮助我找到工作或提升职业生涯？",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R1cqralalafqd4q:-accordion-header",
+          "css": "#cds-react-aria-\\:R1cqralalafqd4q\\:-accordion-header",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R1cqralalafqd4q\\:-accordion-header"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "什么是 Coursera to Business，费用是多少？",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "cds-react-aria-:R1eqralalafqd4q:-accordion-header",
+          "css": "#cds-react-aria-\\:R1eqralalafqd4q\\:-accordion-header",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cds-react-aria-\\:R1eqralalafqd4q\\:-accordion-header"
+          },
+          "observed_url": "https://www.coursera.org/",
+          "observed_at": "2026-10-09T09:01:22.209Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "coursera",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:01:22.703Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/coursera-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/coursera-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

@@ -1,38 +1,53 @@
-## Description: <br>
-Manages a code-task workflow by coordinating research, coding, review, security audit, testing, and commit stages with board and planner updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages code task workflow by coordinating research, coding, review, security audit, testing, and commit stages with logging and planner updates.
 
-## Publisher: <br>
-[Curbob](https://clawhub.ai/user/Curbob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[curbob](https://clawhub.ai/user/curbob)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to run code changes through a structured pipeline with role-specific research, implementation, review, security, test, and commit responsibilities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks agents to broadly share an auth profile and always post status updates to a board service without enough scoping or user control. <br>
-Mitigation: Use only in a trusted development environment, replace blanket auth-profile copying with per-role or temporary credentials, and confirm the board endpoint and update behavior before running the workflow. <br>
-Risk: The workflow includes branch creation, commit, and push behavior that can affect a repository. <br>
-Mitigation: Confirm the target repository, branch name, planner target, and push behavior before allowing the commit stage to proceed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineering agents use this skill to run a staged code-task workflow with specialized roles for implementation, review, security checks, testing, and release notes.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown workflow instructions with inline commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes prescribed stage order, role responsibilities, board logging, planner updates, branch naming, and commit guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sub-agents may receive broader credentials than they need.
+
+Mitigation: Use role-scoped, short-lived credentials instead of copying the main auth profile.
+
+Risk: Plaintext board logging to a fixed internal endpoint may expose secrets or confidential implementation details.
+
+Mitigation: Use a configurable HTTPS board endpoint and redact secrets and confidential details before logging.
+
+## Reference(s):
+
+- [Agent Pipeline skill page](https://clawhub.ai/curbob/skills/agent-pipeline)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown workflow guidance with inline commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-specific agent instructions, board update requests, branch naming guidance, and planner update guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

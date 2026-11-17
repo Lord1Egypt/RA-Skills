@@ -1,42 +1,56 @@
-## Description: <br>
-Provides summaries and status updates for public Youku short-drama channels and episodes, including rankings, themes, cast information, and public-page metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides summaries and status updates for public Youku short drama channels and episodes, including rankings, themes, cast information, and related public-page metadata.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and analysts use this skill to summarize public Youku short-drama channel and episode pages for lightweight trend review, ranking analysis, cast summaries, and status updates. The ClawHub listing is TikTok-facing, but the artifact and server security evidence describe Youku-focused public-page summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The listing name and slug are TikTok-facing while the artifact describes Youku short-drama analysis. <br>
-Mitigation: Confirm the intended platform before installing or using the skill; use it only for the public Youku-page workflow described by the artifact unless the publisher updates the release evidence. <br>
-Risk: Public-page trend analysis can become non-compliant if used for high-volume scraping, downloading, or reverse engineering. <br>
-Mitigation: Keep use lightweight, human-triggered, and limited to public pages; do not download content, bypass platform controls, call private APIs, or bulk collect data. <br>
+## Use Case:
 
+Developers and content analysts use this skill to summarize publicly available Youku short-drama pages, ranking lists, update status, themes, comments, and cast metadata for lightweight analysis and alerts.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/codenova58/tiktok-minis) <br>
-- [Youku homepage](https://www.youku.com/) <br>
-- [Youku search](https://so.youku.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise text or Markdown summaries of public-page information.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Human-triggered public-page analysis only; no credentials, downloads, API reverse engineering, or bulk scraping are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Use outside platform rules could trigger rate limits, human verification, or other access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use lightweight, human-triggered, and limited to public pages while respecting Youku's platform rules.
+
+Risk: Attempts to download content, bypass controls, call private APIs, or bulk scrape would exceed the evidenced skill boundary.
+
+Mitigation: Use the skill only for public-page lookup and summarization; do not use it for downloads, reverse engineering, API access, or bulk collection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/tiktok-minis)
+- [Publisher profile](https://clawhub.ai/user/codenova58)
+- [Youku homepage](https://www.youku.com/)
+- [Youku search](https://so.youku.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain-language summaries with links and extracted public-page fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include drama titles, update status, episode lists, summaries, cast, ratings or comments, ranking names, collection time, and source links.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

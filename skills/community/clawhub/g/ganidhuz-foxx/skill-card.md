@@ -1,42 +1,58 @@
-## Description: <br>
-Ganidhuz-FoxX lets an agent browse X/Twitter through Firefox with a logged-in session for profile viewing, tweet fetching, search, scrolling, screenshots, and content extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ganidhuz-FoxX lets an agent browse X/Twitter through a logged-in Firefox session by exporting Firefox cookies and running Playwright browser plans for profiles, tweets, searches, screenshots, and page text.
 
-## Publisher: <br>
-[Ganidhuz](https://clawhub.ai/user/Ganidhuz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ganidhuz](https://clawhub.ai/user/ganidhuz)
 
-## Use Case: <br>
-Developers and agents use this skill to control Firefox with a logged-in X/Twitter session when they need browser-based access to profiles, tweets, searches, screenshots, or selected page text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a real logged-in X/Twitter session and operate with that account's access. <br>
-Mitigation: Use a dedicated Firefox profile and, ideally, a dedicated X account for agent-driven browsing. <br>
-Risk: Exported cookies, storage-state files, screenshots, and temporary cookie database copies can expose session or account data. <br>
-Mitigation: Delete or tightly protect those files after each run, including the exported cookie JSON and /tmp cookie database copy. <br>
-Risk: Browser automation steps such as click, fill, type, and press can make interactive account changes. <br>
-Mitigation: Inspect every plan before execution and avoid interactive actions unless account changes are intended. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect X/Twitter pages with an existing logged-in Firefox session when API access is unavailable or unsuitable. It supports profile viewing, tweet retrieval, live search, scrolling feeds, screenshots, and extracting selected page text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ganidhuz/ganidhuz-foxx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Files, Text] <br>
-**Output Format:** [Markdown usage guidance, JSON plan inputs and results, screenshot files, and extracted page text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Firefox profile with an active X/Twitter login and optional exported cookies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reusable X/Twitter session cookies can expose account access if cookie or storage-state files are leaked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat `secrets/x-cookies.json` and any storage-state file as sensitive account data, store them only in protected locations, and prefer a disposable X/Twitter account.
+
+Risk: Plan files can drive browser actions while authenticated to X/Twitter.
+
+Mitigation: Run only trusted plans, review target URLs and actions before execution, and prefer a version that limits navigation to X/Twitter and disables write actions by default.
+
+Risk: Screenshots and extracted page text may contain private account, feed, or session-adjacent information.
+
+Mitigation: Confine outputs to a protected directory and avoid sharing screenshots, extracted text, or validation artifacts unless they have been reviewed for sensitive content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ganidhuz/skills/ganidhuz-foxx)
+- [Publisher Profile](https://clawhub.ai/user/ganidhuz)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown instructions with shell commands and JSON plan examples; runtime output is JSON with optional screenshots, storage state, and extracted page text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python, Playwright, Firefox, an active X/Twitter login, and careful handling of exported cookie and storage-state files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

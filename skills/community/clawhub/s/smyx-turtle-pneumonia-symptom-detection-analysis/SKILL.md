@@ -1,7 +1,7 @@
 ---
 name: "smyx-turtle-pneumonia-symptom-detection-analysis"
 description: "Through fixed enclosure cameras, the system analyzes mouth and nasal videos of turtles to detect abnormally frequent open-mouth breathing in non-feeding states (mouth opening frequency unusually elevated), as well as the presence of mucus (reflective spots or strands) or nasal discharge around the mouth and nose. | 通过龟缸固定摄像头，分析龟类的口鼻部视频，检测龟在非进食状态下（未摄食时）口部频繁开合（张嘴呼吸，频率异常增高），以及口鼻区域是否有黏液（反光点或丝状物）或鼻腔分泌物。当同时或单独出现上述症状时，输出'肺炎风险提示'，提醒饲养者检查环境温度、水质，并及时隔离治疗。"
-version: "1.0.4"
+version: "1.0.21"
 license: "MIT-0"
 ---
 

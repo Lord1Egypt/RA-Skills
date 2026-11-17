@@ -1,42 +1,57 @@
-## Description: <br>
-Explore cruise products and filter options to find trips that match travel needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents find cruise products by filtering product lists, retrieving product details, and searching by keyword.
 
-## Publisher: <br>
-[309441738](https://clawhub.ai/user/309441738) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[309441738](https://clawhub.ai/user/309441738)
 
-## Use Case: <br>
-Travel planners and agent users use this skill to search cruise products, filter lists by brand, departure city, destination, date, trip duration, ship, and price, and retrieve product details by product ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Cruise search queries and product identifiers are sent to a remote MCP gateway and may be counted for provider statistics. <br>
-Mitigation: Use the skill for non-sensitive cruise discovery, and avoid personal, payment, or confidential travel details unless the publisher provides clear data-handling terms. <br>
+## Use Case:
 
+External users and travel-support agents use this MCP skill to browse cruise offerings, narrow choices by trip criteria, look up product details, and search products by keyword.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/309441738/skills/cruise-product-2) <br>
-- [Publisher profile](https://clawhub.ai/user/309441738) <br>
-- [MCP server connection guide](references/mcp.md) <br>
-- [CruiseSkillBridge](https://cruiseskillbridge.com) <br>
-- [Model Context Protocol server schema](https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Configuration] <br>
-**Output Format:** [MCP tool responses and remote server configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a remote streamable HTTP MCP gateway; security evidence found no local executable code or hidden persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact frontmatter and server.json report 0.1.0) <br>
+Risk: The published instructions include a generic httpbin POST endpoint that is unrelated to the cruise MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send real travel details, credentials, payment information, or conversation history to the placeholder endpoint; use the documented Cruise MCP gateway only after review.
+
+Risk: The security verdict is suspicious because the skill documentation mixes the intended MCP endpoint with a test endpoint.
+
+Mitigation: Require publisher cleanup and documentation of transmitted and logged data before installing in workflows that handle user or business information.
+
+## Reference(s):
+
+- [MCP Server 接入](references/mcp.md)
+- [CruiseSkillBridge](https://cruiseskillbridge.com)
+- [ClawHub Skill Page](https://clawhub.ai/309441738/skills/cruise-product-2)
+- [MCP server schema](https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json)
+- [Cruise MCP gateway](https://cruise-mcp.olavacations.com/api/gw/mcp/3ae0fa3d-2c56-4d01-be01-14ee8463cf04)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API Calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance with MCP tool calls and JSON request or response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include cruise product lists, product-detail lookups, and keyword search results from the configured MCP endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter and server.json report 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

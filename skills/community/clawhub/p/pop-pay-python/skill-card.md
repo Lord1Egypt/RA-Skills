@@ -1,45 +1,59 @@
-## Description: <br>
-Your card stays on your PC with no SaaS, login, or external account, and credentials inject directly while staying out of the AI's context window. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gives an OpenClaw agent the ability to fill checkout and payment forms using a locally stored credit card without exposing card credentials to the agent context.
 
-## Publisher: <br>
-[tpemist](https://clawhub.ai/user/tpemist) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tpemist](https://clawhub.ai/user/tpemist)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw agent fill billing details and request constrained card injection during online checkout while applying local spend policy and guardrail checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can reach real-money checkout with automatic card injection and human approval disabled by default. <br>
-Mitigation: Set POP_REQUIRE_HUMAN_APPROVAL=true, consider POP_AUTO_INJECT=false, and configure tight per-transaction, daily, and vendor/category limits before use. <br>
-Risk: A checkout page or merchant flow could still mislead the agent about the merchant, cart, amount, or final order action. <br>
-Mitigation: Manually verify the merchant, cart contents, amount, and final submit button before any purchase is submitted. <br>
-Risk: Optional LLM guardrails or webhook notifications can send transaction-related data to the user's chosen API provider or endpoint. <br>
-Mitigation: Use the default keyword guardrail for local-only checks unless external processing is intentional, and configure only trusted webhook endpoints. <br>
+## Use Case:
 
+Developers and external users can use this skill to let an OpenClaw agent complete online checkout flows with local payment credentials, spend limits, merchant allowlists, and optional human approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tpemist/pop-pay-python) <br>
-- [Publisher profile](https://clawhub.ai/user/tpemist) <br>
-- [Project homepage](https://github.com/TPEmist/Point-One-Percent) <br>
-- [PyPI package](https://pypi.org/project/pop-pay/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell snippets, JSON configuration, and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing tool responses include approval or rejection status and reasons; approved checkout fields are injected locally rather than returned to the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.23 (source: frontmatter and server release metadata) <br>
+Risk: The default workflow can allow an agent to inject payment details and submit purchases without per-transaction human approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set POP_AUTO_INJECT=false and POP_REQUIRE_HUMAN_APPROVAL=true before use.
+
+Risk: Payment automation can spend from the user's existing credit card if limits or allowed merchants are too broad.
+
+Mitigation: Use low POP_MAX_AMOUNT_PER_TX and POP_MAX_DAILY_BUDGET values, and restrict POP_ALLOWED_CATEGORIES to explicit merchants or domains you trust.
+
+Risk: Installing an unpinned package can expose users to unexpected package changes.
+
+Mitigation: Install a pinned, verified pop-pay package version in a contained environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tpemist/skills/pop-pay-python)
+- [Project homepage](https://github.com/TPEmist/Point-One-Percent)
+- [PyPI package](https://pypi.org/project/pop-pay/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell, JSON, environment variable, and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool responses include approval or rejection status and may trigger local browser form injection when configured.]
+
+## Skill Version(s):
+
+0.6.23 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

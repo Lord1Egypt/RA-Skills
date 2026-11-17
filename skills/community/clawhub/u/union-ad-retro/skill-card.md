@@ -1,43 +1,56 @@
-## Description: <br>
-UnionSkill复古怀旧广告PPT。图像型工作流：内容分析→大纲确认→逐页生图→PPTX装配。适合文化展示、餐饮推介、文创项目。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Union Ad Retro turns documents, ideas, or notes into UnionSkill-branded retro presentation assets through content analysis, user-confirmed outlines, per-slide image generation, and PPTX assembly.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-External users and developers use this skill to turn documents, notes, or presentation ideas into UnionSkill-branded retro advertising decks for cultural showcases, restaurant promotions, creative projects, business pitches, exhibitions, and proposals. The workflow requires outline confirmation before generating slide images and assembling the PPTX. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow runs PPTX assembly against local image directories and output paths. <br>
-Mitigation: Confirm the intended image directory, topic, and output path before running assembly commands. <br>
-Risk: Generated slide images may contain incorrect or unreadable text, especially for Chinese headings. <br>
-Mitigation: Review every generated slide image and the final PPTX before delivery. <br>
-Risk: The workflow is explicitly UnionSkill-branded and adds watermarks, metadata, and a brand tail page. <br>
-Mitigation: Use a different PPT workflow for non-UnionSkill or unbranded deliverables. <br>
+## Use Case:
 
+Marketing, business development, and content teams use this skill to create UnionSkill-branded retro advertising decks for cultural showcases, restaurant pitches, creative projects, roadshows, exhibitions, and client proposals.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/timo2026/union-ad-retro) <br>
-- [Retro vintage style guide](artifact/references/style_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated file paths, and optional structured run results from the assembler script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce slide PNGs, an image ZIP archive, a UnionSkill-branded PPTX, a cooperation note, and an optional full-screen HTML deck when the agent has the required image generation and PPTX assembly tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated deliverables include UnionSkill branding, watermarks, and presentation metadata by design.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when UnionSkill branding is acceptable; choose a different PPT workflow for unbranded or compliance-sensitive client deliverables.
+
+Risk: The PPTX assembly step depends on a sibling ppt-generator assembler that is not included in the artifact evidence.
+
+Mitigation: Review or control the assembler before execution, run it in an isolated environment, and verify the final PPTX metadata and visible branding before delivery.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/timo2026/skills/union-ad-retro)
+- [Publisher profile](https://clawhub.ai/user/timo2026)
+- [Retro style guide](artifact/references/style_guide.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance, generated slide image files, a PPTX deck, a ZIP archive of images, a partner information text file, and optionally an HTML full-screen presentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation of the outline before image generation; deliverables include UnionSkill branding, watermarks, and presentation metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

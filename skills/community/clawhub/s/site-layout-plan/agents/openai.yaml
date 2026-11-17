@@ -1,0 +1,6 @@
+interface:
+  display_name: "施工平面布置图"
+  short_description: "从 CAD 识图契约生成施工总平面 A/B/C 候选、三阶段校核与 DXF/PNG 出图；不替代审批"
+  default_prompt: "使用 $site-layout-plan 读取 cad-file-reader 契约，生成施工平面布置候选并列出需人工复核的规则项。"
+  icon_small: "icons/icon_small.png"
+  icon_large: "icons/icon_large.png"

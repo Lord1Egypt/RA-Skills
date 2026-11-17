@@ -1,38 +1,51 @@
-## Description: <br>
-X (Twitter) algorithm rules & viral strategies for AI agents. Boost engagement, avoid reach death. Works with Cursor, Claude, ChatGPT, Copilot. Vibe-coding ready. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X Algorithm provides X (Twitter) algorithm rules, viral strategies, and article best practices for AI agents drafting social-media content.
 
-## Publisher: <br>
-[NextFrontierBuilds](https://clawhub.ai/user/NextFrontierBuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nextfrontierbuilds](https://clawhub.ai/user/nextfrontierbuilds)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to guide AI agents in drafting engagement-oriented X/Twitter posts, threads, and article structures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage aggressive engagement tactics such as urgency, FOMO, controversy, or reply-focused growth tactics. <br>
-Mitigation: Review outputs before publishing and ensure posts comply with platform rules and brand standards. <br>
+## Use Case:
 
+External creators, marketers, developers, and AI agents use this skill to plan X posts, threads, articles, and engagement tactics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NextFrontierBuilds/x-algorithm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and draft social media content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; review generated posts before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: Users may treat social-media growth claims and engagement tactics as verified platform rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the guidance as marketing advice and keep any public posting under explicit user review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nextfrontierbuilds/skills/x-algorithm)
+- [Publisher Profile](https://clawhub.ai/user/nextfrontierbuilds)
+- [Author X Profile](https://x.com/NextXFrontier)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with checklists, tables, and example post patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational guidance only; no executable code or API calls.]
+
+## Skill Version(s):
+
+1.0.3 (source: SKILL.md frontmatter, package.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

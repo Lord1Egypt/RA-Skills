@@ -1,40 +1,53 @@
-## Description: <br>
-Analyzes an existing project to produce a detailed, structured report on its architecture, patterns, technical debt, and key areas for downstream work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes an existing project to produce a detailed, structured report on its architecture, patterns, technical debt, and key areas for downstream work.
 
-## Publisher: <br>
-[cankocakulak](https://clawhub.ai/user/cankocakulak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cankocakulak](https://clawhub.ai/user/cankocakulak)
 
-## Use Case: <br>
-Developers and downstream agents use Analyzer when starting work on an existing or unfamiliar codebase, especially before feature planning, onboarding, or product requirements work. It creates a repository-level project snapshot with structure, conventions, risks, opportunities, and a handoff contract. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The analysis can include sensitive implementation details from the selected repository. <br>
-Mitigation: Choose the project_path deliberately and review the generated analysis before sharing it or using it as downstream agent context. <br>
-Risk: Downstream agents may rely on an incomplete or outdated project snapshot. <br>
-Mitigation: Review the analysis for accuracy and refresh it when the codebase changes materially. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect existing repositories and produce a structured analysis artifact for downstream planning, product, and implementation agents.
 
-## Reference(s): <br>
-- [Analyzer ClawHub listing](https://clawhub.ai/cankocakulak/analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis document with a machine-readable YAML summary and handoff contract] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes docs/[project-name]/analysis.md when used as directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: Project contents may be summarized into a local analysis document, including sensitive details if the analyzed repository contains them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on repositories appropriate for local documentation and review the generated analysis before sharing it.
+
+Risk: The skill creates or updates documentation under docs/.
+
+Mitigation: Review the generated docs/[project-name]/analysis.md before committing or distributing the artifact.
+
+## Reference(s):
+
+- [Analyzer ClawHub listing](https://clawhub.ai/cankocakulak/skills/analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown document with a machine-readable YAML summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates docs/[project-name]/analysis.md as a downstream-agent reference artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

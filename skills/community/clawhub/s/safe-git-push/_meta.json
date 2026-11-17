@@ -1,0 +1,21 @@
+{
+  "description": "Provides safety-focused guidance for pushing a selected workspace project to GitHub without accidentally publishing unrelated or sensitive files.",
+  "publisher": "huanmeng9527",
+  "license": "MIT-0",
+  "useCase": "Developers and agent operators use this skill when publishing workspace files to GitHub, GitLab, or Bitbucket from a shared or parent Git repository. It helps verify repository boundaries, stage only intended files, configure basic ignore rules, and use a GitHub Contents API fallback when ordinary git push repeatedly times out.",
+  "deploymentGeography": "Global",
+  "risks": [
+    {
+      "risk": "Workspace files could be published with secrets, unrelated projects, or large generated folders if the wrong directory or staged file list is used.",
+      "mitigation": "Confirm the exact target directory, repository visibility, and explicit staged file list before pushing; inspect git status for secrets and unrelated files."
+    },
+    {
+      "risk": "A project inside a parent Git repository could pollute the parent history or expose files outside the intended project.",
+      "mitigation": "Compare the Git top-level directory with the target directory and initialize an isolated repository when the target is nested inside a parent repository."
+    }
+  ],
+  "output": {
+    "types": ["text", "markdown", "shell commands", "configuration", "guidance"],
+    "format": "Markdown guidance with shell command examples and checklists"
+  }
+}

@@ -1,45 +1,60 @@
-## Description: <br>
-Tracks job applications from discovery to offer, flags stale applications, and helps draft follow-ups, cover letters, interview prep, and salary negotiation materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks job applications in a local markdown file, flags follow-ups, and helps draft outreach, prepare for interviews, recommend resume variants, and analyze offers.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-External users managing an active job search use this skill to keep application status, contacts, follow-up dates, and offer details organized while generating job-search communications and preparation materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connected Gmail, LinkedIn, browser, or web-search tools may expose sensitive inbox content, job history, salary details, offer details, and recruiter contacts. <br>
-Mitigation: Install only with tools the user is comfortable connecting; use tracker-only mode by not connecting Gmail or LinkedIn when lower exposure is preferred. <br>
-Risk: Applications discovered from Gmail or LinkedIn could be added incorrectly if external findings are treated as authoritative without user review. <br>
-Mitigation: Present externally discovered applications to the user and wait for explicit confirmation before adding them to the tracker. <br>
-Risk: The local tracker and generated drafts can contain sensitive job-search and compensation information. <br>
-Mitigation: Keep writes scoped to the current working directory, avoid including sensitive tracker fields in drafts unless requested, and require consent before destructive edits. <br>
+## Use Case:
 
+External job seekers use this skill to maintain a local job-search tracker, monitor stalled applications, prepare for interviews, and draft job-search communications with optional Gmail, LinkedIn, browser, and web-search context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chris-openclaw/job-search-tracker) <br>
-- [README](README.md) <br>
-- [Changelog](CHANGELOG.md) <br>
-- [Evaluation cases](evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown tracker files, dashboard summaries, job-search drafts, analysis, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local applications.md, resumes/ metadata, dashboards, and drafts in the user's working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: frontmatter, README, CHANGELOG, and server release evidence) <br>
+Risk: The tracker may contain sensitive job-search history, recruiter contacts, salary ranges, and offer details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable keeping that data in a local tracker, and store the tracker in a user-controlled working directory.
+
+Risk: Optional Gmail, LinkedIn, browser, and web-search workflows may access private account data or external pages through connected tools.
+
+Mitigation: Use tracker-only mode by leaving Gmail or LinkedIn tools disconnected unless needed, and review connected-tool permissions before enabling them.
+
+Risk: Externally discovered applications or follow-ups could be logged incorrectly without user review.
+
+Mitigation: Require explicit confirmation before writing externally discovered items or follow-up logs to the tracker.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chris/skills/job-search-tracker)
+- [Publisher profile](https://clawhub.ai/user/chris)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown tracker updates, dashboard summaries, email and cover-letter drafts, interview prep briefs, and negotiation guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local tracker, resume, draft, and dashboard files in the current working directory when appropriate.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter, changelog released 2026-06-08, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

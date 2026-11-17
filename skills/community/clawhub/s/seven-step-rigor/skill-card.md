@@ -1,38 +1,52 @@
-## Description: <br>
-Seven-Step Rigor guides agents through a strict improvement sequence: clarify the outcome, delete unnecessary work, simplify what remains, accelerate feedback, automate stable tasks, validate end to end, and keep human updates brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces a strict seven-step improvement process that clarifies the goal, considers deletion before optimization, simplifies before acceleration, automates only stable work, favors end-to-end validation, and keeps human updates brief.
 
-## Publisher: <br>
-[desmondforward](https://clawhub.ai/user/desmondforward) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[desmondforward](https://clawhub.ai/user/desmondforward)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and operators use this skill when improving workflows, prompts, processes, architectures, or operating modes so the agent clarifies success, considers deletion and simplification before automation, and validates with concise checkpoints.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill encourages deletion of process steps, tests, approvals, dependencies, or gates during improvement work.
+
+Mitigation: Review proposed removals before applying them in sensitive workflows, especially when they affect safety, approvals, dependencies, or validation coverage.
+
+Risk: A strict improvement sequence can delay automation or optimization even when the user expects immediate implementation.
+
+Mitigation: Confirm the intended outcome and smallest success test before applying the sequence, and compress the process for small tasks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and process owners use this skill to structure improvement work for workflows, prompts, processes, architectures, and operating modes. It is most useful when work needs deletion and simplification discipline before optimization or automation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Text, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested deletion, simplification, or automation changes may affect important systems or business processes if applied without review. <br>
-Mitigation: Review proposed changes before applying them, validate against the stated success test, and keep automation reversible and inspectable. <br>
+**Output Format:** [Concise natural-language guidance and Markdown checkpoints]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/desmondforward/seven-step-rigor) <br>
+**Other Properties Related to Output:** [No code execution or external tool output is produced by the skill itself.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with ordered checklists and concise status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured improvement guidance; it does not add code, data access, persistence, or install-time behavior.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

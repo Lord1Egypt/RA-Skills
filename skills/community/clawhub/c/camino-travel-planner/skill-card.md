@@ -1,44 +1,59 @@
-## Description: <br>
-Plan complete day trips, walking tours, and multi-stop itineraries with time budgets using Camino AI's journey planning and route optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan complete day trips, walking tours, and multi-stop itineraries with time budgets using Camino AI's journey planning and route optimization.
 
-## Publisher: <br>
-[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to plan walking tours, day trips, and multi-stop itineraries with transport preferences and time budgets. The skill calls Camino's journey service with waypoint coordinates, stop purposes, and trip constraints, then returns route feasibility and optimization details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Waypoint coordinates, stop names, trip constraints, and route preferences are sent to Camino's service. <br>
-Mitigation: Avoid sending sensitive home, workplace, medical, or private-trip details unless Camino's data handling is acceptable for the use case. <br>
-Risk: The skill requires a Camino API key and shells out to curl. <br>
-Mitigation: Store CAMINO_API_KEY in the agent environment rather than prompts or shared files, and review the command before execution. <br>
-Risk: The release is part of a larger Camino companion suite. <br>
-Mitigation: Install only camino-travel-planner unless the broader Camino location-intelligence skill set is intentionally needed. <br>
+## Use Case:
 
+Travelers, travel planners, and agents use this skill to plan day trips, walking tours, business meeting routes, and multi-stop itineraries from waypoint JSON and travel constraints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/james-southendsolutions/camino-travel-planner) <br>
-- [Camino API key activation](https://app.getcamino.ai/skills/activate) <br>
-- [Camino journey API endpoint](https://api.getcamino.ai/journey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAMINO_API_KEY plus curl and jq; sends waypoint coordinates, stop names, trip constraints, and route preferences to Camino.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Waypoint details, route purposes, preferences, and trip constraints are sent to Camino's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for itineraries you are comfortable sending to Camino, and avoid sensitive locations unless that sharing is approved.
+
+Risk: The skill requires CAMINO_API_KEY in the local agent environment or settings.
+
+Mitigation: Store the key only in trusted local configuration, do not commit it to source control, and rotate it if exposure is suspected.
+
+Risk: Generated route feasibility, distance, and travel-time analysis may be incomplete or outdated for real-world conditions.
+
+Mitigation: Review the itinerary before acting on it and confirm critical travel details with an authoritative navigation or travel source.
+
+## Reference(s):
+
+- [ClawHub Travel Planner Skill Page](https://clawhub.ai/james-southendsolutions/skills/camino-travel-planner)
+- [Camino API Key Activation](https://app.getcamino.ai/skills/activate)
+- [Camino Journey API Endpoint](https://api.getcamino.ai/journey)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON route-planning response with feasibility, distance, travel time, route segments, and analysis fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires waypoint JSON with at least two stops; optional constraints include transport mode, time budget, and route preferences.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

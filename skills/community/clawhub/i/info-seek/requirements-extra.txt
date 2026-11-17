@@ -1,0 +1,4 @@
+# Infoseek 可选依赖（高级浏览器抓取 / 4 级降级 L2/L4）
+# 用法: pip install -r requirements-extra.txt
+# 未安装时，抓取自动降级到 L1（静态 HTML）/ L3（凭证辅助），不影响核心流程。
+playwright>=1.44     # 反爬兜底 + 多媒体处理（浏览器渲染 + OCR）

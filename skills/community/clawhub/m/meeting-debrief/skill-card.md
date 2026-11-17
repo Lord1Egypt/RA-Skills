@@ -1,42 +1,58 @@
-## Description: <br>
-Process meeting transcripts to extract action items, recommendations, key topics, relationships, and generate Excalidraw visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process meeting transcripts to extract action items, recommendations, key topics, relationships, and generate Excalidraw visualizations.
 
-## Publisher: <br>
-[adawodu](https://clawhub.ai/user/adawodu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adawodu](https://clawhub.ai/user/adawodu)
 
-## Use Case: <br>
-People reviewing meeting transcripts use this skill to turn raw conversation notes into a structured debrief with key topics, entities, action items, recommendations, and an Excalidraw relationship map. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts and generated debriefs may contain sensitive business or personal information. <br>
-Mitigation: Use the skill only in an appropriate workspace and review generated files before sharing them. <br>
-Risk: Optional CRM follow-up could create or change contacts, notes, deals, tags, or fields. <br>
-Mitigation: Approve CRM actions only after checking the exact records and fields that would be created or changed. <br>
-Risk: Generated summaries, recommendations, or relationship maps may be incomplete or misleading if the transcript is incomplete or ambiguous. <br>
-Mitigation: Review the debrief and Excalidraw file against the original transcript before relying on them. <br>
+## Use Case:
 
+Employees, external collaborators, and developers use this skill to turn meeting transcripts or notes into structured debriefs with topics, entities, action items, strategic recommendations, and a visual meeting map.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adawodu/meeting-debrief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown summary plus Excalidraw JSON file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a meeting-debrief-[participant]-[YYYY-MM-DD].excalidraw file; optional CRM updates require user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Meeting transcripts may contain confidential participant, company, financial, or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review transcript handling and limit shared or saved content to information approved for the workspace.
+
+Risk: The skill saves a local Excalidraw file derived from the meeting.
+
+Mitigation: Review the generated diagram before sharing and store or delete it according to meeting confidentiality requirements.
+
+Risk: Optional CRM updates can send meeting-derived details to HubSpot or Zoho.
+
+Mitigation: Before accepting CRM actions, confirm the destination account and exact contacts, notes, deals, and tags to create or update.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adawodu/skills/meeting-debrief)
+- [Publisher profile](https://clawhub.ai/user/adawodu)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Markdown debrief with tables and recommendations, plus a generated Excalidraw JSON file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally propose CRM contact, note, deal, or tag updates when HubSpot or Zoho tools are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

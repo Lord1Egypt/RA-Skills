@@ -1,37 +1,52 @@
-## Description: <br>
-Design or audit prosocial experiences in session-based multiplayer games using a three-phase chapter model built around Setup, Little Loops, and Long Tail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design or audit prosocial experiences in session-based multiplayer games using a three-phase chapter model built around Setup, Little Loops, and Long Tail.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[stanestane](https://clawhub.ai/user/stanestane)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Game designers, UX designers, and multiplayer product teams use this skill to audit or plan prosocial features for session-based games, including setup flows, repeatable in-session helping loops, and post-session social memory.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Design recommendations may misdiagnose social problems if applied without player research or operational context.
+
+Mitigation: Validate recommendations against playtests, telemetry, community feedback, and the team's trust and safety review process before shipping design changes.
+
+Risk: The framework is weaker for persistent sandbox worlds, mostly solitary or asynchronous games, and broad moderation governance problems.
+
+Mitigation: Confirm the target is a repeat-session multiplayer experience and use the framework selectively when the fit is weak.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Game designers, multiplayer systems designers, and product teams use this skill to audit or plan session-based multiplayer loops for prosocial setup, repeatable cooperative actions, and post-session social continuity. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential design documents, player data, or private moderation records when asking for analysis. <br>
-Mitigation: Use sanitized or approved excerpts and follow organizational privacy rules before sharing sensitive game or player information with the agent. <br>
+**Output Format:** [Markdown structured assessment]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces a target definition, framework-fit judgment, chapter-by-chapter assessment, prosocial arc diagnosis, priority interventions, and use-case judgment.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured audit sections and prioritized design interventions.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

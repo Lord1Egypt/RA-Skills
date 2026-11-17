@@ -15,10 +15,17 @@ WORKSPACE_DIR = os.path.join(OPENCLAW_DIR, 'workspace')
 SKILLS_DIR = os.path.join(WORKSPACE_DIR, 'skills')
 OUTPUT_DIR = os.path.join(USER_PROFILE, 'openclaw_out')
 CACHE_DIR = os.path.join(OPENCLAW_DIR, 'cache', 'skill_list')
+# 用户自定义分类覆盖层（格式: {"技能名": ["大类", "子类"]}）
+CATEGORY_OVERLAY_FILE = os.path.join(OPENCLAW_DIR, 'skill_categories.json')
+# OpenClaw 主配置（批量启停技能用）
+OPENCLAW_CONFIG = os.path.join(OPENCLAW_DIR, 'openclaw.json')
+# 使用统计数据源（skill_usage 表）
+STATE_DB = os.path.join(OPENCLAW_DIR, 'state', 'openclaw.sqlite')
 
-# 确保目录存在
-for directory in [OUTPUT_DIR, CACHE_DIR]:
-    os.makedirs(directory, exist_ok=True)
+def ensure_dirs(directories=None):
+    """惰性创建所需目录（在导出/写快照时调用，避免 import 副作用）"""
+    for directory in (directories or [OUTPUT_DIR, CACHE_DIR]):
+        os.makedirs(directory, exist_ok=True)
 
 # 分类排序
 CATEGORY_ORDER: List[str] = [

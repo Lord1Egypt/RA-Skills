@@ -1,48 +1,62 @@
-## Description: <br>
-Control a Sphero Mini robot ball over Bluetooth Low Energy with Python and bleak for rolling, LED control, sensor access, drawing shapes, and battery or power management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Sphero Mini robot ball via Bluetooth Low Energy. Roll, change colors, read sensors, draw shapes, and play with cats. Uses bleak for cross-platform BLE support (macOS/Windows/Linux).
 
-## Publisher: <br>
-[JonesChi](https://clawhub.ai/user/JonesChi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[joneschi](https://clawhub.ai/user/joneschi)
 
-## Use Case: <br>
-Developers, engineers, and Sphero Mini owners use this skill to set up Python BLE control, run command-line examples, and generate code for movement, LED, sensor, battery, and shape-drawing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Linux troubleshooting commands can make broad persistent system permission changes. <br>
-Mitigation: Use the bleak-based setup where possible, and avoid sudo or setcap commands unless you understand their system-wide effect and how to reverse them. <br>
-Risk: Movement scripts control a physical Sphero Mini and may cause unintended motion. <br>
-Mitigation: Run movement modes only in a clear bounded area and supervise the device while scripts are active. <br>
-Risk: Some documentation points to external GitHub files for download. <br>
-Mitigation: Inspect and pin external files before downloading or executing them. <br>
+## Use Case:
 
+Developers and robot hobbyists use this skill to control a Sphero Mini over Bluetooth LE, including movement, LED color changes, battery checks, sensor reads, and prebuilt activity scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JonesChi/sphero-mini) <br>
-- [JonesChi publisher profile](https://clawhub.ai/user/JonesChi) <br>
-- [Sphero Mini API Reference](references/api.md) <br>
-- [Sphero Mini Examples](references/examples.md) <br>
-- [Sphero Mini Troubleshooting](references/troubleshooting.md) <br>
-- [sphero_mini_win library](https://github.com/trflorian/sphero_mini_win) <br>
-- [bleak Bluetooth LE library](https://github.com/hbldh/bleak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, the bleak package, Bluetooth LE access, and a local Sphero Mini device.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Some documentation describes downloading unpinned Python files from GitHub master.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use reviewed local files or pinned, verified sources instead of following moving-branch curl commands.
+
+Risk: Some troubleshooting guidance suggests broad or persistent Bluetooth privilege escalation.
+
+Mitigation: Use least-privilege Bluetooth permissions and avoid running examples with sudo or applying capabilities to the system Python interpreter.
+
+Risk: The skill can move a physical robot ball, including random pet-play movements.
+
+Mitigation: Operate the device only while supervised in a clear, flat area away from stairs, cords, fragile items, people, and pets that could be struck.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joneschi/skills/sphero-mini)
+- [Sphero Mini API Reference](artifact/references/api.md)
+- [Troubleshooting Sphero Mini](artifact/references/troubleshooting.md)
+- [sphero_mini_win](https://github.com/trflorian/sphero_mini_win)
+- [bleak](https://github.com/hbldh/bleak)
+- [pysphero](https://github.com/EnotYoyo/pysphero)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, bleak, Bluetooth LE access, and a Sphero Mini device address.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

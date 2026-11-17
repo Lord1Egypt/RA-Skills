@@ -40,7 +40,7 @@ Migration from the legacy `.arknights-memory/` path happens automatically on fir
 
 ### `schema_version` *(integer)*
 
-Current: `1`.  
+Current: `1`.
 `memory.py` will reject profiles with an unsupported version.
 
 ---
@@ -81,16 +81,16 @@ Account state and preferences.
 
 | Field | Type | Description |
 |---|---|---|
-| `progress` | object | Freeform progress map, e.g. `{"main_story": "chapter_09"}`. |
-| `resources` | object | Resource stockpile, e.g. `{"lmd": 50000, "skill_book_3": 30}`. |
+| `progress` | object | Freeform progress map, e.g. `{"main_story": "chapter_09", "current_event": "near_light"}`. |
+| `resources` | object | Resource stockpile, e.g. `{"lmd": 50000, "skill_book_3": 30, "orundum": 5400}`. |
 | `goals` | string array | Short-term or mid-term goals, e.g. `["elite2 SilverAsh", "clear OF-F4"]`. |
-| `preferences` | string array | Play style or unit type preferences, e.g. `["guard mains", "low-rarity friendly"]`. |
+| `preferences` | string array | Play style or unit type preferences, e.g. `["guard mains", "low-rarity friendly", "waifu > meta"]`. |
 
 ---
 
 ### `operators` *(object)*
 
-Keyed by operator name (use official English or CN name consistently).  
+Keyed by operator name (use official English or CN name consistently, one per key).
 Each value:
 
 ```json
@@ -227,3 +227,12 @@ See `SKILL.md` → **Core Rules §0** for the full update workflow.
   "pending_confirmations": []
 }
 ```
+
+---
+
+## Edge Cases
+
+- **Multiple operators with same name on different accounts**: Not supported in the current schema. The profile is single-account.
+- **CN operator name vs EN operator name**: Use whichever name the user provides, but stay consistent. If the user switches languages, a new entry is created for the localized name.
+- **Kitchen-sink updates**: Sending `update --patch-json` with all operators at once is fine. Each is merged independently.
+- **Race conditions**: The profile file is small (typically <50KB) and written atomically via temporary file + atomic rename, so concurrent reads see a consistent state.

@@ -1,37 +1,56 @@
-## Description: <br>
-Senior Python Developer is a strict-mode agent skill for producing production-ready, statically typed, secure Python code and related tests, configuration, and containerization guidance for microservices, CLI tools, containerized architectures, and system programming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Senior Python Developer guides an agent to produce production-ready, statically typed, secure Python code for containerized architectures, microservices, CLI tools, and system programming.
 
-## Publisher: <br>
-[An0nX](https://clawhub.ai/user/An0nX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[an0nx](https://clawhub.ai/user/an0nx)
 
-## Use Case: <br>
-Developers and engineers use this skill to have an agent produce or revise production-oriented Python projects, including microservices, CLI tools, containerized services, tests, linting configuration, and deployment files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to expose detailed reasoning. <br>
-Mitigation: Use a concise rationale and action summary instead of private chain-of-thought. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/An0nX/senior-python-developer) <br>
+## Use Case:
 
+Developers and engineers use this skill to make an agent produce production-oriented Python implementations for microservices, CLI tools, containerized services, and system programming. It emphasizes strict typing, src layout, Ruff, pytest, pydantic-settings, Docker, and security-focused coding conventions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with complete file contents, inline shell commands, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill asks for Russian reasoning text while keeping generated code, comments, and docstrings in English.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill claims override authority and may broaden edits beyond the user's intended request.
+
+Mitigation: Review proposed changes before applying them and use explicit scope controls such as asking for minimal changes when broad file cleanup is not desired.
+
+Risk: The skill requires chain-of-thought style reasoning output, which is unsafe for normal agent operation.
+
+Mitigation: Prefer a version that summarizes reasoning without requesting private chain-of-thought disclosure.
+
+Risk: The skill mandates opinionated Python, formatting, documentation, and container defaults that may not fit an existing project.
+
+Mitigation: Install only when those conventions match the project, and review generated dependencies, Docker images, and formatting changes before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/an0nx/skills/senior-python-developer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs the agent to provide complete file contents for created or modified files and to use Russian for reasoning-oriented response sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

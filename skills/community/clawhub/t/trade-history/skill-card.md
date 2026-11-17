@@ -1,40 +1,52 @@
-## Description: <br>
-Read and display recent trade history from local JSONL log file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and display recent trade history from local JSONL log file.
 
-## Publisher: <br>
-[newbienodes](https://clawhub.ai/user/newbienodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[newbienodes](https://clawhub.ai/user/newbienodes)
 
-## Use Case: <br>
-External users and agent operators use this skill to inspect locally recorded trade history, recap recent trades, filter by symbol, and review stored trade counts without modifying the log file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose private financial trading history from a local log file. <br>
-Mitigation: Invoke it only for explicit trade-history requests and treat returned trades as private financial information. <br>
-Risk: The submitted artifact references a local read.py helper that is not included in the artifact. <br>
-Mitigation: Before running the skill, verify that the helper exists and only reads the stated trades.jsonl file without modifying or deleting data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Trade History release page](https://clawhub.ai/newbienodes/trade-history) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/newbienodes) <br>
+## Use Case:
 
+External users and trading workflow operators use this skill to review recorded trade events, filter recent trades by symbol, and recap stored signals from a local trade-history log.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Text] <br>
-**Output Format:** [JSON from the local helper script, summarized for the user as readable text or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports optional limit and symbol filters; default output is newest trades first with up to 20 records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on a separate local Python script that was not included in the reviewed artifact.
+
+Mitigation: Verify the installed read.py script comes from a trusted source before enabling the skill.
+
+Risk: The skill reads a local trade-history log that may contain sensitive trading activity.
+
+Mitigation: Use it only in workspaces where the agent is allowed to read the local trades.jsonl file and share summarized trade records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/newbienodes/skills/trade-history)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [JSON from the local script, presented to the user as concise Markdown or text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports an optional limit and symbol filter; defaults to 20 newest records.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

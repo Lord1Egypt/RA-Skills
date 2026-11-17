@@ -1,123 +1,67 @@
 ---
-name: zinc-orders
-description: Place, list, and retrieve orders via the Zinc API (zinc.com). Use when the user wants to buy a product from an online retailer, check order status, list recent orders, or anything involving the Zinc e-commerce ordering API. Requires ZINC_API_KEY environment variable.
+name: universal-checkout
+description: Discover, buy, track, and return real products from Amazon, Walmart, Target and almost any other US online retailer through the Zinc API (zinc.com). Needs no account to begin — the agent mints its own test key, then earns a live key and a $5 starter credit once its operator approves it. Pay from a pre-funded wallet, per request over MPP or x402, or with a Stripe Link card.
 ---
 
-# Zinc Orders
+# Universal Checkout
 
-Place and manage orders on online retailers through the Zinc API (`https://api.zinc.com`).
+One API to discover, buy, track and return products from US online retailers. Base URL `https://api.zinc.com`.
 
-## Prerequisites
+## Which retailers
 
-- `ZINC_API_KEY` env var must be set. Get one from <https://app.zinc.com>.
+Pass a product URL from almost any US retailer — an uncatalogued domain is first class on the order path, and in a recent 60-day window customers ordered from 296 distinct domains. `GET /retailers` (free, no auth) lists the storefronts with published guarantees: free-shipping terms, whether an account is needed, where they ship. Check it when those details matter.
 
-## Authentication
+## Getting started
 
-All requests use Bearer token auth:
+Four steps, in order. Full walkthrough: [Agent Sandbox Quickstart](https://www.zinc.com/docs/v2/agent-sandbox/quickstart.md) and [Going Live](https://www.zinc.com/docs/v2/agent-sandbox/going-live.md).
 
-```
-Authorization: Bearer $ZINC_API_KEY
-```
+1. **Get a test key.** `POST https://api.zinc.com/sandbox/keys` — no auth, no signup. Returns `api_key` (`zn_test_…`) and a ready-made `example_order`. Send it as `Authorization: Bearer <api_key>` from here on.
+2. **Place a test order.** `POST /orders` with that `example_order`, then poll `GET /orders/{id}`. Free. `status` reaches **`order_placed`** — that is success, and it never becomes `delivered`; shipping shows up under `tracking_numbers[0].status`.
+3. **Earn your live key.** `POST /device/code` with your test key as Bearer — that is what carries your sandbox history over. Show your operator the link it returns, then poll `POST /device/token` (no `Authorization` header; 400 `authorization_pending` means keep waiting). On approval you get a `zn_live_` key **once**, plus a **$5 starter credit** in their wallet.
+4. **Buy something real.** Walmart orders usually ship free — reliably from about $10; below that shipping is often added, so a very cheap item can cost more delivered than it looks. Search with `GET /search?q=<item>&retailer=walmart` to get Walmart results only. **`max_price` is a ceiling, not a price**: you are charged the retailer's actual total, so leave room for tax and shipping. Ask your operator for the shipping address (**`phone_number` is required**) and confirm the item and price with them first.
 
-## Endpoints
+Watch the money: `GET /wallet/me` shows the `balance` and `order_fee_cents` (charged per order, on top of `max_price`). Each `/search` call costs 1¢ from the same wallet.
 
-### Create Order — `POST /orders`
+Already have a key from your operator? Use it and skip to **Place an order**. Never want an account? Pay per request over [MPP](https://www.zinc.com/docs/v2/mpp.md): `POST /agent/orders`, no key needed.
 
-Place a new order. Orders process asynchronously.
-
-**Required fields:**
-
-- `products` — array of `{ url, quantity?, variant? }` objects
-  - `url`: direct product page URL on a supported retailer
-  - `quantity`: integer (default 1)
-  - `variant`: array of `{ label, value }` for size/color/etc.
-- `shipping_address` — object with `first_name`, `last_name`, `address_line1`, `address_line2`, `city`, `state` (2-letter), `postal_code`, `phone_number`, `country` (ISO alpha-2, e.g. "US")
-- `max_price` — integer, maximum price **in cents**
-
-**Optional fields:**
-
-- `idempotency_key` — string (max 36 chars) to prevent duplicates
-- `retailer_credentials_id` — short ID like `zn_acct_XXXXXXXX`
-- `metadata` — arbitrary key-value object
-- `po_number` — purchase order number string
-
-**Response:** order object with `id` (UUID), `status`, `items`, `shipping_address`, `created_at`, `tracking_numbers`, etc.
-
-**Order statuses:** `pending` → `in_progress` → `order_placed` | `order_failed` | `cancelled`
-
-### List Orders — `GET /orders`
-
-Returns `{ orders: [...] }` array of order objects.
-
-### Get Order — `GET /orders/{id}`
-
-Retrieve a single order by UUID.
-
-## Example: Place an Order
+## Place an order
 
 ```bash
 curl -X POST https://api.zinc.com/orders \
   -H "Authorization: Bearer $ZINC_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "products": [{ "url": "https://example.com/product", "quantity": 1 }],
+    "products": [{"url": "https://www.amazon.com/dp/B09V3KXJPB", "quantity": 1}],
     "max_price": 5000,
     "shipping_address": {
-      "first_name": "Jane",
-      "last_name": "Doe",
-      "address_line1": "123 Main St",
-      "city": "San Francisco",
-      "state": "CA",
-      "postal_code": "94105",
-      "phone_number": "5551234567",
-      "country": "US"
+      "first_name": "Jane", "last_name": "Doe",
+      "address_line1": "123 Main St", "city": "San Francisco",
+      "state": "CA", "postal_code": "94105", "country": "US",
+      "phone_number": "4155552671"
     }
   }'
 ```
 
-## Error Handling
+- `max_price` is the ceiling **in cents** for the whole order. Zinc refuses rather than exceeding it.
+- `phone_number` is required. Never invent an address — ask your operator.
+- **To buy on your operator's own Zinc Universal Checkout account**, pass its `short_id` as `retailer_credentials_id` (`GET /managed-accounts` lists them). The payment method saved on that account pays the retailer, and the wallet is charged the per-order fee only. Omitting the field never means "pick one of mine" — it means the order runs on a Zinc account and the wallet pays for the item. ([retailer accounts](https://www.zinc.com/docs/v2/retailer-accounts.md))
+- Returns `201` with an order `id` and `status: pending`. Retailer, variants, quantities, gift options, idempotency: [Create Order](https://www.zinc.com/docs/v2/api-reference/orders/create-order.md).
 
-See [references/errors.md](references/errors.md) for the full error code reference.
+## Track, cancel, return
 
-Key points:
+- `GET /orders/{id}` — `status` is one of `pending`, `order_placed` (**success**), `order_failed`, `cancelled`. Shipping lives on `tracking_numbers[].status`. ([statuses](https://www.zinc.com/docs/v2/api-reference/orders/get-order.md), [tracking](https://www.zinc.com/docs/v2/api-reference/orders/tracking.md))
+- `POST /orders/{id}/cancel` — only while `pending`. ([cancel](https://www.zinc.com/docs/v2/api-reference/orders/cancel-order.md))
+- `POST /returns` — needs the order id and a reason. ([returns](https://www.zinc.com/docs/v2/api-reference/returns/create-return.md))
 
-- HTTP errors return `{ code, message, details }`
-- Order processing failures appear in webhook/order response as `error_type`
-- Common issues: `max_price_exceeded`, `product_out_of_stock`, `invalid_shipping_address`
+## When something fails
 
-## Order Status Tracking
+Errors are `{"error": {"code", "message", "details"}}`. Read `code`, not the message. `details` often names the fix — a `402 insufficient_funds` carries `fund_with`, every way to pay, including your operator's own retailer account when they have one saved for that store. Full list: [Error Handling](https://www.zinc.com/docs/v2/api-reference/introduction/error-handling.md) and [references/errors.md](https://github.com/zincio/skills/blob/master/skills/universal-checkout/references/errors.md).
 
-Orders process asynchronously and typically take **5–10 minutes**. After placing an order:
+## Rules
 
-1. Schedule a cron job to check the order status ~7 minutes after creation.
-2. Use `GET /orders/{id}` to poll.
-3. Report the result back to the user in the same channel.
-4. If still pending/in_progress, schedule another check in 5 minutes.
+- **Money is real.** Confirm the item and the price with your operator before any live order.
+- **Set `max_price` deliberately** — it is the only thing standing between a typo and a large purchase.
+- **Never invent a shipping address**, and never reuse the sandbox one for a live order.
+- Rehearse failures in the sandbox first: `GET /orders/test-products`.
 
-**Terminal statuses:** `order_placed`, `order_failed`, `cancelled` — stop polling.
-**Non-terminal:** `pending`, `in_progress` — schedule another check in 3–5 minutes.
-
-Example cron job (isolated, announce back to the channel):
-
-```json
-{
-  "name": "zinc-order-check-<short_id>",
-  "schedule": { "kind": "at", "at": "<ISO-8601 ~7min from now>" },
-  "payload": {
-    "kind": "agentTurn",
-    "message": "Check Zinc order <order_id> via GET https://api.zinc.com/orders/<order_id>"
-  },
-  "sessionTarget": "isolated",
-  "delivery": {
-    "mode": "announce",
-    "channel": "<channel>",
-    "to": "<channel_id>"
-  }
-}
-```
-
-## Safety
-
-- **Always confirm with the user** before placing an order (`POST /orders`). This spends real money.
-- Reading orders (GET) is always safe.
-- Validate that `max_price` is reasonable before submitting.
+All amounts are in **US cents** (e.g. `5000` = $50.00). US delivery.

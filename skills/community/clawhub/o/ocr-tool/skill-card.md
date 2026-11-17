@@ -1,44 +1,58 @@
-## Description: <br>
-OCR Tool uses Tesseract to extract text from images, including screenshots, charts, documents, and Chinese or English financial announcement images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents extract text from images with Tesseract OCR, with examples for multilingual and financial screenshot workflows.
 
-## Publisher: <br>
-[liuzhengmcc-debug](https://clawhub.ai/user/liuzhengmcc-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuzhengmcc-debug](https://clawhub.ai/user/liuzhengmcc-debug)
 
-## Use Case: <br>
-Developers and agents use this skill to run local OCR on selected image files, then extract plain text and basic financial entities such as company names, stock codes, metrics, and keywords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OCR can misread or omit characters, especially in financial charts, screenshots, or multilingual images. <br>
-Mitigation: Verify extracted text and financial entities against the source image before using them for decisions. <br>
-Risk: Images from Telegram caches, message folders, or sensitive documents may contain private information that becomes visible or saved as extracted text. <br>
-Mitigation: Process only images intentionally selected for OCR and review where extracted text is stored or shared. <br>
-Risk: The skill depends on local Tesseract installation and language data, so missing binaries or language packs can produce failures or poor OCR quality. <br>
-Mitigation: Install Tesseract and the required language packs before use, then test on representative images. <br>
+## Use Case:
 
+Developers, engineers, and analysts use this skill to extract text from screenshots, charts, reports, and document images. It is especially oriented toward Chinese and English OCR and optional review of OCR-derived financial entities, stock codes, and metrics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuzhengmcc-debug/ocr-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/liuzhengmcc-debug) <br>
-- [Tesseract OCR language data](https://github.com/tesseract-ocr/tessdata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text OCR output, Markdown guidance, shell command examples, and Python dictionary results from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local tesseract binary and appropriate language data; OCR results should be verified before relying on extracted financial data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: OCR output can misread names, stock codes, numbers, or financial metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify extracted text and any financial interpretation against the source image or authoritative records before relying on it.
+
+Risk: Batch and Telegram-style examples can process private or many local images if copied directly.
+
+Mitigation: Limit input directories, confirm files before processing, and avoid running bulk OCR on sensitive images without approval.
+
+Risk: Chinese or other non-English extraction depends on installed Tesseract language data.
+
+Mitigation: Install and test the required language packs before using multilingual OCR workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuzhengmcc-debug/skills/ocr-tool)
+- [Tesseract tessdata language data](https://github.com/tesseract-ocr/tessdata)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell and Python code examples; scripts can emit plain text OCR output and console summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Tesseract installation and appropriate language packs for non-English OCR.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

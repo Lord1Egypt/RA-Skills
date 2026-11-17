@@ -1,6 +1,6 @@
 {
   "id": "fec-nextjs-project-standard",
-  "name": "Next.js 项目规范",
+  "name": "Next.js project specifications",
   "category": "project-standard",
   "tags": [
     "nextjs",
@@ -9,8 +9,8 @@
     "rsc",
     "react"
   ],
-  "summary": "Frontend Craft skill for Next.js 项目规范.",
-  "version": "2.4.0",
+  "summary": "Design Next.js App Router routes, server/client boundaries, rendering, and project structure.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",

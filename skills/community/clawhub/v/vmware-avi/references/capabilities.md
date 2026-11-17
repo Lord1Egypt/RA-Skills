@@ -9,7 +9,7 @@ All 28 MCP tools exposed by `vmware-avi mcp` (v1.5.15+; legacy entry point: `vmw
 | Controller Version | Support Level | Notes |
 |--------------------|--------------|-------|
 | AVI 30.x | ✅ Full | All 28 tools verified. avisdk `<31.0` upper bound. |
-| AVI 22.1.x | ✅ Full | All analytics endpoint quirks fixed in v1.5.11 — `vs_analytics` uses POST `/analytics/metrics/collection` with `metric_requests[]`; `pool_list` uses `/virtualservice-inventory` to expose K8S-managed pool groups; SE→VS mapping reconstructed from `vip_summary[].service_engine[]`. |
+| AVI 22.1.x | ✅ Full | All analytics endpoint quirks fixed in v1.5.11 — `get_virtual_service_analytics` uses POST `/analytics/metrics/collection` with `metric_requests[]`; `list_lb_pools` uses `/virtualservice-inventory` to expose K8S-managed pool groups; SE→VS mapping reconstructed from `vip_summary[].service_engine[]`. |
 | AVI < 22.1 | ⚠ Untested | avisdk may load but analytics/inventory endpoints differ. Not in CI. |
 
 ### VCF (VMware Cloud Foundation)
@@ -36,8 +36,8 @@ All 28 MCP tools exposed by `vmware-avi mcp` (v1.5.15+; legacy entry point: `vmw
 |------|--------|-------------|
 | `vmware-avi mcp` (CLI subcommand, stdio) | ✅ Full | ✅ v1.5.15+ default — no PyPI re-resolve, works behind corporate TLS proxies. |
 | `vmware-avi-mcp` (legacy console script, stdio) | ✅ Full | Kept for backward compatibility with pre-1.5.15 configs. |
-| `python -m mcp_server` (stdio, via `__main__.py`) | ✅ Full | Container/Smithery deployments only — not for end-user CLI install. Added v1.5.22. |
-| `uvx --from vmware-avi vmware-avi-mcp` | ⚠ Fallback | Re-resolves PyPI on each launch; fails behind corporate TLS proxies (踩坑 #25). Use `UV_NATIVE_TLS=true` workaround. |
+| `python -m vmware_avi.mcp_server` (stdio, via `__main__.py`) | ✅ Full | Docker image `CMD` only — not for end-user CLI install, and no longer used by `smithery.yaml` (which now calls the `vmware-avi mcp` entry point). Added v1.5.22. |
+| `uvx --from vmware-avi==2.5.2 vmware-avi-mcp` | ⚠ Fallback | Re-resolves PyPI on each launch; fails behind corporate TLS proxies (踩坑 #25). Use `UV_NATIVE_TLS=true` workaround. |
 
 ## Automation Level Reference
 
@@ -45,15 +45,18 @@ Each operation is classified by autonomy level per the Enterprise Harness Engine
 
 | Level | Meaning | Agent autonomy | Examples in this skill |
 |:-:|---|---|---|
-| **L1** | Read-only, raw data | Always auto-run | `vs_list`, `vs_status`, `pool_members`, `pool_status`, `controller_status`, `analytics_metrics` queries, AKO/AMKO inventory |
+| **L1** | Read-only, raw data | Always auto-run | `list_virtual_services`, `get_virtual_service_status`, `list_lb_pools`, `list_lb_pool_members`, `list_service_engines`, `get_service_engine_health`, `get_virtual_service_analytics` queries, AKO/AMKO inventory (`get_ako_status`, `list_ako_clusters`, `get_ako_amko_status`) |
 | **L2** | Read + analysis / recommendation | Always auto-run | traffic distribution analysis, health score correlation, pool member ratio summaries, analytics-driven anomaly detection |
-| **L3** | Single write — user must approve | Only after explicit confirmation; destructive ops require double-confirm + `--dry-run` | `vs_toggle` (disable), `pool_member_enable`/`disable`, AKO `restart`/`upgrade`, `force_resync`, AMKO operations |
+| **L3** | Single write — user must approve | Only after explicit confirmation. MCP: `set_virtual_service_enabled`, `disable_lb_pool_member`, `restart_ako`, `upgrade_ako_config`, `force_ako_sync` return a `blast_radius` preview unless `confirm=true`; CLI: double-confirm + `--dry-run` | `set_virtual_service_enabled`, `enable_lb_pool_member`/`disable_lb_pool_member`, `restart_ako`, `upgrade_ako_config`, `force_ako_sync` |
 | **L4** | Multi-step plan / apply workflow | Plan generation auto; apply gated by user approval | *(roadmap — VS deployment plans, blue/green pool member rotations)* |
 | **L5** | Auto-remediation from learned pattern | Pattern library only; requires `risk:low` + `reversible:true` + `repeatable:true` | *(roadmap — candidates: stale pool member drain, AKO controller reconnect)* |
 
+> Classification comes from each tool's `[READ]`/`[WRITE]` docstring marker,
+> not from this table — see the README.
+
 **Notes**:
-- L1/L2 tools are always safe for agents to call without confirmation.
-- L3 tools always pass through the `@vmware_tool` decorator: connection check → policy check → audit log → double-confirm.
+- L1/L2 are infrastructure reads under the configured account; Policy, RBAC and audit still apply. Read access may reveal sensitive inventory.
+- L3 tools always pass through the `@vmware_tool` decorator: connection check → policy check → audit log. The five gated tools then measure their blast radius; without `confirm=true` they stop there, and with it they refuse on a blocker or an unreadable field.
 - AKO Kubernetes operations affect ingress/service routing — even "low-risk" restarts can briefly interrupt traffic; treat as L3 with explicit user approval.
 
 ## Traditional Mode — AVI Controller (13 tools)
@@ -62,99 +65,108 @@ Each operation is classified by autonomy level per the Enterprise Harness Engine
 
 | Tool | Description | Parameters | Risk | Confirm |
 |------|-------------|------------|:----:|:-------:|
-| `vs_list` | List all Virtual Services on the active controller | `controller` (string, optional) | Low | No |
-| `vs_status` | Show detailed status of a single VS (VIP, health score, pool binding, enabled state) | `name` (string, **required**) | Low | No |
-| `vs_toggle` | Enable or disable a Virtual Service | `name` (string, **required**), `enable` (boolean, **required**) | Medium | Yes (disable) |
+| `list_virtual_services` | List all Virtual Services on the active controller | `controller` (string, optional) | Low | No |
+| `get_virtual_service_status` | Show detailed status of a single VS (VIP, health score, pool binding, enabled state) | `name` (string, **required**) | Low | No |
+| `set_virtual_service_enabled` | Enable or disable a Virtual Service. Returns `blast_radius` (VS, uuid, current state, VIPs, pools and member counts); previews unless `confirm=true` | `name` (string, **required**), `enable` (boolean, **required**), `confirm` (boolean, default `false`) | Medium | Yes (both directions) |
 
 ### Pool Member (4)
 
 | Tool | Description | Parameters | Risk | Confirm |
 |------|-------------|------------|:----:|:-------:|
-| `pool_list` | Discover pools on the Controller, with VS bindings (uses `/virtualservice-inventory` to include K8S-managed pool groups) | `vs_filter` (string, optional) | Low | No |
-| `pool_members` | List all members of a pool with health status and ratio | `pool` (string, **required**) | Low | No |
-| `pool_member_enable` | Enable a pool member (restore traffic after maintenance) | `pool` (string, **required**), `server` (string, **required**) | Low | No |
-| `pool_member_disable` | Disable a pool member with graceful connection drain | `pool` (string, **required**), `server` (string, **required**) | Medium | Yes |
+| `list_lb_pools` | Discover pools on the Controller, with VS bindings (uses `/virtualservice-inventory` to include K8S-managed pool groups) | `vs_filter` (string, optional) | Low | No |
+| `list_lb_pool_members` | List all members of a pool with health status and ratio | `pool` (string, **required**) | Low | No |
+| `enable_lb_pool_member` | Enable a pool member (restore traffic after maintenance) | `pool` (string, **required**), `server` (string, **required**) | Low | No |
+| `disable_lb_pool_member` | Disable a pool member with graceful connection drain. Returns `blast_radius` (pool, member, enabled members before/after); refuses the pool's only enabled member | `pool` (string, **required**), `server` (string, **required**), `confirm` (boolean, default `false`) | Medium | Yes |
 
 ### SSL Certificate (2)
 
 | Tool | Description | Parameters | Risk | Confirm |
 |------|-------------|------------|:----:|:-------:|
-| `ssl_list` | List all SSL/TLS certificates on the controller | *(none)* | Low | No |
-| `ssl_expiry_check` | Check certificates expiring within N days, with VS mapping | `days` (integer, default: 30) | Low | No |
+| `list_ssl_certs` | List all SSL/TLS certificates on the controller | *(none)* | Low | No |
+| `check_ssl_cert_expiry` | Check certificates expiring within N days, with VS mapping | `days` (integer, default: 30) | Low | No |
 
 ### Analytics (2)
 
 | Tool | Description | Parameters | Risk | Confirm |
 |------|-------------|------------|:----:|:-------:|
-| `vs_analytics` | Show VS metrics: L4 bandwidth/connections (`l4_client.avg_bandwidth`, `avg_complete_conns`, `avg_new_established_conns`) + L7 client transaction latency (`l7_client.avg_client_txn_latency`), response errors, total responses | `vs_name` (string, **required**) | Low | No |
-| `vs_error_logs` | Show recent request error logs for a VS (HTTP status ≥ 400, filter `ge(response_code,400)`) | `vs_name` (string, **required**), `since` (string, default: `"1h"`) | Low | No |
+| `get_virtual_service_analytics` | Show VS metrics: L4 bandwidth/connections (`l4_client.avg_bandwidth`, `avg_complete_conns`, `avg_new_established_conns`) + L7 client transaction latency (`l7_client.avg_client_txn_latency`), response errors, total responses | `vs_name` (string, **required**) | Low | No |
+| `get_virtual_service_error_logs` | Show recent request error logs for a VS (HTTP status ≥ 400, filter `ge(response_code,400)`) | `vs_name` (string, **required**), `since` (string, default: `"1h"`) | Low | No |
 
 ### Service Engine (2)
 
 | Tool | Description | Parameters | Risk | Confirm |
 |------|-------------|------------|:----:|:-------:|
-| `se_list` | List all Service Engines: name, mgmt IP, operational status, SE group (via `serviceengine-inventory`, config + runtime merged) | *(none)* | Low | No |
-| `se_health` | Check SE health: per-SE operational status + connected-VS counts (placement map from `virtualservice-inventory`) | *(none)* | Low | No |
+| `list_service_engines` | List all Service Engines: name, mgmt IP, operational status, SE group (via `serviceengine-inventory`, config + runtime merged) | *(none)* | Low | No |
+| `get_service_engine_health` | Check SE health: per-SE operational status + connected-VS counts (placement map from `virtualservice-inventory`) | *(none)* | Low | No |
 
-## AKO Mode — Kubernetes (17 tools)
+## AKO Mode — Kubernetes (15 tools)
 
 ### AKO Pod Ops (4)
 
 | Tool | Description | Parameters | Risk | Confirm |
 |------|-------------|------------|:----:|:-------:|
-| `ako_status` | Check AKO pod status (phase, restart count, readiness) | `context` (string, optional) | Low | No |
-| `ako_logs` | View AKO pod logs (tail mode) | `tail` (integer, default: 100), `since` (string, optional) | Low | No |
-| `ako_restart` | Restart AKO pod by deleting it (its StatefulSet recreates it) | `context` (string, optional) | High | Yes |
-| `ako_version` | Show AKO container image tag and Helm chart version | `context` (string, optional) | Low | No |
+| `get_ako_status` | Check AKO pod status (phase, restart count, readiness) | `context` (string, optional) | Low | No |
+| `get_ako_logs` | View AKO pod logs (tail mode) | `tail` (integer, default: 100), `since` (string, optional) | Low | No |
+| `restart_ako` | Restart AKO pod by deleting it (its StatefulSet recreates it). Returns `blast_radius` (pod, uid, phase, Ingresses); the delete is pinned to the measured uid | `context` (string, optional), `confirm` (boolean, default `false`) | High | Yes |
+| `get_ako_version` | Show AKO container image tag and Helm chart version | `context` (string, optional) | Low | No |
 
 ### AKO Config (3)
 
 | Tool | Description | Parameters | Risk | Confirm |
 |------|-------------|------------|:----:|:-------:|
-| `ako_config_show` | Show current AKO Helm values (values.yaml snapshot; release auto-discovered via `helm list` — official installs use `--generate-name`) | *(none)* | Low | No |
-| `ako_config_diff` | Show diff between running values and the official Broadcom OCI chart (`oci://projects.packages.broadcom.com/ako/helm-charts/ako`) | *(none)* | Low | No |
-| `ako_config_upgrade` | Helm upgrade the discovered AKO release from the official Broadcom OCI chart with `--reuse-values` (defaults to dry-run) | `dry_run` (boolean, default: `true`) | High | Yes |
+| `get_ako_config` | Show current AKO Helm values (values.yaml snapshot; release auto-discovered via `helm list` — official installs use `--generate-name`) | *(none)* | Low | No |
+| `diff_ako_config` | Preview the pending Helm change, running the same command `upgrade_ako_config` does (`--reuse-values` included) so the diff describes the actual upgrade rather than the chart's defaults. Chart: `oci://projects.packages.broadcom.com/ako/helm-charts/ako` | `chart_version` (optional — empty resolves to registry latest, which can move between calls) | Low | No |
+| `upgrade_ako_config` | Helm upgrade the discovered AKO release from the official Broadcom OCI chart with `--reuse-values`. Without `confirm=true` returns `blast_radius` (release, chart now → chart to, status) plus the `helm upgrade --dry-run` output | `confirm` (boolean, default `false`), `chart_version` (optional) | High | Yes |
 
 ### Ingress Diagnostics (3)
 
 | Tool | Description | Parameters | Risk | Confirm |
 |------|-------------|------------|:----:|:-------:|
-| `ako_ingress_check` | Validate Ingress annotations against AKO expectations in a namespace | `namespace` (string, **required**) | Low | No |
-| `ako_ingress_map` | Show full Ingress-to-VS mapping across all namespaces | *(none)* | Low | No |
-| `ako_ingress_diagnose` | Diagnose why a specific Ingress has no corresponding VS on the Controller | `name` (string, **required**), `namespace` (string, default: `"default"`) | Low | No |
+| `check_ako_ingress` | Validate Ingress annotations against AKO expectations in a namespace | `namespace` (string, **required**) | Low | No |
+| `list_ako_ingresses` | Show full Ingress-to-VS mapping across all namespaces | *(none)* | Low | No |
+| `diagnose_ako_ingress` | Diagnose why a specific Ingress has no corresponding VS on the Controller | `name` (string, **required**), `namespace` (string, default: `"default"`) | Low | No |
 
 ### Sync Diagnostics (3)
 
 | Tool | Description | Parameters | Risk | Confirm |
 |------|-------------|------------|:----:|:-------:|
-| `ako_sync_status` | Check overall K8s-to-Controller sync health | *(none)* | Low | No |
-| `ako_sync_diff` | Show objects present in K8s but missing on Controller, and vice versa | *(none)* | Low | No |
-| `ako_sync_force` | Force AKO to re-reconcile all K8s objects against the Controller | *(none)* | Medium | Yes |
+| `get_ako_sync_status` | Check overall K8s-to-Controller sync health | *(none)* | Low | No |
+| `diff_ako_sync` | Show objects present in K8s but missing on Controller, and vice versa | *(none)* | Low | No |
+| `force_ako_sync` | Force AKO to re-reconcile all K8s objects against the Controller (deletes the AKO pod). Returns `blast_radius` like `restart_ako` | `context` (string, optional), `confirm` (boolean, default `false`) | Medium | Yes |
 
 ### Multi-cluster (2)
 
 | Tool | Description | Parameters | Risk | Confirm |
 |------|-------------|------------|:----:|:-------:|
-| `ako_clusters` | List all K8s clusters with AKO deployed | *(none)* | Low | No |
-| `ako_amko_status` | Show AMKO (Avi Multi-cluster Kubernetes Operator) GSLB status | *(none)* | Low | No |
+| `list_ako_clusters` | List every K8s context and whether AKO runs there (unreadable ones say so) | *(none)* | Low | No |
+| `get_ako_amko_status` | Show AMKO (Avi Multi-cluster Kubernetes Operator) GSLB status | *(none)* | Low | No |
 
 ## Risk Level Definitions
 
 | Level | Meaning | Examples |
 |-------|---------|---------|
-| **Low** | Read-only query, no state change | `vs_list`, `ssl_expiry_check`, `ako_logs` |
-| **Medium** | State change affecting traffic flow, but recoverable | `vs_toggle` (disable), `pool_member_disable`, `ako_sync_force` |
-| **High** | Disruptive operation affecting running services or deployments | `ako_restart`, `ako_config_upgrade` |
+| **Low** | Read-only query, no state change | `list_virtual_services`, `check_ssl_cert_expiry`, `get_ako_logs` |
+| **Medium** | State change affecting traffic flow, but recoverable | `set_virtual_service_enabled` (disable), `disable_lb_pool_member`, `force_ako_sync` |
+| **High** | Disruptive operation affecting running services or deployments | `restart_ako`, `upgrade_ako_config` |
 
 ## Tool Counts by Risk Level
 
+Each tool is counted exactly once, at its default (worst-case) risk level, so the
+three rows sum to the full tool surface:
+
 | Risk | Count | Tools |
 |------|:-----:|-------|
-| Low | 23 | All read-only tools + `vs_toggle` (enable), `pool_member_enable` |
-| Medium | 4 | `vs_toggle` (disable), `pool_member_disable`, `ako_sync_force`, `pool_member_enable` contextually |
-| High | 3 | `ako_restart`, `ako_config_upgrade` (when `dry_run=false`), `vs_toggle` (disable on critical VS) |
+| Low | 23 | All 22 read-only tools + `enable_lb_pool_member` (a write, but it only restores traffic) |
+| Medium | 3 | `set_virtual_service_enabled`, `disable_lb_pool_member`, `force_ako_sync` |
+| High | 2 | `restart_ako`, `upgrade_ako_config` |
 
-> Note: `vs_toggle` with `enable=true` is Low risk. With `enable=false` it is Medium risk and requires confirmation. Similarly, `ako_config_upgrade` with `dry_run=true` is Low risk (preview only); with `dry_run=false` it becomes High risk.
+**Total: 23 + 3 + 2 = 28.**
+
+> Note: risk is contextual for two tools, but each is listed only once above, at its
+> higher level. `set_virtual_service_enabled` with `enable=true` is effectively Low risk; with
+> `enable=false` it is Medium (and High against a critical VS), so it is counted as
+> Medium. `upgrade_ako_config` without `confirm=true` is Low risk (preview only); with
+> `confirm=true` it is High, so it is counted as High.
 
 ## Audit Coverage
 

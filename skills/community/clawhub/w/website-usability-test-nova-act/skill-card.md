@@ -1,45 +1,63 @@
-## Description: <br>
-AI-orchestrated usability testing using Amazon Nova Act that generates personas, runs browser-based workflow tests, interprets results, and produces HTML usability reports with safety guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-orchestrated usability testing using Amazon Nova Act to generate personas, run website workflow tests, interpret raw browser-automation results, and produce HTML usability reports with safety guardrails.
 
-## Publisher: <br>
-[adityak6798](https://clawhub.ai/user/adityak6798) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[adityak6798](https://clawhub.ai/user/adityak6798)
 
-## Use Case: <br>
-Developers, QA teams, and product teams use this skill to test website usability with persona-based browser automation, especially for checkout, booking, posting, signup, and other end-to-end user journeys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Live browser automation can affect carts, sessions, forms, checkout, booking, or posting flows. <br>
-Mitigation: Run against staging or test sites with disposable accounts and synthetic data, and stop before final material-impact actions. <br>
-Risk: Trace files and reports can capture screenshots, page content, PII, and other sensitive data from tested pages. <br>
-Mitigation: Avoid private or production data where possible, review generated files before sharing, and delete local traces when they contain sensitive content. <br>
-Risk: Auto-persona mode may send page-derived metadata to Anthropic when ANTHROPIC_API_KEY is available. <br>
-Mitigation: Use explicit personas or disable that mode unless sending page-derived metadata to Anthropic is acceptable. <br>
+## Use Case:
 
+Developers, QA teams, and product teams use this skill to run persona-based website usability tests for flows such as checkout, booking, signup, posting, navigation, and information discovery. It helps collect browser traces and raw Nova Act responses, then guides the agent to interpret goal achievement and generate a usability report.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/adityak6798/website-usability-test-nova-act) <br>
-- [Nova Act cookbook](references/nova-act-cookbook.md) <br>
-- [Persona examples](references/persona-examples.md) <br>
-- [AWS Console for Nova Act API key](https://console.aws.amazon.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, HTML, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated JSON test results, HTML reports, and Nova Act trace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local files such as nova_act_logs/, test_results_adaptive.json, and nova_act_usability_report.html when tests run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter and manifest report 1.0.2) <br>
+Risk: Live browser automation can perform workflow actions on real websites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only against authorized targets, prefer non-production or test environments, use test accounts, and preserve the documented stop-before-impact behavior for payment, posting, account creation, and final submissions.
+
+Risk: Browser traces and reports may contain screenshots, page content, personal data, or sensitive account information.
+
+Mitigation: Avoid real personal, payment, or account data; run in a sandbox or VM when testing untrusted sites; and review or delete generated traces and reports after use.
+
+Risk: Generated HTML reports may be unsafe to open for untrusted page content until HTML escaping and CSP issues are fixed.
+
+Mitigation: Open reports only from trusted test runs or in an isolated browser profile, and review report content before sharing.
+
+Risk: Page summaries may be sent to an undeclared AI provider during testing.
+
+Mitigation: Do not test pages containing confidential data unless provider data handling is approved, and disclose third-party AI processing expectations to stakeholders.
+
+## Reference(s):
+
+- [Nova Act Cookbook](artifact/references/nova-act-cookbook.md)
+- [Persona Examples](artifact/references/persona-examples.md)
+- [AWS Console](https://console.aws.amazon.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON result interpretation, browser trace files, and HTML usability reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local Nova Act logs, adaptive test results JSON, and an HTML usability report in the working directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

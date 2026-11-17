@@ -1,0 +1,163 @@
+{
+  "逻辑规则": [
+    {
+      "id": "LOGIC-001",
+      "类别": "恶意函数执行",
+      "威胁级别": 5,
+      "描述": "eval 与外部超全局输入同现(webshell)",
+      "条件": "$a and ($b or $c or $d or $e)",
+      "条件字符串": {
+        "$a": "eval",
+        "$b": "$_POST",
+        "$c": "$_GET",
+        "$d": "$_REQUEST",
+        "$e": "$_COOKIE"
+      }
+    },
+    {
+      "id": "LOGIC-002",
+      "类别": "恶意函数执行",
+      "威胁级别": 5,
+      "描述": "命令执行函数与外部可控参数并存(命令注入 webshell)",
+      "条件": "($a or $b or $c or $d or $e) and ($f or $g)",
+      "条件字符串": {
+        "$a": "system(",
+        "$b": "exec(",
+        "$c": "shell_exec(",
+        "$d": "passthru(",
+        "$e": "popen(",
+        "$f": "$_GET",
+        "$g": "$_POST"
+      }
+    },
+    {
+      "id": "LOGIC-003",
+      "类别": "代码解密/混淆还原",
+      "威胁级别": 4,
+      "描述": "base64_decode/gzinflate 等解码与 eval 组合(混淆 webshell), 排除 base64_encode",
+      "条件": "($a or $b or $c) and $d and not $e",
+      "条件字符串": {
+        "$a": "base64_decode",
+        "$b": "gzinflate",
+        "$c": "gzuncompress",
+        "$d": "eval",
+        "$e": "base64_encode"
+      }
+    },
+    {
+      "id": "LOGIC-004",
+      "类别": "恶意函数执行",
+      "威胁级别": 4,
+      "描述": "eval/assert 与超全局执行后门变体",
+      "条件": "$a or $b or $c or $d",
+      "条件字符串": {
+        "$a": "eval($_POST",
+        "$b": "assert($_POST",
+        "$c": "eval($_GET",
+        "$d": "assert($_GET"
+      }
+    }
+  ],
+  "自我复制": [
+    "file_get_contents",
+    "file_put_contents",
+    "__FILE__",
+    "fopen",
+    "fputs",
+    "fwrite",
+    "copy",
+    "rename",
+    "unlink",
+    "move_uploaded_file",
+    "readfile",
+    "file",
+    "show_source",
+    "highlight_file",
+    "tmpfile",
+    "tempnam",
+    "fread",
+    "gzopen",
+    "gzfile",
+    "readgzfile"
+  ],
+  "恶意函数执行": [
+    "eval",
+    "assert",
+    "system",
+    "exec",
+    "shell_exec",
+    "passthru",
+    "popen",
+    "proc_open",
+    "pcntl_exec",
+    "create_function",
+    "preg_replace",
+    "call_user_func",
+    "call_user_func_array",
+    "array_map",
+    "usort",
+    "uksort",
+    "array_filter",
+    "array_walk",
+    "ReflectionFunction",
+    "mb_ereg_replace"
+  ],
+  "代码解密/混淆还原": [
+    "base64_decode",
+    "gzinflate",
+    "gzuncompress",
+    "gzdecode",
+    "gzencode",
+    "str_rot13",
+    "urldecode",
+    "rawurldecode",
+    "hex2bin",
+    "pack",
+    "unpack",
+    "chr",
+    "ord",
+    "convert_uudecode",
+    "convert_uuencode"
+  ],
+  "敏感输入源": [
+    "_GET",
+    "_POST",
+    "_REQUEST",
+    "_COOKIE",
+    "_SERVER",
+    "_FILES",
+    "_SESSION",
+    "_ENV",
+    "php://input",
+    "php://filter",
+    "data://",
+    "GLOBALS"
+  ],
+  "网络外带/SSRF": [
+    "curl_exec",
+    "curl_init",
+    "curl_setopt",
+    "fsockopen",
+    "pfsockopen",
+    "socket_create",
+    "socket_connect",
+    "stream_socket_client",
+    "file_get_contents",
+    "file",
+    "mail",
+    "putenv"
+  ],
+  "权限维持/常驻": [
+    "ignore_user_abort",
+    "set_time_limit",
+    "register_shutdown_function",
+    "set_error_handler",
+    "set_exception_handler",
+    "sleep",
+    "usleep",
+    "chmod",
+    "chown",
+    "touch",
+    "apache_setenv"
+  ]
+}

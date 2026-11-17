@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "solana-funding-arb-cn",
-  "version": "1.0.1",
-  "publishedAt": 1771605388886
+  "metadata": {
+    "openclaw": {
+      "name": "solana-funding-arb-cn",
+      "title": "Solana 资金费率套利",
+      "description": "监控 Solana 生态资金费率套利机会，支持多交易所数据对比和风险控制",
+      "version": "1.0.0",
+      "category": "DeFi",
+      "tags": ["solana", "套利", "资金费率", "defi", "加密货币"],
+      "author": "guohongbin-git",
+      "license": "MIT",
+      "homepage": "https://clawhub.com/skills/solana-funding-arb-cn"
+    }
+  },
+  "dependencies": [],
+  "environment": {}
 }

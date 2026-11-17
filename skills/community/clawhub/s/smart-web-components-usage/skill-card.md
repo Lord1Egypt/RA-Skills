@@ -1,46 +1,57 @@
-## Description: <br>
-Provides usage guidance, API references, integration patterns, and examples for the @ht-smart/basic UI component library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides usage guidance and API references for @ht-smart/basic components, including tables, trees, forms, modals, drawers, dictionaries, selectors, layouts, upload components, and related enterprise UI utilities.
 
-## Publisher: <br>
-[xiaowenqiang123](https://clawhub.ai/user/xiaowenqiang123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaowenqiang123](https://clawhub.ai/user/xiaowenqiang123)
 
-## Use Case: <br>
-Developers and engineers use this skill to look up @ht-smart/basic component usage, props, methods, integration patterns, and best practices for React and Ant Design based enterprise interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated component examples could include placeholder API calls or integration assumptions that do not match the target application. <br>
-Mitigation: Review generated application code before use and wire placeholders to scoped project services. <br>
-Risk: The skill documents @ht-smart/basic usage with Ant Design 4 compatibility notes, which may not apply to projects using Ant Design 5. <br>
-Mitigation: Confirm the target project's component library and Ant Design versions before applying generated guidance. <br>
-Risk: Prompts or examples could accidentally include real service credentials or sensitive data. <br>
-Mitigation: Avoid placing real secrets in prompts or examples, following the server-provided security guidance. <br>
+## Use Case:
 
+Developers use this skill to look up @ht-smart/basic component usage patterns, prop APIs, examples, and integration notes while building enterprise React interfaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaowenqiang123/smart-web-components-usage) <br>
-- [HtProTable API reference](artifact/api-pro-table.md) <br>
-- [HtProTree API reference](artifact/api-pro-tree.md) <br>
-- [HtForm API reference](artifact/api-form.md) <br>
-- [HtDict API reference](artifact/api-dict.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with TypeScript/TSX code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples may contain placeholder API calls that need project-specific wiring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated component guidance may be applied to destructive callbacks such as delete operations without enough confirmation or recovery behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require product-specific confirmation, authorization, and recovery expectations before wiring delete callbacks into production workflows.
+
+Risk: Upload examples may be adapted for sensitive files without validating endpoint suitability or data-handling requirements.
+
+Mitigation: Confirm upload endpoints, storage policies, and access controls before sending sensitive files through components based on the examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaowenqiang123/skills/smart-web-components-usage)
+- [api-pro-table.md](artifact/api-pro-table.md)
+- [api-pro-tree.md](artifact/api-pro-tree.md)
+- [api-form.md](artifact/api-form.md)
+- [api-dict.md](artifact/api-dict.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with TypeScript and TSX examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only responses; no executable runtime behavior is included in the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

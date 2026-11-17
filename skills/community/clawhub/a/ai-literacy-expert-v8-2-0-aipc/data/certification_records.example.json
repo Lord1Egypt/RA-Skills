@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "name": "certification_records_example",
+    "version": "8.2.0-aipc",
+    "module": "module-h-bozhifang",
+    "section": "X1 博智坊学习认证",
+    "last_updated": "2026-08-24"
+  },
+  "description": "博智坊学习认证记录示例（学生 + 教师）",
+  "student_certification_records": [
+    {
+      "student_id": "S2025XXXX",
+      "name": "示例学生 A",
+      "primary_program": "CM+GD",
+      "academic_year": "2025-26",
+      "workshops_completed": [
+        {"id": "ws-1", "date": "2025-09-28", "title": "大模型基础及应用"},
+        {"id": "ws-3", "date": "2025-10-22", "title": "AI 数字化身"},
+        {"id": "ws-5", "date": "2025-11-28", "title": "3D 重建"}
+      ],
+      "badges": ["ws-1", "ws-3", "ws-5"],
+      "certification_status": "in_progress (3/4)",
+      "cross_disciplinary_badge": false
+    },
+    {
+      "student_id": "S2025YYYY",
+      "name": "示例学生 B",
+      "primary_program": "IBL+BUSA",
+      "academic_year": "2025-26",
+      "workshops_completed": [
+        {"id": "ws-1", "date": "2025-09-28", "title": "大模型基础及应用"},
+        {"id": "ws-2", "date": "2025-10-15", "title": "Vibe Coding 实战"},
+        {"id": "ws-4", "date": "2025-11-12", "title": "AIGC"},
+        {"id": "ws-6", "date": "2025-12-03", "title": "CV 基础"}
+      ],
+      "badges": ["ws-1", "ws-2", "ws-4", "ws-6"],
+      "certification_status": "earned (4/4)",
+      "cross_disciplinary_badge": true
+    }
+  ],
+  "teacher_records": [
+    {
+      "teacher_id": "T-CMG-001",
+      "name": "示例教师 A",
+      "primary_program": "CM+GD",
+      "academic_year": "2025-26",
+      "t1_lesson_plans_created": ["CM+GD-001"],
+      "t2_tools_used": ["备课助手", "出题助手", "评估助手"],
+      "t3_collaborations": ["SCC × FST 联合备课"],
+      "t4_innovations": ["5E + AI 教学法创新"]
+    }
+  ]
+}

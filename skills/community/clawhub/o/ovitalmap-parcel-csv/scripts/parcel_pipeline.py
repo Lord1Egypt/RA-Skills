@@ -1,429 +1,757 @@
-"""
-End-to-end parcel processing pipeline for ovitalmap.
-
-This is the main orchestrator that the LLM calls.  It accepts a JSON description
-of one or more parcels (with WGS84 coordinates already parsed by the LLM) and
-runs through the complete flow:
-
-    1. Country localization  (LLM-determined from coordinates + context)
-    2. Provider matching     (fuzzy dedup with ambiguous flag)
-    2b. Duplicate detection  (coordinate-based, order-independent)
-        → archive hits reuse existing parcel_code + metadata
-    3. Code assignment       (sequential, only for genuinely new parcels)
-    4. CSV generation        (vertices + boundary for ALL parcels)
-    5. Archive append        (per-country + master, only for new parcels)
-
-CLI usage:
-    echo '{
-      "parcels": [{
-        "vertices": [[114.13472, 22.50422], [114.13564, 22.50411]],
-        "provider_name": "张三",
-        "official_id": null,
-        "altitude": []
-      }],
-      "date": "260610"
-    }' | python3 scripts/parcel_pipeline.py --step 1
-
-    Steps:
-      --step 1   → country + provider match (read-only, no file writes)
-      --step 2b  → duplicate check: reuse matched_codes for hits, identify new
-      --step 2   → code assignment for new parcels only (reads archive)
-      --step 3   → CSV build for ALL parcels + archive for new only
-      --step all → run everything (interactive — waits for user between steps)
-"""
+"""Orchestrate parcel validation, matching, export, and archiving."""
 
 import argparse
 import json
 import sys
+import uuid
 from datetime import datetime
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-
 sys.path.insert(0, str(SCRIPT_DIR))
 
-from utils import read_csv, get_workspace_root
+from archive_manager import (
+    append_parcels,
+    check_duplicate,
+    scan_archive,
+    update_cadastre,
+)
+from batch_rules import (
+    annotate_parcels,
+    duplicate_official_ids,
+    find_prior_boundary_match,
+    resolution_for,
+)
+from country_locator import locate_country
+from csv_builder import build_parcel_exports, normalize_export_mode, prepare_parcels
+from provider_matcher import fuzzy_match
+from response_protocol import (
+    blocked_response,
+    build_response,
+    input_error_response,
+)
+from utils import (
+    build_boundary_string,
+    get_workspace_root,
+    read_csv,
+    validate_country_code,
+    validate_date_token,
+    validate_identifier,
+    write_json_stdout,
+)
+
 
 WORKSPACE_ROOT = get_workspace_root()
-
-from country_locator import locate_country
-from archive_manager import scan_archive, check_duplicate, append_parcels, update_cadastre
-from csv_builder import build_csvs, build_single_csvs
-from provider_matcher import fuzzy_match
+STATE_DIR = WORKSPACE_ROOT / "ovitalmap_archive" / ".pipeline_state"
 
 
-_TODAY = datetime.now().strftime('%Y-%m-%d')
-STATE_FILE = WORKSPACE_ROOT / 'ovitalmap_archive' / '.pipeline_state.json'
+class WorkflowInputError(ValueError):
+    def __init__(self, code, required_input, message, next_action):
+        super().__init__(message)
+        self.code = code
+        self.required_input = required_input
+        self.message = message
+        self.next_action = next_action
 
 
-def save_state(state):
-    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with open(STATE_FILE, 'w') as f:
-        json.dump(state, f, ensure_ascii=False, indent=2)
+def _state_path(run_id):
+    safe_run_id = validate_identifier(run_id, "run_id")
+    return STATE_DIR / f"{safe_run_id}.json"
 
 
-def load_state():
-    if STATE_FILE.exists():
-        with open(STATE_FILE) as f:
-            return json.load(f)
-    return {}
+def save_state(run_id, state):
+    path = _state_path(run_id)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(".tmp")
+    temporary.write_text(
+        json.dumps(state, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    temporary.replace(path)
 
 
-# ---------------------------------------------------------------------------
-# Step 1: Country + Provider match
-# ---------------------------------------------------------------------------
+def load_state(run_id):
+    path = _state_path(run_id)
+    if not path.exists():
+        raise ValueError(f"Unknown pipeline run_id: {run_id}")
+    return json.loads(path.read_text(encoding="utf-8"))
 
-def step1_country_and_provider(parcels):
-    """Determine country and check provider names for all parcels.
 
-    Returns:
-        dict with: country_code, country_name, provider_results, existing_providers
-    """
-    all_vertices = []
-    for p in parcels:
-        all_vertices.extend(p.get('vertices', []))
+def _master_providers():
+    _, rows = read_csv(str(WORKSPACE_ROOT / "ovitalmap_archive" / "master.csv"))
+    return {
+        row.get("provider_name", "").strip()
+        for row in rows
+        if row.get("provider_name", "").strip().lower() not in {"", "unknown"}
+    }
 
-    country_result = locate_country(all_vertices)
-    country_code = country_result.get('country_code')
 
-    for p in parcels:
-        p['country_code'] = country_code
+def step1_country_and_provider(parcels, country_code=None):
+    """Validate coordinates and match each parcel's provider."""
+    if not isinstance(parcels, list) or not parcels:
+        raise ValueError("parcels must be a non-empty list")
+    annotated, parcel_countries = annotate_parcels(parcels)
+    country_code = validate_country_code(country_code) if country_code else None
+    if len(parcel_countries) > 1:
+        groups = "; ".join(
+            f"{code}: {','.join(refs)}"
+            for code, refs in sorted(parcel_countries.items())
+        )
+        raise WorkflowInputError(
+            "mixed_country_batch",
+            ["separate_runs_by_country"],
+            f"The batch contains multiple countries or regions ({groups}). Split it into separate runs.",
+            "split_by_country",
+        )
+    if parcel_countries:
+        parcel_country = next(iter(parcel_countries))
+        if country_code and country_code != parcel_country:
+            refs = ",".join(parcel_countries[parcel_country])
+            raise WorkflowInputError(
+                "country_mismatch",
+                ["country_code"],
+                f"{refs} is marked {parcel_country}, which conflicts with batch country or region {country_code}.",
+                "confirm_preflight",
+            )
+        country_code = country_code or parcel_country
 
+    coordinate_results = []
+    normalized_parcels = []
+    all_errors = []
+    for source in annotated:
+        parcel = dict(source)
+        result = locate_country(parcel.get("vertices", []))
+        coordinate_results.append(result)
+        if result["errors"]:
+            all_errors.extend(
+                f"{parcel['parcel_ref']}: {message}" for message in result["errors"]
+            )
+        parcel["vertices"] = result["normalized_vertices"]
+        normalized_parcels.append(parcel)
+    if all_errors:
+        raise ValueError("; ".join(all_errors))
+
+    existing_providers = set()
+    archive_exists = False
     if country_code:
         archive_scan = scan_archive(country_code)
-        existing_providers = archive_scan.get('all_providers', [])
-        # Also scan master.csv for cross-country providers (SKILL §7.4)
-        master_path = WORKSPACE_ROOT / 'ovitalmap_archive' / 'master.csv'
-        _, master_rows = read_csv(str(master_path))
-        if master_rows:
-            master_providers = set()
-            for r in master_rows:
-                pn = r.get('provider_name', '').strip()
-                if pn and pn.lower() != 'unknown':
-                    master_providers.add(pn)
-            existing_providers = sorted(set(existing_providers) | master_providers)
-    else:
-        archive_scan = {}
-        existing_providers = []
+        existing_providers.update(archive_scan["all_providers"])
+        archive_exists = archive_scan["archive_exists"]
+    existing_providers.update(_master_providers())
+    existing_providers = sorted(existing_providers)
 
     provider_results = []
-    for p in parcels:
-        provider_name = p.get('provider_name', '')
-        if provider_name:
-            match_result = fuzzy_match(provider_name, existing_providers)
-            provider_results.append({
-                'input_name': provider_name,
-                'exact_match': match_result.get('exact_match'),
-                'candidates': match_result.get('candidates', []),
-                'ambiguous': match_result.get('ambiguous', False),
-            })
-        else:
-            provider_results.append({
-                'input_name': '',
-                'exact_match': None,
-                'candidates': [],
-                'ambiguous': False,
-            })
+    for parcel in normalized_parcels:
+        provider = str(
+            parcel.get("resolved_provider_name")
+            or parcel.get("provider_name")
+            or ""
+        ).strip()
+        provider_results.append(
+            fuzzy_match(provider, existing_providers)
+            if provider
+            else {
+                "input_name": "",
+                "exact_match": None,
+                "candidates": [],
+                "ambiguous": False,
+            }
+        )
 
     return {
-        'country_code': country_code,
-        'country_name': country_result.get('country_name'),
-        'method': country_result.get('method'),
-        'per_vertex': country_result.get('per_vertex', []),
-        'country_code_counts': country_result.get('country_code_counts', {}),
-        'provider_results': provider_results,
-        'archive_exists': archive_scan.get('archive_exists', False),
-        'existing_providers': existing_providers,
+        "country_code": country_code,
+        "country_name": None,
+        "method": "confirmed_input" if country_code else "needs_confirmation",
+        "coordinate_results": coordinate_results,
+        "provider_results": provider_results,
+        "archive_exists": archive_exists,
+        "existing_providers": existing_providers,
+        "parcels": normalized_parcels,
+        "needs_country_confirmation": country_code is None,
     }
 
 
-# ---------------------------------------------------------------------------
-# Step 2b: Duplicate check (runs BEFORE code assignment)
-# ---------------------------------------------------------------------------
+def _resolved_provider(parcel, batch_provider=None):
+    provider = str(
+        parcel.get("resolved_provider_name")
+        or parcel.get("provider_name")
+        or batch_provider
+        or ""
+    ).strip()
+    if not provider:
+        raise ValueError("Every parcel requires a confirmed provider_name")
+    return provider
 
-def step2b_check_duplicates(parcels, country_code, resolved_provider_name):
-    """Check each parcel against the archive by coordinates.  Archive hits reuse
-    the existing parcel_code and carry over archive metadata.  Non-hits remain
-    for code assignment in step 2.
 
-    Args:
-        parcels: list of parcel dicts (vertices, provider_name, official_id).
-        country_code: alpha-2 country code.
-        resolved_provider_name: confirmed provider name for the batch.
+def _apply_provider_resolutions(parcels, data, state):
+    resolutions = data.get("provider_resolutions", {})
+    batch_provider = data.get("resolved_provider_name")
+    provider_results = state.get("step1", {}).get("provider_results", [])
+    resolved = []
+    missing = []
 
-    Returns:
-        dict with: duplicate_results, archive_hit_parcels, new_parcels,
-                   all_parcels_ordered (preserving original input order for step 3)
-    """
+    for index, source in enumerate(parcels):
+        parcel = dict(source)
+        provider_result = (
+            provider_results[index] if index < len(provider_results) else {}
+        )
+        selected = (
+            resolution_for(resolutions, parcel)[1]
+            or provider_result.get("exact_match")
+            or parcel.get("resolved_provider_name")
+            or batch_provider
+        )
+        requires_resolution = (
+            not provider_result.get("input_name")
+            or (
+                provider_result.get("candidates")
+                and not provider_result.get("exact_match")
+            )
+        )
+        if selected:
+            parcel["resolved_provider_name"] = str(selected).strip()
+        elif requires_resolution:
+            missing.append(f"provider_resolutions.{parcel['parcel_ref']}")
+        resolved.append(parcel)
+
+    if missing:
+        raise WorkflowInputError(
+            "provider_confirmation_required",
+            missing,
+            "Confirm each missing provider before checking for duplicate parcels.",
+            "confirm_preflight",
+        )
+    return resolved
+
+
+def step2b_check_duplicates(
+    parcels,
+    country_code,
+    resolved_provider_name=None,
+    duplicate_resolutions=None,
+):
+    """Classify parcels without modifying archives."""
+    country_code = validate_country_code(country_code)
     duplicate_results = []
-    archive_hit_parcels = []
-    new_parcels = []
-    all_parcels_ordered = []
+    hits = []
+    new = []
+    ordered = []
+    conflicts = []
+    prior_parcels = []
 
-    for i, p in enumerate(parcels):
-        result = check_duplicate(country_code, p.get('vertices', []))
-        match_found = result.get('match_found', False)
-        matched_code = result.get('matched_code')
-        matched_provider = result.get('matched_provider')
-        matched_cadastre = result.get('matched_cadastre_code', '')
-        matched_archive_date = result.get('matched_archive_date', '')
+    for index, source in enumerate(parcels):
+        parcel = dict(source)
+        parcel.setdefault("input_index", index)
+        parcel.setdefault("parcel_ref", f"P{parcel['input_index'] + 1:02d}")
+        provider = _resolved_provider(parcel, resolved_provider_name)
+        prior = find_prior_boundary_match(parcel, prior_parcels)
+        if prior:
+            found, decision = resolution_for(duplicate_resolutions, parcel)
+            decision = str(decision or "").strip().lower() if found else ""
+            if decision not in {"same", "different"}:
+                conflicts.append(
+                    {
+                        "index": parcel["input_index"],
+                        "parcel_ref": parcel["parcel_ref"],
+                        "matches_index": prior["input_index"],
+                        "matches_ref": prior["parcel_ref"],
+                    }
+                )
+                continue
+            if decision == "same":
+                duplicate_results.append(
+                    {
+                        "index": parcel["input_index"],
+                        "parcel_ref": parcel["parcel_ref"],
+                        "match_found": True,
+                        "match_source": "batch",
+                        "matches_ref": prior["parcel_ref"],
+                        "resolution": "same",
+                        "skipped": True,
+                    }
+                )
+                continue
+            parcel["allow_duplicate_coordinates"] = True
+            note = (
+                f"Coordinates identical to {prior['parcel_ref']}; "
+                "user confirmed a different parcel."
+            )
+            parcel["provider_notes"] = " ".join(
+                part for part in [parcel.get("provider_notes", ""), note] if part
+            )
+            result = {"match_found": False}
+        else:
+            result = check_duplicate(country_code, parcel.get("vertices", []))
 
-        dup_entry = {
-            'index': i,
-            'match_found': match_found,
+        entry = {
+            "index": parcel["input_index"],
+            "parcel_ref": parcel["parcel_ref"],
+            "match_found": result["match_found"],
         }
 
-        if match_found:
-            # Reuse the archived parcel_code — do NOT assign a new one
-            p['parcel_code'] = matched_code
-            p['resolved_provider_name'] = matched_provider or resolved_provider_name
-            p['archive_date'] = matched_archive_date
-            # Prefer the new official_id over the old cadastre if provided
-            p['cadastre_code'] = p.get('official_id') or matched_cadastre
-            p['is_archive_hit'] = True
-
-            # Check if we should update cadastre_code in the archive files
-            existing_is_date_code = bool(
-                matched_code and not matched_cadastre and
-                len(matched_code.split('-')[-1]) == 3 and matched_code.split('-')[-1].isdigit()
+        if result["match_found"]:
+            parcel.update(
+                {
+                    "parcel_code": result["matched_code"],
+                    "resolved_provider_name": result["matched_provider"] or provider,
+                    "archive_date": result["matched_archive_date"],
+                    "cadastre_code": (
+                        parcel.get("official_id")
+                        or result["matched_cadastre_code"]
+                    ),
+                    "matched_cadastre_code": result["matched_cadastre_code"],
+                    "is_archive_hit": True,
+                }
             )
-            dup_entry['matched_code'] = matched_code
-            dup_entry['matched_provider'] = matched_provider
-            dup_entry['matched_cadastre_code'] = matched_cadastre
-            dup_entry['existing_is_date_code'] = existing_is_date_code
-            dup_entry['needs_cadastre_update'] = existing_is_date_code and bool(p.get('official_id'))
-
-            # Update the archive files if the match had a date-code and user now provides an official ID
-            if existing_is_date_code and p.get('official_id'):
-                update_result = update_cadastre(
-                    country_code, matched_code, p.get('official_id')
-                )
-                dup_entry['cadastre_update_result'] = update_result
-
-            archive_hit_parcels.append(p)
+            needs_update = bool(
+                parcel.get("official_id")
+                and not result["matched_cadastre_code"]
+            )
+            entry.update(
+                {
+                    "matched_code": result["matched_code"],
+                    "matched_provider": result["matched_provider"],
+                    "matched_cadastre_code": result["matched_cadastre_code"],
+                    "needs_cadastre_update": needs_update,
+                }
+            )
+            hits.append(parcel)
         else:
-            p['is_archive_hit'] = False
-            p['resolved_provider_name'] = resolved_provider_name
-            p['archive_date'] = _TODAY
-            p['cadastre_code'] = p.get('official_id', '')
-            new_parcels.append(p)
-
-        duplicate_results.append(dup_entry)
-        all_parcels_ordered.append(p)
+            parcel.update(
+                {
+                    "resolved_provider_name": provider,
+                    "archive_date": datetime.now().strftime("%Y-%m-%d"),
+                    "cadastre_code": parcel.get("official_id", ""),
+                    "is_archive_hit": False,
+                }
+            )
+            new.append(parcel)
+        duplicate_results.append(entry)
+        ordered.append(parcel)
+        prior_parcels.append(parcel)
 
     return {
-        'duplicate_results': duplicate_results,
-        'archive_hit_parcels': archive_hit_parcels,
-        'new_parcels': new_parcels,
-        'all_parcels_ordered': all_parcels_ordered,
+        "duplicate_results": duplicate_results,
+        "archive_hit_parcels": hits,
+        "new_parcels": new,
+        "all_parcels_ordered": ordered,
+        "batch_duplicate_conflicts": conflicts,
     }
 
-
-# ---------------------------------------------------------------------------
-# Step 2: Code assignment (only for new parcels)
-# ---------------------------------------------------------------------------
 
 def step2_assign_codes(new_parcels, country_code, date_hint):
-    """Assign parcel_codes.  Uses official_id (format 1) when available,
-    otherwise falls back to sequential (format 2).
-
-    Args:
-        new_parcels: list of parcel dicts that are NOT archive hits.
-        country_code: alpha-2 country code.
-        date_hint: YYMMDD string.
-
-    Returns:
-        dict with: assigned_codes (list), warnings (list)
-    """
+    country_code = validate_country_code(country_code)
+    date_hint = validate_date_token(date_hint)
     if not new_parcels:
-        return {'assigned_codes': [], 'warnings': [], 'message': 'No new parcels to assign codes to.'}
+        return {
+            "assigned_codes": [],
+            "warnings": [],
+            "message": "No new parcels to assign codes to.",
+            "new_parcels": [],
+        }
 
     archive_scan = scan_archive(country_code, date_hint)
-    existing_codes = set(archive_scan.get('all_codes', []))
-    today_max_seq = archive_scan.get('today_max_seq', 0)
-    seq = today_max_seq
-
+    existing_codes = set(archive_scan["all_codes"])
+    sequence = archive_scan["today_max_seq"]
     assigned = []
-    warnings = []
+    prepared = []
 
-    for i, p in enumerate(new_parcels):
-        official_id = p.get('official_id')
-        is_sequential = True
-
+    for index, source in enumerate(new_parcels):
+        parcel = dict(source)
+        official_id = parcel.get("official_id")
         if official_id:
-            # Format 1: {CC}-{OFFICIAL_ID}
-            candidate = f'{country_code}-{official_id}'
+            official_id = validate_identifier(official_id, "official_id")
+            candidate = f"{country_code}-{official_id}"
             if candidate in existing_codes:
-                warnings.append(f'Parcel {i + 1}: Official ID {candidate} already exists in archive. Falling back to sequential.')
-                candidate = None
-            else:
-                is_sequential = False
+                raise ValueError(
+                    f"Official parcel code already exists and requires review: {candidate}"
+                )
+            is_sequential = False
+            parcel["cadastre_code"] = official_id
         else:
-            candidate = None
-
-        # Format 2: {CC}-{YYMMDD}-{SEQ} (fallback)
-        if candidate is None:
-            seq += 1
-            candidate = f'{country_code}-{date_hint}-{seq:03d}'
+            sequence += 1
+            candidate = f"{country_code}-{date_hint}-{sequence:03d}"
             while candidate in existing_codes:
-                seq += 1
-                candidate = f'{country_code}-{date_hint}-{seq:03d}'
+                sequence += 1
+                candidate = f"{country_code}-{date_hint}-{sequence:03d}"
+            is_sequential = True
 
         existing_codes.add(candidate)
-        p['parcel_code'] = candidate
-        if official_id:
-            p['cadastre_code'] = official_id
-        assigned.append({
-            'index': i,
-            'parcel_code': candidate,
-            'is_sequential': is_sequential,
-        })
+        parcel["parcel_code"] = candidate
+        prepared.append(parcel)
+        assigned.append(
+            {
+                "index": parcel.get("input_index", index),
+                "parcel_ref": parcel.get("parcel_ref", f"P{index + 1:02d}"),
+                "parcel_code": candidate,
+                "is_sequential": is_sequential,
+            }
+        )
 
     return {
-        'assigned_codes': assigned,
-        'warnings': warnings,
-        'today_max_seq': today_max_seq,
-        'new_max_seq': seq,
+        "assigned_codes": assigned,
+        "warnings": [],
+        "today_max_seq": archive_scan["today_max_seq"],
+        "new_max_seq": sequence,
+        "new_parcels": prepared,
     }
 
 
-# ---------------------------------------------------------------------------
-# Step 3: Build CSVs (ALL parcels) + Archive (new parcels only)
-# ---------------------------------------------------------------------------
+def _merge_assigned(ordered, assigned):
+    # State serialization loses object identity; preserve order by replacing
+    # each non-hit parcel from the assigned queue.
+    queue = iter(assigned)
+    merged = []
+    for parcel in ordered:
+        merged.append(parcel if parcel.get("is_archive_hit") else next(queue))
+    return merged
 
-def step3_build_and_archive(all_parcels, new_parcels, country_code):
-    """Generate CSVs for every parcel (including archive hits). Archive only new ones.
 
-    Archive-hit parcels get single-parcel CSV exports regenerated with fresh
-    Comment metadata (provider, date, cadastre).
+def _apply_official_id_resolutions(parcels, resolutions):
+    resolved = []
+    for source in parcels:
+        parcel = dict(source)
+        found, value = resolution_for(resolutions, parcel)
+        if found:
+            parcel["official_id"] = (
+                validate_identifier(value, "official_id")
+                if value not in {None, ""}
+                else None
+            )
+        resolved.append(parcel)
+    return resolved
 
-    Args:
-        all_parcels: every parcel (new + archive hits), each with parcel_code,
-                     vertices, resolved_provider_name, archive_date, cadastre_code.
-        new_parcels: subset that needs archiving (not archive hits).
-        country_code: alpha-2 country code.
 
-    Returns:
-        dict with: new_csv_result, hit_csv_results, archive_result
-    """
-    from utils import build_boundary_string
+def _replace_by_ref(parcels, replacements):
+    by_ref = {parcel["parcel_ref"]: parcel for parcel in replacements}
+    return [by_ref.get(parcel["parcel_ref"], parcel) for parcel in parcels]
 
-    # --- Archive-hit parcels: generate individual single-parcel CSVs ---
-    hit_csv_results = []
-    for p in all_parcels:
-        if not p.get('is_archive_hit'):
+
+def step3_build_and_archive(
+    all_parcels,
+    new_parcels,
+    country_code,
+    export_mode="boundary",
+):
+    country_code = validate_country_code(country_code)
+    prepare_parcels(all_parcels)
+    export_mode = normalize_export_mode(export_mode)
+
+    cadastre_updates = []
+    for parcel in all_parcels:
+        if not parcel.get("is_archive_hit"):
             continue
-        result = build_single_csvs(p, country_code)
-        hit_csv_results.append(result)
-
-    # --- New parcels: batch CSV + archive ---
-    new_csv_result = None
+        if parcel.get("official_id") and not parcel.get("matched_cadastre_code"):
+            cadastre_updates.append(
+                update_cadastre(
+                    country_code,
+                    parcel["parcel_code"],
+                    parcel["official_id"],
+                )
+            )
+    export_result = build_parcel_exports(all_parcels, country_code, export_mode)
     archive_result = None
-
     if new_parcels:
-        first_code = new_parcels[0]['parcel_code']
-        count_new = len(new_parcels)
-        new_csv_result = build_csvs(new_parcels, first_code, count_new, country_code)
-
-        today = datetime.now().strftime('%Y-%m-%d')
-        archive_rows = []
-        for p in new_parcels:
-            archive_rows.append({
-                'parcel_code': p['parcel_code'],
-                'provider_name': p.get('resolved_provider_name', p.get('provider_name', 'Unknown')),
-                'archive_date': today,
-                'boundary_coords': build_boundary_string(p.get('vertices', [])),
-                'provider_notes': p.get('provider_notes', ''),
-                'cadastre_code': p.get('cadastre_code', ''),
-            })
-
+        archive_rows = [
+            {
+                "parcel_code": parcel["parcel_code"],
+                "provider_name": _resolved_provider(parcel),
+                "archive_date": datetime.now().strftime("%Y-%m-%d"),
+                "boundary_coords": build_boundary_string(parcel["vertices"]),
+                "provider_notes": parcel.get("provider_notes", ""),
+                "cadastre_code": parcel.get("cadastre_code", ""),
+                "allow_duplicate_coordinates": parcel.get(
+                    "allow_duplicate_coordinates", False
+                ),
+            }
+            for parcel in new_parcels
+        ]
         archive_result = append_parcels(country_code, archive_rows)
 
     return {
-        'new_csv_result': new_csv_result,
-        'hit_csv_results': hit_csv_results,
-        'archive_result': archive_result,
+        **export_result,
+        "archive_result": archive_result,
+        "cadastre_updates": cadastre_updates,
     }
 
 
-# ---------------------------------------------------------------------------
-# CLI
-# ---------------------------------------------------------------------------
+def _run_step(step, data, state):
+    parcels = (
+        data.get("parcels", [])
+        if step == "1"
+        else state.get("parcels") or data.get("parcels", [])
+    )
+    country_code = data.get("country_code") or state.get("country_code")
+    provider = data.get("resolved_provider_name") or state.get(
+        "resolved_provider_name"
+    )
+    date_hint = data.get("date") or state.get(
+        "date", datetime.now().strftime("%y%m%d")
+    )
+    if "export_mode" in data or "export_mode" not in state:
+        state["export_mode"] = normalize_export_mode(data.get("export_mode"))
+    export_mode = state["export_mode"]
+
+    if step == "1":
+        result = step1_country_and_provider(parcels, country_code)
+        result["coordinates_confirmed"] = bool(
+            data.get("confirmed_coordinates") or data.get("confirmed")
+        )
+        state.update(
+            {
+                "parcels": result["parcels"],
+                "country_code": result["country_code"],
+                "date": validate_date_token(date_hint),
+                "resolved_provider_name": provider,
+                "coordinates_confirmed": result["coordinates_confirmed"],
+                "step1": result,
+            }
+        )
+        return result
+
+    if not country_code:
+        raise WorkflowInputError(
+            "country_required",
+            ["country_code"],
+            "Provide or confirm the parcel country or region before continuing.",
+            "confirm_preflight",
+        )
+
+    if step == "2b":
+        coordinates_confirmed = bool(
+            data.get("confirmed_coordinates")
+            or data.get("confirmed")
+            or state.get("coordinates_confirmed")
+        )
+        if not coordinates_confirmed:
+            raise WorkflowInputError(
+                "coordinate_confirmation_required",
+                ["confirmed_coordinates"],
+                "Confirm the displayed WGS84 coordinates before checking for duplicates.",
+                "confirm_preflight",
+            )
+        parcels = _apply_provider_resolutions(parcels, data, state)
+        result = step2b_check_duplicates(
+            parcels,
+            country_code,
+            provider,
+            data.get("duplicate_resolutions"),
+        )
+        state.update(
+            {
+                "parcels": (
+                    parcels
+                    if result["batch_duplicate_conflicts"]
+                    else result["all_parcels_ordered"]
+                ),
+                "country_code": country_code,
+                "date": validate_date_token(date_hint),
+                "resolved_provider_name": provider,
+                "coordinates_confirmed": True,
+                "step2b": result,
+            }
+        )
+        return result
+
+    if step == "2":
+        if "step2b" not in state:
+            raise ValueError("Run Step 2b before Step 2")
+        conflicts = state["step2b"].get("batch_duplicate_conflicts", [])
+        if conflicts:
+            fields = [
+                f"duplicate_resolutions.{item['parcel_ref']}"
+                for item in conflicts
+            ]
+            raise WorkflowInputError(
+                "batch_duplicate_resolution_required",
+                fields,
+                "Confirm whether identical boundaries in this batch are the same or different parcels.",
+                "resolve_batch_duplicates",
+            )
+        new_parcels = _apply_official_id_resolutions(
+            state["step2b"]["new_parcels"],
+            data.get("official_id_resolutions", {}),
+        )
+        official_conflicts = duplicate_official_ids(new_parcels)
+        if official_conflicts:
+            lines = "; ".join(
+                f"{item['parcel_ref']} and {item['first_ref']} both use {item['official_id']}"
+                for item in official_conflicts
+            )
+            raise WorkflowInputError(
+                "duplicate_official_ids",
+                [
+                    f"official_id_resolutions.{item['parcel_ref']}"
+                    for item in official_conflicts
+                ],
+                f"Duplicate official identifiers found: {lines}. Correct or clear the later value.",
+                "resolve_official_ids",
+            )
+        state["step2b"]["new_parcels"] = new_parcels
+        state["step2b"]["all_parcels_ordered"] = _replace_by_ref(
+            state["step2b"]["all_parcels_ordered"],
+            new_parcels,
+        )
+        try:
+            result = step2_assign_codes(
+                new_parcels,
+                country_code,
+                date_hint,
+            )
+        except ValueError as exc:
+            prefix = "Official parcel code already exists and requires review: "
+            if not str(exc).startswith(prefix):
+                raise
+            candidate = str(exc)[len(prefix):]
+            parcel = next(
+                (
+                    item
+                    for item in new_parcels
+                    if f"{country_code}-{item.get('official_id')}" == candidate
+                ),
+                None,
+            )
+            parcel_ref = parcel["parcel_ref"] if parcel else "the corresponding parcel"
+            raise WorkflowInputError(
+                "official_code_exists",
+                [f"official_id_resolutions.{parcel_ref}"],
+                f"Official code {candidate} for {parcel_ref} already exists. Verify, correct, or clear the identifier.",
+                "resolve_official_ids",
+            ) from exc
+        ordered = _merge_assigned(
+            state["step2b"]["all_parcels_ordered"],
+            result["new_parcels"],
+        )
+        state["step2"] = result
+        state["parcels"] = ordered
+        return {
+            key: value for key, value in result.items() if key != "new_parcels"
+        }
+
+    if step == "3":
+        if "step2b" not in state:
+            raise ValueError("Run Step 2b before Step 3")
+        new_parcels = state.get("step2", {}).get("new_parcels", [])
+        if state["step2b"]["new_parcels"] and not new_parcels:
+            raise ValueError("Run Step 2 before Step 3")
+        if new_parcels and not (
+            data.get("confirmed_codes") or data.get("auto_accept_codes")
+        ):
+            raise WorkflowInputError(
+                "code_confirmation_required",
+                ["confirmed_codes"],
+                "Confirm the proposed parcel codes before export and archiving.",
+                "confirm_codes",
+            )
+        result = step3_build_and_archive(
+            state["parcels"],
+            new_parcels,
+            country_code,
+            export_mode,
+        )
+        state["step3"] = result
+        return result
+
+    raise ValueError(f"Unknown step: {step}")
+
+
+def _public_result(step, result):
+    """Keep tool output concise; full working data remains in per-run state."""
+    if step == "1":
+        return {
+            "country_code": result["country_code"],
+            "method": result["method"],
+            "provider_results": result["provider_results"],
+            "archive_exists": result["archive_exists"],
+            "needs_country_confirmation": result["needs_country_confirmation"],
+            "coordinates_confirmed": result["coordinates_confirmed"],
+            "coordinate_preview": [
+                item["normalized_vertices"]
+                for item in result["coordinate_results"]
+            ],
+            "coordinate_warnings": [
+                warning
+                for item in result["coordinate_results"]
+                for warning in item["warnings"]
+            ],
+            "parcel_refs": [
+                parcel["parcel_ref"] for parcel in result["parcels"]
+            ],
+        }
+    if step == "2b":
+        return {
+            "duplicate_results": result["duplicate_results"],
+            "archive_hit_count": len(result["archive_hit_parcels"]),
+            "new_parcel_count": len(result["new_parcels"]),
+            "batch_duplicate_conflicts": result.get(
+                "batch_duplicate_conflicts", []
+            ),
+        }
+    if step == "2":
+        return {
+            key: value
+            for key, value in result.items()
+            if key != "new_parcels"
+        }
+    return result
+
 
 def main():
-    parser = argparse.ArgumentParser(description='Ovitalmap parcel pipeline')
-    parser.add_argument('--step', choices=['1', '2b', '2', '3', 'all'], default='all',
-                        help='Pipeline step to run (2b=duplicate check, 2=codes, 3=CSV+archive)')
+    parser = argparse.ArgumentParser(description="Ovitalmap parcel pipeline")
+    parser.add_argument("--step", choices=["1", "2b", "2", "3", "all"], default="all")
     args = parser.parse_args()
 
-    data = json.load(sys.stdin)
-    parcels = data.get('parcels', [])
-    date_hint = data.get('date', datetime.now().strftime('%y%m%d'))
-    country_code = data.get('country_code', data.get('iso3'))
-    resolved_provider_name = data.get('resolved_provider_name')
+    run_id = None
+    state = {}
+    current_step = args.step
+    try:
+        data = json.load(sys.stdin)
+        run_id = data.get("run_id") or uuid.uuid4().hex[:12]
+        state = {} if args.step in {"1", "all"} else load_state(run_id)
 
-    step = args.step
-
-    if step == 'all':
-        result = {}
-    else:
-        result = load_state()
-        if not country_code:
-            country_code = result.get('step1', {}).get('country_code')
-        if not resolved_provider_name:
-            resolved_provider_name = result.get('resolved_provider_name')
-
-    if step in ('1', 'all'):
-        s1 = step1_country_and_provider(parcels)
-        result['step1'] = s1
-        country_code = country_code or s1.get('country_code')
-
-    if step in ('2b', 'all'):
-        if not country_code:
-            country_code = result.get('step1', {}).get('country_code')
-        if country_code:
-            s2b = step2b_check_duplicates(parcels, country_code, resolved_provider_name)
-            result['step2b'] = s2b
+        if args.step == "all":
+            if not data.get("confirmed"):
+                raise WorkflowInputError(
+                    "preflight_confirmation_required",
+                    ["confirmed"],
+                    "Confirm the coordinates, country or region, and provider information before running the complete workflow.",
+                    "confirm_preflight",
+                )
+            if not data.get("auto_accept_codes"):
+                raise WorkflowInputError(
+                    "automatic_code_acceptance_required",
+                    ["auto_accept_codes"],
+                    "The complete workflow accepts generated codes automatically. Set auto_accept_codes only after explicit approval.",
+                    "confirm_codes",
+                )
+            outputs = {}
+            for step in ("1", "2b", "2", "3"):
+                current_step = step
+                outputs[step] = _public_result(
+                    step,
+                    _run_step(step, data, state),
+                )
+            response = build_response(run_id, "3", outputs["3"])
+            response["steps"] = outputs
         else:
-            result['step2b'] = {'error': 'No country_code available. Run step 1 first.'}
+            output = _run_step(args.step, data, state)
+            response = build_response(
+                run_id,
+                args.step,
+                _public_result(args.step, output),
+            )
 
-    if step in ('2', 'all'):
-        if not country_code:
-            country_code = result.get('step1', {}).get('country_code')
-        new_parcels = result.get('step2b', {}).get('new_parcels', [])
-        if not new_parcels:
-            all_ordered = result.get('step2b', {}).get('all_parcels_ordered', [])
-            new_parcels = [p for p in all_ordered if not p.get('is_archive_hit')]
-        if not new_parcels:
-            new_parcels = parcels
-        if country_code:
-            s2 = step2_assign_codes(new_parcels, country_code, date_hint)
-            result['step2'] = s2
-        else:
-            result['step2'] = {'error': 'No country_code available.'}
-
-    if step in ('3', 'all'):
-        if not country_code:
-            country_code = result.get('step1', {}).get('country_code')
-        if country_code:
-            all_parcels = result.get('step2b', {}).get('all_parcels_ordered', [])
-            if not all_parcels:
-                all_parcels = parcels
-            new_parcels = result.get('step2b', {}).get('new_parcels', [])
-            if not new_parcels:
-                new_parcels = [p for p in all_parcels if not p.get('is_archive_hit')]
-            s3 = step3_build_and_archive(all_parcels, new_parcels, country_code)
-            result['step3'] = s3
-        else:
-            result['step3'] = {'error': 'No country_code available.'}
-
-    if step != 'all':
-        result['resolved_provider_name'] = resolved_provider_name
-        save_state(result)
-
-    json.dump(result, sys.stdout, ensure_ascii=False, indent=2)
-    sys.stdout.write('\n')
+        save_state(run_id, state)
+        write_json_stdout(response)
+    except WorkflowInputError as exc:
+        if run_id and state:
+            save_state(run_id, state)
+        write_json_stdout(input_error_response(run_id, current_step, exc))
+        raise SystemExit(2)
+    except (KeyError, TypeError, ValueError, OSError) as exc:
+        write_json_stdout(blocked_response(run_id, current_step, exc))
+        raise SystemExit(2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

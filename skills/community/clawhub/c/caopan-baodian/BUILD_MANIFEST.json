@@ -1,0 +1,40 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\buy-sell-points.md": "688e4084412e601e840fd5086dcddcbaadf735ce095d121fbb32d31e6829bbbe",
+    "references\\capabilities\\decision-paradox.md": "e8136ad2ca3ab82a1bb3822c1da120907441a8165d1707e760e626459a3c1923",
+    "references\\capabilities\\half-position-confirm.md": "f642a631d8676b5264a318893de9ff5ec89c064f94135e59f1642a3d8117e4e2",
+    "references\\capabilities\\market-phase-detection.md": "93c6b494936c087bc364570256c07abd11b723da36189e8f29a28b5add1774c7",
+    "references\\capabilities\\risk-position-management.md": "22cbbcc2a58829f89b7aa7ea35b47291bffe12e712ce59e0a0398ebca2d0a494",
+    "references\\capabilities\\stock-selection.md": "4375eae9466522d764c8e4b42628712dccbeb83bb87b6335d9b7c76428f0b5b7",
+    "references\\capabilities\\structural-trading.md": "1802dd3f5a9301bfbdc9f200664584487e69851f88352f8848f68017fc3ff040",
+    "references\\capabilities\\thinking-matrix.md": "2aef554edafb10c2aae3229569de7c2a8b1c23265361169c8ad0e8bc5abec7d5",
+    "references\\capabilities\\timing-vs-selection.md": "b0e20b489817c02283c8e9bb6fd09813eb75459c8be4dd5d1677e21b3149593a",
+    "references\\capabilities\\trading-system.md": "5a88945fc28552b128d39d9742ca0dc7ef308500ad535e6470d46e74ca50386a",
+    "references\\capability-index.md": "199d3a0a0f788aad4665952a0645c30dbdd20b209db15697ed46e12b21436b76",
+    "references\\cheatsheet.md": "1d0935af5e5825c4bc2c104bfcba265a6c4b7dbff1eac92e1f8d6b8fad0c97fd",
+    "references\\glossary.md": "7e60b5f74963bd388738d316d59e6af91771ad0498641535659a8aea675ba5ec",
+    "references\\overview.md": "8c0ff7a112da797c430e47ffebe7ea519670e8a35bcc0ed2b8fa82622292bdf8",
+    "SKILL.md": "d2bf17880c4d7fabc6a8499f67d19cbdd287a6b8f30c1ad2778876550a7859d3"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.caopan-baodian",
+  "bundle_sha256": "2d80b7150942e7148026a36ca4fd7c5d9482167f3d0128f1171b6466fb927f36",
+  "variant": "single",
+  "run_id": "run-20260831-190317-1a420e",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 4,
+    "capability_count": 10,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 4 个晋级 Skill，共 5 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

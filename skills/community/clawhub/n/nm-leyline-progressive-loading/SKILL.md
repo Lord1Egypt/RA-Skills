@@ -1,7 +1,7 @@
 ---
 name: progressive-loading
 description: Implements hub-and-spoke lazy loading to minimize token usage in large skills
-version: 1.9.8
+version: 1.10.3
 triggers:
   - progressive-disclosure
   - context-management
@@ -9,32 +9,12 @@ triggers:
   - token-optimization
   - lazy-loading
   - building multi-module skills that need conditional on-demand loading
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/leyline", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.leyline:mecw-patterns"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/leyline", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.conserve:context-optimization"]}}}
 source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to Use](#when-to-use)
-- [Quick Start](#quick-start)
-- [Basic Hub Pattern](#basic-hub-pattern)
-- [Progressive Loading](#progressive-loading)
-- [Context-Based Selection](#context-based-selection)
-- [Hub-and-Spoke Architecture](#hub-and-spoke-architecture)
-- [Hub Responsibilities](#hub-responsibilities)
-- [Spoke Characteristics](#spoke-characteristics)
-- [Selection Strategies](#selection-strategies)
-- [Loading Patterns](#loading-patterns)
-- [Common Use Cases](#common-use-cases)
-- [Best Practices](#best-practices)
-- [Module References](#module-references)
-- [Integration with Other Skills](#integration-with-other-skills)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Progressive Loading Patterns
@@ -75,16 +55,40 @@ Use progressive loading when building skills that:
 
 ### Context-Based Selection
 
-```python
-from leyline import ModuleSelector, MECWMonitor
+Modules are declared in the skill's YAML frontmatter and
+loaded on demand with a `@modules/` directive. The hub reads
+the detected context, then loads only the spokes that match:
 
-selector = ModuleSelector(skill_path="my-skill/")
-modules = selector.select_modules(
-    context={"intent": "git-catchup", "artifacts": ["git", "python"]},
-    max_tokens=MECWMonitor().get_safe_budget()
-)
+```markdown
+---
+modules:
+- modules/git-catchup-patterns.md
+- modules/python-testing.md
+---
+
+When the intent is a branch or PR catch-up, load
+`@modules/git-catchup-patterns.md`. When the artifacts include
+Python tests, also load `@modules/python-testing.md`.
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
+
+To keep loads within the MECW token budget, check whether a
+module fits before pulling it in. The `MECWMonitor` in
+`plugins/leyline/src/leyline/mecw.py` exposes the methods used
+here:
+
+```python
+from leyline.mecw import MECWMonitor
+
+monitor = MECWMonitor()
+monitor.track_usage(current_context_tokens)
+
+# module_estimated_tokens comes from the module frontmatter
+can_load, reasons = monitor.can_handle_additional(module_estimated_tokens)
+```
+
+Load the next module only when `can_load` is true. Each
+module records its cost in its frontmatter `estimated_tokens`
+field.
 
 ## Hub-and-Spoke Architecture
 
@@ -154,33 +158,33 @@ should only load the ones whose activation context fires.
 
 **Operating-system patterns** (load on detected platform):
 
-- `modules/linux-patterns.md` -- Linux-specific shell, paths, and process patterns
-- `modules/macos-patterns.md` -- macOS-specific tooling and platform quirks
-- `modules/windows-patterns.md` -- Windows shell, path, and PowerShell patterns
+- `modules/linux-patterns.md`: Linux-specific shell, paths, and process patterns
+- `modules/macos-patterns.md`: macOS-specific tooling and platform quirks
+- `modules/windows-patterns.md`: Windows shell, path, and PowerShell patterns
 
 **Language and runtime patterns** (load on detected ecosystem):
 
-- `modules/modern-python.md` -- Python 3.11+ idioms, typing, async
-- `modules/legacy-python.md` -- Python 2 / pre-3.8 compatibility patterns
-- `modules/python-packaging.md` -- pyproject.toml, uv, pip, hatch, poetry
-- `modules/python-patterns.md` -- General Python authoring patterns
-- `modules/python-testing.md` -- pytest, fixtures, parametrization, mocking
-- `modules/cargo-patterns.md` -- Rust Cargo workspace and dependency patterns
-- `modules/rust-review.md` -- Rust code-review patterns
+- `modules/modern-python.md`: Python 3.11+ idioms, typing, async
+- `modules/legacy-python.md`: Python 2 / pre-3.8 compatibility patterns
+- `modules/python-packaging.md`: pyproject.toml, uv, pip, hatch, poetry
+- `modules/python-patterns.md`: General Python authoring patterns
+- `modules/python-testing.md`: pytest, fixtures, parametrization, mocking
+- `modules/cargo-patterns.md`: Rust Cargo workspace and dependency patterns
+- `modules/rust-review.md`: Rust code-review patterns
 
 **Workflow patterns** (load on detected task):
 
-- `modules/api-patterns.md` -- API design and endpoint conventions
-- `modules/api-review.md` -- API surface review patterns
-- `modules/git-patterns.md` -- Git workflow and history patterns
-- `modules/git-catchup-patterns.md` -- Catching up on a branch or PR diff
-- `modules/document-analysis-patterns.md` -- Reading and analyzing documents
-- `modules/log-analysis-patterns.md` -- Parsing and reasoning over logs
-- `modules/performance.md` -- Performance investigation patterns
+- `modules/api-patterns.md`: API design and endpoint conventions
+- `modules/api-review.md`: API surface review patterns
+- `modules/git-patterns.md`: Git workflow and history patterns
+- `modules/git-catchup-patterns.md`: Catching up on a branch or PR diff
+- `modules/document-analysis-patterns.md`: Reading and analyzing documents
+- `modules/log-analysis-patterns.md`: Parsing and reasoning over logs
+- `modules/performance.md`: Performance investigation patterns
 
 **Reference material** (load only when explicitly cited):
 
-- `modules/large-reference.md` -- Large reference tables and lookups (load
+- `modules/large-reference.md`: Large reference tables and lookups (load
   last; tokens are non-trivial)
 
 ## Integration with Other Skills
@@ -193,16 +197,16 @@ This skill provides foundational patterns referenced by:
 
 Reference in your skill's frontmatter:
 ```yaml
-dependencies: [leyline:progressive-loading, leyline:mecw-patterns]
+dependencies: [leyline:progressive-loading, conserve:context-optimization]
 progressive_loading: true
 ```
 **Verification:** Run the command with `--help` flag to verify availability.
 
 ## Exit Criteria
 
-- Hub clearly defines all module loading contexts
-- Each module is tagged with activation context
-- Module selection respects MECW constraints
-- Token costs measured for all modules
-- Context detection logic documented
-- Loading paths validated for completeness
+- [ ] Hub clearly defines all module loading contexts
+- [ ] Each module is tagged with activation context
+- [ ] Module selection respects MECW constraints
+- [ ] Token costs measured for all modules
+- [ ] Context detection logic documented
+- [ ] Loading paths validated for completeness

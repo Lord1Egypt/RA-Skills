@@ -1,0 +1,8 @@
+{
+  "_note": "Captured live 2026-08-21 against api.champrosports.com with an all-zeros APICustomerKey. Every one returned HTTP 200.",
+  "product_info": {"ProductMaster": "JSBJ8", "MOQ": 0, "MOQCustom": 0, "ProductSKUs": null, "AvailableLeadTimes": null, "Error": "Customer validation error.Please contact CHAMPRO API Support."},
+  "order_status": {"OrderNumber": 0, "PO": null, "SalesID": null, "Lines": null, "Status": null, "Error": "Customer validation error.Please contact CHAMPRO API Support."},
+  "inventory": {"SessionID": null, "Inventory": null, "ResponseMessage": "Customer validation error.Please contact CHAMPRO API Support.", "ErrorMessages": null},
+  "place_order": {"SessionID": null, "APICustomerKey": null, "RequestType": null, "Autowarehouse": null, "RequestErrors": [{"Response": "E4.1: Customer validation error.Please contact CHAMPRO API Support."}], "Orders": null},
+  "cb_get_order_info": []
+}

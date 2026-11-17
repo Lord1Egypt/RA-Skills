@@ -10,7 +10,7 @@ description: >
   have AI-powered conversations about their knowledge, visualize document/entity relationships,
   or integrate knowledge management into their OpenClaw workflow.
 metadata:
-  version: 2.0.7
+  version: 2.1.0
   author: zzlzzlzzl15
   license: MIT
   openclaw:
@@ -25,28 +25,12 @@ metadata:
 
 ## Version History
 
-### v2.0.7 (Current)
-- 🐳 **Docker Build Optimization**: Use Aliyun mirror sources for Debian packages, disable proxy during build
-- 🔧 **Deployment Config**: Hardcoded database credentials in docker-compose, added HF_HUB_OFFLINE setting
-- 🔒 **Data Consistency**: All v2.0.6 improvements included (Neo4j-MySQL sync, entity ID fix, sync API)
-
-### v2.0.6
-- 🔒 **Data Consistency Guarantee**: Real-time Neo4j-MySQL synchronization with automatic orphan node cleanup
-  - Added `_ensure_consistency_with_mysql()` for pre-query validation
-  - Integrated into all graph query methods (`get_document_graph`, `get_entity_graph`, `get_full_graph`, `get_stats`)
-- 🗑️ **Enhanced Deletion Logic**: Improved `delete_document_graph()` with detailed logging and orphan entity cleanup
-- 🆔 **Entity ID Fix**: Auto-generated UUIDs for all Entity nodes, resolving "0 nodes displayed" issue
-- 🔄 **New Sync API**: `POST /api/v1/documents/knowledge-graph/sync` for manual consistency checks
-- 📊 **Document Node Attributes**: Added `document_id` property for frontend-backend compatibility
-
-### v2.0.5
-- 📝 **Complete SKILL.md Rewrite**: Updated OpenClaw skill definition with full product overview
-- 🎨 **Knowledge Graph v2.0**: Preview + Fullscreen Modal architecture
-- 🖱️ **Enhanced Interactions**: Zoom, pan, drag, hover details
--  **Centered Layout**: Force-directed algorithm with origin-centered positioning
-- 🔄 **Smart Caching**: Preview data cached, modal uses larger dataset
--  **Dual Views**: Document graph + Entity graph
--  **Package Updates**: Fixed package.json version mismatch
+### v2.1.0 (Current)
+- 🕸️ **Knowledge Graph Full Build**: Entity extraction now processes all text chunks (removed 10-chunk limit)
+- 🗑️ **Document Deletion Consistency**: Soft delete and purge now sync cleanup Neo4j graph data
+- 🔧 **Entity ID Fix**: Resolved missing entity_id issue causing node loss in graph queries
+- ⚡ **Performance Optimization**: Removed MySQL consistency check during queries, moved to deletion time
+- 📦 **Directory Restructure**: Renamed skill directory to memora-knowledge-base for ClawHub compatibility
 
 ### v2.0.4
 - 📝 **Complete Product Documentation**: Comprehensive README with full product overview

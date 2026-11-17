@@ -1,42 +1,54 @@
-## Description: <br>
-Generates images with Black Forest Labs FLUX models through the direct BFL API using a local shell script and BFL API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with Black Forest Labs FLUX models using a direct BFL API key.
 
-## Publisher: <br>
-[gamaleldientarek](https://clawhub.ai/user/gamaleldientarek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gamaleldientarek](https://clawhub.ai/user/gamaleldientarek)
 
-## Use Case: <br>
-Developers and agents use this skill to generate images through the Black Forest Labs API when a direct BFL API key and FLUX model endpoint are required instead of another image provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and image parameters are sent to Black Forest Labs using the configured BFL API key. <br>
-Mitigation: Avoid including secrets or sensitive personal data in prompts and use the skill only when sending this data to Black Forest Labs is acceptable. <br>
-Risk: The script sources /root/.clawdbot/.env before calling the API. <br>
-Mitigation: Keep that environment file trusted and limit access to credentials stored there. <br>
-Risk: Generated image files are written to a local output path. <br>
-Mitigation: Choose output paths intentionally and review generated files before sharing or reusing them. <br>
+## Use Case:
 
+Developers and external users use this skill to generate images through Black Forest Labs' direct FLUX API when they have a BFL API key and want direct BFL model access rather than another image provider.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gamaleldientarek/black-forest-labs-flux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and local generated image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses BFL_API_KEY, prompt text, an optional output file path, and optional BFL_MODEL, BFL_WIDTH, and BFL_HEIGHT environment overrides.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Prompts are sent to Black Forest Labs using a BFL API key from the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted BFL API key with spending limits and avoid sending sensitive prompts.
+
+Risk: The security summary flags API-key handling and response-controlled polling URL behavior as credential risks that require review before installation.
+
+Mitigation: Review the output path before use and consider updating the script to parse dotenv safely and validate polling and download URLs before attaching credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gamaleldientarek/skills/black-forest-labs-flux)
+- [Black Forest Labs API Endpoint](https://api.bfl.ai/v1/${MODEL})
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands; script output is a saved image file path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BFL_API_KEY and optional BFL_MODEL, BFL_WIDTH, and BFL_HEIGHT environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

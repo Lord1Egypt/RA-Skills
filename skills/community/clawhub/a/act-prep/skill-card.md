@@ -1,43 +1,59 @@
-## Description: <br>
-Prepare for the ACT with adaptive practice, score tracking, weak area analysis, and college targeting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare for the ACT with adaptive practice, score tracking, weak area analysis, and college targeting.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External students, parents, tutors, and adult self-studiers use this skill to plan ACT preparation, track section scores and errors, run timed practice, and align target scores with college admissions goals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local ACT preparation records may contain target colleges, scores, practice history, and multi-student notes. <br>
-Mitigation: Treat ~/act/ as private, avoid sharing it from shared devices, and review or delete the folder when the data is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ACT Skill Page](https://clawhub.ai/ivangdavila/act-prep) <br>
-- [exam-config.md](artifact/exam-config.md) <br>
-- [sections.md](artifact/sections.md) <br>
-- [study-methods.md](artifact/study-methods.md) <br>
-- [targets.md](artifact/targets.md) <br>
-- [tracking.md](artifact/tracking.md) <br>
-- [user-types.md](artifact/user-types.md) <br>
+## Use Case:
 
+Students, parents, tutors, and self-studiers use this skill to plan ACT preparation, track scores and errors, identify weak areas, practice pacing, and align score goals with college targets.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown and structured study-planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local progress files under ~/act/ for profiles, practice history, section tracking, vocabulary, formulas, and feedback.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: ACT preparation data may include scores, target schools, test dates, and planning notes retained in ~/act/.
+
+Mitigation: Review the local ~/act/ folder before and after use, and delete or redact records that should not be retained.
+
+Risk: College score ranges, scholarship thresholds, superscore policies, and Writing requirements can vary by school and change over time.
+
+Mitigation: Confirm admissions and scholarship requirements against each target college's current official policy before making application decisions.
+
+## Reference(s):
+
+- [ACT Exam Structure](artifact/exam-config.md)
+- [Section-Specific Strategies](artifact/sections.md)
+- [Study Methods and Pacing](artifact/study-methods.md)
+- [College Targeting](artifact/targets.md)
+- [Progress Tracking System](artifact/tracking.md)
+- [User Type Adaptations](artifact/user-types.md)
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/act-prep)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance, study plans, score-tracking entries, error-analysis notes, and local progress-file outlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide users to store ACT preparation data in local Markdown files under ~/act/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Converts MySQL CREATE TABLE statements into Java entity classes following MyBatis-Plus or JPA conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts MySQL CREATE TABLE statements into Java entity classes with MyBatis-Plus or JPA annotations, type mapping, and snake_case-to-camelCase naming.
 
-## Publisher: <br>
-[coder-myj](https://clawhub.ai/user/coder-myj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coder-myj](https://clawhub.ai/user/coder-myj)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn MySQL DDL into Java entity definitions for ORM-backed applications. It helps generate class names, fields, imports, annotations, and accessors while preserving schema-derived type information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Java entities may use framework conventions, type choices, or package names that do not match the target project. <br>
-Mitigation: Review generated classes against project style, ORM configuration, and schema semantics before committing. <br>
-Risk: Database schemas can contain sensitive production structure. <br>
-Mitigation: Avoid pasting sensitive production schemas unless approved for use with the coding agent. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert MySQL DDL into Java entity classes for ORM models, including package, base-class, annotation-style, type-mapping, and getter/setter decisions.
 
-## Reference(s): <br>
-- [MySQL to Java Type Mappings](artifact/references/type_mappings.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/coder-myj/sql-to-java) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Java code blocks and concise implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated classes should be reviewed for project package names, ORM conventions, schema semantics, and type choices before committing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated entity classes may use an annotation style, nullable field type, or primary-key strategy that does not match the target project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated classes before use, especially annotation style, nullable field types, and primary-key strategy.
+
+Risk: Database schema comments may expose sensitive business details if copied into generated source code.
+
+Mitigation: Review, redact, or omit schema-derived comments before committing generated entity classes.
+
+## Reference(s):
+
+- [MySQL to Java Type Mappings](references/type_mappings.md)
+- [ClawHub skill page](https://clawhub.ai/coder-myj/skills/sql-to-java)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown containing Java code blocks and concise generation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates Java entity classes from provided MySQL CREATE TABLE statements; framework annotations depend on user or project context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

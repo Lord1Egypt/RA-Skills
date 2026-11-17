@@ -1,48 +1,48 @@
-# 迁移策略与概念映射
+# Migration strategy and concept mapping
 
-## 迁移策略选择
+## Migration strategy selection
 
-| 策略                        | 适用情况                             | 优点                         | 风险                         |
+| Strategy | Applicability | Advantages | Risks |
 | --------------------------- | ------------------------------------ | ---------------------------- | ---------------------------- |
-| **渐进式（Strangler Fig）** | 大型项目、需持续交付、团队熟悉度不足 | 风险可控、可分批上线、可回滚 | 新旧并存期长、需维护两套代码 |
-| **一次性重写**              | 中小型项目、业务稳定、有充足时间窗口 | 目标架构清晰、无历史包袱     | 周期长、上线压力大、回滚困难 |
+| **Progressive (Strangler Fig)** | Large-scale projects, requiring continuous delivery, and insufficient team familiarity | Risks are controllable, can be launched in batches, and can be rolled back | Old and new coexist for a long time, and two sets of codes need to be maintained |
+| **One-time rewrite** | Small and medium-sized projects, stable business, sufficient time window | Clear target architecture, no historical baggage | Long cycle, high pressure to go online, difficult rollback |
 
-**推荐**：优先考虑渐进式，除非项目规模小且业务简单。
+**Recommendation**: Prioritize the incremental approach unless the project is small and the business is simple.
 
-## 概念映射
+## Concept mapping
 
 ### jQuery → React
 
-| 遗留模式                                   | React 对应                             |
+| Legacy Patterns | React Correspondence |
 | ------------------------------------------ | -------------------------------------- |
-| `$(selector).html(content)`                | 声明式 JSX + state 驱动渲染            |
-| `$(document).on('click', '.btn', handler)` | `onClick` + 事件委托由 React 处理      |
-| `$.ajax()` / `$.get()`                     | 项目请求层、`fetch` / `axios`，可按需接 TanStack Query 或 SWR |
-| 全局变量 / 命名空间存储状态                | 局部 state、Context 或项目既有 store，可按需使用 Zustand/Redux |
-| `$(el).show()` / `$(el).hide()`            | 条件渲染 `{visible && <Component />}`  |
-| 手动 DOM 操作 `append` / `remove`          | 数据驱动，通过 setState 触发重渲染     |
-| 模板字符串拼接 HTML                        | JSX 组件 + props                       |
-| 多页面 + 服务端路由                        | React Router 客户端路由                |
+| `$(selector).html(content)` | Declarative JSX + state-driven rendering |
+| `$(document).on('click', '.btn', handler)` | `onClick` + event delegation is handled by React |
+| `$.ajax()` / `$.get()` | Project request layer, `fetch` / `axios`, can be connected to TanStack Query or SWR on demand |
+| Global variables/namespace storage state | Local state, Context or the existing store of the project can be used as needed Zustand/Redux |
+| `$(el).show()` / `$(el).hide()` | Conditional rendering `{visible && <Component />}` |
+| Manual DOM operations `append` / `remove` | Data-driven, triggering re-rendering through setState |
+| Template string concatenation HTML | JSX component + props |
+| Multiple pages + server-side routing | React Router client-side routing |
 
 ### jQuery → Vue 3
 
-| 遗留模式                                   | Vue 3 对应                                         |
+| Legacy Mode | Vue 3 Compatibility |
 | ------------------------------------------ | -------------------------------------------------- |
-| `$(selector).html(content)`                | 模板 + `ref` / `reactive` 驱动渲染                 |
-| `$(document).on('click', '.btn', handler)` | `@click` + 事件修饰符                              |
-| `$.ajax()` / `$.get()`                     | 项目请求层、`fetch` / `axios`，可按需接 VueUse、Nuxt `useFetch` 或 TanStack Query Vue adapter |
-| 全局变量 / 命名空间存储状态                | `ref` / `reactive` / Pinia                         |
+| `$(selector).html(content)` | Template + `ref` / `reactive` driven rendering |
+| `$(document).on('click', '.btn', handler)` | `@click` + event modifier |
+| `$.ajax()` / `$.get()` | Project request layer, `fetch` / `axios`, can be connected to VueUse, Nuxt `useFetch` or TanStack Query Vue adapter as needed |
+| Global variables / Namespace storage state | `ref` / `reactive` / Pinia |
 | `$(el).show()` / `$(el).hide()`            | `v-show` / `v-if`                                  |
-| 手动 DOM 操作                              | 数据驱动，通过响应式更新视图                       |
-| 模板字符串拼接 HTML                        | 单文件组件 `<template>` + props                    |
-| 多页面 + 服务端路由                        | Vue Router 客户端路由                              |
+| Manual DOM manipulation | Data-driven, with responsive view updates |
+| Template string concatenation HTML | Single file component `<template>` + props |
+| Multiple pages + server-side routing | Vue Router client-side routing |
 
-### 通用映射
+### Universal mapping
 
-| 遗留概念                          | 现代对应                                   |
+| Legacy Concepts | Modern Correspondence |
 | --------------------------------- | ------------------------------------------ |
-| 页面级 JS 入口（每页一个 script） | 路由/页面入口 + 懒加载模块，或保留 MPA 入口并现代化打包 |
-| 公共 JS 模块（utils、ajax 封装）  | `services/`、`utils/`、类型化 API 层       |
-| 内联样式 / 页面级 CSS             | 目标项目样式体系，如 CSS Modules、Tailwind、全局样式分层或组件库样式 |
-| 服务端模板变量                    | 通过 API 获取、SSR/loader 注入，或保留服务端模板边界并类型化数据 |
-| 表单提交 + 整页刷新               | 表单库 + 客户端校验 + API 调用             |
+| Page-level JS entry (one script per page) | Routing/page entry + lazy loading module, or retain MPA entry and modernize packaging |
+| Public JS modules (utils, ajax packaging) | `services/`, `utils/`, typed API layer |
+| Inline styles / page-level CSS | Target project style system, such as CSS Modules, Tailwind, global style layering or component library styles |
+| Server-side template variables | Obtain via API, SSR/loader injection, or preserve server-side template boundaries and typed data |
+| Form submission + full page refresh | Form library + client verification + API call |

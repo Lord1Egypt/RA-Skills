@@ -1,44 +1,60 @@
-## Description: <br>
-Journalism Agent researches, drafts, edits, and fact-checks publication-quality articles and image-supported newsletters for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-stage journalism agent for OpenClaw that researches, drafts, and edits publication-quality articles and assembles mixed newsletters combining original articles and curated event or marketplace listings with images.
 
-## Publisher: <br>
-[defineagain](https://clawhub.ai/user/defineagain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[defineagain](https://clawhub.ai/user/defineagain)
 
-## Use Case: <br>
-External users and content teams use this skill to research topics, draft attributed longform articles, curate event listings, and assemble mixed newsletters with images, captions, and source checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image search or generation prompts may expose sensitive newsroom, client, investigative, or embargoed context to nkimages.com. <br>
-Mitigation: Use sanitized image queries, provide approved images, or avoid the external image-generation path for sensitive work. <br>
-Risk: Generated articles and event listings can contain unverified, weakly sourced, or stale claims. <br>
-Mitigation: Follow the source-quality guide, verify factual claims and live event links, and remove unsupported claims before publication. <br>
+## Use Case:
 
+External users, editorial teams, and developers use this skill to research publication topics, draft sourced longform articles, curate event or marketplace listings, and assemble mixed newsletters with images.
 
-## Reference(s): <br>
-- [Journalism Agent ClawHub Page](https://clawhub.ai/defineagain/journalism-agent) <br>
-- [Source Quality Guide](artifact/references/source-quality.md) <br>
-- [NK Images Search API](https://nkimages.com/api/public/images?source=clawhub&q={query}&per_page=6) <br>
-- [NK Images Generation Quota API](https://nkimages.com/api/public/generate/quota) <br>
-- [NK Images Anonymous Generation API](https://nkimages.com/api/public/generate/anonymous) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, html, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown article drafts with YAML frontmatter, HTML email newsletters, shell commands, configuration values, and editorial guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include inline source citations, image credits, alt text, curated listing details, and local newsletter HTML assembled from provided parts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence, released 2026-04-15) <br>
+Risk: The newsletter assembly script uses shared temporary paths, which can mix content across runs or users in a shared workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a trusted workspace, avoid elevated privileges, and clear or isolate newsletter part files before assembly.
+
+Risk: Generated newsletter HTML can include unescaped content and external image URLs.
+
+Mitigation: Inspect and sanitize generated HTML, links, image URLs, captions, and credits before sending newsletters to real recipients.
+
+Risk: Research topics, drafts, and newsletter plans may contain embargoed or private editorial information.
+
+Mitigation: Avoid sensitive inputs unless the workspace and downstream services are approved for that material.
+
+## Reference(s):
+
+- [Source Quality Guide](references/source-quality.md)
+- [NK Images Search API](https://nkimages.com/api/public/images?source=clawhub&q={query}&per_page=6)
+- [NK Images Generation Quota API](https://nkimages.com/api/public/generate/quota)
+- [NK Images Anonymous Generation API](https://nkimages.com/api/public/generate/anonymous)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown articles with YAML frontmatter, HTML newsletter documents, inline source citations, image captions, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Article mode targets 800-1200 words; newsletter mode assembles feature articles, listings, images, captions, credits, and source links.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, created 2026-04-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

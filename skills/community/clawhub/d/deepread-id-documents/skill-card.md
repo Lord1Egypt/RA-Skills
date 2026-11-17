@@ -1,46 +1,55 @@
-## Description: <br>
-Extracts structured identity data from passports, driver's licenses, and national ID cards for KYC and onboarding, returning typed JSON with confidence flags and redaction support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured data from passports, driver's licenses, and national ID cards for KYC/onboarding as typed JSON with per-field review flags and optional PII redaction guidance.
 
-## Publisher: <br>
-[uday390](https://clawhub.ai/user/uday390) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uday390](https://clawhub.ai/user/uday390)
 
-## Use Case: <br>
-External developers and operations teams use this skill to extract identity fields from uploaded ID documents for KYC, onboarding, account recovery, fraud operations, travel, and hospitality workflows. It is intended for authorized processing of identity documents with consent and appropriate compliance controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Identity documents contain sensitive personal data and are sent to DeepRead's API for processing. <br>
-Mitigation: Use the skill only for authorized KYC, onboarding, or verification workflows with consent, approved retention policies, and applicable compliance review. <br>
-Risk: The DEEPREAD_API_KEY credential is required to call the service. <br>
-Mitigation: Store the API key in a secret manager or environment variable, avoid committing it to source control, and rotate it if exposure is suspected. <br>
-Risk: Low-quality scans, glare, or worn print can produce fields that need review. <br>
-Mitigation: Route fields marked needs_review to manual verification before making identity, eligibility, or fraud decisions. <br>
-Risk: Storing raw ID images can increase privacy and compliance exposure. <br>
-Mitigation: Extract the minimum fields needed, redact images before storage or sharing, and avoid retaining full identity documents unless required. <br>
+## Use Case:
 
+External teams and developers use this skill to extract identity-document fields for KYC, onboarding, age or expiry checks, account recovery, fraud operations, and travel or hospitality check-in workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/uday390/deepread-id-documents) <br>
-- [DeepRead Homepage](https://www.deepread.tech) <br>
-- [DeepRead Dashboard](https://www.deepread.tech/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, Python snippets, shell commands, and configuration instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY and sends identity document images to DeepRead's API for extraction and redaction workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Identity documents are sent to DeepRead's API for extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use only when authorized to process the documents, with appropriate consent, and review DeepRead's privacy terms before sending files.
+
+Risk: Low-confidence or glare-affected fields may be incorrect.
+
+Mitigation: Route fields marked needs_review to manual verification before accepting or storing the extracted data.
+
+## Reference(s):
+
+- [DeepRead homepage](https://www.deepread.tech)
+- [DeepRead dashboard](https://www.deepread.tech/dashboard)
+- [DeepRead ID Documents on ClawHub](https://clawhub.ai/uday390/skills/deepread-id-documents)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with JSON, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY; extraction results include per-field needs_review flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

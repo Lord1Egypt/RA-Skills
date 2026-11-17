@@ -1,44 +1,59 @@
-## Description: <br>
-Use one dry-run-first interface for agent-generated vertical video payloads across Sora/OpenAI, Gemini Veo, xAI/Grok, and Seedance-style providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use one dry-run-first interface for agent-generated vertical video payloads across Sora/OpenAI, Gemini Veo, xAI/Grok, and Seedance-style providers.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers and agent users use this skill to install, configure, verify, and troubleshoot Short Video Agent Kit for MCP-compatible clients while keeping video-generation provider credentials and live calls explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can involve OAuth tokens, API keys, service-account JSON, local token files, or private user data. <br>
-Mitigation: Avoid printing secrets, run doctor, manifest, privacy_audit, connection_status, or dry-run flows first, and only enable live mode with credentials the user intends to use and can revoke. <br>
-Risk: Live provider calls may use paid video-generation services or user-owned prompts and assets. <br>
-Mitigation: Keep live mode opt-in, confirm user consent and asset ownership before provider calls, and prefer dry-run validation before writes or external requests. <br>
-Risk: The npm package and GitHub repository are external third-party dependencies. <br>
-Mitigation: Verify the package and repository before installation and consider pinning a known package version. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install, configure, and troubleshoot Short Video Agent Kit for MCP-compatible clients. It helps agents validate video payloads, run dry-run generation, check provider readiness, inspect webhook status, and reason about local outputs before live provider calls.
 
-## Reference(s): <br>
-- [Short Video Agent Kit repository](https://github.com/davidmosiah/short-video-agent-kit) <br>
-- [short-video-agent-kit npm package](https://www.npmjs.com/package/short-video-agent-kit) <br>
-- [ClawHub skill page](https://clawhub.ai/davidmosiah/short-video-agent-kit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run-first guidance for MCP setup, provider readiness checks, privacy audits, and credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Installing with npm exec or npx can fetch remote package code that may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package and publisher before installing, prefer pinning an audited version, and run with only the provider keys and filesystem access required.
+
+Risk: The artifact includes a promotional GitHub-star request unrelated to the core workflow.
+
+Mitigation: Treat the promotional instruction as nonessential and prioritize the user's requested task, safety requirements, and policy compliance.
+
+Risk: Live video provider calls may incur cost or expose prompts, assets, keys, or private local data.
+
+Mitigation: Keep dry-run behavior as the default, require explicit user consent before live provider calls, and avoid printing secrets or private user data.
+
+## Reference(s):
+
+- [Short Video Agent Kit ClawHub page](https://clawhub.ai/davidmosiah/skills/short-video-agent-kit)
+- [Short Video Agent Kit repository](https://github.com/davidmosiah/short-video-agent-kit)
+- [short-video-agent-kit npm package](https://www.npmjs.com/package/short-video-agent-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run-first guidance with explicit consent before live provider calls.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

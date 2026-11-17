@@ -1,6 +1,30 @@
 {
-  "ownerId": "kn754ys9dtrt6e812962j369xh837a42",
   "slug": "lead-gen-website-pipeline",
-  "version": "1.0.1",
-  "publishedAt": 1773936800071
+  "name": "Lead Gen Website Pipeline",
+  "version": "1.0.0",
+  "description": "Find local businesses with bad websites, AI-generate custom demos, deploy to Vercel, and run a 5-email cold outreach drip via AgentMail. Full pipeline from Google Places discovery to closed deal.",
+  "author": "RazzleDazzleI",
+  "license": "MIT",
+  "tags": [
+    "lead-generation",
+    "website-builder",
+    "cold-outreach",
+    "email-drip",
+    "vercel",
+    "agentmail",
+    "google-places",
+    "local-business",
+    "automation",
+    "sales"
+  ],
+  "repository": "https://github.com/RazzleDazzleI/lead-gen-pipeline",
+  "requires": {
+    "env": [
+      "GOOGLE_PLACES_API_KEY",
+      "GOOGLE_API_KEY",
+      "VERCEL_TOKEN",
+      "AGENTMAIL_API_KEY"
+    ],
+    "bins": ["node"]
+  }
 }

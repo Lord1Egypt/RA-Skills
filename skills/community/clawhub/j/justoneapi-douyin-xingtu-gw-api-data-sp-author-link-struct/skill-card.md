@@ -1,44 +1,56 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/gw/api/data_sp/author_link_struct/v1 for Douyin Creator Marketplace (Xingtu) Creator Link Structure through JustOneAPI with oAuthorId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/gw/api/data_sp/author_link_struct/v1 for Douyin Creator Marketplace (Xingtu) Creator Link Structure through JustOneAPI with oAuthorId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and operators use this skill to call JustOneAPI's Douyin Creator Marketplace (Xingtu) creator Link Structure endpoint for creator performance analysis by author ID and optional platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI access token is sent as a query parameter and may be exposed through copied URLs, logs, screenshots, or failed request details. <br>
-Mitigation: Use a limited or revocable token, avoid sharing logs or request URLs, and rotate the token if exposure is suspected. <br>
-Risk: Endpoint data and backend error payloads may include sensitive account or creator-performance information. <br>
-Mitigation: Share only the minimum necessary response details and avoid posting raw backend payloads in public or untrusted channels. <br>
+## Use Case:
 
+Developers and agents use this skill to call a JustOneAPI wrapper for Douyin Creator Marketplace (Xingtu) creator link structure data. It supports creator performance analysis by retrieving engagement and conversion metrics for a specified author ID and optional platform type.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-gw-api-data-sp-author-link-struct) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_author_link_struct&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_author_link_struct&utm_content=project_link) <br>
-- [Generated Operations Reference](generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with raw JSON response and inline shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN; oAuthorId is required and platform defaults to SHORT_VIDEO.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The JustOneAPI token is supplied to the helper as a command-line argument and is sent as a query parameter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived or limited-scope token when available, avoid exposing shell history, process listings, logs, screenshots, or shared terminals, and rotate the token if exposure is suspected.
+
+Risk: The skill sends creator lookup parameters and the API token to the JustOneAPI endpoint.
+
+Mitigation: Install and run the skill only if JustOneAPI is trusted for this Douyin Creator Marketplace endpoint and the requested creator data use is appropriate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-gw-api-data-sp-author-link-struct)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_author_link_struct&utm_content=project_link)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_author_link_struct&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and the oAuthorId query parameter; platform defaults to SHORT_VIDEO when omitted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

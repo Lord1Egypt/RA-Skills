@@ -1,39 +1,55 @@
-## Description: <br>
-Cryptocurrency tax reference covering IRS guidance, FIFO/LIFO/HIFO cost basis methods, Form 8949, tax loss harvesting, and DeFi transaction categorization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cryptocurrency tax reference covering IRS guidance, FIFO/LIFO/HIFO cost basis methods, Form 8949, tax loss harvesting, and DeFi transaction categorization.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and developers use this skill as a static cryptocurrency tax reference for taxable event categories, cost basis methods, reporting concepts, record keeping, and tax software migration planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto tax rules change and this static reference may be incomplete or outdated for a user's jurisdiction or filing situation. <br>
-Mitigation: Check current official rules for the relevant jurisdiction and consult a qualified tax professional before making filing decisions. <br>
+## Use Case:
 
+External users and developers use this skill as a quick reference for cryptocurrency tax concepts, reporting categories, record keeping, and migration to tax software. It is reference guidance only and should be checked against current rules for the relevant jurisdiction and tax year.
 
-## Reference(s): <br>
-- [Crypto Tax Calc on ClawHub](https://clawhub.ai/bytesagain-lab/crypto-tax-calc) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown-style headings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc output; no API keys, credentials, network access, or external data access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Tax guidance can become outdated or vary by jurisdiction and tax year.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the information against current official guidance for the relevant jurisdiction and tax year, or consult a qualified tax professional before filing or tax planning.
+
+Risk: Users may mistake reference documentation for personalized tax advice.
+
+Mitigation: Use the skill as a quick reference only and review transaction-specific decisions with appropriate professional support.
+
+## Reference(s):
+
+- [Crypto Tax Calc on ClawHub](https://clawhub.ai/bytesagain-lab/skills/crypto-tax-calc)
+- [Publisher profile: bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain-text reference documentation with Markdown headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No credentials, network access, persistence, or hidden execution indicated by security evidence.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

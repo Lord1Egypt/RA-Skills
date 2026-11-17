@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-gemini-3-1-flash-tts
 description: Generate speech on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `gemini-3-1-flash-tts`, Gemini text-to-speech, style instructions, voice presets, language code, two-speaker dialogue, output formats, async task submission, callbacks, and task status retrieval.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/music-series/gemini-3-1-flash-tts","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/gemini-3-1-flash-tts","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Gemini 3.1 Flash TTS
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/gemini-3-1-flash-tts>
+- API docs: <https://docs.poyo.ai/api-manual/music-series/gemini-3-1-flash-tts>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for `gemini-3-1-flash-tts` jobs on PoYo. It helps agents prepare text-to-speech payloads, choose single-speaker or two-speaker mode, submit async tasks, and explain result retrieval through PoYo task status.
 

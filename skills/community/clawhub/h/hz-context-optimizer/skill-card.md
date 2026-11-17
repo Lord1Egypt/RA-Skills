@@ -1,42 +1,59 @@
-## Description: <br>
-Helps agents design, apply, and evaluate context compression strategies for long-running sessions, large codebases, and token-efficient continuation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan and evaluate context compression strategies for long-running sessions, large codebases, token reduction, structured summarization, and tokens-per-task optimization.
 
-## Publisher: <br>
-[lidekahdjdhdhsjjs-lang](https://clawhub.ai/user/lidekahdjdhdhsjjs-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lidekahdjdhdhsjjs-lang](https://clawhub.ai/user/lidekahdjdhdhsjjs-lang)
 
-## Use Case: <br>
-Developers and agent builders use this skill to choose context compression strategies, design structured summaries, and evaluate whether compressed context preserves artifacts, decisions, and next steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Summaries can preserve sensitive information from long-running sessions. <br>
-Mitigation: Avoid placing secrets or regulated data in compressed summaries, and review summary contents before sharing them outside the trusted workspace. <br>
-Risk: External judge evaluation can expose compacted context to another provider or data flow. <br>
-Mitigation: Use external judges only when the provider and data handling path are approved for the data being evaluated. <br>
-Risk: The bundled evaluator uses stubbed judge calls, simplified token estimation, and pattern-based ground-truth extraction. <br>
-Mitigation: Treat the evaluator as a local evaluation scaffold and replace stubs, tokenization, and extraction logic before relying on it for production-quality measurements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Context Compression Evaluation Framework](references/evaluation-framework.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lidekahdjdhdhsjjs-lang/hz-context-optimizer) <br>
+## Use Case:
 
+Developers and agent builders use this skill to decide when to compress context, preserve file and decision history, and evaluate whether compressed summaries still support task continuation.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with optional Python evaluation code and JSON-style evaluation structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured summary sections, probe questions, scoring rubrics, and context-compression implementation guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Context compression can omit file paths, error messages, decisions, or next steps that an agent needs to continue work.
+
+Mitigation: Use structured summaries with explicit sections for session intent, modified files, read files, decisions, current state, and next steps.
+
+Risk: Opaque or aggressive compression can make it hard to verify what information was preserved.
+
+Mitigation: Prefer anchored iterative summaries when interpretability and artifact tracking matter, and evaluate summaries with recall, artifact, continuation, and decision probes.
+
+Risk: Evaluating real conversation history may expose file names, errors, and decisions to any external model or process connected later.
+
+Mitigation: Keep evaluation local unless an external judge is intentionally configured, and avoid sending sensitive conversation history to unapproved services.
+
+## Reference(s):
+
+- [Context Compression Evaluation Framework](references/evaluation-framework.md)
+- [ClawHub Skill Page](https://clawhub.ai/lidekahdjdhdhsjjs-lang/skills/hz-context-optimizer)
+- [Publisher Profile](https://clawhub.ai/user/lidekahdjdhdhsjjs-lang)
+- [Artifact Repository](https://github.com/lidekahdjdhdhsjjs-lang/Huizai-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with optional Python helper code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce structured summaries, evaluation probes, scoring guidance, and local helper code for compression assessment.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,407 +1,388 @@
-# Foundation Models Framework
+# Foundation Models
 
-On-device AI using Apple's ~3B parameter LLM. Available on macOS 26+ with Apple Silicon. Free inference, offline, private.
+Apple's language-model framework on iOS, iPadOS, macOS and visionOS: the on-device model, the Private Cloud Compute model, guided generation, tools, image input, dynamic sessions and error handling, plus a pointer to Core AI for bringing your own model.
 
-All symbol references cite the shipped SDK swiftinterface at `FoundationModels.framework/.../arm64e-apple-macos.swiftinterface` (lines indicated inline) and/or Apple's developer documentation.
+Verified on Xcode 27.0 (Swift 6.4, iOS 27.0 / macOS 27.0 SDKs), 2026-10-07: every block compiled through SIL (`swiftc -emit-sil`, so region-isolation checks ran) for iOS 27 and macOS 27 with and without `-default-isolation MainActor` (the error-handling block also typechecked at an iOS 26 deployment target); a scratch SPM executable on macOS 27.2 with Apple Intelligence enabled ran text, guided, image, tool, dynamic-instruction and profile requests and triggered `contextSizeExceeded`, `concurrentRequests` and a PCC request without the entitlement. 2026-10-13: the `SpotlightSearchTool` block compiled through SIL for iOS and macOS 26 targets; `Evaluations` read from the Xcode 27 framework interface (no example run); `fm` from its man page, not executed; PCC eligibility from Apple's [Private Cloud Compute](https://developer.apple.com/private-cloud-compute/) page. 2026-10-24: the focused `SpotlightSearchTool` block typechecked against the iOS 27.1 and macOS 27.0 SDKs; `contextSize` read from the FoundationModels interface.
 
-## Table of Contents
-- Setup & Basic Usage
-- Instructions
-- Guided Generation (Structured Output)
+## Contents
+- Availability and models
+- Sessions, instructions, responses
+- Guided generation
 - Streaming
-- Tool Calling
-- Sessions & Context
-- Generation Options
-- Error Handling
-- Built-in Use Cases
-- Custom Adapters
-- Language Support & Limits
-- Availability & Limitations
+- Tools
+- Image input
+- Context window and options
+- Dynamic instructions and profiles
+- Errors (27.0 error types)
+- Private Cloud Compute
+- Other models: LanguageModel protocol and Core AI
+- Evaluating prompts and the `fm` CLI
 
-## Setup
+## Availability and models
+
+| Model | OS | Context | Notes |
+|---|---|---|---|
+| `SystemLanguageModel.default` | iOS / macOS / visionOS 26+ | 4096 tokens | On device, offline, free, no limit. Not on watchOS or tvOS. |
+| `PrivateCloudComputeLanguageModel()` | iOS / macOS / visionOS / watchOS 27+ | 32K | Server model on PCC, reasoning levels, per-person daily quota, managed entitlement. |
+| Your own `LanguageModel` | 27+ | model-defined | Core AI, MLX or a server model behind the same session API. |
+
+Read `contextSize` instead of hard-coding 4096: on 27 the property returns the runtime model's value, and 4096 is only the pre-27 back-deployed constant (FoundationModels swiftinterface). On macOS 27.2 the on-device model reported `variant.displayName == "AFM 3 Core"`, `contextSize == 4096`, and capabilities vision, tool calling and guided generation, not reasoning. The on-device model changes with OS updates (26.4, 27.0); re-test prompts on each release.
 
 ```swift
 import FoundationModels
 
-let model = SystemLanguageModel.default
-
-switch model.availability {
-case .available:
-    break
-case .unavailable(.deviceNotEligible):
-    // Intel Mac, non-A17/M-series, etc.
-    return
-case .unavailable(.appleIntelligenceNotEnabled):
-    // User must enable in Settings > Apple Intelligence & Siri.
-    return
-case .unavailable(.modelNotReady):
-    // Model is still downloading / preparing.
-    return
+func onDeviceModelState() -> String {
+    let model = SystemLanguageModel.default
+    switch model.availability {
+    case .available:
+        return "ready"
+    case .unavailable(.deviceNotEligible):
+        return "hide the feature: no Apple Intelligence hardware"
+    case .unavailable(.appleIntelligenceNotEnabled):
+        return "ask the person to turn on Apple Intelligence in Settings"
+    case .unavailable(.modelNotReady):
+        return "model still downloading - try later"
+    case .unavailable:
+        return "unavailable"
+    }
 }
 ```
 
-The four-case `Availability` enum (`.available` plus three `UnavailableReason`s) is defined at swiftinterface lines 555-572. `SystemLanguageModel.default` is at line 576. There is also a `final public var isAvailable: Bool` on the model (line 518) for a quick boolean check.
+`SystemLanguageModel` is `Observable`, so a SwiftUI view reading `availability` updates when the model finishes downloading. `SystemLanguageModel(useCase: .contentTagging)` selects the tagging-tuned model; `guardrails: .permissiveContentTransformations` relaxes guardrails for transforming user-provided text (summarize, rewrite).
 
-Requires: macOS 26+ / iOS 26+ / iPadOS 26+ / visionOS 26+, Apple Silicon, Apple Intelligence enabled.
+Custom adapters (`SystemLanguageModel.Adapter`, `SystemLanguageModel(adapter:)`) are deprecated since 26.4 and unavailable once the deployment target is iOS / macOS / visionOS 27.0 (`'Adapter' is unavailable in iOS`). Do not start new adapter work.
 
-## Basic Usage
+## Sessions, instructions, responses
 
 ```swift
-let session = LanguageModelSession()
-let response = try await session.respond(to: "Summarize: \(text)")
-print(response.content)          // Swift.String
-print(response.transcriptEntries) // ArraySlice<Transcript.Entry>
+import FoundationModels
+
+func summarize(_ text: String) async throws -> String {
+    let session = LanguageModelSession(instructions: """
+        You are a concise editor. Return only the rewritten text.
+        """)
+    let response = try await session.respond(to: "Summarize in two sentences: \(text)")
+    print(response.usage.input.totalTokenCount, response.usage.output.totalTokenCount)
+    return response.content
+}
 ```
 
-The return type is `LanguageModelSession.Response<String>`, not `String` directly (swiftinterface lines 347-354). `Response<Content>` exposes `content`, `rawContent: GeneratedContent`, and `transcriptEntries`.
+- `respond` returns `LanguageModelSession.Response<Content>`; read `.content`. `usage` (27.0) reports input, cached and output tokens.
+- A session keeps its `transcript` across turns. Reuse it for follow-ups; create a new one for unrelated tasks.
+- One request at a time per session: a second `respond` while one is in flight throws `LanguageModelSession.Error.concurrentRequests` (verified). Check `isResponding` or use one session per concurrent task.
+- `prewarm(promptPrefix:)` loads the model ahead of a likely request (on view appear, not at launch).
+- Instructions are fixed for a plain session. For instructions that change with app state, use dynamic instructions (below).
+- `@InstructionsBuilder` / `@PromptBuilder` closures assemble text conditionally: `LanguageModelSession { "Base rules."; if compact { "Be brief." } }` and `session.respond { "Summarize:"; for line in lines { line } }`.
 
-## Instructions
+## Guided generation
 
-Set the system prompt at session creation. Instructions are fixed for the lifetime of the session.
-
-```swift
-let session = LanguageModelSession(
-    instructions: """
-    You are a concise writing assistant. Focus on grammar and clarity.
-    Never add commentary; return only the rewritten text.
-    """
-)
-let rewritten = try await session.respond(to: "Review: \(userText)").content
-```
-
-Correct initializer: `convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], instructions: String? = nil)` (swiftinterface line 339). Overloads also accept `Instructions` directly or an `@InstructionsBuilder` closure (lines 340-341).
-
-## Guided Generation
-
-Generate Swift types directly - the framework constrains decoding to your schema, no JSON parsing.
+`@Generable` constrains decoding to a Swift type; no JSON parsing.
 
 ```swift
+import FoundationModels
+
 @Generable
-struct RecipeSuggestion {
-    @Guide(description: "Name of the recipe")
+struct Recipe {
     var name: String
-
-    @Guide(description: "Ingredients with quantities")
+    @Guide(description: "Ingredients with quantities", .maximumCount(12))
     var ingredients: [String]
-
-    @Guide(description: "Step-by-step instructions")
-    var steps: [String]
-
-    @Guide(description: "Estimated cooking time in minutes", .range(5...180))
-    var cookingTime: Int
-}
-
-let session = LanguageModelSession()
-let result: LanguageModelSession.Response<RecipeSuggestion> = try await session.respond(
-    to: "Suggest a quick pasta recipe",
-    generating: RecipeSuggestion.self
-)
-let recipe = result.content
-print(recipe.name, recipe.cookingTime)
-```
-
-`respond(to:generating:...)` returns `Response<Content>` where `Content: Generable` (swiftinterface lines 378-382). The `@Generable` macro is at line 16; `@Guide` overloads at lines 24/28/32. `GenerationGuide` supports `.range(_:)`, `.minimum(_:)`, `.maximum(_:)` for numerics; `.anyOf(_:)`, `.constant(_:)`, `.pattern(_:)` for `String`; `.count(_:)`, `.minimumCount(_:)`, `.maximumCount(_:)`, `.element(_:)` for arrays (lines 254-299).
-
-Built-in `Generable` conformances: `Bool`, `String`, `Int`, `Float`, `Double`, `Decimal`, `Array<Element: Generable>`, `Optional`, plus your own `@Generable` structs and enums (lines 92-195).
-
-### Enum-constrained output
-```swift
-@Generable
-enum Sentiment: String, CaseIterable {
-    case positive, negative, neutral
+    @Guide(.range(5...180))
+    var minutes: Int
+    var difficulty: Difficulty
 }
 
 @Generable
-struct SentimentResult {
-    var sentiment: Sentiment
-    @Guide(description: "0.0 - 1.0 confidence", .range(0.0...1.0))
-    var confidence: Double
-}
+enum Difficulty { case easy, medium, hard }
 
-let analysis = try await session.respond(
-    to: "Analyze sentiment: '\(review)'",
-    generating: SentimentResult.self
-).content
+func suggestRecipe(for request: String) async throws -> Recipe {
+    let session = LanguageModelSession()
+    return try await session.respond(to: request, generating: Recipe.self).content
+}
 ```
+
+- Guides: numbers `.range`, `.minimum`, `.maximum`; strings `.anyOf`, `.constant`, or a `Regex` (`@Guide(/[A-Z]{3}/)`); arrays `.count`, `.minimumCount`, `.maximumCount`, `.element(...)`.
+- Built-in `Generable` types: `String`, `Int`, `Double`, `Float`, `Decimal`, `Bool`, arrays and optionals of `Generable`, plus `GeneratedContent` and `ImageReference`.
+- Property names and `@Guide` descriptions are sent as a schema and cost tokens. Start without guides; add them where output is wrong. Properties are generated in declaration order, so put fields that inform others first.
+- For enum-like classification use a `@Generable enum` with `GenerationOptions(samplingMode: .greedy)`.
+- Shape known only at runtime: build a `DynamicGenerationSchema`, wrap it in `GenerationSchema(root:dependencies:)`, call `respond(to:schema:)` and read `GeneratedContent` with `value(_:forProperty:)`.
 
 ## Streaming
 
-Stream partial results for responsive UI. Snapshots contain `Content.PartiallyGenerated` which fills in progressively (swiftinterface lines 463-468).
-
 ```swift
-// Text streaming - snapshots are String snapshots
-for try await snapshot in session.streamResponse(to: "Write a short story.") {
-    view.text = snapshot.content // current complete text so far
-}
+import FoundationModels
 
-// Structured streaming — given a @Generable target type:
 @Generable
 struct TripPlan {
-    @Guide(description: "Destination city")
     var destination: String
-    @Guide(description: "Day-by-day itinerary")
     var days: [String]
-    @Guide(description: "Estimated budget in USD", .range(0...10_000))
-    var budgetUSD: Int
 }
 
-// Pick one: iterate for live updates, OR collect once for the final value.
-// The stream is single-pass; iterating consumes it.
-let stream = session.streamResponse(
-    to: "Plan a weekend trip",
-    generating: TripPlan.self
-)
-for try await snapshot in stream {
-    // snapshot.content: TripPlan.PartiallyGenerated (optionals fill in over time)
-    render(snapshot.content)
+func streamPlan(onUpdate: (TripPlan.PartiallyGenerated) -> Void) async throws -> TripPlan {
+    let session = LanguageModelSession()
+    let stream = session.streamResponse(to: "Plan a weekend in Lisbon", generating: TripPlan.self)
+    for try await snapshot in stream {
+        onUpdate(snapshot.content)   // every property optional, filling in over time
+    }
+    return try await stream.collect().content
 }
-
-// Or, without iterating, collect the final value:
-let finalResponse = try await session.streamResponse(
-    to: "Plan a weekend trip",
-    generating: TripPlan.self
-).collect() // Response<TripPlan>
 ```
 
-`ResponseStream.collect()` is at swiftinterface line 491. The stream conforms to `AsyncSequence` (line 473).
+Each snapshot is the whole value so far, not a delta - assign it, do not append. Text streams (`streamResponse(to:)`) yield the full `String` so far. `collect()` returns the final `Response`, also after the loop has consumed the stream (verified).
 
-## Tool Calling
+## Tools
 
-`Tool` is a protocol, not a macro. There is no `@Toolbox` or `@Tool` annotation in the framework. Each tool is a `Sendable` type with an associated `Arguments: Generable` and `Output: PromptRepresentable` (swiftinterface lines 1186-1196).
+A tool is a type conforming to `Tool`; there is no tool macro. `Arguments` must be a `@Generable` struct (primitive `Arguments` types are explicitly unavailable); `Output` is any `PromptRepresentable`, usually `String`.
 
 ```swift
-struct GetWeather: Tool {
-    let name = "getWeather"
-    let description = "Get current weather for a city."
+import FoundationModels
+
+struct StockLookup: Tool {
+    let description = "Look up the stock count for a product."
 
     @Generable
     struct Arguments {
-        @Guide(description: "City name, e.g. 'San Francisco'")
-        var city: String
+        @Guide(description: "Product name")
+        var product: String
     }
 
     func call(arguments: Arguments) async throws -> String {
-        let w = try await WeatherService.current(for: arguments.city)
-        return "\(w.tempF)F, \(w.conditions)"
+        "\(arguments.product): 42 in stock"
     }
 }
 
-struct GetForecast: Tool {
-    let name = "getForecast"
-    let description = "Get an N-day forecast for a city."
-
-    @Generable
-    struct Arguments {
-        var city: String
-        @Guide(description: "Number of days", .range(1...10))
-        var days: Int
-    }
-
-    func call(arguments: Arguments) async throws -> String {
-        let f = try await WeatherService.forecast(for: arguments.city, days: arguments.days)
-        return f.map { "\($0.date): \($0.conditions)" }.joined(separator: "\n")
-    }
-}
-
-let session = LanguageModelSession(
-    tools: [GetWeather(), GetForecast()],
-    instructions: "Use the weather tools when asked about weather."
-)
-let answer = try await session.respond(
-    to: "Should I bring an umbrella to SF tomorrow?"
-).content
-```
-
-Notes from the framework:
-- `Arguments` must be `Generable`. `String`, `Int`, `Double`, `Float`, `Decimal`, and `Bool` are *explicitly unavailable* as `Arguments` (swiftinterface lines 1219-1268) - use an `@Generable` struct that wraps them.
-- `Output` must be `PromptRepresentable`. `String` and `Array<PromptRepresentable>` already conform (lines 1131, 1139).
-- `call(arguments:)` runs on the `@concurrent` executor; make it `async throws`.
-- TN3193 recommends a maximum of 3-5 tools per session to keep schemas small in the context window.
-
-## Sessions & Context
-
-Sessions are stateful and thread-safe (`final public class` marked `@unchecked Sendable`, swiftinterface lines 321-397). Re-use one across turns; the transcript grows automatically.
-
-```swift
-let session = LanguageModelSession(instructions: "You are a code reviewer.")
-session.prewarm() // Optional: start loading the model in the background.
-
-let r1 = try await session.respond(to: "Review: \(code)")
-let r2 = try await session.respond(to: "How would you refactor it?")
-// session.transcript contains all instructions/prompts/responses so far.
-
-// Check whether a response is in flight
-if !session.isResponding {
-    // safe to start another respond(...)
+func askAboutStock() async throws -> String {
+    let session = LanguageModelSession(tools: [StockLookup()], instructions: "Use tools for stock questions.")
+    return try await session.respond(to: "How many widgets are in stock?").content
 }
 ```
 
-There is no `session.reset()` method. To start fresh, create a new session. To preserve partial state across the reset, rebuild a `Transcript` from the old session's entries:
+- `name` defaults to the type name (`"StockLookup"`). The requirement `call(arguments:)` is `@concurrent`: it runs off the main actor; hop to `MainActor` explicitly for UI state.
+- Keep to 3-5 tools per session and short descriptions; definitions consume context.
+- `GenerationOptions(toolCallingMode: .required | .allowed | .disallowed)` (27.0) forces or forbids tool use for one request.
+- Errors thrown from `call` surface as `LanguageModelSession.ToolCallError` (with `tool` and `underlyingError`).
+- Vision ships ready-made tools for image prompts (27.0): `OCRTool()` and `BarcodeReaderTool()` from `import Vision`.
+- Core Spotlight ships `SpotlightSearchTool` (iOS / macOS / visionOS 27, `import CoreSpotlight` alongside `FoundationModels`): the model searches Core Spotlight (the default `Configuration(sources: [.coreSpotlight])`; items you indexed with `CSSearchableIndex`) to ground its answers. The configuration also takes custom search stages and a `maximumResponseSize` to bound what lands in the 4096-token context. Known issue (iOS 27 release notes, 183770678): `SpotlightSearchTool()` with no configuration, used with the on-device model, fails with a "number of tokens ... exceeds the maximum" error - its default is sized for larger models. Pass `guide: .focused()`:
 
 ```swift
-// Start a new session that carries the first and last turns only.
-func condensed(from old: LanguageModelSession) -> LanguageModelSession {
-    let kept = [old.transcript.first, old.transcript.last].compactMap { $0 }
-    let transcript = Transcript(entries: kept)
-    let session = LanguageModelSession(transcript: transcript)
-    session.prewarm()
-    return session
+import CoreSpotlight
+import FoundationModels
+
+@available(iOS 27.0, macOS 27.0, *)
+func askAboutIndexedNotes(_ question: String) async throws -> String {
+    let spotlight = SpotlightSearchTool(configuration: .init(sources: [.coreSpotlight], guide: .focused()))
+    let session = LanguageModelSession(tools: [spotlight],
+                                       instructions: "Answer from the user's indexed notes.")
+    return try await session.respond(to: question).content
 }
 ```
 
-`prewarm(promptPrefix:)` is at swiftinterface line 343. The `LanguageModelSession(transcript:)` initializer is at line 342. This pattern is the one Apple recommends for recovering from context-window errors (TN3193).
+## Image input
 
-## Generation Options
-
-```swift
-let options = GenerationOptions(
-    sampling: .greedy,              // or .random(top: 40), .random(probabilityThreshold: 0.9)
-    temperature: 0.2,               // lower = more deterministic
-    maximumResponseTokens: 512      // cap response size
-)
-
-let r = try await session.respond(to: prompt, options: options).content
-```
-
-`GenerationOptions` is a `struct` with `sampling: SamplingMode?`, `temperature: Double?`, `maximumResponseTokens: Int?` (swiftinterface lines 1311-1328). `SamplingMode` offers `.greedy`, `.random(top:seed:)`, `.random(probabilityThreshold:seed:)` (lines 1315-1322).
-
-TN3193 warns: use `maximumResponseTokens` only as a safety cap against runaway generations; hard truncation can produce malformed partial output. To shorten responses, ask in the prompt ("In 3 sentences...") or use `.maximumCount(_:)` on `Generable` arrays.
-
-## Error Handling
-
-`LanguageModelSession.GenerationError` is an enum with these cases (swiftinterface lines 405-443):
+iOS / macOS / visionOS 27: put an `Attachment` in a prompt builder. Sources: `CGImage`, `CIImage`, `CVPixelBuffer`, an image file URL (`Attachment(imageURL:)`), and `UIImage` on iOS. The framework scales and converts; pass `orientation:` for unrotated camera frames. The on-device model accepts images (verified: it classified a solid red image correctly).
 
 ```swift
-do {
-    let response = try await session.respond(to: prompt, options: options)
-    return response.content
-} catch LanguageModelSession.GenerationError.guardrailViolation(let ctx) {
-    // Apple safety guardrail tripped. Don't blindly retry - reword or decline.
-    log("guardrail: \(ctx.debugDescription)")
-    return fallback
-} catch LanguageModelSession.GenerationError.exceededContextWindowSize(let ctx) {
-    // Context window full (4096 tokens). Start a new session with a condensed transcript.
-    log("context full: \(ctx.debugDescription)")
-    return try await condensed(from: session).respond(to: prompt).content
-} catch LanguageModelSession.GenerationError.unsupportedLanguageOrLocale(let ctx) {
-    return "Language not supported: \(ctx.debugDescription)"
-} catch LanguageModelSession.GenerationError.assetsUnavailable(let ctx) {
-    // Model / adapter assets not downloaded yet.
-    return "Model unavailable: \(ctx.debugDescription)"
-} catch LanguageModelSession.GenerationError.rateLimited {
-    return "Too many requests - back off."
-} catch LanguageModelSession.GenerationError.concurrentRequests {
-    return "Only one request per session at a time."
-} catch LanguageModelSession.GenerationError.refusal(let refusal, _) {
-    // Model refused. `refusal.explanation` is an async call to fetch the reason.
-    return try await refusal.explanation.content
-} catch LanguageModelSession.GenerationError.decodingFailure(let ctx) {
-    // Guided generation produced content that failed to decode into your type.
-    throw NSError(domain: "decoding", code: 0, userInfo: [NSLocalizedDescriptionKey: ctx.debugDescription])
-} catch LanguageModelSession.GenerationError.unsupportedGuide(let ctx) {
-    // A @Guide constraint isn't supported (e.g. unsupported regex feature).
-    throw NSError(domain: "guide", code: 0, userInfo: [NSLocalizedDescriptionKey: ctx.debugDescription])
-}
-```
-
-Every case carries a `GenerationError.Context` with a `debugDescription`. The `.refusal` case additionally carries a `Refusal` whose `explanation` / `explanationStream` let you ask the model why it refused (swiftinterface lines 416-433).
-
-Tool errors surface as a separate `LanguageModelSession.ToolCallError` that wraps your tool and the underlying error (lines 447-454).
-
-## Built-in Use Cases
-
-`SystemLanguageModel.UseCase` is a struct (not an enum). Only two values ship on macOS 26 (swiftinterface lines 524-528):
-
-- `.general` - the default model.
-- `.contentTagging` - optimized for generating tags/topics/classifications from text.
-
-```swift
-// Content tagging model - better than .general for tag/topic extraction.
-let taggingModel = SystemLanguageModel(useCase: .contentTagging)
-let session = LanguageModelSession(model: taggingModel)
+import CoreGraphics
+import FoundationModels
+import Vision
 
 @Generable
-struct Tags {
-    @Guide(description: "3-7 topical tags", .maximumCount(7))
-    var tags: [String]
+enum Subject { case document, receipt, photo, screenshot }
+
+func classify(_ image: CGImage) async throws -> Subject {
+    let session = LanguageModelSession()
+    return try await session.respond(generating: Subject.self, options: GenerationOptions(samplingMode: .greedy)) {
+        "Classify this image."
+        Attachment(image)
+    }.content
 }
-let tags = try await session.respond(
-    to: "Tag this article: \(text)",
-    generating: Tags.self
-).content.tags
+
+func readText(in image: CGImage) async throws -> String {
+    let session = LanguageModelSession(tools: [OCRTool()])
+    return try await session.respond {
+        "Extract the total amount from this receipt."
+        Attachment(image).label("receipt")
+    }.content
+}
 ```
 
-`SystemLanguageModel(useCase:guardrails:)` is at swiftinterface line 582. Guardrails are either `.default` or `.permissiveContentTransformations` (lines 543-547); use the permissive option only for transformation tasks on user-provided content (summarize, translate, rewrite).
+- `.label(_:)` names an attachment so tools can refer to it; a custom tool takes an `ImageReference` argument and resolves it with `reference.resolved(in: transcript)` to get a `Transcript.ImageAttachment` (`cgImage`, `url`).
+- Check `model.capabilities.contains(.vision)` before offering image features on a custom `LanguageModel`.
 
-## Custom Adapters
+## Context window and options
 
-A custom LoRA adapter lets you specialize the base model's behavior. Training happens out-of-band with Apple's Python toolkit; the deployed artifact is an `.fmadapter` package.
-
-Key rules (from Apple's "Loading and using a custom adapter" doc):
-- Adapter files are 160 MB or larger - **do not bundle them in your app**. Download on demand via Background Assets or a Managed Asset Pack.
-- Each adapter is locked to a specific base model version. You must retrain for every new base model release.
-- Shipping adapters requires the `com.apple.developer.foundation-model-adapter` entitlement. Local testing does not.
-- Adapters run only on physical devices (not Simulator).
-
-### Local testing (file URL)
+The on-device window is 4096 tokens for everything in the session: instructions, tool schemas, `Generable` schemas, prompts, images and responses. PCC has 32K.
 
 ```swift
-let url = URL(filePath: "/absolute/path/to/my.fmadapter")
-let adapter = try SystemLanguageModel.Adapter(fileURL: url)
-let model = SystemLanguageModel(adapter: adapter)
-let session = LanguageModelSession(model: model)
-let response = try await session.respond(to: "...")
+import FoundationModels
+
+func respondWithinBudget(_ prompt: String, session: LanguageModelSession) async throws -> String {
+    let model = SystemLanguageModel.default
+    let used = try await model.tokenCount(for: session.transcript)
+    let next = try await model.tokenCount(for: prompt)
+    let target = used + next > model.contextSize * 3 / 4
+        ? LanguageModelSession(model: model, transcript: Transcript(entries: session.transcript.suffix(2)))
+        : session
+    let options = GenerationOptions(samplingMode: .greedy, temperature: 0.2, maximumResponseTokens: 400)
+    return try await target.respond(to: prompt, options: options).content
+}
 ```
 
-`Adapter(fileURL:)` is at swiftinterface line 663; `SystemLanguageModel(adapter:)` is at line 586.
+- `tokenCount(for:)` (iOS / macOS 26.4+) measures prompts, instructions, tools, schemas or transcript entries; `contextSize` is the model maximum. The Foundation Models instrument and `#Playground` show live usage.
+- No API trims the transcript for you on a plain session. Recover from overflow by starting a session from a condensed `Transcript` (first instructions entry plus the last turns, or a model-written summary). With profiles, `.historyTransform { Array($0.suffix(20)) }` trims what each request sends.
+- `GenerationOptions(samplingMode:temperature:maximumResponseTokens:)`: `samplingMode` replaced the deprecated `sampling:` label in 27.0 (back-deployed). Use `maximumResponseTokens` only as a runaway cap; truncation yields broken output. Ask for length in the prompt or cap arrays with `.maximumCount`.
+- `ContextOptions(includeSchemaInPrompt:reasoningLevel:)` (27.0) is a per-request `contextOptions:` argument to `respond`. Despite the name it is not a trimming policy: it controls whether the `Generable` schema text is included and the reasoning level (`.light`, `.moderate`, `.deep`, `.custom(String)`) on models that reason (PCC, not the on-device model).
+- `transcriptErrorHandlingPolicy` (27.0): `.revertTranscript` or `.preserveTranscript` on a failed request.
 
-### Shipping (Background Assets)
+## Dynamic instructions and profiles
+
+iOS / macOS / visionOS / watchOS 27. A `DynamicInstructions` body (SwiftUI-style result builder of `Instructions`, tools and nested dynamic instructions) is re-evaluated before every request, so instructions and tools follow app state. A `LanguageModelSession.DynamicProfile` picks exactly one `Profile` (instructions plus model, temperature, reasoning level, history transform, lifecycle hooks) per request.
 
 ```swift
-// Clear out any adapters from older base-model versions.
-try SystemLanguageModel.Adapter.removeObsoleteAdapters()
+import FoundationModels
+import Observation
 
-// Load by base name. Triggers a Background Assets download if needed.
-let adapter = try SystemLanguageModel.Adapter(name: "myAdapter")
+@MainActor
+@Observable
+final class EditorState {
+    var formal = false
+}
 
-// Optional: compile the draft model once (if your adapter has one) for faster inference.
-try await adapter.compile()
+@MainActor
+struct StyleInstructions: @MainActor DynamicInstructions {
+    let state: EditorState
 
-let model = SystemLanguageModel(adapter: adapter)
-let session = LanguageModelSession(model: model)
+    var body: some DynamicInstructions {
+        Instructions { "Reply in one sentence." }
+        if state.formal {
+            Instructions { "Use a formal tone and no contractions." }
+        } else {
+            Instructions { "Use a casual tone." }
+            StockLookup()
+        }
+    }
+}
+
+@MainActor
+struct EditorProfile: @MainActor LanguageModelSession.DynamicProfile {
+    let state: EditorState
+
+    var body: some LanguageModelSession.DynamicProfile {
+        if state.formal {
+            Profile { StyleInstructions(state: state) }
+                .temperature(0.1)
+        } else {
+            Profile { StyleInstructions(state: state) }
+                .temperature(0.9)
+                .historyTransform { Array($0.suffix(10)) }
+                .onToolCall { call in print("tool:", call.toolName) }
+        }
+    }
+}
+
+@MainActor
+func makeEditorSession(state: EditorState) -> LanguageModelSession {
+    LanguageModelSession(profile: EditorProfile(state: state))
+}
 ```
 
-`Adapter(name:)`, `removeObsoleteAdapters()`, `compile()`, `compatibleAdapterIdentifiers(name:)`, and `isCompatible(_:)` are all on `SystemLanguageModel.Adapter` (swiftinterface lines 664-673). The asset-downloader extension's `shouldDownload(_:)` should delegate adapter-compatibility checks to `SystemLanguageModel.Adapter.isCompatible(assetPack)`.
+- The state class is non-`Sendable` unless it is main-actor isolated, and the session initializers take the profile as `sending`: without the `@MainActor` annotations and the `@MainActor` (isolated) conformances above, a target without default `MainActor` isolation fails with `sending value of non-Sendable type 'EditorProfile' risks causing data races`. In a default-`MainActor` target the annotations are implied. The isolated conformances ran correctly at runtime.
+- Hold changing state in a reference type (an `@Observable` class): the structs are evaluated per request, and flipping `state.formal` between two `respond` calls changed the reply style in testing.
+- Use if/else or switch in a `DynamicProfile` body; two parallel `Profile`s fail to compile (`The body of a 'DynamicProfile' must evaluate to a single active profile`).
+- Modifier precedence: call-site `GenerationOptions` > the innermost profile modifier > outer dynamic-profile modifiers. Lifecycle hooks (`onPrompt`, `onResponse`, `onToolCall`, `onToolOutput`, `onActivate`, `onDeactivate`) accumulate; throwing from one fails the request.
+- `LanguageModelSession(dynamicInstructions:)` takes dynamic instructions without a profile. `@SessionProperty(\.history) var history` reads the session history from inside instructions, profiles and tools; `@SessionPropertyEntry` defines custom keys.
+- Append conditional content after the stable part (as above) so the prompt prefix stays cacheable.
 
-See: <https://developer.apple.com/documentation/foundationmodels/loading-and-using-a-custom-adapter-with-foundation-models> and <https://developer.apple.com/apple-intelligence/foundation-models-adapter> for the Python toolkit.
+## Errors (27.0 error types)
 
-## Language Support & Limits
+`LanguageModelSession.GenerationError` is deprecated in the 27.0 SDKs. Apple: "Apps built with Xcode 26 will continue to catch this error until you rebuild with Xcode 27. You must update to Xcode 27 to catch the new error types before submitting your app." Built with Xcode 27 and run on 27.0, overflow threw `LanguageModelError.contextSizeExceeded` (verified); a stale `catch GenerationError.exceededContextWindowSize` no longer matches.
+
+| 26.x `GenerationError` case | 27.0 replacement |
+|---|---|
+| `exceededContextWindowSize` | `LanguageModelError.contextSizeExceeded` (carries `contextSize`, `tokenCount`) |
+| `guardrailViolation`, `refusal`, `rateLimited`, `unsupportedLanguageOrLocale` | same-named `LanguageModelError` cases |
+| `unsupportedGuide` | `LanguageModelError.unsupportedGenerationGuide` |
+| `decodingFailure` | `GeneratedContent.ParsingError` |
+| `assetsUnavailable` | `SystemLanguageModel.Error.assetsUnavailable` |
+| `concurrentRequests` | `LanguageModelSession.Error.concurrentRequests` |
+
+New in `LanguageModelError`: `unsupportedCapability`, `unsupportedTranscriptContent`, `timeout`. `LanguageModelSession.Error` adds `transcriptMutationWhileResponding`. With a deployment target below 27, catch both families:
 
 ```swift
-let model = SystemLanguageModel.default
-model.supportedLanguages     // Set<Locale.Language>
-model.supportsLocale(.current) // Bool
-model.contextSize            // Int (4096 on macOS 26)
+import FoundationModels
+
+enum AIFailure: Error {
+    case tooLong, blocked, busy, unavailable, other(String)
+}
+
+func classifyFailure(_ error: any Error) -> AIFailure {
+    if #available(iOS 27, macOS 27, visionOS 27, *) {
+        switch error {
+        case LanguageModelError.contextSizeExceeded: return .tooLong
+        case LanguageModelError.guardrailViolation, LanguageModelError.refusal: return .blocked
+        case LanguageModelError.rateLimited, LanguageModelSession.Error.concurrentRequests: return .busy
+        case SystemLanguageModel.Error.assetsUnavailable: return .unavailable
+        default: break
+        }
+    }
+    if let legacy = error as? LanguageModelSession.GenerationError {
+        switch legacy {
+        case .exceededContextWindowSize: return .tooLong
+        case .guardrailViolation, .refusal: return .blocked
+        case .rateLimited, .concurrentRequests: return .busy
+        case .assetsUnavailable: return .unavailable
+        default: return .other(legacy.localizedDescription)
+        }
+    }
+    return .other(error.localizedDescription)
+}
 ```
 
-`supportedLanguages`, `supportsLocale(_:)`, and `contextSize` are at swiftinterface lines 587-590 and 635-644.
+The legacy branch produces deprecation warnings when the deployment target is 27.0; drop it once you require 27. Do not blindly retry `guardrailViolation` or `refusal` - reword or decline. `LanguageModelError.Refusal.explanation` asks the model why it refused.
 
-**Context window**: 4096 tokens per `LanguageModelSession`, covering instructions, prompts, tool definitions, tool outputs, `Generable` schemas, and all responses (TN3193). When you exceed it, the framework throws `.exceededContextWindowSize` - create a fresh session with a condensed transcript (see "Sessions & Context" above).
+## Private Cloud Compute
 
-**Token counting** (macOS 26.4+): `SystemLanguageModel` exposes `tokenCount(for:)` overloads for `Prompt`, `Instructions`, `[Tool]`, `GenerationSchema`, and transcript-entry collections (swiftinterface lines 600-624). Use these plus the Foundation Models Instruments template (Xcode > Instruments > Foundation Models) to profile consumption.
+```swift
+import FoundationModels
 
-## Availability & Limitations
+@available(iOS 27, macOS 27, visionOS 27, watchOS 27, *)
+func analyzeLongDocument(_ text: String) async throws -> String {
+    let pcc = PrivateCloudComputeLanguageModel()
+    guard pcc.isAvailable, !pcc.quotaUsage.isLimitReached else {
+        let session = LanguageModelSession(model: SystemLanguageModel.default)
+        return try await session.respond(to: "Summarize briefly: \(text.prefix(6000))").content
+    }
+    let session = LanguageModelSession(model: pcc)
+    do {
+        return try await session.respond(
+            to: "Analyze this document: \(text)",
+            contextOptions: ContextOptions(reasoningLevel: .moderate)
+        ).content
+    } catch PrivateCloudComputeLanguageModel.Error.quotaLimitReached(let info) {
+        return "Daily limit reached; resets \(info.resetDate?.formatted() ?? "later")"
+    } catch PrivateCloudComputeLanguageModel.Error.networkFailure {
+        let session = LanguageModelSession(model: SystemLanguageModel.default)
+        return try await session.respond(to: "Summarize briefly: \(text.prefix(6000))").content
+    }
+}
+```
 
-- **Hardware**: Apple Silicon only (A17 Pro / M1 and later where Apple Intelligence is supported).
-- **OS**: macOS 26+, iOS 26+, iPadOS 26+, visionOS 26+. Unavailable on tvOS and watchOS (swiftinterface `@available ... tvOS, unavailable; watchOS, unavailable`).
-- **Model size**: ~3B parameters on-device.
-- **Strengths**: summarization, content generation, structured extraction, classification, tagging, light tool use.
-- **Limitations**: not a general-knowledge chatbot, 4096-token context window, no image generation, one in-flight request per session (`.concurrentRequests`).
-- **Privacy**: all inference runs on device. No data sent to Apple.
-- **Cost**: free; no API keys, no quotas beyond hardware throughput.
+- Same session API: only the `model:` argument changes. Requires the managed entitlement `com.apple.developer.private-cloud-compute`, granted on request (see [Adding server-side intelligence with Private Cloud Compute](https://developer.apple.com/documentation/foundationmodels/adding-server-side-intelligence-with-private-cloud-compute)).
+- **Eligibility is limited** ([Apple](https://developer.apple.com/private-cloud-compute/)): the developer must be enrolled in the App Store Small Business Program and have fewer than 2 million first-time App Store downloads across all their apps. Crossing the threshold or leaving the program means migrating "to an alternative solution within 6 months". TestFlight and ad hoc installs do not count as downloads. Design PCC features with an on-device or own-server fallback if the app may outgrow it.
+- Without the entitlement, `availability` still reported `.available` on macOS 27.2, and `respond` failed with an untyped `NSError` in domain `FoundationModels.LanguageModelError`, code -1 - not one of the typed cases. Check the entitlement first when PCC "fails for no reason".
+- Availability reasons: `.deviceNotEligible`, `.systemNotReady`. It needs the network; fall back to the on-device model on `networkFailure` / `serviceUnavailable`.
+- Quota is per person per day. Show `quotaUsage.status` (`.belowLimit(info)` with `info.isApproachingLimit`, or `.limitReached`) in the UI and call `quotaUsage.limitIncreaseSuggestion?.show()` to present the system upgrade (iCloud+) sheet. The Xcode scheme can simulate approaching and exceeded limits.
+- `contextSize` and `supportedLanguages` are `async throws` on the PCC model (they ask the server).
 
-Primary references:
-- <https://developer.apple.com/documentation/foundationmodels>
-- <https://developer.apple.com/documentation/foundationmodels/generating-content-and-performing-tasks-with-foundation-models>
-- <https://developer.apple.com/documentation/technotes/tn3193-managing-the-on-device-foundation-model-s-context-window>
-- <https://developer.apple.com/documentation/foundationmodels/loading-and-using-a-custom-adapter-with-foundation-models>
+## Other models: LanguageModel protocol and Core AI
+
+`SystemLanguageModel` and `PrivateCloudComputeLanguageModel` both conform to `LanguageModel` (27.0), and any conforming type works with `LanguageModelSession(model:)`, tools, guided generation and profiles. A conformance declares `capabilities` (`.vision`, `.guidedGeneration`, `.reasoning`, `.toolCalling`) and an `Executor: LanguageModelExecutor` that translates a `LanguageModelExecutorGenerationRequest` and streams events into a `LanguageModelExecutorGenerationChannel`. Apple recommends shipping providers as Swift packages; see the WWDC26 session [Bring an LLM provider to the Foundation Models framework](https://developer.apple.com/videos/play/wwdc2026/339).
+
+Core AI (`import CoreAI`, all Apple platforms 27.0) is the separate framework for running your own models on CPU, GPU and Neural Engine from `.aimodel` files produced by Apple's `coreai-torch` / `coreai-optimization` Python tools. SDK surface: `AIModel(contentsOf:options:)`, `AIModel.specialize(contentsOf:options:cache:cachePolicy:)`, `AIModelCache` (`.default`, or `init?(appGroup:)`), `SpecializationOptions` / `ComputeUnitKind`, `AIModel.loadFunction(named:)` returning an `InferenceFunction`, and `NDArray`. For language models, the open-source [coreai-models](https://github.com/apple/coreai-models) package provides `CoreAILanguageModel(resourcesAt:)`, a `LanguageModel` you pass straight to `LanguageModelSession(model:)` - see [Running a Core AI model in a Foundation Models session](https://developer.apple.com/documentation/foundationmodels/running-a-core-ai-model-in-a-foundation-models-session). Background inference uses the `com.apple.developer.background-tasks.continued-processing.inference` entitlement ([Core AI](https://developer.apple.com/documentation/coreai)).
+
+Unverified: `CoreAILanguageModel` and the `coreai-models` package were not built here; the Core AI types above are from the 27.0 SDK interface only.
+
+## Evaluating prompts and the `fm` CLI
+
+**Evaluations framework** (Xcode 27, `import Evaluations`, 27 OSes): tests a prompt or agent against a dataset instead of one hand-checked reply. An `Evaluation` declares a `dataset` (a `Loader` of samples such as `ModelSample(prompt:expected:instructions:)`), `subject(from:)` that runs your session and returns a `ModelSubject(value:transcript:)`, and `evaluators`: closure-based `Evaluator`, `ToolCallEvaluator` (checks tool calls against a `TrajectoryExpectation`) and `ModelJudgeEvaluator` (a model grades the output on a `ScoringScale`), plus aggregate metrics (mean, median, standard deviation). Run it in Swift Testing with the trait `@Test(.evaluates(MyEvaluation(), recordTranscripts: true))`, or directly with `try await MyEvaluation().run()`. Results vary between runs and OS model updates, so assert on aggregates with tolerance, and keep these tests out of the default fast `swift test` loop (an env-gated trait, testing.md).
+
+**`fm` command-line tool** (`/usr/bin/fm`, macOS 27): runs the same models from a shell - `fm respond "prompt"` (`-i` instructions, `--schema <file>`, `--image <path>`, `-g` greedy, `--save-transcript` / `--resume`), `fm chat`, `fm count-tokens`, `fm schema object` (builds a JSON generation schema), `fm models`, `fm quota-usage`, and `fm serve --port <n>`, a Chat Completions-compatible server. `--model pcc` targets Private Cloud Compute instead of the on-device model. Accept the terms with `fm license` before first use. Useful for iterating on prompts and schemas before writing Swift; flags are from `man fm`, not exercised here.

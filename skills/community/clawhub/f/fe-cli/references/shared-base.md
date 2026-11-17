@@ -599,7 +599,7 @@ Logs are written to a user-accessible directory so users can always inspect them
  *   - Log levels: debug, info, warn, error
  *   - Dual output: console (browser) + persistent file (via IndexedDB + download)
  *   - Size cap: when log exceeds `maxBytes`, oldest entries are trimmed automatically
- *   - Export: one-click download as .log file, or submit via configurable endpoint
+ *   - Export: one-click download as .log file (local only)
  *   - Source tag: each call includes module/file context for easy grep
  */
 
@@ -808,9 +808,9 @@ export const logger = new Logger();
 
 ---
 
-## src/services/log-export.ts — Log Export & Submit
+## src/services/log-export.ts — Log Export (local download)
 
-Utility for exporting logs as files or submitting them to a configurable endpoint.
+Utility for exporting logs as local files (download only). This template intentionally includes no remote log submission capability.
 
 ```typescript
 import { logger } from './logger';
@@ -819,12 +819,10 @@ import { logger } from './logger';
  * Log export and submission utilities.
  *
  * Export: download logs as .log or .json file
- * Submit: POST logs to a configurable endpoint (placeholder — destination TBD)
  *
  * Usage:
- *   import { exportLogsAsFile, submitLogs } from '@/services/log-export';
+ *   import { exportLogsAsFile } from '@/services/log-export';
  *   exportLogsAsFile('text');        // triggers .log download
- *   submitLogs('https://...');       // POST to endpoint (TBD)
  */
 
 export type ExportFormat = 'text' | 'json';
@@ -860,69 +858,6 @@ export function exportLogsAsFile(format: ExportFormat = 'text', filename?: strin
   URL.revokeObjectURL(url);
 
   logger.info('LogExport', `exported ${logger.count} entries (${format}, ${(content.length / 1024).toFixed(1)} KB)`);
-}
-
-/**
- * Submit logs to a remote endpoint.
- *
- * ⚠️ PLACEHOLDER — destination and format TBD.
- * Possible targets:
- *   - Internal log aggregation service
- *   - Feishu webhook / bot message
- *   - Sentry / Datadog / external APM
- *   - GitLab issue creation
- *   - Email attachment
- *
- * @param endpoint - URL to POST logs to (TBD: may become a config value)
- */
-export async function submitLogs(endpoint?: string): Promise<{ success: boolean; message: string }> {
-  // TODO: Implement log submission
-  // Design considerations:
-  //   - Should batch if logs are large
-  //   - Should include metadata (app version, OS, browser, timestamp)
-  //   - Should handle network errors gracefully
-  //   - Should strip sensitive data before sending
-  //   - Should respect VITE_LOG_SUBMIT_URL env config
-
-  const target = endpoint || import.meta.env.VITE_LOG_SUBMIT_URL || '';
-
-  if (!target) {
-    const warning = 'Log submit endpoint not configured (VITE_LOG_SUBMIT_URL)';
-    logger.warn('LogExport', warning);
-    // Fallback: export as file
-    exportLogsAsFile('text');
-    return { success: false, message: `${warning}. Logs exported as file instead.` };
-  }
-
-  try {
-    const payload = {
-      appVersion: import.meta.env.VITE_APP_VERSION || 'unknown',
-      environment: import.meta.env.MODE,
-      timestamp: new Date().toISOString(),
-      userAgent: navigator.userAgent,
-      logCount: logger.count,
-      entries: logger.getByLevel('error'), // Only send errors by default
-    };
-
-    const res = await fetch(target, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-    }
-
-    logger.info('LogExport', `submitted ${payload.logCount} error entries to ${target}`);
-    return { success: true, message: `Submitted ${payload.logCount} error log(s).` };
-  } catch (err) {
-    const msg = (err as Error).message;
-    logger.error('LogExport', `submit failed: ${msg}`);
-    // Fallback: export locally
-    exportLogsAsFile('text');
-    return { success: false, message: `Submit failed: ${msg}. Logs exported as file.` };
-  }
 }
 
 /**

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "ExecutionDeliveryPacketV1",
+  "changedFiles": {
+    "wholeFileSha256": {
+      "src/example.ts": "replace-with-64-hex-sha256"
+    }
+  },
+  "sourceFingerprint": {
+    "sha256": "replace-with-canonical-source-fingerprint"
+  },
+  "commands": [],
+  "repositoryActions": []
+}

@@ -1,42 +1,54 @@
-## Description: <br>
-Transforms cluttered Instagram mobile screenshots into clean, distraction-free architectural and design reference images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms cluttered Instagram mobile screenshots into clean, distraction-free architectural and design references.
 
-## Publisher: <br>
-[yfxa](https://clawhub.ai/user/yfxa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yfxa](https://clawhub.ai/user/yfxa)
 
-## Use Case: <br>
-Designers, architects, and agents building visual reference archives use IG Cropper to crop Instagram mobile screenshots into clean image files while preserving the photographed content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script writes to a user-chosen output path and may overwrite an existing file. <br>
-Mitigation: Choose an output filename deliberately and avoid pointing it at files that should be preserved. <br>
-Risk: The skill depends on Pillow from the Python package ecosystem. <br>
-Mitigation: Install Pillow from a trusted package index without elevated privileges. <br>
-Risk: The cropper is tuned for Instagram mobile screenshots in dark mode and may not crop unrelated images as expected. <br>
-Mitigation: Use it on screenshots intended for this workflow and review the resulting image before adding it to a reference archive. <br>
+## Use Case:
 
+Designers, architects, and visual researchers use this skill to turn Instagram dark-mode mobile screenshots into cleaner image references for inspiration archives.
 
-## Reference(s): <br>
-- [IG Cropper on ClawHub](https://clawhub.ai/yfxa/ig-cropper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with an inline shell command; the script writes an output image file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and Pillow; reads one input image path and writes one output image path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The cropper is scoped to Instagram dark-mode mobile screenshots and may crop light-mode or non-Instagram images incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on the intended screenshot type and review the generated image before adding it to a reference archive.
+
+Risk: The tool needs access to the input image and output path supplied by the user.
+
+Mitigation: Run it locally on intended image files and provide explicit, non-sensitive output paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yfxa/skills/ig-cropper)
+- [ClawHub publisher profile](https://clawhub.ai/user/yfxa)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a cropped image file when the bundled Python script is run with input and output image paths.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,48 @@
-## Description: <br>
-拼多多优惠券机器人 - 自动查找隐藏优惠券、大额券、百亿补贴，帮你省钱购物。支持全品类商品。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+拼多多优惠券机器人 - 自动查找隐藏优惠券、大额券、百亿补贴，帮你省钱购物。支持全品类商品。
 
-## Publisher: <br>
-[3313145040](https://clawhub.ai/user/3313145040) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[3313145040](https://clawhub.ai/user/3313145040)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External shoppers and shopping assistants use this Chinese-language skill to request Pinduoduo coupon, subsidy, price-history, and savings guidance across product categories.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Coupon, price, rebate, paid-plan, or contact-channel claims may be unverified.
+
+Mitigation: Verify offers, prices, rebate links, payments, and contact channels through trusted Pinduoduo or merchant sources before spending money.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External shoppers use this skill to ask an agent for Pinduoduo coupon discovery, historical price checks, subsidy deal guidance, and coupon-stacking suggestions across product categories. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Coupon, rebate, or support links may direct users outside the official shopping platform or request unnecessary personal information. <br>
-Mitigation: Prefer official Pinduoduo platform links and do not share passwords, cookies, payment details, or unnecessary personal information. <br>
+**Output Format:** [Markdown conversational shopping guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/3313145040/pdd-coupon-bot) <br>
+**Other Properties Related to Output:** [Chinese-language coupon-shopping advice; verify discounts externally before purchase.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with coupon recommendations, savings examples, pricing notes, FAQs, and support details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no code execution, credential access, persistence, or hidden execution reported by security evidence.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Downloads YouTube audio, launches Doubao, plays the audio, and captures translated subtitles as part of a YouTube video translation workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube video translation workflow, download audio, launch Doubao, play audio, capture translation.
 
-## Publisher: <br>
-[banner90](https://clawhub.ai/user/banner90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[banner90](https://clawhub.ai/user/banner90)
 
-## Use Case: <br>
-Developers and automation users use this skill to translate YouTube video audio through a Windows/WSL workflow that coordinates audio download, Doubao launch, playback, and subtitle capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow downloads media and stores generated audio and translation files locally. <br>
-Mitigation: Use a dedicated workspace, review saved file locations, and delete generated media and translation files when they are no longer needed. <br>
-Risk: The workflow controls a visible Doubao desktop session and may play audio over speakers. <br>
-Mitigation: Run it only in an appropriate desktop session, avoid sensitive audio or private on-screen content, and do not disconnect the visible desktop during GUI automation. <br>
+## Use Case:
 
+Developers and operators use this skill to translate YouTube videos by orchestrating audio download, Doubao launch, audio playback, and subtitle capture on a Windows desktop.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/banner90/byt-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands] <br>
-**Output Format:** [JSON result with local file paths and duration metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local audio and translation files in a Windows works directory and requires a visible Windows desktop session for GUI automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact package files report 1.0.0) <br>
+Risk: The plugin manifest points to a Python script outside the package, so the code that will execute is not included in the reviewed release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after the implementation is bundled in the package or after you personally control, inspect, and trust the external script path.
+
+Risk: The workflow downloads YouTube audio, automates Doubao on a visible Windows desktop, plays audio, and saves local output files.
+
+Mitigation: Run it only in an environment where the visible desktop, audio playback, network use, and Windows works directory are appropriate for the content being translated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/banner90/skills/byt-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Files]
+
+**Output Format:** [JSON status object with generated audio and translation file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces audio and translation files under a Windows works directory when successful.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact package metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

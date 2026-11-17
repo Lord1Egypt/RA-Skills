@@ -1,41 +1,55 @@
-## Description: <br>
-Transforms simulated mmWave radar phase data into pet health metrics by filtering respiration signals, generating diagnostic charts, and combining results with environmental data for pet welfare actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms simulated mmWave radar signals into pet respiration metrics, fuses them with environmental context, and emits a diagnostic report plus a climate-control intent.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and engineers use this skill to evaluate a pet-health sensing pipeline that synthesizes mmWave radar data, extracts respiration metrics, renders a diagnostic chart, and emits environmental adjustment intent. It is suited for agent workflows that need text guidance, runnable Python, and generated analysis artifacts around pet welfare monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports clean scan signals but notes that full artifact-backed review was not available to the scanner. <br>
-Mitigation: Review the visible skill files, dependency list, and requested runtime permissions before deployment, and re-run security checks in the target environment. <br>
-Risk: The skill simulates radar and environment data, so generated health conclusions may not reflect a real animal or hardware deployment. <br>
-Mitigation: Treat outputs as development diagnostics unless validated with real sensors, domain review, and appropriate pet health oversight. <br>
+## Use Case:
 
+Developers and engineers can use this skill to run a local pet-health signal-processing simulation, generate respiration analysis artifacts, and evaluate how environmental context could be routed into care recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/SpaceSQ/s2-pet-mmwave-analyzer) <br>
-- [Project Homepage](https://space2.world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, Python code, shell commands, console text, and generated PNG chart output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local s2_pet_health_vault directory and writes pet_vital_radar_report.png when the Python pipeline is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and manifest.json) <br>
+Risk: The skill emits an automatic climate-control override intent from hardcoded simulated data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not connect stdout to HVAC or other spatial controls unless explicit user approval, real sensor validation, and routing safeguards are added.
+
+Risk: Runtime dependencies are specified with minimum versions rather than pinned hashes.
+
+Mitigation: Install dependencies in an isolated environment and prefer pinned, hash-verified package versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-pet-mmwave-analyzer)
+- [Publisher profile](https://clawhub.ai/user/spacesq)
+- [Space2 homepage](https://space2.world)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Console text with a generated PNG diagnostic chart and installation commands in Markdown documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates an s2_pet_health_vault directory and writes pet_vital_radar_report.png when executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

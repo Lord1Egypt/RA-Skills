@@ -1,51 +1,66 @@
-## Description: <br>
-Trust layer for agentic commerce. Build a BOB Score from on-chain payment proofs and x402 receipts, then borrow USDC credit lines based on your score. Non-custodial - BOB never holds your funds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trust layer for agentic commerce that helps agents build a BOB Score from on-chain payment proofs and x402 receipts, then borrow USDC credit lines based on that score.
 
-## Publisher: <br>
-[bankofbotsandy](https://clawhub.ai/user/bankofbotsandy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bankofbotsandy](https://clawhub.ai/user/bankofbotsandy)
 
-## Use Case: <br>
-Developers and operators use this skill to connect agents to Bank of Bots, manage agent identity and wallets, submit payment proofs, track BOB Score, operate governed treasury payments, and request or repay USDC loans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad real-money wallet, loan, treasury, and command-queue authority. <br>
-Mitigation: Install it only for trusted agents, tightly scope BOB_API_KEY, and require explicit human approval for transfers, wallet sweeps, loan acceptance or repayment, webhook changes, and API-key changes. <br>
-Risk: The skill depends on a separate bob CLI for wallet signing and privileged finance actions. <br>
-Mitigation: Verify the CLI source and checksums before use, keep the CLI current, and run setup checks such as bob auth me, bob wallet list, bob agent passport-get, and bob doctor before funding or spending. <br>
-Risk: Automatic heartbeat or inbox processing can execute privileged operator commands without enough review. <br>
-Mitigation: Avoid automatic privileged command processing, or gate inbox actions with explicit approval before processing transfers, wallet provisioning, loan actions, kill switches, or key rotation. <br>
+## Use Case:
 
+External developers and agent operators use this skill to connect agents to BOB, import on-chain and x402 payment proofs, inspect BOB Score history, and operate governed treasury and lending workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bankofbotsandy/bankofbots) <br>
-- [BOB homepage](https://bankofbots.ai) <br>
-- [BOB API docs](https://api.bankofbots.ai/docs) <br>
-- [Agent setup guide](https://bankofbots.ai/docs/agent-setup) <br>
-- [npm package](https://www.npmjs.com/package/@bankofbots/skill) <br>
-- [CLI releases and checksums](https://github.com/bankofbots/bob-cli/releases/latest) <br>
-- [BOB CLI command reference](artifact/references/commands.md) <br>
-- [BOB CLI error recovery](artifact/references/errors.md) <br>
-- [BOB Score proof submission](artifact/references/proofs.md) <br>
-- [BOB Score tiers and credit events](artifact/references/scoring.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command blocks and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BOB_API_KEY and BOB_AGENT_ID; BOB_API_URL is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.58.1 (source: ClawHub release evidence) <br>
+Risk: The skill can guide agents through wallet, treasury, loan, and repayment workflows that may move funds or create financial obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review of the exact agent ID, amount, chain, destination, command source, and reversibility before enabling spending, loan acceptance, repayment, wallet sweep, webhook, API-key, or treasury commands.
+
+Risk: The skill can encourage recurring inbox or cron processing of external operator commands.
+
+Mitigation: Use recurring processing only with separate operator authentication, spend limits, and audit controls; avoid automatic command execution for high-impact actions.
+
+Risk: The skill depends on local wallet keys and BOB credentials.
+
+Mitigation: Install only in environments where a BOB-connected agent is intentionally allowed to access local wallet keys, BOB_API_KEY, and BOB_AGENT_ID.
+
+## Reference(s):
+
+- [BOB](https://bankofbots.ai)
+- [BOB API Docs](https://api.bankofbots.ai/docs)
+- [Agent Setup Guide](https://bankofbots.ai/docs/agent-setup)
+- [npm package](https://www.npmjs.com/package/@bankofbots/skill)
+- [BOB CLI releases](https://github.com/bankofbots/bob-cli/releases/latest)
+- [BOB agent kit source](https://github.com/bankofbots/bob-agent-kit)
+- [Command reference](references/commands.md)
+- [Error recovery](references/errors.md)
+- [Proof submission](references/proofs.md)
+- [BOB Score tiers](references/scoring.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BOB_API_KEY and BOB_AGENT_ID; BOB_API_URL is optional.]
+
+## Skill Version(s):
+
+0.58.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

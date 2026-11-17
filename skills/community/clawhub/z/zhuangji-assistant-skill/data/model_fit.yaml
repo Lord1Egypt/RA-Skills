@@ -1,0 +1,168 @@
+metadata:
+  name: local-llm-hardware-fit
+  schema_version: 1
+  updated_at: '2026-08-12'
+  unit: GiB
+  scope: 单卡、单并发、本地文本生成推理的保守规划估算；不估算训练、微调、吞吐或多卡互联效率。
+  source_policy: 参数量和结构字段来自 Hugging Face 官方模型仓库；通用显存规则来自 Hugging Face 官方量化、KV cache 与大模型加载文档。
+policy:
+  recommended_vram_utilization: 0.8
+  conditional_vram_utilization: 0.9
+  base_runtime_gib: 2.0
+  runtime_vram_ratio: 0.1
+  fallback_kv_gib_at_4k: 1.0
+  config_required_above_tokens: 4096
+  weight_gib_per_billion_params:
+    q4: 0.6
+    q5: 0.72
+    q8: 1.12
+    bf16: 2.05
+  vram_tiers_gib:
+  - 8
+  - 12
+  - 16
+  - 24
+  - 32
+  - 48
+  - 80
+  - 96
+  capacity_tiers:
+  - vram_gib: 8
+    recommended_max_params_b: 3
+    conditional_max_params_b: 7
+    preferred_ram_gib: 32
+  - vram_gib: 12
+    recommended_max_params_b: 7
+    conditional_max_params_b: 8
+    preferred_ram_gib: 32
+  - vram_gib: 16
+    recommended_max_params_b: 8
+    conditional_max_params_b: 14
+    preferred_ram_gib: 32
+  - vram_gib: 24
+    recommended_max_params_b: 24
+    conditional_max_params_b: 32
+    preferred_ram_gib: 32
+  - vram_gib: 32
+    recommended_max_params_b: 32
+    conditional_max_params_b: 40
+    preferred_ram_gib: 64
+  - vram_gib: 48
+    recommended_max_params_b: 40
+    conditional_max_params_b: 72
+    preferred_ram_gib: 96
+  - vram_gib: 80
+    recommended_max_params_b: 72
+    conditional_max_params_b: 72
+    preferred_ram_gib: 128
+  - vram_gib: 96
+    recommended_max_params_b: 72
+    conditional_max_params_b: 100
+    preferred_ram_gib: 128
+  system_ram_tiers_gib:
+  - 16
+  - 32
+  - 64
+  - 96
+  - 128
+  - 192
+  - 256
+  os_and_apps_reserve_gib: 12
+  offload_multiplier: 1.25
+  slow_memory_threshold_mt:
+    DDR4: 2666
+    DDR5: 4800
+sources:
+  quantization: https://huggingface.co/docs/transformers/main/en/quantization
+  kv_cache: https://huggingface.co/docs/transformers/kv_cache
+  big_model_inference: https://huggingface.co/docs/accelerate/main/concept_guides/big_model_inference
+models:
+- id: qwen3-8b
+  name: Qwen3 8B
+  hf_repo: Qwen/Qwen3-8B
+  params_b: 8.2
+  architecture: dense
+  num_hidden_layers: 36
+  num_attention_heads: 32
+  num_key_value_heads: 8
+  hidden_size: 4096
+  head_dim: 128
+  native_context_tokens: 40960
+  default_quantization: q4
+  default_context_tokens: 16384
+- id: qwen2-5-14b-instruct
+  name: Qwen2.5 14B Instruct
+  hf_repo: Qwen/Qwen2.5-14B-Instruct
+  params_b: 14.7
+  architecture: dense
+  num_hidden_layers: 48
+  num_attention_heads: 40
+  num_key_value_heads: 8
+  hidden_size: 5120
+  native_context_tokens: 32768
+  default_quantization: q4
+  default_context_tokens: 8192
+- id: mistral-small-3-1-24b
+  name: Mistral Small 3.1 24B Instruct
+  hf_repo: mistralai/Mistral-Small-3.1-24B-Instruct-2503
+  params_b: 24
+  architecture: dense-multimodal
+  num_hidden_layers: 40
+  num_attention_heads: 32
+  num_key_value_heads: 8
+  hidden_size: 5120
+  head_dim: 128
+  native_context_tokens: 131072
+  default_quantization: q4
+  default_context_tokens: 8192
+- id: qwen3-30b-a3b
+  name: Qwen3 30B A3B
+  hf_repo: Qwen/Qwen3-30B-A3B
+  params_b: 30.5
+  active_params_b: 3.3
+  architecture: moe
+  num_hidden_layers: 48
+  num_attention_heads: 32
+  num_key_value_heads: 4
+  hidden_size: 2048
+  head_dim: 128
+  native_context_tokens: 40960
+  default_quantization: q4
+  default_context_tokens: 8192
+- id: qwen3-32b
+  name: Qwen3 32B
+  hf_repo: Qwen/Qwen3-32B
+  params_b: 32.8
+  architecture: dense
+  num_hidden_layers: 64
+  num_attention_heads: 64
+  num_key_value_heads: 8
+  hidden_size: 5120
+  head_dim: 128
+  native_context_tokens: 40960
+  default_quantization: q4
+  default_context_tokens: 8192
+- id: deepseek-r1-distill-qwen-32b
+  name: DeepSeek R1 Distill Qwen 32B
+  hf_repo: deepseek-ai/DeepSeek-R1-Distill-Qwen-32B
+  params_b: 32.5
+  architecture: dense
+  num_hidden_layers: 64
+  num_attention_heads: 40
+  num_key_value_heads: 8
+  hidden_size: 5120
+  native_context_tokens: 131072
+  default_quantization: q4
+  default_context_tokens: 8192
+- id: qwen2-5-72b-instruct
+  name: Qwen2.5 72B Instruct
+  hf_repo: Qwen/Qwen2.5-72B-Instruct
+  params_b: 72.7
+  architecture: dense
+  num_hidden_layers: 80
+  num_attention_heads: 64
+  num_key_value_heads: 8
+  hidden_size: 8192
+  native_context_tokens: 32768
+  default_quantization: q4
+  default_context_tokens: 16384

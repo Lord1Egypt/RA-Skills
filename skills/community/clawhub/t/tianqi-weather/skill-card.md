@@ -1,41 +1,58 @@
-## Description: <br>
-获取天气预报和气温信息。使用场景：用户询问天气、温度、降雨、出行建议等。支持通过 wttr.in 查询全球城市天气，无需 API Key。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取天气预报和气温信息。使用场景：用户询问天气、温度、降雨、出行建议等。支持通过 wttr.in 查询全球城市天气，无需 API Key。
 
-## Publisher: <br>
-[anmu14641](https://clawhub.ai/user/anmu14641) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anmu14641](https://clawhub.ai/user/anmu14641)
 
-## Use Case: <br>
-External users and developers use this skill to query current weather, forecasts, temperature, precipitation, and travel-related weather conditions for global cities through wttr.in. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries a third-party weather service with curl, so responses can be unavailable, rate-limited, or affected by network instability. <br>
-Mitigation: Review commands before execution, retry transient failures, and avoid high-frequency repeated requests. <br>
-Risk: The skill is not intended for historical weather, severe-weather alerts, or meteorological analysis. <br>
-Mitigation: Use official meteorological sources for warnings, emergency decisions, historical records, or analytical weather data. <br>
+## Use Case:
 
+External users and agents use this skill to answer current weather, temperature, rain, and travel-planning questions for global cities by querying wttr.in with curl. It is not intended for historical weather data, severe weather alerts, or meteorological analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anmu14641/tianqi-weather) <br>
-- [wttr.in Weather Service](https://wttr.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Weather responses depend on wttr.in availability, request limits, network access, and the queried location format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: Weather lookups contact wttr.in and disclose the queried location string to that external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid exact home addresses or other sensitive locations unless that disclosure is acceptable.
+
+Risk: The skill depends on wttr.in availability, rate limits, and network stability.
+
+Mitigation: Retry transient failures and avoid high-frequency automated requests.
+
+Risk: The skill is not designed for severe weather alerts or meteorological analysis.
+
+Mitigation: Use official meteorological or emergency sources for hazardous-weather decisions.
+
+## Reference(s):
+
+- [wttr.in weather service](https://wttr.in/:help)
+- [ClawHub skill page](https://clawhub.ai/anmu14641/skills/tianqi-weather)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline curl commands and wttr.in format examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Weather results depend on wttr.in availability, rate limits, network stability, and the queried location string.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,71 @@
-## Description: <br>
-Routes Clawpage requests to workflows that create, update, publish, and manage Clawpage pages, dashboards, templates, data, links, blobs, stats, and SDK usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes Clawpage page, template, SDK, data, link, blob, and stats workflows so an agent can create, update, publish, and manage Clawpage web pages while returning published URL fields.
 
-## Publisher: <br>
-[kevin-zhan](https://clawhub.ai/user/kevin-zhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevin-zhan](https://clawhub.ai/user/kevin-zhan)
 
-## Use Case: <br>
-Developers and creators use this skill to turn long or complex content into Clawpage web apps and dashboards, then publish or update those pages and related Clawpage resources. It also guides authenticated management of templates, data tables, short links, blobs, statistics, and browser SDK integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and use persistent Clawpage account credentials stored in keys.local.json. <br>
-Mitigation: Confirm initialization before account creation, keep keys.local.json private, and never place sk_* tokens in page HTML or browser JavaScript. <br>
-Risk: The skill runs the @clawpage.ai/cli npm runtime, which may be fetched dynamically. <br>
-Mitigation: Pin @clawpage.ai/cli to an audited version before production use and trust the Clawpage service and CLI before running commands. <br>
-Risk: The skill can publish externally accessible Clawpage content. <br>
-Mitigation: Review generated content, page access settings, pagecode protection, and TTL before publishing or updating pages. <br>
+## Use Case:
 
+Developers and external ClawHub users use this skill to turn natural-language requests or long content into Clawpage web pages and dashboards, publish or update them, and manage related data, links, blobs, templates, stats, and SDK-backed interactions.
 
-## Reference(s): <br>
-- [Clawpage Skill on ClawHub](https://clawhub.ai/kevin-zhan/clawpage-skill) <br>
-- [Clawpage](https://clawpage.ai) <br>
-- [@clawpage.ai/cli](https://www.npmjs.com/package/@clawpage.ai/cli) <br>
-- [API quick reference](skills/clawpage-skill/references/api-quickref.md) <br>
-- [Design guidelines](skills/clawpage-skill/references/design-guidelines.md) <br>
-- [Prompt contracts](skills/clawpage-skill/references/prompt-contracts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with code snippets, CLI commands, local file changes, and structured URL fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Publishing workflows return URL fields such as publicUrl, rootUrl, accessUrl, pageId, and expiresAt when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release metadata) <br>
+Risk: The skill invokes npm package code through `@clawpage.ai/cli`, which can execute locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the CLI package version before production use, and avoid running unaudited latest-version commands in sensitive environments.
+
+Risk: Initialization can create an account and store a long-lived owner token on the user's machine.
+
+Mitigation: Require explicit user approval before account setup, keep token files out of published pages and repositories, and rotate the token if it appears in logs or chat transcripts.
+
+Risk: Generated pages and blob uploads can expose confidential content if users publish sensitive inputs or files.
+
+Mitigation: Review page content and upload choices before publishing, and avoid placing confidential data in Clawpage pages or public blob URLs.
+
+Risk: Data, link, blob, and page-management workflows can mutate or delete Clawpage resources.
+
+Mitigation: Require explicit confirmation for destructive actions and export or back up data before bulk overwrite or deletion.
+
+Risk: Embedding an owner `sk_*` token in browser-shipped HTML or JavaScript would expose account control to visitors.
+
+Mitigation: Use the browser SDK without owner tokens for public page interactions, and keep owner-token operations in CLI or server-side contexts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kevin-zhan/skills/clawpage-skill)
+- [Clawpage Website](https://clawpage.ai)
+- [@clawpage.ai/cli npm Package](https://www.npmjs.com/package/@clawpage.ai/cli)
+- [Clawpage API Quick Reference](artifact/skills/clawpage-skill/references/api-quickref.md)
+- [Clawpage Prompt Contracts](artifact/skills/clawpage-skill/references/prompt-contracts.md)
+- [Clawpage Design Guidelines](artifact/skills/clawpage-skill/references/design-guidelines.md)
+- [Clawpage Browser SDK](https://clawpage.ai/sdk.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, HTML/CSS/JS code, configuration snippets, and JSON response fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful publish and update workflows are expected to return URL fields, page protection state, expiry information, warnings, and the local HTML path.]
+
+## Skill Version(s):
+
+1.1.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

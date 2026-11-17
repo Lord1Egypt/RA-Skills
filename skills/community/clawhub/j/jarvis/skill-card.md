@@ -1,47 +1,61 @@
-## Description: <br>
-Run the agent like an executive operator with calm briefings, sharp prioritization, context recovery, and proactive follow-through. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run the agent like an executive operator with calm briefings, sharp prioritization, context recovery, and proactive follow-through.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use Jarvis to give an agent a calm executive operating style for ambiguous, high-stakes, or interrupted work. It helps the agent produce concise briefings, prioritize next steps, recover context, and maintain visible approval boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local profile notes in ~/jarvis/ may accumulate sensitive personal or business context. <br>
-Mitigation: Keep stored details minimal and review the Jarvis memory files periodically. <br>
-Risk: Approved AGENTS.md, SOUL.md, or HEARTBEAT.md seed blocks can steer later agent behavior in the workspace. <br>
-Mitigation: Read each seed block before approval, keep changes additive and visible, and remove the blocks if they no longer match the workspace. <br>
-Risk: The executive persona could overstate awareness or capability if used without its boundaries. <br>
-Mitigation: Follow the documented boundary rules: state what was observed, distinguish inference, and avoid claims of hidden monitoring or external control. <br>
+## Use Case:
 
+Developers and agent users use Jarvis to make an assistant operate with concise executive briefings, sharper prioritization, context recovery, approval-aware follow-through, and anti-drift guardrails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/jarvis) <br>
-- [Skill homepage](https://clawic.com/skills/jarvis) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Safety boundaries](artifact/boundaries.md) <br>
-- [Operating modes](artifact/operating-modes.md) <br>
-- [Workspace seed blocks](artifact/openclaw-seed.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional shell commands and local configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only behavior profile; optional state is stored locally under ~/jarvis/ and approved workspace seed files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill stores local Jarvis preference and mission-context files under ~/jarvis/, which may contain sensitive context if users add it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review ~/jarvis/ files periodically, avoid storing secrets or sensitive business details, and keep local memory compact and current.
+
+Risk: Workspace steering blocks in AGENTS.md, SOUL.md, or HEARTBEAT.md can alter future agent behavior if added without review.
+
+Mitigation: Require explicit approval before writing workspace steering blocks and keep additions visible, additive, and easy to remove.
+
+Risk: Executive-style behavior may sound overconfident if the agent implies hidden monitoring or capabilities it does not have.
+
+Mitigation: Follow the boundary guidance to state what was observed, what is inferred, and what approval is required before external actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/jarvis)
+- [Skill homepage](https://clawic.com/skills/jarvis)
+- [Setup guide](artifact/setup.md)
+- [Safety boundaries](artifact/boundaries.md)
+- [Use cases](artifact/use-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with optional shell commands and local configuration file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local files under ~/jarvis/ and additive workspace steering blocks that require user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

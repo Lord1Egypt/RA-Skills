@@ -1,40 +1,58 @@
-## Description: <br>
-Qc Deep Feature Forensics analyzes closed trade orders by reconstructing trades, downloading market history, extracting 12 technical entry features, and comparing winning entries against losing entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A 12-dimensional technical feature attribution engine that compares winner and loser trade entry conditions using RSI, Bollinger Bands, MACD, volume surge, gap, and related market features.
 
-## Publisher: <br>
-[tltby12341](https://clawhub.ai/user/tltby12341) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tltby12341](https://clawhub.ai/user/tltby12341)
 
-## Use Case: <br>
-Trading analysts, developers, and quantitative strategy reviewers use this skill to compare the market conditions around winning and losing trade entries, test what-if filters, and produce a feature attribution report from an orders CSV. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading exports and generated analysis files can reveal trading history, P&L patterns, and strategy signals. <br>
-Mitigation: Run the skill only on trusted exports in a dedicated working folder, and restrict access to feature_diagnosis.md, generated CSV files, and yfinance_cache contents. <br>
-Risk: The first run downloads market data for each ticker, which may expose ticker activity to the data provider and can fail or produce incomplete analysis if network access is unavailable. <br>
-Mitigation: Use a controlled network environment for first-time runs, pre-populate the cache for offline use, and review generated diagnostics before relying on conclusions. <br>
+## Use Case:
 
+External quantitative traders and strategy developers use this skill to analyze backtest order CSVs, compare market entry conditions for winning and losing trades, and generate what-if filter diagnostics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tltby12341/qc-deep-feature-forensics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown report, CSV feature matrix, and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes feature_diagnosis.md, an orders-derived _features.csv file, and a yfinance_cache directory next to the input CSV.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Untrusted order CSV contents can flow into generated CSV output, which may be interpreted as formulas by spreadsheet tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted order CSVs and review generated *_features.csv files carefully before opening them in Excel or similar spreadsheet software.
+
+Risk: Dependency and market-data downloads can introduce environment or supply-chain exposure.
+
+Mitigation: Run the skill in a virtual environment with pinned dependencies and expect first-run access to Yahoo Finance market data unless the cache is pre-populated.
+
+Risk: Feature comparisons from small trade sets can be statistically unreliable.
+
+Mitigation: Treat reports from fewer than 20 closed trades as directional diagnostics rather than reliable conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tltby12341/skills/qc-deep-feature-forensics)
+- [Publisher profile](https://clawhub.ai/user/tltby12341)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, csv, text, shell commands]
+
+**Output Format:** [Markdown report, CSV feature matrix, and console progress text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes feature_diagnosis.md and <orders>_features.csv next to the input CSV, and creates a yfinance_cache directory for downloaded market data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, frontmatter, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

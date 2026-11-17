@@ -1,42 +1,53 @@
-## Description: <br>
-Helps developers implement dependency injection in PydanticAI agents using RunContext and deps_type for database connections, API clients, user context, and other external resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement dependency injection in PydanticAI agents using RunContext and deps_type. Use when agents need database connections, API clients, user context, or any external resources.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to design PydanticAI agents whose tools and prompts receive scoped runtime dependencies such as database handles, API clients, user context, and test doubles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependencies can expose raw API keys or database credentials if examples are copied without scoping. <br>
-Mitigation: Pass initialized clients or scoped handles as dependencies, keep secrets out of source code and logs, and avoid placing credentials directly in prompts or outputs. <br>
-Risk: Generic database query tools can allow overly broad or unsafe operations. <br>
-Mitigation: Prefer purpose-specific, parameterized data-access methods and limit each tool to the current request or user context. <br>
-Risk: Tests can pass partial dependency mocks that diverge from production dependency shapes. <br>
-Mitigation: Use agent.override with dependency objects that match the production fields and types used by the tools under test. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure dependency injection for PydanticAI agents, including database connections, API clients, user context, and testing overrides.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/pydantic-ai-dependency-injection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples may need project-specific dependency types and credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Copied examples that pass credentials or external clients into dependencies could expose secrets or broaden access beyond the task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass already configured clients where possible, keep API keys out of source code, and ensure injected database or HTTP clients are trusted and scoped to the task.
+
+Risk: Agent tools can fail at runtime if ctx.deps fields, run-time deps values, or test overrides drift from the declared deps_type.
+
+Mitigation: Follow the skill's gate checks: verify every ctx.deps access exists on deps_type, pass matching deps on every run path that needs them, and keep test overrides aligned with production dependency shape.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/pydantic-ai-dependency-injection)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code]
+
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no commands are executed by the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, released 2026-04-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

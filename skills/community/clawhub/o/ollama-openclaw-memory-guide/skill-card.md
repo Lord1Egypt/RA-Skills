@@ -1,44 +1,66 @@
-## Description: <br>
-Guides Windows users through installing portable Ollama and configuring OpenClaw local memory search with vector indexing and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through setting up a portable Ollama embedding service and OpenClaw local memory and vector search on managed Windows systems.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and operators in managed Windows environments use this skill to set up local Ollama embeddings for OpenClaw memory search, rebuild vector indexes, configure startup behavior, and troubleshoot common failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local vector indexing may process confidential OpenClaw memory files. <br>
-Mitigation: Review memory contents before rebuilding the index and protect or delete generated backups and SQLite stores according to local data-handling requirements. <br>
-Risk: The optional Startup VBS runs Ollama silently at each Windows sign-in. <br>
-Mitigation: Enable the startup script only when persistent local Ollama service is desired, and remove the Startup entry when it is no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy local embeddings for OpenClaw memory search in Windows environments where standard installers or cloud APIs are unavailable. It also supports configuration, index rebuild, backup, recovery, and troubleshooting workflows for a local memory system.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/ollama-openclaw-memory-guide) <br>
-- [Ollama documentation](https://ollama.com/docs) <br>
-- [OpenClaw memory documentation](https://docs.openclaw.ai/memory) <br>
-- [TDaí Memory Suite](https://clawhub.ai/skills/tdai-memory-suite) <br>
-- [nomic-embed-text model](https://ollama.com/library/nomic-embed-text) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guide with PowerShell, bash, JSON, Python, SQL, and VBS snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Windows setup steps, OpenClaw configuration examples, vector index rebuild guidance, startup script examples, troubleshooting checks, and backup and restore procedures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, SKILL.md version history) <br>
+Risk: The guide asks users to install and run downloaded Ollama binaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a verified Ollama release and check hashes or signatures before installation.
+
+Risk: The guide includes hidden Windows Startup-folder autostart for the Ollama service.
+
+Mitigation: Avoid autostart unless it is explicitly required and approved for the target environment.
+
+Risk: OpenClaw memory backups can contain sensitive private data.
+
+Mitigation: Handle backup archives as sensitive data and store or transfer them under the same controls as the source memory files.
+
+Risk: The guide references a rebuild script for vector indexes.
+
+Mitigation: Review and verify the rebuild script source and contents before running it.
+
+## Reference(s):
+
+- [Ollama Documentation](https://ollama.com/docs)
+- [OpenClaw Memory Documentation](https://docs.openclaw.ai/memory)
+- [TDaí Memory Suite](https://clawhub.ai/skills/tdai-memory-suite)
+- [nomic-embed-text model](https://ollama.com/library/nomic-embed-text)
+- [ClawHub Skill Page](https://clawhub.ai/paudyyin/skills/ollama-openclaw-memory-guide)
+- [Publisher Profile](https://clawhub.ai/user/paudyyin)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with PowerShell, bash, JSON, Python, SQL, and VBS code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Windows paths, local service checks, OpenClaw configuration examples, troubleshooting steps, and backup and recovery commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, and artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

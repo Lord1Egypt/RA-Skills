@@ -1,49 +1,64 @@
-## Description: <br>
-Creates Yike storyboards from novels or scripts through a guided Alibaba Cloud CLI workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yike Storyboard Creation Skill - Complete AI video creation workflow from novel/script to storyboard via conversational interface.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-External users and creators use this skill to turn a novel or script into a Yike storyboard by confirming parameters, uploading the source file to Alibaba Cloud OSS, submitting a storyboard job, and tracking status until the storyboard editing link is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uploads the selected novel or script to Alibaba Cloud services and uses cloud credentials. <br>
-Mitigation: Confirm the exact file path, Alibaba account, region, and storyboard settings before upload; use least-privileged RAM or short-lived STS credentials. <br>
-Risk: Sensitive access keys may be exposed through command history, logs, or chat if handled carelessly. <br>
-Mitigation: Do not print or paste AK/SK values; verify credential status with approved CLI checks and avoid sharing credentials in logs or conversation. <br>
-Risk: Installer and CLI commands can affect the local environment or cloud resources. <br>
-Mitigation: Review installer commands before running them and confirm that Alibaba Cloud ICE/Yike access and required RAM permissions are intended for the account. <br>
+## Use Case:
 
+External users and developers use this skill to turn a novel or script file into a Yike storyboard workflow by confirming parameters, uploading source text, submitting a storyboard job, tracking job status, and opening the resulting storyboard for web-based editing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sdk-team/alibabacloud-yike-storyboard) <br>
-- [Aliyun CLI installation guide](references/cli-installation-guide.md) <br>
-- [RAM permission policies](references/ram-policies.md) <br>
-- [Related CLI commands](references/related-commands.md) <br>
-- [Verification method](references/verification-method.md) <br>
-- [Acceptance criteria](references/acceptance-criteria.md) <br>
-- [Alibaba Cloud ICE activation](https://ice.console.aliyun.com/guide/default) <br>
-- [Yike platform](https://www.yikeai.com/#/home) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated service links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Alibaba Cloud CLI commands, upload status, job status summaries, and Yike storyboard editing URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The skill asks users to install or update Alibaba Cloud CLI tooling and plugins, including guidance that can make persistent global CLI changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; prefer trusted package-manager installation, avoid curl-to-bash installation, and do not enable global auto-plugin installation or update unrelated plugins.
+
+Risk: The skill uploads local manuscript or script files to Alibaba Cloud/Yike services for processing.
+
+Mitigation: Confirm the exact resolved file path and content before upload, and assume submitted source material is transmitted to Alibaba Cloud/Yike.
+
+Risk: The workflow uses Alibaba Cloud credentials and cloud permissions.
+
+Mitigation: Use a dedicated, least-privilege Alibaba Cloud RAM user or profile with only the required ICE permissions.
+
+## Reference(s):
+
+- [CLI Installation Guide](references/cli-installation-guide.md)
+- [RAM Permission Policies](references/ram-policies.md)
+- [Related CLI Commands](references/related-commands.md)
+- [Verification Methods](references/verification-method.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Alibaba Cloud ICE activation](https://ice.console.aliyun.com/guide/default)
+- [Yike AI platform](https://www.yikeai.com/#/home)
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-yike-storyboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated storyboard URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Alibaba Cloud account, Aliyun CLI 3.3.3 or later, ICE plugin access, cn-shanghai service configuration, and user-confirmed storyboard parameters before upload.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

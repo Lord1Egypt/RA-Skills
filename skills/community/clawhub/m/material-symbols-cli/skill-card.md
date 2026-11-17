@@ -1,40 +1,53 @@
-## Description: <br>
-Search, download, and generate code for Google Material Symbols icons. Use when user mentions 'material symbols', 'material icons', 'Google icons', 'Android icons', or needs to find/download icons for an app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, download, and generate code for Google Material Symbols icons.
 
-## Publisher: <br>
-[marwichmisi](https://clawhub.ai/user/marwichmisi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marwichmisi](https://clawhub.ai/user/marwichmisi)
 
-## Use Case: <br>
-Developers and designers use this skill to find Google Material Symbols icons and generate SVG, Android Vector Drawable XML, Jetpack Compose, HTML, and CSS assets for app and web projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup asks users to run installer and package-linking commands, including a remote shell installer for Bun. <br>
-Mitigation: Review setup commands before execution, prefer official installer sources, and avoid piping remote scripts into a shell unless the source is trusted and verified. <br>
+## Use Case:
 
+Developers and design-focused engineers use this skill to search Google Material Symbols and generate icon assets or code for Android, Jetpack Compose, and web projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marwichmisi/material-symbols-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/marwichmisi) <br>
-- [Bun installer referenced by setup](https://bun.sh/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and structured JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated artifacts may include SVG files, Android Vector Drawable XML, Kotlin/Jetpack Compose snippets, HTML, CSS, and @font-face snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Setup may execute mutable remote installation tooling and make lasting PATH-linked changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup commands before use, install Bun and api2cli from trusted, pinned, verifiable channels where possible, and avoid running installation in privileged or sensitive shell environments.
+
+Risk: Generated icon assets and code snippets may be written into application source trees.
+
+Mitigation: Inspect generated files or diffs before committing them, and run the project's normal formatting, build, and review checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marwichmisi/skills/material-symbols-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and structured JSON output from the tool when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-driven CLI calls should use --json; generated assets or snippets may be written to user-selected paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

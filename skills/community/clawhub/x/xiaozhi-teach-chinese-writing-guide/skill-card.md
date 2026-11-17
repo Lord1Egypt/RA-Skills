@@ -1,45 +1,54 @@
-## Description: <br>
-Helps Chinese language teachers turn essay correction into a systematic writing instruction workflow for assignment design, process guidance, three-dimensional review, style tracking, and class feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为语文教师提供作文任务设计、写作过程指导、分层批改标准、讲评方案与班级写作观察工具；不替教师逐篇精批或代学生写作文。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Chinese language teachers use this skill to design writing assignments, guide students through drafting and revision, apply structured rubric-based review, track writing style patterns, and prepare classroom feedback sessions. It is teacher-facing and supports instruction rather than replacing teacher judgment or writing on behalf of students. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses privacy-sensitive student writing and style-record templates. <br>
-Mitigation: Keep student names out of prompts and shared documents, use pseudonyms, store samples only in approved systems, and define deletion and retention rules for style records. <br>
-Risk: Archived or shared student writing examples may require school or parent approval. <br>
-Mitigation: Get required consent before archiving or sharing examples, and share only de-identified samples when permitted. <br>
-Risk: Teachers may over-rely on generated rubrics or feedback plans for final evaluation. <br>
-Mitigation: Use the skill's output as instructional guidance and have the teacher make final grading and feedback decisions. <br>
+## Use Case:
 
+语文教师可用此技能设计写作任务、组织构思与修改指导、建立批改和讲评标准，并观察班级写作能力变化。输出供教师审阅后使用，不替教师逐篇定稿批改或代学生写作文。
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qizhitang/xiaozhi-teach-chinese-writing-guide) <br>
-- [Writing Task Design Template](artifact/references/writing-task-template.md) <br>
-- [Three-Dimensional Review Rubric](artifact/references/three-dim-rubric.md) <br>
-- [Student Style DNA Record Template](artifact/references/style-dna-record.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured templates, rubrics, checklists, and teacher-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for teacher review and adaptation before use with student work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security review was benign with medium confidence, and three references were unresolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review unresolved references before relying on related guidance, and have a teacher review drafts before using them with students.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-teach-chinese-writing-guide)
+- [Three-dimension writing rubric](references/three-dim-rubric.md)
+- [Writing task template](references/writing-task-template.md)
+- [High-school writing teaching guide](references/hs-writing-teaching.md)
+- [Class writing record template](references/style-dna-record.md)
+- [Crisis referral protocol](shared/crisis-referral-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, Text]
+
+**Output Format:** [Chinese-language Markdown, structured tables, and plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Teacher-review drafts for writing tasks, rubrics, lesson feedback, and class writing records; no student essay ghostwriting or final grading.]
+
+## Skill Version(s):
+
+2.12.7 (source: SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

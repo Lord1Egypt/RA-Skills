@@ -1,42 +1,50 @@
-## Description: <br>
-Provides real-time science data on ISS location, recent earthquakes, local air quality, and NASA's Astronomy Picture of the Day. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides live science data feeds for ISS location, recent earthquakes, local air quality, and NASA Astronomy Picture of the Day content.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to query live science feeds for space station position, earthquake activity, nearby air quality measurements, and Astronomy Picture of the Day details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live science feeds can be delayed, unavailable, or revised by their upstream sources. <br>
-Mitigation: Verify time-sensitive or decision-critical results against the underlying science data provider before relying on them. <br>
-Risk: Tool calls are sent to the third-party Pipeworx MCP gateway. <br>
-Mitigation: Use the skill only when sending request parameters such as coordinates, dates, and query filters to that service is acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to query current science information from a Pipeworx-hosted MCP gateway, including orbital position, earthquake events, air quality readings, and astronomy media metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-science) <br>
-- [Pipeworx Science MCP endpoint](https://gateway.pipeworx.io/science/mcp) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, structured data, image URLs, configuration] <br>
-**Output Format:** [JSON tool responses with science measurements, coordinates, image URLs, and explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live external data may vary by source availability and requested location or date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Science queries and location parameters are routed to the remote Pipeworx gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when this routing is acceptable, and avoid sending precise personal coordinates if that location is sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-science)
+- [Pipeworx science MCP endpoint](https://gateway.pipeworx.io/science/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and example shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include live science measurements, coordinates, image URLs, explanations, and source-specific metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

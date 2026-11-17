@@ -1,38 +1,53 @@
-## Description: <br>
-Game architecture design using system dependency mapping, Architecture Decision Records (ADRs), and technical design documents; produces a navigable architecture that scales with the project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Game architecture design using system dependency mapping, Architecture Decision Records (ADRs), and technical design documents to produce a navigable architecture that scales with the project.
 
-## Publisher: <br>
-[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910)
 
-## Use Case: <br>
-Developers and game teams use this skill to plan game system decomposition, dependency maps, Architecture Decision Records, data flows, performance budgets, and technical architecture documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated architecture documents may introduce incorrect or misleading technical guidance. <br>
-Mitigation: Review generated architecture overviews, ADRs, data-flow notes, and related planning files before committing or using them for implementation. <br>
+## Use Case:
 
+Developers and game engineers use this skill to structure game system architecture, document dependencies and data flow, and create ADRs and performance budgets for game projects.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/toilanguyen2910/skills/game-dev-architecture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, guidance] <br>
-**Output Format:** [Markdown with document templates, diagrams, tables, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or revise architecture files, ADRs, dependency maps, data-flow notes, and performance budgets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may create or update architecture Markdown files such as ADRs and system maps when used with a file-writing agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in the intended project workspace and review generated or modified architecture files before committing them.
+
+Risk: Architecture recommendations and performance budgets are project-dependent.
+
+Mitigation: Validate system boundaries, ADRs, data flows, and performance targets against the chosen engine, platform, and hardware before adoption.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/toilanguyen2910/skills/game-dev-architecture)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown documents with tables, ASCII or Mermaid diagrams, ADR templates, file-structure blocks, and code-style interface snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May organize outputs into an arch/ folder with an adr/ subfolder when used in a file-writing agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

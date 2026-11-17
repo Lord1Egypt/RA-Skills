@@ -1,52 +1,66 @@
-## Description: <br>
-Decentralized stop-loss orders for DeFi. Gasless, oracle-protected, 8 EVM chains supported. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decentralized stop-loss orders for DeFi. Gasless, oracle-protected, 8 EVM chains supported.
 
-## Publisher: <br>
-[eranp-orbs](https://clawhub.ai/user/eranp-orbs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eranp-orbs](https://clawhub.ai/user/eranp-orbs)
 
-## Use Case: <br>
-Developers and DeFi agents use this skill to convert user intent into normalized Spot order parameters, EIP-712 typed data, approval guidance, signed relay payloads, and query or cancellation steps for supported EVM chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The stop-loss listing understates that the skill can guide broader signed trading orders, including market, limit, TWAP, take-profit, delayed-start, and chunked orders through an external relay. <br>
-Mitigation: Confirm the intended order type before signing and review the normalized order fields against the user's request. <br>
-Risk: Incorrect approvals or signatures can authorize unintended token spending or submit an unintended DeFi order. <br>
-Mitigation: Before approving or signing, verify the chain, contract, token addresses, recipient, amount, deadline, trigger values, slippage, and relay destination. <br>
-Risk: Standing max approvals increase exposure for repeat use. <br>
-Mitigation: Prefer exact approvals for input.maxAmount and use maxUint256 approvals only when the user deliberately accepts that exposure. <br>
-Risk: Native input is not supported by the skill workflow. <br>
-Mitigation: Use ERC-20 input tokens or wrap native assets before creating an order. <br>
+## Use Case:
 
+External developers and DeFi operators use this skill to turn swap intent into normalized Spot order parameters, EIP-712 typed data, signed relay payloads, and lifecycle actions for supported EVM chains.
 
-## Reference(s): <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Params](references/params.md) <br>
-- [Template, Sign, And Submit](references/sign.md) <br>
-- [Lifecycle](references/lifecycle.md) <br>
-- [Examples](references/examples.md) <br>
-- [Common Token Addressbook](assets/token-addressbook.md) <br>
-- [RePermit typed-data template](assets/repermit.template.json) <br>
-- [Spot security audit report](https://github.com/orbs-network/spot/blob/master/Audit-AstraSec.pdf) <br>
-- [Spot supported chain config](https://github.com/orbs-network/spot/blob/master/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads, EIP-712 typed-data configuration, shell commands, and JavaScript examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local normalized params, approval guidance, signed relay payloads, status queries, and cancellation commands; wallet signing is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The stop-loss label understates broader live Spot advanced swap order capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user intends live Spot advanced swap orders, and confirm the selected order shape before approval, signing, or relay submission.
+
+Risk: Incorrect order parameters can create unintended live trading behavior.
+
+Mitigation: Before signing or approving, verify chain ID, token addresses, amounts, deadlines, slippage, and that output.recipient is the intended address.
+
+Risk: The relay at agents-sink.orbs.network receives signed order data.
+
+Mitigation: Treat the relay as a third-party service, submit only the final signed payload, and preserve the exact typed data and signature for retries, queries, and cancellation.
+
+## Reference(s):
+
+- [Quickstart](references/quickstart.md)
+- [Parameters](references/params.md)
+- [Template, Sign, And Submit](references/sign.md)
+- [Lifecycle](references/lifecycle.md)
+- [Examples](references/examples.md)
+- [RePermit Typed-Data Template](assets/repermit.template.json)
+- [Common Token Addressbook](assets/token-addressbook.md)
+- [Spot Security Audit Report](https://github.com/orbs-network/spot/blob/master/Audit-AstraSec.pdf)
+- [Spot Chain Configuration](https://github.com/orbs-network/spot/blob/master/config.json)
+- [Spot Order Relay](https://agents-sink.orbs.network/orders)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads, JavaScript snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local order parameters, populated EIP-712 typed data, relay payloads, query commands, and cancellation guidance; users must sign and approve with their own wallet.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence; artifact package.json declares 2.5.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

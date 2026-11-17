@@ -1,45 +1,66 @@
-## Description: <br>
-Vantage is an autonomous signal-to-execution trading agent for Hyperliquid perpetual futures that uses public market signals, optional LLM decisioning, Kelly-style sizing, paper mode, setup checks, and signed live order execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vantage is an autonomous trading agent for Hyperliquid perpetual futures that runs a signal-to-execution loop with funding, momentum, THORChain volume signals, Kelly sizing, paper mode, setup validation, and signed live order execution.
 
-## Publisher: <br>
-[morebetterclaw](https://clawhub.ai/user/morebetterclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morebetterclaw](https://clawhub.ai/user/morebetterclaw)
 
-## Use Case: <br>
-External developers and traders use this skill to configure, validate, and run a local Hyperliquid perpetual futures trading loop with paper trading available before live execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real live trades with a Hyperliquid private key. <br>
-Mitigation: Start in paper mode, run the setup validator, use a limited-risk wallet, and set strict position and account-risk caps before live trading. <br>
-Risk: Optional OpenAI decisioning may send trading signal data to a cloud API when OPENAI_API_KEY is configured. <br>
-Mitigation: Use local Ollama or the rule-based fallback unless cloud processing of trading signals is acceptable. <br>
-Risk: THORChain routing output can affect cross-chain fund movement decisions. <br>
-Mitigation: Independently verify each destination address, memo, amount, fee, and slippage value before moving funds. <br>
+## Use Case:
 
+External users and developers use this skill to configure and run a local Hyperliquid perpetual futures trading agent, first in paper mode and then, after review, in live mode with user-provided wallet credentials and trading limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/morebetterclaw/vantage) <br>
-- [Publisher profile](https://clawhub.ai/user/morebetterclaw) <br>
-- [MoreBetter Studios products](https://morebetterstudios.com/products) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [CLI text, setup guidance, shell commands, logs, and JSON quote or market-data output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in paper mode or place live Hyperliquid orders when a private key and risk limits are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, package.json, and SKILL.md body) <br>
+Risk: Live risk checks can use a wallet address that is not proven to match the private key signing real orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run live mode until the wallet address used for balance and position checks is enforced to match the signing key; run the setup validator and confirm the match before any funded use.
+
+Risk: Live mode can place real perpetual futures orders using a private key.
+
+Mitigation: Use paper mode first, keep only limited funds under the signing key, set conservative trading limits, and protect the .env file containing credentials.
+
+Risk: OpenAI fallback can send trading context to an external cloud API when enabled.
+
+Mitigation: Disable the OpenAI fallback when trading context should stay local, and prefer local Ollama or rule-based decisions for private workflows.
+
+Risk: Dependency issues may affect a live trading environment.
+
+Mitigation: Review and update flagged dependencies before live deployment.
+
+## Reference(s):
+
+- [Vantage ClawHub listing](https://clawhub.ai/morebetterclaw/skills/vantage)
+- [MoreBetter Studios products](https://morebetterstudios.com/products)
+- [Hyperliquid Info API documentation](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint)
+- [THORChain THORNode endpoint](https://thornode.ninerealms.com)
+- [THORChain Midgard endpoint](https://midgard.ninerealms.com/v2)
+- [Ollama](https://ollama.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may lead to paper or live trading workflows; live mode requires a private key, wallet address, and explicit trading limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

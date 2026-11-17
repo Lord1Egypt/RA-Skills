@@ -1,42 +1,67 @@
-## Description: <br>
-Analyze a codebase to produce an interactive knowledge graph for understanding architecture, components, and relationships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze a codebase to produce an interactive knowledge graph for understanding architecture, components, and relationships.
 
-## Publisher: <br>
-[Lum1104](https://clawhub.ai/user/Lum1104) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lum1104](https://clawhub.ai/user/lum1104)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a repository, identify source files and architectural layers, and generate an interactive knowledge graph with a guided tour of the codebase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads project source and can write a knowledge graph containing private architecture details. <br>
-Mitigation: Run it only on repositories you are comfortable analyzing, and review or remove .understand-anything/ before sharing the project. <br>
-Risk: The skill uses generated local helper scripts and repository commands during analysis. <br>
-Mitigation: Use a trusted or contained workspace, especially for untrusted repositories, and review generated outputs before relying on them. <br>
-Risk: Generated architecture, relationship, and tour content may be incomplete or misleading. <br>
-Mitigation: Review the final graph and rerun with --full or a scoped directory when the repository changes or results look stale. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze a repository and generate an interactive knowledge graph that explains source files, architecture layers, relationships, and a guided code tour.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lum1104/understand) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance plus JSON knowledge graph files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes .understand-anything/knowledge-graph.json and .understand-anything/meta.json in the analyzed project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill reads repository files, manifests, README content, directory listings, and git metadata to build its analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on repositories whose contents are appropriate for local analysis, and review the generated knowledge graph before sharing it.
+
+Risk: The skill runs generated local scripts during scanning, file extraction, architecture analysis, tour generation, and graph review.
+
+Mitigation: Use a trusted or disposable workspace, inspect generated scripts when needed, and avoid running the skill on untrusted repositories.
+
+Risk: The skill writes and removes files under .understand-anything/, including intermediate JSON and the final knowledge graph.
+
+Mitigation: Back up or inspect any existing .understand-anything/ data before running the skill in an important workspace.
+
+Risk: Repository text may influence the analysis prompts, and the security guidance notes weak prompt-injection handling.
+
+Mitigation: Treat results from untrusted codebases as advisory, verify important conclusions manually, and do not follow unexpected commands surfaced through generated output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lum1104/skills/understand)
+- [Skill definition](artifact/SKILL.md)
+- [Project scanner prompt](artifact/project-scanner-prompt.md)
+- [File analyzer prompt](artifact/file-analyzer-prompt.md)
+- [Architecture analyzer prompt](artifact/architecture-analyzer-prompt.md)
+- [Tour builder prompt](artifact/tour-builder-prompt.md)
+- [Graph reviewer prompt](artifact/graph-reviewer-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown progress summary with JSON files written under .understand-anything/.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces .understand-anything/knowledge-graph.json and .understand-anything/meta.json; uses temporary intermediate JSON and local analysis scripts during execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

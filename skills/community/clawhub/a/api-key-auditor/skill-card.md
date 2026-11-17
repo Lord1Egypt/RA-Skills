@@ -1,41 +1,54 @@
-## Description: <br>
-Scans files under ~/.openclaw/workspace/skills for hardcoded API keys, tokens, and secrets, checks whether they are registered in openclaw.json env.vars, and can migrate unregistered credentials into that config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans ~/.openclaw/workspace/skills for hardcoded API keys, tokens, and secrets, checks whether they are integrated into openclaw.json env.vars, and can migrate unintegrated credentials into that configuration.
 
-## Publisher: <br>
-[lemonGGGit](https://clawhub.ai/user/lemonGGGit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lemongggit](https://clawhub.ai/user/lemongggit)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw skill directories for hardcoded credentials and understand whether each finding is already integrated, mcporter-managed, or still needs migration. It can also propose and perform migration into openclaw.json when run with --fix. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: --fix can broaden secret exposure by writing discovered credentials into openclaw.json. <br>
-Mitigation: Run the read-only audit first, review every finding, and back up ~/.openclaw/openclaw.json before using --fix. <br>
-Risk: mcporter-managed keys may be copied into OpenClaw config even though the documentation says they do not need migration. <br>
-Mitigation: Treat mcporter-managed findings as review-required and avoid migrating them unless the operator intentionally wants those secrets centralized in OpenClaw config. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to audit skill files for hardcoded credentials, identify whether detected values are already managed, and plan or perform migration to environment variables in openclaw.json.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lemonGGGit/api-key-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/lemonGGGit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console report with file locations, credential status labels, migration guidance, and optional openclaw.json updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only by default; --fix mode writes discovered unregistered credentials into openclaw.json env.vars.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The optional --fix mode can persist detected secrets into openclaw.json, creating or expanding plaintext secret storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run read-only audit mode first, verify openclaw.json permissions and handling, and use --fix only after deciding that central OpenClaw configuration is the intended storage location.
+
+Risk: Server security evidence reports that fix mode may migrate mcporter-managed credentials despite the skill describing them as not needing migration.
+
+Mitigation: Review mcporter-managed findings before using --fix and avoid duplicating credentials that are already centrally managed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lemongggit/skills/api-key-auditor)
+- [Publisher profile](https://clawhub.ai/user/lemongggit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Terminal text report with file locations, status labels, suggested environment variables, and migration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only audit by default; optional --fix mode writes detected credentials into openclaw.json env.vars and reports manual replacement steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

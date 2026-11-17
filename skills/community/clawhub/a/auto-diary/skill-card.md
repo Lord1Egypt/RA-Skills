@@ -1,45 +1,57 @@
-## Description: <br>
-Diary automates daily journaling for OpenClaw by reading configured memory sources, writing a dated diary entry, and exporting a 1080 px image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates personal diary drafting from configured SOUL, MEMORY, daily memory, recent diary, and optional news-summary sources, then exports the entry as a 1080px-wide image.
 
-## Publisher: <br>
-[1204TMax](https://clawhub.ai/user/1204TMax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1204tmax](https://clawhub.ai/user/1204tmax)
 
-## Use Case: <br>
-External users and developers use Diary to generate, archive, and share dated journal entries from configured SOUL, MEMORY, daily memory, and recent diary context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads private memory sources such as SOUL.md, MEMORY.md, daily memory files, and recent diary entries. <br>
-Mitigation: Review configured paths before use and limit access to the generated diary directory. <br>
-Risk: Generated Markdown and PNG diary outputs may contain private or sensitive personal details. <br>
-Mitigation: Treat diary outputs as private until the user reviews and redacts them before sharing. <br>
-Risk: A diary entry for the same date could be overwritten if the user asks for regeneration. <br>
-Mitigation: Follow the artifact constraint to avoid overwriting existing same-date entries unless the user explicitly requests it. <br>
+## Use Case:
 
+External users and agent operators use this skill to generate daily, catch-up, or style-continuation diary entries and shareable diary images from their configured personal memory sources.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1204TMax/auto-diary) <br>
-- [README](artifact/README.md) <br>
-- [Initialization Workflow](artifact/INIT.md) <br>
-- [Configuration Template](artifact/config.template.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Image files, Configuration] <br>
-**Output Format:** [Markdown diary file, PNG image, and a short result summary with date and output paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default image width is 1080 px; paths, timezone, and optional news context come from config.yaml.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may read broad private memory, SOUL, recent diary, and optional news-summary files while drafting a diary entry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and customize config.yaml before first use, and ask the agent to show the exact files it will read for each run.
+
+Risk: Generated diary Markdown and image files may contain private or sensitive personal content.
+
+Mitigation: Review the generated Markdown and image before sharing or archiving them outside the private workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1204tmax/skills/auto-diary)
+- [Publisher profile](https://clawhub.ai/user/1204tmax)
+- [README](artifact/README.md)
+- [Initialization workflow](artifact/INIT.md)
+- [Configuration template](artifact/config.template.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown diary text, PNG image file, and concise path/status details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image output is specified as 1080px wide with height adapting to content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

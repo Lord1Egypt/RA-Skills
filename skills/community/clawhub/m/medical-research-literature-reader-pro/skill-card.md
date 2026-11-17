@@ -1,48 +1,66 @@
-## Description: <br>
-Medical Research Literature Reader Pro helps clinicians and researchers classify, critique, and interpret medical and scientific papers with track-specific appraisal and follow-up research outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Medical Research Literature Reader Pro helps clinical, bioinformatics, translational, and experimental researchers analyze medical and scientific papers with evidence-type routing, critical appraisal, interpretation-boundary checks, and follow-up research generation.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Clinicians, biomedical researchers, bioinformaticians, and translational science teams use this skill to read, route, and critically appraise medical or scientific papers from PDFs, abstracts, DOIs, PMIDs, titles, figures, or free-form requests. It supports quick triage, structured reports, expert deep reviews, related-literature lists, follow-up questions, journal club kits, comparison tables, PI briefs, replication starters, and experiment-design prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be mistaken for medical advice or definitive evidence. <br>
-Mitigation: Use the skill as research assistance, verify cited studies before relying on them, and route clinical decisions through qualified professional review. <br>
-Risk: Inputs may include PHI, private patient details, or unpublished confidential research. <br>
-Mitigation: Avoid pasting sensitive or confidential material unless authorized, and provide only the paper details needed for analysis. <br>
-Risk: Incomplete inputs can lead to incomplete appraisal, especially when only a title, DOI, PMID, abstract, figure, or table is available. <br>
-Mitigation: Have the skill state what information is unavailable, limit conclusions to the provided evidence, and request the abstract, methods, results, or full text when needed. <br>
+## Use Case:
 
+External researchers, clinicians, bioinformaticians, and lab teams use this skill to read, critique, and interpret medical or scientific papers from PDFs, abstracts, titles, DOIs, PMIDs, figures, or citation strings. It produces track-specific analysis for clinical, computational, experimental, and hybrid papers, with optional downstream deliverables for journal clubs, comparison, replication planning, PI decisions, and follow-up study design.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/medical-research-literature-reader-pro) <br>
-- [Track analysis modules](references/tracks.md) <br>
-- [Plugin system](references/plugins.md) <br>
-- [Expert deep review extensions](references/expert_review_extensions.md) <br>
-- [Similar literature module](references/literature_module.md) <br>
-- [Follow-up questions module](references/followup_module.md) <br>
-- [Reporting style](references/reporting_style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown reports, checklists, comparison tables, briefs, and follow-up research plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts depth to quick read, standard report, expert deep review, or requested plugin-style deliverable; does not fabricate unavailable paper content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: Users may provide confidential unpublished research, patient-identifying clinical information, or restricted PDFs for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an agent environment approved for that material, de-identify sensitive inputs when possible, and avoid submitting restricted documents unless processing is permitted.
+
+Risk: Generated related-study or citation suggestions may be incomplete or incorrect when the agent lacks reliable literature access.
+
+Mitigation: Verify publication details, citations, PMIDs, and related-study lists against trusted literature databases before relying on or citing them.
+
+Risk: Paper analysis may be incomplete when only a title, abstract, DOI, PMID, figure, or partial text is available.
+
+Mitigation: State what input was available, mark sections that require full text, and request the abstract, methods, results, figures, or supplementary material needed for full appraisal.
+
+Risk: Research outputs can overstate causal, mechanistic, translational, or clinical readiness claims if the source paper itself overclaims.
+
+Mitigation: Use evidence-type-specific language, distinguish association from causation and prediction from mechanism, and explicitly identify interpretation boundaries in the report.
+
+## Reference(s):
+
+- [Track Analysis Modules](references/tracks.md)
+- [Expert Deep Review Extensions](references/expert_review_extensions.md)
+- [Similar Literature Module](references/literature_module.md)
+- [Follow-Up Questions Module](references/followup_module.md)
+- [Plugin System](references/plugins.md)
+- [Reporting Style and Interpretation Safety](references/reporting_style.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured reports, tables, briefs, question lists, and research workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mode-specific outputs may include quick reads, structured reports, expert reviews, journal club kits, comparison tables, PI briefs, replication starters, mind maps, and follow-up experiment designs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

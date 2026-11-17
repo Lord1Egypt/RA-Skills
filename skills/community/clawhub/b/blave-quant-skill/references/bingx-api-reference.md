@@ -118,9 +118,55 @@ BingX has three separate accounts: Fund, Spot, Swap. Assets don't auto-transfer 
 | GET | `/openApi/swap/v3/user/balance` | Swap/futures account (USDT + USDC) |
 | GET | `/openApi/account/v1/allAccountBalance` | All accounts overview |
 
+## Asset Transfer (between wallets)
+
+`POST /openApi/api/asset/v1/transfer` — signed like any private endpoint (sorted
+query-string HMAC, params in the URL even on POST, no JSON body). API key needs the
+**Universal Transfer** permission. Live-verified 2026-08 (fund↔spot↔USDTMPerp round
+trip, balances reflected immediately).
+
+| Param | Required | Notes |
+|---|---|---|
+| `fromAccount` / `toAccount` | yes | `fund` \| `spot` \| `USDTMPerp` (USDT-M perp) \| `stdFutures` \| `coinMPerp` |
+| `asset` | yes | e.g. `USDT` |
+| `amount` | yes | decimal |
+
+Success: `code == 0`, response carries `transferId` (and usually `tranId`).
+Do NOT use the legacy `type`-enum transfer endpoint — it has no fund↔spot direction
+(spot split from fund in 2025) and current docs no longer list it.
+`GET /openApi/api/asset/v1/transfer/supportCoins` lists transferable coins/amounts per direction.
+
 ---
 
 ## Perpetual Futures (Swap) Endpoints
+
+### Market Data (public — no signature, no API key)
+
+| Method | Path | Description |
+|---|---|---|
+| GET | `/openApi/swap/v3/quote/contracts` | All perpetual contracts — the `symbol` ↔ `displayName` mapping |
+| GET | `/openApi/swap/v3/quote/klines` | OHLCV candles (`symbol`, `interval`, `startTime`, `endTime`, `limit`) |
+| GET | `/openApi/swap/v2/quote/price` | Latest price |
+| GET | `/openApi/swap/v2/quote/depth` | Order book |
+
+**Klines — the two things that bite:**
+
+- `interval`: `1m` `3m` `5m` `15m` `30m` `1h` `2h` `4h` `6h` `8h` `12h` `1d` `3d` `1w` `1M`. `startTime`/`endTime` are epoch **milliseconds**.
+- A response is capped at **1000 bars** (measured — not the documented `limit=1440`) and keeps the **newest** end of the requested window, dropping the older side. Rows come back **newest-first**. To fetch a long history, page backwards: set the next request's `endTime` to `oldest_returned_time - 1` and repeat.
+- Errors come back as HTTP 200 with a non-zero `code` in the body — check `body["code"] == 0`, `raise_for_status()` alone will not catch them.
+
+```python
+r = requests.get('https://open-api.bingx.com/openApi/swap/v3/quote/klines',
+                 params={'symbol': 'NCCOGOLD2USD-USDT', 'interval': '1h',
+                         'startTime': start_ms, 'endTime': cursor_ms, 'limit': 1000},
+                 headers={'X-SOURCE-KEY': 'BX-AI-SKILL'}, timeout=30)
+body = r.json()
+if body['code'] != 0:
+    raise RuntimeError(f"BingX klines: {body['code']} {body['msg']}")
+# body['data'] → [{'open','high','low','close','volume','time'}, ...] newest-first
+```
+
+Blave's own `GET /kline` serves **Binance USDT-M perps only**, so a BingX-listed contract that Binance does not carry has to come from here. Do not substitute a similarly-named Binance symbol — that backtests a different instrument than the one the orders go to. In Blave Agent, use `lib/data.py` `fetch_bingx_kline()` rather than calling this endpoint by hand.
 
 ### Order Management
 
@@ -234,6 +280,13 @@ BingX has three separate accounts: Fund, Spot, Swap. Assets don't auto-transfer 
 
 **Spot order types:** `MARKET`, `LIMIT`, `TAKE_STOP_LIMIT`, `TAKE_STOP_MARKET`, `TRIGGER_LIMIT`, `TRIGGER_MARKET`
 
+**Spot order facts (measured live 2026-08-04):**
+- Client-id param is `newClientOrderId` (the swap API uses `clientOrderID` — different name AND casing)
+- Market BUYs size in quote currency via `quoteOrderQty`; SELLs in base `quantity`
+- Trading rules from public `GET /openApi/spot/v1/common/symbols`: `stepSize`/`tickSize` are SIZES (0.000001), unlike swap's digit counts; gate on `apiStateBuy` + `apiStateSell` + `status == "1"`
+- **Asymmetric minimums**: BTC-USDT buy minimum is 0.5 USDT notional but sell minimum is `minQty` 0.0001826 BTC (~$12) — a small buy can create inventory unsellable on its own
+- Placement response may return `status: PENDING` even for market orders — poll `GET /openApi/spot/v1/trade/query` (symbol + orderId) to a terminal state (`FILLED`/`CANCELED`/`FAILED`)
+
 ### Query Orders
 
 | Method | Path | Description |
@@ -260,6 +313,8 @@ BingX has three separate accounts: Fund, Spot, Swap. Assets don't auto-transfer 
 
 - Perpetual futures: `BTC-USDT` (with hyphen)
 - Spot: `BTC-USDT` (with hyphen)
+
+**The name on the chart is not always the API symbol.** BingX's non-crypto perps have a `displayName` that differs from the `symbol` the API accepts — gold trades as **GOLD(XAU)-USDT** on screen but is `NCCOGOLD2USD-USDT` over the API. When a user names a contract, resolve it through `GET /openApi/swap/v3/quote/contracts` (match on `displayName`, use `symbol`) instead of guessing — and never fall back to a similar-looking symbol from another exchange.
 
 ## Notes
 

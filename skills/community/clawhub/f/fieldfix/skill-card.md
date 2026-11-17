@@ -1,42 +1,56 @@
-## Description: <br>
-Query and manage your heavy equipment fleet through FieldFix's API. Track machines, log maintenance, monitor expenses, and get AI diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage a heavy equipment fleet through FieldFix's API, including machines, maintenance, expenses, alerts, and diagnostics.
 
-## Publisher: <br>
-[blueprintstudioco](https://clawhub.ai/user/blueprintstudioco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[blueprintstudioco](https://clawhub.ai/user/blueprintstudioco)
 
-## Use Case: <br>
-External fleet operators and developers use this skill to let an agent query FieldFix equipment records, review service and expense history, monitor alerts, and submit maintenance, expense, or hour-meter updates through FieldFix's API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a FieldFix API key to access fleet records. <br>
-Mitigation: Use a dedicated least-privilege API key where possible and keep credentials out of chats, shared logs, and checked-in configuration. <br>
-Risk: Write commands can log expenses, service work, or hour-meter changes. <br>
-Mitigation: Manually verify any agent-proposed write action before execution, especially updates that affect cost, maintenance, or equipment history. <br>
+## Use Case:
 
+External fleet operators and their agents use FieldFix to inspect machine records, review service history, monitor expenses and alerts, and submit maintenance, expense, or hour-meter updates.
 
-## Reference(s): <br>
-- [FieldFix API Documentation](https://www.fieldfix.ai/api) <br>
-- [FieldFix App](https://app.fieldfix.ai) <br>
-- [FieldFix MCP Server](https://www.npmjs.com/package/fieldfix-mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the FIELDFIX_API_KEY environment variable and can perform read or user-invoked write operations against FieldFix fleet records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and package.json) <br>
+Risk: A FieldFix API key can let an agent access fleet data and perform actions against the connected FieldFix account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited-scope API key if FieldFix supports one and provide it only through FIELDFIX_API_KEY.
+
+Risk: Write commands can create or update service, expense, and hour-meter records.
+
+Mitigation: Require the agent to preview and get explicit confirmation before running log-service, log-expense, or update-hours.
+
+## Reference(s):
+
+- [FieldFix API Documentation](https://www.fieldfix.ai/api)
+- [FieldFix App](https://app.fieldfix.ai)
+- [FieldFix MCP Server](https://www.npmjs.com/package/fieldfix-mcp-server)
+- [FieldFix ClawHub Skill Page](https://clawhub.ai/blueprintstudioco/skills/fieldfix)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FIELDFIX_API_KEY and network access to the FieldFix API; write commands can change service, expense, and hour-meter records.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

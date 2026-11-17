@@ -1,43 +1,60 @@
-## Description: <br>
-Daily Game News crawls multiple game-news sources, categorizes articles, and generates daily reports for Feishu delivery and local Word/text archives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Game News collects and categorizes daily game news from multiple gaming media sites, then generates report messages and archived documents.
 
-## Publisher: <br>
-[CzwFelix](https://clawhub.ai/user/CzwFelix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[czwfelix](https://clawhub.ai/user/czwfelix)
 
-## Use Case: <br>
-Gaming analysts, news curators, and operations teams use this skill to collect daily game-industry articles, group them into practical categories, and publish or archive a dated report. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scheduled crawling and report delivery can expose collected report content through outbound requests or a configured messaging workflow. <br>
-Mitigation: Use approved public news sources, add URL allowlisting, and review messaging destinations before scheduling. <br>
-Risk: The RSS helper disables normal TLS certificate verification. <br>
-Mitigation: Restore TLS verification or disable the RSS helper before using the skill with sensitive sources. <br>
-Risk: Generated reports are stored locally in the workspace reports directory. <br>
-Mitigation: Apply local access controls and retention policies, and avoid using the crawler for internal or sensitive URLs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/CzwFelix/daily-game-news) <br>
-- [README](artifact/README.md) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
+## Use Case:
 
+Game industry readers, analysts, and operators use this skill to collect daily news from configured gaming media sources and receive categorized reports. It supports scheduled daily runs and manual report retrieval.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report plus Word (.docx) and text archive files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include categorized article titles, sources, publication times, links, and optional summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence; artifact CHANGELOG lists 1.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can install persistent scheduled execution through cron.
+
+Mitigation: Preserve the existing crontab before installation and review or disable the scheduled job unless daily execution is intended.
+
+Risk: The crawler fetches web pages from configured URLs and may be too broadly scoped.
+
+Mitigation: Restrict configuration to trusted public game-news domains and avoid sensitive, internal, or private URLs.
+
+Risk: Some fetching behavior may use the r.jina.ai proxy.
+
+Mitigation: Disable proxy use or explicitly approve it before running the crawler.
+
+Risk: Security evidence calls out TLS verification and dependency pinning issues.
+
+Mitigation: Enable TLS verification where disabled and pin runtime dependencies before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/czwfelix/skills/daily-game-news)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown report text, Feishu message text, Word (.docx) files, and plain text archive files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports group articles by category and include source, time, title, link, and optional summary fields.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

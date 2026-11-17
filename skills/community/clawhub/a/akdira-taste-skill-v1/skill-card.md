@@ -1,38 +1,53 @@
-## Description: <br>
-Taste Skill V1 gives agents opinionated frontend design guidance for React and Next.js projects while preserving the original v1 taste-skill behavior for compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The original v1 taste-skill, preserved for projects depending on its exact behavior; the current default is `design-taste-frontend` (v2 experimental), which is a substantial rewrite.
 
-## Publisher: <br>
-[akdira](https://clawhub.ai/user/akdira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akdira](https://clawhub.ai/user/akdira)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to produce polished frontend UI with explicit guidance for layout, typography, motion, responsive behavior, dependency checks, and React or Next.js architecture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can strongly influence generated UI style, animation library choices, and dependency recommendations. <br>
-Mitigation: Review generated frontend changes, dependency additions, and motion-heavy components against the target project's design system, performance budget, and package policy before merging. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to guide React and Next.js interface generation with opinionated architecture, styling, motion, responsiveness, accessibility, and performance guardrails. It is especially suited to projects that need exact backward compatibility with the original v1 taste-skill behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/akdira/akdira-taste-skill-v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code, command, and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May influence frontend style, animation libraries, dependency suggestions, and implementation guardrails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Suggested npm installs could add dependencies that are not appropriate for a project's security, licensing, or bundle-size requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency recommendations before applying them and confirm they match the project's package policy.
+
+Risk: Suggested external placeholder-image use may conflict with strict branding, privacy, or network policies.
+
+Mitigation: Replace or approve external placeholder-image URLs before production use in projects with strict asset controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/akdira/skills/akdira-taste-skill-v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend dependency-install commands and external placeholder-image use for review before applying to a project.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

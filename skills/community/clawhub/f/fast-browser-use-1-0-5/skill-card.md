@@ -1,46 +1,68 @@
-## Description: <br>
-Rust-based Chrome automation for ultra-fast, token-efficient DOM extraction, session management, screenshots, infinite scroll harvesting, and sitemap analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rust-based Chrome automation for fast, token-efficient DOM extraction, session management, screenshots, infinite scroll harvesting, and sitemap analysis.
 
-## Publisher: <br>
-[Makforce](https://clawhub.ai/user/Makforce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[makforce](https://clawhub.ai/user/makforce)
 
-## Use Case: <br>
-Developers and agents use this skill to automate Chrome through CDP for navigation, interaction, content extraction, screenshots, session reuse, and MCP-driven browser workflows on authorized sites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Powerful browser automation can interact with logged-in sites and dynamic pages. <br>
-Mitigation: Use only on authorized sites and run with a separate, isolated Chrome profile. <br>
-Risk: Session files, cookies, screenshots, snapshots, local storage, and tab URLs can contain sensitive data. <br>
-Mitigation: Treat generated files as secrets, store them securely, and delete them when no longer needed. <br>
-Risk: The artifact promotes bot-detection bypass and protected-site scraping recipes. <br>
-Mitigation: Avoid bot-evasion workflows and review site terms, authorization, and compliance requirements before use. <br>
-Risk: The CLI launches Chrome with sandbox disabled in several commands. <br>
-Mitigation: Review the sandbox-disabled behavior before use with logged-in accounts or untrusted web content. <br>
+## Use Case:
 
+Developers and AI agents use this skill to control Chrome through CDP for stateful web navigation, interaction, content extraction, screenshot capture, and page-structure analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Makforce/fast-browser-use-1-0-5) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, screenshots] <br>
-**Output Format:** [Markdown guidance with CLI examples; runtime tools return text, Markdown, JSON, and may write PNG or JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can preserve browser state through session files and may capture page content, cookies, local storage, screenshots, snapshots, and tab URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad Chrome session control can expose sensitive browsing data or authenticated accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated browser profiles, avoid sensitive accounts, and run the skill only in authorized environments.
+
+Risk: Cookie export, session files, and local storage access can expose private state.
+
+Mitigation: Protect generated session files, restrict filesystem access, and delete exported browser state after use.
+
+Risk: Loopback MCP HTTP or SSE transports can provide browser control if exposed without authentication.
+
+Mitigation: Prefer local stdio transport, keep network transports bound to loopback, and require authentication before remote access.
+
+Risk: Scraping and bot-detection evasion guidance can be misused on sites without permission.
+
+Mitigation: Restrict use to authorized testing and remove or clearly limit evasion-oriented workflows.
+
+Risk: Disabling Chrome sandboxing would increase the impact of browser compromise.
+
+Mitigation: Keep Chrome sandboxing enabled by default and require human review for any sandbox changes.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/makforce/skills/fast-browser-use-1-0-5)
+- [Skill definition](artifact/SKILL.md)
+- [Project README](artifact/README.md)
+- [Cargo package metadata](artifact/Cargo.toml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May lead the agent to create browser-derived files such as screenshots, session JSON, page snapshots, and extracted content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

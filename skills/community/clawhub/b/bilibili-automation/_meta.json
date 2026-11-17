@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn744jr7aq33cwm4me3nqatw8d8241tz",
-  "slug": "bilibili-automation",
+  "name": "bilibili-automation",
   "version": "1.0.0",
-  "publishedAt": 1775247292879
+  "description": "B站自动化 - 观看视频、提取字幕、总结内容",
+  "author": "user",
+  "license": "MIT",
+  "homepage": "",
+  "repository": "",
+  "bugs": "",
+  "keywords": ["bilibili", "automation", "video", "subtitle"],
+  "categories": ["browser", "automation", "media"],
+  "requires": {
+    "openclaw": ">=2026.3.0",
+    "tools": ["exec", "web_fetch"],
+    "skills": []
+  },
+  "config": {
+    "BROWSERWING_URL": "http://localhost:8080"
+  }
 }

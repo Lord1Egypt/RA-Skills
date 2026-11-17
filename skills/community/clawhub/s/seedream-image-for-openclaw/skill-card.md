@@ -1,42 +1,57 @@
-## Description: <br>
-Generates high-quality images with Volcengine Seedream-4.5 from text prompts, reference images, or sequential grouped-image requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Volcengine Seedream-4.5 API to generate high-quality images for text-to-image, image-to-image, and related image series workflows.
 
-## Publisher: <br>
-[crabfishxy](https://clawhub.ai/user/crabfishxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crabfishxy](https://clawhub.ai/user/crabfishxy)
 
-## Use Case: <br>
-Developers and image creators use this skill to ask an agent to call Volcengine Seedream for text-to-image, image-to-image, and grouped image generation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images are sent to Volcengine for generation. <br>
-Mitigation: Use the skill only with content that is acceptable to share with Volcengine and avoid sensitive prompts or private reference images. <br>
-Risk: The Volcengine API key may consume account quota or incur costs. <br>
-Mitigation: Use a dedicated limited-use key where possible and monitor account usage. <br>
-Risk: Passing an API key on the command line can expose it in shared shell history. <br>
-Mitigation: Prefer the VOLC_API_KEY environment variable instead of pasting secrets into command arguments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/crabfishxy/seedream-image-for-openclaw) <br>
-- [Volcengine Seedream image generation API endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations) <br>
+## Use Case:
 
+Developers and agent users use this skill to generate images through Volcengine Seedream from prompts, reference images, or sequential image-generation requests.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Plain text MEDIA_URL lines with Markdown image embeds for display] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return one or more image URLs; sequential mode supports up to 15 images.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A paid Volcengine API key can be exposed when passed with --api-key in shell history, process listings, or logs.
+
+Mitigation: Prefer VOLC_API_KEY or a managed secret store, and use a dedicated least-privileged Volcengine key.
+
+Risk: Private image data can be sent to Volcengine when reference images or base64 input are used.
+
+Mitigation: Avoid sending private images as base64 unless that transfer is intended and approved.
+
+Risk: Requests are sent to Volcengine's cn-beijing endpoint.
+
+Mitigation: Confirm the endpoint is acceptable for the intended data, users, and deployment geography before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crabfishxy/skills/seedream-image-for-openclaw)
+- [Volcengine image generation API endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown with generated image links and MEDIA_URL text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs image URLs when the API returns them; does not download images unless the user asks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

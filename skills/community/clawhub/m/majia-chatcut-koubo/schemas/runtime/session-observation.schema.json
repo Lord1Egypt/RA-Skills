@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/session-observation.schema.json",
+  "title": "Dated ChatCut session contract observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["surface", "skillSource", "skills", "capabilities", "observedAt", "expiresAt", "toolSchemaFingerprint", "provenance"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/session-observation.schema.json"},
+    "surface": {"enum": ["hosted", "desktop"]},
+    "skillSource": {"enum": ["hosted-plugin", "signed-desktop", "managed-desktop"]},
+    "skills": {"type": "array", "uniqueItems": true, "maxItems": 200, "items": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,79}$"}},
+    "capabilities": {"type": "array", "uniqueItems": true, "items": {"enum": ["project-read", "timeline-read", "timeline-write", "transcript-read", "transcript-repair", "speech-edit", "caption-read", "caption-write", "composed-preview", "voice-generation", "music", "motion-graphics", "media-generation", "export"]}},
+    "observedAt": {"type": "string", "format": "date-time"},
+    "expiresAt": {"type": "string", "format": "date-time"},
+    "toolSchemaFingerprint": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "provenance": {"enum": ["live", "simulation"]}
+  }
+}

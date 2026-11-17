@@ -1,0 +1,23 @@
+name: novel-name-address-check-cn
+slug: novel-name-address-check-cn
+display_name: 角色称呼与别名核对
+description: 输入最多30名角色的实名与已确认别名、说话人到称呼对象的批准关系规则，以及最多100条带章节锚点的称呼片段，输出姓名变体与归属表、错称或歧义位置和逐处替换建议，适用于中文小说定稿前核对；缺少别名归属、说话人或对象时标为待确认，同名人物分开处理，不作全局替换。
+version: 1.0.0
+repository: https://github.com/xxjrq/novel-name-address-check-cn
+icon: icon-512.png
+tags:
+  - 小说校对
+  - 人物称呼
+  - 别名管理
+  - 中文写作
+trigger_words:
+  - 核对角色称呼
+  - 检查人物别名
+  - 小说错称检查
+interface:
+  display_name: 角色称呼与别名核对
+  short_description: 核对小说人名、别名和对象称呼，列出错称位置与逐处替换建议
+  default_prompt: $novel-name-address-check-cn 请根据角色表、说话人到称呼对象的批准规则和带章节锚点的文本，输出姓名归属表、错称与歧义位置及逐处建议；缺少归属或对象时标待确认。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: python3 scripts/self_test.py

@@ -1,47 +1,62 @@
-## Description: <br>
-Assists long-form Chinese web-novel creation from concept and outline through chapter drafting, revision, continuity tracking, and quality checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+长篇网文规划与写作。支持只讨论结构、只写大纲或指定细纲，明确要求正文后再写章节。触发方式：/story-long-write、/写长篇、「帮我开书」「定设定」「出卷纲」「规划剧情」「写大纲」「补细纲」「日更」「续写」「继续写」「修改第X章」「回炉」「重写第X章」。
 
-## Publisher: <br>
-[worldwonderer](https://clawhub.ai/user/worldwonderer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[worldwonderer](https://clawhub.ai/user/worldwonderer)
 
-## Use Case: <br>
-Writers and writing agents use this skill to plan, draft, continue, and revise serialized Chinese web novels while maintaining outlines, character state, plot threads, pacing, and style constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, rewrite, and normalize story project files during drafting and revision. <br>
-Mitigation: Install it in a dedicated writing project, keep backups, and review batch edits before relying on them. <br>
-Risk: Dialogue and conflict guidance may include aggressive fictional characterization advice. <br>
-Mitigation: Treat this material as fiction-writing guidance only, not as real-life communication coaching. <br>
-Risk: Generated prose, outlines, and continuity updates may introduce plot, style, or continuity errors. <br>
-Mitigation: Review outputs against the outline, character state, and quality checklist before publishing or continuing the story. <br>
+## Use Case:
 
+供中文网文作者规划长篇故事、设定人物与关系、编排卷纲和章节细纲，并按明确要求创作或修改正文。作者可限定只讨论结构或只交付某一规划阶段，技能按请求范围推进。
 
-## Reference(s): <br>
-- [OpenClaw source metadata](https://github.com/worldwonderer/oh-story-claudecode) <br>
-- [Artifact protocols](references/artifact-protocols.md) <br>
-- [Daily continuation workflow](references/workflow-daily.md) <br>
-- [Revision workflow](references/workflow-revision.md) <br>
-- [Quality checklist](references/quality-checklist.md) <br>
-- [Anti-AI writing guide](references/anti-ai-writing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prose, structured project files, and local script commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update story project files such as outlines, drafts, setting files, and tracking documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.11 (source: server release metadata; skill frontmatter says 1.0.0) <br>
+Risk: The security review flags the ability to write to explicit output paths as a concern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the destination path and intended file changes before accepting generated or revised story files.
+
+Risk: The security review notes a possible loss of outline identifiers during file changes.
+
+Mitigation: Review outline identifiers after edits and preserve a recoverable copy of the outline.
+
+Risk: Security scan coverage was partial: 8 of 87 components were only partially inspected.
+
+Mitigation: Review the partially inspected files before relying on the skill in your environment.
+
+## Reference(s):
+
+- [Writing workflow and scope controls](references/workflow-setup.md)
+- [Volume planning workflow](references/workflow-volume.md)
+- [Chapter writing workflow](references/workflow-chapter.md)
+- [Writing craft](references/writing-craft.md)
+- [Outline methods](references/outline-methods.md)
+- [Project files and outputs](references/project-files.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Code, Shell commands]
+
+**Output Format:** [Chinese-language story guidance, outlines, and manuscript or project files, usually in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Work is limited to the requested planning or writing scope; file changes may use explicit output paths.]
+
+## Skill Version(s):
+
+1.2.13 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Structured GO/NO-GO framework for validating content topics before scripting or recording by using audience segmentation, adoption research, saturation checks, and competitive differentiation analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured GO/NO-GO framework for validating content topics before scripting or recording, including audience segmentation, adoption research, saturation checks, and competitive differentiation analysis.
 
-## Publisher: <br>
-[pingukim225](https://clawhub.ai/user/pingukim225) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[pingukim225](https://clawhub.ai/user/pingukim225)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators and marketing teams use this skill to validate video or channel topics before production. It helps identify underserved audience segments, assess existing content saturation, and choose a differentiated positioning angle.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Research prompts may expose confidential customer, company, or unpublished strategy details if copied into external search queries.
+
+Mitigation: Use only information approved for public research or anonymize sensitive details before running external searches.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content creators, channel strategists, and marketing teams use this skill to decide whether a proposed video, series, or content angle is worth producing and how to position it for an underserved audience. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The full validation workflow can spend significant time on public research and competitor analysis when the user only wants quick brainstorming. <br>
-Mitigation: Tell the agent to skip or shorten the full validation workflow when a lightweight ideation pass is sufficient. <br>
-Risk: Research-based recommendations may rely on incomplete or outdated public signals. <br>
-Mitigation: Review the cited market and competitor evidence before committing production time to the final GO/NO-GO decision. <br>
+**Output Format:** [Markdown research brief with tables, verdict, positioning recommendations, confidence level, and next steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pingukim225/02-content-channel-research) <br>
+**Other Properties Related to Output:** [No code execution, file creation, credential access, or privileged system interaction is described by the skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown with tables, summaries, and a GO/NO-GO verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces audience breakdowns, adoption matrices, saturation findings, differentiation notes, positioning recommendations, confidence levels, and next steps.] <br>
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

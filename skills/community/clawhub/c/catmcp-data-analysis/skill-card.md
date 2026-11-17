@@ -1,39 +1,53 @@
-## Description: <br>
-Provides a structured CatLab data analysis workflow for querying collections, aggregating statistics, and presenting verified business data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides rigorous CatLab data querying and aggregation analysis for accurate business statistics and trend insights.
 
-## Publisher: <br>
-[Beelkic](https://clawhub.ai/user/Beelkic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beelkic](https://clawhub.ai/user/beelkic)
 
-## Use Case: <br>
-CatLab operators and analysts use this skill to guide an agent through safe, accurate data queries, statistical summaries, trend analysis, and business-data comparisons. It emphasizes inspecting collection structure first, using database-side aggregation, and presenting readable results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide analysis over sensitive private-message and wallet-related collections. <br>
-Mitigation: Install it only with read-only, least-privilege database tools limited to data the user is allowed to analyze, and rely on tool-side audit logs and access controls. <br>
-Risk: Incorrect assumptions about collection fields or business logic could produce misleading results. <br>
-Mitigation: Inspect collection samples before complex queries and base responses only on real query results. <br>
+## Use Case:
 
+Developers and internal analysts use this skill to guide agents through CatLab database queries, aggregation, and reporting while preserving result authenticity and readable summaries.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses with tables, lists, and concise explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses real database results, defaults to limited result sets, and avoids raw document dumps unless explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill can guide agents toward querying sensitive CatLab records such as private messages, wallet values, user settings, and gift codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only behind a trusted database gateway with collection allowlists, redaction, auditing, and authenticated user identity.
+
+Risk: Broad database credentials could allow unauthorized or cross-tenant access if access controls are not enforced outside the skill.
+
+Mitigation: Use least-privilege credentials and enforce tenant, ownership, and authorization filters before database results reach the agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beelkic/skills/catmcp-data-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown responses with tables, lists, and concise natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses real database results only; default result limit is 20 and maximum result limit is 100 when returning records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

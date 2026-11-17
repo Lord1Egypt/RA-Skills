@@ -1,39 +1,59 @@
-## Description: <br>
-Professional scanner for Binance Futures that reports SMA 8/21 crossover signals and multi-timeframe trading setups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+APEX IA Scanner scans Binance Futures markets for SMA 8/21 crossover trading signals with Pivot/SuperTrend, RSI, volume, targets, stops, and risk-reward context.
 
-## Publisher: <br>
-[marcusfranca12](https://clawhub.ai/user/marcusfranca12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marcusfranca12](https://clawhub.ai/user/marcusfranca12)
 
-## Use Case: <br>
-External users and developers use this skill to scan Binance Futures markets for SMA 8/21 crossover signals, scores, and setup summaries. Outputs should be reviewed as trading analysis, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports that the package is advertised as a Binance Futures scanner but includes code that can automatically place leveraged futures trades using embedded Binance credentials. <br>
-Mitigation: Do not run it with real exchange permissions unless trading files are removed or audited, embedded keys are revoked and replaced with least-privilege user-managed credentials, auto-trading is disabled by default, and every account-changing action requires clear user approval. <br>
+## Use Case:
 
+External traders and developers use this agent skill to scan Binance Futures USDT perpetual markets and summarize candidate buy/sell setups. Outputs are informational trading analysis and should be reviewed before any trading decision.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/marcusfranca12/apex-ia-scanner) <br>
-- [Binance Futures Kline API](https://fapi.binance.com/fapi/v1/klines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with ranked trading-signal summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns symbols, direction, timeframe, score, RSI, volume ratio, targets, stop, risk-reward, and confluence when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The package includes automated Binance Futures trading and order-placement capability that is under-disclosed by the scanner description.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scanner-only functionality by default; do not run trader, aggressive, final, SMC, or complete launcher scripts unless automated trading is intentional, reviewed, and explicitly safeguarded.
+
+Risk: Automated trading scripts include embedded Binance API credentials.
+
+Mitigation: Treat exposed credentials as compromised, rotate any related keys, remove hardcoded secrets, and prefer read-only market-data credentials for scanner use.
+
+Risk: Trading signal summaries may be mistaken for financial advice or executable trade instructions.
+
+Mitigation: Manually review signals, validate assumptions independently, and use testnet or paper trading before risking capital.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marcusfranca12/skills/apex-ia-scanner)
+- [Binance Futures Exchange Info Endpoint](https://fapi.binance.com/fapi/v1/exchangeInfo)
+- [Binance Futures Klines Endpoint](https://fapi.binance.com/fapi/v1/klines)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted text with trading signal summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include symbol, direction, timeframe, score, indicator confirmations, targets, stop, and risk-reward fields.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

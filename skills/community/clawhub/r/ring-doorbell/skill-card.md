@@ -1,43 +1,58 @@
-## Description: <br>
-Control and monitor Ring doorbells and cameras by listing devices, capturing snapshots, and viewing recent doorbell or motion events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control and monitor Ring doorbells and cameras by listing devices, capturing snapshots, and viewing recent events.
 
-## Publisher: <br>
-[zlmoment](https://clawhub.ai/user/zlmoment) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlmoment](https://clawhub.ai/user/zlmoment)
 
-## Use Case: <br>
-External users and developers use this skill to let an assistant authenticate with their Ring account, list Ring devices, inspect recent motion or doorbell events, and capture camera snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive Ring credentials and authentication tokens. <br>
-Mitigation: Install and run it only on a trusted machine, protect ~/.openclaw/ring_token.json, and delete the token file when access is no longer needed. <br>
-Risk: Camera snapshots and event-derived images can contain private household or visitor information. <br>
-Mitigation: Review who can access ~/.openclaw/media/ring/ and periodically remove images that are no longer needed. <br>
-Risk: The authentication flow asks for Ring credentials and 2FA codes. <br>
-Mitigation: Use the auth command only when you intentionally want the assistant environment to access Ring devices and event history. <br>
+## Use Case:
 
+External users with Ring devices use this skill to authenticate locally, check doorbell and camera status, capture snapshots, and review recent motion or doorbell events.
 
-## Reference(s): <br>
-- [Ring Doorbell & Camera on ClawHub](https://clawhub.ai/zlmoment/ring-doorbell) <br>
-- [python-ring-doorbell library](https://github.com/tchellomello/python-ring-doorbell) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON command output, and saved image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save Ring authentication tokens under ~/.openclaw/ring_token.json and camera images under ~/.openclaw/media/ring/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill handles Ring account credentials and reusable Ring tokens for home-surveillance access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only from a trusted local terminal, protect or delete saved tokens when no longer needed, and prefer restrictive permissions on credential files.
+
+Risk: Camera snapshots and derived media can contain sensitive household imagery and are saved locally.
+
+Mitigation: Store media only on trusted devices, review access to ~/.openclaw/media/ring/, and delete snapshots when they are no longer needed.
+
+Risk: The security guidance notes that dependency pinning and terminal credential handling could be hardened.
+
+Mitigation: Pin dependencies for deployment, review updates before use, and prefer an authentication flow that does not visibly echo or persist password and 2FA input.
+
+## Reference(s):
+
+- [Ring Doorbell & Camera on ClawHub](https://clawhub.ai/zlmoment/skills/ring-doorbell)
+- [python-ring-doorbell library](https://github.com/tchellomello/python-ring-doorbell)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; runtime commands return JSON status, event data, or saved snapshot file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Snapshots are saved under ~/.openclaw/media/ring/ when capture succeeds.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Search and explore Jewish texts (Torah, Tanach, Talmud, Midrash, commentaries) via Sefaria API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and explore Jewish texts (Torah, Tanach, Talmud, Midrash, commentaries) via Sefaria API.
 
-## Publisher: <br>
-[abeperl](https://clawhub.ai/user/abeperl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[abeperl](https://clawhub.ai/user/abeperl)
 
-## Use Case: <br>
-External users, educators, researchers, and developers use this skill to search Jewish texts, retrieve Hebrew and English passages, find commentaries and cross-references, and prepare sourced dvar Torah outlines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Torah research searches, text references, and dvar Torah themes are sent to Sefaria over the network. <br>
-Mitigation: Avoid entering confidential personal notes or sensitive identifiers unless you accept disclosure to the external Sefaria API. <br>
+## Use Case:
 
+External users, Torah learners, educators, researchers, and developers use this skill to search Jewish texts, retrieve Hebrew and English passages, find commentaries and cross-references, check learning schedules, and prepare source-backed dvar Torah outlines.
 
-## Reference(s): <br>
-- [Sefaria](https://www.sefaria.org) <br>
-- [Sefaria API Docs](https://developers.sefaria.org) <br>
-- [Common Torah References](references/common-refs.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/abeperl/torah-scholar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text with optional JSON-formatted API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Hebrew and English text, source references, search results, commentaries, links, daily learning schedules, and structured dvar Torah outlines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill sends Torah searches, references, and themes to Sefaria's public API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive or private study topics unless public API disclosure is acceptable.
+
+Risk: Generated dvar Torah outlines and source suggestions may contain textual or religious inaccuracies.
+
+Mitigation: Review cited sources and religious interpretation before teaching, publishing, or relying on the output.
+
+Risk: Sefaria API availability, rate limits, and text coverage can affect results.
+
+Mitigation: Handle API errors and missing translations, and verify important references against primary sources.
+
+## Reference(s):
+
+- [Torah Scholar on ClawHub](https://clawhub.ai/abeperl/skills/torah-scholar)
+- [Sefaria](https://www.sefaria.org)
+- [Sefaria API Docs](https://developers.sefaria.org)
+- [Common Torah References](references/common-refs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown, plain text, and JSON-formatted API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Hebrew and English source text, commentary summaries, search results, learning calendar data, and structured dvar Torah outlines.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

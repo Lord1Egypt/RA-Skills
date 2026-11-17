@@ -1,41 +1,55 @@
-## Description: <br>
-Operate the ClawOS automated X account by drafting posts, monitoring mentions, replying to questions, engaging with the crypto and AI community, and following ClawOS brand persona guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate the ClawOS automated X (Twitter) account for posting tweets, replying to mentions and questions, engaging with the crypto/AI community, and managing the ClawOS brand presence on X.
 
-## Publisher: <br>
-[synergysize](https://clawhub.ai/user/synergysize) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[synergysize](https://clawhub.ai/user/synergysize)
 
-## Use Case: <br>
-External operators and agents use this skill to manage the live @ClawOS X presence: compose tweets, search and answer mentions, quote, like, retweet, and keep engagement aligned with the ClawOS voice and approved topic boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables live public posting and engagement from the @ClawOS X account. <br>
-Mitigation: Verify the xurl binary and authenticated account before use, constrain credentials to the intended profile, and require manual approval for every post, reply, quote, like, or retweet unless autonomous public engagement is explicitly intended. <br>
-Risk: Crypto and AI engagement can create reputational or compliance risk if posts sound like financial advice, price predictions, shilling, or bad-faith arguments. <br>
-Mitigation: Apply the approved topic boundaries, avoid buy calls and price predictions, keep replies concise, and skip bad-faith attacks or inflammatory discussions. <br>
+## Use Case:
 
+Social media operators and agents managing the @ClawOS account use this skill to draft and execute X posts, replies, likes, retweets, and quote tweets in the ClawOS voice. It focuses on ClawOS, OpenClaw, AI agents, Solana, DeFi, automation, and onchain data while avoiding financial advice and price predictions.
 
-## Reference(s): <br>
-- [ClawOS X Persona - Voice and Tone Examples](references/persona.md) <br>
-- [ClawOS X - Approved Topics and Talking Points](references/topics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes persona rules, approved topics, engagement boundaries, and xurl command patterns for public X account activity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish, reply, like, retweet, or quote tweet from an authenticated @ClawOS X account without an explicit approval step in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a preview and explicit user approval before every public post, reply, like, retweet, or quote tweet.
+
+Risk: Crypto and trading-adjacent social posts can create financial-advice, reputational, or market-misleading risk.
+
+Mitigation: Follow the artifact's topic limits: avoid financial advice, price targets, token performance predictions, and shill-like content.
+
+## Reference(s):
+
+- [ClawOS X Persona - Voice & Tone Examples](references/persona.md)
+- [ClawOS X - Approved Topics & Talking Points](references/topics.md)
+- [ClawHub skill page](https://clawhub.ai/synergysize/skills/clawos-x-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and concise social media copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include proposed public X posts and engagement actions for an authenticated @ClawOS account.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

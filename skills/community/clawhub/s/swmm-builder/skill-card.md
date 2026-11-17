@@ -1,43 +1,54 @@
-## Description: <br>
-Assemble runnable SWMM INP and manifest artifacts deterministically from subcatchment geometry and attributes, merged parameter JSON, network JSON, and climate references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assemble runnable SWMM INP and manifest artifacts from subcatchment geometry/attributes, merged parameter JSON, network JSON, and climate references.
 
-## Publisher: <br>
-[zhonghao1995](https://clawhub.ai/user/zhonghao1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhonghao1995](https://clawhub.ai/user/zhonghao1995)
 
-## Use Case: <br>
-Developers and engineers building Agentic SWMM workflows use this skill to assemble auditable SWMM .inp model files and manifests from upstream parameter, network, climate, and subcatchment inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-specified output paths can overwrite existing local files. <br>
-Mitigation: Review the INP and manifest output paths before running the builder and prefer a dedicated working directory. <br>
-Risk: Generated manifests include source paths and hashes that may reveal local project structure. <br>
-Mitigation: Review manifests before sharing them and avoid sensitive directory names or input paths. <br>
-Risk: Missing or inconsistent upstream SWMM inputs can produce validation failures or unusable model artifacts. <br>
-Mitigation: Use the emitted validation diagnostics and verify subcatchment, parameter, network, climate, and optional water-quality inputs before downstream simulation. <br>
+## Use Case:
 
+Developers and engineers use this skill to assemble auditable SWMM model input files and source manifests from upstream hydrology, network, parameter, and climate artifacts for downstream simulation or calibration workflows.
 
-## Reference(s): <br>
-- [ClawHub Swmm Builder release](https://clawhub.ai/zhonghao1995/swmm-builder) <br>
-- [Agentic SWMM workflow project](https://github.com/Zhonghao1995/agentic-swmm-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and file paths; generated artifacts are SWMM INP text and manifest JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-specified local inputs and writes user-specified INP and manifest files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.3 (source: server release metadata) <br>
+Risk: Generated SWMM INP files can be altered by crafted input strings because some emitted text fields are not safely constrained for the target format.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a constrained workspace, choose output paths deliberately, and treat generated INP files from third-party inputs as untrusted until target-format string validation is added.
+
+Risk: The release security verdict is suspicious for workflows that may process untrusted model inputs.
+
+Mitigation: Review the skill before installation or deployment and scan generated artifacts before using them in downstream SWMM workflows.
+
+## Reference(s):
+
+- [Swmm Builder ClawHub Skill Page](https://clawhub.ai/zhonghao1995/skills/swmm-builder)
+- [Agentic SWMM Project](https://github.com/Zhonghao1995/agentic-swmm-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [SWMM INP text, JSON manifests, and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deterministic file artifacts from explicit local input paths and reports validation diagnostics for critical SWMM sections.]
+
+## Skill Version(s):
+
+0.7.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

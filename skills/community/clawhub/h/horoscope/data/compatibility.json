@@ -1,0 +1,82 @@
+{
+  "fire-fire": {
+    "pairs": ["aries-leo", "aries-sagittarius", "leo-sagittarius"],
+    "score": 8,
+    "summary": "火象组合，激情满满，互相理解",
+    "strengths": ["互相理解", "共同冒险", "坦诚沟通", "充满活力"],
+    "conflicts": ["都不让步", "竞争意识强", "容易争吵", "缺乏耐心"],
+    "advice": "需要一个人先学会退让，给彼此空间，避免正面冲突"
+  },
+  "fire-earth": {
+    "pairs": ["aries-taurus", "aries-virgo", "leo-taurus", "leo-virgo", "sagittarius-taurus", "sagittarius-virgo"],
+    "score": 5,
+    "summary": "火与土的碰撞，需要磨合，但能互补",
+    "strengths": ["火象带来活力", "土象提供稳定", "互相学习", "互补性强"],
+    "conflicts": ["节奏不同", "价值观差异", "火象嫌土象慢", "土象嫌火象冲动"],
+    "advice": "火象学会耐心，土象学会冒险，找到共同目标，尊重彼此节奏"
+  },
+  "fire-air": {
+    "pairs": ["aries-gemini", "aries-libra", "leo-gemini", "leo-libra", "sagittarius-gemini", "sagittarius-libra"],
+    "score": 7,
+    "summary": "火与风的组合，互相激发，充满活力",
+    "strengths": ["思想交流", "互相激发", "社交活跃", "充满创意"],
+    "conflicts": ["风象太理性", "火象太感性", "缺乏深度", "容易浮于表面"],
+    "advice": "培养深度交流，不要只停留在表面，火象学会思考，风象学会感受"
+  },
+  "fire-water": {
+    "pairs": ["aries-cancer", "aries-scorpio", "aries-pisces", "leo-cancer", "leo-scorpio", "leo-pisces", "sagittarius-cancer", "sagittarius-scorpio", "sagittarius-pisces"],
+    "score": 4,
+    "summary": "火与水的组合，挑战较大，需要大量包容",
+    "strengths": ["情感深度", "互相吸引", "互补性强", "成长空间大"],
+    "conflicts": ["火象直接", "水象敏感", "容易伤害", "情绪波动大"],
+    "advice": "火象学会温柔，水象学会直接，建立安全感，避免情绪化冲突"
+  },
+  "earth-earth": {
+    "pairs": ["taurus-virgo", "taurus-capricorn", "virgo-capricorn"],
+    "score": 8,
+    "summary": "土象组合，稳定可靠，互相理解",
+    "strengths": ["价值观一致", "稳定可靠", "务实", "互相支持"],
+    "conflicts": ["都太固执", "缺乏激情", "过于保守", "难以改变"],
+    "advice": "偶尔制造惊喜，不要过于 routine，培养浪漫和 spontaneity"
+  },
+  "earth-air": {
+    "pairs": ["taurus-gemini", "taurus-libra", "taurus-aquarius", "virgo-gemini", "virgo-libra", "virgo-aquarius", "capricorn-gemini", "capricorn-libra", "capricorn-aquarius"],
+    "score": 5,
+    "summary": "土与风的组合，需要磨合，但能互补",
+    "strengths": ["土象提供稳定", "风象带来新意", "互相学习", "平衡发展"],
+    "conflicts": ["节奏不同", "沟通方式差异", "土象嫌风象不切实际", "风象嫌土象保守"],
+    "advice": "土象学会接受新想法，风象学会脚踏实地，找到共同语言"
+  },
+  "earth-water": {
+    "pairs": ["taurus-cancer", "taurus-scorpio", "taurus-pisces", "virgo-cancer", "virgo-scorpio", "virgo-pisces", "capricorn-cancer", "capricorn-scorpio", "capricorn-pisces"],
+    "score": 8,
+    "summary": "土与水的组合，和谐稳定，互相滋养",
+    "strengths": ["情感深度", "稳定安全", "互相滋养", "共同成长"],
+    "conflicts": ["都太敏感", "容易过度保护", "缺乏刺激", "过于舒适"],
+    "advice": "偶尔走出舒适区，制造一些变化和刺激，保持关系活力"
+  },
+  "air-air": {
+    "pairs": ["gemini-libra", "gemini-aquarius", "libra-aquarius"],
+    "score": 7,
+    "summary": "风象组合，思想交流，充满活力",
+    "strengths": ["思想交流", "智力匹配", "社交活跃", "互相理解"],
+    "conflicts": ["缺乏情感深度", "过于理性", "难以承诺", "浮于表面"],
+    "advice": "培养情感连接，不要只停留在智力层面，学会表达感受"
+  },
+  "air-water": {
+    "pairs": ["gemini-cancer", "gemini-scorpio", "gemini-pisces", "libra-cancer", "libra-scorpio", "libra-pisces", "aquarius-cancer", "aquarius-scorpio", "aquarius-pisces"],
+    "score": 4,
+    "summary": "风与水的组合，挑战较大，需要大量理解",
+    "strengths": ["互补性强", "互相学习", "成长空间大", "独特视角"],
+    "conflicts": ["沟通方式差异", "风象太理性", "水象太感性", "难以理解对方"],
+    "advice": "风象学会感受，水象学会理性，建立共同语言，尊重彼此差异"
+  },
+  "water-water": {
+    "pairs": ["cancer-scorpio", "cancer-pisces", "scorpio-pisces"],
+    "score": 8,
+    "summary": "水象组合，情感深度，互相理解",
+    "strengths": ["情感深度", "直觉匹配", "互相理解", "灵魂连接"],
+    "conflicts": ["都太敏感", "情绪波动大", "容易陷入负面情绪", "缺乏理性"],
+    "advice": "培养理性思维，不要总是沉浸在情绪中，建立情感边界"
+  }
+}

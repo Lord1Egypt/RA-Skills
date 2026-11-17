@@ -1,48 +1,64 @@
-## Description: <br>
-Purchase and manage prepaid virtual Visa cards usable at US online merchants for secure AI agent payments via the agentcard CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+agentcard.ai helps agents purchase and manage prepaid virtual Visa cards for secure payments at US online merchants through the agentcard CLI.
 
-## Publisher: <br>
-[florrdv](https://clawhub.ai/user/florrdv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[florrdv](https://clawhub.ai/user/florrdv)
 
-## Use Case: <br>
-Developers, power users, and agents use this skill to create and manage prepaid virtual Visa cards for online purchases such as API credits, SaaS subscriptions, domains, and cloud resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global use, with card transactions limited to US-based online merchants. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can create prepaid cards or initiate refund workflows that affect real funds. <br>
-Mitigation: Keep user confirmation enabled and set a low maximum purchase amount before using the skill. <br>
-Risk: Payment card details and local AgentCard session data are sensitive. <br>
-Mitigation: Retrieve card details only when needed, avoid local persistence, and protect the local AgentCard session file. <br>
-Risk: The CLI package, terms, or payment workflow may change before real purchases are made. <br>
-Mitigation: Verify the AgentCard CLI package and confirm current AgentCard terms and commands before use. <br>
-Risk: Transactions at non-US merchants are expected to fail. <br>
-Mitigation: Confirm the merchant is US-based before using a card for checkout. <br>
+## Use Case:
 
+Developers, power users, and agents use this skill to authenticate with AgentCard, create prepaid cards, retrieve card details when needed, check balances, and refund unused funds for online purchases such as API credits, SaaS subscriptions, domains, and cloud resources.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/florrdv/agentcardai) <br>
-- [AgentCard website](https://agentcard.ai) <br>
-- [Alchemy](https://alchemy.com) <br>
-- [agentcard npm package code](https://www.npmjs.com/package/agentcard?activeTab=code) <br>
-- [npm provenance documentation](https://docs.npmjs.com/generating-provenance-statements) <br>
+### Deployment Geography for Use:
 
+Global use with US-based online merchants only.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes payment workflow guidance, user-confirmation expectations, and CLI command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: The skill can help an agent initiate real prepaid card purchases and refunds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep user confirmation enabled, use low card amounts, and set conservative purchase limits before using it for real payments.
+
+Risk: The workflow may expose full virtual card details during checkout support.
+
+Mitigation: Retrieve card details only when needed, avoid showing full card details in chat unless the user explicitly asks, and do not persist them locally.
+
+Risk: The skill asks the user to install a mutable global CLI.
+
+Mitigation: Prefer a pinned or isolated CLI install and confirm the installed CLI before using it for payment activity.
+
+Risk: Cards are limited to US-based online merchants and may be declined elsewhere.
+
+Mitigation: Confirm the merchant is US-based before creating or using a card.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/florrdv/skills/agentcardai)
+- [AgentCard CLI and Package](https://agentcard.ai)
+- [agentcard npm Package Code](https://www.npmjs.com/package/agentcard?activeTab=code)
+- [npm Provenance Statements](https://docs.npmjs.com/generating-provenance-statements)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive payment workflow guidance; card details should be treated as transient secrets.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

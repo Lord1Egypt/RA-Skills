@@ -1,47 +1,59 @@
-## Description: <br>
-Global Labor Employment Data lets agents query AgentPMT-hosted World Bank labor market indicators, including labor force participation, unemployment, sector employment, gender gaps, and youth employment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global Labor Employment Data helps agents query labor force participation, unemployment rates, sector employment breakdowns, gender gaps, and youth employment data through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External users and developers use this skill to guide AgentPMT remote calls for country, regional, and global labor-market research, including workforce participation, unemployment, sector composition, gender gaps, youth employment, and SDG 8 monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AgentPMT queries are remote calls and may spend credits when invoked. <br>
-Mitigation: Use the skill only when AgentPMT labor-market data is intended, confirm the enabled account route, and review the 5-credit query cost before use. <br>
-Risk: Account credentials or payment details could be exposed if copied into prompts or logs. <br>
-Mitigation: Use the setup skill for credential handling and keep API credentials, payment headers, wallet secrets, and similar sensitive values out of prompts and logs. <br>
-Risk: Endpoint schemas, setup details, or examples may drift after the documented freshness window. <br>
-Mitigation: Refresh the skill or fetch the live AgentPMT schema before production integrations or when relying on it more than seven days after the listed update date. <br>
-Risk: Labor-market data availability varies by country and recent values can lag current conditions. <br>
-Mitigation: Check returned source years and warnings, and qualify analysis when indicators are missing, sparse, or delayed. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to query and compare country, regional, and global labor market indicators for workforce research, gender equity analysis, youth employment tracking, and SDG 8 monitoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/global-labor-employment-data) <br>
-- [AgentPMT Labor Market Employment Marketplace Page](https://www.agentpmt.com/marketplace/labor-market-employment) <br>
-- [Action Schema](schema.md) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request examples and expected JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote AgentPMT calls may require account setup and can spend 5 credits per query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill uses AgentPMT remote calls that can consume credits and may transmit user-provided query parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the minimum country, region, and filter inputs needed; avoid sending secrets or sensitive personal data, and confirm credit usage before repeated calls.
+
+Risk: Setup instructions include mutable, unpinned install commands and related setup skills.
+
+Mitigation: Review the package, source revision, and related setup skills before running setup commands or installing dependencies.
+
+Risk: Labor market results may lag the current year because source data availability varies by country.
+
+Mitigation: Check the returned data year, source, and warnings before using results for time-sensitive decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/global-labor-employment-data)
+- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/labor-market-employment)
+- [Action Schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with JSON request examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [AgentPMT remote tool calls return JSON labor indicators, trends, comparisons, and insights when invoked through an enabled account connection.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

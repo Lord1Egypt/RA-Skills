@@ -1,45 +1,56 @@
-## Description: <br>
-Integrate AI-powered Amazon affiliate product recommendations into websites using affiliatematic.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Affiliatematic guides agents through integrating AI-powered Amazon affiliate product recommendation widgets into websites using affiliatematic.com.
 
-## Publisher: <br>
-[dowands](https://clawhub.ai/user/dowands) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dowands](https://clawhub.ai/user/dowands)
 
-## Use Case: <br>
-External developers and website operators use this skill to add Amazon affiliate recommendation widgets, configure an affiliate tag, whitelist domains, and choose widget placement strategies for content pages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The integration loads JavaScript from affiliatematic.com on the user's website. <br>
-Mitigation: Install only if affiliatematic.com is trusted to run JavaScript on the site, and test on staging before production deployment. <br>
-Risk: The widget analyzes page content, which may create privacy or compliance concerns on sensitive pages. <br>
-Mitigation: Avoid private or regulated pages until the operator understands how page content is processed. <br>
-Risk: The artifact includes performance and revenue improvement claims. <br>
-Mitigation: Treat performance and revenue claims as marketing claims unless independently verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Affiliatematic Skill Page](https://clawhub.ai/dowands/affiliatematic) <br>
-- [Affiliatematic Documentation](https://affiliatematic.com/docs) <br>
-- [Affiliatematic Dashboard](https://affiliatematic.com/user/dashboard) <br>
-- [Affiliatematic Revenue Calculator](https://affiliatematic.com/calculator) <br>
-- [Amazon Associates](https://affiliate-program.amazon.com) <br>
+## Use Case:
 
+Website owners, affiliate marketers, and developers use this skill to add Affiliatematic widgets, configure Amazon affiliate tags, whitelist domains, and place product recommendations on monetized content pages.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with HTML snippets and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes affiliate tag setup, domain whitelisting, widget placement, troubleshooting, and revenue estimation guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The integration embeds an unpinned third-party script that can run on visitor pages and change without site-owner review.
+
+Mitigation: Before broad deployment, request version-pinned script URLs, SRI hashes, CSP guidance, or a sandboxed or self-hosted option.
+
+Risk: The widget may inspect page content to generate product recommendations, which can be inappropriate for sensitive or private pages.
+
+Mitigation: Use only on public, non-sensitive pages unless Affiliatematic's data handling, retention, and compliance posture has been verified.
+
+## Reference(s):
+
+- [Affiliatematic documentation](https://affiliatematic.com/docs)
+- [Affiliatematic dashboard](https://affiliatematic.com/user/dashboard)
+- [Affiliatematic revenue calculator](https://affiliatematic.com/calculator)
+- [Amazon Associates](https://affiliate-program.amazon.com)
+- [ClawHub skill page](https://clawhub.ai/dowands/skills/affiliatematic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML snippets, configuration steps, placement guidance, and troubleshooting notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party service URLs and widget embed examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

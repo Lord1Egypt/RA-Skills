@@ -1,0 +1,14 @@
+{
+  "ownerId": "583963",
+  "slug": "competitor-change",
+  "version": "1.5.3",
+  "workflow": "watch",
+  "focus": "competitor",
+  "outputTemplate": "watch_digest",
+  "requiredCapabilities": [
+    "product-detail",
+    "product-snapshots",
+    "competitor-product-detail"
+  ],
+  "releaseWave": 5
+}

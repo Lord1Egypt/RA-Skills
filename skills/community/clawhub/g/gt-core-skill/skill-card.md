@@ -1,43 +1,61 @@
-## Description: <br>
-Use this skill when the user needs to work with Gumtree in a real Chrome browser session, using a local Python CLI and Chrome extension bridge for login, search, listing, favourite, messaging, and post-ad category-flow tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user needs to work with Gumtree in a real Chrome browser session to check login state, log in or out, search listings, read recommendations, favourites, detail pages and messages, favourite listings, and start the post-ad category flow.
 
-## Publisher: <br>
-[bluebluebbb](https://clawhub.ai/user/bluebluebbb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bluebluebbb](https://clawhub.ai/user/bluebluebbb)
 
-## Use Case: <br>
-External users and developers use this skill to operate Gumtree through a real Chrome session for login checks, searches, listing review, favourites, messages, and starting post-ad category selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local bridge and Chrome extension can control a logged-in Gumtree browser session. <br>
-Mitigation: Install only from a trusted publisher, keep the extension disabled when not in active use, and review each account action before running it. <br>
-Risk: The skill can perform real Gumtree account actions, including login, logout, favouriting, messaging, and post-ad category selection. <br>
-Mitigation: Treat command output as confirmation of real account activity and avoid running message, favourite, or post-ad flows without explicit user intent. <br>
-Risk: Passing passwords through command-line arguments can expose credentials in shell history or process listings. <br>
-Mitigation: Avoid unnecessary credential repetition and prefer a fresh, trusted local terminal session when login is required. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent operate Gumtree through a real Chrome session for listing search, account-state checks, favourites, messages, detail extraction, and category selection for posting ads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bluebluebbb/gt-core-skill) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require local Chrome, uv, and an active browser extension connected to the local bridge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The local Chrome extension and bridge can operate an authenticated Gumtree session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile, install the extension only for intended sessions, and stop the bridge when finished.
+
+Risk: Login credentials may be exposed when passed as command-line arguments.
+
+Mitigation: Avoid passing real passwords on the command line when possible and do not repeat credential-bearing commands in summaries or logs.
+
+Risk: Message sending, favouriting, logout, and post-ad navigation are real account actions.
+
+Mitigation: Review command inputs before execution and confirm account-changing actions with the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bluebluebbb/skills/gt-core-skill)
+- [uv documentation](https://docs.astral.sh/uv/)
+- [Gumtree favourites page](https://www.gumtree.com/my-account/favourites)
+- [Gumtree messages page](https://www.gumtree.com/manage/messages)
+- [Gumtree category suggestion endpoint](https://my.gumtree.com/api/category/suggest)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command results should preserve important JSON fields; Gumtree actions run against a live browser session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact pyproject.toml reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

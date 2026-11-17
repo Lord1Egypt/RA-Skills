@@ -1,41 +1,59 @@
-## Description: <br>
-Helps an agent guide user-authorized publishing of prepared video content to social platforms such as Douyin, Kuaishou, Bilibili, Xiaohongshu, and WeChat Channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide authorized, user-visible video publishing across Douyin, Kuaishou, Bilibili, Xiaohongshu, and WeChat Channels.
 
-## Publisher: <br>
-[hitjcl](https://clawhub.ai/user/hitjcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitjcl](https://clawhub.ai/user/hitjcl)
 
-## Use Case: <br>
-Content creators, operators, and marketing teams use this skill to prepare, validate, and guide publication of videos across multiple logged-in social platform accounts. The agent confirms the platform, local video file, caption, and final publish action before browser automation or manual commands proceed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help operate logged-in social media accounts in a browser session. <br>
-Mitigation: Confirm the target platform, account, video file, caption, and final publish step with the user before allowing automation. <br>
-Risk: The helper can generate curl or wget commands for manually downloading media from a supplied URL. <br>
-Mitigation: Review the generated command and URL before running it, prefer official or browser-based download paths, and scan downloaded files. <br>
+## Use Case:
 
+Content operators, marketers, and creators use this skill to prepare and guide video publishing workflows across multiple Chinese social video platforms while keeping account login and final publishing actions under user control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hitjcl/social-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/hitjcl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON validation results and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific publishing steps, local file validation results, browser-operation guidance, and user-reviewed curl or wget download commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The skill can guide actions in logged-in social media accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only accounts the user is comfortable controlling through the browser, require manual confirmation for every publish action, and review account activity after use.
+
+Risk: Helper output may include curl or wget download commands for user-supplied URLs.
+
+Mitigation: Prefer browser downloads, and run terminal download commands only after confirming the URL, filename, quoting, and source trustworthiness.
+
+Risk: Platform publishing rules, upload limits, and account controls may change outside the skill.
+
+Mitigation: Check each target platform's current creator workflow and rules before publishing, especially for production or brand accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hitjcl/skills/social-publish)
+- [Skill instructions](artifact/SKILL.md)
+- [Security notes](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON from helper scripts and quoted shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-controlled browser sessions for platform account actions; helper scripts perform local validation or produce instructions rather than publishing directly.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

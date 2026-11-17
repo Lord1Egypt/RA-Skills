@@ -1,45 +1,60 @@
-## Description: <br>
-Collects daily news from configured RSS feeds and webpages, then helps an agent filter, classify, summarize, and produce structured Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects daily news from configured RSS feeds, websites, and APIs, then helps an agent analyze, classify, summarize, and generate structured Markdown daily reports.
 
-## Publisher: <br>
-[winsaney](https://clawhub.ai/user/winsaney) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[winsaney](https://clawhub.ai/user/winsaney)
 
-## Use Case: <br>
-Analysts, operators, and developers use this skill to gather configured public news sources, monitor topics such as industry activity or competitors, and generate concise daily Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured feeds or URL lists could point at private, internal, or sensitive pages. <br>
-Mitigation: Review RSS feed configuration, URL lists, and output paths before use; avoid private or sensitive targets. <br>
-Risk: Web collection may conflict with a target site's terms, robots.txt, or rate limits. <br>
-Mitigation: Use respectful collection rates and confirm target site permissions before scraping. <br>
-Risk: Daily reports may summarize unverified, outdated, or misleading source material. <br>
-Mitigation: Review important items and source links before relying on the generated report. <br>
+## Use Case:
 
+Developers, analysts, and operations teams use this skill to collect configured news sources, monitor industry or competitor updates, and produce concise Markdown daily reports with links, summaries, categories, and collection statistics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/winsaney/daily-news-collector) <br>
-- [Media Source Configuration Guide](artifact/references/sources.md) <br>
-- [Daily Report Format Guide](artifact/references/format.md) <br>
-- [Daily Report Template](artifact/assets/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown daily reports with source links and summary sections; collection scripts write JSON data files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on configured RSS feeds, webpage URLs, topic filters, and the agent's summarization choices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill fetches configured RSS feeds and webpages, so source URLs could include untrusted, private, or internal locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted source lists, avoid internal or private URLs, and review configured sources before collection.
+
+Risk: Fetched article text is untrusted and could contain misleading content or prompt-like instructions.
+
+Mitigation: Treat collected article text as data only, and review generated reports before relying on or sharing them.
+
+Risk: The collection scripts write results to local output paths chosen by the caller.
+
+Mitigation: Run the scripts in an appropriate workspace and inspect output paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/winsaney/skills/daily-news-collector)
+- [Media source configuration guide](references/sources.md)
+- [Daily report format specification](references/format.md)
+- [Daily report template](assets/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON collection files, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches configured RSS feeds and webpages, writes local JSON outputs, and relies on the agent to review, classify, and summarize fetched content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,25 +5,57 @@ Surface overlooked great shots using Apple's computed quality scores.
 """
 
 import sys
-from typing import Any, Optional
+from typing import Any
 
 from _common import (
     PhotosDB,
     build_asset_query,
-    coredata_to_datetime,
+    coredata_to_local,
+    display_name,
     format_size,
     get_quality_score,
+    has_timezone_offset,
+    local_datetime_sql,
     run_script,
     validate_year,
 )
+from _schema import FILE_SIZE, ORIGINAL_FILENAME, QUALITY_SCORES, Degradation, get_schema
+
+# Schema contract (T1.4): see _schema. Missing required → exit 5; missing optional → `degraded`.
+REQUIRED_COLUMNS: tuple[str, ...] = (
+    "ZASSET.ZDATECREATED",
+    "ZASSET.ZFAVORITE",
+    "ZASSET.ZFILENAME",
+    "ZASSET.ZISDETECTEDSCREENSHOT",
+    "ZASSET.ZKIND",
+    "ZASSET.ZTRASHEDSTATE",
+    *FILE_SIZE,
+    "ZADDITIONALASSETATTRIBUTES.ZORIGINALWIDTH",
+    "ZADDITIONALASSETATTRIBUTES.ZORIGINALHEIGHT",
+)
+# Ranking blends whichever quality scores exist; with none, nothing qualifies.
+OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {
+    "original_filenames": ORIGINAL_FILENAME,
+    "quality": QUALITY_SCORES,
+    "score_breakdown": tuple(
+        f"ZCOMPUTEDASSETATTRIBUTES.{c}"
+        for c in (
+            "ZPLEASANTPATTERNSCORE",
+            "ZPLEASANTPERSPECTIVESCORE",
+            "ZPLEASANTPOSTPROCESSINGSCORE",
+            "ZPLEASANTREFLECTIONSSCORE",
+            "ZPLEASANTSYMMETRYSCORE",
+        )
+    ),
+}
 
 
 def find_best_photos(
-    db_path: Optional[str] = None,
+    db_path: str | None = None,
     min_quality: float = 0.7,
     top_n: int = 50,
     hidden_gems_only: bool = False,
-    year: Optional[str] = None,
+    year: str | None = None,
 ) -> dict[str, Any]:
     """
     Find best quality photos, optionally filtering to hidden gems (not favorited).
@@ -38,8 +70,14 @@ def find_best_photos(
     Returns:
         Dictionary with best photos and stats
     """
-    with PhotosDB(db_path) as conn:
+    with PhotosDB(db_path, require=REQUIRED_COLUMNS, operation="Best photos") as conn:
         cursor = conn.cursor()
+        tz_available = has_timezone_offset(cursor)
+        schema = get_schema(conn)
+        degraded = Degradation(schema)
+        degraded.check("original_filenames", *OPTIONAL_COLUMNS["original_filenames"])
+        for section, names in OPTIONAL_COLUMNS.items():
+            degraded.check(section, *names)
 
         where_clauses = [
             "a.ZTRASHEDSTATE != 1",
@@ -53,13 +91,15 @@ def find_best_photos(
         params: list = []
         if year:
             year = validate_year(year)
-            where_clauses.append("strftime('%Y', datetime(a.ZDATECREATED + 978307200, 'unixepoch')) = ?")
+            where_clauses.append(f"strftime('%Y', {local_datetime_sql(tz_available)}) = ?")
             params.append(year)
 
         query = build_asset_query(
             where_clauses=where_clauses,
             join_additional=True,
             join_computed=True,
+            tz_offset_available=tz_available,
+            schema=schema,
         )
         cursor.execute(query, params)
 
@@ -97,7 +137,7 @@ def find_best_photos(
                 quality_histogram["poor"] += 1
 
             if quality >= min_quality:
-                created = coredata_to_datetime(row["ZDATECREATED"])
+                created = coredata_to_local(row["ZDATECREATED"], row["tz_offset"])
                 size = row["ZORIGINALFILESIZE"] or 0
 
                 # Compute detailed score breakdown
@@ -122,6 +162,7 @@ def find_best_photos(
                     {
                         "id": row["Z_PK"],
                         "filename": row["ZFILENAME"],
+                        "original_filename": row["original_filename"],
                         "created": created.isoformat() if created else None,
                         "size": size,
                         "size_formatted": format_size(size),
@@ -141,6 +182,7 @@ def find_best_photos(
         favorited_high_quality = sum(1 for p in scored_photos if p["is_favorite"])
 
         return {
+            "degraded": degraded.entries,
             "top_photos": top_photos,
             "summary": {
                 "total_with_scores": total_with_scores,
@@ -183,7 +225,7 @@ def format_summary(data: dict[str, Any]) -> str:
         lines.append(f"Top {len(top)} Photos:")
         for i, photo in enumerate(top[:20], 1):
             fav = " ★" if photo["is_favorite"] else " 💎"
-            lines.append(f"  {i:>3}. {photo['filename']}")
+            lines.append(f"  {i:>3}. {display_name(photo)}")
             lines.append(
                 f"       Q:{photo['quality_score']:.3f} | {photo['size_formatted']} | {photo['dimensions']}{fav}"
             )
@@ -208,7 +250,7 @@ def main():
         )
         parser.add_argument("--top", type=int, default=50, help="Number of top photos to return (default: 50)")
         parser.add_argument("--hidden-gems", action="store_true", help="Only show photos that are NOT favorited")
-        parser.add_argument("--year", help="Filter to specific year (YYYY)")
+        parser.add_argument("--year", help="Filter to specific year (YYYY, local capture time)")
 
     def invoke(db_path, args):
         return find_best_photos(

@@ -1,45 +1,61 @@
-## Description: <br>
-Install and configure the Antalpha Skills MCP server. Provides 146+ Web3 tools for DEX swaps, smart money tracking, Polymarket prediction markets, Hyperliquid perpetuals, CEX trading, Bitcoin mining, and DeFi analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure the Antalpha Skills MCP server. Provides 146+ Web3 tools for DEX swaps, smart money tracking, Polymarket prediction markets, Hyperliquid perpetuals, CEX trading, Bitcoin mining, and DeFi analytics.
 
-## Publisher: <br>
-[bevanding](https://clawhub.ai/user/bevanding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bevanding](https://clawhub.ai/user/bevanding)
 
-## Use Case: <br>
-Developers and external agent operators use this skill to connect MCP-compatible agents to Antalpha's Web3 tools for swaps, wallet analytics, prediction markets, perpetuals, CEX trading, mining, and DeFi analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup grants an AI agent broad wallet and trading capabilities without enough documented safety and credential boundaries. <br>
-Mitigation: Configure the MCP client to require explicit approval before every trade, swap, transfer, leverage change, order, or copy-trading action. <br>
-Risk: Sensitive credentials or funded wallets could be exposed to high-impact remote actions. <br>
-Mitigation: Use least-privilege or read-only credentials where available, avoid funded wallets until approval and revocation behavior is clear, and disable tools that are not needed. <br>
-Risk: The skill depends on trust in a third-party remote MCP service. <br>
-Mitigation: Install only if the operator trusts Antalpha and has reviewed the registration, authentication, support, and rate-limit process. <br>
+## Use Case:
 
+Developers and operators use this skill to connect MCP-compatible agents to Antalpha's Web3 tool server for market data, wallet analysis, swaps, prediction markets, perpetuals, exchange actions, mining data, and DeFi analytics.
 
-## Reference(s): <br>
-- [Antalpha Skills MCP Server](https://mcp-skills.ai.antalpha.com) <br>
-- [Antalpha MCP Documentation](https://github.com/antalpha-com/antalpha-skills) <br>
-- [Antalpha Website](https://www.antalpha.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bevanding/antalpha-ai-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown setup guide with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Antalpha registration and credentials; connected MCP tools can expose wallet, trading, transfer, leverage, and market-analysis actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The connected MCP service includes trading, transfer, leverage, and order-capable tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require out-of-band human approval for every trade, transfer, leverage change, or order action before execution.
+
+Risk: The artifacts do not clearly document least-privilege setup, confirmations, or key-safety controls.
+
+Mitigation: Use credentials scoped to the minimum required tools, prefer read-only access where possible, and review credential handling before installation.
+
+Risk: Mutable install or remote service configuration can change after review.
+
+Mitigation: Pin and verify exact package or repository revisions where possible and re-review the MCP endpoint configuration before use.
+
+## Reference(s):
+
+- [Antalpha Skills MCP homepage](https://mcp-skills.ai.antalpha.com)
+- [Antalpha Skills MCP endpoint](https://mcp-skills.ai.antalpha.com/mcp)
+- [Antalpha MCP Documentation](https://github.com/antalpha-com/antalpha-skills)
+- [Antalpha Website](https://www.antalpha.com/)
+- [ClawHub skill page](https://clawhub.ai/bevanding/skills/antalpha-ai-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline bash and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to call remote MCP tools that return Web3 market data, wallet data, trade/order actions, transfer requests, analytics, and setup checks.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

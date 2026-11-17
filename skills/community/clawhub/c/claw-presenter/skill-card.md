@@ -1,41 +1,58 @@
-## Description: <br>
-Converts PPT, PPTX, and PDF presentation files into per-slide images and narration data for prepared presentation playback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PPT, PPTX, and PDF files into a presentation package with per-slide images and narration scripts.
 
-## Publisher: <br>
-[jianglingling007](https://clawhub.ai/user/jianglingling007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianglingling007](https://clawhub.ai/user/jianglingling007)
 
-## Use Case: <br>
-Presentation creators and agent users use this skill to prepare PPT, PPTX, or PDF files for narration workflows. It extracts slide images and text, preserves speaker notes when present, and guides the agent to generate page-by-page scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency setup may request system package installation with sudo on some platforms. <br>
-Mitigation: Review setup.sh before installation and prefer a virtual environment or sandbox when possible. <br>
-Risk: Presentation text, speaker notes, and generated narration are saved locally in presentations/<name>/presentation.json. <br>
-Mitigation: Avoid processing untrusted or highly sensitive decks unless local extraction and storage of that content is acceptable. <br>
+## Use Case:
 
+Employees, external users, developers, and presenters use this skill to prepare slide-deck or PDF narration packages before playback in Claw Body or review as text.
 
-## Reference(s): <br>
-- [Claw Presenter release page](https://clawhub.ai/jianglingling007/claw-presenter) <br>
-- [LibreOffice download](https://www.libreoffice.org/download/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Presentation output directory with PNG slide images and a presentation.json file containing slide metadata, extracted text, notes, and narration scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to presentations/<name>/ by default and may reuse speaker notes as initial narration scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The setup workflow installs presentation and PDF processing dependencies, including system packages where supported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup script before execution and install dependencies in a trusted local environment.
+
+Risk: The skill writes slide images, extracted text, speaker notes, and narration scripts into the workspace, which may expose confidential deck content.
+
+Mitigation: Use trusted storage for confidential presentations, review generated files, and remove sensitive outputs when they are no longer needed.
+
+Risk: Unpinned dependencies can change behavior across installations.
+
+Mitigation: Pin package versions before setup when reproducibility or deployment controls are required.
+
+## Reference(s):
+
+- [Claw Presenter on ClawHub](https://clawhub.ai/jianglingling007/skills/claw-presenter)
+- [LibreOffice Download](https://www.libreoffice.org/download/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus generated presentation.json and PNG slide files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a workspace presentation folder containing extracted slide metadata, speaker notes where available, generated narration text, and per-slide images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

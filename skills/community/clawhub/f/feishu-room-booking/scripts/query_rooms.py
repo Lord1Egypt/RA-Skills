@@ -27,12 +27,14 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import workspace_manager
+import room_setup
 
 MAPPING_FILE = SCRIPT_DIR.parent / "references" / "room-mapping.json"
 PREFS_FILE = SCRIPT_DIR.parent / "references" / "user-preferences.json"
 
 # 预加载索引，模块级别缓存
 _mapping_cache: Optional[dict] = None
+_mapping_cache_path: Optional[Path] = None
 _alias_index: Optional[dict[str, int]] = None
 _building_search_cache: Optional[list[dict]] = None
 GENERIC_LOCATION_TOKENS = {
@@ -163,12 +165,14 @@ def extract_location_hints(keyword: str) -> dict:
 
 
 def _load_mapping():
-    global _mapping_cache, _alias_index, _building_search_cache
-    if _mapping_cache is not None:
+    global _mapping_cache, _mapping_cache_path, _alias_index, _building_search_cache
+    mapping_file = room_setup.active_mapping_file() or MAPPING_FILE
+    if _mapping_cache is not None and _mapping_cache_path == mapping_file:
         return _mapping_cache, _alias_index, _building_search_cache
 
-    with open(MAPPING_FILE, "r", encoding="utf-8") as f:
+    with open(mapping_file, "r", encoding="utf-8") as f:
         _mapping_cache = json.load(f)
+    _mapping_cache_path = mapping_file
 
     _alias_index = {}
     _building_search_cache = []
@@ -300,7 +304,7 @@ def filter_rooms_by_location_hints(rooms: list[dict], room_filter: Optional[dict
 def query_freebusy(room_id: str, time_min: str, time_max: str) -> dict:
     """查询单个会议室的忙闲状态"""
     cmd = [
-        "lark-cli", "calendar", "freebusys", "list", "--as", "bot",
+        "lark-cli", "calendar", "freebusys", "list", "--as", "user",
         "--data", json.dumps({
             "room_id": room_id,
             "time_min": time_min,
@@ -466,6 +470,18 @@ def main() -> None:
                         help="并行查询线程数 (默认 10)")
 
     args = parser.parse_args()
+    if not args.list_buildings and not args.list_rooms and (not args.start or not args.end):
+        print("错误: 必须同时指定 --start 和 --end", file=sys.stderr)
+        raise SystemExit(1)
+
+    setup_status = room_setup.status_payload()
+    if not setup_status.get("configured"):
+        print("❌ 尚未完成首次配置。请先询问用户所在公司，再运行 scripts/room_setup.py --set-company。", file=sys.stderr)
+        raise SystemExit(2)
+    if setup_status.get("catalog") == "custom" and not setup_status.get("ready"):
+        print("❌ 自定义会议室目录为空。请按首次配置流程从包含全部会议室的日程导入资源。", file=sys.stderr)
+        raise SystemExit(2)
+
     data, _, _ = _load_mapping()
 
     if args.list_buildings:
@@ -496,9 +512,6 @@ def main() -> None:
 
     if not resolved_building:
         print("错误: 必须指定 --building，或通过 --user 提供可用的偏好/工区默认值", file=sys.stderr)
-        sys.exit(1)
-    if not args.start or not args.end:
-        print("错误: 必须同时指定 --start 和 --end", file=sys.stderr)
         sys.exit(1)
 
     location_match = resolve_location_query(resolved_building)

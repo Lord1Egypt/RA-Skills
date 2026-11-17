@@ -1,40 +1,53 @@
-## Description: <br>
-Enriches prospect and company profiles by scraping their website and searching for additional context to build comprehensive profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enriches prospect and company profiles by scraping their website and searching for additional context to build comprehensive profiles.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Sales and marketing teams use this skill through an agent to research one prospect at a time, combining website scraping and targeted web searches into an enriched company profile for outreach, deal prep, partnership research, or competitive context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prospect research may share company URLs, prospect details, and local marketing context with Firecrawl/Exa-backed workflows. <br>
-Mitigation: Use only approved prospecting data, avoid confidential strategy or sensitive local context unless appropriate for those workflows, and verify the referenced helper CLIs are trusted in the environment. <br>
-Risk: External search results and inferred company details can be stale or incorrect. <br>
-Mitigation: Prioritize the prospect's own site, clearly mark confirmed versus inferred information, and include confidence ratings for each profile section. <br>
+## Use Case:
 
+Sales and marketing teams use this skill to build a single-company prospect profile for outreach, partnership research, competitive analysis, or deal preparation by combining the prospect's website content with external search context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-prospect-enrichment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, text] <br>
-**Output Format:** [Markdown profile with tables, confidence labels, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Marks confirmed versus inferred information and includes confidence ratings by section.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill metadata and release evidence) <br>
+Risk: Prospect company names, URLs, and research goals may be sent to external Firecrawl or Exa services during enrichment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized public prospect data, disclose external service use where required, and avoid confidential or non-public prospect lists unless approved.
+
+Risk: The skill examples place user-provided company names and URLs directly into shell commands.
+
+Mitigation: Validate URLs and company names, quote or sanitize command arguments, and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariokarras/skills/abm-prospect-enrichment)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown profile with tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sections ask the agent to label confirmed versus inferred information and include confidence ratings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

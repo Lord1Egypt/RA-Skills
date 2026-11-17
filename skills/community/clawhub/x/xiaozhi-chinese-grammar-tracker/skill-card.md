@@ -1,38 +1,55 @@
-## Description: <br>
-帮助学生在明确同意后持续识别、记录并纠正常见中文语病模式，包括六大语病类型、顽固语病、写作前提醒和月度进步报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为中小学生识别并修正常见中文病句，并在学生同意后追踪反复出现的语病。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students and Chinese-language tutors use this skill to check writing for recurring grammar problems, guide learners with questions instead of direct answers, and build a consent-based profile of stubborn error patterns. Because the skill can track student writing weaknesses over time, users should keep tracking opt-in and avoid sensitive personal writing unless that record is desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-chinese-grammar-tracker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/qizhitang) <br>
+中小学生可用它分析和修改中文病句，并在同意后追踪反复出现的语病。小学高段学生须有家长或老师陪同。
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown coaching responses with questions, grammar categories, exercises, reminders, and progress summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces consent-based grammar tracking guidance and does not include executable code or tool calls.] <br>
+Global
 
-## Skill Version(s): <br>
-99999.0.1 (source: ClawHub release metadata; artifact frontmatter lists 1.0.1) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The security review was partial because one local reference could not be resolved.
+
+Mitigation: Review the unresolved reference and repeat the scan before relying on the release.
+
+Risk: A learner profile can record recurring errors for a school-age user.
+
+Mitigation: Create or share a profile only with the learner's consent, and honor pause and deletion controls.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/qizhitang/skills/xiaozhi-chinese-grammar-tracker)
+- [Chinese grammar error library](artifact/references/grammar-error-library.md)
+- [Chinese high-school sentence reference](artifact/references/chinese-hs-sentence.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Chinese-language explanations, sentence revisions, and optional plain-text profile exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persistent profile tracking is consent-based.]
+
+## Skill Version(s):
+
+2.12.7 (source: artifact frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

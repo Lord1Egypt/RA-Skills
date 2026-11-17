@@ -1,42 +1,64 @@
-## Description: <br>
-Personal place intelligence that helps an agent save, update, and search local markdown records for places worth revisiting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal place intelligence: save and find cafes, coworking spaces, libraries, restaurants, and other spots worth revisiting, with one markdown file per place organized by city.
 
-## Publisher: <br>
-[ilyabelikin](https://clawhub.ai/user/ilyabelikin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ilyabelikin](https://clawhub.ai/user/ilyabelikin)
 
-## Use Case: <br>
-Individuals using agent-supported workflows use Nooks to save cafes, coworking spaces, restaurants, libraries, and other places as private local notes, then search those notes by city, vibe, features, or purpose when deciding where to work, eat, meet, or return. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Nooks stores durable local records of places a user visits or may revisit, which can reveal sensitive locations or routines if shared, committed, or exposed. <br>
-Mitigation: Keep the mind/nooks folder private, avoid saving sensitive locations, and review files before sharing or committing them. <br>
-Risk: Optional Google Places, image lookup, Haah dispatch, and heartbeat or cron reminders can add data sharing or recurring prompts beyond local note keeping. <br>
-Mitigation: Restrict any Google Places API key, enable optional enrichment or dispatch features only intentionally, and keep reminders opt-in. <br>
+## Use Case:
 
+External users and agent operators use Nooks to build a searchable personal library of places, save new recommendations, enrich them with maps links or public details, and retrieve places by city, vibe, features, and purpose.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ilyabelikin/nooks) <br>
-- [Google Places API Text Search endpoint](https://places.googleapis.com/v1/places:searchText) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown place files, concise text responses, shell command examples, YAML configuration, and optional HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores one markdown file per place under mind/nooks; optional Google Places lookup uses a locally configured API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill stores personal place history and notes in workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where this local history is acceptable, and review which files are committed or shared.
+
+Risk: Optional enrichment can send place queries to web services such as Google Places.
+
+Mitigation: Use enrichment only when external lookups are acceptable, and restrict any Google Places API key to the needed API.
+
+Risk: The skill suggests recurring heartbeat or cron checks over personal notes.
+
+Mitigation: Enable recurring checks only when the user explicitly wants periodic access to the Nooks files.
+
+Risk: The update flow points to a mutable main-branch URL.
+
+Mitigation: Prefer pinned, reviewed releases before replacing the installed skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ilyabelikin/skills/nooks)
+- [ClawHub publisher profile](https://clawhub.ai/user/ilyabelikin)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [Google Places Text Search endpoint](https://places.googleapis.com/v1/places:searchText)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, place-file templates, grep queries, and optional YAML configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local markdown place files under a workspace folder; may call web search or Google Places when enrichment is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, created 2026-04-20)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

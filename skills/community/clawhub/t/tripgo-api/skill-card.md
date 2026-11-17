@@ -1,53 +1,69 @@
-## Description: <br>
-Comprehensive interface for the TripGo API, covering routing, public transport, trips, and location services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive interface for the TripGo API, covering routing, public transport, trips, and location services.
 
-## Publisher: <br>
-[guanyu-zhang](https://clawhub.ai/user/guanyu-zhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guanyu-zhang](https://clawhub.ai/user/guanyu-zhang)
 
-## Use Case: <br>
-Developers and agents use this skill to call TripGo endpoints for multimodal route planning, geocoding, public transport data, trip management, and location lookups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Route searches, coordinates, schedules, trip identifiers, and related travel metadata are sent to TripGo. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, and avoid adding unnecessary sensitive labels such as home or work in requests. <br>
-Risk: Webhook registration can expose trip update data to a callback endpoint. <br>
-Mitigation: Keep HTTPS-only webhook validation and TRIPGO_WEBHOOK_ALLOWLIST enabled; use TRIPGO_ALLOW_UNSAFE_WEBHOOK only for trusted manual debugging. <br>
-Risk: Some trip scripts save, update, mark, delete, or otherwise change remote trip state. <br>
-Mitigation: Double-check trip and hook identifiers before running state-changing scripts. <br>
-Risk: The artifact includes deprecated TripGo endpoints. <br>
-Mitigation: Prefer non-deprecated routing and trip endpoints, and use deprecated scripts only when explicitly required and verified against live TripGo documentation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TripGo API ClawHub Release](https://clawhub.ai/guanyu-zhang/tripgo-api) <br>
-- [TripGo API](https://skedgo.com/tripgo-api/) <br>
-- [TripGo Developer Documentation](https://developer.tripgo.com/) <br>
-- [TripGo OpenAPI Spec](https://github.com/skedgo/tripgo-api) <br>
-- [Configuration Section - TripGo API](references/configuration.md) <br>
-- [Geocode API](references/geocode.md) <br>
-- [Locations API](references/locations.md) <br>
-- [Public Transport API](references/public-transport.md) <br>
-- [TripGo API - Routing](references/routing.md) <br>
-- [Trips API](references/trips.md) <br>
-- [TTP (Travelling Tourist Problem)](references/ttp.md) <br>
+## Use Case:
 
+Developers and agents use this skill to call TripGo endpoints for multimodal journey planning, public transport data, trip management, geocoding, and location lookups.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and TRIPGO_API_KEY; some scripts modify remote trip state or register webhooks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Authenticated requests can use a custom TRIPGO_BASE_URL, which may send API keys and travel data to an unintended host.
+
+Mitigation: Keep TRIPGO_BASE_URL unset unless intentionally using a trusted TripGo-compatible endpoint, and avoid passing API keys on the command line.
+
+Risk: Trip coordinates, trip IDs, webhook callback URLs, and analytics calls can reveal sensitive travel activity.
+
+Mitigation: Treat these values as sensitive data, restrict where they are logged or shared, and run the scripts only in controlled environments.
+
+Risk: Webhook registration can expose trip update data to callback endpoints.
+
+Mitigation: Use HTTPS callback URLs and configure TRIPGO_WEBHOOK_ALLOWLIST; do not set TRIPGO_ALLOW_UNSAFE_WEBHOOK except for trusted manual debugging.
+
+Risk: Deprecated endpoints are included for backward compatibility.
+
+Mitigation: Prefer current endpoints for new workflows and avoid deprecated TTP or routing scripts unless compatibility requires them.
+
+## Reference(s):
+
+- [TripGo API skill page](https://clawhub.ai/guanyu-zhang/skills/tripgo-api)
+- [TripGo API access](https://skedgo.com/tripgo-api/)
+- [TripGo developer documentation](https://developer.tripgo.com/)
+- [Configuration reference](references/configuration.md)
+- [Routing reference](references/routing.md)
+- [Trips reference](references/trips.md)
+- [Public transport reference](references/public-transport.md)
+- [Geocode reference](references/geocode.md)
+- [Locations reference](references/locations.md)
+- [TTP reference](references/ttp.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and TRIPGO_API_KEY; some scripts optionally use TRIPGO_BASE_URL and webhook allowlist settings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, created 2026-03-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

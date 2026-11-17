@@ -1,43 +1,62 @@
-## Description: <br>
-Notion-to-Twitter automation that pulls approved tweets from a Notion database, schedules one-shot jobs for exact post times, and posts via the X/Twitter API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a Notion-to-X/Twitter posting pipeline by pulling approved tweets from a Notion database, scheduling one-shot cron jobs, and posting through the X/Twitter API.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Content operators and developers use this skill to automate scheduled X/Twitter posts from a Notion content calendar. It reads approved Notion entries, schedules or posts them at the intended time, and updates Notion status after posting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish live posts to X/Twitter and modify Notion using local credentials. <br>
-Mitigation: Run with --dry-run first, confirm the target X account and Notion database, and only enable posting on a machine intended for this workflow. <br>
-Risk: The skill can create persistent one-shot OpenClaw cron jobs for later execution. <br>
-Mitigation: Inspect scheduled OpenClaw crons after use and remove any unintended jobs before leaving the workflow unattended. <br>
-Risk: Hard-coded local paths and account assumptions may point to the wrong binaries, scripts, or profile in another environment. <br>
-Mitigation: Replace local paths and account-specific values with environment-appropriate configuration before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nissan/tweet-pipeline) <br>
-- [Notion API](https://api.notion.com) <br>
-- [X API](https://api.x.com) <br>
+## Use Case:
 
+External developers and social content operators use this skill to manage approved posts in a Notion content calendar, schedule precise posting times, and publish text-only tweets while tracking status back in Notion.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash commands and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, Notion access, X/Twitter credentials, outbound network access, and review of scheduled jobs before unattended use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads local credential files and uses 1Password/OpenClaw credentials.
+
+Mitigation: Install only in an environment where those credential sources are intentionally available, and use least-privilege Notion and X/Twitter credentials.
+
+Risk: The skill can create scheduled OpenClaw cron jobs and post publicly to the configured X/Twitter account.
+
+Mitigation: Review the Notion queue, account configuration, scheduled times, and generated cron jobs before enabling posting; use the dry-run mode for operational checks.
+
+Risk: The skill modifies the configured Notion database while tracking posted or failed tweets.
+
+Mitigation: Test against a staging Notion database or backup the production database before first use.
+
+Risk: The security summary reports undocumented credential sources and hard-coded out-of-package execution paths.
+
+Mitigation: Fix the documentation/authentication mismatch and replace hard-coded external paths with package-relative or user-configurable paths before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/tweet-pipeline)
+- [Notion database query endpoint used by the artifact](https://api.notion.com/v1/databases/{TWEET_DB}/query)
+- [X/Twitter tweet creation endpoint used by the artifact](https://api.x.com/2/tweets)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and Python script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to run Python scripts that read a Notion tweet queue, schedule one-shot OpenClaw cron jobs, post text tweets to X/Twitter, and update Notion status fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

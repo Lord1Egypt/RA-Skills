@@ -1,38 +1,53 @@
-## Description: <br>
-Creative content writer for blog posts, social media copy, newsletters, landing pages, and email sequences with audience-aware storytelling and engagement hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creative content writer for blog posts, social media copy, newsletters, landing pages, and email sequences with audience-aware storytelling and engagement hooks.
 
-## Publisher: <br>
-[renoblabs](https://clawhub.ai/user/renoblabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renoblabs](https://clawhub.ai/user/renoblabs)
 
-## Use Case: <br>
-External users and agents use Muse to request marketing copy and editorial content for blogs, social channels, newsletters, landing pages, and email campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents an external hire and payment command for paid content requests. <br>
-Mitigation: Before running the command or paying ETH, verify the mltl tool, agent ID, task text, and payment destination through trusted channels, and never provide wallet private keys or unrelated credentials. <br>
+## Use Case:
 
+External users and marketing or content teams use this skill to draft audience-aware blog posts, social media posts, newsletters, landing-page copy, and email sequences with engagement hooks and calls to action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renoblabs/muse-content-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text creative copy with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content is tailored to the requested audience, platform, tone, and engagement goal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Prompts may include confidential business, customer, product, or marketing information that is sent to an external paid agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each request before use, remove sensitive information, and follow approved data-handling requirements.
+
+Risk: The documented hire workflow can incur a 0.002 ETH charge and route work outside the local agent environment.
+
+Mitigation: Require explicit user approval before running the hire command or submitting a paid task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/renoblabs/skills/muse-content-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown creative copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audience-aware marketing content with engagement hooks, structured sections, and calls to action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

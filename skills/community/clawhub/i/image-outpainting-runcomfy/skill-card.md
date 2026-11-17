@@ -1,47 +1,62 @@
-## Description: <br>
-Image Outpainting - Pro Pack on RunComfy helps agents extend still images beyond their original canvas, change aspect ratio, and preserve source content by selecting suitable RunComfy image editing routes through the runcomfy CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents extend still images beyond the original canvas by selecting RunComfy image-editing routes for outpainting, uncropping, aspect-ratio changes, reference-style matching, and brand-specific edits.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers and agent users use this skill to outpaint, uncrop, or resize still images with RunComfy-hosted image editing models while receiving route selection guidance and CLI invocation patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the runcomfy CLI and a RunComfy account token. <br>
-Mitigation: Install the CLI only from a verified package source and protect RUNCOMFY_TOKEN as an account credential. <br>
-Risk: Image URLs and prompts are submitted to RunComfy for processing. <br>
-Mitigation: Submit only image URLs and prompts the user is comfortable sending to RunComfy. <br>
-Risk: Outpainting results may diverge from the requested edit or alter source content. <br>
-Mitigation: Review generated outputs before using them and rerun with stronger preservation prompts when needed. <br>
+## Use Case:
 
+External developers and creative operators use this skill to have an agent choose a RunComfy outpainting route and produce prompts or CLI invocations for extending image canvas, uncropping images, changing aspect ratio, and matching reference style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kalvinrv/image-outpainting-runcomfy) <br>
-- [RunComfy homepage](https://www.runcomfy.com) <br>
-- [RunComfy CLI docs](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=image-outpainting-runcomfy) <br>
-- [Best image editing models collection](https://www.runcomfy.com/models/collections/best-image-editing-models?utm_source=clawhub&utm_medium=skill&utm_campaign=image-outpainting-runcomfy) <br>
-- [Nano Banana 2 Edit model](https://www.runcomfy.com/models/google/nano-banana-2/edit?utm_source=clawhub&utm_medium=skill&utm_campaign=image-outpainting-runcomfy) <br>
-- [ComfyUI workflows](https://www.runcomfy.com/comfyui-workflows?utm_source=clawhub&utm_medium=skill&utm_campaign=image-outpainting-runcomfy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides an agent to produce RunComfy CLI commands and configuration steps; generated image files are produced by RunComfy after command execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The RunComfy CLI installation can introduce supply-chain risk if an unreviewed or unpinned package is installed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a reviewed pinned version of @runcomfy/cli, install through a trusted package manager, and avoid running npm with administrator privileges.
+
+Risk: Prompts and image URLs used for outpainting are sent to RunComfy services.
+
+Mitigation: Provide RUNCOMFY_TOKEN only when RunComfy access is intended and avoid submitting sensitive prompts or image URLs unless that data sharing is acceptable.
+
+Risk: Outpainted images can contain mismatched lighting, seams, or generated content that diverges from the user's prompt.
+
+Mitigation: Review generated outputs before use and switch to reference-guided editing or a dedicated ComfyUI outpainting workflow when simple prompt-shaped outpainting is insufficient.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/permew/skills/image-outpainting-runcomfy)
+- [RunComfy](https://www.runcomfy.com)
+- [RunComfy CLI Documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=image-outpainting-runcomfy)
+- [Best Image Editing Models](https://www.runcomfy.com/models/collections/best-image-editing-models?utm_source=clawhub&utm_medium=skill&utm_campaign=image-outpainting-runcomfy)
+- [Nano Banana 2 Edit Model](https://www.runcomfy.com/models/google/nano-banana-2/edit?utm_source=clawhub&utm_medium=skill&utm_campaign=image-outpainting-runcomfy)
+- [RunComfy ComfyUI Workflows](https://www.runcomfy.com/comfyui-workflows?utm_source=clawhub&utm_medium=skill&utm_campaign=image-outpainting-runcomfy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference RunComfy model endpoints, prompt patterns, image URLs supplied by the user, and output directory choices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vanilla First"
+  short_description: "Check supported fit before custom changes"
+  default_prompt: "Use $vanilla-first to check existing capabilities, ownership, and the smallest coherent change."

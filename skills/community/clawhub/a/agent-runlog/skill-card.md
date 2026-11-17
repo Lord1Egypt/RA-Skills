@@ -1,42 +1,57 @@
-## Description: <br>
-Wrap shell commands with the agent-runlog CLI to capture concise, redacted run logs for debugging, CI reproduction, long-running agent commands, repeated failures, test/lint/build evidence, and handoffs where stdout/stderr plus git state should be preserved without flooding chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wrap shell commands with the agent-runlog CLI to capture concise, redacted run logs for debugging, CI reproduction, long-running agent commands, repeated failures, test/lint/build evidence, and handoffs where stdout/stderr plus git state should be preserved without flooding chat.
 
-## Publisher: <br>
-[builtbyecho](https://clawhub.ai/user/builtbyecho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[builtbyecho](https://clawhub.ai/user/builtbyecho)
 
-## Use Case: <br>
-Developers and engineers use this skill to run tests, builds, lint checks, and other shell commands through a logging wrapper so command output, summaries, and local repository state can be preserved for debugging, CI reproduction, and handoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run an external npm CLI around user-chosen commands. <br>
-Mitigation: Review commands before execution and do not wrap destructive commands without explicit user approval. <br>
-Risk: Local run logs may contain command output or repository state. <br>
-Mitigation: Keep redaction enabled, avoid --no-redact unless raw logs are explicitly required, and do not share .agent-runs/ when logs may include private data. <br>
-Risk: Captured logs can become noisy or reveal more operational detail than intended. <br>
-Mitigation: Summarize relevant report sections instead of posting full logs when handing work to another person or agent. <br>
+## Use Case:
 
+Developers and engineers use this skill to wrap test, lint, build, and other shell commands so concise local run logs can support debugging, CI reproduction, repeated-failure diagnosis, and agent handoffs.
 
-## Reference(s): <br>
-- [ClawHub skill page for agent-runlog](https://clawhub.ai/builtbyecho/agent-runlog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with inline bash command examples; the wrapped CLI can create Markdown reports and JSON output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Run logs are written locally under .agent-runs/ and are redacted by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.3 (source: server release evidence) <br>
+Risk: The skill relies on an npm CLI invocation that can change if the package is not pinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin @builtbyecho/agent-runlog to a reviewed version or use a lockfile-managed local install.
+
+Risk: Command logs may capture private data from stdout, stderr, or git state.
+
+Mitigation: Keep .agent-runs logs local when sensitive output may be present and share summaries instead of full logs.
+
+Risk: Wrapping destructive commands records their output but does not make those commands safe to run.
+
+Mitigation: Require explicit approval before wrapping destructive commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/builtbyecho/skills/agent-runlog)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, JSON]
+
+**Output Format:** [Markdown guidance with bash command examples and optional JSON run output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Run ledgers are written locally under .agent-runs/; redaction is on by default.]
+
+## Skill Version(s):
+
+0.4.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

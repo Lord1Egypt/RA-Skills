@@ -1,42 +1,51 @@
-## Description: <br>
-Web search with LLM-ranked results and freshness control. Queries api.rhdxm.com across multiple engines. No API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search with LLM-ranked results and freshness control. Queries api.rhdxm.com across multiple engines. No API key.
 
-## Publisher: <br>
-[c5huracan](https://clawhub.ai/user/c5huracan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c5huracan](https://clawhub.ai/user/c5huracan)
 
-## Use Case: <br>
-Developers and agents use Meyhem Search to run web searches, rank results by relevance, apply freshness controls, and optionally fetch page content for a selected result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, agent identifiers, and selected-result URLs are sent to api.rhdxm.com. <br>
-Mitigation: Do not use the skill for secrets, private customer information, proprietary research, or sensitive personal data unless the service's privacy and retention terms are acceptable. <br>
-Risk: Search results and optional fetched page content may be incomplete, outdated, or misleading. <br>
-Mitigation: Review important results before relying on them, especially for security, legal, financial, medical, or operational decisions. <br>
+## Use Case:
 
+Developers and agents use Meyhem Search to retrieve ranked web search results with configurable freshness and optional page-content retrieval. It is useful when an agent needs current external information without configuring an API key.
 
-## Reference(s): <br>
-- [Meyhem Search on ClawHub](https://clawhub.ai/c5huracan/meyhem-search) <br>
-- [Meyhem API documentation](https://api.rhdxm.com/docs) <br>
-- [Meyhem MCP endpoint](https://api.rhdxm.com/mcp/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text search results with titles, URLs, relevance scores, snippets, and optional page content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends search queries, agent identifiers, result limits, freshness settings, and selected-result URLs to api.rhdxm.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5 (source: server release and skill frontmatter) <br>
+Risk: Search queries, agent identifiers, and selected result URLs are sent to api.rhdxm.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, proprietary text, private documents, or sensitive personal data in queries or agent_id values.
+
+## Reference(s):
+
+- [Meyhem Search ClawHub listing](https://clawhub.ai/c5huracan/skills/meyhem-search)
+- [Meyhem API documentation](https://api.rhdxm.com/docs)
+- [Meyhem MCP endpoint](https://api.rhdxm.com/mcp/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, URLs]
+
+**Output Format:** [Plain text search results with titles, URLs, relevance scores, snippets, and optional selected page content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result count, agent identifier, freshness, and optional content retrieval are controlled by command-line arguments.]
+
+## Skill Version(s):
+
+0.2.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

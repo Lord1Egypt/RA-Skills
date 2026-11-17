@@ -1,40 +1,53 @@
-## Description: <br>
-多模型路由器 - 原创技能。根据任务特征自动选择最优AI模型，优化成本和性能。适用于大型项目、混合任务、成本优化等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多模型路由器根据任务特征为代理选择合适的 AI 模型，并帮助平衡成本、速度和质量。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and agent operators use this skill to classify task complexity and choose an AI model route that balances quality, latency, and cost. It is most useful for mixed workloads, large projects, and cost-sensitive model selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Implementing the guide with real model APIs can expose prompts to multiple providers and increase token costs, especially when using parallel routing. <br>
-Mitigation: Make parallel routing opt-in, avoid sending sensitive prompts to multiple providers unnecessarily, and monitor provider logging policies and token spend. <br>
-Risk: Model capability, availability, and pricing assumptions can become stale after release. <br>
-Mitigation: Verify current provider capabilities, pricing, and policy constraints before using the recommendations in production workflows. <br>
+## Use Case:
 
+Developers and AI agent builders use this skill to classify user tasks by complexity, domain, urgency, and budget, then choose an appropriate model or fallback strategy. It is intended for model-routing guidance, cost optimization, and quality-aware model selection in mixed AI workloads.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/534422530/laosi-model-router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with tables, routing decision examples, and Python-like pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces model-routing recommendations, fallback options, and cost-quality tradeoff guidance; it does not install or execute provider integrations by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill may activate on common Chinese phrases about model choice or cost optimization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it explicitly when model-routing advice is desired, or adjust trigger wording if automatic activation is unwanted.
+
+Risk: Model capability, availability, and pricing guidance can become outdated.
+
+Mitigation: Review recommendations against current provider documentation, pricing, and policy before applying them to production routing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-model-router)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with routing decisions, comparison tables, and pseudocode examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Model recommendations should be reviewed against current model availability, pricing, and policy before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

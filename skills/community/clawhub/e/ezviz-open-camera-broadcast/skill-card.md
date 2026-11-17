@@ -1,48 +1,65 @@
-## Description: <br>
-Broadcasts a local audio file or text-to-speech message to configured Ezviz camera devices using Ezviz Open Platform credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Broadcasts local audio files or generated text-to-speech audio to Ezviz devices through the Ezviz Open API.
 
-## Publisher: <br>
-[Ezviz-Open](https://clawhub.ai/user/Ezviz-Open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezviz-open](https://clawhub.ai/user/ezviz-open)
 
-## Use Case: <br>
-Developers, operators, and automation users use this skill to send voice notifications, reminders, alerts, or prerecorded audio to Ezviz devices that support talk or audio playback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Ezviz app credentials to upload audio or generated speech and make configured devices play it. <br>
-Mitigation: Use a dedicated least-privilege Ezviz application, verify target device serials and audio content before running, and rotate credentials according to your policy. <br>
-Risk: Access tokens are cached by default in a system temporary directory. <br>
-Mitigation: Set EZVIZ_TOKEN_CACHE=0 on shared or high-security systems, or clear the cache after use. <br>
-Risk: If environment variables are absent, the skill may read Ezviz credentials from OpenClaw configuration files. <br>
-Mitigation: Set EZVIZ_APP_KEY, EZVIZ_APP_SECRET, and EZVIZ_DEVICE_SERIAL explicitly so environment variables override local configuration files. <br>
-Risk: Audio files, credentials, and device identifiers are sent to the Ezviz Open Platform endpoint to perform the broadcast. <br>
-Mitigation: Install and run the skill only when that data flow is intended for the target devices and account. <br>
+## Use Case:
 
+External users and developers use this skill to send voice announcements, alerts, reminders, and broadcast messages to Ezviz devices that support audio playback or talk functions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Ezviz-Open/ezviz-open-camera-broadcast) <br>
-- [Ezviz Open Platform](https://open.ys7.com/) <br>
-- [Ezviz token API documentation](https://open.ys7.com/help/81) <br>
-- [Ezviz voice upload API documentation](https://open.ys7.com/help/1241) <br>
-- [Ezviz voice send API documentation](https://open.ys7.com/help/1253) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON/status console output from the broadcast script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Ezviz app credentials, target device serials, and either an audio file or text content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill controls audio broadcast-capable Ezviz devices and uses device-control credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for expected Ezviz broadcast use cases and use dedicated least-privilege Ezviz app credentials.
+
+Risk: Access tokens are cached by default in a system temporary directory.
+
+Mitigation: Set EZVIZ_TOKEN_CACHE=0 on shared or high-security machines unless the cache location is hardened.
+
+Risk: Credentials may be read from OpenClaw config files if environment variables are not set.
+
+Mitigation: Prefer EZVIZ_APP_KEY, EZVIZ_APP_SECRET, and EZVIZ_DEVICE_SERIAL environment variables, which take priority over config-file fallback.
+
+Risk: Passing secrets as command-line arguments can expose them through shell history or process listings.
+
+Mitigation: Provide credentials through environment variables or a managed secret mechanism instead of command-line arguments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ezviz-open/skills/ezviz-open-camera-broadcast)
+- [Ezviz Open API token documentation](https://open.ys7.com/help/81)
+- [Ezviz voice upload documentation](https://open.ys7.com/help/1241)
+- [Ezviz voice send documentation](https://open.ys7.com/help/1253)
+- [Ezviz Open Platform](https://open.ys7.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Console status text with JSON API responses and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance and can execute device-control API calls when configured with Ezviz credentials.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: "sport-analysis"
 description: "Conducts video safety risk analysis for participants in outdoor sports competitions, long-distance running, marathons, etc.; identifies sports injuries and sudden health risks, outputs professional analysis reports, and provides timely warnings to ensure sports safety. | 户外体育赛事风险分析工具，针对户外体育比赛、长跑马拉松等运动项目的参赛人员进行视频安全风险分析，识别运动损伤和突发健康风险，输出专业分析报告，及时预警保障运动安全"
-version: "1.0.7"
+version: "1.0.25"
 license: "MIT-0"
 ---
 

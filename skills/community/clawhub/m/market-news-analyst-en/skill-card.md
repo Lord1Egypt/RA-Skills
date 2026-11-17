@@ -1,41 +1,60 @@
-## Description: <br>
-Analyzes recent market-moving news events and their impact on U.S. equity markets and commodities, using web research and reference frameworks to produce impact-ranked English reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Market News Analyst analyzes recent market-moving news and produces English reports on impacts to US equity markets and commodities.
 
-## Publisher: <br>
-[NeverChenX](https://clawhub.ai/user/NeverChenX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neverchenx](https://clawhub.ai/user/neverchenx)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to collect recent financial news, assess market reactions, and rank events by impact across equities, bonds, commodities, currencies, and related sectors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-news summaries and financial impact analysis may be incomplete, stale, or mistaken if underlying news or market data is wrong or changes quickly. <br>
-Mitigation: Treat output as research assistance rather than investment advice, and confirm important market data and conclusions with primary sources before acting. <br>
+## Use Case:
 
+External users and analysts use this skill to gather recent financial news, compare events against market-impact patterns, and produce ranked English summaries of equity and commodity market reactions.
 
-## Reference(s): <br>
-- [Corporate News Impact Analysis Framework](references/corporate_news_impact.md) <br>
-- [Geopolitical Events and Commodity Correlations](references/geopolitical_commodity_correlations.md) <br>
-- [Market Event Patterns and Market Reactions](references/market_event_patterns.md) <br>
-- [Trusted News Sources for Market Analysis](references/trusted_news_sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [English-language market impact rankings, event analysis, thematic synthesis, commodity deep dives, and source methodology.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Market analysis can be incomplete, incorrect, or stale because it depends on recent web research and changing market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cited sources, dates, price moves, and assumptions before relying on the report.
+
+Risk: The skill may produce market commentary that could be mistaken for personalized financial advice.
+
+Mitigation: Use the output as general analysis only and require qualified review for investment decisions.
+
+Risk: Attribution between news and asset-price moves can be uncertain when multiple events occur close together.
+
+Mitigation: Keep uncertainty notes, distinguish correlation from causation, and compare conclusions against trusted primary or tier-one sources.
+
+## Reference(s):
+
+- [Market Event Patterns and Market Reactions](references/market_event_patterns.md)
+- [Trusted News Sources for Market Analysis](references/trusted_news_sources.md)
+- [Geopolitical Events and Commodity Correlations](references/geopolitical_commodity_correlations.md)
+- [Corporate News Impact Analysis Framework](references/corporate_news_impact.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with impact rankings, event analysis, market-reaction summaries, and source notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [English output focused on the past 10 days, with quantified market reactions and uncertainty notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

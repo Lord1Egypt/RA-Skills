@@ -1,0 +1,44 @@
+{
+  "name": "beauty-karma",
+  "title": "Beauty Karma",
+  "description": "Analyze a portrait photo with MiniMax-M3 and generate a playful camera-presence report with highlights, tips, social copy, and a shareable report-card image.",
+  "version": "1.0.3",
+  "entry": "scripts/run-skill.js",
+  "compatibility": {
+    "openclaw": ">=0.1.0",
+    "node": ">=18",
+    "dependencies": "none"
+  },
+  "inputs": {
+    "imagePath": "string",
+    "imageUrl": "string",
+    "imageBase64": "string",
+    "imageNotes": "string",
+    "userLabel": "string",
+    "outputDir": "string",
+    "mock": "boolean"
+  },
+  "outputs": {
+    "status": "string",
+    "model": "string",
+    "score": "number",
+    "levelLabel": "string",
+    "analysisMode": "string",
+    "reportHtmlPath": "string",
+    "reportSvgPath": "string",
+    "analysisJsonPath": "string",
+    "xiaohongshuTitle": "string",
+    "xiaohongshuCaption": "string"
+  },
+  "permissions": {
+    "network": true,
+    "filesystem": "workspace",
+    "env": [
+      "MINIMAX_API_KEY",
+      "MINIMAX_BASE_URL"
+    ]
+  },
+  "examples": [
+    "examples/request.json"
+  ]
+}

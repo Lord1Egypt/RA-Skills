@@ -1,0 +1,11 @@
+{
+  "version": "1.2",
+  "lastSnapshot": "2026-08-21",
+  "scope": "ontario",
+  "sources": [
+    {"key": "oinp-workforce-priority", "name": "Ontario Workforce Priority Stream (资格+EOI打分)", "url": "https://www.ontario.ca/page/ontario-workforce-priority-stream", "type": "oinp", "watch": true, "note": "主通道。含申请资格、job offer前置、EOI打分全因子。快照2026-08-21。"},
+    {"key": "oinp-2026-updates", "name": "OINP 2026 官方更新公告与抽分时间线", "url": "https://www.ontario.ca/page/2026-ontario-immigrant-nominee-program-updates", "type": "oinp", "watch": true},
+    {"key": "oia-reg-422-17", "name": "O. Reg. 422/17 (安省移民法监管条例)", "url": "https://www.ontario.ca/laws/regulation/170422", "type": "legal", "watch": false},
+    {"key": "sudbury-rcip-fcip", "name": "萨德伯里 RCIP/FCIP 试点", "url": "https://investsudbury.ca/why-sudbury/newcomers/rcipfcip/", "type": "community", "watch": true}
+  ]
+}

@@ -1,43 +1,63 @@
-## Description: <br>
-Turn keywords into publish-ready SEO and GEO content packages with keyword research, SERP analysis, article generation, FAQ schema, and AI-ready output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns keywords into SEO and GEO content packages with keyword research, SERP analysis, article drafting, FAQ schema, and AI-ready output.
 
-## Publisher: <br>
-[GEO-SEO](https://clawhub.ai/user/GEO-SEO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geo-seo](https://clawhub.ai/user/geo-seo)
 
-## Use Case: <br>
-SEO teams, SaaS and DTC teams, agencies, and content operators use this skill to turn a keyword into a publish-ready SEO and GEO content package with keyword framing, SERP analysis, article draft, metadata, FAQ schema, and an AI-ready version. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad content-generation triggers may start the workflow when the user only intended a general SEO discussion. <br>
-Mitigation: Prefer explicit prompts such as "write article: <keyword>" or "create SEO content for <keyword>" before running the full pipeline. <br>
-Risk: Optional live SERP and keyword-tracker integrations can expose external data sources if credentials or URLs are over-permissive. <br>
-Mitigation: Use scoped SerpAPI credentials and read-only or public Google Sheets access, or rely on pasted keywords, CSV exports, and user-provided SERP snapshots. <br>
+## Use Case:
 
+External SEO teams, SaaS teams, agencies, and content operators use this skill to turn a target keyword into a repeatable search- and AI-answer-ready content package.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/GEO-SEO/seo-geo-content-engine) <br>
-- [Project Homepage](https://github.com/GEO-SEO/seo-geo-content-engine) <br>
-- [Schema.org](https://schema.org) <br>
-- [Dageno.ai](https://dageno.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with SEO metadata, article sections, FAQ JSON-LD, and GEO-optimized text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use optional SerpAPI results or user-provided SERP exports, and optional read-only Google Sheets keyword tracker data when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and artifact manifest/frontmatter) <br>
+Risk: Optional keyword tracker access may expose private planning data if a private sheet URL is provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only or public tracker URLs and provide private sheet URLs only when the agent is intended to read that tracker.
+
+Risk: Optional live SERP lookup can send search terms to a configured search provider.
+
+Mitigation: Use the SERP API only when configured intentionally, or provide approved SERP exports and pasted search-result snapshots instead.
+
+Risk: Generated SEO articles, metadata, and FAQ schema may contain claims or structured data that need editorial review before publishing.
+
+Mitigation: Review factual claims, citations, keyword usage, and schema validity before publication.
+
+Risk: Broad keyword prompts could activate the content workflow unintentionally.
+
+Mitigation: Use explicit prompts such as "write article:" or "create SEO content for" when invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/geo-seo/skills/seo-geo-content-engine)
+- [Project homepage from metadata](https://github.com/GEO-SEO/seo-geo-content-engine)
+- [Schema.org](https://schema.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown content package with SEO metadata, long-form article text, FAQ schema code, and a GEO-optimized version.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The default article target is 1500-2000 words and the workflow can use optional SERP API output or user-provided SERP snapshots.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

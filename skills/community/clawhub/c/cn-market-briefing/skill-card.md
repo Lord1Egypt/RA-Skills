@@ -1,44 +1,56 @@
-## Description: <br>
-每日财经早报：A股行情 + RSS新闻聚合，自动生成Markdown简报 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日财经早报：A股行情 + RSS新闻聚合，自动生成Markdown简报
 
-## Publisher: <br>
-[answeryl](https://clawhub.ai/user/answeryl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[answeryl](https://clawhub.ai/user/answeryl)
 
-## Use Case: <br>
-Finance-news users and agents use this skill to collect A-share index data and China News Service RSS items, classify them, and produce a daily Markdown morning brief with optional WeChat delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact references scripts/morning_briefing.py, but that script is not included in the package. <br>
-Mitigation: Confirm or add the script before running the manual or scheduled commands. <br>
-Risk: The skill can write briefing archives to a local default folder. <br>
-Mitigation: Review the output directory before execution and write only to approved locations. <br>
-Risk: Optional WeChat delivery may distribute finance-news summaries to a channel. <br>
-Mitigation: Enable scheduled delivery only for appropriate channels and review summaries for accuracy and audience suitability. <br>
+## Use Case:
 
+External users and agents use this skill to generate a daily China-market briefing that combines A-share index data, Chinese news RSS feeds, categorization, local Markdown archiving, and a concise WeChat-ready summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/answeryl/cn-market-briefing) <br>
-- [Skill homepage](https://clawhub.com/skills/morning-briefing) <br>
-- [China News Service RSS](https://www.chinanews.com.cn/rss/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown briefing with shell and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a full local archive and a condensed WeChat push; the artifact notes a default archive path of ~/Desktop/早间新闻/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The referenced execution script is not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the script separately before installation, inspect it before execution, and run it manually in a virtual environment first.
+
+Risk: The skill can write Markdown archives to the Desktop and send summaries to a WeChat channel.
+
+Mitigation: Confirm the output directory and WeChat destination before scheduled use, and periodically review retained local briefing archives.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/answeryl/skills/cn-market-briefing)
+- [Publisher profile](https://clawhub.ai/user/answeryl)
+- [Skill homepage](https://clawhub.com/skills/morning-briefing)
+- [China News RSS](https://www.chinanews.com.cn/rss/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown briefing, concise WeChat announcement text, and setup or scheduling snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a full local Markdown archive and a shortened categorized summary for WeChat delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

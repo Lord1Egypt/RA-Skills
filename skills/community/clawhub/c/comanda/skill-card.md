@@ -1,42 +1,50 @@
-## Description: <br>
-Generate, visualize, and execute declarative AI pipelines using the comanda CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comanda helps agents generate, visualize, edit, and run declarative YAML AI pipelines with the comanda CLI across multiple model providers.
 
-## Publisher: <br>
-[kris-hansen](https://clawhub.ai/user/kris-hansen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kris-hansen](https://clawhub.ai/user/kris-hansen)
 
-## Use Case: <br>
-Developers and engineers use Comanda to create, inspect, edit, and run YAML-based LLM workflows across multiple model providers and agent CLIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Comanda workflows can call models, run allowlisted shell tools, read or write files, and persist indexes or loop output. <br>
-Mitigation: Review generated YAML before running workflows, keep tool allowlists narrow, and avoid untrusted shell-enabled workflows. <br>
-Risk: Workflows may use external provider credentials or process private repository content. <br>
-Mitigation: Scope provider API keys where possible and be careful when indexing private repositories or running long agentic loops. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, inspect, refine, and run Comanda workflow YAML for LLM pipelines, including file-based data flow, parallel fan-in, branching, tool steps, and agentic loops.
 
-## Reference(s): <br>
-- [Comanda homepage](https://comanda.sh) <br>
-- [Comanda repository](https://github.com/kris-hansen/comanda) <br>
-- [Comanda Workflow Spec](references/WORKFLOW-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and YAML workflow examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce workflow files, command suggestions, charts, and execution guidance for the comanda CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated workflows can include shell tool steps, URL inputs, codebase indexing, or agentic loops that may act on local files or external content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated workflow YAML before execution, keep command allowlists and allowed paths narrow, and run tool-enabled workflows only when the workflow source is trusted.
+
+## Reference(s):
+
+- [Comanda homepage](https://comanda.sh)
+- [Comanda Workflow Spec](references/WORKFLOW-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce workflow YAML, CLI commands, configuration guidance, and review notes for generated Comanda workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

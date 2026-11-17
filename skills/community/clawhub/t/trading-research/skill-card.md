@@ -1,48 +1,62 @@
-## Description: <br>
-Binance cryptocurrency trading research, technical analysis, and position management. Triggers on requests for crypto prices, market data, trading analysis, DCA planning, position sizing, whale activity, or any trading research questions about Bitcoin, altcoins, or crypto markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Binance cryptocurrency trading research, technical analysis, DCA planning, position sizing, market scanning, and whale activity support for crypto market questions.
 
-## Publisher: <br>
-[fpsjago](https://clawhub.ai/user/fpsjago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fpsjago](https://clawhub.ai/user/fpsjago)
 
-## Use Case: <br>
-External users and agents use this skill to research Binance cryptocurrency markets, run technical analysis, plan DCA schedules, size positions, scan market opportunities, and summarize whale activity. Outputs are informational trading research and should not be treated as personalized financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Trading analysis may be mistaken for personalized financial advice or used to make high-risk decisions. <br>
-Mitigation: Treat outputs as informational research only, require human review before acting, and apply independent financial judgment and risk controls. <br>
-Risk: The skill contacts Binance public APIs and may be unavailable or restricted in some regions. <br>
-Mitigation: Use only where Binance API access is permitted, do not bypass regional restrictions, and expect graceful failure when endpoints are blocked or unavailable. <br>
-Risk: Reference material includes examples for authenticated Binance account access and order placement. <br>
-Mitigation: Do not provide live API keys or execute account/order workflows without separate code review, least-privilege keys, testnet or dry-run safeguards, and explicit human confirmation. <br>
-Risk: Market data is snapshot-based REST data and may become stale or incomplete. <br>
-Mitigation: Refresh data before decisions, compare against other sources when appropriate, and include caveats about timing and market volatility. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Trading Research on ClawHub](https://clawhub.ai/fpsjago/trading-research) <br>
-- [Binance API Quick Reference](references/binance-api.md) <br>
-- [Technical Indicators Reference](references/indicators.md) <br>
-- [Trading Strategies Reference](references/strategies.md) <br>
-- [Binance public market data API](https://data-api.binance.vision) <br>
-- [Binance futures public API](https://fapi.binance.com) <br>
+## Use Case:
 
+External users and developers use this skill to research Binance crypto markets, retrieve public market data, calculate indicators, plan DCA schedules, size positions, scan USDT pairs, and assess whale or orderbook activity. Treat outputs as research support, not financial advice or automated trading.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal output, with optional JSON from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Binance public API calls for market data and locally calculated trading research outputs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Trading analysis, MACD-based signals, and position sizing calculations may be wrong or unsuitable for a user's financial situation.
+
+Mitigation: Treat outputs as educational research, independently verify calculations and signals, and avoid risking money based only on the skill output.
+
+Risk: Authenticated Binance API examples could be misused with keys that allow live trading.
+
+Mitigation: Do not provide Binance API keys with trading permissions; use read-only credentials or public endpoints for research workflows.
+
+Risk: The artifact includes a VPN bypass suggestion for Binance API access errors.
+
+Mitigation: Do not bypass local access restrictions; use only compliant data access methods for the user's jurisdiction.
+
+## Reference(s):
+
+- [Trading Research ClawHub listing](https://clawhub.ai/fpsjago/skills/trading-research)
+- [Binance API Quick Reference](references/binance-api.md)
+- [Technical Indicators Reference](references/indicators.md)
+- [Trading Strategies Reference](references/strategies.md)
+- [Binance Spot REST API](https://api.binance.com)
+- [Binance Futures REST API](https://fapi.binance.com)
+- [Binance Data API](https://data-api.binance.vision)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, numeric analysis, and optional JSON from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Binance public REST endpoints for market data; authenticated trading setup is referenced, but the skill states it does not execute trades.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

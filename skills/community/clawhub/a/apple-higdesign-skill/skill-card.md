@@ -1,64 +1,65 @@
-## Description: <br>
-Provides Apple platform design guidance based on Apple Human Interface Guidelines, covering design principles, typography, color, SF Symbols, components, accessibility, dark mode, animation, spatial layout for visionOS, and branding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Apple Human Interface Guidelines reference guidance for Apple platform design, including typography, color, SF Symbols, components, accessibility, animation, spatial layout, and branding.
 
-## Publisher: <br>
-[yhongm](https://clawhub.ai/user/yhongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhongm](https://clawhub.ai/user/yhongm)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill to answer Apple platform UI design questions and receive concise HIG-style guidance for iOS, iPadOS, macOS, watchOS, tvOS, and visionOS interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger on broad Apple platform design mentions. <br>
-Mitigation: Use it for Apple HIG-style design help and confirm that the response is relevant to the specific platform and UI question. <br>
-Risk: Apple design details and platform guidance can change over time. <br>
-Mitigation: Verify current design requirements against official Apple documentation when accuracy matters. <br>
+## Use Case:
 
+Developers and designers use this skill to apply Apple HIG-aligned guidance while designing or reviewing iOS, iPadOS, macOS, watchOS, tvOS, and visionOS interfaces.
 
-## Reference(s): <br>
-- [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/) <br>
-- [Apple HIG Typography](https://developer.apple.com/design/human-interface-guidelines/typography) <br>
-- [Apple HIG Color](https://developer.apple.com/design/human-interface-guidelines/color) <br>
-- [Apple HIG SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols) <br>
-- [Apple HIG Accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility) <br>
-- [Apple HIG Components](https://developer.apple.com/design/human-interface-guidelines/components) <br>
-- [Apple HIG Animation](https://developer.apple.com/design/human-interface-guidelines/animation) <br>
-- [Apple HIG Branding](https://developer.apple.com/design/human-interface-guidelines/branding) <br>
-- [Apple HIG Dynamic Type](https://developer.apple.com/design/human-interface-guidelines/dynamic-type) <br>
-- [README](README.md) <br>
-- [Accessibility Reference](references/accessibility.md) <br>
-- [Animation Reference](references/animation.md) <br>
-- [Branding Reference](references/branding.md) <br>
-- [Color System Reference](references/color.md) <br>
-- [Buttons Reference](references/components-buttons.md) <br>
-- [Container Components Reference](references/components-containers.md) <br>
-- [Controls Reference](references/components-controls.md) <br>
-- [Lists, Tables & Collections Reference](references/components-lists.md) <br>
-- [Navigation Components Reference](references/components-navigation.md) <br>
-- [Text Input Components Reference](references/components-textfield.md) <br>
-- [Design Principles Reference](references/design-principles.md) <br>
-- [SF Symbols Reference](references/sf-symbols.md) <br>
-- [Spatial Layout Reference](references/spatial-layout.md) <br>
-- [Typography System Reference](references/typography.md) <br>
-- [Apple Watch HIG Reference](references/watchos-hig.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Markdown prose with optional HIG references and design recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not produce implementation code; intended output is a clean design answer with optional pitfalls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: ClawHub release metadata) <br>
+Risk: Broad Apple-related triggers may make the skill appear in generic Apple discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking for Apple platform design guidance before relying on the skill's recommendations.
+
+Risk: Generated HealthKit or device-sync code can affect user consent, privacy disclosure, and data minimization.
+
+Mitigation: Review any generated code for explicit consent, clear privacy disclosure, and minimal data use before implementation.
+
+Risk: The source content has Chinese-language defaults and may not fit every team's localization needs.
+
+Mitigation: Review generated wording and terminology for the target audience and language before publishing product-facing guidance.
+
+## Reference(s):
+
+- [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/)
+- [Apple HIG Typography](https://developer.apple.com/design/human-interface-guidelines/typography)
+- [Apple HIG Color](https://developer.apple.com/design/human-interface-guidelines/color)
+- [Apple HIG SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols)
+- [Apple HIG Accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility)
+- [Apple HIG Components](https://developer.apple.com/design/human-interface-guidelines/components)
+- [Apple HIG Animation](https://developer.apple.com/design/human-interface-guidelines/animation)
+- [Apple HIG Branding](https://developer.apple.com/design/human-interface-guidelines/branding)
+- [SF Symbols App](https://developer.apple.com/sf-symbols/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with occasional code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only reference skill; no executable install path.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

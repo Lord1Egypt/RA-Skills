@@ -1,41 +1,60 @@
-## Description: <br>
-Generate AI audio and synthesize voices with Fish Audio via the AceDataCloud API for text-to-speech, voice synthesis, and audio content generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through AceDataCloud's Fish Audio API for text-to-speech, saved voices, and one-shot voice cloning.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers and content teams use this skill to call AceDataCloud's Fish Audio API for text-to-speech, custom voice synthesis, voice cloning, and task polling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice cloning may be used without authorization from the speaker. <br>
-Mitigation: Clone voices only with clear permission from the speaker and in compliance with applicable laws. <br>
-Risk: The skill sends text and reference-audio URLs to AceDataCloud and uses an API token. <br>
-Mitigation: Use scoped or revocable credentials, monitor usage costs, and share only data appropriate for that provider. <br>
+## Use Case:
 
+Developers and content creators use this skill to configure AceDataCloud access and generate narration with public, saved, or authorized reference voices.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Germey/acedatacloud-fish-audio) <br>
-- [AceDataCloud Fish Audio API endpoint](https://api.acedata.cloud/fish/audios) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ACEDATACLOUD_API_TOKEN; generated audio is delivered by the external Fish Audio/AceDataCloud API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: One-shot voice cloning can impersonate someone without their consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only voices and reference audio you own or are authorized to use; obtain consent before cloning another person's voice.
+
+Risk: Submitting sensitive text or reference audio sends it to AceDataCloud.
+
+Mitigation: Avoid submitting sensitive material unless you are comfortable sharing it with AceDataCloud.
+
+Risk: A broadly scoped or exposed API token can permit unintended requests.
+
+Mitigation: Keep the token private and restrict it to the APIs needed for the workflow.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/acedatacloud/skills/fish-audio)
+- [AceDataCloud first-run guide](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw)
+- [AceDataCloud authentication guide](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+- [AceDataCloud asynchronous task guide](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with bash commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API responses provide an audio URL or an asynchronous task ID.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Execute Retrieval-Augmented Generation (RAG) using Ragie.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute Retrieval-Augmented Generation (RAG) using Ragie.ai for document ingestion, retrieval, document management, and grounded answer construction.
 
-## Publisher: <br>
-[Hatim-BE](https://clawhub.ai/user/Hatim-BE) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hatim-be](https://clawhub.ai/user/hatim-be)
 
-## Use Case: <br>
-Developers and agents use this skill to ingest files or URLs into Ragie.ai, retrieve relevant chunks, and produce grounded answers from the configured knowledge base. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send selected files, URLs, and retrieval queries to Ragie.ai. <br>
-Mitigation: Install only when Ragie is trusted for the documents and questions being processed, and avoid uploading secrets or regulated data unless approved. <br>
-Risk: Document-management actions can delete Ragie documents. <br>
-Mitigation: Require manual confirmation before deletion and verify the target document ID before running the action. <br>
-Risk: The skill requires a Ragie API key. <br>
-Mitigation: Use a scoped RAGIE_API_KEY, load it from the environment or a private .env file, and do not expose API keys in final answers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ragie.ai API](https://api.ragie.ai) <br>
-- [Ragie.ai App](https://app.ragie.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/Hatim-BE/ragie-rag) <br>
+## Use Case:
 
+Developers and external users use this skill to upload documents or URLs to Ragie.ai, retrieve relevant chunks from a knowledge base, manage stored documents, and produce grounded answers with document citations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON retrieval examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses retrieved Ragie chunks as grounding context and cites document names for factual claims.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected documents, URLs, queries, filters, and metadata are processed by Ragie.ai.
+
+Mitigation: Use the skill only for content intended for Ragie.ai processing and scope retrieval with partitions or filters when appropriate.
+
+Risk: RAGIE_API_KEY provides access to the configured Ragie.ai account.
+
+Mitigation: Keep the API key private, load it from environment variables, avoid committing .env files, and do not log sensitive headers.
+
+Risk: Document management commands can delete stored Ragie.ai documents.
+
+Mitigation: Review document IDs carefully before confirming deletion.
+
+## Reference(s):
+
+- [Ragie API base URL](https://api.ragie.ai)
+- [Ragie application](https://app.ragie.ai)
+- [ClawHub skill page](https://clawhub.ai/hatim-be/skills/ragie-rag)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown responses, JSON retrieval results, and shell command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RAGIE_API_KEY and sends selected documents, URLs, queries, filters, and metadata to Ragie.ai.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

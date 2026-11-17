@@ -1,42 +1,55 @@
-## Description: <br>
-Queries current meeting room status, including available rooms and recently released rooms, and formats the results for users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries current meeting room availability and recently released rooms, then presents the results in grouped, user-facing tables.
 
-## Publisher: <br>
-[naffan2014](https://clawhub.ai/user/naffan2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[naffan2014](https://clawhub.ai/user/naffan2014)
 
-## Use Case: <br>
-Employees and workplace assistants use this skill to check which meeting rooms are currently available or were recently released. It presents room status in grouped Markdown tables and includes the booking portal link for follow-up reservation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Room status responses can include meeting-room availability and recently released-room booker names and subjects. <br>
-Mitigation: Confirm that the smartrooms.ke.com service and displayed meeting metadata are appropriate for the organization before installation. <br>
-Risk: The skill points users to an external booking portal after presenting query results. <br>
-Mitigation: Confirm that https://new-meeting.ke.com/ is the approved booking destination for the intended users. <br>
+## Use Case:
 
+Employees and workplace support agents use this skill to answer questions about currently available meeting rooms or rooms that were recently released. The skill formats results by city and office area, includes room details and update time, and provides a booking link while making clear that booking is not performed by the skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/naffan2014/room-status-query) <br>
-- [Meeting room status API host](https://smartrooms.ke.com) <br>
-- [Meeting room booking portal](https://new-meeting.ke.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Markdown tables with status text and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Groups results by city and office area; converts release times to Beijing time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Released-room results may expose employee names and meeting subjects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit installation and use to authorized users, and configure ordinary availability checks to omit booker and subject unless there is a clear business need.
+
+Risk: Room status may be stale because the source data is described as cached and synchronized every 1-5 minutes.
+
+Mitigation: Display the provided room status update time with each response so users can judge freshness before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/naffan2014/skills/room-status-query)
+- [Smartrooms API Host](https://smartrooms.ke.com)
+- [Meeting Room Booking Portal](https://new-meeting.ke.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown tables with concise status text and a booking link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Groups rooms by city and office area, shows the room status update time, converts release times to Beijing time, and avoids raw JSON output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

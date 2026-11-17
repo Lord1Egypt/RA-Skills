@@ -1,38 +1,48 @@
-## Description: <br>
-Audits a game, feature flow, economy path, onboarding journey, progression chain, or live-ops loop for friction quality and friction accumulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit a game, feature flow, economy path, onboarding journey, progression chain, or live-ops loop for friction quality and friction accumulation.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[stanestane](https://clawhub.ai/user/stanestane)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Game designers, product teams, and developers use this skill to audit player journeys, feature flows, progression paths, economies, onboarding, and live-ops loops. It helps distinguish productive challenge from harmful friction and identify where accumulated friction may cause confusion, frustration, disengagement, or churn.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may shape game-design recommendations that affect player experience or product decisions.
+
+Mitigation: Review outputs with design, product, and player-data context before changing game systems, economies, onboarding, or live-ops flows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Game designers, product teams, and live-ops teams use this skill to map where player journeys slow down, identify friction that is productive or harmful, and prioritize changes that improve clarity, pacing, and retention risk. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The audit may process proprietary game metrics, unreleased plans, or sensitive player data provided by the user. <br>
-Mitigation: Avoid supplying proprietary metrics, unreleased roadmap details, or sensitive player data unless the agent environment is approved to process that information. <br>
+**Output Format:** [Markdown audit with a journey breakdown, friction map table, accumulation analysis, diagnosis, and recommendations.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stanestane/game-design-friction-journey-audit) <br>
+**Other Properties Related to Output:** [May include structured tables and prioritized design recommendations; no code execution or data access behavior.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown audit with tables and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an audit target, journey breakdown, friction map, accumulation analysis, breakpoints, diagnosis, and recommendations.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

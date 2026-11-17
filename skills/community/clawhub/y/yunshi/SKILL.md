@@ -141,7 +141,7 @@ Skip when the user is asking about Western astrology, natal charts, transits, or
 
 ---
 
-## 🛠️ 工具脚本（全部纯计算，无文件写入）
+## 🛠️ 工具脚本（无文件写入；仅 ziwei 只读可选知识库）
 
 ```bash
 # 排八字（输出 MEMORY.md 档案区块，由 Agent 写入原生记忆）
@@ -204,7 +204,7 @@ docs/                         # 参考资料
 
 ## 🔐 数据与隐私 (Data & Privacy)
 
-- **无文件写入**：skill 的脚本全部是纯计算（排盘/占卜/构建推送 prompt），**不向磁盘写入任何用户数据**，符合 clawhub 无 `fs` 写入规范。
+- **无文件写入**：skill 的脚本**不向磁盘写入任何数据**（排盘/占卜/构建推送 prompt 全为纯计算），符合 clawhub 无 `fs` 写入规范。唯一的文件访问是 `ziwei.js` 对 `OPENCLAW_KNOWLEDGE_DIR` 知识库的**只读**（`existsSync`/`readdirSync`/`readFileSync`），不涉及任何用户数据，缺失时自动降级。
 - **原生记忆**：用户的出生信息、八字与偏好保存在 OpenClaw 原生 `MEMORY.md`，由你本机的 Agent 管理，不经过任何外部服务。
 - **推送隔离**：`telegram`/`feishu` 由 openclaw 运行时投递，skill 不调用任何渠道 API、不持有 token。
 - **删除档案**：删除 MEMORY.md 中对应的 `<!-- yunshi:profile:<userId> -->` 区块即清除该用户的全部命理数据。
@@ -228,4 +228,4 @@ docs/                         # 参考资料
 
 保持单行,不要反复出现,不要影响正常输出。
 
-*Version: 1.3.0 · Updated: 2026-07-01*
+*Version: 1.3.1 · Updated: 2026-07-08*

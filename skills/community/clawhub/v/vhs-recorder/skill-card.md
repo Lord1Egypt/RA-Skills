@@ -1,45 +1,55 @@
-## Description: <br>
-Create professional terminal recordings with VHS tape files - guides through syntax, timing, settings, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create professional terminal recordings with VHS tape files - guides through syntax, timing, settings, and best practices.
 
-## Publisher: <br>
-[killerapp](https://clawhub.ai/user/killerapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[killerapp](https://clawhub.ai/user/killerapp)
 
-## Use Case: <br>
-Developers, technical writers, and CLI maintainers use this skill to draft VHS tape files and guidance for terminal demos, README animations, documentation videos, and social media recordings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated or copied VHS tape examples can run destructive shell commands. <br>
-Mitigation: Review every .tape file before running it, use a disposable workspace, and replace broad deletion examples with narrowly scoped demo resources. <br>
-Risk: Examples include broad Docker cleanup commands that can affect unrelated containers. <br>
-Mitigation: Use container names, labels, or project-specific IDs instead of commands that stop all running containers. <br>
-Risk: Production database deletion examples could be copied into real environments. <br>
-Mitigation: Keep destructive examples as non-executable teaching material and substitute safe test fixtures before recording. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [VHS Tape File Syntax Reference](artifact/references/vhs-syntax.md) <br>
-- [VHS Timing Control Reference](artifact/references/timing-control.md) <br>
-- [VHS Settings Reference](artifact/references/settings.md) <br>
-- [VHS Recording Examples](artifact/references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/killerapp/vhs-recorder) <br>
+## Use Case:
 
+Developers and documentation authors use this skill to create VHS tape files for CLI demos, README animations, and documentation videos.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with VHS tape snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated .tape content, timing recommendations, VHS settings, and review guidance before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes hidden and overbroad destructive command examples that users or agents could run.
+
+Mitigation: Run tape files only in disposable test directories or containers, and replace destructive cleanup commands with narrowly scoped demo-resource cleanup.
+
+Risk: The skill depends on third-party terminal recording tools and command examples that may affect the local environment.
+
+Mitigation: Review generated tape files before execution, confirm prerequisites, and pin third-party tools where possible.
+
+## Reference(s):
+
+- [VHS Tape File Syntax Reference](references/vhs-syntax.md)
+- [VHS Timing Control Reference](references/timing-control.md)
+- [VHS Settings Reference](references/settings.md)
+- [VHS Recording Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with VHS tape snippets and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated tape-file structure, timing guidance, output-format recommendations, and command examples for VHS recordings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

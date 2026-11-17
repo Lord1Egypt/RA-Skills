@@ -1,43 +1,59 @@
-## Description: <br>
-Quantum-resistant payments and private AI inference for autonomous agents, including ML-DSA-65 payment signing, PQC payment verification, Ghost AI DeFi intent parsing, and ML-KEM-768 payload encryption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quantum-resistant payments and private AI inference for autonomous agents, including ML-DSA-65 payment signing, PQC payment verification, private DeFi intent parsing, and ML-KEM-768 payload encryption.
 
-## Publisher: <br>
-[veil-protocol-1](https://clawhub.ai/user/veil-protocol-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veil-protocol-1](https://clawhub.ai/user/veil-protocol-1)
 
-## Use Case: <br>
-Developers and external agents use this skill to sign and verify post-quantum payment headers, encrypt sensitive payloads, and parse private DeFi intents through an MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles high-impact wallet and DeFi data and the security review warns against pasting seed phrases, private keys, or unrecoverable secrets without independent runtime verification. <br>
-Mitigation: Install only if the npm package and Veil service are trusted, and avoid entering seed phrases, private keys, or unrecoverable secrets unless runtime behavior, logging, and privacy handling have been independently verified. <br>
-Risk: Ghost AI privacy claims may not apply when the documented local fallback mode is used, because the fallback parses intents without FHE. <br>
-Mitigation: Treat fallback results as local parsing rather than FHE-protected private inference, and do not rely on fallback mode for confidential DeFi instructions. <br>
-Risk: The artifact states that contracts are on Base Sepolia testnet only and mainnet deployment is pending a formal security audit. <br>
-Mitigation: Use production networks only after confirming audited mainnet deployment status and reviewing the relevant contract and payment-flow security documentation. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect an MCP server that signs and verifies post-quantum payment headers, parses private DeFi intents, and encrypts sensitive payloads for agent workflows.
 
-## Reference(s): <br>
-- [Veil Protocol homepage](https://veilprotocol.net) <br>
-- [ClawHub skill page](https://clawhub.ai/veil-protocol-1/veil-protocol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON tool-call results and Markdown guidance with inline shell and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool results may include payment signatures, payment headers, verification details, encrypted payloads, key encapsulation ciphertexts, and DeFi execution plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security summary flags an unaudited npm MCP server and unsafe handling of wallet-grade secrets and private financial context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and audit the npm package before use, run it with minimal filesystem and environment access, and avoid entering seed phrases, private keys, or recovery codes.
+
+Risk: DeFi instructions, balances, wallet context, and intent details may be exposed to third-party code or service infrastructure.
+
+Mitigation: Treat all wallet and DeFi context as sensitive, limit shared data to the minimum required, and review generated execution plans before taking financial action.
+
+Risk: The artifact notes Base Sepolia testnet support only and pending mainnet security audit.
+
+Mitigation: Use testnet workflows unless an audited mainnet release is separately verified.
+
+## Reference(s):
+
+- [Veil Protocol homepage](https://veilprotocol.net)
+- [ClawHub skill listing](https://clawhub.ai/veil-protocol-1/skills/veil-protocol)
+- [Publisher profile](https://clawhub.ai/user/veil-protocol-1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Text]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing MCP setup instructions and tool-call examples for payment signing, payment verification, private DeFi planning, and payload encryption.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

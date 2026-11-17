@@ -1,49 +1,62 @@
-## Description: <br>
-Automates authorized credential security auditing with default device credential lookup, password dictionary generation, and multi-protocol password testing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates credential security audits with device default-credential lookup, password wordlist generation, and multi-protocol credential testing.
 
-## Publisher: <br>
-[jeanphorn](https://clawhub.ai/user/jeanphorn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeanphorn](https://clawhub.ai/user/jeanphorn)
 
-## Use Case: <br>
-Security engineers, penetration testers, and auditors use this skill to support credential assessments on systems they are authorized to test. It helps find default credentials, build target-specific password lists, run controlled password checks, and summarize remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated password testing can be misused against systems without authorization. <br>
-Mitigation: Require written authorization and an explicit target scope before enabling any login attempts. <br>
-Risk: Password guessing can trigger account lockouts, service disruption, or detection controls. <br>
-Mitigation: Use low request rates, lockout-aware attempt limits, and manual confirmation before active testing. <br>
-Risk: Generated wordlists and credential reports may contain sensitive information. <br>
-Mitigation: Store outputs privately, restrict access, and delete or archive them according to the assessment data-handling plan. <br>
+## Use Case:
 
+Security engineers, penetration testers, and auditors use this skill to support authorized credential assessments, including default-password checks, password dictionary generation, and credential-test planning across common protocols.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jeanphorn/credential-auditor) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Python](https://www.python.org/) <br>
-- [device_passwords.json](references/device_passwords.json) <br>
-- [password_rules.json](references/password_rules.json) <br>
-- [protocol_configs.json](references/protocol_configs.json) <br>
-- [usernames.txt](references/usernames.txt) <br>
-- [passlist.txt](references/passlist.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with shell command examples, generated wordlists, JSON reports, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local files containing wordlists or credential audit results; these should be handled as sensitive data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automated credential testing and brute-force workflows can be misused or run outside an authorized scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for security testing on systems the operator is explicitly authorized to assess, and confirm the target scope before running any credential test.
+
+Risk: External-tool workflows are high risk and can depend on mutable local tool installations.
+
+Mitigation: Verify the exact release version, prefer an isolated environment, and avoid symlinking a mutable checkout into the agent workspace.
+
+Risk: Some advertised credential-testing capabilities are incomplete.
+
+Mitigation: Validate behavior on non-production test targets and review generated reports before using results for operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeanphorn/skills/credential-auditor)
+- [Device default credential data](references/device_passwords.json)
+- [Password generation rules](references/password_rules.json)
+- [Protocol test configuration](references/protocol_configs.json)
+- [Username dictionary](references/usernames.txt)
+- [Password dictionary](references/passlist.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, generated text reports, JSON or list files, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local credential-audit artifacts and commands for optional external tools such as Hydra, Medusa, or Ncrack.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

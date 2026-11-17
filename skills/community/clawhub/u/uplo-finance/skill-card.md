@@ -1,44 +1,55 @@
-## Description: <br>
-AI-powered financial knowledge management. Search financial statements, audit findings, tax documents, and treasury records with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered financial knowledge management. Search financial statements, audit findings, tax documents, and treasury records with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Finance employees use this skill to search organization-specific financial statements, audit materials, tax records, treasury policies, budgets, forecasts, and variance analyses through UPLO. It supports period-sensitive lookup, contextual finance search, directive retrieval, organizational context export, and finance documentation gap reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connected MCP service can expose sensitive finance, audit, treasury, strategic, and organizational context. <br>
-Mitigation: Install only for users authorized to view the connected records, use a least-privilege UPLO MCP token, and confirm classification-tier enforcement on the UPLO server. <br>
-Risk: Financial records can be period-sensitive, privileged, draft, or subject to disclosure restrictions. <br>
-Mitigation: Require outputs to cite the reporting period, document type, and preparation date, and avoid summarizing restricted projections, M&A data, executive compensation, or privileged materials unless access is explicitly permitted. <br>
-Risk: Finance search results could be mistaken for financial advice. <br>
-Mitigation: Use the skill to surface relevant documents and responsible finance owners rather than making financial recommendations. <br>
+## Use Case:
 
+Finance, accounting, treasury, audit, and FP&A teams use this skill to search organizational financial records, retrieve period-sensitive policies and figures, investigate variances, and locate responsible knowledge owners.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-finance) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MCP-backed search guidance, finance document citations, responsible-owner lookup, and knowledge-gap reporting prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The MCP server is launched from an unpinned third-party npm package while receiving a sensitive finance API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the MCP package version, use a dedicated least-privilege UPLO token, protect and rotate the API key, and run the server with limited filesystem and network access.
+
+Risk: The skill can export organizational context and retrieve restricted financial, audit, tax, treasury, M&A, projection, or executive compensation information.
+
+Mitigation: Restrict export_org_context and sensitive search workflows to approved users, enforce classification tiers, and review summaries before sharing privileged or confidential finance information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roojenkins/skills/uplo-finance)
+- [UPLO](https://uplo.ai)
+- [UPLO Schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline tool and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Grounds responses in configured UPLO financial knowledge sources and should preserve reporting period, document type, preparation date, classification tier, and knowledge-owner context when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

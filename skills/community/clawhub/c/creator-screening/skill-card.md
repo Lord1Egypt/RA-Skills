@@ -1,44 +1,62 @@
-## Description: <br>
-Screens and evaluates Instagram, TikTok, and YouTube creators using configurable quality frameworks, Memories.ai video metadata and MAI analysis, and report-ready scoring criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens and evaluates social media creators using configurable quality frameworks, Memories.ai video analysis, profile metadata, transcript evidence, and scoring criteria for creator reports.
 
-## Publisher: <br>
-[shawnshenopeninterx](https://clawhub.ai/user/shawnshenopeninterx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shawnshenopeninterx](https://clawhub.ai/user/shawnshenopeninterx)
 
-## Use Case: <br>
-Marketing, partnership, and creator operations teams use this skill to vet social media creators for brand fit, production quality, delivery, and engagement signals. Agents can run the helper scripts to fetch creator metadata, analyze videos, score creators, and produce screening reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The CAC Crusher framework can unfairly affect creator approval decisions through rural/class-coded and subjective appearance-based rejection rules. <br>
-Mitigation: Revise the rubric to remove those criteria before real creator selection, and require human review for borderline or rejected creators. <br>
-Risk: Using the skill sends creator URLs, usernames, and related public social-media metadata to Memories.ai and possibly Apify through the user's API keys. <br>
-Mitigation: Use only authorized public data, keep API keys in environment variables, and confirm that external API processing is allowed for the intended workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shawnshenopeninterx/creator-screening) <br>
-- [CAC Crusher Creator Screening Framework](references/frameworks/cac-crusher.md) <br>
-- [Default Creator Screening Framework](references/frameworks/default.md) <br>
-- [Custom Framework Template](references/frameworks/template.md) <br>
-- [Memories.ai API Tools](https://api-tools.memories.ai) <br>
-- [Memories.ai V2 API Base](https://mavi-backend.memories.ai/serve/api/v2) <br>
+## Use Case:
 
+Marketing, partnerships, and creator operations teams use this skill to vet Instagram, TikTok, and YouTube creators before approval decisions. It gathers profile and video evidence, analyzes content, applies screening frameworks, and generates per-creator verdicts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown screening cards, JSON scoring output, and shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include profile stats, per-section PASS/FAIL/FLAG scores, transcript excerpts, visual quality notes, and APPROVED, REJECTED, or CONDITIONAL verdicts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Creator URLs, profile metadata, captions, and transcript or video-analysis requests may be sent to Memories.ai and optionally Apify.
+
+Mitigation: Use the skill only with data that may be shared with those services, and use dedicated least-privilege API keys.
+
+Risk: The Apify fallback has a credential-handling weakness according to the authoritative security guidance.
+
+Mitigation: Avoid the Apify fallback until token handling is fixed, or review and replace that path before use.
+
+Risk: The included CAC Crusher framework contains biased rejection criteria that can affect real creator approval decisions.
+
+Mitigation: Review or replace the framework criteria before using the skill for production creator screening decisions.
+
+## Reference(s):
+
+- [Creator Screening on ClawHub](https://clawhub.ai/shawnshenopeninterx/skills/creator-screening)
+- [Publisher profile](https://clawhub.ai/user/shawnshenopeninterx)
+- [Memories.ai API tools](https://api-tools.memories.ai)
+- [Memories.ai V2 API base URL](https://mavi-backend.memories.ai/serve/api/v2)
+- [CAC Crusher creator screening framework](references/frameworks/cac-crusher.md)
+- [Default creator screening framework](references/frameworks/default.md)
+- [Framework template](references/frameworks/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON creator screening reports with supporting shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PASS/FAIL/FLAG section scores, profile statistics, transcript excerpts, visual quality notes, red flags, and final creator verdicts.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

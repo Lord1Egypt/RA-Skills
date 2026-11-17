@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-kling-2-5-turbo-pro
 description: Kling 2.5 Turbo Pro video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-2.5-turbo-pro`, text-to-video, image-to-video, first and last frame guidance, duration, aspect ratio, negative prompt, task submission, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/kling-2-5-turbo-pro","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/kling-2-5-turbo-pro","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Kling 2.5 Turbo Pro Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/kling-2-5-turbo-pro>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/kling-2-5-turbo-pro>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Kling 2.5 Turbo Pro video jobs on PoYo. It helps agents prepare prompt-based and frame-guided payloads, submit async tasks, and explain polling or webhook follow-up.
 

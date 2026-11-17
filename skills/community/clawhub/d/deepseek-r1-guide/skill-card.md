@@ -1,42 +1,59 @@
-## Description: <br>
-DeepSeek AI development guidance for DeepSeek API integration, model selection, inference optimization, and local deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepSeek AI development assistant for DeepSeek API integration, model selection, inference optimization, and local deployment guidance.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose DeepSeek models, integrate DeepSeek-compatible API calls, tune inference behavior, and plan optional local deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example API calls send prompts to DeepSeek services when users run them. <br>
-Mitigation: Review prompts before execution and avoid sending confidential code, secrets, personal data, or regulated content unless policy permits third-party API use. <br>
-Risk: Placeholder API keys in examples could be replaced with real credentials in copied code. <br>
-Mitigation: Store real keys in environment variables or a secret manager and never commit credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose DeepSeek models, integrate the DeepSeek API, draft Python, Node.js, and curl examples, and plan local deployment options.
 
-## Reference(s): <br>
-- [DeepSeek API base URL](https://api.deepseek.com) <br>
-- [DeepSeek chat completions endpoint](https://api.deepseek.com/chat/completions) <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/deepseek-r1-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples may call DeepSeek services if a user chooses to run them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: API examples send prompts and API keys to a third-party DeepSeek endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets and regulated data in prompts, store real API keys outside shell history, and review third-party provider terms before use.
+
+Risk: Local deployment examples include package installation and model-serving commands.
+
+Mitigation: Pin and verify packages such as `vllm`, run deployments in a virtual environment or container, and review commands before production use.
+
+Risk: Pricing, model capabilities, and hardware guidance can become outdated.
+
+Mitigation: Validate cost, model, and hardware recommendations against current DeepSeek and deployment documentation before relying on them.
+
+## Reference(s):
+
+- [DeepSeek API base URL](https://api.deepseek.com)
+- [DeepSeek chat completions endpoint](https://api.deepseek.com/chat/completions)
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/deepseek-r1-guide)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party API examples, model-selection guidance, local deployment commands, and cost-oriented recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

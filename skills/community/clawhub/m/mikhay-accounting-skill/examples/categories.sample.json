@@ -1,0 +1,18 @@
+{
+  "replace_defaults": false,
+  "categories": {
+    "宠物": [
+      "猫粮",
+      "疫苗",
+      "玩具"
+    ]
+  },
+  "category_aliases": {
+    "健康医疗": "医疗健康"
+  },
+  "subcategory_aliases": {
+    "猫食": "猫粮",
+    "停车": "停车费",
+    "白条还款": "信用卡还款"
+  }
+}

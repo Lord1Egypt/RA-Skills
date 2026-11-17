@@ -1,45 +1,57 @@
-## Description: <br>
-Search torrent indexers with Jackett. Use when the user asks to "search torrents", "search with Jackett", "find releases", "search indexers", "list Jackett indexers", "check Jackett capabilities", "search movie/tv/music/book releases", or mentions Jackett/Torznab-based torrent search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search configured torrent indexers through Jackett's Torznab API for releases, indexers, and capabilities.
 
-## Publisher: <br>
-[imyukehan](https://clawhub.ai/user/imyukehan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imyukehan](https://clawhub.ai/user/imyukehan)
 
-## Use Case: <br>
-Developers and users with a configured Jackett instance use this skill to search torrent indexers, inspect indexer capabilities, and return Jackett/Torznab results in agent-readable form. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Jackett API key is a credential that could expose configured indexers if mishandled. <br>
-Mitigation: Store it only in the documented config file or environment variables, keep file permissions restrictive, and do not commit it to source control. <br>
-Risk: Jackett results can include download links from configured torrent indexers. <br>
-Mitigation: Do not automatically open or fetch returned links; check the source, safety, and legality before using any result. <br>
-Risk: Returned results depend on the trustworthiness of the user's Jackett instance and configured indexers. <br>
-Mitigation: Use only trusted Jackett instances and indexers, and inspect capabilities or narrow searches before acting on results. <br>
+## Use Case:
 
+Developers and power users with a trusted Jackett instance use this skill to search configured torrent indexers, inspect indexer capabilities, and receive release results as JSON or XML.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imyukehan/jackett) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Torznab feed schema](http://torznab.com/schemas/2015/feed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; parsed search results as JSON or raw XML when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Parsed searches default to a 20-result client-side limit and support offset paging, indexer filters, category filters, typed searches, and raw XML output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses a Jackett API key to query configured torrent indexers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the credential file with owner-only permissions and rotate the API key if it may have been exposed.
+
+Risk: Search output can include download, magnet, details, or private tracker URLs that may contain sensitive tokens.
+
+Mitigation: Avoid sharing raw output and redact tracker URLs or tokens before logging or posting results.
+
+Risk: The skill depends on the configured Jackett service and the trustworthiness of its indexers and results.
+
+Mitigation: Use a trusted local HTTPS or loopback Jackett endpoint and review returned results before acting on them.
+
+## Reference(s):
+
+- [Torznab feed schema](http://torznab.com/schemas/2015/feed)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, XML]
+
+**Output Format:** [Markdown guidance with shell commands; parsed search results are JSON by default and raw XML when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parsed results default to a limit of 20 and include a meta object plus a results array; raw XML can be larger.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

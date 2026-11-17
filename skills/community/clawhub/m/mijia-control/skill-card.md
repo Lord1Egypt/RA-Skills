@@ -1,45 +1,66 @@
-## Description: <br>
-Control Xiaomi Mi Home smart devices through Xiaomi Cloud APIs for device status checks, property changes, batch commands, automation scenes, speaker TTS, and fish-feeder automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Xiaomi Mi Home smart devices through the Xiaomi Cloud API, including device status checks, property changes, automation scenes, fish-feeder automation, and XiaoAI speaker text-to-speech.
 
-## Publisher: <br>
-[JasonZhang2015](https://clawhub.ai/user/JasonZhang2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasonzhang2015](https://clawhub.ai/user/jasonzhang2015)
 
-## Use Case: <br>
-External users and developers use this skill to inspect and control Xiaomi Mi Home devices, create Mi Home automation scenes, and run supported helper scripts for household workflows. It is intended for environments where the user has authorized Xiaomi Cloud credentials and understands the connected physical devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Xiaomi Cloud regional account and device support. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Xiaomi Cloud credentials can grant broad control over smart-home devices. <br>
-Mitigation: Use the skill only in trusted environments, keep the credential file restricted, avoid plaintext storage where possible, and rotate Xiaomi credentials if they are exposed. <br>
-Risk: Lock-event polling can reveal occupancy patterns and trigger physical feeder automation. <br>
-Mitigation: Confirm the exact devices and automations before use, test with dry-run or status commands, and disable cron or lock-event feeder automation unless it is explicitly wanted. <br>
-Risk: Device commands and scenes can change the state of lights, heaters, speakers, feeders, and other connected hardware. <br>
-Mitigation: Review device identifiers, scene JSON, and command values before execution, and start with targeted manual commands until behavior is verified. <br>
+## Use Case:
 
+External users and developers use this skill to operate Xiaomi Mi Home devices, inspect device state, create Mi Home automation scenes, and run a lock-event-based fish-feeding workflow for devices they control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JasonZhang2015/mijia-control) <br>
-- [MIoT Spec Reference](https://home.miot-spec.com/spec/) <br>
-- [Device Registry](references/devices.json) <br>
-- [Automation Scene Template](references/scene_template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct execution of scripts that use Xiaomi Cloud credentials and can affect physical smart-home devices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill handles Xiaomi account credentials and service tokens for a smart-home account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an account and devices you control, avoid command-line passwords, protect credential files, and rotate any password previously entered through command-line arguments.
+
+Risk: The release includes household-specific home and device identifiers and can create or use local cache and state files.
+
+Mitigation: Replace bundled identifiers with your own configuration before use, and protect or remove local device cache and fish-feeding state files when they are no longer needed.
+
+Risk: The fish-feeding workflow polls door-lock events and can infer occupancy-related behavior.
+
+Mitigation: Enable the cron workflow only when this automation is explicitly desired, test with dry-run or status commands first, and disable it if occupancy-derived automation is not acceptable.
+
+Risk: The skill can operate real smart-home devices through cloud API commands.
+
+Mitigation: Review generated shell commands and scene JSON before execution, and limit use to non-safety-critical devices unless the behavior has been independently verified.
+
+## Reference(s):
+
+- [Mijia Control on ClawHub](https://clawhub.ai/jasonzhang2015/skills/mijia-control)
+- [Publisher Profile](https://clawhub.ai/user/jasonzhang2015)
+- [Device Registry](references/devices.json)
+- [Scene Template](references/scene_template.json)
+- [Xiaomi Account Login](https://account.xiaomi.com/pass/serviceLogin?sid=xiaomiio&_json=true)
+- [MIoT Spec Reference](https://home.miot-spec.com/spec/<model>)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of local credential, device cache, scene JSON, and fish-feeding state files when the provided commands are run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,2 @@
+[console_scripts]
+base-l2-agent-kit = base_l2_agent_kit.server:main

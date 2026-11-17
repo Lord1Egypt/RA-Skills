@@ -1,45 +1,57 @@
-## Description: <br>
-People-operations assistant covering the full employee lifecycle: recruiting, onboarding, performance reviews, compensation analysis, org planning, policy lookup, and people reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+People-operations assistant covering the full employee lifecycle, including recruiting, onboarding, performance reviews, compensation analysis, org planning, policy lookup, and people reporting.
 
-## Publisher: <br>
-[tobiaswestholm](https://clawhub.ai/user/tobiaswestholm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobiaswestholm](https://clawhub.ai/user/tobiaswestholm)
 
-## Use Case: <br>
-HR teams, people managers, recruiters, and employees use this skill to draft HR materials, analyze people-operations questions, prepare recruiting and onboarding workflows, review compensation context, and summarize policy or workforce data supplied by the user or connected systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate around sensitive HR topics and may handle employee, candidate, compensation, chat, calendar, and email data. <br>
-Mitigation: Limit connected-system scopes, require explicit user confirmation before retrieving or sharing person-specific records, and avoid broad automatic use in casual conversations. <br>
-Risk: The setup script fetches remote sub-skills that are not pinned in this package. <br>
-Mitigation: Review the fetched sub-skills before deployment and verify their contents before connecting production HR systems. <br>
+## Use Case:
 
+HR teams, people-operations staff, managers, and recruiting teams use this skill to draft HR materials, analyze people-operations questions, prepare review and hiring workflows, look up policy context, and produce structured HR reports from user-provided or connected data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobiaswestholm/human-resources) <br>
-- [Publisher profile](https://clawhub.ai/user/tobiaswestholm) <br>
-- [Slack MCP server](https://mcp.slack.com/mcp) <br>
-- [Notion MCP server](https://mcp.notion.com/mcp) <br>
-- [Atlassian MCP server](https://mcp.atlassian.com/v1/mcp) <br>
-- [Bootstrap dependency repository](https://github.com/anthropics/knowledge-work-plugins.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with tables and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference connected HRIS, ATS, knowledge base, calendar, chat, email, and compensation systems when configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup flow installs core sub-skill instructions from an unpinned remote repository before the skill handles sensitive HR workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a release that vendors the sub-skills or pins and verifies the upstream commit and hashes before installation.
+
+Risk: Connected HRIS, ATS, email, chat, calendar, knowledge-base, and compensation-data systems can expose sensitive employee and candidate information.
+
+Mitigation: Grant only the minimum connector access needed for the specific task and review outputs before acting on HR, compensation, recruiting, or policy guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobiaswestholm/skills/human-resources)
+- [Remote sub-skill source used by setup.sh](https://github.com/anthropics/knowledge-work-plugins.git)
+- [Slack MCP endpoint](https://mcp.slack.com/mcp)
+- [Notion MCP endpoint](https://mcp.notion.com/mcp)
+- [Atlassian MCP endpoint](https://mcp.atlassian.com/v1/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with structured templates, tables, checklists, and inline shell commands when setup is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use connected HRIS, ATS, knowledge-base, calendar, chat, email, or compensation-data context when the user grants access; otherwise operates from user-provided context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

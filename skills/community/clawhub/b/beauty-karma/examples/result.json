@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "model": "MiniMax-M3",
+  "score": 8.2,
+  "levelLabel": "状态在线",
+  "analysisMode": "image",
+  "reportHtmlPath": "output/example/yan-zhi-report.html",
+  "reportSvgPath": "output/example/yan-zhi-report.svg",
+  "analysisJsonPath": "output/example/analysis.json",
+  "xiaohongshuTitle": "我的人像上镜报告出炉了",
+  "xiaohongshuCaption": "仅供娱乐的人像上镜报告，上传照片生成专属分享卡。"
+}

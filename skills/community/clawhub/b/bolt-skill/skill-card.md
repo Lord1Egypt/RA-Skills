@@ -1,44 +1,60 @@
-## Description: <br>
-Manage software development sprints and stories in Bolt through REST API operations for stories, Kanban workflow status, blockers, dependencies, sprint digests, AI activity logs, and file attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage software development sprints and stories in Bolt, including story creation and updates, Kanban status transitions, blocker and dependency tracking, sprint digests, AI activity logging, and file attachments.
 
-## Publisher: <br>
-[ndhill84](https://clawhub.ai/user/ndhill84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ndhill84](https://clawhub.ai/user/ndhill84)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to manage Bolt projects, sprints, and stories from an agent session. It supports planning, status updates, blocker tracking, sprint reporting, and AI activity logging against a configured Bolt server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change Bolt project data through create, update, delete, move, batch, note, label, dependency, file, and agent-event operations. <br>
-Mitigation: Use the least-privilege Bolt token available, confirm project, sprint, and story IDs before writes or bulk operations, and use dry_run where supported. <br>
-Risk: Notes, agent events, and file uploads may include secrets or sensitive project data. <br>
-Mitigation: Review payloads before sending and avoid uploading files or logging notes and events that contain secrets. <br>
-Risk: A misconfigured BOLT_BASE_URL can direct API calls and data to an unintended Bolt server. <br>
-Mitigation: Install only when the configured Bolt server is trusted, and verify BOLT_BASE_URL with the health endpoint before use. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to let an agent inspect and update Bolt projects, sprints, stories, blockers, dependencies, notes, files, and sprint summaries through the Bolt REST API.
 
-## Reference(s): <br>
-- [Bolt Sprint on ClawHub](https://clawhub.ai/ndhill84/bolt-skill) <br>
-- [Bolt API Reference](references/api-reference.md) <br>
-- [Bolt Workflow Patterns](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces REST API requests against a configured Bolt server; write operations can change project, sprint, story, note, label, dependency, file, and agent-session data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill can give an agent broad live write and delete access to Bolt projects, sprints, stories, files, labels, notes, and agent-session events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before deletes, sprint close actions, file deletion, batch updates, and other destructive or high-impact changes; use dry-run options where the API supports them.
+
+Risk: API tokens may be sent to a user-configured Bolt URL.
+
+Mitigation: Use trusted Bolt server URLs, prefer HTTPS for non-local servers, keep BOLT_API_TOKEN narrowly scoped, and avoid exposing tokens in logs or shell history.
+
+Risk: The release guidance mentions an unpinned npx install path.
+
+Mitigation: Install only from trusted sources and verify the package or source before using unpinned installation commands.
+
+## Reference(s):
+
+- [Bolt API Reference](artifact/references/api-reference.md)
+- [Bolt Workflow Patterns](artifact/references/workflows.md)
+- [Bolt Sprint ClawHub Listing](https://clawhub.ai/ndhill84/skills/bolt-skill)
+- [Publisher Profile](https://clawhub.ai/user/ndhill84)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BOLT_BASE_URL and may use BOLT_API_TOKEN when the Bolt server requires authentication.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

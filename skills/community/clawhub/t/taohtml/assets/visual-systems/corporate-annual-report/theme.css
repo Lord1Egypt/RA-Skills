@@ -1,0 +1,82 @@
+.deck[data-theme="corporate-annual-report"] {
+  --vs-bg: #f5f1e8;
+  --vs-ink: #17263b;
+  --vs-navy: #15324b;
+  --vs-blue: #315a73;
+  --vs-gold: #b89a5b;
+  --vs-sage: #81928a;
+  --vs-paper: #fffdf8;
+  --vs-muted: #68717a;
+  font-family: Arial, "PingFang SC", sans-serif;
+  background: var(--vs-bg);
+}
+
+.deck[data-theme="corporate-annual-report"] .slide { padding: 52px 72px 58px; color: var(--vs-ink); background: var(--vs-bg); }
+.deck[data-theme="corporate-annual-report"] .slide::before { display: none; }
+.deck[data-theme="corporate-annual-report"] .fragment { transform: translateX(16px); transition: opacity .52s ease, transform .52s ease; }
+.deck[data-theme="corporate-annual-report"] .fragment.visible,
+.deck[data-theme="corporate-annual-report"][data-mode="reading"] .fragment { transform: none; }
+.deck[data-theme="corporate-annual-report"] h1,
+.deck[data-theme="corporate-annual-report"] h2,
+.deck[data-theme="corporate-annual-report"] h3,
+.deck[data-theme="corporate-annual-report"] p { margin-top: 0; }
+.ca-kicker { display: flex; align-items: center; gap: 14px; color: var(--vs-blue); font: 750 13px/1 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.ca-kicker::before { content: ""; width: 42px; height: 1px; background: var(--vs-gold); }
+.ca-page-title { max-width: 1100px; margin: 24px 0 14px; font: 650 clamp(37px, 3.7vw, 60px)/1.08 Georgia, "Songti SC", serif; letter-spacing: -.025em; }
+.ca-lede { max-width: 980px; margin-bottom: 20px; color: var(--vs-muted); font: 500 19px/1.5 Arial, sans-serif; }
+.ca-label { color: var(--vs-gold); font: 800 11px/1 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.ca-footer { position: absolute; left: 72px; right: 72px; bottom: 24px; display: flex; align-items: center; gap: 14px; color: var(--vs-muted); font: 600 11px/1 Arial, sans-serif; }
+.ca-footer::before { content: ""; width: 28px; height: 1px; background: var(--vs-gold); }
+
+.ca-cover { background: var(--vs-paper) !important; }
+.ca-cover-grid { display: grid; grid-template-columns: 1.16fr .84fr; gap: 48px; align-items: center; height: calc(100% - 40px); }
+.ca-cover h1 { margin: 34px 0 26px; font: 650 clamp(54px, 5.6vw, 90px)/.98 Georgia, "Songti SC", serif; letter-spacing: -.045em; }
+.ca-cover .ca-lede { max-width: 700px; font-size: 23px; color: #435061; }
+.ca-hero-visual { position: relative; height: 570px; border-radius: 180px 16px 16px 16px; overflow: hidden; background: linear-gradient(145deg, #81928a 0 26%, #315a73 26% 56%, #15324b 56%); box-shadow: 0 18px 50px #15324b30; }
+.ca-hero-visual::before { content: ""; position: absolute; width: 360px; height: 360px; right: -70px; top: 74px; border: 1px solid #fff8; border-radius: 50%; box-shadow: 0 0 0 70px #fff1, 0 0 0 140px #fff1; }
+.ca-hero-visual::after { content: ""; position: absolute; left: 48px; right: 48px; bottom: 54px; height: 1px; background: var(--vs-gold); }
+.ca-claim { position: absolute; left: 28px; right: 28px; bottom: 28px; padding: 24px; border-radius: 10px; background: #fffdf8ef; color: var(--vs-ink); box-shadow: 0 12px 34px #0002; z-index: 2; }
+.ca-claim p { margin: 12px 0 0; font: 650 18px/1.45 Arial, sans-serif; }
+
+.ca-balance { display: grid; grid-template-columns: .82fr 1.18fr; gap: 38px; margin-top: 26px; }
+.ca-context-panel { min-height: 340px; border-radius: 12px; background: linear-gradient(145deg, var(--vs-navy), var(--vs-blue)); position: relative; overflow: hidden; }
+.ca-context-panel::before { content: ""; position: absolute; inset: 38px; border: 1px solid #ffffff55; border-radius: 50% 8px 50% 8px; }
+.ca-context-panel::after { content: ""; position: absolute; left: 64px; top: 70px; width: 160px; height: 210px; background: linear-gradient(180deg, #b89a5bcc, #81928acc); border-radius: 80px 8px 8px 8px; transform: rotate(-8deg); }
+.ca-issues { display: grid; gap: 12px; }
+.ca-issue { display: grid; grid-template-columns: 96px 160px 1fr; align-items: center; min-height: 98px; padding: 18px 20px; border: 1px solid #d6cebe; border-radius: 10px; background: var(--vs-paper); box-shadow: 0 10px 26px #15324b0c; }
+.ca-issue h3 { margin: 0; font: 700 21px/1.2 Georgia, serif; }
+.ca-issue p { margin: 0; font: 500 15px/1.4 Arial, sans-serif; }
+
+.ca-ribbon { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 36px; }
+.ca-ribbon::before { content: ""; position: absolute; left: 8%; right: 8%; top: 52px; height: 2px; background: linear-gradient(90deg, var(--vs-gold), var(--vs-sage), var(--vs-blue)); }
+.ca-step { position: relative; min-height: 290px; padding: 76px 20px 22px; border: 1px solid #d6cebe; border-radius: 12px; background: var(--vs-paper); }
+.ca-step::before { content: ""; position: absolute; top: 40px; left: 22px; width: 25px; height: 25px; border: 6px solid var(--vs-bg); border-radius: 50%; background: var(--vs-gold); box-shadow: 0 0 0 1px var(--vs-gold); }
+.ca-step:nth-child(2)::before { background: var(--vs-sage); box-shadow: 0 0 0 1px var(--vs-sage); }
+.ca-step:nth-child(3)::before,.ca-step:nth-child(4)::before { background: var(--vs-blue); box-shadow: 0 0 0 1px var(--vs-blue); }
+.ca-step strong { color: var(--vs-gold); font: 650 30px/1 Georgia, serif; }
+.ca-step h3 { margin: 34px 0 14px; font: 700 24px/1.15 Georgia, serif; }
+.ca-step p { font: 500 16px/1.48 Arial, sans-serif; }
+
+.ca-performance { display: grid; grid-template-columns: .58fr .64fr 1.18fr; gap: 18px; margin-top: 18px; }
+.ca-source-frame { height: 294px; margin: 0; border-radius: 10px; overflow: hidden; background: var(--vs-navy); box-shadow: 0 14px 34px #15324b18; }
+.ca-source-frame img { display: block; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: luminosity; opacity: .78; filter: saturate(.65) contrast(1.08); }
+.ca-metrics { display: grid; gap: 12px; }
+.ca-metric { min-height: 90px; padding: 16px 20px; border-radius: 10px; background: var(--vs-paper); border: 1px solid #d6cebe; }
+.ca-metric strong { float: left; width: 96px; color: var(--vs-navy); font: 650 45px/.9 Georgia, serif; }
+.ca-metric span { display: block; padding-top: 12px; font: 650 15px/1.3 Arial, sans-serif; }
+.ca-metric:nth-child(2) { border-left: 5px solid var(--vs-gold); }
+.ca-metric:nth-child(3) { border-left: 5px solid var(--vs-sage); }
+.ca-table { overflow: hidden; border: 1px solid #d6cebe; border-radius: 10px; background: var(--vs-paper); box-shadow: 0 14px 34px #15324b12; }
+.ca-table table { width: 100%; border-collapse: collapse; font: 500 14px/1.4 Arial, sans-serif; }
+.ca-table th { padding: 12px 15px; background: var(--vs-navy); color: #fff; text-align: left; }
+.ca-table td { padding: 13px 15px; border-top: 1px solid #ded7c8; }
+.ca-table td:nth-child(2) { color: var(--vs-blue); font-weight: 800; text-align: right; }
+.ca-table tr:last-child td { border-bottom: 4px solid var(--vs-gold); }
+.deck[data-theme="corporate-annual-report"] .source-btn { top: 48px; right: 72px; border: 1px solid var(--vs-gold); border-radius: 18px; background: var(--vs-paper); color: var(--vs-navy); }
+
+.ca-commitments { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 26px; }
+.ca-commitment { min-height: 220px; padding: 22px; border: 1px solid #d6cebe; border-radius: 12px; background: var(--vs-paper); }
+.ca-commitment strong { color: var(--vs-gold); font: 650 30px/1 Georgia, serif; }
+.ca-commitment h3 { margin: 38px 0 12px; font: 700 25px/1.15 Georgia, serif; }
+.ca-commitment p { font: 500 16px/1.45 Arial, sans-serif; }
+.ca-final { display: grid; grid-template-columns: 150px 1fr; gap: 16px; margin-top: 24px; padding: 20px 24px; border-radius: 10px; background: var(--vs-navy); color: #fff; font: 600 19px/1.4 Arial, sans-serif; }

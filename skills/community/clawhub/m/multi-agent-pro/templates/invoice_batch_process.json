@@ -1,0 +1,126 @@
+{
+  "name": "发票批量处理",
+  "description": "批量处理发票：OCR 识别 → 真伪查验 → 报销单自动填充 → 审批申报。适用于财务部门批量处理员工报销发票。",
+  "category": "office",
+  "version": "1.0",
+  "tags": ["发票", "报销", "OCR", "财务"],
+  "three_elements": {
+    "time_estimate": "10-30 分钟（取决于发票数量）",
+    "api_key_required": "可选",
+    "output_files": ["invoice_report.md", "reimbursement_form.xlsx", "invoice_batch_state.json"]
+  },
+  "dependencies": [
+    {
+      "skill_id": "textin-xparse",
+      "install_link": "https://skillhub.cn/skill/textin-xparse",
+      "description": "TextIn xParse 智能文档解析（用于发票 OCR）",
+      "required": false
+    },
+    {
+      "skill_id": "yzf-invoice-mcp-server",
+      "install_link": "https://skillhub.cn/skill/yzf-invoice-mcp-server",
+      "description": "云帐房 AI 开票（用于发票真伪查验）",
+      "required": false
+    }
+  ],
+  "pipeline": {
+    "pipeline_name": "发票批量处理",
+    "version": "1.0",
+    "description": "批量发票 OCR 识别与报销处理",
+    "agents": [
+      {
+        "id": "file_loader",
+        "name": "发票加载Agent",
+        "role": "扫描指定目录下的发票图片/PDF 文件，建立待处理队列",
+        "type": "task",
+        "inputs": ["invoice_dir"],
+        "outputs": ["invoice_files"],
+        "depends_on": [],
+        "retry": 2,
+        "timeout": 30,
+        "fallback": "default",
+        "default_value": {"invoice_files": []}
+      },
+      {
+        "id": "ocr_recognizer",
+        "name": "OCR 识别Agent",
+        "role": "对每张发票进行 OCR 识别，提取金额、日期、发票号码、销售方信息",
+        "type": "task",
+        "inputs": ["invoice_files"],
+        "outputs": ["ocr_results"],
+        "depends_on": ["file_loader"],
+        "retry": 3,
+        "timeout": 180,
+        "fallback": "skip"
+      },
+      {
+        "id": "validator",
+        "name": "真伪查验Agent",
+        "role": "连接税务系统验证发票真伪，标记异常发票",
+        "type": "task",
+        "inputs": ["ocr_results"],
+        "outputs": ["validated_invoices"],
+        "depends_on": ["ocr_recognizer"],
+        "retry": 2,
+        "timeout": 120,
+        "fallback": "default",
+        "default_value": {"validated_invoices": []}
+      },
+      {
+        "id": "categorizer",
+        "name": "发票分类Agent",
+        "role": "按费用类别（差旅/餐饮/办公用品/交通）自动分类发票",
+        "type": "task",
+        "inputs": ["validated_invoices"],
+        "outputs": ["categorized_invoices"],
+        "depends_on": ["validator"],
+        "retry": 2,
+        "timeout": 60,
+        "fallback": "default",
+        "default_value": {"categorized_invoices": []}
+      },
+      {
+        "id": "form_filler",
+        "name": "报销单填充Agent",
+        "role": "将分类后的发票信息自动填充到报销单模板",
+        "type": "task",
+        "inputs": ["categorized_invoices"],
+        "outputs": ["reimbursement_form"],
+        "depends_on": ["categorizer"],
+        "retry": 2,
+        "timeout": 90,
+        "fallback": "abort"
+      },
+      {
+        "id": "approver",
+        "name": "财务审核",
+        "role": "财务人员审核报销单与发票明细，确认金额正确",
+        "type": "approval",
+        "inputs": ["reimbursement_form"],
+        "outputs": ["approved_form"],
+        "depends_on": ["form_filler"],
+        "retry": 0,
+        "timeout": 0,
+        "fallback": "abort",
+        "timeout_seconds": 600,
+        "timeout_action": "reject"
+      },
+      {
+        "id": "reporter",
+        "name": "处理报告Agent",
+        "role": "生成批量处理报告：成功/失败/异常统计、金额汇总",
+        "type": "task",
+        "inputs": ["validated_invoices", "approved_form"],
+        "outputs": ["invoice_report"],
+        "depends_on": ["approver"],
+        "retry": 1,
+        "timeout": 60,
+        "fallback": "abort"
+      }
+    ],
+    "state_store": {
+      "type": "json",
+      "path": "./invoice_batch_state.json"
+    }
+  }
+}

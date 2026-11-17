@@ -1,42 +1,49 @@
-## Description: <br>
-Get PDF metadata, encryption status, page count, and file size. Useful for pre-flight checks before processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get PDF metadata, encryption status, page count, and file size. Useful for pre-flight checks before processing.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and document-workflow builders use this skill to inspect PDF metadata, encryption status, page count, and file size before routing or processing PDFs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDFs, PDF URLs, and extracted metadata are submitted to pdfapihub.com for processing. <br>
-Mitigation: Use only documents approved for third-party processing; avoid confidential, regulated, internal, or signed-access document URLs unless third-party processing is approved. <br>
-Risk: The skill requires a CLIENT-API-KEY credential. <br>
-Mitigation: Protect the API key like any other credential and avoid placing real keys in shared prompts, examples, logs, or committed files. <br>
+## Use Case:
 
+Developers and automation agents use this skill to inspect PDFs before processing, including checking encryption status, page count, file size, and document metadata for validation, routing, display, and quota decisions.
 
-## Reference(s): <br>
-- [PDF API Hub Documentation](https://pdfapihub.com/docs) <br>
-- [PDF API Hub](https://pdfapihub.com) <br>
-- [ClawHub PDF Info Skill](https://clawhub.ai/rishabhdugar/pdf-info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON response data and Markdown guidance with optional curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CLIENT-API-KEY header and one PDF input as a URL, base64 payload, or multipart file upload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata) <br>
+Risk: PDF URLs, uploaded PDFs, or base64 PDF content are sent to pdfapihub for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential documents unless the provider's terms, retention practices, and access controls meet the user's requirements.
+
+## Reference(s):
+
+- [PDF API Hub Documentation](https://pdfapihub.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [json, guidance]
+
+**Output Format:** [JSON response with PDF encryption status, page count, file size, and document metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a PDF URL, base64 PDF content, or multipart file upload; requires CLIENT-API-KEY authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Socrates lets users converse with a Socrates persona that uses dialectical questioning and philosophical dialogue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Socrates (469-399 BC), the Athenian philosopher associated with dialectical questioning.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users and developers use this skill for philosophical roleplay and Socratic dialogue, especially to explore questions through definitions, cross-examination, and gentle provocation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona may present philosophical or historical claims without reminding users that it is an AI-generated roleplay response. <br>
-Mitigation: Treat responses as roleplay and verify factual or expert claims before relying on them. <br>
-Risk: The skill is designed to answer as Socrates, which can make modern topics or safety-critical questions less transparent. <br>
-Mitigation: Use it for casual philosophical dialogue and avoid relying on it as modern, professional, legal, medical, or technical authority. <br>
+## Use Case:
 
+External users and developers use this skill to invoke a Socrates persona for philosophical roleplay, dialectical questioning, and reflective conversation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language chat responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language and stays in the Socrates persona.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The persona intentionally refuses knowledge after 399 BC, which can make it unsuitable for modern factual or operational questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for philosophical roleplay and reflective dialogue; switch out of the persona and verify separately for modern factual tasks.
+
+Risk: Persona responses may frame philosophical positions as in-character claims rather than balanced modern scholarship.
+
+Mitigation: Review responses before using them as educational material and pair them with independent sources when accuracy matters.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/bhackerj/skills/ph-socrates)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Conversational persona responses in the user's language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool access; responses intentionally remain in Socrates' persona while invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

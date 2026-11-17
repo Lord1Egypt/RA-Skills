@@ -1,43 +1,53 @@
-## Description: <br>
-OAuth proxy for calling external APIs (Oura, Google Calendar, etc.) via Perpetua.sh hosted API using a single API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OAuth proxy for calling external APIs (Oura, Google Calendar, etc.) via Perpetua.sh hosted API using a single API key.
 
-## Publisher: <br>
-[DanielKillenberger](https://clawhub.ai/user/DanielKillenberger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danielkillenberger](https://clawhub.ai/user/danielkillenberger)
 
-## Use Case: <br>
-External users and developers use this skill to call Perpetua.sh-hosted proxy endpoints for Oura Ring data, Google Calendar events, and OAuth provider connection management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Connected Oura or Google Calendar account data may pass through Perpetua.sh when the skill is used. <br>
-Mitigation: Install only if you trust Perpetua.sh and the publisher with the connected account data; connect only the providers needed for the task. <br>
-Risk: Broad provider requests can pull more account data than necessary. <br>
-Mitigation: Prefer narrow date ranges and targeted endpoints; avoid broad data pulls unless explicitly needed. <br>
-Risk: A long-lived or overexposed PERPETUA_API_KEY could allow unintended use of connected provider access. <br>
-Mitigation: Store the API key in a secret manager, rotate it when needed, and revoke provider connections when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Perpetua Skill on ClawHub](https://clawhub.ai/DanielKillenberger/perpetua) <br>
-- [DanielKillenberger Publisher Profile](https://clawhub.ai/user/DanielKillenberger) <br>
-- [Perpetua Hosted API](https://www.perpetua.sh/api) <br>
+## Use Case:
 
+Developers and agents use this skill to configure and call the Perpetua.sh hosted OAuth proxy for Oura data, Google Calendar events, and OAuth connection management.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PERPETUA_API_KEY and Perpetua.sh hosted API endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Oura health data and Google Calendar data may be sensitive when routed through the third-party Perpetua.sh proxy.
+
+Mitigation: Install only when this proxy is intended, review OAuth scopes during account connection, and limit requests to data needed for the task.
+
+Risk: The PERPETUA_API_KEY grants access to connected provider data through the hosted API.
+
+Mitigation: Store PERPETUA_API_KEY in a secret manager or protected environment file and avoid exposing it in logs, prompts, or shared shell history.
+
+## Reference(s):
+
+- [Perpetua.sh API](https://www.perpetua.sh/api)
+- [ClawHub Skill Page](https://clawhub.ai/danielkillenberger/skills/perpetua)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and API request patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses PERPETUA_API_KEY and the Perpetua.sh hosted API; returned data depends on connected OAuth providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

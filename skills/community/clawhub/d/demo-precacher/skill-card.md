@@ -1,42 +1,56 @@
-## Description: <br>
-Pre-generates and caches demo content before live presentations, calling configured AI, voice, and database APIs in advance to verify playback and identify coverage gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-generates demo content, caches generated story and media assets, and helps verify readiness before live presentations that depend on AI-generated content.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and demo teams use this skill to seed AI-generated story, narration, sound, and optional image content before hackathon demos, investor pitches, or other live presentations. It helps verify cached playback so the live demo does not depend on real-time generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow makes live calls to Mistral, ElevenLabs, optional Gemini, and Turso, which can incur cost and send demo prompts or generated content to external providers. <br>
-Mitigation: Run it only with limited demo API keys, reviewed prompts and content, and provider accounts whose terms and cost limits are understood. <br>
-Risk: Generated child-themed story and audio content is stored in an external Turso database, and cleanup or scoping expectations are incomplete. <br>
-Mitigation: Use a dedicated demo database, avoid real child or personal data, verify the Turso endpoint before execution, and delete cached rows after the presentation. <br>
-Risk: A live presentation can still fail if credentials, generated media, or cache contents do not match the intended demo flow. <br>
-Mitigation: Run the checklist before presenting, verify all cached playback paths, and keep fallback content ready for cache misses. <br>
+## Use Case:
 
+Developers and demo teams use this skill to seed demo caches before presentations, reducing reliance on live AI API calls during the demo. The bundled script generates story text, narration, sound effects, and optional image content, then stores the generated cache in Turso.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/demo-precacher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured API keys and a verified demo database endpoint before running the included precache script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The script can send prompt and story data to external AI services and store generated content in Turso.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test credentials and a disposable Turso database for demos; avoid real names, children's content, customer data, or production credentials unless retention and deletion controls are in place.
+
+Risk: The implementation is narrower than the high-level description and may not fully verify every demo coverage gap.
+
+Mitigation: Treat the bundled script as a demo-seeding helper and add explicit playback, cache-miss, TTL, and scenario coverage checks before relying on it for a live presentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/demo-precacher)
+- [Publisher profile](https://clawhub.ai/user/nissan)
+- [ElevenLabs text-to-speech API endpoint](https://api.elevenlabs.io/v1/text-to-speech/{voice_id})
+- [ElevenLabs sound generation API endpoint](https://api.elevenlabs.io/v1/sound-generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and command-oriented setup details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured API credentials and may produce cached JSON plus base64-encoded media when the script is run.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

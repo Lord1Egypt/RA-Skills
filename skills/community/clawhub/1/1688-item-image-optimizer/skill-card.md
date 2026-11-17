@@ -1,45 +1,63 @@
-## Description: <br>
-Opens the 1688 product image optimization page and, when a product ID is present, includes it in the page URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes 1688 sellers to product image workflows for main image optimization, carousel images, detail images, background replacement, and digital model generation through permission checks and tool-page URL construction.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External users and 1688 shop operators use this skill to open a product image optimization workflow for main product images, optionally scoped to a detected offer ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The released package includes CLI configuration behavior for a 1688 access key, even though the advertised workflow is a simple page opener. <br>
-Mitigation: Use the open_tab interaction only unless API-key configuration is intentionally needed and reviewed. <br>
-Risk: Providing a 1688 access key may store it in local OpenClaw configuration or send it to a configured OpenClaw gateway. <br>
-Mitigation: Review the configured gateway and local OpenClaw settings before entering credentials. <br>
-Risk: CLI use may report usage metadata. <br>
-Mitigation: Avoid running the bundled CLI in environments where usage telemetry is not acceptable. <br>
+## Use Case:
 
+External 1688 sellers use this skill to choose and open the correct product-image creation tool for main images, carousels, detail images, background replacement, or digital model generation. The skill can also configure access credentials and verify digital model permission before routing restricted workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1688aiinfra/1688-item-image-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/1688aiinfra) <br>
-- [Interaction component specification](references/interaction-specs.md) <br>
-- [1688 image optimization page](https://air.1688.com/app/CSBC-modules/csbc-ai-component-loader/picture-optimize.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, guidance] <br>
-**Output Format:** [JSON open_tab interaction payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an offerId query parameter when a product ID is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can persist a 1688 access key in local OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where local credential persistence is permitted; use scoped credentials where available and rotate or remove the key when the skill is no longer needed.
+
+Risk: The skill sends authenticated usage telemetry through the 1688 gateway after CLI commands.
+
+Mitigation: Review telemetry acceptability before installation and deploy only in environments where this reporting is allowed.
+
+Risk: Opened tool URLs may include a session identifier and image or offer parameters.
+
+Mitigation: Avoid sharing generated tool URLs or logs that contain them, and confirm that session handling matches the account's data-handling policy.
+
+Risk: Workflow instructions can limit what the parent agent says after execution.
+
+Mitigation: Review and test workflow behavior before deployment so suppressed responses do not hide errors or unexpected outcomes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/1688-item-image-optimizer)
+- [Interaction specs](references/interaction-specs.md)
+- [1688 image tool entrypoint](https://air.1688.com/app/CSBC-modules/csbc-ai-component-loader/picture-optimize.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command results, Markdown messages, and OpenClaw interaction payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open 1688 tool pages, show image-type or image-selection cards, and return fail-closed guidance when permission checks fail.]
+
+## Skill Version(s):
+
+0.51.0 (source: ClawHub release metadata; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

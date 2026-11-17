@@ -1,0 +1,262 @@
+{
+  "skill": "ai-building-ai-governance",
+  "version": "1.0.0",
+  "generated_at": "2026-08-28",
+  "note": "AI 造 AI 治理与安全 · 质量与安全稳定性实测（本地闭环）",
+  "dimensions": [
+    {
+      "key": "frontier_timeliness",
+      "label": "前沿时效",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "01-AI造AI形态谱系.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "02-编码智能体治理.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "03-合成数据与蒸馏治理.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "04-AI研究自动化治理.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "05-自我改进与递归提升治理.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "06-AI造AI全链路治理框架.md 含核对基准日",
+          "pass": true
+        },
+        {
+          "name": "07-FAQ.md 含核对基准日",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "coverage_completeness",
+      "label": "覆盖完整",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "references 模块数=7（实际 7）",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 01-AI造AI形态谱系.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 02-编码智能体治理.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 03-合成数据与蒸馏治理.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 04-AI研究自动化治理.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 05-自我改进与递归提升治理.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 06-AI造AI全链路治理框架.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 07-FAQ.md",
+          "pass": true
+        },
+        {
+          "name": "关键模块 01-AI造AI形态谱系",
+          "pass": true
+        },
+        {
+          "name": "关键模块 02-编码智能体治理",
+          "pass": true
+        },
+        {
+          "name": "关键模块 03-合成数据与蒸馏治理",
+          "pass": true
+        },
+        {
+          "name": "关键模块 04-AI研究自动化治理",
+          "pass": true
+        },
+        {
+          "name": "关键模块 05-自我改进与递归提升治理",
+          "pass": true
+        },
+        {
+          "name": "关键模块 06-AI造AI全链路治理框架",
+          "pass": true
+        },
+        {
+          "name": "关键模块 07-FAQ",
+          "pass": true
+        },
+        {
+          "name": "快速上手存在",
+          "pass": true
+        },
+        {
+          "name": "能力边界存在",
+          "pass": true
+        },
+        {
+          "name": "版权与许可段存在",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "tool_usability",
+      "label": "工具可用",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "--help 可执行",
+          "pass": true
+        },
+        {
+          "name": "命令 form 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 risk 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 checklist 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 synthetic 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "命令 verify 在帮助中",
+          "pass": true
+        },
+        {
+          "name": "form 编码智能体识别",
+          "pass": true
+        },
+        {
+          "name": "form 自我改进识别",
+          "pass": true
+        },
+        {
+          "name": "risk coding 含供应链投毒",
+          "pass": true
+        },
+        {
+          "name": "checklist deploy 含熔断",
+          "pass": true
+        },
+        {
+          "name": "synthetic 含成员推断",
+          "pass": true
+        },
+        {
+          "name": "verify 含红队衔接",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "judgment_accuracy",
+      "label": "判定正确",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "判定[编码智能体 自动提交代码]→编码智能体",
+          "pass": true
+        },
+        {
+          "name": "判定[合成数据 用于训练模型]→合成数据与蒸馏",
+          "pass": true
+        },
+        {
+          "name": "判定[AI 自主跑实验写论文]→AI 研究自动化",
+          "pass": true
+        },
+        {
+          "name": "判定[自蒸馏 递归自我改进]→自我改进与递归提升",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "structure_compliance",
+      "label": "结构一致",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "frontmatter 有 9 必填字段",
+          "pass": true
+        },
+        {
+          "name": "description 值无半角冒号+空格（YAML 安全）",
+          "pass": true
+        },
+        {
+          "name": "LICENSE.md 存在",
+          "pass": true
+        },
+        {
+          "name": "SECURITY_AUDIT.md 存在",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "security_cleanliness",
+      "label": "安全净度",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "references+SKILL.md 无敏感词",
+          "pass": true
+        },
+        {
+          "name": "工具脚本零网络依赖",
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total": 47,
+    "passed": 47,
+    "failed": 0,
+    "overall": 5.0
+  },
+  "benchmarks": {
+    "industry_baseline": {
+      "frontier_timeliness": 3.0,
+      "coverage_completeness": 3.2,
+      "tool_usability": 3.0,
+      "judgment_accuracy": 3.4,
+      "structure_compliance": 3.2,
+      "security_cleanliness": 3.0
+    },
+    "enterprise_standard": {
+      "frontier_timeliness": 4.5,
+      "coverage_completeness": 4.5,
+      "tool_usability": 4.5,
+      "judgment_accuracy": 4.5,
+      "structure_compliance": 4.5,
+      "security_cleanliness": 4.5
+    }
+  }
+}

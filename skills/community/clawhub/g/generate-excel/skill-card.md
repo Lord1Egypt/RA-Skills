@@ -1,40 +1,57 @@
-## Description: <br>
-Create a formatted Excel (.xlsx) spreadsheet from provided 2D data, applying styles, colors, alignment, and auto-adjusted column widths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a formatted Excel (.xlsx) spreadsheet from provided 2D data, applying styles, colors, alignment, and auto-adjusted column widths.
 
-## Publisher: <br>
-[sereinZhi](https://clawhub.ai/user/sereinZhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sereinzhi](https://clawhub.ai/user/sereinzhi)
 
-## Use Case: <br>
-People who need spreadsheet deliverables use this skill to turn structured chat data, tables, or reports into a downloadable Excel workbook with basic styling. It is useful for reports, exports, and formatted tabular data handoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper may install openpyxl automatically if it is missing. <br>
-Mitigation: Use an approved Python environment and preinstall or review openpyxl before running the helper. <br>
-Risk: The skill writes an .xlsx file to the requested filename or path. <br>
-Mitigation: Confirm the output filename and path before generation, especially when working in shared directories. <br>
+## Use Case:
 
+Developers and agents use this skill to turn structured data, chat tables, or report content into formatted Excel workbooks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sereinZhi/generate-excel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Guidance] <br>
-**Output Format:** [XLSX file plus a status dictionary from the helper function] <br>
-**Output Parameters:** [2D] <br>
-**Other Properties Related to Output:** [Supports simple cell values and styled cell dictionaries for bold text, text color, background color, and horizontal alignment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The helper may install missing Python dependencies at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall a pinned openpyxl dependency through the normal package process before use in shared or sensitive environments.
+
+Risk: The helper can write or overwrite spreadsheet files in writable paths.
+
+Mitigation: Run it in a sandboxed workspace and require explicit confirmation for output filenames and overwrites.
+
+Risk: Untrusted cell values may remain active as spreadsheet formulas.
+
+Mitigation: Review or sanitize workbook cell values from untrusted sources before opening or sharing generated files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sereinzhi/skills/generate-excel)
+
+## Skill Output:
+
+**Output Type(s):** [files, text]
+
+**Output Format:** [Excel .xlsx workbook plus a JSON-like status result containing the file path and filename.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports plain values and styled cell dictionaries for bold text, font color, background color, and horizontal alignment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

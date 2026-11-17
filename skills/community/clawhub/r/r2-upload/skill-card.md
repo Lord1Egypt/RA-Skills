@@ -1,42 +1,62 @@
-## Description: <br>
-Upload files to Cloudflare R2, AWS S3, or any S3-compatible storage and generate secure presigned download links with configurable expiration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload files to Cloudflare R2, AWS S3, or any S3-compatible storage and generate secure presigned download links with configurable expiration.
 
-## Publisher: <br>
-[julianengel](https://clawhub.ai/user/julianengel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[julianengel](https://clawhub.ai/user/julianengel)
 
-## Use Case: <br>
-Developers and operators use this skill to upload local files to Cloudflare R2, AWS S3, or compatible storage and return short-lived download links. It also supports listing bucket contents, generating new links for existing objects, and deleting uploaded objects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload user-specified local files to a cloud bucket, which may expose sensitive data if used on the wrong file. <br>
-Mitigation: Review the file path and bucket before upload, avoid uploading sensitive files unless intended, and use short presigned URL expirations. <br>
-Risk: Cloud storage credentials in the local configuration can grant access to bucket contents if they are over-scoped or exposed. <br>
-Mitigation: Use bucket-scoped, least-privilege credentials and keep the local configuration file private. <br>
-Risk: Delete requests remove the specified remote object immediately. <br>
-Mitigation: Double-check the bucket and object key before approving delete operations. <br>
+## Use Case:
 
+Developers and agents use this skill to upload selected local files to Cloudflare R2, AWS S3, MinIO, or S3-compatible storage, then return temporary download links for sharing. It also supports listing bucket contents, deleting objects, and generating new presigned URLs for existing objects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/julianengel/r2-upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Plain text responses with generated URLs, object listings, status messages, and setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include short-lived presigned URLs, public URLs when requested, bucket object metadata, and delete confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release metadata) <br>
+Risk: The skill can use bucket-scoped R2/S3 credentials to upload selected local files, list objects, generate shareable links, and delete remote objects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated bucket, least-privilege credentials, HTTPS endpoints, and review agent requests before upload or delete operations.
+
+Risk: Generated links can expose uploaded files until expiration, and public URL mode can expose files without a signature.
+
+Mitigation: Keep URL expirations short, avoid public links unless intended, and do not use the skill for sensitive files unless the storage destination and invoking workflow are trusted.
+
+Risk: Cloud credentials are stored in a local configuration file.
+
+Mitigation: Verify that the configuration file is owner-only readable, rotate credentials after suspected compromise, and avoid committing credential files to source control.
+
+Risk: The artifact documents limited safeguards around large uploads, file type restrictions, rate limiting, content scanning, and custom object keys.
+
+Mitigation: Apply external bucket policies, quotas, logging, and operational review for file paths, object keys, file types, and upload volume.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/julianengel/skills/r2-upload)
+- [Cloudflare Dashboard](https://dash.cloudflare.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text tool responses with URLs and status messages; Markdown documentation with YAML and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated download URLs are short-lived by default unless public URL mode is explicitly used.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

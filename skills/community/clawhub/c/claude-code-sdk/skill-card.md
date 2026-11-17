@@ -1,43 +1,52 @@
-## Description: <br>
-Invokes Claude Code through a Node.js wrapper to delegate software design, development, testing, optimization, refactoring, and related coding tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a wrapper for delegating software design, development, testing, optimization, and refactoring tasks to Claude Code through a Node.js script.
 
-## Publisher: <br>
-[the-invulnus](https://clawhub.ai/user/the-invulnus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[the-invulnus](https://clawhub.ai/user/the-invulnus)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering agents use this skill to delegate software development, debugging, testing, refactoring, and design-support tasks to Claude Code from a local Node.js wrapper.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Delegating coding work to Claude Code can expose repository context and allows broad read, write, edit, shell, and project access.
+
+Mitigation: Use only on approved repositories, pin the SDK version, and require explicit approval before sending sensitive or proprietary code.
+
+Risk: Claude Code may propose or perform incorrect, unsafe, or unwanted software changes.
+
+Mitigation: Review generated changes, shell activity, and test results before merging or deploying work produced through the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill to run Claude Code from a project directory for coding, debugging, testing, refactoring, and design discussion tasks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates coding tasks to Claude Code with permission to read, edit, write files, run shell commands, and use project or user Claude settings. <br>
-Mitigation: Use it only in controlled project directories under version control and review changes before accepting them. <br>
-Risk: External Claude Code processing may receive repository content, prompts, or other project data. <br>
-Mitigation: Avoid sensitive repositories unless that processing is explicitly allowed for the project. <br>
-Risk: The optional log file may contain code, prompts, or confidential output. <br>
-Mitigation: Treat log files as sensitive artifacts and store or delete them according to the project's data-handling requirements. <br>
-Risk: Resuming an unrelated Claude Code session can mix task context across workstreams. <br>
-Mitigation: Start fresh sessions for unrelated work and use resume IDs only for the same task thread. <br>
+**Output Format:** [Console text and optional log-file text containing Claude Code results and a resume session ID.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May require a globally installed Claude agent SDK and can preserve context by resuming a prior Claude Code session.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Plain text or Markdown with optional code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a Claude Code session ID for resume workflows and optional log-file output.] <br>
+0.1.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

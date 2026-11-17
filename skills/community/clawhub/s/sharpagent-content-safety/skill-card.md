@@ -1,43 +1,49 @@
-## Description: <br>
-SharpAgent Content Safety Engine is a pluggable multi-jurisdiction content policy enforcer that blocks, flags, or passes content based on loaded rule sets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SharpAgent Content Safety Engine — Pluggable multi-jurisdiction content policy enforcer. Blocks, flags, or passes content based on loaded rule sets. Supports concurrent jurisdictions (global/China/US/EU). Coordinates with the calibration framework and five-factor review. Independent Layer 3 of the SharpAgent four-layer architecture.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Developers and agent operators use this skill to apply jurisdiction-aware content safety policies before final agent output. It supports pass, flag, and block decisions with rule references and audit logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unreviewed or incomplete rulesets can create incorrect compliance decisions. <br>
-Mitigation: Review or supply the active rulesets before relying on the skill for compliance-sensitive workflows. <br>
-Risk: Operators may not know which jurisdictions are active for a safety decision. <br>
-Mitigation: Expose the active jurisdiction set in operator-facing configuration and logs. <br>
-Risk: Safety logs may contain sensitive content or policy decisions. <br>
-Mitigation: Define retention, access controls, and storage limits for safety logs before deployment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to design or apply a documentation-driven content safety layer that passes, flags, or blocks agent output according to loaded jurisdictional policy rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/sharpagent-content-safety) <br>
-- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured YAML and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces safety verdicts, rule references, replacement text for blocked content, and audit-log records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Strict content blocking and jurisdiction-based rules may create false positives or affect important outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review loaded policies, rule severity, and audit logging expectations before deployment; use flag or exemption handling for expected edge cases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/sharpagent-content-safety)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with YAML, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no bundled executable code, network behavior, credential access, or hidden installation mechanism was found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Batch Cognition processes bulk prompt batches with alternating PLAY and THINK loops, preserving inputs before item-by-item execution, checkpointing, and value discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes bulk prompt batches with alternating execution and reflection loops, checkpointing, Drive-folder handling, and rolling memory.
 
-## Publisher: <br>
-[dodge1218](https://clawhub.ai/user/dodge1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dodge1218](https://clawhub.ai/user/dodge1218)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to process prompt dumps, file-based prompt lists, and Drive folder contents one item at a time while preserving inputs and recording follow-up value. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores full user inputs and can reuse them across future batches. <br>
-Mitigation: Use it only for batches that are acceptable to retain locally, and add retention, deletion, and review rules before processing sensitive material. <br>
-Risk: Drive folder processing may inspect private or mixed-confidentiality folders with limited upfront consent controls. <br>
-Mitigation: Confirm the folder scope before processing and exclude secrets, regulated data, credentials, and confidential folders unless redaction and approval controls are in place. <br>
+## Use Case:
 
+Developers and power users use this skill to preserve and process batches of prompts, pasted corpora, file-based prompt lists, or Drive-folder dumps item by item. It produces executed results, checkpoint notes, value rankings, action lists, and persistent memory files for later recall.
 
-## Reference(s): <br>
-- [Drive Mode](artifact/references/drive-mode.md) <br>
-- [Rolling Decay Memory](artifact/references/rolling-decay-memory.md) <br>
-- [Batch Cognition on ClawHub](https://clawhub.ai/dodge1218/batch-cognition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance, Configuration] <br>
-**Output Format:** [Markdown with structured batch notes, analysis, action lists, and code or configuration when requested by batch items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local batch records, value stacks, parked items, discarded items, and chain-linked memory summaries when the agent follows the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: Complete pasted, file, or Drive content may be written to persistent workspace files and reused across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content approved for local retention, and add retention, deletion, and redaction rules before handling secrets, credentials, regulated data, or confidential documents.
+
+Risk: Imported document text may be processed as actionable instructions without clear confirmation boundaries.
+
+Mitigation: Require explicit user confirmation before executing tasks derived from imported or Drive content, especially when outputs would modify files, run commands, or preserve sensitive material.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dodge1218/skills/batch-cognition)
+- [Drive Mode](references/drive-mode.md)
+- [Rolling Decay Memory](references/rolling-decay-memory.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown batch documents with notes, status checklists, summaries, and optional code or command blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent batch, memory, value-stack, parked, discarded, and connection files in the workspace.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

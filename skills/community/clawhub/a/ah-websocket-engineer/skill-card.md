@@ -1,39 +1,48 @@
-## Description: <br>
-Real-time communication specialist implementing scalable WebSocket architectures. Masters bidirectional protocols, event-driven systems, and low-latency messaging for interactive applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time communication specialist for scalable WebSocket architectures, bidirectional protocols, event-driven systems, and low-latency messaging for interactive applications.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to design, implement, test, and optimize scalable WebSocket and Socket.IO systems for interactive applications that require reliable, low-latency bidirectional messaging.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated implementation choices for production WebSocket systems can affect authentication, deployment, monitoring, reliability, or access control.
+
+Mitigation: Review proposed changes before execution, with extra attention to authentication, deployment, monitoring, and load-testing decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design, implement, optimize, and review scalable WebSocket and Socket.IO systems for low-latency bidirectional applications. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated architecture, authentication, monitoring, or deployment changes could affect a live real-time system if applied without review. <br>
-Mitigation: Review, test, and stage generated code or infrastructure changes before applying them to production. <br>
+**Output Format:** [Markdown prose with code and shell command examples when useful]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-websocket-engineer) <br>
-- [Publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+**Other Properties Related to Output:** [Guidance may cover architecture, implementation, testing, monitoring, and production optimization for WebSocket systems.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include architecture recommendations, implementation steps, testing plans, monitoring guidance, and production readiness checklists.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

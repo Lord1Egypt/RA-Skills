@@ -1,41 +1,51 @@
-## Description: <br>
-Score and optimize tweets based on X's real open-source ranking algorithm and analyze draft tweets against the actual ranking code, not generic tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Score and optimize tweets based on X's open-source ranking algorithm, including draft scoring, thread optimization, and posting strategy guidance.
 
-## Publisher: <br>
-[minilozio](https://clawhub.ai/user/minilozio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[minilozio](https://clawhub.ai/user/minilozio)
 
-## Use Case: <br>
-Creators, marketers, and social media operators use this skill to score draft tweets, revise posts for stronger engagement potential, plan short threads, and understand why a tweet may have performed well or poorly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Reach-optimization advice may be used for spam, engagement bait, or platform-policy violations. <br>
-Mitigation: Use the skill for drafting and critique; require human review and reject recommendations that encourage spam, deceptive engagement, or policy violations. <br>
-Risk: Claims about X's exact ranking behavior are interpretive rather than authoritative. <br>
-Mitigation: Treat scores as advisory and compare recommendations against current platform guidance and observed performance before relying on them. <br>
+## Use Case:
 
+External creators, marketers, and social media teams use this skill to score draft tweets, improve thread structure, and receive concise recommendations for reach-oriented posting.
 
-## Reference(s): <br>
-- [X Algorithm Rules Engine](references/algorithm-rules.md) <br>
-- [Tweet Composer ClawHub page](https://clawhub.ai/minilozio/tweet-composer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown scorecards with category assessments, predicted action summaries, recommendations, and rewritten tweet drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output only; does not access social accounts, post content, or install executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill's X ranking details and scoring guidance may be partly estimated rather than exact platform behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scores as directional writing guidance and validate recommendations against current account metrics and platform policy before relying on them.
+
+## Reference(s):
+
+- [X Algorithm Rules Engine](references/algorithm-rules.md)
+- [Tweet Composer ClawHub Page](https://clawhub.ai/minilozio/skills/tweet-composer)
+- [Tweet Composer README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown scorecards, concise recommendations, and rewritten tweet or thread drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include qualitative predicted-action assessments and a 0-100 draft score.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and README badge)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

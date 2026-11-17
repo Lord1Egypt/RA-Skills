@@ -1,6 +1,24 @@
 {
-  "ownerId": "kn7anpn65wsq3g0vdt2za1zxhd82qd8v",
-  "slug": "paperclaw",
-  "version": "1.0.0",
-  "publishedAt": 1773381587225
+  "slug": "paper_claw",
+  "version": "2.0.0",
+  "author": "Paper Claw Team",
+  "license": "MIT",
+  "tags": ["arxiv", "papers", "research", "digest", "ai", "llm", "nlp", "cv", "speech", "presets"],
+  "description": "Intelligent paper digest generator with preset configurations for NLP, CV, Speech, and general AI research",
+  "requires": {
+    "python": ">=3.11",
+    "packages": ["requests", "feedparser", "python-dateutil", "jinja2"]
+  },
+  "env": {
+    "required": ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS"],
+    "optional": ["MOONSHOT_API_KEY", "OPENAI_API_KEY", "DEEPSEEK_API_KEY", "ANTHROPIC_API_KEY", "ARXIV_CONTACT_EMAIL"]
+  },
+  "config": {
+    "files": ["config/default.json", "config/recipients.json"],
+    "templates": ["config/recipients.example.json", ".env.example"]
+  },
+  "presets": {
+    "available": ["speech_audio", "nlp", "computer_vision", "general_ai"],
+    "description": "One-command configuration for different research fields"
+  }
 }

@@ -1,11 +1,11 @@
 ---
 name: oo-resend
-description: "Resend (resend.com). Use this skill for ANY Resend request — reading, creating, and updating data. Whenever a task involves Resend, use this skill instead of calling the API directly."
+description: "Resend (resend.com). Use this skill for ANY Resend request — reading, creating, updating, and deleting data. Whenever a task involves Resend, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Resend"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.7"
   services: ["resend"]
   icon: "https://static.oomol.com/logo/third-party/Resend.svg"
 ---
@@ -37,7 +37,18 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
+- `cancel_scheduled_email` — Cancel a scheduled Resend email before delivery. [destructive]
+- `get_received_email` — Retrieve one received Resend email, including its content, headers, and attachment metadata.
+- `get_received_email_attachment` — Retrieve one attachment from a received Resend email, including its temporary download URL.
+- `get_sent_email` — Retrieve one sent Resend email, including its message content and delivery state.
+- `get_sent_email_attachment` — Retrieve one attachment from a sent Resend email, including its temporary download URL.
+- `list_received_email_attachments` — List attachments for a received Resend email.
+- `list_received_emails` — List emails received by the authenticated Resend team.
+- `list_sent_email_attachments` — List attachments for a sent Resend email.
+- `list_sent_emails` — List emails sent by the authenticated Resend team.
+- `send_batch_emails` — Send up to 100 emails in one Resend batch request. [write]
 - `send_email` — Send an email with Resend. [write]
+- `update_scheduled_email` — Change the delivery time of a scheduled Resend email. [write]
 
 ## Safety
 
@@ -68,11 +79,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Resend is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=resend
+  https://console.oomol.com/connections/resend
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Resend homepage: https://resend.com
+- API documentation: https://resend.com/docs/api-reference/introduction

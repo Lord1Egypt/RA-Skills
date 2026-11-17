@@ -1,6 +1,6 @@
 {
   "name": "topic-monitor",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Monitor topics of interest and get proactive alerts when important developments occur",
   "author": "robbyczgw-cla",
   "license": "MIT",

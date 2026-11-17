@@ -1,0 +1,31 @@
+{
+  "name": "kuaishou-yunying-zhushou",
+  "version": "1.0.0",
+  "description": "一站式快手运营工具，融合选题灵感、数据分析模块。支持爆款标题、热点选题、粉丝分析等，覆盖快手运营数据获取场景。｜当用户要“搜索快手视频/抓取博主作品/拉取视频评论”时使用，输出结构化数据，用于爆款选题、竞品监控、KOL 筛选、评论舆情与趋势洞察。",
+  "keywords": [
+    "快手",
+    "爆款视频",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长"
+  ],
+  "homepage": "https://github.com/um-why/kuaishou-skill",
+  "bugs": {
+    "url": "https://github.com/um-why/kuaishou-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/kuaishou-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "main": "scripts/kuaishou/search-cli.js",
+  "scripts": {
+    "search": "node scripts/kuaishou/search-cli.js",
+    "post": "node scripts/kuaishou/post-cli.js",
+    "comment": "node scripts/kuaishou/comment-cli.js"
+  }
+}

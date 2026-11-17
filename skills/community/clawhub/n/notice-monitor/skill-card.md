@@ -1,42 +1,67 @@
-## Description: <br>
-Notice Monitor monitors configured website announcement pages, filters notices by keywords and categories, deduplicates results, and can send scheduled notification reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notice Monitor monitors configured website announcement pages, filters new notices by keywords and categories, deduplicates previously sent items, and sends scheduled notifications.
 
-## Publisher: <br>
-[jerryharbin](https://clawhub.ai/user/jerryharbin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryharbin](https://clawhub.ai/user/jerryharbin)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor procurement, government, education, medical, IT, or other announcement sites and receive filtered notice summaries on a schedule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DingTalk notification handling can execute local shell commands influenced by scraped website text or configuration values. <br>
-Mitigation: Run the skill in an isolated environment and avoid enabling DingTalk notifications or cron until notifier shell interpolation is fixed. <br>
-Risk: Example notification targets and monitored sites may expose messages or credentials to unintended recipients if reused unchanged. <br>
-Mitigation: Replace example DingTalk targets, monitor only trusted sites, and treat webhook credentials or notification targets as sensitive. <br>
+## Use Case:
 
+Developers, operators, and procurement teams use this skill to track government, procurement, bidding, and other announcement pages for configured keywords and receive concise notification reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jerryharbin/notice-monitor) <br>
-- [README](artifact/README.md) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain-text notice reports with YAML configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can persist local deduplication state and send DingTalk notifications when configured] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security summary says the skill can run shell commands from scraped or configured text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review notification content and configuration before enabling the skill, and prefer a fixed version that removes shell-based message sending.
+
+Risk: The security summary notes a default external DingTalk recipient in the artifact.
+
+Mitigation: Replace all example notification targets with organization-approved recipients before running the skill.
+
+Risk: The security guidance recommends using only trusted HTTPS URLs.
+
+Mitigation: Configure monitoring tasks only for trusted HTTPS notice pages and review each URL before scheduling recurring runs.
+
+Risk: The security guidance advises avoiding cron until notification delivery is verified.
+
+Mitigation: Run the skill manually or in dry-run mode first, verify delivery behavior, and enable cron only after review.
+
+Risk: The security guidance recommends a fixed version that runs Chromium with sandboxing enabled.
+
+Mitigation: Run in an isolated environment and prefer a version that enables Chromium sandboxing before production use.
+
+## Reference(s):
+
+- [ClawHub Notice Monitor skill page](https://clawhub.ai/jerryharbin/skills/notice-monitor)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown-style notification reports, YAML configuration examples, and command-line usage snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are driven by configured tasks, keywords, schedules, notification targets, and deduplication state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, package.json, and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

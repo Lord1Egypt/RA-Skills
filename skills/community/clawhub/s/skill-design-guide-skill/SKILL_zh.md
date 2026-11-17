@@ -1,11 +1,10 @@
----
 name: skill-design-guide
 display_name: "Skill 设计指南"
 description: >
   用经过验证的架构模式设计更好的 AI Skill。帮你判断该用 Workflow 还是 Agent，
   从 5 种工作流模式中选出最合适的，用 25 项检查清单审查质量，避开常见反模式。
   基于 Anthropic、OpenAI、LangChain 的设计原则。中文版，英文版见 SKILL.md。
-version: "1.4.0"
+version: "1.6.0"
 agent_created: true
 category: "Architecture / Design Patterns"
 license: "MIT"
@@ -123,6 +122,8 @@ read_when:
 | `references/` | 领域知识（按需加载） |
 | `scripts/` | 确定性步骤 |
 | `assets/` | 模板、配置 |
+| `hooks/` | 宿主会话钩子——opt-in 门控、fail-open（见「行为面」） |
+| `evals/` | skill 自身的可运行输出质量检查 |
 
 ### SKILL.md 模板
 
@@ -198,6 +199,24 @@ read_when:
 | **全 LLM** | 确定性步骤用脚本 |
 | **无护栏** | 加 Hard Rules + Failure Handling |
 | **模糊输出** | 明确定义格式和字段 |
+| **未声明副作用** | 脚本的每个网络/凭据行为都写进 frontmatter（见「行为面」） |
+
+---
+
+## 行为面：最小、可选加入、如实声明
+
+约束 skill 里 prose 之外的附属物——hooks、脚本、平台适配器。提炼自线上扫描结论与一个 48k 星社区 skill（2026-09）。
+
+| 规则 | 含义 |
+|------|------|
+| **只做 opt-in** | 任何自动运行的东西（hooks、会话启动注入）必须由用户创建的 flag 文件门控；flag 不存在 → 什么都不做 |
+| **宿主边界 fail-open** | hook 或辅助脚本出错绝不能阻塞宿主会话：捕获一切，exit 0 |
+| **路径从脚本自身位置解析** | 永远不要用环境变量定位随包文件——从脚本自身路径推导 |
+| **单一规则源** | 只有一份权威规则文件；各平台适配器只做注入，绝不复制——副本必然漂移并自相矛盾 |
+| **声明与行为一致** | 脚本实施的每个网络端点、凭据来源、文件读取都必须写进 frontmatter（`permissions` + capability token）。扫描器会标记未声明行为（LP1）；「从不读文件」这类绝对化表述在另一个组件确实读文件时必须加限定 |
+| **自带 override 条款** | 写明 skill 自身规则何时让位——安全 > 任务 > 宿主 > 风格。没有逃生门的全套规则会被整体丢弃 |
+
+行为面越小越好：最好的辅助物在被显式调用前什么都不做，失败时也不造成任何伤害。
 
 ---
 
@@ -215,6 +234,7 @@ read_when:
 
 | 需要 | 加载 |
 |------|------|
+| **完整设计与实践指南**（全生命周期：设计/编写/审计/发布/安全对抗/维护） | `GUIDE_zh.md` |
 | 25 项检查清单 | `references/quality-checklist.md` |
 | 模式详解 | `references/pattern-details.md` |
 | 平台配置 | `references/platform-compatibility.md` |
@@ -226,6 +246,7 @@ read_when:
 *v1.4.3 | Based on Anthropic/OpenAI/LangChain design principles | 2026-06-23*
 
 **更新日志：**
+- v1.7.1：新增「行为面」一节（opt-in 门控、fail-open hooks、路径自解析、单一规则源、声明与行为一致、override 条款）+ `hooks/`、`evals/` 可选组件 + 未声明副作用反模式。提炼自 i-have-adhd 审计与 LP1 扫描结论。（v1.5.0-v1.7.0 的更新日志未记录，以 frontmatter 版本号为准。）
 - v1.4.3：恢复显示名称 "Skill Design Guide"
 - v1.4.2：合并 `reference/` 与 `references/` 为单一 `references/` 目录；修正所有引用路径
 - v1.4.1：修正显示名称

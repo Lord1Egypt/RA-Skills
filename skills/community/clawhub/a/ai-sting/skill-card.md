@@ -1,42 +1,53 @@
-## Description: <br>
-AI Sting helps developers test AI Agent security by generating scenario-specific prompt-injection attacks, social-engineering probes, logic-bypass prompts, and defensive system-prompt patches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Sting is an AI application security testing agent that analyzes user-described assistants, generates prompt-injection test cases, and provides defensive system-prompt patches.
 
-## Publisher: <br>
-[caizhongxian](https://clawhub.ai/user/caizhongxian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caizhongxian](https://clawhub.ai/user/caizhongxian)
 
-## Use Case: <br>
-Developers and security engineers use this skill to assess AI agents they own or are authorized to test by receiving targeted risk analysis, copy-ready red-team prompt examples, and system-prompt hardening guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate copy-ready jailbreak, impersonation, and evasion prompts. <br>
-Mitigation: Use only against AI agents you own or are explicitly authorized to assess, and treat generated prompts as live attack payloads. <br>
-Risk: Weak authorization boundaries could lead users to test third-party or production systems without approval. <br>
-Mitigation: Require authorization checks before use and avoid third-party or production targets unless approval is documented. <br>
-Risk: Generated examples may be deployable attack text rather than harmless demonstrations. <br>
-Mitigation: Prefer safer, non-deployable examples when broad sharing or training use is intended. <br>
+## Use Case:
 
+Developers and security teams use this skill to test AI agents they own or are authorized to assess. It produces tailored prompt-injection, social-engineering, and logic-bypass probes plus defensive system-prompt language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caizhongxian/ai-sting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with risk analysis, quoted test prompts, and defensive system-prompt rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces three attack prompt examples across instruction override, social engineering, and logic bypass, plus one or two hardening rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated attack prompts could be used against systems without authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for AI systems you own or have explicit permission to test, and do not apply outputs to third-party assistants or production systems without approval.
+
+Risk: The artifact does not state clear authorization limits for red-team prompt generation.
+
+Mitigation: Add or enforce an operating rule that generated probes must stay within an approved testing scope before relying on the skill.
+
+## Reference(s):
+
+- [ClawHub skill page: AI Sting](https://clawhub.ai/caizhongxian/skills/ai-sting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections and quoted prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes risk analysis, three tailored attack prompts, and one to two defensive system-prompt patches.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

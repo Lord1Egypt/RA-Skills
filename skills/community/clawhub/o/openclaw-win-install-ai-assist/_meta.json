@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn763rbhn5na5swbngma9fnp7s82yvkr",
-  "slug": "openclaw-win-install-ai-assist",
-  "version": "1.2.1",
-  "publishedAt": 1773827055311
+  "name": "OpenClaw Install Guide (WSL2 Windows)",
+  "displayName": "OpenClaw Windows WSL2 安装指南（AI 工具辅助）",
+  "slug": "openclaw-install-wsl-windows",
+  "description": "在 Windows WSL2 环境中安装 OpenClaw 完整分步指南，由 AI 工具辅助安装，包含作者和社区实际踩坑经验总结",
+  "version": "1.2.0",
+  "author": "Deepwhite 深白色",
+  "contributors": ["workfisher"],
+  "license": "MIT",
+  "tags": ["install", "windows", "wsl2", "openclaw", "guide", "ai-assisted"],
+  "changelog": {
+    "1.2.0": "• 添加开头说明：明确本技能为 WorkBuddy 等 AI 助手设计，用于辅助安装 OpenClaw\n• 删除具体大模型推荐，改为用户自行选择\n• 增加预下载安装文件提示（网络环境不佳时使用）\n• 双语格式改为段落形式（一段英文+一段中文）\n• 增加桌面快捷方式创建：Ubuntu 快捷方式 + OpenClaw 一键启动快捷方式\n• 支持两种安装方式：普通用户推荐 / 直接 root 安装\n• 增加了更多来自社区的常见报错和解决方案\n• 清晰说明本技能供类 OpenClaw AI 工具调用辅助安装\n• 添加作者署名 Deepwhite 深白色\n• 采用双语结构：英文标题/代码 + 中文注释",
+    "1.1.0": "• 支持两种安装方式：普通用户推荐 / 直接 root 安装\n• 增加了更多来自社区的常见报错和解决方案\n• 清晰说明本技能供类 OpenClaw AI 工具调用辅助安装\n• 添加作者署名 Deepwhite 深白色\n• 采用双语结构：英文标题/代码 + 中文注释",
+    "1.0.0": "• 初始版本，基础安装指南"
+  }
 }

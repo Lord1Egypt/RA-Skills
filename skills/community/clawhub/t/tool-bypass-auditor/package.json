@@ -1,0 +1,7 @@
+{
+  "name": "tool-bypass-auditor",
+  "version": "1.0.0",
+  "description": "Detect tool bypass attempts and exec/shell overuse in local session/evolution artifacts, then produce a concise bypass audit report.",
+  "main": "index.js",
+  "license": "UNLICENSED"
+}

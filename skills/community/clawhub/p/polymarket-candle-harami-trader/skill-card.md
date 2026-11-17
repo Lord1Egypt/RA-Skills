@@ -1,43 +1,55 @@
-## Description: <br>
-Detects harami candlestick patterns on Polymarket crypto 5-minute interval markets and can place conviction-sized BTC, ETH, SOL, and XRP Up or Down trades through Simmer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects harami candlestick patterns on Polymarket crypto 5-minute interval markets for BTC, ETH, SOL, and XRP and sizes reversal trades by conviction.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Developers and trading operators use this skill to run a Simmer-managed Polymarket strategy that detects harami reversal patterns in crypto interval markets. It defaults to paper trading and only places real USDC trades when explicitly run in live mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real Polymarket trades when live mode is explicitly enabled. <br>
-Mitigation: Test in paper mode first and use --live only when the operator accepts the configured USDC limits and financial risk. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a sensitive credential. <br>
-Mitigation: Keep SIMMER_API_KEY protected and provide it only through the runtime environment or approved secret storage. <br>
-Risk: Trading behavior depends on the external simmer-sdk dependency and live market data. <br>
-Mitigation: Review the simmer-sdk dependency and the configured tunables before deployment. <br>
+## Use Case:
 
+External developers and trading agents use this skill to scan Polymarket crypto interval markets for harami reversal setups, then run paper trades by default or live trades only when explicitly enabled.
 
-## Reference(s): <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Console text from a Python trading script plus Simmer trade API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; live trading requires the explicit --live flag and uses configured USDC risk limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live-trading safety limits are incomplete and can fail open.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper trading first, enable live mode only after review, and do not use real funds until fail-open checks, volume enforcement, open-position accounting, and dependency pinning are fixed.
+
+Risk: The skill requires a trading API key with financial authority.
+
+Mitigation: Use a least-privilege trading key, keep it secret, and set external account-level limits where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-candle-harami-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance, Python execution logs, and trade API requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paper trading is the default; live trading requires an explicit --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

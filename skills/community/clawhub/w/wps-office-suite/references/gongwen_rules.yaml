@@ -1,0 +1,134 @@
+# ============================================================
+# GB/T 9704-2012 党政机关公文格式 约束库
+# 用途：gongwen.py 排版引擎读取本文件，按规则对文档逐段套版
+# 设计：可维护、可扩展——新增文种/调整字号只需改本文件，不碰代码
+# ============================================================
+
+standard: "GB/T 9704-2012"
+name: "党政机关公文格式"
+
+# ---------- 页面 ----------
+page:
+  size: "A4"
+  margin_top: "37mm"
+  margin_bottom: "35mm"
+  margin_left: "28mm"
+  margin_right: "26mm"
+  per_page_lines: 22      # 每面 22 行
+  per_line_chars: 28      # 每行 28 字（三号字）
+  grid: true              # 撑满版心
+
+# ---------- 字体规范 ----------
+# size 使用中文办公字号，引擎内部映射为磅值（二号=22pt，三号=16pt，四号=14pt）
+fonts:
+  title:
+    name: "方正小标宋简体"
+    fallback: "宋体"
+    size: "二号"
+    bold: true
+    color: "000000"
+    align: "center"
+    spacing_after: "1行"
+  redhead:                # 红头（发文机关标志）预留位
+    name: "方正小标宋简体"
+    fallback: "宋体"
+    size: "初号"
+    bold: true
+    color: "FF0000"
+    align: "center"
+  main_send:             # 主送机关
+    name: "仿宋_GB2312"
+    fallback: "仿宋"
+    size: "三号"
+    align: "left"
+    first_line_indent: "0"
+  body:
+    name: "仿宋_GB2312"
+    fallback: "仿宋"
+    size: "三号"
+    align: "justify"
+    first_line_indent: "2字符"
+    line_spacing_rule: "fixed"
+    line_spacing: "28pt"   # 固定值 28 磅 ≈ 一个三号字 + 行距
+  signature:             # 发文机关署名 + 成文日期
+    name: "仿宋_GB2312"
+    fallback: "仿宋"
+    size: "三号"
+    align: "right"
+  attachment_note:       # 附件说明
+    name: "仿宋_GB2312"
+    fallback: "仿宋"
+    size: "三号"
+    align: "left"
+    first_line_indent: "2字符"
+  annotation:            # 附注（居左圆括号）
+    name: "仿宋_GB2312"
+    fallback: "仿宋"
+    size: "三号"
+    align: "left"
+  footer:
+    page_number:
+      name: "宋体"
+      size: "四号"
+      format: "- {n} -"     # 页码格式：一字线夹阿拉伯数字
+
+# ---------- 结构层次序数 ----------
+# 公文正文内层级标识与对应字体
+structure_levels:
+  - level: 1
+    marker: "一、"
+    font: "黑体"
+    size: "三号"
+    bold: true
+  - level: 2
+    marker: "（一）"
+    font: "楷体_GB2312"
+    fallback: "楷体"
+    size: "三号"
+  - level: 3
+    marker: "1."
+    font: "仿宋_GB2312"
+    fallback: "仿宋"
+    size: "三号"
+    bold: true
+  - level: 4
+    marker: "（1）"
+    font: "仿宋_GB2312"
+    fallback: "仿宋"
+    size: "三号"
+
+# ---------- 文种识别关键词 ----------
+# 用于从标题中判断文种，决定版式细节（如函/纪要差异）
+doc_types:
+  - "决议"
+  - "决定"
+  - "命令"
+  - "公报"
+  - "公告"
+  - "通告"
+  - "意见"
+  - "通知"
+  - "通报"
+  - "报告"
+  - "请示"
+  - "批复"
+  - "议案"
+  - "函"
+  - "纪要"
+
+# ---------- 主送机关识别特征 ----------
+# 段落以这些词结尾（带全角冒号）视为主送机关行
+main_send_markers:
+  - "："
+  - ":"
+
+# ---------- 落款识别特征 ----------
+signature_markers:
+  - "年"
+  - "月"
+  - "日"
+  # 含日期且位于文末 3 段内，视为落款
+
+# ---------- 红头预留位 ----------
+redhead_placeholder: "[红头：发文机关标志预留位]"
+redhead_line_gap: 2      # 红头与标题之间的空行数

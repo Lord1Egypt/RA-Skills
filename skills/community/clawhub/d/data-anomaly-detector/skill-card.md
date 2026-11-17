@@ -1,41 +1,57 @@
-## Description: <br>
-Detect anomalies and outliers in construction data: unusual costs, schedule variances, productivity spikes. Statistical and ML-based detection methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect anomalies and outliers in construction data: unusual costs, schedule variances, productivity spikes. Statistical and ML-based detection methods.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction analysts, estimators, schedulers, and project teams use this skill to inspect user-provided cost, schedule, productivity, and sequence data for outliers, impossible values, duplicate records, and trend deviations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests filesystem access for construction or business datasets and optional report exports. <br>
-Mitigation: Grant access only for specific datasets you intend to analyze and confirm export paths before allowing files to be written. <br>
-Risk: Anomaly findings can be incomplete or misleading if source data, thresholds, grouping fields, or configuration are wrong. <br>
-Mitigation: Review generated findings and suggested actions before relying on them for project, cost, schedule, or commercial decisions. <br>
+## Use Case:
 
+Developers, construction project teams, estimators, and project controls analysts use this skill to analyze user-provided cost, schedule, productivity, and sequence data for outliers, rule violations, duplicates, and trend deviations.
 
-## Reference(s): <br>
-- [Data Driven Construction homepage](https://datadrivenconstruction.io) <br>
-- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/data-anomaly-detector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown summaries, anomaly tables, Python code patterns, and export-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include severity counts, anomaly IDs, affected fields, expected ranges, confidence values, and suggested follow-up actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: Project data may contain sensitive cost, schedule, productivity, or commercial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only on project data intentionally provided by the user and keep files and outputs in approved environments.
+
+Risk: Anomaly findings or cost-estimate-style outputs may be incomplete or misleading if treated as authoritative.
+
+Mitigation: Review results as analytic guidance with qualified construction or project controls personnel before making project decisions.
+
+Risk: Unpinned Python dependencies can create reproducibility or supply-chain risk.
+
+Mitigation: Install dependencies in a project virtual environment and prefer pinned package versions.
+
+## Reference(s):
+
+- [Data Driven Construction](https://datadrivenconstruction.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown reports with structured tables, summary statistics, findings, and optional CSV, Excel, or JSON export guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes user-provided construction data using statistical and business-rule anomaly checks.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

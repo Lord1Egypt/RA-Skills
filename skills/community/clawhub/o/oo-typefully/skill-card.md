@@ -1,45 +1,56 @@
-## Description: <br>
-Use Typefully through OOMOL's oo connector to read, create, update, and delete account-authenticated Typefully drafts and social sets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Typefully to read, create, update, and delete data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to operate a user's Typefully account through OOMOL, including reading account data and managing drafts or social sets with schema-first payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Account-authenticated actions can create, update, or delete Typefully drafts. <br>
-Mitigation: Confirm the exact payload, target draft or social set, and expected effect with the user before write or destructive actions. <br>
-Risk: The skill requires OOMOL-backed tooling to access the user's Typefully account. <br>
-Mitigation: Install only when the user intends to grant that access, and use the server-provided connection flow for account authorization. <br>
-Risk: First-time setup may require running a remote oo CLI installer. <br>
-Mitigation: Verify the installer source before running setup commands, and run setup only after an auth, connection, or missing-command failure requires it. <br>
+## Use Case:
 
+People managing a Typefully account use this skill to inspect social sets and drafts, create or update drafts, and delete drafts through the oo CLI.
 
-## Reference(s): <br>
-- [ClawHub Typefully Skill](https://clawhub.ai/oomol/oo-typefully) <br>
-- [Typefully Homepage](https://typefully.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OOMOL-managed Typefully credentials; write and destructive actions require user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The CLI setup path uses remote installers whose behavior was unavailable for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installation source and use a reviewed, version-pinned CLI installation; require approval before running local setup.
+
+Risk: Startup skill synchronization can make persistent agent changes.
+
+Mitigation: Review the synchronization control before first use and set OO_SKILLS_SYNC_DISABLED=1 when startup synchronization should be disabled.
+
+## Reference(s):
+
+- [Typefully](https://typefully.com)
+- [Typefully API documentation](https://typefully.com/docs/api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Typefully on ClawHub](https://clawhub.ai/oomol/skills/oo-typefully)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON command responses and concise text summaries, with shell commands for the oo CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions can read Typefully data or change drafts; write and destructive actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

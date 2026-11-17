@@ -1,43 +1,55 @@
-## Description: <br>
-咨询级智能分析系统。将碎片化信息通过结构化思考转化为可执行洞察。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+咨询级智能分析系统，将碎片化信息通过结构化思考转化为可执行洞察，支持行业、市场、竞品、战略、根因、创新和研究报告分析。
 
-## Publisher: <br>
-[penghang1223](https://clawhub.ai/user/penghang1223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[penghang1223](https://clawhub.ai/user/penghang1223)
 
-## Use Case: <br>
-Employees, external users, analysts, and strategy teams use this skill to turn broad Chinese-language research, market, competitor, strategy, root-cause, innovation, and decision-support prompts into structured consulting-style analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad analysis or reporting phrases and may produce heavier research output than intended. <br>
-Mitigation: Give explicit instructions when a lighter answer, no web research, a different source preference, or a different language is required. <br>
-Risk: Research and analysis reports can contain incomplete, stale, or misleading conclusions if sources are weak or the prompt scope is ambiguous. <br>
-Mitigation: Review cited sources, clarify scope and assumptions, and independently verify decisions before relying on the report. <br>
+## Use Case:
 
+Employees, external users, and developers use this Chinese-language skill to turn broad analysis, research, strategy, root-cause, innovation, and reporting requests into structured consulting-style reports with selected analysis frameworks.
 
-## Reference(s): <br>
-- [12 大分析框架](references/frameworks.md) <br>
-- [经典框架组合策略](references/combinations.md) <br>
-- [ClawHub skill page](https://clawhub.ai/penghang1223/super-analyst) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/penghang1223) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language reporting workflow with adaptive complexity levels, source counts, framework counts, executive summaries, detailed analysis, cross-framework synthesis, action recommendations, and information sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate for broad analysis, deep research, or report-writing requests and can perform web research for medium or complex tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected complexity level, sources, and framework count before relying on the report for business decisions.
+
+Risk: Structured consulting frameworks can produce persuasive conclusions even when source evidence is incomplete or uncertain.
+
+Mitigation: Require cited sources for externally researched claims and keep unresolved assumptions visible in the final recommendation.
+
+## Reference(s):
+
+- [12 大分析框架](references/frameworks.md)
+- [经典框架组合策略](references/combinations.md)
+- [ClawHub Skill Page](https://clawhub.ai/penghang1223/skills/super-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown analysis report with an executive summary, framework-based analysis, cross-framework synthesis, action recommendations, and source links when research is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include complexity level, source count, and framework count; each selected framework may produce an 800-1500 character section.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

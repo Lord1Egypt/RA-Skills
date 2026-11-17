@@ -1,42 +1,54 @@
-## Description: <br>
-BotLearn Healthcheck inspects OpenClaw instances across hardware, configuration, security, skills, and autonomy domains, then generates health reports and fix guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BotLearn Healthcheck is an autonomous OpenClaw health inspector that checks hardware, configuration, security, skills, and autonomy signals, then produces diagnostic reports and fix guidance.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-Developers and operators use this skill to collect OpenClaw health data, assess five operational domains, generate persistent reports, and receive guided remediation steps with confirmation before changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect broad local OpenClaw state, including configuration, logs, identity-related directories, security diagnostics, heartbeat files, and workspace metadata. <br>
-Mitigation: Use targeted checks where possible, review generated reports for sensitive local details, and avoid sharing reports without redaction. <br>
-Risk: Diagnostic collection can surface sensitive paths or credential-related findings. <br>
-Mitigation: Keep credential values redacted and report only credential types, paths, and remediation steps. <br>
-Risk: Fix guidance may include commands that modify local OpenClaw state. <br>
-Mitigation: Require explicit user confirmation, show the intended command and rollback plan, and verify results after execution. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to inspect a live OpenClaw instance, summarize health across core operating domains, and generate actionable diagnostic reports. It is intended for troubleshooting, system status checks, and guided remediation after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/asterisk622/xiaoding-botlearn-healthcheck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and HTML health reports with concise status summaries, domain scores, issue tables, and fix guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes health reports under OPENCLAW_HOME memory health-report paths and uses local OpenClaw diagnostics where available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The skill may inspect sensitive OpenClaw configuration, logs, identity and workspace files, and security data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, run it only in environments where that access is acceptable, and prefer narrower collection with explicit consent before diagnostics.
+
+Risk: The skill writes persistent local health reports that may contain diagnostic details from the inspected instance.
+
+Mitigation: Define where reports are retained, who can access them, and when they should be deleted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asterisk622/skills/xiaoding-botlearn-healthcheck)
+- [Publisher profile](https://clawhub.ai/user/asterisk622)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports and concise diagnostic guidance, with optional HTML report files and shell commands for checks or fixes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are saved under the OpenClaw health-reports memory path when the skill runs.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata; artifact frontmatter version is 0.1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

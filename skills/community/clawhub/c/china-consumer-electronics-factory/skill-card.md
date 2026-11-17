@@ -1,40 +1,49 @@
-## Description: <br>
-Comprehensive consumer electronics industry factory guide for international buyers \u2013 provides detailed information about China's smartphone, wearable, audio, smart home, and AR/VR manufacturing clusters, supply chain structure, regional specializations, and industry trends (2026 updated). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive consumer electronics factory guide for international buyers that summarizes China's smartphone, wearable, audio, smart home, and AR/VR manufacturing clusters, supply chain structure, regional specializations, and industry trends.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-International buyers and sourcing teams use this skill to understand China's consumer electronics manufacturing clusters, supply chain structure, subsector trends, and supplier evaluation practices. It supports early sourcing research for smartphones, wearables, audio devices, smart home products, AR/VR headsets, and accessories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or workflows may include secrets, customer data, proprietary prompts, or other business-sensitive details. <br>
-Mitigation: Review inputs before using the skill and avoid pasting sensitive information unless the receiving environment is approved for that data. <br>
-Risk: Bundled industry and sourcing data can become outdated or incomplete for commercial supplier decisions. <br>
-Mitigation: Verify critical claims, supplier requirements, certifications, lead times, and policy references against current official or industry sources before acting. <br>
+## Use Case:
 
+External buyers, sourcing teams, and agents use this skill to answer questions about China's consumer electronics manufacturing clusters, subsectors, supply chain structure, and supplier evaluation practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/china-consumer-electronics-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance and JSON-like structured data from Python helper functions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are based on bundled cluster-level industry data and sourcing guidance; no individual factory contacts are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The bundled dataset includes corporate factory contacts and adjacent categories such as drones and security cameras that are not fully disclosed in the skill description.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify supplier details, outreach suitability, product category fit, and compliance obligations independently before using the information for procurement decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/china-consumer-electronics-factory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or structured Python dictionary results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local data-backed responses; no credential or network access is required by the bundled code.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

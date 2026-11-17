@@ -1,41 +1,49 @@
-## Description: <br>
-Generates technical blog drafts that read like they were written by a real engineer, avoiding formulaic AI-style structure and tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates technical blog prose that reads like it was written by a real engineer, with guidance for avoiding formulaic AI-style structure and tone.
 
-## Publisher: <br>
-[njcx](https://clawhub.ai/user/njcx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[njcx](https://clawhub.ai/user/njcx)
 
-## Use Case: <br>
-Developers and technical writers use this skill to draft or revise technical blogs, tutorials, project introductions, technology-selection notes, and incident writeups in a conversational, experience-based voice. It supports both Chinese and English technical writing conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may include fabricated personal experiences or inaccurate technical details such as version numbers, links, or error messages. <br>
-Mitigation: Review final drafts against real project history and authoritative technical sources before publishing. <br>
-Risk: The skill strongly pushes a personal, conversational style that may not fit neutral, team, or publication-specific requirements. <br>
-Mitigation: Override the style guidance or use a different skill when a neutral or publication-specific voice is required. <br>
+## Use Case:
 
+Developers and technical writers use this skill to draft or revise technical blogs, tutorials, incident writeups, project introductions, and technology-selection articles so they read as practical, personal engineering writing rather than generic AI prose.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/njcx/human-tech-blog) <br>
-- [Publisher profile](https://clawhub.ai/user/njcx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown prose with optional fenced code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writing-only output; final drafts should be reviewed for factual technical claims before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad trigger wording may steer general technical-writing requests toward a personal blog voice even when a different publication style is intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm or preserve the requested audience, publication style, and tone before applying the skill's rewrite guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/njcx/skills/human-tech-blog)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown prose with optional fenced code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool, credential, persistence, or system access requirements were identified.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

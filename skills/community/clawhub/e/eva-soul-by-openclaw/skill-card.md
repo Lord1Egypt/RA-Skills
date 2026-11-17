@@ -1,45 +1,65 @@
-## Description: <br>
-Eva Soul is an OpenClaw cognitive plugin that adds personality, emotion, memory, character, concept extraction, pattern recognition, decision support, and knowledge graph tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eva Soul is an OpenClaw plugin that adds persona, emotion, memory, decision support, concept extraction, pattern recognition, and knowledge graph tools to an AI assistant.
 
-## Publisher: <br>
-[catfei0518](https://clawhub.ai/user/catfei0518) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catfei0518](https://clawhub.ai/user/catfei0518)
 
-## Use Case: <br>
-OpenClaw users and developers use Eva Soul to give an assistant persistent memory, emotion and personality state, decision support, active inquiry, dialogue compression, and knowledge graph utilities during assistant sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin can retain raw conversation and memory data under ~/.openclaw/workspace/memory. <br>
-Mitigation: Install only where long-term local memory is acceptable, avoid shared machines, narrow or review the configured memory path, and manually inspect or delete stored memory files as needed. <br>
-Risk: Prompts and memory text may be sent to SiliconFlow when SILICONFLOW_API_KEY is configured. <br>
-Mitigation: Do not configure SILICONFLOW_API_KEY unless external processing is intended and acceptable for the data being handled. <br>
-Risk: Automatic memory behavior and migration cleanup can preserve or remove user data in ways users may not expect. <br>
-Mitigation: Review autoMemory behavior, inspect stored files directly, and back up memory data before running migration or cleanup commands. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to add persistent persona, emotional state, memory retrieval, decision suggestions, and related cognitive tools to an AI assistant.
 
-## Reference(s): <br>
-- [ClawHub Eva Soul release page](https://clawhub.ai/catfei0518/eva-soul-by-openclaw) <br>
-- [Eva Soul documentation](https://eva.catx.ltd) <br>
-- [English README](README_EN.md) <br>
-- [Chinese README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Configuration, Guidance] <br>
-**Output Format:** [Structured tool results, persisted JSON state, and plain-language assistant guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores memory, emotion, personality, concept, pattern, and knowledge graph data under the configured OpenClaw memory path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Automatic memory features can store conversation content and personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review saved memory files regularly, avoid sharing secrets or sensitive personal data while hooks are enabled, and disable automatic memory if persistent storage is not needed.
+
+Risk: Persona hooks can inject behavior-changing context into assistant responses.
+
+Mitigation: Review the generated persona and state behavior before deployment, and disable automatic personality features when predictable assistant behavior is required.
+
+Risk: Conversation or memory text may be sent to an external embedding service when SILICONFLOW_API_KEY is configured.
+
+Mitigation: Unset SILICONFLOW_API_KEY unless external embeddings are explicitly intended and approved for the data being processed.
+
+Risk: The plugin requests broad tool permissions including exec and message.
+
+Mitigation: Remove unnecessary exec and message permissions where the deployment platform permits least-privilege configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/catfei0518/skills/eva-soul-by-openclaw)
+- [Publisher profile](https://clawhub.ai/user/catfei0518)
+- [EVA documentation site](https://eva.catx.ltd)
+- [README_EN.md](artifact/README_EN.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and JSON-like tool results, with Markdown usage guidance and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist assistant state, memory, concept, pattern, and knowledge graph files under the configured OpenClaw memory path.]
+
+## Skill Version(s):
+
+2.5.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

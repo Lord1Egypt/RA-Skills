@@ -6,7 +6,7 @@ Transform vague user queries into precise search queries using available context
 ## Context Sources
 - Conversation context — recent messages and topics
 - Geolocation — if available from Relay or user profile
-- Chronicle data — if Elephas is installed, use entity context
+- Chronicle data — if See references/integration-notes.md for current backend architecture. is installed, use entity context
 - Entity resolution — resolve ambiguous references from prior messages
 
 ## Rewrite Process

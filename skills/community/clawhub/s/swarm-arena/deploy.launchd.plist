@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- swarmArena — launchd agent (macOS): one cycle every 120s.
+     Install: edit paths, then
+       cp deploy.launchd.plist ~/Library/LaunchAgents/xyz.swarm-arena.plist
+       launchctl load ~/Library/LaunchAgents/xyz.swarm-arena.plist
+     Credentials belong in the environment (Keychain / exported vars via a
+     0600 file read by a wrapper), NEVER in this plist. -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>xyz.swarm-arena</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/env</string>
+        <string>python3</string>
+        <string>/ABSOLUTE/PATH/TO/swarm-arena/scripts/autonomous_runner.py</string>
+        <string>/ABSOLUTE/PATH/TO/swarm-arena/config.json</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/ABSOLUTE/PATH/TO/swarm-arena</string>
+    <key>StartInterval</key>
+    <integer>120</integer>
+    <key>RunAtLoad</key>
+    <false/>
+    <key>StandardOutPath</key>
+    <string>/ABSOLUTE/PATH/TO/swarm-arena/logs/scan.log</string>
+    <key>StandardErrorPath</key>
+    <string>/ABSOLUTE/PATH/TO/swarm-arena/logs/scan.log</string>
+    <key>Nice</key>
+    <integer>10</integer>
+</dict>
+</plist>

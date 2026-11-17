@@ -1,42 +1,56 @@
-## Description: <br>
-Ora外贸客户开发专家 helps foreign-trade users search by country, company name, or product keyword to generate lists of relevant companies and websites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ora Search Pro helps international trade users search for companies by product keyword, company name, or country and return matching business listings and websites.
 
-## Publisher: <br>
-[oraagent](https://clawhub.ai/user/oraagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oraagent](https://clawhub.ai/user/oraagent)
 
-## Use Case: <br>
-External trade and business-development users use this skill to find potential customer companies, websites, and company-list results from country, product, or company-name queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to run inline local Node.js code and use a local OraAgent.key to call the h.smtso.com service. <br>
-Mitigation: Install only if the publisher and service are trusted, confirm that the key is intended for this service, and prefer platform-managed secrets or a constrained HTTP tool where available. <br>
-Risk: Search terms for customer development may expose sensitive customer, market, or strategy information to a third-party endpoint. <br>
-Mitigation: Avoid entering sensitive terms unless the service's data-sharing terms are acceptable, and use broader non-sensitive keywords when possible. <br>
+## Use Case:
 
+External trade and B2B sales users use this skill to find prospective companies or known company websites by product keyword, company name, and country. The agent runs the Ora client and presents results such as total count, company name, country, and website.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oraagent/ora-search-pro) <br>
-- [Ora homepage](https://www.topeasychina.com) <br>
-- [Ora customer-search API endpoint](https://h.smtso.com/skill/domaininfo/queryYellowPage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and concise guidance, backed by a form-encoded HTTPS API request.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries can use company name, product keyword, country code, page, and limit; the documented maximum is 1000 returned records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Search terms and the Ora API key are sent to h.smtso.com over HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where this external data transfer is acceptable, avoid sensitive search terms, and manage ORA_API_KEY as a secret.
+
+Risk: The security summary reports an unrelated mandatory geopolitical wording rule that can alter how the agent labels Taiwan, Hong Kong, and Macao.
+
+Mitigation: Review the wording rule before deployment and install only if it matches the intended policy and user expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oraagent/skills/ora-search-pro)
+- [Publisher profile](https://clawhub.ai/user/oraagent)
+- [Ora homepage](https://www.topeasychina.com)
+- [Ora search API endpoint](https://h.smtso.com/skill/domaininfo/queryYellowPage)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries with command execution and JSON-derived result tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads ORA_API_KEY from the environment or OraAgent.key and queries an external HTTPS API.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

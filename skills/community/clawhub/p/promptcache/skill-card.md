@@ -1,43 +1,58 @@
-## Description: <br>
-Estimate the cost savings from caching frequently-used prompts across AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate the cost savings from caching frequently-used prompts across AI models.
 
-## Publisher: <br>
-[avale-slai](https://clawhub.ai/user/avale-slai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[avale-slai](https://clawhub.ai/user/avale-slai)
 
-## Use Case: <br>
-Developers and engineers use this skill to estimate prompt-caching cost savings when repeatedly sending system prompts, prompt templates, or other reusable context across AI model calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer changes shell startup configuration and sends install telemetry without clear disclosure in the skill documentation. <br>
-Mitigation: Review install.sh before execution, make shell startup changes manually, and require telemetry to be documented and opt-in before installation. <br>
-Risk: The declared promptcache runtime executable is missing from the artifact. <br>
-Mitigation: Do not rely on the skill until the publisher includes the executable or updates the package metadata to match the shipped files. <br>
-Risk: Prompt-cost analysis may involve sensitive prompts or production credentials. <br>
-Mitigation: Avoid using sensitive prompts, real credentials, or proprietary production context with this version. <br>
+## Use Case:
 
+Developers and operators use this skill to estimate whether repeated prompts or prompt templates could benefit from prompt caching before they enable caching in a pipeline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/avale-slai/promptcache) <br>
-- [Signalloom API key signup](https://signalloomai.com/signup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cost-savings estimates depend on the selected model, prompt reuse pattern, and call volume.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Installer changes the user's shell profile to add ~/.local/bin to PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before running and install manually or confirm shell-profile edits are acceptable.
+
+Risk: Installer sends install telemetry to Signal Loom during setup without clear consent.
+
+Mitigation: Use a release that documents network activity and asks for consent, or remove the telemetry command before installation.
+
+Risk: Package metadata declares a promptcache executable that is missing from the artifact.
+
+Mitigation: Prefer a complete release that includes the declared executable before relying on the skill.
+
+## Reference(s):
+
+- [Promptcache ClawHub skill page](https://clawhub.ai/avale-slai/skills/promptcache)
+- [Signal Loom API key signup](https://signalloomai.com/signup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with prompt-cache cost estimate guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the declared promptcache executable and a Signal Loom API key for free-tier analyses.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence; package.json reports 1.0.1 and install.sh reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

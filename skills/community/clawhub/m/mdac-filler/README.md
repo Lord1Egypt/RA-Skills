@@ -52,10 +52,10 @@ With **mdac-filler**, just tell your AI assistant your travel details. Everythin
 
 ### How It Works
 
-1. **Playwright browser automation** — launches a real (non-headless) browser for full compatibility
+1. **Playwright browser automation** — launches a real (non-headless) browser to bypass bot detection
 2. **JS injection** — fills all form fields via `document.getElementById`
-3. **CAPTCHA solver** — analyzes `longbow.slidercaptcha.js` to locate the gap:
-   - Patches `$.ajax` to handle the `/captcha` verification response
+3. **CAPTCHA bypass** — reverse-engineers `longbow.slidercaptcha.js`:
+   - Hooks `$.ajax` to intercept the `/captcha` server verification and return success
    - Reads real gap coordinate from `instance.x` on the slidercaptcha instance
    - Calculates exact drag distance and simulates human-like mouse movement
 4. **Auto-submit** — clicks Submit and waits for the success page
@@ -100,14 +100,6 @@ Or use a JSON file:
 ```bash
 python3 scripts/fill_and_submit.py --file my_info.json
 ```
-
-### Security
-
-- **Use `--file` instead of `--data`** — command-line arguments are visible in process lists and shell history. Store your passport info in a local JSON file with restricted permissions:
-  ```bash
-  chmod 600 my_info.json
-  ```
-- Your data is only sent to the official MDAC website. No third-party services are involved.
 
 ### Notes
 
@@ -172,8 +164,8 @@ This project is also an [OpenClaw](https://openclaw.ai) AgentSkill, installable 
 
 1. **Playwright 浏览器自动化** — 打开真实浏览器（非 headless），绕过反机器人检测
 2. **JS 注入填表** — 通过 `document.getElementById` 批量填写所有字段
-3. **CAPTCHA 自动处理** — 分析 `longbow.slidercaptcha.js` 定位缺口坐标：
-   - 处理 `/captcha` 服务端验证响应
+3. **CAPTCHA 破解** — 分析 `longbow.slidercaptcha.js` 源码：
+   - Hook `$.ajax` 拦截服务端验证请求，直接返回成功
    - 读取验证码实例的真实缺口坐标 `instance.x`
    - 精确计算滑块移动距离并模拟人类拖动轨迹
 4. **自动提交** — 点击 Submit 按钮，等待成功页面
@@ -200,14 +192,6 @@ python3 scripts/fill_and_submit.py --file my_info.json
 - 国籍/出生地代码（CHN、SGP 等）
 - 入境方式（陆路/空路/海路）
 - 柔佛州各城市代码
-
-### 安全提示
-
-- **推荐用 `--file` 而非 `--data`** — 命令行参数会出现在进程列表和 shell 历史里，护照信息不应直接写在命令行中。将信息存入本地 JSON 文件并限制权限：
-  ```bash
-  chmod 600 my_info.json
-  ```
-- 数据只发送到 MDAC 官方网站，不涉及任何第三方服务。
 
 ### 注意事项
 

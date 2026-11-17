@@ -1,43 +1,59 @@
-## Description: <br>
-Use when adding authentication (login, logout, protected routes) to Fastify web applications - integrates @auth0/auth0-fastify for session-based auth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when adding authentication (login, logout, protected routes) to Fastify web applications with @auth0/auth0-fastify for session-based auth.
 
-## Publisher: <br>
-[auth0](https://clawhub.ai/user/auth0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auth0](https://clawhub.ai/user/auth0)
 
-## Use Case: <br>
-Developers use this skill to add Auth0 session-based login, logout, callback handling, and protected routes to Fastify web applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Auth0 client secrets and session secrets are required for setup. <br>
-Mitigation: Keep AUTH0_CLIENT_SECRET and SESSION_SECRET out of source control and use production secret management where appropriate. <br>
-Risk: Unreviewed npm dependency changes could alter authentication behavior. <br>
-Mitigation: Pin or review npm dependency versions before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Auth0 login, logout, callback, session, and protected-route behavior to Fastify web applications.
 
-## Reference(s): <br>
-- [Auth0 Fastify Documentation](https://auth0.com/docs/quickstart/webapp/fastify) <br>
-- [Auth0 Fastify SDK Repository](https://github.com/auth0/auth0-fastify) <br>
-- [Auth0 Agent Skills Repository](https://github.com/auth0/agent-skills) <br>
-- [ClawHub Skill Page](https://clawhub.ai/auth0/auth0-fastify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses environment variables for Auth0 tenant settings, client credentials, and session secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: Authentication setup requires sensitive values such as AUTH0_CLIENT_SECRET and SESSION_SECRET.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store secrets in a local secret store or uncommitted .env file, generate a strong session secret, and avoid hardcoding credentials in application code.
+
+Risk: Incorrect callback URLs or application base URLs can break the login flow or misroute authentication callbacks.
+
+Mitigation: Verify Auth0 callback URLs and APP_BASE_URL against each deployment environment before production use.
+
+Risk: Generated authentication routes and protected-route logic may need application-specific review before deployment.
+
+Mitigation: Review the generated Fastify auth routes, session checks, and redirects before using them in production.
+
+## Reference(s):
+
+- [Auth0 Fastify Documentation](https://auth0.com/docs/quickstart/webapp/fastify)
+- [Auth0 Fastify SDK Repository](https://github.com/auth0/auth0-fastify)
+- [Auth0 Agent Skills Repository](https://github.com/auth0/agent-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes environment variable names, Fastify route examples, Auth0 plugin configuration, and common setup checks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

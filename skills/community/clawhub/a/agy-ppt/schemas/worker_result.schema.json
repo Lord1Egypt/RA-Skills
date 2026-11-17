@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "agy-ppt/worker_result.schema.json",
+  "title": "AGY PPT worker result",
+  "description": "Result contracts returned to AGY by workers. Codex image results and Kiro engineering results are deliberately different shapes; a worker result must match exactly one of them. No worker result may set a project phase.",
+  "oneOf": [
+    { "$ref": "#/definitions/codex_result" },
+    { "$ref": "#/definitions/kiro_result" }
+  ],
+  "definitions": {
+    "codex_result": {
+      "type": "object",
+      "title": "Codex image worker result",
+      "required": ["status", "slide_id", "operation", "backend"],
+      "additionalProperties": true,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["completed", "error"]
+        },
+        "slide_id": { "type": "string", "pattern": "^slide_[0-9]{2,}$" },
+        "operation": { "type": "string", "enum": ["generate", "regenerate", "probe"] },
+        "backend": { "type": "string", "enum": ["codex_builtin_imagegen"] },
+        "output_path": { "type": ["string", "null"] },
+        "error_code": {
+          "type": ["string", "null"],
+          "enum": [
+            null,
+            "IMAGE_BACKEND_UNAVAILABLE",
+            "CODEX_CLI_UNAVAILABLE",
+            "CODEX_AUTH_UNAVAILABLE",
+            "IMAGE_GENERATION_FAILED",
+            "IMAGE_ARTIFACT_NOT_FOUND",
+            "IMAGE_ARTIFACT_AMBIGUOUS",
+            "IMAGE_OUTPUT_INVALID",
+            "IMAGE_OUTPUT_PATH_CONFLICT",
+            "CODEX_TIMEOUT",
+            "IMAGE_TASK_INVALID"
+          ]
+        },
+        "warnings": { "type": "array", "items": { "type": "string" } },
+        "diagnostics": {
+          "type": "object",
+          "required": ["auth", "api_fallback_used"],
+          "properties": {
+            "auth": { "type": "string" },
+            "api_fallback_used": { "type": "boolean", "const": false }
+          }
+        }
+      },
+      "not": {
+        "anyOf": [
+          { "required": ["phase"] },
+          { "required": ["project_phase"] }
+        ]
+      }
+    },
+    "kiro_result": {
+      "type": "object",
+      "title": "Kiro engineering worker result",
+      "required": ["schema", "status", "control"],
+      "additionalProperties": true,
+      "properties": {
+        "schema": { "type": "string", "const": "agy-ppt/kiro-acp-bridge-result/1" },
+        "status": { "type": "string" },
+        "control": { "type": "string", "const": "returned_to_agy" },
+        "error_code": { "type": ["string", "null"] },
+        "diagnostics": { "type": "object" }
+      },
+      "not": {
+        "anyOf": [
+          { "required": ["phase"] },
+          { "required": ["project_phase"] }
+        ]
+      }
+    }
+  }
+}

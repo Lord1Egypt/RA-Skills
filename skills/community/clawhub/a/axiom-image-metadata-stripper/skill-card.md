@@ -1,45 +1,57 @@
-## Description: <br>
-Image metadata stripper that removes EXIF, GPS, camera information, and other metadata from JPEG and PNG images using Python standard-library code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local Python image metadata stripping skill for removing EXIF, GPS, camera, and related metadata from supported image files before sharing or publishing.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers and privacy-conscious users use this skill to strip image metadata before publishing or sharing photos that may contain GPS coordinates, camera identifiers, timestamps, or software details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation advertises GIF and directory processing, but the implementation only strips JPEG and PNG files passed as individual file paths. <br>
-Mitigation: Use the skill for individual JPEG or PNG files, and verify format support before relying on it for GIFs, directories, or batch workflows. <br>
-Risk: The Python usage example shows raw bytes input, while the implemented function accepts file paths and writes an output file. <br>
-Mitigation: Call the CLI or pass input and output file paths to the Python function, then inspect the output file before publishing. <br>
-Risk: Metadata stripping is all-or-nothing and may not cover unsupported image formats such as WebP, AVIF, or HEIC. <br>
-Mitigation: Confirm the input format is supported and use a dedicated metadata inspection tool for formats outside JPEG and PNG. <br>
+## Use Case:
 
+Developers and agents use this skill to propose local commands or Python calls that strip metadata from photos before web publication or external sharing. It is most relevant when reducing accidental disclosure of GPS coordinates, camera identifiers, or similar image metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/axiom-image-metadata-stripper) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [Source script](artifact/axiom_image_metadata_stripper.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples, Python API examples, generated image files, and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure Python standard-library workflow; writes a stripped image file when run in strip mode and reports detected metadata when run in analyze mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill overstates its privacy guarantees for image metadata removal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as best-effort metadata reduction, keep original backups, and verify cleaned outputs with a mature metadata inspection tool before publishing sensitive photos.
+
+Risk: Supported formats are narrower than the skill description suggests.
+
+Mitigation: Use it only for the demonstrated JPEG and PNG workflows unless separate validation proves additional format support.
+
+Risk: Untrusted or malformed image files may trigger parser edge cases.
+
+Mitigation: Run it in a controlled local environment and avoid relying on it as the only control for hostile or malformed inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/axiom-image-metadata-stripper)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell and Python examples; CLI output may be plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced local tool can write stripped image files and analysis results for supported inputs.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

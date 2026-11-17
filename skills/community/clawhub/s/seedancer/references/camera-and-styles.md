@@ -1,3 +1,8 @@
+> **Language**: This document is in Chinese only. For English overview, see [README.md](../README.md).
+>
+> **语言说明**: 本文档仅提供中文版本。英文概述请查看 [README.md](../README.md)。
+
+---
 # 镜头语言、光学参数与视觉风格词汇表（Camera Language, Optics & Visual Style Glossary）
 
 在 Seedance 2.0 提示词中使用以下术语，实现精确的电影级控制。

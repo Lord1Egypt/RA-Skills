@@ -1,40 +1,54 @@
-## Description: <br>
-Orchestrates small preset role teams with stable pseudonym names, optional renaming, and a fixed JSON report for each task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AOI Squad Orchestrator (Lite) helps an agent run preset three-role teams with stable pseudonym team names, renaming options, and a fixed JSON report for each task.
 
-## Publisher: <br>
-[edmonddantesj](https://clawhub.ai/user/edmonddantesj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[edmonddantesj](https://clawhub.ai/user/edmonddantesj)
 
-## Use Case: <br>
-Developers and workflow authors use this skill to run lightweight task orchestration through predefined three-role squads and receive a structured report that is easy to parse or test. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Team aliases and task text can contain sensitive or personal data if users enter it. <br>
-Mitigation: Avoid secrets and sensitive personal data in aliases or task prompts, and review local storage before sharing the environment. <br>
-Risk: Generated report_markdown may include untrusted task content. <br>
-Mitigation: Treat report_markdown as untrusted content when task input comes from another person and review it before rendering or publishing. <br>
+## Use Case:
 
+Developers and agent users can use this skill to structure a task through a small preset team, inspect or rename role pseudonyms, and receive a parseable task report. It is suited for lightweight planning, writing, implementation outlines, and review workflows where a fixed JSON output is useful.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edmonddantesj/aoi-squad-orchestrator-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [JSON object with embedded report_markdown string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores preset team-name mappings locally under ~/.openclaw/aoi/squad_names.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata, artifact/_meta.json, package.json) <br>
+Risk: The CLI stores team nickname mappings in ~/.openclaw/aoi/squad_names.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, remove, or change that local file when nickname persistence is not desired.
+
+Risk: The generated report_markdown can contain user-provided task text.
+
+Mitigation: Treat report_markdown as untrusted Markdown when displaying it in external renderers, especially renderers that automatically load remote links or images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edmonddantesj/skills/aoi-squad-orchestrator-lite)
+- [Support issues](https://github.com/edmonddantesj/aoi-skills/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON report with embedded Markdown summary and CLI command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a fixed report schema and stores team nickname mappings locally.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

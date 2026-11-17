@@ -1,0 +1,4 @@
+interface:
+  display_name: "OnePilot CLI"
+  short_description: "Connect OnePilot for events, consent-based memory, applications, and organizer-only workbench help."
+  default_prompt: "Use $onepilot to bind this agent, recommend matching OPC and AI startup events, save preferences or feedback only after consent, and help with applications or organizer workbench actions when confirmed. OnePilot website: https://onepilot.zeabur.app"

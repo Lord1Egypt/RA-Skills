@@ -1,41 +1,52 @@
-## Description: <br>
-Technical analysis and chart pattern recognition for equities, options, and crypto markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Technical analysis and chart pattern recognition for equities, options, and crypto markets.
 
-## Publisher: <br>
-[CollierKing](https://clawhub.ai/user/CollierKing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[collierking](https://clawhub.ai/user/collierking)
 
-## Use Case: <br>
-Developers, analysts, and trading workflows use this skill to ask an agent for technical chart analysis, pattern recognition, support and resistance levels, trend classification, and multi-timeframe market setup summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The required ChartClass API key could be exposed if pasted into prompts, shared files, or logs. <br>
-Mitigation: Provide CHARTCLASS_API_KEY through the documented environment variable, keep it secret, and avoid including it in agent-visible text. <br>
-Risk: Financial chart analysis may be incorrect, incomplete, or misread as guaranteed investment advice. <br>
-Mitigation: Treat outputs as analysis support, verify important conclusions against trusted market data, and apply appropriate human review before trading or investment decisions. <br>
-Risk: Authenticated API usage may consume account quota or incur unexpected usage. <br>
-Mitigation: Monitor ChartClass account or quota usage when enabling the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CollierKing/chartclass) <br>
+## Use Case:
 
+Developers and external users can use this skill to ask an agent for chart-pattern, technical-indicator, support/resistance, trend, and multi-timeframe analysis across equities, options, and crypto markets.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or plain text analysis with configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CHARTCLASS_API_KEY for market data access; CHARTCLASS_DEFAULT_TIMEFRAME may set the default chart timeframe.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata and skill metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a ChartClass API key and may send ticker or chart-analysis queries to the ChartClass service.
+
+Mitigation: Install only when providing that API key and sending those queries to ChartClass is acceptable.
+
+Risk: Technical-analysis output may be mistaken for financial advice or trading authority.
+
+Mitigation: Treat the output as market research and require independent review before making trading decisions.
+
+## Reference(s):
+
+- [ChartClass ClawHub skill page](https://clawhub.ai/collierking/skills/chartclass)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Text, Markdown]
+
+**Output Format:** [Markdown or plain text market-analysis responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CHARTCLASS_API_KEY for market data and chart-analysis requests.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

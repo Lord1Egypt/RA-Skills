@@ -1,0 +1,13 @@
+interface:
+  display_name: "BTC Bottom Signals"
+  short_description: "Score BTC bottom confluence with AgentKey"
+  default_prompt: "Use $btc-bottom-signals to assess whether BTC is near a potential bottom."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "agentkey"
+      description: "AgentKey MCP for live crypto market, sentiment, and on-chain data"
+      transport: "streamable_http"
+      url: "https://api.agentkey.app/v1/mcp"
+policy:
+  allow_implicit_invocation: true

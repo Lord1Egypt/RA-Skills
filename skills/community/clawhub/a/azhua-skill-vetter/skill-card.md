@@ -1,40 +1,56 @@
-## Description: <br>
-Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.
 
-## Publisher: <br>
-[fatfingererr](https://clawhub.ai/user/fatfingererr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fatfingererr](https://clawhub.ai/user/fatfingererr)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this skill to review third-party agent skills before installation by checking source credibility, code patterns, requested permissions, and installation risk. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes example curl commands for inspecting GitHub-hosted skills. <br>
-Mitigation: Review each command before running it and only provide repositories or URLs that the agent is intended to inspect. <br>
-Risk: Checklist-style security guidance may be incomplete or applied incorrectly by an agent. <br>
-Mitigation: Use the checklist as a review aid and retain human approval for high-risk findings, credential access, elevated permissions, or unclear source trust. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fatfingererr/azhua-skill-vetter) <br>
-- [Publisher profile](https://clawhub.ai/user/fatfingererr) <br>
+## Use Case:
 
+Developers and agent users use this skill to review skills before installation by checking source credibility, file behavior, permission scope, and security risk indicators.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown checklist and vetting report with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-readable review findings, permission notes, risk classification, and install verdict guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: GitHub lookup commands could be aimed at repositories outside the intended review scope.
+
+Mitigation: Run lookup commands only for candidate repositories being reviewed and confirm the target before using the results.
+
+Risk: A file review could expand into unrelated local files or credentials.
+
+Mitigation: Limit review to the candidate skill artifact and avoid credential stores, personal configuration, and unrelated workspace files.
+
+Risk: The checklist output could be treated as an automatic security decision.
+
+Mitigation: Use the report as review guidance and require human approval for high-risk findings or install decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fatfingererr/skills/azhua-skill-vetter)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown vetting report with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report includes source, author, version, metrics, red flags, permissions, risk level, verdict, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

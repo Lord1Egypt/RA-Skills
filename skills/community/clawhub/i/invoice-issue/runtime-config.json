@@ -1,0 +1,5 @@
+{
+  "default_base_url": "http://openapi.nmy.cn/api/v1/skill",
+  "portal_base_url": "https://www.nmy.cn",
+  "capability_code": "invoice_issue"
+}

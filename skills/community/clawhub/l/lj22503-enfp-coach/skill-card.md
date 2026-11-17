@@ -1,44 +1,59 @@
-## Description: <br>
-ENFP Coach helps self-identified ENFP users work through growth, career, learning, focus, and analysis-paralysis questions with coaching prompts or concrete action plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When a user explicitly identifies as ENFP, this skill provides coaching or concrete guidance for growth, career, learning, analysis paralysis, and focus challenges.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users who identify as ENFP use this skill to discuss growth, career, learning, focus, and analysis paralysis. The skill guides the agent to choose between a reflective coaching mode and a direct-advice mode with practical next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask the agent to remember sensitive personal growth details across sessions. <br>
-Mitigation: Use it only where saved-memory behavior is understood, and verify users can disable, inspect, or delete saved memory before relying on growth records. <br>
-Risk: Packaged files mix ENFP and INTP guidance, which can produce inconsistent coaching advice. <br>
-Mitigation: Review responses for personality-type consistency and prefer the ENFP-specific skill instructions and ENFP reference material during deployment. <br>
-Risk: Coaching guidance could be mistaken for professional mental health advice. <br>
-Mitigation: Keep use limited to growth, career, and learning support, and direct severe psychological concerns to qualified professionals. <br>
+## Use Case:
 
+External users who identify as ENFP use this skill for coaching conversations and concise action plans around growth, career or learning direction, analysis paralysis, and focus. The skill switches between reflective coaching questions and direct recommendations based on user need.
 
-## Reference(s): <br>
-- [ENFP traits reference](references/enfp-traits.md) <br>
-- [INTP insights reference](references/intp-insights.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/lj22503-enfp-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown with short questions, action steps, and coaching summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Artifact guidance asks coaching replies to stay within 200 Chinese characters and advisor-mode replies within 400 Chinese characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release evidence; artifact frontmatter shows 1.6.0) <br>
+Risk: The release security summary reports inconsistent ENFP/INTP identity metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Correct the identity mismatch before installation and review outputs for the intended ENFP audience.
+
+Risk: The release security summary reports automatic retention of personal coaching records without clear consent or deletion controls.
+
+Mitigation: Make persistence explicit, opt-in, reviewable, and deletable before use.
+
+Risk: The artifact positions the skill as coaching support and states it is not a substitute for professional counseling.
+
+Mitigation: Keep serious mental health concerns outside the skill's scope and direct users to qualified professionals when appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/lj22503-enfp-coach)
+- [ENFP traits reference](artifact/references/enfp-traits.md)
+- [INTP insights reference](artifact/references/intp-insights.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational coaching responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are intended to be concise, with coaching mode using focused questions and consultant mode using brief action steps.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

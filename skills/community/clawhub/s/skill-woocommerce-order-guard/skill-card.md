@@ -1,40 +1,49 @@
-## Description: <br>
-Monitors WooCommerce processing orders, copies billing details into missing shipping addresses, and emits one alert per new order for downstream automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors WooCommerce processing orders, copies billing details into missing shipping addresses, and emits one alert per new order for downstream automation.
 
-## Publisher: <br>
-[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-WooCommerce operators and automation developers use this skill to monitor processing orders, fill missing shipping addresses from billing data, and emit one-line signals for fulfillment or alerting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The automation can update live WooCommerce order shipping data, including customer address fields, without a dry-run or confirmation step. <br>
-Mitigation: Use a dedicated least-privilege WooCommerce key, test on staging first, review the billing-to-shipping field mapping, and add dry-run or approval controls before production scheduling. <br>
-Risk: Write failures may not be handled reliably before downstream alerts or deduplication state are recorded. <br>
-Mitigation: Add PUT response checks, logging, and failure handling so orders are only marked alerted after the shipping update path succeeds or is explicitly skipped. <br>
+## Use Case:
 
+WooCommerce store operators and automation developers use this skill to keep processing orders ready for fulfillment and send one downstream notification per new order.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zero2ai-hub/skill-woocommerce-order-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and stdout status lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces HEARTBEAT_OK when no new orders are found and NEW_ORDER_ID lines for newly detected orders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically update live WooCommerce order shipping addresses using stored API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege WooCommerce API key, require an HTTPS store URL, protect the credentials file, test on staging first, and add dry-run/apply controls plus response checks before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zero2ai-hub/skills/skill-woocommerce-order-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, and plain-text output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Script output may include HEARTBEAT_OK or NEW_ORDER_ID lines.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

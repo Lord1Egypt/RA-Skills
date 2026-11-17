@@ -12,6 +12,8 @@
 | 更新文件失败 | file_id 未传或 parent_entry_id 错误 | 更新时 parent_entry_id = 当前文件 entry_id |
 | 块创建报错 | h1/h2/code 等叶子节点包含 children | **标题、代码块等不支持 children** |
 | 块创建不完整 | 缺少顶层 children | 确保 children 包含所有顶层块 ID |
+| 智能表格写入返回 999 | CellValue 结构不符合定义 | `text` 写成 `[{"text_run":{"content":"..."}}]`，详见下文错误五 |
+| 直调业务工具报 not found | 当前只暴露元工具（代理模式）却直接调用业务工具 | 改用 `call_tool(tool_name=...)` 代理调用，详见下文错误六 |
 
 ---
 
@@ -224,6 +226,83 @@ Step 2: 从返回值中提取
   "text": {"elements": [{"text_run": {"content": "提示内容"}}]}
 }
 ```
+
+---
+
+## 错误五：智能表格写入返回 999（CellValue 格式错误）
+
+### 错误表现
+
+调用 `smartsheet_create_records` / `smartsheet_update_records` 返回 **999 系统错误**，没有明确的参数错误提示。
+
+### 根因
+
+`fields` 的 value（CellValue）结构不符合乐享定义。
+
+`CellValue.text` 是 `repeated TextElement`，而 `TextElement` 是 `oneof { text_run / mention_staff / ... }`，**纯文本必须写在 `text_run.content` 里**：
+
+```json
+// ✅ 正确格式
+{"text": [{"text_run": {"content": "张三"}}]}
+```
+
+结构不符合该定义时，protojson 反序列化失败，网关返回 999。
+
+### 正确参数
+
+```json
+{
+  "entry_id": "<entry_id>",
+  "smartsheet_id": "<smartsheet_id>",
+  "records": [
+    {
+      "fields": {
+        "<field_id_姓名>": {"text": [{"text_run": {"content": "张三"}}]},
+        "<field_id_年龄>": {"number": 28},
+        "<field_id_城市>": {"single_select": {"name": "北京"}}
+      }
+    }
+  ]
+}
+```
+
+### 通用防错做法：先读后写
+
+写入前先 `smartsheet_list_records` 读一条真实记录，**照抄**返回的 `fields` 结构构造参数——读接口返回的 CellValue 与写接口期望的结构完全一致，可从根本上避免格式出错。
+
+> 拿到 999 时**不要原样重试**，先读一条真实记录、修正格式后再试。更完整的类型说明见 `references/smartsheet.md`。
+
+---
+
+## 错误六：直调业务工具报 Tool not found
+
+### 错误表现
+
+直接调用业务工具（如 `file_download_file`、`entry_list_children`）时报错：
+
+```
+Error: Tool "xxx" not found in the deferred tools index
+```
+
+### 根因
+
+当前 MCP 客户端**只暴露元工具**（`call_tool` / `get_tool_schema` / `lexiang_search` / `lexiang_fetch` / `list_tool_categories` / `search_tools` / `whoami`），
+业务工具不在可用工具列表中，属于**代理模式**，不能直接调用。
+
+### 修复
+
+改用 `call_tool` 代理调用：
+
+```
+1. search_tools(query="关键词")                   → 确认业务工具存在及其准确名称
+2. get_tool_schema(tool_name="xxx")               → 获取参数定义
+3. call_tool(tool_name="xxx", arguments={...})    → 代理调用
+```
+
+> ⚠️ 一旦踩到该错误，**本次会话后续所有业务工具一律走代理模式**，
+> 不要逐个工具重试直调（会退化成「错名—报错—补发」的循环）。
+
+> 💡 **判定方式**：调用前先看可用工具列表中是否有目标业务工具名——有则直调，没有则走代理。详见 `references/base.md`。
 
 ---
 

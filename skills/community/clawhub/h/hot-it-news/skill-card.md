@@ -1,43 +1,56 @@
-## Description: <br>
-Retrieves current hot article links from QbitAI, 人人都是产品经理, and Huxiu, then formats them as a concise Markdown digest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches hot or recommended articles from QbitAI, 人人都是产品经理, and Huxiu, then formats the results as concise Markdown links for IT, technology, internet, AI, product, and business technology news requests.
 
-## Publisher: <br>
-[lushi516](https://clawhub.ai/user/lushi516) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengzuo613](https://clawhub.ai/user/zengzuo613)
 
-## Use Case: <br>
-External users and agents use this skill to collect a Chinese-format digest of current IT, AI, product, internet, and business-technology articles from three named public sites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad IT or technology-news wording. <br>
-Mitigation: Confirm the user wants a digest from QbitAI, 人人都是产品经理, and Huxiu before running the collection workflow. <br>
-Risk: Article availability and page structure may change on the public source sites. <br>
-Mitigation: Use only links gathered from the current headed browsing session, and report failures when the expected sections or real article links cannot be confirmed. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current popular IT, technology, AI, product, and business technology articles from three named Chinese news and product sites. It is intended for concise title-and-link news digests rather than search-engine aggregation or article summarization.
 
-## Reference(s): <br>
-- [ClawHub listing for hot-it-news](https://clawhub.ai/lushi516/hot-it-news) <br>
-- [QbitAI](https://www.qbitai.com/) <br>
-- [人人都是产品经理](https://www.woshipm.com/) <br>
-- [Huxiu](https://www.huxiu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown list of article titles with links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output is a concise digest grouped by source site; each formal result should include a real article title and article link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence) <br>
+Risk: The skill may run for broad tech-news prompts and open three named external websites in a visible browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for specific hot or recommended article requests and review whether access to the named external sites is acceptable in the deployment environment.
+
+Risk: Homepage structure changes or missing article links can make a source block incomplete.
+
+Mitigation: Treat incomplete retrievals as failures for that source and require confirmed titles with direct article links before presenting final results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zengzuo613/skills/hot-it-news)
+- [QbitAI](https://www.qbitai.com/)
+- [人人都是产品经理](https://www.woshipm.com/)
+- [Huxiu](https://www.huxiu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown list of article titles and links grouped by source site]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normally returns up to five linked articles per configured source when source blocks and article links are confirmed.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

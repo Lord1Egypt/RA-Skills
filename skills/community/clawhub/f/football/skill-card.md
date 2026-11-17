@@ -1,41 +1,58 @@
-## Description: <br>
-Analyze football and soccer matches, squads, players, and training plans with tactical frameworks, scouting grids, and session blueprints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze football and soccer matches, squads, players, and training plans with tactical frameworks, scouting grids, and session blueprints.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Coaches, analysts, scouts, players, and football staff use this skill to turn football or soccer questions into structured match previews, post-match reviews, opponent reports, player scouting notes, squad-role decisions, and training-week plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional local notes under ~/football/ may contain football context such as level, region, recurring opponents, player-role notes, and training constraints. <br>
-Mitigation: Use the notebook only after user approval, keep notes lean, and avoid credentials, private medical details, or unnecessary sensitive material. <br>
-Risk: Football advice can become misleading if it invents live stats, injuries, lineups, or certainty from incomplete match evidence. <br>
-Mitigation: Separate observations, assumptions, and recommendations, and use source-backed searches only when the user asks for public football facts. <br>
+## Use Case:
 
+Coaches, analysts, scouts, players, and football staff use this skill to structure match previews, post-match reviews, opponent reports, player scouting, squad design, and training-week planning for association football or soccer.
 
-## Reference(s): <br>
-- [Football skill page](https://clawhub.ai/ivangdavila/football) <br>
-- [Football skill homepage](https://clawic.com/skills/football) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown templates, concise reports, structured guidance, and setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference optional local notes under ~/football/ only after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Optional local football notes may contain sensitive team context, private video summaries, or medical details if users store too much.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the notebook only after user approval, keep entries lean, and avoid storing private videos, medical details, or sensitive team information unless the user is comfortable keeping it locally.
+
+Risk: Football advice can become misleading if it treats partial notes, outdated reports, or anecdotes as verified match data.
+
+Mitigation: Separate observations, assumptions, and recommendations, and verify public facts with sources when current lineups, injuries, fixtures, or statistics matter.
+
+Risk: The skill could be misapplied to betting decisions or medical return-to-play questions.
+
+Mitigation: Stay within tactical, scouting, squad, and training-planning use cases, and decline betting picks, stake recommendations, medical diagnosis, or medical clearance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/football)
+- [Football homepage](https://clawic.com/skills/football)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with structured templates and concise prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference optional local football notes in ~/football/ after user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

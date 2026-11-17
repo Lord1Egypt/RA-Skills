@@ -1,42 +1,58 @@
-## Description: <br>
-Code Starter is a Chinese-language programming starter agent that uses project-driven, conversational lessons to help middle-school students and zero-beginner learners build basic programming confidence and skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中学生编程启蒙智能体，通过项目驱动的互动式教学，帮助零基础中学生建立编程思维和基础能力。
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-External learners, educators, and agents assisting beginner students use this skill to introduce programming through small Python projects such as guessing games, chatbots, and file automation examples. It emphasizes short runnable steps, plain-language explanations, and student interest-driven project selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Included example scripts can execute locally, and the batch renamer can change filenames in a selected folder. <br>
-Mitigation: Review scripts before running them, use a disposable test folder for file-renaming examples, and avoid elevated privileges. <br>
+## Use Case:
 
+External learners, educators, and coding mentors use this skill to guide middle-school students or other beginners through first programming projects, concept explanations, debugging conversations, and staged Python practice.
 
-## Reference(s): <br>
-- [Code Starter Skill Page](https://clawhub.ai/smallkeyboy/code-starter) <br>
-- [Programming Concepts Guide](references/concepts.md) <br>
-- [First Lesson: Guess Number Game](references/first-lesson.md) <br>
-- [Knowledge Tree](references/knowledge-tree.md) <br>
-- [Project Templates](assets/project-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with short Python code blocks and conversational teaching prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include beginner-facing explanations, runnable Python examples, progress summaries, and suggested next projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The included batch file rename example can change many local files without collision validation or recovery guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the batch rename example only in a disposable test folder with backed-up sample files, and review destination paths before confirming execution.
+
+Risk: Beginner learners may run generated or sample code without understanding local file impact.
+
+Mitigation: Keep file-operation lessons scoped to clearly identified practice directories and add explicit review steps before running scripts that modify files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/skills/code-starter)
+- [Publisher Profile](https://clawhub.ai/user/smallkeyboy)
+- [Project Templates](assets/project-templates.md)
+- [Programming Concepts Guide](references/concepts.md)
+- [First Lesson: Guess the Number Game](references/first-lesson.md)
+- [Knowledge Tree](references/knowledge-tree.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Conversational Markdown with Python code blocks and learner-facing instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should stay beginner-friendly, project-driven, and concise, with code blocks generally kept under 10 lines when teaching step by step.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

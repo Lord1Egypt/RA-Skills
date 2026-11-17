@@ -1,43 +1,59 @@
-## Description: <br>
-Professional contract review and revision skill that reviews Word contracts, flags risky clauses, combines AI and legal-review-agent recommendations, and can generate confirmed contract revisions and comparison lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews and revises Word contract documents by identifying risky clauses, generating attorney-review-ready reports, supporting client confirmation, and producing revised document versions.
 
-## Publisher: <br>
-[baichenwzj](https://clawhub.ai/user/baichenwzj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baichenwzj](https://clawhub.ai/user/baichenwzj)
 
-## Use Case: <br>
-Legal, procurement, and business users use this skill for first-pass contract review, risk flagging, recommendation synthesis, and attorney-facing revision workflows. It is especially oriented toward Word contract review and supports Chinese and English contracts, with stronger stated support for Chinese contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews confidential contracts and may process privileged or sensitive business terms. <br>
-Mitigation: Install only when comfortable giving the agent access to the contracts explicitly provided for review, and avoid sharing reviewed content outside the current matter. <br>
-Risk: Generated legal findings or suggested revisions may be incomplete, jurisdiction-dependent, or unsuitable for a specific transaction. <br>
-Mitigation: Treat outputs as first-pass review materials and require a qualified attorney to approve legal conclusions and final contract language. <br>
-Risk: Automated Word document edits can change contract language or affect formatting. <br>
-Mitigation: Keep original copies, review generated edits manually, and compare revised documents before use. <br>
+## Use Case:
 
+Legal teams and contract reviewers use this skill for first-pass review of .docx commercial contracts, risk clause identification, suggested revisions, and generation of review reports or revised Word documents for qualified attorney review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baichenwzj/contract-review-revise) <br>
-- [Publisher profile](https://clawhub.ai/user/baichenwzj) <br>
+### Deployment Geography for Use:
 
+Global, with primary support for Chinese and English contracts and jurisdiction-specific legal review required before reliance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown reports, suggested contract revisions, and optional revised Word document files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided contract files and user confirmation before applying suggested revisions] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may read confidential or privileged contract materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with documents the user is authorized to process and keep contract content within the relevant matter.
+
+Risk: Legal recommendations or revised wording may be incorrect, incomplete, or jurisdiction-dependent.
+
+Mitigation: Confirm the contract language, governing jurisdiction, client role, and review mode, then have a qualified attorney review outputs before reliance.
+
+Risk: Automated Word document revision can change formatting, layout, or clause wording in ways that need review.
+
+Mitigation: Preserve the original file, compare the generated revision against the source document, and manually inspect formatting before use.
+
+## Reference(s):
+
+- [Skill documentation](artifact/SKILL.md)
+- [Legal Document Review Agent](artifact/agents/legal-document-review.md)
+- [ClawHub skill page](https://clawhub.ai/baichenwzj/skills/contract-review-revise)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown review reports, modification comparison lists, and revised .docx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations and edited documents require qualified attorney review before reliance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

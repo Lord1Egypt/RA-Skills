@@ -1,0 +1,351 @@
+# Corporate Bullshit Phrase Reference
+
+Built from Boss's Raindrop.io bookmarks tagged `bullshit` and created on 2026-09-01, plus an additional Codex augmentation list. Keep this as the primary phrase detector reference for `corpo-bullshit-audit`.
+
+## Source Links
+- The MBA Jargon Exhaustive list: https://bullshitgenerator.blogspot.com/2010/01/mba-jargon-exhaustive-list.html
+- 58 awful corporate jargon phrases you can't escape: https://www.techtarget.com/whatis/feature/Awful-corporate-jargon-phrases-you-cant-escape
+- Decoding Corporate BS: 27 Phrases That Expose Bad Managers: https://read.thegoodboss.com/p/decoding-corporate-bullsht-27-phrases
+- Corporate Bullshit Dictionary: https://bsdict.com/dictionary
+- Additional known phrases added by Codex: common corporate, startup, HR, management, and internal-comms jargon not found in the four tagged links.
+
+## Use Notes
+
+- Match phrases case-insensitively and allow pluralization, hyphenation, and close variants.
+- A phrase is not automatically bad; flag it when it hides responsibility, avoids specifics, launders power, inflates trivial work, masks bad news, or replaces a concrete action with theater.
+- Treat aliases as equivalent to the primary phrase.
+
+## Canonical Phrase List (330 entries)
+
+- 30,000 feet, at — sources: MBA Jargon Exhaustive List
+- above my pay grade (aliases: Above my paygrade) — sources: Additional known phrases added by Codex; TechTarget 58 awful corporate jargon phrases
+- Action item — sources: Additional known phrases added by Codex; TechTarget 58 awful corporate jargon phrases
+- actionable — sources: MBA Jargon Exhaustive List
+- Actionable Insights — sources: Corporate Bullshit Dictionary
+- Agile — sources: Corporate Bullshit Dictionary
+- agile at scale — sources: Additional known phrases added by Codex
+- ai-powered — sources: Corporate Bullshit Dictionary
+- Align — sources: Corporate Bullshit Dictionary
+- all hands on deck — sources: Additional known phrases added by Codex
+- as per my last email — sources: Additional known phrases added by Codex
+- ask the room — sources: Additional known phrases added by Codex
+- at the end of the day — sources: MBA Jargon Exhaustive List
+- Back burner — sources: TechTarget 58 awful corporate jargon phrases
+- baked in — sources: Additional known phrases added by Codex
+- Ballpark Figure — sources: Corporate Bullshit Dictionary
+- bandwidth — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List; TechTarget 58 awful corporate jargon phrases
+- Bandwidth Constrained — sources: Corporate Bullshit Dictionary
+- best effort — sources: Additional known phrases added by Codex
+- Best In Class — sources: Corporate Bullshit Dictionary
+- best of breed — sources: MBA Jargon Exhaustive List
+- Best Practice (aliases: best practices) — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- big rocks — sources: Additional known phrases added by Codex
+- Bleeding Edge — sources: Corporate Bullshit Dictionary
+- Blockers — sources: Corporate Bullshit Dictionary
+- blue sky thinking — sources: Additional known phrases added by Codex
+- boil it down — sources: Additional known phrases added by Codex
+- boil the ocean — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- Boilerplate — sources: Corporate Bullshit Dictionary
+- Brain dump — sources: TechTarget 58 awful corporate jargon phrases
+- brand-safe — sources: Additional known phrases added by Codex
+- Break down silos — sources: TechTarget 58 awful corporate jargon phrases
+- bring alignment — sources: Additional known phrases added by Codex
+- bring to the table (aliases: Bring it to the table) — sources: MBA Jargon Exhaustive List; TechTarget 58 awful corporate jargon phrases
+- Brownfield — sources: Corporate Bullshit Dictionary
+- build the plane while flying it — sources: Additional known phrases added by Codex
+- Burn Rate — sources: Corporate Bullshit Dictionary
+- business model — sources: MBA Jargon Exhaustive List
+- buy-in — sources: MBA Jargon Exhaustive List; TechTarget 58 awful corporate jargon phrases
+- c-level — sources: MBA Jargon Exhaustive List
+- Cadence — sources: Corporate Bullshit Dictionary
+- cadence of accountability — sources: Additional known phrases added by Codex
+- Cascade — sources: Corporate Bullshit Dictionary
+- centers of excellence — sources: MBA Jargon Exhaustive List
+- Champion — sources: Corporate Bullshit Dictionary
+- change agent — sources: Additional known phrases added by Codex
+- Churn — sources: TechTarget 58 awful corporate jargon phrases
+- Circle Back (aliases: circle back around) — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- Circle Of Trust — sources: Corporate Bullshit Dictionary
+- Circle The Wagons — sources: Corporate Bullshit Dictionary
+- circle with — sources: MBA Jargon Exhaustive List
+- Clock watcher — sources: TechTarget 58 awful corporate jargon phrases
+- close the loop — sources: MBA Jargon Exhaustive List
+- co-create — sources: Additional known phrases added by Codex
+- collaboration muscle — sources: Additional known phrases added by Codex
+- commoditize; commoditized — sources: MBA Jargon Exhaustive List
+- Competitive Salary — sources: Corporate Bullshit Dictionary
+- componentize — sources: MBA Jargon Exhaustive List
+- core competency (aliases: core competencies) — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List; TechTarget 58 awful corporate jargon phrases
+- core values — sources: Additional known phrases added by Codex
+- crisp narrative — sources: Additional known phrases added by Codex
+- critical path — sources: MBA Jargon Exhaustive List
+- cross-functional — sources: Corporate Bullshit Dictionary
+- Culture Fit — sources: Corporate Bullshit Dictionary
+- customer obsession — sources: Additional known phrases added by Codex
+- cycles — sources: MBA Jargon Exhaustive List
+- data-driven culture — sources: Additional known phrases added by Codex
+- Deck — sources: Corporate Bullshit Dictionary
+- Deep dive — sources: Corporate Bullshit Dictionary; TechTarget 58 awful corporate jargon phrases
+- Deliverable (aliases: deliverables) — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List; TechTarget 58 awful corporate jargon phrases
+- descope — sources: MBA Jargon Exhaustive List
+- dial-in — sources: MBA Jargon Exhaustive List
+- dialogue — sources: MBA Jargon Exhaustive List
+- digital transformation — sources: Additional known phrases added by Codex
+- disambiguate — sources: MBA Jargon Exhaustive List
+- disincent — sources: MBA Jargon Exhaustive List
+- disintermediate — sources: MBA Jargon Exhaustive List
+- Disintermediation — sources: Corporate Bullshit Dictionary
+- Disrupt — sources: Corporate Bullshit Dictionary
+- Do More With Less — sources: Corporate Bullshit Dictionary
+- Dogfooding — sources: Corporate Bullshit Dictionary
+- Double Click — sources: Corporate Bullshit Dictionary
+- double down — sources: Additional known phrases added by Codex
+- drill-down — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List; TechTarget 58 awful corporate jargon phrases
+- Drink From The Firehose — sources: Corporate Bullshit Dictionary
+- Drink the Kool-Aid — sources: TechTarget 58 awful corporate jargon phrases
+- drinking the kool-aid — sources: MBA Jargon Exhaustive List
+- drive alignment — sources: Additional known phrases added by Codex
+- drive clarity — sources: Additional known phrases added by Codex
+- drive outcomes — sources: Additional known phrases added by Codex
+- driver — sources: MBA Jargon Exhaustive List
+- Ducks in a row — sources: TechTarget 58 awful corporate jargon phrases
+- Dumpster fire — sources: TechTarget 58 awful corporate jargon phrases
+- eat the elephant one bite at a time — sources: Additional known phrases added by Codex
+- eatyour own dog food — sources: MBA Jargon Exhaustive List
+- ecosystem — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- elevator story — sources: MBA Jargon Exhaustive List
+- Empower — sources: Corporate Bullshit Dictionary
+- enabler — sources: MBA Jargon Exhaustive List
+- end-to-end — sources: MBA Jargon Exhaustive List
+- enterprise-grade — sources: Additional known phrases added by Codex
+- EOD — sources: Corporate Bullshit Dictionary
+- facetime — sources: MBA Jargon Exhaustive List
+- fail fast — sources: Additional known phrases added by Codex
+- Fast Paced Environment — sources: Corporate Bullshit Dictionary
+- feature/scope creep — sources: MBA Jargon Exhaustive List
+- Fire drill — sources: TechTarget 58 awful corporate jargon phrases
+- Flesh out — sources: TechTarget 58 awful corporate jargon phrases
+- force multiplier — sources: Additional known phrases added by Codex
+- Full Stack — sources: Corporate Bullshit Dictionary
+- functionality — sources: MBA Jargon Exhaustive List
+- Future Proof — sources: Corporate Bullshit Dictionary
+- future state — sources: Additional known phrases added by Codex
+- gain traction — sources: MBA Jargon Exhaustive List
+- Game changer — sources: Corporate Bullshit Dictionary; TechTarget 58 awful corporate jargon phrases
+- get granular — sources: Additional known phrases added by Codex
+- give 110 percent — sources: Additional known phrases added by Codex
+- go-live — sources: MBA Jargon Exhaustive List
+- go the extra mile — sources: Additional known phrases added by Codex
+- Go to market — sources: Corporate Bullshit Dictionary; TechTarget 58 awful corporate jargon phrases
+- going forward — sources: MBA Jargon Exhaustive List
+- Granular — sources: Corporate Bullshit Dictionary
+- granular; granularity — sources: MBA Jargon Exhaustive List
+- Greenfield — sources: Corporate Bullshit Dictionary
+- Growth Hacking — sources: Corporate Bullshit Dictionary
+- growth mindset — sources: Additional known phrases added by Codex
+- Guardrails — sources: Corporate Bullshit Dictionary
+- Hard stop — sources: Corporate Bullshit Dictionary; TechTarget 58 awful corporate jargon phrases
+- heads-down — sources: Additional known phrases added by Codex
+- heads-up — sources: MBA Jargon Exhaustive List
+- helicopter view — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- Herding cats — sources: TechTarget 58 awful corporate jargon phrases
+- high-level — sources: MBA Jargon Exhaustive List
+- High Touch — sources: Corporate Bullshit Dictionary
+- Holistic Approach — sources: Corporate Bullshit Dictionary
+- Hot desking — sources: TechTarget 58 awful corporate jargon phrases
+- human-centered — sources: Additional known phrases added by Codex
+- I don't micromanage — sources: The Good Boss 27 phrases
+- I encourage difficult questions — sources: The Good Boss 27 phrases
+- I hear you — sources: The Good Boss 27 phrases
+- I trust you to figure this out — sources: The Good Boss 27 phrases
+- Ideate — sources: Corporate Bullshit Dictionary
+- impactful — sources: Additional known phrases added by Codex
+- in-flight — sources: Additional known phrases added by Codex
+- In the weeds — sources: TechTarget 58 awful corporate jargon phrases
+- incent — sources: MBA Jargon Exhaustive List
+- incentivize — sources: MBA Jargon Exhaustive List
+- instantiate — sources: MBA Jargon Exhaustive List
+- It's just business. Don't take it personally — sources: The Good Boss 27 phrases
+- It's not personal, it's policy — sources: The Good Boss 27 phrases
+- key takeaways — sources: Additional known phrases added by Codex
+- land and expand — sources: Additional known phrases added by Codex
+- Lean — sources: Corporate Bullshit Dictionary
+- leapfrog — sources: MBA Jargon Exhaustive List
+- learnings — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- Let's circle back on that — sources: TechTarget 58 awful corporate jargon phrases; The Good Boss 27 phrases
+- Let's take this offline — sources: TechTarget 58 awful corporate jargon phrases; The Good Boss 27 phrases
+- level set — sources: MBA Jargon Exhaustive List
+- level up — sources: Additional known phrases added by Codex
+- leverage — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- lift and shift — sources: Additional known phrases added by Codex
+- long-pole item — sources: MBA Jargon Exhaustive List
+- Loop In — sources: Corporate Bullshit Dictionary
+- loop in; keep in the loop — sources: MBA Jargon Exhaustive List
+- low-hanging fruit — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List; TechTarget 58 awful corporate jargon phrases
+- Low Touch — sources: Corporate Bullshit Dictionary
+- Make hay — sources: TechTarget 58 awful corporate jargon phrases
+- make it actionable — sources: Additional known phrases added by Codex
+- Micromanager — sources: TechTarget 58 awful corporate jargon phrases
+- mindshare — sources: MBA Jargon Exhaustive List
+- mission alignment — sources: Additional known phrases added by Codex
+- mission-critical — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- modularize — sources: MBA Jargon Exhaustive List
+- monetize — sources: MBA Jargon Exhaustive List
+- Moonshot — sources: Corporate Bullshit Dictionary
+- Move the goal posts (aliases: Move The Goalpost) — sources: Corporate Bullshit Dictionary; TechTarget 58 awful corporate jargon phrases
+- Move the needle — sources: Corporate Bullshit Dictionary; TechTarget 58 awful corporate jargon phrases
+- net-net — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- network effects — sources: MBA Jargon Exhaustive List
+- next steps — sources: MBA Jargon Exhaustive List
+- Ninja — sources: Corporate Bullshit Dictionary
+- north star — sources: Additional known phrases added by Codex
+- North Star Metric — sources: Corporate Bullshit Dictionary
+- Office drone — sources: TechTarget 58 awful corporate jargon phrases
+- offline — sources: MBA Jargon Exhaustive List
+- On Brand — sources: Corporate Bullshit Dictionary
+- On My Radar — sources: Corporate Bullshit Dictionary
+- One-on-one — sources: TechTarget 58 awful corporate jargon phrases
+- Open Door Policy — sources: Corporate Bullshit Dictionary
+- operating model — sources: Additional known phrases added by Codex
+- operationalize — sources: MBA Jargon Exhaustive List
+- Opportunity Space — sources: Corporate Bullshit Dictionary
+- Optics — sources: Corporate Bullshit Dictionary
+- Optimize — sources: Corporate Bullshit Dictionary
+- optimize for speed — sources: Additional known phrases added by Codex
+- out of pocket — sources: MBA Jargon Exhaustive List
+- over-index — sources: Additional known phrases added by Codex
+- Pain point — sources: Corporate Bullshit Dictionary; TechTarget 58 awful corporate jargon phrases
+- paradigm [shift] — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- Parking Lot — sources: Corporate Bullshit Dictionary
+- peel the onion — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- people-first — sources: Additional known phrases added by Codex
+- Per my last email — sources: TechTarget 58 awful corporate jargon phrases
+- performance management — sources: MBA Jargon Exhaustive List
+- ping (aliases: Ping Me) — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List; TechTarget 58 awful corporate jargon phrases
+- Pipeline — sources: Corporate Bullshit Dictionary
+- Pivot — sources: Corporate Bullshit Dictionary; TechTarget 58 awful corporate jargon phrases
+- proactive — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- product-market fit — sources: Additional known phrases added by Codex
+- productize — sources: MBA Jargon Exhaustive List
+- programmatically — sources: MBA Jargon Exhaustive List
+- Punch A Puppy — sources: Corporate Bullshit Dictionary
+- Punt — sources: TechTarget 58 awful corporate jargon phrases
+- Push The Envelope — sources: Corporate Bullshit Dictionary
+- pushback — sources: MBA Jargon Exhaustive List
+- Put a pin in it — sources: TechTarget 58 awful corporate jargon phrases
+- Put out a fire — sources: TechTarget 58 awful corporate jargon phrases
+- quick win — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- raise the bar — sources: Additional known phrases added by Codex
+- ramp up; ramp-up — sources: MBA Jargon Exhaustive List
+- reach out — sources: MBA Jargon Exhaustive List
+- real-time — sources: MBA Jargon Exhaustive List
+- reimagine — sources: Additional known phrases added by Codex
+- Reinvent the wheel — sources: TechTarget 58 awful corporate jargon phrases
+- repurpose — sources: MBA Jargon Exhaustive List
+- resilience — sources: Additional known phrases added by Codex
+- Restructuring — sources: Corporate Bullshit Dictionary
+- right-size — sources: Additional known phrases added by Codex
+- Rightsizing — sources: Corporate Bullshit Dictionary
+- roadmap — sources: Additional known phrases added by Codex
+- robust — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- Rockstar — sources: Corporate Bullshit Dictionary
+- ROI — sources: Corporate Bullshit Dictionary
+- roll out; roll-out — sources: MBA Jargon Exhaustive List
+- rough order of magnitude — sources: MBA Jargon Exhaustive List
+- Run it up the flagpole — sources: Corporate Bullshit Dictionary; TechTarget 58 awful corporate jargon phrases
+- Run the numbers — sources: TechTarget 58 awful corporate jargon phrases
+- Runway — sources: Corporate Bullshit Dictionary
+- scalable — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- scope — sources: MBA Jargon Exhaustive List
+- seamless — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- Self Starter — sources: Corporate Bullshit Dictionary
+- Sidebar — sources: TechTarget 58 awful corporate jargon phrases
+- Silo — sources: Corporate Bullshit Dictionary
+- single source of truth — sources: Additional known phrases added by Codex
+- skip-level — sources: MBA Jargon Exhaustive List
+- Slide deck — sources: TechTarget 58 awful corporate jargon phrases
+- socialize — sources: MBA Jargon Exhaustive List
+- solution — sources: MBA Jargon Exhaustive List
+- solution-oriented — sources: Additional known phrases added by Codex
+- Solutioning — sources: Corporate Bullshit Dictionary
+- soup to nuts — sources: MBA Jargon Exhaustive List
+- space — sources: MBA Jargon Exhaustive List
+- special sauce / secret sauce (aliases: Secret Sauce) — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- Sprint — sources: Corporate Bullshit Dictionary
+- Stakeholder — sources: Corporate Bullshit Dictionary
+- Stand-up — sources: TechTarget 58 awful corporate jargon phrases
+- strategic imperative — sources: Additional known phrases added by Codex
+- strategic priorities — sources: Additional known phrases added by Codex
+- Streamline — sources: Corporate Bullshit Dictionary
+- Sunset — sources: Corporate Bullshit Dictionary
+- surface — sources: MBA Jargon Exhaustive List
+- Swim Lanes — sources: Corporate Bullshit Dictionary
+- Synergy — sources: Corporate Bullshit Dictionary
+- synergy; synergize (aliases: Synergize) — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- Table — sources: Corporate Bullshit Dictionary
+- Take Ownership — sources: Corporate Bullshit Dictionary
+- Take This Offline — sources: Corporate Bullshit Dictionary
+- take to the next level — sources: MBA Jargon Exhaustive List
+- takeaway — sources: MBA Jargon Exhaustive List
+- task — sources: MBA Jargon Exhaustive List
+- That's above your pay grade — sources: The Good Boss 27 phrases
+- That's just the way it is — sources: The Good Boss 27 phrases
+- The market is quite volatile — sources: The Good Boss 27 phrases
+- Think outside the box — sources: Corporate Bullshit Dictionary; TechTarget 58 awful corporate jargon phrases
+- This came from the top — sources: The Good Boss 27 phrases
+- This is a great learning experience for you — sources: The Good Boss 27 phrases
+- This is a great opportunity for visibility — sources: The Good Boss 27 phrases
+- This is a leadership decision — sources: The Good Boss 27 phrases
+- Thought Leader — sources: Corporate Bullshit Dictionary
+- Thought Partnership — sources: Corporate Bullshit Dictionary
+- thought starter — sources: Additional known phrases added by Codex
+- Throw under the bus — sources: TechTarget 58 awful corporate jargon phrases
+- Top-down — sources: TechTarget 58 awful corporate jargon phrases
+- touch base — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List; TechTarget 58 awful corporate jargon phrases
+- Touchpoint — sources: TechTarget 58 awful corporate jargon phrases
+- tps reports — sources: MBA Jargon Exhaustive List
+- traction — sources: MBA Jargon Exhaustive List
+- Transparency — sources: Corporate Bullshit Dictionary
+- Trim the fat — sources: TechTarget 58 awful corporate jargon phrases
+- turnkey solution — sources: MBA Jargon Exhaustive List
+- Unicorn — sources: Corporate Bullshit Dictionary
+- unlock value — sources: Additional known phrases added by Codex
+- Unpack — sources: Corporate Bullshit Dictionary
+- up-level — sources: Additional known phrases added by Codex
+- Upskill — sources: Corporate Bullshit Dictionary
+- value-add — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- value chain — sources: MBA Jargon Exhaustive List
+- value creation — sources: Additional known phrases added by Codex
+- value proposition — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- value stream — sources: Additional known phrases added by Codex
+- velocity — sources: Additional known phrases added by Codex
+- vision casting — sources: Additional known phrases added by Codex
+- Voluntold — sources: TechTarget 58 awful corporate jargon phrases
+- Watercooler — sources: TechTarget 58 awful corporate jargon phrases
+- waterfall — sources: Additional known phrases added by Codex
+- ways of working — sources: Additional known phrases added by Codex
+- We can't make exceptions — sources: The Good Boss 27 phrases
+- We don't have the budget — sources: The Good Boss 27 phrases
+- We'll revisit your promotion next cycle — sources: The Good Boss 27 phrases
+- We need team players — sources: The Good Boss 27 phrases
+- We need to do more with less — sources: The Good Boss 27 phrases
+- We're like a family here — sources: The Good Boss 27 phrases
+- Wear Many Hats — sources: Corporate Bullshit Dictionary
+- wet signature — sources: MBA Jargon Exhaustive List
+- wetware — sources: MBA Jargon Exhaustive List
+- Wheelhouse — sources: Corporate Bullshit Dictionary; TechTarget 58 awful corporate jargon phrases
+- Whiteboarding — sources: TechTarget 58 awful corporate jargon phrases
+- win-win — sources: Corporate Bullshit Dictionary; MBA Jargon Exhaustive List
+- work-life balance — sources: Corporate Bullshit Dictionary
+- work smarter not harder — sources: Additional known phrases added by Codex
+- Workstream — sources: Corporate Bullshit Dictionary
+- world-class — sources: MBA Jargon Exhaustive List
+- You need to be more visible — sources: The Good Boss 27 phrases
+- You need to own your career — sources: The Good Boss 27 phrases
+- You're already very senior — sources: The Good Boss 27 phrases
+- You're crushing it — sources: TechTarget 58 awful corporate jargon phrases
+- You're doing great! — sources: The Good Boss 27 phrases
+- You're not ready yet — sources: The Good Boss 27 phrases
+- You should be grateful — sources: The Good Boss 27 phrases
+
+

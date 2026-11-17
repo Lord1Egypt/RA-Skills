@@ -1,37 +1,55 @@
-## Description: <br>
-Manage sourdough starters with feeding schedules, hydration calculations, health tracking, and baking preparation. Use when the user wants to maintain a sourdough starter, plan feedings, calculate ratios, troubleshoot starter problems, or prepare for baking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps bakers maintain sourdough starters by planning feedings, calculating hydration and ratios, tracking health indicators, troubleshooting starter issues, and preparing starter for baking.
 
-## Publisher: <br>
-[akhmittra](https://clawhub.ai/user/akhmittra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[akhmittra](https://clawhub.ai/user/akhmittra)
 
-## Use Case: <br>
-External home bakers and sourdough users use this skill to calculate feeding ratios, plan starter maintenance and baking timelines, convert hydration levels, and troubleshoot starter health issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Sourdough health guidance can be wrong for a user's specific starter, flour, water, room temperature, or contamination scenario. <br>
-Mitigation: Treat outputs as baking guidance, verify visible signs such as smell, bubbles, rise, and mold, and discard the starter when clear contamination is present. <br>
+## Use Case:
 
+External users and home bakers use this skill to get practical sourdough starter feeding schedules, hydration calculations, storage plans, and troubleshooting guidance. It supports beginner and experienced bakers who need clear starter maintenance and baking preparation advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/akhmittra/sourdough-starter-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown with calculations, schedules, troubleshooting steps, and inline configuration examples when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools, API keys, or runtime dependencies are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: OpenClaw frontmatter and server release metadata) <br>
+Risk: Starter health or food-safety advice may be misapplied when a starter shows possible contamination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review guidance before acting and discard the starter when mold or colored fuzzy spots are present, as the skill itself instructs.
+
+Risk: Feeding timelines and readiness estimates can vary with room temperature, flour, water quality, and the starter's condition.
+
+Mitigation: Treat schedules as practical guidance and adjust based on observable starter activity, smell, bubbles, and rise.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/akhmittra/skills/sourdough-starter-manager)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style conversational guidance with calculations, schedules, checklists, and troubleshooting steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Knowledge-only output; no external tools, API keys, dependencies, or network access are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: OpenClaw metadata and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Generate 9:16 vertical high-definition images from text prompts for short drama storyboards, character portraits, and scene illustrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 9:16 vertical high-definition images from text prompts for short drama storyboards, character portraits, and scene illustrations.
 
-## Publisher: <br>
-[ghwyever](https://clawhub.ai/user/ghwyever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghwyever](https://clawhub.ai/user/ghwyever)
 
-## Use Case: <br>
-Creators and developers can use this skill to turn prompts into vertical image assets for short drama keyframes, short video materials, and visualized novel scenes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and negative prompts are sent to a configured external image service. <br>
-Mitigation: Use a trusted API_BASE provider, a limited API key, and avoid confidential or regulated prompt content unless the provider's data handling is acceptable. <br>
-Risk: Generated image URLs depend on the configured provider and model response. <br>
-Mitigation: Review generated images and returned URLs before using them in production materials. <br>
+## Use Case:
 
+Developers and content creators use this skill to turn prompts into vertical images for short-drama keyframes, short-video assets, and novel IP visualization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ghwyever/04-text-to-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [JSON object containing an image_url string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a 9:16 image URL from the configured text-to-image API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Prompts and negative prompts are sent to the configured image-generation provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an HTTPS API_BASE that you control or trust, apply a limited-scope API key with quotas, and avoid confidential prompts unless the provider is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ghwyever/skills/04-text-to-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [JSON object containing an image URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured text-to-image provider through API_KEY, API_BASE, and MODEL_NAME.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

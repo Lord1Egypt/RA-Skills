@@ -1,45 +1,60 @@
-## Description: <br>
-Searches the web with the Bocha AI Search API, with emphasis on Chinese-language web, image, and news results plus generated summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using Bocha AI Search API, a Chinese search engine optimized for Chinese content, with support for web pages, images, news, and AI-generated summaries.
 
-## Publisher: <br>
-[ypw757](https://clawhub.ai/user/ypw757) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ypw757](https://clawhub.ai/user/ypw757)
 
-## Use Case: <br>
-Developers and OpenClaw users can add Bocha-powered search to an agent for Chinese-language research, current-events lookup, image discovery, and summarized web results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Bocha using the user's BOCHA_API_KEY. <br>
-Mitigation: Install only if sending those queries to Bocha is acceptable, and use a user-owned API key with appropriate account controls. <br>
-Risk: The bundled publishing documentation includes an API key value that should be treated as exposed. <br>
-Mitigation: Do not reuse the shown key; rotate or revoke any real key that matches it before using the skill. <br>
-Risk: Publishing helpers can handle ClawdHub credentials or publish the skill when run. <br>
-Mitigation: Avoid running publish.sh unless publication is intended, and prefer browser login or a non-echoing token flow for credentials. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to route Chinese or English search requests through the Bocha AI Search API and receive summarized web, image, and news results. It is especially oriented toward Chinese-language and domestic Chinese content search.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ypw757/bocha-skill) <br>
-- [Bocha AI Open Platform](https://open.bocha.cn/) <br>
-- [Bocha API Documentation](https://bocha-ai.feishu.cn/wiki/RXEOw02rFiwzGSkd9mUcqoeAnNK) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, guidance] <br>
-**Output Format:** [Markdown search results with an embedded raw JSON block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BOCHA_API_KEY and Node.js; result count is constrained to 1-50.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Risk: Search queries are sent to Bocha's API when the skill runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is intended, and provide a user-owned BOCHA_API_KEY through the environment or OpenClaw configuration.
+
+Risk: The release evidence reports an API-key-shaped secret in PUBLISH.md.
+
+Mitigation: Do not use or copy that key; the publisher should rotate it if it was ever valid.
+
+Risk: Publishing helper commands may install a global npm CLI or perform account-level ClawHub actions.
+
+Mitigation: Review publish.sh and any delete or publish commands before running them in a local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ypw757/skills/bocha-skill)
+- [Bocha AI Open Platform](https://open.bocha.cn/)
+- [Bocha API documentation](https://bocha-ai.feishu.cn/wiki/RXEOw02rFiwzGSkd9mUcqoeAnNK)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown search results with an embedded raw JSON block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and BOCHA_API_KEY; accepts query, count, freshness, and summary parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

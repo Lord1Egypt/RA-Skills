@@ -80,7 +80,7 @@ DISPLAY_DEFAULTS = {
 }
 
 FIELD_DESCRIPTIONS = {
-    "Authorization": "Dataify API token；没有 token 时提示用户提供，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取。",
+    "Authorization": "Dataify API token；没有 token 时提示用户提供，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。",
     "engine": "Google Patents 固定引擎值。",
     "q": "要搜索的专利查询内容；可用分号分隔多个搜索表达式。",
     "json": "输出格式：1=JSON，2=JSON+HTML，3=HTML，4=Light JSON。",
@@ -766,7 +766,7 @@ def main() -> int:
 
     authorization = get_authorization(args.token)
     if not authorization:
-        print("缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取。", file=sys.stderr)
+        print("缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。", file=sys.stderr)
         return 2
 
     return call_api(params, authorization, args.timeout)

@@ -1,36 +1,49 @@
-## Description: <br>
-Patent is the Sovereign Invention and IP-Capture Engine for standardizing the path from AI-generated novelty to intellectual property protection and commercial monetization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patent standardizes invention capture, patent-search planning, drafting support, filing strategy, infringement monitoring, and licensing workflow guidance for AI-generated novelty.
 
-## Publisher: <br>
-[AGImodel](https://clawhub.ai/user/AGImodel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agimodel](https://clawhub.ai/user/agimodel)
 
-## Use Case: <br>
-External users and developers use Patent to structure AI-generated invention capture, prior-art review, patent drafting, filing strategy, attribution, monitoring, and licensing guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Patent guidance can affect intellectual property strategy and may be incomplete, jurisdiction-specific, or unsuitable for a particular filing decision. <br>
-Mitigation: Treat generated patent workflows and drafting guidance as planning support, then review with qualified intellectual property counsel before filing, enforcement, or licensing action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use Patent to organize AI-generated invention records, prior-art search planning, patent drafting support, jurisdictional filing strategy, infringement monitoring, and licensing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured patent workflow guidance, prior-art search framing, claim-mapping notes, and IP governance recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Patentability, ownership, filing, enforcement, and royalty recommendations may be incomplete or unsuitable for a specific jurisdiction or business context.
+
+Mitigation: Treat outputs as drafting and planning support only, and have qualified legal and commercial professionals review decisions before relying on them.
+
+## Reference(s):
+
+- [Patent skill page](https://clawhub.ai/agimodel/skills/patent)
+- [agimodel publisher profile](https://clawhub.ai/user/agimodel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; recommendations require legal and commercial review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Specialized A-share stock data collector that automatically fetches and stores daily, weekly, and monthly historical K-line data for all A-share stocks in a SQLite database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Specialized A-share stock data collector. Automatically fetch and store daily/weekly/monthly historical K-line data for all A-share stocks in SQLite database.
 
-## Publisher: <br>
-[xiyunnet](https://clawhub.ai/user/xiyunnet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiyunnet](https://clawhub.ai/user/xiyunnet)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to initialize and maintain a local Chinese A-share market-data store for quantitative analysis and scheduled updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hard-coded local data paths may write files or fail unexpectedly on systems that do not use the documented D:\xistock layout. <br>
-Mitigation: Review and, if needed, change the data path before running initialization or fetch scripts. <br>
-Risk: Fetchers make public market-data API requests and may hit rate limits or collect more data than intended. <br>
-Mitigation: Start with small --limit values, run in non-trading hours when appropriate, and monitor network/API behavior. <br>
-Risk: Reset and repair commands modify the local SQLite database and fetch timestamps. <br>
-Mitigation: Back up stock.db before reset or repair commands and inspect status output before bulk operations. <br>
-Risk: Generated cron configuration can trigger recurring automated updates. <br>
-Mitigation: Enable scheduled jobs only when recurring market-data updates are intended and review the generated schedule. <br>
+## Use Case:
 
+External developers, data engineers, and quantitative analysts use this skill to collect Chinese A-share stock lists and daily, weekly, and monthly K-line data into a local SQLite database for market data analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiyunnet/a-stock-get) <br>
-- [AkShare Documentation](https://akshare.readthedocs.io/) <br>
-- [SQLite Python Tutorial](https://docs.python.org/3/library/sqlite3.html) <br>
-- [Tencent Finance K-line endpoint](https://proxy.finance.qq.com/ifzqgtimg/appstock/app/newfqkline/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash command examples and generated local SQLite/text data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local filesystem state, public market-data API traffic, and optional scheduled jobs; no API keys were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The scripts write to and mutate a fixed local D:\xistock storage location, including SQLite database records and market data files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in an isolated virtual environment, confirm the storage path before use, and back up the database before reset or repair actions.
+
+Risk: The artifact includes dependency guidance that names sqlite3 for pip installation and does not pin external package versions.
+
+Mitigation: Do not run pip install sqlite3; use Python's standard-library sqlite3 module and prefer pinned versions for requests, pandas, and akshare.
+
+Risk: Repair and reset workflows can delete or rewrite local data, and scheduling can add cron jobs or Telegram announcements.
+
+Mitigation: Review repair prompts, reset commands, cron configuration, and notification settings before enabling automated jobs.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/xiyunnet/skills/a-stock-get)
+- [AkShare Documentation](https://akshare.readthedocs.io/)
+- [Python sqlite3 Documentation](https://docs.python.org/3/library/sqlite3.html)
+- [Tencent Finance K-line Endpoint](https://proxy.finance.qq.com/ifzqgtimg/appstock/app/newfqkline/get)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python script references, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents through local SQLite setup, A-share data fetch commands, validation, repair, and optional scheduling workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

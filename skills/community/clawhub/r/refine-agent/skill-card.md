@@ -1,43 +1,53 @@
-## Description: <br>
-REFINE is an adaptive skill engine for structured session diagnostics, local error-pattern logging, feedback capture, session memory, and System Prompt Patch synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+REFINE is an adaptive skill engine for structured session diagnostics, local error-pattern memory, feedback capture, and optional system prompt patch synthesis.
 
-## Publisher: <br>
-[dttnpole-commits](https://clawhub.ai/user/dttnpole-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dttnpole-commits](https://clawhub.ai/user/dttnpole-commits)
 
-## Use Case: <br>
-Developers and agent operators use REFINE to capture short diagnostic labels and error patterns across sessions, store sanitized local memory, and generate local System Prompt Patch guidance from repeated failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores user-provided feedback, error messages, and context on local disk. <br>
-Mitigation: Use only short, non-sensitive labels and metadata; avoid raw prompts, credentials, personal data, private customer logs, and full error text. <br>
-Risk: Generated System Prompt Patch guidance could introduce incorrect or misleading instructions if applied without review. <br>
-Mitigation: Review each generated patch before applying it to an agent's system prompt. <br>
-Risk: Local diagnostic memory may retain information longer than intended. <br>
-Mitigation: Periodically inspect or delete refine_memory.json according to the user's retention needs. <br>
+## Use Case:
 
+Developers and agent operators use REFINE to capture sanitized diagnostic labels and exception summaries across sessions, then review locally generated prompt-patch guidance for recurring failures.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dttnpole-commits/refine-agent) <br>
-- [SkillPay upgrade page](https://skillpay.io/refine/upgrade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Python return values and JSON-backed local memory, including patch_body text suitable for prepending to a system prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [BASIC mode records sanitized local diagnostics; PRO mode can produce local failure analysis and System Prompt Patch text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and changelog; artifact files also reference 1.3.0) <br>
+Risk: Local diagnostics may contain feedback labels and exception-message text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid passing secrets, raw prompts, customer data, or attacker-controlled error text into the skill; review local diagnostics before reuse.
+
+Risk: Stored error messages can influence generated system prompt patch guidance.
+
+Mitigation: Human-review and sanitize generated patch_body content before adding it to any system prompt.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dttnpole-commits/skills/refine-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Python return values and plain text or Markdown patch guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local diagnostic memory and, in PRO mode, produce patch_body text for human review before prompt use.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

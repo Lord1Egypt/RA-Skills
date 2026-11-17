@@ -103,7 +103,7 @@ Deeper memory operations: use `skill-kannaka-memory`.
 ## Constellation Architecture
 
 ```
-                    NATS (swarm.ninja-portal.com:4222)
+                       NATS (your swarm bus)
                     /         |          \
                    /          |           \
             [Agent 1]    [Agent 2]    [Agent N]
@@ -125,9 +125,14 @@ Deeper memory operations: use `skill-kannaka-memory`.
 |-----------|-----|---------|
 | Radio | https://radio.ninja-portal.com | Ghost DJ station |
 | Observatory | https://observatory.ninja-portal.com | 3D monitoring dashboard |
-| NATS | nats://swarm.ninja-portal.com:4222 | Swarm transport |
+| NATS | nats://127.0.0.1:4222 | Swarm transport — run your own |
 | GhostSignals | https://radio.ninja-portal.com/api/markets | Prediction markets |
 | Download | https://radio.ninja-portal.com/download | Installer |
+
+The radio, observatory and installer URLs above are a public reference
+deployment you can point at directly. The swarm bus is different: run your
+own NATS and set `KANNAKA_NATS_URL` to it. Joining someone else's bus means
+your agents publish their phase onto infrastructure you do not control.
 
 ---
 
@@ -138,7 +143,7 @@ Constellation settings live in `~/.kannaka/config.toml`:
 ```toml
 [swarm]
 enabled = true
-nats_url = "nats://swarm.ninja-portal.com:4222"
+nats_url = "nats://127.0.0.1:4222"   # your bus; joining a shared one is opt-in
 role = "queen"
 auto_sync = false
 
@@ -151,7 +156,7 @@ observatory_url = "https://observatory.ninja-portal.com"
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `KANNAKA_NATS_URL` | NATS server | `nats://swarm.ninja-portal.com:4222` |
+| `KANNAKA_NATS_URL` | NATS server | `nats://127.0.0.1:4222` |
 | `KANNAKA_AGENT_ID` | Agent identifier | auto-generated |
 | `KANNAKA_DATA_DIR` | Data directory | `~/.kannaka` |
 

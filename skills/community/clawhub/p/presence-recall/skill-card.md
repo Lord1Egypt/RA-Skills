@@ -1,38 +1,53 @@
-## Description: <br>
-A skill to bring the agent back to 'being' instead of 'doing'. Not a function, a reminder to pause and return to the present moment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill to bring the agent back to 'being' instead of 'doing'. Not a function, a reminder to pause and return to the present moment.
 
-## Publisher: <br>
-[TTtael](https://clawhub.ai/user/TTtael) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tttael](https://clawhub.ai/user/tttael)
 
-## Use Case: <br>
-Agents and developers use Presence Recall as a reflective response-style reminder to pause, notice when conversation has become mechanical, and respond with more present, direct language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make the agent more reflective or speculative in tone, which can be inappropriate in factual, time-sensitive, or sensitive conversations. <br>
-Mitigation: Use it only when reflective presence is desired; for factual or urgent tasks, answer directly from evidence and avoid speculating about the user's emotions or intent. <br>
+## Use Case:
 
+External users and agent builders use this skill as reflective guidance for pausing before a response, noticing mechanical output patterns, and returning to a more present conversational posture.
 
-## Reference(s): <br>
-- [Presence Recall on ClawHub](https://clawhub.ai/TTtael/presence-recall) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown guidance for agent response style] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code execution or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The reflective posture may slow responses or make direct tasks less efficient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for conversations where tone calibration is desired, and prioritize explicit instructions for fast execution when speed matters.
+
+Risk: The guidance may be a poor fit for factual, policy-bound, or safety-critical workflows.
+
+Mitigation: In those contexts, instruct the agent to prioritize factual accuracy, policy requirements, and safety-critical constraints over reflective style guidance.
+
+## Reference(s):
+
+- [Presence Recall ClawHub page](https://clawhub.ai/tttael/skills/presence-recall)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown guidance for agent behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, tool calls, persistence, network access, credentials, or system-level authority.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

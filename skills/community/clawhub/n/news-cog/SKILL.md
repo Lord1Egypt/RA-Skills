@@ -1,5 +1,5 @@
 ---
-name: news-cog
+name: news-briefing-cellcog
 description: "AI news intelligence and daily briefing powered by CellCog. News digests, competitive intelligence, market updates, trend monitoring, industry reports, current events research. Multi-source synthesis for accurate, comprehensive briefs."
 metadata:
   openclaw:
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# News Cog - AI News Intelligence Powered by CellCog
+# News Briefing - AI News Intelligence Powered by CellCog
 
 **Frontier search models with multi-angle research on every query.**
 
@@ -138,17 +138,16 @@ CellCog News Cog is designed with agent workflows in mind. The output is:
 
 ---
 
-## Chat Mode for News
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Daily briefings, quick news summaries | `"agent"` |
-| Competitive intelligence, single-topic digests | `"agent"` |
-| Deep trend analysis, comprehensive industry reports | `"agent team"` |
+| Scenario | Recommended |
+|----------|-------------|
+| Daily briefings, topic summaries | `chat_mode="agent"` (defaults to the `"core"` tier) |
+| Deep trend analysis across many sources | `chat_mode="team"` — that is research |
 
-**Use `"agent"` for most news tasks.** Daily briefings, competitive monitoring, and news digests execute well.
+**The core tier is the default and handles most news briefings well**, balanced speed and depth. **Upgrade to `chat_tier="max"`** when quality disappoints or the work is genuinely complex: just re-run the same prompt with `chat_tier="max"`.
 
-**Use `"agent team"` for deep trend analysis** — when you need multi-source synthesis across dozens of publications and research papers.
+Agent Team (`chat_mode="team"`) is reserved for deep research — don't use it for news briefings.
 
 ---
 
@@ -170,6 +169,7 @@ CellCog News Cog is designed with agent workflows in mind. The output is:
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

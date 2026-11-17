@@ -1,45 +1,57 @@
-## Description: <br>
-Use Chanjing video synthesis APIs to create digital human videos from text or audio, with optional background upload, task polling, and explicit download when the user asks to save the result locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Chanjing video synthesis APIs to create digital human videos from text or audio, with optional background upload, task polling, and explicit download when the user asks to save the result locally.
 
-## Publisher: <br>
-[zuoyuting214](https://clawhub.ai/user/zuoyuting214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyuting214](https://clawhub.ai/user/zuoyuting214)
 
-## Use Case: <br>
-External users and developers use this skill to create Chanjing digital human videos from text or local audio, choose public or custom digital figures, upload optional media, poll generation status, and save the result only when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses local Chanjing API credentials and may cache access tokens. <br>
-Mitigation: Use a dedicated or revocable Chanjing API key when possible and protect the credentials file. <br>
-Risk: The skill uploads user-selected audio or background media to Chanjing for video generation. <br>
-Mitigation: Upload only media that the user explicitly intends to process and avoid sensitive files unless the target service is approved for that data. <br>
-Risk: Some documented helper commands may not be present in the artifact files. <br>
-Mitigation: Confirm available scripts and inspect any added helper scripts before execution. <br>
+## Use Case:
 
+External creators and developers use this skill to create Chanjing digital human videos from text or uploaded audio, select public or customized digital human figures, poll generation tasks, and optionally download completed videos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zuoyuting214/zyt-video-compose) <br>
-- [Chanjing Open API](https://open-api.chanjing.cc) <br>
-- [Reference](reference.md) <br>
-- [Examples](examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Chanjing figure IDs, file IDs, video task IDs, video URLs, and local output paths when download is explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: Chanjing API secrets and cached access tokens are stored in local plaintext credential files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use owner-only permissions for ~/.chanjing/credentials.json or the configured credentials path, and prefer a dedicated low-privilege API key.
+
+Risk: Local audio and background files may be uploaded to Chanjing for video processing.
+
+Mitigation: Confirm user intent and data sensitivity before uploading local files, especially on shared or regulated systems.
+
+## Reference(s):
+
+- [Chanjing Open API](https://open-api.chanjing.cc)
+- [Skill reference](artifact/reference.md)
+- [Skill examples](artifact/examples.md)
+- [ClawHub skill page](https://clawhub.ai/zuoyuting214/skills/zyt-video-compose)
+- [Publisher profile](https://clawhub.ai/user/zuoyuting214)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown guidance with shell command snippets and API identifiers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce video task IDs, upload file IDs, video URLs, and local file paths when downloads are explicitly requested.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

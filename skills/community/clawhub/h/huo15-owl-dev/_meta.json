@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7byevkn40d6z4p7ghdb097z983tj33",
-  "slug": "huo15-owl-dev",
-  "version": "1.0.0",
-  "publishedAt": 1779284431906
+    "name": "huo15-owl-dev",
+    "slug": "owl-dev",
+    "version": "1.0.0",
+    "description": "OWL (Odoo Web Library) 开发技能 — Odoo 前端组件开发框架，基于 QWeb 模板、响应式状态管理、OWL 组件生命周期",
+    "author": "火一五信息科技",
+    "homepage": "https://clawhub.ai/skills/huo15-owl-dev",
+    "tags": ["owl", "odoo", "frontend", "web", "qweb", "component"],
+    "license": "LGPL-3"
 }

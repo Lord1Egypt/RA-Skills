@@ -1,47 +1,65 @@
-## Description: <br>
-Daily AI news aggregator that fetches latest AI-related content from HackerNews, GitHub Trending, ArXiv papers, and web search providers such as Brave or Tavily. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily AI news aggregator that fetches AI-related content from HackerNews, GitHub Trending, ArXiv papers, and configured web search sources.
 
-## Publisher: <br>
-[chyher](https://clawhub.ai/user/chyher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chyher](https://clawhub.ai/user/chyher)
 
-## Use Case: <br>
-Developers, researchers, and teams use this skill to collect a daily AI news digest from public technical, open-source, research, and web-search sources. It can print the digest locally, return JSON, or send the digest to an OpenClaw channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled sends can post a digest to an unintended destination if configured to use the last-contacted channel. <br>
-Mitigation: Configure cron or --send with a fixed, verified channel before enabling automated posting. <br>
-Risk: Adding Tavily or Brave search introduces API-key handling outside the base skill. <br>
-Mitigation: Review the separate search-provider integration and store API keys only in the intended OpenClaw environment configuration. <br>
-Risk: The digest depends on public feeds and search results that can be incomplete, unavailable, or stale. <br>
-Mitigation: Treat the digest as a starting point and verify important items through the linked source material before acting on them. <br>
+## Use Case:
 
+External users and developers use this skill to generate a daily AI digest, track trending AI projects, and discover recent AI research from public sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chyher/irene-ai-news) <br>
-- [Publisher profile](https://clawhub.ai/user/chyher) <br>
-- [Tavily](https://tavily.com/) <br>
-- [Hacker News Algolia API](https://hn.algolia.com/api/v1/search_by_date) <br>
-- [GitHub repository search API](https://api.github.com/search/repositories) <br>
-- [ArXiv API](http://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration] <br>
-**Output Format:** [Markdown daily digest by default, JSON when invoked with --json, and optional OpenClaw channel message when invoked with --send.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public news and research sources over the network; output freshness depends on source availability and provider configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill makes public network requests to gather news, repository, paper, and optional search results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured sources before installation and run it only in environments where those outbound requests are acceptable.
+
+Risk: Automated channel posting can target an ambiguous destination when configured to use the last contacted channel.
+
+Mitigation: Configure an explicit destination channel and test the command without scheduled delivery before enabling cron.
+
+Risk: Credential setup examples can expose API keys if real secrets are pasted into shell commands or history.
+
+Mitigation: Store API keys through a protected environment or secret-management workflow and avoid echoing real keys in commands.
+
+Risk: The documentation claims Brave/Tavily web-search support, while the bundled script may not fully implement that path.
+
+Mitigation: Verify search-provider behavior and review or pin any separate Tavily community skill before relying on web-search results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chyher/skills/irene-ai-news)
+- [Tavily](https://tavily.com/)
+- [Hacker News Algolia API](https://hn.algolia.com/api)
+- [GitHub Search Repositories API](https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories)
+- [arXiv API](https://info.arxiv.org/help/api/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Markdown digest by default, with optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is generated from public news, repository, and paper sources and can optionally be posted to an OpenClaw channel.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release, frontmatter, changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

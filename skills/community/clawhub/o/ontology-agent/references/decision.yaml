@@ -1,0 +1,162 @@
+# decision.yaml — Decision layer / governance layer (thick version)
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `decision.zh.yaml`.
+# Decision layer duties: data compliance red lines + permission governance + audit trails.
+# Its rule priority is higher than the logic layer; no logic workflow may override the hard
+# rules of this layer.
+
+meta:
+  layer: decision
+  version: 0.2.0
+  description: Governance and compliance guardrails constraining the execution boundaries of the semantic and logic layers
+
+# ── 1. PII and sensitive data red lines (mandatory; intercepted before write) ──
+pii_guardrails:
+  enforcement: hard            # hard = block before write; soft = warn only
+  deny_plaintext_patterns:     # a hit denies plain-text storage in the graph; only an external encrypted reference index is allowed
+    - { type: id_card,     pattern: '(\d{15}|\d{17}[\dxX])', desc: "National ID number" }
+    - { type: bank_card,   pattern: '\b(\d{16,19})\b',        desc: "Bank card number" }
+    - { type: social_sec,  pattern: '\d{15,18}',              desc: "Social security / personal number" }
+    - { type: mobile,      pattern: '1[3-9]\d{9}',            desc: "Mobile number (masked storage by default)" }
+    - { type: invoice_img, desc: "Invoice / receipt image file", kind: file }  # images are not stored in plain text
+    - { type: tax_no,      pattern: '[0-9A-Z]{15,20}',        desc: "Taxpayer identification number" }
+  storage_policy:
+    pii_placeholder: "__REDACTED__"
+    external_ref_only: true     # PII may only be pointed to by an external encrypted reference (e.g. golden-tax voucher number / bank receipt number), never entered as a graph property
+
+# ── 2. Permission governance (row-level access + read-only enforcement + audit, following the A2 roles paradigm) ──
+governance:
+  row_level_access: true       # each role sees only entities within its scope (see roles.yaml)
+  read_only_enforcement: true  # entities/fields marked read_only cannot be rewritten by the logic layer
+  audit:
+    enabled: true
+    log_fields: [actor, action, target, timestamp, before_hash, after_hash]
+    immutable: true            # audit logs are tamper-proof
+
+# ── 3. Decision write-back rule library (closed loop: when → then → reason;
+#       this layer has higher priority than logic) ──
+decision_rules:
+  - id: tax_filing_confirm
+    when: "action == 'tax filing' && actor.role != 'owner'"
+    then: "block + hand to owner for confirmation"
+    reason: "Tax filing is a major compliance action and requires second confirmation by the business owner"
+  - id: pii_block
+    when: "write_target matches pii_guardrails.deny_plaintext_patterns"
+    then: "reject + replace with an external reference index"
+    reason: "PII must not enter the graph in plain text, per the minimum-necessity principle of the Personal Information Protection Law"
+  - id: pii_auto_mask
+    when: "field in [phone, contact, mobile] && plain text not explicitly requested"
+    then: "mask (middle four digits) before storage"
+    reason: "Contact details are masked by default to reduce leakage risk"
+  - id: credential_no_plaintext
+    when: "field matches Account.password|Document.secret"
+    then: "reject plain text + require an external key management reference"
+    reason: "Storing credentials in plain text is a high-risk violation"
+  - id: cross_dept_read_owner_admin
+    when: "actor.role in ['owner', 'admin']"
+    then: "allow_full_scope"
+    reason: "The business owner and administrators hold a full view"
+  - id: cross_dept_read_employee
+    when: "actor.role == 'employee'"
+    then: "allow_department_scope + audit trail"
+    reason: "Employees see only data within their own functional domain"
+  - id: guest_readonly
+    when: "actor.role == 'guest'"
+    then: "allow_read_only"
+    reason: "External users / guests are read-only"
+  - id: invoice_status_flow
+    when: "Invoice.status transitions outside draft→issued→paid"
+    then: "block"
+    reason: "Invoice status must advance according to the statutory process"
+  - id: readonly_field_protect
+    when: "the logic layer attempts to rewrite a read_only entity/field"
+    then: "block"
+    reason: "Read-only fields (e.g. historical voucher hashes) must not be tampered with"
+  - id: ecommerce_realname
+    when: "legal_form == 'ecommerce' && Organization.credit_code is missing"
+    then: "warn + block business actions"
+    reason: "E-commerce law requires displaying the business licence; an unverified entity may not operate"
+  - id: audit_all_writes
+    when: "any write/delete action"
+    then: "append audit log (before_hash + after_hash)"
+    reason: "All write operations must be traceable"
+
+# ── 4. Compliance red lines (China context; the base of the localized deep pack; specific clauses) ──
+compliance_redlines:
+  tax:
+    - "Never store tax payment certificates or original invoices in plain text in the graph; keep only the certificate number and time"
+    - "VAT threshold: small-scale taxpayers with monthly sales below 100,000 CNY (300,000 per quarter) are exempt (subject to the latest policy)"
+    - "Individual income tax: 5%–35% progressive rates on business income; comprehensive income is settled annually"
+    - "Corporate income tax: basic rate 25%; small low-profit enterprises may enjoy preferential rates (subject to the latest policy)"
+    - "Tax filing actions require second confirmation by the owner role before execution"
+  social_security:
+    - "The legal representative personally receives no special social insurance reduction (the flexible-employment subsidy excludes legal representatives)"
+    - "Hiring employees can qualify for a 25% individual-contribution social insurance subsidy (policy extended to 2026-12-31)"
+    - "Enterprises must pay the five statutory insurances for employees as required by law; overdue payments face late fees and compliance risk"
+  company_reg:
+    - "A centralized registration / co-working desk address (e.g. Hechuan Building) is not a physical office; external disclosures must stay consistent to avoid being listed as an abnormal operation due to address issues"
+    - "A one-person limited liability company must prove that its property is independent of the shareholder, otherwise it bears unlimited joint liability"
+  ecommerce_law:               # E-commerce law (referenced by packs/ecommerce.yaml)
+    - "Must display the business licence and operating permits; false advertising is prohibited"
+    - "Transaction records and product information must be retained for no less than three years"
+    - "Invoices must be issued as required by law; refusing to issue one is prohibited"
+  general:
+    - "Processing of personal information must follow the minimum-necessity principle (Article 6 of the Personal Information Protection Law)"
+    - "Automated decision-making must be transparent and explainable, and must not apply unreasonable differential treatment to individuals in transaction prices, etc."
+  tianjin_support:             # Tianjin OPC / AI entrepreneurship support (where Weishu is based)
+    - "Heping District offers the OPC-exclusive 'five ones' service at Tiankai Heping Park · Model Innovation Community (the first in the city); if the registered carrier is Hechuan Building, proactively confirm onboarding / service eligibility"
+    - "Tianjin OPC policy: entrepreneurship guaranteed loans up to 300,000 CNY for individuals / 4,000,000 CNY for micro and small enterprises; social insurance subsidy of 25% of individual contributions"
+    - "The founder holds the Tencent WorkBuddy efficiency-agent OPC practitioner certification (certificate TCLC-CWB-00465, valid until 2028-07-27), usable as a credential for external cooperation"
+  manufacturing_safety:         # Manufacturing plant safety / environmental / quality system red lines (referenced by packs/manufacturing.yaml)
+    - "Work safety: establish a full-staff work safety responsibility system as required by law; special-operation personnel must hold certificates; hazard inspection and remediation must be routine, and major hazards must be reported"
+    - "Special devices (pressure vessels / lifting machinery / boilers / elevators, etc.) must be registered for use and inspected periodically; they may not operate past the inspection deadline"
+    - "Environment: environmental assessment and emission permits must be complete; hazardous waste must be handed to qualified handlers; environmental inspection and self-monitoring data must be truthfully retained"
+    - "Fire safety: plant fire acceptance / filing must be complete, fire exits and facilities kept ready; drills must be run periodically and documented"
+    - "Quality system: establish and maintain a valid system per applicable industry certification (ISO9001 general / IATF16949 automotive / GMP pharma / CCC mandatory)"
+    - "Hazardous chemicals: MSDS must be complete, storage and use compliant; process safety (HAZOP) assessment; leakage / fire / poisoning incidents must be reported immediately as required by law"
+    - "Safety, environmental and quality incidents must be reported to the owner and legal immediately, never concealed or delayed; if a recall is involved, activate the plan and report to the regulator as required"
+
+  # ── Below are compliance red lines for horizontally extended industry packs (batch added
+  #    2026-08-15; all are reference frameworks and must be verified by the corresponding
+  #    licensed compliance / legal counsel against the latest regulations) ──
+  public_institution:          # Public institutions (referenced by packs/public_institution.yaml)
+    - "State-owned assets must be registered, booked and inventoried periodically; disposal (gratuitous transfer / external investment and leasing / scrapping) requires valuation filing and approval, and may not be done unilaterally"
+    - "Government procurement requires a budget and must follow the statutory procurement method (open tender by default); splitting procurement to evade open tender is strictly prohibited; imported products require approval"
+    - "Government receipts / non-tax revenue must be used as required and never lent, issued on behalf of others or forged; receipt images are not stored in plain text"
+    - "Real-name staffing quota management; no over-quota hiring; non-staff employment compliance; total wage and performance follow the rules"
+    - "Public welfare class I institutions may not engage in business activity; fees must follow government pricing or standards, and no fee items may be created unilaterally"
+    - "Information disclosure follows the Government Information Disclosure Regulations; PII is never written in plain text (minimum-necessity principle of the PIPL)"
+  finance:                     # Financial institutions (referenced by packs/finance.yaml; reference, not legal advice)
+    - "Operate under a licence and within its scope; distribution requires products from licensed institutions"
+    - "Investor suitability management: know your customer / know your product / risk matching; never sell to investors whose risk profile does not match; dual recording must be retained"
+    - "AML: customer identification (KYC) / large and suspicious transaction reporting / list monitoring; never serve customers whose identity is unknown"
+    - "Capital and prudential regulation: capital adequacy / provision coverage / leverage / liquidity metrics must meet standards (subject to the latest regulatory rules)"
+    - "Financial data classification and grading (C1–C4); important / core data export requires a security assessment; personal information must be de-identified"
+    - "Credit reporting compliance: queries require authorization; credit information must not be queried or provided in violation of rules"
+    - "Marketing compliance: no promises of capital protection or guaranteed returns; financial advertising and sales must be traceable and compliant"
+  biomed:                      # Healthcare / biopharma (referenced by packs/biomed.yaml; reference framework)
+    - "Collection, preservation, use and provision abroad of human genetic resources require approval or filing under the Human Genetic Resources Administration Regulations; export without approval is prohibited"
+    - "Drug / medical device manufacturing requires a registration certificate and GMP; batch records must be traceable; non-conforming product may not be released unilaterally"
+    - "Health data classification and grading; medical records / genetic data are under a strong PII guardrail and must be de-identified; medical records may not be shared without authorization"
+    - "Medical institutions must hold a practice licence and practise within their approved scope; prescriptions / telemedicine must be compliant"
+    - "Medical devices are managed by risk classification and require registration or filing; adverse event monitoring and reporting"
+    - "Research involving human subjects requires ethics review; adverse reaction / adverse event monitoring and reporting is mandatory"
+  edu_research:                # Education / research institutions (referenced by packs/edu_research.yaml; reference framework)
+    - "Research funding must be used for its designated purpose and never misappropriated or falsely claimed; travel / conference / labour costs follow the rules; closure requires an audit"
+    - "Ownership of job-related scientific and technological achievements belongs to the institution; transfer must be compliant (due diligence / valuation / public disclosure) with revenue distribution under the Law on Promoting the Transfer of Scientific and Technological Achievements"
+    - "Schools require a licence, compliant enrollment and complete degree-education qualifications; no non-compliant fees"
+    - "Student / subject information is under a strong PII guardrail; minors require additional protection and must not be disclosed (Minor Protection Law)"
+    - "Research involving human subjects requires ethics review; research integrity — no academic misconduct or data fabrication"
+
+# ── 5. Compliance validation entry (called by init.py and write paths) ──
+compliance_checks:
+  - {id: tax_filing_owner_confirm, refs: [tax]}
+  - {id: pii_no_plaintext,         refs: [general, tax]}
+  - {id: ecommerce_realname,       refs: [ecommerce_law]}
+  - {id: company_reg_consistency,   refs: [company_reg]}
+  - {id: ss_subsidy_eligibility,    refs: [social_security, tianjin_support]}
+  - {id: manufacturing_safety_check, refs: [manufacturing_safety]}
+  - {id: public_institution_check,    refs: [public_institution]}
+  - {id: finance_check,               refs: [finance]}
+  - {id: biomed_check,                refs: [biomed]}
+  - {id: edu_research_check,          refs: [edu_research]}

@@ -1,40 +1,57 @@
-## Description: <br>
-Publish reports to the ZeeLin reports website by copying report assets, inserting a new top entry into public/reports_config.json for any category, running build checks, and preparing pull-request-ready branches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish reports to the ZeeLin reports website ("智灵报告网站") by copying report assets, inserting a new top entry into public/reports_config.json for any category, running build checks, and preparing PR-ready branches.
 
-## Publisher: <br>
-[thu-nmrc](https://clawhub.ai/user/thu-nmrc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thu-nmrc](https://clawhub.ai/user/thu-nmrc)
 
-## Use Case: <br>
-Developers and report maintainers use this skill to add PDF, PPT, or PPTX reports to the ZeeLin reports site through a branch, build check, and pull request workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional bootstrap can create persistent GitHub SSH access for the selected account. <br>
-Mitigation: Run bootstrap only on a trusted machine and account, use skip options when credentials are already configured, and remove the uploaded SSH key later if persistent access is not desired. <br>
-Risk: The publishing workflow changes a report-site repository and pushes a branch for review. <br>
-Mitigation: Review the generated branch, build result, and pull request before merging. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Zeelin Report Publisher on ClawHub](https://clawhub.ai/thu-nmrc/zeelin-report-publisher) <br>
-- [Report Metadata Contract](references/report-metadata.md) <br>
+## Use Case:
 
+Developers and report-site maintainers use this skill to publish PDF or presentation reports to the ZeeLin reports website through a branch, build, push, and pull-request workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, configuration values, and file-change summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create report assets, update reports_config.json, create a git branch, and open or describe a pull request.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish to GitHub and change persistent local or account state while preparing report releases.
+
+Mitigation: Confirm the target repository, branch, remotes, and intended PR workflow before allowing push or pull-request creation.
+
+Risk: The bootstrap flow can configure Git identity, GitHub authentication, and SSH keys on the local machine.
+
+Mitigation: Run bootstrap only when account setup is intended; prefer --skip-ssh and --skip-gh-login when authentication or key management is already configured.
+
+Risk: The security summary reports a path-boundary issue that can write outside the target repository.
+
+Mitigation: Use dry-run behavior first where available, review path-related options carefully, and verify the destination paths before permitting file writes.
+
+## Reference(s):
+
+- [Report Metadata Contract](references/report-metadata.md)
+- [ClawHub skill page](https://clawhub.ai/thu-nmrc/skills/zeelin-report-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured publishing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare repository file changes, copied report assets, commits, pushes, and pull-request links when executed by an agent with the required local tools and permissions.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

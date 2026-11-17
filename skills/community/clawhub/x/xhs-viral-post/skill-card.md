@@ -1,42 +1,58 @@
-## Description: <br>
-Generates Xiaohongshu-style post assets including title, body copy, hashtags, a cover prompt, and posting strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu-style post drafts with a title, body, hashtags, cover prompt, and posting strategy, with SkillPay billing before generation.
 
-## Publisher: <br>
-[ArthuronAI](https://clawhub.ai/user/ArthuronAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arthuronai](https://clawhub.ai/user/arthuronai)
 
-## Use Case: <br>
-Content creators and marketers use this skill to draft Xiaohongshu-style posts from a topic, including copy, hashtags, a cover-image prompt, and posting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the topic and generated context to external services for content generation, keyword lookup, and billing. <br>
-Mitigation: Avoid sensitive topics or confidential campaign details, and use scoped OpenAI and SkillPay credentials. <br>
-Risk: Each execution can incur a 0.05 USDT SkillPay charge, and SKILLPAY_ENDPOINT can change the billing destination. <br>
-Mitigation: Confirm the per-call cost before use, and keep SKILLPAY_ENDPOINT unset unless the endpoint is explicitly trusted. <br>
+## Use Case:
 
+Content creators and marketers use this skill to draft Xiaohongshu post packages from a topic, including copy, hashtags, a cover prompt, and posting guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ArthuronAI/xhs-viral-post) <br>
-- [Datamuse keyword API endpoint](https://api.datamuse.com/words) <br>
-- [SkillPay billing endpoint](https://api.skillpay.me/v1/charges) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON object with title, content, hashtags, coverPrompt, and strategy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a topic input; billing succeeds before content generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact SKILL.md and package.json report 1.1.0) <br>
+Risk: Billing requests can be redirected to an arbitrary endpoint while carrying the SkillPay credential and part of the user topic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted installations, remove or strictly allowlist SKILLPAY_ENDPOINT to the official HTTPS SkillPay endpoint before use, and protect SKILLPAY_KEY.
+
+Risk: The skill sends user topics to OpenAI, Datamuse, and SkillPay.
+
+Mitigation: Do not submit sensitive topics unless those third-party transfers are acceptable for the deployment.
+
+Risk: Dependencies are declared with version ranges and no lockfile is included.
+
+Mitigation: Use pinned dependencies and a reviewed lockfile for production deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arthuronai/skills/xhs-viral-post)
+- [ClawHub publisher profile](https://clawhub.ai/user/arthuronai)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON object with title, content, hashtags, coverPrompt, and strategy fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENAI_API_KEY and SKILLPAY_KEY; billing succeeds before generation; the topic is sent to external APIs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

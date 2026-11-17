@@ -1,36 +1,52 @@
-## Description: <br>
-Track and manage dependencies between OpenClaw skills, including scanning installed skills, visualizing dependency trees, detecting conflicts, and assisting with skill installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and manage dependencies between OpenClaw skills by scanning dependencies, visualizing skill trees, detecting circular dependencies, and managing skill versioning.
 
-## Publisher: <br>
-[myrodar](https://clawhub.ai/user/myrodar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[myrodar](https://clawhub.ai/user/myrodar)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect OpenClaw skill dependencies, identify missing or conflicting skills, view dependency trees, search ClawHub, and plan skill installations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installer can persistently add multiple skills from ClawHub through dependency resolution. <br>
-Mitigation: Review the dependency list and exact skill versions before running skill-install.sh, and prefer the read-only scan, tree, conflict, and search commands when installation is not required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to inspect OpenClaw skill dependency metadata, visualize dependency trees, detect missing dependencies and conflicts, and plan skill installation.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local OpenClaw skill directories and ClawHub registry queries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer can make persistent skill installs from ClawHub without pinning or verifying the resolved versions.
+
+Mitigation: Review the dependency plan before installation, prefer manually pinned installs, and do not treat auto-resolution output as an integrity guarantee.
+
+Risk: Dependency and conflict results depend on local skill metadata and the configured OpenClaw skill directories.
+
+Mitigation: Review the scanned directories and skill metadata before acting on missing-dependency or conflict reports.
+
+## Reference(s):
+
+- [ClawHub Skill Dependencies page](https://clawhub.ai/myrodar/skills/skill-deps)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts inspect local OpenClaw skill directories and may query ClawHub when searching or resolving installs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

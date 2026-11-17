@@ -1,41 +1,58 @@
-## Description: <br>
-筛选沟通简历 helps screen candidates from a BOSS直聘 chat list against education, experience, React, and AI-tool preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill filters visible BOSS Zhipin chat candidates against full-time bachelor's degree, 2-8 years of experience, React-primary technical stack, and AI-tool preference criteria.
 
-## Publisher: <br>
-[herohimmel](https://clawhub.ai/user/herohimmel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[herohimmel](https://clawhub.ai/user/herohimmel)
 
-## Use Case: <br>
-Recruiters and hiring teams use this skill to review visible candidates in a BOSS直聘 communication list, keep only candidates matching strict hiring criteria, and send the shortlist to the user through DingTalk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate details sent through DingTalk may include personal data. <br>
-Mitigation: Use only when authorized to review the candidate records, verify the DingTalk recipient or channel, and share only fields needed for recruiting. <br>
-Risk: Incorrect screening could affect hiring decisions. <br>
-Mitigation: Check each retained candidate against the visible BOSS直聘 page and avoid guessing when required details are missing. <br>
+## Use Case:
 
+Recruiters and hiring teams use this skill to review candidates in a BOSS Zhipin communication list, record matching profile details, and send qualified candidates to the user through DingTalk.
 
-## Reference(s): <br>
-- [筛选沟通简历 on ClawHub](https://clawhub.ai/herohimmel/filter-comm-resume) <br>
-- [BOSS直聘 chat list](https://www.zhipin.com/web/chat/index) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Candidate screening summary suitable for a DingTalk message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes candidate name, education or school, experience, salary expectation, and technology stack when those details are shown on the source page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Candidate personal information could be accessed or shared without proper authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm authorization to access and process candidate information before use, and share only the fields needed for recruiting decisions under the organization's privacy rules.
+
+Risk: Candidate details could be sent to the wrong DingTalk destination.
+
+Mitigation: Verify the DingTalk recipient or destination before sending screening results.
+
+Risk: The skill could overstate qualifications when candidate profiles are incomplete.
+
+Mitigation: Record only information visible on the page and avoid guessing missing education, experience, salary, or technical-stack details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/herohimmel/skills/filter-comm-resume)
+- [Publisher profile](https://clawhub.ai/user/herohimmel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text candidate screening summaries for DingTalk delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include only candidate fields needed for recruiting decisions and should match the visible profile information without unsupported inference.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

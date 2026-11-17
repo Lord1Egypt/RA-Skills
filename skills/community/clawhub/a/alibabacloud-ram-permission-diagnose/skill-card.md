@@ -1,48 +1,64 @@
-## Description: <br>
-Alibaba Cloud RAM permission diagnosis and repair assistant for permission-related errors while operating Alibaba Cloud resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud RAM permission diagnosis and repair assistant for permission-related errors across Alibaba Cloud resources, including 403, NoPermission, Forbidden, AccessDenied, and InvalidSecurityToken cases.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to diagnose Alibaba Cloud RAM permission errors, identify missing permissions or denial causes, and produce least-privilege repair guidance. It can also guide CLI or console-based remediation after user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change local Aliyun CLI configuration, including AI-mode and plugin behavior. <br>
-Mitigation: Review setup steps before use, avoid remote installer or automatic plugin updates unless intentionally approved, and verify AI-mode and auto-plugin settings after the workflow ends. <br>
-Risk: Repair actions can make high-impact Alibaba Cloud access-control changes. <br>
-Mitigation: Use a dedicated least-privileged Alibaba Cloud profile, inspect every RAM policy or trust-policy change before execution, and keep rollback details and policy backups. <br>
+## Use Case:
 
+Developers, cloud operators, and support engineers use this skill to triage Alibaba Cloud RAM permission failures, identify missing or denying policies, and generate least-privilege repair recommendations. When explicitly approved by the user, it can provide or execute Aliyun CLI repair steps and console guidance.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/sdk-team/alibabacloud-ram-permission-diagnose) <br>
-- [Diagnose Flow Reference](references/diagnose-flow.md) <br>
-- [Alibaba Cloud RAM Permission ErrorCode Reference](references/error-codes.md) <br>
-- [Popular Services RAM Action Reference](references/hot-services-ram.md) <br>
-- [RAM-Related aliyun CLI Command Reference](references/ram-cli-commands.md) <br>
-- [RAM Hints for ram-permission-diagnose Skill](references/ram-policies.md) <br>
-- [Alibaba Cloud RAM troubleshooting documentation](https://help.aliyun.com/document_detail/93733.html) <br>
-- [Alibaba Cloud RAM authorization action list](https://help.aliyun.com/document_detail/28630.html) <br>
-- [Alibaba Cloud RAM policies console](https://ram.console.aliyun.com/policies) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Alibaba Cloud RAM policy statements, CLI commands, console steps, rollback guidance, and permission request materials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Installer and plugin update steps can change the local Aliyun CLI environment in ways the user may not have reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Aliyun CLI installation and plugin update steps before use; avoid curl-to-bash and blanket auto-updates where possible.
+
+Risk: RAM repair workflows can modify IAM policies, trust policies, or role attachments with account-wide impact.
+
+Mitigation: Use a tightly scoped diagnostic identity first, require explicit user approval before every write repair, and back up existing policy and trust documents before changes.
+
+Risk: Broad policies such as AliyunRAMFullAccess can grant extensive IAM authority.
+
+Mitigation: Prefer least-privilege custom policies and grant AliyunRAMFullAccess only when a cloud administrator accepts the account-wide IAM risk.
+
+## Reference(s):
+
+- [Diagnose Flow Reference](artifact/references/diagnose-flow.md)
+- [Alibaba Cloud RAM Permission ErrorCode Reference](artifact/references/error-codes.md)
+- [Popular Services RAM Action Reference](artifact/references/hot-services-ram.md)
+- [RAM-Related aliyun CLI Command Reference](artifact/references/ram-cli-commands.md)
+- [RAM Hints for ram-permission-diagnose Skill](artifact/references/ram-policies.md)
+- [Alibaba Cloud RAM Troubleshooting Documentation](https://help.aliyun.com/document_detail/93733.html)
+- [Alibaba Cloud RAM Authorization Action List](https://help.aliyun.com/document_detail/28630.html)
+- [Alibaba Cloud RAM Policies Console](https://ram.console.aliyun.com/policies)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic summaries, Aliyun CLI commands, RAM policy JSON, permission request materials, undo commands, and console repair guidance.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

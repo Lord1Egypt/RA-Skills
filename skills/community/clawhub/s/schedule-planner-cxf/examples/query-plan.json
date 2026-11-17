@@ -1,0 +1,15 @@
+{
+  "routes": [
+    { "type": "train", "from": "杭州", "to": "南京", "date": "2026-05-04" },
+    { "type": "flight", "from": "南京", "to": "上海", "date": "2026-05-05" },
+    { "type": "train", "from": "上海", "to": "苏州", "date": "2026-05-06" },
+    { "type": "train", "from": "苏州", "to": "北京", "date": "2026-05-07" },
+    { "type": "flight", "from": "北京", "to": "杭州", "date": "2026-05-08" }
+  ],
+  "hotels": [
+    { "city": "南京", "checkIn": "2026-05-04", "checkOut": "2026-05-05" },
+    { "city": "上海", "checkIn": "2026-05-05", "checkOut": "2026-05-06" },
+    { "city": "苏州", "checkIn": "2026-05-06", "checkOut": "2026-05-07" },
+    { "city": "北京", "checkIn": "2026-05-07", "checkOut": "2026-05-08" }
+  ]
+}

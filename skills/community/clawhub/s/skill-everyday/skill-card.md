@@ -1,42 +1,59 @@
-## Description: <br>
-每天抓取 Clawhub 热门技能，深入分析并生成报告。每次执行获取一个未分析过的热门技能，避免重复。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Everyday fetches trending ClawHub skills, analyzes one not-yet-processed skill per run, and writes a local report.
 
-## Publisher: <br>
-[autoxj](https://clawhub.ai/user/autoxj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[autoxj](https://clawhub.ai/user/autoxj)
 
-## Use Case: <br>
-Developers and OpenClaw users run this skill to analyze one unprocessed trending ClawHub skill at a time and save a daily Markdown report. It is useful for recurring marketplace research without requiring a ClawHub account or API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runner contacts ClawHub with Playwright and Chromium and creates local report and state files. <br>
-Mitigation: Run it only in an environment where ClawHub access and local file creation are acceptable. <br>
-Risk: Generated reports may include local sibling skill directory paths and filenames. <br>
-Mitigation: Review generated reports before sharing them outside the local environment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to monitor popular ClawHub skills and generate one Markdown analysis report per run while tracking already analyzed skills locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/autoxj/skill-everyday) <br>
-- [ClawHub skills directory](https://clawhub.ai/skills) <br>
-- [Playwright installation guide](https://playwright.dev/docs/intro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Guidance] <br>
-**Output Format:** [Markdown reports written to data/reports with terminal summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local state in data/analyzed.json and writes both dated reports and data/reports/LATEST.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Remote ClawHub data can influence local report content and derived filesystem paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate skill slugs, enforce path containment under the skill workspace, and escape Markdown/YAML-sensitive content before routine use.
+
+Risk: The runner may inspect neighboring skill directories when matching a fetched skill slug to local source files.
+
+Mitigation: Run it only in workspaces where neighboring skill directory names are acceptable to list, or disable local source lookup.
+
+Risk: Playwright is installed as a runtime dependency without a lockfile in the artifact.
+
+Mitigation: Pin dependency versions with a lockfile and install Chromium from a trusted package workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/autoxj/skills/skill-everyday)
+- [ClawHub skills listing](https://clawhub.ai/skills)
+- [Playwright installation documentation](https://playwright.dev/docs/intro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files]
+
+**Output Format:** [Markdown report files with a terminal text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates data/analyzed.json and data/reports/ locally; also updates data/reports/LATEST.md with the most recent report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Log heart rate readings, track BPM trends, and set cardiovascular goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log heart rate readings, track BPM trends, and set cardiovascular goals. Use when recording heart rate, tracking trends, or charting weekly averages.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and agents use this skill to record local heart-rate notes, review simple activity history, and export locally stored logs. It should be treated as a personal note logger, not as a medical monitoring or cardiovascular decision tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be mistaken for a medical or heart-rate analytics tool. <br>
-Mitigation: Use it only as a local note logger and do not rely on its output for cardiovascular or medical decisions. <br>
-Risk: Sensitive health notes may be stored as plaintext local files under ~/.local/share/heartrate/. <br>
-Mitigation: Avoid entering sensitive health details unless plaintext local storage is acceptable for the user and environment. <br>
+## Use Case:
 
+External users and personal health trackers use this skill to record local heart-rate entries, inspect recent activity, view basic statistics, and export local logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/heartrate) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain3) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Plain text and markdown command guidance; the bundled shell script writes local log and export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries under ~/.local/share/heartrate/ and can export local data as JSON, CSV, or text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Heart-rate entries and related notes are stored as local plaintext files under ~/.local/share/heartrate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted machines, review directory permissions, and avoid entering sensitive notes on shared systems.
+
+Risk: The advertised trend, analytics, and export behavior is under-scoped and may not work as described.
+
+Mitigation: Review the skill before installing and validate exported or summarized results before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/heartrate)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Plain text CLI output and local export files in JSON, CSV, or TXT]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local plaintext logs under ~/.local/share/heartrate.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

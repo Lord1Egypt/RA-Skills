@@ -1,41 +1,58 @@
-## Description: <br>
-Scaffold a new OpenClaw skill project with starter docs, tests, fixtures, and optional security workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffold a new OpenClaw skill project with starter docs, tests, fixtures, and optional security workflow.
 
-## Publisher: <br>
-[mike007jd](https://clawhub.ai/user/mike007jd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike007jd](https://clawhub.ai/user/mike007jd)
 
-## Use Case: <br>
-Developers and engineers use Skillsmith to scaffold new OpenClaw skill projects with starter documentation, tests, fixtures, package metadata, and optional security workflow templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI can delete and recreate the selected target project directory when --force is used. <br>
-Mitigation: Choose --out deliberately and avoid --force unless replacing that exact generated directory is intended. <br>
-Risk: The optional generated GitHub Actions workflow may not match a real repository's security policy. <br>
-Mitigation: Review and adapt the generated workflow before enabling it in a production repository. <br>
+## Use Case:
 
+Developers use Skillsmith to create a reviewable starting structure for OpenClaw skill projects, including starter instructions, docs, tests, fixtures, and optional security workflow files.
 
-## Reference(s): <br>
-- [ClawHub Skillsmith page](https://clawhub.ai/mike007jd/skillsmith) <br>
-- [Project homepage listed by artifact](https://github.com/mike007jd/openclaw-skills/tree/main/skill-starter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Generated project files with Markdown documentation, JavaScript code, JSON configuration, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; generated content should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, package.json) <br>
+Risk: Using `--force` can replace an existing target project directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run without `--force` by default, choose a dedicated output directory, and inspect the target path before allowing replacement.
+
+Risk: The optional generated CI workflow runs an unpinned scanner package.
+
+Mitigation: Review the workflow before committing it and pin scanner versions or approved package sources according to the repository policy.
+
+Risk: Generated scaffold files are placeholders rather than complete production logic.
+
+Mitigation: Replace placeholder instructions, scripts, tests, and policy files with project-specific content before release or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike007jd/skills/skillsmith)
+- [ClawHub publisher profile](https://clawhub.ai/user/mike007jd)
+
+## Skill Output:
+
+**Output Type(s):** [files, markdown, code, shell commands, configuration]
+
+**Output Format:** [Project files with Markdown documentation, JavaScript code, JSON configuration, and optional YAML workflow files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated project contents depend on CLI flags such as template, CI inclusion, prompts, output directory, and force overwrite.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

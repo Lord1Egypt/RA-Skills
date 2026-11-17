@@ -1,40 +1,54 @@
-## Description: <br>
-Guides agents in Chinese-language communication, with platform-specific writing conventions for Xiaohongshu, Jike, Weibo, WeChat, and Enterprise WeChat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language AI agent best-practice guidance for adapting assistant behavior, tone, and writing style to Chinese internet and social-platform contexts, including Xiaohongshu, Jike, Weibo, WeChat, and Enterprise WeChat.
 
-## Publisher: <br>
-[gmsx000-cloud](https://clawhub.ai/user/gmsx000-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gmsx000-cloud](https://clawhub.ai/user/gmsx000-cloud)
 
-## Use Case: <br>
-Developers and agent operators use this skill to steer assistants toward natural Chinese-language responses and social-platform-specific tone. It is most relevant for content drafting or customer-facing communication in Chinese contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Platform-specific tone guidance can make public or customer-facing outputs sound exaggerated, informal, or misaligned with a brand voice. <br>
-Mitigation: Review outputs for accuracy, tone, and audience fit before publishing or sending them to customers. <br>
-Risk: Chinese social-platform conventions may be inappropriate outside Chinese-language, Xiaohongshu, Jike, Weibo, WeChat, or Enterprise WeChat contexts. <br>
-Mitigation: Apply the skill only when that regional, language, and platform style is explicitly desired. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make an AI assistant write and respond in a more natural Chinese-language style for Chinese internet and social-platform workflows. It is especially suited for platform-specific copy, conversational phrasing, and avoiding common AI-sounding Chinese output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gmsx000-cloud/chinese-ai-agent-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain-text response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, API calls, or privileged behavior identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and target metadata) <br>
+Risk: The skill can shift assistant outputs toward Chinese social-platform tone, structure, emoji usage, and platform-style phrasing when neutral, non-Chinese, or formal output is required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it for Chinese internet or social-platform writing tasks, and disable it for neutral, non-Chinese, highly formal, or policy-sensitive contexts.
+
+Risk: Platform-adapted phrasing can produce informal or promotional copy that may not match a publisher's brand, compliance needs, or audience expectations.
+
+Mitigation: Review generated copy before publication and adjust style constraints for the target platform, brand voice, and audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gmsx000-cloud/skills/chinese-ai-agent-guide)
+- [Publisher profile](https://clawhub.ai/user/gmsx000-cloud)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language guidance and Markdown-formatted recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May affect tone, structure, emoji usage, and platform-style phrasing for Chinese-language outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

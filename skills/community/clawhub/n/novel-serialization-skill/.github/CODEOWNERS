@@ -1,0 +1,45 @@
+# CODEOWNERS
+#
+# Lines whose owner is not a valid GitHub user are silently ignored. Replace
+# @JohnSmithfan below if the repository moves, and verify with:
+#   gh api repos/{owner}/{repo}/codeowners/errors
+#
+# Default owner — everything not matched below.
+*                       @JohnSmithfan
+
+# Skill contract and module definitions: a change here changes agent behaviour.
+/SKILL.md               @JohnSmithfan
+/modules/               @JohnSmithfan
+/references/            @JohnSmithfan
+
+# Shared scripts: consumed by every subproject, a regression ships everywhere.
+/scripts/               @JohnSmithfan
+
+# Tests: they are the only thing standing between a script change and every
+# subproject that runs it.
+/tests/                 @JohnSmithfan
+
+# Decisions. A superseded ADR changes what contributors are allowed to assume.
+/docs/                  @JohnSmithfan
+
+# Build and tool configuration.
+/pyproject.toml         @JohnSmithfan
+/requirements-dev.txt   @JohnSmithfan
+/Makefile               @JohnSmithfan
+
+# Security contact surface.
+/security.txt           @JohnSmithfan
+
+# Licensing and legal surface.
+/LICENSE                @JohnSmithfan
+/LICENSES/              @JohnSmithfan
+
+# Community health files.
+/.github/               @JohnSmithfan
+/CONTRIBUTING.md        @JohnSmithfan
+/GOVERNANCE.md          @JohnSmithfan
+/SECURITY.md            @JohnSmithfan
+/SUPPORT.md             @JohnSmithfan
+
+# Release automation.
+/.github/workflows/novel-release.yml  @JohnSmithfan

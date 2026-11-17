@@ -1,0 +1,4 @@
+interface:
+  display_name: "代码单元测试"
+  short_description: "Compare branch diff and simulate unit-test cases."
+  default_prompt: "Use $code-unit-test to compare this branch with master and produce simulated unit-test result tables."

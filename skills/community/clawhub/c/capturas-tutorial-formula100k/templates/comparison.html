@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_tokens.css">
+<style>
+.compare-row {
+  display: flex;
+  gap: 24px;
+  max-width: 1080px;
+}
+.compare {
+  flex: 1;
+  padding: 28px 26px;
+  border-radius: var(--r-card);
+  background: #fff;
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 220px;
+}
+.compare[data-kind="no"]  { border-color: var(--error);   background: var(--error-bg); }
+.compare[data-kind="yes"] { border-color: var(--success); background: var(--success-bg); }
+.compare-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+.compare[data-kind="no"]  .compare-icon { background: var(--error); }
+.compare[data-kind="yes"] .compare-icon { background: var(--success); }
+.compare-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--ink);
+  font-weight: 400;
+  line-height: 1.2;
+}
+.compare-body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.compare-body strong { color: var(--ink); }
+</style>
+</head>
+<body data-bg="{{bg}}">
+<div class="stage" data-bg="{{bg}}">
+  <div class="compare-row">
+    <div class="compare" data-kind="no">
+      <div class="compare-icon">✕</div>
+      <div class="compare-title">{{no_title}}</div>
+      <div class="compare-body">{{no_body}}</div>
+    </div>
+    <div class="compare" data-kind="yes">
+      <div class="compare-icon">✓</div>
+      <div class="compare-title">{{yes_title}}</div>
+      <div class="compare-body">{{yes_body}}</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

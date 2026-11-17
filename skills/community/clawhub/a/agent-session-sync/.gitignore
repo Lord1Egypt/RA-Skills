@@ -1,0 +1,39 @@
+# ===== 私密数据：绝不入库 =====
+# archive/        个人会话的完整 Markdown 转录
+# titles.json     真实会话标题表（含源会话 ID）
+# .titles-*.json  标题工程临时文件
+# .test-*         测试沙箱与 db 副本（含真实会话数据）
+# .selftest/      自检沙箱
+archive/
+article/
+titles.json
+.titles-*.json
+.test-dsh-root/
+.test-zcode-db.sqlite
+.test-zcode-db.sqlite-shm
+.test-zcode-db.sqlite-wal
+.test-zcode-db.sqlite-*
+.selftest/
+
+# ===== 参考仓库（各自有上游，勿随本项目分发） =====
+reference/
+
+# ===== 备份/临时 =====
+*.agentsync-bak-*
+*.agentsync-tmp
+*.log
+
+# ===== Python =====
+__pycache__/
+*.pyc
+.venv/
+
+# ===== 本机个人操作（只属于这台机器，绝不入库）=====
+# local/          个人执行脚本/清单/一次性操作（dsh-delete-plan.py 等）都放这里
+# .tmp-*          临时验证脚本（用完即删，不删也不会入库）
+local/
+.tmp-*
+
+.agentsync-deleted.json
+scripts/pre_import_ids.json
+.agents/

@@ -1,0 +1,15 @@
+{
+  "_instructions": "Merge the \"skills\" object below into your OpenClaw config (e.g. ~/.openclaw/openclaw.json). Remove this _instructions key after copying. Replace every placeholder value. Tokens last 90 days (regenerate in 账户信息 → API Token). MindGraph honors new tokens immediately; if the host still uses old credentials after you edit env, save config and restart WorkBuddy/OpenClaw (or reload skills).",
+  "skills": {
+    "entries": {
+      "mindgraph": {
+        "enabled": true,
+        "env": {
+          "MINDGRAPH_BASE_URL": "https://test.mindspringedu.com",
+          "MINDGRAPH_ACCOUNT": "13800138000",
+          "MINDGRAPH_TOKEN": "mgat_paste_token_from_account_settings"
+        }
+      }
+    }
+  }
+}

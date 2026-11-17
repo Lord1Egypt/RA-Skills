@@ -1,45 +1,60 @@
-## Description: <br>
-Find Ai Consultancy helps agents find, shortlist, vet, and enrich US AI, ML, and data consulting firms through the ServiceGraph pro_services catalog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds, shortlists, vets, and enriches US AI/ML and data consulting firms using the ServiceGraph pro_services catalog and its data_ai_consulting taxonomy.
 
-## Publisher: <br>
-[nostrband](https://clawhub.ai/user/nostrband) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nostrband](https://clawhub.ai/user/nostrband)
 
-## Use Case: <br>
-Employees, external users, developers, and procurement teams use this skill to identify US AI, ML, data analytics, MLOps, LLM, computer vision, NLP, and related consulting firms. It guides authenticated ServiceGraph searches, filter validation, shortlist review, and optional paid firm-detail enrichment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ServiceGraph API key or OAuth-backed ServiceGraph access. <br>
-Mitigation: Store credentials in the harness environment or .env.local and do not paste keys into chat or generated artifacts. <br>
-Risk: Firm-detail unlocks consume ServiceGraph credits. <br>
-Mitigation: Use free search and brief reads first, then confirm selected apex domains and expected credit cost before unlocking details. <br>
-Risk: The catalog is scoped to US firms and can omit or misclassify some AI-related companies. <br>
-Mitigation: Keep the industry:data_ai_consulting filter pinned, validate filters before search, and skip results that are SaaS products, non-US firms, or otherwise outside the user's procurement scope. <br>
+## Use Case:
 
+External users and developers use this skill to turn AI/ML consultancy procurement requests into ServiceGraph searches, shortlists, comparisons, and optional paid contact enrichment for US firms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nostrband/find-ai-consultancy) <br>
-- [Publisher Profile](https://clawhub.ai/user/nostrband) <br>
-- [ServiceGraph API](https://api.servicegraph.co) <br>
-- [ServiceGraph pro_services Fields Endpoint](https://api.servicegraph.co/v1/datasets/pro_services/fields) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API request examples and shortlist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe ServiceGraph filters, credit costs, API calls, and credential setup steps without exposing secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The auth flow recommends sourcing .env.local as shell code, which can execute unexpected shell content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the ServiceGraph MCP/OAuth path or export SERVICEGRAPH_API_KEY from a trusted secret manager; avoid sourcing untrusted dotenv files.
+
+Risk: Paid unlock operations spend 10 credits per firm.
+
+Mitigation: Confirm selected apex domains, total credit cost, and unlock intent before calling POST /v1/datasets/pro_services/unlocks.
+
+Risk: The catalog can include misclassified AI-related firms such as SaaS products or education providers.
+
+Mitigation: Review brief and unlocked details before recommending a firm, and skip firms that are out of scope for US AI/ML/data consulting services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nostrband/skills/find-ai-consultancy)
+- [ClawHub publisher profile](https://clawhub.ai/user/nostrband)
+- [ServiceGraph API base](https://api.servicegraph.co)
+- [ServiceGraph pro_services fields endpoint](https://api.servicegraph.co/v1/datasets/pro_services/fields)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown with inline HTTP and curl examples, ServiceGraph filter strings, shortlist summaries, and unlock guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include firm apex domains, brief firm cards, credit-cost notes, and contact-enrichment steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

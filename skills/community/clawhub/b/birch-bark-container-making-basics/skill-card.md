@@ -1,42 +1,62 @@
-## Description: <br>
-This skill helps an agent plan birch-bark container projects by organizing tree survey inputs, bark sizing, pattern templates, schedules, test logs, and inventory or barter templates while the user performs all harvesting and craft work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent in helping users plan birch-bark container projects, including harvest checklists, pattern sizing, folding schedules, seam and waterproof-test logs, and barter or inventory templates while the human performs all physical craft work.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to plan and track hands-on birch-bark bucket, pail, and storage-box projects when they have lawful and ethical access to suitable bark. The skill produces planning guidance, sizing math, checklists, logs, and templates while leaving all physical harvesting, tool use, safety judgment, and legality checks to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent guidance may overstate what can be verified about species identification, protected-tree status, land permission, local harvesting law, Indigenous cultural context, or physical safety. <br>
-Mitigation: Independently verify species, permissions, regulations, cultural context, and safety practices before harvesting or using tools. <br>
-Risk: The workflow can involve physical and ecological hazards from cutting bark, using sharp tools, or damaging trees. <br>
-Mitigation: Use the skill as a planning checklist only, follow local forestry rules, use appropriate protective equipment, and stop if conditions are unsafe or tree damage is observed. <br>
-Risk: Local filesystem logs may store photos, GPS details, location notes, and birch-source records. <br>
-Mitigation: Store project files only in trusted workspaces, avoid unnecessary sensitive location data, and delete logs or photos that should not be retained. <br>
+## Use Case:
 
+External users interested in self-reliance craft use this skill to plan and document birch-bark buckets, pails, storage boxes, and similar vessels for foraging, water carrying, food storage, or trade. The skill should be treated as planning support, not as an authority for tree identification, protected status, harvest legality, ecological safety, or hands-on craft training.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/birch-bark-container-making-basics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with checklists, schedules, logs, templates, and install command text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or maintain local filesystem records for photos, location notes, project logs, and inventory tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may overstate the agent's ability to identify birch species and validate protected status, harvest legality, or ecological safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify species, protected status, permits, land access, and harvest practices with local forestry rules and a qualified human source before harvesting.
+
+Risk: Harvesting and shaping bark can cause lacerations, strain, or other tool-related injury.
+
+Mitigation: Use appropriate protective equipment, keep both hands behind cutting edges, supervise children directly, and stop work if strain or unsafe conditions appear.
+
+Risk: Incorrect harvest technique can damage living trees or local stands.
+
+Mitigation: Harvest only with permission from abundant, healthy stands; limit removal to conservative single sheets; and stop immediately if the tree shows damage.
+
+Risk: The published install command is unpinned.
+
+Mitigation: Prefer a version-pinned, reviewed ClawHub installer path before installing or deploying the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/howtousehumans/skills/birch-bark-container-making-basics)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/howtousehumans)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration, files]
+
+**Output Format:** [Markdown guidance with checklists, schedules, pattern notes, logs, and reusable templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update local progress, inventory, and barter templates when filesystem access is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

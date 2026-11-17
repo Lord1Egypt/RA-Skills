@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- llm-output-explainer · 模块 C 单文件讲解工件模板
+     设计系统已锁定（防 AI slop）：象牙底/石板灰文字/陶土主色，衬线标题+无衬线正文。
+     约束：单文件、零外部依赖。禁止引入 CDN 字体/库。 -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><!-- 标题写结论句，如"方案讲解：从问题到结论" --></title>
+<style>
+  :root{
+    --bg:#faf8f4; --ink:#2b2f33; --ink-soft:#5a6167; --line:#e3ded4;
+    --accent:#b5542d; --accent-soft:#f3e4dc; --ok:#3d6b4f; --warn:#a63d40;
+    --serif:"Noto Serif SC","Songti SC","SimSun",Georgia,serif;
+    --sans:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+    --mono:"SF Mono",Consolas,"Courier New",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+       font-size:16px;line-height:1.85;max-width:780px;margin:0 auto;padding:48px 22px 96px}
+  h1{font-family:var(--serif);font-size:1.75em;line-height:1.4;font-weight:700;
+     padding-bottom:.5em;border-bottom:2px solid var(--ink);margin-bottom:.8em}
+  h2{font-family:var(--serif);font-size:1.25em;margin:2.2em 0 .6em;
+     padding-left:.6em;border-left:4px solid var(--accent)}
+  p{margin:.9em 0}
+  strong{color:var(--ink)}
+  .meta{color:var(--ink-soft);font-size:.85em;margin-bottom:2em}
+  /* 一句话版本：首屏高亮块 */
+  .thesis{background:var(--accent-soft);border:1px solid var(--accent);
+          border-radius:6px;padding:16px 20px;margin:1.4em 0;font-size:1.06em}
+  .thesis .label{display:block;font-size:.75em;letter-spacing:.15em;
+                 color:var(--accent);margin-bottom:.4em}
+  figure{margin:1.6em 0;text-align:center}
+  figure svg{max-width:100%;height:auto}
+  figcaption{color:var(--ink-soft);font-size:.85em;margin-top:.5em}
+  table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94em}
+  th,td{border:1px solid var(--line);padding:.5em .8em;text-align:left}
+  th{background:#f0ece3;font-family:var(--serif)}
+  code{font-family:var(--mono);background:#f0ece3;padding:.1em .35em;
+       border-radius:3px;font-size:.9em}
+  .term{color:var(--accent);border-bottom:1px dotted var(--accent);cursor:help}
+  footer{margin-top:3em;padding-top:1.2em;border-top:1px solid var(--line);
+         color:var(--ink-soft);font-size:.85em}
+  .export{position:fixed;right:18px;bottom:18px;background:var(--ink);color:#fff;
+          border:none;border-radius:6px;padding:10px 16px;font-size:.88em;cursor:pointer}
+  .export:hover{background:var(--accent)}
+  @media(max-width:480px){body{font-size:15px;padding:32px 16px 80px}}
+</style>
+</head>
+<body>
+
+<h1><!-- 结论式标题 --></h1>
+<p class="meta">讲解对象：<!-- 谁 --> ｜ 生成时间：<!-- 日期 --> ｜ 机制：C-单文件HTML</p>
+
+<div class="thesis">
+  <span class="label">一句话版本</span>
+  <!-- ≤30字的一句话版本。这是全篇唯一必须背诵的句子。 -->
+</div>
+
+<!-- SECTIONS: 分段版本。每段首句=该段结论。层间过渡句回答"所以接下来自然要问什么"。
+     图解区用 <figure> 嵌入模块B产出的静态SVG（零依赖），图题写结论句。 -->
+
+<h2><!-- 第一层标题（结论式） --></h2>
+<p><!-- 内容。术语首次出现用 <span class="term" title="就地解释">术语</span>。 --></p>
+
+<h2><!-- 第二层标题 --></h2>
+<p></p>
+
+<!-- SUPPORT: 支撑层（证据/数据/边界情况）可折叠或下沉此处 -->
+<footer>
+  <p><strong>支撑层</strong>：<!-- 数据来源、术语表、边界情况 --></p>
+</footer>
+
+<button class="export" onclick="exportMD()">导出为 Markdown</button>
+<script>
+// 导回文本：讲解工件的结论必须能回流到对话/文档（级别3+强制）
+function exportMD(){
+  const h=document.querySelector('h1').innerText;
+  let md='# '+h+'\n\n';
+  document.querySelectorAll('h2, p, .thesis').forEach(el=>{
+    if(el.classList.contains('thesis')){md+='> '+el.innerText.replace('一句话版本','').trim()+'\n\n';}
+    else if(el.tagName==='H2'){md+='\n## '+el.innerText+'\n';}
+    else{md+=el.innerText+'\n\n';}
+  });
+  navigator.clipboard.writeText(md).then(()=>alert('已复制 Markdown，可粘贴回对话'));
+}
+</script>
+</body>
+</html>

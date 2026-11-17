@@ -1,51 +1,79 @@
-## Description: <br>
-知识产权运营变现全流程Skill - 支持IP许可、转让、作价入股、质押融资、证券化等七大路径全量化决策 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+知识产权运营变现全流程Skill - 支持IP许可、转让、作价入股、质押融资、证券化等七大路径全量化决策
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-Entrepreneurs, founders, and IP commercialization advisors use this skill to compare IP licensing, transfer, equity contribution, pledge financing, securitization, auction, and portfolio strategies with quantitative due diligence, valuation, risk scoring, and contract templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with China-specific data sources and legal references that should be verified for the user's jurisdiction. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: IP valuations, legal status checks, and contract templates may be incomplete or misleading if treated as legal advice or used with stale data. <br>
-Mitigation: Independently verify valuation assumptions, legal status, and contract terms with authoritative sources and qualified legal or transaction professionals before relying on them. <br>
-Risk: The skill may require API credentials or confidential patent and transaction information for external IP data services. <br>
-Mitigation: Provide credentials only to official services the user intends to query, and avoid entering confidential IP or deal data into untrusted platforms. <br>
+## Use Case:
 
+External users and agents use this skill for Chinese/PRC-focused IP monetization decision support across licensing, transfer, equity contribution, pledge financing, securitization, auction, and portfolio operations. It helps produce quantitative valuation, royalty, due diligence, legal-risk, and transaction-planning guidance that should be reviewed by qualified professionals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/opc-ip-operations) <br>
-- [README](README.md) <br>
-- [Data Sources and Real-Time Verification](references/00-数据源与实时验证规范.md) <br>
-- [IP Licensing Operations](references/01-IP许可运营.md) <br>
-- [IP Transfer Transactions](references/02-IP转让交易.md) <br>
-- [IP Equity Contribution](references/03-IP作价入股.md) <br>
-- [IP Pledge Financing](references/05-IP质押融资.md) <br>
-- [IP Securitization](references/06-IP证券化.md) <br>
-- [IP Due Diligence](references/08-IP尽职调查.md) <br>
-- [IP Valuation Model](references/09-IP估值模型.md) <br>
-- [IP Legal Risk Assessment](references/10-IP法律风险评估.md) <br>
-- [IP Operations Decision Matrix](references/12-IP运营决策矩阵.md) <br>
+### Deployment Geography for Use:
 
+China / PRC-focused; may require legal, tax, data-source, and market localization before use elsewhere.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with tables, formulas, agreement templates, and Python calculator outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require user-supplied IP facts, valuation assumptions, legal status checks, market data, and authorized API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter: 2.0) <br>
+Risk: Users may over-rely on legal, tax, securities, or valuation guidance for real transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as advisory decision support and have qualified legal, tax, securities, and valuation professionals review deal-specific conclusions before use.
+
+Risk: External data lookups may expose patent numbers, deal targets, API credentials, or litigation-sensitive search terms.
+
+Mitigation: Use authenticated HTTPS data sources, avoid unnecessary sensitive disclosures, and verify source trust before entering confidential identifiers or credentials.
+
+Risk: The guidance is Chinese/PRC-focused and may not match other jurisdictions or current local practice.
+
+Mitigation: Verify current jurisdiction-specific law, data sources, filing status, market assumptions, and transaction requirements before applying outputs outside the documented context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-ip-operations)
+- [Publisher profile](https://clawhub.ai/user/golngod)
+- [数据源与实时验证规范](references/00-数据源与实时验证规范.md)
+- [IP许可运营](references/01-IP许可运营.md)
+- [IP转让交易](references/02-IP转让交易.md)
+- [IP作价入股](references/03-IP作价入股.md)
+- [IP拍卖交易](references/04-IP拍卖交易.md)
+- [IP质押融资](references/05-IP质押融资.md)
+- [IP证券化](references/06-IP证券化.md)
+- [IP组合运营](references/07-IP组合运营.md)
+- [IP尽职调查](references/08-IP尽职调查.md)
+- [IP估值模型](references/09-IP估值模型.md)
+- [IP法律风险评估](references/10-IP法律风险评估.md)
+- [IP纠纷应对](references/11-IP纠纷应对.md)
+- [IP运营决策矩阵](references/12-IP运营决策矩阵.md)
+- [知识产权许可协议模板](templates/license-agreement-template.md)
+- [知识产权转让协议模板](templates/transfer-agreement-template.md)
+- [知识产权出资协议模板](templates/equity-contribution-template.md)
+- [Coze platform](https://coze.cn)
+- [OPC platform](https://opc.cn)
+- [CNIPA patent search system](http://pss-system.cnipa.gov.cn)
+- [CNIPA IP data public service](https://ipdps.cnipa.gov.cn)
+- [CNIPR open platform](https://open.cnipr.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, report templates, agreement templates, and Python script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes quantitative IP valuation, royalty, due diligence, legal-risk, and decision-matrix outputs; data sources and query timestamps must be verified before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Create professional, dark-themed SVG architecture diagrams as standalone HTML files matching a specific design system with precise color tokens, typography, and component patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create professional, dark-themed SVG architecture diagrams as standalone HTML files matching a specific design system with precise color tokens, typography, and component patterns.
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-Developers and engineers use this skill to produce consistent dark-themed architecture, infrastructure, component, layer, and flow diagrams for technical communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared diagrams may expose confidential system details if users include sensitive architecture, infrastructure, or operational information. <br>
-Mitigation: Review diagrams before sharing and remove confidential names, topology details, credentials, and internal-only operational context. <br>
-Risk: The default HTML pattern may request JetBrains Mono from Google Fonts, which can be unacceptable in restricted or offline environments. <br>
-Mitigation: Remove the external font link or self-host the font when external requests are not permitted. <br>
+## Use Case:
 
+Developers, engineers, and technical writers use this skill to produce standalone HTML/SVG system architecture, infrastructure, component relationship, layer, and execution-flow diagrams in a consistent dark visual style.
 
-## Reference(s): <br>
-- [Component Patterns](references/component-patterns.md) <br>
-- [Design Tokens](references/design-tokens.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ksky521/dark-architecture-diagram) <br>
-- [Publisher Profile](https://clawhub.ai/user/ksky521) <br>
-- [JetBrains Mono Google Fonts Stylesheet](https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, text, markdown, guidance] <br>
-**Output Format:** [Standalone HTML with embedded CSS and inline SVG, often accompanied by concise implementation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Diagrams follow a fixed dark visual system with responsive SVG viewBox, embedded styles, and an optional external Google Fonts stylesheet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated HTML can include an external Google Fonts request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the Google Fonts link when a fully offline or no-network artifact is required.
+
+Risk: Generated diagrams may contain inaccurate architecture details or unsuitable language for the audience.
+
+Mitigation: Review the generated HTML and diagram text before sharing or publishing.
+
+## Reference(s):
+
+- [Component Patterns](references/component-patterns.md)
+- [Design Tokens](references/design-tokens.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [Standalone HTML with embedded CSS and inline SVG]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated diagrams may include a Google Fonts link for JetBrains Mono unless offline use requires removing it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

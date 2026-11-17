@@ -1,45 +1,57 @@
-## Description: <br>
-Connect to Echo AI, the customer interaction platform, to list assistants, retrieve knowledge bases, and chat with AI-powered Echos built by businesses and creators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to Echo AI, a customer interaction platform, to list assistants, retrieve knowledge bases, and chat with AI-powered Echos built by businesses and creators.
 
-## Publisher: <br>
-[darthdens](https://clawhub.ai/user/darthdens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[darthdens](https://clawhub.ai/user/darthdens)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent discover Echo AI assistants, inspect assistant knowledge bases, and, with confirmation, send chat messages to an Echo assistant. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Echo AI API key to access assistants and chat endpoints. <br>
-Mitigation: Use an assistant-scoped API key when possible and keep ECHO_API_KEY out of prompts, chat messages, and logs. <br>
-Risk: Chat calls can send user-provided content to Echo AI and consume Echo owner credits. <br>
-Mitigation: Prefer assistant details and FAQs for zero-credit answers, and require explicit user confirmation before each credit-consuming chat call. <br>
-Risk: Assistant responses may include incorrect or unsuitable customer-facing guidance. <br>
-Mitigation: Review responses before relying on them for business, sales, support, or customer communications. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Echo AI](https://echoai.so) <br>
-- [Echo API Documentation](https://echoai.so/help) <br>
-- [Echo AI API Reference](references/api-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/darthdens/echo-ai) <br>
-- [Publisher Profile](https://clawhub.ai/user/darthdens) <br>
+## Use Case:
 
+Developers and agent users use this skill to connect an agent to Echo AI assistants for customer support, sales, knowledge-base lookup, and confirmed chat interactions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API examples and HTTP request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ECHO_API_KEY; chat calls require explicit confirmation and may consume Echo owner credits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses ECHO_API_KEY to access Echo AI on the user's behalf.
+
+Mitigation: Keep ECHO_API_KEY private and prefer assistant-scoped keys when possible.
+
+Risk: Chat requests send user messages to Echo AI and may consume the Echo owner's credits.
+
+Mitigation: Approve chat requests only when comfortable sending the message to Echo AI and consuming credits.
+
+## Reference(s):
+
+- [Echo AI](https://echoai.so)
+- [Echo API Documentation](https://echoai.so/help)
+- [Echo AI API Reference](references/api-reference.md)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/skills)
+- [ClawHub Skill Page](https://clawhub.ai/darthdens/skills/echo-ai)
+- [Publisher Profile](https://clawhub.ai/user/darthdens)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with HTTP request examples and JSON response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ECHO_API_KEY for authenticated Echo AI requests; chat calls require user confirmation and may consume credits.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

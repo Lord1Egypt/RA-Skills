@@ -1,44 +1,64 @@
-## Description: <br>
-DeepLink Agentic helps agents create, monitor, retrieve, and iterate on deep real estate research tasks, including market analysis, land assessment, company and project research, policy interpretation, and property-industry reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepLink Agentic helps agents create, monitor, retrieve, and iterate on deep real-estate research tasks through the 深度智联 Agentic service.
 
-## Publisher: <br>
-[dichanai](https://clawhub.ai/user/dichanai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dichanai](https://clawhub.ai/user/dichanai)
 
-## Use Case: <br>
-External real estate researchers, analysts, and business users use this skill to delegate long-running real estate research tasks to the DeepLink Agentic service, track progress, handle human-in-the-loop questions, and retrieve finished reports or files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected user files are sent to agentic.dichanai.com for task execution. <br>
-Mitigation: Use the skill only when the user accepts that data transfer, and avoid sending sensitive files unless they are explicitly needed for the task. <br>
-Risk: Token renewal can print NEW_TOKEN values in cleartext. <br>
-Mitigation: Treat AGENTIC_TOKEN and NEW_TOKEN as secrets, do not expose them in user-visible messages, and avoid renewal in shared or logged terminals. <br>
-Risk: The skill supports sharing, scheduling, and deleting tasks. <br>
-Mitigation: Require explicit user confirmation before sharing, scheduling, deleting, or aborting a task, and verify the target chat_id before acting. <br>
+## Use Case:
 
+Agents supporting real-estate professionals use this skill to clarify research requests, submit them to DeepLink Agentic, monitor long-running work including human-in-the-loop prompts, and retrieve resulting reports or files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dichanai/real-estate-deep-research) <br>
-- [DeepLink Agentic service](https://agentic.dichanai.com) <br>
-- [DeepLink Agentic API documentation](https://agentic.apifox.cn/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, status text, JSON API responses, file listings, and download links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce long-running task identifiers, status summaries, human-in-the-loop prompts, and temporary file download links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: The skill sends real-estate prompts, selected uploads, task history, and an account token to agentic.dichanai.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when the publisher and service are trusted for that data, and avoid submitting sensitive material unless it is required for the task.
+
+Risk: Token renewal can print a NEW_TOKEN value.
+
+Mitigation: Treat printed token values as secrets and do not include them in public messages, logs, or shared artifacts.
+
+Risk: Share and delete operations can expose or remove task data when used unintentionally.
+
+Mitigation: Use share and delete only after confirming that the resulting disclosure or removal is intended.
+
+Risk: The dependency installation requests an unpinned requests package.
+
+Mitigation: Prefer a pinned dependency or controlled execution environment before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dichanai/skills/real-estate-deep-research)
+- [ClawHub publisher profile](https://clawhub.ai/user/dichanai)
+- [DeepLink Agentic service](https://agentic.dichanai.com)
+- [DeepLink Agentic API documentation](https://agentic.apifox.cn/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown responses with inline shell commands, status text, and file or download references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTIC_TOKEN and sends user prompts and selected uploads to agentic.dichanai.com.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

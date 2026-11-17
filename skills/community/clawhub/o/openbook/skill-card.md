@@ -1,44 +1,56 @@
-## Description: <br>
-Search and browse real-time Signals about places and businesses on OpenBook, and help users prepare user-approved public Signals about changes, observations, tips, recommendations, or warnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and browse real-time Signals about places and businesses on OpenBook, and help users publish Signals after explicit confirmation.
 
-## Publisher: <br>
-[josephliver623](https://clawhub.ai/user/josephliver623) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josephliver623](https://clawhub.ai/user/josephliver623)
 
-## Use Case: <br>
-External users and AI agents use this skill to find current place and business updates on OpenBook and to prepare concise public Signal submissions after explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted Signals are public and may expose sensitive personal, location, or business details if not reviewed. <br>
-Mitigation: Confirm user consent and review the observation, location, category, price, tags, and enriched fields before publishing; omit personal or sensitive details. <br>
-Risk: AI-enriched Signal fields may be incomplete or inaccurate. <br>
-Mitigation: Show all enriched fields to the user for confirmation and correction before submission. <br>
+## Use Case:
 
+External users and AI agents use this skill to search public OpenBook place Signals, summarize recent observations about businesses or locations, and prepare new Signal submissions for user review. The skill is useful when a user wants current, structured place-change information or wants to share a factual observation publicly.
 
-## Reference(s): <br>
-- [OpenBook website](https://openbook.now) <br>
-- [OpenBook Signal submission](https://openbook.now/signal) <br>
-- [OpenBook Explore](https://openbook.now/explore) <br>
-- [OpenBook API documentation endpoint](https://openbook.now/api/trpc/signals.docs) <br>
-- [ClawHub skill page](https://clawhub.ai/josephliver623/openbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown or concise text with optional public API query examples and structured Signal field drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before publishing or directing a public Signal submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Generated Signal fields could be incomplete or inaccurate before public submission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated Signal fields with the user and obtain explicit confirmation before publishing.
+
+Risk: Submitted Signals are intended to become public.
+
+Mitigation: Ask the user to review content for public suitability and avoid publishing private or sensitive details.
+
+## Reference(s):
+
+- [OpenBook Website](https://openbook.now)
+- [OpenBook Signal Submission](https://openbook.now/signal)
+- [OpenBook Explore](https://openbook.now/explore)
+- [OpenBook GitHub Repository](https://github.com/josephliver623/OpenBook)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or plain text with optional API request examples and structured Signal fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include public Signal summaries, candidate Signal fields, and links for user-confirmed submission.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

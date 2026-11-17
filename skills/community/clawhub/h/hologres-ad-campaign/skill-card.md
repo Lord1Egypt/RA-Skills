@@ -1,45 +1,64 @@
-## Description: <br>
-Generates advertising creative with Hologres AI Functions and guides virtual campaign delivery, real-time ROI analysis, and budget recommendations through a SQL-based workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through SQL-based Hologres AI Function workflows to generate ad images and videos, simulate virtual campaign delivery, analyze ROI, and produce strategy recommendations.
 
-## Publisher: <br>
-[wenbingyu](https://clawhub.ai/user/wenbingyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenbingyu](https://clawhub.ai/user/wenbingyu)
 
-## Use Case: <br>
-Developers and marketing operations teams use this skill to create ad images and videos from OSS-hosted materials, simulate channel delivery, analyze ROI in Hologres, and generate campaign strategy recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can create cloud database objects, Dynamic Tables, generated media, and OSS-stored campaign artifacts. <br>
-Mitigation: Use a dedicated database or schema and OSS prefix, review SQL before write operations, and clean up generated tables, logs, Dynamic Tables, and OSS media when finished. <br>
-Risk: The workflow depends on OSS access and RAM role permissions for source materials and generated media. <br>
-Mitigation: Grant a least-privilege RAM role scoped to the required bucket or prefix before running the workflow. <br>
-Risk: Generated video URLs can include signed OSS parameters and campaign assets may be sensitive before release. <br>
-Mitigation: Avoid sharing signed URLs or unreleased campaign assets outside the intended audience. <br>
+## Use Case:
 
+Marketing teams, growth analysts, and developers use this skill to prepare Hologres SQL workflows for ad asset generation, virtual delivery simulation, real-time ROI analysis, and budget recommendations.
 
-## Reference(s): <br>
-- [SQL Templates](references/sql-templates.md) <br>
-- [Style Templates](references/style-templates.md) <br>
-- [Virtual Delivery and ROI Analysis](references/virtual-delivery.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wenbingyu/hologres-ad-campaign) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes generated SQL templates, execution sequencing, Hologres CLI setup commands, and operational guidance for OSS-backed media generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and VERSION) <br>
+Risk: The workflow needs cloud storage and database authority for Hologres and OSS resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated environment with least-privileged Hologres and OSS/RAM roles.
+
+Risk: Writable SQL templates can modify important campaign or asset data if used without review.
+
+Mitigation: Review or rewrite templates to use parameter binding or strict validation before running them against important data.
+
+Risk: Signed OSS URLs can act as private bearer links.
+
+Mitigation: Treat generated signed URLs as private and avoid sharing them outside intended recipients.
+
+Risk: Tool installation can introduce unreviewed client behavior.
+
+Mitigation: Use a pinned, reviewed hologres-cli version before executing generated commands.
+
+## Reference(s):
+
+- [SQL Templates](references/sql-templates.md)
+- [Style Templates](references/style-templates.md)
+- [Virtual Delivery and ROI Analysis](references/virtual-delivery.md)
+- [ClawHub Skill Page](https://clawhub.ai/wenbingyu/skills/hologres-ad-campaign)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SQL and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for review before execution against Hologres, OSS, and campaign simulation data.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence and VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

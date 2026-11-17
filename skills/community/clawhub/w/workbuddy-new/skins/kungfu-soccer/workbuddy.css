@@ -1,0 +1,293 @@
+/* WorkBuddy Dream Skin — 功夫女足经典界面（对齐 CodeDrobe 语义类）
+ * 背景：原创功夫女足电影名场面（女性球员凌空飞踢 + 金色能量足球 + 古庙灯笼）
+ * 风格：赤红 + 鎏金 + 暗夜武侠调，毛玻璃浮在画面上
+ * 作用域：仅 html.dream-host-workbuddy，不污染原生外观；移除 host 类即还原。
+ */
+
+:root.dream-host-workbuddy {
+  --kf-ink: #f4e3c1;
+  --kf-muted: #c8a25e;
+  --kf-red: #e53935;
+  --kf-red-soft: #c62828;
+  --kf-gold: #f2c14e;
+  --kf-gold-soft: #d4a017;
+  --kf-night: #120404;
+  --kf-panel: rgba(20, 5, 5, 0.62);
+  --kf-panel-strong: rgba(28, 7, 7, 0.82);
+  --kf-line: rgba(242, 193, 78, 0.30);
+  --kf-shadow: rgba(0, 0, 0, 0.45);
+}
+
+html.dream-host-workbuddy,
+html.dream-host-workbuddy body,
+html.dream-host-workbuddy #root,
+html.dream-host-workbuddy .teams-container {
+  background:
+    linear-gradient(160deg, rgba(26, 6, 6, 0.55) 0%, rgba(12, 3, 3, 0.78) 100%),
+    var(--dream-hero, linear-gradient(160deg, #2a0808, #120404)) center / cover no-repeat !important;
+  color: var(--kf-ink) !important;
+}
+
+/* 细微金色光斑纹理，叠在 hero 之上增加质感 */
+html.dream-host-workbuddy body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 84% 12%, rgba(242, 193, 78, 0.20) 0 1px, transparent 2px),
+    radial-gradient(circle at 18% 22%, rgba(229, 57, 53, 0.16) 0 1px, transparent 2px);
+  background-size: 90px 90px, 70px 70px;
+  opacity: 0.5;
+}
+
+/* ---------- 侧边栏 ---------- */
+html.dream-host-workbuddy .conversation-sidebar,
+html.dream-host-workbuddy .conversation-list {
+  background:
+    linear-gradient(180deg, rgba(34, 8, 8, 0.86), rgba(20, 5, 5, 0.82)),
+    var(--dream-hero, none) center / 620px auto no-repeat !important;
+  background-blend-mode: multiply, normal;
+  border-right: 1px solid var(--kf-line) !important;
+  box-shadow: 12px 0 32px rgba(0, 0, 0, 0.35), inset -1px 0 rgba(255, 255, 255, 0.06) !important;
+  color: var(--kf-ink) !important;
+  backdrop-filter: blur(16px) saturate(1.08);
+}
+
+html.dream-host-workbuddy .conversation-sidebar :is(a, button, div, p, span, svg) {
+  color: var(--kf-ink) !important;
+}
+html.dream-host-workbuddy .conversation-sidebar svg { stroke: currentColor !important; }
+
+html.dream-host-workbuddy :is(
+  .conversation-list-topbar, .conversation-list-header,
+  .conversation-list-content, .conversation-list-footer
+) { background: transparent !important; }
+
+html.dream-host-workbuddy .conversation-list-logo {
+  color: var(--kf-gold) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+}
+html.dream-host-workbuddy .conversation-list-logo::after {
+  content: "  ⚽";
+  color: var(--kf-red);
+}
+
+html.dream-host-workbuddy :is(
+  .conversation-list-version-badge, .conversation-section-label,
+  .conversation-show-more-button, .conversation-list-tab-button-sub
+) { color: rgba(244, 227, 193, 0.55) !important; }
+
+html.dream-host-workbuddy .conversation-list-tab-button,
+html.dream-host-workbuddy .conversation-agent-card,
+html.dream-host-workbuddy .conversation-list-topbar button {
+  border: 1px solid transparent !important;
+  border-radius: 12px !important;
+  background: transparent !important;
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease !important;
+}
+html.dream-host-workbuddy :is(
+  .conversation-list-tab-button:hover, .conversation-agent-card:hover,
+  .conversation-list-topbar button:hover
+) {
+  background: linear-gradient(90deg, rgba(229, 57, 53, 0.28), rgba(242, 193, 78, 0.18)) !important;
+  border-color: var(--kf-line) !important;
+  box-shadow: 0 4px 13px rgba(0, 0, 0, 0.25) !important;
+  transform: translateX(2px);
+}
+html.dream-host-workbuddy :is(
+  .conversation-list-tab-button.active, .conversation-agent-card[aria-selected="true"],
+  .conversation-agent-card.active
+) {
+  background: linear-gradient(90deg, rgba(229, 57, 53, 0.42), rgba(242, 193, 78, 0.22)) !important;
+  border-color: rgba(242, 193, 78, 0.45) !important;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.3), inset 0 0 0 2px rgba(255, 255, 255, 0.16) !important;
+}
+
+/* ---------- 工作区 ---------- */
+html.dream-host-workbuddy :is(
+  .teams-content-wrapper, .teams-main-content, .main-content, .chat-container, .wb-cb-chat
+) {
+  background: transparent !important;
+  color: var(--kf-ink) !important;
+}
+html.dream-host-workbuddy .teams-content-wrapper {
+  position: relative;
+  border-radius: 26px 0 0 0;
+  box-shadow: inset 1px 1px rgba(255, 255, 255, 0.08), -7px 0 25px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+html.dream-host-workbuddy .main-content--welcome,
+html.dream-host-workbuddy .chat-container--welcome {
+  background:
+    linear-gradient(rgba(20, 5, 5, 0.55), rgba(12, 3, 3, 0.7)),
+    var(--dream-hero, none) center / cover no-repeat !important;
+}
+
+/* ---------- 首页 header（铺电影场景 hero） ---------- */
+html.dream-host-workbuddy .wb-home-page {
+  width: min(860px, calc(100% - 32px)) !important;
+  max-width: none !important;
+}
+html.dream-host-workbuddy .wb-home-header {
+  position: relative !important;
+  isolation: isolate;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  height: 244px !important;
+  min-height: 244px !important;
+  display: flex !important;
+  flex: 0 0 244px !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  padding: 0 0 0 42px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(242, 193, 78, 0.4) !important;
+  border-radius: 28px !important;
+  background-color: var(--kf-panel) !important;
+  background-image:
+    linear-gradient(90deg, rgba(18,4,4,0.82) 0%, rgba(18,4,4,0.55) 45%, rgba(18,4,4,0.05) 75%, transparent 90%),
+    var(--dream-hero, linear-gradient(135deg, #2a0808, #120404)) !important;
+  background-repeat: no-repeat, no-repeat !important;
+  background-size: 100% 100%, cover !important;
+  background-position: center, center !important;
+  box-shadow: 0 16px 38px rgba(0,0,0,0.45), inset 0 0 0 4px rgba(255, 255, 255, 0.10) !important;
+}
+html.dream-host-workbuddy .wb-home-header::after {
+  content: "功夫女足 ⚽ WorkBuddy";
+  position: absolute;
+  left: 42px;
+  bottom: 26px;
+  color: var(--kf-gold);
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+html.dream-host-workbuddy .wb-home-header__title,
+html.dream-host-workbuddy .wb-home-header__subtitle {
+  width: 62% !important;
+  margin: 0 !important;
+  text-align: left !important;
+  color: var(--kf-ink) !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7) !important;
+}
+html.dream-host-workbuddy .wb-home-header__title {
+  font-size: 0 !important; line-height: 1 !important;
+}
+html.dream-host-workbuddy .wb-home-header__title::before {
+  content: "功夫女足 · 经典界面";
+  display: block;
+  font: 760 clamp(25px, 3vw, 34px)/1.22 "Iowan Old Style", "Songti SC", serif;
+  letter-spacing: 0.02em;
+}
+html.dream-host-workbuddy .wb-home-header__subtitle {
+  margin-top: 13px !important;
+  font-size: 0 !important; line-height: 1 !important;
+}
+html.dream-host-workbuddy .wb-home-header__subtitle::before {
+  content: "凌空一脚，踢出整片江湖 ♡";
+  display: block;
+  color: var(--kf-gold-soft);
+  font: 540 14px/1.55 "PingFang SC", "Microsoft YaHei UI", sans-serif;
+  letter-spacing: 0.03em;
+}
+
+/* ---------- scene tabs / quick actions ---------- */
+html.dream-host-workbuddy .wb-scene-tabs {
+  border-radius: 14px !important;
+  background: rgba(40, 10, 10, 0.7) !important;
+  border: 1px solid var(--kf-line) !important;
+}
+html.dream-host-workbuddy .wb-scene-tabs__pill {
+  color: var(--kf-ink) !important;
+  border-radius: 11px !important;
+  background: transparent !important;
+}
+html.dream-host-workbuddy .wb-scene-tabs__pill--active {
+  background: linear-gradient(145deg, var(--kf-red), var(--kf-gold-soft)) !important;
+  color: #fff !important;
+  box-shadow: 0 5px 13px rgba(0,0,0,0.4), inset 0 1px rgba(255,255,255,0.35) !important;
+}
+html.dream-host-workbuddy .quick-actions__item {
+  border: 1px solid var(--kf-line) !important;
+  border-radius: 13px !important;
+  background: linear-gradient(rgba(40,10,10,0.7), rgba(28,7,7,0.7)) !important;
+  color: var(--kf-ink) !important;
+  box-shadow: 0 5px 13px rgba(0,0,0,0.3) !important;
+}
+html.dream-host-workbuddy .quick-actions__item :is(span, svg) { color: var(--kf-gold) !important; stroke: currentColor !important; }
+
+/* ---------- 首页 / 对话 输入框 ---------- */
+html.dream-host-workbuddy .wb-home-composer__input-slot > section,
+html.dream-host-workbuddy .chat-container:not(.chat-container--welcome) section:has([role="textbox"][contenteditable="true"]) {
+  border: 1px solid rgba(242, 193, 78, 0.42) !important;
+  border-radius: 24px !important;
+  background: linear-gradient(145deg, rgba(40, 10, 10, 0.88), rgba(28, 7, 7, 0.86)) !important;
+  color: var(--kf-ink) !important;
+  box-shadow: 0 12px 29px rgba(0,0,0,0.4), inset 0 0 0 3px rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(16px) saturate(1.06);
+  position: relative !important;
+  overflow: visible !important;
+}
+html.dream-host-workbuddy .wb-home-composer__input-slot::before,
+html.dream-host-workbuddy .chat-container:not(.chat-container--welcome) section:has([role="textbox"][contenteditable="true"])::before {
+  content: "⚽";
+  position: absolute;
+  left: -14px; top: -14px;
+  z-index: 10;
+  width: 30px; height: 30px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  font-size: 16px;
+  background: linear-gradient(145deg, var(--kf-gold), var(--kf-red)) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 0 3px rgba(255,255,255,0.5);
+  pointer-events: none;
+}
+html.dream-host-workbuddy :is(.wb-home-composer, .chat-container:not(.chat-container--welcome)) [role="textbox"][contenteditable="true"] {
+  color: var(--kf-ink) !important;
+  caret-color: var(--kf-gold) !important;
+}
+html.dream-host-workbuddy .wb-input-footer {
+  border-top-color: var(--kf-line) !important;
+  background: rgba(20, 5, 5, 0.4) !important;
+}
+
+/* ---------- 对话消息 / 代码块 ---------- */
+html.dream-host-workbuddy .chat-container:not(.chat-container--welcome) :is(article, [data-message-author-role]) {
+  color: var(--kf-ink) !important;
+}
+html.dream-host-workbuddy .chat-container:not(.chat-container--welcome) :is(pre, table, blockquote, th, td) {
+  border-color: var(--kf-line) !important;
+  border-radius: 12px !important;
+  background: rgba(28, 7, 7, 0.6) !important;
+}
+html.dream-host-workbuddy .chat-container:not(.chat-container--welcome) th {
+  background: rgba(60, 16, 16, 0.6) !important;
+  color: var(--kf-gold) !important;
+}
+
+/* ---------- 焦点 / 链接 / 滚动条 ---------- */
+html.dream-host-workbuddy :is(button, [role="button"], a, input, textarea, [contenteditable="true"]):focus-visible {
+  outline: 2px solid rgba(242, 193, 78, 0.7) !important;
+  outline-offset: 2px !important;
+}
+html.dream-host-workbuddy a, html.dream-host-workbuddy .link, html.dream-host-workbuddy .text-link {
+  color: var(--kf-gold) !important;
+}
+html.dream-host-workbuddy * {
+  scrollbar-color: rgba(242, 193, 78, 0.4) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.dream-host-workbuddy *,
+  html.dream-host-workbuddy *::before,
+  html.dream-host-workbuddy *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

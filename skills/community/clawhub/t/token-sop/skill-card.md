@@ -1,43 +1,59 @@
-## Description: <br>
-TOKEN SOP caches successful OpenClaw browser workflows locally and can reuse or share them through cloud matching to reduce repeated agent work and token use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TOKEN SOP caches successful OpenClaw browser workflows locally, replays matching workflows to reduce token use, and can back up or share workflows through a cloud service.
 
-## Publisher: <br>
-[ainclaw](https://clawhub.ai/user/ainclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ainclaw](https://clawhub.ai/user/ainclaw)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to avoid repeating previously successful browser workflows by replaying cached workflows when a similar intent and page context are detected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read browser context and session history while automatically replaying cached workflows. <br>
-Mitigation: Avoid sensitive financial, administrative, and internal sites, and require human review before cached workflows perform state-changing actions. <br>
-Risk: The skill can upload workflow and session details to a cloud service by default. <br>
-Mitigation: Disable auto_contribute where possible and restrict cloud_endpoint to a trusted endpoint before use. <br>
-Risk: Cloud-matched workflows may not fit the user's current page state or intent even when validation succeeds. <br>
-Mitigation: Use the skill in contexts where replayed actions are easy to inspect, and fall back to normal agent execution when a cached workflow appears stale or unexpected. <br>
+## Use Case:
 
+Developers and OpenClaw users use TOKEN SOP to intercept repeated browser intents, replay matching local or cloud workflows, and compile successful sessions into reusable workflows for future runs.
 
-## Reference(s): <br>
-- [TOKEN SOP ClawHub page](https://clawhub.ai/ainclaw/token-sop) <br>
-- [TOKEN SOP homepage](https://clawhub.dev/skills/token-sop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Text responses and reusable Lobster workflow JSON containing openclaw.invoke commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores workflows locally and may query or contribute workflows to a configured cloud endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.6.0 (source: server release evidence) <br>
+Risk: Cloud-provided browser workflows may be matched and replayed automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where replayed browser actions are acceptable, avoid sensitive sites, and prefer a version or configuration that requires explicit approval before cloud workflows run.
+
+Risk: Successful session-derived workflow data can be uploaded by default.
+
+Mitigation: Disable automatic contribution before use when handling sensitive workflows and review local storage and cloud sharing settings.
+
+Risk: Privacy protection depends on sanitizer coverage and may not remove every sensitive value.
+
+Mitigation: Review workflow data before sharing and keep sensitive credentials, personal data, and regulated workflows out of captured sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ainclaw/skills/token-sop)
+- [Artifact README](artifact/README.md)
+- [Artifact skill metadata](artifact/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [Agent response text and reusable Lobster workflow definitions with command-style browser steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute cached local or cloud browser workflows; successful session workflows can be stored locally and auto-contributed to cloud by default.]
+
+## Skill Version(s):
+
+5.6.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

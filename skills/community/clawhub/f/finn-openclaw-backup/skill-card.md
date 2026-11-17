@@ -1,37 +1,52 @@
-## Description: <br>
-Backs up key OpenClaw configuration files into a timestamped folder on the user's Desktop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up key OpenClaw configuration files and folders to a timestamped folder on the Desktop.
 
-## Publisher: <br>
-[meowlegemy-sudo](https://clawhub.ai/user/meowlegemy-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[meowlegemy-sudo](https://clawhub.ai/user/meowlegemy-sudo)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to create a local backup of OpenClaw configuration, agent definitions, credentials, and cron files before maintenance, migration, or recovery work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated backup includes credentials and API keys. <br>
-Mitigation: Store the backup in encrypted or access-restricted storage, avoid desktop sync or sharing, and delete old backups when they are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/meowlegemy-sudo/finn-openclaw-backup) <br>
+## Use Case:
 
+Developers and operators use this skill to back up OpenClaw configuration, agent definitions, credentials, and cron entries before maintenance, migration, or recovery work.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and local shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a timestamped local backup folder on the user's Desktop when the provided shell script is run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The backup process copies OpenClaw credentials, including API keys, to the Desktop in plaintext.
+
+Mitigation: Use a private restricted backup directory, exclude credentials by default, or encrypt backups that contain secrets.
+
+Risk: The backup may expose sensitive configuration files if the Desktop is synced, shared, or broadly readable.
+
+Mitigation: Review the backup destination before running the script and limit filesystem permissions on generated backup folders.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/meowlegemy-sudo/skills/finn-openclaw-backup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and shell script guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates timestamped backup files under the user's Desktop when the shell script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Generate beautiful macaron-color cartoon illustration-style card images from text content, including book recommendation, concept, quote, and comparison cards across multiple aspect ratios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate beautiful macaron-color cartoon illustration-style card images from text content. Supports various types such as book recommendation cards, concept cards, quote cards, and comparison cards, with multiple aspect ratios including 3:4, 9:16, and 1:1.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and content creators use this skill to turn structured text into pastel cartoon-style card artwork, then render the generated HTML as a PNG image for sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided card fields are rendered in a browser, so untrusted HTML or script-like content can affect the generated output. <br>
-Mitigation: Use trusted text, or sanitize and escape card fields before rendering HTML or taking a browser screenshot. <br>
-Risk: Broad trigger phrases can activate the skill for generic image or card requests. <br>
-Mitigation: Confirm the user wants a macaron-style card and identify the card type, content, and aspect ratio before running the generator. <br>
+## Use Case:
 
+Developers and content creators use this skill to turn structured text into stylized card assets for book recommendations, concepts, quotes, and comparisons. It helps agents prepare card data, generate an HTML card, and render it to a PNG with browser screenshot tooling.
 
-## Reference(s): <br>
-- [Macaron Card Design Reference](references/design_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files] <br>
-**Output Format:** [HTML file rendered to PNG, with JSON input and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports book, concept, quote, and comparison card types with 1:1, 3:4, 4:3, 9:16, 16:9, and 2:3 aspect ratios.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted card text can become active HTML or JavaScript during screenshot rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render cards only from trusted content or isolate the screenshot browser; escape all text fields, add a restrictive Content Security Policy, and block network access during rendering.
+
+Risk: Generated files can be written to paths supplied at runtime.
+
+Mitigation: Keep generated HTML and PNG outputs inside a controlled workspace path.
+
+## Reference(s):
+
+- [Macaron Card Design Reference](references/design_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/macaron-card-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with JSON content examples, shell commands, generated HTML files, and PNG screenshot outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports book, concept, quote, and comparison card types with 1:1, 3:4, 4:3, 9:16, 16:9, and 2:3 aspect ratios.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

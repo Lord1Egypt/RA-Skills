@@ -1,47 +1,60 @@
-## Description: <br>
-Trade Kalshi prediction markets through conversation, powered by Fuku sports model predictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Kalshi prediction markets through conversation, powered by Fuku sports model predictions.
 
-## Publisher: <br>
-[cryptopunk2070](https://clawhub.ai/user/cryptopunk2070) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cryptopunk2070](https://clawhub.ai/user/cryptopunk2070)
 
-## Use Case: <br>
-External users and agents use this skill to browse Kalshi sports prediction markets, compare prices against Fuku model predictions, build trading profiles, and prepare or execute trades within configured risk limits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can interact with a real Kalshi account and place live trades, including unattended operation. <br>
-Mitigation: Start in dry-run or approval mode, keep auto-trading disabled unless explicitly intended, and use the configured daily loss, position size, and trade count limits. <br>
-Risk: Kalshi credentials are stored locally in a .env file. <br>
-Mitigation: Protect the .env file, exclude it from commits and sync tools, and rotate credentials if exposure is suspected. <br>
-Risk: Balances, profiles, orders, positions, and trade history may be shown in chat output or written to local files. <br>
-Mitigation: Run the skill only in trusted local workspaces and review generated logs or chat transcripts before sharing them. <br>
-Risk: Model probabilities and edge estimates can be wrong or become stale as markets and sports information change. <br>
-Mitigation: Review each recommendation, current market price, and risk setting before trade execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fuku Predictions ClawHub page](https://clawhub.ai/cryptopunk2070/fuku-predictions) <br>
-- [Kalshi API credentials](https://kalshi.com/profile/api) <br>
-- [Fuku Public Prediction API](https://cbb-predictions-api-nzpk.onrender.com) <br>
-- [Kalshi Sports Markets Guide](references/kalshi-markets.md) <br>
-- [Trading Strategies Reference](references/strategies.md) <br>
+## Use Case:
 
+External users and developers use this skill to define prediction-market trading preferences, scan Kalshi sports markets with Fuku model edges, review recommendations, and optionally place or exit trades within configured risk limits.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal output with JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market prices, model probabilities, edge estimates, payout estimates, trading recommendations, profile settings, account balances, positions, and local trade logs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place real-money Kalshi trades automatically.
+
+Mitigation: Use dry-run or approval mode by default and enable full-auto trading only after reviewing the configuration, limits, and expected financial exposure.
+
+Risk: Kalshi credentials may be stored in a local plaintext `.env` file.
+
+Mitigation: Protect or replace plaintext credential storage, restrict file access, and use API keys with the minimum permissions and spending limits required.
+
+Risk: Recurring scheduled trading can continue to execute without active user review.
+
+Mitigation: Avoid full-auto cron trading unless the operator understands the financial risk, monitors activity, and maintains a tested stop or kill-switch process.
+
+## Reference(s):
+
+- [Fuku Predictions ClawHub Release](https://clawhub.ai/cryptopunk2070/skills/fuku-predictions)
+- [Kalshi Sports Markets Guide](references/kalshi-markets.md)
+- [Trading Strategies Reference](references/strategies.md)
+- [Configuration README](config/README.md)
+- [Fuku Prediction API](https://cbb-predictions-api-nzpk.onrender.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text recommendations, JSON configuration and profile files, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include market prices, model probabilities, edge estimates, payout math, profile summaries, and local trading actions when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

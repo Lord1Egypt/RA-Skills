@@ -1,44 +1,64 @@
-## Description: <br>
-Crypto trading signals using CoinGecko price data, DeFiLlama TVL trends, and CCXT exchange order flow for momentum, RSI, VWAP, DeFi yield, and portfolio scans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto trading signals using CoinGecko price data, DeFiLlama TVL trends, and CCXT exchange order flow for momentum, RSI, VWAP, and DeFi yield analysis.
 
-## Publisher: <br>
-[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to generate crypto market research signals for assets and DeFi pools using public market data. It supports momentum, RSI, VWAP, DeFi yield, and portfolio dashboard workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated trading signals as guaranteed financial advice. <br>
-Mitigation: Treat outputs as market research only and require independent review before making trading or portfolio decisions. <br>
-Risk: Credential exposure if users provide exchange trading keys or wallet credentials. <br>
-Mitigation: Use only a limited CoinGecko API key and do not provide exchange trading keys, wallet credentials, or private keys. <br>
-Risk: Behavior may change if code is supplied outside the reviewed package. <br>
-Mitigation: Verify the source of any trade_signals.py or other code supplied outside this package before execution. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for crypto market summaries, trading-signal analysis, DeFi yield scans, and portfolio watchlist dashboards. It produces informational market analysis from public market-data APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/drivenautoplex1/trading-signals-pro) <br>
-- [Project Homepage](https://github.com/drivenautoplex1/openclaw-skills) <br>
-- [SaucerSwap Pools API](https://api.saucerswap.finance/pools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, guidance] <br>
-**Output Format:** [JSON with a human-readable Markdown summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes asset signals, signal strength, market context, top picks, avoidance notes, and DeFi yield details when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill makes outbound market-data API calls and depends on external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in environments where outbound calls to market-data providers are acceptable, and review network access before deployment.
+
+Risk: The skill requires a CoinGecko API key.
+
+Mitigation: Use a limited CoinGecko key and avoid exposing unrelated secrets to the skill runtime.
+
+Risk: The evidence notes that the referenced trade_signals.py file is absent.
+
+Mitigation: Confirm the packaged implementation is present and runnable before relying on the skill in agent workflows.
+
+Risk: The evidence notes unpinned dependencies.
+
+Mitigation: Pin and review dependency versions before deployment in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drivenautoplex1/skills/trading-signals-pro)
+- [Publisher profile](https://clawhub.ai/user/drivenautoplex1)
+- [Homepage from skill metadata](https://github.com/drivenautoplex1/openclaw-skills)
+- [SaucerSwap pools API](https://api.saucerswap.finance/pools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON plus human-readable Markdown summaries with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require python3, the requests and ccxt packages, outbound public market-data API access, and COINGECKO_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

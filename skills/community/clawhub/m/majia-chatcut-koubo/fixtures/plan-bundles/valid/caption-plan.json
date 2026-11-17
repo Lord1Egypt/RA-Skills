@@ -1,0 +1,55 @@
+{
+  "$schema": "../../../schemas/caption-plan.schema.json",
+  "schemaVersion": "1.0.0",
+  "projectId": "proj_demo",
+  "timelineId": "timeline_demo",
+  "timelineRevision": "rev_demo",
+  "transcriptId": "transcript_demo",
+  "transcriptRevision": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "pages": [
+    {
+      "pageId": "caption_001",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 0,
+        "end": 45
+      },
+      "sourceWordIds": [
+        "word_001"
+      ],
+      "sourceText": "先",
+      "displayText": "先",
+      "lineCount": 1,
+      "status": "verified",
+      "evidenceRefs": [
+        "evidence_transcript"
+      ]
+    },
+    {
+      "pageId": "caption_002",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 45,
+        "end": 90
+      },
+      "sourceWordIds": [
+        "word_002"
+      ],
+      "sourceText": "验证",
+      "displayText": "验证",
+      "lineCount": 1,
+      "status": "verified",
+      "evidenceRefs": [
+        "evidence_transcript"
+      ]
+    }
+  ]
+}

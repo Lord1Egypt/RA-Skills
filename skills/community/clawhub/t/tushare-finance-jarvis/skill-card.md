@@ -1,45 +1,62 @@
-## Description: <br>
-Helps agents retrieve China-focused financial market data through Tushare Pro, including equities, Hong Kong and US stocks, funds, futures, bonds, financial statements, and macroeconomic indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取中国金融市场数据（A股、港股、美股、基金、期货、债券）。支持220+个Tushare Pro接口：股票行情、财务报表、宏观经济指标。当用户请求股价数据、财务分析、指数行情、GDP/CPI等宏观数据时使用。
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-Developers, analysts, and agent users can use this skill to select Tushare interfaces, configure a Tushare token, and generate Python calls for market, fundamentals, and macroeconomic data retrieval. It is suited for data lookup, financial analysis workflows, and batch export tasks that rely on Tushare Pro access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tushare access requires a user token, which may be exposed if placed in committed configuration files or shared command history. <br>
-Mitigation: Prefer the TUSHARE_TOKEN environment variable, do not commit tokens, and restrict permissions on any local secret files. <br>
-Risk: Some broad reference endpoints may expose policy documents, media transcripts, management biographies, or other privacy-sensitive fields. <br>
-Mitigation: Review the selected endpoint documentation before use and treat personal data fields as privacy-sensitive. <br>
-Risk: Financial market and macroeconomic data can be incomplete, delayed, permission-limited, or unsuitable as sole investment advice. <br>
-Mitigation: Validate returned data against the Tushare documentation and use independent review before relying on outputs for financial decisions. <br>
+## Use Case:
 
+Developers and finance analysts use this skill to retrieve Tushare Pro market, fundamentals, fund, futures, bond, and macroeconomic datasets from an agent workflow. It helps users choose documented interfaces, configure credentials, run Python queries, and export results for analysis.
 
-## Reference(s): <br>
-- [Tushare Official Documentation](https://tushare.pro/document/2) <br>
-- [Tushare API Test Tool](https://tushare.pro/document/1) <br>
-- [Tushare API Interface Index](reference/README.md) <br>
-- [Tushare API Quick Reference](QUICK_REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include pandas DataFrame-oriented examples, Tushare API method selections, token setup guidance, and file export suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.7 (source: server release metadata) <br>
+Risk: Tushare API tokens can be exposed if copied into committed files or persistent shell configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a secrets manager, avoid committing tokens, and review shell configuration before sharing.
+
+Risk: Unpinned dependency ranges may install newer package versions with changed behavior.
+
+Mitigation: Use a virtual environment and pin or review dependency versions before production use.
+
+Risk: Financial market data may be incomplete, delayed, permission-gated, or unsuitable as sole investment advice.
+
+Mitigation: Validate retrieved data against trusted sources and apply domain review before business or trading decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bingze00000/skills/tushare-finance-jarvis)
+- [Tushare official documentation](https://tushare.pro/document/2)
+- [Tushare API testing tool](https://tushare.pro/document/1)
+- [Bundled Tushare interface index](reference/README.md)
+- [Bundled API link catalog](reference/all_links.json)
+- [Quick reference](QUICK_REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, API calls, files]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; API results are typically pandas DataFrames and optional CSV, JSON, or Excel files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Tushare Pro token and Python dependencies such as tushare and pandas.]
+
+## Skill Version(s):
+
+2.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

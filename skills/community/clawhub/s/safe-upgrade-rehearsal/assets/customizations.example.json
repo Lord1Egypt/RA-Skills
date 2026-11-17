@@ -1,0 +1,24 @@
+{
+  "checks": [
+    {
+      "id": "signal-entrypoint",
+      "kind": "required_member",
+      "member": "package/extensions/signal/index.js",
+      "package": "openclaw"
+    },
+    {
+      "id": "mcp-runtime-entrypoint",
+      "kind": "required_member",
+      "member": "package/dist/mcp/openclaw-tools-serve.js",
+      "package": "openclaw"
+    },
+    {
+      "id": "mcporter-skill-contract",
+      "kind": "member_contains",
+      "member": "package/skills/mcporter/SKILL.md",
+      "needle": "mcporter",
+      "package": "openclaw"
+    }
+  ],
+  "schema": "openclaw.safe_update.customizations.v1"
+}

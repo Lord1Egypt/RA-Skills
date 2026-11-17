@@ -1,40 +1,58 @@
-## Description: <br>
-A Chinese-language persona skill that simulates a Naval Ravikant-style perspective using synthesized public writings, podcasts, tweets, decision history, and outside criticism. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language persona skill that guides an agent to answer from a Naval Ravikant-style first-person perspective on leverage, specific knowledge, wealth, desire management, and related decision concepts.
 
-## Publisher: <br>
-[alchaincyf](https://clawhub.ai/user/alchaincyf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alchaincyf](https://clawhub.ai/user/alchaincyf)
 
-## Use Case: <br>
-External users invoke this skill when they want a concise Naval-style perspective on leverage, specific knowledge, wealth, desire management, and related decision questions. It is intended for roleplay and reflective guidance, not as statements from the real person or as financial, purchasing, medical, or mental-health advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First-person answers may be mistaken for statements from Naval Ravikant himself. <br>
-Mitigation: Treat outputs as simulated roleplay based on public material, not as authenticated personal statements. <br>
-Risk: Persona guidance may be used for financial, purchasing, medical, or mental-health decisions beyond the skill's reliable scope. <br>
-Mitigation: Do not rely on the skill for those decisions; seek qualified advice and independently verify any high-impact claim. <br>
+## Use Case:
 
+External users use this skill to request Chinese-language perspective-taking responses framed around Naval Ravikant's public concepts, including leverage, specific knowledge, wealth, and desire management. It is intended for reflective guidance and roleplay-style analysis, not current information retrieval or professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/alchaincyf/naval-perspective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [First-person simulated persona responses based on public material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill instructs the agent to simulate a living public figure in first person while limiting repeated disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preserve the initial disclosure, avoid presenting generated responses as authentic Naval Ravikant statements, and exit the persona when the user asks.
+
+Risk: Users may over-trust career, wealth, desire-management, or business guidance delivered in an authoritative persona style.
+
+Mitigation: Treat outputs as perspective-taking guidance rather than financial, investment, legal, medical, or mental-health advice, and seek qualified review for consequential decisions.
+
+Risk: The skill states that it is not suited for judgments requiring current information.
+
+Mitigation: Verify time-sensitive facts with current sources before relying on any output.
+
+## Reference(s):
+
+- [ClawHub skill page: naval-perspective](https://clawhub.ai/alchaincyf/skills/naval-perspective)
+- [Publisher profile: alchaincyf](https://clawhub.ai/user/alchaincyf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is a Markdown persona prompt and does not execute code or access data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

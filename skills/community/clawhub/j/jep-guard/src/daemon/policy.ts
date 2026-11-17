@@ -1,3 +1,4 @@
+import fs from "fs";
 import { ExecutionRequest, SkillIdentity, PolicyRule, PolicyResult } from '../core/types';
 
 export class PolicyEngineService {
@@ -6,10 +7,17 @@ export class PolicyEngineService {
   ];
 
   constructor(configPath?: string) {
-    // Load custom rules from config if exists
+    if(configPath && fs.existsSync(configPath)) {
+      const {readPrivate}=require('../../transport');
+      const rules=JSON.parse(readPrivate(configPath));
+      if(!Array.isArray(rules) || rules.length>128) throw new Error('Invalid policy');
+      for(const rule of [...rules].reverse()) this.addRule(rule);
+    }
   }
 
   addRule(rule: PolicyRule): void {
+    if(!rule || !rule.id || !rule.match || !['allow','deny','review'].includes(rule.decision)) throw new Error('Invalid rule');
+    if(rule.rate_limit) throw new Error('Rate-limit rules require an external limiter');
     this.rules.unshift(rule);
   }
 
@@ -35,7 +43,7 @@ export class PolicyEngineService {
   }
 
   private globMatch(input: string, pattern: string): boolean {
-    const regex = new RegExp('^' + pattern.replace(/\*/g, '.*').replace(/\?/g, '.') + '$');
+    const regex = new RegExp('^' + pattern.split('').map(c => c==='*' ? '.*' : c==='?' ? '.' : c.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('') + '$');
     return regex.test(input);
   }
 }

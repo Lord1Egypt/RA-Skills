@@ -1,44 +1,60 @@
-## Description: <br>
-On-demand German public-media documentary picks filtered against a personal profile, delivered via the configured output channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+On-demand German public-media documentary picks filtered against a personal profile, delivered via the configured output channel.
 
-## Publisher: <br>
-[arturites](https://clawhub.ai/user/arturites) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arturites](https://clawhub.ai/user/arturites)
 
-## Use Case: <br>
-External OpenClaw users use this skill to get four German-language documentary recommendations from recent public-media listings, filtered by a local personal profile and delivered through their configured output channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores viewing interests and avoidance preferences in PROFILE.md. <br>
-Mitigation: Do not put secrets or highly sensitive personal details in the profile, and review the file before relying on recommendations. <br>
-Risk: The skill downloads a public media listing and treats listing fields as recommendation candidates. <br>
-Mitigation: Use the generated JSON only as untrusted input, preserve the skill's instruction to avoid invented links, and review recommendations before forwarding them. <br>
-Risk: Recommendations are sent through the user's configured OpenClaw output channel. <br>
-Mitigation: Confirm the output channel is configured for the intended recipient before running the skill. <br>
+## Use Case:
 
+External OpenClaw users use this skill to curate German public-media documentary recommendations from a downloaded Mediathek catalog, ranked against a local personal profile and delivered through their configured output channel.
 
-## Reference(s): <br>
-- [ClawHub DokuTipp release page](https://clawhub.ai/arturites/dokutipp) <br>
-- [DokuTipp homepage metadata](https://github.com/arturites/DokuTipp) <br>
-- [MediathekView Filmliste data source](https://liste.mediathekview.de/Filmliste-akt.xz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [German Markdown recommendations delivered through the configured OpenClaw output channel, with local JSON used as intermediate input.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or reads PROFILE.md for preferences, downloads and caches the public MediathekView list under the skill data directory, and selects 4 recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence) <br>
+Risk: The skill downloads and caches a public media catalog before producing recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where cached public catalog data is acceptable, and apply resource limits for shared or low-resource systems.
+
+Risk: Recommendations can include external media-library links from the catalog.
+
+Mitigation: Treat recommendation links as external links and prefer URL validation before use in shared or sensitive environments.
+
+Risk: The skill reads or creates PROFILE.md and sends recommendations through the configured output channel.
+
+Mitigation: Use only with an output channel the user has configured and secured, and avoid including raw profile content in delivered recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arturites/skills/dokutipp)
+- [Publisher profile](https://clawhub.ai/user/arturites)
+- [Project homepage](https://github.com/arturites/DokuTipp)
+- [Mediathek catalog download](https://liste.mediathekview.de/Filmliste-akt.xz)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown recommendations in German with optional media-library links, backed by JSON candidate data from the curation script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selects four recommendations and writes skill-generated files under the skill data directory.]
+
+## Skill Version(s):
+
+1.1.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

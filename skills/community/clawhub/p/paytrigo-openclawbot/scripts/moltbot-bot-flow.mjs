@@ -6,7 +6,7 @@ import { resolve } from 'node:path';
 import { JsonRpcProvider, Wallet } from 'ethers';
 
 const API_BASE = 'https://api.paytrigo.net';
-const API_KEY = 'sk_live_EQRe18nZCjXZSv8BmSJMs5mYvMOw1wgDd2RHnOH5T28';
+const API_KEY = 'REDACTED-SECRET';
 const DEFAULT_RPC = 'https://mainnet.base.org';
 
 const argv = process.argv.slice(2);

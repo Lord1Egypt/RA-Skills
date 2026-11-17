@@ -1,43 +1,59 @@
-## Description: <br>
-Creates professional institutional websites and landing pages in React with Vite, TypeScript, Tailwind CSS, and animation-focused component references, using client-provided brand and visual materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cria sites institucionais profissionais em React, Vite, TypeScript e Tailwind CSS 4 a partir de logos, imagens, apresentacoes, PDFs e identidade visual fornecidos pelo cliente.
 
-## Publisher: <br>
-[guedes-xtent](https://clawhub.ai/user/guedes-xtent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guedes-xtent](https://clawhub.ai/user/guedes-xtent)
 
-## Use Case: <br>
-Developers and site-building agents use this skill to turn client logos, images, presentations, PDFs, copy, and brand guidelines into polished institutional websites or product landing pages. It guides project setup, visual planning, React implementation, accessibility, SEO, performance optimization, and delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can introduce third-party components, remote assets, and stock imagery beyond the client's supplied materials. <br>
-Mitigation: Review selected reference components before use, require approval for external assets or services, and replace placeholder remote media with approved local or client-owned assets before production. <br>
-Risk: Generated sites may fetch from external services such as 21st.dev, Spline, Google Fonts, stock image providers, or remote media CDNs. <br>
-Mitigation: Keep execution scoped to the target project folder and approve each external dependency or network-sourced asset before adding it to the project. <br>
+## Use Case:
 
+Developers, designers, and site-building agents use this skill to transform client visual materials and product content into institutional sites, landing pages, product pages, or one-page React websites in Portuguese or English. It guides project setup, content inventory, component selection, performance optimization, accessibility basics, SEO basics, and delivery checks.
 
-## Reference(s): <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Component templates](artifact/references/components.md) <br>
-- [CSS patterns and visual guidelines](artifact/references/patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/guedes-xtent/institucional-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated React, TypeScript, CSS, and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify a Vite React project and derived web assets based on user-provided materials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may inspect project-material folders and create or modify generated site files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against a clearly chosen materials or project folder, then review generated files before use.
+
+Risk: The workflow may install npm dependencies and incorporate third-party UI components or external assets.
+
+Mitigation: Review dependency additions, 21st.dev retrievals, stock images, and external assets before shipping a generated site.
+
+Risk: The bundled password-confirmation component is unsafe for real passwords or secrets.
+
+Mitigation: Do not use that component with real credentials; remove it or replace it with a production-grade authentication flow.
+
+## Reference(s):
+
+- [Component Templates](artifact/references/components.md)
+- [CSS Patterns & Visual Guidelines](artifact/references/patterns.md)
+- [21st.dev component prompts API](https://21st.dev/api/prompts)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with React, TypeScript, Tailwind CSS, and shell command snippets; generated projects are Vite React files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create site files, install npm dependencies, adapt component templates, and propose image, font, SEO, accessibility, and build optimizations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

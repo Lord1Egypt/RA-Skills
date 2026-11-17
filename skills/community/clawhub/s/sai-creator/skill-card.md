@@ -1,50 +1,62 @@
-## Description: <br>
-SAI Creator AI transforms SENKU-approved OJS/PKP article briefs into publishable HTML articles, fixed seven-slide social carousels, optional social captions, and a handoff JSON for re-validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SAI Creator AI turns validated OJS/PKP journal briefs into publish-ready HTML article pages, fixed-structure social carousels, optional platform captions, and handoff JSON.
 
-## Publisher: <br>
-[nijam727](https://clawhub.ai/user/nijam727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nijam727](https://clawhub.ai/user/nijam727)
 
-## Use Case: <br>
-Developers, journal teams, and publication operators use this skill to turn validated OJS/PKP intelligence briefs into accessible public article pages, SVG carousel assets, optional platform captions, and structured handoff data for downstream review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brief content can be placed directly into publishable HTML or SVG. <br>
-Mitigation: Use trusted SENKU briefs, review generated markup before publication, and add escaping or sanitization before hosting outputs. <br>
-Risk: The artifact advertises carousel template files that are not present in the package. <br>
-Mitigation: Verify or supply trusted carousel templates before relying on carousel generation. <br>
-Risk: Generated assets include a fixed commercial CTA target. <br>
-Mitigation: Confirm that the openjournaltheme.com CTA is acceptable for the publication context before release. <br>
-Risk: Packaging utilities can include files from a selected directory. <br>
-Mitigation: Run packaging only on reviewed skill directories that do not contain unrelated private files. <br>
+## Use Case:
 
+External journal teams and developers use this skill to transform validated OJS/PKP intelligence briefs into accessible article pages, social carousel assets, optional captions, and structured handoff JSON for downstream review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nijam727/sai-creator) <br>
-- [Article Template Spec](references/article-template-spec.md) <br>
-- [Carousel Spec](references/carousel-spec.md) <br>
-- [CTA Variants](references/cta-variants.md) <br>
-- [Open Journal Theme CTA target](https://openjournaltheme.com/) <br>
-- [Schema.org Article](https://schema.org/Article) <br>
-- [Schema Markup Validator](https://validator.schema.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [HTML, SVG, JSON, text captions, and Markdown-style operational guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are constrained to complete SENKU briefs and should pass validation for WCAG AA contrast, required alt text, schema.org Article metadata, CTA URL, file size, and source-grounded claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated article, carousel, and caption outputs unconditionally include a third-party openjournaltheme.com CTA.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill only when that CTA is intended, and review generated links and CTA text before publishing.
+
+Risk: Generated SVG or HTML may carry incorrect links or text if the supplied brief contains bad source material.
+
+Mitigation: Review generated SVG and HTML before publication, with particular attention to source attribution, outbound links, and brief-derived text.
+
+Risk: The packaging helper could include unintended sensitive files if run against a folder that contains secrets.
+
+Mitigation: Run packaging only on curated skill directories and exclude secrets or private working files before packaging.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nijam727/skills/sai-creator)
+- [Article Template Spec](artifact/references/article-template-spec.md)
+- [Carousel Spec](artifact/references/carousel-spec.md)
+- [CTA Variants](artifact/references/cta-variants.md)
+- [OpenJournalTheme CTA Destination](https://openjournaltheme.com/)
+- [schema.org Article](https://schema.org/Article)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Files, JSON]
+
+**Output Format:** [HTML, SVG, social caption text, and JSON handoff metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outputs should preserve the validated brief, include source attribution, meet WCAG AA expectations, and keep the required CTA behavior visible for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

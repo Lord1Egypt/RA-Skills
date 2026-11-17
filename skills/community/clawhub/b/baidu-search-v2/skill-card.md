@@ -1,43 +1,54 @@
-## Description: <br>
-Searches the web using Baidu AI Search Engine (BDSE) for live information, documentation, or research topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics.
 
-## Publisher: <br>
-[15914355527](https://clawhub.ai/user/15914355527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[15914355527](https://clawhub.ai/user/15914355527)
 
-## Use Case: <br>
-Agents and developers use this skill to run Baidu web searches from Python-backed workflows when they need live web, documentation, or research results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Baidu and may consume the user's Baidu API quota. <br>
-Mitigation: Use only queries that are appropriate for the user's policy and monitor use against the configured Baidu API quota. <br>
-Risk: Search queries may contain secrets, personal data, or confidential internal terms. <br>
-Mitigation: Do not submit sensitive content unless organizational policy explicitly allows sending it to Baidu. <br>
-Risk: The embedded artifact metadata does not exactly match the registry metadata. <br>
-Mitigation: Verify the package identity and registry entry before installing or deploying this release. <br>
+## Use Case:
 
+Developers and agents use this skill to run live Baidu web searches for current information, documentation, and research topics. It accepts a query, optional result count, and optional freshness filter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/15914355527/baidu-search-v2) <br>
-- [Baidu AI Search API endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text] <br>
-**Output Format:** [JSON search results written to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIDU_API_KEY; accepts a required query, optional count from 1 to 50, and optional freshness filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries are sent to Baidu's API and may include sensitive, personal, or confidential content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, personal data, or confidential business queries unless the environment's privacy and logging controls are appropriate.
+
+Risk: The script prints the parsed request body to stdout, which may expose query content in logs.
+
+Mitigation: Remove or redact request logging before using the skill in environments where stdout is retained or monitored.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/15914355527/skills/baidu-search-v2)
+- [Baidu Qianfan web search endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results printed to stdout, with command-line usage guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; count is limited to 1-50 results and freshness supports date ranges or pd, pw, pm, and py.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

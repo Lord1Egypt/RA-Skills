@@ -1,40 +1,54 @@
-## Description: <br>
-Security-first skill vetting for AI agents before installing skills from ClawdHub, GitHub, or other sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.
 
-## Publisher: <br>
-[janeaaaa](https://clawhub.ai/user/janeaaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[janeaaaa](https://clawhub.ai/user/janeaaaa)
 
-## Use Case: <br>
-Developers and agents use this skill to vet external skills before installation by checking source, permissions, red flags, and risk classification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the skill's advisory vetting result as definitive. <br>
-Mitigation: Review any evaluated skill yourself before installing it or granting credentials, network access, or high-impact permissions. <br>
-Risk: The quick-vet examples include shell commands that fetch GitHub metadata and raw skill content. <br>
-Mitigation: Run commands only against the intended repository URLs and inspect fetched content before using it. <br>
+## Use Case:
 
+Developers, engineers, and agent users use this skill to vet external skills before installation by reviewing source, permission scope, risk level, and red flags.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/janeaaaa/skill-checker-jane) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown vetting report with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory checklist output; no executable artifact is produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: GitHub lookup commands can disclose private repository names or sensitive source locations if used on non-public skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use external lookup commands only for skills intentionally selected for review, and avoid private repository identifiers unless disclosure is acceptable.
+
+Risk: A checklist-based review can produce incorrect confidence if the reviewer skips files or treats examples as hidden behavior.
+
+Mitigation: Review all skill files, record permissions and red flags in the report, and escalate high-risk findings for human approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/janeaaaa/skills/skill-checker-jane)
+- [Publisher profile](https://clawhub.ai/user/janeaaaa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a vetting report with source, author, version, reviewed files, red flags, permissions, risk level, verdict, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

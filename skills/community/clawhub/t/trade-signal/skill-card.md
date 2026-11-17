@@ -1,41 +1,58 @@
-## Description: <br>
-Provides real-time trade signals with Buy/Sell/Hold recommendations, price targets, and supporting stock analysis across US and global markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time Buy/Sell/Hold trade signals and stock analysis for public securities across U.S. and global markets.
 
-## Publisher: <br>
-[kslee9572](https://clawhub.ai/user/kslee9572) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kslee9572](https://clawhub.ai/user/kslee9572)
 
-## Use Case: <br>
-External users and agents use this skill to request stock research, technical and fundamental analysis, analyst sentiment, and actionable trade-signal responses for public securities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper script can run unintended local code from crafted query text. <br>
-Mitigation: Review carefully before installing, use only trusted query text, and update query encoding so user input is passed as data rather than embedded into Python source. <br>
-Risk: The skill may process sensitive portfolio details, brokerage information, or trading plans. <br>
-Mitigation: Avoid submitting private financial details and treat generated trade signals as research input that needs independent review before any investment decision. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Trade Singal on ClawHub](https://clawhub.ai/kslee9572/trade-signal) <br>
-- [Terminal X](https://terminal-x.ai) <br>
-- [Terminal X API](https://terminal-x.ai/api) <br>
+## Use Case:
 
+External users and agent developers use this skill to request market research, trade signals, price targets, technical analysis, earnings analysis, analyst coverage, and citation-backed financial summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [JSON responses containing markdown analysis, tickers, trade signals, price targets, technical indicators, related analysis, and citations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Buy/Sell/Hold recommendations, entry and exit targets, stop loss levels, time horizons, and source citations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides broad trading recommendations through a remote API, and its outputs could be mistaken for personalized investment advice.
+
+Mitigation: Review outputs carefully, treat them as informational market analysis, and do not use them as the sole basis for trades or investment decisions.
+
+Risk: Queries may expose sensitive portfolio, account, or proprietary strategy details to a remote service.
+
+Mitigation: Avoid sending confidential financial, account, portfolio, or proprietary strategy information in prompts.
+
+Risk: The bundled search script has a command-execution flaw for crafted query input.
+
+Mitigation: Fix the query encoding path before use and review the script before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kslee9572/skills/trade-signal)
+- [Terminal X homepage](https://terminal-x.ai)
+- [Terminal X API base](https://terminal-x.ai/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses with citation-backed analysis and optional Markdown-formatted narrative text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tickers, Buy/Sell/Hold trade signals, price targets, technical indicators, related analysis, and source citations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

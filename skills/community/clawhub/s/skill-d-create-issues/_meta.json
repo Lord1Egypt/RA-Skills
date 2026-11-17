@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "skill-d-create-issues",
+  "name": "skill-d-create-issues",
   "version": "1.0.0",
-  "publishedAt": 1777449690658
+  "description": "会议全流程自动化 Skill-D：事件驱动，组织者确认 issue 草稿后批量在 Gitea 建 issue，发正式纪要邮件与个人任务通知",
+  "author": "mayidan"
 }

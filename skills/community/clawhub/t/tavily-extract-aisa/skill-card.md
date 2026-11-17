@@ -1,44 +1,55 @@
-## Description: <br>
-Extract clean article content from URLs through the AISA Tavily extract endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract clean article content from URLs through the AISA Tavily extract endpoint.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers and analysts use this skill to extract readable article content from known URLs for summarization, comparison, or evidence review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled runtime includes broader search, research, and synthesis commands beyond URL extraction, and those commands send user inputs to AISA APIs. <br>
-Mitigation: Review the selected CLI command before execution and use the skill only with information you intend to send to AISA. <br>
-Risk: The skill requires the AISA_API_KEY credential. <br>
-Mitigation: Provide the key through the environment, avoid sharing it in prompts or logs, and rotate it if exposure is suspected. <br>
-Risk: Private URLs, sensitive queries, or confidential research material may be sent to AISA services. <br>
-Mitigation: Use public or approved content unless you trust AISA with the material and have permission to process it through that service. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to extract readable page content from known URLs for summarization, comparison, or evidence review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aisadocs/tavily-extract-aisa) <br>
-- [AISA API Base URL](https://api.aisa.one/apis/v1) <br>
-- [AISA API Key Site](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; extract output prints up to 3000 characters of raw content per URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The bundled runtime exposes broader search, research, and synthesis commands beyond URL extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bundled client before installing and restrict or remove commands that are not needed for URL extraction.
+
+Risk: User URLs, search queries, prompts, and aggregated results may be sent to external AISA endpoints under the configured API key.
+
+Mitigation: Use the skill only for data approved for external API processing and configure AISA_API_KEY according to the deployment's credential handling policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aisadocs/skills/tavily-extract-aisa)
+- [AISA service](https://aisa.one)
+- [AISA API base](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and extracted API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; runtime sends requests to external AISA endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

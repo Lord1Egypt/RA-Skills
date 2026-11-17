@@ -1,43 +1,56 @@
-## Description: <br>
-ZuckerBot lets agents create, launch, monitor, and manage Facebook and Instagram ad campaigns through the Meta Ads API using the ZuckerBot MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZuckerBot lets agents create, launch, monitor, and manage Facebook and Instagram ad campaigns through the Meta Ads API using the ZuckerBot MCP server.
 
-## Publisher: <br>
-[Crumbedsausage](https://clawhub.ai/user/Crumbedsausage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crumbedsausage](https://clawhub.ai/user/crumbedsausage)
 
-## Use Case: <br>
-External users and agents use this skill to plan Meta ad campaigns, generate campaign assets, launch paid Facebook or Instagram campaigns, run A/B tests, monitor performance, and sync conversion feedback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can launch, resume, or bulk-test paid Meta ad campaigns using stored credentials. <br>
-Mitigation: Require explicit human approval before launch, resume, or A/B test actions, including the ad account, campaign, daily budget, destination URL, and variant count. <br>
-Risk: Stored ZuckerBot credentials may affect the connected Meta ads account beyond the current chat session. <br>
-Mitigation: Connect only the intended ad account, use the least permissions available, and verify the ZuckerBot service and external MCP package before use. <br>
-Risk: Conversion sync can send business or customer conversion data to Meta. <br>
-Mitigation: Confirm the conversion data, campaign ID, and privacy basis with the user before syncing conversion feedback. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Crumbedsausage/zuckerbotmcp) <br>
-- [ZuckerBot Developer Site](https://zuckerbot.ai) <br>
-- [zuckerbot-mcp npm package](https://www.npmjs.com/package/zuckerbot-mcp/v/0.2.7) <br>
+## Use Case:
 
+External users and developers use this skill to plan Meta ad campaigns, generate creatives, launch or pause campaigns, run A/B tests, inspect performance metrics, research markets and competitors, and sync confirmed conversion events.
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown or structured tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include campaign IDs, launch confirmations, performance metrics, strategy recommendations, ad creative outputs, and conversion sync confirmations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can affect live advertising spend through campaign launches, resumes, budget changes, and A/B test launches.
+
+Mitigation: Manually confirm every campaign launch, resume, and budget change before execution.
+
+Risk: The skill relies on ZuckerBot API credentials and Meta OAuth permissions managed through a third-party service.
+
+Mitigation: Install only if the publisher and ZuckerBot service are trusted, review granted Meta permissions, and keep the ability to revoke both the API key and Meta authorization.
+
+Risk: Conversion-data uploads can influence Meta optimization and may involve sensitive business events.
+
+Mitigation: Confirm conversion data and the target campaign before syncing conversion events.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crumbedsausage/skills/zuckerbotmcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown and structured tool-call results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include campaign strategies, budget recommendations, ad creative concepts, campaign IDs, status confirmations, performance metrics, market research, competitor analysis, review intelligence, and conversion-sync confirmations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

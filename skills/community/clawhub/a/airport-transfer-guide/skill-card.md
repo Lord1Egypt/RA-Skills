@@ -1,45 +1,55 @@
-## Description: <br>
-Guide travelers through international airport transit connections step-by-step with Chinese-language instructions, terminal maps/photos, live queue or crowd signals when available, and baggage re-check confirmation using baggage tags/receipts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides travelers through international airport transfers with Simplified Chinese action cards covering immigration, terminal changes, maps, queue or crowd signals, delays, and baggage re-check confirmation.
 
-## Publisher: <br>
-[tinayunyunyun](https://clawhub.ai/user/tinayunyunyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tinayunyunyun](https://clawhub.ai/user/tinayunyunyun)
 
-## Use Case: <br>
-External travelers use this skill to generate Simplified Chinese airport transfer action cards for international connections, including immigration, terminal changes, baggage re-check decisions, queue signals, maps, and delay response steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visa, immigration, baggage-through, and missed-connection decisions can materially affect a traveler if public data is incomplete or stale. <br>
-Mitigation: Verify critical decisions with the airline, airport, border authority, or official counter before relying on the action card. <br>
-Risk: The data-fetching script contacts public airport and travel websites, saves local JSON output, and may create screenshots when Chrome is available. <br>
-Mitigation: Review generated sources and timestamps, and run the script only when outbound HTTPS access and local file output are acceptable. <br>
+## Use Case:
 
+External travelers and travel-assisting agents use this skill to plan or recover from international airport transfers, including immigration, terminal changes, timing, queue context, and baggage re-check decisions.
 
-## Reference(s): <br>
-- [Airport Transfer Guide on ClawHub](https://clawhub.ai/tinayunyunyun/airport-transfer-guide) <br>
-- [Transit Context Guide](references/transit_context_guide.md) <br>
-- [Airport Registry](references/airport_registry.json) <br>
-- [iFly terminal maps](https://www.ifly.com/airports/{slug}-airport/terminal-map) <br>
-- [FlightQueue airport wait times](https://flightqueue.com/airport/{code}) <br>
-- [Flightradar24 airport boards](https://www.flightradar24.com/data/airports/{code_lower}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Simplified Chinese Markdown action cards with tables, ordered steps, image links, source timestamps, and optional JSON data-fetching output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run a local Python script that contacts public airport and travel websites and saves a local transit_context.json file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Airport, queue, visa, immigration, and baggage information can be incomplete, stale, or unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated conclusions as travel guidance and verify critical decisions with the airline, airport, or official border source before acting.
+
+Risk: The helper script may contact public airport, ifly.com, flightqueue.com, and flight-board pages and may save transit_context.json or screenshots locally.
+
+Mitigation: Run the helper only where outbound HTTPS access and local output files are acceptable, and review generated files before sharing them.
+
+## Reference(s):
+
+- [Transit Context Guide](artifact/references/transit_context_guide.md)
+- [Airport Registry](artifact/references/airport_registry.json)
+- [ClawHub Skill Page](https://clawhub.ai/tinayunyunyun/skills/airport-transfer-guide)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands, JSON, Files]
+
+**Output Format:** [Simplified Chinese Markdown action cards with tables, inline images or links, sourced timestamps, and optional JSON helper output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save transit_context.json and local screenshots when the helper script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and user-supplied changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

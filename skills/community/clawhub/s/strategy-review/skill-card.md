@@ -1,44 +1,59 @@
-## Description: <br>
-Use when reviewing, critiquing, or stress-testing an existing strategy document. Evaluates seven dimensions: diagnosis quality, guiding policy strength, action coherence, assumption exposure, and falsifiability, with optional 7S, Five Forces, Balanced Scorecard, and Hoshin Kanri lenses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when reviewing, critiquing, or stress-testing an existing strategy document. Evaluates seven dimensions -- diagnosis quality, guiding policy strength, action coherence, assumption exposure, falsifiability -- with optional 7S, Five Forces, Balanced Scorecard, and Hoshin Kanri lenses.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Employees, external reviewers, and strategy teams use this skill to pressure-test existing strategy documents for structural gaps, weak assumptions, failure paths, and missing falsifiability. It reviews strategy rather than creating a replacement strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as "poke holes in this plan" or "what's weak here" may invoke the skill and lead to persistent review artifacts. <br>
-Mitigation: Use explicit wording when requesting strategy review, and inspect proposed .beagle state files or strategy-review outputs before accepting persistent changes. <br>
+## Use Case:
 
+Employees, external reviewers, and strategy authors use this skill to pressure-test existing strategy documents for structural gaps, hidden assumptions, failure paths, and weak links between diagnosis, guiding policy, and actions.
 
-## Reference(s): <br>
-- [Review Dimensions](references/review-dimensions.md) <br>
-- [Review Lenses](references/review-lenses.md) <br>
-- [Interview Lens Audit](references/interview-lens-audit.md) <br>
-- [Review Output Template](references/review-template.md) <br>
-- [Judge Artifact Schema](references/judge-artifact-schema.md) <br>
-- [Pressure-test Scenarios](references/pressure-tests.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anderskev/strategy-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown review, optional JSON judge artifact, and optional durable state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create strategy-review outputs and .beagle review state when the user requests formal or durable review artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Strategy documents may contain sensitive business information, and long or judge-mode reviews can leave review notes and JSON artifacts on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inputs for sensitivity before use and clean local review artifacts when retained copies are not desired.
+
+Risk: The skill produces critical strategic guidance that could be mistaken for a final decision rather than review input.
+
+Mitigation: Treat findings as decision support and have accountable business owners verify evidence, assumptions, and recommendations before acting.
+
+## Reference(s):
+
+- [Review Dimensions](artifact/references/review-dimensions.md)
+- [Review Lenses](artifact/references/review-lenses.md)
+- [Interview Lens Audit](artifact/references/interview-lens-audit.md)
+- [Review Output Template](artifact/references/review-template.md)
+- [Judge Artifact Schema](artifact/references/judge-artifact-schema.md)
+- [Pressure-test Scenarios](artifact/references/pressure-tests.md)
+- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/strategy-review)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Markdown reviews, optional JSON judge artifacts, and concise chat summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce strategy-review.md, optional strategy-review.json, and local review state for long reviews.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Read-only Kalshi OpenAPI scouting skill for market discovery, liquidity checks, and market validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only Kalshi OpenAPI scouting skill for market discovery, liquidity checks, and market validation.
 
-## Publisher: <br>
-[BRS999](https://clawhub.ai/user/BRS999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brs999](https://clawhub.ai/user/brs999)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to inspect Kalshi exchange status, markets, events, series, trades, and order books for scouting and validation before any separate execution workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setting KALSHI_BASE_URL can redirect read-only requests to a replacement API endpoint. <br>
-Mitigation: Leave KALSHI_BASE_URL unset unless the replacement endpoint is intentionally trusted. <br>
-Risk: Market scouting output could be mistaken for trading execution capability. <br>
-Mitigation: Use a separate reviewed skill for order placement, amendment, cancellation, portfolio, or account actions. <br>
+## Use Case:
 
+External developers and analysts use this skill to scout Kalshi markets, check exchange status, inspect events and series, and review orderbook or trade data before using a separate reviewed workflow for execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BRS999/kalshi-trade) <br>
-- [Kalshi Trade API v2 base URL](https://api.elections.kalshi.com/trade-api/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands; command output is JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; KALSHI_BASE_URL is optional and defaults to the Kalshi production API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be mistaken for an order-entry or account-management tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for read-only market scouting and route any paper or real trading workflow to a separate reviewed execution skill.
+
+Risk: The skill makes network requests to Kalshi and prints returned market data.
+
+Mitigation: Install it only in environments where read-only Kalshi API access and display of returned market data are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brs999/skills/kalshi-trade)
+- [Kalshi Trade API base endpoint](https://api.elections.kalshi.com/trade-api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; CLI responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and makes read-only GET requests to Kalshi OpenAPI endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

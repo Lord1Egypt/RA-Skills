@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn73nvaa6sjzq48twafn1qk9m182nkwb",
-  "slug": "search-with-tavily",
+  "name": "tavily-search",
   "version": "1.0.0",
-  "publishedAt": 1773326410223
+  "description": "Web search using Tavily API - optimized for AI agents and RAG applications",
+  "author": "chasehl",
+  "license": "MIT",
+  "tags": ["search", "web", "tavily", "api", "rag"]
 }

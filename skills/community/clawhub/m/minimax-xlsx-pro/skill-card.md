@@ -1,49 +1,52 @@
-## Description: <br>
-MiniMax XLSX Pro helps agents create and validate XLSX, XLSM, and CSV spreadsheet deliverables using Python, LibreOffice recalculation, and MiniMaxXlsx diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax XLSX Pro helps agents create, recalculate, validate, style, chart, and pivot Excel workbooks from tabular data using Python, LibreOffice, and MiniMaxXlsx tooling.
 
-## Publisher: <br>
-[luaqnyin](https://clawhub.ai/user/luaqnyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luaqnyin](https://clawhub.ai/user/luaqnyin)
 
-## Use Case: <br>
-Developers, analysts, and spreadsheet-focused agents use this skill to build publication-ready Excel workbooks, add formulas, charts, and pivots, recalculate formulas, and validate workbook structure before delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local Python, LibreOffice headless, and spreadsheet validation commands. <br>
-Mitigation: Use a sandboxed workspace and review generated commands before execution, especially when processing untrusted spreadsheet inputs. <br>
-Risk: The recalculation helper may permanently modify the user's LibreOffice macro profile. <br>
-Mitigation: Use a disposable LibreOffice profile or back up existing LibreOffice macros before running recalculation. <br>
-Risk: The release references a MiniMaxXlsx executable that security guidance says should be verified before invocation. <br>
-Mitigation: Confirm the executable exists and is trusted before allowing the skill to run MiniMaxXlsx commands. <br>
-Risk: Spreadsheet deliverables can contain incorrect formulas, broken charts, or invalid pivot structures if audit steps are skipped. <br>
-Mitigation: Run the documented recalculation, refcheck, chart, and structural checks before delivering workbook files. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to turn tabular data and analysis requirements into publication-ready XLSX/XLSM/CSV spreadsheet deliverables with formulas, charts, PivotTables, styling, and validation checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/luaqnyin/minimax-xlsx-pro) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/luaqnyin) <br>
-- [Pivot Table Guide](artifact/pivot.md) <br>
-- [Chart Guide](artifact/charts.md) <br>
-- [Styling Guide](artifact/styling.md) <br>
-- [Formula Recalculation Script](artifact/scripts/recalc.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets; generated spreadsheet deliverables are XLSX, XLSM, or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run local Python, LibreOffice headless, and MiniMaxXlsx validation commands; formula recalculation reports are JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The recalculation helper modifies the user's LibreOffice macro profile and can trust or overwrite application-level macro code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or sandbox scripts/recalc.py before use, preferably with a temporary LibreOffice profile and away from enterprise macro controls or existing macro libraries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luaqnyin/skills/minimax-xlsx-pro)
+- [charts.md](artifact/charts.md)
+- [pivot.md](artifact/pivot.md)
+- [styling.md](artifact/styling.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets for spreadsheet files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or validates spreadsheet deliverables, typically XLSX/XLSM/CSV files, through agent-authored code and local command execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

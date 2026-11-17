@@ -1,42 +1,61 @@
-## Description: <br>
-Automates Ceaser Protocol ETH shield and unshield transfers on Base L2 by generating a temporary hot wallet, guiding funding, signing and broadcasting transactions, and refunding remaining ETH. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates private ETH transfers on Base L2 through the Ceaser Protocol by guiding an agent through hot-wallet funding, shield, unshield, note update, and refund steps.
 
-## Publisher: <br>
-[Zyra-V21](https://clawhub.ai/user/Zyra-V21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zyra-v21](https://clawhub.ai/user/zyra-v21)
 
-## Use Case: <br>
-External users and agents use this skill to perform a high-automation ETH transfer through the Ceaser privacy workflow on Base L2. It is intended for users who explicitly want automated signing and understand that the agent handles temporary wallet secrets and irreversible transactions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent handles temporary wallet secrets and can broadcast irreversible on-chain transactions. <br>
-Mitigation: Use small amounts, save the mnemonic and backup string offline, and confirm recipient and refund addresses before funding. <br>
-Risk: Automated signing creates observable links between the funding wallet, hot wallet, shield transaction, and refund. <br>
-Mitigation: Use this skill only when automated signing is required and prefer a manual signing workflow when stronger privacy is needed. <br>
-Risk: The workflow depends on the Ceaser package, facilitator, contract address, and Base RPC availability. <br>
-Mitigation: Verify the package version, contract address, facilitator status, denomination, and fees before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zyra-V21/ceaser-send) <br>
-- [Ceaser homepage](https://ceaser.org) <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent-guided private ETH transfer workflow on Base L2 and explicitly want automated signing through an ephemeral hot wallet.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May surface transaction hashes, temporary wallet recovery material, and status messages during execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security verdict is suspicious because the skill automates real crypto transfers.
+
+Mitigation: Install only after review or remediation, and require explicit user confirmation for amount, recipient, fees, and funding before execution.
+
+Risk: The workflow relies on unpinned runtime code for ceaser-mcp.
+
+Mitigation: Pin ceaser-mcp to an audited exact version before release or deployment.
+
+Risk: The helper signer is broader than necessary for the expected Ceaser shield transaction.
+
+Mitigation: Narrow helpers/wallet-ops.js so it signs only the expected transaction after enforcing contract, calldata, value, and commitment checks.
+
+Risk: Mnemonics, backup strings, and local Ceaser notes are sensitive state that may appear in the agent session.
+
+Mitigation: Warn users before execution, show secrets only when required for recovery, avoid repeating them, and treat local notes as sensitive persistent data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zyra-v21/skills/ceaser-send)
+- [Ceaser Protocol Homepage](https://ceaser.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON command outputs, and transaction links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, node, and npx; handles sensitive wallet mnemonics, backup strings, transaction hashes, and local Ceaser note state.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

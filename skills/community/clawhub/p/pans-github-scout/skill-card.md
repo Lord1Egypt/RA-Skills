@@ -1,41 +1,54 @@
-## Description: <br>
-Scans GitHub for potential AI company customer leads by searching AI/ML repositories, large model projects, and training code, then filtering by stars, activity, and company signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans GitHub for potential AI company customer leads by searching AI/ML repositories, large-model projects, and training-code activity, then filtering by stars, activity, and company-size signals for CSV or JSON output.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Developers and sales or growth teams use this skill to discover GitHub repositories and organizations that may indicate AI infrastructure demand. It can search and filter repositories, enrich organization details, and export lead lists for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exported lead files can contain sensitive business or contact data. <br>
-Mitigation: Use enrichment and CSV export only for appropriate lawful purposes, restrict access to exported files, and store or delete them according to the user's data handling policy. <br>
-Risk: A broad GitHub token could expose more access than the skill needs. <br>
-Mitigation: Use the least-privileged GitHub token available, prefer tokens limited to public metadata access, and avoid passing long-lived credentials unnecessarily. <br>
+## Use Case:
 
+Developers, sales engineers, and go-to-market teams can use this skill to discover AI/ML organizations and repositories that may indicate demand for AI infrastructure or services. It helps search, filter, optionally enrich, and export GitHub-based lead lists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dashiming/pans-github-scout) <br>
-- [GitHub REST API](https://api.github.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, CSV, shell commands] <br>
-**Output Format:** [Terminal table, JSON array, or CSV export file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the GitHub API with an optional GITHUB_TOKEN; CSV exports can include repository, owner, organization, location, blog, and email fields when enrichment is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Exported lead files may contain contact, location, and organization profile data that needs privacy-aware handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CSV or JSON exports for retention, sharing, and privacy requirements before storing or distributing them.
+
+Risk: Supplying a GitHub token on the command line can expose credentials through shell history or process listings.
+
+Mitigation: Use a fine-grained, low-privilege GitHub token through GITHUB_TOKEN or a credential manager instead of the --token argument.
+
+## Reference(s):
+
+- [Pans Github Scout on ClawHub](https://clawhub.ai/dashiming/skills/pans-github-scout)
+- [GitHub REST API](https://api.github.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text, JSON arrays, or CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository metadata, organization profile fields, contact fields, and GitHub API rate-limit messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

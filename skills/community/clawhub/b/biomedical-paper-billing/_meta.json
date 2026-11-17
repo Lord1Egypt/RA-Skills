@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn79sp5ekkqedsjt0ny8vxv9fs8246yd",
+  "owner": "baronshang-blip",
   "slug": "biomedical-paper-billing",
-  "version": "1.0.0",
-  "publishedAt": 1774610555155
+  "displayName": "Biomedical Paper (Billing/Enhanced)",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1743080000000,
+    "commit": null
+  },
+  "history": []
 }

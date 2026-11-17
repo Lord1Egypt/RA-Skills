@@ -1,41 +1,55 @@
-## Description: <br>
-Automatically routes prompts to a suitable model based on question type, balancing local free models and paid API models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Router routes each message to a suitable, cost-aware AI model based on question type, choosing between local free models and paid APIs.
 
-## Publisher: <br>
-[thibautnext](https://clawhub.ai/user/thibautnext) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thibautnext](https://clawhub.ai/user/thibautnext)
 
-## Use Case: <br>
-Developers and agent users use Auto Router to classify prompts and route them to local or API-hosted models according to complexity, task type, and cost. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be routed to paid API providers, creating cost and data-sharing exposure. <br>
-Mitigation: Set billing limits and avoid routing secrets, private customer data, credentials, or regulated data until provider, consent, cost, and exclusion rules are explicitly documented. <br>
-Risk: Routing scope and the local auto-router.js dependency are not fully documented in the release evidence. <br>
-Mitigation: Review the local router implementation and model/provider configuration before enabling automatic routing. <br>
-Risk: The wrapper script uses an absolute local path, which may fail or execute the wrong local setup outside the publisher's environment. <br>
-Mitigation: Adapt the path to the deployment environment and test the wrapper with non-sensitive prompts before integration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Auto Router ClawHub page](https://clawhub.ai/thibautnext/auto-router) <br>
+## Use Case:
+
+Developers and Clawdbot users use this skill to classify prompts and route them to a local or API-backed model based on expected complexity and cost.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The bundled wrapper delegates execution to an unbundled local script at /Users/thibaut/clawd/auto-router.js.
+
+Mitigation: Audit the local router script before installation and confirm it matches the documented routing behavior.
+
+Risk: Whole prompts may be routed to external API-backed models.
+
+Mitigation: Require user or operator consent for external routing and block or redact sensitive data before prompts leave the local environment.
+
+Risk: The router may select paid API models.
+
+Mitigation: Configure provider allowlists, spending limits, and logging so paid model use is intentional and reviewable.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes prompts to local or API models; API routes can incur cost and may send prompts to external providers.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes prompts through an unbundled local Node.js router and may select paid API models.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

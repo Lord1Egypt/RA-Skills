@@ -1,43 +1,56 @@
-## Description: <br>
-Search security vulnerability scan results for MCP Servers and AI Agent Skills from the AICLUDE scan database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search security vulnerability scan results for MCP Servers and AI Agent Skills from the AICLUDE scan database.
 
-## Publisher: <br>
-[mastergear4824](https://clawhub.ai/user/mastergear4824) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[mastergear4824](https://clawhub.ai/user/mastergear4824)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to look up vulnerability reports for MCP servers and agent skills, or to register a target for server-side scanning when no report exists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Private or internal target names, target types, and scan results may be sent to and retained by AICLUDE. <br>
-Mitigation: Use the skill on private or internal targets only after confirming that AICLUDE handling and retention are acceptable for the data. <br>
-Risk: The referenced npm package is a separate installable dependency from the skill artifact. <br>
-Mitigation: Review the npm package and its dependencies separately before installing it in an agent environment. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to look up vulnerability reports for MCP servers and AI agent skills, or to register a target for server-side scanning when no prior report exists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mastergear4824/aiclude-vulns-scan) <br>
-- [AICLUDE Scan Dashboard](https://vs.aiclude.com) <br>
-- [AICLUDE Security Skill npm Package](https://www.npmjs.com/package/@aiclude/security-skill) <br>
-- [AICLUDE Security MCP npm Package](https://www.npmjs.com/package/@aiclude/security-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown vulnerability report or plain text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include risk level, vulnerability details, risk assessment, and remediation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and package-lock.json) <br>
+Risk: Queried package names and target types are sent to AICLUDE for lookup and possible server-side scanning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing that package-identifying information with AICLUDE is acceptable.
+
+Risk: The artifact security evidence notes dependency hygiene issues in dev dependencies.
+
+Mitigation: Refresh the lockfile and patch flagged dev dependencies before running tests, build tools, or development servers in shared or untrusted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mastergear4824/skills/aiclude-vulns-scan)
+- [AICLUDE scan dashboard](https://vs.aiclude.com)
+- [AICLUDE security skill npm package](https://www.npmjs.com/package/@aiclude/security-skill)
+- [AICLUDE security MCP npm package](https://www.npmjs.com/package/@aiclude/security-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown vulnerability report with risk levels, findings, assessments, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries send the package name and target type to AICLUDE; source code, files, and credentials are not sent according to the artifact documentation.]
+
+## Skill Version(s):
+
+3.0.0 (source: release evidence and package-lock.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

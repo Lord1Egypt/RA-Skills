@@ -2,7 +2,7 @@
 name: damage-control
 description: |
   Recovers broken agent state via crash recovery, context overflow, and merge conflict protocols
-version: 1.9.8
+version: 1.10.3
 triggers:
   - recovery
   - resilience
@@ -16,18 +16,7 @@ source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When To Use](#when-to-use)
-- [When NOT To Use](#when-not-to-use)
-- [Damage Triage](#damage-triage)
-- [Module Reference](#module-reference)
-- [Integration Pattern](#integration-pattern)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Damage Control
@@ -88,22 +77,22 @@ address the specific failure class.
 ## Risk Assessment Checklist
 
 Before executing Level 1+ tasks, complete the risk assessment
-checklist from `modules/risk-assessment-checklist.md`. Answer
+checklist from `modules/riREDACTED-SECRET.md`. Answer
 these five questions:
 
-1. **What could fail in production?** — List specific failure
-   scenarios
-2. **How would we detect it quickly?** — Monitoring, alerts,
-   logs
-3. **What is the fastest safe rollback?** — Step-by-step
-   procedure
-4. **What dependency could invalidate this plan?** — External
-   dependencies
-5. **What assumption is least certain?** — Weakest link in
-   the plan
+1. **What could fail in production?** List specific failure
+   scenarios.
+2. **How would we detect it quickly?** Monitoring, alerts,
+   logs.
+3. **What is the fastest safe rollback?** Step-by-step
+   procedure.
+4. **What dependency could invalidate this plan?** External
+   dependencies.
+5. **What assumption is least certain?** Weakest link in
+   the plan.
 
 Required for Level 1 (Watch) and above. See
-`modules/risk-assessment-checklist.md` for the full template and
+`modules/riREDACTED-SECRET.md` for the full template and
 examples.
 
 ## Module Reference
@@ -118,7 +107,7 @@ examples.
 - **state-reconciliation.md**: Protocol for reconciling
   divergent state across task list, git index, and on-disk
   artifacts.
-- **risk-assessment-checklist.md**: Pre-execution checklist for
+- **riREDACTED-SECRET.md**: Pre-execution checklist for
   Level 1+ tasks.
 
 ## Integration Pattern
@@ -145,12 +134,12 @@ the next work phase begins.
 
 ## Exit Criteria
 
-- Agent state is unambiguously known (no unknown partial writes)
-- Git index is clean or all conflicts are resolved
-- Task list reflects actual completion status of all tasks
-- All artifacts expected by downstream agents are present and
+- [ ] Agent state is unambiguously known (no unknown partial writes)
+- [ ] Git index is clean or all conflicts are resolved
+- [ ] Task list reflects actual completion status of all tasks
+- [ ] All artifacts expected by downstream agents are present and
   verified
-- If rollback was taken, the rollback is committed and the
+- [ ] If rollback was taken, the rollback is committed and the
   reverted scope is documented in the task list
-- If escalation to human review was required, the escalation
+- [ ] If escalation to human review was required, the escalation
   record exists before the session closes

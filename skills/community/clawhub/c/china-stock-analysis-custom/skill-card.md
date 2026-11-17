@@ -1,44 +1,61 @@
-## Description: <br>
-Analyze Chinese stock prices (A-shares, HK stocks) and provide investment recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Chinese stock prices (A-shares, HK stocks) and provide investment recommendations. Use when the user asks about stock analysis for Chinese companies, including buying/selling recommendations and market trends.
 
-## Publisher: <br>
-[c595390153-a11y](https://clawhub.ai/user/c595390153-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c595390153-a11y](https://clawhub.ai/user/c595390153-a11y)
 
-## Use Case: <br>
-External users and agents use this skill to structure public-market research for Chinese A-shares, Hong Kong stocks, and selected US-listed equities, including price context, technical trend notes, and buy/hold/sell framing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock recommendations may be inaccurate, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat outputs as informational only, verify prices and news independently, and include the artifact's investment risk disclaimer. <br>
-Risk: Users may disclose private portfolio, brokerage, or account details while requesting analysis. <br>
-Mitigation: Avoid sharing private financial or account information in prompts. <br>
+## Use Case:
 
+External users use this skill to request structured stock analysis for A-shares, Hong Kong stocks, and related Chinese companies, including price context, technical signals, and buy, hold, or sell guidance.
 
-## Reference(s): <br>
-- [Popular Chinese Stocks Reference](references/china-stocks.md) <br>
-- [Eastmoney](https://www.eastmoney.com) <br>
-- [Xueqiu](https://xueqiu.com) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
-- [Google Finance](https://www.google.com/finance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown stock analysis with tables, bullet points, recommendations, and a risk disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public web-search results when current prices, news, industry trends, or market sentiment are needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Buy, hold, or sell recommendations may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only and retain the skill's investment risk disclaimer.
+
+Risk: Market data, news, and sentiment can become outdated or incomplete.
+
+Mitigation: Verify current price, volume, and news context before relying on the analysis.
+
+Risk: The skill is China-focused but may discuss U.S. stocks, and its templates default to Chinese.
+
+Mitigation: Confirm the requested market and preferred language before using generated analysis.
+
+## Reference(s):
+
+- [Popular Chinese Stocks Reference](references/china-stocks.md)
+- [Eastmoney](https://www.eastmoney.com)
+- [Xueqiu](https://xueqiu.com)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [Google Finance](https://www.google.com/finance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown stock-analysis report with tables and recommendation bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Should include the standard investment risk disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

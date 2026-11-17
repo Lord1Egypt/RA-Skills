@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Zsh Themes concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides plain-text reference lookups labeled for Zsh Themes, while server security review notes that the content is largely generic infrastructure guidance.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as an offline quick reference for Zsh theme concepts, setup patterns, troubleshooting, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation is generic and may not fit a user's specific Zsh theme environment. <br>
-Mitigation: Review the referenced guidance before applying it to production shell configuration. <br>
-Risk: The script's internal VERSION value differs from the package release version. <br>
-Mitigation: Confirm the intended release version before publishing or relying on version output. <br>
+## Use Case:
 
+Developers and shell users can ask agents for quick reference text when working around Zsh-theme concepts. Because the server security summary says the content is materially mislabeled and generic, treat it as lightweight reference material rather than authoritative Zsh-theme implementation guidance.
 
-## Reference(s): <br>
-- [Zsh Themes on ClawHub](https://clawhub.ai/xueyetianya/zsh-themes) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline static reference content; no external API calls or credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Mislabeled or low-specificity guidance may cause agents to provide generic infrastructure advice when Zsh-theme guidance is expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs for topical relevance and verify operational recommendations against authoritative Zsh-theme documentation before applying them.
+
+Risk: The server security verdict is suspicious due to misleading labeling, even though no credential theft or harmful command behavior was reported.
+
+Mitigation: Install only when lightweight reference behavior is acceptable and avoid treating the skill as a source of trusted shell-theme configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/zsh-themes)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and command tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access are described by the artifact.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata and SKILL.md frontmatter; script reports 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

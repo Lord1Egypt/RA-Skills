@@ -1,46 +1,61 @@
-## Description: <br>
-This skill monitors Binance official announcements and @binance/@binancezh X activity, then queues Feishu notifications when new items are detected. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Binance announcements and the @binance and @binancezh X accounts, then queues Feishu notifications when new content appears.
 
-## Publisher: <br>
-[Xuhaoting](https://clawhub.ai/user/Xuhaoting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuhaoting](https://clawhub.ai/user/xuhaoting)
 
-## Use Case: <br>
-Developers and operations users can run this skill to track Binance listing, delisting, trading rule, maintenance, campaign, and official X updates and route timely alerts to Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release hardcodes a Feishu open_id in scripts and configuration examples, which can route notifications to an unintended recipient. <br>
-Mitigation: Replace the hardcoded recipient and verify the runtime code loads the intended config.json before running the monitors. <br>
-Risk: X account monitoring depends on r.jina.ai, sending monitoring requests through a third-party reader service. <br>
-Mitigation: Confirm this dependency is acceptable for the deployment environment, or disable or replace the X monitor before use. <br>
-Risk: The background monitors write local state and notification queue files. <br>
-Mitigation: Run the skill from a controlled directory with appropriate file permissions and include state files in operational cleanup or backup procedures. <br>
+## Use Case:
 
+External users, developers, and operations teams use this skill to monitor Binance exchange announcements and official X account updates, then route newly detected items into Feishu notifications for timely review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Xuhaoting/binance-announce-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/Xuhaoting) <br>
-- [Binance announcement API](https://www.binance.com/bapi/composite/v1/public/cms/article/list/query) <br>
-- [Jina AI Reader for @binance](https://r.jina.ai/twitter/binance) <br>
-- [Jina AI Reader for @binancezh](https://r.jina.ai/twitter/binancezh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces monitor setup and operation guidance; runtime scripts write local state and notification queue files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Hard-coded Feishu targetUser values may send alerts to an unintended recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace targetUser in monitor.js, x-monitor.js, config.json, and config.example.json with a recipient you control, or require the scripts to load and validate config.json before sending notifications.
+
+Risk: The documented cron pkill restart pattern can stop unrelated Node.js monitor processes.
+
+Mitigation: Use one clearly scoped lifecycle manager such as systemd, screen, or a process supervisor, and document exact stop and removal commands.
+
+Risk: Monitored Binance and X content is handled through Jina AI and Feishu-related notification workflows.
+
+Mitigation: Confirm that this routing is acceptable for the deployment environment before running the monitor.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xuhaoting/skills/binance-announce-monitor)
+- [Publisher Profile](https://clawhub.ai/user/xuhaoting)
+- [Binance Public Announcement API](https://www.binance.com/bapi/composite/v1/public/cms/article/list/query)
+- [Jina AI Reader for @binance](https://r.jina.ai/twitter/binance)
+- [Jina AI Reader for @binancezh](https://r.jina.ai/twitter/binancezh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notification text, JSON queue and state files, and shell command/configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+ and network access to Binance, Jina AI Reader, and Feishu-related notification handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

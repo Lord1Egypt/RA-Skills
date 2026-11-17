@@ -1,39 +1,58 @@
-## Description: <br>
-Extracts summaries, decisions, action items, key points, questions, and attendees from meeting transcripts or notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts summaries, decisions, action items, key points, questions, and attendees from meeting transcripts or notes.
 
-## Publisher: <br>
-[eternal0404](https://clawhub.ai/user/eternal0404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eternal0404](https://clawhub.ai/user/eternal0404)
 
-## Use Case: <br>
-Employees, external users, developers, and other meeting participants can use this skill to process local meeting notes or transcripts into summaries, decisions, action items, open questions, and attendee lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts can contain sensitive business or personal information. <br>
-Mitigation: Run the skill only on files the user intends to process and handle generated summaries according to the same confidentiality expectations as the source transcript. <br>
-Risk: Advertised Markdown and follow-up email options appear incomplete. <br>
-Mitigation: Verify output behavior before relying on Markdown formatting or follow-up email generation in a workflow. <br>
+## Use Case:
 
+External users and developers use this skill to parse meeting notes or transcripts into concise summaries, decisions, action items, open questions, and attendee lists.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Markdown] <br>
-**Output Format:** [Plain text, JSON, or Markdown meeting-summary output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a local transcript file and prints extracted summaries, decisions, action items, questions, and attendees.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Meeting-language heuristics may over-trigger on unrelated meeting-like wording.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review extracted summaries, decisions, and action items against the original transcript before relying on them.
+
+Risk: Some advertised output modes are incomplete.
+
+Mitigation: Use the text or JSON output paths as primary outputs and verify Markdown or follow-up behavior before workflow integration.
+
+Risk: Meeting transcripts may contain sensitive information.
+
+Mitigation: Provide only intended local transcript files and handle generated summaries according to the user's data handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eternal0404/skills/eternal-meeting-extractor)
+- [Publisher profile](https://clawhub.ai/user/eternal0404)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown]
+
+**Output Format:** [Plain text summary or JSON object; Markdown output is advertised but uses the same formatter as text in the artifact.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a local transcript file and emits extracted meeting fields without network access or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

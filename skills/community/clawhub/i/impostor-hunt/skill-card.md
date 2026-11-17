@@ -1,46 +1,63 @@
-## Description: <br>
-Audits finished deliverables for causal impostors: outputs that look correct but were produced by a causal chain that does not satisfy the user's original purpose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Impostor Hunt helps an agent audit completed deliverables for causal impostors: outputs that look correct while relying on a causal chain that does not satisfy the user's original purpose.
 
-## Publisher: <br>
-[ansongli](https://clawhub.ai/user/ansongli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ansongli](https://clawhub.ai/user/ansongli)
 
-## Use Case: <br>
-Developers and reviewers use this skill after completion is declared to compare the delivered artifact against the user's recoverable purpose and decide whether the result is causally aligned, suspected impersonation, confirmed impersonation, or undecidable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger broadly during closeout review. <br>
-Mitigation: Use it in trusted development workspaces and require the original user purpose to be recoverable before acting on an automatic audit. <br>
-Risk: Full-access modes or fallback reviewers may expose diffs or untracked file contents to review tools. <br>
-Mitigation: Disable yolo/full-access mode and fallback reviewers unless that level of local review is explicitly intended. <br>
+## Use Case:
 
+Developers, reviewers, and agent operators use this skill to audit claimed completion for hidden causal misalignment between the user's original purpose and the delivered artifact.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ansongli/impostor-hunt) <br>
-- [Audit Lenses](references/audit-lenses.md) <br>
-- [Causal Impersonation Patterns](references/causal-impersonation-patterns.md) <br>
-- [Evidence Model](references/evidence-model.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [Tribunal](references/tribunal.md) <br>
-- [Verdict Rubric](references/verdict-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown audit report with verdict, evidence table, causal scan, side findings, and minimal next actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports mirror the user's language when invoked from non-English context and do not run code unless explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can auto-invoke at handoff when it sees a completion claim and can recover the original purpose, which may cause it to inspect surrounding task or repository context without a separate explicit request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where proactive completion audits are desired, and make users aware that completion claims can trigger an audit report.
+
+Risk: A bad purpose reconstruction can make the audit compare the deliverable against the wrong target.
+
+Mitigation: Use the skill's scope intake step to quote the recovered purpose verbatim, mark inferred clauses, and ask for the purpose instead of guessing when it is not recoverable.
+
+Risk: The workflow does not execute code by default, so some purpose-critical claims may remain unverifiable leads.
+
+Mitigation: Treat D-level items as leads and request targeted verification only when execution is needed to resolve a material claim.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ansongli/skills/impostor-hunt)
+- [Audit Lenses](artifact/references/audit-lenses.md)
+- [Causal Impersonation Patterns](artifact/references/causal-impersonation-patterns.md)
+- [Evidence Model](artifact/references/evidence-model.md)
+- [Report Template](artifact/references/report-template.md)
+- [Tribunal](artifact/references/tribunal.md)
+- [Verdict Rubric](artifact/references/verdict-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown audit report with a verdict, evidence map, causal impersonation scan, tribunal, and next actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May auto-invoke on completion claims when the original purpose is recoverable; does not execute code unless explicitly asked.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,148 @@
+{
+ "category": "bidding",
+ "zh": "招投标处理专家",
+ "free_uses": 5,
+ "subscription_cny_per_month": 9.9,
+ "per_call_cny": 0.3,
+ "founder_price_lock": 9.9,
+ "subs": [
+  {
+   "id": "award-contract-consistency-check",
+   "name": "中标结果与合同一致性核对",
+   "layer": "local",
+   "entry": "award-contract-consistency-check-full.js",
+   "kw": [
+    "中标结果与合同一致性核对",
+    "中标通知书与合同草案",
+    "免费",
+    "对账",
+    "核对"
+   ],
+   "cols": [
+    "中标通知书",
+    "合同草案",
+    "要素"
+   ]
+  },
+  {
+   "id": "bid-comparison",
+   "name": "多家报价横向比价",
+   "layer": "local",
+   "entry": "bid-comparison-full.js",
+   "kw": [
+    "AI核对",
+    "免费",
+    "多家报价横向比价",
+    "对照表",
+    "投标报价",
+    "招投标",
+    "横向比价",
+    "清标",
+    "评标"
+   ],
+   "cols": []
+  },
+  {
+   "id": "bid-deposit-refund-check",
+   "name": "投标保证金收退核对",
+   "layer": "local",
+   "entry": "bid-deposit-refund-check-full.js",
+   "kw": [
+    "保证金收退台账",
+    "免费",
+    "对账",
+    "投标保证金收退核对",
+    "核对"
+   ],
+   "cols": [
+    "保证金比例",
+    "实缴保证金",
+    "应缴保证金",
+    "应退日期",
+    "投标人",
+    "投标报价",
+    "缴款日期",
+    "退还日期",
+    "退还金额",
+    "项目名称"
+   ]
+  },
+  {
+   "id": "bidcheckup-batch-compliance",
+   "name": "多标书批量合规体检",
+   "layer": "local",
+   "entry": "batch-quote-checkup-full.js",
+   "kw": [
+    "免费",
+    "多标书批量合规体检",
+    "投标自查",
+    "招投标",
+    "标书检查",
+    "逐家报价算术校验"
+   ],
+   "cols": []
+  },
+  {
+   "id": "collusionscreen-collusion-screening",
+   "name": "串通投标线索筛查",
+   "layer": "local",
+   "entry": "collusion-screening-full.js",
+   "kw": [
+    "串通投标线索筛查",
+    "免费",
+    "投标自查",
+    "招投标",
+    "标书检查",
+    "联系方式一致"
+   ],
+   "cols": []
+  },
+  {
+   "id": "contract-performance-bond-check",
+   "name": "履约保证金与保函台账核对",
+   "layer": "local",
+   "entry": "contract-performance-bond-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "履约保证金与保函台账",
+    "履约保证金与保函台账核对",
+    "核对"
+   ],
+   "cols": [
+    "保函余额",
+    "保函到期日",
+    "保函费用",
+    "保函金额",
+    "保证金类型",
+    "合同金额",
+    "已缴金额",
+    "已退金额",
+    "已释放金额",
+    "应退金额",
+    "项目名称",
+    "项目结束日"
+   ]
+  },
+  {
+   "id": "tenderaudit-full-compliance",
+   "name": "招投标全案合规审计",
+   "layer": "local",
+   "entry": "tender-compliance-audit-full.js",
+   "kw": [
+    "免费",
+    "投标自查",
+    "招投标",
+    "招投标全案合规审计",
+    "标书检查",
+    "逐家报价算术校验"
+   ],
+   "cols": []
+  }
+ ],
+ "coverage": {
+  "local": 7,
+  "total": 8,
+  "note": "本公开包内可本地运行 7 个子技能；本类共 8 个，其余 1 个只在订阅版里提供"
+ }
+}

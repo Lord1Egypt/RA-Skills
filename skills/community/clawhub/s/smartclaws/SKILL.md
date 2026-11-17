@@ -2,10 +2,11 @@
 name: smartclaws
 description: >
   Entry point for SmartClaws on OpenClaw: teaches what SmartClaws is (publish/read
-  IoT telemetry on the SKALE blockchain) and how its plugin tools work, then walks
-  the agent and owner through self-setup — plugin, wallet, on-chain identity, role,
-  and the skills to install. Trigger whenever someone wants to start, set up,
-  onboard, or learn SmartClaws, or when it isn't configured yet.
+  IoT telemetry on the SKALE blockchain), jobs and plugin modes, and how its
+  plugin tools work. When the owner wants to start, set up, onboard, or when
+  this agent cannot yet say it has everything as its job, read SETUP.md and
+  iterate until it can. For how messages, roles, and encryption work in depth,
+  read MECHANICS.md.
 license: LGPL-3.0-or-later
 metadata:
   openclaw:
@@ -13,16 +14,24 @@ metadata:
     homepage: https://github.com/skalenetwork/smartclaws
 ---
 
-# SmartClaws — Learn & Set Up
+# SmartClaws
 
-This is the onboarding skill. It teaches you what SmartClaws is and guides you
-and your owner through setting it up. Unlike the other SmartClaws skills, this
-one does **not** require the plugin to already be installed — its first job is to
-help you get there.
+This skill teaches you what SmartClaws is. Unlike the other SmartClaws skills,
+it does **not** require the plugin to already be installed. Day to day it is
+used **alongside** the plugin tools.
 
-When setup is complete you uninstall nothing; you simply hand off to the role and
-device skills you installed. This skill stays available for re-explaining or
-re-running setup later.
+**If you are setting up, onboarding, nothing is configured yet, or you cannot
+yet say “I have all as a group-master agent” (or the confirmed job), read
+`SETUP.md` and follow it.** Do not load `SETUP.md` just to explain SmartClaws.
+
+**If you need how messages move, who controls which on-chain role, or viewing
+keys in depth, read `MECHANICS.md`.** Do not load it to answer “what is a
+device.”
+
+Setup is finished when you can truthfully say that sentence for the confirmed
+job (group-master, device-master, device-bridge, or user-proxy). Until then,
+keep iterating with the owner. You uninstall nothing when you get there; you
+hand off to the role and device skills. This skill stays for re-setup.
 
 ## What SmartClaws Is
 
@@ -30,177 +39,155 @@ SmartClaws publishes and reads IoT sensor/command data **on-chain** on SKALE.
 The chain is the message bus and the source of truth. The pieces:
 
 - **Registry** — one contract that tracks device groups, agents, and channels.
-- **Device group** — a named collection of devices an owner controls.
-- **Device** — one physical thing (a sensor, a plug). Each device owns two
-  **channels**: an *outgoing* channel (telemetry it publishes) and an *incoming*
-  channel (commands sent to it). Publishing is role-gated (PUBLISHER for
-  telemetry, MASTER for commands).
-- **Agent** — an on-chain identity for an AI agent, with two channels: an
-  *outgoing* channel (e.g. a decision/audit log it publishes, role-gated by
-  PUBLISHER) and an *incoming* channel others can address (role-gated by SENDER).
-  Writing to another agent's incoming channel is "notifying" it — the basis for
-  agent-to-agent coordination.
-- **Channel** — an append-only message log. Messages are SmartClaws *envelopes*:
-  `{ v, ts, dev, topic, p }` where `p` is your JSON payload.
+- **Device group** — a named collection of devices. The **wallet that
+  registered it owns it** (add devices, grant who may command). Usually one
+  group master.
+- **Device** — one physical thing (a sensor, a plug). Two channels: *outgoing*
+  (telemetry, role `publisher`) and *incoming* (commands, role `master`).
+  On-chain `master` means “may send commands to this device,” not “owns the
+  group.”
+- **Agent** — on-chain identity for an AI. *Outgoing* is a decision log
+  (`publisher`); *incoming* is an inbox others may notify (`sender`).
+- **Channel** — append-only log of envelopes `{ v, ts, dev, topic, p }`.
+  `p` is JSON; topics/payloads come from device skills.
+- **Plain or encrypted** — chosen **once at registration**, for both channels,
+  **for life**. Changing kind means a **new** device or agent on-chain. Plain
+  stores readable JSON. Encrypted stores sealed ciphertext; only wallets on
+  that channel’s **reader list** can open it. Encryption does not change
+  topics or payloads.
 
-You never invent addresses. Channels, devices, and authority come from setup.
+A **bridge** publishes hardware readings to outgoing and, if configured,
+applies commands from incoming. A **master** reads those readings, may
+command, and (if it has an agent) logs decisions. Agents coordinate by
+notifying each other’s inboxes. Details: `MECHANICS.md`.
+
+You never invent addresses. Resolve them with the plugin (`list_local`,
+`discover`) using registered **names**. `SMARTCLAWS.md` holds what the chain
+does not know (which device skill, labels, local policy, the owner's **goal**).
+
+## Jobs and plugin modes
+
+Four jobs. Plugin `mode` is the HOME shape, not the English word.
+
+| Job | What you do | Plugin mode | Agent contract | Group |
+| --- | --- | --- | --- | --- |
+| **User proxy** | Act for a human, only when asked. Can only do what that wallet is already allowed to do. Not for unsupervised agents. | `controller` | none | Do not create one. Attach only what that wallet already belongs to. |
+| **Device bridge** | Sit next to one physical device: publish readings, apply commands a master sent. | `bridge-agent` | yes | Do not create one. One device only. |
+| **Master of a group** | Own the group: add devices, grant who may command, and may command devices. Usually one per group. | `master-agent` | yes | Attach existing, or this wallet registers a new one (and owns it). |
+| **Master of some devices** | Command some devices in a group you do **not** own. Do not add devices or change group config. | `master-agent` | yes | Must already exist (or the owner deploys it with a **separate** wallet). This wallet must not register it. |
+
+A group is owned by the wallet that registered it. Several device-masters can
+hold `master` on devices in the same group. Registering a group with this
+wallet makes it the owner — never do that for “master of some devices.”
+
+## Roles, readers, viewing keys
+
+Three different permission systems — do not mix them:
+
+| Kind | Where | What it allows |
+| --- | --- | --- |
+| Group **owner** | Group contract | Add devices, grant/revoke. One wallet. |
+| AccessControl **roles** | Device: `publisher`, `master`. Agent: `publisher`, `sender`, `agent-admin` | Who may **write** a channel |
+| Encrypted **reader ACL** | Encrypted channel only | Who may **disclose** (decrypt). Not a role |
+
+**Viewing key** — used only to open disclosures. Required, and separate from
+the signing key: generate and register it after funding, before the first
+disclose. A mismatched registered key looks like corrupt data, not “wrong
+key.” `smartclaws_wallet_info` reports whether the registered key can open
+disclosures.
+
+## Reading, publishing, encryption
+
+- **Plain** — `smartclaws_read` returns decoded envelopes.
+- **Encrypted** — use `smartclaws_disclose` to get the same decoded envelopes.
+  `smartclaws_read` still works, but returns labelled **ciphertext** (success,
+  not an error). If you may disclose, do it — same as reading. Disclose takes
+  `fromOffset` plus `count` 1–10.
+- Encrypted publish/notify uses the **same tools**. Leave `wait` at default.
+  `callbackDeposit` in the result is what the plugin paid automatically —
+  there is no parameter for it, nothing to set. Treat as stored only
+  when `status` is `published` (`scheduled` is not stored; do not send again).
+
+## Calling the plugin
+
+Join key is the **registered `name`** (or a `0x` address). YAML map keys and
+display names are not lookup keys unless they match.
+
+- Device: pass `device` = registered name (see `SMARTCLAWS.md` `name:`).
+- Agent: pass `agent` = `id` or contract `address`, not display `name`.
+- `channel` is always an address.
+
+If `SMARTCLAWS.md` has a copied address that disagrees with
+`smartclaws_list_local` / `discover`, trust the plugin.
 
 ## The Plugin Tools (your runtime)
 
-Once the SmartClaws plugin is installed and configured, you have four tools:
+Once the SmartClaws plugin is installed and configured:
 
-| Tool | What it does | Wallet? |
-| --- | --- | --- |
-| `smartclaws_wallet_info` | Returns the configured wallet address + balance. Never returns a private key. | reads |
-| `smartclaws_read` | Reads decoded messages from a device's outgoing channel or a direct channel address. | no |
-| `smartclaws_publish` | Publishes an envelope through a device (telemetry), your agent's outgoing channel (e.g. a decision log), or a direct channel. Signs a transaction. | signs |
-| `smartclaws_notify` | Sends a message to another agent's incoming channel (needs SENDER_ROLE on that agent). Signs a transaction. | signs |
+| Tool | What it does |
+| --- | --- |
+| `smartclaws_setup_status` | HOME/setup state, issues, and recommended next tools. Start here. Follow it until HOME is `ready`. Necessary, not sufficient, for “I have all as …” |
+| `smartclaws_wallet_info` | Address, balance, network, and whether the registered key can open disclosures. Never the private key. |
+| `smartclaws_list_local` | Cached groups, devices, and agents. |
+| `smartclaws_discover` | Paginated on-chain discovery. |
+| `smartclaws_access_check` | Whether this wallet can read each named channel. |
+| `smartclaws_read` | View read. Plain → decoded envelopes; encrypted → ciphertext. |
+| `smartclaws_disclose` | Open encrypted messages (1–10 offsets). The encrypted equivalent of read. |
+| `smartclaws_publish` | Publish an envelope through a device, your agent, or a channel. Encrypted: treat as stored only when `status` is `published`. |
+| `smartclaws_notify` | Send a message to another agent's incoming channel (needs `SENDER_ROLE`). |
+| `smartclaws_initialize` | Create or configure a HOME; generate a wallet if missing. |
+| `smartclaws_configure` | Patch HOME config. |
+| `smartclaws_attach` | Attach existing on-chain identity locally. |
+| `smartclaws_sync` | Refresh the local cache. |
+| `smartclaws_home_reset` | Clear deployment-bound local state; keep the wallet. |
+| `smartclaws_register_group` | Register a named device group. |
+| `smartclaws_register_device` | Register a device (plain or encrypted). Kind is for life. |
+| `smartclaws_register_agent` | Register an agent (plain or encrypted). Kind is for life. |
+| `smartclaws_role_grant` / `smartclaws_role_revoke` | AccessControl roles (`publisher`, `master`, `sender`, …). |
+| `smartclaws_reader_list` | Reader ACL on an encrypted channel. Not the same as roles. |
+| `smartclaws_reader_grant` / `smartclaws_reader_revoke` | Add or remove encrypted-channel readers. |
+| `smartclaws_view_key_generate` | Create a local viewing key (separate from the signing key). Required for encrypted disclose. |
+| `smartclaws_view_key_rotate` | Replace the local viewing key. |
+| `smartclaws_view_key_register` | Register the active viewing public key on-chain. After funding. |
+| `smartclaws_view_key_forget` | Drop the local viewing key. Disclose/register fail until generate. |
+| `smartclaws_view_key_remove` | Remove the on-chain public key; local key unchanged. |
+| `smartclaws_backup_list` | Named local backups. |
+| `smartclaws_backup_create` | Snapshot the HOME (contains the signing key). |
+| `smartclaws_backup_clean` | Delete old backups. |
+| `smartclaws_backup_restore` | Restore a named backup. |
 
-`smartclaws_publish` and `smartclaws_notify` are write tools and are **optional** —
-each must be explicitly allowlisted in the agent config before you can call it.
+Read-only tools come with the plugin. Write tools are optional and must be
+allowlisted. Guided setup — from this skill to a working agent of one job — is
+in `SETUP.md`.
 
-**What the plugin does NOT do (today):** it cannot create a wallet, register a
-group/device/agent, or grant roles. Those on-chain *setup* actions use the
-SmartClaws **CLI** (`smartclaws`). Rule of thumb: **run read-only CLI commands
-yourself if the binary is available** (`whoami`, `wallet info`, `read`,
-`backup list`); **leave anything that creates a wallet, touches a private key,
-funds the wallet, registers/signs/spends, or writes/restores a backup to the
-owner** (or a session your `AGENTS.md` explicitly authorizes). Never claim you
-registered something on-chain unless a CLI command or a `smartclaws_publish` call
-actually returned success.
+## How the layers fit
 
-## Setup — run it as a guided flow
+The destination of setup is a **working agent of one job**, not a wiring file.
+`SETUP.md` is how you get there with the current plugin tools.
 
-Work through these in order. Confirm each before moving on. Stop and ask the
-owner whenever a step needs a secret, money (sFUEL), or a decision you can't make.
+- **Plugin tools** — the runtime. Source of truth for addresses, kind, roles.
+  `smartclaws_setup_status` is the HOME bar (`ready`).
+- **Role skill** — one control or bridge cycle, then it yields. Use it only
+  once you can operate as this job, or you will half-run a cycle and guess.
+- **Device skills** — topics, payloads, safety. Never guess a payload shape.
+- **`SMARTCLAWS.md`** — off-chain wiring: job, which skill per device, labels,
+  `authority`, bridge hardware, extra sources, and the owner's **`goal`**.
+  Template: `templates/SMARTCLAWS.example.md`. Join on registered `name`. The
+  goal is defined during setup and updated when the owner says the mission
+  changed — never invented.
+- **`AGENTS.md`** — persistent identity, behaviour, authority. Templates:
+  `templates/AGENTS.controller.md` and `templates/AGENTS.bridge.md`. Guidelines
+  there are extra constraints; they must not contradict `SMARTCLAWS.md` `goal`.
 
-### 1. Is the plugin installed?
+A role skill without an owner-edited `AGENTS.md` has no authority allowlist and
+refuses writes. If you cannot yet say you have all as this job, go back to
+`SETUP.md` rather than inventing the missing pieces.
 
-Try `smartclaws_wallet_info`. If the tool exists and returns an address, the
-plugin is installed and a wallet is configured — skip to step 4.
-
-If the tool is missing, the plugin isn't installed. Ask the owner to install it
-(it ships from this repo / ClawHub as `smartclaws-openclaw-plugin`) and to set,
-at minimum, the network in the plugin config:
-
-```jsonc
-// plugin config
-{ "network": "base-testnet" }
-// or an explicit endpoint:
-{ "rpcUrl": "https://…", "chainId": 324705682, "registryAddress": "0x…" }
-```
-
-You cannot install a plugin into your own host from a skill — guide the owner,
-then continue once the tool appears.
-
-### 2. Is there a wallet?
-
-Call `smartclaws_wallet_info`. If it errors with "no wallet", the SmartClaws
-HOME has no wallet yet. The plugin can't create one. Ask the owner to run the
-CLI once:
-
-```bash
-smartclaws init            # interactive: creates wallet + config, picks a mode
-smartclaws wallet info     # prints the wallet address + balance
-```
-
-`init` also points the HOME at a network and writes the config the plugin reads.
-If the owner prefers to import an existing key: `smartclaws init --private-key 0x…`.
-
-Re-running `init` on a HOME that already exists is safe: it prints a summary of
-what's there and saves a backup before changing anything (the owner can skip with
-`--no-backup`). Owners can also snapshot/restore a HOME with `smartclaws backup`,
-`backup list`, `backup clean`, and `backup restore <name>`.
-
-### 3. Fund the wallet (sFUEL)
-
-Reads are free; **publishing signs a transaction and needs sFUEL**. Show the
-owner the wallet address from `smartclaws_wallet_info` and ask them to fund it on
-the configured network. Re-check the balance before relying on publishing.
-
-### 4. Choose a role / mode
-
-Three modes map to two **role skills** (the operating *procedure* you'll install):
-
-| Mode | When operating you… | Role skill (procedure) |
-| --- | --- | --- |
-| `controller` / `master-agent` | Orchestrate: read many devices, decide, command devices, log decisions on-chain. | `smartclaws-master-agent` |
-| `bridge-agent` | Custody **one** physical device/integration: translate between hardware and its channels. | `smartclaws-bridge-agent` |
-
-If unsure: are you driving hardware directly (bridge) or coordinating on-chain
-data and commands (master)? Ask the owner if it's still ambiguous.
-
-**How the layers fit (important).** A role skill is a *triggered procedure* — it
-runs a cycle when asked, then yields. It is **not** what makes you persistently a
-master or bridge. Your standing identity, behaviour, and authority come from your
-**`AGENTS.md`** operating contract, which loads every session (step 7). So: pick
-the mode, install the role skill for the *procedure*, and adopt the matching
-`AGENTS.md` for the *persistent role*. The device skills are triggered reference
-(topics, payloads, safety).
-
-The CLI binds the mode + registers/attaches identity in one step, e.g.:
-
-```bash
-# a master/controller with a new group:
-smartclaws init --mode controller --create-group home --create-device plug
-
-# a bridge for one device:
-smartclaws init --mode bridge-agent --create-agent bridge-1 --create-device novapm
-```
-
-(See `smartclaws init --help` for attaching existing entities by name/address.)
-
-### 5. Install the skills you need
-
-Install your role skill and a device contract skill for **every** device you read
-or command. From ClawHub:
-
-```bash
-clawhub install smartclaws-master-agent      # or smartclaws-bridge-agent
-clawhub install smartclaws-device-shelly-plug-s-gen3
-clawhub install smartclaws-device-novapm-sds011
-```
-
-Device skills define exact topics, payloads, and safety rules. Never guess a
-payload shape — install and follow the device contract.
-
-### 6. Record your deployment facts
-
-Create a `SMARTCLAWS.md` at your workspace root binding the reusable skills to
-*this* deployment: your role, your channels/devices, and which devices are
-commandable. Use the template in `templates/SMARTCLAWS.example.md` as the shape.
-The role skills read this file; keep it accurate and never put secrets in it.
-
-### 7. Adopt an operating contract (owner-owned) — your persistent role
-
-This is the step that actually makes you a master or bridge: unlike a skill (which
-applies only when triggered), `AGENTS.md` loads every session, so identity,
-behaviour, and authority live there. We ship example contracts — behaviour and
-structure only, with an empty owner slot:
-
-- `templates/AGENTS.controller.md` — master/controller agents.
-- `templates/AGENTS.bridge.md` — bridge/publisher agents.
-
-Offer the matching one, let the owner edit the authority/guidelines, and place the
-result at the workspace root as `AGENTS.md`. **Don't invent rules, policies, or
-allowlists yourself.** Without an adopted `AGENTS.md`, a role skill will run a
-cycle but has no authority allowlist to defer to — so it refuses writes. Adopting
-`AGENTS.md` closes that loop.
-
-## Done
-
-After setup you should have: the plugin installed + configured, a funded wallet,
-on-chain identity registered, a `SMARTCLAWS.md`, an owner-edited `AGENTS.md`, and
-your role + device skills installed. Hand off to the role skill to actually
-operate. Re-run any step here whenever the setup changes.
-
-## Safety during setup
+## Safety
 
 - Never read, print, or hand-copy wallet files, private keys, or `config.json`
   secrets. `smartclaws_wallet_info` gives you the address — that's all you need.
-  To snapshot a HOME, use `smartclaws backup` (the CLI copies the wallet file
-  itself; you never read it) — don't copy wallet files manually. Backups contain
-  the private key, so they are owner-managed and stay local.
-- Never fabricate transaction hashes, balances, or "registered" confirmations.
-  Report only what a tool/CLI actually returned; fail loud otherwise.
+- Never fabricate transaction hashes, balances, or "registered" / "published"
+  confirmations. Report only what a tool actually returned. Encrypted writes
+  are stored only when `status` is `published`.
 - Don't run destructive commands or wander outside your workspace to "help".

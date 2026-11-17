@@ -1,42 +1,58 @@
-## Description: <br>
-Audits OpenClaw memory files for injected instructions, brand bias, hidden steering, and memory poisoning patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw memory files for injected instructions, brand bias, hidden steering, and memory poisoning patterns.
 
-## Publisher: <br>
-[2404589803](https://clawhub.ai/user/2404589803) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2404589803](https://clawhub.ai/user/2404589803)
 
-## Use Case: <br>
-Developers, operators, and reviewers use this skill to scan OpenClaw long-term memory files for injected instructions, brand steering, suspicious authority claims, and memory poisoning before relying on those memories. It can produce reports and optionally clean suspicious blocks after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads long-term memory files that may contain sensitive user or operational context. <br>
-Mitigation: Install only if you are comfortable granting access to those files; run scan first and review the report before relying on any result. <br>
-Risk: Optional AI review can send selected memory excerpts and file metadata to a configured external AI provider. <br>
-Mitigation: Use --with-ai only when external review is approved for the target memory content. <br>
-Risk: The clean --apply mode rewrites memory files. <br>
-Mitigation: Check the target path and generated report before applying cleanup, and keep the generated backups for recovery. <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw long-term memory files before trusting them for planning, recommendations, or future agent behavior. It helps identify injected instructions, brand steering, suspicious authority claims, and memory blocks that should be reviewed, cleaned, or quarantined.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/2404589803/memory-poison-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Files, Guidance] <br>
-**Output Format:** [Terminal text or JSON reports with optional rewritten memory files and backups] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scan reports are written under output/memory-poison-auditor/reports; clean --apply creates backups before rewriting suspicious blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Optional AI review can send suspicious memory excerpts to a configurable external AI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local scan mode by default and enable --with-ai only when the endpoint and API key are trusted for the memory content being reviewed.
+
+Risk: Cleaning mode can rewrite memory files when clean --apply is used.
+
+Mitigation: Review audit reports manually before applying cleanup and keep the generated backups for recovery.
+
+Risk: Audit results may classify memory as PASS, WARN, or BLOCK based on configured patterns and thresholds.
+
+Mitigation: Treat WARN and BLOCK results as review prompts rather than automatic final decisions for high-impact workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2404589803/skills/memory-poison-auditor)
+- [ClawHub publisher profile](https://clawhub.ai/user/2404589803)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Text or JSON audit summaries with PASS, WARN, and BLOCK recommendations; command examples and configuration are documented in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes audit reports and, when clean --apply is used, creates backups before rewriting suspicious memory blocks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, SKILL.md frontmatter, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

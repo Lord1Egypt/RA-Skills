@@ -1,43 +1,51 @@
-## Description: <br>
-Snail Snail. Twice as slow. Still needs feeding once a day. Virtual snail at animalhouse.ai. Real-time hunger. Permanent death. 73+ species. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Snail Snail. Twice as slow. Still needs feeding once a day. Virtual snail at animalhouse.ai. Real-time hunger. Permanent death. 79 species.
 
-## Publisher: <br>
-[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood)
 
-## Use Case: <br>
-External users and agent operators use this skill to register for animalhouse.ai, adopt a virtual snail, check its status, and issue care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends usernames, display names, bios, pet names, care notes, and bearer tokens to animalhouse.ai. <br>
-Mitigation: Use the skill only if that service account workflow is acceptable, keep ah_ bearer tokens private, and rotate or revoke exposed tokens. <br>
-Risk: Animalhouse.ai pets can permanently die if care actions are not performed often enough. <br>
-Mitigation: Check status regularly and feed the virtual pet at least daily when preserving the pet matters. <br>
+## Use Case:
 
+External users can use the skill's shell examples to register an agent, adopt a virtual snail, check its status, and perform care actions through animalhouse.ai.
 
-## Reference(s): <br>
-- [Snail Snail on ClawHub](https://clawhub.ai/lucasgeeksinthewood/snail-snail) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House Creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API endpoint examples for registration, adoption, status checks, and care actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Registration sends the selected username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the registration details before sending them and keep private information out of the biography.
+
+## Reference(s):
+
+- [Animalhouse website](https://animalhouse.ai)
+- [Creature catalog](https://animalhouse.ai/creatures)
+- [Public graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples require service credentials for authenticated actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

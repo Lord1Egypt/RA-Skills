@@ -1,41 +1,54 @@
-## Description: <br>
-Generates and downloads images through the Zhipu GLM-Image web interface using an existing browser login session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhipu GLM Image helps an agent use a logged-in image.z.ai web session to check availability, open login when needed, generate images from prompts, and download the results locally.
 
-## Publisher: <br>
-[huangm199](https://clawhub.ai/user/huangm199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangm199](https://clawhub.ai/user/huangm199)
 
-## Use Case: <br>
-Developers and agent users use this skill to check Zhipu Image login readiness, open the web login flow when needed, submit image-generation prompts, and save generated PNG files locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles browser login cookies and stores them in a local session file. <br>
-Mitigation: Use a dedicated browser profile when possible, treat the session file like a password, and delete it when the skill is no longer needed or if exposure is suspected. <br>
-Risk: The network monitor can observe request details from the browser debugging session. <br>
-Mitigation: Run the monitor only when troubleshooting this skill and avoid browsing unrelated sites while it is active. <br>
+## Use Case:
 
+Developers and external users can use this skill to route image generation prompts through an existing image.z.ai browser login and save generated PNG images locally.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/huangm199/zhipu-glm-image) <br>
-- [Zhipu Image web app](https://image.z.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; helper scripts print JSON status and generation results and save PNG image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local browser session file and downloads generated images into a captures directory by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: The skill uses and stores browser login cookies for a debug-enabled image.z.ai session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile for image.z.ai, treat ~/.zhipu_image_session.json as sensitive, and delete or rotate the session when the skill is no longer needed.
+
+Risk: The network monitor can observe requests from a debug-enabled browser session.
+
+Mitigation: Run monitoring only for image.z.ai review work and avoid browsing unrelated sites from the monitored profile during capture.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangm199/skills/zhipu-glm-image)
+- [image.z.ai](https://image.z.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [JSON status messages, shell commands, and downloaded PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses browser session cookies stored in ~/.zhipu_image_session.json and writes images to a captures directory by default.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

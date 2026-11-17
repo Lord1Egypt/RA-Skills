@@ -1,51 +1,54 @@
 ---
 name: fec-refactor-clean
-description: Use when safely removing dead frontend code, unused exports, stale components, obsolete routes, unused dependencies, or cleanup targets found by tools such as knip, depcheck, ts-prune, TypeScript, ESLint, or manual review. Do not use for feature rewrites that change behavior; Chinese triggers include 死代码, 清理未使用, refactor clean, 依赖清理, 删除无用代码.
+description: Use when safely removing dead frontend code, unused exports, stale components, obsolete routes, unused dependencies, or cleanup targets found by tools such as knip, depcheck, ts-prune, TypeScript, ESLint, or manual review. Do not use for feature rewrites that change behavior; Chinese triggers include dead code, clean up unused, refactor clean, dependency cleanup, delete useless code.
 ---
 
-# 重构清理
+# Refactoring and cleaning
 
 ## Purpose
 
-在验证保护下识别并清理无用前端代码，减少技术债，同时避免误删动态引用、路由入口、配置文件和运行时约定。
+Identify and clean up unused front-end code under validation protection, reducing technical debt while avoiding accidentally deleting dynamic references, routing entries, configuration files, and runtime conventions.
 
 ## Procedure
 
-1. 先建立基线：运行或确认当前 lint、type-check、test、build 的状态。
-2. 收集候选项：
-   - 优先使用仓库已有工具，如 knip、depcheck、ts-prune、eslint、TypeScript。
-   - 没有工具时，用 `rg` 检查引用、导出、路由、注册点和文档入口。
-3. 按风险分类：
-   - SAFE：测试夹具、未引用工具函数、明确未导出的私有组件。
-   - CAUTION：共享组件、feature 入口、样式文件、Storybook stories。
-   - DANGER：路由、配置、package scripts、运行时模板、动态 import、插件元数据。
-   - UPGRADE：过期依赖、重复依赖、未使用依赖和安全告警先进入依赖升级或依赖清理评估，不与死代码删除混做。
-4. 只自动处理 SAFE 项；CAUTION 和 DANGER 需输出建议和证据，不直接删除。
-5. 每批清理后运行受影响验证命令。
-6. 若验证失败，停止扩大清理范围，先定位该批次。
-7. 清理结束后做行为等价复核：公开 API、路由、命令、模板、metadata、文档示例和报告输出仍可被引用。
-8. 对技术债排序：优先清理有验证保护、影响开发效率或阻塞升级的项目；低证据的大范围重写只输出建议。
+1. Establish a baseline first: run or confirm the current status of lint, type-check, test, and build.
+2. Collect candidates:
+   - Prioritize the use of existing tools in the warehouse, such as knip, depcheck, ts-prune, eslint, and TypeScript.
+   - When tools are not available, use `rg` to check references, exports, routes, registration points and document entries.
+3. Classification by risk:
+   - SAFE: test fixtures, unreferenced tool functions, explicitly unexported private components.
+   - CAUTION: Shared components, feature entries, style files, Storybook stories.
+   - DANGER: routing, configuration, package scripts, runtime templates, dynamic import, plug-in metadata.
+   - UPGRADE: Expired dependencies, duplicate dependencies, unused dependencies and security alarms will be evaluated first for dependency upgrade or dependency cleanup, and will not be mixed with dead code deletion.
+4. Only SAFE items are automatically processed; CAUTION and DANGER need to output suggestions and evidence and are not deleted directly.
+5. Run the affected verification command after each batch cleanup.
+6. If the verification fails, stop expanding the cleaning scope and locate the batch first.
+7. Conduct behavioral equivalence review after cleaning: public APIs, routes, commands, templates, metadata, documentation examples, and report outputs can still be referenced.
+8. Sort technical debt: Prioritize projects that have verification protection, affect development efficiency, or block upgrades; only output suggestions for large-scale rewrites with low evidence.
 
 ## Frontend-Specific Checks
 
-- 检查 JSX/模板字符串、路由配置、barrel export、Storybook、测试、文档示例和动态组件注册。
-- 样式文件需检查 className、CSS Modules、Tailwind safelist、全局选择器和主题变量。
-- 依赖清理需检查构建插件、运行时模板、CLI scripts、monorepo 子包和 peer dependency。
+- Check JSX/template strings, route configuration, barrel export, Storybook, tests, documentation examples and dynamic component registration.
+- Style files need to check className, CSS Modules, Tailwind safelist, global selectors and theme variables.
+- Dependency cleanup checks build plugins, runtime templates, CLI scripts, monorepo subpackages, and peer dependencies.
 
 ## Constraints
 
-- 不改变用户可见行为。
-- 不删除无法证明无引用的公开 API、路由、模板或配置。
-- 不用“一次大删除”替代可验证的小批次清理。
-- 不把格式化、重命名或架构重写混入死代码清理。
-- 不用“看起来没人用”作为证据；必须有搜索、工具输出、类型错误消失或测试保护。
-- 不把依赖大版本升级伪装成清理；升级风险、release notes 和 lockfile 变更应分流到依赖升级工作流。
+- Does not change user-visible behavior.
+- Do not remove public APIs, routes, templates, or configurations that cannot be proven referenceless.
+- No "one big delete" replacement for verifiable small batch cleanups.
+- Don't mix formatting, renaming or schema rewriting into dead code cleanup.
+- No evidence that "no one seems to be using it" is needed; there must be search, tool output, type error disappearance, or test protection.
+- Don’t disguise major dependency version upgrades as cleanup; upgrade risks, release notes, and lockfile changes should be offloaded to the dependency upgrade workflow.
 
-## 详细参考
+## Detailed reference
 
-撰写清理报告时，加载 [references/report-template.md](references/report-template.md)。
+When writing a cleanup report, load [references/report-template.md](references/report-template.md).
 
 ## Expected Output
 
-- 清理报告保存为 `reports/refactor-clean-YYYY-MM-DD-HHmmss.md`。
-- 代码清理后相关验证命令通过，或明确说明阻塞原因。
+- Clean reports are saved as `reports/refactor-clean-YYYY-MM-DD-HHmmss.md`.
+- After the code is cleaned, the relevant verification commands pass, or the cause of the blocking is clearly stated.
+## Structural Refactoring Boundary
+
+This workflow owns proven dead/unused code. When code is live but structurally difficult—long functions, ownership problems, mutable/derived data, conditionals, API shape, or hierarchy design—route it to structural refactoring instead of deleting or rewriting it under cleanup.

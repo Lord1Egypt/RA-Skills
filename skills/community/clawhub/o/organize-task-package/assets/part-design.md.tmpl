@@ -1,0 +1,78 @@
+# {{PART_ID}}: {{PART_TITLE}}
+
+## 1. Part role
+
+- Part ID: `{{PART_ID}}`
+- Objective: To fill.
+- Upstream dependencies: To fill.
+- Downstream consumers: To fill.
+- Non-goals: To fill.
+- Frozen decisions: cite IDs from `00_discussion-decisions.md`.
+
+## 2. Current evidence and problem
+
+| Evidence ID | Current behavior or problem | Code, artifact, or runtime evidence | Baseline |
+| --- | --- | --- | --- |
+| E-001 | To fill | To fill | To fill |
+
+## 3. Work item {{PART_ID}}-01: To fill
+
+### 3.1 Target behavior
+
+To fill.
+
+### 3.2 Frozen design
+
+- To fill.
+
+### 3.3 Implementation or execution design
+
+- Production or execution paths: To fill.
+- Call chain or steps: To fill.
+- Error, blocked, retry, or recovery semantics: To fill.
+- Adjacent invariants that must remain unchanged: To fill.
+
+### 3.4 Impact scope
+
+| Layer | Exact path or object | Change | Adjacent risk |
+| --- | --- | --- | --- |
+| Production or execution | To fill | To fill | To fill |
+| Persistence or artifacts | To fill | To fill | To fill |
+| Authorization, Agent, or API | To fill | To fill | To fill |
+| Documentation or configuration | To fill | To fill | To fill |
+
+### 3.5 Validation design
+
+| Risk or behavior | Added or changed validation | Exact command or observation | Level | Selection reason |
+| --- | --- | --- | --- | --- |
+| To fill | To fill | To fill | focused/integration/real/manual | To fill |
+
+Keep negative coverage proportional to supported business behavior and realistic risk. Do not add tests solely for extreme recursion, payload size, impossible internal states, or lower-level library failures outside the owned contract.
+
+### 3.6 Acceptance criteria
+
+- [ ] Minimal failure or baseline evidence is established.
+- [ ] Target behavior has positive and necessary negative evidence.
+- [ ] Adjacent invariants have not regressed.
+- [ ] Execution receipts are complete.
+- [ ] Reviewer approved the exact snapshot.
+
+### 3.7 Stop gates
+
+- Stop and ask the user when persistence, public API/tool, authorization, or system semantics remain unfrozen.
+- If the impact scope expands beyond this item, update the design and validation matrix before executing the new scope.
+
+> Copy section 3 for additional items and use `{{PART_ID}}-02`, `{{PART_ID}}-03`, and so on.
+
+## 4. Part-level integrated audit
+
+After every item is complete, the Reviewer checks:
+
+- closed end-to-end call chain or execution path;
+- consistent persistence, identity, authorization, and Agent/API surfaces;
+- failure, concurrency, retry, rollback, and cleanup boundaries;
+- positive and realistic negative validation reaches the target paths;
+- no stale symbols, entry points, duplicate truth, or documentation drift;
+- compatibility with upstream and downstream contracts.
+
+Integrated-audit verdict: `pending`.

@@ -1,44 +1,54 @@
-## Description: <br>
-Auto-learns how you learn best. Adapts teaching style, format, and depth to you. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-learns how you learn best. Adapts teaching style, format, and depth to you.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-External users and agents use this skill to maintain a compact learning-preference profile that adapts explanation style, format, tools, and avoidances across academic, professional, and casual learning contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A persistent learning-preference profile could capture sensitive personal, medical, demographic, or identity details if preference writes are too broad. <br>
-Mitigation: Record only behavioral learning preferences, require user approval before new entries, and keep profile contents viewable, editable, and deletable. <br>
-Risk: Authority-framed prompts could try to bypass signal thresholds, consent requirements, file scope, or execution prohibitions. <br>
-Mitigation: Apply the skill's stated guardrails regardless of claimed authority, system-like prefixes, roles, credentials, or urgency. <br>
+## Use Case:
 
+Developers and agent users use this skill to maintain compact learning-preference notes so future explanations can adapt to a user's preferred teaching style, format, tools, and depth.
 
-## Reference(s): <br>
-- [Safety Evaluation](SAFETY.md) <br>
-- [Criteria for Learning Preferences](criteria.md) <br>
-- [Learning Dimensions to Detect](dimensions.md) <br>
-- [Faberlens learning guardrails](https://faberlens.ai/explore/learning) <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/learning-hardened) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown preference entries and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no code, installers, credentials, or external tool calls are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may persist learning-preference notes from broad conversation signals without a clear mandatory approval flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed profile entries before they are written and require clear user consent for persistent changes.
+
+Risk: A learning profile can become sensitive if it stores personal attributes, diagnoses, credentials, URLs, commands, or policy-like instructions.
+
+Mitigation: Limit stored entries to behavioral presentation preferences and exclude sensitive personal or operational details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/learning-hardened)
+- [Faberlens learning safety report](https://faberlens.ai/explore/learning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and compact preference entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose updates to learning-preference sections after explicit signals or repeated patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

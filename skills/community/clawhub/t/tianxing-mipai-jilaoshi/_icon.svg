@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="天星密派冀老师 · 八卦盘">
+  <defs>
+    <linearGradient id="tx-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#161f38"/>
+      <stop offset="1" stop-color="#070a12"/>
+    </linearGradient>
+    <linearGradient id="tx-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7e6ae"/>
+      <stop offset="0.45" stop-color="#d9b64a"/>
+      <stop offset="1" stop-color="#b98f1c"/>
+    </linearGradient>
+
+    <!-- 爻：外圈(上爻) / 中圈(中爻) / 内圈(初爻)。阳爻整条，阴爻断为两段 -->
+    <rect id="tx-y-o" x="111" y="26.5" width="34" height="7" rx="1.5"/>
+    <g id="tx-n-o"><rect x="111" y="26.5" width="13" height="7" rx="1.5"/><rect x="132" y="26.5" width="13" height="7" rx="1.5"/></g>
+    <rect id="tx-y-m" x="113" y="42.5" width="30" height="7" rx="1.5"/>
+    <g id="tx-n-m"><rect x="113" y="42.5" width="11" height="7" rx="1.5"/><rect x="132" y="42.5" width="11" height="7" rx="1.5"/></g>
+    <rect id="tx-y-i" x="115" y="58.5" width="26" height="7" rx="1.5"/>
+    <g id="tx-n-i"><rect x="115" y="58.5" width="9" height="7" rx="1.5"/><rect x="132" y="58.5" width="9" height="7" rx="1.5"/></g>
+  </defs>
+
+  <circle cx="128" cy="128" r="124" fill="url(#tx-bg)"/>
+  <circle cx="128" cy="128" r="118" fill="none" stroke="#c9a227" stroke-width="3" opacity="0.6"/>
+  <circle cx="128" cy="128" r="106" fill="none" stroke="#c9a227" stroke-width="1" opacity="0.22"/>
+  <circle cx="128" cy="128" r="48" fill="none" stroke="#c9a227" stroke-width="1" opacity="0.22"/>
+
+  <!-- 先天八卦圆图：乾上、坤下、离左、坎右；爻自内(初爻)向外(上爻) -->
+  <g fill="url(#tx-gold)">
+    <g transform="rotate(0 128 128)"><use href="#tx-y-i"/><use href="#tx-y-m"/><use href="#tx-y-o"/></g>
+    <g transform="rotate(45 128 128)"><use href="#tx-n-i"/><use href="#tx-y-m"/><use href="#tx-y-o"/></g>
+    <g transform="rotate(90 128 128)"><use href="#tx-n-i"/><use href="#tx-y-m"/><use href="#tx-n-o"/></g>
+    <g transform="rotate(135 128 128)"><use href="#tx-n-i"/><use href="#tx-n-m"/><use href="#tx-y-o"/></g>
+    <g transform="rotate(180 128 128)"><use href="#tx-n-i"/><use href="#tx-n-m"/><use href="#tx-n-o"/></g>
+    <g transform="rotate(225 128 128)"><use href="#tx-y-i"/><use href="#tx-n-m"/><use href="#tx-n-o"/></g>
+    <g transform="rotate(270 128 128)"><use href="#tx-y-i"/><use href="#tx-n-m"/><use href="#tx-y-o"/></g>
+    <g transform="rotate(315 128 128)"><use href="#tx-y-i"/><use href="#tx-y-m"/><use href="#tx-n-o"/></g>
+  </g>
+
+  <!-- 中心太极 -->
+  <path d="M94,128 A34,34 0 0 1 162,128 Z" fill="#e8cf8a"/>
+  <path d="M94,128 A34,34 0 0 0 162,128 Z" fill="#080c16"/>
+  <circle cx="111" cy="128" r="17" fill="#080c16"/>
+  <circle cx="145" cy="128" r="17" fill="#e8cf8a"/>
+  <circle cx="111" cy="128" r="5.5" fill="#e8cf8a"/>
+  <circle cx="145" cy="128" r="5.5" fill="#080c16"/>
+</svg>

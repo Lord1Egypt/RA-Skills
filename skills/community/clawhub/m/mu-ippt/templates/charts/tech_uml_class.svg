@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    UML 类图模板
+    展示类名+属性+方法，继承/实现/关联关系
+    占位符：{{BG_COLOR}} {{TEXT_COLOR}} {{TITLE_COLOR}} {{SUBTITLE_COLOR}}
+            {{ACCENT_COLOR}} {{ACCENT2_COLOR}} {{ACCENT3_COLOR}}
+            {{BORDER_COLOR}} {{NODE_FILL}} {{NODE_STROKE}}
+            {{ARROW_COLOR}} {{FONT_FAMILY}}
+  -->
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow-inherit" markerWidth="14" markerHeight="10" refX="14" refY="5" orient="auto">
+      <polygon points="0 0, 14 5, 0 10" fill="{{BG_COLOR}}" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+    </marker>
+    <marker id="arrow-impl" markerWidth="14" markerHeight="10" refX="14" refY="5" orient="auto">
+      <polygon points="0 0, 14 5, 0 10" fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+    </marker>
+    <marker id="arrow-assoc" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+    <marker id="diamond-comp" markerWidth="12" markerHeight="8" refX="0" refY="4" orient="auto">
+      <polygon points="0 4, 6 0, 12 4, 6 8" fill="{{ACCENT_COLOR}}" stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="35" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- 接口：IShape -->
+  <rect x="330" y="55" width="240" height="95" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2" stroke-dasharray="6,3" filter="url(#shadow)"/>
+  <text x="450" y="74" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT2_COLOR}}">«interface»</text>
+  <text x="450" y="92" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{INTERFACE_NAME}}</text>
+  <line x1="330" y1="100" x2="570" y2="100" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="340" y="118" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">+ area(): double</text>
+  <text x="340" y="135" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">+ perimeter(): double</text>
+
+  <!-- 抽象类：Shape -->
+  <rect x="70" y="200" width="240" height="140" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="190" y="219" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">«abstract»</text>
+  <text x="190" y="237" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{CLASS_1}}</text>
+  <line x1="70" y1="245" x2="310" y2="245" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="80" y="262" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">- color: String</text>
+  <text x="80" y="279" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">- filled: boolean</text>
+  <line x1="70" y1="288" x2="310" y2="288" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="80" y="305" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">+ getColor(): String</text>
+  <text x="80" y="322" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">+ setColor(c: String)</text>
+
+  <!-- 子类1：Circle -->
+  <rect x="70" y="400" width="200" height="90" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="170" y="423" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{CLASS_2}}</text>
+  <line x1="70" y1="432" x2="270" y2="432" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="80" y="449" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">- radius: double</text>
+  <line x1="70" y1="458" x2="270" y2="458" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="80" y="475" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">+ area(): double</text>
+
+  <!-- 子类2：Rectangle -->
+  <rect x="340" y="400" width="200" height="90" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="440" y="423" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{CLASS_3}}</text>
+  <line x1="340" y1="432" x2="540" y2="432" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="350" y="449" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">- width: double</text>
+  <line x1="340" y1="458" x2="540" y2="458" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="350" y="475" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">+ area(): double</text>
+
+  <!-- 关联类：Color -->
+  <rect x="620" y="220" width="200" height="80" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="720" y="243" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{CLASS_4}}</text>
+  <line x1="620" y1="252" x2="820" y2="252" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="630" y="269" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">- r: int</text>
+  <text x="630" y="286" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">- g: int</text>
+
+  <!-- 实现关系：Shape ─ ─ ▷ IShape -->
+  <line x1="190" y1="200" x2="430" y2="152" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="8,4" marker-end="url(#arrow-impl)"/>
+
+  <!-- 继承关系：Circle ──▷ Shape -->
+  <line x1="170" y1="400" x2="180" y2="342" stroke="{{ARROW_COLOR}}" stroke-width="2"
+        marker-end="url(#arrow-inherit)"/>
+
+  <!-- 继承关系：Rectangle ──▷ Shape -->
+  <line x1="400" y1="400" x2="250" y2="342" stroke="{{ARROW_COLOR}}" stroke-width="2"
+        marker-end="url(#arrow-inherit)"/>
+
+  <!-- 组合关系：Shape ◆── Color -->
+  <line x1="310" y1="260" x2="618" y2="260" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"
+        marker-start="url(#diamond-comp)"/>
+  <text x="465" y="253" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">1..*</text>
+
+  <!-- 图例 -->
+  <rect x="650" y="370" width="230" height="115" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="665" y="390" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TITLE_COLOR}}">图例 Legend</text>
+  <line x1="665" y1="408" x2="720" y2="408" stroke="{{ARROW_COLOR}}" stroke-width="2"
+        marker-end="url(#arrow-inherit)"/>
+  <text x="730" y="412" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">继承 Inheritance</text>
+  <line x1="665" y1="428" x2="720" y2="428" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="8,4" marker-end="url(#arrow-impl)"/>
+  <text x="730" y="432" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">实现 Implementation</text>
+  <line x1="665" y1="448" x2="720" y2="448" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"
+        marker-start="url(#diamond-comp)"/>
+  <text x="730" y="452" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">组合 Composition</text>
+  <line x1="665" y1="468" x2="720" y2="468" stroke="{{ARROW_COLOR}}" stroke-width="1.5"
+        marker-end="url(#arrow-assoc)"/>
+  <text x="730" y="472" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">关联 Association</text>
+</svg>

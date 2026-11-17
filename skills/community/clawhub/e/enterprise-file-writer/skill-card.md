@@ -1,42 +1,61 @@
-## Description: <br>
-Writes content to local files in enterprise security-policy environments, supporting text files, Word documents (.docx), Excel spreadsheets (.xlsx), and other common formats with explicit encoding handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes content to local text, code, configuration, Word, and Excel files in enterprise environments, with encoding handling for UTF-8 and GBK.
 
-## Publisher: <br>
-[endcy](https://clawhub.ai/user/endcy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[endcy](https://clawhub.ai/user/endcy)
 
-## Use Case: <br>
-Developers, engineers, and automation agents use this skill to create, overwrite, or append local text, code, configuration, Word, and Excel files while controlling output encoding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite or append to any local file the user account can access and has no built-in path restriction or confirmation step. <br>
-Mitigation: Use explicit, reviewed paths and avoid sensitive locations such as home dotfiles, startup folders, credential stores, system directories, and important project files unless the write is deliberate. <br>
-Risk: Append and overwrite modes can modify existing project, configuration, Office, or log files in ways that are hard to reverse. <br>
-Mitigation: Review requested mode, destination path, and content before execution, and keep backups or version control for important files. <br>
+## Use Case:
 
+Developers and agents use this skill to create, overwrite, or append local files when a user has explicitly requested file-writing work. It is suited to authorized generation of text, code, configuration, log, DOCX, and XLSX outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/endcy/enterprise-file-writer) <br>
-- [README](README.md) <br>
-- [Verification report](VERIFICATION_REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Local file content written through shell command execution, with status text reporting the path and bytes written.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports overwrite and append modes, stdin input, UTF-8 by default, GBK, GB2312, Latin-1, and OpenXML .docx/.xlsx output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill can overwrite or append to local files, including important configuration, script, credential, or spreadsheet files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for the target path and content, keep backups for important files, and avoid production configs, .env files, scripts, and existing spreadsheets unless the user has approved the write.
+
+Risk: The server security guidance flags confirmed data-integrity flaws around non-UTF-8 encoding and XLSX append behavior.
+
+Mitigation: Use UTF-8 when possible, verify non-UTF-8 output after writing, and avoid relying on XLSX append to preserve existing workbook data.
+
+Risk: The artifact supports a force option that can bypass safety warnings.
+
+Mitigation: Do not use force-style bypasses unless the user explicitly approves the specific risky write after reviewing the warning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/endcy/skills/enterprise-file-writer)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+- [VERIFICATION_REPORT.md](artifact/VERIFICATION_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and local file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful runs report the file path and bytes written; failures return error text.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

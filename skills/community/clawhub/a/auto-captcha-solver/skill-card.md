@@ -1,45 +1,58 @@
-## Description: <br>
-Detects and solves simple image captchas during Playwright, Puppeteer, or Selenium browser automation using preprocessing, OCR, optional arithmetic handling, input fill, and submit helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and solve simple image captchas during browser automation for 4-6 character text, distorted alphanumeric, numeric, rotated, or arithmetic challenges that need capture, OCR, optional calculation, input fill, and submit handling in Playwright, Puppeteer, or Selenium.
 
-## Publisher: <br>
-[cx6226301](https://clawhub.ai/user/cx6226301) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cx6226301](https://clawhub.ai/user/cx6226301)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to handle simple text or arithmetic CAPTCHA steps in browser automation for systems they own, administer, or are explicitly authorized to test. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CAPTCHA solving can be misused against third-party anti-bot controls. <br>
-Mitigation: Use only on systems you own, administer, or are explicitly authorized to test, and do not use it against third-party anti-bot controls. <br>
-Risk: Browser helpers can submit forms automatically when autoSubmit is not set to false. <br>
-Mitigation: Set autoSubmit to false unless deliberate form submission is intended and reviewed. <br>
-Risk: The optional fallbackVision hook may send CAPTCHA images to an external provider. <br>
-Mitigation: Do not configure fallbackVision with an external provider unless that data sharing is approved. <br>
-Risk: OCR output can be incorrect, especially for distorted or unsupported CAPTCHA types. <br>
-Mitigation: Use confidence and debug candidates for review, and avoid automatic submission in low-confidence workflows. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to handle simple, owned or authorized image captcha steps in browser workflows by capturing the captcha, running OCR, filling the answer, and optionally submitting the form.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cx6226301/auto-captcha-solver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [JavaScript modules with JSON-like result objects and browser automation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns solved status, value, captcha type, confidence, hash, and cache metadata when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can bypass CAPTCHA checks and automatically submit protected forms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for CAPTCHA flows you own or are explicitly authorized to test, and disable autoSubmit unless form submission is intentional.
+
+Risk: A caller-provided fallbackVision provider may expose captcha images outside the local runtime.
+
+Mitigation: Review and approve any fallbackVision provider before enabling it, including where image data is sent and retained.
+
+Risk: Processing untrusted CAPTCHA images depends on image-processing and OCR libraries.
+
+Mitigation: Update and audit the image-processing dependencies before processing untrusted images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cx6226301/skills/auto-captcha-solver)
+- [Publisher profile](https://clawhub.ai/user/cx6226301)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [JSON-compatible result objects and JavaScript browser automation helper calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns solved status, value, captcha type, confidence, hash, cache status, and optional debug candidates; browser helpers may fill inputs and submit forms.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  EURES extension elements of the Europass Candidate document (namespace http://www.europass_eures.eu/1.0).
+  Content models as observed in real exports. See docs/format.md.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:eures="http://www.europass_eures.eu/1.0"
+           xmlns:hr="http://www.hr-xml.org/3"
+           xmlns:oa="http://www.openapplications.org/oagis/9"
+           targetNamespace="http://www.europass_eures.eu/1.0"
+           elementFormDefault="qualified">
+
+  <xs:import namespace="http://www.hr-xml.org/3" schemaLocation="hr-xml-3.xsd"/>
+  <xs:import namespace="http://www.openapplications.org/oagis/9" schemaLocation="oagis-9.xsd"/>
+
+  <xs:complexType name="DateType">
+    <xs:sequence>
+      <xs:element ref="hr:FormattedDateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="StartDate" type="eures:DateType"/>
+  <xs:element name="EndDate" type="eures:DateType"/>
+
+  <xs:element name="EmploymentPeriod">
+    <xs:annotation><xs:documentation>Dates of a position. Omit EndDate for a current position and set hr:CurrentIndicator to true.</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="eures:StartDate"/>
+        <xs:element ref="eures:EndDate"/>
+        <xs:element ref="hr:CurrentIndicator"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="License">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="hr:LicenseTypeCode"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Licenses">
+    <xs:annotation><xs:documentation>Driving licences. Written empty by the editor when there are none.</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="eures:License" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Score">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="hr:ScoreText"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CompetencyDimension">
+    <xs:annotation><xs:documentation>One CEFR skill of a language: the dimension code and its level.</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="hr:CompetencyDimensionTypeCode"/>
+        <xs:element ref="eures:Score"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Attachment">
+    <xs:annotation><xs:documentation>Embedded file; observed only for the profile picture (oa:FileType "photo", hr:Instructions "ProfilePicture").</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="oa:EmbeddedData"/>
+        <xs:element ref="oa:FileType"/>
+        <xs:element ref="hr:Instructions"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

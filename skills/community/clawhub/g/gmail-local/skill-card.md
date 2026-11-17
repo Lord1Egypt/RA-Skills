@@ -1,42 +1,58 @@
-## Description: <br>
-Local Gmail IMAP/SMTP access using a Google App Password for searching, reading, and sending Gmail without routing mail through Maton or a third-party proxy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Gmail IMAP/SMTP access using a Google App Password. Use when the user wants to search, read, or send Gmail without routing mail through Maton or any third-party proxy. Requires GMAIL_ADDRESS and GMAIL_APP_PASSWORD_FILE. All writes/sends require explicit user approval and --confirm-send.
 
-## Publisher: <br>
-[alanwen168](https://clawhub.ai/user/alanwen168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alanwen168](https://clawhub.ai/user/alanwen168)
 
-## Use Case: <br>
-External users and developers use this skill to perform local Gmail list, search, read, and user-approved send operations from an agent environment. It is intended for direct Gmail IMAP/SMTP workflows where credentials remain on the local host. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access a user's Gmail mailbox through a Google App Password. <br>
-Mitigation: Install only when that mailbox access is acceptable, keep the password in a private 0600 local file, and revoke or rotate the app password when access is no longer needed. <br>
-Risk: Email could be sent to unintended recipients or with unintended content. <br>
-Mitigation: Review recipients, subject, and body before sending; the helper requires explicit approval and the --confirm-send flag for send operations. <br>
+## Use Case:
 
+Employees, external users, developers, and agents use this skill to search, read, list, and send Gmail messages directly through local IMAP/SMTP access when the configured account is authorized for that work.
 
-## Reference(s): <br>
-- [Gmail Local Skill](https://clawhub.ai/alanwen168/gmail-local) <br>
-- [Publisher profile](https://clawhub.ai/user/alanwen168) <br>
-- [Google App Passwords](https://myaccount.google.com/apppasswords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain-text helper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses GMAIL_ADDRESS and GMAIL_APP_PASSWORD_FILE; send operations require explicit approval and --confirm-send.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill has direct IMAP/SMTP access to the configured Gmail account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Google App Password for the account and revoke or rotate it when access is no longer needed.
+
+Risk: The local app-password file could expose mailbox access if readable by other users.
+
+Mitigation: Store the credential in an owner-only readable file and keep GMAIL_APP_PASSWORD_FILE pointed to that file.
+
+Risk: Email could be sent to unintended recipients or with unintended content.
+
+Mitigation: Review recipients, subject, and body preview before sending; only run send after explicit approval and with --confirm-send.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alanwen168/skills/gmail-local)
+- [Google App Passwords](https://myaccount.google.com/apppasswords)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GMAIL_ADDRESS and GMAIL_APP_PASSWORD_FILE; send operations require explicit approval and --confirm-send.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

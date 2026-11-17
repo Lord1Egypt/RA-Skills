@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: comfyui-skill
+Version: 0.1.0
+Summary: ComfyUI workflow execution skill for agents (z_image_turbo, klein_edit, …)
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: websockets
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Dynamic: license-file

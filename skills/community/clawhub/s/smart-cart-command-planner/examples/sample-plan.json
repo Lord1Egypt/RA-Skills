@@ -1,0 +1,60 @@
+{
+  "plan_version": "1.0",
+  "status": "ready",
+  "request": {
+    "original": "向前移动1米，右转90度，再前进50厘米并停下",
+    "normalized_goal": "前进100厘米，右转90度，再前进50厘米并停止"
+  },
+  "assumptions": [
+    "小车起点前方和右转后的路线可以通过摄像头或其他传感信息检查",
+    "使用低速模式完成演示"
+  ],
+  "steps": [
+    {
+      "seq": 1,
+      "action": "sense",
+      "clearance_required_cm": 120,
+      "reason": "确认起点前方路线安全"
+    },
+    {
+      "seq": 2,
+      "action": "move_forward",
+      "distance_cm": 100,
+      "speed": "slow",
+      "reason": "完成第一段前进"
+    },
+    {
+      "seq": 3,
+      "action": "turn_right",
+      "angle_deg": 90,
+      "speed": "slow",
+      "reason": "按指令向右转向"
+    },
+    {
+      "seq": 4,
+      "action": "sense",
+      "clearance_required_cm": 70,
+      "reason": "确认转向后的路线安全"
+    },
+    {
+      "seq": 5,
+      "action": "move_forward",
+      "distance_cm": 50,
+      "speed": "slow",
+      "reason": "完成第二段前进"
+    },
+    {
+      "seq": 6,
+      "action": "stop",
+      "reason": "到达指令终点并保持停止"
+    }
+  ],
+  "safety": {
+    "obstacle_check": true,
+    "final_stop": true,
+    "notes": [
+      "任一感知步骤发现障碍时取消后续移动并立即停止"
+    ]
+  }
+}
+

@@ -1,42 +1,58 @@
-## Description: <br>
-SCL-90 symptom self-assessment tool with Chinese norms, quick screening, factor explanations, history viewing, and crisis resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SCL-90 provides a Chinese-language Symptom Checklist 90 self-assessment with 90 questions, China norm data, score summaries, history lookup, and crisis-resource guidance.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-External users and agents use this skill to run or explain an SCL-90 mental-health self-assessment, review Chinese norm references, view local assessment history, and surface crisis hotline resources. It is for self-evaluation and monitoring only, not professional diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool may overstate clinical capability for a mental-health self-assessment. <br>
-Mitigation: Present results as screening information only and direct users to qualified professionals for diagnosis or treatment decisions. <br>
-Risk: Assessment answers and scores may be stored as plaintext local history under the user's home directory. <br>
-Mitigation: Warn users before running assessments and delete or protect local history files when sensitive responses should not persist. <br>
-Risk: Users in acute distress may rely on tool output instead of immediate support. <br>
-Mitigation: Keep crisis resources visible and instruct users with self-harm thoughts or severe distress to contact emergency or crisis services immediately. <br>
+## Use Case:
 
+External users can run the skill for SCL-90 self-screening, factor explanations, norm lookup, saved assessment history, and crisis-resource lookup. The results are for personal reference and monitoring, not professional diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/scl-90) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save local plaintext assessment history under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles sensitive mental-health responses and saves full assessment answers in plaintext under $HOME/.scl90_history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where local plaintext retention is acceptable, protect the device account, and delete saved history when it is no longer needed.
+
+Risk: The release presents psychological assessment features, while evidence.security says it should be treated as a Chinese-language demo or reference tool rather than a clinical assessment.
+
+Mitigation: Keep the skill framed as self-screening and personal monitoring, and direct users to qualified professionals or crisis resources for diagnosis, treatment, or urgent support.
+
+Risk: Artifact behavior shows the full factor analysis and quick screening are incomplete or marked as in development.
+
+Mitigation: Do not rely on incomplete scoring features for decisions; review outputs and use the full 90-question results only as preliminary reference.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/skills/scl-90)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhuqingsonga)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text terminal output with command examples and saved text result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Assessment results may be saved locally under $HOME/.scl90_history.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

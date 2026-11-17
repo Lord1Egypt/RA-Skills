@@ -1,41 +1,59 @@
-## Description: <br>
-Skill Reviewer audits and validates Claude Code skills for structure, content quality, cross-platform and cross-agent compatibility, prerequisite declarations, and trigger accuracy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Claude Code skill files for structure, content quality, cross-platform and cross-agent compatibility, prerequisite declarations, and trigger-description accuracy.
 
-## Publisher: <br>
-[niracler](https://clawhub.ai/user/niracler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niracler](https://clawhub.ai/user/niracler)
 
-## Use Case: <br>
-Developers and maintainers use this skill to review agent skill directories before publishing or installing them. It combines local structure validation, skill-creator content review, and compatibility checks into a single Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Bash and Python validation scripts, so users may execute commands in an unintended repository or skill directory. <br>
-Mitigation: Review the bundled scripts before use and run the skill only from the repository or skill directory intended for audit. <br>
-Risk: Review completeness depends on a trusted skill-creator helper being available for the content quality step. <br>
-Mitigation: Confirm the skill-creator helper is available and trusted before relying on the final review report. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to review Claude Code skills before distribution by running structural validation, invoking skill-creator for content quality, and checking compatibility and prerequisite coverage.
 
-## Reference(s): <br>
-- [Compatibility Checklist](references/compatibility-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/niracler/nini-skill-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with a status table and severity-grouped findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include validation command output, manual compatibility findings, and prerequisite guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: Local shell and Python validation runs against skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the bundled scripts and run them in a controlled workspace before acting on the review output.
+
+Risk: Review findings may influence skill behavior, distribution readiness, or release decisions.
+
+Mitigation: Treat findings as guidance and confirm changes with the target skill owner before release.
+
+Risk: The workflow expects skill-creator for deeper content review.
+
+Mitigation: Mark content review incomplete or stop for dependency setup when skill-creator is unavailable.
+
+## Reference(s):
+
+- [Compatibility Checklist](artifact/references/compatibility-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/niracler/skills/nini-skill-reviewer)
+- [Release v0.3.0 Changelog](https://github.com/niracler/skill/releases/tag/v0.3.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown review report with shell command snippets and validation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are review findings and suggested remediation steps; users should review results before changing or releasing a skill.]
+
+## Skill Version(s):
+
+0.3.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

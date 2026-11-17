@@ -1,45 +1,60 @@
-## Description: <br>
-Provides text embedding for vector search through the SkillBoss OpenAI-compatible API using one SkillBoss API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+USE THIS for embedding api. Text embedding for vector search. 0% markup, 648+ APIs, one key. Powered by SkillBoss.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and agents use this skill to generate text embeddings for vector search without managing separate provider accounts. It also guides setup of the required SkillBoss API key and shows command-line and Python API call examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive SkillBoss API key. <br>
-Mitigation: Store SKILLBOSS_API_KEY in a secret manager or protected environment variable and avoid writing it into prompts, logs, or committed files. <br>
-Risk: The setup path can enable a broad paid API gateway beyond embedding calls. <br>
-Mitigation: Prefer manual setup, review remote setup instructions before following them, set spending limits where possible, and require explicit approval before using non-embedding services. <br>
-Risk: API calls may incur pay-as-you-go costs. <br>
-Mitigation: Confirm model selection and pricing before execution, and monitor usage through the SkillBoss console. <br>
+## Use Case:
 
+Developers and external users use this skill to configure and call SkillBoss text embedding APIs for vector search through an OpenAI-compatible interface.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/modestyrichards/modesty-embedding-api) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [SkillBoss console](https://skillboss.co/console) <br>
-- [SkillBoss products catalog](https://skillboss.co/products) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell, curl, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and calls the external SkillBoss API gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Embedding inputs are sent to SkillBoss using the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive text unless SkillBoss data handling terms have been reviewed and approved for the intended use.
+
+Risk: The skill points agents to mutable remote setup instructions.
+
+Mitigation: Prefer pinned or ClawHub-reviewed installation paths and review the remote setup document before use.
+
+Risk: The skill advertises broad SkillBoss API access beyond embedding-specific use.
+
+Mitigation: Constrain agent use to the intended embedding endpoint and model unless broader API access has been explicitly approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/modestyrichards/skills/modesty-embedding-api)
+- [SkillBoss Setup Guide](https://skillboss.co/skill.md)
+- [SkillBoss Console](https://skillboss.co/console)
+- [SkillBoss Products](https://skillboss.co/products)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash, curl, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends embedding inputs to SkillBoss.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

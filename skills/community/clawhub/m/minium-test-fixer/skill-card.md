@@ -1,40 +1,53 @@
-## Description: <br>
-Minium Test Fixer helps repair Minium test cases by analyzing failure logs and WXML snapshots, identifying better element locators, proposing code edits, and verifying repaired cases locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minium Test Fixer helps repair Minium test cases by analyzing error logs and WXML snapshots, identifying better element locators, updating code after confirmation, and verifying the fix with a local test run.
 
-## Publisher: <br>
-[yiziria](https://clawhub.ai/user/yiziria) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yiziria](https://clawhub.ai/user/yiziria)
 
-## Use Case: <br>
-Developers and test engineers use this skill to diagnose Minium element-location failures, update Page Object locators, and rerun local tests before reporting a repair as complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may run local Minium tests and PowerShell commands that activate WeChat Developer Tools. <br>
-Mitigation: Review commands before execution and use the skill only inside the intended test repository with the expected tools open. <br>
-Risk: The workflow may edit project files while repairing locators. <br>
-Mitigation: Confirm proposed edits before applying them and verify the repair by rerunning the relevant local test. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to troubleshoot Minium tests that fail because elements cannot be found, locators have gone stale, WXML structure changed, or repeated elements need disambiguation. The workflow supports local logs, cloud test reports, and error screenshots, then proposes a confirmed code fix and requires local validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yiziria/minium-test-fixer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed file edits, Minium test commands, PowerShell commands for WeChat Developer Tools activation, and local verification results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The workflow can run local tests, inspect project files, and edit code after confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm test runs and file edits before execution, and review proposed locator or Page Object changes before applying them.
+
+Risk: The workflow can manipulate desktop focus when activating WeChat Developer Tools.
+
+Mitigation: Keep unrelated sensitive windows out of focus before running workflows that activate WeChat Developer Tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yiziria/skills/minium-test-fixer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed locator changes, file edit guidance, local test commands, and validation results.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

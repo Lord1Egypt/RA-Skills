@@ -1,0 +1,6 @@
+{
+  "complexTaskThreshold": 400,
+  "retryLoopThreshold": 0.4,
+  "auditLogPath": "~/.openclaw/logs/audit/rl-guard-decisions.jsonl",
+  "enabled": true
+}

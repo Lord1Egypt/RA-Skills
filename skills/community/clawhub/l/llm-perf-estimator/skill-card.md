@@ -1,41 +1,55 @@
-## Description: <br>
-Estimate LLM inference performance metrics including TTFT, decode speed, and VRAM requirements based on model architecture, GPU specs, and quantization format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate LLM inference performance metrics including TTFT, decode speed, and VRAM requirements based on model architecture, GPU specs, and quantization format.
 
-## Publisher: <br>
-[zhangyu68](https://clawhub.ai/user/zhangyu68) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyu68](https://clawhub.ai/user/zhangyu68)
 
-## Use Case: <br>
-Developers and engineers use this skill to estimate single-GPU LLM inference latency, decode throughput, and VRAM needs before choosing a model, GPU, sequence length, and quantization format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A local config file path could expose unrelated private files if the user provides the wrong file. <br>
-Mitigation: Provide only the intended model config.json or paste the relevant public model configuration. <br>
-Risk: Performance and memory results are estimates and may differ from real framework behavior. <br>
-Mitigation: Review the stated assumptions and validate important deployment decisions with benchmark runs on the target stack. <br>
+## Use Case:
 
+Developers and engineers use this skill to estimate single-GPU LLM inference latency, decode throughput, and memory requirements before selecting model, GPU, context length, and quantization settings.
 
-## Reference(s): <br>
-- [Hugging Face model config](https://huggingface.co/{org}/{model}/blob/main/config.json) <br>
-- [ModelScope model config](https://modelscope.cn/models/{org}/{model}/file/view/master/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with configuration, VRAM, performance, assumptions, and caveats sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Estimates depend on supplied model architecture, GPU specifications, quantization format, and framework assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A local config.json shared with the agent may contain environment-specific paths or unrelated details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the config file before sharing it and remove fields that are not needed for architecture and performance estimation.
+
+Risk: Estimated TTFT, decode speed, and VRAM needs may differ from actual deployed performance because framework behavior and hardware utilization vary.
+
+Mitigation: Use the report for planning and compare against benchmark measurements before making capacity, deployment, or purchasing decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangyu68/skills/llm-perf-estimator)
+- [Hugging Face model config](https://huggingface.co/{org}/{model}/blob/main/config.json)
+- [ModelScope model config](https://modelscope.cn/models/{org}/{model}/file/view/master/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with summary tables, estimates, assumptions, and caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include intermediate calculations when requested; estimates are approximate and rounded for readability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

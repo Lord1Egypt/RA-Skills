@@ -1,42 +1,62 @@
-## Description: <br>
-Use when sending messages, searching chats, or managing conversations across messaging platforms (Telegram, WhatsApp, Slack, iMessage, etc.) via Beeper Desktop API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when sending messages, searching chats, or managing conversations across messaging platforms (Telegram, WhatsApp, Slack, iMessage, etc.) via Beeper Desktop API.
 
-## Publisher: <br>
-[blqke](https://clawhub.ai/user/blqke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blqke](https://clawhub.ai/user/blqke)
 
-## Use Case: <br>
-External users and developers use this skill to operate the beepctl CLI for Beeper-connected messaging workflows, including account inspection, chat lookup, message search, aliases, reminders, downloads, and user-approved message sending. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can work with Beeper-connected conversations and API tokens. <br>
-Mitigation: Install only if the user trusts the external beepctl project, avoid exposing API tokens in logs or transcripts, and keep chat access aligned with the user's request. <br>
-Risk: The skill can send messages or perform account-changing chat actions. <br>
-Mitigation: Require explicit user confirmation before sending messages or changing chat state, and verify aliases resolve to the intended chat. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blqke/beepctl) <br>
-- [Publisher profile](https://clawhub.ai/user/blqke) <br>
-- [Beeper Desktop API documentation](https://developers.beeper.com/desktop-api) <br>
-- [beepctl project homepage](https://github.com/blqke/beepctl) <br>
+## Use Case:
 
+External users and developers use beepctl to let an agent inspect Beeper-connected accounts and chats, search messages, manage conversations, and prepare or send messages through the Beeper Desktop API. Message-sending actions should be confirmed by the user before execution.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the beepctl binary and a Beeper Desktop API token configured outside the card.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and relies on an unpinned global CLI package.
+
+Mitigation: Install only after deciding that the beepctl npm package is trusted for the target environment.
+
+Risk: The skill can access private messages, attachments, and a Beeper API token across connected messaging services.
+
+Mitigation: Use narrow chat and account filters for searches, avoid token-reveal commands unless necessary, and limit agent access to contexts where message data exposure is acceptable.
+
+Risk: The skill can send messages or change chats through the Beeper Desktop API.
+
+Mitigation: Require explicit confirmation before sending messages or modifying chats, including a clear recipient and message preview.
+
+Risk: Attachment downloads can write files to user-selected paths.
+
+Mitigation: Choose safe destination paths before downloading attachments and review requested paths before execution.
+
+## Reference(s):
+
+- [beepctl ClawHub Skill](https://clawhub.ai/blqke/skills/beepctl)
+- [beepctl GitHub Repository](https://github.com/blqke/beepctl)
+- [Beeper Desktop API](https://developers.beeper.com/desktop-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the beepctl CLI and access to the user's Beeper Desktop API context.]
+
+## Skill Version(s):
+
+0.1.4 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

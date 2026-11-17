@@ -1,39 +1,49 @@
-## Description: <br>
-Transforms an agent into a forceful, self-improving mission operator that plans, executes, tracks progress, and iterates until a user-defined goal is complete. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms your agent into a relentless, self-improving operator that obsessively executes and optimizes any mission until completion.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-External users and agent operators use this skill to impose a persistent execution loop for goal-oriented work, including mission clarification, task breakdown, progress reporting, and iterative improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages a forceful execution style that could push an agent toward actions the user has not fully reviewed. <br>
-Mitigation: Keep missions narrow, pause or disable the mode when finished, and require explicit confirmation before irreversible, public, financial, account, deletion, or external actions. <br>
+## Use Case:
 
+External users and agent operators use this prompt-only skill to keep an OpenClaw agent focused on a defined mission, break work into next actions, report progress, and reflect on process improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/relentless-operator) <br>
-- [Publisher profile](https://clawhub.ai/user/theshimaw-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only responses with mission status, progress summary, lessons learned, and next actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may encourage an agent to continue an activated mission, maintain a fixed persona, or resist switching topics unless the user explicitly pauses or redirects it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and ensure user stop, switch, and safety instructions always take priority.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/skills/relentless-operator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only operational guidance; no code execution or private data access by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

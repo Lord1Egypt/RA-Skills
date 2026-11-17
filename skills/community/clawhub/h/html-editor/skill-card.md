@@ -1,42 +1,58 @@
-## Description: <br>
-Turns a static HTML page into an editable local HTML file with inline text editing, style controls, bilingual UI labels, prompt-based restyling guidance, and clean export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTML Editor converts static HTML into an editable page with inline text editing, style controls for color, typography and layout, style-prompt copy actions, and clean HTML export.
 
-## Publisher: <br>
-[ytisvibecoding](https://clawhub.ai/user/ytisvibecoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ytisvibecoding](https://clawhub.ai/user/ytisvibecoding)
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to convert static reports, pages, and presentation-style HTML into editable local pages with visual style controls and exportable clean HTML. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: When Anthropic or OpenAI API keys are present, the tool can send CSS variable and selector metadata to that provider for semantic labeling. <br>
-Mitigation: For private or internal HTML, run without those API key environment variables or block network access before adapting the file. <br>
-Risk: The tool modifies local HTML copies and exported pages may not be suitable for sharing without review. <br>
-Mitigation: Keep a source copy, avoid bypassing sanity checks unless necessary, and review the generated HTML before publishing or sharing it. <br>
+## Use Case:
 
+Developers, designers, and content authors use this skill to turn reports, pages, and presentation-style HTML into editable files without manually building editing controls. It is useful when an agent needs to adapt static HTML, expose style controls, and export a clean updated page.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ytisvibecoding/html-editor) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an editable HTML file from a local static HTML input and can export a cleaned HTML copy after review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.4 (source: server release evidence and skill frontmatter) <br>
+Risk: CSS metadata from local HTML may be sent to Anthropic or OpenAI when ambient API keys are present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the tool without ANTHROPIC_API_KEY or OPENAI_API_KEY, or block network access, when processing confidential HTML.
+
+Risk: Using --skip-checks can force output even when sanity checks fail.
+
+Mitigation: Avoid --skip-checks for normal use; manually inspect generated HTML when checks are skipped.
+
+Risk: Edited content and style choices can persist in browser localStorage.
+
+Mitigation: Clear or reset localStorage after handling sensitive content or when sharing the edited HTML environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ytisvibecoding/skills/html-editor)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The primary generated file is an editable HTML document; clean export removes the editor UI while preserving page edits.]
+
+## Skill Version(s):
+
+1.8.4 (source: server release, target metadata, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

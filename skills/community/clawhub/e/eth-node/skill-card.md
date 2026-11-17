@@ -1,44 +1,55 @@
-## Description: <br>
-Manage Ethereum execution client nodes, including start and stop workflows, sync status, peers, logs, and configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Ethereum execution client nodes: start, stop, check sync status, inspect peers, review logs, and configuration.
 
-## Publisher: <br>
-[apexfork](https://clawhub.ai/user/apexfork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[apexfork](https://clawhub.ai/user/apexfork)
 
-## Use Case: <br>
-Developers and node operators use this skill to administer local Ethereum execution clients such as reth and geth, check sync and peer health, inspect logs, and apply basic node configuration guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Exposing Ethereum RPC or admin/debug/trace namespaces to a public network can allow unauthorized node inspection or manipulation. <br>
-Mitigation: Keep RPC bound to 127.0.0.1, avoid public admin/debug/trace exposure, and use a firewall before any non-local access. <br>
-Risk: Running execution clients in the background can consume significant disk, CPU, memory, and network resources. <br>
-Mitigation: Monitor node resource use and logs while syncing or troubleshooting. <br>
-Risk: Installing clients directly from package managers or source can introduce version drift or unreviewed updates. <br>
-Mitigation: Use official releases where possible and consider pinning client versions for production node operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/apexfork/eth-node) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [reth project](https://github.com/paradigmxyz/reth) <br>
+## Use Case:
 
+Developers and operators use this skill to manage local Ethereum execution client nodes, including reth and geth, and to inspect sync, peers, logs, and JSON-RPC status.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local node process state, logs, and RPC responses when the agent is used in an environment with an Ethereum execution client.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing or running untrusted Ethereum clients can expose the operator to compromised node software.
+
+Mitigation: Install trusted clients and prefer pinned or verified releases, especially for reth.
+
+Risk: Exposing JSON-RPC port 8545, admin APIs, or debug namespaces to a public network can allow unauthorized node control or sensitive diagnostics access.
+
+Mitigation: Keep RPC and admin/debug namespaces bound to localhost and avoid public exposure of port 8545.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apexfork/skills/eth-node)
+- [Publisher profile](https://clawhub.ai/user/apexfork)
+- [Skill homepage](https://github.com/Fork-Development-Corp/openclaw-web3-skills/tree/master/eth-node)
+- [reth source repository](https://github.com/paradigmxyz/reth)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash and JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands assume a local Ethereum execution client and localhost JSON-RPC endpoint.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Enforces the default shadcn/ui Neutral theme (black/white/gray) with OKLCH CSS variables, Tailwind v4 integration, and dark mode support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces the default shadcn/ui Neutral theme (black/white/gray) with OKLCH CSS variables, Tailwind v4 integration, and dark mode support.
 
-## Publisher: <br>
-[guifav](https://clawhub.ai/user/guifav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guifav](https://clawhub.ai/user/guifav)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to apply and maintain the default shadcn/ui Neutral theme in web projects. It guides CSS variable setup, Tailwind integration, dark mode support, and theme-token-based component styling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may overwrite or replace existing custom theme values in CSS or Tailwind files. <br>
-Mitigation: Review the agent's plan and diffs before accepting changes, especially in projects with custom colors or existing design tokens. <br>
-Risk: Using OKLCH variables in a Tailwind v3 project, or HSL variables in a Tailwind v4 project, can break color rendering. <br>
-Mitigation: Confirm the installed Tailwind version before applying theme variables and use the matching v3 or v4 configuration path. <br>
-Risk: Optional npm or npx commands may install next-themes, shadcn/ui components, or related dependencies. <br>
-Mitigation: Review package installation commands and generated files before execution and verify the stack-scaffold dependency if it is resolved automatically. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to apply and maintain the default shadcn/ui Neutral theme, including CSS variables, Tailwind integration, dark mode, and token-based component styling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guifav/shadcn-theme-default) <br>
-- [Source homepage](https://github.com/guifav/openclaw-skills) <br>
-- [shadcn/ui schema](https://ui.shadcn.com/schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CSS, TypeScript, Tailwind configuration, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or apply edits to styling and Tailwind configuration files; optional npm or npx commands may install theme-related packages or shadcn/ui components.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact/claw.json and artifact/CHANGELOG.md list 1.0.0) <br>
+Risk: The skill may change React/TSX files and package dependencies, not just CSS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the planned file list and generated diffs before committing changes.
+
+Risk: Unpinned npm install or npx commands can execute third-party code.
+
+Mitigation: Require approval for package-manager commands and pin package versions where practical.
+
+Risk: Applying the wrong Tailwind theme format can break project styling.
+
+Mitigation: Check the project's Tailwind version before choosing OKLCH/Tailwind v4 or HSL/Tailwind v3 configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guifav/skills/shadcn-theme-default)
+- [shadcn/ui configuration schema](https://ui.shadcn.com/schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CSS, TypeScript/TSX, JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or apply edits to CSS, Tailwind configuration, React/TSX files, and package dependencies; review changes before committing.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence; artifact claw.json and CHANGELOG.md list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

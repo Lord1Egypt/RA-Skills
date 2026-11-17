@@ -1,0 +1,17 @@
+name: command_injection
+display_name: 命令注入
+severity: critical
+description: 检测 curl/wget 管道执行、反引号执行、$() shell 执行等风险
+
+patterns:
+  - 'exfiltrate\('
+  - 'curl.*(sh|bash|cmd|powershell)'
+  - 'wget.*(sh|bash)'
+  - 'fetchhttp.*ival'
+  - 'passthru'
+  - 'shell_exec'
+  - '`.*(curl|wget|nc|bash|sh)`'
+  - '\$\(\s*(curl|wget|nc|bash|sh)\s*\)'
+
+suggestion: 避免运行时命令拼接，使用参数化调用（如 requests 库替代 curl）
+source: static

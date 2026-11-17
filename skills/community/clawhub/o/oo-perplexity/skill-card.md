@@ -1,42 +1,56 @@
-## Description: <br>
-Operate Perplexity through an OOMOL-connected account using the oo CLI for search, model listing, chat completions, and embeddings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perplexity (perplexity.ai). Use this skill for ANY Perplexity request — reading, creating, and updating data. Whenever a task involves Perplexity, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and AI agents use this skill to interact with Perplexity through OOMOL-managed credentials. It supports web search, available model discovery, Sonar chat completions, and embedding generation after inspecting each live action schema. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected OOMOL account and may operate on service data through server-side credentials. <br>
-Mitigation: Install only when comfortable connecting the service through OOMOL, and confirm payloads before actions marked as write or destructive. <br>
-Risk: The documented first-time setup includes remote installer commands for the oo CLI. <br>
-Mitigation: Review the oo CLI install guide or installer before running remote install commands. <br>
+## Use Case:
 
+External users can use this skill through their connected OOMOL account to search Perplexity, create Sonar chat completions, list available models, and generate embeddings.
 
-## Reference(s): <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Perplexity](https://www.perplexity.ai) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON objects containing data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: First-time setup provides remote CLI install commands, including a shell command that executes a downloaded installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately; prefer a fixed, verified release instead of executing the supplied remote-script command directly.
+
+Risk: Requests pass through OOMOL and may incur charges.
+
+Mitigation: Check applicable OOMOL and Perplexity billing or credit status before making chargeable requests.
+
+## Reference(s):
+
+- [Perplexity API documentation](https://docs.perplexity.ai/)
+- [Perplexity](https://www.perplexity.ai)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release](https://clawhub.ai/oomol/skills/oo-perplexity)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Vector embeddings]
+
+**Output Format:** [Generated text and JSON connector responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Embedding actions return vector data; available models and response fields depend on Perplexity.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

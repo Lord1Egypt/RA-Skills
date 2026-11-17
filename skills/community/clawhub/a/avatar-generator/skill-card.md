@@ -1,43 +1,53 @@
-## Description: <br>
-Generate customizable avatars in six styles with multi-platform export for social media including WeChat, QQ, Twitter, and Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate customizable social media and profile avatars in multiple styles with local Pillow rendering and multi-platform export.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Social media users, creators, teams, and developers use this skill to generate local PNG avatars in letter, geometric, gradient, abstract, pattern, and badge styles sized for common profile platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires installing Python packages from the user's normal package source. <br>
-Mitigation: Confirm the package source is acceptable before installation and use the standard Python environment controls for the deployment. <br>
-Risk: The skill creates local PNG files in the selected output folder. <br>
-Mitigation: Choose the output folder intentionally and review generated files before sharing or publishing them. <br>
-Risk: Broad avatar-related prompts may trigger generation for more platforms or styles than intended. <br>
-Mitigation: Use explicit prompts when only one platform, size, or avatar style is desired. <br>
+## Use Case:
 
+External users and developers use this skill to create profile avatars for WeChat, QQ, Xiaohongshu, Twitter/X, Discord, and other social platforms. It supports letter, geometric, gradient, abstract, pattern, and badge-style avatars with platform-specific PNG exports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/avatar-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/tobewin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local PNG avatar files when implemented by an agent with Python and Pillow available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Gradient avatar generation depends on NumPy, but the documented dependency only lists Pillow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin Pillow and add or remove NumPy before relying on gradient avatar output.
+
+Risk: The skill writes avatar files to an output directory and can export multiple platform-specific files.
+
+Mitigation: Specify the intended output directory and target platforms before generation so only expected avatar files are written.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/avatar-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python code and generated PNG avatar files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local generation with Pillow; gradient avatars require NumPy even though the documented dependency only lists Pillow.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

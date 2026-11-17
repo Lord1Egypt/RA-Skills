@@ -20,6 +20,11 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import _bootstrap  # noqa: E402
+
+_bootstrap.ensure(_bootstrap.REMBG, _bootstrap.REMBG_MODS)
+
 
 _MIN_FRACTION = 0.05  # reject bbox if it covers less than this fraction of the image area
 

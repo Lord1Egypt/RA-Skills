@@ -1,39 +1,52 @@
-## Description: <br>
-Verify information by performing an internet lookup before answering questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify information by performing an internet lookup before answering questions.
 
-## Publisher: <br>
-[AmanGarg1999](https://clawhub.ai/user/AmanGarg1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amangarg1999](https://clawhub.ai/user/amangarg1999)
 
-## Use Case: <br>
-External users and developers use this skill to verify factual answers with current internet sources before responding. It is intended for concise source-backed answers and uncertainty reporting when sources conflict or cannot be found. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries or fetched pages may expose secrets, private personal details, proprietary business information, or regulated data if users include them in factual questions. <br>
-Mitigation: Use the skill only for public or shareable factual questions and redact sensitive details before lookup. <br>
-Risk: Search results can be incomplete, stale, low quality, or conflicting, so a source-backed response can still be uncertain. <br>
-Mitigation: Require explicit source support for claims and report uncertainty when sources disagree or no source supports the answer. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AmanGarg1999/internet-lookup-verifier) <br>
+## Use Case:
 
+External users and developers use this skill to verify factual answers with current internet sources before responding. It is useful when a prompt requires confirmation, source support, or explicit uncertainty when sources disagree.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Markdown answer with supporting source URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include snippets or an uncertainty note when sources conflict or no supporting source is found.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Questions may be sent to external search or fetch services during verification.
+
+Mitigation: Do not include confidential, personal, or regulated information in prompts that may be searched or fetched.
+
+Risk: Search results may be incomplete, stale, or conflicting.
+
+Mitigation: Require explicit source support for factual answers and report uncertainty when sources disagree or cannot be found.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amangarg1999/skills/internet-lookup-verifier)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise verified answer with supporting URLs when sources are available; reports uncertainty when sources conflict or cannot be found.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

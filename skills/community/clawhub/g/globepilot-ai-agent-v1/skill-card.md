@@ -1,42 +1,53 @@
-## Description: <br>
-Travel intelligence agent for flights, visas, currency conversion, airport status, local events, cultural guidance, and global travel insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GlobePilot AI Agent V1 is a travel intelligence agent that helps with visa requirements, currency conversion, airport status, local events, cultural tips, emergency contacts, seasonal travel timing, stays, local spots, and food recommendations.
 
-## Publisher: <br>
-[sarqovik](https://clawhub.ai/user/sarqovik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sarqovik](https://clawhub.ai/user/sarqovik)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to request concise travel guidance such as visa requirements, currency conversion, airport and weather status, emergency contacts, seasonal timing, local events, accommodations, food, and cultural tips. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Time-sensitive travel details such as visa requirements, airport conditions, emergency numbers, and currency rates can become outdated or vary by traveler. <br>
-Mitigation: Verify critical travel facts against authoritative sources before acting on them. <br>
-Risk: The Teneo and crypto-native monetization text is promotional and may not describe a reviewed payment integration in this artifact. <br>
-Mitigation: Evaluate any payment, network, or monetization setup separately before relying on it. <br>
-Risk: The artifact names the agent as GlobePilot AI Agent 2 while server metadata identifies this release as GlobePilot AI Agent V1. <br>
-Mitigation: Confirm the intended release identity before publishing or presenting the card. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sarqovik/globepilot-ai-agent-v1) <br>
-- [Agent console](https://agent-console.ai) <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to request practical destination guidance before and during trips, including entry requirements, currency conversion, airport and weather context, local events, cultural guidance, emergency contacts, accommodations, and food recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text responses to travel-assistance commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no bundled code, credentials, or persistence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Travel, visa, emergency, currency, airport, and event information can be incomplete, outdated, or jurisdiction-specific.
+
+Mitigation: Treat results as informational and verify important details with official government, airport, emergency-service, financial, venue, or provider sources before acting.
+
+Risk: The artifact describes external agent-console and crypto-native monetization flows that may involve third-party terms, payment networks, or account interactions.
+
+Mitigation: Review the third-party service terms and avoid sharing sensitive travel, identity, payment, or wallet information unless the deployment and counterparty are trusted.
+
+## Reference(s):
+
+- [GlobePilot AI Agent V1 ClawHub listing](https://clawhub.ai/sarqovik/skills/globepilot-ai-agent-v1)
+- [sarqovik ClawHub publisher profile](https://clawhub.ai/user/sarqovik)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text or Markdown travel responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include travel, visa, emergency, currency, airport, event, accommodation, and local recommendation information that should be verified with official sources before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Prevents AI agents from leaking classified terms to external APIs, subagents, or logs by using a local term registry, runtime redaction, and pre-publish audit support with zero dependencies and no network calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prevents an AI agent from leaking classified terms to external APIs, subagents, or logs by using a local term registry, runtime redaction, and pre-publish audit workflow.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local runtime redaction before web searches, external LLM or API calls, subagent tasks, and logs. It supports a workspace term registry, sanitized outbound payloads, and a local redaction audit log. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The term registry and audit-log directory can contain sensitive operational data if committed or exposed. <br>
-Mitigation: Add classified/ and memory/security/ to .gitignore and protect both paths, matching the server security guidance and artifact documentation. <br>
-Risk: Outbound protection depends on callers using the sanitized value returned by the helper. <br>
-Mitigation: Call sanitizeOutbound before web searches or third-party API calls and pass result.sanitized instead of the original input or outdated payload examples. <br>
-Risk: Subagent blocking depends on the external-agent list being configured for the local agent environment. <br>
-Mitigation: Configure externalAgents for agents that can make network calls and use redactTaskBeforeSpawn before spawning agent tasks. <br>
+## Use Case:
 
+Developers and agent operators use this skill to reduce accidental disclosure of configured sensitive terms before outbound calls, subagent tasks, and audit logging. It is intended for local runtime enforcement around agent workflows that handle private project names, credentials, personal details, or other registered sensitive strings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/ai-agent-opsec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript snippets and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sanitized text values, redaction counts, access decisions, and local audit-log entries when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence and frontmatter) <br>
+Risk: Audit logs may retain partially sanitized payload snippets after registry-based redaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a protected audit directory, add memory/security/ to .gitignore, and do not treat the current logging behavior as proof that no sensitive content was retained.
+
+Risk: Sensitive terms omitted from classified/classified-terms.md may not be redacted before outbound use.
+
+Mitigation: Maintain the local term registry before use, review it regularly, and test redaction behavior with representative sensitive strings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshadowrose/skills/ai-agent-opsec)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/theshadowrose)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and local JSONL audit output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local filesystem reads and writes; no network activity is declared.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

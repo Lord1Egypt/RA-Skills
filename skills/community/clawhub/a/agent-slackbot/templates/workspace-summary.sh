@@ -37,7 +37,7 @@ AUTH_STATUS=$(agent-slackbot auth status 2>&1)
 VALID=$(echo "$AUTH_STATUS" | jq -r '.valid // false')
 
 if [ "$VALID" != "true" ]; then
-  echo -e "${RED}Not authenticated! Run: agent-slackbot auth set xoxb-your-token${NC}" >&2
+  echo -e "${RED}Not authenticated! Run: agent-slackbot auth set REDACTED-SECRET${NC}" >&2
   exit 1
 fi
 

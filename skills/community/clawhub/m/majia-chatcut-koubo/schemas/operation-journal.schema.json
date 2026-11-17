@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/operation-journal.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "journalId",
+    "projectId",
+    "runId",
+    "planHash",
+    "baseTimelineRevision",
+    "currentTimelineRevision",
+    "status",
+    "entries",
+    "checkpoints"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "journalId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "runId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "planHash": {
+      "$ref": "creator-os-common.schema.json#/$defs/sha256"
+    },
+    "baseTimelineRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/revision"
+    },
+    "currentTimelineRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/revision"
+    },
+    "status": {
+      "enum": [
+        "planned",
+        "running",
+        "failed",
+        "completed"
+      ]
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entryId",
+          "operationId",
+          "sceneId",
+          "idempotencyKey",
+          "logicalId",
+          "attempt",
+          "result",
+          "expectedHash",
+          "observedHash",
+          "reconciliation",
+          "evidenceRef",
+          "errorCode"
+        ],
+        "properties": {
+          "entryId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "operationId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "sceneId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "idempotencyKey": {
+            "$ref": "creator-os-common.schema.json#/$defs/sha256"
+          },
+          "logicalId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "attempt": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "result": {
+            "enum": [
+              "started",
+              "verified",
+              "failed",
+              "compensated"
+            ]
+          },
+          "expectedHash": {
+            "$ref": "creator-os-common.schema.json#/$defs/sha256"
+          },
+          "observedHash": {
+            "oneOf": [
+              {
+                "$ref": "creator-os-common.schema.json#/$defs/sha256"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reconciliation": {
+            "enum": [
+              "none",
+              "readback",
+              "retry",
+              "compensated"
+            ]
+          },
+          "evidenceRef": {
+            "oneOf": [
+              {
+                "$ref": "creator-os-common.schema.json#/$defs/identifier"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "errorCode": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^EXEC_[A-Z0-9_]+$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "checkpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "checkpointId",
+          "sceneId",
+          "lastOperationId",
+          "timelineRevision",
+          "evidenceRefs"
+        ],
+        "properties": {
+          "checkpointId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "sceneId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "lastOperationId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "timelineRevision": {
+            "$ref": "creator-os-common.schema.json#/$defs/revision"
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            }
+          }
+        }
+      }
+    }
+  }
+}

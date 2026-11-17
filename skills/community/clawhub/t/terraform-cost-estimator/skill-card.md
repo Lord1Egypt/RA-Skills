@@ -1,40 +1,49 @@
-## Description: <br>
-Estimate infrastructure costs from Terraform plans by analyzing resource changes, predicting monthly spend, comparing alternatives, and identifying cost optimization opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate infrastructure costs from Terraform plans by analyzing resource changes, predicting monthly spend, comparing alternatives, and identifying cost optimization opportunities.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, infrastructure engineers, and FinOps teams use this skill to estimate monthly and annual cost impact from Terraform plans before applying changes. It helps compare cloud resource alternatives and identify optimization opportunities across AWS, GCP, and Azure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Terraform plan files and plan JSON can reveal sensitive infrastructure details. <br>
-Mitigation: Confirm the intended Terraform directory, workspace, and cloud profile before running commands, and treat generated plan files and cost reports as sensitive infrastructure data. <br>
-Risk: Estimated cloud costs can be inaccurate when pricing, region, resource utilization, or usage assumptions differ from the plan. <br>
-Mitigation: Validate material cost decisions against current provider pricing, billing data, or an approved cost-management tool before relying on the estimate. <br>
+## Use Case:
 
+Developers, platform engineers, and FinOps practitioners use this skill to estimate the cost impact of Terraform plans before applying infrastructure changes. It helps compare resource alternatives and identify optimization opportunities across AWS, GCP, and Azure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/terraform-cost-estimator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with cost tables, recommendations, annual projections, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cost estimates are advisory and depend on Terraform plan accuracy, selected cloud region, usage assumptions, and current provider pricing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Terraform plans may use cloud credentials or contain sensitive values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in the intended Terraform workspace and avoid sharing generated plan JSON outside trusted contexts.
+
+## Reference(s):
+
+- [Terraform Cost Estimator on ClawHub](https://clawhub.ai/charlie-morrison/skills/terraform-cost-estimator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tables, prose, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cost estimates depend on Terraform plan completeness, provider pricing assumptions, region, and workload inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

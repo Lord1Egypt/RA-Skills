@@ -1,43 +1,53 @@
-## Description: <br>
-Shows a Chess.com player's rapid, blitz, bullet, and puzzle statistics using the public Chess.com API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches public Chess.com ratings and records for a player across rapid, blitz, bullet, and puzzles.
 
-## Publisher: <br>
-[HugoRamon](https://clawhub.ai/user/HugoRamon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hugoramon](https://clawhub.ai/user/hugoramon)
 
-## Use Case: <br>
-External users and agents use this skill to look up public Chess.com statistics for a named player and present ratings, records, and puzzle information in a clear summary. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Chess.com username supplied by the user is sent to Chess.com's public API. <br>
-Mitigation: Use only public Chess.com usernames and do not provide passwords, tokens, or private account information. <br>
-Risk: The skill cannot modify Chess.com accounts or play chess moves for the user. <br>
-Mitigation: Treat the output as read-only public statistics and use separate tools for gameplay or account management. <br>
-Risk: Network errors, missing players, private profiles, or Chess.com API changes can prevent a successful lookup. <br>
-Mitigation: Validate the username, handle 404 and network errors clearly, and retry later if the public API is unavailable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Chess.com public player stats API endpoint](https://api.chess.com/pub/player/{username}/stats) <br>
-- [ClawHub skill page](https://clawhub.ai/HugoRamon/stats-profil-chess) <br>
-- [Publisher profile](https://clawhub.ai/user/HugoRamon) <br>
+## Use Case:
 
+Chess players, coaches, and agents use this skill to look up a public Chess.com username and return a concise ratings and record summary.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown summary with optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a public Chess.com username; does not request credentials, tokens, or private account data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts Chess.com's public API with the supplied username.
+
+Mitigation: Use only public Chess.com usernames and avoid entering passwords, tokens, or private account data.
+
+Risk: A missing, private, or unreachable profile can produce lookup errors instead of statistics.
+
+Mitigation: Validate the username format before execution and present API or network errors clearly to the user.
+
+## Reference(s):
+
+- [Chess.com public player stats API](https://api.chess.com/pub/player/{username}/stats)
+- [ClawHub skill page](https://clawhub.ai/hugoramon/skills/stats-profil-chess)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style text summary with rating, record, and error sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a single user-provided Chess.com username and returns only public profile statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

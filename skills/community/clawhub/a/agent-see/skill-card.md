@@ -1,44 +1,58 @@
-## Description: <br>
-Converts websites, SaaS products, or OpenAPI specifications into live, discoverable, agent-executable integrations with launch, deployment, discovery, backend, packaging, and maintenance guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert any website, SaaS product, or API into a live, discoverable, agent-executable integration.
 
-## Publisher: <br>
-[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert a website, SaaS application, or OpenAPI specification into an agent-ready integration and then move it through verification, launch artifacts, deployment, discovery publishing, backend connection, packaging, and maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide automatic installation of unpinned GitHub code. <br>
-Mitigation: Require explicit user approval before installation, review the linked project, and prefer an isolated virtual environment or container with pinned versions or commit hashes. <br>
-Risk: The skill can guide deployment, website publication, backend credential use, and production data testing. <br>
-Mitigation: Require explicit approval before each operational step, use staging credentials where possible, and review generated proof artifacts before sharing or publishing them. <br>
-Risk: Broad triggers may move users from conversion into go-live workflows that affect external systems. <br>
-Mitigation: Confirm intent before package installation, browser setup, runtime deployment, discovery publication, secret configuration, backend connection, or production testing. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert websites, SaaS products, or OpenAPI specifications into agent-ready bundles, then guide deployment, discovery publishing, backend connection, packaging, and maintenance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielfoojunwei/agent-see) <br>
-- [Publisher profile](https://clawhub.ai/user/danielfoojunwei) <br>
-- [Repository metadata link](https://github.com/Danielfoojunwei/Convert-any-SaaS-application-into-an-Agentic-interface) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, checklists, and generated file descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide generation of agent bundles, launch artifacts, deployment configuration, discovery files, plugin packages, and maintenance plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 0.2.0) <br>
+Risk: The skill can lead an agent to fetch code from GitHub and modify the local Python/browser environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated project or container, pin and review the Agent-See repository before installation, and avoid system-level package overrides.
+
+Risk: The skill includes deployment, public discovery publishing, and production-like testing workflows.
+
+Mitigation: Require explicit confirmation before deployment, public publishing, production testing, or any state-changing backend action.
+
+Risk: Backend connection workflows may involve API, database, or e-commerce credentials.
+
+Mitigation: Keep secrets in platform secret stores, prefer staging environments for tests, and review authentication mappings before connecting real services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielfoojunwei/skills/agent-see)
+- [Source repository from skill metadata](https://github.com/Danielfoojunwei/Convert-any-SaaS-application-into-an-Agentic-interface)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and generated file descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents through conversion, verification, deployment, discovery publishing, backend wiring, packaging, and maintenance workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

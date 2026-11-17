@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "name": "龙陵县人民医院招标文件 第四版(2026-07-09) vs 第五版(2026-07-13)",
+    "pair": {
+      "old_file": "（招标文件-第四次更正稿20260709）龙陵县人民医院县域医共体建设项目设备采购项目.docx",
+      "new_file": "（招标文件-第五次更正稿20260713）龙陵县人民医院县域医共体建设项目设备采购项目.docx"
+    },
+    "ground_truth_source": "采购人发布的《更正事项》公告（9 条逐条更正，作为标准答案）",
+    "notice_date": "2026-07-13",
+    "note": "本 golden 集用于回归：每次改动 skill 后跑 golden_regression.py，目标自动可检项 100% 召回。format_only 项属纯格式修订（如上下标），文本层前后版一致，标记为已知限制，不计入召回分母。"
+  },
+  "items": [
+    {
+      "id": "G1",
+      "official_no": 1,
+      "desc": "全自动清洗消毒器 ▲4 水耗量 ≤23L/步→≤25L/步、≤100L→≤125L",
+      "page": 112,
+      "change_type": "修改",
+      "probes": ["水耗量", "≤25L/步", "≤125L"],
+      "format_only": false
+    },
+    {
+      "id": "G2",
+      "official_no": 2,
+      "desc": "全自动清洗消毒器 ▲6 喷臂 每层≥2个→≥1个",
+      "page": 112,
+      "change_type": "修改",
+      "probes": ["喷臂"],
+      "format_only": false
+    },
+    {
+      "id": "G3",
+      "official_no": 3,
+      "desc": "高频振荡呼吸机 ▲9 CO₂/C₀ 下标格式修订（C₂0/C → C₂₀/C，肺泡过度膨胀系数下标化）",
+      "page": 141,
+      "change_type": "修改",
+      "probes": ["C₂₀", "C₂0", "肺泡过度膨胀系数"],
+      "format_only": false,
+      "note": "下标以 w:vertAlign=subscript 格式存储；extract_documents.py 已做 vertAlign→Unicode 归一化，两版下标格式不同即可自动命中（实测捕获 C₂0→C₂₀）。"
+    },
+    {
+      "id": "G4",
+      "official_no": 4,
+      "desc": "高频振荡呼吸机 章节重编号：五/六/★七→三/四/★五（报警/数据存储/配置清单/售后）",
+      "page": "142-143",
+      "change_type": "修改",
+      "probes": ["★五、配置清单", "★六、售后服务"],
+      "format_only": false
+    },
+    {
+      "id": "G5",
+      "official_no": 5,
+      "desc": "CT双筒高压注射器 ▲5 远端工作站 取消▲符号标注",
+      "page": 145,
+      "change_type": "修改",
+      "probes": ["远端工作站"],
+      "format_only": false
+    },
+    {
+      "id": "G6",
+      "official_no": 6,
+      "desc": "自动发药机 二.2.12 设备组成 重编号为 12（去掉小数点前导）",
+      "page": 148,
+      "change_type": "修改",
+      "probes": ["2.12"],
+      "format_only": false
+    },
+    {
+      "id": "G7",
+      "official_no": 7,
+      "desc": "眼科手术显微镜 五、照明系统→XY移动系统",
+      "page": 152,
+      "change_type": "修改",
+      "probes": ["XY移动系统"],
+      "format_only": false
+    },
+    {
+      "id": "G8",
+      "official_no": 8,
+      "desc": "第七章评标方法 7标段 评分标准『彩超技术参数响应』→『自动发药机技术参数响应』",
+      "page": 182,
+      "change_type": "修改",
+      "probes": ["技术参数响应程度评价", "自动发药机"],
+      "format_only": false
+    },
+    {
+      "id": "G9",
+      "official_no": 9,
+      "desc": "递交投标文件截止时间及开标时间 2026-07-15 09:00→2026-07-28 09:00",
+      "page": null,
+      "change_type": "修改",
+      "probes": ["2026年07月28日"],
+      "format_only": false
+    }
+  ]
+}

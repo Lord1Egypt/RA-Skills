@@ -1,0 +1,2 @@
+// Versioned hard ceilings. No unbounded queue and no automatic eviction.
+export const LIMITS=Object.freeze({version:'antenna-limits-2',bodyBytes:65536,derivedBytes:262144,derivedMultiplier:4,decodeDepth:2,dumbMs:250,smartMs:30000,connectMs:5000,responseBytes:65536,requestBytes:16384,outputTokens:1024,findings:16,reasonChars:512,active:2,pending:100,inboxItems:100,inboxBytes:16777216,corpusBytes:4194304,batchCases:500,repetitions:5});

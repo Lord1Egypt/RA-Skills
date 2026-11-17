@@ -1,41 +1,53 @@
-## Description: <br>
-Cross-platform PowerShell 7+ expert specializing in modern .NET, cloud automation, CI/CD tooling, Azure integration, and high-performance scripting across Windows, Linux, and macOS environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-platform PowerShell 7+ expert specializing in modern .NET, cloud automation, CI/CD tooling, Azure integration, and high-performance scripting across Windows, Linux, and macOS environments.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and IT/cloud engineers use this skill to draft and review PowerShell 7 automation for Azure, Microsoft Graph, CI/CD pipelines, .NET interop, and cross-platform enterprise scripting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Azure, Graph, CI/CD, or identity-management commands could change cloud resources or access controls if run without review. <br>
-Mitigation: Review commands before execution, validate tenant and subscription context, use dry-run controls where available, and prefer least-privilege credentials or managed identities. <br>
-Risk: Automation guidance could mishandle secrets if adapted without secure storage practices. <br>
-Mitigation: Use secure secret stores such as Key Vault or SecretManagement, avoid inline secrets, and limit credential scope. <br>
+## Use Case:
 
+Developers, cloud engineers, and IT operations teams use this skill to design, review, and generate cross-platform PowerShell 7 automation for Azure, Microsoft Graph, CI/CD pipelines, and enterprise scripting tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-powershell-7-expert) <br>
-- [Publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell snippets and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Azure, Graph, CI/CD, and identity-management commands that require human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated PowerShell may affect cloud tenants, Microsoft Graph resources, secrets, or CI/CD systems if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts, confirm the target subscription or tenant, and use least-privilege credentials before execution.
+
+Risk: Automation that changes infrastructure or identity resources can be difficult to reverse.
+
+Mitigation: Prefer dry-run patterns such as -WhatIf or -Confirm where applicable and test changes in a non-production environment first.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/mtsatryan/skills/ah-powershell-7-expert)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with PowerShell examples, checklists, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated scripts and commands should be reviewed before execution in cloud tenants, CI/CD systems, or production environments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

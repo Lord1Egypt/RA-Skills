@@ -1,42 +1,55 @@
-## Description: <br>
-Queries Jike's birthday flower API with an MM-DD birthday and returns the birthday flower, flower language, birthstone, and explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生日花语。输入 MM-DD 生日，查询生日花、花语、诞生石及说明。适用场景：用户询问相关传统文化、生活常识或配对资料时使用。数据由即刻数据（jikeapi.cn）开放接口提供。
 
-## Publisher: <br>
-[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn)
 
-## Use Case: <br>
-External users and agents use this skill to answer traditional culture or lifestyle questions about birthday flowers, flower meanings, and birthstones from an MM-DD birthday. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The queried MM-DD birthday and Jike AppKey are sent to Jike's API. <br>
-Mitigation: Use the skill only when that disclosure is acceptable, and prefer environment variables for the key instead of command-line arguments. <br>
-Risk: Setting JIKE_API_BASE_URL can route requests to an alternate endpoint. <br>
-Mitigation: Leave JIKE_API_BASE_URL unset unless the alternate endpoint is intentionally trusted. <br>
+## Use Case:
 
+Agents and users use this skill to look up birthday flowers, flower meanings, birthstones, and related descriptions for an MM-DD birthday through Jike Data's API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jikeapi-cn/jike-birthday-flower-query) <br>
-- [Jike API homepage](https://www.jikeapi.cn/) <br>
-- [Birthday flower API endpoint](https://api.jikeapi.cn/v1/birthday/flower) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Chinese text summary by default, or JSON when --json is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a JIKE_BIRTHDAY_FLOWER_QUERY_KEY or JIKE_APPKEY credential; accepts optional MM-DD birthday input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: An influenced runtime environment can set JIKE_API_BASE_URL and redirect requests containing the configured AppKey to an arbitrary host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in trusted environments where JIKE_API_BASE_URL is controlled, or use a version that hardcodes or allowlists https://api.jikeapi.cn.
+
+Risk: Passing a real AppKey with the --key argument can expose the credential through shell history, process listings, or logs.
+
+Mitigation: Prefer JIKE_BIRTHDAY_FLOWER_QUERY_KEY or JIKE_APPKEY environment variables for credentials and avoid logging command invocations that include secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/skills/jike-birthday-flower-query)
+- [Jike Data homepage](https://www.jikeapi.cn/)
+- [Birthday flower API endpoint](https://api.jikeapi.cn/v1/birthday/flower)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Chinese text by default, or formatted JSON when --json is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a Jike AppKey in JIKE_BIRTHDAY_FLOWER_QUERY_KEY or JIKE_APPKEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

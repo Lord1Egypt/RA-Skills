@@ -1,0 +1,270 @@
+{
+  "mode": "architecture",
+  "theme": "showcase",
+  "title": "Public TypeScript Monorepo Case Study",
+  "summary": "A sanitized case-study map showing how Visual Architecture turns a dense TypeScript repo into a reviewable artifact with evidence and receipts.",
+  "story": [
+    {
+      "title": "Extract the surfaces",
+      "text": "Identify client, server, extension, backend, realtime, package, and database boundaries without exposing private names."
+    },
+    {
+      "title": "Attach evidence",
+      "text": "Every important claim points back to the public case-study notes and carries confidence."
+    },
+    {
+      "title": "Review the artifact",
+      "text": "The generated SVG, HTML, share card, and receipt become the human review surface."
+    }
+  ],
+  "nodes": [
+    {
+      "id": "repo",
+      "label": "TypeScript Monorepo",
+      "subtitle": "workspace packages and apps",
+      "kind": "memory",
+      "x": 120,
+      "y": 400,
+      "evidence": {
+        "source": "docs/public-typescript-monorepo-case-study.md",
+        "line": 5,
+        "confidence": "high",
+        "note": "Scenario describes the sanitized repo shape."
+      }
+    },
+    {
+      "id": "client",
+      "label": "Client App",
+      "subtitle": "routes, features, hooks",
+      "kind": "service",
+      "x": 480,
+      "y": 160,
+      "evidence": {
+        "source": "docs/public-typescript-monorepo-case-study.md",
+        "line": 11,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "server",
+      "label": "Server App",
+      "subtitle": "controllers and services",
+      "kind": "service",
+      "x": 480,
+      "y": 400,
+      "evidence": {
+        "source": "docs/public-typescript-monorepo-case-study.md",
+        "line": 12,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "extension",
+      "label": "Editor Extension",
+      "subtitle": "local command surface",
+      "kind": "agent",
+      "x": 480,
+      "y": 640,
+      "evidence": {
+        "source": "docs/public-typescript-monorepo-case-study.md",
+        "line": 13,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "packages",
+      "label": "Shared Packages",
+      "subtitle": "types, API client, config",
+      "kind": "memory",
+      "x": 840,
+      "y": 160,
+      "evidence": {
+        "source": "docs/public-typescript-monorepo-case-study.md",
+        "line": 14,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "backend",
+      "label": "Backend Modules",
+      "subtitle": "jobs, auth, domain services",
+      "kind": "service",
+      "x": 840,
+      "y": 400,
+      "evidence": {
+        "source": "docs/public-typescript-monorepo-case-study.md",
+        "line": 15,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "realtime",
+      "label": "Realtime Gateway",
+      "subtitle": "events and collaboration",
+      "kind": "llm",
+      "x": 1200,
+      "y": 160,
+      "evidence": {
+        "source": "docs/public-typescript-monorepo-case-study.md",
+        "line": 16,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "database",
+      "label": "Database Layer",
+      "subtitle": "migrations and repositories",
+      "kind": "memory",
+      "x": 1200,
+      "y": 400,
+      "evidence": {
+        "source": "docs/public-typescript-monorepo-case-study.md",
+        "line": 17,
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "proof",
+      "label": "Proof Bundle",
+      "subtitle": "SVG, HTML, receipt, gallery",
+      "kind": "agent",
+      "x": 1560,
+      "y": 400,
+      "evidence": {
+        "source": "docs/public-typescript-monorepo-case-study.md",
+        "line": 18,
+        "confidence": "high"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "repo",
+      "to": "client",
+      "kind": "control",
+      "label": "contains",
+      "source_side": "top",
+      "target_side": "left",
+      "via": [
+        {
+          "x": 120,
+          "y": 80
+        },
+        {
+          "x": 300,
+          "y": 80
+        },
+        {
+          "x": 300,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "from": "repo",
+      "to": "server",
+      "kind": "control",
+      "label": "contains"
+    },
+    {
+      "from": "repo",
+      "to": "extension",
+      "kind": "control",
+      "label": "contains",
+      "source_side": "bottom",
+      "target_side": "left",
+      "via": [
+        {
+          "x": 120,
+          "y": 720
+        },
+        {
+          "x": 300,
+          "y": 720
+        },
+        {
+          "x": 300,
+          "y": 640
+        }
+      ]
+    },
+    {
+      "from": "client",
+      "to": "packages",
+      "kind": "primary-data",
+      "label": "imports"
+    },
+    {
+      "from": "server",
+      "to": "packages",
+      "kind": "primary-data",
+      "label": "imports"
+    },
+    {
+      "from": "extension",
+      "to": "packages",
+      "kind": "primary-data",
+      "label": "uses",
+      "source_side": "right",
+      "target_side": "bottom",
+      "via": [
+        {
+          "x": 660,
+          "y": 640
+        },
+        {
+          "x": 660,
+          "y": 720
+        },
+        {
+          "x": 840,
+          "y": 720
+        }
+      ]
+    },
+    {
+      "from": "server",
+      "to": "backend",
+      "kind": "primary-data",
+      "label": "routes"
+    },
+    {
+      "from": "backend",
+      "to": "realtime",
+      "kind": "primary-data",
+      "label": "publishes"
+    },
+    {
+      "from": "backend",
+      "to": "database",
+      "kind": "memory-write",
+      "label": "persists"
+    },
+    {
+      "from": "realtime",
+      "to": "client",
+      "kind": "primary-data",
+      "label": "updates",
+      "source_side": "left",
+      "target_side": "right",
+      "via": [
+        {
+          "x": 1020,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "from": "database",
+      "to": "proof",
+      "kind": "control",
+      "label": "receipts"
+    },
+    {
+      "from": "realtime",
+      "to": "proof",
+      "kind": "control",
+      "label": "gallery"
+    }
+  ]
+}

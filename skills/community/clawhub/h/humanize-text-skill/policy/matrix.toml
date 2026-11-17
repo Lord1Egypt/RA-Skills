@@ -1,0 +1,37 @@
+# matrix.toml — the core anti-drift table.
+#
+# The two parent projects use two orthogonal axes that are easy to conflate:
+#   - avoid-ai-writing: TIER (how severe a word/pattern is)
+#   - shuorenhua:       SCENE (where the text ships, how much it can tolerate)
+# This table unifies them as an explicit 2D matrix. Every scene×tier cell must
+# have a policy. `scripts/check-policy.js` enforces no gaps.
+#
+# Actions: flag | suppress | flag_conservative | flag_relaxed
+#   flag             = always surface the hit
+#   suppress         = don't surface in this scene (e.g. T3 noise in chat)
+#   flag_conservative= surface only at high density
+#   flag_relaxed     = surface but don't block
+
+[chat]
+T1 = "flag"
+T2 = "flag"
+T3 = "suppress"
+scene_pack_trigger = false
+
+[status]
+T1 = "flag"
+T2 = "flag"
+T3 = "flag_conservative"
+scene_pack_trigger = false
+
+[docs]
+T1 = "flag"
+T2 = "flag"
+T3 = "flag"
+scene_pack_trigger = false
+
+[public-writing]
+T1 = "flag"
+T2 = "flag"
+T3 = "flag"
+scene_pack_trigger = true

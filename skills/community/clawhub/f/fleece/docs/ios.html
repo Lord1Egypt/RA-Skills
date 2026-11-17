@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Fleece for iOS — Best Card at Every Store</title>
+  <meta name="description" content="Fleece for iPhone detects the store you're in, maps it to an MCC category, and instantly recommends the best credit card to use. Free. No API key. Powered by Apple MapKit." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Yuan Chen" />
+  <link rel="canonical" href="https://getfleece.io/ios" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getfleece.io/ios" />
+  <meta property="og:title" content="Fleece for iOS — Best Card at Every Store" />
+  <meta property="og:description" content="Detects where you are. Recommends your best card. Sends a push notification before you tap to pay." />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fleece for iOS — Best Card at Every Store" />
+  <meta name="twitter:description" content="Detects where you are. Recommends your best card. Sends a push notification before you tap to pay." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Fleece",
+    "operatingSystem": "iOS 17+",
+    "applicationCategory": "FinanceApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Fleece for iPhone detects the store you are in, maps it to an MCC merchant category, and recommends the best credit card to use — with a push notification delivered before you pay.",
+    "url": "https://getfleece.io/ios",
+    "author": { "@type": "Person", "name": "Yuan Chen" }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #FFD100;
+      --black:  #111111;
+      --white:  #FFFFFF;
+      --gray:   #F5F5F3;
+      --mid:    #555555;
+      --border: #E0E0E0;
+      --font-head: 'Oswald', sans-serif;
+      --font-body: 'Source Sans 3', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); font-size: 18px; color: var(--black); background: var(--white); line-height: 1.6; }
+    a { color: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--black);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 64px;
+    }
+    .nav-logo { font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--yellow); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; }
+    .nav-links { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
+    .nav-links a { font-size: 0.95rem; color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--yellow); }
+    .nav-links .btn-pill { background: var(--yellow); color: var(--black); padding: 0.45rem 1.25rem; border-radius: 100px; font-weight: 600; font-size: 0.9rem; }
+    .nav-links .btn-pill:hover { background: #e6bc00; color: var(--black); }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.75); transition: background 0.15s; }
+    .nav-toggle:hover span { background: var(--yellow); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; position: relative; }
+      .nav-toggle { display: flex; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--black); border-top: 1px solid #222; padding: 0.5rem 1.25rem 1.25rem; gap: 0; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-links li { padding: 0.6rem 0; border-bottom: 1px solid #1e1e1e; }
+      .nav-links li:last-child { border-bottom: none; padding-top: 0.9rem; }
+      .nav-links .btn-pill { display: inline-block; }
+    }
+
+    /* ── HERO ── */
+    .hero { background: var(--black); padding: 7rem 2.5rem 6rem; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    @media (max-width: 768px) { .hero-inner { grid-template-columns: 1fr; } .hero { padding: 4rem 1.25rem 3rem; } }
+
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--yellow); color: var(--black); font-family: var(--font-head); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 4px 11px; border-radius: 3px; margin-bottom: 1.25rem; }
+
+    .hero h1 { font-family: var(--font-head); font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 700; text-transform: uppercase; color: var(--white); line-height: 1.1; letter-spacing: 1px; margin-bottom: 1.5rem; }
+    .hero h1 span { color: var(--yellow); }
+    .hero p { color: rgba(255,255,255,0.65); font-size: 1.05rem; max-width: 480px; margin-bottom: 2.5rem; line-height: 1.7; }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-pill-dark { display: inline-flex; align-items: center; gap: 8px; background: var(--yellow); color: var(--black); padding: 0.65rem 1.75rem; border-radius: 100px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: background 0.15s; }
+    .btn-pill-dark:hover { background: #e6bc00; }
+    .btn-pill-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: rgba(255,255,255,0.75); padding: 0.65rem 1.75rem; border-radius: 100px; border: 1.5px solid rgba(255,255,255,0.25); font-size: 1rem; font-weight: 600; text-decoration: none; transition: border-color 0.15s, color 0.15s; }
+    .btn-pill-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* phone mockup in hero */
+    .hero-phone { display: flex; justify-content: center; align-items: flex-end; gap: 1.5rem; }
+    .phone-frame { position: relative; }
+    .phone-frame img { width: 220px; border-radius: 32px; box-shadow: 0 32px 80px rgba(0,0,0,0.6); display: block; }
+    .phone-frame.back { margin-bottom: -2rem; opacity: 0.6; transform: scale(0.88) translateX(24px); }
+    .phone-frame.front { position: relative; z-index: 2; }
+    @media (max-width: 768px) { .hero-phone { margin-top: 2rem; } .phone-frame img { width: 160px; } .phone-frame.back { transform: scale(0.85) translateX(18px); } }
+
+    /* ── STATS STRIP ── */
+    .stats-strip { background: var(--black); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; border-top: 1px solid #222; border-bottom: 1px solid #222; }
+    .stat-num { font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--yellow); letter-spacing: -0.5px; }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 2px; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
+    .stat-divider { width: 1px; height: 32px; background: #333; }
+    @media (max-width: 768px) { .stats-strip { gap: 1.5rem; padding: 1.5rem 1.25rem; } .stat-divider { display: none; } }
+
+    /* ── SCREENSHOTS SECTION ── */
+    .screens-section { background: var(--white); padding: 6rem 2.5rem; border-bottom: 1px solid var(--border); }
+    .screens-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { color: var(--mid); font-size: 0.72rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .section-title { font-family: var(--font-head); font-size: clamp(1.75rem, 3vw, 2.2rem); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 0.75rem; }
+    .section-sub { font-size: 1rem; color: var(--mid); max-width: 540px; margin-bottom: 3.5rem; }
+
+    .screens-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; align-items: start; }
+    @media (max-width: 768px) { .screens-grid { grid-template-columns: 1fr; } .screens-section { padding: 3.5rem 1.25rem; } }
+
+    .screen-card { display: flex; flex-direction: column; gap: 1.25rem; }
+    .screen-card img { width: 100%; border-radius: 24px; box-shadow: 0 16px 48px rgba(0,0,0,0.12); display: block; }
+    .screen-card h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .screen-card p { font-size: 0.95rem; color: var(--mid); line-height: 1.65; }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { background: var(--gray); padding: 6rem 2.5rem; border-bottom: 1px solid var(--border); }
+    .how-inner { max-width: 1100px; margin: 0 auto; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
+    @media (max-width: 768px) { .steps { grid-template-columns: 1fr 1fr; } .how-section { padding: 3.5rem 1.25rem; } }
+    @media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
+
+    .step { display: flex; flex-direction: column; gap: 0.9rem; }
+    .step-num { font-family: var(--font-head); font-size: 2.5rem; font-weight: 700; color: var(--yellow); line-height: 1; }
+    .step h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .step p { font-size: 0.9rem; color: var(--mid); line-height: 1.6; }
+
+    /* ── FEATURE CARDS ── */
+    .features-section { background: var(--white); padding: 6rem 2.5rem; border-bottom: 1px solid var(--border); }
+    .features-inner { max-width: 1100px; margin: 0 auto; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    @media (max-width: 768px) { .features-grid { grid-template-columns: 1fr; } .features-section { padding: 3.5rem 1.25rem; } }
+
+    .feat-card { border: 1.5px solid var(--border); border-radius: 4px; padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1rem; transition: border-color 0.2s; }
+    .feat-card:hover { border-color: var(--black); }
+    .feat-icon { font-size: 2.25rem; line-height: 1; }
+    .feat-card h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .feat-card p { font-size: 0.95rem; color: var(--mid); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .cta-section { background: var(--black); padding: 6rem 2.5rem; }
+    .cta-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .cta-inner h2 { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; text-transform: uppercase; color: var(--white); letter-spacing: 1px; margin-bottom: 1.25rem; }
+    .cta-inner h2 span { color: var(--yellow); }
+    .cta-inner p { color: rgba(255,255,255,0.55); font-size: 1rem; line-height: 1.7; margin-bottom: 2.5rem; }
+    .cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    @media (max-width: 768px) { .cta-section { padding: 4rem 1.25rem; } }
+
+    .appstore-badge { display: inline-flex; align-items: center; gap: 10px; background: var(--white); color: var(--black); padding: 0.7rem 1.75rem; border-radius: 12px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: opacity 0.15s; }
+    .appstore-badge:hover { opacity: 0.85; }
+    .appstore-badge svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .appstore-badge small { display: block; font-size: 0.65rem; font-weight: 400; color: var(--mid); line-height: 1; }
+    .appstore-badge strong { display: block; font-size: 1rem; font-weight: 700; line-height: 1.2; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .footer-logo { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--yellow); text-transform: uppercase; letter-spacing: 1px; text-decoration: none; }
+    .footer-right { display: flex; align-items: center; gap: 2rem; }
+    .footer-copy { color: rgba(255,255,255,0.35); font-size: 0.85rem; }
+    .footer-right a { color: rgba(255,255,255,0.35); font-size: 0.85rem; text-decoration: underline; text-underline-offset: 3px; }
+    .footer-right a:hover { color: var(--yellow); }
+    @media (max-width: 768px) { footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; gap: 0.75rem; } .footer-right { flex-wrap: wrap; gap: 1rem; } }
+
+    /* arrow button */
+    .btn-arrow { display: inline-flex; align-items: center; gap: 8px; background: var(--yellow); color: var(--black); padding: 0.6rem 1.5rem; border-radius: 100px; font-size: 0.95rem; font-weight: 600; text-decoration: none; align-self: flex-start; transition: background 0.15s; }
+    .btn-arrow:hover { background: #e6bc00; }
+    .btn-arrow svg { width: 14px; height: 14px; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/" style="display:flex;align-items:center;gap:10px;">
+    <img src="assets/ios/icon.png" alt="Fleece"
+         style="width:32px;height:32px;border-radius:7px;flex-shrink:0;" />
+    Fleece
+  </a>
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#screens">Screenshots</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="/">CLI</a></li>
+    <li><a href="https://github.com/chenyuan99/fleece" target="_blank" class="btn-pill">GitHub</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">📱 Now on iPhone</div>
+      <h1>Best card at <span>every store</span></h1>
+      <p>Fleece detects where you are, maps the store to a merchant category, and pushes the best card to use — before you tap to pay. Free. No API key. Powered by Apple MapKit.</p>
+      <div class="hero-actions">
+        <a class="btn-pill-dark" href="https://github.com/chenyuan99/fleece/tree/main/ios" target="_blank">
+          View on GitHub
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn-pill-outline" href="#screens">See screenshots</a>
+      </div>
+    </div>
+
+    <!-- Phone mockups -->
+    <div class="hero-phone">
+      <div class="phone-frame back">
+        <img src="assets/ios/screen-wallet.png" alt="Wallet tab" />
+      </div>
+      <div class="phone-frame front">
+        <img src="assets/ios/screen-home.png" alt="Home tab with map and card recommendation" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div>
+    <div class="stat-num">9</div>
+    <div class="stat-label">US credit cards</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div>
+    <div class="stat-num">0</div>
+    <div class="stat-label">API keys needed</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div>
+    <div class="stat-num">iOS 17+</div>
+    <div class="stat-label">deployment target</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div>
+    <div class="stat-num">MIT</div>
+    <div class="stat-label">open source</div>
+  </div>
+</div>
+
+<!-- SCREENSHOTS -->
+<section class="screens-section" id="screens">
+  <div class="screens-inner">
+    <p class="section-label">App screenshots</p>
+    <h2 class="section-title">Three screens. One job.</h2>
+    <p class="section-sub">Every screen is focused on a single task — no clutter, no onboarding walls.</p>
+
+    <div class="screens-grid">
+      <div class="screen-card">
+        <img src="assets/ios/screen-home.png" alt="Home screen — map with card recommendation" loading="lazy" />
+        <h3>Nearby</h3>
+        <p>MapKit map shows stores around you. The banner names the current merchant and the horizontal scroll ranks your cards by effective reward rate for that category.</p>
+      </div>
+      <div class="screen-card">
+        <img src="assets/ios/screen-wallet.png" alt="Wallet screen — card collection" loading="lazy" />
+        <h3>Wallet</h3>
+        <p>Add your cards once. Fleece silently detects which payment networks you have in Apple Wallet and surfaces matching cards at the top — no badges, no friction.</p>
+      </div>
+      <div class="screen-card">
+        <img src="assets/ios/screen-settings.png" alt="Settings screen" loading="lazy" />
+        <h3>Settings</h3>
+        <p>No API key entry. No account creation. All place detection runs on-device via Apple MapKit — zero data leaves your phone to a third-party endpoint.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title">From location to notification in four steps</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Detect location</h4>
+        <p>CoreLocation fires when you move more than 30 meters. A debounce filter prevents redundant lookups.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Identify store</h4>
+        <p>MKLocalSearch queries Apple's on-device POI database — free, private, no outbound API call.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Map to MCC</h4>
+        <p>MKPointOfInterestCategory maps to a merchant category: dining, groceries, gas, hotels, and more.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Push notification</h4>
+        <p>Your best wallet card fires as a local UNNotification — one tap opens the full ranked list.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE CARDS -->
+<section class="features-section" id="features">
+  <div class="features-inner">
+    <p class="section-label">Features</p>
+    <h2 class="section-title">Built for deal saviors</h2>
+
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🗺️</div>
+        <h3>Live map</h3>
+        <p>Native MapKit map shows nearby businesses as annotated pins, each color-coded by merchant category. Your blue dot is always centered.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">💳</div>
+        <h3>Smart ranking</h3>
+        <p>Cards are ranked by effective reward rate — multiplier × point value — for the exact category you're in. Your wallet cards surface first.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔔</div>
+        <h3>Push notification</h3>
+        <p>A local notification fires when you enter a business. Tap "View All Cards" to open the full ranked list. A 5-minute cooldown prevents repeats.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📡</div>
+        <h3>Apple Wallet detection</h3>
+        <p>PassKit detects which payment networks — Visa, Mastercard, Amex, Discover — you have in Apple Wallet and silently prioritizes matching cards.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔒</div>
+        <h3>100% on-device</h3>
+        <p>No account. No API key. No third-party server. All place lookups use Apple's MapKit framework — the same data that powers Apple Maps.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🏦</div>
+        <h3>9 major US cards</h3>
+        <p>Chase Sapphire Reserve, Sapphire Preferred, Freedom Unlimited, Amex Gold, Platinum, BCP, Bilt, Capital One Venture X, and Citi Double Cash.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div style="display:flex;align-items:center;gap:16px;justify-content:center;margin-bottom:2rem;">
+      <img src="assets/ios/icon.png" alt="Fleece app icon"
+           style="width:80px;height:80px;border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,0.5);flex-shrink:0;" />
+      <div style="text-align:left;">
+        <div style="font-family:var(--font-head);font-size:1.4rem;font-weight:700;color:var(--white);letter-spacing:0.5px;text-transform:uppercase;">Fleece</div>
+        <div style="font-size:0.85rem;color:rgba(255,255,255,0.45);margin-top:2px;">Credit Card Rewards</div>
+        <div style="display:flex;gap:4px;margin-top:6px;">
+          <span style="color:var(--yellow);font-size:0.8rem;">★★★★★</span>
+          <span style="font-size:0.75rem;color:rgba(255,255,255,0.3);align-self:center;">Coming soon</span>
+        </div>
+      </div>
+    </div>
+    <h2>Never leave <span>points</span> on the table</h2>
+    <p>Open source. MIT licensed. Coming to the App Store — pending Apple Developer enrollment. Build it yourself from GitHub today.</p>
+    <div class="cta-buttons">
+      <a class="appstore-badge" href="https://github.com/chenyuan99/fleece/tree/main/ios" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div>
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </div>
+      </a>
+      <a class="btn-pill-outline" href="https://github.com/chenyuan99/fleece/tree/main/ios" target="_blank">
+        View source on GitHub
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <p style="margin-top:2rem;font-size:0.82rem;color:rgba(255,255,255,0.3);">App Store submission pending Apple Developer Program approval. Build from source in the meantime — see <code style="color:rgba(255,255,255,0.4)">ios/README.md</code>.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="/">Fleece</a>
+  <div class="footer-right">
+    <span class="footer-copy">© 2026 Fleece. Built by Yuan Chen.</span>
+    <a href="/">CLI →</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+    <a href="https://github.com/chenyuan99/fleece/blob/main/LICENSE" target="_blank">MIT License</a>
+  </div>
+</footer>
+
+<script>
+  var toggle = document.querySelector('.nav-toggle');
+  var links  = document.querySelector('.nav-links');
+  toggle.addEventListener('click', function() {
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>

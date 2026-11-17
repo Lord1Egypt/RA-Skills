@@ -1,41 +1,58 @@
-## Description: <br>
-Scans installed skills, suggests L0-L3 priority tiers, and auto-configures skill injection policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans installed skills, suggests L0-L3 priority tiers, and auto-configures skill injection policy.
 
-## Publisher: <br>
-[halfmoon82](https://clawhub.ai/user/halfmoon82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[halfmoon82](https://clawhub.ai/user/halfmoon82)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to scan installed skills, assign priority tiers, and configure a token-aware skill injection policy for new setups, migrations, audits, or performance tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Setup messaging may overstate which local configuration files were changed. <br>
-Mitigation: Verify AGENTS.md, SOUL.md, and message-injector configuration manually after running setup. <br>
-Risk: Automatic setup can apply tiering choices before the user has reviewed the generated policy. <br>
-Mitigation: Run with --dry-run first, review the proposed policy and tiers, and avoid --auto on first use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to audit installed skills, assign L0-L3 priority tiers, and generate policy and setup guidance for token-budgeted skill injection.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/halfmoon82/skill-priority-setup) <br>
-- [OpenClaw Skills Documentation](https://docs.openclaw.ai/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration file descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The setup flow can propose tier assignments, policy text, backups, validation output, and configuration changes for local review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, clawhub.yaml, server release metadata) <br>
+Risk: The setup helper can write persistent OpenClaw policy files and backups under the user's OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with --dry-run first, review the proposed tier assignments, and inspect generated files before applying changes.
+
+Risk: The script reports that AGENTS.md, SOUL.md, or message injector configuration were updated even when those changes are not actually implemented.
+
+Mitigation: Verify those files manually after execution and do not rely on success messages alone.
+
+Risk: Automatic mode may classify oddly named or untrusted skill directories using simple name-pattern rules.
+
+Mitigation: Use the interactive review flow for mixed or untrusted skill collections and avoid --auto until the discovered skills are known.
+
+## Reference(s):
+
+- [Skill Priority Setup on ClawHub](https://clawhub.ai/halfmoon82/skills/skill-priority-setup)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance, terminal output, and generated local policy files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write persistent OpenClaw policy files and backups when run outside dry-run mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, SKILL.md frontmatter, and clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

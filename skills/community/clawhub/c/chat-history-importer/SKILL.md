@@ -1,12 +1,33 @@
 ---
+
+
 name: chat-history-importer
 description: "Import AI conversation exports (OpenAI ChatGPT and Anthropic Claude) into your agent's episodic memory. Parses export files, writes daily memory summaries, and deduplicates on re-runs. Trigger phrases: import chat history, ingest conversation export, import chatgpt export, import claude export, load AI conversation history."
-metadata: {"clawdbot":{"emoji":"📥","requires":{"bins":["python3"]},"env":[],"os":["linux","darwin","win32"],"homepage":"https://clawhub.com/djc00p/chat-history-importer"}}
+metadata: {"clawdbot":{"emoji":"\ud83d\udce5","requires":{"bins":["python3"],"env":[]},"env":[],"os":["linux","darwin","win32"],"homepage":"https://clawhub.com/djc00p/chat-history-importer","envVars":[{"name":"OPENCLAW_WORKSPACE","required":false,"description":"Agent workspace path to write memory into. Defaults to ~/.openclaw/workspace. Set this explicitly so imports land where you expect."}],"version":"1.1.3"}}
 ---
+
+
 
 # Chat History Importer
 
 Import years of AI conversations into searchable episodic memory. Parse ChatGPT and Claude exports and create dated daily memory files your agent can search and reference. Perfect for onboarding new agents with rich historical context or preserving important conversations for future recall. Pairs well with the [chat-learnings-extractor](https://clawhub.ai/djc00p/chat-learnings-extractor) skill for a complete conversation analysis workflow.
+
+## Before You Import
+
+This skill writes your private chat history into your agent's persistent memory.
+Review these before the first run.
+
+- **Dry run first.** `python3 scripts/batch.py --dir <exports> --dry-run` shows what
+  would be written without touching memory.
+- **Scope the input.** Point `--dir` at a single export folder and use `--since` to
+  bound the date range. You do not need your entire history.
+- **Redact sensitive content first.** Chat exports routinely contain API keys,
+  credentials, client details, and proprietary work. Remove or redact them before
+  importing.
+- **Set the target explicitly.** Export `OPENCLAW_WORKSPACE` so the import lands in
+  the workspace you intend rather than a default.
+- **Inspect after importing.** Read the generated `memory/episodic/YYYY-MM-DD.md`
+  files. Memory poisoning is possible if unreviewed export content reaches it.
 
 ## Quick Start
 

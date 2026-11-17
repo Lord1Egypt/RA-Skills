@@ -1,42 +1,59 @@
-## Description: <br>
-Split Large Partitions Without Data Loss - Divide oversized partitions into cleaner layouts for system, data, and backup workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Split Large Partitions Without Data Loss - Divide oversized partitions into cleaner layouts for system, data, and backup workflows.
 
-## Publisher: <br>
-[hezhaoyun](https://clawhub.ai/user/hezhaoyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hezhaoyun](https://clawhub.ai/user/hezhaoyun)
 
-## Use Case: <br>
-Windows users use this skill to plan and launch non-destructive split-partition workflows for separating system, data, media, and backup storage areas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Partition-management actions can affect live disks if the wrong target or preview is approved. <br>
-Mitigation: Keep a current backup and manually verify the disk, partition letter, command, and EaseUS preview before applying changes. <br>
-Risk: The skill downloads, installs, and launches third-party disk-management software that may require administrator rights. <br>
-Mitigation: Use it only when the EaseUS download source is trusted, review the bundled scripts first, and run elevated commands only under approved local policy. <br>
+## Use Case:
 
+External users and support agents use this skill to plan and launch workflows for splitting oversized Windows partitions into system, data, or backup areas while preserving existing files.
 
-## Reference(s): <br>
-- [EaseUS Partition Master](https://www.easeus.com/partition-manager/) <br>
-- [EaseUS Partition Master Free Download](https://down.easeus.com/product/epm_free?source=skills&dest=split-drive-coach) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hezhaoyun/split-drive-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Windows 10+ and EaseUS Partition Master workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill installs EaseUS Partition Master through a silent installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the installer is intentionally wanted, prefer a manual vendor download, and inspect publisher or signature details before running it.
+
+Risk: Partition-management actions can affect system-wide disk state and stored data.
+
+Mitigation: Keep a verified backup, review the operation preview, and avoid elevated execution unless the disk and installation impact is understood.
+
+Risk: The launcher can pass broad disk-tool commands to EPMUI.exe.
+
+Mitigation: Confirm the target disk, partition letters, capacity changes, and requested shell command before applying any write operation.
+
+## Reference(s):
+
+- [EaseUS Partition Master](https://www.easeus.com/partition-manager/)
+- [EaseUS Partition Master Free Download](https://down.easeus.com/product/epm_free?source=skills&dest=split-drive-coach)
+- [Split Drive Coach on ClawHub](https://clawhub.ai/hezhaoyun/skills/split-drive-coach)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with Windows command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows 10+ guidance for EaseUS Partition Master installation, launch, pre-checks, and troubleshooting.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

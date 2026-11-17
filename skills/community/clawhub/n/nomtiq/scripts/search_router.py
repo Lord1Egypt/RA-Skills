@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
-Nomtiq 小饭票 - 智能路由搜索
-自动判断用户 locale，切换对应数据源：
-  - 中国境内 → 大众点评 + 小红书
-  - 海外华人 → Google Places + Yelp + 小红书
-  - 海外用户 → Google Places + Yelp + Reddit
+Nomtiq 小饭票 - 按目的地路由搜索
+  - 中国大陆目的地 → 高德地图（可选 Serper 公开网页交叉验证）
+  - 中国大陆以外 → Serper Google Maps
+
+界面语言不决定地图源：英文查询北京仍用高德，中文查询纽约仍用 Serper。
 
 用法:
   python3 search_all.py "三里屯 创意菜"
@@ -20,9 +21,7 @@ import os
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from search import search_dianping
 from search_xhs import search_xiaohongshu
-from search_global import search_all_global
 from search_maps import search_maps, search_serper_maps, cross_verify_social
 
 DATA_DIR = Path(__file__).parent.parent / 'data'
@@ -31,14 +30,19 @@ PROFILE_PATH = DATA_DIR / 'taste-profile.json'
 
 # ── Locale 自动推断 ──────────────────────────────────────────
 
-CHINA_SIGNALS = [
-    # 中文地名
+MAINLAND_LOCATION_SIGNALS = [
+    # 中国大陆地名（中英文）
     '北京', '上海', '广州', '深圳', '成都', '杭州', '武汉', '西安', '南京', '重庆',
-    '三里屯', '国贸', '望京', '朝阳', '海淀', '东城', '西城',
-    # 中文菜系
+    '长沙', '苏州', '天津', '青岛', '厦门', '福州', '昆明', '郑州', '合肥', '济南',
+    '三里屯', '国贸', '望京', '朝阳', '海淀', '东城', '西城', '亮马河', '酒仙桥',
+    'beijing', 'shanghai', 'guangzhou', 'shenzhen', 'chengdu', 'hangzhou',
+    'wuhan', "xi'an", 'xian', 'nanjing', 'chongqing', 'changsha', 'suzhou',
+    'tianjin', 'qingdao', 'xiamen', 'kunming', 'zhengzhou', 'jinan',
+]
+
+CHINA_FOOD_SIGNALS = [
     '川菜', '粤菜', '湘菜', '闽菜', '苏菜', '浙菜', '鲁菜', '徽菜',
     '火锅', '串串', '烤鸭', '小笼包', '大众点评',
-    # 货币
     '人均', '¥',
 ]
 
@@ -52,55 +56,100 @@ OVERSEAS_CHINESE_SIGNALS = [
     '小红书', '探店', '海外',
 ]
 
-OVERSEAS_SIGNALS = [
-    # 英文城市
+OVERSEAS_LOCATION_SIGNALS = [
+    # 中国大陆以外地名（中英文）
     'new york', 'manhattan', 'brooklyn', 'los angeles', 'san francisco',
     'london', 'paris', 'tokyo', 'osaka', 'seoul', 'singapore', 'sydney',
     'toronto', 'vancouver', 'melbourne', 'bangkok',
-    # 英文菜系
+    '纽约', '曼哈顿', '布鲁克林', '洛杉矶', '旧金山', '伦敦', '巴黎', '东京',
+    '大阪', '首尔', '新加坡', '悉尼', '多伦多', '温哥华', '墨尔本', '曼谷',
+]
+
+OVERSEAS_FOOD_SIGNALS = [
     'italian', 'french', 'japanese', 'korean', 'thai', 'mexican', 'indian',
-    'sushi', 'ramen', 'pizza', 'burger', 'steak',
-    # 货币
-    '$', '€', '£', '¥ jpy',
+    'sushi', 'ramen', 'pizza', 'burger', 'steak', '$', '€', '£', '¥ jpy',
 ]
 
 
 def detect_locale(query: str, city: str = '', profile: dict = None) -> str:
     """
-    自动推断用户 locale
+    先按目的地，再按界面语言推断兼容 locale。
     返回: 'china' | 'overseas-chinese' | 'overseas'
     """
     text = f"{query} {city}".lower()
+    city_text = city.strip().lower()
+    query_text = query.lower()
+    query_has_chinese = bool(re.search(r'[\u4e00-\u9fff]', query))
 
-    # 1. 先看 taste-profile 里有没有记录的 locale
+    def global_locale() -> str:
+        return 'overseas-chinese' if query_has_chinese else 'overseas'
+
+    # 1. 结构化 city 是最强目的地证据，菜系和查询语言不能覆盖它。
+    if city_text:
+        if any(signal in city_text for signal in MAINLAND_LOCATION_SIGNALS):
+            return 'china'
+        if any(signal in city_text for signal in OVERSEAS_LOCATION_SIGNALS):
+            return global_locale()
+        # 任意未收录的英文城市名视作全球目的地。
+        if re.fullmatch(r"[A-Za-z .,'-]+", city_text):
+            return global_locale()
+
+    # 2. 没有结构化 city 时，再从自由文本中识别实际地点。
+    if any(signal in query_text for signal in MAINLAND_LOCATION_SIGNALS):
+        return 'china'
+    if any(signal in query_text for signal in OVERSEAS_LOCATION_SIGNALS):
+        return global_locale()
+
+    # 3. 无明确目的地时才使用画像。
     if profile and profile.get('user', {}).get('locale'):
         return profile['user']['locale']
 
-    # 2. 看 profile 里的城市
+    # 4. 看画像城市。
     if profile:
         user_city = profile.get('user', {}).get('city', '')
-        if user_city and any(s in user_city for s in ['北京', '上海', '广州', '深圳', '成都']):
+        if user_city and any(s in user_city.lower() for s in MAINLAND_LOCATION_SIGNALS):
             return 'china'
 
-    # 3. 从 query 推断
-    china_score = sum(1 for s in CHINA_SIGNALS if s.lower() in text)
+    # 5. 只有未提供地点时，才把菜系/语言当成弱提示。
+    china_score = sum(1 for s in CHINA_FOOD_SIGNALS if s.lower() in text)
     oc_score = sum(1 for s in OVERSEAS_CHINESE_SIGNALS if s.lower() in text)
-    overseas_score = sum(1 for s in OVERSEAS_SIGNALS if s.lower() in text)
 
-    # 中文字符比例
     chinese_chars = len(re.findall(r'[\u4e00-\u9fff]', text))
-    if chinese_chars > 3:
-        china_score += 2
-
-    if china_score >= 2:
+    if china_score >= 1:
         return 'china'
-    if oc_score >= 1 or (chinese_chars > 0 and overseas_score >= 1):
+    if oc_score >= 1:
         return 'overseas-chinese'
-    if overseas_score >= 1:
-        return 'overseas'
+    if any(s in query_text for s in OVERSEAS_FOOD_SIGNALS):
+        return global_locale()
 
-    # 默认：有中文就是中国
+    # 最后兼容旧行为；Agent 应在地点不明确时先向用户确认城市。
     return 'china' if chinese_chars > 0 else 'overseas'
+
+
+def _setup_required(provider: str, json_output: bool) -> None:
+    if provider == 'amap':
+        payload = {
+            'status': 'setup_required',
+            'target_region': 'china-mainland',
+            'provider': 'amap',
+            'missing_env': ['AMAP_WEBSERVICE_KEY'],
+            'setup_url': 'https://console.amap.com/dev/key/app',
+            'message': 'China-mainland search needs your own Amap Web Service key. Set it only as an environment variable.',
+        }
+    else:
+        payload = {
+            'status': 'setup_required',
+            'target_region': 'global',
+            'provider': 'serper',
+            'missing_env': ['SERPER_API_KEY'],
+            'setup_url': 'https://serper.dev/',
+            'message': 'Global search needs your own Serper API key. Amap registration is not required.',
+        }
+    if json_output:
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+    else:
+        print(payload['message'])
+        print(f"Setup: {payload['setup_url']}")
 
 
 # ── 匹配度计算 ────────────────────────────────────────────────
@@ -180,9 +229,11 @@ def main():
     parser = argparse.ArgumentParser(description='Nomtiq 小饭票 - 智能路由搜索')
     parser.add_argument('query', help='搜索关键词（中英文均可）')
     parser.add_argument('--city', default='', help='城市')
-    parser.add_argument('--max', type=int, default=40, help='最大结果数')
+    parser.add_argument('--max', type=int, default=20, help='最大结果数（高德单次最多 25）')
     parser.add_argument('--locale', choices=['china', 'overseas-chinese', 'overseas', 'auto'],
                         default='auto', help='用户 locale（默认自动推断）')
+    parser.add_argument('--region', choices=['auto', 'china-mainland', 'global'], default='auto',
+                        help='目的地区域；优先级高于 locale（推荐）')
     parser.add_argument('--mode', choices=['normal', '2plus1'], default='2plus1')
     parser.add_argument('--scene', default='', help='场景：birthday/ex/business/date/friends/solo')
     parser.add_argument('--people', type=int, default=2, help='人数')
@@ -218,13 +269,19 @@ def main():
     if people >= 5:
         scene_query_suffix += ' 大桌 包间'
 
-    # 推断 locale
-    locale = args.locale if args.locale != 'auto' else detect_locale(args.query, args.city, profile)
-    print(f"📍 Locale: {locale}", file=sys.stderr)
+    # 先按目的地选数据源；locale 只保留为 0.5.0 命令兼容参数。
+    if args.region == 'china-mainland':
+        locale = 'china'
+    elif args.region == 'global':
+        locale = 'overseas-chinese' if re.search(r'[\u4e00-\u9fff]', args.query) else 'overseas'
+    else:
+        locale = args.locale if args.locale != 'auto' else detect_locale(args.query, args.city, profile)
+    target_region = 'china-mainland' if locale == 'china' else 'global'
+    print(f"📍 Target region: {target_region} | response locale: {locale}", file=sys.stderr)
 
     # 按 locale 路由搜索
     if locale == 'china':
-        print(f"🇨🇳 中国模式：高德/百度地图 → 大众点评/小红书补充", file=sys.stderr)
+        print(f"🇨🇳 中国大陆目的地：高德地图（Serper 口碑验证可选）", file=sys.stderr)
 
         # 从 query 里提取区域信息
         district = ''
@@ -238,8 +295,11 @@ def main():
                 ).replace(dk, '').strip()
                 break
 
-        # 主数据源：高德地图（有 AMAP_KEY 就用，没有才降级）
-        has_map_key = bool(os.environ.get('AMAP_KEY') or os.environ.get('BMAP_KEY'))
+        # 主数据源：高德地图。AMAP_KEY 仅作为旧版兼容。
+        has_map_key = bool(
+            os.environ.get('AMAP_WEBSERVICE_KEY')
+            or os.environ.get('AMAP_KEY')
+        )
         if has_map_key:
             # 从 query 提取区域关键词
             district = ''
@@ -255,17 +315,20 @@ def main():
                 map_query = f"{map_query} {scene_query_suffix}".strip()
             merged = search_maps(map_query or args.query, args.city, district, mode='china', max_results=args.max)
             # 社交媒体交叉验证（top 5）
-            merged = cross_verify_social(merged, max_verify=5)
+            if os.environ.get('SERPER_API_KEY'):
+                merged = cross_verify_social(merged, max_verify=5)
         else:
-            print(f"  ⚠️  未配置 AMAP_KEY，降级到大众点评搜索", file=sys.stderr)
-            dp_results = search_dianping(args.query, args.city, max_results=args.max)
-            merged = dp_results
+            _setup_required('amap', args.json)
+            return
 
         for r in merged:
             r['match_score'] = match_score(r, preferences, locale)
 
     elif locale == 'overseas-chinese':
         print(f"🌏 海外华人模式：Google Maps + 小红书", file=sys.stderr)
+        if not os.environ.get('SERPER_API_KEY'):
+            _setup_required('serper', args.json)
+            return
         merged = search_serper_maps(f"{args.query} restaurant", args.city, args.max)
         # 小红书补充
         xhs = search_xiaohongshu(f"{args.query} {args.city} 探店", max_results=10)
@@ -280,6 +343,9 @@ def main():
 
     else:  # overseas
         print(f"🌍 海外模式：Google Maps + Reddit", file=sys.stderr)
+        if not os.environ.get('SERPER_API_KEY'):
+            _setup_required('serper', args.json)
+            return
         merged = search_serper_maps(f"{args.query} restaurant", args.city, args.max)
         for r in merged:
             r['match_score'] = match_score(r, preferences, locale)

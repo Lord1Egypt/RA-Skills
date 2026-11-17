@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+[ "$1" = "--proxy-url" ] && { echo "http://127.0.0.1:7892"; exit 0; }
+[ "$1" = "--check" ] && { echo "[proxy] ON"; exit 0; }
+exit 0

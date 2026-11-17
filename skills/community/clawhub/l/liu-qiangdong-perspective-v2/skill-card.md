@@ -1,43 +1,49 @@
-## Description: <br>
-Helps an agent answer business strategy, ecommerce, logistics, cost-control, and lower-tier market questions through a Liu Qiangdong/JD-style decision lens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language roleplay-style business decision framework that simulates Liu Qiangdong's public-business perspective for strategy, logistics, cost control, and lower-tier market analysis.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and business analysts can use this skill to frame commercial decisions around cost, efficiency, customer experience, self-operated retail, logistics, lower-tier markets, and JD-style operating tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation triggers may cause the Liu Qiangdong/JD-style lens to appear in generic JD, cost, efficiency, or experience discussions. <br>
-Mitigation: Disable or narrow the triggers, or explicitly request neutral business analysis when the persona lens is not desired. <br>
-Risk: Persona-style responses may be mistaken for Liu Qiangdong's actual views or current advice. <br>
-Mitigation: Keep the skill's disclaimer visible on first activation and treat outputs as a thinking framework rather than authoritative statements from the person. <br>
-Risk: The skill may over-weight self-operated retail, logistics investment, cost control, and JD-style tradeoffs even when another business model is more appropriate. <br>
-Mitigation: Compare recommendations against the user's actual market, capital constraints, regulatory context, and alternative operating models before acting. <br>
+## Use Case:
 
+External users can use this skill to explore business decisions through a simulated Liu Qiangdong-style framework focused on cost, efficiency, customer experience, self-operated retail, logistics, employee culture, and lower-tier market strategy. It is intended for decision support and perspective-taking, not as real statements from or endorsement by Liu Qiangdong.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/xiejianjun000/liu-qiangdong-perspective-v2) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xiejianjun000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text business analysis in a persona-style voice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only guidance; no tools, API calls, shell commands, or generated files are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Users could mistake first-person roleplay answers for real statements, advice, or endorsement from Liu Qiangdong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as a simulated perspective based on public information, keep the roleplay disclosure visible in activation flows, and use the documented exit phrases to return to normal assistant behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/liu-qiangdong-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language first-person simulated persona responses with an exit path back to normal assistant behavior.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

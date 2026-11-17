@@ -489,10 +489,12 @@ def do_quote(code: str, allow_network: bool = False):
 def parse_csv_line(line: str) -> dict:
     """
     解析投资账本 CSV 单行，返回结构化字典或 None
-    格式: 日期,类型,代码,名称,数量,@单价,金额,账户
+    格式: 日期,类型,代码,名称,数量,@单价,金额,现价,账户
+    使用 csv 模块正确处理引号包裹的字段。
     """
-    parts = line.split(",")
-    if len(parts) < 5:
+    import csv as csv_mod
+    parts = next(csv_mod.reader([line]), None)
+    if not parts or len(parts) < 5:
         return None
 
     entry = {"raw": line}
@@ -688,7 +690,6 @@ def compute_holdings(entries: list) -> dict:
                 "code": code,
                 "total_shares": 0.0,
                 "total_cost": 0.0,
-                "realized_pnl": 0.0,
                 "dividends": 0.0,
                 "buy_count": 0,
                 "sell_count": 0,
@@ -757,7 +758,7 @@ def do_portfolio(entries: list, prices: dict, allow_network: bool = False):
         cur_price = prices.get(code, 0)
         market = h["total_shares"] * cur_price
         pnl = market - h["total_cost"]
-        pnl_pct = (pnl / h["total_cost"] * 100) if h["total_cost"] > 0 else 0
+        pnl_pct = (pnl / h["total_cost"] * 100) if h["total_cost"] != 0 else 0
         sign = "+" if pnl >= 0 else ""
         emoji = "✅" if pnl >= 0 else "🔴"
 
@@ -774,7 +775,7 @@ def do_portfolio(entries: list, prices: dict, allow_network: bool = False):
         total_market += market
 
     total_pnl = total_market - total_cost
-    total_pct = (total_pnl / total_cost * 100) if total_cost > 0 else 0
+    total_pct = (total_pnl / total_cost * 100) if total_cost != 0 else 0
     ts = "+" if total_pnl >= 0 else ""
 
     print(sep)
@@ -817,19 +818,19 @@ def do_return(code: str, entries: list, prices: dict):
     print(f"{'总成本':>8}：¥{h['total_cost']:,.2f}")
 
     if shares > 0:
-        pnl_pct = (unrealized_pnl / h["total_cost"] * 100) if h["total_cost"] > 0 else 0
+        pnl_pct = (unrealized_pnl / h["total_cost"] * 100) if h["total_cost"] != 0 else 0
         sign = "+" if unrealized_pnl >= 0 else ""
         print(f"{'当前价格':>8}：¥{cur_price:.2f}")
         print(f"{'当前市值':>8}：¥{market:,.2f}")
         print(f"{'持仓盈亏':>8}：{sign}¥{unrealized_pnl:,.2f} ({sign}{pnl_pct:.1f}%)")
 
     if h["dividends"] > 0:
-        div_yield = (h["dividends"] / h["total_cost"] * 100) if h["total_cost"] > 0 else 0
+        div_yield = (h["dividends"] / h["total_cost"] * 100) if h["total_cost"] != 0 else 0
         print(f"{'累计分红':>8}：¥{h['dividends']:,.2f} (分红率 {div_yield:.1f}%)")
 
     # 净成本法下总收益 = 持仓盈亏 + 分红
     total_return = unrealized_pnl + h["dividends"]
-    total_pct = (total_return / h["total_cost"] * 100) if h["total_cost"] > 0 else 0
+    total_pct = (total_return / h["total_cost"] * 100) if h["total_cost"] != 0 else 0
     tsign = "+" if total_return >= 0 else ""
 
     print(f"\n{'═' * 32}")
@@ -878,7 +879,7 @@ def do_summary(entries: list, prices: dict, allow_network: bool = False):
             cur_price = prices.get(code, 0)
             market = h["total_shares"] * cur_price
             pnl = market - h["total_cost"]
-            pnl_pct = (pnl / h["total_cost"] * 100) if h["total_cost"] > 0 else 0
+            pnl_pct = (pnl / h["total_cost"] * 100) if h["total_cost"] != 0 else 0
             sign = "+" if pnl >= 0 else ""
             emoji = "✅" if pnl >= 0 else "🔴"
 
@@ -893,7 +894,7 @@ def do_summary(entries: list, prices: dict, allow_network: bool = False):
             total_market += market
 
         total_pnl = total_market - total_cost
-        total_pct = (total_pnl / total_cost * 100) if total_cost > 0 else 0
+        total_pct = (total_pnl / total_cost * 100) if total_cost != 0 else 0
         ts = "+" if total_pnl >= 0 else ""
 
         print(sep)
@@ -918,7 +919,7 @@ def do_summary(entries: list, prices: dict, allow_network: bool = False):
     unrealized = total_market - total_cost if active else 0
 
     total_all = unrealized + total_closed_pnl + total_dividends
-    all_pct = (total_all / total_cost * 100) if total_cost > 0 else 0
+    all_pct = (total_all / total_cost * 100) if total_cost != 0 else 0
     ts = "+" if total_all >= 0 else ""
 
     if total_dividends > 0 or total_closed_pnl != 0:

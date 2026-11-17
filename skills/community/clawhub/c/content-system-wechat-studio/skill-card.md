@@ -1,47 +1,60 @@
-## Description: <br>
-Launch a local WeChat article workbench for Markdown import, WeChat HTML preview, theme tuning, image selection, and optional draft push. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch a local WeChat article workbench for Markdown import, WeChat HTML preview, theme tuning, image selection, and optional draft push.
 
-## Publisher: <br>
-[abigale-cyber](https://clawhub.ai/user/abigale-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abigale-cyber](https://clawhub.ai/user/abigale-cyber)
 
-## Use Case: <br>
-Content creators, editors, and developers use this skill to import Markdown articles into a local browser workbench, preview WeChat-ready HTML, tune themes and images, and optionally push a checked result to a WeChat draft box. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workbench can expose local workspace files and draft article data. <br>
-Mitigation: Install and run it only in a trusted local workspace, and avoid importing sensitive unpublished drafts unless sharing derived prompts or media with configured providers is acceptable. <br>
-Risk: SK or API tokens may be used for image generation or WeChat publishing flows. <br>
-Mitigation: Do not paste or share tokens casually; review the configured provider and token fields before use. <br>
-Risk: Draft push can send article content and media to the wrong WeChat target if settings are incorrect. <br>
-Mitigation: Verify the target WeChat account, article metadata, cover, and image references before pressing draft push. <br>
-Risk: Generated HTML or JSON may contain signed remote image links. <br>
-Mitigation: Treat exported preview artifacts as potentially sensitive and avoid sharing them beyond the intended review or publishing workflow. <br>
+## Use Case:
 
+Developers, content teams, and publishing operators use WeChat Studio to import Markdown article drafts into a local workbench, preview WeChat-ready HTML, tune theme and image choices, and optionally push reviewed content to a WeChat draft box.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/abigale-cyber/content-system-wechat-studio) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Banana login platform](https://job.suxi.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, local preview files, JSON article state, and optional WeChat draft output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workbench produces local browser previews, article workspace state, selected image assets, and optional WeChat draft pushes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The local server exposes file and preview-rendering risks that require review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the local server before use; add API authentication, enforce filesystem containment, and sandbox and sanitize previews.
+
+Risk: Reference URL handling and stored presigned URLs can create network-request or data-exposure risk.
+
+Mitigation: Restrict reference URLs to trusted public HTTPS hosts and avoid storing complete presigned URLs.
+
+Risk: Optional WeChat draft push and SK login workflows involve credentials.
+
+Mitigation: Treat SK and WeChat credentials as secrets and use the workbench only with article content and reference URLs you trust.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abigale-cyber/skills/content-system-wechat-studio)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [Banana login portal](https://job.suxi.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, HTML, Files]
+
+**Output Format:** [Markdown guidance with shell commands; local HTML previews and optional WeChat draft output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts a local browser workbench; optional draft push depends on existing WeChat publishing credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

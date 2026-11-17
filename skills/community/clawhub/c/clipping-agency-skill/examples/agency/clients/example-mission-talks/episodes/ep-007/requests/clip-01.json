@@ -1,0 +1,66 @@
+{
+ "content": [
+  {
+   "text": "Two days before launch, Apollo 11's commander was asked if his first words were written for him. #apollo11 #moonlanding #history",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "example-media-mission-01"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-13T23:00:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "TIKTOK",
+   "socialAccountId": "example-acct-mission-tiktok",
+   "postType": "VIDEO",
+   "postMode": "DIRECT_POST",
+   "privacyLevel": "FOLLOWER_OF_CREATOR",
+   "allowComment": true,
+   "allowDuet": false,
+   "allowStitch": true,
+   "isYourBrand": false,
+   "isBrandedContent": false,
+   "autoAddMusic": false,
+   "contentOverride": [
+    {
+     "text": "Two days before launch, Apollo 11's commander was asked if his first words were written for him. #apollo11 #moonlanding #history",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-mission-01"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "platform": "YOUTUBE",
+   "socialAccountId": "example-acct-mission-youtube",
+   "title": "Were the first words on the Moon scripted? Apollo 11's commander, 1969",
+   "privacy": "public",
+   "madeForKids": false,
+   "tags": [
+    "apollo 11",
+    "moon landing",
+    "space history"
+   ],
+   "contentOverride": [
+    {
+     "text": "Apollo 11's commander in 1969 on whether his first words on the Moon were prepared. #Shorts",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-mission-01"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

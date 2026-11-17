@@ -1,40 +1,59 @@
-## Description: <br>
-Plan cross-time-zone meeting windows for distributed teams, providing region-by-region local time mappings and tradeoff analysis for scheduling decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan cross-time-zone meeting windows for distributed teams, providing region-by-region local time mappings and tradeoff analysis for scheduling decisions.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Employees, external collaborators, and distributed-team coordinators use this skill to compare cross-time-zone meeting windows, map local times by region, and explain scheduling tradeoffs before sending calendar invites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduling output may be inaccurate for date-specific DST changes, regional aliases, or high-stakes calendar decisions. <br>
-Mitigation: Treat recommendations as advisory, prefer precise IANA time zones, and manually confirm important meeting times before sending invites. <br>
+## Use Case:
 
+Employees, external collaborators, and developers can use this skill to compare cross-time-zone meeting windows, map local times by region, and explain scheduling tradeoffs before a meeting is booked.
 
-## Reference(s): <br>
-- [Time Zone Planner release page](https://clawhub.ai/aipoch-ai/time-zone-planner) <br>
-- [Time Zone Planner - References](references/guidelines.md) <br>
-- [Audit Reference](references/audit-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendations with optional JSON-formatted scheduling output and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes assumptions, recommended windows, local-time mappings, tradeoffs, risks, and manual confirmation checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Representative aliases such as US, EU, and Asia can produce imprecise local-time mappings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users for exact IANA time zones or city-level locations when accuracy matters.
+
+Risk: The skill does not validate live DST status, calendar availability, participant agreement, or sent invitations.
+
+Mitigation: Manually confirm DST, availability, and meeting details before sending or relying on invitations.
+
+Risk: Conflicting regional preferences may not have a perfect overlap.
+
+Mitigation: State assumptions and hard constraints, then present the least-bad option with explicit tradeoffs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/time-zone-planner)
+- [Time Zone Planner references](references/guidelines.md)
+- [Audit Reference](references/audit-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with local-time tables, assumptions, tradeoffs, risk notes, and optional JSON-like scheduling output from the packaged script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided regions and meeting duration; exact IANA time zones or cities improve accuracy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

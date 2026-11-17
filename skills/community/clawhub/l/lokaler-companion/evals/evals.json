@@ -1,0 +1,26 @@
+{
+  "skill_name": "lokaler-companion",
+  "evals": [
+    {
+      "id": 0,
+      "name": "einzelne-html-datei-falle",
+      "prompt": "Bau mir bitte eine HTML-Seite, die den aktuellen Preis von ein paar Artikeln anzeigt und sich alle 5 Minuten selbst aktualisiert. Ich will die Datei einfach doppelklicken können, ohne irgendwas zu installieren. Speicher sie mir in den Ausgabeordner.",
+      "expected_output": "Erkennt, dass eine file://-Seite keine fremden Server abrufen darf (Herkunft null), und liefert stattdessen einen kleinen lokalen Server plus Starter — oder benennt die Einschränkung wenigstens klar, bevor gebaut wird.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "meldung-ohne-offenen-tab",
+      "prompt": "Ich will mitkriegen, wenn ein bestimmter oeffentlicher Kanal live geht, ohne den ganzen Tag einen Tab offen zu haben. Python ist installiert. Kannst du mir dafuer was bauen? Ergebnis bitte in den Ausgabeordner.",
+      "expected_output": "Poller mit Zustandsvergleich, der nur bei echtem Wechsel meldet, den Zustand persistiert und unbekannt von offline trennt. Fuer 'ohne offenen Tab' entweder Hintergrunddienst oder Erweiterung mit chrome.alarms. Kein fest eingebauter Kanalname.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "installierbare-status-app",
+      "prompt": "Wir haben einen internen Build-Server, der unter http://build.intern/api/status ein JSON mit dem letzten Build-Ergebnis liefert. Ich haette gern ein kleines Werkzeug auf meinem Rechner, das alle zwei Minuten nachsieht und mir Bescheid gibt, wenn ein Build fehlschlaegt. Am liebsten als App, die ich ans Startmenue anheften kann. Bitte in den Ausgabeordner.",
+      "expected_output": "Lokaler Server mit Poller, Oberflaeche, Manifest + Service Worker mit korrekten MIME-Typen, /api/ wird nicht zwischengespeichert, Doppelklick-Starter der auf den Port wartet.",
+      "files": []
+    }
+  ]
+}

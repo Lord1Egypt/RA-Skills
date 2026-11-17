@@ -1,46 +1,66 @@
-## Description: <br>
-Real-time crypto trading signal generator that connects to Bybit WebSocket price feeds, runs configurable strategies on live candle data, and sends alerts to Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time crypto trading signal generator using WebSocket price feeds. Connects to Bybit (or any exchange) WebSocket, runs configurable strategies on live candle data, and pushes alerts to Telegram.
 
-## Publisher: <br>
-[Sunnyztj](https://clawhub.ai/user/Sunnyztj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sunnyztj](https://clawhub.ai/user/sunnyztj)
 
-## Use Case: <br>
-Developers and traders use this skill to run a local market-monitoring bot that watches configured crypto pairs, evaluates technical strategies, and sends Telegram alerts with entry, stop-loss, and take-profit levels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot tokens and chat identifiers can be exposed if copied into committed configuration files. <br>
-Mitigation: Store credentials as secrets or environment variables, keep config.py out of version control, and rotate any token that may have been exposed. <br>
-Risk: The bot can run as a persistent local service that writes logs and state while connecting to external market and messaging APIs. <br>
-Mitigation: Run it in a virtual environment under a dedicated non-root user, review systemd settings before enabling persistence, and monitor generated log and state files. <br>
-Risk: The optional hosted signal API requires trusting a third-party provider with email and API usage. <br>
-Mitigation: Skip the hosted Tinyore API unless that provider is acceptable for the user's data-sharing and operational requirements. <br>
-Risk: Trading alerts and backtest claims may be incorrect or unsuitable for a user's financial situation. <br>
-Mitigation: Treat alerts as informational, review strategy settings and market assumptions, and avoid automated trading decisions without independent validation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Telegram Bot Setup](references/telegram_setup.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Sunnyztj/trading-signals-ws) <br>
-- [Tinyore free signals API](https://api.tinyore.com/signals/free) <br>
-- [Tinyore market status API](https://api.tinyore.com/status) <br>
+## Use Case:
 
+Developers and traders use this skill to set up a WebSocket-based crypto market monitor that evaluates configured strategies and sends Telegram trading alerts with entry, stop-loss, and take-profit levels.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python configuration and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to edit config.py, run a Python WebSocket bot, and configure Telegram credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The deployment example encourages a root-level auto-start service.
+
+Mitigation: Run the bot as an unprivileged user or user-level service and review the service configuration before enabling auto-start.
+
+Risk: Telegram bot tokens and chat IDs may be exposed through plaintext configuration or logs.
+
+Mitigation: Store credentials in protected environment variables or a secrets manager, restrict file permissions, and protect generated logs.
+
+Risk: The optional hosted Tinyore subscription/API examples send requests to an external service.
+
+Mitigation: Use those API examples only when you intentionally want to share the requested data with that service.
+
+Risk: Trading alerts can be incomplete, stale, or misleading if market data, strategy configuration, or connectivity is unreliable.
+
+Mitigation: Review strategy settings and signal outputs before acting on them, and avoid treating generated alerts as financial advice.
+
+## Reference(s):
+
+- [Telegram Bot Setup](references/telegram_setup.md)
+- [Trading Signals Ws Skill Page](https://clawhub.ai/sunnyztj/skills/trading-signals-ws)
+- [Publisher Profile](https://clawhub.ai/user/sunnyztj)
+- [Tinyore Free Signals API](https://api.tinyore.com/signals/free)
+- [Tinyore Subscribe API](https://api.tinyore.com/subscribe)
+- [Tinyore Live Signals API](https://api.tinyore.com/signals/live)
+- [Tinyore Status API](https://api.tinyore.com/status)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance and runnable bot/configuration files for Telegram-based trading alerts.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

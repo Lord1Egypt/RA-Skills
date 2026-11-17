@@ -34,11 +34,11 @@
     "platforms and socialMediaIds are optional filters",
     "Only returns PUBLISHED posts with a platformPostId",
     "latestMetric is null if no metrics have been fetched yet",
-    "All metric values are strings (bigint), not numbers",
+    "Count metrics are strings (bigint), not numbers; watch-time fields and Instagram saveRate/reelsSkipRate are plain numbers",
     "Supported platforms: Facebook, Instagram, Threads, LinkedIn, TikTok, YouTube, Pinterest",
     "LinkedIn personal accounts are excluded",
-    "Pinterest requires a business account; saves and save_rate are 90-day rolling, all other Pinterest fields are lifetime — see pinterest-analytics.json",
+    "Pinterest requires a business account; saves and save_rate are 90-day rolling, all other Pinterest fields are lifetime (see pinterest-analytics.json)",
     "No pagination - keep date ranges reasonable",
-    "Rate limit: 350 requests/hour"
+    "Rate limit: 1,260 requests/hour, 12,600/day"
   ]
 }

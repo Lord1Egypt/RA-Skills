@@ -1,48 +1,60 @@
-## Description: <br>
-Plan Turkey trips with city-coast-Cappadocia routing, verified entry rules, domestic transport strategy, and practical seasonal safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Turkey trips with city-coast-Cappadocia routing, verified entry rules, domestic transport strategy, and practical seasonal safety.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to design practical Turkey itineraries, confirm entry-pathway checks, choose regional routes, plan domestic transport, and account for seasonal safety constraints. It supports first-time and returning visitors who need grounded route logic rather than a generic highlights list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local trip memory may retain travel dates, airports, budget, mobility notes, and preferences in ~/turkey/memory.md. <br>
-Mitigation: Review, edit, pause, or delete ~/turkey/memory.md when those details should not be retained locally. <br>
-Risk: Visa rules, airport transport, domestic rail, museum access, weather alerts, and emergency conditions can change after the bundled source checks. <br>
-Mitigation: Refresh time-sensitive details against the official sources listed by the skill before booking or travel. <br>
+## Use Case:
 
+External travelers and travel planners use this skill to design Turkey trips around entry requirements, route clusters, domestic transport, lodging, budget, seasonality, safety, and region-specific tradeoffs.
 
-## Reference(s): <br>
-- [Turkey skill page](https://clawhub.ai/ivangdavila/turkey) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Republic of Turkey MFA visa information](https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa) <br>
-- [Official e-Visa portal](https://www.evisa.gov.tr/en/) <br>
-- [GoTurkiye travel planning portal](https://goturkiye.com/) <br>
-- [Official museums portal](https://muze.gov.tr/) <br>
-- [Turkish State Meteorological Service](https://www.mgm.gov.tr/eng/forecast-cities.aspx) <br>
-- [AFAD disaster and emergency authority](https://www.afad.gov.tr/en/) <br>
-- [Emergency 112 information](https://112.gov.tr/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Text] <br>
-**Output Format:** [Markdown travel-planning guidance with route, logistics, safety, and booking-priority notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initialize and reuse local trip memory in ~/turkey/memory.md when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may store trip preferences and constraints locally in ~/turkey/memory.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving highly sensitive personal details unless needed, and review or delete ~/turkey/memory.md when trip context should no longer be retained.
+
+Risk: Travel rules, visa pathways, transport schedules, museum access, weather alerts, and safety conditions can change after the skill's source links were last checked.
+
+Mitigation: Refresh official sources close to departure before relying on time-sensitive travel decisions.
+
+## Reference(s):
+
+- [Republic of Turkey MFA visa information](https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa)
+- [Official e-Visa portal](https://www.evisa.gov.tr/en/)
+- [GoTurkiye travel planning portal](https://goturkiye.com/)
+- [Official museums portal](https://muze.gov.tr/)
+- [TCDD Tasimacilik](https://www.tcddtasimacilik.gov.tr/)
+- [Istanbul Airport transport](https://www.igairport.aero/en/transport)
+- [AFAD disaster and emergency authority](https://www.afad.gov.tr/en/)
+- [Turkish State Meteorological Service](https://www.mgm.gov.tr/eng/forecast-cities.aspx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown travel-planning guidance with structured itinerary, logistics, and safety notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initialize and reuse a scoped local trip-memory file at ~/turkey/memory.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

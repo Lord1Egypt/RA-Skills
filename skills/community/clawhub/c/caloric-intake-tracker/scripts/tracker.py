@@ -47,16 +47,6 @@ def init_db(db_path):
         )
     ''')
     
-    # Weight log (kg)
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS weight_log (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            date TEXT NOT NULL UNIQUE,
-            weight_kg REAL NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
-    
     # Dynamic body measurements schema
     c.execute('''
         CREATE TABLE IF NOT EXISTS measurement_types (
@@ -92,6 +82,7 @@ def init_db(db_path):
         c.execute("INSERT OR IGNORE INTO measurement_types (key, name, unit, description) VALUES ('waist', 'Waist', 'cm', 'Waist circumference')")
         c.execute("INSERT OR IGNORE INTO measurement_types (key, name, unit, description) VALUES ('hips', 'Hips', 'cm', 'Hips circumference')")
         c.execute("INSERT OR IGNORE INTO measurement_types (key, name, unit, description) VALUES ('neck', 'Neck', 'cm', 'Neck circumference')")
+        c.execute("INSERT OR IGNORE INTO measurement_types (key, name, unit, description) VALUES ('weight', 'Body Weight', 'kg', 'Body weight')")
         
         for row in old_rows:
             date_val, waist_cm, hips_cm, neck_cm, created_at = row
@@ -119,6 +110,19 @@ def init_db(db_path):
         c.execute("INSERT INTO measurement_types (key, name, unit, description) VALUES ('waist', 'Waist', 'cm', 'Waist circumference')")
         c.execute("INSERT INTO measurement_types (key, name, unit, description) VALUES ('hips', 'Hips', 'cm', 'Hips circumference')")
         c.execute("INSERT INTO measurement_types (key, name, unit, description) VALUES ('neck', 'Neck', 'cm', 'Neck circumference')")
+        c.execute("INSERT INTO measurement_types (key, name, unit, description) VALUES ('weight', 'Body Weight', 'kg', 'Body weight')")
+
+    # Migration: consolidate legacy weight_log into the generic measurement system.
+    # Body weight becomes a first-class measurement type ('weight') stored in
+    # measurement_log, so there is a single source of truth for all body data.
+    c.execute("SELECT type FROM sqlite_master WHERE name = 'weight_log'")
+    wl = c.fetchone()
+    if wl and wl[0] == 'table':
+        c.execute("INSERT OR IGNORE INTO measurement_types (key, name, unit, description) VALUES ('weight', 'Body Weight', 'kg', 'Body weight')")
+        wl_rows = c.execute("SELECT date, weight_kg, created_at FROM weight_log").fetchall()
+        for wl_row in wl_rows:
+            c.execute("INSERT OR IGNORE INTO measurement_log (date, type_key, value, created_at) VALUES (?, 'weight', ?, ?)", (wl_row['date'], wl_row['weight_kg'], wl_row['created_at']))
+        c.execute("DROP TABLE weight_log")
     
     # Daily notes/annotations
     c.execute('''
@@ -207,16 +211,19 @@ def init_db(db_path):
         FROM v_daily_summary
     ''')
     
-    # BMI and WHtR resolved dynamically from the daily_goal table
+    # BMI and WHtR resolved dynamically from the daily_goal table.
+    # Body weight now lives in measurement_log under the 'weight' type.
     c.execute("DROP VIEW IF EXISTS v_weight_summary")
     c.execute('''
         CREATE VIEW v_weight_summary AS
         SELECT 
             date,
-            weight_kg,
-            ROUND(weight_kg / ( ( (SELECT COALESCE(height_cm, 180.0) FROM daily_goal WHERE id = 1) / 100.0 ) * ( (SELECT COALESCE(height_cm, 180.0) FROM daily_goal WHERE id = 1) / 100.0 ) ), 1) as bmi,
-            ROUND(weight_kg - LAG(weight_kg) OVER (ORDER BY date), 1) as change_kg
-        FROM weight_log
+            value as weight_kg,
+            ROUND(value / ( ( (SELECT COALESCE(height_cm, 180.0) FROM daily_goal WHERE id = 1) / 100.0 ) * ( (SELECT COALESCE(height_cm, 180.0) FROM daily_goal WHERE id = 1) / 100.0 ) ), 1) as bmi,
+            ROUND(value - LAG(value) OVER (ORDER BY date), 1) as change_kg,
+            notes
+        FROM measurement_log
+        WHERE type_key = 'weight'
     ''')
     
     c.execute("DROP VIEW IF EXISTS body_measurements")
@@ -466,16 +473,13 @@ def cmd_check_complete(args):
         sys.exit(1)
 
 def cmd_weight(args):
-    target_date = args.date or args.today or date.today().isoformat()
-    conn = get_db(args.database)
-    c = conn.cursor()
-    c.execute('''
-        INSERT OR REPLACE INTO weight_log (date, weight_kg)
-        VALUES (?, ?)
-    ''', (target_date, args.kg))
-    conn.commit()
-    conn.close()
-    print(f"Weight logged: {args.kg} kg on {target_date}")
+    # Body weight is a first-class measurement type. Route through the generic
+    # measure pipeline so there is a single writer for all body data.
+    args.type = 'weight'
+    args.value = args.kg
+    if not hasattr(args, 'notes'):
+        args.notes = None
+    cmd_measure(args)
 
 def format_value(val):
     if val is None:
@@ -564,7 +568,7 @@ def cmd_measure_type(args):
             conn.close()
             sys.exit(1)
             
-        if key in ('waist', 'hips', 'neck'):
+        if key in ('waist', 'hips', 'neck', 'weight'):
             print(f"Error: Cannot delete system default measurement type '{key}'.")
             conn.close()
             sys.exit(1)
@@ -941,7 +945,7 @@ def cmd_stats_weight(args):
     if entries is None and days is None:
         entries = 5
         
-    query = 'SELECT date, weight_kg, bmi, change_kg FROM v_weight_summary WHERE date <= ?'
+    query = 'SELECT date, weight_kg, bmi, change_kg, notes FROM v_weight_summary WHERE date <= ?'
     params = [today_str]
     
     if days is not None:
@@ -977,7 +981,8 @@ def cmd_stats_weight(args):
     for r in rows:
         ch_str = f" ({r['change_kg']:+.1f} kg)" if r['change_kg'] is not None else ""
         bmi_str = f"{r['bmi']:.1f}" if r['bmi'] is not None else "N/A"
-        print(f"  {r['date']}: {r['weight_kg']:.1f} kg{ch_str} | BMI: {bmi_str}")
+        notes_str = f" | notes: {r['notes']}" if r['notes'] else ""
+        print(f"  {r['date']}: {r['weight_kg']:.1f} kg{ch_str} | BMI: {bmi_str}{notes_str}")
         
     if len(rows) >= 2:
         change = rows[-1]['weight_kg'] - rows[0]['weight_kg']

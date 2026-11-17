@@ -118,6 +118,27 @@ class EncryptionConfig(BaseModel):
 # ============================================================================
 
 
+class KeyStrengthResult(BaseModel):
+    """密钥强度验证结果"""
+
+    is_valid: bool
+    score: int = Field(ge=0, le=100, description="强度评分 (0-100)")
+    issues: list[str] = Field(default_factory=list, description="问题列表")
+    suggestions: list[str] = Field(default_factory=list, description="改进建议")
+
+    @property
+    def strength_level(self) -> str:
+        """获取强度等级"""
+        if self.score >= 80:
+            return "strong"
+        elif self.score >= 60:
+            return "medium"
+        elif self.score >= 40:
+            return "weak"
+        else:
+            return "very_weak"
+
+
 class KeyManager:
     """
     密钥管理器
@@ -127,15 +148,15 @@ class KeyManager:
 
     def __init__(
         self,
-        user_id: str,
-        key_storage_path: str,
+        user_id: str = "default_user",
+        key_storage_path: str = "./keys",
     ) -> None:
         """
         初始化密钥管理器
 
         Args:
             user_id: 用户ID
-            key_storage_path: 密钥存储路径（由调用方指定，无默认值）
+            key_storage_path: 密钥存储路径
         """
         self.user_id: str = user_id
         self.key_storage_path: Path = Path(key_storage_path)
@@ -143,6 +164,82 @@ class KeyManager:
 
         self._current_key: Optional[bytes] = None
         self._key_id: Optional[str] = None
+        self._key_history: list[tuple[str, datetime]] = []  # 密钥历史
+
+    @staticmethod
+    def validate_key_strength(key: str) -> KeyStrengthResult:
+        """
+        验证密钥强度
+
+        Args:
+            key: 要验证的密钥
+
+        Returns:
+            KeyStrengthResult: 验证结果
+        """
+        issues: list[str] = []
+        suggestions: list[str] = []
+        score: int = 0
+
+        # 检查长度
+        length = len(key)
+        if length < 16:
+            issues.append(f"密钥长度过短 ({length} < 16)")
+            suggestions.append("建议使用至少 16 个字符的密钥")
+            score += length * 2
+        elif length < 32:
+            issues.append(f"密钥长度较短 ({length} < 32)")
+            suggestions.append("建议使用至少 32 个字符的密钥以提高安全性")
+            score += 30
+        else:
+            score += 40
+
+        # 检查字符类型
+        has_lower = any(c.islower() for c in key)
+        has_upper = any(c.isupper() for c in key)
+        has_digit = any(c.isdigit() for c in key)
+        has_special = any(not c.isalnum() for c in key)
+
+        char_types = sum([has_lower, has_upper, has_digit, has_special])
+        if char_types < 3:
+            issues.append(f"密钥复杂度不足 (仅 {char_types} 种字符类型)")
+            suggestions.append("建议混合使用大小写字母、数字和特殊字符")
+            score += char_types * 5
+        else:
+            score += 15
+
+        # 检查常见模式
+        common_patterns = [
+            ("123456", "连续数字"),
+            ("password", "常见密码"),
+            ("qwerty", "键盘模式"),
+            ("admin", "管理员账户名"),
+        ]
+        key_lower = key.lower()
+        for pattern, name in common_patterns:
+            if pattern in key_lower:
+                issues.append(f"包含常见模式 ({name})")
+                suggestions.append("避免使用常见密码或模式")
+                score -= 10
+
+        # 检查重复字符
+        if len(set(key)) < length * 0.5:
+            issues.append("密钥包含大量重复字符")
+            suggestions.append("建议使用更多样的字符")
+            score -= 10
+
+        # 限制分数范围
+        score = max(0, min(100, score))
+
+        # 判断是否有效
+        is_valid = length >= 16 and char_types >= 3 and score >= 40
+
+        return KeyStrengthResult(
+            is_valid=is_valid,
+            score=score,
+            issues=issues,
+            suggestions=suggestions
+        )
 
     def generate_key(self) -> tuple[str, bytes]:
         """
@@ -155,34 +252,6 @@ class KeyManager:
         key_bytes: bytes = secrets.token_bytes(KEY_LENGTH)
 
         return key_id, key_bytes
-
-    @staticmethod
-    def derive_key_from_password(
-        password: str,
-        salt: Optional[bytes] = None,
-    ) -> tuple[bytes, bytes]:
-        """
-        从密码派生密钥
-
-        Args:
-            password: 用户密码
-            salt: 盐值（可选，不提供则生成新的）
-
-        Returns:
-            (key_bytes, salt_bytes)
-        """
-        if salt is None:
-            salt = secrets.token_bytes(SALT_LENGTH)
-
-        key: bytes = hashlib.pbkdf2_hmac(
-            "sha256",
-            password.encode("utf-8"),
-            salt,
-            KDF_ITERATIONS,
-            dklen=KEY_LENGTH,
-        )
-
-        return key, salt
 
     def set_key(self, key_id: str, key: bytes) -> None:
         """
@@ -237,6 +306,94 @@ class KeyManager:
 
         except Exception:
             return False
+
+    def rotate_key(self) -> tuple[str, bytes]:
+        """
+        轮换密钥
+
+        生成新密钥，保留旧密钥历史
+
+        Returns:
+            tuple[str, bytes]: (新密钥ID, 新密钥)
+
+        Note:
+            - 旧密钥保留在历史中用于解密历史数据
+            - 建议定期轮换密钥以提高安全性
+        """
+        # 保存旧密钥历史
+        if self._key_id and self._current_key:
+            self._key_history.append((
+                self._key_id,
+                datetime.now()
+            ))
+
+            # 限制历史记录数量（保留最近 5 个）
+            if len(self._key_history) > 5:
+                self._key_history = self._key_history[-5:]
+
+        # 生成新密钥
+        new_key_id, new_key = self.generate_key()
+        self._current_key = new_key
+        self._key_id = new_key_id
+
+        # 保存新密钥
+        self.save_key_to_file(new_key_id, new_key)
+
+        return new_key_id, new_key
+
+    def get_key_history(self) -> list[dict[str, Any]]:
+        """
+        获取密钥历史
+
+        Returns:
+            list[dict]: 密钥历史列表
+        """
+        return [
+            {
+                "key_id": key_id,
+                "rotated_at": rotated_at.isoformat()
+            }
+            for key_id, rotated_at in self._key_history
+        ]
+
+    @staticmethod
+    def derive_key_from_password(
+        password: str,
+        salt: Optional[bytes] = None,
+        iterations: int = 600000,
+    ) -> tuple[bytes, bytes]:
+        """
+        使用 PBKDF2 从密码派生密钥
+
+        Args:
+            password: 用户密码
+            salt: 盐值（可选，自动生成）
+            iterations: PBKDF2 迭代次数（OWASP 建议 >= 600000）
+
+        Returns:
+            tuple[bytes, bytes]: (派生密钥, 盐值)
+
+        Note:
+            - 使用 SHA-256 作为哈希算法
+            - 迭代次数遵循 OWASP 最新建议
+        """
+        from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+        from cryptography.hazmat.primitives import hashes
+
+        # 生成或使用提供的盐
+        if salt is None:
+            salt = secrets.token_bytes(32)
+
+        # PBKDF2 密钥派生
+        kdf = PBKDF2HMAC(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=salt,
+            iterations=iterations,
+        )
+        key = kdf.derive(password.encode("utf-8"))
+
+        return key, salt
 
     def save_key_to_file(
         self,

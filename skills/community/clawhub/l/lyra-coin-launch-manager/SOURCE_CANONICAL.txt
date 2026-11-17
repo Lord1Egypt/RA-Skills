@@ -1,0 +1,4 @@
+Public skill surface only.
+Canonical: I:\E Drive\lyra-crypto-operator
+Excluded: operator_tools/ (GitHub publish/credentials)
+Sync: python tools/sync_from_lyra_crypto_operator.py

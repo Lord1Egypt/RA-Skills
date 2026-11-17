@@ -1,40 +1,47 @@
-## Description: <br>
-Monitors live status of a Pod Point charger's connectors A and B, reporting current availability and changes without requiring authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors live status for a Pod Point charging pod's A and B connectors, reporting current availability or changes without authentication.
 
-## Publisher: <br>
-[zoranjurcevic](https://clawhub.ai/user/zoranjurcevic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zoranjurcevic](https://clawhub.ai/user/zoranjurcevic)
 
-## Use Case: <br>
-Drivers and agents use this skill to check whether a specific Pod Point charging pod is available. It can return the current connector A/B status or watch for availability changes using a provided pod ID. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Watch mode repeatedly contacts Pod Point until the timeout expires. <br>
-Mitigation: Use reasonable intervalSeconds and timeoutSeconds values. <br>
-Risk: The provided pod ID is sent to Pod Point's public status endpoint. <br>
-Mitigation: Only provide pod IDs you are comfortable sending to Pod Point. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Podpoint on ClawHub](https://clawhub.ai/zoranjurcevic/podpoint) <br>
-- [Publisher profile](https://clawhub.ai/user/zoranjurcevic) <br>
+## Use Case:
+
+Drivers and agents use this skill to check a known Pod Point pod ID or wait for connector availability changes. It is focused on live charger availability, not charger discovery, maps, or location search.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Watching a charger can run polling loops against a public status endpoint if broad interval or timeout values are allowed.
+
+Mitigation: Use explicit pod IDs and enforce finite, sensible interval and timeout limits before long watch runs.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, status information, notifications] <br>
-**Output Format:** [JSON object with connector status, availability flags, and optional event details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a podId. Watch mode polls Pod Point until the configured timeout expires.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, JSON, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Structured JSON result with human-facing status or notification text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return current connector status, availability booleans, transition events, timeout status, and errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

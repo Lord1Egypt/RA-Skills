@@ -1,42 +1,54 @@
-## Description: <br>
-Work with OpenEXR files to inspect channels, extract beauty/RGB passes, decode cryptomatte segmentation, convert ACEScg to sRGB, and batch process EXR directories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with OpenEXR files to inspect channels, extract beauty/RGB passes, decode cryptomatte segmentation, convert ACEScg to sRGB, and batch process EXR directories.
 
-## Publisher: <br>
-[oumad](https://clawhub.ai/user/oumad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oumad](https://clawhub.ai/user/oumad)
 
-## Use Case: <br>
-Developers and technical artists use this skill to inspect and process OpenEXR render files, extract PNG previews or segmentation masks, and prepare render outputs for review, compositing, or dataset workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-selected EXR files and writes derived PNG outputs, and --force can overwrite existing generated files. <br>
-Mitigation: Install and run it in a virtual environment, use it on trusted or reviewed EXR inputs, and use --force only when overwriting outputs is intended. <br>
-Risk: The OpenEXR dependency is pinned because later versions are documented as unstable on some platforms. <br>
-Mitigation: Install dependencies from requirements.txt, keep OpenEXR pinned to 3.2.4 for this release, and audit or pin transitive dependencies before production deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub OpenEXR Skill Page](https://clawhub.ai/oumad/exr) <br>
-- [Usage Examples](references/usage.md) <br>
-- [Color Space Reference](references/color-spaces.md) <br>
-- [Cryptomatte Format Reference](references/cryptomatte.md) <br>
+## Use Case:
 
+Developers, technical artists, and rendering engineers use this skill to inspect OpenEXR render outputs, extract RGB or arbitrary channel images, and generate cryptomatte segmentation PNGs for compositing, review, or dataset preparation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline bash and Python snippets; PNG image files when the bundled CLI is run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI reads selected EXR files or directories and writes derived PNG outputs; existing outputs are skipped unless --force is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The pinned OpenEXR parser is known-vulnerable and is directly exposed to EXR files opened by the user.
+
+Mitigation: Review before installing, run in an isolated virtual environment, and avoid untrusted EXR files unless OpenEXR is updated to a patched compatible release.
+
+Risk: Dependency integrity is not fully locked because numpy and Pillow are not pinned with reviewed versions and hashes.
+
+Mitigation: Lock numpy and Pillow to reviewed versions with hashes before production or shared-environment use.
+
+## Reference(s):
+
+- [Color Space Reference](references/color-spaces.md)
+- [Cryptomatte Format Reference](references/cryptomatte.md)
+- [Usage Examples](references/usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and Python examples; CLI execution can produce PNG image files and terminal text output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the packaged Python dependencies before using the EXR extraction CLI.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Guides an agent through a fixed Xiaohongshu publishing workflow for image-based or long-form posts to improve posting success rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书定制化创作技能 - 固定操作流程，提高发布成功率
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-Creators, marketers, or operators use this skill to have an agent publish confirmed content and prepared image assets to Xiaohongshu, then report success or a retryable failure reason. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Xiaohongshu Creator Center availability and account access. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish real Xiaohongshu posts through the currently logged-in creator account. <br>
-Mitigation: Require final confirmation of the active account, exact content, media, title, and tags before clicking publish. <br>
-Risk: The workflow can record published content to Feishu without a clearly scoped destination. <br>
-Mitigation: Confirm the Feishu destination and logging scope before writing, or disable that step for the run. <br>
+## Use Case:
 
+Content operators, social media managers, and agents assisting them use this skill to publish confirmed copy and prepared image materials to Xiaohongshu through a fixed browser workflow. It also guides common publishing failure handling and returns a success link or retry recommendation.
 
-## Reference(s): <br>
-- [Xiaohongshu image publishing page](https://creator.xiaohongshu.com/publish/publish?target=image) <br>
-- [Xiaohongshu long-form publishing page](https://creator.xiaohongshu.com/publish/publish?target=text) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown text with status details and links when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a published Xiaohongshu link, an error reason, and retry guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish live content from a logged-in Xiaohongshu account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target account, title, body, images, and topics with the user before allowing publication.
+
+Risk: The skill directs the agent to record published content in Feishu without clear consent, destination, or data limits.
+
+Mitigation: Do not perform the Feishu logging step unless the destination workspace, repository, copied fields, retention, and audience are explicit and acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/skills/zhuchenggong-xiaohongshu-create)
+- [Xiaohongshu creator image publishing page](https://creator.xiaohongshu.com/publish/publish?target=image)
+- [Xiaohongshu creator text publishing page](https://creator.xiaohongshu.com/publish/publish?target=text)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text status with a publication link, error reason, and retry recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are tied to browser publishing actions and should reflect whether publication succeeded or failed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

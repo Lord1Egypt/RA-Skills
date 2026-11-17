@@ -1,40 +1,58 @@
-## Description: <br>
-Analyzes European football matches and betting markets using current football data before producing structured predictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time football match data and structured betting analysis for European leagues.
 
-## Publisher: <br>
-[lysandre2007](https://clawhub.ai/user/lysandre2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lysandre2007](https://clawhub.ai/user/lysandre2007)
 
-## Use Case: <br>
-External users and agents use this skill to fetch football match data and produce French-language betting analyses for European leagues, including form, head-to-head records, standings, lineups, odds, confidence levels, and recommended wagers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes external RapidAPI football-data calls and can consume the user's RapidAPI key or quota. <br>
-Mitigation: Use a dedicated limited-scope RapidAPI key and confirm RAPIDAPI_HOST points to the intended football-data provider before enabling the skill. <br>
-Risk: Broad football-related triggers may activate the skill during general football or betting conversations. <br>
-Mitigation: Install only where football-related prompts are expected to use live football data, and review outputs before acting on betting recommendations. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve upcoming and live European football data, compare form, head-to-head results, standings, lineups, statistics, and odds, then produce structured betting-pronostic summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lysandre2007/sports-pronostics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [French Markdown analysis with match summaries, prediction tables, confidence scores, risks, and a recommended bet.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses RapidAPI football data when RAPIDAPI_KEY and RAPIDAPI_HOST are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and sports-pronostics.js) <br>
+Risk: The skill uses a RapidAPI credential and can send it to an environment-configured host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only where RAPIDAPI_HOST is controlled or allowlisted, and provide credentials only in trusted environments.
+
+Risk: Football-related prompts and requests may be sent to a RapidAPI football data service.
+
+Mitigation: Avoid sending confidential user context with sports queries and disclose external data-service use where required.
+
+Risk: Sports betting recommendations can be affected by stale, incomplete, or changing match, odds, and lineup data.
+
+Mitigation: Treat outputs as decision support and verify current data, odds, and applicable betting requirements before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lysandre2007/skills/sports-pronostics)
+- [Publisher profile](https://clawhub.ai/user/lysandre2007)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown-formatted football analysis with tables, confidence ratings, risk notes, and betting recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a RapidAPI key and a controlled RapidAPI host configuration to retrieve live football data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact export)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

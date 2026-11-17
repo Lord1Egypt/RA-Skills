@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-seedream-4-5
 description: Seedream 4.5 image generation and editing on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `seedream-4.5`, `seedream-4.5-edit`, 2K/4K output, multi-reference editing, and higher image counts.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/image-series/seedream-4-5", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage":"https://poyo.ai/models/seedream-4-5-api", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Seedream 4.5 Image Generation and Editing
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/seedream-4-5-api>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/seedream-4-5>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Seedream 4.5 jobs on PoYo. It covers high-resolution generation, multi-reference image workflows, and edit requests.
 

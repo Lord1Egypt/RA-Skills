@@ -1,47 +1,68 @@
-## Description: <br>
-Control Anova Precision Ovens and Precision Cookers (sous vide) via WiFi WebSocket API. Start cooking modes (sous vide, roasting, steam), set temperatures, monitor status, and stop cooking remotely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Anova Precision Ovens and Precision Cookers via WiFi WebSocket API to start or stop cooking, set temperatures, and monitor device status remotely.
 
-## Publisher: <br>
-[dodeja](https://clawhub.ai/user/dodeja) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[dodeja](https://clawhub.ai/user/dodeja)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent list, monitor, start, and stop supported Anova WiFi cooking devices from natural-language requests. It is intended for users who already have an Anova device, an Anova personal access token, and a configured Python environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can remotely start or stop a real heating appliance. <br>
-Mitigation: Require explicit user confirmation before start, stop, or temperature-changing commands. <br>
-Risk: Commands may target the first discovered device rather than the intended appliance. <br>
-Mitigation: Verify the Anova device identity before running cooking or stop commands. <br>
-Risk: Temperature, humidity, fan speed, and duration inputs may lack sufficient guardrails for regular use. <br>
-Mitigation: Add operational range limits and review requested settings before execution. <br>
-Risk: The Python dependency is declared with an open lower bound. <br>
-Mitigation: Pin and review dependencies before regular or automated use. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent operate Anova Precision Ovens and Precision Cookers through documented shell commands for cooking, stopping, and monitoring appliance state.
 
-## Reference(s): <br>
-- [Anova Developer Portal](https://developer.anovaculinary.com) <br>
-- [Anova WiFi Device Controller Reference](https://github.com/anova-culinary/developer-project-wifi) <br>
-- [Skill Repository](https://github.com/dodeja/anova-skill) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dodeja/anova-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks and command output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may start, stop, or monitor real heating appliances through the Anova cloud API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: An agent can start, stop, or modify cooking on a real heating appliance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before every cook or stop command, verify the selected device, and keep a person able to monitor the appliance.
+
+Risk: Unsafe temperature, duration, fan, element, or humidity settings could be sent to the appliance.
+
+Mitigation: Enforce local temperature and duration limits, validate requested cooking parameters, and prefer conservative defaults before execution.
+
+Risk: The Anova personal access token enables remote appliance control if exposed.
+
+Mitigation: Store the token with restricted file permissions, avoid logging or sharing it, and rotate it if compromise is suspected.
+
+Risk: The skill may report success before a stop or cook command has been independently verified.
+
+Mitigation: Check device telemetry after action commands and locally verify that stop commands actually took effect.
+
+Risk: Unpinned dependencies can change behavior across installs.
+
+Mitigation: Pin the websockets dependency to a reviewed version before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dodeja/skills/anova-skill)
+- [Source Repository](https://github.com/dodeja/anova-skill)
+- [Anova Developer Portal](https://developer.anovaculinary.com)
+- [Anova WiFi Developer Project](https://github.com/anova-culinary/developer-project-wifi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and terminal text or JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Anova token file, Python 3.7 or later, the websockets dependency, internet access, and a paired Anova device.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

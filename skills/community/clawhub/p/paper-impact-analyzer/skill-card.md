@@ -1,46 +1,61 @@
-## Description: <br>
-Analyze academic paper impact from an arXiv ID using arXiv, GitHub, OpenAlex, and Semantic Scholar signals with graceful degradation when APIs are unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze academic paper impact from an arXiv ID using arXiv, GitHub, OpenAlex, and Semantic Scholar, with graceful degradation when APIs are unavailable.
 
-## Publisher: <br>
-[haataa](https://clawhub.ai/user/haataa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haataa](https://clawhub.ai/user/haataa)
 
-## Use Case: <br>
-Developers, researchers, and literature-review agents use this skill to evaluate public arXiv papers with metadata, repository activity, citations, and author signals before deciding what to read or compare. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends arXiv IDs and related public paper metadata to arXiv, GitHub, OpenAlex, and Semantic Scholar. <br>
-Mitigation: Use it for public academic paper checks and avoid confidential, embargoed, or sensitive research interests unless sharing this metadata is acceptable. <br>
-Risk: The current script disables HTTPS certificate verification, which can allow network tampering with API responses. <br>
-Mitigation: Treat results as advisory, run only in trusted environments, or update the script to enforce certificate verification before relying on the output. <br>
+## Use Case:
 
+Developers, researchers, and literature-review agents use this skill to assess the external impact signals for one or more academic papers from arXiv IDs. It helps compare papers using publication metadata, venue signals, repository activity, citations, author metrics, and data completeness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haataa/paper-impact-analyzer) <br>
-- [README](artifact/skills/paper-impact-analyzer/README.md) <br>
-- [Skill definition](artifact/skills/paper-impact-analyzer/SKILL.md) <br>
-- [arXiv API](http://export.arxiv.org/api/query) <br>
-- [GitHub REST API](https://api.github.com) <br>
-- [OpenAlex API](https://api.openalex.org) <br>
-- [Semantic Scholar Graph API](https://api.semanticscholar.org/graph/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown impact report with tables, source status, ratings, confidence, and data completeness.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts one or more arXiv IDs; results depend on public arXiv, GitHub, OpenAlex, and Semantic Scholar API availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill sends paper IDs, titles, repository search terms, and first-author names to external academic and GitHub APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public or approved research topics, and run it in an environment where those external API calls are acceptable.
+
+Risk: The security scan reports insecure external web request handling.
+
+Mitigation: Review before installing, prefer an updated release that uses HTTPS for arXiv and normal TLS verification, and sandbox execution for sensitive workflows.
+
+Risk: The skill requests broader local Read and Write authority than the analysis workflow appears to require.
+
+Mitigation: Grant least-privilege tool access where possible and run without access to sensitive local files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haataa/skills/paper-impact-analyzer)
+- [arXiv API endpoint used by the skill](http://export.arxiv.org/api/query?id_list={arxiv_id})
+- [GitHub repository API endpoint used by the skill](https://api.github.com/repos/{repo_path})
+- [OpenAlex DOI lookup endpoint used by the skill](https://api.openalex.org/works/doi:{doi}?select=id,cited_by_count,publication_date)
+- [Semantic Scholar paper endpoint used by the skill](https://api.semanticscholar.org/graph/v1/paper/ArXiv:{arxiv_id}?fields=citationCount,influentialCitationCount)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown impact report with tables, links, ratings, confidence, and source availability notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-paper and multi-paper analysis from arXiv IDs; output quality depends on availability and rate limits of external data sources.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence; artifact frontmatter and _meta.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

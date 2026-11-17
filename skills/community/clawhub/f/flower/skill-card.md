@@ -1,40 +1,57 @@
-## Description: <br>
-Manage projects and tasks with the Flower project management API via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage projects and tasks with the Flower project management API via MCP. Use when creating, updating, or searching tasks/tickets, managing projects and columns, or integrating with Flower/Kanban boards. Requires @xferops/flower-mcp and a Flower API token.
 
-## Publisher: <br>
-[parker-xferops](https://clawhub.ai/user/parker-xferops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[parker-xferops](https://clawhub.ai/user/parker-xferops)
 
-## Use Case: <br>
-Developers, operators, and project teams use this skill to create, update, search, move, and delete Flower tasks, projects, columns, comments, team memberships, and notification preferences through an MCP client. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The MCP server can create, update, move, or delete project-management records and change team membership or notification settings. <br>
-Mitigation: Review destructive or permission-changing actions before execution and use a Flower API token with the minimum required permissions. <br>
-Risk: The skill runs the third-party @xferops/flower-mcp package and sends requests to the configured Flower service. <br>
-Mitigation: Verify that the package source and configured Flower URL are trusted, and pin a known package version when deploying in controlled environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Flower skill page](https://clawhub.ai/parker-xferops/flower) <br>
-- [Flower API service](https://flower.xferops.com) <br>
+## Use Case:
 
+Developers and project teams use this skill to manage Flower projects, columns, tasks, comments, users, team membership, and notification preferences from an MCP-enabled agent.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Flower API token and the @xferops/flower-mcp MCP server.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The MCP server is installed through an unpinned npm package while using a Flower API token.
+
+Mitigation: Pin and review the MCP package version before installation, and use a narrowly scoped Flower token.
+
+Risk: The skill exposes live delete, member-management, and bulk update operations.
+
+Mitigation: Require explicit confirmation before delete, remove-member, or bulk update operations.
+
+Risk: Unrelated environment secrets could be exposed to the MCP process.
+
+Mitigation: Limit the MCP environment to the Flower URL and narrowly scoped Flower token required by this integration.
+
+## Reference(s):
+
+- [Flower service URL](https://flower.xferops.com)
+- [ClawHub skill page](https://clawhub.ai/parker-xferops/skills/flower)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include proposed Flower MCP actions that should be confirmed before destructive or membership-changing operations.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Helps agents place Markdown documentation and script files into the project's required docs/ and scripts/ directories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces file placement rules for documentation and scripts, including required locations for Markdown files, shell scripts, and organized project documentation.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers and coding agents use this skill to decide where Markdown documentation and scripts should be created in projects that follow the listed backend and frontend directory conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses strict, path-specific placement rules that may not match other repositories. <br>
-Mitigation: Adapt the directory mapping or disable the skill outside repositories that use these exact conventions. <br>
-Risk: The skill can steer documentation and script placement decisions broadly. <br>
-Mitigation: Review proposed file paths before allowing an agent to create or move files. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep documentation and script outputs in expected project directories instead of creating clutter in root or backend folders.
 
-## Reference(s): <br>
-- [Directory Mapping - Complete Reference](references/directory-mapping.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/urbantech/file-placement) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with directory mapping tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Path-specific rules for Markdown documentation and shell or Python scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill has a broad activation scope and project-specific placement rules, so it may influence file placement in repositories where these paths are not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for the target project or narrow its activation when global Markdown and shell-script placement guidance is not wanted.
+
+Risk: The artifact includes hard-coded absolute project paths, which can route documentation or scripts incorrectly if the workspace layout differs.
+
+Mitigation: Confirm the repository path assumptions before using the skill, and update the placement mapping if the project moves or changes structure.
+
+## Reference(s):
+
+- [Directory Mapping - Complete Reference](references/directory-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with file path patterns and placement rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; behavior is limited to agent guidance for placing documentation and script files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-03-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

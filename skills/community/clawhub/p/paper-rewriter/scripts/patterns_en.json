@@ -1,0 +1,1231 @@
+{
+ "_meta": {
+  "name": "patterns_en",
+  "source": "Wikipedia:Signs of AI writing (2026-08 版) + 2026 公开写作研究",
+  "notes": "词表命中仅代表统计倾向；term_guards 保护正当学术用法。weight=每个命中的分值。"
+ },
+ "model_artifacts": [
+  {
+   "pattern": "oaicite",
+   "desc": "ChatGPT citation residue"
+  },
+  {
+   "pattern": "turn0search[0-9]+",
+   "desc": "ChatGPT search-citation residue"
+  },
+  {
+   "pattern": "contentreference",
+   "desc": "ChatGPT citation residue"
+  },
+  {
+   "pattern": "\\[cite:\\s*[0-9,\\s-]+\\]",
+   "desc": "Gemini citation residue"
+  },
+  {
+   "pattern": "\\[span_[0-9]+\\]\\(start_span\\)",
+   "desc": "Gemini span residue"
+  },
+  {
+   "pattern": "grok[_-]?card",
+   "desc": "Grok card residue"
+  },
+  {
+   "pattern": "attached_file[_0-9]*",
+   "desc": "Perplexity attachment residue"
+  },
+  {
+   "pattern": ":::writing[\\s\\S]{0,200}?:::",
+   "desc": "unclassified writing fence"
+  },
+  {
+   "pattern": "\\[INST\\]|<\\|im_start\\|>|<\\|end_of\\|>",
+   "desc": "template marker leak"
+  }
+ ],
+ "chatbot_artifacts": [
+  {
+   "pattern": "(as an ai( language model)?|as a (large )?language model|i('?m| am) an ai( language model)?)\\s*,?\\s*(i|my|we)\\s+(am|was|cannot|can'?t|could ?n'?t|do ?n'?t|lack|apologize|have)",
+   "desc": "AI self-declaration (self-referential)"
+  },
+  {
+   "pattern": "\\bhope (this|that) helps\\b",
+   "desc": "客服式收尾（无主语变体）"
+  },
+  {
+   "pattern": "i (hope this|hope that) helps",
+   "desc": "客服式收尾"
+  },
+  {
+   "pattern": "great question",
+   "desc": "客套开场"
+  },
+  {
+   "pattern": "certainly[!,] here (is|are)",
+   "desc": "顺从式开场"
+  },
+  {
+   "pattern": "of course[!,] here (is|are)",
+   "desc": "顺从式开场"
+  },
+  {
+   "pattern": "here (is|are) the (revised|rewritten|rephrased|improved) (version|text|essay|paragraph)",
+   "desc": "交付式开场"
+  },
+  {
+   "pattern": "let me know if you (need|want|have)",
+   "desc": "客服式收尾"
+  },
+  {
+   "pattern": "feel free to (modify|adjust|reach out)",
+   "desc": "客服式收尾"
+  },
+  {
+   "pattern": "i cannot fulfill|against my (guidelines|programming)",
+   "desc": "拒答残留"
+  }
+ ],
+ "knowledge_cutoff": [
+  {
+   "pattern": "as of my last (knowledge )?(update|training)",
+   "desc": "知识截止"
+  },
+  {
+   "pattern": "(my|our) knowledge cutoff",
+   "desc": "知识截止"
+  },
+  {
+   "pattern": "up until (my|the) (knowledge cutoff|last update)",
+   "desc": "知识截止"
+  },
+  {
+   "pattern": "i don't have (access to|information about|real-?time)",
+   "desc": "能力声明"
+  }
+ ],
+ "vocabulary": [
+  {
+   "w": "delve",
+   "alt": "examine / look closely at",
+   "weight": 1.2,
+   "fam": "showcase"
+  },
+  {
+   "w": "delving",
+   "alt": "examining",
+   "weight": 1.2,
+   "fam": "showcase"
+  },
+  {
+   "w": "tapestry",
+   "alt": "mix / weave (用具体名词)",
+   "weight": 1.5,
+   "fam": "inflation"
+  },
+  {
+   "w": "testament",
+   "alt": "proof / sign",
+   "weight": 1.4,
+   "fam": "inflation"
+  },
+  {
+   "w": "underscore",
+   "alt": "highlight / stress",
+   "weight": 1.2,
+   "fam": "showcase"
+  },
+  {
+   "w": "underscores",
+   "alt": "highlights",
+   "weight": 1.2,
+   "fam": "showcase"
+  },
+  {
+   "w": "underscored",
+   "alt": "highlighted",
+   "weight": 1.2,
+   "fam": "showcase"
+  },
+  {
+   "w": "bolster",
+   "alt": "support / strengthen",
+   "weight": 1.1,
+   "fam": "showcase"
+  },
+  {
+   "w": "garner",
+   "alt": "get / earn",
+   "weight": 1.3,
+   "fam": "showcase"
+  },
+  {
+   "w": "intricate",
+   "alt": "complex / detailed",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "intricacies",
+   "alt": "details",
+   "weight": 1.1,
+   "fam": "inflation"
+  },
+  {
+   "w": "meticulous",
+   "alt": "careful / thorough",
+   "weight": 1.1,
+   "fam": "meta"
+  },
+  {
+   "w": "meticulously",
+   "alt": "carefully",
+   "weight": 1.1,
+   "fam": "meta"
+  },
+  {
+   "w": "vibrant",
+   "alt": "lively / busy",
+   "weight": 1.1,
+   "fam": "meta"
+  },
+  {
+   "w": "seamless",
+   "alt": "smooth",
+   "weight": 1.0,
+   "fam": "meta"
+  },
+  {
+   "w": "seamlessly",
+   "alt": "smoothly",
+   "weight": 1.0,
+   "fam": "meta"
+  },
+  {
+   "w": "holistic",
+   "alt": "complete / overall",
+   "weight": 0.9,
+   "fam": "inflation"
+  },
+  {
+   "w": "synergy",
+   "alt": "teamwork / combined effect",
+   "weight": 1.2,
+   "fam": "inflation"
+  },
+  {
+   "w": "paramount",
+   "alt": "critical / top",
+   "weight": 1.1,
+   "fam": "meta"
+  },
+  {
+   "w": "myriad",
+   "alt": "many",
+   "weight": 1.2,
+   "fam": "inflation"
+  },
+  {
+   "w": "plethora",
+   "alt": "many / too many",
+   "weight": 1.3,
+   "fam": "inflation"
+  },
+  {
+   "w": "realm",
+   "alt": "field / area",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "landscape",
+   "alt": "field / situation（学术搭配见 term_guards）",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "navigate",
+   "alt": "handle / deal with（动词义）",
+   "weight": 0.7,
+   "fam": "showcase"
+  },
+  {
+   "w": "foster",
+   "alt": "encourage / build",
+   "weight": 1.0,
+   "fam": "showcase"
+  },
+  {
+   "w": "fostering",
+   "alt": "encouraging",
+   "weight": 1.0,
+   "fam": "showcase"
+  },
+  {
+   "w": "leverage",
+   "alt": "use（动词）",
+   "weight": 1.0,
+   "fam": "showcase"
+  },
+  {
+   "w": "leveraging",
+   "alt": "using",
+   "weight": 1.0,
+   "fam": "showcase"
+  },
+  {
+   "w": "utilize",
+   "alt": "use",
+   "weight": 0.9,
+   "fam": "promo"
+  },
+  {
+   "w": "utilizes",
+   "alt": "uses",
+   "weight": 0.9,
+   "fam": "promo"
+  },
+  {
+   "w": "utilized",
+   "alt": "used",
+   "weight": 0.9,
+   "fam": "promo"
+  },
+  {
+   "w": "utilizing",
+   "alt": "using",
+   "weight": 0.9,
+   "fam": "promo"
+  },
+  {
+   "w": "crucial",
+   "alt": "key / central（降低频次即可）",
+   "weight": 0.6,
+   "fam": "meta"
+  },
+  {
+   "w": "pivotal",
+   "alt": "key（试验搭配见 term_guards）",
+   "weight": 1.0,
+   "fam": "meta"
+  },
+  {
+   "w": "robust",
+   "alt": "strong / solid（统计搭配见 term_guards）",
+   "weight": 0.7,
+   "fam": "meta"
+  },
+  {
+   "w": "ever-evolving",
+   "alt": "changing",
+   "weight": 1.2,
+   "fam": "inflation"
+  },
+  {
+   "w": "ever-changing",
+   "alt": "changing",
+   "weight": 1.2,
+   "fam": "inflation"
+  },
+  {
+   "w": "revolutionize",
+   "alt": "change greatly",
+   "weight": 1.2,
+   "fam": "promo"
+  },
+  {
+   "w": "unlock",
+   "alt": "open / reveal（隐喻义）",
+   "weight": 0.8,
+   "fam": "showcase"
+  },
+  {
+   "w": "embark",
+   "alt": "start / begin",
+   "weight": 1.1,
+   "fam": "showcase"
+  },
+  {
+   "w": "showcase",
+   "alt": "show / present",
+   "weight": 1.0,
+   "fam": "showcase"
+  },
+  {
+   "w": "boast",
+   "alt": "have（表拥有时）",
+   "weight": 0.9,
+   "fam": "showcase"
+  },
+  {
+   "w": "boasts",
+   "alt": "has（表拥有时）",
+   "weight": 0.9,
+   "fam": "showcase"
+  },
+  {
+   "w": "harness",
+   "alt": "use / apply",
+   "weight": 0.9,
+   "fam": "showcase"
+  },
+  {
+   "w": "crucially",
+   "alt": "importantly",
+   "weight": 0.9,
+   "fam": "meta"
+  },
+  {
+   "w": "notably",
+   "alt": "（高频时改具体陈述）",
+   "weight": 0.5,
+   "fam": "meta"
+  },
+  {
+   "w": "glean",
+   "alt": "learn / gather",
+   "weight": 1.2,
+   "fam": "showcase"
+  },
+  {
+   "w": "amass",
+   "alt": "collect",
+   "weight": 1.0,
+   "fam": "showcase"
+  },
+  {
+   "w": "endeavor",
+   "alt": "effort / try",
+   "weight": 1.0,
+   "fam": "showcase"
+  },
+  {
+   "w": "unwavering",
+   "alt": "steady",
+   "weight": 1.2,
+   "fam": "meta"
+  },
+  {
+   "w": "indelible",
+   "alt": "lasting",
+   "weight": 1.2,
+   "fam": "meta"
+  },
+  {
+   "w": "interplay",
+   "alt": "interaction",
+   "weight": 0.9,
+   "fam": "inflation"
+  },
+  {
+   "w": "multifaceted",
+   "alt": "complex / many-sided",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "nuanced",
+   "alt": "subtle / detailed（高频时降）",
+   "weight": 0.7,
+   "fam": "inflation"
+  },
+  {
+   "w": "commitment to",
+   "alt": "（宣传腔）",
+   "weight": 0.8,
+   "fam": "meta"
+  },
+  {
+   "w": "causal",
+   "alt": "（Grok 高频词；仅统计，慎改）",
+   "weight": 0.3,
+   "fam": "meta"
+  },
+  {
+   "w": "empirical",
+   "alt": "（Grok 高频词；仅统计，慎改）",
+   "weight": 0.3,
+   "fam": "meta"
+  },
+  {
+   "w": "game-changer",
+   "alt": "major advance",
+   "weight": 1.2,
+   "fam": "meta"
+  },
+  {
+   "w": "game changer",
+   "alt": "major advance",
+   "weight": 1.2,
+   "fam": "meta"
+  },
+  {
+   "w": "ecosystem",
+   "alt": "system / community (guarded for ecology)",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "cornerstone",
+   "alt": "basis / foundation (guarded for medicine)",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "paradigm shift",
+   "alt": "a new approach (name what actually changed)",
+   "weight": 1.2,
+   "fam": "inflation"
+  },
+  {
+   "w": "elevate",
+   "alt": "raise / improve（直说提升什么）",
+   "weight": 1.2,
+   "fam": "promo"
+  },
+  {
+   "w": "elevates",
+   "alt": "raise / improves",
+   "weight": 1.2,
+   "fam": "promo"
+  },
+  {
+   "w": "elevating",
+   "alt": "raising / improving",
+   "weight": 1.2,
+   "fam": "promo"
+  },
+  {
+   "w": "transformative",
+   "alt": "直接说改了什么、效果多大",
+   "weight": 1.0,
+   "fam": "promo"
+  },
+  {
+   "w": "groundbreaking",
+   "alt": "给可核对的新颖点，不用总括形容词",
+   "weight": 1.0,
+   "fam": "promo"
+  },
+  {
+   "w": "profound",
+   "alt": "具体说深在哪（医学固定术语见守卫白名单）",
+   "weight": 0.8,
+   "fam": "promo"
+  },
+  {
+   "w": "profoundly",
+   "alt": "同上",
+   "weight": 0.8,
+   "fam": "promo"
+  },
+  {
+   "w": "forefront",
+   "alt": "直接说在哪个方向做了什么",
+   "weight": 0.8,
+   "fam": "promo"
+  },
+  {
+   "w": "spearhead",
+   "alt": "lead / initiate",
+   "weight": 0.8,
+   "fam": "showcase"
+  },
+  {
+   "w": "spearheading",
+   "alt": "leading / initiating",
+   "weight": 0.8,
+   "fam": "showcase"
+  },
+  {
+   "w": "pioneering",
+   "alt": "first / early / novel（给证据）",
+   "weight": 0.8,
+   "fam": "showcase"
+  },
+  {
+   "w": "unveil",
+   "alt": "present / report / describe",
+   "weight": 0.8,
+   "fam": "showcase"
+  },
+  {
+   "w": "unveiling",
+   "alt": "presenting / reporting",
+   "weight": 0.8,
+   "fam": "showcase"
+  },
+  {
+   "w": "kaleidoscope",
+   "alt": "删掉隐喻，直接列对象",
+   "weight": 1.2,
+   "fam": "inflation"
+  },
+  {
+   "w": "symphony",
+   "alt": "删掉隐喻（interplay 已覆盖交互义）",
+   "weight": 1.2,
+   "fam": "inflation"
+  },
+  {
+   "w": "deep dive",
+   "alt": "detailed analysis / in-depth examination",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "bear out",
+   "alt": "support（直接说证据支持什么）",
+   "weight": 0.8,
+   "fam": "inflation"
+  },
+  {
+   "w": "shed light on",
+   "alt": "explain / clarify（直接说解释了什么）",
+   "weight": 0.8,
+   "fam": "inflation"
+  },
+  {
+   "w": "give rise to",
+   "alt": "cause / lead to（直接说因果）",
+   "weight": 0.8,
+   "fam": "inflation"
+  },
+  {
+   "w": "in the realm of",
+   "alt": "in（直接用 in）",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "a wide array of",
+   "alt": "several / many（给具体数字更好）",
+   "weight": 0.8,
+   "fam": "inflation"
+  },
+  {
+   "w": "a plethora of",
+   "alt": "many / too many（给具体数字）",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "in the landscape of",
+   "alt": "in（直接用 in）",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "serves as a cornerstone",
+   "alt": "is central to / underpins",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "it is worth highlighting",
+   "alt": "直接陈述该事实",
+   "weight": 0.8,
+   "fam": "inflation"
+  },
+  {
+   "w": "usher in",
+   "alt": "introduce / begin（直接说开始了什么）",
+   "weight": 1.0,
+   "fam": "inflation"
+  },
+  {
+   "w": "garner attention",
+   "alt": "attract attention / be cited",
+   "weight": 0.8,
+   "fam": "inflation"
+  },
+  {
+   "w": "at the forefront of",
+   "alt": "leading / among the first（给证据）",
+   "weight": 0.8,
+   "fam": "inflation"
+  },
+  {
+   "w": "it is worth noting",
+   "alt": "state the point directly / 删去引导语直述",
+   "weight": 1.0,
+   "fam": "structure"
+  },
+  {
+   "w": "paves the way",
+   "alt": "enables / sets the stage for（具体动作）",
+   "weight": 1.2,
+   "fam": "inflation"
+  },
+  {
+   "w": "sheds light",
+   "alt": "clarifies / reveals（具体动词）",
+   "weight": 1.2,
+   "fam": "inflation"
+  },
+  {
+   "w": "highlighting the need",
+   "alt": "so … is needed（直述需求）",
+   "weight": 1.0,
+   "fam": "promo"
+  },
+  {
+   "w": "navigating the",
+   "alt": "addressing / working through（具体动作）",
+   "weight": 0.9,
+   "fam": "promo"
+  },
+  {
+   "w": "at its core",
+   "alt": "删去，直接给论点",
+   "weight": 0.8,
+   "fam": "structure"
+  },
+  {
+   "w": "comprehensive framework",
+   "alt": "framework（形容词交给评审判断）",
+   "weight": 0.8,
+   "fam": "inflation"
+  },
+  {
+   "w": "a myriad of",
+   "alt": "many / 数量写实",
+   "weight": 1.0,
+   "fam": "inflation"
+  }
+ ],
+ "term_guards": [
+  {
+   "term": "landscape",
+   "allow_before": [
+    "mutational",
+    "genomic",
+    "genetic",
+    "immune",
+    "tumor",
+    "tumour",
+    "thermal",
+    "evolutionary",
+    "adaptive",
+    "antigenic",
+    "epidemiologic",
+    "methylation",
+    "proteomic",
+    "transcriptomic",
+    "signaling",
+    "risk",
+    "treatment",
+    "therapeutic",
+    "regulatory",
+    "clinical",
+    "policy",
+    "mutation"
+   ]
+  },
+  {
+   "term": "pivotal",
+   "allow_after": [
+    "trial",
+    "trials",
+    "study",
+    "studies",
+    "phase"
+   ]
+  },
+  {
+   "term": "robust",
+   "allow_after": [
+    "regression",
+    "standard error",
+    "estimator",
+    "estimation",
+    "statistic",
+    "cluster",
+    "control",
+    "protocol",
+    "after",
+    "to adjustment",
+    "across"
+   ]
+  },
+  {
+   "term": "navigate",
+   "allow_before": [
+    "gps",
+    "navigation"
+   ]
+  },
+  {
+   "term": "leverage",
+   "allow_before": [
+    "financial",
+    "operating",
+    "operational",
+    "debt"
+   ],
+   "allow_after": [
+    "ratio",
+    "multiple"
+   ]
+  },
+  {
+   "term": "crucial",
+   "allow_after": [
+    "ligament"
+   ]
+  },
+  {
+   "term": "harness",
+   "allow_before": [
+    "safety",
+    "horse",
+    "climbing"
+   ]
+  },
+  {
+   "term": "ecosystem",
+   "allow_before": [
+    "gut",
+    "soil",
+    "marine",
+    "rumen",
+    "oral",
+    "microbial",
+    "coral",
+    "vaginal",
+    "aquatic",
+    "reef",
+    "intestinal",
+    "forest",
+    "grassland",
+    "wetland",
+    "terrestrial",
+    "freshwater",
+    "benthic",
+    "pelagic",
+    "estuarine",
+    "riverine",
+    "tundra",
+    "savanna",
+    "stream"
+   ],
+   "allow_after": [
+    "services",
+    "dynamics",
+    "modelling",
+    "modeling",
+    "health",
+    "ecology",
+    "samples",
+    "data",
+    "function",
+    "functions",
+    "structure",
+    "structures",
+    "respiration",
+    "productivity",
+    "stability",
+    "processes",
+    "properties",
+    "restoration",
+    "conservation",
+    "management"
+   ]
+  },
+  {
+   "term": "cornerstone",
+   "allow_before": [
+    "the",
+    "a",
+    "remains",
+    "remained",
+    "is",
+    "was",
+    "as"
+   ],
+   "allow_after": [
+    "of treatment",
+    "of therapy",
+    "of management",
+    "of care",
+    "of prevention",
+    "of diagnosis",
+    "of modern",
+    "of clinical",
+    "of evidence",
+    "of the"
+   ]
+  },
+  {
+   "term": "profound",
+   "allow_after": [
+    "hearing",
+    "hearing loss",
+    "intellectual",
+    "neurological",
+    "sensorineural",
+    "disability",
+    "hypothermia",
+    "bradycardia",
+    "immunosuppression"
+   ]
+  },
+  {
+   "term": "transformative",
+   "allow_after": [
+    "growth",
+    "phase",
+    "process"
+   ]
+  },
+  {
+   "term": "profoundly",
+   "allow_after": [
+    "deaf",
+    "deafness",
+    "altered",
+    "reduced",
+    "hypoactive"
+   ]
+  }
+ ],
+ "regex_signals": [
+  {
+   "cat": "en_inflation",
+   "label": "意义拔高（significance inflation）",
+   "weight": 1.2,
+   "pattern": "serves? as a testament to|stands? as a testament|pivotal (moment|role)|indelible mark|underscor(e|es|ing) (the|its) (importance|significance)|cannot be overstated|marks? a significant milestone|a new era of|in the annals of|shed(s|ding)? light on the intricate|rich (cultural )?heritage",
+   "show_hits": true,
+   "rationale": "意义拔高句式（serves as a testament to 类）以姿态替代论证，模型生成文本高发"
+  },
+  {
+   "cat": "en_copula",
+   "label": "系动词回避（serves as / stands as）",
+   "weight": 0.6,
+   "pattern": "\\b(serves?|served) as (a|an|the)\\b|\\b(stands?|stood) as (a|an|the)\\b|\\brepresents? a (significant|notable|key|powerful)",
+   "show_hits": true,
+   "rationale": "serves as/stands as 系动词回避是英文英文文体学讨论中广泛描述的回避直述信号"
+  },
+  {
+   "cat": "en_promo",
+   "label": "宣传腔（promotional tone）",
+   "weight": 0.9,
+   "pattern": "\\bnestled\\b|in the heart of|breathtaking|stunning views|must-see|hidden gem|pristine|picturesque|vibrant (culture|community|city|atmosphere)|diverse array|wide (range|array) of (options|services|products)|state-of-the-art (facilities|amenities)|cutting-?edge (technology|solutions)",
+   "show_hits": true,
+   "rationale": "宣传语域词汇进入学术文本即文体错位"
+  },
+  {
+   "cat": "en_vague",
+   "label": "模糊归因（vague attribution）",
+   "weight": 0.9,
+   "pattern": "(experts|critics|observers|researchers) (say|said|argue|argued|believe|note|notes|suggest)|industry reports (say|suggest|indicate)|it is widely (believed|accepted|regarded)|many (believe|argue|consider)|some (argue|believe|suggest)|sources (say|suggest|close to)",
+   "show_hits": true,
+   "rationale": "无出处的归因（experts say 类）违反学术引证规范，模型补全时高发"
+  },
+  {
+   "cat": "en_ing",
+   "label": "表层 -ing 尾挂（superficial -ing）",
+   "weight": 0.7,
+   "pattern": ",? (highlighting|underscoring|reflecting|emphasizing|demonstrating|illustrating|contributing to|reinforcing|signaling) (the|its|their)\\b|providing (valuable )?insights into|offering a (glimpse|window) into|paving the way for",
+   "show_hits": true,
+   "rationale": "句尾挂 -ing 分词补语是模型收尾句的形态学特征"
+  },
+  {
+   "cat": "en_para",
+   "label": "负向平行句（not only…but also）",
+   "weight": 0.8,
+   "pattern": "not only .{3,60},? but also|not just .{3,60},? but |it('s| is) not (just|only|merely) about.{2,40},? it('s| is) about|rather than (a|an|merely) .{3,40},? it is",
+   "show_hits": true,
+   "rationale": "not only…but also 类对仗结构在模型文本中密度显著高于人写"
+  },
+  {
+   "cat": "en_chal",
+   "label": "挑战/展望公式段（challenges formula）",
+   "weight": 0.9,
+   "pattern": "[Dd]espite (these|the|its) (challenges|obstacles|hurdles)|[Ff]uture (outlook|prospects) (look|appear|seem)|[Oo]nly time will tell|[Tt]he future of .{2,30} (looks|appears|seems) (bright|promising)|[Aa]s .{2,30} continues to (evolve|grow|develop)",
+   "show_hits": true,
+   "rationale": "挑战-展望公式段是模型补全结尾的模板"
+  },
+  {
+   "cat": "en_filler",
+   "label": "填充短语（filler phrases）",
+   "weight": 0.6,
+   "pattern": "in order to\\b|due to the fact that|it is (important|worth) (to note|noting) that\\b|in today'?s (fast-?paced |modern |digital )?world|in the (digital age|realm of)|when it comes to\\b|at the end of the day|plays? a (crucial|vital|key|significant) role in",
+   "show_hits": true,
+   "rationale": "填充短语（in order to/due to the fact that 类）是冗余词化"
+  },
+  {
+   "cat": "markdown",
+   "label": "Markdown 残留（纯文本语境）",
+   "weight": 0.8,
+   "pattern": "^#{1,6} \\S|\\*\\*[^*\\n]{2,60}\\*\\*|^[-*] \\[ \\] |==[^=\\n]{2,40}==",
+   "show_hits": true,
+   "rationale": "纯文本语境中的 markdown 标记是粘贴搬运残留"
+  },
+  {
+   "cat": "en_opening",
+   "label": "万能框架（canned openers: ever-evolving, navigating the complexities…）",
+   "weight": 0.8,
+   "show_hits": true,
+   "pattern": "in the ever-(evolving|changing|expanding) (world|landscape|realm|field) of|embark(s|ed|ing)? on (a|the|an) (journey|exploration)|(dive|diving|delves?|delving) into the (world|realm) of",
+   "rationale": "万能开场框架（in the ever-evolving world 类）是模型开篇指纹"
+  },
+  {
+   "cat": "en_hedge",
+   "label": "结构性对冲/框架化短语（structured hedging）",
+   "weight": 0.8,
+   "pattern": "sheds? (new |fresh )?light on\\b|paves? the way (for|toward[sz]?)\\b|opens? (up )?new (avenues|frontiers|horizons|possibilities)\\b|bridges? the gap (between|in)\\b|unlocks? the (full )?potential\\b|marks? a (significant|major|critical|important) (step|milestone|shift|departure)\\b|contributes? to the (growing|ongoing|broader) (body|discourse|conversation|literature)\\b|stands? to (benefit|transform|reshape|gain)\\b",
+   "show_hits": true,
+   "rationale": "结构性对冲（It is important to note that 类）以框架替代主张，2025-2026 模型文本高发"
+  },
+  {
+   "cat": "en_symmetry",
+   "label": "三连同构与镜像收尾（rule-of-three / mirror close）",
+   "weight": 0.7,
+   "show_hits": true,
+   "pattern": "\\b[a-z]+ing, [a-z]+ing, and [a-z]+ing\\b|\\b[a-z]+ly, [a-z]+ly, and [a-z]+ly\\b|\\b[a-z]+ive, [a-z]+ive, and [a-z]+ive\\b|\\bnot (just|merely|only) [^.\\n]{3,50};? (but|it is|rather) [^.\\n]{3,50}\\b|\\bthe (ability|power|potential) to (transform|revolutionize|redefine|reshape)\\b",
+   "rationale": "三连同构与镜像收尾是模型行文组织方式的公开风格讨论中广泛描述的形态学特征"
+  },
+  {
+   "cat": "en_roadmap",
+   "label": "路线图公式（structure-preview boilerplate）",
+   "weight": 0.8,
+   "show_hits": true,
+   "rationale": "「The remainder of this paper is organized as follows / Section 2 introduces… Section 3…」类结构预告三段式是模型生成论文的开篇模板；人写论文按需交代结构，不以固定套路铺陈",
+   "pattern": "[Tt]he (remainder|rest) of (this|the) (paper|article|chapter) (is|are) organized as follows|[Tt]his paper is structured as follows|[Tt]he (following|next) (section|sections) (will |)[a-z]+s?"
+  },
+  {
+   "pattern": "will continue to (?:shape|drive|evolve|expand|transform)",
+   "cat": "en_promo",
+   "label": "未来展望八股（forward-looking boilerplate）",
+   "rationale": "「will continue to + 宏观动词」是模板化结尾展望——结论应落在本文证据上，而不是替领域做预言",
+   "weight": 1.0,
+   "show_hits": true
+  }
+ ],
+ "auto_fixes": [
+  {
+   "pattern": "\\*\\*([^*\\n]+)\\*\\*",
+   "replacement": "\\1",
+   "note": "去加粗"
+  },
+  {
+   "pattern": "(?<!\\w)__([^_\\n]+)__(?!\\w)",
+   "replacement": "\\1",
+   "note": "去加粗"
+  },
+  {
+   "pattern": "(?m)^#{1,6}\\s+",
+   "replacement": "",
+   "note": "去标题井号"
+  },
+  {
+   "pattern": "`([^`\\n]+)`",
+   "replacement": "\\1",
+   "note": "去行内代码标记"
+  },
+  {
+   "pattern": "\\[cite:\\s*[0-9,\\s-]+\\]",
+   "replacement": "",
+   "note": "Gemini 引用残留"
+  },
+  {
+   "pattern": "\\[span_[0-9]+\\]\\(start_span\\)",
+   "replacement": "",
+   "note": "Gemini span 残留"
+  },
+  {
+   "pattern": "\\boaicite\\b[\"'\\[{ ]*[0-9]*",
+   "replacement": "",
+   "note": "ChatGPT residue"
+  },
+  {
+   "pattern": "turn0search[0-9]+",
+   "replacement": "",
+   "note": "ChatGPT 残留"
+  },
+  {
+   "pattern": "contentreference[^\\s\\]]*",
+   "replacement": "",
+   "note": "ChatGPT 残留"
+  },
+  {
+   "pattern": "grok[_-]?card",
+   "replacement": "",
+   "note": "Grok 残留"
+  },
+  {
+   "pattern": "attached_file[_0-9]*",
+   "replacement": "",
+   "note": "Perplexity 残留"
+  },
+  {
+   "pattern": "\\bin order to\\b",
+   "replacement": "to",
+   "note": "filler"
+  },
+  {
+   "pattern": "\\bdue to the fact that\\b",
+   "replacement": "because",
+   "note": "filler"
+  },
+  {
+   "pattern": "\\butilize\\b",
+   "replacement": "use",
+   "note": "大词换小词"
+  },
+  {
+   "pattern": "\\butilizes\\b",
+   "replacement": "uses",
+   "note": "大词换小词"
+  },
+  {
+   "pattern": "\\butilized\\b",
+   "replacement": "used",
+   "note": "大词换小词"
+  },
+  {
+   "pattern": "\\butilizing\\b",
+   "replacement": "using",
+   "note": "大词换小词"
+  },
+  {
+   "pattern": "\\bleverage\\b",
+   "replacement": "use",
+   "note": "大词换小词"
+  },
+  {
+   "pattern": "\\bdelve into\\b",
+   "replacement": "examine",
+   "note": "AI 词"
+  },
+  {
+   "pattern": "\\bdelves into\\b",
+   "replacement": "examines",
+   "note": "AI 词"
+  },
+  {
+   "pattern": "\\bDelving into\\b",
+   "replacement": "Examining",
+   "note": "AI 词"
+  },
+  {
+   "pattern": "\\bdelving into\\b",
+   "replacement": "examining",
+   "note": "AI 词"
+  },
+  {
+   "pattern": "\\bleveraging\\b",
+   "replacement": "using",
+   "note": "大词换小词"
+  },
+  {
+   "pattern": "\\bleverages\\b",
+   "replacement": "uses",
+   "note": "大词换小词"
+  },
+  {
+   "pattern": "\\bleveraged\\b",
+   "replacement": "used",
+   "note": "大词换小词"
+  },
+  {
+   "pattern": "\\bunderscore\\b",
+   "replacement": "highlight",
+   "note": "AI 词"
+  },
+  {
+   "pattern": "\\bunderscores\\b",
+   "replacement": "highlights",
+   "note": "AI 词"
+  },
+  {
+   "pattern": "\\bunderscored\\b",
+   "replacement": "highlighted",
+   "note": "AI 词"
+  },
+  {
+   "pattern": "\\bplays\\s+an?\\s+(?:crucial|vital|key|significant|important)\\s+role\\s+in\\b",
+   "replacement": "is central to",
+   "note": "系动词回避（第三人称单数）"
+  },
+  {
+   "pattern": "\\bplay\\s+an?\\s+(?:crucial|vital|key|significant|important)\\s+role\\s+in\\b",
+   "replacement": "are central to",
+   "note": "系动词回避（复数/过去时主语）"
+  },
+  {
+   "pattern": "\\bIt is important to note that\\b\\s*",
+   "replacement": "",
+   "note": "填充语删除"
+  },
+  {
+   "pattern": "\\bIt is worth noting that\\b\\s*",
+   "replacement": "",
+   "note": "填充语删除"
+  },
+  {
+   "pattern": "\\bplays? a (crucial|vital|key|significant) role in\\b",
+   "replacement": "is central to",
+   "note": "系动词回避"
+  },
+  {
+   "pattern": "\\b(Underscores?|underscored)\\b",
+   "replacement": "highlight",
+   "note": "AI 词（词形由调用方按主语修正）"
+  },
+  {
+   "pattern": "\\[\\[\\s*\\]\\]",
+   "replacement": "",
+   "note": "残留空括号清理"
+  }
+ ],
+ "aggressive_fixes": [
+  {
+   "pattern": "(?<!\\d)\\s[—–]\\s(?!\\d)",
+   "replacement": ", ",
+   "note": "破折号降噪"
+  },
+  {
+   "pattern": "\\bin today'?s (fast-?paced |modern |digital )?world,?\\s*",
+   "replacement": "",
+   "note": "空泛开场删除"
+  },
+  {
+   "pattern": "\\bat the end of the day,?\\s*",
+   "replacement": "",
+   "note": "空泛过渡删除"
+  },
+  {
+   "pattern": "\\s+([,.!?;])",
+   "replacement": "\u0001",
+   "note": "删除残留后的悬挂空格"
+  }
+ ],
+ "curly_quote_fix": true,
+ "_filler_note": "auto_fixes 是语法安全的机械替换；-ing 尾挂、平行句、宣传腔等需按 style_guide_en.md 人工/agent 深改。",
+ "families": {
+  "showcase": {
+   "label": "炫技动词族",
+   "rationale": "delve/showcase/harness 类动词在自然学术写作中频率极低，在模型生成文本中显著聚集（本项目 373 文件统计与公开语料共识一致）"
+  },
+  "inflation": {
+   "label": "空洞拔高名词族",
+   "rationale": "tapestry/testament/realm 类抽象大词缺乏信息增量，模型用它替代具体陈述"
+  },
+  "meta": {
+   "label": "框架修饰族",
+   "rationale": "crucial/pivotal/notably 类评价性副词形容词是模型的「强调框架」，真实论文靠数据与引用而非语气词立论"
+  },
+  "promo": {
+   "label": "宣传腔族",
+   "rationale": "vibrant/groundbreaking/revolutionize 类营销形容词在学术语域几乎不出现，命中即强信号"
+  },
+  "structure": {
+   "label": "结构套路族",
+   "rationale": "对应正则组：对冲框架、三连同构、万能开场等，是模型行文组织方式的形态学指纹"
+  },
+  "artifact": {
+   "label": "残留指纹族",
+   "rationale": "模型输出特有的引用残渣/免责声明/知识截止声明，无正当用途，命中即硬信号"
+  }
+ }
+}

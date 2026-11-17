@@ -1,0 +1,37 @@
+# medical-data-export-compliance
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+A practical playbook for data export and cross-border compliance for medical device companies going global — covering China's '3+2+4' data-export regulatory system and three compliance pathways (data-export security assessment, personal information standard contract, and the personal information export certification effective 2026-01-01), the 100k/1M volume thresholds with cumulative counting rules, special requirements for medical and health data (first mandatory national standard, medical data security review, GBA standard contracts), and key destination-market data laws (EU GDPR/EHDS, US HIPAA, Singapore PDPA, Japan/Korea), with export scenario playbooks (clinical trial data, telehealth, cloud services, employee data), a 5-step compliance process and annual assessment requirements (Risk Assessment Measures effective 2026-08-20). Includes a zero-dependency local toolkit for pathway determination, volume-threshold calculation and scenario checklists. Built for international business, compliance and data leaders in medical device companies.
+
+医疗器械企业数据出境与出海合规实操手册——覆盖中国数据出境"3+2+4"监管体系与三条合规路径（数据出境安全评估、个人信息出境标准合同、2026-01-01 施行的个人信息出境认证）、10万/100万人数阈值与累计计算规则、医疗健康数据特殊要求（首部医疗数据强制性国标、医疗数据安全审查、大湾区标准合同）、主要目标市场数据法（欧盟 GDPR/EHDS、美国 HIPAA、新加坡 PDPA、日韩），含出海场景实操（临床试验数据/远程诊疗/云服务/员工数据）、合规落地五步流程与年度审计要求（2026-08-20 施行风险评估办法），附零依赖本地工具一键判定出境路径、计算人数阈值、输出场景清单。面向医疗器械企业国际业务、合规与数据负责人。
+
+## When to use / 什么时候用
+
+- 临床试验数据传到国外服务器行不行
+- 多少人的个人信息要去做安全评估
+- 海外子公司员工数据算不算出境
+- 用境外云服务存病历要不要申报
+- 标准合同和认证该选哪条路
+- 远程诊疗的海外患者数据怎么处理
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

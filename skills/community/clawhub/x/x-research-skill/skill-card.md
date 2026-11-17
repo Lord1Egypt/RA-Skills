@@ -1,41 +1,58 @@
-## Description: <br>
-Research trending topics, tweets, user profiles, and conversations on X (Twitter) using twitterapi.io for insights and trend reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research trending topics, tweets, user profiles, and conversations on X (Twitter) using twitterapi.io for insights and trend reports.
 
-## Publisher: <br>
-[0xArtex](https://clawhub.ai/user/0xArtex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xartex](https://clawhub.ai/user/0xartex)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to query X/Twitter through twitterapi.io and compile markdown trend reports, especially for Solana ecosystem monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a twitterapi.io API key and can consume provider quota. <br>
-Mitigation: Use a dedicated API key where possible, keep the secret file private, and control repeated runs. <br>
-Risk: Generated reports can contain untrusted social-media text. <br>
-Mitigation: Treat report content as research material and review it before relying on or redistributing it. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to query X/Twitter data through twitterapi.io and compile Markdown trend reports, especially for Solana ecosystem monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xArtex/x-research-skill) <br>
-- [twitterapi.io API](https://api.twitterapi.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a twitterapi.io API key; generated reports may include untrusted social-media text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uses a twitterapi.io API key and sends search terms and account lookups to that provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that data flow is acceptable, keep TWITTERAPI_KEY in local secrets, and avoid submitting sensitive queries.
+
+Risk: API calls may incur usage costs.
+
+Mitigation: Review the query cadence and provider pricing before running recurring reports.
+
+Risk: The helper script writes reports to a local output directory.
+
+Mitigation: Choose or review the output directory before execution when report location or filenames matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xartex/skills/x-research-skill)
+- [twitterapi.io API](https://api.twitterapi.io)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and API JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a twitterapi.io API key; the helper script writes timestamped local Markdown reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

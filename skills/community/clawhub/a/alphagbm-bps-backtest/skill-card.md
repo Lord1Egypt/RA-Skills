@@ -1,41 +1,54 @@
-## Description: <br>
-Runs a walk-forward Bull Put Spread backtest for a ticker, comparing FearScore-triggered entries with a no-signal control and returning performance metrics, trade ledger, equity curve, P&L distribution, and a plain-language summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a walk-forward Bull Put Spread backtest with and without a FearScore entry signal, returning side-by-side performance metrics, trade ledgers, equity curves, and a plain-language takeaway.
 
-## Publisher: <br>
-[clementgu](https://clawhub.ai/user/clementgu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementgu](https://clawhub.ai/user/clementgu)
 
-## Use Case: <br>
-External traders, analysts, and developers use this skill to compare a FearScore-driven bull put spread entry rule against a no-signal control for a selected ticker and parameter set. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial options-analysis output may be mistaken for guaranteed trading results. <br>
-Mitigation: Use the backtest as research support only and verify methodology limits, assumptions, account requirements, and pricing before relying on results for real trades. <br>
-Risk: Fresh analyses may call AlphaGBM's API and consume option-analysis credits. <br>
-Mitigation: Confirm pricing and parameter choices before requesting new runs, and reuse cached results when appropriate. <br>
+## Use Case:
 
+External users and developers use this skill to evaluate Bull Put Spread parameters on US, Hong Kong, or China tickers and compare a FearScore-filtered strategy against a no-signal control.
 
-## Reference(s): <br>
-- [AlphaGBM](https://alphagbm.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/clementgu/skills/alphagbm-bps-backtest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown prose with structured JSON backtest results and bilingual summary fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes side-by-side signal and no-signal results, key performance metrics, trade ledger, equity curve, and P&L distribution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends ticker, date range, and strategy parameters to the AlphaGBM service and may spend an option-analysis credit for an uncached call.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when sharing those inputs with AlphaGBM and spending the credit is intended; confirm ticker and strategy parameters before the request.
+
+Risk: Backtest results rely on reconstructed FearScore and historical-volatility option pricing proxies, so results may differ from live option-chain behavior.
+
+Mitigation: Treat the output as research support, compare the signal and control results, and review the trade ledger and drawdown metrics before using results in trading decisions.
+
+## Reference(s):
+
+- [AlphaGBM](https://alphagbm.com)
+- [ClawHub skill page](https://clawhub.ai/clementgu/skills/alphagbm-bps-backtest)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Structured JSON results with text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns separate with-signal and no-signal backtest passes, including KPIs, trade ledger, equity curve, P&L histogram, exit reasons, and bilingual summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

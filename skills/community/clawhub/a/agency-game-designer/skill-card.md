@@ -1,40 +1,53 @@
-## Description: <br>
-Helps game teams design and document gameplay systems, mechanics, progression, economy balance, onboarding, and playtest criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent for game design guidance, including gameplay systems, mechanics, economies, progression, and design documentation.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Game designers, developers, and product teams use this skill to turn game concepts into implementable game design documents, mechanic specifications, economy tuning tables, onboarding flows, and playtest plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad game-design topics, which may make its advice feel more authoritative than the available project context supports. <br>
-Mitigation: Review outputs against the target game's genre, audience, production constraints, and playtest evidence before adopting recommendations. <br>
-Risk: Guidance may include retention, monetization, or behavioral-economics suggestions that could be inappropriate for some audiences or markets. <br>
-Mitigation: Apply human review to monetization and retention mechanics, especially for minors or vulnerable audiences, and align decisions with product ethics and policy requirements. <br>
+## Use Case:
 
+Developers, designers, and game teams use this skill to draft game design documents, core gameplay loops, mechanic specifications, economy balance plans, onboarding flows, and playtest-ready assumptions.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/zhouqkt/agency-game-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with tables, checklists, and structured design specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include placeholder tuning values intended for playtesting; no executable code or install scripts are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad game-design activation wording may cause the skill to be invoked for general design requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit activation phrasing when game-system design guidance is desired and review outputs before incorporating them into project documentation.
+
+Risk: Generated balance values and gameplay assumptions may be incorrect for a specific project.
+
+Mitigation: Treat numeric values and assumptions as hypotheses, then validate them through playtests, simulations, and project-specific review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-game-designer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown design documents, tables, checklists, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include placeholder tuning values and assumptions that should be validated through playtesting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

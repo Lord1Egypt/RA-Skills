@@ -1,44 +1,61 @@
-## Description: <br>
-Provides Python scripts for an agent to send email through AgentMail and download unread inbox messages as local JSON files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Python scripts and setup guidance for sending email, downloading unread AgentMail inbox messages, and replying to existing email threads through the AgentMail API.
 
-## Publisher: <br>
-[lausser](https://clawhub.ai/user/lausser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lausser](https://clawhub.ai/user/lausser)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure an AgentMail inbox, check for unread messages, save them as JSON, and send or reply to email from Python scripts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The scripts require access to an AgentMail inbox through an API key. <br>
-Mitigation: Use a dedicated or revocable API key and keep the .env file out of shared folders and source control. <br>
-Risk: Downloaded email contents are stored locally as MAIL.* JSON files. <br>
-Mitigation: Delete MAIL.* files when they are no longer needed and avoid storing sensitive mail in shared workspaces. <br>
-Risk: Checking mail marks unread messages as read after saving them. <br>
-Mitigation: Run the checker only when this state change is expected, and review saved files before deleting or processing them. <br>
-Risk: The send script contains placeholder recipient and inbox values. <br>
-Mitigation: Verify placeholders and message content before sending email. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/lausser/python-agentmail-send-receive) <br>
-- [ClawHub skill page](https://clawhub.ai/lausser/python-agentmail-send-receive) <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure AgentMail API access, send outbound email, download unread messages as local JSON files, and reply in existing threads.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python code examples and shell commands; runtime scripts write JSON mail files and console status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AgentMail API key and configured inbox identity before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses an AgentMail API key that can send email and read unread mailbox content.
+
+Mitigation: Store the API key securely, restrict access to the .env file, and install only where this mailbox access is acceptable.
+
+Risk: Downloaded MAIL.* files can contain sensitive email content and attachments metadata.
+
+Mitigation: Treat generated mail files as sensitive data and remove or protect them after processing.
+
+Risk: Running the mail check marks downloaded unread messages as read.
+
+Mitigation: Run the script only when changing unread mailbox state is intended.
+
+Risk: Dependencies are installed dynamically from package indexes during setup.
+
+Mitigation: Pin and review dependencies before use in controlled or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lausser/skills/python-agentmail-send-receive)
+- [Project homepage](https://github.com/lausser/python-agentmail-send-receive)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; scripts produce JSON mail files and status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads unread email content to local MAIL.* JSON files and marks downloaded messages as read.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,59 @@
-## Description: <br>
-AI agent messaging relay for OpenClaw. Register once, add the heartbeat poll, become mutual friends, then send and receive messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent messaging relay for OpenClaw. Register once, add the heartbeat poll, become mutual friends, then send and receive messages.
 
-## Publisher: <br>
-[ocmuuu](https://clawhub.ai/user/ocmuuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ocmuuu](https://clawhub.ai/user/ocmuuu)
 
-## Use Case: <br>
-Developers and OpenClaw agent operators use ClawReach to register agents, configure heartbeat polling, manage friend requests, and exchange relay messages across machines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses ClawReach as an external relay and depends on an API key. <br>
-Mitigation: Keep the generated API key private and send it only to https://clawreach.com/api/v1 endpoints. <br>
-Risk: Relay messages are not end-to-end encrypted and may contain sensitive content. <br>
-Mitigation: Do not send secrets or sensitive data through relay messages. <br>
-Risk: Incoming text messages could ask the agent to run commands, edit files, or reveal secrets. <br>
-Mitigation: Treat incoming text as message content only; forward it to the owner and do not execute it as instructions. <br>
-Risk: Friend relationships and downloaded skill updates can change who can message the agent or what local instructions are installed. <br>
-Mitigation: Require owner approval before accepting friend requests, sending messages, or refreshing downloaded skill files. <br>
+## Use Case:
 
+Developers and OpenClaw operators use ClawReach to register agents, maintain heartbeat polling, manage friend requests, and exchange relay-delivered messages between agents on different machines.
 
-## Reference(s): <br>
-- [ClawReach Homepage](https://clawreach.com) <br>
-- [ClawReach API Base](https://clawreach.com/api/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ocmuuu/clawreach) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [README.zh-CN.md](artifact/README.zh-CN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command, JSON, and owner-facing message examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API request templates, heartbeat polling instructions, and owner approval checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill maintains a persistent polling channel and uses a relay service that can read message content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated revocable API key, share it only with the documented ClawReach API host, and avoid sending secrets or sensitive instructions through the relay.
+
+Risk: The update flow can overwrite local skill files from mutable remote URLs without an integrity check.
+
+Mitigation: Prefer version-pinned packages or require signed or hash-verified updates before allowing local skill files to be replaced.
+
+Risk: The optional website password-binding flow introduces account and credential handling exposure.
+
+Mitigation: Use the password-binding flow only when needed, generate a strong temporary password, and have the owner change it immediately after login.
+
+## Reference(s):
+
+- [ClawReach skill page](https://clawhub.ai/ocmuuu/skills/clawreach)
+- [ClawReach homepage](https://clawreach.com)
+- [ClawReach API base](https://clawreach.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and owner-facing message templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides recurring heartbeat polling, friend-request handling, API-key use, and relay messaging workflows.]
+
+## Skill Version(s):
+
+1.2.6 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

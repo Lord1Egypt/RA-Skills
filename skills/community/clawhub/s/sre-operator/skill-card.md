@@ -1,42 +1,55 @@
-## Description: <br>
-Provides structured server operations workflows for system identification, safety checks, command validation, troubleshooting, performance monitoring, and log analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured server operations workflows for system identification, safety checks, command validation, troubleshooting, performance monitoring, and log analysis.
 
-## Publisher: <br>
-[zuoanCo](https://clawhub.ai/user/zuoanCo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zuoanco](https://clawhub.ai/user/zuoanco)
 
-## Use Case: <br>
-System administrators, SREs, and operations engineers use this skill to diagnose server health, evaluate risky commands, plan maintenance, and troubleshoot performance, disk, process, network, log, and package-management issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Server operations guidance may involve privileged, destructive, or service-impacting commands. <br>
-Mitigation: Manually review service, package, firewall, DNS, deletion, truncation, and privileged commands before execution; confirm the target host, backup state, and rollback plan. <br>
-Risk: Diagnostic outputs and logs can expose sensitive host, service, network, or application details. <br>
-Mitigation: Redact sensitive logs and environment details before sharing outputs, and prefer read-only diagnostics unless the operator explicitly approves a change. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zuoanCo/sre-operator) <br>
-- [Linux command reference and risk guide](references/linux-commands.md) <br>
-- [Safety checklist](references/safety-checklist.md) <br>
-- [Troubleshooting guide](references/troubleshooting-guide.md) <br>
+## Use Case:
 
+System administrators, SREs, and operations engineers use this skill to perform server diagnostics, maintenance planning, troubleshooting, log analysis, and performance checks while validating commands before execution.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON from the diagnostic script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference a read-oriented diagnostic shell script that can emit text or JSON system snapshots.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Troubleshooting recipes include direct remediation commands that can change services, firewall rules, DNS, packages, permissions, or files on production systems.
+
+Mitigation: Keep default use to read-only diagnostics; require explicit approval, verified paths and services, backups, rollback steps, and environment-specific command checks before any state-changing command.
+
+Risk: System inventory output can expose operational details about hosts, processes, resources, and disks.
+
+Mitigation: Store generated reports only in approved locations, review them for sensitive infrastructure details, and limit sharing to intended operators.
+
+## Reference(s):
+
+- [Linux command reference](references/linux-commands.md)
+- [Safety checklist](references/safety-checklist.md)
+- [Troubleshooting guide](references/troubleshooting-guide.md)
+- [System analysis script](scripts/analyze-system.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON diagnostic output from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend or invoke read-only diagnostics first, then propose state-changing commands only after validation and user approval.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

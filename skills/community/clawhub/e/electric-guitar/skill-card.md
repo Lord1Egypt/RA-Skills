@@ -1,37 +1,49 @@
-## Description: <br>
-Electric guitar practice strategies, technique, tone shaping, and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Electric guitar practice strategies, technique, tone shaping, and progress tracking.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Electric guitar learners and players use this skill to get tailored practice advice, troubleshoot technique and tone, and optionally maintain local progress notes for repertoire, sessions, techniques, and goals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional progress tracking may create local practice records in ~/electric-guitar/ containing songs, sessions, techniques, scales, and goals. <br>
-Mitigation: Confirm before logging progress, avoid progress logging when local history is not wanted, and delete ~/electric-guitar/ if those records should not be retained. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Electric Guitar progress tracking reference](progress.md) <br>
+## Use Case:
 
+External users use this skill for electric guitar coaching, including practice planning, technique troubleshooting, tone guidance, and optional progress tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with optional markdown progress logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update local practice notes when the user wants progress tracking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may create ~/electric-guitar/ and store personal practice notes about songs, techniques, goals, and sessions.
+
+Mitigation: Only approve progress logging when those details should be saved locally, and avoid recording private practice details that should not persist.
+
+## Reference(s):
+
+- [Electric Guitar Progress Tracking](artifact/progress.md)
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/electric-guitar)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Text and Markdown progress log structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local files under ~/electric-guitar/ for repertoire, session, technique, and goal tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

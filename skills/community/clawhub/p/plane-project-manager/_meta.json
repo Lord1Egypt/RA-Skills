@@ -1,6 +1,35 @@
 {
-  "ownerId": "kn7bcaearb90wwcjbr9gpv32s5831k39",
+  "ownerId": "axelhu",
   "slug": "plane-project-manager",
   "version": "1.0.3",
-  "publishedAt": 1776302542338
+  "publishedAt": "2026-04-09T13:00:00Z",
+  "requiredEnvVars": [],
+  "requiredConfigPaths": [
+    "~/.config/plane/credentials.json"
+  ],
+  "primaryCredential": {
+    "fields": [
+      "PLANE_URL",
+      "PLANE_EMAIL",
+      "PLANE_PASSWORD",
+      "PLANE_API_TOKEN"
+    ],
+    "type": "json"
+  },
+  "credentialSetup": {
+    "type": "file",
+    "description": "创建 ~/.config/plane/credentials.json，包含 PLANE_URL、PLANE_EMAIL、PLANE_PASSWORD（或 PLANE_API_TOKEN）。Setup 后建议删除明文密码，改用 API Token。"
+  },
+  "persistence": null,
+  "requires": {
+    "anyBinaries": [
+      "curl",
+      "jq"
+    ],
+    "os": [
+      "linux",
+      "windows",
+      "macos"
+    ]
+  }
 }

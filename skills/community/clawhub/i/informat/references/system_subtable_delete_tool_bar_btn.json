@@ -1,0 +1,25 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_subtable_delete_tool_bar_btn",
+    "description": "Delete a subtable toolbar button. Must call _subtable_list_tool_bar_btn first to get button ID. Only Relation and LookupList field types support subtable toolbar buttons.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "description": "Table ID (must exist)."
+        },
+        "fieldId": {
+          "type": "string",
+          "description": "Relation or LookupList field ID (must exist, field type must be Relation or LookupList)."
+        },
+        "buttonId": {
+          "type": "string",
+          "description": "Button ID to delete (obtained via _subtable_list_tool_bar_btn)."
+        }
+      },
+      "required": ["tableId", "fieldId", "buttonId"]
+    }
+  }
+}

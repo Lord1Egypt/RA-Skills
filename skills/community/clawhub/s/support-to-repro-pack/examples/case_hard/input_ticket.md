@@ -14,7 +14,7 @@ Errors we're seeing:
 This only happens for GBP and EUR transactions. USD works fine.
 
 Our setup:
-- API key: sk_live_TESTKEY000000000demo
+- API key: REDACTED-SECRET
 - Webhook endpoint: https://hooks.globalfinance.co.uk/stripe-webhook
 - Server: AWS eu-west-1, running Node 18
 - Using your SDK v3.2.0

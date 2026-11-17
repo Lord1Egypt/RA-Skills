@@ -1,0 +1,24 @@
+{
+  "task_id": "ui-language-fix",
+  "phase": "verify",
+  "agent": "fresh-verifier",
+  "timestamp": "2026-05-20T13:45:00Z",
+  "overall": "PASS",
+  "criteria": [
+    {
+      "id": "AC1",
+      "status": "PASS",
+      "note": "German locale browser check showed Startseite, Einstellungen, and Abrechnung after saving preference."
+    },
+    {
+      "id": "AC2",
+      "status": "PASS",
+      "note": "Reload preserved locale=de and German labels remained visible."
+    },
+    {
+      "id": "AC3",
+      "status": "PASS",
+      "note": "Switching back to English restored Home, Settings, and Billing."
+    }
+  ]
+}

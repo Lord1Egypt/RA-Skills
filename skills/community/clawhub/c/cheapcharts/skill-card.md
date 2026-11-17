@@ -1,48 +1,68 @@
-## Description: <br>
-Use when looking up digital movie/TV show prices, deals, charts, or recommendations across iTunes, Amazon, Vudu, and Google Play. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up digital movie and TV deals, current prices, charts, recommendations, and price history across CheapCharts-supported stores, with all-time-low flags where available.
 
-## Publisher: <br>
-[tracerman](https://clawhub.ai/user/tracerman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tracerman](https://clawhub.ai/user/tracerman)
 
-## Use Case: <br>
-External users and agents use this skill to find digital movie and TV deals, compare prices across supported stores, inspect charts, and check whether current sale prices are at an all-time low. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public web requests to CheapCharts and optional enrichment sites can expose the titles, stores, or deal topics being queried. <br>
-Mitigation: Use the skill for non-sensitive price research and avoid submitting confidential viewing, purchasing, or business intent. <br>
-Risk: Deal, price, and gift-card information may be stale or incomplete by the time a purchase decision is made. <br>
-Mitigation: Treat outputs as informational and verify current prices, store availability, and checkout terms before spending money. <br>
-Risk: All-time-low enrichment depends on CheapCharts DetailData behavior, including an internal endpoint described by the artifact. <br>
-Mitigation: Check API status fields, handle endpoint errors, and verify important ATL claims against visible CheapCharts or store pages. <br>
-Risk: Non-iTunes store coverage is described as sparser and less reliable for batch deal checks. <br>
-Mitigation: Prefer title-specific lookups for non-iTunes stores and avoid claiming complete cross-store coverage unless each store result was verified. <br>
+## Use Case:
 
+External users and agents use this skill to find digital movie and TV discounts, compare purchase or rental prices, check whether a title is at its tracked all-time low, and produce concise deal reports.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/tracerman/cheapcharts-skill/tree/main/skills/cheapcharts) <br>
-- [ClawHub skill page](https://clawhub.ai/tracerman/skills/cheapcharts) <br>
-- [CheapCharts AI agent documentation](https://www.cheapcharts.com/us/ai) <br>
-- [CheapCharts website](https://www.cheapcharts.com) <br>
-- [CheapCharts GPT API base](https://buster.cheapcharts.de/v1/gptapi/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional curl commands, Python snippets, JSON output, and concise deal reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make public HTTP requests to CheapCharts and optional enrichment sites; no credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata); skill documentation version 2.2.0 (source: SKILL.md frontmatter) <br>
+Risk: The skill makes public web requests to CheapCharts and may optionally use IMDb or CheapCharts web pages for compatibility or savings advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where these public requests are acceptable and review any optional browsing before allowing the agent to proceed.
+
+Risk: Digital prices, availability, and sale status can change or lag behind store data.
+
+Mitigation: Treat reported prices as informational and verify price and availability in the linked store before purchasing.
+
+Risk: Recurring monitoring could create unexpected scheduled activity if delegated without review.
+
+Mitigation: Require the user or operator to explicitly configure any recurring checks or schedules.
+
+Risk: Some CheapCharts endpoints have documented coverage limits or instability, especially the unofficial DetailData endpoint and non-iTunes batch deal lookups.
+
+Mitigation: Prefer the bundled script for all-time-low and history workflows, check API status responses, and present endpoint limitations when results may be incomplete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tracerman/skills/cheapcharts)
+- [Publisher profile](https://clawhub.ai/user/tracerman)
+- [Server-resolved GitHub provenance](https://github.com/tracerman/cheapcharts-skill/tree/main/skills/cheapcharts)
+- [CheapCharts AI documentation](https://www.cheapcharts.com/us/ai)
+- [CheapCharts website](https://www.cheapcharts.com)
+- [API reference](references/API.md)
+- [API pitfalls](references/PITFALLS.md)
+- [Recipes](RECIPES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables, JSON, shell commands, and concise natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make public web requests to CheapCharts and optional related public pages; no API key is required.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence; artifact frontmatter reports 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

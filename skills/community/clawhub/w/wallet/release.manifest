@@ -1,0 +1,6 @@
+format=rustok-wallet-release-v1
+wallet_version=0.12.0
+source_commit=209d422d3e35d968955a71263ca476fb3bdbe969
+image_ref=ghcr.io/rustok-org/rustok-wallet-tui@sha256:c9c69308bcd97ae4018dbf80f6e8786189476226ea3f3c6072f10bca75c36023
+installer_sha256=9ce25a01e40d278a981c10f7870794838fdee073142fb0efca64bcff1a205b60
+shim_sha256=2008bffe7ae5483f5c352955eedab5df41ffab4412f36c9ea1a3195a3f51aa45

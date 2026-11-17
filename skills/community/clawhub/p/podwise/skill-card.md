@@ -1,48 +1,64 @@
-## Description: <br>
-Podwise helps agents use the Podwise CLI to find, process, summarize, translate, research, and export podcast or audio insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps listeners discover, summarize, study, and organize podcasts and other audio using Podwise.
 
-## Publisher: <br>
-[saitowu](https://clawhub.ai/user/saitowu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saitowu](https://clawhub.ai/user/saitowu)
 
-## Use Case: <br>
-External users and agent operators use this skill to search podcasts, inspect followed shows and listening history, retrieve transcript-grounded summaries, create notes, generate recaps, research topics, debate episode claims, and build language-learning materials through the Podwise CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Podwise CLI can access Podwise account data, listening and reading history, selected transcripts, and local media chosen for processing. <br>
-Mitigation: Install and run the skill only if the user trusts the Podwise CLI, and confirm processing or export actions before sending local media or account-derived content. <br>
-Risk: The installation reference includes a curl-piped shell installer. <br>
-Mitigation: Prefer Homebrew or a reviewed release binary, and inspect installer scripts before execution. <br>
-Risk: API keys and account configuration can be exposed through shared terminals or copied configuration paths. <br>
-Mitigation: Keep API keys out of shared terminals, use the browser authorization flow where possible, and protect the Podwise config file. <br>
-Risk: taste.md and generated workflow files may contain personal preferences, listening patterns, summaries, or exported episode content. <br>
-Mitigation: Avoid storing unrelated sensitive notes in taste.md, review generated file paths and export destinations, and do not share generated files without checking their contents. <br>
+## Use Case:
 
+Podcast listeners use this skill to find and summarize episodes, review their listening history, create episode notes and study cards, and research topics across transcripts.
 
-## Reference(s): <br>
-- [ClawHub Podwise release page](https://clawhub.ai/saitowu/podwise) <br>
-- [Podwise homepage](https://podwise.ai) <br>
-- [Podwise CLI reference](references/cli.md) <br>
-- [Podwise installation reference](references/installation.md) <br>
-- [Podwise documentation](https://docs.podwise.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, CLI command snippets, parsed JSON results when requested, and optional local files such as notes, reports, CSV, Anki TSV, SRT, or VTT.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write taste.md and workflow output files in the current working directory; Podwise CLI calls can access account history, selected transcripts, and local media selected by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Podwise account connection exposes listening and reading history and followed shows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Connect only if comfortable sharing this account data through Podwise OAuth.
+
+Risk: User-provided audio or video may be uploaded to Podwise for processing.
+
+Mitigation: Review media contents and obtain consent before uploading.
+
+Risk: Generated notes and listener profiles may be saved locally.
+
+Mitigation: Review generated files, especially taste.md, before keeping or sharing them.
+
+Risk: Optional headless setup may install mcp-remote without a pinned version.
+
+Mitigation: Consider pinning or preinstalling mcp-remote before headless setup.
+
+## Reference(s):
+
+- [Podwise skill listing](https://clawhub.ai/saitowu/skills/podwise)
+- [Podwise](https://podwise.ai)
+- [Podwise connection and sign-in](artifact/references/installation.md)
+- [Podwise tool reference](artifact/references/mcp.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown, text, and optional exported files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local listener profile or episode exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-Provides Chinese-language reference material and guidance drawn from Huangdi Neijing concepts for seasonal wellness, constitution differentiation, preventive health thinking, and lifestyle balance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides educational guidance based on Huangdi Neijing concepts, including seasonal wellness, constitution differentiation, preventive health thinking, lifestyle balance, and mind-body cultivation.
 
-## Publisher: <br>
-[taro291](https://clawhub.ai/user/taro291) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taro291](https://clawhub.ai/user/taro291)
 
-## Use Case: <br>
-External users and agents use this skill as an educational traditional Chinese medicine-style wellness reference for lifestyle, seasonal health, constitution comparison, and self-care planning. It should not be used for diagnosis, treatment decisions, or selecting herbs or formulas without a qualified clinician. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can provide medical-like diagnosis and treatment guidance that a user may mistake for medical advice. <br>
-Mitigation: Frame outputs as educational wellness reference material and direct diagnosis, treatment, herbs, formulas, and urgent health concerns to a qualified clinician. <br>
-Risk: Broad health and lifestyle triggers may invoke the skill in ordinary wellness conversations. <br>
-Mitigation: Confirm the user wants a traditional Chinese medicine-style perspective and keep responses within educational self-care boundaries. <br>
+## Use Case:
 
+External users and agent builders use this skill to produce culturally grounded wellness guidance, seasonal health suggestions, constitution comparison notes, and structured self-care reflection based on Huangdi Neijing themes. It should be treated as educational wellness content rather than diagnosis or treatment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taro291/huangdi-neijing) <br>
-- [Constitution Differentiation Reference](references/constitution-differentiation.md) <br>
-- [Seasonal Health Guide](references/seasonal-health-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose, tables, and structured wellness-analysis templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational traditional Chinese medicine-style wellness guidance; not medical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill provides diagnosis-like and treatment-style Chinese medicine wellness guidance that could be mistaken for medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as cultural or educational wellness material and direct users to qualified clinicians for symptoms, pregnancy, chronic conditions, medications, urgent concerns, formulas, herbs, diet, or exercise decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taro291/skills/huangdi-neijing)
+- [中医体质辨证速查表](references/constitution-differentiation.md)
+- [四时养生指导速查表](references/seasonal-health-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wellness analysis templates, comparison tables, seasonal suggestions, and cautionary guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,32 @@
+{
+  "observedAt": "2026-01-01T12:00:00Z",
+  "pages": [
+    {
+      "data": {
+        "projects": {
+          "nodes": [
+            {
+              "id": "project-alpha",
+              "name": "Launch readiness",
+              "description": "A project, not an individual task.",
+              "url": "https://linear.app/example/project/launch",
+              "status": {
+                "id": "state-active",
+                "name": "In Progress",
+                "type": "started"
+              },
+              "lead": {
+                "name": "Example owner"
+              },
+              "targetDate": "2026-12-01"
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": null
+          }
+        }
+      }
+    }
+  ]
+}

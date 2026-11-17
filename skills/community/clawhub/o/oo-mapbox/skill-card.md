@@ -1,45 +1,55 @@
-## Description: <br>
-Mapbox (mapbox.com). Use this skill for Mapbox requests including geocoding, routing, and travel matrix tasks through the OOMOL-connected Mapbox connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mapbox (mapbox.com). Use this skill for ANY Mapbox request — searching and reading data. Whenever a task involves Mapbox, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to operate Mapbox through an OOMOL-connected account for forward, reverse, and batch geocoding, directions, and travel time or distance matrices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting Mapbox through OOMOL, so prompts and action requests are sent to the OOMOL connector for Mapbox API actions. <br>
-Mitigation: Install only when that connection model is acceptable and confirm the connected Mapbox account before use. <br>
-Risk: First-time setup may involve running a CLI installer command. <br>
-Mitigation: Review installer commands before execution and run setup steps only when an auth, connection, or missing-command error requires them. <br>
-Risk: Write, destructive, billing-impacting, or bulk requests can change data or incur cost. <br>
-Mitigation: Require explicit user confirmation for the exact payload and intended effect before running those requests. <br>
+## Use Case:
 
+Developers and other users can use the skill to search Mapbox geographic data, geocode places and coordinates, and request directions or travel matrices through their OOMOL-connected Mapbox account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-mapbox) <br>
-- [Mapbox homepage](https://www.mapbox.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Mapbox icon](https://static.oomol.com/logo/third-party/Mapbox.svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce oo CLI commands and JSON request payloads based on the live connector schema.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: Fallback setup may run downloaded code whose contents and exact changes have not been verified, without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately, including its automatic agent-skill synchronization; prefer a verified, versioned installation before enabling the skill.
+
+Risk: Addresses and coordinates submitted through the skill pass through OOMOL to Mapbox.
+
+Mitigation: Avoid submitting sensitive location data and disclose this data path before sending location details.
+
+## Reference(s):
+
+- [Mapbox API documentation](https://docs.mapbox.com/api/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-mapbox)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [Mapbox action results returned as JSON and task responses as text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The available actions cover geocoding, directions, and travel matrices.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

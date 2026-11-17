@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn794pytqbwv9jzm3bj9s8ndpd80xmje",
-  "slug": "masterswarm",
+  "name": "masterswarm",
   "version": "1.1.2",
-  "publishedAt": 1772876972401
+  "description": "Analyze documents with 15 parallel AI engines via the MasterSwarm cloud API. Requires a paid API key from masterswarm.net.",
+  "author": "contrario",
+  "license": "MIT",
+  "homepage": "https://masterswarm.net",
+  "tags": ["ai", "analysis", "documents", "business", "consulting", "crypto", "medical", "legal", "multi-agent"],
+  "requires": {
+    "envVars": ["MASTERSWARM_API_KEY"]
+  }
 }

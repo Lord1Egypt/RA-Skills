@@ -1,38 +1,48 @@
-## Description: <br>
-Applies Anthropic's official brand colors and typography to artifacts that benefit from Anthropic's look and feel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel.
 
-## Publisher: <br>
-[blue37bird](https://clawhub.ai/user/blue37bird) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
+
+[blue37bird](https://clawhub.ai/user/blue37bird)
+
+### License/Terms of Use:
+
+Apache 2.0
+
+## Use Case:
+
+Developers, designers, and content-producing agents use this skill to apply Anthropic-style colors, typography, and visual formatting to artifacts that need brand-consistent presentation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger wording may cause the skill to be applied to generic formatting tasks where Anthropic-style branding was not intended.
+
+Mitigation: Invoke it only when the user explicitly requests Anthropic branding or official brand-style work.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, developers, and designers use this skill to apply Anthropic-style colors, typography, and visual formatting to documents, presentations, and other generated artifacts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Configuration, Code, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Applying Anthropic-style branding to public or legal materials may imply affiliation or approval if brand permissions are not confirmed. <br>
-Mitigation: Verify the intended use, brand colors, typography, and permission to use Anthropic branding before applying the styling to public-facing or legal materials. <br>
+**Output Format:** [Markdown guidance with color values, typography rules, and styling specifications]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/blue37bird/brand-guidelines-2) <br>
+**Other Properties Related to Output:** [No executable behavior or privileged access; uses system font fallbacks when Poppins or Lora are unavailable.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with styling values and implementation details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include color values, font choices, fallback fonts, and styling instructions for generated artifacts.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

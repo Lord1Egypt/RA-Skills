@@ -1,41 +1,57 @@
-## Description: <br>
-Automates WeChat public-account content workflows by collecting hot topics, generating articles, formatting them as WeChat-ready HTML, and publishing drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps WorkBuddy users generate, format, schedule, and submit WeChat Official Account articles from trending topics or custom Markdown.
 
-## Publisher: <br>
-[andyy1976](https://clawhub.ai/user/andyy1976) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyy1976](https://clawhub.ai/user/andyy1976)
 
-## Use Case: <br>
-External creators, marketers, and WeChat public-account operators use this skill to discover relevant trending topics, generate structured articles, apply WeChat-oriented HTML formatting, and create drafts for publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or schedule WeChat public-account content using configured account credentials. <br>
-Mitigation: Require manual preview and approval before enabling scheduled or live publishing, and limit use to operators authorized to post for the account. <br>
-Risk: The configuration includes a WeChat AppSecret and other account publishing settings. <br>
-Mitigation: Keep AppSecret out of source control, restrict access to the configuration file, and rotate the secret if it is exposed. <br>
+## Use Case:
 
+External users and content operators use this skill to prepare WeChat Official Account posts by collecting hot topics, generating article drafts, applying WeChat-ready formatting, and sending approved content to the WeChat draft workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyy1976/wechat-publisher-3) <br>
-- [Publisher profile](https://clawhub.ai/user/andyy1976) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with JSON configuration examples and WeChat-ready HTML/CSS content guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces publishing guidance and draft content; live WeChat publishing requires configured AppID, AppSecret, and manual review before scheduled or live use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata); artifact frontmatter declares 1.0.0 <br>
+Risk: WeChat AppSecret and publishing credentials can be exposed if they are stored in a shared or synced plugin directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials outside shared locations when possible, restrict local file permissions, or use a secret manager or environment variable.
+
+Risk: Automated draft submission or scheduled publishing can publish unsuitable content if enabled without review.
+
+Mitigation: Require manual preview and confirmation before publishing drafts or enabling a daily schedule.
+
+Risk: Hot-topic article generation can produce inaccurate, incomplete, or off-brand claims.
+
+Mitigation: Review generated articles and verify important facts before submitting content to WeChat.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyy1976/skills/wechat-publisher-3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, Configuration, Guidance]
+
+**Output Format:** [Markdown, WeChat-ready HTML, configuration JSON guidance, and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can prepare draft content for WeChat publishing and support scheduled posting when configured.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

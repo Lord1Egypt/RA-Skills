@@ -1,42 +1,60 @@
-## Description: <br>
-Interact with Docker-deployed Xunlei to submit magnet links, monitor tasks, and prioritize main content downloads with intelligent filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Docker-deployed Xunlei services to submit magnet links, monitor download tasks, and prioritize main content downloads with filtering.
 
-## Publisher: <br>
-[saaak](https://clawhub.ai/user/saaak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[saaak](https://clawhub.ai/user/saaak)
 
-## Use Case: <br>
-Developers and operators use this skill to control a Docker-deployed Xunlei service from an agent workflow, including configuring the service endpoint, submitting magnet downloads, and checking task status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A misconfigured host can send requests, magnet links, and file lists to an unintended Xunlei service. <br>
-Mitigation: Before running commands, edit or replace config.json and confirm the configured Xunlei host and port belong to the user. <br>
-Risk: Submitting magnet links can consume network bandwidth and storage and may reveal the link and selected file list to the configured Xunlei service. <br>
-Mitigation: Use submit commands only for content the user is allowed to download and monitor task status after submission. <br>
+## Use Case:
 
+Developers and operators use this skill to control a Docker-deployed Xunlei service from an agent, including configuring the service endpoint, submitting magnet downloads, and checking active or completed tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/saaak/docker-xunlei-downloader) <br>
-- [README](artifact/README.md) <br>
-- [Configuration guide](artifact/CONFIG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns status, progress, configuration, version, help, and error messages for the configured Xunlei service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can create real remote download tasks with visible metadata and resource usage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a Xunlei service you control and review each submit command before execution.
+
+Risk: The bundled configuration defaults to plaintext HTTP and includes an environment-specific service address.
+
+Mitigation: Replace config.json with local settings and prefer HTTPS or an isolated trusted network.
+
+Risk: The release depends on request libraries flagged by the security summary.
+
+Mitigation: Update or pin dependencies from an approved registry before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/saaak/skills/docker-xunlei-downloader)
+- [Xunlei Docker service project](https://github.com/cnk3x/xunlei)
+- [Artifact README](artifact/README.md)
+- [Artifact configuration guide](artifact/CONFIG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style text responses with command examples and task status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger remote Xunlei service API calls that create, inspect, or report download tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

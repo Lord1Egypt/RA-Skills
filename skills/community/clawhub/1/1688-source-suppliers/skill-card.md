@@ -1,46 +1,57 @@
-## Description: <br>
-1688 Source Suppliers queries the 1688 platform for supplier and factory information using a user-provided keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds 1688 suppliers and factories by querying the 1688 platform with user-provided supplier names, regions, industries, or keywords.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External users and agents use this skill to look up 1688 suppliers and factories by supplier name, product category, region, or other search keyword. It helps surface supplier listings while preserving the user's query intent and avoiding fabricated supplier information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive 1688 access key. <br>
-Mitigation: Use platform-managed secrets or environment variables instead of pasting the key into chat, and rotate the key if it appears in chat or command history. <br>
-Risk: Access-key setup may affect a separate 1688-shopkeeper configuration entry. <br>
-Mitigation: Verify the target configuration before and after setup so an unrelated 1688-shopkeeper credential is not overwritten. <br>
-Risk: Supplier data comes from an external lookup service and may be incomplete, unavailable, rate-limited, or returned with authentication errors. <br>
-Mitigation: Show the tool's returned markdown errors to the user, retry after rate limits, and confirm supplier details before commercial action. <br>
+## Use Case:
 
+Developers, agents, and sourcing users use this skill to look up supplier and factory records on 1688, then return complete supplier summaries for the requested keyword without fabricating missing supplier data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1688aiinfra/1688-source-suppliers) <br>
-- [Publisher profile](https://clawhub.ai/user/1688aiinfra) <br>
-- [1688 supplier query guide](references/capabilities/ali_1688_source_suppliers.md) <br>
-- [Access key configuration guide](references/capabilities/configure.md) <br>
-- [1688 supplier search](https://s.1688.com/company/company_search.htm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON object with success, markdown, and data fields; markdown contains supplier listings or user-readable error guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided query and a configured ALI_1688_AK access key; supplier records are filtered for company name, cooperation mode, and services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Credential setup can expose or misstore the 1688 access key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the AK through a protected secret manager or controlled environment injection, avoid pasting it into ordinary chat or shell history, and rotate it if exposure is suspected.
+
+Risk: Gateway-related environment variables can redirect where authenticated requests or configuration updates are sent.
+
+Mitigation: Verify gateway URLs and tokens in the runtime environment before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/1688-source-suppliers)
+- [Publisher profile](https://clawhub.ai/user/1688aiinfra)
+- [1688 supplier search](https://s.1688.com/company/company_search.htm)
+- [references/capabilities/ali_1688_source_suppliers.md](artifact/references/capabilities/ali_1688_source_suppliers.md)
+- [references/capabilities/configure.md](artifact/references/capabilities/configure.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses with user-facing Markdown supplier summaries and error guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and an ALI_1688_AK credential for authenticated supplier queries.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

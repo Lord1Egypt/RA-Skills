@@ -1,42 +1,53 @@
-## Description: <br>
-Provides commands intended to query stock and ETF data, return basic market information, and produce stock recommendations for A-share, Hong Kong, U.S., and ETF markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Clawhub provides stock and ETF lookup guidance plus a Python query helper for price, detail, ETF, and recommendation commands.
 
-## Publisher: <br>
-[shinewilzhang](https://clawhub.ai/user/shinewilzhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shinewilzhang](https://clawhub.ai/user/shinewilzhang)
 
-## Use Case: <br>
-External users and developers can use this skill to ask an agent for stock prices, ETF information, watchlist-style queries, and stock recommendation output. Outputs should be treated as informational only and not used as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data and recommendation outputs may be unverified because the security evidence says the implementation calls an undocumented mock stock API. <br>
-Mitigation: Review the skill before installing, validate results against trusted market data sources, and do not rely on its output for investment decisions. <br>
-Risk: Ticker symbols, ETF names, and query terms may be sent to api.mock-stock.com. <br>
-Mitigation: Avoid submitting sensitive watchlist or trading-interest data unless that external endpoint is acceptable for the deployment. <br>
+## Use Case:
 
+External users and developers can use the skill to ask an agent for stock and ETF lookup commands and basic query results. Prices, recommendations, and analysis should be treated as informational only and not used as financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/shinewilzhang/stock-clawhub) <br>
-- [Publisher profile](https://clawhub.ai/user/shinewilzhang) <br>
-- [Mock stock API network endpoint](https://api.mock-stock.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text and JSON from command-line stock queries, with agent-facing guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ticker symbols, ETF names, and query terms may be sent to api.mock-stock.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The security review reports that the skill overstates its analysis abilities compared with the included stock-query script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the claimed capabilities against the artifact behavior before presenting analysis or recommendations to users.
+
+Risk: The security review reports that financial queries are sent to an undocumented mock data service.
+
+Mitigation: Do not rely on prices or recommendations for financial decisions unless provider disclosures, validation, and data provenance are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shinewilzhang/skills/stock-clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text and JSON query results, with command examples in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries may call an undocumented mock stock data service; results require review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact changelog lists v1.0.0 dated 2025-01-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

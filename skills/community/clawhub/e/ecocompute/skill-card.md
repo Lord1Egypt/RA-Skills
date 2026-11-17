@@ -1,45 +1,62 @@
-## Description: <br>
-EcoCompute gives evidence-first, stateless advice for optimizing LLM inference energy use with measured benchmark priors and anti-pattern checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EcoCompute is a prompt-only advisory skill that gives evidence-first recommendations for improving LLM inference energy efficiency using measured benchmark priors and anti-pattern detection.
 
-## Publisher: <br>
-[hongping-zh](https://clawhub.ai/user/hongping-zh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongping-zh](https://clawhub.ai/user/hongping-zh)
 
-## Use Case: <br>
-Developers and engineers use EcoCompute to compare LLM inference configurations, audit wasted energy, and receive conservative GPU, model, precision, and batching recommendations grounded in benchmark data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Benchmark recommendations may not transfer to newer software stacks, unmeasured hardware, non-NVIDIA systems, or multi-GPU deployments. <br>
-Mitigation: Treat recommendations as advisory, verify against local measurements before changing production inference settings, and preserve the skill's confidence downgrades and boundary notes. <br>
-Risk: Incomplete user inputs can make numeric energy guidance less precise. <br>
-Mitigation: Ask for GPU, model, precision, batch size, latency target, and cost constraints when available; otherwise label assumptions and extrapolations clearly. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to compare LLM inference precision, GPU, batching, and serving choices against benchmark-backed energy guidance. It helps audit inefficient configurations, explain energy overhead, and produce framework-specific configuration suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hongping-zh/ecocompute) <br>
-- [Benchmark dataset archive](https://zenodo.org/records/18900289) <br>
-- [Quantization energy crossover dataset](https://github.com/ecocompute-ai/quantization-energy-crossover) <br>
-- [Live EcoCompute dashboard](https://hongping-zh.github.io/) <br>
-- [Reference implementation](https://github.com/hongping-zh/ecocompute-dynamic-eval) <br>
-- [MLCommons Power Working Group issue](https://github.com/mlcommons/inference/issues/2558) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown recommendations with tables, confidence labels, benchmark citations, and inline configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only advisory output; no host actions, persistence, credentials, or automated benchmark execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.8 (source: server release metadata and SKILL.md) <br>
+Risk: Benchmark numbers may not match a user's production stack, newer framework versions, or hardware outside the measured set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as guidance tied to the stated 2025-Q1 dataset and verify them against the user's own hardware, framework versions, and production requirements.
+
+Risk: Users may over-apply quantization advice where the artifact says coverage is extrapolated or out of scope.
+
+Mitigation: Use the skill's confidence labels and boundary notes for unsupported GPUs, newer stacks, multi-GPU deployments, and models beyond the measured range.
+
+Risk: The skill is advisory and cannot observe the user's machine or validate live runtime behavior.
+
+Mitigation: Use it as a decision aid, then confirm changes with local measurement before making operational changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongping-zh/skills/ecocompute)
+- [Zenodo benchmark dataset 18900289](https://zenodo.org/records/18900289)
+- [Quantization energy crossover dataset repository](https://github.com/ecocompute-ai/quantization-energy-crossover)
+- [EcoCompute live dashboard](https://hongping-zh.github.io/)
+- [Reference implementation](https://github.com/hongping-zh/ecocompute-dynamic-eval)
+- [MLCommons Inference issue 2558](https://github.com/mlcommons/inference/issues/2558)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, confidence labels, inline code snippets, and brief shell commands when installation is discussed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only advisory output; it does not create files, install dependencies, execute code, or access the user's host environment.]
+
+## Skill Version(s):
+
+3.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

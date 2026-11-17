@@ -1,0 +1,15 @@
+{
+  "proxy": "http://127.0.0.1:10808",
+  "providers": {
+    "openrouter": {
+      "api_key": "***"
+    },
+    "elevenlabs": {
+      "api_key": "***"
+    },
+    "custom_gateway": {
+      "api_key": "YOUR_SERVICE_TOKEN_HERE",
+      "pinned_domain": "api.service.com"
+    }
+  }
+}

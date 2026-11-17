@@ -1,42 +1,59 @@
-## Description: <br>
-Uses AigoHotel MCP tools to search hotels, apply structured filters, and confirm real-time room pricing and booking policy details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AigoHotel MCP helps agents search, compare, price, book, and review hotel reservations through the RollingGo hotel service.
 
-## Publisher: <br>
-[dreamtzlong](https://clawhub.ai/user/dreamtzlong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dreamtzlong](https://clawhub.ai/user/dreamtzlong)
 
-## Use Case: <br>
-External users and developers use this skill to turn hotel requirements such as location, dates, budget, star rating, and preferences into MCP hotel searches and room-detail checks. It is intended for hotel candidate comparison and price, availability, and policy confirmation based on returned tool data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release documentation publishes and encourages reuse of a shared API key or bearer token. <br>
-Mitigation: Use a per-user AigoHotel credential stored in an environment variable or secret manager, and avoid committing or sharing real tokens in configs, screenshots, or repositories. <br>
-Risk: Hotel availability, pricing, taxes, and cancellation policies can be misleading if inferred without tool confirmation. <br>
-Mitigation: Quote only data returned by searchHotels or getHotelDetail, and call getHotelDetail before presenting room-level availability or policy conclusions. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to find hotels by destination, budget, rating, amenities, or brand, compare options, retrieve real-time room prices, create hotel bookings, and check booking history. The workflow handles real purchases, so users should confirm selected rooms, guest details, total price, cancellation policy, and payment link before completing payment.
 
-## Reference(s): <br>
-- [AigoHotel MCP tool reference](references/tools.md) <br>
-- [AigoHotel MCP configuration and run guide](references/mcp-config.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dreamtzlong/aigohotel-mcp) <br>
-- [AigoHotel MCP API key application](https://mcp.agentichotel.cn/apply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with structured hotel recommendations, assumptions, tool-result summaries, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results should state search assumptions and avoid claiming availability, prices, taxes, or cancellation terms unless returned by the MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can create real hotel orders and expose booking history, names, email addresses, prices, order identifiers, and payment links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before price lock, booking, or payment handoff, and show only the booking details needed for the user to verify the purchase.
+
+Risk: Installation and updates depend on mutable external npm packages and GitHub release assets.
+
+Mitigation: Install only from trusted RollingGo channels, avoid administrator privileges where possible, and review updates before applying them.
+
+Risk: Prices and room availability can change after search results are shown.
+
+Mitigation: Label search prices as reference prices and confirm the current total price and cancellation policy before booking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dreamtzlong/skills/aigohotel-mcp)
+- [CLI command reference](references/cli-params.md)
+- [RollingGo Hotel CLI releases](https://github.com/RollingGo-AI/oauth-hotel-cli/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with hotel options, room prices, booking details, payment links, and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include hotel images, prices, cancellation policies, order identifiers, and payment links while suppressing internal command and JSON details from end users.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

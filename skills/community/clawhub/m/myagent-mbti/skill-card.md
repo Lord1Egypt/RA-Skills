@@ -1,47 +1,60 @@
-## Description: <br>
-Generates a playful MBTI-style personality report from recent user interaction patterns with the Claw agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Mbti generates a playful MBTI-style personality report by analyzing a user's recent natural-language interactions with OpenClaw.
 
-## Publisher: <br>
-[xiaoyang0807](https://clawhub.ai/user/xiaoyang0807) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoyang0807](https://clawhub.ai/user/xiaoyang0807)
 
-## Use Case: <br>
-External ClawHub users invoke this skill to receive a light MBTI-style personality report based on recent natural-language conversations with their agent. The output is intended for personal entertainment and sharing, not clinical or employment assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses recent conversations and memory to infer personality traits without a clear opt-in in the artifact. <br>
-Mitigation: Use it only with informed user consent and make clear that the result is an entertainment-oriented personality report. <br>
-Risk: Generated reports are formatted for sharing and may reveal inferred traits or interaction patterns. <br>
-Mitigation: Review and redact generated reports before sharing them outside the conversation. <br>
-Risk: The artifact includes a GitHub pull or clone installation command for a third-party repository. <br>
-Mitigation: Prefer the ClawHub install path unless the GitHub repository has been reviewed and is trusted. <br>
+## Use Case:
 
+External OpenClaw users use this skill to request a playful MBTI-style report based on recent conversation behavior. The skill also provides no-data and low-data responses when there is not enough interaction history.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/xiaoyang0807/myagent-mbti) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoyang0807) <br>
-- [Project homepage](https://github.com/xiaoyang0807/claw-mbti) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Diagnostic reference manual](artifact/reference.md) <br>
-- [Personality type catalog](artifact/types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown personality report with optional inline shell commands for installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a diagnostic evidence table, sharing prompt, and installation or update guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence; artifact frontmatter states 1.3.0) <br>
+Risk: The skill asks to analyze recent conversation history and memory, which can reveal private behavioral patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with clear user intent, and avoid sharing generated reports when they expose sensitive personal patterns.
+
+Risk: Generated personality reports may be misleading if treated as a formal psychological assessment.
+
+Mitigation: Present results as playful, non-clinical impressions and review outputs before relying on them.
+
+Risk: The skill can show GitHub install or update commands that modify a local OpenClaw skills directory.
+
+Mitigation: Run installation commands only intentionally after confirming the repository and target directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoyang0807/skills/myagent-mbti)
+- [Project homepage](https://github.com/xiaoyang0807/claw-mbti)
+- [MBTI diagnosis reference](artifact/reference.md)
+- [Lobster MBTI type catalog](artifact/types.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown report with tables and inline shell commands for installation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses recent natural-language conversation history when available; falls back to no-data or low-data responses.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

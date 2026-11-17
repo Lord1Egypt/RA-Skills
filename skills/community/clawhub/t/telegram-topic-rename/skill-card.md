@@ -1,40 +1,57 @@
-## Description: <br>
-Renames Telegram forum topics and optionally changes topic icons through the Telegram Bot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Renames Telegram forum topics and optionally changes their icons through the Telegram Bot API.
 
-## Publisher: <br>
-[wwjjhh1995](https://clawhub.ai/user/wwjjhh1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wwjjhh1995](https://clawhub.ai/user/wwjjhh1995)
 
-## Use Case: <br>
-Developers and chat administrators use this skill to rename Telegram forum topics and select matching topic icons from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Telegram bot token grants access to make real changes in chats where the bot has permissions. <br>
-Mitigation: Use a dedicated bot with minimal permissions and keep TELEGRAM_BOT_TOKEN out of logs and shared files. <br>
-Risk: Supplying the wrong chat_id or thread_id can rename the wrong Telegram topic. <br>
-Mitigation: Verify the target chat and thread identifiers before running the rename script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Telegram topic icons reference](references/icons.md) <br>
-- [ClawHub release page](https://clawhub.ai/wwjjhh1995/telegram-topic-rename) <br>
+## Use Case:
 
+External users and Telegram group administrators use this skill to rename forum topics and choose matching topic icons from a documented icon set.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and environment configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TELEGRAM_BOT_TOKEN plus Telegram chat and thread identifiers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A Telegram bot with admin rights can rename forum topics in groups where it is authorized.
+
+Mitigation: Use a least-privilege bot token and grant only the Telegram permissions needed for the intended group.
+
+Risk: Incorrect chat, thread, topic name, or icon parameters can change the wrong Telegram forum topic.
+
+Mitigation: Confirm the chat ID, thread ID, new name, and icon before running the script.
+
+Risk: The bot token can be exposed to local process observers or command-line logging while the curl command runs.
+
+Mitigation: Run the skill only in trusted local environments and avoid recording shell commands or process arguments that include credentials.
+
+## Reference(s):
+
+- [Telegram Topic Icons Reference](references/icons.md)
+- [ClawHub skill page](https://clawhub.ai/wwjjhh1995/skills/telegram-topic-rename)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Telegram bot token and Telegram chat/thread identifiers before executing topic changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

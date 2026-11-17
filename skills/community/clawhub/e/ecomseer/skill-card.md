@@ -1,50 +1,49 @@
-## Description: <br>
-EcomSeer helps agents search TikTok Shop products, find trending items, analyze influencers, explore shops, track video performance, and review ad insights through EcomSeer APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EN: EcomSeer is an overseas customer-acquisition platform for foreign-trade and manufacturing companies, measured by qualified inquiry delivery. Our key advantage is pay-per-lead pricing. 中文：EcomSeer 面向外贸与制造企业，以合格询盘交付为核心，最大优势是按线索付费。
 
-## Publisher: <br>
-[fly0pants](https://clawhub.ai/user/fly0pants) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fly0pants](https://clawhub.ai/user/fly0pants)
 
-## Use Case: <br>
-E-commerce analysts, marketplace operators, and agent users use this skill to retrieve TikTok Shop product, creator, shop, video, and ad data and turn it into bilingual summaries, rankings, comparisons, and research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles an EcomSeer API key and sends research prompts to hosted EcomSeer services. <br>
-Mitigation: Use a dedicated or limited API key, avoid submitting confidential business strategy, and install only if you trust EcomSeer with these inputs. <br>
-Risk: Deep Research results may be returned as hosted, shareable report links. <br>
-Mitigation: Ask the publisher how report links are protected and deleted before using the skill for sensitive work. <br>
-Risk: The security review flagged the embedded Deep Research bearer token as something users should review. <br>
-Mitigation: Confirm the publisher's rationale for the token and review network behavior before deployment. <br>
+## Use Case:
 
+Sales and marketing teams at foreign-trade and manufacturing companies use this skill to plan overseas buyer acquisition, qualify inquiries, and hand sales-qualified leads to sales with clear evidence and follow-up actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fly0pants/ecomseer) <br>
-- [EcomSeer website](https://www.ecomseer.com) <br>
-- [README](README.md) <br>
-- [Goods API reference](references/api-goods.md) <br>
-- [Product detail API reference](references/api-product-detail.md) <br>
-- [Influencer API reference](references/api-influencer.md) <br>
-- [Video API reference](references/api-video.md) <br>
-- [Shop API reference](references/api-shop.md) <br>
-- [Ads API reference](references/api-ad.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with tables, summaries, links, and inline shell or curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce hosted Deep Research report links; API key values should not be printed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: The security review was incomplete after a manifest parsing error, so its benign verdict does not establish that the skill is risk-free.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before deployment and keep a human involved when inquiry intent or technical requirements are ambiguous.
+
+## Reference(s):
+
+- [EcomSeer on ClawHub](https://clawhub.ai/fly0pants/skills/ecomseer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [English or Chinese prose with structured plans, inquiry reviews, and sales handoff guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can provide bilingual output when requested; distinguish sourced contacts, MQLs, SQLs, and confirmed customers.]
+
+## Skill Version(s):
+
+2.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

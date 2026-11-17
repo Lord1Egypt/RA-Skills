@@ -1,40 +1,59 @@
-## Description: <br>
-Browser automation command reference and usage patterns for web testing, form filling, screenshots, and data extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation command reference and usage patterns for web testing, form filling, screenshots, and data extraction.
 
-## Publisher: <br>
-[jsafe](https://clawhub.ai/user/jsafe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jsafe](https://clawhub.ai/user/jsafe)
 
-## Use Case: <br>
-Developers and agents use this skill as a browser automation reference for navigating sites, interacting with forms, capturing screenshots, managing sessions, and extracting page information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can save page contents, screenshots, videos, cookies, headers, and session state that may contain sensitive information. <br>
-Mitigation: Keep generated artifacts private, redact sensitive captures before sharing, and delete saved browser state when the task is complete. <br>
-Risk: Automated interactions can operate in authenticated sessions and submit forms or modify browser state. <br>
-Mitigation: Review target URLs and planned actions before execution, and use isolated sessions or test accounts when possible. <br>
+## Use Case:
 
+Developers and agents use this skill as a browser automation reference for navigating pages, inspecting interactive elements, filling forms, capturing screenshots or PDFs, recording sessions, and extracting page data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jsafe/agent-browser-fradser-dotclaude) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples and optional JSON-producing workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe browser artifacts such as screenshots, PDFs, videos, traces, cookies, storage, headers, and network request summaries when those documented commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill enables an agent to drive browser sessions, including sessions against real accounts or private sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test or low-privilege accounts where possible and review planned browser actions before running them against real services.
+
+Risk: The skill documents saving and reusing authenticated browser state and inspecting cookies or storage.
+
+Mitigation: Avoid saving authenticated state unless necessary; keep saved state files and recordings out of version control and delete them after use.
+
+Risk: Browser recordings, screenshots, PDFs, cookies, and storage output can contain private or sensitive information.
+
+Mitigation: Treat captured files and extracted browser data as sensitive artifacts and restrict where they are stored or shared.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jsafe/skills/agent-browser-fradser-dotclaude)
+- [Publisher profile](https://clawhub.ai/user/jsafe)
+- [Packaged skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command reference material, workflow examples, and usage patterns for agent-browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

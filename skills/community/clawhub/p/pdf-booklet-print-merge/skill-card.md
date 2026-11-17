@@ -1,42 +1,52 @@
-## Description: <br>
-Merge PDF files and create booklet-ready 2-up duplex output for saddle-stitch printing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merge PDF files and create booklet-ready 2-up duplex output for saddle-stitch printing.
 
-## Publisher: <br>
-[ninjahwdragon](https://clawhub.ai/user/ninjahwdragon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ninjahwdragon](https://clawhub.ai/user/ninjahwdragon)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and document-preparation users use this skill to merge local PDF files and generate booklet-ready 2-up duplex output for saddle-stitch, center-fold printing workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Processing sensitive PDFs with an unpinned local dependency can introduce dependency supply-chain risk.
+
+Mitigation: Use a virtual environment and install pypdf from a trusted index with a pinned or hash-checked dependency before processing sensitive PDFs.
+
+Risk: Booklet imposition changes page order and may add blank padding pages.
+
+Mitigation: Review the generated booklet PDF before printing or distributing it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, print-prep operators, and document owners use this skill to merge local PDF files and generate booklet-imposed PDFs for landscape duplex, short-edge flip, center-fold printing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Existing output files can be overwritten when the selected output path already exists. <br>
-Mitigation: Choose a deliberate output path and keep source PDFs separate from generated output files. <br>
-Risk: The skill processes all PDFs in the input directory. <br>
-Mitigation: Point --input-dir only at a folder containing PDFs intended for the merge and booklet layout. <br>
-Risk: The runtime depends on the external pypdf package. <br>
-Mitigation: Install pypdf from a trusted package source in a normal project folder or virtual environment. <br>
+**Output Format:** [Markdown with inline bash commands and local file paths]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Publish Checklist](references/publish-checklist.md) <br>
+**Other Properties Related to Output:** [May create booklet-imposed PDF files and optional sequentially merged PDF files through the bundled Python script.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated PDF file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a booklet-imposed PDF and, unless disabled, a sequential merged source PDF.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

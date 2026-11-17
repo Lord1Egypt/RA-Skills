@@ -1,39 +1,53 @@
-## Description: <br>
-Performance analysis and optimization. Profiles code execution, identifies bottlenecks, and suggests optimizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performance analysis and optimization. Profiles code execution, identifies bottlenecks, and suggests optimizations.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect Python source files or directories for common performance issues, then receive profiling, benchmark, and optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads source files or directories selected by the user, which can expose sensitive code or secrets if broad paths are scanned. <br>
-Mitigation: Analyze only intended project paths and avoid scanning folders that may contain credentials or confidential data. <br>
-Risk: Profile and benchmark commands suggested by the skill may execute project code if the user chooses to run them. <br>
-Mitigation: Run profiling or benchmarking only for trusted code and review generated commands before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect Python code for performance bottlenecks, profiling opportunities, and benchmark guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text with command examples and analysis findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports detected issue severity, line numbers, and suggested optimizations when source analysis is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads local code paths selected by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only for repositories and files that are acceptable for local analysis.
+
+Risk: The bundled Python script may need repair before documented commands work.
+
+Mitigation: Validate the script in a disposable environment before relying on profile, analyze, or benchmark output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michealxie001/skills/openclaw-perf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,61 @@
-## Description: <br>
-Analyze public stock-market news into educational watchlists, catalysts, risks, and paper-trade research notes with strict non-financial-advice safeguards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze public stock-market news into educational watchlists, catalysts, risks, and paper-trade research notes with strict non-financial-advice safeguards.
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External users and analysts use this skill to turn public market news, article links, headlines, sectors, tickers, or themes into educational watchlists, balanced catalyst analysis, risk checks, and paper-only trade research notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs could be mistaken for financial advice or trading instructions. <br>
-Mitigation: Keep responses framed as educational research, watchlists, and paper-only simulation; do not provide real-money execution commands. <br>
-Risk: News-driven analysis may rely on incomplete, stale, or unverified market information. <br>
-Mitigation: Ask users to verify live price, volume, filings, source quality, event dates, and liquidity before using any research note. <br>
-Risk: Users may try to provide sensitive brokerage, wallet, account, or authentication details. <br>
-Mitigation: Do not request or process brokerage logins, wallet keys, passwords, OTPs, account balances, private portfolio details, tax details, or paid data credentials. <br>
+## Use Case:
 
+External users and agents use this skill to turn public market news, headlines, sectors, or tickers into structured educational stock research, including watchlists, catalyst summaries, balanced bull and bear cases, risk checks, and paper-only trade hypotheses.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured research notes with watchlists, catalyst summaries, bullish and bearish cases, risk checks, and optional paper-only setup sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational research only; users should verify live prices, volume, filings, and risk before relying on outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Stock research outputs may be mistaken for personalized financial advice or real-money trading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs framed as educational watchlists or paper-only simulations, include both bullish and bearish views, and refuse real-money execution requests.
+
+Risk: Market news, prices, filings, and volume can become stale or incomplete.
+
+Mitigation: Tell users to verify live price, volume, filings, event dates, and source quality before relying on any research note.
+
+Risk: Users may share private financial information or brokerage credentials while requesting analysis.
+
+Mitigation: Do not request brokerage logins, account balances, passwords, one-time passcodes, wallet keys, private portfolio details, or paid-data credentials.
+
+Risk: Rumors or unverified social-media claims may be treated as facts.
+
+Mitigation: Clearly label rumors and unverified claims, prefer primary or reputable public sources, and state when analysis is based only on user-provided text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/news-based-stock-research-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown research note or watchlist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational watchlist and paper-only research framing; not financial advice or trade execution instructions.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

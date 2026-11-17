@@ -1,38 +1,48 @@
-## Description: <br>
-When the user wants to create, optimize, or structure a documentation site. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating, optimizing, and structuring documentation sites, including help centers, getting started guides, API references, user guides, and tutorials.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, documentation writers, and product teams use this skill to plan documentation site structure, navigation, onboarding content, API reference organization, troubleshooting sections, and publishing location.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad documentation-related prompts and read existing project-context files to tailor its guidance.
+
+Mitigation: Keep sensitive information out of project-context files unless it is needed for documentation work.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, documentation authors, and product teams use this skill to plan documentation sites, help centers, knowledge bases, API reference sections, tutorials, and troubleshooting content. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Project context files may contain sensitive product, audience, or use-case details that are used as documentation-planning context. <br>
-Mitigation: Review any .claude/project-context.md or .cursor/project-context.md files before using them and remove sensitive details that should not inform documentation guidance. <br>
+**Output Format:** [Markdown guidance with structured outlines and checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/docs-page-generator) <br>
+**Other Properties Related to Output:** [May tailor recommendations from project-context files when available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces documentation structure, navigation recommendations, Getting Started outlines, content checklists, and subdomain or path recommendations.] <br>
+1.0.1 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

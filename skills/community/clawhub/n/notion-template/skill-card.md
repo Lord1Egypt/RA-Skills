@@ -1,41 +1,56 @@
-## Description: <br>
-Notion template generator for workspace planning, database design, dashboards, wikis, project management, and personal templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Markdown Notion templates for workspaces, databases, dashboards, wikis, project management, and personal systems.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users, employees, and developers can use this skill to draft Notion-importable Markdown structures for workspaces, databases, dashboards, wikis, projects, and personal systems. It also provides implementation guidance for configuring those structures in Notion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled bash scripts run locally on the user's machine. <br>
-Mitigation: Review scripts before execution and run only the Notion template script needed for template generation. <br>
-Risk: The helper script can store local data and command history. <br>
-Mitigation: Avoid entering secrets or sensitive business data into scripts/script.sh and inspect or clear its local data directory when needed. <br>
+## Use Case:
 
+External users and developers use this skill to generate Notion-importable Markdown structures and step-by-step implementation guidance for workspaces, databases, dashboards, wikis, projects, and personal templates.
 
-## Reference(s): <br>
-- [ClawHub Notion Template release](https://clawhub.ai/bytesagain-lab/notion-template) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Notion-oriented template structures and setup guidance based on command, use case, and team size.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The package includes an unrelated local data utility that is not clearly disclosed by the skill description.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer invoking scripts/notion.sh directly for template generation and review scripts/script.sh before using add, list, search, export, or related utility commands.
+
+Risk: The unrelated utility can store and log user input under the skill's local data directory.
+
+Mitigation: Avoid entering sensitive information into the utility commands and use a controlled NOTION_TEMPLATE_DIR if those commands are needed.
+
+## Reference(s):
+
+- [Notion Template on ClawHub](https://clawhub.ai/bytesagain-lab/skills/notion-template)
+- [bytesagain-lab publisher profile](https://clawhub.ai/user/bytesagain-lab)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Notion Template Prompt Tips](tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Notion-ready tables, page structures, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Template content varies by command, use case, and team size.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

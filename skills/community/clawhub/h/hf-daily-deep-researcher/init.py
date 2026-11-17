@@ -65,7 +65,7 @@ def extract_user_info():
     memory_md = _slurp(os.path.join(WORKSPACE_DIR, "MEMORY.md"))
     if memory_md:
         tech_signals = [
-            ("credit assignment", "credit assignment"),
+            ("credit assignment", "Credit Assignment"),
             ("agentic RL", "agentic RL"),
             ("agentic reinforcement learning", "agentic RL"),
             ("multi-scale", "multi-scale RL"),
@@ -100,53 +100,49 @@ def extract_user_info():
 
 def generate_keywords(research_focus):
     """
-    根据研究兴趣生成关键词。
-    如无法自动识别研究方向，返回空列表，提示用户手动配置。
+    根据研究方向生成默认关键词。
+    research_focus 现在是对象数组，每个对象包含 name 和 keywords。
     """
     if not research_focus:
         return []
 
-    # 研究方向已知，生成相关关键词
-    base_keywords = [
-        {"term": "credit assignment", "weight": 1.0, "source": "auto", "category": "core"},
-        {"term": "agentic reinforcement learning", "weight": 0.95, "source": "auto", "category": "core"},
-        {"term": "agentic RL", "weight": 0.95, "source": "auto", "category": "core"},
-        {"term": "multi-scale RL", "weight": 0.85, "source": "auto", "category": "core"},
-        {"term": "hierarchical RL", "weight": 0.8, "source": "auto", "category": "core"},
-        {"term": "turn-level policy optimization", "weight": 0.75, "source": "auto", "category": "core"},
-        {"term": "step-level advantage", "weight": 0.75, "source": "auto", "category": "core"},
-        {"term": "group policy optimization", "weight": 0.7, "source": "auto", "category": "core"},
-        {"term": "GiGPO", "weight": 0.7, "source": "auto", "category": "method"},
-        {"term": "GRPO", "weight": 0.7, "source": "auto", "category": "method"},
-        {"term": "GAGPO", "weight": 0.6, "source": "auto", "category": "method"},
-        {"term": "hindsight credit", "weight": 0.65, "source": "auto", "category": "core"},
-        {"term": "hindsight policy optimization", "weight": 0.65, "source": "auto", "category": "core"},
-        {"term": "OPD", "weight": 0.5, "source": "auto", "category": "method"},
-        {"term": "online preference distillation", "weight": 0.55, "source": "auto", "category": "method"},
-        {"term": "process reward model", "weight": 0.5, "source": "auto", "category": "core"},
-        {"term": "PRM", "weight": 0.5, "source": "auto", "category": "method"},
-        {"term": "tool use RL", "weight": 0.5, "source": "auto", "category": "related"},
-        {"term": "tool learning RL", "weight": 0.5, "source": "auto", "category": "related"},
-        {"term": "multi-agent RL", "weight": 0.4, "source": "auto", "category": "related"},
-        {"term": "MARL", "weight": 0.4, "source": "auto", "category": "related"},
-        {"term": "graph-based RL", "weight": 0.45, "source": "auto", "category": "related"},
-    ]
+    all_keywords = []
+    for focus in research_focus:
+        if isinstance(focus, dict) and "keywords" in focus:
+            for kw in focus["keywords"]:
+                all_keywords.append({
+                    "term": kw,
+                    "weight": 1.0,
+                    "source": "user",
+                    "category": "core",
+                    "direction": focus.get("name", "")
+                })
+        elif isinstance(focus, str):
+            # 兼容旧格式：字符串方向
+            all_keywords.append({
+                "term": focus,
+                "weight": 1.0,
+                "source": "user",
+                "category": "core",
+                "direction": focus
+            })
 
-    # 根据研究兴趣筛选和提升权重
-    focus_lower = [f.lower() for f in research_focus]
-    filtered = []
-    for kw in base_keywords:
-        matched = any(kw["term"].lower() in fl or fl in kw["term"].lower() for fl in focus_lower)
-        if matched:
-            kw["weight"] = min(1.0, kw["weight"] + 0.15)
-            kw["source"] = "inferred"
-            filtered.append(kw)
-        elif kw["category"] == "core":
-            # 核心关键词保留，但降低权重
-            kw["weight"] = max(0.3, kw["weight"] - 0.2)
-            filtered.append(kw)
+    return all_keywords
 
-    return filtered
+def migrate_old_config(config):
+    """将旧版字符串数组 research_focus 迁移为新版对象数组"""
+    focus = config.get("user_profile", {}).get("research_focus", [])
+    if focus and isinstance(focus[0], str):
+        # 旧格式：字符串数组
+        new_focus = []
+        for item in focus:
+            new_focus.append({
+                "name": item,
+                "keywords": [item]
+            })
+        config["user_profile"]["research_focus"] = new_focus
+        print("🔄 已自动将旧版配置迁移为新版方向结构")
+    return config
 
 def init_config(reset=False):
     """创建初始配置文件"""
@@ -211,12 +207,15 @@ def init_config(reset=False):
                 "trend_change_alert": True,
                 "author_alert": False
             },
-            "version": "4.0.8",
+            "version": "5.2.8",
             "created_date": datetime.now().isoformat()
         }
 
+        # 迁移旧格式
+        config = migrate_old_config(config)
+
         keywords_data = {
-            "keywords": generate_keywords(user_info["research_focus"]),
+            "keywords": generate_keywords(config["user_profile"]["research_focus"]),
             "blacklist": [
                 "robotics",
                 "embodied",
@@ -244,34 +243,55 @@ def init_config(reset=False):
         print(f"\n📁 配置文件位置: {SKILL_DIR}")
 
         print(f"\n👤 用户配置:")
-        print(f"   名称: {user_info['name'] or '(未识别)'})")
-        print(f"   机构: {user_info['institution'] or '(未识别)'})")
+        print(f"   名称: {user_info['name'] or '(未识别)'}")
+        print(f"   机构: {user_info['institution'] or '(未识别)'}")
 
-        if user_info['research_focus']:
-            print(f"   研究方向: {', '.join(user_info['research_focus'])}")
+        focus_list = config["user_profile"]["research_focus"]
+        if focus_list:
+            print(f"   研究方向: {len(focus_list)} 个")
+            for f in focus_list:
+                name = f["name"] if isinstance(f, dict) else f
+                print(f"      - {name}")
             print(f"\n🔍 已生成 {len(keywords_data['keywords'])} 个追踪关键词")
         else:
             print(f"   研究方向: ❌ 未配置")
             print(f"\n⚠️  重要：首次运行前必须配置研究方向！")
-            print(f"   方法 1: 修改 config.json 中的 user_profile.research_focus")
-            print(f"   方法 2: 运行 skill 时，主 Agent 会询问你的研究方向")
-            print(f"   示例: [\"natural language processing\", \"large language model\", \"reinforcement learning\"]")
+            print(f"   运行 skill 时，主 Agent 会引导你配置")
 
-        print(f"\n💡 后续操作:")
-        print(f"   1. 检查 config.json 中的配置是否符合预期")
-        if not user_info['research_focus']:
-            print(f"   2. ⚠️  必须先配置研究方向，否则无法搜索到相关论文")
+        print(f"\n💡 方向配置示例:")
+        print(f"   方向1: Credit Assignment")
+        print(f"      keywords: [\"multi-agent credit assignment\", \"hindsight credit\", \"stepwise reward\", \"turn-level advantage\", \"process reward model\"]")
+        print(f"   方向2: OPD")
+        print(f"      keywords: [\"token importance\", \"OPD RL joint training\", \"online preference distillation\"]")
+        print(f"   方向3: 多模态")
+        print(f"      keywords: [\"visual perception\", \"image reasoning\", \"multimodal understanding\", \"multimodal agent\"]")
+
+        print(f"\n💡 飞书文档输出:")
+        print(f"   强烈建议安装飞书插件并关联飞书文档")
+        print(f"   报告自动上传到飞书，阅读体验远优于本地 Markdown")
+
+        print(f"\n🚀 后续操作:")
+        if not focus_list:
+            print(f"   1. ⚠️  必须先配置研究方向，否则无法搜索到相关论文")
         else:
-            print(f"   2. 运行 skill 开始自动追踪论文")
-        print(f"   3. 如需飞书同步，配置 output.cloud_upload.folder_token")
-        print(f"   4. 使用 --show-keywords 查看完整关键词列表")
-        print(f"   5. 使用 --add-keyword 添加新的关注领域")
+            print(f"   1. 运行 skill 开始自动追踪论文")
+            print(f"      示例: \"运行 hf-daily-deep-researcher，扫描过去7天\"")
+        print(f"   2. 如需飞书同步，安装飞书插件并关联飞书文档")
+        print(f"   3. 支持按方向运行: \"运行 hf-daily-deep-researcher，方向：Credit Assignment\"")
+        print(f"   4. 支持为每个方向单独生成报告")
 
     else:
         print(f"⚠️  配置文件已存在: {config_path}")
         print(f"   使用 --reset 强制重新生成")
         with open(config_path, 'r') as f:
             existing = json.load(f)
+
+        # 检查是否需要迁移
+        existing = migrate_old_config(existing)
+        if existing.get("_migrated"):
+            with open(config_path, 'w') as fw:
+                json.dump(existing, fw, indent=2, ensure_ascii=False)
+
         focus = existing.get("user_profile", {}).get("research_focus", [])
         if not focus:
             print(f"\n❌ 警告：当前配置中研究方向为空！")

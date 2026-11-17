@@ -1,41 +1,59 @@
-## Description: <br>
-Trade Polymarket 5-minute crypto fast markets using 1-minute Binance candle body analysis and volume surge detection across BTC, ETH, SOL, XRP, and BNB. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Polymarket 5-minute crypto fast markets using 1-minute candle body analysis and volume surge detection from Binance.
 
-## Publisher: <br>
-[richducat](https://clawhub.ai/user/richducat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richducat](https://clawhub.ai/user/richducat)
 
-## Use Case: <br>
-External developers and traders use this skill to run or adapt a dry-run-first Polymarket fast-market trading workflow based on Binance candle strength and volume signals. It can place live trades when explicitly run with the live trading flag and a Simmer API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live financial trades can be placed quietly when the skill is run with live trading enabled, especially from cron or quiet mode. <br>
-Mitigation: Test in dry-run first, keep max_position small, use a dedicated low-privilege Simmer API key where available, and avoid quiet mode until separate monitoring is in place. <br>
-Risk: Asset scope, source tags, and monitoring mismatches can make real exposure harder to understand. <br>
-Mitigation: Verify configured assets, thresholds, source tags, venue, and open positions before enabling scheduled or live trading. <br>
+## Use Case:
 
+External developers and trading agents use this skill to evaluate short-window crypto fast markets and run a dry-run or explicitly enabled live Polymarket trading cycle based on candle body strength, volume surge, and direction alignment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/richducat/dolph-candle-momentum) <br>
-- [Binance klines API endpoint](https://api.binance.com/api/v3/klines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with Python and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; dry-run by default, with live trading only when explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Live trading can proceed when a safety check is unavailable or fails open.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in dry-run, review or fix the safety check before unattended use, and require explicit --live execution for real trades.
+
+Risk: Trading dependencies are not pinned.
+
+Mitigation: Pin and review simmer-sdk and requests versions before enabling live trading.
+
+Risk: A compromised or over-permissioned trading API key could place unwanted trades.
+
+Mitigation: Use a tightly limited Simmer API key and conservative position limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richducat/skills/dolph-candle-momentum)
+- [ClawHub publisher profile](https://clawhub.ai/user/richducat)
+- [Binance Klines API endpoint](https://api.binance.com/api/v3/klines)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash snippets and plain-text CLI output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run output is default; live trading requires SIMMER_API_KEY and the --live flag.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

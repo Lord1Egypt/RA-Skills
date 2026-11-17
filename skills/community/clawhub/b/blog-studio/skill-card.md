@@ -1,42 +1,60 @@
-## Description: <br>
-Standalone CMS for GitHub Pages Jekyll blogs - browse, edit, create posts, and deploy with one click. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standalone CMS for GitHub Pages Jekyll blogs - browse, edit, create posts, and deploy with one click.
 
-## Publisher: <br>
-[amrree](https://clawhub.ai/user/amrree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amrree](https://clawhub.ai/user/amrree)
 
-## Use Case: <br>
-Developers and site operators use BlogStudio to manage GitHub Pages Jekyll content through a local CMS interface that can browse, edit, preview, create, publish, and sync posts, guides, and pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub credentials can be exposed to browser-facing application code. <br>
-Mitigation: Use only a narrowly scoped token for the intended repository, and avoid broad personal GitHub credentials until token handling is moved server-side. <br>
-Risk: The CMS can publish or delete content directly in the live repository. <br>
-Mitigation: Review changes before publishing, confirm the target repository and branch, and run it only where direct main-branch updates are acceptable. <br>
+## Use Case:
 
+Developers and content maintainers use BlogStudio to manage GitHub Pages Jekyll blog content through a local CMS UI. It supports browsing, editing, creating, previewing, syncing, and publishing posts, guides, pages, and related content to a configured GitHub repository.
 
-## Reference(s): <br>
-- [BlogStudio ClawHub Skill Page](https://clawhub.ai/amrree/skills/blog-studio) <br>
-- [Publisher Profile](https://clawhub.ai/user/amrree) <br>
-- [Target GitHub Pages Site](https://thesolai.github.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and file-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include operational steps for running a local CMS and managing GitHub-backed Jekyll content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata, package.json) <br>
+Risk: The skill handles GitHub credentials and publishing authority, which could expose or misuse a user's token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with a narrowly scoped, revocable GitHub token for the intended repository and review token handling before installation.
+
+Risk: The artifact can write, publish, and delete repository content through GitHub API operations.
+
+Mitigation: Use repository permissions, branch protection, backups, and human review before publish or delete actions.
+
+Risk: Previewing repository content before token handling, renderer sanitization, IPC validation, and destructive-action controls are fixed may increase exposure.
+
+Mitigation: Avoid previewing untrusted repository content until those controls are reviewed and corrected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/amrree/skills/blog-studio)
+- [Publisher Profile](https://clawhub.ai/user/amrree)
+- [Managed GitHub Pages Site](https://thesolai.github.io)
+- [GitHub Repository API Endpoint](https://api.github.com/repos/TheSolAI/thesolai.github.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, file paths, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may guide local server startup, GitHub authentication, content editing, previewing, and publishing workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

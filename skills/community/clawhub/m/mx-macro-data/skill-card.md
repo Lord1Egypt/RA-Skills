@@ -1,45 +1,67 @@
-## Description: <br>
-Queries Eastmoney macroeconomic data from natural-language requests and returns data descriptions with CSV outputs for macroeconomic research, market analysis, and policy interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Eastmoney macroeconomic data from natural-language prompts and saves returned tables as CSV files with a text description.
 
-## Publisher: <br>
-[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst)
 
-## Use Case: <br>
-Analysts, researchers, and agent developers use this skill to request specific macroeconomic indicators, commodity prices, monetary data, and fiscal or trade metrics and receive structured files for downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive Eastmoney API key. <br>
-Mitigation: Use a revocable EM_API_KEY, keep it in the environment, and avoid logging or embedding the key in prompts, code, or output files. <br>
-Risk: Macro-data queries and related request metadata are sent to Eastmoney. <br>
-Mitigation: Install and run the skill only when the Eastmoney service and publisher are trusted for the intended data workflow. <br>
-Risk: Completeness checks for broad or multi-metric requests may require follow-up calls. <br>
-Mitigation: Monitor API usage and cap retries according to the documented workflow. <br>
+## Use Case:
 
+Analysts, researchers, and agents use this skill to retrieve specific macroeconomic indicators, market data, and commodity series from Eastmoney and produce CSV outputs for review or downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/mx-macro-data) <br>
-- [Publisher profile](https://clawhub.ai/user/financial-ai-analyst) <br>
-- [Eastmoney Miaoxiang service](https://ai.eastmoney.com/mxClaw) <br>
-- [Eastmoney API host](https://ai-saas.eastmoney.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [CSV files, TXT descriptions, JSON-like result dictionaries, and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EM_API_KEY; may generate separate CSV files by data frequency and a description file for each query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release evidence) <br>
+Risk: The skill contacts Eastmoney services during normal operation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where those outbound requests are expected and allowed.
+
+Risk: The EM_API_KEY credential could be exposed or misused if broadly scoped.
+
+Mitigation: Set EM_API_KEY only for users and sessions that need the service, and avoid storing it in code, prompts, logs, or generated files.
+
+Risk: Generated CSV files contain external data and may be opened in spreadsheet tools.
+
+Mitigation: Treat generated CSV files as untrusted external data and inspect or sanitize them before opening them in Excel or similar applications.
+
+Risk: The skill writes result files under the configured output directory.
+
+Mitigation: Run it in an isolated workspace and set MX_MACRO_DATA_OUTPUT_DIR explicitly when file placement matters.
+
+Risk: Large or ambiguous macroeconomic requests may return partial data or require follow-up queries.
+
+Mitigation: Review the generated description and status messages, verify expected regions, indicators, and frequencies, and report or retry missing data when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/skills/mx-macro-data)
+- [Eastmoney Miaoxiang Claw service](https://ai.eastmoney.com/mxClaw)
+- [Eastmoney API service endpoint](https://ai-saas.eastmoney.com)
+
+## Skill Output:
+
+**Output Type(s):** [CSV files, Text, Status metadata]
+
+**Output Format:** [CSV files grouped by frequency, a UTF-8 text description file, and returned path/count metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY and writes outputs under MX_MACRO_DATA_OUTPUT_DIR or the skill default output directory.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

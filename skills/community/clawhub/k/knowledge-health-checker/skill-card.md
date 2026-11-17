@@ -1,43 +1,58 @@
-## Description: <br>
-Audit and improve Markdown knowledge-base health across Obsidian, Logseq, Notion exports, docs folders, and wiki repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and improve Markdown knowledge-base health across Obsidian, Logseq, Notion exports, docs folders, and wiki repositories by detecting empty placeholder notes, broken wiki links, weak content density, orphan notes, graph fragmentation, stale files, and repair opportunities.
 
-## Publisher: <br>
-[xb19960921](https://clawhub.ai/user/xb19960921) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xb19960921](https://clawhub.ai/user/xb19960921)
 
-## Use Case: <br>
-Developers, documentation maintainers, and knowledge-base owners use this skill to scan Markdown vaults, docs folders, and wiki exports for hollow notes, broken links, stale files, weak density, orphan notes, and graph fragmentation. It helps produce prioritized health reports and safe fix plans before cleanup or migration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans local Markdown folders and may write report or fix-plan artifacts. <br>
-Mitigation: Run it only against intended knowledge-base paths and review generated artifacts before relying on them. <br>
-Risk: Generated HTML reports or repair scripts may reflect attacker-controlled paths or propose destructive changes such as deletes, renames, or link rewrites. <br>
-Mitigation: Open generated reports cautiously and inspect any repair script before execution; require explicit confirmation before destructive or global changes. <br>
+## Use Case:
 
+Developers, technical writers, and knowledge-base maintainers use this skill to audit Markdown vaults and documentation folders for structural health, broken links, hollow notes, density issues, and graph connectivity. It produces prioritized findings and reviewed fix plans for safer maintenance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xb19960921/knowledge-health-checker) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
-- [Test prompts](artifact/test-prompts.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, health summaries, prioritized fix plans, and optional JSON, HTML, or repair-script artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report-only by default; generated fix scripts and local artifacts require review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: Generated repair scripts can delete or rewrite knowledge-base files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scan and report modes first, review generated scripts manually, and keep backups before running any repair script.
+
+Risk: Unsafe input handling can affect generated repair scripts or reports when processing untrusted results JSON or knowledge bases.
+
+Mitigation: Run the skill only on trusted local Markdown folders and trusted scan results until path validation, repair-script generation, and HTML escaping concerns are fixed.
+
+Risk: The auto-fix path may be mistaken for a safe dry run.
+
+Mitigation: Treat auto_fix.py output as executable code requiring human review rather than as a harmless preview.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xb19960921/skills/knowledge-health-checker)
+- [Publisher profile](https://clawhub.ai/user/xb19960921)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with JSON scan results, HTML reports, and generated shell or Python fix scripts when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default posture is report and propose; destructive file changes require explicit review before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

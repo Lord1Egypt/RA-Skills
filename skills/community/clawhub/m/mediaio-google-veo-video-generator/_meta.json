@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7bn8fv79mjtchs17087tdtsx82fc86",
-  "slug": "mediaio-google-veo-video-generator",
-  "version": "1.0.1",
-  "publishedAt": 1773890005653
+  "name": "mediaio-google-veo-video-generator",
+  "description": "Generate AI videos using Google Veo (Veo 3 / Veo 3.1) via Media.io OpenAPI. Produces cinematic-quality video from text and image inputs.",
+  "requires": {
+    "env": ["API_KEY"]
+  },
+  "metadata": {
+    "mediaio": {
+      "emoji": "",
+      "requires": {"env": ["API_KEY"]},
+      "priority": "P0",
+      "core_goal_keywords": ["text-to-video", "image-to-video"],
+      "trigger_keywords": ["Google Veo", "Veo 3.1", "Veo video generator", "Veo 3"]
+    },
+    "publisher": "Community Maintainer",
+    "source": "https://platform.media.io/docs/"
+  }
 }

@@ -1,46 +1,62 @@
-## Description: <br>
-Heartbeat-Memories is a fully local long-term memory system for OpenClaw with five memory banks, semantic search, and heartbeat recall. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Heartbeat-Memories is a fully local long-term memory system for OpenClaw that organizes goals, experiences, emotions, sessions, and version history with optional semantic search and heartbeat recall.
 
-## Publisher: <br>
-[jamieyang9996](https://clawhub.ai/user/jamieyang9996) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamieyang9996](https://clawhub.ai/user/jamieyang9996)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to maintain local long-term memories about goals, technical experience, sessions, versions, and emotional context, then retrieve those memories during later conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and resurfaces personal conversations, goals, habits, and emotional history by default. <br>
-Mitigation: Review the configuration before use, disable auto_record or heartbeat_recall if unwanted, and avoid storing secrets or highly sensitive personal information. <br>
-Risk: Heartbeat recall can proactively reintroduce remembered personal context during later conversations. <br>
-Mitigation: Lower recall probabilities, set stricter frequency limits, or turn heartbeat_recall off when proactive memory resurfacing is not appropriate. <br>
-Risk: Reset or uninstall workflows can remove local memory data if users have not backed it up. <br>
-Mitigation: Back up the memory directory before running reset, cleanup, or uninstall commands. <br>
+## Use Case:
 
+OpenClaw users and agent developers use this skill to persist and retrieve structured local memory about goals, technical experience, emotions, sessions, and configuration history. It helps an agent recall prior context and personalize responses without relying on external APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jamieyang9996/heartbeat-memories) <br>
-- [Publisher profile](https://clawhub.ai/user/jamieyang9996) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Installation guide](artifact/docs/installation.md) <br>
-- [Configuration template](artifact/config/hbm_config_template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, code snippets, and configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can create and query local Markdown memory files and a local vector database when installed and initialized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill is designed to persist goals, emotions, habits, and conversation history, which can include sensitive personal or work context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review stored memory content regularly, avoid saving secrets or sensitive work data, and disable auto_record unless persistent memory is explicitly desired.
+
+Risk: Heartbeat recall and automatic recording are broadly enabled in the provided configuration template.
+
+Mitigation: Disable or lower heartbeat_recall and memory_system.auto_record settings before use if proactive reminders or broad memory capture are not appropriate.
+
+Risk: Deletion commands in the documentation can remove local skill or memory data.
+
+Mitigation: Back up memory data before running removal or reset commands.
+
+Risk: Dependencies are specified with lower bounds rather than pinned exact versions.
+
+Mitigation: Install in a virtual environment and pin reviewed dependency versions for managed deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamieyang9996/skills/heartbeat-memories)
+- [ClawHub publisher profile](https://clawhub.ai/user/jamieyang9996)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and text guidance with optional JSON configuration and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Markdown memory files and local vector database state when its scripts are run.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

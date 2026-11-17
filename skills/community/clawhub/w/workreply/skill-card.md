@@ -1,44 +1,55 @@
-## Description: <br>
-WorkReply is an AI workplace reply coach that drafts clear, diplomatic, and authoritative professional messages for bosses, coworkers, clients, interviews, salary talks, feedback, conflict, resignation, and meeting scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WorkReply is an AI workplace reply coach that drafts professional replies and speaking templates for bosses, coworkers, clients, interviews, salary talks, feedback, conflict, and resignation scenarios.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-Employees, job candidates, managers, and external-facing professionals use this skill to draft and refine workplace replies, interview answers, salary negotiation language, resignation notes, handover text, and meeting speaking scripts. It is designed for email, Slack, WeChat, Teams, and spoken meeting contexts across Chinese and Western workplace norms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested workplace messages may be inappropriate for the user's organization, power dynamic, or facts. <br>
-Mitigation: Review and edit all drafted messages before sending. <br>
-Risk: Prompts may include confidential company information, credentials, or sensitive employment details. <br>
-Mitigation: Avoid pasting secrets, credentials, or unnecessary confidential details into prompts. <br>
-Risk: Salary negotiation or legal-sensitive workplace guidance may be incomplete or inaccurate. <br>
-Mitigation: Independently verify salary benchmarks and consult appropriate professional, HR, or legal support for high-stakes issues. <br>
+## Use Case:
 
+Employees, job candidates, managers, and external professionals use this skill to draft tactful workplace messages, meeting remarks, interview answers, salary negotiation language, resignation notes, and conflict responses. It helps adapt tone to hierarchy, audience, culture, and communication channel.
 
-## Reference(s): <br>
-- [WorkReply ClawHub listing](https://clawhub.ai/imwyvern/workreply) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured reply options, strategy notes, and ready-to-use message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese workplace communication guidance; users should review suggestions before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The skill may add a disclosed promotional replyher.com link after repeated or complex use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the promotional link visible and separate from workplace advice so users can distinguish optional marketing from the generated response.
+
+Risk: Workplace communication guidance can be unsuitable if the user omits legal, HR, policy, or relationship context.
+
+Mitigation: Have users review drafted messages before sending and seek HR, legal, or external support for toxic, illegal, retaliatory, or high-stakes workplace situations.
+
+## Reference(s):
+
+- [WorkReply ClawHub Skill Page](https://clawhub.ai/imwyvern/skills/workreply)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ReplyHer Pro Site](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured reply options, ready-to-send templates, and situation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bilingual English or Chinese workplace communication guidance in the user's language; may include multiple tone variants and recommendations.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-YouTube Search API via AIsa unified endpoint for searching YouTube videos, channels, and playlists with a single AIsa API key and no Google API key or OAuth setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches YouTube videos, channels, and playlists through the AIsa unified API using an AISA_API_KEY, without requiring a Google API key or OAuth setup.
 
-## Publisher: <br>
-[0xjordansg-yolo](https://clawhub.ai/user/0xjordansg-yolo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[0xjordansg-yolo](https://clawhub.ai/user/0xjordansg-yolo)
 
-## Use Case: <br>
-Developers and external agent users use this skill to search YouTube content through AIsa, including localized searches, pagination, and video, channel, or playlist filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: YouTube search queries and API-key-backed usage are sent to AIsa. <br>
-Mitigation: Use a revocable or quota-limited AISA_API_KEY when available and avoid sensitive information in search queries or prompts. <br>
-Risk: The artifact includes examples for AIsa chat-completions and smart-search services beyond the main YouTube search purpose. <br>
-Mitigation: Review those examples separately and use only the AIsa services needed for the intended workflow. <br>
-Risk: The API is pay-per-use and may return rate limit or authorization errors. <br>
-Mitigation: Monitor AIsa usage, keep keys scoped where possible, and handle 401 and 429 responses in calling code. <br>
+## Use Case:
 
+Developers and agents use this skill to discover YouTube videos, channels, and playlists, localize searches with country and language parameters, paginate results, and produce code or shell-command examples for the AIsa YouTube search endpoint.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xjordansg-yolo/openclaw-aisa-youtube) <br>
-- [AIsa API Documentation](https://docs.aisa.one) <br>
-- [AIsa Dashboard / Marketplace](https://marketplace.aisa.one) <br>
-- [YouTube Search API Reference](https://docs.aisa.one/reference/get_youtube-search) <br>
-- [AIsa Smart Search API](https://docs.aisa.one/reference/get_search-smart) <br>
-- [AIsa Chat Completions API](https://docs.aisa.one/reference/createchatcompletion) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with curl, Python, JavaScript, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and an AISA_API_KEY; executed examples return structured YouTube search result JSON from AIsa.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 1.0.1) <br>
+Risk: The skill requires network access to AIsa with the user's AISA_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that network access and credential use are acceptable for the deployment environment.
+
+Risk: The documentation includes troubleshooting guidance that can print the API key into logs or terminal history.
+
+Mitigation: Use a presence check instead of echoing the key, and rotate the key if it has appeared in logs.
+
+Risk: The documentation includes LLM and web-search examples beyond the core YouTube-search scope.
+
+Mitigation: Avoid those examples unless the deployment explicitly intends to use the separate AIsa services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xjordansg-yolo/skills/openclaw-aisa-youtube)
+- [AIsa API Documentation](https://docs.aisa.one)
+- [AIsa Dashboard / Marketplace](https://marketplace.aisa.one)
+- [YouTube Search API Reference](https://docs.aisa.one/reference/get_youtube-search)
+- [AIsa Smart Search API](https://docs.aisa.one/reference/get_search-smart)
+- [AIsa Chat Completions API](https://docs.aisa.one/reference/createchatcompletion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON response examples and inline Python, JavaScript, and curl snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request parameters, pagination-token handling, localization options, and response-parsing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

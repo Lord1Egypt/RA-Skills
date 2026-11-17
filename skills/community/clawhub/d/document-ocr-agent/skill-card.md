@@ -1,42 +1,57 @@
-## Description: <br>
-Document OCR Agent extracts text, structured entities, and page-level metadata from PDFs, images, receipts, invoices, and scanned documents through AgentPMT-hosted OCR tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document OCR Agent extracts text, structured entities, and per-page metadata from PDFs, images, and scanned documents through AgentPMT-hosted Google Document AI OCR calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Agents and developers use this skill to send a document by URL, AgentPMT file ID, or base64 content and receive OCR text, structured fields, and per-page metadata for document digitization, invoice parsing, receipt processing, and form extraction workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted documents, URLs, or AgentPMT file IDs may contain sensitive or regulated information and are processed through AgentPMT and Google Document AI. <br>
-Mitigation: Only submit documents the user is authorized to process, redact unnecessary sensitive data, and avoid passports, driver's licenses, tax forms, bank statements, medical records, and similar documents unless appropriate approvals are in place. <br>
-Risk: Requests with more than one input source can fail or process the wrong intended source. <br>
-Mitigation: Provide exactly one of file_urls, file_ids, or content_base64 for each process_document request. <br>
+## Use Case:
 
+External users and developers use this skill to send documents to AgentPMT for OCR, entity extraction, and page-level document metadata in workflows such as receipt capture, invoice parsing, bookkeeping ingestion, and document digitization.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/document-ocr-agent) <br>
-- [AgentPMT Google Document AI OCR Marketplace Page](https://www.agentpmt.com/marketplace/google-document-ai-ocr) <br>
-- [Action Schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, structured entities, metadata, JSON] <br>
-**Output Format:** [JSON response containing extracted text, optional entities, page summaries, and optional raw document data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can be limited with max_text_chars and max_entities; include_pages, include_entities, and include_raw_document control returned detail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: Submitted documents may contain sensitive personal, financial, medical, tax, or contractual information and are processed by AgentPMT and Google Document AI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only documents you are authorized to share, minimize or redact sensitive content where possible, and avoid high-sensitivity documents unless the workflow is approved for that data.
+
+Risk: Setup or related skills may change over time, affecting endpoint, schema, authentication, or payment details.
+
+Mitigation: Use pinned or trusted install sources and refresh live schema or setup instructions before production integration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/document-ocr-agent)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/google-document-ai-ocr)
+- [Document OCR Agent schema](schema.md)
+- [AgentPMT file-management related skill](https://clawhub.ai/agentpmt/file-management)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON request examples and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides calls that return OCR text, extracted entities, page metadata, warnings, and validation results; extracted text and entities may be truncated by request parameters.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

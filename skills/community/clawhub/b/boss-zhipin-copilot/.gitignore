@@ -1,0 +1,38 @@
+# ===== 用户私有数据（不进仓库）=====
+# profile.yaml 是个人求职画像；target_library.csv 是个人岗位库
+profile.yaml
+target_library.csv
+# Agent 运行中产生的待评估/搜索结果 CSV
+待评估*.csv
+search_results*.csv
+*待评估*.csv
+
+# ===== 中间产物 =====
+.work/
+__pycache__/
+*.pyc
+# 运行日志（preflight.log/scan.log 含 lease/agent 运行态，不进公开仓库）
+*.log
+
+# ===== agent-browser-runtime 运行时（相邻部署，不混入本仓库）=====
+data/
+artifacts/
+.env
+runtime/profile/
+
+# ===== Python 虚拟环境 =====
+venv/
+.venv/
+env/
+
+# ===== 内部审查报告（含多轮迭代轨迹，不进公开仓库）=====
+审查报告*.md
+
+# ===== 需求与开发（需求池/思考/开发/审核/产品文档，本地不进公开仓库）=====
+需求与开发/
+
+# ===== 运行时状态（登录态等机器级状态，跟随 skill 安装目录，不进公开仓库）=====
+.state/
+
+# ===== 自我改进日志（per-developer 本地，不进公开仓库）=====
+.learnings/

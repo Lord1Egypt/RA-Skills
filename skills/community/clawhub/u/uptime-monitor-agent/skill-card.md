@@ -1,42 +1,58 @@
-## Description: <br>
-Monitor uptime of websites/services and alert when down. Use when checking if a website is reachable, monitoring service health, or getting alerted on downtime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor uptime of websites/services and alert when down.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Developers and operators use this skill to check whether configured HTTP endpoints are reachable, alert on downtime, and summarize recent uptime from local logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts user-specified URLs and writes status details to local logs. <br>
-Mitigation: Monitor only approved endpoints and avoid placing secrets or sensitive tokens in monitored URLs. <br>
-Risk: Webhook or email alerts can disclose service names, URLs, status codes, timing, and outage details to configured destinations. <br>
-Mitigation: Send alerts only to destinations approved to receive operational status information. <br>
-Risk: The skill runs local shell scripts that use curl against configured targets. <br>
-Mitigation: Review the scripts and environment variables before running them in a production environment. <br>
+## Use Case:
 
+Developers and operators use this skill to check whether HTTP endpoints are reachable, send downtime alerts, and generate uptime summaries from local logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kryzl19/uptime-monitor-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, pipe-delimited status output, and Markdown uptime reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and uses user-provided endpoint, alert, and interval configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill makes outbound HTTP requests to monitored URLs and an optional alert webhook, with minimal URL validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure MONITOR_URLS and ALERT_WEBHOOK_URL only with destinations you trust, and avoid attacker-supplied URLs.
+
+Risk: Webhook alerts may expose monitored URLs, status codes, response times, and error details to the configured destination.
+
+Mitigation: Treat webhook URLs as sensitive secrets and send alerts only to approved notification endpoints.
+
+Risk: The scripts write local status and alert logs that may contain service URLs and operational details.
+
+Mitigation: Store logs in an appropriate workspace location and review retention or access controls before operational use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kryzl19/skills/uptime-monitor-agent)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/kryzl19)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces HTTP status check output, alert guidance, and uptime report summaries; requires curl for HTTP checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

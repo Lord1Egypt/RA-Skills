@@ -1,0 +1,65 @@
+{
+  "version": "1.0.0",
+  "mode": "ask",
+  "windows": {
+    "enabled": true,
+    "winget": {
+      "enabled": true,
+      "include_unknown": false
+    },
+    "windows_update": {
+      "enabled": true,
+      "check_only": true
+    },
+    "allow_major_upgrades": false,
+    "allow_reboots": false,
+    "excluded_packages": [
+      "Microsoft.Edge"
+    ],
+    "allowed_packages": []
+  },
+  "wsl": {
+    "enabled": true,
+    "auto_start_stopped_distros": false,
+    "allow_reboots": false,
+    "distributions": {
+      "OpenClawGateway": {
+        "enabled": true,
+        "security_updates_only": true,
+        "excluded_packages": [],
+        "allowed_packages": [],
+        "configured_services": [
+          "ssh"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "registered_paths": [],
+    "auto_run_tests": true
+  },
+  "advisories": {
+    "osv": {
+      "enabled": true,
+      "timeout_seconds": 15,
+      "max_retries": 3
+    },
+    "cisa_kev": {
+      "enabled": true,
+      "cache_ttl_hours": 24,
+      "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
+    },
+    "min_severity_to_alert": "MEDIUM"
+  },
+  "execution": {
+    "max_actions_per_run": 25,
+    "plan_validity_minutes": 30,
+    "lock_timeout_seconds": 60,
+    "report_format": [
+      "json",
+      "markdown"
+    ],
+    "reports_directory": "~/.security-maintainer/reports",
+    "history_retention_days": 90
+  }
+}

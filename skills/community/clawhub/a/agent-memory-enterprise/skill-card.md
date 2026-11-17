@@ -1,44 +1,63 @@
-## Description: <br>
-Enterprise-grade 5-layer agent memory system with routing, scoring, and multi-backend storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade 5-layer agent memory system with routing, scoring, and multi-backend storage for production AI agents that need persistent memory with PostgreSQL, Redis, and ChromaDB support.
 
-## Publisher: <br>
-[laojun509](https://clawhub.ai/user/laojun509) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laojun509](https://clawhub.ai/user/laojun509)
 
-## Use Case: <br>
-Developers and engineers use this skill to add persistent memory to production AI agents, including conversation context, task state, user profiles, document retrieval, and experience-based pattern recall. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent agent memory can store private, regulated, or multi-tenant user data. <br>
-Mitigation: Use isolated databases, least-privilege credentials, access controls, retention and deletion policies, and sensitive-data redaction before storing production data. <br>
-Risk: Stored memory content may preserve prompt-injection text or misleading instructions for later retrieval. <br>
-Mitigation: Scan and filter retrieved memory content before prompt injection, and review memory sources before using them in sensitive workflows. <br>
-Risk: Incorrect memory routing or importance scoring can surface irrelevant or stale context to an agent. <br>
-Mitigation: Tune retrieval thresholds, apply token budgets, monitor memory quality, and allow users or operators to clear or correct stored memory. <br>
+## Use Case:
 
+Developers and engineers use this skill to add persistent, routed memory to production AI agents across conversation context, task state, user profiles, knowledge retrieval, and experience learning.
 
-## Reference(s): <br>
-- [Agent Memory Pro - API Reference](references/api_reference.md) <br>
-- [Agent Memory Pro - Usage Examples](references/examples.md) <br>
-- [ClawHub release page](https://clawhub.ai/laojun509/agent-memory-enterprise) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration instructions, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-memory integration guidance, API usage examples, configuration patterns, and supporting Python package files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and pyproject.toml) <br>
+Risk: The skill persistently stores and reuses user, task, conversation, and document data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid indexing secrets or regulated data, define retention and deletion controls, and review stored memory policies before shared or enterprise deployment.
+
+Risk: Shared deployments may expose memory across users or tenants without application controls.
+
+Mitigation: Deploy behind application-level authentication and tenant isolation before enabling production or multi-user use.
+
+Risk: Retrieved memories can carry stale, sensitive, or prompt-injection content into downstream LLM prompts.
+
+Mitigation: Treat all retrieved memory as untrusted and validate, filter, or redact it before including it in an LLM prompt.
+
+Risk: The skill depends on external Redis, PostgreSQL, and ChromaDB storage configuration.
+
+Mitigation: Use approved storage services and access controls, and review configuration before installing in shared environments.
+
+## Reference(s):
+
+- [Agent Memory Pro - API Reference](artifact/references/api_reference.md)
+- [Agent Memory Pro - Usage Examples](artifact/references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/laojun509/skills/agent-memory-enterprise)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces memory-system integration guidance, configuration examples, and code snippets for agent implementations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

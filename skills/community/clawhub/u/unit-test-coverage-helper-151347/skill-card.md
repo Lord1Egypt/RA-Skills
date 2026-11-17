@@ -1,41 +1,55 @@
-## Description: <br>
-Helps software maintainers, QA engineers, contributors, and product teams plan, implement, and verify useful unit tests and coverage improvements for existing codebases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers and quality teams add useful unit tests, improve test coverage, and validate changes against existing behavior.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers, maintainers, QA engineers, open-source contributors, and product teams use this skill to turn testing and regression concerns into local-friendly workflows, checklists, code changes, and verification steps for improving unit test coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad testing, regression, QA, or coverage requests where a more specific workflow was intended. <br>
-Mitigation: Explicitly name the desired skill or clarify the testing context before using it for unrelated QA, debugging, or general software work. <br>
-Risk: Generated test plans or code changes may not match the target repository's behavior or quality bar. <br>
-Mitigation: Review proposed tests, run the repository's normal test and coverage commands, and check assumptions against the stated success criteria before merging changes. <br>
+## Use Case:
 
+Developers, maintainers, QA engineers, open-source contributors, and product teams use this skill to plan, implement, and verify practical unit test coverage improvements for existing codebases.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/unit-test-coverage-helper-151347) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, checklists, implementation steps, test commands, verification notes, and remaining risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Broad testing and software-quality trigger wording may cause this skill to activate for requests better handled by a narrower testing workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocation or narrower trigger wording when deploying alongside other testing, code-review, or quality-assurance skills.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/unit-test-coverage-helper-151347)
+- [Requirement Plan](references/requirement-plan.md)
+- [Hive Advisory Report](https://github.com/kubestellar/console/issues/17528)
+- [What are you looking for when reviewing LLM generated code?](https://news.ycombinator.com/item?id=48538778)
+- [Missing Tests for All New Extracted Tool Modules](https://github.com/geored/lumino-sdlc-test/issues/188)
+- [Ask HN: What tools are you using for AI-assisted code review?](https://news.ycombinator.com/item?id=48593210)
+- [Feature: Integration tests pipelines with beam simulator](https://github.com/python-accelerator-middle-layer/pyaml/issues/294)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with checklists, implementation notes, code snippets, and verification commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should state assumptions, limits, validation steps, and remaining risks when relevant.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

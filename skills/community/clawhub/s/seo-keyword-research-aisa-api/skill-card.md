@@ -1,43 +1,61 @@
-## Description: <br>
-Builds SEO keyword strategies from a domain, URL, product, market, or seed topic by combining site crawling, AIsa/DataForSEO keyword data, SERP signals, and LLM-assisted clustering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a user asks for SEO keyword research, keyword discovery, search volume analysis, keyword difficulty, search intent mapping, topic clusters, content opportunities, competitor keyword gaps, or a keyword strategy for a domain, URL, product, market, or seed topic.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users, developers, and SEO practitioners use this skill to research keywords for a website, product, market, or competitor set and turn validated metrics into clusters, opportunity scores, and page recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends target URLs, crawled page excerpts, keyword inputs, competitor names, and SEO strategy context to AIsa/DataForSEO. <br>
-Mitigation: Use only approved targets, avoid confidential internal sites unless authorized, and keep AISA_API_KEY private. <br>
-Risk: Broad invocation wording could lead to use outside the intended SEO keyword research workflow. <br>
-Mitigation: Use this skill for SEO keyword research, confirm the scope before crawling or calling APIs, and avoid generic web research use. <br>
+## Use Case:
 
+External users, developers, and SEO practitioners use this skill to crawl public websites, query AIsa/DataForSEO keyword and SERP data, cluster opportunities by intent, and produce actionable keyword strategy reports.
 
-## Reference(s): <br>
-- [AIsa API Map for SEO Keyword Research](references/aisa-api-map.md) <br>
-- [Keyword Research Report Template](references/report-template.md) <br>
-- [AIsa](https://aisa.one) <br>
-- [ClawHub Release Page](https://clawhub.ai/bibaofeng/seo-keyword-research-aisa-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and optional JSON data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local crawl profiles, keyword exports, cluster summaries, and SEO roadmap tables when the user requests a full report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Website URLs, competitor names, and SEO strategy inputs may be sent to AIsa/DataForSEO during keyword and SERP research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with public SEO research data that is acceptable to share with those services.
+
+Risk: Bundled network helpers use AISA_API_KEY and make outbound requests.
+
+Mitigation: Review or restrict the helpers so the API key is sent only to api.aisa.one and is never printed, committed, or reused for unrelated endpoints.
+
+Risk: The crawler can fetch user-provided URLs and follow same-site links.
+
+Mitigation: Avoid private or internal URLs and restrict crawler access to prevent internal network requests or unsafe redirects before deployment.
+
+## Reference(s):
+
+- [AIsa API Map for SEO Keyword Research](references/aisa-api-map.md)
+- [Keyword Research Report Template](references/report-template.md)
+- [AIsa](https://aisa.one)
+- [AIsa Data APIs](https://api.aisa.one/apis/v1)
+- [AIsa LLM Gateway](https://api.aisa.one/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and optional JSON data exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include research assumptions, crawled-site profile, keyword clusters, metrics tables, SERP-based page recommendations, validation notes, and API-derived JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

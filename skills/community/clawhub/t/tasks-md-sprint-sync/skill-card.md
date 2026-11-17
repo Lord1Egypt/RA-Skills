@@ -1,37 +1,49 @@
-## Description: <br>
-Sync TASKS.md current phase and in-progress checklist from the active PLAN.md phase to keep sprint execution aligned. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync TASKS.md current phase and in-progress checklist from the active PLAN.md phase to keep sprint execution aligned.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to compare the active PLAN.md phase with a matching TASKS.md project section, report drift, and optionally update TASKS.md so sprint execution stays aligned. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Apply mode can replace the target TASKS.md section's in-progress checklist. <br>
-Mitigation: Run report mode first, confirm PROJECT_NAME, PLAN_FILE, and TASKS_FILE, and keep version control or a backup before using SYNC_MODE=apply. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/tasks-md-sprint-sync) <br>
+## Use Case:
 
+Developers and project maintainers use this skill to compare the active phase in PLAN.md with a project's TASKS.md in-progress list, then optionally update TASKS.md so sprint execution stays aligned.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and console status output from the sync script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report mode prints drift without file changes; apply mode updates the target TASKS.md current phase and in-progress checklist.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Apply mode rewrites the selected project's Current phase and In progress list in TASKS.md.
+
+Mitigation: Run report mode first, set PLAN_FILE and TASKS_FILE to the intended project files, and keep those files under version control before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/tasks-md-sprint-sync)
+- [Publisher profile](https://clawhub.ai/user/daniellummis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report mode prints drift without file changes; apply mode updates the selected TASKS.md project section.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

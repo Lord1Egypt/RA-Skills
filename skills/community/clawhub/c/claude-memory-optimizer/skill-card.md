@@ -1,40 +1,52 @@
-## Description: <br>
-Structured memory system with 4-type classification (user/feedback/project/reference), frontmatter metadata, and automated migration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured memory system with 4-type classification, frontmatter metadata, and automated migration for OpenClaw memory files.
 
-## Publisher: <br>
-[mystour](https://clawhub.ai/user/mystour) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mystour](https://clawhub.ai/user/mystour)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to organize long-term memory into user, feedback, project, and reference categories, add frontmatter metadata, and migrate existing flat memory files into a structured layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can bulk rewrite, move, and reindex memory files without enough warning or rollback detail. <br>
-Mitigation: Back up the memory directory before migration, prefer preview or dry-run behavior where available, confirm exactly which files will change, and avoid running it on a primary memory store until rollback steps are clear. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to migrate unstructured memory files into categorized memory folders, add frontmatter metadata, and configure structured memory practices for future recall.
 
-## Reference(s): <br>
-- [README.md](README.md) <br>
-- [MEMORY-OPTIMIZATION.md](MEMORY-OPTIMIZATION.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mystour/claude-memory-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and generated memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or execute file migration commands that rewrite, move, and reindex memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and package.json; SKILL.md frontmatter lists 1.0.0) <br>
+Risk: The migration script can overwrite long-term OpenClaw memory files, including MEMORY.md and log or categorized memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and back up the OpenClaw workspace before running the migration; test it on a copy before using valuable memory data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mystour/skills/claude-memory-optimizer)
+- [Publisher profile](https://clawhub.ai/user/mystour)
+- [README.md](README.md)
+- [MEMORY-OPTIMIZATION.md](MEMORY-OPTIMIZATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and a JavaScript migration script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The migration script can modify workspace memory files; review and back up the workspace before execution.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

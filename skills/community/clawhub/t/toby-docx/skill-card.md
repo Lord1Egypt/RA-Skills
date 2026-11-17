@@ -1,43 +1,55 @@
-## Description: <br>
-Docx helps agents create, read, edit, and manipulate Word .docx documents, including polished reports, memos, letters, templates, formatting, extraction, reorganization, image insertion, tracked changes, and comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files).
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers, technical founders, and product engineers use this skill to produce and revise professional Word documents as agent deliverables. It is intended for .docx workflows such as reports, memos, templates, document formatting, content extraction, and review-oriented edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or edited Word documents may contain inaccurate, misleading, or unsuitable content. <br>
-Mitigation: Review generated documents for accuracy, readability, and publication readiness before external use. <br>
-Risk: Document-processing workflows may expose sensitive document content to the handling platform. <br>
-Mitigation: Avoid providing sensitive documents unless the platform and workflow are trusted for that content. <br>
-Risk: Optional enrichment through web search, scraping, social data, or image generation can introduce unsupported or inappropriate material. <br>
-Mitigation: Check enriched material and generated assets before including them in final documents. <br>
+## Use Case:
 
+Developers, technical founders, and product engineers use this skill to create, edit, reorganize, and polish Word document deliverables such as reports, memos, letters, and templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-docx) <br>
-- [Skill homepage](https://www.skillboss.co/skills/docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, code snippets, shell commands, and document-creation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or guide creation of .docx document content; review generated documents before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may handle confidential Word document content while requesting external enrichment capabilities beyond basic document processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local or document-only processing for sensitive files, and require explicit confirmation before using web search, scraping, social-media data, image generation, or chat enrichment based on document contents.
+
+Risk: Drafted or edited document content may be inaccurate, incomplete, or unsuitable for external publication.
+
+Mitigation: Review outputs for accuracy, readability, and business fit before publication or automated execution.
+
+## Reference(s):
+
+- [Docx Skill Homepage](https://www.skillboss.co/skills/docx)
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-docx)
+- [Publisher Profile](https://clawhub.ai/user/tobeyrebecca)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text document guidance and drafted content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose document structure, edits, formatting guidance, and content for DOCX-focused deliverables.]
+
+## Skill Version(s):
+
+1.0.0 (source: release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

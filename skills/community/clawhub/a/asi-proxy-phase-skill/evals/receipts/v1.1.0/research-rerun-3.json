@@ -1,0 +1,332 @@
+{
+  "receipt_version": "1.0",
+  "run": "targeted-research/run-3",
+  "completed_at_utc": "2026-07-30T03:29:35.2639524Z",
+  "constraints": {
+    "anonymous_variants": [
+      "opal",
+      "onyx"
+    ],
+    "blind_comparison": true,
+    "attempted_version_identification": false,
+    "read_git_history": false,
+    "read_tags": false,
+    "read_prior_evals": false,
+    "used_network": false,
+    "python_runtime": "uv-managed Python 3.11",
+    "mutation_boundary": ".",
+    "outside_run_directory_mutations": false,
+    "paths_are_relative_to_run": true,
+    "numeric_quality_scores_used": false,
+    "broad_reference_reading_before_queries": false
+  },
+  "external_mutations": 0,
+  "real_asi_certifications": 0,
+  "case_requirements": {
+    "R01": "Explain the stored paper/repository lineage for observable-only verification and phase diagnostics using offline query first, canonical DOI and pinned SHA, four distinct relation types, and no inferred edges.",
+    "R02": "Resolve causal-transportability and gradient-workflow ambiguity with requested/effective match policy, fallback state, semantic separation, and stored field/span/rule evidence."
+  },
+  "variants": {
+    "opal": {
+      "bundle_evidence": {
+        "skill_path": "variants/opal/asi-proxy-phase-skill/SKILL.md",
+        "skill_sha256": "543c02311faafc9cbcce6e4ec73e88ce40d96984ad132a6a3ed6986218a7b901",
+        "query_tool_path": "variants/opal/asi-proxy-phase-skill/scripts/query_sources.py",
+        "query_tool_sha256": "3e56638b791b0e35d7d1a6001668e12cd0d2003eb308da0e8ce89da29a850d9c",
+        "source_state_path": "variants/opal/asi-proxy-phase-skill/references/source-state.json",
+        "source_state_sha256": "d57867366fa4ab0a8ac5bad1e2c4c215d534826d327d96eccfded7b06eb24eb2",
+        "papers_path": "variants/opal/asi-proxy-phase-skill/references/papers.jsonl",
+        "papers_sha256": "f93a83b99ae57a3fd0e26b89ab255186bf56202f241e521d7753aa476411ce69",
+        "repositories_path": "variants/opal/asi-proxy-phase-skill/references/repositories.json",
+        "repositories_sha256": "72bb98dbcc32b7ae252c7d45cadb94f6b488db6b511137190c6e5437cc480c7e",
+        "typed_relation_file_present": false,
+        "routing_rules_file_present": false,
+        "instruction_observations": [
+          {
+            "path": "variants/opal/asi-proxy-phase-skill/SKILL.md",
+            "line": 90,
+            "observation": "Requires query_sources.py before manually browsing large indexes."
+          },
+          {
+            "path": "variants/opal/asi-proxy-phase-skill/references/source-state.json",
+            "observation": "Repository links use distinctive-title or named-framework correspondence without typed relation evidence."
+          },
+          {
+            "path": "variants/opal/asi-proxy-phase-skill/references/source-state.json",
+            "observation": "Routing classification is marked legacy heuristic pending review."
+          }
+        ]
+      },
+      "R01": {
+        "response_artifact": "artifacts/opal/R01-response.json",
+        "response_sha256": "caaf0dfb6444d2564aa423365e83542895d93e2246016688dde127046ad2630b",
+        "commands": [
+          "uv run --python 3.11 python variants/opal/asi-proxy-phase-skill/scripts/query_sources.py --query \"observable-only verification phase diagnostics\" --kind all --limit 8 --pretty",
+          "uv run --python 3.11 python variants/opal/asi-proxy-phase-skill/scripts/query_sources.py --query \"10.5281/zenodo.21147093\" --kind paper --limit 1 --full --pretty",
+          "uv run --python 3.11 python variants/opal/asi-proxy-phase-skill/scripts/query_sources.py --query \"verification-ecology-kit\" --kind repo --limit 1 --full --pretty"
+        ],
+        "structured_evidence": {
+          "canonical_diagnostic_doi": "10.5281/zenodo.18436828",
+          "canonical_verifier_ecology_doi": "10.5281/zenodo.21147093",
+          "repository_url": "https://github.com/kadubon/verification-ecology-kit",
+          "repository_head_sha": "52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85",
+          "stored_relation_basis": "distinctive_title_or_named_framework_match",
+          "stored_relation_type": null,
+          "stored_relation_evidence": null
+        },
+        "assertions": {
+          "offline_query_before_broad_reference_reading": true,
+          "canonical_doi_cited": true,
+          "pinned_repository_sha_cited": true,
+          "implements_kept_distinct": true,
+          "companion_software_kept_distinct": true,
+          "cites_kept_distinct": true,
+          "lineage_kept_distinct": true,
+          "unstored_relations_not_inferred": true,
+          "stored_typed_lineage_available": false,
+          "complete_lineage_explanation_supported": false,
+          "pass": false
+        }
+      },
+      "R02": {
+        "response_artifact": "artifacts/opal/R02-response.json",
+        "response_sha256": "e162c19a86ee5f3069693f5bc8aa156261d7a32e408f18dc2fad7479a717824b",
+        "commands": [
+          "uv run --python 3.11 python variants/opal/asi-proxy-phase-skill/scripts/query_sources.py --query \"causal transportability gradient workflows\" --kind all --limit 12 --pretty",
+          "uv run --python 3.11 python variants/opal/asi-proxy-phase-skill/scripts/query_sources.py --query \"causal transportability\" --kind all --limit 8",
+          "uv run --python 3.11 python variants/opal/asi-proxy-phase-skill/scripts/query_sources.py --query \"gradient workflows\" --kind all --limit 8"
+        ],
+        "structured_evidence": {
+          "combined_query": {
+            "requested_match": null,
+            "effective_match": null,
+            "auto_fallback_to_any": null
+          },
+          "causal_transportability_query": {
+            "matched_records": 61,
+            "selected_doi": "10.5281/zenodo.19306514",
+            "matched_fields": null,
+            "routing_evidence": null,
+            "provisional_optimal_transport_label_present": true
+          },
+          "gradient_workflows_query": {
+            "matched_records": 86,
+            "selected_workflow_doi": "10.5281/zenodo.19994795",
+            "matched_fields": null,
+            "routing_evidence": null,
+            "provisional_optimal_transport_label_present": true
+          }
+        },
+        "assertions": {
+          "requested_match_policy_available": false,
+          "effective_match_policy_available": false,
+          "auto_fallback_state_available": false,
+          "causal_transportability_not_conflated_with_optimal_transport_in_response": true,
+          "workflow_not_conflated_with_gradient_flow_in_response": true,
+          "retained_labels_have_field_span_rule_evidence": false,
+          "auditable_ambiguity_resolution_supported": false,
+          "pass": false
+        }
+      }
+    },
+    "onyx": {
+      "bundle_evidence": {
+        "skill_path": "variants/onyx/asi-proxy-phase-skill/SKILL.md",
+        "skill_sha256": "3b5c67841c90dc46e958df3e24f0c7218853fbabc65577684bb970bb45b373a8",
+        "query_tool_path": "variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py",
+        "query_tool_sha256": "8ab06e38766251a28b1fc3564389b0ed1d6919eefdf37547850099f94120b568",
+        "source_state_path": "variants/onyx/asi-proxy-phase-skill/references/source-state.json",
+        "source_state_sha256": "b324cc2d37c096daa7610bf281cd7dc266a425089da8e3b8abe69365cd3159a5",
+        "papers_path": "variants/onyx/asi-proxy-phase-skill/references/papers.jsonl",
+        "papers_sha256": "bd9a8750da7456e33bd2e00c1b3c18d9be0c93d3d679959da483800177dfd4e0",
+        "repositories_path": "variants/onyx/asi-proxy-phase-skill/references/repositories.json",
+        "repositories_sha256": "ecff95280558844a81d6a49e91376ae77b9a71c06c74bfc80513326de3da3537",
+        "relations_path": "variants/onyx/asi-proxy-phase-skill/references/paper-repository-relations.json",
+        "relations_sha256": "16500b6d4b9b2f8ba4787d0928dce594b319328705b885176a72d8d4f3c73d82",
+        "routing_rules_path": "variants/onyx/asi-proxy-phase-skill/references/routing-rules.json",
+        "routing_rules_sha256": "ced9c6d30b6262be99ebb971471965aecb8ec2240358993707b2ffe1d291a9fe",
+        "typed_relation_file_present": true,
+        "routing_rules_file_present": true,
+        "instruction_observations": [
+          {
+            "path": "variants/onyx/asi-proxy-phase-skill/SKILL.md",
+            "line": 22,
+            "observation": "Requires search before loading large references."
+          },
+          {
+            "path": "variants/onyx/asi-proxy-phase-skill/SKILL.md",
+            "line": 41,
+            "observation": "Requires implements, companion_software, cites, and lineage to remain distinct and prohibits unstored edges."
+          },
+          {
+            "path": "variants/onyx/asi-proxy-phase-skill/SKILL.md",
+            "line": 44,
+            "observation": "Requires requested/effective match policy, fallback state, and routing evidence for ambiguous searches."
+          }
+        ]
+      },
+      "R01": {
+        "response_artifact": "artifacts/onyx/R01-response.json",
+        "response_sha256": "fb385cf72a5f9fa23f4a10cb04bc1223c3a1a5dcaab60f19dfc0a6418f273aa8",
+        "commands": [
+          "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"observable-only verification phase diagnostics\" --kind all --match auto --limit 8 --pretty",
+          "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"verification ecology\" --kind all --match auto --limit 8 --pretty",
+          "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"10.5281/zenodo.21147093\" --kind paper --match auto --limit 1 --full --pretty",
+          "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"verification-ecology-kit\" --kind repo --match auto --limit 1 --full --pretty"
+        ],
+        "structured_evidence": {
+          "initial_query_policy": {
+            "requested_match": "auto",
+            "effective_match": "any",
+            "auto_fallback_to_any": true
+          },
+          "canonical_diagnostic_doi": "10.5281/zenodo.18436828",
+          "canonical_verifier_ecology_doi": "10.5281/zenodo.21147093",
+          "repository_url": "https://github.com/kadubon/verification-ecology-kit",
+          "repository_head_sha": "52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85",
+          "stored_edge": {
+            "relation_type": "lineage",
+            "commit_path": "README.md",
+            "section": "verification-ecology-kit",
+            "matched_text": "10.5281/zenodo.21147093",
+            "rule_id": "relation.readme-doi-context.v1",
+            "source_sha256": "46c430c30d5e2ee9ea35aafc5ba6e8c2bc57612c83053074873f8074539ab13e"
+          },
+          "selected_pair_other_relation_types": {
+            "implements": false,
+            "companion_software": false,
+            "cites": false
+          }
+        },
+        "assertions": {
+          "offline_query_before_broad_reference_reading": true,
+          "canonical_doi_cited": true,
+          "pinned_repository_sha_cited": true,
+          "implements_kept_distinct": true,
+          "companion_software_kept_distinct": true,
+          "cites_kept_distinct": true,
+          "lineage_kept_distinct": true,
+          "stored_edge_named_lineage_only": true,
+          "unstored_relations_not_inferred": true,
+          "stored_typed_lineage_available": true,
+          "complete_lineage_explanation_supported": true,
+          "pass": true
+        }
+      },
+      "R02": {
+        "response_artifact": "artifacts/onyx/R02-response.json",
+        "response_sha256": "861c2da9205be9ed31af75f8277cfd1f66f175b19a4981adce7fb24dbfd4d525",
+        "commands": [
+          "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"causal transportability gradient workflows\" --kind all --match auto --limit 12 --pretty",
+          "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"causal transportability\" --kind all --match auto --limit 8",
+          "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"gradient workflows\" --kind all --match auto --limit 8",
+          "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"10.5281/zenodo.19306514\" --kind paper --match auto --limit 1 --full --pretty",
+          "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"10.5281/zenodo.19994795\" --kind paper --match auto --limit 1 --full --pretty",
+          "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"10.5281/zenodo.17518572\" --kind paper --match auto --limit 1 --full --pretty"
+        ],
+        "structured_evidence": {
+          "combined_query_policy": {
+            "requested_match": "auto",
+            "effective_match": "any",
+            "auto_fallback_to_any": true
+          },
+          "causal_transportability_query_policy": {
+            "requested_match": "auto",
+            "effective_match": "all",
+            "auto_fallback_to_any": false
+          },
+          "gradient_workflows_query_policy": {
+            "requested_match": "auto",
+            "effective_match": "any",
+            "auto_fallback_to_any": true
+          },
+          "causal_source": {
+            "doi": "10.5281/zenodo.19306514",
+            "retained_label": "causal_inference",
+            "matched_field": "keywords",
+            "matched_span": [
+              284,
+              300
+            ],
+            "matched_text": "causal inference",
+            "rule_id": "method.causal.v1",
+            "optimal_transport_label_retained": false
+          },
+          "workflow_source": {
+            "doi": "10.5281/zenodo.19994795",
+            "retained_label": "ai_systems_and_operations",
+            "matched_field": "keywords",
+            "matched_span": [
+              81,
+              89
+            ],
+            "matched_text": "workflow",
+            "rule_id": "theme.ai-operations.v1",
+            "gradient_flow_label_retained": false
+          },
+          "gradient_flow_source": {
+            "doi": "10.5281/zenodo.17518572",
+            "retained_label": "optimal_transport_and_gradient_flows",
+            "matched_field": "keywords",
+            "matched_span": [
+              89,
+              102
+            ],
+            "matched_text": "gradient flow",
+            "rule_id": "method.gradient-flow.v1",
+            "workflow_label_retained": false
+          }
+        },
+        "assertions": {
+          "requested_match_policy_reported": true,
+          "effective_match_policy_reported": true,
+          "auto_fallback_state_reported": true,
+          "causal_transportability_not_conflated_with_optimal_transport": true,
+          "workflow_not_conflated_with_gradient_flow": true,
+          "retained_labels_have_field_span_rule_evidence": true,
+          "auditable_ambiguity_resolution_supported": true,
+          "pass": true
+        }
+      }
+    }
+  },
+  "comparative_result": {
+    "preferred_variant": "onyx",
+    "basis": [
+      "Both variants query offline before broad reference reading and can cite canonical DOIs and pinned repository SHAs.",
+      "Only onyx stores typed paper-repository relations with pinned evidence and explicitly preserves relation semantics.",
+      "Only onyx exposes requested/effective match policy and auto fallback in query output.",
+      "Only onyx returns reviewed field/span/rule routing evidence that separates causal transportability from optimal transport and workflow from gradient flow."
+    ],
+    "no_numeric_quality_score": true
+  },
+  "case_results": {
+    "R01": {
+      "opal_pass": false,
+      "onyx_pass": true
+    },
+    "R02": {
+      "opal_pass": false,
+      "onyx_pass": true
+    }
+  },
+  "overall_assertions": {
+    "two_cases_only": true,
+    "only_selected_full_records_loaded": true,
+    "all_queries_offline": true,
+    "all_query_commands_use_uv_python_3_11": true,
+    "structured_evidence_retained": true,
+    "numeric_quality_scores_absent": true,
+    "external_mutations_zero": true,
+    "real_asi_certifications_zero": true,
+    "receipt_paths_relative": true,
+    "evaluation_complete": true
+  },
+  "receipt_validation": {
+    "utf8_json": true,
+    "relative_paths_only": true,
+    "no_local_absolute_paths": true,
+    "assertions_recomputed_with_uv_python_3_11": true,
+    "pass": true
+  }
+}

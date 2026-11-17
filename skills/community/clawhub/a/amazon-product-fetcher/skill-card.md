@@ -1,39 +1,54 @@
-## Description: <br>
-Fetches Amazon product data such as title, price, currency, rating, review count, availability, main image, and product URL from a public Amazon URL or ASIN. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Amazon product details, including title, current price, currency, rating, review count, availability, main image, and product URL, from an Amazon URL or ASIN without requiring an API key.
 
-## Publisher: <br>
-[mysmth2003](https://clawhub.ai/user/mysmth2003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mysmth2003](https://clawhub.ai/user/mysmth2003)
 
-## Use Case: <br>
-Developers and external users use this skill to look up individual public Amazon product pages and return structured product details without an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public Amazon product pages and may be blocked by CAPTCHA, HTTP 503 responses, or Amazon anti-scraping controls. <br>
-Mitigation: Use it for individual public product lookups, retry later when blocked, and avoid bulk scraping workflows. <br>
-Risk: The optional marketplace setting can redirect requests away from the default Amazon host if set to a non-Amazon or untrusted domain. <br>
-Mitigation: Keep AMAZON_MARKETPLACE or --marketplace restricted to trusted Amazon marketplace domains. <br>
+## Use Case:
 
+External users and developers use this skill to look up public Amazon product information by URL or ASIN and receive product fields suitable for quick review or downstream agent responses.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text table or JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns product fields including asin, title, price, currency, rating, reviews, availability, image_url, and product_url.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter) <br>
+Risk: The marketplace setting can direct network requests to arbitrary HTTPS hosts instead of only Amazon domains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict the marketplace setting to known Amazon domains and constrain redirects before using the skill in sensitive environments.
+
+Risk: Amazon may return CAPTCHA, 503, or page variants that leave fields empty.
+
+Mitigation: Treat missing fields as lookup failures, retry later, or use an authenticated Amazon data source for high-volume or reliability-sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mysmth2003/skills/amazon-product-fetcher)
+- [Publisher profile](https://clawhub.ai/user/mysmth2003)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text table or JSON object containing Amazon product fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs ASIN, title, price, currency, rating, review count, availability, image URL, and product URL when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

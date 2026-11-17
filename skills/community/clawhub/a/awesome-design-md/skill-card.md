@@ -1,43 +1,63 @@
-## Description: <br>
-A curated markdown collection of DESIGN.md design-system references that agents can use to reproduce the visual style of well-known websites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a curated index of brand-inspired DESIGN.md design-system references that agents can use to adapt website and application visual styles.
 
-## Publisher: <br>
-[laojun509](https://clawhub.ai/user/laojun509) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laojun509](https://clawhub.ai/user/laojun509)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to find and copy DESIGN.md style references into projects so generated UI can follow a selected product or brand aesthetic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Design details are mostly linked to external getdesign.md pages rather than bundled in the package. <br>
-Mitigation: Review the linked design-reference pages before using their content in production work. <br>
-Risk: Copied DESIGN.md references may reproduce brand-specific visual styles too closely for a user's intended use. <br>
-Mitigation: Treat the references as inspiration and review generated UI for trademark, brand, and product-fit concerns before release. <br>
+## Use Case:
 
+Developers and design-focused agents use this skill to find visual style references for familiar product, brand, developer-tool, fintech, and consumer website aesthetics. It is best suited for generating UI guidance, markdown design references, and implementation prompts after reviewing the linked source material.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/laojun509/awesome-design-md) <br>
-- [Google Stitch DESIGN.md overview](https://stitch.withgoogle.com/docs/design-md/overview/) <br>
-- [Google Stitch DESIGN.md format](https://stitch.withgoogle.com/docs/design-md/format/) <br>
-- [getdesign.md design references](https://getdesign.md/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown documents with inline shell commands and external design-reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides design reference text and copy instructions; it does not execute automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The packaged artifact does not include the advertised local DESIGN.md files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that any referenced design system is available at the linked source before relying on it in a project.
+
+Risk: Most entries point to remote getdesign.md pages.
+
+Mitigation: Review linked content before copying it into a project or asking an agent to implement from it.
+
+Risk: The skill is a Chinese-language design-reference package, which may affect reviewer comprehension.
+
+Mitigation: Have a reviewer who can understand the source language or translate the relevant sections before approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laojun509/skills/awesome-design-md)
+- [Packaged Skill README](artifact/README.md)
+- [Packaged Skill Definition](artifact/SKILL.md)
+- [Google Stitch DESIGN.md Overview](https://stitch.withgoogle.com/docs/design-md/overview/)
+- [Google Stitch DESIGN.md Format](https://stitch.withgoogle.com/docs/design-md/format/)
+- [Vercel Inspired Design System](https://getdesign.md/vercel/design-md)
+- [NVIDIA Inspired Design System](https://getdesign.md/nvidia/design-md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown guidance with links and occasional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is packaged; most design details are external links that should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

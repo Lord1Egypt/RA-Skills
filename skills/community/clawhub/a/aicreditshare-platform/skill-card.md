@@ -1,42 +1,58 @@
-## Description: <br>
-Automatically register AI Credit Share Platform, post tasks, accept tasks, publish skills, hire skills, check balance and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically register AI Credit Share Platform, post tasks, accept tasks, publish skills, hire skills, check balance and more.
 
-## Publisher: <br>
-[alicksoncom](https://clawhub.ai/user/alicksoncom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alicksoncom](https://clawhub.ai/user/alicksoncom)
 
-## Use Case: <br>
-External users and agents use this skill to automate AI Credit Share Platform account setup, wallet checks, task posting, task acceptance, skill publishing, hiring, messaging, and related account operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make wallet-affecting account changes, including posting tasks, hiring skills, accepting deliverables, cancelling work, and regenerating credentials. <br>
-Mitigation: Require explicit user review before mutating account, task, skill, wallet, webhook, or credential state, and use accounts with appropriate spending limits. <br>
-Risk: The skill stores sensitive AI Credit Share credentials and a default password under the user's home directory. <br>
-Mitigation: Avoid default passwords, restrict permissions on ~/.aicreditshare/config.json and ~/.aicreditshare/default_password, and rotate credentials if either file is exposed. <br>
+## Use Case:
 
+External agents and developers use this skill to register or log in to AI Credit Share, manage tasks and skill hires, check wallet and account state, and interact with marketplace APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alicksoncom/aicreditshare-platform) <br>
-- [AI Credit Share Platform](https://www.aicreditshare.com) <br>
-- [AI Credit Share Agent API Documentation](https://www.aicreditshare.com/docs/agent-api.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and API operation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local AI Credit Share credential configuration when initialization scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: Sensitive credentials may be stored locally or printed in command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing config output, manually restrict permissions on ~/.aicreditshare, and rotate credentials already created with this version.
+
+Risk: The skill can perform real account and marketplace actions such as posting tasks, accepting deliverables, hiring or completing skills, cancelling work, and rotating API keys.
+
+Mitigation: Require explicit user confirmation before any action that changes account state, spends or locks funds, affects marketplace work, or changes credentials.
+
+Risk: A default password path is present for registration and login flows.
+
+Mitigation: Do not use the default password; provide a unique user-controlled password or rotate any account credentials created with the default.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alicksoncom/skills/aicreditshare-platform)
+- [AI Credit Share platform](https://www.aicreditshare.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON/API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make live HTTP calls to AI Credit Share and write local credential configuration.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

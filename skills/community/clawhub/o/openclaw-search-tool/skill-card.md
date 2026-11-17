@@ -1,42 +1,58 @@
-## Description: <br>
-Search the web using LLMs via OpenRouter. Use for current web data, API docs, market research, news, fact-checking, or any question that benefits from live internet access and reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the web using LLMs via OpenRouter for current web data, API docs, market research, news, fact-checking, and questions that benefit from live internet access and reasoning.
 
-## Publisher: <br>
-[aaronn](https://clawhub.ai/user/aaronn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aaronn](https://clawhub.ai/user/aaronn)
 
-## Use Case: <br>
-Developers and OpenClaw agents use this skill to run live web research through OpenRouter for current facts, API documentation, market research, news, and citation-heavy answers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to OpenRouter and may include sensitive context if the user provides it. <br>
-Mitigation: Do not include secrets or private customer/internal data in research prompts. <br>
-Risk: Long-running web research can increase runtime and API cost. <br>
-Mitigation: Use an OpenRouter key with spending limits and monitor long-running sub-agent or exec sessions. <br>
-Risk: Live web research may return incomplete, outdated, or misleading source material. <br>
-Mitigation: Review cited sources and validate important claims before relying on the answer. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Research Tool homepage](https://github.com/aaronn/openclaw-search-tool) <br>
-- [OpenRouter API keys](https://openrouter.ai/keys) <br>
+## Use Case:
 
+Developers and OpenClaw agents use this skill to perform live web research, documentation lookups, market and news research, and fact-checking with cited sources through OpenRouter.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with citations and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the research-tool binary and OPENROUTER_API_KEY; stdout contains the response while stderr may contain progress, reasoning traces, and token usage.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs an external Cargo-installed CLI that uses an OpenRouter API key.
+
+Mitigation: Install only from a reviewed or pinned version and protect the API key with normal secret-handling practices.
+
+Risk: Research queries may be built from untrusted text, creating command-construction risk when invoked through a shell.
+
+Mitigation: Pass queries through safe argument handling or use --stdin instead of interpolating untrusted text into shell commands.
+
+Risk: OpenRouter usage can incur per-query costs.
+
+Mitigation: Use an API key with spending limits and choose reasoning effort levels appropriate to the task.
+
+## Reference(s):
+
+- [Openclaw Search Tool Homepage](https://github.com/aaronn/openclaw-search-tool)
+- [OpenRouter API Keys](https://openrouter.ai/keys)
+- [ClawHub Skill Page](https://clawhub.ai/aaronn/skills/openclaw-search-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response text with citations on stdout; progress, reasoning status, and token usage on stderr.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the research-tool binary and OPENROUTER_API_KEY; supports effort, model, system prompt, stdin, max token, and timeout options.]
+
+## Skill Version(s):
+
+0.1.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

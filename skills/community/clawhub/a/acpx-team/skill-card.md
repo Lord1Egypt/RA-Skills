@@ -1,43 +1,59 @@
-## Description: <br>
-The skill guides agents in using acpx and the Agent Client Protocol to delegate work, coordinate multi-agent councils, run deliberation workflows, and manage ACP-compatible coding-agent sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent collaboration and task delegation via the Agent Client Protocol (ACP) using acpx for teams formed from Claude Code, Codex, OpenCode, Gemini, Cursor, Copilot, and other ACP-compatible agents.
 
-## Publisher: <br>
-[csuwl](https://clawhub.ai/user/csuwl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[csuwl](https://clawhub.ai/user/csuwl)
 
-## Use Case: <br>
-Developers and coding agents use this skill to coordinate multiple ACP-compatible agents for code review, security audits, architecture review, implementation, testing, and consensus-building workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can normalize approval-bypassing or auto-approval agent modes during delegated coding work. <br>
-Mitigation: Keep read-only, deny-all, or approval-gated modes as defaults, and reserve permission-bypass modes for tightly controlled automation. <br>
-Risk: Delegated prompts and code context may be shared with external AI providers through configured agents. <br>
-Mitigation: Avoid secrets and sensitive data, use clean branches or sandboxes, and confirm provider policies before sharing task content. <br>
-Risk: Global npm installs and delegated agent commands can affect the local development environment. <br>
-Mitigation: Pin and verify npm-installed tools where possible and run delegated work in isolated workspaces. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate ACP-compatible coding agents for parallel reviews, security audits, architecture discussions, implementation delegation, and consensus-building workflows.
 
-## Reference(s): <br>
-- [Collaboration Protocols](references/protocols.md) <br>
-- [Role Definitions & Team Presets](references/roles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include multi-agent workflow plans, role assignments, session-management commands, and approval-mode recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill delegates coding work to multiple agents and may encourage high-impact execution modes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use default, plan, deny-all, or narrowly scoped read approval unless running in a disposable branch, sandbox, or CI runner with minimal credentials.
+
+Risk: The artifact recommends mutable global package installation with latest versions.
+
+Mitigation: Verify package names and publishers, pin versions where possible, and install only when multi-agent coding delegation is intended.
+
+Risk: Persistent sessions and temporary files can retain sensitive project context.
+
+Mitigation: Use private temporary directories and clean up or close sessions after collaboration workflows complete.
+
+## Reference(s):
+
+- [Role Definitions & Team Presets](references/roles.md)
+- [Collaboration Protocols](references/protocols.md)
+- [ClawHub skill page](https://clawhub.ai/csuwl/skills/acpx-team)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multi-agent role assignments, protocol steps, session commands, and permission posture recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

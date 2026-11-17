@@ -1,43 +1,62 @@
-## Description: <br>
-Interactive CLI wizard for registering an agent on A2A Marketplace, collecting wallet and profile details, handling a $0.01 USDC Polygon registration fee, and saving local credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive CLI wizard for onboarding an agent to the A2A Marketplace by collecting wallet, profile, service, payment, and registration details.
 
-## Publisher: <br>
-[marcus20232023](https://clawhub.ai/user/marcus20232023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcus20232023](https://clawhub.ai/user/marcus20232023)
 
-## Use Case: <br>
-Developers and marketplace participants use this skill to create an A2A Marketplace agent profile, optionally list a first service, complete the required registration payment, and save credentials for later marketplace use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup flow installs npm dependencies, creates a shell command symlink, may append ~/bin to ~/.bashrc, and then starts the signup wizard. <br>
-Mitigation: Review setup.sh before running it, run it only in a trusted shell environment, and confirm any PATH changes are acceptable. <br>
-Risk: The skill handles wallet addresses, registration payment flow details, auth tokens, .env data, and ~/.a2a-agent-config credentials. <br>
-Mitigation: Protect the generated .env and ~/.a2a-agent-config files as secrets, avoid reusing generated test wallets for real funds, and keep wallet private keys outside this workflow. <br>
-Risk: The marketplace API URL can be configured, so a malicious or mistaken endpoint could receive registration and wallet metadata. <br>
-Mitigation: Use only a trusted A2A_API_URL and verify the endpoint before submitting registration or payment information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marcus20232023/a2a-agent-signup) <br>
-- [A2A Marketplace](https://a2a.ex8.ca) <br>
-- [A2A Marketplace JSON-RPC endpoint](https://a2a.ex8.ca/a2a/jsonrpc) <br>
+## Use Case:
 
+Developers and service providers use this skill to register an agent profile, optionally create an initial service listing, and submit payment proof for A2A Marketplace onboarding.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Interactive terminal prompts, status text, JSON snippets, shell commands, and local configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes .env in the current directory and ~/.a2a-agent-config with restrictive file permissions; setup may create a ~/bin symlink and update ~/.bashrc.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation can persistently modify the user's shell PATH and create a command symlink.
+
+Mitigation: Review setup.sh and package postinstall behavior before installation, and remove unwanted PATH or symlink changes after testing.
+
+Risk: The CLI stores wallet and authentication data locally.
+
+Mitigation: Run it only in a trusted environment, keep generated .env files out of source repositories, and protect ~/.a2a-agent-config.
+
+Risk: Using an untrusted A2A_API_URL can expose users to command execution through the browser-opening payment path.
+
+Mitigation: Use the default trusted endpoint unless the browser-opening command injection issue has been fixed and the alternate endpoint is trusted.
+
+Risk: The signup flow charges a small USDC registration fee to a documented wallet.
+
+Mitigation: Confirm the fee amount, recipient wallet, and Polygon network before submitting payment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marcus20232023/skills/a2a-agent-signup)
+- [A2A Marketplace](https://a2a.ex8.ca)
+- [A2A JSON-RPC endpoint](https://a2a.ex8.ca/a2a/jsonrpc)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text, JSON]
+
+**Output Format:** [Terminal prompts and status text, shell setup commands, local JSON configuration, and optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write .env in the current directory and ~/.a2a-agent-config in the user's home directory.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

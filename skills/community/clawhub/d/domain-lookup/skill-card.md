@@ -1,45 +1,59 @@
-## Description: <br>
-一个提供全面域名研究工具（包括RDAP、WHOIS和DNS查询功能）的模型上下文协议（MCP）服务器。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个提供全面域名研究工具（包括RDAP、WHOIS和DNS查询功能）的模型上下文协议（MCP）服务器。
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-Developers and external users use this skill to query domain registration, nameserver, contact, and status information through RDAP or WHOIS lookup after configuring a XiaoBenYang API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill collects and stores the XiaoBenYang API key in plaintext. <br>
-Mitigation: Prefer setting XBY_APIKEY through an environment variable or secret manager, avoid committing .env, and rotate the key if it is exposed. <br>
-Risk: Domain queries and API credentials are sent to the XiaoBenYang backend. <br>
-Mitigation: Install only when the backend is trusted for the intended use case and avoid submitting sensitive domains unless that data sharing is acceptable. <br>
-Risk: Raw WHOIS or RDAP results may include contact or registration details. <br>
-Mitigation: Review raw results before sharing them and redact sensitive registration details when needed. <br>
-Risk: Stale unrelated instructions make the skill's data flow harder to trust. <br>
-Mitigation: Review the prompt instructions and the active domain_lookup tool behavior before enabling the skill in production workflows. <br>
+## Use Case:
 
+Developers and external users use this skill to query domain registration, RDAP, WHOIS, DNS-related information, nameservers, contact data, and domain status through the XiaoBenYang API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alinklab/skills/domain-lookup) <br>
-- [XiaoBenYang API key portal](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with optional raw JSON from RDAP or WHOIS API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XBY_APIKEY; raw lookup data may be included when include_raw is true.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill stores the required XBY API key in a plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited-scope key, avoid shared workspaces, verify local file permissions, and remove the .env entry when finished.
+
+Risk: Domain lookup requests and the XBY API key are sent to XiaoBenYang's API.
+
+Mitigation: Review the upstream service before use and avoid submitting sensitive domains unless that third-party processing is acceptable.
+
+Risk: The source documentation contains copy-paste mismatches that may confuse reviewers about the skill's scope.
+
+Mitigation: Review the advertised domain_lookup behavior against scripts/tools.py and the security evidence before installation.
+
+## Reference(s):
+
+- [XiaoBenYang API key and service site](https://xiaobenyang.com)
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/domain-lookup)
+- [ClawHub publisher profile](https://clawhub.ai/user/alinklab)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, configuration guidance]
+
+**Output Format:** [Markdown or plain text summarizing JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided XBY_APIKEY before lookup requests can run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

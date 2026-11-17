@@ -1,47 +1,65 @@
-## Description: <br>
-Operate the Notion Public API through UXC with a curated OpenAPI schema for search, block traversal, page reads, content writes, and data source or database inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate the Notion Public API through UXC with a curated OpenAPI schema for search, block traversal, page reads, content writes, and data source/database inspection.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect, traverse, and update Notion workspace content through the Notion Public API when recursive reads or structured writes are needed beyond the Notion MCP surface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use the caller's Notion API permissions to read or modify workspace content. <br>
-Mitigation: Use a dedicated Notion integration connected only to the required pages, data sources, or databases. <br>
-Risk: Create, update, append, trash, or delete operations can change Notion content. <br>
-Mitigation: Confirm every write operation with the user before execution and grant write access only when required. <br>
-Risk: A remote or changed OpenAPI schema could alter the available operation surface. <br>
-Mitigation: Use a pinned or bundled schema for sensitive workflows. <br>
+## Use Case:
 
+Developers and agent users use this skill to search, traverse, inspect, and update Notion workspace content through REST API operations exposed by UXC. It is especially useful when recursive block traversal or structured writes are needed beyond a standard Notion MCP workflow.
 
-## Reference(s): <br>
-- [Usage patterns](references/usage-patterns.md) <br>
-- [Curated OpenAPI schema](references/notion-public.openapi.json) <br>
-- [Notion API reference](https://developers.notion.com/reference) <br>
-- [Retrieve a database](https://developers.notion.com/reference/retrieve-a-database) <br>
-- [Retrieve a block](https://developers.notion.com/reference/retrieve-a-block) <br>
-- [Notion API versioning](https://developers.notion.com/reference/versioning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Notion API JSON envelopes and requires caller review before write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A Notion integration token can grant broad read or write access to connected workspace content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Notion integration token stored in an environment variable or secret store, and connect it only to the specific pages, data sources, or databases intended for agent access.
+
+Risk: Write, trash, and delete operations can change or remove Notion content.
+
+Mitigation: Require explicit user confirmation and a clear change summary before page creation, page updates, block appends, block updates, trash, or delete operations.
+
+Risk: Reusing the notion-mcp credential can create cross-tool authentication side effects.
+
+Mitigation: Prefer a separate notion-openapi credential; use the shared credential path only after accepting the interoperability tradeoff and validating the effective auth binding.
+
+Risk: Fetching a mutable OpenAPI schema URL can change the linked API surface over time.
+
+Mitigation: Pin or review the OpenAPI schema before linking the CLI for operational use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jolestar/skills/notion-openapi-skill)
+- [Usage Patterns](references/usage-patterns.md)
+- [Curated Notion Public API OpenAPI Schema](references/notion-public.openapi.json)
+- [Notion API Reference](https://developers.notion.com/reference)
+- [Notion API Versioning](https://developers.notion.com/reference/versioning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces UXC command guidance for Notion REST API calls; API responses are expected as JSON from the linked CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,51 @@
-## Description: <br>
-Helps agents create, update, and apply project DESIGN.md design and brand specification documents so generated UI follows a consistent visual system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent create, update, and apply a project-level DESIGN.md design and brand specification so generated UI follows the project's visual system.
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-Developers, designers, and AI coding-agent users use this skill to create or update DESIGN.md files and apply those rules when generating UI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or updated design guidance could overwrite or dilute an existing project's brand rules. <br>
-Mitigation: Review the generated DESIGN.md or diff before accepting changes, especially when the project already has design documentation. <br>
-Risk: Design documents may be read by agents during later work and should not contain private operational details. <br>
-Mitigation: Keep secrets and sensitive internal information out of DESIGN.md and related brand documents. <br>
+## Use Case:
 
+Developers, designers, and coding-agent users use this skill to create or maintain a root-level DESIGN.md and guide UI generation against a documented brand, layout, typography, color, and component system.
 
-## Reference(s): <br>
-- [DESIGN.md template](references/design-md-template.md) <br>
-- [Google Stitch DESIGN.md overview](https://stitch.withgoogle.com/docs/design-md/overview/) <br>
-- [VoltAgent awesome-design-md](https://github.com/VoltAgent/awesome-design-md) <br>
-- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/design-md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Code, Guidance] <br>
-**Output Format:** [Markdown design specifications with optional UI code guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a project-level DESIGN.md and guide UI generation against its rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can create or overwrite a project DESIGN.md, which may replace existing design documentation if changes are not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check whether DESIGN.md already exists and review proposed additions or edits before allowing file writes.
+
+## Reference(s):
+
+- [DESIGN.md template](references/design-md-template.md)
+- [VoltAgent awesome-design-md](https://github.com/VoltAgent/awesome-design-md)
+- [Google Stitch DESIGN.md overview](https://stitch.withgoogle.com/docs/design-md/overview/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Code, Configuration]
+
+**Output Format:** [Markdown guidance and project file content, sometimes accompanied by UI code or configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a project DESIGN.md after reviewing product positioning, existing design assets, and requested design changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-核心ROIC（投入资本回报率）深度分析助手，用于A股、港股、美股上市公司的ROIC计算与资本效率分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+核心ROIC（投入资本回报率）深度分析助手。当用户提到 ROIC、投入资本回报率、资本效率、核心盈利能力、资本回报率分析、穿透ROIC、NOPAT、投入资本计算时自动使用。支持A股、港股、美股上市公司的ROIC精确计算。
 
-## Publisher: <br>
-[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx)
 
-## Use Case: <br>
-Investors, analysts, and finance-focused agents use this skill to calculate core ROIC, NOPAT, and invested capital from listed-company financial data, then produce a Markdown-style analysis that highlights items requiring manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package mixes ROIC financial-analysis material with unrelated QQ bot documentation. <br>
-Mitigation: Review the artifact contents before installation and confirm the installed skill matches the intended ROIC use case. <br>
-Risk: The skill can run scripts, fetch external financial data, and write local reports. <br>
-Mitigation: Require explicit user approval before tool execution and review generated files and network-dependent results. <br>
-Risk: ROIC outputs may be incomplete or misleading if financial data, hidden financial assets, acquisition intangibles, or long-term equity investment splits are not independently checked. <br>
-Mitigation: Validate outputs against annual reports and other authoritative filings before using results for investment decisions. <br>
+## Use Case:
 
+External users and analysts use this skill to calculate and review core ROIC, NOPAT, invested capital, and multi-year capital efficiency for A-share, Hong Kong, and U.S. listed companies. It can run bundled Python scripts for baseline data collection and then guides manual review of annual-report footnotes before final conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cgxxxxxxxxxxxx/roic-toolkit) <br>
-- [finance-data API](https://www.codebuddy.cn/v2/tool/financedata) <br>
-- [SEC EDGAR company search](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&company={ticker}&type=10-K&dateb=&owner=include&count=1&output=atom) <br>
-- [Eastmoney notices](https://data.eastmoney.com/notices/detail/{股票代码}/AN{公告日期}{序号}.html) <br>
-- [Xueqiu annual report PDF pattern](https://stockmc.xueqiu.com/{YYYYMM}/{代码}_{YYYYMMDD}_CQ65.pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown reports with tables, calculations, warning markers, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses external financial-data sources and flags selected balance-sheet items for manual verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package includes unrelated QQ bot setup instructions and dependencies that do not match the ROIC analysis purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not follow the bundled QQ bot README or install the listed bot dependencies for ROIC analysis; run only the ROIC workflow for explicit ROIC tasks.
+
+Risk: The skill fetches external financial data, SEC filings, and annual-report material, and its generated reports may be incomplete or stale.
+
+Mitigation: Treat generated reports as drafts; verify source filings, data fields, and report dates before relying on the analysis.
+
+Risk: Certain ROIC adjustments require judgment, including hidden financial assets, long-term equity investment splits, and acquired intangible amortization.
+
+Mitigation: Manually review annual-report notes for all warning-marked items and document any final adjustments before presenting conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cgxxxxxxxxxxxx/skills/roic-toolkit)
+- [finance-data API](https://www.codebuddy.cn/v2/tool/financedata)
+- [SEC EDGAR company search](https://www.sec.gov/cgi-bin/browse-edgar)
+- [Eastmoney annual-report notices](https://data.eastmoney.com/notices/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports, JSON data files, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated financial reports are drafts and may include manual-review warnings for annual-report footnotes and unavailable fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

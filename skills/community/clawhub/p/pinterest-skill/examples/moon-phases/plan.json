@@ -1,0 +1,105 @@
+{
+ "timezone": "America/New_York",
+ "rules": {
+  "per_day": 1,
+  "link_gap_days": 7,
+  "max_per_day": 5
+ },
+ "manifests": [
+  "pins/manifest.json"
+ ],
+ "accounts": {
+  "main": {
+   "handle": "Your Pinterest account",
+   "socialAccountId": null,
+   "timezone": "America/New_York",
+   "times": [
+    "20:30"
+   ],
+   "boards": {
+    "Moon and night sky": null,
+    "Space science lessons": null
+   }
+  }
+ },
+ "links": {
+  "moon-phases": {
+   "url": "https://science.nasa.gov/moon/moon-phases/",
+   "page": "page.json",
+   "keywords": [
+    "moon phases",
+    "lunar cycle",
+    "phases of the moon"
+   ]
+  }
+ },
+ "pins": [
+  {
+   "id": "phases-grid",
+   "account": "main",
+   "link": "moon-phases",
+   "file": "pins/phases-grid.jpg",
+   "layout": "grid",
+   "board": "Moon and night sky",
+   "title": "Moon phases in order: all 8, from new Moon to waning crescent",
+   "description": "The 8 Moon phases in order: new Moon, waxing crescent, first quarter, waxing gibbous, full Moon, waning gibbous, third quarter and waning crescent, as seen from the Northern Hemisphere. The cycle repeats every 29.5 days. Illustrations based on NASA's Lunar Reconnaissance Orbiter view of the Moon.",
+   "alt": "Illustration of the eight Moon phases in a grid, from a dark new Moon through a thin crescent, a half Moon and a full Moon, and back to a crescent.",
+   "at": "2026-11-16T20:30"
+  },
+  {
+   "id": "phases-video",
+   "account": "main",
+   "link": "moon-phases",
+   "file": "video/phases.mp4",
+   "layout": "video",
+   "board": "Moon and night sky",
+   "title": "Moon phases in 12 seconds: one full lunar cycle",
+   "description": "Watch one full cycle of Moon phases in 12 seconds, from the full Moon of 3 January 2026 to the next on 1 February, sped up from NASA's Scientific Visualization Studio animation of the Moon in 2026. In the sky it takes 29.5 days.",
+   "sources": [
+    "nasa-svs-5587"
+   ],
+   "at": "2026-11-23T20:30"
+  },
+  {
+   "id": "same-side",
+   "account": "main",
+   "link": "moon-phases",
+   "file": "pins/same-side.jpg",
+   "layout": "photo",
+   "board": "Space science lessons",
+   "title": "Same side of the Moon: why we always see it, and tidal locking",
+   "description": "Why do we always see the same side of the Moon? It is tidally locked: it spins once for every trip around Earth, so the same face points our way, give or take a slight wobble called libration. The Moon phases only change how much of that face is lit. Photo: NASA, the full Moon over Kennedy Space Center.",
+   "alt": "A full Moon glowing red-orange low over a dark tree line, under the headline: Why we always see the same side of the Moon.",
+   "keywords": [
+    "same side of the moon",
+    "tidal locking",
+    "tidally locked"
+   ],
+   "at": "2026-11-30T20:30"
+  },
+  {
+   "id": "cycle",
+   "account": "main",
+   "link": "moon-phases",
+   "file": "pins/cycle.jpg",
+   "layout": "fact",
+   "board": "Space science lessons",
+   "title": "Lunar cycle length: 29.5 days from new Moon to new Moon",
+   "description": "How long is a lunar cycle? The Moon phases repeat every 29.5 days, from one new Moon to the next, while one trip around Earth takes about 27.3 days. Photo: a NASA astronaut on the International Space Station.",
+   "alt": "A thin crescent Moon above the glowing edge of Earth seen from space, with the number 29.5 in large gold type.",
+   "at": "2026-12-07T20:30"
+  },
+  {
+   "id": "when-to-see",
+   "account": "main",
+   "link": "moon-phases",
+   "file": "pins/when-to-see.jpg",
+   "layout": "list",
+   "board": "Moon and night sky",
+   "title": "Moon phases viewing guide: when the main phases rise and set",
+   "description": "When can you see the main Moon phases? A first quarter Moon rises around midday and is best in the evening; a full Moon rises at sunset and sets at sunrise; a third quarter Moon rises around midnight. Save it for your next clear night. Photo: NASA/Bill Ingalls, the full Moon over the U.S. Capitol in the early evening.",
+   "alt": "A list of when the new, first quarter, full and third quarter Moons rise and set, above a photo of an orange full Moon in a dusk sky.",
+   "at": "2026-12-14T20:30"
+  }
+ ]
+}

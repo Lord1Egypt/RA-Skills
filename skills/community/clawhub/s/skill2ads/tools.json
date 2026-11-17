@@ -20,12 +20,12 @@
     "executor": {
       "type": "function",
       "entry": "src/index.ts",
-      "function": "scrape"
+      "function": "scrapeWebsite"
     }
   },
   {
     "name": "generate_ads",
-    "description": "Analyze scraped website content to extract brand profile, then generate 5 Meta-ready ad variants with targeting and scheduling.",
+    "description": "Analyze scraped website content to extract brand profile, then generate 4-5 Meta-ready ad variants with targeting and scheduling.",
     "parameters": {
       "type": "object",
       "properties": {
@@ -53,12 +53,12 @@
     "executor": {
       "type": "function",
       "entry": "src/index.ts",
-      "function": "generate"
+      "function": "generateAds"
     }
   },
   {
     "name": "website_to_ads",
-    "description": "End-to-end: scrape a website URL and generate 5 brand-matched Meta ad variants in one step.",
+    "description": "End-to-end: scrape a website URL and generate 4-5 brand-matched Meta ad variants in one step.",
     "parameters": {
       "type": "object",
       "properties": {

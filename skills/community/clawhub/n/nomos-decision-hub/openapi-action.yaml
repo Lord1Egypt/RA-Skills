@@ -1,0 +1,2431 @@
+openapi: 3.1.0
+info:
+  title: NOMOS Intelligent Decision-Hub
+  description: Auditable decision orchestration with deterministic evaluation, causal counterfactuals,
+    scenario stress tests, cognitive risk challenges, and governance.
+  version: 0.3.0
+paths:
+  /health:
+    get:
+      summary: Health Check
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+                title: Response Healthcheck
+  /v1/auth/me:
+    get:
+      summary: Auth Me
+      operationId: authWhoAmI
+      parameters: []
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Authwhoami
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - bearerAuth: []
+  /v1/hub/analyze:
+    post:
+      summary: Analyze Decision Hub
+      operationId: analyzeDecisionHub
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HubAnalysisRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HubReport'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - bearerAuth: []
+  /v1/hub/reports/{hub_run_id}:
+    get:
+      summary: Get Decision Hub Report
+      operationId: getDecisionHubReport
+      parameters:
+      - name: hub_run_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Hub Run Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HubReport'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - bearerAuth: []
+  /v1/decisions/evaluate:
+    post:
+      summary: Evaluate Decision
+      operationId: evaluateDecision
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DecisionRequest-Input'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DecisionRecord'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - bearerAuth: []
+  /v1/decisions/{decision_id}:
+    get:
+      summary: Get Decision
+      operationId: getDecision
+      parameters:
+      - name: decision_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Decision Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DecisionRecord'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - bearerAuth: []
+  /v1/decisions/{decision_id}/history:
+    get:
+      summary: Get Decision History
+      operationId: getDecisionHistory
+      parameters:
+      - name: decision_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Decision Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DecisionRecord'
+                title: Response Getdecisionhistory
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - bearerAuth: []
+  /v1/decisions/{decision_id}/approval:
+    post:
+      summary: Record Decision Approval
+      operationId: recordDecisionApproval
+      parameters:
+      - name: decision_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Decision Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApprovalRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DecisionRecord'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - bearerAuth: []
+  /v1/hub/sessions:
+    post:
+      summary: Start Reconstruction Session
+      operationId: startReconstructionSession
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartSessionRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconstructionSession'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - bearerAuth: []
+  /v1/hub/sessions/{session_id}/advance:
+    post:
+      summary: Advance Reconstruction Session
+      operationId: advanceReconstructionSession
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdvanceSessionRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconstructionSession'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - bearerAuth: []
+  /v1/hub/sessions/{session_id}/human-decision:
+    post:
+      summary: Human Session Decision
+      operationId: humanSessionDecision
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HumanSessionDecisionRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconstructionSession'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - bearerAuth: []
+  /v1/hub/sessions/{session_id}:
+    get:
+      summary: Get Reconstruction Session
+      operationId: getReconstructionSession
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconstructionSession'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - bearerAuth: []
+components:
+  schemas:
+    AdvanceSessionRequest:
+      properties:
+        delta_vars:
+          items:
+            $ref: '#/components/schemas/DeltaVar'
+          type: array
+          title: Delta Vars
+          default: []
+      type: object
+      title: AdvanceSessionRequest
+      description: Request body for advancing a session.
+    AlgorithmAuditEvent:
+      properties:
+        sequence:
+          type: integer
+          minimum: 1.0
+          title: Sequence
+        stage:
+          type: string
+          minLength: 1
+          title: Stage
+        rule_id:
+          type: string
+          minLength: 1
+          title: Rule Id
+        operation:
+          type: string
+          minLength: 1
+          title: Operation
+        inputs:
+          additionalProperties: true
+          type: object
+          title: Inputs
+        output:
+          title: Output
+        references:
+          items:
+            type: string
+          type: array
+          title: References
+        previous_event_hash:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{64}$
+          - type: 'null'
+          title: Previous Event Hash
+        event_hash:
+          type: string
+          pattern: ^[0-9a-f]{64}$
+          title: Event Hash
+      additionalProperties: false
+      type: object
+      required:
+      - sequence
+      - stage
+      - rule_id
+      - operation
+      - event_hash
+      title: AlgorithmAuditEvent
+    Alternative:
+      properties:
+        id:
+          type: string
+          pattern: ^S[0-9A-Za-z_-]+$
+          title: Id
+        name:
+          type: string
+          minLength: 1
+          title: Name
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        metrics:
+          additionalProperties: true
+          type: object
+          title: Metrics
+        required_assumptions:
+          items:
+            type: string
+          type: array
+          title: Required Assumptions
+        evidence_ids:
+          items:
+            type: string
+          type: array
+          title: Evidence Ids
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - name
+      title: Alternative
+    AlternativeEvaluation:
+      properties:
+        alternative_id:
+          type: string
+          title: Alternative Id
+        status:
+          $ref: '#/components/schemas/AlternativeStatus'
+        hard_constraints_passed:
+          type: boolean
+          title: Hard Constraints Passed
+        constraint_checks:
+          items:
+            $ref: '#/components/schemas/ConstraintCheck'
+          type: array
+          title: Constraint Checks
+        criterion_scores:
+          items:
+            $ref: '#/components/schemas/CriterionScore'
+          type: array
+          title: Criterion Scores
+        base_score:
+          anyOf:
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Base Score
+        soft_constraint_penalty:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Soft Constraint Penalty
+          default: '0'
+        total_score:
+          anyOf:
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Total Score
+        missing_metrics:
+          items:
+            type: string
+          type: array
+          title: Missing Metrics
+        unavailable_evidence_ids:
+          items:
+            type: string
+          type: array
+          title: Unavailable Evidence Ids
+      additionalProperties: false
+      type: object
+      required:
+      - alternative_id
+      - status
+      - hard_constraints_passed
+      - constraint_checks
+      title: AlternativeEvaluation
+    AlternativeStatus:
+      type: string
+      enum:
+      - eligible
+      - ineligible
+      - incomplete
+      title: AlternativeStatus
+    ApprovalRecord:
+      properties:
+        approved:
+          type: boolean
+          title: Approved
+        approver:
+          type: string
+          title: Approver
+        authorization_ref:
+          type: string
+          title: Authorization Ref
+        note:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Note
+        approved_at:
+          type: string
+          format: date-time
+          title: Approved At
+      additionalProperties: false
+      type: object
+      required:
+      - approved
+      - approver
+      - authorization_ref
+      title: ApprovalRecord
+    ApprovalRequest:
+      properties:
+        approved:
+          type: boolean
+          title: Approved
+        approver:
+          type: string
+          minLength: 1
+          title: Approver
+        authorization_ref:
+          type: string
+          minLength: 1
+          title: Authorization Ref
+        note:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Note
+      additionalProperties: false
+      type: object
+      required:
+      - approved
+      - approver
+      - authorization_ref
+      title: ApprovalRequest
+    Assumption:
+      properties:
+        id:
+          type: string
+          pattern: ^A[0-9A-Za-z_-]+$
+          title: Id
+        statement:
+          type: string
+          minLength: 1
+          title: Statement
+        source:
+          $ref: '#/components/schemas/AssumptionSource'
+        falsification_condition:
+          type: string
+          minLength: 1
+          title: Falsification Condition
+        critical:
+          type: boolean
+          title: Critical
+          default: true
+        dependencies:
+          items:
+            type: string
+          type: array
+          title: Dependencies
+        evidence_ids:
+          items:
+            type: string
+          type: array
+          title: Evidence Ids
+        responsibility:
+          anyOf:
+          - $ref: '#/components/schemas/ResponsibilityRef'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - statement
+      - source
+      - falsification_condition
+      title: Assumption
+    AssumptionSource:
+      type: string
+      enum:
+      - explicit
+      - inferred
+      title: AssumptionSource
+    AssumptionState:
+      type: string
+      enum:
+      - assumed
+      - verified
+      - falsified
+      - unfalsifiable
+      title: AssumptionState
+      description: 'Per-round assumption state inside a reconstruction session.
+
+
+        Transitions are monotone: once VERIFIED or FALSIFIED an assumption never
+
+        returns to ASSUMED. UNFALSIFIABLE is a terminal human-declared state.'
+    AuditIssue:
+      properties:
+        code:
+          type: string
+          title: Code
+        severity:
+          $ref: '#/components/schemas/IssueSeverity'
+        path:
+          type: string
+          title: Path
+        message:
+          type: string
+          title: Message
+        blocking:
+          type: boolean
+          title: Blocking
+          default: false
+      additionalProperties: false
+      type: object
+      required:
+      - code
+      - severity
+      - path
+      - message
+      title: AuditIssue
+    CausalReconstructionReport:
+      properties:
+        reconstruction_id:
+          type: string
+          pattern: ^REC-[0-9A-Za-z_-]+$
+          title: Reconstruction Id
+        hypotheses:
+          items:
+            $ref: '#/components/schemas/RootCauseHypothesis'
+          type: array
+          title: Hypotheses
+        signal_count:
+          type: integer
+          minimum: 0.0
+          title: Signal Count
+          description: 输入的偏差信号总数
+        root_candidate_count:
+          type: integer
+          minimum: 0.0
+          title: Root Candidate Count
+          description: 去重后的根因候选数
+        unresolved_branches:
+          items:
+            type: string
+          type: array
+          title: Unresolved Branches
+          description: 因信息真空无法继续追溯的假设 ID
+        algorithm_audit:
+          items:
+            $ref: '#/components/schemas/AlgorithmAuditEvent'
+          type: array
+          title: Algorithm Audit
+        algorithm_audit_root_hash:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{64}$
+          - type: 'null'
+          title: Algorithm Audit Root Hash
+        generated_at:
+          type: string
+          format: date-time
+          title: Generated At
+      additionalProperties: false
+      type: object
+      required:
+      - reconstruction_id
+      - signal_count
+      - root_candidate_count
+      title: CausalReconstructionReport
+      description: '因果重构推演报告。
+
+
+        包含一组候选根因假设和追溯过程的审计信息。
+
+        报告本身不声称确定性结论——它是一份结构化的诊断输入，
+
+        供决策者验证后使用。'
+    CognitiveAuditReport:
+      properties:
+        findings:
+          items:
+            $ref: '#/components/schemas/CognitiveRiskFinding'
+          type: array
+          title: Findings
+        total_findings:
+          type: integer
+          minimum: 0.0
+          title: Total Findings
+        scanner_version:
+          type: string
+          minLength: 1
+          title: Scanner Version
+      additionalProperties: false
+      type: object
+      required:
+      - total_findings
+      - scanner_version
+      title: CognitiveAuditReport
+      description: Structured cognitive audit report.
+    CognitiveRiskFinding:
+      properties:
+        code:
+          type: string
+          minLength: 1
+          title: Code
+          description: 风险代码，如 ANCHORING、CONFIRMATION_BIAS
+        severity:
+          $ref: '#/components/schemas/IssueSeverity'
+        description:
+          type: string
+          minLength: 1
+          title: Description
+          description: 风险描述
+        affected_elements:
+          items:
+            type: string
+          type: array
+          title: Affected Elements
+          description: 受影响的结构元素路径
+        recommendation:
+          type: string
+          title: Recommendation
+          description: 推荐缓解措施
+          default: ''
+      additionalProperties: false
+      type: object
+      required:
+      - code
+      - severity
+      - description
+      title: CognitiveRiskFinding
+      description: A single structural cognitive risk finding.
+    Constraint-Input:
+      properties:
+        id:
+          type: string
+          pattern: ^C[0-9A-Za-z_-]+$
+          title: Id
+        name:
+          type: string
+          minLength: 1
+          title: Name
+        kind:
+          $ref: '#/components/schemas/ConstraintKind'
+        metric:
+          type: string
+          minLength: 1
+          title: Metric
+        operator:
+          $ref: '#/components/schemas/ConstraintOperator'
+        expected:
+          title: Expected
+        penalty:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            exclusiveMinimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Penalty
+          description: Explicit score deduction for a failed soft constraint.
+        responsibility:
+          $ref: '#/components/schemas/ResponsibilityRef'
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - name
+      - kind
+      - metric
+      - operator
+      - expected
+      - responsibility
+      title: Constraint
+    Constraint-Output:
+      properties:
+        id:
+          type: string
+          pattern: ^C[0-9A-Za-z_-]+$
+          title: Id
+        name:
+          type: string
+          minLength: 1
+          title: Name
+        kind:
+          $ref: '#/components/schemas/ConstraintKind'
+        metric:
+          type: string
+          minLength: 1
+          title: Metric
+        operator:
+          $ref: '#/components/schemas/ConstraintOperator'
+        expected:
+          title: Expected
+        penalty:
+          anyOf:
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Penalty
+          description: Explicit score deduction for a failed soft constraint.
+        responsibility:
+          $ref: '#/components/schemas/ResponsibilityRef'
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - name
+      - kind
+      - metric
+      - operator
+      - expected
+      - responsibility
+      title: Constraint
+    ConstraintCheck:
+      properties:
+        constraint_id:
+          type: string
+          title: Constraint Id
+        passed:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Passed
+        actual:
+          title: Actual
+        expected:
+          title: Expected
+        reason:
+          type: string
+          title: Reason
+      additionalProperties: false
+      type: object
+      required:
+      - constraint_id
+      - passed
+      - reason
+      title: ConstraintCheck
+    ConstraintKind:
+      type: string
+      enum:
+      - hard
+      - soft
+      title: ConstraintKind
+    ConstraintOperator:
+      type: string
+      enum:
+      - eq
+      - ne
+      - gt
+      - gte
+      - lt
+      - lte
+      - in
+      - not_in
+      title: ConstraintOperator
+    ConvergenceKind:
+      type: string
+      enum:
+      - fixed_point
+      - no_gain
+      - budget
+      title: ConvergenceKind
+      description: 'Why a reconstruction session stopped.
+
+
+        - FIXED_POINT: re-evaluation changed neither candidates nor hypothesis set.
+
+        - NO_GAIN:     no unresolved branches remain and every open hypothesis is answered.
+
+        - BUDGET:      iteration or evidence budget exhausted.'
+    ConvergenceReport:
+      properties:
+        kind:
+          $ref: '#/components/schemas/ConvergenceKind'
+          description: 收敛类型：fixed_point / no_gain / budget
+        reconstruction_id:
+          type: string
+          pattern: ^REC-[0-9A-Za-z_-]+$
+          title: Reconstruction Id
+        delta_vars:
+          items:
+            $ref: '#/components/schemas/DeltaVar'
+          type: array
+          title: Delta Vars
+        before_leading_candidate_ids:
+          items:
+            type: string
+          type: array
+          title: Before Leading Candidate Ids
+        after_leading_candidate_ids:
+          items:
+            type: string
+          type: array
+          title: After Leading Candidate Ids
+        candidate_set_changed:
+          type: boolean
+          title: Candidate Set Changed
+          description: 应用 delta 后领先候选集合是否变化
+        invalidated_assumption_ids:
+          items:
+            type: string
+          type: array
+          title: Invalidated Assumption Ids
+        is_converged:
+          type: boolean
+          title: Is Converged
+          description: 是否已到达收敛点
+        reason:
+          type: string
+          minLength: 1
+          title: Reason
+          description: 人类可读的收敛/停止说明
+        algorithm_audit:
+          items:
+            $ref: '#/components/schemas/AlgorithmAuditEvent'
+          type: array
+          title: Algorithm Audit
+        algorithm_audit_root_hash:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{64}$
+          - type: 'null'
+          title: Algorithm Audit Root Hash
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - reconstruction_id
+      - candidate_set_changed
+      - is_converged
+      - reason
+      title: ConvergenceReport
+      description: 'Third-layer result: what changes when declared delta_vars are applied.'
+    CounterfactualResult:
+      properties:
+        trigger_assumption_id:
+          type: string
+          title: Trigger Assumption Id
+        status:
+          $ref: '#/components/schemas/CounterfactualStatus'
+        invalidated_assumption_ids:
+          items:
+            type: string
+          type: array
+          title: Invalidated Assumption Ids
+        removed_alternative_ids:
+          items:
+            type: string
+          type: array
+          title: Removed Alternative Ids
+        remaining_eligible_alternative_ids:
+          items:
+            type: string
+          type: array
+          title: Remaining Eligible Alternative Ids
+        baseline_leading_candidate_ids:
+          items:
+            type: string
+          type: array
+          title: Baseline Leading Candidate Ids
+        counterfactual_leading_candidate_ids:
+          items:
+            type: string
+          type: array
+          title: Counterfactual Leading Candidate Ids
+        counterfactual_pareto_frontier_ids:
+          items:
+            type: string
+          type: array
+          title: Counterfactual Pareto Frontier Ids
+        decision_changed:
+          type: boolean
+          title: Decision Changed
+      additionalProperties: false
+      type: object
+      required:
+      - trigger_assumption_id
+      - status
+      - invalidated_assumption_ids
+      - removed_alternative_ids
+      - remaining_eligible_alternative_ids
+      - baseline_leading_candidate_ids
+      - counterfactual_leading_candidate_ids
+      - counterfactual_pareto_frontier_ids
+      - decision_changed
+      title: CounterfactualResult
+    CounterfactualStatus:
+      type: string
+      enum:
+      - leader_stable
+      - leader_changed
+      - no_viable_alternative
+      title: CounterfactualStatus
+    Criterion-Input:
+      properties:
+        id:
+          type: string
+          pattern: ^K[0-9A-Za-z_-]+$
+          title: Id
+        name:
+          type: string
+          minLength: 1
+          title: Name
+        metric:
+          type: string
+          minLength: 1
+          title: Metric
+        weight:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Weight
+        scoring_rule:
+          $ref: '#/components/schemas/ScoringRule'
+        min_value:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Min Value
+        max_value:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Max Value
+        target_value:
+          anyOf:
+          - type: number
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Target Value
+        responsibility:
+          $ref: '#/components/schemas/ResponsibilityRef'
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - name
+      - metric
+      - weight
+      - scoring_rule
+      - min_value
+      - max_value
+      - responsibility
+      title: Criterion
+    Criterion-Output:
+      properties:
+        id:
+          type: string
+          pattern: ^K[0-9A-Za-z_-]+$
+          title: Id
+        name:
+          type: string
+          minLength: 1
+          title: Name
+        metric:
+          type: string
+          minLength: 1
+          title: Metric
+        weight:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Weight
+        scoring_rule:
+          $ref: '#/components/schemas/ScoringRule'
+        min_value:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Min Value
+        max_value:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Max Value
+        target_value:
+          anyOf:
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Target Value
+        responsibility:
+          $ref: '#/components/schemas/ResponsibilityRef'
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - name
+      - metric
+      - weight
+      - scoring_rule
+      - min_value
+      - max_value
+      - responsibility
+      title: Criterion
+    CriterionScore:
+      properties:
+        criterion_id:
+          type: string
+          title: Criterion Id
+        actual:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Actual
+        normalized_score:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Normalized Score
+        weighted_score:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Weighted Score
+      additionalProperties: false
+      type: object
+      required:
+      - criterion_id
+      - actual
+      - normalized_score
+      - weighted_score
+      title: CriterionScore
+    DecisionRecord:
+      properties:
+        request:
+          $ref: '#/components/schemas/DecisionRequest-Output'
+        result:
+          $ref: '#/components/schemas/DecisionResult'
+        approval:
+          anyOf:
+          - $ref: '#/components/schemas/ApprovalRecord'
+          - type: 'null'
+        revision:
+          type: integer
+          minimum: 1.0
+          title: Revision
+          default: 1
+        parent_record_hash:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{64}$
+          - type: 'null'
+          title: Parent Record Hash
+        record_hash:
+          type: string
+          pattern: ^$|^[0-9a-f]{64}$
+          title: Record Hash
+          default: ''
+      additionalProperties: false
+      type: object
+      required:
+      - request
+      - result
+      title: DecisionRecord
+    DecisionRequest-Input:
+      properties:
+        decision_id:
+          anyOf:
+          - type: string
+            pattern: ^DEC-[0-9A-Za-z_-]+$
+          - type: 'null'
+          title: Decision Id
+        objective:
+          type: string
+          minLength: 1
+          title: Objective
+        decision_owner:
+          $ref: '#/components/schemas/ResponsibilityRef'
+        time_horizon:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Time Horizon
+        evaluation_as_of:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Evaluation As Of
+          description: Explicit replay time used for temporal evidence checks.
+        evaluation_mode:
+          $ref: '#/components/schemas/EvaluationMode'
+          default: constraint_only
+        criteria:
+          items:
+            $ref: '#/components/schemas/Criterion-Input'
+          type: array
+          title: Criteria
+        constraints:
+          items:
+            $ref: '#/components/schemas/Constraint-Input'
+          type: array
+          title: Constraints
+        assumptions:
+          items:
+            $ref: '#/components/schemas/Assumption'
+          type: array
+          title: Assumptions
+        alternatives:
+          items:
+            $ref: '#/components/schemas/Alternative'
+          type: array
+          minItems: 1
+          title: Alternatives
+        evidence:
+          items:
+            $ref: '#/components/schemas/Evidence-Input'
+          type: array
+          title: Evidence
+        metadata:
+          additionalProperties: true
+          type: object
+          title: Metadata
+      additionalProperties: false
+      type: object
+      required:
+      - objective
+      - decision_owner
+      - alternatives
+      title: DecisionRequest
+    DecisionRequest-Output:
+      properties:
+        decision_id:
+          anyOf:
+          - type: string
+            pattern: ^DEC-[0-9A-Za-z_-]+$
+          - type: 'null'
+          title: Decision Id
+        objective:
+          type: string
+          minLength: 1
+          title: Objective
+        decision_owner:
+          $ref: '#/components/schemas/ResponsibilityRef'
+        time_horizon:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Time Horizon
+        evaluation_as_of:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Evaluation As Of
+          description: Explicit replay time used for temporal evidence checks.
+        evaluation_mode:
+          $ref: '#/components/schemas/EvaluationMode'
+          default: constraint_only
+        criteria:
+          items:
+            $ref: '#/components/schemas/Criterion-Output'
+          type: array
+          title: Criteria
+        constraints:
+          items:
+            $ref: '#/components/schemas/Constraint-Output'
+          type: array
+          title: Constraints
+        assumptions:
+          items:
+            $ref: '#/components/schemas/Assumption'
+          type: array
+          title: Assumptions
+        alternatives:
+          items:
+            $ref: '#/components/schemas/Alternative'
+          type: array
+          minItems: 1
+          title: Alternatives
+        evidence:
+          items:
+            $ref: '#/components/schemas/Evidence-Output'
+          type: array
+          title: Evidence
+        metadata:
+          additionalProperties: true
+          type: object
+          title: Metadata
+      additionalProperties: false
+      type: object
+      required:
+      - objective
+      - decision_owner
+      - alternatives
+      title: DecisionRequest
+    DecisionResult:
+      properties:
+        decision_id:
+          type: string
+          title: Decision Id
+        status:
+          $ref: '#/components/schemas/DecisionStatus'
+        objective:
+          type: string
+          title: Objective
+        evaluation_mode:
+          $ref: '#/components/schemas/EvaluationMode'
+        audit_passed:
+          type: boolean
+          title: Audit Passed
+        issues:
+          items:
+            $ref: '#/components/schemas/AuditIssue'
+          type: array
+          title: Issues
+        alternatives:
+          items:
+            $ref: '#/components/schemas/AlternativeEvaluation'
+          type: array
+          title: Alternatives
+        eligible_alternative_ids:
+          items:
+            type: string
+          type: array
+          title: Eligible Alternative Ids
+        leading_candidate_ids:
+          items:
+            type: string
+          type: array
+          title: Leading Candidate Ids
+        failure_branches:
+          items:
+            $ref: '#/components/schemas/FailureBranch'
+          type: array
+          title: Failure Branches
+        responsibility_map:
+          items:
+            $ref: '#/components/schemas/ResponsibilityEntry'
+          type: array
+          title: Responsibility Map
+        unresolved_variables:
+          items:
+            type: string
+          type: array
+          title: Unresolved Variables
+        robustness:
+          $ref: '#/components/schemas/RobustnessReport'
+        counterfactuals:
+          items:
+            $ref: '#/components/schemas/CounterfactualResult'
+          type: array
+          title: Counterfactuals
+        trace:
+          items:
+            $ref: '#/components/schemas/TraceEntry'
+          type: array
+          title: Trace
+        algorithm_audit:
+          items:
+            $ref: '#/components/schemas/AlgorithmAuditEvent'
+          type: array
+          title: Algorithm Audit
+        algorithm_audit_root_hash:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{64}$
+          - type: 'null'
+          title: Algorithm Audit Root Hash
+        policy:
+          $ref: '#/components/schemas/PolicySnapshot'
+        engine_version:
+          type: string
+          title: Engine Version
+        input_fingerprint:
+          type: string
+          pattern: ^[0-9a-f]{64}$
+          title: Input Fingerprint
+        evaluation_as_of:
+          type: string
+          format: date-time
+          title: Evaluation As Of
+        human_approval_required:
+          type: boolean
+          title: Human Approval Required
+          default: true
+        generated_at:
+          type: string
+          format: date-time
+          title: Generated At
+      additionalProperties: false
+      type: object
+      required:
+      - decision_id
+      - status
+      - objective
+      - evaluation_mode
+      - audit_passed
+      - issues
+      - alternatives
+      - eligible_alternative_ids
+      - leading_candidate_ids
+      - failure_branches
+      - responsibility_map
+      - unresolved_variables
+      - policy
+      - engine_version
+      - input_fingerprint
+      - evaluation_as_of
+      title: DecisionResult
+    DecisionStatus:
+      type: string
+      enum:
+      - DRAFT
+      - STRUCTURED
+      - EVIDENCE_PENDING
+      - EVALUATED
+      - AUDIT_FAILED
+      - AUDIT_PASSED
+      - HUMAN_APPROVAL_REQUIRED
+      - APPROVED
+      - REJECTED
+      title: DecisionStatus
+    DeltaVar:
+      properties:
+        path:
+          type: string
+          minLength: 1
+          title: Path
+          description: 修正路径，如 'A2'、'criteria.K1.weight'、'alternatives.S1.metrics.cost'
+        value:
+          title: Value
+          description: 修正后的值
+        reason:
+          type: string
+          minLength: 1
+          title: Reason
+          description: 修正理由（由人类声明，引擎不推断）
+        responsibility:
+          anyOf:
+          - $ref: '#/components/schemas/ResponsibilityRef'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - path
+      - value
+      - reason
+      title: DeltaVar
+      description: 'A declared correction variable injected into delta reconstruction.
+
+
+        `path` targets an element of the decision structure (e.g. an assumption
+
+        falsification, a criterion weight, an alternative metric). The engine
+
+        applies it verbatim — it never invents corrections itself.'
+    DeviationSignal:
+      properties:
+        metric:
+          type: string
+          minLength: 1
+          title: Metric
+          description: 偏离指标名，对应 Criterion.metric 或 Alternative.metrics 的 key
+        observed:
+          title: Observed
+          description: 观测值
+        baseline:
+          title: Baseline
+          description: 基线/预期值，用于判定偏离方向
+        direction:
+          type: string
+          pattern: ^(above|below|anomaly)$
+          title: Direction
+          description: 偏离方向
+        observed_at:
+          type: string
+          format: date-time
+          title: Observed At
+          description: 观测时间点，必须带时区
+        source:
+          type: string
+          minLength: 1
+          title: Source
+          description: 感知管道标识符，用于审计追溯
+      additionalProperties: false
+      type: object
+      required:
+      - metric
+      - observed
+      - baseline
+      - direction
+      - observed_at
+      - source
+      title: DeviationSignal
+      description: '经营变量偏差信号，由感知层推送至决策层。
+
+
+        代表一个可观测的指标偏离，携带来源管道标识符以便审计追溯。'
+    EvaluationMode:
+      type: string
+      enum:
+      - constraint_only
+      - weighted
+      title: EvaluationMode
+    Evidence-Input:
+      properties:
+        id:
+          type: string
+          pattern: ^E[0-9A-Za-z_-]+$
+          title: Id
+        statement:
+          type: string
+          minLength: 1
+          title: Statement
+        source:
+          type: string
+          minLength: 1
+          title: Source
+        status:
+          $ref: '#/components/schemas/EvidenceStatus'
+          default: supplied
+        observed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Observed At
+        valid_until:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Valid Until
+        quality:
+          anyOf:
+          - $ref: '#/components/schemas/EvidenceQuality-Input'
+          - type: 'null'
+        content_hash:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{64}$
+          - type: 'null'
+          title: Content Hash
+        responsibility:
+          $ref: '#/components/schemas/ResponsibilityRef'
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - statement
+      - source
+      - responsibility
+      title: Evidence
+    Evidence-Output:
+      properties:
+        id:
+          type: string
+          pattern: ^E[0-9A-Za-z_-]+$
+          title: Id
+        statement:
+          type: string
+          minLength: 1
+          title: Statement
+        source:
+          type: string
+          minLength: 1
+          title: Source
+        status:
+          $ref: '#/components/schemas/EvidenceStatus'
+          default: supplied
+        observed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Observed At
+        valid_until:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Valid Until
+        quality:
+          anyOf:
+          - $ref: '#/components/schemas/EvidenceQuality-Output'
+          - type: 'null'
+        content_hash:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-fA-F]{64}$
+          - type: 'null'
+          title: Content Hash
+        responsibility:
+          $ref: '#/components/schemas/ResponsibilityRef'
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - statement
+      - source
+      - responsibility
+      title: Evidence
+    EvidenceQuality-Input:
+      properties:
+        reliability:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Reliability
+        relevance:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Relevance
+        independence:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Independence
+        freshness:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Freshness
+        assessed_by:
+          $ref: '#/components/schemas/ResponsibilityRef'
+        method:
+          type: string
+          minLength: 1
+          title: Method
+      additionalProperties: false
+      type: object
+      required:
+      - reliability
+      - relevance
+      - independence
+      - freshness
+      - assessed_by
+      - method
+      title: EvidenceQuality
+      description: Explicit evidence-quality assessment; values are never inferred by the engine.
+    EvidenceQuality-Output:
+      properties:
+        reliability:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Reliability
+        relevance:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Relevance
+        independence:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Independence
+        freshness:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Freshness
+        assessed_by:
+          $ref: '#/components/schemas/ResponsibilityRef'
+        method:
+          type: string
+          minLength: 1
+          title: Method
+      additionalProperties: false
+      type: object
+      required:
+      - reliability
+      - relevance
+      - independence
+      - freshness
+      - assessed_by
+      - method
+      title: EvidenceQuality
+      description: Explicit evidence-quality assessment; values are never inferred by the engine.
+    EvidenceStatus:
+      type: string
+      enum:
+      - supplied
+      - missing
+      - disputed
+      title: EvidenceStatus
+    FailureBranch:
+      properties:
+        assumption_id:
+          type: string
+          title: Assumption Id
+        expression:
+          type: string
+          title: Expression
+        invalidated_assumption_ids:
+          items:
+            type: string
+          type: array
+          title: Invalidated Assumption Ids
+        affected_alternative_ids:
+          items:
+            type: string
+          type: array
+          title: Affected Alternative Ids
+        affected_leading_candidate_ids:
+          items:
+            type: string
+          type: array
+          title: Affected Leading Candidate Ids
+        candidate_exposure_ratio:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Candidate Exposure Ratio
+        structural_effect:
+          type: string
+          title: Structural Effect
+      additionalProperties: false
+      type: object
+      required:
+      - assumption_id
+      - expression
+      - affected_alternative_ids
+      - affected_leading_candidate_ids
+      - candidate_exposure_ratio
+      - structural_effect
+      title: FailureBranch
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    HubAnalysisRequest:
+      properties:
+        decision:
+          $ref: '#/components/schemas/DecisionRequest-Input'
+        scenarios:
+          items:
+            $ref: '#/components/schemas/ScenarioDefinition'
+          type: array
+          title: Scenarios
+        deviation_signals:
+          items:
+            $ref: '#/components/schemas/DeviationSignal'
+          type: array
+          title: Deviation Signals
+        run_causal_reconstruction:
+          type: boolean
+          title: Run Causal Reconstruction
+          default: false
+        run_cognitive_audit:
+          type: boolean
+          title: Run Cognitive Audit
+          default: false
+      additionalProperties: false
+      type: object
+      required:
+      - decision
+      title: HubAnalysisRequest
+      description: Request body for the Hub analysis endpoint.
+    HubPolicySnapshot:
+      properties:
+        policy_id:
+          type: string
+          title: Policy Id
+        version:
+          type: string
+          title: Version
+        max_scenarios:
+          type: integer
+          title: Max Scenarios
+        run_causal_reconstruction:
+          type: boolean
+          title: Run Causal Reconstruction
+        run_cognitive_audit:
+          type: boolean
+          title: Run Cognitive Audit
+        build_information_priorities:
+          type: boolean
+          title: Build Information Priorities
+      additionalProperties: false
+      type: object
+      required:
+      - policy_id
+      - version
+      - max_scenarios
+      - run_causal_reconstruction
+      - run_cognitive_audit
+      - build_information_priorities
+      title: HubPolicySnapshot
+      description: Snapshot of the hub-level policy used during analysis.
+    HubReport:
+      properties:
+        hub_run_id:
+          type: string
+          title: Hub Run Id
+        hub_version:
+          type: string
+          title: Hub Version
+        decision_record:
+          $ref: '#/components/schemas/DecisionRecord'
+        scenarios:
+          items:
+            $ref: '#/components/schemas/ScenarioResult'
+          type: array
+          title: Scenarios
+        cognitive_audit:
+          anyOf:
+          - $ref: '#/components/schemas/CognitiveAuditReport'
+          - type: 'null'
+        causal_reconstruction:
+          anyOf:
+          - $ref: '#/components/schemas/CausalReconstructionReport'
+          - type: 'null'
+        information_priorities:
+          items:
+            $ref: '#/components/schemas/InformationPriority'
+          type: array
+          title: Information Priorities
+        hub_policy:
+          $ref: '#/components/schemas/HubPolicySnapshot'
+        algorithm_audit_verified:
+          type: boolean
+          title: Algorithm Audit Verified
+        report_hash:
+          type: string
+          pattern: ^$|^[0-9a-f]{64}$
+          title: Report Hash
+          default: ''
+        generated_at:
+          type: string
+          format: date-time
+          title: Generated At
+      additionalProperties: false
+      type: object
+      required:
+      - hub_run_id
+      - hub_version
+      - decision_record
+      - hub_policy
+      - algorithm_audit_verified
+      title: HubReport
+      description: Sealed hub-level report containing all analysis results.
+    HumanSessionDecisionRequest:
+      properties:
+        approved:
+          type: boolean
+          title: Approved
+          default: false
+        evidence_status:
+          additionalProperties:
+            type: string
+          type: object
+          title: Evidence Status
+          default: {}
+      type: object
+      title: HumanSessionDecisionRequest
+      description: Request body for recording a human decision on a session.
+    InformationPriority:
+      properties:
+        tier:
+          type: string
+          title: Tier
+        item:
+          type: string
+          title: Item
+        rationale:
+          type: string
+          title: Rationale
+        alternative_ids:
+          items:
+            type: string
+          type: array
+          title: Alternative Ids
+        responsibility:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Responsibility
+      additionalProperties: false
+      type: object
+      required:
+      - tier
+      - item
+      - rationale
+      title: InformationPriority
+      description: A prioritised information item from the information queue.
+    IssueSeverity:
+      type: string
+      enum:
+      - info
+      - warning
+      - error
+      title: IssueSeverity
+    PolicySnapshot:
+      properties:
+        policy_id:
+          type: string
+          title: Policy Id
+        version:
+          type: string
+          title: Version
+        require_all_alternatives_complete:
+          type: boolean
+          title: Require All Alternatives Complete
+        require_critical_evidence_quality:
+          type: boolean
+          title: Require Critical Evidence Quality
+        critical_evidence_quality_threshold:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Critical Evidence Quality Threshold
+        sensitivity_delta:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Sensitivity Delta
+      additionalProperties: false
+      type: object
+      required:
+      - policy_id
+      - version
+      - require_all_alternatives_complete
+      - require_critical_evidence_quality
+      - critical_evidence_quality_threshold
+      - sensitivity_delta
+      title: PolicySnapshot
+    ReconstructionKind:
+      type: string
+      enum:
+      - forward_propagation
+      - backward_tracing
+      - delta_reconstruction
+      title: ReconstructionKind
+      description: 'The three layers of causal reconstruction.
+
+
+        1. FORWARD_PROPAGATION  — invalidation_closure: A1 fails → what else breaks.
+
+        2. BACKWARD_TRACING     — CausalReconstructor: deviation → candidate root cause.
+
+        3. DELTA_RECONSTRUCTION — apply declared delta_vars, re-evaluate, check convergence.'
+    ReconstructionSession:
+      properties:
+        session_id:
+          type: string
+          pattern: ^SESS-[0-9A-Za-z_-]+$
+          title: Session Id
+        request:
+          $ref: '#/components/schemas/DecisionRequest-Output'
+        deviation_signals:
+          items:
+            $ref: '#/components/schemas/DeviationSignal'
+          type: array
+          title: Deviation Signals
+        rounds:
+          items:
+            $ref: '#/components/schemas/SessionRound'
+          type: array
+          title: Rounds
+        assumption_states:
+          additionalProperties:
+            $ref: '#/components/schemas/AssumptionState'
+          type: object
+          title: Assumption States
+        status:
+          $ref: '#/components/schemas/SessionStatus'
+          default: active
+        convergence_kind:
+          anyOf:
+          - $ref: '#/components/schemas/ConvergenceKind'
+          - type: 'null'
+        max_iterations:
+          type: integer
+          minimum: 1.0
+          title: Max Iterations
+          description: 最大推演轮次预算
+          default: 5
+        max_evidence_requests:
+          type: integer
+          minimum: 1.0
+          title: Max Evidence Requests
+          description: 最大证据请求预算
+          default: 20
+        session_root_hash:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{64}$
+          - type: 'null'
+          title: Session Root Hash
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        sealed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Sealed At
+      additionalProperties: false
+      type: object
+      required:
+      - session_id
+      - request
+      title: ReconstructionSession
+      description: 'A bounded, hash-chained, human-gated reconstruction session.
+
+
+        Replaces single-shot reconstruction with an iterative process: each round
+
+        runs forward propagation → backward tracing → delta reconstruction, records
+
+        all events into a session-level hash chain, and pauses for a human decision.
+
+        The session converges when no new information is produced, or stops when an
+
+        explicit budget is exhausted.'
+    ResponsibilityEntry:
+      properties:
+        element_type:
+          type: string
+          title: Element Type
+        element_id:
+          type: string
+          title: Element Id
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Owner
+        source:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Source
+        status:
+          type: string
+          title: Status
+      additionalProperties: false
+      type: object
+      required:
+      - element_type
+      - element_id
+      - owner
+      - source
+      - status
+      title: ResponsibilityEntry
+    ResponsibilityRef:
+      properties:
+        owner:
+          type: string
+          minLength: 1
+          title: Owner
+          description: Smallest accountable person or organizational role.
+        role:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Role
+        source:
+          type: string
+          minLength: 1
+          title: Source
+          description: Document, policy, instruction, or record assigning responsibility.
+        authorization_ref:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization Ref
+      additionalProperties: false
+      type: object
+      required:
+      - owner
+      - source
+      title: ResponsibilityRef
+    RobustnessReport:
+      properties:
+        pareto_frontier_ids:
+          items:
+            type: string
+          type: array
+          title: Pareto Frontier Ids
+        sensitivity_cases:
+          items:
+            $ref: '#/components/schemas/SensitivityCase'
+          type: array
+          title: Sensitivity Cases
+        fragile_criterion_ids:
+          items:
+            type: string
+          type: array
+          title: Fragile Criterion Ids
+        stable_leader_ids:
+          items:
+            type: string
+          type: array
+          title: Stable Leader Ids
+        ranking_stability:
+          anyOf:
+          - type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          - type: 'null'
+          title: Ranking Stability
+      additionalProperties: false
+      type: object
+      title: RobustnessReport
+    RootCauseHypothesis:
+      properties:
+        id:
+          type: string
+          pattern: ^RH-[0-9A-Za-z_-]+$
+          title: Id
+        root_assumption_id:
+          type: string
+          title: Root Assumption Id
+          description: 候选根因——依赖图中最上游的失效假设 ID
+        causal_chain:
+          items:
+            type: string
+          type: array
+          title: Causal Chain
+          description: 从根因到观测信号的节点序列 root -> ... -> observed-effect
+        explained_signals:
+          items:
+            type: string
+          type: array
+          title: Explained Signals
+          description: 该假设可解释的偏差信号的 metric 名
+        missing_evidence_ids:
+          items:
+            type: string
+          type: array
+          title: Missing Evidence Ids
+          description: 确认或排除该假设所需的、当前缺失的证据 ID
+        verification_action:
+          type: string
+          minLength: 1
+          title: Verification Action
+          description: 推荐的人类验证动作
+        dependency_depth:
+          type: integer
+          minimum: 0.0
+          title: Dependency Depth
+          description: 依赖链深度（根因到最远观测的距离）
+        severity:
+          $ref: '#/components/schemas/IssueSeverity'
+          description: 根因影响严重度
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - root_assumption_id
+      - causal_chain
+      - explained_signals
+      - verification_action
+      - dependency_depth
+      - severity
+      title: RootCauseHypothesis
+      description: '候选根因假设。
+
+
+        每条假设声明一个可能的根因假设节点，附带追溯出的因果链、
+
+        可解释的偏差信号、缺失信息以及推荐验证动作。
+
+        引擎不判定哪条假设"正确"——这是人类审批者的权力。'
+    ScenarioDefinition:
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: Id
+          description: 场景标识符
+        name:
+          type: string
+          minLength: 1
+          title: Name
+          description: 场景名称
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        failed_assumption_ids:
+          items:
+            type: string
+          type: array
+          title: Failed Assumption Ids
+        metric_overrides:
+          additionalProperties:
+            additionalProperties: true
+            type: object
+          type: object
+          title: Metric Overrides
+          description: '{alternative_id: {metric_name: value}}'
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - name
+      title: ScenarioDefinition
+      description: A declared stress scenario for re-running the evaluation.
+    ScenarioOutcomeStatus:
+      type: string
+      enum:
+      - evaluated
+      - blocked
+      - no_viable_alternative
+      title: ScenarioOutcomeStatus
+    ScenarioResult:
+      properties:
+        scenario:
+          $ref: '#/components/schemas/ScenarioDefinition'
+        outcome_status:
+          $ref: '#/components/schemas/ScenarioOutcomeStatus'
+        evaluation_result:
+          anyOf:
+          - {}
+          - type: 'null'
+          title: Evaluation Result
+        issues:
+          items:
+            type: string
+          type: array
+          title: Issues
+      additionalProperties: false
+      type: object
+      required:
+      - scenario
+      - outcome_status
+      title: ScenarioResult
+      description: Result of a single declared-scenario stress run.
+    ScoringRule:
+      type: string
+      enum:
+      - higher_is_better
+      - lower_is_better
+      - target_is_better
+      title: ScoringRule
+    SensitivityCase:
+      properties:
+        criterion_id:
+          type: string
+          title: Criterion Id
+        direction:
+          type: string
+          title: Direction
+        adjusted_weight:
+          type: string
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Adjusted Weight
+        adjusted_weights:
+          additionalProperties:
+            type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          type: object
+          title: Adjusted Weights
+        alternative_scores:
+          additionalProperties:
+            type: string
+            pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          type: object
+          title: Alternative Scores
+        leading_candidate_ids:
+          items:
+            type: string
+          type: array
+          title: Leading Candidate Ids
+      additionalProperties: false
+      type: object
+      required:
+      - criterion_id
+      - direction
+      - adjusted_weight
+      - leading_candidate_ids
+      title: SensitivityCase
+    SessionRound:
+      properties:
+        round_index:
+          type: integer
+          minimum: 0.0
+          title: Round Index
+        kind:
+          $ref: '#/components/schemas/ReconstructionKind'
+          description: 本轮主导的重构层
+        invalidated_assumption_ids:
+          items:
+            type: string
+          type: array
+          title: Invalidated Assumption Ids
+        hypotheses:
+          items:
+            $ref: '#/components/schemas/RootCauseHypothesis'
+          type: array
+          title: Hypotheses
+        unresolved_branches:
+          items:
+            type: string
+          type: array
+          title: Unresolved Branches
+        convergence:
+          anyOf:
+          - $ref: '#/components/schemas/ConvergenceReport'
+          - type: 'null'
+        applied_delta_vars:
+          items:
+            $ref: '#/components/schemas/DeltaVar'
+          type: array
+          title: Applied Delta Vars
+        assumption_states:
+          additionalProperties:
+            $ref: '#/components/schemas/AssumptionState'
+          type: object
+          title: Assumption States
+        round_root_hash:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{64}$
+          - type: 'null'
+          title: Round Root Hash
+        previous_round_hash:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{64}$
+          - type: 'null'
+          title: Previous Round Hash
+        requires_human_decision:
+          type: boolean
+          title: Requires Human Decision
+          default: true
+      additionalProperties: false
+      type: object
+      required:
+      - round_index
+      - kind
+      title: SessionRound
+      description: One iteration of a reconstruction session (all three layers executed).
+    SessionStatus:
+      type: string
+      enum:
+      - active
+      - awaiting_human
+      - converged
+      - sealed
+      - budget_exceeded
+      title: SessionStatus
+    StartSessionRequest:
+      properties:
+        decision:
+          $ref: '#/components/schemas/DecisionRequest-Input'
+        deviation_signals:
+          items:
+            $ref: '#/components/schemas/DeviationSignal'
+          type: array
+          title: Deviation Signals
+          default: []
+        max_iterations:
+          type: integer
+          title: Max Iterations
+          default: 5
+        max_evidence_requests:
+          type: integer
+          title: Max Evidence Requests
+          default: 20
+      type: object
+      required:
+      - decision
+      title: StartSessionRequest
+      description: Request body for starting a reconstruction session.
+    TraceEntry:
+      properties:
+        stage:
+          type: string
+          title: Stage
+        rule_id:
+          type: string
+          title: Rule Id
+        message:
+          type: string
+          title: Message
+        references:
+          items:
+            type: string
+          type: array
+          title: References
+      additionalProperties: false
+      type: object
+      required:
+      - stage
+      - rule_id
+      - message
+      title: TraceEntry
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+servers:
+- url: https://YOUR-DOMAIN.example.com

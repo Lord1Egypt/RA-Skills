@@ -1,0 +1,52 @@
+{
+  "skill": "exposure-dual-control",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "光圈和快门速度应该怎么配合设置？",
+      "expected_behavior": "调用 exposure-dual-control，解释双变量决策框架",
+      "notes": "正面场景：曝光参数选择"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "怎么拍出背景虚化的人像照片？",
+      "expected_behavior": "调用 exposure-dual-control，解释大孔径+快门配合",
+      "notes": "正面场景：背景虚化需求"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "aperture priority vs shutter priority, which should I use?",
+      "expected_behavior": "调用 exposure-dual-control，解释两种模式的创造性控制差异",
+      "notes": "正面场景：曝光模式选择"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "为什么我拍的雪景是灰色的？",
+      "expected_behavior": "不应调用 exposure-dual-control，应调用 light-meter-compensation（18%灰陷阱）",
+      "notes": "跨 skill 混淆诱饵：测光问题应触发测光补偿 skill"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "推荐一款适合新手的相机",
+      "expected_behavior": "纯器材推荐，不应调用任何方法论 skill",
+      "notes": "诱饵：器材购买建议"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "ISO应该设多少？",
+      "expected_behavior": "边界模糊——ISO不是曝光双变量之一，但与之相关。不应直接调用，但可在回答中提及ISO与曝光三角的关系",
+      "notes": "边界：ISO属于曝光三角但不属于双变量框架"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Image-to-text and OCR via Crazyrouter API using vision models (GPT-4o, Gemini, Claude). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image-to-text and OCR via Crazyrouter API using vision models to extract text, describe images, and analyze screenshots.
 
-## Publisher: <br>
-[xujfcn](https://clawhub.ai/user/xujfcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xujfcn](https://clawhub.ai/user/xujfcn)
 
-## Use Case: <br>
-Developers and agents use this skill to extract text from images, describe visual content, and analyze screenshots through Crazyrouter-hosted vision models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images and prompts are uploaded to Crazyrouter or the endpoint configured by CRAZYROUTER_BASE_URL for processing. <br>
-Mitigation: Use the skill only for images and prompts that are acceptable for external processing, and avoid confidential screenshots, IDs, secrets, or regulated documents unless that processing is approved. <br>
-Risk: The skill requires a Crazyrouter API key for requests. <br>
-Mitigation: Use a dedicated API key with appropriate limits and avoid exposing it in prompts, screenshots, logs, or shared output. <br>
+## Use Case:
 
+Developers and agents use this skill to send selected local images or screenshots to Crazyrouter vision models for OCR, visual description, and screenshot analysis.
 
-## Reference(s): <br>
-- [Crazyrouter](https://crazyrouter.com) <br>
-- [Crazyrouter API base](https://crazyrouter.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown written to stdout or an optional output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CRAZYROUTER_API_KEY and sends the selected image and prompt to Crazyrouter or the CRAZYROUTER_BASE_URL endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Selected images, prompts, and derived OCR or analysis content are sent to Crazyrouter and potentially its model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for images that are acceptable to send to that service; avoid secrets, credentials, IDs, medical or financial records, and private screenshots.
+
+Risk: CRAZYROUTER_BASE_URL can redirect requests, including the API key and full image data, to an alternate endpoint.
+
+Mitigation: Leave CRAZYROUTER_BASE_URL unset unless the endpoint is fully trusted and expected for this use.
+
+## Reference(s):
+
+- [Crazyrouter](https://crazyrouter.com)
+- [ClawHub skill page](https://clawhub.ai/xujfcn/skills/crazyrouter-ocr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Plain text or Markdown returned on stdout or written to a user-specified output file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CRAZYROUTER_API_KEY; supports user-selected image path, prompt, model, and optional output file.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

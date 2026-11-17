@@ -1,41 +1,54 @@
-## Description: <br>
-Smart Model Selector routes a task to an appropriate Qwen model based on task content, prior local feedback, and simple override commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Model Selector automatically recommends a Qwen model for each task, using rule-based routing and local feedback history to balance task fit and cost.
 
-## Publisher: <br>
-[billhandsome52](https://clawhub.ai/user/billhandsome52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billhandsome52](https://clawhub.ai/user/billhandsome52)
 
-## Use Case: <br>
-Developers and OpenClaw users use this hook to recommend qwen3.5-plus, qwen-max, or qwen-coder-plus for an incoming task, with commands for manual selection, ratings, reset, and usage statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local task history may include prompt text saved in the skill's SQLite database. <br>
-Mitigation: Avoid using the skill with secrets, private code, or personal data unless local retention is acceptable; delete data/model_selection.db or add redaction and retention controls. <br>
-Risk: Automatic routing can recommend a model that is weaker or more expensive than intended for a given task. <br>
-Mitigation: Use /model-use to override the recommendation and /model-rate to provide feedback that improves later routing. <br>
+## Use Case:
 
+Developers and agent users use this skill to route prompts among qwen3.5-plus, qwen-max, and qwen-coder-plus, with commands for manual override, ratings, reset, and usage statistics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/billhandsome52/smart-model-selector) <br>
-- [Project repository listed in artifact metadata](https://github.com/xuyun/smart-model-selector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown-formatted model recommendations and command replies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes selected model, selection reason, usage statistics, and rating/reset acknowledgements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.yaml) <br>
+Risk: Rated sessions can persist full prompt text and model-selection metadata in a local plaintext SQLite database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid rating or recording sensitive chats, delete the documented model_selection.db when retention is not desired, and prefer a future no-logging or derived-feature-only mode for sensitive environments.
+
+Risk: The skill injects model-selection guidance into the agent context and may affect model choice without changing the underlying model itself.
+
+Mitigation: Review recommendations before relying on them for high-impact work and use the manual model override command when a specific model is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billhandsome52/skills/smart-model-selector)
+- [Publisher profile](https://clawhub.ai/user/billhandsome52)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown-style injected context and command replies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides model recommendations, selection reasons, manual override confirmations, ratings feedback, reset responses, and usage statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

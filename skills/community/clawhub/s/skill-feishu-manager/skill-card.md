@@ -1,41 +1,53 @@
-## Description: <br>
-Comprehensive Feishu management toolkit for documents, knowledge bases, bitables, and cloud storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Feishu (Feishu) management toolkit for documents, knowledge bases, bitables, and cloud storage.
 
-## Publisher: <br>
-[limoxt](https://clawhub.ai/user/limoxt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[limoxt](https://clawhub.ai/user/limoxt)
 
-## Use Case: <br>
-Workspace administrators, operations teams, and developers use this skill to have an agent manage Feishu documents, wiki pages, bitables, and drive folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or modify live Feishu workspace content. <br>
-Mitigation: Use a dedicated Feishu app, grant only the scopes and workspace access needed, and review create or write requests before execution. <br>
-Risk: A leaked Feishu app_secret could expose workspace data or write access. <br>
-Mitigation: Store the app_secret in a protected secret store or environment configuration, avoid logging it, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to let an agent read, create, and update Feishu documents, wiki pages, bitable records, and drive folders.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/limoxt/skill-feishu-manager) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline JSON, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials and scoped permissions for documents, wiki, drive, and bitable access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Feishu app secrets could expose workspace access if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the app_secret and configure the Feishu app with least-privilege permissions where possible.
+
+Risk: Create or write actions can modify documents, wiki pages, bitables, or drive folders.
+
+Mitigation: Confirm intended changes before allowing document, wiki, bitable, or drive create/write actions.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Configuration instructions, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Feishu tool-call examples and YAML configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Feishu document, wiki, bitable, or drive create/write actions that require user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Tests ClawHub CLI publishing by validating publish command parameter handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tests ClawHub CLI publish behavior by documenting expected publish parameters and exposing a minimal Python test script.
 
-## Publisher: <br>
-[forealmy](https://clawhub.ai/user/forealmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forealmy](https://clawhub.ai/user/forealmy)
 
-## Use Case: <br>
-Developers and release engineers use this skill to smoke-test ClawHub CLI publish argument handling for name, version, tags, and changelog fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact is a placeholder smoke test rather than a comprehensive CLI test suite. <br>
-Mitigation: Use it only to validate basic publish-argument handling and rely on separate tests for full CLI behavior. <br>
-Risk: The included script executes local Python code. <br>
-Mitigation: Review the short script before running it; current server security evidence reports no credentials, network access, elevated permissions, or persistent behavior. <br>
+## Use Case:
 
+Developers and release maintainers use this skill as a publish-test fixture for checking ClawHub CLI argument handling around name, version, tags, and changelog metadata.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/forealmy/test-clawhub-skill) <br>
-- [README](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code] <br>
-**Output Format:** [Markdown with inline shell commands and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a minimal Python script that prints a test message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The documentation may overstate what this minimal fixture verifies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a publish-test fixture, not a complete ClawHub CLI validation suite.
+
+Risk: Users may assume the included script performs meaningful CLI checks.
+
+Mitigation: Review the artifact behavior before relying on it; the script only prints a simple test message.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/forealmy/skills/test-clawhub-skill)
+- [Publisher profile](https://clawhub.ai/user/forealmy)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and plain text script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external tools, credentials, APIs, or network access are described by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Crypto Defi provides local commands for recording, reviewing, searching, and exporting crypto and DeFi portfolio notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Defi helps agents record, review, search, and export local plaintext notes about DeFi positions, portfolio snapshots, price observations, gas fees, whale activity, and protocol analysis.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and agents use this skill to maintain a local plaintext activity log for DeFi positions, portfolio snapshots, alerts, price notes, gas observations, and protocol comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as a DeFi yield calculator, but the artifacts mainly implement a local plaintext crypto portfolio and activity logbook. <br>
-Mitigation: Use it for logging and review only; do not rely on it to calculate APY, impermanent loss, staking rewards, or protocol returns. <br>
-Risk: Crypto notes, holdings, wallet addresses, and trading strategy entered into the skill remain searchable in local plaintext logs. <br>
-Mitigation: Avoid entering seed phrases, private keys, exact holdings, wallet addresses, or confidential strategy unless local plaintext storage is acceptable. <br>
+## Use Case:
 
+External users and agents can use this skill as a local crypto activity logbook for tracking DeFi positions, portfolio notes, alerts, market observations, and exports. It should not be treated as an automated yield calculator or financial advice source.
 
-## Reference(s): <br>
-- [Crypto Defi on ClawHub](https://clawhub.ai/xueyetianya/crypto-defi) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and command-line output with optional json, csv, or txt export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries locally as plaintext logs under ~/.local/share/crypto-defi.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.9 (source: server release metadata) <br>
+Risk: The skill stores crypto notes in plaintext local log files, which may expose sensitive balances, strategies, or wallet-related observations to anyone with filesystem access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering wallet secrets, seed phrases, private keys, exact balances, or sensitive trading strategy; restrict permissions on ~/.local/share/crypto-defi before use.
+
+Risk: The advertised DeFi yield-calculator positioning does not match the inspected artifact's local logbook behavior.
+
+Mitigation: Use the skill only for recording and reviewing user-provided observations, and independently validate any yield, APY, impermanent-loss, staking, or investment analysis.
+
+## Reference(s):
+
+- [Crypto Defi ClawHub listing](https://clawhub.ai/xueyetianya/skills/crypto-defi)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Plaintext command output with local plaintext logs and optional JSON, CSV, or TXT exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores user-entered records under ~/.local/share/crypto-defi and does not require API keys or network access.]
+
+## Skill Version(s):
+
+2.4.9 (source: ClawHub release evidence; artifact frontmatter and script report v2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

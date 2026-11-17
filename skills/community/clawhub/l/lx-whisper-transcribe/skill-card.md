@@ -1,46 +1,60 @@
-## Description: <br>
-Transcribes audio to text for OpenClaw using a local Whisper-based workflow with Chinese language support and no API key requirement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes audio files to text for OpenClaw using local Whisper-compatible speech recognition with Chinese language support and no API key requirement.
 
-## Publisher: <br>
-[liuxuebin20260309](https://clawhub.ai/user/liuxuebin20260309) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuxuebin20260309](https://clawhub.ai/user/liuxuebin20260309)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to transcribe voice messages or audio files into text, especially Chinese speech, with local model execution and no API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup may download transcription models from hf-mirror.com or Hugging Face. <br>
-Mitigation: Review and verify model sources before use, and use an approved mirror or cache for managed environments. <br>
-Risk: Installation guidance creates a persistent ~/bin/whisper wrapper and may append ~/bin to ~/.bashrc. <br>
-Mitigation: Prefer a temporary PATH or virtual environment during evaluation, and remove the wrapper and shell profile entry when no longer needed. <br>
-Risk: The artifact describes whisper.cpp, while the setup guide uses a Python faster_whisper wrapper. <br>
-Mitigation: Review the actual installed wrapper and Python dependencies before relying on the transcription path. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to turn voice messages or audio files into text, especially for Chinese speech-to-text workflows that should run locally after setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuxuebin20260309/lx-whisper-transcribe) <br>
-- [OpenClaw speech-to-text usage guide](SHARE_GUIDE.md) <br>
-- [Hugging Face](https://huggingface.co) <br>
-- [hf-mirror.com](https://hf-mirror.com) <br>
-- [whisper.cpp tiny model download](https://hf-mirror.com/ggerganov/whisper.cpp/resolve/main/ggml-tiny.bin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text transcription with Markdown setup guidance and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Chinese transcription with a tiny model and CPU execution; first use may download model files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: The install guide creates a wrapper that interpolates file paths and options into inline Python.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and preferably revise the wrapper to use safe argument passing before installation or deployment.
+
+Risk: The setup downloads models from external endpoints even though inference is described as local.
+
+Mitigation: Pin and verify model downloads, and treat local operation as applying after dependencies and models are installed.
+
+Risk: The guide can modify the user's shell profile and add a persistent global whisper command.
+
+Mitigation: Install in a controlled environment and change shell startup files only when a persistent PATH update is explicitly desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuxuebin20260309/skills/lx-whisper-transcribe)
+- [Hugging Face](https://huggingface.co)
+- [HF Mirror](https://hf-mirror.com)
+- [whisper.cpp tiny model mirror](https://hf-mirror.com/ggerganov/whisper.cpp/resolve/main/ggml-tiny.bin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and plain-text transcription output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcription quality depends on installed dependencies, selected model size, language setting, audio quality, and model availability.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

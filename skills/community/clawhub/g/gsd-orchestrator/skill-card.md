@@ -1,45 +1,64 @@
-## Description: <br>
-Orchestrate GSD projects through `gsd headless` subprocess execution for milestone creation, workflow execution, status polling, blocker handling, and cost tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates GSD projects through the `gsd headless` command so agents can create milestones from specs, execute development workflows, monitor progress, handle blockers, and track costs.
 
-## Publisher: <br>
-[glittercowboy](https://clawhub.ai/user/glittercowboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glittercowboy](https://clawhub.ai/user/glittercowboy)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to create and execute GSD milestones, inspect project state, parse structured run results, handle blockers, and monitor cost during software development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad headless project-execution capability through GSD workflows. <br>
-Mitigation: Install only for trusted repositories, prefer `query` and `next` before full `auto`, run on a branch or sandbox, and review `.gsd/` state plus code diffs. <br>
-Risk: Answer files can inject secrets into the child process environment. <br>
-Mitigation: Use short-lived least-privilege secrets, keep answer files out of version control, and verify secrets are not committed. <br>
-Risk: The required `gsd` binary is installed from the `gsd-pi` Node package. <br>
-Mitigation: Verify or pin the `gsd-pi` package before deployment. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to plan and run GSD software-development milestones, inspect project state, process structured results, and manage blocker or budget decisions from command output.
 
-## Reference(s): <br>
-- [GSD Commands Reference](references/commands.md) <br>
-- [HeadlessJsonResult Reference](references/json-result.md) <br>
-- [Answer Injection](references/answer-injection.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/glittercowboy/gsd-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to emit plain text, structured JSON, or JSONL event streams through GSD command usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Headless GSD subprocesses can make broad project changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a restricted project workspace and review resulting file changes before merging or deployment.
+
+Risk: Answer injection can place secrets into child-process environments.
+
+Mitigation: Avoid broad environment credentials, keep answer files out of version control, and restrict their file permissions.
+
+Risk: Automatic prompt responses can approve actions without precise human intent.
+
+Mitigation: Use explicit answers or supervised mode for workflows that require policy, budget, or security decisions.
+
+Risk: A moving global install could change behavior unexpectedly.
+
+Mitigation: Prefer a pinned or local `gsd-pi` installation before running commercial workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/glittercowboy/skills/gsd-orchestrator)
+- [Command Reference](references/commands.md)
+- [Headless JSON Result Reference](references/json-result.md)
+- [Answer Injection Reference](references/answer-injection.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe command output in plain text, structured JSON, or JSONL event streams depending on the selected GSD output mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

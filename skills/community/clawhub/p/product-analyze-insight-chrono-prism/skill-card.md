@@ -1,42 +1,53 @@
-## Description: <br>
-基于八步骤方法，结构化分析产品、公司等，从多维时间和生态轴洞察因果机制，挑战偏见，输出定制报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于八步骤方法，结构化分析产品、公司、技术、市场等对象，从时间轴与生态轴提炼因果机制、挑战偏见，并输出定制化深度报告。
 
-## Publisher: <br>
-[whisperbot](https://clawhub.ai/user/whisperbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whisperbot](https://clawhub.ai/user/whisperbot)
 
-## Use Case: <br>
-Product, strategy, market, and research teams use this skill to produce long-form, source-backed analysis of products, companies, technologies, markets, policies, or trends. It emphasizes timeline reconstruction, ecosystem comparison, causal mechanisms, synthesis, and red-team review before delivering conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research reports may contain incorrect or misleading high-impact business, investment, policy, or technical claims. <br>
-Mitigation: Verify high-impact claims independently and preserve source markings, confidence labels, and red-team caveats in final reports. <br>
-Risk: Default PDF delivery may create files on the user's Desktop and in an analysis archive. <br>
-Mitigation: Confirm the requested output format and storage location before generating or sharing report files. <br>
-Risk: Optional Feishu output may publish content into a third-party document system. <br>
-Mitigation: Review content, access permissions, and sharing scope before using Feishu delivery. <br>
+## Use Case:
 
+面向需要研究产品、公司、技术、市场、概念、人物、政策或趋势的产品、投资、战略和技术分析人员，用于组织证据、展开纵向发展史与横向竞品比较，并形成可追溯的中文长篇研究报告或决策备忘录。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whisperbot/product-analyze-insight-chrono-prism) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Long-form research report; default PDF file, optional Markdown archive or Feishu document link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected report length is 10000-30000 Chinese characters, with source markings, confidence labels, and separate vertical, horizontal, synthesis, and red-team sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The workflow may browse extensively and use multiple sub-agents, which can introduce weak, conflicting, or stale sources into the analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source quality, prefer primary evidence, and preserve the skill's fact, interpretation, inference, and unconfirmed labels in final claims.
+
+Risk: The workflow creates report files locally by default and can publish to Feishu when requested.
+
+Mitigation: Review output paths and require explicit authorization before creating any external Feishu document.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whisperbot/skills/product-analyze-insight-chrono-prism)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Long-form Chinese research report, optionally delivered as PDF, Markdown, or Feishu document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output creates a local report file and analysis archive; Feishu publishing is optional and should be explicitly requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

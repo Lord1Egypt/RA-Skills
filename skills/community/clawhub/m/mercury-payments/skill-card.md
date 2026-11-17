@@ -1,42 +1,60 @@
-## Description: <br>
-Assists with Mercury Bank payment workflows, including approved invoice payments, recipient setup, internal transfers, transaction queries, and invoice-backed notification emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents pay invoices through the Mercury Bank API, manage recipients, query transactions, perform authorized transfers, and notify bookkeeping and vendors.
 
-## Publisher: <br>
-[nathan-deepmm](https://clawhub.ai/user/nathan-deepmm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nathan-deepmm](https://clawhub.ai/user/nathan-deepmm)
 
-## Use Case: <br>
-Authorized operators and finance-supporting agents use this skill to prepare and execute approved Mercury payments, manage payment recipients and transfers, query transactions, and send invoice-backed payment confirmations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through real Mercury banking actions with write-level payment authority. <br>
-Mitigation: Use the narrowest Mercury token available, require explicit approval from an authorized operator, and independently verify every recipient, amount, account, invoice, and email thread before execution. <br>
-Risk: Mercury tokens, bank details, invoices, and payment records may expose sensitive financial information. <br>
-Mitigation: Avoid storing tokens or bank details in memory logs, keep invoice PDFs only as long as needed, and delete downloaded invoice files after use. <br>
-Risk: Incorrect or duplicate payment requests can move money to the wrong recipient or repeat a transaction. <br>
-Mitigation: Confirm the selected account and recipient at payment time, use descriptive idempotency keys, and review the payment response before sending bookkeeping or vendor confirmations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mercury Payments on ClawHub](https://clawhub.ai/nathan-deepmm/mercury-payments) <br>
-- [Mercury API](https://api.mercury.com/api/v1) <br>
+## Use Case:
 
+Developers and operators use this skill to prepare and execute approved Mercury ACH, wire, recipient-management, transfer, and transaction-query workflows for invoice payment operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Mercury API curl commands, recipient and payment payload examples, operational checklists, and email draft guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: High-impact money movement could send payments or transfers incorrectly if executed without proper authorization.
+
+Mitigation: Require explicit approval from an authorized operator for every payment or transfer, including amount, recipient, invoice number, and account.
+
+Risk: Broad Mercury credentials could expose financial accounts beyond the intended workflow.
+
+Mitigation: Use only narrowly scoped Mercury credentials and confirm the default payment account at payment time.
+
+Risk: Invoice contents and payment details could be exposed through memory, logs, or email attachments.
+
+Mitigation: Do not store invoice contents or full payment details in general agent memory, and attach invoice PDFs only for recipients authorized to receive them.
+
+Risk: Internal transfers post instantly and may bypass separate business controls.
+
+Mitigation: Avoid internal transfers unless separately authorized for the specific source account, destination account, amount, and idempotency key.
+
+## Reference(s):
+
+- [Mercury Payments Skill Page](https://clawhub.ai/nathan-deepmm/skills/mercury-payments)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and payment workflow checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human approval before money movement and narrowly scoped Mercury credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

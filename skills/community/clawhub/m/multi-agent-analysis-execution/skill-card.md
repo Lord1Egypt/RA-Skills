@@ -1,39 +1,56 @@
-## Description: <br>
-Orchestrate complex multi-agent workflows with explicit coordinator planning, execution governance, and *automatic output management*. Each skill run creates its own isolated output namespace to prevent file accumulation and confusion from repeated executions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate complex multi-agent workflows with explicit coordinator planning, execution governance, and automatic output management.
 
-## Publisher: <br>
-[rubencoppensongit](https://clawhub.ai/user/rubencoppensongit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[rubencoppensongit](https://clawhub.ai/user/rubencoppensongit)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to coordinate complex work across multiple agents with explicit planning, dependency analysis, ordered execution groups, output verification, and final reporting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asserts strict mandatory control over execution phases and may conflict with higher-priority user or safety instructions.
+
+Mitigation: Confirm before use that higher-priority instructions remain authoritative and review the planned phases before allowing execution to proceed.
+
+Risk: The skill can spawn multiple agents and write run artifacts, increasing workspace activity and output volume.
+
+Mitigation: Confirm the agent count, output directory, and expected artifacts before execution, and review generated files after the run.
+
+Risk: The skill may apply retention cleanup to prior runs.
+
+Mitigation: Confirm whether cleanup is enabled and preserve any runs that must not be removed before invoking the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to coordinate complex multi-agent analysis or execution work through a governed planning, sequencing, verification, reporting, and cleanup process. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow writes coordinator run artifacts and debug traces that could include sensitive task context if users place secrets in prompts. <br>
-Mitigation: Do not include secrets, tokens, or private data in task prompts; provide required credentials through environment variables or approved tools. <br>
-Risk: Debug mode and cleanup behavior can affect retained run evidence and old coordinator outputs. <br>
-Mitigation: Review generated run folders and retention settings before relying on cleanup, especially for audit or compliance workflows. <br>
+**Output Format:** [Markdown and workspace files, including planning artifacts, prompts, logs, and final reports.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Creates isolated run directories and may apply retention cleanup according to skill behavior.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, coordinator run artifacts, agent prompts, and optional logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates an isolated run directory for each execution; debug mode can persist planning, prompt, output, and traceability files.] <br>
+1.0.4 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

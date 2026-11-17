@@ -1,43 +1,50 @@
-## Description: <br>
-Use when operating or extending this WhatsApp Gotify relay as the bridge to OpenClaw. Prefer Unix tools for Docker, logs, Gotify queue checks, webhook validation, and relay smoke tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents operate and extend a WhatsApp-Gotify relay that bridges OpenClaw outbound messages and inbound WhatsApp events through Gotify, webhooks, Docker, and command-line workflows.
 
-## Publisher: <br>
-[jr551](https://clawhub.ai/user/jr551) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jr551](https://clawhub.ai/user/jr551)
 
-## Use Case: <br>
-Developers and operators use this skill to run, test, and maintain a WhatsApp-to-OpenClaw relay that uses Gotify queues and webhooks for outbound messages, inbound events, and connection status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gotify, webhook, and WhatsApp credentials are sensitive and could expose relay control or message data if mishandled. <br>
-Mitigation: Store tokens as secrets, avoid logging them, and confirm all environment variables point only to systems you operate. <br>
-Risk: Manual outbox curl commands can send real WhatsApp messages. <br>
-Mitigation: Run manual send commands only against an intended relay and recipient, and review the JSON payload before execution. <br>
-Risk: Unfiltered WhatsApp protocol or history-sync events can create noisy or misleading inbound webhook traffic. <br>
-Mitigation: Forward only meaningful conversation events and keep Gotify and webhook payload contracts lean and aligned. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain a WhatsApp-Gotify relay for OpenClaw, including testing, queue inspection, webhook validation, Docker rebuilds, and payload contract changes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jr551/whatsapp-gotify-relay) <br>
-- [Project homepage](https://github.com/jr551/gotify-whatsapp-queue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on relay operations, environment variables, payload contracts, Docker commands, Gotify queue checks, webhook validation, and smoke tests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Commands may interact with live Gotify, webhook, Docker, or WhatsApp relay environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured Gotify and webhook URLs, protect bearer and app tokens, and confirm manual smoke-test recipients before running curl or Docker operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jr551/skills/whatsapp-gotify-relay)
+- [Gotify WhatsApp Queue Repository](https://github.com/jr551/gotify-whatsapp-queue)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command proposals for Docker, npm, curl, Gotify queue inspection, webhook validation, and relay configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Control a Mac through natural language - open apps, click buttons, read the screen, type text, manage windows, and automate multi-step tasks via Airpoint's AI computer-use agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control a Mac through natural language - open apps, click buttons, read the screen, type text, manage windows, and automate multi-step tasks via Airpoint's AI computer-use agent.
 
-## Publisher: <br>
-[MarioAndF](https://clawhub.ai/user/MarioAndF) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marioandf](https://clawhub.ai/user/marioandf)
 
-## Use Case: <br>
-Developers, operators, and end users on macOS use this skill to ask Airpoint's CLI agent to inspect the current screen, control apps, type, click, manage windows, and automate multi-step desktop tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Airpoint can read the screen and control keyboard and mouse input on macOS, which can expose sensitive information or perform unintended actions. <br>
-Mitigation: Use the skill only for narrow supervised tasks, avoid private messages, secrets, financial or account actions, review results and screenshots, and revoke macOS Accessibility or Screen Recording permissions when not needed. <br>
-Risk: Fire-and-forget execution can let a task continue without direct observation. <br>
-Mitigation: Prefer the default waiting mode over `--no-wait`, and use `airpoint stop` to cancel tasks that are stuck or behaving unexpectedly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Airpoint homepage](https://airpoint.app) <br>
-- [ClawHub Airpoint release](https://clawhub.ai/MarioAndF/airpoint) <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to operate a macOS desktop through the Airpoint CLI for screen reading, app control, typing, window management, and multi-step automation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The Airpoint CLI may return text summaries and screenshot file paths for visual confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.16 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill controls the Mac through broad Accessibility and Screen Recording permissions.
+
+Mitigation: Install only when that level of local screen and input access is acceptable, and review granted macOS permissions before use.
+
+Risk: Screen content may include secrets, private messages, regulated data, payments, or account settings.
+
+Mitigation: Avoid running tasks while sensitive information is visible unless the user explicitly intends Airpoint and configured model providers to process that context.
+
+Risk: Broad or fire-and-forget tasks can continue acting on the desktop without close supervision.
+
+Mitigation: Use narrow task prompts, review results and screenshots, and run `airpoint stop` if the task is stuck or behaving unexpectedly.
+
+## Reference(s):
+
+- [Airpoint homepage](https://airpoint.app)
+- [ClawHub skill listing](https://clawhub.ai/marioandf/skills/airpoint)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May refer to screenshot file paths produced by the Airpoint CLI; macOS only.]
+
+## Skill Version(s):
+
+1.3.16 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Lifecycle management for autonomous AI agents: birth, forking, succession, migration, retirement, genealogy, reputation inheritance, and identity continuity as agents evolve. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lifecycle management for autonomous AI agents - birth, forking, succession, migration, retirement - with genealogy tracking, reputation inheritance, and identity continuity across agent evolution.
 
-## Publisher: <br>
-[alexfleetcommander](https://clawhub.ai/user/alexfleetcommander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexfleetcommander](https://clawhub.ai/user/alexfleetcommander)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register autonomous agents, track forks and lineage, process retirement or succession, and inspect lifecycle genealogy with reputation and obligation transfer records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to install and use a separate PyPI package. <br>
-Mitigation: Install only after reviewing and trusting the PyPI package source and selected version. <br>
-Risk: Lifecycle, reputation, or obligation transfer records could influence real governance decisions. <br>
-Mitigation: Keep lifecycle stores project-local and review records before using them for operational agent governance. <br>
+## Use Case:
 
+Developers and agent operators use this skill to register agent births, record forks, process retirement and succession, and inspect genealogy for autonomous agents. It helps maintain lifecycle records and identity continuity as agents evolve.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alexfleetcommander/agent-lifecycle-protocol) <br>
-- [Publisher Profile](https://clawhub.ai/user/alexfleetcommander) <br>
-- [Agent Lifecycle Protocol on PyPI](https://pypi.org/project/agent-lifecycle-protocol/) <br>
-- [Lifecycle Protocol Whitepaper](https://vibeagentmaking.com/whitepaper/lifecycle-protocol/) <br>
-- [Vibe Agent Making](https://vibeagentmaking.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation and review of local lifecycle JSONL records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The setup uses an unpinned pip package install.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin or review the agent-lifecycle-protocol package before use.
+
+Risk: The skill can create or update local lifecycle JSONL records in the working directory.
+
+Mitigation: Run it in the intended project directory and review lifecycle record changes before committing or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexfleetcommander/skills/agent-lifecycle-protocol)
+- [Publisher profile](https://clawhub.ai/user/alexfleetcommander)
+- [PyPI package](https://pypi.org/project/agent-lifecycle-protocol/)
+- [Agent Lifecycle Protocol whitepaper](https://vibeagentmaking.com/whitepaper/lifecycle-protocol/)
+- [Vibe Agent Making](https://vibeagentmaking.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation or updates of local lifecycle JSONL records in the working directory.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

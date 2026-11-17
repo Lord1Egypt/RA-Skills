@@ -1,45 +1,60 @@
-## Description: <br>
-Remove image watermarks with the Nowatermark.info API, request polling, request_id resume, and public image URL validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remove image watermarks with the Nowatermark.info API, request polling, request_id resume, and public image URL validation.
 
-## Publisher: <br>
-[maxcoder11](https://clawhub.ai/user/maxcoder11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxcoder11](https://clawhub.ai/user/maxcoder11)
 
-## Use Case: <br>
-OpenClaw agents and their operators use this skill to submit authorized public image URLs to Nowatermark.info, poll for completion, resume existing request IDs, and return the cleaned image URL or failure details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted public image URLs and resulting processing data are sent to Nowatermark.info. <br>
-Mitigation: Use the skill only for images the user is authorized to edit, and avoid confidential, regulated, private, or legally restricted images. <br>
-Risk: The skill requires the sensitive NOWATERMARK_API_KEY credential. <br>
-Mitigation: Provide the key through environment or skill settings, keep it out of logs and replies, and rotate it if exposure is suspected. <br>
-Risk: Removing a watermark without permission can violate ownership or usage rights. <br>
-Mitigation: Confirm the user is allowed to edit the image before submitting it when ownership or permission is unclear. <br>
+## Use Case:
 
+Developers and agents use this skill to submit authorized public image URLs for watermark removal, poll job status, and resume prior cleanup jobs by request_id.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maxcoder11/image-watermark-remover) <br>
-- [Nowatermark.info](https://nowatermark.info) <br>
-- [API reference](artifact/references/api.md) <br>
-- [Setup](artifact/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOWATERMARK_API_KEY and either one direct public image URL or an existing request_id; completed jobs return a cleaned image URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata, frontmatter, and server release evidence) <br>
+Risk: The helper script can disclose the API key and submitted image URL if --base-url is pointed at an untrusted endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default Nowatermark.info endpoint unless the alternate endpoint is fully controlled and trusted.
+
+Risk: The service receives the submitted public image URL for processing.
+
+Mitigation: Use only public, non-sensitive image URLs that the user is authorized to edit.
+
+Risk: Watermark removal can be misused on images without sufficient rights.
+
+Mitigation: Confirm authorization before submitting an image when ownership or permission is unclear.
+
+## Reference(s):
+
+- [Image Watermark API Reference](references/api.md)
+- [Setup](setup.md)
+- [Nowatermark.info](https://nowatermark.info)
+- [ClawHub Skill Page](https://clawhub.ai/maxcoder11/skills/image-watermark-remover)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NOWATERMARK_API_KEY and a direct public image URL; returns a cleaned image URL or failure details.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

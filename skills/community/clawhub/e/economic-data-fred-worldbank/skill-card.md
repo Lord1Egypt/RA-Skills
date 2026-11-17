@@ -1,41 +1,54 @@
-## Description: <br>
-Economic data for AI agents: search Federal Reserve (FRED) economic series, retrieve FRED series by ID, pull World Bank country indicators, and access derived US market stats for housing affordability, market vitality, and industry saturation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Economic data for AI agents: search Federal Reserve FRED series, retrieve FRED series by ID, access World Bank country indicators, and use derived US market statistics for housing affordability, market vitality, and industry saturation.
 
-## Publisher: <br>
-[colinhughes2121](https://clawhub.ai/user/colinhughes2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colinhughes2121](https://clawhub.ai/user/colinhughes2121)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve macroeconomic indicators, World Bank country data, and derived US market or housing statistics for economic research, investment analysis, and market analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API calls can incur pay-per-call USDC charges through x402. <br>
-Mitigation: Confirm wallet, payment policy, endpoint, and expected cost before allowing an agent to invoke the API. <br>
-Risk: Economic and market data can be misread or used beyond the scope of the retrieved indicators. <br>
-Mitigation: Review retrieved series, country, geography, and timestamp before using outputs in investment, policy, or business decisions. <br>
+## Use Case:
 
+External agents, analysts, and developers use this skill to retrieve macroeconomic indicators, country economic data, and derived US market signals for research, investment analysis, and market analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/colinhughes2121/economic-data-fred-worldbank) <br>
-- [GoCreative API](https://api.gocreativeai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON API responses with concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pay-per-call HTTPS GET requests using x402; no API key or signup is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: API requests may automatically charge the connected x402 wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure wallet spending limits or confirmation rules before installation or agent execution.
+
+Risk: Economic and market data may be incomplete, delayed, or unsuitable as the sole basis for financial decisions.
+
+Mitigation: Review returned data against authoritative sources and apply domain review before using outputs in investment or business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colinhughes2121/skills/economic-data-fred-worldbank)
+- [GoCreative API](https://api.gocreativeai.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, JSON]
+
+**Output Format:** [Markdown guidance describing HTTPS API calls that return JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid x402 API calls may charge a connected USDC wallet according to the endpoint used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

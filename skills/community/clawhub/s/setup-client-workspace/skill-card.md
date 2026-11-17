@@ -1,49 +1,69 @@
-## Description: <br>
-Sets up a dedicated OpenClaw workspace for a new TNCG client, including base workspace files, OpenClaw configuration, WhatsApp linking, sandboxing, escalation, and monitoring guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mise en place d'un workspace agent dedie pour un nouveau client TNCG, couvrant la creation du workspace, les fichiers de base, la configuration OpenClaw, le lien WhatsApp, le sandbox, l'escalation et le monitoring.
 
-## Publisher: <br>
-[superWorldSavior](https://clawhub.ai/user/superWorldSavior) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superworldsavior](https://clawhub.ai/user/superworldsavior)
 
-## Use Case: <br>
-Developers and operators use this skill to provision a client-specific agent workspace with OpenClaw configuration, communication setup, security checks, and operational runbooks. It is intended for onboarding customer-facing assistants that need isolated workspace files, WhatsApp routing, sandbox behavior, escalation, and monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad WhatsApp sending permissions may allow messages beyond the intended client scope. <br>
-Mitigation: Replace wildcard sending with explicit recipient allowlists and verify WhatsApp bindings before enabling the agent. <br>
-Risk: Cross-agent visibility and messaging can expose activity across agents if left too broad. <br>
-Mitigation: Limit inter-agent allowlists and session visibility to the agents required for support and escalation. <br>
-Risk: Shared or misplaced credentials can mix client usage, billing, or access boundaries. <br>
-Mitigation: Use per-client credential stores and sandbox environment variables, and keep secrets out of workspace files. <br>
-Risk: Production-facing client agents can retain credentials, sessions, memory files, or cron jobs after a client relationship changes. <br>
-Mitigation: Document consent, escalation scope, revocation steps, and retention cleanup before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to onboard a dedicated OpenClaw agent workspace for a TNCG client, including base Markdown files, WhatsApp routing, sandbox configuration, escalation, credential setup, and final verification.
 
-## Reference(s): <br>
-- [Workflow](artifact/references/workflow.md) <br>
-- [OpenClaw config](artifact/references/openclaw-config.md) <br>
-- [Security checklist](artifact/references/security-checklist.md) <br>
-- [Workspace file templates](artifact/references/templates.md) <br>
-- [Legacy monolith](artifact/references/legacy-monolith.md) <br>
-- [ClawHub skill page](https://clawhub.ai/superWorldSavior/setup-client-workspace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces procedural setup guidance for agent workspace files, OpenClaw configuration, WhatsApp linking, sandbox checks, escalation, and monitoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Client agents may receive broad messaging, session, network, and credential access during onboarding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled OpenClaw environment and tighten tenant boundaries before use.
+
+Risk: Wildcard outbound WhatsApp sending can allow messages beyond the intended client scope.
+
+Mitigation: Replace wildcard outbound sending with explicit allowlists for approved recipients.
+
+Risk: Global session visibility and shared host-service bridges can expose cross-agent or cross-tenant access paths.
+
+Mitigation: Use tenant-aware authenticated access, avoid global session visibility for client agents, and review host-service bridge exposure.
+
+Risk: Shared production secrets or weak credential storage can leak credentials across sandboxes.
+
+Mitigation: Use per-agent credentials, avoid shared production secrets in sandboxes, and harden credential storage.
+
+Risk: Unpinned installed skills, sandbox images, or legacy hardcoded cron and Git token URL patterns can create unstable or unsafe deployments.
+
+Mitigation: Pin installed skills and sandbox images, and avoid legacy hardcoded cron jobs or Git token URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superworldsavior/skills/setup-client-workspace)
+- [Workflow - Setup client workspace](artifact/references/workflow.md)
+- [OpenClaw config - client workspace](artifact/references/openclaw-config.md)
+- [Checklist finale + securite](artifact/references/security-checklist.md)
+- [Templates fichiers workspace](artifact/references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace setup instructions and file/configuration templates for an agent operator.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Write, fix, test, and backtest Pine Script v5 strategies and indicators for TradingView. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write, fix, test, and backtest Pine Script v5 strategies and indicators for TradingView.
 
-## Publisher: <br>
-[shailendartigga16-collab](https://clawhub.ai/user/shailendartigga16-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shailendartigga16-collab](https://clawhub.ai/user/shailendartigga16-collab)
 
-## Use Case: <br>
-Developers, traders, and strategy builders use this skill to create TradingView Pine Script v5 strategies and indicators, fix compilation errors, add non-repaint logic, and structure backtests with risk controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated trading strategy code and alerts can be incorrect, overfit, or unsuitable for live trading. <br>
-Mitigation: Review generated scripts, paper-test them in TradingView, and do not connect outputs to live trading or real funds without independent validation. <br>
+## Use Case:
 
+Developers and traders use this skill to generate, repair, and review TradingView Pine Script v5 strategies and indicators with non-repaint logic, risk management, and backtesting guidance.
 
-## Reference(s): <br>
-- [Entry Patterns](references/entry-patterns.md) <br>
-- [Indicators Cheat Sheet](references/indicators-cheatsheet.md) <br>
-- [Risk Management Patterns](references/risk-management.md) <br>
-- [Performance Tracking](references/performance-tracking.md) <br>
-- [SMC Patterns](references/smc-patterns.md) <br>
-- [Visuals & Alerts](references/visuals-alerts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Pine Script code blocks and concise implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested TradingView backtest settings, known limitations, and improvement ideas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Generated trading strategies can encode financial-risk logic that may perform poorly or behave unexpectedly in live markets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated Pine Script, backtest it across relevant instruments and timeframes, and validate the strategy before relying on it.
+
+Risk: TradingView alerts or broker automation connected to generated entries, exits, or close-all behavior can trigger real trades.
+
+Mitigation: Use paper trading or manual review first, and connect automation only after confirming the strategy logic and risk controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shailendartigga16-collab/skills/pine-script-strategy)
+- [SMC Patterns](references/smc-patterns.md)
+- [Indicators Cheat Sheet](references/indicators-cheatsheet.md)
+- [Entry Patterns](references/entry-patterns.md)
+- [Risk Management Patterns](references/risk-management.md)
+- [Visuals and Alerts](references/visuals-alerts.md)
+- [Performance Tracking](references/performance-tracking.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown responses with Pine Script code blocks and concise explanations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated strategies should be reviewed and backtested before alerts, entries, exits, or broker automation are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

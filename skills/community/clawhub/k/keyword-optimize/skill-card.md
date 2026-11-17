@@ -1,43 +1,59 @@
-## Description: <br>
-Page-level keyword optimization using Ahrefs MCP data and GEO principles for traditional search and AI-powered search visibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Page-level keyword optimization using Ahrefs MCP data and GEO principles for traditional search and AI-powered search visibility.
 
-## Publisher: <br>
-[antimoron](https://clawhub.ai/user/antimoron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antimoron](https://clawhub.ai/user/antimoron)
 
-## Use Case: <br>
-Developers, SEO practitioners, and content teams use this skill to turn a target page, competitor URLs, and Ahrefs keyword data into a page-level optimization plan. It produces keyword mapping, content gap priorities, GEO citability structure, FAQ schema guidance, and monitoring recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Ahrefs API key and may send target URLs, competitor URLs, and keyword research data to Ahrefs. <br>
-Mitigation: Use a scoped Ahrefs API key where possible and avoid confidential, unpublished, internal, or embargoed pages unless organizational approval is in place. <br>
+## Use Case:
 
+Developers, marketers, and SEO practitioners use this skill to analyze a target page against competitor pages, identify keyword gaps with Ahrefs data, and produce a page-level optimization plan for search rankings and AI search citability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/antimoron/keyword-optimize) <br>
-- [Publisher profile](https://clawhub.ai/user/antimoron) <br>
-- [Provenance status](unavailable: No server-resolved GitHub import provenance is stored for this version.) <br>
-- [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo) <br>
-- [serpapi/awesome-seo-tools](https://github.com/serpapi/awesome-seo-tools) <br>
-- [amplifying-ai/awesome-generative-engine-optimization](https://github.com/amplifying-ai/awesome-generative-engine-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, JSON-LD snippets, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Ahrefs API key or MCP session and target page plus competitor URLs as inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Target URLs, competitor URLs, keywords, and performance data may be sent to Ahrefs during SEO analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for pages and keyword data your organization permits sharing with Ahrefs.
+
+Risk: Generated optimization plans can introduce misleading SEO claims or over-optimization if applied without review.
+
+Mitigation: Review recommendations for factual accuracy, source support, accessibility, and natural language quality before publishing changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antimoron/skills/keyword-optimize)
+- [keyword-optimize homepage](https://github.com/antimoron/keyword-optimize)
+- [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo)
+- [serpapi/awesome-seo-tools](https://github.com/serpapi/awesome-seo-tools)
+- [teles/awesome-seo](https://github.com/teles/awesome-seo)
+- [amplifying-ai/awesome-generative-engine-optimization](https://github.com/amplifying-ai/awesome-generative-engine-optimization)
+- [aaron-he-zhu/seo-geo-claude-skills](https://github.com/aaron-he-zhu/seo-geo-claude-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with tables, JSON-LD snippets, and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include keyword matrices, page element mappings, FAQ schema, and monitoring thresholds.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

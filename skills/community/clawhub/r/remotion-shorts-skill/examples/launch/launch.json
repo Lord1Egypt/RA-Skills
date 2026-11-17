@@ -1,0 +1,13 @@
+{
+  "theme": "volt",
+  "handle": "social-media-skills.com",
+  "progress": true,
+  "scenes": [
+    { "type": "hook", "text": "This video was made from one JSON file", "highlight": "one JSON file" },
+    { "type": "item", "rank": "01", "title": "Text that clears every app's buttons" },
+    { "type": "item", "rank": "02", "title": "Timed to how fast people read" },
+    { "type": "item", "rank": "03", "title": "A review sheet before the render" },
+    { "type": "item", "rank": "04", "title": "Posted after one yes" },
+    { "type": "end", "text": "Free on GitHub", "sub": "Remotion Shorts skill, MIT", "highlight": "Free" }
+  ]
+}

@@ -1,44 +1,58 @@
-## Description: <br>
-Publishes Markdown articles to GitHub Pages blogs and Dev.to, with content variants, SEO optimization, and pre-publish duplicate checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Publisher Pro helps agents prepare and publish Markdown articles to GitHub Pages and Dev.to with platform-specific content variants, SEO metadata, duplicate checks, and dry-run previews.
 
-## Publisher: <br>
-[wdsega](https://clawhub.ai/user/wdsega) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wdsega](https://clawhub.ai/user/wdsega)
 
-## Use Case: <br>
-Technical bloggers and content operators use this skill to prepare, preview, and publish Markdown articles to GitHub Pages and Dev.to from a local workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing credentials for GitHub and Dev.to are sensitive and can grant write access to external services. <br>
-Mitigation: Keep config files private, use least-privilege tokens, and install in a virtual environment with pinned or audited dependencies. <br>
-Risk: A live run can publish unintended or duplicate content to public channels. <br>
-Mitigation: Run with --dry-run first and review the selected Markdown article, destination platforms, and generated output before publishing. <br>
-Risk: Article content is sent to third-party publishing services during normal use. <br>
-Mitigation: Only publish content that is approved for those services and appropriate for public release. <br>
+## Use Case:
 
+External developers, technical bloggers, and content operators use this skill to configure and run a Python publishing workflow for Markdown articles destined for GitHub Pages and Dev.to.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wdsega/content-publisher-pro) <br>
-- [GitHub REST API](https://api.github.com) <br>
-- [Dev.to API](https://dev.to/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish user-selected Markdown content to GitHub Pages and Dev.to when run outside dry-run mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Publishing requires GitHub and Dev.to credentials that may grant write access to public content destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped tokens, keep real secrets out of tracked config files, prefer a secret manager or environment variables, and review permissions before publishing.
+
+Risk: Summary and abstract modes can add a fixed blog link and promotional wording to public posts.
+
+Mitigation: Run dry-run mode and review the generated article text before publishing, replacing or removing fixed promotional links as needed.
+
+Risk: The workflow can publish, update, or duplicate public posts if article metadata or duplicate checks do not match the target platform state.
+
+Mitigation: Confirm titles, target repository, and platform selection before execution, and test first with dry-run mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wdsega/skills/content-publisher-pro)
+- [Publisher profile](https://clawhub.ai/user/wdsega)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown articles, YAML configuration, Python command-line usage, and publishing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can make GitHub and Dev.to API calls when run with credentials; dry-run mode previews without publishing.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

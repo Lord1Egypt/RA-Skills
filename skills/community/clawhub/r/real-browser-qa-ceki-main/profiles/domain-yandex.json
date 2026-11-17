@@ -1,0 +1,69 @@
+{
+  "id": "domain-yandex",
+  "label": "Yandex — Russian Search & Services",
+  "emoji": "🔎",
+  "domain": "yandex.ru, ya.ru, mail.yandex.ru, webmaster.yandex.ru, metrika.yandex.ru, yandex.ru/adv",
+  "description": "Yandex — Russian search engine and ecosystem. Search, Mail, Webmaster, Metrica (analytics), Direct (ads), Maps. RU locale. Login via Yandex ID (phone/email + password + 2FA possible).",
+  "source_patterns": [
+    "Search: input query in `input[name=\"text\"]` → organic + ads results → click through",
+    "Mail: inbox view → read message → compose/reply → send",
+    "Webmaster: site verification → sitemap upload → indexing stats → search queries report",
+    "Metrica: dashboard → goal reports → session replays → export",
+    "Direct: campaign creation → ad groups → keywords → bids → launch",
+    "Login: phone/email → password → 2FA if enabled → redirect to service"
+  ],
+  "active_hours": {
+    "description": "RU business hours + evening browsing",
+    "peak": [9, 11, 14, 16, 20, 22],
+    "off_peak_min": 3
+  },
+  "typing": {
+    "wpm": { "min": 60, "max": 100 },
+    "profile": "natural",
+    "think_prob": 0.02,
+    "think_ms": [400, 1800],
+    "backspace_freq": 0.04,
+    "search_query_wpm": { "min": 80, "max": 120 },
+    "mail_compose_wpm": { "min": 50, "max": 80 }
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Search results: short quick passes. Mail/analytics: slower, more deliberate",
+    "speed_px_per_ms": { "min": 20, "max": 55 },
+    "pause_between_passes_ms": { "min": 1000, "max": 3500 },
+    "depth_per_pass": { "min": 0.3, "max": 0.7 },
+    "infinite_scroll_detection": ".serp-item + .serp-item position delta"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2000, "max": 4000 },
+    "pre_click_pause_ms": { "min": 200, "max": 800 },
+    "inter_action_pause_ms": { "min": 400, "max": 1200 },
+    "post_expand_pause_ms": { "min": 1000, "max": 2500 }
+  },
+  "mouse": {
+    "speed": 0.9,
+    "curvature": 0.2,
+    "jitter": 0.3,
+    "description": "Moderate — tool-switching between services"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "search_input": "input[name=\"text\"]",
+      "search_results": ".serp-item",
+      "mail_inbox": ".mail-MessageSnippet, .ns-view-container-desc",
+      "compose_button": "a[href*='compose'], .mail-ComposeButton",
+      "login_phone_email": "input[name='login'], input[data-t='field_login']",
+      "login_password": "input[name='passwd'], input[data-t='field_passwd']",
+      "login_submit": "button[type='submit'], .passp-button",
+      "webmaster_dashboard": ".wm-dashboard, .b-direct-dashboard",
+      "metrica_counter": ".b-metrica-counter, ._brt-page"
+    },
+    "requires_login": false,
+    "login": {
+      "pre_login_pause_ms": 1500,
+      "field_pause_ms": { "min": 400, "max": 1000 },
+      "post_login_wait_ms": { "min": 3000, "max": 6000 }
+    },
+    "sequence_hint": "navigate yandex.ru → search query → scroll results (2-3 passes) → click result → read → back to results → login for mail/webmaster/metrica → switch service"
+  }
+}

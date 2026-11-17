@@ -1,42 +1,53 @@
-## Description: <br>
-Generates NIO stock analysis reports for US and Hong Kong listings, including price, technical analysis, news sentiment, market sentiment, and trading recommendation sections. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Generates enhanced NIO stock analysis for US and Hong Kong listings, including price snapshots, technical indicators, news and market sentiment, and trading posture guidance.
 
-## Publisher: <br>
-[zhishuiyu](https://clawhub.ai/user/zhishuiyu) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhishuiyu](https://clawhub.ai/user/zhishuiyu)
 
-## Use Case: <br>
-External users and developers can use this skill to generate structured NIO analysis reports for the US and Hong Kong listings. Because the security evidence says the skill presents simulated market data as analysis, outputs should be treated as demonstration reports rather than live market intelligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents simulated prices, news, sentiment, target prices, stop losses, and trading recommendations in a way that could be mistaken for live market intelligence. <br>
-Mitigation: Label outputs as simulated demonstration reports and do not use them for investment decisions unless the publisher replaces mock data with verified live sources and clear data provenance. <br>
-Risk: Trading recommendations may mislead users if interpreted as financial advice. <br>
-Mitigation: Keep the investment-risk disclaimer visible and require human review against independent, authoritative market data before acting on any recommendation. <br>
+## Use Case:
 
+External users and agents use this skill to generate NIO US and Hong Kong market analysis reports with price snapshots, technical indicators, sentiment summaries, and trading posture suggestions. Because the authoritative security evidence flags simulated data presented as real-time analysis, outputs should be treated as demonstration analysis and not financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhishuiyu/nio-enhanced-analysis) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [analyze_nio.py](artifact/analyze_nio.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, analysis, guidance] <br>
-**Output Format:** [Console text report and saved JSON analysis file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports us, hk, and all market arguments; outputs include simulated prices, sentiment, technical analysis, and trading recommendation fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill presents simulated NIO market and news data as real-time analysis and uses it to produce actionable trading recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label reports as simulated unless verifiable market and news sources are integrated, and do not rely on generated outputs for financial decisions.
+
+Risk: Financial outputs may be mistaken for investment advice despite the artifact disclaimer.
+
+Mitigation: Keep the disclaimer visible in generated reports and require human review before any trading or portfolio action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhishuiyu/skills/nio-enhanced-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Console text and JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include market selection, timestamps, price data, technical analysis, news sentiment, market sentiment, trading recommendations, and risk notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

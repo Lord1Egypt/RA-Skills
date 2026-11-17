@@ -1,45 +1,60 @@
-## Description: <br>
-Automated backup, integrity monitoring, and self-healing for AI agent workspaces. Detects unexpected changes, creates automatic backups, self-heals from corruption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated backup, integrity monitoring, and self-healing for AI agent workspaces. Detects unexpected changes, creates automatic backups, self-heals from corruption.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers, agent operators, and AI agent users use Sentinel to monitor important workspace files, create local backups, detect file-level corruption, and restore selected state or configuration files after accidental changes or data loss. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic restore can overwrite current agent memory, configuration, or state. <br>
-Mitigation: Keep WORKSPACE_ROOT and CRITICAL_FILES narrowly scoped, store backups in a protected location, and disable or avoid automatic restore until the baseline is trusted. <br>
-Risk: Backups are local copies and may be stored as plain files. <br>
-Mitigation: Use protected backup directories and disk encryption for sensitive state, and pair Sentinel with separate off-site backup if disaster recovery is required. <br>
-Risk: Sentinel detects file-level corruption and hash changes, not semantic or schema-level mistakes. <br>
-Mitigation: Use application-level validation for critical structured files before treating a restored or unchanged file as correct. <br>
+## Use Case:
 
+Developers, AI agent operators, and workspace maintainers use Sentinel to monitor critical local workspace files, create backups, compare file manifests, and restore known-good state after corruption or accidental changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/sentinel) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [README.md](artifact/README.md) <br>
-- [LIMITATIONS.md](artifact/LIMITATIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Guidance, Markdown] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local file-monitoring, backup, manifest, and restore guidance for user-configured workspaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can read, back up, and overwrite configured workspace files, and evidence.security flags restore safeguards as too weak for overwrite authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it unprivileged, test on non-critical workspaces first, disable automatic restore until behavior is verified, and review restore targets before allowing overwrite operations.
+
+Risk: Monitoring traversal-prone patterns, untrusted symlinks, or shared backup locations can increase the chance of restoring or exposing unintended files.
+
+Mitigation: Constrain monitored paths to trusted workspace files, avoid untrusted symlinks and traversal-prone patterns, and keep backups outside shared locations with appropriate filesystem permissions.
+
+Risk: The artifact documents local-only backups, plain-file backup storage, limited corruption detection, and delayed scheduled checks.
+
+Mitigation: Use Sentinel as a local recovery aid only, add separate off-site backup or version control where needed, and pair it with application-level validation for semantic correctness.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/sentinel)
+- [README.md](artifact/README.md)
+- [LIMITATIONS.md](artifact/LIMITATIONS.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local configuration guidance, monitoring and restore commands, manifest workflows, and operational cautions for workspace backup and recovery.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

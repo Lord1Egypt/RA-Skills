@@ -1,42 +1,63 @@
-## Description: <br>
-A股持仓监控助手 - 每日自动持仓报告、止损止盈提醒、实时盈亏跟踪。适合个人投资者管理多只股票持仓。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股持仓监控助手 helps monitor A-share positions, generate portfolio profit-and-loss reports, and run a rule-based stock selector.
 
-## Publisher: <br>
-[sunshinesdff](https://clawhub.ai/user/sunshinesdff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunshinesdff](https://clawhub.ai/user/sunshinesdff)
 
-## Use Case: <br>
-External users and developers can use this skill to configure and run local A-share portfolio tracking, end-of-day holdings reports, stop-loss or take-profit checks, and simple stock screening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The menu launcher can turn typed stock fields into shell commands on the user's machine. <br>
-Mitigation: Review before installing and avoid running scripts/run_monitor.py with copied or untrusted input unless the os.system calls are replaced with safe subprocess argument lists or direct Python calls. <br>
-Risk: Holdings and cost basis are saved locally in a hidden file. <br>
-Mitigation: Confirm the storage location and protect or delete local portfolio data according to the user's privacy requirements. <br>
-Risk: The included package appears to be missing a module needed for portfolio analysis. <br>
-Mitigation: Verify the package contents and runtime imports before relying on portfolio analysis output. <br>
+## Use Case:
 
+Personal investors and agents can use this skill to configure A-share holdings, produce local portfolio reports, and run a simple multi-factor screen over a fixed stock pool. The skill's own disclaimer states that outputs are for reference only and are not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunshinesdff/a-stock-portfolio-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local portfolio data is stored on the user's machine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Interactive menu input can flow into shell execution and run unintended local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid the interactive menu with untrusted input; use direct, validated script calls only after shell execution is fixed.
+
+Risk: Portfolio holdings are stored locally and may contain sensitive financial information.
+
+Mitigation: Run the skill in a user-controlled environment and protect the local portfolio file with appropriate filesystem permissions.
+
+Risk: The scripts contact Tencent Finance and use HTTP for some market data.
+
+Mitigation: Use the skill only where outbound network access and the quote data source are acceptable, and verify market data before making financial decisions.
+
+Risk: Automatic alerts are advertised but not implemented in the artifact behavior.
+
+Mitigation: Treat the skill as a manual report and screening tool unless alerting is separately implemented and tested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshinesdff/skills/a-stock-portfolio-monitor)
+- [Publisher profile](https://clawhub.ai/user/sunshinesdff)
+- [Tencent Finance quote endpoint used by the scripts](http://qt.gtimg.cn/q={prefix}{code})
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese CLI text reports with shell command examples and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores portfolio holdings locally and fetches market quote data from Tencent Finance endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

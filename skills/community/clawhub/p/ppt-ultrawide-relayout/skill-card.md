@@ -1,40 +1,54 @@
-## Description: <br>
-PPT Ultra-wide Relayout helps agents convert standard PowerPoint decks into wider ultra-wide layouts while preserving editable text, reading order, visual hierarchy, and reference-deck aspect ratios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns standard PowerPoint decks into cleaner ultra-wide layouts without stretching text, while preserving editable content, reading order, and visual hierarchy.
 
-## Publisher: <br>
-[standed](https://clawhub.ai/user/standed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[standed](https://clawhub.ai/user/standed)
 
-## Use Case: <br>
-Designers, presentation specialists, and agent developers use this skill to analyze PowerPoint structure and create editable ultra-wide relayout drafts without stretching text. It is suited for adapting standard decks to wider canvases or matching the aspect ratio and visual direction of a reference deck. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local Python helpers process user-provided PowerPoint files and may expose slide text to the agent workflow or logs. <br>
-Mitigation: Use the skill only on intended decks and avoid confidential presentations unless that exposure is acceptable. <br>
-Risk: Automated relayout can create incorrect slide composition, overflow, or misplaced content. <br>
-Mitigation: Save to a new output filename and review the generated PPTX before sharing or presenting it. <br>
+## Use Case:
 
+Designers, presentation authors, and agents use this skill to analyze existing PPTX structure and produce an editable first-pass ultra-wide relayout that preserves text shape, grouped blocks, and reading order.
 
-## Reference(s): <br>
-- [Reference Style Notes](references/reference-style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON slide layout analysis, and editable PPTX outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local Python helpers on user-provided PowerPoint files and writes transformed decks to a chosen output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: Processing untrusted PPTX files may expose users to XML/ZIP parsing hardening gaps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted decks or run the scripts in a sandbox until XML parser and ZIP size-limit hardening are added.
+
+Risk: The relayout script writes a derived PPTX to the output path the user provides.
+
+Mitigation: Choose a new output filename and keep a copy of the source deck before running the script.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/standed/skills/ppt-ultrawide-relayout)
+- [Reference Style Notes](references/reference-style.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Files]
+
+**Output Format:** [Markdown guidance with bash commands, JSON layout analysis, and editable PPTX output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a derived editable PPTX file and can produce JSON or pretty-printed layout dumps when its bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

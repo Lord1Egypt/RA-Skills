@@ -1,40 +1,53 @@
-## Description: <br>
-Notion API guidance for creating and managing pages, data sources, blocks, and image or file uploads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Notion API operations for pages, data sources, blocks, and direct file uploads.
 
-## Publisher: <br>
-[ionepub](https://clawhub.ai/user/ionepub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ionepub](https://clawhub.ai/user/ionepub)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare Notion API setup steps, curl commands, JSON payloads, and troubleshooting guidance for workspace content operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Commands can read, create, update, or upload content in a Notion workspace. <br>
-Mitigation: Review each generated command before execution and share only the necessary Notion pages or databases with the integration. <br>
-Risk: The setup examples store a Notion API token in a local plaintext file. <br>
-Mitigation: Protect the token file, prefer a least-privilege Notion integration, and avoid exposing the token in shared logs or transcripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Notion Developers](https://developers.notion.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ionepub/openclaw-notion-api) <br>
+## Use Case:
 
+Developers and agents use this skill to construct Notion API requests for creating, reading, updating, querying, and uploading content in a connected Notion workspace.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with bash commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The guidance references Notion API version 2025-09-03 and direct file upload examples for files up to 20MB.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A Notion integration token can expose sensitive or business-critical workspace data if stored in plaintext or granted broad access.
+
+Mitigation: Use a least-privilege Notion integration, share only the required pages or databases, and prefer an OS keychain or secret manager instead of a plaintext token file.
+
+Risk: Create, update, append, and upload commands can change workspace content or attach unintended local files.
+
+Mitigation: Confirm page IDs, database IDs, and local file paths before running write or upload commands.
+
+## Reference(s):
+
+- [Notion API documentation](https://developers.notion.com)
+- [ClawHub skill page](https://clawhub.ai/ionepub/skills/openclaw-notion-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with curl command examples and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Notion API headers, endpoint paths, setup steps, and example request bodies.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

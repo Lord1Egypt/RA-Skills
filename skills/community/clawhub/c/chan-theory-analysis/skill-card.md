@@ -1,40 +1,53 @@
-## Description: <br>
-基于缠中说禅理论，分析走势中枢、笔分段、背驰判断和买卖点，并支持A股、港股、美股和加密货币。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+缠论技术分析工具。基于缠中说禅理论，提供走势中枢分析、笔分段、背驰判断、买卖点识别，支持A股、港股、美股、加密货币。
 
-## Publisher: <br>
-[sanduan003](https://clawhub.ai/user/sanduan003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sanduan003](https://clawhub.ai/user/sanduan003)
 
-## Use Case: <br>
-Traders, analysts, and developers use this skill to run Chan-theory technical analysis on public market symbols and review printed indicators for structure, divergence, and key price zones. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Market analysis output can be incomplete, delayed, or misleading if public market data is unavailable or the indicator interpretation is used as financial advice. <br>
-Mitigation: Treat the output as analysis support only, verify data and conclusions independently, and do not rely on it for automated trading decisions. <br>
-Risk: The script installs and imports Python packages and contacts yfinance/Yahoo Finance for public market data. <br>
-Mitigation: Install it in a Python virtual environment when possible, review the dependency command before running it, and run it only in environments where outbound public market-data requests are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sanduan003/chan-theory-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/sanduan003) <br>
+## Use Case:
 
+Developers, market analysts, and technically oriented traders use this skill to run Chan-theory market analysis for supported equity and cryptocurrency symbols. It summarizes fractals, strokes, centers, MACD divergence signals, and recent price-position context for reference analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text output with technical-analysis summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public market data for supplied symbols and prints Chan-theory indicators, MACD values, and key price zones.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup asks users to install unpinned Python packages into the system Python environment.
+
+Mitigation: Review the install step, use a dedicated virtual environment with pinned dependency versions, and avoid `--break-system-packages` unless system Python changes are intentional.
+
+Risk: Market-analysis output could be mistaken for financial advice.
+
+Mitigation: Treat results as analysis reference only and verify conclusions independently before making financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sanduan003/skills/chan-theory-analysis)
+- [ClawHub publisher profile](https://clawhub.ai/user/sanduan003)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market-analysis reference output; not financial advice.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

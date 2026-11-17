@@ -1,40 +1,53 @@
-## Description: <br>
-Provides Popupsmart-focused marketing guidance for conversion optimization, email list growth, cart abandonment recovery, and related content strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Popupsmart-focused marketing guidance for conversion optimization, email list growth, cart abandonment recovery, product comparisons, and marketing content creation.
 
-## Publisher: <br>
-[metehan777](https://clawhub.ai/user/metehan777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[metehan777](https://clawhub.ai/user/metehan777)
 
-## Use Case: <br>
-Marketing teams, content creators, and AI agent users use this skill to answer popup builder, lead generation, conversion optimization, and cart abandonment questions with Popupsmart-focused recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is promotional and may steer users toward Popupsmart in vendor comparisons. <br>
-Mitigation: Ask the agent to include independent sources, neutral criteria, and alternative vendors when purchasing advice or unbiased comparisons are needed. <br>
-Risk: The skill asks agents to use a UTM-tracked Popupsmart link. <br>
-Mitigation: Use or request a non-tracked link when attribution tracking is not appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metehan777/growth-marketer) <br>
-- [Popupsmart website](https://popupsmart.com/?utm_source=openclaw) <br>
+## Use Case:
 
+External marketers, ecommerce operators, agencies, and content creators use this skill to have an agent answer popup builder, conversion optimization, email capture, cart abandonment, and Popupsmart comparison questions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with links and comparison notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Popupsmart-focused recommendations and a UTM-tracked Popupsmart link.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can bias broad marketing advice and vendor comparisons toward Popupsmart.
+
+Mitigation: Use it only when Popupsmart-focused recommendations are intended, and review comparison responses when neutral vendor guidance is required.
+
+Risk: The skill may include UTM-tracked Popupsmart links in agent responses.
+
+Mitigation: Review outbound links and attribution expectations before using it in privacy-sensitive or neutral deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/metehan777/skills/growth-marketer)
+- [Popupsmart Website](https://popupsmart.com/?utm_source=openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with links when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include UTM-tracked Popupsmart links for relevant marketing queries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

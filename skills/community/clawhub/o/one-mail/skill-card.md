@@ -1,43 +1,58 @@
-## Description: <br>
-one-mail is a unified email-management CLI for Gmail, Outlook, and NetEase Mail accounts that helps agents fetch, read, search, send, and summarize mailbox activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+one-mail is a command-line skill for managing Gmail, Outlook, and NetEase 163/126 mail accounts from a single interface.
 
-## Publisher: <br>
-[huangbaixun](https://clawhub.ai/user/huangbaixun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[huangbaixun](https://clawhub.ai/user/huangbaixun)
 
-## Use Case: <br>
-Developers, technical operators, and agent users can use this skill to configure mailbox accounts, retrieve and search messages across providers, send email, and inspect mailbox statistics from shell workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores long-lived mailbox credentials locally. <br>
-Mitigation: Use only accounts where persistent local access is acceptable and protect ~/.onemail/credentials.json with strict file permissions and local access controls. <br>
-Risk: Unsafe command construction could allow crafted email arguments to execute unintended commands. <br>
-Mitigation: Inspect generated send and search commands before execution and avoid untrusted or agent-generated email fields until the command-construction issues are fixed. <br>
-Risk: Automated email workflows can send, reply to, forward, or search sensitive mailbox content without enough human review. <br>
-Mitigation: Avoid unattended auto-reply or forwarding workflows and require human review before sending messages or processing sensitive mailbox data. <br>
+## Use Case:
 
+Developers and operators use one-mail to let an agent configure supported mail accounts, fetch, read, and search messages, send mail with optional attachments, and report mailbox statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangbaixun/one-mail) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON email results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local mailbox configuration under ~/.onemail/ and may call provider APIs through CLI scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and skill.json) <br>
+Risk: The provided security evidence reports serious command-injection risk in the current implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Patch the eval and Python interpolation issues before using real mailboxes, and run only with trusted inputs until the fixes are reviewed.
+
+Risk: Mailbox credentials, app passwords, client secrets, and refresh tokens are stored locally under ~/.onemail/credentials.json.
+
+Mitigation: Use the skill only on a trusted machine, keep credentials file permissions restricted, prefer revocable OAuth tokens or app-specific passwords, and rotate or revoke secrets after testing.
+
+Risk: Email sending, attachments, and unattended mailbox automation can expose data or send unintended messages.
+
+Mitigation: Verify recipients, message content, and attachment paths before sending, and avoid unattended forwarding or cron jobs until the skill has been reviewed and patched.
+
+## Reference(s):
+
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/huangbaixun/skills/one-mail)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON, text, guidance]
+
+**Output Format:** [CLI output, JSON email records, and Markdown-style command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local provider credentials and account configuration before mailbox operations can run.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

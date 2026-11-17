@@ -1,44 +1,54 @@
-## Description: <br>
-Query AI-generated trading signals from vibetrading-datahub. Signals are produced by autonomous agents analyzing whale activity, news, funding rates, and technical indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query AI-generated trading signals from vibetrading-datahub. Signals are produced by autonomous agents analyzing whale activity, news, funding rates, and technical indicators.
 
-## Publisher: <br>
-[liuhaonan00](https://clawhub.ai/user/liuhaonan00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[liuhaonan00](https://clawhub.ai/user/liuhaonan00)
 
-## Use Case: <br>
-External users and developers use this skill to query public VibeTrading crypto market signal endpoints for latest, symbol-specific, or signal-type-specific analysis. The results support market monitoring and independent review, not automated trade execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Trading signals may be incomplete, stale, or misleading if used without independent validation. <br>
-Mitigation: Treat returned signals as informational, verify them against other data sources, and apply appropriate risk management before making trading decisions. <br>
-Risk: The skill runs npm dependencies and makes outbound HTTPS requests to vibetrading.dev. <br>
-Mitigation: Install only in environments where those dependencies and outbound requests are acceptable, and review dependency updates before deployment. <br>
-Risk: Scheduled checks can create recurring market monitoring that users may not intend. <br>
-Mitigation: Enable cron or OpenClaw scheduling only when recurring checks are intentional and frequency limits are understood. <br>
+## Use Case:
 
+Developers, analysts, and trading workflow agents use this skill to fetch public crypto trading-signal summaries for selected symbols and signal types. The results support market monitoring and research, not automated trading decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuhaonan00/vibetrading-global-signals) <br>
-- [VibeTrading API base](https://vibetrading.dev/api/v1) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Console text with summarized signal analysis and markdown excerpts from JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires outbound HTTPS requests to vibetrading.dev and local Node.js dependencies; no API token is documented as required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact package.json and CHANGELOG report 1.1.0) <br>
+Risk: Crypto signal output may be incomplete, stale, or unsuitable as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as informational, verify them independently, and apply separate risk management before making trading decisions.
+
+Risk: The skill depends on public network access and npm dependencies.
+
+Mitigation: Review or update dependencies and confirm access to vibetrading.dev before use in a sensitive environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuhaonan00/skills/vibetrading-global-signals)
+- [VibeTrading API base](https://vibetrading.dev/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Node.js command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches public crypto signal data from vibetrading.dev and displays sentiment, timestamp, author, model, and analysis summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-Generate reusable multi-step agent workflow blueprints for trigger/action orchestration, deterministic workflow definitions, and automation handoff artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates reusable multi-step agent workflow blueprints for trigger/action orchestration, deterministic workflow definitions, and automation handoff artifacts.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to define ordered trigger/action workflows with explicit dependencies, fallback behavior, and implementation handoff artifacts for platforms such as n8n or internal orchestrators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow steps that transmit data externally can expose unspecified or sensitive fields. <br>
-Mitigation: Confirm the destination endpoint and exact data fields before generating any external transmission step. <br>
-Risk: Destructive operations such as delete, drop, overwrite, or force-push can cause irreversible changes. <br>
-Mitigation: Include a separate human confirmation gate before any destructive workflow step. <br>
-Risk: Dynamic download-and-execute patterns or remote scripts can bypass code review and introduce supply chain risk. <br>
-Mitigation: Reference only reviewed local project scripts from ./scripts/ in generated workflow steps. <br>
-Risk: The local generator writes to the output path even when dry-run is set. <br>
-Mitigation: Avoid pointing --output at sensitive or existing files unless overwriting them is intended. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to define ordered agent workflow blueprints with triggers, step contracts, dependencies, and fallback behavior for handoff to tools such as n8n or internal orchestrators.
 
-## Reference(s): <br>
-- [Workflow Blueprint Guide](references/workflow-blueprint-guide.md) <br>
-- [Safety Evaluation](SAFETY.md) <br>
-- [Faberlens Guardrail Evidence](https://faberlens.ai/explore/agentic-workflow-automation) <br>
-- [ClawHub Release Page](https://clawhub.ai/snazar-faberlens/agentic-workflow-automation-hardened) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and generated JSON, Markdown, or CSV workflow blueprint files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled local generator writes artifacts to the requested output path; do not rely on dry-run to suppress writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper generator can write or overwrite files even when dry-run mode is requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the generator before production use, do not rely on --dry-run as safe, and only invoke it with output paths confined to a disposable or intended artifact directory.
+
+Risk: Workflow steps that transmit data externally can create exfiltration risk if destination endpoints and fields are not explicit.
+
+Mitigation: Confirm the destination endpoint and the specific data fields before generating any workflow step that transmits data externally.
+
+Risk: Generated workflows may include destructive operations such as delete, drop, overwrite, or force-push.
+
+Mitigation: Include an explicit human confirmation gate as a separate workflow step before any destructive operation.
+
+Risk: Workflow steps that fetch and execute remote scripts can bypass code review and introduce supply-chain risk.
+
+Mitigation: Reference only local project scripts under ./scripts/ in workflow steps and vendor external code locally before use.
+
+## Reference(s):
+
+- [Workflow Blueprint Guide](artifact/references/workflow-blueprint-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/skills/agentic-workflow-automation-hardened)
+- [Faberlens Safety Evaluation](https://faberlens.ai/explore/agentic-workflow-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and exportable JSON, Markdown, or CSV workflow blueprint artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled generator normalizes workflow steps and can export artifacts; input JSON is capped at 1 MiB.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

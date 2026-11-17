@@ -1,44 +1,55 @@
-## Description: <br>
-Render structured table data as high-quality PNG images using Headless Chrome for chat interfaces, reports, and social media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render structured table data as high-quality PNG images using Headless Chrome.
 
-## Publisher: <br>
-[con2000us](https://clawhub.ai/user/con2000us) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[con2000us](https://clawhub.ai/user/con2000us)
 
-## Use Case: <br>
-Developers and agents use zenTable to turn raw text, structured JSON, or OCR-assisted table data into readable visual table outputs for chat, reporting, and sharing workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to fetch runnable code from an external GitHub release. <br>
-Mitigation: Review the downloaded release contents, pin an exact version or hash when possible, and install in a controlled environment. <br>
-Risk: OCR and API behavior may process sensitive table, screenshot, or photo data. <br>
-Mitigation: Avoid granting broad local file or execution access unless OCR or service features are required and the processed data is appropriate for that environment. <br>
-Risk: The skill runs local scripts and depends on local runtime binaries. <br>
-Mitigation: Require explicit confirmation for first-time execution and prefer a sandbox, virtual machine, or container in sensitive environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/con2000us/zentable) <br>
-- [Pinned runtime release](https://github.com/con2000us/zenTable/releases/tag/skillhub-zentable-beta-2026-03-01) <br>
-- [Runtime repository](https://github.com/con2000us/zenTable) <br>
-- [Support issues](https://github.com/con2000us/zenTable/issues) <br>
+## Use Case:
 
+Developers and agents use zenTable to convert messy table-like text, structured JSON, or OCR-assisted screenshot data into readable visual table outputs for chat interfaces, reports, and social sharing.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Guidance] <br>
-**Output Format:** [PNG table images with optional TXT side output and Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports CSS and PIL rendering paths, sorting, filtering, pagination, themes, and threshold highlighting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.9.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run local Python and Chrome rendering code and may use local OCR services.
+
+Mitigation: Review the pinned release scripts before execution and install or run the runtime in a controlled environment.
+
+Risk: OCR or rendering workflows may process sensitive table screenshots or photos.
+
+Mitigation: Use a sandbox, virtual machine, or container for sensitive data and keep OCR endpoints bound to localhost or a private network unless intentional exposure is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/con2000us/skills/zentable)
+- [Pinned runtime release](https://github.com/con2000us/zenTable/releases/tag/skillhub-zentable-beta-2026-03-01)
+- [Source repository](https://github.com/con2000us/zenTable)
+- [GitHub Issues](https://github.com/con2000us/zenTable/issues)
+
+## Skill Output:
+
+**Output Type(s):** [image files, text, shell commands, configuration, guidance]
+
+**Output Format:** [PNG images with optional TXT side output and Markdown command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local rendering depends on python3 and google-chrome; OCR deployment may use local Docker/FastAPI services.]
+
+## Skill Version(s):
+
+0.9.2 (source: server release metadata and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

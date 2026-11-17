@@ -1,40 +1,57 @@
-## Description: <br>
-Pandas-powered CSV & Excel management for quick previews, summaries, filtering, transforming, and format conversions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sheetsmith helps agents inspect, summarize, filter, transform, and convert CSV, TSV, and Excel files with pandas.
 
-## Publisher: <br>
-[CrimsonDevil333333](https://clawhub.ai/user/CrimsonDevil333333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crimsondevil333333](https://clawhub.ai/user/crimsondevil333333)
 
-## Use Case: <br>
-Developers and operators use Sheetsmith to inspect CSV, TSV, and Excel files, summarize columns, filter rows, transform fields, and export cleaned spreadsheet data without writing pandas boilerplate. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet transformations can overwrite or alter source data when in-place writes are explicitly requested. <br>
-Mitigation: Prefer writing to a separate output file, keep raw backups, and preview unfamiliar schemas before saving changes. <br>
-Risk: Spreadsheet formulas or shared outputs may expose sensitive or unintended data. <br>
-Mitigation: Review formulas and clear sensitive spreadsheet content before sharing outputs through consumer chat apps or other external channels. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sheetsmith usage reference](references/usage.md) <br>
-- [ClawHub skill page](https://clawhub.ai/CrimsonDevil333333/sheetsmith) <br>
+## Use Case:
 
+Developers, analysts, and agents use Sheetsmith to inspect spreadsheet structure, preview rows, compute summaries, filter data, add or rename columns, and convert CSV, TSV, and Excel files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown and plain text with optional generated CSV, TSV, or XLSX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local spreadsheet files and write transformed outputs when the user supplies an output path or explicitly requests in-place modification.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Spreadsheet inputs may contain confidential or regulated data.
+
+Mitigation: Process only files the agent is authorized to access and avoid sharing results through personal messaging channels unless policy permits.
+
+Risk: In-place transformations can overwrite source data.
+
+Mitigation: Prefer --output and keep backups before using --inplace.
+
+Risk: Unreviewed pandas query or transform expressions may produce incorrect filtered or derived data.
+
+Mitigation: Review expressions before execution and preview results before writing files.
+
+## Reference(s):
+
+- [Sheetsmith usage reference](references/usage.md)
+- [Sheetsmith ClawHub skill page](https://clawhub.ai/crimsondevil333333/skills/sheetsmith)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown text, shell commands, and generated CSV, TSV, or Excel files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write spreadsheet files when the agent runs the provided CLI; use --output to avoid overwriting source files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

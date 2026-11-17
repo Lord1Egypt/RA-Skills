@@ -1,47 +1,67 @@
-## Description: <br>
-AI M&A due diligence analyst that analyzes companies, values businesses, parses Japanese financial statements, and generates acquisition simulation reports from public filings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI M&A due diligence analyst that analyzes companies, values businesses, parses Japanese financial statements, and generates acquisition simulation reports from public filings.
 
-## Publisher: <br>
-[yu010101](https://clawhub.ai/user/yu010101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yu010101](https://clawhub.ai/user/yu010101)
 
-## Use Case: <br>
-External users and developers use this skill to perform M&A due diligence workflows for Japanese companies, including public filing collection, financial statement extraction, valuation, risk review, and acquisition report generation. The skill is especially oriented toward EDINET, Kanpo, uploaded PDFs, and user-provided financial data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic EDINET retrieval and report generation can create local files or overwrite existing outputs if paths are chosen carelessly. <br>
-Mitigation: Set EDINET_API_KEY only when automatic EDINET downloads are intended, and choose output directories deliberately before running fetch, parse, or export commands. <br>
-Risk: Financial conclusions may be misleading when filings are incomplete, PDF extraction fails, or figures cannot be traced to a source. <br>
-Mitigation: Require source citations for figures, mark unavailable values as unknown or unverified, and keep the generated report's investment-advice disclaimer. <br>
-Risk: Image-based PDFs may not yield reliable text for downstream financial parsing. <br>
-Mitigation: Ask for OCR-processed text or an extractable PDF before continuing with valuation steps. <br>
+## Use Case:
 
+Developers, analysts, and M&A practitioners use this skill to collect or parse Japanese public filing data, structure financial statements, calculate valuation metrics, and produce buyer-oriented acquisition simulation reports. It can optionally export structured balance sheet, profit-and-loss, and valuation data to Excel.
 
-## Reference(s): <br>
-- [Account Mapping Reference](references/account-mapping.md) <br>
-- [Valuation Guide](references/valuation-guide.md) <br>
-- [EDINET Disclosure System](https://disclosure2dl.edinet-fsa.go.jp) <br>
-- [EDINET API](https://api.edinet-fsa.go.jp/api/v2) <br>
-- [Kanpo](https://kanpou.npb.go.jp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yu010101/clawdiligence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown due diligence reports with financial tables, JSON-structured financial data, shell commands, and optional Excel workbook files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use EDINET_API_KEY for automatic EDINET downloads and may write local text or .xlsx report files when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and plugin.json) <br>
+Risk: The skill produces valuation and acquisition guidance that could be mistaken for professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as AI-generated analysis from public information, retain the investment-advice disclaimer, and require professional review before decisions.
+
+Risk: EDINET_API_KEY may appear in logs on request failures unless errors are sanitized.
+
+Mitigation: Run in a controlled workspace, avoid exposing unrelated environment variables, and review or sanitize error output before sharing logs.
+
+Risk: Public filing extraction and comparable-company assumptions may be incomplete or stale.
+
+Mitigation: Require source annotations for numerical values, mark unsupported figures as unknown or unverified, and review comparable multiples before relying on the report.
+
+Risk: Dependency behavior can change over time and affect reproducibility.
+
+Mitigation: Pin or review the Python dependencies httpx, pdfplumber, and openpyxl when reproducible operation matters.
+
+## Reference(s):
+
+- [Account Mapping Reference](references/account-mapping.md)
+- [Valuation Guide](references/valuation-guide.md)
+- [EDINET Disclosure Download](https://disclosure2dl.edinet-fsa.go.jp)
+- [Kanpou Official Gazette](https://kanpou.npb.go.jp)
+- [EDINET API](https://api.edinet-fsa.go.jp/api/v2)
+- [ClawHub Skill Page](https://clawhub.ai/yu010101/skills/clawdiligence)
+- [Publisher Profile](https://clawhub.ai/user/yu010101)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown analysis report with structured financial tables, source annotations, optional JSON inputs to helper scripts, shell commands, and optional Excel workbook output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses EDINET_API_KEY for automated EDINET retrieval when available; falls back to user-provided text or PDF input.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and artifact/plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

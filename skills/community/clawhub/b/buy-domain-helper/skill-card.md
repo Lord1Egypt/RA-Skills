@@ -1,47 +1,64 @@
-## Description: <br>
-3-layer site launcher: tunnel any HTML instantly, deploy permanently to Cloudflare Pages, then buy a domain and link it via DNS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+3-layer site launcher: tunnel any HTML instantly, deploy to Cloudflare Pages permanently, then buy a domain and link it via DNS.
 
-## Publisher: <br>
-[wohaoshuai](https://clawhub.ai/user/wohaoshuai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wohaoshuai](https://clawhub.ai/user/wohaoshuai)
 
-## Use Case: <br>
-Developers and site owners use this skill to make a local HTML folder or server publicly reachable, deploy it to Cloudflare Pages, and connect a custom domain through Cloudflare DNS when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tunnel command can make local folders or ports publicly reachable. <br>
-Mitigation: Tunnel only folders or ports intended for public access and stop the tunnel when sharing is no longer needed. <br>
-Risk: The deployment and domain commands can change Cloudflare Pages projects, custom domains, and DNS records. <br>
-Mitigation: Use narrowly scoped Cloudflare tokens and confirm each deployment, domain attachment, and DNS change before execution. <br>
-Risk: The helper may auto-install or run external packages and tools. <br>
-Mitigation: Review requested package installs and command invocations before running them in a trusted environment. <br>
-Risk: Tokens passed as command arguments can be exposed through shell history or process listings. <br>
-Mitigation: Prefer environment variables or a secret manager for Cloudflare tokens instead of command-line `--token` values. <br>
-Risk: The package metadata declares an unrelated required `NETA_TOKEN`. <br>
-Mitigation: Do not provide `NETA_TOKEN` for this skill unless separate trusted evidence establishes that it is required. <br>
+## Use Case:
 
+Developers and site owners use this skill to expose a local HTML page or server through a temporary Cloudflare tunnel, deploy static content to Cloudflare Pages, and connect a purchased custom domain through DNS.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wohaoshuai/buy-domain-helper) <br>
-- [Skill homepage](https://github.com/wohaoshuai/buy-domain-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent through tunnel, Pages deployment, domain availability, DNS linking, and verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata and package.json) <br>
+Risk: The package requests an unrelated NETA_TOKEN credential that is not needed for the Cloudflare publishing workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the NETA_TOKEN requirement before release and do not provide unrelated credentials during installation or use.
+
+Risk: Cloudflare tokens may be exposed if pasted into command lines, logs, terminal history, or chat transcripts.
+
+Mitigation: Use least-privilege Cloudflare tokens, prefer environment variables or a secret manager, and rotate any token that may have been exposed.
+
+Risk: Tunnel and deployment commands can make local directories or sites public.
+
+Mitigation: Confirm the exact directory, project, domain, and DNS change before execution, and publish only content intended for public access.
+
+Risk: Deployment, package fetching, and system installation paths require review before use with real Cloudflare credentials.
+
+Mitigation: Pin or bundle required tooling where possible, review command construction before deployment, and test with limited-scope credentials first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wohaoshuai/skills/buy-domain-helper)
+- [Publisher profile](https://clawhub.ai/user/wohaoshuai)
+- [Project homepage](https://github.com/wohaoshuai/buy-domain-helper)
+- [Cloudflare API tokens](https://dash.cloudflare.com/profile/api-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Cloudflare tunnel URLs, Pages deployment URLs, domain status checks, DNS configuration steps, and command-line instructions.]
+
+## Skill Version(s):
+
+1.5.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

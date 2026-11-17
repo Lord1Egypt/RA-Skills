@@ -1,0 +1,19 @@
+{
+  "club": "Musterdorf",
+  "club_name": "SV Musterdorf",
+  "user_agent": "SV-Musterdorf-results/1.0",
+  "ignore_words": [
+    "Sponsorbank"
+  ],
+  "tournaments": {
+    "championship": {
+      "prefix": "Bgld"
+    },
+    "numbers": []
+  },
+  "board_order_tolerance": 100,
+  "deadline": {
+    "time": "12:00",
+    "timezone": "Europe/Vienna"
+  }
+}

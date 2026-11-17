@@ -1,40 +1,54 @@
-## Description: <br>
-DCL Skill Auditor reviews pasted ClawHub skill files before installation and returns a structured PASS, WARN, or BLOCK verdict with an audit proof. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DCL Skill Auditor performs pre-install static security analysis on ClawHub skills, checking SKILL.md files, scripts, and manifests for malicious patterns and returning a structured PASS, WARN, or BLOCK verdict with audit proof.
 
-## Publisher: <br>
-[daririnch](https://clawhub.ai/user/daririnch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daririnch](https://clawhub.ai/user/daririnch)
 
-## Use Case: <br>
-Developers, security reviewers, and agent operators use this skill as a pre-install checkpoint for ClawHub skills. It helps review pasted SKILL.md, script, and manifest content for credential exposure, prompt injection, suspicious shell or network behavior, obfuscation, permission abuse, and behavior mismatch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner verdict is advisory and may not catch every issue in a target skill. <br>
-Mitigation: Treat PASS, WARN, or BLOCK output as a helper judgment and review material findings before installation or deployment. <br>
-Risk: Target skill content pasted for review could include API keys, private keys, wallet seed phrases, or other secrets. <br>
-Mitigation: Redact secrets from skill files before pasting them into the agent for analysis. <br>
+## Use Case:
 
+Developers, security reviewers, and agent operators use this skill to review ClawHub skills before installation or update. It supports security checkpoints by identifying credential exfiltration, prompt injection, suspicious shell or network behavior, obfuscation, permission abuse, and behavioral mismatch risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daririnch/dcl-skill-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Guidance] <br>
-**Output Format:** [Structured JSON with PASS, WARN, or BLOCK verdict and audit proof] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes risk score, skill hash, analysis hash, findings, checked categories, timestamp, and proof identifier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The optional live MCP check can send hash and verdict metadata to Fronesis Labs or on-chain infrastructure and may require a USDC payment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the free local checklist mode unless the operator explicitly accepts the metadata disclosure and payment flow.
+
+Risk: Scanner examples include credential-exfiltration and malicious-network patterns that could be mistaken for active payloads during review.
+
+Mitigation: Treat those snippets as illustrative examples from the skill documentation and rely on the authoritative security verdict for release risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daririnch/skills/dcl-skill-auditor)
+- [DCL Trust Oracle MCP endpoint](https://mcp.fronesislabs.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON with optional code and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns PASS, WARN, or BLOCK verdicts with findings, hashes, proof identifiers, and an optional live-check transaction hash.]
+
+## Skill Version(s):
+
+1.0.3 (source: release metadata; artifact text also contains 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

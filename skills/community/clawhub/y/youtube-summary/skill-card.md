@@ -1,48 +1,62 @@
-## Description: <br>
-Summarize YouTube videos with youtube2md, including bare YouTube URLs with no instructions, chaptered notes, timestamp links, transcript extraction, and key takeaways. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize YouTube videos with youtube2md, including bare YouTube URLs with no instructions, chaptered notes, timestamp links, transcript extraction, and key takeaways.
 
-## Publisher: <br>
-[sunghyo](https://clawhub.ai/user/sunghyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunghyo](https://clawhub.ai/user/sunghyo)
 
-## Use Case: <br>
-Developers, employees, and external users can use this skill to summarize one or more YouTube videos into structured Markdown notes, chapters, timestamp-aware takeaways, or transcript-only output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a pinned third-party youtube2md CLI and its dependency chain. <br>
-Mitigation: Install only the reviewed pinned package version, prefer vetted internal mirrors in stricter environments, and re-audit dependencies before version bumps. <br>
-Risk: Full mode can send transcript or audio-derived content to OpenAI APIs when OPENAI_API_KEY is provided. <br>
-Mitigation: Do not set OPENAI_API_KEY for sensitive content; use simple or transcript mode when captions are available and external API use is not acceptable. <br>
-Risk: YouTube cookie environment variables are credentials and may expose signed-in session context to the local tool runtime. <br>
-Mitigation: Use cookies only when needed, keep them out of logs and commits, prefer short-lived exports, and delete them after sensitive runs. <br>
-Risk: Generated summaries and transcripts may be saved locally. <br>
-Mitigation: Use writable, controlled output directories and avoid publishing generated summaries or transcript artifacts inside release packages. <br>
+## Use Case:
 
+External users and developers use this skill to turn YouTube URLs into Markdown summaries, chaptered notes, key takeaways, or transcript outputs. It is useful when an agent needs concise video understanding while preserving timestamped source structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunghyo/skills/youtube-summary) <br>
-- [Output format](references/output-format.md) <br>
-- [Security and installation considerations](references/security.md) <br>
-- [youtube-summary behavior](references/summarization-behavior.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown summaries, transcript text, JSON transcript artifacts, and concise troubleshooting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Full mode can use OpenAI APIs; simple and transcript modes use extracted captions or prepared transcript text when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Full mode can send transcript text or captionless-video audio-derived content to OpenAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simple or transcript mode for sensitive videos, or set YOUTUBE2MD_CAPTIONS_ONLY=1 so captionless videos fail instead of using audio transcription.
+
+Risk: YouTube cookie file or raw cookie header settings can expose signed-in session credentials to the local tool runtime.
+
+Mitigation: Prefer a short-lived cookie file over a raw cookie header, keep cookie values out of chats and logs, and remove them after use in sensitive environments.
+
+Risk: Trust depends on the installed npm package and its dependency tree.
+
+Mitigation: Install the pinned youtube2md@1.2.0 package from a vetted source, prefer unprivileged installs on shared systems, and re-audit before version bumps.
+
+## Reference(s):
+
+- [youtube2md README](https://github.com/sunghyo/youtube2md#readme)
+- [ClawHub skill page](https://clawhub.ai/sunghyo/skills/youtube-summary)
+- [Output format](artifact/references/output-format.md)
+- [Security and installation considerations](artifact/references/security.md)
+- [Summarization behavior](artifact/references/summarization-behavior.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, timestamped text or JSON transcripts, and setup or troubleshooting commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Full mode passes through youtube2md Markdown; simple mode summarizes from timestamped transcript text; transcript mode returns transcript content.]
+
+## Skill Version(s):
+
+1.0.13 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

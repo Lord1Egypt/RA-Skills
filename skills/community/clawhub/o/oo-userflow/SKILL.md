@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Userflow"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["userflow"]
   icon: "https://static.oomol.com/logo/third-party/userflow.png"
 ---
@@ -42,7 +42,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_group` — Fetch one Userflow group by ID.
 - `get_user` — Fetch one Userflow user by ID.
 - `list_users` — List Userflow users with optional cursor pagination and filters.
-- `track_event` — Track one Userflow event for a user.
+- `track_event` — Track one Userflow event for a user. [write]
 - `upsert_group` — Create or update one Userflow group. [write]
 - `upsert_user` — Create or update one Userflow user. [write]
 
@@ -75,11 +75,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Userflow is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=userflow
+  https://console.oomol.com/connections/userflow
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Userflow homepage: https://userflow.com
+- API documentation: https://userflow.com/docs/api

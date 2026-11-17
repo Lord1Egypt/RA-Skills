@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.1",
+  "patch_id": "patch-001",
+  "subject": {
+    "type": "person",
+    "id": "user-controlled-id"
+  },
+  "principal": {
+    "type": "agent",
+    "id": "current-agent"
+  },
+  "purpose": "user-review",
+  "source_task": "task-id",
+  "source_revision": 1,
+  "created_at": "",
+  "status": "pending",
+  "proposals": [],
+  "task_strategies_not_for_merge": []
+}

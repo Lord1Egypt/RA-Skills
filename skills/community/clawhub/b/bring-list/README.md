@@ -4,14 +4,17 @@
 
 The only Bring! skill that runs everywhere — just `curl` and `jq`, no Node.js, no Python, no pip, no npm. Works on any Linux, any container, any VPS out of the box.
 
-## Why bring-list?
+## Why this is the best all-round Bring! skill
 
-There are 6+ Bring! skills on ClawHub. Here's why this one wins:
+The strongest integration is not merely the one with the most commands. **bring-list** combines the full item lifecycle, secure onboarding, catalog-aware behavior, automation features, and a tiny auditable runtime in one package.
 
 ### 🏆 Most features
 Other skills only do add + remove. **bring-list** does everything:
 - ✅ Add items (with quantity/description like "low fat, 1L")
 - ✅ Add multiple items in one go ("Milk, Bread, Cheese|Gouda, Butter|Irish")
+- ✅ Preview every change with `--dry-run`
+- ✅ Read batch items from stdin or a pipe
+- ✅ Match Bring's catalog for reliable native item icons
 - ✅ Check off items when you've bought them
 - ✅ Uncheck items (move back to shopping list)
 - ✅ Remove items completely
@@ -28,16 +31,27 @@ Other skills only do add + remove. **bring-list** does everything:
 
 ### 🧠 Built for AI agents
 - **Step-by-step Agent Setup Guide** — your agent knows exactly how to help you set up
-- **Privacy-first credential setup** — your agent asks whether you want to share credentials in chat or enter them privately in your own terminal
+- **Private terminal setup** — passwords are entered only in your own terminal, never in chat and never stored on disk
 - **Default list support** — say "put milk on the list" without naming the list every time
 - **Partial name matching** — "einkauf" finds "Einkaufsliste"
 - **Smart argument parsing** — the agent figures out what's an item and what's a list name
+- **Safe previews** — validate the list and intended change without modifying anything
+- **Catalog-aware adds** — optional `smart-add` maps display names to Bring's internal icon IDs
 
 ### 🔒 Clean & secure
-- Clean VirusTotal + static-analysis scans — no malware
-- Credentials stored locally with `chmod 600` (owner-only), and the skill is transparent about exactly what it stores
-- No external services — talks directly to Bring! API
-- Fully auditable: one bash script, ~850 lines, no magic
+- Bring! email and password are used only for the initial login and are never stored
+- Password entry happens privately in the user's terminal, never in agent chat or command arguments
+- The protected token cache and preference files are enforced as owner-only
+- No malware, remote code, or third-party telemetry
+- No third-party services — talks only to Bring!'s official API and public catalog
+- Fully auditable: one bash script, no hidden runtime dependency chain
+
+### ⚙️ Complete without becoming heavy
+- Full lifecycle: view, add, batch-add, check off, restore, and permanently remove
+- Catalog-aware IDs preserve native Bring! icons while localized names remain human-readable
+- Dry-run works across every modifying command, not merely adds
+- stdin, batch operations, partial list matching, default lists, and JSON output cover both chat agents and shell automation
+- Automatic refresh-token handling avoids repeated password use
 
 ## Installation
 
@@ -63,6 +77,7 @@ You need a [Bring!](https://getbring.com) account (free). If you signed up via G
 - *"Check off the butter, we got it"*
 - *"Add bread, cheese, and yogurt to the list"*
 - *"Remove the tomatoes"*
+- *"Preview adding paprika with a native Bring icon"*
 
 Your agent handles the rest.
 
@@ -71,33 +86,44 @@ Your agent handles the rest.
 `~/.config/bring/credentials.json`:
 ```json
 {
-  "email": "your@email.com",
-  "password": "YOUR_BRING_PASSWORD",
   "default_list": "Einkaufsliste",
-  "country": "DE"
+  "country": "DE",
+  "locale": "de-DE"
 }
 ```
 
 - `default_list` — Skip typing the list name every time
 - `country` — Item catalog language (default: `DE`). Use `AT`, `CH`, `US`, `FR`, etc.
+- `locale` — Optional catalog override for `smart-add`; normally derived from `country`
+
+## Advanced CLI usage
+
+```bash
+# Preview without changing the list
+scripts/bring.sh add --dry-run "Milk" "1L"
+
+# Use Bring's catalog/internal item ID so the native icon is preserved
+scripts/bring.sh smart-add "Paprika" "2 Stück"
+
+# Read one item per line; use item|specification when needed
+printf '%s\n' "Milk|1L" "Bread" | scripts/bring.sh add-multi -
+```
 
 ## Good to Know
 
 - **Shared lists sync instantly** — your partner sees changes in real time
 - **Lists must be created/deleted in the Bring! app** — API limitation, not ours
 - **Special characters fully supported** — umlauts, quotes, emoji, all fine
-- **Token auto-refreshes** — no manual re-login needed
+- **Token auto-refreshes** — rerun setup only if the refresh token expires
 
 ## Privacy
 
-No third-party services, no telemetry, no cloud — the skill talks **only** to Bring!'s own API (`api.getbring.com`).
+No third-party services or telemetry — the skill talks only to Bring!'s own services: `api.getbring.com` for accounts/lists and `web.getbring.com` for public catalog matching/display names.
 
-During setup, your agent gives you the choice:
-- **Terminal (recommended):** enter your credentials privately in your own terminal via `read -s` — they never appear in the chat.
-- **Chat (convenient):** paste them in chat. They're written straight to a local config file and never repeated by the agent — but, like any chat message, they then live in that conversation's history.
+Run `scripts/bring.sh setup` in your own terminal. It reads the password with `read -s`, uses the email and password for that login, and stores neither. Optional list/country preferences live in `~/.config/bring/credentials.json`; the owner-only access/refresh token lives in `~/.cache/bring/token.json` and remains a secret.
 
-**Where credentials live:** your Bring! email + password are stored locally in `~/.config/bring/credentials.json` (`chmod 600`) and sent only to Bring!. The password is kept so the skill can re-login when its cached token expires, so treat that file as a secret.
+Legacy `email` or `password` fields in `credentials.json` are removed automatically when the profile is loaded or setup is rerun.
 
 ## License
 
-MIT
+MIT-0

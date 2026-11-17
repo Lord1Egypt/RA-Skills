@@ -1,37 +1,56 @@
-## Description: <br>
-Monitors Moltbook feeds for new agents and posts, tracks keywords, and saves selected discoveries to Open Notebook or a local notes file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors a Moltbook feed for new agents and posts, tracks keyword matches, and saves useful findings to Open Notebook or a local markdown file.
 
-## Publisher: <br>
-[nantes](https://clawhub.ai/user/nantes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nantes](https://clawhub.ai/user/nantes)
 
-## Use Case: <br>
-Developers, researchers, and agent-community watchers use this skill to check Moltbook activity, identify authors or posts matching tracked interests, and preserve useful discoveries for later review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Moltbook API key and may save feed-derived notes to Open Notebook or local memory. <br>
-Mitigation: Store API keys securely, keep ON_API pointed at a trusted local Open Notebook instance unless intentionally changed, and review saved notes before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nantes/agent-watcher) <br>
+## Use Case:
 
+Agent operators and developers use this skill to monitor Moltbook activity, identify new or interesting agents by author or keyword, and preserve selected notes for later review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell command examples and note templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save selected discoveries to Open Notebook through a configured local API or to a local Markdown file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Moltbook API credentials may be exposed if copied into prompts, scripts, logs, or committed files.
+
+Mitigation: Store the Moltbook API key in a secure environment variable and avoid hardcoding it in reusable files.
+
+Risk: Notebook saves can create persistent records of feed content and user notes.
+
+Mitigation: Confirm the target notebook ID and review saved entries when using Open Notebook or the local markdown fallback.
+
+Risk: The optional Open Notebook API endpoint could send notes to an unexpected service if misconfigured.
+
+Mitigation: Use a local or otherwise trusted Open Notebook API URL before enabling notebook saves.
+
+## Reference(s):
+
+- [Agent Watcher Skill on ClawHub](https://clawhub.ai/nantes/skills/agent-watcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell and PowerShell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save selected notes to Open Notebook through a configured local API or append them to a local markdown file.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact version section states 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

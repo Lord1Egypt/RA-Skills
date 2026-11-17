@@ -1,39 +1,49 @@
-## Description: <br>
-Support CMO-level planning across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, Shopify Ads, and DSP/programmatic with revenue, profit, cashflow, ROAS, and LTV strategy modeling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Support CMO-level planning across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, Shopify Ads, and DSP/programmatic with revenue, profit, cashflow, ROAS, and LTV strategy modeling.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Marketing leaders and growth teams use this skill to turn revenue, profit, cashflow, and media-budget targets into channel allocation scenarios, ROAS/LTV assumptions, risk alerts, and leadership-ready planning summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat media forecasts, ROAS estimates, or LTV projections as guaranteed outcomes. <br>
-Mitigation: Keep assumptions, historical facts, and modeled estimates separate, label scenarios clearly, and review recommendations before business execution. <br>
-Risk: Users may enter confidential revenue, profit, cashflow, or channel performance data into chat. <br>
-Mitigation: Avoid entering confidential business numbers unless the user is comfortable discussing them in the chat environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/cmo-ads-helper) <br>
+## Use Case:
 
+External business leaders and marketing operators use this skill to turn revenue, profit, cashflow, budget, and channel baseline inputs into advertising growth plans, allocation scenarios, forecast assumptions, risk radar, and board-ready report outlines.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured planning sections, tables, and scenario summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning scenarios and forecasts that should be treated as estimates, not guaranteed financial outcomes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Forecast assumptions may be over-relied on for budget decisions.
+
+Mitigation: Review forecast assumptions before use and treat outputs as advisory planning support, not automated media-buying or financial-control instructions.
+
+## Reference(s):
+
+- [CMO Helper on ClawHub](https://clawhub.ai/danyangliu-sandwichlab/skills/cmo-ads-helper)
+- [Publisher profile](https://clawhub.ai/user/danyangliu-sandwichlab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with structured planning sections and optional YAML or JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory planning outputs such as goal decomposition, channel allocation scenarios, forecast assumptions, risk radar, and leadership report outlines.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

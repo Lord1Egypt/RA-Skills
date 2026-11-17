@@ -1,46 +1,61 @@
-## Description: <br>
-Supports health weight-loss and beauty service workflows with Douyin content operations, CRM templates, appointment guidance, knowledge lookup, and sales analysis guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language support for health weight-loss and beauty service planning, Douyin local-life operations, CRM workflows, appointment coordination, and sales data analysis.
 
-## Publisher: <br>
-[lin77057742-cell](https://clawhub.ai/user/lin77057742-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lin77057742-cell](https://clawhub.ai/user/lin77057742-cell)
 
-## Use Case: <br>
-Health and beauty business operators use this skill to draft customer consultations, service-plan guidance, CRM records, follow-up messaging, Douyin local-life content, and sales or service analysis. Human review is needed before using outputs for health advice, appointment or record changes, customer messaging, marketing claims, or workflows involving sensitive customer data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce health, postpartum, metabolic, or personalized weight-loss guidance that users may over-rely on. <br>
-Mitigation: Require qualified professional review before using outputs as medical, postpartum, metabolic, or individualized weight-loss advice. <br>
-Risk: The skill supports customer records, appointments, follow-up messages, and third-party platform workflows involving sensitive customer data. <br>
-Mitigation: Use only with documented customer consent, clear opt-in and opt-out for messages, scoped third-party sharing, and human confirmation before changing records or appointments. <br>
-Risk: Marketing content, testimonials, photos, and effect claims may create privacy, consent, or misleading-advertising concerns. <br>
-Mitigation: Obtain written permission for customer photos or marketing claims and review content for platform rules, truthful claims, and privacy requirements before publication. <br>
+## Use Case:
 
+External health, beauty, and local-life service operators use this skill to draft consultation guidance, customer follow-up templates, appointment and CRM structures, Douyin content plans, and sales or service analysis prompts.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/lin77057742-cell/health-industry-specialist) <br>
-- [Health Weight-Loss Knowledge Base](artifact/references/weight-loss-knowledge.md) <br>
-- [Beauty and Body-Shaping Knowledge Base](artifact/references/beauty-knowledge.md) <br>
-- [Douyin Local-Life Operations Guide](artifact/references/douyin-operations.md) <br>
-- [CRM Templates](artifact/references/crm-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration, Code, Shell commands] <br>
-**Output Format:** [Markdown with structured templates, prose guidance, and occasional code or command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include customer-message drafts, CRM templates, content plans, consultation guidance, operational checklists, and analysis summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact changelog) <br>
+Risk: Health, weight-loss, postpartum, chronic-condition, or cosmetic recommendations may be unsuitable for an individual customer without qualified review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as business reference content and require licensed professional review before using customer-specific health or beauty advice.
+
+Risk: CRM and appointment workflows can involve sensitive customer, contact, health, payment, and service-history data.
+
+Mitigation: Add consent records, privacy notices, opt-out handling, retention limits, access controls, and data minimization before using with real customers.
+
+Risk: Marketing content, testimonials, before-and-after materials, and automated replies can create privacy, permission, platform, or exaggerated-claim issues.
+
+Mitigation: Obtain customer image and testimonial permissions, avoid medical diagnosis or overstated results, clearly label commercial promotions, and follow applicable Douyin and advertising rules.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lin77057742-cell/skills/health-industry-specialist)
+- [Weight Loss Knowledge Base](artifact/references/weight-loss-knowledge.md)
+- [Beauty and Body Care Knowledge Base](artifact/references/beauty-knowledge.md)
+- [Douyin Local-Life Operations Guide](artifact/references/douyin-operations.md)
+- [CRM Templates](artifact/references/crm-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Chinese-language Markdown guidance with YAML, Markdown, and JavaScript-style templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-oriented business content for health, beauty, CRM, appointment, marketing, and analytics workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

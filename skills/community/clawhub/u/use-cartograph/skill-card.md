@@ -1,37 +1,52 @@
-## Description: <br>
-Use when Cartograph CLI or MCP is available and you need repository orientation, task-scoped context, or doc inputs with minimal token cost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when Cartograph CLI or MCP is available and you need repository orientation, task-scoped context, or doc inputs with minimal token cost.
 
-## Publisher: <br>
-[anthony-maio](https://clawhub.ai/user/anthony-maio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anthony-maio](https://clawhub.ai/user/anthony-maio)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to orient in a repository with Cartograph, gather task-scoped context, and prepare documentation inputs while minimizing token use.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Repository inspection may expose private code or documentation to provider-backed documentation generation if that mode is chosen.
+
+Mitigation: Prefer static Cartograph commands for private repositories unless provider-backed documentation generation is intentional.
+
+Risk: Guidance depends on Cartograph or its MCP server being available in the agent environment.
+
+Mitigation: Check for Cartograph availability first and switch to repo-surveyor when it is unavailable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill to prefer Cartograph for repository orientation, task-scoped context, and documentation inputs when the Cartograph CLI or MCP server is available. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Cartograph may read repository contents, and provider-backed documentation generation may send relevant project context to the configured provider. <br>
-Mitigation: Use Cartograph only where repository access is authorized, review provider settings before provider-backed documentation generation, and prefer static local commands for sensitive repositories. <br>
+**Output Format:** [Markdown guidance with inline shell commands and artifact references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May reference Cartograph run IDs and artifacts instead of long prose.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill encourages passing run IDs and artifact references instead of long prose.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

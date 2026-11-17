@@ -1,39 +1,54 @@
-## Description: <br>
-Generate short Chinese notices for community teachers, grid workers, and public service staff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate short Chinese notices for community teachers, grid workers, and public service staff.
 
-## Publisher: <br>
-[maosangtianshi](https://clawhub.ai/user/maosangtianshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maosangtianshi](https://clawhub.ai/user/maosangtianshi)
 
-## Use Case: <br>
-Community teachers, grid workers, and public service staff use this skill to draft short formal Chinese notices with a title, audience, body, and notes section. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafted notices could contain incorrect policy, deadline, or public-service wording if the user supplies incomplete content. <br>
-Mitigation: Review policy, deadline, and public-service wording before sending; treat the skill as a formatting and writing aid, not an authority on local regulations. <br>
+## Use Case:
 
+External users and community staff use this skill to draft short, formal Chinese notices for community teachers, grid workers, and public service personnel.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/maosangtianshi/zeh-hello-community) <br>
-- [Publisher profile](https://clawhub.ai/user/maosangtianshi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Short structured Chinese notice text; the bundled script prints plain text fields from command-line arguments.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should remain short and formal and should not invent policy details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill is intentionally Chinese-focused and uses a fixed notice structure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for short Chinese community or public-service notices, and choose another skill for multilingual or more flexible notice-writing needs.
+
+Risk: The notice could imply unsupported policy requirements if users add unverified details.
+
+Mitigation: Review notice content against the applicable source policy before sharing, consistent with the skill rule not to invent policy details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maosangtianshi/skills/zeh-hello-community)
+- [ClawHub publisher profile](https://clawhub.ai/user/maosangtianshi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Short Chinese notice with title, audience, body, and notes sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs agents to keep notices short and formal and to avoid inventing policy details.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

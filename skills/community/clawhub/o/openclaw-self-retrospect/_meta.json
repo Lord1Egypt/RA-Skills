@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn79es884s52k6pj53fxccxa4x84ev7j",
-  "slug": "openclaw-self-retrospect",
-  "version": "1.0.1",
-  "publishedAt": 1776654621055
-}
+{"name": "openclaw-self-retrospect", "description": "OpenClaw 完成任务后主动复盘总结，询问用户评价，求夸奖求奖励 tokens，让交互更自然有温度", "author": "海绵宝宝 & 派大星 (比奇堡团队)", "license": "MIT", "keywords": ["retrospect", "feedback", "interaction", "personality"]}

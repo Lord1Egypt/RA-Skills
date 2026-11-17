@@ -1,42 +1,55 @@
-## Description: <br>
-Professional copywriting for product marketing, executive communications, and customer-facing content using structured frameworks, storytelling principles, and quality checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional copywriting for product marketing, exec comms, and customer-facing content. Use when writing copy, drafting emails, composing memos, or creating landing pages, announcements, value props, sales copy, case studies, stakeholder updates, or positioning. Triggers: write copy, draft email, AIDA, PAS, BLUF.
 
-## Publisher: <br>
-[jhigh1594](https://clawhub.ai/user/jhigh1594) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhigh1594](https://clawhub.ai/user/jhigh1594)
 
-## Use Case: <br>
-Employees, marketers, founders, and communications teams use this skill to draft and refine persuasive emails, landing pages, product announcements, executive memos, positioning, case studies, and customer-facing copy. It is best suited to copy that needs clear audience context, a single call to action, and evidence-backed claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect project documentation and messaging files for brand and audience context, which can expose confidential customer data or secrets if used in sensitive repositories. <br>
-Mitigation: Use approved source material, avoid providing secrets or confidential customer records, and review what context is shared before drafting. <br>
-Risk: Generated copy can include inaccurate claims, weak proof, or artificial urgency and scarcity if source evidence is incomplete. <br>
-Mitigation: Review claims against approved facts, metrics, and testimonials, and remove unsupported urgency, scarcity, or persuasion tactics before publishing. <br>
+## Use Case:
 
+External users, employees, and content teams use this skill to draft and refine marketing, executive, and customer-facing copy using structured copywriting frameworks, storytelling techniques, and audience-specific quality checks.
 
-## Reference(s): <br>
-- [PM AI Copilot: Elite Copywriting Arsenal](references/frameworks-library.md) <br>
-- [Copywriting Templates Library](references/templates.md) <br>
-- [Advanced Storytelling Techniques](references/storytelling-techniques.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text copy with concise notes when helpful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for audience, objective, brand voice, pain points, and proof before drafting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may use project documentation, customer research, or internal messaging files as context for generated copy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in projects where that context is appropriate for copywriting, and review or redact generated copy before sharing it externally.
+
+Risk: Marketing or sales copy can overstate benefits if the source context lacks proof.
+
+Mitigation: Require specific evidence for performance, ROI, or customer claims and remove unsupported claims during review.
+
+## Reference(s):
+
+- [Frameworks Library](references/frameworks-library.md)
+- [Storytelling Techniques](references/storytelling-techniques.md)
+- [Templates Library](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text copy with concise notes when helpful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for audience, objective, positioning, brand voice, and supporting proof before drafting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

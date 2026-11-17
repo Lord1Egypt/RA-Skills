@@ -1,45 +1,54 @@
-## Description: <br>
-Provides agent-facing Eudic OpenAPI guidance for managing vocabulary books, words, notes, and English pronunciation scoring across Eudic, French Assistant, German Assistant, and Spanish Assistant. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenAPI guidance for using Eudic and related language assistant services to manage vocabulary books, words, notes, and English pronunciation scoring.
 
-## Publisher: <br>
-[ink-kai](https://clawhub.ai/user/ink-kai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ink-kai](https://clawhub.ai/user/ink-kai)
 
-## Use Case: <br>
-Developers and language-learning users use this skill to let an agent call Eudic OpenAPI endpoints for vocabulary list management, word lookup, note management, and English voice scoring. It is useful when the agent needs to prepare curl-based API requests that require a user-provided Eudic API token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A valid Eudic API token gives the agent access to the user's Eudic OpenAPI account actions. <br>
-Mitigation: Keep the token private, avoid logging it, and provide it only when the user intends the agent to call Eudic. <br>
-Risk: The skill can rename or delete vocabulary books, words, and notes. <br>
-Mitigation: Confirm destructive or renaming requests by exact item name and ID before executing the API call. <br>
-Risk: English pronunciation scoring uploads an audio file to Eudic. <br>
-Mitigation: Upload only audio files the user explicitly intends to send for scoring. <br>
-Risk: Frequent API calls may trigger documented Eudic rate limits. <br>
-Mitigation: Keep request volume within the documented limits and pause when the API reports frequency restrictions. <br>
+## Use Case:
 
+Language learners and developers use this skill to operate Eudic vocabulary, note, and pronunciation evaluation workflows through an agent using documented API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ink-kai/eudic-openapi-skills-local) <br>
-- [Eudic OpenAPI authorization](https://my.eudic.net/OpenAPI/Authorization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Eudic API token and supports English, French, German, and Spanish language parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses a Eudic API token that can access account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use secure token handling and avoid sharing tokens in transcripts or logs.
+
+Risk: The skill can create, rename, and delete vocabulary books, words, and notes.
+
+Mitigation: Require clear user confirmation before delete or destructive update requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ink-kai/skills/eudic-openapi-skills-local)
+- [Eudic OpenAPI Authorization](https://my.eudic.net/OpenAPI/Authorization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples that require a user-provided Eudic API token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

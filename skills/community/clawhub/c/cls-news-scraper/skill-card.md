@@ -1,39 +1,52 @@
-## Description: <br>
-Extracts real-time stock-positive market news from Cailian Press (CLS), filtered by time window, sector, and event type for catalyst identification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts real-time stock-positive market news from Cailian Press (CLS), filtered by time window, sector, and event type for catalyst identification.
 
-## Publisher: <br>
-[ningjingzhiyuande](https://clawhub.ai/user/ningjingzhiyuande) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ningjingzhiyuande](https://clawhub.ai/user/ningjingzhiyuande)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to collect CLS market news, identify stock-positive catalysts, and prepare structured rows for downstream scoring or review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Market-news catalyst extraction can be mistaken for investment advice or acted on without sufficient verification. <br>
-Mitigation: Treat outputs as research support, verify important items against primary sources, and apply independent judgment before using them in decisions. <br>
-Risk: Configured CLS endpoints or sources may be incorrect, unauthorized, or inconsistent with applicable terms. <br>
-Mitigation: Confirm the configured endpoint or source is legitimate and compliant with relevant terms before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ningjingzhiyuande/cls-news-scraper) <br>
+## Use Case:
 
+External users and analysts use this skill to collect Cailian Press market-news items and structure likely positive stock catalysts for downstream research and scoring.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown table or structured rows containing ticker, company, catalyst, source URL, timestamp, and confidence.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for downstream filtering, scoring, and human review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The configured CLS endpoint or source may be unclear before installation.
+
+Mitigation: Confirm the endpoint or source the skill will use before installing or running it.
+
+Risk: Catalyst classifications may be mistaken for financial advice.
+
+Mitigation: Treat catalyst output as research input and review source URLs, timestamps, and confidence before downstream scoring or decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ningjingzhiyuande/skills/cls-news-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown table or structured rows containing ticker, company, catalyst, source URL, timestamp, and confidence.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Filtered by time window, sector, and event type; catalyst output should be treated as research input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

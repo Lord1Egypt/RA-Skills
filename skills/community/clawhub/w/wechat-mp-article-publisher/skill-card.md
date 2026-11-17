@@ -1,43 +1,59 @@
-## Description: <br>
-Complete the creation, editing, and publishing of WeChat Official Account articles through browser automation simulating manual operation. No API key required; operates directly on the Official Account platform backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete the creation, editing, and publishing of WeChat Official Account articles through browser automation simulating manual operation.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users and operators who manage WeChat Official Accounts use this skill to create, preview, schedule, and publish articles through browser automation while preserving user confirmation for QR-code steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates a live WeChat Official Account and can publish or schedule public content. <br>
-Mitigation: Review the article, target account, mass-notification setting, and schedule before scanning any publishing confirmation QR code. <br>
-Risk: Login, preview, and publishing verification depend on admin WeChat QR-code scans. <br>
-Mitigation: Only scan QR codes after confirming the displayed account, page state, and intended operation. <br>
-Risk: Mass notification quotas and post-publish edit limits can make accidental publication difficult to correct. <br>
-Mitigation: Keep mass notification disabled unless explicitly requested, preview the article first, and confirm publishing options before final approval. <br>
+## Use Case:
 
+External creators, operators, and developers use this skill to automate article creation, editing, preview, scheduling, and publishing in the WeChat Official Account backend while retaining required QR-code confirmation steps.
 
-## Reference(s): <br>
-- [WeChat Official Account Platform](https://mp.weixin.qq.com) <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/wechat-mp-article-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with browser automation command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user QR-code confirmation for login, preview, and publishing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill automates publishing choices on a live WeChat Official Account admin page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target account, article content, author, originality setting, mass notification setting, schedule, preview, and final publish action before scanning any final verification QR code.
+
+Risk: Login and publishing verification cannot be fully automated and require the admin WeChat account holder to scan QR codes.
+
+Mitigation: Pause for the account holder at each QR-code step and proceed only after the page state confirms the intended login, preview, or publishing action.
+
+Risk: Mass notification and post-publish modification limits can make mistakes difficult to correct.
+
+Mitigation: Keep mass notification off unless explicitly requested, confirm applicable account limits, and complete preview review before publishing.
+
+## Reference(s):
+
+- [WeChat Official Account Platform](https://mp.weixin.qq.com)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/wechat-mp-article-publisher)
+- [Publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with browser automation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user QR-code scans for login, preview, and final publishing verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

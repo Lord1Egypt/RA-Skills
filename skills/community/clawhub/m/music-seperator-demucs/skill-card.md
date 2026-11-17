@@ -1,39 +1,58 @@
-## Description: <br>
-Separate vocals and instrument stems from audio files with Demucs CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using the Demucs CLI to separate vocals and instrument stems, batch process audio, choose output formats, and tune CPU/GPU performance.
 
-## Publisher: <br>
-[chinesemisaka](https://clawhub.ai/user/chinesemisaka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinesemisaka](https://clawhub.ai/user/chinesemisaka)
 
-## Use Case: <br>
-Developers, audio producers, and automation users use this skill to generate Demucs commands and troubleshooting guidance for vocal extraction, accompaniment generation, stem splitting, batch processing, and output format conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence notes that some workflows can run powerful local, GitHub, Convex, and moderation commands when explicitly invoked. <br>
-Mitigation: Review the skill before deployment and avoid fallback reviewer flows or full-access nested Codex modes when reviewing sensitive diffs. <br>
+## Use Case:
 
+Developers, audio engineers, and operators use this skill to turn audio separation requests into Demucs commands, including prerequisites, batch processing, output naming, format conversion, and troubleshooting.
 
-## Reference(s): <br>
-- [Demucs project homepage](https://github.com/facebookresearch/demucs) <br>
-- [ClawHub release page](https://clawhub.ai/chinesemisaka/music-seperator-demucs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Demucs CLI options, path examples, installation checks, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact _meta.json reports 1.0.0) <br>
+Risk: Installing Demucs through pip can introduce dependency supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned Demucs version in an isolated virtual environment or container before running generated commands.
+
+Risk: Batch separation can consume significant CPU/GPU memory or process more local audio than intended.
+
+Mitigation: Review generated batch commands, use explicit paths, and reduce segment size or batch size when memory is constrained.
+
+Risk: Audio files may contain private or licensed content handled by local tools.
+
+Mitigation: Keep processing local, verify input and output directories, and follow the user's content handling requirements before running commands.
+
+## Reference(s):
+
+- [Demucs GitHub repository](https://github.com/facebookresearch/demucs)
+- [ClawHub skill page](https://clawhub.ai/chinesemisaka/skills/music-seperator-demucs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Demucs and FFmpeg prerequisites, local file path guidance, batch processing examples, output format options, and memory/performance tuning notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,34 @@
+{
+  "name": "{{expert-name}}",
+  "version": "1.0.0",
+  "description": "{{English short description}}",
+  "author": { "name": "{{Your Name}}", "email": "{{you@example.com}}" },
+  "agents": ["./agents/{{agent-name}}.md"],
+  "expertType": "agent",
+  "agentName": "{{agent-name}}",
+  "displayName": { "en": "{{Name}}", "zh": "{{名称}}" },
+  "profession": { "en": "{{Profession}}", "zh": "{{职业头衔}}" },
+  "displayDescription": {
+    "en": "{{English display description}}",
+    "zh": "{{中文展示描述，严格 40~50 字，突出专家核心能力}}"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "{{15 选 1：01-ProductDesign|02-Engineering|03-GameSpatial|04-DataAI|05-MarketingGrowth|06-ContentCreative|07-SalesCommerce|08-FinanceInvestment|09-OperationsHR|10-ProjectQuality|11-SecurityCompliance|12-IndustryConsultant|13-TencentZone|14-WorldWise|15-Education}}",
+  "defaultInitPrompt": { "zh": "{{与 quickPrompts 第一条一致}}", "en": "{{same as first quickPrompt}}" },
+  "plugin": "{{expert-name}}",
+  "tags": [
+    { "en": "{{Tag 1}}", "zh": "{{标签一}}" },
+    { "en": "{{Tag 2}}", "zh": "{{标签二}}" },
+    { "en": "{{Tag 3}}", "zh": "{{标签三}}" }
+  ],
+  "quickPrompts": [
+    { "en": "{{Prompt 1}}", "zh": "{{提示词一}}" },
+    { "en": "{{Prompt 2}}", "zh": "{{提示词二}}" },
+    { "en": "{{Prompt 3}}", "zh": "{{提示词三}}" }
+  ],
+  "_optional_skills": ["./skills/{{skill-name}}"],
+  "_optional_dependencies": {
+    "mcpServers": "./.mcp.json",
+    "connectors": ["{{connector-id}}"]
+  }
+}

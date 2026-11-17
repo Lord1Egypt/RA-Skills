@@ -1,44 +1,51 @@
-## Description: <br>
-Helps an agent inspect TaxJar connector schemas and run TaxJar read, write, and delete actions through the OOMOL oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OOMOL-connected TaxJar account to read, calculate, create, update, and delete TaxJar data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to calculate sales tax, retrieve rates, validate VAT IDs, and manage TaxJar customers, orders, and refunds from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access a user's TaxJar account through OOMOL and requires sensitive account credentials to be connected. <br>
-Mitigation: Install it only when TaxJar account access is intended, and keep account connection and credential handling within the OOMOL setup flow. <br>
-Risk: Customer, order, refund, update, and delete actions can affect business tax records. <br>
-Mitigation: Review the exact payload, target record, and expected effect with the user before approving write or destructive actions. <br>
-Risk: TaxJar action inputs can change or differ by account configuration. <br>
-Mitigation: Fetch the live connector schema before building each action payload. <br>
+## Use Case:
 
+Developers and finance or operations teams use this skill to retrieve TaxJar rates and records, calculate sales tax, manage customers and transactions, and validate VAT numbers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-taxjar) <br>
-- [TaxJar homepage](https://www.taxjar.com/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash command examples and JSON payload or response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed and authenticated oo CLI plus a connected TaxJar account; write and delete actions should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill frontmatter) <br>
+Risk: If the oo CLI is missing, setup may invoke a remote installer without a separate approval step or integrity check.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a pinned and verified release before setup, and consider its effects on other installed skills. Confirm account changes before execution and explicitly approve destructive actions.
+
+## Reference(s):
+
+- [TaxJar API Reference](https://developers.taxjar.com/api/reference/)
+- [TaxJar](https://www.taxjar.com/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the oo CLI and a connected TaxJar account; write actions require confirmation and destructive actions require explicit approval.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

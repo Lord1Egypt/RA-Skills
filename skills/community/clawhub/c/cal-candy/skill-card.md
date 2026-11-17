@@ -1,41 +1,53 @@
-## Description: <br>
-Manage a local Markdown-based calendar by adding, listing, viewing, reminding, and deleting events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cal-Candy helps an agent manage a local Markdown calendar by adding, listing, viewing, reminding on, and deleting calendar events.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and developers use this skill to manage local calendar events through Markdown files and a Python CLI, including event creation, month views, reminders, upcoming-event checks, and deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deleting an event modifies local calendar files and can remove the wrong entry if the event ID is mistaken. <br>
-Mitigation: List events first and confirm the exact event ID before running delete or remind-del commands. <br>
-Risk: Setting MDCAL_DIR to a broad or unrelated directory can cause the tool to read or edit Markdown files outside the intended calendar store. <br>
-Mitigation: Use a dedicated calendar directory for MDCAL_DIR or keep the default ~/.openclaw/workspace/calendar location. <br>
+## Use Case:
 
+Developers and agent users use this skill to manage time-bound tasks in a local Markdown calendar, including creating events, checking current or upcoming schedules, configuring reminders, and deleting obsolete entries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/cal-candy) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown calendar files, reminders JSON, CLI text output, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local calendar files under MDCAL_DIR or ~/.openclaw/workspace/calendar by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can create and delete local calendar entries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intent before event creation or deletion, and keep MDCAL_DIR limited to a dedicated calendar directory.
+
+Risk: Event titles and descriptions are written into Markdown files.
+
+Mitigation: Avoid passing untrusted multiline text as event titles or descriptions, and review generated entries before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goog/skills/cal-candy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Markdown files and a reminders JSON file in the configured calendar directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

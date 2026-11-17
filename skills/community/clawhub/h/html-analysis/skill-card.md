@@ -1,45 +1,59 @@
-## Description: <br>
-Analyze HTML document structure and content with MinerU, returning structured Markdown with layout, headings, and content hierarchy preserved. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze the structure and content of HTML documents using MinerU, returning structured Markdown with layout information, headings, and content hierarchy preserved.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, SEO analysts, and content auditors use this skill to inspect local or remote HTML, understand document structure, and preserve extracted layout information as Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the third-party MinerU service and mineru-open-api package. <br>
-Mitigation: Install and use it only when MinerU and the package source are trusted for the target environment. <br>
-Risk: MINERU_TOKEN is required for HTML extraction and could grant service access if exposed. <br>
-Mitigation: Store the token as a protected secret or environment variable and avoid committing it, sharing it, or writing it to logs. <br>
-Risk: Submitted HTML, internal URLs, or crawled page content may contain confidential or regulated information. <br>
-Mitigation: Use the skill only when MinerU's data handling is acceptable for the material being analyzed. <br>
+## Use Case:
 
+Developers, SEO analysts, and content auditors use this skill to inspect local or remote HTML structure and extract a Markdown representation of headings, sections, tables, lists, and layout hierarchy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzlzyca/html-analysis) <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU repository](https://github.com/opendatalab/MinerU) <br>
-- [MinerU API token management](https://mineru.net/apiManage/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and MinerU CLI usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses mineru-open-api with MINERU_TOKEN; document content is written to stdout by default and progress messages to stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: release evidence) <br>
+Risk: HTML content may be processed by a third-party MinerU/OpenDataLab service or tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential local files, private URLs, or internal pages unless that provider is approved for the data.
+
+Risk: The required MINERU_TOKEN can be exposed through repositories, logs, screenshots, or shared shell sessions.
+
+Mitigation: Store the token outside source control and avoid printing or sharing authenticated shell output.
+
+Risk: Global or latest CLI installation can make behavior harder to reproduce.
+
+Mitigation: Pin the mineru-open-api version or install it in an isolated environment.
+
+## Reference(s):
+
+- [MinerU](https://mineru.net)
+- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU)
+- [MinerU Token Management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the mineru-open-api CLI and requires MINERU_TOKEN for HTML extraction.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

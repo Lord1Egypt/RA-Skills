@@ -1,43 +1,54 @@
-## Description: <br>
-Use this skill when the user wants to put a Solana wallet on trial, identify the action most likely to cause regret tomorrow, return a verdict, and only then preview execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to put a Solana wallet on trial, identify the action most likely to cause regret tomorrow, return a verdict, and only then preview execution.
 
-## Publisher: <br>
-[richard7463](https://clawhub.ai/user/richard7463) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richard7463](https://clawhub.ai/user/richard7463)
 
-## Use Case: <br>
-External users use this skill to assess one Solana wallet before trading, identify the action most likely to cause regret, and receive a single verdict before any execution preview. The skill supports court-style pre-trade review using the disclosed Court API and wallet, market, quote, and receipt evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried Solana wallet addresses are sent to the disclosed Court API and may reveal or correlate wallet activity with a third-party service. <br>
-Mitigation: Use only wallet addresses whose activity you are comfortable sharing with the Court API, and avoid submitting wallets that require privacy from third-party analysis. <br>
-Risk: Execution previews can be mistaken for completed trades. <br>
-Mitigation: Treat previews as informational until a wallet-connected client signs, broadcasts, and confirms the transaction with a receipt. <br>
-Risk: Trading steps could be acted on without sufficient user intent. <br>
-Mitigation: Require explicit user approval before broadcast, and stop at preview when the client environment cannot sign and broadcast safely. <br>
+## Use Case:
 
+External users with a Solana wallet use this skill to request a pre-trade court-style review that identifies one likely regrettable action, returns one verdict, and previews execution only after the verdict.
 
-## Reference(s): <br>
-- [Wallet Twin Court Skill Page](https://clawhub.ai/richard7463/wallet-twin-court) <br>
-- [Court API](https://todays-orders.vercel.app/api/todays-orders) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with structured verdict sections and optional inline bash command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs a preview report unless execution is explicitly approved and confirmed with a receipt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill sends a Solana wallet address to an external Court API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and use it only when users accept sending the wallet address to the listed endpoint.
+
+Risk: The skill can rely on an external API's transaction plan before wallet execution.
+
+Mitigation: Before signing or broadcasting, require the wallet-connected client to decode the full transaction, verify programs, accounts, amounts, fees, slippage, and recipients, and show a trusted approval screen generated from the decoded transaction.
+
+## Reference(s):
+
+- [Wallet Twin Court API](https://todays-orders.vercel.app/api/todays-orders)
+- [ClawHub Skill Page](https://clawhub.ai/richard7463/skills/wallet-twin-court)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown with fixed courtroom sections and inline shell commands when showing the API call]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses wallet, market, quote, route, and receipt data from the court workflow; labels execution previews clearly until execution is confirmed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

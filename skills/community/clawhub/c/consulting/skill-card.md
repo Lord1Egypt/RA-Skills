@@ -1,40 +1,53 @@
-## Description: <br>
-Consulting practice management with engagement scoping, proposal writing, pricing strategy, and client relationship management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consulting supports practice management with engagement scoping, proposal writing, pricing strategy, deliverable structuring, and client relationship management while preserving consultant judgment and independence.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Consultants and consulting practice operators use this skill to scope engagements, write proposals, structure pricing and deliverables, and manage difficult client situations while preserving consultant judgment and independence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client names and engagement problems may be saved locally when helper scripts are used. <br>
-Mitigation: Enter only necessary client details, avoid unnecessary confidential or regulated information, and periodically review or delete local records. <br>
-Risk: Consulting outputs may affect client-facing proposals, pricing, or relationship decisions. <br>
-Mitigation: Review recommendations with professional judgment before sending deliverables or making client commitments. <br>
+## Use Case:
 
+External consultants and advisory teams use this skill to scope engagements, prepare proposals, design pricing, structure deliverables, and manage client relationship situations while keeping client decisions with the consultant.
 
-## Reference(s): <br>
-- [Consulting Skill Release Page](https://clawhub.ai/AGIstack/consulting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code] <br>
-**Output Format:** [Markdown guidance with optional shell command examples and local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local consulting engagement records under the OpenClaw workspace memory path when helper scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence) <br>
+Risk: Confidential client engagement details may be stored locally without the skill enforcing restrictive file permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private workspace, restrict permissions on ~/.openclaw and consulting memory files, and avoid storing unnecessary sensitive identifiers.
+
+Risk: Consulting recommendations, proposals, or pricing guidance could be treated as a substitute for professional judgment.
+
+Mitigation: Require consultant review before client use, keep final decisions with the practitioner, and verify recommendations against engagement-specific facts.
+
+## Reference(s):
+
+- [ClawHub Consulting skill page](https://clawhub.ai/agistack/skills/consulting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text, with optional local JSON record updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local consulting records under ~/.openclaw/workspace/memory/consulting; no network sharing is evidenced.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

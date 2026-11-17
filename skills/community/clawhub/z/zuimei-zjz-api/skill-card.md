@@ -1,46 +1,62 @@
-## Description: <br>
-AI photo-processing API integration for ID photo creation, portrait segmentation, face enhancement, background replacement, layout, and image editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zuimei Zjz Api helps agents use the Zuimei ID photo API for ID-photo generation, portrait and background segmentation, face enhancement, print layouts, and image resizing.
 
-## Publisher: <br>
-[flaravel](https://clawhub.ai/user/flaravel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flaravel](https://clawhub.ai/user/flaravel)
 
-## Use Case: <br>
-External users and developers use this skill to prepare ID-style photos, remove or replace portrait backgrounds, enhance face photos, generate printable layouts, and adjust image size or format through the Zuimei photo-processing API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send sensitive face or ID photos to a third-party photo-processing API without clear consent, retention, or cleanup controls. <br>
-Mitigation: Ask for explicit user consent before uploading images, avoid highly sensitive identity documents unless the provider's privacy terms are understood, and delete local uploads or results when no longer needed. <br>
-Risk: The artifact embeds shared test API credentials. <br>
-Mitigation: Use scoped user-owned credentials from environment variables or a secret manager, remove shared credentials from release artifacts, and rotate any exposed keys. <br>
-Risk: Broad photo-processing triggers can cause unintended use for user images. <br>
-Mitigation: Confirm the requested operation and destination service before processing images, especially for ID-photo, portrait, or face-enhancement workflows. <br>
+## Use Case:
 
+External users and developers use this skill to route photo-processing requests to a third-party API for ID photos, portrait cutouts, background replacement, face enhancement, printable layouts, and image format or size changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/flaravel/zuimei-zjz-api) <br>
-- [Zuimei Website](https://zuimei.huipai.vip) <br>
-- [API Documentation](artifact/API.md) <br>
-- [OpenAPI Specification](artifact/openapi.yaml) <br>
-- [Usage Examples](artifact/examples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline Python and shell command snippets, JSON API responses, and result image URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user photos and API credentials; successful API calls can return hosted image result URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: ClawHub release metadata) <br>
+Risk: Sensitive portraits or ID-style photos may be uploaded to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit confirmation before uploading user images and avoid sending any photo that is not required for the requested operation.
+
+Risk: The artifact includes shared API credentials for testing.
+
+Mitigation: Replace shared credentials with scoped user-controlled credentials stored in environment variables or a secret manager.
+
+Risk: Processed image URLs are returned by the third-party service and may expose sensitive outputs if shared broadly.
+
+Mitigation: Share result URLs only with the requesting user and avoid logging or reposting them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flaravel/skills/zuimei-zjz-api)
+- [Publisher profile](https://clawhub.ai/user/flaravel)
+- [Zuimei official website](https://zuimei.huipai.vip)
+- [API documentation](API.md)
+- [OpenAPI specification](openapi.yaml)
+- [SDK examples](examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Python or shell snippets and JSON API response references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return third-party image URLs, enhanced image URLs, transparent PNG URLs, or layout and edit metadata from the API.]
+
+## Skill Version(s):
+
+0.1.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

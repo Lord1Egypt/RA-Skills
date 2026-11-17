@@ -1,42 +1,54 @@
-## Description: <br>
-Explains and summarizes WeChat public account articles in plain language from user-provided mp.weixin.qq.com links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains and summarizes WeChat public-account articles from user-provided links in plain language.
 
-## Publisher: <br>
-[chenhao11235813](https://clawhub.ai/user/chenhao11235813) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenhao11235813](https://clawhub.ai/user/chenhao11235813)
 
-## Use Case: <br>
-External users and developers use this skill to fetch a WeChat public account article, extract its title, source, publication date, author, and content, and produce a plain-language explanation or summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetching arbitrary URLs could expose private or internal content if the skill is given links outside its intended scope. <br>
-Mitigation: Use only intended mp.weixin.qq.com article links and avoid private or internal URLs. <br>
-Risk: The optional output path can overwrite files the process can access. <br>
-Mitigation: Review the output path before execution and run the helper in a controlled working directory or virtual environment. <br>
-Risk: Network fetching depends on third-party page behavior and may fail or return incomplete article content. <br>
-Mitigation: Keep dependencies current, prefer the documented browser mode when needed, and ask the user to provide article text manually when fetching fails. <br>
+## Use Case:
 
+External users and developers use this skill to fetch a WeChat article, extract its title, author or source, publication date, and content, then produce a concise plain-language explanation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenhao11235813/wechat-article-explainer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON] <br>
-**Output Format:** [Markdown summary with optional JSON article extraction from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch network content from intended mp.weixin.qq.com article links and may write JSON to a user-specified output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The fetcher can access arbitrary URLs instead of enforcing the intended WeChat-only scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted WeChat article links in a sandboxed environment and add strict mp.weixin.qq.com URL validation before broader use.
+
+Risk: Unpinned Python dependencies and headless browser execution can expand operational risk during installation or runtime.
+
+Mitigation: Pin dependencies and run the fetcher without access to sensitive local files or internal networks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenhao11235813/skills/wechat-article-explainer)
+- [ClawHub publisher profile](https://clawhub.ai/user/chenhao11235813)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with optional JSON fetched article data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local fetcher can write extracted article data to a JSON file when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

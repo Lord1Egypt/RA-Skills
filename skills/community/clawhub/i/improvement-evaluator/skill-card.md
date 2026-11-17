@@ -1,42 +1,59 @@
-## Description: <br>
-Improvement Evaluator runs predefined task suites against candidate and baseline skills, judges each task output, and reports execution pass-rate metrics for gating decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improvement Evaluator measures whether skill changes improve AI task performance by running YAML task suites, judging task outputs, and reporting execution pass-rate deltas.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to test whether a skill change improves real task execution, compare candidate and baseline pass rates, and feed execution deltas into quality gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Execution-based evaluations run task suites through Claude and may run pytest-based judges on generated output. <br>
-Mitigation: Install only when execution evaluation is intended, review task suites and fixtures before use, and run pytest-based judges in a sandbox when fixtures are not fully trusted. <br>
-Risk: Candidate skills, task prompts, or outputs may contain secrets or private customer data during evaluation. <br>
-Mitigation: Avoid placing secrets or private customer data in candidate skills or prompts, and use mock mode for dry runs when live execution is unnecessary. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to compare candidate SKILL.md changes against a baseline on predefined task suites before promotion or gating. It is useful when execution pass rate matters more than document structure scoring.
 
-## Reference(s): <br>
-- [Task Suite Format](artifact/references/task-format.md) <br>
-- [Writing Effective Task Suites](artifact/references/writing-tasks-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/improvement-evaluator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON evaluation artifact with Markdown and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports execution_pass_rate, baseline_pass_rate, delta, verdict, per-task results, and an audit path; mock mode supports dry runs without live model execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata) <br>
+Risk: Real evaluations may send local SKILL.md content and task prompts to the Claude CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --mock for local testing, and run non-mock evaluations only in a sandbox or disposable workspace with reviewed inputs.
+
+Risk: Untrusted ranking artifacts or task suites may point evaluation at unintended skill paths.
+
+Mitigation: Review and constrain target paths to real SKILL.md files before running the evaluator.
+
+Risk: Task suites with weak baselines or broad prompts can produce misleading pass-rate signals.
+
+Mitigation: Validate suites before use, require a sane baseline pass rate, and prefer focused tasks with deterministic judges where possible.
+
+## Reference(s):
+
+- [Task Suite Format](artifact/references/task-format.md)
+- [Writing Effective Task Suites](artifact/references/writing-tasks-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/skills/improvement-evaluator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON evaluation artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evaluation artifacts include execution_pass_rate, baseline_pass_rate, delta, verdict, per-task results, and a truth_anchor path.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

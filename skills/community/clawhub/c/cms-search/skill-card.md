@@ -1,42 +1,53 @@
-## Description: <br>
-Searches the web through a CMS search service and returns current internet results as JSON or Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the web and retrieves current information for requests that need online sources, recent news, policies, announcements, current data, market research, medical information, financial information, or cross-source verification.
 
-## Publisher: <br>
-[spzwin](https://clawhub.ai/user/spzwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spzwin](https://clawhub.ai/user/spzwin)
 
-## Use Case: <br>
-Developers and agents use this skill to route web and current-information queries through a CMS search service. It can select a source channel, include an optional query datetime, and return either raw JSON or a Markdown summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to a third-party CMS search service. <br>
-Mitigation: Avoid sensitive search terms unless the service is trusted and CMS_USER_KEY is controlled by the deploying organization. <br>
-Risk: The skill is designed to route broad online and current-information requests through its external service by default. <br>
-Mitigation: Install it only for deployments that intentionally use this CMS search provider, and review returned results before relying on them. <br>
-Risk: Time-sensitive searches may assume Asia/Shanghai time. <br>
-Mitigation: Provide an explicit datetime and timezone context when freshness or local timing matters. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an agent must collect timely web evidence, compare sources, and summarize or verify current information across general, domestic, international, market, medical, financial, or policy topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spzwin/cms-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [JSON object or Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CMS_USER_KEY; optional source and datetime parameters can influence the search channel and time context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Search terms, selected source, optional datetime, and CMS_USER_KEY are sent to a fixed CMS search service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where sending those values to the service is acceptable, and keep CMS_USER_KEY in environment-managed secrets rather than scripts or command arguments.
+
+Risk: Returned search results are untrusted web evidence and may be incorrect, outdated, or incomplete for sensitive topics.
+
+Mitigation: Verify important claims independently, especially for medical, financial, policy, or business-sensitive decisions.
+
+## Reference(s):
+
+- [Cms Search ClawHub Skill Page](https://clawhub.ai/spzwin/skills/cms-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON search results, with direct Python command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CMS_USER_KEY; supports optional source and datetime parameters.]
+
+## Skill Version(s):
+
+1.5.5 (source: server release metadata and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

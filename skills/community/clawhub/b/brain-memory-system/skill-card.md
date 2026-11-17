@@ -1,45 +1,61 @@
-## Description: <br>
-Unified cognitive memory system for agents that provides episodic memory, semantic facts, procedural memory with optional LLM-driven evolution, attention filtering, consolidation, working memory, and memory health checks through a local CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brain Memory System provides a local CLI-backed memory system for agents with episodic memories, semantic facts, procedure evolution, attention filtering, consolidation, working memory, and health checks.
 
-## Publisher: <br>
-[mwmdeadpool](https://clawhub.ai/user/mwmdeadpool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mwmdeadpool](https://clawhub.ai/user/mwmdeadpool)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give an agent a local persistent memory system for storing experiences, recalling facts, managing evolving procedures, filtering incoming information, and checking memory health. It is intended for workflows where local SQLite-backed memory and optional LLM-assisted procedure improvement are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory can retain sensitive information in memories, facts, procedure steps, or failure logs. <br>
-Mitigation: Install only when persistent agent memory is intended, and avoid storing secrets or sensitive records in the memory database. <br>
-Risk: Procedure evolution can send procedure history to an external LLM endpoint. <br>
-Mitigation: Use proc evolve --dry-run first, prefer a trusted or local LLM endpoint, and provide BRAIN_LLM_KEY from the environment rather than storing it in brain config. <br>
-Risk: Shared multi-agent databases can expose one agent's data to another agent through scoped commands. <br>
-Mitigation: Use separate databases or avoid shared multi-agent memory unless cross-agent visibility is acceptable. <br>
+## Use Case:
 
+Developers and agent operators use this skill to store, recall, and manage local agent memory, including experiences, facts, procedures, working context, consolidation, and memory health checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mwmdeadpool/brain-memory-system) <br>
-- [Publisher Profile](https://clawhub.ai/user/mwmdeadpool) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [CLI text and JSON reports, with Markdown documentation and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and queries a local SQLite memory database; some commands can call an OpenAI-compatible LLM endpoint when procedure evolution is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill persists broad agent memory in a local database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what will be stored, avoid saving secrets or sensitive operational details, and protect the database according to the deployment environment.
+
+Risk: Procedure evolution can send procedure history to a configured LLM endpoint.
+
+Mitigation: Use a local or trusted endpoint, set API credentials explicitly, and keep secrets out of procedure steps, failure notes, and fixes.
+
+Risk: Model-rewritten procedures can be applied without a built-in approval gate.
+
+Mitigation: Use dry-run mode first and review proposed procedure changes before applying them.
+
+Risk: Multi-agent scoping is organizational rather than a security boundary.
+
+Mitigation: Do not rely on agent scoping for isolation between users, tenants, or high-sensitivity contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mwmdeadpool/skills/brain-memory-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text, JSON reports, Markdown working-memory updates, and local SQLite-backed files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a local or trusted OpenAI-compatible LLM endpoint for procedure evolution when explicitly configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

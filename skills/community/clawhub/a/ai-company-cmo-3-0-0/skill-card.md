@@ -1,43 +1,54 @@
-## Description: <br>
-AI公司首席营销官（CMO）技能包。增长架构师与首席协同官。品牌战略、GEO引擎优化、需求生成、Agent化工作流、AI驱动永续增长引擎。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A CMO-style marketing strategy skill for AI companies covering brand strategy, GEO optimization, demand generation, agent workflows, KPI forecasting, and growth governance.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Marketing leaders and AI-company operators use this skill to draft brand strategy, GEO plans, demand generation workflows, KPI forecasts, and execution plans for an AI-driven marketing function. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad file, API, and cross-agent authority without enough concrete limits. <br>
-Mitigation: Install with least-privilege limits and require explicit confirmation before file writes, API calls, or cross-agent messages. <br>
-Risk: Included metadata and review notes are inconsistent, which can make the intended published version unclear. <br>
-Mitigation: Verify the ClawHub release version before use and compare the published version against the included skill and metadata files. <br>
-Risk: Marketing, data-protection, and compliance recommendations may be incomplete or unsuitable for a specific organization. <br>
-Mitigation: Have qualified marketing, legal, and data-protection reviewers approve plans before deployment. <br>
+## Use Case:
 
+Marketing, growth, and AI-company operations teams use this skill to draft brand strategy, demand-generation plans, GEO visibility programs, KPI forecasts, and governance-aware execution plans.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/johnsmithfan/ai-company-cmo-3-0-0) <br>
-- [Skill homepage metadata](https://clawhub.com/skills/ai-company-cmo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown or structured object with marketing strategy, KPI forecast, and execution plan.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed marketing actions, KPI targets, execution steps, and compliance requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata; artifact frontmatter reports 3.1.0) <br>
+Risk: The skill requests broad file, network API, session messaging, and subagent permissions and may activate on common marketing terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the permissions in the target agent environment, prefer explicit invocation, and avoid use near sensitive business, customer, or campaign data unless those permissions are intended.
+
+Risk: Marketing strategy work can involve personal, customer, campaign, and cross-border data.
+
+Mitigation: Use approved data sources, apply the artifact's stated consent, data-minimization, anonymization, DPIA, DPA, and cross-border transfer controls before using such data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/ai-company-cmo-3-0-0)
+- [Skill homepage](https://clawhub.com/skills/ai-company-cmo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown or structured JSON-style objects containing marketing strategy, KPI forecasts, and execution plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured KPI forecast objects and execution-plan arrays; no shell commands are declared by the artifact.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Get the current system uptime using the native 'uptime' command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get the current system uptime using the native 'uptime' command.
 
-## Publisher: <br>
-[alamby](https://clawhub.ai/user/alamby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alamby](https://clawhub.ai/user/alamby)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to answer local system uptime and basic status questions on Unix-like systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reveal basic local system status, including uptime, load average, and logged-in user count. <br>
-Mitigation: Install only in environments where exposing this local status information is acceptable, and review use before deployment. <br>
-Risk: The skill depends on the native uptime binary being available on the host. <br>
-Mitigation: Confirm the target environment provides the uptime command before relying on the skill. <br>
+## Use Case:
 
+External users, developers, and operators use this skill to check local Unix-like system uptime and basic status when an agent is asked how long the current machine has been running.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text uptime output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs the local uptime command and returns its stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill runs a local system command to answer uptime questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where running the standard uptime command is acceptable; the reviewed artifact does not request broad access, persistence, or network behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alamby/skills/system-uptime)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text uptime output, with optional Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local access to the standard uptime command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

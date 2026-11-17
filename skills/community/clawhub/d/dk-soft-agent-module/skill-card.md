@@ -1,38 +1,54 @@
-## Description: <br>
-soft-agent-module is a development guide for the acore-agent Agent module, covering agent lifecycle management, Dify and DeerFlow integrations, extensible platform gateway architecture, permissions, tags, resource mapping, and multi-tenant workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+soft-agent-module guides developers working on the acore-agent module across agent lifecycle management, Dify and DeerFlow integration, platform gateway architecture, permissions, tags, resource mapping, and related code paths.
 
-## Publisher: <br>
-[aidfsoft](https://clawhub.ai/user/aidfsoft) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aidfsoft](https://clawhub.ai/user/aidfsoft)
 
-## Use Case: <br>
-Developers and engineers use this skill when implementing or changing the acore-agent Agent module, especially for lifecycle management, platform gateway integration, permissions, tags, resource mapping, and onboarding to the module's existing code paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The activation trigger is broad and may apply during general Agent discussions where acore-agent guidance is not relevant. <br>
-Mitigation: Confirm the work concerns acore-agent or the related Agent module before following the skill's codebase-specific guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill when implementing or changing acore-agent features so they can follow the existing lifecycle, integration, permission, persistence, and multi-platform gateway patterns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aidfsoft/dk-soft-agent-module) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code paths and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Codebase-specific guidance for acore-agent and related Agent module work] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The activation terms are broad enough to trigger during unrelated agent discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation terms to acore-agent, Dify Agent, DeerFlow Agent, or specific class names before deployment in broad agent-development environments.
+
+Risk: The skill provides implementation guidance for a specific internal module and may be misleading outside that codebase.
+
+Mitigation: Install it only for teams working on the acore-agent module and review proposed changes against the current repository before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aidfsoft/skills/dk-soft-agent-module)
+- [Publisher profile](https://clawhub.ai/user/aidfsoft)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code paths, class names, and implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no hidden execution or data access found in server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

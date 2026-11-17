@@ -1,47 +1,66 @@
-## Description: <br>
-Interpersonal Knowledge Layer helps an agent gate disclosure of a user's personal information through per-contact permissions, contact matching, sensitivity categories, and audit logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interpersonal Knowledge Layer is a per-contact permission system that helps an agent decide what personal information it may share with other agents or users.
 
-## Publisher: <br>
-[smartinelle](https://clawhub.ai/user/smartinelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smartinelle](https://clawhub.ai/user/smartinelle)
 
-## Use Case: <br>
-External users and agent developers use IKL when an assistant receives requests for a user's personal details and needs to decide whether to share, deny, ask the user, or update contact permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can involve highly sensitive personal information stored in local plaintext files. <br>
-Mitigation: Populate knowledge.json minimally, avoid unnecessary bank details or medical history, and protect or remove the local ikl/ files according to the user's environment. <br>
-Risk: Default relationship permissions may be broader than a user expects. <br>
-Mitigation: Review or zero out the starter permission matrix before use, then add only the categories and levels the user explicitly approves. <br>
-Risk: The permission gate should not be treated as technically isolated access control by itself. <br>
-Mitigation: Use the skill as policy guidance unless real access controls are added around stored data and tool/file access. <br>
+## Use Case:
 
+Developers and external users use this skill to configure contact, permission, knowledge, and audit JSON files so an agent can gate personal-information disclosures by requester and context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smartinelle/ikl) <br>
-- [Security design](references/security-design.md) <br>
-- [Permissions schema](references/schema-permissions.md) <br>
-- [Contacts schema](references/schema-contacts.md) <br>
-- [Knowledge schema](references/schema-knowledge.md) <br>
-- [Audit log format](references/audit-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON files] <br>
-**Output Format:** [Markdown guidance with a bash setup command and JSON configuration file schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local ikl/ starter files when setup.sh is run; users populate personal data and permissions manually.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill stores personal facts, contact mappings, permission rules, and disclosure history in local plaintext JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict the IKL directory and files to the user's account and avoid storing highly sensitive values unless necessary.
+
+Risk: The privacy gate is under-scoped as a hard security boundary.
+
+Mitigation: Do not rely on the skill alone for high-assurance authorization; pair it with an external authorization component for sensitive deployments.
+
+Risk: Audit logs can retain sensitive disclosure history and shared values.
+
+Mitigation: Use log-redaction controls and review audit retention before deploying the skill.
+
+Risk: Default relationship permissions may share more information than a user expects.
+
+Mitigation: Review and adjust the default relationship permissions before adding personal knowledge entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smartinelle/skills/ikl)
+- [contacts.json schema](artifact/references/schema-contacts.md)
+- [permissions.json schema](artifact/references/schema-permissions.md)
+- [knowledge.json schema](artifact/references/schema-knowledge.md)
+- [audit log format](artifact/references/audit-format.md)
+- [security design](artifact/references/security-design.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local plaintext IKL files for contacts, permissions, knowledge, and audit entries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-OpenViking Pro Skill helps agents use a cloud memory API that stores and searches compressed context to reduce token usage and support shared team memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenViking Pro Skill guides agents to use a third-party cloud memory API for saving and searching compressed project context to reduce token usage.
 
-## Publisher: <br>
-[dorongss](https://clawhub.ai/user/dorongss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dorongss](https://clawhub.ai/user/dorongss)
 
-## Use Case: <br>
-Developers and agent builders use this skill to integrate OpenViking Pro cloud memory endpoints for saving, searching, listing, and tracking usage of compressed project context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may send project data to a third-party cloud memory API. <br>
-Mitigation: Use only data appropriate for OpenViking Pro and confirm the provider's API-key handling, retention, deletion, and team-sharing controls before storing sensitive, regulated, customer, or proprietary information. <br>
+## Use Case:
 
+Developers and agent builders use this skill to integrate OpenViking Pro memory save, search, list, and usage endpoints into agents that share compressed project context through a cloud API.
 
-## Reference(s): <br>
-- [OpenViking Pro Skill on ClawHub](https://clawhub.ai/dorongss/openviking-pro) <br>
-- [OpenViking Pro API](https://api.openviking.pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API Calls, configuration] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenViking Pro API key for live API use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Selected memory or project context may be sent to OpenViking Pro without enough privacy, scope, retention, deletion, or security guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not upload secrets, credentials, regulated data, proprietary source code, or personal information unless the provider's access, sharing, retention, deletion, and security controls are acceptable.
+
+## Reference(s):
+
+- [OpenViking Pro ClawHub skill page](https://clawhub.ai/dorongss/skills/openviking-pro)
+- [OpenViking Pro API](https://api.openviking.pro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, API calls, Configuration]
+
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OpenViking Pro API key before use.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

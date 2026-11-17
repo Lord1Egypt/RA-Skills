@@ -1,44 +1,59 @@
-## Description: <br>
-Assesses medicinal herb leaf images or videos for visual indicators of active-ingredient accumulation trends and returns a Low, Medium, High, or Peak trend level with harvest-timing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimates medicinal-herb active-ingredient accumulation trends from leaf images or videos and provides harvest-timing guidance and reports.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users, agricultural operators, herb cooperatives, and pharmaceutical raw-material teams use this skill to evaluate medicinal herb growth-stage imagery, estimate active-ingredient accumulation trends from visual traits, and decide whether harvest timing should be adjusted. It can also retrieve cloud-stored historical assessment reports for the provided open-id. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Herb images or videos, public media URLs, and open-id or user identifiers may be sent to the LifeEmergence cloud service. <br>
-Mitigation: Use only data approved for that service, review bundled configuration before running, and prefer a purpose-specific open-id instead of a shared personal identifier. <br>
-Risk: The skill may create local state and access cloud-stored historical reports tied to account identifiers. <br>
-Mitigation: Treat historical report access as cloud-stored user data, avoid shared identifiers, and review account token and profile storage expectations before deployment. <br>
-Risk: The assessment is based on visual features and does not provide chemical assay data. <br>
-Mitigation: Use results as harvest-planning guidance only and confirm formal quality decisions with appropriate laboratory or regulatory testing. <br>
+## Use Case:
 
+Growers, herb cooperatives, and pharmaceutical raw-material teams use leaf imagery or video to estimate medicinal-herb accumulation trends and inform harvest timing; they can also request cloud-hosted report history.
 
-## Reference(s): <br>
-- [Skill API Documentation](references/api_doc.md) <br>
-- [Shared SMYX Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/smyx-chinese-herbal-ingredient-trend-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or structured text, with JSON-style analysis content and Markdown tables for historical report lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on visual assessment only and may include cloud report links when historical reports are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.2) <br>
+Risk: Images, videos, submitted URLs, identity identifiers, and report-history queries are sent to configured lifeemergence.com services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review publisher and service terms before use; avoid confidential farm imagery and internal-only URLs.
+
+Risk: Account and token data may persist locally in a SQLite database.
+
+Mitigation: Use only in workspaces where local token storage is acceptable; review local data handling before installation.
+
+Risk: Reused generic or pet-analysis components and image-based estimates may not suit formal herbal quality assessment.
+
+Mitigation: Review the analysis behavior and confirm harvest or quality decisions with appropriate chemical testing.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-chinese-herbal-ingredient-trend-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [Bundled API reference](artifact/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured analysis reports, Markdown history tables, and optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Visual estimates are not chemical assay results; reports may include links to hosted results.]
+
+## Skill Version(s):
+
+1.0.13 (source: server-resolved ClawHub release; bundled SKILL.md states 1.0.18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

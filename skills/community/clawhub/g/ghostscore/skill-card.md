@@ -1,44 +1,56 @@
-## Description: <br>
-Private reputation scoring for AI agents - query on-chain credit tiers earned via x402 micropayments through Unlink shielded transfers on Monad, and verify tier proofs via zero-knowledge attestations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Private reputation scoring for AI agents that queries on-chain credit tiers earned via x402 micropayments through Unlink shielded transfers on Monad and verifies tier proofs via zero-knowledge attestations.
 
-## Publisher: <br>
-[drewM33](https://clawhub.ai/user/drewM33) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[drewm33](https://clawhub.ai/user/drewm33)
 
-## Use Case: <br>
-External developers and AI-agent operators use GhostScore to query read-only reputation tiers, list tier-gated endpoints, verify existing zero-knowledge attestations, and understand the GhostScore protocol without signing transactions or moving funds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the GhostScore service and publisher for API responses and attestation verification context. <br>
-Mitigation: Install only if the GhostScore service and publisher are trusted, and validate returned reputation or attestation data before relying on it for access decisions. <br>
-Risk: The skill requires a GhostScore API key and a Monad RPC URL. <br>
-Mitigation: Provide only MONAD_RPC_URL and GHOSTSCORE_API_KEY, prefer a scoped or revocable API key where available, and avoid sharing unrelated credentials. <br>
-Risk: Wallet private keys, seed phrases, or signing keys would create avoidable fund-control exposure if provided to an agent. <br>
-Mitigation: Never provide wallet private keys, seed phrases, signing keys, or write-enabled blockchain credentials; the reviewed artifact is read-only and verification-only. <br>
+## Use Case:
 
+External developers and AI-agent operators use GhostScore to check agent reputation tiers, list gated API endpoints, and verify existing zero-knowledge attestations without signing transactions or handling wallet private keys.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/drewM33/ghostscore) <br>
-- [GhostScore Homepage](https://github.com/drewM33/ghostscore) <br>
-- [GhostScore Frontend](https://ghostscore-app.onrender.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown text with structured reputation, endpoint, and attestation verification results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MONAD_RPC_URL for read-only Monad queries and GHOSTSCORE_API_KEY for GhostScore API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill uses a GhostScore API key and makes network calls to the GhostScore backend and Monad RPC.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the required read-only RPC and API credentials, and do not provide wallet private keys, seed phrases, or signing credentials.
+
+Risk: Users could confuse reputation lookup and verification with payment, signing, or attestation generation.
+
+Mitigation: Keep payment, signing, wallet handling, and attestation generation outside the skill; use the skill only for read-only queries and verification.
+
+## Reference(s):
+
+- [GhostScore GitHub Repository](https://github.com/drewM33/ghostscore)
+- [GhostScore ClawHub Skill](https://clawhub.ai/drewm33/skills/ghostscore)
+- [GhostScore Frontend](https://ghostscore-app.onrender.com)
+- [GhostScore API](https://ghostscore-api.onrender.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text with optional structured verification results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only outputs may include reputation tiers, endpoint lists, and attestation validity summaries.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

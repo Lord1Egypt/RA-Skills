@@ -1,46 +1,61 @@
-## Description: <br>
-Paper Repro Triage guides agents through Chinese-language AI paper reproducibility triage by reading paper evidence, finding or cloning likely official code, tracing dataset sources, locating data-processing logic, and writing a Markdown report or scaffolded PyTorch project without running training. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese paper-reproduction triage workflow that analyzes ML/AI paper evidence, searches or inspects main-paper and dataset source code, locates data-processing code, and prepares Markdown reports or PyTorch reproduction scaffolds when appropriate.
 
-## Publisher: <br>
-[slight-leaves](https://clawhub.ai/user/slight-leaves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slight-leaves](https://clawhub.ai/user/slight-leaves)
 
-## Use Case: <br>
-Developers and researchers use this skill to assess reproducibility for ML, AI, LLM, CV, NLP, multimodal, benchmark, prompt-engineering, and agent papers. It gathers local and online code evidence, inspects data-processing paths, and produces a Chinese Markdown report before any dependency installation, dataset download, training, evaluation, or inference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create a local paper-repro-workspace and clone official or likely-official research repositories for inspection. <br>
-Mitigation: Review cloned code before installing dependencies, downloading datasets, running training, running evaluation, or executing inference. <br>
-Risk: Generated requirements or scaffolded project files may include assumptions from incomplete paper evidence. <br>
-Mitigation: Confirm generated requirements, TODO markers, and ASSUMPTION fields against the paper and repository documentation before use. <br>
-Risk: A reproducibility report can influence downstream decisions even when code, data, or protocol evidence is incomplete. <br>
-Mitigation: Use the report's unresolved items and manual-confirmation sections to gate any follow-on reproduction work. <br>
+## Use Case:
 
+Developers and researchers use this skill to assess whether AI papers are reproducible, identify official or local source code and dataset-processing evidence, and prepare a reproduction report or scaffold before any training run.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/slight-leaves/paper-repro-triage) <br>
-- [Dataset Source Tracing](references/dataset-source-tracing.md) <br>
-- [No-Code Reproduction Workflow](references/no-code-reproduction.md) <br>
-- [Output Report Template](references/output-template.md) <br>
-- [Reproducibility Rubric](references/reproducibility-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Chinese chat summary, Markdown report, and optional PyTorch project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports under paper-repro-workspace and may create a local reproduction scaffold when paper evidence supports it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Crafted paper metadata may be written into generated Python or YAML project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before execution and use safe serialization or repr-style escaping for values derived from paper metadata.
+
+Risk: Clone or output paths may escape the intended workspace if path components contain separators or traversal sequences.
+
+Mitigation: Reject path separators and traversal tokens in paper slugs, bucket names, repository names, and generated output paths before cloning or writing files.
+
+Risk: Generated reproduction projects, cloned repositories, dependencies, datasets, or checkpoints may come from untrusted paper sources.
+
+Mitigation: Run the skill only in a reviewed or sandboxed workspace, and do not install dependencies, download data, run training/evaluation, or load checkpoints until the source and generated code are reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/slight-leaves/skills/paper-repro-triage)
+- [Dataset source tracing workflow](references/dataset-source-tracing.md)
+- [No-code reproduction workflow](references/no-code-reproduction.md)
+- [Markdown report template](references/output-template.md)
+- [Reproducibility rubric](references/reproducibility-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese text summary, Markdown report, generated project files, command candidates, and configuration scaffolds.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Detailed reports are written under paper-repro-workspace; the skill's automatic phase avoids dependency installation, dataset download, training, evaluation, and inference.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

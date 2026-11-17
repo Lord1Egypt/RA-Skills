@@ -1,40 +1,58 @@
-## Description: <br>
-This skill guides agents through collecting A-share market data from Tongdaxin MCP and Tonghuashun iWencai, then generating a 25-module local HTML recap report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily China A-share market review HTML report from Tongdaxin MCP and Tonghuashun iWencai data, covering limit-up reviews, theme grouping, consecutive-board tiers, capital flows, and related market modules.
 
-## Publisher: <br>
-[jinfa77-svg](https://clawhub.ai/user/jinfa77-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinfa77-svg](https://clawhub.ai/user/jinfa77-svg)
 
-## Use Case: <br>
-Agents use this skill to collect daily A-share market data, assemble a structured report_data.json file, and generate an HTML recap for market review workflows. The report is informational and should not be treated as personalized investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated strategy, position-size, or stop-loss sections could be mistaken for personalized or professional investment advice. <br>
-Mitigation: Treat the report as informational, verify market data independently, and apply qualified human review before making financial decisions. <br>
-Risk: The workflow queries external market-data integrations and may run unintentionally if broad trigger phrases are used. <br>
-Mitigation: Use explicit prompts, configure only trusted Tongdaxin and iWencai integrations, and protect any required API credentials. <br>
+## Use Case:
 
+Developers and market analysts use this skill to collect A-share market data, assemble a structured report_data.json file, and generate a daily HTML market review report. The workflow is intended for market reporting and review, not personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinfa77-svg/a-share-daily-report-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, html, shell commands, configuration, guidance] <br>
-**Output Format:** [HTML report generated from JSON data, with workflow guidance and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a-share-report-YYYY-MM-DD.html from report_data.json and a bundled HTML template.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: External market data is transformed into local HTML, and the security summary notes that output escaping needs review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated HTML as untrusted until escaping is verified or fixed, and open or share reports only in trusted environments.
+
+Risk: The generated report includes actionable stock-trading sections.
+
+Mitigation: Review trading-related sections as general market commentary and do not treat them as personalized financial advice.
+
+Risk: The security guidance recommends use only with trusted working directories and trusted market-data sources.
+
+Mitigation: Install and run the skill only in a trusted workspace with approved Tongdaxin MCP and Tonghuashun iWencai data sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinfa77-svg/skills/a-share-daily-report-publish)
+- [Publisher profile](https://clawhub.ai/user/jinfa77-svg)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON structure, shell commands, and a generated HTML report file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires trusted Tongdaxin MCP and Tonghuashun iWencai market-data sources, then writes report_data.json and a dated HTML report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

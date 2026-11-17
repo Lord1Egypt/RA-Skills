@@ -1,51 +1,69 @@
-## Description: <br>
-Review past Hong Kong IPO decisions, update actual outcomes, export review datasets, and accept or reject tuning suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews past Hong Kong IPO decisions, updates actual outcomes, exports review datasets, and accepts or rejects tuning suggestions so users can learn from completed IPO calls and improve later scoring behavior.
 
-## Publisher: <br>
-[hackstoic](https://clawhub.ai/user/hackstoic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hackstoic](https://clawhub.ai/user/hackstoic)
 
-## Use Case: <br>
-Developers and agent operators use this skill to review completed Hong Kong IPO decision records, capture actual outcomes, export review datasets, and manage accepted or rejected tuning suggestions for later scoring behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; the workflow is focused on Hong Kong IPO decision-support records. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundle includes a broader HK IPO decision-support runtime than the review-only description suggests. <br>
-Mitigation: Install it only when the full HK IPO decision-support runtime is desired, not when a narrow review helper is sufficient. <br>
-Risk: Profile data, review data, and exported datasets may contain sensitive decision history. <br>
-Mitigation: Keep local data and exported review files out of shared directories and review export paths before writing files. <br>
-Risk: Imported suggestions can change active scoring parameters. <br>
-Mitigation: Import suggestions only from trusted files, preview changes first, and accept suggestions only after reviewing their effect. <br>
+## Use Case:
 
+External users and agents use this skill to review completed Hong Kong IPO decisions, record actual outcomes and variance notes, export review datasets, and apply or reject scoring suggestions for future decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hackstoic/hkipo-review-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/hackstoic) <br>
-- [Runtime README](runtime/hkipo-next/README.md) <br>
-- [Analysis guide](runtime/hkipo-next/references/analysis-guide.md) <br>
-- [IPO mechanism reference](runtime/hkipo-next/references/ipo-mechanism.md) <br>
-- [Risk preferences reference](runtime/hkipo-next/references/risk-preferences.md) <br>
-- [API guide](runtime/hkipo-next/references/api-guide.md) <br>
-- [AiPO API reference](runtime/hkipo-next/references/aipo-api.md) <br>
-- [AiPO data source](https://aipo.myiqdii.com) <br>
-- [AASTOCKS IPO market data](https://www.aastocks.com/tc/stocks/market/ipo/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Text, Configuration guidance] <br>
-**Output Format:** [Markdown instructions with CLI commands; runtime commands emit JSON, text, or markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses uv and local review storage at ~/.hkipo-next/data/hkipo.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, pyproject.toml, server release metadata) <br>
+Risk: The bundled CLI can do more than the review workflow described by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review available commands before use and run only the review and apply-suggestions actions needed for the task.
+
+Risk: The runtime can write local review and scoring data and export review history.
+
+Mitigation: Back up the local review database before updates and inspect exported datasets before sharing them.
+
+Risk: Some market-data commands may contact external finance sites.
+
+Mitigation: Run the skill only in environments where those outbound data-source requests are acceptable.
+
+Risk: Dependencies are resolved through uv.
+
+Mitigation: Use a locked or reviewed dependency set before running the bundled runtime.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hackstoic/skills/hkipo-review-optimizer)
+- [hkipo-next README](runtime/hkipo-next/README.md)
+- [AiPO API Reference](runtime/hkipo-next/references/aipo-api.md)
+- [HK IPO Analysis Guide](runtime/hkipo-next/references/analysis-guide.md)
+- [HK IPO Mechanism Reference](runtime/hkipo-next/references/ipo-mechanism.md)
+- [Risk Preference Reference](runtime/hkipo-next/references/risk-preferences.md)
+- [API Guide](runtime/hkipo-next/references/api-guide.md)
+- [AiPO Data Source](https://aipo.myiqdii.com)
+- [AAStocks IPO Data Source](https://www.aastocks.com/tc/stocks/market/ipo/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON, text, or markdown CLI output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local SQLite review database by default and can export review datasets to files.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, pyproject.toml, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

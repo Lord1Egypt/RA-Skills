@@ -1,44 +1,58 @@
-## Description: <br>
-Reads product links, specifications, and quantities from a Feishu Bitable table and uses browser automation to add matching Taobao or Tmall items to a shopping cart. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads product links, specifications, and quantities from Feishu Bitable records and uses browser automation to add matching Taobao/Tmall items to a shopping cart.
 
-## Publisher: <br>
-[Lorpha](https://clawhub.ai/user/Lorpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lorpha](https://clawhub.ai/user/lorpha)
 
-## Use Case: <br>
-External users or purchasing operators use this skill to bulk process procurement rows from a Feishu Bitable and add matching Taobao or Tmall items to a cart through an OpenClaw browser profile. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can alter a live shopping cart. <br>
-Mitigation: Use a dry-run preview and require explicit user approval before any add-to-cart action. <br>
-Risk: Bitable rows can drive browser automation with product URLs and purchase quantities. <br>
-Mitigation: Validate rows before use, restrict product URLs to expected Taobao and Tmall domains, and review item, specification, and quantity values before execution. <br>
-Risk: Results may be sent to a fixed Telegram recipient. <br>
-Mitigation: Make notifications opt-in and user-configurable, and confirm the recipient before sending. <br>
-Risk: Browser automation uses a named browser profile that may contain active shopping sessions. <br>
-Mitigation: Run with a dedicated least-privilege browser profile and avoid using profiles with unrelated authenticated accounts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lorpha/addtocartfrombitable) <br>
-- [Default Feishu Bitable](https://somo-tech.feishu.cn/base/UIdIbPe2RaOQ1tsNIhlcB5ilngc) <br>
+## Use Case:
 
+External procurement and operations users can use this skill to bulk add purchasing-table items from Feishu Bitable into an authenticated Taobao or Tmall shopping cart.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, browser automation actions, API calls] <br>
-**Output Format:** [Text or Markdown guidance with browser and messaging tool calls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Feishu Bitable rows, Taobao or Tmall product URLs, exact specification text, quantities, an OpenClaw browser profile, and Telegram notification status.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make live cart changes in an authenticated shopping session.
+
+Mitigation: Use a dedicated shopping browser profile and require explicit confirmation before adding items to the cart.
+
+Risk: Untrusted Bitable records could direct the browser to unsafe or unintended product URLs.
+
+Mitigation: Use trusted Bitable records only and validate that product links are legitimate Taobao or Tmall URLs before opening them.
+
+Risk: Procurement results may be sent to a fixed Telegram recipient.
+
+Mitigation: Remove the fixed Telegram notification or make the destination user-controlled before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lorpha/skills/addtocartfrombitable)
+- [Default Feishu Bitable](https://somo-tech.feishu.cn/base/UIdIbPe2RaOQ1tsNIhlcB5ilngc)
+- [Example Tmall item URL](https://detail.tmall.com/item.htm?id=701699369447)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform live browser actions against an authenticated shopping profile and send a completion notification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

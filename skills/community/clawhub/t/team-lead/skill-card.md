@@ -1,43 +1,62 @@
-## Description: <br>
-Multi-Agent Orchestration Lead - Decompose complex tasks, dispatch to specialized agents, aggregate results, and ensure quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Agent Orchestration Lead - Decompose complex tasks, dispatch to specialized agents, aggregate results, and ensure quality.
 
-## Publisher: <br>
-[Linux2010](https://clawhub.ai/user/Linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-Developers, workflow operators, and teams use this skill to coordinate multi-agent work by decomposing complex requests, dispatching subtasks, aggregating outputs, and checking quality before final delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Complex requests may be split across multiple agents, which can expose task details to sub-agents. <br>
-Mitigation: Avoid sending secrets, credentials, or highly sensitive business data unless the OpenClaw environment provides clear controls over sub-agent sharing. <br>
-Risk: Task history and performance metadata may be tracked or retained during use. <br>
-Mitigation: Review memory, cache, history, and deletion controls before deployment, and clear retained records when sensitive context was involved. <br>
+## Use Case:
 
+External users, developers, researchers, content creators, and team managers use this skill to break complex work into subtasks, coordinate specialized agents, aggregate their outputs, and apply quality checks before delivery.
 
-## Reference(s): <br>
-- [Team Lead on ClawHub](https://clawhub.ai/Linux2010/team-lead) <br>
-- [Linux2010 publisher profile](https://clawhub.ai/user/Linux2010) <br>
-- [README](README.md) <br>
-- [Test Report](TEST-REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, structured text, JSON-style plans, code snippets, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include decomposed task plans, delegated agent instructions, aggregated results, quality scores, and retry or conflict-resolution guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence, frontmatter, package.json) <br>
+Risk: The skill can delegate work to spawned or targeted agents and pass user task context to them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review delegated task context before execution and avoid sharing secrets, credentials, private documents, or regulated data unless session handling has been reviewed.
+
+Risk: Session logs or exported histories may retain user task content without clear limits.
+
+Mitigation: Confirm OpenClaw logging and history retention behavior before using the skill with sensitive or confidential information.
+
+Risk: The skill is expected to produce Chinese-language prompts and output unless customized.
+
+Mitigation: Customize prompts, templates, and review criteria for the deployment language and require human review of final outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linux2010/skills/team-lead)
+- [Publisher profile](https://clawhub.ai/user/linux2010)
+- [README.md](README.md)
+- [TEST-REPORT.md](TEST-REPORT.md)
+- [examples/coding-project.md](examples/coding-project.md)
+- [examples/research-workflow.md](examples/research-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured task plans, JSON configuration examples, code-oriented workflow guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate multiple agent sessions, pass task context to them, aggregate returned content, and produce Chinese-language prompts or output unless customized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

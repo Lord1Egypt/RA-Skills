@@ -1,40 +1,54 @@
-## Description: <br>
-Automate your grocery shopping - weekly meal planning, regular items, delivery slots, and order confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate your grocery shopping - weekly meal planning, regular items, delivery slots, and order confirmation.
 
-## Publisher: <br>
-[zy42905163-web](https://clawhub.ai/user/zy42905163-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zy42905163-web](https://clawhub.ai/user/zy42905163-web)
 
-## Use Case: <br>
-External users can use this skill to plan weekly grocery shopping, add regular items, book delivery slots, and prepare order confirmation for supported grocery services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom, United States, and Canada <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent toward grocery purchases and delivery bookings without clear approval safeguards. <br>
-Mitigation: Require the agent to show the store, cart contents, substitutions, total cost, delivery address, delivery slot, and payment impact before the user gives explicit final approval. <br>
-Risk: The skill may operate inside grocery accounts and affect orders or delivery bookings. <br>
-Mitigation: Use it only with accounts the user controls, and require manual confirmation before checkout, payment, or delivery booking changes. <br>
+## Use Case:
 
+External users can use this skill to plan weekly groceries, add recurring items, reserve retailer delivery slots, and prepare order confirmation steps for supported grocery services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zy42905163-web/shopping-autopilot) <br>
+### Deployment Geography for Use:
 
+United Kingdom, United States, and Canada for the documented supported grocery services.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or conversational text with shopping plans, cart details, delivery slot details, and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user review of store, cart contents, substitutions, total cost, delivery address, delivery slot, and payment impact before final approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill can affect grocery carts, delivery slots, and order confirmation flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user review and approval before submitting orders, completing payment-linked actions, or finalizing delivery slots.
+
+Risk: The artifact does not document clear consent or review controls for shopping automation.
+
+Mitigation: Use only with retailer accounts where the user understands the account access involved, and keep a manual confirmation checkpoint for every purchase-related action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zy42905163-web/skills/shopping-autopilot)
+- [Publisher profile](https://clawhub.ai/user/zy42905163-web)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or text responses with shopping, delivery-slot, and order-confirmation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform cart, delivery-slot, and order-related actions that require user review before completion.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

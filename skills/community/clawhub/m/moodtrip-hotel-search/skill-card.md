@@ -1,39 +1,59 @@
-## Description: <br>
-Search, compare, evaluate, and hand off hotel bookings using the MoodTrip.ai MCP server, including real-time inventory, pricing, semantic search, reviews, and booking-link handoff via LiteAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, compare, evaluate, and hand off hotel bookings through the MoodTrip.ai MCP server using real-time hotel inventory, pricing, semantic search, reviews, and booking links.
 
-## Publisher: <br>
-[adiny](https://clawhub.ai/user/adiny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adiny](https://clawhub.ai/user/adiny)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to find, compare, summarize, and hand off hotel booking options through MoodTrip. It is suited for accommodation searches involving destinations, dates, pricing, amenities, reviews, room types, and booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [MoodTrip Hotel Search on ClawHub](https://clawhub.ai/adiny/moodtrip-hotel-search) <br>
-- [MoodTrip Hotel Search setup](https://github.com/adiny/moodtrip-hotel-search) <br>
-- [MoodTrip MCP server endpoint](https://api.moodtrip.ai/api/mcp-http) <br>
+External users and travel-planning agents use this skill to find, compare, and evaluate hotels, then hand off the final booking through a MoodTrip booking link.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text with MCP tool outputs, hotel comparisons, setup commands, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MoodTrip MCP tool availability; OpenClaw setup may use a remote mcp-remote bridge and should be reviewed before installation.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.19 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Installation can add a persistent MCP server configuration.
+
+Mitigation: Require explicit user or administrator confirmation before editing MCP configuration or restarting a gateway.
+
+Risk: The bundled MCP bridge runs an unpinned npx package.
+
+Mitigation: Pin the bridge dependency version and review it before deployment.
+
+Risk: Hotel search inputs are sent to MoodTrip.ai.
+
+Mitigation: Avoid sending personal identifiers or payment information; use only destination, dates, guest counts, and lodging preferences needed for search.
+
+## Reference(s):
+
+- [MoodTrip Hotel Search on ClawHub](https://clawhub.ai/adiny/skills/moodtrip-hotel-search)
+- [MoodTrip Hotel Search GitHub repository](https://github.com/adiny/moodtrip-hotel-search)
+- [MoodTrip MCP server endpoint](https://api.moodtrip.ai/api/mcp-http)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with hotel search results, comparisons, setup guidance, and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include MCP tool calls and link-based booking handoff; reservations are completed on the MoodTrip website.]
+
+## Skill Version(s):
+
+1.0.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

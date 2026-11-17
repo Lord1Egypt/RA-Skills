@@ -1,0 +1,108 @@
+{
+  "profile_version": "1.0",
+  "mode": "discovery",
+  "intake_status": "partial",
+  "form_language": null,
+  "preferred_output_language": null,
+  "trip_purpose": null,
+  "origin": {
+    "home_city": null,
+    "country": null,
+    "acceptable_departure_airports": [],
+    "nearby_airport_ground_transfer_tolerance": null,
+    "max_one_way_travel_time": null,
+    "connection_tolerance": null
+  },
+  "travel_window": {
+    "start_date": null,
+    "end_date": null,
+    "month_or_season": null,
+    "duration_days": null,
+    "duration_nights": null,
+    "date_flexibility": null,
+    "fixed_commitments": null
+  },
+  "existing_bookings": {
+    "state": null,
+    "details": null
+  },
+  "trip_geography": {
+    "scope": null,
+    "entry_assessment_required": null
+  },
+  "party": {
+    "traveler_count": null,
+    "composition": null,
+    "relevant_ages": [],
+    "mobility_or_access_needs": []
+  },
+  "budget": {
+    "calculation_basis": "per_person",
+    "target_amount": null,
+    "hard_cap_amount": null,
+    "range_low_amount": null,
+    "range_high_amount": null,
+    "range_label": null,
+    "currency": null,
+    "coverage": "unknown",
+    "included_categories": [],
+    "comfort_preference": null
+  },
+  "destination_scope": {
+    "state": "open",
+    "named_places": [],
+    "commitment": "unknown",
+    "excluded_places": []
+  },
+  "experience": {
+    "direction": "unknown",
+    "natural_subtypes": [],
+    "human_cultural_subtypes": [],
+    "ranked_must_haves": [],
+    "intensity_or_activity_tolerance": null,
+    "pace": null,
+    "avoid_list": []
+  },
+  "transport_preferences": {
+    "preferred_modes": [],
+    "priority": null,
+    "willing_to_self_drive": null,
+    "luggage_or_baggage_needs": null,
+    "cabin_preference": null,
+    "flight_time_preference": null,
+    "rail_preference": null,
+    "bus_comfort_tolerance": null,
+    "ferry_acceptable": null
+  },
+  "regional_service_access": {
+    "selection_preference": "auto_by_destination",
+    "preferred_map_apps": [],
+    "preferred_booking_platforms": [],
+    "services_to_avoid": [],
+    "google_services_access": "unknown",
+    "booking_access_notes": null,
+    "notes": null
+  },
+  "stay_preferences": {
+    "room_count": null,
+    "lodging_style": null,
+    "location_priority": null,
+    "breakfast_preference": null,
+    "cancellation_preference": null
+  },
+  "feasibility": {
+    "entry_assessment_required": null,
+    "traveler_entry_profiles": [],
+    "passport_nationality": null,
+    "legal_residence": null,
+    "passport_validity_status": null,
+    "entry_status": "unknown",
+    "visa_tolerance": null,
+    "climate_preferences": [],
+    "dietary_or_religious_needs": [],
+    "safety_or_connectivity_needs": []
+  },
+  "constraint_registry": [],
+  "open_questions": [],
+  "assumptions": []
+}

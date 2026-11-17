@@ -1,42 +1,54 @@
-## Description: <br>
-Track and analyze Monkeytype typing statistics with improvement tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Monkeytype typing statistics, analyzes history and progress, looks up leaderboards, and provides improvement tips using the user's Monkeytype ApeKey.
 
-## Publisher: <br>
-[Qrucio](https://clawhub.ai/user/Qrucio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qrucio](https://clawhub.ai/user/qrucio)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve Monkeytype stats, review recent typing history, compare progress, check leaderboards, and receive practice advice after configuring a Monkeytype ApeKey. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A Monkeytype ApeKey can be exposed if pasted into chat or stored in plaintext configuration. <br>
-Mitigation: Prefer MONKEYTYPE_APE_KEY and avoid sharing the key in chat; delete ~/.openclaw/workspace/config/monkeytype.json and rotate the key when uninstalling or if exposure is suspected. <br>
-Risk: Optional daily or weekly reports can leave recurring background jobs after setup. <br>
-Mitigation: Enable reports only when wanted, document the created schedule, and remove the related cron entries when disabling automation or uninstalling the skill. <br>
-Risk: Monkeytype API access can fail because of inactive keys, invalid keys, rate limits, or network errors. <br>
-Mitigation: Validate the key during setup, surface API errors clearly, and retry later when rate limits or network failures occur. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Qrucio/monkeytype-tracker) <br>
-- [Monkeytype API base URL](https://api.monkeytype.com) <br>
+## Use Case:
 
+External users use this skill to connect their Monkeytype account, view typing stats and personal bests, compare recent performance, and receive typing improvement suggestions or optional reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update user configuration and optional scheduled report jobs when the user enables automation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles a Monkeytype ApeKey and may store it in a local plaintext configuration file.
+
+Mitigation: Prefer setting MONKEYTYPE_APE_KEY directly and avoid pasting the ApeKey into chat or storing plaintext config on shared machines.
+
+Risk: Optional automated reports can create scheduled jobs that persist after setup.
+
+Mitigation: Enable automated reports only when cron-based persistence is acceptable and confirm how to remove the jobs later.
+
+## Reference(s):
+
+- [Monkeytype API](https://api.monkeytype.com)
+- [ClawHub skill page](https://clawhub.ai/qrucio/skills/monkeytype-tracker)
+- [ClawHub publisher profile](https://clawhub.ai/user/qrucio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Monkeytype configuration and optional scheduled reports when the user enables automation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn78ag7df7vheqyw11w9wkvja98324dw",
-  "slug": "stock-assistant-pro",
+  "name": "stock-assistant-pro",
   "version": "1.0.0",
-  "publishedAt": 1773721696093
+  "description": "专业股票分析助手，基于五日线+MACD+ 基本面三维选股策略",
+  "author": "illidan_stormrage",
+  "price": {
+    "monthly": "¥29",
+    "yearly": "¥299"
+  }
 }

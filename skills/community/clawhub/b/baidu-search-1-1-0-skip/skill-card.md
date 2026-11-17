@@ -1,41 +1,54 @@
-## Description: <br>
-Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics.
 
-## Publisher: <br>
-[lulu-owo](https://clawhub.ai/user/lulu-owo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lulu-owo](https://clawhub.ai/user/lulu-owo)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve live web search results from Baidu for current information, documentation, and research tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and filters are sent to Baidu under the configured BAIDU_API_KEY. <br>
-Mitigation: Avoid including secrets in queries and use a limited-purpose Baidu API key where possible. <br>
-Risk: The skill depends on the local Python requests package and a valid BAIDU_API_KEY. <br>
-Mitigation: Confirm dependencies and credentials are available before deployment. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to retrieve live Baidu web search results for current information, documentation lookups, and research tasks.
 
-## Reference(s): <br>
-- [Baidu AI Search API endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search) <br>
-- [ClawHub skill page](https://clawhub.ai/lulu-owo/baidu-search-1-1-0-skip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON array of Baidu search reference objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the requests package, and BAIDU_API_KEY; supports recency, resource type, site, blocked-site, and safe-search filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries are sent to Baidu's AI Search service using BAIDU_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for queries appropriate to send to Baidu and manage the API key through the environment rather than hard-coding it.
+
+Risk: Some usage documentation is in Chinese, which may lead to incorrect invocation by non-Chinese readers.
+
+Mitigation: Translate and review the usage examples before running the skill in a workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lulu-owo/skills/baidu-search-1-1-0-skip)
+- [Baidu AI Search API endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results printed to standard output, with error text for missing input, credentials, or API failures.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; accepts a JSON string, a JSON file path, or JSON from stdin.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

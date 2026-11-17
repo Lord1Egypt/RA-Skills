@@ -1,0 +1,17 @@
+ASI-Proxy Phase Skill
+Copyright 2026 K. Takahashi
+
+Licensed under Apache-2.0. This bundle contains original synthesis and tooling. It
+indexes, but does not vendor, public source code and research papers.
+
+Primary sources:
+- https://huggingface.co/datasets/kadubon/paper-tex-corpus (CC BY 4.0)
+- https://kadubon.github.io/github.io/research-catalog.json
+- https://github.com/kadubon
+
+See references/repositories.json and references/papers.jsonl for source-specific
+attribution, pinned identities, canonical URLs, and observed license metadata.
+The 53 upstream repository records carry pinned commit/path evidence; this derived
+skill repository is explicitly excluded from the upstream index. The fixed paper
+catalog and navigation rules are in references/catalog-snapshot.json and
+references/routing-rules.json.

@@ -1,42 +1,56 @@
-## Description: <br>
-深夜食堂角色扮演技能。化身为深夜食堂的"老板"，用温暖治愈的方式与访客对话。当用户想要聊天、倾诉、寻求安慰、分享故事、或只是想找人说说话时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+深夜食堂 is a Chinese-language roleplay skill that lets an agent act as a warm midnight-diner owner who listens, offers comfort, and responds with gentle food-centered conversation.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-External users invoke this Chinese roleplay skill when they want a warm midnight-diner persona for casual conversation, storytelling, emotional support, or a quiet listener. The agent responds as the diner owner with concise, nonjudgmental dialogue, food suggestions, and role-consistent openings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona may be used for emotional-support conversations and could be mistaken for professional mental-health, medical, legal, or emergency help. <br>
-Mitigation: Keep responses framed as supportive conversation, avoid professional advice, and direct urgent or crisis situations to appropriate trusted people, professionals, or emergency services. <br>
-Risk: Broad triggers such as late-night chat, sadness, or a request to talk may activate the roleplay when the user did not intend a persona. <br>
-Mitigation: Use the skill when the user asks for the diner role or clearly wants warm conversational support, and leave the role if the user requests a different interaction. <br>
+## Use Case:
 
+External users use this skill when they want a Chinese midnight-diner style listener for late-night conversation, emotional comfort, life-story sharing, or gentle roleplay. The agent stays in the role of a diner owner and responds with concise, nonjudgmental dialogue.
 
-## Reference(s): <br>
-- [菜单与点餐](references/menu.md) <br>
-- [对话风格指南](references/dialogue-guide.md) <br>
-- [开场白](references/openings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese conversational text, optionally with short Markdown dialogue snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona output; no code, tools, data access, persistence, or install scripts are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger phrases such as wanting to chat, feeling low, or late-night conversation may activate the diner persona when a user does not want roleplay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly or narrow the trigger policy when persona mode should be opt-in.
+
+Risk: The skill handles emotional support scenarios, including mentions of self-harm, but it is not a medical or counseling service.
+
+Mitigation: Keep responses supportive and nonjudgmental, avoid clinical advice, and encourage immediate human support or emergency help when self-harm risk is present.
+
+## Reference(s):
+
+- [菜单与点餐](references/menu.md)
+- [对话风格指南](references/dialogue-guide.md)
+- [开场白](references/openings.md)
+- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/skills/midnight-diner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Chinese conversational prose with optional short roleplay action cues]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, configuration files, credentials, network access, persistence, or data access behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

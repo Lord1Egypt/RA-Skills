@@ -1,45 +1,60 @@
-## Description: <br>
-Connector-agnostic Postgres + pgvector memory ingestion and retrieval with incremental cursor history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connector-agnostic Postgres + pgvector memory ingestion and retrieval with incremental cursor history.
 
-## Publisher: <br>
-[marcosathanasoulis](https://clawhub.ai/user/marcosathanasoulis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[marcosathanasoulis](https://clawhub.ai/user/marcosathanasoulis)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure a Postgres-backed memory layer, ingest records from JSON or connectors, preserve cursor history, and search RAG-ready chunks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Database and connector operations are delegated to package code that was not included in the reviewed bundle. <br>
-Mitigation: Install only after reviewing and trusting the actual openclaw_memory package and any connectors it will run. <br>
-Risk: The skill can ingest private email, chat, task, or other account data into Postgres. <br>
-Mitigation: Use it only for accounts and data you are authorized to process, and define retention and deletion rules before ingestion. <br>
-Risk: Database credentials and DSNs may include sensitive passwords. <br>
-Mitigation: Use environment or secret-store based DSN injection, avoid command-line passwords, and use least-privilege credentials limited to the intended memory tables. <br>
+## Use Case:
 
+Developers and engineers use this skill to initialize and operate a Postgres and pgvector memory layer that normalizes heterogeneous records, tracks incremental connector cursors, ingests JSON or connector data, and searches stored chunks.
 
-## Reference(s): <br>
-- [OpenClaw Universal Memory on ClawHub](https://clawhub.ai/marcosathanasoulis/openclaw-universal-memory) <br>
-- [Scheduling guide](docs/SCHEDULING.md) <br>
-- [Connector setup walkthrough](docs/CONNECTOR_SETUP_WALKTHROUGH.md) <br>
-- [Connector contribution guide](docs/CONNECTOR_CONTRIBUTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text, JSON] <br>
-**Output Format:** [Markdown with inline bash commands and CLI text or JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, local package installation, psycopg, a Postgres DSN, and pgvector-enabled Postgres.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The launcher can execute unbundled Python code from outside the reviewed skill while forwarding database credentials and the user environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in trusted projects after verifying the installed openclaw_memory package, and avoid exposing unrelated secrets in the process environment.
+
+Risk: Database credentials and memory data may expose sensitive account or connector information.
+
+Mitigation: Use dedicated least-privilege database credentials limited to the required memory tables and process only data you are authorized to store.
+
+Risk: Custom connectors can introduce unreviewed data access or ingestion behavior.
+
+Mitigation: Review and trust connector code before running it, then validate connector authentication and configuration before ingestion.
+
+## Reference(s):
+
+- [OpenClaw Universal Memory on ClawHub](https://clawhub.ai/marcosathanasoulis/skills/openclaw-universal-memory)
+- [Scheduling reference](docs/SCHEDULING.md)
+- [Connector setup walkthrough](docs/CONNECTOR_SETUP_WALKTHROUGH.md)
+- [Connector contributing guide](docs/CONNECTOR_CONTRIBUTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides database setup, connector validation, ingestion, search, event inspection, and doctor checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

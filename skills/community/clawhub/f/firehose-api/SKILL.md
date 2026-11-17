@@ -1,6 +1,6 @@
 ---
 name: firehose-api
-description: Firehose monitors the web in real-time — you create rules (Lucene queries), and every crawled page that matches gets delivered via an SSE stream. Use when implementing or discussing API endpoints.
+description: Firehose monitors the web in real-time — you create rules (Lucene queries), and every crawled page that matches gets delivered via an SSE stream. Use for work on the Firehose API or firehose.com — managing taps, writing rules and match queries, or consuming the SSE match stream.
 homepage: https://firehose.com
 metadata:
     { 'clawdbot': { 'requires': { 'bins': ['curl'], 'env': ['FIREHOSE_MANAGEMENT_KEY', 'FIREHOSE_TAP_TOKEN'] }, 'primaryEnv': 'FIREHOSE_TAP_TOKEN' } }
@@ -38,7 +38,15 @@ Authorization: Bearer fh_your_tap_token
 | ---------------- | -------------- | ----------------------------------------------- |
 | `GET`            | `/v1/taps`     | List taps; response includes each tap's `token` |
 | `POST`           | `/v1/taps`     | Create a tap (returns its token)                |
-| `GET PUT DELETE` | `/v1/taps/:id` | Get, rename, or delete a tap                    |
+| `GET PUT DELETE` | `/v1/taps/:id` | Get, rename, pause/resume, or delete a tap       |
+
+To pause a tap `PUT /v1/taps/:id` with `{"status":"paused"}`; resume with `{"status":"active"}`.
+A paused tap keeps its rules but matches nothing and streams no updates; resuming re-arms every
+rule and can return `422` if it would exceed your plan's active-tap limit.
+
+Deleting a tap is permanent: it immediately revokes the tap's token and deletes every rule
+on it. Confirm with the user before deleting a tap — if the tap only needs to stop
+temporarily, pause it.
 
 **Rules & streaming** — tap token:
 
@@ -49,6 +57,9 @@ Authorization: Bearer fh_your_tap_token
 | `GET PUT DELETE` | `/v1/rules/:id` | Get, update, or delete a rule                                |
 | `POST`           | `/v1/validate`  | Validate a query before saving (`/v1/validate/public`: no auth) |
 | `GET`            | `/v1/stream`    | Open the SSE stream of matching pages                        |
+
+Deleting a rule is permanent and its matches stop immediately. Confirm with the user
+before deleting rules.
 
 ## Rules & queries
 

@@ -1,46 +1,56 @@
-## Description: <br>
-小红书关键词联想词批量采集工具 - 支持批量关键词导入、多轮次深度联想挖掘长尾词、自动去重、TXT/Excel双格式导出，适用于SEO优化、内容选题策划、种草关键词研究、竞品分析等场景。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Supports batch keyword expansion workflows for Xiaohongshu-oriented content planning, with multi-depth suggestion generation, deduplication, ranking, and TXT or optional Excel export; current evidence says the suggestions are demo/mock data rather than verified Xiaohongshu autocomplete results.
 
-## Publisher: <br>
-[otzippo](https://clawhub.ai/user/otzippo) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otzippo](https://clawhub.ai/user/otzippo)
 
-## Use Case: <br>
-Content creators, marketers, SEO practitioners, and developers can use this skill to run a Python batch keyword expansion workflow for Xiaohongshu-style seed terms and generate deduplicated TXT or optional Excel reports. The current release should be treated as a workflow and report-format demonstration unless an authorized, documented data source is added. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Synthetic autocomplete suggestions may be mistaken for verified Xiaohongshu data. <br>
-Mitigation: Treat reports as demonstration output unless the publisher implements and documents an authorized data source, and clearly label synthetic output in downstream use. <br>
-Risk: Future API integration guidance could lead users to paste browser cookies, tokens, or session headers into local code. <br>
-Mitigation: Do not paste credentials into the tool; use only documented, authorized access methods and store any required secrets outside the artifact. <br>
-Risk: Automated platform querying can violate platform terms or create unreliable results if implemented without controls. <br>
-Mitigation: Review Xiaohongshu terms, use conservative request delays, and validate results before using them for business decisions. <br>
+## Use Case:
 
+External creators, SEO operators, and content planners can use the skill to run a local batch keyword-expansion script and review generated keyword reports. Because the security evidence says the current release produces demo/mock suggestions, outputs should be treated as workflow examples unless a verified data source is implemented.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/otzippo/xiaohongshu-keyword-batch-autocomplete) <br>
-- [Publisher profile](https://clawhub.ai/user/otzippo) <br>
-- [Xiaohongshu website](https://www.xiaohongshu.com) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; generated TXT reports or optional Excel workbooks from the Python script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script accepts a single keyword or keyword file, depth 1-3, TXT or optional Excel output, output directory, delay, and deduplication settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated reports may be mistaken for verified Xiaohongshu autocomplete or trend data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label outputs as mock data and do not use them for SEO, competitor, or business decisions until a verified data source is implemented.
+
+Risk: Excel exports created from untrusted keyword inputs may carry spreadsheet safety risk.
+
+Mitigation: Use trusted keyword files and review exported workbooks carefully before opening or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/otzippo/skills/xiaohongshu-keyword-batch-autocomplete)
+- [Publisher profile](https://clawhub.ai/user/otzippo)
+- [Artifact README](README.md)
+- [Xiaohongshu website](https://www.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; the bundled script writes timestamped TXT reports and optional XLSX workbooks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report rows include keyword text, score, rank, depth, source keyword, reference count, and collection timestamp.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

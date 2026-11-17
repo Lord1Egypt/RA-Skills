@@ -1,43 +1,57 @@
-## Description: <br>
-Reasoning hygiene protocol for OpenClaw agents - keep context sharp by collapsing exploration into decisions, enforcing file budgets, and pruning ghost context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reasoning hygiene protocol for OpenClaw agents - keep context sharp by collapsing exploration into decisions, enforcing file budgets, and pruning ghost context.
 
-## Publisher: <br>
-[ppiankov](https://clawhub.ai/user/ppiankov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppiankov](https://clawhub.ai/user/ppiankov)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep OpenClaw workspace context concise, prune stale memory, and establish persistent context hygiene rules for agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying the pruning guidance too broadly could remove user-authored, audit-relevant, or still-useful context. <br>
-Mitigation: Review proposed deletions and preserve anything user-authored, audit-relevant, or not clearly temporary. <br>
-Risk: The timezone setup example may be copied without matching the user's actual location. <br>
-Mitigation: Replace the example timezone with the user's real timezone before relying on date-sensitive reminders or reports. <br>
-Risk: Adding the startup instruction to AGENTS.md makes this protocol persistent across future sessions. <br>
-Mitigation: Add the AGENTS.md startup instruction only when ongoing context hygiene behavior is desired. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep OpenClaw workspace context concise by collapsing exploration notes into decisions, pruning stale memory, and setting practical file budgets.
 
-## Reference(s): <br>
-- [Context Hygiene on ClawHub](https://clawhub.ai/ppiankov/context-hygiene) <br>
-- [Agent-Native CLI Convention](https://ancc.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with short code blocks and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide edits to workspace context files such as MEMORY.md, CONTEXT.md, USER.md, and AGENTS.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Context pruning can remove useful memory notes or workspace context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to show diffs before deleting memory, and back up important notes before pruning.
+
+Risk: Cron reports, reminders, and date references can be wrong if the agent uses an incorrect timezone.
+
+Mitigation: Confirm the user's real timezone and record it explicitly before relying on time-sensitive automation.
+
+Risk: The optional validator command installs and runs an external package.
+
+Mitigation: Run the validator only after verifying that the installed package is trusted for the workspace.
+
+## Reference(s):
+
+- [Agent-Native CLI Convention](https://ancc.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides workspace memory budgets, pruning rules, session lifespan guidance, and a context hygiene self-check.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7d5hkf8wxqbrhfgr4py1rcwx828snt",
-  "slug": "feishu-all-in-one",
+  "name": "feishu-all-in-one",
   "version": "1.0.0",
-  "publishedAt": 1773395916877
+  "description": "飞书 All-in-One 技能包 - 开箱即用的飞书消息收发解决方案",
+  "skills": [
+    {
+      "name": "feishu-all-in-one",
+      "version": "1.0.0",
+      "source": "local"
+    }
+  ]
 }

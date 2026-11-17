@@ -1,58 +1,64 @@
-## Description: <br>
-提供从QMT行情数据获取、因子构建、回测分析到多智能体协作与实盘交易的全流程AI量化交易指导。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides end-to-end AI quant trading guidance for QMT market data, factor construction, QuestDB storage, Backtrader analysis, OpenClaw multi-agent workflows, Feishu integration, and live trading operations.
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
 
-## Use Case: <br>
-Developers, quant traders, and technically skilled retail investors use this skill to build an AI-assisted A-share quant workflow covering QMT data access, factor research, QuestDB storage, Backtrader analysis, OpenClaw multi-agent orchestration, Feishu notifications, and gated live-trading execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live automated trading can place unintended orders or create financial exposure. <br>
-Mitigation: Use paper or simulated trading first, require explicit human approval before live orders, and enforce hard exposure, position, and order-size limits. <br>
-Risk: QMT and Feishu credentials can be exposed through chats, repositories, logs, or shared configuration. <br>
-Mitigation: Keep credentials out of prompts and source control, store them in local secret/configuration stores, and rotate any credential that may have been disclosed. <br>
-Risk: Remote installers and plugin commands may execute code from external sources. <br>
-Mitigation: Verify installer and plugin sources before running them, pin trusted versions where practical, and run setup in an isolated environment first. <br>
-Risk: Bot integrations and multi-agent routing can expand operational permissions. <br>
-Mitigation: Grant the minimum Feishu and trading-bot permissions needed, separate research and execution roles, and review generated actions before execution. <br>
-Risk: Backtest results may not carry over to live markets because of slippage, liquidity, fees, future-function errors, or changing market regimes. <br>
-Mitigation: Validate with out-of-sample tests, include transaction costs and slippage, avoid same-day factor lookahead, and monitor live performance before scaling capital. <br>
+## Use Case:
 
+External developers, quant traders, and agent builders use this skill to assemble a Chinese A-share quant workflow covering data collection, factor research, backtesting, agent coordination, reporting, and QMT execution planning. It is most useful as implementation guidance that should be adapted and reviewed before any paper-trading or live-trading deployment.
 
-## Reference(s): <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [QMT setup guide](artifact/references/qmt-setup.md) <br>
-- [Factor research methods](artifact/references/factor-research.md) <br>
-- [Backtest methods](artifact/references/backtest.md) <br>
-- [OpenClaw deployment guide](artifact/references/openclaw-deploy.md) <br>
-- [Multi-agent architecture](artifact/references/multi-agent.md) <br>
-- [QuestDB guide](artifact/references/questdb.md) <br>
-- [OpenClaw skills system](artifact/references/skills-system.md) <br>
-- [QMT API example](artifact/examples/qmt-api-example.py) <br>
-- [Backtest example](artifact/examples/backtest-example.py) <br>
-- [Factor calculation example](artifact/examples/factor-calculation.py) <br>
-- [ClawHub release page](https://clawhub.ai/haohanyang92/ai-quant-master) <br>
-- [Publisher profile](https://clawhub.ai/user/haohanyang92) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python, SQL, JSON, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local files such as factor tables, signal CSVs, backtest reports, portfolio JSON, risk reports, trading logs, and Feishu-ready summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill normalizes live automated trading and QMT order execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run first in an isolated paper-trading environment and require explicit human approval before any live order is sent.
+
+Risk: Deployment guidance includes remote installer and administrator or global installation patterns.
+
+Mitigation: Do not pipe remote installers directly into a shell; pin and verify dependencies and avoid administrator or global installs where possible.
+
+Risk: QMT, Feishu, model-provider, and database credentials can be exposed or reused insecurely.
+
+Mitigation: Keep secrets out of command history and source files, rotate exposed credentials, and change default database credentials before connecting real systems.
+
+## Reference(s):
+
+- [AI全栈量化 Master on ClawHub](https://clawhub.ai/haohanyang92/skills/ai-quant-master)
+- [QMT configuration guide](references/qmt-setup.md)
+- [Factor research methods](references/factor-research.md)
+- [Backtesting methods](references/backtest.md)
+- [QuestDB usage guide](references/questdb.md)
+- [OpenClaw deployment guide](references/openclaw-deploy.md)
+- [Multi-agent architecture](references/multi-agent.md)
+- [OpenClaw skills system](references/skills-system.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python, SQL, shell, JSON, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe CSV, JSON, and text report files for quant research, risk review, and trading workflow handoffs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Clawtrix Skill Advisor audits an agent's installed skills for dead weight, updates, and mission-aligned skill gaps, then recommends owner-approved changes using ClawHub and optional peer signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawtrix Skill Advisor helps agents audit installed skills for unused or risky entries and recommend mission-relevant additions using ClawHub search and optional peer signals.
 
-## Publisher: <br>
-[nicope](https://clawhub.ai/user/nicope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicope](https://clawhub.ai/user/nicope)
 
-## Use Case: <br>
-Agent operators and developers use this skill to review installed skills, identify unused or misaligned capabilities, check for updates, and receive recommendations for skills that better match the agent's mission. It is intended to provide guidance and exact commands for human approval, not to install or remove skills automatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the installed skill list and SOUL.md, then may use mission-derived search terms with ClawHub, HN Algolia, and optional ClawBrain. <br>
-Mitigation: Use it only when that local context and those search terms are acceptable to expose to the referenced services; avoid heartbeat use if reviews should happen only on explicit request. <br>
-Risk: Recommended install or remove commands could be unnecessary, unwanted, or mismatched to the agent's actual mission. <br>
-Mitigation: Review the briefing, rationale, and exact command manually before running anything; the skill itself does not install or remove skills. <br>
+## Use Case:
 
+External developers and agent operators use this skill to review installed agent skills, identify dead weight, check for updates, and receive advisory recommendations for skills that match the agent mission.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nicope/clawtrix-skill-advisor) <br>
-- [Publisher Profile](https://clawhub.ai/user/nicope) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown briefing with inline shell commands and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations require owner approval before any install or removal command is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Mission-derived search terms may reveal sensitive client, project, or business context to public APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the agent mission and redact sensitive terms before using the skill, or disable recurring audits when sensitive context is present.
+
+Risk: Automatic heartbeat use can create recurring audits that may be broader than the user intended.
+
+Mitigation: Run the skill on demand or require explicit user approval before scheduled skill-stack reviews.
+
+Risk: Skill recommendations and promotional footer text may be mistaken for neutral system guidance.
+
+Mitigation: Treat all recommendations as advisory and require owner review before installing, removing, or changing skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicope/skills/clawtrix-skill-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown briefing with inline shell commands and recommendation lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are advisory; the skill instructs the agent not to install or remove skills without owner approval.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

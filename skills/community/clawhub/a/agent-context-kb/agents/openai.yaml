@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Context KB"
+  short_description: "Project memory for coding agents"
+  default_prompt: "Use $agent-context-kb to set up and maintain a project knowledge base agents read before working and update after."

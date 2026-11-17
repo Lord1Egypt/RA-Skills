@@ -1,41 +1,60 @@
-## Description: <br>
-Biedt AI-impactscores, prognoses, salarisinformatie en AI-tooladvies voor 103 Nederlandse beroepsgroepen volgens de AI Blootstellingskaart. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI impact scores, 2030 forecasts, salary context, career advice, and AI tool suggestions for 103 Dutch CBS BRC 2014 occupation groups through a public API.
 
-## Publisher: <br>
-[simondjanssen](https://clawhub.ai/user/simondjanssen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY 4.0 <br>
+## Publisher:
 
+[simondjanssen](https://clawhub.ai/user/simondjanssen)
 
-## Use Case: <br>
-Developers, researchers, career advisors, and Dutch labor-market analysts use this skill to look up AI exposure, 2030 forecasts, salary context, career advice, and AI tools for Dutch CBS BRC 2014 occupation groups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Occupation names or role descriptions used in lookups are sent to simondjanssen.nl. <br>
-Mitigation: Use job titles or public role descriptions rather than private personal or employer-specific details. <br>
+## Use Case:
 
+Dutch-speaking workers, career advisors, analysts, and agents use this skill to look up occupation-level AI exposure, labor-market forecasts, salary context, and practical AI tools for Dutch CBS BRC 2014 occupation groups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simondjanssen/ai-bloodstellingskaart) <br>
-- [AI Blootstellingskaart](https://simondjanssen.nl/ai-kaart) <br>
-- [AI Blootstellingskaart methodology](https://simondjanssen.nl/ai-kaart/methodologie) <br>
-- [Occupation lookup API](https://simondjanssen.nl/api/beroep) <br>
+### Deployment Geography for Use:
 
+Netherlands
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown or plain text responses based on JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public HTTPS API lookups; no local file access, credentials, or persistence are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill contacts simondjanssen.nl for occupation lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access expectations before installation and use it only where calls to this public API are acceptable.
+
+Risk: The occupational AI scores, forecasts, salary context, and career advice are estimates and may be incomplete or outdated.
+
+Mitigation: Treat outputs as informational guidance and compare them with current labor-market, employer, and professional sources before making career or workforce decisions.
+
+Risk: Fuzzy occupation matching can return an adjacent occupation group rather than the user's exact role.
+
+Mitigation: Check the returned occupation name and sector before relying on the score, forecast, salary, or tool suggestions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simondjanssen/skills/ai-bloodstellingskaart)
+- [AI Blootstellingskaart](https://simondjanssen.nl/ai-kaart)
+- [Methodologie](https://simondjanssen.nl/ai-kaart/methodologie)
+- [Beroep API](https://simondjanssen.nl/api/beroep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown summaries with optional JSON API response excerpts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public API lookup URLs for occupation queries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

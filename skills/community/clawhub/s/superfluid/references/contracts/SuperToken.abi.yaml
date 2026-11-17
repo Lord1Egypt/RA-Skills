@@ -1,7 +1,8 @@
 # SuperToken — the Superfluid Protocol's token standard
 # Merges three variants into a single ABI surface:
 #   • Wrapper Super Token   — wraps an existing ERC-20 (upgrade / downgrade)
-#   • Native Asset Super Token (SETH) — wraps chain-native asset (upgradeByETH / downgradeToETH)
+#   • Native Asset Super Token (SETH) — wraps chain-native asset (upgradeByETH / downgradeToETH);
+#     not on every network (none on arc-mainnet)
 #   • Pure Super Token      — pre-minted, no underlying token (upgrade/downgrade revert)
 #
 # Inherits ERC-20, ERC-777, ERC-2612 (permit), EIP-5267, and the Superfluid real-time
@@ -41,9 +42,11 @@ meta:
     Super Tokens are deployed as individual proxies (one per token) by the
     SuperTokenFactory.  There is no single canonical deployment address.
     All proxies share the same logic contract which is upgraded via governance.
+  notes:
+    - "Gotcha: not every network has a Native Asset Super Token. Check metadata nativeTokenWrapper (optional). Detect type from tokenlist superTokenInfo.type or getUnderlyingToken() (address(0) = Native Asset or Pure), never from the symbol. On Arc, USDCx is Native Asset on arc-testnet but a Wrapper of 6-decimal USDC (0x3600...0000) on arc-mainnet, where upgradeByETH reverts."
 
 # wrapper super token   — a Super Token backed by an ERC-20 underlying token
-# native asset super token (SETH) — a Super Token backed by the chain-native asset (ETH, MATIC, etc.)
+# native asset super token (SETH) — a Super Token backed by the chain-native asset (ETH, MATIC, etc.); absent on some networks
 # pure super token      — a Super Token with no underlying; supply is pre-minted at deploy time
 # underlying token      — the ERC-20 token that a wrapper super token wraps
 # real-time balance      — balance that changes continuously based on active agreements (CFA/GDA)

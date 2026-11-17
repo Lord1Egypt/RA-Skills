@@ -1,45 +1,61 @@
-## Description: <br>
-Massblogger connects an agent to a hosted MCP server for managing WordPress sites, generating content, publishing drafts, and running bulk content operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and automate multiple WordPress sites through Massblogger's hosted MCP server, including AI content generation, editing, publishing, media, SEO, and bulk operations.
 
-## Publisher: <br>
-[klitmose](https://clawhub.ai/user/klitmose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[klitmose](https://clawhub.ai/user/klitmose)
 
-## Use Case: <br>
-Content operators, site owners, and developers use this skill to manage one or more WordPress sites through Massblogger, including content creation, editing, media handling, scheduling, SEO updates, and cross-site automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hosted service can perform broad, persistent read/write actions across connected live WordPress sites. <br>
-Mitigation: Install only if you trust Massblogger with those sites and use dedicated least-privilege WordPress accounts wherever possible. <br>
-Risk: Bulk updates, cross-site operations, and automated publishing can make large or public changes quickly. <br>
-Mitigation: Require dry runs before bulk or cross-site operations, review generated content before publication, and enable publish guard for sites that should not publish automatically. <br>
-Risk: Long-lived MCP tokens and WordPress Application Passwords can preserve access after a workflow is no longer needed. <br>
-Mitigation: Rotate or revoke the MCP token and WordPress Application Passwords when access is no longer required or if credentials may be exposed. <br>
+## Use Case:
 
+External WordPress site owners and content operators use this skill to let an agent manage posts, pages, media, SEO metadata, scheduling, comments, and cross-site content workflows through Massblogger. It is suited to content portfolio management where hosted MCP access and WordPress Application Passwords are acceptable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/klitmose/massblogger) <br>
-- [Massblogger](https://massblogger.com) <br>
-- [MCP setup docs](https://massblogger.com/docs/openclaw) <br>
-- [WordPress Application Passwords guide](https://massblogger.com/docs/wordpress/application-passwords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, and remote MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a hosted MCP server; agent-side output may include WordPress content drafts, site-management actions, media operations, and status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact release notes) <br>
+Risk: The hosted service receives broad ongoing authority to manage WordPress content and administrative operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege WordPress account, avoid Administrator credentials unless required, and review production workflows before installing.
+
+Risk: Content workflows can publish or bulk-change multiple posts or sites.
+
+Mitigation: Enable publish guard for content workflows and use dry-run options before cross-site search/replace or spam deletion.
+
+Risk: MCP tokens or WordPress Application Passwords could expose site access if mishandled.
+
+Mitigation: Store secrets in the OpenClaw runtime environment, do not paste them into prompts, and revoke or rotate both the Massblogger MCP token and WordPress Application Password if access is no longer needed or may be exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/klitmose/skills/massblogger)
+- [Publisher Profile](https://clawhub.ai/user/klitmose)
+- [Massblogger](https://massblogger.com)
+- [MCP Setup Docs](https://massblogger.com/docs/openclaw)
+- [WordPress Application Passwords Guide](https://massblogger.com/docs/wordpress/application-passwords)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, bash, and text examples for MCP configuration and WordPress content operations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger remote MCP actions that read, create, update, publish, delete, or bulk-modify WordPress and Massblogger-managed content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Openclaw Twitter Post Engage helps agents search X/Twitter profiles, tweets, and trends and perform OAuth-approved posting, likes, follows, and related workflows through the AISA relay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X/Twitter profiles, tweets, trends, and run OAuth-approved posting, like, follow, and related workflows through the AISA relay without sharing passwords.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to research X/Twitter content or perform approved public write and engagement actions without sharing passwords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform public Twitter/X write or engagement actions from an OAuth-authorized account. <br>
-Mitigation: Confirm the final content or target before every post, like, follow, or unfollow, and require the documented confirmation flag for the action. <br>
-Risk: The skill depends on AISA_API_KEY and OAuth authorization for relay-backed actions. <br>
-Mitigation: Use a dedicated or easily rotated AISA key and revoke OAuth access when the skill is no longer needed. <br>
-Risk: Relay-backed actions can fail or target the wrong account if the target is ambiguous. <br>
-Mitigation: Ask for account or target confirmation when matches are ambiguous and report success only when the relay response indicates success. <br>
+## Use Case:
 
+External users and developers use this skill to research X/Twitter content and perform user-approved posts, replies, quotes, likes, follows, and unfollows through relay-backed Python commands.
 
-## Reference(s): <br>
-- [OpenClaw Twitter OAuth](references/post_twitter.md) <br>
-- [OpenClaw Twitter Engagement](references/engage_twitter.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/aisadocs/openclaw-twitter-post-engage) <br>
-- [Publisher profile](https://clawhub.ai/user/aisadocs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python CLI commands and JSON relay responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and explicit confirmation flags for public write and engagement actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Media upload workflows can send arbitrary readable local files to the relay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only explicit, reviewed media paths from the workspace and avoid passing sensitive local files.
+
+Risk: The AISA relay receives OAuth-backed authority for Twitter/X posting and engagement actions.
+
+Mitigation: Install only when the publisher and relay are trusted, review OAuth scopes, and require explicit confirmation before public write or engagement commands.
+
+Risk: The AISA_API_KEY is sent in request bodies as well as headers by the current clients.
+
+Mitigation: Prefer a restricted or rotating API key and avoid exposing command payloads in shared logs.
+
+## Reference(s):
+
+- [OpenClaw Twitter OAuth](references/post_twitter.md)
+- [OpenClaw Twitter Engagement](references/engage_twitter.md)
+- [AISA homepage](https://aisa.one)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and explicit confirmation flags for public write or engagement actions.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

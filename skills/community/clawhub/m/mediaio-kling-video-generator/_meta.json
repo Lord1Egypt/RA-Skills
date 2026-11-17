@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7bn8fv79mjtchs17087tdtsx82fc86",
-  "slug": "mediaio-kling-video-generator",
-  "version": "1.0.1",
-  "publishedAt": 1773890851785
+  "name": "mediaio-kling-video-generator",
+  "description": "Generate AI videos using Kling via Media.io OpenAPI. Supports text-to-video and image-to-video with high visual fidelity, smooth motion, and cinematic quality.",
+  "requires": {
+    "env": ["API_KEY"]
+  },
+  "metadata": {
+    "mediaio": {
+      "emoji": "",
+      "priority": "P0",
+      "core_goal_keywords": ["text-to-video", "image-to-video"],
+      "trigger_keywords": ["Kling", "Kling AI", "Kling video generator", "Kling AI video"]
+    },
+    "publisher": "Community Maintainer",
+    "source": "https://platform.media.io/docs/"
+  }
 }

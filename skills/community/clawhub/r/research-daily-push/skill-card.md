@@ -1,46 +1,54 @@
-## Description: <br>
-Provides a backward-compatible daily literature push workflow that retrieves recent arXiv papers for a research topic, summarizes them, rates relevance, and prepares push updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Daily Push is a compatibility skill for daily literature updates that retrieves recent arXiv papers for a research topic, generates structured Markdown summaries with relevance ratings, and supports scheduled delivery.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Researchers, engineers, and external users use this skill to monitor recent arXiv papers for a chosen field and receive concise daily Markdown reports with paper links, summaries, and relevance ratings. It can be triggered manually or scheduled as a recurring literature update. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Push-channel targets or messaging credentials may expose research topics, paper links, and generated summaries through the selected service. <br>
-Mitigation: Provide only intended channel and target values, and review where generated reports are sent before enabling delivery. <br>
-Risk: Recurring cron use can create scheduled network requests and repeated notifications. <br>
-Mitigation: Review any cron job before adding it, keep the schedule scoped to the intended audience, and remove scheduled jobs when they are no longer needed. <br>
-Risk: Paper summaries and relevance scores are generated from retrieved arXiv metadata and simple scoring logic, so they may omit nuance or overstate relevance. <br>
-Mitigation: Treat the report as triage guidance and verify important claims against the linked paper or PDF before relying on them. <br>
+## Use Case:
 
+Researchers, developers, and external users use this skill to monitor a research area, receive concise summaries of recent arXiv papers, and prepare daily paper-push reports. The release notes indicate the skill is retained for backward compatibility with the unified research entry.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jirboy/research-daily-push) <br>
-- [Publisher Profile](https://clawhub.ai/user/jirboy) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
-- [arXiv API Query Endpoint](http://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown literature report with paper tables, concise summaries, relevance ratings, PDF links, and scheduling or configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Retrieves recent papers for a user-specified field, normally limited to 5-10 papers per run, with optional push-channel targets or saved Markdown output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The authoritative security summary flags review-worthy implementation risks around dependency installation, plaintext arXiv requests, and unescaped external report content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; prefer a version that uses HTTPS for arXiv, validates arXiv links, escapes Markdown output, and declares Python dependencies in a Python requirements file.
+
+Risk: Scheduled delivery or push settings may share research topics, summaries, and destination identifiers with external services.
+
+Mitigation: Enable the documented cron schedule or push destination variables only after confirming the intended recipients and data-sharing expectations.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jirboy/skills/research-daily-push)
+- [arXiv API query endpoint used by the artifact](http://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with summary sections, paper tables, relevance scores, PDF links, and optional shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report is generated from a user-provided research topic and may be used manually or through a documented cron schedule.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

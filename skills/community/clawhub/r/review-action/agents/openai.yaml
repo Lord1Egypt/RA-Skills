@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 评论转行动"
+  short_description: "把评论问题转成产品、包装与供应商任务"
+  default_prompt: "使用 $amazon-review-to-action 把一个 Amazon ASIN 的评论问题转成可执行产品改进任务。"

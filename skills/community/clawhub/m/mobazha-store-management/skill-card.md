@@ -1,42 +1,52 @@
-## Description: <br>
-Manage a Mobazha store using MCP tools for products, orders, messages, and settings; requires an active MCP connection through store-mcp-connect. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a Mobazha store using MCP tools — products, orders, messages, and settings. Requires an active MCP connection (see store-mcp-connect).
 
-## Publisher: <br>
-[fengzie](https://clawhub.ai/user/fengzie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fengzie](https://clawhub.ai/user/fengzie)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External sellers and store operators use this skill to guide an agent through authenticated Mobazha MCP workflows for products, orders, buyer messages, discounts, collections, profile settings, notifications, exchange rates, wallets, payment providers, and marketplace search.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Authenticated store operations can affect customers, inventory, revenue, refunds, order status, profile settings, and buyer communications.
+
+Mitigation: Review tool calls before approval, especially deletes, refunds, order status changes, profile updates, and buyer messages.
+
+Risk: MCP session credentials could be exposed if copied into agent output or logs.
+
+Mitigation: Do not log or display tokens, and only install the skill when an authenticated Mobazha MCP workflow is intended.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External sellers and their agents use this skill to manage Mobazha store listings, orders, buyer conversations, discounts, collections, profile details, notifications, rates, wallet receiving accounts, and payment-provider settings through an authenticated MCP connection. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated MCP actions can change store listings, order state, messages, discounts, profile data, and storefront settings. <br>
-Mitigation: Require explicit seller approval before destructive, financial, or customer-facing actions and summarize proposed changes before execution. <br>
-Risk: MCP session tokens and store credentials are sensitive. <br>
-Mitigation: Never log or display tokens, and use only an established authenticated MCP connection. <br>
-Risk: Refunds, wallet receiving addresses, payment-provider settings, and order lifecycle changes can affect funds or fulfillment. <br>
-Mitigation: Review refunds, wallet addresses, provider configuration, and order status changes before approving them. <br>
+**Output Format:** [Markdown guidance with MCP tool names, parameters, and workflow steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengzie/mobazha-store-management) <br>
+**Other Properties Related to Output:** [Requires an active authenticated MCP session established outside this skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text, Configuration] <br>
-**Output Format:** [Markdown with MCP tool names and JSON parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated MCP session; sensitive store actions should be reviewed before execution.] <br>
+0.2.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

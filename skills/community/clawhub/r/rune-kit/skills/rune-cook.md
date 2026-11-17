@@ -112,8 +112,8 @@ Not every task needs every phase:
 Nano task:           DO → VERIFY → DONE (no phases, auto-detected)
 Simple bug fix:      Phase 1 → 4 → 6 → 7
 Small refactor:      Phase 1 → 4 → 5 → 6 → 7
-New feature:         Phase 1 → 1.5 → 2 → 3 → 4 → 5 → 6 → 7 → 8
-Complex feature:     All phases + brainstorm in Phase 2
+New feature:         Phase 1 → 1.5 → 2 → 3 → 4 → 5 → 6 → 6.5 → 7 → 8  (6.5: conditional — requires requirements.md)
+Complex feature:     All phases (incl. 6.5) + brainstorm in Phase 2
 Security-sensitive:  All phases + sentinel escalated to opus
 Fast mode:           Phase 1 → 4 → 6 → 7 (auto-detected, see below)
 Multi-session:       Phase 0 (resume) → 3 → 4 → 5 → 6 → 7 (one plan phase per session)
@@ -381,6 +381,24 @@ If the coder model needs info from other phases, it's in the Cross-Phase Context
 
 **REQUIRED SUB-SKILL**: Use `rune-fix.md`
 
+### Reuse Ladder (climb before you write)
+
+Before writing the code for each task, climb this ladder and stop at the first rung that holds. Advisory, not a gate — it shapes *what* you write, never blocks the phase. Runs AFTER you understand the change (scout done, plan approved), never as a substitute for tracing the real flow.
+
+1. **Needs to exist at all?** Speculative need → skip it, say so in one line (YAGNI).
+2. **Already in this codebase?** A helper, util, type, or pattern that already lives here → reuse it. Re-implementing what sits a few files over is the most common slop — grep before you write.
+3. **Stdlib does it?** Use it.
+4. **Native platform feature covers it?** DB constraint over app code, CSS over JS, `<input type="date">` over a picker lib.
+5. **Already-installed dependency solves it?** Use it. Never add a new dep for what a few lines cover.
+6. **One line?** Make it one line.
+7. **Only then** — the minimum code that makes the test pass.
+
+Two rungs work → take the higher one and move on. Mark a deliberate shortcut with a `// yagni:` comment naming its ceiling + upgrade path (`// yagni: global lock — per-account locks if throughput matters`) so the De-Sloppify Pass and later readers see intent, not ignorance.
+
+**Bug-fix corollary** — the lazy fix IS the root-cause fix: grep every caller of the function you're about to touch, then fix the shared function once. One guard where all callers route through is a smaller diff than one guard per caller — and patching only the path the ticket names leaves every sibling caller still broken.
+
+**Never lazy about**: understanding the problem, input validation at trust boundaries, error handling that prevents data loss, security, accessibility, anything explicitly requested. The ladder shortens the solution, never the reading — a small diff you don't understand is a confident wrong fix, not laziness.
+
 1. Mark Phase 4 as `in_progress`
 2. **Phase-file execution** — if working from a master plan + phase file:
    - Execute tasks from `## Tasks` section wave-by-wave
@@ -509,11 +527,36 @@ Invoke `rune-session-bridge.md` after Phase 2, 4, and 5 to save intermediate sta
 
 Before entering ANY Phase N+1, assert: Phase N `completed` in TodoWrite | gate condition met | no BLOCK from sub-skills | no unresolved CRITICAL findings. If any fails → STOP, log "BLOCKED at Phase N→N+1: [assertion]", fix, re-check.
 
-**Key transitions:** 1→2: scout done | 2→3: plan approved | 3→4: failing tests exist | 4→5: all tests pass | 5→6: no CRITICAL findings | 6→7: lint+types+build green.
+**Key transitions:** 1→2: scout done | 2→3: plan approved | 3→4: failing tests exist | 4→5: all tests pass | 5→6: no CRITICAL findings | 6→6.5: lint+types+build green | 6.5→7: convergence.clean or documented escalation (features with requirements.md; others pass through).
 
 ## Phase 6: VERIFY
 
 **REQUIRED SUB-SKILL**: Use `rune-verification.md` — run lint, type check, full test suite, build. Then `rune-hallucination-guard.md` to verify imports and API signatures. ALL checks MUST pass before commit.
+
+**Quickstart execution**: if `.rune/features/<name>/quickstart.md` exists (plan Step 3.7 boundary artifact), execute its validation blocks — run each command, compare against its **Expect** line. Any mismatch = verification FAIL (treat like a failing test). If the environment cannot run a block (no browser, no DB), SKIP it with the reason named in the Cook Report — a skipped quickstart is visible debt, never silent.
+
+## Phase 6.5: CONVERGE (Spec↔Code Gap Scan)
+
+**REQUIRED SUB-SKILL**: Use `rune-converge.md` — verify the ACTUAL codebase matches the spec before committing.
+
+**Trigger**: feature/greenfield chains where `.rune/features/<name>/requirements.md` exists.
+**Skip** (announce the skip): nano/fast/bugfix/refactor/hotfix chains, or no requirements.md (ad-hoc task — Phase 5 gates are the only protection).
+
+1. Invoke `rune-converge.md` — it re-reads spec/plan/contracts as sole intent, scans present code state, classifies gaps (`missing` / `partial` / `contradicts` / `unrequested`)
+2. **`convergence.clean`** → proceed to Phase 7
+3. **`convergence.gaps`** → inspect the signal's `counts` payload first:
+   - **Unrequested-only** (`counts.missing`=0, `counts.partial`=0, `counts.contradicts`=0, `counts.unrequested`>0): no CV tasks were appended — surface the findings in the Cook Report and proceed to Phase 7. Do NOT enter the remediation loop for informational scope-creep findings
+   - **Otherwise**: converge appended `CV-*` remediation tasks to the active phase file:
+     - Execute the CV tasks (return to Phase 4 loop for them; CRITICAL/HIGH first)
+     - Re-run Phase 6 VERIFY on the remediated code, then re-invoke converge (round 2)
+     - **Max 2 remediation rounds.** Gaps still present after round 2 → produce a Structured Escalation Report (the same gap surviving 2 rounds means the approach is wrong, not the effort)
+4. `unrequested` findings are surfaced to the user in the Cook Report — never silently deleted, never blocking
+5. **Stale CV tasks**: if converge reports clean but unchecked `CV-*` tasks remain from earlier rounds (e.g., rules changed between rounds), cook closes them as `[x] (resolved — superseded)` with a Cook Report note — converge's append-only contract means only cook may touch them
+
+<HARD-GATE>
+A P1 story with a CRITICAL convergence gap (missing/contradicts) MUST NOT be committed as "done."
+Either remediate within the round cap, or escalate with the gap documented — never claim completion over a known dead path.
+</HARD-GATE>
 
 ## Phase 7: COMMIT
 
@@ -599,7 +642,7 @@ Escalation chain: debug-fix (3x) → re-plan (1x) → brainstorm rescue (1x) →
 
 ### Structured Escalation Report
 
-> From agency-agents (msitarzewski/agency-agents, 50.8k★): "After 3 retry failures, structured escalation prevents cargo-cult retrying."
+After 3 retry failures, structured escalation prevents cargo-cult retrying.
 
 When escalation chain exhausts (all retries hit) or cook returns `BLOCKED`, produce a Structured Escalation Report instead of a vague "I can't do this":
 
@@ -637,7 +680,7 @@ When escalation chain exhausts (all retries hit) or cook returns `BLOCKED`, prod
 
 ### Subagent Question Gate
 
-> From superpowers (obra/superpowers, 84k★): "Subagents that start work without asking questions produce the wrong thing 40% of the time."
+Subagents that start work without asking questions frequently produce the wrong thing.
 
 Before dispatching a sub-skill (fix, test, review) for a non-trivial task (3+ files OR ambiguous scope):
 
@@ -779,6 +822,7 @@ Mentally track tool call fingerprints. 3 identical calls → WARN. 5 identical c
 | 5 | `constraint-check` | L3 | Audit HARD-GATE compliance across workflow |
 | 6 | `verification` | L3 | Lint + types + tests + build |
 | 6 | `hallucination-guard` | L3 | Verify imports and API calls are real |
+| 6.5 | `converge` | L3 | Spec↔code gap scan for features with requirements.md — dead buttons, missing backends, contradicted decisions |
 | 7 | `journal` | L3 | Record architectural decisions |
 | 8 | `session-bridge` | L3 | Save context for future sessions |
 | any | `context-pack` | L3 | create structured handoff briefings before spawning subagents |
@@ -817,6 +861,7 @@ Mentally track tool call fingerprints. 3 identical calls → WARN. 5 identical c
 | Test-First Gate | Failing tests before Phase 4 | Write tests or get explicit skip |
 | Quality Gate | preflight + sentinel + review before Phase 7 | Fix findings, re-run |
 | Verification Gate | lint + types + tests + build green before commit | Fix, re-run |
+| Convergence Gate | `convergence.clean` (or documented escalation) before Phase 7 for features with requirements.md | Execute CV tasks, re-verify, re-converge (max 2 rounds) |
 
 ## Structured Output Contract (Prompt-as-API Pattern)
 
@@ -912,6 +957,7 @@ SELF-VALIDATION (run before emitting Cook Report):
 - [ ] Plan approval gate was not bypassed — user said "go" (check conversation history)
 - [ ] No Phase 4 code was written before Phase 3 tests (TDD order preserved)
 - [ ] All Phase 5 quality gates (preflight, sentinel, review) ran — not just claimed
+- [ ] Phase 6.5 converge ran for features with requirements.md — or skip announced (no spec) / escalation documented
 - [ ] No quality gate exceeded 3 remediation cycles without user escalation
 - [ ] No upstream issue was fixed by code change alone — UPSTREAM findings re-invoked the source skill
 - [ ] Cook Report contains actual commit hash, not placeholder
@@ -921,6 +967,7 @@ SELF-VALIDATION (run before emitting Cook Report):
 
 All applicable phases complete + Self-Validation passed:
 - User approved plan | All tests PASS (output shown) | preflight+sentinel+review PASS | build green
+- Convergence: `convergence.clean` OR skip announced (no requirements.md) OR escalation documented — never silent
 - Cook Report emitted with commit hash | Session state saved to .rune/ via session-bridge
 
 ## Cost Profile
@@ -928,7 +975,7 @@ All applicable phases complete + Self-Validation passed:
 ~$0.05-0.15 per feature. Haiku for scanning (Phase 1), sonnet for coding (Phase 3-4), opus for complex planning (Phase 2 when needed).
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

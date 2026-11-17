@@ -1,44 +1,60 @@
-## Description: <br>
-Guides OpenClaw skill authors through publishing and updating skills on ClawHub while keeping GitHub Releases, metadata, changelogs, and review checklists aligned. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through publishing and updating OpenClaw skills on ClawHub, including GitHub Release synchronization, versioning, pre-release checks, and common ClawHub publishing fixes.
 
-## Publisher: <br>
-[aliramw](https://clawhub.ai/user/aliramw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aliramw](https://clawhub.ai/user/aliramw)
 
-## Use Case: <br>
-Developers and skill maintainers use this documentation skill to prepare OpenClaw skill releases, publish them to ClawHub, create matching GitHub Releases, and troubleshoot common metadata or CLI publishing issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents a manual API publishing workaround that may involve handling a locally stored ClawHub token. <br>
-Mitigation: Prefer the normal clawhub login, publish, and sync workflows; only handle local tokens deliberately in a trusted environment and avoid copying, printing, or reusing them. <br>
-Risk: Manual workspace synchronization writes skill files into the agent workspace. <br>
-Mitigation: Run workspace synchronization only as an explicit action in a trusted local environment after reviewing the target path. <br>
+## Use Case:
 
+Developers and skill maintainers use this documentation skill to prepare, publish, troubleshoot, and update OpenClaw skills on ClawHub while keeping GitHub releases and metadata aligned.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aliramw/marila-skill-publish) <br>
-- [ClawHub Review Checklist](references/clawhub-review-checklist.md) <br>
-- [dingtalk-ai-table Homepage](https://github.com/aliramw/dingtalk-ai-table) <br>
-- [ClawHub Skill Format Specification](https://github.com/openclaw/clawhub/blob/main/docs/skill-format.md) <br>
-- [ClawHub Security Guidelines](https://github.com/openclaw/clawhub/blob/main/docs/security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes publishing checklists, versioning guidance, troubleshooting steps, and security cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server evidence, SKILL.md frontmatter, package.json, CHANGELOG) <br>
+Risk: Manual publishing guidance can lead users to extract local ClawHub tokens from configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the official clawhub CLI publishing path and avoid manual token extraction unless a trusted operator explicitly approves the fallback.
+
+Risk: Broad file uploads or blanket git add -A staging can include unintended files or secrets.
+
+Mitigation: Use an explicit manifest or explicit staging, then run secret and file-scope checks before publishing.
+
+Risk: Writing directly to ~/.openclaw/workspace/skills can alter later agent behavior.
+
+Mitigation: Treat workspace skill writes as administrative actions and perform them only in trusted environments after review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aliramw/skills/marila-skill-publish)
+- [ClawHub metadata homepage](https://github.com/aliramw/dingtalk-ai-table)
+- [ClawHub review checklist](references/clawhub-review-checklist.md)
+- [ClawHub skill marketplace](https://clawhub.ai/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local tools declared by metadata: clawhub, git, and gh.]
+
+## Skill Version(s):
+
+1.0.8 (source: frontmatter, package.json, CHANGELOG, server release metadata; released 2026-03-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

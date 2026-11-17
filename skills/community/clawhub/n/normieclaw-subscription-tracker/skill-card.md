@@ -1,44 +1,62 @@
-## Description: <br>
-Subscription Tracker helps an agent identify recurring charges from user-provided bank or credit card statements, track renewals and trials, flag duplicates and price increases, and provide cancellation guidance without bank linking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks recurring charges from user-provided bank and credit-card statements, alerts on renewals, duplicates, price increases, and trials, and helps users export or cancel subscriptions.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-External users and their agents use this skill to analyze uploaded CSV or PDF financial statements, maintain a local subscription database, receive renewal and free-trial alerts, export subscription reports, and get instructions for cancelling unwanted subscriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive bank and credit card statement data and stores derived subscription data, possible statement archives, exports, and logs locally. <br>
-Mitigation: Use statements with the minimum needed date range, redact unnecessary identifiers where practical, restrict access to the local tracker directory, review exports before sharing, and delete ~/.normieclaw/subscription-tracker when no longer using the skill. <br>
-Risk: Statement contents may be processed by the user's AI model provider during agent interactions. <br>
-Mitigation: Review the model provider's data handling terms before uploading statements and avoid providing data beyond what is needed for subscription detection. <br>
+## Use Case:
 
+External users use this skill with an OpenClaw agent to identify and manage recurring subscription charges from manually provided CSV or PDF statements without bank linking. It supports renewal reminders, duplicate and overlap review, price-change detection, free-trial tracking, cancellation guidance, and exports for reporting or Budget Buddy Pro.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nollio/normieclaw-subscription-tracker) <br>
-- [Publisher Profile](https://clawhub.ai/user/nollio) <br>
-- [README](artifact/README.md) <br>
-- [Security and Data Handling](artifact/SECURITY.md) <br>
-- [Dashboard Specification](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with optional JSON, CSV, and Markdown report exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local subscription data, statement archives, exports, logs, setup files, and renewal-check output under ~/.normieclaw/subscription-tracker.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: The skill handles sensitive bank and credit-card statement data, and statement contents may be sent to the user's model provider during agent processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted agent environment, redact statements where practical, review the model provider's data terms, and delete local statement archives when they are no longer needed.
+
+Risk: CSV, Markdown, and JSON exports contain subscription and spending data that can reveal financial habits.
+
+Mitigation: Store exports deliberately, restrict file permissions, avoid sharing them through unsecured channels, and delete obsolete exports.
+
+Risk: Custom export paths can replace unintended user files if misused.
+
+Mitigation: Prefer the default export directory unless the destination path has been reviewed and confirmed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nollio/skills/normieclaw-subscription-tracker)
+- [Publisher Profile](https://clawhub.ai/user/nollio)
+- [README](README.md)
+- [Security](SECURITY.md)
+- [Dashboard Spec](dashboard-kit/DASHBOARD-SPEC.md)
+- [Dashboard Manifest](dashboard-kit/manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV, shell commands, configuration, guidance]
+
+**Output Format:** [Agent-facing text and Markdown with local shell commands; exports can be CSV, Markdown, or Budget Buddy JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes local statement files and subscription records; exported files should be treated as sensitive financial data.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact files mention 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

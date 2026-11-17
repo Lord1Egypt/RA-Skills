@@ -1,41 +1,58 @@
-## Description: <br>
-Fetch the latest trending global news when users ask about current or breaking news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch the latest trending global news when users ask about current or breaking news.
 
-## Publisher: <br>
-[MrNquyen](https://clawhub.ai/user/MrNquyen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrnquyen](https://clawhub.ai/user/mrnquyen)
 
-## Use Case: <br>
-External users and agents use this skill to fetch BBC Vietnamese RSS headlines for current-news requests, then summarize returned titles, links, summaries, and publication times without changing factual content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches live RSS content and may not represent comprehensive global trending news. <br>
-Mitigation: Treat results as sourced BBC Vietnamese RSS headlines and preserve links, summaries, and publication times for user review. <br>
-Risk: Unpinned Python dependencies can change behavior over time. <br>
-Mitigation: Pin dependency versions before production use and install only in an environment where running the disclosed local script is acceptable. <br>
+## Use Case:
 
+External users and agents use this skill to fetch BBC News Tieng Viet RSS headlines and summarize relevant current news items for user-facing responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MrNquyen/bbc-daily-news-vn) <br>
-- [BBC Vietnamese RSS feed](https://feeds.bbci.co.uk/vietnamese/rss.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown response with sourced headline fields and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches up to 10 items from the BBC Vietnamese RSS feed; requires Python dependencies and UTF-8 output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may overstate its news coverage as broad trending global news even though the implemented source is BBC Vietnamese RSS content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Describe responses as BBC Vietnamese RSS-based summaries and avoid presenting them as comprehensive global trend coverage.
+
+Risk: The skill runs local Python code and installs mutable, unpinned Python dependencies.
+
+Mitigation: Review the source before installation, pin required packages, and run it in a controlled environment.
+
+Risk: Fetched RSS entries are external reports and may be incomplete, stale, or inaccurate.
+
+Mitigation: Treat RSS content as untrusted external news input and preserve source links so users can verify details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrnquyen/skills/bbc-daily-news-vn)
+- [BBC Vietnamese RSS feed](https://feeds.bbci.co.uk/vietnamese/rss.xml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with source links from RSS-derived text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches up to 10 BBC Vietnamese RSS entries and depends on network access plus Python package installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

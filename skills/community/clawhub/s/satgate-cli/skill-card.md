@@ -1,42 +1,59 @@
-## Description: <br>
-Manage your API's economic firewall from the terminal. Mint tokens, check status, validate tokens, wrap agent commands. The server-side counterpart to lnget. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Satgate helps operators manage API access from the terminal by minting tokens, checking gateway status, validating tokens, and wrapping agent commands through SatGate enforcement.
 
-## Publisher: <br>
-[wmattadeen-gif](https://clawhub.ai/user/wmattadeen-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wmattadeen-gif](https://clawhub.ai/user/wmattadeen-gif)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and operate SatGate CLI for API access governance, token minting and validation, health checks, and routing agent commands through a budget-enforced proxy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer downloads a SatGate CLI binary and may place it in a privileged install directory. <br>
-Mitigation: Review the installer, prefer a user-writable install directory, and verify the release checksum or source before running scripts/install.sh. <br>
-Risk: SatGate API keys or tokens can grant access to protected gateway operations. <br>
-Mitigation: Use least-privilege API keys or tokens, store the generated config with restricted permissions, and avoid wrapping untrusted agent commands or MCP clients. <br>
+## Use Case:
 
+Developers and operators use Satgate to configure SatGate CLI, check gateway status, mint and validate access tokens, and run agent commands through a budget-enforced proxy.
 
-## Reference(s): <br>
-- [SatGate homepage](https://satgate.io) <br>
-- [ClawHub release page](https://clawhub.ai/wmattadeen-gif/satgate-cli) <br>
-- [SatGate Cloud MCP connection](https://cloud.satgate.io/cloud/mcp/connect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command examples for setup, status checks, token minting and validation, command wrapping, MCP bridge configuration, installation, and health checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Installing the CLI depends on downloaded GitHub release binaries and may skip checksum verification when checksums are unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and audited release, verify checksums when available, install to a user-owned directory when possible, or build from source from a trusted checkout.
+
+Risk: API keys and SatGate tokens may be exposed through shell environments, local config files, or shared MCP configuration.
+
+Mitigation: Use short-lived least-privilege tokens, keep local config permissions restrictive, revoke unused credentials, and do not place real tokens in shared or committed files.
+
+Risk: Wrapping untrusted commands can route their outbound traffic through a proxy that injects the SatGate bearer token.
+
+Mitigation: Wrap only trusted commands, verify the tenant and gateway with satgate-cli status first, and validate tokens before relying on them.
+
+## Reference(s):
+
+- [SatGate homepage](https://satgate.io)
+- [SatGate MCP connection page](https://cloud.satgate.io/cloud/mcp/connect)
+- [ClawHub Satgate skill listing](https://clawhub.ai/wmattadeen-gif/skills/satgate-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces CLI setup, token, validation, proxy wrapping, and MCP bridge guidance.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Guidance for building and solving nonlinear programming problems with CasADi and IPOPT, including variables, constraints, solver options, initialization, solution extraction, and power systems patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nonlinear optimization guidance for building and solving NLP problems with CasADi and IPOPT, including symbolic variables, nonlinear constraints, solver options, multiple initializations, solution extraction, and power systems optimization patterns.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill for guidance on building and solving nonlinear programming problems with CasADi and IPOPT, including solver setup, constraints, initialization, and solution extraction. It is especially relevant for power systems optimization workflows that need per-unit scaling, bus mapping, and AC optimal power flow patterns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Installing CasADi, NumPy, IPOPT support, and system libraries can affect the execution environment or pull dependencies from untrusted package indexes.
+
+Mitigation: Install dependencies in a dedicated virtual environment or container, avoid running pip as root, and use trusted APT and Python package indexes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to structure CasADi nonlinear programs, tune IPOPT solver settings, handle initialization and solution extraction, and apply common AC optimal power flow modeling patterns. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated optimization code or solver settings may produce infeasible, slow, or numerically misleading results when bounds, units, signs, or initialization are incorrect. <br>
-Mitigation: Review model formulation, unit conversions, constraint signs, initialization strategy, and solution precision before relying on solver outputs. <br>
-Risk: The skill includes package installation and solver execution examples that can change the local Python environment or run computational workloads. <br>
-Mitigation: Run installation commands in an isolated environment and review commands before execution. <br>
+**Output Format:** [Markdown with Python and bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wu-uk/energy-ac-optimal-power-flow-casadi-ipopt-nlp) <br>
+**Other Properties Related to Output:** [Instructional guidance for solver configuration, numerical initialization, and power systems modeling patterns.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes solver setup examples, option recommendations, initialization patterns, and power-system modeling notes.] <br>
+0.1.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

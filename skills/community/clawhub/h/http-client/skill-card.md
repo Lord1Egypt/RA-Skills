@@ -1,41 +1,50 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup material for HTTP Client concepts, quickstart guidance, implementation patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools - covers intro, quickstart, patterns and more. Quick lookup for HTTP Client concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use this skill as a local HTTP-client reference helper for common devtools workflows, including introductory concepts, setup guidance, patterns, troubleshooting, performance, security, migration, and quick-reference material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes a shell-backed command surface, so a future update could add broader behavior than the inspected static guidance. <br>
-Mitigation: Review and rescan future versions before installing or updating the skill. <br>
-Risk: The skill provides reference guidance that may be incomplete or unsuitable for a specific production environment. <br>
-Mitigation: Validate the guidance against project requirements, security policy, and the target HTTP client stack before applying it. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for HTTP client concepts, setup, common implementation patterns, debugging, performance, security, migration, and cheat-sheet guidance.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/http-client) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands print static local guidance via shell heredocs; evidence reports no external API calls, credentials, or network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The reference guidance is generic and discusses credentials conceptually, so readers may need to adapt it to their specific HTTP client, system, and organizational security requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the emitted guidance before applying it and prefer environment-specific security practices for credential handling, access control, and production rollout.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain1/skills/http-client)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no external API calls, credentials, network access, or persistent system settings.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

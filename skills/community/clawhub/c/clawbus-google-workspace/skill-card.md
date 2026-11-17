@@ -1,45 +1,61 @@
-## Description: <br>
-Manage Google Calendar, Google Drive, and Google Sheets through MyBrandMetrics-connected Google data sources and the local Google Workspace CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Google Calendar, Google Drive, and Google Sheets through MyBrandMetrics-connected Google data sources and the local Google Workspace CLI.
 
-## Publisher: <br>
-[clawbus](https://clawhub.ai/user/clawbus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawbus](https://clawhub.ai/user/clawbus)
 
-## Use Case: <br>
-Developers, operators, and Workspace users use this skill to perform Google Calendar, Drive, and Sheets actions through a local CLI wrapper backed by MyBrandMetrics-managed Google access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive Google access through a MyBrandMetrics API key and token endpoint. <br>
-Mitigation: Set GWS_TOKEN_URL only to the legitimate MyBrandMetrics token endpoint, connect only needed Google data sources, and protect the API key or use GWS_SKILL_API_KEY instead of a plaintext file. <br>
-Risk: Calendar, Drive, and Sheets operations can delete, share, move, or bulk-update user content. <br>
-Mitigation: Manually confirm delete, share, move, and bulk-update actions before running generated commands. <br>
-Risk: The install script may fetch or build the Google Workspace CLI before use. <br>
-Mitigation: Review the installation steps and trust the MyBrandMetrics and Google Workspace CLI sources before installing. <br>
+## Use Case:
 
+Employees, external users, developers, and operations teams use this skill to manage Google Calendar events, Google Sheets data, and Google Drive files through MyBrandMetrics-managed Google connections and a local Google Workspace CLI wrapper.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/clawbus/clawbus-google-workspace) <br>
-- [Clawbus Website](https://www.clawbus.com/) <br>
-- [MyBrandMetrics](https://mybrandmetrics.com/) <br>
-- [Google Workspace CLI Releases](https://api.github.com/repos/googleworkspace/cli/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local CLI commands that call Google Workspace APIs using MyBrandMetrics-managed access tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.10 (source: server release metadata) <br>
+Risk: The skill handles credentials and access tokens for Google Workspace workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted installations, keep the API key private, restrict permissions on the API key file, and set GWS_TOKEN_URL only to the official HTTPS token service.
+
+Risk: Calendar, Drive, and Sheets actions can modify or delete user data and sharing permissions.
+
+Mitigation: Require explicit user confirmation before delete, trash, move, overwrite, or sharing-permission changes.
+
+Risk: The security verdict flags the release as suspicious because scoping and guardrail detail are limited.
+
+Mitigation: Review the skill before installing and connect only the Google data sources needed for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawbus/skills/clawbus-google-workspace)
+- [clawbus website](https://www.clawbus.com/)
+- [MyBrandMetrics API](https://mybrandmetrics.com/)
+- [Google Workspace CLI releases API](https://api.github.com/repos/googleworkspace/cli/releases/latest)
+- [Google Workspace CLI release download](https://github.com/googleworkspace/cli/releases/download/${VERSION}/${FILENAME})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local CLI commands that read credentials, request Google access tokens, and perform Calendar, Sheets, or Drive actions.]
+
+## Skill Version(s):
+
+1.2.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

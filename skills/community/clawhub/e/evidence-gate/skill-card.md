@@ -1,44 +1,53 @@
-## Description: <br>
-Generates evidence obligations for a claim or action, evaluates existing evidence against them, and returns a structured verdict with safe downgrade guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates evidence obligations for a claim or action, evaluates explicit evidence against them, and returns a structured verdict with downgrade guidance.
 
-## Publisher: <br>
-[shanicky](https://clawhub.ai/user/shanicky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shanicky](https://clawhub.ai/user/shanicky)
 
-## Use Case: <br>
-Developers, operators, and agent builders use this skill to add an evidence gate before strong conclusions, root-cause diagnoses, safety assertions, or high-impact recommendations. It helps the caller define concrete evidence requirements, evaluate explicit evidence, and downgrade unsupported claims or actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may downgrade or block a claim when the invocation omits relevant evidence. <br>
-Mitigation: Provide explicit evidence, alternatives checked, and any local policy requirements in the invocation; treat the verdict as gate guidance rather than domain expertise. <br>
-Risk: The skill influences agent wording and recommendations around strong conclusions or risky actions. <br>
-Mitigation: Review BLOCK, CONFLICT, and high-impact SOFT_PASS outputs before acting, and gather the targeted evidence checks it recommends. <br>
+## Use Case:
 
+Developers and agent builders use this skill to gate strong claims, diagnoses, safety assertions, or high-impact recommendations with explicit evidence requirements before presenting or acting on them.
 
-## Reference(s): <br>
-- [Evidence Gate Protocol](references/protocol.md) <br>
-- [Evidence Gate Input Template](references/input-template.md) <br>
-- [Evidence Gate Output Template](references/output-template.md) <br>
-- [Evidence Gate Verdict Schema](references/verdict-schema.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shanicky/evidence-gate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, guidance, json] <br>
-**Output Format:** [JSON verdict object with evidence requirements, sufficiency assessment, allowed and blocked actions, fallback wording, and next evidence actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns PASS, SOFT_PASS, BLOCK, or CONFLICT and keeps evidence evaluation scoped to explicit artifacts supplied in the invocation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: The skill can auto-activate before strong claims or high-impact recommendations, which may add extra gating or soften wording.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when structured evidence checks are desired and tune invocation policy where unnecessary gating would add more cost than value.
+
+## Reference(s):
+
+- [Evidence Gate Skill Page](https://clawhub.ai/shanicky/skills/evidence-gate)
+- [Evidence Gate Protocol](references/protocol.md)
+- [Evidence Gate Input Template](references/input-template.md)
+- [Evidence Gate Output Template](references/output-template.md)
+- [Evidence Gate Verdict Schema](references/verdict-schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Structured JSON with guidance suitable for Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns PASS, SOFT_PASS, BLOCK, or CONFLICT verdicts with evidence requirements, missing evidence, allowed actions, blocked actions, fallback wording, and next evidence actions.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

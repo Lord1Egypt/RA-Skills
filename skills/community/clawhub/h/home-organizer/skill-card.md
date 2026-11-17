@@ -1,41 +1,58 @@
-## Description: <br>
-Home Organizer provides home organization guidance for decluttering, storage planning, space planning, seasonal cleanup, moving checklists, and minimalist living. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Home Organizer provides home organization guidance for decluttering, storage planning, room organization, seasonal cleanup, moving checklists, and minimalist living.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and agents use this skill to generate practical home organization guidance, room-specific tips, decluttering decision trees, cleaning checklists, and simple local tracking commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local notes and command history may be stored as plain-text files. <br>
-Mitigation: Avoid entering sensitive personal details unless local plain-text storage is acceptable, and remove the home-organizer data directory to clear saved notes and history. <br>
-Risk: The installed command wiring may differ from the reviewed scripts. <br>
-Mitigation: Before installation or use, confirm the reviewed scripts are the ones wired to the home-organizer command. <br>
+## Use Case:
 
+External users use this skill to get concise home organization tips, decluttering decisions, room-specific checklists, and simple local entry management for home tasks.
 
-## Reference(s): <br>
-- [Home Organizer ClawHub release page](https://clawhub.ai/bytesagain3/home-organizer) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Shell commands] <br>
-**Output Format:** [Plain text terminal output and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command scripts may write local notes and history under the user's configured data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Personal home notes may be stored persistently in plaintext under the user's local data directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive addresses, schedules, or personal notes; set HOME_ORGANIZER_DIR to a controlled location and review file permissions before use.
+
+Risk: The remove command reports deletion without removing matching records from the stored data file.
+
+Mitigation: Verify data.log manually after removal attempts, and delete or purge stored records directly until real deletion behavior is documented and implemented.
+
+Risk: The package has a suspicious security verdict from the authoritative server scan.
+
+Mitigation: Review the skill and its local storage behavior before installing or running it in a workflow.
+
+## Reference(s):
+
+- [Home Organizer on ClawHub](https://clawhub.ai/bytesagain3/skills/home-organizer)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown-style checklists printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some commands may read from or write to local data files under the configured home-organizer data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

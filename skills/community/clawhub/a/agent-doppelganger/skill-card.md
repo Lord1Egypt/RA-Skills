@@ -1,44 +1,61 @@
-## Description: <br>
-Constrained autonomous delegate for identity-proxied communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Constrained autonomous delegate for identity-proxied communication. Handles incoming messages (Email, Discord, Slack, WhatsApp) by analyzing intent and applying declarative authority policies before generating responses. Use when the user wants to delegate communication tasks while maintaining identity fidelity and enforcing strict non-overreach boundaries.
 
-## Publisher: <br>
-[sieershafilone](https://clawhub.ai/user/sieershafilone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[sieershafilone](https://clawhub.ai/user/sieershafilone)
 
-## Use Case: <br>
-External users and developers use this skill to draft, block, or send bounded communication responses across channels such as email, Discord, Slack, and WhatsApp while applying user-defined authority and confidence policies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles identity-proxied communications and stores local copies of communications, audit data, and writing-style profiles. <br>
-Mitigation: Use it only after reviewing local storage under ~/.openclaw/adg/ and confirming audit logs and retained data can be redacted or deleted as needed. <br>
-Risk: Watermarking or provenance behavior may be unclear to message recipients or reviewers. <br>
-Mitigation: Confirm watermarking is disabled or clearly disclosed before using the skill for real communications. <br>
-Risk: The final safety check may be incomplete or stubbed. <br>
-Mitigation: Confirm the verifier is implemented and tested before allowing the skill to send or draft real messages. <br>
+## Use Case:
 
+Developers and operators use this skill to delegate low-stakes communication handling while enforcing policy, confidence, and escalation boundaries before any response is sent or drafted.
 
-## Reference(s): <br>
-- [Agent Doppelganger specification](references/specification.md) <br>
-- [ClawHub skill page](https://clawhub.ai/sieershafilone/agent-doppelganger) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/sieershafilone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, text responses, Python code, YAML configuration, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May draft, block, or notify based on configured authority, confidence, and escalation policies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can reply as the user while key safety checks are still placeholder-level.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in draft-only or block mode until policy checks, confidence scoring, and final verification fail closed under review.
+
+Risk: Private communications and identity profile data may be stored locally through audit, memory, and profile files.
+
+Mitigation: Minimize and redact stored data, enforce short retention, and require explicit approval before profile or memory writes.
+
+Risk: Real channel-send authority could create identity, reputation, or commitment risk.
+
+Mitigation: Do not grant direct send permissions or broad access to private channels until installation-specific policies and escalation behavior are tested.
+
+Risk: Watermarking and disclosure behavior may be unclear to users or affected recipients.
+
+Mitigation: Make automated-delegate disclosure and watermark controls transparent and user-controlled before deployment.
+
+## Reference(s):
+
+- [Agent Doppelgänger Specification](references/specification.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [Plain text responses, decision labels, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local audit and profile files when run by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact manifest lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

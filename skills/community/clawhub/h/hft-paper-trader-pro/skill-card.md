@@ -1,43 +1,54 @@
-## Description: <br>
-Provides a crypto paper-trading framework that guides an agent through multi-indicator technical analysis, regime filtering, position sizing, stop-loss management, trade journaling, and observation logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HFT Paper Trader Pro helps agents run crypto paper-trading simulations with multi-indicator technical analysis, dual-regime filtering, Kelly-style position sizing, stop-loss controls, journaling, and observation logging.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-External developers and agent builders use this skill to simulate crypto trading workflows, backtest trading logic, monitor paper portfolio performance, and capture lessons from simulated trades. It is intended for paper trading and strategy development, not direct real-money execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update local paper-trading state and lesson files. <br>
-Mitigation: Run it in a sandboxed or version-controlled workspace and review generated portfolio, journal, and observation files before relying on them. <br>
-Risk: Trading analysis and simulated strategy guidance may be incorrect or misleading. <br>
-Mitigation: Treat outputs as paper-trading or backtesting support, review results independently, and avoid using them as financial advice. <br>
-Risk: The release evidence does not show credential use or real-money trading, but adding an implementation could change that risk profile. <br>
-Mitigation: Keep the skill isolated from real exchange credentials and live trading APIs unless any added implementation is separately audited. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent simulate crypto paper trades, evaluate technical-analysis signals, manage a paper portfolio, and record trade outcomes for review. It is intended for simulation and strategy testing, not execution with real exchange credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/hft-paper-trader-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/Zero2Ai-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional code snippets and local JSON or Markdown trading state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local paper-trading files such as portfolio.json, journal.json, and observations.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md frontmatter; artifact _meta.json lists 1.0.0) <br>
+Risk: The skill can guide automated paper-trading activity that may be mistaken for real trading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that no real exchange credentials or live order-routing tools are connected before using broad trading prompts.
+
+Risk: The skill describes writing local paper-trading state to portfolio.json, journal.json, and observations.md.
+
+Mitigation: Decide the target workspace and review proposed file writes before allowing the agent to update paper-trading state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zero2ai-hub/skills/hft-paper-trader-pro)
+- [Zero2Ai publisher profile](https://clawhub.ai/user/zero2ai-hub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompts, code snippets, and suggested local state-file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose updates to portfolio.json, journal.json, and observations.md during paper-trading workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

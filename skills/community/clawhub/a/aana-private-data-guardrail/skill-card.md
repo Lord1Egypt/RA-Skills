@@ -1,40 +1,59 @@
-## Description: <br>
-AANA Private Data Guardrail Skill helps agents minimize, redact, and safely handle private account, billing, payment, health, legal, personal, and sensitive business data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AANA-grounded privacy guardrail instructions for preventing agents from exposing private account, billing, payment, health, legal, personal, or sensitive business data.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Agents and developers use this skill to review drafts, summaries, tickets, exports, and other content before revealing, storing, or forwarding private data. It helps keep sensitive details necessary, authorized, minimized, and redacted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive data could be exposed if an external checker is configured to receive raw secrets, full payment details, health records, legal records, or unrelated private messages. <br>
-Mitigation: Use only trusted user- or administrator-approved checkers, and send redacted summaries rather than raw sensitive records. <br>
-Risk: Privacy-sensitive responses may still reveal unnecessary private data if the guidance is applied incompletely. <br>
-Mitigation: Review high-impact or irreversible disclosures, minimize data before responding, and defer to a verified system or human review when authorization or facts are unclear. <br>
+## Use Case:
 
+Developers and agents use this skill before drafting, summarizing, sending, storing, or transforming private data so responses are necessary, authorized, minimized, and safe. It is especially relevant for account, billing, payment, health, legal, personal, HR, student, customer, and sensitive business workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-private-data-guardrail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, JSON] <br>
-**Output Format:** [Markdown guidance with optional redacted JSON review payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not execute code, install dependencies, call services, write files, or persist memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive data could be included in review payloads sent to an external checker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only minimal redacted summaries and use only trusted checkers configured by the user or administrator.
+
+Risk: The skill is a privacy review aid, not a compliance system.
+
+Mitigation: Route high-impact, irreversible, or compliance-sensitive actions to a verified system or human review.
+
+Risk: Unsupported account, billing, payment, health, legal, or personal facts could be introduced into a response.
+
+Mitigation: Ask, verify, revise, or defer instead of inventing private facts or eligibility outcomes.
+
+## Reference(s):
+
+- [AANA Private Data Guardrail Skill on ClawHub](https://clawhub.ai/mindbomber/skills/aana-private-data-guardrail)
+- [Private data review schema](artifact/schemas/private-data-review.schema.json)
+- [Redacted private data review example](artifact/examples/redacted-private-data-review.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Agent-facing guidance with an optional redacted JSON review payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; does not execute commands, call services, persist memory, or write files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

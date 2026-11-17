@@ -1,50 +1,65 @@
-## Description: <br>
-GEO AgentOps helps B2B export, independent-site, and DTC teams plan GEO market research, competitive analysis, localized content strategy, multi-channel distribution, and AI citation optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Geo Agentops is a GEO market operations assistant for global independent-site operators, supporting market research, competitor analysis, localization strategy, multi-channel traffic optimization, and AI search visibility work.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External marketing and export-operations teams use this skill to generate GEO-oriented topics, articles, FAQs, social posts, citation reports, and operating guidance for global B2B and DTC market expansion. The skill may call third-party AI, search, and social APIs when users configure credentials and approve publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand, market, draft-content, and citation-analysis context may be sent to third-party AI or search providers. <br>
-Mitigation: Use only approved data, avoid secrets or sensitive customer information in prompts, and review provider policies before configuring API keys. <br>
-Risk: Social publishing features can expose public content through OAuth-connected platforms. <br>
-Mitigation: Grant the narrowest OAuth scopes available and manually approve every public post before publishing. <br>
-Risk: Broad activation phrases can trigger the skill in ordinary marketing conversations. <br>
-Mitigation: Confirm the intended GEO workflow and target market before generating or distributing content. <br>
+## Use Case:
 
+B2B export marketers, independent-site operators, and DTC/global commerce teams use this skill to research markets, plan localized GEO content, generate articles, FAQs, social posts, and reports, score content, and compare country-level operating risks.
 
-## Reference(s): <br>
-- [GEO AgentOps Homepage](https://geoagentops.ai) <br>
-- [GEO Methodology](artifact/references/GEO-METHODOLOGY.md) <br>
-- [LLMs.txt Configuration Guide](artifact/references/LLMs-TXT-GUIDE.md) <br>
-- [Schema Markup Guide](artifact/references/SCHEMA-GUIDE.md) <br>
-- [OpenAI API](https://api.openai.com) <br>
-- [Anthropic API](https://api.anthropic.com) <br>
-- [Perplexity API](https://api.perplexity.ai) <br>
-- [LinkedIn API](https://api.linkedin.com) <br>
-- [Twitter/X API](https://api.twitter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured text, inline code blocks, templates, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce content drafts, reports, platform-specific post copy, scoring guidance, and local script commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The security scan says external API and social publishing behavior is under-disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content, target accounts, and permission scopes before any publication or API-backed workflow.
+
+Risk: The security scan flags mutable install guidance in the README.
+
+Mitigation: Install only from a pinned, reviewed release or commit and verify dependencies before use.
+
+Risk: The security scan notes OpenClaw AI Team branding while the server-resolved publisher is wangm-a3.
+
+Mitigation: Verify publisher identity before granting credentials or using the skill in production.
+
+## Reference(s):
+
+- [GEO Methodology](references/GEO-METHODOLOGY.md)
+- [LLMs.txt Configuration Guide](references/LLMs-TXT-GUIDE.md)
+- [Schema Markup Guide](references/SCHEMA-GUIDE.md)
+- [GEO AgentOps homepage](https://geoagentops.ai)
+- [OpenAI API](https://api.openai.com)
+- [Anthropic API](https://api.anthropic.com)
+- [Perplexity API](https://api.perplexity.ai)
+- [LinkedIn API](https://api.linkedin.com)
+- [Twitter/X API](https://api.twitter.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON snippets, Python code, shell commands, and concise operational reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may reference third-party AI and social APIs configured through user-provided credentials.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release and SKILL.md frontmatter; package.json reports 2.0.4 and clawhub.yaml reports 2.1.6)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

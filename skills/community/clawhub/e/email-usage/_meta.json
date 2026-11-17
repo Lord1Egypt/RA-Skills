@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7bcaearb90wwcjbr9gpv32s5831k39",
+  "ownerId": "s172yaxxd2drm0sc92554g9aq983hegj",
   "slug": "email-usage",
-  "version": "1.0.2",
-  "publishedAt": 1776212155532
+  "version": "1.0.1",
+  "publishedAt": "2026-04-14T09:00:00Z",
+  "requiredEnvVars": [],
+  "requiredConfigPaths": [],
+  "primaryCredential": null,
+  "persistence": null,
+  "credentialSetup": {
+    "type": "none",
+    "description": "No credentials required."
+  },
+  "requires": {
+    "anyBinaries": [],
+    "os": ["linux"]
+  }
 }

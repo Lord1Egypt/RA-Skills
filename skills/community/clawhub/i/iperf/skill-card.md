@@ -1,39 +1,51 @@
-## Description: <br>
-Provides static iperf reference documentation for agents, including quickstart, troubleshooting, performance, security, migration, and cheat sheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Static iperf-themed reference helper that returns plain-text guidance for overview, quickstart, patterns, debugging, performance, security, migration, and cheatsheet commands.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise iperf reference guidance while working in devtools contexts. It does not run iperf or perform live network diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the static reference text for live iperf execution or network diagnostics. <br>
-Mitigation: Use the skill as reference guidance only; verify network measurements and operational decisions with actual iperf tooling and reviewed commands. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick local reference for iperf-themed concepts, troubleshooting, performance, security, migration, and command cheatsheets.
 
-## Reference(s): <br>
-- [ClawHub Iperf skill page](https://clawhub.ai/bytesagain3/iperf) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc output; no API keys, credentials, external API calls, network access, or persistent state are indicated by the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill provides static generic iperf-themed reference text and is not complete authoritative iperf documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a quick reference only and verify operational details against authoritative iperf documentation before relying on it in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/iperf)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Publisher profile](https://clawhub.ai/user/bytesagain3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference content printed by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local output; no credentials, external API calls, network access, or persistent system state.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

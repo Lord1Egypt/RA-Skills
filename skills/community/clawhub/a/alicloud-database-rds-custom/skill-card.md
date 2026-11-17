@@ -1,45 +1,60 @@
-## Description: <br>
-查询阿里云自定义实例（RC 实例）。使用 aliyun CLI 调用 DescribeRCInstances API 查询 RDS 相关自定义实例。当用户需要查询 RC 实例、RDS 自定义实例或云资源时触发此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Alibaba Cloud RDS Custom (RC) instances and related resources with the aliyun CLI and RDS APIs.
 
-## Publisher: <br>
-[Chucklong](https://clawhub.ai/user/Chucklong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chucklong](https://clawhub.ai/user/chucklong)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to query Alibaba Cloud RDS Custom RC instances, related resources, monitoring metrics, and diagnostic details through aliyun CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface sensitive cloud inventory and access details such as private IPs, VPC IDs, KubeConfig, or VNC URLs. <br>
-Mitigation: Treat command output and transcripts as sensitive operational data and avoid sharing them outside trusted channels. <br>
-Risk: The skill requires Alibaba Cloud CLI credentials to query RDS Custom resources. <br>
-Mitigation: Use a least-privileged read-only RAM user or temporary credentials for inventory and diagnostics. <br>
-Risk: The documented CLI installation path uses a remote shell installer. <br>
-Mitigation: Verify the AliCloud CLI installer and source before running the curl-based installation command. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to prepare aliyun CLI commands and guidance for inspecting Alibaba Cloud RDS Custom instances, attributes, disks, snapshots, metrics, KubeConfig, node pools, and VNC URLs.
 
-## Reference(s): <br>
-- [DescribeRCInstances API Reference](references/api-docs.md) <br>
-- [Aliyun CLI Documentation](https://help.aliyun.com/product/29987.html) <br>
-- [RDS API Documentation](https://help.aliyun.com/document_detail/26223.html) <br>
-- [OpenAPI DescribeRCInstances](https://api.aliyun.com/api?product=Rds&api=DescribeRCInstances) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and CLI output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cloud inventory fields such as instance IDs, private IPs, VPC IDs, KubeConfig references, and VNC URLs; handle outputs as sensitive operational data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.14.0 (source: server release metadata) <br>
+Risk: The skill asks users to configure Alibaba Cloud credentials that may be powerful if the account is not scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Alibaba Cloud RAM user limited to the specific read-only RDS Custom APIs required for the task.
+
+Risk: Some supported queries can return sensitive operational material such as KubeConfig, VNC URLs, private IPs, VPC IDs, or AccessKey-related configuration.
+
+Mitigation: Treat returned credentials, access URLs, network identifiers, and configuration files as sensitive and avoid sharing them in logs or public outputs.
+
+Risk: The documented CLI installation path includes a curl-to-bash installer.
+
+Mitigation: Verify the installer independently or use an approved installation method before running it.
+
+## Reference(s):
+
+- [DescribeRCInstances API Reference](references/api-docs.md)
+- [Alibaba Cloud CLI Documentation](https://help.aliyun.com/product/29987.html)
+- [RDS API Documentation](https://help.aliyun.com/document_detail/26223.html)
+- [DescribeRCInstances OpenAPI Portal](https://api.aliyun.com/api?product=Rds&api=DescribeRCInstances)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON/jq examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include aliyun CLI invocations that call Alibaba Cloud RDS APIs and parse JSON responses with jq.]
+
+## Skill Version(s):
+
+1.14.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

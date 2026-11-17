@@ -1,43 +1,57 @@
-## Description: <br>
-Acts as a meta-orchestrator that routes stock-analysis requests across data, macro/news, backtesting, earnings quality, valuation, portfolio analytics, and risk skills under explicit budget controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Acts as a meta-orchestrator that routes stock-analysis requests across data, macro/news, backtesting, earnings quality, valuation, portfolio analytics, and risk skills under explicit budget controls.
 
-## Publisher: <br>
-[ndtchan](https://clawhub.ai/user/ndtchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teahann](https://clawhub.ai/user/teahann)
 
-## Use Case: <br>
-Developers and analysts use this skill to coordinate budget-aware stock research workflows across market data, macro/news context, backtesting, earnings quality, valuation, portfolio analytics, and risk-management skills. It produces transparent recommendation framing with assumptions, confidence, gaps, risk flags, and governance status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can coordinate downstream finance skills that may handle API keys, portfolio records, audit logs, or target-state changes. <br>
-Mitigation: Review downstream skills before installation or use, especially any skill that handles credentials, portfolio state, audit logs, or governance mutations. <br>
-Risk: Recommendation labels such as BUY, ADD, HOLD, TRIM, or EXIT could be mistaken for executable broker instructions. <br>
-Mitigation: Treat recommendation labels as analytical outputs only; the artifact states broker execution is disabled and target-state changes require governance routing. <br>
-Risk: Financial conclusions may be incomplete when dependent data, macro/news, valuation, or risk-management skills are unavailable or return partial outputs. <br>
-Mitigation: Carry missing data forward, cap confidence when critical modules are absent or conflicting, and present assumptions and gaps in the final report. <br>
+## Use Case:
 
+Investors, analysts, and agent builders use this skill to route stock-analysis requests through budget-aware screening, macro/news context, valuation, portfolio analytics, and risk-management workflows. It frames recommendations with assumptions, confidence, gaps, risk flags, and governance status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ndtchan/stock-picker-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/ndtchan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with structured sections for fetched data, pipeline choice, assumptions, results, confidence, gaps, risks, next steps, and decision governance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include BUY, ADD, HOLD, TRIM, or EXIT recommendation labels as analytical guidance only; broker execution is disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can draft financial recommendation labels and target weights that may be mistaken for trading authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research, require human review for decisions, and keep broker execution disabled.
+
+Risk: The skill may coordinate costly or broad data and news collection through dependent skills.
+
+Mitigation: Confirm budgets before deeper runs, reuse cached artifacts, and stop scope expansion when remaining call budget is low.
+
+Risk: Missing or unavailable dependent skills can leave macro, valuation, portfolio, or risk context incomplete.
+
+Mitigation: Report missing modules, carry gaps into the final answer, and cap confidence when required inputs are unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teahann/skills/stock-picker-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with structured sections for fetched data, pipeline choice, assumptions, results, confidence, risks, next steps, and governance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are recommendation framing and workflow guidance only; broker execution is disabled.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

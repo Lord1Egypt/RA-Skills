@@ -1,45 +1,60 @@
-## Description: <br>
-Trades Bitcoin price bin markets on Kalshi by comparing market-implied volatility to BTC historical ~60% annualized volatility using a lognormal model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Bitcoin price bin markets on Kalshi by comparing market-implied volatility to BTC historical 60% annualized volatility with a lognormal model.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External developers and trading-system operators use this skill to evaluate Kalshi BTC price-bin markets and optionally execute trades when a lognormal volatility model diverges from market prices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live use can involve a Solana private key and real-money automated trades. <br>
-Mitigation: Start in dry-run mode, review trader.py and simmer-sdk, use a dedicated low-balance Solana wallet and scoped API key, keep trade limits low, and enable --live or scheduling only after accepting the financial risk. <br>
-Risk: Credential exposure could compromise SIMMER_API_KEY or SOLANA_PRIVATE_KEY. <br>
-Mitigation: Provide credentials only through protected environment variables or a secrets manager, scope access where possible, and rotate credentials if exposure is suspected. <br>
-Risk: The volatility model and market assumptions may produce losing trades. <br>
-Mitigation: Tune max position size, max trades per run, slippage, liquidity, entry edge, and exit threshold before live use, and monitor positions after execution. <br>
+## Use Case:
 
+External users and developers use this skill to scan Kalshi Bitcoin price-bin markets, compare market prices with a historical-volatility lognormal model, and produce dry-run or live trading actions when explicitly configured.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/diagnostikon/kalshi-crypto-volatility-skew-trader) <br>
-- [Simmer skills homepage](https://simmer.markets/skills) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Console text with optional JSON automaton status reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run by default; live trading requires --live and configured SIMMER_API_KEY and SOLANA_PRIVATE_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence; artifact metadata reports 1.0.0) <br>
+Risk: Live trading mode can spend real USDC and requires high-value trading credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, provide live credentials only in an isolated account or wallet with limited funds, and avoid --live until the skill has been reviewed.
+
+Risk: Security evidence reports that exit logic can sell BTC positions the skill did not create.
+
+Mitigation: Do not run live exit logic until it is fixed to sell only positions positively tagged as created by this skill.
+
+Risk: The simmer-sdk dependency receives trading authority when credentials are supplied.
+
+Mitigation: Pin and review simmer-sdk before using production credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/kalshi-crypto-volatility-skew-trader)
+- [Simmer Markets skills](https://simmer.markets/skills)
+- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls]
+
+**Output Format:** [Plain text CLI output and JSON automaton status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run by default; live execution requires --live, SIMMER_API_KEY, and SOLANA_PRIVATE_KEY.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

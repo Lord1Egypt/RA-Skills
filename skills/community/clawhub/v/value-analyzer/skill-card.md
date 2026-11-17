@@ -1,41 +1,61 @@
-## Description: <br>
-Analyzes stocks against Benjamin Graham value-investing criteria and calculates a margin of safety from user-provided financial data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+价值分析师 helps agents apply Graham-style value-investing criteria to screen stocks, assess investor fit, calculate margin of safety, and produce structured investment observations.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and analysts can use this skill to structure preliminary value-investing screens, check defensive or aggressive investor criteria, and frame margin-of-safety analysis. The skill relies on user-provided financial data and is not a substitute for professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce buy, observe, or do-not-buy labels from user-provided financial data, which may be incomplete or inaccurate. <br>
-Mitigation: Verify financial data independently and treat the output as preliminary analysis rather than professional financial advice. <br>
+## Use Case:
 
+External users and agents use this Chinese-language skill for preliminary value-investing analysis, including Graham defensive-investor checks, simplified intrinsic-value estimates, margin-of-safety calculations, and risk/action summaries. It is an educational screening aid and should not be used as sole investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/value-analyzer) <br>
-- [Graham principles reference](references/graham-principles.md) <br>
-- [Value analysis template](templates/value-analysis-template.md) <br>
-- [Maotai analysis example](examples/maotai-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured JSON-style summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs investment-screening criteria, margin-of-safety calculations, recommendation labels, risks, and action items based on user-provided data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can produce buy, observe, or safety-margin labels that may be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational screening only and require independent investment research before making any trade.
+
+Risk: Margin-of-safety calculations can be misleading when input market or financial data is stale, incomplete, or user-supplied without verification.
+
+Mitigation: Verify prices, ratios, earnings history, dividend history, and other financial data against current authoritative market sources before relying on the analysis.
+
+Risk: Graham criteria may not fit every sector, market structure, or growth-stage company.
+
+Mitigation: Use the skill's industry-adjustment guidance and pair the output with broader due diligence such as moat, cash-flow, and policy-risk analysis.
+
+## Reference(s):
+
+- [Graham Principles Reference](artifact/references/graham-principles.md)
+- [Value Analysis Template](artifact/templates/value-analysis-template.md)
+- [Maotai Value Analysis Example](artifact/examples/maotai-example.md)
+- [ClawHub Skill Page](https://clawhub.ai/lj22503/skills/value-analyzer)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/lj22503)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured JSON-style analysis with criteria tables, margin-of-safety calculations, recommendations, risks, and action items.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language financial screening output; recommendation labels are informational and depend on user-provided or independently verified market data.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

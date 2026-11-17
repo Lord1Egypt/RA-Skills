@@ -1,43 +1,57 @@
-## Description: <br>
-Tracks Amazon prices, monitors orders, scrapes reviews, fetches order details, drafts refund messages, and manages refund cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Amazon prices, monitors orders, scrapes reviews, fetches order details, drafts refund messages, and manages refund cases efficiently.
 
-## Publisher: <br>
-[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max)
 
-## Use Case: <br>
-Amazon shoppers and browser agents use this skillpack to inspect orders and products, monitor prices, collect evidence, and prepare refund, replacement, return, or after-sales messages. It is intended for live Amazon sessions where the user can review proposed browser actions before approving them. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The assistant gives an AI-planned browser agent broad access to inspect and act on webpages beyond the Amazon-focused purpose. <br>
-Mitigation: Use it only on intended Amazon pages, inspect each confirmation carefully, and approve only actions that match the current shopping task. <br>
-Risk: Configured model endpoints and API keys can affect where order, product, page, or message context is sent. <br>
-Mitigation: Verify the configured endpoint before use and use a dedicated low-privilege AI API key. <br>
-Risk: Evidence packages, screenshots, DOM snippets, and message drafts can include sensitive order or account information. <br>
-Mitigation: Clear extension storage and exported artifacts after handling sensitive orders or messages. <br>
-Risk: Automated message entry or sending can submit incorrect after-sales messages if used without review. <br>
-Mitigation: Avoid enabling auto-send and review every drafted message before approving any send-related action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/luoqianchenguni-max/easybuy-amazon-agent) <br>
+## Use Case:
 
+External users and agent operators use this skillpack to inspect Amazon product, order, review, and messaging pages, collect case evidence, draft after-sales messages, and guide refund, return, replacement, and price-check workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON skill outputs, browser action results, drafted text, exported evidence artifacts, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Chrome MV3, Amazon login for live flows, browser permissions, and user review of confirmations before sensitive actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skills/registry.json) <br>
+Global, with live playbook evidence for Amazon.com and Amazon.com.au marketplaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The extension requests broad browser automation authority and browser-wide access beyond the Amazon-focused use case.
+
+Mitigation: Install only when that level of browser access is acceptable, use it on intended Amazon pages, and review each requested tool action before approval.
+
+Risk: The extension can store screenshots, DOM snippets, order details, traces, and API configuration in local browser storage.
+
+Mitigation: Avoid entering valuable API keys unless the endpoint is trusted and keys can be rotated or scoped; clear stored extension data when retained screenshots or order details are no longer needed.
+
+Risk: Message drafting and form-filling flows can type or submit after-sales messages if auto-send is enabled.
+
+Mitigation: Keep auto-send disabled unless intentional and review generated messages and form actions before approving submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luoqianchenguni-max/skills/easybuy-amazon-agent)
+- [Publisher profile](https://clawhub.ai/user/luoqianchenguni-max)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration, Guidance]
+
+**Output Format:** [JSON tool results and short text drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include extracted order, product, review, price, message-thread, URL, DOM snippet, screenshot artifact, and case export identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact manifest version is 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

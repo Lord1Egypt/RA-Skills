@@ -1,45 +1,63 @@
-## Description: <br>
-Generates structured articles from user-provided keywords and publishes them to a WordPress site through the WordPress REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured article from user-provided keywords and publishes it to a WordPress site through the WordPress REST API.
 
-## Publisher: <br>
-[liuxucai](https://clawhub.ai/user/liuxucai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuxucai](https://clawhub.ai/user/liuxucai)
 
-## Use Case: <br>
-External users and site operators use this skill to draft keyword-based WordPress articles, configure publishing parameters, and run PowerShell scripts that create, update, or delete posts through the WordPress REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use WordPress credentials to publish content to a live site. <br>
-Mitigation: Use a least-privilege WordPress application password, verify the target domain before publishing, and prefer draft status until content is reviewed. <br>
-Risk: The skill includes deletion and delete-and-repost workflows that can remove live content. <br>
-Mitigation: Confirm the post ID and keep a backup before deletion, and prefer in-place updates when possible. <br>
-Risk: Incorrect credentials, API URLs, or post IDs can cause failed operations or unintended changes. <br>
-Mitigation: Validate the WordPress REST API endpoint, username, application password, and post ID before running the PowerShell scripts. <br>
+## Use Case:
 
+External users and WordPress site operators use this skill to draft keyword-based articles and publish them to a WordPress site. It also supports authenticated post management workflows such as category/tag assignment and modification of existing posts.
 
-## Reference(s): <br>
-- [WordPress REST API Reference](references/api-reference.md) <br>
-- [WordPress Application Password Setup](references/wordpress-setup.md) <br>
-- [Chinese Encoding Fix](references/encoding-fix.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/liuxucai/wordpress-article-publisher-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell command examples and WordPress post content in HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate article drafts, WordPress publishing commands, post status settings, category or tag parameters, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/skill.json) <br>
+Risk: The skill can publish live content to a WordPress site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use draft status or a staging site first, then review the generated article before making it public.
+
+Risk: The workflow requires WordPress usernames and application passwords.
+
+Mitigation: Use a dedicated least-privileged WordPress account, avoid passing passwords in reusable shell history when possible, and revoke application passwords after use if exposure is suspected.
+
+Risk: Delete or modify-existing-post workflows can remove live content.
+
+Mitigation: Confirm the exact post ID and intended consequence before running delete or replacement operations.
+
+Risk: Publishing over non-HTTPS URLs can expose credentials.
+
+Mitigation: Use only HTTPS WordPress site URLs for authenticated REST API operations.
+
+## Reference(s):
+
+- [WordPress REST API reference](references/api-reference.md)
+- [WordPress application password setup](references/wordpress-setup.md)
+- [Chinese encoding fix](references/encoding-fix.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline PowerShell commands and HTML article content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces WordPress REST API publishing guidance and script invocations; generated article content is expected to be HTML-formatted before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Extracts document structure, text, tables, and figures from PDFs, images, Office documents, and HTML using Azure Content Understanding prebuilt-layout analyzer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts document structure, text, tables, and figures from PDFs, images, Office documents, and HTML using Azure Content Understanding's prebuilt layout analyzer.
 
-## Publisher: <br>
-[zwcih](https://clawhub.ai/user/zwcih) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zwcih](https://clawhub.ai/user/zwcih)
 
-## Use Case: <br>
-Developers and document-processing agents use this skill to convert user-selected documents or URLs into Markdown and structured JSON for downstream analysis, OCR workflows, table extraction, and layout-aware document review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill submits user-selected document URLs or stdin document bytes to a configured Azure Content Understanding endpoint. <br>
-Mitigation: Use a dedicated Azure key and trusted endpoint, and only process confidential, regulated, secret-bearing, or internal-only documents when organizational policy permits Azure processing for that data. <br>
-Risk: Document extraction output may be incomplete or inaccurate for complex layouts, large files, or failed Azure analysis jobs. <br>
-Mitigation: Review generated Markdown and JSON before relying on the extracted content in downstream decisions or publications. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert documents into Markdown and structured JSON for OCR, layout analysis, table extraction, and downstream document-processing workflows.
 
-## Reference(s): <br>
-- [Azure Content Understanding Layout API Reference](references/api.md) <br>
-- [ClawHub release page](https://clawhub.ai/zwcih/azure-content-layout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown and structured JSON, with setup guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AZURE_CU_ENDPOINT, AZURE_CU_API_KEY, and optionally AZURE_CU_API_VERSION.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The skill can upload document content to Azure Content Understanding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for documents intended for Azure processing, and avoid sensitive documents unless that upload is approved for the workflow.
+
+Risk: The skill sends an Azure API key to the configured endpoint and polling URL without validating them.
+
+Mitigation: Use only a trusted HTTPS Azure Content Understanding endpoint, review endpoint configuration before execution, and use a narrowly scoped, rotatable key.
+
+## Reference(s):
+
+- [Azure Content Understanding Layout API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/zwcih/skills/azure-content-layout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Markdown text, structured JSON, stdout text, and optional output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AZURE_CU_ENDPOINT, AZURE_CU_API_KEY, and optionally AZURE_CU_API_VERSION.]
+
+## Skill Version(s):
+
+1.3.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

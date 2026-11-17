@@ -1,41 +1,50 @@
-## Description: <br>
-PPTV summarizes public PPTV short-drama channel and episode pages, including catalogs, update status, cast details, comments, rankings, and genre trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PPTV helps agents summarize public PPTV short-drama channel and episode pages, including catalogs, update status, cast, comments, rankings, and genre statistics.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers, editors, and analysts use this skill to review public PPTV short-drama pages and produce lightweight summaries of episode catalogs, update status, rankings, cast, comments, and topic distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports no confirmed findings, but says the artifact was not available for full local verification during that review. <br>
-Mitigation: Before relying on the skill, confirm the published files match the expected PPTV summary purpose and do not contain unexpected commands, credential use, persistence, or broad filesystem access. <br>
-Risk: Automated collection from public PPTV pages can violate platform rules or create excessive request volume if used too broadly. <br>
-Mitigation: Use the skill only for lightweight summaries of public pages, avoid downloads or interface reverse engineering, and keep request frequency controlled. <br>
+## Use Case:
 
+Developers and analysts use this skill to inspect public PPTV short-drama pages and prepare lightweight summaries of episode catalogs, rankings, cast, comments, and genre distribution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/pptv) <br>
-- [PPTV homepage](https://www.pptv.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and structured bullet points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should stay limited to publicly accessible pages and should not include downloads, reverse engineering, or bulk collection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill could be misused beyond its stated public-page summary scope through downloads, API probing, bulk scraping, or attempts to bypass platform checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public PPTV page analysis, keep request rates controlled, and avoid downloads, API probing, bulk scraping, and bypass attempts.
+
+## Reference(s):
+
+- [PPTV homepage](https://www.pptv.com/)
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/pptv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured plain-text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limited to public-page analysis; no downloads, reverse engineering, API probing, or bulk scraping.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

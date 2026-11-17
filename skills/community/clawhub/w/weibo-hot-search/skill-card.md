@@ -1,41 +1,58 @@
-## Description: <br>
-Anonymously fetches the live Weibo hot search list without a Weibo login and saves the results as a Markdown file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects Weibo real-time hot search entries without a Weibo login and saves the results as a Markdown file.
 
-## Publisher: <br>
-[kazeMace](https://clawhub.ai/user/kazeMace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kazemace](https://clawhub.ai/user/kazemace)
 
-## Use Case: <br>
-External users and developers can use this skill to collect the current Weibo hot search ranking into a Markdown table for reporting, monitoring, or analysis without providing account credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT No Attribution
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to terminate Chrome or Edge debugging processes without asking, which can disrupt unrelated browser sessions. <br>
-Mitigation: Prompt before terminating browser processes, use an isolated browser profile and random available debug port, and only clean up processes started by the skill. <br>
-Risk: The referenced scripts/weibo-hot-search.ts file is not present in the artifact evidence. <br>
-Mitigation: Verify that the script is supplied and reviewed before expecting the skill to run. <br>
+## Use Case:
 
+Developers and external users can use this skill to ask an agent to collect the public Weibo hot search ranking through a local Chrome or Edge browser session and export the captured ranking as Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kazeMace/weibo-hot-search) <br>
-- [Weibo hot search page](https://weibo.com/newlogin?tabtype=search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown file containing a timestamped table of Weibo hot search entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports an optional output path and browser profile directory; requires bun or npx and a Chrome, Chromium, or Edge browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The release evidence reports that the skill points to a missing script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the referenced script is included in the package before installing or running the skill.
+
+Risk: The release evidence reports unsafe runtime guidance because the skill may use an unpinned npx fallback.
+
+Mitigation: Use a trusted Bun installation or verify the runtime source before allowing an agent to execute the command.
+
+Risk: The release evidence reports unsafe process-killing instructions for existing Chrome or Edge CDP processes.
+
+Mitigation: Require user approval or verify process ownership before terminating browser processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kazemace/skills/weibo-hot-search)
+- [Weibo search page](https://weibo.com/newlogin?tabtype=search)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown table saved to a file, with shell command guidance for optional output path and browser settings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Chrome, Chromium, or Edge and a Bun runtime or npx fallback.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

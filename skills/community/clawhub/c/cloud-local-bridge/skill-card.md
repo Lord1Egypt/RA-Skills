@@ -1,40 +1,56 @@
-## Description: <br>
-实现云端 OpenClaw 与本地 OpenClaw 之间的双向通信桥接。支持自然语言配对、命令执行、文件同步。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables bidirectional communication between cloud and local OpenClaw instances, including natural-language pairing, command execution, and file synchronization.
 
-## Publisher: <br>
-[84191879](https://clawhub.ai/user/84191879) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[84191879](https://clawhub.ai/user/84191879)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to pair cloud and local OpenClaw instances, route commands to a local machine, and move files between environments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remote users may gain broad control over local command execution and file access. <br>
-Mitigation: Install only when remote control of this machine is intended, run the bridge as a low-privilege user, and require command and file allowlists plus confirmation on sensitive systems. <br>
-Risk: Exposing the bridge directly to the internet could make local commands, files, and tokens reachable beyond the intended pairing. <br>
-Mitigation: Bind the service to localhost or a private tunnel, protect and rotate the bearer token, and avoid direct public exposure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cloud-Local Bridge Examples](references/EXAMPLES.md) <br>
-- [Cloud-Local Bridge on ClawHub](https://clawhub.ai/84191879/cloud-local-bridge) <br>
+## Use Case:
 
+Developers and operators use this skill to pair cloud and local OpenClaw environments, route cloud-originated requests to a local bridge service, execute local commands, and move files between environments.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands and configuration that enable remote command execution and file transfer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bridge gives a paired remote party broad local command-execution and file-access capability.
+
+Mitigation: Install only when that level of remote control is intended; run with least privilege, avoid running as root, and restrict access to non-sensitive working directories.
+
+Risk: A publicly exposed bridge port or long-lived token can allow unauthorized local machine access if the token is leaked or guessed.
+
+Mitigation: Use a private network or secure tunnel, do not expose the port publicly, use strong tokens, and rotate tokens after pairing or suspected exposure.
+
+Risk: The file features can read or transfer sensitive OpenClaw memory, configuration, SSH keys, or other private files.
+
+Mitigation: Do not grant the bridge access to sensitive local paths, and review requested file paths before allowing read, download, upload, or sync operations.
+
+## Reference(s):
+
+- [Cloud-Local Bridge usage examples](references/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with bash, JSON, Python, and HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bearer-token bridge configuration, command examples, and file path arguments.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

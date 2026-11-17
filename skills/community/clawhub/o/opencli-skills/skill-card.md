@@ -1,40 +1,53 @@
-## Description: <br>
-Use OpenCLI to fetch data from websites like Twitter, Reddit, Bilibili, Zhihu, Xiaohongshu, YouTube, and other social, video, and news sites without API keys by reusing Chrome login sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch data from social, video, news, finance, productivity, and desktop applications using OpenCLI with Chrome login sessions and Browser Bridge automation.
 
-## Publisher: <br>
-[HelloTomBruce](https://clawhub.ai/user/HelloTomBruce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hellotombruce](https://clawhub.ai/user/hellotombruce)
 
-## Use Case: <br>
-Developers and agents use this skill to query social, video, finance, news, and desktop-app sources through OpenCLI commands. It is most useful when a task needs browser-backed access to public pages or logged-in account data without a site-specific API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenCLI can act through logged-in browser and desktop app sessions to post, message, delete, write, export private data, or change account state. <br>
-Mitigation: Use a separate Chrome profile with limited accounts and require explicit user confirmation before commands that send, post, delete, follow, write, export private data, or change account state. <br>
-Risk: The skill depends on a global npm package and Browser Bridge extension that can access active browser sessions. <br>
-Mitigation: Review the npm package and browser extension before installation, keep them updated from trusted sources, and limit use to accounts and sessions intended for automation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to retrieve website and application data, run OpenCLI commands, and produce structured outputs without configuring separate service APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HelloTomBruce/opencli-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text, Markdown, JSON, Configuration] <br>
-**Output Format:** [Markdown guidance with OpenCLI shell commands; command output may be table, JSON, YAML, Markdown, CSV, or downloaded files depending on the command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenCLI, the Browser Bridge extension, and an authenticated Chrome session for cookie or UI automation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: OpenCLI automation can access authenticated browser sessions, private account data, desktop applications, messages, posts, purchase-related actions, writes, and deletions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile with only the required accounts and require explicit human confirmation before private reads, messages, posts, purchase-related actions, writes, or deletions.
+
+Risk: The security review notes under-disclosed authenticated account access, desktop app control, and unverified install components.
+
+Mitigation: Review the skill before installing, verify the exact npm package and Browser Bridge extension source, and avoid elevated privileges during installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hellotombruce/skills/opencli-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured output options including table, JSON, YAML, Markdown, and CSV]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that read from or act through authenticated browser sessions and desktop applications.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

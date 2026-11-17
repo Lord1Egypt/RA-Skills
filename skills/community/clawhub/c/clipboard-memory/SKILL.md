@@ -2,7 +2,7 @@
 name: clipboard-memory
 description: Recall what the user copied on this Mac via the local clipmem archive — text, commands, URLs, file paths, HTML, images, PDFs. Triggers on requests like "what was that command I copied?", "the URL I copied from Safari", "find that snippet before I restarted", or any paraphrase involving copy, paste, or clipboard. Offers ranked recall, chronological timeline, lexical / FTS search, raw-byte export for binary content, cursor pagination, and filters by app, kind, time window, and content shape. Use before reaching for generic web or repo search whenever the user is trying to recover something they previously had on the clipboard.
 license: MIT
-metadata: {"openclaw":{"emoji":"📋","os":["darwin"],"requires":{"bins":["clipmem"]},"install":[{"id":"brew","kind":"brew","label":"Install clipmem (brew)","bins":["clipmem"],"formula":"clipmem","tap":"tristanmanchester/tap"},{"id":"cargo","kind":"cargo","label":"Install clipmem (cargo)","bins":["clipmem"],"package":"clipmem"}],"version":"1.3.7"}}
+metadata: {"openclaw":{"emoji":"📋","os":["darwin"],"requires":{"bins":["clipmem"]},"install":[{"id":"brew","kind":"brew","label":"Install clipmem (brew)","bins":["clipmem"],"formula":"clipmem","tap":"tristanmanchester/tap"},{"id":"cargo","kind":"cargo","label":"Install clipmem (cargo)","bins":["clipmem"],"package":"clipmem"}],"version":"1.3.9"}}
 ---
 
 Recall what the user copied on this Mac before reaching for generic search. `clipmem` maintains a local, privacy-preserving SQLite archive of every clipboard state macOS emits, and exposes a JSON-first CLI built for agents. This package is installed by `clipmem agents openclaw install-skill`; the canonical cross-agent source lives under `skills/clipboard-memory/`.
@@ -31,7 +31,7 @@ The user asks things like:
 
 Before querying, confirm the setup is healthy — otherwise empty results may be a stale watcher, not a true miss:
 
-1. Background capture must be running. `clipmem setup` is the canonical fix; Homebrew users can also use `brew services start clipmem`.
+1. Background capture must be running. `clipmem setup` is the canonical fix; Homebrew users can also use `clipmem service start`.
 2. The binary `clipmem` must be on PATH with write access to `~/Library/Application Support/clipmem/clipmem.sqlite3`.
 3. Run [`scripts/check-setup.sh`](scripts/check-setup.sh) once per session when results look wrong. It exits `0` on a healthy host, `1` if the watcher is stale, `2` if the binary is missing, `3` if `clipmem doctor` fails. The prose equivalent is in [references/setup-check.md](references/setup-check.md).
 4. If OpenClaw cannot see the binary, run `clipmem agents openclaw doctor` and follow its remediation lines.

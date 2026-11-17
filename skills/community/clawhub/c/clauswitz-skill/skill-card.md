@@ -1,42 +1,54 @@
-## Description: <br>
-基于克劳塞维茨战略理论，融合AI时代特征，提供战争三位一体、摩擦、重心等心智模型的智能战略分析与决策启发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于克劳塞维茨战略理论，融合AI时代特征，提供战争三位一体、摩擦、重心等心智模型的中文战略分析与决策启发。
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Developers and external users use this skill as a Chinese-language strategy-analysis persona for applying Clausewitz-inspired mental models to business competition, AI-era strategic choices, escalation dynamics, misinformation response, and decision review. Outputs should be treated as conceptual analysis and reviewed before being applied to real decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conceptual strategy analysis may be mistaken for validated professional, military, legal, or operational advice. <br>
-Mitigation: Review outputs with appropriate human judgment and domain expertise before applying them to real decisions. <br>
-Risk: Conflict, escalation, and misinformation framing could be misused for harmful real-world planning. <br>
-Mitigation: Do not use the skill to plan violence, real-world attacks, coercive operations, or misinformation campaigns. <br>
+## Use Case:
 
+Chinese-language users and agents use this skill to apply Clausewitz-inspired mental models to strategy, competition, AI-era decision making, escalation, uncertainty, and resilience analysis. Its war and competition analogies should be treated as analytical framing, not operational, legal, ethical, or safety advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruiyongwang/clauswitz-skill) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Clausewitz in the Era of Autonomous War](https://doi.org/10.5281/zenodo.17746713) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown or plain text strategic analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-driven conceptual analysis; no shell commands, code execution, credentials, or system access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata and artifact changelog) <br>
+Risk: War and competition analogies may be mistaken for operational, legal, ethical, or safety advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as analytical framing only, and require qualified domain review for real-world conflict, security, legal, ethical, or safety decisions.
+
+Risk: The skill discusses AI-era strategic friction, misinformation, autonomous weapons, and cognitive conflict in ways that can be context-sensitive.
+
+Mitigation: Ask the agent to state uncertainty, assumptions, and honest boundaries, especially when applying the frameworks to current events or high-stakes decisions.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/ruiyongwang/skills/clauswitz-skill)
+- [Clausewitz in the Era of Autonomous War](https://doi.org/10.5281/zenodo.17746713)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown prose with structured strategic analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-operational strategic reasoning; no code, shell commands, tool access, persistence, or data access are required.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release evidence and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

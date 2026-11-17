@@ -1,40 +1,54 @@
-## Description: <br>
-Track, analyze, and score tool calls to identify unnecessary usage, detect patterns, and get recommendations for efficiency improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self Audit describes a workflow for logging, analyzing, scoring, and improving an agent's tool-call usage.
 
-## Publisher: <br>
-[jiuge897](https://clawhub.ai/user/jiuge897) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuge897](https://clawhub.ai/user/jiuge897)
 
-## Use Case: <br>
-Developers and agent operators use Self Audit to log and analyze tool invocations, measure necessity and efficiency, and receive recommendations for reducing reflexive tool use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local audit logs may retain tool names, inputs, reasons, and context that include sensitive data. <br>
-Mitigation: Avoid recording secrets, tokens, personal data, or proprietary prompts, and periodically review or delete the audit directory. <br>
-Risk: The reviewed package references a self-audit CLI script that is not included in the artifact. <br>
-Mitigation: Verify the source and behavior of any self-audit executable before running commands from this skill. <br>
+## Use Case:
 
+Developers and agent operators use Self Audit to review tool-call logs, distinguish necessary calls from reflexive calls, and identify efficiency improvements. The release advertises CLI-style usage, but server security evidence notes the advertised executable is not bundled, so users should verify functionality before operational use.
 
-## Reference(s): <br>
-- [Self Audit on ClawHub](https://clawhub.ai/jiuge897/self-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style text reports with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local audit logs when the referenced CLI workflow is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: A working implementation would record tool names, inputs, reasons, and context in local audit logs, which could include secrets, credentials, private customer data, or sensitive business details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid logging sensitive data unless retention, deletion, and access controls are defined before use.
+
+Risk: The package appears to be missing the advertised self-audit CLI script.
+
+Mitigation: Verify the executable or implementation path before depending on the advertised CLI commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiuge897/skills/self-audit)
+- [Publisher Profile](https://clawhub.ai/user/jiuge897)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with example shell commands and text audit reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or rely on local audit logs in a working implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

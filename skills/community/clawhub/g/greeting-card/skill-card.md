@@ -1,38 +1,48 @@
-## Description: <br>
-Generate beautiful greeting cards for various occasions (birthday, holiday, encouragement, apology, etc.). Use when the user asks to create a greeting card, write wishes, or compose messages for someone. Supports Chinese and English, multiple tones (warm, funny, formal), and different card styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates copy-paste-ready greeting cards for birthdays, holidays, encouragement, apologies, and other occasions in Chinese, English, or bilingual formats.
 
-## Publisher: <br>
-[seulkilu](https://clawhub.ai/user/seulkilu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[seulkilu](https://clawhub.ai/user/seulkilu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to draft personalized greeting-card messages for recipients and occasions, choosing tone, language, and mobile-friendly formatting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can trigger broadly for greeting-card requests and defaults to warm Chinese when preferences are missing.
+
+Mitigation: Ask for recipient, occasion, tone, and language before drafting when the user has not supplied them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to draft personalized greeting cards and short wishes for birthdays, holidays, encouragement, apologies, thank-you notes, and similar occasions in Chinese, English, or bilingual formats. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Greeting-card text may include personal details or wording the user did not intend to share. <br>
-Mitigation: Review the final message before sending and avoid adding sensitive personal details unless comfortable sharing them in the chat. <br>
+**Output Format:** [Plain text or Markdown-style social messages with emoji and line breaks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seulkilu/greeting-card) <br>
+**Other Properties Related to Output:** [No code execution; defaults to warm Chinese when preferences are missing.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-ready greeting card text with emoji decorations and short mobile-friendly lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Chinese, English, or bilingual wording; users should review final messages before sending.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

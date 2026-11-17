@@ -1,47 +1,62 @@
-## Description: <br>
-SuperPicky CLI wraps the SuperPicky bird-photo workflow with predictable install and run scripts for photo culling, bird identification, and eBird region-code lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SuperPicky CLI skill wraps the upstream SuperPicky bird-photo workflow with predictable install and run scripts for photo culling, bird identification, and eBird country or region code lookup.
 
-## Publisher: <br>
-[yoshino-s](https://clawhub.ai/user/yoshino-s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoshino-s](https://clawhub.ai/user/yoshino-s)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and invoke a local SuperPicky command-line workflow for bird-photo culling, image identification, species organization, and region-code lookup. It is intended for local photo-processing automation where the operator can review file changes before running destructive or metadata-writing commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation downloads mutable upstream SuperPicky code during setup. <br>
-Mitigation: Install only from a trusted upstream source and review or pin the upstream commit before running the workflow. <br>
-Risk: The --py helper can execute arbitrary Python scripts inside the skill virtual environment. <br>
-Mitigation: Use --py only with known trusted helper scripts and avoid passing unreviewed paths from user input. <br>
-Risk: Photo-processing commands can move files, reset folders, or write image metadata. <br>
-Mitigation: Run commands on backed-up folders first, preview non-destructive modes where available, and use destructive flags such as -y, reset, restar, organize, or --write-exif only after confirming the target directory. <br>
+## Use Case:
 
+Developers and agent users use this skill to install and run SuperPicky's local CLI workflow for bird-photo culling, identification, batch organization, and region-code lookup. It is intended for local automation over photo directories through fixed shell entry points.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yoshino-s/superpicky) <br>
-- [SuperPicky upstream project](https://github.com/jamesphotography/SuperPicky) <br>
-- [Reference index](reference/README-INDEX.md) <br>
-- [Source metadata](reference/SOURCE.md) <br>
-- [Captured CLI help](reference/cli-help-captured.txt) <br>
-- [Manifest behavior notes](reference/manifest机制说明.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local file paths, eBird country or region codes, SuperPicky command flags, and safety checks for photo-processing operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The installer downloads and runs mutable upstream code and dependencies at install time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the upstream SuperPicky repository and dependency set, preferably in a sandbox or disposable environment.
+
+Risk: The --py helper can execute Python scripts through the skill-managed virtual environment.
+
+Mitigation: Do not pass untrusted values to --py, and restrict usage to reviewed scripts and known paths.
+
+Risk: reset, restar, organize, and related commands can move files, edit metadata, or change photo directory contents, especially when -y is used.
+
+Mitigation: Run on backed-up or disposable photo directories first, and use -y only when the file changes are explicitly intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yoshino-s/skills/superpicky)
+- [SuperPicky upstream repository](https://github.com/jamesphotography/SuperPicky)
+- [Captured CLI help](artifact/reference/cli-help-captured.txt)
+- [Reference metadata](artifact/reference/SOURCE.md)
+- [Reference index](artifact/reference/README-INDEX.md)
+- [Manifest behavior notes](artifact/reference/manifest机制说明.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell command guidance, with optional JSON output from the region-query helper.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on local CLI entry points, install options, and photo-directory operations.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

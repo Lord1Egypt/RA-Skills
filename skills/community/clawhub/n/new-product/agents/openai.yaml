@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊新品验证 · 上架前需求测算"
+  short_description: "上架前用同类评论验证需求与差异化"
+  default_prompt: "使用 $amazon-new-product-validation 用竞品评论为一个新品上架做需求验证。"

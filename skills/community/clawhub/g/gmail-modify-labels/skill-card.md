@@ -1,42 +1,49 @@
-## Description: <br>
-Atomic node skill to modify email labels in Gmail using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to modify email labels in Gmail using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Developers and agents use this skill to add or remove Gmail labels on a specific email message or thread through a local gog CLI setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local gog CLI may be configured for a different Gmail account than the user intends. <br>
-Mitigation: Confirm the active Gmail account before running label changes. <br>
-Risk: Label removals or broad commands can affect the wrong message, thread, or label set. <br>
-Mitigation: Show the exact message or thread ID and the labels to add or remove before execution. <br>
-Risk: The label modification command may fail or return an error. <br>
-Mitigation: Retry up to three times with a short delay, then report the error and stop. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an agent needs to add, remove, or change labels on selected Gmail messages or threads through the configured gog CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/gmail-modify-labels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and a JSON command example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local gog CLI configured for the intended Gmail account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: The skill can change labels on the wrong Gmail message, thread, or account if identifiers, targets, labels, or the configured gog account are incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended Gmail account, message IDs, thread targets, and label names before allowing the command to run.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zvirb/skills/gmail-modify-labels)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown with inline shell command and JSON example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns confirmation that labels were updated, or reports the command error after retries.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

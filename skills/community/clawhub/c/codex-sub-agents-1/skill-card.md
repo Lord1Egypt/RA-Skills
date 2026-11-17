@@ -1,48 +1,63 @@
-## Description: <br>
-Use OpenAI Codex CLI for code review, refactoring, CI repair, feature implementation, and Clawdbot delegation as a subagent or direct tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use OpenAI Codex CLI for coding tasks, including code review, CI fixes, refactoring, feature implementation, and Clawdbot delegation to Codex as a subagent or direct tool.
 
-## Publisher: <br>
-[phucanh08](https://clawhub.ai/user/phucanh08) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[phucanh08](https://clawhub.ai/user/phucanh08)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to route coding tasks from Clawdbot to Codex CLI for code exploration, implementation, reviews, refactors, and CI fixes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad autonomous execution can edit files or run commands in repositories where the user did not intend that level of access. <br>
-Mitigation: Start with read-only or approval-required modes, scope work with --cd and limited writable paths, and review diffs before committing. <br>
-Risk: Full-auto, yolo, or danger-full-access modes can increase the impact of incorrect commands or untrusted repository behavior. <br>
-Mitigation: Avoid --full-auto, --yolo, and danger-full-access for untrusted repositories; use stricter approval and sandbox settings first. <br>
-Risk: Copied Codex authentication files may expose sensitive credentials. <br>
-Mitigation: Treat Codex auth files as credentials and avoid sharing, committing, or moving them outside trusted local profiles. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Codex CLI Overview](https://developers.openai.com/codex/cli) <br>
-- [Codex CLI Features](https://developers.openai.com/codex/cli/features) <br>
-- [Codex CLI Reference](https://developers.openai.com/codex/cli/reference) <br>
-- [Slash Commands Guide](https://developers.openai.com/codex/cli/slash-commands) <br>
-- [AGENTS.md Spec](https://agents.md) <br>
-- [Codex GitHub](https://github.com/openai/codex) <br>
-- [Clawdbot Integration](clawdbot-integration.md) <br>
-- [Codex CLI Quick Reference](cli-reference.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to route coding work to Codex CLI, configure Clawdbot integration patterns, and produce commands or configuration for code review, refactoring, CI repair, and feature implementation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON-style configuration examples, and guidance text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Autonomous coding-agent execution can modify files or run commands in sensitive repositories.
+
+Mitigation: Use read-only or approval-gated modes by default, reserve `--full-auto` for isolated trusted workspaces, and review diffs before accepting changes.
+
+Risk: Credential or profile reuse can expose private repository context, screenshots, logs, or API keys.
+
+Mitigation: Redact secrets and sensitive artifacts before sharing them with agent workflows, and restrict use to appropriate authenticated workspaces.
+
+Risk: Mutable MCP package execution can change behavior between runs.
+
+Mitigation: Pin MCP server packages and review MCP configuration before enabling tool access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phucanh08/skills/codex-sub-agents-1)
+- [Codex CLI Overview](https://developers.openai.com/codex/cli)
+- [Codex CLI Features](https://developers.openai.com/codex/cli/features)
+- [Codex CLI Reference](https://developers.openai.com/codex/cli/reference)
+- [Slash Commands Guide](https://developers.openai.com/codex/cli/slash-commands)
+- [AGENTS.md Spec](https://agents.md)
+- [Codex GitHub](https://github.com/openai/codex)
+- [DeepWiki MCP Endpoint](https://mcp.deepwiki.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, JSON5, and TOML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-facing CLI usage guidance, integration patterns, and configuration snippets for agent workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,62 @@
-## Description: <br>
-Protect openclaw.json with automatic rollback, lock mode, multi-version baseline snapshots, audit log, and SIGUSR1 gateway hot-reload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Protects OpenClaw's openclaw.json with automatic rollback, lock mode, multi-version baseline snapshots, audit logging, and SIGUSR1 gateway hot-reload.
 
-## Publisher: <br>
-[xbcvv](https://clawhub.ai/user/xbcvv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbcvv](https://clawhub.ai/user/xbcvv)
 
-## Use Case: <br>
-System administrators and OpenClaw operators use this skill to install and operate a persistent guard for /root/.openclaw/openclaw.json. It monitors config writes, validates changes, rolls back invalid updates, keeps baseline history, records audit events, and provides a manual unlock path after lock mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a persistent root systemd service that watches and rewrites the OpenClaw configuration file. <br>
-Mitigation: Install it only on intended Linux OpenClaw hosts, review the install script before execution, and ensure operators know how to stop or disable the service and run the unlock command. <br>
-Risk: Operational alerts are sent to hard-coded Discord and Telegram targets through the OpenClaw messaging command. <br>
-Mitigation: Remove or reconfigure those alert targets before deployment and confirm that alert contents are acceptable for the environment. <br>
-Risk: Configuration backups and snapshots may contain sensitive OpenClaw settings. <br>
-Mitigation: Verify permissions on /root/.openclaw/backups/config and handle backup retention according to the sensitivity of openclaw.json. <br>
-Risk: Automatic rollback depends on a valid baseline configuration. <br>
-Mitigation: Validate the current OpenClaw configuration before enabling the guardian and verify baseline integrity during operations. <br>
+## Use Case:
 
+Developers, system administrators, and OpenClaw operators use this skill to install and operate a root-level systemd guardian for OpenClaw configuration recovery, auditability, and gateway reload after validated changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xbcvv/openclaw-config-guardian) <br>
-- [Publisher profile](https://clawhub.ai/user/xbcvv) <br>
-- [Design](references/DESIGN.md) <br>
-- [Usage](references/USAGE.md) <br>
-- [Operation](references/OPERATION.md) <br>
-- [Archive](references/ARCHIVE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and operational instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes install, status, unlock, audit-log, baseline-history, and troubleshooting commands for a Linux systemd OpenClaw deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and artifact frontmatter) <br>
+Risk: A persistent root service can overwrite openclaw.json and signal the gateway process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after administrator review, confirm the service scope is acceptable, and test rollback and reload behavior in a controlled environment before production use.
+
+Risk: Security-event details may be sent through hard-coded Discord and Telegram alert targets.
+
+Mitigation: Disable external alerts or replace the alert targets with administrator-controlled destinations before enabling the service.
+
+Risk: Configuration validation may rely on matching the text "Config valid" rather than the validator exit status.
+
+Mitigation: Update validation to trust the validator exit code before depending on automatic rollback for safety-critical recovery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xbcvv/skills/openclaw-config-guardian)
+- [Publisher profile](https://clawhub.ai/user/xbcvv)
+- [Architecture design](artifact/references/DESIGN.md)
+- [Usage guide](artifact/references/USAGE.md)
+- [Operations guide](artifact/references/OPERATION.md)
+- [Archive index](artifact/references/ARCHIVE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and operational configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation, operation, recovery, and troubleshooting guidance for a Linux systemd service.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

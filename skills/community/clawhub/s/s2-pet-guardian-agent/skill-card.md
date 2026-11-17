@@ -1,42 +1,60 @@
-## Description: <br>
-S2 宠物守护者智能体。集成 SUNS 与 22 位 S2-DID 身份确权，提供情绪翻译与零信任硬件调控。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+S2 宠物守护者智能体。集成 SUNS 与 22 位 S2-DID 身份确权，提供情绪翻译与零信任硬件调控。
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-S2-CLA <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Pet-care developers and evaluators can use this local agent demo to generate S2-DID pet identities, translate simulated pet and environment signals into alerts or feeding proposals, and persist local companion records. It is intended for review in a sandbox before any connection to real feeders, locks, thermostats, payment flows, or other physical systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+S2-CLA
 
-## Known Risks and Mitigations: <br>
-Risk: Demo-grade physical-control proposals could be mistaken for production-ready automation. <br>
-Mitigation: Keep execution sandboxed and do not connect the agent to real feeders, locks, thermostats, payment flows, or other physical systems without independent review and replacement of the demo signing flow. <br>
-Risk: Local execution writes pet records and may create a simulated public key file under s2_bas_governance. <br>
-Mitigation: Review file permissions and run only in a workspace where local record creation is expected. <br>
-Risk: Security claims in the artifact are stronger than the implementation evidenced by the scan summary. <br>
-Mitigation: Treat the skill as a local pet-monitoring demo and validate any zero-trust or hardware-control behavior before deployment. <br>
+## Use Case:
 
+External developers and pet-care experimenters use this skill to generate local pet identity records, translate simulated pet state into human-readable status, and create signed-authorization proposals before any physical feeding action. It should be treated as a local research or development aid until the authorization and privacy controls identified by security review are fixed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/spacesq/s2-pet-guardian-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Text and JSON-like proposals with local Markdown records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write pet records and simulated public key files under s2_bas_governance during local execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter, package.json, _meta.json, release evidence) <br>
+Risk: Hardware authorization claims may overstate the current trust boundary because the code path can create signing keys, overwrite the public-key trust file, and verify only part of a proposed action.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in local research or development use, do not connect it to real feeders or other hardware gateways, protect the public-key trust file from writes, sign every security-relevant proposal field, and add token expiry and replay protection.
+
+Risk: Local pet records may contain sensitive household or animal-care data without clear retention controls.
+
+Mitigation: Define local retention, deletion, and access-control policies before using generated pet logs outside a private test environment.
+
+Risk: Health-related status text could be mistaken for veterinary diagnosis.
+
+Mitigation: Use the skill only for observation and alerting, and require qualified veterinary review for medical decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-pet-guardian-agent)
+- [README.md](README.md)
+- [LICENSE.md](LICENSE.md)
+- [pet_chronos_dashboard.json](visualizations/pet_chronos_dashboard.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON-like proposals, Python code paths, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local pet companion records under s2_bas_governance/pets and expects public-key material under s2_bas_governance/keys for authorization checks.]
+
+## Skill Version(s):
+
+1.2.1 (source: SKILL.md frontmatter, package.json, _meta.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

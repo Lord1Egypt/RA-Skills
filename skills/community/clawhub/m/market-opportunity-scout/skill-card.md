@@ -1,47 +1,55 @@
-## Description: <br>
-市场机会侦察兵自动监控 A/H 股市场异动、财经新闻和热点板块，并生成结构化投资机会简报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+市场机会侦察兵 - 自动监控 A/H 股市场异动、财经新闻、热点板块，生成投资机会简报。适合投资者、交易员、金融从业者。
 
-## Publisher: <br>
-[yoriko233](https://clawhub.ai/user/yoriko233) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoriko233](https://clawhub.ai/user/yoriko233)
 
-## Use Case: <br>
-External investors, traders, and finance professionals use this skill to generate Markdown market briefs covering A/H share index movement, highlighted sectors, unusual stocks, finance news, and opportunity notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes public market-data network requests during report generation. <br>
-Mitigation: Install and run it only in environments where outbound public market-data requests are acceptable. <br>
-Risk: Manual dependency installation may introduce supply-chain or version drift risk. <br>
-Mitigation: Review and pin Python dependencies such as akshare and pandas before recurring use. <br>
-Risk: A cron entry can create recurring local execution. <br>
-Mitigation: Add the cron entry only when recurring reports are intended and review the command path and output destination first. <br>
-Risk: Market reports may be delayed or incomplete and are not investment advice. <br>
-Mitigation: Treat generated opportunity notes as research inputs and confirm market data before acting on them. <br>
+## Use Case:
 
+Investors, traders, and finance professionals use this skill to generate A/H-share market opportunity briefings that summarize index movement, hot sectors, unusual stocks, finance news, and opportunity notes. Its outputs should be treated as research support rather than investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yoriko233/market-opportunity-scout) <br>
-- [Publisher profile](https://clawhub.ai/user/yoriko233) <br>
-- [Support issues](https://github.com/yoriko233/market-opportunity-scout/issues) <br>
-- [Eastmoney public market data endpoint](https://push2.eastmoney.com/api/qt/stock/get?secid=1.000001&fields=f43,f44,f170) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown market report and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include market overview, hot sectors, unusual stocks, finance news, opportunity notes, and a financial-risk disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill presents current-dated market claims that may be hard-coded or stale, which can be mistaken for live investment signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all market data, timestamps, and news items against reliable live sources before using the report for decisions.
+
+Risk: Live data parsing, source timestamps, failure handling, and dependency pinning are not established in the evidence.
+
+Mitigation: Add explicit source timestamps, visible fetch failures, and pinned dependencies before relying on the skill in a workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yoriko233/skills/market-opportunity-scout)
+- [Eastmoney quote API - Shanghai Composite](https://push2.eastmoney.com/api/qt/stock/get?secid=1.000001&fields=f43,f44,f170)
+- [Eastmoney quote API - Hang Seng Index](https://push2.eastmoney.com/api/qt/stock/get?secid=100.HSI&fields=f43,f44,f170)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown market briefing with command examples and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can be generated in daily, stock, or sector modes; market values should be treated as delayed or sample data unless independently verified.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

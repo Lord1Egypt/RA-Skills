@@ -1,45 +1,60 @@
-## Description: <br>
-Build, rewrite, and tailor premium white-collar resumes from real candidate information, then render the final resume to PDF with Typst. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, rewrite, and tailor premium white-collar resumes from real candidate information, then render the final resume to PDF with Typst.
 
-## Publisher: <br>
-[hilaraklesantosw-art](https://clawhub.ai/user/hilaraklesantosw-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hilaraklesantosw-art](https://clawhub.ai/user/hilaraklesantosw-art)
 
-## Use Case: <br>
-Professionals and career-support agents use this skill to build, rewrite, or tailor factual white-collar resumes from real candidate information and render a polished PDF resume with Typst. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume and job-description inputs can contain personal or sensitive career information. <br>
-Mitigation: Use the skill only in an agent workflow where that content is appropriate to process, and review or delete generated JSON, Typst, and PDF files when finished. <br>
-Risk: PDF rendering depends on local Typst tooling and the resume template being trusted and available. <br>
-Mitigation: Confirm the local typst binary and required template before relying on the generated PDF output. <br>
-Risk: Resume claims can become misleading if the agent adds unsupported facts or metrics. <br>
-Mitigation: Review generated resume content against the candidate's real experience and keep unsupported gaps explicit. <br>
+## Use Case:
 
+External users and agents use this skill to build, rewrite, or tailor factual white-collar resumes and produce structured resume data, Typst source, and a rendered PDF.
 
-## Reference(s): <br>
-- [Resume Schema](references/resume-schema.md) <br>
-- [Role Writing Guidelines](references/role-writing-guidelines.md) <br>
-- [Project Homepage](https://github.com/hilaraklesantosw-art/skills) <br>
-- [ClawHub Release Page](https://clawhub.ai/hilaraklesantosw-art/resume-builder-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with structured resume content, JSON input, Typst source, and generated PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and typst; completion depends on successful PDF compilation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter declares 1.0.0) <br>
+Risk: The skill handles personal resume and contact details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep candidate information local, review generated files before sharing, and avoid adding unsupported facts.
+
+Risk: PDF rendering depends on Typst and a resume template that evidence says may be missing.
+
+Mitigation: Confirm python3, typst, and the Typst template are present before relying on PDF output; treat compilation failure as incomplete.
+
+Risk: Resume tailoring can overstate a candidate's background if facts are not constrained.
+
+Mitigation: Use only candidate-provided facts, avoid invented metrics or responsibilities, and make important gaps explicit.
+
+## Reference(s):
+
+- [Resume schema](references/resume-schema.md)
+- [Role writing guidelines](references/role-writing-guidelines.md)
+- [Project homepage](https://github.com/hilaraklesantosw-art/skills)
+- [ClawHub skill page](https://clawhub.ai/hilaraklesantosw-art/skills/resume-builder-2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON resume data, Typst source, file paths, and PDF output status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and typst; PDF output is complete only when resume.pdf exists.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

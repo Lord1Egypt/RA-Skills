@@ -1,44 +1,58 @@
-## Description: <br>
-Use this skill when a BCBA, BCaBA, or supervised behavior technician needs to draft a BACB Ethics Code-compliant Behavior Intervention Plan (BIP) for an ABA therapy client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts BACB Ethics Code-compliant Behavior Intervention Plans for ABA therapy clients using FBA synthesis, function-based strategies, crisis planning, monitoring, and BCBA review controls.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External ABA clinicians and supervised care-team members use this skill to turn FBA data, consent status, target behavior definitions, and treatment inputs into a structured draft BIP for supervising BCBA review and approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive behavioral-health details could expose client privacy if direct identifiers are entered. <br>
-Mitigation: Use initials or pseudonyms only, avoid full names and client identifiers, and keep sensitive details out of the draft where possible. <br>
-Risk: A draft BIP could be mistaken for an approved clinical intervention plan. <br>
-Mitigation: Keep the output labeled as a draft not approved for implementation and require supervising BCBA review, consent confirmation, and local regulatory compliance before use. <br>
-Risk: Incomplete FBA, unknown function, or missing baseline data could lead to inappropriate intervention recommendations. <br>
-Mitigation: Stop or flag the draft when function or baseline evidence is missing, and require completion of the functional assessment before finalizing interventions. <br>
+## Use Case:
 
+BCBAs, BCaBAs, and supervised behavior technicians use this skill to turn FBA data and treatment team input into a structured draft BIP for clinical review. It supports new plans, major revisions, and treatment team intake workflows before supervising BCBA approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/behavior-intervention-plan-drafter) <br>
-- [Publisher profile](https://clawhub.ai/user/archlab-space) <br>
-- [Feedback and issue tracker](https://github.com/archlab-space/Open-Skill-Hub/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown clinical draft document with tables, warning or flag blocks, and a BCBA authorization sign-off block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft output is labeled not approved for implementation and is intended for qualified BCBA review before client use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence and changelog, released 2026-05-31) <br>
+Risk: Client identifiers or sensitive ABA intake details could be entered into the draft workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use initials or pseudonyms only, avoid direct identifiers, and treat generated content as de-identified draft documentation.
+
+Risk: A generated BIP could be mistaken for an approved intervention plan.
+
+Mitigation: Keep the output labeled as a draft and require qualified supervising BCBA review and approval before implementation.
+
+Risk: Support or issue reporting can send information to the disclosed GitHub feedback link.
+
+Mitigation: Use the link only for support or issue reporting and do not include client identifiers or sensitive case details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/behavior-intervention-plan-drafter)
+- [Feedback and issue reporting](https://github.com/archlab-space/Open-Skill-Hub/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown clinical draft document with tables, warning or flag blocks, and a BCBA authorization block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a 3-6 page draft BIP labeled for supervising BCBA review and not approved for implementation.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and changelog, released 2026-05-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

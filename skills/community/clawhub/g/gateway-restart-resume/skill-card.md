@@ -1,45 +1,55 @@
-## Description: <br>
-Guides OpenClaw agents through gateway restarts by requiring a durable callback, captured reply route, recovery checks, and a post-restart status reply. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an OpenClaw gateway-backed agent is asked through Discord, Slack, Matrix, SMS, web chat, CLI relay, ACP, cron, or another channel to restart, stop, reload, update, or repair the gateway and needs a durable post-restart callback, same-thread reply, recovery status, or lost follow-up prevention.
 
-## Publisher: <br>
-[udaymanish6](https://clawhub.ai/user/udaymanish6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[udaymanish6](https://clawhub.ai/user/udaymanish6)
 
-## Use Case: <br>
-Developers and operators use this skill when an OpenClaw gateway-backed agent must restart, stop, reload, update, or repair a gateway without losing the user follow-up. It helps the agent capture minimal routing metadata, create a durable resume callback, verify recovery, and report status in the original conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A gateway restart can terminate the current agent turn before the user receives confirmation. <br>
-Mitigation: Create a durable callback outside the current gateway turn before restarting, and refuse to restart if that callback cannot be created. <br>
-Risk: Resume payloads could expose secrets or private message content if copied too broadly. <br>
-Mitigation: Store only the minimal routing metadata needed for the reply, and omit raw messages, tokens, environment values, transcripts, and full configuration. <br>
-Risk: A failed restart could trigger unbounded recovery attempts. <br>
-Mitigation: Limit verification to three total attempts over about five minutes, then record a durable failure state and stop. <br>
-Risk: The skill requires trusted gateway operations permissions. <br>
-Mitigation: Install only in an OpenClaw environment where the agent is authorized for cron or task callbacks, gateway or exec restart actions, and approved message delivery. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to restart, reload, update, or repair a gateway-backed agent without losing the user-facing follow-up. It guides the agent to capture a minimal reply route, create a durable resume callback, verify recovery, and report status back to the original conversation.
 
-## Reference(s): <br>
-- [OpenClaw Cron Resume Pattern](references/openclaw-cron-resume.md) <br>
-- [ClawHub release page](https://clawhub.ai/udaymanish6/gateway-restart-resume) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with text status templates, JSON payload examples, and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operator-facing restart and recovery instructions; it does not restart OpenClaw by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Cron callback examples include shell-style dynamic placeholders in a restart workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a structured OpenClaw cron or task API, validate route identifiers, and avoid shell interpolation for callback payloads.
+
+Risk: The skill assumes the installing environment intentionally grants gateway restart authority and one-shot callback capability.
+
+Mitigation: Install only in environments where restart authority and durable resume callbacks are expected, reviewed, and operationally approved.
+
+## Reference(s):
+
+- [OpenClaw Cron Resume Pattern](references/openclaw-cron-resume.md)
+- [ClawHub Skill Page](https://clawhub.ai/udaymanish6/skills/gateway-restart-resume)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/udaymanish6)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline text, JSON examples, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operator-facing restart and recovery status guidance; it does not restart OpenClaw by itself.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

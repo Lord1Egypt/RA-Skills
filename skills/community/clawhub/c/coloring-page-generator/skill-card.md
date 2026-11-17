@@ -1,43 +1,54 @@
-## Description: <br>
-AI coloring page generator that creates printable black and white coloring pages, adult coloring book pages, kids coloring sheets, mandala pages, animal pages, fantasy pages, and custom line art from text descriptions via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates printable black-and-white coloring page line art from text descriptions through the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and agents use this skill to generate printable coloring-page image outputs from a prompt, optionally selecting page dimensions or passing a reference image UUID for style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the Neta API token are sent to a third-party Neta/TalesOfAI service. <br>
-Mitigation: Avoid sensitive or confidential prompts and use this skill only when sharing that data with the remote service is acceptable. <br>
-Risk: Passing the API token directly on the command line can expose it through shell history or local process inspection. <br>
-Mitigation: Prefer shell practices that limit token exposure, such as using a temporary environment variable and avoiding persistent command history for token-bearing commands. <br>
-Risk: Image generation depends on the availability, moderation behavior, and response format of the remote service. <br>
-Mitigation: Review the returned image URL and generated content before using or distributing it. <br>
+## Use Case:
 
+External users and developers use this skill to request printable coloring page images, including kids sheets, adult coloring pages, mandalas, animals, fantasy scenes, and custom line art.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/coloring-page-generator) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Plain text image URL with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs a direct generated-image URL after polling the remote image-generation task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Prompts, reference UUIDs, and the Neta token are sent to a third-party AI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived or revocable Neta token and avoid confidential, regulated, or sensitive material in prompts and references.
+
+Risk: Installing or running an unverified release can introduce ordinary supply-chain risk.
+
+Mitigation: Install only from a trusted source and prefer a pinned or verified release when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/coloring-page-generator)
+- [Neta API token page](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API Calls]
+
+**Output Format:** [Plain text URL from command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta token; optional size and reference image UUID parameters affect generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

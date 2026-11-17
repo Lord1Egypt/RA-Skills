@@ -1,0 +1,18 @@
+{
+  "schema": "site-handoff/v1",
+  "project": "合成塔吊案例",
+  "contract_id": "CONTRACT-SYNTH-001",
+  "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "members": [
+    {
+      "id": "KZ-P4-01",
+      "weight_t": 25.6,
+      "x_m": 0.0,
+      "y_m": 2770.0,
+      "zone": "中庭",
+      "weight_basis": "total",
+      "coord_status": "confirmed"
+    }
+  ],
+  "coord_unit": "cm"
+}

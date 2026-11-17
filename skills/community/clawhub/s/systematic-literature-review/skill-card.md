@@ -1,40 +1,57 @@
-## Description: <br>
-Guides researchers through PRISMA-aligned systematic or scoping literature reviews, covering protocol definition, search strategy, screened inclusion and exclusion, data extraction, quality appraisal, and narrative synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides researchers through a PRISMA-aligned systematic or scoping literature review, covering protocol definition, search strategy, screening, extraction, appraisal, and narrative synthesis while logging decisions and PRISMA counts.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Researchers, graduate students, and evidence-synthesis teams use this skill to conduct reproducible systematic or scoping reviews and prepare reviewer-ready review packets with auditable decisions and PRISMA flow counts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide unpublished manuscripts, embargoed datasets, or identifiable participant information during a review workflow. <br>
-Mitigation: Use the skill only with authorized research materials and remove identifying or restricted details where possible before sharing them with an agent. <br>
-Risk: A review packet can become misleading if citations, extracted fields, appraisal judgments, or PRISMA counts are guessed or allowed to drift from the supplied evidence. <br>
-Mitigation: Require each extracted value and quality-appraisal judgment to trace to supplied text, mark missing data as NR or not assessable, and reconcile PRISMA counts after every screening update. <br>
+## Use Case:
 
+Researchers, graduate students, postdocs, and evidence-synthesis teams use this skill to plan and document reproducible systematic or scoping literature reviews, including review framing, search strategy drafting, screening logs, data extraction, quality appraisal, and narrative synthesis.
 
-## Reference(s): <br>
-- [Systematic Literature Review on ClawHub](https://clawhub.ai/archlab-space/systematic-literature-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review packet with tables and fenced Boolean search strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes protocol summary, search strategies, PRISMA counts, screening log, extraction table, appraisal table, narrative synthesis, limitations, and notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill may process unpublished manuscripts, embargoed material, or identifiable participant information supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents the user is authorized to share and keep unpublished or identifiable materials confidential.
+
+Risk: Example language limits or inclusion criteria could be accepted without considering the review protocol.
+
+Mitigation: Set language scope, eligibility criteria, and reason codes deliberately before screening records.
+
+Risk: Fabricated or unsupported citations, extracted fields, or appraisal judgments would undermine the review.
+
+Mitigation: Require every citation, DOI, extracted value, and quality appraisal judgment to trace to user-supplied evidence; mark missing fields as NR or not assessable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/systematic-literature-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review packet with structured tables and fenced Boolean search strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes protocol summary, search strategies, PRISMA flow counts, screening log, extraction table, quality appraisal table, narrative synthesis, limitations, and notes.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

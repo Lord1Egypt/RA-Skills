@@ -14,8 +14,7 @@ from pathlib import Path
 
 # 配置
 BASE_DIR = Path(__file__).parent
-SKILL_DIR = BASE_DIR.parent
-MEMORY_DIR = BASE_DIR / "memory"  # scripts/memory/
+MEMORY_DIR = BASE_DIR / "memory"
 GRAPH_FILE = MEMORY_DIR / "graph.jsonl"
 DECISIONS_FILE = MEMORY_DIR / "decisions.jsonl"
 REASONING_FILE = MEMORY_DIR / "reasoning.jsonl"
@@ -23,14 +22,6 @@ RULES_FILE = MEMORY_DIR / "rules.yaml"
 LAWS_FILE = MEMORY_DIR / "laws.yaml"
 CONCEPTS_FILE = MEMORY_DIR / "concepts.jsonl"
 SCHEMA_FILE = MEMORY_DIR / "schema.yaml"
-
-# 导入记忆管理器
-sys.path.insert(0, str(BASE_DIR))
-try:
-    from memory_manager import query_hot, get_memory_context, write_hot, MemoryEntry, EntryType, Confidence
-    HAS_MEMORY_MANAGER = True
-except ImportError:
-    HAS_MEMORY_MANAGER = False
 
 # 确保目录存在
 MEMORY_DIR.mkdir(exist_ok=True)
@@ -494,15 +485,8 @@ def cmd_reason(args):
     # 4. 读取规律
     laws_content = LAWS_FILE.read_text() if LAWS_FILE.exists() else ""
     
-    # 5. 如果有 memory_manager，使用三层记忆上下文
-    if HAS_MEMORY_MANAGER:
-        memory_context = get_memory_context(args.context)
-        if memory_context:
-            print(f"\n📚 本体论记忆上下文:")
-            print(memory_context)
-    
-    # 6. 推理
-    print(f"\n🧠 推理引擎 v2.0 - Context: {args.context}")
+    # 5. 推理
+    print(f"🧠 推理引擎 v2.0 - Context: {args.context}")
     print("=" * 50)
     print(f"\n📌 收集的事实:")
     for fact in facts:
@@ -512,7 +496,7 @@ def cmd_reason(args):
     
     # 简单规则匹配
     matched_rules = []
-    if user_role and ("创业者" in user_role or "AI" in str(user_goals)):
+    if "创业者" in user_role or "AI" in str(user_goals):
         matched_rules.append({
             "name": "AI创业者规则",
             "action": "推荐技术调研 + 商业分析 + MVP验证",

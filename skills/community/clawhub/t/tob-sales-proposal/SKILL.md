@@ -1,10 +1,14 @@
 ---
 name: tob-sales-proposal
+slug: tob-sales-proposal
+displayName: ToB销售提案生成器
+version: 1.0.0
 description: ToB销售提案生成器。输入客户信息/行业/痛点/产品，基于知识库真实案例输出带品牌色CSS的4模块HTML分页提案。
 priority: high
 source: experience-backed
-workers: Sales, PM
+workers: [sales, pm]
 created: 2026-05-16
+updated: 2026-07-06
 tags: [tob, sales, proposal, b2b, presales]
 ---
 
@@ -68,7 +72,7 @@ tob-sales-proposal --quick --client "某连锁便利店" --industry "零售" \
 | 零售/鞋服 | knowledge-baisheng |
 | 金融/银行 | knowledge-unified-v2 |
 | 政务/央企 | knowledge-zhongruan |
-| 零售科技（慧博对标） | knowledge-huibo |
+| 零售科技（同行对标） | knowledge-retail |
 
 找不到高置信案例时输出：「无高置信匹配，建议补充知识库」
 

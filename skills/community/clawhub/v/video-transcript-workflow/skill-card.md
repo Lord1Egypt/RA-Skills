@@ -1,43 +1,58 @@
-## Description: <br>
-Transcribes video or audio with faster-whisper, cleans and annotates the transcript, extracts key quotes, and drafts platform-specific Markdown for Zhihu, WeChat, and Xiaohongshu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes video or audio with Whisper, refines the transcript, extracts highlights, and drafts Markdown posts for Zhihu, WeChat, and Xiaohongshu.
 
-## Publisher: <br>
-[artminding](https://clawhub.ai/user/artminding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[artminding](https://clawhub.ai/user/artminding)
 
-## Use Case: <br>
-External users and content creators use this skill to turn Chinese video or audio recordings into timestamped transcripts, polished drafts, and platform-specific posts for publication review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local transcripts and generated drafts may contain confidential, regulated, unreleased, or personal information from recordings. <br>
-Mitigation: Use the skill only with recordings appropriate to store locally, and review generated transcript and Markdown files before sharing or publishing. <br>
-Risk: Automatic web enrichment and saved preferences can expose sensitive context or persist preferences unexpectedly. <br>
-Mitigation: For sensitive recordings, tell the agent to skip web enrichment and avoid saving preferences to MEMORY.md. <br>
-Risk: Automatic corrections, summaries, and platform drafts may be inaccurate or change the speaker's intended meaning. <br>
-Mitigation: Review low-confidence names, terms, numbers, correction notes, and final publication drafts before use. <br>
+## Use Case:
 
+Developers, creators, and content teams use this skill to turn video or audio into timestamped transcripts, edited long-form notes, and platform-specific publication drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/artminding/video-transcript-workflow) <br>
-- [OpenAI Whisper project](https://github.com/openai/whisper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, guidance] <br>
-**Output Format:** [TXT transcripts and Markdown drafts, with inline shell commands for local transcription scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes transcript and draft files beside the source media; outputs can include timestamped segments, correction notes, key quotes, and platform-specific publication drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata and package.json) <br>
+Risk: Transcript-derived terms may be used for automatic web lookups, which can expose sensitive recording context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For confidential recordings, run in local-only mode and skip web_search or web_fetch during knowledge enrichment.
+
+Risk: User preferences may be saved for future runs without clear consent controls.
+
+Mitigation: Ask before saving preferences, or disable persistent memory updates for users who do not want reuse across sessions.
+
+Risk: Generated transcripts and publication drafts can contain transcription errors, unsupported corrections, or unsuitable publishing claims.
+
+Mitigation: Review generated files, low-confidence correction notes, and platform drafts before publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/artminding/skills/video-transcript-workflow)
+- [OpenAI Whisper](https://github.com/openai/whisper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown and timestamped text files, with inline shell commands when transcription scripts are invoked]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates transcript files, optimized transcript drafts, platform-specific article drafts, correction review tables, and publishing guidance.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata, package.json, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

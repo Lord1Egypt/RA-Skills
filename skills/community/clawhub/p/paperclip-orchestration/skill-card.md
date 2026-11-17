@@ -1,40 +1,57 @@
-## Description: <br>
-Connect OpenClaw Gateway to Paperclip, diagnose onboarding and reachability failures, claim and store Paperclip API keys, install the Paperclip skill, and orchestrate Paperclip agents and tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect OpenClaw Gateway to Paperclip, diagnose onboarding and reachability failures, claim and store Paperclip API keys, install the Paperclip skill, and orchestrate Paperclip agents and tasks.
 
-## Publisher: <br>
-[ihebsilence](https://clawhub.ai/user/ihebsilence) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ihebsilence](https://clawhub.ai/user/ihebsilence)
 
-## Use Case: <br>
-Developers and operators use this skill to onboard OpenClaw Gateway into Paperclip, test connectivity, handle pairing and approval, claim API keys, and manage Paperclip agents and tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow shares OpenClaw gateway access and stores Paperclip API credentials. <br>
-Mitigation: Use only a trusted Paperclip organization and base URL, explicitly approve token sharing, and protect, rotate, or delete the saved API key file when it is no longer needed. <br>
-Risk: The workflow can approve device pairing and install follow-on Paperclip skills. <br>
-Mitigation: Review device pairing requests and any additional Paperclip skill before approval or installation. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an OpenClaw instance to Paperclip, troubleshoot onboarding and reachability issues, claim API keys, install Paperclip skills, and create or manage Paperclip agents and tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ihebsilence/paperclip-orchestration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes connectivity checks, onboarding payload guidance, local credential handling steps, and outcome summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The workflow can expose sensitive OpenClaw gateway tokens if used with an untrusted Paperclip URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted Paperclip deployment, verify the reachable base URL before onboarding, and avoid sending the primary gateway token to arbitrary URLs.
+
+Risk: The workflow may grant broad operator access and persist claimed Paperclip API keys locally.
+
+Mitigation: Avoid operator.admin unless specifically needed, store claimed credentials with restrictive permissions, and review the installed Paperclip skill before use.
+
+Risk: Approving device pairings without checking identity can authorize the wrong device.
+
+Mitigation: Approve device pairings by verified ID rather than by the latest pending request.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ihebsilence/skills/paperclip-orchestration)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request payloads, curl commands, and concise outcome summaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

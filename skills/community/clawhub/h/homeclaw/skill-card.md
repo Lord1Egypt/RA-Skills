@@ -1,41 +1,58 @@
-## Description: <br>
-Homeclaw is a family assistant skill for coordinating household health reminders, learning support, pet care, smart-home routines, and family scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Homeclaw provides family AI assistant guidance for health monitoring, learning support, pet care, smart-home control, and household scheduling.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-Families and caregivers use this skill to coordinate household support across eldercare, child learning, pet routines, smart-home scenarios, and calendars. Review carefully before connecting it to real devices or sensitive family data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes medical, emergency, child, smart-home, and pet-care workflows without enough safety boundaries. <br>
-Mitigation: Add explicit confirmations, safe defaults, manual override, per-person permissions, device allowlists, audit logs, and clear data retention and deletion controls before real-world use. <br>
-Risk: Users could over-rely on the skill for emergencies, medical decisions, child safety, pet feeding, locks, alarms, or other smart-home and security actions. <br>
-Mitigation: Keep humans in control for high-impact actions and do not rely on the skill for emergencies or safety-critical decisions. <br>
+## Use Case:
 
+Families and caregivers use this skill to shape an assistant that coordinates household routines across elders, children, parents, pets, and connected home devices. It is suited for lifestyle support where users review health, safety, device-control, and privacy-sensitive actions before relying on them.
 
-## Reference(s): <br>
-- [Homeclaw on ClawHub](https://clawhub.ai/LeoCryptoFlow/homeclaw) <br>
-- [LeoCryptoFlow publisher profile](https://clawhub.ai/user/LeoCryptoFlow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language responses, reminders, and household coordination guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only release; review before use with real household devices or family data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Health alerts, emergency calls, smart-home changes, and pet-feeding actions could affect safety if performed automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit household consent and manual confirmation for emergency calls, physical device changes, and pet-feeding actions.
+
+Risk: Health, child, pet, and home-security data may be sensitive.
+
+Mitigation: Define retention, access, and encryption rules before use, and prefer local storage where the deployment supports it.
+
+Risk: Health alerts or monitoring summaries could be mistaken for medical advice.
+
+Mitigation: Present alerts as prompts for review and escalation, not as diagnosis or treatment guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/homeclaw)
+- [Publisher profile](https://clawhub.ai/user/leocryptoflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown and conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include household reminders, suggested automations, care coordination prompts, and device-control guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

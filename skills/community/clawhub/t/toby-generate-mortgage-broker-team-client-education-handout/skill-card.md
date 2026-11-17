@@ -1,44 +1,55 @@
-## Description: <br>
-Create a polished client education handout for a mortgage broker team with visuals, FAQs, and clear next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a mortgage broker team.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Mortgage brokers and loan officers use this skill to draft client-facing education handouts that explain mortgage topics, answer common questions, and provide next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests Bash and Read access that is not explained by the mortgage handout generation purpose. <br>
-Mitigation: Restrict or remove Bash and Read unless the deployment explicitly requires local file inspection or shell commands. <br>
-Risk: Mortgage education content can be incorrect, incomplete, or unsuitable for a specific borrower or jurisdiction. <br>
-Mitigation: Have a qualified reviewer check generated handouts for accuracy, readability, compliance, and business fit before external use. <br>
-Risk: Client or borrower information may be sensitive. <br>
-Mitigation: Avoid providing confidential borrower data unless the organization's privacy and compliance workflow allows it. <br>
+## Use Case:
 
+Mortgage brokers and loan officers use this skill to create client education handouts that explain mortgage topics with visuals, FAQs, and clear next steps. It supports external client-facing education, with review before publication for compliance and financial accuracy.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/tobeyrebecca/toby-generate-mortgage-broker-team-client-education-handout) <br>
-- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-mortgage-broker-team-client-education-handout) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Markdown handout content with FAQs, visual suggestions, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated mortgage education content before external publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated mortgage education content can be inaccurate, outdated, or non-compliant if shared without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified mortgage and compliance reviewers check financial accuracy, required disclosures, and suitability before sharing with clients.
+
+Risk: The skill declares broader Bash permission than ordinary content drafting requires.
+
+Mitigation: Run it in a constrained agent environment and approve any shell commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-mortgage-broker-team-client-education-handout)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-mortgage-broker-team-client-education-handout)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown handout draft with visual direction, FAQs, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompts or guidance for image assets; client-ready content should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

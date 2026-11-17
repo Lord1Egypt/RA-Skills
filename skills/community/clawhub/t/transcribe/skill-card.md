@@ -1,41 +1,60 @@
-## Description: <br>
-Transcribe audio files to text using local Whisper (Docker). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe audio files to text using local Whisper in Docker.
 
-## Publisher: <br>
-[javicasper](https://clawhub.ai/user/javicasper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[javicasper](https://clawhub.ai/user/javicasper)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe local audio files such as voice messages, meetings, and uploaded clips, then return the resulting text to the user. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installer is incomplete and attempts to install a missing transcribe wrapper into a system-wide path with sudo. <br>
-Mitigation: Read the installer before running it, avoid system-wide installation until the missing wrapper is supplied and reviewed, or change installation to a user-local path. <br>
-Risk: The Docker build fetches external Python and model dependencies during installation. <br>
-Mitigation: Build in a controlled environment, review fetched dependencies, and verify the resulting Docker image before relying on transcripts. <br>
-Risk: Transcription quality depends on the selected language and model settings. <br>
-Mitigation: Verify the language argument and review transcripts, especially when using automatic language detection or accuracy-sensitive audio. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/javicasper/transcribe) <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe local audio files, including voice messages and common audio formats, into plain text for responses or downstream analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text transcript with shell command usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local Docker-based transcription and prints the transcript to stdout.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer attempts a privileged global CLI install.
+
+Mitigation: Review the installer before running it and prefer a user-local install path when possible.
+
+Risk: The Docker build uses mutable upstream content and unpinned Python dependencies.
+
+Mitigation: Pin and review the base image and dependencies before deployment.
+
+Risk: The artifact references a scripts/transcribe wrapper that is not present in the provided files.
+
+Mitigation: Confirm the wrapper is supplied or update the installer before use.
+
+Risk: Transcriptions may be inaccurate or use the wrong language setting.
+
+Mitigation: Review transcribed text before using it for decisions, records, or user-facing responses.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/javicasper/skills/transcribe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text transcription with Markdown usage guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally through Docker; default language is Spanish unless a language or auto-detection is requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

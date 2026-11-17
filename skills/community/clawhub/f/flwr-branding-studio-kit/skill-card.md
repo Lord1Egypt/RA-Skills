@@ -1,46 +1,62 @@
-## Description: <br>
-An advanced AI agent that acts as a Senior Brand Strategist. It automates project setup, applies elite market methodologies (Archetypes, StoryBrand, Personas), and generates structured brand assets while preventing hallucinations via strict context shielding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An advanced AI agent that acts as a Senior Brand Strategist. It automates project setup, applies elite market methodologies (Archetypes, StoryBrand, Personas), and generates structured brand assets while preventing hallucinations via strict context shielding.
 
-## Publisher: <br>
-[vansearch](https://clawhub.ai/user/vansearch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vansearch](https://clawhub.ai/user/vansearch)
 
-## Use Case: <br>
-Brand strategists, designers, marketers, and agency teams use this skill to scaffold client branding projects, organize client intelligence, and guide an AI assistant through RACE-based brand strategy work. It helps produce structured Markdown strategy assets such as Golden Circle, archetypes, personas, and tone of voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Client briefs, transcripts, emails, and proprietary brand plans may contain sensitive or confidential information. <br>
-Mitigation: Use only authorized and minimized client materials, redact sensitive details where practical, and do not upload client data to external AI tools unless the client and organization permit it. <br>
-Risk: The CLI creates local clients/<Client_Name>/ folders in the current workspace. <br>
-Mitigation: Run the scaffold command only from a workspace where creating client project directories is expected. <br>
-Risk: Publisher setup documentation discusses ClawHub tokens for release automation. <br>
-Mitigation: Treat token setup as maintainer-only publishing guidance and keep any token in a secret store. <br>
+## Use Case:
 
+Brand strategists, designers, and marketing teams use this skill to initialize client branding workspaces, structure raw client intelligence, and generate strategic brand assets such as positioning, archetypes, personas, tone of voice, and Markdown-ready deliverables.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [RACE Framework](docs/race_framework.md) <br>
-- [Prompt Guide Template](docs/prompt_guide_template.md) <br>
-- [Branding Glossary](docs/branding_glossary.md) <br>
-- [Reference Branding Prompt](docs/reference_branding_prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local clients/<Client_Name>/ project folders and guides brand strategy outputs from user-provided client materials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, SKILL.md frontmatter, package.json) <br>
+Risk: Setup instructions include an unsafe unpinned and mismatched NPX command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install commands before execution; prefer the checked-in CLI directly or a pinned exact package name.
+
+Risk: Branding projects may involve private client recordings, transcripts, PDFs, or briefs.
+
+Mitigation: Use only authorized client materials and remove sensitive information before uploading or processing them with an agent.
+
+Risk: The shipped package may provide scaffolding and reference guidance more than a complete autonomous strategist system.
+
+Mitigation: Treat generated strategy as a draft and have a qualified reviewer check claims, positioning, and client fit before delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vansearch/skills/flwr-branding-studio-kit)
+- [README](README.md)
+- [RACE framework](docs/race_framework.md)
+- [Prompt guide template](docs/prompt_guide_template.md)
+- [Branding glossary](docs/branding_glossary.md)
+- [FLWR Branding Studio Instagram](https://instagram.com/flwr.branding)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown strategy assets and setup guidance with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates client project folders and may copy Markdown templates when installed templates are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

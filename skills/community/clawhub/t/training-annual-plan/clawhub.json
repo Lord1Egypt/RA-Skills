@@ -1,0 +1,13 @@
+{
+  "name": "training-annual-plan",
+  "displayName": "全年档期计划管理",
+  "version": "1.0.0",
+  "description": "全年培训排期总控：年度培训计划编制（1-12月）、各期培训档期排布（避免冲突）、场地/讲师/资源冲突检测、季度/月度计划调整、全年培训日历视图、历史同期对比辅助决策。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["training", "annual-plan", "scheduling", "planning", "calendar-management"],
+  "minOpenClawVersion": "1.2.0"
+}

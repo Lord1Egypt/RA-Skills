@@ -1,40 +1,54 @@
-## Description: <br>
-Privacy-aware structured memory management for AI agents using public, internal-obfuscated, and private-not-stored tiers with cleanup and generalization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy-aware structured memory management for AI agents using a three-tier model for public, internal, and private memory handling.
 
-## Publisher: <br>
-[bustes01](https://clawhub.ai/user/bustes01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bustes01](https://clawhub.ai/user/bustes01)
 
-## Use Case: <br>
-Developers and agent builders use this skill to give agents structured local memory guidance for storing learned patterns, tracking skill usage, managing non-public memory, and running cleanup without storing private secrets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The internal memory tier uses XOR plus Base64, which is weak obfuscation rather than secure encryption. <br>
-Mitigation: Do not store secrets, PII, account data, or sensitive personal details in skill memory; use environment variables or a secret manager for private data. <br>
-Risk: Persistent local memory can retain information longer than intended. <br>
-Mitigation: Periodically inspect or clear memory directories and follow the documented cleanup protocol for expiry, archival, and deletion. <br>
+## Use Case:
 
+Developers and agent builders use this skill to define persistent cross-session memory practices, including public usage statistics, internal agent memory entries, private data exclusions, and periodic cleanup routines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bustes01/complex-memory-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with JSON, YAML, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces memory-tier rules, cleanup checklists, storage formats, and example encryption helpers for agent use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Tier 2 memory uses XOR plus Base64, which should not be treated as strong protection for sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat Tier 2 entries as readable by anyone with file access and do not store secrets, personal data, or regulated information through this skill.
+
+Risk: The cleanup protocol can delete, merge, or archive persistent memory entries.
+
+Mitigation: Require manual approval or a dry run before cleanup actions modify stored memory.
+
+## Reference(s):
+
+- [ClawHub skill homepage](https://clawhub.ai/BusTes01/complex-memory-manager)
+- [ClawHub skill page](https://clawhub.ai/bustes01/skills/complex-memory-manager)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON examples, Python snippets, file path conventions, and procedural cleanup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces memory handling conventions rather than executable enforcement; cleanup actions require agent or user execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

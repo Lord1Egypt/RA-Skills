@@ -1,0 +1,32 @@
+{
+  "skill_name": "evidence-first",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Summarize whether this proposed policy change will reduce approval time and recommend whether we should adopt it. You have the old policy, proposed policy, and six months of approval-time data.",
+      "expected_output": "A recommendation that distinguishes direct policy changes, measured historical data, inferences about future effects, and uncertainty.",
+      "assertions": [
+        "Material claims identify their supporting source or evidence type",
+        "Future impact is not presented as directly observed fact",
+        "Unknowns that could change the recommendation are visible"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Rewrite this announcement to sound warmer.",
+      "expected_output": "A stylistic rewrite without unnecessary evidence scaffolding.",
+      "assertions": [
+        "The skill does not force an evidence report onto a purely stylistic task"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We used a 150% liability cap in one signed contract. Tell me if 150% is our approved standard.",
+      "expected_output": "The answer refuses to equate one precedent with current normative policy and seeks or requests an authoritative source.",
+      "assertions": [
+        "Historical precedent is distinguished from normative authority",
+        "The answer does not claim 150% is the approved standard without policy evidence"
+      ]
+    }
+  ]
+}

@@ -1,41 +1,58 @@
-## Description: <br>
-Monitors Cainiao logistics orders for delivery exceptions, alert severity, compensation estimates, and recommended handling steps based on the skill's stated platform rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Cainiao and marketplace logistics orders for delivery anomalies, warning levels, expected impact, and compensation estimates.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Internal control and logistics operations users use this skill to review single or batch shipment records, classify logistics exceptions, estimate compensation exposure, and prepare advisory next steps for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with platform-rule verification for each operating region. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend supplier scoring, violation records, inter-skill handoffs, customer or carrier outreach, limit assessments, compensation execution, or pausing new orders. <br>
-Mitigation: Require human approval before any supplier scoring, violation recording, outreach, compensation action, order pause, or operational handoff. <br>
-Risk: Logistics rules and compensation estimates may be stale, incomplete, or unsuitable for a real case. <br>
-Mitigation: Verify the cited platform rules, compensation caps, and case facts before using the report for decisions involving customers, carriers, or suppliers. <br>
+## Use Case:
 
+Internal control and logistics operations users can analyze single orders, batches, monitoring summaries, and confirmed incidents to classify logistics exceptions, prioritize response, and estimate compensation exposure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/03-logistics-alert) <br>
-- [Continuation examples](references/continuation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown logistics alert reports with optional structured JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes exception codes, alert severity, compensation estimates, risk summaries, and recommended handling steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 1.7.0) <br>
+Risk: Batch anomaly workflows may lead to supplier risk records, linked-skill notifications, score deductions, or escalation actions without clear confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before recording supplier risk events, notifying linked skills, changing supplier scores, or starting limitation and escalation workflows.
+
+Risk: Compensation estimates and policy thresholds may become stale or differ from current platform rules.
+
+Mitigation: Verify compensation calculations and operational thresholds against current official policies before using the report for customer, supplier, or financial action.
+
+Risk: The skill processes order, supplier, shipment, and compensation details that may be sensitive.
+
+Mitigation: Use it only in an approved internal logistics triage setting and limit shared inputs to necessary operational data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/03-logistics-alert)
+- [Continuation examples and operating notes](artifact/references/continuation.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown reports with tables, classification summaries, compensation estimates, and action recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include single-order alerts, batch anomaly summaries, compensation calculations, and supplier risk follow-up recommendations.]
+
+## Skill Version(s):
+
+1.7.0 (source: artifact/SKILL.md frontmatter; ClawHub release metadata version 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

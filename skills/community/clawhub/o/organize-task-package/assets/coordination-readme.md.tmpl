@@ -1,0 +1,12 @@
+# {{TASK_TITLE}}: Parallel Coordination Entry
+
+The Orchestrator is the sole writer for this directory. It records lane ownership, pause/resume actions, integration, and cleanup. Workers write only their GOAL and execution records; Reviewers write only their review records.
+
+Reading order:
+
+1. `../GOAL.md`
+2. `lanes.md`
+3. each `../goals/<worker>.md`
+4. `integration.md`
+
+The Orchestrator normally has no active Goal and does not poll continuously. It responds to Worker/Reviewer blocker, review, completion, and integration notifications.

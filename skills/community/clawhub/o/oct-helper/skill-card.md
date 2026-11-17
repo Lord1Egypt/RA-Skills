@@ -1,42 +1,55 @@
-## Description: <br>
-Provides OpenClaw Terminal (OCT) configuration templates and usage guidance for conversational desktop control, development help, and information lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供 OpenClaw Terminal (OCT) 的配置模板和使用指南，支持智能对话、系统控制和开发辅助功能。
 
-## Publisher: <br>
-[zl585451](https://clawhub.ai/user/zl585451) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zl585451](https://clawhub.ai/user/zl585451)
 
-## Use Case: <br>
-Developers and desktop users use this skill to install OCT, apply configuration guidance, and learn basic commands for conversation-driven computer control and development assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The linked OCT desktop app can control the computer, including file operations, settings changes, Git operations, and terminal commands. <br>
-Mitigation: Verify the release and publisher before installing, and review any requested file deletion, settings change, Git operation, or terminal command before allowing it to run. <br>
-Risk: External installers are linked from the skill and are not bundled in the skill artifact. <br>
-Mitigation: Download only from the referenced release page and confirm that the selected installer matches the intended platform. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to configure and use the OCT desktop app for conversational task assistance, system control, and development workflows.
 
-## Reference(s): <br>
-- [OCT 助手 on ClawHub](https://clawhub.ai/zl585451/oct-helper) <br>
-- [OCT v0.1.2 desktop app release](https://github.com/zl585451/openclaw-terminal/releases/tag/v0.1.2) <br>
-- [OCT issue tracker](https://github.com/zl585451/openclaw-terminal/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation and usage steps for OCT; the skill itself does not bundle executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill points users to a powerful third-party desktop app without strong verification guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install OCT only when the publisher and release channel are trusted, and verify downloaded installers independently where possible.
+
+Risk: OCT workflows may modify files, run terminal commands, change system settings, or operate on Git repositories.
+
+Mitigation: Review proposed actions before execution, avoid unnecessary administrative privileges, and use backups or version control for recoverability.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zl585451/skills/oct-helper)
+- [OCT GitHub release v0.1.2](https://github.com/zl585451/openclaw-terminal/releases/tag/v0.1.2)
+- [OCT GitHub Issues](https://github.com/zl585451/openclaw-terminal/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance for installing and using OCT; includes third-party download and support links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

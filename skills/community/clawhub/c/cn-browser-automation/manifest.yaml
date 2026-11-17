@@ -1,0 +1,24 @@
+name: cn-browser-automation
+version: 1.0.0
+display_name: 国内站点登录态自动化
+description: "复用本机已登录的 Chrome（CDP 远程调试），抓取/操作需要登录的国内站点（小红书、淘宝、B站、微信、微博、知乎、12306、各类 SaaS 后台）。专治通用浏览器技能一上来卡在登录页的痛点，内置已实跑核验的选择器与一键抓取脚本。"
+category: browser-automation
+author: EDY
+homepage: https://clawhub.ai/
+triggers:
+  - "登录态"
+  - "已登录浏览器"
+  - "带 cookie 抓取"
+  - "复用我的 Chrome"
+  - "不想重新登录"
+  - "用我现在的账号抓"
+  - "用我登录的 Chrome 抓"
+keywords:
+  - 浏览器自动化
+  - 登录态
+  - 国内站点
+  - 数据抓取
+  - Playwright
+  - CDP
+dependencies:
+  - playwright

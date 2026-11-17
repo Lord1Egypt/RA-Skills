@@ -1,39 +1,58 @@
-## Description: <br>
-Rules of the Claw installs a 56-rule OpenClaw Guardian baseline that blocks risky agent actions such as credential theft, data exfiltration, network scanning, and destructive infrastructure commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rules of the Claw installs deterministic OpenClaw Guardian rules intended to block credential theft, data exfiltration, network scanning, git poisoning, and destructive infrastructure operations at the tool layer.
 
-## Publisher: <br>
-[bahuleyandr](https://clawhub.ai/user/bahuleyandr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bahuleyandr](https://clawhub.ai/user/bahuleyandr)
 
-## Use Case: <br>
-Developers and operators use this skill to install and customize a broad Guardian ruleset for OpenClaw environments. It is intended for teams that want deterministic tool-layer checks for secrets, outbound transfer, destructive commands, network scanning, and git remote changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer persistently replaces the local Guardian rules file with a broad blocking baseline, which may interrupt legitimate workflows if placeholders or noisy rules are left unchanged. <br>
-Mitigation: Review the rule JSON before installation, keep the generated backup, replace app, organization, and user placeholders, and disable rules that are too restrictive for the target environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and customize a baseline policy for OpenClaw Guardian that blocks high-risk agent file, shell, network, Docker, database, and git actions before execution.
 
-## Reference(s): <br>
-- [Rules of the Claw on ClawHub](https://clawhub.ai/bahuleyandr/rules-of-the-claw) <br>
-- [OpenClaw Guardian plugin](https://github.com/fatcatMaoFei/openclaw-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs and validates Guardian rule configuration; users can edit placeholders and disable rules as needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill persistently replaces active OpenClaw Guardian rules with a broad policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review rules-of-the-claw.json before installation and keep the installer's backup of the previous Guardian rules file.
+
+Risk: Placeholders such as YOUR_ORG, YOUR_USER, and your_app may make rules too broad, too narrow, or operationally disruptive if left unchanged.
+
+Mitigation: Customize placeholders for the target organization, user, application, Docker services, and database names before relying on the policy.
+
+Risk: The ruleset is not complete protection against credential exfiltration or unsafe agent behavior.
+
+Mitigation: Use it alongside sandboxing, network controls, file access restrictions, and normal review of sensitive agent actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bahuleyandr/skills/rules-of-the-claw)
+- [OpenClaw Guardian plugin](https://github.com/fatcatMaoFei/openclaw-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, shell commands, guidance]
+
+**Output Format:** [JSON configuration plus Markdown installation guidance and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The installer replaces the active OpenClaw Guardian rules file after creating a timestamped backup and requires Node.js v18+ for validation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

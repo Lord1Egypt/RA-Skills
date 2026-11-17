@@ -1,42 +1,54 @@
-## Description: <br>
-Searches the public web through Exa's hosted MCP endpoint to help agents find documentation, recent announcements, product pages, blog posts, comparisons, and current external context without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the public web through Exa's hosted MCP endpoint without an API key for discovery tasks such as finding documentation, announcements, product pages, blog posts, comparisons, or current external context.
 
-## Publisher: <br>
-[shikamaru-cc](https://clawhub.ai/user/shikamaru-cc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shikamaru-cc](https://clawhub.ai/user/shikamaru-cc)
 
-## Use Case: <br>
-Developers and agent users use this skill when they need web discovery before retrieval, such as finding official documentation, recent announcements, pricing, product pages, or comparison sources to inspect and cite. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Exa's hosted MCP service and may include sensitive user-provided terms. <br>
-Mitigation: Avoid submitting secrets, credentials, or confidential data in search queries. <br>
-Risk: The VirusTotal check was pending in the available evidence. <br>
-Mitigation: Review displayed permissions and runtime prompts before granting credentials or write access. <br>
-Risk: Search results can be stale, incomplete, or conflicting. <br>
-Mitigation: Fetch and inspect authoritative pages before relying on precise or high-impact claims. <br>
+## Use Case:
 
+Developers and agents use this skill to discover current public web sources before summarizing, comparing, or fetching detailed pages. It is intended for cases where the user needs relevant sources rather than direct retrieval from a known URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shikamaru-cc/shikamaru-web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text search context with agent-authored Markdown summaries or citations when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source URLs and snippets returned by Exa; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Search terms are sent to Exa's hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, private customer data, confidential internal project names, and other sensitive information in search queries.
+
+Risk: Public web search context can be stale, incomplete, or conflicting.
+
+Mitigation: Summarize the most relevant sources clearly, call out uncertainty or conflicts, and fetch authoritative pages when precise answers need verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shikamaru-cc/skills/shikamaru-web-search)
+- [Exa MCP endpoint](https://mcp.exa.ai/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text search context, usually summarized by the agent in Markdown with source references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports query, result count, search depth, live crawl preference, and context length options.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

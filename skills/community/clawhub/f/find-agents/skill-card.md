@@ -1,45 +1,63 @@
-## Description: <br>
-Performs intelligent web and specialized searches, aggregates multi-source results, and returns summarized answers with source citations and credibility signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs intelligent web and specialized searches, aggregates multi-source results, and returns summarized answers with source citations and confidence signals.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-Developers and external users use this skill to research current topics, verify claims, monitor news, and gather cited information from web, academic, code, and image-oriented sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and retrieved web content may expose sensitive or confidential information to external services. <br>
-Mitigation: Use only for non-sensitive web research and avoid secrets, private personal information, or confidential business queries. <br>
-Risk: Search results, summaries, and credibility scores can be incomplete, stale, or misleading. <br>
-Mitigation: Review cited sources directly and verify important claims before relying on the output for decisions. <br>
-Risk: Global npm installation or repository use can target the wrong package if identity is not checked. <br>
-Mitigation: Verify the npm package and repository identity before global installation or deployment. <br>
+## Use Case:
 
+Developers, researchers, and agent users can use this skill to search current web, news, academic, code, and image sources, then receive concise cited summaries for research, fact checking, technical lookup, and information gathering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/find-agents) <br>
-- [Publisher profile](https://clawhub.ai/user/hgta23) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill description](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Source citations, Guidance] <br>
-**Output Format:** [Markdown summaries and structured JSON objects with cited sources, confidence scores, and related queries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source URLs, credibility scores, timestamps, language metadata, and follow-up query suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, and SKILL.md) <br>
+Risk: Search queries and fetched page URLs or page content may be sent to external web, search, or AI services during use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive queries, use approved service endpoints and keys, and run the skill only in environments where this network behavior is permitted.
+
+Risk: Summaries, citations, source credibility scores, and fact-check verdicts can be incomplete, outdated, or misleading when upstream search results are weak.
+
+Mitigation: Review cited sources, dates, and source quality before relying on results for important decisions.
+
+Risk: The default search language setting may not match the user's intended locale.
+
+Mitigation: Set SEARCH_LANGUAGE explicitly for the target audience or workflow.
+
+Risk: Unlocked dependency installation may introduce supply-chain variance across environments.
+
+Mitigation: Use a locked dependency install and managed package policy for production or enterprise deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgta23/skills/find-agents)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown, CLI text, and JSON-style result objects with summaries, key findings, source URLs, confidence scores, and related queries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on configured search services, result limits, timeout settings, language settings, and the availability and quality of external sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

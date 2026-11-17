@@ -1,44 +1,59 @@
-## Description: <br>
-卖家之家(跨境电商)服务产品搜索与发布。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+卖家之家(跨境电商)服务产品搜索与发布
 
-## Publisher: <br>
-[mjzj-tec](https://clawhub.ai/user/mjzj-tec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mjzj-tec](https://clawhub.ai/user/mjzj-tec)
 
-## Use Case: <br>
-External sellers and cross-border e-commerce operators use this skill to search MJZJ marketplace service products, filter by labels, provider, price, or language, and prepare new seller product applications for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a sensitive MJZJ API key for temporary file uploads and seller product application submissions. <br>
-Mitigation: Use an API key appropriate for these actions, store it only in the skill configuration, and rotate it if access is lost or reset. <br>
-Risk: Product application submissions may include incorrect details, prices, labels, sale dates, or images. <br>
-Mitigation: Review product content, pricing, labels, sale windows, and uploaded images before asking the agent to submit an application. <br>
-Risk: MJZJ snowflake-style identifiers can lose precision if treated as numbers. <br>
-Mitigation: Pass and preserve all id fields, including providerId, labelIds elements, and nextPosition, as strings. <br>
+## Use Case:
 
+External sellers and service providers use this skill to search MJZJ mall service products, filter results by labels, provider, price, or language, upload product images, and submit new product applications for backend review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mjzj-tec/mjzj-mall) <br>
-- [MJZJ Mall](https://mall.mjzj.com) <br>
-- [MJZJ API key page](https://mjzj.com/user/agentapikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MJZJ_API_KEY for temporary file upload and product application endpoints; public product query endpoints do not require a token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Authenticated upload and product-application flows can act on the MJZJ seller account associated with MJZJ_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the API key belongs to the intended seller account before uploading files or submitting a product application.
+
+Risk: Incorrect product details, labels, images, prices, or sale windows could be submitted for backend review.
+
+Mitigation: Review the product title, intro, label choices, files, prices, and sale times before calling the product-application endpoint.
+
+Risk: Snowflake-style IDs can lose precision if handled as numbers.
+
+Mitigation: Treat id fields, providerId, labelIds entries, and nextPosition as strings end to end.
+
+## Reference(s):
+
+- [MJZJ Mall homepage](https://mall.mjzj.com)
+- [ClawHub skill page](https://clawhub.ai/mjzj-tec/skills/mjzj-mall)
+- [MJZJ API key page](https://mjzj.com/user/agentapikey)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MJZJ_API_KEY for upload and product-submission flows; public product-query flows can run without a token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

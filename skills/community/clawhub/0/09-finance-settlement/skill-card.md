@@ -1,38 +1,58 @@
-## Description: <br>
-社区团购财务与结算全链路技能包，涵盖平台盈利模型、团长佣金结算、供应商采购结算、资金流管理及配套工具。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for community group-buying finance and settlement, including platform profit models, group leader commission settlement, supplier purchase settlement, cash flow management, and supporting tools.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Finance and operations teams use this skill as a reference for community group-buying settlement workflows, including platform profit modeling, leader commission settlement, supplier reconciliation, cash-flow controls, and tax-compliance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance, settlement, invoicing, and tax guidance may be incomplete or outdated for a user's jurisdiction or contracts. <br>
-Mitigation: Verify calculations, contract terms, and current tax rules with qualified finance, tax, or legal advisors before relying on the guidance for real business operations. <br>
+## Use Case:
 
+External finance managers and operations leaders use this skill to model profitability, calculate group leader commissions and supplier settlements, manage cash flow risks, and frame tax compliance checks for community group-buying operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nic-yuan/09-finance-settlement) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and finance reference material] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reference content; users should verify calculations, contract terms, and current tax rules before relying on it for business operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Tax and financial figures may be outdated or jurisdiction-specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify tax treatment, payment deductions, and compliance steps with current local professional advice before using the guidance for real payments, deductions, or filings.
+
+Risk: Settlement formulas and benchmark rates may not match a specific platform's contracts, accounting policies, or source data.
+
+Mitigation: Use the skill as planning reference material and reconcile calculations against authoritative order, supplier, commission, invoice, and contract records before payment.
+
+Risk: China-focused settlement and tax guidance may be misapplied to other jurisdictions.
+
+Mitigation: Limit compliance use to the applicable jurisdiction or adapt it with local finance, tax, and legal review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/09-finance-settlement)
+- [Publisher profile](https://clawhub.ai/user/nic-yuan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with formulas, tables, and SOP-style checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference content; no executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

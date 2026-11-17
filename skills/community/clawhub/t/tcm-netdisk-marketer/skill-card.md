@@ -1,40 +1,53 @@
-## Description: <br>
-中医资料营销专家 - 生成公众号/知乎推广文案（纯 Prompt 技能） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中医资料营销专家 - 生成公众号/知乎推广文案（纯 Prompt 技能）
 
-## Publisher: <br>
-[tom859174-sketch](https://clawhub.ai/user/tom859174-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tom859174-sketch](https://clawhub.ai/user/tom859174-sketch)
 
-## Use Case: <br>
-External users and content operators use this skill to turn user-provided Chinese medicine learning material names and netdisk links into WeChat Official Account or Zhihu promotional copy. The skill first summarizes and groups the resource list, then drafts platform-specific marketing text and copyable link blocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated promotional copy may overstate the quality, legality, or medical value of the referenced materials. <br>
-Mitigation: Review the generated copy before posting and avoid unsupported claims about medical efficacy, credentials, or source legitimacy. <br>
-Risk: Netdisk links, extraction codes, or learning materials may not be appropriate or authorized for public distribution. <br>
-Mitigation: Only include links, extraction codes, and materials that the user has the right to distribute publicly. <br>
+## Use Case:
 
+External users use this prompt-only skill to turn user-provided TCM learning-material netdisk links into Chinese promotional copy for WeChat public accounts and Zhihu. It first summarizes and groups the resource list, then drafts platform-specific marketing text and copyable link blocks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tom859174-sketch/tcm-netdisk-marketer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with platform-specific promotional copy and optional code blocks for links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only output; generated copy should be reviewed before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Generated promotional copy may include cloud-share links for materials the user is not authorized to distribute.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with materials the user has rights to share, and review all generated links before publication.
+
+Risk: Marketing copy about TCM learning materials may contain health-related claims that are inaccurate or non-compliant with platform rules.
+
+Mitigation: Review health-related statements for accuracy and WeChat/Zhihu policy compliance before posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tom859174-sketch/skills/tcm-netdisk-marketer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with Chinese marketing copy, resource summaries, and copyable link code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only output; no executable code is produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

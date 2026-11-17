@@ -1,45 +1,55 @@
-## Description: <br>
-Fetch passes, products, and trips, and order new products from the HTM Mijn HTM portal for The Hague public transport account holders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps HTM account holders review passes, products and trips, compare Regio Vrij subscriptions, and stage product orders for browser checkout.
 
-## Publisher: <br>
-[ghuron](https://clawhub.ai/user/ghuron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghuron](https://clawhub.ai/user/ghuron)
 
-## Use Case: <br>
-External HTM account holders use this skill to list passes, inspect products and trip history, evaluate Regio Vrij subscription value, and stage supported products in the HTM shopping cart for manual checkout. Use it only for passes the operator owns or is authorized to manage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-The Netherlands <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires HTM account credentials and accesses account passes, products, and trip history. <br>
-Mitigation: Store HTM_LOGIN and HTM_PASSWORD as secrets, run the skill only in a trusted environment, and use it only with accounts and passes you own or are authorized to manage. <br>
-Risk: The reorder command can create or update a draft line in the HTM shopping cart. <br>
-Mitigation: Review the returned cart in the browser before payment; the skill does not complete checkout or bank authorization automatically. <br>
-Risk: The skill depends on unofficial HTM portal and order API behavior that may change without notice. <br>
-Mitigation: Treat failures as possible portal changes, verify current HTM pricing before acting on advice, and rerun or update the skill when HTM changes its portal behavior. <br>
+## Use Case:
 
+HTM account holders and authorized agents use this skill to review passes and trip history, assess subscription value, and add products to the HTM cart. The account holder completes any payment in a browser.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ghuron/skills/htm) <br>
-- [HTM website](https://www.htm.nl) <br>
-- [HTM shopping cart](https://www.htm.nl/winkelwagen/) <br>
-- [Command reference](SKILL.md) <br>
+### Deployment Geography for Use:
 
+The Netherlands
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON printed to stdout by Node.js CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The reorder command also creates or updates a draft HTM cart line and returns a checkout URL; payment remains manual in the browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: HTM account credentials and pass-owner birthdates may be exposed through logs or shared shells.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only accounts and passes you are authorized to manage; keep HTM_LOGIN, HTM_PASSWORD and birthdate variables out of logs and shared shells.
+
+Risk: Ordering can stage items in an HTM shopping cart.
+
+Mitigation: Review the cart in the browser before completing any payment.
+
+## Reference(s):
+
+- [Mijn HTM skill on ClawHub](https://clawhub.ai/ghuron/skills/htm)
+- [HTM portal](https://www.htm.nl)
+- [Skill command reference](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [JSON from the CLI; natural-language guidance when used by an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Order commands can add or update a draft cart item; payment is not automated.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

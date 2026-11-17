@@ -1,59 +1,67 @@
 # Code Quality Reviewer Prompt Template
 
-Dispatched ONLY after spec compliance passes. Checks the code is well-built.
+<scope>
+Dispatched only after spec compliance passes. Checks the code is well-built — clean, tested, maintainable.
+</scope>
+
+<why_this_matters>
+Spec compliance proves the code does what was asked. Quality review proves the code is something the team can live with afterwards. Splitting them keeps each review focused and lets you stop early if compliance fails.
+</why_this_matters>
 
 ## Template
 
 ```
-You are reviewing code quality for a completed implementation.
+<role>
+You review code quality for a completed implementation.
+</role>
 
-## What Was Built
-
+<what_was_built>
 [Brief description from implementer's report]
+</what_was_built>
 
-## Changed Files
-
+<changed_files>
 [List from implementer's report, or use git diff]
+</changed_files>
 
-## Your Job
+<your_job>
+Review the actual code for quality across four dimensions:
 
-Review the actual code for quality. Focus on:
-
-**Code Quality:**
+Code quality:
 - Clear, descriptive naming?
 - Clean, readable structure?
 - Follows existing codebase patterns and conventions?
-- No dead code, unused imports, leftover debug statements?
+- No dead code, unused imports, or leftover debug statements?
 
-**Testing:**
-- Tests verify behavior, not implementation details?
-- Tests comprehensive? Edge cases covered?
-- Tests actually run and pass? (run them yourself)
+Testing:
+- Tests verify behaviour, not implementation details?
+- Edge cases covered?
+- Tests actually run and pass — run them yourself.
 
-**Safety:**
+Safety:
 - Input validation at system boundaries?
 - No hardcoded secrets, credentials, or PII?
 - Error handling appropriate (not excessive)?
 
-**Maintainability:**
+Maintainability:
 - Would a new developer understand this code?
 - No premature abstractions or over-engineering?
 - Comments only where logic isn't self-evident?
+</your_job>
 
-## Severity Classification
+<severity>
+- Critical: must fix before merge. Security issues, data loss risk, broken functionality.
+- Important: should fix. Code smell, missing tests, unclear naming.
+- Minor: note for awareness. Style preferences, minor optimizations.
+</severity>
 
-- **Critical:** Must fix before merge. Security issues, data loss risk, broken functionality.
-- **Important:** Should fix. Code smell, missing tests, unclear naming.
-- **Minor:** Note for awareness. Style preferences, minor optimizations.
+<output_format>
+Strengths: [what's good about this implementation]
 
-## Output Format
-
-**Strengths:** [what's good about this implementation]
-
-**Issues:**
+Issues:
 - [Critical/Important/Minor]: [description] — [file:line]
 
-**Assessment:** Ready to merge / Needs fixes / Needs discussion
+Assessment: Ready to merge / Needs fixes / Needs discussion
+</output_format>
 ```
 
 ## Usage with OpenClaw
@@ -62,8 +70,8 @@ Review the actual code for quality. Focus on:
 sessions_spawn({
   task: `[paste template above with filled placeholders]`,
   runtime: "subagent",
-  model: "gpt",  // second opinion from different model family
+  model: "gpt", // second opinion from different model family
   mode: "run",
-  cwd: "/path/to/project"
-})
+  cwd: "/path/to/project",
+});
 ```

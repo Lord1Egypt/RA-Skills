@@ -1,44 +1,58 @@
-## Description: <br>
-Generate and edit video with Veo 3 through RunAPI, using the CLI for one-off agent tasks and SDK guidance for application or backend integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit video with Veo 3 through RunAPI, using the RunAPI CLI for one-off generation and SDK guidance for app or backend integration.
 
-## Publisher: <br>
-[runapi-ai](https://clawhub.ai/user/runapi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runapi-ai](https://clawhub.ai/user/runapi-ai)
 
-## Use Case: <br>
-External users and developers use this skill to route agent requests for Veo 3 video generation, editing, extension, or upscaling through the RunAPI CLI. Developers integrating RunAPI into an application or backend can use the SDK package guidance instead. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can involve external RunAPI CLI calls and account authentication. <br>
-Mitigation: Install and authenticate the RunAPI CLI only when intending to use RunAPI for Veo video generation or editing. <br>
-Risk: Prompts, images, videos, and API credentials may be sensitive. <br>
-Mitigation: Review RunAPI pricing, account controls, and data handling before submitting media or prompts, and avoid placing API keys in shared files or logs. <br>
+## Use Case:
 
+External developers and agents use this skill to create, edit, or transform video with Veo 3 through RunAPI, including one-off CLI jobs and SDK-oriented integration planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/runapi-ai/runapi-veo-3-1) <br>
-- [RunAPI Veo 3.1 model overview](https://runapi.ai/models/veo-3.1) <br>
-- [RunAPI Veo 3.1 documentation](https://runapi.ai/models/veo-3.1.md) <br>
-- [RunAPI Google provider comparison](https://runapi.ai/providers/google.md) <br>
-- [RunAPI model catalog](https://runapi.ai/models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and package names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce CLI request guidance for synchronous or asynchronous video tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release evidence) <br>
+Risk: The workflow installs and uses an unpinned third-party RunAPI CLI from a Homebrew tap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted environments, review the CLI source or release provenance when available, and pin a known version where the environment supports it.
+
+Risk: The CLI may access RunAPI authentication state, selected local media files, generated outputs, and billable Veo jobs.
+
+Mitigation: Use environment authentication or saved CLI configuration, validate authentication before submitting, avoid unnecessary interactive login, and require user authorization before any replacement paid request.
+
+## Reference(s):
+
+- [RunAPI Veo 3.1 homepage](https://runapi.ai/models/veo-3.1)
+- [Model overview, pricing, and rate limits](https://runapi.ai/models/veo-3.1.md)
+- [Provider overview](https://runapi.ai/providers/google.md)
+- [Full model catalog](https://runapi.ai/models.md)
+- [SDK integration](https://github.com/runapi-ai/veo-3.1-sdk)
+- [ClawHub skill page](https://clawhub.ai/runapi-ai/skills/runapi-veo-3-1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, JSON, Files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON request and response files, and downloaded media deliverables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local media inputs and can produce downloaded video files after verifying response contracts and MIME types.]
+
+## Skill Version(s):
+
+0.2.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

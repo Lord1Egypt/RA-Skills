@@ -1,41 +1,59 @@
-## Description: <br>
-Use this skill to find, explore, and install new skills from the Zerone Skill Market. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SkillMarket helps agents find, inspect, and install skills from the Zerone Skill Market.
 
-## Publisher: <br>
-[Zerone-Agent](https://clawhub.ai/user/Zerone-Agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zerone-agent](https://clawhub.ai/user/zerone-agent)
 
-## Use Case: <br>
-Developers and agent users use this skill to browse the Zerone Skill Market, inspect skill compatibility, fetch installation instructions, and install selected skills after explicit approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Zerone's marketplace and may fetch third-party installation instructions that can change over time. <br>
-Mitigation: Review fetched installation instructions and target skill contents before approving any install action. <br>
-Risk: Installed skills persist under the local skills directory and may alter future agent behavior. <br>
-Mitigation: Require explicit user confirmation before installation and restrict privileged filesystem or network actions unless the marketplace maintainer is trusted. <br>
+## Use Case:
 
+Developers and agent users use this skill to browse marketplace skills, check framework compatibility, retrieve installation instructions, and install selected skills after explicit approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zerone-Agent/skill-market) <br>
-- [Zerone Skill Market API](https://api.zerone.market/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON responses from the marketplace helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch live marketplace listings, compatibility details, and installation instructions from Zerone before any user-approved install action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can fetch changing third-party installation instructions that may alter an agent's installed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact install instructions and require explicit user approval before executing any installation action.
+
+Risk: Marketplace installation steps may reference untrusted packages, downloads, or commands.
+
+Mitigation: Prefer signed or checksummed packages, verify integrity when evidence is provided, and run installation in a sandbox or restricted environment where possible.
+
+Risk: Install commands may request privileged filesystem or network actions.
+
+Mitigation: Avoid privileged execution unless the marketplace maintainer and selected skill publisher are trusted.
+
+## Reference(s):
+
+- [Zerone Skill Market API](https://api.zerone.market/api)
+- [ClawHub SkillMarket page](https://clawhub.ai/zerone-agent/skills/skill-market)
+- [Zerone publisher profile](https://clawhub.ai/user/zerone-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON returned by helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches marketplace data and install tutorials from the configured Zerone API endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

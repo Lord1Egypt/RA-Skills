@@ -1,43 +1,58 @@
-## Description: <br>
-Requirements Traceability and Test Case Validation skill for PRD analysis, requirement coverage, coverage gap detection, multi-repo testing, acceptance testing, traceability matrix, LLM testing, Agentic AI, and RAG testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Requirements Traceability and Test Case Validation skill for PRD analysis, requirement coverage, coverage gap detection, multi-repo testing, acceptance testing, traceability matrix, LLM testing, Agentic AI, and RAG testing.
 
-## Publisher: <br>
-[start-fish](https://clawhub.ai/user/start-fish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[start-fish](https://clawhub.ai/user/start-fish)
 
-## Use Case: <br>
-Developers, QA engineers, and release reviewers use this skill to map PRDs, specs, acceptance criteria, test cases, and code changes into requirement-test-code traceability. It helps identify coverage gaps, defects, missing evidence, AI workflow validation gaps, and release acceptance risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated release recommendations could be mistaken for automatic approval. <br>
-Mitigation: Treat recommendations as advisory and require human review before release sign-off. <br>
-Risk: The skill reviews user-provided requirements, repositories, diffs, configs, prompts, and test evidence. <br>
-Mitigation: Provide only inputs that the agent is intended to review. <br>
-Risk: Incomplete evidence can lead to blocked or uncertain coverage conclusions. <br>
-Mitigation: Use the report's evidence checklist and open questions to identify missing artifacts before making acceptance decisions. <br>
+## Use Case:
 
+Developers, QA engineers, release managers, and product teams use this skill to compare PRDs, acceptance criteria, tests, code changes, and AI workflow evidence before release.
 
-## Reference(s): <br>
-- [Traceability Validation Playbook](references/traceability-validation-playbook.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/start-fish/tracemap-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an executive summary, release acceptance recommendation, traceability matrix, coverage summary, defect list, AI workflow validation matrix when applicable, evidence checklist, and open questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may lead an agent to inspect broad project materials during traceability review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the PRDs, repositories, diffs, tests, configs, prompt files, model files, and release scope that are relevant to the review.
+
+Risk: Coverage or release acceptance conclusions can be misleading when implementation, tests, or execution evidence is incomplete.
+
+Mitigation: Require the report to mark missing evidence, open questions, and partial or blocked requirements instead of treating them as covered.
+
+Risk: AI workflow requirements can be under-reviewed if prompts, model services, RAG inputs, observability, fallback, or safety controls are omitted.
+
+Mitigation: Include relevant AI workflow artifacts and review fallback, observability, and safety checks before relying on the acceptance recommendation.
+
+## Reference(s):
+
+- [Traceability Validation Playbook](references/traceability-validation-playbook.md)
+- [ClawHub skill listing](https://clawhub.ai/start-fish/skills/tracemap-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with traceability tables, coverage summaries, defect details, evidence checklists, and open questions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include release acceptance recommendations, requirement-test-code matrices, AI workflow validation matrices, and gap classifications.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact package metadata reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

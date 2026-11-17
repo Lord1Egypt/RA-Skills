@@ -1,41 +1,54 @@
-## Description: <br>
-Smart email digest that categorizes unread emails by priority, drafts replies for urgent messages, and supports on-demand or scheduled runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart email digest -- categorize unread emails by priority, draft replies for urgent ones, and run on demand or on a schedule.
 
-## Publisher: <br>
-[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot)
 
-## Use Case: <br>
-Employees and professionals use this skill to triage unread inbox messages, identify urgent and action-needed email, extract next steps, and review concise draft replies before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to unread email and may process sensitive inbox content. <br>
-Mitigation: Grant access only to the selected inbox, prefer read-only permissions unless approved sending is required, keep processing limits narrow, and use private delivery destinations. <br>
-Risk: Draft replies could be sent with incorrect wording or unintended commitments. <br>
-Mitigation: Require user review and explicit approval before any drafted email is sent. <br>
+## Use Case:
 
+External users and business operators use this skill to triage unread email, identify urgent messages, extract action items, and prepare draft replies for review. It also supports scheduled digest setup for recurring inbox summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ceobotson-bot/doctorclaw-email-digest) <br>
-- [DoctorClaw Website](https://www.doctorclaw.ceo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown digest with categorized email summaries, action items, and draft reply text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft replies are marked for review and should not be sent without user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires read access to unread emails, which may expose sensitive inbox contents to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when inbox read access is acceptable, use a narrow maximum email limit, and review the digest before acting on sensitive messages.
+
+Risk: The skill can optionally deliver summaries through external channels or send approved replies.
+
+Mitigation: Avoid external delivery channels for sensitive inboxes unless needed, and enable send access or scheduled runs only after confirming the intended approval and delivery behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ceobotson-bot/skills/doctorclaw-email-digest)
+- [DoctorClaw Website](https://www.doctorclaw.ceo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown digest with prioritized email summaries, draft reply text, and optional scheduling or setup commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft replies are marked for review and should not be sent without user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

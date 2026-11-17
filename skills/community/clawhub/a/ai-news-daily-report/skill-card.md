@@ -1,41 +1,57 @@
-## Description: <br>
-Daily report generation with timeliness verification for news and content freshness checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily report generation with timeliness verification for news and content freshness checking.
 
-## Publisher: <br>
-[lgugeng](https://clawhub.ai/user/lgugeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgugeng](https://clawhub.ai/user/lgugeng)
 
-## Use Case: <br>
-External users, editors, and agents use this skill to produce AI or technology daily reports with explicit publication dates, source checks, freshness categories, and a verification summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include stale or unverified news if external sources are not checked at run time. <br>
-Mitigation: Verify publication dates, cross-reference multiple reliable sources, and include the verification summary in the final report. <br>
-Risk: Example news items or links in the artifact may be reused as facts instead of treated as examples. <br>
-Mitigation: Treat sample items and links as templates only, and replace them with currently verified sources before publication. <br>
+## Use Case:
 
+External users and content teams use this skill to generate AI or technology daily reports that include explicit publication dates, source cross-checks, freshness categories, and a verification summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lgugeng/ai-news-daily-report) <br>
-- [Publisher profile](https://clawhub.ai/user/lgugeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown reports with source links, explicit dates, quality scores, and optional scheduling configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires external news/source verification by the agent; no executable install behavior is declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The report templates are mostly oriented toward Chinese-language AI and technology reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt the language, audience, and source list before using the skill in a different reporting workflow.
+
+Risk: The artifact includes a cron scheduling example that could run reports automatically if configured.
+
+Mitigation: Configure schedules deliberately and review timing, timezone, and payload before deployment.
+
+Risk: Daily news reports can become inaccurate if dates or sources are stale.
+
+Mitigation: Use explicit publication dates, cross-reference multiple reliable sources, and include the verification summary described by the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lgugeng/skills/ai-news-daily-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown daily report with verification checklist and optional cron scheduling JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and python3 when the workflow uses the declared command-line dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

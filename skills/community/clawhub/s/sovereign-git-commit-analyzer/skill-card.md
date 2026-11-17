@@ -1,38 +1,58 @@
-## Description: <br>
-Analyzes git commit history to report commit frequency, top contributors, file changes, and commit message quality for development insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes git commit history to report commit frequency, contributor activity, file-change hotspots, and commit-message quality.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Developers, team leads, and engineering managers use this skill to understand repository activity, contributor patterns, file-change hotspots, and commit message quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can expose private repository metadata, including contributors, file paths, branch details, and commit history summaries. <br>
-Mitigation: Treat reports as internal by default and review or redact them before uploading CI artifacts or sharing output from private repositories. <br>
+## Use Case:
 
+Developers, team leads, and engineering managers use this skill to analyze repository activity, contributor patterns, and commit quality for development process insight.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryudi84/sovereign-git-commit-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown, JSON, or plain text report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write the generated report to a file and can exit with failure when the commit message quality score is below the configured threshold.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill.json, script header, and changelog) <br>
+Risk: The security evidence reports unsafe shell input handling in the analyzer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted repositories and CI inputs until numeric and branch arguments are validated and report output is escaped.
+
+Risk: Generated reports may expose contributor emails, filenames, commit activity, and commit-message details.
+
+Mitigation: Review reports before publishing or uploading them outside the repository's intended audience.
+
+Risk: The output-file option can overwrite an existing path.
+
+Mitigation: Choose report paths deliberately and avoid pointing output at important existing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryudi84/skills/sovereign-git-commit-analyzer)
+- [Publisher profile](https://clawhub.ai/user/ryudi84)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown, JSON, or plain-text git analysis reports, with optional file output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May exit with a nonzero status in CI when the commit-message quality score is below the configured threshold.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact skill.json, script header, and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

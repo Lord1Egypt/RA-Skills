@@ -1,46 +1,60 @@
-## Description: <br>
-Beamer LaTeX slide workflow: create, compile, review, and polish academic presentations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Beamer Slide helps agents create, compile, review, and polish academic Beamer slide decks, including TikZ diagrams, figure extraction, visual audits, and quality checks.
 
-## Publisher: <br>
-[Noi1r](https://clawhub.ai/user/Noi1r) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noi1r](https://clawhub.ai/user/noi1r)
 
-## Use Case: <br>
-Students, researchers, instructors, and conference presenters use this skill to create, compile, review, audit, and polish academic Beamer slide decks from papers or existing LaTeX sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit and compile LaTeX projects and may propose shell commands for local TeX tooling. <br>
-Mitigation: Review proposed edits and commands, and run the skill only in deck workspaces you trust. <br>
-Risk: The skill can process PDFs for visual checks or figure extraction. <br>
-Mitigation: Use only PDFs you intend to share with the agent, and verify extracted figures and citations before publishing slides. <br>
-Risk: Presenter name and institution defaults may be inaccurate for a specific deck. <br>
-Mitigation: Provide the correct presenter name and institution, then review title and metadata slides before use. <br>
+## Use Case:
 
+Developers, researchers, and educators use this skill to create, compile, review, audit, and validate Beamer slide decks for lectures, seminars, conference talks, defenses, and academic presentations.
 
-## Reference(s): <br>
-- [Beamer Slide on ClawHub](https://clawhub.ai/Noi1r/beamer-slide) <br>
-- [Noi1r ClawHub publisher profile](https://clawhub.ai/user/Noi1r) <br>
-- [Create Workflow](references/create-workflow.md) <br>
-- [Review Actions](references/review-actions.md) <br>
-- [TikZ Quality Standards and Common Patterns](references/tikz-standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with LaTeX, TikZ, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or edit Beamer .tex files, propose compile commands, and report visual or pedagogical review findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can edit Beamer projects and run LaTeX/PDF commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that behavior is acceptable, prefer explicit Beamer requests, and review proposed file changes before use.
+
+Risk: Unsafe filenames or paths could affect shell compilation and PDF utility commands.
+
+Mitigation: Use safe filenames and avoid raw shell metacharacters in paths.
+
+Risk: Figure extraction can create or overwrite files in a figures directory.
+
+Mitigation: Review extracted files before allowing them to overwrite existing figures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noi1r/skills/beamer-slide)
+- [Create Workflow](references/create-workflow.md)
+- [Review Actions](references/review-actions.md)
+- [TikZ Quality Standards and Common Patterns](references/tikz-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and LaTeX/Beamer code with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or edit .tex files, figures, and validation reports when the selected action calls for it.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

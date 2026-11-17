@@ -1,44 +1,68 @@
-## Description: <br>
-Follow AI Builders generates on-demand digests of AI builder updates from X/Twitter, YouTube podcasts, and selected blogs, with summaries available in English, Chinese, or bilingual form. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Follow-aibuilders helps an agent collect public AI builder updates from X/Twitter, YouTube podcasts, and blogs, then turn them into concise English, Chinese, or bilingual digests.
 
-## Publisher: <br>
-[champagne315](https://clawhub.ai/user/champagne315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[champagne315](https://clawhub.ai/user/champagne315)
 
-## Use Case: <br>
-External users and developers use this skill to configure a local AI industry digest, fetch public updates from selected AI builders and podcasts, and receive concise summaries with source links. It also guides users through language, lookback-window, source-list, and prompt customization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional YouTube cookie configuration can expose local browser session data to the local fetch workflow. <br>
-Mitigation: Run without YT_DLP_COOKIES when possible; if authentication is unavoidable, use a dedicated cookies.txt or service browser profile rather than a primary browser session. <br>
-Risk: Digest runs intentionally perform network fetching and update local state. <br>
-Mitigation: Trigger digest runs only when network fetching is expected, and keep .env credentials out of source control with restricted file permissions. <br>
+## Use Case:
 
+Developers, product teams, and AI practitioners use this skill to monitor selected AI builders, podcasts, and company blogs and receive curated digest-style summaries with source links. It also guides users through local setup and source, language, lookback-window, and prompt customization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/champagne315/follow-aibuilders) <br>
-- [yt-dlp releases](https://github.com/yt-dlp/yt-dlp/releases) <br>
-- [X Auth Helper](https://chromewebstore.google.com/detail/x-auth-helper/miflinhihdjikdpjjigaiafeoobkhikk) <br>
-- [Anthropic Engineering](https://www.anthropic.com/engineering) <br>
-- [Claude Blog](https://claude.com/blog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown digest with source links and inline shell commands for setup or configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can output English, Chinese, or bilingual summaries according to local configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Risk: The skill can use yt-dlp browser-cookie access when YT_DLP_COOKIES is set to a browser profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in a low-privilege environment and enable browser-cookie access only when the user accepts local session-cookie exposure.
+
+Risk: User-added blog URLs may fetch arbitrary or private-network locations.
+
+Mitigation: Do not add localhost or private-network blog URLs; review custom sources before running digest collection.
+
+Risk: Prompt files and configuration can be changed locally and may alter summary behavior.
+
+Mitigation: Review prompt and configuration changes before use, especially when another user or automation modified the artifact.
+
+Risk: Command-line secrets can be exposed through shell history or process listings.
+
+Mitigation: Avoid passing API keys on the command line; prefer a protected local environment file or omit optional user authentication.
+
+Risk: The bundled npm lockfile may need dependency review before installation.
+
+Mitigation: Regenerate or audit the npm lockfile before running npm install in the scripts directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/champagne315/skills/follow-aibuilders)
+- [Artifact README](artifact/README.md)
+- [yt-dlp releases](https://github.com/yt-dlp/yt-dlp/releases)
+- [X Auth Helper extension](https://chromewebstore.google.com/detail/x-auth-helper/miflinhihdjikdpjjigaiafeoobkhikk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest with source links, plus setup and configuration guidance with inline shell commands when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports English, Chinese, or bilingual summaries according to local user configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

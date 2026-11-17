@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Google Tasks"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["googletasks"]
   icon: "https://static.oomol.com/logo/third-party/Google%20Tasks.svg"
 ---
@@ -47,7 +47,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_all_tasks` — List tasks across every Google Tasks task list visible to the current connection.
 - `list_task_lists` — List Google Tasks task lists visible to the current connection.
 - `list_tasks` — List tasks from a Google Tasks task list.
-- `move_task` — Move a Google Tasks task within a list or into another task list. [write]
+- `move_task` — Move a Google Tasks task within a list or into another task list. [destructive]
 - `patch_task` — Partially update a Google Tasks task. [write]
 - `patch_task_list` — Partially update the title of a Google Tasks task list. [write]
 - `update_task` — Deprecated alias for update_task_full. Fully replace the mutable fields of a Google Tasks task. [write]
@@ -83,11 +83,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Google Tasks is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=googletasks
+  https://console.oomol.com/connections/googletasks
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Google Tasks homepage: https://tasks.google.com
+- API documentation: https://developers.google.com/workspace/tasks/reference/rest

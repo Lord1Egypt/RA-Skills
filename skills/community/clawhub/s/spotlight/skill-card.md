@@ -1,44 +1,54 @@
-## Description: <br>
-Searches local files and indexed content on macOS using Spotlight and mdfind. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches local files and indexed content on macOS using Spotlight.
 
-## Publisher: <br>
-[li-hongmin](https://clawhub.ai/user/li-hongmin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li-hongmin](https://clawhub.ai/user/li-hongmin)
 
-## Use Case: <br>
-Developers and agents use this skill to find local macOS files, documents, and indexed content in user-specified directories before asking for confirmation to open or summarize results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local Spotlight search results can reveal sensitive file paths or document names. <br>
-Mitigation: Keep searches scoped to user-specified directories and treat returned paths as potentially sensitive. <br>
-Risk: Opening or summarizing discovered files may expose private content beyond the user's original search request. <br>
-Mitigation: Present search results first and require explicit user approval before reading any found file. <br>
-Risk: Administrative Spotlight indexing commands can change system settings. <br>
-Mitigation: Do not run sudo commands from the skill; show such commands only as information for the user to run directly. <br>
+## Use Case:
 
+Developers and agents use this skill to locate files and indexed document content in user-specified macOS directories before asking which results should be read or acted on.
 
-## Reference(s): <br>
-- [ClawHub Spotlight release page](https://clawhub.ai/li-hongmin/spotlight) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [spotlight-search.sh](artifact/scripts/spotlight-search.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text search results and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS Spotlight indexing; searches are scoped by directory and optional result limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: Broad local searches can expose sensitive file paths or lead an agent toward files the user did not intend to inspect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow, user-specified directories, present returned paths first, and read files only after explicit user approval.
+
+Risk: Privileged Spotlight indexing commands can change system indexing behavior.
+
+Mitigation: Do not approve or run sudo indexing commands through the agent; run administrative commands directly in Terminal only when intentionally requested by the user.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/li-hongmin/skills/spotlight)
+- [Publisher Profile](https://clawhub.ai/user/li-hongmin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain text search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns matching paths with file type and size when available; requires macOS Spotlight and a user-specified directory.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

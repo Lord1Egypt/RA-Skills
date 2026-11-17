@@ -4,6 +4,8 @@
 // 模型只需按输出 token 行动，并把分隔线之后的话术原样转发给用户。
 
 const {
+    printShareOneScriptError,
+    emitError,
     CREDENTIAL_MODE_SUDOWORK_PROXY,
     CREDENTIAL_MODE_DIRECT_FALLBACK,
     detectCredentialMode,
@@ -67,9 +69,7 @@ function askForKeyPrompt(credentialMode) {
 }
 
 function printSudoworkWriteBroken() {
-    console.log('ERROR:SUDOWORK_WRITE_BROKEN');
-    console.log(SEPARATOR);
-    console.log('Sudowork 凭证环境当前“可读但写入失败”，API Key 无法自动保存。请在 Sudowork 密钥管理中手动配置 ShareOne API Key（namespace `service:shareone`，key `X-API-Key`），或检查 Auth Proxy 状态后再让我重试。');
+    emitError('SUDOWORK_WRITE_BROKEN', 'Configure service:shareone / X-API-Key in Sudowork or restore the Auth Proxy write connection.');
 }
 
 function guestKeyNotification(apiKey) {
@@ -83,6 +83,7 @@ function guestKeyNotification(apiKey) {
 async function saveKeyAndRecheck(apiKey) {
     let credentialMode = await detectCredentialMode({ refresh: true });
 
+    // User explicitly provided a key via --key, so force overwrite is acceptable.
     if (credentialMode.mode === CREDENTIAL_MODE_SUDOWORK_PROXY) {
         let savedToSudowork = false;
         try {
@@ -92,9 +93,8 @@ async function saveKeyAndRecheck(apiKey) {
             credentialMode = await detectCredentialMode({ refresh: true });
             if (credentialMode.mode === CREDENTIAL_MODE_SUDOWORK_PROXY) {
                 printSudoworkWriteBroken();
-                process.exit(1);
             }
-            saveLocalApiKey(apiKey);
+            saveLocalApiKey(apiKey, { force: true });
         }
 
         credentialMode = await detectCredentialMode({ refresh: true });
@@ -106,7 +106,6 @@ async function saveKeyAndRecheck(apiKey) {
             }
             // 保存声称成功（或失败回退本地）但 secrets 列表里仍然没有：可读不可写。
             printSudoworkWriteBroken();
-            process.exit(1);
         }
         // 复查时 proxy 已不可用，走 fallback；key 已存本地。
         console.log('READY');
@@ -115,7 +114,7 @@ async function saveKeyAndRecheck(apiKey) {
         return;
     }
 
-    saveLocalApiKey(apiKey);
+    saveLocalApiKey(apiKey, { force: true });
     console.log('READY');
     console.log(`MODE:${modeName(credentialMode)}`);
     if (isSudowork()) console.log('NOTE:SUDOWORK_FALLBACK_KEY_SAVED');
@@ -123,25 +122,13 @@ async function saveKeyAndRecheck(apiKey) {
 
 async function createGuestKey() {
     const credentialMode = await detectCredentialMode({ refresh: true });
-    let result;
-    try {
-        result = await requestPublicShareOneJson('/api/v1/agent-guest-key', {
+    const result = await requestPublicShareOneJson('/api/v1/agent-guest-key', {
             method: 'POST',
             authRequired: false,
         });
-    } catch (error) {
-        if (error.statusCode === 429) {
-            console.log('ERROR:RATE_LIMIT_EXCEEDED');
-            console.log(SEPARATOR);
-            console.log(`获取临时凭证失败：自动创建临时 API Key 触发了频率限制（每小时最多 20 次、每天最多 200 次）。请稍后再试，或前往 ${getBaseUrl()} 手动注册并获取 API Key。`);
-            process.exit(1);
-        }
-        throw error;
-    }
 
     if (!result || !result.api_key) {
-        console.log('ERROR:INVALID_RESPONSE');
-        process.exit(1);
+        emitError('INVALID_RESPONSE', 'The guest credential response contains no key.');
     }
 
     let fallbackSaved = false;
@@ -152,13 +139,39 @@ async function createGuestKey() {
             const refreshedMode = await detectCredentialMode({ refresh: true });
             if (refreshedMode.mode === CREDENTIAL_MODE_SUDOWORK_PROXY) {
                 printSudoworkWriteBroken();
-                process.exit(1);
             }
-            saveLocalApiKey(result.api_key);
+            try {
+                saveLocalApiKey(result.api_key);
+            } catch (saveError) {
+                if (saveError.code === 'EXISTING_KEY_CONFLICT') {
+                    // Guest key created on server but NOT saved — existing key preserved.
+                    console.log(`GUEST_KEY_CREATED_NOT_SAVED:${result.api_key}`);
+                    console.log(SEPARATOR);
+                    console.log(`已创建临时 API Key：\`${result.api_key}\``);
+                    console.log(`但您已有一个不同的 API Key（${saveError.existingKeyHint}），为避免覆盖，新 key 未保存。`);
+                    console.log('如果您想为协作者创建 key，请把上面的 key 发给对方。');
+                    console.log('如果您想替换当前 key，请使用 --key <新key> 显式替换。');
+                    return;
+                }
+                throw saveError;
+            }
             fallbackSaved = true;
         }
     } else {
-        saveLocalApiKey(result.api_key);
+        try {
+            saveLocalApiKey(result.api_key);
+        } catch (saveError) {
+            if (saveError.code === 'EXISTING_KEY_CONFLICT') {
+                console.log(`GUEST_KEY_CREATED_NOT_SAVED:${result.api_key}`);
+                console.log(SEPARATOR);
+                console.log(`已创建临时 API Key：\`${result.api_key}\``);
+                console.log(`但您已有一个不同的 API Key（${saveError.existingKeyHint}），为避免覆盖，新 key 未保存。`);
+                console.log('如果您想为协作者创建 key，请把上面的 key 发给对方。');
+                console.log('如果您想替换当前 key，请使用 --key <新key> 显式替换。');
+                return;
+            }
+            throw saveError;
+        }
         fallbackSaved = isSudowork();
     }
 
@@ -178,9 +191,7 @@ async function createGuestKey() {
     if (args[0] === '--key') {
         const apiKey = args[1];
         if (!apiKey) {
-            console.error('ERROR:MISSING_VALUE:--key');
-            usage();
-            process.exit(1);
+            emitError('ERROR:MISSING_VALUE:--key');
         }
         await saveKeyAndRecheck(apiKey);
         return;
@@ -192,9 +203,7 @@ async function createGuestKey() {
     }
 
     if (args.length > 0) {
-        console.error(`ERROR:UNKNOWN_ARGUMENT:${args[0]}`);
-        usage();
-        process.exit(1);
+        emitError(`ERROR:UNKNOWN_ARGUMENT:${args[0]}`);
     }
 
     const credentialMode = await detectCredentialMode({ refresh: true });
@@ -208,6 +217,5 @@ async function createGuestKey() {
     console.log(SEPARATOR);
     console.log(askForKeyPrompt(credentialMode));
 })().catch((error) => {
-    console.error(`ERROR:${error.message}`);
-    process.exit(1);
+    process.exit(printShareOneScriptError(error));
 });

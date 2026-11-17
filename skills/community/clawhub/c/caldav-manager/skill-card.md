@@ -1,41 +1,50 @@
-## Description: <br>
-Caldav Manager is a deprecated ClawHub skill that redirects users to the organizer skill for calendar and task management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated ClawHub skill that directs users from caldav-manager to the organizer skill for calendar and task management.
 
-## Publisher: <br>
-[kesuek](https://clawhub.ai/user/kesuek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kesuek](https://clawhub.ai/user/kesuek)
 
-## Use Case: <br>
-External users who encounter this deprecated release can use it as a migration pointer from CalDAV Manager to organizer. The skill does not perform CalDAV actions itself. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may install this deprecated release expecting active CalDAV automation. <br>
-Mitigation: Treat it only as a migration notice and use the organizer skill for calendar and task workflows. <br>
-Risk: The replacement organizer skill may require access to calendars, tasks, accounts, or credentials. <br>
-Mitigation: Review the organizer skill separately before granting access to sensitive resources. <br>
+## Use Case:
 
+Users who encounter caldav-manager use this skill to learn that it is deprecated and to switch to the organizer skill for calendar and task management.
 
-## Reference(s): <br>
-- [ClawHub Caldav Manager release page](https://clawhub.ai/kesuek/caldav-manager) <br>
-- [Replacement organizer skill](https://clawhub.com/kesuek/organizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated notice with a replacement skill pointer; no runtime actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may install or invoke this deprecated skill expecting active CalDAV management behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the organizer replacement for calendar and task workflows, and verify trust in that separate skill before installation or invocation.
+
+## Reference(s):
+
+- [Caldav Manager on ClawHub](https://clawhub.ai/kesuek/skills/caldav-manager)
+- [Organizer replacement](https://clawhub.com/kesuek/organizer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with an inline organizer command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated skill notice; no code execution behavior is described by the server security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

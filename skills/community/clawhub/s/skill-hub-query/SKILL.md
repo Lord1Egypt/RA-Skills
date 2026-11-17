@@ -1,5 +1,7 @@
 ---
 name: skill-hub-query
+bins: [bash, curl, jq, python3, git]
+metadata: {"openclaw": {"requires": {"env": ["PYTHONUTF8", "_SHQ_ZIP_UTF8_REEXEC"]}}}
 description: >-
   Query, install, update, and edit AI agent skills on any compatible Skill Hub
   (self-hosted, or any Hub implementing the documented API contract).
@@ -9,15 +11,20 @@ description: >-
   keyword / author / time / source, inspect version history, install or upgrade
   a specific version, and edit a skill's card metadata (display name, summary,
   tags, visibility, applicable position, etc.) via a safety-first GET -> diff ->
-  backup -> PUT -> dual-channel verify -> auto-rollback flow. Trigger phrases
+  backup -> PUT -> dual-channel verify -> auto-rollback flow, plus team member
+  management (search teams / list members / add / remove with pre-write
+  de-duplication and post-write verification). Trigger phrases
   include "what's new on the hub", "search for X skill", "install X",
   "update Y skill", "edit hub card info", "show skill version history",
-  "skill-hub-query".
+  "add a team member", "remove from team", "list team members",
+  "skill-hub-query". Use when the user asks what is on a hub, wants a skill
+  installed or upgraded to an exact version, needs card metadata edited
+  safely, or manages skill-hub team membership.
 ---
 
 # skill-hub-query
 
-- **Version**: 1.1.3
+- **Version**: 1.4.0
 - **License**: MIT
 - **Author**: Evan Song (<https://github.com/Songhonglei>)
 - **Repository**: <https://github.com/Songhonglei/build-better-skills/tree/main/skills/skill-hub-query>
@@ -31,6 +38,25 @@ description: >-
 > It does NOT target [clawhub.ai](https://clawhub.ai) — that Hub has its own
 > API surface and an official CLI named `clawhub`. Use this tool when you have
 > a private or compatible Hub to drive.
+
+---
+
+## Requirements
+
+| Command | Used for | If missing |
+|---|---|---|
+| `bash` (≥ 4.0) | all scripts | nothing works |
+| `curl` | every HTTP call | nothing works |
+| `jq` | JSON parsing, cache queries | nothing works |
+| `python3` (≥ 3.6, stdlib only) | `scripts/_zip_safe.py` — listing and extracting skill archives | `install.sh` cannot extract |
+| `file` | archive type detection in error paths | degraded diagnostics only |
+| `git` | `edit.sh` owner pre-check via `git config user.email` | set `SKILL_HUB_OWNER_EMAIL` instead |
+
+> `unzip` is **not** required. Extraction goes through Python's `zipfile`
+> because Info-ZIP `unzip` 6.00 ignores the ZIP spec's UTF-8 filename flag and
+> mangles non-ASCII filenames — the installed skill then crashes on first run
+> with a `FileNotFoundError` that points at the wrong culprit. Run
+> `bash scripts/doctor.sh` to verify filename handling on your machine.
 
 ---
 
@@ -97,9 +123,28 @@ Then verify with `bash scripts/doctor.sh`.
 5. Show: "installed; will be loaded on the next agent session"
 
 ### "Install a batch"
+
 1. Query each slug for version + permission info
 2. Show one combined manifest + estimated download size, wait for approval
 3. After approval, install **serially** with `install.sh <slug> --yes` (avoid rate limiting); report failures separately
+
+### "Manage team members"
+
+Runs `team.sh` (team member management: search / my teams / detail / member
+list / add / remove). Optional Hub capability — contract in
+[`references/api.md`](references/api.md) §5; if your Hub does not implement
+it, set `SKILL_HUB_DISABLE_TEAM=1`.
+
+Field-tested pitfalls the script already defends against (do not bypass):
+
+- `add` returns success even for non-existent emails and writes a dangling
+  record — the script re-verifies every add against the member list.
+- `add` is idempotent for existing members — the script de-duplicates first
+  and reports the existing role (never silently changes it).
+- The pagination parameter is `current=` (`page=` is silently ignored).
+- Valid roles: `member` / `admin` / `viewer`.
+- Write operations show the target team + full roster and wait for
+  confirmation; `--yes` must be user-authorized (an agent must never pass it).
 
 ---
 
@@ -127,6 +172,8 @@ Then verify with `bash scripts/doctor.sh`.
 | `SKILL_HUB_BACKUP_RETENTION` | `20` | How many recent edit.sh backups to keep per slug (older are pruned) |
 | `SKILL_HUB_DOWNLOAD_TIMEOUT` | `120` | curl `--max-time` (seconds) for skill ZIP download in install.sh |
 | `SKILL_HUB_OWNER_EMAIL` | (auto: `git config user.email`) | Email used by edit.sh owner pre-check; override if your git identity differs from your Hub identity |
+| `SKILL_HUB_TEAM_PREFIX` | `/api/team` | Path prefix for team endpoints (team.sh only) |
+| `SKILL_HUB_DISABLE_TEAM` | `0` | Set to `1` to disable `team.sh` when your Hub does not implement the team endpoints |
 
 ### Skills install directory
 
@@ -188,6 +235,7 @@ is needed (all supported operations are public, read-only).
 | `sync.sh` | — | ⚪ no-op (live search needs no cache; informational, exit 0) |
 | `query.sh author <handle>` | — | ❌ no author-filter param on skillhub.cn (use `keyword`) |
 | `edit.sh` (edit card metadata) | — | ❌ not available — see below |
+| `team.sh` (team management) | — | ❌ not available (no team endpoints on skillhub.cn) |
 
 ### Why edit is not supported on skillhub.cn
 
@@ -239,6 +287,34 @@ parsed with jq (sub-ms).
 > Incremental sync does NOT prune removed/withdrawn skills (it only unions
 > new records). If you hit a "found in cache but install 404s" case, run
 > `bash sync.sh --full`. The full sync log will report "pruned N removed".
+
+### Do not treat cached `latestVersion` as authoritative
+
+`query.sh` list/slug queries read the **local cache**. When that cache is stale the
+`latestVersion` field is stale too — and **a stale value looks exactly like a fresh
+one**. There is no signal telling you to doubt it.
+
+Observed failure: a cache left untouched for 67 days reported an old release as
+"latest", which nearly caused a publish against the wrong version baseline.
+
+- `query.sh` now warns when the cache is **older than 7 days** (notice) or
+  **older than 30 days** (loud). Warnings go to stderr only and never block —
+  offline use stays intentional. When you see one, run `sync.sh` before trusting
+  the numbers.
+- **For anything version-critical** — deciding a release number, comparing
+  versions, checking whether an upgrade exists — re-sync first and only then read
+  the number:
+
+```bash
+bash scripts/sync.sh && bash scripts/query.sh slug <slug>
+```
+
+> Note: the `skillhub_cn` provider queries the hub live and never reads this
+> cache, so the warning does not apply there — it also offers a dedicated
+> `query.sh versions <slug>` listing.
+
+> Rule of thumb: use the cache for **discovery** (search, browse, read summaries);
+> never let a cached number decide a release.
 
 ---
 
@@ -400,6 +476,7 @@ skill-hub-query/
 └── scripts/
     ├── _lib.sh                       # path discovery + token + curl wrapper (sourced)
     ├── _edit_lib.sh                  # edit.sh internals (sourced)
+    ├── _zip_safe.py                  # zip list/extract with correct filename decoding
     ├── doctor.sh                     # one-shot self-check
     ├── sync.sh                       # full / incremental cache sync
     ├── query.sh                      # query the local cache
@@ -452,6 +529,10 @@ For direct `curl` calls, pass the auth header when you have a token:
 | `[error] Skill 'X' not found (HTTP 404)` | Wrong slug / removed; try `query.sh slug X` and possibly `sync.sh --full` |
 | `[error] Download failed: X (network error)` | curl-layer failure (network/DNS); check connectivity |
 | `zip contains unsafe paths` | Defense against directory traversal; report to Hub maintainer |
+| `extraction failed (corrupt or truncated zip)` | The download is not a valid archive; existing install untouched. Retry; if it persists, report to the Hub maintainer |
+| `version mismatch: requested vX, but the package's SKILL.md says vY` | The Hub's download endpoint served a different version than requested. The ledger records the actual version. Pin the version explicitly and re-check if you need an exact one |
+| `version-history API unavailable; falling back to cached version` | The version API failed (the printed reason says whether it was auth or network). The cache can lag the Hub, so verify the version, or run `sync.sh` and reinstall |
+| `_zip_safe.py cannot decode UTF-8 filenames` | The python3 `zipfile` module is broken/incomplete; skills with non-ASCII filenames would break after install. Fix python3 before installing |
 | `Extracted content is missing SKILL.md` | Malformed zip; aborted without touching existing install |
 | `install failed; rolling back` | Atomic dir replace failed (rare; usually disk full) |
 | `X exists and --yes not given` | Agent didn't get user authorization; have the user say "yes" first |
@@ -467,25 +548,11 @@ For direct `curl` calls, pass the auth header when you have a token:
 3. Incremental sync does not prune removed skills (see "Cache" section).
 4. The legacy channel is a transition path; for production / long-term use, configure a token.
 5. `edit.sh` requires optional `/edit` and `/detail` endpoints; not all Hubs expose them.
+6. **The cached `latestVersion.version` is not a source of truth.** It is a snapshot written by `sync.sh` and is not invalidated when the Hub publishes afterwards (observed drift: cache `1.3.0` vs. real latest `2.2.2`). `install.sh` therefore queries `/versions/<slug>?limit=1` first and only falls back to the cache — with a loud warning — when that call fails. If you write your own logic, use `items[0].version`, never the cached field.
+7. **A Hub's download endpoint may serve a version other than the one requested** (observed: requested `v2.2.2`, received the `v1.3.0` package). Before replacing anything, `install.sh` compares the version declared in the package's `SKILL.md` and records the actual value with a warning. It warns rather than fails, because some packages legitimately ship an un-bumped `SKILL.md`. When you need an exact version, pass it explicitly and check the output.
 
 ---
 
-## Changelog
+## Version
 
-- **v1.0.1** (2026-06-22): UGLIC patch — all 3 ERR + 4 WARN + 2 INFO fixed.
-  - **L1 (ERR)** Fix `require_hub_url` exit-in-cmdsub trap: `endpoint="$(require_hub_url)"` silently dropped the exit because `exit` only kills the subshell. Refactored to `require_hub_url || exit $?; endpoint="$(load_endpoint)"` (api_get / api_download / edit.sh). Adds an explicit doc-comment so callers don't regress.
-  - **L2 (ERR)** All curl calls now set `--max-time`: 30s for JSON API (api_get / _edit_lib `PUT`/`GET`) and 120s for ZIP downloads (overridable via `SKILL_HUB_DOWNLOAD_TIMEOUT`). Previously a hung Hub would hang the entire skill indefinitely.
-  - **L3 (WARN)** `sync.sh` now validates the first-page response is non-empty JSON before computing `total / pages`, instead of silently reporting "Hub has 0 skill(s)" on failure.
-  - **U1 (ERR)** Auto-fixed by L1: misleading legacy-fallback notice no longer appears before the real "no Hub URL" error in sync.sh.
-  - **U2 (WARN)** `edit.sh` now calls `require_hub_url` before printing any step output (previously: empty `[edit] Hub URL :` and `[1/5] fetching...` were printed before the actual error).
-  - **U3 (INFO)** `load_auth_scheme` now auto-appends a trailing space if non-empty and missing one (so `SKILL_HUB_AUTH_SCHEME="Bearer"` works, not just `"Bearer "`); explicit empty (X-API-Key style) still keeps no space.
-  - **I1 (WARN)** Documented previously-undocumented env vars: `SKILL_HUB_BACKUP_RETENTION` (edit.sh backups) and the new `SKILL_HUB_DOWNLOAD_TIMEOUT`.
-  - **C1 (WARN)** `sync.sh` and `doctor.sh` now register `trap` EXIT handlers that prune their `mktemp` temp files on any exit path (success / error / Ctrl-C). install.sh already had one.
-- **v1.0.0** (2026-06-22): Initial open-source release of `skill-hub-query`.
-  Generalized fork of an internal Hub query tool:
-  - `SKILL_HUB_URL` / `SKILL_HUB_AUTH_HEADER` / `SKILL_HUB_API_PREFIX` / `SKILL_HUB_LEGACY_API_PREFIX` env-driven configuration (no baked-in default; see Hub compatibility note)
-  - XDG-compliant cache and credentials directories
-  - Owner pre-check via `git config user.email` (no internal-network-specific paths)
-  - `edit.sh` made truly optional via `SKILL_HUB_DISABLE_EDIT=1` for Hubs without `/edit` endpoint
-  - Full five-stage safety flow for metadata edits (GET -> diff -> backup -> PUT -> dual-channel verify -> rollback)
-  - English-first, no organization-specific identifiers
+Currently **v1.2.0**. Full history: [CHANGELOG.md](./CHANGELOG.md).

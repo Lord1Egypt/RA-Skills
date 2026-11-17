@@ -1,44 +1,63 @@
-## Description: <br>
-Liuyao En provides Liuyao (Six Lines) I Ching coin divination readings using a local virtual coin-toss script and reference material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Liuyao En provides I Ching Six Lines coin divination using virtual coin simulation and English guidance backed by Chinese reference material.
 
-## Publisher: <br>
-[wudi488](https://clawhub.ai/user/wudi488) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wudi488](https://clawhub.ai/user/wudi488)
 
-## Use Case: <br>
-External users can request a reflective Liuyao/I Ching reading for one personal question, using simulated coin tosses and traditional reference texts as an entertainment or self-reflection aid. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake divination output for professional advice or a reliable prediction. <br>
-Mitigation: Present readings as entertainment or personal reflection, not as advice for health, financial, legal, or major life decisions. <br>
+## Use Case:
 
+External users and agents use this skill to conduct reflective Liuyao readings: simulate six coin throws, map the resulting hexagram, and produce an interpretation using I Ching, Five Elements, Confucian, Taoist, and historical references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wudi488/liuyao-en) <br>
-- [English adaptation guide](references/main.md) <br>
-- [64 hexagrams reference](references/64gua.md) <br>
-- [Five Elements reference](references/five_elements.md) <br>
-- [Confucian wisdom reference](references/confucian.md) <br>
-- [Taoist wisdom reference](references/taoist.md) <br>
-- [History wisdom reference](references/history_wisdom.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown narrative with virtual coin-toss results and a six-part interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local reference text and a Python coin-toss script; readings should not be treated as professional advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.1 (source: frontmatter and server release evidence) <br>
+Risk: Divination readings could be mistaken for professional financial, medical, legal, or safety-critical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present readings as reflection and guidance only, and direct users to qualified professionals for high-stakes decisions.
+
+Risk: Some supporting references are in Chinese, which may limit interpretability or translation fidelity for English users.
+
+Mitigation: Disclose when Chinese reference material is being used and provide plain-language explanations rather than unexplained source excerpts.
+
+Risk: Virtual coin tosses are randomized, so repeated runs can produce different readings for the same question.
+
+Mitigation: Record the generated lines used for a reading and avoid presenting repeat readings as deterministic verification.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wudi488/skills/liuyao-en)
+- [Liuyao Hexagram Reference](references/64gua.md)
+- [Confucian Reference](references/confucian.md)
+- [Five Elements Reference](references/five_elements.md)
+- [History and Strategy Reference](references/history_wisdom.md)
+- [English Adaptation Guide](references/main.md)
+- [Taoist Reference](references/taoist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown narrative with optional shell command invocation and coin-throw output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include randomized virtual coin-toss results from scripts/liuyao.py.]
+
+## Skill Version(s):
+
+1.7.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

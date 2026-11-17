@@ -1,45 +1,60 @@
-## Description: <br>
-This skill helps agents manage Umeng custom event definitions through umeng-cli calls to Umeng OpenAPI endpoints for App and Mini Program event creation, batch creation, listing, and verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Umeng custom event definitions through `umeng-cli call`, including App event creation, Mini Program batch event creation, and App or Mini Program event-list checks.
 
-## Publisher: <br>
-[squall0925](https://clawhub.ai/user/squall0925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squall0925](https://clawhub.ai/user/squall0925)
 
-## Use Case: <br>
-Developers and analytics operators use this skill to create, batch-create, list, and verify Umeng custom event definitions for App, Mini Program, H5, and Mini Game properties. It is intended for workflows that require careful parameter validation, duplicate checks, and user confirmation before write operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports that the skill instructs agents to send extra telemetry containing the user's AppKey. <br>
-Mitigation: Review before installing and remove or disable umeng-cli trace steps that report AppKey values unless the organization has explicitly approved that telemetry. <br>
-Risk: The skill requires Umeng CLI login and local credential caching. <br>
-Mitigation: Use the skill only in trusted environments, protect cached credentials, and verify the CLI login state and storage behavior before use. <br>
-Risk: The write operations create event definitions that the artifact describes as not deletable, renameable, or editable through the available Umeng OpenAPI. <br>
-Mitigation: Validate event names and display names, check for duplicates, and obtain explicit user confirmation before each write operation. <br>
+## Use Case:
 
+Developers and operations teams use this skill to create, batch-create, precheck, and verify Umeng custom event definitions for App, Mini Program, H5, and mini-game properties.
 
-## Reference(s): <br>
-- [Skill definition](SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/squall0925/uapp-event-manage) <br>
-- [Umeng CLI project](https://github.com/umeng/umeng-cli) <br>
-- [Umeng OpenAPI gateway](https://gateway.open.umeng.com/openapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline umeng-cli shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include validation results, confirmation prompts for write operations, API response summaries, and verification guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The security evidence flags opaque telemetry involving app identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat appkey and dataSourceId values as sensitive tenant identifiers and avoid exposing them in telemetry unless the user and deployment policy explicitly allow it.
+
+Risk: The security evidence flags the curl-to-shell installer as unsafe.
+
+Mitigation: Prefer the documented npm install path and use the curl-to-shell installer only after independent review.
+
+Risk: The skill can create event definitions that are documented as irreversible.
+
+Mitigation: Require local parameter validation, duplicate prechecks, and explicit user confirmation before any write operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/squall0925/skills/uapp-event-manage)
+- [umeng-cli project homepage](https://github.com/umeng/umeng-cli)
+- [Umeng OpenAPI gateway](https://gateway.open.umeng.com/openapi)
+- [Publisher profile](https://clawhub.ai/user/squall0925)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON command arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose read or write Umeng OpenAPI calls; write operations require user confirmation and local parameter validation.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

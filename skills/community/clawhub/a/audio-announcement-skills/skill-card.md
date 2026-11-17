@@ -1,43 +1,58 @@
-## Description: <br>
-Beep - Xiao Laba provides voice announcements for agent status updates, including received requests, task progress, completion, and errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time voice announcements for OpenClaw agent events, with CLI and Python helpers for short spoken status updates.
 
-## Publisher: <br>
-[wililam](https://clawhub.ai/user/wililam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wililam](https://clawhub.ai/user/wililam)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add spoken, real-time status announcements to OpenClaw workflows and command-line agent tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on spoken updates may reveal task context to nearby listeners or become disruptive during normal agent work. <br>
-Mitigation: Install only when voice status updates are desired, keep announcement text generic, and use the provided enable/disable and configuration controls to limit when speech is active. <br>
-Risk: The skill proposes persistent changes to global agent instruction and startup files, which can make announcements carry across future sessions. <br>
-Mitigation: Review the proposed edits to AGENTS.md, MEMORY.md, IDENTITY.md, TOOLS.md, USER.md, and startup hooks before applying them, and remove persistence mechanisms that are not needed. <br>
-Risk: Announcement text is sent through an online TTS dependency. <br>
-Mitigation: Avoid using confidential or sensitive text in announcements, prefer short generic phrases, and pin dependencies before deployment. <br>
+## Use Case:
 
+Developers using OpenClaw can add concise local voice announcements for received messages, task progress, completion, errors, startup checks, and integration tests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wililam/audio-announcement-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/wililam) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, configuration snippets, and spoken audio side effects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Announcement text should be concise; the skill can play local audio, write user-level configuration and cache files, and fall back to console output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata, artifact metadata, pyproject.toml) <br>
+Risk: The skill asks agents to make announcements mandatory across sessions and persist those rules in workspace behavior files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when always-on voice announcements are desired, and remove or decline global behavior rules and session hooks before use.
+
+Risk: Announcement text may be sent to a remote text-to-speech backend.
+
+Mitigation: Do not announce prompt content, response content, secrets, or sensitive user data; keep messages short and non-sensitive.
+
+Risk: The server security verdict is suspicious because the skill combines persistent behavior changes with voice-announcement automation.
+
+Mitigation: Review the skill and its configuration before deployment, and limit execution to trusted workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wililam/skills/audio-announcement-skills)
+- [ClawHub publisher profile](https://clawhub.ai/user/wililam)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell, Python, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke text-to-speech playback and write local configuration and audio cache files.]
+
+## Skill Version(s):
+
+2.2.0 (source: release metadata, artifact metadata, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

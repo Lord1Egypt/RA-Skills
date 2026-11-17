@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "title": "A Brief History of AI (1943–2026) · Sample",
+    "subtitle": "World map as base · time axis raised · nodes floating by real geo-coordinates and year (this sample loads no map texture and uses a solid-color base to demo the engine).",
+    "yearMin": 1943,
+    "yearMax": 2026,
+    "axisBase": 10,
+    "axisH": 120,
+    "mapWidth": 200,
+    "mapDepth": 100
+  },
+  "map": null,
+  "milestones": [
+    { "year": 1943, "type": "event",   "title": "McCulloch–Pitts Neuron Model", "loc": "Chicago, USA",        "lat": 41.88, "lon": -87.63, "desc": "The first formal mathematical model of an artificial neuron, laying the theoretical foundation of neural networks." },
+    { "year": 1950, "type": "event",   "title": "Turing Test (Alan Turing)",     "loc": "Manchester, UK",      "lat": 53.48, "lon": -2.24,  "desc": "Turing proposed the famous criterion for judging whether a machine is intelligent." },
+    { "year": 1956, "type": "event",   "title": "Dartmouth Workshop",            "loc": "Hanover, USA",        "lat": 43.70, "lon": -72.29, "desc": "The term 'Artificial Intelligence' was coined and the field was formally established." },
+    { "year": 1957, "type": "event",   "title": "Perceptron",                    "loc": "Cornell, USA",        "lat": 42.45, "lon": -76.48, "desc": "Rosenblatt proposed the first learnable artificial neural network model." },
+    { "year": 1997, "type": "event",   "title": "Deep Blue beats Kasparov",      "loc": "New York, USA",       "lat": 40.71, "lon": -74.01, "desc": "IBM's Deep Blue defeated the human world chess champion." },
+    { "year": 2006, "type": "person",  "pid": "hinton", "initial": "GH", "title": "Geoffrey Hinton", "loc": "Toronto, Canada", "lat": 43.65, "lon": -79.38, "desc": "The 'godfather of deep learning', who drove the neural-network revival." },
+    { "year": 2012, "type": "event",   "title": "AlexNet (ImageNet)",            "loc": "Toronto, Canada",     "lat": 43.65, "lon": -79.38, "desc": "Deep learning crushed traditional methods on image recognition, igniting the wave." },
+    { "year": 2016, "type": "event",   "title": "AlphaGo beats Lee Sedol",       "loc": "London, UK",          "lat": 51.51, "lon": -0.13,  "desc": "DeepMind's reinforcement-learning system defeated the Go world champion." },
+    { "year": 2017, "type": "event",   "title": "Transformer Architecture",      "loc": "Mountain View, USA",  "lat": 37.42, "lon": -122.08,"desc": "Google proposed a sequence-modeling architecture based entirely on attention." },
+    { "year": 2022, "type": "product", "title": "ChatGPT (OpenAI)",              "loc": "San Francisco, USA",  "lat": 37.77, "lon": -122.42,"desc": "The milestone product that brought generative AI to the public." },
+    { "year": 2023, "type": "product", "title": "GPT-4 (OpenAI)",                "loc": "San Francisco, USA",  "lat": 37.77, "lon": -122.42,"desc": "A multimodal large model with a major leap in reasoning ability." },
+    { "year": 2026, "type": "product", "title": "Gemini 3 (Google)",             "loc": "Mountain View, USA",  "lat": 37.42, "lon": -122.08,"desc": "Google's new-generation multimodal model, deeply integrated with search and its ecosystem." }
+  ],
+  "brandMap": {
+    "ChatGPT (OpenAI)": { "color": "#10a37f", "abbr": "GPT" },
+    "GPT-4 (OpenAI)":   { "color": "#10a37f", "abbr": "G4" },
+    "Gemini 3 (Google)":{ "color": "#4285f4", "abbr": "G3" }
+  },
+  "portraits": {},
+  "logos": {},
+  "wiki": {
+    "McCulloch–Pitts Neuron Model": "https://en.wikipedia.org/wiki/Artificial_neuron",
+    "Transformer Architecture": "https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)",
+    "ChatGPT (OpenAI)": "https://en.wikipedia.org/wiki/ChatGPT"
+  },
+  "baike": {}
+}

@@ -1,39 +1,53 @@
-## Description: <br>
-CI release engineer skill for environment compatibility, Windows-safe command composition, and automation-stable execution paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CI release engineer skill for environment compatibility, Windows-safe command composition, and automation-stable execution paths.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and release engineers use this skill to review CI commands, shell quoting, PHP compatibility assumptions, and automation entry points so execution paths remain portable and repeatable across environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or revised shell commands may affect build or deployment workflows if run without review. <br>
-Mitigation: Review proposed commands before execution, especially in release automation, and validate them through the intended shell path. <br>
+## Use Case:
 
+Developers and release engineers use this skill to make CI automation, shell commands, PowerShell paths, and PHP-sensitive command code more portable and repeatable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/ci) <br>
-- [Publisher profile](https://clawhub.ai/user/aiweline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with command examples, compatibility notes, validation steps, and remaining-risk summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focused on portable command composition and repeatable automation validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can lead an agent to propose command changes or focused validation commands for CI and release automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed command changes and validation commands before use, especially on Windows, PowerShell, PHP, or release paths.
+
+Risk: Cross-environment command behavior may remain unverified when the target shell or CI runner is unavailable.
+
+Mitigation: Document environment assumptions and run the narrowest confirming command on the intended shell path before relying on the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/ci)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with command examples and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include environment assumptions and remaining portability risks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

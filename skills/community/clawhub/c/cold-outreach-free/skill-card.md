@@ -1,47 +1,62 @@
-## Description: <br>
-Run a complete cold email outreach campaign from lead sourcing through reply handling, including ICP definition, lead sourcing strategy, email sequence construction, personalization, suppression management, and optional n8n automation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a complete cold email outreach campaign from sourcing leads to handling replies, including ICP definition, lead sourcing, email sequence construction, personalization, reply handling, and suppression management without paid tools or SaaS subscriptions.
 
-## Publisher: <br>
-[CelestChief](https://clawhub.ai/user/CelestChief) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[celestchief](https://clawhub.ai/user/celestchief)
 
-## Use Case: <br>
-External teams, sales operators, founders, and agents use this skill to plan and execute a low-cost cold email outreach workflow. It produces structured guidance for sourcing leads, writing and sending a three-touch sequence, tracking status in spreadsheets, handling replies, and maintaining suppression lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support unsolicited outreach and contact-data handling without strong safeguards. <br>
-Mitigation: Use it only for lawful outreach where data-source permissions, anti-spam requirements, opt-out language, suppression handling, and retention limits have been reviewed. <br>
-Risk: An agent or workflow could send live emails before the campaign is approved. <br>
-Mitigation: Require human approval of the lead list, message copy, sending schedule, and volume before any email is sent. <br>
-Risk: Imported n8n workflows or sending credentials could expand operational risk. <br>
-Mitigation: Use a dedicated sending account with revocable credentials and inspect any external n8n workflow JSON before importing it. <br>
+## Use Case:
 
+External sales, growth, and operations teams use this skill to plan and run cold email outreach using free-tier tools. It guides an agent through defining an ICP, sourcing and cleaning leads, drafting a multi-touch sequence, sending or automating follow-ups, handling replies, and maintaining suppression lists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CelestChief/cold-outreach-free) <br>
-- [Lead Sourcing Reference](references/lead-sourcing.md) <br>
-- [Email Sequences Reference](references/email-sequences.md) <br>
-- [Reply Handling Reference](references/reply-handling.md) <br>
-- [Tools Free Tier Setup Guide](references/tools-free-tier.md) <br>
-- [Cold Outreach System product page](https://qssys.gumroad.com/l/cold-outreach-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, templates, and inline shell commands where n8n setup is discussed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces campaign plans, email copy, lead-list fields, tracking-sheet status guidance, reply playbooks, suppression handling steps, and optional n8n setup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence, SKILL.md frontmatter, _meta.json, package.json) <br>
+Risk: The skill enables broad automated outreach and contact data processing without enough built-in compliance and consent safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with contacts you are allowed to process and email, require human approval before importing lead lists or sending outbound sequences, and honor opt-outs immediately.
+
+Risk: Contact records, suppression lists, and campaign status may be stored in shared spreadsheets.
+
+Mitigation: Restrict Google Sheet sharing, keep suppression lists current, and review access before adding or exporting lead data.
+
+Risk: Gmail, SMTP, Google Sheets, or n8n credentials may be needed for execution.
+
+Mitigation: Store credentials only in secure credential stores and review the skill before allowing an agent to execute workflows.
+
+## Reference(s):
+
+- [Lead Sourcing Reference](references/lead-sourcing.md)
+- [Email Sequences Reference](references/email-sequences.md)
+- [Reply Handling Reference](references/reply-handling.md)
+- [Tools — Free Tier Setup Guide](references/tools-free-tier.md)
+- [Cold Outreach System](https://qssys.gumroad.com/l/cold-outreach-system)
+- [ClawHub skill page](https://clawhub.ai/celestchief/skills/cold-outreach-free)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with templates, tables, checklists, and inline setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include outreach copy, lead sourcing criteria, spreadsheet structure, reply playbooks, and optional n8n setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md metadata, _meta.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

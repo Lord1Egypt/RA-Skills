@@ -1,45 +1,60 @@
-## Description: <br>
-Automatically summarize scientific podcasts like Huberman Lab and Nature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically summarize scientific podcasts like Huberman Lab and Nature.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers use this skill to fetch Huberman Lab or Nature Podcast pages, send extracted text to an OpenAI-compatible model, and generate concise scientific podcast summaries in Markdown or JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched podcast content may be sent to the configured OpenAI-compatible model provider. <br>
-Mitigation: Use only public, trusted podcast URLs, verify OPENAI_BASE_URL, and run with a limited API key. <br>
-Risk: Unpinned Python dependencies can reduce reproducibility across environments. <br>
-Mitigation: Install in a virtual environment and pin dependency versions for production or repeatable use. <br>
-Risk: Optional file output can place generated summaries at user-provided paths. <br>
-Mitigation: Write outputs only to approved workspace paths and review generated files before sharing or relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to fetch Huberman Lab, Nature Podcast, or user-provided podcast pages and generate structured scientific briefings in Markdown or JSON.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/aipoch-ai/scientific-podcast-summary) <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [Huberman Lab Podcast Episodes](https://hubermanlab.com/category/podcast-episodes/) <br>
-- [Nature Podcast Articles](https://www.nature.com/nature/articles?type=podcast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files] <br>
-**Output Format:** [Markdown or JSON scientific podcast briefing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include podcast title, release date, host or guest details, core topic overview, key scientific findings, practical advice, and resource links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill changelog) <br>
+Risk: The skill can fetch any user-supplied URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public podcast URLs from trusted domains and avoid private, internal, or sensitive URLs.
+
+Risk: Extracted page content is sent to OpenAI or a configured compatible API endpoint.
+
+Mitigation: Keep OPENAI_BASE_URL pointed at a trusted provider and avoid processing private or confidential content.
+
+Risk: A user-specified output path can overwrite an existing writable file.
+
+Mitigation: Choose output paths deliberately and check for existing files before writing summaries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/scientific-podcast-summary)
+- [Audit Reference](references/audit-reference.md)
+- [Huberman Lab Podcast Episodes](https://hubermanlab.com/category/podcast-episodes/)
+- [Nature Podcast Articles](https://www.nature.com/nature/articles?type=podcast)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, files]
+
+**Output Format:** [Markdown or JSON scientific podcast briefing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write to a user-specified output path; summaries include episode metadata, core topics, key scientific points, practical advice, and related links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, artifact SKILL.md, and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

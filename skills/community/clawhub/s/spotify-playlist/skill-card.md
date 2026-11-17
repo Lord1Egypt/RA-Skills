@@ -1,41 +1,60 @@
-## Description: <br>
-Build and manage Spotify playlists from natural language requests using the Spotify Web API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and manage Spotify playlists from natural language requests, including music search, playlist creation, track management, listening history, and profile lookup through the Spotify Web API.
 
-## Publisher: <br>
-[codeaholicman](https://clawhub.ai/user/codeaholicman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codeaholicman](https://clawhub.ai/user/codeaholicman)
 
-## Use Case: <br>
-External users and agents use this skill to authenticate with Spotify, search music, create and update playlists, and personalize selections with listening history when requested. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent Spotify credentials can read listening history and profile data. <br>
-Mitigation: Use only the needed Spotify scopes, avoid the profile command unless necessary, and delete or revoke the saved token when the skill is no longer in use. <br>
-Risk: The skill can modify Spotify playlists after authorization. <br>
-Mitigation: Prefer private playlists and review create, add, and remove operations before running them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codeaholicman/spotify-playlist) <br>
-- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) <br>
-- [Spotify Web API base URL](https://api.spotify.com/v1) <br>
+## Use Case:
 
+External users and agents use this skill to authenticate with Spotify, search for tracks, artists, and albums, curate playlists, and personalize playlist choices with recent and top listening history.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; helper scripts return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Spotify OAuth credentials and a Spotify Premium account; helper scripts can create, update, and inspect Spotify playlists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can store reusable Spotify OAuth credentials locally.
+
+Mitigation: Review local credential handling before installation and prefer safer secret storage or PKCE where available.
+
+Risk: The skill can read Spotify profile data, listening history, and playlist information.
+
+Mitigation: Review requested Spotify scopes and remove unused scopes before authorizing an account.
+
+Risk: The skill can create playlists and add or remove playlist tracks.
+
+Mitigation: Confirm account-changing playlist actions before executing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codeaholicman/skills/spotify-playlist)
+- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+- [Spotify Accounts authorization endpoint](https://accounts.spotify.com/authorize)
+- [Spotify Accounts token endpoint](https://accounts.spotify.com/api/token)
+- [Spotify Web API](https://api.spotify.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON from scripts plus Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify Spotify playlists and stores reusable Spotify OAuth credentials locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

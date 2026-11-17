@@ -1,40 +1,61 @@
-## Description: <br>
-Run a Duolingo-like multi-topic learning system with AGENTS routing, lesson loops, streaks, and spaced review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a Duolingo-like multi-topic learning system with AGENTS routing, lesson loops, streaks, and spaced review.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External learners and agents use this skill to run short, persistent learning sessions across one or more topics, with local progress tracking, review queues, streaks, and optional routing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Learning history, topic plans, attempts, and review queues are saved locally under ~/duolingo until the user removes them. <br>
-Mitigation: Tell users where progress is stored and avoid saving sensitive learning content unless they are comfortable keeping it in the local folder. <br>
-Risk: Broad AGENTS routing triggers could activate the learning system when the user intended a different workflow. <br>
-Mitigation: Keep trigger topics specific, show the router snippet for user review, and require the user to apply AGENTS routing changes themselves. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/duolingo) <br>
-- [Skill homepage](https://clawic.com/skills/duolingo) <br>
+## Use Case:
 
+External learners and agents use this skill to run short daily lessons across one or more topics, including placement, micro-challenges, progress tracking, streaks, and spaced review in a local ~/duolingo workspace.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with local file templates and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and maintains local learning state under ~/duolingo when the user runs setup and lessons.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill keeps persistent learning state, curricula, attempts, and review queues under ~/duolingo/.
+
+Mitigation: Install it only when a persistent local learning workspace is desired, and review or remove that workspace before sharing machine state or backups.
+
+Risk: Broad AGENTS routing examples could cause the skill to activate for more learning requests than intended.
+
+Mitigation: Keep trigger topics specific, review the generated AGENTS snippet, and apply routing changes manually.
+
+Risk: Topic names used directly in shell-based setup could create unsafe or invalid paths.
+
+Mitigation: Use simple validated topic slugs with lowercase letters, numbers, and hyphens, and avoid passing raw topic names into shell commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/duolingo)
+- [Skill Homepage](https://clawic.com/skills/duolingo)
+- [Setup Flow](artifact/setup.md)
+- [Filesystem Blueprint](artifact/blueprint.md)
+- [Lesson Runtime Loop](artifact/lesson-loop.md)
+- [Multi-Topic Retention Operations](artifact/retention-ops.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with interactive lesson prompts, setup commands, routing snippets, and local file templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates a local ~/duolingo workspace when the user asks the agent to bootstrap or run lessons.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

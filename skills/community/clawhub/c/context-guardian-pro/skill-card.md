@@ -1,44 +1,57 @@
-## Description: <br>
-Automates context monitoring by summarizing history, saving to long-term memory, and sending QQ alerts when session message or token limits approach a configured threshold. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Guardian Pro monitors conversation context pressure and triggers summarization, long-term memory persistence, and QQ alerts when the session approaches configured limits.
 
-## Publisher: <br>
-[artwebs](https://clawhub.ai/user/artwebs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[artwebs](https://clawhub.ai/user/artwebs)
 
-## Use Case: <br>
-Developers and agent operators use this skill to monitor context pressure during long sessions and trigger backup, memory persistence, and notification actions before the session exceeds its context limit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to run automatically, write to long-term memory, and may claim a backup was made even when only a placeholder summary was written. <br>
-Mitigation: Install only after reviewing automatic scheduling, memory-write behavior, and backup claims; require review-before-save behavior before relying on it for context backup. <br>
-Risk: Notification behavior may involve QQ transmission in future versions. <br>
-Mitigation: Require clear disclosure and opt-in controls before enabling any external notification channel. <br>
-Risk: Persisted session summaries may need retention, deletion, or disable controls. <br>
-Mitigation: Ask the publisher to document a disable path and retention or deletion controls before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to reduce context-limit failures by periodically checking session pressure, summarizing heavy sessions, saving summaries to memory, and sending restart reminders.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/artwebs/context-guardian-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/artwebs) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Status text and memory notes, with command execution through scheduled taskflow or cron workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports task status and whether summarization and notification actions were taken.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Automatic summaries may be written to OpenClaw memory when the context threshold is exceeded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory persistence behavior before installation and avoid storing sensitive conversation content in summaries.
+
+Risk: QQ alert configuration can create an external notification path.
+
+Mitigation: Keep alert messages minimal and exclude sensitive conversation details from notification content.
+
+Risk: Periodic taskflow or cron setup can run the monitor without manual invocation.
+
+Mitigation: Review or disable scheduled execution according to the deployment environment's operational policy.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/artwebs/skills/context-guardian-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Plain text status output with optional Markdown memory entries and alert text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports task status and action_taken values; may append generated summaries to OpenClaw memory and emit QQ alert messages when thresholds are exceeded.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

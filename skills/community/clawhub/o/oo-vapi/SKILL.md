@@ -5,9 +5,9 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Vapi"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.7"
   services: ["vapi"]
-  icon: "https://static.oomol.com/logo/third-party/Vapi.svg"
+  icon: "https://static.oomol.com/logo/third-party/vapi.svg"
 ---
 
 # Vapi
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `create_analytics_query` — Create and execute one or more Vapi analytics queries across call and subscription data. [write]
+- `create_analytics_query` — Create and execute one or more Vapi analytics queries across call and subscription data.
 - `create_assistant` — Create a new Vapi assistant with required transcriber, voice, and model settings plus optional messaging and duration controls. [write]
 - `create_eval` — Create a Vapi eval for a mock conversation and define the checkpoint messages used to evaluate model behavior. [write]
 - `create_openai_chat` — Create an OpenAI-compatible Vapi chat response using an assistant or squad, with optional session and transport settings. [write]
@@ -105,11 +105,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Vapi is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=vapi
+  https://console.oomol.com/connections/vapi
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Vapi homepage: https://vapi.ai
+- API documentation: https://docs.vapi.ai/api-reference

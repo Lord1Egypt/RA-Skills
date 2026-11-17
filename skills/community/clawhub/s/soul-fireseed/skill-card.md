@@ -1,44 +1,60 @@
-## Description: <br>
-Soul Fireseed models personality and memory from conversations, offering dialogue extraction and memory-analysis modes with optional daily or weekly background extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soul Fireseed helps an agent extract personality signals from conversations or memory records, build structured persona profiles, and generate evolution reports.
 
-## Publisher: <br>
-[sanzhishuyuan](https://clawhub.ai/user/sanzhishuyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanzhishuyuan](https://clawhub.ai/user/sanzhishuyuan)
 
-## Use Case: <br>
-External users and developers use this skill to extract personality signals from chats or existing memories, then generate persona snapshots, structured profile data, and evolution reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can infer sensitive personality and memory data from conversations and retain it in local profile, fossil, backup, validation-history, or embedding-cache files. <br>
-Mitigation: Enable it only for intentional personal profiling, review stored user-data and cache files regularly, and delete retained profiles or embeddings when they are no longer needed. <br>
-Risk: Daily or background extraction can continue analyzing chats after the first setup. <br>
-Mitigation: Keep automatic extraction disabled unless explicitly needed, prefer manual or weekly extraction, and require a visible user choice before enabling recurring analysis. <br>
-Risk: Using the skill on other people's conversations or employment/team contexts can create privacy and consent concerns. <br>
-Mitigation: Use it only on conversations where participants have clear consent, and avoid applying it to workplace, team, or third-party communications without an approved policy. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent analyze conversations or selected memory records, extract six-dimensional personality features, and produce persona snapshots, stored fossils, and evolution reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sanzhishuyuan/soul-fireseed) <br>
-- [FireSeed homepage](https://fireseed.online) <br>
-- [Gitee repository](https://gitee.com/topofthesky/soul-fireseed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and JSON, with optional Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local persona, fossil, backup, validation-history, and embedding-cache files under configured user-data and cache paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill intentionally analyzes conversations into persistent personality profiles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that profiling behavior is desired, store generated outputs in protected locations, and review extracted records before relying on them.
+
+Risk: Background and historical memory analysis may process more user context than expected.
+
+Mitigation: Prefer manual mode and run historical scans only on explicitly selected data.
+
+Risk: The authoritative security summary flags unsafe helper scripts and a suspicious overall verdict.
+
+Mitigation: Do not run the shell scripts with untrusted filenames or arguments until they are reviewed and fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sanzhishuyuan/skills/soul-fireseed)
+- [FireSeed homepage](https://fireseed.online)
+- [Skill guide](artifact/SKILL.md)
+- [Usage guide](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, structured JSON fossils and persona profiles, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist personality fossils, persona profiles, backups, and generated reports under user-data paths when used with the bundled code.]
+
+## Skill Version(s):
+
+2.1.0 (source: evidence release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

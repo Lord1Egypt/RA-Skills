@@ -1,40 +1,48 @@
-## Description: <br>
-Performs a web fetch request to Google based on a user-provided query. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs a web fetch request to Google based on a user-provided query. Use this skill when you need to retrieve information from Google search results.
 
-## Publisher: <br>
-[Uroboros1205](https://clawhub.ai/user/Uroboros1205) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[uroboros1205](https://clawhub.ai/user/uroboros1205)
 
-## Use Case: <br>
-Developers and agents use this skill to submit ordinary Google search queries and retrieve search-result content for user-requested web research. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries may be sent to an external search provider. <br>
-Mitigation: Use only ordinary web-search terms and avoid passwords, tokens, private personal details, confidential business information, and regulated data. <br>
-Risk: The published skill documentation still contains template text. <br>
-Mitigation: Review the skill instructions before deployment so agents rely only on the concrete Google search behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Uroboros1205/webfetch-google) <br>
-- [Publisher profile](https://clawhub.ai/user/Uroboros1205) <br>
+## Use Case:
 
+Developers and agents use this skill to submit a search query and retrieve Google-style web search results for information-gathering tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, guidance] <br>
-**Output Format:** [JSON tool-call wrapper that returns web search results as text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided search query; search query content may be sent to an external search provider.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Queries may be sent to an external search service.
+
+Mitigation: Do not use secrets, private identifiers, proprietary text, or other sensitive queries unless external disclosure is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uroboros1205/skills/webfetch-google)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Text search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided search query; avoid secrets, private identifiers, proprietary text, or other sensitive query content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

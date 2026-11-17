@@ -1,41 +1,54 @@
-## Description: <br>
-Pipeworx Movies connects agents to Pipeworx's Movies MCP for movie search and TV show lookup through iTunes Search API and TVmaze sources without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Movies MCP wraps the iTunes Search API for movie search and the TVmaze API for TV show search, show details, and schedules without requiring an API key.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure movie and TV lookup tools that search movies, TV shows, individual show details, and TV schedules through Pipeworx's remote MCP gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Movie and TV search queries are sent to Pipeworx's remote MCP gateway. <br>
-Mitigation: Avoid entering sensitive personal information or confidential queries when using the lookup tools. <br>
-Risk: The connection configuration runs the current mcp-remote npm package through npx. <br>
-Mitigation: Review the package and command before installation, and use the skill only if that runtime dependency is acceptable. <br>
+## Use Case:
 
+Developers and external users use this skill to connect an MCP server that searches movies, searches TV shows, retrieves TV show details, and returns TV schedules through Pipeworx.
 
-## Reference(s): <br>
-- [Pipeworx Movies Pack](https://pipeworx.io/packs/movies) <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-movies) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON configuration and inline command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces MCP connection guidance for remote movie and TV lookup tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The setup uses a mutable remote npm package through mcp-remote@latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and reviewed version of mcp-remote before installing or deploying the connector.
+
+Risk: Requests route through a third-party Pipeworx gateway.
+
+Mitigation: Use minimal filesystem and environment access, and avoid sending personal or confidential search content unless the third-party trust boundary is acceptable.
+
+## Reference(s):
+
+- [Pipeworx Movies Pack](https://pipeworx.io/packs/movies)
+- [ClawHub Skill Page](https://clawhub.ai/b-gutman/skills/pipeworx-movies)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands]
+
+**Output Format:** [Markdown with JSON configuration and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MCP connection guidance for an agent; no API key is indicated by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

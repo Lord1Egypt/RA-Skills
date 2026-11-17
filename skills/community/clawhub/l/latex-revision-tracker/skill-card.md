@@ -1,40 +1,57 @@
-## Description: <br>
-Systematic workflow for tracking, managing, and revising large LaTeX academic papers with version control, content integration, and quality assurance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic workflow for tracking, managing, and revising large LaTeX academic papers with version control, content integration, and quality assurance.
 
-## Publisher: <br>
-[Larry-of-cosmotim](https://clawhub.ai/user/Larry-of-cosmotim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larry-of-cosmotim](https://clawhub.ai/user/larry-of-cosmotim)
 
-## Use Case: <br>
-Researchers, graduate students, and collaborative writing teams use this skill to manage revisions to large LaTeX manuscripts, including version tracking, content integration, bibliography workflows, diff generation, and pre-submission quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes examples for file cleanup, LaTeX compilation, git commits, and repository pushes that could affect important manuscripts or shared repositories if run without review. <br>
-Mitigation: Review proposed commands and file edits before execution, keep backups or version control checkpoints, and avoid autonomous cleanup or push operations on important papers. <br>
-Risk: Incorrect integration, citation, or revision guidance could introduce errors into academic manuscripts. <br>
-Mitigation: Use the skill as a workflow aid and verify manuscript content, citations, figures, and compilation results through normal author review before submission. <br>
+## Use Case:
 
+Researchers, graduate students, and collaborative writing teams use this skill to manage revisions for large LaTeX manuscripts, including content integration, bibliography workflows, diff tracking, and pre-submission quality checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Larry-of-cosmotim/latex-revision-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline LaTeX, BibTeX, git, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only workflow guidance; no credentials, API keys, or MCP tools are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Generated cleanup commands can delete intermediate files if run in the wrong manuscript directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the working directory and confirm the diff PDF is acceptable before running cleanup commands.
+
+Risk: Git push and tag examples can change a shared remote repository.
+
+Mitigation: Review remote names, branch names, and tag intent before executing version-control commands.
+
+Risk: A single LaTeX compilation pass can leave citations or references unresolved in diff PDFs.
+
+Mitigation: Use the full pdflatex, bibtex, pdflatex, pdflatex workflow for bibliography-bearing manuscript diffs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/larry-of-cosmotim/skills/latex-revision-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with checklists and inline bash, LaTeX, and Git examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow guidance for user-directed local manuscript and version-control tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

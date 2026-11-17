@@ -1,42 +1,56 @@
-## Description: <br>
-CarKey lets an agent query a vehicle's location and status, including locks, doors, windows, air conditioning, and power state, on Linux, macOS, or Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries vehicle location and status, including locks, doors, windows, air conditioning, and power state, across Linux, macOS, and Windows.
 
-## Publisher: <br>
-[lkisme](https://clawhub.ai/user/lkisme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lkisme](https://clawhub.ai/user/lkisme)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent check an authenticated vehicle's current location and condition from natural-language requests such as asking where the vehicle is or whether it is locked. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle API tokens are stored locally and could expose vehicle access if the cache file is copied or read by another user. <br>
-Mitigation: Use the skill only on trusted machines, restrict or delete ~/.carkey_cache.json after use, and rotate or revoke vehicle tokens if the file may have been exposed. <br>
-Risk: Recent location query history is stored locally and may reveal sensitive vehicle movement or address information. <br>
-Mitigation: Avoid shared or unmanaged devices and delete ~/.carkey_history.json when the location history is no longer needed. <br>
+## Use Case:
 
+External users and their agents use this skill to check where a vehicle is and whether key vehicle systems such as locks, doors, windows, power, and climate state appear secure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lkisme/carkey1) <br>
-- [Git for Windows](https://git-scm.com/download/win) <br>
-- [Vehicle API base URL](https://openapi.nokeeu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Terminal text output with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; uses cached vehicleToken and accessToken values to query vehicle condition and position.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: The skill handles vehicle tokens and live vehicle location/status data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on a trusted single-user machine, avoid running it with elevated privileges, and protect or remove local cache and history files when they are no longer needed.
+
+Risk: Local cache and history files may contain credentials, physical locations, and vehicle identifiers.
+
+Mitigation: Restrict access to ~/.carkey_cache.json and ~/.carkey_history.json or the equivalent Windows user-profile files, and delete them before sharing or decommissioning the machine.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lkisme/skills/carkey1)
+- [Publisher profile](https://clawhub.ai/user/lkisme)
+- [Nokee OpenAPI endpoint](https://openapi.nokeeu.com)
+- [Git for Windows](https://git-scm.com/download/win)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include vehicle identifiers, location, status fields, dependency guidance, and authentication prompts.]
+
+## Skill Version(s):
+
+1.1.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

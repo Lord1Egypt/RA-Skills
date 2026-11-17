@@ -1,43 +1,58 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).
 
-## Publisher: <br>
-[securecloudprojo](https://clawhub.ai/user/securecloudprojo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[securecloudprojo](https://clawhub.ai/user/securecloudprojo)
 
-## Use Case: <br>
-Developers and other users use this skill to ask an agent to summarize web pages, local files, PDFs, images, audio, and YouTube links through the summarize CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summarization may send local files, private URLs, or extracted content to configured AI and extraction providers. <br>
-Mitigation: Avoid confidential inputs unless the configured providers' data-handling terms are acceptable; use scoped API keys where possible. <br>
-Risk: The skill depends on the external summarize CLI and Homebrew formula supply chain. <br>
-Mitigation: Install only when the publisher and Homebrew formula are trusted, and review the formula before deployment. <br>
-Risk: Configured providers and fallback extraction services can incur usage-based costs. <br>
-Mitigation: Monitor provider billing and limit API key scope or access for routine use. <br>
+## Use Case:
 
+Developers and agents use this skill to summarize web pages, local documents, images, audio files, and YouTube links through the summarize CLI. It is useful when a workflow needs concise human-readable summaries or machine-readable JSON output from supported inputs.
 
-## Reference(s): <br>
-- [Summarize homepage](https://summarize.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/securecloudprojo/summarize-garrison) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can request JSON output from the summarize CLI and configurable summary lengths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs and relies on a third-party Homebrew tap for the summarize CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the Homebrew tap and package are trusted for the intended environment.
+
+Risk: Summarization may send URLs, files, or extracted content to selected model or extraction providers.
+
+Mitigation: Avoid submitting secrets, confidential documents, regulated data, or private URLs unless the selected providers are approved for that data.
+
+Risk: Optional Firecrawl and Apify fallback extraction can introduce additional third-party data handling.
+
+Mitigation: Use these integrations only with approved provider accounts and disable fallback extraction when it is not needed.
+
+## Reference(s):
+
+- [Summarize CLI homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/securecloudprojo/skills/summarize-garrison)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; summarize CLI output may be plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable summary length, model selection, token limits, JSON output, URL extraction, and optional YouTube or Firecrawl fallback extraction.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

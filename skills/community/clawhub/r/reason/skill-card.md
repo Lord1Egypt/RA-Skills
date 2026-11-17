@@ -1,40 +1,49 @@
-## Description: <br>
-Reason provides structured logical reasoning and decision analysis for decisions, arguments, fallacies, and complex problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reason helps agents structure decisions, evaluate arguments, identify logical fallacies, analyze problems systematically, and guide clear thinking.
 
-## Publisher: <br>
-[ProjectSnowWork](https://clawhub.ai/user/ProjectSnowWork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[projectsnowwork](https://clawhub.ai/user/projectsnowwork)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to structure decisions, evaluate arguments, identify logical fallacies, and analyze complex problems while keeping reasoning notes local. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decision details and factor lists may be saved locally in the OpenClaw workspace. <br>
-Mitigation: Avoid entering highly sensitive personal, medical, legal, financial, or business details unless local retention and deletion are managed. <br>
-Risk: Some helper workflows referenced by the skill are not included in the artifact. <br>
-Mitigation: Verify workflows beyond decision analysis before relying on them. <br>
+## Use Case:
 
+Developers and agent users use Reason to work through decisions, arguments, fallacies, and complex problems with structured reasoning frameworks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ProjectSnowWork/reason) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision analyses may be saved locally under the OpenClaw workspace memory path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persist sensitive decision text locally in plaintext without clear opt-in, retention controls, or enforced file privacy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing for sensitive personal, financial, medical, employment, or strategic decisions; use only when local file retention and deletion are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/projectsnowwork/skills/reason)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style reasoning guidance with optional shell commands and local JSON records from the included decision analysis script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included decision analysis script can store decision text locally in plaintext under a reason memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

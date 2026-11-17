@@ -24,7 +24,7 @@ import json
 import os
 import re
 
-from utils import write_json_atomic
+from utils import write_json_atomic, locked_file
 from collections import defaultdict
 from datetime import datetime, timedelta
 from typing import Optional
@@ -173,38 +173,70 @@ def _fmt_ml(ml: float) -> str:
 
 # ─── Config I/O ────────────────────────────────────────────────────────────────
 
-def _load_cfg() -> dict:
-    """Load children from the unified config.json or health_config.json fallback."""
-    # Preferred: Load children from config.json
+def _read_health_cfg() -> dict:
+    """Raw health_config.json — the weights only. Returns {} if absent/corrupt."""
+    if not os.path.exists(HEALTH_CFG_PATH):
+        return {}
     try:
-        from core.config_loader import config
-        children = {}
-        for kid in getattr(config, "family", {}).get("kids", []):
-            key = kid["name"].lower()
-            # Try to get weight from health_config.json if it exists, otherwise default
-            weight = 0.0
-            if os.path.exists(HEALTH_CFG_PATH):
-                with open(HEALTH_CFG_PATH) as f:
-                    old_cfg = json.load(f)
-                    weight = old_cfg.get("children", {}).get(key, {}).get("weight_kg", 0.0)
-            
-            children[key] = {"name": kid["name"], "weight_kg": weight}
-        if children:
-            return {"children": children}
-    except Exception:
-        pass
-
-    # Fallback: Load from health_config.json
-    if os.path.exists(HEALTH_CFG_PATH):
         with open(HEALTH_CFG_PATH) as f:
             return json.load(f)
-    
-    return {"children": {}}
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def _load_cfg() -> dict:
+    """Children from config.json, with weights from health_config.json.
+
+    config.json owns *who the children are* (principle 5); health_config.json
+    owns only their weights, because those change and are updated from chat via
+    update_child_weight.
+
+    This used to read `getattr(config, "family", {}).get("kids", [])`. `Config`
+    has no `family` attribute — it exposes `kids` — so the getattr returned {},
+    the loop never ran, and every call silently fell through to the
+    health_config.json fallback inside a bare `except: pass`. Invisible while
+    that file happened to list both kids; a third kid added to config.json
+    would have come back "❓ Unknown child" from every dosing tool.
+    """
+    health_cfg = _read_health_cfg()
+    weights    = health_cfg.get("children", {})
+
+    children = {}
+    try:
+        from core.config_loader import config
+        kids = config.kids
+    except Exception:
+        kids = []
+
+    for kid in kids:
+        key = kid.name.lower()
+        children[key] = {
+            "name":      kid.name,
+            "weight_kg": weights.get(key, {}).get("weight_kg", 0.0),
+        }
+
+    if children:
+        return {"children": children}
+
+    # No configured kids (a bare test fixture, or a half-set-up install):
+    # health_config.json is all there is.
+    return health_cfg if health_cfg else {"children": {}}
 
 
 def _save_cfg(cfg: dict) -> None:
-    """Save weights specifically to health_config.json (config.json is for static rules)."""
-    write_json_atomic(HEALTH_CFG_PATH, cfg)
+    """Merge weights into health_config.json without clobbering the rest.
+
+    _load_cfg returns a SYNTHESIZED view — children from config.json, weights
+    from this file — so writing that view back wholesale would delete every
+    other per-child field, every other top-level key, and any child not listed
+    in config.json. Harmless while the file happens to hold nothing else;
+    silent data loss the moment it does.
+    """
+    raw = _read_health_cfg()
+    children = raw.setdefault("children", {})
+    for key, entry in (cfg.get("children") or {}).items():
+        children.setdefault(key, {}).update(entry)
+    write_json_atomic(HEALTH_CFG_PATH, raw)
 
 
 def _tracked_names() -> str:
@@ -251,11 +283,16 @@ def _save_log(log: dict) -> None:
 
 
 def _append_event(child_key: str, event: dict) -> None:
-    log = _load_log()
-    if child_key not in log:
-        log[child_key] = []
-    log[child_key].append(event)
-    _save_log(log)
+    # Locked across reload → mutate → save. write_json_atomic prevents a
+    # *corrupt* file; it does nothing about a *lost update*, and two doses
+    # logged from two chats seconds apart is exactly that race. A dropped dose
+    # is a missing entry in the interval check that gates the next one.
+    with locked_file(HEALTH_LOG_PATH):
+        log = _load_log()
+        if child_key not in log:
+            log[child_key] = []
+        log[child_key].append(event)
+        _save_log(log)
 
 
 def _child_events(child_key: str) -> list:
@@ -326,13 +363,19 @@ def _fmt_dt_short(dt: datetime) -> str:
 # ─── Medication Lookup Helpers ─────────────────────────────────────────────────
 
 def _last_dose_dt(child_key: str, med_key: str) -> Optional[datetime]:
-    """Return most recent dose datetime for a medication, or None."""
+    """Return the most recent dose datetime for a medication (by timestamp,
+    not log order — a backdated entry logged after a live one must not be
+    mistaken for the newer dose), or None."""
     tz = _tz()
-    for ev in reversed(_child_events(child_key)):
+    latest = None
+    for ev in _child_events(child_key):
         if ev.get("type") == "medication" and ev.get("medication") == med_key:
             dt = datetime.fromisoformat(ev["timestamp"])
-            return dt if dt.tzinfo else dt.replace(tzinfo=tz)
-    return None
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=tz)
+            if latest is None or dt > latest:
+                latest = dt
+    return latest
 
 
 def _doses_in_24h(child_key: str, med_key: str) -> int:
@@ -458,6 +501,16 @@ def log_medication(
             warnings.append(
                 f"⚠️ Last {med['canonical']} was only {elapsed_str} ago — "
                 f"safe window opens at *{_fmt_time(safe_at)}*"
+            )
+
+    # ── Max-doses-per-24h check (advisory) ───────────────────────────────────────
+    max_doses_24h = med.get("max_doses_24h")
+    if max_doses_24h:
+        doses_24h = _doses_in_24h(child_key, med_key)
+        if doses_24h >= max_doses_24h:
+            warnings.append(
+                f"⚠️ This will be dose #{doses_24h + 1} of {med['canonical']} in "
+                f"the past 24h — max recommended is {max_doses_24h}/24h."
             )
 
     # ── Dosage range note (in both units) ──────────────────────────────────────

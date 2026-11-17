@@ -1,44 +1,53 @@
-## Description: <br>
-Search and discover OpenClaw skills from various sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and discover OpenClaw skills from ClawHub, skill directories, marketplaces, GitHub, and community sources.
 
-## Publisher: <br>
-[roseknife520](https://clawhub.ai/user/roseknife520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roseknife520](https://clawhub.ai/user/roseknife520)
 
-## Use Case: <br>
-Developers and agent users use this skill to find OpenClaw skills by task, category, provider, popularity, or source before choosing what to install. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide users toward third-party skills from external sources whose safety and quality are separate from this artifact. <br>
-Mitigation: Review each discovered skill's source, permissions, requirements, publisher reputation, and install commands before installation. <br>
-Risk: Search commands such as `npx clawhub` depend on the package source used by the operator. <br>
-Mitigation: Run `npx clawhub` only from a trusted package source. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to find available skills, search for specific functionality, and identify skills to install from multiple discovery sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roseknife520/find-skills-skill-rose) <br>
-- [Publisher profile](https://clawhub.ai/user/roseknife520) <br>
-- [ClawHub](https://clawhub.com) <br>
-- [OpenClaw Directory skills](https://www.openclawdirectory.dev/skills) <br>
-- [LobeHub Skills Marketplace](https://lobehub.com/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only helper; it does not include code, credentials, persistence, or hidden actions in the artifact evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence and artifact metadata) <br>
+Risk: The skill recommends running unpinned `npx clawhub` commands, which may execute changing npm registry code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a locally installed and reviewed ClawHub CLI, or pin commands to an exact trusted version before running them on systems with sensitive files or broad agent permissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roseknife520/skills/find-skills-skill-rose)
+- [Publisher Profile](https://clawhub.ai/user/roseknife520)
+- [ClawHub](https://clawhub.com)
+- [OpenClaw Directory Skills](https://www.openclawdirectory.dev/skills)
+- [LobeHub Skills Marketplace](https://lobehub.com/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes search strategies, discovery sources, installation tips, troubleshooting guidance, and related skill suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

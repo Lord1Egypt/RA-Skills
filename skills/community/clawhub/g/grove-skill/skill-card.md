@@ -1,41 +1,58 @@
-## Description: <br>
-格鲁夫 Skill provides Andy Grove-inspired management guidance for strategic inflection point analysis, high-output management, OKR planning, constructive confrontation, and organizational change. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language management and strategy guidance based on Andy Grove's frameworks for strategic inflection points, high-output management, OKRs, constructive confrontation, and organizational change.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Employees, external users, and business operators use this skill to get concise management advice, OKR framing, strategic risk prompts, and Grove-style decision heuristics for organization and product strategy discussions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat Grove-inspired business advice as authoritative strategic or personnel guidance. <br>
-Mitigation: Treat responses as an interpretive management framework and validate important strategic or personnel decisions with appropriate human experts. <br>
-Risk: AI-era extensions go beyond Andy Grove's direct experience and may not fit every organization or market. <br>
-Mitigation: Compare recommendations against current data, organizational context, and the skill's stated boundaries before acting. <br>
+## Use Case:
 
+External users, managers, founders, and strategy teams use this skill to ask for Chinese-language advice modeled on Andy Grove's management thinking. It supports strategic inflection point analysis, OKR framing, high-output management, constructive confrontation, and AI-era strategy discussions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruiyongwang/grove-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/ruiyongwang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only; no tool, credential, command, or persistence requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill provides management and strategy advice that may not fit every organization or decision context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as advisory input and have responsible decision-makers validate recommendations against current business, legal, and operational context.
+
+Risk: The skill is written for Chinese-language management guidance, so users needing another language may miss nuance if they do not request adaptation.
+
+Mitigation: Ask the agent to translate or localize responses and review translated guidance before use.
+
+Risk: The artifact extends Andy Grove-inspired frameworks to AI-era scenarios that the source figure did not directly experience.
+
+Mitigation: Treat AI-era extensions as interpretive guidance and compare them with current domain evidence before making strategic commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/grove-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/ruiyongwang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language plain text or Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, network use, or persistence indicated by security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

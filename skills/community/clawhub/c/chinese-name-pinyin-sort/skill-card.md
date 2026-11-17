@@ -1,40 +1,53 @@
-## Description: <br>
-按拼音排序中文姓名。当用户需要给中国人名单按拼音排序、给姓名排序、中文姓名排序、拼音排姓名时使用。处理多音字姓（如曾zēng/仇qiú/解xiè）、同音异姓按笔画分组（如于3<余7<俞9<虞13）、同姓先排完再排下一个姓等同音姓排序惯例。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sorts Chinese names by pinyin using Chinese naming conventions, including surname pronunciation fixes, stroke-count ordering for homophonous names, compound surnames, and ambiguity reporting.
 
-## Publisher: <br>
-[zhangxiaopeng-zgci](https://clawhub.ai/user/zhangxiaopeng-zgci) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangxiaopeng-zgci](https://clawhub.ai/user/zhangxiaopeng-zgci)
 
-## Use Case: <br>
-Developers and other users can use this skill to sort lists of Chinese personal names according to pinyin-based naming conventions. It is useful when names should be grouped by surname pronunciation, ordered by surname stroke count for homophones, and displayed with pinyin annotations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the third-party pypinyin Python package. <br>
-Mitigation: Install pypinyin from a trusted package source and review dependency updates according to the user's normal package management process. <br>
-Risk: Sorting accuracy for rare characters may be limited by the script's hardcoded stroke data. <br>
-Mitigation: Review results for uncommon names and add or adjust stroke data when higher accuracy is required. <br>
+## Use Case:
 
+Developers and agents use this skill to sort Chinese person-name lists for rosters, address books, and text-processing workflows where Chinese surname and given-name ordering conventions matter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangxiaopeng-zgci/chinese-name-pinyin-sort) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain-text sorted name output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script can emit numbered or grouped sorted lists and may flag homophone groups that cannot be distinguished by pinyin alone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The helper depends on pypinyin and suggests an unpinned pip install when the dependency is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it in a virtual environment and pin the pypinyin version when reproducible runs are required.
+
+Risk: Rare characters can fall back to estimated stroke counts, and names with identical pinyin may remain ambiguous.
+
+Mitigation: Review ambiguity warnings and add project-specific stroke-count or tie-break rules before relying on the ordering for formal records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangxiaopeng-zgci/skills/chinese-name-pinyin-sort)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and sorted-name text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include numbering, pinyin annotations, surname grouping, and homophone ambiguity warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

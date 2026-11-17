@@ -1,44 +1,55 @@
-## Description: <br>
-Guides frontend interaction motion strategy, tool selection, performance budgets, and accessible reduced-motion behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides frontend developers in selecting, implementing, and reviewing accessible interaction motion, transitions, and animation performance.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and frontend designers use this skill to plan, implement, or review UI motion for page transitions, scroll animation, microinteractions, animation performance, and reduced-motion fallback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner guidance notes that repo-maintenance helpers can perform high-impact actions when explicitly invoked. <br>
-Mitigation: Review the skill and any generated recommendations before deployment or execution. <br>
-Risk: Motion guidance that is applied without accessibility review can produce excessive or inaccessible animation. <br>
-Mitigation: Check reduced-motion behavior, avoid rapid flashing, preserve focus and reading order, and verify the interface remains usable without animation. <br>
-Risk: Heavy animation libraries or continuous animations can degrade loading and interaction performance. <br>
-Mitigation: Lazy-load heavy motion components, animate transform and opacity where possible, pause continuous animation when hidden, and test on target viewport sizes and devices. <br>
+## Use Case:
 
+Frontend developers and designers use this skill to choose motion techniques and intensity, implement interaction patterns, and check reduced-motion accessibility and animation performance.
 
-## Reference(s): <br>
-- [Motion Interaction on ClawHub](https://clawhub.ai/bovinphang/fec-motion-interaction) <br>
-- [Bovinphang publisher profile](https://clawhub.ai/user/bovinphang) <br>
-- [Motion patterns reference](references/motion-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers motion purpose, technical approach, intensity level, reduced-motion fallback, performance boundaries, and validation checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: evidence.release.version, package.json, metadata.json, README.md) <br>
+Risk: Broad motion-related triggers may activate the skill on requests that do not need animation guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the activation description and apply the skill only when interaction motion is relevant.
+
+Risk: Unverified animations may impede access to content or degrade performance.
+
+Mitigation: Check reduced-motion behavior, keyboard access, content visibility, and responsiveness on target devices before release.
+
+## Reference(s):
+
+- [Motion interaction patterns](references/motion-patterns.md)
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-motion-interaction)
+- [Project homepage (packaged metadata)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with CSS and React code examples when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers animation purpose, tool choice, intensity, reduced-motion alternatives, performance limits, and verification.]
+
+## Skill Version(s):
+
+2.9.0 (source: server release, packaged metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

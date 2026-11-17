@@ -1,43 +1,56 @@
-## Description: <br>
-Automates navigation through Gansu Electric Power Trading platform PMOS menu paths by opening pages, handling tabs, prompting for element references, and capturing browser snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates navigation through menu paths on the Gansu Electric Power Trading PMOS platform by opening pages, handling tabs, and capturing browser snapshots.
 
-## Publisher: <br>
-[xu-oliver](https://clawhub.ai/user/xu-oliver) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xu-oliver](https://clawhub.ai/user/xu-oliver)
 
-## Use Case: <br>
-Developers and operators with authorized PMOS access use this skill to guide or automate browser navigation to specific PMOS menu pages and inspect page snapshots after login. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates in a logged-in PMOS browser session, where snapshots and terminal output may expose page content. <br>
-Mitigation: Run it only from an authorized account, monitor browser actions while it runs, and treat snapshots or command output as sensitive. <br>
-Risk: Element references can change between PMOS page loads, which can cause navigation to click the wrong target or fail. <br>
-Mitigation: Refresh browser snapshots before each action and provide only simple, current element references. <br>
+## Use Case:
 
+Developers and operators with authorized PMOS access use this skill to navigate the PMOS information disclosure and market-operation menu path, switch to the relevant tab, and collect page snapshots or element references for follow-on browser actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xu-oliver/pmos-search-menu-skill) <br>
-- [NAVIGATION_PATH.md](references/NAVIGATION_PATH.md) <br>
-- [OpenClaw Browser tool documentation](https://docs.openclaw.ai/tools/browser) <br>
-- [OpenClaw CLI browser reference](https://docs.openclaw.ai/cli/browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and browser-operation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser snapshots and user-provided element references from the active PMOS session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The Node.js helper can run unintended local commands if a malicious element reference is entered.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid element references from untrusted sources, and prefer manual browser commands or the quoted shell workflow until argument-array process execution and reference validation are added.
+
+Risk: The workflow acts inside an authenticated PMOS browser session.
+
+Mitigation: Use only with an authorized PMOS account and confirm the active browser tab before executing navigation or snapshot commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xu-oliver/skills/pmos-search-menu-skill)
+- [OpenClaw Browser Tool Documentation](https://docs.openclaw.ai/tools/browser)
+- [OpenClaw CLI Browser Reference](https://docs.openclaw.ai/cli/browser)
+- [Navigation Path Reference](artifact/pmos-search-menu-skill/references/NAVIGATION_PATH.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and browser-navigation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PMOS menu paths, browser snapshot instructions, tab handling steps, and element reference guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

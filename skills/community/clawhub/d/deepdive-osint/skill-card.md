@@ -1,44 +1,60 @@
-## Description: <br>
-DeepDive OSINT is an autonomous OSINT investigation tool that searches a subject, extracts entities, maps relationships into an interactive 3D graph, and highlights money flows, shell chains, gaps, and cross-links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous OSINT investigation tool that searches a subject, extracts entities, maps connections into an interactive 3D graph, follows money, detects shell chains, flags suspicious gaps, and expands through cross-links.
 
-## Publisher: <br>
-[sinndarkblade](https://clawhub.ai/user/sinndarkblade) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sinndarkblade](https://clawhub.ai/user/sinndarkblade)
 
-## Use Case: <br>
-Investigators, researchers, journalists, analysts, and security teams use this skill to start and expand OSINT investigations, extract entities from search results, identify relationship patterns, and produce investigation summaries and graph artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch and run a full GitHub application and pip dependencies during invocation. <br>
-Mitigation: Review or pin the repository and run the skill in a constrained environment before using it with operational data. <br>
-Risk: Investigation data and provider settings may be stored locally by the underlying application. <br>
-Mitigation: Avoid sensitive documents and real API keys until storage behavior and provider data flow have been reviewed. <br>
-Risk: OSINT outputs may include incorrect, incomplete, or unverified relationships. <br>
-Mitigation: Verify findings against independent sources before sharing results or taking action. <br>
+## Use Case:
 
+Investigators, researchers, journalists, security analysts, and finance teams use this skill to build OSINT investigations around people, companies, money flows, events, and document corpora. It helps collect entities, score relationships, identify gaps and cross-links, and produce investigation summaries and graph artifacts.
 
-## Reference(s): <br>
-- [DeepDive GitHub repository](https://github.com/Sinndarkblade/deepdive) <br>
-- [DeepDive OSINT ClawHub listing](https://clawhub.ai/sinndarkblade/deepdive-osint) <br>
-- [sinndarkblade publisher profile](https://clawhub.ai/user/sinndarkblade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown with inline Python and shell code blocks plus generated local investigation graph files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local investigation directories, JSON graph data, and interactive HTML board artifacts when the underlying application is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can fetch and run a full third-party application from a mutable GitHub repository and install Python dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandbox or dedicated environment, review the upstream repository before first use, and pin the repository revision and dependencies when possible.
+
+Risk: The installed application may have broad local access while building investigations and serving the local board.
+
+Mitigation: Keep investigation workspaces isolated, avoid granting unnecessary file access, and keep the local server bound to localhost.
+
+Risk: Investigations may involve sensitive subjects and can send prompts or data to external AI providers.
+
+Mitigation: Use external providers only when their data policies are acceptable for the investigation, or configure a local provider for sensitive work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sinndarkblade/skills/deepdive-osint)
+- [Publisher profile](https://clawhub.ai/user/sinndarkblade)
+- [DeepDive homepage](https://github.com/Sinndarkblade/deepdive)
+- [DuckDuckGo Search package](https://pypi.org/project/duckduckgo-search/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline Python and shell commands, plus generated investigation data and 3D HTML board files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local investigation directories, JSON graph data, HTML board artifacts, and summaries with confidence-scored findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

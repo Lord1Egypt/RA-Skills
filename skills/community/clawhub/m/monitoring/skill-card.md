@@ -1,47 +1,62 @@
-## Description: <br>
-Set up observability for applications and infrastructure with metrics, logs, traces, and alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up observability for applications and infrastructure with metrics, logs, traces, and alerts.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to choose and configure monitoring for applications and infrastructure, including uptime checks, metrics, logs, traces, dashboards, and alerts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Copying the examples directly into production can leave monitoring services, dashboards, or alerting endpoints insufficiently hardened. <br>
-Mitigation: Review and harden configurations before production use, restrict monitoring ports to trusted networks, and pin package or container versions when needed. <br>
-Risk: Telemetry can expose secrets, personal data, headers, request bodies, stack traces, or sensitive logs to monitoring systems or vendors. <br>
-Mitigation: Redact or minimize sensitive data before collection, protect Grafana and alerting secrets, and limit telemetry access to authorized users. <br>
-Risk: Misconfigured alerting can create noise or missed incidents. <br>
-Mitigation: Alert on actionable user impact, add runbooks for critical alerts, and test routing and escalation paths before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Monitoring Release](https://clawhub.ai/ivangdavila/monitoring) <br>
-- [Monitoring Skill Overview](artifact/SKILL.md) <br>
-- [Simple Monitoring](artifact/simple.md) <br>
-- [Application Performance Monitoring](artifact/apm.md) <br>
-- [Prometheus + Grafana Stack](artifact/prometheus.md) <br>
-- [Centralized Logging](artifact/logs.md) <br>
-- [Alerting Best Practices](artifact/alerting.md) <br>
+## Use Case:
 
+Developers and operations teams use this skill to choose and configure monitoring approaches for applications and infrastructure, including uptime checks, application performance monitoring, centralized logs, Prometheus/Grafana metrics, and alerting practices.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell, YAML, JavaScript, TypeScript, JSON, and PromQL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes monitoring tool comparisons, setup checklists, and example alerting, logging, tracing, and dashboard configurations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Monitoring examples can expose service status, host telemetry, logs, traces, or operational details if deployed on public interfaces.
+
+Mitigation: Bind monitoring ports to localhost or private networks, require authentication and TLS, apply firewall rules, and redact logs and traces before collection or export.
+
+Risk: Some examples install or run third-party packages, container images, and setup tools that may change over time.
+
+Mitigation: Review examples before use, pin package and image versions, and harden configurations before installing services in production.
+
+Risk: Alert messages and monitoring notifications can leak secrets or sensitive operational details.
+
+Mitigation: Keep alert payloads free of secrets, route notifications only to approved channels, and limit retained log and trace data to what is operationally necessary.
+
+## Reference(s):
+
+- [Monitoring skill page](https://clawhub.ai/ivangdavila/skills/monitoring)
+- [Monitoring overview](artifact/SKILL.md)
+- [Simple Monitoring](artifact/simple.md)
+- [Application Performance Monitoring](artifact/apm.md)
+- [Prometheus + Grafana Stack](artifact/prometheus.md)
+- [Centralized Logging](artifact/logs.md)
+- [Alerting Best Practices](artifact/alerting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for selecting, configuring, and operating monitoring tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Aggregates SMZDM deal-search results and formats discount summaries for shopping queries, with fallback demo results when live requests fail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates SMZDM shopping-deal information for deal searches, hot deals, possible bug-price finds, and historical-low style summaries.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External users and shopping-focused agents use this skill to search public SMZDM deal listings and summarize current-looking offers, prices, merchants, heat scores, and links. Users should treat the output as deal-discovery assistance rather than verified price intelligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping search terms are sent to SMZDM during live searches. <br>
-Mitigation: Avoid entering sensitive or private purchase intent when using live search. <br>
-Risk: Some results may be demo or mock data when live requests fail. <br>
-Mitigation: Verify prices, merchant details, and availability directly with the linked retailer or SMZDM before acting. <br>
-Risk: The documentation describes real-time alerts, historical-low checks, and BUG-price monitoring that are not fully implemented by the artifact. <br>
-Mitigation: Use the skill as a lightweight search and summary helper, not as an automated monitoring or pricing assurance system. <br>
+## Use Case:
 
+External users can ask an agent to search and summarize SMZDM shopping deals by keyword or category. The skill is intended for savings-oriented shopping workflows, but users should treat deal availability, pricing, and bug-price labels as unverified.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/275254cl-hash/smzdm-deals) <br>
-- [SMZDM](https://www.smzdm.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted deal summaries with links and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 10 deals per search and may fall back to demo data if outbound SMZDM requests fail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Deal results may be inaccurate, stale, or simulated without a clear label.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify prices, merchants, coupon terms, and availability on the linked shopping or deal page before making purchase decisions.
+
+Risk: The skill description overstates live monitoring and bug-price detection relative to the evidence.
+
+Mitigation: Present outputs as shopping leads rather than confirmed live alerts, and review the tool behavior before using it for automated notifications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/smzdm-deals)
+- [SMZDM website](https://www.smzdm.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style text summaries with deal titles, prices, merchants, timestamps, popularity, and links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 10 deals per search path in the bundled tool; mock fallback results may be shown when live requests fail.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

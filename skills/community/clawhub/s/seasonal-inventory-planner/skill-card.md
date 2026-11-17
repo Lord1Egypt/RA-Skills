@@ -1,43 +1,61 @@
-## Description: <br>
-Build month-by-month inventory plans that align purchasing, stocking, and markdown timing with seasonal demand curves to prevent both stockouts during peaks and overstock during troughs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build month-by-month inventory plans that align purchasing, stocking, and markdown timing with seasonal demand curves to prevent both stockouts during peaks and overstock during troughs.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Retail operators, planners, and purchasing teams use this skill to turn historical seasonal demand into month-by-month inventory targets, reorder calendars, and markdown action plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inventory plans can influence purchasing, pricing, markdown, and liquidation decisions. <br>
-Mitigation: Keep purchase orders, price changes, markdown campaigns, and liquidation decisions under normal human approval. <br>
-Risk: Forecasts and reorder calendars can be misleading if historical sales, stockout adjustments, lead times, or capacity assumptions are incomplete. <br>
-Mitigation: Share only the necessary sales and operational data, then verify assumptions, forecasts, constraints, and recommended actions before use. <br>
+## Use Case:
 
+Retail operators, inventory planners, and purchasing teams use this skill to turn historical seasonal sales patterns into actionable inventory calendars with reorder dates, quantity targets, safety stock, cash-flow timing, and markdown triggers.
 
-## Reference(s): <br>
-- [Seasonal Inventory Plan Output Template](references/output-template.md) <br>
-- [Seasonal Decomposition Guide](references/seasonal-decomposition.md) <br>
-- [Post-Season Playbook](references/post-season-playbook.md) <br>
-- [Seasonal Inventory Plan Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plans with tables, calendars, checklists, and decision triggers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include reorder dates, inventory targets, safety stock rationale, cash flow timing, and markdown schedules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Planning may require commercial inventory, revenue, supplier, and cash-flow details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only data approved for planning use with the agent, and redact supplier or financial details that are not needed for the inventory plan.
+
+Risk: Inventory recommendations can be misleading when historical demand data is incomplete, affected by stockouts, or distorted by promotions.
+
+Mitigation: Use the quality checklist to validate data coverage, stockout adjustments, promotion flags, and confidence intervals before acting on the plan.
+
+Risk: Long supplier lead times can force purchase commitments before reliable demand signals are available.
+
+Mitigation: Document blind-buy assumptions, concentrate early commitments on proven products, reserve budget for later top-ups, and define markdown triggers before the season starts.
+
+## Reference(s):
+
+- [Seasonal Inventory Planner on ClawHub](https://clawhub.ai/leooooooow/skills/seasonal-inventory-planner)
+- [Seasonal Inventory Plan Output Template](references/output-template.md)
+- [Seasonal Decomposition Guide](references/seasonal-decomposition.md)
+- [Post-Season Playbook](references/post-season-playbook.md)
+- [Seasonal Inventory Plan Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured tables, checklists, and planning recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces forecast, inventory target, reorder, cash-flow, markdown, risk, and next-step planning sections.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

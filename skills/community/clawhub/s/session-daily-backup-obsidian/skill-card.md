@@ -1,47 +1,59 @@
-## Description: <br>
-Automatically backs up OpenClaw session conversations into an Obsidian vault, with incremental daily backups, multi-session merging, token monitoring, and optional QQ warning notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up OpenClaw session conversations to an Obsidian vault with incremental daily files, merged sessions, token monitoring, and optional QQ warnings.
 
-## Publisher: <br>
-[ValueMoon2025](https://clawhub.ai/user/ValueMoon2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[valuemoon2025](https://clawhub.ai/user/valuemoon2025)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to preserve agent session history as Obsidian Markdown notes for review, continuity, and personal knowledge management. It is suited to private vault workflows where persistent conversation archives are intentionally maintained. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent backups can copy full OpenClaw conversation history, including sensitive content, into Obsidian Markdown files. <br>
-Mitigation: Use a private, access-controlled vault, review generated notes before sharing or syncing, and install only when persistent conversation archives are intended. <br>
-Risk: Cloud-synced vaults can propagate backed-up conversations outside the local machine. <br>
-Mitigation: Disable or restrict cloud sync for the target vault unless the synced destination is approved for the conversation data. <br>
-Risk: Optional QQ warning notifications can send token-alert metadata through an external channel. <br>
-Mitigation: Leave QQ notification settings disabled unless that channel is approved, and remove those settings when external alerting is no longer needed. <br>
-Risk: A cron job can keep copying new session content after the user no longer expects backups. <br>
-Mitigation: Review scheduled jobs during installation and remove or disable the cron entry when backups are no longer required. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to preserve session chat history in Obsidian as daily or ad hoc Markdown snapshots, with basic token usage monitoring for long-running sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ValueMoon2025/session-daily-backup-obsidian) <br>
-- [Publisher profile](https://clawhub.ai/user/ValueMoon2025) <br>
-- [Obsidian](https://obsidian.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown notes with Obsidian callouts, plus shell command output and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or appends daily, full, or hourly Markdown snapshot files and writes local tracking files for incremental backup state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: OpenClaw chat history may be copied into long-lived plaintext Obsidian files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private vault, avoid syncing sensitive backups, apply restrictive permissions such as umask 077, and define a retention practice for backup files.
+
+Risk: A cron job can continue backing up sessions after the user no longer wants automatic copying.
+
+Mitigation: Review the installed crontab after setup and remove or disable the scheduled command when automatic backups are no longer needed.
+
+Risk: QQ warning notifications can disclose session status or usage details to an external channel.
+
+Mitigation: Leave QQ notification credentials unset unless warnings are required, and verify the destination account before enabling them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/valuemoon2025/skills/session-daily-backup-obsidian)
+- [Obsidian](https://obsidian.md)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces plaintext Obsidian backups from local OpenClaw JSONL session files and may emit QQ token warnings when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

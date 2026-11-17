@@ -20,6 +20,15 @@ This skill is for routing Claude 4.5 questions to the right APIDot docs, model p
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Claude 4.5 model page: https://apidot.ai/models/claude-4-5
+- Read Claude 4.5 API docs: https://apidot.ai/docs/claude-4-5
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## Search Terms
 
 Use this skill for searches and requests phrased as Claude 4.5 API, Claude 4 5 API, claude-4-5, Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, Anthropic Messages API, Claude coding agent API, or APIDot Claude API.

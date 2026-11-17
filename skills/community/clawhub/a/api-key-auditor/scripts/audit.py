@@ -40,7 +40,7 @@ PATTERNS = [
 # 已知安全的误报（占位符、示例值）
 ALLOWLIST = {
     'your_api_key_here', 'your-api-key-here', 'your-api-key', 'YOUR_API_KEY', 'YOUR_TOKEN',
-    'xxxxxxxx', 'sk-xxxxxxxxxxxxxxxxxxxx', 'sk-...', '<your-key>', 'example', 'placeholder',
+    'xxxxxxxx', 'REDACTED-SECRET', 'sk-...', '<your-key>', 'example', 'placeholder',
     'REPLACE_ME', 'INSERT_YOUR_KEY', 'your_key', 'your-key', 'api-key-here',
 }
 

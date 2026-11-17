@@ -1,45 +1,65 @@
-## Description: <br>
-Structured memory system for OpenClaw agents with context death resilience, structured storage, Obsidian-compatible markdown, local semantic search, and session transcript repair. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured memory system for OpenClaw agents. Context death resilience (checkpoint/recover), structured storage, Obsidian-compatible markdown, local semantic search, and session transcript repair.
 
-## Publisher: <br>
-[pin-alt](https://clawhub.ai/user/pin-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pin-alt](https://clawhub.ai/user/pin-alt)
 
-## Use Case: <br>
-Developers and OpenClaw agents use ClawVault to keep structured memory across sessions, recover from context loss, search local markdown vaults, and repair broken session transcripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and displays session identifiers and includes broad file, Git, and transcript mutation features beyond simple memory search. <br>
-Mitigation: Review before installing, use a dedicated vault path, avoid storing secrets or customer/private data in memories, inspect shell-init output before appending it to shell startup files, and use --no-git on sleep unless repository-wide commit prompts are desired. <br>
+## Use Case:
 
+Developers and agents use ClawVault to maintain local, structured memory across OpenClaw sessions, including checkpoint recovery, handoffs, typed memory capture, search, wiki-linking, and transcript repair.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pin-alt/2026-02-10-clawhub-clawvault-1-5-1) <br>
-- [README](README.md) <br>
-- [Context Death Resilience](docs/context-death.md) <br>
-- [Auto-Linking Spec](docs/auto-linking.md) <br>
-- [ClawVault Hook](hooks/clawvault/HOOK.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [qmd](https://github.com/Versatly/qmd) <br>
-- [npm package](https://www.npmjs.com/package/clawvault) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local vault markdown, checkpoint, handoff, index, and session-repair files when the recommended CLI commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: SKILL.md frontmatter, package.json, CHANGELOG; ClawHub release version 1.0.0) <br>
+Risk: The global CLI and OpenClaw hook can persist local memory, index Markdown, and modify vault files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing this boundary, keep the vault in a dedicated directory, and avoid storing secrets or regulated data.
+
+Risk: Bulk linking and session repair can modify many local files.
+
+Mitigation: Use dry-run modes before bulk linking or repairing session transcripts.
+
+Risk: An unpinned qmd installation can change search behavior or dependency exposure over time.
+
+Mitigation: Use a pinned qmd version when installing or updating the search dependency.
+
+Risk: The sleep workflow may prompt for a whole-repository git commit.
+
+Mitigation: Use --no-git unless a repository-wide commit is explicitly intended.
+
+## Reference(s):
+
+- [OpenClaw](https://openclaw.ai)
+- [qmd](https://github.com/Versatly/qmd)
+- [ClawVault npm package](https://www.npmjs.com/package/clawvault)
+- [Auto-linking documentation](docs/auto-linking.md)
+- [Context death resilience documentation](docs/context-death.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI-oriented text with shell command examples and local vault file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can persist local memory, update Markdown files, index vault contents, and repair session transcript files.]
+
+## Skill Version(s):
+
+1.5.1 (source: frontmatter, package.json, CHANGELOG released 2026-02-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

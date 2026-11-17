@@ -12,11 +12,15 @@ primary_contact is kept (distinct free-text purpose). Columns are nullable and
 store verbatim (no format validation). Plain ADD COLUMN (no rebuild).
 Idempotent. Dialect-aware.
 
-ADR: planning/decisions/ADR-0012-customer-supplier-email-phone-columns.md
+ADR: ADR-0012 (customer/supplier email + phone columns).
 """
 import argparse
 import os
 import sqlite3
+
+# M102: adds tables / columns / indexes only — nothing a row held before this
+# run is different afterwards.
+MIGRATION_DATA_CLASS = "none"
 
 DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 _COLUMNS = [

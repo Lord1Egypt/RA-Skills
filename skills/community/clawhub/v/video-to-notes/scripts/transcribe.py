@@ -13,7 +13,12 @@ Options:
     --language <lang>     语言代码 (默认: 自动检测)
                           例如: zh, en, ja
     --output-dir <dir>    输出目录 (默认: 视频所在目录)
-    --device <device>     计算设备 (默认: cpu)
+    --device <device>     计算设备 (默认: auto, 自动选择最佳设备)
+                          可选: cpu, mps (Apple Silicon), cuda (NVIDIA)
+    --strip-silence       裁剪静音段落（默认开启，减少无效音频长度）
+    --no-strip-silence    关闭静音裁剪
+    --speed <factor>      音频变速系数 (默认: 1.0, 推荐 1.0-1.5)
+                          1.3 ≈ 快 23%, 对精度影响极小
 
 支持的模型耗时参考 (CPU, 中文):
   - tiny:   ~实时0.5x (最快, 精度较低)
@@ -55,9 +60,30 @@ def get_video_duration(video_path):
         return None
 
 
-def extract_audio(video_path, audio_path):
-    """从视频中提取音频"""
+def extract_audio(video_path, audio_path, strip_silence=True, speed=1.0):
+    """从视频中提取音频，支持静音裁剪和变速"""
     print(f"  🎵 提取音频: {os.path.basename(video_path)}")
+
+    # 构建音频滤镜链
+    filter_parts = []
+
+    if strip_silence:
+        # 裁剪首尾静音 + 中间 >0.5s 的停顿
+        # 使用 reverse 两次分别裁剪开头和结尾的静音
+        filter_parts.append(
+            "silenceremove=start_periods=1:start_duration=0.5:start_threshold=-50dB:"
+            "detection=peak,aformat=dblp,areverse,"
+            "silenceremove=start_periods=1:start_duration=0.5:start_threshold=-50dB:"
+            "detection=peak,aformat=dblp,areverse"
+        )
+
+    if speed != 1.0:
+        # atempo 保持音调的同时变速，范围 0.5-2.0
+        clamped = max(0.5, min(2.0, speed))
+        filter_parts.append(f"atempo={clamped}")
+
+    filter_str = ",".join(filter_parts) if filter_parts else None
+
     cmd = [
         "ffmpeg", "-y",
         "-i", video_path,
@@ -65,12 +91,35 @@ def extract_audio(video_path, audio_path):
         "-acodec", "pcm_s16le",  # PCM 16-bit
         "-ar", "16000",  # 16kHz 采样率 (whisper 最佳)
         "-ac", "1",      # 单声道
-        audio_path
     ]
+
+    if filter_str:
+        cmd.extend(["-af", filter_str])
+        if strip_silence:
+            print(f"    🔇 裁剪静音段落 — 减少无效音频时长")
+        if speed != 1.0:
+            print(f"    ⏩ 变速: {speed}x — 减少转写时长约 {(1 - 1/speed)*100:.0f}%")
+
+    cmd.append(audio_path)
+
+    original_size = os.path.getsize(video_path) if os.path.exists(video_path) else 0
+    start = time.time()
+
     result = subprocess.run(cmd, capture_output=True, text=True)
+
+    elapsed = time.time() - start
+
     if result.returncode != 0:
         print(f"  ❌ 音频提取失败: {result.stderr}")
         return False
+
+    # 报告压缩效果
+    output_size = os.path.getsize(audio_path) if os.path.exists(audio_path) else 0
+    if original_size > 0 and output_size > 0:
+        ratio = output_size / original_size
+        print(f"    💾 音频 {original_size/1024/1024:.0f}MB → {output_size/1024/1024:.0f}MB ({ratio*100:.0f}%)")
+
+    print(f"    ⏱  ffmpeg 耗时: {elapsed:.1f}秒")
     return True
 
 
@@ -114,7 +163,8 @@ def format_time(seconds):
     return f"{m:02d}:{s:02d}"
 
 
-def process_video(video_path, model, language, output_dir, device):
+def process_video(video_path, model, language, output_dir, device,
+                  strip_silence=True, speed=1.0):
     """处理单个视频文件"""
     if not os.path.exists(video_path):
         print(f"  ❌ 文件不存在: {video_path}")
@@ -147,9 +197,12 @@ def process_video(video_path, model, language, output_dir, device):
         print(f"⏱️  时长: {duration:.1f}分钟")
         if duration > 120:
             print(f"⚠️  视频较长(>2小时)，建议只处理此单个文件以确保质量")
+        # 建议开启加速
+        if duration > 30 and not strip_silence and speed == 1.0:
+            print(f"💡 建议: 长视频可加 --strip-silence 和 --speed 1.3 加速转写")
 
-    # 提取音频
-    if not extract_audio(video_path, audio_path):
+    # 提取音频（含静音裁剪 + 变速）
+    if not extract_audio(video_path, audio_path, strip_silence, speed):
         return False
 
     # 转写
@@ -182,8 +235,14 @@ def main():
                         help="语言代码 (默认: 自动检测)")
     parser.add_argument("--output-dir", default=None,
                         help="输出目录 (默认: 视频所在目录)")
-    parser.add_argument("--device", default="cpu",
-                        help="计算设备 (默认: cpu, 可选: cuda)")
+    parser.add_argument("--device", default="auto",
+                        help="计算设备 (默认: auto, 自动选择最佳设备; 可选: cpu, mps, cuda)")
+    parser.add_argument("--strip-silence", action="store_true", default=True,
+                        help="裁剪静音段落（默认开启）")
+    parser.add_argument("--no-strip-silence", action="store_false", dest="strip_silence",
+                        help="关闭静音裁剪")
+    parser.add_argument("--speed", type=float, default=1.0,
+                        help="音频变速系数 (默认: 1.0, 推荐 1.0-1.5)")
     parser.add_argument("--max-files", type=int, default=3,
                         help="同时处理最大文件数 (默认: 3)")
 
@@ -191,6 +250,30 @@ def main():
 
     # 检查 ffmpeg
     detect_ffmpeg()
+
+    # 自动检测最佳设备
+    device = args.device
+    if device == "auto":
+        try:
+            import torch
+            if torch.cuda.is_available():
+                device = "cuda"
+                print("🚀 检测到 NVIDIA GPU，使用 CUDA 加速")
+            elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+                device = "mps"
+                print("🚀 检测到 Apple Silicon (MPS)，使用 GPU 加速")
+            else:
+                device = "cpu"
+                print("💻 未检测到 GPU 加速，使用 CPU 模式")
+        except ImportError:
+            device = "cpu"
+            print("💻 torch 版本不支持设备检测，使用 CPU 模式")
+    elif device == "mps":
+        print("🚀 手动指定 MPS (Apple Silicon GPU)")
+    elif device == "cuda":
+        print("🚀 手动指定 CUDA (NVIDIA GPU)")
+    else:
+        print(f"💻 使用 CPU 模式")
 
     videos = args.videos
 
@@ -219,7 +302,8 @@ def main():
     for video in videos:
         # 确定输出目录
         out_dir = args.output_dir or os.path.dirname(os.path.abspath(video))
-        ok = process_video(video, args.model, args.language, out_dir, args.device)
+        ok = process_video(video, args.model, args.language, out_dir, device,
+                          args.strip_silence, args.speed)
         if ok:
             success += 1
         else:

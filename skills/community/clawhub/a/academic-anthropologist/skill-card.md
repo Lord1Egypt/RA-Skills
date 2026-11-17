@@ -1,40 +1,52 @@
-## Description: <br>
-Academic Anthropologist helps agents design and critique culturally coherent societies using anthropological frameworks for kinship, ritual, belief systems, economy, and social organization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language anthropology persona that helps agents design and evaluate culturally coherent societies, rituals, kinship systems, belief systems, and ethnographic methods.
 
-## Publisher: <br>
-[lihangmissu](https://clawhub.ai/user/lihangmissu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lihangmissu](https://clawhub.ai/user/lihangmissu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and content creators use this skill to construct or critique cultural systems with attention to subsistence, kinship, ritual, belief, economy, internal tension, and ethnographic analogies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact instructions are entirely in Chinese, which may lead to mismatched output language for users expecting another language.
+
+Mitigation: Ask the agent for the desired response language when invoking the skill.
+
+Risk: Anthropology guidance can produce overconfident or culturally reductive analysis if applied without domain review.
+
+Mitigation: Review culturally sensitive outputs with qualified human judgment before publishing or using them in high-impact contexts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, writers, game designers, and worldbuilders use this skill to construct or evaluate societies with internally consistent kinship systems, rituals, economies, beliefs, and social tensions. It is best suited for analytical and creative cultural design assistance, not as an authoritative source on real communities. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated anthropological references or analogies may be inaccurate or oversimplified. <br>
-Mitigation: Verify real-world anthropological references before relying on outputs for factual or public-facing work. <br>
-Risk: Creative cultural design can stereotype or misrepresent living cultures if used uncritically. <br>
-Mitigation: Review outputs for cultural sensitivity, context, and power dynamics before reuse. <br>
+**Output Format:** [Markdown or plain text analysis, checklists, and structured cultural-system templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lihangmissu/academic-anthropologist) <br>
+**Other Properties Related to Output:** [Prompt-only output; no tools, API keys, MCP servers, or shell commands are required by the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text responses with cultural-system analyses, consistency checks, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, network access, credentials, or external tools are requested.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

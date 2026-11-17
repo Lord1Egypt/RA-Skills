@@ -1,42 +1,58 @@
-## Description: <br>
-Guide users buying a water heater through household size, fuel type, capacity, and recovery rate questions to find the exact geyser or boiler specs they need - region-aware, brand-neutral. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users buying a water heater through household size, fuel type, capacity, and recovery rate questions to find the exact geyser or boiler specs they need - region-aware, brand-neutral.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users and buying advisors use this skill to interview water-heater buyers, calculate household-specific requirements, and produce a structured specification recommendation with product starting points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product suggestions may be outdated, unavailable, or unsuitable for the buyer's region. <br>
-Mitigation: Treat suggested models as research starting points and verify current specifications, certification, pricing, warranty, and local availability before purchase. <br>
-Risk: Electrical, gas, venting, or plumbing constraints can make an otherwise reasonable recommendation unsafe or non-compliant. <br>
-Mitigation: Confirm circuit capacity, gas supply, venting, installer suitability, and local code requirements with a qualified professional before buying or installing a unit. <br>
+## Use Case:
 
+External users use this skill to choose water-heater specifications for a household or replacement purchase. The agent gathers demand, fuel, installation, climate, usage, and water-quality details, then returns brand-neutral sizing and feature guidance with product examples after the required specs are established.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/water-heater-buying-consultant) <br>
-- [Publisher profile](https://clawhub.ai/user/arbazex) <br>
-- [Artifact homepage](https://github.com/arbazex/home-appliance-buying-consultants/tree/master/water-heater-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured recommendations, buyer-risk flags, and up to five product suggestions for independent verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Buying recommendations may become inaccurate when model availability, specifications, certifications, or pricing change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users to verify current product specifications, availability, installation requirements, and pricing in their region before purchase.
+
+Risk: Users may treat buying guidance as professional installation, electrical, gas, plumbing, or venting advice.
+
+Mitigation: Keep installation details out of the buying consultation and direct users to licensed professionals for electrical, gas, plumbing, and venting decisions.
+
+Risk: Incorrect or incomplete household, fuel, circuit, climate, or water-quality inputs can lead to undersized or unsuitable recommendations.
+
+Mitigation: Ask targeted follow-up questions for missing critical inputs and avoid final recommendations until the required details are confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/water-heater-buying-consultant)
+- [Publisher profile](https://clawhub.ai/user/arbazex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational questions followed by structured Markdown recommendation lists and numbered product suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Brand-neutral buying consultation; no external APIs, environment variables, or runtime dependencies required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

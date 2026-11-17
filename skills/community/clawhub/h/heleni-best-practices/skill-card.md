@@ -1,44 +1,61 @@
-## Description: <br>
-Daily check of Heleni's PA Skills website for new best practices, lessons learned, and skill updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a daily or on-demand sync against Heleni's PA Skills website to detect new best practices, lessons learned, and skill updates for an agent's local setup.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers and agent owners use this skill to check Heleni's PA Skills site for new lessons, skill updates, and best-practice changes that may inform an agent's own setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mutable external content can influence persistent agent behavior. <br>
-Mitigation: Require visible diffs and explicit approval before changing SOUL.md, AGENTS.md, HOT.md, skill descriptions, installed skills, or other persistent behavior. <br>
-Risk: Daily scheduled checks fetch and evaluate remote Heleni PA Skills content. <br>
-Mitigation: Install only when the publisher and Heleni PA Skills source are trusted, and review fetched updates before applying them. <br>
+## Use Case:
 
+Agent owners and developers use this skill to monitor Heleni's published PA-skills lessons, compare them with prior local state, and log or propose relevant updates to local agent guidance.
 
-## Reference(s): <br>
-- [Heleni PA Skills](https://netanel-abergel.github.io/pa-skills/) <br>
-- [Heleni PA Skills Lessons](https://netanel-abergel.github.io/pa-skills/learn.html) <br>
-- [Heleni PA Skills About](https://netanel-abergel.github.io/pa-skills/about.html) <br>
-- [Heleni PA Skills GitHub Repository](https://github.com/netanel-abergel/pa-skills) <br>
-- [ClawHub Skill Page](https://clawhub.ai/netanel-abergel/heleni-best-practices) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local state JSON file and markdown learning logs when run by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can ingest third-party content on a recurring schedule and use it to influence local agent guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require owner review before applying persistent behavior changes, and pin or review upstream content before adopting lessons.
+
+Risk: The workflow includes silent cron behavior and persistent local writes.
+
+Mitigation: Disable silent scheduled operation unless explicitly approved, and require approval for every persistent write.
+
+Risk: The workflow uses fixed temporary paths during network fetches.
+
+Mitigation: Replace fixed temporary paths with private temporary files before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/heleni-best-practices)
+- [Heleni PA Skills](https://netanel-abergel.github.io/pa-skills/)
+- [Heleni PA Skills lessons](https://netanel-abergel.github.io/pa-skills/learn.html)
+- [Heleni PA Skills about page](https://netanel-abergel.github.io/pa-skills/about.html)
+- [Heleni PA Skills GitHub repository](https://github.com/netanel-abergel/pa-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local state files and learning logs when enabled by the agent owner.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

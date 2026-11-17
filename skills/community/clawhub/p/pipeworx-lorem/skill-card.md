@@ -1,39 +1,55 @@
-## Description: <br>
-Lorem MCP — wraps loripsum.net (free, no auth) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lorem MCP wraps loripsum.net to generate lorem ipsum text without authentication.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-External developers and agent users use this skill to connect an MCP server that generates Lorem Ipsum text from loripsum.net without requiring an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connection example launches npx with mcp-remote@latest and connects to a remote MCP gateway, so the executed package or remote service behavior may change over time. <br>
-Mitigation: Review the command before adding it to an agent, consider pinning the mcp-remote package version, and use the skill only in environments where remote MCP access is allowed. <br>
+## Use Case:
 
+Developers and agents use this skill to connect to a remote Pipeworx lorem-ipsum MCP service and generate placeholder text through the exposed paragraph generation tools.
 
-## Reference(s): <br>
-- [Pipeworx Lorem homepage](https://pipeworx.io/packs/lorem) <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-lorem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration] <br>
-**Output Format:** [Plain text MCP tool responses and JSON MCP server configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides generate_paragraphs and generate_with_options tools; no API key is documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The setup command runs an npm package and connects to Pipeworx's remote MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it in an environment without unnecessary secrets or file access.
+
+Risk: The documented mcp-remote bridge uses an unpinned latest version.
+
+Mitigation: Prefer a pinned mcp-remote version or a locked installation where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-lorem)
+- [Pipeworx Lorem pack](https://pipeworx.io/packs/lorem)
+- [Pipeworx](https://pipeworx.io)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text from MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is documented.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

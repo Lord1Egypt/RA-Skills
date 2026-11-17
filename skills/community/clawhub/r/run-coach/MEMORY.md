@@ -1,44 +1,32 @@
-# MEMORY.md — Runner Profile
+# Runner Profile (template — fill in, keep fact IDs stable)
 
-Fill in your personal data. This file is auto-loaded every session.
+## Goals (GOAL)
+- [F-GOAL-1] Target race: <race name, distance, date> — status: active
+- [F-GOAL-2] Target result: <e.g. sub-4:00 marathon / finish 10K comfortably>
 
-## Profile
-- Name: (your name)
-- Age: (e.g. 30)
-- Location: (city, country)
-- Running experience: (e.g. beginner / 2 years casual / completed a half marathon)
-- Injury history: (e.g. none / left knee pain in 2023 / plantar fasciitis)
-- MAF heart rate ceiling: (180 minus your age — e.g. 150 for age 30)
-- Training start date: (when you started with this bot)
+## Runner (IDENT)
+- [F-IDENT-1] Age / running since: <...>
+- [F-IDENT-2] Weekly availability: <days per week, time-of-day constraints>
+- [F-IDENT-3] Personal bests: <5K / 10K / HM / FM with dates>
 
-## Goal
-- Target race: (e.g. 5K park run / 10K in June / first half marathon / full marathon)
-- Target finish time: (e.g. sub-30 for 5K / just finish)
-- Timeline: (e.g. 12 weeks / 6 months)
+## Health & injuries (INJURY)
+<!-- One fact per site. When resolved, mark "stable since <date> — passive
+     monitoring" instead of deleting; history matters for load decisions. -->
+- [F-INJURY-1] <site, onset date, current status, guidance line>
 
-## Training Preferences
-- Training days per week: (e.g. 3 — Mon / Wed / Fri)
-- Preferred run time: (e.g. morning / evening)
-- Cross-training available: (e.g. none / home exercises / gym)
-- Data source: (e.g. Garmin Forerunner 235 / Apple Watch / manual)
-- Language: (e.g. English / Chinese)
+## Gear (GEAR)
+- [F-GEAR-1] Shoes in rotation: <model — role, e.g. daily / long run / race>
 
-## Personal Bests
-| Distance | Time | Date | Notes |
-|----------|------|------|-------|
-| (fill in) | | | |
+## Zones & metrics (METRIC)
+- [F-METRIC-1] MAF HR ceiling: <180 - age ± adjustments>
+- [F-METRIC-2] Current VDOT: <value, source, date>
 
-## Race History
-| Date | Race | Finish Time | Notes |
-|------|------|-------------|-------|
-| (fill in) | | | |
+## Decisions (DECIDE)
+<!-- Format: [F-DECIDE-n] date | decision | reason | rejected alternative -->
+- (none yet)
 
-## Training Log Summary
-(Bot will update this automatically after each run)
-
-## Key Decisions
-(Bot logs important plan changes here)
-
-## Image Sending Note
-- Always use exec + training/text-to-image.sh or training/send-plan.sh for images
-- Never use canvas / browser / Playwright directly
+<!-- Conventions:
+  - Absolute dates only (2026-08-17, never "today").
+  - Corrections from the runner are authoritative: edit the fact, add
+    "(corrected <date>)", never reassert the old version.
+  - Never record "runner hasn't answered X" as pending — see SKILL.md rule 4. -->

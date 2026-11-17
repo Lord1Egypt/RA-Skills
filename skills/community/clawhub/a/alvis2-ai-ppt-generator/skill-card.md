@@ -1,41 +1,54 @@
-## Description: <br>
-Generate PPT with SkillBoss API Hub. Smart template selection based on content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate PPT with SkillBoss API Hub. Smart template selection based on content.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and agents use this skill to generate presentation decks from a topic through SkillBoss API Hub, either with a user-selected template or an automatically selected template. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to run helper Python scripts that are not included in the package. <br>
-Mitigation: Confirm the referenced scripts come from a trusted, reviewed source and that the agent runs those specific files from the skill package rather than arbitrary relative paths. <br>
-Risk: The workflow requires a SkillBoss API key and submits presentation topics to SkillBoss API Hub. <br>
-Mitigation: Use a limited or revocable API key and avoid confidential presentation topics unless SkillBoss API Hub handling is trusted for that content. <br>
+## Use Case:
 
+External users and developers use this skill to generate presentation files from a topic through SkillBoss API Hub, either with a selected template or automatic template selection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alvis2-ai-ppt-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/alvisdunlop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and SkillBoss_API_KEY; the invoked workflow streams JSON status and returns a PPT URL when generation completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The artifact references required Python scripts that are not present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the missing scripts from a trusted source before running the skill or providing an API key.
+
+Risk: PPT topics and related content may be sent to SkillBoss API Hub using SkillBoss_API_KEY.
+
+Mitigation: Do not submit confidential, regulated, or internal business content unless third-party API use is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alvis2-ai-ppt-generator)
+- [Publisher profile](https://clawhub.ai/user/alvisdunlop)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Text]
+
+**Output Format:** [Markdown with inline shell commands and JSON status examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a PPT URL after a streaming API call; generation may take 2-5 minutes.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

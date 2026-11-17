@@ -16,6 +16,54 @@ Create API checks, browser checks, and multi-step checks.
 | **Multi-Step Check** | Complex browser workflows | Playwright (legacy) |
 | **Playwright Check Suite** | Full test suites | Playwright projects |
 
+## Structured check intent
+
+`ApiCheck`, `BrowserCheck`, `MultiStepCheck`, and `PlaywrightCheck` accept an `intent` property for durable root-cause-analysis and check-repair guidance:
+
+```typescript
+new ApiCheck('dashboard-api', {
+  name: 'Dashboard API',
+  intent: {
+    goal: 'Verify that authenticated users can open the dashboard.',
+    constraints: [
+      {
+        type: 'REQUIRED_OUTCOME',
+        statement: 'The dashboard displays the account overview.',
+      },
+      {
+        type: 'MUST_PRESERVE',
+        statement: 'Do not weaken the authentication assertion.',
+      },
+    ],
+  },
+  request: {
+    method: 'GET',
+    url: 'https://example.com/api/dashboard',
+    assertions: [AssertionBuilder.statusCode().equals(200)],
+  },
+})
+```
+
+Intent is separate from the check description and executable assertions. Omit `intent` to preserve existing backend-authored intent; use an object to set/update it; use `intent: null` only to clear it deliberately. The CLI trims values and rejects unknown fields. `goal` is required and limited to 2,000 characters. Constraint types are exact uppercase `REQUIRED_OUTCOME` or `MUST_PRESERVE`, with at most 20 of each type and 1,000 characters per statement.
+
+## Automatic check repair
+
+`BrowserCheck` and `MultiStepCheck` can manage their automatic-repair override with `aiAutoRepairEnabled`:
+
+```typescript
+new BrowserCheck('checkout-browser', {
+  name: 'Checkout browser flow',
+  code: { entrypoint: './checkout.spec.ts' },
+  aiAutoRepairEnabled: true,
+})
+```
+
+- Omit the property to leave any existing backend-authored setting unchanged.
+- Use `true` or `false` to override the account default for that check.
+- Use `null` to make the check inherit the account-level setting explicitly.
+
+This property is not supported by `ApiCheck`, `PlaywrightCheck`, monitors, or agentic checks. TypeScript rejects it on those construct props, but a plain-JavaScript project receives no validation diagnostic: the value is silently omitted from the synthesized payload. A clean `checkly test` or `checkly deploy` therefore does not prove that an unsupported JavaScript setting was applied. Do not infer support from the separate `intent` property, which has a wider construct surface.
+
 ## API Checks
 
 Monitor HTTP endpoints with assertions.
@@ -324,6 +372,12 @@ new ApiCheck('scheduled-check', {
 })
 ```
 
+### Response-time validation
+
+`degradedResponseTime` and `maxResponseTime` are top-level `ApiCheck` properties. They control check-state thresholds and are separate from `AssertionBuilder.responseTime()` request assertions.
+
+The standard client-side ceiling for both API-check properties is 30 seconds. When the authenticated account advertises extended response-time limits, the CLI skips that fixed ceiling and lets the Checkly API enforce the account-specific limit. Do not assume that entitlement is present: run `npx checkly test` with the target account and treat its validation or API response as authoritative. Older or self-hosted APIs that do not expose account feature flags keep the standard ceiling. In every case, `degradedResponseTime` must be less than or equal to `maxResponseTime`.
+
 ### Tags and organization
 
 ```typescript
@@ -336,7 +390,11 @@ new ApiCheck('tagged-check', {
 ### Alert configuration
 
 ```typescript
-import { EmailAlertChannel, SlackAppAlertChannel } from 'checkly/constructs'
+import {
+  EmailAlertChannel,
+  SlackAppAlertChannel,
+  TelegramAlertChannel,
+} from 'checkly/constructs'
 
 const emailChannel = new EmailAlertChannel('email-alerts', {
   address: 'team@example.com',
@@ -349,9 +407,26 @@ const slackAppChannel = new SlackAppAlertChannel('slack-app-alerts', {
   slackChannels: ['#alerts'],
 })
 
+// Keep bot credentials in the environment. messageThreadId routes alerts to
+// one forum topic inside a Telegram group; omit it for the main chat.
+function requireEnv(name: string): string {
+  const value = process.env[name]
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`)
+  }
+  return value
+}
+
+const telegramChannel = new TelegramAlertChannel('telegram-alerts', {
+  name: 'Telegram topic alerts',
+  chatId: requireEnv('CHECKLY_TELEGRAM_CHAT_ID'),
+  apiKey: requireEnv('CHECKLY_TELEGRAM_BOT_TOKEN'),
+  messageThreadId: process.env.CHECKLY_TELEGRAM_TOPIC_ID,
+})
+
 new ApiCheck('check-with-alerts', {
   name: 'Check with Alerts',
-  alertChannels: [emailChannel, slackAppChannel],
+  alertChannels: [emailChannel, slackAppChannel, telegramChannel],
 })
 ```
 
@@ -443,6 +518,38 @@ new ApiCheck('api-check', {
 })
 ```
 
+## Run deployed checks now
+
+`checks run` starts live check sessions immediately for already deployed checks, using their configured locations and alerting rules. It is not the same as `checkly test`, which evaluates project definitions. It has no `--dry-run`, no `--force`, and no confirmation prompt. A live run consumes account usage and may alert real on-call recipients. Require explicit user approval before running it.
+
+Never run `checks run` without a `--check-id` or `--tags` selector because no selector targets every activated deployed check in the account. Use one selector type at a time; combining `--check-id` and `--tags` has unverified server-side selection semantics.
+
+```bash
+# Preview tag matches before running. checks list uses singular --tag,
+# while checks run uses plural --tags.
+npx checkly checks list --tag production --output json
+
+# Run one or more deployed checks by ID
+npx checkly checks run --check-id <check-id>
+npx checkly checks run --check-id <check-id-1>,<check-id-2> --output json
+
+# Match all tags in one filter; repeat --tags to OR multiple filters
+npx checkly checks run --tags production,api
+npx checkly checks run --tags production,api --tags staging,browser
+
+# Start the selected sessions and exit without waiting for results
+npx checkly checks run --check-id <check-id> --detach
+```
+
+Useful controls:
+
+- `--refresh-cache` refreshes the selected-check cache before the run.
+- `--timeout <seconds>` controls how long the CLI waits for sessions (default `600`); a timeout does not cancel sessions still running in Checkly.
+- `--output table|json|md` selects the result format.
+- A completed failed, timed-out, or cancelled session produces a non-zero exit status. A `DEGRADED` session exits `0`, so green CI does not prove every check was fully healthy.
+- No matches fail by default. Use `--no-fail-on-no-matching` only when an empty selection is intentionally acceptable.
+- `--detach` exits after the sessions start instead of polling for their results; trigger-request failures still return non-zero.
+
 ## Inspect deployed checks
 
 Use these commands when you need to inspect checks that are already deployed in Checkly.
@@ -523,7 +630,14 @@ npx checkly checks stats
 npx checkly checks stats --range last7Days --tag production
 npx checkly checks stats <check-id-1> <check-id-2>
 npx checkly checks stats --output json
+npx checkly checks stats --type GRPC
+npx checkly checks stats --type SSL
+npx checkly checks stats --type TRACEROUTE
 ```
+
+Stats support `GRPC`, `SSL`, and `TRACEROUTE` type filters. Traceroute table output includes a `Hops` column in addition to response-time metrics; use `--output json` for stable machine-readable analytics.
+
+For `checks get --result` and test output, gRPC, SSL, and traceroute failures include type-specific diagnostics when the runner returns them. Look for gRPC status/health/metadata, TLS certificate and handshake fields, or traceroute hops/latency/packet-loss data before treating the failure as a generic connection error. The SSL security-baseline block colors normalized `pass`/`warn`/`fail` verdicts and displays observed scalar values such as minimum TLS version, key size, or a weak cipher suite; treat those observed values as result evidence rather than confusing them with config-time severity.
 
 ## Troubleshooting
 
@@ -559,5 +673,6 @@ await page.click('text=Submit')
 
 - See `checkly-test` to test checks locally
 - See `checkly-deploy` to deploy checks
+- See `checkly-usage` to inspect the contract-credit usage consumed by deployed `checks run` sessions
 - See `checkly-playwright` for full test suites
 - See `checkly-advanced` for retry strategies

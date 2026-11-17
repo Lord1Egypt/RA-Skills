@@ -1,51 +1,63 @@
-## Description: <br>
-Generates structured Excel test cases from Markdown, PDF, Word requirement documents, or image flowcharts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Excel QA test cases from Markdown, PDF, Word, or image-based requirement artifacts.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, developers, and product teams use this skill to turn requirements, API documentation, design documents, and process diagrams into traceable manual test cases and formatted Excel reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow reads and transforms local requirement documents that may contain confidential product or customer information. <br>
-Mitigation: Use only intended input files, keep outputs in an approved location, and avoid processing confidential requirements unless the workspace is approved for that data. <br>
-Risk: Generated JSON and Excel test cases may omit requirements, misclassify priority, or include incorrect expected results. <br>
-Mitigation: Review the staged JSON and formatted Excel output against the source requirements before relying on the generated test cases. <br>
-Risk: The skill writes local output files, including staged JSON and Excel workbooks. <br>
-Mitigation: Confirm the output directory before running the workflow and inspect generated files before sharing or importing them into QA systems. <br>
+## Use Case:
 
+QA engineers, product teams, and developers use this skill to convert PRDs, API documents, UI flows, and batch requirement sets into business-domain grouped test cases and formatted Excel workbooks.
 
-## Reference(s): <br>
-- [Skill Page](https://clawhub.ai/kokxi/skills/qa-testcase-generator) <br>
-- [README](README.md) <br>
-- [Test Design Methods](references/design_methods.md) <br>
-- [Quality Checklist and Generation Rules](references/quality.md) <br>
-- [Image and Flowchart Analysis](references/image_analysis.md) <br>
-- [Test Case Templates](references/templates.md) <br>
-- [Evaluation Schema](references/schemas.md) <br>
-- [Runtime Environment](references/environment.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Benchmark Report](docs/iteration2-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with structured JSON intermediates and formatted Excel file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces staged JSON artifacts for traceability and an Excel workbook with priority coloring and business-domain separator rows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated spreadsheets may preserve unsafe formulas from input text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open generated spreadsheets with external links and active content disabled until formula sanitization is added.
+
+Risk: Requirement documents from untrusted sources may expose the workflow to unsafe or unintended file content.
+
+Mitigation: Use a virtual environment with pinned dependencies and invoke the skill only on intended files.
+
+Risk: Generated test cases can miss requirements or contain misleading coverage assumptions.
+
+Mitigation: Review generated cases against the source requirements before using them for QA planning or execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kokxi/skills/qa-testcase-generator)
+- [README](artifact/README.md)
+- [Schema Reference](artifact/references/schemas.md)
+- [Quality Reference](artifact/references/quality.md)
+- [Design Methods Reference](artifact/references/design_methods.md)
+- [Image Analysis Reference](artifact/references/image_analysis.md)
+- [Troubleshooting Reference](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance, JSON test case data, and formatted Excel workbooks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Excel output includes priority coloring and module separator rows; batch workflows preserve source file labels.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

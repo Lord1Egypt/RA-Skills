@@ -1,40 +1,49 @@
-## Description: <br>
-Expert visual designer specializing in creating intuitive, beautiful, and accessible user interfaces. Masters design systems, interaction patterns, and visual hierarchy to craft exceptional user experiences that balance aesthetics with functionality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert visual designer specializing in creating intuitive, beautiful, and accessible user interfaces. Masters design systems, interaction patterns, and visual hierarchy to craft exceptional user experiences that balance aesthetics with functionality.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Designers, product teams, and frontend developers use this skill to create UI design direction, component specifications, accessibility annotations, design tokens, and implementation handoff guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared design context may include confidential product, brand, or user information visible to connected context or collaborating agents. <br>
-Mitigation: Limit sensitive inputs, confirm what connected agents can see or store, and review outputs before sharing or implementation. <br>
-Risk: Completion summaries may overstate delivered work if the agent reports artifacts it did not actually create. <br>
-Mitigation: Require concrete artifact links or file references and verify deliverables before relying on completion claims. <br>
+## Use Case:
 
+Designers, developers, and product teams use this skill to plan user interfaces, component systems, interaction patterns, design documentation, and developer handoff material while considering accessibility and consistency.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-ui-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured design specifications, accessibility notes, design token guidance, and implementation handoff details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include component specs, asset references, prototype links, and collaboration notes when the design task calls for them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is written to consult a context-manager and coordinate with other agents when available, which can expose project design context within that workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only design context and project details that are appropriate for use in the agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-ui-designer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with design specifications, implementation guidance, and handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include component specifications, design tokens, accessibility annotations, asset guidance, prototype links, and implementation notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

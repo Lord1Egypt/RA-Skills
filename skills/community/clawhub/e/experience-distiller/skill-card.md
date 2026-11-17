@@ -1,42 +1,51 @@
-## Description: <br>
-Distill finished work into the right OpenClaw knowledge layer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distill finished work into the right OpenClaw knowledge layer by deciding whether results belong in daily logs, the experience bank, playbooks, reusable skills, multiple layers, or no long-term record.
 
-## Publisher: <br>
-[traceme](https://clawhub.ai/user/traceme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[traceme](https://clawhub.ai/user/traceme)
 
-## Use Case: <br>
-Developers and agent operators use this skill after completing a task to decide whether the result belongs in a daily log, experience bank, playbook, reusable skill, multiple layers, or no long-term record. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may write to memory, playbooks, or skills when explicitly asked, which can influence future agent behavior. <br>
-Mitigation: Review the exact target files and proposed content before allowing writes, especially under playbooks or skills. <br>
-Risk: Completed-task notes can contain sensitive details or low-value noise. <br>
-Mitigation: Redact sensitive details and retain only dated evidence or reusable lessons appropriate to the selected knowledge layer. <br>
+## Use Case:
 
+Developers and agents use this skill after completing a task to decide what should be captured as dated evidence, reusable experience, workflow playbook content, a reusable skill, or nothing.
 
-## Reference(s): <br>
-- [Experience Distiller Decision Rules](references/decision-rules.md) <br>
-- [Distill Invocation Template](references/template.md) <br>
-- [Distill Invocation Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Files] <br>
-**Output Format:** [Markdown recommendation block with optional file writes when explicitly requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes completed-work knowledge into daily-log, experience, playbook, skill, multi, or no-op categories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: The skill can propose or write long-term knowledge files, which could preserve private details, credentials, temporary debugging output, or inaccurate lessons if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed files and draft content before executing writes, especially when the completed task involved private details, credentials, or temporary debugging output.
+
+## Reference(s):
+
+- [Experience Distiller Decision Rules](references/decision-rules.md)
+- [Distill Invocation Template](references/template.md)
+- [Distill Invocation Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown recommendation block with draft content bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include exact file paths to create or update when the user asks it to execute writes.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

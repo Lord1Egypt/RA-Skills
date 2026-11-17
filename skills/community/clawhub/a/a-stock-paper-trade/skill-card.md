@@ -1,44 +1,54 @@
-## Description: <br>
-A Stock Paper Trade helps an agent manage a local simulated A-share paper-trading portfolio, including market quotes, buy and sell orders, holdings, profit and loss, and rankings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股模拟炒股系统。当用户需要模拟炒股、查询行情、买卖下单、查看持仓盈亏时触发。支持实时行情、买卖下单、持仓管理、盈亏计算、涨跌排行。
 
-## Publisher: <br>
-[luaqnyin](https://clawhub.ai/user/luaqnyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luaqnyin](https://clawhub.ai/user/luaqnyin)
 
-## Use Case: <br>
-External users and agents use this skill to practice A-share trading workflows with virtual funds, inspect market data, and review simulated holdings and transaction history without connecting to a brokerage account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading commands change local paper-trading history and simulated balances. <br>
-Mitigation: Confirm before asking the agent to initialize, reset, buy, or sell, and review the simulated portfolio state after changes. <br>
-Risk: Market data and paper-trading outputs can be mistaken for financial advice or real brokerage execution. <br>
-Mitigation: Treat outputs as simulated information only and do not rely on them as financial advice or as evidence of real trades. <br>
-Risk: The skill depends on Python packages and external market-data sources. <br>
-Mitigation: Install dependencies from trusted sources and expect quote accuracy to vary outside A-share trading hours. <br>
+## Use Case:
 
+External users and agents use this skill as a local Chinese-language paper-trading helper for A-share market simulation, including quotes, simulated buy and sell orders, holdings, account balance, history, K-line data, rankings, and stock search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luaqnyin/a-stock-paper-trade) <br>
-- [Sina Finance market data endpoint](http://hq.sinajs.cn/list={sc}) <br>
-- [Sina Finance](https://finance.sina.com.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, guidance] <br>
-**Output Format:** [JSON responses from local Python commands, with occasional plain-text quote summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may read live market data and may modify the local simulated portfolio file under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Simulated portfolio data is stored locally and may be reset or corrupted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm before reset actions and treat the portfolio file as disposable simulation data rather than an authoritative financial record.
+
+Risk: Market quote integrity and input validation are weaker than a production trading tool.
+
+Mitigation: Cross-check quotes, trading status, and order constraints before simulated buy or sell decisions, and do not use the output for real financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luaqnyin/skills/a-stock-paper-trade)
+- [Sina Finance](https://finance.sina.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON responses and short text output from local shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Most commands print JSON for agent parsing; market overview output may be plain text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

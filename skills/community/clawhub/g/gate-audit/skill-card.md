@@ -1,39 +1,52 @@
-## Description: <br>
-Use this skill when the user provides AF2, ESMFold, AF3, Boltz-1, SASA, or MD results and needs a Gate 1-4 audit with a Go/Hold/Kill decision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user provides AF2, ESMFold, AF3, Boltz-1, SASA, or MD results and needs a Gate 1-4 audit with a Go/Hold/Kill decision.
 
-## Publisher: <br>
-[barrett-cryptoDNA](https://clawhub.ai/user/barrett-cryptoDNA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[barrett-cryptodna](https://clawhub.ai/user/barrett-cryptodna)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, researchers, and domain reviewers use this skill to audit computational vaccine-design evidence across structure, epitope exposure, molecular dynamics, manufacturability, and readiness for more expensive computation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill supports Go/Hold/Kill decisions for computational vaccine-design audits, which can be consequential if treated as definitive.
+
+Mitigation: Use outputs as decision support and require domain expert review before scientific or engineering action.
+
+Risk: The skill is a Chinese-language checklist focused on a narrow Gate 1-4 computational audit workflow.
+
+Mitigation: Install only when users are comfortable reviewing Chinese-language audit guidance and can provide the expected structural prediction, exposure, MD, checkpoint, log, or trajectory-summary evidence.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Researchers and developers use this skill to review user-provided structural prediction, epitope exposure, and molecular dynamics evidence for nanoparticle vaccine design gates and decide Go, Hold, or Kill. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Most audit instructions are in Chinese, which may lead to reviewer misunderstanding if the workflow team cannot read them directly. <br>
-Mitigation: Use reviewers who can read the instructions or translate and verify the Gate 1-4 criteria before relying on audit decisions. <br>
-Risk: The skill evaluates user-provided modeling results and can produce incorrect Go/Hold/Kill guidance if the supplied evidence is incomplete or unreliable. <br>
-Mitigation: Confirm required logs, checkpoints, repeats, exposure metrics, and dynamics summaries before acting on the decision. <br>
+**Output Format:** [Markdown audit report with Gate 1-4 findings and a Go/Hold/Kill decision]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires user-provided structural prediction, SASA, MD, checkpoint, log, or trajectory-summary evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown structured as an audit summary with Gate 1-4 findings, failure modes, a Go/Hold/Kill decision, and data gaps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output based on user-provided modeling and simulation results] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

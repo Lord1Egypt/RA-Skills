@@ -2,7 +2,7 @@
 name: courtyard-hotel-booking
 display_name: 万怡酒店查询与预订
 description: 万豪集团旗下万怡酒店实时搜索，返回价格与预订链接，支持酒店详情和套餐优惠查询，多旅游平台数据直连，零配置即装即用。暑期商旅出行优选，万怡酒店全球查询预订
-version: 1.1.2
+version: 1.1.3
 tags: [万怡酒店, 万豪旗下, 酒店预订, 酒店搜索, 商务酒店]
 tools:
   - name: search

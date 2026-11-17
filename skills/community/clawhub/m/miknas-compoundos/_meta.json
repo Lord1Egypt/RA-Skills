@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7181r53fac58czdw6sb30c5182yk1h",
-  "slug": "miknas-compoundos",
+  "name": "compoundos",
   "version": "1.0.0",
-  "publishedAt": 1773548131871
+  "description": "Self-improving AI Operating System for business automation with 9 components: Strategic Layer, Prioritization Engine, Knowledge Management, Central Ops, Department Agents (ACRA), Projects, Auto-Capture, Communication Layer, and Metrics & Monitoring",
+  "author": "miknasbh-stack",
+  "tags": ["business", "automation", "operating-system", "agents", "strategy", "management"],
+  "category": "Business Automation",
+  "license": "MIT",
+  "clawhub": {
+    "published": false,
+    "visibility": "public"
+  }
 }

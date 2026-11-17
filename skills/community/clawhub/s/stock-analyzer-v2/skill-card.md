@@ -1,45 +1,61 @@
-## Description: <br>
-A股/港股实时行情查询、基本面分析、深度报告生成与邮件发送一体化工具。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股/港股实时行情查询、基本面分析、深度报告生成与邮件发送一体化工具。
 
-## Publisher: <br>
-[hitjcl](https://clawhub.ai/user/hitjcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitjcl](https://clawhub.ai/user/hitjcl)
 
-## Use Case: <br>
-External users and developers use this skill to query A-share and Hong Kong stock prices, collect valuation and fundamentals data, generate Markdown stock analysis reports, and optionally send those reports by email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial-data output can be incomplete, delayed, or unsuitable as personal investment advice. <br>
-Mitigation: Review generated reports, verify market and fundamentals data with trusted sources, and treat the output as analysis support rather than a trading instruction. <br>
-Risk: The skill can use JQData and SMTP credentials for fundamentals data and email delivery. <br>
-Mitigation: Provide credentials through environment variables where possible, use app-specific email passwords, run in a virtual environment, and avoid placing passwords or authorization codes in code, documents, or reports. <br>
-Risk: Interactive JQData setup may store the account phone identifier locally. <br>
-Mitigation: Use environment variables for credentials when practical, limit local config-file access, and clear the local configuration when it is no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to query A-share and Hong Kong stock market data, retrieve fundamentals when JoinQuant credentials are configured, generate Markdown stock analysis reports, and optionally send those reports by email.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hitjcl/stock-analyzer-v2) <br>
-- [JoinQuant](https://www.joinquant.com) <br>
-- [Report template](references/report_template.md) <br>
-- [Stock code reference](references/stock_codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, terminal text, Python command examples, and email message content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces financial-data summaries from AkShare and optional JQData inputs; users should review generated reports before sending or relying on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Email and credential handling need careful review before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated environment, review send_email.py before sending reports, provide credentials through environment variables or a secret manager, and avoid passing authorization codes or app passwords as command-line arguments.
+
+Risk: Report contents and recipient details may be sent to external email providers.
+
+Mitigation: Confirm recipients and report contents before sending, and treat QQ Mail or Gmail delivery as external disclosure.
+
+Risk: jq_login.py stores the JoinQuant phone or account identifier locally.
+
+Mitigation: Use environment variables where possible, limit filesystem access to the runtime environment, and clear local JoinQuant configuration when it is no longer needed.
+
+## Reference(s):
+
+- [Report Template](references/report_template.md)
+- [Stock Codes Reference](references/stock_codes.md)
+- [JoinQuant](https://www.joinquant.com)
+- [ClawHub Skill Page](https://clawhub.ai/hitjcl/skills/stock-analyzer-v2)
+- [Publisher Profile](https://clawhub.ai/user/hitjcl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a report file and may send report content through configured QQ Mail or Gmail SMTP accounts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

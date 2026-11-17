@@ -1,43 +1,58 @@
-## Description: <br>
-Reviews Remix v2 route files for naming convention violations, missing layouts, resource-route shape, and v1 holdovers. Use when reviewing files under app/routes/ in a Remix v2 codebase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Remix v2 route files for naming convention violations, missing layouts, resource-route shape, and v1 holdovers. Use when reviewing files under app/routes/ in a Remix v2 codebase.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to review Remix v2 routing files for route naming, layout outlet, resource route, root shell, and v1 migration issues before reporting findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest routing fixes that are incorrect if the reviewer has not confirmed Remix v2 routing mode, v1-route-convention adapter status, or route-specific exemptions. <br>
-Mitigation: Follow the skill's version, exemption, and location-evidence gates before reporting findings, and review suggested code changes before applying them. <br>
+## Use Case:
 
+Developers and code reviewers use this skill to perform focused Remix v2 routing reviews, especially for route filenames, layouts, resource routes, root document shell behavior, and v1 migration holdovers.
 
-## Reference(s): <br>
-- [Remix V2 Routing Review on ClawHub](https://clawhub.ai/anderskev/remix-v2-routing-review) <br>
-- [Route Files](references/route-files.md) <br>
-- [Layouts and Outlets](references/layouts-outlets.md) <br>
-- [Resource Routes](references/resource-routes.md) <br>
-- [Root Shell Smells](references/root-shell.md) <br>
-- [V1 Holdovers](references/v1-holdovers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown review findings with file evidence, explanations, and suggested fixes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should be reported only after the skill's pre-report verification gates pass.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may read relevant application source and configuration files during a routing review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where the agent is permitted to inspect Remix route, root, package, and routing configuration files.
+
+Risk: The skill references a companion review-verification protocol that is not bundled in this artifact.
+
+Mitigation: Verify that any companion review-protocol skill loaded with it comes from a trusted source before relying on its findings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/remix-v2-routing-review)
+- [Route File Naming Smells](references/route-files.md)
+- [Layouts and Outlets](references/layouts-outlets.md)
+- [Resource Routes](references/resource-routes.md)
+- [Root Shell Smells](references/root-shell.md)
+- [v1 Holdovers](references/v1-holdovers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Code review findings]
+
+**Output Format:** [Markdown review findings with source locations, quoted evidence, exemption checks, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is documentation-only and is loaded for Remix v2 routing review contexts rather than invoked directly by users.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

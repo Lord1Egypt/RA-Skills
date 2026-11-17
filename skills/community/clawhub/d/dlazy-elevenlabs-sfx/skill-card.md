@@ -1,45 +1,48 @@
-## Description: <br>
-ElevenLabs text-to-sound model - generates 1-22s short sound effects from a description. Suitable for foley, ambience, alerts, and game SFX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 1–22 second sound effects from text descriptions using the ElevenLabs text-to-sound model, for foley, ambience, alerts, and game audio.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users, developers, and audio creators use this skill to call dLazy's ElevenLabs sound-effects generation service for short foley, ambience, alert, and game SFX from text prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key, which may be stored in local CLI configuration or supplied through an environment variable. <br>
-Mitigation: Use the CLI only on trusted machines, prefer temporary environment variables for one-off use, and rotate or revoke the key when access is no longer needed. <br>
-Risk: Prompts and explicitly provided media files are sent to dLazy-hosted services for generation. <br>
-Mitigation: Avoid sending confidential or restricted content unless the user has approved that service use and data handling. <br>
-Risk: Global installation adds a third-party npm CLI to the environment. <br>
-Mitigation: Use npx @dlazy/cli@latest for one-off runs when a persistent global install is not needed, and review the third-party package before persistent installation. <br>
+## Use Case:
 
+Developers, audio designers, and game creators can generate short sound effects such as foley, ambience, alerts, and game audio from text prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-elevenlabs-sfx) <br>
-- [dLazy CLI repository](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy website](https://dlazy.com) <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The relationship between dLazy account setup and sound generation is unclear, and some references were unresolved in the security assessment.
+
+Mitigation: Review the dLazy setup and linked service information before connecting an account; understand that prompts are sent to the hosted API and use an API key that can be rotated or revoked.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON CLI results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a dLazy API key; generated result URLs are hosted by files.dlazy.com.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [Audio files, JSON]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Generated sound effect audio asset, returned through a JSON result envelope as a hosted URL or an optionally saved file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sound effects are 1–22 seconds long; generation may be synchronous or asynchronous.]
+
+## Skill Version(s):
+
+1.3.42 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

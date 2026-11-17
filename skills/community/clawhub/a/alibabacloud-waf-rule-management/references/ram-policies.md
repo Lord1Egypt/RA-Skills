@@ -24,7 +24,7 @@
 
 ### SLS Log Service (Read-Only)
 
-`log:GetLog` — Query WAF interception logs (resource scope: `acs:log:*:*:project/wafnew-project-*/logstore/wafnew-logstore`)
+`log:GetLogs` — Query WAF interception logs through `aliyun sls get-logs-v2` (resource scope: `acs:log:*:*:project/wafnew-project-*/logstore/wafnew-logstore`)
 
 ---
 

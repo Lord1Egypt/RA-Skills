@@ -1,0 +1,39 @@
+MIT License
+
+Copyright (c) 2026 GLGeneral15
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## 数据与内容的授权范围 / Scope of bundled data
+
+1. `references/question-bank.json`（1017 题）、`references/sites/`（站点入口档案）、
+   `references/search-index.json`、`references/sources.json`、`references/rules.json`
+   及 `references/rule-evidence/` 均随本仓库以同一 MIT 许可提供，由作者整理并声明有权分发。
+
+2. 上述数据为**检索实践记录**，不构成对任何第三方数据库、教材或题库的权利主张。
+   其中若引用了第三方站点的页面结构、控件名称、公开说明文字，其权利仍归相应站点所有，
+   本项目仅出于互操作与技术记录目的引用。
+
+3. 题库答案**未经逐条核验**。使用者应自行判断，不得将本项目输出直接作为
+   考试、评价或决策的唯一依据。
+
+4. 本项目不提供任何绕过登录、验证码、付费墙或访问控制的功能；
+   使用者须自行遵守目标站点的服务条款与所在地法律。

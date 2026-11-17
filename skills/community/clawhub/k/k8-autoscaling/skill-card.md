@@ -1,41 +1,50 @@
-## Description: <br>
-Configure Kubernetes autoscaling with HPA, VPA, and KEDA. Use for horizontal/vertical pod autoscaling, event-driven scaling, and capacity management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure Kubernetes autoscaling with HPA, VPA, and KEDA for horizontal and vertical pod autoscaling, event-driven scaling, and capacity management.
 
-## Publisher: <br>
-[rohitg00](https://clawhub.ai/user/rohitg00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rohitg00](https://clawhub.ai/user/rohitg00)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to design, review, and troubleshoot Kubernetes autoscaling with HPA, VPA, and KEDA. It helps produce autoscaling manifests, command-oriented checks, and configuration guidance for capacity management and event-driven scaling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Kubernetes manifests or commands could target the wrong cluster, namespace, or workload. <br>
-Mitigation: Confirm the active cluster context, namespace, and target deployment before applying generated YAML or running operational commands. <br>
-Risk: Autoscaling settings could cause unexpected cost, availability, or cold-start behavior. <br>
-Mitigation: Review min and max replicas, scale-to-zero behavior, trigger thresholds, and rollback plans before production use. <br>
+## Use Case:
 
+Developers and Kubernetes operators use this skill to configure, inspect, and troubleshoot HPA, VPA, and KEDA autoscaling for workloads and capacity management.
 
-## Reference(s): <br>
-- [KEDA Trigger Reference](artifact/KEDA-TRIGGERS.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rohitg00/k8-autoscaling) <br>
-- [Publisher Profile](https://clawhub.ai/user/rohitg00) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with YAML and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Kubernetes autoscaling guidance and manifest examples for human review before cluster application.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: Autoscaling examples may interrupt running services or activate workloads earlier than expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict access to the intended cluster, namespace, and workload; validate activation thresholds and replica limits; start VPA in Off mode; and assess redundancy and disruption protections before enabling automatic updates.
+
+## Reference(s):
+
+- [Kubernetes Autoscaling release](https://clawhub.ai/rohitg00/skills/k8s-autoscaling)
+- [KEDA trigger configuration guide](artifact/KEDA-TRIGGERS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Code, Guidance]
+
+**Output Format:** [Markdown guidance with YAML manifests and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes HPA, VPA, and KEDA autoscaling examples.]
+
+## Skill Version(s):
+
+2.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

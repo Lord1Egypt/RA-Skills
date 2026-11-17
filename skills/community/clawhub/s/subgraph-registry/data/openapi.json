@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Subgraph Registry",
-    "description": "Agent-friendly subgraph discovery on The Graph Network. 14,700+ classified subgraphs with semantic search, reliability scoring, schema-evolution tracking, and x402 query URLs ($0.01 USDC on Base, no API key).",
-    "version": "0.8.10",
+    "description": "Agent-friendly subgraph discovery on The Graph Network. 15,330 classified subgraphs with semantic search, reliability scoring, 30-day query volume and schema-evolution tracking. Discovery only: returns subgraph ids and starter queries, which you run with a Graph Studio API key (Authorization: Bearer) or over x402 ($0.01 USDC on Base, no key).",
+    "version": "0.13.6",
     "license": {
       "name": "MIT"
     },
@@ -15,15 +15,239 @@
   "servers": [
     {
       "url": "http://localhost:3848",
-      "description": "Local MCP HTTP transport (default port)"
+      "description": "Local MCP HTTP transport (default port). Binds 127.0.0.1 by default; a non-loopback bind requires SUBGRAPH_REGISTRY_HTTP_TOKEN and then every route except /health needs Authorization: Bearer <token> (401 otherwise)."
     }
   ],
   "paths": {
+    "/mcp/tools/find_by_contract": {
+      "post": {
+        "operationId": "tool_find_by_contract",
+        "summary": "Discovery only: exact case-insensitive EVM contract lookup from crawled manifests.",
+        "description": "Discovery only: exact case-insensitive EVM contract lookup from crawled manifests. Optional chain (aliases supported); omitted chain searches all networks. Ranks allocated, non-denied snapshot deployments by reliability then volume. Returns matched manifest records, deployment-level schema entities (NOT verified contract-to-entity mappings), starter and cached freshness. No live calls or payments.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "address"
+                ],
+                "properties": {
+                  "address": {
+                    "type": "string",
+                    "description": "0x-prefixed 40-hex EVM address"
+                  },
+                  "chain": {
+                    "type": "string",
+                    "description": "Optional network, e.g. ethereum, base, arbitrum"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 20,
+                    "default": 3
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/tools/check_subgraph_health": {
+      "post": {
+        "operationId": "tool_check_subgraph_health",
+        "summary": "Opt-in: one fixed _meta query against The Graph gateway using your Studio API key, pinning known subgraphs to their…",
+        "description": "Opt-in: one fixed _meta query against The Graph gateway using your Studio API key, pinning known subgraphs to their crawled deployment. Reports observed timestamp, indexed block/timestamp, indexing errors or honest failure/unknown states. Does NOT establish sync to chain head or trigger x402 payments. Observations are process-local, stale after five minutes and lost on restart; discovery never probes automatically.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Subgraph id (e.g. 5zvR82…). Also accepts an IPFS hash or 0x deployment id — it is classified by shape."
+                  },
+                  "subgraph_id": {
+                    "type": "string",
+                    "description": "Official-MCP alias of id. Subgraph id for the current deployment."
+                  },
+                  "deployment_id": {
+                    "type": "string",
+                    "description": "32-byte deployment id (0x + 64 hex). Queries gateway deployments/id/…"
+                  },
+                  "ipfs_hash": {
+                    "type": "string",
+                    "description": "Manifest IPFS hash (Qm…). Queries gateway deployments/id/…, matching official subgraph-MCP."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/tools/query_for_goal": {
+      "post": {
+        "operationId": "tool_query_for_goal",
+        "summary": "Turn a goal into a bounded, goal-specific GraphQL query: maps intent (pool ids, swaps, candles/OHLCV, daily/hourly…",
+        "description": "Turn a goal into a bounded, goal-specific GraphQL query: maps intent (pool ids, swaps, candles/OHLCV, daily/hourly data, positions, liquidations, tokens, addresses, time ranges, latest/top) to a deployment entity from the registry's crawled entity names, with rationale, confidence, unmet parts and ranked alternatives. Returns query:null instead of a misleading query when no entity maps confidently; goals without entity intent get the stored starter labelled generic. Keyless default makes NO network call. validate_schema=true (your own Studio key) adds ONE scoped introspection request per deployment to confirm fields/arguments, typed ordering/filters and serving freshness; execute=true adds ONE gateway POST. If the chosen deployment times out, has failing indexers or is stale, it is skipped (reported in goal_mapping.skipped_deployments) and the next deployment that fits the goal is tried: at most 3 deployments and 6 gateway requests, never x402. Reward/curation status is not treated as unhealthy. Token/pool results are checked for likely spam (URL/lure names, implausible TVL, TVL without volume, low activity): flagged rows are reported in token_quality and, by default, moved after the others; nothing is removed. Without a key, onboarding explains the human-operator key setup.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "goal"
+                ],
+                "properties": {
+                  "goal": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1000
+                  },
+                  "chain": {
+                    "type": "string"
+                  },
+                  "first": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10,
+                    "description": "Rows to request; defaults to a number in the goal (e.g. top 3) or 5"
+                  },
+                  "execute": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Explicit opt-in to spend a Studio gateway query; never auto-pays x402"
+                  },
+                  "validate_schema": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Opt-in: with your own Studio key, one scoped live introspection request validates the generated fields/arguments before any execution"
+                  },
+                  "include_denied": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Also consider deployments with denied indexing rewards (not proof of unavailability) for entity matching"
+                  },
+                  "include_unserved": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Also consider deployments with zero active allocations in the snapshot (not a queryability test)"
+                  },
+                  "spam_handling": {
+                    "type": "string",
+                    "enum": [
+                      "flag_and_push_down",
+                      "flag_only",
+                      "off"
+                    ],
+                    "default": "flag_and_push_down",
+                    "description": "Token/pool rows: flag likely spam and move flagged rows last (default), only flag, or disable. Rows are never removed."
+                  },
+                  "trusted_tokens": {
+                    "type": "array",
+                    "maxItems": 50,
+                    "items": {
+                      "type": "string",
+                      "pattern": "^0x[0-9a-fA-F]{40}$"
+                    },
+                    "description": "Extra known-good token addresses never flagged as spam (adds to a small built-in per-chain allowlist)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/mcp/tools/search_subgraphs": {
       "post": {
         "operationId": "tool_search_subgraphs",
-        "summary": "Search and filter the classified subgraph registry (15,500+ subgraphs).",
-        "description": "Search and filter the classified subgraph registry (15,500+ subgraphs). Filter by domain (defi, nfts, dao, gaming, identity, infrastructure, social, analytics), network (mainnet, arbitrum-one, base, matic, bsc, optimism, avalanche), protocol_type (dex, lending, bridge, staking, options, perpetuals, nft-marketplace, yield-aggregator, governance, name-service), canonical entity type (liquidity_pool, trade, token, position, vault, loan, collateral, liquidation, nft_collection, nft_item, nft_sale, proposal, delegate, domain_name, account, transaction, daily_snapshot, hourly_snapshot), or free-text keyword. Returns subgraphs ranked by reliability score. Each result includes query_url_x402 (POST GraphQL and pay $0.01 USDC on Base per query — no API key needed) and a legacy query_url (Studio API key required).",
+        "summary": "Search and filter the classified subgraph registry (15,000+ subgraphs).",
+        "description": "Search and filter the classified subgraph registry (15,000+ subgraphs). Filter by domain (defi, nfts, dao, gaming, identity, infrastructure, social, analytics), network (mainnet, arbitrum-one, base, matic, bsc, optimism, avalanche), protocol_type (dex, lending, bridge, staking, options, perpetuals, nft-marketplace, yield-aggregator, governance, name-service), canonical entity type (liquidity_pool, trade, token, position, vault, loan, collateral, liquidation, nft_collection, nft_item, nft_sale, proposal, delegate, domain_name, account, transaction, daily_snapshot, hourly_snapshot), or free-text keyword. Returns subgraphs ranked by reliability score. Discovery only — this tool does not execute GraphQL and never introspects a schema. To run a query, call execute_query (opt-in). To inspect a schema, call get_schema (opt-in). Each result carries the subgraph id, a ready-to-run example_query, and both query routes in `payment_options`: a keyed gateway URL (Authorization: Bearer) or an x402 URL ($0.01 USDC on Base, no key). Pass the id to your own Graph client if you have one. Plus age_days and maturity (new | emerging | established). Because reliability_score is traction-weighted it can favour older deployments, so a separate `emerging` list carries recent matches that ranked below the main cut for age rather than quality — read `emerging_caveat` before offering one to a user.",
         "tags": [
           "mcp-tools"
         ],
@@ -37,32 +261,56 @@
                 "properties": {
                   "query": {
                     "type": "string",
-                    "description": "Free-text search across names and descriptions"
+                    "maxLength": 1000,
+                    "description": "Free-text search across names and descriptions. A standalone known chain or alias (e.g. arc, ethereum) becomes an explicit network filter unless network is supplied; inferred_network makes this visible"
                   },
                   "domain": {
                     "type": "string",
+                    "maxLength": 1000,
                     "description": "Filter by domain: defi, nfts, dao, gaming, identity, infrastructure, social, analytics"
                   },
                   "network": {
                     "type": "string",
+                    "maxLength": 1000,
                     "description": "Filter by chain: mainnet, arbitrum-one, base, matic, bsc, optimism, avalanche, etc."
                   },
                   "protocol_type": {
                     "type": "string",
+                    "maxLength": 1000,
                     "description": "Filter by protocol type: dex, lending, bridge, staking, options, perpetuals, etc."
                   },
                   "entity": {
                     "type": "string",
+                    "maxLength": 1000,
                     "description": "Filter by canonical entity: liquidity_pool, trade, token, position, vault, loan, etc."
                   },
                   "min_reliability": {
                     "type": "number",
-                    "description": "Minimum reliability score (0-1). Higher = more query fees, volume, curation signal, and indexer allocation."
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Minimum reliability score (0-1). Higher = more query fees, volume, curation signal, and indexer allocation. NOTE: this traction-weighted score can favor older deployments; 30-day volume is a rolling window — setting a floor here filters out good recent subgraphs along with bad ones."
                   },
                   "limit": {
                     "type": "integer",
-                    "description": "Max results to return (default: 20)",
+                    "description": "Max results to return, 1–100 (default: 20); total is returned count, not corpus match count. No offset/cursor pagination.",
+                    "minimum": 1,
+                    "maximum": 100,
                     "default": 20
+                  },
+                  "include_unserved": {
+                    "type": "boolean",
+                    "description": "Include records with zero active allocations in the registry snapshot. Default false is a discovery heuristic, NOT a queryability test; Studio or other serving routes may work without allocations.",
+                    "default": false
+                  },
+                  "include_denied": {
+                    "type": "boolean",
+                    "description": "Include curation-denied deployments (deniedAt > 0 — denied indexing rewards; not proof of spam or query failure). Default false. When true, each result carries denied: true so the choice stays visible.",
+                    "default": false
+                  },
+                  "include_testnets": {
+                    "type": "boolean",
+                    "description": "Include testnet deployments (sepolia, goerli, holesky, chapel, fuji, mumbai, amoy, *-testnet). Default false — a testnet twin's text is near-identical to its mainnet original, so it competes for the top slot without being the thing anyone wanted. Ignored when you explicitly request a testnet network, so network:\"sepolia\" still works. Each result carries testnet: true|false.",
+                    "default": false
                   }
                 }
               }
@@ -97,7 +345,7 @@
       "post": {
         "operationId": "tool_recommend_subgraph",
         "summary": "Given a natural-language goal like 'find DEX trades on Arbitrum' or 'get lending liquidation data', returns the best…",
-        "description": "Given a natural-language goal like 'find DEX trades on Arbitrum' or 'get lending liquidation data', returns the best matching subgraphs with reliability scores. Automatically infers domain and protocol type from the goal. Each result includes query_url_x402 (preferred — POST GraphQL, pay $0.01 USDC on Base per query, no API key) and a legacy query_url for Studio-key flows.",
+        "description": "Given a natural-language goal like 'find DEX trades on Arbitrum' or 'get lending liquidation data', returns the best matching subgraphs with reliability scores. Automatically infers domain and protocol type from the goal. Discovery only — it returns ids and starter queries, it does not execute GraphQL. Each result carries both query routes in `payment_options`: a keyed gateway URL (Authorization: Bearer <STUDIO_API_KEY>) or an x402 URL ($0.01 USDC on Base, no key).",
         "tags": [
           "mcp-tools"
         ],
@@ -111,10 +359,12 @@
                 "properties": {
                   "goal": {
                     "type": "string",
+                    "maxLength": 1000,
                     "description": "What you want to do, e.g. 'query Uniswap pool data on Base'"
                   },
                   "chain": {
                     "type": "string",
+                    "maxLength": 1000,
                     "description": "Optional chain filter: mainnet, arbitrum-one, base, matic, etc."
                   }
                 },
@@ -248,8 +498,8 @@
     "/mcp/tools/semantic_search_subgraphs": {
       "post": {
         "operationId": "tool_semantic_search_subgraphs",
-        "summary": "Semantic vector search over the subgraph registry.",
-        "description": "Semantic vector search over the subgraph registry. Embeds the query string with sentence-transformers/all-MiniLM-L6-v2 (the same model architecture used at crawl time; the runtime uses an INT8-quantized ONNX build so absolute scores can drift ~0.01-0.03 from the float32 reference but top-K rankings are stable) and ranks subgraphs by cosine similarity against the precomputed 384-dim embedding of each subgraph's description + entities + protocol metadata. Prefer this over search_subgraphs when the goal is fuzzy, paraphrased, or describes a use-case rather than a literal protocol/entity name. Supports the same domain/network/protocol_type/min_reliability pre-filters as search_subgraphs (applied as SQL WHERE before cosine scoring for performance). Returns the same shape as search_subgraphs plus a `semantic_score` in [0,1] (>0.5 is typically a strong match).",
+        "summary": "Discovery only — this tool does not execute GraphQL and never introspects a schema.",
+        "description": "Discovery only — this tool does not execute GraphQL and never introspects a schema. To run a query, call execute_query (opt-in). To inspect a schema, call get_schema (opt-in). Semantic vector search over the subgraph registry. Embeds the query string with sentence-transformers/all-MiniLM-L6-v2 (the same model architecture used at crawl time; the runtime uses an INT8-quantized ONNX build so absolute scores can drift ~0.01-0.03 from the float32 reference but top-K rankings are stable) and ranks subgraphs by cosine similarity against the precomputed 384-dim embedding of each subgraph's description + entities + protocol metadata. Prefer this over search_subgraphs when the goal is fuzzy, paraphrased, or describes a use-case rather than a literal protocol/entity name. Supports the same domain/network/protocol_type/min_reliability pre-filters as search_subgraphs (applied as SQL WHERE before cosine scoring for performance). Returns the same shape as search_subgraphs plus a `semantic_score` in [0,1] (>0.5 is typically a strong match).",
         "tags": [
           "mcp-tools"
         ],
@@ -274,12 +524,24 @@
                   },
                   "min_score": {
                     "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
                     "description": "Minimum cosine similarity to include (0-1). Default 0.3.",
                     "default": 0.3
                   },
                   "include_unserved": {
                     "type": "boolean",
-                    "description": "Include subgraphs with 0 active indexer allocations (returns 'no allocations' on query). Default false.",
+                    "description": "Include records with zero active allocations in the registry snapshot. Default false is a discovery heuristic, NOT a queryability test; Studio or other serving routes may work without allocations.",
+                    "default": false
+                  },
+                  "include_denied": {
+                    "type": "boolean",
+                    "description": "Include curation-denied deployments (deniedAt > 0 — denied indexing rewards; not proof of spam or query failure). Default false. When true, each result carries denied: true so the choice stays visible.",
+                    "default": false
+                  },
+                  "include_testnets": {
+                    "type": "boolean",
+                    "description": "Include testnet deployments (sepolia, goerli, holesky, chapel, fuji, mumbai, amoy, *-testnet). Default false — a testnet twin's text is near-identical to its mainnet original, so it competes for the top slot without being the thing anyone wanted. Ignored when you explicitly request a testnet network, so network:\"sepolia\" still works. Each result carries testnet: true|false.",
                     "default": false
                   },
                   "domain": {
@@ -296,6 +558,8 @@
                   },
                   "min_reliability": {
                     "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
                     "description": "Pre-filter: minimum reliability score (0-1)."
                   }
                 },
@@ -387,6 +651,611 @@
         }
       }
     },
+    "/mcp/tools/execute_query": {
+      "post": {
+        "operationId": "tool_execute_query",
+        "summary": "Opt-in: POST a GraphQL query to The Graph gateway for a discovered subgraph.",
+        "description": "Opt-in: POST a GraphQL query to The Graph gateway for a discovered subgraph. Discovery tools (search_subgraphs, recommend_subgraph, semantic_search_subgraphs, get_subgraph_detail) NEVER execute queries — call this tool only when the user/caller wants data fetched. Accepts id (subgraph id), subgraph_id, deployment_id (0x… 32-byte), or ipfs_hash (Qm…), plus query and optional variables. Replaces official execute_query_by_subgraph_id / execute_query_by_deployment_id / execute_query_by_ipfs_hash. When THE_GRAPH_STUDIO_API_KEY is set, POSTs to gateway.thegraph.com with Authorization: Bearer. If no key, returns {error: credentials_required, query_url, query_url_x402, hint} immediately — does not hang, does not auto-pay x402. Gateway often returns HTTP 200 with a GraphQL error body when auth is missing; http_status and errors are surfaced honestly.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Subgraph id (e.g. 5zvR82…). Also accepts an IPFS hash or 0x deployment id — it is classified by shape."
+                  },
+                  "subgraph_id": {
+                    "type": "string",
+                    "description": "Official-MCP alias of id. Subgraph id for the current deployment."
+                  },
+                  "deployment_id": {
+                    "type": "string",
+                    "description": "32-byte deployment id (0x + 64 hex). Queries gateway deployments/id/…"
+                  },
+                  "ipfs_hash": {
+                    "type": "string",
+                    "description": "Manifest IPFS hash (Qm…). Queries gateway deployments/id/…, matching official subgraph-MCP."
+                  },
+                  "query": {
+                    "type": "string",
+                    "description": "GraphQL query document to POST to the gateway"
+                  },
+                  "variables": {
+                    "type": "object",
+                    "description": "Optional GraphQL variables object",
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/tools/execute_query_by_subgraph_id": {
+      "post": {
+        "operationId": "tool_execute_query_by_subgraph_id",
+        "summary": "Alias of execute_query for the official subgraph-MCP name.",
+        "description": "Alias of execute_query for the official subgraph-MCP name. Pass subgraph_id + query. Prefer execute_query, which also accepts deployment_id and ipfs_hash. Opt-in; discovery tools never execute.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "subgraph_id": {
+                    "type": "string",
+                    "description": "Subgraph ID (e.g. 5zvR82…)"
+                  },
+                  "query": {
+                    "type": "string",
+                    "description": "GraphQL query document"
+                  },
+                  "variables": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "Optional GraphQL variables"
+                  }
+                },
+                "required": [
+                  "subgraph_id",
+                  "query"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/tools/execute_query_by_deployment_id": {
+      "post": {
+        "operationId": "tool_execute_query_by_deployment_id",
+        "summary": "Alias of execute_query for the official subgraph-MCP name.",
+        "description": "Alias of execute_query for the official subgraph-MCP name. Pass deployment_id (0x + 64 hex) + query. Opt-in; discovery tools never execute.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "deployment_id": {
+                    "type": "string",
+                    "description": "32-byte deployment id (0x…)"
+                  },
+                  "query": {
+                    "type": "string",
+                    "description": "GraphQL query document"
+                  },
+                  "variables": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "Optional GraphQL variables"
+                  }
+                },
+                "required": [
+                  "deployment_id",
+                  "query"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/tools/execute_query_by_ipfs_hash": {
+      "post": {
+        "operationId": "tool_execute_query_by_ipfs_hash",
+        "summary": "Alias of execute_query for the official subgraph-MCP name.",
+        "description": "Alias of execute_query for the official subgraph-MCP name. Pass ipfs_hash (Qm…) + query. Opt-in; discovery tools never execute.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "ipfs_hash": {
+                    "type": "string",
+                    "description": "Manifest IPFS hash (Qm…)"
+                  },
+                  "query": {
+                    "type": "string",
+                    "description": "GraphQL query document"
+                  },
+                  "variables": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "Optional GraphQL variables"
+                  }
+                },
+                "required": [
+                  "ipfs_hash",
+                  "query"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/tools/get_schema": {
+      "post": {
+        "operationId": "tool_get_schema",
+        "summary": "Opt-in: return the GraphQL schema for a subgraph.",
+        "description": "Opt-in: return the GraphQL schema for a subgraph. Discovery tools never introspect. Accepts id / subgraph_id / deployment_id / ipfs_hash. Always returns registry_schema from the local index when the subgraph is in the corpus (entities, example_query, fingerprint, stability) with no network call. When THE_GRAPH_STUDIO_API_KEY is set, also POSTs a __schema introspection to the gateway. If no key, live introspection is omitted and a credentials_required block includes query_url and query_url_x402 so the caller can introspect themselves. Replaces official get_schema_by_subgraph_id / get_schema_by_deployment_id / get_schema_by_ipfs_hash.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Subgraph id (e.g. 5zvR82…). Also accepts an IPFS hash or 0x deployment id — it is classified by shape."
+                  },
+                  "subgraph_id": {
+                    "type": "string",
+                    "description": "Official-MCP alias of id. Subgraph id for the current deployment."
+                  },
+                  "deployment_id": {
+                    "type": "string",
+                    "description": "32-byte deployment id (0x + 64 hex). Queries gateway deployments/id/…"
+                  },
+                  "ipfs_hash": {
+                    "type": "string",
+                    "description": "Manifest IPFS hash (Qm…). Queries gateway deployments/id/…, matching official subgraph-MCP."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/tools/get_schema_by_subgraph_id": {
+      "post": {
+        "operationId": "tool_get_schema_by_subgraph_id",
+        "summary": "Alias of get_schema for the official subgraph-MCP name.",
+        "description": "Alias of get_schema for the official subgraph-MCP name. Pass subgraph_id. Returns local registry_schema without a network call; live __schema introspection only if THE_GRAPH_STUDIO_API_KEY is set. Opt-in; discovery tools never introspect.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "subgraph_id": {
+                    "type": "string",
+                    "description": "Subgraph ID (e.g. 5zvR82…)"
+                  }
+                },
+                "required": [
+                  "subgraph_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/tools/get_schema_by_deployment_id": {
+      "post": {
+        "operationId": "tool_get_schema_by_deployment_id",
+        "summary": "Alias of get_schema for the official subgraph-MCP name.",
+        "description": "Alias of get_schema for the official subgraph-MCP name. Pass deployment_id (0x + 64 hex). Live introspection needs THE_GRAPH_STUDIO_API_KEY — deployment ids are not stored in the local corpus. Opt-in.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "deployment_id": {
+                    "type": "string",
+                    "description": "32-byte deployment id (0x…)"
+                  }
+                },
+                "required": [
+                  "deployment_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/tools/get_schema_by_ipfs_hash": {
+      "post": {
+        "operationId": "tool_get_schema_by_ipfs_hash",
+        "summary": "Alias of get_schema for the official subgraph-MCP name.",
+        "description": "Alias of get_schema for the official subgraph-MCP name. Pass ipfs_hash (Qm…). Local registry_schema when the hash is in the corpus. Opt-in; discovery tools never introspect.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "ipfs_hash": {
+                    "type": "string",
+                    "description": "Manifest IPFS hash (Qm…)"
+                  }
+                },
+                "required": [
+                  "ipfs_hash"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/tools/get_top_subgraph_deployments": {
+      "post": {
+        "operationId": "tool_get_top_subgraph_deployments",
+        "summary": "Find subgraphs whose crawled manifest indexes a given contract on a given chain.",
+        "description": "Find subgraphs whose crawled manifest indexes a given contract on a given chain. Official subgraph-MCP name, better ranking: reliability_score then real query_volume_30d, not query fees and not the official 0-count oracle. contract_addresses come from subgraph.yaml dataSources/templates at crawl time — coverage is high for EVM subgraphs, empty for most substreams-powered ones. Does not query the gateway. Default 3 results, matching official.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "contract_address": {
+                    "type": "string",
+                    "description": "EVM contract address (0x-prefixed 40 hex)"
+                  },
+                  "chain": {
+                    "type": "string",
+                    "description": "Official subgraph-MCP uses graph-node ids here (`mainnet`, not `ethereum`). We accept both; aliases resolve (ethereum→mainnet, arbitrum→arbitrum-one, polygon→matic)."
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "description": "Max results (default 3, max 20)",
+                    "default": 3
+                  }
+                },
+                "required": [
+                  "contract_address",
+                  "chain"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/tools/get_deployment_30day_query_counts": {
+      "post": {
+        "operationId": "tool_get_deployment_30day_query_counts",
+        "summary": "Return 30-day query volume for one or more deployments from the local registry.",
+        "description": "Return 30-day query volume for one or more deployments from the local registry. Official subgraph-MCP name; unlike official, these numbers are real (the official tool has been observed returning 0 for ENS, Lido, Uniswap). Pass ipfs_hashes (Qm…) and/or ids. Does not query the gateway. Unknown hashes return query_volume_30d: null with error not_in_registry rather than a fake 0.",
+        "tags": [
+          "mcp-tools"
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "ipfs_hashes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Manifest IPFS hashes (Qm…), the official subgraph-MCP input"
+                  },
+                  "ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Subgraph ids to look up"
+                  },
+                  "ipfs_hash": {
+                    "type": "string",
+                    "description": "Single IPFS hash convenience field"
+                  },
+                  "id": {
+                    "type": "string",
+                    "description": "Single subgraph id convenience field"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tool result (JSON-encoded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/health": {
       "get": {
         "operationId": "rest_get_health",
@@ -416,6 +1285,38 @@
                     "status",
                     "subgraphs"
                   ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graphql": {
+      "post": {
+        "operationId": "rest_post_graphql",
+        "summary": "payql compatibility — search results in subgraphMetadataSearch shape",
+        "tags": [
+          "rest"
+        ],
+        "responses": {
+          "200": {
+            "description": "{ data: { subgraphMetadataSearch: [...] } }",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "{ data: { subgraphMetadataSearch: [...] } }"
                 }
               }
             }
@@ -583,6 +1484,13 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "httpToken": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Required when the server is started with SUBGRAPH_REGISTRY_HTTP_TOKEN (mandatory for non-loopback binds). This is the server access token, not a Studio API key."
+      }
+    },
     "schemas": {
       "ToolError": {
         "type": "object",

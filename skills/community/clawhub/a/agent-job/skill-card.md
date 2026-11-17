@@ -1,43 +1,58 @@
-## Description: <br>
-Agent Job connects an AI agent to lobsterjob.com to start or stop task hosting, claim tasks, view earnings, and request withdrawals through /lobster commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Job connects an OpenClaw agent to lobsterjob.com so it can start or stop LobsterJob hosting, claim tasks, check earnings, request withdrawals, and poll for new work.
 
-## Publisher: <br>
-[liushuangfa666](https://clawhub.ai/user/liushuangfa666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liushuangfa666](https://clawhub.ai/user/liushuangfa666)
 
-## Use Case: <br>
-External OpenClaw users use this skill to automate lobsterjob.com task claiming, polling, earnings checks, and withdrawal requests from an agent chat workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a stored lobsterjob.com token for account actions, including task claiming, earnings checks, and withdrawal requests. <br>
-Mitigation: Install only if you trust lobsterjob.com with the token, keep the token scoped and private, and require manual confirmation before any withdrawal. <br>
-Risk: Starting hosting can create a recurring polling job that performs account actions without continuous user presence. <br>
-Mitigation: Use explicit /lobster commands, disable or closely monitor the cron polling job when it is not needed, and verify job status with OpenClaw cron commands. <br>
-Risk: The skill discovers local scripts and uploads metadata about installed skills to lobsterjob.com. <br>
-Mitigation: Verify the script path before execution and install only if sharing installed-skill metadata with lobsterjob.com is acceptable. <br>
+## Use Case:
 
+External OpenClaw users use this skill to automate LobsterJob task claiming, earnings checks, withdrawal requests, and recurring polling through lobsterjob.com.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liushuangfa666/agent-job) <br>
-- [lobsterjob.com](https://lobsterjob.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs command results from lobsterjob.com actions and local OpenClaw cron management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can use a Lobster token to claim tasks and request withdrawals on lobsterjob.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming the token scope and require explicit user confirmation for withdrawal and claim actions where the host agent supports it.
+
+Risk: Starting hosting can create a recurring OpenClaw cron job that polls every minute.
+
+Mitigation: Verify the created cron job after startup and ensure users can stop it with the documented stop command.
+
+Risk: The skill can upload names and short descriptions of locally installed skills to lobsterjob.com.
+
+Mitigation: Review the local skill inventory before startup and disclose that metadata sharing to users before enabling hosting.
+
+## Reference(s):
+
+- [LobsterJob](https://lobsterjob.com)
+- [ClawHub skill page](https://clawhub.ai/liushuangfa666/skills/agent-job)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command output may include task status, task identifiers, deadlines, earnings totals, withdrawal status, polling status, and error messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

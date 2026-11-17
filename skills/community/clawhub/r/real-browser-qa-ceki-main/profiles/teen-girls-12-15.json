@@ -1,0 +1,41 @@
+{
+  "id": "teen-girls-12-15",
+  "label": "Teen Girls 12-15",
+  "emoji": "👧",
+  "demographics": {
+    "gender": "female",
+    "age_range": [12, 15],
+    "tier": "gen-z"
+  },
+  "active_hours": {
+    "description": "After school to late night",
+    "peak": [16, 23],
+    "off_peak_min": 5
+  },
+  "typing": {
+    "description": "Fast, abbreviation-prone, high backspace (autocorrect fighting)",
+    "wpm": { "min": 95, "max": 135 },
+    "profile": "fast",
+    "think_prob": 0.005,
+    "think_ms": [200, 600],
+    "backspace_freq": 0.04
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Fast continuous scroll — TikTok habit",
+    "speed_px_per_ms": { "min": 50, "max": 120 },
+    "pause_between_passes_ms": { "min": 200, "max": 800 },
+    "depth_per_pass": { "min": 0.5, "max": 0.9 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 300, "max": 1500 },
+    "pre_click_pause_ms": { "min": 80, "max": 350 },
+    "inter_action_pause_ms": { "min": 100, "max": 600 }
+  },
+  "mouse": {
+    "speed": 1.3,
+    "curvature": 0.25,
+    "jitter": 0.45,
+    "description": "Fast, slightly erratic"
+  }
+}

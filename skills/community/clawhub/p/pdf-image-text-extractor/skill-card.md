@@ -1,42 +1,60 @@
-## Description: <br>
-从图片或 PDF 文档中识别并提取文字内容，支持多种图片格式和 PDF 文件，自动判断是否包含文字并保留原始格式输出结构化结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从图片或 PDF 文档中识别并提取文字内容，支持多种图片格式和 PDF 文件，自动判断是否包含文字并保留原始格式输出结构化结果。
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External users and agents use this skill to extract readable text from uploaded images and PDFs, preserve basic document structure, and optionally produce Markdown output for review or reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted text from sensitive documents may appear in the chat or in a Markdown file when saved. <br>
-Mitigation: Use only documents whose contents are appropriate for the active agent session and storage location. <br>
-Risk: Image OCR and complex PDF layout extraction can be incomplete or inaccurate. <br>
-Mitigation: Review extracted text against the source document before using it for decisions, records, or downstream automation. <br>
+## Use Case:
 
+External users, office workers, students, researchers, content creators, and agents use this skill to extract readable text from uploaded images or PDFs and optionally save the extracted content as Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/pdf-image-text-extractor) <br>
-- [Skill instructions](SKILL.md) <br>
-- [PDF text extractor script](scripts/pdf_text_extractor.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown text or JSON script results with extracted text, page count, status, and errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save extracted content as a Markdown file when requested by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Extraction results are instructed to append an unrelated promotional external link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Markdown before sharing or publishing, and remove promotional content when it is not appropriate for the document workflow.
+
+Risk: OCR and scanned-PDF behavior may be less complete than advertised.
+
+Mitigation: Verify extracted text against the source document, especially for scanned pages, low-quality images, tables, or complex layouts.
+
+Risk: Saved Markdown outputs can become persistent copies of text from user documents.
+
+Mitigation: Process only documents approved for this workflow and handle generated Markdown according to the document's confidentiality requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/pdf-image-text-extractor)
+- [README.en.md](artifact/README.en.md)
+- [README.md](artifact/README.md)
+- [PDF extraction script](artifact/scripts/pdf_text_extractor.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses, optional Markdown files, and JSON results from the PDF extraction script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PDF output may include page separators and page counts; image extraction depends on the hosting agent's image-reading capability.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

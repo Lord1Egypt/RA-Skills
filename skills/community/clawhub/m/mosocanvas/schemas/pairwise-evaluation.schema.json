@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/pairwise-evaluation-0.2.json",
+  "title": "MoSoCanvas Pairwise Evaluation 0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "suite_id", "suite_sha256", "protocol", "thresholds", "comparisons"],
+  "properties": {
+    "schema": { "const": "moso.pairwise-evaluation/0.2" },
+    "id": { "type": "string", "minLength": 1 },
+    "suite_id": { "type": "string", "minLength": 1 },
+    "suite_sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+    "protocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_hidden_during_rating", "prompt_hidden", "randomized_sides", "ratings_committed_before_reveal"],
+      "properties": {
+        "source_hidden_during_rating": { "const": true },
+        "prompt_hidden": { "const": true },
+        "randomized_sides": { "const": true },
+        "ratings_committed_before_reveal": { "const": true }
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum_tasks", "minimum_comparisons", "minimum_unique_pairs", "minimum_raters", "confidence_z", "noninferiority_margin", "exceeds_observed_preference", "minimum_task_preference"],
+      "properties": {
+        "minimum_tasks": { "type": "integer", "minimum": 5 },
+        "minimum_comparisons": { "type": "integer", "minimum": 30 },
+        "minimum_unique_pairs": { "type": "integer", "minimum": 10 },
+        "minimum_raters": { "type": "integer", "minimum": 5 },
+        "confidence_z": { "type": "number", "exclusiveMinimum": 0 },
+        "noninferiority_margin": { "type": "number", "minimum": 0, "maximum": 0.05 },
+        "exceeds_observed_preference": { "type": "number", "minimum": 0.6, "maximum": 1 },
+        "minimum_task_preference": { "type": "number", "minimum": 0, "maximum": 0.5 }
+      }
+    },
+    "comparisons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["comparison_id", "pair_id", "task_id", "rater_id", "rater_independent", "left_artifact_id", "right_artifact_id", "assignment", "rating", "dimensions", "severity3_defects"],
+        "properties": {
+          "comparison_id": { "type": "string", "minLength": 1 },
+          "pair_id": { "type": "string", "minLength": 1 },
+          "task_id": { "type": "string", "minLength": 1 },
+          "rater_id": { "type": "string", "minLength": 1 },
+          "rater_independent": { "const": true },
+          "left_artifact_id": { "type": "string", "minLength": 1 },
+          "right_artifact_id": { "type": "string", "minLength": 1 },
+          "assignment": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["left_system", "right_system", "revealed_at"],
+            "properties": {
+              "left_system": { "$ref": "#/$defs/system" },
+              "right_system": { "$ref": "#/$defs/system" },
+              "revealed_at": { "type": "string", "format": "date-time" }
+            }
+          },
+          "rating": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["winner_side", "committed_at"],
+            "properties": {
+              "winner_side": { "$ref": "#/$defs/side" },
+              "committed_at": { "type": "string", "format": "date-time" }
+            }
+          },
+          "dimensions": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["composition", "authored_specificity", "narrative", "color_light", "material_coherence", "ai_residue", "carrier_fit"],
+            "properties": {
+              "composition": { "$ref": "#/$defs/sideOrNA" },
+              "authored_specificity": { "$ref": "#/$defs/sideOrNA" },
+              "narrative": { "$ref": "#/$defs/sideOrNA" },
+              "color_light": { "$ref": "#/$defs/sideOrNA" },
+              "material_coherence": { "$ref": "#/$defs/sideOrNA" },
+              "ai_residue": { "$ref": "#/$defs/sideOrNA" },
+              "series_rhythm": { "$ref": "#/$defs/sideOrNA" },
+              "carrier_fit": { "$ref": "#/$defs/sideOrNA" }
+            }
+          },
+          "severity3_defects": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["left", "right"],
+            "properties": {
+              "left": { "type": "integer", "minimum": 0 },
+              "right": { "type": "integer", "minimum": 0 }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "system": { "enum": ["mosocanvas", "target"] },
+    "side": { "enum": ["left", "right", "tie"] },
+    "sideOrNA": { "enum": ["left", "right", "tie", "not-applicable"] }
+  }
+}

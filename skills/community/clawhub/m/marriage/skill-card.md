@@ -1,42 +1,55 @@
-## Description: <br>
-Navigate marriage challenges across all stages with conflict resolution, communication tools, and practical frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate marriage challenges across all stages with conflict resolution, communication tools, and practical frameworks.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users can use this skill to help an agent provide relationship guidance across pre-marriage, newlywed, long-term, struggling, and divorce-consideration situations. It emphasizes practical communication frameworks while directing therapy, legal, medical, abuse, coercion, and safety concerns to qualified local professionals or emergency resources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A user may treat relationship guidance as licensed therapy, legal advice, medical advice, or crisis counseling. <br>
-Mitigation: Keep responses framed as general support and refer therapy, divorce logistics, rights, custody, medical, and crisis questions to qualified local professionals. <br>
-Risk: Normal communication advice can increase danger when abuse, coercion, threats, sexual pressure, child danger, or fear for safety is present. <br>
-Mitigation: Stop relationship-repair guidance in safety situations and prioritize emergency services, domestic-violence resources, legal advice, individual support, and safety planning. <br>
-Risk: The agent could pressure a user toward staying, leaving, forgiving, or taking sides in a conflict. <br>
-Mitigation: Support the user's autonomy, avoid definitive stay-or-leave directives, and present decision frameworks unless safety concerns require clear escalation toward protection. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/marriage) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
+
+External users use this skill to structure marriage-related conversations across pre-marriage, newlywed, long-term, struggling, and divorce-consideration stages while recognizing when professional support is needed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat relationship guidance as a substitute for licensed therapy, legal advice, domestic violence advocacy, or emergency services.
+
+Mitigation: Keep the skill's professional-referral boundaries visible and direct users to qualified professionals or emergency resources when therapy, legal, abuse-safety, or crisis support is needed.
+
+Risk: Standard communication frameworks can be unsafe when abuse, threats, coercive control, stalking, or fear for physical safety is present.
+
+Mitigation: Prioritize safety planning and professional abuse-support resources, and avoid couples communication exercises or reconciliation guidance in abuse contexts.
+
+Risk: The divorce-consideration material may not repeat abuse-safety warnings prominently enough.
+
+Mitigation: Review divorce-related responses for safety screening and add explicit abuse-escalation reminders before applying stay-or-leave frameworks.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance and structured conversation frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, code execution, API calls, or configuration output.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

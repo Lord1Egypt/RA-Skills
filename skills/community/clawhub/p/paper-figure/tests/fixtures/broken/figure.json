@@ -1,0 +1,19 @@
+{
+  "name": "framework",
+  "caption": "图 1  方法总体框架。输入经过编码器得到表征，再送入解码器。",
+  "type": "pipeline",
+  "journal": "nature",
+  "width": "double",
+  "height_mm": 260,
+  "width_mm": 190,
+  "dpi": 150,
+  "font": "Comic Sans MS",
+  "font_size_pt": 4,
+  "palette": "brand",
+  "panels": [
+    { "id": "a", "title": "输入", "caption": "", "nodes": [], "edges": [] }
+  ],
+  "layout": { "direction": "left-right", "gap_mm": 6, "node_w_mm": 18, "node_h_mm": 12 },
+  "data": null,
+  "notes": "故意埋了问题的样例：宽度超双栏、高度超上限、字号 4pt、DPI 150、红绿同图、Comic Sans、文字溢出、元素出界、AI 概念图混进数据图。"
+}

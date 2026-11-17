@@ -1,46 +1,60 @@
-## Description: <br>
-Systematically searches academic databases, screens abstracts, analyzes citation context, and returns a structured list of relevant scholarly papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Search.Bak helps an agent search arXiv, Google Scholar, and Semantic Scholar, screen scholarly papers, analyze citation context, and synthesize the most relevant results.
 
-## Publisher: <br>
-[xunhe730](https://clawhub.ai/user/xunhe730) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xunhe730](https://clawhub.ai/user/xunhe730)
 
-## Use Case: <br>
-External users, researchers, and developers use this skill to find and evaluate academic papers across arXiv, Google Scholar, and Semantic Scholar. It is intended for literature review, citation analysis, paper ranking, and concise research synthesis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics may be sent to external search and academic database services. <br>
-Mitigation: Avoid submitting sensitive or confidential research topics unless external service use is acceptable. <br>
-Risk: Broad trigger phrases such as research, cite, or citation may activate the skill unintentionally. <br>
-Mitigation: Tighten activation phrases or require an explicit academic-search request in deployments where accidental activation matters. <br>
-Risk: Academic search outputs can mislead users if paper metadata, publication status, or findings are fabricated or stale. <br>
-Mitigation: Verify retrieved papers against academic databases, disclose preprint or peer-review status, and include persistent identifiers when available. <br>
+## Use Case:
 
+Researchers, students, and developers use this skill to perform scholarly literature discovery, compare academic papers, and produce concise literature summaries with bibliographic metadata, publication status, citation signals, and research synthesis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xunhe730/academic-search-bak) <br>
-- [Skill definition](SKILL.md) <br>
-- [Academic database APIs and paper structure](knowledge/domain.md) <br>
-- [Academic search best practices](knowledge/best-practices.md) <br>
-- [Academic search anti-patterns](knowledge/anti-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown research summaries with ranked paper entries and synthesis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bibliographic metadata, publication status, identifiers, citation signals, open-access notes, and synthesis for up to five papers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad triggers such as research, cite, and scholar may activate the skill for prompts that are not intentional scholarly literature searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow the trigger list before installation, especially for agents that auto-activate skills from fuzzy matches.
+
+Risk: The artifact documents a plaintext arXiv API endpoint.
+
+Mitigation: Prefer an updated release or local patch that uses HTTPS-only arXiv endpoints before production use.
+
+Risk: Broad research prompts may expose confidential topics to external academic search services.
+
+Mitigation: Use the skill only for intended literature searches and avoid submitting confidential research topics or sensitive project details in prompts.
+
+## Reference(s):
+
+- [Academic Search Strategy](strategies/main.md)
+- [Academic Database APIs and Paper Structure](knowledge/domain.md)
+- [Academic Search Best Practices](knowledge/best-practices.md)
+- [Academic Search Anti-Patterns](knowledge/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research summaries with ranked paper entries, bibliographic metadata, citation analysis, and synthesis sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically returns the top relevant scholarly papers for a query and distinguishes publication status, venue, identifiers, open-access availability, and relevance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, _meta.json; package metadata lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

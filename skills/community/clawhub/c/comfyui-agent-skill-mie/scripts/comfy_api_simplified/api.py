@@ -43,7 +43,9 @@ class ComfyApi:
         self,
         url: str = "http://127.0.0.1:8188",
         user: str = "",
-        password: str = ""
+        password: str = "",
+        connect_timeout: float = 10.0,
+        read_timeout: float = 60.0
     ) -> None:
         """
         初始化 ComfyApi 实例
@@ -52,8 +54,15 @@ class ComfyApi:
             url: ComfyUI 服务器地址，默认为 "http://127.0.0.1:8188"
             user: 认证用户名，可选
             password: 认证密码，可选
+            connect_timeout: 建立 TCP 连接的超时秒数，默认为 10.0
+            read_timeout: 等待响应数据的超时秒数，默认为 60.0
+
+        超时作用于单次 HTTP 请求，与整体生成截止时间相互独立。
+        read_timeout 是 socket 空闲超时而非总耗时上限，
+        因此缓慢但持续的大文件上传/下载不会被中断。
         """
         self.url = url
+        self.timeout = (connect_timeout, read_timeout)
         self.auth: Optional[HTTPBasicAuth] = None
         url_without_protocol = url.split("//")[-1]
 
@@ -93,7 +102,9 @@ class ComfyApi:
         data = json.dumps(p).encode("utf-8")
         _log.info(f"Posting prompt to {self.url}/prompt")
 
-        resp = requests.post(urljoin(self.url, "/prompt"), data=data, auth=self.auth)
+        resp = requests.post(
+            urljoin(self.url, "/prompt"), data=data, auth=self.auth, timeout=self.timeout
+        )
         _log.info(f"{resp.status_code}: {resp.reason}")
 
         if resp.status_code == 200:
@@ -278,7 +289,7 @@ class ComfyApi:
         url = urljoin(self.url, f"/view?{urlencode(params)}")
         _log.info(f"Getting video from {url}")
 
-        resp = requests.get(url, auth=self.auth)
+        resp = requests.get(url, auth=self.auth, timeout=self.timeout)
         _log.debug(f"{resp.status_code}: {resp.reason}")
 
         if resp.status_code == 200:
@@ -301,7 +312,7 @@ class ComfyApi:
         url = urljoin(self.url, "/queue")
         _log.info(f"Getting queue from {url}")
 
-        resp = requests.get(url, auth=self.auth)
+        resp = requests.get(url, auth=self.auth, timeout=self.timeout)
 
         if resp.status_code == 200:
             return resp.json()
@@ -356,7 +367,7 @@ class ComfyApi:
         url = urljoin(self.url, f"/history/{prompt_id}")
         _log.info(f"Getting history from {url}")
 
-        resp = requests.get(url, auth=self.auth)
+        resp = requests.get(url, auth=self.auth, timeout=self.timeout)
 
         if resp.status_code == 200:
             return resp.json()
@@ -393,7 +404,7 @@ class ComfyApi:
         url = urljoin(self.url, f"/view?{urlencode(params)}")
         _log.info(f"Getting image from {url}")
 
-        resp = requests.get(url, auth=self.auth)
+        resp = requests.get(url, auth=self.auth, timeout=self.timeout)
         _log.debug(f"{resp.status_code}: {resp.reason}")
 
         if resp.status_code == 200:
@@ -432,7 +443,54 @@ class ComfyApi:
         with open(filename, "rb") as f:
             files = {"image": (serv_file, f)}
             _log.info(f"Posting {filename} to {url} with data {data}")
-            resp = requests.post(url, files=files, data=data, auth=self.auth)
+            resp = requests.post(
+                url, files=files, data=data, auth=self.auth, timeout=self.timeout
+            )
+
+        _log.debug(f"{resp.status_code}: {resp.reason}, {resp.text}")
+
+        if resp.status_code == 200:
+            return resp.json()
+        else:
+            raise ComfyApiError(
+                f"Request failed with status code {resp.status_code}: {resp.reason}"
+            )
+
+    def upload_media(
+        self,
+        filename: str,
+        subfolder: str = "default_upload_folder"
+    ) -> Dict[str, Any]:
+        """上传任意媒体文件 (video/audio/image) 到 ComfyUI 服务器.
+
+        ComfyUI 的 ``/upload/image`` 端点实际接受任意文件并存入 ``input``
+        目录, 与媒体类型无关 —— 这个方法只是用更通用的语义封装同一端点,
+        供 video/audio 输入上传使用 (image 输入仍走 :meth:`upload_image`).
+
+        Args:
+            filename: 本地媒体文件路径
+            subfolder: 目标子文件夹
+
+        Returns:
+            服务器响应数据, 含 ``name`` 和 ``subfolder`` (与 upload_image 同构)
+
+        Raises:
+            ComfyApiError: 请求失败时抛出
+            FileNotFoundError: 文件不存在时抛出
+        """
+        url = urljoin(self.url, "/upload/image")
+        serv_file = os.path.basename(filename)
+        data = {"subfolder": subfolder}
+
+        if not os.path.exists(filename):
+            raise FileNotFoundError(f"Media file not found: {filename}")
+
+        with open(filename, "rb") as f:
+            files = {"image": (serv_file, f)}
+            _log.info(f"Posting {filename} to {url} with data {data}")
+            resp = requests.post(
+                url, files=files, data=data, auth=self.auth, timeout=self.timeout
+            )
 
         _log.debug(f"{resp.status_code}: {resp.reason}, {resp.text}")
 

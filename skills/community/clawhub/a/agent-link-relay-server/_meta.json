@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7end55k8vrcbb88jqx1dmrh182rbrq",
-  "slug": "agent-link-relay-server",
+  "name": "agent-link",
   "version": "1.0.0",
-  "publishedAt": 1775299174139
+  "description": "智能体互联技能 - 支持不同电脑上的 OpenClaw 实例和 Agent 通过中转服务器进行安全可靠的通讯。",
+  "author": "小豆丁 (healthguard)",
+  "createdAt": "2026-04-04",
+  "tags": ["agent", "communication", "relay", "cross-device"],
+  "license": "MIT-0"
 }

@@ -1,42 +1,64 @@
-## Description: <br>
-Use CamScanner to add a tiled text watermark across an entire image with custom text, color, opacity, and font size. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use CamScanner to add a tiled text watermark across an entire image.
 
-## Publisher: <br>
-[camscanner-ai](https://clawhub.ai/user/camscanner-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[camscanner-ai](https://clawhub.ai/user/camscanner-ai)
 
-## Use Case: <br>
-External users and developers use this skill to upload an image to CamScanner, apply repeating diagonal watermark text such as Confidential or Draft, and download the processed image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are uploaded to CamScanner servers for processing. <br>
-Mitigation: Use only images approved for third-party processing, and avoid highly sensitive images unless that processing is acceptable for the use case. <br>
-Risk: RGBA PNG images with an alpha channel may fail in the upstream image processor. <br>
-Mitigation: Convert affected PNG files to JPEG before upload when this failure occurs. <br>
+## Use Case:
 
+External users and developers use this skill to add repeated text watermarks such as confidential, draft, copyright, or custom notices to image files through CamScanner's image processing service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/camscanner-ai/camscanner-watermark-image) <br>
-- [CamScanner Homepage](https://www.camscanner.com) <br>
-- [CamScanner AI Tools API](https://ai-tools.camscanner.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command guidance for uploading an image, applying a watermark, and downloading the resulting file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; frontmatter reports 1.0) <br>
+Risk: Selected images are uploaded to CamScanner's external service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for images appropriate for external processing, and avoid highly sensitive images unless CamScanner's privacy and retention terms have been reviewed and accepted.
+
+Risk: RGBA PNG inputs with an alpha channel may fail in the upstream image processing service.
+
+Mitigation: Convert affected PNG files to JPEG before uploading.
+
+Risk: The download step returns JSON instead of the binary image if response_mode=raw is omitted.
+
+Mitigation: Always include response_mode=raw on the download request.
+
+Risk: A failed upload or watermark request can produce an empty or null file identifier.
+
+Mitigation: Check each returned file_id before continuing to the next step.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/camscanner-ai/skills/camscanner-watermark-image)
+- [CamScanner Publisher Profile](https://clawhub.ai/user/camscanner-ai)
+- [CamScanner Website](https://www.camscanner.com)
+- [CamScanner AI Tools API Base](https://ai-tools.camscanner.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown guidance with bash/curl commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for uploading an image, applying a tiled text watermark, and downloading the watermarked image.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

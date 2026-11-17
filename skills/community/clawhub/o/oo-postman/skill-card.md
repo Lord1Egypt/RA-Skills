@@ -1,47 +1,55 @@
-## Description: <br>
-Postman (postman.com). Use this skill for ANY Postman request: reading, creating, updating, and deleting data through the OOMOL-connected Postman connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Postman through your OOMOL-connected account to read and manage Postman resources.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and API teams use this skill to manage Postman workspaces, collections, requests, APIs, environments, mocks, monitors, webhooks, specifications, comments, and related resources through an authenticated OOMOL connector. It supports read, write, and destructive Postman workflows with schema inspection and confirmation guidance before state-changing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Postman account and can act with the permissions available to that connection. <br>
-Mitigation: Use an intended OOMOL/Postman connection, keep credentials server-side as designed, and review account scope before running actions. <br>
-Risk: Write actions can create or modify Postman resources such as collections, workspaces, APIs, environments, monitors, mocks, and specifications. <br>
-Mitigation: Inspect the live action schema first and confirm the exact payload and expected effect before running a write action. <br>
-Risk: Destructive actions can permanently delete or overwrite Postman data. <br>
-Mitigation: Require explicit user approval for the specific target and action before running destructive commands. <br>
-Risk: Security evidence describes powerful state-changing workflows despite a clean verdict. <br>
-Mitigation: Review the skill behavior before deployment and restrict use to trusted users and appropriate Postman workspaces. <br>
+## Use Case:
 
+Developers use this skill to inspect Postman action schemas and manage Postman workspaces, collections, APIs, and related resources through the oo CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-postman) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Postman homepage](https://www.postman.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Postman connector commands, schema-inspection steps, JSON request payloads, and operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Setup instructs users to run an unverified remote installer, and the hosted connector implementation was not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separately approved CLI release with verified integrity and inspect or disable automatic skill synchronization.
+
+Risk: Postman actions include changes and deletions that can affect account data.
+
+Mitigation: Connect only the Postman account and permissions needed, and require explicit user approval for writes and deletions.
+
+## Reference(s):
+
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Postman skill on ClawHub](https://clawhub.ai/oomol/skills/oo-postman)
+- [OOMOL publisher profile](https://clawhub.ai/user/oomol)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, API responses, Guidance]
+
+**Output Format:** [Shell commands with JSON payloads and structured Postman responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, update, or delete Postman resources when the user approves the action.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

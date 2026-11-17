@@ -1,44 +1,55 @@
-## Description: <br>
-DeepRead Purchase Orders extracts structured purchase order data from PDFs or scans as typed JSON and supports PO-invoice matching with per-field confidence flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured data from purchase orders -- PO number, buyer/supplier, line items, quantities, prices, delivery dates, totals -- as typed JSON, with 2-way/3-way matching against invoices and per-field confidence flags.
 
-## Publisher: <br>
-[uday390](https://clawhub.ai/user/uday390) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uday390](https://clawhub.ai/user/uday390)
 
-## Use Case: <br>
-Procurement, accounts payable, and finance automation teams use this skill to extract purchase order fields, line items, totals, and review flags from documents. Developers can pair the extracted PO data with invoices or receipts for 2-way or 3-way matching workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Purchase orders and related business data are sent to DeepRead's external API. <br>
-Mitigation: Confirm the organization permits this data sharing before installation and route only approved documents through the skill. <br>
-Risk: The skill requires a DEEPREAD_API_KEY credential. <br>
-Mitigation: Use a scoped key, store it outside shared prompts or source files, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Procurement, AP, and operations teams use this skill to extract structured purchase-order fields from PDF or scanned documents, then compare purchase orders with invoices and receipts for review workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/uday390/deepread-purchase-orders) <br>
-- [DeepRead Homepage](https://www.deepread.tech) <br>
-- [DeepRead Dashboard](https://www.deepread.tech/dashboard) <br>
-- [DeepRead API Endpoint](https://api.deepread.tech) <br>
-- [DeepRead Optimizer](https://www.deepread.tech/dashboard/optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance, Shell commands, Code] <br>
-**Output Format:** [Markdown instructions with JSON examples, shell commands, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns typed purchase order fields with line items, locations, status, and needs_review confidence flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Purchase-order documents may contain sensitive supplier, buyer, pricing, and delivery information that is sent to DeepRead's hosted API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review DeepRead's data handling terms and only submit documents appropriate for that hosted service.
+
+Risk: The skill requires a DEEPREAD_API_KEY for API access.
+
+Mitigation: Store the key in a managed environment variable or secret store and avoid committing it to source files or logs.
+
+## Reference(s):
+
+- [DeepRead homepage](https://www.deepread.tech)
+- [DeepRead dashboard](https://www.deepread.tech/dashboard)
+- [ClawHub skill page](https://clawhub.ai/uday390/skills/deepread-purchase-orders)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Typed JSON with setup commands and reconciliation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY and sends user-provided purchase-order documents to DeepRead's hosted API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

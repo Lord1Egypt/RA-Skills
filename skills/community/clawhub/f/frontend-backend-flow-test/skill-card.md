@@ -1,44 +1,61 @@
-## Description: <br>
-Audit-first frontend-backend contract analyzer for static API compatibility checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits frontend API calls against backend endpoint contracts to surface method, path, query, body, auth, and response mismatches before release or regression review.
 
-## Publisher: <br>
-[dlawnsdk](https://clawhub.ai/user/dlawnsdk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlawnsdk](https://clawhub.ai/user/dlawnsdk)
 
-## Use Case: <br>
-Developers and engineers use this skill to compare frontend API calls with backend endpoint contracts before release, refactors, or regression review. It produces prioritized contract-audit findings for missing endpoints, method or path drift, and query, body, response, or auth mismatches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional live helper can use credentials and may delete API data even when generated as read-only. <br>
-Mitigation: Use the static audit workflow as the default path. Run live helpers only against disposable dev or staging systems with non-production credentials, inspect generated files before execution, and do not rely on --read-only as a strict safety boundary. <br>
-Risk: Static extraction is pattern-dependent and may miss API behavior hidden behind dynamic URL construction, generated clients, or unsupported framework conventions. <br>
-Mitigation: Treat findings as engineering review inputs, verify high-risk paths against source code and existing QA tests, and rerun the audit after fixes. <br>
+## Use Case:
 
+Developers and engineers use this skill to compare frontend request behavior with backend API contracts before releases, refactors, and regression review. It is best suited for static contract audits and narrow dev/staging follow-up checks when static evidence is insufficient.
 
-## Reference(s): <br>
-- [Audit Scope](references/AUDIT-SCOPE.md) <br>
-- [Audit Examples](references/EXAMPLES.md) <br>
-- [Limitations](references/LIMITATIONS.md) <br>
-- [Live Mode](references/LIVE-MODE.md) <br>
-- [MVP Spec](references/MVP-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON audit reports with shell command guidance and optional generated helper code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The primary audit writes audit-report.md and audit-report.json to a user-selected output directory; optional live helper generation is secondary and should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata) <br>
+Risk: The optional live helper generator can unexpectedly change data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the static audit workflow first and avoid generated live helpers unless the target is a safe dev/staging environment.
+
+Risk: Generated helpers may persist or expose reusable credentials.
+
+Mitigation: Do not use real reusable credentials; use disposable test credentials only after reviewing the generated files.
+
+Risk: Known read-only delete path, credential handling, and template injection issues are unresolved in the optional live helper path.
+
+Mitigation: Avoid scripts/generate_tests.py until those issues are fixed, and review any generated helper before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dlawnsdk/skills/frontend-backend-flow-test)
+- [Audit Scope](references/AUDIT-SCOPE.md)
+- [Limitations](references/LIMITATIONS.md)
+- [Audit Examples](references/EXAMPLES.md)
+- [Live Mode](references/LIVE-MODE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON audit reports, with optional generated Python helper files and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static audit is the primary output path; live helpers are secondary and should be limited to safe dev/staging validation.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

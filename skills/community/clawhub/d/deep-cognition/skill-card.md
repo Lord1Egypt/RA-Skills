@@ -1,40 +1,49 @@
-## Description: <br>
-Guides article creation by emphasizing subjective stance, underlying essence, and paradigm-level framing so writers explain why an idea matters, not only how to do it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Cognition guides agents in writing Chinese articles that emphasize subjective stance, underlying rationale, and paradigm-level framing rather than only procedural steps.
 
-## Publisher: <br>
-[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang)
 
-## Use Case: <br>
-Writers and content creators use this skill to strengthen articles, tutorials, opinion pieces, and case studies with deeper framing, clear author stance, and reusable expression patterns for explaining the significance behind a topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may influence an agent's article-writing style and framing. <br>
-Mitigation: Review generated prose before publication to confirm it matches the intended voice, claims, and audience. <br>
-Risk: The provided templates encourage strong subjective framing that could overstate conclusions if applied mechanically. <br>
-Mitigation: Pair the framing with source-backed claims and edit unsupported generalizations before release. <br>
+## Use Case:
 
+Writers, creators, and agents use this skill to draft or revise Chinese articles with a stronger point of view, clearer explanation of why an idea matters, and higher-level framing for tutorials, opinion pieces, and case studies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daxiangnaoyang/deep-cognition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists and reusable writing templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prose guidance for article structure, viewpoint framing, and revision checks; it does not execute commands or request system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may over-apply a strong Chinese opinion-and-paradigm writing style when the user needs neutral, multilingual, or purely instructional output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the desired language, neutrality, audience, and tone when invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daxiangnaoyang/skills/deep-cognition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text writing guidance with reusable article templates and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optimized for Chinese article-writing style guidance; users should specify a different language or neutral tone when needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

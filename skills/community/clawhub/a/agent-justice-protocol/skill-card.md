@@ -1,45 +1,56 @@
-## Description: <br>
-Agent Justice Protocol supports dispute resolution, forensic investigation, and risk assessment for autonomous AI agent transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dispute resolution, forensic investigation, and risk assessment for autonomous AI agent transactions.
 
-## Publisher: <br>
-[alexfleetcommander](https://clawhub.ai/user/alexfleetcommander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexfleetcommander](https://clawhub.ai/user/alexfleetcommander)
 
-## Use Case: <br>
-Developers and operators use this skill to investigate failed agent-to-agent transactions, file disputes, reconstruct provenance chains, and assess risk for agents or transaction types. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may work with dispute stores and provenance-chain files that contain sensitive transaction evidence. <br>
-Mitigation: Use only transaction-relevant evidence files, keep dispute stores private, and avoid sharing unrelated provenance data. <br>
-Risk: Fault findings and risk tiers may influence real operational, insurance, or dispute decisions. <br>
-Mitigation: Review forensic findings, risk conclusions, and evidence references before using them for real decisions. <br>
-Risk: Setup depends on installing the agent-justice-protocol package from PyPI. <br>
-Mitigation: Verify the PyPI package source before installing and consider pinning a trusted version. <br>
+## Use Case:
 
+Developers and agent operators use this skill to file disputes, investigate failed agent-to-agent transactions, reconstruct provenance chains, and assess agent or transaction risk.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alexfleetcommander/agent-justice-protocol) <br>
-- [PyPI: agent-justice-protocol](https://pypi.org/project/agent-justice-protocol/) <br>
-- [Agent Justice Protocol Whitepaper](https://vibeagentmaking.com/whitepaper/justice-protocol/) <br>
-- [Vibe Agent Making](https://vibeagentmaking.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code examples plus investigation, dispute, and risk-assessment guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce references to local dispute stores and provenance-chain files supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact disclosure lists 0.1.0) <br>
+Risk: The setup flow installs an unpinned external Python package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment or sandbox, and pin and verify the package version before use.
+
+Risk: Dispute and provenance files may contain sensitive transaction details.
+
+Mitigation: Pass only the dispute and provenance files needed for the investigation.
+
+## Reference(s):
+
+- [Agent Justice Protocol on ClawHub](https://clawhub.ai/alexfleetcommander/skills/agent-justice-protocol)
+- [Agent Justice Protocol on PyPI](https://pypi.org/project/agent-justice-protocol/)
+- [Justice Protocol Whitepaper](https://vibeagentmaking.com/whitepaper/justice-protocol/)
+- [Vibe Agent Making](https://vibeagentmaking.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces dispute filing guidance, forensic investigation workflows, and risk assessment examples for local provenance and dispute files.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Calculates voyage distance in nautical miles between global ports using the NavOptima platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ORM Weather Routing Nav Voyage Distance Finder helps agents query voyage distances in nautical miles between global ports using NavOptima.
 
-## Publisher: <br>
-[andy-gaoyue](https://clawhub.ai/user/andy-gaoyue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy-gaoyue](https://clawhub.ai/user/andy-gaoyue)
 
-## Use Case: <br>
-Marine operations, chartering, weather-routing, and customer quote teams use this skill to look up port-to-port or multi-port voyage distances, timing estimates, and route-map outputs from NavOptima. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release exposes a shared NavOptima password. <br>
-Mitigation: Remove and rotate the exposed credential before installation, and require user-provided or managed secrets instead. <br>
-Risk: The workflow forces screenshot sharing without clear per-use consent or recipient checks. <br>
-Mitigation: Change screenshot sharing to explicit opt-in and confirm the recipient before sending route outputs. <br>
-Risk: The current version is not appropriate for sensitive voyage, customer, or account data. <br>
-Mitigation: Do not use it with sensitive operational data until the credential and screenshot-sharing issues are fixed. <br>
+## Use Case:
 
+Maritime operations, chartering, and weather-routing users can use this skill to estimate voyage distance, transit time, ETA, and route details for two-port, multi-port, or coordinate-based routes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andy-gaoyue/orm-weather-routing-nav-voyage-distance-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/andy-gaoyue) <br>
-- [Ocean Right Marine](https://ormwx.com) <br>
-- [NavOptima voyage distance](https://nop.ormwx.com/voyage/distance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown report with voyage distance tables, timing estimates, and route screenshot references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include route screenshots and contact details in the response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release evidence reports embedded live-looking NavOptima credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate and remove the password before installation or use, and provide credentials through an approved secret-management path.
+
+Risk: The release evidence reports automatic screenshot sharing without adequate user authorization controls.
+
+Mitigation: Require explicit user confirmation and verify the recipient before sharing voyage map screenshots or route results.
+
+Risk: The release evidence reports mandatory contact details in every output.
+
+Mitigation: Treat contact details as optional metadata and allow them to be omitted when not appropriate for the user or channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andy-gaoyue/skills/orm-weather-routing-nav-voyage-distance-finder)
+- [ORM Weather Routing](https://ormwx.com)
+- [NavOptima voyage distance](https://nop.ormwx.com/voyage/distance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown distance report with route metrics and screenshot reference]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include voyage distance, route legs, transit time, ETA, speed, weather factor, data source, calculation time, and contact metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

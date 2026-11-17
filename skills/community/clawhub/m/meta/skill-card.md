@@ -1,39 +1,52 @@
-## Description: <br>
-Coordinates sub-agents to break down complex tasks, run delegated work in the background, and summarize important progress for the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates complex tasks by splitting work across background sub-agents and summarizing important progress for the user.
 
-## Publisher: <br>
-[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde)
 
-## Use Case: <br>
-External users and developers use this skill to coordinate complex agent tasks by decomposing work, delegating search, analysis, execution, and monitoring to sub-agents, and receiving summarized status updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can coordinate high-autonomy delegation, including browsing, script execution, automation, and background monitoring. <br>
-Mitigation: Require explicit user confirmation before spawning child agents, running scripts, crawling sites, or starting monitoring. <br>
-Risk: Background sub-agent work can reduce user visibility into active tasks and decisions. <br>
-Mitigation: Keep background tasks visible, summarize important progress, and make delegated tasks easy to stop. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xaiohuangningde/meta) <br>
+## Use Case:
 
+Agent users use this skill to coordinate complex work by decomposing tasks, delegating subtasks to search, analysis, execution, or monitoring sub-agents, and receiving summarized progress.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text task breakdowns, delegated work summaries, and status updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate background sub-agent activity for browsing, analysis, script execution, automation, and monitoring when the user allows it.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can delegate broad background work, including execution, automation, monitoring, and web crawling, without explicit scope limits in the artifact.
+
+Mitigation: Require explicit user confirmation and a defined scope before starting web crawling, script execution, automation, monitoring, file changes, credential use, or long-running background tasks.
+
+Risk: Progress reporting is intentionally sparse, which can reduce visibility into background sub-agent actions.
+
+Mitigation: Ask sub-agents to report material actions, decisions, failures, and completion status before relying on their results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xaiohuangningde/skills/meta)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown or plain text coordination updates with possible shell command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May delegate background work and summarize only important progress.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

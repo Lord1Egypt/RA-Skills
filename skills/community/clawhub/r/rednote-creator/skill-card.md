@@ -1,41 +1,50 @@
-## Description: <br>
-Rednote Creator helps agents plan Xiaohongshu/Rednote posts, draft titles and body copy, create cover-image prompts, recommend publishing strategy, and optionally guide user-confirmed publishing across six content categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps creators plan, write, design covers for, and prepare Rednote posts across beauty, fashion, fitness, food, travel, and home-organization topics.
 
-## Publisher: <br>
-[z-zihan](https://clawhub.ai/user/z-zihan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z-zihan](https://clawhub.ai/user/z-zihan)
 
-## Use Case: <br>
-External creators, marketers, and content operators use this skill to turn a Rednote/Xiaohongshu idea into a ready-to-review post package with topic direction, title options, body copy, cover-image guidance, tags, timing advice, and optional publishing support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated post text, tags, images, or publishing actions may be inaccurate, misleading, or unsuitable for public posting. <br>
-Mitigation: Review all generated content and browser actions before confirming publication. <br>
-Risk: Placeholder stock images may create copyright, originality, or platform review issues. <br>
-Mitigation: Prefer original user-owned photos and replace any placeholder stock images before publishing. <br>
+## Use Case:
 
+External creators use this skill to develop Rednote topics, titles, post drafts, cover concepts, and publishing plans. It can also assist with one-click publishing when the user requests it and confirms the content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/z-zihan/rednote-creator) <br>
-- [Project homepage](https://github.com/z-Zihan/awesome-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown text with post drafts, title candidates, cover-image prompts, publishing guidance, and optional command or browser-action guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed by the user before publication, especially generated claims, tags, images, and browser actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: A cover prompt derived from user content may be sent to an external image-generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive or identifying details in cover prompts, and review the prompt before image generation.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/z-zihan/skills/rednote-creator)
+- [Skill homepage](https://github.com/z-Zihan/awesome-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Images]
+
+**Output Format:** [Chinese text and Markdown drafts; cover images when image generation is available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Titles are limited to 20 Chinese characters and post drafts are typically 500–1000 Chinese characters, as specified by the skill.]
+
+## Skill Version(s):
+
+1.0.7 (source: artifact frontmatter; confirmed by server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

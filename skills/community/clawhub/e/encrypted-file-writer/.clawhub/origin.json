@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "registry": "https://clawhub.ai",
+  "slug": "encrypted-file-writer",
+  "ownerHandle": "endcy",
+  "installedVersion": "1.1.0",
+  "installedAt": 1784171576703,
+  "artifact": {
+    "kind": "archive",
+    "sha256": "4a02eab971b64541f0b3b68bbd3e71c8df4f851c7238133ee83415d07704becf",
+    "integrity": "sha256-SgLquXG2RUHws7aLvT5xyN9PhRxyOBM+6DQV0HcEvs8="
+  },
+  "skillFile": {
+    "path": "SKILL.md",
+    "sha256": "000004e573c5410f79ae9ff82cbfe492af78d35b383741ea89006677bfa37086"
+  }
+}

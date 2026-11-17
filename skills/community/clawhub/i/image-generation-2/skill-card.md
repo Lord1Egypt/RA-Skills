@@ -1,49 +1,70 @@
-## Description: <br>
-Single-gateway image generation CLI for async text-to-image and image-to-image, with polling, download handling, and request alignment to the current gateway OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Single-gateway image generation CLI for async text-to-image and image-to-image, with polling, download handling, and request alignment to the current gateway OpenAPI.
 
-## Publisher: <br>
-[632657122](https://clawhub.ai/user/632657122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[632657122](https://clawhub.ai/user/632657122)
 
-## Use Case: <br>
-Developers, creative teams, and agents use this skill to generate or transform images through a WeryAI-backed CLI workflow. It supports prompt assembly, style presets, model defaults, batch jobs, polling, and download handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected reference images are sent to the WeryAI gateway. <br>
-Mitigation: Avoid sensitive prompts or reference images unless the user intends to upload them to that service. <br>
-Risk: The skill uses IMAGE_GEN_API_KEY and can persist local setup files when configured. <br>
-Mitigation: Use a project-scoped key with limited billing exposure, keep credentials out of shared workspaces, and rotate or remove the key when access should end. <br>
-Risk: The security verdict is suspicious because the skill gives the agent broad setup and credential-handling authority. <br>
-Mitigation: Review tool-install prompts and setup changes before enabling the skill in a workspace. <br>
+## Use Case:
 
+Developers and agents use this skill to turn text prompts or reference images into generated images through a WeryAI gateway workflow. It supports model selection, prompt assembly, style presets, async polling, downloads, dry runs, and batch generation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/632657122/image-generation-2) <br>
-- [WeryAI Platform Notes](references/weryai-platform.md) <br>
-- [Style Presets](references/style-presets.md) <br>
-- [First-Time Setup](references/config/first-time-setup.md) <br>
-- [WeryAI API Introduction](https://docs.weryai.com/en) <br>
-- [WeryAI Text-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-text-to-image-task) <br>
-- [WeryAI Image-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-image-to-image-task) <br>
-- [WeryAI Task Status API](https://docs.weryai.com/api-reference/tasks/query-task-details) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files, API calls] <br>
-**Output Format:** [Markdown guidance with CLI commands, JSON summaries, configuration files, and downloaded image files or image URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write output images and optional local configuration under project or user .image-skills/image-generation directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter reports 0.5.0) <br>
+Risk: API keys may be exposed or overused if persisted carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, low-quota WeryAI API key and avoid persisting it unless necessary.
+
+Risk: Local files, reference images, prompt files, or batch inputs can contain sensitive information that may be sent to the external gateway.
+
+Mitigation: Use only approved, non-sensitive inputs and avoid passing sensitive local files through --ref or batch files.
+
+Risk: Generated result URLs and webhook URLs are external network destinations.
+
+Mitigation: Review URLs before sharing them or using webhooks, and treat returned image links as externally hosted assets.
+
+Risk: Runtime setup through npx -y bun can fetch executable tooling at install or run time.
+
+Mitigation: Prefer a preinstalled and pinned Bun runtime before using the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/632657122/skills/image-generation-2)
+- [Gateway Alignment Notes](references/weryai-platform.md)
+- [First-Time Setup](references/config/first-time-setup.md)
+- [Model Registry Schema](references/config/model-registry-schema.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+- [Style Presets](references/style-presets.md)
+- [WeryAI API Introduction](https://docs.weryai.com/en)
+- [WeryAI Text-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-text-to-image-task)
+- [WeryAI Image-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-image-to-image-task)
+- [WeryAI Task Status API](https://docs.weryai.com/api-reference/tasks/query-task-details)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Generated image files or URLs, with JSON summaries for dry-run and batch modes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses asynchronous task polling, optional batch concurrency, local model preferences, and optional local output downloads.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter version: 0.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

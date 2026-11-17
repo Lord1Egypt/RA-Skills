@@ -1,42 +1,51 @@
-## Description: <br>
-LLM one-shot Q&A, summaries, and generation via SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LLM one-shot Q&A, summaries, and generation via SkillBoss API Hub.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and other external users use this skill to send one-shot prompts for Q&A, summarization, JSON generation, and general text generation through the hosted SkillBoss API Hub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and included text are sent to SkillBoss's hosted service. <br>
-Mitigation: Avoid secrets, regulated data, or proprietary content unless the organization has approved SkillBoss and the API-key scope. <br>
-Risk: The skill requires a sensitive API credential. <br>
-Mitigation: Store SkillBoss_API_KEY in the runtime environment or an approved secret manager, and rotate or scope the key according to organizational policy. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to send one-shot prompts to SkillBoss API Hub for question answering, summarization, and text generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alvis-gemini-model) <br>
-- [SkillBoss API Hub endpoint](https://api.SkillBoss.co/v1/pilot) <br>
-- [SkillBoss setup guide](https://SkillBoss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python and curl examples, plus generated text or JSON responses from the API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the SkillBoss_API_KEY environment variable and sends prompts to SkillBoss's hosted service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Prompts and inputs are sent to SkillBoss-hosted infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with organization-approved data and avoid sending secrets, credentials, regulated data, private customer data, or internal documents unless the provider and its terms are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alvis-gemini-model)
+- [SkillBoss API Hub endpoint](https://api.SkillBoss.co/v1/pilot)
+- [SkillBoss setup guide](https://SkillBoss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and curl examples; API responses may be text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SkillBoss_API_KEY and sends prompts to SkillBoss-hosted infrastructure.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

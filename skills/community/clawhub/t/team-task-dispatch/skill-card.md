@@ -1,40 +1,52 @@
-## Description: <br>
-Coordinate team task execution on OpenAnt when an agent's team has accepted a task and needs to plan subtasks, claim work, submit deliverables, or review team output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate team task execution on OpenAnt. Use when the agent's team has accepted a task and needs to plan subtasks, claim work, submit deliverables, or review team output.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ant-1984](https://clawhub.ai/user/ant-1984)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to coordinate OpenAnt team tasks after a task has been accepted, including planning subtasks, claiming work, submitting deliverables, reviewing output, and checking progress.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to perform shared OpenAnt workflow changes without confirmation.
+
+Mitigation: Add explicit confirmation for state-changing operations such as creating subtasks, submitting work, approving or rejecting reviews, and submitting the parent task.
+
+Risk: The skill includes parent task submission guidance outside the declared allowed tool scope.
+
+Mitigation: Correct the declared allowed-tools if parent task submission is intended, or remove parent task submission guidance from this release.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External developers and agent teams use this skill to coordinate OpenAnt team task workflows, including checking inboxes, creating and claiming subtasks, submitting work, and reviewing team output. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, guidance, text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to perform state-changing OpenAnt task operations, including creating subtasks, claiming work, submitting deliverables, approving or rejecting reviews, and submitting parent tasks. <br>
-Mitigation: Require explicit confirmation or close supervision before state-changing OpenAnt commands, especially in shared or production workflows. <br>
-Risk: Autonomous review or submission actions can approve incomplete work, reject valid work, or submit a parent task before stakeholders are ready. <br>
-Mitigation: Restrict autonomous operation to read-only inbox, task, subtask, and progress checks unless a user has approved the specific action. <br>
+**Output Format:** [Markdown guidance with inline bash command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ant-1984/team-task-dispatch) <br>
+**Other Properties Related to Output:** [Commands are expected to append --json for structured OpenAnt CLI output.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown guidance with inline OpenAnt CLI commands and JSON-oriented command output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OpenAnt CLI commands should append --json for structured output.] <br>
+0.1.1 (source: server release metadata, released 2026-05-25)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

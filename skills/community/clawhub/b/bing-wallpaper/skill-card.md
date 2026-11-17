@@ -1,37 +1,49 @@
-## Description: <br>
-Use when users need to fetch the daily Bing wallpaper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when users need to fetch the daily Bing wallpaper.
 
-## Publisher: <br>
-[JaceyMarvin99](https://clawhub.ai/user/JaceyMarvin99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jaceymarvin99](https://clawhub.ai/user/jaceymarvin99)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve the current Bing homepage wallpaper as a link, markdown, JSON, or image output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a bundled shell script and makes an outbound request to the disclosed 60s.viki.moe wallpaper API. <br>
-Mitigation: Install and run it only in environments where that outbound request is acceptable, and review the script before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [60s Bing wallpaper API](https://60s.viki.moe/v2/bing) <br>
+## Use Case:
 
+External users and agents use this skill to fetch the current Bing homepage wallpaper, with optional text, JSON, image, or Markdown output formats.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Image data, Shell commands] <br>
-**Output Format:** [stdout containing plain text, JSON, Markdown, or binary image data depending on the encoding option] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional encoding parameter: text, json, image, or markdown.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts the third-party 60s wallpaper API and returns content supplied by that service.
+
+Mitigation: Review or pin the allowed endpoint before installing in environments that restrict external network calls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jaceymarvin99/skills/bing-wallpaper)
+- [60s Bing Wallpaper API Endpoint](https://60s.viki.moe/v2/bing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, image, shell commands]
+
+**Output Format:** [Plain text, JSON, Markdown, or binary image data returned on stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional encoding parameter accepts text, json, image, or markdown.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

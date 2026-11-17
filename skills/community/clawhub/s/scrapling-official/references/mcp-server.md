@@ -1,214 +1,462 @@
-# Scrapling MCP Server
+# Scrapling MCP Server Guide
 
-The Scrapling MCP server exposes ten tools over the MCP protocol. It supports CSS-selector-based content narrowing (reducing tokens by extracting only relevant elements before returning results), three levels of scraping capability (plain HTTP, browser-rendered, and stealth/anti-bot bypass), persistent browser session management, and page screenshots returned as real image content blocks.
+The **Scrapling MCP Server** is a new feature that brings Scrapling's powerful Web Scraping capabilities directly to your favorite AI chatbot or AI agent. This integration allows you to scrape websites, extract data, and bypass anti-bot protections conversationally through Claude's AI interface or any interface that supports MCP.
 
-All scraping tools return a `ResponseModel` with fields: `status` (int), `content` (list of strings), `url` (str). The `screenshot` tool returns a list of MCP content blocks: an `ImageContent` (the screenshot bytes) followed by a `TextContent` (the post-redirect URL).
+## Features
 
-## Tools
+The Scrapling MCP Server provides seventeen tools for web scraping and browser interaction. One-shot tools fetch a single URL and close their own browser or client. Session tools keep cookies and settings across calls, so the AI can continue browser actions on the same tab and inspect network history.
 
-### `get` -- HTTP request (single URL)
+### One-shot tools
 
-Fast HTTP GET with browser fingerprint impersonation (TLS, headers). Suitable for static pages with no/low bot protection.
+#### 🚀 Basic HTTP Scraping
+- **`make_request`**: Fast HTTP requests with any method (GET, POST, PUT, DELETE) and browser fingerprint impersonation, generating real browser headers matching the TLS version, HTTP/3, and more!
 
-**Key parameters:**
+#### 🔒 Stealth Browser Scraping
+- **`browser_fetch_once`**: Render JavaScript and scrape dynamic pages with our Stealthy browser. Supports fingerprint spoofing, Cloudflare Turnstile/Interstitial bypass, and control over the browser and request!
 
-| Parameter           | Type                               | Default      | Description                                                        |
-|---------------------|------------------------------------|--------------|--------------------------------------------------------------------|
-| `url`               | str                                | required     | URL to fetch                                                       |
-| `extraction_type`   | `"markdown"` / `"html"` / `"text"` | `"markdown"` | Output format                                                      |
-| `css_selector`      | str or null                        | null         | CSS selector to narrow content (applied after `main_content_only`) |
-| `main_content_only` | bool                               | true         | Restrict to `<body>` content                                       |
-| `impersonate`       | str                                | `"chrome"`   | Browser fingerprint to impersonate                                 |
-| `proxy`             | str or null                        | null         | Proxy URL, e.g. `"http://user:pass@host:port"`                     |
-| `proxy_auth`        | dict or null                       | null         | `{"username": "...", "password": "..."}`                           |
-| `auth`              | dict or null                       | null         | HTTP basic auth, same format as proxy_auth                         |
-| `timeout`           | number                             | 30           | Seconds before timeout                                             |
-| `retries`           | int                                | 3            | Retry attempts on failure                                          |
-| `retry_delay`       | int                                | 1            | Seconds between retries                                            |
-| `stealthy_headers`  | bool                               | true         | Generate realistic browser headers and Google referer       |
-| `http3`             | bool                               | false        | Use HTTP/3 (may conflict with `impersonate`)                       |
-| `follow_redirects`  | bool or "safe"                     | "safe"       | Follow redirects. "safe" rejects redirects to internal/private IPs |
-| `max_redirects`     | int                                | 30           | Max redirects (-1 for unlimited)                                   |
-| `headers`           | dict or null                       | null         | Custom request headers                                             |
-| `cookies`           | dict or null                       | null         | Request cookies                                                    |
-| `params`            | dict or null                       | null         | Query string parameters                                            |
-| `verify`            | bool                               | true         | Verify HTTPS certificates                                          |
+### Session tools
 
-### `bulk_get` -- HTTP request (multiple URLs)
+#### 🔌 Session Management
+- **`browser_open`**: Create a persistent stealthy browser session that stays open across multiple `browser_fetch` calls, avoiding the overhead of launching a new browser each time. It holds the browser-level configuration and returns only `session_id` and `session_type`. Use `list_sessions` to see its effective `settings`.
+- **`open_request_session`**: Create a persistent HTTP requests session (no browser) used with `session_make_request`, keeping cookies, connections, and the browser fingerprint (`impersonate`) between requests. It returns only `session_id` and `session_type`, with type `static`. Use `list_sessions` to see its effective `settings`.
+- **`close_session`**: Close a persistent session (browser or requests) and free its resources.
+- **`list_sessions`**: List all active sessions with their details and `settings`.
 
-Async concurrent version of `get`. Same parameters except `url` is replaced by `urls` (list of strings). All URLs are fetched in parallel. Returns a list of `ResponseModel`.
+#### Browser State
 
-### `fetch` -- Browser fetch (single URL)
+- **`browser_save_state`**: Save cookies, local storage and IndexedDB to a Playwright-compatible JSON file, so login state can be reused after the browser session ends. Saving replaces an existing file.
+- **`browser_load_state`**: Restore a saved file into an open browser session, including before its first page load. This replaces the current stored state without closing or navigating existing tabs. Fetch or reload the page to use the restored login.
 
-Opens a Chromium browser via Playwright to render JavaScript. Suitable for dynamic/SPA pages with no/low bot protection.
+State files are stored on the machine running the MCP server. They do not include `sessionStorage`, open tabs or browser settings.
 
-**Key parameters (beyond shared ones):**
+#### 🎯 Fetching Through a Session
+- **`browser_fetch`**: Render JavaScript and scrape a single URL through an open stealthy browser session, with fingerprint spoofing and Cloudflare Turnstile/Interstitial bypass. It can also capture a structured page snapshot with element references, positions, and sizes, helping the AI identify controls and plan mouse actions.
+- **`session_make_request`**: Make fast HTTP requests with any method (GET, POST, PUT, DELETE), browser fingerprint impersonation, matching browser headers, and HTTP/3 support. Reuse cookies, connections, and the browser fingerprint through a session opened with `open_request_session`.
 
-| Parameter             | Type                | Default      | Description                                                                     |
-|-----------------------|---------------------|--------------|---------------------------------------------------------------------------------|
-| `url`                 | str                 | required     | URL to fetch                                                                    |
-| `extraction_type`     | str                 | `"markdown"` | `"markdown"` / `"html"` / `"text"`                                              |
-| `css_selector`        | str or null         | null         | Narrow content before extraction                                                |
-| `main_content_only`   | bool                | true         | Restrict to `<body>`                                                            |
-| `headless`            | bool                | true         | Run browser hidden (true) or visible (false)                                    |
-| `proxy`               | str or dict or null | null         | String URL or `{"server": "...", "username": "...", "password": "..."}`         |
-| `timeout`             | number              | 30000        | Timeout in **milliseconds**                                                     |
-| `wait`                | number              | 0            | Extra wait (ms) after page load before extraction                               |
-| `wait_selector`       | str or null         | null         | CSS selector to wait for before extraction                                      |
-| `wait_selector_state` | str                 | `"attached"` | State for wait_selector: `"attached"` / `"visible"` / `"hidden"` / `"detached"` |
-| `network_idle`        | bool                | false        | Wait until no network activity for 500ms                                        |
-| `disable_resources`   | bool                | false        | Block fonts, images, media, stylesheets, etc. for speed                         |
-| `google_search`       | bool                | true         | Set a Google referer header                                            |
-| `real_chrome`         | bool                | false        | Use locally installed Chrome instead of bundled Chromium                        |
-| `cdp_url`             | str or null         | null         | Connect to existing browser via CDP URL                                         |
-| `extra_headers`       | dict or null        | null         | Additional request headers                                                      |
-| `useragent`           | str or null         | null         | Custom user-agent (auto-generated if null)                                      |
-| `cookies`             | list or null        | null         | Playwright-format cookies                                                       |
-| `timezone_id`         | str or null         | null         | Browser timezone, e.g. `"America/New_York"`                                     |
-| `locale`              | str or null         | null         | Browser locale, e.g. `"en-GB"`                                                  |
-| `session_id`          | str or null         | null         | Reuse a persistent session from `open_session` instead of creating a new browser |
+#### 📸 Screenshots
 
-### `bulk_fetch` -- Browser fetch (multiple URLs)
+- **`browser_screenshot`**: Capture the current page or a chosen element as PNG or JPEG without reloading it. Inspect filled fields, open menus, charts, or result cards, with less unrelated content in element captures. Supports the visible viewport, the full page, or one element, with adjustable JPEG quality. The screenshot is returned as a real image content block the model can see directly.
+- **`browser_observe`**: Help the agent understand motion and changes through a short sequence of images from the current page.
 
-Concurrent browser version of `fetch`. Same parameters (including `session_id`) except `url` is replaced by `urls` (list of strings). Each URL opens in a separate browser tab. Returns a list of `ResponseModel`.
+#### Current Page Content
 
-### `stealthy_fetch` -- Stealth browser fetch (single URL)
+- **`browser_extract`**: Read the current page or one element as an AI snapshot, HTML, Markdown, or text without reloading it. Extract results after filling forms or loading more content. Snapshots include element roles, names, references, positions, and sizes for later actions. Regex search returns matching snapshot lines with nearby context and parent nodes.
 
-Anti-bot bypass fetcher with fingerprint spoofing. Use this for sites with Cloudflare Turnstile/Interstitial or other strong protections.
+#### Browser Actions
 
-**Additional parameters (beyond those in `fetch`):**
+- **`browser_actions`**: Chain mouse actions, field filling, keyboard shortcuts, dialog replies, and waits in one call. Accept or dismiss browser alerts and confirmations, or enter text in prompts. For example, fill a search box, submit it, wait for results, and open a result. The AI can combine known steps while keeping snapshots separate when it needs to inspect a page change. This avoids a separate agent round trip between each step and helps with short-lived menus and other controls that need prompt follow-up.
 
-| Parameter          | Type         | Default | Description                                                      |
-|--------------------|--------------|---------|------------------------------------------------------------------|
-| `solve_cloudflare` | bool         | false   | Automatically solve Cloudflare Turnstile/Interstitial challenges |
-| `hide_canvas`      | bool         | false   | Add noise to canvas operations to prevent fingerprinting         |
-| `block_webrtc`     | bool         | false   | Force WebRTC to respect proxy settings (prevents IP leak)        |
-| `allow_webgl`      | bool         | true    | Keep WebGL enabled (disabling is detectable by WAFs)             |
-| `additional_args`  | dict or null | null    | Extra Playwright context args (overrides Scrapling defaults)     |
-| `session_id`       | str or null  | null    | Reuse a persistent stealthy session from `open_session`          |
+    Reveal hover menus and tooltips, click buttons and links, or move over a nested panel and scroll it vertically or horizontally. Moves and clicks support selectors, snapshot references, or coordinates, with automatic waiting and scrolling into view for element targets. Supports coordinate movement in multiple steps, left, right, and middle clicks, plus double-clicks.
 
-All parameters from `fetch` are also accepted.
+    Use `move`, `mouse_down`, more `move` actions, then `mouse_up` for drag and drop. For example: `[{"type": "move", "target": "#item"}, {"type": "mouse_down"}, {"type": "move", "target": "#drop"}, {"type": "move", "target": "#drop"}, {"type": "mouse_up"}]`. Move over the drop target twice to trigger HTML5 `dragover`. Both button actions use the current pointer position and accept `button` (`left` by default, `right`, or `middle`). The button stays held across calls, including page observation. Use `mouse_up` to release it, including after a failed or cancelled sequence.
 
-### `bulk_stealthy_fetch` -- Stealth browser fetch (multiple URLs)
+    Target fields anywhere on the page through selectors or snapshot references. Fill text, check or uncheck boxes, select radio buttons, and choose one or more native dropdown options by their visible labels. Text can replace existing content, clear it, or continue at the current caret. Keyboard shortcuts can select and delete text, move focus, submit forms, or dismiss menus. Slow mode types one character at a time with random pauses between characters and all actions.
 
-Concurrent stealth version. Same parameters (including `session_id`) as `stealthy_fetch` except `url` is replaced by `urls` (list of strings). Returns a list of `ResponseModel`.
+    Wait for results to appear, loading overlays to disappear, or page load events before the next action. Also supports fixed pauses and waiting for network activity to settle.
 
-### `open_session` -- Create a persistent browser session
+#### JavaScript
 
-Opens a browser session that stays alive across multiple fetch calls, avoiding the overhead of launching a new browser each time. Returns a `SessionCreatedModel` with `session_id`, `session_type`, `created_at`, `is_alive`, and `message`.
+- **`browser_evaluate`**: Run JavaScript on the current page for custom data extraction, calculations, and page-specific tasks. The AI can collect data from several elements, read application state, or update page content. Supports asynchronous scripts and returns their results as JSON.
 
-**Key parameters:**
+#### Network History
 
-| Parameter          | Type                        | Default      | Description                                                                                           |
-|--------------------|-----------------------------|--------------|-------------------------------------------------------------------------------------------------------|
-| `session_type`     | `"dynamic"` / `"stealthy"`  | required     | Type of browser session to create                                                                     |
-| `session_id`       | str or null                 | null         | Custom ID for the session. If omitted, a random 12-char hex ID is generated. Raises if already in use |
-| `headless`         | bool                        | true         | Run browser hidden or visible                                                                         |
-| `max_pages`        | int                         | 5            | Max concurrent browser tabs (1-50)                                                                    |
-| `proxy`            | str or dict or null         | null         | Proxy for all requests in this session                                                                |
-| `timeout`          | number                      | 30000        | Default timeout in ms                                                                                 |
-| `solve_cloudflare` | bool                        | false        | (Stealthy only) Auto-solve Cloudflare challenges                                                      |
-| `hide_canvas`      | bool                        | false        | (Stealthy only) Canvas fingerprint noise                                                              |
-| `block_webrtc`     | bool                        | false        | (Stealthy only) Block WebRTC IP leak                                                                  |
-| `allow_webgl`      | bool                        | true         | (Stealthy only) Keep WebGL enabled                                                                    |
+- **`browser_network_requests`**: Find completed requests across tabs, page loads, and browser actions. Discover the API calls behind a page's data, inspect HTTP errors, and follow saved redirects. Static resources are hidden by default to keep results small. Returns request details as JSON, with pagination for long histories.
+- **`browser_network_request`**: Inspect one recorded request's summary, headers, sent data, or text response body as structured JSON. Returns the selected part in full without loading the page or sending the request again. Saved responses remain available after page changes. Size limits keep the history bounded; a note explains non-text, oversized, or unreadable bodies. Read needed details before closing the MCP session.
 
-Plus all other browser session parameters (`google_search`, `real_chrome`, `cdp_url`, `locale`, `timezone_id`, `useragent`, `extra_headers`, `cookies`, `disable_resources`, `network_idle`, `wait_selector`, `wait_selector_state`).
+Response bodies are read and saved only for supported text `Content-Type` values, such as HTML, JSON, XML, or JavaScript. Binary, missing, or unrecognized content types keep request metadata and headers without reading or saving their response bodies. The browser still loads resources normally.
 
-A dynamic session can only be used with `fetch`/`bulk_fetch`. A stealthy session can only be used with `stealthy_fetch`/`bulk_stealthy_fetch`.
+Only completed requests are saved, including HTTP 4xx and 5xx responses. Failed and unfinished requests are omitted. Entries appear after capture finishes; reading history or closing the session does not wait. Captures still running at navigation or closure may be omitted. Saved bytes come from the Browser and can differ from the server's bytes. Recorded text follows Playwright's UTF-8 decoding when valid, with the declared charset as a fallback.
 
-### `close_session` -- Close a persistent browser session
+### Shadow DOM
 
-Closes a session and frees its browser resources. Always close sessions when done.
+Set `pierce_shadow=true` on `browser_fetch_once` or each `browser_fetch` call to include open Shadow DOM content. It defaults to `false`. See [Shadow DOM](fetching/stealthy.md#shadow-dom) for selector examples and limits.
 
-| Parameter    | Type | Default  | Description                      |
-|--------------|------|----------|----------------------------------|
-| `session_id` | str  | required | Session ID from `open_session`   |
+Browser selectors can also target and interact with elements inside closed Shadow DOM.
 
-Returns a `SessionClosedModel` with `session_id` and `message`.
+### Key Capabilities
+- **Smart Content Extraction**: Convert web pages/elements to Markdown, HTML, or extract a clean version of the text content
+- **CSS Selector Support**: Use the Scrapling engine to target specific elements with precision before handing the content to the AI
+- **Anti-Bot Bypass**: Handle Cloudflare Turnstile, Interstitial, and other protections
+- **Proxy Support**: Use proxies for anonymity and geo-targeting
+- **Browser Impersonation**: Mimic real browsers with TLS fingerprinting, real browser headers matching that version, and more
+- **Session Persistence**: Reuse browser sessions across multiple requests for better performance
+- **Ad Blocking**: All browser-based tools automatically block requests to ~3,500 known ad and tracker domains, saving tokens and speeding up page loads
+- **Prompt Injection Protection**: Automatic sanitization of hidden content (inline hidden elements, aria-hidden, hidden slots, zero-width characters, HTML comments, template tags) that could be used for prompt injection attacks
 
-### `list_sessions` -- List active sessions
+## Installation
 
-Returns a list of `SessionInfo` objects, each with `session_id`, `session_type`, `created_at`, and `is_alive`.
-
-No parameters.
-
-### `screenshot` -- Capture a page screenshot
-
-Navigates to a URL inside an existing browser session and returns the screenshot as an MCP `ImageContent` block (the bytes the model can see directly, not a base64 string in JSON) followed by a `TextContent` block carrying the post-redirect URL.
-
-Requires an open browser session. Call `open_session` first, then pass the `session_id` here. Both `dynamic` and `stealthy` sessions are accepted.
-
-| Parameter             | Type                  | Default      | Description                                                                          |
-|-----------------------|-----------------------|--------------|--------------------------------------------------------------------------------------|
-| `url`                 | str                   | required     | URL to navigate to and capture                                                       |
-| `session_id`          | str                   | required     | ID of an open browser session created with `open_session`                            |
-| `image_type`          | `"png"` / `"jpeg"`    | `"png"`      | Image format. Use `"jpeg"` for smaller payloads                                      |
-| `full_page`           | bool                  | false        | Capture the full scrollable page instead of just the viewport                        |
-| `quality`             | int or null           | null         | JPEG quality 0-100. Raises if passed with `image_type="png"`                         |
-| `wait`                | number                | 0            | Extra wait (ms) after page load before capture                                       |
-| `wait_selector`       | str or null           | null         | CSS selector to wait for before capture                                              |
-| `wait_selector_state` | str                   | `"attached"` | State for `wait_selector`: `"attached"` / `"visible"` / `"hidden"` / `"detached"`    |
-| `network_idle`        | bool                  | false        | Wait until no network activity for 500ms                                             |
-| `timeout`             | number                | 30000        | Timeout in milliseconds                                                              |
-
-## Tool selection guide
-
-| Scenario                                 | Tool                                                          |
-|------------------------------------------|---------------------------------------------------------------|
-| Static page, no bot protection           | `get`                                                         |
-| Multiple static pages                    | `bulk_get`                                                    |
-| JavaScript-rendered / SPA page           | `fetch`                                                       |
-| Multiple JS-rendered pages               | `bulk_fetch`                                                  |
-| Cloudflare or strong anti-bot protection | `stealthy_fetch` (with `solve_cloudflare=true` for Turnstile) |
-| Multiple protected pages                 | `bulk_stealthy_fetch`                                         |
-| Multiple pages from the same site        | `open_session` + `fetch`/`stealthy_fetch` with `session_id`  |
-| Need a screenshot of a page              | `open_session` + `screenshot` with `session_id`              |
-
-Start with `get` (fastest, lowest resource cost). Escalate to `fetch` if content requires JS rendering. Escalate to `stealthy_fetch` only if blocked. For multiple pages from the same site, use a persistent session to avoid browser launch overhead.
-
-## Content extraction tips
-
-- Use `css_selector` to narrow results before they reach the model -- this saves significant tokens.
-- `main_content_only=true` (default) strips nav/footer by restricting to `<body>`.
-- `extraction_type="markdown"` (default) is best for readability. Use `"text"` for minimal output, `"html"` when structure matters.
-- If a `css_selector` matches multiple elements, all are returned in the `content` list.
-
-## Prompt injection protection
-
-When `main_content_only=true` (the default), the server automatically sanitizes scraped content to prevent prompt injection from malicious websites. It strips:
-
-- CSS-hidden elements (`display:none`, `visibility:hidden`, `opacity:0`, `font-size:0`, `height:0`, `width:0`)
-- `aria-hidden="true"` elements
-- `<template>` tags
-- HTML comments
-- Zero-width unicode characters
-
-Keep `main_content_only=true` for maximum protection.
-
-## Ad blocking
-
-All browser-based tools (`fetch`, `bulk_fetch`, `stealthy_fetch`, `bulk_stealthy_fetch`) and persistent sessions (`open_session`) automatically block requests to ~3,500 known ad and tracker domains. This is always enabled in the MCP server to save tokens and speed up page loads. No configuration needed.
-
-## Setup
-
-Start the server (stdio transport, used by most MCP clients):
+Install Scrapling with MCP Support, then double-check that the browser dependencies are installed.
 
 ```bash
-scrapling mcp
+# Install Scrapling with MCP server dependencies
+pip install "scrapling[ai]"
+
+# Install browser dependencies
+scrapling install
 ```
 
-Or with Streamable HTTP transport:
-
-```bash
-scrapling mcp --http
-scrapling mcp --http --host 127.0.0.1 --port 8000
-```
-
-Docker alternative:
-
+Or use the Docker image directly from the Docker registry:
 ```bash
 docker pull pyd4vinci/scrapling
-docker run -i --rm pyd4vinci/scrapling mcp
+```
+Or download it from the GitHub registry:
+```bash
+docker pull ghcr.io/d4vinci/scrapling:latest
 ```
 
-The MCP server name when registering with a client is `ScraplingServer`. The command is the path to the `scrapling` binary and the argument is `mcp`.
+## Setting up the MCP Server
+
+The setup below works with [Claude Desktop](https://claude.ai/download), [Claude Code](https://www.anthropic.com/claude-code), and other clients that support MCP.
+
+**Note:**
+The `scrapling-mcp` command used below was added in v0.4.13 as a shortcut that maps directly to `scrapling mcp`, making it easier to add Scrapling to MCP registries and clients that expect a single command. If you are on an older version, use the `scrapling` command with `mcp` as the first argument instead.
+
+### Claude Desktop
+
+Scrapling MCP server configuration:
+```json
+"ScraplingServer": {
+  "command": "scrapling-mcp"
+}
+```
+If that's the first MCP server you're adding, set the content of the file to this:
+```json
+{
+  "mcpServers": {
+    "ScraplingServer": {
+      "command": "scrapling-mcp"
+    }
+  }
+}
+```
+Configuration file locations:
+
+1. **MacOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+2. **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+To ensure it's working, use the full path to the `scrapling-mcp` executable:
+
+1. **MacOS**: `which scrapling-mcp`
+2. **Windows**: `where scrapling-mcp`
+
+For me, on my Mac, it returned `/Users/<MyUsername>/.venv/bin/scrapling-mcp`, so the config I used in the end is:
+```json
+{
+  "mcpServers": {
+    "ScraplingServer": {
+      "command": "/Users/<MyUsername>/.venv/bin/scrapling-mcp"
+    }
+  }
+}
+```
+#### Docker
+If you are using the Docker image, then it would be something like
+```json
+{
+  "mcpServers": {
+    "ScraplingServer": {
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm", "pyd4vinci/scrapling", "mcp"
+      ]
+    }
+  }
+}
+```
+
+The same logic applies to [Cursor](https://cursor.com/docs/context/mcp), [WindSurf](https://windsurf.com/university/tutorials/configuring-first-mcp-server), and others.
+
+### Claude Code
+Here it's much simpler to do. With [Claude Code](https://www.anthropic.com/claude-code):
+
+```bash
+claude mcp add ScraplingServer "/Users/<MyUsername>/.venv/bin/scrapling-mcp"
+```
+To get Scrapling's executable path:
+
+1. **MacOS**: `which scrapling-mcp`
+2. **Windows**: `where scrapling-mcp`
+
+Here's the main article from Anthropic on [how to add MCP servers to Claude code](https://docs.anthropic.com/en/docs/claude-code/mcp#option-1%3A-add-a-local-stdio-server) for further details.
+
+
+Restart the client after adding the server.
+
+### Custom Browser Executable
+
+The `browser_fetch_once` and `browser_open` tools can use a custom Chromium-compatible browser executable instead of the bundled Chromium. This is useful for custom browser builds or lightweight browser engines.
+
+To configure it once for the whole MCP server, pass the executable path when starting the server:
+
+```bash
+scrapling-mcp --executable-path "/path/to/chromium"
+```
+
+In a Claude Desktop configuration, add the option to the server arguments:
+
+```json
+{
+  "mcpServers": {
+    "ScraplingServer": {
+      "command": "/Users/<MyUsername>/.venv/bin/scrapling-mcp",
+      "args": [
+        "--executable-path",
+        "/path/to/chromium"
+      ]
+    }
+  }
+}
+```
+
+You can also set the `SCRAPLING_EXECUTABLE_PATH` environment variable before starting the server. The AI can still choose a different browser executable for a single fetch with `browser_fetch_once` or when opening a session with `browser_open`.
+
+### Connecting to Remote Browsers
+
+`browser_open` doesn't have to launch a browser locally. Pass a CDP url and it will connect to an already-running browser through the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/), whether that browser is on the same machine, another host, or a managed browser provider:
+```
+Open a stealthy browser session on wss://cdp.provider.example/session/abc123, then use it to scrape the product details from https://shop.example.com. Close the session when you're done.
+```
+The `session_id` you get back is used with `browser_fetch`, `browser_extract`, `browser_actions`, `browser_evaluate`, `browser_screenshot`, `browser_observe`, `browser_network_requests`, `browser_network_request`, `browser_save_state`, and `browser_load_state` as usual.
+
+The URL can be a WebSocket endpoint (`ws://`/`wss://`), which is what managed browser providers hand out, or the HTTP endpoint of a browser you started yourself with the remote debugging port enabled:
+```commandline
+chrome --remote-debugging-port=9222
+```
+That one is reached with `cdp_url="http://localhost:9222"`, or with the host's address if the browser is running on another machine.
+
+**Notes:**
+
+* The browser is already running, so options that only apply while launching one are ignored for CDP sessions: `headless`, `real_chrome`, and `executable_path` (including the server-wide default above).
+* Your AI agent can start a fresh session or reuse an existing one to work with sites where you're already logged in.
+* Scrapling cleans up fresh sessions when the task ends. When reusing a session, it keeps the browser and your existing tabs open and closes only the tabs it created.
+
+### Streamable HTTP
+Since version 0.3.6, we have added the ability to make the MCP server use the 'Streamable HTTP' transport mode instead of the traditional 'stdio' transport.
+
+So instead of using the following command (the 'stdio' one):
+```bash
+scrapling-mcp
+```
+Use the following to enable 'Streamable HTTP' transport mode:
+```bash
+scrapling-mcp --http
+```
+Hence, the default value for the host the server is listening to is '127.0.0.1' and the port is 8000, which both can be configured as below:
+```bash
+scrapling-mcp --http --host '0.0.0.0' --port 8000
+```
+The default only accepts connections from the same machine. Pass `--host '0.0.0.0'` when you want the server to be reachable from the network, which is a separate decision from authentication below.
+
+If you run the 'Streamable HTTP' transport inside Docker, you have to bind to '0.0.0.0' yourself and set a token, otherwise the published port can't reach the server (the container's '127.0.0.1' is only visible inside the container):
+```bash
+docker run -p 8000:8000 -e SCRAPLING_MCP_AUTH_TOKEN="<your-token>" pyd4vinci/scrapling mcp --http --host '0.0.0.0'
+```
+
+### Authentication
+
+The 'stdio' transport is only reachable by the program that started it, but the moment you switch to 'Streamable HTTP', anyone who can reach the port can call every tool, and that includes fetching any URL from the machine running the server. That's why 'Streamable HTTP' requires authentication, so `--http` on its own refuses to start and asks you for a token:
+```bash
+scrapling-mcp --http --auth-token "$(openssl rand -hex 32)"
+```
+Clients then have to send that token in an `Authorization` header, and any request without it is rejected with a `401`:
+```json
+{
+  "mcpServers": {
+    "ScraplingServer": {
+      "url": "https://your-server.example.com/mcp",
+      "headers": {
+        "Authorization": "Bearer <your-token>"
+      }
+    }
+  }
+}
+```
+Passing the token on the command line leaves it in your shell history and in the process list, so prefer the `SCRAPLING_MCP_AUTH_TOKEN` environment variable:
+```bash
+export SCRAPLING_MCP_AUTH_TOKEN="<your-token>"
+scrapling-mcp --http
+```
+If you really want an unauthenticated server, for example while testing locally on the default '127.0.0.1', you have to ask for it with `--no-auth`:
+```bash
+scrapling-mcp --http --no-auth
+```
+Combining `--no-auth` with `--host '0.0.0.0'` leaves every tool open to anyone who can reach the port, so avoid that pair outside a trusted network.
+
+When the server listens on a public address, you should also tell it which host names to accept, which turns on protection against DNS-rebinding attacks (a website your browser visits trying to talk to your server). The option can be repeated:
+```bash
+scrapling-mcp --http --allowed-host 'your-server.example.com:8000'
+```
+
+**Notes:**
+
+* Authentication applies to the 'Streamable HTTP' transport only. It's ignored with 'stdio', and the server logs a warning to tell you so.
+* Plain HTTP sends the token in cleartext, so put the server behind a reverse proxy that terminates TLS before exposing it to the internet.
+* This is a single shared key, not per-client credentials, so every client uses the same token, and rotating it means restarting the server.
+* Starting the server with `--http --no-auth` still logs a warning telling you that it's unauthenticated.
+* Passing both `--auth-token` and `--no-auth` keeps the token, so the server stays authenticated instead of quietly dropping it.
+
+## Examples
+
+1. **Basic Web Scraping**
+
+    Extract the main content from a webpage as Markdown:
+
+    ```
+    Scrape the main content from https://example.com and convert it to markdown format.
+    ```
+
+    Claude can use `make_request` to fetch the page and return clean, readable content. HTTP requests default to three attempts with a one-second delay between attempts. If the page needs JavaScript or blocks HTTP requests, the AI can use `browser_fetch_once` instead. Both tools close their own resources after the call.
+
+    A more optimized version of the same prompt would be:
+    ```
+    Use regular requests to scrape the main content from https://example.com and convert it to markdown format.
+    ```
+
+2. **Targeted Data Extraction**
+
+    Extract specific elements using CSS selectors:
+
+    ```
+    Get all product titles from https://shop.example.com using the CSS selector '.product-title'. If the request fails, retry up to 5 times every 10 seconds.
+    ```
+
+    The server will extract only the elements matching your selector and return them as a structured list. The prompt sets five attempts for connection issues.
+
+3. **E-commerce Data Collection**
+
+    Another example of a bit more complex prompt:
+    ```
+    Open a stealthy browser session and visit these e-commerce URLs one at a time:
+    - https://shop1.com/product-a
+    - https://shop2.com/product-b
+    - https://shop3.com/product-c
+
+    Get the product names, prices, and descriptions from each page. Close the session when done.
+    ```
+
+    Claude can reuse one browser session, call `browser_fetch` for each URL in order, then analyze the extracted data.
+
+4. **More advanced workflow**
+
+    Get all the action games on PlayStation's store first page:
+    ```
+    Extract the URLs of all games on this page, then visit each game in order and return a list of all action games: https://store.playstation.com/en-us/pages/browse
+    ```
+    Reuse an HTTP session to avoid launching a browser when the data is available through normal requests:
+    ```
+    Open an HTTP session, extract the URLs of all games on this page, then fetch each game in order and return a list of all action games. Close the session when done: https://store.playstation.com/en-us/pages/browse
+    ```
+    Use CSS selectors to narrow the content before the AI reads it:
+    ```
+    Use an HTTP session to extract the URLs of all games on the page below, then fetch each game in order and return a list of all action games.
+    The selector for games in the first page is `[href*="/concept/"]` and the selector for the genre in each game page is `[data-qa="gameInfo#releaseInformation#genre-value"]`.
+    Close the session when done.
+
+    URL: https://store.playstation.com/en-us/pages/browse
+    ```
+
+5. **Get data from a website with Cloudflare protection**
+
+    ```
+    What's the price of this product? Be cautious, as it utilizes Cloudflare's Turnstile protection. Make the browser visible while you work.
+
+    https://ao.com/product/oo101uk-ninja-woodfire-outdoor-pizza-oven-brown-99357-685.aspx
+    ```
+
+6. **Long workflow**
+
+    You can, for example, use a prompt like this:
+    ```
+    Extract all product URLs for the following category, then return the prices and details for the first 3 products.
+
+    https://www.arnotts.ie/furniture/bedroom/bed-frames/
+    ```
+    But a better prompt would be:
+    ```
+    Go to the following category URL and extract all product URLs using the CSS selector "a". Then, reuse the session to fetch the first 3 product pages in order and extract each product’s price and details. Close the session when done.
+
+    Keep the output in markdown format to reduce irrelevant content.
+
+    Category URL:
+    https://www.arnotts.ie/furniture/bedroom/bed-frames/
+    ```
+
+7. **Using Persistent Sessions**
+
+    When scraping multiple pages from the same site, use a persistent browser session to avoid the overhead of launching a new browser for each request:
+    ```
+    Open a stealthy browser session, then use it to scrape the main details from the first 5 product pages on https://shop.example.com. Close the session when you're done.
+    ```
+    Claude will use `browser_open` to create a persistent browser, call `browser_fetch` for each product page through that session, and then call `close_session` at the end. This is significantly faster than launching a new browser for each page.
+
+    **Danger:**
+
+    When using persistent sessions, always remember to close the session after you finish or it will stay open!
+
+
+8. **Using Persistent Session on a long flow**
+
+    ```
+    Use Scrapling MCP to do the following in this order:
+
+    1. Open a stealthy browser session with headless mode off.
+    2. Go to this page and collect the number of stars: https://github.com/D4Vinci/Scrapling
+    3. From the README, get the URL that shows the number of downloads and go to it.
+    4. Get the number of downloads and the top 3 countries from the graph.
+    5. Prepare a report with the results.
+    6. Close the browser.
+    ```
+
+## Best Practices
+
+### 1. Choose the Right Tool
+- **`make_request`**: Fast HTTP requests for a single page or API call
+- **`browser_fetch_once`**: A single JavaScript/dynamic page or protected site, including Cloudflare
+- **Session tools**: Related requests, browser actions, screenshots, and network history
+
+### 2. Optimize Performance
+- Reuse a session and fetch each URL in order
+- Disable unnecessary resources
+- Set appropriate timeouts
+- Use CSS selectors for targeted extraction
+
+### 3. Handle Dynamic Content
+- Use `network_idle` for SPAs
+- Set `wait_selector` for specific elements
+- Increase timeout for slow-loading sites
+
+### 4. Data Quality
+- Use `main_content_only=true` to select and clean the page's body
+- Choose an appropriate `extraction_type` for your use case
+
+### 5. Prompt Injection Protection
+The MCP server automatically sanitizes scraped content when `main_content_only` is enabled (the default). This strips hidden content that malicious websites could use to inject instructions into the AI's context:
+
+- **Inline hidden styles**: `display:none`, `visibility:hidden`, and zero values for opacity, font size, height, width, max-height, and max-width
+- **Accessibility-hidden elements**: `aria-hidden="true"`
+- **Template tags and hidden slots**: `<template>` and `<slot hidden>` elements
+- **HTML comments**: `<!-- ... -->`
+- **Zero-width characters**: Invisible unicode characters like zero-width spaces
+
+This protection runs automatically for HTML, Markdown, and text extraction. Keep `main_content_only=true` (the default) for maximum protection.
+
+### 6. Manage Sessions
+- Use `make_request` or `browser_fetch_once` for a standalone fetch; they close their own resources and do not leave a session for later calls
+- Use `browser_open` to create a persistent browser session when scraping multiple pages, then call `browser_fetch` for each page through that session
+- For multiple plain HTTP requests, use `open_request_session` instead and call `session_make_request` per request; it keeps cookies, connections, and the browser fingerprint (`impersonate`) across calls without a browser
+- Sessions hold the session-level configuration set when opened (headless, locale, cookies, stealth toggles, etc. for browsers; `impersonate` and `proxy` for requests sessions); the per-request options (timeout, wait_selector, network_idle, solve_cloudflare, etc.) are passed to `browser_fetch`/`session_make_request` on each call, with their defaults shown in the tool schemas
+- `browser_fetch` can solve Cloudflare challenges through the open stealthy browser session
+- Always close sessions with `close_session` when done to free resources
+- Use `list_sessions` to check which sessions are still active and see the `settings` each was created with (returned for the AI agent)
+- Pass a custom `session_id` to the open tools to give sessions meaningful names (e.g. `"search"`, `"checkout"`) instead of the random hex default. They raise if the chosen ID is already in use, so you can detect collisions up front
+
+### 7. Capturing Screenshots
+
+- `browser_screenshot` captures the page already opened through `browser_fetch` in a stealthy browser session. It does not reload the page, so the AI can inspect filled fields, open menus, and other results of its actions.
+- The image is returned as a real `ImageContent` block, so the model sees the page directly.
+- Capture the visible viewport or the full page, including content below the fold.
+- Capture one field, chart, card, or result to inspect it with less surrounding content. Element capture can scroll the target into view.
+- Choose PNG for lossless images or JPEG with adjustable quality for smaller payloads.
+- The AI can use `browser_actions` to wait for content or finish interactions before capture.
+
+`browser_observe` helps the agent follow animations, moving controls, and other changes that a single screenshot can miss.

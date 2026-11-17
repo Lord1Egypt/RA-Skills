@@ -1,39 +1,51 @@
-## Description: <br>
-Make paid x402 API requests with automatic USDC payment on Base after a service endpoint has been found. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make a paid API request to an x402 endpoint with automatic USDC payment.
 
-## Publisher: <br>
-[0xRAG](https://clawhub.ai/user/0xRAG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrag](https://clawhub.ai/user/0xrag)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent call paid x402 API endpoints through the `awal` CLI, including method, body, headers, query parameters, and maximum payment controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend USDC from an authenticated wallet without a mandatory per-request confirmation or spend cap. <br>
-Mitigation: Require the agent to show the endpoint, method, headers, body, query data, and maximum USDC spend before each use, then obtain explicit approval and include `--max-amount` on every payment. <br>
-Risk: Paid requests may send secrets or sensitive personal data to unknown x402 endpoints. <br>
-Mitigation: Review endpoint trust and request contents before execution, and avoid sending secrets or sensitive personal data to unknown services. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xRAG/pay-for-service) <br>
+## Use Case:
+
+Developers and agents use this skill to call paid x402 API endpoints after finding a service, with wallet authentication and sufficient USDC balance in place.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can make automatic USDC payments through an authenticated wallet without mandatory per-request approval or a built-in spending cap.
+
+Mitigation: Use it only with trusted x402 endpoints and the trusted awal CLI source, and enforce confirmation and spending limits outside the skill; use --max-amount where appropriate.
+
+Risk: Paid requests require an authenticated wallet with sufficient USDC balance.
+
+Mitigation: Check wallet authentication and balance before making requests, and stop if the endpoint or payment amount is unclear.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate paid USDC transactions through an authenticated wallet when executed.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [Shell commands, Guidance, Text, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell commands; command output may be text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may make paid USDC requests through an authenticated wallet.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

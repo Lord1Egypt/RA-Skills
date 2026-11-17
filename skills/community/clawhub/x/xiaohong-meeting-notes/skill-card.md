@@ -1,40 +1,53 @@
-## Description: <br>
-Meeting Notes turns user-provided meeting text into structured minutes, decisions, and action items with owners and deadlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts meeting highlights, generates structured meeting notes, and identifies action items, owners, deadlines, decisions, and unresolved topics from meeting content.
 
-## Publisher: <br>
-[crazypatient0](https://clawhub.ai/user/crazypatient0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crazypatient0](https://clawhub.ai/user/crazypatient0)
 
-## Use Case: <br>
-Teams and individual contributors use this skill to convert pasted meeting records or described meeting content into concise minutes, decisions, and follow-up task tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes may contain confidential business details, personal data, credentials, or regulated information. <br>
-Mitigation: Review and redact sensitive content before sharing generated notes outside the intended audience. <br>
-Risk: Action items, owners, deadlines, or decisions may be inferred incorrectly from ambiguous meeting text. <br>
-Mitigation: Manually verify generated decisions and task assignments before relying on them for important meetings. <br>
+## Use Case:
 
+Employees and business teams use this skill to convert raw meeting notes, transcripts, or brief meeting descriptions into structured minutes, decisions, and follow-up action lists. It is suited for routine meeting management where users still review important decisions and assigned tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crazypatient0/xiaohong-meeting-notes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown meeting notes, decision lists, and action item tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided meeting content; users should verify action items, owners, dates, and sensitive details before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Meeting records may include confidential business, customer, or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with meeting content the agent is authorized to process, and avoid adding unnecessary sensitive details.
+
+Risk: Action items, owners, deadlines, or decisions can be wrong when the meeting content is ambiguous or incomplete.
+
+Mitigation: Review important decisions and follow-up tasks manually before relying on the generated notes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crazypatient0/skills/xiaohong-meeting-notes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown meeting notes, action-item tables, decision summaries, and reusable meeting templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured sections for agenda, discussion points, decisions, action owners, deadlines, priority, and follow-up status.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

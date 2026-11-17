@@ -1,40 +1,53 @@
-## Description: <br>
-Designs, implements, and operates encrypted restic backups for Linux home directories with systemd automation, retention policies, and restore validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, implement, and operate encrypted restic backups for Linux home directories with systemd automation, retention policies, and restore validation.
 
-## Publisher: <br>
-[Moep90](https://clawhub.ai/user/Moep90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[moep90](https://clawhub.ai/user/moep90)
 
-## Use Case: <br>
-Developers, operators, and home lab administrators use this skill to plan and apply encrypted restic backups for Linux home directories, including systemd timers, retention policies, and restore validation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup script can make root-level changes and server security evidence reports that malformed repository or path inputs may lead to privileged command execution or unsafe file writes. <br>
-Mitigation: Run the script in plan-only mode first, inspect generated values and /etc/restic-home.env, use trusted values for --repo, --password-file, --user, and --timezone, and require explicit --apply before enabling services or timers. <br>
-Risk: Retention pruning or repository deletion can remove backup snapshots if run with the wrong repository or retention settings. <br>
-Mitigation: Use a dedicated restic repository, confirm retention policy and repository endpoint before enabling prune timers, and require explicit confirmation before destructive restic operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Restic Home Backup Ops Checklist](references/ops-checklist.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Moep90/restic-home-backup) <br>
+## Use Case:
 
+Developers, operators, and Linux users use this skill to set up encrypted restic backups for home directories, including scheduling, retention, integrity checks, and restore validation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands and configuration file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces backup setup guidance, generated scripts, systemd unit details, validation steps, and an operator runbook.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The privileged bootstrap can turn crafted setup values into root shell execution.
+
+Mitigation: Review or patch the bootstrap before installing, and do not run it with --apply, --init-repo, or --enable-timers unless repository, password-file, username, and timezone inputs are trusted and safely escaped.
+
+Risk: Generated restic environment files and systemd units may apply sensitive backup configuration with elevated privileges.
+
+Mitigation: Verify /etc/restic-home.env and generated systemd units before enabling timers or running an initial backup.
+
+## Reference(s):
+
+- [Restic Home Backup Ops Checklist](artifact/references/ops-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/moep90/skills/restic-home-backup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, file paths, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate restic setup artifacts, systemd service and timer definitions, validation steps, and an operator runbook.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

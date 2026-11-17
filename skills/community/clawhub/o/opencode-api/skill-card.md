@@ -1,51 +1,70 @@
-## Description: <br>
-Provides OpenClaw agents with Python and CLI wrappers for driving an OpenCode HTTP server to perform code review, code analysis, session management, structured-output tasks, and coding workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to an OpenCode HTTP server for code review, code analysis, and coding tasks, with references for agents, SDK endpoints, configuration, permissions, providers, MCP, LSP, and server deployment.
 
-## Publisher: <br>
-[jlin53882](https://clawhub.ai/user/jlin53882) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jlin53882](https://clawhub.ai/user/jlin53882)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to send review, analysis, and coding tasks to a local OpenCode server through HTTP APIs or bundled Python wrappers. It is suited for workflows where OpenClaw delegates repository inspection, PR review, model selection, session control, or structured-output generation to OpenCode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive a powerful local OpenCode automation server, including workflows that may read code, run tools, or modify project state. <br>
-Mitigation: Install only when that delegation is intended, review prompts and generated actions before use, and configure OpenCode permissions for least privilege. <br>
-Risk: Binding the OpenCode server beyond localhost can expose code-execution capability or sensitive project context to a network. <br>
-Mitigation: Keep the server bound to 127.0.0.1 by default; use strong authentication, firewalling, and a trusted network before binding to 0.0.0.0. <br>
-Risk: Auto-start behavior may launch OpenCode when a wrapper first connects. <br>
-Mitigation: Use the documented no-auto-start options or construct clients with auto_start disabled when server startup must remain under explicit operator control. <br>
-Risk: Prompts, diffs, credentials, or repository content may be sent to external model providers through OpenCode sessions. <br>
-Mitigation: Avoid submitting secrets or sensitive diffs, verify provider configuration, and use local or approved providers for confidential work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to delegate code review, file analysis, multi-turn coding tasks, and OpenCode API operations to a trusted local or approved OpenCode server.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jlin53882/opencode-api) <br>
-- [OpenCode API Skill](SKILL.md) <br>
-- [OpenCode HTTP API Reference](references/api-reference.md) <br>
-- [Server Deployment](references/server.md) <br>
-- [SDK Reference](references/sdk.md) <br>
-- [Permissions](references/permissions.md) <br>
-- [Code Review Prompt](references/code-review-prompt.md) <br>
-- [Artifact ClawHub metadata URL](https://clawhub.com/opencode-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets, plus JSON-compatible OpenCode API request and response examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenCode session identifiers, model settings, reasoning settings, structured-output schemas, and local server connection parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata; artifact frontmatter says 3.0.0) <br>
+Risk: Connecting an agent to an untrusted or exposed OpenCode server can route code, prompts, and actions through infrastructure outside the user's intended trust boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted OpenCode server, keep it bound to 127.0.0.1 unless authentication, TLS or a private network, and firewall controls are in place.
+
+Risk: Auto-start behavior can launch OpenCode when the user expected a passive client-only workflow.
+
+Mitigation: Disable auto-start when the agent should not launch OpenCode automatically.
+
+Risk: Private repository code, credentials, or other confidential data can be sent to the configured server or model provider during review and coding workflows.
+
+Mitigation: Do not send secrets or confidential private-repo code unless the OpenCode server and model provider are approved for that data.
+
+Risk: MCP servers and plugin packages can extend tool behavior and package execution beyond the base skill.
+
+Mitigation: Pin, review, and approve MCP and plugin packages before enabling them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jlin53882/skills/opencode-api)
+- [OpenCode HTTP API reference](references/api-reference.md)
+- [SDK complete API](references/sdk.md)
+- [Server deployment](references/server.md)
+- [Agents system](references/agents.md)
+- [Permissions](references/permissions.md)
+- [Providers](references/providers.md)
+- [MCP](references/mcp.md)
+- [Plugins](references/plugins.md)
+- [Code review prompt](references/code-review-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python, shell, JSON, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce OpenCode HTTP API calls and client-script usage guidance for a configured server.]
+
+## Skill Version(s):
+
+2.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

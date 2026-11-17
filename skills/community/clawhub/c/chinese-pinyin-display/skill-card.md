@@ -1,43 +1,57 @@
-## Description: <br>
-Displays Chinese text with pinyin pronunciation in a two-line format for children learning Chinese and pinyin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Displays Chinese text with pinyin pronunciation in a two-line format for children learning Chinese and pinyin.
 
-## Publisher: <br>
-[guytogay](https://clawhub.ai/user/guytogay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guytogay](https://clawhub.ai/user/guytogay)
 
-## Use Case: <br>
-External users and language-learning assistants use this skill to keep Chinese-learning conversations in a paired pinyin-and-Hanzi display format. It is intended for children learning Chinese pronunciation and for contexts where pinyin helps literacy learning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's child-mode formatting continues until an explicit exit phrase is used. <br>
-Mitigation: Enable it only for conversations that need pinyin display, and use one of the documented exit phrases before returning to normal formatting. <br>
-Risk: Two-line pinyin output can become misaligned for multi-codepoint emoji, rare characters, or incorrect polyphonic readings. <br>
-Mitigation: Use the included validation script for generated examples, prefer simple emoji in child-facing output, and review phrase overrides for words that need precise pronunciation. <br>
-Risk: The local helper depends on the npm package pinyin-pro. <br>
-Mitigation: Review the dependency against your npm policy before installation and install from the recorded package metadata when reproducing this release. <br>
+## Use Case:
 
+Developers and educators can use this skill to have an agent present Chinese responses as aligned pinyin and character lines for children learning pronunciation and literacy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guytogay/chinese-pinyin-display) <br>
-- [pinyin-pro 3.28.0 package artifact](https://registry.npmjs.org/pinyin-pro/-/pinyin-pro-3.28.0.tgz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Two-line plain text output with a pinyin line followed by a Chinese character line, plus Markdown guidance and shell commands for setup or validation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output should preserve matching punctuation, spacing, and character positions across the pinyin and Chinese lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence) <br>
+Risk: The pinyin display mode may persist longer than intended or produce unreadable output if the two-line format is not maintained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented exit phrases to return to normal replies and validate that each pinyin line aligns with its matching Chinese-character line.
+
+Risk: Compatible dependency updates allowed by package.json may change pinyin conversion behavior.
+
+Mitigation: Use reproducible installs with the included package-lock.json when consistent output is required.
+
+Risk: Multi-codepoint emoji and some polyphonic characters can produce alignment or pronunciation errors.
+
+Mitigation: Prefer simple emoji in formatted output, run the validation script for examples, and add phrase overrides for ambiguous words when needed.
+
+## Reference(s):
+
+- [Chinese Pinyin Display on ClawHub](https://clawhub.ai/guytogay/skills/chinese-pinyin-display)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Two-line plain text with a pinyin line followed by a Chinese-character line; Markdown may be used for command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Manual trigger and exit phrases control the display mode. The output relies on pinyin-pro and local phrase overrides, with a validation script for alignment checks.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

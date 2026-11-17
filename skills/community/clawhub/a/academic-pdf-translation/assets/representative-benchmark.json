@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-26T15:24:15+00:00",
+  "renderer": "academic-pdf-layout",
+  "renderer_version": "1.0",
+  "renderer_build_id": "2323605ace4dea00184eea3de474f80e8d129dc223f55e143515fe2a91c3d055",
+  "target_language": "zh-Hans",
+  "review_mode": "independent",
+  "workers": 1,
+  "case_count": 5,
+  "automatic_first_pass_count": 5,
+  "automatic_first_pass_rate": 1.0,
+  "median_total_seconds": 4.452,
+  "benchmark_wall_seconds": 24.828,
+  "cases": [
+    {
+      "id": "127",
+      "tags": [
+        "mixed-references",
+        "multi-column-continuation"
+      ],
+      "source_pages": 14,
+      "candidate_pages": 17,
+      "status": "READY_TO_REGISTER",
+      "total_seconds": 4.23
+    },
+    {
+      "id": "133",
+      "tags": [
+        "long-references"
+      ],
+      "source_pages": 13,
+      "candidate_pages": 17,
+      "status": "READY_TO_REGISTER",
+      "total_seconds": 5.456
+    },
+    {
+      "id": "134",
+      "tags": [
+        "structured-table",
+        "localized-screenshots"
+      ],
+      "source_pages": 14,
+      "candidate_pages": 21,
+      "status": "READY_TO_REGISTER",
+      "total_seconds": 6.51
+    },
+    {
+      "id": "138",
+      "tags": [
+        "quadrant-model"
+      ],
+      "source_pages": 12,
+      "candidate_pages": 15,
+      "status": "READY_TO_REGISTER",
+      "total_seconds": 4.088
+    },
+    {
+      "id": "152",
+      "tags": [
+        "dense-prose"
+      ],
+      "source_pages": 12,
+      "candidate_pages": 17,
+      "status": "READY_TO_REGISTER",
+      "total_seconds": 4.452
+    }
+  ],
+  "visual_review": {
+    "status": "PASS",
+    "sampled_candidate_pages": {
+      "127": [
+        7
+      ],
+      "134": [
+        8,
+        9,
+        11,
+        12,
+        13
+      ],
+      "138": [
+        4
+      ]
+    },
+    "checks": [
+      "no-clipping-or-overlap",
+      "heading-kept-with-following-content",
+      "structured-table-readable",
+      "localized-screenshot-readable",
+      "quadrant-model-labels-and-arrows-readable"
+    ]
+  },
+  "limitations": [
+    "The benchmark uses five prepared Simplified Chinese jobs from one project corpus.",
+    "It measures deterministic candidate generation and preflight, not translation-model semantic accuracy.",
+    "Fast, precise, and non-Simplified-Chinese modes do not yet have comparable benchmark samples.",
+    "No translation or review token usage was available for these prepared jobs."
+  ],
+  "status": "HISTORICAL",
+  "superseded_by": "benchmarks/results/comparison.md",
+  "validity_note": "这份报告是在 renderer_build_id 2323605ace4dea00184eea3de474f80e8d129dc223f55e143515fe2a91c3d055 上跑出来的历史记录。代码构建哈希发生变化后它就不再是当前版本的证据，不得用来证明当前版本的通过率或耗时。当前版本的可复现基准见 benchmarks/results/。"
+}

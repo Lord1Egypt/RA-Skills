@@ -1,40 +1,53 @@
-## Description: <br>
-小五子 - 基因优化 compresses prompt tokens, adjusts instruction weights, and aligns semantics to improve local model execution efficiency and instruction precision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for optimizing Xiaowuzi prompt genes through token compression, adaptive instruction weighting, and semantic alignment.
 
-## Publisher: <br>
-[tonicpopo](https://clawhub.ai/user/tonicpopo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonicpopo](https://clawhub.ai/user/tonicpopo)
 
-## Use Case: <br>
-Developers and agent builders use this skill to refine Xiaowuzi prompt modules for more efficient local-model behavior. It is aimed at precision-sensitive workflows such as quantitative trading signal analysis and strategy simulation, where optimized prompts should still be reviewed before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optimized prompts may be over-relied on in high-stakes finance, trading, or decision-making workflows. <br>
-Mitigation: Treat optimized prompts as suggestions and review them carefully before using them in finance, trading, or other high-stakes workflows. <br>
-Risk: Token compression and semantic rewriting can remove nuance or shift the meaning of the original instruction. <br>
-Mitigation: Compare optimized prompts against the original intent and test them before deployment. <br>
+## Use Case:
 
+Developers and agent operators working with Xiaowuzi use this skill to refine prompt genes for faster and more precise local-model behavior, especially in high-precision analysis and strategy-simulation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tonicpopo/xiaowuzi-gene-optimize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text prompt optimization guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, network calls, credentials, or hidden execution behavior are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Future versions could add scripts, memory writes, trading automation, or access to local task history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review future releases before installation and confirm that any added automation or history access is appropriate for the intended workflow.
+
+Risk: The skill is aimed at prompt optimization for high-precision analysis and strategy simulation, including quantitative trading scenarios.
+
+Mitigation: Use the output as prompt-engineering guidance only and independently validate any financial or trading analysis before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tonicpopo/skills/xiaowuzi-gene-optimize)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No scripts, install actions, persistence, credential use, or external data access are present in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

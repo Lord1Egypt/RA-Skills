@@ -1,48 +1,76 @@
-## Description: <br>
-Harmonyos Dev helps agents answer HarmonyOS application development questions with ArkTS, Stage model, ArkUI, UIAbility lifecycle, resource management, permissions, media, AI integration, and distributed-flow references for HarmonyOS 5.0 through 6.1. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Harmonyos Dev provides Chinese-language guidance for HarmonyOS 5.0-6.1 application development with ArkTS, Stage model configuration, ArkUI, UIAbility lifecycle management, resources, permissions, media, AI integration, and distributed capabilities.
 
-## Publisher: <br>
-[yhongm](https://clawhub.ai/user/yhongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhongm](https://clawhub.ai/user/yhongm)
 
-## Use Case: <br>
-Developers and engineers use this skill as a HarmonyOS reference pack for ArkTS syntax, ArkUI patterns, Stage model configuration, package formats, permissions, networking, media, resources, and testing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example guidance may involve networking, downloads, telemetry, floating windows, sensitive permissions, or signing configuration that can affect app security and user privacy. <br>
-Mitigation: Treat snippets as examples, review them against HarmonyOS and organization security requirements, and do not provide real secrets or private signing material to the agent. <br>
+## Use Case:
 
+Developers and engineers use this skill to answer HarmonyOS implementation questions, draft ArkTS and ArkUI code, and configure Stage-model modules, permissions, packaging, resources, networking, testing, and release workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yhongm/harmonyos-dev) <br>
-- [Huawei HarmonyOS developer documentation](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides) <br>
-- [ArkTS language introduction](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/introduction-to-arkts) <br>
-- [ArkUI basic syntax overview](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-basic-syntax-overview) <br>
-- [Stage model application configuration](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/application-configuration-file-stage) <br>
-- [Resource categories and access](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/resource-categories-and-access) <br>
-- [Application package reference](references/app-package.md) <br>
-- [ArkTS language reference](references/arkts-language.md) <br>
-- [ArkUI quick reference](references/arkui-quickref.md) <br>
-- [Permission testing reference](references/permission-testing.md) <br>
-- [Network HTTP reference](references/network-http.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with ArkTS, JSON, and shell-style examples when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference output; generated examples should be reviewed before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Reusable examples may include broad or sensitive HarmonyOS permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat samples as starting points, remove unused permissions, and avoid background location or floating-window access unless the application clearly needs it.
+
+Risk: Signing and release examples may encourage plaintext signing-secret patterns.
+
+Mitigation: Keep signing keys and passwords out of tracked project files and inject them through local developer configuration or CI secrets.
+
+Risk: Network, distributed sync, remote file, and download examples can affect user data scope and consent.
+
+Mitigation: Review data collection, consent, file handling, and transfer boundaries before adapting these examples in an application.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yhongm/skills/harmonyos-dev)
+- [HarmonyOS Developer Guides](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides)
+- [ArkTS Language Introduction](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/introduction-to-arkts)
+- [ArkUI Basic Syntax Overview](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-basic-syntax-overview)
+- [Stage Model Application Configuration](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/application-configuration-file-stage)
+- [Resource Categories and Access](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/resource-categories-and-access)
+- [Application Package Overview](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/application-package-overview)
+- [HTTP Request Guide](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/http-request)
+- [Permission Management](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-mgmt)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [App Package Reference](artifact/references/app-package.md)
+- [ArkTS Language Reference](artifact/references/arkts-language.md)
+- [ArkUI Quick Reference](artifact/references/arkui-quickref.md)
+- [HarmonyOS Glossary](artifact/references/glossary.md)
+- [Media, AI, and Distributed Development Reference](artifact/references/media-ai-distributed.md)
+- [Network and HTTP Reference](artifact/references/network-http.md)
+- [Permission, Testing, and Release Reference](artifact/references/permission-testing.md)
+- [Resource Management Reference](artifact/references/resource-management.md)
+- [Stage Configuration Reference](artifact/references/stage-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with ArkTS, JSON5, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language development guidance with code examples and configuration snippets.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

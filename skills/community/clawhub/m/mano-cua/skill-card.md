@@ -1,44 +1,61 @@
-## Description: <br>
-Computer use for GUI automation tasks via VLA models. Use when the user describes a task in natural language that requires visual screen interaction and no API or CLI exists for the target app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Computer use for GUI automation tasks via VLA models when the user describes a natural-language task that requires visual screen interaction and no API or CLI exists for the target app.
 
-## Publisher: <br>
-[hanningwang](https://clawhub.ai/user/hanningwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanningwang](https://clawhub.ai/user/hanningwang)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to run bounded desktop GUI automation tasks from natural-language instructions when an application lacks a suitable API or CLI path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control the visible desktop and may perform sensitive or irreversible actions during explicit user tasks. <br>
-Mitigation: Supervise active sessions, use step limits and the stop control, and require explicit confirmation for purchases, credential entry, deletion, or account changes. <br>
-Risk: Cloud mode may send primary-display screenshots and may use a shell helper for applicable steps. <br>
-Mitigation: Prefer local mode for private screens and disable cloud shell use with `mano-cua config --set disable-bash true` when shell execution is not needed. <br>
+## Use Case:
 
+Developers and external users use this skill to delegate bounded desktop GUI tasks to a computer-use agent when an application or website does not expose a suitable API or CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanningwang/mano-cua) <br>
-- [mano-cua source repository](https://github.com/Mininglamp-AI/mano-skill) <br>
-- [mano-cua releases](https://github.com/Mininglamp-AI/mano-skill/releases) <br>
-- [Mano-P model](https://huggingface.co/Mininglamp-2718/Mano-P) <br>
-- [Cloud model network-call module](https://github.com/Mininglamp-AI/mano-skill/blob/main/visual/model/task_model.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include mano-cua CLI invocations, local-mode setup steps, and supervision guidance for GUI automation tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The release asks users to install a native binary through an unpinned distribution path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the publisher and release before installation, and verify checksums or package provenance where available.
+
+Risk: Cloud mode may transmit primary-display screenshots and can use local shell actions.
+
+Mitigation: Use local mode for private tasks when supported, and disable cloud-mode shell execution with `mano-cua config --set disable-bash true` when shell actions are not required.
+
+Risk: Desktop automation requires GUI permissions and can affect visible applications within the requested task scope.
+
+Mitigation: Grant only the permissions needed for the task, keep the status panel visible, set bounded step limits, and stop the session before switching to unrelated work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanningwang/skills/mano-cua)
+- [mano-cua source homepage](https://github.com/Mininglamp-AI/mano-skill)
+- [mano-cua releases](https://github.com/Mininglamp-AI/mano-skill/releases)
+- [Mano-P model](https://huggingface.co/Mininglamp-2718/Mano-P)
+- [Network-call module reference](https://github.com/Mininglamp-AI/mano-skill/blob/main/visual/model/task_model.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI commands for installing, running, configuring, and stopping desktop automation sessions.]
+
+## Skill Version(s):
+
+1.1.0 (source: release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

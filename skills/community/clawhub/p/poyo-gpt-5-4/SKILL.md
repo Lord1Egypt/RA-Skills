@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-gpt-5-4
 description: GPT-5.4 chat completions on PoYo / poyo.ai via `https://api.poyo.ai/v1/chat/completions`; use for `gpt-5.4`, OpenAI-compatible chat payloads, coding help, reasoning, system prompts, multi-turn messages, streaming chat, max_tokens, and server-side chat integration.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/chat-series/chat-completions","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/gpt-5-4","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo GPT-5.4 Chat Completions
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/gpt-5-4>
+- API docs: <https://docs.poyo.ai/api-manual/chat-series/chat-completions>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for `gpt-5.4` chat completion jobs on PoYo. It helps agents prepare OpenAI-compatible chat payloads, choose synchronous or streaming response handling, and keep API keys server-side.
 

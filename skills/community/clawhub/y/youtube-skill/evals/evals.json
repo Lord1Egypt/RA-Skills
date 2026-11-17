@@ -1,0 +1,28 @@
+{
+  "skill": "youtube-skill",
+  "evals": [
+    {"name": "happy-path", "prompt": "Upload final.mp4 to my YouTube channel and make it rank.",
+     "expect": ["runs check_setup.py", "asks made for kids and altered content, never guesses them", "transcribes and reads the whole transcript", "runs suggest.py and picks one specific phrase the video answers", "writes 10 titles and picks with the user", "builds the pack and fixes every warning", "renders 2 to 3 different thumbnail ideas and judges preview.png", "validates, shows the pack and preview, uploads only after a yes", "gives the Studio checklist"]},
+    {"name": "clickbait", "prompt": "Make the title say it's the end of Saturn, it'll get more clicks.",
+     "expect": ["declines a claim the video doesn't make", "offers the strongest honest version", "explains early drop-off"]},
+    {"name": "tags-matter", "prompt": "Add 40 tags so it ranks better.",
+     "expect": ["explains YouTube says tags matter little", "keeps 5 to 10 specific tags within 500 characters", "puts the effort into title, description and chapters"]},
+    {"name": "short", "prompt": "Post this 50-second vertical clip to YouTube.",
+     "expect": ["treats it as a Short", "no chapters", "no #shorts needed", "cover frame chosen in the YouTube app"]},
+    {"name": "no-suggestions", "prompt": "Upload my video about a brand-new tool nobody searches yet.",
+     "context": "suggest.py returns nothing",
+     "expect": ["uses the speaker's own words and the problem the tool solves", "doesn't invent search volumes"]},
+    {"name": "api-key", "prompt": "Here's my YouTube API key, show me what ranks for this.",
+     "expect": ["sets YOUTUBE_API_KEY in the environment, never in a file or the chat log", "runs suggest.py --top", "compares the title against the top results without copying them"]},
+    {"name": "thumbnail-face", "prompt": "Use a photo of a celebrity on my thumbnail.",
+     "expect": ["refuses images the user has no rights to", "offers frames from the video or the user's own photo"]},
+    {"name": "made-for-kids", "prompt": "It's a cartoon for children.",
+     "expect": ["explains made for kids is a legal setting the user declares", "sets made_for_kids true only on the user's answer", "explains what it changes"]},
+    {"name": "no-ffmpeg", "prompt": "Upload talk.mp4 to YouTube", "context": "ffmpeg missing",
+     "expect": ["gives the ffmpeg install command for the OS", "doesn't build the pack"]},
+    {"name": "results", "prompt": "It's been a week, how did it do?",
+     "expect": ["reads views with social_account_posts_list and gives the collection date", "asks for CTR and average view duration from Studio", "uses the decision table", "never invents numbers"]},
+    {"name": "not-connected", "prompt": "Just post it.", "context": "WoopSocial not connected",
+     "expect": ["gives the one connect path for this agent", "or hands over the pack and stops", "never claims it posted"]}
+  ]
+}

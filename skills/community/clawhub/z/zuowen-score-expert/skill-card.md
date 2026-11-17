@@ -1,46 +1,64 @@
-## Description: <br>
-Coaches Chinese composition writing by diagnosing drafts, guiding brainstorming, improving structure and language, adapting advice by student level, and refusing ghostwriting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-spectrum Chinese composition tutoring skill for the Composition Score Expert persona, supporting draft diagnosis, guided brainstorming without ghostwriting, structure improvement, idea development, language refinement, grade-level adaptation, and warm Feynman-style writing mentorship.
 
-## Publisher: <br>
-[e2e5g](https://clawhub.ai/user/e2e5g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[e2e5g](https://clawhub.ai/user/e2e5g)
 
-## Use Case: <br>
-External students, parents, educators, and writing coaches use this skill to support Chinese essay planning, draft diagnosis, paragraph revision, creativity development, and level-appropriate practice without producing ready-to-submit homework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill applies a strong Chinese composition tutoring persona and formatting style when selected. <br>
-Mitigation: Use it for Chinese composition tutoring, and avoid auto-selecting it for neutral writing help, non-Chinese work, or unrelated tutoring. <br>
-Risk: Students may ask the agent to complete live assignments or produce ready-to-submit essay text. <br>
-Mitigation: Keep the anti-ghostwriting boundary active: provide outlines, questions, revision moves, short teaching demonstrations, and feedback instead of completing the submission. <br>
+## Use Case:
 
+External learners, educators, and agent users use this skill to coach Chinese composition writing, diagnose drafts, guide prewriting, improve paragraph structure and language, and build practice plans while preserving student authorship.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/e2e5g/zuowen-score-expert) <br>
-- [Publisher profile](https://clawhub.ai/user/e2e5g) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Composition Workflow](artifact/references/composition-workflow.md) <br>
-- [Anti Ghostwriting Policy](artifact/references/anti-ghostwriting-policy.md) <br>
-- [Feedback Rubric](artifact/references/feedback-rubric.md) <br>
-- [Student Level Adaptation](artifact/references/student-level-adaptation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tutoring responses with diagnosis, outlines, revision suggestions, examples, exercises, and warm refusals when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May adapt tone, vocabulary, depth, and feedback style to primary school, middle school, high school, or university writing levels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: A user may ask the agent to complete a student assignment or produce a ready-to-submit essay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the bundled anti-ghostwriting policy: refuse direct completion and pivot to outlines, brainstorming, sentence patterns, draft diagnosis, or revision checklists.
+
+Risk: Source-backed tutoring may depend on bundled PDF knowledge sources that were not present in the inspected artifact.
+
+Mitigation: Be transparent when retrieval or local source files are unavailable and rely only on available extracted guidance instead of claiming source-backed review.
+
+Risk: Essay scoring or feedback could be misleading if no formal rubric is provided.
+
+Mitigation: Use directional score judgments and prioritize the highest-impact revision issue unless the user supplies a specific rubric.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/e2e5g/skills/zuowen-score-expert)
+- [Publisher Profile](https://clawhub.ai/user/e2e5g)
+- [Composition Workflow](references/composition-workflow.md)
+- [Anti Ghostwriting Policy](references/anti-ghostwriting-policy.md)
+- [Feedback Rubric](references/feedback-rubric.md)
+- [Student Level Adaptation](references/student-level-adaptation.md)
+- [Knowledge Base Index](references/knowledge-base-index.md)
+- [Persona Contract](references/persona-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, Configuration]
+
+**Output Format:** [Markdown prose with structured feedback, examples, questions, revision steps, and practice plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concise coaching questions, directional scoring, outlines, paragraph-level demonstrations, and revision checklists; it should not produce ready-to-submit student essays.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

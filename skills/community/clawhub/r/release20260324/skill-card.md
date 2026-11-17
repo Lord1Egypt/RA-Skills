@@ -1,46 +1,64 @@
-## Description: <br>
-Academic literature discovery and citation network analysis across arXiv, DBLP, Semantic Scholar, Google Scholar, PDFs, BibTeX, and Zotero, with support for graph building, recommendations, monitoring, topic analysis, summaries, and BibTeX/CSV/Markdown/JSON/HTML exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic literature discovery and citation network analysis. Multi-source search across arXiv, DBLP, Semantic Scholar, and Google Scholar. Build citation networks (references from PDF parsing, citations from Google Scholar), get recommendations, monitor new papers, analyze topics, parse PDFs, import from Zotero, generate research summaries, export as BibTeX/CSV/Markdown/JSON, and generate interactive HTML graph visualizations. Use when user asks about finding papers, literature review, citation analysis, research trends, or visualizing citation networks.
 
-## Publisher: <br>
-[jiahaowugit](https://clawhub.ai/user/jiahaowugit) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiahaowugit](https://clawhub.ai/user/jiahaowugit)
 
-## Use Case: <br>
-Researchers, developers, and external users use this skill to find academic papers, build and inspect citation networks, analyze literature trends, generate summaries, and export research artifacts for reference managers, reports, or interactive graph review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+PolyForm Noncommercial License 1.0.0
 
-## Known Risks and Mitigations: <br>
-Risk: The interactive graph server can expose unauthenticated file-changing APIs. <br>
-Mitigation: Run the server only on trusted machines and networks, prefer binding to 127.0.0.1, and remove wildcard CORS before broader deployment. <br>
-Risk: LLM and external API features may send PDF, manuscript, reading-list, or graph content to third parties. <br>
-Mitigation: Use these features only with content approved for external processing, and avoid private PDFs, unpublished manuscripts, confidential reading lists, or sensitive graph data unless disclosure is acceptable. <br>
-Risk: Graph management commands can persist changes to local graph JSON files. <br>
-Mitigation: Keep backups before using serve, remove-seed, or remove-paper, especially when editing important research graphs. <br>
-Risk: Zotero API keys may be exposed through shell history or process listings when passed directly on the command line. <br>
-Mitigation: Prefer safer secret handling where available and avoid passing Zotero API keys directly as command-line arguments. <br>
+## Use Case:
 
+Researchers, students, and developer-agents use this skill to discover academic papers, build and inspect citation graphs, analyze research trends, summarize literature, import references, and export graph artifacts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jiahaowugit/release20260324) <br>
-- [Publisher profile](https://clawhub.ai/user/jiahaowugit) <br>
-- [Semantic Scholar API](https://www.semanticscholar.org/product/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, HTML, BibTeX, CSV] <br>
-**Output Format:** [Agent guidance with shell commands and structured JSON-oriented CLI outputs; exported artifacts may be JSON, Markdown, BibTeX, CSV, or self-contained HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are designed for non-interactive execution and primarily write local graph, export, or visualization files when output paths are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The browser management server may be exposed more broadly than described.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use serve mode only on trusted networks, prefer local-only access, and restrict access with host firewall or network controls.
+
+Risk: PDF text can be sent to external LLM providers when LLM keys are configured.
+
+Mitigation: Do not process confidential PDFs with LLM provider keys set unless that disclosure is intended; unset LLM keys to use extractive summaries.
+
+Risk: The tool can modify graph JSON files during graph management operations.
+
+Mitigation: Work on copies or version-controlled graph files before using commands that add, remove, convert, or persist graph changes.
+
+Risk: The installer and CLI depend on networked scholarly APIs and Python packages.
+
+Mitigation: Review and pin dependencies before installation, and expect external API availability, rate limits, and terms to affect results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiahaowugit/skills/release20260324)
+- [OpenPaperGraph Skill Instructions](artifact/SKILL.md)
+- [OpenPaperGraph README](artifact/README.md)
+- [Semantic Scholar API](https://www.semanticscholar.org/product/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Files]
+
+**Output Format:** [Markdown guidance with shell commands; CLI commands return JSON and can write BibTeX, CSV, Markdown, JSON, or HTML files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Networked scholarly API calls; optional LLM summaries when provider keys are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

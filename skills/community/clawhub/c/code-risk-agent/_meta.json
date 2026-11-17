@@ -1,0 +1,29 @@
+{
+  "skill": {
+    "slug": "code-risk-agent",
+    "name": "CodeRisk Agent",
+    "version": "1.0.0",
+    "description": "AI-powered code security analysis with 4-layer pipeline and triple cross-validation. Cloud LLM by default, local GPU optional.",
+    "author": {
+      "id": "a9320",
+      "name": "Yang Weike"
+    },
+    "license": "MIT",
+    "category": "security",
+    "tags": ["code-security", "vulnerability-scanning", "static-analysis", "llm", "local-ai", "cve", "cwe", "semgrep"],
+    "homepage": "https://github.com/a9320/code-risk-agent",
+    "icon": "🛡️",
+    "min_agent_version": "1.0.0",
+    "platforms": ["linux", "macos", "windows"],
+    "pricing": "free",
+    "language_support": ["zh", "en"]
+  },
+  "publish": {
+    "source_type": "github",
+    "source_url": "https://github.com/a9320/code-risk-agent",
+    "clawhub_enabled": true
+  },
+  "openclaw": {
+    "ecosystem": "苍穹共创计划"
+  }
+}

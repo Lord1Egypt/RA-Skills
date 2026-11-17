@@ -1,45 +1,60 @@
-## Description: <br>
-Operate TradingBoat/TBOT (TBOT runtime stack) via a controlled automation interface (DB-first queries; lifecycle control on explicit request). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate TradingBoat/TBOT (TBOT runtime stack) via a controlled automation interface (DB-first queries; lifecycle control on explicit request).
 
-## Publisher: <br>
-[PlusGenie](https://clawhub.ai/user/PlusGenie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[plusgenie](https://clawhub.ai/user/plusgenie)
 
-## Use Case: <br>
-Developers and operators use TBOT Controller to inspect TBOT SQLite data, retrieve runtime status and logs, and start, stop, or restart a TradingBoat/TBOT stack when explicitly confirmed. It can also generate and send schema-validated TradingView-style webhook JSON to a configured TBOT endpoint. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Webhook mode can send authenticated trading signals using local secrets without the promised confirmation guard. <br>
-Mitigation: Treat json mode as a real trade-signal send, use paper trading first, confirm live-vs-paper configuration, and provide webhook settings deliberately. <br>
-Risk: Runtime discovery or auto-discovered secrets may target a different TBOT directory than the user intended. <br>
-Mitigation: Set the intended runtime path and webhook variables explicitly, confirm the resolved runtime before live use, and keep webhook secrets out of transcripts and logs. <br>
-Risk: Service control actions can affect a running TBOT stack. <br>
-Mitigation: Require explicit user intent and confirmation before start, stop, or restart actions, and prefer read-only status and database inspection for routine checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PlusGenie/tbot-controller) <br>
-- [TBOT Controller Operations Reference](references/ops.md) <br>
-- [Alert Webhook JSON Schema](scripts/schema/alert_webhook_schema.json) <br>
-- [Reference TBOT Runtime Implementation](https://github.com/PlusGenie/openclaw-on-tradingboat) <br>
-- [uv Documentation](https://docs.astral.sh/uv/) <br>
+## Use Case:
 
+Developers and operators use this skill to inspect TBOT SQLite data, check runtime health and logs, and control a separate TradingBoat/TBOT stack when explicitly authorized.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, json] <br>
-**Output Format:** [Plain text or Markdown with shell commands and schema-validated JSON payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform read-only local TBOT inspection, run docker compose or systemd control commands with explicit confirmation, and send authenticated webhook payloads when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Webhook mode may send authenticated trade instructions without the documented confirmation guard.
+
+Mitigation: Review before installing, do not invoke JSON mode for previews, and use it only after confirming the intended action and whether the TBOT runtime is paper or live.
+
+Risk: Webhook keys or other secrets may be exposed through generated payloads, output, or untrusted webhook destinations.
+
+Mitigation: Restrict TBOT_WEBHOOK_URL to trusted local endpoints, avoid sharing outputs that contain webhook keys, and require secret redaction before broader use.
+
+Risk: Control actions can affect a separate TBOT runtime stack if the runtime location is wrong or ambiguous.
+
+Mitigation: Run discovery first, require an explicit runtime location when discovery is ambiguous, and require explicit confirmation before start, stop, restart, or trading actions.
+
+## Reference(s):
+
+- [TBOT Controller ClawHub page](https://clawhub.ai/plusgenie/skills/tbot-controller)
+- [Publisher profile](https://clawhub.ai/user/plusgenie)
+- [TBOT Controller ops reference](artifact/references/ops.md)
+- [Reference runtime implementation](https://github.com/PlusGenie/openclaw-on-tradingboat)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, status tables, and schema-validated JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only status and database inspection are the default posture; JSON webhook mode can send requests when invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

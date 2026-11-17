@@ -1,49 +1,68 @@
-## Description: <br>
-Agent Father helps create and manage OpenClaw AI agents/employees, including Feishu chat setup, workspace configuration, onboarding files, employee records, and batch creation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Father helps OpenClaw operators create, onboard, manage, and remove AI employee agents, including Feishu group setup, workspace files, and employee records.
 
-## Publisher: <br>
-[meichuanyi](https://clawhub.ai/user/meichuanyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[meichuanyi](https://clawhub.ai/user/meichuanyi)
 
-## Use Case: <br>
-OpenClaw administrators and developers use this skill to provision AI employees, create Feishu groups, generate agent configuration and onboarding files, maintain employee records, and remove agents when needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and delete OpenClaw and Feishu resources with admin-like impact. <br>
-Mitigation: Use it only with intended OpenClaw workspaces and least-privilege Feishu credentials; test outside production tenants before operational use. <br>
-Risk: delete-agent.sh can remove agent and workspace directories, and evidence.security notes that deletion safeguards need review. <br>
-Mitigation: Back up OpenClaw workspaces and configuration before deletion, avoid --force unless paths have been reviewed, and do not run delete-agent.sh until workspace path containment and confirmation safeguards are acceptable. <br>
-Risk: Employee records can include phone numbers, workspace paths, chat IDs, and session IDs. <br>
-Mitigation: Review where generated employee data is stored, limit access to the OpenClaw workspace, and avoid using real personal data in tests. <br>
-Risk: Feishu credentials are read from openclaw.json or environment variables and used for API calls. <br>
-Mitigation: Use scoped credentials, avoid exposing configuration files or logs, and rotate credentials if a test environment is shared. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meichuanyi/agent-father) <br>
-- [QUICKSTART.md](QUICKSTART.md) <br>
-- [QUICKREF.md](QUICKREF.md) <br>
-- [templates.md](references/templates.md) <br>
-- [create-examples.md](references/examples/create-examples.md) <br>
-- [employees-sample.csv](references/examples/employees-sample.csv) <br>
-- [Feishu Open API](https://open.feishu.cn/open-apis) <br>
+## Use Case:
 
+Developers and OpenClaw workspace operators use this skill to create AI employee agents, configure their workspaces, create Feishu chat groups, run onboarding setup, batch-import employee records, and remove agents during offboarding.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands plus generated JSON, Markdown, and OpenClaw configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Feishu APIs, create local OpenClaw workspaces and agent directories, update employee records, and delete local agent/workspace resources.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scripts can modify external Feishu resources and local OpenClaw workspaces.
+
+Mitigation: Review the skill before installation, test in a non-production OpenClaw workspace, and run it only with service accounts and Feishu permissions scoped for the intended workspace.
+
+Risk: Employee records, contact details, workspace paths, and agent configuration files may be created or updated locally.
+
+Mitigation: Restrict permissions on generated employee records and agent directories, and avoid using sensitive personal data unless the workspace is approved for it.
+
+Risk: Deletion flows can remove agent and workspace directories, especially when forced.
+
+Mitigation: Back up OpenClaw workspaces first and avoid force deletion unless the target agent and workspace paths have been independently verified.
+
+Risk: Scanner guidance reports unsafe deletion and node command-injection paths.
+
+Mitigation: Use only trusted operator input and trusted CSV files until those issues are fixed, and do not run the scripts with shared service accounts or elevated permissions.
+
+Risk: Troubleshooting output may expose Feishu configuration details.
+
+Mitigation: Redact logs before sharing them and rotate Feishu secrets if any troubleshooting output exposes credentials or sensitive app configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/meichuanyi/skills/agent-father)
+- [Feishu Open APIs](https://open.feishu.cn/open-apis)
+- [Templates Reference](references/templates.md)
+- [Create Examples](references/examples/create-examples.md)
+- [Employee CSV Sample](references/examples/employees-sample.csv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and generated JSON/Markdown file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or modifies local OpenClaw agent, workspace, group, onboarding, and employee-record files when its shell scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

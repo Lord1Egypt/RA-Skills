@@ -1,6 +1,28 @@
 {
-  "ownerId": "kn7ctn51g7anq93bwgz7gfckxs80c6ze",
-  "slug": "chrome-cdp",
+  "name": "chrome-cdp",
   "version": "1.0.0",
-  "publishedAt": 1773548087414
+  "description": "让AI访问已打开的Chrome标签页",
+  "author": "pasky",
+  "repository": "https://github.com/pasky/chrome-cdp-skill",
+  "license": "MIT",
+  "homepage": "https://github.com/pasky/chrome-cdp-skill",
+  "keywords": ["chrome", "cdp", "browser", "automation", "debugging"],
+  "dependencies": {
+    "node": ">=22.0.0"
+  },
+  "features": {
+    "list": "列出打开的标签页",
+    "screenshot": "截图",
+    "accessibility": "获取可访问性树",
+    "html": "获取HTML",
+    "click": "点击元素",
+    "type": "输入文字",
+    "navigate": "导航",
+    "evaluate": "执行JavaScript",
+    "network": "网络信息"
+  },
+  "install": {
+    "chrome": "在Chrome地址栏输入 chrome://inspect/#remote-debugging 启用远程调试",
+    "clone": "git clone https://github.com/pasky/chrome-cdp-skill.git"
+  }
 }

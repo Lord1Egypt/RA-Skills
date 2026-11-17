@@ -1,42 +1,55 @@
-## Description: <br>
-Guides agents through uploading local files to Feishu and sending them as file messages using Feishu Open Platform APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through uploading local files to Feishu and sending them as file messages by obtaining a tenant access token, uploading the file, and sending the resulting file_key.
 
-## Publisher: <br>
-[swingmonkey](https://clawhub.ai/user/swingmonkey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swingmonkey](https://clawhub.ai/user/swingmonkey)
 
-## Use Case: <br>
-Developers and operators use this skill as a practical guide for sending local files to Feishu users from OpenClaw Agent workflows. It explains how to obtain a tenant access token, upload a file for a file_key, and send a Feishu file message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sample Python code disables HTTPS certificate verification while handling app secrets, tokens, and uploaded files. <br>
-Mitigation: Restore certificate verification before running the examples and review the code before use. <br>
-Risk: Feishu credentials, access tokens, local files, and recipient IDs may be exposed or misused if handled carelessly. <br>
-Mitigation: Use least-privilege Feishu credentials, store secrets outside source code, avoid logging tokens, and confirm the selected file and recipient before uploading. <br>
+## Use Case:
 
+OpenClaw Agent users and developers use this guide to send local files to Feishu recipients when the default message tool would otherwise send only a path. It explains the token, upload, and message-send API flow with PowerShell and Python examples.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/swingmonkey/feishu-file-transfer-guide) <br>
-- [Feishu Open Platform - Upload file](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/file/create) <br>
-- [Feishu Open Platform - Send message](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guide with JSON, PowerShell, and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied Feishu app credentials, recipient ID, and local file path; sample code should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Example code disables HTTPS certificate and hostname verification while sending credentials, tokens, and file contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the lines that set check_hostname to False and verify_mode to CERT_NONE; use default verified TLS for Feishu API calls.
+
+Risk: The workflow handles Feishu app secrets, tenant tokens, local file paths, and recipient IDs.
+
+Mitigation: Keep app secrets outside source code, avoid logging tokens, and confirm the exact file path and recipient before uploading or sending a file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swingmonkey/skills/feishu-file-transfer-guide)
+- [Feishu Open Platform - Upload file](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/file/create)
+- [Feishu Open Platform - Send message](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/create)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guide with PowerShell, Python, JSON, and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Feishu API endpoints and example credential placeholders; users supply real app credentials, file paths, and recipient IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

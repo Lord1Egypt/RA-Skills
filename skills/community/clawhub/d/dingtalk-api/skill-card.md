@@ -1,45 +1,63 @@
-## Description: <br>
-DingTalk API helps agents query DingTalk users and departments, send robot messages, and manage OA approval workflows through DingTalk Open Platform scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls DingTalk Open Platform APIs for user and department lookup, bot messaging, group bot listing, resigned employee queries, and OA approval workflow operations.
 
-## Publisher: <br>
-[ogenes](https://clawhub.ai/user/ogenes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ogenes](https://clawhub.ai/user/ogenes)
 
-## Use Case: <br>
-Developers and operations teams use this skill to automate DingTalk directory lookups, department queries, robot messaging, resigned or inactive employee checks, and OA approval workflow actions with app credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read employee and workflow data when supplied DingTalk app credentials. <br>
-Mitigation: Use a dedicated DingTalk app with least-privilege scopes and install only where the operator controls the credentials. <br>
-Risk: Approval and messaging commands can modify workflows or send messages on behalf of a DingTalk app. <br>
-Mitigation: Require human confirmation before approval-write operations or message sends, and avoid enabling approval-write permissions unless they are required. <br>
-Risk: Debug output may expose employee or workflow data in shared logs. <br>
-Mitigation: Avoid --debug in shared environments and treat command output as sensitive operational data. <br>
+## Use Case:
 
+Developers and operations teams use this skill to run DingTalk organization, messaging, and OA approval workflow API tasks from an agent environment. It is suited for controlled internal automation where a DingTalk app has been granted the required API permissions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ogenes/dingtalk-api) <br>
-- [Publisher profile](https://clawhub.ai/user/ogenes) <br>
-- [DingTalk Open Platform](https://open.dingtalk.com/) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs TypeScript scripts with DingTalk app credentials and returns structured success or error JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and package.json) <br>
+Risk: The skill can access organization data, bot messaging, and OA approval workflow actions through a DingTalk internal app.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged DingTalk app and grant only the API permissions needed for the intended task.
+
+Risk: Approval create, terminate, agree/refuse, transfer, and comment operations can affect business workflows.
+
+Mitigation: Require human review before running approval-changing commands, especially in production environments.
+
+Risk: Testing with production credentials can expose live organization data or trigger real workflow changes.
+
+Mitigation: Avoid production credentials until the workflow has been tested with controlled accounts and data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ogenes/skills/dingtalk-api)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ogenes)
+- [DingTalk Internal App Access Token](https://open.dingtalk.com/document/orgapp/obtain-the-access_token-of-an-internal-app)
+- [DingTalk Chatbot One-on-One Messages](https://open.dingtalk.com/document/orgapp/chatbots-send-one-on-one-chat-messages-in-batches)
+- [DingTalk Group Robot Messages](https://open.dingtalk.com/document/orgapp/the-robot-sends-a-group-message)
+- [DingTalk Approval Instance Creation](https://open.dingtalk.com/document/isvapp-server/create-an-approval-instance)
+- [DingTalk Approval Operation Execution](https://open.dingtalk.com/document/isvapp-server/execute-approval-operation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DINGTALK_APP_KEY and DINGTALK_APP_SECRET and an appropriately permissioned DingTalk app.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

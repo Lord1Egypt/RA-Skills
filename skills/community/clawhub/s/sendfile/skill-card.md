@@ -1,44 +1,59 @@
-## Description: <br>
-Send files to users in chat by creating a temporary public download link via aitun tunnel. Perfect for AI agents that need to deliver generated files (documents, images, reports, code) to users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send files to users in chat by creating temporary public download links via an aitun tunnel for generated documents, images, reports, and code.
 
-## Publisher: <br>
-[ctz168](https://clawhub.ai/user/ctz168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ctz168](https://clawhub.ai/user/ctz168)
 
-## Use Case: <br>
-Developers and agents use this skill to deliver generated local files to users by exposing a temporary browser-accessible download link. It is most useful when direct chat upload is unavailable, too large, or otherwise unsuitable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes a local directory through a public tunnel. <br>
-Mitigation: Share only non-sensitive files from a dedicated temporary directory containing the exact file intended for download. <br>
-Risk: Remote one-line installer examples can execute unreviewed code. <br>
-Mitigation: Prefer the pip or uv installation path described in the server guidance. <br>
-Risk: Temporary servers and tunnels may remain active longer than needed. <br>
-Mitigation: Start the tunnel only after the user requests a download link, then stop both the HTTP server and tunnel immediately after transfer. <br>
+## Use Case:
 
+Developers and agents use this skill when they need to deliver generated files to a chat user by hosting a local file temporarily and sharing a browser-accessible download link.
 
-## Reference(s): <br>
-- [AiTun homepage](https://aitun.cc) <br>
-- [ClawHub skill page](https://clawhub.ai/ctz168/skills/sendfile) <br>
-- [ClawHub package link](https://clawhub.ai/ctz168/sendfile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and a temporary download URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces temporary public links for user download; avoid sensitive files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release metadata) <br>
+Risk: One-line remote script installers can execute unreviewed code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install aitun only through a trusted, reviewed package source and avoid remote script installers unless they have been independently reviewed.
+
+Risk: Serving a directory through a public tunnel can expose unintended local files.
+
+Mitigation: Before sharing, place only the intended file in a dedicated temporary directory, bind the server to loopback when possible, and shut down the tunnel immediately after download.
+
+Risk: Temporary public download links can expose sensitive data if used for secrets, credentials, or private content.
+
+Mitigation: Use this skill only for non-sensitive files and do not share files containing secrets or credentials.
+
+## Reference(s):
+
+- [AiTun homepage](https://aitun.cc)
+- [ClawHub skill page](https://clawhub.ai/ctz168/skills/sendfile)
+- [ClawHub package metadata](https://clawhub.ai/ctz168/sendfile)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and a temporary public download URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Temporary public links are intended for non-sensitive files and should be shut down after download.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,56 @@
-## Description: <br>
-Provides curated NotebookLM and Kael.im prompt templates for generating presentation decks in modern newspaper, minimalist, manga, magazine, technical, sports, and other visual styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides curated prompt templates for generating presentation slides in multiple visual styles with NotebookLM or Kael.im.
 
-## Publisher: <br>
-[yenava](https://clawhub.ai/user/yenava) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yenava](https://clawhub.ai/user/yenava)
 
-## Use Case: <br>
-Employees, external users, creators, educators, and business presenters use this skill to choose and adapt presentation prompt templates for NotebookLM or Kael.im slide generation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated slide prompts can shape public-facing presentation content in unintended or inaccurate ways. <br>
-Mitigation: Review generated decks for factual accuracy, audience fit, and brand or policy compliance before use. <br>
-Risk: External prompt-source links may change or become unavailable over time. <br>
-Mitigation: Use the bundled PROMPTS.md reference as the release snapshot and verify external sources when attribution matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [NotebookLM Prompts Reference](references/PROMPTS.md) <br>
-- [ClawHub release page](https://clawhub.ai/yenava/notebooklm-prompts) <br>
-- [Modern Newspaper prompt source](https://x.com/mmmiyama_D/status/1998528702150488069) <br>
-- [Sharp-edged Minimalism prompt source](https://x.com/yoshifujidesign/status/1997878247322001626) <br>
-- [Kawai Design prompt source](https://x.com/kawai_design) <br>
-- [Magazine Style prompt source](https://x.com/tetumemo/status/1996930284500201685) <br>
-- [Royal Blue and Red Watercolor prompt source](https://x.com/kottley/status/1994442047579721782) <br>
-- [Premium Mockup prompt source](https://note.com/yoshifujidesign/n/n7412bccb5762) <br>
+## Use Case:
 
+External users and agents use this skill to select, customize, and apply slide-generation prompt templates for business, creative, and academic presentations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown reference prompts and concise customization guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces style-specific prompt text for slide-generation workflows; does not execute code or call external services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Presentation content may contain private or sensitive information before it is sent to external slide-generation services.
+
+Mitigation: Review and redact sensitive content before using the generated prompts with NotebookLM, Kael.im, or another external service.
+
+Risk: Generated slide prompts may not match the user's intended audience, tone, or factual claims without adaptation.
+
+Mitigation: Customize the selected prompt template for the specific presentation topic, audience, and source material before use.
+
+## Reference(s):
+
+- [NotebookLM Prompts Reference](references/PROMPTS.md)
+- [ClawHub Skill Listing](https://clawhub.ai/yenava/skills/notebooklm-prompts)
+- [Modern Newspaper prompt source](https://x.com/mmmiyama_D/status/1998528702150488069)
+- [Sharp-edged Minimalism prompt source](https://x.com/yoshifujidesign/status/1997878247322001626)
+- [Premium Mockup prompt source](https://note.com/yoshifujidesign/n/n7412bccb5762)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with reusable prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts are intended to be reviewed and customized before use with NotebookLM, Kael.im, or another external slide-generation service.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

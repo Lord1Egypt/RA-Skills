@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7dk9dtzd8ytykspm9c1rd0fd830mha",
-  "slug": "novel-writer-structure",
+  "name": "novel-writer-structure",
   "version": "1.1.0",
-  "publishedAt": 1773657309499
+  "description": "严谨逻辑结构化小说写作引擎 - 6阶段工作流含文笔润色",
+  "author": "system",
+  "tags": ["writing", "novel", "structure", "logic"],
+  "readme": "SKILL.md"
 }

@@ -60,7 +60,7 @@ class QuarkOCRClient:
 
         Args:
             api_key: API 密钥
-            scene: 场景名称（如 general-ocr, idcard-ocr 等）
+            scene: 场景名称（如 image-to-word, image-to-excel 等）
             data_type: 数据类型（image 或 pdf）
         """
         self.api_key = api_key

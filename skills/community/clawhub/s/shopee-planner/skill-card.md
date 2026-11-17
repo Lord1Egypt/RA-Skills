@@ -1,43 +1,56 @@
-## Description: <br>
-Plan Shopee Flash Sale, Voucher, and Coins Cashback campaigns with budget allocation and product selection logic for maximum platform traffic and ROI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Shopee Flash Sale, Voucher, and Coins Cashback campaigns with budget allocation and product selection logic for maximum platform traffic and ROI.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External Shopee sellers and marketplace operators use this skill to plan promotional campaigns, select suitable SKUs, set discount and margin guardrails, allocate campaign budget, and review post-campaign performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for sellers operating in Shopee-supported markets. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopee fees, campaign rules, approval deadlines, and market calendars can change after the skill guidance was authored. <br>
-Mitigation: Verify current fees, campaign eligibility, deadlines, and platform rules in Shopee Seller Centre before acting on campaign recommendations. <br>
-Risk: Campaign plans can expose sensitive seller operations if users paste credentials or private account details into an untrusted tool. <br>
-Mitigation: Use the skill as a planning aid and do not provide Shopee credentials unless a separate trusted tool explicitly requires them. <br>
+## Use Case:
 
+Shopee sellers and ecommerce operators use this skill to plan Flash Sale, voucher, and Coins Cashback campaigns, including SKU selection, event timing, discount and margin checks, budget allocation, live monitoring, and post-campaign review.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [Shopee Campaign Calendar Guide](references/shopee-campaign-calendar.md) <br>
-- [Discount & Margin Calculator](references/discount-margin-calculator.md) <br>
-- [Campaign Quality Checklist](assets/campaign-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown planning guidance, campaign tables, checklists, and calculation formulas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces static planning recommendations and templates; it does not execute Shopee actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Campaign guidance may become stale as Shopee fees, deadlines, eligibility rules, and seller policies change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current fee schedules, campaign deadlines, and seller rules in Shopee Seller Centre before using the plan.
+
+Risk: Generated shared campaign plans may include the artifact's attribution footer.
+
+Mitigation: Remove the attribution footer before sharing plans when attribution is not desired.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [Shopee Campaign Calendar Guide](references/shopee-campaign-calendar.md)
+- [Discount & Margin Calculator](references/discount-margin-calculator.md)
+- [Shopee Campaign Quality Checklist](assets/campaign-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown campaign plans, checklists, tables, formulas, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory material only; users should verify current Shopee fees, deadlines, and seller rules in Seller Centre before acting.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

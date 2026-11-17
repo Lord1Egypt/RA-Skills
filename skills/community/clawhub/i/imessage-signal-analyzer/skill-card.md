@@ -1,42 +1,57 @@
-## Description: <br>
-Analyze iMessage on macOS and Signal conversation history to reveal relationship dynamics, including message volume, initiation patterns, silence gaps, tone samples, and recent exchanges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze iMessage on macOS and Signal conversation history to summarize message volume, initiation patterns, silence gaps, tone samples, and recent exchanges.
 
-## Publisher: <br>
-[terellison](https://clawhub.ai/user/terellison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[terellison](https://clawhub.ai/user/terellison)
 
-## Use Case: <br>
-Users and agents use this skill to inspect local iMessage data or exported Signal conversations for relationship-pattern analysis. It helps summarize message counts, date ranges, yearly activity, conversation starts, long silences, recent messages, and conversational context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and summarize private chat history and contact data. <br>
-Mitigation: Use a specific contact identifier, apply the message limit where practical, and review outputs before sharing or storing them. <br>
-Risk: Broad Full Disk Access may expose more local data than the analysis needs. <br>
-Mitigation: Grant Full Disk Access only when required for iMessage access, and revoke it after the analysis is complete. <br>
-Risk: Signal export files contain sensitive conversation content. <br>
-Mitigation: Protect exported JSON files, keep them in a controlled location, delete them when no longer needed, and unlink signal-cli when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terellison/imessage-signal-analyzer) <br>
-- [signal-cli](https://github.com/AsamK/signal-cli) <br>
+## Use Case:
 
+External users and developers use this skill to analyze local or exported message histories and produce conversational relationship reports. It is intended for cases where the user has clear permission to inspect the selected message history.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or conversational text with command examples and terminal analysis output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include counts, date ranges, yearly volume bars, initiation estimates, notable silence gaps, message samples, and recent exchanges.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles private message histories and may expose conversations or contact details beyond the user's intended scope.
+
+Mitigation: Run it only on message histories the user has clear permission to analyze, prefer user-exported Signal data, and use exact phone numbers or handles rather than broad searches.
+
+Risk: iMessage analysis may require broad local file access on macOS.
+
+Mitigation: Avoid granting Full Disk Access to a general terminal or Python interpreter unless necessary, and revoke that permission immediately after the analysis.
+
+Risk: Terminal output can contain sensitive message content and relationship inferences.
+
+Mitigation: Treat generated output as private, minimize copied excerpts, and confirm contextual gaps with the user before drawing conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terellison/skills/imessage-signal-analyzer)
+- [signal-cli](https://github.com/AsamK/signal-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style narrative report with terminal output summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries may include private message excerpts, contact identifiers, date ranges, volume counts, initiation estimates, silence gaps, and recent-message samples.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

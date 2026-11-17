@@ -1,42 +1,48 @@
-## Description: <br>
-Translates Claude Code skills into Chinese versions by generating a marked target skill directory and guiding the agent to complete the remaining translation work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates Claude Code skills into Chinese-localized skill directories while preserving code, paths, formatting, and proprietary names.
 
-## Publisher: <br>
-[zhouchang1988](https://clawhub.ai/user/zhouchang1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhouchang1988](https://clawhub.ai/user/zhouchang1988)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to create Chinese-localized versions of existing Claude Code skills, including translated skill instructions, README content, comments, and user-facing script output where applicable.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The helper script can delete an existing output directory selected by the user or agent.
+
+Mitigation: Use the skill only on trusted skill directories, choose a new empty output path, and review paths before running the script.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to localize existing Claude Code skills into Chinese, including SKILL.md content, README content, comments, prompts, and generated output-language guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The translation script can delete an existing output directory, including a custom output path outside the default skills folder. <br>
-Mitigation: Use only reviewed output paths, back up any existing target directory first, and inspect the generated files before enabling the translated skill. <br>
-Risk: Generated files can contain unfinished translation markers if the agent does not complete the model-stage translation. <br>
-Mitigation: Verify that no [待翻译] markers remain and review the generated SKILL.md, scripts, and README before use. <br>
+**Output Format:** [Markdown guidance with shell commands and generated skill files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouchang1988/skill-to-cn) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+**Other Properties Related to Output:** [Produces a translated skill directory and requires review to ensure no translation markers remain.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance plus generated or modified skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a Chinese target skill directory and leaves marked content for the agent to finish translating.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

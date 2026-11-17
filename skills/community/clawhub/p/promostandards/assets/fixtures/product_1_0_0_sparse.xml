@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ns:GetProductResponse
+        xmlns:ns="http://www.promostandards.org/WSDL/ProductDataService/1.0.0/"
+        xmlns:shar="http://www.promostandards.org/WSDL/ProductDataService/1.0.0/SharedObjects/">
+      <ns:Product>
+        <shar:productId>BARE-1</shar:productId>
+        <ns:productName>Unadorned Item</ns:productName>
+        <ns:ProductPartArray>
+          <ns:ProductPart>
+            <shar:partId>BARE-1-A</shar:partId>
+          </ns:ProductPart>
+        </ns:ProductPartArray>
+      </ns:Product>
+    </ns:GetProductResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

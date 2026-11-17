@@ -1,46 +1,61 @@
-## Description: <br>
-Scans cross-platform content globalization trends, selects high-engagement works, clusters them by topic, and generates a visual HTML daily report with a Markdown summary for creators and operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates cross-platform content globalization daily reports by querying RedFoxHub data across WeChat Official Accounts, Douyin, WeChat Channels, Xiaohongshu, Kuaishou, and Bilibili, then clustering topics and summarizing creative trends.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Content globalization creators, operations teams, MCNs, planners, and data analysts use this skill to query RedFoxHub data, monitor trending works across major Chinese content platforms, and produce topic and platform trend reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends an API key and query terms to RedFoxHub. <br>
-Mitigation: Use a scoped and revocable REDFOX_API_KEY only with a trusted RedFoxHub account, and avoid exposing the key in prompts, logs, or terminal output. <br>
-Risk: Generated HTML is built from external content data and is opened automatically in a local browser. <br>
-Mitigation: Review or sanitize report fields before regular use, and disable browser auto-open if the execution environment handles untrusted HTML cautiously. <br>
-Risk: Reports and cached query results may persist as local files. <br>
-Mitigation: Store outputs in an approved local directory and delete generated reports or cache files when they are no longer needed. <br>
+## Use Case:
 
+Content globalization creators, operations teams, MCN agencies, planners, and data analysts use this skill to monitor cross-platform trending content, compare platform and topic performance, and produce daily HTML and Markdown trend reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/multi-content-feed) <br>
-- [RedFoxHub](https://redfox.hk/) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?souce=github) <br>
-- [Core workflow](references/core_workflow.md) <br>
-- [Usage examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, HTML files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown terminal summary plus a local HTML daily report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; may write local JSON cache and HTML report files and open the generated HTML in a browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: HTML reports are built from remote API content and may automatically open in a browser; evidence.security flags unsafe escaping and recommends review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch report generation before use so API-sourced fields are escaped, URLs are limited to safe schemes, and browser opening requires explicit consent.
+
+Risk: The skill sends query filters and a RedFoxHub API key to redfox.hk and writes reports or cache files locally.
+
+Mitigation: Install only when comfortable with that data flow, scope and rotate the API key where possible, and treat local reports and cache files as potentially sensitive.
+
+Risk: The subscription feature is identified as unreliable by evidence.security guidance.
+
+Mitigation: Treat subscription output as untrusted until its documentation and behavior are checked in the installed environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/redfox-data/skills/multi-content-feed)
+- [Publisher Profile](https://clawhub.ai/user/redfox-data)
+- [RedFoxHub](https://redfox.hk)
+- [Core Workflow](artifact/references/core_workflow.md)
+- [Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML files, Shell commands, Configuration]
+
+**Output Format:** [Markdown summary with a generated HTML daily report and shell commands for the bundled Python workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a REDFOX_API_KEY; may send query filters to redfox.hk and write reports or cache files locally.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

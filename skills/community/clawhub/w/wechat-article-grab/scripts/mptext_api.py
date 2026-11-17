@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-mptext API 客户端 - https://down.mptext.top
+mptext API 客户端 - https://wechat.faiz-world.com
 用于微信公众号文章获取的替代 API
 
 API 端点:
@@ -27,8 +27,8 @@ from dotenv import load_dotenv
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # API 基础配置
-API_BASE_URL = "https://down.mptext.top"
-NO_SNI_API_BASE = "https://down.mptext.top"
+API_BASE_URL = "https://wechat.faiz-world.com"
+NO_SNI_API_BASE = "https://wechat.faiz-world.com"
 
 
 @dataclass

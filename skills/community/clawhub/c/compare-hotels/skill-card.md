@@ -1,38 +1,49 @@
-## Description: <br>
-Compare Hotels is advertised as a hotel comparison skill, but this release package contains empty files and may not provide working instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare hotel prices across multiple properties for the same dates, with side-by-side ratings, amenities, and value-for-money scoring.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travel planners or agent workflows would use this skill to compare hotel options for the same dates, including price, ratings, amenities, and value. This release should be treated as nonfunctional until the publisher uploads substantive instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The uploaded package is empty or broken, so agents may not perform the advertised hotel comparison task. <br>
-Mitigation: Confirm the installed artifact contains real instructions before relying on it, and wait for the publisher to upload a working release if the files are still empty. <br>
+## Use Case:
 
+Travel planners, booking agents, and external users use this skill to compare multiple hotel options for the same trip dates by price, rating, amenities, value, and booking links. The submitted artifact files are empty, so reviewers should confirm usable instructions are present before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/compare-hotels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style comparison guidance when usable; this release has no substantive instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Artifact files are empty, so no hotel comparison workflow or booking-link behavior can be verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release evidence) <br>
+Risk: The submitted artifact files are empty, so the package may provide no usable skill instructions or documented purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the release artifact contains complete skill instructions and supporting documentation before installing or publishing.
+
+## Reference(s):
+
+- [Compare Hotels on ClawHub](https://clawhub.ai/dingtom336-gif/skills/compare-hotels)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown comparison table with concise recommendations and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Release notes require real-time booking links and an explicit brand tag; artifact files are empty and should be reviewed before use.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,102 @@
+{
+  "name": "政采日报",
+  "description": "政府采购/招标信息每日采集、分析、汇总三段式流水线。自动抓取政采网站公开信息，筛选相关标品，生成每日简报。",
+  "category": "data-processing",
+  "version": "1.0",
+  "tags": ["政采", "招标", "日报", "监控"],
+  "three_elements": {
+    "time_estimate": "5-10 分钟",
+    "api_key_required": "不需要",
+    "output_files": ["gov_procurement_daily.md", "gov_procurement_state.json"]
+  },
+  "dependencies": [
+    {
+      "skill_id": "patsnap-search",
+      "install_link": "https://skillhub.cn/skill/patsnap-search",
+      "description": "智慧芽专利&文献融合检索（用于查专利相关标品）",
+      "required": false
+    },
+    {
+      "skill_id": "tencent-docs",
+      "install_link": "https://skillhub.cn/skill/tencent-docs",
+      "description": "腾讯文档（用于日报内容协作）",
+      "required": false
+    }
+  ],
+  "pipeline": {
+    "pipeline_name": "政采日报",
+    "version": "1.0",
+    "description": "每日政采信息自动采集与分析",
+    "agents": [
+      {
+        "id": "scraper",
+        "name": "政采信息抓取Agent",
+        "role": "从政府采购网、公共资源交易平台抓取招标公告、中标公告、变更公告",
+        "type": "task",
+        "inputs": ["keywords", "date_range"],
+        "outputs": ["raw_tenders"],
+        "depends_on": [],
+        "retry": 3,
+        "timeout": 120,
+        "fallback": "skip",
+        "comment": "首节点；抓取失败则跳过，避免阻塞"
+      },
+      {
+        "id": "filter",
+        "name": "标品筛选Agent",
+        "role": "按预设关键词/品类过滤无关标品，提取核心字段",
+        "type": "task",
+        "inputs": ["raw_tenders"],
+        "outputs": ["filtered_tenders"],
+        "depends_on": ["scraper"],
+        "retry": 2,
+        "timeout": 60,
+        "fallback": "default",
+        "default_value": {"filtered_tenders": []}
+      },
+      {
+        "id": "analyst",
+        "name": "政采分析Agent",
+        "role": "分析标品趋势、地区分布、供应商画像，识别异常模式",
+        "type": "task",
+        "inputs": ["filtered_tenders"],
+        "outputs": ["analysis", "risk_alerts"],
+        "depends_on": ["filter"],
+        "retry": 2,
+        "timeout": 120,
+        "fallback": "default",
+        "default_value": {"analysis": "数据不足", "risk_alerts": []}
+      },
+      {
+        "id": "approver",
+        "name": "风控审核",
+        "role": "人工审核风险预警项，确认后发布日报",
+        "type": "approval",
+        "inputs": ["risk_alerts"],
+        "outputs": ["approved_alerts"],
+        "depends_on": ["analyst"],
+        "retry": 0,
+        "timeout": 0,
+        "fallback": "abort",
+        "timeout_seconds": 300,
+        "timeout_action": "reject"
+      },
+      {
+        "id": "reporter",
+        "name": "日报生成Agent",
+        "role": "生成结构化政采日报（Markdown），含摘要、关键标品、风险提醒",
+        "type": "task",
+        "inputs": ["analysis", "approved_alerts"],
+        "outputs": ["daily_report"],
+        "depends_on": ["approver"],
+        "retry": 2,
+        "timeout": 180,
+        "fallback": "abort"
+      }
+    ],
+    "state_store": {
+      "type": "json",
+      "path": "./gov_procurement_state.json"
+    }
+  }
+}

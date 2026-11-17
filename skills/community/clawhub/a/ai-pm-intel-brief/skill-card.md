@@ -1,42 +1,55 @@
-## Description: <br>
-Creates concise AI product-management intelligence briefs from recent Twitter/X or similar high-signal sources, emphasizing key signals, product insights, excerpts, and links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a daily AI PM intelligence brief from Twitter/X or similar high-signal sources.
 
-## Publisher: <br>
-[QRG-cloud](https://clawhub.ai/user/QRG-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qrg-cloud](https://clawhub.ai/user/qrg-cloud)
 
-## Use Case: <br>
-AI product managers and product strategy teams use this skill to turn recent social posts or curated account watchlists into a selective daily brief with judgments, high-signal items, product implications, excerpts, and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may route broad news or trend-summary requests into an AI product-management brief workflow and may default to a Chinese brief template. <br>
-Mitigation: Use it when an AI product-management intelligence brief is intended, and specify language or scope when the default template is not appropriate. <br>
-Risk: Collecting recent social signals can expand beyond intended public sources or involve unnecessary account/session access. <br>
-Mitigation: Limit collection to intended public sources and avoid granting unnecessary account or session access. <br>
+## Use Case:
 
+External users and product teams use this skill to turn recent social posts and curated account watchlists into concise AI product-management intelligence briefs with key signals, product implications, excerpts, and links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QRG-cloud/ai-pm-intel-brief) <br>
-- [Output template](references/output-template.md) <br>
-- [Default watchlist](references/watchlist.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Markdown brief with judgments, ranked signals, summaries, product insights, optional excerpts, and source links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include partial-coverage notes when rate limits or unavailable accounts limit collection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Briefs may overstate weak or incomplete social-media signals if source coverage is partial or noisy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State coverage limits briefly, filter aggressively, and prefer a smaller set of high-signal posts over exhaustive feed summaries.
+
+Risk: The default output template is Chinese-first and may not match every user's expected language or format.
+
+Mitigation: Ask for or honor the user's preferred language and structure when they specify one.
+
+## Reference(s):
+
+- [Output Template](artifact/references/output-template.md)
+- [Default Watchlist](artifact/references/watchlist.txt)
+- [ClawHub Skill Page](https://clawhub.ai/qrg-cloud/skills/ai-pm-intel-brief)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown brief with concise judgments, synthesized signal summaries, optional short excerpts, and original links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first default template; users can request another language, source set, time range, or brief structure.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Register and manage an automated agent wallet to create, join, bet 1 USDC, play, and settle real-time turn-based games on the Bout.Network protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register and manage an automated agent wallet to create, join, bet 1 USDC, play, and settle real-time turn-based games on the Bout.Network protocol.
 
-## Publisher: <br>
-[hellojun](https://clawhub.ai/user/hellojun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hellojun](https://clawhub.ai/user/hellojun)
 
-## Use Case: <br>
-Developers building automated game agents use this skill to set up a wallet, register with Bout.Network, create or join Gomoku rooms, submit moves, and settle paid Base Sepolia matches. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authority to use a blockchain wallet for paid game entries and stores the wallet key locally. <br>
-Mitigation: Review before installing, use only a disposable testnet wallet with no mainnet funds, keep strict spending limits, and require manual approval before room creation or joining when unattended paid entries are not desired. <br>
-Risk: Quick-start scripts and external packages can execute payment and game-loop behavior on behalf of the agent. <br>
-Mitigation: Inspect external scripts and dependencies before running them, and verify wallet, RPC, x402, and API settings in a controlled environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hellojun/boutnetwork) <br>
-- [Bout.Network](https://bout.network) <br>
-- [Bout quick start guide](https://bout.network/example-scripts/QUICKSTART.md) <br>
-- [Bout bot main script](https://bout.network/example-scripts/bout-bot.mjs) <br>
-- [Gomoku AI logic](https://bout.network/example-scripts/gomoku-ai.mjs) <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure an autonomous game-playing agent for Bout.Network, including wallet setup, registration, x402-paid room creation or joining, Gomoku move submission, polling, and settlement checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash, TypeScript, Python, JSON, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides wallet setup, API registration, x402 payment setup, room creation or joining, polling gameplay, move submission, and settlement checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs an autonomous agent to use a locally stored wallet for repeated 1 USDC Base Sepolia payments.
+
+Mitigation: Use a dedicated low-balance wallet, keep spending limits or confirmations in place, and review each room creation or join policy before execution.
+
+Risk: The quick-start path relies on mutable remote scripts that can change after review.
+
+Mitigation: Inspect, download, and pin remote script contents before running them.
+
+Risk: Wallet secrets may be stored in shell-sourced environment files.
+
+Mitigation: Store secrets with restricted permissions, avoid broad shell sourcing where possible, and never reuse production keys.
+
+## Reference(s):
+
+- [Bout.Network](https://bout.network)
+- [Bout.Network Quick Start Guide](https://bout.network/example-scripts/QUICKSTART.md)
+- [Bout Bot Main Script](https://bout.network/example-scripts/bout-bot.mjs)
+- [Gomoku AI Logic](https://bout.network/example-scripts/gomoku-ai.mjs)
+- [ClawHub Skill Page](https://clawhub.ai/hellojun/skills/boutnetwork)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with bash, TypeScript, Python, curl, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet setup, x402 payment flow, HTTP polling, Gomoku strategy, and settlement guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

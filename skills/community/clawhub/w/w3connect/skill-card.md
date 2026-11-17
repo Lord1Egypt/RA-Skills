@@ -1,42 +1,59 @@
-## Description: <br>
-Access to blockchain asset and transaction signature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets an ETH-compatible wallet address and triggers ETH or USDC transfers on Base through a local wallet service with one-time authenticator-code verification.
 
-## Publisher: <br>
-[kernel1983](https://clawhub.ai/user/kernel1983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kernel1983](https://clawhub.ai/user/kernel1983)
 
-## Use Case: <br>
-Developers and agent operators use W3connect to retrieve an ETH-compatible wallet address and initiate ETH or USDC transfers through a local wallet service with authenticator-code verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate real ETH or USDC transfers through a local wallet service. <br>
-Mitigation: Confirm chain, token, amount, and recipient address or email outside the agent before authorizing any transaction. <br>
-Risk: The local web3b0x service at 127.0.0.1:5333 is not verified by the artifact files. <br>
-Mitigation: Install and use the skill only after separately verifying and trusting the local service. <br>
-Risk: An authenticator code functions as authorization to move funds. <br>
-Mitigation: Treat each code as sensitive and one-time use, and keep only limited funds in the connected wallet. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kernel1983/w3connect) <br>
-- [Publisher profile](https://clawhub.ai/user/kernel1983) <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent retrieve a wallet address, prepare local wallet-service calls, and initiate ETH or USDC transfers when the user supplies and verifies the required payment details.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target a local web3b0x service at 127.0.0.1:5333 and may initiate real ETH or USDC transfers when supplied with valid parameters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agent-triggered payment commands can transfer real ETH or USDC.
+
+Mitigation: Require manual review before every payment and personally verify the destination address or email, token, chain, amount, and fees.
+
+Risk: Authenticator codes are sensitive and may be exposed through URLs, command lines, or shared logs.
+
+Mitigation: Avoid placing authenticator codes in shared logs or transcripts and only provide them when ready to execute a reviewed transaction.
+
+Risk: The skill depends on a trusted local wallet service to perform address lookup and transfers.
+
+Mitigation: Install and use the skill only when the local wallet service is trusted and under the user's control.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kernel1983/skills/w3connect)
+- [GET_ADDRESS.md](artifact/GET_ADDRESS.md)
+- [SEND.md](artifact/SEND.md)
+- [PAY_TO_EMAIL.md](artifact/PAY_TO_EMAIL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl commands for local wallet-service endpoints.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

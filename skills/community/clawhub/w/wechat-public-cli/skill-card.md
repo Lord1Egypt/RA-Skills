@@ -1,43 +1,60 @@
-## Description: <br>
-Publish and download WeChat Public Platform content and Baijiahao articles via a local CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish and download WeChat Public Platform content and Baijiahao articles via a local CLI.
 
-## Publisher: <br>
-[ai-chen2050](https://clawhub.ai/user/ai-chen2050) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-chen2050](https://clawhub.ai/user/ai-chen2050)
 
-## Use Case: <br>
-Developers and content operators use this skill to prepare, publish, download, and inspect WeChat Public Platform and Baijiahao content through `wechat-public-cli` commands. It also guides configuration of account credentials, article metadata, custom CSS, downloads, and statistics queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live WeChat and Baijiahao account credentials. <br>
-Mitigation: Keep `wechat-public.config.json` out of source control and shared folders, prefer environment variables or a secret store, and restrict local file permissions. <br>
-Risk: Publish and send-all commands can affect live public accounts and audiences. <br>
-Mitigation: Require explicit human confirmation before running publish or send-all commands, and review article metadata, media, and recipient scope before execution. <br>
-Risk: The skill depends on an external local CLI and upstream package or repository. <br>
-Mitigation: Install only when the publisher and external CLI are trusted, and review the package or repository before granting account credentials. <br>
+## Use Case:
 
+Developers and content operators use this skill to prepare, publish, download, and inspect WeChat Public Platform and Baijiahao article content through a local command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ai-chen2050/wechat-public-cli) <br>
-- [Declared project homepage](https://github.com/ai-chen2050/obsidian-wechat-public-platform) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, JSON, and CSS examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local CLI usage guidance for commands that may publish content, send messages, download articles, emit JSON statistics, or update article styling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The workflow installs mutable third-party CLI code before running account-impacting commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and repository before installation and prefer a pinned local version over global npm or unpinned npx.
+
+Risk: The workflow uses sensitive WeChat and Baijiahao credentials.
+
+Mitigation: Keep credentials out of source control, use restricted file permissions, and prefer environment or local configuration controls appropriate for the deployment.
+
+Risk: Publish and send-all commands can change external account state or distribute content broadly.
+
+Mitigation: Require explicit human review before executing publishing or send-all commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-chen2050/skills/wechat-public-cli)
+- [Publisher profile](https://clawhub.ai/user/ai-chen2050)
+- [Skill homepage](https://github.com/ai-chen2050/obsidian-wechat-public-platform)
+- [OpenClaw install repository](https://github.com/ai-chen2050/obsidian-wechat-public-platform.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and article frontmatter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include publishing commands that affect external WeChat or Baijiahao accounts.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

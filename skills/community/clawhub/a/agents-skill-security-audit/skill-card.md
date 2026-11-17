@@ -1,42 +1,49 @@
-## Description: <br>
-Minimal helper to audit skill.md-style instructions for supply-chain risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minimal helper to audit skill.md-style instructions for supply-chain risks.
 
-## Publisher: <br>
-[cerbug45](https://clawhub.ai/user/cerbug45) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cerbug45](https://clawhub.ai/user/cerbug45)
 
-## Use Case: <br>
-Developers and engineers use this skill to scan skill.md-style instructions for common supply-chain risk indicators before installing, sharing, or releasing a skill. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated report can include snippets from the scanned file. <br>
-Mitigation: Review or redact reports before sharing them outside the intended review context. <br>
-Risk: The scanner reads local files selected by the user. <br>
-Mitigation: Run it only against files intentionally chosen for skill-audit review. <br>
-Risk: Heuristic findings may miss issues or flag benign text. <br>
-Mitigation: Use the report as a lightweight screening aid and keep manual review in the release process. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cerbug45/agents-skill-security-audit) <br>
-- [README.md](artifact/README.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to scan skill instruction files for supply-chain risk indicators and receive a concise review report.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with risk level, findings, line references, and suggested action] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-selected local file and prints a report to standard output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scanner may produce false positives because it matches risky words in documentation or detection rules.
+
+Mitigation: Treat reports as review aids and confirm findings through manual inspection before blocking or approving a skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cerbug45/skills/agents-skill-security-audit)
+- [Publisher Profile](https://clawhub.ai/user/cerbug45)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown risk report with risk level, finding bullets, and suggested action]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a user-provided skill file path and writes the report to standard output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+{
+  "name": "graph-memory",
+  "version": "1.0.0",
+  "description": "Query the agent's knowledge graph for entities, relationships, and statistics.",
+  "author": "OpenClaw Community",
+  "license": "MIT"
+}

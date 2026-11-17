@@ -1,47 +1,69 @@
-## Description: <br>
-Tai Alpha stock analysis - collect market data, run VectorBT backtests for RSI/MACD/BB strategies, generate conviction scores, and optionally run ML with SQLite persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tai Alpha stock analysis - collect, VectorBT backtest (RSI/MACD/BB), conviction score, optional ML, and SQLite persistence.
 
-## Publisher: <br>
-[cplog](https://clawhub.ai/user/cplog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cplog](https://clawhub.ai/user/cplog)
 
-## Use Case: <br>
-External users and developers use this skill to run ticker-level stock analysis workflows that collect market data, backtest strategies, score conviction, produce reports, and persist runs to SQLite for later inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-data calls and optional crypto scanning may contact external data services and return delayed, sparse, or unavailable data. <br>
-Mitigation: Install only when those network calls are acceptable, review data-source terms, and treat generated analysis as informational rather than investment advice. <br>
-Risk: Analysis runs are persisted to a local SQLite database that may contain ticker analyses and watchlist data. <br>
-Mitigation: Set TAI_ALPHA_DB_PATH or TAI_ALPHA_OUTPUT_DIR to an approved storage location and manage the database according to local retention and access requirements. <br>
-Risk: Backtests, conviction scores, and optional ML output can be mistaken for validated financial recommendations. <br>
-Mitigation: Use the reports as decision-support material only, review the documented limitations, and consult appropriate professionals before making investment decisions. <br>
+## Use Case:
 
+Developers and analysts use this skill to run ticker-level market data collection, backtests, conviction scoring, optional ML estimates, persona overlays, reports, alerts, and portfolio or sector comparisons. Outputs are informational and are not financial, tax, legal, or investment advice.
 
-## Reference(s): <br>
-- [Tai Alpha Stock ClawHub listing](https://clawhub.ai/cplog/tai-alpha-stock) <br>
-- [Setup README](setup/README.md) <br>
-- [User Flow](setup/USERFLOW.md) <br>
-- [Disclaimer and Limitations](setup/docs/guides/DISCLAIMER_AND_LIMITATIONS.md) <br>
-- [SQLite documentation](setup/docs/database/SQLITE.md) <br>
-- [Persona ecosystem guide](setup/docs/guides/PERSONA_ECOSYSTEM_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, text reports, JSON score output, and SQLite-backed run records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informational stock-analysis artifacts and may depend on external market-data availability and local SQLite storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.33.1 (source: server release evidence and pyproject.toml) <br>
+Risk: Market data may be delayed, sparse, or incorrect, especially outside the primary US-listed symbol target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as informational only, verify source data independently, and review jurisdiction-specific market data terms before operational use.
+
+Risk: Backtests, conviction scores, and optional ML estimates can be misleading if interpreted as forecasts or recommendations.
+
+Mitigation: Review assumptions, slippage, fees, liquidity, and model limitations before acting; do not use outputs as financial advice.
+
+Risk: The skill writes analysis and alert data to a local SQLite database and may perform market-data network calls.
+
+Mitigation: Run in an appropriate environment, configure database paths deliberately, and avoid storing sensitive watchlists or credentials in shared workspaces.
+
+Risk: The optional publishing helper installs or invokes publishing tooling and deserves extra caution.
+
+Mitigation: Run publishing helpers only in isolated environments with scoped credentials, or replace runtime dependency installation with a locked and reviewed dependency flow.
+
+## Reference(s):
+
+- [Tai Alpha Stock on ClawHub](https://clawhub.ai/cplog/skills/tai-alpha-stock)
+- [Publisher profile](https://clawhub.ai/user/cplog)
+- [Setup and docs](setup/README.md)
+- [User flow](setup/USERFLOW.md)
+- [API reference](setup/docs/guides/API_REFERENCE.md)
+- [SQLite storage](setup/docs/database/SQLITE.md)
+- [Disclaimer and limitations](setup/docs/guides/DISCLAIMER_AND_LIMITATIONS.md)
+- [openclaw stock-analysis inspiration](https://github.com/openclaw/skills/tree/main/skills/udiedrichsen/stock-analysis)
+- [UZI-Skill inspiration](https://github.com/wbh604/UZI-Skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands, JSON-like analysis payloads, SQLite records, and generated reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch market data from Yahoo/yfinance and optional CoinGecko; analysis runs are persisted to a local SQLite database unless configured otherwise.]
+
+## Skill Version(s):
+
+1.33.1 (source: release evidence and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

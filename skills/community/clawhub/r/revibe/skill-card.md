@@ -1,45 +1,59 @@
-## Description: <br>
-Analyze any codebase - architecture, patterns, diagrams, and agent context - so developers can understand repositories quickly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze codebases for architecture, patterns, diagrams, and agent context so developers and agents can understand repositories quickly.
 
-## Publisher: <br>
-[selvatuple](https://clawhub.ai/user/selvatuple) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[selvatuple](https://clawhub.ai/user/selvatuple)
 
-## Use Case: <br>
-Developers and engineers use Revibe Codes to analyze GitHub repositories, understand architecture and design decisions, inspect file roles and execution flows, and save structured codebase context for follow-on agent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository URLs and source code are sent to Revibe for analysis and stored for later exploration and re-analysis. <br>
-Mitigation: Use the skill only with repositories you are authorized to analyze, and review Revibe privacy terms before using it with private or sensitive code. <br>
-Risk: The Revibe API key is required for authentication and is sent with analysis requests. <br>
-Mitigation: Store REVIBE_API_KEY in the agent configuration or environment, avoid pasting it into prompts or logs, and rotate it if exposure is suspected. <br>
-Risk: Generated repository summaries, diagrams, and agent_context.json may be incomplete or inaccurate. <br>
-Mitigation: Review the generated analysis against the repository before relying on it for architecture, security, or implementation decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to submit a GitHub repository for Revibe analysis, review architecture and design summaries, inspect drill-down sections, and save agent_context.json for later agent work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/selvatuple/revibe) <br>
-- [Publisher Profile](https://clawhub.ai/user/selvatuple) <br>
-- [Revibe Codes](https://www.revibe.codes) <br>
-- [Revibe App](https://app.revibe.codes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, JSON agent context, shell commands, and optional rendered HTML diagrams.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVIBE_API_KEY, curl, jq, and git; saves agent_context.json in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Repository code can be sent to and retained by Revibe for analysis and re-analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for repositories whose code may be shared with Revibe, and review Revibe privacy and retention terms before using it with private, proprietary, regulated, or client code.
+
+Risk: Broad or silent triggers may analyze the current repository without strong per-run consent.
+
+Mitigation: Prefer explicit repository URLs and confirm the target repository before submission, especially when working in private or sensitive workspaces.
+
+Risk: Reducing permission prompts with broad allowed-tools grants can allow network calls with less user friction.
+
+Mitigation: Grant only the narrow tool permissions needed for trusted use, and avoid broad allowed-tools entries unless the Revibe service and current workspace are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/selvatuple/skills/revibe)
+- [Revibe homepage](https://www.revibe.codes)
+- [Revibe app](https://app.revibe.codes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, html, guidance]
+
+**Output Format:** [Markdown summaries with JSON agent context and optional HTML diagram files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REVIBE_API_KEY plus curl, jq, and git; saves agent_context.json in the working directory.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

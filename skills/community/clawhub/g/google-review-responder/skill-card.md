@@ -1,47 +1,63 @@
-## Description: <br>
-Review Responder monitors configured Google Business Profile reviews, drafts industry-aware replies, routes drafts for operator approval, and posts approved responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agencies and consultants monitor client Google Business Profile reviews, draft tailored replies, and route them for operator approval before posting.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-Agencies, consultants, and operators use this skill to manage Google Business Profile review replies across configured client accounts. It drafts responses with rating and industry constraints, then requires operator approval before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Google OAuth client secrets and refresh tokens locally, which can provide ongoing access to client Google Business Profile data if exposed. <br>
-Mitigation: Store client JSON files outside source control with restrictive filesystem permissions or an encrypted secrets store, and maintain a token revocation and rotation plan. <br>
-Risk: The included scripts can post public Google Business Profile replies and do not provide a separate technical approval check. <br>
-Mitigation: Require a fresh operator approval before any reply command is run, and review the exact final reply text before publication. <br>
-Risk: Regulated-industry replies can create compliance risk if drafts reference protected health information, case details, or other sensitive client information. <br>
-Mitigation: Apply the medical, legal, and other industry profiles on every draft, keep regulated replies general, and have operators review drafts against their own compliance policies. <br>
+## Use Case:
 
+Agencies and consultants managing configured client locations use this skill to check for unanswered Google Business Profile reviews, prepare industry-aware replies, and seek operator approval before publishing.
 
-## Reference(s): <br>
-- [ClawHub Listing](https://clawhub.ai/chris-openclaw/google-review-responder) <br>
-- [Publisher Profile](https://clawhub.ai/user/chris-openclaw) <br>
-- [README](artifact/README.md) <br>
-- [Setup Guide](artifact/SETUP.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
-- [Google OAuth Token Endpoint](https://oauth2.googleapis.com/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft review replies, approval prompts, pending-review summaries, and posting confirmations; public replies require operator approval before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata, SKILL.md frontmatter, and CHANGELOG.md released 2026-06-08) <br>
+Risk: Long-lived per-client Google OAuth credentials are accessible locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials in a protected secrets location with restricted access; never paste refresh tokens into chat or approval messages.
+
+Risk: The reply command can publish public business responses without a built-in approval-state check.
+
+Mitigation: Restrict who can run the reply command and require explicit operator approval and review of the exact reply before each post.
+
+Risk: Public exposure of the web-based OAuth onboarding server could compromise client credentials.
+
+Mitigation: Do not expose the onboarding server publicly unless client identifier handling, authentication, HTTPS, file permissions and overwrite protections are fixed.
+
+Risk: Public replies for regulated clients may reveal sensitive information or imply compliance assurances.
+
+Mitigation: Have operators review industry-specific drafts, omit patient information from medical replies, and verify compliance with their own policies.
+
+## Reference(s):
+
+- [Review Responder on ClawHub](https://clawhub.ai/chris/skills/google-review-responder)
+- [Setup and client onboarding](artifact/SETUP.md)
+- [Skill instructions and privacy scope](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Plain-text review summaries, draft replies and approval messages; operational commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies can be published publicly after operator approval; approval is not technically enforced by the reply command.]
+
+## Skill Version(s):
+
+2.1.1 (source: ClawHub release metadata; bundled documentation identifies 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

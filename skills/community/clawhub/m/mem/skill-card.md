@@ -1,40 +1,53 @@
-## Description: <br>
-Search local memory index (local-first). Use for /mem queries in Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches a local memory index and returns top hits for Telegram /mem queries.
 
-## Publisher: <br>
-[Trumppo](https://clawhub.ai/user/Trumppo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trumppo](https://clawhub.ai/user/trumppo)
 
-## Use Case: <br>
-Developers and operators use this skill to search a cached local memory index for /mem queries and return relevant paths, headers, and brief summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on local helper scripts that are not included in the package. <br>
-Mitigation: Verify that scripts/index-memory.py and scripts/search-memory.py on the target machine are trusted before invoking the skill. <br>
-Risk: The local memory index may contain secrets or private folders that should not be summarized in chat. <br>
-Mitigation: Review the indexed locations and exclude sensitive content before running searches or sharing summarized results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Trumppo/mem) <br>
-- [Publisher profile](https://clawhub.ai/user/Trumppo) <br>
+## Use Case:
 
+External users or agents use this skill to query a local memory index, return top hits with paths and headers, and briefly summarize results when helpful.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and summarized search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns top memory hits with paths and headers; summaries should avoid exposing unnecessary private content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on local scripts that are not bundled with the artifact to index and search memory data.
+
+Mitigation: Review and control scripts/index-memory.py and scripts/search-memory.py in the deployment before allowing execution.
+
+Risk: The memory index may include private chats, credentials, or business data without a defined data scope.
+
+Mitigation: Limit the indexed data scope, restrict index access, and avoid indexing secrets or sensitive records unless explicitly approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trumppo/skills/mem)
+- [ClawHub publisher profile](https://clawhub.ai/user/trumppo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text summaries with command-oriented guidance and search-result paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns top hits with paths and headers; may summarize briefly.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

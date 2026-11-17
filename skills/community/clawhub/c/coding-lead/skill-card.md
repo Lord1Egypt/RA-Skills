@@ -1,47 +1,54 @@
-## Description: <br>
-Coding Lead guides implementation-focused agents through task classification, direct execution, Claude ACP or acpx fallback, context-file continuity, and optional qmd and smart-agent-memory use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coding execution skill for any implementation-focused agent. Current production path is claude-only with simple tasks direct, medium tasks preferring ACP run or direct acpx, and complex tasks handled via existing agent continuity plus context files instead of ACP session persistence. Integrates with qmd and smart-agent-memory when available.
 
-## Publisher: <br>
-[beyound87](https://clawhub.ai/user/beyound87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beyound87](https://clawhub.ai/user/beyound87)
 
-## Use Case: <br>
-Developers and implementation-focused agents use this skill to classify coding tasks, choose direct execution or Claude ACP execution paths, preserve context across medium and complex work, and verify implementation results before completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents that can modify code and run local commands. <br>
-Mitigation: Install it only for agents intended to perform coding work, use it in version-controlled project directories, and review diffs and commands before accepting changes. <br>
-Risk: Context files and memory entries may accidentally retain secrets or customer data. <br>
-Mitigation: Keep .openclaw context files and memory entries free of secrets and sensitive data, and clean up temporary context files after task completion. <br>
-Risk: Optional helper tools such as acpx, qmd, and smart-agent-memory affect execution behavior. <br>
-Mitigation: Verify helper tools come from trusted sources, detect availability per session, and fall back to direct execution when tools are unavailable or fail. <br>
-Risk: Running coding agents from configuration directories can damage local agent setup. <br>
-Mitigation: Confirm the intended project working directory before spawning agents or writing files, and avoid spawning coding agents in ~/.openclaw/. <br>
+## Use Case:
 
+Developers and implementation-focused agents use this skill to classify coding tasks by complexity, choose direct execution or Claude ACP execution paths, preserve task context on disk, and verify coding work before completion.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/beyound87/coding-lead) <br>
-- [README](README.md) <br>
-- [Prompt Templates & Examples](references/prompt-templates.md) <br>
-- [Complex Tasks - Roles, QA Isolation, Parallel Strategies](references/complex-tasks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, file paths, context-file templates, and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are task-dependent and may include code edits, command recommendations, context files, verification notes, and fallback guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.6 (source: server release evidence) <br>
+Risk: A documented direct acpx fallback can run generated prompt text through a shell command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in sensitive workspaces and change the fallback to use structured arguments with an explicit working directory.
+
+Risk: The skill is designed to let agents edit files, run commands, spawn coding agents, and store project context.
+
+Mitigation: Review and scan the skill before deployment, restrict use to intended workspaces, and verify the working directory before writes or spawns.
+
+## Reference(s):
+
+- [Prompt Templates & Examples](references/prompt-templates.md)
+- [Complex Tasks - Roles, QA Isolation, Parallel Strategies](references/complex-tasks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to create or update project context files and implementation prompts.]
+
+## Skill Version(s):
+
+3.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

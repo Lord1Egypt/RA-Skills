@@ -1,43 +1,54 @@
-## Description: <br>
-Scans agent skills for security threats using the Cisco AI skill-scanner CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan agent skills for security threats using the Cisco AI skill-scanner CLI.
 
-## Publisher: <br>
-[godsboy](https://clawhub.ai/user/godsboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godsboy](https://clawhub.ai/user/godsboy)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to scan agent skill directories for prompt injection, data exfiltration, credential harvesting, malicious code patterns, and publish-blocking security findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional LLM-assisted scanning can send skill content to an external model provider. <br>
-Mitigation: Use the default behavioral scan for private or sensitive skills and enable full LLM mode only for content approved for external processing. <br>
-Risk: Installing the external skill-scanner CLI directly into a shared Python environment can affect other tooling. <br>
-Mitigation: Install the CLI in an isolated Python environment or container before running scans. <br>
-Risk: A clean scan means no known threat patterns were detected, not that a skill is guaranteed safe. <br>
-Mitigation: Pair scanner results with human review and re-scan before deployment or publication. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan agent skill directories before installation or publication for prompt-injection, data-exfiltration, credential-harvesting, and malicious-code risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/godsboy/cisco-skill-scanner) <br>
-- [Cisco AI skill-scanner repository](https://github.com/cisco-ai-defense/skill-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and scanner report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default scans use behavioral analysis without an API key; full LLM-assisted scans require an approved API key and may process skill content externally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Installing the scanner package can create supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it in an isolated environment such as pipx or a virtualenv, and pin the package version where possible.
+
+Risk: Full LLM scan mode may send scanned skill content to the configured provider.
+
+Mitigation: Avoid full LLM scans on private or proprietary skills unless sharing the scanned content with that provider is approved.
+
+## Reference(s):
+
+- [Cisco AI Skill Scanner on ClawHub](https://clawhub.ai/godsboy/skills/cisco-skill-scanner)
+- [Cisco AI skill-scanner project](https://github.com/cisco-ai-defense/skill-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command examples and scanner report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default scans use static and behavioral analysis; full scans can use an LLM analyzer when an API key is configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

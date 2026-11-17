@@ -1,4 +1,5 @@
-# 组合层风控、Override Protocol 与对冲
+
+> **Disclaimer:** This framework is a general risk-discipline reference, not individualized investment advice — portfolio actions below are examples of discipline rules, not recommendations for any specific account. Apply judgment for your own situation.
 
 ## 7 红线（不可 Override）
 

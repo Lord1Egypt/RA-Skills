@@ -1,44 +1,61 @@
-## Description: <br>
-Telegram Mini App Canvas renders agent-generated HTML, markdown, text, or A2UI content in a Telegram Mini App, with a JWT-gated browser terminal and an optional OpenClaw Control UI proxy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Telegram Mini App Canvas renders agent-generated HTML, markdown, and A2UI content in a Telegram Mini App with `tg-canvas push`, a JWT-gated server terminal, and an optional OpenClaw Control UI proxy disabled by default.
 
-## Publisher: <br>
-[clvv](https://clawhub.ai/user/clvv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clvv](https://clawhub.ai/user/clvv)
 
-## Use Case: <br>
-Developers and agent operators use this server skill to push live agent-generated UI content into Telegram and optionally access a protected terminal or OpenClaw Control UI from approved Telegram users. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pushed web content can execute scripts inside the Telegram Mini App context. <br>
-Mitigation: Prefer markdown or text payloads over untrusted HTML and only allow trusted agents or operators to push content. <br>
-Risk: The browser terminal grants shell access on the machine running the server to approved Telegram users. <br>
-Mitigation: Run the server as a non-root user on an isolated host or container and keep ALLOWED_USER_IDS limited to users trusted with shell access. <br>
-Risk: Public tunnels can make loopback-origin checks unreliable for push and clear endpoints. <br>
-Mitigation: Use a strong PUSH_TOKEN and keep it secret; the server refuses startup when PUSH_TOKEN is missing. <br>
-Risk: The optional OpenClaw Control UI proxy can expose local control functionality through the Mini App. <br>
-Mitigation: Leave ENABLE_OPENCLAW_PROXY disabled unless needed and protect any enabled Control UI path with strong authentication and narrow user access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clvv/openclaw-tg-canvas) <br>
-- [Publisher profile](https://clawhub.ai/user/clvv) <br>
+## Use Case:
 
+Developers and engineers use this skill to publish agent-generated HTML, markdown, text, or A2UI content to a Telegram Mini App canvas and optionally access a JWT-gated server terminal or OpenClaw Control UI proxy.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, HTML/text payloads, JSON API responses, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, cloudflared, Telegram bot configuration, BOT_TOKEN, ALLOWED_USER_IDS, JWT_SECRET, MINIAPP_URL, and PUSH_TOKEN.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.6 (source: evidence.release.version and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Approved Telegram users can obtain powerful shell access on the server through the terminal feature.
+
+Mitigation: Only include fully trusted Telegram IDs in ALLOWED_USER_IDS and run the service as a dedicated unprivileged user or in an isolated container.
+
+Risk: Exposed tunnels can make local push and clear endpoints reachable in ways that weaken loopback-only assumptions.
+
+Mitigation: Keep PUSH_TOKEN strong and private, rotate it if exposed, and do not rely on loopback checks as the only protection when using cloudflared or similar tunnels.
+
+Risk: Pushed HTML scripts execute in the Mini App context.
+
+Mitigation: Push content only from trusted agents or workflows and review generated HTML before using it in sensitive sessions.
+
+Risk: The optional OpenClaw Control UI proxy can expose local control surfaces through the Mini App.
+
+Mitigation: Leave ENABLE_OPENCLAW_PROXY disabled unless needed and ensure any upstream control service has strong access control before enabling it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clvv/skills/openclaw-tg-canvas)
+- [Publisher Profile](https://clawhub.ai/user/clvv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML, JSON/A2UI payloads, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can push canvas content through a CLI or HTTP endpoint and can expose a browser terminal for approved Telegram users.]
+
+## Skill Version(s):
+
+0.2.6 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

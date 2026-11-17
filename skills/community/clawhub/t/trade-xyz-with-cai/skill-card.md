@@ -1,45 +1,56 @@
-## Description: <br>
-Trade HIP-3 markets on trade.xyz via CAI using Hyperliquid Route B tools for xyz:SYMBOL assets, with CAI API credentials and platform or full API scope. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade HIP-3 markets on trade.xyz via CAI using Hyperliquid Route B tools for xyz:SYMBOL assets, orders, positions, and cancellations.
 
-## Publisher: <br>
-[bernardtai](https://clawhub.ai/user/bernardtai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bernardtai](https://clawhub.ai/user/bernardtai)
 
-## Use Case: <br>
-External users and developers use this skill to guide CAI-assisted trade.xyz HIP-3 market activity, including placing, checking, and cancelling xyz:SYMBOL orders through the CAI Hyperliquid route. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide live CAI/Hyperliquid trading actions that may create losses, fees, liquidation risk, or unintended exposure. <br>
-Mitigation: Require the user to review and explicitly confirm every order, cancellation, size, price, asset, and direction before any account-affecting action. <br>
-Risk: The skill requires sensitive CAI API credentials and may require platform or full API scope. <br>
-Mitigation: Use the least-privileged API scope available, store credentials only through the approved secrets mechanism, and rotate or revoke credentials when access is no longer needed. <br>
-Risk: Incorrect asset symbols, dex parameters, or order identifiers can route actions to the wrong market or cancel the wrong order. <br>
-Mitigation: Validate xyz:SYMBOL assets, dex values, order identifiers, and account readiness against CAI or Hyperliquid status data before submitting trade actions. <br>
+## Use Case:
 
+External developers and trading operators use this skill to guide agents through CAI-mediated trade.xyz HIP-3 market workflows, including placing, checking, and cancelling Hyperliquid builder-market orders.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bernardtai/trade-xyz-with-cai) <br>
-- [CAI skill reference, section 6.1b](https://cai.com/skill.md) <br>
-- [trade.xyz Hyperliquid XYZ and HIP-3 documentation](https://docs.trade.xyz/about-trade-xyz/hyperliquid-xyz-and-hip-3) <br>
-- [CAI developers documentation](https://cai.com/developers.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and structured trade parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CAI API key setup and trade/order parameter guidance for Hyperliquid Route B tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: release evidence and skill frontmatter) <br>
+Risk: The skill guides live trading and may require broad CAI platform or full API authority, creating financial-loss risk if credentials, balances, or permissions are misused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest available CAI key scope and only fund balances the user is comfortable risking.
+
+Risk: The security summary notes that the artifact does not clearly require explicit confirmation before live orders.
+
+Mitigation: Require explicit user confirmation for every live order, including asset, side, size, price, venue, and order action before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bernardtai/skills/trade-xyz-with-cai)
+- [CAI Canonical Skill Reference](https://cai.com/skill.md)
+- [trade.xyz HIP-3 Documentation](https://docs.trade.xyz/about-trade-xyz/hyperliquid-xyz-and-hip-3)
+- [CAI Developer Documentation](https://cai.com/developers.html)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline shell commands and structured parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference live-trading parameters including asset, side, size, price, order id, platform_slug, and dex.]
+
+## Skill Version(s):
+
+1.0.15 (source: evidence.release.version and artifact frontmatter metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

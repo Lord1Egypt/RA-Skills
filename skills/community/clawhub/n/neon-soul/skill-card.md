@@ -1,41 +1,53 @@
-## Description: <br>
-Automated soul synthesis for AI agents that extracts identity from memory files, promotes recurring patterns to axioms when they recur at least three times, and generates SOUL.md with provenance tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NEON-SOUL synthesizes an agent identity from memory files by extracting recurring patterns, promoting repeated signals to axioms, and generating SOUL.md with provenance tracking.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers and agent users use this skill to synthesize local memory files into an evolving SOUL.md identity document, inspect provenance for generated axioms, and manage backups or rollbacks of the generated soul state. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill processes personal memory files and summarizes them into identity files. <br>
-Mitigation: Run it only on memory data the user is comfortable summarizing, remove secrets or sensitive files first, and use dry-run or custom paths before writing outputs. <br>
-Risk: The security summary says generated identity data may be committed to git without clear user control. <br>
-Mitigation: Avoid running it in a git repository unless committing SOUL.md and .neon-soul outputs is intended; review generated files before any commit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/leegitw/neon-soul) <br>
-- [Project homepage](https://liveneon.ai) <br>
-- [Ollama local service endpoint](http://localhost:11434) <br>
+## Use Case:
 
+External developers and agent operators use NEON-SOUL to synthesize, inspect, audit, and roll back a local SOUL.md identity document from workspace memory files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and summarized JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local SOUL.md and .neon-soul state files; requires Node.js 22 or newer and a local Ollama service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.4.5 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review flags possible processing of private memory files and OpenClaw main-session conversation logs.
+
+Mitigation: Review local memory and session content before synthesis, remove secrets, keep Ollama local, and use --dry-run before writing outputs.
+
+Risk: The security review notes that a normal synthesis run may create a durable git commit containing SOUL.md.
+
+Mitigation: Run in a test or isolated workspace first, review SOUL.md before accepting changes, and avoid pushing commits until the generated content is approved.
+
+## Reference(s):
+
+- [NEON-SOUL ClawHub listing](https://clawhub.ai/leegitw/skills/neon-soul)
+- [Project homepage](https://liveneon.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown files, JSON status output, and concise natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes SOUL.md and .neon-soul state/backups in the local workspace; requires Node.js >=22 and local Ollama.]
+
+## Skill Version(s):
+
+0.4.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Comprehensive QA and testing skill for quality assurance, test automation, and testing strategies for ReactJS, NextJS, NodeJS applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive QA and testing skill for quality assurance, test automation, and testing strategies for ReactJS, NextJS, NodeJS applications.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to plan testing strategy, scaffold test suites, review coverage output, and apply QA best-practice guidance for ReactJS, NextJS, and NodeJS projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper scripts are lightweight placeholders and may overstate coverage analysis or test generation capability. <br>
-Mitigation: Review script output before relying on it and treat generated findings as starting points for QA review. <br>
-Risk: The --output option can overwrite the file path supplied by the user. <br>
-Mitigation: Run from a version-controlled project and choose an explicit disposable or reviewed output path. <br>
+## Use Case:
 
+Developers, QA engineers, and test automation practitioners use this skill for test strategy planning, test case writing, automation setup, manual testing guidance, and coverage review for ReactJS, NextJS, and NodeJS applications.
 
-## Reference(s): <br>
-- [Testing Strategies](references/testing_strategies.md) <br>
-- [Test Automation Patterns](references/test_automation_patterns.md) <br>
-- [Qa Best Practices](references/qa_best_practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, code examples, and optional JSON report output from helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts run locally against a target path and may write JSON output when --json and --output are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security review says the release overpromises automated QA capabilities while shipping mostly placeholder scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the helper scripts and replace placeholder analysis or scaffolding logic before relying on generated QA, coverage, or E2E outputs.
+
+Risk: The skill documentation includes broad npm, pip, Docker, docker-compose, and kubectl commands that can modify dependencies, local services, or cluster resources.
+
+Mitigation: Run commands only in trusted project environments and review proposed file changes, dependency updates, and deployment actions before applying them.
+
+## Reference(s):
+
+- [Testing Strategies](references/testing_strategies.md)
+- [Test Automation Patterns](references/test_automation_patterns.md)
+- [Qa Best Practices](references/qa_best_practices.md)
+- [ClawHub Skill Page](https://clawhub.ai/emersonbraun/skills/eb-senior-qa)
+- [Publisher Profile](https://clawhub.ai/user/emersonbraun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and optional JSON reports from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled scripts validate a target path and emit summary reports; evidence.security says users should inspect and replace placeholder logic before relying on them.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

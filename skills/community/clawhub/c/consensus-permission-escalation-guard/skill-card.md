@@ -1,47 +1,65 @@
-## Description: <br>
-Pre-execution governance for IAM and permission escalation changes that returns deterministic ALLOW, BLOCK, or REQUIRE_REWRITE decisions with strict schema validation, idempotency, and audit artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-execution governance for IAM and permission escalation changes, producing deterministic ALLOW, BLOCK, or REQUIRE_REWRITE decisions with strict schema validation, idempotency, and board-native audit artifacts.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers, platform engineers, and security reviewers use this skill to evaluate proposed IAM grants, scope expansions, role assumptions, and break-glass access before execution. It helps turn escalation requests into deterministic governance decisions and replayable audit records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Audit state is written to a configured filesystem path, which can create exposure if pointed at sensitive or system directories. <br>
-Mitigation: Use a dedicated non-privileged state directory, run as a non-root user, and constrain filesystem permissions. <br>
-Risk: An ALLOW decision may be mistaken for automatic authorization of sensitive production changes. <br>
-Mitigation: Treat ALLOW as a governance signal and retain human or procedural approval for high-impact permission changes. <br>
-Risk: The runtime depends on consensus-guard-core and transitive dependencies as part of the trust boundary. <br>
-Mitigation: Review and pin dependencies, keep the lockfile audited, and test in an isolated environment before production promotion. <br>
+## Use Case:
 
+Developers and platform engineers use this skill as a pre-execution gate for temporary admin elevation, service-account scope expansion, break-glass access requests, and production IAM permission changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaicianflone/consensus-permission-escalation-guard) <br>
-- [README](artifact/README.md) <br>
-- [Security Assurance Note](artifact/SECURITY-ASSURANCE.md) <br>
-- [Input schema](artifact/spec/input.schema.json) <br>
-- [consensus-guard-core npm package](https://www.npmjs.com/package/consensus-guard-core) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Guidance] <br>
-**Output Format:** [JSON decision object with optional JSON audit artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision values are ALLOW, BLOCK, or REQUIRE_REWRITE; runtime artifacts are written under the configured consensus state path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.13 (source: server release and package.json) <br>
+Risk: Caller-supplied policy constraints can influence high-impact permission escalation decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Supply policy constraints from trusted deployment configuration rather than from the requester.
+
+Risk: External-agent votes can affect approval outcomes without sufficient trusted scoping.
+
+Mitigation: Accept external votes only after authentication or signature checks, duplicate detection, freshness checks, and inclusion of vote evidence in replay decisions.
+
+Risk: State and decision artifacts are written to configured filesystem paths.
+
+Mitigation: Run with a dedicated non-privileged state directory, constrained filesystem permissions, and a non-root runtime user.
+
+Risk: Runtime behavior depends on npm dependencies including consensus-guard-core.
+
+Mitigation: Pin and audit dependencies before deployment and review consensus-guard-core as part of the trust boundary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaicianflone/skills/consensus-permission-escalation-guard)
+- [Security Assurance Note](artifact/SECURITY-ASSURANCE.md)
+- [Input schema](artifact/spec/input.schema.json)
+- [consensus-guard-core npm package](https://www.npmjs.com/package/consensus-guard-core)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Guidance]
+
+**Output Format:** [JSON decision response with audit artifact references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns ALLOW, BLOCK, or REQUIRE_REWRITE with policy flags, votes, aggregation details, required actions, and board write references.]
+
+## Skill Version(s):
+
+0.1.13 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

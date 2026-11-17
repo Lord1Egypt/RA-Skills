@@ -1,0 +1,8 @@
+# UI/UX review dimension
+name: "UI/UX"
+name_en: "UI/UX"
+priority: medium
+focus: |
+  Loading/empty/error/success states, navigation completeness.
+  Responsive breakpoints, accessibility (a11y), keyboard navigation.
+  Consistency in copy, spacing, color, motion.

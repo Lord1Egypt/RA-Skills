@@ -1,39 +1,54 @@
-## Description: <br>
-Context Engine maintains and restores conversation and project context across OpenClaw sessions, including active projects, pending tasks, notes, and summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains conversation state and project continuity across OpenClaw sessions by tracking active projects, saving and restoring context, and supporting project management.
 
-## Publisher: <br>
-[deus-pandora](https://clawhub.ai/user/deus-pandora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deus-pandora](https://clawhub.ai/user/deus-pandora)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to keep project continuity across sessions, restore previous context, switch between projects, and summarize active work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project memory persists across sessions and may retain sensitive notes, commands, or credentials if users save them. <br>
-Mitigation: Avoid saving secrets, credentials, or sensitive commands; periodically review or remove the JSON files under /home/deus/.openclaw/workspace/memory/projects/. <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve project context across sessions, restore the last active project, track pending tasks and notes, and switch between active projects.
 
-## Reference(s): <br>
-- [Context Engine API Reference](references/API.md) <br>
-- [ClawHub release page](https://clawhub.ai/deus-pandora/deus-context-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON command responses and concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores project and session context in local JSON files under /home/deus/.openclaw/workspace/memory/projects/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Saved project context may include sensitive notes, filenames, commands, tasks, or other confidential session details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving secrets or confidential notes, periodically review the persisted JSON files, and clear records that are no longer needed.
+
+Risk: The skill persists memory in local JSON files, so context can remain available across future sessions on the same environment.
+
+Mitigation: Use the skill only when persistent project context is desired and tighten local filesystem permissions where appropriate.
+
+## Reference(s):
+
+- [Context Engine skill page](https://clawhub.ai/deus-pandora/skills/deus-context-engine)
+- [Context Engine API Reference](references/API.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and JSON-backed project context records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists project and session context in local JSON files under the documented memory directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact frontmatter and changelog report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

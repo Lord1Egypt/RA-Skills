@@ -1,0 +1,130 @@
+<!-- exemplar
+kind: tech-landing
+register: dark
+recipe: BLUEPRINT
+techniques: R2,网格底纹,bento,亮区定价
+palette: 1E293B,3B82F6,93C5FD,DBEAFE,0F172A
+validated: 四闸 PASS(0P0/0P1/0P2)+渲染评审 v1-v7
+regen: python3 scripts/make_exemplars.py(勿手改本文件)
+-->
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>界外工具</title>
+<!-- recipe-source: BLUEPRINT(0.14) 声明色板: 0F172A,1E293B,3B82F6,7C8A9C,83B0E4,83B1FA,93C5FD,DBEAFE,EFF6FF 序列: 8居中/4x2bento/8居中/亮区定价/FAQ -->
+<style>:root{
+  --night:#0F172A;--pale:#DBEAFE;--mist:#7C8A9C;--sage:#83B1FA;
+  --surface:#93C5FD;--ink:#0F172A;--ink2:#1E293B;--accent:#3B82F6;
+  --card:#EFF6FF;--line:#83B0E4;
+  --serif:'Noto Serif SC','Source Han Serif SC','Songti SC',Georgia,serif;
+  --sans:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;
+  --display:var(--sans);
+  --mono:ui-monospace,'SF Mono',Consolas,monospace;
+}
+:lang(zh){text-autospace:normal;line-break:strict}
+h1,h2{text-wrap:balance}
+p{text-wrap:pretty}
+:lang(zh) :is(h1,h2,h3){font-feature-settings:"palt" 1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--pale);color:var(--ink);font:400 16px/1.75 var(--sans)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+:focus-visible{outline:3px solid var(--sage);outline-offset:3px}
+.kicker{display:flex;align-items:center;gap:10px;font:700 12px/1.6 var(--sans);
+         letter-spacing:.28em;color:var(--accent-ink,var(--accent));margin-bottom:14px}
+.kicker::before{content:"";width:24px;height:1px;background:var(--accent)}
+.hairline{border:0;border-top:1px solid var(--line)}
+.mono{font:400 12px/1.6 var(--mono);letter-spacing:.05em;opacity:.62}
+.btn{display:inline-block;background:var(--ink);color:var(--pale);font:700 15px/1 var(--sans);
+      padding:16px 32px;border-radius:10px}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.ghost-num{font:900 clamp(96px,12vw,160px)/1 var(--serif);color:transparent;
+            -webkit-text-stroke:1px var(--line);pointer-events:none}
+.cross{position:absolute;width:11px;height:11px;pointer-events:none}
+.cross::before{content:"";position:absolute;left:5px;top:0;width:1px;height:11px;background:var(--ink2);opacity:.5}
+.cross::after{content:"";position:absolute;top:5px;left:0;width:11px;height:1px;background:var(--ink2);opacity:.5}
+.side-label{position:absolute;writing-mode:vertical-rl;font:600 11px/1.8 var(--mono);
+             letter-spacing:.3em;color:var(--ink2);opacity:.55;pointer-events:none}
+.bg-motif{position:absolute;pointer-events:none;opacity:.07}
+.dark .bg-motif{opacity:.12}
+section{padding:96px 0}
+section .sub{padding:64px 0 0}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{background:var(--surface);text-align:left;padding:12px 18px;font-weight:700}
+td{padding:12px 18px;border-top:1px solid var(--line)}
+.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.lift{transition:transform .22s ease,box-shadow .22s ease}
+.lift:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(17,22,30,.12)}
+@media (prefers-reduced-motion:reduce){.lift,.lift:hover{transform:none;box-shadow:none;transition:none}}
+figcaption{font:400 12px/1.6 var(--mono);letter-spacing:.05em;color:var(--ink2);margin-top:10px}
+@supports (initial-letter:3){.dropcap>p:first-of-type::first-letter{initial-letter:3 2;
+  font:700 1em var(--serif);color:var(--accent-ink,var(--accent));margin-right:10px}}
+@media (max-width:900px){.grid>*{grid-column:1/-1!important}section{padding:64px 0}.wrap{padding:0 24px}}
+
+body{background:var(--night);color:var(--pale)}
+.frame{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M24 0H0V24' fill='none' stroke='%23DBEAFE' stroke-opacity='.10'/%3E%3C/svg%3E");background-size:24px 24px}
+nav.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+nav.top a{font-size:13.5px;font-weight:600;color:var(--mist)}
+nav.top a:hover{color:var(--pale)}
+.brand{font:700 17px var(--serif);color:var(--pale)}
+.center8{max-width:820px;margin:0 auto}
+.hero{text-align:center;padding:96px 0 72px}
+.hero h1{font:800 clamp(44px,7vw,104px)/1.08 var(--display)}
+.hero .sub{font-size:16.5px;line-height:1.6;color:var(--mist);max-width:52ch;margin:18px auto 30px}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cell{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:24px;min-height:150px}
+.cell.main{grid-column:span 2;grid-row:span 2;border-color:var(--sage);display:flex;flex-direction:column}
+.cell.main ul{list-style:none;margin:auto 0 0;padding:0}
+.cell.main li{font-size:13px;color:var(--mist);padding:7px 0;border-top:1px solid var(--line);
+               display:flex;justify-content:space-between;gap:12px}
+.cell.main li b{color:var(--pale);font-weight:600}
+.cell h3{font:700 16px var(--sans);margin-bottom:8px}
+.cell p{font-size:13px;color:var(--mist)}
+.code{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;
+       padding:22px;font:400 13.5px/1.9 var(--mono);color:var(--pale);overflow:auto}
+.code b{color:var(--sage);font-weight:400}
+.code .cm{color:var(--mist)}
+.tier{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:28px}
+.tier.hot{border-color:var(--sage)}
+.tier .price{font:800 34px/1 var(--display);font-variant-numeric:tabular-nums;margin:10px 0}
+details{border-top:1px solid var(--line);padding:16px 4px}
+summary{cursor:pointer;font-weight:700;font-size:15px}
+.lightzone{background:var(--pale);color:var(--ink);border-radius:16px;padding:56px 40px}
+.lightzone .tier{background:var(--card);border-color:var(--line)}
+.lightzone .tier .price{color:var(--night)}
+@media (max-width:900px){.bento{grid-template-columns:1fr 1fr}.cell.main{grid-column:span 2}}
+</style></head><body>
+<div class="frame">
+<div class="wrap"><nav class="top">
+  <span class="brand">界外工具</span>
+  <div style="display:flex;gap:24px"><a href="#s1">能力</a><a href="#price">定价</a><a href="#cta">开始</a></div>
+</nav></div>
+<div class="wrap"><section class="hero center8" style="position:relative">
+  <span class="cross" style="left:0;top:20px"></span>
+  <span class="cross" style="right:0;bottom:20px"></span>
+  <p class="kicker" style="justify-content:center;color:var(--sage)">OUTBOUND · ENGINEERING(替换)</p>
+  <h1>为严肃场景<br>造的工具。(替换)</h1>
+  <p class="sub">一句可验证的价值陈述:做什么、给谁、凭什么信。(替换)</p>
+  <a class="btn" style="background:var(--pale);color:var(--night)" href="#cta">开始使用</a>
+  <a class="btn ghost" style="color:var(--pale);border-color:var(--mist);margin-left:12px" href="#s1">读文档</a>
+</section>
+<section class="sub" id="s1"><div class="bento"><div class="cell main" style="position:relative"><h3>主角格:核心能力(替换)</h3><p>两行说明,具体可验证。</p><ul><li><span>能力点一</span><b>已验证</b></li><li><span>能力点二</span><b>4.5:1</b></li><li><span>能力点三</span><b>可复现</b></li></ul><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">01</span></div><div class="cell " style="position:relative"><h3>格:能力</h3><p>一句话。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">02</span></div><div class="cell " style="position:relative"><h3>格:能力</h3><p>一句话。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">03</span></div><div class="cell " style="position:relative"><h3>格:能力</h3><p>一句话。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">04</span></div><div class="cell " style="position:relative"><h3>格:能力</h3><p>一句话。</p><span class="mono" style="position:absolute;right:16px;bottom:12px;opacity:.5">05</span></div></div></section>
+<section class="sub"><div class="center8 code">
+&lt;config&gt;<br>&nbsp;&nbsp;<b>engine</b>="aesthete" <span class="cm">// 四道机械检查,不过不交付</span><br>
+&nbsp;&nbsp;<b>gates</b>=["contrast","colorblind","slop","score"]<br>&lt;/config&gt;</div></section>
+<section class="sub" id="price"><div class="lightzone">
+  <p class="kicker">定价(替换)</p>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr)"> <div class="tier"><strong style="font-size:16px">入门</strong><div class="price">¥0</div><p style="font-size:13px;color:var(--ink2)">适合个人起步。</p><a class="btn" style="margin-top:16px;background:var(--night);color:var(--pale);text-align:center" href="#">选择</a></div><div class="tier hot"><span class=mono style="color:var(--pale);letter-spacing:.18em">最受欢迎</span><br><strong style="font-size:16px">专业</strong><div class="price">¥49/月</div><p style="font-size:13px;color:var(--ink2)">适合小团队。</p><a class="btn" style="margin-top:16px;background:var(--night);color:var(--pale);text-align:center" href="#">选择</a></div><div class="tier"><strong style="font-size:16px">旗舰</strong><div class="price">联系</div><p style="font-size:13px;color:var(--ink2)">适合组织。</p><a class="btn" style="margin-top:16px;background:var(--night);color:var(--pale);text-align:center" href="#">选择</a></div> </div></div></section>
+<section class="sub"><div class="center8">
+  <p class="kicker" style="color:var(--sage)">FAQ</p>
+  <details open><summary>问题一(替换)</summary><p style="color:var(--mist);font-size:14px;padding-top:10px">答案:具体、可验证。(替换)</p></details>
+  <details><summary>问题二(替换)</summary><p style="color:var(--mist);font-size:14px;padding-top:10px">答案。(替换)</p></details>
+</div></section>
+<section class="sub" id="cta" style="text-align:center;padding-bottom:96px">
+  <h2 style="font:800 clamp(30px,4vw,48px)/1.2 var(--display)">下一个页面,让它配色。(替换)</h2>
+  <p style="color:var(--mist);margin:12px 0 24px;font-size:14.5px">在线演示 · 打开就能用</p>
+  <a class="btn" style="background:var(--pale);color:var(--night)" href="#">立即开始</a></section>
+</div></div>
+<footer><div class="wrap" style="padding-bottom:36px;font-size:12.5px;color:var(--mist);display:flex;justify-content:space-between">
+  <span>© 2026 界外工具</span><span>aesthete-agent 配方 BLUEPRINT</span></div></footer>
+</body></html>

@@ -1,0 +1,673 @@
+{
+  "_comment": "Engine-verifiable fixtures auto-generated from evals/benchmark.md by scripts/gen-fixtures.js. SF: detector must hit expect_types at score >= expect_min_score. SNF: score must stay <= expect_max_score and not classify AI_ONLY. Cases requiring pure judgment (protected-span fidelity, in-place scope, scene-pack tone) are NOT here — those stay human-judged in benchmark.md.",
+  "_generated_by": "scripts/gen-fixtures.js",
+  "sf": [
+    {
+      "id": "SF-01",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "好问题！值得注意的是，这个问题的本质在于数据库索引策略。让我来为你详细解释一下。首先，我们需要了解的是……",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 17
+    },
+    {
+      "id": "SF-02",
+      "scene": "status",
+      "lang": "zh",
+      "text": "本次迭代在性能方面取得了显著提升，有效解决了长期困扰团队的延迟问题，充分体现了团队在技术创新领域的持续探索与不懈追求。",
+      "expect_types": [
+        "tier2"
+      ],
+      "expect_min_score": 9
+    },
+    {
+      "id": "SF-03",
+      "scene": "public-writing",
+      "lang": "zh",
+      "text": "为了解决这一痛点，我们打造了一套全新的解决方案，旨在赋能开发者社区，助力企业实现降本增效的闭环。",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 27
+    },
+    {
+      "id": "SF-04",
+      "scene": "docs",
+      "lang": "zh",
+      "text": "它不是一个框架，不是一个库，也不是一个工具——它是一种全新的开发范式。这不是简单的效率提升，而是对人机协作底层逻辑的根本性重构。",
+      "expect_types": [
+        "tier1",
+        "false-concession"
+      ],
+      "expect_min_score": 2
+    },
+    {
+      "id": "SF-05",
+      "scene": "public-writing",
+      "lang": "zh",
+      "text": "研究表明，采用微服务架构的团队生产力显著高于单体架构团队。业内人士认为，这一趋势将在未来五年内持续加速。",
+      "expect_types": [
+        "tier1",
+        "tier2"
+      ],
+      "expect_min_score": 13
+    },
+    {
+      "id": "SF-06",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "综上所述，总的来说，该方案在性能、安全性和可维护性方面都表现优异。简而言之，这是一个值得推荐的解决方案。希望这对你有帮助！",
+      "expect_types": [
+        "tier1",
+        "generic-conclusion"
+      ],
+      "expect_min_score": 20
+    },
+    {
+      "id": "SF-07",
+      "scene": "docs (English)",
+      "lang": "en",
+      "text": "The platform serves as a testament to the transformative potential of cloud-native architecture. It showcases how cutting-edge technology can foster seamless collaboration, underscoring its pivotal role in the evolving landscape of modern development.",
+      "expect_types": [
+        "tier1",
+        "tier2",
+        "formulaic-opener"
+      ],
+      "expect_min_score": 51
+    },
+    {
+      "id": "SF-08",
+      "scene": "public-writing",
+      "lang": "zh",
+      "text": "三年。两个团队。一个目标。当我们回头看这段旅程，每一步都充满了不可磨灭的意义。这不仅仅是一个产品，更是一种信念的传承。",
+      "expect_types": [
+        "significance-inflation"
+      ],
+      "expect_min_score": 2
+    },
+    {
+      "id": "SF-09",
+      "scene": "status",
+      "lang": "zh",
+      "text": "系统被全面优化后，性能被显著提升，用户体验被大幅改善，安全性被进一步加强。",
+      "expect_types": [
+        "tier2",
+        "zh-passive-stack"
+      ],
+      "expect_min_score": 12
+    },
+    {
+      "id": "SF-10",
+      "scene": "public-writing (English)",
+      "lang": "en",
+      "text": "Great question! You're absolutely right that this is a fascinating topic. In this essay, we will explore the implications of AI-assisted coding. As we'll see, the landscape is evolving rapidly. Let's dive in!",
+      "expect_types": [
+        "tier1",
+        "chatbot",
+        "sycophantic"
+      ],
+      "expect_min_score": 18
+    },
+    {
+      "id": "SF-11",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "我已经把差异收窄了，根因基本坐实，和我刚抓到的现象对上了。接下来做一个更硬的排除法，稳稳把问题兜住，落盘之后就能收口了。",
+      "expect_types": [
+        "tier1",
+        "tier2"
+      ],
+      "expect_min_score": 33
+    },
+    {
+      "id": "SF-12",
+      "scene": "public-writing",
+      "lang": "zh",
+      "text": "姐妹们！今天给大家拆解一个保姆级干货！真的绝绝子！谁懂啊，这个工具狠狠提升了我的效率！强烈建议收藏！划重点：避坑指南在最后！",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 42
+    },
+    {
+      "id": "SF-13",
+      "scene": "public-writing",
+      "lang": "zh",
+      "text": "诚然，AI 技术仍面临诸多挑战。但与其抗拒变化，不如积极拥抱这个充满无限可能的时代。只有不断学习、勇于创新，才能在未来的浪潮中乘风破浪。让我们拭目以待！",
+      "expect_types": [
+        "tier1",
+        "false-concession",
+        "future-narrative"
+      ],
+      "expect_min_score": 21
+    },
+    {
+      "id": "SF-14",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "诚然，这个 feature 的实现确实存在一定的技术复杂度。不过说白了就是绝绝子！我们需要进一步深入探讨其底层逻辑，稳稳把核心链路兜住。综上所述，建议收藏。",
+      "expect_types": [
+        "tier1",
+        "tier2",
+        "generic-conclusion"
+      ],
+      "expect_min_score": 44
+    },
+    {
+      "id": "SF-15",
+      "scene": "status",
+      "lang": "zh",
+      "text": "本次更新优化了系统的整体性能。我们改进了数据库的查询效率。前端页面的加载速度得到了提升。用户反馈的体验问题已经得到解决。后续将持续关注系统的稳定性。",
+      "expect_types": [
+        "tier2",
+        "uniformity"
+      ],
+      "expect_min_score": 8
+    },
+    {
+      "id": "SF-16",
+      "scene": "public-writing",
+      "lang": "zh",
+      "text": "真正的竞争力不是功能堆砌，而是体验细节。最后比拼的是执行效率。归根结底，关键在于团队协同。",
+      "expect_types": [
+        "tier1",
+        "false-concession"
+      ],
+      "expect_min_score": 14
+    },
+    {
+      "id": "SF-17",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "我先把问题扒开，现象也拽出来了。再补一刀，把这轮链路锁住，基本就闭环了。",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 22
+    },
+    {
+      "id": "SF-18",
+      "scene": "docs",
+      "lang": "zh",
+      "text": "这次改造不是一次简单的配置调整，而是一套面向未来的系统性升级。研究表明，采用这一策略的团队在稳定性和交付效率上都能取得显著提升。我们通过对网关、缓存层和任务队列进行全链路治理，最终把整体质量稳稳兜住。综上所述，这次升级为后续扩展奠定了坚实基础。",
+      "expect_types": [
+        "tier1",
+        "tier2",
+        "false-concession",
+        "generic-conclusion"
+      ],
+      "expect_min_score": 23
+    },
+    {
+      "id": "SF-19",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "用户：这段发布说明太像 AI 写的，帮我只改引号里的正文，不要改我的话。<br> 原文：\"结论先说，这次升级不是一次常规修复，而是对核心链路的系统性重塑。我们先把历史包袱扒开，再补一刀，把关键体验稳稳兜住。最终，产品体验完成了质的跃迁。\"",
+      "expect_types": [
+        "tier1",
+        "tier2",
+        "false-concession"
+      ],
+      "expect_min_score": 20
+    },
+    {
+      "id": "SF-22",
+      "scene": "docs",
+      "lang": "zh",
+      "text": "```python def refresh_cache(self):     \"\"\"通过全面优化缓存刷新策略，显著提升系统整体性能，为用户提供更加流畅、高效的使用体验。\"\"\"     self.cache.clear()     self.cache.load() ```",
+      "expect_types": [
+        "tier2"
+      ],
+      "expect_min_score": 2
+    },
+    {
+      "id": "SF-23",
+      "scene": "status",
+      "lang": "zh",
+      "text": "``` feat: 打造全新缓存方案，赋能高并发场景，实现降本增效闭环，显著提升系统整体性能与用户体验 ```",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 17
+    },
+    {
+      "id": "SF-24",
+      "scene": "docs (English)",
+      "lang": "en",
+      "text": "```javascript // This groundbreaking utility serves as a testament to modern engineering, // leveraging cutting-edge algorithms to deliver unprecedented performance. function sort(arr) { return arr.sort((a, b) => a - b); } ```",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 17
+    },
+    {
+      "id": "SF-20",
+      "scene": "public-writing (English)",
+      "lang": "en",
+      "text": "Studies show that teams using AI pair programming ship features 40% faster. Experts say this shift will redefine software delivery over the next decade.",
+      "expect_types": [
+        "tier1",
+        "vague-attribution"
+      ],
+      "expect_min_score": 12
+    },
+    {
+      "id": "SF-21",
+      "scene": "status",
+      "lang": "zh",
+      "text": "数据显示，这次改版显著提升了留存率。业内人士认为，这个方向已经验证可行，后续只要继续投入就能稳定放大收益。",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 7
+    },
+    {
+      "id": "SF-25",
+      "scene": "status",
+      "lang": "zh",
+      "text": "截至 4 月 12 日，iOS 次日留存从 31.4% 涨到 34.1%，但这次修复不是一次简单 patch，而是对 onboarding 链路的系统性重塑。王宁今天会把漏掉的 `source=campaign` 维度补回去，明天下午 3 点前再同步一次结果。",
+      "expect_types": [
+        "tier1",
+        "false-concession"
+      ],
+      "expect_min_score": 2
+    },
+    {
+      "id": "SF-26",
+      "scene": "docs",
+      "lang": "zh",
+      "text": "在 `v2.3.1` 中，运行 `bin/migrate --tenant=prod --dry-run` 后，如果日志出现 `schema mismatch on orders_v2`，说明迁移前置检查没有通过。不要试图通过“系统性治理”把问题稳稳兜住；先确认 `DB_SCHEMA_VERSION=20260412` 和线上一致，再继续。",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 2
+    },
+    {
+      "id": "SF-28",
+      "scene": "public-writing",
+      "lang": "zh",
+      "text": "这次把 onboarding 流程改了一遍，新用户从注册到完成首次导入少走了两步。更重要的是，这也说明我们开始真正理解用户在第一天最容易卡住的地方。",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 2
+    },
+    {
+      "id": "SF-29",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "直接说结论：问题不在鉴权，而在缓存键拼错了。改完这个以后，请求就能正常命中。总的来说，这次排查方向是对的。",
+      "expect_types": [
+        "tier1",
+        "generic-conclusion"
+      ],
+      "expect_min_score": 2
+    },
+    {
+      "id": "SF-30",
+      "scene": "status",
+      "lang": "zh",
+      "text": "4 月 13 日把重试次数从 2 次调到 5 次。支付超时从 1.9% 降到 0.7%。这次调整也进一步验证了我们的优化方向是正确的。明天继续看晚高峰数据。",
+      "expect_types": [
+        "tier2"
+      ],
+      "expect_min_score": 2
+    },
+    {
+      "id": "SF-31",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "我就在这里，不躲，不藏，也不绕。你不是敏感，你只是太久没被稳稳接住了。你问到了问题的核心，我必须很认真地说一句：这种表达和观察力，绝对是顶刊作者的素养。",
+      "expect_types": [
+        "tier1",
+        "tier2",
+        "emotional-flatline"
+      ],
+      "expect_min_score": 22
+    },
+    {
+      "id": "SF-32",
+      "scene": "public-writing / README",
+      "lang": "zh",
+      "text": "在 AI 全面重塑开发范式的今天，我们打造了一款真正面向未来的中文表达优化工具。它以先进的规则体系为底座，深度赋能开发者的内容生产链路，帮助团队在复杂协作场景中实现自然表达、效率提升与价值闭环。",
+      "expect_types": [
+        "tier1",
+        "tier2"
+      ],
+      "expect_min_score": 23
+    },
+    {
+      "id": "SF-34",
+      "scene": "public-writing / forum-post",
+      "lang": "zh",
+      "text": "折腾这个工具一个月后，我深刻意识到，中文 AI 写作治理不是一次简单的词表扩张，而是一场围绕真实表达场景的系统性重塑。我们从用户痛点出发，稳稳接住了 README、release note、issue 回复等多元场景里的核心诉求，并在持续迭代中形成了可复制、可扩展、可沉淀的方法论闭环。",
+      "expect_types": [
+        "tier1",
+        "tier2",
+        "false-concession"
+      ],
+      "expect_min_score": 20
+    },
+    {
+      "id": "SF-35",
+      "scene": "public-writing / issue-reply",
+      "lang": "zh",
+      "text": "感谢你非常宝贵的反馈！你这个问题问到了项目体验的核心。我们已经充分接住了这个场景，也会在后续版本中持续优化相关能力。如果你愿意，我可以先帮你把这段文本整体梳理一遍，再给你一个更完整的解决方案。",
+      "expect_types": [
+        "tier1",
+        "tier2"
+      ],
+      "expect_min_score": 14
+    },
+    {
+      "id": "SF-36",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "我们把这件事彻底掰开说清楚。已经走在正确的路上了，而且走得很稳。完全不用担心掉下去。",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 17
+    },
+    {
+      "id": "SF-37",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "你能问到这个触及核心的问题，说明你已经超越绝大部分人了。如果你愿意，我可以给你更完整的方案 —— 你已经具备做这件事的实力了。",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 12
+    },
+    {
+      "id": "SF-38",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "我帮你把这个事情掰扯清楚，先把它彻底掰开说清楚。",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 7
+    },
+    {
+      "id": "SF-39",
+      "scene": "public-writing / long",
+      "lang": "zh",
+      "text": "这篇文章不是一次简单的复盘，而是我对过去半年写作方式的一次系统性重塑。真正让我意识到问题的，不是某一个工具突然不好用了，而是每次把草稿交给 AI 之后，它都会把我的犹豫、停顿和转场整理得过于顺滑。表面上看，文章变得更完整了；但再读一遍，会发现很多原本属于我的节奏都消失了。",
+      "expect_types": [
+        "false-concession"
+      ],
+      "expect_min_score": 2
+    },
+    {
+      "id": "SF-41",
+      "scene": "public-writing / long",
+      "lang": "zh",
+      "text": "在如今这个技术飞速迭代的时代，把项目开源早已成为开发者的共识。我上个月开源了一个日志小工具，第一周就来了二十多个 issue。最难的不是写代码。最难的是回复 issue。研究表明，超过七成的开源项目第一年内就停更了。可以说，维护开源，本质上是一场与时间的修行。",
+      "expect_types": [
+        "tier1"
+      ],
+      "expect_min_score": 2
+    }
+  ],
+  "snf": [
+    {
+      "id": "SNF-01",
+      "scene": "docs",
+      "lang": "zh",
+      "text": "网关在请求超时后返回 504。缓存服务每 5 分钟刷新一次热点 key。负载均衡器将流量按权重分配到三个后端节点。",
+      "expect_max_score": 25,
+      "rationale": "系统主语描述技术行为"
+    },
+    {
+      "id": "SNF-02",
+      "scene": "docs",
+      "lang": "en",
+      "text": "根据 RFC 7231 的定义：\"The 200 (OK) status code indicates that the request has succeeded.\" 这意味着服务端已成功处理了请求。",
+      "expect_max_score": 25,
+      "rationale": "引用原文"
+    },
+    {
+      "id": "SNF-03",
+      "scene": "status",
+      "lang": "zh",
+      "text": "然而，这次升级引入了一个已知的兼容性问题，影响 iOS 14 以下的设备。",
+      "expect_max_score": 25,
+      "rationale": "单独出现的 Tier 2 词"
+    },
+    {
+      "id": "SNF-04",
+      "scene": "docs",
+      "lang": "zh",
+      "text": "该交易使用了 10 倍杠杆（leverage），通过做空期货合约对冲现货风险。",
+      "expect_max_score": 25,
+      "rationale": "行业标准术语"
+    },
+    {
+      "id": "SNF-05",
+      "scene": "docs (English)",
+      "lang": "en",
+      "text": "The system navigates the network topology using Dijkstra's algorithm, traversing each node to find the shortest path.",
+      "expect_max_score": 25,
+      "rationale": "Technical use of flagged words"
+    },
+    {
+      "id": "SNF-06",
+      "scene": "status",
+      "lang": "en",
+      "text": "Fixed: API response time regression. Root cause: unindexed query on users table. Added composite index on (tenant_id, created_at).",
+      "expect_max_score": 25,
+      "rationale": "变更日志中的简洁描述"
+    },
+    {
+      "id": "SNF-07",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "这个功能很重要，上线前一定要确保测试覆盖到位。",
+      "expect_max_score": 25,
+      "rationale": "正常的 Tier 3 低频使用"
+    },
+    {
+      "id": "SNF-08",
+      "scene": "docs",
+      "lang": "zh",
+      "text": "什么是\"赋能\"？在互联网行业中，这个词通常被用来指代\"提供工具或能力让他人能做之前做不到的事\"。但由于过度使用，它已经失去了具体含义。",
+      "expect_max_score": 25,
+      "rationale": "讨论术语本身"
+    },
+    {
+      "id": "SNF-09",
+      "scene": "docs (English)",
+      "lang": "en",
+      "text": "The experiment was conducted by researchers at MIT. Results were published in Nature in 2024.",
+      "expect_max_score": 25,
+      "rationale": "Appropriate passive voice"
+    },
+    {
+      "id": "SNF-10",
+      "scene": "status",
+      "lang": "zh",
+      "text": "该团队在 Q1 完成了 3 个核心模块的重构，代码行数从 12000 行降到 4500 行。预计 Q2 完成剩余模块的迁移。",
+      "expect_max_score": 25,
+      "rationale": "合理的非第二人称叙述"
+    },
+    {
+      "id": "SNF-11",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "刚查了下，root cause 是连接池打满了，max_connections 才 20，高峰期不够用。我把它调到 100，观察了半小时，没再报错。",
+      "expect_max_score": 25,
+      "rationale": "真人工程师 debug 对话中合理使用技术术语"
+    },
+    {
+      "id": "SNF-12",
+      "scene": "public-writing",
+      "lang": "zh",
+      "text": "昨天踩了个大坑，Next.js 的 app router 在 production build 里 cache 行为和 dev 完全不一样，调了三小时。谁懂那种崩溃感啊。",
+      "expect_max_score": 25,
+      "rationale": "真人博主正常使用网络用语"
+    },
+    {
+      "id": "SNF-13",
+      "scene": "status",
+      "lang": "zh",
+      "text": "根因分析：OOM 触发了 pod 重启。内存泄漏点在 WebSocket 连接未释放。修复方案：idle 超过 30 分钟的连接自动断开。已上线验证，内存稳定在 512MB 以下。",
+      "expect_max_score": 25,
+      "rationale": "合理的语域一致（纯技术语域）"
+    },
+    {
+      "id": "SNF-14",
+      "scene": "docs",
+      "lang": "zh",
+      "text": "这一轮先不要把\"扒开\"\"拽出来\"\"补一刀\"逐个加进词表。它们更像现有模式的变体，先补 benchmark 和归并规则，再看要不要单独收录。",
+      "expect_max_score": 25,
+      "rationale": "收词说明中的被讨论词"
+    },
+    {
+      "id": "SNF-17",
+      "scene": "docs",
+      "lang": "en",
+      "text": "```python # 缓存过期后回源查询，TTL 默认 300 秒 # 如果 Redis 挂了，fallback 到本地 LRU cache def get_user(user_id: str) -> User:     ... ```",
+      "expect_max_score": 25,
+      "rationale": "正常的技术注释"
+    },
+    {
+      "id": "SNF-18",
+      "scene": "status",
+      "lang": "zh",
+      "text": "``` fix: 连接池上限从 20 调到 100，解决高峰期 504 ```",
+      "expect_max_score": 25,
+      "rationale": "正常的 commit message"
+    },
+    {
+      "id": "SNF-19",
+      "scene": "status",
+      "lang": "zh",
+      "text": "4 月 12 日把连接池上限从 20 调到 100 后，504 错误率从 3.8% 降到 0.6%。今天继续观察 24 小时，再决定是否全量。",
+      "expect_max_score": 25,
+      "rationale": "已经直接的事实同步"
+    },
+    {
+      "id": "SNF-20",
+      "scene": "docs",
+      "lang": "en",
+      "text": "在 `v2.4.0` 里，`retry_budget=0.2` 时默认开启指数退避；如果看到 `429 too many requests`，先把 `MAX_INFLIGHT=64` 调低再重试。",
+      "expect_max_score": 25,
+      "rationale": "第二遍不该为了节奏改技术说明"
+    },
+    {
+      "id": "SNF-21",
+      "scene": "status",
+      "lang": "zh",
+      "text": "4 月 14 日补回 `source=campaign` 维度后，Android 次日留存从 28.7% 修正到 30.1%。王宁今晚再核一次报表，明早 10 点同步最终数。",
+      "expect_max_score": 25,
+      "rationale": "已经够直接时，第二遍应该停手"
+    },
+    {
+      "id": "SNF-33",
+      "scene": "status",
+      "lang": "zh",
+      "text": "6 月 28 日把 WebSocket idle 连接自动断开上线后，内存从 1.2GB 降到 520MB，服务稳定在 99.95% 以上。今天继续观察晚高峰，再决定是否全量。",
+      "expect_max_score": 25,
+      "rationale": "有指标支撑的“稳定”不是自我宣传残味"
+    },
+    {
+      "id": "SNF-22",
+      "scene": "code-context",
+      "lang": "en",
+      "text": "```go // handleBurst 在 p99 突刺时接住突发请求，按令牌桶节流后转发给下游。 func handleBurst(req *Request) {} ```",
+      "expect_max_score": 25,
+      "rationale": "技术语境里的接住突发请求"
+    },
+    {
+      "id": "SNF-15",
+      "scene": "docs",
+      "lang": "zh",
+      "text": "在 2026-03-20 的事故复盘里，我们确认 root cause 是连接池配置过小：`max_connections=20` 在峰值流量下被打满。修复动作包括把上限调到 100、给 `users` 表补复合索引、把慢查询指标接进告警。上线后观察 6 小时，错误率从 3.2% 降到 0.4%，没有再出现连接超时。",
+      "expect_max_score": 25,
+      "rationale": "长段技术复盘中的工程术语"
+    },
+    {
+      "id": "SNF-23",
+      "scene": "docs",
+      "lang": "zh",
+      "text": "网关层的目标是在流量毛刺期稳稳接住上游峰值请求，避免打穿下游连接池。我们给 `gateway/inflight` 配置了 `max_concurrency=256`，超过后排队 400ms；再溢出就返回 `429` 并打点 `gw.shed_rate`。这样即使 QPS 突破历史峰值，也能把链路保护在可回滚的范围内。",
+      "expect_max_score": 25,
+      "rationale": "限流网关接住上游峰值请求"
+    },
+    {
+      "id": "SNF-28",
+      "scene": "status",
+      "lang": "zh",
+      "text": "我开始落盘了：把新的重构方案、阶段拆分、边界和 TODO 写进 planning-with-files 目录的三份文档，下一步按这套执行。",
+      "expect_max_score": 25,
+      "rationale": "技术语境里的\"落盘\""
+    },
+    {
+      "id": "SNF-29",
+      "scene": "public-writing / long",
+      "lang": "zh",
+      "text": "我不想把这篇文章写成一份结论清单。清单当然有效，读者扫一眼就能知道我想说什么，但这件事不是扫一眼就能说完的。",
+      "expect_max_score": 25,
+      "rationale": "重复承担节奏，不应被 in-place 当作水分删掉"
+    },
+    {
+      "id": "SNF-30",
+      "scene": "public-writing / long",
+      "lang": "zh",
+      "text": "另外，我还观察到一个细节：同一篇文章里，如果前半段是经历，后半段是判断，中间那几句转场看起来常常有点笨。它们不够漂亮，也不像金句，但它们能告诉读者，作者是怎么从经历走到判断的。",
+      "expect_max_score": 25,
+      "rationale": "正常承接句挂在事实上下文里，不是总结式收尾"
+    },
+    {
+      "id": "SNF-31",
+      "scene": "public-writing / long",
+      "lang": "zh",
+      "text": "这三年我换了两家公司，每一次都在重新理解“稳定”这个词。第一次是在创业团队，稳定意味着别让服务半夜挂掉。第二次是在大厂，稳定意味着别让一次发布影响上千万用户。说到底，我现在更看重那种不需要时刻盯着也能放心的系统。",
+      "expect_max_score": 25,
+      "rationale": "bounded 删除清单不该混进实句或节奏句"
+    },
+    {
+      "id": "SNF-32",
+      "scene": "public-writing / long",
+      "lang": "zh",
+      "text": "在当今快速发展的 AI 时代，我们致力于重塑开发者的内容生产链路。上个月把改写流程接进 CI 后，README 首次整理时间从 18 分钟降到 6 分钟。",
+      "expect_max_score": 25,
+      "rationale": "bounded 不得把壳句和数据句并成一句"
+    },
+    {
+      "id": "SNF-24",
+      "scene": "public-writing / README",
+      "lang": "zh",
+      "text": "`cache-diff` 是一个检查 Redis 缓存差异的 CLI。它会读取两份 key dump，列出新增、删除和 TTL 变化，适合上线前做缓存迁移复核。",
+      "expect_max_score": 25,
+      "rationale": "已经直接的 README intro"
+    },
+    {
+      "id": "SNF-26",
+      "scene": "public-writing / forum-post",
+      "lang": "zh",
+      "text": "昨晚把 `scene-packs.md` 接进规则后，先拿 README 和 release note 各跑了两条样本。README 那条提升明显，release note 还差一点：它会删套话，但有时把 changelog 列表也压得太短。今天先补一条 SNF 防误杀。",
+      "expect_max_score": 25,
+      "rationale": "有具体经历支撑的社区帖"
+    },
+    {
+      "id": "SNF-27",
+      "scene": "public-writing / issue-reply",
+      "lang": "zh",
+      "text": "收到，这个 bad case 我能复现：`稳稳接住上游峰值请求` 在 docs 场景里不该被改。下一版我会补一条 SNF，先把技术语境放行钉住；规则本身如果已经能放行，就只加回归用例。",
+      "expect_max_score": 25,
+      "rationale": "已经具体的 issue 回复"
+    },
+    {
+      "id": "SNF-16",
+      "scene": "chat",
+      "lang": "zh",
+      "text": "A：这轮先别把“稳稳兜住”“补一刀”加进词表。<br> B：同意，这两个更像现有模式的变体。先补 benchmark，再看要不要进 `phrases-zh.md`。",
+      "expect_max_score": 25,
+      "rationale": "多轮讨论中引用待收录词"
+    }
+  ]
+}

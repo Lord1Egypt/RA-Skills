@@ -1,41 +1,58 @@
-## Description: <br>
-搜索跟团游、私家团、纯玩线路，支持场景推荐（海边、古镇、亲子、山水等），并提供到目的地的火车票和机票查询，多旅游平台数据直连。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches group tours, private tours, and curated tour packages by destination or travel scenario, and can query train and flight options to the destination through connected travel platforms.
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External users and travel-planning agents use this Chinese-language skill to search group tours, private tours, pure-play routes, train options, and flight options for a destination or travel scenario. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel search details may be sent to the publisher's proxy service to retrieve tour, train, and flight results. <br>
-Mitigation: Avoid entering unusually sensitive travel plans unless the user is comfortable with the publisher's proxy handling destination, departure city, and travel date details. <br>
-Risk: Travel prices, availability, scores, and booking links can change after the skill returns results. <br>
-Mitigation: Treat returned options as planning guidance and confirm current details on the linked booking page before purchase. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to find package tour options from destination or scenario prompts, then compare train or flight options for reaching the selected destination.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/group-tour-search) <br>
-- [Publisher profile](https://clawhub.ai/user/travel-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown-formatted Chinese text with ranked travel options, prices, ratings, schedule details, and booking links when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include real-time third-party travel data and booking links; prices and availability can change.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill sends destination, departure city, and travel date queries to external proxy services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the data flow before installation and avoid entering sensitive personal details in travel queries.
+
+Risk: The artifact embeds a reusable proxy token.
+
+Mitigation: The publisher should remove and rotate the embedded token and use a scoped runtime secret instead.
+
+Risk: Prices, availability, ratings, and schedules may change after results are returned.
+
+Mitigation: Confirm current details on the linked booking page before relying on any itinerary or purchase decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/group-tour-search)
+- [Publisher profile](https://clawhub.ai/user/travel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style text with ranked travel options, prices, ratings, schedules, and booking links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on external proxy services and live travel-platform availability.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

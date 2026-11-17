@@ -1,0 +1,4 @@
+interface:
+  display_name: "知网查重与报告验真"
+  short_description: "知网 5 类产品选型、下单、进度、报告与验真"
+  default_prompt: "使用 $cnki-paper-check 先识别本科/专科、硕博、期刊或 AIGC 产品并读取实时目录，再按固定 /pzw 公共流程上传论文、返回支付与报告页面、查询原订单并指导知网官方验真。"

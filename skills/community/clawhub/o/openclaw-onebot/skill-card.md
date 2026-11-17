@@ -1,45 +1,64 @@
-## Description: <br>
-OneBot 11 channel plugin for QQ messaging (NapCat/go-cqhttp), with native OpenClaw integration for private and group chat, opt-in group reactions, block streaming, voice handling, message batching, allowFrom filtering, shared-directory media staging, and authorized text-command passthrough. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OneBot 11 channel plugin for QQ messaging (NapCat/go-cqhttp), with OpenClaw integration for private and group chat, opt-in group reactions, block streaming, voice handling, message batching, allowFrom filtering, shared-directory media staging, and authorized text-command passthrough.
 
-## Publisher: <br>
-[xucheng](https://clawhub.ai/user/xucheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xucheng](https://clawhub.ai/user/xucheng)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to connect OpenClaw agents to QQ through a trusted OneBot 11 provider such as NapCat or go-cqhttp. It helps configure messaging, media delivery, reactions, streaming replies, and authorized text-command handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OneBot endpoint or access token exposure could allow unintended access to QQ messaging routes. <br>
-Mitigation: Use a strong access token and keep HTTP/WebSocket endpoints on localhost or a trusted network. <br>
-Risk: Overbroad allowFrom settings can authorize more QQ users or groups than intended. <br>
-Mitigation: Configure allowFrom narrowly for trusted private users or groups and avoid '*' unless the deployment requires it. <br>
-Risk: Using a broad sharedDir can expose unrelated local files during media staging. <br>
-Mitigation: Point sharedDir at a dedicated media folder rather than personal document, desktop, or download directories. <br>
+## Use Case:
 
+Developers and operators use this skill to connect OpenClaw agents to QQ through OneBot 11-compatible frameworks such as NapCat or go-cqhttp. It supports QQ message routing, media handling, voice workflows, reactions, streaming replies, and controlled text-command access.
 
-## Reference(s): <br>
-- [OpenClaw OneBot on ClawHub](https://clawhub.ai/xucheng/openclaw-onebot) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [NapCatQQ](https://github.com/NapNeko/NapCatQQ) <br>
-- [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenClaw plugin configuration, OneBot endpoint settings, allowFrom filters, access-token guidance, and install or verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.15 (source: server-resolved release metadata) <br>
+Risk: Untrusted plugin or QQ bot framework code can affect message handling and media workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted or pinned sources and review the OpenClaw plugin and connected OneBot framework before deployment.
+
+Risk: Exposed OneBot HTTP or WebSocket endpoints can allow unauthorized access to QQ messaging actions.
+
+Mitigation: Use a strong access token and keep OneBot endpoints on localhost or a trusted network.
+
+Risk: Overbroad message-source filters can authorize unintended private users or groups.
+
+Mitigation: Configure allowFrom narrowly for trusted QQ private users or groups instead of using '*'.
+
+Risk: Shared media staging can expose unrelated local files if pointed at broad personal directories.
+
+Mitigation: Set sharedDir to a dedicated media directory rather than desktop, downloads, documents, or other personal folders.
+
+## Reference(s):
+
+- [ClawHub OpenClaw OneBot Skill](https://clawhub.ai/xucheng/skills/openclaw-onebot)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [NapCatQQ](https://github.com/NapNeko/NapCatQQ)
+- [go-cqhttp](https://github.com/Mrs4s/go-cqhttp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation, configuration, verification, and operational guidance for OpenClaw OneBot channel setup.]
+
+## Skill Version(s):
+
+1.2.15 (source: server release evidence and artifact release.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

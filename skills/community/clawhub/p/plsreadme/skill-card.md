@@ -1,42 +1,53 @@
-## Description: <br>
-Share markdown files and text as clean, readable web links via plsreadme.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shares markdown files and text as clean, readable web links through plsreadme.com using the plsreadme MCP server.
 
-## Publisher: <br>
-[FacundoLucci](https://clawhub.ai/user/FacundoLucci) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[facundolucci](https://clawhub.ai/user/facundolucci)
 
-## Use Case: <br>
-Developers, writers, and agents use this skill to turn markdown files, generated notes, PRDs, proposals, or plain text into clean public web links after confirming the content is safe to publish. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Shared links are permanent and publicly accessible, so sensitive documents or private notes could be exposed. <br>
-Mitigation: Confirm with the user before each upload and avoid sharing secrets, private notes, or confidential content. <br>
-Risk: The local setup runs the plsreadme MCP package through npx. <br>
-Mitigation: Inspect or pin the npm MCP package before local use, or use the remote MCP endpoint when that better matches the deployment policy. <br>
-Risk: Plain text or refactored non-markdown content may be restructured before sharing. <br>
-Mitigation: Review the final content and title before publishing the generated page. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FacundoLucci/plsreadme) <br>
-- [plsreadme MCP endpoint](https://plsreadme.com/mcp) <br>
+## Use Case:
 
+External users and developers use this skill to turn README files, PRDs, proposals, notes, or generated markdown/plain text into shareable readable web pages after confirming the content can be public.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with returned readable and raw markdown URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shared links are permanent and publicly accessible; local file uploads are limited to 200KB.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local markdown or text may be uploaded to a permanent public link.
+
+Mitigation: Require explicit user confirmation before every upload and avoid sharing sensitive notes, PRDs, proposals, internal documents, or files selected by path unless public release is intended.
+
+Risk: The setup instructions use an unpinned MCP package invocation.
+
+Mitigation: Prefer a pinned, reviewed MCP server version or the constrained remote endpoint before enabling the skill.
+
+## Reference(s):
+
+- [plsreadme MCP endpoint](https://plsreadme.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/facundolucci/skills/plsreadme)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses containing a readable URL and raw markdown URL, plus MCP setup snippets when configuration is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploaded content is published as a permanent, publicly accessible link; documented maximum file size is 200KB.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Converts SRT subtitle files into structured Markdown documents with transcript cleanup, content analysis, and optional research enrichment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts SRT subtitle files into structured Markdown documents, with a local subtitle-to-text step, content analysis, and optional supplemental search.
 
-## Publisher: <br>
-[syajask](https://clawhub.ai/user/syajask) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[syajask](https://clawhub.ai/user/syajask)
 
-## Use Case: <br>
-External users and developers use this skill to turn video subtitles from sources such as Bilibili or YouTube into readable Markdown notes, knowledge articles, or research reports. It is suited for public or non-sensitive subtitle files, with the optional research stage skipped for private transcripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional web search enrichment may expose names, topics, or keywords from private transcripts to search tools. <br>
-Mitigation: Use normally for public videos and non-sensitive subtitles; skip the web search stage for private meetings, unpublished material, or transcripts containing personal information. <br>
+## Use Case:
 
+External users and developers use this skill to turn uploaded or provided .srt subtitle files into readable Markdown notes or articles, including summaries, structure, key points, concepts, people, and optional extension links.
 
-## Reference(s): <br>
-- [Search strategy reference](references/search_strategy.md) <br>
-- [Document template](assets/doc_template.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/syajask/srt-to-md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown document and UTF-8 subtitle text file, with optional source URLs for research enrichment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a primary Markdown document and a time-stamped subtitle text file; optional web search may add references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Supplemental search may send terms extracted from subtitle content to web search tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For confidential subtitles, run only the local conversion and skip search enrichment.
+
+Risk: The final document may combine transcript-derived analysis with supplemental search results.
+
+Mitigation: Review sources and keep supplemental material clearly attributed in the Markdown output.
+
+## Reference(s):
+
+- [Search Strategy](references/search_strategy.md)
+- [ClawHub Skill Page](https://clawhub.ai/syajask/skills/srt-to-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown document plus a time-stamped subtitles text file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source URLs for supplemental research when web search enrichment is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

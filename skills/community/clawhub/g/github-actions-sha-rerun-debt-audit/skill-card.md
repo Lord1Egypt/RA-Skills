@@ -1,39 +1,56 @@
-## Description: <br>
-Audit rerun debt by commit SHA to find commits that repeatedly burn CI minutes across workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit rerun debt by commit SHA to find commits that repeatedly burn CI minutes across workflows.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and CI maintainers use this skill to analyze exported GitHub Actions run data, identify commits that repeatedly trigger reruns or failed outcomes, and prioritize CI reliability work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reports may include repository names, run URLs, branch names, or commit SHAs from GitHub Actions exports. <br>
-Mitigation: Treat generated reports as potentially sensitive and limit sharing to the intended engineering or CI operations audience. <br>
-Risk: A broad RUN_GLOB may scan unintended local JSON files. <br>
-Mitigation: Scope RUN_GLOB to the intended GitHub Actions export directory before running the audit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-sha-rerun-debt-audit) <br>
+## Use Case:
 
+Developers and CI maintainers use this skill to analyze GitHub Actions run exports, identify commit SHAs associated with repeated reruns or failures, and optionally gate CI on critical rerun debt.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, text, json, shell commands, guidance] <br>
-**Output Format:** [Text report or JSON report generated from GitHub Actions run export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can optionally exit non-zero when FAIL_ON_CRITICAL=1 and critical SHA rerun-debt groups are found.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill processes GitHub Actions run exports that may include private repository CI data.
+
+Mitigation: Review RUN_GLOB before running the skill and point it only at the intended JSON exports.
+
+Risk: A CI job can fail when FAIL_ON_CRITICAL=1 and the configured thresholds classify SHA groups as critical.
+
+Mitigation: Run in report mode first, tune thresholds for the repository, and enable FAIL_ON_CRITICAL only after reviewing expected findings.
+
+Risk: Malformed or incomplete run exports can produce parse errors or incomplete audit results.
+
+Mitigation: Collect exports with the documented GitHub CLI fields and review parse_errors in the report output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/github-actions-sha-rerun-debt-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; runtime output is plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The audit can exit non-zero when FAIL_ON_CRITICAL=1 and critical SHA groups are found.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

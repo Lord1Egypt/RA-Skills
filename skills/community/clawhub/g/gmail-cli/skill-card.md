@@ -1,44 +1,63 @@
-## Description: <br>
-Gmail helps agents read, search, and triage Gmail, with explicit confirmation required before sending, replying, forwarding, deleting, or modifying messages through the PortEden CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gmail helps agents read, search, triage, and, with explicit confirmation, send or modify Gmail messages through the PortEden CLI.
 
-## Publisher: <br>
-[porteden](https://clawhub.ai/user/porteden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[porteden](https://clawhub.ai/user/porteden)
 
-## Use Case: <br>
-External users and agents use this skill to operate a Gmail inbox through the PortEden CLI. The skill supports mailbox reading, search, and triage by default, while requiring explicit user confirmation for actions that send, delete, forward, reply to, or modify mail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Gmail credentials and can access sensitive mailbox content. <br>
-Mitigation: Install only when PortEden CLI access to the target Gmail account is acceptable; use a separate profile where appropriate, and log out or revoke Google access when the task is complete or a token may have been exposed. <br>
-Risk: Sending, replying, forwarding, deleting, or modifying messages can have visible or hard-to-reverse effects. <br>
-Mitigation: Confirm the account, message or recipient target, and intended change with the user before running any mutating command. <br>
-Risk: Email subjects, bodies, and attachments may contain untrusted third-party instructions. <br>
-Mitigation: Treat mailbox content as data, summarize and attribute it to the sender, prefer preview output, and fetch full message bodies only when needed. <br>
+## Use Case:
 
+External users and developers use this skill to manage Gmail from an agent workflow, including mailbox search, message review, thread inspection, and carefully confirmed outbound or mutating actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/porteden/gmail-cli) <br>
-- [PortEden homepage](https://porteden.com) <br>
-- [PortEden account portal](https://my.porteden.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses compact JSON flags for mailbox reads; mutating email operations require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on a third-party mailbox CLI/service with persistent credentials and broad Gmail access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when PortEden is trusted, verify the package source and version where possible, prefer browser login, and revoke or log out credentials after use on shared or sensitive machines.
+
+Risk: Email mutations such as send, reply, forward, delete, or label modification can be visible to others or hard to reverse.
+
+Mitigation: Confirm the target account, message or recipient, and intended change with the user before running any mutating command.
+
+Risk: Email content can contain untrusted third-party instructions or sensitive information.
+
+Mitigation: Treat message bodies and attachments as untrusted, default to compact preview output, and retrieve full bodies only when the user explicitly needs them.
+
+Risk: Multi-mailbox accounts can cause actions to run against an unintended Gmail mailbox.
+
+Mitigation: Use profile selection, `--send-from`, or `--connection-id` so commands target the intended mailbox.
+
+## Reference(s):
+
+- [ClawHub Gmail Skill](https://clawhub.ai/porteden/skills/gmail-cli)
+- [PortEden Homepage](https://porteden.com)
+- [PortEden Account Portal](https://my.porteden.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses compact JSON command output guidance, explicit confirmation before mutating email actions, and account/profile selection guidance for multi-mailbox use.]
+
+## Skill Version(s):
+
+1.0.8 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

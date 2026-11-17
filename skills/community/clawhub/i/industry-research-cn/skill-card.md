@@ -1,43 +1,59 @@
-## Description: <br>
-Industry Research CN helps agents produce Chinese-language structured research reports for commodities and industries, including price trends, drivers, supply chains, news, A-share company exposure, opportunity and risk analysis, turnover, and technical indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language industry research reports for a commodity or sector, covering price trends, drivers, supply chain context, major news, A-share company exposure, financial impact, turnover, and technical analysis.
 
-## Publisher: <br>
-[whitertigerwilson](https://clawhub.ai/user/whitertigerwilson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whitertigerwilson](https://clawhub.ai/user/whitertigerwilson)
 
-## Use Case: <br>
-External users and agents use this skill to assemble Chinese-language industry or commodity research reports from public market, news, and company data. It is intended for research support and includes an investment-risk disclaimer rather than direct financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses public financial and market data sources that may be stale, incomplete, or unavailable. <br>
-Mitigation: Cross-check important prices and company data with multiple sources before relying on the report. <br>
-Risk: The skill can run local Python scripts and may require dependency installation for some helpers. <br>
-Mitigation: Review commands before execution and require confirmation before installing dependencies or editing stock mappings. <br>
-Risk: Generated investment analysis may be mistaken for financial advice. <br>
-Mitigation: Keep the report disclaimer visible and treat outputs as research support, not trading recommendations. <br>
+## Use Case:
 
+External users and agents use this skill to prepare structured Chinese-language research on commodities, industries, and related China A-share companies. The skill is intended for research assistance and includes investment-risk disclaimers.
 
-## Reference(s): <br>
-- [Industry research reference manual](references/research_manual.md) <br>
-- [ClawHub release page](https://clawhub.ai/whitertigerwilson/industry-research-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown research report with tables, cited source notes, shell command examples, and disclaimer text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language output organized into ten report dimensions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial research outputs may be incomplete, stale, or mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research assistance only, retain the disclaimer, and verify company data against public filings and current market sources before relying on conclusions.
+
+Risk: Public web and Chinese market-data services may return unavailable, delayed, or inconsistent data.
+
+Mitigation: Cross-check prices with multiple sources as the skill directs, and review discrepancies before publishing a report.
+
+Risk: Optional Python dependencies and market-data scripts may vary by local environment.
+
+Mitigation: Use an isolated Python environment with reviewed and pinned dependencies before installing or running optional packages such as akshare.
+
+## Reference(s):
+
+- [Industry research reference manual](references/research_manual.md)
+- [ClawHub skill page](https://clawhub.ai/whitertigerwilson/skills/industry-research-cn)
+- [Eastmoney quote site](https://quote.eastmoney.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese-language Markdown research report with tables, cited source notes, and script-generated market metrics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a financial disclaimer and calls for cross-checking market prices across multiple public sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,63 @@
-## Description: <br>
-Apply WeryAI magic style transfer to an existing HTTPS video (video-magic). Use when the user wants preset visual restyling of a video URL, not text-to-video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply WeryAI magic style transfer to an existing HTTPS video (video-magic). Use when the user wants preset visual restyling of a video URL, not text-to-video.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External users and developers use this skill to restyle an existing public HTTPS video through WeryAI's magic-style workflow. It is intended for preset video restyling, not text-to-video generation or local file upload workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends the selected public video URL and style option to WeryAI's API for paid processing. <br>
-Mitigation: Confirm the video URL and any non-default style with the user before submission, and use dry-run validation when checking inputs. <br>
-Risk: The skill requires WERYAI_API_KEY for API access. <br>
-Mitigation: Keep the API key out of files and use a scoped key where available. <br>
-Risk: Public video URLs may expose sensitive content or embedded access tokens to the external API. <br>
-Mitigation: Avoid URLs containing private tokens or sensitive media, and only submit content the user is comfortable sending to WeryAI. <br>
+## Use Case:
 
+Developers and external users use this skill to apply a supported WeryAI magic style preset to an existing public HTTPS video URL. It is intended for video restyling workflows, not for creating new videos from text or images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/video-tool-magic-style) <br>
-- [WeryAI llms.txt](https://docs.weryai.com/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and final video links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit and poll WeryAI video-magic tasks; dry-run mode validates JSON without a paid submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The workflow sends the supplied video URL and style-transfer request to WeryAI using a paid API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that external processing is acceptable, keep WERYAI_API_KEY in the runtime environment, and confirm the video URL and style before submit or wait.
+
+Risk: Paid submit or wait runs are not idempotent and may consume credits.
+
+Mitigation: Use --dry-run to validate the JSON request first, and require explicit user confirmation before starting a paid run.
+
+Risk: Over-broad installs or sibling scripts could expose workflows outside the documented magic-style scope.
+
+Mitigation: Run only artifact/scripts/video_magic_style.js for this skill and inspect the tool spec before execution.
+
+Risk: Local files are not supported by this skill and should not be uploaded through unrelated tools.
+
+Mitigation: Provide only public https:// video URLs and avoid tools that accept local paths unless separately reviewed.
+
+## Reference(s):
+
+- [WeryAI llms.txt](https://docs.weryai.com/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/video-tool-magic-style)
+- [ClawHub publisher profile](https://clawhub.ai/user/zoucdr)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown links and JSON status or request results from the WeryAI CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WeryAI task IDs, polling status, errors, and final video URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

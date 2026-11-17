@@ -1,47 +1,64 @@
-## Description: <br>
-OpenClaw security-patrol is a multimode security audit skill that runs local host checks by default and can optionally upload summary audit data to Changeway threat-intelligence endpoints after explicit user consent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs an OpenClaw security patrol that performs local system and Skill inventory checks by default, with an optional user-confirmed mode that submits audit summaries to Changeway threat intelligence endpoints.
 
-## Publisher: <br>
-[zsyjx0115](https://clawhub.ai/user/zsyjx0115) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zsyjx0115](https://clawhub.ai/user/zsyjx0115)
 
-## Use Case: <br>
-OpenClaw users run this skill to inspect local system security posture, review installed skill inventory, save local audit reports, and optionally request a remote threat-intelligence score. It is intended for manual or scheduled security patrol workflows where users understand the local inspection and optional upload behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs host-level security inspection that can read sensitive local information such as logs, process metadata, system configuration, workspace files, and installed skill inventory. <br>
-Mitigation: Review the skill before installing and run it only in environments where that level of local inspection is acceptable. <br>
-Risk: --push mode sends identifiable audit summaries and device-related data to Changeway/auth.ctct.cn. <br>
-Mitigation: Use the default local mode unless the user explicitly trusts the endpoint and confirms the upload for that manual run. <br>
-Risk: Scheduled scans create ongoing local inspection and should not silently enable remote upload. <br>
-Mitigation: Keep scheduled runs in local mode and avoid adding --push to cron configuration. <br>
-Risk: The security evidence warns not to rely on the embedded integrity hash until the publisher fixes it. <br>
-Mitigation: Treat the release as requiring review before installation and use server-provided file hashes for release verification where available. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run local security audits, review saved audit reports, and optionally request a remote threat intelligence score after explicit consent.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zsyjx0115/openclaw-security-patrol) <br>
-- [Cron setup guide](references/cron-setup.md) <br>
-- [Changeway audit upload endpoint](https://auth.ctct.cn:10020/changeway-open/api/pushAuditData) <br>
-- [Changeway skill assessment endpoint](https://auth.ctct.cn:10020/changeway-open/api/skills/assessment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, json] <br>
-**Output Format:** [Markdown and concise text summaries with inline shell commands; the audit script writes local TXT and JSON report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default local mode avoids network upload; --push mode uploads summary audit data only after explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server-resolved release evidence) <br>
+Risk: The skill performs broad local inspection and reads sensitive host, system log, and Skill inventory data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that inspection scope is acceptable, review the local reports it creates, and prefer the default local mode for privacy-sensitive environments.
+
+Risk: The optional push mode can send host identifiers, Skill inventory, and audit summaries to auth.ctct.cn.
+
+Mitigation: Use push mode only after explicit informed consent and only when the publisher-operated endpoint is trusted.
+
+Risk: Recurring scans through OpenClaw cron can repeatedly inspect the machine and create stored reports.
+
+Mitigation: Enable cron only when recurring scans are desired, keep scheduled runs in local mode, and avoid adding push behavior to scheduled jobs.
+
+Risk: Security evidence notes a persistent agent_id behavior even during offline scans.
+
+Mitigation: Review local state files before deployment and document retention expectations for any persistent device identifier.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zsyjx0115/skills/openclaw-security-patrol)
+- [Cron setup guide](references/cron-setup.md)
+- [Changeway audit data endpoint](https://auth.ctct.cn:10020/changeway-open/api/pushAuditData)
+- [Changeway Skill assessment endpoint](https://auth.ctct.cn:10020/changeway-open/api/skills/assessment)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise audit summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local text and JSON audit reports under the OpenClaw state directory.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-AI interview simulation and coaching that uses a user's resume and job description to generate tailored interview questions, run mock interviews, score answers, and provide model responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI interview simulation and coaching that uses a user's resume and job description to generate tailored interview questions, conduct question-by-question practice, and provide scoring with model answers.
 
-## Publisher: <br>
-[yangmanqi2104201431-ship-it](https://clawhub.ai/user/yangmanqi2104201431-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangmanqi2104201431-ship-it](https://clawhub.ai/user/yangmanqi2104201431-ship-it)
 
-## Use Case: <br>
-External users and employees use this skill to prepare for interviews by turning resumes and job descriptions into customized question sets, mock interview sessions, answer feedback, and final review reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resumes, job descriptions, files, URLs, and search queries may contain personal, confidential, or employer-sensitive information. <br>
-Mitigation: Remove unnecessary personal or confidential details before use, and only provide materials needed for the interview-preparation task. <br>
-Risk: Document conversion, URL handling, and web searches may process user-selected files or private links. <br>
-Mitigation: Allow DOCX conversion, URL access, or web searches only when they clearly relate to materials the user intentionally provided. <br>
+## Use Case:
 
+Candidates and interview coaches use this skill to prepare for interviews by turning resumes, job descriptions, target roles, and recent interview-experience material into a structured mock interview workflow. It supports quick model answers for single interview questions and a fuller practice flow with question sets, follow-up prompts, feedback, scoring, and a recap.
 
-## Reference(s): <br>
-- [Question Generation Instructions](references/generate-prompt.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yangmanqi2104201431-ship-it/interview-prepare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational text with interview questions, scoring feedback, model answers, and recap reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured question lists, STAR-format sample answers, per-question scores, and improvement recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can process sensitive resume and job-description material through configured tools and search-derived context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the excerpts needed for interview preparation and remove unnecessary personal details before use.
+
+Risk: DOCX handling may involve shell-based conversion.
+
+Mitigation: Use trusted document sources, prefer plain text or PDF excerpts when possible, and review conversions before relying on extracted content.
+
+## Reference(s):
+
+- [Question generation reference](artifact/references/generate-prompt.md)
+- [ClawHub skill page](https://clawhub.ai/yangmanqi2104201431-ship-it/skills/interview-prepare)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown interview questions, feedback, model answers, scoring summaries, and recap guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May incorporate user-provided resume, job description, image, URL, and search-derived context when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

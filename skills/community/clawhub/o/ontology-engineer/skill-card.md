@@ -1,52 +1,67 @@
-## Description: <br>
-Extracts candidate ontology models from enterprise schemas and data dictionaries, and builds local knowledge graphs from approved filesystem scans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract candidate ontology models from enterprise business systems and build or maintain local knowledge graphs from file systems.
 
-## Publisher: <br>
-[li2092](https://clawhub.ai/user/li2092) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li2092](https://clawhub.ai/user/li2092)
 
-## Use Case: <br>
-Developers, data engineers, and ontology practitioners use this skill to extract business concepts, relationships, and review artifacts from schemas, data dictionaries, and selected file collections. It supports local knowledge graph creation when the user confirms the scan scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can broadly scan folders and derive sensitive data from local files. <br>
-Mitigation: Use it only on folders intentionally selected and authorized by the user; prefer dry-run or custom output paths before full analysis. <br>
-Risk: Generated graph and schema artifacts may persist sensitive derived information. <br>
-Mitigation: Store outputs in a controlled local directory, review them before sharing, and avoid scanning shared, client, or private locations without authorization. <br>
-Risk: Runtime conversation facts can become durable memory if passive writes are allowed. <br>
-Mitigation: Require explicit user opt-in before saving chat-derived facts to persistent graph files. <br>
+## Use Case:
 
+Developers, ontology engineers, and data consultants use this skill to extract candidate business ontologies from SQL DDL, Word, and Excel data dictionaries, or to build local knowledge graphs from approved file-system scopes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/li2092/ontology-engineer) <br>
-- [Analysis Rules](references/analysis-rules.md) <br>
-- [Knowledge Graph Workflow](references/knowledge-graph-workflow.md) <br>
-- [Supported Formats and Dependencies](references/formats-and-deps.md) <br>
-- [Ontology Modeling Decision Guide](references/modeling-decisions.md) <br>
-- [Relation Ontology](references/relation-ontology.md) <br>
-- [Constraints and Inference](references/constraints-and-inference.md) <br>
-- [Ontology Evolution](references/ontology-evolution.md) <br>
-- [Quality Self-Check and Error Detection](references/quality-checks.md) <br>
-- [Script Operations](references/script-operations.md) <br>
-- [Value Scenarios](references/value-scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, YAML, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local files such as ontology.json, review.md, graph.jsonl, and schema.yaml] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are local artifacts generated from user-selected inputs; review is expected before using extracted models or knowledge graphs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence and frontmatter) <br>
+Risk: Broad file-system indexing may capture personal, client, or partner data paths and extracted metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on specifically approved directories, start with dry-run and custom output paths, and avoid sensitive data unless authorization is clear.
+
+Risk: Generated graph files may persist conversation facts, file paths, and extracted metadata.
+
+Mitigation: Review graph.jsonl before syncing, committing, or sharing outputs, and keep generated files in a controlled local workspace.
+
+Risk: Local scripts process Office, PDF, text, and structured files across large directory trees.
+
+Mitigation: Use a sandboxed environment with pinned dependencies and confirm the Step 1.5 analysis scope before semantic analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/li2092/skills/ontology-engineer)
+- [Value scenarios](references/value-scenarios.md)
+- [Analysis rules](references/analysis-rules.md)
+- [Knowledge graph workflow](references/knowledge-graph-workflow.md)
+- [Supported formats and dependencies](references/formats-and-deps.md)
+- [Ontology modeling decision guide](references/modeling-decisions.md)
+- [Relation ontology](references/relation-ontology.md)
+- [Ontology evolution](references/ontology-evolution.md)
+- [Constraints and inference](references/constraints-and-inference.md)
+- [Quality self-check and error detection](references/quality-checks.md)
+- [Script operations](references/script-operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, JSONL, YAML, and shell command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ontology.json and review.md for database extraction, or graph.jsonl and schema.yaml for file-system knowledge graphs.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

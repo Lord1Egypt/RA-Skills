@@ -1,42 +1,57 @@
-## Description: <br>
-面向公募基金业绩归因分析，聚焦超额收益来源、选股能力、择时能力、配置支撑与业绩可持续性，并基于今日投资金融数据接口自动识别基金代码并输出结构化基金业绩归因报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured public mutual fund performance attribution reports focused on excess return sources, stock selection, market timing, allocation support, and performance sustainability using Investoday finance data.
 
-## Publisher: <br>
-[kenneth-bro](https://clawhub.ai/user/kenneth-bro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenneth-bro](https://clawhub.ai/user/kenneth-bro)
 
-## Use Case: <br>
-External finance analysts and agent users use this skill to generate structured public-fund performance attribution reports, including excess-return sources, stock-selection and timing signals, allocation support, and sustainability considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the required investoday-finance-data skill and external finance-data API calls. <br>
-Mitigation: Confirm that the dependency and external finance-data calls are acceptable before installation and use. <br>
-Risk: Prompts about funds could include unnecessary personal financial details. <br>
-Mitigation: Use fund names or 6-digit fund codes and avoid account information or other personal financial details. <br>
-Risk: Attribution reports could be mistaken for trading, subscription, redemption, or timing advice. <br>
-Mitigation: Keep outputs framed as analysis only and follow the artifact constraint against investment recommendations. <br>
+## Use Case:
 
+External finance users and agents use this skill to analyze public mutual fund performance attribution, including whether excess return appears driven by alpha, beta exposure, stock selection, market timing, asset allocation, or manager history. The output is analytical reference material and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenneth-bro/investoday-fund-performance-attribution-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured fund performance attribution report with numeric evidence requirements and no investment recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may mistake fund attribution analysis for investment instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present conclusions as reference analysis only, avoid buy, sell, redemption, allocation, or market-timing advice, and remind users to verify financial conclusions independently.
+
+Risk: Fund identity can be ambiguous when the user provides only a name.
+
+Mitigation: Use entity recognition first and request a complete fund name or six-digit fund code when the match is not stable and unique.
+
+Risk: Attribution conclusions can be misleading when evidence is missing or active-management metrics are applied to passive or index-tracking products.
+
+Mitigation: Require numerical evidence for attribution conclusions, state when data is insufficient, and explain analysis boundaries for passive or index-tracking funds.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenneth-bro/skills/investoday-fund-performance-attribution-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown fund performance attribution report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public fund data and requires independent verification of financial conclusions.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

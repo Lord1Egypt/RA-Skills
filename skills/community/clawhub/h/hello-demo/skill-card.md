@@ -1,38 +1,48 @@
-## Description: <br>
-A simple skill to greet users and demonstrate basic OpenCLAW skill structure. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+A simple skill to greet users and demonstrate basic OpenCLAW skill structure.
 
-## Publisher: <br>
-[luna825](https://clawhub.ai/user/luna825) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luna825](https://clawhub.ai/user/luna825)
 
-## Use Case: <br>
-Developers and learners use this skill to see a basic OpenCLAW skill respond with a friendly greeting and optional demo script output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill unintentionally. <br>
-Mitigation: Review activation context before relying on the generated greeting or running the demo script. <br>
-Risk: The demo script prints the local working directory, which may expose path information in a shared transcript. <br>
-Mitigation: Avoid running the script in shared conversations when local path disclosure matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and OpenCLAW users use this skill to produce a friendly greeting and understand the basic structure of a simple skill.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with optional terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included script prints the current time and local working directory when run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generic trigger phrases may activate the skill when a user only meant to say hello or run an unrelated test.
+
+Mitigation: Review trigger phrases before deployment and rename them to more specific activation phrases when clarity is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luna825/skills/hello-demo)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with optional inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

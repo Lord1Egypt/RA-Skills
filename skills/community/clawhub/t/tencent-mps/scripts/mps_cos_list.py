@@ -31,7 +31,6 @@
   TENCENTCLOUD_COS_REGION  - COS Bucket 区域（必需）
 """
 
-from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 import argparse
 import os
 import sys
@@ -40,12 +39,16 @@ from datetime import datetime
 # 加载环境变量模块（同目录）
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 
 try:
     from mps_load_env import ensure_env_loaded, check_required_vars, _print_setup_hint
     _LOAD_ENV_AVAILABLE = True
 except ImportError:
     _LOAD_ENV_AVAILABLE = False
+
+# 依赖检查/自动安装：必须在第三方包首次 import 之前调用
+check_sdk_version()
 
 try:
     from qcloud_cos import CosConfig, CosS3Client
@@ -151,7 +154,9 @@ def format_time(time_str):
         # COS 返回的时间格式: 2024-01-15T08:30:00.000Z
         dt = datetime.fromisoformat(time_str.replace('Z', '+00:00'))
         return dt.strftime('%Y-%m-%d %H:%M:%S')
-    except:
+    except (ValueError, AttributeError, TypeError):
+        # ValueError: 格式无法解析；AttributeError/TypeError: 传入 None 或非字符串
+        # 不用裸 except，避免吞掉 KeyboardInterrupt / SystemExit
         return time_str
 
 

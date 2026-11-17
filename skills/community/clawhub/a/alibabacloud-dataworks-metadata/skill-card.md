@@ -1,49 +1,62 @@
-## Description: <br>
-DataWorks metadata Skill for Alibaba Cloud that helps agents browse Data Map metadata and perform guarded, non-destructive metadata updates through Aliyun CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and curate Alibaba Cloud DataWorks Data Map metadata, including catalogs, databases, tables, columns, partitions, lineage, datasets, versions, and metadata collections, through Aliyun CLI read and non-destructive write workflows.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers, data engineers, and cloud operators use this skill to inspect Alibaba Cloud DataWorks catalogs, databases, tables, columns, partitions, lineage, datasets, versions, and metadata collections. They can also ask the agent to propose guarded, non-destructive metadata updates with explicit confirmation before writes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide non-destructive writes to DataWorks metadata, including business metadata, lineage, datasets, versions, collections, and collection entities. <br>
-Mitigation: Use a least-privilege Aliyun profile, start with read-only RAM permissions unless writes are needed, and require explicit user confirmation before every write. <br>
-Risk: Credentials or access keys could be exposed if an agent prints or passes literal secrets in CLI commands. <br>
-Mitigation: Check credential status with the allowed Aliyun CLI profile command only; never read, echo, print, or place literal AK/SK values in commands. <br>
-Risk: A write command could time out after partially succeeding, creating duplicate resources if retried blindly. <br>
-Mitigation: After write timeouts or ambiguous errors, re-check state with the matching list or get command before retrying or accepting the existing resource. <br>
-Risk: The skill temporarily enables Aliyun CLI AI-Mode and sets a skill-specific user agent. <br>
-Mitigation: Disable AI-Mode when the DataWorks task is complete so the skill user agent does not carry over into unrelated CLI usage. <br>
+## Use Case:
 
+Developers, data engineers, and metadata stewards use this skill to inspect DataWorks metadata, trace lineage, manage dataset and collection records, and apply confirmed non-destructive metadata updates from an agent session.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sdk-team/alibabacloud-dataworks-metadata) <br>
-- [Aliyun CLI installation documentation](https://help.aliyun.com/document_detail/121541.html) <br>
-- [Entity ID Format Reference](references/entity-id-formats.md) <br>
-- [RAM Policies - DataWorks Metadata](references/ram-policies.md) <br>
-- [Related CLI Commands - DataWorks Metadata](references/related-commands.md) <br>
-- [Verification Method - DataWorks Metadata](references/verification-method.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require user-confirmed parameters, Aliyun CLI timeouts, and explicit confirmation before non-destructive writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The skill may require broad Alibaba Cloud DataWorks metadata permissions, including non-destructive write actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege Aliyun identity, prefer the documented read-only RAM policy unless writes are required, and narrow RAM resources or conditions to approved projects and workspaces wherever supported.
+
+Risk: Confirmed write actions can change DataWorks business metadata, lineage relationships, datasets, versions, collections, or collection membership.
+
+Mitigation: Require explicit user confirmation for each write, perform check-then-act reads before create or add operations, and verify state with follow-up list or get commands.
+
+Risk: Destructive DataWorks operations could remove metadata resources or relationships if granted and invoked outside the skill's intended scope.
+
+Mitigation: Do not grant Delete or Remove actions to the operator account for this skill; the artifact explicitly excludes deletion and removal commands and directs deletions to the DataWorks console.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-dataworks-metadata)
+- [Aliyun CLI installation documentation](https://help.aliyun.com/document_detail/121541.html)
+- [Entity ID Format Reference](references/entity-id-formats.md)
+- [RAM Policies - DataWorks Metadata](references/ram-policies.md)
+- [Related CLI Commands - DataWorks Metadata](references/related-commands.md)
+- [Verification Method - DataWorks Metadata](references/verification-method.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON-oriented CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied Alibaba Cloud region, resource identifiers, credentials, and explicit confirmation before write operations.]
+
+## Skill Version(s):
+
+0.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

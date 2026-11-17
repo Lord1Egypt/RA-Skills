@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Discord"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["discord"]
   icon: "https://static.oomol.com/logo/third-party/Discord.svg"
 ---
@@ -43,8 +43,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_guild_template` — Get a Discord guild template by code.
 - `get_guild_widget` — Get a Discord guild widget as JSON.
 - `get_guild_widget_png` — Get a Discord guild widget PNG.
-- `get_invite` — Get a Discord invite by code or URL. [write]
-- `get_my_application_role_connection` — Read the current OAuth user's role connection data for a Discord application. [write]
+- `get_invite` — Get a Discord invite by code or URL.
+- `get_my_application_role_connection` — Read the current OAuth user's role connection data for a Discord application.
 - `get_my_guild_member` — Get the current OAuth user's member record in a guild.
 - `get_my_oauth2_authorization` — Get the current OAuth2 authorization information.
 - `get_my_user` — Get the current OAuth user profile.
@@ -54,7 +54,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_my_connections` — List the current OAuth user's linked connections.
 - `list_my_guilds` — List the current OAuth user's guilds.
 - `list_sticker_packs` — List Discord Nitro sticker packs.
-- `resolve_invite` — Resolve a Discord invite by code. [write]
+- `resolve_invite` — Resolve a Discord invite by code.
 - `update_my_application_role_connection` — Set the current OAuth user's role connection platform fields or metadata for a Discord application. [write]
 
 ## Safety
@@ -86,11 +86,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Discord is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=discord
+  https://console.oomol.com/connections/discord
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Discord homepage: https://discord.com
+- API documentation: https://docs.discord.com/developers/

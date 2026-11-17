@@ -1,45 +1,59 @@
-## Description: <br>
-WebClaw provides a browser-based OpenClaw dashboard for installed skills, with schema-driven UI rendering, JWT authentication, RBAC, AI chat, real-time updates, SSL setup, and web user administration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WebClaw installs and administers a browser-based OpenClaw dashboard with schema-driven skill rendering, JWT authentication, RBAC, AI chat, real-time updates, user management, and SSL configuration.
 
-## Publisher: <br>
-[mailnike](https://clawhub.ai/user/mailnike) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mailnike](https://clawhub.ai/user/mailnike)
 
-## Use Case: <br>
-OpenClaw administrators and developers use WebClaw to install and operate a browser dashboard, manage web users and sessions, configure HTTPS, and inspect dashboard service status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installation and runtime actions can make sudo-level changes to nginx, systemd services, SSL certificates, and dashboard users. <br>
-Mitigation: Install only on an administrator-controlled server, back up nginx configuration before use, and review proposed service or certificate changes before execution. <br>
-Risk: Installation can fetch application source and package dependencies from the internet. <br>
-Mitigation: Verify the fetched source tag and dependency inputs before installation. <br>
-Risk: Session, configuration, and user listings may expose administrative operational data. <br>
-Mitigation: Restrict WebClaw access to trusted administrators and treat these listings as admin-only data. <br>
-Risk: Chosen passwords passed on the command line may be exposed through shell or process history. <br>
-Mitigation: Prefer generated reset passwords or secure password handling and avoid passing chosen passwords as command-line arguments. <br>
+## Use Case:
 
+Developers and administrators use WebClaw to install and operate a web dashboard for OpenClaw skills, manage dashboard users and sessions, configure HTTPS, and check or restart dashboard services.
 
-## Reference(s): <br>
-- [WebClaw ClawHub Release](https://clawhub.ai/mailnike/webclaw) <br>
-- [WebClaw Homepage](https://www.erpclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include administrative status, user/session listings, generated credentials, SSL configuration results, and service management guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.3 (source: ClawHub release metadata; artifact frontmatter and install tag reference 2.1.0) <br>
+Risk: Installation pulls remote code and installs persistent services with broad host privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on a dedicated host or VM, verify the upstream release tag before installation, and review service and package changes before use.
+
+Risk: The installer can modify nginx, certbot, systemd services, local package state, and dashboard accounts through sudo-backed operations.
+
+Mitigation: Back up nginx configuration first, review generated service files and certificates, and limit installation to hosts where WebClaw should control the dashboard stack.
+
+Risk: Passwords may be exposed when users provide reset passwords through chat or command-line arguments.
+
+Mitigation: Prefer generated temporary passwords, share credentials out of band, and avoid passing reusable passwords through chat or shell history.
+
+## Reference(s):
+
+- [ClawHub WebClaw Skill Page](https://clawhub.ai/mailnike/skills/webclaw)
+- [WebClaw Homepage](https://www.erpclaw.ai)
+- [Repository URL Listed by Artifact](https://github.com/avansaber/webclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON action results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated temporary passwords and local service, SSL, user, session, and configuration status details.]
+
+## Skill Version(s):
+
+2.1.3 (source: server release metadata; artifact frontmatter lists 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

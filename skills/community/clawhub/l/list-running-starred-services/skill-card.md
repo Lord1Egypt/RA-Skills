@@ -1,41 +1,48 @@
-## Description: <br>
-Use this skill when you need to call bytedcli tce list-starred-service and print the raw original output directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs `bytedcli tce list-starred-service` and prints the raw original output directly.
 
-## Publisher: <br>
-[plusplus7](https://clawhub.ai/user/plusplus7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[plusplus7](https://clawhub.ai/user/plusplus7)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators with access to a local bytedcli environment use this skill to list TCE starred services and review the raw command output in the agent conversation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Raw starred-service output may expose service names or account-context details in the conversation.
+
+Mitigation: Install and invoke the skill only where sharing raw bytedcli output is appropriate, and review the output before redistributing it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to ask an agent to run the existing bytedcli command for starred TCE services and return the command's raw output without filtering or post-processing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use the agent's existing bytedcli access to list starred TCE services and may expose internal operational metadata in raw output. <br>
-Mitigation: Invoke it explicitly when possible and review the raw output before sharing it outside the organization. <br>
-Risk: Implicit invocation is allowed by the artifact configuration. <br>
-Mitigation: Install only in environments where agent access to bytedcli and TCE service metadata is acceptable. <br>
+**Output Format:** [Plain text command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/plusplus7/list-running-starred-services) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/plusplus7) <br>
+**Other Properties Related to Output:** [Raw bytedcli output is printed directly without filtering or post-processing.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, guidance] <br>
-**Output Format:** [Plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints the raw bytedcli output directly without pagination flags or post-processing.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Navigate FRED categories and series using fredapi, supporting natural-language queries with intent recognition and double validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate FRED categories and series using fredapi, supporting natural-language queries with intent recognition and double validation.
 
-## Publisher: <br>
-[kiszly](https://clawhub.ai/user/kiszly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kiszly](https://clawhub.ai/user/kiszly)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to navigate Federal Reserve Economic Data categories, discover series, and retrieve series data or metadata from FRED using category IDs, series IDs, or natural-language queries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper script disables HTTPS certificate verification while using a FRED API key. <br>
-Mitigation: Remove the SSL context override before use and verify FRED API calls with normal certificate validation enabled. <br>
-Risk: The skill requires network access to FRED and a FRED_API_KEY environment variable. <br>
-Mitigation: Install and run it in an isolated environment, provide the API key only through the environment, and avoid committing credentials to skill files. <br>
-Risk: Unpinned Python dependencies can reduce reproducibility and assurance. <br>
-Mitigation: Pin dependency versions before deployment when reproducible or higher-assurance operation is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kiszly/fred-navigator) <br>
-- [README.md](README.md) <br>
-- [fred_categories_tree.json](references/fred_categories_tree.json) <br>
-- [fred_categories_flat.json](references/fred_categories_flat.json) <br>
-- [category_paths.json](references/category_paths.json) <br>
-- [synonyms.json](references/synonyms.json) <br>
+## Use Case:
 
+Developers and agents use FRED-Navigator to browse FRED category data, select relevant categories from natural-language requests, and retrieve series data or metadata through helper commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON or table outputs from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include FRED category candidates, series metadata, recent series values, missing-count summaries, and latest value/date details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script disables HTTPS certificate verification while using a FRED API key.
+
+Mitigation: Remove the SSL context override in scripts/fred_query.py so HTTPS certificates are verified before installing or running live queries.
+
+Risk: Unpinned dependencies may change behavior across installations.
+
+Mitigation: Pin and review dependency versions for fredapi and pandas before production use.
+
+Risk: Live helper commands contact FRED over the network and require an API key.
+
+Mitigation: Use a restricted FRED API key from the FRED_API_KEY environment variable and run queries in a controlled environment.
+
+## Reference(s):
+
+- [FRED-Navigator ClawHub release](https://clawhub.ai/kiszly/skills/fred-navigator)
+- [FRED category tree](references/fred_categories_tree.json)
+- [FRED categories flat index](references/fred_categories_flat.json)
+- [FRED category paths index](references/category_paths.json)
+- [Natural-language synonym hints](references/synonyms.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON or table output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require FRED_API_KEY and network access to FRED for live category or series queries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

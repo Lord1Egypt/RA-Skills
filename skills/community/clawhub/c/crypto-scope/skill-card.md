@@ -1,42 +1,56 @@
-## Description: <br>
-Crypto Scope helps agents query cryptocurrency prices, calculate technical indicators, and generate trading signals for monitored coins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Scope helps agents query cryptocurrency prices, calculate technical indicators, and generate BUY, SELL, or HOLD trading signals.
 
-## Publisher: <br>
-[imgolye](https://clawhub.ai/user/imgolye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imgolye](https://clawhub.ai/user/imgolye)
 
-## Use Case: <br>
-External users, traders, and Web3 developers use this skill to request price checks, MA/RSI/MACD analysis, and BUY/SELL/HOLD signal summaries from CoinGecko-backed data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds payment credentials and can charge a supplied user through SkillPay without a separate confirmation step. <br>
-Mitigation: Review before installing, replace exposed payment credentials with a secure secret, and only provide a real user ID when per-call SkillPay charges are intended. <br>
-Risk: Generated BUY, SELL, and HOLD signals may be inaccurate or misleading for financial decisions. <br>
-Mitigation: Treat outputs as informational analysis only, verify market data and assumptions independently, and do not rely on the skill as investment advice. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Crypto Scope on ClawHub](https://clawhub.ai/imgolye/crypto-scope) <br>
-- [CoinGecko](https://coingecko.com) <br>
-- [CoinGecko Coin List](https://coingecko.com/coins) <br>
-- [SkillPay](https://skillpay.me) <br>
+## Use Case:
 
+External users and developers use this skill to retrieve cryptocurrency market data, inspect common indicators such as MA, RSI, MACD, and Bollinger Bands, and receive automated trading signal guidance. It is intended as analysis support only and not as investment advice.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON or plain text CLI output, with Markdown setup guidance in the artifact documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid paths require a user ID and may charge 0.05 USDT per call after a balance check.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The main documented workflow is inconsistent with the code and can perform automatic SkillPay billing using an embedded credential.
+
+Mitigation: Review before installing; do not run the paid analyzer or setup scripts unless paid SkillPay billing is intended and trusted. The publisher should rotate the embedded key, remove hard-coded credentials, and add explicit per-charge confirmation.
+
+Risk: Generated trading signals can be misleading if treated as financial advice.
+
+Mitigation: Treat outputs as analysis support only, verify market data independently, and make trading decisions outside the skill.
+
+## Reference(s):
+
+- [Crypto Scope ClawHub page](https://clawhub.ai/imgolye/skills/crypto-scope)
+- [Publisher profile](https://clawhub.ai/user/imgolye)
+- [CoinGecko API](https://api.coingecko.com/api/v3)
+- [CoinGecko coins list](https://coingecko.com/coins)
+- [SkillPay](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON or plain text from CLI commands; documentation includes Markdown examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include live market data, calculated indicators, trading signals, confidence, risk level, billing status, and recharge links when SkillPay balance is insufficient.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

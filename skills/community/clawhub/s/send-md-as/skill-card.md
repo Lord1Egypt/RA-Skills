@@ -1,43 +1,53 @@
-## Description: <br>
-Render Markdown as polished JPEG, PNG, WebP, or PDF media for messaging apps, with support for code highlighting, LaTeX, Mermaid diagrams, tables, themes, and optional page splitting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render Markdown as polished media for messaging apps, with support for code highlighting, LaTeX, Mermaid diagrams, tables, themes, and optional page splitting.
 
-## Publisher: <br>
-[enc-hanted](https://clawhub.ai/user/enc-hanted) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enc-hanted](https://clawhub.ai/user/enc-hanted)
 
-## Use Case: <br>
-Developers and agent users use this skill to convert Markdown into shareable media for chat channels that do not natively render Markdown. It can produce full single-page images by default, optional paginated images on request, or PDFs for longer content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local renderer processes user-provided Markdown in Chromium and the security summary flags that Chromium compatibility fallback can weaken sandboxing. <br>
-Mitigation: Run the skill only for trusted or reviewed Markdown in an isolated environment, and review the rendered output before sharing it. <br>
-Risk: Setup installs Python and npm dependencies and may download Chromium or optional rendering tools. <br>
-Mitigation: Review setup.sh before running it, pin or mirror dependencies according to local policy, and install in an isolated user or virtual environment. <br>
-Risk: The optional message-send command can send generated media to a channel or target selected by the user. <br>
-Mitigation: Confirm the channel, target, and generated media file before invoking the send command. <br>
+## Use Case:
 
+Developers and agent users use this skill to convert Markdown into JPEG, PNG, WebP, or PDF media and optionally send the rendered output through OpenClaw messaging channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/enc-hanted/send-md-as) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/enc-hanted) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [JPEG, PNG, WebP, or PDF files with optional Markdown shell-command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports light, dark, sepia, and nord themes; image page splitting is optional and disabled by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release evidence and artifact metadata) <br>
+Risk: Dependency installation uses user-level pip and npm packages, and the security summary flags unpinned dependency installation as review-worthy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only where user-level dependency installation is acceptable, and pin or review dependencies before deployment.
+
+Risk: The security summary flags unsafe temporary file handling, and the renderer writes temporary HTML under /tmp during rendering.
+
+Mitigation: Avoid rendering secrets or private notes, verify the destination before sending media, and isolate the renderer until temporary-file handling is fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/enc-hanted/skills/send-md-as)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; rendered media files as JPEG, PNG, WebP, or PDF]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports light, dark, sepia, and nord themes; image pagination is optional and should be requested explicitly.]
+
+## Skill Version(s):
+
+0.4.1 (source: server evidence, _meta.json, SKILL.md heading, render.sh VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,54 @@
-## Description: <br>
-A-share stock analysis skill that accepts stock symbols and produces buy, sell, or hold signals, price levels, ASCII trend views, Monte Carlo price forecasts, and concise AI-assisted commentary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-share stock analysis dashboard that accepts stock codes and produces buy, sell, or hold signals, exact price points, day charts, Monte Carlo month/year price forecasts, and combined buy recommendations.
 
-## Publisher: <br>
-[vineindalvik](https://clawhub.ai/user/vineindalvik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vineindalvik](https://clawhub.ai/user/vineindalvik)
 
-## Use Case: <br>
-External users and developers can use this skill to inspect Chinese A-share symbols, generate stock dashboards, review intraday or daily trend summaries, and receive informational buy, sell, hold, and forecast analysis. Outputs are intended for decision support and should be reviewed before any financial action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected stock symbols, prompts, and generated analysis may be sent to the configured LLM provider. <br>
-Mitigation: Use only an approved LLM endpoint and avoid entering symbols or prompts that should not be shared with that provider. <br>
-Risk: Optional webhook delivery can share stock analysis with chat spaces. <br>
-Mitigation: Configure webhook URLs only for destinations where recipients are authorized to see the generated analysis. <br>
-Risk: Buy/sell signals, price targets, and forecasts may be inaccurate or unsuitable for a user's financial situation. <br>
-Mitigation: Treat all outputs as informational decision support and review them independently before making investment decisions. <br>
-Risk: Runtime dependencies and market-data packages execute in the user's Python environment. <br>
-Mitigation: Install in an isolated environment and review dependency versions before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to analyze A-share stock codes, inspect recent price movement, generate month or year price forecasts, and receive concise trading posture guidance. Outputs should be treated as informational market analysis rather than financial advice.
 
-## Reference(s): <br>
-- [Stock Pulse ClawHub Page](https://clawhub.ai/vineindalvik/stock-pulse) <br>
-- [baostock](http://baostock.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, analysis, guidance] <br>
-**Output Format:** [Console text and Markdown-style reports with optional JSON-formatted analysis from the configured LLM] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stock symbols, buy/sell/hold signals, entry and stop-loss levels, price targets, ASCII charts, Monte Carlo forecast ranges, and optional webhook messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata) <br>
+Risk: The skill gives concrete trading recommendations that may be incorrect, stale, or unsuitable for a user's financial situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational analysis only and require human review before making investment decisions.
+
+Risk: Stock codes, prompts, generated analysis, and webhook messages may be sent to configured external services.
+
+Mitigation: Run in an isolated environment, use a dedicated low-privilege LLM key, set LLM_BASE_URL only to a trusted HTTPS provider, and enable webhooks only when their destination is approved.
+
+## Reference(s):
+
+- [baostock data source](http://baostock.com/)
+- [ClawHub skill page](https://clawhub.ai/vineindalvik/skills/stock-pulse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown-style console text, JSON from internal LLM analysis prompts, ASCII charts, and optional webhook text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires stock code inputs, LLM_API_KEY, LLM_BASE_URL, LLM_MODEL, and network access to the configured LLM provider and baostock data source.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

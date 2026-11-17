@@ -1,43 +1,53 @@
-## Description: <br>
-Hizal Write guides an agent to persist decisions, conventions, observations, identity notes, and org knowledge through dedicated Hizal write tools as it works. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hizal Write guides an agent to persist useful learnings, decisions, conventions, identity notes, organization knowledge, and principles through dedicated Hizal write tools during work.
 
-## Publisher: <br>
-[parkerscobey](https://clawhub.ai/user/parkerscobey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkerscobey](https://clawhub.ai/user/parkerscobey)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep durable memory of useful decisions, conventions, lessons, identity notes, and org knowledge while an agent works. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages automatic durable memory writes while an agent works. <br>
-Mitigation: Require explicit save approval or a clear policy before using it, and default to narrow memory scopes. <br>
-Risk: Sensitive or confidential information could be persisted in memory. <br>
-Mitigation: Forbid storage of secrets, credentials, personal data, customer content, confidential code, and temporary reasoning notes unless deliberately approved. <br>
-Risk: Broad project, agent, or org scopes and auto-injection can spread incorrect or private context. <br>
-Mitigation: Review scope, source fields, and inject audience before writes, and keep principle promotion under human review. <br>
+## Use Case:
 
+Developers and agents use this skill to record decisions, lessons, project conventions, organization knowledge, and related memory while work is happening so future sessions can reuse that context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkerscobey/hizal-write) <br>
-- [Publisher profile](https://clawhub.ai/user/parkerscobey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code] <br>
-**Output Format:** [Markdown with tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for writing durable memory chunks through Hizal tools; no generated files are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Persistent memory writes can store sensitive or unverified information if scopes and content are not controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain approved scopes, require confirmation for project or organization writes, and avoid storing secrets, credentials, personal data, raw conversation content, or unverified claims.
+
+Risk: Auto-injected memory or identity entries can influence future agent behavior without clear user control.
+
+Mitigation: Use auto-injection only for deliberately approved memory categories and review durable identity or convention writes before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parkerscobey/skills/hizal-write)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Code]
+
+**Output Format:** [Markdown with inline tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for durable memory writes across agent, project, and organization scopes.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

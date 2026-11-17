@@ -1,0 +1,9 @@
+{
+  "appkey": "4c6b6be3089e4715a080e3edcf60b67c",
+  "secret": "13b92efb33c5455bb5d23e6a53ada8b4",
+  "host": "https://media.meituan.com",
+  "paths": {
+    "referral_link": "/cps_open/common/api/v1/get_referral_link",
+    "query_coupon": "/cps_open/common/api/v1/query_coupon"
+  }
+}

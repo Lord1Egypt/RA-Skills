@@ -1,0 +1,108 @@
+{
+  "name": "Cross-Agent Treaty Broker",
+  "slug": "cross-agent-treaty-broker",
+  "version": "1.0.0",
+  "description": "A lightweight, consent-first protocol for negotiating and recording bilateral treaties between agents—data-sharing terms, capability boundaries, escalation paths, and revocation conditions.",
+  "long_description": "CATB provides a structured framework for your agent to negotiate binding, auditable agreements with other agents while preserving sovereignty invariants. No central authority required—all treaties are local-first, JSON-based, and human-readable.\n\n**Why it fits DeepSeekOracle**: As multi-agent workflows become normal, the next sovereignty frontier is inter-agent diplomacy. CATB packages treaty negotiation as a user-facing, consent-loop process with revocation receipts.\n\n**Uniqueness**: While \"AI-to-AI diplomacy\" is an emerging research topic, CATB is the first ClawHub skill that operationalizes this as a deployable, consent-gated workflow with compact previews and revocation support.",
+  "author": "Justin Helmer (Lightfather) / LYGO Builder team",
+  "category": "autonomous-ai-agents",
+  "tags": ["treaty", "diplomacy", "agent-to-agent", "consent", "negotiation", "sovereignty"],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "init",
+      "description": "Initialize the CATB skill and create local storage",
+      "args": []
+    },
+    {
+      "name": "propose",
+      "description": "Create a treaty proposal with another agent",
+      "args": [
+        {"name": "--to", "required": true, "description": "Target agent ID"},
+        {"name": "--with-agent", "description": "Agent to negotiate with"},
+        {"name": "--treaty", "description": "Path to treaty JSON file"}
+      ]
+    },
+    {
+      "name": "review",
+      "description": "Show human-readable treaty preview",
+      "args": [{"name": "treaty_id", "required": true, "description": "Treaty ID"}]
+    },
+    {
+      "name": "sign",
+      "description": "Sign a treaty (requires human confirmation)",
+      "args": [
+        {"name": "treaty_id", "required": true, "description": "Treaty ID"},
+        {"name": "--signer", "description": "Signer identity"}
+      ]
+    },
+    {
+      "name": "list",
+      "description": "List all active and historical treaties",
+      "args": []
+    },
+    {
+      "name": "revoke",
+      "description": "Initiate revocation of a treaty",
+      "args": [
+        {"name": "treaty_id", "required": true, "description": "Treaty ID"},
+        {"name": "--reason", "description": "Reason for revocation"}
+      ]
+    },
+    {
+      "name": "audit",
+      "description": "Show audit trail for a treaty",
+      "args": [{"name": "treaty_id", "required": true, "description": "Treaty ID"}]
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {"name": "propose-treaty", "description": "Create and send treaty proposal"},
+      {"name": "review-compact", "description": "Review human-readable preview"},
+      {"name": "sign-local", "description": "Human approval and local recording"},
+      {"name": "record-treaty", "description": "Hash-anchor and archive"},
+      {"name": "revoke-treaty", "description": "Revoke with consent from all parties"}
+    ]
+  },
+  "treaty_structure": {
+    "treaty_id": "UUID v4",
+    "anchor_hash": "SHA256 of treaty JSON",
+    "parties": {
+      "agent_a": {"id": "agent_id", "role": "role", "grants": [], "limits": []},
+      "agent_b": {"id": "agent_id", "role": "role", "grants": [], "limits": []}
+    },
+    "terms": {
+      "data_sharing": {"scopes": [], "retention": "days", "encryption": "algo"},
+      "capability_access": {"allowed_ops": [], "rate_limits": {}},
+      "escalation_paths": {"dispute_resolution": "method", "max_level": "integer"},
+      "revocation_conditions": {"notice_period": "days", "cleanup": "actions"}
+    },
+    "timeline": {
+      "proposed_at": "ISO8601 timestamp",
+      "reviewed_at": "ISO8601 timestamp",
+      "signed_at": "ISO8601 timestamp",
+      "effective_at": "ISO8601 timestamp"
+    },
+    "signatures": {
+      "agent_a": {"signed_by": "human_id", "timestamp": "ISO8601"},
+      "agent_b": {"signed_by": "human_id", "timestamp": "ISO8601"}
+    }
+  },
+  "storage": {
+    "treaties": "{DATA_DIR}/treaties/*.json",
+    "logs": "{DATA_DIR}/logs/treaty-events.log",
+    "anchors": "{DATA_DIR}/anchors/registry.json"
+  },
+  "examples": [
+    {
+      "name": "Data Sharing Treaty",
+      "description": "Example treaty for sharing user preferences data",
+      "file": "examples/data-sharing-treaty.json"
+    }
+  ],
+  "integration": {
+    "lygo_stack": "Compatible with lygo-protocol-stack-operator for treaty registry queries",
+    "audit_compatible": true,
+    "local_first": true
+  }
+}

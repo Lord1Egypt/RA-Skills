@@ -1,45 +1,65 @@
-## Description: <br>
-Runs additional LLM perspectives before an OpenClaw agent response and injects those perspectives into the agent context for synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Kimi K2.5 and GPT 5.3 Codex in a pre-turn hook and injects their perspectives so an OpenClaw agent can synthesize multiple viewpoints before responding.
 
-## Publisher: <br>
-[Dannydvm](https://clawhub.ai/user/Dannydvm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dannydvm](https://clawhub.ai/user/dannydvm)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add a second or third model perspective before an agent answers, typically to surface alternative angles, risks, and verification prompts during agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The hook or daemon can read local agent conversations and memory/context content, then send selected content to configured AI providers. <br>
-Mitigation: Use local Ollama for sensitive work, set ownerIds to limit whose sessions are processed, and review any context file or MEMORY.md content before enabling the skill. <br>
-Risk: The skill can run persistently as a service or hook and continue monitoring session files. <br>
-Mitigation: Install it only in trusted workspaces, verify daemon status and logs, and disable or uninstall the service when it is not needed. <br>
-Risk: API keys may be stored in plaintext configuration or local key files. <br>
-Mitigation: Avoid production API keys, restrict file permissions, rotate keys after testing, and prefer providers that do not require external credentials when possible. <br>
-Risk: Injected perspectives may be hidden from the end user or make the final answer appear to come from a single model. <br>
-Mitigation: Remove instructions that hide provenance before shared or regulated use, and disclose when external model perspectives are part of the agent workflow. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add on-demand multi-LLM perspective generation to OpenClaw agents before a response is produced. It is intended for workflows where additional viewpoints can help identify missed angles, verification needs, or decision risks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Dannydvm/openclaw-multi-brain) <br>
-- [Publisher profile](https://clawhub.ai/user/Dannydvm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown perspective content, hook-injected context, and CLI-oriented setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write latest-perspective files and can call configured local or remote LLM providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Agent transcript or memory/context content can be sent to configured LLM providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, prefer local Ollama where appropriate, configure owner/session scoping, and avoid sending sensitive content to external providers.
+
+Risk: Provider-generated text is reintroduced into agent context and can influence responses.
+
+Mitigation: Treat injected perspectives as advisory content, review high-impact outputs, and scan/test the skill before deployment.
+
+Risk: The daemon can run persistently and monitor local agent session files.
+
+Mitigation: Use the daemon only when continuous monitoring is needed, keep file permissions restrictive, and stop or uninstall the service when not in use.
+
+Risk: Security guidance says not to rely on the documented mb keyword trigger unless enforcement is fixed.
+
+Mitigation: Verify trigger behavior in the installed artifact before use and prefer explicit scoping or disabling automatic modes until corrected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dannydvm/skills/openclaw-multi-brain)
+- [README](artifact/README.md)
+- [Skill Documentation](artifact/SKILL.md)
+- [Quick Start](artifact/QUICKSTART.md)
+- [Moonshot Chat Completions API](https://api.moonshot.ai/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets; runtime output is injected text perspectives.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call configured LLM providers, write local perspective files, and inject generated perspective text into agent context.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact package.json and CHANGELOG.md list 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

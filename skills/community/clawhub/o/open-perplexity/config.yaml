@@ -1,0 +1,6 @@
+# open-perplexity configuration
+browser: brave
+target_url: https://www.perplexity.ai/
+reuse_existing_session: true
+avoid_duplicate_tabs: true
+verify_page_load: true

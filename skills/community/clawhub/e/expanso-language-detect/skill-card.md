@@ -1,47 +1,52 @@
-## Description: <br>
-Detects the language of input text using AI through Expanso Edge CLI or HTTP pipeline modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects the language of input text using AI through Expanso Edge CLI or MCP pipelines.
 
-## Publisher: <br>
-[aronchick](https://clawhub.ai/user/aronchick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[aronchick](https://clawhub.ai/user/aronchick)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and operators use this skill to detect the natural language of supplied text from a CLI pipeline or an HTTP-accessible MCP pipeline and receive a structured result with language, code, and confidence.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can send analyzed text to OpenAI when using the remote backend.
+
+Mitigation: Use only with text that is approved for OpenAI processing, or configure a local backend where appropriate.
+
+Risk: The MCP mode opens an unauthenticated network endpoint that can spend the operator's OpenAI quota.
+
+Mitigation: Bind the service to localhost or a protected interface, add authentication, and enforce request size, rate, and quota limits before network exposure.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to identify the language of supplied text and receive a language name, ISO 639-1 code, and confidence score. It can be run as a one-off CLI pipeline or exposed as an HTTP detection endpoint. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP/HTTP mode can expose an unauthenticated detection endpoint. <br>
-Mitigation: Bind the service to localhost or protect it with firewall and authentication controls before use. <br>
-Risk: Submitted text is sent to OpenAI when the OpenAI-backed pipeline is used. <br>
-Mitigation: Avoid confidential, regulated, or secret-containing text unless OpenAI processing is approved for that data. <br>
-Risk: The pipeline uses the user's OpenAI API key for submitted requests. <br>
-Mitigation: Use a restricted or low-quota API key and prefer CLI mode for controlled one-off checks. <br>
+**Output Format:** [Markdown guidance with shell commands and JSON output examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aronchick/expanso-language-detect) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [skill.yaml](skill.yaml) <br>
-- [pipeline-cli.yaml](pipeline-cli.yaml) <br>
-- [pipeline-mcp.yaml](pipeline-mcp.yaml) <br>
+**Other Properties Related to Output:** [The runtime pipeline returns JSON fields for language, ISO 639-1 code, confidence, and metadata.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Analysis] <br>
-**Output Format:** [JSON object with language, code, confidence, and metadata fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI pipeline writes a JSON object to stdout; the HTTP pipeline returns the JSON object as the synchronous response.] <br>
+1.0.0 (source: server release metadata and artifact/skill.yaml)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill.yaml) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

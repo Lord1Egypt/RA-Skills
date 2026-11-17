@@ -1,52 +1,81 @@
-## Description: <br>
-一键抄作业攻略转化助手，把小红书/抖音/携程攻略链接丢进来，AI自动提取行程，调用飞猪填充真实航班、酒店、景点数据，生成可预订的个性化攻略。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一键抄作业攻略转化助手把小红书、抖音、携程等旅行攻略内容转成可执行行程，并用飞猪/FlyAI 数据补充航班、酒店、景点和预订链接。
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-External users use this agent skill to turn travel notes, links, screenshots, or text into personalized itineraries with current flight, hotel, attraction, and booking-link data. It is intended for travel planning assistance where users still review prices, availability, and booking choices before purchase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill suggests running FlyAI commands with NODE_TLS_REJECT_UNAUTHORIZED=0, which weakens HTTPS certificate validation. <br>
-Mitigation: Keep normal HTTPS validation enabled unless there is an explicit, temporary, user-approved exception; prefer a pinned, user-level FlyAI CLI install. <br>
-Risk: The skill may fetch external travel links and generate booking links based on third-party availability and pricing. <br>
-Mitigation: Have the user review source content, prices, availability, and booking destinations before making purchases. <br>
-Risk: The skill can save travel preferences such as departure city, budget, companions, and special requirements. <br>
-Mitigation: Save preferences only after user confirmation and avoid storing sensitive details beyond what is needed for trip planning. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to transform inspiration posts, links, screenshots, pasted text, or rough trip descriptions into personalized itineraries with validated transportation, lodging, attractions, budget notes, and booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hello-ahang/flyai-copy-itinerary) <br>
-- [Core workflow](reference/core-workflow.md) <br>
-- [Tools guide](reference/tools-guide.md) <br>
-- [FlyAI command reference](reference/flyai-commands.md) <br>
-- [Output templates](reference/output-templates.md) <br>
-- [Platform parsing guide](reference/platform-parsing.md) <br>
-- [User profile storage](reference/user-profile-storage.md) <br>
-- [Flight search reference](reference/search-flight.md) <br>
-- [Hotel search reference](reference/search-hotel.md) <br>
-- [POI search reference](reference/search-poi.md) <br>
-- [Train search reference](reference/search-train.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown travel itinerary with embedded booking options, validation notes, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated booking links, route alternatives, budget summaries, and user preference updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: FlyAI commands are documented with TLS certificate verification disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove NODE_TLS_REJECT_UNAUTHORIZED=0 and resolve certificate validation before running searches in production or trusted workflows.
+
+Risk: The workflow recommends installing the latest global FlyAI CLI and may suggest sudo when permissions fail.
+
+Mitigation: Review the package before use, prefer a pinned version in a managed environment, and avoid sudo or mutable global installs.
+
+Risk: The skill processes user-provided travel links and emits booking URLs.
+
+Mitigation: Validate source and booking URLs, restrict unsupported domains, and require user confirmation before opening links or making reservations.
+
+Risk: Generated HTML may contain itinerary, source-post, or booking-link content derived from external pages or user input.
+
+Mitigation: Escape dynamic HTML fields and sanitize URLs before writing or sharing generated itinerary files.
+
+Risk: The skill can store travel preferences in memory or a local profile file.
+
+Mitigation: Ask before saving profile data, keep stored fields minimal, and provide clear controls to update or delete the profile.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hello-ahang/skills/flyai-copy-itinerary)
+- [Publisher profile](https://clawhub.ai/user/hello-ahang)
+- [Core workflow](artifact/reference/core-workflow.md)
+- [Tool usage guide](artifact/reference/tools-guide.md)
+- [FlyAI command reference](artifact/reference/flyai-commands.md)
+- [Platform parsing guide](artifact/reference/platform-parsing.md)
+- [Output templates](artifact/reference/output-templates.md)
+- [HTML itinerary template](artifact/reference/html-template.md)
+- [User profile storage](artifact/reference/user-profile-storage.md)
+- [Flight search reference](artifact/reference/search-flight.md)
+- [Hotel search reference](artifact/reference/search-hotel.md)
+- [POI search reference](artifact/reference/search-poi.md)
+- [Train search reference](artifact/reference/search-train.md)
+- [Keyword search reference](artifact/reference/keyword-search.md)
+- [AI search reference](artifact/reference/ai-search.md)
+- [Marriott hotel search reference](artifact/reference/search-marriott-hotel.md)
+- [Marriott package search reference](artifact/reference/search-marriott-package.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown itinerary text, FlyAI shell command suggestions, JSON-like tool inputs, and optional HTML itinerary files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include booking URLs, route comparisons, budget tables, validation status labels, and optional local travel-profile updates.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

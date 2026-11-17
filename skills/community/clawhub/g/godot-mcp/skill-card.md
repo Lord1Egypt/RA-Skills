@@ -1,41 +1,59 @@
-## Description: <br>
-Godot MCP (Model Context Protocol) integration enabling AI assistants to directly interact with Godot Editor for scene creation, node manipulation, script editing, resource management, project control, and AI client setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Godot MCP Integration helps AI assistants connect to a local Godot MCP server to automate editor tasks such as scene creation, node manipulation, script editing, resource management, and project control.
 
-## Publisher: <br>
-[thb32133451](https://clawhub.ai/user/thb32133451) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thb32133451](https://clawhub.ai/user/thb32133451)
 
-## Use Case: <br>
-Developers and game teams use this skill to connect AI clients to a local Godot MCP server so an assistant can help inspect, create, modify, and save Godot scenes, nodes, scripts, resources, and project settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Non-commercial use license
 
-## Known Risks and Mitigations: <br>
-Risk: AI clients connected through the local MCP server can broadly modify Godot project files, scenes, scripts, and resources, including destructive file operations. <br>
-Mitigation: Use project-level configuration, keep the project in version control, and require explicit approval before file deletion, script overwrites, scene saves, or bulk edits. <br>
-Risk: The server evidence reports insufficient documented safety controls for broad project-editing and deletion power. <br>
-Mitigation: Review and pin the external plugin source, disable auto-start when not needed, and scan changes before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Godot MCP access for AI clients and to guide AI-assisted Godot editor workflows. It is suited to local project automation involving scenes, nodes, scripts, resources, filesystem actions, debugging, animation, physics, UI, and batch changes.
 
-## Reference(s): <br>
-- [Godot MCP Integration ClawHub page](https://clawhub.ai/thb32133451/godot-mcp) <br>
-- [Godot MCP API Quick Reference](references/api-reference.md) <br>
-- [Godot MCP Usage Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON tool-call examples, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to configure MCP clients and operate Godot project tools through a local MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill installs mutable third-party plugin code into a local Godot project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted projects, review the plugin source before enabling it, and pin the plugin to a specific commit or signed release where possible.
+
+Risk: The skill enables AI-driven writes, overwrites, deletes, and batch modifications to project files.
+
+Mitigation: Keep the project under version control with backups and require explicit approval before any destructive or broad file-changing action.
+
+Risk: User-level MCP configuration can expose the Godot editor automation endpoint beyond the intended project.
+
+Mitigation: Prefer project-level MCP configuration and connect only to the local endpoint for the active Godot project.
+
+## Reference(s):
+
+- [Godot MCP Integration on ClawHub](https://clawhub.ai/thb32133451/skills/godot-mcp)
+- [Godot MCP API Reference](artifact/references/api-reference.md)
+- [Godot MCP Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include MCP tool-call examples that write or modify local Godot project files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

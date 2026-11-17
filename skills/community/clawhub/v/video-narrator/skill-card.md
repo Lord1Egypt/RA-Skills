@@ -1,46 +1,58 @@
-## Description: <br>
-Generate SenseAudio TTS narration tracks for videos, including timestamped segments, style variants, and editor-ready voiceover exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate SenseAudio TTS narration tracks for videos, including timestamped segments, style variants, and editor-ready voiceover exports.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-Video creators, developers, and production teams use this skill to generate timed SenseAudio narration, alternate voice takes, and editor-ready voiceover assets for video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends narration text to the SenseAudio API, so confidential scripts may be exposed to a third-party service. <br>
-Mitigation: Use only content approved for SenseAudio processing and avoid sending confidential scripts unless provider processing is acceptable. <br>
-Risk: The SenseAudio API key can grant access to paid or production services if exposed. <br>
-Mitigation: Use SENSEAUDIO_API_KEY from the environment, prefer scoped or dedicated keys when available, and do not place credentials in query strings, logs, or saved examples. <br>
-Risk: Generated narration files and returned trace IDs may contain sensitive production data. <br>
-Mitigation: Handle generated assets and trace IDs as sensitive data and apply normal project storage and sharing controls. <br>
-Risk: The workflow depends on SenseAudio, ffmpeg, and Python packages. <br>
-Mitigation: Install only when the SenseAudio service and declared Python packages are trusted for the deployment environment. <br>
+## Use Case:
 
+External users, developers, and video production teams use this skill to create timed SenseAudio voiceover segments, alternate narration takes, and editor-ready narration tracks for videos.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scikkk/video-narrator) <br>
-- [SenseAudio](https://senseaudio.cn) <br>
-- [SenseAudio API Key Page](https://senseaudio.cn/platform/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets and JSON API request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include timestamped segment metadata, SenseAudio TTS settings, and local assembly steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Narration text is sent to the SenseAudio API for synthesis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with text approved for third-party processing and review project data-sharing requirements before production use.
+
+Risk: SENSEAUDIO_API_KEY is exposed to the runtime environment.
+
+Mitigation: Store the key in a project-scoped environment variable, avoid query strings and logs, and rotate credentials if exposure is suspected.
+
+Risk: Generated narration assets and returned trace identifiers may contain sensitive production information.
+
+Mitigation: Handle generated audio, timing metadata, and trace IDs as project data with appropriate access controls.
+
+## Reference(s):
+
+- [SenseAudio homepage](https://senseaudio.cn)
+- [SenseAudio API key page](https://senseaudio.cn/platform/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, API Calls, Files, Configuration instructions]
+
+**Output Format:** [Markdown guidance with Python examples, audio files, and JSON timing metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-segment narration clips, timing metadata, optional alternate takes, and optional merged narration tracks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

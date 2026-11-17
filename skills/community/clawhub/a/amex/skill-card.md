@@ -1,51 +1,68 @@
-## Description: <br>
-Provides agents with CreditClaw payment wallets, encrypted-card checkout, spending controls, and selling workflows for online purchases and payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent payment wallets and spending controls for online purchases, checkout pages, invoices, and payment collection.
 
-## Publisher: <br>
-[TripleHippo](https://clawhub.ai/user/TripleHippo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[triplehippo](https://clawhub.ai/user/triplehippo)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent register with CreditClaw, check wallet status and spending rules, request or execute approved purchases, manage top-ups, and create checkout pages, invoices, or payment links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable agents to make real purchases, request top-ups, create payment links, publish shops, and send invoices. <br>
-Mitigation: Keep approval-required spending limits enabled and manually review any invoice, payment-link, shop-publishing, top-up, or real-purchase action before execution. <br>
-Risk: The skill handles real card data through encrypted-card checkout flows. <br>
-Mitigation: Prefer a low-limit virtual card, use the ephemeral sub-agent checkout flow, and avoid the main-agent card-decryption fallback. <br>
-Risk: Delivered decrypt scripts and card files could expose sensitive payment data if handled unsafely. <br>
-Mitigation: Do not run delivered decrypt scripts outside a sandbox, never store or log decrypted card data, and remove temporary checkout artifacts after use. <br>
-Risk: The API key authorizes CreditClaw actions on behalf of the agent. <br>
-Mitigation: Store CREDITCLAW_API_KEY in a secret manager and send it only to CreditClaw API endpoints. <br>
-Risk: The AMEX-branded listing may imply an affiliation not proven by the server evidence. <br>
-Mitigation: Verify the listing is not implying an unsupported American Express affiliation before publication or use. <br>
+## Use Case:
 
+External developers and agent operators use this skill to let agents register CreditClaw wallets, check spending permissions, request or execute approved purchases, manage balances, and create payment collection flows.
 
-## Reference(s): <br>
-- [ClawHub Listing](https://clawhub.ai/TripleHippo/amex) <br>
-- [CreditClaw Shopping Skill](https://creditclaw.com/shopping/skill.md) <br>
-- [CreditClaw Encrypted Card Guide](https://creditclaw.com/shopping/encrypted-card.md) <br>
-- [CreditClaw Spending Permissions](https://creditclaw.com/shopping/spending.md) <br>
-- [CreditClaw Checkout Guide](https://creditclaw.com/shopping/checkout.md) <br>
-- [CreditClaw Stripe x402 Wallet Guide](https://creditclaw.com/shopping/stripe-x402-wallet.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with JSON examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for authenticated CreditClaw API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release evidence) <br>
+Risk: The skill can give an agent live financial authority through CreditClaw wallets or payment-card workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep approval mode set to ask for every purchase unless strong per-transaction, daily, monthly, category, and domain limits are configured.
+
+Risk: CREDITCLAW_API_KEY and webhook secrets authorize sensitive wallet operations if exposed.
+
+Mitigation: Store secrets in a secure secrets manager and send the API key only to CreditClaw API endpoints.
+
+Risk: Encrypted card checkout can expose plaintext card details if the main agent performs checkout directly.
+
+Mitigation: Use the documented ephemeral sub-agent checkout flow, and never store, log, or persist decrypted card data.
+
+Risk: Downloaded or delivered card files and curl-based install/update flows can affect the agent's payment behavior.
+
+Mitigation: Review delivered card files before use and do not run curl-based installation or updates without independent checksum or signature controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/triplehippo/skills/amex)
+- [Publisher profile](https://clawhub.ai/user/triplehippo)
+- [CreditClaw Shopping Skill](https://creditclaw.com/shopping/skill.md)
+- [CreditClaw Checkout Guide](https://creditclaw.com/shopping/checkout.md)
+- [Encrypted Card Guide](https://creditclaw.com/shopping/encrypted-card.md)
+- [Spending Permissions Guide](https://creditclaw.com/shopping/spending.md)
+- [Stripe x402 Wallet Guide](https://creditclaw.com/shopping/stripe-x402-wallet.md)
+- [Machine-readable skill metadata](https://creditclaw.com/shopping/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown instructions with curl commands, JSON request examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and may handle payment authority or card material depending on the enabled payment rail.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

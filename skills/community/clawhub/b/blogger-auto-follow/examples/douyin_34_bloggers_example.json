@@ -1,0 +1,206 @@
+[
+  {
+    "id": 1,
+    "name": "秋叶AI-表姐",
+    "category": "教程实测",
+    "fans": "400w"
+  },
+  {
+    "id": 2,
+    "name": "AI课代表小明",
+    "category": "教程实测",
+    "fans": "219w"
+  },
+  {
+    "id": 3,
+    "name": "羊叨叨AI",
+    "category": "教程实测",
+    "fans": "197w"
+  },
+  {
+    "id": 4,
+    "name": "怼怼教AI",
+    "category": "教程实测",
+    "fans": "186w"
+  },
+  {
+    "id": 5,
+    "name": "卡卡大王（AI版）",
+    "category": "教程实测",
+    "fans": "160w"
+  },
+  {
+    "id": 6,
+    "name": "秋芝2046",
+    "category": "教程实测",
+    "fans": "152w"
+  },
+  {
+    "id": 7,
+    "name": "AI便利峰",
+    "category": "教程实测",
+    "fans": "149w"
+  },
+  {
+    "id": 8,
+    "name": "海洋AI笔记",
+    "category": "教程实测",
+    "fans": "112w"
+  },
+  {
+    "id": 9,
+    "name": "脑三聊AI",
+    "category": "教程实测",
+    "fans": "108w"
+  },
+  {
+    "id": 10,
+    "name": "AI娜娜",
+    "category": "教程实测",
+    "fans": "100w"
+  },
+  {
+    "id": 11,
+    "name": "Git源宝",
+    "category": "教程实测",
+    "fans": "53.9w"
+  },
+  {
+    "id": 12,
+    "name": "清华姜学长",
+    "category": "教程实测",
+    "fans": "22.3w"
+  },
+  {
+    "id": 13,
+    "name": "木子不写代码",
+    "category": "教程实测",
+    "fans": "27.6w"
+  },
+  {
+    "id": 14,
+    "name": "夹缝儿AIGC",
+    "category": "AIGC 故事",
+    "fans": "503w"
+  },
+  {
+    "id": 15,
+    "name": "小奕AIGC",
+    "category": "AIGC 故事",
+    "fans": "325w"
+  },
+  {
+    "id": 16,
+    "name": "造梦AIGC",
+    "category": "AIGC 故事",
+    "fans": "264w"
+  },
+  {
+    "id": 17,
+    "name": "白袋子",
+    "category": "AIGC 故事",
+    "fans": "134w"
+  },
+  {
+    "id": 18,
+    "name": "阿盐",
+    "category": "AIGC 故事",
+    "fans": "118w"
+  },
+  {
+    "id": 19,
+    "name": "旧梦留声机",
+    "category": "AIGC 故事",
+    "fans": "108w"
+  },
+  {
+    "id": 20,
+    "name": "公与山河",
+    "category": "AIGC 故事",
+    "fans": "58.1w"
+  },
+  {
+    "id": 21,
+    "name": "Nenly同学",
+    "category": "AIGC 故事",
+    "fans": "9.7w"
+  },
+  {
+    "id": 22,
+    "name": "数字游牧人Samuel",
+    "category": "AI 实操/编程",
+    "fans": "94.5w"
+  },
+  {
+    "id": 23,
+    "name": "林亦LYi",
+    "category": "AI 实操/编程",
+    "fans": "75.2w"
+  },
+  {
+    "id": 24,
+    "name": "第四种黑猩猩",
+    "category": "AI 实操/编程",
+    "fans": "51.4w"
+  },
+  {
+    "id": 25,
+    "name": "技术爬爬虾",
+    "category": "AI 实操/编程",
+    "fans": "48.2w"
+  },
+  {
+    "id": 26,
+    "name": "柱子哥TzFilm",
+    "category": "AI 实操/编程",
+    "fans": "19.5w"
+  },
+  {
+    "id": 27,
+    "name": "小天fotos",
+    "category": "AI 实操/编程",
+    "fans": "13.4w"
+  },
+  {
+    "id": 28,
+    "name": "痕继痕迹",
+    "category": "AI 实操/编程",
+    "fans": "6.6w"
+  },
+  {
+    "id": 29,
+    "name": "晓辉博士",
+    "category": "AI 观点",
+    "fans": "49.8w"
+  },
+  {
+    "id": 30,
+    "name": "西门美月XD",
+    "category": "AI 观点",
+    "fans": "8.4w"
+  },
+  {
+    "id": 31,
+    "name": "姜胡说",
+    "category": "参照组",
+    "fans": "482w"
+  },
+  {
+    "id": 32,
+    "name": "朴素之道",
+    "category": "参照组",
+    "fans": "284w"
+  },
+  {
+    "id": 33,
+    "name": "Don't be silent",
+    "category": "参照组",
+    "fans": "49.5w"
+  },
+  {
+    "id": 34,
+    "name": "老徐",
+    "category": "参照组",
+    "fans": "3.2w"
+  }
+]

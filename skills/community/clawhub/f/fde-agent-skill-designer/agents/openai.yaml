@@ -1,0 +1,4 @@
+interface:
+  display_name: "FDE Skill and POC Builder"
+  short_description: "Package a defined scenario as a Skill and build a guarded POC"
+  default_prompt: "Use $fde-agent-skill-designer to package this POC specification as a deliverable Skill. If I request a demo, also build the minimum runnable version with guardrails and evaluations."

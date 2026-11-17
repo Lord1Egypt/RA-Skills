@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "minGapMil": 6,
+  "apply": {
+    "project": "ceshi",
+    "doc": "2e719e9419653c72"
+  },
+  "modules": [
+    {
+      "id": "mcu-decoupling",
+      "strategy": "pin-satellites",
+      "anchorRef": "U6",
+      "members": [
+        {
+          "ref": "U6",
+          "fixedAxes": [
+            "x",
+            "y",
+            "rotation"
+          ],
+          "allowedRotationsDeg": [
+            0
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C14",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C15",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C16",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        }
+      ],
+      "search": {
+        "gapsMil": [
+          8,
+          20,
+          40
+        ]
+      },
+      "pinAssignments": [
+        {
+          "memberRef": "C14",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "4b1b1e03679c5a6be15",
+          "ownerRef": "U6",
+          "ownerPad": "1",
+          "ownerPadPrimitiveId": "fb1f8c9c14089323e46",
+          "side": "left",
+          "source": "原理图.pdf 第1页：C14→U6.1"
+        },
+        {
+          "memberRef": "C15",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "2aeab466cc4faf3de15",
+          "ownerRef": "U6",
+          "ownerPad": "5",
+          "ownerPadPrimitiveId": "fb1f8c9c14089323e50",
+          "side": "right",
+          "source": "原理图.pdf 第1页：C15→U6.5"
+        },
+        {
+          "memberRef": "C16",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "dc4690dacc8c5eb4e15",
+          "ownerRef": "U6",
+          "ownerPad": "17",
+          "ownerPadPrimitiveId": "fb1f8c9c14089323e62",
+          "side": "top",
+          "source": "原理图.pdf 第1页：C16→U6.17"
+        }
+      ],
+      "copperPolicy": "ignore"
+    }
+  ]
+}

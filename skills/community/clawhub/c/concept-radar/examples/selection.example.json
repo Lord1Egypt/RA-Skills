@@ -1,0 +1,67 @@
+{
+  "items": [
+    {
+      "source_key": "url:https://example.com/concept",
+      "revision": "replace-with-candidate-revision",
+      "canonical_url": "https://example.com/concept",
+      "concept_name": "可验证概念卡",
+      "what": "把概念判断拆成结构化主张、证据和可复核来源。",
+      "why_important": "它让读者区分原文事实、分析判断与行动建议。",
+      "problem_solved": "减少无来源总结和仅凭热度判断成熟度的问题。",
+      "compared_with": "无引文的自由文本摘要",
+      "similarities": "两者都用于压缩和解释长内容。",
+      "differences": "概念卡要求字段级证据、对比来源和显式不确定性。",
+      "use_when": "需要长期跟踪、跨来源比较或支持决策时。",
+      "not_replacement": "不替代快速浏览，也不保证来源本身正确。",
+      "maturity": "emerging",
+      "confidence": 0.78,
+      "action_recommendation": "先在一个低风险研究主题上试点，并复核所有核心引文。",
+      "comparison_sources": [
+        {
+          "title": "主来源中的旧方法说明",
+          "url": "https://example.com/concept"
+        }
+      ],
+      "evidence": [
+        {
+          "field": "what",
+          "quote": "Replace with an exact supporting quote.",
+          "source_url": "https://example.com/concept"
+        },
+        {
+          "field": "why_important",
+          "quote": "Replace with an exact supporting quote.",
+          "source_url": "https://example.com/concept"
+        },
+        {
+          "field": "problem_solved",
+          "quote": "Replace with an exact supporting quote.",
+          "source_url": "https://example.com/concept"
+        },
+        {
+          "field": "differences",
+          "quote": "Replace with an exact supporting quote.",
+          "source_url": "https://example.com/concept"
+        },
+        {
+          "field": "maturity",
+          "quote": "Replace with evidence about adoption or implementation.",
+          "source_url": "https://example.com/concept"
+        },
+        {
+          "field": "action_recommendation",
+          "quote": "Replace with evidence supporting the bounded next step.",
+          "source_url": "https://example.com/concept"
+        }
+      ],
+      "scores": {
+        "novelty": 2,
+        "problem_clarity": 2,
+        "mechanism_clarity": 2,
+        "evidence_quality": 2,
+        "source_authority": 1,
+        "promotional_penalty": 0
+      }
+    }
+  ]
+}

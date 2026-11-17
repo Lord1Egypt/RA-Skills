@@ -1,0 +1,126 @@
+{
+  "id": "rental-us",
+  "title": "US rental application packet",
+  "date_order": "mdy",
+  "money_tolerance": 0.0,
+  "review_note": "Landlord and agent requirements vary by state and by listing. Treat this profile as a starting checklist and replace it with the authority's own list before relying on the verdict.",
+  "classify": [
+    {
+      "type": "photo_id",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["passport number", "driver'?s licen[cs]e", "identity card", "identification card", "date of birth"]
+    },
+    {
+      "type": "payslip",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["payslip", "pay slip", "net pay", "gross pay", "pay period"]
+    },
+    {
+      "type": "bank_statement",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["opening balance", "closing balance", "account statement", "statement period"]
+    },
+    {
+      "type": "employment_letter",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["employment verification", "confirms that", "currently employed", "employment letter"]
+    },
+    {
+      "type": "application_form",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["rental application", "application form", "applicant signature"]
+    },
+    {
+      "type": "photo_id",
+      "filename": ["passport", "licen[cs]e", "\\bid[-_ ]?card\\b"]
+    },
+    {
+      "type": "payslip",
+      "filename": ["payslip", "pay[-_ ]?stub", "salary"]
+    },
+    {
+      "type": "bank_statement",
+      "filename": ["statement", "\\bbank\\b"]
+    },
+    {
+      "type": "employment_letter",
+      "filename": ["employment", "employer[-_ ]?letter"]
+    },
+    {
+      "type": "application_form",
+      "filename": ["application", "\\bform\\b"]
+    }
+  ],
+  "fields": {
+    "full_name": {
+      "label": "Full name",
+      "normalizer": "name",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:full name|applicant name|name of applicant|name)[ \\t]*[:\\-][ \\t]*([A-Za-z][A-Za-z' .\\-]{1,60})$"}
+      ]
+    },
+    "date_of_birth": {
+      "label": "Date of birth",
+      "normalizer": "date",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:date of birth|dob|born)[ \\t]*[:\\-][ \\t]*([0-9]{1,4}[./\\-][0-9]{1,2}[./\\-][0-9]{1,4})$"}
+      ]
+    },
+    "address": {
+      "label": "Current address",
+      "normalizer": "address",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:current address|residential address|address)[ \\t]*[:\\-][ \\t]*(.+)$"}
+      ]
+    },
+    "employer": {
+      "label": "Employer",
+      "normalizer": "text",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:employer name|employer|employed by)[ \\t]*[:\\-][ \\t]*(.+)$"}
+      ]
+    },
+    "monthly_income": {
+      "label": "Monthly income",
+      "normalizer": "money",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:gross monthly income|monthly income|net monthly income|gross pay|net pay|salary)[ \\t]*[:\\-][ \\t]*[$€£]?[ \\t]*([0-9][0-9,. ]*)$"}
+      ]
+    },
+    "id_expiry": {
+      "label": "ID expiry date",
+      "normalizer": "date",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:date of expiry|expiry date|expiration date|expires|valid until)[ \\t]*[:\\-][ \\t]*([0-9]{1,4}[./\\-][0-9]{1,2}[./\\-][0-9]{1,4})$"}
+      ]
+    }
+  },
+  "document_fields": {
+    "photo_id": ["full_name", "date_of_birth", "id_expiry"],
+    "application_form": ["full_name", "address", "employer"],
+    "payslip": ["full_name", "employer", "monthly_income"],
+    "employment_letter": ["full_name", "employer", "monthly_income"],
+    "bank_statement": ["full_name", "address"]
+  },
+  "required": [
+    {"type": "photo_id", "label": "government-issued photo ID"},
+    {"type": "payslip", "label": "proof of income", "alternates": ["bank_statement", "employment_letter"]},
+    {"type": "application_form", "label": "completed rental application form"}
+  ],
+  "validity": [
+    {
+      "doc_type": "photo_id",
+      "field": "id_expiry",
+      "min_days_after_decision": 30,
+      "severity": "error",
+      "reason": "agents reject IDs that expire inside the application window"
+    }
+  ],
+  "consistency": [
+    {"field": "full_name", "primary": "photo_id", "severity": "error"},
+    {"field": "date_of_birth", "primary": "photo_id", "severity": "error"},
+    {"field": "address", "primary": "bank_statement", "severity": "error"},
+    {"field": "employer", "primary": "employment_letter", "severity": "warning"},
+    {"field": "monthly_income", "primary": "payslip", "severity": "error"}
+  ]
+}

@@ -1,43 +1,60 @@
-## Description: <br>
-Analyzes static construction-site images for safety hazards through configured HTTP endpoints, using data collection or cross-verification endpoints only when explicitly requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes static construction-site images for safety hazards and calls data collection or cross-verification endpoints only when the user explicitly asks for those workflows.
 
-## Publisher: <br>
-[chenqu108](https://clawhub.ai/user/chenqu108) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenqu108](https://clawhub.ai/user/chenqu108)
 
-## Use Case: <br>
-Developers and construction-safety teams use this skill to submit static construction-site image URLs for hazard identification, concise findings, structured collection output, or cross-verification when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured auth profile may point to an untrusted or inappropriate API provider. <br>
-Mitigation: Confirm lc_scene_http:default uses a trusted provider before installation or use. <br>
-Risk: API credentials or local authentication profile contents could be exposed if mishandled. <br>
-Mitigation: Keep the API key secret and minimally scoped, and do not display tokens, Authorization headers, or auth profile contents. <br>
-Risk: Construction-site images may contain sensitive operational or personal information. <br>
-Mitigation: Avoid sending sensitive images unless the API provider's privacy and retention practices are acceptable. <br>
+## Use Case:
 
+Developers and operations teams use this skill to route construction-site image URLs to a configured hazard-analysis service and receive concise safety findings, structured results, or cross-verification when requested.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenqu108/lc-scene-analysis-http) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Markdown or structured JSON-style text, depending on the requested endpoint and response mode.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves key hazard conclusions, avoids exposing API keys or auth profile contents, and reports missing input, service errors, timeouts, or abnormal responses instead of fabricating results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: release evidence) <br>
+Risk: The skill sends construction-site image URLs and related identifiers to a configured external HTTP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted lc_scene_http service, confirm that image URLs are appropriate to share, and keep usage limited to the disclosed construction-site image analysis workflows.
+
+Risk: The skill depends on an auth profile containing API credentials and service configuration.
+
+Mitigation: Store the API key only in the lc_scene_http:default auth profile, do not paste secrets into chat, and do not expose profile contents in outputs.
+
+Risk: Hazard analysis results may be incomplete or uncertain if inputs are missing, the service fails, times out, or returns an unexpected structure.
+
+Mitigation: Report those failures explicitly, avoid fabricating results, and avoid stating uncertain model conclusions as confirmed facts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chenqu108/skills/lc-scene-analysis-http)
+- [Publisher Profile](https://clawhub.ai/user/chenqu108)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown or JSON, depending on whether the user requests a concise summary, raw result, structured result, or cross-verification.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve key service conclusions, avoid overstating uncertain findings, and report missing inputs, authentication problems, service errors, timeouts, or malformed responses instead of fabricating results.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

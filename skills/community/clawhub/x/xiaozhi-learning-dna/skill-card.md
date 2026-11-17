@@ -1,46 +1,53 @@
-## Description: <br>
-学习DNA档案 helps an OpenClaw tutoring agent create, update, inspect, pause, and delete a consent-based student learning profile for personalized academic support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+With explicit consent, maintains a student's long-term learning profile and supports viewing, correcting, exporting, and deleting it, with separate controls for sensitive profile features and sharing.
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students, guardians, and tutoring agents use this skill to maintain a controlled learning profile that supports personalized follow-up across sessions. It is intended for learning-memory workflows where profile creation, updates, sharing, and deletion remain gated by explicit user consent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive student learning, behavior, interest, and emotion-related observations across sessions. <br>
-Mitigation: Require explicit profile opt-in, separate consent for emotion tracking, minimal necessary collection, and easy view, edit, delete, and pause controls before use. <br>
-Risk: Profile updates from ordinary conversation could occur without a clear consent boundary. <br>
-Mitigation: Add an active consent check and confirmation step before automatic profile updates, reminders, or cross-skill sharing. <br>
+## Use Case:
 
+Students, guardians, and educators use the skill to manage consent-based learning profiles for ongoing personalized tutoring, including controlled updates, access, export, and deletion.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/qizhitang/xiaozhi-learning-dna) <br>
-- [DNA profile schema](schemas/dna-profile.schema.json) <br>
-- [DNA schema README](schemas/README.md) <br>
-- [DNA template](references/dna-template.md) <br>
-- [Growth milestones reference](references/growth-milestones.md) <br>
-- [Cross-subject connections reference](references/cross-subject-connections.md) <br>
-- [Published DNA profile schema URL](https://xiaozhi-skills.openclaw.dev/schemas/dna-profile.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Configuration] <br>
-**Output Format:** [Markdown guidance and structured JSON profile records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Profile data should follow the bundled JSON Schema and consent controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: ClawScan reports medium-confidence concerns about consent for persistent student profiles and adherence to the skill's stated limits; part of the artifact was only partially analyzed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use with minors, verify student identity separation and required guardian consent, and keep sensitive tracking and sharing disabled unless separately authorized. If the platform cannot enforce profile isolation and access controls, limit use to the current session.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-learning-dna)
+- [DNA profile schema](schemas/dna-profile.schema.json)
+- [DNA profile schema guide](schemas/README.md)
+- [Growth milestones](references/growth-milestones.md)
+- [Crisis referral protocol](references/crisis-referral-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance]
+
+**Output Format:** [Structured JSON learning profiles and handover records; plain-text summaries and exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Profile access and sharing depend on explicit consent and platform access controls.]
+
+## Skill Version(s):
+
+2.12.7 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Guides users through a five-step interview and seven-layer modeling process to generate a personalized digital grandpa companion skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Digital Life Grandpa Skill guides users through a 5-step interview and 7-layer modeling process to generate a personalized grandpa companion skill.
 
-## Publisher: <br>
-[rafaelsachetto-lang](https://clawhub.ai/user/rafaelsachetto-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rafaelsachetto-lang](https://clawhub.ai/user/rafaelsachetto-lang)
 
-## Use Case: <br>
-External users use this skill to collect family memories through a structured interview and generate a personalized grandpa-themed companion skill for comfort, remembrance, and family memory preservation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to collect and store intimate family memories, including details about relatives and relationships. <br>
-Mitigation: Decide where generated files and memory entries will be stored, get permission before entering personal details about living relatives, and redact sensitive content before enabling or sharing the skill. <br>
-Risk: The included helper script can publish the skill directory to a public GitHub repository. <br>
-Mitigation: Inspect every file and run the upload script only when public publication is intentional. <br>
+## Use Case:
 
+External users and developers use this skill to collect family memories through a structured interview and turn them into a personalized grandpa-themed companion skill for remembrance, comfort, and family storytelling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rafaelsachetto-lang/digital-life-grandpa-skill) <br>
-- [Source repository linked by artifact README](https://github.com/rafaelsachetto-lang/digital-life-grandpa-skill) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown instructions with generated skill templates and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content may include personal family memories and files intended for local or public storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter version 6.0.0) <br>
+Risk: The skill can collect and persist intimate family memories, interview answers, photos, logs, and details about living relatives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat interview answers as sensitive personal data; persist or share them only with clear consent, exclude private artifacts from publication, and define a deletion plan.
+
+Risk: The included GitHub upload helper can publish the skill directory publicly, including generated memories or local configuration if they are present.
+
+Mitigation: Inspect exactly what will be committed before running the script, prefer a private repository, and remove generated memories, photos, logs, secrets, and local configuration.
+
+Risk: Generated companion content may unintentionally distort or overstate a relative's wishes, memories, or personal history.
+
+Mitigation: Review generated content with the family before use, preserve uncertainty, and avoid adding claims that were not provided in the interview.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rafaelsachetto-lang/skills/digital-life-grandpa-skill)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with interview prompts, generated skill templates, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce family-memory files and companion-skill instructions when users provide interview answers.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter version is 6.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

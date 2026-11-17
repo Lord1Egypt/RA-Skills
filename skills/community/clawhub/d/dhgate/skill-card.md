@@ -1,43 +1,63 @@
-## Description: <br>
-Buy, source, and dispute on DHgate with supplier vetting, landed-cost checks, tracking triage, and counterfeit-risk control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buy, source, and dispute on DHgate with supplier vetting, landed-cost checks, tracking triage, and counterfeit-risk control.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External shoppers, import buyers, and resellers use this skill to evaluate DHgate listings, vet sellers, calculate landed costs, draft seller messages, and prepare shipping or dispute evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local notes may contain buying preferences, order details, tracking notes, or dispute planning context. <br>
-Mitigation: Confirm before writing under ~/dhgate/ and avoid storing payment credentials, identity documents, tax records, card details, or unrelated personal data. <br>
-Risk: Marketplace guidance could be misused for counterfeit sourcing, customs evasion, off-platform payment, or trademark-infringing purchases. <br>
-Mitigation: Warn against counterfeit and platform-evasion behavior, prefer unbranded or authorized channels when authenticity matters, and keep seller communications platform-native. <br>
-Risk: Listing, shipping, tax, and dispute status can change after generic guidance is written. <br>
-Mitigation: Use the live DHgate listing or order page and user-provided evidence as the source of truth before making sourcing, landed-cost, tracking, or dispute recommendations. <br>
+## Use Case:
 
+External users and their agents use this skill to evaluate DHgate listings, vet suppliers, calculate landed cost, prepare seller messages, and organize shipping or dispute evidence for personal buying or resale.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/dhgate) <br>
-- [Skill homepage](https://clawic.com/skills/dhgate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, scorecards, and message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Markdown notes under ~/dhgate/ only after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Local notes may include buying profiles, order context, seller conversations, or dispute planning details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before saving to ~/dhgate/ and avoid storing payment credentials, identity documents, tax records, or unrelated personal data.
+
+Risk: DHgate sourcing can involve counterfeit, customs, off-platform payment, or under-declaration risks.
+
+Mitigation: Advise against counterfeit sourcing, customs evasion, off-platform payments, and risky branded bargains; prefer unbranded or better-documented alternatives.
+
+Risk: Marketplace listings, seller replies, shipping states, and dispute windows can be incomplete or stale.
+
+Mitigation: Use current listing or order-page evidence when available, keep recommendations evidence-based, and prepare factual timelines before escalation.
+
+## Reference(s):
+
+- [DHgate Skill Page](https://clawhub.ai/ivangdavila/skills/dhgate)
+- [DHgate Skill Homepage](https://clawic.com/skills/dhgate)
+- [Supplier Vetting](artifact/supplier-vetting.md)
+- [Landed Cost](artifact/landed-cost.md)
+- [Shipping and Disputes](artifact/shipping-disputes.md)
+- [Counterfeit Checks](artifact/counterfeit-checks.md)
+- [Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and local Markdown note templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only workflow; no external network calls; asks before creating or updating local notes in ~/dhgate/.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

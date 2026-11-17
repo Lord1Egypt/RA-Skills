@@ -1,46 +1,59 @@
-## Description: <br>
-Search and analyze Shopify stores, Facebook ads, ad monitoring, and sales tracking using the PPSPY e-commerce intelligence API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and analyze Shopify stores, Facebook ads, ad monitoring, and sales tracking using PPSPY e-commerce intelligence API.
 
-## Publisher: <br>
-[fanyanggod](https://clawhub.ai/user/fanyanggod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanyanggod](https://clawhub.ai/user/fanyanggod)
 
-## Use Case: <br>
-External developers, operators, and e-commerce analysts use this skill to query PPSPY for Shopify store intelligence, Facebook ad research, ad monitoring, and sales monitoring. It requires a PPSPY API key and may consume account credits or monitoring quota. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to the PPSPY service and may expose submitted store, advertiser, product, or monitoring targets. <br>
-Mitigation: Use the skill only with PPSPY data sharing that is acceptable for the account and organization. <br>
-Risk: API calls can consume PPSPY credits or monitoring quota. <br>
-Mitigation: Monitor credit and quota usage before running broad searches or creating monitoring tasks. <br>
-Risk: Monitoring tools can create, stop, or delete ad and sales monitoring groups or tasks. <br>
-Mitigation: Require explicit user confirmation before mutating monitoring groups or tasks. <br>
-Risk: The integration depends on a third-party npm package and a PPSPY API key. <br>
-Mitigation: Install only trusted package versions and use a rotatable API key with usage monitoring. <br>
+## Use Case:
 
+Developers, analysts, and e-commerce operators use this skill to search Shopify stores and products, inspect Facebook ads, monitor ad campaigns, and track sales through PPSPY. It helps agents answer market research and competitor intelligence questions and create or manage PPSPY monitoring tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanyanggod/ppspy) <br>
-- [PPSPY homepage](https://www.ppspy.com) <br>
-- [PPSPY API site](https://api.ppspy.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, Analysis, Guidance, Configuration] <br>
-**Output Format:** [Markdown and structured tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PPSPY_API_KEY and the ppspy-mcp-server npm package; API calls may consume PPSPY credits or monitoring quota.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: PPSPY API calls and monitoring tasks can consume paid credits or quota.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable PPSPY API key with spending or quota limits, and review calls that request records or create monitoring tasks before execution.
+
+Risk: Create, edit, delete, stop, or cancel actions can change the user's PPSPY account state.
+
+Mitigation: Require explicit approval before account-changing monitoring actions.
+
+Risk: The skill depends on a globally installed ppspy-mcp-server npm package.
+
+Mitigation: Install only when PPSPY and the npm package are trusted, and avoid installing or running it with administrator privileges.
+
+## Reference(s):
+
+- [PPSPY Homepage](https://www.ppspy.com)
+- [PPSPY API Account Portal](https://api.ppspy.com/)
+- [ClawHub Skill Page](https://clawhub.ai/fanyanggod/skills/ppspy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses with setup commands and PPSPY result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Shopify store, product, advertisement, ad monitoring, and sales monitoring results from PPSPY; account actions can consume credits or quota.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

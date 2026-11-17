@@ -1,11 +1,11 @@
 # ILIB\_LibraryItem interface
 
-库属性
+Library property
 
 ## Signature
 
 ```typescript
-interface ILIB_LibraryItem 
+interface ILIB_LibraryItem
 ```
 
 ## Properties
@@ -14,78 +14,62 @@ interface ILIB_LibraryItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [libraryType](./ILIB_LibraryItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ELIB\_LibraryType](../enums/ELIB_LibraryType.md)
 
-
 </td><td>
 
-库类型
-
+Library type
 
 </td></tr>
 <tr><td>
 
 [libraryUuid?](./ILIB_LibraryItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 所属库 UUID
-
+_(Optional)_ UUID of the library it belongs to
 
 </td></tr>
 <tr><td>
 
 [uuid](./ILIB_LibraryItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
 UUID
-
 
 </td></tr>
 </tbody></table>
@@ -98,7 +82,7 @@ UUID
 
 # ILIB\_LibraryItem.libraryType property
 
-库类型
+Library type
 
 ## Signature
 
@@ -110,7 +94,7 @@ libraryType: ELIB_LibraryType;
 
 # ILIB\_LibraryItem.libraryUuid property
 
-所属库 UUID
+UUID of the library it belongs to
 
 ## Signature
 

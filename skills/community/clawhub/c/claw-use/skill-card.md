@@ -1,44 +1,58 @@
-## Description: <br>
-Claw Use lets AI agents control physical devices over HTTP with commands for screen reading, screenshots, input actions, app launch, navigation, notifications, and audio output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Use lets AI agents read and control authorized physical devices over HTTP using a unified cu CLI for perception, input, navigation, app launch, and audio output.
 
-## Publisher: <br>
-[4ier](https://clawhub.ai/user/4ier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[4ier](https://clawhub.ai/user/4ier)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect an AI agent to a real device, inspect device state, and perform input, navigation, application, notification, screenshot, and audio actions through the Claw Use command interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over a physical device, including screen reading, screenshots, typing, app launch, URL opening, intents, notifications, and lock or unlock operations. <br>
-Mitigation: Install only when device control is intended, use a dedicated test device when possible, and require explicit approval for sensitive actions such as unlocking, reading notifications, typing, launching apps, opening URLs, and invoking intents. <br>
-Risk: Device screens and notifications may expose personal or confidential content to the agent. <br>
-Mitigation: Avoid using devices with personal accounts or sensitive notifications unless the deployment has clear approval controls and data-handling boundaries. <br>
-Risk: Automatic unlock behavior can allow commands to act on a device without a fresh user decision. <br>
-Mitigation: Prefer configurations that disable or gate unlocking and require human confirmation before commands that change device state. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect an agent to authorized devices for UI inspection, input actions, screenshots, notifications, app navigation, and multi-device control through the Claw Use protocol.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/4ier/claw-use) <br>
-- [Publisher profile](https://clawhub.ai/user/4ier) <br>
-- [claw-use-android implementation and API details](https://github.com/4ier/claw-use-android#api-details) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to issue device-control commands that read screen or notification content and perform actions on configured devices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Remote device control can expose private data or perform unintended actions on a real device.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only owned or authorized devices, review commands before execution, and require explicit confirmation before screenshots, notification reads, message typing, credential flows, payment flows, or unlocking.
+
+Risk: Network-exposed control endpoints and tokens can allow unauthorized device access.
+
+Mitigation: Keep endpoints off public networks, prefer private network access such as Tailscale, and protect and rotate tokens.
+
+Risk: Automatic unlock behavior can bypass expected user review before sensitive device actions.
+
+Mitigation: Disable or gate unlock flows unless the user explicitly approves the operation and the target device is authorized.
+
+## Reference(s):
+
+- [Claw Use skill page](https://clawhub.ai/4ier/skills/claw-use)
+- [Claw Use Android API details](https://github.com/4ier/claw-use-android#api-details)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that interact with real devices and private on-device data; user authorization and review are required before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

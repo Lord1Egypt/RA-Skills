@@ -1,40 +1,58 @@
-## Description: <br>
-Formats WeChat draft articles by refining text, adding Markdown structure, and rendering themed HTML output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats WeChat public-account article drafts by refining text, organizing Markdown structure, and generating themed HTML output.
 
-## Publisher: <br>
-[tlgzs](https://clawhub.ai/user/tlgzs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tlgzs](https://clawhub.ai/user/tlgzs)
 
-## Use Case: <br>
-Content creators and social media operators use this skill to turn WeChat article drafts into polished Markdown and styled HTML previews with a selected theme. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The formatter runs local Python and writes Markdown and HTML files that may contain sensitive draft content. <br>
-Mitigation: Run it only in a trusted workspace and review generated files before sharing the HTML. <br>
-Risk: Theme selection can read unintended local files if arbitrary path-like theme names are used. <br>
-Mitigation: Use only the listed theme CSS filenames and avoid passing arbitrary paths as themes. <br>
+## Use Case:
 
+External creators and operators use this skill to turn WeChat article drafts into polished, themed HTML previews suitable for review before publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tlgzs/wechat-article-formatter-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown draft, generated HTML file, and a short completion message with the selected theme and preview path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates draft_article.md and a timestamped HTML file under output_articles; defaults to theme_orange.css when no theme is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated previews can preserve active HTML content from untrusted drafts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect generated HTML before opening, sharing, or publishing content from untrusted sources.
+
+Risk: Local draft and HTML files are written during normal use.
+
+Mitigation: Avoid processing sensitive drafts unless local file creation is acceptable.
+
+Risk: Undocumented theme names can expose unintended local file content through theme loading behavior.
+
+Mitigation: Use only the documented theme filenames listed by the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tlgzs/skills/wechat-article-formatter-pro)
+- [Publisher profile](https://clawhub.ai/user/tlgzs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands]
+
+**Output Format:** [Markdown guidance with local HTML file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a draft Markdown file and a themed HTML preview file in the local workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

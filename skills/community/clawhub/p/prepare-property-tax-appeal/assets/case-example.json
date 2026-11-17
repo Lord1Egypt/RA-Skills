@@ -1,0 +1,352 @@
+{
+  "schema_version": "2.0",
+  "case": {
+    "review_title": "Property Assessment Informal Review Attachment",
+    "appeal_type": "Informal Review",
+    "appeal_ground": "market_value",
+    "document_mode": "informal_review_attachment",
+    "owner_name": null,
+    "property_address": "123 Example Street, Unit 1, Example City, CA 90000",
+    "apn": "000-000-000",
+    "assessment_year": "2026-2027",
+    "valuation_date": "2026-01-01",
+    "value_basis": {
+      "comparison_basis_kind": "sale_comparable_market_value",
+      "comparison_value_type": "fair_market_value",
+      "comparison_value_label": "Fair market value",
+      "current_comparison_value": 1000000,
+      "requested_comparison_value": 900000,
+      "primary_notice_value_id": "assessed-value",
+      "notice_values": [
+        {
+          "id": "assessed-value",
+          "value_type": "assessed_value",
+          "label": "Assessed value",
+          "authority": "Example County Assessor",
+          "current_value": 1000000,
+          "requested_value": 900000,
+          "derivation": {
+            "kind": "ratio",
+            "source_value_id": "comparison_value",
+            "factor": 1.0,
+            "description": "For this fictional template, the official rule source states that the assessed value directly equals the fair market comparison value. Replace this with the actual jurisdiction-specific transformation.",
+            "source_ids": [
+              "S006"
+            ]
+          },
+          "source_ids": [
+            "S001"
+          ]
+        }
+      ],
+      "source_ids": [
+        "S001",
+        "S006"
+      ]
+    },
+    "likely_comparison_value_range": {
+      "low": 910000,
+      "high": 950000
+    },
+    "prepared_date": "2026-07-01",
+    "subject_source_ids": [
+      "S001"
+    ],
+    "assessment_source_ids": [
+      "S001"
+    ],
+    "verification": {
+      "official_rules_rechecked": true,
+      "official_rules_current_as_of": "2026-07-01",
+      "subject_facts_reconciled": true,
+      "value_basis_reconciled": true,
+      "comparable_sales_verified": true,
+      "contrary_evidence_reviewed": true
+    },
+    "jurisdiction": {
+      "country": "US",
+      "state": "California",
+      "state_code": "CA",
+      "county_or_locality": "Example County",
+      "route_family": "assessor_then_local_board",
+      "appeal_stage": "County assessor informal review",
+      "filing_authority": "Example County Assessor",
+      "valuation_standard": "Fair market value as of the valuation date",
+      "filing_deadline": "2026-08-31",
+      "filing_deadline_rule": "Example fixed deadline for this fictional template; replace it with the current official rule for the actual locality.",
+      "official_form_required": false,
+      "official_form_name": null,
+      "official_form_url": null,
+      "submission_url": "https://example.gov/property-review",
+      "informal_preserves_formal_deadline": false,
+      "source_ids": [
+        "S006"
+      ],
+      "deadline_source_ids": [
+        "S006"
+      ]
+    },
+    "property": {
+      "property_type": "Townhouse",
+      "residential_use_verification": {
+        "status": "verified_residential",
+        "classification": "Residential townhouse",
+        "source_ids": [
+          "S001"
+        ]
+      },
+      "year_built": 2018,
+      "living_area_sqft": 1800,
+      "bedrooms": 4,
+      "bathrooms": 3.5,
+      "stories": 3,
+      "lot_size_sqft": null,
+      "parking": "2-car garage",
+      "development_or_hoa": "Example Community"
+    },
+    "valuation_rationale": "The closest physically similar selected sales fall below the current fair market comparison value. The neutral pool also contains a higher but materially larger and differently configured sale, and the requested value reflects both that contrary evidence and the subject's documented marketability differences as of the valuation date.",
+    "argument_points": [
+      "The strongest comparable has the same bedroom and bathroom count and a living area close to the subject.",
+      "The larger properties retained in the advocacy table sold below the subject's current fair market value; the separate higher candidate is disclosed in the neutral review."
+    ],
+    "special_factors": [
+      {
+        "title": "Documented marketability factor",
+        "facts": "Describe the verified condition, notice, repair program, litigation, insurance issue, or other fact without making an unsupported legal conclusion.",
+        "market_effect": "Explain how a typical buyer would account for uncertainty, disruption, cost exposure, financing, insurance, or resale risk.",
+        "source_ids": [
+          "S005"
+        ]
+      }
+    ],
+    "suggested_attachments": [
+      "Notice of Assessed Value",
+      "Comparable-sale detail pages",
+      "Relevant HOA, repair, inspection, insurance, permit, or court documents"
+    ],
+    "declaration": null,
+    "declaration_owner_approved": false,
+    "include_signature_block": false
+  },
+  "selection_policy": {
+    "strict_bed_bath_match": true,
+    "strict_property_type_match": true,
+    "exclude_above_current_comparison_value": true,
+    "legal_sale_window": {
+      "start_date": "2024-01-01",
+      "end_date": "2026-03-31",
+      "basis": "Example sale window for the fictional template; replace with the current official jurisdiction-specific rule.",
+      "source_ids": [
+        "S006"
+      ]
+    },
+    "allow_provisional_range_prices": false,
+    "minimum_comps": 3,
+    "maximum_comps": 10
+  },
+  "comparables": [
+    {
+      "address": "101 Comparable Lane, Unit 2, Example City, CA 90000",
+      "apn": "000-000-101",
+      "transaction_id": "example-recorder-2026-101",
+      "sale_date": "2026-01-15",
+      "sale_price": 925000,
+      "price_source_kind": "exact_closed_price",
+      "property_type": "Townhouse",
+      "bedrooms": 4,
+      "bathrooms": 3.5,
+      "living_area_sqft": 1810,
+      "year_built": 2018,
+      "same_development": true,
+      "distance_miles": 0.1,
+      "arm_length_status": "likely",
+      "relevance": "Same development, exact bedroom and bathroom count, and nearly identical living area.",
+      "source_ids": [
+        "S002",
+        "S003"
+      ]
+    },
+    {
+      "address": "102 Comparable Lane, Unit 4, Example City, CA 90000",
+      "apn": "000-000-102",
+      "transaction_id": "example-recorder-2026-102",
+      "sale_date": "2026-02-10",
+      "sale_price": 940000,
+      "price_source_kind": "exact_closed_price",
+      "property_type": "Townhouse",
+      "bedrooms": 4,
+      "bathrooms": 3.5,
+      "living_area_sqft": 1900,
+      "year_built": 2019,
+      "same_development": false,
+      "distance_miles": 0.4,
+      "arm_length_status": "likely",
+      "relevance": "Exact bedroom and bathroom count and larger than the subject, but sold below the current fair market comparison value.",
+      "source_ids": [
+        "S002",
+        "S004"
+      ]
+    },
+    {
+      "address": "103 Comparable Lane, Unit 5, Example City, CA 90000",
+      "apn": "000-000-103",
+      "transaction_id": "example-recorder-2026-103",
+      "sale_date": "2026-03-01",
+      "sale_price": 950000,
+      "price_source_kind": "exact_closed_price",
+      "property_type": "Townhouse",
+      "bedrooms": 4,
+      "bathrooms": 3.5,
+      "living_area_sqft": 1880,
+      "year_built": 2018,
+      "same_development": false,
+      "distance_miles": 0.6,
+      "arm_length_status": "likely",
+      "relevance": "Exact bedroom and bathroom count, similar age, and slightly larger living area.",
+      "source_ids": [
+        "S002",
+        "S004"
+      ]
+    }
+  ],
+  "rejected_comparables": [
+    {
+      "address": "199 Higher Sale Avenue, Example City, CA 90000",
+      "apn": "000-000-199",
+      "transaction_id": "example-recorder-2026-199",
+      "sale_date": "2026-02-01",
+      "sale_price": 1050000,
+      "price_source_kind": "exact_closed_price",
+      "property_type": "Townhouse",
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "living_area_sqft": 2250,
+      "relevance": "Same property type and sale window, but materially larger and configured with an additional bedroom and half bathroom.",
+      "valuation_status": "valuation_eligible_omitted",
+      "reasons": [
+        "above_current_comparison_value",
+        "bed_bath_mismatch",
+        "living_area_mismatch"
+      ],
+      "relevance_review": "The sale was reviewed as contrary evidence but is less similar than the selected set because it has an additional bedroom, an additional half bathroom, and substantially more living area than the subject.",
+      "materially_contrary": false,
+      "arm_length_status": "likely",
+      "source_ids": [
+        "S002",
+        "S004"
+      ]
+    }
+  ],
+  "contrary_evidence_review": {
+    "completed": true,
+    "all_plausible_candidates_recorded": true,
+    "summary": "The broader candidate pool, including the higher-priced sale in the internal ledger, was reviewed for contrary evidence. No omitted candidate was judged more directly comparable than the selected exact bed, bath, property-type, and size matches.",
+    "disclosure": null,
+    "source_ids": [
+      "S002",
+      "S004"
+    ]
+  },
+  "sources": [
+    {
+      "id": "S001",
+      "source_kind": "public_url",
+      "title": "Subject parcel and assessment record",
+      "publisher": "Example County Assessor",
+      "url": "https://example.gov/parcel/000-000-000",
+      "accessed_date": "2026-07-01",
+      "supports": [
+        "Subject APN",
+        "Assessment value",
+        "Subject characteristics"
+      ],
+      "roles": [
+        "assessment_notice",
+        "parcel_record"
+      ]
+    },
+    {
+      "id": "S002",
+      "source_kind": "public_url",
+      "title": "Comparable parcel records",
+      "publisher": "Example County Assessor",
+      "url": "https://example.gov/parcels",
+      "accessed_date": "2026-07-01",
+      "supports": [
+        "Comparable APNs",
+        "Comparable characteristics"
+      ],
+      "roles": [
+        "parcel_record"
+      ]
+    },
+    {
+      "id": "S003",
+      "source_kind": "public_url",
+      "title": "Closed sale record for 101 Comparable Lane",
+      "publisher": "Verified transaction source",
+      "url": "https://records.example.gov/sale/101",
+      "accessed_date": "2026-07-01",
+      "supports": [
+        "Sale date",
+        "Closed price"
+      ],
+      "roles": [
+        "transaction_record"
+      ]
+    },
+    {
+      "id": "S004",
+      "source_kind": "public_url",
+      "title": "Closed sale records for comparison properties",
+      "publisher": "Verified transaction source",
+      "url": "https://records.example.gov/sales",
+      "accessed_date": "2026-07-01",
+      "supports": [
+        "Sale dates",
+        "Closed prices"
+      ],
+      "roles": [
+        "transaction_record"
+      ]
+    },
+    {
+      "id": "S005",
+      "source_kind": "owner_attachment",
+      "title": "Owner-provided document supporting the marketability factor",
+      "publisher": "Property owner",
+      "url": null,
+      "accessed_date": "2026-07-01",
+      "supports": [
+        "Marketability factor"
+      ],
+      "roles": [
+        "marketability_evidence"
+      ]
+    },
+    {
+      "id": "S006",
+      "source_kind": "public_url",
+      "title": "Informal review instructions and filing page",
+      "publisher": "Example County Assessor",
+      "url": "https://example.gov/property-review",
+      "accessed_date": "2026-07-01",
+      "supports": [
+        "Appeal type",
+        "Assessment year",
+        "Valuation date",
+        "Filing deadline and deadline effect",
+        "Legal comparable-sale window",
+        "Official form requirement",
+        "Submission instructions"
+      ],
+      "roles": [
+        "appeal_rule",
+        "deadline_rule",
+        "sale_window_rule",
+        "submission_rule",
+        "valuation_rule"
+      ]
+    }
+  ]
+}

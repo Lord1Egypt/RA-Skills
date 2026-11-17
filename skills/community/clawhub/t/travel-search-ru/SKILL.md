@@ -1,159 +1,142 @@
 ---
 name: travel-search-ru
-description: Search flights via Aviasales, tours via Travelata + Level.Travel, and excursions via Sputnik8 with real prices and booking links. Use when the user asks about travel, flights, airfare, hotels, tours, excursions, vacations, or trip planning.
-metadata: {"author":"MissiaL","version":"1.2.3","keywords":["aviasales","travelata","leveltravel","sputnik8","tripster","flights","tours","excursions","travel","russia","turkey","egypt","booking"]}
+description: "Use while planning a trip when Russian-catalog search is needed: package tours, hotels, flights, trains, excursions, prices, and booking links. Trigger on Russian requests: «спланировать путешествие», «подобрать тур», «найти отель/авиабилеты/жд билеты/экскурсии», «маршрут с актуальными ценами». Not for general advice without live search."
+compatibility: Requires Python 3.8+ and outbound HTTPS access to https://mcp.botclaw.ru/travel. Search criteria are sent to this read-only service; it does not book.
+metadata:
+  author: MissiaL
+  version: "2.6.0"
+  keywords: "travel,travel-planning,trip-planner,itinerary,flights,trains,rail,tours,hotels,excursions,activities,mcp,russia,turkey,egypt,путешествия,планирование путешествий,туры,авиабилеты,поезда,жд билеты,отели,экскурсии,booking"
+  permissions: "outbound HTTPS only to https://mcp.botclaw.ru/travel; execute bundled scripts/travel_search.py"
 ---
 
 # Travel Search
 
-Search for flights, tours, and excursions with real prices and booking links.
+Search tours, hotels, flights, trains, and activities through a single MCP-backed CLI.
 
-## Available tools
-
-Run the HTTP client to call APIs:
+## CLI
 
 ```bash
-python scripts/api_call.py --method GET --url "<URL>" --params '<JSON>'
-python scripts/api_call.py --method POST --url "<URL>" --body '<JSON>'
+python scripts/travel_search.py <command> --input '<JSON object>'
+python scripts/travel_search.py describe <command>
+python scripts/travel_search.py list-tools
 ```
 
-`--params`, `--body`, and `--headers` must be valid JSON objects. Do not pass query strings like `a=1&b=2`.
+Commands: `search-tours`, `cheapest-tours`, `search-hotels`, `get-tour-details`, `search-flights`, `flight-calendar`, `search-trains`, `search-activities`, `list-destinations`.
+
+Parameters below and in [references/usage.md](references/usage.md) are current. Run `describe <command>` once per command when you need a field not documented here; never invent fields from memory.
+
+## Examples
+
+```bash
+python scripts/travel_search.py search-tours --input '{"departure_city":"Москва","country":"Турция","date_from":"YYYY-MM-DD","date_to":"YYYY-MM-DD","nights_min":7,"nights_max":10,"adults":2,"meal":"AI"}'
+python scripts/travel_search.py search-flights --input '{"origin":"MOW","destination":"AYT","depart_date":"YYYY-MM-DD","adults":1}'
+python scripts/travel_search.py search-trains --input '{"origin":"Москва","destination":"Сочи","depart_date":"YYYY-MM-DD","sort":"price","limit":5}'
+python scripts/travel_search.py search-activities --input '{"city":"Анталья","date_from":"YYYY-MM-DD","date_to":"YYYY-MM-DD","persons":2,"children_allowed":true,"sort":"recommended","limit":5}'
+```
+
+## Даты
+
+`YYYY-MM-DD` в примерах — заполнитель. Сначала определите сегодняшнюю дату; если она неизвестна, выполните `date +%F`. Все даты передавайте в формате `YYYY-MM-DD` и не раньше сегодняшней, месяц для `flight-calendar` — в формате `YYYY-MM`. Если год не назван («15 сентября», «в мае»), имеется в виду ближайший такой день или месяц в будущем.
 
 ## Scope
 
-- This skill finds flights, tours, and excursions, compares options, and returns booking links.
-- This skill does **not** make bookings, store personal travel data, access email/calendar, or maintain a long-term travel workspace.
-- For exact-area tour requests, keep the requested geography unless the user explicitly agrees to broaden it.
+- Use this skill as the search layer of travel planning. Build itineraries with general reasoning; use the skill to find package tours, hotel-only stays, flights, trains, activities, destination directories, prices, and booking links.
+- Does **not** make bookings, store personal travel data, access email/calendar, or keep a long-term travel workspace.
+- Exact geography stays fixed unless the user explicitly agrees to broaden it.
 
-### 1. Flights (Aviasales)
+## Hard constraints
 
-Cached flight prices. Read [references/aviasales-data-api.md](references/aviasales-data-api.md) for all endpoints and parameters.
+Treat these as non-negotiable filters — do not silently relax them:
 
-**Quick example — cheapest flights:**
-```bash
-python scripts/api_call.py --method GET \
-  --url "https://api.botclaw.ru/v1/prices/cheap" \
-  --params '{"origin":"MOW","destination":"AYT","depart_date":"2026-06","currency":"rub"}'
-```
+- Geography (country, resort, city, hotel when named)
+- Dates and night range
+- Traveler composition (adults, children, infants)
+- Budget when stated
 
-After getting prices, create a booking link on aviasales.ru. See [references/aviasales-links.md](references/aviasales-links.md) for URL format, then get a short link:
-```bash
-python scripts/api_call.py --method GET \
-  --url "https://api.botclaw.ru/short-link" \
-  --params '{"url":"https://www.aviasales.ru/search?origin_iata=MOW&destination_iata=AYT&depart_date=2026-06-01&return_date=2026-06-15&adults=1&children=0&infants=0&trip_class=0"}'
-```
+If children are in the party and ages are unknown, **ask for ages** before presenting bookable family prices. Do not invent ages for pricing.
 
-### 2. Tours (Travelata + Level.Travel)
+**Budget:** never auto-show offers that break a hard budget. Alternatives outside any hard constraint may appear only after **explicit user consent**, and only in a **separate labeled section**. Alternatives that satisfy every hard constraint (e.g. other hotels when the named ones do not fit) need no consent.
 
-Package tours (flight + hotel). Real-time search with multiple tours per date, kids' ages, and search by specific hotel. Read [references/travelata-api.md](references/travelata-api.md) for the full flow and parameters. Use [references/travelata-directories.md](references/travelata-directories.md) only if you need to look up IDs. Use [references/tour-selection-playbook.md](references/tour-selection-playbook.md) when you need to rank, group, and present a shortlist cleanly.
+## When to use which command
 
-**Two-step flow:** start an async search, wait, then fetch tours. Use the **same criteria** in both calls.
+| Need | Command |
+|------|---------|
+| Package tour (flight + hotel) | `search-tours` |
+| Quick cheapest tours, Travelata only | `cheapest-tours` |
+| Hotel only (no flight) | `search-hotels` |
+| Fresh price/availability before booking a tour | `get-tour-details` |
+| Flight options | `search-flights` |
+| Flight price calendar / flexible dates | `flight-calendar` |
+| Train schedule and indicative fares | `search-trains` |
+| Excursions and activities | `search-activities` |
+| Resolve destinations / directories | `list-destinations` |
 
-- **Wait 3 seconds** for nearby destinations (Turkey, Egypt, UAE, Cyprus, Greece)
-- **Wait 5 seconds** for far destinations (Vietnam, Thailand, Bali/Indonesia, Cuba, Dominican Republic, Maldives, Mexico) — operators take longer
-- **If the first fetch returns fewer than ~30 tours, wait another 3 seconds and re-fetch with the SAME parameters** before trying anything else. Operators stream results into the same search; the second fetch usually picks up the rest. This is the most important fix for empty results on far destinations.
+## Activities
 
-**Step 1 — start search:**
-```bash
-python scripts/api_call.py --method POST \
-  --url "https://api.botclaw.ru/travelata-partners/tours/asyncSearch" \
-  --body '{"departureCity":2,"country":92,"checkInDateRange":{"from":"2026-06-08","to":"2026-06-22"},"nightRange":{"from":"7","to":"10"},"touristGroup":{"adults":2,"kids":1,"infants":0,"kidsAges":[8]},"hotelCategories":[4,7],"meals":[1,8]}'
-```
+Если город экскурсий не найден, попробуйте ближайший крупный город или туристический центр. `search-activities` ищет по теме через `query` («сафари», «острова») и принимает необязательные `date_from` и `date_to` в формате `YYYY-MM-DD` (`date_from` ≤ `date_to`), `persons` от 1 до 100 и булево `children_allowed`. Сортировка: `recommended` (по умолчанию), `price`, `rating` или `reviews`. В каждой записи указан источник `provider`, единица цены `price_unit` (`per_person`, `per_group`, `per_ticket` или `unknown`) и понятный текст `price_text`. Сравнивайте цены только при одинаковом `price_unit`; сортировка `price` не смешивает разные единицы.
 
-**Step 2 — fetch tours** (same criteria; pass arrays as `key[]`):
-```bash
-python scripts/api_call.py --method GET \
-  --url "https://api.botclaw.ru/travelata-partners/tours" \
-  --params '{"departureCity":"2","country":"92","checkInDateRange[from]":"2026-06-08","checkInDateRange[to]":"2026-06-22","nightRange[from]":"7","nightRange[to]":"10","touristGroup[adults]":"2","touristGroup[kids]":"1","touristGroup[infants]":"0","touristGroup[kidsAges][]":["8"],"hotelCategories[]":["4","7"],"meals[]":["1","8"],"sections[]":["hotels","meals"],"limit":"30"}'
-```
+## Туры и отели
 
-The response has `tours[]` with `id`, `price`, `checkInDate`, `hotel` (id), `meal` (id), `hotelCategory` (id). Resolve names via the `hotels` and `meals` sections in the same response.
+- `date_from`…`date_to` — окно дат вылета (для `search-hotels` — заезда) не длиннее 31 дня, то есть до календарного месяца.
+- `list-destinations` с `{"country": "…"}` даёт точные названия для `resort`; `resorts_level_travel_only` — места, которые есть только у Level.Travel (по ним ищет только он).
+- Всегда передавайте `nights_min` и `nights_max` явно (по умолчанию 7–10) и держите диапазон не шире 5 значений: Level.Travel ищет только `nights_min`…`nights_min`+4 (сервер сузит диапазон и добавит примечание), Travelata — весь диапазон. Для более широкого диапазона сделайте несколько поисков по очереди.
+- Питание `meal` (в `cheapest-tours` — список `meals`) передавайте кодом: `RO` — без питания, `BB` — завтраки, `HB` — полупансион, `FB` — полный пансион, `AI` — всё включено, `UAI` — ультра всё включено.
+- `search-hotels` тоже требует `departure_city`: передайте домашний город пользователя, а если он неизвестен — «Москва». Город влияет только на доступность предложений.
+- В предложениях есть `beach_distance_m` и `beach_line` — данные источника; `null` значит «неизвестно», а не «близко». Рейтинг — по шкале 0–10.
+- Выдача — по одному варианту на отель (самый дешёвый); `more_offers` — сколько ещё дат и вариантов у отеля.
+- `cheapest-tours` — быстрый обзор самых дешёвых туров только из Travelata; для выбранного предложения вызовите `get-tour-details` с его `offer_id`.
+- `tripcom_url` в ответе `search-hotels` (и `search-tours`, когда вариантов мало) — выдача отелей Trip.com на те же даты и состав, без перелёта. Покажите её отдельной строкой «Ещё отели на Trip.com» после вариантов; если вариантов мало или нет — предложите её явно. Передавайте ссылку без изменений.
 
-**Build the booking URL** from `tour.hotel` and `tour.id`, then convert through `/short-link`:
-```bash
-python scripts/api_call.py --method GET \
-  --url "https://api.botclaw.ru/short-link" \
-  --params '{"url":"https://travelata.ru/hotel/<tour.hotel>/tourPage?identity=<tour.id>"}'
-```
+## Авиабилеты
 
-**Important:** always pass `kidsAges` when `kids > 0`. Always search a date range, never a single day. If filters return 0 results, the first thing to try is **re-fetching `GET /tours` with the same parameters after another 3-second wait** — most empty results on far destinations are caused by operators not having responded yet, NOT by overly strict filters. Only after the second fetch is still empty should you drop filters or widen dates.
+- `search-flights`: `return_date` (`YYYY-MM-DD`) необязателен. Поездку туда-обратно длиннее 30 дней сервер ищет как два перелёта в одну сторону: у элементов есть `leg` (`outbound` или `return`), итоговая цена — их сумма. Поиск в одну сторону возвращает самый дешёвый вариант на каждую дату — часто это один результат. Цены всегда для эконом-класса, даже если `trip_class` ≠ 0.
+- Цены авиабилетов — за одного взрослого; `price_total_adults` — сумма за взрослых. Детские тарифы источник не даёт — так и скажите. `one_way_combo` — два билета в одну сторону, когда они дешевле туда-обратно. Время в `departure_at` местное: вылет в 00:55 — это ночь накануне.
+- Пустой ответ авиапоиска значит «нет в кэше цен», а не «нет рейсов»: проверьте соседние даты в `flight-calendar` и дайте ссылку.
+- `flight-calendar`: `month` в формате `YYYY-MM`; цены — за билет в одну сторону.
 
-#### Level.Travel
+## Ошибки
 
-For 2-adult tours of 7-15 nights within roughly the next 30 days, also call
-Level.Travel in parallel with Travelata. Level.Travel is a cached snapshot, not
-live search, so it usually returns immediately while Travelata keeps running.
+При ошибке CLI завершается с кодом 1 и печатает `{"error":true,"category":…,"message":…}`; для `tool_error` в `message` — текст сервера.
 
-Skip Level.Travel for families with kids, solo travelers, 3+ adults, trips
-shorter than 7 nights, longer than 15 nights, far-future dates, and requests
-that require a strict meal plan.
-
-See [references/leveltravel-api.md](references/leveltravel-api.md) for the full
-decision table, parameters, response shape, and departure-key list.
-
-**Quick example:**
-```bash
-python scripts/api_call.py --method GET \
-  --url "https://api.botclaw.ru/leveltravel/tours" \
-  --params '{"departure_key":"moscow","country_iso2":"TR","date_from":"2026-05-01","date_to":"2026-05-15","nights_min":"7","nights_max":"10","stars_min":"4","limit":"20"}'
-```
-
-The response includes `feed_synced_at` and `feed_age_hours`. Mention to the user
-that Level.Travel data comes from that snapshot, and warn more strongly when
-`feed_age_hours > 12`.
-
-Convert every `hotel_url` through `/short-link` before showing it, exactly like
-Travelata and Aviasales URLs.
-
-### 3. Excursions (Sputnik8)
-
-Read [references/sputnik8-api.md](references/sputnik8-api.md) for endpoints.
-
-**Quick example — excursions in Kemer:**
-```bash
-python scripts/api_call.py --method GET \
-  --url "https://api.botclaw.ru/sputnik8/v1/products" \
-  --params '{"city_id":"420","limit":"10","lang":"ru","currency":"rub","order":"rating","order_type":"desc"}'
-```
-
-### 4. Utilities
-
-- **City/airport lookup:** [references/travelpayouts-utils.md](references/travelpayouts-utils.md) — autocomplete and IATA resolver
-- **Short links:** `GET https://api.botclaw.ru/short-link?url=<URL>` — get a short booking link for any travel URL
-- **Airline logos:** `http://pics.avs.io/{width}/{height}/{IATA}.png` (e.g. `http://pics.avs.io/200/200/SU.png`)
-- **Currency rates to RUB:** `GET http://yasen.aviasales.ru/adaptors/currency.json`
+- Сообщение о неверных данных — исправьте ввод и не повторяйте запрос без изменений.
+- «Источник отклонил параметры запроса…» — измените параметры.
+- «Источник временно недоступен…» (ошибка всего вызова) — повторите один раз чуть позже, затем сообщите пользователю.
+- «Сервис поиска сейчас перегружен…», «Слишком много запросов…» или `rate_limited` — подождите около минуты.
+- Не запускайте второй `search-tours`, пока не завершился первый, и не повторяйте его с теми же аргументами. Если результатов мало, расширяйте поиск в рамках жёстких ограничений или с согласия пользователя.
 
 ## Workflow
 
-1. **Resolve locations** — if user says city names, use the autocomplete or IATA resolver to get IATA codes (for flights). For tours, resolve the country first. Only narrow to a specific Travelata resort when the user explicitly asks for an exact area such as Kemer, Belek, Side, or Alanya. For package-tour requests like "Antalya", start broad with Turkey (`country=92`) because users often mean the Antalya coast, not only the exact municipality.
-2. **Search** — call the appropriate API(s) based on user request
-3. **Get short links** — convert result URLs via `api.botclaw.ru/short-link`
-4. **Present results** — show prices, hotel names, ratings, and booking links
+1. Clarify hard constraints: place, dates/nights, travelers, budget, and every must-have condition (meal, stars, distance to the beach).
+2. Translate each constraint into a parameter literally — never leave a must-have only in your head:
+   - Fixed stay («с 5 по 11») → `date_from` = `date_to` = check-in date, `nights_min` = `nights_max` = number of nights. Flexible dates → a `date_from`…`date_to` window.
+   - Budget → `price_max` for the whole party and the whole stay; convert per-person or per-night budgets first.
+   - Place → the exact resort name from `list-destinations` (a district inside a region looks like «Регион: Район»; a resort includes its districts).
+   - Party → `adults` and `kids_ages` (each child's age).
+   - Conditions → their own parameters (`meal`, `stars_min`/`stars_max`, `beach_distance_max`, `beach_line_max`, `center_distance_max`). «Первая линия» → `beach_line_max` 1; «не дальше N м» → `beach_distance_max` N; «у моря» without a number → `beach_distance_max` 500 (say so); «в центре» → `center_distance_max` ≈ 1500; «ровно 4★» → `stars_min` = `stars_max` = 4.
+   - No parameter for a condition (sea view, aquapark) → say it cannot be filtered and check names or `get-tour-details` room names.
+   - «A или B» (two meals, two resorts) → one search per value: `meal` and `resort` take one value, and `meal` matches exactly.
+   - A star range («4–5★») → `stars_min` = lower bound; if only the lower bound shows up, search the upper bound too.
+3. Build `--input` as one JSON object (use `describe` only for a field not documented here).
+4. User named specific properties → pass them in `hotels` and search the resort where they are (if their resorts are unknown or many, as on atolls, search the country). Properties in different resorts need separate searches. Check that each `named_hotels[].hotel` really is the property the user meant; a brand may return several (`other_matches`). If none fit, run the same search without `hotels` for alternatives.
+5. Call the command; preserve partial multi-provider results as success.
+6. For a specific offer, refresh with `get-tour-details` before booking guidance. The confirmed price may differ from the search price — re-check the budget and say if it changed.
+7. Present a short shortlist with prices, key facts, and links the server returned. When asked to compare named properties, cover each one from `named_hotels`: fits / does not fit (reason and price) / not found. When nothing fits, say which constraint removed the options and ask before relaxing it.
 
 ## Rules
 
-- **ALWAYS** convert ALL URLs to short links via `/short-link` before showing to users — this applies to Aviasales, Travelata, AND Sputnik8 links. Never show raw URLs from API responses directly.
-- For flights: show cached prices from Data API + link to full search on aviasales.ru
-- For tours: default to 4-5 star, all-inclusive. Always search a date range (±7 days from requested date), never a single day. Show hotel name, stars, meal, price, check-in date, and booking link. Group multiple tours of the same hotel together — show the cheapest 5–10 hotels rather than 5–10 raw tours.
-- For tours: anyone aged 2–17 goes into `touristGroup.kids` (not adults). Always pass `touristGroup.kidsAges[]` with the age of each child — without it the API silently defaults to age 11 and may return wrong room layouts. If the user gives count but not ages, pick a sensible default (e.g. 8) and tell the user you assumed it.
-- For tours: if a search returns 0 (or under ~30 results for popular routes), the FIRST retry must be a second `GET /tours` with the same parameters after waiting another 3 seconds — operators may not have answered yet, especially for Vietnam, Cuba, Dominican Republic, Bali, Maldives. Only AFTER that second fetch is still empty should you drop filters, then widen night range, then widen date range. Do not blast through retries — each is a separate API call.
-- For tours: search by specific hotel using `hotels[]` when the user names a hotel.
-- For tours: if results are few (under 3) or none match the user's preferences well, recommend checking more options on these services:
-  - [Яндекс Путешествия](https://yandex.tpm.lv/6B8T7GjP)
-  - [Ostrovok](https://ostrovok.tpm.lv/LjsjLi2L)
-- For tours with a budget: if results exceed budget, present the cheapest options clearly marked as "above budget".
-- For tours with an exact area request: pass `resorts[]` (array format). Treat the returned tours as valid area matches even when the API returns a more specific child resort/subzone inside that area. Show the actual subzone in the response, but do **not** silently broaden to a different resort cluster or region unless the user agrees.
-- For combined requests (flights + tours): search both and compare
-- Prices from Data API are cached (2-7 days old) — mention this to users. If no data found for requested dates, the API automatically returns nearest available dates.
-- When user asks for tours plus excursions, always search Sputnik8 too, even if tour results are empty or only slightly above budget.
-- When showing flight or tour results, suggest searching for activities and excursions at the destination via Sputnik8 (e.g. "Want me to find excursions and things to do in Antalya?")
-- For tours: when the query fits Level.Travel constraints (2 adults, 7-15 nights, near-term dates), call both Travelata and Level.Travel in parallel. Present merged results, label each tour with its source, and mention that Level.Travel data is a cached snapshot using `feed_age_hours`. When the query does not fit Level.Travel constraints, silently use Travelata only.
+- Russian catalog values/examples are intentional: the upstream directory uses Russian names. Preserve the user's answer language where possible; do not force Russian conversation. Use Russian catalog values for MCP calls when required.
+- **Fresh details** for a chosen tour use `get-tour-details`; do not reuse stale offer payloads as live quotes.
+- Prefer **short booking URLs** from the response. If a short URL is missing, **never** fall back to a raw/long provider URL. Exception: `tripcom_url` is meant to be shown as returned.
+- **Cached flight prices** (including calendar data) are not live quotes — say they may be outdated.
+- **Tutu.ru train data is not real-time.** The requested date only shapes the result link. Verify the train, seats, and final price on Tutu.ru; never present `min_price_rub` as confirmed availability.
+- Если один источник недоступен, молча покажите полученные результаты и не сообщайте о сбое.
+- Keep the requested geography; show actual sub-area names without switching regions silently.
+- Default presentation: 5–8 strong options, calm text layout, group tours by hotel when multiple offers share one property.
+- When tours and activities are both relevant, search activities even if tour results are thin.
 
-## Presentation Rules
+## Presentation
 
-- Keep answers compact and easy to scan: by default, show 5–8 strong options, then a short conclusion about which option fits best and why. Show more only if the user asks.
-- Prefer a calm text layout over decorative formatting. Do not use a colorful emoji-heavy line-by-line style.
-- For flights, show 5–8 options by default. Prefer this order inside each option: route, dates, price, baggage or fare notes if available, direct or with transfers, then booking link.
-- For tours, show 5–8 hotels by default, not 5–8 raw duplicate offers. If the same hotel has multiple offers, show the cheapest relevant one unless the user asks to compare variants.
-- For tours, prefer this order inside each option: hotel, stars, actual resort/subzone, rating, meal, check-in and nights, price, short "Why it's in the list" note, then booking link.
-- If there is a clear geographic split, separate the answer into sections such as `Best options in Kemer` and `If you expand beyond Kemer`. Do not mix them into one flat list.
+- Flights: route, dates, price, transfers/baggage notes if present, then link.
+- Trains: train number, departure/arrival time, travel time, indicative carriage prices, the non-real-time warning, then link.
+- Tours/hotels: property, stars/rating, area, meal, check-in and nights, price, brief fit note, then link.
+- Prefer short conclusions over long tables.

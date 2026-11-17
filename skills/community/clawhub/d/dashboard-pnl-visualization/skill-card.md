@@ -1,40 +1,58 @@
-## Description: <br>
-Trading dashboard P&L visualization with profit tracker integration, win-rate overlays, R-multiples, and configurable settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trading dashboard P&L visualization with profit tracker integration, win-rate overlays, R-multiples, and configurable settings.
 
-## Publisher: <br>
-[sarkcesscrewpay](https://clawhub.ai/user/sarkcesscrewpay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sarkcesscrewpay](https://clawhub.ai/user/sarkcesscrewpay)
 
-## Use Case: <br>
-Developers and trading-system maintainers use this skill to add P&L breakdowns, win-rate overlays, R-multiple position displays, and configurable cost settings to monitoring dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides implementation guidance for trading dashboards, not an audited trading system. <br>
-Mitigation: Review and test any adopted snippets against the target trading environment before relying on the dashboard for decisions. <br>
-Risk: Dashboard files, profit logs, and broker integrations may expose sensitive account or performance information. <br>
-Mitigation: Review credential configuration, log storage locations, generated dashboard access, and retention settings before deployment. <br>
+## Use Case:
 
+Developers and trading-dashboard builders use this skill to add P&L breakdowns, win-rate overlays, R-multiple displays, and runtime configuration patterns to trading monitoring dashboards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sarkcesscrewpay/dashboard-pnl-visualization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with Python code snippets and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers dashboard configuration, Alpaca portfolio history usage, P&L breakdowns, win-rate overlays, and R-multiple display behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Dashboard outputs and logs may expose financial account performance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated dashboards and logs before sharing or deploying them.
+
+Risk: Trading API credentials could be mishandled when adapting the dashboard patterns.
+
+Mitigation: Keep Alpaca credentials outside the skill and use read-only or least-privilege API access where possible.
+
+Risk: R-multiple values can be misleading when stop prices are absent or invalid.
+
+Mitigation: Return no R-multiple and display a neutral placeholder when stop-price data is missing or risk per share is non-positive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sarkcesscrewpay/skills/dashboard-pnl-visualization)
+- [Publisher profile](https://clawhub.ai/user/sarkcesscrewpay)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with Python code examples and configuration parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation patterns for dashboard configuration, broker equity history retrieval, profit-summary overlays, realized and unrealized P&L splits, and R-multiple visualization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Sovereign, recoverable memory for AI agents backed by Jackal decentralized storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sovereign, recoverable memory for AI agents backed by Jackal decentralized storage.
 
-## Publisher: <br>
-[Regan-Milne](https://clawhub.ai/user/Regan-Milne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[regan-milne](https://clawhub.ai/user/regan-milne)
 
-## Use Case: <br>
-Developers and agent operators use this skill to persist and restore encrypted agent memory across sessions and machines through a Jackal-backed storage service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent memory is persisted to an external third-party service. <br>
-Mitigation: Use the skill only for memory you are comfortable storing through that service, and avoid saving secrets or private data. <br>
-Risk: The encryption key can appear in normal command output when key generation is run. <br>
-Mitigation: Run key generation only in private terminals and keep logs or shared sessions from capturing the key. <br>
-Risk: Encrypted memories are unrecoverable if the local encryption key is lost. <br>
-Mitigation: Back up the encryption key securely before relying on the stored memory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Claw Store Skill](https://clawhub.ai/Regan-Milne/claw-store-skill) <br>
-- [Claw Store service homepage](https://web-production-5cce7.up.railway.app) <br>
-- [Claw Store login](https://web-production-5cce7.up.railway.app/auth/login) <br>
+## Use Case:
 
+External developers and agent operators use this skill to save, load, and manage encrypted AI memory across sessions and machines through a remote Jackal-backed storage service.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JACKAL_MEMORY_API_KEY and the Python cryptography package for the bundled client.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saved memories depend on a long-term encryption key that could expose memory contents if logged, shared, or stored with broad file permissions.
+
+Mitigation: Create the key file with owner-only permissions, avoid running keygen or first-run setup where output is logged, and never expose JACKAL_MEMORY_ENCRYPTION_KEY in chat or command logs.
+
+Risk: The skill stores AI memory remotely and sends requests authenticated by JACKAL_MEMORY_API_KEY.
+
+Mitigation: Install only if remote memory storage fits the deployment, keep the API key out of logs, and rotate or revoke the key if exposure is suspected.
+
+Risk: The client requires an external cryptography dependency.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/regan-milne/skills/claw-store-skill)
+- [Claw Store homepage](https://web-production-5cce7.up.railway.app)
+- [Claw Store API key login](https://web-production-5cce7.up.railway.app/auth/login)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JACKAL_MEMORY_API_KEY and uses a local or environment-provided encryption key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

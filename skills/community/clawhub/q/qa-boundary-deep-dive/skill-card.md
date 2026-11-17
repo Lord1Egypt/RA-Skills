@@ -1,37 +1,55 @@
-## Description: <br>
-Systematically identifies QA boundary conditions across input, state, time, and resource dimensions, with risk levels and expected results for each boundary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps QA teams identify and prioritize edge cases across input, state, time, and resource boundaries.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, developers, and test analysts use this skill to expand scenario trees into deeper boundary-condition coverage after equivalence classes or core scenarios have been identified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause the skill to activate for general boundary-analysis language. <br>
-Mitigation: Review and narrow trigger phrases when installing in environments that require tighter invocation control. <br>
+## Use Case:
 
+QA engineers and developers use this skill to find testable boundary cases in a scenario tree, assign risk-based test depth, and link each case to an expected result and scenario ID.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown boundary analysis with structured boundary IDs, related scenario IDs, risk levels, and expected results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers input, state, time, and resource boundary dimensions; each boundary is expected to include traceability and a clear expected result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release metadata) <br>
+Risk: Real customer, identity, payment, or production data may be exposed when supplying test scenarios.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use synthetic or masked examples instead of pasting sensitive production data.
+
+Risk: The suggested unpinned installation command may install the publisher's broader skill suite.
+
+Mitigation: Review and trust the publisher and the full suite before choosing to run the installation command.
+
+## Reference(s):
+
+- [Boundary analysis table template](assets/boundary-table.md)
+- [Four-dimension boundary reference](references/four-dimensions.md)
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-boundary-deep-dive)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, QA test guidance]
+
+**Output Format:** [Markdown boundary-analysis table and dimension-specific checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Seven table columns; unique boundary IDs, risk levels, test depth, expected results, linked scenario IDs, and reasons for uncovered dimensions.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill metadata and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

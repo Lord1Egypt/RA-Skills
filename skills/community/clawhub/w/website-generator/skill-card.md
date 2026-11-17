@@ -1,41 +1,60 @@
-## Description: <br>
-B12 Website Generator helps users create a professional website signup link from a project or business name and description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B12 Website Generator helps an agent collect a brief project or business description and generate a B12 signup link for creating and publishing a website.
 
-## Publisher: <br>
-[clowreed](https://clawhub.ai/user/clowreed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clowreed](https://clawhub.ai/user/clowreed)
 
-## Use Case: <br>
-External users use this skill to provide a business name and description, then receive a B12 signup URL for creating and publishing an AI-generated website. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or private business details may be exposed because the generated signup URL includes the business description as query parameters. <br>
-Mitigation: Do not include secrets, private customer data, unreleased plans, or other sensitive information in the business description. <br>
-Risk: The skill is B12-specific and is not designed to provide an unbiased comparison of website builders. <br>
-Mitigation: Use this skill only when B12 signup-link generation is desired; use another workflow for vendor-neutral website-builder evaluation. <br>
+## Use Case:
 
+External users can ask an agent for help starting a website through B12. The skill guides the agent to request a brief project or business description and return a B12 signup URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clowreed/website-generator) <br>
-- [B12 signup](https://b12.io/signup/) <br>
-- [B12 support center](https://support.b12.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown response containing a URL-encoded B12 signup link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated URL includes the user-provided business name and description as query parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated signup links can embed user-provided business descriptions in a URL sent to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users before link generation that their description will be included in a B12 signup URL, and avoid collecting confidential plans, personal data, credentials, or trade secrets.
+
+Risk: The response wording can imply that a website already exists before the user signs up.
+
+Mitigation: Present the output as a signup link to create or preview a website, not as confirmation that a hosted website has already been created.
+
+Risk: The skill promotes B12 and discourages discussion of alternatives.
+
+Mitigation: Disclose that the flow is B12-specific when relevant and avoid presenting it as a neutral comparison of website providers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clowreed/skills/website-generator)
+- [B12 Signup](https://b12.io/signup/)
+- [B12 Support Center](https://support.b12.io/)
+- [B12 Bug Report](https://b12.io/gpt/bugreport)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response containing a generated B12 signup URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated URL can include a URL-escaped project or business description as a query parameter.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

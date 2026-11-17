@@ -1,39 +1,59 @@
-## Description: <br>
-Vipshop QR-code login skill that lets an agent obtain and display a login QR code, poll for user confirmation, and save reusable Vipshop session cookies for other Vipshop skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to start a Vipshop QR-code login flow, show the QR code to the user, poll for confirmation, and save the resulting login cookies for other Vipshop skills.
 
-## Publisher: <br>
-[viphgta](https://clawhub.ai/user/viphgta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viphgta](https://clawhub.ai/user/viphgta)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs authenticated access to Vipshop workflows. It guides the user through QR-code login, polls for confirmation, and stores the resulting session for later Vipshop skill use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores reusable Vipshop account cookies in ~/.vipshop-user-login/tokens.json, and other Vipshop skills can read and use that session. <br>
-Mitigation: Install only on a trusted machine, treat the file as an account credential, and remove it with the documented logout command or by deleting the directory when access is no longer needed. <br>
+## Use Case:
 
+External users, agents, and developers use this skill to authenticate a Vipshop account by QR scan so downstream Vipshop skills can reuse the saved cookies for account-specific workflows.
 
-## Reference(s): <br>
-- [Vipshop QR Login API Reference](artifact/references/api_reference.md) <br>
-- [Vipshop Skill Integration Guide](artifact/references/integration_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown QR image display, CLI text, machine-readable JSON payloads in stdout, and a local JSON credential file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores reusable Vipshop cookies in ~/.vipshop-user-login/tokens.json for other Vipshop skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata) <br>
+Risk: Saved Vipshop cookies in ~/.vipshop-user-login/tokens.json can be reused to access the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the token file private, treat it like a password, and use logout or removal when the login state is no longer needed.
+
+Risk: QR tokens or QR image URLs may appear in terminal output or logs during login.
+
+Mitigation: Avoid sharing terminal logs or screenshots from login sessions, especially while a QR code is active.
+
+Risk: Dependencies are declared without a reviewed lockfile.
+
+Mitigation: Prefer pinned dependencies or a reviewed lockfile before installing in a controlled environment.
+
+## Reference(s):
+
+- [Vipshop QR Login API Reference](references/api_reference.md)
+- [Vipshop QR Login Integration Guide](references/integration_guide.md)
+- [Vipshop Login Skill Release Page](https://clawhub.ai/viphgta/skills/vipshop-user-login)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown and text with CLI commands, Python snippets, machine-readable QR payload JSON, and a saved local JSON credential file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates ~/.vipshop-user-login/tokens.json with reusable Vipshop cookies after a successful login.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

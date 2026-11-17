@@ -1,0 +1,20 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_codestudio_preview",
+		"description": "Get the preview URL of the AICodeStudio module (requires a successful _codestudio_compile first). Returns previewUrl; the user can open it to view the result without leaving the conversation.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "Module id."
+				}
+			},
+			"required": [
+				"moduleId"
+			],
+			"additionalProperties": false
+		}
+	}
+}

@@ -1,40 +1,53 @@
-## Description: <br>
-Agent Retro helps an agent run a daily retrospective by reading a target day's session history, summarizing successes, mistakes, improvement points, user profile, and agent profile, then updating memory and configuration files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Retro guides an agent through a daily retrospective that reviews session history, summarizes lessons learned, and updates memory and configuration files.
 
-## Publisher: <br>
-[Tangc](https://clawhub.ai/user/Tangc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tangc](https://clawhub.ai/user/tangc)
 
-## Use Case: <br>
-Agent operators and developers use this skill to review a specific day's OpenClaw agent sessions, capture lessons learned, and update memory and behavior files. It is intended for retrospective analysis when a user asks the agent to review recent performance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read private local OpenClaw session history. <br>
-Mitigation: Run it only for an explicit date and agent ID, and limit access to workspaces where reviewing those sessions is appropriate. <br>
-Risk: The skill can change long-lived memory and agent instruction files such as USER.md, SOUL.md, AGENTS.md, and MEMORY.md. <br>
-Mitigation: Ask for a dry run or diff first, then manually approve changes before allowing persistent updates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Retro on ClawHub](https://clawhub.ai/Tangc/agent-retro) <br>
-- [Publisher profile: Tangc](https://clawhub.ai/user/Tangc) <br>
+## Use Case:
 
+Developers and agent operators use this skill when they want an assistant to review a prior day's sessions, produce a concise retrospective, and persist lessons into memory and configuration files.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration] <br>
-**Output Format:** [Markdown summaries, persistent memory files, configuration edits, and a concise retrospective report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local session history and writes daily memory, lock, and core configuration files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can inspect broad daily session history, which may include secrets, credentials, personal data, or unrelated tool outputs.
+
+Mitigation: Require redaction rules before use and limit the review scope to the intended agent, date, and session files.
+
+Risk: The workflow can permanently rewrite memory and core behavior files.
+
+Mitigation: Require a dry-run diff, backups, and explicit approval for each file change before writing updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangc/skills/agent-retro)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown retrospective report with memory and configuration file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update daily memory files, core behavior files, backups, and a date-based completion lock.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

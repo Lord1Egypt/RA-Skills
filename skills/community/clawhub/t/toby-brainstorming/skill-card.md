@@ -1,40 +1,53 @@
-## Description: <br>
-Explores user intent, requirements, and design before creative work such as creating features, building components, adding functionality, or modifying behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and agents use this skill to turn early ideas into reviewed designs before implementation. It supports structured discovery, comparison of design approaches, incremental validation, and follow-up planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly for creative or behavior-changing work. <br>
-Mitigation: Ask the agent to confirm before applying the skill when tighter control over activation is needed. <br>
-Risk: The skill instructs the agent to write and commit a design document after validation. <br>
-Mitigation: Require explicit approval before writing documentation or making git commits in repositories with stricter change controls. <br>
+## Use Case:
 
+Developers and teams use this skill to turn early creative or implementation ideas into structured designs before code changes. It guides project-context review, single-question refinement, approach comparison, design validation, and follow-on planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-brainstorming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, code, shell commands, configuration] <br>
-**Output Format:** [Conversational guidance and Markdown design documentation, with code, shell commands, or configuration when implementation planning requires them.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill asks one question at a time, presents 2-3 design approaches with trade-offs, and may produce a validated design document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill has broad activation wording and may be invoked often during feature or behavior changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Teams that prefer explicit opt-in planning should narrow the trigger or require confirmation before using the workflow.
+
+Risk: The workflow can create and commit design documents after validation.
+
+Mitigation: Review generated plans and confirm repository changes before committing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-brainstorming)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with structured questions, options, design sections, and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project design documents and implementation-readiness guidance when the workflow is completed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

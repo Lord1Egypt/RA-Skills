@@ -1,43 +1,58 @@
-## Description: <br>
-Runs and maintains a MEXC stock-contract funding-rate arbitrage bot with millisecond timing, funding-rate threshold filters, stock allowlists, U.S. regular-session controls, and persistent recovery of open-position state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs and maintains a MEXC stock-contract funding-rate arbitrage bot with timed opening and closing, funding-rate threshold filtering, stock whitelist filtering, U.S. regular-session shutdown windows, and persisted open-position recovery.
 
-## Publisher: <br>
-[linshengyyy](https://clawhub.ai/user/linshengyyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linshengyyy](https://clawhub.ai/user/linshengyyy)
 
-## Use Case: <br>
-Developers and operators use this skill to run, tune, troubleshoot, or modify a MEXC stock-contract funding-rate arbitrage workflow that opens and closes leveraged positions around funding settlement windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place live leveraged MEXC trades using sensitive API credentials. <br>
-Mitigation: Use a dedicated least-privilege MEXC API key with withdrawals disabled, reduce leverage from the default, and run only on an account balance you are prepared to put at risk. <br>
-Risk: Default sizing and missing caps can allow larger exposure than intended. <br>
-Mitigation: Set explicit MAX_NOTIONAL_USDT or MAX_OPEN_VOL limits before running and monitor order execution. <br>
-Risk: Open-position recovery depends on a local state file. <br>
-Mitigation: Choose a dedicated STATE_FILE path, protect it from accidental deletion or disclosure, and verify recovery behavior before unattended use. <br>
+## Use Case:
 
+Developers and trading operators use this skill to deploy, run, tune, troubleshoot, or modify a MEXC funding-rate arbitrage workflow that can place live market orders with user-provided API credentials.
 
-## Reference(s): <br>
-- [MEXC Contract API](https://contract.mexc.com) <br>
-- [ClawHub skill page](https://clawhub.ai/linshengyyy/openclaw-funding-arb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands, environment-variable configuration, and Python code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include operational tuning advice for API credentials, timing windows, order sizing, state recovery, and risk controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can place live leveraged MEXC trades with user credentials, which can expose funds to market, liquidation, and automation risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted MEXC API key with no withdrawal permission, set explicit exposure caps before live runs, and test with the smallest possible balance or sandbox-like setup first.
+
+Risk: The security summary says the bot lacks mandatory safety controls for live automated trading.
+
+Mitigation: Review all trading parameters before execution, configure conservative exposure limits such as maximum open volume or notional value, and monitor persisted open-position state during operation.
+
+Risk: Overriding the API base URL can send credentials or orders to an unintended endpoint.
+
+Mitigation: Do not override the default MEXC contract API base URL unless the endpoint has been explicitly reviewed and approved.
+
+## Reference(s):
+
+- [MEXC Contract API Endpoint](https://contract.mexc.com)
+- [OpenClaw 资金费套利 on ClawHub](https://clawhub.ai/linshengyyy/skills/openclaw-funding-arb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, code snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include environment variable settings, Python execution commands, troubleshooting steps, and focused script modification guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

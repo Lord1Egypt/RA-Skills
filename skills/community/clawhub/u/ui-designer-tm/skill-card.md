@@ -1,43 +1,52 @@
-## Description: <br>
-Expert UI design skill for creating beautiful, consistent, accessible user interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert UI design skill for creating beautiful, consistent, accessible user interfaces.
 
-## Publisher: <br>
-[tyronecoh](https://clawhub.ai/user/tyronecoh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyronecoh](https://clawhub.ai/user/tyronecoh)
 
-## Use Case: <br>
-Frontend developers, product teams, founders, and other builders use this skill to design or improve UI components, design systems, tokens, responsive layouts, and accessible HTML/CSS implementations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad natural-language triggers may activate the skill during general UI work. <br>
-Mitigation: Use the skill for explicit UI design, component, design-token, accessibility, theming, or handoff tasks. <br>
-Risk: Generated HTML/CSS and accessibility claims may not fully satisfy a production product's requirements. <br>
-Mitigation: Review generated code, test responsive behavior, and verify accessibility claims before production use. <br>
+## Use Case:
 
+Developers, product teams, and founders use this skill to create or improve UI components, design token systems, accessible frontend patterns, and handoff-ready interface specifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tyronecoh/ui-designer-tm) <br>
-- [ClawHub widget](https://clawhub.com/widgets/skill?slug=ui-designer-tm) <br>
-- [Design Token Reference](references/design-tokens.md) <br>
-- [Component Patterns](references/components.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with HTML, CSS, design token, component specification, and accessibility guidance as applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include token values, component states, interaction details, dark mode variants, and accessibility notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release metadata) <br>
+Risk: Generated UI code or design guidance may contain accessibility claims or copied CSS tokens that do not fully match the target application.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated frontend output, verify WCAG behavior in the target interface, and adapt tokens before production use.
+
+## Reference(s):
+
+- [Design Token Reference](references/design-tokens.md)
+- [Component Patterns](references/components.md)
+- [UI Designer skill page](https://clawhub.ai/tyronecoh/skills/ui-designer-tm)
+- [Publisher profile](https://clawhub.ai/user/tyronecoh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with HTML and CSS code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include design tokens, component specifications, interaction states, dark mode variants, and accessibility notes.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

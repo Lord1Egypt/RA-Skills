@@ -1,44 +1,52 @@
-## Description: <br>
-Eventee lets an agent search and read Eventee event data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read event content, attendee groups, participants, registrations, and session reviews from a connected Eventee account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent retrieve Eventee event content, attendee groups, participants, registrations, and session reviews through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Eventee account and may access event, attendee, registration, and review data. <br>
-Mitigation: Use it only with the intended Eventee connection and handle returned data according to the event owner's access and privacy requirements. <br>
-Risk: Connector action schemas can change, which can make stale payload assumptions incorrect. <br>
-Mitigation: Inspect the live connector schema before each action and build payloads from that schema. <br>
-Risk: First-time setup can install the oo CLI, start authentication, or direct the user to billing and connection pages. <br>
-Mitigation: Run setup steps only after the matching command failure and only for the user's intended OOMOL account. <br>
+## Use Case:
 
+External Eventee users and developers can retrieve event schedules and related attendee information through their connected account.
 
-## Reference(s): <br>
-- [Eventee ClawHub skill page](https://clawhub.ai/oomol/oo-eventee) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Eventee homepage](https://eventee.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server evidence) <br>
+Risk: The helper software may make broader, persistent changes to other agents’ skills, and its remote installers could not be inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation effects, install a verified oo CLI release, and set OO_SKILLS_SYNC_DISABLED=1 for its invocations to prevent startup changes to other agents’ skills. Connect only the intended Eventee account and consider the attendee information it exposes.
+
+## Reference(s):
+
+- [Eventee homepage](https://eventee.co)
+- [Eventee API documentation](https://docs.eventee.com/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release](https://clawhub.ai/oomol/skills/oo-eventee)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [Eventee data returned as JSON, with concise natural-language guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only event data; may include attendee information]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

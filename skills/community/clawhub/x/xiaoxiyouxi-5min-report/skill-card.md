@@ -1,41 +1,54 @@
-## Description: <br>
-Generates concise WeChat mini games industry reports with revenue rankings, market analysis, user insights, and investment alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates automated 5-minute WeChat mini games industry reports with revenue rankings, market analysis, user insights, and investment alerts.
 
-## Publisher: <br>
-[fanxi-ju](https://clawhub.ai/user/fanxi-ju) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanxi-ju](https://clawhub.ai/user/fanxi-ju)
 
-## Use Case: <br>
-Market analysts, game developers, publishers, and investment teams use this skill to turn WeChat mini games rankings into short business intelligence reports focused on revenue trends and actionable opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and send Feishu documents without specifying the recipient or requiring final approval. <br>
-Mitigation: Provide the exact Feishu account, document location, and recipient before use; require a preview and explicit approval before any message is sent. <br>
-Risk: The report depends on live Tencent ranking data and automated extraction from an external source. <br>
-Mitigation: Verify source availability and review the extracted rankings before treating the report as business or investment intelligence. <br>
+## Use Case:
 
+Business intelligence, investment, and game industry teams use this skill to monitor WeChat mini games rankings and convert current market signals into concise reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanxi-ju/xiaoxiyouxi-5min-report) <br>
-- [Tencent WeChat games ranking source](https://sj.qq.com/wechat-game) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report text suitable for Feishu document creation and direct message delivery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source attribution, timestamped ranking data, analytical insights, recommendations, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill depends on access to Tencent's WeChat games page and Feishu delivery permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm access to the Tencent source page and use an authorized Feishu account and recipient list before running the workflow.
+
+Risk: Market reports and investment alerts may influence business or investment decisions.
+
+Mitigation: Review generated reports before delivery and distinguish source data from analytical insights and recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fanxi-ju/skills/xiaoxiyouxi-5min-report)
+- [Tencent WeChat games page](https://sj.qq.com/wechat-game)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown report with structured rankings, analysis, recommendations, and delivery guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes data source attribution, timestamp expectations, and Feishu delivery formatting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

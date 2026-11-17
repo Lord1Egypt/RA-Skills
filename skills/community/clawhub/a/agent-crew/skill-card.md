@@ -1,45 +1,62 @@
-## Description: <br>
-Creates, manages, and awakens persistent multi-agent collaboration teams with standardized agent configuration files and .claude team structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and manages persistent multi-agent teams with standardized configs and team structures for progressive memory and private skill sets.
 
-## Publisher: <br>
-[201983290498](https://clawhub.ai/user/201983290498) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[201983290498](https://clawhub.ai/user/201983290498)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create, validate, and reload persistent multi-agent teams with role-specific configuration, memory, progress tracking, and private skill directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory and progress files are reused in generated prompts and can expose secrets or sensitive personal data if users store them there. <br>
-Mitigation: Do not put API keys, passwords, tokens, regulated data, customer data, or confidential one-off details in memory.md or progress.md; review and prune team memory before awakening an existing team. <br>
-Risk: The skill creates and reloads persistent local agent team state under .claude, which may affect future agent behavior. <br>
-Mitigation: Review generated .claude/agents and .claude/teams files, keep team_charter.md synchronized with team changes, and run the validation script before instantiating agents. <br>
-Risk: Agents could begin work from assumed requirements if confirmation checkpoints are skipped. <br>
-Mitigation: Follow the documented confirmation gates: require user confirmation before creating agents and keep initial agent status alignment limited to reading progress and memory. <br>
+## Use Case:
 
+Developers use this skill to create, load, and coordinate persistent Claude Code multi-agent teams with role-specific configuration, memory, progress tracking, and private skill directories. It is intended for projects that need repeatable team setup and controlled agent handoffs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/201983290498/agent-crew) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Data contracts](artifact/data_contracts.md) <br>
-- [Harness rules](artifact/harness_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with file templates, shell commands, and generated agent prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent local .claude team files and prompt-visible memory/progress content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent role configuration and team files can alter future child-agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated .claude/agents and .claude/teams files before loading the team, and rerun the included validator after structure changes.
+
+Risk: Stored role memory is reinjected into generated system prompts and may carry sensitive or stale content forward.
+
+Mitigation: Do not store secrets or sensitive user content in memory.md, and inspect generated prompts before agent instantiation.
+
+Risk: Unvalidated team or role names could lead to unintended paths or broken team loading.
+
+Mitigation: Use strict team and role names without path separators and confirm that role names match their .claude/agents frontmatter.
+
+## Reference(s):
+
+- [Agent Crew Skill](artifact/SKILL.md)
+- [Data Contracts](artifact/data_contracts.md)
+- [Harness Rules](artifact/harness_rules.md)
+- [Prompt Generator Script](artifact/scripts/generate_prompts.py)
+- [Team Validator Script](artifact/scripts/validate_team.sh)
+- [ClawHub Skill Page](https://clawhub.ai/201983290498/skills/agent-crew)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, and generated configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update persistent .claude/agents and .claude/teams files; the prompt generator emits markdown system prompts assembled from role configuration, memory, and skill summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

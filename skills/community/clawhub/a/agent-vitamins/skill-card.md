@@ -1,43 +1,62 @@
-## Description: <br>
-Daily self-improvement for AI agents that fetches curated Agent Vitamins briefs and turns relevant items into owner-approved recommendations and implementation steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches curated Agent Vitamins briefs with actionable improvements that an AI agent can assess, recommend, and execute after owner approval.
 
-## Publisher: <br>
-[menkesu](https://clawhub.ai/user/menkesu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[menkesu](https://clawhub.ai/user/menkesu)
 
-## Use Case: <br>
-External developers and agent owners use this skill to keep an AI agent current with ecosystem practices by reviewing daily briefs, selecting relevant improvements, and applying approved changes intentionally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external MCP package and Agent Vitamins service for brief content. <br>
-Mitigation: Install only if the publisher and service are trusted, and prefer pinning or verifying the npm package before use. <br>
-Risk: The full brief workflow uses a subscription API token. <br>
-Mitigation: Store the token in secure configuration or environment storage and avoid exposing it in prompts, logs, or shared files. <br>
-Risk: Recommended improvements may change agent behavior, files, memory, or configuration. <br>
-Mitigation: Require the agent to show exact commands, changed files, memory updates, and rollback steps before approving execution. <br>
+## Use Case:
 
+External users and developers use this skill to keep AI agents current with daily ecosystem briefs, select relevant improvements, and apply approved changes intentionally.
 
-## Reference(s): <br>
-- [Agent Vitamins](https://agentvitamins.com) <br>
-- [ClawHub release page](https://clawhub.ai/menkesu/agent-vitamins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with concise recommendations, setup JSON snippets, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Full briefs require a subscription API token; proposed improvements require owner approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The setup uses an MCP package launched through npx, which can introduce package supply-chain and unattended execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the MCP package version before installation, and avoid unattended npx execution where possible.
+
+Risk: The full daily brief requires an Agent Vitamins token.
+
+Mitigation: Store the token only in an approved secret manager and avoid exposing it in prompts, logs, or shared configuration.
+
+Risk: Daily brief recommendations may cause changes to an agent's behavior, tools, memory, or configuration.
+
+Mitigation: Use the skill's approval workflow: review recommendations, select only relevant changes, and implement them only after explicit owner approval.
+
+Risk: Generic session-start or self-improvement prompts could trigger the skill more broadly than intended.
+
+Mitigation: Invoke the skill explicitly for Agent Vitamins review workflows and keep automatic use disabled unless reviewed by the owner.
+
+## Reference(s):
+
+- [Agent Vitamins](https://agentvitamins.com)
+- [ClawHub skill release](https://clawhub.ai/menkesu/skills/agent-vitamins)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with recommendations, configuration snippets, and implementation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preview mode returns brief titles and categories; full actionable briefs require an Agent Vitamins subscription token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

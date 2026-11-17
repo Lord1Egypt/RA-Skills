@@ -7,7 +7,7 @@
 | Choosing which email/channel to use | `approved-contact-routing-guide` | `customer-contact-map` |
 | Meeting follow-up | `meeting-notes` | `follow-up-tracker` |
 | Missed response or open commitment | `follow-up-tracker` | `relationship-risk-log` |
-| Client concern | `relationship-risk-log` | `at-risk-customer-recovery-plan` |
+| Client concern | `relationship-risk-log` | `at-riREDACTED-SECRET` |
 | Support escalation | `support-escalation-summary` | `customer-contact-map` |
 | Post-launch check-in | `post-launch-adoption-check-in` | `success-criteria-review` |
 | Renewal planning | `renewal-readiness-review` | `client-health-scorecard` |
@@ -15,7 +15,7 @@
 | Referral/testimonial request | `testimonial-referral-request-plan` | `client-satisfaction-survey` |
 | Stakeholder change | `stakeholder-change-note` | `customer-contact-map` |
 | Executive update | `executive-check-in-brief` | `quarterly-business-review` |
-| At-risk account | `at-risk-customer-recovery-plan` | `relationship-risk-log` |
+| At-risk account | `at-riREDACTED-SECRET` | `relationship-risk-log` |
 | Offboarding | `offboarding-transition-checklist` | `approved-contact-routing-guide` |
 
 Choose the artifact that fits the immediate customer event. Add a supporting artifact when contact routing, open commitments, approvals, or relationship risk would otherwise be ambiguous.

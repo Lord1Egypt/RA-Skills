@@ -1,40 +1,58 @@
-## Description: <br>
-Provides a ComfyUI image-generation helper that updates workflow prompt text, avoids duplicate generation, validates required workflow nodes, and returns structured generation results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ComfyUI-based image generation with workflow validation, prompt-field checks, retry handling, and output-file handling.
 
-## Publisher: <br>
-[admirobot](https://clawhub.ai/user/admirobot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[admirobot](https://clawhub.ai/user/admirobot)
 
-## Use Case: <br>
-Developers and agent builders use this skill to call a configured ComfyUI server for image generation from prompts while reusing validated workflow files and explicit output paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt text and workflow requests are sent to the configured ComfyUI server. <br>
-Mitigation: Set COMFYUI_SERVER only to a trusted server and avoid sensitive prompts on shared or untrusted networks. <br>
-Risk: Generated files are written or copied to caller-provided output paths. <br>
-Mitigation: Choose explicit output directories where overwriting or creating image files would not affect important data. <br>
+## Use Case:
 
+Developers and content-creation agents use this skill to submit prompts and validated ComfyUI workflows to a configured ComfyUI server, then retrieve generated image files.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/admirobot/tvdr-comfyui-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, API Calls, Configuration instructions, Code] <br>
-**Output Format:** [Python functions returning dictionaries and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted COMFYUI_SERVER and workflow JSON with CLIPTextEncode and SaveImage nodes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts and full workflow JSON are sent to a configurable plain-HTTP ComfyUI server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a loopback or authenticated HTTPS endpoint, and avoid sending sensitive prompts or workflow content.
+
+Risk: Generated or downloaded content can be written to caller-chosen output paths.
+
+Mitigation: Restrict output paths to a dedicated directory where overwrites are acceptable.
+
+Risk: Unreviewed workflow templates can change generation behavior or route data unexpectedly.
+
+Mitigation: Use reviewed workflow templates and keep workflow validation enabled before submitting generation jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/admirobot/skills/tvdr-comfyui-gen)
+- [Publisher profile](https://clawhub.ai/user/admirobot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Python API return dictionaries and Markdown usage examples with Python and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns success status, file path, file size, prompt ID, duration, and error details when generation fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

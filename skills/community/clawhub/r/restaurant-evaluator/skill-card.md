@@ -1,42 +1,53 @@
-## Description: <br>
-餐饮创业选址与开店评估专家系统 helps evaluate restaurant site quality, opening feasibility, payback period, and common startup risks using a structured self-assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language advisory skill that helps restaurant founders evaluate locations, estimate payback periods, and assess whether opening a restaurant is feasible.
 
-## Publisher: <br>
-[wwek](https://clawhub.ai/user/wwek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wwek](https://clawhub.ai/user/wwek)
 
-## Use Case: <br>
-Restaurant entrepreneurs and agents assisting them use this skill to assess prospective locations, basic operating readiness, and payback expectations before committing to a lease or investment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides business advice for restaurant investment decisions and may be incomplete for a user's local market, finances, or legal requirements. <br>
-Mitigation: Treat results as advisory, perform professional due diligence, and verify assumptions with local market research before making lease or investment decisions. <br>
-Risk: Financial or site details entered into temporary files could expose sensitive business information in shared environments. <br>
-Mitigation: Avoid sensitive financial details in shared temporary files and remove local input files after evaluation. <br>
-Risk: Incorrect inputs or formulas can produce misleading payback or location scores. <br>
-Mitigation: Double-check the demolition-risk field, formulas, and all numeric inputs before relying on the output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [勇哥餐饮创业自测表参考文档](references/yongge-self-assessment.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wwek/restaurant-evaluator) <br>
+## Use Case:
 
+External restaurant founders and their agents use this skill to collect site and startup inputs, score restaurant locations, calculate payback feasibility, identify common restaurant startup risks, and produce opening recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON input for the local evaluation script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory assessments and scoring summaries; users should review inputs and assumptions before relying on results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides advisory business recommendations that may be wrong for a specific restaurant, location, market, or operator.
+
+Mitigation: Treat outputs as decision support only and verify assumptions with local research, professional advice, and manual review before investing or signing a lease.
+
+Risk: The documented example writes user input to a fixed /tmp/eval_input.json path, which can expose or collide with data on shared systems.
+
+Mitigation: Use a private temporary directory, stdin, or another user-controlled path with restrictive permissions for evaluation input.
+
+## Reference(s):
+
+- [勇哥餐饮创业自测表参考文档](references/yongge-self-assessment.md)
+- [ClawHub skill page](https://clawhub.ai/wwek/skills/restaurant-evaluator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell command snippets, Chinese-language text reports, and JSON result data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local Python evaluator accepts JSON input and can return both a human-readable report and structured JSON results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

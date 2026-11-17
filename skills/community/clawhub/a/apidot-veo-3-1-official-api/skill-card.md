@@ -1,50 +1,64 @@
-## Description: <br>
-Use APIDot for Veo 3.1 Official API workflows, including model routing, text-to-video, image-to-video, first and last frame control, reference video, native audio planning, async task submission, polling, webhooks, and APIDot documentation routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for Veo 3.1 Official API workflows, including model routing, text-to-video and image-to-video planning, async task submission, polling, webhook delivery, and safe APIDOT_API_KEY handling.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and engineers use this documentation-only skill to plan APIDot Veo 3.1 Official integrations, choose the right APIDot documentation path, and handle async video generation workflows with task IDs, polling, and webhooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDOT_API_KEY could be exposed if copied into browser code, logs, screenshots, public repositories, or chat output. <br>
-Mitigation: Keep the key server-side in environment variables or a backend secret manager and avoid displaying it in generated guidance. <br>
-Risk: An agent may propose live APIDot calls when the user only needs planning or documentation guidance. <br>
-Mitigation: Only allow live APIDot calls when the user explicitly asks and provides a safe server-side environment. <br>
-Risk: Prompts, private media URLs, callback URLs, and generated video URLs may contain sensitive workflow data. <br>
-Mitigation: Avoid logging or echoing these values, and treat webhook handlers as idempotent to prevent duplicate visible results. <br>
-Risk: Model fields, availability, limits, and commercial terms may change in APIDot's live service. <br>
-Mitigation: Use the current APIDot docs and model pages as the source of truth before preparing payloads or making product claims. <br>
+## Use Case:
 
+Developers and integration teams use this skill to route APIDot Veo 3.1 Official questions to the right docs, model pages, and async workflow guidance. It helps plan text-to-video, image-guided video, first/last-frame control, reference media, native audio, polling, and webhook delivery without bundling executable automation.
 
-## Reference(s): <br>
-- [APIDot documentation](https://apidot.ai/docs) <br>
-- [APIDot Veo 3.1 Official model page](https://apidot.ai/models/veo-3-1-official) <br>
-- [APIDot Veo 3.1 Official API docs](https://apidot.ai/docs/veo-3-1-official) <br>
-- [APIDot quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot examples](https://github.com/APIDotAI/apidot-examples) <br>
-- [ClawHub skill page](https://clawhub.ai/jiehao71727/skills/apidot-veo-3-1-official-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with links, routing notes, and integration checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; may mention APIDOT_API_KEY handling but does not include executable code or stored credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: APIDOT_API_KEY could be exposed if a user places it in browser code, public repositories, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY in a server-side environment variable or backend secret store, and avoid logging credentials.
+
+Risk: Prompts, media URLs, generated video URLs, callback URLs, and results may contain private workflow data.
+
+Mitigation: Avoid logging or displaying private prompts, media URLs, callback URLs, generated URLs, or task results unless the user explicitly approves the handling.
+
+Risk: Model fields, availability, pricing, and commercial terms may change outside the skill artifact.
+
+Mitigation: Verify current model-specific request fields, limits, availability, pricing, and commercial terms in APIDot's live docs before making real API calls.
+
+## Reference(s):
+
+- [APIDot Veo 3.1 Official Reference](references/api.md)
+- [APIDot Docs](https://apidot.ai/docs)
+- [APIDot Veo 3.1 Official Model Page](https://apidot.ai/models/veo-3-1-official)
+- [APIDot Veo 3.1 Official API Docs](https://apidot.ai/docs/veo-3-1-official)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+- [ClawHub Skill Page](https://clawhub.ai/jiehao71727/skills/apidot-veo-3-1-official-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with links and non-executable integration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable files, stored credentials, or automatic API calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

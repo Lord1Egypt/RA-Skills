@@ -9,7 +9,6 @@
 - [Correct SDK Code Patterns](#correct-sdk-code-patterns)
 - [Response Validation Criteria](#response-validation-criteria)
 - [Security Criteria](#security-criteria)
-- [Month-over-Month Calculation Criteria](#month-over-month-calculation-criteria)
 - [References](#references)
 
 ---
@@ -91,19 +90,21 @@ hcloud CES ShowMetricData \
 
 ### 4. obsutil Upload Commands
 
+> **⚠️ For directory uploads, ask the customer first whether to preserve the source directory structure, then pick the command. Never default.**
+
 #### ✅ Correct
 ```bash
-obsutil cp /home/user/file.txt obs://my-bucket/path/file.txt -flat    # Single file: -flat is fine
-obsutil cp /home/user/data/ obs://my-bucket/data/ -r                   # Directory: preserves structure (default)
-obsutil cp /home/user/data/ obs://my-bucket/data/ -r -p=10             # Directory with concurrency
-obsutil cp /home/user/data/ obs://my-bucket/data/ -r -flat             # Directory: -flat only if user explicitly requests
+obsutil cp /home/user/file.txt obs://my-bucket/path/file.txt -flat    # Single file: -flat is fine (no need to ask)
+obsutil cp /home/user/data/ obs://my-bucket/data/ -r                   # Directory: customer chose to preserve structure
+obsutil cp /home/user/data/ obs://my-bucket/data/ -r -p=10             # Directory with concurrency (customer chose preserve)
+obsutil cp /home/user/data/ obs://my-bucket/data/ -r -flat             # Directory: customer chose to flatten files
 ```
 
 #### ❌ Incorrect
 ```bash
 obsutil upload /home/user/file.txt obs://my-bucket/  # Incorrect: obsutil upload command is cp, not upload
 obsutil cp /home/user/file.txt my-bucket/path/file.txt  # Incorrect: Target must start with obs://
-obsutil cp /home/user/data/ obs://my-bucket/ -r -flat  # Incorrect: -flat discards directory structure by default; do not use unless user explicitly requests
+obsutil cp /home/user/data/ obs://my-bucket/ -r -flat  # Incorrect: using -flat without asking the customer first; -flat must follow the customer's explicit answer
 ```
 
 ### 5. CES Namespace and Metric Names
@@ -120,7 +121,6 @@ obsutil cp /home/user/data/ obs://my-bucket/ -r -flat  # Incorrect: -flat discar
 --namespace=OBS              # Incorrect: Should be SYS.OBS
 --namespace=SYS.OBJECT_STORAGE  # Incorrect: Should be SYS.OBS
 --metric_name=capacityTotal  # Incorrect: Should be capacity_total (snake_case)
---metric_name=download_bytes  # Incorrect: Not used in this skill; capacity_total is the actual metric
 --dim.0=bucketName,my-bucket  # Incorrect: Dimension key should be bucket_name
 --dim.0=bucket,my-bucket      # Incorrect: Dimension key should be bucket_name
 ```
@@ -165,8 +165,8 @@ from huaweicloudsdkobs import Client  # Incorrect: Missing correct module path
 from huaweicloudsdkcore.auth.credentials import BasicCredentials
 
 credentials = BasicCredentials() \
-    .with_ak(os.getenv("HUAWEICLOUD_SDK_AK")) \
-    .with_sk(os.getenv("HUAWEICLOUD_SDK_SK")) \
+    .with_ak(os.getenv("HW_ACCESS_KEY")) \
+    .with_sk(os.getenv("HW_SECRET_KEY")) \
     .with_project_id(os.getenv("HUAWEICLOUD_SDK_PROJECT_ID"))
 ```
 
@@ -184,8 +184,8 @@ credentials = BasicCredentials() \
 from obs import ObsClient
 
 obs_client = ObsClient(
-    access_key_id=os.getenv("HUAWEICLOUD_SDK_AK"),
-    secret_access_key=os.getenv("HUAWEICLOUD_SDK_SK"),
+    access_key_id=os.getenv("HW_ACCESS_KEY"),
+    secret_access_key=os.getenv("HW_SECRET_KEY"),
     server='obs.cn-south-1.myhuaweicloud.com'
 )
 ```
@@ -236,40 +236,16 @@ obs_client = ObsClient(
 
 ### ⛔ Prohibited Operations (Security Constraints)
 
-> **The following delete operations are strictly forbidden, regardless of user requests:**
+> **The following operations are strictly forbidden, regardless of user requests. They are described semantically; the skill never provides executable destructive command examples.**
 
 #### ❌ Absolutely Prohibited
-```bash
-hcloud obs rm obs://my-bucket -r           # Prohibited: Recursively delete all objects in bucket
-hcloud obs rm obs://my-bucket              # Prohibited: Delete bucket
-```
+- Recursively deleting all objects in a bucket
+- Deleting a bucket
 
 #### ✅ Correct: Refuse delete request and direct to console
 ```
 "Per security constraints, this skill does not allow delete operations (delete bucket/object/batch delete/empty bucket). Please use the Huawei Cloud OBS console or obsutil manually."
 ```
-
----
-
-## Month-over-Month Calculation Criteria
-
-### ✅ Correct Calculation
-```
-MoM (%) = (Current Month Value - Last Month Value) / Last Month Value × 100%
-
-Example:
-Current month = 125.3 GB, Last month = 98.7 GB
-MoM = (125.3 - 98.7) / 98.7 × 100% = +26.95%
-```
-
-### Special Case Handling
-
-| Case | Correct Handling | Incorrect Handling |
-|------|-----------------|-------------------|
-| Last month=0, Current>0 | Display "New (last month was 0)" | ❌ Display +∞% |
-| Last month=0, Current=0 | Display "N/A" | ❌ Display 0% |
-| Last month>0, Current>0 | Calculate percentage, rounded to 2 decimal places | ❌ Integer truncation |
-| Current<Last month | Display negative (e.g., -15.30%) | ❌ Display 0% |
 
 ---
 

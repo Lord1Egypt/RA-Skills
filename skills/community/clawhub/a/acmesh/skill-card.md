@@ -1,39 +1,54 @@
-## Description: <br>
-Reference tool for devtools that provides quick Acmesh guidance for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup material for Acmesh concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for Acmesh concepts, common workflows, security considerations, troubleshooting, performance guidance, and migration checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The content is generic reference material and may not be authoritative for a user's Acmesh environment. <br>
-Mitigation: Treat the output as quick guidance and verify operational decisions against authoritative Acmesh documentation and local security requirements. <br>
+## Use Case:
 
+Developers and engineers use this skill as a static Acmesh reference helper for intro, quickstart, pattern, debugging, performance, security, migration, and cheatsheet guidance.
 
-## Reference(s): <br>
-- [Acmesh on ClawHub](https://clawhub.ai/ckchzh/acmesh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference content emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no external API calls, credentials, network access, persistence, or system-changing behavior indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: frontmatter and server evidence) <br>
+Risk: The reference content is generic and may not be authoritative operational security guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check current Acmesh documentation and internal security requirements before applying the guidance in production.
+
+Risk: Static guidance can become stale as Acmesh tools or practices change.
+
+Mitigation: Review the skill content during upgrades and before relying on it for migration, performance, or security decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/acmesh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no external API calls, credentials, network access, or persistence reported in security evidence.]
+
+## Skill Version(s):
+
+4.0.1 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

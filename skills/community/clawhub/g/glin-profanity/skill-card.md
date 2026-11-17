@@ -1,43 +1,57 @@
-## Description: <br>
-Glin Profanity helps agents guide profanity detection and content moderation workflows using leetspeak detection, Unicode homoglyph normalization, optional ML-powered toxicity checks, and multilingual filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Glin Profanity guides agents in applying profanity detection and content moderation with leetspeak, Unicode homoglyph, and optional ML-powered detection across 24 languages.
 
-## Publisher: <br>
-[thegdsks](https://clawhub.ai/user/thegdsks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thegdsks](https://clawhub.ai/user/thegdsks)
 
-## Use Case: <br>
-Developers and engineers use this skill to add profanity checks, censorship, batch moderation, and content validation patterns to applications that process user-generated text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing an unintended package or unreviewed release could introduce supply-chain risk. <br>
-Mitigation: Confirm the intended npm or PyPI package before installation and pin known-good versions in production. <br>
-Risk: Automated moderation actions can create false positives or user-impacting decisions without review. <br>
-Mitigation: Use human review, appeal paths, and conservative thresholds before fully automatic delete or warning workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/thegdsks/glin-profanity) <br>
-- [Glin Profanity Documentation](https://www.typeweaver.com/docs/glin-profanity) <br>
-- [Glin Profanity Demo](https://www.glincker.com/tools/glin-profanity) <br>
-- [npm Package](https://www.npmjs.com/package/glin-profanity) <br>
-- [PyPI Package](https://pypi.org/project/glin-profanity/) <br>
+## Use Case:
 
+Developers and content moderation teams use this skill to add profanity detection, censoring, and validation workflows to applications that handle user-generated text.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with installation commands and JavaScript, TypeScript, Python, and React code examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes package installation, moderation configuration, batch processing, context-aware analysis, and optional ML toxicity-check examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned npm and pip installation commands may resolve to an unreviewed package version.
+
+Mitigation: Pin reviewed package versions and use lockfiles or hashes before deploying the dependency.
+
+Risk: Profanity filtering can miss obfuscated language or over-flag context-specific terms.
+
+Mitigation: Tune languages, thresholds, custom word lists, and context whitelists, and add human review for high-impact moderation decisions.
+
+## Reference(s):
+
+- [Glin Profanity ClawHub Skill Page](https://clawhub.ai/thegdsks/skills/glin-profanity)
+- [Glin Profanity Documentation](https://www.typeweaver.com/docs/glin-profanity)
+- [Glin Profanity Demo](https://www.glincker.com/tools/glin-profanity)
+- [Glin Profanity GitHub Repository](https://github.com/GLINCKER/glin-profanity)
+- [glin-profanity on npm](https://www.npmjs.com/package/glin-profanity)
+- [glin-profanity on PyPI](https://pypi.org/project/glin-profanity/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with bash, JavaScript, TypeScript, Python, and TSX code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes package installation commands and configuration examples; pin dependency versions before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

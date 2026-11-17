@@ -1,40 +1,51 @@
-## Description: <br>
-Helps API and platform teams generate, improve, and validate OpenAPI or Swagger documentation for REST APIs using a practical, local-friendly workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps API developers, backend teams, developer-experience teams, and maintainers generate, improve, and validate OpenAPI or Swagger documentation for REST APIs.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers, backend and platform teams, developer-experience teams, and maintainers use this skill to generate, improve, and validate OpenAPI or Swagger documentation for REST APIs. It helps turn API documentation requests into workflows, checklists, artifacts, code changes, and verification notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on loosely related API or developer-experience requests. <br>
-Mitigation: Prefer explicit invocation for OpenAPI or Swagger documentation tasks and confirm the requested API documentation outcome before applying the workflow. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to turn REST API requirements or existing service behavior into actionable OpenAPI or Swagger documentation plans, artifacts, checklists, code changes, and verification notes.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/openapi-docs-generator-133318) <br>
-- [Swagger/OpenAPI Documentation Request](https://github.com/ArpitaVerma16/Voice-Driven-Virtual-Customer-Success-Manager/issues/31) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with optional code blocks, shell commands, checklists, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include verification notes, assumptions, and follow-up risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Broad implicit triggers and low-quality demand evidence may cause the skill to be invoked for loosely related API or documentation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's concrete OpenAPI or Swagger goal before producing artifacts, and treat demand-score claims as non-authoritative context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/openapi-docs-generator-133318)
+- [Requirement plan](references/requirement-plan.md)
+- [Swagger/OpenAPI documentation request evidence](https://github.com/ArpitaVerma16/Voice-Driven-Virtual-Customer-Success-Manager/issues/31)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with optional code blocks, shell commands, checklists, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, validation criteria, remaining risks, and next-step notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

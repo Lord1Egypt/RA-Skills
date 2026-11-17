@@ -1,41 +1,54 @@
-## Description: <br>
-Guides YouTube video and channel optimization for search and discovery by helping create titles, descriptions, tags, and thumbnail guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides YouTube video and channel optimization for search and discovery, including titles, descriptions, tags, thumbnails, and channel visibility.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External creators, marketers, and channel operators use this skill to improve YouTube search visibility and prepare video metadata. It supports title options, descriptions, relevant tags, and thumbnail recommendations for YouTube search, Google search, and AI citation contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broader YouTube content tasks where another writing, design, ads, or channel-management skill is a better fit. <br>
-Mitigation: Confirm the user's task is YouTube SEO or discovery optimization; route YouTube ads to youtube-ads and website-embedded video SEO to video-optimization. <br>
-Risk: Public-facing video metadata can be misleading if optimization suggestions are applied without review. <br>
-Mitigation: Review generated titles, descriptions, tags, and thumbnail guidance for accuracy, brand fit, and platform compliance before publishing. <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to optimize YouTube videos and channels for search, discovery, and AI citation. It produces practical title, description, tag, and thumbnail guidance from video type, target keywords, and audience context.
 
-## Reference(s): <br>
-- [Search Engine Land: YouTube SEO and AI Overviews](https://searchengineland.com/youtube-seo-ai-overviews-467253) <br>
-- [OtterlyAI: The YouTube Citation Study 2026](https://otterly.ai/blog/the-youtube-citation-study-2026/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with title options, descriptions, tags, and thumbnail recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or API calls; output is advisory YouTube SEO content guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may activate for broad YouTube SEO-adjacent requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for organic YouTube search, channel visibility, title, description, tag, and thumbnail optimization; route YouTube ads or website-embedded video SEO requests to the more specific related skills named in the artifact.
+
+Risk: Optimization guidance can become stale as thumbnail, search, and AI citation behavior changes.
+
+Mitigation: Treat recommendations as guidance to review and test against the channel audience, current platform behavior, and measurable performance results.
+
+## Reference(s):
+
+- [Search Engine Land: YouTube SEO and AI Overviews](https://searchengineland.com/youtube-seo-ai-overviews-467253)
+- [OtterlyAI: The YouTube Citation Study 2026](https://otterly.ai/blog/the-youtube-citation-study-2026/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured title options, video description, tags, and thumbnail guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally use declared project context files for keyword and content strategy context; no code execution, persistence, credential handling, or destructive behavior is reported.]
+
+## Skill Version(s):
+
+1.1.1 (source: evidence.release.version and SKILL.md metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

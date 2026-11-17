@@ -1,39 +1,53 @@
-## Description: <br>
-YES.md 中文版 is a Chinese engineering workflow skill that guides agents to gather evidence, verify changes, avoid unsupported assumptions, and check downstream impact during development, debugging, configuration, deployment, API integration, and data work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YES.md 中文版 is a Chinese-language engineering governance skill that prompts agents to rely on evidence, use available tools, validate changes, and check related impact during debugging, development, configuration, deployment, API integration, and data-processing work.
 
-## Publisher: <br>
-[sstklen](https://clawhub.ai/user/sstklen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sstklen](https://clawhub.ai/user/sstklen)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to stay evidence-driven during file edits, configuration changes, deployments, debugging, API integration, and data-processing tasks. It is intended to make agents verify claims, use available tools before asking the user, back up risky files, and perform follow-up checks after changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages tool use and evidence gathering during engineering work, which can include commands that inspect production, database, deployment, or sensitive environment details. <br>
-Mitigation: Keep normal approval controls for production deployments, database changes, and commands that read sensitive environment details. <br>
-Risk: The skill is broad workflow guidance, so applying it mechanically to every task could add unnecessary backups, checks, or command execution. <br>
-Mitigation: Use it for engineering changes, debugging, configuration, deployment, API integration, and data work where evidence gathering and verification reduce risk. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to enforce evidence-first troubleshooting, safe file and deployment changes, and verification before reporting task completion.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with inline command and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it does not include executable code or credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release.version) <br>
+Risk: The skill activates broadly during engineering tasks and may push agents toward extra tool use and validation before conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply it to engineering workflows where evidence checks are useful, and keep validation proportional to task risk.
+
+Risk: The guidance encourages file backups, command execution, and deployment checks, which can affect a working tree or runtime environment if followed carelessly.
+
+Mitigation: Review proposed commands before execution, prefer non-destructive checks, and keep backups scoped to files being changed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sstklen/skills/yes-md-zh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language agent behavior guidance with broad activation during engineering tasks.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-AI Image Upscaling submits PNG, JPG, or WebP images to HiResolutionPhotos and returns a private retrieval page for 4K or 8K upscaled results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Image Upscaling API via HiResolutionPhotos sends low-resolution images for 4K or 8K upscaling and returns a secure private retrieval webpage for downloading the result.
 
-## Publisher: <br>
-[setdemos](https://clawhub.ai/user/setdemos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[setdemos](https://clawhub.ai/user/setdemos)
 
-## Use Case: <br>
-Developers and agents use this skill to upscale a user's local or web image through the HiResolutionPhotos service, then return a download page link instead of downloading the large output file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The selected image is sent to hiresolutionphotos.com and the result is hosted externally. <br>
-Mitigation: Avoid uploading sensitive images unless the user accepts the service's privacy and retention practices. <br>
-Risk: Upscaled outputs can be large and direct download attempts may be unreliable for agents. <br>
-Mitigation: Return the provided retrieval page link to the user instead of downloading the raw generated image. <br>
-Risk: The service limits submissions to 15 upscale requests per hour per IP. <br>
-Mitigation: Keep requests within the documented rate limit and surface 429 responses to the user. <br>
+## Use Case:
 
+External users and developers use this skill to submit local or web images to HiResolutionPhotos for AI upscaling, then provide the generated retrieval page link to the human user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/setdemos/hiresolutionphotos-upscaler) <br>
-- [HiResolutionPhotos homepage](https://hiresolutionphotos.com) <br>
-- [HiResolutionPhotos upscale API](https://hiresolutionphotos.com/api/upscale) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with curl commands and a result URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a retrieval webpage link; agents should not download the large generated image directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Selected images are uploaded to HiResolutionPhotos for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with images that are acceptable to send to that service; avoid confidential, regulated, or personal images unless its privacy terms meet your needs.
+
+Risk: Upscaled outputs may be large files that are unsuitable for direct agent download.
+
+Mitigation: Return the provided retrieval page URL to the human user rather than downloading the raw image through the agent.
+
+Risk: The service enforces a 15-request-per-hour submission limit per IP.
+
+Mitigation: Throttle submissions and stop retrying when rate-limit responses occur.
+
+## Reference(s):
+
+- [HiResolutionPhotos](https://hiresolutionphotos.com)
+- [ClawHub skill page](https://clawhub.ai/setdemos/skills/hiresolutionphotos-upscaler)
+- [Publisher profile](https://clawhub.ai/user/setdemos)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and a result retrieval URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; uploads PNG, JPG, or WebP images up to 10 MB; returns a retrieval page link instead of downloading the raw image.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

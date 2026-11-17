@@ -1,41 +1,57 @@
-## Description: <br>
-Qwen3-TTS VoiceDesign helps agents generate text-to-speech audio with natural language voice descriptions, seed-fixed timbre, an OpenAI-compatible API server, setup scripts, and batch seed exploration tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-speech with Qwen3-TTS VoiceDesign. Design custom voices via natural language descriptions and seed-based timbre fixation, with an OpenAI-compatible API server, setup script, and batch seed exploration tools.
 
-## Publisher: <br>
-[xiaoyaner0201](https://clawhub.ai/user/xiaoyaner0201) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiaoyaner0201](https://clawhub.ai/user/xiaoyaner0201)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add local Qwen3-TTS speech generation, design voices through natural language prompts, compare timbre seeds, and expose speech generation through a local OpenAI-compatible API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The included TTS server is network-facing by default. <br>
-Mitigation: Bind TTS_HOST to 127.0.0.1 unless the service is intentionally exposed, and use firewall and authentication controls before allowing remote access. <br>
-Risk: The setup flow loads .env as shell input. <br>
-Mitigation: Treat .env as trusted executable configuration, restrict who can edit it, and replace shell sourcing with a safer parser before using untrusted configuration. <br>
-Risk: The artifact includes highest-privilege scheduled-task guidance for Windows auto-restart. <br>
-Mitigation: Use a least-privilege service account or a supervised process manager instead of the highest-privilege scheduled-task example. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoyaner0201/qwen3-tts-voicedesign) <br>
+## Use Case:
 
+Developers and agent builders use this skill to generate speech, design custom voices with natural-language voice prompts, fix timbre through seeds, and connect a local TTS server to OpenClaw or OpenAI-compatible clients.
 
-## Skill Output: <br>
-**Output Type(s):** [audio, shell commands, configuration, guidance] <br>
-**Output Format:** [MP3 or WAV audio files, API responses, and Markdown guidance with bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Voice output depends on the text, voice description, seed, server settings, and selected audio format.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The TTS server is unauthenticated and may expose costly model inference if bound to a reachable network interface.
+
+Mitigation: Bind the service to 127.0.0.1 unless intentionally exposing it, and add authentication plus request limits for remote use.
+
+Risk: Startup and configuration patterns need review before installation, including elevated scheduled-task examples and environment file sourcing.
+
+Mitigation: Do not run setup or startup as administrator, avoid elevated scheduled tasks, and harden environment loading before using the scripts with untrusted inputs.
+
+Risk: Shell-built JSON can mishandle untrusted text passed into batch seed generation.
+
+Mitigation: Replace shell-built JSON with structured JSON generation before accepting untrusted text inputs.
+
+## Reference(s):
+
+- [Qwen3-TTS VoiceDesign on ClawHub](https://clawhub.ai/xiaoyaner0201/skills/qwen3-tts-voicedesign)
+- [Publisher profile: xiaoyaner0201](https://clawhub.ai/user/xiaoyaner0201)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, API examples, and generated audio file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for generating mp3 or wav speech through a local TTS API and helper scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

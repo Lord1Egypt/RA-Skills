@@ -1,48 +1,62 @@
-## Description: <br>
-Configure an AI diary system for OpenClaw that helps users enable, set up, or share diary behavior for an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure an AI diary system for OpenClaw.
 
-## Publisher: <br>
-[adolescen-he](https://clawhub.ai/user/adolescen-he) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adolescen-he](https://clawhub.ai/user/adolescen-he)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure an agent diary feature, including setup guidance, diary templates, and state tracking for whether the latest diary has been read. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause persistent diary files to store private diary content and observations about the user. <br>
-Mitigation: Require explicit consent before enabling diary writes, review the diary directory regularly, and avoid recording sensitive personal information. <br>
-Risk: The skill modifies SOUL.md, USER.md, and AGENTS.md and changes session startup behavior. <br>
-Mitigation: Review each proposed configuration change before applying it and keep backups of the original files. <br>
-Risk: Diary content may be shown in chat when unread diary state is set, which could expose private notes unexpectedly. <br>
-Mitigation: Add a confirmation step before displaying diary text and only reveal diary entries after the user explicitly asks to read them. <br>
-Risk: Easter egg behavior can introduce unsolicited agent actions outside the user's immediate task. <br>
-Mitigation: Remove or disable easter egg rules when predictable task-focused behavior is required. <br>
+## Use Case:
 
+OpenClaw users use this skill to set up a persistent AI diary feature, including workspace diary storage, diary templates, and configuration snippets for SOUL.md, USER.md, and AGENTS.md.
 
-## Reference(s): <br>
-- [SOUL.md diary module](artifact/references/soul-module.md) <br>
-- [USER.md diary tracking state](artifact/references/user-module.md) <br>
-- [AGENTS.md startup check rules](artifact/references/agents-module.md) <br>
-- [Diary automation rules](artifact/references/automation-rules.md) <br>
-- [Diary template](artifact/assets/diary-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup guidance and persistent diary-related file templates for OpenClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill persists diary entries and changes SOUL.md, USER.md, and AGENTS.md, which can alter core agent behavior across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with explicit user approval, review each appended configuration block before use, and keep a rollback copy of the affected files.
+
+Risk: Diary content can retain user observations, sensitive context, or private agent state and can later be shown in full.
+
+Mitigation: Avoid storing sensitive data, require confirmation before writing or displaying diary contents, and periodically review or delete retained diary files.
+
+Risk: The included easter egg and delayed-task behavior can lead to unsolicited actions outside the immediate user request.
+
+Mitigation: Remove those rules or gate them behind explicit confirmation before enabling the skill in normal use.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [SOUL.md diary module](artifact/references/soul-module.md)
+- [USER.md diary tracking state](artifact/references/user-module.md)
+- [AGENTS.md startup check](artifact/references/agents-module.md)
+- [Automation rules](artifact/references/automation-rules.md)
+- [Diary template](artifact/assets/diary-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update diary files and append configuration blocks when the user chooses to install it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

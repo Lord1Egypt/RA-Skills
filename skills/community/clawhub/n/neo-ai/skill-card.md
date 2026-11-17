@@ -1,46 +1,61 @@
-## Description: <br>
-Generate images and videos via Neodomain AI API, including text-to-image, image-to-video, text-to-video, universal multi-modal video, motion control video, and batch storyboard video generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos via the Neodomain AI API, including text-to-image, image-to-video, text-to-video, universal multi-modal video, motion control video, and batch storyboard video workflows.
 
-## Publisher: <br>
-[bandwhite](https://clawhub.ai/user/bandwhite) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bandwhite](https://clawhub.ai/user/bandwhite)
 
-## Use Case: <br>
-Developers and content-production agents use this skill to choose Neodomain image or video generation workflows, format prompts and parameters, authenticate with an access token, and run the included Python helpers for media generation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Neodomain access tokens and login contact details. <br>
-Mitigation: Do not paste access tokens, login codes, personal contact details, or terminal output into shared chats or logs; store tokens only in appropriate local environment configuration. <br>
-Risk: Prompts, source media, generated media, audio, and storyboard files may be sent to Neodomain and OSS-backed storage. <br>
-Mitigation: Only upload content that is appropriate to share with the Neodomain service and related storage providers. <br>
-Risk: Cloud generation output can be unexpected or unsuitable for a specific publication context. <br>
-Mitigation: Review generated images, videos, thumbnails, and metadata before publishing, sharing, or using them in downstream workflows. <br>
+## Use Case:
 
+External developers and content creators use this skill to select Neodomain models, authenticate with NEODOMAIN_ACCESS_TOKEN, and run image or video generation workflows from prompts, reference media, motion-control inputs, or storyboard frames.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/bandwhite/neo-ai) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bandwhite) <br>
-- [Skill source documentation](artifact/SKILL.md) <br>
-- [Installation guide](artifact/INSTALL.md) <br>
-- [Neodomain image model endpoint](https://story.neodomain.cn/agent/ai-image-generation/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated outputs may include image files, video files, thumbnails, and metadata JSON in the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, reference media, generated outputs, and selected storyboard images may be sent to Neodomain or OSS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content approved for external processing, and avoid sensitive local paths when uploading or batch-processing files.
+
+Risk: Access tokens and verification codes can be exposed when passed directly on command lines or stored in long-lived shell startup files.
+
+Mitigation: Prefer environment-scoped token handling, avoid command-line secrets where possible, and rotate or revoke tokens after use.
+
+Risk: Python scripts call external services and may require additional dependencies such as oss2.
+
+Mitigation: Review scripts before execution, use pinned dependencies, and run them in an isolated virtual environment.
+
+## Reference(s):
+
+- [neo-ai Skill Page](https://clawhub.ai/bandwhite/skills/neo-ai)
+- [Publisher Profile: bandwhite](https://clawhub.ai/user/bandwhite)
+- [Neodomain Image Generation Models Endpoint](https://story.neodomain.cn/agent/ai-image-generation/models)
+- [SKILL.md](artifact/SKILL.md)
+- [INSTALL.md](artifact/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline bash commands; generated media files and metadata JSON when scripts run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts write image files, video files, thumbnails, and metadata.json to the configured output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

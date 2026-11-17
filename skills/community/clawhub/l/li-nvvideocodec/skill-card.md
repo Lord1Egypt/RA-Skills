@@ -1,44 +1,57 @@
-## Description: <br>
-Compresses batches of local videos with FFmpeg and NVIDIA NVENC AV1 hardware encoding, with selectable compression profiles and validation before batch runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compresses batches of video files with FFmpeg using NVIDIA NVENC AV1 hardware encoding, with compression-profile selection and validation before full runs.
 
-## Publisher: <br>
-[43622283](https://clawhub.ai/user/43622283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[43622283](https://clawhub.ai/user/43622283)
 
-## Use Case: <br>
-Developers and external users with a supported NVIDIA GPU use this skill to check the local video compression environment, analyze input video directories, and run test or batch AV1 compression jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The compression script can automatically install an unpinned Python package at runtime. <br>
-Mitigation: Install tqdm from a trusted source before use, or run the skill in an isolated environment to avoid runtime package installation. <br>
-Risk: The agent wrapper can launch batch compression without an in-script confirmation step. <br>
-Mitigation: Run test mode on a small sample first, confirm the input and output directories, and inspect output quality before allowing a full batch run. <br>
-Risk: Compression settings may reduce quality or fail to save space for already-compressed videos. <br>
-Mitigation: Use the built-in validation pass and review the generated output directory before replacing or deleting any original files outside the skill. <br>
+## Use Case:
 
+External users and developers use this skill to check FFmpeg and NVIDIA GPU readiness, analyze folders of video files, and run AV1 batch compression through test or full-compression workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/43622283/li-nvvideocodec) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
-- [PyPI Mirror Used by Runtime Installer](https://pypi.tuna.tsinghua.edu.cn/simple) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON and terminal text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The agent interface supports environment checks, video directory analysis, and compression runs that write output files to a separate directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence, SKILL.md frontmatter, skill.json, CHANGELOG) <br>
+Risk: Unattended batch compression can consume significant GPU, CPU, disk, and time resources, especially when an agent invokes non-interactive mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit input and output folders, start with test mode and a small test count, and require user review before full compression.
+
+Risk: The compression script can attempt to install the tqdm dependency automatically if it is missing.
+
+Mitigation: Install pinned dependencies in an isolated environment before running the skill and review dependency sources before allowing execution.
+
+Risk: Already-compressed videos may become larger or lose quality if compressed again.
+
+Mitigation: Use the built-in validation pass first and stop when the validation report indicates compression is not worthwhile.
+
+## Reference(s):
+
+- [FFmpeg Downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Text]
+
+**Output Format:** [Markdown guidance with shell commands, plus JSON status for environment checks and video analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Compression actions write processed video files to a separate output directory and report progress and summary text.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

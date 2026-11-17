@@ -1,47 +1,64 @@
-## Description: <br>
-Provides true-random card, symbol, rune, I Ching, dice, and poetic impulse draws for agent-assisted divination readings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides true-random card, rune, hexagram, dice, and interpretation-prompt draws for divination readings using local shell scripts and reference material.
 
-## Publisher: <br>
-[And0r-](https://clawhub.ai/user/And0r-) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[and0r](https://clawhub.ai/user/and0r)
 
-## Use Case: <br>
-Agents with shell execution access use this skill to generate unbiased random oracle draws and interpretation prompts for entertainment, reflection, or spiritual companion workflows. Health, healing, and fertility references should be treated only as spiritual or reflective content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs bundled bash scripts to perform random oracle draws. <br>
-Mitigation: Install and use it only in environments where local shell execution of the bundled scripts is acceptable, and review scripts before deployment. <br>
-Risk: Spiritual reference text includes healing, health, and fertility themes that could be misunderstood as advice. <br>
-Mitigation: Treat these references as reflective or spiritual content only, and direct health symptoms, emergencies, fertility evaluation, diagnosis, and treatment to qualified medical professionals. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/And0r-/divination) <br>
-- [The Forty Servants](https://www.adventuresinwoowoo.com/thefortyservants/) <br>
-- [Arcane Bullshit Oracle](https://arcanebullshit.com) <br>
-- [Forty Servants Cards](references/forty-servants/cards.md) <br>
-- [Tarot Major Arcana](references/tarot/major-arcana.md) <br>
-- [Tarot Minor Arcana](references/tarot/minor-arcana.md) <br>
-- [Elder Futhark Runes](references/runen/elder-futhark.md) <br>
-- [I Ching Hexagrams](references/iging/hexagramme.md) <br>
-- [Arcane Bullshit Oracle Cards](references/bullshit-tarot/cards.md) <br>
+## Use Case:
 
+External users and developers can use this skill to let an agent perform unbiased oracle draws and then interpret the result with tarot, rune, I Ching, Forty Servants, and related reference material. It is intended for spiritual or entertainment readings, not professional medical, mental-health, legal, or financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text readings with shell command outputs and reference-based interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled bash scripts and /dev/urandom for local random draws.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local shell scripts can run unintended commands when crafted numeric inputs are used for dice sizes or impulse counts.
+
+Mitigation: Review the scripts before installation, run them only in a trusted local environment, and validate integer arguments before using user-supplied values.
+
+Risk: Divination readings may be mistaken for medical, mental-health, legal, or financial advice.
+
+Mitigation: Present readings as spiritual or entertainment content and route professional questions to qualified sources.
+
+Risk: Much of the reference material and some script output are in German.
+
+Mitigation: Confirm language expectations before use and translate or summarize German reference passages for readers who need English output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/and0r/skills/divination)
+- [The Forty Servants](https://www.adventuresinwoowoo.com/thefortyservants/)
+- [Arcane Bullshit Oracle Deck](https://arcanebullshit.com)
+- [Forty Servants Cards](references/forty-servants/cards.md)
+- [Tarot Major Arcana](references/tarot/major-arcana.md)
+- [Tarot Minor Arcana](references/tarot/minor-arcana.md)
+- [Elder Futhark Runes](references/runen/elder-futhark.md)
+- [I Ching Hexagrams](references/iging/hexagramme.md)
+- [Arcane Bullshit Oracle Cards](references/bullshit-tarot/cards.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prose with shell command examples and plain-text oracle draw outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include German reference text and spiritual or entertainment interpretation language.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-ECharts Master designs and generates professional interactive ECharts HTML visualizations from user-provided table, JSON, CSV, or query-result data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ECharts Master helps agents analyze tabular, JSON, or CSV data and generate professional interactive ECharts HTML visualizations.
 
-## Publisher: <br>
-[Linux2010](https://clawhub.ai/user/Linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to turn tabular, JSON, CSV, or query-result data into ECharts chart HTML, choose suitable chart types, and preview the result locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chart files may include sensitive source data. <br>
-Mitigation: Generate charts in a dedicated folder and review files before sharing or serving them. <br>
-Risk: The local preview server can expose chart files beyond the intended viewer if bound too broadly or left running. <br>
-Mitigation: Serve only the chart folder, bind the server to 127.0.0.1 when possible, and stop the preview server when finished. <br>
+## Use Case:
 
+Developers and analysts use this skill to turn user-provided tables, JSON, CSV, or query results into interactive ECharts charts and local HTML previews.
 
-## Reference(s): <br>
-- [ECharts chart design guide](references/chart-design.md) <br>
-- [ECharts HTML base template](assets/echarts-base-template.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Code, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with HTML, JavaScript, ECharts option objects, JSON examples, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local HTML chart files and localhost preview instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated client-side HTML charts may expose any data embedded in the chart file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data that is acceptable to place in a client-side HTML chart.
+
+Risk: The preview workflow can start a local web server from a broad working directory.
+
+Mitigation: Serve a dedicated chart-only folder, bind the server to 127.0.0.1, and stop it after previewing.
+
+Risk: The documented npx preview option may fetch an unpinned package.
+
+Mitigation: Avoid the npx option unless the package source and version are controlled.
+
+## Reference(s):
+
+- [Chart Design Guide](references/chart-design.md)
+- [ClawHub Skill Page](https://clawhub.ai/linux2010/skills/echarts-master)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Code, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with HTML, JavaScript, JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local HTML chart files and suggest a local preview workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

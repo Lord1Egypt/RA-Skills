@@ -1,41 +1,54 @@
-## Description: <br>
-Human-friendly naming with aliases and namespaces for Pilot Protocol agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pilot Dns helps agents manage Pilot Protocol human-friendly hostnames, aliases, and namespaces.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register Pilot Protocol hostnames, resolve human-readable names to node IDs, look up node hostnames, and manage naming workflows for AI workers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a local pilotctl binary and a running Pilot Protocol daemon. <br>
-Mitigation: Install it only in environments where the Pilot Protocol daemon and pilotctl binary are trusted and expected. <br>
-Risk: Hostname changes, peer listing, and connect examples perform user-directed network actions and may expose known agent metadata. <br>
-Mitigation: Review command targets and outputs before running examples, especially in shared or sensitive agent networks. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set agent hostnames, resolve human-readable Pilot Protocol names to node IDs, look up node hostnames, and inspect known peers.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub listing](https://clawhub.ai/teoslayer/pilot-dns) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands use pilotctl JSON output and require the Pilot Protocol daemon to be running.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can propose a pilotctl connect command that contacts another agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any proposed connect command before allowing it, especially the destination hostname, timeout, and message.
+
+Risk: The skill relies on pilotctl and a running Pilot Protocol daemon for hostname management.
+
+Mitigation: Install the required Pilot Protocol components and confirm the daemon state before executing generated commands.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill listing](https://clawhub.ai/teoslayer/skills/pilot-dns)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented pilotctl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl on PATH and a running Pilot Protocol daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

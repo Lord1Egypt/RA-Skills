@@ -1,45 +1,59 @@
-## Description: <br>
-Generate comprehensive, conversion-focused FAQ sections for ecommerce product pages by systematically analyzing real customer questions, return data, and purchase objections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate comprehensive, conversion-focused FAQ sections for ecommerce product pages by systematically analyzing real customer questions, return data, and purchase objections.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce operators, marketers, and support teams use this skill to turn customer questions, return reasons, reviews, competitor Q&A, and product details into product-page FAQ sections that reduce purchase hesitation and repeated support tickets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer support exports, return data, reviews, and order context may contain unnecessary personal details. <br>
-Mitigation: Provide only the data needed to build the FAQ and remove names, emails, order numbers, and other personal details before use. <br>
-Risk: FAQ answers can become misleading if source material is incomplete or policies, shipping timelines, sizes, SKUs, or warranties change. <br>
-Mitigation: Review generated FAQ content against current product, support, return, and policy data before publishing and refresh it when support-ticket or return patterns change. <br>
+## Use Case:
 
+External ecommerce operators, marketers, and support teams use this skill to turn product details, customer questions, support tickets, return reasons, reviews, and competitor Q&A into structured product-page FAQ sections.
 
-## Reference(s): <br>
-- [FAQ Builder on ClawHub](https://clawhub.ai/leooooooow/faq-builder) <br>
-- [Output Template](artifact/output-template.md) <br>
-- [Question Bank by Product Category](artifact/question-bank.md) <br>
-- [Platform Formatting Guide for FAQ Sections](artifact/platform-formatting-guide.md) <br>
-- [FAQ Builder Quality Checklist](artifact/quality-checklist.md) <br>
-- [Schema.org](https://schema.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown FAQ briefs, question-and-answer sections, SEO notes, maintenance logs, and platform-specific formatting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content is generated from user-provided ecommerce source material such as support tickets, return reasons, review text, product descriptions, competitor Q&A, and platform targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can involve customer support tickets, return reasons, reviews, and competitor Q&A that may contain personal or sensitive business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the data needed for the FAQ task and redact unnecessary personal details before use.
+
+Risk: FAQ content based on incomplete or outdated source data can mislead buyers about product fit, shipping, returns, materials, or compatibility.
+
+Mitigation: Review generated FAQs against current product, policy, and support data before publishing and update them when support or return patterns change.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [Question Bank by Category](references/question-bank.md)
+- [Platform Formatting Guide](references/platform-formatting-guide.md)
+- [Quality Checklist](assets/quality-checklist.md)
+- [FAQPage schema](https://schema.org)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/faq-builder)
+- [Publisher profile](https://clawhub.ai/user/leooooooow)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown FAQ brief with grouped question-and-answer sections, SEO notes, platform formatting guidance, and a maintenance log]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses customer and business input such as product descriptions, support ticket themes, return reasons, reviews, and competitor Q&A.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

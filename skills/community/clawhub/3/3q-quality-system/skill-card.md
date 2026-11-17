@@ -1,43 +1,56 @@
-## Description: <br>
-Provides a 3Q quality-control workflow for pre-checks, rapid review, deep scoring, blind review, and decision checks across writing, code, documents, and complex agent outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-first metacognitive quality-review workflow for checking AI outputs, decisions, code, documents, and complex multi-step work before delivery.
 
-## Publisher: <br>
-[qh582](https://clawhub.ai/user/qh582) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qh582](https://clawhub.ai/user/qh582)
 
-## Use Case: <br>
-Developers, writers, analysts, and agent users use this skill to add structured quality gates before delivery, after subtasks, and before major decisions. It helps an agent surface missing context, contradictions, weak assumptions, scoring gaps, and cases that need deeper or blind review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as quality check, pre-check, blind review, and related Chinese terms can activate the workflow unintentionally. <br>
-Mitigation: Use explicit 3Q phrasing when the workflow is desired, and adjust or avoid broad triggers in environments where predictable activation matters. <br>
-Risk: Deep 3Q checks and blind review can add time and token cost to routine tasks. <br>
-Mitigation: Use rapid 3Q for routine subtasks and reserve deep scoring or blind review for complex work, high-impact decisions, or repeated quality failures. <br>
+## Use Case:
 
+External users, developers, and AI operators use this skill to run pre-checks, rapid 3Q reviews, deep scored reviews, blind review prompts, and decision checklists before accepting or shipping agent work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qh582/3q-quality-system) <br>
-- [Three-Dimensional Expansion](references/three-dimensions.md) <br>
-- [3Q Daily Check Template](references/daily-check-template.md) <br>
-- [Decision Checklist](references/decision-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, scoring tables, and short review summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code output is required; deep checks and blind review can increase response time and token use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.11.0 (source: server release metadata) <br>
+Risk: Broad activation phrases may trigger quality reviews when the user did not intend to run the full workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke 3Q checks explicitly and confirm the desired review depth before applying recommendations.
+
+Risk: Adaptive-review language could suggest persisting new rules, changing installed skills, launching review agents, or searching externally.
+
+Mitigation: Require explicit user approval before persisting rules, modifying skills, launching agents, or using external searches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qh582/skills/3q-quality-system)
+- [Daily check template](references/daily-check-template.md)
+- [Decision checklist](references/decision-checklist.md)
+- [Three-dimensional expansion](references/three-dimensions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown review checklists, scored assessments, and structured quality guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first workflow with optional rapid, deep, daily, decision, and blind-review modes]
+
+## Skill Version(s):
+
+7.11.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

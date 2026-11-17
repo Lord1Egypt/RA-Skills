@@ -8,14 +8,34 @@
  * - 异常写 data/poll_loop.log
  * - 无最大时长限制，一直轮询直到流程结束
  */
-import { writeFileSync, readFileSync, existsSync, unlinkSync, appendFileSync } from 'fs';
-import { join } from 'path';
+import { writeFileSync, readFileSync, existsSync, unlinkSync, appendFileSync, statSync, readdirSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { spawn } from 'child_process';
 import { main as pollEventsMain } from './poll-events.mjs';
-import { DATA_DIR, _ensureDir, _skillCfg, pollStateLoad, pollStopped, setRuntimeChannel, detectChannelFromSessions } from './card-tools.mjs';
+import { DATA_DIR, _ensureDir, _skillCfg, pollStateLoad, pollStopped, setRuntimeChannel, _webchatBuffer, webchatFlush, GATEWAY_URL, _gatewayToken } from './card-tools.mjs';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const LOG_PATH = join(DATA_DIR, 'poll_loop.log');
 const PID_PATH = join(DATA_DIR, 'poll_loop.pid');
 const LOCK_PATH = join(DATA_DIR, 'poll_loop.lock');
+const PENDING_OUTPUT_PATH = join(DATA_DIR, 'webchat_pending_output.txt');
+
+// 代码版本指纹：lib-js 下所有 .mjs 文件的最新 mtime。
+// clawhub update 替换文件时 mtime 会变，据此检测"我在跑旧代码"。
+function _codeFingerprint() {
+  let latest = 0;
+  try {
+    for (const f of readdirSync(__dirname)) {
+      if (!f.endsWith('.mjs')) continue;
+      try {
+        const m = statSync(join(__dirname, f)).mtimeMs;
+        if (m > latest) latest = m;
+      } catch { /* */ }
+    }
+  } catch { /* */ }
+  return latest;
+}
 
 function _log(msg) {
   try {
@@ -94,23 +114,24 @@ async function main() {
   _writePid();
   _log(`poll_loop started pid=${process.pid}`);
 
+  // 记录启动时的代码指纹，用于检测热更新
+  const startFingerprint = _codeFingerprint();
+
   // 恢复启动时的渠道设置
   const initState = pollStateLoad();
   if (initState.channel) {
     setRuntimeChannel(initState.channel, initState.target || null);
-    _log(`channel restored: ${initState.channel} target: ${initState.target || 'auto'}`);
+    _log(`channel restored: ${initState.channel} target: ${initState.target || 'null'}`);
   } else {
-    // poll_state 没存渠道，自动从 sessions 检测
-    const detected = await detectChannelFromSessions();
-    if (detected) {
-      setRuntimeChannel(detected.channel, detected.target);
-      _log(`channel auto-detected: ${detected.channel} target: ${detected.target}`);
-    }
+    // poll_state 没存渠道 → 默认 webchat（哪来的回哪去，不自作主张跳外部渠道）
+    setRuntimeChannel('webchat', null);
+    _log(`channel default: webchat (no channel in poll_state)`);
   }
 
   const cfg = _skillCfg().poll || {};
   const interval = Number(cfg.interval_seconds || 30);
   let consecutiveErrors = 0;
+  let handedOff = false; // 热更新交接标志：为 true 时 finally 不清理 PID/锁（已归新进程）
 
   try {
     while (true) {
@@ -119,6 +140,30 @@ async function main() {
       if (!state.active) {
         _log('inactive, exit');
         break;
+      }
+
+      // 1.5) 热更新检测：代码文件被 clawhub update 替换了 → 重启加载新代码
+      const nowFingerprint = _codeFingerprint();
+      if (nowFingerprint > startFingerprint) {
+        _log(`code updated (fingerprint ${startFingerprint} -> ${nowFingerprint}), restarting to load new version`);
+        try {
+          // 先释放锁和 PID，让新进程能拿到
+          _clearPid();
+          _releaseLock();
+          const child = spawn(process.execPath, [join(__dirname, 'poll-loop.mjs')], {
+            cwd: dirname(__dirname),
+            stdio: 'ignore',
+            detached: true,
+            windowsHide: true,
+          });
+          child.unref();
+          handedOff = true; // 已交接给新进程，finally 不要再清理 PID/锁
+          _log(`spawned new poll_loop pid=${child.pid}, old pid=${process.pid} exiting`);
+        } catch (se) {
+          _log(`restart spawn failed: ${se.message}, continuing with old code`);
+        }
+        // 无论 spawn 成败都退出旧进程（成功→新进程接管；失败→下次 trigger 会重启）
+        return;
       }
 
       // 2) 跑一轮
@@ -143,13 +188,82 @@ async function main() {
         }
       }
 
-      // 3) 睡到下一轮
+      // 3) 推送 webchat 内容：合并「之前没推成功的积压(pending文件)」+「本轮 buffer」
+      // 一起 sessions_send 推。成功→清空 pending 文件；失败→全部留 pending 等下轮重试。
+      // pending 文件是 poll-loop 自己的重试队列，不再由 trigger/poll-events 外泄带出。
+      {
+        const fresh = _webchatBuffer.length ? webchatFlush() : '';
+        let backlog = '';
+        try {
+          if (existsSync(PENDING_OUTPUT_PATH)) {
+            // 积压超过 30 分钟还没推出去 → 丢弃（用户早已不需要，避免堆积后一次性涌出）
+            const ageMin = (Date.now() - statSync(PENDING_OUTPUT_PATH).mtimeMs) / 60000;
+            if (ageMin > 30) {
+              try { unlinkSync(PENDING_OUTPUT_PATH); } catch { /* */ }
+              _log(`pending output expired (${ageMin.toFixed(0)}min old), discarded`);
+            } else {
+              backlog = readFileSync(PENDING_OUTPUT_PATH, 'utf-8').trim();
+            }
+          }
+        } catch { /* */ }
+        const payload = [backlog, fresh].filter(s => s && s.trim()).join('\n\n');
+        if (payload) {
+          let sent = false;
+          const st = pollStateLoad();
+          const key = st.sessionKey || 'agent:main:main';
+          if (key) {
+            try {
+              // cron wake 主动推送（不产生announce回弹）
+              const forwardMsg = '[tkseller_forward]\n---\n' + payload + '\n---';
+              const res = await fetch(GATEWAY_URL, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${_gatewayToken()}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tool: 'cron', args: { action: 'wake', text: forwardMsg, mode: 'now' } }),
+                signal: AbortSignal.timeout(10000),
+              });
+              if (res.ok) {
+                const j = await res.json().catch(() => ({}));
+                if (j && j.ok !== false) {
+                  sent = true;
+                  _log(`cron_wake OK (${payload.length} chars)`);
+                } else {
+                  _log(`cron_wake rejected: ${JSON.stringify(j).slice(0,120)}`);
+                }
+              } else {
+                _log(`cron_wake HTTP ${res.status}`);
+              }
+            } catch (se) {
+              _log(`cron_wake error: ${se.message}`);
+            }
+          } else {
+            _log(`no valid sessionKey in poll_state (got: ${key || 'none'})`);
+          }
+          if (sent) {
+            // 推成功 → 清空重试队列
+            try { if (existsSync(PENDING_OUTPUT_PATH)) unlinkSync(PENDING_OUTPUT_PATH); } catch { /* */ }
+          } else {
+            // 失败 → 全部(积压+本轮)写回 pending，下轮重试
+            try {
+              writeFileSync(PENDING_OUTPUT_PATH, payload + '\n', 'utf-8');
+              _log(`pending output saved for retry (${payload.length} chars)`);
+            } catch (we) {
+              _log(`CRITICAL: failed to write pending file: ${we.message}`);
+            }
+          }
+        }
+      }
+
+      // 4) 睡到下一轮
       await _sleep(interval * 1000);
     }
   } finally {
-    _clearPid();
-    _releaseLock();
-    _log('poll_loop exited');
+    if (!handedOff) {
+      _clearPid();
+      _releaseLock();
+      _log('poll_loop exited');
+    } else {
+      _log('poll_loop handed off to new version, exiting without cleanup');
+    }
   }
 }
 

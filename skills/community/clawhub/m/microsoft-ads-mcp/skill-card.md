@@ -1,46 +1,56 @@
-## Description: <br>
-Create and manage Microsoft Advertising campaigns (Bing Ads / DuckDuckGo Ads) via MCP server - campaigns, ad groups, keywords, ads, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft Ads MCP helps agents create and manage Microsoft Advertising campaigns through an MCP server, including campaigns, ad groups, keywords, ads, and reporting.
 
-## Publisher: <br>
-[bit-of-a-shambles](https://clawhub.ai/user/bit-of-a-shambles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bit-of-a-shambles](https://clawhub.ai/user/bit-of-a-shambles)
 
-## Use Case: <br>
-External marketers, developers, and campaign operators use this skill to connect an agent to a Microsoft Ads MCP server for managing search ad accounts, campaigns, ad groups, keywords, ads, and performance reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can control real Microsoft Ads campaigns, including budgets, campaign status, ads, keywords, and reporting. <br>
-Mitigation: Test with paused or low-budget campaigns and require explicit human confirmation before creating ads, changing budgets, or activating campaigns. <br>
-Risk: The workflow relies on external MCP server code and Python dependencies. <br>
-Mitigation: Inspect the linked MCP server code and requirements, install it in an isolated Python environment, and review dependencies before use. <br>
-Risk: Microsoft Ads and Azure credentials are required and may be referenced from mcporter configuration. <br>
-Mitigation: Protect the mcporter configuration, limit credential scope where possible, and rotate tokens if configuration files are exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/bit-of-a-shambles/microsoft-ads-mcp) <br>
-- [Microsoft Ads MCP Server](https://github.com/Duartemartins/microsoft-ads-mcp-server) <br>
-- [FastMCP](https://github.com/jlowin/fastmcp) <br>
-- [Bing Ads Python SDK](https://github.com/BingAds/BingAds-Python-SDK) <br>
-- [Microsoft Advertising](https://ads.microsoft.com) <br>
-- [Microsoft Advertising Developer Portal](https://developers.ads.microsoft.com) <br>
+## Use Case:
 
+Developers and operators use this skill to connect an agent to a Microsoft Advertising MCP server for account lookup, campaign setup, keyword and ad management, and performance reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter, a Microsoft Ads account, a developer token, Azure AD app credentials, and access to the external MCP server.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned third-party MCP server code can access Microsoft Ads credentials.
+
+Mitigation: Use a pinned, audited server version in an isolated environment and authorize only a least-privilege Microsoft Ads identity.
+
+Risk: Campaign activation, budget changes, ad publishing, and report exports can affect live ad spend or expose business data.
+
+Mitigation: Require human confirmation for spend-bearing or export actions, avoid administrator credentials, and keep campaigns paused until reviewed.
+
+## Reference(s):
+
+- [Microsoft Ads MCP server homepage](https://github.com/Duartemartins/microsoft-ads-mcp-server)
+- [FastMCP](https://github.com/jlowin/fastmcp)
+- [Bing Ads Python SDK](https://github.com/BingAds/BingAds-Python-SDK)
+- [Microsoft Advertising](https://ads.microsoft.com)
+- [Microsoft Advertising Developer](https://developers.ads.microsoft.com)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate MCP tool calls that return account, campaign, ad group, keyword, ad, budget, label, and report data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

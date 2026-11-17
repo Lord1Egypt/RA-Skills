@@ -1,47 +1,66 @@
-## Description: <br>
-Qianxin Hunter API helper for running asset search queries and managing batch export tasks with a configured QIANXIN_HUNTER_API_KEY. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qianxin Hunter API skill for Hunter search queries and export tasks, including batch queries, with the QIANXIN_HUNTER_API_KEY environment variable configured.
 
-## Publisher: <br>
-[PiggyHurry](https://clawhub.ai/user/PiggyHurry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[piggyhurry](https://clawhub.ai/user/piggyhurry)
 
-## Use Case: <br>
-Developers and security analysts use this skill to query Qianxin Hunter for asset search results, submit batch export jobs from search syntax or CSV input, check job status, and download CSV outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Hunter API access through QIANXIN_HUNTER_API_KEY. <br>
-Mitigation: Configure the API key through OpenClaw settings or configuration rather than chat, and rotate the key promptly if exposure is suspected. <br>
-Risk: Batch mode can upload local CSV target files to the external Hunter API. <br>
-Mitigation: Review CSV contents before submission and only upload files intended for Qianxin Hunter processing. <br>
-Risk: Download mode writes CSV output to a user-selected local path. <br>
-Mitigation: Choose output paths deliberately to avoid overwriting existing files. <br>
+## Use Case:
 
+External developers and security teams use this skill to run Qianxin Hunter searches, submit batch export jobs from query syntax or CSV targets, check task status, and download exported CSV results.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/PiggyHurry/qianxin-hunter-api) <br>
-- [Hunter search API reference](references/api.md) <br>
-- [Hunter batch query API reference](references/api_batch.md) <br>
-- [API key configuration guidance](references/apikey_config.md) <br>
-- [Batch file template](references/batch_file_template.csv) <br>
-- [Hunter batch template download](https://hunter.qianxin.com/api/search/batch/template?type=api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON API responses, and CSV downloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the requests package, and QIANXIN_HUNTER_API_KEY; batch downloads write CSV files to the selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Hunter search queries and uploaded CSV targets are sent to hunter.qianxin.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing is acceptable, and review CSV targets before upload.
+
+Risk: API keys or authenticated URLs may be exposed through copied commands, logs, or terminal output.
+
+Mitigation: Configure QIANXIN_HUNTER_API_KEY through the approved skill configuration path, avoid sharing authenticated output, and rotate the key if it is exposed.
+
+Risk: Downloaded Hunter export files can contain sensitive asset data.
+
+Mitigation: Store downloaded CSV files as sensitive data and avoid unnecessary post-processing or sharing.
+
+Risk: The documentation includes curl examples that disable TLS verification.
+
+Mitigation: Use the script's documented command syntax instead of copying curl -k examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/piggyhurry/skills/qianxin-hunter-api)
+- [Hunter search API reference](references/api.md)
+- [Hunter batch query API reference](references/api_batch.md)
+- [API key configuration reference](references/apikey_config.md)
+- [Batch file template](references/batch_file_template.csv)
+- [Hunter batch template download](https://hunter.qianxin.com/api/search/batch/template?type=api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON or CSV API outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results and task-status responses are printed as JSON; completed batch downloads are saved as CSV files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Provides a high-performance unified memory layer that combines OpenClaw file-based memory with semantic vector search using local Ollama embeddings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast Unified Memory provides a Node.js CLI for local unified memory search and storage, combining file-based OpenClaw memory with semantic vector search using Ollama embeddings.
 
-## Publisher: <br>
-[Broedkrummen](https://clawhub.ai/user/Broedkrummen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[broedkrummen](https://clawhub.ai/user/broedkrummen)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add, search, list, and inspect local text memories with semantic similarity via Ollama while also searching OpenClaw memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Added memories are retained in a local store and may contain sensitive text if users add it. <br>
-Mitigation: Avoid storing secrets or sensitive personal data, and review or delete ~/.mem0/fast-store.json when retained memories are no longer wanted. <br>
-Risk: The installation guidance includes a curl-to-shell command for installing Ollama. <br>
-Mitigation: Verify the Ollama installer before running the command. <br>
-Risk: The skill depends on a local Ollama service and the nomic-embed-text model. <br>
-Mitigation: Install Ollama, pull the model, and ensure the local service is running before using memory search or add commands. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add, list, and search local agent memories across OpenClaw files and a local vector store. It is intended for local memory workflows that use Ollama's nomic-embed-text model for embeddings.
 
-## Reference(s): <br>
-- [Fast Unified Memory skill documentation](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Broedkrummen/fast-unified-memory) <br>
-- [Ollama](https://ollama.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local filesystem memory storage and a local Ollama embedding service; no remote API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and target metadata) <br>
+Risk: The documented curl-to-shell installer can execute an unreviewed installer script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install Ollama through a trusted, inspectable method before running the skill.
+
+Risk: Hard-coded OpenClaw memory path and default user id can read or store data in an unintended local workspace.
+
+Mitigation: Change the memory path and user id to the intended local workspace before use.
+
+Risk: Memory content is stored locally in plaintext and processed by the local Ollama service.
+
+Mitigation: Avoid storing highly sensitive material unless plaintext local storage and local processing are acceptable for the environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/broedkrummen/skills/fast-unified-memory)
+- [Ollama](https://ollama.ai)
+- [Artifact documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Node.js execution and a running Ollama service with the nomic-embed-text model.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

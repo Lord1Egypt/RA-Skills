@@ -1,134 +1,134 @@
-# Sevilla
+# Seville
 
-## Barrios
+## Neighborhoods
 
-| Barrio | Para qué | Nota |
+| Neighborhood | For what | Note |
 |--------|----------|------|
-| **Santa Cruz** | Casco judío, turismo | Bonito, caro, callejones |
-| **Triana** | Flamenco, cerámica | Auténtico, al otro lado río |
-| **Alameda** | Alternativo, noche | Plazas, terrazas, joven |
-| **Macarena** | Local, basílica | Menos turístico |
-| **Centro** | Catedral, compras | Muy turístico |
+| **Santa Cruz** | Jewish quarter, tourism | Pretty, expensive, alleys |
+| **Triana** | Flamenco, ceramics | Authentic, across the river |
+| **Alameda** | Alternative, nightlife | Plazas, terraces, young |
+| **Macarena** | Local, basilica | Less touristy |
+| **Centro** | Cathedral, shopping | Very touristy |
 
-## Monumentos
+## Monuments
 
 ### Alcázar
-- **Reservar:** Online obligatorio, semanas antes
-- **Precio:** €14.50
-- **Gratis:** Lunes 18-19h (abril-sept) / 16-17h (oct-marzo)
-- **Tiempo:** 2-3 horas
-- **Tip:** Jardines tan buenos como interior
+- **Book:** Online mandatory, weeks ahead
+- **Price:** €14.50
+- **Free:** Monday 6-7pm (April-Sep) / 4-5pm (Oct-March)
+- **Time:** 2-3 hours
+- **Tip:** Gardens as good as the interior
 
-### Catedral y Giralda
-- **Precio:** €12
-- **Gratis:** Lunes 16:30-18h (residentes, pero cuelan turistas)
-- **Tiempo:** 1.5-2 horas
-- **Subir Giralda:** 35 rampas, no escaleras
+### Cathedral and Giralda
+- **Price:** €12
+- **Free:** Monday 4:30-6pm (residents, but tourists slip in)
+- **Time:** 1.5-2 hours
+- **Climb the Giralda:** 35 ramps, no stairs
 
 ### Plaza de España
-- **Gratis** siempre
-- **Mejor hora:** Atardecer
-- **Barcas:** €6/35min, cursi pero bonito
-- **Tip:** Busca tu provincia en los azulejos
+- **Free** always
+- **Best time:** Sunset
+- **Rowboats:** €6/35min, cheesy but pretty
+- **Tip:** Find your province in the tiles
 
-## Dónde Comer
+## Where to Eat
 
-### Tapas con Bebida (Tradición Sevilla)
-En muchos sitios, tapa gratis con cada bebida.
+### Tapas with a Drink (Seville Tradition)
+In many places, a free tapa with every drink.
 
-| Sitio | Zona | Especialidad |
+| Place | Area | Specialty |
 |-------|------|--------------|
-| El Rinconcillo | Centro | El más antiguo (1670), espinacas |
-| Bodega Santa Cruz | Santa Cruz | Montaditos, barriles |
-| Bar Estrella | Triana | Cazón, pescaíto |
-| Casa Morales | Centro | Vermut, jamón |
-| Bodeguita Romero | Centro | Pringa, caracoles |
+| El Rinconcillo | Centro | The oldest (1670), spinach |
+| Bodega Santa Cruz | Santa Cruz | Montaditos, barrels |
+| Bar Estrella | Triana | Dogfish, fried fish |
+| Casa Morales | Centro | Vermouth, ham |
+| Bodeguita Romero | Centro | Pringá, snails |
 
-### Para Comer Bien
-| Sitio | Precio | Qué |
+### To Eat Well
+| Place | Price | What |
 |-------|--------|-----|
-| Eslava | €€ | Tapas creativas, huevo con setas |
-| Abacería San Lorenzo | €€ | Productos locales, quesos |
-| Casa Robles | €€€ | Tradicional, rabo de toro |
+| Eslava | €€ | Creative tapas, egg with mushrooms |
+| Abacería San Lorenzo | €€ | Local products, cheeses |
+| Casa Robles | €€€ | Traditional, oxtail |
 
-### Desayuno
-| Sitio | Qué pedir |
+### Breakfast
+| Place | What to order |
 |-------|-----------|
 | Horno San Buenaventura | Pestiños, mantecados |
-| Bar Alfalfa | Tostada con zurrapa |
-| Confitería La Campana | Churros, pasteles |
+| Bar Alfalfa | Toast with zurrapa |
+| Confitería La Campana | Churros, pastries |
 
 ## Flamenco
 
-| Tablao | Precio | Nota |
+| Tablao | Price | Note |
 |--------|--------|------|
-| Casa de la Memoria | €22 | Íntimo, auténtico, reservar |
-| Casa del Flamenco | €22 | En Santa Cruz, bueno |
-| Museo del Baile Flamenco | €26 | Incluye museo |
-| La Carbonería | Gratis | Bar, impredecible, ambiente |
-| Lola de los Reyes | €35 | Shows con cena |
+| Casa de la Memoria | €22 | Intimate, authentic, book ahead |
+| Casa del Flamenco | €22 | In Santa Cruz, good |
+| Museo del Baile Flamenco | €26 | Includes museum |
+| La Carbonería | Free | Bar, unpredictable, atmosphere |
+| Lola de los Reyes | €35 | Dinner shows |
 
-**Triana:** Bares con flamenco espontáneo, pregunta locales.
+**Triana:** Bars with spontaneous flamenco, ask locals.
 
-## Calor (Serio)
+## Heat (Serious)
 
-| Mes | Temperatura | Consejo |
+| Month | Temperature | Advice |
 |-----|-------------|---------|
-| Julio | 38-42°C | Evitar si puedes |
-| Agosto | 38-45°C | Evitar |
-| Septiembre | 32-36°C | Mejor |
+| July | 38-42°C | Avoid if you can |
+| August | 38-45°C | Avoid |
+| September | 32-36°C | Better |
 
-**Supervivencia:**
-- Siesta 14-18h real (todo cerrado)
-- Aire acondicionado de centro comercial
-- Tinto de verano con hielo
-- Terrazas nocturnas
-- Piscinas públicas
+**Survival:**
+- Real siesta 14-18h (everything closed)
+- Shopping mall air conditioning
+- Tinto de verano over ice
+- Night terraces
+- Public pools
 
 ## Feria de Abril
 
-**Realidad:** Casetas 95% privadas. Sin conocidos, miras desde fuera.
+**Reality:** Most booths are private. Without contacts, you watch from outside.
 
-**Cómo entrar:**
-- Casetas públicas (pocas, colas)
-- Conocer sevillano que invite
-- Pasear la calle (gratis, ambiente)
+**How to get in:**
+- Public booths (few, queues)
+- Know a Sevillano who invites you
+- Stroll the fairground (free, atmosphere)
 
-**Alternativa:** Ir a ver los trajes y carruajes por el día.
+**Alternative:** Go to see the costumes and carriages during the day.
 
-## Semana Santa
+## Semana Santa (Holy Week)
 
-**Reservar hotel:** 6+ meses antes
-**Precios:** x3-4 lo normal
-**Procesiones:** Impresionantes pero MASIFICADO
-**Tip:** Madrugá (noche jueves-viernes) la mejor
+**Book a hotel:** 6+ months ahead
+**Prices:** x3-4 the usual
+**Processions:** Impressive but PACKED
+**Tip:** La Madrugá (Thursday-Friday night) is the best
 
-## Excursiones
+## Day Trips
 
-| Destino | Cómo | Tiempo | Qué |
+| Destination | How | Time | What |
 |---------|------|--------|-----|
-| Córdoba | AVE 45min | 6h | Mezquita, judería |
-| Granada | Bus 3h | 8-10h | Alhambra (reservar!) |
-| Cádiz | Tren 1.5h | 6h | Playa, pescaíto |
-| Jerez | Tren 1h | 5h | Bodegas, caballos |
-| Carmona | Bus 40min | 4h | Parador, murallas |
-| Itálica | Bus 30min | 3h | Ruinas romanas |
+| Córdoba | AVE 45min | 6h | Mosque-Cathedral, Jewish quarter |
+| Granada | Bus 3h | 8-10h | Alhambra (book!) |
+| Cádiz | Train 1.5h | 6h | Beach, fried fish |
+| Jerez | Train 1h | 5h | Wineries, horses |
+| Carmona | Bus 40min | 4h | Parador, walls |
+| Itálica | Bus 30min | 3h | Roman ruins |
 
-## Transporte
+## Transport
 
-- **Metro:** Solo 1 línea, útil limitado
-- **Bus:** Bien para cruzar río
-- **Bici:** Sevici (público), ciudad muy plana
-- **Andando:** Centro muy caminable
-- **Taxi:** Baratos para Sevilla
+- **Metro:** Only 1 line, limited use
+- **Bus:** Good for crossing the river
+- **Bike:** Sevici (public), very flat city
+- **Walking:** Center very walkable
+- **Taxi:** Cheap for Seville
 
-## Compras
+## Shopping
 
-| Qué | Dónde |
+| What | Where |
 |-----|-------|
-| Cerámica | Triana (calle Alfarería) |
-| Abanicos | Calle Sierpes |
-| Mantoncillos | Tiendas de flamenca |
-| Aceite | Mercado de Triana |
+| Ceramics | Triana (Calle Alfarería) |
+| Fans | Calle Sierpes |
+| Shawls | Flamenco dress shops |
+| Olive oil | Triana market |
 
-**Evitar:** Tiendas de recuerdos de catedral (chinos caros).
+**Avoid:** Cathedral souvenir shops (overpriced tourist stuff).

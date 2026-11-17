@@ -1,42 +1,49 @@
-## Description: <br>
-Analyzes requirements documents in Excel, image, TXT, PDF, and Word formats to extract functional requirements, non-functional requirements, business rules, constraints, dependency diagrams, and open questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language requirements analysis skill that extracts and structures requirements from Excel, image, TXT, PDF, and Word documents, identifying functional requirements, non-functional requirements, business rules, constraints, dependency diagrams, and open questions.
 
-## Publisher: <br>
-[xuping2012](https://clawhub.ai/user/xuping2012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joe-qai](https://clawhub.ai/user/joe-qai)
 
-## Use Case: <br>
-Product managers, analysts, developers, and project teams use this skill to turn user-provided requirements documents into structured Markdown analysis with requirements tables, business rules, constraints, dependency mapping, and clarification questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read user-provided requirements documents that contain confidential or sensitive project information. <br>
-Mitigation: Install only if document access is appropriate, and avoid providing unnecessary confidential files. <br>
-Risk: Generated requirements analysis may be incomplete or inaccurate if the source documents are ambiguous, conflicting, or missing context. <br>
-Mitigation: Review the generated requirements, dependency diagram, and clarification questions before using them for planning or implementation. <br>
-Risk: When asked to save output, the skill can write the generated report to a local path. <br>
-Mitigation: Request saved output only to a path you control. <br>
+## Use Case:
 
+Product managers, business analysts, developers, and project teams use this skill to turn requirement source documents into structured Markdown requirements analysis documents. It is intended for extracting functional and non-functional requirements, business rules, constraints, dependencies, terminology, user roles, device types, and questions that need confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuping2012/requirements-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown requirements analysis report with tables and ASCII dependency diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save the generated Markdown report to a user-specified path when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Requirements documents may contain business, product, or security-sensitive information that could be exposed in the conversation or in saved outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact documents before analysis, and verify generated requirements documents before sharing or saving them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/joe-qai/skills/requirements-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown requirements analysis document with tables, an ASCII dependency diagram, appendices, and optional saved file output when requested by the user.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated in Chinese by default and include a self-check for completeness, accuracy, formatting, and readability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

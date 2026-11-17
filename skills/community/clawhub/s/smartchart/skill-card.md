@@ -1,39 +1,54 @@
-## Description: <br>
-smartchart helps agents query data, explore available data tools, and execute data operations through the SmartChart CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent query data, explore available data tools, and execute data operations through the SmartChart CLI.
 
-## Publisher: <br>
-[johnyan2017](https://clawhub.ai/user/johnyan2017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnyan2017](https://clawhub.ai/user/johnyan2017)
 
-## Use Case: <br>
-Developers and data users use this skill to discover SmartChart data tools, inspect tool parameters, and run CLI-based data queries with structured output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Query inputs may be sent through an external SmartChart data platform. <br>
-Mitigation: Verify the smartchart Python package and SmartChart service before use, and avoid sending secrets, regulated data, internal identifiers, or confidential business parameters unless the service is trusted. <br>
+## Use Case:
 
+Developers and data-focused users use this skill to discover SmartChart datasets, inspect tool parameters, run SmartChart CLI queries, and format retrieved results for the user.
 
-## Reference(s): <br>
-- [SmartChart tool parameter reference](references/api_reference.md) <br>
-- [ClawHub smartchart release page](https://clawhub.ai/johnyan2017/smartchart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and SmartChart CLI output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [SmartChart tool results may be returned in raw, json, or array formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on a local SmartChart CLI and Python package, so an incorrect or untrusted installation could affect query behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install SmartChart in a dedicated virtual environment when possible and verify the package source before installing or upgrading.
+
+Risk: The skill runs SmartChart data queries through the user's CLI environment.
+
+Mitigation: Use the skill only when the user intends to query data through SmartChart, and review tool names and parameters before execution.
+
+## Reference(s):
+
+- [SmartChart skill page](https://clawhub.ai/johnyan2017/skills/smartchart)
+- [SmartChart tool parameter reference](artifact/references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and formatted query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-formatted SmartChart CLI output when the selected tool supports JSON format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

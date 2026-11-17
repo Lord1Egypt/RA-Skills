@@ -1,39 +1,49 @@
-## Description: <br>
-Guides E-E-A-T implementation for SEO by assessing credibility gaps and recommending author bio, citation, experience, and YMYL trust signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents assess and improve SEO content with E-E-A-T trust signals, including author bios, citation plans, experience signals, and YMYL considerations.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Content strategists, SEO practitioners, and developers use this skill to improve expertise, experience, authoritativeness, and trustworthiness signals in web content. It produces editorial guidance for author bios, citations, original experience signals, and stricter review of YMYL topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate too broadly on general requests about citations or references. <br>
-Mitigation: Use it for SEO, E-E-A-T, and content-quality contexts, and confirm relevance before applying its recommendations. <br>
-Risk: Recommendations for YMYL topics can affect content that readers may rely on for health, finance, legal, or safety decisions. <br>
-Mitigation: Treat the output as editorial guidance and require qualified human review, fact verification, and authoritative citations before publication. <br>
+## Use Case:
 
+Content marketers, SEO practitioners, and agents use this skill to identify credibility gaps and add practical E-E-A-T signals to articles, especially where author expertise, citations, first-hand evidence, or YMYL care are relevant.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown with assessment sections and recommendation lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes E-E-A-T assessment, author bio recommendations, citation planning, experience-signal suggestions, and YMYL considerations when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release metadata and skill frontmatter) <br>
+Risk: SEO guidance may be applied to health, finance, legal, or safety content without independent verification of cited facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review and independent source verification before publishing YMYL content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/eeat-signals)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance with structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an E-E-A-T assessment, author bio recommendation, citation plan, experience-signal recommendations, and YMYL considerations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

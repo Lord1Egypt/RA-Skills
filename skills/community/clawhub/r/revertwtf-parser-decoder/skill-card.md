@@ -1,38 +1,53 @@
-## Description: <br>
-Modify or debug revert.wtf normalization, revert-data extraction, trace extraction, ABI decoding, catalog matching, selector lookup, or ERC-4337 decoding behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Modify or debug revert.wtf normalization, revert-data extraction, trace extraction, ABI decoding, catalog matching, selector lookup, or ERC-4337 decoding behavior.
 
-## Publisher: <br>
-[mrtdlgc](https://clawhub.ai/user/mrtdlgc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrtdlgc](https://clawhub.ai/user/mrtdlgc)
 
-## Use Case: <br>
-Developers and engineers use this skill when modifying or debugging revert.wtf parser, selector, account-abstraction, and shared result-type behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence parser implementation choices and test selection for revert.wtf packages. <br>
-Mitigation: Review proposed code changes and run the targeted TypeScript checks and package tests described by the skill before release. <br>
+## Use Case:
 
+Developers and engineers use this skill to modify or debug revert.wtf parser and decoder packages for normalization, revert-data extraction, ABI decoding, selector lookup, catalog matching, and ERC-4337 behavior while keeping changes reproducible and tested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrtdlgc/revertwtf-parser-decoder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline code paths and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance emphasizes reproducible parser behavior, shared parser/catalog results, and targeted TypeScript checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Agent guidance could change parser or decoder behavior in ways that alter results across website, CLI, MCP, and package consumers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep behavioral changes narrow, preserve evidence-based ranking, add fixtures for new provider shapes or revert payloads, and run the TypeScript checks and targeted package tests listed by the skill.
+
+Risk: Live lookups or website-only explanation logic could make parser results non-reproducible or inconsistent across consumers.
+
+Mitigation: Keep parser paths based on package data and caller-provided input, and keep website, CLI, MCP, and packages consuming the same parser and catalog results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrtdlgc/skills/revertwtf-parser-decoder)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, markdown]
+
+**Output Format:** [Markdown guidance with code-oriented recommendations and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scoped to revert.wtf parser, selectors, account abstraction, and shared result types; the artifact contains guidance only and no executable code.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

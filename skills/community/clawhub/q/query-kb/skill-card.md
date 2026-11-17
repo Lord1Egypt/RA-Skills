@@ -1,41 +1,52 @@
-## Description: <br>
-Answer questions from personal and team knowledge bases with strict source grounding, no-answer behavior when the knowledge base lacks evidence, answer validation, and query logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answer questions from personal and team knowledge bases with strict source grounding, no-answer behavior when the knowledge base lacks evidence, answer validation, and query logging.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[myd2002](https://clawhub.ai/user/myd2002)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and workspace agents use Query Kb to answer personal, team, project, and cross-knowledge-base questions from stored knowledge pages. The skill is intended to return source-grounded answers, explicit no-answer responses, or insufficient-evidence responses with citations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad Gitea administrator access can read, write, and log sensitive repository data.
+
+Mitigation: Replace the administrator token with least-privilege credentials, enforce HTTPS, and add per-operation authorization checks before deployment.
+
+Risk: Raw query logging can preserve sensitive user questions and hit metadata in repository history.
+
+Mitigation: Decide whether query logging is acceptable for the workspace, then apply retention, redaction, and access controls for logs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to answer questions from personal, team, project, or cross-knowledge-base repositories while keeping responses tied to retrieved source pages. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an admin-capable Gitea token and can create or mutate repository-backed control and log data beyond a read-only query role. <br>
-Mitigation: Prefer a read-only, repository-limited token where possible, restrict token scope, and review the system-config and log repositories before deployment. <br>
-Risk: Query logs and system configuration repositories may expose user identifiers, team bindings, questions, retrieved pages, or other sensitive knowledge-base metadata. <br>
-Mitigation: Limit access to log.md and system-config repositories, define retention expectations, and use the skill only where query logging is approved. <br>
-Risk: Persistent repository-backed control data can affect group and team authorization decisions. <br>
-Mitigation: Review chat bindings, team membership, and repository permissions before enabling group-chat knowledge-base queries. <br>
+**Output Format:** [Markdown answers with source citations, plus inline shell commands and JSON helper-script outputs during execution]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Answers must include a sources section and should be validated against pages read for the query.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown or plain-text answers with explicit source lists, plus JSON outputs from helper commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Gitea configuration and OpenClaw chat context; validates answers before response and writes query logs.] <br>
+1.1.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

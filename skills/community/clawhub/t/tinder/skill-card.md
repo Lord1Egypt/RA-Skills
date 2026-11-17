@@ -1,41 +1,54 @@
-## Description: <br>
-Coach Tinder goals with profile reviews, opener feedback, chat triage, and local experiments that improve matches and dates over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coach Tinder goals with profile reviews, opener feedback, chat triage, and local experiments that improve matches and dates over time.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill as a Tinder coaching assistant to review profiles, draft profile-specific openers, triage chat momentum, plan low-friction dates, and maintain approved local experiment notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local coaching notes in ~/tinder/ can contain sensitive dating context if the user saves too much detail. <br>
-Mitigation: Ask before creating or updating notes, save only durable summaries needed for coaching, avoid raw chats or intimate third-party details, and review or delete files when they are no longer needed. <br>
-Risk: Profile, opener, chat, or date advice could misrepresent the user or create unsafe pressure if followed without review. <br>
-Mitigation: Keep advice in the user's real voice, require explicit confirmation before send, unmatch, report, block, or local-write actions, and default first meetups to public, low-friction, easy-exit plans. <br>
+## Use Case:
 
+External users use this agent skill to review Tinder profiles or chats, improve profile positioning, draft profile-specific openers, triage chat momentum, plan low-friction public dates, and maintain optional local experiment notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/tinder) <br>
-- [Skill homepage](https://clawic.com/skills/tinder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with optional local note templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before creating or updating ~/tinder/ notes; no external requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Optional local notes may retain sensitive dating goals, match stages, profile observations, experiments, or date-planning patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before creating or updating ~/tinder/ notes, store only minimal durable summaries, and avoid passwords, account access, raw private archives, and unnecessary third-party private details.
+
+Risk: Dating guidance can create real-world safety or consent concerns if it pressures users or matches.
+
+Mitigation: Keep recommendations non-deceptive and low-pressure, require confirmation before irreversible actions, and default first meetups to public, easy-exit plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/tinder)
+- [Skill homepage](https://clawic.com/skills/tinder)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown coaching guidance with optional local note templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before persistent note updates; does not auto-send messages or make external requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

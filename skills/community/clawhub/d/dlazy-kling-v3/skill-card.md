@@ -1,45 +1,52 @@
-## Description: <br>
-Powerful video generation with Kling v3, supporting high-quality text-to-video and image-to-video workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos with Kling v3 from text prompts or reference images.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Creators, marketers, and developers use this skill to invoke dLazy's Kling v3 hosted API for text-to-video and image-to-video generation through the dLazy CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and may store it in the local dLazy CLI configuration. <br>
-Mitigation: Use the documented login or per-invocation environment variable flow, keep the config file restricted to the OS user, and rotate or revoke the key from the dLazy dashboard if needed. <br>
-Risk: Prompts and selected local media files are sent to dLazy cloud endpoints for generation. <br>
-Mitigation: Confirm prompts and files are appropriate to share with dLazy before upload, and avoid passing sensitive local media paths. <br>
-Risk: Using the skill runs a third-party CLI package. <br>
-Mitigation: Prefer the npx path or review the @dlazy/cli package before installing it globally. <br>
+## Use Case:
 
+Developers and creators use this skill to generate Kling v3 videos from text prompts or reference images through dLazy's hosted service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-kling-v3) <br>
-- [dLazy CLI homepage](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy website](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Generated media URLs, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm or npx and a dLazy API key; local media paths may be uploaded to dLazy for generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The security review is incomplete, with referenced CLI installation and service details unavailable; the login behavior also warrants review in the context of a video-generation skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or authenticating, review the pinned dLazy CLI package and service details, and confirm the login flow is expected. Avoid sending prompts or media until you are comfortable with the service receiving them.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-kling-v3)
+- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy API key setup](https://dlazy.com/dashboard/organization/api-key)
+- [dLazy service homepage](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Video files, JSON]
+
+**Output Format:** [Generated video assets with JSON task and result metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports text-to-video and image-to-video; generated assets are returned as hosted URLs.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

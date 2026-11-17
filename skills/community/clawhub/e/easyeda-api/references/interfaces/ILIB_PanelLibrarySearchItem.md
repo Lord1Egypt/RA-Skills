@@ -1,11 +1,11 @@
 # ILIB\_PanelLibrarySearchItem interface
 
-搜索到的面板库属性
+Searched panel library properties
 
 ## Signature
 
 ```typescript
-interface ILIB_PanelLibrarySearchItem 
+interface ILIB_PanelLibrarySearchItem
 ```
 
 ## Properties
@@ -14,192 +14,152 @@ interface ILIB_PanelLibrarySearchItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [ascription](./ILIB_PanelLibrarySearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-归属
-
+Ownership
 
 </td></tr>
 <tr><td>
 
 [classification?](./ILIB_PanelLibrarySearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ILIB\_ClassificationIndex](./ILIB_ClassificationIndex.md) \| Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 分类
-
+_(Optional)_ Classification
 
 </td></tr>
 <tr><td>
 
 [description?](./ILIB_PanelLibrarySearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 描述
-
+_(Optional)_ Description
 
 </td></tr>
 <tr><td>
 
 [lastModifiedBy](./ILIB_PanelLibrarySearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-前次修改者
-
+Last modifier
 
 </td></tr>
 <tr><td>
 
 [libraryUuid](./ILIB_PanelLibrarySearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属库 UUID
-
+UUID of the library it belongs to
 
 </td></tr>
 <tr><td>
 
 [name](./ILIB_PanelLibrarySearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-面板库名称
-
+Panel library name
 
 </td></tr>
 <tr><td>
 
 [ordinal](./ILIB_PanelLibrarySearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-排序
-
+Sorting
 
 </td></tr>
 <tr><td>
 
 [updateTimestamp](./ILIB_PanelLibrarySearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-更新时间戳
-
+Update timestamp
 
 </td></tr>
 <tr><td>
 
 [uuid](./ILIB_PanelLibrarySearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-面板库 UUID
-
+Panel library UUID
 
 </td></tr>
 </tbody></table>
@@ -212,7 +172,7 @@ string
 
 # ILIB\_PanelLibrarySearchItem.ascription property
 
-归属
+Ownership
 
 ## Signature
 
@@ -224,7 +184,7 @@ ascription: string;
 
 # ILIB\_PanelLibrarySearchItem.classification property
 
-分类
+Classification
 
 ## Signature
 
@@ -236,7 +196,7 @@ classification?: ILIB_ClassificationIndex | Array<string>;
 
 # ILIB\_PanelLibrarySearchItem.description property
 
-描述
+Description
 
 ## Signature
 
@@ -248,7 +208,7 @@ description?: string;
 
 # ILIB\_PanelLibrarySearchItem.lastModifiedBy property
 
-前次修改者
+Last modifier
 
 ## Signature
 
@@ -260,7 +220,7 @@ lastModifiedBy: string;
 
 # ILIB\_PanelLibrarySearchItem.libraryUuid property
 
-所属库 UUID
+UUID of the library it belongs to
 
 ## Signature
 
@@ -272,7 +232,7 @@ libraryUuid: string;
 
 # ILIB\_PanelLibrarySearchItem.name property
 
-面板库名称
+Panel library name
 
 ## Signature
 
@@ -284,7 +244,7 @@ name: string;
 
 # ILIB\_PanelLibrarySearchItem.ordinal property
 
-排序
+Sorting
 
 ## Signature
 
@@ -296,7 +256,7 @@ ordinal: number;
 
 # ILIB\_PanelLibrarySearchItem.updateTimestamp property
 
-更新时间戳
+Update timestamp
 
 ## Signature
 
@@ -308,7 +268,7 @@ updateTimestamp: number;
 
 # ILIB\_PanelLibrarySearchItem.uuid property
 
-面板库 UUID
+Panel library UUID
 
 ## Signature
 

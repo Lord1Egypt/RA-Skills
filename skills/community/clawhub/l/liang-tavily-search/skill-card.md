@@ -1,41 +1,54 @@
-## Description: <br>
-Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata.
 
-## Publisher: <br>
-[matthew77](https://clawhub.ai/user/matthew77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matthew77](https://clawhub.ai/user/matthew77)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tavily web searches and retrieve LLM-friendly results with snippets, relevance scores, metadata, domain filters, topic filters, and time-range filters. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries and selected search options are sent to Tavily using the user's API key. <br>
-Mitigation: Keep the Tavily API key private and avoid submitting secrets, sensitive internal information, or data that should not leave the user's environment. <br>
-Risk: Broad searches or raw-content mode can return untrusted or excessive web content. <br>
-Mitigation: Use include-domain, exclude-domain, topic, and time-range filters when tighter control is needed, and avoid raw-content mode unless full page content is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tavily](https://tavily.com) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
-- [ClawHub skill page](https://clawhub.ai/matthew77/liang-tavily-search) <br>
+## Use Case:
 
+Developers and agents use this skill to run web searches through Tavily and retrieve LLM-oriented snippets, relevance scores, metadata, optional raw content, and filtered result sets.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown search results by default, with pretty-printed JSON available through the --json option.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and TAVILY_API_KEY; supports result count, search depth, topic, time range, domain filters, and optional raw content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms and selected search options are sent to Tavily.
+
+Mitigation: Avoid confidential prompts, secrets, personal data, and proprietary internal identifiers unless Tavily's data handling terms satisfy the deployment requirements.
+
+Risk: The skill requires a Tavily API key in configuration or the TAVILY_API_KEY environment variable.
+
+Mitigation: Store the API key in the agent's approved secret management path and avoid printing or committing it.
+
+## Reference(s):
+
+- [Tavily](https://tavily.com)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+- [ClawHub skill page](https://clawhub.ai/matthew77/skills/liang-tavily-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands]
+
+**Output Format:** [Markdown search results with titles, URLs, snippets, relevance scores, optional answer text, and optional raw JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; result count is clamped to 1-20.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

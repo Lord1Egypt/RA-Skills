@@ -1,38 +1,54 @@
-## Description: <br>
-Analyze application logs to produce actionable error digests with pattern detection, severity classification, trend analysis, and remediation recommendations across common log formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes application logs into actionable error digests with format auto-detection, pattern grouping, severity classification, trend analysis, and remediation recommendations.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, SREs, and incident responders use this skill to analyze selected application logs, group recurring failures, classify severity, detect trends, and generate remediation-oriented summaries for incident review, health checks, CI, or reporting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Application logs may contain tokens, user data, internal URLs, or other sensitive operational details. <br>
-Mitigation: Analyze only the specific files or directories needed for the task and review generated summaries before sharing them outside the intended operational context. <br>
+## Use Case:
 
+Developers, site reliability engineers, and incident responders use this skill to analyze log files or log directories, group recurring failures, classify severity, identify trends, and produce remediation-oriented reports.
 
-## Reference(s): <br>
-- [Error Pattern Reference](references/error-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Text, JSON, or Markdown reports with severity summaries, grouped patterns, trends, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return CI-friendly exit codes and filter results by time range, severity, format, and ignored regex patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads arbitrary log files or directories provided by the user, which may expose sensitive data or cover broader system logs than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on the specific log files or directories needed for the investigation and avoid broad system log directories unless necessary.
+
+Risk: Crafted log content may be reflected unsafely in terminal or Markdown reports.
+
+Mitigation: Treat generated reports as untrusted when logs may contain attacker-controlled content, and prefer JSON output for safer downstream processing.
+
+## Reference(s):
+
+- [Error Pattern Reference](artifact/references/error-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/logfile-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text, JSON, or Markdown reports with remediation guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CI-friendly exit codes indicate whether no errors, warn/error entries, or fatal entries were found.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

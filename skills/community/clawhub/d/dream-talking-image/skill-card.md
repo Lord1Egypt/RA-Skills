@@ -1,45 +1,56 @@
-## Description: <br>
-Generate talking videos from images using Talking Image API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate talking videos from static image and audio URLs using the Dreamface/NewportAI Talking Image API, including support for non-human faces such as pets or animated characters.
 
-## Publisher: <br>
-[Hy-1990](https://clawhub.ai/user/Hy-1990) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hy-1990](https://clawhub.ai/user/hy-1990)
 
-## Use Case: <br>
-Developers and agents use this skill to configure Dream/Newport API access and generate talking-video requests from image and audio URLs, including non-human faces such as pets or animated characters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided image and audio URLs may expose private, biometric, regulated, confidential, copyrighted, or signed media to a third-party service. <br>
-Mitigation: Use only media URLs appropriate for Dream/Newport processing, avoid sensitive or expiring URLs, and confirm third-party data handling requirements before use. <br>
-Risk: The API key can incur provider usage or spending if misused. <br>
-Mitigation: Use a provider key with appropriate spending or usage limits and store it only in the configured DREAMTALKINGIMAGE_API_KEY environment setting. <br>
-Risk: Long audio inputs may fail or cause memory errors. <br>
-Mitigation: Keep audio under the recommended two-minute duration and prefer the documented m4a format when practical. <br>
+## Use Case:
 
+External users and developers use this skill to configure a DreamAPI key and call the Talking Image API to create talking videos from supplied image and audio URLs.
 
-## Reference(s): <br>
-- [Dream Talking Image API Reference](https://api.newportai.com/api-reference/talking-image) <br>
-- [DreamAPI Get Started](https://api.newportai.com/api-reference/get-started) <br>
-- [Dreamface AI Tools](https://tools.dreamfaceapp.com/home) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Hy-1990/dream-talking-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DREAMTALKINGIMAGE_API_KEY and user-provided image and audio URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Image and audio URLs are processed by the third-party Dreamface/NewportAI service using the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting private, regulated, or non-consensual photos or voice recordings unless third-party handling is acceptable.
+
+Risk: Long audio inputs may cause memory errors or failed processing.
+
+Mitigation: Keep audio under the documented two-minute recommendation and prefer m4a format where practical.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hy-1990/skills/dream-talking-image)
+- [NewportAI Talking Image API Reference](https://api.newportai.com/api-reference/talking-image)
+- [NewportAI API Get Started](https://api.newportai.com/api-reference/get-started)
+- [Dreamface AI Tools](https://tools.dreamfaceapp.com/home)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON request examples, and API endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DREAMTALKINGIMAGE_API_KEY and user-supplied photoUrl and audioUrl values.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

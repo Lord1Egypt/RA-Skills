@@ -1,45 +1,60 @@
-## Description: <br>
-Ultra-high-ticket X (Twitter) Growth & Monetization Agent. Uses the official xAI (Grok) API and X OAuth 2.0 to autonomously identify trending niche discussions and reply with hyper-relevant affiliate links. Hardened with ThumbGate to prevent spam flags and account bans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomously identifies trending X discussions and drafts or posts contextual affiliate replies using xAI (Grok), X OAuth 2.0, and ThumbGate rate, relevance, and sentiment gates.
 
-## Publisher: <br>
-[igorganapolsky](https://clawhub.ai/user/igorganapolsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igorganapolsky](https://clawhub.ai/user/igorganapolsky)
 
-## Use Case: <br>
-External users and growth operators use this skill to configure an OpenClaw agent that monitors X niche conversations, drafts Grok-assisted replies, and inserts affiliate links under defined rate-limit, relevance, sentiment, and link-throttle controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates promotional replies on X/Twitter using user credentials, which can affect account standing and platform compliance. <br>
-Mitigation: Use a test or low-risk account first, run simulated dry-runs before posting, and confirm X/Twitter automation and advertising rules before enabling affiliate replies. <br>
-Risk: Credential handling is required for X OAuth and xAI API access. <br>
-Mitigation: Store credentials only in a protected secret manager or ignored local environment file, and avoid embedding secrets in skill files or prompts. <br>
-Risk: Autonomous posting can create spam-like or brand-unsafe behavior if controls are bypassed or misconfigured. <br>
-Mitigation: Keep ThumbGate controls active, require explicit approval before live posting where possible, and enforce rate limits, repeated-user blocking, sentiment blocking, relevance thresholds, and link throttling. <br>
+## Use Case:
 
+External users and growth operators use this skill to monitor niche X discussions, generate contextual replies, and manage affiliate-link posting with configured safety gates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/igorganapolsky/grok-x-growth-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/igorganapolsky) <br>
-- [Make.com](https://make.com) <br>
-- [ElevenLabs affiliate program](https://elevenlabs.io/affiliates) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires X OAuth credentials, an xAI API key, affiliate link configuration, and ThumbGate rules before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release evidence) <br>
+Risk: Autonomous X posting and affiliate promotion can create spam, policy, or brand-safety risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before posts go live, keep ThumbGate enabled, and enforce the documented rate-limit, sentiment, relevance, duplicate-reply, and link-throttle checks.
+
+Risk: The skill requires X OAuth credentials and an xAI API key.
+
+Mitigation: Use least-privilege X credentials, store secrets securely, isolate the setup, and rotate credentials if behavior is unexpected.
+
+Risk: Affiliate automation and sending X content to xAI may be under-disclosed to affected audiences.
+
+Mitigation: Use clear affiliate and automation disclosure and maintain a privacy policy for X content processed by xAI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/igorganapolsky/skills/grok-x-growth-agent)
+- [Publisher profile](https://clawhub.ai/user/igorganapolsky)
+- [Make.com](https://make.com)
+- [ElevenLabs affiliates](https://elevenlabs.io/affiliates)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce drafted social replies and setup guidance; posting should remain gated by human approval and configured safety controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

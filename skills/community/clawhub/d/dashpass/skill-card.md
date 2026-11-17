@@ -1,54 +1,70 @@
-## Description: <br>
-Dashpass is an encrypted credential vault on Dash Platform that helps agents store, retrieve, rotate, and export API keys, tokens, and passwords with local encryption before network storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DashPass is an encrypted credential vault on Dash Platform that lets AI agents store, retrieve, rotate, and export API keys, tokens, and passwords.
 
-## Publisher: <br>
-[dashbot-0001](https://clawhub.ai/user/dashbot-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashbot-0001](https://clawhub.ai/user/dashbot-0001)
 
-## Use Case: <br>
-Developers and agent operators use Dashpass to manage agent credentials on Dash Platform, including storing, retrieving, rotating, checking expiry, deleting, and exporting secrets. The skill is most relevant when an agent needs repeatable credential access without plain-text .env files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access a Dash identity key that can decrypt and mutate the credential vault. <br>
-Mitigation: Use testnet or a dedicated identity, keep CRITICAL_WIF tightly controlled, and install only where that level of key access is acceptable. <br>
-Risk: Sensitive credential material may remain available through local cache behavior. <br>
-Mitigation: Set DASHPASS_CACHE=none for sensitive use and avoid syncing ~/.dashpass to shared backups or cloud storage. <br>
-Risk: Exporting credentials through eval workflows can expose secrets to shell history, process environments, or logs. <br>
-Mitigation: Avoid eval for sensitive credentials and prefer pipe-oriented commands that minimize displayed output. <br>
-Risk: The current mutual confirmation mode should not be treated as real independent human approval. <br>
-Mitigation: Require an explicit external review or separate approval process for high-value decryptions until mutual confirmation is independently enforced. <br>
-Risk: Artifact documentation says Dashpass has been tested and verified on Dash testnet only. <br>
-Mitigation: Do not store production credentials on testnet and validate mainnet behavior separately before any production use. <br>
+## Use Case:
 
+Developers and agent operators use DashPass to manage agent-accessible credentials on Dash Platform, including storing, retrieving, rotating, listing, checking expiry, and exporting secrets through a Node.js CLI. Use testnet or low-impact secrets unless the approval and audit controls described in the security evidence are addressed.
 
-## Reference(s): <br>
-- [Dashpass ClawHub page](https://clawhub.ai/dashbot-0001/dashpass) <br>
-- [Dash Platform Identity tutorial](https://docs.dash.org/en/stable/docs/tutorials/identities-and-names.html) <br>
-- [Dash Platform identity top-up tutorial](https://docs.dash.org/en/stable/docs/tutorials/identities-and-names.html#top-up-an-identity) <br>
-- [CLI command reference](references/cli-commands.md) <br>
-- [Security model](references/security-model.md) <br>
-- [Security analysis summary](references/security-analysis-summary.md) <br>
-- [Trust architecture](references/trust-architecture.md) <br>
-- [FAQ and known limitations](references/faq.md) <br>
-- [First-time setup](setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js plus CRITICAL_WIF and DASHPASS_IDENTITY_ID environment variables; operations may read or write encrypted credential records through the Dashpass CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Agents with the vault environment may be able to read, export, rotate, or delete critical secrets without the promised human approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the vault environment to trusted agents, use testnet or low-impact secrets, and add an external approval gate before storing critical credentials.
+
+Risk: Environment export flows can expose sensitive secrets when used with shell evaluation.
+
+Mitigation: Avoid eval-based export for sensitive credentials; prefer narrowly scoped process injection and short-lived environment variables.
+
+Risk: CRITICAL_WIF and the recovery mnemonic grant full vault control if exposed.
+
+Mitigation: Keep both out of chats, logs, shell history, repositories, and synced folders; store recovery words offline and rotate or revoke access after exposure.
+
+Risk: Local cache behavior may retain credential data on disk for fast access.
+
+Mitigation: Disable caching with DASHPASS_CACHE=none when operating on sensitive secrets or on shared machines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dashbot-0001/skills/dashpass)
+- [DashPass CLI Command Reference](references/cli-commands.md)
+- [DashPass Security Model](references/security-model.md)
+- [DashPass Trust Architecture](references/trust-architecture.md)
+- [DashPass Security Analysis Summary](references/security-analysis-summary.md)
+- [DashPass FAQ and Known Limitations](references/faq.md)
+- [First-Time Setup](setup.md)
+- [Dash Platform Identity tutorial](https://docs.dash.org/en/stable/docs/tutorials/identities-and-names.html)
+- [Dash Platform identity top-up tutorial](https://docs.dash.org/en/stable/docs/tutorials/identities-and-names.html#top-up-an-identity)
+- [Dash testnet faucet](https://testnet-faucet.dash.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces CLI command guidance for Node.js-based credential operations and recovery workflows.]
+
+## Skill Version(s):
+
+0.9.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

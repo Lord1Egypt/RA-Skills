@@ -2,7 +2,7 @@
 name: stack-create
 description: |
   Initializes a stacked branch set from an ordered plan, one branch per slice with parent-child links
-version: 1.9.8
+version: 1.10.3
 triggers:
   - git
   - stacked-diffs
@@ -15,7 +15,7 @@ source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Stack Create
@@ -24,13 +24,18 @@ Initialize a stacked branch set from a multi-step plan.
 Each logical slice of the plan becomes one branch targeting
 the previous slice's branch as its base.
 
-## When to Use
+## When To Use
 
 Use `stack-create` when a plan produces 2 or more ordered
 changes where each change depends on the previous one
 completing (and merging) before it can land.
 For independent changes, use parallel worktrees instead
 (see `egregore`).
+
+## When NOT To Use
+
+- A single independent change, which should branch normally instead
+- The stack exists and needs publishing (use `sanctum:stack-push`)
 
 ## Prerequisites
 
@@ -42,7 +47,7 @@ For independent changes, use parallel worktrees instead
 
 ## Required Progress Tracking
 
-Create `TodoWrite` items before starting:
+Create progress items before starting:
 
 1. `stack-create:git-version-checked`
 2. `stack-create:slices-identified`
@@ -151,3 +156,17 @@ jj log --revisions \
   open PRs, or work slice-by-slice and push when ready
 - If the plan changes, add or remove branches manually and
   re-verify the topology in Step 4
+
+## Exit Criteria
+
+- [ ] All 4 progress items (`stack-create:git-version-checked`
+      through `stack-create:stack-verified`) are created before branch
+      creation starts and marked complete in order
+- [ ] Git version confirmed ≥ 2.38.0; if not, fallback to manual
+      branch tracking is documented and the user is warned
+- [ ] All slice branches created with the naming convention
+      `stack/<feature-name>/<slice-name>`
+- [ ] `git log --oneline --graph <base>..<tip>` shows a linear chain
+      with each slice branch appearing in dependency order
+- [ ] Working tree returned to the first slice branch after topology
+      is verified

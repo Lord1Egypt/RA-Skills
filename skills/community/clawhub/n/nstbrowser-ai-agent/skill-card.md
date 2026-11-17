@@ -1,50 +1,67 @@
-## Description: <br>
-Browser automation CLI with Nstbrowser integration for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation CLI with Nstbrowser integration for AI agents.
 
-## Publisher: <br>
-[NstbrowserIO](https://clawhub.ai/user/NstbrowserIO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nstbrowserio](https://clawhub.ai/user/nstbrowserio)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to manage Nstbrowser profiles, browser sessions, proxy settings, snapshots, screenshots, and batch profile operations through the nstbrowser-ai-agent CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes high-impact profile, proxy, persistence, and anti-detection controls. <br>
-Mitigation: Restrict use to authorized Nstbrowser automation and require human confirmation before delete, clear, reset, stop-all, screenshot, snapshot, debugger, or batch profile operations. <br>
-Risk: Shell templates and examples may include unsafe operational patterns or credential handling risks. <br>
-Mitigation: Review or rewrite shell templates before running them, avoid command-line passwords, and keep API keys in approved local configuration or environment storage. <br>
-Risk: Browser automation can be misused to evade access controls or impersonate users. <br>
-Mitigation: Use the skill only for explicit, authorized browser automation tasks and do not use anti-detection features to bypass site policies or access controls. <br>
+## Use Case:
 
+Developers and operators use this skill to automate browser sessions through Nstbrowser profiles, including profile management, proxy configuration, batch profile operations, and page interaction for automation workflows.
 
-## Reference(s): <br>
-- [Nstbrowser AI Agent ClawHub release](https://clawhub.ai/NstbrowserIO/nstbrowser-ai-agent) <br>
-- [Nstbrowser website](https://www.nstbrowser.io/) <br>
-- [npm package](https://www.npmjs.com/package/nstbrowser-ai-agent) <br>
-- [Source repository](https://github.com/Nstbrowser/nstbrowser-ai-agent) <br>
-- [NST API Reference](references/nst-api-reference.md) <br>
-- [Profile Management Guide](references/profile-management.md) <br>
-- [Proxy Configuration Guide](references/proxy-configuration.md) <br>
-- [Batch Operations Guide](references/batch-operations.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that operate on local Nstbrowser profiles, proxies, browser sessions, screenshots, snapshots, and batch profile changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Bundled shell templates and mutable npm execution paths may run code that has not been reviewed for the target environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or avoid the bundled shell templates before installation and prefer a pinned nstbrowser-ai-agent version.
+
+Risk: API keys or proxy passwords may be exposed when passed through commands that are logged or stored in shell history.
+
+Mitigation: Use local configuration or environment variables for secrets and avoid placing real credentials directly in logged commands.
+
+Risk: Delete, clear, and batch operations can affect multiple browser profiles.
+
+Mitigation: Verify target profile IDs and batch scope before running destructive or bulk profile commands.
+
+Risk: Eval-based shell templates may be unsafe with untrusted profile or proxy values.
+
+Mitigation: Do not run eval-based templates with untrusted values until they are rewritten to use safe shell argument arrays.
+
+## Reference(s):
+
+- [NST API Reference](references/nst-api-reference.md)
+- [Profile Management Guide](references/profile-management.md)
+- [Proxy Configuration Guide](references/proxy-configuration.md)
+- [Batch Operations Guide](references/batch-operations.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [Nstbrowser Website](https://www.nstbrowser.io/)
+- [nstbrowser-ai-agent npm Package](https://www.npmjs.com/package/nstbrowser-ai-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may require a local Nstbrowser service and NST_API_KEY configuration.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-MetaBot is a MetaID-based AI agent skill for creating MetaBots, setting MetaBot avatars, and sending Buzz messages to the MVC network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MetaBot Basic helps agents create MetaID-based MetaBots, set avatar images, and send Buzz messages on the MVC network.
 
-## Publisher: <br>
-[newfish](https://clawhub.ai/user/newfish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[newfish](https://clawhub.ai/user/newfish)
 
-## Use Case: <br>
-Developers and external users use this skill to create MetaID MetaBot accounts, attach avatars, and publish simple Buzz protocol messages through command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet seed phrases and possible LLM API keys may be stored in plaintext account.json. <br>
-Mitigation: Use a dedicated low-value wallet, keep account.json out of source control and shared folders, and restrict local file access to trusted users. <br>
-Risk: Buzz and avatar operations can publish irreversible blockchain or network actions. <br>
-Mitigation: Review the selected account, message text, avatar file, and intended network action before running commands. <br>
-Risk: File-based Buzz content and avatar paths can read and publish local file data. <br>
-Mitigation: Avoid using @file inputs or avatar paths that contain sensitive local files. <br>
+## Use Case:
 
+Developers and agent users use this skill to create and manage MetaID-based MetaBot identities, attach avatar metadata, and publish Buzz messages through the MVC network.
 
-## Reference(s): <br>
-- [Account Management](references/account-management.md) <br>
-- [Buzz Protocol](references/buzz-protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON account updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update account.json and publish irreversible network transactions when commands are executed] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and ClawHub release metadata) <br>
+Risk: The skill handles real wallet authority and stores recovery phrases and API keys in plaintext account files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a constrained workspace with no valuable wallet funds; do not commit or share account.json; rotate any API key written there.
+
+Risk: Avatar, name, and Buzz operations may submit on-chain actions and fees.
+
+Mitigation: Require explicit confirmation of the selected account, content, fee, destination, network, and avatar file before executing any transaction.
+
+## Reference(s):
+
+- [Account Management](references/account-management.md)
+- [Buzz Protocol](references/buzz-protocol.md)
+- [ClawHub release page](https://clawhub.ai/newfish/skills/metabot-basic)
+- [Metalet service](https://www.metalet.space)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update account.json and userInfo.json and may broadcast MVC transactions when the user approves execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-This skill helps agents manage VMware NSX networking, including segments, gateways, NAT, routing, IP pools, fabric inventory, health checks, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage VMware NSX networking, including segments, gateways, NAT, routing, IP pools, fabric inventory, health checks, and connectivity troubleshooting.
 
-## Publisher: <br>
-[zw008](https://clawhub.ai/user/zw008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zw008](https://clawhub.ai/user/zw008)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to inspect, operate, and troubleshoot VMware NSX networking through CLI and MCP workflows. It covers NSX segments, Tier-0 and Tier-1 gateways, NAT, static routes, IP pools, fabric inventory, health status, and connectivity troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change live VMware NSX network infrastructure. <br>
-Mitigation: Review carefully before production use, prefer dry-run CLI workflows for changes, and confirm whether MCP write tools require explicit approval in the connected agent. <br>
-Risk: Over-privileged credentials could amplify the impact of incorrect or unauthorized network changes. <br>
-Mitigation: Use a least-privilege NSX service account appropriate to the intended read or write operations. <br>
-Risk: Insecure TLS or credential handling could expose NSX administrative access. <br>
-Mitigation: Set verify_ssl to true with a trusted CA and avoid storing real admin passwords in plaintext .env files. <br>
+## Use Case:
 
+Network engineers and developers use this skill to inspect and manage VMware NSX segments, gateways, NAT, routes, and IP pools, and to diagnose NSX health and connectivity issues.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zw008/skills/vmware-nsx) <br>
-- [Source Homepage](https://github.com/zw008/VMware-NSX) <br>
-- [Capabilities Reference](artifact/references/capabilities.md) <br>
-- [CLI Reference](artifact/references/cli-reference.md) <br>
-- [Setup Guide](artifact/references/setup-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured MCP tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include NSX Policy API operation plans, read-only checks, and write-operation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.3 (source: server release metadata) <br>
+Risk: Setup uses NSX credentials and stores audit or policy data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect credential and audit files with restrictive permissions or a secret manager, and retain authentication checks.
+
+Risk: Write actions can change NSX network configuration, and optional HTTPS transport opens a listener.
+
+Mitigation: Keep local stdio as the default, require an explicit request for each write, review dry-run previews, and authenticate any HTTPS listener.
+
+Risk: Security guidance reports an unpinned Docker image reference and incomplete scan coverage for one unresolved path-like reference.
+
+Mitigation: Verify the Docker image identity and review the unresolved reference before relying on the scan results.
+
+## Reference(s):
+
+- [Project repository](https://github.com/vmware-skills/VMware-NSX)
+- [Capabilities](artifact/references/capabilities.md)
+- [Setup guide](artifact/references/setup-guide.md)
+- [CLI reference](artifact/references/cli-reference.md)
+- [Agent guardrails](artifact/references/agent-guardrails.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration]
+
+**Output Format:** [Structured MCP responses, diagnostic text, Markdown guidance, shell commands, and configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operations target the configured NSX Manager; write actions require an explicit request.]
+
+## Skill Version(s):
+
+1.15.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

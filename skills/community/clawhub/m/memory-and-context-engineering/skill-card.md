@@ -1,51 +1,63 @@
-## Description: <br>
-用户与模型间的任何交互行为都会触发此技能；提供Context Engineering五大核心能力（选择、压缩、检索、状态、记忆）及认知模型层支持；作为元技能强制常驻运行 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用户与模型间的任何交互行为都会触发此技能；提供Context Engineering五大核心能力（选择、压缩、检索、状态、记忆）及认知模型层支持；作为元技能强制常驻运行.
 
-## Publisher: <br>
-[kiwifruit13](https://clawhub.ai/user/kiwifruit13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL-3.0 <br>
+## Publisher:
 
+[kiwifruit13](https://clawhub.ai/user/kiwifruit13)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add persistent memory, context selection, compression, retrieval, state tracking, and cognitive-model support to an agent. It is intended as an always-on memory layer for cross-session agent interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is an always-on cross-session memory layer and can persist private user or project context. <br>
-Mitigation: Install only when persistent memory is intended, use a dedicated storage directory, and confirm export and delete controls before use with private conversations or sensitive projects. <br>
-Risk: The release evidence flags broad persistent access, sensitive profiling, credential storage, and unsafe local file primitives as requiring review. <br>
-Mitigation: Review security-sensitive modules before deployment, avoid storing credentials unless explicitly needed, and disable emotional or personality profiling and host monitoring unless the user has clearly consented. <br>
-Risk: The artifact declares GPL-3.0 but server release evidence lists MIT-0. <br>
-Mitigation: Confirm the authoritative release license before publishing or redistributing the skill card. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add an always-on memory and context engineering layer that can select, compress, retrieve, track state, and preserve conversation-derived context across interactions.
 
-## Reference(s): <br>
-- [Architecture Overview](references/architecture_overview.md) <br>
-- [Architecture Execution Model](references/architecture_execution_model.md) <br>
-- [Dual-Track Architecture Overview](references/dual_track_architecture_overview.md) <br>
-- [Usage Guide](references/usage_guide.md) <br>
-- [API Reference](references/api_reference.md) <br>
-- [Module Index](references/module_index.md) <br>
-- [Privacy Guide](references/privacy_guide.md) <br>
-- [Encryption Guide](references/encryption_guide.md) <br>
-- [Best Practices](references/best_practices.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing memory, retrieval, compression, privacy, and orchestration guidance; included scripts may create or update local memory data when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: ClawHub release evidence) <br>
+Risk: The skill is designed to run on every interaction and may store conversation-derived data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only with explicit user consent for memory storage, clear retention and deletion controls, and a visible path to withdraw consent.
+
+Risk: Persistent memory or Redis-backed storage can expose sensitive conversation context if storage is not hardened.
+
+Mitigation: Use isolated credential storage, encryption, Redis authentication, TLS, and least-privilege access controls before enabling persistence.
+
+Risk: The release has conflicting license evidence between server metadata and artifact declarations.
+
+Mitigation: Confirm the authoritative license before publication or deployment and update release metadata or source documentation so they match.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kiwifruit13/skills/memory-and-context-engineering)
+- [Architecture Overview](references/architecture_overview.md)
+- [Architecture Execution Model](references/architecture_execution_model.md)
+- [Dual Track Architecture Overview](references/dual_track_architecture_overview.md)
+- [Usage Guide](references/usage_guide.md)
+- [Privacy Guide](references/privacy_guide.md)
+- [API Reference](references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to configure persistent file or Redis-backed memory, consent checks, context reconstruction, compression, retrieval, and monitoring.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

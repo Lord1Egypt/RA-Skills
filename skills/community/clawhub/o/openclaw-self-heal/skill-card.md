@@ -1,40 +1,57 @@
-## Description: <br>
-Autonomously diagnose and fix OpenClaw system errors affecting the UI, channels, gateway, memory, pairing, or heartbeat checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomously diagnoses and resolves OpenClaw system issues affecting the UI, messaging channels, gateway, memory/plugins, pairing, sessions, and heartbeat behavior.
 
-## Publisher: <br>
-[jbauman-26](https://clawhub.ai/user/jbauman-26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jbauman-26](https://clawhub.ai/user/jbauman-26)
 
-## Use Case: <br>
-Developers and operators use this skill to troubleshoot and recover OpenClaw installations when the control UI, messaging channels, gateway, memory plugin, pairing flow, or heartbeat checks fail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to restart OpenClaw services, approve pairing, clear cache, or kill processes before asking the user. <br>
-Mitigation: Require manual approval before service stops or restarts, process termination, pairing approval, cache clearing, or configuration reloads on production systems or during active sessions. <br>
-Risk: Some recovery paths involve credentials, corrupted configuration, or session history where an incorrect action could cause data loss or account disruption. <br>
-Mitigation: Escalate before credential resets, significant configuration edits, or any change involving corrupted session files. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to triage local OpenClaw failures, apply safe recovery actions such as restarts and cache/config reloads, verify service health, and escalate only when data loss, credentials, or repeated failures require human approval.
 
-## Reference(s): <br>
-- [OpenClaw Diagnostics](references/diagnostics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with diagnostic findings, recovery commands, and verification steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command output interpretation and escalation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may restart OpenClaw services or stop processes while diagnosing gateway and UI failures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where the agent is authorized to perform OpenClaw recovery actions, and require human confirmation before broad process termination or other disruptive actions.
+
+Risk: The skill may inspect local OpenClaw configuration, session, and log files during troubleshooting.
+
+Mitigation: Run it only in environments where the agent is permitted to view those files, and avoid exposing credentials, tokens, or private session contents in reports.
+
+Risk: Pairing approvals and credential-related fixes can affect access control.
+
+Mitigation: Require explicit human validation for pairing approvals, credential resets, token rotation, or significant configuration changes.
+
+## Reference(s):
+
+- [OpenClaw Diagnostics](references/diagnostics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include status summaries, recovery steps, verification results, escalation notes, and action logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

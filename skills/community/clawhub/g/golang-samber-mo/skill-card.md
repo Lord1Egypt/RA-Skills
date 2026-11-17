@@ -1,50 +1,63 @@
-## Description: <br>
-Monadic types for Golang using samber/mo: Option, Result, Either, Future, IO, Task, and State types for type-safe nullable values, error handling, and functional composition with pipeline sub-packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monadic types for Golang using samber/mo: Option, Result, Either, Future, IO, Task, and State types for type-safe nullable values, error handling, and functional composition with pipeline sub-packages.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill when working with Go projects that use or are adopting github.com/samber/mo for monadic nullable values, composable error handling, discriminated unions, and functional pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may make the skill relevant during general Go error-handling or nil-safety discussions even when the project is not adopting samber/mo. <br>
-Mitigation: Use it when samber/mo is already present or intentionally being evaluated, and review any dependency additions before applying them. <br>
-Risk: Suggested code edits may introduce incorrect monadic wrapping, unwrapping, or dependency changes. <br>
-Mitigation: Review proposed code changes and run the project's Go tests and linters before merging. <br>
+## Use Case:
 
+Developers and engineers use this skill when adopting or maintaining Go code that imports github.com/samber/mo and needs guidance on monadic Option, Result, Either, Future, IO, Task, State, and pipeline patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samber/golang-samber-mo) <br>
-- [Publisher profile](https://clawhub.ai/user/samber) <br>
-- [Homepage](https://github.com/samber/cc-skills-golang) <br>
-- [pkg.go.dev github.com/samber/mo](https://pkg.go.dev/github.com/samber/mo) <br>
-- [samber/mo GitHub repository](https://github.com/samber/mo) <br>
-- [Advanced Types Reference](references/advanced-types.md) <br>
-- [Either Reference](references/either.md) <br>
-- [Monads Guide](references/monads-guide.md) <br>
-- [Option Reference](references/option.md) <br>
-- [Pipelines Reference](references/pipelines.md) <br>
-- [Result Reference](references/result.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline Go and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Go dependency additions, code edits, and usage patterns for samber/mo.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence and frontmatter) <br>
+Risk: The skill may lead an agent to propose commands or code changes that affect a Go project, including go get, git operations, database writes, file reads, or HTTP calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands and generated code before execution, and apply changes in a controlled branch or disposable environment when project state matters.
+
+Risk: The skill is documentation guidance and is not a substitute for current package, vulnerability, or codebase-specific checks.
+
+Mitigation: Verify package facts with pkg.go.dev or the recommended Go tooling before relying on version, API, importer, or vulnerability details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/golang-samber-mo)
+- [Publisher profile](https://clawhub.ai/user/samber)
+- [Skill homepage](https://github.com/samber/cc-skills-golang)
+- [pkg.go.dev/github.com/samber/mo](https://pkg.go.dev/github.com/samber/mo)
+- [github.com/samber/mo](https://github.com/samber/mo)
+- [Functional Programming and Monads in Go](references/monads-guide.md)
+- [Option[T] API Reference](references/option.md)
+- [Result[T] API Reference](references/result.md)
+- [Either[L, R] API Reference](references/either.md)
+- [Pipeline Sub-Packages Reference](references/pipelines.md)
+- [Advanced Types Reference](references/advanced-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Go code snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend Go package installation, Go code changes, and project-specific checks when requested by the user.]
+
+## Skill Version(s):
+
+1.1.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

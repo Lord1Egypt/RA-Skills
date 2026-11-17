@@ -1,43 +1,59 @@
-## Description: <br>
-Ghost Publisher lets an agent publish, update, schedule, delete, retrieve, and upload media for Markdown articles on Ghost 5 CMS sites through a standard publisher interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish markdown articles to any Ghost 5 CMS site. The first reference implementation of Publisher Interface v1 -- a CMS-agnostic contract for editorial workflows. Handles the full publish pipeline (create, convert markdown to Ghost Lexical, upload feature image, publish) and exposes every interface method (create, update, publish, schedule, delete, upload, get). Works with self-hosted Ghost and Ghost Pro.
 
-## Publisher: <br>
-[machinesofdesire](https://clawhub.ai/user/machinesofdesire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[machinesofdesire](https://clawhub.ai/user/machinesofdesire)
 
-## Use Case: <br>
-Developers and editorial workflow agents can use this skill to automate Ghost CMS publishing tasks while keeping caller code aligned to Publisher Interface v1 rather than Ghost-specific API details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global: Asia-Pacific (APAC), Europe, Middle East, and Africa (EMEA), Latin America (LATAM), and North America (NAM), subject to the user's Ghost site policies and applicable local requirements. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify live posts, delete posts, upload media, and send newsletters when configured with Ghost admin credentials. <br>
-Mitigation: Use a dedicated Ghost custom integration key, test against drafts or staging first, and require human approval before publishing, emailing newsletters, or deleting posts. <br>
-Risk: Ghost admin credentials are sensitive and could grant broad publishing access if exposed. <br>
-Mitigation: Provide credentials through environment variables, keep them out of logs and repositories, and rotate the integration key if exposure is suspected. <br>
-Risk: Media uploads from untrusted URLs or files can introduce unsuitable or unexpected content into the CMS media library. <br>
-Mitigation: Restrict image inputs to trusted URLs or approved local files before using upload or publish workflows. <br>
+## Use Case:
 
+Developers, editorial workflow builders, and publishing teams use this skill to let agents create, update, schedule, publish, delete, upload images for, and fetch posts on Ghost 5 sites through a common Publisher Interface v1 contract.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/machinesofdesire/ghost-publisher) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/machinesofdesire) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python method calls, CLI commands, JSON-compatible post objects, Ghost CMS post URLs, and command-line text output.] <br>
-**Output Parameters:** [1D: Ghost environment variables, optional JSON configuration, standard post objects, post identifiers, Markdown files, publish options, schedule timestamps, and image URLs or local paths.] <br>
-**Other Properties Related to Output:** [Outputs may create or change Ghost drafts, published posts, scheduled posts, media assets, and newsletter sends on the configured Ghost site.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 <br>
+Risk: The skill can publish, delete, schedule, and send newsletter content on a live Ghost site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a staging site first, restrict invocation of publish/delete/newsletter actions, and issue the Ghost integration only the access needed for the intended workflow.
+
+Risk: The skill can fetch remote image URLs and read local image paths for uploads.
+
+Mitigation: Avoid untrusted image URLs or local paths and run the skill with network and filesystem access limited to approved content and media directories.
+
+Risk: Ghost credentials grant administrative publishing capability.
+
+Mitigation: Store GHOST_ADMIN_API_KEY only in the runtime environment, use HTTPS Ghost URLs, and rotate the key if exposed.
+
+## Reference(s):
+
+- [Publisher Interface v1](INTERFACE.md)
+- [Ghost Publisher README](README.md)
+- [Ghost Publisher ClawHub Page](https://clawhub.ai/machinesofdesire/skills/ghost-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance, Python calls, shell commands, JSON-compatible post objects, and Ghost post URLs or confirmations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GHOST_URL and GHOST_ADMIN_API_KEY; optional GHOST_PUBLISHER_CONFIG controls non-secret defaults such as author mappings, newsletter ID, and image size limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

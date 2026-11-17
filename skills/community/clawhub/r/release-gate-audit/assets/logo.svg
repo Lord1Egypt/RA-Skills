@@ -1,0 +1,34 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- release-gate-audit logo
+       意象：三层「公开面」（工作树 / 已追踪 / 提交历史）穿过一道放行闸门。
+       中间层被闸门拦下= 只有通过判定的内容才能发布出去。 -->
+  <defs>
+    <clipPath id="rounded">
+      <rect x="0" y="0" width="256" height="256" rx="56" ry="56"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#rounded)">
+    <rect x="0" y="0" width="256" height="256" fill="#0F2A33"/>
+    <!-- 极淡的分层底纹，暗示「多层判定」 -->
+    <rect x="0" y="0" width="256" height="86" fill="#123340"/>
+    <rect x="0" y="170" width="256" height="86" fill="#0B2129"/>
+  </g>
+
+  <!-- 三层轨道：上=已放行(实线到底)，中=被拦截(断在闸门处)，下=已放行 -->
+  <g stroke-linecap="round" fill="none">
+    <path d="M32 78 H224" stroke="#2E6B7A" stroke-width="12"/>
+    <path d="M32 128 H112" stroke="#2E6B7A" stroke-width="12"/>
+    <path d="M32 178 H224" stroke="#2E6B7A" stroke-width="12"/>
+  </g>
+
+  <!-- 闸门立柱 -->
+  <rect x="122" y="44" width="14" height="168" rx="7" fill="#7FD1C4"/>
+
+  <!-- 闸杆：斜置，正处于拦下中间层的位置 -->
+  <rect x="118" y="118" width="104" height="20" rx="10"
+        fill="#F2B441" transform="rotate(-24 128 128)"/>
+
+  <!-- 拦截标记：中间层被截断处的实心端点 -->
+  <circle cx="112" cy="128" r="11" fill="#F2B441"/>
+</svg>

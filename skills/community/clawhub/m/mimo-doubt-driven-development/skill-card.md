@@ -1,40 +1,54 @@
-## Description: <br>
-Guides agents to apply adversarial review to non-trivial decisions so overconfident assumptions are challenged before they become costly mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to perform adversarial review of non-trivial decisions before overconfident assumptions become costly mistakes.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Developers, agent operators, and review-focused agents use this skill when correctness matters more than speed to structure a bounded adversarial review of architecture choices, code changes, deployments, migrations, and other non-trivial decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Artifacts or contracts sent to reviewer subagents or cross-model reviewers may include unnecessary sensitive information. <br>
-Mitigation: Share only the minimal artifact and contract needed for review, remove secrets or private data first, and require explicit approval for each reviewer or cross-model call. <br>
-Risk: Adversarial reviewers can produce false positives or findings caused by an unclear contract. <br>
-Mitigation: Reconcile every finding against the artifact text and classify it as a contract misread, actionable issue, accepted tradeoff, or noise before changing the work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to challenge architecture choices, non-trivial code changes, safety claims, deployments, migrations, and other high-risk or irreversible work before proceeding. It provides a bounded doubt cycle for extracting the artifact and contract, requesting adversarial review, reconciling findings, and deciding when to stop.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-doubt-driven-development) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists and adversarial prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; may ask the agent to request explicit approval before spawning reviewer subagents or using cross-model review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: Reviewer subagents may increase cost or expose more context than necessary if used without scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit reviewer input to the artifact and contract, and require explicit authorization for each cross-model review.
+
+Risk: The workflow is primarily written in Chinese, which may cause misunderstandings for users who do not work in Chinese.
+
+Mitigation: Translate the skill or add a language preference note before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-doubt-driven-development)
+- [Publisher profile](https://clawhub.ai/user/qqyougitcom)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklists and adversarial review prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No direct code execution; may ask the agent to prepare scoped reviewer prompts.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

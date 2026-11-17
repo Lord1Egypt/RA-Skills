@@ -1,41 +1,58 @@
-## Description: <br>
-Manage WhatsApp through a configured Evolution API v2 instance by sending messages and media, reading chats and contacts, and administering groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evolution WhatsApp helps an agent control WhatsApp through Evolution API v2, including sending messages and media, managing groups, fetching chats and contacts, and summarizing conversations.
 
-## Publisher: <br>
-[KareemAdelAwwad](https://clawhub.ai/user/KareemAdelAwwad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kareemadelawwad](https://clawhub.ai/user/kareemadelawwad)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent interact with WhatsApp through a trusted Evolution API instance for messaging, chat retrieval, contact lookup, and group administration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The configured agent can send messages, read chats and contacts, and change WhatsApp groups through the Evolution API instance. <br>
-Mitigation: Install only for a trusted, controlled API instance and require human confirmation before sending messages or changing groups. <br>
-Risk: The Evolution instance token grants access to the WhatsApp integration, and the script loads a local .env file when present. <br>
-Mitigation: Treat EVO_INSTANCE_TOKEN as a secret, keep any local .env file trusted and uncommitted, and rotate the token if it is exposed. <br>
-Risk: Fetching or summarizing chats, contacts, and group data can expose private communications. <br>
-Mitigation: Limit agent access to necessary conversations and confirm privacy, consent, and compliance requirements before reading or summarizing chat data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Evolution API v2](https://github.com/Atelier23/evolution-api-v2) <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent interact with WhatsApp accounts through a configured Evolution API instance for messaging, chat retrieval, contact lookup, group administration, and conversation summarization.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and Evolution API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVO_BASE_URL, EVO_INSTANCE_TOKEN, and EVO_INSTANCE_NAME; commands may send, read, and modify WhatsApp data through the configured API instance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access and summarize sensitive chats, contacts, group data, and locations.
+
+Mitigation: Use it only with accounts and conversations where you have authorization and consent, and avoid processing data that should not be exposed to an agent.
+
+Risk: The skill depends on an Evolution API endpoint and token that can control WhatsApp actions.
+
+Mitigation: Use a trusted HTTPS endpoint, store a limited and rotatable token outside shared artifacts, and rotate credentials if exposure is suspected.
+
+Risk: The shell wrapper loads a local artifact .env file if present, which could execute shell content.
+
+Mitigation: Do not place executable content in artifact/.env; review local configuration files before running the wrapper.
+
+## Reference(s):
+
+- [Evolution API v2](https://github.com/Atelier23/evolution-api-v2)
+- [ClawHub Skill Page](https://clawhub.ai/kareemadelawwad/skills/evolution-whatsapp)
+- [Publisher Profile](https://clawhub.ai/user/kareemadelawwad)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-like API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EVO_BASE_URL, EVO_INSTANCE_TOKEN, and EVO_INSTANCE_NAME to be configured before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

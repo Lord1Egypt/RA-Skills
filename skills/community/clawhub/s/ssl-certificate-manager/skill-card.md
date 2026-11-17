@@ -1,43 +1,58 @@
-## Description: <br>
-Automate SSL certificate generation and management with DNS challenge validation and certificate provisioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate SSL certificate generation and management with DNS challenge validation and certificate provisioning.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security professionals, DevOps teams, and infrastructure engineers use this skill to generate DNS challenges, request SSL/TLS certificates, download certificate files, and debug domain validation for domains they control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can issue certificates and retrieve private keys without clearly documented authentication, authorization, or key-handling safeguards. <br>
-Mitigation: Use it only for domains you control, verify strong provider authentication and per-domain authorization, start with staging certificates, and keep private keys in a secret manager rather than logs or agent output. <br>
-Risk: Certificate generation against the wrong domain or environment can create operational or trust-management impact. <br>
-Mitigation: Review DNS challenge records before certificate requests and use the debug endpoint and staging option before production issuance. <br>
+## Use Case:
 
+Security professionals, DevOps teams, and developers use this skill to create DNS challenges, request SSL/TLS certificate issuance, download certificate files, and debug DNS validation for managed domains.
 
-## Reference(s): <br>
-- [OpenAPI specification](artifact/openapi.json) <br>
-- [API docs](https://api.mkkpro.com:8044/docs) <br>
-- [Kong route](https://api.mkkpro.com/security/ssl-certificate-manager) <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/ssl-certificate-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples, plus downloadable certificate files from the API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses domain and email inputs for DNS challenge creation and certificate generation; certificate downloads may include PEM, private key, or chain files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Certificate issuance and download workflows can affect production TLS assets and may expose private key material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the external certificate service only when trusted, verify per-domain authorization before issuance, restrict downloads to required files, and never log, share, or commit private.key content.
+
+Risk: The published OpenAPI contract does not document access controls or private-key handling requirements.
+
+Mitigation: Require human review of authentication, authorization, and key custody controls before allowing autonomous agents to issue or download certificates.
+
+Risk: Incorrect DNS challenge configuration can cause failed issuance or operational delays.
+
+Mitigation: Use the staging option and DNS debug endpoint before production issuance when validating new domains or automation changes.
+
+## Reference(s):
+
+- [SSL Certificate Manager API Route](https://api.mkkpro.com/security/ssl-certificate-manager)
+- [SSL Certificate Manager API Docs](https://api.mkkpro.com:8044/docs)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return certificate file contents from download endpoints; private.key output must be treated as secret material.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

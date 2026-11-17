@@ -1,39 +1,58 @@
-## Description: <br>
-Real-time web search. Returns current results, titles, URLs, and an AI-synthesized summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answer a question with a fresh web search through AIProx (aiprox.dev): one POST /v1/search for 35 sats, paid in Bitcoin Lightning (L402 or a LightningProx spend token). Returns a short AI answer with key findings and up to 5 source URLs. Use it when the user asks for current information from the web and agrees to pay.
 
-## Publisher: <br>
-[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec)
 
-## Use Case: <br>
-External users and developers use Search Bot to retrieve current web results and AI-synthesized findings for news, research, fact checking, documentation lookup, and other topics that require up-to-date information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and a spend token are sent to external AIProx and downstream search providers. <br>
-Mitigation: Install only if you trust AIProx and its downstream providers; avoid secrets, private business data, regulated data, and highly personal searches, and prefer a revocable or limited token when available. <br>
+## Use Case:
 
+People who need current web information use this skill to receive an AI-generated answer, key findings, and up to five source URLs after approving the 35-sat Lightning charge.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/unixlamadev-spec/search-bot) <br>
-- [AIProx Homepage](https://aiprox.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown or JSON-style search results with titles, URLs, descriptions, summaries, key findings, query, and result count.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a task string and optional result count; requires AIPROX_SPEND_TOKEN for paid API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: A search call incurs a 35-sat charge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get the user's approval for the disclosed cost before calling, unless they already approved this price in the conversation.
+
+Risk: Search queries are sent to AIProx, and an optional spend token is a bearer credential.
+
+Mitigation: Avoid confidential queries; never expose the token; use a minimally funded token or have the user pay individual invoices.
+
+Risk: Search answers and source links are subject to AIProx search-content restrictions.
+
+Mitigation: Follow the disclosed terms on storing, sharing, reselling, redistribution, and AI training use.
+
+## Reference(s):
+
+- [AIProx](https://aiprox.dev)
+- [AIProx API documentation](https://aiprox.dev/docs.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Short AI-generated answer with key findings and up to five source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One paid 35-sat Lightning request per search; query limit is 500 characters.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and changelog, released 2026-11-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

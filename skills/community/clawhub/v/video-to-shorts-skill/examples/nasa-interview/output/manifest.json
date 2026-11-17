@@ -1,0 +1,52 @@
+{
+  "video": "behnken.mp4",
+  "clips": [
+    {
+      "id": "01",
+      "path": "clip-01.mp4",
+      "bytes": 17051413,
+      "seconds": 29.8,
+      "source": [
+        493.82,
+        525.15
+      ],
+      "framing": "crop",
+      "hook": "Astronauts live Groundhog Day on purpose",
+      "title": "Why astronauts train like it's Groundhog Day",
+      "caption": "Astronauts train until nothing on launch day is a surprise. Bob Behnken explains with a movie everyone knows. #nasa #spacex #astronaut",
+      "cover": "clip-01-cover.jpg"
+    },
+    {
+      "id": "02",
+      "path": "clip-02.mp4",
+      "bytes": 8551914,
+      "seconds": 14.8,
+      "source": [
+        217.98,
+        234.42
+      ],
+      "framing": "crop",
+      "hook": "What if the spacecraft flies itself?",
+      "title": "What if the spacecraft flies itself?",
+      "caption": "On a highly automated spacecraft, the crew still needs a safe path home. How NASA thought about Crew Dragon. #nasa #spacex #engineering",
+      "cover": "clip-02-cover.jpg"
+    },
+    {
+      "id": "03",
+      "path": "clip-03.mp4",
+      "bytes": 13519735,
+      "seconds": 23.7,
+      "source": [
+        74.9,
+        99.94
+      ],
+      "framing": "crop",
+      "hook": "His goal: future crews forget his name",
+      "title": "His goal: future crews forget his name",
+      "caption": "Good design means the next crew never has to think about you. Bob Behnken on building Crew Dragon. #nasa #design #spacex",
+      "cover": "clip-03-cover.jpg"
+    }
+  ],
+  "contactSheet": "contact-sheet.jpg",
+  "warnings": []
+}
